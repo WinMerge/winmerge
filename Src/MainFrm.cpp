@@ -128,6 +128,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
+	ON_COMMAND(ID_TOOLS_LOADCONFIG, OnToolsLoadConfig)
 	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
@@ -2388,6 +2389,82 @@ CString CMainFrame::GetDefaultEditor()
 	return path;
 }
 
+typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;
+
+/**
+ * @brief Copy one piece of data from options object to config log, or vice-versa
+ */
+static void
+LoadConfigIntSetting(int * cfgval, CRegOptions & options, const CString & name, ConfigLogDirection cfgdir)
+{
+	if (cfgdir == ToConfigLog)
+	{
+			*cfgval = options.GetInt(name);
+	}
+	else
+	{
+		options.SetInt(name, *cfgval);
+	}
+}
+
+/**
+ * @brief Copy one piece of data from options object to config log, or vice-versa
+ */
+static void
+LoadConfigBoolSetting(BOOL * cfgval, CRegOptions & options, const CString & name, ConfigLogDirection cfgdir)
+{
+	if (cfgdir == ToConfigLog)
+	{
+			*cfgval = options.GetBool(name);
+	}
+	else
+	{
+		options.SetBool(name, !!(*cfgval));
+	}
+}
+
+/**
+ * @brief Pass options settings from "RegOptions" object to config log, or vice-versa
+ */
+static void
+LoadConfigLog(CConfigLog & configLog, CRegOptions & options, LOGFONT & lfDiff, ConfigLogDirection cfgdir)
+{
+	LoadConfigIntSetting(&configLog.m_diffOptions.nIgnoreWhitespace, options, OPT_CMP_IGNORE_WHITESPACE, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreCase, options, OPT_CMP_IGNORE_CASE, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_diffOptions.bEolSensitive, options, OPT_CMP_EOL_SENSITIVE, cfgdir);
+	
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowIdent, options, OPT_SHOW_IDENTICAL, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowDiff, options, OPT_SHOW_DIFFERENT, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowUniqueLeft, options, OPT_SHOW_UNIQUE_LEFT, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowUniqueRight, options, OPT_SHOW_UNIQUE_RIGHT, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowBinaries, options, OPT_SHOW_BINARIES, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowSkipped, options, OPT_SHOW_SKIPPED, cfgdir);
+
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bAutomaticRescan, options, OPT_AUTOMATIC_RESCAN, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bAllowMixedEol, options, OPT_ALLOW_MIXED_EOL, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bScrollToFirst, options, OPT_SCROLL_TO_FIRST, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bBackup, options, OPT_CREATE_BACKUPS, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bViewWhitespace, options, OPT_VIEW_WHITESPACE, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bMovedBlocks, options, OPT_CMP_MOVED_BLOCKS, cfgdir);
+
+	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultMode, options, OPT_CP_DEFAULT_MODE, cfgdir);
+	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultCustomValue, options, OPT_CP_DEFAULT_CUSTOM, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_cpSettings.bDetectCodepage, options, OPT_CP_DETECT, cfgdir);
+
+	if (cfgdir == ToConfigLog)
+	{
+		configLog.m_fontSettings.nCharset = lfDiff.lfCharSet;
+		configLog.m_fontSettings.sFacename = lfDiff.lfFaceName;
+	}
+	else
+	{
+		lfDiff.lfCharSet = configLog.m_fontSettings.nCharset;
+		_tcsncpy(lfDiff.lfFaceName, configLog.m_fontSettings.sFacename, sizeof(lfDiff.lfFaceName)/sizeof(lfDiff.lfFaceName[0]));
+	}
+}
+
+
 /**
  * @brief Save WinMerge configuration and info to file
  */
@@ -2396,31 +2473,7 @@ void CMainFrame::OnSaveConfigData()
 	CConfigLog configLog;
 	CString sError;
 
-	configLog.m_diffOptions.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	configLog.m_diffOptions.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	configLog.m_diffOptions.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
-	configLog.m_diffOptions.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
-	
-	configLog.m_viewSettings.bShowIdent = m_options.GetBool(OPT_SHOW_IDENTICAL);
-	configLog.m_viewSettings.bShowDiff = m_options.GetBool(OPT_SHOW_DIFFERENT);
-	configLog.m_viewSettings.bShowUniqueLeft = m_options.GetBool(OPT_SHOW_UNIQUE_LEFT);
-	configLog.m_viewSettings.bShowUniqueRight = m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT);
-	configLog.m_viewSettings.bShowBinaries = m_options.GetBool(OPT_SHOW_BINARIES);
-	configLog.m_viewSettings.bShowSkipped = m_options.GetBool(OPT_SHOW_SKIPPED);
-
-	configLog.m_miscSettings.bAutomaticRescan = m_options.GetBool(OPT_AUTOMATIC_RESCAN);
-	configLog.m_miscSettings.bAllowMixedEol = m_options.GetBool(OPT_ALLOW_MIXED_EOL);
-	configLog.m_miscSettings.bScrollToFirst = m_options.GetBool(OPT_SCROLL_TO_FIRST);
-	configLog.m_miscSettings.bBackup = m_options.GetBool(OPT_CREATE_BACKUPS);
-	configLog.m_miscSettings.bViewWhitespace = m_options.GetBool(OPT_VIEW_WHITESPACE);
-	configLog.m_miscSettings.bMovedBlocks = m_options.GetBool(OPT_CMP_MOVED_BLOCKS);
-
-	configLog.m_cpSettings.nDefaultMode = m_options.GetInt(OPT_CP_DEFAULT_MODE);
-	configLog.m_cpSettings.nDefaultCustomValue = m_options.GetInt(OPT_CP_DEFAULT_CUSTOM);
-	configLog.m_cpSettings.bDetectCodepage = m_options.GetBool(OPT_CP_DETECT);
-
-	configLog.m_fontSettings.nCharset = m_lfDiff.lfCharSet;
-	configLog.m_fontSettings.sFacename = m_lfDiff.lfFaceName;
+	LoadConfigLog(configLog, m_options, m_lfDiff, ToConfigLog);
 
 	if (configLog.WriteLogFile(sError))
 	{
@@ -2757,4 +2810,27 @@ void CMainFrame::ShowFontChangeMessage()
 
 	if (editViews.GetCount() > 0 || dirViews.GetCount() > 0)
 		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
+}
+
+/**
+ * @brief Prompt user to select configuration file, and then load settings from it
+ */
+void CMainFrame::OnToolsLoadConfig()
+{
+	CFileDialog dlg(true, _T(".log"),0,0, _T("Log files (*.log)|*.log|All files (*.*)|*.*||"));
+	if (dlg.DoModal() != IDOK)
+		return;
+
+	CString filepath = dlg.GetPathName();
+
+	CConfigLog configLog;
+
+	// set configLog settings to current
+	LoadConfigLog(configLog, m_options, m_lfDiff, ToConfigLog);
+
+	// update any settings found in actual config file
+	configLog.ReadLogFile(filepath);
+
+	// set our current settings from configLog settings
+	LoadConfigLog(configLog, m_options, m_lfDiff, FromConfigLog);
 }

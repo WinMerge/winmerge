@@ -248,7 +248,7 @@ CString COptionsMgr::GetString(CString name) const
 /**
  * @brief Return integer option value
  */
-int COptionsMgr::GetInt(CString name) const
+int COptionsMgr::GetInt(const CString & name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);

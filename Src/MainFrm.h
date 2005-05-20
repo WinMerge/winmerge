@@ -219,6 +219,7 @@ protected:
 	afx_msg void OnSaveConfigData();
 	afx_msg void OnFileNew();
 	afx_msg void OnToolsFilters();
+	afx_msg void OnToolsLoadConfig();
 	afx_msg void OnHelpMerge7zmismatch();
 	afx_msg void OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI);
 	afx_msg void OnViewStatusBar();

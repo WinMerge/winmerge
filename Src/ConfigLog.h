@@ -25,6 +25,8 @@
 #ifndef _CONFIGLOG_H_
 #define _CONFIGLOG_H_
 
+class CfgSettings;
+
 /** 
  * @brief View settings for directory compare
  */
@@ -77,6 +79,8 @@ struct FONTSETTINGS
 class CConfigLog
 {
 public:
+	CConfigLog();
+	~CConfigLog();
 
 	DIFFOPTIONS m_diffOptions;
 	VIEWSETTINGS m_viewSettings;
@@ -85,14 +89,31 @@ public:
 	FONTSETTINGS m_fontSettings;
 
 	CString GetFileName() const;
-	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
 	BOOL WriteLogFile(CString &sError);
+	void ReadLogFile(const CString & Filepath);
+
+
+	// Implementation methods
+private:
+	BOOL DoFile(bool writing, CString &sError);
+	void WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file);
 	CString GetWindowsVer();
 	CString GetBuildFlags();
+	void FileWriteString(LPCTSTR lpsz);
+	void CloseFile();
+	void WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue);
+	void WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue);
+	void WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue);
+	bool ParseSettings(const CString & Filepath);
+	CString GetValueFromConfig(const CString & key);
 
+
+	// Implementation data
 private:
 	CString m_sFileName;
-
+	CStdioFile m_file;
+	bool m_writing;
+	CfgSettings * m_pCfgSettings;
 };
 
 #endif /* _CONFIGLOG_H_ */

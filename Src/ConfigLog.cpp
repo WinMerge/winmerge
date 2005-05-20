@@ -37,6 +37,24 @@
 #include "codepage.h"
 #include "7zcommon.h"
 
+
+// Static function declarations
+static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag);
+
+
+
+CConfigLog::CConfigLog()
+: m_pCfgSettings(NULL)
+{
+}
+
+CConfigLog::~CConfigLog()
+{
+	CloseFile();
+}
+
+
+
 /** 
  * @brief Return logfile name and path
  */
@@ -50,6 +68,9 @@ CString CConfigLog::GetFileName() const
  */
 void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile & file)
 {
+	// do nothing if actually reading config file
+	if (file.m_hFile == CFile::hFileNull) return;
+
 	// get an array with the available scripts
 	PluginArray * piPluginArray; 
 
@@ -111,6 +132,9 @@ static CString FontCharsetName(BYTE charset)
  */
 static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, LPCTSTR value = 0)
 {
+	// do nothing if actually reading config file
+	if (file.m_hFile == CFile::hFileNull) return;
+
 	CString text;
 	text.Format(value ? _T("%*.0s%s: %s\n") : _T("%*.0s%s:\n"), indent, key, key, value);
 	file.WriteString(text);
@@ -121,6 +145,9 @@ static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, LPCTSTR value =
  */
 static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, long value)
 {
+	// do nothing if actually reading config file
+	if (file.m_hFile == CFile::hFileNull) return;
+
 	CString text;
 	text.Format(_T("%*.0s%s: %ld\n"), indent, key, key, value);
 	file.WriteString(text);
@@ -129,11 +156,28 @@ static void WriteItem(CStdioFile &file, int indent, LPCTSTR key, long value)
 /**
  * @brief Write boolean item using keywords (Yes|No)
  */
-static void WriteItemYesNo(CStdioFile &file, int indent, LPCTSTR key, BOOL value)
+void CConfigLog::WriteItemYesNo(int indent, LPCTSTR key, BOOL *pvalue)
 {
-	CString text;
-	text.Format(_T("%*.0s%s: %s\n"), indent, key, key, value ? _T("Yes") : _T("No"));
-	file.WriteString(text);
+	if (m_writing)
+	{
+		CString text;
+		text.Format(_T("%*.0s%s: %s\n"), indent, key, key, *pvalue ? _T("Yes") : _T("No"));
+		m_file.WriteString(text);
+	}
+	else
+	{
+		LoadYesNoFromConfig(m_pCfgSettings, key, pvalue);
+	}
+}
+
+/**
+ * @brief Same as WriteItemYesNo, except store Yes/No in reverse
+ */
+void CConfigLog::WriteItemYesNoInverted(int indent, LPCTSTR key, BOOL *pvalue)
+{
+	BOOL tempval = !(*pvalue);
+	WriteItemYesNo(indent, key, &tempval);
+	*pvalue = !(tempval);
 }
 
 /**
@@ -141,6 +185,9 @@ static void WriteItemYesNo(CStdioFile &file, int indent, LPCTSTR key, BOOL value
  */
 static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
 {
+	// do nothing if actually reading config file
+	if (file.m_hFile == CFile::hFileNull) return;
+
 	WriteItem(file, 1, title);
 	WriteItem(file, 2, _T("Def ANSI codepage"), GetLocaleString(locid, LOCALE_IDEFAULTANSICODEPAGE));
 	WriteItem(file, 2, _T("Def OEM codepage"), GetLocaleString(locid, LOCALE_IDEFAULTCODEPAGE));
@@ -155,6 +202,9 @@ static void WriteLocaleSettings(CStdioFile & file, LCID locid, LPCTSTR title)
  */
 static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
 {
+	// do nothing if actually reading config file
+	if (file.m_hFile == CFile::hFileNull) return;
+
 	LPTSTR name = PathFindFileName(path);
 	CVersionInfo vi = path;
 	CString text;
@@ -269,141 +319,168 @@ static void WriteArchiveSupport(CStdioFile &file)
 	}
 }
 
+struct NameMap { int ival; LPCTSTR sval; };
+/**
+ * @brief Write boolean item using keywords (Yes|No)
+ */
+void CConfigLog::
+WriteItemWhitespace(int indent, LPCTSTR key, int *pvalue)
+{
+	static NameMap namemap[] = {
+		{ WHITESPACE_COMPARE_ALL, _T("Compare all") }
+		, { WHITESPACE_IGNORE_CHANGE, _T("Ignore change") }
+		, { WHITESPACE_IGNORE_ALL, _T("Ignore all") }
+	};
+
+	if (m_writing)
+	{
+		CString text = _T("Unknown");
+		for (int i=0; i<sizeof(namemap)/sizeof(namemap[0]); ++i)
+		{
+			if (*pvalue == namemap[i].ival)
+				text = namemap[i].sval;
+		}
+		WriteItem(m_file, indent, key, text);
+	}
+	else
+	{
+		*pvalue = namemap[0].ival;
+		CString svalue = GetValueFromConfig(key);
+		for (int i=0; i<sizeof(namemap)/sizeof(namemap[0]); ++i)
+		{
+			if (svalue == namemap[i].sval)
+				*pvalue = namemap[i].ival;
+		}
+	}
+}
+
+
 /** 
  * @brief Write logfile
  */
-BOOL CConfigLog::WriteLogFile(CString &sError)
+BOOL CConfigLog::DoFile(bool writing, CString &sError)
 {
-	CStdioFile file;
 	CFileException e;
 	CVersionInfo version;
 	CString text;
 
-	m_sFileName = _T("WinMerge.txt");
+	m_writing = writing;
 
-	// Get path to $temp/WinMerge.txt
-	m_sFileName.Insert(0, paths_GetTempPath());
-
-	if (!file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
+	if (writing)
 	{
-		TCHAR szError[1024];
-		e.GetErrorMessage(szError, 1024);
-		sError = szError;
-		return FALSE;
+		m_sFileName = _T("WinMerge.txt");
+
+		// Get path to $temp/WinMerge.txt
+		m_sFileName.Insert(0, paths_GetTempPath());
+
+		if (!m_file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
+		{
+			TCHAR szError[1024];
+			e.GetErrorMessage(szError, 1024);
+			sError = szError;
+			return FALSE;
+		}
 	}
 
 // Begin log
-	file.WriteString(_T("WinMerge configuration log\n"));
-	file.WriteString(_T("--------------------------\n"));
-	file.WriteString(_T("Saved to: "));
-	file.WriteString(m_sFileName);
-	file.WriteString(_T("\n* Please add this information (or attach this file)\n"));
-	file.WriteString(_T("* when reporting bugs.\n"));
+	FileWriteString(_T("WinMerge configuration log\n"));
+	FileWriteString(_T("--------------------------\n"));
+	FileWriteString(_T("Saved to: "));
+	FileWriteString(m_sFileName);
+	FileWriteString(_T("\n* Please add this information (or attach this file)\n"));
+	FileWriteString(_T("* when reporting bugs.\n"));
 
 // Platform stuff
-	file.WriteString(_T("\n\nVersion information:\n"));
-	file.WriteString(_T(" WinMerge.exe: "));
-	file.WriteString(version.GetFixedProductVersion());
+	FileWriteString(_T("\n\nVersion information:\n"));
+	FileWriteString(_T(" WinMerge.exe: "));
+	FileWriteString(version.GetFixedProductVersion());
 
 	CString privBuild = version.GetPrivateBuild();
 	if (!privBuild.IsEmpty())
 	{
-		file.WriteString(_T(" - Private build: "));
-		file.WriteString(privBuild);
+		FileWriteString(_T(" - Private build: "));
+		FileWriteString(privBuild);
 	}
 
 	text = GetBuildFlags();
-	file.WriteString(_T("\n Build config: "));
-	file.WriteString(text);
+	FileWriteString(_T("\n Build config: "));
+	FileWriteString(text);
 
-	file.WriteString(_T("\n Windows: "));
+	FileWriteString(_T("\n Windows: "));
 	text = GetWindowsVer();
-	file.WriteString(text);
+	FileWriteString(text);
 
-	file.WriteString(_T("\n"));
-	WriteVersionOf1(file, 1, _T("COMCTL32.dll"));
-	WriteVersionOf1(file, 1, _T("ShellExtension.dll"));
+	FileWriteString(_T("\n"));
+	WriteVersionOf1(m_file, 1, _T("COMCTL32.dll"));
+	WriteVersionOf1(m_file, 1, _T("ShellExtension.dll"));
 
-	file.WriteString(_T("\n"));
-	WriteArchiveSupport(file);
+	FileWriteString(_T("\n"));
+	WriteArchiveSupport(m_file);
 // WinMerge settings
-	file.WriteString(_T("\nWinMerge configuration:\n"));
-	file.WriteString(_T(" Compare settings:\n"));
+	FileWriteString(_T("\nWinMerge configuration:\n"));
+	FileWriteString(_T(" Compare settings:\n"));
 
-	WriteItemYesNo(file, 2, _T("Ignore blank lines"), m_diffOptions.bIgnoreBlankLines);
-	WriteItemYesNo(file, 2, _T("Ignore case"), m_diffOptions.bIgnoreCase);
-	WriteItemYesNo(file, 2, _T("Ignore carriage return differences"), !m_diffOptions.bEolSensitive);
+	WriteItemYesNo(2, _T("Ignore blank lines"), &m_diffOptions.bIgnoreBlankLines);
+	WriteItemYesNo(2, _T("Ignore case"), &m_diffOptions.bIgnoreCase);
+	WriteItemYesNoInverted(2, _T("Ignore carriage return differences"), &m_diffOptions.bEolSensitive);
 
-	text = _T("Unknown");
-	switch (m_diffOptions.nIgnoreWhitespace)
-	{
-	case WHITESPACE_COMPARE_ALL:
-		text = _T("Compare all");
-		break;
-	case WHITESPACE_IGNORE_CHANGE:
-		text = _T("Ignore change");
-		break;
-	case WHITESPACE_IGNORE_ALL:
-		text = _T("Ignore all");
-		break;
-	}
-	WriteItem(file, 2, _T("Whitespace compare"), text);
+	WriteItemWhitespace(2, _T("Whitespace compare"), &m_diffOptions.nIgnoreWhitespace);
 
-	WriteItemYesNo(file, 2, _T("Detect moved blocks"), m_miscSettings.bMovedBlocks);
+	WriteItemYesNo(2, _T("Detect moved blocks"), &m_miscSettings.bMovedBlocks);
 
-	file.WriteString(_T("\n Other settings:\n"));
-	WriteItemYesNo(file, 2, _T("Automatic rescan"), m_miscSettings.bAutomaticRescan);
-	WriteItemYesNo(file, 2, _T("Simple EOL"), !m_miscSettings.bAllowMixedEol);
-	WriteItemYesNo(file, 2, _T("Automatic scroll to 1st difference"), m_miscSettings.bScrollToFirst);
-	WriteItemYesNo(file, 2, _T("Backup original file"), m_miscSettings.bBackup);
+	FileWriteString(_T("\n Other settings:\n"));
+	WriteItemYesNo(2, _T("Automatic rescan"), &m_miscSettings.bAutomaticRescan);
+	WriteItemYesNoInverted(2, _T("Simple EOL"), &m_miscSettings.bAllowMixedEol);
+	WriteItemYesNo(2, _T("Automatic scroll to 1st difference"), &m_miscSettings.bScrollToFirst);
+	WriteItemYesNo(2, _T("Backup original file"), &m_miscSettings.bBackup);
 
-	file.WriteString(_T("\n Show:\n"));
-	WriteItemYesNo(file, 2, _T("Identical files"), m_viewSettings.bShowIdent);
-	WriteItemYesNo(file, 2, _T("Different files"), m_viewSettings.bShowDiff);
-	WriteItemYesNo(file, 2, _T("Left Unique files"), m_viewSettings.bShowUniqueLeft);
-	WriteItemYesNo(file, 2, _T("Right Unique files"), m_viewSettings.bShowUniqueRight);
-	WriteItemYesNo(file, 2, _T("Binary files"), m_viewSettings.bShowBinaries);
-	WriteItemYesNo(file, 2, _T("Skipped files"), m_viewSettings.bShowSkipped);
+	FileWriteString(_T("\n Show:\n"));
+	WriteItemYesNo(2, _T("Identical files"), &m_viewSettings.bShowIdent);
+	WriteItemYesNo(2, _T("Different files"), &m_viewSettings.bShowDiff);
+	WriteItemYesNo(2, _T("Left Unique files"), &m_viewSettings.bShowUniqueLeft);
+	WriteItemYesNo(2, _T("Right Unique files"), &m_viewSettings.bShowUniqueRight);
+	WriteItemYesNo(2, _T("Binary files"), &m_viewSettings.bShowBinaries);
+	WriteItemYesNo(2, _T("Skipped files"), &m_viewSettings.bShowSkipped);
 
-	file.WriteString(_T("\n"));
-	WriteItemYesNo(file, 1, _T("View Whitespace"), m_miscSettings.bViewWhitespace);
+	FileWriteString(_T("\n"));
+	WriteItemYesNo(1, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
 	
 // Font settings
-	file.WriteString(_T("\n Font:\n"));
-	file.WriteString(Fmt(_T("  Font facename: %s\n"), m_fontSettings.sFacename));
-	file.WriteString(Fmt(_T("  Font charset: %d (%s)\n"), m_fontSettings.nCharset, 
+	FileWriteString(_T("\n Font:\n"));
+	FileWriteString(Fmt(_T("  Font facename: %s\n"), m_fontSettings.sFacename));
+	FileWriteString(Fmt(_T("  Font charset: %d (%s)\n"), m_fontSettings.nCharset, 
 		FontCharsetName(m_fontSettings.nCharset)));
 
 // System settings
-	file.WriteString(_T("\nSystem settings:\n"));
-	file.WriteString(_T(" codepage settings:\n"));
-	WriteItem(file, 2, _T("ANSI codepage"), GetACP());
-	WriteItem(file, 2, _T("OEM codepage"), GetOEMCP());
+	FileWriteString(_T("\nSystem settings:\n"));
+	FileWriteString(_T(" codepage settings:\n"));
+	WriteItem(m_file, 2, _T("ANSI codepage"), GetACP());
+	WriteItem(m_file, 2, _T("OEM codepage"), GetOEMCP());
 #ifndef UNICODE
-	WriteItem(file, 2, _T("multibyte codepage"), _getmbcp());
+	WriteItem(m_file, 2, _T("multibyte codepage"), _getmbcp());
 #endif
-	WriteLocaleSettings(file, GetThreadLocale(), _T("Locale (Thread)"));
-	WriteLocaleSettings(file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
-	WriteLocaleSettings(file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
+	WriteLocaleSettings(m_file, GetThreadLocale(), _T("Locale (Thread)"));
+	WriteLocaleSettings(m_file, LOCALE_USER_DEFAULT, _T("Locale (User)"));
+	WriteLocaleSettings(m_file, LOCALE_SYSTEM_DEFAULT, _T("Locale (System)"));
 
 // Codepage settings
-	WriteItemYesNo(file, 0, _T("Detect codepage automatically for RC and HTML files"), m_cpSettings.bDetectCodepage);
-	WriteItem(file, 1, _T("unicoder codepage"), getDefaultCodepage());
+	WriteItemYesNo(0, _T("Detect codepage automatically for RC and HTML files"), &m_cpSettings.bDetectCodepage);
+	WriteItem(m_file, 1, _T("unicoder codepage"), getDefaultCodepage());
 
 // Plugins
-	file.WriteString(_T("\nPlugins: "));
-	file.WriteString(_T("\n Unpackers: "));
-	WritePluginsInLogFile(L"FILE_PACK_UNPACK", file);
-	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK", file);
-	file.WriteString(_T("\n Prediffers: "));
-	WritePluginsInLogFile(L"FILE_PREDIFF", file);
-	WritePluginsInLogFile(L"BUFFER_PREDIFF", file);
-	file.WriteString(_T("\n Editor scripts: "));
-	WritePluginsInLogFile(L"EDITOR_SCRIPT", file);
+	FileWriteString(_T("\nPlugins: "));
+	FileWriteString(_T("\n Unpackers: "));
+	WritePluginsInLogFile(L"FILE_PACK_UNPACK", m_file);
+	WritePluginsInLogFile(L"BUFFER_PACK_UNPACK", m_file);
+	FileWriteString(_T("\n Prediffers: "));
+	WritePluginsInLogFile(L"FILE_PREDIFF", m_file);
+	WritePluginsInLogFile(L"BUFFER_PREDIFF", m_file);
+	FileWriteString(_T("\n Editor scripts: "));
+	WritePluginsInLogFile(L"EDITOR_SCRIPT", m_file);
 	if (IsWindowsScriptThere() == FALSE)
-		file.WriteString(_T("\n .sct scripts disabled (Windows Script Host not found)\n"));
+		FileWriteString(_T("\n .sct scripts disabled (Windows Script Host not found)\n"));
 
-	file.Close();
+	CloseFile();
 
 	return TRUE;
 }
@@ -648,7 +725,7 @@ CString CConfigLog::GetWindowsVer()
 }
 
 /** 
- * @brief Determine some flags used when building
+ * @brief Return string representation of build flags (for reporting in config log)
  */
 CString CConfigLog::GetBuildFlags()
 {
@@ -671,4 +748,125 @@ CString CConfigLog::GetBuildFlags()
 #endif
 
 	return flags;
+}
+
+/** 
+ * @brief  Collection of configuration settings found in config log (name/value map)
+ */
+class CfgSettings
+{
+public:
+	CfgSettings() { m_settings.InitHashTable(411); }
+	void Add(LPCTSTR name, LPCTSTR value) { m_settings.SetAt(name, value); }
+	bool Lookup(LPCTSTR name, CString & value) { return !!m_settings.Lookup(name, value); }
+private:
+	CMapStringToString m_settings;
+};
+
+/**
+ * @brief  Lookup named setting in cfgSettings, and if found, set pbflag accordingly
+ */
+static bool
+LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag)
+{
+	CString value;
+	if (cfgSettings->Lookup(name, value))
+	{
+		if (value == _T("Yes"))
+		{
+			*pbflag = TRUE;
+			return true;
+		}
+		else if (value == _T("No"))
+		{
+			*pbflag = FALSE;
+			return true;
+		}
+	}
+	return false;
+}
+
+
+
+BOOL
+CConfigLog::WriteLogFile(CString &sError)
+{
+	CloseFile();
+
+	bool writing = true;
+	return DoFile(writing, sError);
+}
+
+void
+CConfigLog::ReadLogFile(const CString & Filepath)
+{
+	CloseFile();
+
+	bool writing = false;
+	CString sError;
+	m_pCfgSettings = new CfgSettings;
+	if (!ParseSettings(Filepath)) return;
+	DoFile(writing, sError);
+}
+
+/// Write line to file (if writing configuration log)
+void
+CConfigLog::FileWriteString(LPCTSTR lpsz)
+{
+	if (m_writing)
+		m_file.WriteString(lpsz);
+}
+
+/**
+ * @brief Close any open file
+ */
+void
+CConfigLog::CloseFile()
+{
+	if (m_file.m_hFile != CFile::hFileNull)
+		m_file.Close();
+	delete m_pCfgSettings;
+	m_pCfgSettings = 0;
+}
+
+/**
+ * @brief  Store all name:value strings from file into m_pCfgSettings
+ */
+bool
+CConfigLog::ParseSettings(const CString & Filepath)
+{
+	CStdioFile file;
+	if (!file.Open(Filepath, CFile::modeRead))
+		return false;
+
+	CString strline;
+	while (file.ReadString(strline))
+	{
+		int colon = strline.Find(':');
+		if (colon > 0)
+		{
+			CString name = strline.Left(colon);
+			CString value = strline.Mid(colon+1);
+			name.TrimLeft();
+			name.TrimRight();
+			value.TrimLeft();
+			value.TrimRight();
+			m_pCfgSettings->Add(name, value);
+		}
+	}
+	file.Close();
+	return true;
+
+
+}
+
+CString
+CConfigLog::GetValueFromConfig(const CString & key)
+{
+	CString value;
+	if (m_pCfgSettings->Lookup(key, value))
+	{
+		return value;
+	}
+	return _T("");
 }

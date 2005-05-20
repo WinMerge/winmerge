@@ -74,8 +74,10 @@ public:
 	int Add(CString name, varprop::VariantValue defaultValue);
 	varprop::VariantValue Get(CString name) const;
 	CString GetString(CString name) const;
-	int GetInt(CString name) const;
+	int GetInt(const CString & name) const;
+	void SetInt(const CString & name, int value) { SaveOption(name, value); }
 	bool GetBool(CString name) const;
+	void SetBool(const CString & name, bool value) { SaveOption(name, value); }
 	int Set(CString name, varprop::VariantValue value);
 	int Reset(CString name);
 	int GetDefault(CString name, CString & value) const;

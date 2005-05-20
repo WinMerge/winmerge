@@ -776,6 +776,7 @@
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32864
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
+#define ID_TOOLS_LOADCONFIG             32867
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
 #define ID_POPUP_OPEN_WITH_UNPACKER     32882

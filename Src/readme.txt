@@ -1,3 +1,9 @@
+2005-05-20 Perry
+ PATCH: [ 1187777 ] New LoadConfig function
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp MainFrm.h
+   Merge.rc resource.h
+
 2005-05-18 WinMerge experimental release 2.3.3.4 (cvs)
 
 2005-05-18 Kimmo

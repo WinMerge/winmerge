@@ -124,6 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -224,6 +228,10 @@ BEGIN
         MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -365,6 +373,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
