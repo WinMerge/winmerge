@@ -1,3 +1,7 @@
+2005-05-21 Perry
+ PATCH [ 1206085 ] Translate new options dialog to German
+  Src/Languages/German: MergeGerman.rc
+
 2005-05-20 Perry
  PATCH: [ 1187777 ] New LoadConfig function
   Src/Common: OptionsMgr.cpp OptionsMgr.h
