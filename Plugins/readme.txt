@@ -5,6 +5,10 @@
   Fix compilation for DisplayBinaryFiles, for both MSVC6 (debug) and MSVC7
   DisplayBinaryFiles: DisplayBinaryFiles.dsp typeinfoex.h WinMergeScript.cpp
    new file ChangeLog.txt
+ PATCH [ 1206256 ] Fix DisplayBinaryFiles plugin to handle unicode files
+  DisplayBinaryFiles: ChangeLog.txt DisplayBinaryFiles.dsp DisplayBinaryFiles.rc
+   WinMergeScript.cpp
+   new files unicheck.cpp & unicheck.h
 
 2005-01-27 Kimmo
  PATCH: [ 1109405 ] Binary diff is totally broken (buffer overwrite)

@@ -7,3 +7,5 @@ DisplayBinaryFiles\ChangeLog.txt
  Added ChangeLog to project.
  Fixed project link to typeinfoex.h (it is in current directory not parent).
  Note: Current version is 1.0.0.1.
+ Added unicheck.* files and fixed to handle unicode encodings if BOM found.
+ Bumped current version to 1.0.1.0 (and copyright notice to this year)

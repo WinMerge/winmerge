@@ -207,6 +207,10 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\unicheck.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\WinMergeScript.cpp
 # End Source File
 # End Group
@@ -224,6 +228,10 @@ SOURCE=.\StdAfx.h
 # Begin Source File
 
 SOURCE=.\typeinfoex.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\unicheck.h
 # End Source File
 # Begin Source File
 

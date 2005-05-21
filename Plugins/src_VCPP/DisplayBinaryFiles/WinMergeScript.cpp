@@ -2,6 +2,7 @@
 #include "stdafx.h"
 #include "DisplayBinaryFiles.h"
 #include "WinMergeScript.h"
+#include "unicheck.h"
 #include <fstream>
 using namespace std;
 
@@ -59,15 +60,35 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 
 	char buffer[65536];
 
+	bool beginning=true;
+	// Check for Unicode BOM (byte order mark)
+	// Only matter if file has 3 or more bytes
+	// Files with <3 bytes are empty if they are UCS-2
+	unicodingInfo uninfo;
 	while (len)
 	{
 		int curlen = len;
 		if (curlen > 65536)
 			curlen = 65536;
+		// align on 4byte boundary, in case doing unicode encoding
+		if (curlen > 4 && ( (curlen % 4) != 0))
+			curlen -= (curlen % 4);
 		input.read(buffer, curlen);
-		for (int i = 0 ; i < curlen ; i++)
-			if (buffer[i] == 0)
-				buffer[i] = 0x20;
+		int i=0;
+		if (beginning)
+		{
+			if (CheckForBom(buffer, curlen, &uninfo))
+			i += uninfo.bom_width;
+			beginning = false;
+		}
+		for ( ; i < curlen ; i += uninfo.char_width)
+		{
+			int index = i+uninfo.low_byte;
+			if (i+index < curlen && buffer[index] == 0)
+			{
+				buffer[index] = 0x20;
+			}
+		}
 		output.write(buffer, curlen);
 		len -= curlen;
 	}
