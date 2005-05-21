@@ -2,7 +2,8 @@
 #include "stdafx.h"
 #include "DisplayBinaryFiles.h"
 #include "WinMergeScript.h"
-#include <fstream.h>
+#include <fstream>
+using namespace std;
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript

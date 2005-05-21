@@ -223,7 +223,7 @@ SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\typeinfoex.h
+SOURCE=.\typeinfoex.h
 # End Source File
 # Begin Source File
 
@@ -238,5 +238,9 @@ SOURCE=.\WinMergeScript.h
 SOURCE=.\WinMergeScript.rgs
 # End Source File
 # End Group
+# Begin Source File
+
+SOURCE=.\ChangeLog.txt
+# End Source File
 # End Target
 # End Project

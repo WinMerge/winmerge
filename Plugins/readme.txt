@@ -1,3 +1,11 @@
+2005-05-21 Perry
+ PATCH [ 1206215 ] Fix DisplayBinaryFiles dll source to compile
+ BUG [ 1206209 ] DisplayBinaryFiles.dll does not compile under MSVC7 (2003)
+ BUG [ 1205960 ] DisplayBinaryFiles code does not compile in debug
+  Fix compilation for DisplayBinaryFiles, for both MSVC6 (debug) and MSVC7
+  DisplayBinaryFiles: DisplayBinaryFiles.dsp typeinfoex.h WinMergeScript.cpp
+   new file ChangeLog.txt
+
 2005-01-27 Kimmo
  PATCH: [ 1109405 ] Binary diff is totally broken (buffer overwrite)
   Submitted by Jim Fougeron
