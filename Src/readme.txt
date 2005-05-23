@@ -1,5 +1,9 @@
+2005-02-23 Kimmo
+ PATCH: [ 1206647 ] Add trailing slash to MRU paths
+  Src: MainFrm.cpp
+
 2005-05-21 Perry
- PATCH [ 1206085 ] Translate new options dialog to German
+ PATCH: [ 1206085 ] Translate new options dialog to German
   Src/Languages/German: MergeGerman.rc
 
 2005-05-20 Perry

@@ -1227,6 +1227,15 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
+		// Add trailing '\' for directories if its missing
+		if (pathsType == IS_EXISTING_DIR)
+		{
+			if (!paths_EndsWithSlash(strLeft))
+				strLeft += '\\';
+			if (!paths_EndsWithSlash(strRight))
+				strRight += '\\';
+		}
+
 		//save the MRU left and right files.
 		if (!(dwLeftFlags & FFILEOPEN_NOMRU))
 			addToMru(pszLeft, _T("Files\\Left"));
