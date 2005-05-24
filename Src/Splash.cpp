@@ -27,10 +27,10 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
-#include "stdafx.h"  // e. g. stdafx.h
-#include "resource.h"  // e.g. resource.h
+#include "stdafx.h"
+#include "resource.h"
 
-#include "Splash.h"  // e.g. splash.h
+#include "Splash.h"
 #include "version.h"
 
 #ifdef _DEBUG

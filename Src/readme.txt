@@ -12,6 +12,8 @@
   Src: ColorButton.cpp
  PATCH: [ 1206734 ] Remove unneeded include from FilepathEdit.cpp
   Src: FilepathEdit.cpp
+ PATCH: [ 1206730 ] Remove meaningless comments on includes in Splash.cpp
+  Src: Splash.cpp
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths
