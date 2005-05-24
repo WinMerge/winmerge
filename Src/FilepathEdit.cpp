@@ -22,7 +22,6 @@
 //
 
 #include "stdafx.h"
-#include "Merge.h"
 #include "BCMenu.h"
 
 #include "FilepathEdit.h"

@@ -10,6 +10,8 @@
   Src: DirView.h
  PATCH: [ 1206755 ] Remove unneeded include from ColorButton.cpp
   Src: ColorButton.cpp
+ PATCH: [ 1206734 ] Remove unneeded include from FilepathEdit.cpp
+  Src: FilepathEdit.cpp
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths
