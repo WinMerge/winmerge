@@ -137,9 +137,10 @@ BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, in
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler->bWithFile)
 	{
+		CString destFileName = bufferData.GetDestFileName();
 		// use a temporary dest name
 		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
-			bufferData.GetDestFileName(),
+			destFileName,
 			bufferData.GetNChanged(),
 			piScript, subcode);
 		if (bHandled)
