@@ -27,7 +27,6 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "VssPrompt.h"
 #include "RegKey.h"
 

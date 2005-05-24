@@ -3,6 +3,8 @@
   Src: FileTransform.cpp
  PATCH: [ 1206757 ] Remove unneeded include from DiffViewBar.cpp
   Src: DiffViewBar.cpp
+ PATCH: [ 1206732 ] Remove unneeded include from VssPrompt.cpp
+  Src: VssPrompt.cpp
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths
