@@ -11,7 +11,6 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "Merge.h"
 
 #include "ChildFrm.h"
 #include "DiffViewBar.h"

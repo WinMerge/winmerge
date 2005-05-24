@@ -1,6 +1,8 @@
 2005-05-24 Perry
  PATCH: [ 1206808 ] Store temp filename in variable in FileTransform_Unpacking
   Src: FileTransform.cpp
+ PATCH: [ 1206757 ] Remove unneeded include from DiffViewBar.cpp
+  Src: DiffViewBar.cpp
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths
