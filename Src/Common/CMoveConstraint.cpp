@@ -1,8 +1,8 @@
 /*!
   \file    CMoveConstraint.cpp
-  \author  Perry Rapp, Creator, 1998-2003
+  \author  Perry Rapp, Creator, 1998-2004
   \date    Created: 1998
-  \date    Edited:  2003/10/04 PR
+  \date    Edited:  2004/04/22 Perry Rapp
 
   \brief   Implementation of CMoveConstraint
 
@@ -58,6 +58,7 @@ static RECT getGripRect(HWND hwnd)
 	return rc;
 }
 
+CMoveConstraint::EGRIP CMoveConstraint::c_defGrip = SG_NORMAL;
 
 CMoveConstraint::Constraint::Constraint()
 {
@@ -251,7 +252,7 @@ CMoveConstraint::ClearMostData()
 	// m_rectDlgOriginal
 	m_nOrigX=0;
 	m_nOrigY=0;
-	m_nGrip=SG_NORMAL;
+	m_nGrip=c_defGrip;
 	m_bOriginalFetched=false;
 	m_nMinX=0;
 	m_nMinY=0;

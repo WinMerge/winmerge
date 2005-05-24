@@ -1,8 +1,8 @@
 /*!
   \file    CMoveConstraint.h
-  \author  Perry Rapp, Creator, 1998-2003
+  \author  Perry Rapp, Creator, 1998-2004
   \date    Created: 1998
-  \date    Edited:  2003/10/04 PR
+  \date    Edited:  2004/04/22 PR
 
   \brief   Declaration of CMoveConstraint
 
@@ -77,6 +77,12 @@ class ConstraintData;
 
 class CMoveConstraint
 {
+	enum EGRIP { SG_NONE, SG_NORMAL, SG_PARENTSTATE };
+	static EGRIP c_defGrip; // class-wide default sizing grip setting
+
+public:
+	static void SetDefGrip(EGRIP nDefGrip) { c_defGrip = nDefGrip; }
+
 public:
 
 	// add a MoveConstraint member to dialog or view
@@ -138,7 +144,6 @@ public:
 	void ConstrainNonChildren() { m_bConstrainNonChildren = true; }
 
 	// embedded windows, such as property pages or formviews, should set the size grip to none
-	enum EGRIP { SG_NONE, SG_NORMAL, SG_PARENTSTATE };
 	void SetSizeGrip(EGRIP nGrip) { m_nGrip = nGrip; }
 	// either Subclass or call a WindowProc
 	bool SubclassWnd();
