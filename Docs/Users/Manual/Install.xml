@@ -184,7 +184,13 @@
     <para>If install program is not used, shell integration dll
     (<filename>ShellExtension.dll</filename>) must be registered separately.
     This is done by running <filename>register.bat</filename> from WinMerge
-    directory.</para>
+    directory. Reboot is recommended after installing so Windows updates all
+    its references.</para>
+
+    <note>
+      <para>Installing shell integration requires administrative user
+      priviledges.</para>
+    </note>
 
     <para>Updating shell integration outside installer requires first
     uninstalling current version. Uninstalling can be done by running

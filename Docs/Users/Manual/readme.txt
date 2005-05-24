@@ -1,3 +1,7 @@
+2005-05-24 Kimmo
+ PATCH: [ 1207228 ] Manual: Users should reboot after installing shell extension
+  Manual: Install.xml
+
 2005-05-15 Tim
  PATCH: [ 1201021 ] Add Turkish to the manual (Locales.xml)
   Manual: Locales.xml
