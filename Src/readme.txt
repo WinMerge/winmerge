@@ -5,6 +5,9 @@
   Src: DiffViewBar.cpp
  PATCH: [ 1206732 ] Remove unneeded include from VssPrompt.cpp
   Src: VssPrompt.cpp
+ BUG: [ 1207417 ] Two GetDocument() functions in CDirView
+  Cosmetic: Added explanatory comment per discussion
+  Src: DirView.h
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths

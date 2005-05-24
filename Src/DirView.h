@@ -62,6 +62,8 @@ protected:
 // Attributes
 public:
 	CDirDoc* GetDocument(); // non-debug version is inline
+
+	// const version, for const methods to be able to call
 	const CDirDoc * GetDocument() const { return const_cast<CDirView *>(this)->GetDocument(); }
 
 // Operations
