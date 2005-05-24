@@ -8,7 +8,6 @@
 // $Id$
 
 #include "stdafx.h"
-#include "merge.h"
 #include "ColorButton.h"
 
 #ifdef _DEBUG

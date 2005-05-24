@@ -8,6 +8,8 @@
  BUG: [ 1207417 ] Two GetDocument() functions in CDirView
   Cosmetic: Added explanatory comment per discussion
   Src: DirView.h
+ PATCH: [ 1206755 ] Remove unneeded include from ColorButton.cpp
+  Src: ColorButton.cpp
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths
