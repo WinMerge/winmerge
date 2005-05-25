@@ -14,6 +14,8 @@
   Src: FilepathEdit.cpp
  PATCH: [ 1206730 ] Remove meaningless comments on includes in Splash.cpp
   Src: Splash.cpp
+ PATCH: [ 1208198 ] Update CMoveConstraint with settable grip
+  Src/Common: CMoveConstraint.cpp CMoveConstraint.h
 
 2005-02-23 Kimmo
  PATCH: [ 1206647 ] Add trailing slash to MRU paths
