@@ -1,3 +1,7 @@
+2005-05-25 Perry
+ PATCH: [ 1206753 ] Make SaveClosing dialog resizable
+  Src: Merge.rc SaveClosingDlg.cpp SaveClosingDlg.h
+
 2005-05-24 Perry
  PATCH: [ 1206808 ] Store temp filename in variable in FileTransform_Unpacking
   Src: FileTransform.cpp

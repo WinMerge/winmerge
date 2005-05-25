@@ -26,6 +26,11 @@
 #ifndef _SAVECLOSINGDLG_H_
 #define _SAVECLOSINGDLG_H_
 
+
+#ifndef CMoveConstraint_h
+#include "CMoveConstraint.h"
+#endif
+
 /** 
  * @brief Choices for modified files: save/discard changes.
  */
@@ -74,7 +79,9 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+// Implementation data
 private:
+	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 	BOOL m_bAskForLeft; //*< Is left file modified? */
 	BOOL m_bAskForRight; //*< Is right file modified? */
 };
