@@ -915,8 +915,6 @@ CString CDirView::GetSelectedFileName(SIDE_TYPE stype) const
  */
 void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) const
 {
-	CString name, pathex;
-
 	POSITION diffpos = GetItemKey(sel);
 	if (diffpos == (POSITION)-1)
 	{

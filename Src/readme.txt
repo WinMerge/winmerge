@@ -1,6 +1,8 @@
 2005-05-25 Kimmo
  PATCH: [ 1207820 ] Remove non-const GetPath() from PathContext
   Src: PathContext.h
+ Remove unused strings from CDirView::GetItemFileNames()
+  Src: DirActions.cpp
 
 2005-05-25 Perry
  PATCH: [ 1206753 ] Make SaveClosing dialog resizable
