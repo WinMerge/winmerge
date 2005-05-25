@@ -1,3 +1,7 @@
+2005-05-25 Kimmo
+ PATCH: [ 1207820 ] Remove non-const GetPath() from PathContext
+  Src: PathContext.h
+
 2005-05-25 Perry
  PATCH: [ 1206753 ] Make SaveClosing dialog resizable
   Src: Merge.rc SaveClosingDlg.cpp SaveClosingDlg.h

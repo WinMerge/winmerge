@@ -17,7 +17,6 @@ class PathInfo
 {
 public:
 	PathInfo() {}
-	CString & GetPath() { return m_sNormalizedPath; }
 
 	const CString & GetPath(BOOL bNormalized = TRUE) const
 		{ return (bNormalized ? m_sNormalizedPath : m_sPath); }
