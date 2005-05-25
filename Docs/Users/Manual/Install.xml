@@ -202,10 +202,15 @@
   <sect2>
     <title>7-Zip and archive support</title>
 
-    <para>Archive file support in WinMerge requires <ulink
-    url="http://www.7-zip.org/">7-Zip</ulink>. WinMerge installer does not
-    install 7-Zip. 7-Zip installer can be downloaded from <ulink
+    <para>WinMerge uses <ulink url="http://www.7-zip.org/">7-Zip</ulink> for
+    archive support, but WinMerge installer does not install 7-Zip or archive
+    support. Installing 7-Zip application is recommended but not required for
+    archive support. 7-Zip installer can be downloaded from <ulink
     url="http://www.7-zip.org/">7-Zip.org</ulink>.</para>
+
+    <para>To install archive support, download and install 7-Zip plugin
+    (Merge7zInstaller, see below) from <ulink
+    url="http://www.winmerge.org/">WinMerge.org</ulink>. </para>
 
     <para>WinMerge automatically detects installed 7-zip in system, there is
     no need to any configuration. But WinMerge supports only certain versions
@@ -213,8 +218,8 @@
     Me.rft</filename>-file.</para>
 
     <para>7-zip integration needs compatible <filename>Merge7z*.dll</filename>
-    in WinMerge program directory. <filename>*</filename> comes from 7-Zip
-    version installed. For example 7-Zip version 3.13 needs
+    file in WinMerge program directory. <filename>*</filename> comes from
+    7-Zip version installed. For example 7-Zip version 3.13 needs
     <filename>Merge7z313.dll</filename>. And if
     <filename>WinMergeU.exe</filename> (unicode version) is used, then
     "<filename>U</filename>" is also added to filename:
@@ -231,17 +236,24 @@
     <sect3>
       <title>Merge7zInstaller</title>
 
-      <para>This is stand-alone installer for 7-Zip integration. New WinMerge
-      releases do not install archive support anymore.</para>
+      <para>This is a stand-alone installer for 7-Zip integration.</para>
+
+      <para>Installer filenames may seem weird at first, but there is reason
+      for them: they show supported versions. Filename is formatted
+      <filename>Merge7zInstallerXXX-YYY-ZZZ.exe</filename>. XXX is build
+      number, YYY earliest 7-Zip version supported and ZZZ latest 7-Zip
+      version supported. For example Merge7zInstaller0010-311-415.exe means
+      build version 10, and support for 7-Zip versions 3.11 - 4.15</para>
 
       <para>This separate installer is much more flexible since we can update
       it whenever 7-Zip is updated. And we don't add files users don't need to
       base installer.</para>
 
-      <para>Latest version is always available in our downloads at
-      SourceForge.net: <ulink
+      <para>The latest version is always available directly in our downloads
+      at SourceForge.net: <ulink
       url="https://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957"
-      userlevel="">7-Zip plugin</ulink>.</para>
+      userlevel="">7-Zip plugin</ulink> and of course from our homepage at
+      <ulink url="http://www.winmerge.org/">WinMerge.org</ulink>.</para>
 
       <tip>
         <para>If you want to know immediately when we release new versions,
@@ -253,41 +265,43 @@
 
       <para><orderedlist>
           <listitem>
-            <para>Start installer
-            (<filename>Merge7zInstallerXXX-YYY-ZZZ.exe</filename>) Where XXX
-            is build number, YYY earliest 7-Zip version supported and ZZZ
-            latest 7-Zip version supported. For example
-            Merge7zInstaller0010-311-415.exe means build version 10, and
-            support for 7-Zip versions 3.11 - 4.15</para>
+            <para>Start installer executable</para>
           </listitem>
 
           <listitem>
-            <para>Select installation type and dlls to install</para>
+            <para>Select installation type and dll files (supported 7-zip
+            versions) to install</para>
 
             <itemizedlist>
               <listitem>
-                <para><guilabel>Install to system directory</guilabel> copies
-                7-Zip integration files to system directory so they can be
-                shared between multiple WinMerge installations and other
-                programs using them</para>
+                <para><guilabel>Shared installation</guilabel> copies 7-Zip
+                plugin files to system directory so they can be shared between
+                multiple WinMerge installations and other programs using 7-zip
+                plugin. This is recommended installation.</para>
               </listitem>
 
               <listitem>
-                <para><guilabel>Install to program directory</guilabel> copies
-                7-zip integration files to program directory. Files are then
-                usable only by that specific program.</para>
+                <para><guilabel>Application specific installation</guilabel>
+                copies 7-zip plugin files to program directory. Files are then
+                usable only by that program.</para>
 
                 <para>This selection requires user to select executable in
-                directory where integration files are installer. Select
-                WinMerge executable when installing to WinMerge
-                directory.</para>
+                directory where plugin files are installed. Select WinMerge
+                executable file when installing to WinMerge directory.</para>
               </listitem>
 
               <listitem>
                 <para><guilabel>Enable standalone operation</guilabel>
-                installs also required 7-Zip files. This allows minimal
-                installation of 7-Zip to program directory without need to
-                install whole 7-zip.</para>
+                installs also required 7-Zip files to program's (application
+                specific installation) directory. This allows minimal usable
+                installation of 7-Zip for archive support. This can be used
+                when 7-Zip application is not wanted or needed.</para>
+
+                <para>This installation type does contain only needed files
+                for WinMerge (or other application) to enable archive support.
+                It does not install 7-Zip user interface or other related
+                tools or files. After this install it is not possible to open
+                or create 7-Zip archive files outside WinMerge.</para>
               </listitem>
             </itemizedlist>
           </listitem>

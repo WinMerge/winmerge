@@ -1,3 +1,7 @@
+2005-05-25 Kimmo
+ PATCH: [ 1208022 ] Manual: Improve archive support installation docs
+  Manual: Install.xml
+
 2005-05-24 Kimmo
  PATCH: [ 1207228 ] Manual: Users should reboot after installing shell extension
   Manual: Install.xml
