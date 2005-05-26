@@ -13,7 +13,7 @@
   <li>Unicode support</li>
   <li>Difference pane shows current difference in two vertical panes</li>
   <li>Location pane shows map of files compared</li>
-  <li>In-line word difference visualisation</li>
+  <li>Highlights differences inside lines</li>
   <li>File filters in directory diff</li>
   <li>Moved lines detection in file compare</li>
   <li>Shell Integration</li>

@@ -1,3 +1,8 @@
+2005-05-26 Tim
+ RFE: [ 1203533 ] Web: Reword word-diff feature in features-list
+  Web: index.php
+  Web\2.2: index.php
+
 2005-05-15 Tim
  PATCH: [ 1201007 ] Web: Status of translations updates
   Web\developer\l10n: status.xml
