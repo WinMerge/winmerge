@@ -1,6 +1,8 @@
 2005-05-26 Kimmo
  PATCH: [ 1208641 ] Manual: update for opening archive files
   Manual: Open_paths.xml
+ PATCH: [ 1208651 ] Manual: Clarify codepage selection is load-time
+  Manual: Configuration.xml
 
 2005-05-25 Kimmo
  PATCH: [ 1208022 ] Manual: Improve archive support installation docs
