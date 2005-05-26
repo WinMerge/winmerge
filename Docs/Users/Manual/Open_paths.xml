@@ -1,72 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="OpenPaths">
   <title>Opening files and directories</title>
-  <para>WinMerge allows selecting/opening paths in several ways. Using Open-dialog is just one of them.</para>
+
+  <para>WinMerge allows selecting/opening paths in several ways. Using
+  Open-dialog is just one of them.</para>
+
   <sect2>
     <title>Open-dialog</title>
-    <para>Basic use of Open-dialog is described in <link linkend="QuickStart">Quick start</link>. Here is some more detailed information and tips about how to use Open-dialog more efficiently.</para>
+
+    <para>Basic use of Open-dialog is described in <link
+    linkend="QuickStart">Quick start</link>. Here is some more detailed
+    information and tips about how to use Open-dialog more efficiently.</para>
+
     <sect3>
       <title>Environment variables</title>
-      <para>Environment variables can be used as (part of) paths. An environment variable is expanded when its name is put between two <constant>%</constant>:s.</para>
+
+      <para>Environment variables can be used as (part of) paths. An
+      environment variable is expanded when its name is put between two
+      <constant>%</constant>:s.</para>
+
       <example>
         <title>Using environment variables</title>
-        <para>If an environment variable named <envar>WORKDIR</envar> contains the path <filename class="directory">c:\workfiles</filename> then <envar>%WORKDIR%\project1</envar> is expanded to path <filename class="directory">c:\workfiles\project1</filename> .</para>
+
+        <para>If an environment variable named <envar>WORKDIR</envar> contains
+        the path <filename class="directory">c:\workfiles</filename> then
+        <envar>%WORKDIR%\project1</envar> is expanded to path <filename
+        class="directory">c:\workfiles\project1</filename> .</para>
       </example>
     </sect3>
+
     <sect3>
       <title>Opening archive files</title>
-      <para>If <ulink url="http://www.7-zip.org/">7-Zip</ulink> is installed on the system, then WinMerge can open archive files. Opening two archive files is done like other files: select two archive files to Open-dialog's fields. If WinMerge recognizes the archive format, it opens the contents of the archive files to directory compare.</para>
-      <para><link linkend="CompareDirs">Directory compare</link> chapter describes how to add files to archive files from directory compare, and how files are put into subfolders <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename>. If archive file contains these two subfolders it must be opened by selecting same filename to both sides in Open-dialog or commandline. Then WinMerge compares these two subfolders.</para>
+
+      <para>Archive file support requires 7-Zip plugin to be installed. See
+      <link linkend="Installing">Installing directions</link>.</para>
+
+      <para>Opening two archive files is similar to normal files: select two
+      archive files to Open-dialog's fields. If WinMerge recognizes the
+      archive format, it opens the contents of the archive files to directory
+      compare.</para>
+
+      <para><link linkend="CompareDirs">Directory compare</link> chapter
+      describes how to work with archive files. If archive file contains
+      subfolders <filename class="directory">Original/</filename> and
+      <filename class="directory">Altered/</filename> it must be opened by
+      selecting same filename to both sides in Open-dialog or commandline.
+      Then WinMerge can compare contents of those two subfolders.</para>
+
       <tip>
-        <para>When dragging an archive file to WinMerge window, press <keycap>Shift</keycap> when dropping the file and WinMerge will automatically copy the same filename to both sides and open the archive file.</para>
+        <para>When dragging an archive file to WinMerge window, press
+        <keycap>Shift</keycap> when dropping the file and WinMerge will
+        automatically copy the same filename to both sides and open the
+        archive file.</para>
       </tip>
     </sect3>
+
     <sect3>
       <title>Filter selection</title>
-      <para>Third edit field in Open dialog is for filter. This field can contain list of file extensions to include or file filter name.</para>
-      <para>Extensions must always be in format <filename>*.extension</filename>. So file extension list cannot be used for more advanced selecting, file filters are there for it. Different extensions can be separated by spaces, commas, colons or semicolons.</para>
+
+      <para>Third edit field in Open dialog is for filter. This field can
+      contain list of file extensions to include or file filter name.</para>
+
+      <para>Extensions must always be in format
+      <filename>*.extension</filename>. So file extension list cannot be used
+      for more advanced selecting, file filters are there for it. Different
+      extensions can be separated by spaces, commas, colons or
+      semicolons.</para>
+
       <example>
         <title>Extension list</title>
+
         <screen>*.h;*.cpp *.txt,*.ini</screen>
       </example>
+
       <tip>
-        <para><filename>*.</filename> (star, dot and no extension) selects files without any extension, for example "<filename>README</filename>".</para>
+        <para><filename>*.</filename> (star, dot and no extension) selects
+        files without any extension, for example
+        "<filename>README</filename>".</para>
       </tip>
-      <para>Field can also contain file filter name. Easiest way to select file filter is using Filters-dialog which can be opended with "<guibutton>Select...</guibutton>" button next to field. That dialog allows also opening filters for editing.</para>
+
+      <para>Field can also contain file filter name. Easiest way to select
+      file filter is using Filters-dialog which can be opended with
+      "<guibutton>Select...</guibutton>" button next to field. That dialog
+      allows also opening filters for editing.</para>
+
       <note>
-        <para>If filter cannot be found by name or extension list is not valid WinMerge selects all files (i.e. uses <filename>*.*</filename> as extension list).</para>
+        <para>If filter cannot be found by name or extension list is not valid
+        WinMerge selects all files (i.e. uses <filename>*.*</filename> as
+        extension list).</para>
       </note>
     </sect3>
   </sect2>
+
   <sect2>
     <title>Shell Extension</title>
-    <para>Shell extension is convenient way to select paths using Windows Explorer. Shell Extension must be first enabled from Options/System before use. When Shell Extension is enabled item "<guimenuitem>WinMerge</guimenuitem>" is added to context menu (click right mouse button over file or folder in Explorer).</para>
-    <para>WinMerge accepts one or two paths. When one path is selected through Shell Extension WinMerge places it as "<guilabel>Left</guilabel>" path and open Open-dialog for user to select "<guilabel>Right</guilabel>" path. Also if two paths are selected but another path couldn't be opened for reason or another WinMerge shows Open-dialog for selecting valid paths.</para>
+
+    <para>Shell extension is convenient way to select paths using Windows
+    Explorer. Shell Extension must be first enabled from Options/System before
+    use. When Shell Extension is enabled item
+    "<guimenuitem>WinMerge</guimenuitem>" is added to context menu (click
+    right mouse button over file or folder in Explorer).</para>
+
+    <para>WinMerge accepts one or two paths. When one path is selected through
+    Shell Extension WinMerge places it as "<guilabel>Left</guilabel>" path and
+    open Open-dialog for user to select "<guilabel>Right</guilabel>" path.
+    Also if two paths are selected but another path couldn't be opened for
+    reason or another WinMerge shows Open-dialog for selecting valid
+    paths.</para>
+
     <sect3>
       <title>Advanced Shell Extension</title>
-      <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for shell extension from options allows more choices for path selection. Now WinMerge adds two menuitems to Explorer context menu: "<guimenuitem>Compare</guimenuitem>" and "<guimenuitem>Compare...</guimenuitem>". Latter is always shown and behaves like "<guimenuitem>WinMerge</guimenuitem>" item in simple menu. New "<guimenuitem>Compare</guimenuitem>" item allows selecting one item to "memory" from one location, going to another directory and then selecting second item to compare against previously memorized item.</para>
+
+      <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for shell
+      extension from options allows more choices for path selection. Now
+      WinMerge adds two menuitems to Explorer context menu:
+      "<guimenuitem>Compare</guimenuitem>" and
+      "<guimenuitem>Compare...</guimenuitem>". Latter is always shown and
+      behaves like "<guimenuitem>WinMerge</guimenuitem>" item in simple menu.
+      New "<guimenuitem>Compare</guimenuitem>" item allows selecting one item
+      to "memory" from one location, going to another directory and then
+      selecting second item to compare against previously memorized
+      item.</para>
+
       <para>In practice using memorized items is simple:</para>
+
       <orderedlist>
         <listitem>
-          <para>Select first item you want to compare, open context menu and select first "<guimenuitem>Compare</guimenuitem>" item. Path is now in memory.</para>
+          <para>Select first item you want to compare, open context menu and
+          select first "<guimenuitem>Compare</guimenuitem>" item. Path is now
+          in memory.</para>
         </listitem>
+
         <listitem>
-          <para>Browse to location of second item you want to compare and select it. Open context menu and move menuselection over first "<guimenuitem>Compare item</guimenuitem>". Now Explorer's statusbar shows memorized path to which you are comparing newly selected path.</para>
+          <para>Browse to location of second item you want to compare and
+          select it. Open context menu and move menuselection over first
+          "<guimenuitem>Compare item</guimenuitem>". Now Explorer's statusbar
+          shows memorized path to which you are comparing newly selected
+          path.</para>
         </listitem>
       </orderedlist>
-      <para>After memorized path is used for compare it is forgotten. So user cannot select one item to memorize and then compare it against several paths.</para>
+
+      <para>After memorized path is used for compare it is forgotten. So user
+      cannot select one item to memorize and then compare it against several
+      paths.</para>
     </sect3>
   </sect2>
+
   <sect2>
     <title>Drag and Drop</title>
-    <para>One or two paths can be drag and dropped to WinMerge window from Windows Explorer, Desktop or whatever source Windows allows dragging paths from. WinMerge does not include subfolders in compare. Subfolders can be included by pressing <keycap>Control</keycap>-key while dropping paths.</para>
-    <para>Another useful key when dropping paths is <keycap>Shift</keycap>. When there is only one path dropped and <keycap>Shift</keycap> is pressed that same path is opened to both sides.</para>
+
+    <para>One or two paths can be drag and dropped to WinMerge window from
+    Windows Explorer, Desktop or whatever source Windows allows dragging paths
+    from. WinMerge does not include subfolders in compare. Subfolders can be
+    included by pressing <keycap>Control</keycap>-key while dropping
+    paths.</para>
+
+    <para>Another useful key when dropping paths is <keycap>Shift</keycap>.
+    When there is only one path dropped and <keycap>Shift</keycap> is pressed
+    that same path is opened to both sides.</para>
   </sect2>
+
   <sect2>
     <title>Project file</title>
-    <para>WinMerge can read (but not write) paths from project files. Project file can be given to commandline like normal file or selected in Open-dialog. WinMerge then detects file is project file and reads paths it contains and if two paths are given opens them. If only one path is given or one of paths is invalid Open-dialog is show for user to select second path or valid paths.</para>
-    <para>Project files are simple XML files with <filename class="extension">.WinMerge</filename> extension.</para>
+
+    <para>WinMerge can read (but not write) paths from project files. Project
+    file can be given to commandline like normal file or selected in
+    Open-dialog. WinMerge then detects file is project file and reads paths it
+    contains and if two paths are given opens them. If only one path is given
+    or one of paths is invalid Open-dialog is show for user to select second
+    path or valid paths.</para>
+
+    <para>Project files are simple XML files with <filename
+    class="extension">.WinMerge</filename> extension.</para>
+
     <sect3>
       <title>Format</title>
+
       <screen>&lt;?xml version="1.0"?&gt;
 &lt;project&gt;
 	&lt;paths&gt;
@@ -76,22 +185,33 @@
 		&lt;subfolders&gt;<replaceable>0&lt;</replaceable>/subfolders&gt;
 	&lt;/paths&gt;
 &lt;/project&gt;</screen>
+
       <para>Project file has four user-editable fields:</para>
+
       <itemizedlist>
         <listitem>
-          <para><literal>&lt;left&gt;<replaceable>...</replaceable>&lt;/left&gt;</literal> : Left side path to open</para>
+          <para><literal>&lt;left&gt;<replaceable>...</replaceable>&lt;/left&gt;</literal>
+          : Left side path to open</para>
         </listitem>
+
         <listitem>
-          <para><literal>&lt;right&gt;<replaceable>...</replaceable>&lt;/right&gt;</literal> : Right side path to open</para>
+          <para><literal>&lt;right&gt;<replaceable>...</replaceable>&lt;/right&gt;</literal>
+          : Right side path to open</para>
         </listitem>
+
         <listitem>
-          <para><literal>&lt;filter&gt;<replaceable>...</replaceable>&lt;/filter&gt;</literal> : file filter name or list of extensions</para>
+          <para><literal>&lt;filter&gt;<replaceable>...</replaceable>&lt;/filter&gt;</literal>
+          : file filter name or list of extensions</para>
         </listitem>
+
         <listitem>
-          <para><literal>&lt;subfolders&gt;<replaceable>...</replaceable>&lt;/subfolders&gt;</literal> : 0 if subfolders are not included and 1 if they are included</para>
+          <para><literal>&lt;subfolders&gt;<replaceable>...</replaceable>&lt;/subfolders&gt;</literal>
+          : 0 if subfolders are not included and 1 if they are included</para>
         </listitem>
       </itemizedlist>
-      <para>None of fields are required and they can be empty (<literal>&lt;left&gt;&lt;/left&gt;</literal>).</para>
+
+      <para>None of fields are required and they can be empty
+      (<literal>&lt;left&gt;&lt;/left&gt;</literal>).</para>
     </sect3>
   </sect2>
 </sect1>
