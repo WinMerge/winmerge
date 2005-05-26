@@ -1,4 +1,4 @@
-/** 
+/**
  * @file  OptionsInit.cpp
  *
  * @brief Options initialisation.
@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "DiffWrapper.h" // CMP_CONTENT
@@ -113,4 +114,13 @@ void CMainFrame::OptionsInit()
 
 	m_options.InitOption(OPT_VCS_SYSTEM, VCS_NONE);
 	m_options.InitOption(OPT_VSS_PATH, _T(""));
+
+	// Read last used filter from registry
+	// If filter fails to set, reset to default
+	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(m_options.GetString(OPT_FILEFILTER_CURRENT));
+	if (!bFilterSet)
+	{
+		CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+		m_options.SaveOption(OPT_FILEFILTER_CURRENT, filter);
+	}
 }

@@ -218,7 +218,9 @@ void COpenDlg::OnOK()
 	}
 	else
 	{
-		theApp.m_globalFileFilter.SetFilter(m_strExt);
+		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(m_strExt);
+		if (!bFilterSet)
+			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask();
 		mf->m_options.SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
 	}
 

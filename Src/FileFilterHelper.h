@@ -54,6 +54,7 @@ struct FileFilterInfo
 };
 
 typedef CArray<FileFilterInfo, FileFilterInfo&> FILEFILTER_INFOLIST;
+typedef CMap<CString, LPCTSTR, int, int> FILEFILTER_FILEMAP;
 
 /// Interface for testing files & directories for exclusion, as diff traverses file tree
 class IDiffFilter
@@ -96,8 +97,8 @@ public:
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
-	void LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int,
-		int> & patternsLoaded, const CString & sPattern);
+	void LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
+		const CString & sPattern);
 
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);

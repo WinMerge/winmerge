@@ -1,6 +1,8 @@
 2005-05-26 Kimmo
  PATCH: [ 1208537 ] Small cleanup for CDirView::OpenSelection()
   Src: DirView.cpp
+ PATCH: [ 1208801 ] SetFilter() must set default filter in error case
+  Src: FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp OptionsInit.cpp
 
 2005-05-25 Kimmo
  PATCH: [ 1207820 ] Remove non-const GetPath() from PathContext

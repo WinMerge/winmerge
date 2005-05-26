@@ -36,18 +36,22 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
+/** 
+ * @brief Constructor, creates new filtermanager.
+ */
 FileFilterHelper::FileFilterHelper()
 {
 	m_fileFilterMgr = new FileFilterMgr;
 	m_bUseMask = TRUE;
 }
 
+/** 
+ * @brief Destructor, deletes filtermanager.
+ */
 FileFilterHelper::~FileFilterHelper()
 {
 	delete m_fileFilterMgr;
 }
-
 
 /** 
  * @brief Return filtermanager used.
@@ -57,18 +61,36 @@ FileFilterMgr * FileFilterHelper::GetManager()
 	return m_fileFilterMgr;
 }
 
-/** @brief Store current filter (if filter manager validates the name) */
+/**
+ * @brief Store current filter path.
+ *
+ * Select filter based on filepath. If filter with that path
+ * is found select it. Otherwise set path to empty (default).
+ * @param [in] szFileFilterPath Full path to filter to select.
+ */
 void FileFilterHelper::SetFileFilterPath(LPCTSTR szFileFilterPath)
 {
-	VERIFY(m_sFileFilterPath.LoadString(IDS_USERCHOICE_NONE));
+	// Use none as default path
+	m_sFileFilterPath.Empty();
+
 	if (!m_fileFilterMgr)
 		return;
-	m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
-	if (m_currentFilter)
-		m_sFileFilterPath = szFileFilterPath;
+
+	// Don't bother to lookup empty path
+	if (_tcslen(szFileFilterPath) > 0)
+	{
+		m_currentFilter = m_fileFilterMgr->GetFilterByPath(szFileFilterPath);
+		if (m_currentFilter)
+			m_sFileFilterPath = szFileFilterPath;
+	}
 }
 
-/** @brief fill list with names of known filters */
+/**
+ * @brief Get list of filters currently available.
+ *
+ * @param [out] filters Filter list to receive found filters.
+ * @param [out] selected Filepath of currently selected filter.
+ */
 void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const
 {
 	if (m_fileFilterMgr)
@@ -87,7 +109,12 @@ void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & s
 	selected = m_sFileFilterPath;
 }
 
-/** @brief Return name of filter in given file */
+/**
+ * @brief Return name of filter in given file.
+ * If no filter cannot be found, return empty string.
+ * @param [in] filterPath Path to filterfile.
+ * @sa FileFilterHelper::GetFileFilterPath()
+ */
 CString FileFilterHelper::GetFileFilterName(CString filterPath) const
 {
 	FILEFILTER_INFOLIST filters;
@@ -106,7 +133,11 @@ CString FileFilterHelper::GetFileFilterName(CString filterPath) const
 	return name;
 }
 
-/** @brief Return path to filter with given name */
+/** 
+ * @brief Return path to filter with given name.
+ * @param [in] filterName Name of filter.
+ * @sa FileFilterHelper::GetFileFilterName()
+ */
 CString FileFilterHelper::GetFileFilterPath(CString filterName) const
 {
 	FILEFILTER_INFOLIST filters;
@@ -215,10 +246,13 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
 }
 
 /**
- * @brief Load in all filter patterns in a directory (unless already in map)
- * sPattern is directory wildcard such as "C:\Program Files\WinMerge\Filters\*.flt"
+ * @brief Load in all filter patterns in a directory (unless already in map).
+ * @param [in,out] patternsLoaded Map where found filterfiles are added.
+ * @param [in] sPattern Directory wildcard defining files to add to map as filter files.
+ * It is directoryname + filemask, for example: "C:\Program Files\WinMerge\Filters\*.flt"
  */
-void FileFilterHelper::LoadFileFilterDirPattern(CMap<CString, LPCTSTR, int, int> & patternsLoaded, const CString & sPattern)
+void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
+		const CString & sPattern)
 {
 	int n=0;
 	if (!patternsLoaded.Lookup(sPattern, n))
@@ -301,15 +335,24 @@ CString FileFilterHelper::GetFilterNameOrMask()
  *
  * Simple-to-use function to select filter. This function determines
  * filter type so caller doesn't need to care about it.
+ *
+ * @param [in] filter File mask or filter name.
+ * @return TRUE if given filter was set, FALSE if default filter was set.
+ * @note If function returns FALSE, you should ask filter set with
+ * GetFilterNameOrMask().
  */
 BOOL FileFilterHelper::SetFilter(CString filter)
 {
+	// If filter is empty string set default filter
 	if (filter.IsEmpty())
 	{
-		_RPTF0(_CRT_ERROR, "Filter (path/mask) cannot be empty!");
+		SetMask(_T("*.*"));
+		UseMask(TRUE);
+		SetFileFilterPath(_T(""));
 		return FALSE;
 	}
 
+	// Star means we have a file extension mask
 	if (filter[0] == '*')
 	{
 		SetMask(filter);
@@ -324,8 +367,14 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 			SetFileFilterPath(path);
 			UseMask(FALSE);
 		}
+		// If filter not found with given name, use default filter
 		else
+		{
+			SetMask(_T("*.*"));
+			UseMask(TRUE);
+			SetFileFilterPath(_T(""));
 			return FALSE;
+		}
 	}
 	return TRUE;
 }
@@ -387,13 +436,13 @@ EnsureDirectoryExists(const CString & sPath)
 void FileFilterHelper::LoadAllFileFilters()
 {
 	// Load filters from all possible subdirectories
-	CMap<CString, LPCTSTR, int, int> patternsLoaded;
+	FILEFILTER_FILEMAP patternsLoaded;
 
 	// First delete existing filters
 	m_fileFilterMgr->DeleteAllFilters();
 
 	// Application directory
-	CString sPattern = GetModulePath() + _T("\\Filters\\*.flt");
+	CString sPattern = GetModulePath() + _T("\\Filters\\*") + FileFilterExt;
 	LoadFileFilterDirPattern(patternsLoaded, sPattern);
 
 	// Application data path in user profile directory
@@ -402,7 +451,7 @@ void FileFilterHelper::LoadAllFileFilters()
 	{
 		CString sPath = sAppPath + _T("\\WinMerge\\Filters");
 		TestCandidateFilterPath(sPath);
-		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*.flt"));
+		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*") + FileFilterExt);
 	}
 
 	// User profile local & roaming settings
@@ -411,11 +460,11 @@ void FileFilterHelper::LoadAllFileFilters()
 	{
 		CString sPath = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters");
 		TestCandidateFilterPath(sPath);
-		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*.flt"));
+		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*") + FileFilterExt);
 
 		sPath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
 		TestCandidateFilterPath(sPath);
-		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*.flt"));
+		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*") + FileFilterExt);
 	}
 }
 
