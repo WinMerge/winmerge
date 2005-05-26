@@ -1,3 +1,10 @@
+2005-05-26 Jochen
+ PATCH: [ 1191245 ] Merge7z DllBuild 0011
+  Merge7z: Merge7z311.cpp Merge7z409.cpp Merge7zCommon.cpp Merge7zCommon.h revision.txt
+   Merge7z416.dsp Merge7z417.dsp Merge7z418.dsp Merge7z419.dsp
+ PATCH: [ 1191248 ] Merge7zInstaller update
+  Merge7zInstaller: Files.rc2 Installer.cpp Installer.rc Merge7zInstaller.dsp
+
 2005-05-26 Kimmo
  PATCH: [ 1208537 ] Small cleanup for CDirView::OpenSelection()
   Src: DirView.cpp
