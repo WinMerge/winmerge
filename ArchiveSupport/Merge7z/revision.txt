@@ -33,3 +33,8 @@ VERSION(2,2)
 //								Fix Merge7z::LoadLang() for no.txt (Norwegian)
 //								Use DLLPSTUB if DllBuild_Merge7z >= 10
 //								Optimize release builds for size
+
+"*"//2005/03/19 Jochen Tucht	Set UI language during Merge7z::Initialize()
+//								according to LANGID given in HIWORD(dwFlags)
+//								Allow for Merge7z::LoadLang(MAKEINTATOM(LANGID))
+//								Don't show error message on intentional abort

@@ -28,6 +28,7 @@ DATE:		BY:					DESCRIPTION:
 2004/10/10	Jochen Tucht		DllGetVersion() based on new REVISION.TXT
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
+2005/03/19	Jochen Tucht		Changed as explained in revision.txt
 */
 
 #include "stdafx.h"
@@ -510,6 +511,10 @@ int Merge7z::Initialize(DWORD dwFlags)
 		SHGetValueA(HKEY_LOCAL_MACHINE, "Software\\7-Zip", "Path", &type, g_cPath7z, &size);
 	}
 	PathAddBackslashA(g_cPath7z);
+	if (WORD wLangID = HIWORD(dwFlags))
+	{
+		LoadLang(MAKEINTATOM(wLangID));
+	}
 	return 0;
 }
 
@@ -667,6 +672,17 @@ static CSysString g_LangPath;
 
 LPCTSTR Merge7z::LoadLang(LPCTSTR langFile)
 {
+	TCHAR langFileGuess[8];
+	if (HIWORD(langFile) == 0)
+	{
+		langFileGuess[0] = '\0';
+		if (int cchLng = GetLocaleInfo(LCID(langFile), LOCALE_SISO639LANGNAME, langFileGuess, 4))
+		{
+			langFileGuess[cchLng - 1] = '-';
+			GetLocaleInfo(LCID(langFile), LOCALE_SISO3166CTRYNAME, langFileGuess + cchLng, 4);
+			langFile = langFileGuess;
+		}
+	}
 	g_LangPath = GetSystemString(g_cPath7z);
 	g_LangPath += TEXT("Lang\\");
 	g_LangPath += langFile;

@@ -32,6 +32,7 @@ DATE:		BY:					DESCRIPTION:
 								to enumerator (Mask.Recurse)
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
+2005/03/19	Jochen Tucht		Don't show error message on intentional abort
 */
 
 #include "stdafx.h"
@@ -191,9 +192,9 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 			//	localize. I can't help it.
 			Complain(_T("%s:\n%I64u error(s)"), path, extractCallbackSpec->_numErrors);
 		}
-		if COMPLAIN(result != S_OK)
+		if COMPLAIN(result != S_OK && result != E_ABORT)
 		{
-			Complain(E_FAIL, path);
+			Complain(result, path);
 		}
 	}
 	catch (Complain *complain)
@@ -335,9 +336,9 @@ HRESULT Format7zDLL::Interface::Updater::Commit(HWND hwndParent)
 		).result;
 
 		//result = outArchive->UpdateItems(file, operationChain.Size(), updateCallbackSpec);
-		if COMPLAIN(result != S_OK)
+		if COMPLAIN(result != S_OK && result != E_ABORT)
 		{
-			Complain(E_FAIL, path);
+			Complain(result, path);
 		}
 	}
 	catch (Complain *complain)
