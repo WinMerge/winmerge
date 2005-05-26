@@ -135,11 +135,6 @@ BEGIN
         MENUITEM "Редактировать с распаковщиком",
                                                 ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Предсравнение"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS
     END
     POPUP "&Окно"
@@ -235,11 +230,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Редактировать с распаковщиком",
                                                 ID_POPUP_OPEN_WITH_UNPACKER
-        MENUITEM SEPARATOR
-        POPUP "&Предсравнение"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
         MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS
     END

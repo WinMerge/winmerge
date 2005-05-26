@@ -132,11 +132,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Modi&fica con lo scompattatore", ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "&Ricarica plugin",            ID_RELOAD_PLUGINS
     END
     POPUP "Fi&nestra"
@@ -231,11 +226,6 @@ BEGIN
         MENUITEM "Scompattazione &automatica",  ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "Modi&fica con lo scompattatore", ID_POPUP_OPEN_WITH_UNPACKER
-        MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
         MENUITEM SEPARATOR
         MENUITEM "&Ricarica plugin",            ID_RELOAD_PLUGINS
     END

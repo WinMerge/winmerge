@@ -131,11 +131,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Ändra med Uppackare",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
     END
     POPUP "F&önster"
@@ -231,12 +226,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Ändra med Uppackare",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
-        MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
+       MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
     END
     POPUP "F&önster"
     BEGIN

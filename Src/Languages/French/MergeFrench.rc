@@ -132,11 +132,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Éditer avec décompression",  ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Pré-comparer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS
     END
     POPUP "Fe&nêtre"
@@ -231,11 +226,6 @@ BEGIN
         MENUITEM "Décompression &automatique",  ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "&Éditer avec décompression",  ID_POPUP_OPEN_WITH_UNPACKER
-        MENUITEM SEPARATOR
-        POPUP "&Pré-comparer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
         MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS
     END

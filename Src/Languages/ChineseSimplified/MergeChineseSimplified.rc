@@ -131,11 +131,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END
     POPUP "´°¿Ú(&W)"
@@ -230,11 +225,6 @@ BEGIN
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "&Edit with Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
-        MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
     END

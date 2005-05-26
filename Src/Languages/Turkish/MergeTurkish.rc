@@ -131,11 +131,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Açýcýyla Düzenler",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Öncelikli Fark"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "Eklentileri &Tekrar Yükle",   ID_RELOAD_PLUGINS
     END
     POPUP "Pencereler"
@@ -230,11 +225,6 @@ BEGIN
         MENUITEM "&Otomatik Açmak",             ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "&Açýcýyla Düzenler",          ID_POPUP_OPEN_WITH_UNPACKER
-        MENUITEM SEPARATOR
-        POPUP "&Öncelikli Fark"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
         MENUITEM SEPARATOR
         MENUITEM "Eklentileri &Tekrar Yükle",   ID_RELOAD_PLUGINS
     END

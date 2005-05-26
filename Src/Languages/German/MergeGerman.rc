@@ -132,11 +132,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
-        MENUITEM SEPARATOR
         MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
     END
     POPUP "&Fenster"
@@ -235,11 +230,6 @@ BEGIN
         MENUITEM "&Automatisch entpacken",      ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
-        MENUITEM SEPARATOR
-        POPUP "&Prediffer"
-        BEGIN
-            MENUITEM SEPARATOR
-        END
         MENUITEM SEPARATOR
         MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
     END
