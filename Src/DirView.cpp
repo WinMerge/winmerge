@@ -836,11 +836,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		DIFFITEM di;
 		POSITION diffpos = GetItemKey(sel);
-
-		if (diffpos != (POSITION) -1)
-			di = GetDocument()->GetDiffByKey((POSITION)diffpos);
 
 		// Browse to parent folder(s) selected, -1 is position for
 		// special items, but there is currenly only one (parent folder)
@@ -848,8 +844,11 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		{
 			OpenParentDirectory();
 			break;
-		}		
-		else if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
+		}
+
+		const DIFFITEM & di = GetDocument()->GetDiffByKey((POSITION)diffpos);
+
+		if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
 		{
 			CDirDoc * pDoc = GetDocument();
 			if (pDoc->GetRecursive())

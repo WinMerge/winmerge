@@ -1,3 +1,7 @@
+2005-05-26 Kimmo
+ PATCH: [ 1208537 ] Small cleanup for CDirView::OpenSelection()
+  Src: DirView.cpp
+
 2005-05-25 Kimmo
  PATCH: [ 1207820 ] Remove non-const GetPath() from PathContext
   Src: PathContext.h
