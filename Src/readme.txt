@@ -4,6 +4,8 @@
   Src/Languages: *.rc
  BUG: [ 1198263 ] MergeKorean translation credit wrong?
   Src/Languages/Korean: MergeKorean.rc
+ BUG: [ 1208504 ] Newer right file marked identical comparing by modified date
+  Src: DirScan.cpp
 
 2005-05-26 Jochen
  PATCH: [ 1191245 ] Merge7z DllBuild 0011

@@ -256,11 +256,12 @@ int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
 			{
 				// Compare by modified date
 				__int64 nTimeDiff = leftFiles[i].mtime - rightFiles[j].mtime;
+				// Compare absolute time difference (lose sign)
+				nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
 				if (pCtxt->m_bIgnoreSmallTimeDiff)
 				{
 					// If option to ignore small timediffs (couple of seconds)
 					// is set, decrease absolute difference by allowed diff
-					nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
 					nTimeDiff -= SmallTimeDiff;
 				}
 				if (nTimeDiff <= 0)
