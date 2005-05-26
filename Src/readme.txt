@@ -2,6 +2,8 @@
  BUG: [ 1201463 ] Prediffer submenu looks broken
   Src: Merge.rc
   Src/Languages: *.rc
+ BUG: [ 1198263 ] MergeKorean translation credit wrong?
+  Src/Languages/Korean: MergeKorean.rc
 
 2005-05-26 Jochen
  PATCH: [ 1191245 ] Merge7z DllBuild 0011
