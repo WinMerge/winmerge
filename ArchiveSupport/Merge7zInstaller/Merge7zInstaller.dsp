@@ -55,11 +55,29 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /machine:I386
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /pdb:none /machine:I386 /nodefaultlib
-# Begin Special Build Tool
+# Begin Custom Build
+OutDir=.\Release
+InputPath=.\Release\Merge7zInstaller.exe
 SOURCE="$(InputPath)"
-PostBuild_Desc=UPX compression
-PostBuild_Cmds=upx Release/Merge7zInstaller.exe
-# End Special Build Tool
+
+BuildCmds= \
+	upx $(OUTDIR)\Merge7zInstaller.exe \
+	cd $(OUTDIR) \
+	del Merge7z.7z \
+	del Merge7z.zip \
+	mkdir Zip \
+	Merge7zInstaller /commit /standalone /select M M Zip \
+	cd Zip \
+	7za a ..\Merge7z.7z -r * -mx5 \
+	7za a -tzip ..\Merge7z.zip -r * -mx5 \
+	
+
+"$(OUTDIR)\Merge7z.7z" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+
+"$(OUTDIR)\Merge7z.zip" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+   $(BuildCmds)
+# End Custom Build
 
 !ELSEIF  "$(CFG)" == "Merge7zInstaller - Win32 Debug"
 
@@ -86,6 +104,20 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /debug /machine:I386 /nodefaultlib /pdbtype:sept
+# Begin Custom Build
+OutDir=.\Debug
+InputPath=.\Debug\Merge7zInstaller.exe
+SOURCE="$(InputPath)"
+
+"$(OUTDIR)\Merge7z.7z" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
+	cd $(OUTDIR) 
+	del Merge7z.7z 
+	mkdir Zip 
+	Merge7zInstaller /commit /standalone /select M M Zip 
+	cd Zip 
+	7za a ..\Merge7z.7z -r * 
+	
+# End Custom Build
 
 !ENDIF 
 

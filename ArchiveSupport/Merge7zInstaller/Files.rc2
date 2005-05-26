@@ -1,6 +1,6 @@
 #ifndef IMPORT
 #define IMPORT(name) name
-SYSTEMTIME RCDATA {2005,2,0,28,12,0,0,0}
+SYSTEMTIME RCDATA {2005,5,0,26,12,0,0,0}
 #endif
 
 IMPORT(Merge7z311.dll)			Merge7z	"../Build/MergeRelease/Merge7z311.dll"
@@ -27,6 +27,14 @@ IMPORT(Merge7z414.dll)			Merge7z	"../Build/MergeRelease/Merge7z414.dll"
 IMPORT(Merge7z414U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z414U.dll"
 IMPORT(Merge7z415.dll)			Merge7z	"../Build/MergeRelease/Merge7z415.dll"
 IMPORT(Merge7z415U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z415U.dll"
+IMPORT(Merge7z416.dll)			Merge7z	"../Build/MergeRelease/Merge7z416.dll"
+IMPORT(Merge7z416U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z416U.dll"
+IMPORT(Merge7z417.dll)			Merge7z	"../Build/MergeRelease/Merge7z417.dll"
+IMPORT(Merge7z417U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z417U.dll"
+IMPORT(Merge7z418.dll)			Merge7z	"../Build/MergeRelease/Merge7z418.dll"
+IMPORT(Merge7z418U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z418U.dll"
+IMPORT(Merge7z419.dll)			Merge7z	"../Build/MergeRelease/Merge7z419.dll"
+IMPORT(Merge7z419U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z419U.dll"
 
 IMPORT(7zip_pad.xml)			7-ZIP	"../../../7z313bin/7zip_pad.xml"
 

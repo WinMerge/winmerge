@@ -28,6 +28,11 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2005/01/15	Jochen Tucht		Created
 2005/02/28	Jochen Tucht		Initialize filename in Open dialog to "*.exe"
+2005/04/26	Jochen Tucht		No default assumption on program directory
+								Double-click option for in-place extraction
+								Fix empty path issue with GetFileTitle()
+								Accept extraction folder on command line
+								Batch options: /standalone, /select, /commit
 */
 
 #include <windows.h>
@@ -44,6 +49,33 @@ static const DWORD dwBuild =
 );
 
 const SYSTEMTIME *st = NULL; // initialized from SYSTEMTIME RCDATA in Files.rc2
+
+LPTSTR NTAPI ArgLower(LPTSTR lpCmdLine)
+{
+	while (*lpCmdLine == VK_SPACE)
+		++lpCmdLine;
+	return lpCmdLine;
+}
+
+LPTSTR NTAPI ArgUpper(LPTSTR lpCmdLine)
+{
+	TCHAR cSpace = VK_SPACE;
+	while (*lpCmdLine && *lpCmdLine != cSpace)
+	{
+		if (*lpCmdLine == '"')
+		{
+			cSpace ^= VK_SPACE;
+		}
+		++lpCmdLine;
+	}
+	return lpCmdLine;
+}
+
+int NTAPI PathGetTailLength(LPCTSTR path)
+{
+	//GetFileTitle() returns garbage when passed in empty path...
+	return *path ? GetFileTitle(path, 0, 0) : 0;
+}
 
 void InstallFile(HWND hWnd, LPTSTR lpName, LPCTSTR lpType, LPTSTR path, int cchPath)
 {
@@ -72,9 +104,10 @@ void InstallFile(HWND hWnd, LPTSTR lpName, LPCTSTR lpType, LPTSTR path, int cchP
 	{
 		DWORD dwNumberOfBytesWritten;
 		BOOL bSuccess = WriteFile(hFile, pResource, dwSize, &dwNumberOfBytesWritten, 0);
-		FILETIME ft;
-		if (SystemTimeToFileTime(st, &ft))
+		FILETIME ft, ftLocal;
+		if (SystemTimeToFileTime(st, &ftLocal))
 		{
+			LocalFileTimeToFileTime(&ftLocal, &ft);
 			SetFileTime(hFile, &ft, &ft, &ft);
 		}
 		CloseHandle(hFile);
@@ -118,7 +151,7 @@ BOOL CALLBACK fnInstallFiles(HMODULE hModule, LPCTSTR lpType, LPTSTR lpName, LON
 	HWND hWnd = (HWND)lParam;
 	TCHAR path[8 * MAX_PATH];
 	int cchPath = GetDlgItemText(hWnd, 203, path, 5 * MAX_PATH);
-	int cchName = GetFileTitle(path, 0, 0);
+	int cchName = PathGetTailLength(path);
 	if (cchName < cchPath)
 	{
 		cchPath -= cchName;
@@ -146,8 +179,99 @@ BOOL CALLBACK DlgMain_InitDialog(HWND hWnd, LPARAM lParam)
 	LONG lCount = SendDlgItemMessage(hWnd, 100, LB_GETCOUNT , 0, 0);
 	SendDlgItemMessage(hWnd, 100, LB_SELITEMRANGEEX, 0, lCount - 1);
 	CheckRadioButton(hWnd, 201, 202, 201);
-	GetModuleFileName(0, path, sizeof path);
-	SetDlgItemText(hWnd, 203, path);
+	//GetModuleFileName(0, path, sizeof path);
+	//SetDlgItemText(hWnd, 203, path);
+	BOOL bCommit = FALSE;
+	BOOL bSelect = FALSE;
+	LPTSTR lpCmdLine = GetCommandLine();
+	LPTSTR lpArgLower = ArgLower(lpCmdLine);
+	LPTSTR lpArgUpper = ArgUpper(lpArgLower);
+	while (*(lpArgLower = ArgLower(lpArgUpper)))
+	{
+		TCHAR cAhead = *(lpArgUpper = ArgUpper(lpArgLower));
+		*lpArgUpper = '\0';
+		if (0 == lstrcmpi(lpArgLower, "/standalone"))
+		{
+			CheckRadioButton(hWnd, 201, 202, 202);
+			SendMessage(hWnd, WM_COMMAND, 202, 0);
+			CheckDlgButton(hWnd, 205, 1);
+			SendMessage(hWnd, WM_COMMAND, 205, 0);
+		}
+		else if (0 == lstrcmpi(lpArgLower, "/select"))
+		{
+			int lower = -1;
+			int upper = -1;
+			*lpArgUpper = cAhead;
+			if (*(lpArgLower = ArgLower(lpArgUpper)))
+			{
+				cAhead = *(lpArgUpper = ArgUpper(lpArgLower));
+				*lpArgUpper = '\0';
+				lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRING, -1, (LPARAM)lpArgLower);
+				if (lower == -1)
+				{
+					MessageBox(hWnd, lpArgLower, "No match", MB_ICONSTOP);
+				}
+			}
+			*lpArgUpper = cAhead;
+			if (*(lpArgLower = ArgLower(lpArgUpper)))
+			{
+				cAhead = *(lpArgUpper = ArgUpper(lpArgLower));
+				*lpArgUpper = '\0';
+				int ahead = -1;
+				while ((ahead = SendDlgItemMessage(hWnd, 100, LB_FINDSTRING, ahead, (LPARAM)lpArgLower)) > upper)
+				{
+					upper = ahead;
+				}
+				if (upper == -1)
+				{
+					MessageBox(hWnd, lpArgLower, "No match", MB_ICONSTOP);
+				}
+			}
+			if (lower >= 0 && upper >= 0)
+			{
+				if (!bSelect)
+				{
+					SendDlgItemMessage(hWnd, 100, LB_SETSEL, 0, -1);
+					bSelect = TRUE;
+				}
+				SendDlgItemMessage(hWnd, 100, LB_SELITEMRANGEEX, lower, upper);
+			}
+		}
+		else if (0 == lstrcmpi(lpArgLower, "/commit"))
+		{
+			bCommit = TRUE;
+		}
+		/*//just for test
+		else if (0 == lstrcmpi(lpArgLower, "\"ping pong\""))
+		{
+			MessageBox(hWnd, "", lpArgLower, 0);
+		}*/
+		else
+		{
+			DWORD dwAttributes = GetFileAttributes(lpArgLower);
+			if (dwAttributes != 0xFFFFFFFF && dwAttributes & FILE_ATTRIBUTE_DIRECTORY)
+			{
+				lstrcpy(path, lpArgLower);
+				if (PathGetTailLength(path) > 1)
+				{
+					lstrcat(path, "\\");
+				}
+				lstrcat(path, "*.exe");
+				CheckRadioButton(hWnd, 201, 202, 202);
+				SendMessage(hWnd, WM_COMMAND, 202, 0);
+				SetDlgItemText(hWnd, 203, path);
+			}
+			else
+			{
+				MessageBox(hWnd, lpArgLower, "Not a directory", MB_ICONSTOP);
+			}
+		}
+		*lpArgUpper = cAhead;
+	}
+	if (bCommit)
+	{
+		SendMessage(hWnd, WM_COMMAND, IDOK, 0);
+	}
 	return TRUE;
 }
 
@@ -167,7 +291,7 @@ BOOL CALLBACK DlgMain_BrowseExe(HWND hWnd)
 	path.ofn.lpstrTitle = "Browse for application ...";
 	path.ofn.Flags = OFN_FILEMUSTEXIST | OFN_HIDEREADONLY | OFN_LONGNAMES | OFN_PATHMUSTEXIST;
 	int cchPath = GetDlgItemText(hWnd, 203, path.buffer, sizeof path.buffer);
-	int cchName = GetFileTitle(path.buffer, 0, 0);
+	int cchName = PathGetTailLength(path.buffer);
 	if (cchName < cchPath)
 	{
 		lstrcpy(path.buffer + cchPath - cchName, "\\*.exe");
@@ -194,7 +318,7 @@ BOOL CALLBACK DlgMain_InstallFiles(HWND hWnd)
 	else
 	{
 		cchPath = GetDlgItemText(hWnd, 203, path, 5 * MAX_PATH);
-		int cchName = GetFileTitle(path, 0, 0);
+		int cchName = PathGetTailLength(path);
 		if (cchName < cchPath)
 		{
 			cchPath -= cchName;
@@ -235,6 +359,7 @@ BOOL CALLBACK DlgMain_EnableStandalone(HWND hWnd)
 
 BOOL CALLBACK DlgMain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
+	TCHAR path[8 * MAX_PATH];
 	switch (uMsg)
 	{
 	case WM_INITDIALOG:
@@ -249,11 +374,19 @@ BOOL CALLBACK DlgMain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			EnableWindow(GetDlgItem(hWnd, 203), wParam == 202);
 			EnableWindow(GetDlgItem(hWnd, 204), wParam == 202);
 			EnableWindow(GetDlgItem(hWnd, 205), wParam == 202);
+			SetDlgItemText(hWnd, 203, "");
+			break;
+		case MAKELONG(202, BN_DOUBLECLICKED):
+			GetModuleFileName(0, path, sizeof path);
+			SetDlgItemText(hWnd, 203, path);
+			break;
+		case MAKELONG(203, EN_CHANGE):
+			EnableWindow(GetDlgItem(hWnd, IDOK), GetWindowTextLength((HWND)lParam) || IsDlgButtonChecked(hWnd, 201));
 			break;
 		case 204:
 			return DlgMain_BrowseExe(hWnd);
 		case 205:
-			if (IsDlgButtonChecked(hWnd, 205))
+			if (IsDlgButtonChecked(hWnd, 205) && GetKeyState(VK_SHIFT) >= 0)
 				SendDlgItemMessage(hWnd, 100, LB_SETSEL, 0, -1);
 			//fall through
 		case MAKELONG(100, LBN_SELCHANGE):
