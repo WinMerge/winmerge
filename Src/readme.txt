@@ -1,3 +1,7 @@
+2005-05-27 Kimmo
+ PATCH: [ 1209294 ] Remove running stampver-tool post-build
+  Src: Merge.dsp
+
 2005-05-26 Kimmo
  BUG: [ 1201463 ] Prediffer submenu looks broken
   Src: Merge.rc
