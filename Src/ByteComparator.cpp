@@ -166,8 +166,12 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				if (m_eol0 || m_eol1)
 				{
 					if (!m_eol0 || !m_eol1)
+					{
+						// one side had an end-of-line, but the other didn't
 						return RESULT_DIFF;
-					continue;
+					}
+					// otherwise, both sides had end-of-line
+					// pointers have already been advanced, so just continue happily
 				}
 			}
 		}

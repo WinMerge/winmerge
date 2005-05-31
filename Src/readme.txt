@@ -2,6 +2,8 @@
  PATCH: [ 1206727 ] decouple codepage module from options files
   Src: codepage.cpp codepage.h MainFrm.cpp MainFrm.h
   Src/Common: LanguageSelect.cpp
+ BUG: [ 1209386 ] Comparing by quick differences jams WinMerge
+  Src: ByteComparator.cpp
 
 2005-05-27 Kimmo
  PATCH: [ 1209294 ] Remove running stampver-tool post-build
