@@ -119,6 +119,7 @@ public:
 	void SelectFilter();
 	void ShowVSSError(CException *e, CString strItem);
 	void ShowHelp();
+	void UpdateCodepageModule();
 
 // Overrides
 	// ClassWizard generated virtual function overrides

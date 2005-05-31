@@ -25,9 +25,7 @@
 // $Id$
 
 #include "stdafx.h"
-#include "OptionsMgr.h"
 #include "Merge.h"
-#include "OptionsDef.h"
 #include "codepage.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
 
@@ -56,12 +54,10 @@ static CMap<int, int, int, int> f_codepage_info_index;
 /**
  * @brief Update the appropriate default codepage
  */
-void updateDefaultCodepage(CRegOptions * options)
+void updateDefaultCodepage(int cpDefaultMode, int customCodepage)
 {
-	int nDefaultCPMode = options->GetInt(OPT_CP_DEFAULT_MODE);
-
 	int wLangId;
-	switch (nDefaultCPMode)
+	switch (cpDefaultMode)
 	{
 		case 0:
 			f_nDefaultCodepage = GetACP();
@@ -75,7 +71,7 @@ void updateDefaultCodepage(CRegOptions * options)
 				f_nDefaultCodepage = GetACP();
 			break;
 		case 2:
-			f_nDefaultCodepage = options->GetInt(OPT_CP_DEFAULT_CUSTOM);
+			f_nDefaultCodepage = customCodepage;
 			break;
 		default:
 			// no other valid option

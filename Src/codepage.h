@@ -9,7 +9,7 @@
 
 class CRegOptions;
 
-void updateDefaultCodepage(CRegOptions * options);
+void updateDefaultCodepage(int cpDefaultMode, int customCodepage);
 int getDefaultCodepage();
 
 bool isCodepageInstalled(int codepage);

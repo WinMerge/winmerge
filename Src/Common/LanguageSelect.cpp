@@ -7,7 +7,6 @@
 #include "resource.h"
 #include "LanguageSelect.h"
 #include "MainFrm.h"
-#include "codepage.h"
 #include <locale.h>
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
@@ -587,7 +586,8 @@ void CLanguageSelect::OnOK()
 	{
 		SetLanguageOverride(lang);
 
-		updateDefaultCodepage(&mf->m_options);
+		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)AfxGetApp()->m_pMainWnd);
+		pMainFrame->UpdateCodepageModule();
 
 		// Update the current menu
 		if (m_bReloadMenu)

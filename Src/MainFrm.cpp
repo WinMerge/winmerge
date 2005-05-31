@@ -166,7 +166,7 @@ CMainFrame::CMainFrame()
 	m_bFirstTime = TRUE;
 	m_bEscShutdown = FALSE;
 	OptionsInit(); // Implementation in OptionsInit.cpp
-	updateDefaultCodepage(&m_options);
+	UpdateCodepageModule();
 
 	m_bShowErrors = TRUE;
 	m_CheckOutMulti = FALSE;
@@ -1146,7 +1146,7 @@ void CMainFrame::OnOptions()
 
 	if (rv == IDOK)
 	{
-		updateDefaultCodepage(&m_options);
+		UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 
@@ -2841,4 +2841,15 @@ void CMainFrame::OnToolsLoadConfig()
 
 	// set our current settings from configLog settings
 	LoadConfigLog(configLog, m_options, m_lfDiff, FromConfigLog);
+}
+
+/**
+ * @brief Send current option settings into codepage module
+ */
+void
+CMainFrame::UpdateCodepageModule()
+{
+	// Get current codepage settings from the options module
+	// and push them into the codepage module
+	updateDefaultCodepage(m_options.GetInt(OPT_CP_DEFAULT_MODE), m_options.GetInt(OPT_CP_DEFAULT_CUSTOM));
 }
