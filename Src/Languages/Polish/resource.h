@@ -385,6 +385,7 @@
 #define IDS_VSSFOLDER_AND_FILE_NOMATCH  17268
 #define IDS_VSS_NODATABASES             17269
 #define IDS_VSS_ERRORFROM               17270
+#define IDS_VIEWS_OUTOFSYNC             17300
 #define ID_DIR_COPY_LEFT_TO_RIGHT       17600
 #define ID_DIR_COPY_LEFT_TO_BROWSE      17601
 #define ID_DIR_COPY_RIGHT_TO_LEFT       17602
@@ -776,6 +777,7 @@
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32864
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
+#define ID_TOOLS_LOADCONFIG             32867
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
 #define ID_POPUP_OPEN_WITH_UNPACKER     32882

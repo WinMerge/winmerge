@@ -1765,6 +1765,12 @@ BEGIN
     IDS_SAVE_RIGHT_AS       "Jobb oldali fájl mentése más néven"
 END
 
+// Editing/Merging file
+STRINGTABLE
+BEGIN
+    IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+END
+
 // VSS
 STRINGTABLE
 BEGIN

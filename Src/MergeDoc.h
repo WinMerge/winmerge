@@ -217,6 +217,7 @@ public:
 	BOOL Undo();
 	void CopyAllList(bool bSrcLeft, bool bCurrentLeft);
 	void CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff, int lastDiff);
+	BOOL SanityCheckDiff(DIFFRANGE dr);
 	void ListCopy(bool bSrcLeft, bool bCurrentLeft, bool bGroupWithPrevious = false);
 	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, CString & sError,
 		BOOL bLeft, PackingInfo * pInfoTempUnpacker);

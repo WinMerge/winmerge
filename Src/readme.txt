@@ -1,3 +1,8 @@
+2005-06-01 Kimmo
+ PATCH: [ 1210059 ] Sanity check difference before merging it
+  Src: Merge.rc MergeDoc.cpp MergeDoc.h resource.h
+  Src/Languages: *.rc resource.h
+
 2005-05-31 Perry
  PATCH: [ 1206727 ] decouple codepage module from options files
   Src: codepage.cpp codepage.h MainFrm.cpp MainFrm.h

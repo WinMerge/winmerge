@@ -699,6 +699,44 @@ void CMergeDoc::CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff
 }
 
 /**
+ * @brief Sanity check difference.
+ *
+ * Checks that lines in difference are inside difference in both files.
+ * If file is edited, lines added or removed diff lines get out of sync and
+ * merging fails miserably.
+ *
+ * @param [in] dr Difference to check.
+ * @return TRUE if difference lines match, FALSE otherwise.
+ */
+BOOL CMergeDoc::SanityCheckDiff(DIFFRANGE dr)
+{
+	int cd_dbegin = dr.dbegin0;
+	int cd_dend = dr.dend0;
+	DWORD dwLeftFlags = m_ltBuf.GetLineFlags(cd_dend);
+	DWORD dwRightFlags = m_rtBuf.GetLineFlags(cd_dend);
+
+	// Optimization - check last line first so we don't need to
+	// check whole diff for obvious cases
+	if (!(dwLeftFlags & LF_WINMERGE_FLAGS) ||
+		!(dwRightFlags & LF_WINMERGE_FLAGS))
+	{
+		return FALSE;
+	}
+
+	for (int line = cd_dbegin; line < cd_dend; line++)
+	{
+		dwLeftFlags = m_ltBuf.GetLineFlags(cd_dend);
+		dwRightFlags = m_rtBuf.GetLineFlags(cd_dend);
+		if (!(dwLeftFlags & LF_WINMERGE_FLAGS) ||
+			!(dwRightFlags & LF_WINMERGE_FLAGS))
+		{
+			return FALSE;
+		}
+	}
+	return TRUE;
+}
+
+/**
  * @brief Copy selected (=current) difference from from side to side.
  * @param [in] bSrcLeft Source side from which diff is copied
  * @param [in] bCurrentLeft Currently active view (where cursor is)
@@ -718,13 +756,20 @@ void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft,
 	if (curDiff!=-1)
 	{
 		DIFFRANGE cd = {0};
-		m_diffList.GetDiff(curDiff, cd);
+		VERIFY(m_diffList.GetDiff(curDiff, cd));
 		CDiffTextBuffer& sbuf = bSrcLeft? m_ltBuf:m_rtBuf;
 		CDiffTextBuffer& dbuf = bSrcLeft? m_rtBuf:m_ltBuf;
 		BOOL bSrcWasMod = sbuf.IsModified();
 		int cd_dbegin = bSrcLeft? cd.dbegin0:cd.dbegin1;
 		int cd_dend = bSrcLeft? cd.dend0:cd.dend1;
 		int cd_blank = bSrcLeft? cd.blank0:cd.blank1;
+		BOOL bInSync = SanityCheckDiff(cd);
+
+		if (bInSync == FALSE)
+		{
+			AfxMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+			return;
+		}
 
 		// If we remove whole diff from current view, we must fix cursor
 		// position first. Normally we would move to end of previous line,
