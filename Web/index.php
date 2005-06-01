@@ -28,9 +28,9 @@
 <p><img src="2.2/images/screenshot.gif" alt="Screenshot of WinMerge"></p>
 <p>See the <a href="2.2/screenshots.php">screenshots page</a> for more screenshots.</p>
 
-<h2>WinMerge 2.2.2 - latest stable version</h2>
-<p><a href="2.2/index.php">WinMerge 2.2.2</a> is the latest stable version, and it is recommended for most users.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.2-Setup.exe">Download WinMerge 2.2.2 Installer</a></p>
+<h2>WinMerge 2.2.4 - latest stable version</h2>
+<p><a href="2.2/index.php">WinMerge 2.2.4</a> is the latest stable version, and it is recommended for most users.</p>
+<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.4-Setup.exe">Download WinMerge 2.2.4 Installer</a></p>
 
 <h2>WinMerge 2.0.2 - older stable version</h2>
 <p><a href="2.0/index.php">WinMerge 2.0.2</a> is an older version.</p>
@@ -48,14 +48,14 @@
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe">Download WinMerge 1.7 Installer</a></p>
 
 <h2>Installation</h2>
-<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.2-Setup.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.2-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.4-Setup.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.4-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 <p>For more details please look at the <a href="2.2/manual/installing.html">Installation section</a> from the <a href="2.2/manual/index.html">Manual</a>.</p>
 
 <h2>Using WinMerge</h2>
 <p>You can use the <a href="2.2/manual/index.html">online Manual</a>, or you can
-<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=281681">download</a> a copy.</p>
+<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=331358">download</a> a copy.</p>
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered

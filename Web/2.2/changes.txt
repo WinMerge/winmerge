@@ -1,3 +1,214 @@
+2005-05-31 2.2.4 Stable Release
+
+2005-05-26 Kimmo
+ BUG: [ 1198263 ] MergeKorean translation credit wrong?
+  Src/Languages/Korean: MergeKorean.rc
+
+2005-05-20 Kimmo
+ PATCH: [ 1203680 ] Fix tab adding spaces in unicode builds
+  Src/editlib: ccrystaltextview.cpp
+
+2005-05-18 Perry
+ Update language count (19->21, three occurrences)
+  Docs/Developers/readme-developers.html.
+ Note that sourceforge tracker doesn't display tabs.
+  Docs/Developers/readme-developers.html.
+
+2005-05-15 Perry
+ PATCH: [ 1201961 ] Japanese translation update
+  (typo fix for earlier version of same patch, IDC_EOL_SENSITIVE)
+  Src/Languages/Japanese: MergeJapanese.rc
+
+2005-05-14 Perry
+ PATCH: [ 1199600 ] Minor update to text encoding docs in manual
+  Docs/Users/Manual/Text_encoding.xml
+ PATCH: [ 1201961 ] Japanese translation update
+  Src/Languages/Japanese: MergeJapanese.rc
+ PATCH: [ 1107484 ] Fix broken version columns
+  Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h 
+   DirViewColItems.cpp
+ BUG: [ 1157554 ] MergeKorean IDD_FILEFILTERS not DIALOGEX
+  Src/Languages/Korean: MergeKorean.rc
+
+2005-05-12 Kimmo
+ BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem
+  Src: Merge.rc
+  Src/Languages: *.rc
+ PATCH: [ 1175065 ] Use view lines when scrolling from location pane
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp
+
+2005-05-12 Perry
+ BUG: [ 1193163 ] "Gerenate Patch" deletes the original files if UTF-8/16
+  Added argument (areTempFiles) to method SetCompareFiles, and used in RunFileDiff.
+ (also BUG [ 1197527 ] Patch Generator browse button not defaulting correctly)
+  Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchDlg.cpp PatchTool.cpp
+
+2005-05-11 Kimmo
+ Update Contributors list
+  Docs/Users: Contributors.txt
+
+2005-05-11 Perry
+ BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files
+  Bail out of OlecharToUTF8 if BOM not UCS-2 (to avoid scrambling text).
+  Src/Common: multiformatText.cpp
+ Improve comments heading & in OlecharToUTF8
+  Src/Common: multiformatText.cpp
+
+2005-05-09 Perry
+ BUG [ 1197964 ] MergeBulgarian string versioninfo translated
+  Src/Languages: MergeBulgarian.rc MergeGerman.rc
+ BUG [ 1193561 ] v2.2, version copyrights not all up-to-date
+  Adjusted all to say 1996-2005 just as English
+  Src/Languages: Merge*.rc
+
+2005-05-08 Perry
+ PATCH: [ 1188063 ] UTF-8 file saving problem, the file header BOM missing.
+  Src/Common: UniFile.cpp
+ BUG [ 1197527 ] Patch Generator browse button not defaulting correctly)
+  Src: PatchDlg.cpp
+
+2005-05-07 Perry
+ Synchronizing MergeTurkish.rc to Merge.rc
+  (removing obsolete keywords, accepting DS_SETFONT from Merge.rc, 
+  removing trailing spaces, bitmap ids to symbolic, 
+  adding stringtable comments)
+  Src/Languages/Turkish: MergeTurkish.rc
+
+2005-05-05 Kimmo
+ PATCH: [ 1195530 ] Fix hiding sorted column
+  Src: DirViewColHandler.cpp
+
+2005-05-03 Kimmo
+ PATCH: [ 1189875 ] Small cleanup for line replace code
+  Src: MergeDoc.cpp
+ PATCH: [ 1193447 ] Optimise location pane update.
+  Src: LocationView.cpp
+ BUG: [ 1181399 ] When a modified file is locked, Retry should be an option
+  Don't close unsaved documents when 'No' button is selected
+  Src: MergeDoc.cpp
+
+2005-05-01 Perry
+ PATCH: [ 1188377 ] all of the menu contents is translated in turkish
+ Initial upload of Turkish rc (menus translated) exactly as submitted by Ozkan.
+  New Src/Languages/Turkish
+ Add appropriate AFX_TARG_TRK and LANG_TURKISH declarations to MergeTurkish.rc
+  Src/Languages/Turkish: MergeTurkish.rc
+ Convert Turkish Merge.rc2 from English one to translated one (no editlib include)
+ Add Turkish to BuildAll.bat
+  Src/Languages: BuildAll.bat
+  Src/Languages/Turkish/res: Merge.rc2
+ Fix language code in version info in Turkish (needed for LanguageSelect).
+  Src/Languages/Turkish/MergeTurkish.rc
+ PATCH: [ 1193560 ] v2.2: MergeHungarian doesn't compile (IDS_VCS_NONE)
+  Synch Hungarian resource.h to German resource.h, to get new IDS strings.
+
+2005-04-28 Tim
+ PATCH: [ 1190544 ] Translated Read Me-German.rtf
+  Docs/Users/Languages: Read Me-German.rtf
+
+2005-04-28 Kimmo
+ BUG: [ 1181883 ] Inconsistent behavior: select font vs. Use default
+  Src: MainFrm.cpp MainFrm.h
+
+2005-04-25 Kimmo
+ BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
+  docs/Users/Languages new file: Read Me-Hungarian.rtf
+
+2005-04-24 Kimmo
+ BUG: [ 1183031 ] Shared file give "parameter not correct error"
+  Additional fix from Perry
+  Src/Common: UniFile.cpp
+
+2005-04-23 Kimmo
+ BUG: [ 1183031 ] Shared file give "parameter not correct error"
+  Fix from Robin Sandlin and Perry
+  Src/Common: UniFile.cpp
+
+2005-04-22 Kimmo
+ Correct Polish translator name in Contributors list
+  Docs/Users: Contributors.txt
+ PATCH: [ 1183772 ] Update Italian translation + readme
+  Submitted by Andrea Decorte
+  Docs/users/Languages: Read Me-Italian.rtf
+ PATCH: [ 1184023 ] Syntax highlighting for Inno Setup files
+  Submitted by Tim
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/editlib new file: innosetup.cpp
+
+2005-04-18 Kimmo
+ PATCH: [ 1183669 ] Updated ReadMe-ChineseTraditional.rtf
+  From Koko
+  Docs/users/Languages: Read Me-Chinese_Traditional.rtf
+ PATCH: [ 1183481 ] Updated Polish translation
+  From Pawel Wawrzysko
+  Src/Languages/Polish: MergePolish.rc
+  Docs/users/Languages: Read Me-Polish.rtf
+  InnoSetup/Languages: Pölish.isl
+
+2005-04-17
+ PATCH: [ 1179941 ] Syntax highlighting for NSIS files
+  Submitted by Tim
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/editlib new file: nsis.cpp
+
+2005-04-13 Kimmo
+ PATCH: [ 1180768 ] Russian translation update
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
+ PATCH: [ 1181157 ] Swedish translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
+2005-04-13 Perry
+ PATCH: [ 1145016 ] i18n the version control strings
+  Src: Merge.rc PropVss.cpp PropVss.h resource.h
+  Languages: resource.h Merge*.rc
+
+2005-04-05 Kimmo
+ PATCH: [ 1176574 ] catalan translation update (setup)
+  Submitted by Jordi Vilar
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup/Languages: Catalan.isl
+  Docs/Users/Languages: Read Me-Catalan.rtf
+ PATCH [ 1176741 ] Swedish ReadMe-Swedish.rtf file
+  Submitted by Hans Eriksson
+  Docs/Users/Languages: Read Me-Swedish.rtf
+ Update contributors file (Add Dutch and French translators)
+  Docs/Users: Contributors.txt
+
+2005-04-03 Perry
+ PATCH: [ 1155977 ] Log scriptlet plugin errors
+  Src: Plugins.cpp
+
+2005-04-02 Kimmo
+ PATCH: [ 1172679 ] French translation
+  Submitted by: Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+ PATCH: [ 1174935 ] Russian translation update
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
+ PATCH: [ 1175319 ] Dutch translation update
+  Submitted by Michel Coene
+  Src/Languages/Dutch: MergeDutch.rc
+
+2005-04-01 Kimmo
+ PATCH: [ 1173072 ] hungarian translation for current beta (2.3.2.0)
+  Submitted by Márton Balázs
+  Src/Languages/Hungarian: MergeHungarian.rc
+
+2005-03-29 Kimmo
+ PATCH: [ 1171805 ] Update italian translation
+  Submitted by Andrea Decorte
+  InnoSetup/Languages: Italian.isl
+ PATCH: [ 1159465 ] Add Jesus (Mack) to contributors/Spanish
+  Submitted by Perry
+  Users/Docs: Contributors.txt
+ PATCH: [ 1172427 ] Norwegian translation for 2.2.2 / CVS head
+  Submitted by Hans Fr. Nordhaug
+  Src/Languages/Norwegian: MergeNorwegian.rc
+
 2005-03-23 2.2.2 Stable Release
 
 2005-03-22 Kimmo

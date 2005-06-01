@@ -34,9 +34,9 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>WinMerge</Program_Name>
-		<Program_Version>2.2.2</Program_Version>
-		<Program_Release_Month>03</Program_Release_Month>
-		<Program_Release_Day>23</Program_Release_Day>
+		<Program_Version>2.2.4</Program_Version>
+		<Program_Release_Month>05</Program_Release_Month>
+		<Program_Release_Day>31</Program_Release_Day>
 		<Program_Release_Year>2005</Program_Release_Year>
 		<Program_Cost_Dollars>0</Program_Cost_Dollars>
 		<Program_Cost_Other_Code />
@@ -45,7 +45,7 @@
 		<Program_Release_Status>Minor Update</Program_Release_Status>
 		<Program_Install_Support>Install and Uninstall</Program_Install_Support>
 		<Program_OS_Support>Win95,Win98,WinME,WinNT 4.x,Windows2000,WinXP</Program_OS_Support>
-		<Program_Language>English,ChineseSimplified,ChineseTraditional,Czech,Danish,French,German,Hungarian,Italian,Japanese,Korean,Polish,Portuguese,Romanian,Russian,Spanish,Swedish</Program_Language>
+		<Program_Language>English,ChineseSimplified,ChineseTraditional,Czech,Danish,French,German,Hungarian,Italian,Japanese,Korean,Polish,Portuguese,Romanian,Russian,Spanish,Swedish,Turkish</Program_Language>
 		<Program_Change_Info />
 		<Program_Specific_Category>Utilities</Program_Specific_Category>
 		<Program_Category_Class>System Utilities::Other</Program_Category_Class>
@@ -55,13 +55,13 @@
 		<Includes_VB_Runtime>N</Includes_VB_Runtime>
 		<Includes_DirectX>N</Includes_DirectX>
 		<File_Info>
-			<Filename_Versioned>WinMerge-2.2.2-Setup.exe</Filename_Versioned>
-			<Filename_Previous>WinMerge-2.2.0-Setup.exe</Filename_Previous>
+			<Filename_Versioned>WinMerge-2.2.4-Setup.exe</Filename_Versioned>
+			<Filename_Previous>WinMerge-2.2.2-Setup.exe</Filename_Previous>
 			<Filename_Generic>WinMergeSetup.exe</Filename_Generic>
 			<Filename_Long>WinMergeSetup.exe</Filename_Long>
-			<File_Size_Bytes>2722237</File_Size_Bytes>
-			<File_Size_K>2658</File_Size_K>
-			<File_Size_MB>2.60</File_Size_MB>
+			<File_Size_Bytes>2745688</File_Size_Bytes>
+			<File_Size_K>2681</File_Size_K>
+			<File_Size_MB>2.62</File_Size_MB>
 		</File_Info>
 		<Expire_Info>
 			<Has_Expire_Info>N</Has_Expire_Info>
@@ -78,9 +78,9 @@
 			<Keywords>diff,merge,text files,differencing,syncronize</Keywords>
 			<Char_Desc_45>Compare and merge files or directories</Char_Desc_45>
 			<Char_Desc_80>WinMerge is side-by-side difference display and merge, for files or directories</Char_Desc_80>
-			<Char_Desc_250>WinMerge is a tool for visual difference display and merging, for both files and directories. Unicode support. Flexible syntax coloring editor. Windows Shell integration. Regexp filtering. Side-by-side line diff and in-line word diff visualisation.</Char_Desc_250>
-			<Char_Desc_450>WinMerge is a tool for visual difference display and merging, for both files and directories. WinMerge has Unicode support, Flexible syntax coloring editor, and Windows Shell integration. Regexp filtering for filenames and lines. Side-by-side line difference and in-line word difference visualisation. A file map shows the overall file differences in a location pane. The user interface is translated into several languages.</Char_Desc_450>
-			<Char_Desc_2000>WinMerge is a tool for visual difference display and merging, for both files and directories. It is highly useful for determing what has changed between file versions, and then merging those changes. WinMerge has Unicode support, Flexible syntax coloring editor, Visual SourceSafe integration, and Windows Shell integration. Regexp filtering for filenames and lines. Side-by-side line difference and in-line word difference visualisation.A file map shows the overall file differences in a location pane. The user interface is translated into several languages.</Char_Desc_2000>
+			<Char_Desc_250>WinMerge is a tool for visual difference display and merging, for both files and directories. Unicode support. Flexible syntax coloring editor. Windows Shell integration. Regexp filtering. Side-by-side line diff. Highlights differences inside lines.</Char_Desc_250>
+			<Char_Desc_450>WinMerge is a tool for visual difference display and merging, for both files and directories. WinMerge has Unicode support, Flexible syntax coloring editor, and Windows Shell integration. Regexp filtering for filenames and lines. Side-by-side line difference and highlights differences inside lines. A file map shows the overall file differences in a location pane. The user interface is translated into several languages.</Char_Desc_450>
+			<Char_Desc_2000>WinMerge is a tool for visual difference display and merging, for both files and directories. It is highly useful for determing what has changed between file versions, and then merging those changes. WinMerge has Unicode support, Flexible syntax coloring editor, Visual SourceSafe integration, and Windows Shell integration. Regexp filtering for filenames and lines. Side-by-side line difference and highlights differences inside lines. A file map shows the overall file differences in a location pane. The user interface is translated into several languages.</Char_Desc_2000>
 		</English>
 	</Program_Descriptions>
 	<Web_Info>
@@ -92,7 +92,7 @@
 			<Application_XML_File_URL>http://winmerge.org/WinMergePAD.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
-			<Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.2-Setup.exe</Primary_Download_URL>
+			<Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.4-Setup.exe</Primary_Download_URL>
 			<Secondary_Download_URL />
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />

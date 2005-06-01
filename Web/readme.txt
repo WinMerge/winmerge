@@ -1,3 +1,8 @@
+2005-06-01 Tim
+ PATCH: [ 1213019 ] Website changes for new stable release 2.2.4
+  Web: index.php page.inc WinMergePAD.xml
+  Web\2.2: changes.txt index.php
+
 2005-05-26 Tim
  RFE: [ 1203533 ] Web: Reword word-diff feature in features-list
   Web: index.php
