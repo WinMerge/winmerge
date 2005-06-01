@@ -775,6 +775,9 @@ void CAboutDlg::OnBnClickedOpenContributors()
 
 /** 
  * @brief Read paths and filter from project file.
+ *
+ * Tries to find project file in files[0] and files[1] by extension
+ * If cannot find one, returns FALSE
  */
 BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
 {
@@ -784,17 +787,28 @@ BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
 	CString ProjectFileName;
 	CString ext;
 
+	// Look for project file in files[0] and files[1]
+
+	if (files.GetSize() < 2)
+		return FALSE; // code further down assumes files[0] and files[1] exist
+
 	SplitFilename(files[0], NULL, NULL, &ext);
 	if (ext == PROJECTFILE_EXT)
+	{
 		ProjectFileName = files[0];
+	}
 	else
 	{
+		if (files.GetSize() == 1)
+			return FALSE;
 		SplitFilename(files[1], NULL, NULL, &ext);
 		if (ext == PROJECTFILE_EXT)
 			ProjectFileName = files[1];
 		else
 			return FALSE;
 	}
+
+	// We found project file, and stored it in ProjectFileName
 
 	if (!ProjectFileName.IsEmpty())
 	{

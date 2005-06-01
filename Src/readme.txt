@@ -1,3 +1,7 @@
+2005-06-01 Perry
+ Add commenting & array bounds checking to CMergeApp::LoadProjectFile
+  Src: Merge.cpp
+
 2005-06-01 Kimmo
  PATCH: [ 1210059 ] Sanity check difference before merging it
   Src: Merge.rc MergeDoc.cpp MergeDoc.h resource.h
