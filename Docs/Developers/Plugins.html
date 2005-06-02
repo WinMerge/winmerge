@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Plugins</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+    h4 {
+      padding: 2px;
+      border-left: 8px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
+    }
+    table {
+      border-collapse: collapse;
+      border: 1px solid black;
+    }
+    th {
+      text-align: left;
+      padding: 3px;
+      background-color: #EEEEEE;
+      border: 1px solid black;
+    }
+    td {
+      padding: 3px;
+      border: 1px solid black;
+    }
+    dt {
+      font-weight: bold;
+    }
+  -->
+  </style>
+</head>
+<body>
+<h2>Plugins</h2>
+
+<h3>Table of Contents</h3>
+<ul>
+  <li><a href="#description">Quick description</a></li>
+  <li><a href="#events">Events</a></li>
+  <li><a href="#api">API</a></li>
+  <li><a href="#properties">Properties</a></li>
+  <li><a href="#methods">Methods</a></li>
+  <li><a href="#syntax">Syntax</a>
+    <ul>
+      <li><a href="#syntax_properties">Properties syntax</a></li>
+      <li><a href="#syntax_methods">Methods syntax</a></li>
+    </ul>
+  </li>
+  <li><a href="#write">How to write plugins quickly ?</a></li>
+  <li><a href="#debug">How to debug VC++ plugins ?</a></li>
+</ul>
+
+<h3><a name="description">Quick description</a></h3>
+<p>Plugins use an ActiveX interface. Plugins may be written in any format that supports this interface.</p>
+<p>Examples are available in :</p>
+<ul>
+  <li>C++ COM component</li>
+  <li>VB ActiveX dll</li>
+  <li>Scriptlets (VBS, JS)</li>
+  <li>Delphi</li>
+</ul>
+<p>Limitation : Scriptlets only work for <code>EDITOR_SCRIPT</code> plugins.</p>
+<p><a href="#properties">Properties</a> are used to present information concerning the plugin.<br />
+<a href="#methods">Methods</a> are used to process the data. Method names and syntax depends on events and <a href="#api">API</a> (see below).</p>
+
+<h3><a name="events">Events</a></h3>
+<dl>
+  <dt><code>EDITOR_SCRIPT</code></dt>
+  <dd><p>In editor view, apply a function to the current selection.</p></dd>
+
+  <dt><code>PREDIFF</code></dt>
+  <dd>
+    <p>Preprocess file before diffing : the plugin is not apply to the text displayed in the editor. It is applied only to a copy of the left and right texts, and this copy are then scanned to create the difference list. As now :</p>
+    <ul>
+      <li>you may delete one column, change the names of variables...</li>
+      <li>you may not add/delete/move lines.</li>
+    </ul>
+  </dd>
+
+  <dt><code>PACK_UNPACK</code></dt>
+  <dd>
+    <p>Transform a file in a viewable format (for example, decompress a file...)</p>
+    <ul>
+      <li>The editor displays the unpacked data.</li>
+      <li>Sometimes files may be packed again (zipped files...). An additionnal function is of course necessary.</li>
+      <li>If the author of the plugin created this function, file may be saved again in the compressed format.</li>
+      <li>Else the file can only be saved in a text format. To avoid problems, you are proposed to change the filename when saving a changed file.</li>
+    </ul>
+  </dd>
+</dl>
+
+<h3><a name="api">API</a></h3>
+<p>Some events have two API. One to exchange the data through a <code>BSTR</code> (memory) and one through input/ouput files.</p>
+
+<table border="1">
+  <tr>
+    <td><code>FILE_PREDIFF</code></td>
+    <td>data are exchanged through an input and an output file</td>
+  </tr>
+  <tr>
+    <td><code>BUFFER_PREDIFF</code></td>
+    <td>data are exchanged through a <code>BSTR</code></td>
+  </tr>
+  <tr>
+    <td><code>FILE_PACK_UNPACK</code></td>
+    <td>data are exchanged through an input and an output file</td>
+  </tr>
+  <tr>
+    <td><code>BUFFER_PACK_UNPACK</code></td>
+    <td>data are exchanged through a <code>SafeArray</code> (<code>BSTR</code> not available as the packed data are possibly not text)</td>
+  </tr>
+  <tr>
+    <td><code>EDITOR_SCRIPT</code></td>
+    <td>data are exchanged through a <code>BSTR</code></td>
+  </tr>
+</table>
+<p>You need to define only one API to handle an event. Define the one you prefer.</p>
+
+<h3><a name="properties">Properties</a></h3>
+<table border="1">
+  <tr>
+    <th>Name</th>
+    <th>Mandatory</th>
+    <th>Events</th>
+  </tr>
+  <tr>
+    <td><code>PluginEvent</code></td>
+    <td>yes</td>
+    <td>all</td>
+  </tr>
+  <tr>
+    <td><code>PluginDescription</code></td>
+    <td>no</td>
+    <td>all</td>
+  </tr>
+  <tr>
+    <td><code>PluginFileFilters</code></td>
+    <td>no</td>
+    <td><code>PACK_UNPACK</code>, <code>PREDIFF</code></td>
+  </tr>
+  <tr>
+    <td><code>PluginIsAutomatic</code></td>
+    <td>if <code>PluginFileFilters</code> is defined</td>
+    <td><code>PACK_UNPACK</code>, <code>PREDIFF</code></td>
+  </tr>
+</table>
+
+<p><code>PluginIsAutomatic</code> and <code>PluginFileFilters</code> are for automatic mode :</p>
+<ul>
+  <li>When <code>PluginIsAutomatic</code> is <code>false</code>, the plugin is never used in automatic mode.</li>
+  <li>When <code>PluginIsAutomatic</code> is <code>true</code>, <code>PluginFileFilters</code> is compared to the filename of both files. If one file
+      matches the filter, the plugin is applied.</li>
+</ul>
+
+<h3><a name="methods">Methods</a></h3>
+<table border="1">
+  <tr>
+    <th>API</th>
+    <th>Method name</th>
+  </tr>
+  <tr>
+    <td><code>EDITOR_SCRIPT</code></td>
+    <td>function name is free<br /><br /><b>Note</b> : several functions may be defined in one <code>EDITOR_SCRIPT</code> plugin</td>
+  </tr>
+  <tr>
+    <td><code>BUFFER_PREDIFF</code></td>
+    <td><code>PrediffBufferW</code></td>
+  </tr>
+  <tr>
+    <td><code>FILE_PREDIFF</code></td>
+    <td><code>PrediffFile</code></td>
+  </tr>
+  <tr>
+    <td><code>BUFFER_PACK_UNPACK</code></td>
+    <td><code>UnpackBufferA</code><br /><code>PackBufferA</code></td>
+  </tr>
+  <tr>
+    <td><code>FILE_PACK_UNPACK</code></td>
+    <td><code>UnpackFile</code><br /><code>PackFile</code></td>
+  </tr>
+</table>
+
+<p><b>Note</b> : <code>PACK_UNPACK</code> functions use an additionnal parameter. The value may be set during <code>UnpackBuffer</code>.
+When file is changed, the value is forwarded to <code>PackBuffer</code>.
+The goal is to pass a parameter from <code>UnpackBuffer</code> to <code>PackBuffer</code>.<br />
+For example, the plugin may handle several compressed formats, and use this value to recompress a file in
+the format of the original.
+This parameter is mandatory for the functions syntax. But you don't have to set its value when you don't use it.</p>
+
+<h3><a name="syntax">Syntax</a></h3>
+
+<h3><a name="syntax_properties">Properties syntax</a></h3>
+
+<h4><code>PluginEvent</code></h4>
+<table border="1">
+  <tr>
+    <th>C++</th>
+    <td><code>STDMETHODIMP CWinMergeScript::get_PluginEvent(BSTR * pVal)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Property Get PluginEvent() As String</code></td>
+  </tr>
+  <tr>
+    <th>VBS</th>
+    <td><code>Function get_PluginEvent()</code></td>
+  </tr>
+</table>
+
+<h4><code>PluginDescription</code></h4>
+<table border="1">
+  <tr>
+    <th>C++</th>
+    <td><code>STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR * pVal)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Property Get PluginDescription() As String</code></td>
+  </tr>
+  <tr>
+    <th>VBS</th>
+    <td><code>Function get_PluginDescription()</code></td>
+  </tr>
+</table>
+
+<h4><code>PluginFileFilters</code></h4>
+<p>String formed of fileFilters, separated with "<code>;</code>"</p>
+<table border="1">
+  <tr>
+    <th>C++</th>
+    <td><code>STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR * pVal)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Property Get PluginFileFilters() As String</code></td>
+  </tr>
+</table>
+
+<h4><code>PluginIsAutomatic</code></h4>
+<table border="1">
+  <tr>
+    <th>C++</th>
+    <td><code>STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL * pVal)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Property Get PluginIsAutomatic() As Boolean</code></td>
+  </tr>
+</table>
+
+<h3><a name="syntax_methods">Methods syntax</a></h3>
+
+<h4><code>EDITOR_SCRIPT</code></h4>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Functions parameters (function names are free)</th>
+  </tr>
+  <tr>
+    <th>C++</th>
+    <td><code>STDMETHOD(MakeUpperVB)([in] BSTR inputText, [out, retval] BSTR * outputText);</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Function MakeUpperVB(text As String)</code></td>
+  </tr>
+  <tr>
+    <th>VBS</th>
+    <td><code>Function MakeUpperVBS(Text)</code></td>
+  </tr>
+</table>
+
+<h4><code>FILE_PREDIFF</code></h4>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Functions names</th>
+    <th>Functions parameters</th>
+  </tr>
+  <tr>
+    <th>VC++</th>
+    <td><code>STDMETHOD(PrediffFile)</code></td>
+    <td><code>([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Function PrediffFile</code></td>
+    <td><code>(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean</code></td>
+  </tr>
+</table>
+
+<h4><code>BUFFER_PREDIFF</code></h4>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Functions names</th>
+    <th>Functions parameters</th>
+  </tr>
+  <tr>
+    <th>C++</th>
+    <td><code>STDMETHOD(PrediffBufferW)</code></td>
+    <td><code>([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Function PrediffBufferW</code></td>
+    <td><code>(ByRef text As String, ByRef size As Long, ByRef bChanged As Boolean) As Boolean</code></td>
+  </tr>
+</table>
+
+<h4><code>FILE_PACK_UNPACK</code></h4>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Functions names</th>
+    <th>Functions parameters</th>
+  </tr>
+  <tr>
+    <th>VC++</th>
+    <td><code>STDMETHOD(UnpackFile)</code></td>
+    <td><code>([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><code>STDMETHOD(PackFile)</code></td>
+    <td><code>([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Function UnpackFile</code></td>
+    <td><code>(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean</code></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><code>Public Function PackFile</code></td>
+    <td><code>(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, subcode As Long) As Boolean</code></td>
+  </tr>
+</table>
+
+<h4><code>BUFFER_PACK_UNPACK</code></h4>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>Functions names</th>
+    <th>Functions parameters</th>
+  </tr>
+  <tr>
+    <th>VC++</th>
+    <td><code>STDMETHOD(UnpackBufferA)</code></td>
+    <td><code>([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><code>STDMETHOD(PackBufferA)</code></td>
+    <td><code>([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT subcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
+  </tr>
+  <tr>
+    <th>VB</th>
+    <td><code>Public Function UnpackBufferA</code></td>
+    <td><code>(ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean</code></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><code>Public Function PackBufferA</code></td>
+    <td><code>(ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, subcode As Long) As Boolean</code></td>
+  </tr>
+</table>
+
+<h3><a name="write">How to write plugins quickly ?</a></h3>
+<p>Easiest plugins are scriptlets.</p>
+<p>Just VBscript (or JavaScript probably) with an additionnal section <code>&lt;implement&gt;</code>. See examples.<br />
+But they are difficult to debug. And valid only for <code>EDITOR_SCRIPT</code> events.</p>
+
+<h4>VC++ plugins :</h4>
+<p>The most difficult to write when you do it from scratch. See in <code>Plugins/syntax.txt</code>, there are three additionnal steps from normal COM dll.</p>
+<p>But easy to write from an existing plugin.</p>
+<ol>
+  <li>Select a C++ plugin with the same API</li>
+  <li>Rename the files <code>cpp,def,dsp,idl,rc</code> : replace [<em>name of old plugin</em>] with [<em>name of your plugin</em>]</li>
+  <li>In all the files, replace all instances of [<em>name of old plugin</em>] with [<em>name of your plugin</em>]</li>
+  <li>Write your custom code : <code>WinMergeScript.cpp</code> holds all the important functions.</li>
+</ol>
+
+<h4>Additionnal steps to write a plugin in C++</h4>
+<ul>
+  <li>do not register the dll : delete everything in 'settings'->'custom build'</li>
+  <li>do not register the dll : delete the file <code>.rgs</code>, and the registry section in the file <code>.rc</code></li>
+  <li>do not register the dll : add <code>typeinfoex.h</code> + and make 3 changes in <code>WinMergeScript.h</code> (see commented lines)</li>
+  <li><code>SAFEARRAY</code> : replace the interface in <code>.idl</code> :
+    <ul>
+      <li><code>SAFEARRAY *</code>		<code>SAFEARRAY(unsigned char)</code></li>
+      <li><code>SAFEARRAY **</code>		<code>SAFEARRAY(unsigned char) *</code></li>
+    </ul>
+  </li>
+</ul>
+
+<h3><a name="debug">How to debug VC++ plugins ?</a></h3>
+<p>Easy with Visual Studio after you installed WinMerge source.</p>
+
+<h4><code>EDITOR_SCRIPT</code> :</h4>
+<ol>
+  <li>Set a breakpoint at the beginning of <code>safeInvokeA</code> in <code>Plugins.cpp</code>.</li>
+  <li>Run WinMerge</li>
+  <li>Do all you need (open file, menu...) to call the plugin.</li>
+  <li>The breakpoint is triggered. The plugin interface is loaded at this moment.
+      Open the file <code>WinMergeScript.cpp</code> source of your plugin in the debugging session.</li>
+  <li>Set a breakpoint in this file at the beginning of your function.</li>
+  <li><code>F5</code>. The breakpoint in your function is triggered.</li>
+</ol>
+
+<h4><code>PREDIFF</code>, <code>PACK_UNPACK</code> :</h4>
+<p>Same steps, point #1 only differs:</p>
+<ol>
+  <li>Set a breakpoint at the beginning of <code>safeInvokeW</code> in <code>Plugins.cpp</code>.<br /><br />
+      <b>Note</b> : <code>safeInvokeW</code> instead of <code>safeInvokeA</code>.</li>
+</ol>
+</body>
+</html>

@@ -1,3 +1,7 @@
+2005-06-02 Tim
+ RFE: [ 1017179 ] Plugin readme's as HTML?
+  Plugins: remove files readme_developpers.txt syntax.txt
+
 2005-05-21 Perry
  PATCH [ 1206215 ] Fix DisplayBinaryFiles dll source to compile
  BUG [ 1206209 ] DisplayBinaryFiles.dll does not compile under MSVC7 (2003)

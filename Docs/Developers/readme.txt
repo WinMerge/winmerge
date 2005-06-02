@@ -1,3 +1,7 @@
+2005-06-02 Tim
+ RFE: [ 1017179 ] Plugin readme's as HTML?
+  Developers: new file Plugins.html
+
 2005-05-11 Kimmo
  Options are now initialized in CMainFrame::OptionsInit() in OptionsInit.cpp
   Developers: Options.html
