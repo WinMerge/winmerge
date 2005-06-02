@@ -336,11 +336,14 @@ void CDirDoc::Redisplay()
 	if (!m_bRecursive)
 		cnt += m_pDirView->AddSpecialItems();
 
+	int alldiffs=0;
 	POSITION diffpos = m_pCtxt->GetFirstDiffPosition();
 	while (diffpos)
 	{
 		POSITION curdiffpos = diffpos;
 		DIFFITEM di = m_pCtxt->GetNextDiffPosition(diffpos);
+		if (!di.isResultSame())
+			++alldiffs;
 
 		LPCTSTR p=GetItemPathIfShowable(m_pCtxt, di, llen, rlen);
 
@@ -351,6 +354,7 @@ void CDirDoc::Redisplay()
 			cnt++;
 		}
 	}
+	theApp.SetLastCompareResult(alldiffs);
 	m_pDirView->SortColumnsAppropriately();
 	m_pDirView->SetRedraw(TRUE);
 }

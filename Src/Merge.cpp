@@ -83,6 +83,9 @@ CMergeApp::CMergeApp() :
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
 , m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
+// FileFilterHelper m_globalFileFilter
+, m_mainThreadScripts(NULL)
+, m_nLastCompareResult(0)
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
@@ -640,7 +643,8 @@ void CMergeApp::OnViewLanguage()
 int CMergeApp::ExitInstance() 
 {
 	delete m_mainThreadScripts;
-	return CWinApp::ExitInstance();
+	CWinApp::ExitInstance();
+	return m_nLastCompareResult;
 }
 
 

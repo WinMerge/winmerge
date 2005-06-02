@@ -1,3 +1,7 @@
+2005-06-02 Perry
+ PATCH: [ 1213161 ] Set return code based on last diff result
+ Src: DirDoc.cpp Merge.cpp Merge.h MergeDoc.cpp
+
 2005-06-01 Perry
  Add commenting & array bounds checking to CMergeApp::LoadProjectFile
   Src: Merge.cpp

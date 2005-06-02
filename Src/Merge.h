@@ -62,7 +62,10 @@ public:
 	FileFilterHelper m_globalFileFilter;
 
 	CMergeApp();
+
+public:
 	void SetNeedIdleTimer();
+	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 
 // Implementation
 protected:
@@ -94,6 +97,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	CAssureScriptsForThread * m_mainThreadScripts;
+	int m_nLastCompareResult;
 };
 
 extern CMergeApp theApp;
