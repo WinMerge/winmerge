@@ -140,6 +140,7 @@ private:
 	void DoDelLeft();
 	void DoDelRight();
 	void DoDelBoth();
+	void DoDelAll();
 	void DoCopyLeftTo();
 	void DoCopyRightTo();
 	void DoMoveLeftTo();
@@ -303,6 +304,8 @@ protected:
 	afx_msg void OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirMoveRightTo();
 	afx_msg void OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
+	afx_msg void OnDelete();
+	afx_msg void OnUpdateDelete(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

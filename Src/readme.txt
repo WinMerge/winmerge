@@ -1,3 +1,8 @@
+2005-06-04 Kimmo
+ PATCH: [ 1214575 ] Add 'Delete' item for dir compare main menu
+  Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-06-02 Perry
  PATCH: [ 1213161 ] Set return code based on last diff result
  Src: DirDoc.cpp Merge.cpp Merge.h MergeDoc.cpp

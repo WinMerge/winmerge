@@ -168,6 +168,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveRightTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnUpdateCtxtDirMoveRightTo)
 	ON_WM_SIZE()
+	ON_COMMAND(ID_MERGE_DELETE, OnDelete)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_DELETE, OnUpdateDelete)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -2467,6 +2469,31 @@ void CDirView::OnSize(UINT nType, int cx, int cy)
 {
 	CListView::OnSize(nType, cx, cy);
 	GetDocument()->SetTitle(NULL);
+}
+
+/**
+ * @brief Called when user selects 'Delete' from 'Merge' menu.
+ */
+void CDirView::OnDelete()
+{
+	DoDelAll();
+}
+
+/**
+ * @brief Enables/disables 'Delete' item in 'Merge' menu.
+ */
+void CDirView::OnUpdateDelete(CCmdUI* pCmdUI)
+{
+	if (GetDocument()->GetReadOnly(TRUE) || GetDocument()->GetReadOnly(FALSE))
+		pCmdUI->Enable(FALSE);
+	else
+	{
+		int sel=-1;
+		if (m_pList->GetNextItem(sel, LVNI_SELECTED) != -1)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
+	}
 }
 
 /**

@@ -188,7 +188,10 @@ void CDirView::DoDelRight()
 	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionList);
 }
-// Prompt & delete both, if legal
+
+/**
+ * @brief Prompt & delete both, if legal.
+ */
 void CDirView::DoDelBoth()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
@@ -207,6 +210,50 @@ void CDirView::DoDelBoth()
 			ActionList::action act;
 			act.src = srFile;
 			act.dest = slFile;
+			act.dirflag = di.isDirectory();
+			act.idx = sel;
+			act.code = di.diffcode;
+			actionList.actions.AddTail(act);
+		}
+		++actionList.selcount;
+	}
+
+	// Now we prompt, and execute actions
+	ConfirmAndPerformActions(actionList);
+}
+
+/**
+ * @brief Delete left, right or both items.
+ */
+void CDirView::DoDelAll()
+{
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+
+	// First we build a list of desired actions
+	ActionList actionList(ActionList::ACT_DEL_BOTH);
+	int sel=-1;
+	CString slFile, srFile;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+
+		if (di.diffcode != 0)
+		{
+			GetItemFileNames(sel, slFile, srFile);
+			ActionList::action act;
+			if (IsItemDeletableOnBoth(di))
+			{
+				act.src = srFile;
+				act.dest = slFile;
+			}
+			else if (IsItemDeletableOnLeft(di))
+			{
+				act.src = slFile;
+			}
+			else if (IsItemDeletableOnRight(di))
+			{
+				act.src = srFile;
+			}
 			act.dirflag = di.isDirectory();
 			act.idx = sel;
 			act.code = di.diffcode;
