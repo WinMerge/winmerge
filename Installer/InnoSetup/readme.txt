@@ -1,3 +1,7 @@
+2005-06-04 Kimmo
+ PaTCH: [ 1214505 ] Installer: Assoc Projectfiles to WinMerge app
+  InnoSetup: WinMerge Localized.iss
+
 2005-05-17 Kimmo
  Add Swedish ReadMe-Swedish.txt to installer
   InnoSetup: WinMerge Localized.iss

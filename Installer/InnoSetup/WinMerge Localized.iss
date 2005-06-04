@@ -449,6 +449,12 @@ Name: {app}\MergePlugins\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: I
 Root: HKCU; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty
 Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 
+;Add Project file extension (.WinMerge) to known extensions and
+;set WinMerge to open those files
+Root: HKCR; Subkey: .WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
+Root: HKCR; Subkey: WinMerge.Project.File; Flags: uninsdeletekey
+Root: HKCR; Subkey: WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\{code:ExeName}"" ""%1"""; Flags: uninsdeletekey
+
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
 ;if this is fixed in a later version feel free to remove the parameter
