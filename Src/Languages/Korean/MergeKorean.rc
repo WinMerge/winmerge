@@ -213,6 +213,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "모두 오른쪽으로 복사(&A)",    ID_ALL_RIGHT
         MENUITEM "모두 왼쪽으로 복사(&E)",      ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "도구(&T)"
     BEGIN
@@ -531,6 +533,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1827,6 +1830,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "오른쪽 파일 위치지정 이동 (%1)"
     IDS_MOVE_LEFT_TO2       "왼쪽 파일 위치지정 이동 (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "오른쪽 파일 위치지정 이동 (%1 of %2)"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION

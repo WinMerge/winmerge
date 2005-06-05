@@ -213,6 +213,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "全てを右にコピー(&A)",        ID_ALL_RIGHT
         MENUITEM "全てを左にコピー(&Y)",        ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "ツール(&T)"
     BEGIN
@@ -530,6 +532,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1833,6 +1836,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "右から参照先へ... (%1)"
     IDS_MOVE_LEFT_TO2       "左から参照先へ... (%1 / %2)"
     IDS_MOVE_RIGHT_TO2      "右から参照先へ... (%1 / %2)"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION

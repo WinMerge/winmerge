@@ -529,6 +529,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1944,6 +1945,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Destra in... (%1)"
     IDS_MOVE_LEFT_TO2       "Sinistra in... (%1 su %2)"
     IDS_MOVE_RIGHT_TO2      "Destra in... (%1 su %2)"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION

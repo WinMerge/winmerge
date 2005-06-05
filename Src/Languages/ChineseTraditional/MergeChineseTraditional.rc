@@ -213,6 +213,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "全部複製到右邊(&A)",          ID_ALL_RIGHT
         MENUITEM "全部複製到左邊(&E)",          ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Tools"
     BEGIN
@@ -528,6 +530,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1928,6 +1931,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "右邊到... (%1)"
     IDS_MOVE_LEFT_TO2       "左邊到... (%1 共 %2)"
     IDS_MOVE_RIGHT_TO2      "右邊到... (%1 共 %2)"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION

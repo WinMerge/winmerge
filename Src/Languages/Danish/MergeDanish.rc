@@ -213,6 +213,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopier alt &til højre",       ID_ALL_RIGHT
         MENUITEM "Kopier alt til venst&re",     ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "Værk&tøjer"
     BEGIN
@@ -529,6 +531,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1828,6 +1831,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Højre til... (%1)"
     IDS_MOVE_LEFT_TO2       "Venstre til... (%1 af %2)"
     IDS_MOVE_RIGHT_TO2      "Højre til... (%1 af %2)"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION

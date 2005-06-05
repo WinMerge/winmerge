@@ -1,3 +1,8 @@
+2005-06-04 Kimmo
+ PATCH: [ 1214575 ] Add 'Delete' item for dir compare main menu
+ Trying again applying languages..
+  Src/Languages: *.rc resource.h
+
 2005-06-05 Jochen
  Support 7-Zip 4.20
   Merge7z new files: Merge7z420.dsp

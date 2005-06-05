@@ -213,6 +213,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Kopiuj wszystko na praw¹",    ID_ALL_RIGHT
         MENUITEM "Kopiuj wszystko na lew¹",     ID_ALL_LEFT
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Narzêdzia"
     BEGIN
@@ -529,6 +531,7 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1943,6 +1946,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Prawa na... (%1)"
     IDS_MOVE_LEFT_TO2       "Lewa na... (%1 z %2)"
     IDS_MOVE_RIGHT_TO2      "Prawa na... (%1 z %2)"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
