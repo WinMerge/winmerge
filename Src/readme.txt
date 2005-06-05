@@ -1,3 +1,8 @@
+2005-06-05 Tim
+ RFE: [ 1203923 ] New refresh icon
+  Src/res: Toolbar.bmp
+  Src/Languages: Toolbar.bmp
+
 2005-06-04 Kimmo
  PATCH: [ 1214575 ] Add 'Delete' item for dir compare main menu
  Trying again applying languages..
