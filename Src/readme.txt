@@ -1,3 +1,7 @@
+2005-06-05 Jochen
+ Support 7-Zip 4.20
+  Merge7z new files: Merge7z420.dsp
+
 2005-06-04 Kimmo
  PATCH: [ 1214575 ] Add 'Delete' item for dir compare main menu
   Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
