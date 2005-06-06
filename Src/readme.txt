@@ -1,3 +1,8 @@
+2005-06-06 Kimmo
+ PATCH: [ 1215235 ] Allow removing items from comboboxes
+  Src: OpenDlg.cpp OpenDlg.h
+  Src/Common: SuperComboBox.cpp
+
 2005-06-05 Tim
  RFE: [ 1203923 ] New refresh icon
   Src/res: Toolbar.bmp

@@ -97,6 +97,8 @@ protected:
 	afx_msg void OnRightButton();
 	afx_msg void OnSaveProjectButton();
 	virtual void OnOK();
+	virtual void OnCancel();
+	afx_msg void SaveComboboxStates();
 	virtual BOOL OnInitDialog();
 	afx_msg void OnSelchangeLeftCombo();
 	afx_msg void OnSelchangeRightCombo();

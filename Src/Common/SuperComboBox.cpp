@@ -219,17 +219,31 @@ BOOL CSuperComboBox::OnSelchange()
 
 BOOL CSuperComboBox::PreTranslateMessage(MSG* pMsg)
 {
-        if (m_bAutoComplete
-			&& pMsg->message == WM_KEYDOWN)
-        {
-                m_bDoComplete = TRUE;
+    if (pMsg->message == WM_KEYDOWN)
+    {
+		int nVirtKey = (int) pMsg->wParam;
+		// If Shift+Del pressed when dropdown is open, delete selected item
+		// from dropdown list
+		if (GetAsyncKeyState(VK_SHIFT))
+		{
+			if (GetDroppedState() && nVirtKey == VK_DELETE)
+			{
+				int cursel = GetCurSel();
+				if (cursel != CB_ERR)
+					DeleteString(cursel);
+				return FALSE; // No need to further handle this message
+			}
+		}
+		if (m_bAutoComplete)
+		{
+			m_bDoComplete = TRUE;
 
-                int nVirtKey = (int) pMsg->wParam;
-                if (nVirtKey == VK_DELETE || nVirtKey == VK_BACK)
-                        m_bDoComplete = FALSE;
-        }
+			if (nVirtKey == VK_DELETE || nVirtKey == VK_BACK)
+					m_bDoComplete = FALSE;
+		}
+    }
 
-        return CComboBox::PreTranslateMessage(pMsg);
+    return CComboBox::PreTranslateMessage(pMsg);
 }
 
 void CSuperComboBox::SetAutoAdd(BOOL bAdd, UINT idstrAddText)

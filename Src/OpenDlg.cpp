@@ -224,13 +224,33 @@ void COpenDlg::OnOK()
 		mf->m_options.SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
 	}
 
-	m_ctlLeft.SaveState(_T("Files\\Left"));
-	m_ctlRight.SaveState(_T("Files\\Right"));
-	m_ctlExt.SaveState(_T("Files\\Ext"));
-
+	SaveComboboxStates();
 	theApp.WriteProfileInt(_T("Settings"), _T("Recurse"), m_bRecurse);
 
 	CDialog::OnOK();
+}
+
+/** 
+ * @brief Called when dialog is closed via Cancel.
+ *
+ * Open-dialog is canceled when 'Cancel' button is selected or
+ * Esc-key is pressed. Save combobox states, since user may have
+ * removed items from them and don't want them to re-appear.
+ */
+void COpenDlg::OnCancel()
+{
+	SaveComboboxStates();
+	CDialog::OnCancel();
+}
+
+/** 
+ * @brief Save File- and filter-combobox states.
+ */
+void COpenDlg::SaveComboboxStates()
+{
+	m_ctlLeft.SaveState(_T("Files\\Left"));
+	m_ctlRight.SaveState(_T("Files\\Right"));
+	m_ctlExt.SaveState(_T("Files\\Ext"));
 }
 
 /** @brief Handler for WM_INITDIALOG; conventional location to initialize controls */
