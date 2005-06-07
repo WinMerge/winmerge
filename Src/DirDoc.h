@@ -88,7 +88,6 @@ public:
 	BOOL GetRecursive() { return m_bRecursive; }
 	BOOL GetReadOnly(BOOL bLeft) const;
 	void SetReadOnly(BOOL bLeft, BOOL bReadOnly);
-	BOOL GetReuseMergeDocs() { return m_bReuseMergeDocs; }
 	BOOL HasDirView() { return m_pDirView != NULL; }
 	void RefreshOptions();
 	void CompareReady();
@@ -138,7 +137,6 @@ private:
 	CDiffContext *m_pCtxt; /**< Pointer to diff-data */
 	CDirView *m_pDirView;
 	MergeDocPtrList m_MergeDocs;
-	BOOL m_bReuseMergeDocs; // policy to reuse existing merge docs
 	BOOL m_bROLeft; /**< Is left side read-only */
 	BOOL m_bRORight; /**< Is right side read-only */
 	BOOL m_bRecursive; /**< Is current compare recursive? */

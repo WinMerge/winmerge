@@ -639,7 +639,7 @@ BEGIN
     PUSHBUTTON      "&Suchen...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 260, 156
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 260, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Allgemein"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -661,10 +661,15 @@ BEGIN
                     WS_TABSTOP,7,57,206,10
     CONTROL         "&Nur eine Programm-Instanz zulassen",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    PUSHBUTTON      "Zurücksetzen",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,82,221,37
+    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
+    PUSHBUTTON      "Zurücksetzen",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen. Das Drücken der Schaltfläche macht alle Meldungen wieder sichtbar.",
-                    IDC_STATIC,7,79,168,31
+                    IDC_STATIC,7,124,168,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -1225,7 +1230,7 @@ BEGIN
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
-IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
+IDD_PREFERENCES DIALOGEX 0, 0, 377, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Einstellungen"
@@ -1237,7 +1242,7 @@ BEGIN
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
-                    WS_DISABLED,110,0,235,222
+                    WS_DISABLED,110,0,260,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Kategorien",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN

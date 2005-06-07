@@ -68,7 +68,6 @@ CDirDoc::CDirDoc()
 , m_bRORight(FALSE)
 , m_bRecursive(FALSE)
 , m_statusCursor(NULL)
-, m_bReuseMergeDocs(FALSE)
 , m_bReuseCloses(FALSE)
 {
 	DIFFOPTIONS options = {0};
@@ -566,7 +565,7 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 {
 	CMergeDoc * pMergeDoc = 0;
 	// policy -- use an existing merge doc if available
-	if (m_bReuseMergeDocs && !m_MergeDocs.IsEmpty())
+	if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS) && !m_MergeDocs.IsEmpty())
 	{
 		*pNew = FALSE;
 		pMergeDoc = m_MergeDocs.GetHead();

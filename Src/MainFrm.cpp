@@ -182,8 +182,6 @@ CMainFrame::CMainFrame()
 	// uncomment this when the GUI allows to toggle the mode
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
-
-	m_bReuseDirDoc = FALSE;
 	// TODO: read preference for logging
 
 	if (m_options.GetString(OPT_EXT_EDITOR_CMD).IsEmpty())
@@ -2081,7 +2079,7 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 {
 	CDirDoc * pDirDoc = 0;
-	if (m_bReuseDirDoc)
+	if (!m_options.GetBool(OPT_MULTIDOC_DIRDOCS))
 	{
 		POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
 		while (pos)
@@ -2516,7 +2514,7 @@ void CMainFrame::OnFileNew()
 	if (IsComparing())
 		return;
 
-	if (m_bReuseDirDoc)
+	if (!m_options.GetBool(OPT_MULTIDOC_DIRDOCS))
 	{
 		pDirDoc = GetDirDocToShow(&docNull);
 		if (!docNull)

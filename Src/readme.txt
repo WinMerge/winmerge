@@ -1,3 +1,10 @@
+2005-06-07 Kimmo
+ PATCH: [ 1216033 ] Options to enable/disable multiple compare documents
+  Src: DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h Merge.rc
+   OptionsDef.h OptionsInit.cpp PropGeneral.cpp PropGeneral.h resource.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages: *.rc resource.h
+
 2005-06-06 Kimmo
  PATCH: [ 1215235 ] Allow removing items from comboboxes
   Src: OpenDlg.cpp OpenDlg.h

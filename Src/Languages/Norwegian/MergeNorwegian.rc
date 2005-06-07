@@ -634,7 +634,7 @@ BEGIN
     PUSHBUTTON      "&Åpne...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 241, 156
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 241, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Generelt"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -653,10 +653,17 @@ BEGIN
     CONTROL         "Verifiser stier automatisk i Åpne-dialoger",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
-    PUSHBUTTON      "Nullstill",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
+    CONTROL         "All&ow only one instance to run",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,82,221,37
+    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
+    PUSHBUTTON      "Nullstill",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge tillater skjuling av noen vanlig beskjedbokser. Klikk på knappen får å gjøre alle beskjedbokser synlig igjen.",
-                    IDC_STATIC,7,79,168,31
+                    IDC_STATIC,7,124,168,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 162
@@ -1216,7 +1223,7 @@ BEGIN
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
-IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
+IDD_PREFERENCES DIALOGEX 0, 0, 358, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Innstillinger"
@@ -1228,7 +1235,7 @@ BEGIN
     CONTROL         "Tre1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
-                    WS_DISABLED,110,0,235,222
+                    WS_DISABLED,110,0,243,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN

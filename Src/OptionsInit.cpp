@@ -95,6 +95,9 @@ void CMainFrame::OptionsInit()
 
 	m_options.InitOption(OPT_PROJECTS_PATH,_T(""));
 
+	m_options.InitOption(OPT_MULTIDOC_DIRDOCS, false);
+	m_options.InitOption(OPT_MULTIDOC_MERGEDOCS, false);
+
 	// Overwrite WinMerge 2.0 default colors with new colors
 	if (m_options.GetInt(OPT_CLR_DIFF) == RGB(255,255,92))
 		m_options.SaveOption(OPT_CLR_DIFF, (int)RGB(239,203,5));

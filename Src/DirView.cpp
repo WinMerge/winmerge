@@ -872,7 +872,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		else
 		{
 			// Close open documents first (ask to save unsaved data)
-			if (GetDocument()->GetReuseMergeDocs())
+			if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS))
 			{
 				if (!GetDocument()->CloseMergeDocs())
 					return;

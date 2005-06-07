@@ -633,7 +633,7 @@ BEGIN
     PUSHBUTTON      "S&foglia...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Generale"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -654,10 +654,15 @@ BEGIN
                     WS_TABSTOP,7,57,206,10
     CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-   PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,178,87,50,13,NOT
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,82,221,37
+    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
+    PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge ti permette di nascondere alcuni messaggi comuni. Premi il pulsante per rendere visibili nuovamente tutti i messaggi.",
-                    IDC_STATIC,7,79,168,31
+                    IDC_STATIC,7,124,168,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111

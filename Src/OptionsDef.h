@@ -104,6 +104,10 @@ const TCHAR OPT_CMP_EOL_SENSITIVE[] = _T("Settings/EolSensitive");
 const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod");
 const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
 
+// Multidoc enable/disable per document type
+const TCHAR OPT_MULTIDOC_DIRDOCS[] = _T("Settings/MultiDirDocs");
+const TCHAR OPT_MULTIDOC_MERGEDOCS[] = _T("Settings/MultiMergeDocs");
+
 /// Are regular expression linefilters enabled?
 const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
 ///Regular expression linefilters

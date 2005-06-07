@@ -55,6 +55,8 @@ CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
 	m_bSingleInstance = FALSE;
 	m_bVerifyPaths = TRUE;
 	m_bCloseWindowWithEsc = TRUE;
+	m_bMultipleFileCmp = FALSE;
+	m_bMultipleDirCmp = FALSE;
 	//}}AFX_DATA_INIT
 }
 
@@ -81,6 +83,8 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
+	DDX_Check(pDX, IDC_MULTIDOC_FILECMP, m_bMultipleFileCmp);
+	DDX_Check(pDX, IDC_MULTIDOC_DIRCMP, m_bMultipleDirCmp);
 	//}}AFX_DATA_MAP
 }
 

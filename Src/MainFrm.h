@@ -91,7 +91,6 @@ public:
 	BOOL m_bShowErrors;
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
-	BOOL m_bReuseDirDoc; // policy to reuse existing dir doc
 
 // Operations
 public:

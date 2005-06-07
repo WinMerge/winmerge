@@ -35,6 +35,8 @@ public:
 	BOOL  m_bSingleInstance;
 	BOOL  m_bVerifyPaths;
 	BOOL  m_bCloseWindowWithEsc;
+	BOOL	m_bMultipleFileCmp;
+	BOOL	m_bMultipleDirCmp;
 	//}}AFX_DATA
 
 
