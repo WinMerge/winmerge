@@ -34,7 +34,7 @@
 #include "paths.h"
 #include "coretools.h"
 #include "codepage_detect.h"
-#include "DiffFileInfo.h"
+#include "DiffItemList.h"
 #include <shlwapi.h>
 
 #ifdef _DEBUG
@@ -56,8 +56,6 @@ static char THIS_FILE[]=__FILE__;
  */
 CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
 : m_bRecurse(FALSE)
-, pNamesLeft(NULL)
-, pNamesRight(NULL)
 , m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
 , m_msgUpdateStatus(0)
@@ -78,8 +76,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
  * @param [in] src Existing CDiffContext whose data is copied.
  */
 CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
-: pNamesLeft(NULL)
-, pNamesRight(NULL)
 {
 	// This is used somehow in recursive comparisons
 	// I think that it is only used during rescan to copy into temporaries
@@ -98,15 +94,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_bIgnoreSmallTimeDiff = src.m_bIgnoreSmallTimeDiff;
 }
 
-CDiffContext::~CDiffContext()
-{
-	if (pNamesLeft != NULL)
-		free(pNamesLeft);
-	if (pNamesRight != NULL)
-		free(pNamesRight);
-}
-
-
 /**
  * @brief Fetch & return the fixed file version as a dotted string
  */
@@ -119,96 +106,12 @@ static CString GetFixedFileVersion(const CString & path)
 /**
  * @brief Add new diffitem to CDiffContext array
  */
-void CDiffContext::AddDiff(DIFFITEM & di)
+void CDiffContext::AddDiff(const DIFFITEM & di)
 {
-	m_pList->AddTail(di);
+	DiffItemList::AddDiff(di);
+
 	// ignore return value
 	SendMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
-}
-
-/**
- * @brief Remove diffitem from CDiffContext array
- * @param diffpos position of item to remove
- */
-void CDiffContext::RemoveDiff(POSITION diffpos)
-{
-	m_pList->RemoveAt(diffpos);
-}
-
-/**
- * @brief Empty CDiffContext array
- */
-void CDiffContext::RemoveAll()
-{
-	m_pList->RemoveAll();
-}
-
-/**
- * @brief Get position of first item in CDiffContext array
- */
-POSITION CDiffContext::GetFirstDiffPosition() const
-{
-	return m_pList->GetHeadPosition();
-}
-
-/**
- * @brief Get position of next item in CDiffContext array
- * @param diffpos position of current item, updated to next item position
- * @return Diff Item in current position
- */
-DIFFITEM CDiffContext::GetNextDiffPosition(POSITION & diffpos) const
-{
-	return m_pList->GetNext(diffpos);
-}
-
-/**
- * @brief Get Diff Item at given position of CDiffContext array
- * @param diffpos position of item to return
- */
-const DIFFITEM & CDiffContext::GetDiffAt(POSITION diffpos) const
-{
-	return m_pList->GetAt(diffpos);
-}
-
-/**
- * @brief Get number of items in CDiffContext array
- */
-int CDiffContext::GetDiffCount() const
-{
-	return m_pList->GetCount();
-}
-
-/**
- * @brief Alter some bit flags of the diffcode.
- *
- * Examples:
- *  SetDiffStatusCode(pos, DIFFCODE::SAME, DIFFCODE::COMPAREFLAGS)
- *   changes the comparison result to be the same.
- * 
- *  SetDiffStatusCode(pos, DIFFCODE::BOTH, DIFFCODE::SIDEFLAG)
- *   changes the side status to be both (sides).
- *
- * SetDiffStatusCode(pos, DIFFCODE::SAME+DIFFCODE::BOTH, DIFFCODE::COMPAREFLAGS+DIFFCODE::SIDEFLAG);
- *  changes the comparison result to be the same and the side status to be both
- */
-void CDiffContext::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
-{
-	ASSERT(diffpos);
-	DIFFITEM & di = m_pList->GetAt(diffpos);
-	ASSERT(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
-	di.diffcode &= (~mask); // remove current data
-	di.diffcode |= diffcode; // add new data
-}
-
-/**
- * @brief Update difference counts.
- */
-void CDiffContext::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
-{
-	ASSERT(diffpos);
-	DIFFITEM & di = m_pList->GetAt(diffpos);
-	di.ndiffs = diffs + ignored; // see StoreDiffResult() in DirScan.cpp
-	di.nsdiffs = diffs;
 }
 
 /**
@@ -297,36 +200,6 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const
 	}
 	CString filepath = paths_ConcatPath(spath, di.sfilename);
 	dfi.version = GetFixedFileVersion(filepath);
-}
-
-/** @brief Return path to left file, including all but file name */
-CString DIFFITEM::getLeftFilepath(const CString sLeftRoot) const
-{
-	CString sPath;
-	if (!isSideRight())
-	{
-		sPath = sLeftRoot;
-		if (sSubdir.GetLength())
-		{
-			sPath = paths_ConcatPath(sPath, sSubdir);
-		}
-	}
-	return sPath;
-}
-
-/** @brief Return path to right file, including all but file name */
-CString DIFFITEM::getRightFilepath(const CString sRightRoot) const
-{
-	CString sPath;
-	if (!isSideLeft())
-	{
-		sPath = sRightRoot;
-		if (sSubdir.GetLength())
-		{
-			sPath = paths_ConcatPath(sPath, sSubdir);
-		}
-	}
-	return sPath;
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */

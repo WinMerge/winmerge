@@ -61,7 +61,7 @@ private:
 	CMapStringToPtr m_rgImpliedFoldersLeft;
 	CMapStringToPtr m_rgImpliedFoldersRight;
 //	helper methods
-	const DIFFITEM &Next();
+	DIFFITEM Next();
 public:
 	enum
 	{

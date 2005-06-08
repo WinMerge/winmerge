@@ -64,6 +64,8 @@ DATE:		BY:					DESCRIPTION:
 2005/02/26	Jochen Tucht		Use WinAPI to obtain ISO language/region codes
 2005/02/27	Jochen Tucht		FIX [1152375]
 2005/04/24	Kimmo Varis			Don't use DiffContext exported from DirView
+2005/06/08	Kimmo Varis			Use DIFFITEM, not reference to it (hopefully only
+								temporarily, to sort out new directory compare)
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -747,7 +749,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 		// Collect implied folders
 		for (UINT i = Open() ; i-- ; )
 		{
-			const DIFFITEM &di = Next();
+			DIFFITEM di = Next();
 			if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
 			{
 				continue;
@@ -802,7 +804,7 @@ UINT CDirView::DirItemEnumerator::Open()
 /**
  * @brief Return next item.
  */
-const DIFFITEM &CDirView::DirItemEnumerator::Next()
+DIFFITEM CDirView::DirItemEnumerator::Next()
 {
 	enum {nMask = LVNI_FOCUSED|LVNI_SELECTED|LVNI_CUT|LVNI_DROPHILITED};
 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
@@ -830,7 +832,7 @@ const DIFFITEM &CDirView::DirItemEnumerator::Next()
 Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 {
 	CDirDoc * pDoc = m_pView->GetDocument();
-	const DIFFITEM &di = Next();
+	DIFFITEM di = Next();
 
 	if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
 	{
@@ -1008,7 +1010,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 	int cchBuffer = 0;
 	for (i = Open() ; i-- ; )
 	{
-		const DIFFITEM &di = Next();
+		DIFFITEM di = Next();
 		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
 		{
 			cchBuffer +=
@@ -1020,7 +1022,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 	LPTSTR pchBuffer = strBuffer.GetBufferSetLength(cchBuffer);
 	for (i = Open() ; i-- ; )
 	{
-		const DIFFITEM &di = Next();
+		DIFFITEM di = Next();
 		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
 		{
 			pchBuffer += wsprintf
