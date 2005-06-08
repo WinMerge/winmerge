@@ -1,6 +1,8 @@
 2005-06-08 Kimmo
  PATCH: [ 1216706 ] Ignore case for project file file-extension
   Src: Merge.cpp
+ BUG: [ 1216821 ] Untitled buffers, Save doesn't work
+  Src: MergeDoc.cpp
 
 2005-06-08 Perry
  Remove nonexistent stampver.inf from Merge.dsp

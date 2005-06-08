@@ -875,7 +875,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	CString strSavePath; // New path for next saving try
 	CString title;
 	BOOL result = TRUE;
-	int answer = IDYES;
+	int answer = IDOK; // Set default we use for scratchpads
 
 	// We shouldn't get here if saving is succeed before
 	ASSERT(nSaveResult != SAVE_DONE);
