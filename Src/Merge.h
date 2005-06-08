@@ -98,6 +98,7 @@ protected:
 private:
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
+	bool m_bNoninteractive;
 };
 
 extern CMergeApp theApp;

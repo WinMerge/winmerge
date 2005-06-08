@@ -58,6 +58,8 @@ enum
 	VCS_CLEARCASE,
 };
 
+enum { WM_NONINTERACTIVE = 888 }; // timer value
+
 class CDiffView;
 class CDirView;
 class CDirDoc;
@@ -119,6 +121,8 @@ public:
 	void ShowVSSError(CException *e, CString strItem);
 	void ShowHelp();
 	void UpdateCodepageModule();
+	void GetDirViews(DirViewList * pDirViews);
+	void GetMergeEditViews(MergeEditViewList * pMergeViews);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -226,6 +230,7 @@ protected:
 	afx_msg void OnViewToolbar();
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
+	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

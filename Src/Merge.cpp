@@ -47,8 +47,9 @@
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
 #include "ProjectFile.h"
-
+#include "CmdArgs.h"
 #include "MergeEditView.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -86,6 +87,7 @@ CMergeApp::CMergeApp() :
 // FileFilterHelper m_globalFileFilter
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
+, m_bNoninteractive(false)
 {
 	// TODO: add construction code here,
 	// Place all significant initialization in InitInstance
@@ -271,6 +273,19 @@ BOOL CMergeApp::InitInstance()
 		CloseHandle(hMutex);
 	}
 
+	if (m_bNoninteractive)
+	{
+		DirViewList DirViews;
+		pMainFrame->GetDirViews(&DirViews);
+		if (DirViews.GetCount() == 1)
+		{
+			CDirView * pDirView = DirViews.RemoveHead();
+			CDirFrame *pf = pDirView->GetParentFrame();
+			pf->ShowProcessingBar(FALSE);
+		}
+		pMainFrame->PostMessage(WM_CLOSE, 0, 0);
+	}
+
 	return TRUE;
 }
 
@@ -325,6 +340,56 @@ void CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFra
 void CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags)
 {
+	CmdArgs cmdArgs(argc, argv);
+
+	// -? for help
+	if (cmdArgs.HasEmptySwitch(_T("?")))
+	{
+		CString s;
+		VERIFY(s.LoadString(IDS_QUICKHELP));
+		AfxMessageBox(s, MB_ICONINFORMATION);
+	}
+
+	// -r to compare recursively
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("r")))
+		recurse = TRUE;
+
+	// -e to allow closing with single esc press
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("e")))
+		pMainFrame->m_bEscShutdown = TRUE;
+
+	// -wl to open left path as read-only
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("wl")))
+		dwLeftFlags |= FFILEOPEN_READONLY;
+
+	// -wr to open right path as read-only
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("wr")))
+		dwRightFlags |= FFILEOPEN_READONLY;
+
+	// -ul to not add left path to MRU
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("ul")))
+		dwLeftFlags |= FFILEOPEN_NOMRU;
+
+	// -ur to not add right path to MRU
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("ur")))
+		dwRightFlags |= FFILEOPEN_NOMRU;
+
+	// -ub to not add paths to MRU
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("ub")))
+	{
+		dwLeftFlags |= FFILEOPEN_NOMRU;
+		dwRightFlags |= FFILEOPEN_NOMRU;
+	}
+
+	// -noninteractive to suppress message boxes & close with result code
+	if (cmdArgs.HasEmptySwitchInsensitive(_T("noninteractive")))
+	{
+		m_bNoninteractive = true;
+	}
+
+	// Can't get switches with arguments from cmdArgs
+	// because cmdArgs recognizes arguments using colons not spaces
+
 	for (int i = 1; i < argc; i++)
 	{
 		LPCTSTR pszParam = argv[i];
@@ -333,44 +398,6 @@ void CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStri
 			// remove flag specifier
 			++pszParam;
 
-			// -? for help
-			if (!_tcsicmp(pszParam, _T("?")))
-			{
-				CString s;
-				VERIFY(s.LoadString(IDS_QUICKHELP));
-				AfxMessageBox(s, MB_ICONINFORMATION);
-			}
-
-			// -r to compare recursively
-			if (!_tcsicmp(pszParam, _T("r")))
-				recurse = TRUE;
-
-			// -e to allow closing with single esc press
-			if (!_tcsicmp(pszParam, _T("e")))
-				pMainFrame->m_bEscShutdown = TRUE;
-
-			// -wl to open left path as read-only
-			if (!_tcsicmp(pszParam, _T("wl")))
-				dwLeftFlags |= FFILEOPEN_READONLY;
-
-			// -wr to open right path as read-only
-			if (!_tcsicmp(pszParam, _T("wr")))
-				dwRightFlags |= FFILEOPEN_READONLY;
-
-			// -ul to not add left path to MRU
-			if (!_tcsicmp(pszParam, _T("ul")))
-				dwLeftFlags |= FFILEOPEN_NOMRU;
-
-			// -ur to not add right path to MRU
-			if (!_tcsicmp(pszParam, _T("ur")))
-				dwRightFlags |= FFILEOPEN_NOMRU;
-
-			// -ub to not add paths to MRU
-			if (!_tcsicmp(pszParam, _T("ub")))
-			{
-				dwLeftFlags |= FFILEOPEN_NOMRU;
-				dwRightFlags |= FFILEOPEN_NOMRU;
-			}
 
 			// -dl "desc" - description for left file
 			// Shown instead of filename
@@ -694,7 +721,10 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 	// Use our own message box implementation, which adds the
 	// do not show again checkbox, and implements it on subsequent calls
 	// (if caller set the style)
-	
+
+	if (m_bNoninteractive)
+		return IDCANCEL;
+
 	// Create the message box dialog.
 	CMessageBoxDialog dlgMessage(pParentWnd, lpszPrompt, _T(""), nType,
 		nIDPrompt);

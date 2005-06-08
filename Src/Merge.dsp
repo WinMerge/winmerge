@@ -201,6 +201,10 @@ SOURCE=.\ChildFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\CmdArgs.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\CMoveConstraint.cpp
 # End Source File
 # Begin Source File
@@ -862,6 +866,10 @@ SOURCE=.\charsets.h
 # Begin Source File
 
 SOURCE=.\ChildFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\CmdArgs.h
 # End Source File
 # Begin Source File
 

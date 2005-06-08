@@ -2011,6 +2011,18 @@ void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
 	}
 }
 
+/// Get list of all dirviews
+void CMainFrame::GetDirViews(DirViewList * pDirViews)
+{
+	GetAllViews(NULL, NULL, pDirViews);
+}
+
+/// Get list of all merge edit views
+void CMainFrame::GetMergeEditViews(MergeEditViewList * pMergeViews)
+{
+	GetAllViews(pMergeViews, NULL, NULL);
+}
+
 /// Get pointers to all views into typed lists (both arguments are optional)
 void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews)
 {
@@ -2850,4 +2862,14 @@ CMainFrame::UpdateCodepageModule()
 	// Get current codepage settings from the options module
 	// and push them into the codepage module
 	updateDefaultCodepage(m_options.GetInt(OPT_CP_DEFAULT_MODE), m_options.GetInt(OPT_CP_DEFAULT_CUSTOM));
+}
+
+void
+CMainFrame::OnTimer(UINT nIDEvent)
+{
+	if (nIDEvent == WM_NONINTERACTIVE)
+	{
+		KillTimer(nIDEvent);
+		PostMessage(WM_CLOSE);
+	}
 }
