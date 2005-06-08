@@ -2102,10 +2102,6 @@ SOURCE=.\diffutils\src\UTIL.C
 
 SOURCE=.\ReadMe.txt
 # End Source File
-# Begin Source File
-
-SOURCE=.\stampver.inf
-# End Source File
 # End Target
 # End Project
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}

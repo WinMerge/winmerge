@@ -1,3 +1,8 @@
+2005-06-08 Perry
+ Remove nonexistent stampver.inf from Merge.dsp
+  (No patch because sourceforge.net is unresponsive)
+  Src: Merge.dsp
+
 2005-06-07 Kimmo
  PATCH: [ 1216033 ] Options to enable/disable multiple compare documents
   Src: DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h Merge.rc
