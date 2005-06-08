@@ -5,6 +5,7 @@
 2005-06-08 Perry
  PATCH: [ 1213238 ] noninteractive switch
   Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h
+  Src new files: CmdArgs.cpp CmdArgs.h
 
 2005-06-08 WinMerge experimental release 2.3.3.5 (cvs)
 
