@@ -1,3 +1,8 @@
+2005-06-08 Tim
+ PATCH: [ 1215982 ] Web: Remove arrow image from web site
+  Web\css: all.css print.css
+  Web\images: removed arrow_big.gif arrow_small.gif
+
 2005-06-01 Tim
  PATCH: [ 1213019 ] Website changes for new stable release 2.2.4
   Web: index.php page.inc WinMergePAD.xml
