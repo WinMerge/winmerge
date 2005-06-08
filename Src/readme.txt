@@ -1,3 +1,5 @@
+2005-06-08 WinMerge experimental release 2.3.3.5 (cvs)
+
 2005-06-08 Kimmo
  PATCH: [ 1216706 ] Ignore case for project file file-extension
   Src: Merge.cpp
