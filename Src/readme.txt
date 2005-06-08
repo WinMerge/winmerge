@@ -1,3 +1,7 @@
+2005-06-08 Kimmo
+ PATCH: [ 1213649 ] Add copyconstructor to (Diff)FileInfo
+  Src: DiffFileInfo.cpp DiffFileInfo.h FileInfo.cpp FileInfo.h
+
 2005-06-08 Perry
  PATCH: [ 1213238 ] noninteractive switch
   Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h

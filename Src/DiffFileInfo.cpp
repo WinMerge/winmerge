@@ -35,6 +35,17 @@ static __int64 FileTimeToInt64(FILETIME & ft)
 }
 
 /**
+ * @brief Copy constructor.
+ */
+DiffFileInfo::DiffFileInfo(const DiffFileInfo &info)
+{
+	bVersionChecked = info.bVersionChecked;
+	flags = info.flags;
+	codepage = info.codepage;
+	unicoding = info.unicoding;
+}
+
+/**
  * @brief Update fileinfo from given file
  * @param [in] sFilePath Full path to file/directory to update
  */
