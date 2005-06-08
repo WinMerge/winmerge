@@ -10,6 +10,8 @@
 #define DirScan_h_included
 
 class CDiffContext;
+class DiffItemList;
+class PathContext;
 
 /** @brief callback to check if dirscan needs to abort */
 class IAbortable
@@ -18,8 +20,10 @@ public:
 	virtual bool ShouldAbort() = 0;
 };
 
-int DirScan(const CString & subdir, CDiffContext * pCtxt, bool casesensitive,
-	int depth, IAbortable * piAbortable);
+int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemList * pLst,
+		bool casesensitive, int depth, IAbortable * piAbortable);
+
+int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable);
 
 void DirScan_InitializeDefaultCodepage();
 

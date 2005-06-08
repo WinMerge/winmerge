@@ -28,6 +28,8 @@
 #include "diff.h"
 #include "DirScan.h"
 #include "Plugins.h"
+#include "DiffItemList.h"
+#include "PathContext.h"
 
 
 // Set this to true in order to single step
@@ -170,6 +172,8 @@ UINT CDiffThread::GetThreadState() const
  */
 UINT DiffThread(LPVOID lpParam)
 {
+	DiffItemList itemList;
+	PathContext paths;
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
 	HWND hWnd = myStruct->hWindow;
 	UINT msgID = myStruct->msgUIUpdate;
@@ -181,8 +185,12 @@ UINT DiffThread(LPVOID lpParam)
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;
 	CString subdir; // blank to start at roots specified in diff context
-	DirScan(subdir, myStruct->context, casesensitive, depth, myStruct->m_pAbortgate);
-	
+
+	paths.SetLeft(myStruct->context->GetNormalizedLeft());
+	paths.SetRight(myStruct->context->GetNormalizedRight());
+	DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth, myStruct->m_pAbortgate);
+	DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
+
 	// Send message to UI to update
 	myStruct->nThreadState = THREAD_COMPLETED;
 	PostMessage(hWnd, msgID, NULL, NULL);

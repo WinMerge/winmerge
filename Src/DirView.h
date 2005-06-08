@@ -44,6 +44,7 @@ class CDirDoc;
 class CDirFrame;
 
 class PackingInfo;
+class PathContext;
 
 namespace varprop { struct VariantValue; }
 
@@ -85,7 +86,7 @@ public:
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
 	//DIFFITEM GetNextSelectedInd(int &ind);
-	const DIFFITEM &GetItemAt(int ind);
+	DIFFITEM GetItemAt(int ind);
 	int AddSpecialItems();
 	BOOL AllowUpwardDirectory(CString leftPath, CString rightPath);
 	void AddParentFolderItem(BOOL bEnable);
@@ -122,6 +123,7 @@ private:
 	BOOL GetSelectedFileNames(CString& strLeft, CString& strRight) const;
 	CString GetSelectedFileName(SIDE_TYPE stype) const;
 	void GetItemFileNames(int sel, CString& strLeft, CString& strRight) const;
+	void GetItemFileNames(int sel, PathContext * paths) const;
 	BOOL IsItemLeftOnly(int code);
 	BOOL IsItemRightOnly(int code);
 	BOOL IsItemCopyableToLeft(const DIFFITEM & di);
@@ -331,7 +333,7 @@ private:
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
 	POSITION GetItemKeyFromData(DWORD dw) const;
-	const DIFFITEM &GetDiffItem(int sel);
+	DIFFITEM GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;
 	void MoveSelection(int currentInd, int i, int selCount);

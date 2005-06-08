@@ -1,6 +1,11 @@
 2005-06-08 Kimmo
  PATCH: [ 1213649 ] Add copyconstructor to (Diff)FileInfo
   Src: DiffFileInfo.cpp DiffFileInfo.h FileInfo.cpp FileInfo.h
+ PATCH: [ 1205724 ] Two-phase directory compare
+  Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffContext.h DiffThread.cpp
+   DirActions.cpp DirDoc.h DirScan.cpp DirScan.h DirView.cpp DirView.h
+   DirViewColHandler.cpp Merge.dsp 
+  Src new files: DiffItem.cpp DiffItem.h DiffItemList.cpp DiffItemList.h
 
 2005-06-08 Perry
  PATCH: [ 1213238 ] noninteractive switch

@@ -835,6 +835,7 @@ void CDirView::OpenParentDirectory()
 void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int sel = -1;
+	CDirDoc * pDoc = GetDocument();
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
@@ -848,11 +849,10 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			break;
 		}
 
-		const DIFFITEM & di = GetDocument()->GetDiffByKey((POSITION)diffpos);
+		DIFFITEM di = pDoc->GetDiffByKey((POSITION)diffpos);
 
 		if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
 		{
-			CDirDoc * pDoc = GetDocument();
 			if (pDoc->GetRecursive())
 				AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
 			else
@@ -860,8 +860,9 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 				// Open subfolders if non-recursive compare
 				// Don't add folders to MRU
 				CString left, right;
-				GetItemFileNames(sel, left, right);
-				mf->DoFileOpen(left, right, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, pDoc);
+				PathContext paths;
+				GetItemFileNames(sel, &paths);
+				mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, pDoc);
 			}
 			break;
 		}
@@ -874,17 +875,17 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			// Close open documents first (ask to save unsaved data)
 			if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS))
 			{
-				if (!GetDocument()->CloseMergeDocs())
+				if (!pDoc->CloseMergeDocs())
 					return;
 			}
-			
-			// Open identical and different files
-			CString left, right;
-			BOOL bLeftRO = GetDocument()->GetReadOnly(TRUE);
-			BOOL bRightRO = GetDocument()->GetReadOnly(FALSE);
 
-			GetItemFileNames(sel, left, right);
-			mf->ShowMergeDoc(GetDocument(), left, right,
+			// Open identical and different files
+			BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
+			BOOL bRightRO = pDoc->GetReadOnly(FALSE);
+
+			PathContext paths;
+			GetItemFileNames(sel, &paths);
+			mf->ShowMergeDoc(pDoc, paths.GetLeft(), paths.GetRight(),
 				bLeftRO, bRightRO,
 				di.left.codepage, di.right.codepage,
 				infoUnpacker);
@@ -1145,7 +1146,7 @@ void CDirView::SetItemKey(int idx, POSITION diffpos)
 /**
  * Given index in list control, get its associated DIFFITEM data
  */
-const DIFFITEM &CDirView::GetDiffItem(int sel)
+DIFFITEM CDirView::GetDiffItem(int sel)
 {
 	POSITION diffpos = GetItemKey(sel);
 	
@@ -1334,7 +1335,7 @@ int CDirView::GetFirstSelectedInd()
 	return di;
 }*/
 
-const DIFFITEM &CDirView::GetItemAt(int ind)
+DIFFITEM CDirView::GetItemAt(int ind)
 {
 	if (ind != -1)
 	{	
@@ -1342,7 +1343,7 @@ const DIFFITEM &CDirView::GetItemAt(int ind)
 	}
 	// 26.01.2004 jtuc: seems to be nerver reached...
 	ASSERT(FALSE);
-	static const DIFFITEM di;
+	DIFFITEM di;
 	return di;
 }
 

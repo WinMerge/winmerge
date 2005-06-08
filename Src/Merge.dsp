@@ -245,6 +245,14 @@ SOURCE=.\DiffFileInfo.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffItem.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffItemList.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DiffList.cpp
 # End Source File
 # Begin Source File
@@ -910,6 +918,14 @@ SOURCE=.\DiffContext.h
 # Begin Source File
 
 SOURCE=.\DiffFileInfo.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffItem.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffItemList.h
 # End Source File
 # Begin Source File
 

@@ -979,6 +979,32 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	}
 }
 
+/**
+ * @brief Get the file names on both sides for specified item.
+ * @note Return empty strings if item is special item.
+ */
+void CDirView::GetItemFileNames(int sel, PathContext * paths) const
+{
+	ASSERT(paths);
+	POSITION diffpos = GetItemKey(sel);
+	if (diffpos == (POSITION)-1)
+	{
+		paths->SetLeft(_T(""));
+		paths->SetRight(_T(""));
+	}
+	else
+	{
+		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
+		const CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
+		const CString & leftpath = GetDocument()->GetLeftBasePath();
+		const CString & rightpath = GetDocument()->GetRightBasePath();
+		CString strLeft = paths_ConcatPath(leftpath, relpath);
+		CString strRight = paths_ConcatPath(rightpath, relpath);
+		paths->SetLeft(strLeft);
+		paths->SetRight(strRight);
+	}
+}
+
 /// Open selected file on specified side
 void CDirView::DoOpen(SIDE_TYPE stype)
 {

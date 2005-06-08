@@ -137,8 +137,8 @@ int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParam
 	
 	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
 	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	const DIFFITEM &ldi = ctxt.GetDiffAt(diffposl);
-	const DIFFITEM &rdi = ctxt.GetDiffAt(diffposr);
+	const DIFFITEM ldi = ctxt.GetDiffAt(diffposl);
+	const DIFFITEM rdi = ctxt.GetDiffAt(diffposr);
 
 	// compare 'left' and 'right' parameters as appropriate
 	int sortCol = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
