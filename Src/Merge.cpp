@@ -797,16 +797,14 @@ BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
 		return FALSE; // code further down assumes files[0] and files[1] exist
 
 	SplitFilename(files[0], NULL, NULL, &ext);
-	if (ext == PROJECTFILE_EXT)
+	if (ext.CompareNoCase(PROJECTFILE_EXT) == 0)
 	{
 		ProjectFileName = files[0];
 	}
 	else
 	{
-		if (files.GetSize() == 1)
-			return FALSE;
 		SplitFilename(files[1], NULL, NULL, &ext);
-		if (ext == PROJECTFILE_EXT)
+		if (ext.CompareNoCase(PROJECTFILE_EXT) == 0)
 			ProjectFileName = files[1];
 		else
 			return FALSE;
