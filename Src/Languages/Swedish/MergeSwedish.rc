@@ -1103,13 +1103,13 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,138,63,71,10
     CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,138,72,71,10
-    GROUPBOX        "Radskillnadskulörer",IDC_LINE_COLORING_GROUP,10,97,
-                    218,37
+    GROUPBOX        "Radskillnadskulörer",IDC_LINE_COLORING_GROUP,7,97,
+                    221,41
     CONTROL         "Visa radskillnader",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
     CONTROL         "Radbryt på ord",IDC_BREAK_ON_WORDS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
-    COMBOBOX        IDC_BREAK_TYPE,17,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
 END
 

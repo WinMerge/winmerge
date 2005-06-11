@@ -1,3 +1,8 @@
+2005-06-11 Tim
+ BUG: [ 1218096 ] Options: 'Line Diff Coloring' frame don't fit
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2005-06-11 Perry
  PATCH: [ 1217850 ] French Translation R2_3_5
   Updated French translation by Jean-F Jolin

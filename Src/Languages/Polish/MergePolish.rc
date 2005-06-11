@@ -1104,13 +1104,13 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "Wstaw spacje",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,137,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,10,97,
-                    218,37
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,97,
+                    221,41
     CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
     CONTROL         "Break on words",IDC_BREAK_ON_WORDS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
-    COMBOBOX        IDC_BREAK_TYPE,17,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
 END
 
