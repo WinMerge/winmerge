@@ -2,6 +2,10 @@
  PATCH: [ 1217850 ] French Translation R2_3_5
   Updated French translation by Jean-F Jolin
   Src/Languages/French: MergeFrench.rc
+ PATCH: [ 1213909 ] Updated Dutch translation
+  Dutch update by Jigal van Hemert
+  (for 2.2, but propagating many translations to trunk)
+   Src/Languages/Dutch: MergeDutch.rc
 
 2005-06-08 Kimmo
  PATCH: [ 1213649 ] Add copyconstructor to (Diff)FileInfo
