@@ -1,3 +1,8 @@
+2005-06-11 Perry
+ PATCH: [ 1217850 ] French Translation R2_3_5
+  Updated French translation by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+
 2005-06-08 Kimmo
  PATCH: [ 1213649 ] Add copyconstructor to (Diff)FileInfo
   Src: DiffFileInfo.cpp DiffFileInfo.h FileInfo.cpp FileInfo.h

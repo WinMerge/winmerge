@@ -214,7 +214,7 @@ BEGIN
         MENUITEM "Tout cop&ier vers la droite",                                ID_ALL_RIGHT
         MENUITEM "Tout copi&er vers la gauche",                                ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
+        MENUITEM "Su&pprimer\tDel",                   ID_MERGE_DELETE
     END
     POPUP "&Outils"
     BEGIN
@@ -655,12 +655,12 @@ BEGIN
     CONTROL         "&Vérifier automatiquement les chemins de la fenêtre-Ouvrir",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,57,206,10
-    CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
+    CONTROL         "&Permetre une seule instance en exécution",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,82,221,37
-    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
+    GROUPBOX        "Qualifier plusieurs fenêtres pour",IDC_STATIC,7,82,221,37
+    CONTROL         "comparaison de Répert&oires",IDC_MULTIDOC_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+    CONTROL         "comparaison de &Fichiers",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
     PUSHBUTTON      "&Initialiser",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
                     WS_TABSTOP
@@ -860,7 +860,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "&Qualifier le menu avancé",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    CONTROL         "Ignore time differences less than 3 seconds",
+    CONTROL         "I&gnorer les differences de temps de moins de 3 secondes",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,8,39,222,10
     LTEXT           "E&diteur externe:",IDC_STATIC,7,49,222,8
@@ -1105,11 +1105,11 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,120,63,67,10
     CONTROL         "Insérer &espace",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,120,72,67,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,10,97,
+    GROUPBOX        "Colorer les différences de ligne",IDC_LINE_COLORING_GROUP,10,97,
                     218,37
-    CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
+    CONTROL         "A&fficher les différences",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
-    CONTROL         "Break on words",IDC_BREAK_ON_WORDS,"Button",
+    CONTROL         "&Distinguer les mots",IDC_BREAK_ON_WORDS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
     COMBOBOX        IDC_BREAK_TYPE,17,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
@@ -1155,7 +1155,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
     CONTROL         "I&gnorer les changements",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
-    PUSHBUTTON      "Discard All",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
+    PUSHBUTTON      "Tout ignorer",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
     DEFPUSHBUTTON   "OK",IDOK,149,133,50,14
     PUSHBUTTON      "Ann&uler",IDCANCEL,205,133,50,14
 END
@@ -1248,60 +1248,60 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "Keywords:",IDC_STATIC,0,20,70,8
-    RTEXT           "Function names:",IDC_STATIC,0,40,70,8
-    RTEXT           "Comments:",IDC_STATIC,0,60,70,8
-    RTEXT           "Numbers:",IDC_STATIC,0,80,70,8
-    RTEXT           "Operators:",IDC_STATIC,0,100,70,8
-    RTEXT           "Strings:",IDC_STATIC,0,120,70,8
-    RTEXT           "Preprocessor:",IDC_STATIC,0,140,70,8
-    RTEXT           "User 1:",IDC_STATIC,0,160,70,8
-    RTEXT           "User 2:",IDC_STATIC,0,180,70,8
-    CTEXT           "Text",IDC_STATIC,73,7,34,8
+    RTEXT           "Mots clés:",IDC_STATIC,0,20,70,8
+    RTEXT           "Nom des Fonctions:",IDC_STATIC,0,40,70,8
+    RTEXT           "Commentaires:",IDC_STATIC,0,60,70,8
+    RTEXT           "Nombres:",IDC_STATIC,0,80,70,8
+    RTEXT           "Opérateurs:",IDC_STATIC,0,100,70,8
+    RTEXT           "Chaines:",IDC_STATIC,0,120,70,8
+    RTEXT           "Préprocesseur:",IDC_STATIC,0,140,70,8
+    RTEXT           "Usager 1:",IDC_STATIC,0,160,70,8
+    RTEXT           "Usager 2:",IDC_STATIC,0,180,70,8
+    CTEXT           "Texte",IDC_STATIC,73,7,34,8
     CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Surbrillance",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,21,55,10
     CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
+    CONTROL         "Surbrillance",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
     CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Surbrillance",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,60,55,10
     CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Surbrillance",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,80,55,10
     CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_OPERATORS_BOLD,"Button",
+    CONTROL         "Surbrillance",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
     CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Surbrillance",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,120,55,10
     CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
+    CONTROL         "Surbrillance",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
     CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Surbrillance",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,160,55,10
     CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Surbrillance",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,180,55,10
     PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
@@ -1625,7 +1625,7 @@ BEGIN
     IDS_OPTIONSPG_SYSTEM          "Système"
     IDS_OPTIONSPG_VERSIONCONTROL  "Controle de version"
     IDS_OPTIONSPG_CODEPAGE        "Page de code"
-    IDS_OPTIONSPG_SYNTAXCOLORS    "Syntax colors"
+    IDS_OPTIONSPG_SYNTAXCOLORS    "Couleurs de la syntaxe"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1765,7 +1765,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE  "Erreur en vérifiant les droits en écriture de la destination"
     IDS_ERROR_BACKUP          "Erreur lors du backup du fichier"
     IDS_BACKUP_FAILED_PROMPT  "Erreur lors du backup du fichier original.\nContinuer quand même ?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
+    IDS_FILESAVE_FAILED       "Erreur lors de l'enregistrement.\n%1\n%2\nVoulez-vous:\n\t-utiliser un nom autre nom de fichier (Ok)\n\t-avorter l'opération en cours (Annuler)?"
     IDS_FILEPACK_FAILED_LEFT  "Le plugiciel '%2' ne peut compressé le fichier modifié de gauche dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILEPACK_FAILED_RIGHT "Le plugiciel '%2' ne peut compressé le fichier modifié de droite dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILECHANGED_ONDISK    "Une autre application a mis à jour le fichier\n%1\ndepuis le dernier balayage de WinMerge.\n\nVoulez-vous écraser le fichier mis à jour ?"
@@ -1778,7 +1778,7 @@ END
 // Editing/Merging file
 STRINGTABLE
 BEGIN
-    IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+    IDS_VIEWS_OUTOFSYNC     "Fusion des différences refusée lorsque les documents sont hors synchro.\n\nActualiser les documents avant de poursuivre."
 END
 
 // VSS
@@ -1800,8 +1800,8 @@ BEGIN
     IDS_VCS_VSS4            "Visual SourceSafe (inférieur à 5.0)"
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 et supérieur)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
-    IDS_BREAK_ON_WHITESPACE "Break at whitespace"
-    IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
+    IDS_BREAK_ON_WHITESPACE "Distinguer sur espacement"
+    IDS_BREAK_ON_PUNCTUATION "Distinguer sur espacement ou ponctuation"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
@@ -1839,7 +1839,7 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "De droite vers... (%1)"
     IDS_MOVE_LEFT_TO2       "De gauche vers... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "De droite vers... (%1 of %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_DELETE         "Supprimer les items selectionnés pour les deux répertoires"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -1894,13 +1894,13 @@ BEGIN
     IDS_COLHDR_FILENAME     "Nom du fichier"
     IDS_COLHDR_DIR          "Répertoire"
     IDS_COLHDR_RESULT       "Résultat de la comparaison"
-    IDS_COLHDR_LTIMEM       "Date gauche"
-    IDS_COLHDR_RTIMEM       "Date droite"
+    IDS_COLHDR_LTIMEM       "Date mod. gauche"
+    IDS_COLHDR_RTIMEM       "Date mod. droite"
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Taille gauche"
     IDS_COLHDR_RSIZE        "Taille droite"
-    IDS_COLHDR_LTIMEC       "Temps creation gauche"
-    IDS_COLHDR_RTIMEC       "Temps creation droit"
+    IDS_COLHDR_LTIMEC       "Date cré. gauche"
+    IDS_COLHDR_RTIMEC       "Date cré. droit"
     IDS_COLHDR_NEWER        "Plus récent"
     IDS_COLHDR_LVERSION     "Version gauche"
     IDS_COLHDR_RVERSION     "Version droite"
@@ -1992,7 +1992,7 @@ BEGIN
                             (accessible avec le menu Edition/Options)."
     IDS_SUGGEST_PRESERVEEOL "Les fins de ligne sont de type différent (DOS/UNIX/MAC) au fichier '%1'.\n Selon les options en vigueur, elles seront uniformisées au type principal.\n Désirez-vous changer l'option et préserver les différences ?"
     IDS_PREDIFFER_ERROR     "Une erreur est survenue pendant la pré-comparaison du fichier '%1' avec le plugiciel '%2'. La pré-comparaison ne sera donc plus utilisée."
-    IDS_SUGGEST_IGNORECODEPAGE "Les fichiers n'ont pas la même page de code à gauche (cp%d) et à droite (cp%d). \nL'affichage est ainsi meilleurs cependant les copie/fusion seront dangeureuses.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_SUGGEST_IGNORECODEPAGE "Les fichiers n'ont pas la même page de code à gauche (cp%d) et à droite (cp%d). \nL'affichage est ainsi meilleurs cependant les copie/fusion seront dangeureuses.\nDésirez-vous traiter les deux fichiers avec la page de code windows par défaut (recommandé)?"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2031,7 +2031,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n n'est pas un chemin absolu!"
     IDS_CANNOT_CREATE_BINARYPATCH "Ne peut créé un fichier de retouche depuis un fichier binaire."
     IDS_CANNOT_CREATE_DIRPATCH    "Ne peut créé un fichier de retouche depuis des répertoires."
-    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+    IDS_SAVEFILES_FORPATCH  "S.V.P enregister tous les fichiers.\n\nGénérer une retouche requiert l'état non modifié des fichiers."
 END
 
 STRINGTABLE
