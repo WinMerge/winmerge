@@ -1,3 +1,7 @@
+2005-06-12 Kimmo
+ BUG: [ 1218133 ] German options dialog is to wide
+  Src/Languages/German: MergeGerman.rc
+
 2005-06-11 Tim
  BUG: [ 1218096 ] Options: 'Line Diff Coloring' frame don't fit
   Src: Merge.rc
