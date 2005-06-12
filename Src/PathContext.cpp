@@ -12,13 +12,37 @@
 #include "paths.h"
 
 /**
+ * @brief Copy constructor.
+ */
+PathInfo::PathInfo(const PathInfo &pi)
+{
+	m_sPath = pi.m_sPath;
+}
+
+/**
+ * @brief Get path.
+ * @param [in] sbNormalized TRUE if path is wanted in normalized format.
+ */
+CString PathInfo::GetPath(BOOL bNormalized /*= TRUE*/) const
+{ 
+	if (!bNormalized)
+	{
+		if (paths_EndsWithSlash(m_sPath))
+			return m_sPath + _T("\\");
+		else
+			return m_sPath;
+	}
+	else
+		return m_sPath;
+}
+
+/**
  * @brief Set path.
  * @param [in] sPath New path for item.
  */
 void PathInfo::SetPath(CString sPath)
 {
 	m_sPath = sPath;
-	m_sNormalizedPath = sPath;
 }
 
 /**
@@ -26,8 +50,7 @@ void PathInfo::SetPath(CString sPath)
  */
 void PathInfo::NormalizePath()
 {
-	m_sNormalizedPath = m_sPath;
-	paths_normalize(m_sNormalizedPath);
+	paths_normalize(m_sPath);
 }
 
 PathContext::PathContext()
@@ -45,7 +68,7 @@ PathContext::PathContext(CString sLeft, CString sRight)
  * @brief Return left path.
  * @param [in] sNormalized If TRUE normalized path is returned.
  */
-const CString& PathContext::GetLeft(BOOL bNormalized) const
+CString PathContext::GetLeft(BOOL bNormalized) const
 {
 	return m_pathLeft.GetPath(bNormalized);
 }
@@ -54,7 +77,7 @@ const CString& PathContext::GetLeft(BOOL bNormalized) const
  * @brief Return right path.
  * @param [in] sNormalized If TRUE normalized path is returned.
  */
-const CString& PathContext::GetRight(BOOL bNormalized) const
+CString PathContext::GetRight(BOOL bNormalized) const
 {
 	return m_pathRight.GetPath(bNormalized);
 }

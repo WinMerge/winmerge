@@ -12,20 +12,21 @@
 
 /**
  * @brief Information for one path.
+ *
+ * Path is stored in normalized format (no trailing slash).
  */
 class PathInfo
 {
 public:
 	PathInfo() {}
+	PathInfo(const PathInfo &pi);
 
-	const CString & GetPath(BOOL bNormalized = TRUE) const
-		{ return (bNormalized ? m_sNormalizedPath : m_sPath); }
+	CString GetPath(BOOL bNormalized = TRUE) const;
 	void SetPath(CString path);
 	void NormalizePath();
 
 private:
 	CString m_sPath;  /**< Directory / file path */
-	CString m_sNormalizedPath; /**< Normalized version of m_sPath (preferred)*/
 };
 
 /**
@@ -36,8 +37,8 @@ class PathContext
 public:
 	PathContext();
 	PathContext(CString sLeft, CString sRight);
-	const CString & GetLeft(BOOL bNormalized = TRUE) const;
-	const CString & GetRight(BOOL bNormalized = TRUE) const;
+	CString GetLeft(BOOL bNormalized = TRUE) const;
+	CString GetRight(BOOL bNormalized = TRUE) const;
 	void SetLeft(LPCTSTR path);
 	void SetRight(LPCTSTR path);
 
