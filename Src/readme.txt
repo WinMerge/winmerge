@@ -1,5 +1,5 @@
 2005-06-12 Kimmo
- BUG: [ 1218133 ] German options dialog is to wide
+ BUG: [ 1218133 ] German options dialog is too wide
   Src/Languages/German: MergeGerman.rc
  PATCH: [ 1213634 ] Don't store two path copies in PathContext
   Src: PathContext.cpp PathContext.h
