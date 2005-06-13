@@ -446,6 +446,8 @@ BEGIN
             MENUITEM "&Mindkét oldal... (%1 ennyibõl: %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Eltérések... (%1 ennyibõl: %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1837,7 +1839,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Jobbról... (%1)"
     IDS_MOVE_LEFT_TO2       "Balról... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "Jobbról... (%1 of %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2365,6 +2366,7 @@ BEGIN
     ID_OPTIONS              "A program beállítása\nBeállítások"
     ID_REFRESH              "Kijezõ frissítése\nFrissítés (F5)"
     ID_EDIT_COPY_LINENUMBERS "A kijelölt sorok vágólapra másolása a sorok elejéhez a sorszámokat hozzáfûzve"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2405,6 +2407,7 @@ BEGIN
     ID_R2LNEXT              "Az eltérés másolása balra és ugrás tovább\nMásolás balra és Ugrás (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Az összes eltérés másolása jobbra\nMind jobbra"
     ID_ALL_LEFT             "Az összes eltérés másolása jobbra\nMind balra"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

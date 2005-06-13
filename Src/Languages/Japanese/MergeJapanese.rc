@@ -447,6 +447,8 @@ BEGIN
             MENUITEM "両側(&B)... (%1 / %2)",       ID_DIR_ZIP_BOTH
             MENUITEM "差異(&D)... (%1 / %2)",       ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1841,7 +1843,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "右から参照先へ... (%1)"
     IDS_MOVE_LEFT_TO2       "左から参照先へ... (%1 / %2)"
     IDS_MOVE_RIGHT_TO2      "右から参照先へ... (%1 / %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2369,6 +2370,7 @@ BEGIN
     ID_OPTIONS              "プログラムオプションを設定します\nオプション"
     ID_REFRESH              "最新の情報に更新します\n表示更新 (F5)"
     ID_EDIT_COPY_LINENUMBERS "選択された行の先頭に行番号を付加してクリップボードへコピーします"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2409,6 +2411,7 @@ BEGIN
     ID_R2LNEXT              "差異を左にコピーし、次の差異に進みます\n左にコピーし次へ (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "すべての差異を右のファイルにコピーします\n右すべて"
     ID_ALL_LEFT             "すべての差異を左のファイルにコピーします\n左すべて"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

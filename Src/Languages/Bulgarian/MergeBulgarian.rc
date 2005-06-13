@@ -446,6 +446,8 @@ BEGIN
             MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1853,7 +1855,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Right to... (%1)"
     IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2381,6 +2382,7 @@ BEGIN
     ID_OPTIONS              "Нагласяне на програмните настроики\nНастроики"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2421,6 +2423,7 @@ BEGIN
     ID_R2LNEXT              "Копиране на разликата в левия файл и предвижване към следващата\nКопиране в ляво и предвижване (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Копиране на всички разлики в десния файл\nВсичко в дясно"
     ID_ALL_LEFT             "Копиране на всички разлики в левия файл\nВсичко в ляво"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

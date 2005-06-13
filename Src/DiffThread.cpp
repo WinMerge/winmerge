@@ -52,6 +52,7 @@ struct DiffFuncStruct
 	UINT nThreadState;
 	BOOL bRecursive;
 	DiffThreadAbortable * m_pAbortgate;
+	bool bOnlyRequested;
 	DiffFuncStruct()
 		: context(0)
 		, msgUIUpdate(0)
@@ -60,6 +61,7 @@ struct DiffFuncStruct
 		, nThreadState(THREAD_NOTSTARTED)
 		, bRecursive(FALSE)
 		, m_pAbortgate(0)
+		, bOnlyRequested(false)
 		{}
 };
 
@@ -123,6 +125,7 @@ UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive
 	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
 	m_pDiffParm->hWindow = m_hWnd;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate;
+	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
 	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
@@ -157,6 +160,15 @@ void CDiffThread::SetMessageIDs(UINT updateMsg, UINT statusMsg)
 }
 
 /**
+ * @brief Selects to compare all or only selected items.
+ * @param [in] bSelected If TRUE only selected items are compared.
+ */
+void CDiffThread::SetCompareSelected(bool bSelected /*=FALSE*/)
+{
+	m_bOnlyRequested = bSelected;
+}
+
+/**
  * @brief Returns thread's current state
  */
 UINT CDiffThread::GetThreadState() const
@@ -177,6 +189,7 @@ UINT DiffThread(LPVOID lpParam)
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
 	HWND hWnd = myStruct->hWindow;
 	UINT msgID = myStruct->msgUIUpdate;
+	bool bOnlyRequested = myStruct->bOnlyRequested;
 
 	// keep the scripts alive during the Rescan
 	// when we exit the thread, we delete this and release the scripts
@@ -188,8 +201,15 @@ UINT DiffThread(LPVOID lpParam)
 
 	paths.SetLeft(myStruct->context->GetNormalizedLeft());
 	paths.SetRight(myStruct->context->GetNormalizedRight());
-	DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth, myStruct->m_pAbortgate);
-	DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
+	if (bOnlyRequested)
+	{
+		DirScan_CompareItems(myStruct->context, myStruct->m_pAbortgate);
+	}
+	else
+	{
+		DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth, myStruct->m_pAbortgate);
+		DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
+	}
 
 	// Send message to UI to update
 	myStruct->nThreadState = THREAD_COMPLETED;

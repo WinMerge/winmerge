@@ -156,6 +156,7 @@ private:
 	void PerformActionList(ActionList & actions);
 	void UpdateCopiedItems(ActionList & actions);
 	void UpdateDeletedItems(ActionList & actions);
+	void MarkForRescan();
 // End DirActions.cpp
 
 // Implementation in DirViewCols.cpp
@@ -308,6 +309,7 @@ protected:
 	afx_msg void OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
 	afx_msg void OnDelete();
 	afx_msg void OnUpdateDelete(CCmdUI* pCmdUI);
+	afx_msg void OnMarkedRescan();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

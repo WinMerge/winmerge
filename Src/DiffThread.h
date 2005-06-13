@@ -55,6 +55,7 @@ public:
 	UINT CompareDirectories(CString dir1, CString dir2,	BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg, UINT statusMsg);
+	void SetCompareSelected(bool bSelected = false);
 
 // runtime interface for main thread, called on main thread
 	UINT GetThreadState() const;
@@ -74,6 +75,7 @@ private:
 	UINT m_msgUpdateStatus;
 	HWND m_hWnd;
 	bool m_bAborting;
+	bool m_bOnlyRequested;
 };
 
 UINT DiffThread(LPVOID lpParam);

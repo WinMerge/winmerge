@@ -69,6 +69,7 @@ CDirDoc::CDirDoc()
 , m_bRecursive(FALSE)
 , m_statusCursor(NULL)
 , m_bReuseCloses(FALSE)
+, m_bMarkedRescan(FALSE)
 {
 	DIFFOPTIONS options = {0};
 
@@ -210,7 +211,10 @@ void CDirDoc::Rescan()
 			m_pCtxt->GetLeftPath(), m_pCtxt->GetRightPath());
 	pf->clearStatus();
 	pf->ShowProcessingBar(TRUE);
-	m_pCtxt->RemoveAll();
+
+	// Don't clear if only scanning selected items
+	if (!m_bMarkedRescan)
+		m_pCtxt->RemoveAll();
 
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
@@ -238,8 +242,10 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
+	m_diffThread.SetCompareSelected(m_bMarkedRescan);
 	m_diffThread.CompareDirectories(m_pCtxt->GetNormalizedLeft(),
 			m_pCtxt->GetNormalizedRight(), m_bRecursive);
+	m_bMarkedRescan = FALSE;
 }
 
 /**

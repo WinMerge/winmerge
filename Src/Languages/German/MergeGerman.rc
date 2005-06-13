@@ -450,6 +450,8 @@ BEGIN
             MENUITEM "&Beide... (%1 von %2)",       ID_DIR_ZIP_BOTH
             MENUITEM "&Unterschiede... (%1 von %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1954,7 +1956,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Rechts nach... (%1)"
     IDS_MOVE_LEFT_TO2       "Links nach... (%1 von %2)"
     IDS_MOVE_RIGHT_TO2      "Rechts nach... (%1 von %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2482,6 +2483,7 @@ BEGIN
     ID_OPTIONS              "Nimmt Programm-Einstellungen vor.\nEinstellungen"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopiert die ausgewählten Zeilen in die Zwischenablage und fügt Zeilennummern vor den Zeilenanfang."
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2522,6 +2524,7 @@ BEGIN
     ID_R2LNEXT              "Kopiere Unterschied nach Links und springe zum nächsten Unterschied.\nNach links kopieren und fortschreiten (Strg+Alt+Links)"
     ID_ALL_RIGHT            "Kopiert alle Unterschiede in die rechte Datei.\nAlles nach rechts kopieren"
     ID_ALL_LEFT             "Kopiert alle Unterschiede in die linke Datei.\nAlles nach links kopieren"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

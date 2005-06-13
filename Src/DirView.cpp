@@ -170,6 +170,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_MERGE_DELETE, OnDelete)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_DELETE, OnUpdateDelete)
+	ON_COMMAND(ID_DIR_RESCAN, OnMarkedRescan)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -2524,4 +2525,14 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 		GetParentFrame()->SetStatus(msg);
 	}
 	*pResult = 0;
+}
+
+/**
+ * @brief Called when item is marked for rescan.
+ */
+void CDirView::OnMarkedRescan()
+{
+	GetDocument()->SetMarkedRescan();
+	MarkForRescan();
+	GetDocument()->Rescan();
 }

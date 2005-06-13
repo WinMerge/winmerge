@@ -446,6 +446,8 @@ BEGIN
             MENUITEM "les deu&x côtés... (%1 of %2)", ID_DIR_ZIP_BOTH
             MENUITEM "les di&fférences...(%1 of %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1839,7 +1841,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "De droite vers... (%1)"
     IDS_MOVE_LEFT_TO2       "De gauche vers... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "De droite vers... (%1 of %2)"
-    ID_MERGE_DELETE         "Supprimer les items selectionnés pour les deux répertoires"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2365,6 +2366,7 @@ BEGIN
     ID_OPTIONS              "Modifier les options du programme\nOptions"
     ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copier les lignes sélectionnés vers le presse-papiers en les précédants d'un numéro de ligne"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2405,6 +2407,7 @@ BEGIN
     ID_R2LNEXT              "Copier la différence vers la gauche et Avancer\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Copier toutes les différences vers le fichier de droite\nCopier Tout à Droite"
     ID_ALL_LEFT             "Copier toutes les différences vers le fichier de gauche\nCopier Tout à Gauche"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

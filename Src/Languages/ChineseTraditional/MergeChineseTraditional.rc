@@ -445,6 +445,8 @@ BEGIN
             MENUITEM "兩者(&B)... (%1 共 %2)",      ID_DIR_ZIP_BOTH
             MENUITEM "不同(&D)... (%1 共 %2)",      ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1936,7 +1938,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "右邊到... (%1)"
     IDS_MOVE_LEFT_TO2       "左邊到... (%1 共 %2)"
     IDS_MOVE_RIGHT_TO2      "右邊到... (%1 共 %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2459,6 +2460,7 @@ BEGIN
     ID_OPTIONS              "設定程式選項\n選項"
     ID_REFRESH              "更新顯示\n更新 (F5)"
     ID_EDIT_COPY_LINENUMBERS "複製選取的列到剪貼簿並加入列號於列的開頭"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2499,6 +2501,7 @@ BEGIN
     ID_R2LNEXT              "複製左邊不同和進階到下一\n複製左邊和進階 (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
     ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

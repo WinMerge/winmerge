@@ -446,6 +446,8 @@ BEGIN
             MENUITEM "&Begge... (%1 av %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Forskjellene... (%1 av %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1950,7 +1952,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Høyre til... (%1)"
     IDS_MOVE_LEFT_TO2       "Venstre til... (%1 av %2)"
     IDS_MOVE_RIGHT_TO2      "Høyre til... (%1 av %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2478,6 +2479,7 @@ BEGIN
     ID_OPTIONS              "Sett programinnstillinger\nInnstillinger"
     ID_REFRESH              "Oppdater visning\nOppdater (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopier valgte linjer til utklippstavle med linjenummer foran"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2518,6 +2520,7 @@ BEGIN
     ID_R2LNEXT              "Kopier forskjell til høyre og gå videre til neste\nKopier venstre og gå videre (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Kopier alle forskjeller til den høyre filen\nAlt til høyre"
     ID_ALL_LEFT             "Kopier alle forskjeller til den venstre filen\nAlt til venstre"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

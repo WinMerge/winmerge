@@ -446,6 +446,8 @@ BEGIN
             MENUITEM "&Obie... (%1 z %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Ró¿nice... (%1 z %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1951,7 +1953,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Prawa na... (%1)"
     IDS_MOVE_LEFT_TO2       "Lewa na... (%1 z %2)"
     IDS_MOVE_RIGHT_TO2      "Prawa na... (%1 z %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2479,6 +2480,7 @@ BEGIN
     ID_OPTIONS              "Ustaw opcje programu\nOpcje"
     ID_REFRESH              "Odœwie¿ podgl¹d\nOdœwie¿ (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopiuj wybrane linie do schowka dodaj¹c numeracjê wierszy"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2519,6 +2521,7 @@ BEGIN
     ID_R2LNEXT              "Kopiuj ró¿nicê na lewo i przejdŸ do nastêpnej\nKopiuj na lewo i nastêpna (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Kopiuj wszystkie ró¿nice do prawego pliku\nWszystkie na prawo"
     ID_ALL_LEFT             "Kopiuj wszystkie ró¿nice do lewego pliku\nWszystkie na lewo"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

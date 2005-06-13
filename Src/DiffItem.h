@@ -29,6 +29,7 @@ struct DIFFCODE
 		SIDEFLAG=0x300, LEFT=0x100, RIGHT=0x200, BOTH=0x300,
 		COMPAREFLAGS=0x7000, NOCMP=0x0000, SAME=0x1000, DIFF=0x2000, CMPERR=0x4000,
 		FILTERFLAGS=0x30000, INCLUDED=0x10000, SKIPPED=0x20000,
+		SCANFLAGS=0x100000, NEEDSCAN=0x100000,
 	};
 
 	int diffcode;
@@ -50,6 +51,9 @@ struct DIFFCODE
 	bool isResultFiltered() const { return ((diffcode & DIFFCODE::FILTERFLAGS) == DIFFCODE::SKIPPED); }
 	// type
 	bool isBin() const { return ((diffcode & DIFFCODE::TEXTFLAG) == DIFFCODE::BIN); }
+	// rescan
+	bool isScanNeeded() const { return ((diffcode & DIFFCODE::SCANFLAGS) == DIFFCODE::NEEDSCAN); }
+
 };
 
 /**

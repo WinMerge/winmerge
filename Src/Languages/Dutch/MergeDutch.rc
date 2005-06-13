@@ -353,7 +353,6 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Alles naar rechts kopiëren",  ID_ALL_RIGHT
         MENUITEM "Alles naar links kopiëren",   ID_ALL_LEFT
-
     END
     POPUP "&Tools"
     BEGIN
@@ -448,6 +447,8 @@ BEGIN
             MENUITEM "&Beide... (%1 van %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Verschillen... (%1 van %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1948,7 +1949,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Van rechts naar... (%1)"
     IDS_MOVE_LEFT_TO2       "Van links naar... (%1 van %2)"
     IDS_MOVE_RIGHT_TO2      "Van rechts naar... (%1 van %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2476,6 +2476,7 @@ BEGIN
     ID_OPTIONS              "Programmaopties instellen\nEigenschappen"
     ID_REFRESH              "Beeld verversen\nVerversen (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2516,6 +2517,7 @@ BEGIN
     ID_R2LNEXT              "Het verschil naar links kopiëren en verder naar het volgende verschil.\nNaar links kopiëren en volgende (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Alle verschillen naar het rechter bestand kopiëren.\nAlles naar rechts kopiëren"
     ID_ALL_LEFT             "Kopieer alle verschillen naar het linker bestand. \nAlles naar links kopiëren"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

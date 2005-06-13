@@ -446,6 +446,8 @@ BEGIN
             MENUITEM "&Ambdós costats... (%1 de %2)", ID_DIR_ZIP_BOTH
             MENUITEM "Di&ferències... (%1 de %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1854,7 +1856,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "De dreta a... (%1)"
     IDS_MOVE_LEFT_TO2       "D'esquerra a... (%1 de %2)"
     IDS_MOVE_RIGHT_TO2      "De dreta a... (%1 de %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2382,6 +2383,7 @@ BEGIN
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copia les línies seleccionades al Porta-retalls afegint-hi els números de línia al inici de línia"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2422,6 +2424,7 @@ BEGIN
     ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl+Alt+Esquerra)"
     ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
     ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

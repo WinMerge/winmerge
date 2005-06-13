@@ -24,6 +24,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 		bool casesensitive, int depth, IAbortable * piAbortable);
 
 int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable);
+int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable);
 
 void DirScan_InitializeDefaultCodepage();
 

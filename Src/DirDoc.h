@@ -122,6 +122,7 @@ public:
 	CString GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
 	CString GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
 	void RemoveDiffByKey(POSITION key) { m_pCtxt->RemoveDiff(key); }
+	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
 
 protected:
 	CDiffWrapper m_diffWrapper;
@@ -145,6 +146,7 @@ private:
 	CString m_strRightDesc; /**< Left side desription text */
 	PluginManager m_pluginman;
 	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
+	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
 };
 
 //{{AFX_INSERT_LOCATION}}

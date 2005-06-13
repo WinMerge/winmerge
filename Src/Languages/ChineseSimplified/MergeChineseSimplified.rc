@@ -445,6 +445,8 @@ BEGIN
             MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1824,7 +1826,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Right to... (%1)"
     IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2352,6 +2353,7 @@ BEGIN
     ID_OPTIONS              "设定程序选项\n选项"
     ID_REFRESH              "更新显示\n更新 (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2392,6 +2394,7 @@ BEGIN
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "复制所有不同到右边文件\n所有到右边"
     ID_ALL_LEFT             "复制所有不同到左边文件\n所有到左边"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

@@ -1,6 +1,10 @@
 2005-06-13 Kimmo
  PATCH: [ 1219333 ] Wrong confirmation message when deleting unique items
   Src: DirActions.cpp
+ PATCH: [ 1218661 ] Rescan selected items
+  Src: DiffItem.h DiffThread.cpp DiffThread.h DirActions.cpp DirDoc.cpp DirDoc.h
+   DirScan.cpp DirScan.h DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2005-06-12 Kimmo
  BUG: [ 1218133 ] German options dialog is too wide

@@ -53,6 +53,7 @@ static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 		const DiffFileData * pDiffFileData);
 static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
 	int code, DiffItemList * pList);
+static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
@@ -237,6 +238,98 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable *
 }
 
 /**
+ * @brief Compare DiffItems in context marked for rescan.
+ *
+ * @param pCtxt [in,out] Compare context: contains list of items.
+ * @param piAbortable [in] Interface allowing to abort compare
+ * @return 1 if compare finished, -1 if compare was aborted
+ */
+int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
+{
+	POSITION pos = pCtxt->GetFirstDiffPosition();
+	
+	while (pos != NULL)
+	{
+		if (piAbortable && piAbortable->ShouldAbort())
+			return -1;
+
+		POSITION oldPos = pos;
+		DIFFITEM di = pCtxt->GetNextDiffPosition(pos);
+		if (di.isScanNeeded())
+		{
+			BOOL bItemsExist = TRUE;
+			pCtxt->RemoveDiff(oldPos);
+			UpdateDiffItem(di, bItemsExist, pCtxt);
+			if (bItemsExist)
+				CompareDiffItem(di, pCtxt);
+		}
+	}
+	return 1;
+}
+
+/**
+ * @brief Update diffitem file/dir infos.
+ *
+ * Re-tests dirs/files if sides still exists, and updates infos for
+ * existing sides. This assumes filenames, or paths are not changed.
+ * Since in normal situations (I can think of) they cannot change
+ * after first compare.
+ *
+ * @param [in,out] di DiffItem to update.
+ * @param [out] bExists Set to
+ *  - TRUE if one of items exists so diffitem is valid
+ *  - FALSE if items were deleted, so diffitem is not valid
+ * @param [in] pCtxt Compare context
+ */
+void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
+{
+	_stat stats;
+	CString leftpath;
+	CString rightpath;
+	BOOL bLeftExists = FALSE;
+	BOOL bRightExists = FALSE;
+
+	bExists = TRUE;
+	leftpath = di.getLeftFilepath(pCtxt->GetNormalizedLeft());
+	leftpath = paths_ConcatPath(leftpath, di.sfilename);
+	rightpath = di.getRightFilepath(pCtxt->GetNormalizedRight());
+	rightpath = paths_ConcatPath(rightpath, di.sfilename);
+	
+	// Re-check if left/right sides still exists (or are added)
+	if (_tstat(leftpath, &stats) == 0)
+		bLeftExists = TRUE;
+	if (_tstat(rightpath, &stats) == 0)
+		bRightExists = TRUE;
+
+	// Clear side-info and file-infos
+	di.diffcode &= ~DIFFCODE::SIDEFLAG;
+	di.left.Clear();
+	di.right.Clear();
+
+	// Update infos for existing sides
+	if (bLeftExists && bRightExists)
+	{
+		di.diffcode |= DIFFCODE::BOTH;
+		pCtxt->UpdateInfoFromDiskHalf(di, di.left);
+		pCtxt->UpdateInfoFromDiskHalf(di, di.right);
+	}
+	else if (bLeftExists && !bRightExists)
+	{
+		di.diffcode |= DIFFCODE::LEFT;
+		pCtxt->UpdateInfoFromDiskHalf(di, di.left);
+	}
+	else if (!bLeftExists && bRightExists)
+	{
+		di.diffcode |= DIFFCODE::RIGHT;
+		pCtxt->UpdateInfoFromDiskHalf(di, di.right);
+	}
+	else if (!bLeftExists && !bRightExists)
+	{
+		bExists = FALSE;
+	}
+}
+
+/**
  * @brief Compare two diffitems and add results to difflist in context.
  *
  * @param [in] di DiffItem to compare
@@ -247,6 +340,9 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	CString sLeftDir = pCtxt->GetNormalizedLeft();
 	CString sRightDir = pCtxt->GetNormalizedRight();
 	static const TCHAR backslash[] = _T("\\");
+
+	// Clear possible rescan-flag
+	di.diffcode &= ~DIFFCODE::NEEDSCAN;
 
 	if (!di.sSubdir.IsEmpty())
 	{

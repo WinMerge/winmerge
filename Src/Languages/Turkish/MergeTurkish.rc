@@ -445,6 +445,8 @@ BEGIN
             MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1137,7 +1139,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Save modified files?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1840,7 +1842,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Right to... (%1)"
     IDS_MOVE_LEFT_TO2       "Left to... (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2368,6 +2369,7 @@ BEGIN
     ID_OPTIONS              "Set program options\nOptions"
     ID_REFRESH              "Refresh display\nRefresh (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2408,6 +2410,7 @@ BEGIN
     ID_R2LNEXT              "Copy difference to left and advance to next\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Copy all differences to the right file\nAll Right"
     ID_ALL_LEFT             "Copy all differences to the left file\nAll Left"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

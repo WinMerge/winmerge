@@ -751,6 +751,7 @@
 #define ID_OPTIONS                      32786
 #define ID_REFRESH                      32787
 #define ID_EDIT_COPY_LINENUMBERS        32788
+#define ID_DIR_RESCAN                   33789
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801
 #define ID_OPTIONS_SHOWUNIQUELEFT       32802
@@ -776,6 +777,7 @@
 #define ID_R2LNEXT                      32840
 #define ID_ALL_RIGHT                    32841
 #define ID_ALL_LEFT                     32842
+#define ID_MERGE_DELETE                 32845
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32864
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
@@ -829,7 +831,6 @@
 #define ID_LOCBAR_GOTOLINE_FMT          33093
 #define ID_HELP_MERGE7ZMISMATCH         33094
 #define ID_FILE_OPENPROJECT             33095
-#define ID_MERGE_DELETE                 33096
 
 // Next default values for new objects
 // 
@@ -837,7 +838,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        224
-#define _APS_NEXT_COMMAND_VALUE         33097
+#define _APS_NEXT_COMMAND_VALUE         33096
 #define _APS_NEXT_CONTROL_VALUE         1191
 #define _APS_NEXT_SYMED_VALUE           111
 #endif

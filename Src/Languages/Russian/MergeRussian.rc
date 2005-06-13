@@ -455,6 +455,8 @@ BEGIN
             MENUITEM "&Both... (%1 of %2)",         ID_DIR_ZIP_BOTH
             MENUITEM "&Differences... (%1 of %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1852,7 +1854,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "—права в... (%1)"
     IDS_MOVE_LEFT_TO2       "—лева в... (%1 из %2)"
     IDS_MOVE_RIGHT_TO2      "—права в... (%1 из %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2374,6 +2375,7 @@ BEGIN
     ID_REFRESH              "ќбновить экран\nRefresh (F5)"
     ID_EDIT_COPY_LINENUMBERS 
                             "—копировать выбранные строки в буфер обмена, добавл€€ в начале строки ее номер"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2414,6 +2416,7 @@ BEGIN
     ID_R2LNEXT              "—копировать отличие на правую панель и перейти к следующему\nCopy Left and advance (Ctrl Alt Left)"
     ID_ALL_RIGHT            "—копировать все отличи€ в файл справа\nAll Right"
     ID_ALL_LEFT             "—копировать все отличи€ в файл слева\nAll Left"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU

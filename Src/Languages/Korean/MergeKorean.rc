@@ -448,6 +448,8 @@ BEGIN
             MENUITEM "모두(&B)... (%1 of %2)",      ID_DIR_ZIP_BOTH
             MENUITEM "다른 파일만(&D)... (%1 of %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
+        MENUITEM SEPARATOR
+        MENUITEM "&Refresh",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -1835,7 +1837,6 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "오른쪽 파일 위치지정 이동 (%1)"
     IDS_MOVE_LEFT_TO2       "왼쪽 파일 위치지정 이동 (%1 of %2)"
     IDS_MOVE_RIGHT_TO2      "오른쪽 파일 위치지정 이동 (%1 of %2)"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2362,6 +2363,7 @@ BEGIN
     ID_OPTIONS              "옵션을 설정합니다.\n옵션"
     ID_REFRESH              "새로 고침\n새로 고침 (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
+    ID_DIR_RESCAN            "Refresh selected items"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2402,6 +2404,7 @@ BEGIN
     ID_R2LNEXT              "다른 부분을 왼쪽으로 복사하고, 다음 다른 부분으로 이동합니다\n왼쪽으로 복사 - Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
     ID_ALL_LEFT             "모든 다른 부분을 왼쪽 파일로 복사합니다.\n모두 왼쪽으로"
+    ID_MERGE_DELETE         "Delete selected items from both directories"
 END
 
 // TOOLS MENU
