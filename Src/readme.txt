@@ -1,3 +1,7 @@
+2005-06-13 Kimmo
+ PATCH: [ 1219333 ] Wrong confirmation message when deleting unique items
+  Src: DirActions.cpp
+
 2005-06-12 Kimmo
  BUG: [ 1218133 ] German options dialog is too wide
   Src/Languages/German: MergeGerman.rc
