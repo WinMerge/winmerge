@@ -1,3 +1,7 @@
+2005-06-15 Kimmo
+ PATCH: [ 1220472 ] Don't lose selection when deleting items from dir compare
+  Src: DirActions.cpp
+
 2005-06-15 Perry
  PATCH: [ 1220416 ] error C2065: '_stat' : undeclared identifier
   Src: DirScan.cpp

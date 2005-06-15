@@ -815,6 +815,7 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
  */
 void CDirView::UpdateDeletedItems(ActionList & actionList)
 {
+	int curSel = GetFirstSelectedInd();
 	while (!actionList.deletedItems.IsEmpty())
 	{
 		int idx = actionList.deletedItems.RemoveTail();
@@ -822,6 +823,9 @@ void CDirView::UpdateDeletedItems(ActionList & actionList)
 		GetDocument()->RemoveDiffByKey(diffpos);
 		m_pList->DeleteItem(idx);
 	}
+	if (curSel < 1)
+		++curSel;
+	MoveSelection(0, curSel - 1, 0);
 }
 
 /// Get directories of first selected item
