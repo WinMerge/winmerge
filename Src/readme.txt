@@ -1,3 +1,7 @@
+2005-06-15 Perry
+ PATCH: [ 1220416 ] error C2065: '_stat' : undeclared identifier
+  Src: DirScan.cpp
+
 2005-06-13 Kimmo
  PATCH: [ 1219333 ] Wrong confirmation message when deleting unique items
   Src: DirActions.cpp

@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include <shlwapi.h>
+#include <sys/stat.h>
 #include "DirScan.h"
 #include "common/unicoder.h"
 #include "DiffContext.h"
@@ -283,7 +284,7 @@ int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
  */
 void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 {
-	_stat stats;
+	struct _stat stats;
 	CString leftpath;
 	CString rightpath;
 	BOOL bLeftExists = FALSE;
