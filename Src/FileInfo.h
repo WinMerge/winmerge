@@ -48,7 +48,6 @@ struct FileInfo
 	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 	FileInfo() { Clear(); }
-	FileInfo(const FileInfo &fi);
 
 	void Update(CString sFilePath);
 	void Clear();

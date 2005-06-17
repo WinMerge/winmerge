@@ -16,22 +16,6 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-/**
- * @brief Copy constructor.
- */
-DIFFITEM::DIFFITEM(const DIFFITEM &di)
-{
-	left = di.left;
-	right = di.right;
-	diffcode = di.diffcode;
-	if (di.sfilename.GetLength())
-		sfilename = di.sfilename;
-	if (di.sSubdir.GetLength())
-		sSubdir = di.sSubdir;
-	nsdiffs = di.nsdiffs;
-	ndiffs = di.ndiffs;
-}
-
 /** @brief Return path to left file, including all but file name */
 CString DIFFITEM::getLeftFilepath(CString sLeftRoot) const
 {

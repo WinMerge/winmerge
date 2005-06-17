@@ -36,7 +36,6 @@ struct DIFFCODE
 
 	DIFFCODE() : diffcode(0) { }
 	DIFFCODE(int diffcode) : diffcode(diffcode) { }
-	DIFFCODE(const DIFFCODE &code) : diffcode(code.diffcode) { }
 
 	// file/directory
 	bool isDirectory() const { return ((diffcode & DIFFCODE::DIRFLAG) == DIFFCODE::DIR); }
@@ -87,7 +86,6 @@ struct DIFFITEM : DIFFCODE
 
 	DIFFITEM() : ndiffs(-1), nsdiffs(-1),
 		sfilename(_T("")), sSubdir(_T("")) { }
-	DIFFITEM(const DIFFITEM &di);
 
 	CString getLeftFilepath(CString sLeftRoot) const;
 	CString getRightFilepath(CString sRightRoot) const;

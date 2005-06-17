@@ -34,18 +34,6 @@ static __int64 FileTimeToInt64(FILETIME & ft)
 }
 
 /**
- * @brief Copy constructor.
- */
-FileInfo::FileInfo(const FileInfo &fi)
-{
-	ctime = fi.ctime;
-	mtime = fi.mtime;
-	size = fi.size;
-	version = fi.version;
-	flags = fi.flags;
-}
-
-/**
  * @brief Update fileinfo from given file
  * @param [in] sFilePath Full path to file/directory to update
  */
