@@ -4,6 +4,9 @@
   Src/Languages/Swedish: MergeSwedish.rc
  BUG: [ 1222705 ] DiffFileInfo copy constructor broken (current CVS)
   Src: DiffFileInfo.cpp DiffFileInfo.h DiffItem.cpp DiffItem.h FileInfo.cpp FileInfo.h
+ PATCH: [ 1220492 ] Improve backup-fail message to show actual filename
+  Src: MainFrm.cpp Merge.rc
+  Src/Languages: *.rc
 
 2005-06-15 Kimmo
  PATCH: [ 1220472 ] Don't lose selection when deleting items from dir compare

@@ -1764,7 +1764,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "Ez a fájl: %1 csak olvasható. Szeretnéd ezt megváltoztatni? (Kattints a Nem gombra a fájl új néven való mentéséhez.)"
     IDS_ERROR_FILE_WRITEABLE "Hiba a cél írhatóságának ellenõrzésekor"
     IDS_ERROR_BACKUP        "Hiba a fájl biztonsági másolatának készítésekor"
-    IDS_BACKUP_FAILED_PROMPT "Nem lehetett menteni a biztonsági másolatot.\nSzeretnéd ennek ellenére folytatni?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Ez a bõvítmény '%2' nem tudja visszacsomagolni a bal oldalon megváltoztatott '%1' fájlt.\n\nAz eredeti fájl nem lett megváltoztatva.\n\nSzeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
     IDS_FILEPACK_FAILED_RIGHT "Ez a bõvítmény '%2' nem tudja visszacsomagolni a jobb oldalon megváltoztatott '%1' fájlt.\n\nAz eredeti fájl nem lett megváltoztatva.\n\nSzeretnéd menteni a kicsomagolt változatot egy másik fájlba?"

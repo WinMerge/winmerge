@@ -1779,7 +1779,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 помечен как ""только для чтения"". Согласны ли вы заменить этот файл ? (""Нет"" позволяет задать новое имя файла)"
     IDS_ERROR_FILE_WRITEABLE "Ошибка проверки возможности записи в указанное место"
     IDS_ERROR_BACKUP        "Ошибка создания резервной копии"
-    IDS_BACKUP_FAILED_PROMPT "Нет возможности создать резервную копию оригинала?\nВсе равно продолжить ?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Плагин '%2' не может запаковать ваши изменения обратно в файл слева '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"
     IDS_FILEPACK_FAILED_RIGHT "Плагин '%2' не может запаковать ваши изменения обратно в файл справа '%1'.\n\nОригинал останется не измененным.\n\nХотите сохранить распакованную версию в другой файл?"

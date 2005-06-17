@@ -1416,7 +1416,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 		
 		if (!success)
 		{
-			if (AfxMessageBox(IDS_BACKUP_FAILED_PROMPT,
+			if (ResMsgBox1(IDS_BACKUP_FAILED_PROMPT, pszPath,
 					MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 
 					IDS_BACKUP_FAILED_PROMPT) != IDYES)
 				return FALSE;

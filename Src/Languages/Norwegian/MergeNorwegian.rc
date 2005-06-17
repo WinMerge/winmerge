@@ -1877,7 +1877,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 er markert som skrivebeskyttet. Vil du lagre filen under et annet navn?"
     IDS_ERROR_FILE_WRITEABLE "Sjekk skrivebeskyttelsen på destinasjonen"
     IDS_ERROR_BACKUP        "Feil under backup av filen"
-    IDS_BACKUP_FAILED_PROMPT "Kan ikke ta backup av den originale filen.\nVil du fortsette allikevel?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Programtillegg '%2' klarte ikke pakke endringene dine for venstre fil tilbake inn i '%1'.\n\nDen original filen blir ikke endret.\n\nVil du lagre den upakkede versjonen fil en annen fil?"
     IDS_FILEPACK_FAILED_RIGHT "Programtillegg '%2' klarte ikke pakke endringene dine for høyre fil tilbake inn i '%1'.\n\nDen original filen blir ikke endret.\n\nVil du lagre den upakkede versjonen fil en annen fil?"

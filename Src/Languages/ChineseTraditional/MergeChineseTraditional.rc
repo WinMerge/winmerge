@@ -1863,7 +1863,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 是標記為唯讀。 你要覆寫唯讀檔案嗎 ？ (不可以另存為新檔案名稱。)"
     IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
     IDS_ERROR_BACKUP        "錯誤備份檔案"
-    IDS_BACKUP_FAILED_PROMPT "無法備份原始的檔案。\n無論如何要繼續嗎？"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "儲存檔案失敗。\n%1\n%2\n你要以一個不同名稱儲存檔案嗎？"
     IDS_FILEPACK_FAILED_LEFT "外掛 '%2' 無法封包你對左邊檔案的變更回到 '%1'.\n\n原始檔案不會變更。\n\n你要儲存解封包版本為另一檔案嗎？"
     IDS_FILEPACK_FAILED_RIGHT "外掛 '%2' 無法封包你對右邊檔案的變更回到 '%1'.\n\n原始檔案不會變更。\n\n你要儲存解封包版本為另一檔案嗎？"

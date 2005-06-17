@@ -1766,7 +1766,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT      "%1 est en lecture seule. Voulez-vous outrepasser ? (Choisissez Non pour enregistrer avec un nouveau nom.)"
     IDS_ERROR_FILE_WRITEABLE  "Erreur en vérifiant les droits en écriture de la destination"
     IDS_ERROR_BACKUP          "Erreur lors du backup du fichier"
-    IDS_BACKUP_FAILED_PROMPT  "Erreur lors du backup du fichier original.\nContinuer quand même ?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED       "Erreur lors de l'enregistrement.\n%1\n%2\nVoulez-vous:\n\t-utiliser un nom autre nom de fichier (Ok)\n\t-avorter l'opération en cours (Annuler)?"
     IDS_FILEPACK_FAILED_LEFT  "Le plugiciel '%2' ne peut compressé le fichier modifié de gauche dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILEPACK_FAILED_RIGHT "Le plugiciel '%2' ne peut compressé le fichier modifié de droite dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"

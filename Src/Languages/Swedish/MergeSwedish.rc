@@ -1877,7 +1877,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara filen med ett annat namn)?"
     IDS_ERROR_FILE_WRITEABLE "Kontrollera skrivbarhet på destinationen!"
     IDS_ERROR_BACKUP        "Fel under backup av filen"
-    IDS_BACKUP_FAILED_PROMPT "Kan inte ta backup på originalfilen.\nVill du fortsätta i alla fall?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Det gick inte att spara filen.\n%1\n%2\nVill du:\n\t-använda ett annat filnamn (Tryck Ok)\n\t-avbryta sparande av fil (Tryck Avbryt)?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan inte packa dina förändringar av den vänstra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan inte packa dina förändringar av den högra filen tillbaka till '%1'.\n\nOriginalfilen blir inte ändrad.\n\nVill du spara den uppackade versionen till en annan fil?"

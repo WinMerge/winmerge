@@ -1881,7 +1881,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 está marcado somente-leitura.  Você gostaria de salvar suas alterações com um nome de diferente?"
     IDS_ERROR_FILE_WRITEABLE "Erro ao checar escrita no destino"
     IDS_ERROR_BACKUP        "Erro ao realizar cópia de segurança do arquivo"
-    IDS_BACKUP_FAILED_PROMPT "Não foi possível fazer a cópia de segurança do arquivo original.\nContinuar assim mesmo?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"

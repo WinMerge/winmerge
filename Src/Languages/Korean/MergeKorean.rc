@@ -1761,7 +1761,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 은 읽기전용 파일입니다. 덮어쓰시겠습니까 ? (다른이름으로 저장하려면 아니오를 선택하세요.)"
     IDS_ERROR_FILE_WRITEABLE "복사 가능 체크 실패"
     IDS_ERROR_BACKUP        "파일 백업을 실패하였습니다"
-    IDS_BACKUP_FAILED_PROMPT "원본 파일을 백업할 수 없습니다.\n계속하시겠습니까?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n\nThe original file will not be changed.\n\nDo you want to save the unpacked version to another file?"

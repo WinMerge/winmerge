@@ -1763,7 +1763,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 er markeret som skrivebeskyttet. Vil du ignorerer skrivebeskyttelsen? (Nej for at gemme til et andet filnavn.)"
     IDS_ERROR_FILE_WRITEABLE "Fejl ender tjek af skrivebeskyttelsen på destinationen"
     IDS_ERROR_BACKUP        "Fejl under backup af filen"
-    IDS_BACKUP_FAILED_PROMPT "Kan ikke lave backup af den originale fil.\nVil du fortsætte alligevel?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kan ikke pakke dine ændringer til den venstre fil tilbage til '%1'.\n\nDen originale fil vil ikke blive ændret.\n\nVil du gemme den udpakkede version under et andet filnavn?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kan ikke pakke dine ændringer til den højre fil tilbage til '%1'.\n\nDen originale fil vil ikke blive ændret.\n\nVil du gemme den udpakkede version under et andet filnavn?"

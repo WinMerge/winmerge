@@ -1880,7 +1880,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 is gemarkeerd als alleen lezen. Wilt u dit alleen-lezen bestand overschrijven? (Niet opslaan onder nieuwe naam.)"
     IDS_ERROR_FILE_WRITEABLE "Fout bij het controleren van de schrijfrechten van het doelbestand"
     IDS_ERROR_BACKUP        "Fout bij het maken van een veiligheidskopie"
-    IDS_BACKUP_FAILED_PROMPT "Kan geen veiligheidskopie maken van originele bestand. \nToch doorgaan?"
+    IDS_BACKUP_FAILED_PROMPT
+                            "Unable to backup original file:\n%1\n\nContinue anyway?"
     IDS_FILESAVE_FAILED     "Het opslaan van het bestand is mislukt.\n%1\n%2\nWilt u het bestand onder een andere naam opslaan?"
     IDS_FILEPACK_FAILED_LEFT "Plug-in '%2' kan de wijzigingen aan de linker kant niet opslaan in '%1'.\n\nHet originele bestand zal niet worden gewijzigd.\n\nWilt u de uitgepakte versie in een ander bestand opslaan?"
     IDS_FILEPACK_FAILED_RIGHT "Plug-in '%2' kan de wijzigingen aan de rechter kant niet opslaan in '%1'.\n\nHet originele bestand zal niet worden gewijzigd.\n\nWilt u de uitgepakte versie in een ander bestand opslaan?"
