@@ -213,7 +213,7 @@ BEGIN
         MENUITEM "Kopiera allt &till höger",    ID_ALL_RIGHT
         MENUITEM "Kopiera allt t&ill vänster",  ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
+        MENUITEM "&Ta bort\tDelete",                ID_MERGE_DELETE
     END
     POPUP "Verkt&yg"
     BEGIN
@@ -446,7 +446,7 @@ BEGIN
             MENUITEM "&Skillnader... (%1 av %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Refresh",                        ID_DIR_RESCAN
+        MENUITEM "&Uppdatera",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -656,10 +656,10 @@ BEGIN
                     WS_TABSTOP,7,57,206,10
     CONTROL         "&Tillåt bara en upplaga att köra",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,82,221,37
-    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
+    GROUPBOX        "Starta flera jämförfönster för",IDC_STATIC,7,82,221,37
+    CONTROL         "&Jämför kataloger",IDC_MULTIDOC_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+    CONTROL         "Jäm&för filer",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
     PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
                     WS_TABSTOP
@@ -1891,7 +1891,7 @@ END
 // Editing/Merging file
 STRINGTABLE
 BEGIN
-    IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+    IDS_VIEWS_OUTOFSYNC     "Kan inte lägga samman skillnader när filerna inte är synkroniserade.\n\nUppdatera filerna innan du fortsätter."
 END
 
 // VSS
@@ -2479,7 +2479,7 @@ BEGIN
     ID_OPTIONS              "Ändrar programinställningar\nEgenskaper"
     ID_REFRESH              "Uppdaterar innehållet\nUppdatera (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopierar valda rader till klippboken och adderar radnummer till radernas start"
-    ID_DIR_RESCAN            "Refresh selected items"
+    ID_DIR_RESCAN            "Uppdaterar valda objekt"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2520,7 +2520,7 @@ BEGIN
     ID_R2LNEXT              "Kopierar skillnad till vänster och går fram till nästa\nKopiera vänster och gå framåt (Ctrl Alt Vänster)"
     ID_ALL_RIGHT            "Kopierar alla skillnader till den högra filen\nKopiera allt till höger"
     ID_ALL_LEFT             "Kopierar alla skillnader till den vänstra filen\nKopiera allt till vänster"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_DELETE         "Tar bort valda objekt från båda katalogerna"
 END
 
 // TOOLS MENU

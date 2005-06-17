@@ -1,3 +1,8 @@
+2005-06-17 Kimmo
+ PATCH: [ 1221672 ] MergeSwedish. rc 1.207 update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2005-06-15 Kimmo
  PATCH: [ 1220472 ] Don't lose selection when deleting items from dir compare
   Src: DirActions.cpp
