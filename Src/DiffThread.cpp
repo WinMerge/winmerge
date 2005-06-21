@@ -207,7 +207,7 @@ UINT DiffThread(LPVOID lpParam)
 	}
 	else
 	{
-		DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth, myStruct->m_pAbortgate);
+		DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth,  myStruct->context, myStruct->m_pAbortgate);
 		DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
 	}
 

@@ -221,6 +221,10 @@ SOURCE=.\ColorButton.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CompareStats.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ConfigLog.cpp
 # End Source File
 # Begin Source File
@@ -894,6 +898,10 @@ SOURCE=.\codepage_detect.h
 # Begin Source File
 
 SOURCE=.\ColorButton.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CompareStats.h
 # End Source File
 # Begin Source File
 

@@ -32,6 +32,8 @@
 #include "EditorFilepathBar.h"
 #include "DirCompStateBar.h"
 
+class CompareStats;
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirFrame frame
 
@@ -54,11 +56,12 @@ public:
 	CStatusBar  m_wndStatusBar;
 	void SetClosableCallback(bool (*canclose)(void *), void * param);
 	IHeaderBar * GetHeaderInterface();
-	void rptStatus(UINT diffcode);
 	void clearStatus();
 	void ShowProcessingBar(BOOL bShow);
 	void NotifyHideStateBar();
 	void UpdateResources();
+	void SetCompareStats(CompareStats *pCompareStats);
+	void UpdateStats();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -95,7 +98,6 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg LRESULT OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

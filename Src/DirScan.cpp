@@ -10,6 +10,7 @@
 #include <shlwapi.h>
 #include <sys/stat.h>
 #include "DirScan.h"
+#include "CompareStats.h"
 #include "common/unicoder.h"
 #include "DiffContext.h"
 #include "DiffWrapper.h"
@@ -74,9 +75,12 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @return 1 normally, -1 if compare was aborted
  */
 int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemList *pList,
-		bool casesensitive, int depth, IAbortable * piAbortable)
+		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable)
 {
 	static const TCHAR backslash[] = _T("\\");
+
+	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_COLLECT);
+
 	CString sLeftDir = paths.GetLeft();
 	CString sRightDir = paths.GetRight();
 	CString subprefix;
@@ -144,7 +148,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 					// Recursive compare
 					// Scan recursively all subdirectories too, we are not adding folders
 					if (DirScan_GetItems(paths, newsub, pList, casesensitive,
-							depth - 1, piAbortable) == -1)
+							depth - 1, pCtxt, piAbortable) == -1)
 					{
 						return -1;
 					}
@@ -225,17 +229,25 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
  */
 int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable)
 {
+	int res = 1;
+
+	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
+
 	POSITION pos = list.GetFirstDiffPosition();
 	
 	while (pos != NULL)
 	{
 		if (piAbortable && piAbortable->ShouldAbort())
-			return -1;
+		{
+			res = -1;
+			break;
+		}
 
 		DIFFITEM di = list.GetNextDiffPosition(pos);
 		CompareDiffItem(di, pCtxt);
 	}
-	return 1;
+	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
+	return res;
 }
 
 /**
@@ -247,12 +259,19 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable *
  */
 int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
 {
+	int res = 1;
+
+	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
+
 	POSITION pos = pCtxt->GetFirstDiffPosition();
 	
 	while (pos != NULL)
 	{
 		if (piAbortable && piAbortable->ShouldAbort())
-			return -1;
+		{
+			res = -1;
+			break;
+		}
 
 		POSITION oldPos = pos;
 		DIFFITEM di = pCtxt->GetNextDiffPosition(pos);
@@ -265,7 +284,8 @@ int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
 				CompareDiffItem(di, pCtxt);
 		}
 	}
-	return 1;
+	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
+	return res;
 }
 
 /**

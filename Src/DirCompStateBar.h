@@ -9,8 +9,12 @@
 #if !defined(AFX_DIRCOMPSTATEDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
 #define AFX_DIRCOMPSTATEDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_
 
+#ifndef _COMPARESTATS_H_
+#include "CompareStats.h"
+#endif
 
 class CDirFrame;
+class CompareStats;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirCompStateBar dialog
@@ -27,34 +31,20 @@ class CDirCompStateBar : public CDialogBar
 public:
 	CDirCompStateBar(CWnd* pParent = NULL);   // standard constructor
 	BOOL Create(CWnd* pParentWnd);
-	void AddElement(UINT diffcode);
 	BOOL GetDefaultRect( LPRECT lpRect ) const;
 	void UpdateText(CStatic * ctrl, int num) const;
 	void Reset();
 	void UpdateElements();
+	void SetCompareStat(CompareStats * pCompareStats);
+	void StartUpdating();
+	void EndUpdating();
+	UINT GetIDFromResult(CompareStats::RESULT res);
 
 // Dialog Data
 	//{{AFX_DATA(CDirCompStateBar)
 	enum { IDD = IDD_DIRCOMPSTATE };
-	int		m_nBinaryDiff;
-	int		m_nBinarySame;
-	int		m_nEqual;
-	int		m_nFileSkip;
-	int		m_nFolderSkip;
-	int		m_nLFile;
-	int		m_nLFolder;
-	int		m_nNotEqual;
-	int		m_nRFile;
-	int		m_nRFolder;
-	int		m_nError;
-	int		m_nFolder;
 	CButton	m_ctlStop;
 	//}}AFX_DATA
-
-	CString strAbort;
-	CString strClose;
-
-	long m_lElapsed;
 
 // Overrides
 	virtual CSize CalcFixedLayout(BOOL bStretch, BOOL bHorz);
@@ -75,8 +65,16 @@ protected:
 	afx_msg void OnStop();
 	afx_msg void OnUpdateStop(CCmdUI* pCmdUI);
 	afx_msg void OnWindowPosChanging( WINDOWPOS* lpwndpos );
+	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	CString strAbort; /**< 'Stop' text for button */
+	CString strClose; /**< 'Close' text for button */
+	long m_lElapsed; /**< Elapsed time for compare */
+	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
+	BOOL m_bStopText; /**< Button has 'Stop' text? */
 };
 
 //{{AFX_INSERT_LOCATION}}

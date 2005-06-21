@@ -21,7 +21,7 @@ public:
 };
 
 int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemList * pLst,
-		bool casesensitive, int depth, IAbortable * piAbortable);
+		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable);
 
 int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable);
 int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable);

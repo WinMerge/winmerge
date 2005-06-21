@@ -1,3 +1,10 @@
+2005-06-21 Kimmo
+ PATCH: [ 1223754 ] Improve dircompare stats system
+  Src: DiffContext.cpp DiffContext.h DiffThread.cpp DirCompareStateBar.cpp
+   DirCompareStateBar.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h DirScan.cpp
+   DirScan.h DirView.cpp Merge.dsp
+  Src new files: CompareStats.cpp CompareStats.h
+
 2005-06-21 WinMerge experimental release 2.3.3.6 (cvs)
 
 2005-06-21 Kimmo

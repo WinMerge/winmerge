@@ -29,6 +29,7 @@
 
 #include "stdafx.h"
 #include "Merge.h"
+#include "CompareStats.h"
 #include "DirFrame.h"
 #include "FilepathEdit.h"
 #include "DirDoc.h"
@@ -92,7 +93,6 @@ BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
-	ON_MESSAGE(MSG_STAT_UPDATE, OnUpdateStatusMessage)
 	ON_WM_MDIACTIVATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -252,6 +252,9 @@ void CDirFrame::SetStateBarLoc()
 	FloatControlBar(&m_wndCompStateBar, origin);
 }
 
+/**
+ * @brief Empty diff-number pane from statusbar when dirview active
+ */
 void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	pCmdUI->SetText(_T(""));
@@ -308,21 +311,6 @@ void CDirFrame::clearStatus()
 	m_wndCompStateBar.Reset();
 }
 
-/// diff completed another file
-void CDirFrame::rptStatus(UINT diffcode)
-{
-	m_wndCompStateBar.AddElement(diffcode);
-}
-
-LRESULT CDirFrame::OnUpdateStatusMessage(WPARAM wParam, LPARAM lParam)
-{
-	if (wParam == 0xFF)
-		clearStatus();
-	else
-		rptStatus(wParam);
-	return 0; // return value not meaningful
-}
-
 /** 
  * @brief Interface to show/hide the floating state bar
  */
@@ -333,9 +321,13 @@ void CDirFrame::ShowProcessingBar(BOOL bShow)
 		ShowControlBar(&m_wndCompStateBar, TRUE, FALSE);
 		// disable the list view as long as the state bar is shown
 		GetActiveView()->EnableWindow(FALSE);
+		m_wndCompStateBar.StartUpdating();
 	}
-	else if (!bShow) 
+	else if (!bShow)
+	{
+		m_wndCompStateBar.EndUpdating();
 		ShowControlBar(&m_wndCompStateBar, FALSE, FALSE);
+	}
 
 	m_bStateBarIsActive = bShow;
 }
@@ -448,4 +440,12 @@ void CDirFrame::ShowControlBar( CControlBar* pBar, BOOL bShow, BOOL bDelay )
 	}
 }
 
+void CDirFrame::SetCompareStats(CompareStats *pCompareStats)
+{
+	m_wndCompStateBar.SetCompareStat(pCompareStats);
+}
 
+void CDirFrame::UpdateStats()
+{
+	m_wndCompStateBar.UpdateElements();
+}

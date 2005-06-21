@@ -2058,15 +2058,7 @@ void CDirView::OnDirStatePane()
 
 	// Clear and recount item numbers
 	pf->clearStatus();
-	DIFFITEM di;
-	POSITION pos = ctxt.GetFirstDiffPosition();
-	while (pos)
-	{
-		di = ctxt.GetDiffAt(pos);
-		pf->rptStatus(di.diffcode);
-		ctxt.GetNextDiffPosition(pos);
-	}
-
+	pf->UpdateStats();
 	pf->ShowProcessingBar(TRUE);
 }
 

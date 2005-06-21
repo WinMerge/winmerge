@@ -31,6 +31,7 @@
 #include "stdafx.h"
 #include <Shlwapi.h>		// PathCompactPathEx()
 #include "Merge.h"
+#include "CompareStats.h"
 #include "DirDoc.h"
 #include "DirFrame.h"
 #include "diff.h"
@@ -64,6 +65,7 @@ IMPLEMENT_DYNCREATE(CDirDoc, CDocument)
 CDirDoc::CDirDoc()
 : m_pCtxt(NULL)
 , m_pDirView(NULL)
+, m_pCompareStats(NULL)
 , m_bROLeft(FALSE)
 , m_bRORight(FALSE)
 , m_bRecursive(FALSE)
@@ -90,6 +92,8 @@ CDirDoc::CDirDoc()
 CDirDoc::~CDirDoc()
 {
 	delete m_pCtxt;
+	delete m_pCompareStats;
+
 	// Inform all of our merge docs that we're closing
 	for (POSITION pos = m_MergeDocs.GetHeadPosition(); pos; )
 	{
@@ -179,9 +183,12 @@ BOOL CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive)
 	if (m_pCtxt != NULL)
 		delete m_pCtxt;
 	
+	if (m_pCompareStats == NULL)
+		m_pCompareStats = new CompareStats();
+
 	m_pCtxt = new CDiffContext(paths.GetLeft(), paths.GetRight());
 	
-	if (m_pCtxt != NULL)
+	if (m_pCtxt != NULL && m_pCompareStats != NULL)
 	{
 		m_bRecursive = bRecursive;
 		// All plugin management is done by our plugin manager
@@ -209,6 +216,8 @@ void CDirDoc::Rescan()
 
 	gLog.Write(LOGLEVEL::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
 			m_pCtxt->GetLeftPath(), m_pCtxt->GetRightPath());
+	m_pCompareStats->Reset();
+	pf->SetCompareStats(m_pCompareStats);
 	pf->clearStatus();
 	pf->ShowProcessingBar(TRUE);
 
@@ -221,6 +230,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
 	m_pCtxt->m_nCompMethod = mf->m_options.GetInt(OPT_CMP_METHOD);
 	m_pCtxt->m_bIgnoreSmallTimeDiff = mf->m_options.GetBool(OPT_IGNORE_SMALL_FILETIME);
+	m_pCtxt->m_pCompareStats = m_pCompareStats;
 	UpdateHeaderPath(TRUE);
 	UpdateHeaderPath(FALSE);
 	// draw the headers as active ones
@@ -766,6 +776,7 @@ void CDirDoc::AbortCurrentScan()
 {
 	gLog.Write(LOGLEVEL::LNOTICE, _T("Dircompare aborted!"));
 	m_diffThread.Abort();
+	m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
 }
 
 /**

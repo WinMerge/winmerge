@@ -26,6 +26,7 @@ class PackingInfo;
 class PrediffingInfo;
 class IDiffFilter;
 struct DIFFITEM;
+class CompareStats;
 
 // Interface for reporting current file, as diff traverses file tree
 class IDiffStatus
@@ -89,6 +90,7 @@ public:
 	BOOL m_bGuessEncoding;
 	int m_nCompMethod; /**< Compare method */
 	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
+	CompareStats *m_pCompareStats;
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */

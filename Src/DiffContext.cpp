@@ -29,6 +29,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "CompareStats.h"
 #include "version.h"
 #include "DiffContext.h"
 #include "paths.h"
@@ -109,9 +110,7 @@ static CString GetFixedFileVersion(const CString & path)
 void CDiffContext::AddDiff(const DIFFITEM & di)
 {
 	DiffItemList::AddDiff(di);
-
-	// ignore return value
-	SendMessage(m_hDirFrame, m_msgUpdateStatus, di.diffcode, NULL);
+	m_pCompareStats->AddItem(di.diffcode);
 }
 
 /**

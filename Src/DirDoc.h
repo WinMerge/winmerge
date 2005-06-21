@@ -137,6 +137,7 @@ protected:
 private:
 	CDiffContext *m_pCtxt; /**< Pointer to diff-data */
 	CDirView *m_pDirView;
+	CompareStats *m_pCompareStats;
 	MergeDocPtrList m_MergeDocs;
 	BOOL m_bROLeft; /**< Is left side read-only */
 	BOOL m_bRORight; /**< Is right side read-only */
