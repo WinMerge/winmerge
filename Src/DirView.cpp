@@ -842,9 +842,9 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 	{
 		POSITION diffpos = GetItemKey(sel);
 
-		// Browse to parent folder(s) selected, -1 is position for
+		// Browse to parent folder(s) selected, SPECIAL_ITEM_POS is position for
 		// special items, but there is currenly only one (parent folder)
-		if (diffpos == (POSITION) -1)
+		if (diffpos == (POSITION) SPECIAL_ITEM_POS)
 		{
 			OpenParentDirectory();
 			break;
@@ -1152,7 +1152,7 @@ DIFFITEM CDirView::GetDiffItem(int sel)
 	POSITION diffpos = GetItemKey(sel);
 	
 	// If it is special item, return empty DIFFITEM
-	if (diffpos == (POSITION) -1)
+	if (diffpos == (POSITION) SPECIAL_ITEM_POS)
 	{
 		static DIFFITEM item;
 		return item;
@@ -2134,7 +2134,7 @@ void CDirView::AddParentFolderItem(BOOL bEnable)
 {
 	int i = AddNewItem(0);
 	SetImage(i, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
-	SetItemKey(i, (POSITION) -1);
+	SetItemKey(i, (POSITION) SPECIAL_ITEM_POS);
 
 	LV_ITEM lvItem;
 	lvItem.mask = LVIF_TEXT;
@@ -2231,9 +2231,9 @@ void CDirView::OnSelectAll()
 
 	for (int i = 0; i < selCount; i++)
 	{
-		// Don't select special items (POSITION -1)
+		// Don't select special items (SPECIAL_ITEM_POS)
 		POSITION diffpos = GetItemKey(i);
-		if (diffpos != (POSITION) -1)
+		if (diffpos != (POSITION) SPECIAL_ITEM_POS)
 			m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
 	}
 }

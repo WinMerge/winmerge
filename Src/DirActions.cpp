@@ -970,7 +970,7 @@ CString CDirView::GetSelectedFileName(SIDE_TYPE stype) const
 void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) const
 {
 	POSITION diffpos = GetItemKey(sel);
-	if (diffpos == (POSITION)-1)
+	if (diffpos == (POSITION)SPECIAL_ITEM_POS)
 	{
 		strLeft.Empty();
 		strRight.Empty();
@@ -994,7 +994,7 @@ void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 {
 	ASSERT(paths);
 	POSITION diffpos = GetItemKey(sel);
-	if (diffpos == (POSITION)-1)
+	if (diffpos == (POSITION)SPECIAL_ITEM_POS)
 	{
 		paths->SetLeft(_T(""));
 		paths->SetRight(_T(""));

@@ -1,3 +1,7 @@
+2005-06-21 Kimmo
+ PATCH: [ 1224249 ] Use constant for dirview special items
+  Src: DirActions.cpp DirView.cpp DirView.h
+
 2005-06-17 Kimmo
  PATCH: [ 1221672 ] MergeSwedish. rc 1.207 update
   Submitted by Hans Eriksson

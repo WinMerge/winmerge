@@ -48,10 +48,25 @@ class PathContext;
 
 namespace varprop { struct VariantValue; }
 
+/**
+ * @brief Position value for special items (..) in directory compare view.
+ */
+const int SPECIAL_ITEM_POS = -1;
+
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
 
-/** View displaying results of a diff, one row per file */
+/**
+ * @brief Directory compare results view.
+ *
+ * Directory compare view is list-view based, so it shows one result (for
+ * folder or file, commonly called as 'item') in one line. User can select
+ * visible columns, re-order columns, sort by column etc.
+ *
+ * Actual data is stored in CDiffContext in CDirDoc. Dircompare items and
+ * CDiffContext items are linked by storing POSITION of CDiffContext item
+ * as CDirView listitem key.
+ */
 class CDirView : public CListViewEx
 {
 	class DirItemEnumerator;
