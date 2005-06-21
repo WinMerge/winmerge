@@ -1,3 +1,5 @@
+2005-06-21 WinMerge experimental release 2.3.3.6 (cvs)
+
 2005-06-21 Kimmo
  PATCH: [ 1224249 ] Use constant for dirview special items
   Src: DirActions.cpp DirView.cpp DirView.h
