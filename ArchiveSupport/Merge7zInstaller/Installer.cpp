@@ -33,6 +33,7 @@ DATE:		BY:					DESCRIPTION:
 								Fix empty path issue with GetFileTitle()
 								Accept extraction folder on command line
 								Batch options: /standalone, /select, /commit
+2005/05/30	Jochen Tucht		Standalone option now based on 7z420
 */
 
 #include <windows.h>
@@ -350,9 +351,13 @@ BOOL CALLBACK DlgMain_EnableStandalone(HWND hWnd)
 {
 	if (IsDlgButtonChecked(hWnd, 205))
 	{
-		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z313.dll");
-		int upper = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z313U.dll");
+		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z420.dll");
+		int upper = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z420U.dll");
 		SendDlgItemMessage(hWnd, 100, LB_SELITEMRANGEEX, lower, upper);
+		if (GetFocus() == GetDlgItem(hWnd, 205))
+		{
+			SendDlgItemMessage(hWnd, 100, LB_SETTOPINDEX, lower, 0);
+		}
 	}
 	return TRUE;
 }

@@ -66,6 +66,10 @@ BuildCmds= \
 	del Merge7z.7z \
 	del Merge7z.zip \
 	mkdir Zip \
+	FOR %%A IN (Zip\*.*) DO del %%A \
+	FOR %%A IN (Zip\Codecs\*.*) DO del %%A \
+	FOR %%A IN (Zip\Formats\*.*) DO del %%A \
+	FOR %%A IN (Zip\Lang\*.*) DO del %%A \
 	Merge7zInstaller /commit /standalone /select M M Zip \
 	cd Zip \
 	7za a ..\Merge7z.7z -r * -mx5 \
@@ -104,20 +108,6 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:no /debug /machine:I386 /nodefaultlib /pdbtype:sept
-# Begin Custom Build
-OutDir=.\Debug
-InputPath=.\Debug\Merge7zInstaller.exe
-SOURCE="$(InputPath)"
-
-"$(OUTDIR)\Merge7z.7z" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
-	cd $(OUTDIR) 
-	del Merge7z.7z 
-	mkdir Zip 
-	Merge7zInstaller /commit /standalone /select M M Zip 
-	cd Zip 
-	7za a ..\Merge7z.7z -r * 
-	
-# End Custom Build
 
 !ENDIF 
 
