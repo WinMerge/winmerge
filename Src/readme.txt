@@ -1,3 +1,11 @@
+2005-06-22 Jochen
+ RFE: [ 1205833 ] You can unzip more than just zip #1: Treat .ear and .war like .zip
+  Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
+ Change recommended version of 7-Zip to 4.20; remove noise from Merge7z Nagbox
+  Src: 7zCommon.cpp  
+ PATCH: [ 1215162 ] Merge7zInstaller update
+  Merge7zInstaller: Files.rc2 Installer.cpp Installer.rc Merge7zInstaller.dsp 
+
 2005-06-22 Kimmo
  PATCH: [ 1225090 ] Fix bug that additional item gets selected in dircompare
   Src: DirActions.cpp
