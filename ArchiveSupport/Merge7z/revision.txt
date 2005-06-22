@@ -38,3 +38,5 @@ VERSION(2,2)
 //								according to LANGID given in HIWORD(dwFlags)
 //								Allow for Merge7z::LoadLang(MAKEINTATOM(LANGID))
 //								Don't show error message on intentional abort
+
+"*"//2005/06/22 Jochen Tucht	Treat .ear and .war like .zip

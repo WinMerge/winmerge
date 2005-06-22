@@ -29,6 +29,7 @@ DATE:		BY:					DESCRIPTION:
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 2005/03/19	Jochen Tucht		Changed as explained in revision.txt
+2005/06/22	Jochen Tucht		Treat .ear and .war like .zip
 */
 
 #include "stdafx.h"
@@ -602,6 +603,8 @@ Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 		ENUM(Z)
 		ENUM(ZIP)
 		ENUM(JAR)
+		ENUM(WAR)
+		ENUM(EAR)
 		ENUM(XPI)
 		ENUM(RAR)
 		ENUM(BZ2)
@@ -626,6 +629,8 @@ Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 		break;
 	case EnumList::ZIP:
 	case EnumList::JAR:
+	case EnumList::WAR:
+	case EnumList::EAR:
 	case EnumList::XPI:
 		pFormat = &CZipHandler;
 		break;
