@@ -1,3 +1,7 @@
+2005-06-22 Perry
+ Cosmetic: Fix grammar in comment (directory -> directories)
+  Src: FileFilterHelper.cpp
+
 2005-06-21 Kimmo
  PATCH: [ 1223754 ] Improve dircompare stats system
   Src: DiffContext.cpp DiffContext.h DiffThread.cpp DirCompareStateBar.cpp

@@ -212,7 +212,7 @@ BOOL FileFilterHelper::includeDir(LPCTSTR szDirName)
 {
 	if (m_bUseMask)
 	{
-		// directory have no extension
+		// directories have no extension
 		return TRUE; 
 	}
 	else
