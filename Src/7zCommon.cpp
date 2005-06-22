@@ -66,6 +66,8 @@ DATE:		BY:					DESCRIPTION:
 2005/04/24	Kimmo Varis			Don't use DiffContext exported from DirView
 2005/06/08	Kimmo Varis			Use DIFFITEM, not reference to it (hopefully only
 								temporarily, to sort out new directory compare)
+2005/06/22	Jochen Tucht		Change recommended version of 7-Zip to 4.20
+								Remove noise from Nagbox
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -134,7 +136,7 @@ protected:
 /**
  * @brief Recommended version of 7-Zip.
  */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(13,3);
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(20,4);
 
 /**
  * @brief Registry key for C7ZipMismatchException's ReportError() popup.
@@ -451,7 +453,6 @@ int C7ZipMismatchException::ReportError(UINT nType, UINT nMessageID)
 	if (response == -1)
 	{
 		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
-		MessageBeep(nType & MB_ICONMASK);
 		response = DialogBoxParam(AfxGetResourceHandle(), MAKEINTRESOURCE(IDD_MERGE7ZMISMATCH), hwndOwner, DlgProc, (LPARAM)this);
 		if (response == -1)
 		{
