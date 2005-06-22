@@ -1,3 +1,7 @@
+2005-06-22 Kimmo
+ PATCH: [ 1225090 ] Fix bug that additional item gets selected in dircompare
+  Src: DirActions.cpp
+
 2005-06-22 Perry
  Cosmetic: Fix grammar in comment (directory -> directories)
   Src: FileFilterHelper.cpp

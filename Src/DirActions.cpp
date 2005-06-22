@@ -686,7 +686,10 @@ void CDirView::PerformActionList(ActionList & actionList)
 	{
 		gLog.Write(_T("Fileoperation succeeded, %d item processed."), nItemCount);
 		UpdateCopiedItems(actionList);
-		UpdateDeletedItems(actionList);
+
+		// If there were deleted items, remove them from view
+		if (!actionList.deletedItems.IsEmpty())
+			UpdateDeletedItems(actionList);
 	}
 	else if (!bOpStarted)
 	{
