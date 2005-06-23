@@ -1,3 +1,8 @@
+2005-06-23 Kimmo
+ BUG: [ 1225257 ] cvs: FileFilters broken?
+  Restore behavior in 2.3.3.5 and earlier for directory filtering
+  Src: DirScan.cpp
+
 2005-06-22 Jochen
  RFE: [ 1205833 ] You can unzip more than just zip #1: Treat .ear and .war like .zip
   Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt

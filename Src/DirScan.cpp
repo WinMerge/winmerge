@@ -71,6 +71,7 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @param [in,out] list List where found items are added
  * @param [in] casesensitive Is filename compare casesensitive?
  * @param [in] depth Levels of subdirectories to scan, -1 scans all
+ * @param [in] pCtxt Compare context
  * @param [in] piAbortable Interface allowing compare to be aborted
  * @return 1 normally, -1 if compare was aborted
  */
@@ -135,22 +136,34 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			ASSERT(j<rightDirs.GetSize());
 			CString newsub = subprefix + leftDirs[i].name;
 			{
+				int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
 				if (!depth)
 				{
 					// Non-recursive compare
 					// We are only interested about list of subdirectories to show - user can open them
 					// TODO: scan one level deeper to see if directories are identical/different
-					int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
 					AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList);
 				}
 				else
 				{
 					// Recursive compare
-					// Scan recursively all subdirectories too, we are not adding folders
-					if (DirScan_GetItems(paths, newsub, pList, casesensitive,
-							depth - 1, pCtxt, piAbortable) == -1)
+					// Test against filter so we don't include contents of filtered out directories
+					// Also this is only place we can test for both-sides directories in recursive compare
+					if (!pCtxt->m_piFilterGlobal->includeDir(newsub))
 					{
-						return -1;
+						nDiffCode |= DIFFCODE::SKIPPED;
+						AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList);
+					}
+					else
+					{
+						// Scan recursively all subdirectories too, we are not adding folders
+						nDiffCode |= DIFFCODE::INCLUDED;
+
+						if (DirScan_GetItems(paths, newsub, pList, casesensitive,
+								depth - 1, pCtxt, piAbortable) == -1)
+						{
+							return -1;
+						}
 					}
 				}
 			}
