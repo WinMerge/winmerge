@@ -65,10 +65,11 @@
   <sect2>
     <title>File filters</title>
 
-    <para>File filter is set of rules saved to one file. Every file and
-    directory is tested against all there rules before comparing. Depending if
-    filter is exclusive of inclusive file or directory matching is excluded
-    from or included to compare.</para>
+    <para>A file filter is a set of rules saved to one file. Every file and
+    directory is tested against all these rules before comparing. Files and
+	directories that match the rules are excluded if it is an inclusive
+	filter, or included if it is an exclusive filter.
+    </para>
 
     <tip>
       <para>Ignored items have "<guilabel>Skipped</guilabel>" status in

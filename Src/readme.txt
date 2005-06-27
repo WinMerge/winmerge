@@ -4,6 +4,9 @@
  Apply new strings to translated resource files
   (IDS_DIRVIEW_STATUS_FMT_FOCUS & IDS_DIRVIEW_STATUS_FMT_NOFOCUS)
   Src/Languages: *.rc resource.h
+ Docs/Users/Manual/Filters.xml
+  (First line in file filters description) Minor grammar fixes, 
+  and rewrite of one incomprehensible line.
 
 2005-06-23 Kimmo
  BUG: [ 1225257 ] cvs: FileFilters broken?
