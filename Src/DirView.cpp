@@ -171,6 +171,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_MERGE_DELETE, OnDelete)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_DELETE, OnUpdateDelete)
 	ON_COMMAND(ID_DIR_RESCAN, OnMarkedRescan)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -2528,3 +2529,34 @@ void CDirView::OnMarkedRescan()
 	MarkForRescan();
 	GetDocument()->Rescan();
 }
+
+/**
+ * @brief Called to update the item count in the status bar
+ */
+void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI) 
+{
+	CString s; // text to display
+
+	int count = m_pList->GetItemCount();
+	int focusItem = GetFocusedItem();
+
+	if (focusItem == -1)
+	{
+		// No item has focus
+		CString sCnt;
+		sCnt.Format(_T("%ld"), count);
+		// "Items: %1"
+		AfxFormatString1(s, IDS_DIRVIEW_STATUS_FMT_NOFOCUS, sCnt);
+	}
+	else
+	{
+		// An item has focus
+		CString sIdx, sCnt;
+		sIdx.Format(_T("%ld"), focusItem+1);
+		sCnt.Format(_T("%ld"), count);
+		// "Item %1 of %2"
+		AfxFormatString2(s, IDS_DIRVIEW_STATUS_FMT_FOCUS, sIdx, sCnt); 
+	}
+	pCmdUI->SetText(s);
+}
+

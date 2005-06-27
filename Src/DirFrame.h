@@ -95,7 +95,6 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CDirFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
-	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd);

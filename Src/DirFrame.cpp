@@ -90,7 +90,6 @@ CDirFrame::~CDirFrame()
 BEGIN_MESSAGE_MAP(CDirFrame, CMDIChildWnd)
 	//{{AFX_MSG_MAP(CDirFrame)
 	ON_WM_CREATE()
-	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
 	ON_WM_MDIACTIVATE()
@@ -250,14 +249,6 @@ void CDirFrame::SetStateBarLoc()
 	origin -= rcBar.CenterPoint();
 	// always call once FloatControlBar for a floating bar
 	FloatControlBar(&m_wndCompStateBar, origin);
-}
-
-/**
- * @brief Empty diff-number pane from statusbar when dirview active
- */
-void CDirFrame::OnUpdateStatusNum(CCmdUI* pCmdUI) 
-{
-	pCmdUI->SetText(_T(""));
 }
 
 /**

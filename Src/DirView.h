@@ -325,6 +325,7 @@ protected:
 	afx_msg void OnDelete();
 	afx_msg void OnUpdateDelete(CCmdUI* pCmdUI);
 	afx_msg void OnMarkedRescan();
+	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

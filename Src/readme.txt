@@ -1,3 +1,7 @@
+2005-06-27 Perry
+ PATCH: 1213781 ] Fill item location into statusbar in dirview
+  DirFrame.cpp DirFrame.h DirView.cpp DirView.h Merge.rc resource.h
+
 2005-06-23 Kimmo
  BUG: [ 1225257 ] cvs: FileFilters broken?
   Restore behavior in 2.3.3.5 and earlier for directory filtering
