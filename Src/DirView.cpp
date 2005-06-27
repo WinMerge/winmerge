@@ -2334,7 +2334,7 @@ void CDirView::OnCopyRightPathnames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.isSideLeft())
 		{
-			strPaths += di. getRightFilepath(pDoc->GetLeftBasePath());
+			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
 				strPaths += di.sfilename;

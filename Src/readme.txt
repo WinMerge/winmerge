@@ -1,5 +1,5 @@
 2005-06-27 Perry
- PATCH: 1213781 ] Fill item location into statusbar in dirview
+ PATCH: [ 1213781 ] Fill item location into statusbar in dirview
   DirFrame.cpp DirFrame.h DirView.cpp DirView.h Merge.rc resource.h
  Apply new strings to translated resource files
   (IDS_DIRVIEW_STATUS_FMT_FOCUS & IDS_DIRVIEW_STATUS_FMT_NOFOCUS)
@@ -11,6 +11,8 @@
  Add example paths to function header comment of FileFilterHelper::LoadFileFilterDirPattern
   Docs/Users/Manual/Filters.xml
   Src/FilterFilterHelper.cpp
+ BUG: [ 1228493 ] Copy Pathnames/Right doesn't work
+  Src: DirView.cpp
 
 2005-06-23 Kimmo
  BUG: [ 1225257 ] cvs: FileFilters broken?
