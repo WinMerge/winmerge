@@ -1,6 +1,9 @@
 2005-06-27 Perry
  PATCH: 1213781 ] Fill item location into statusbar in dirview
   DirFrame.cpp DirFrame.h DirView.cpp DirView.h Merge.rc resource.h
+ Apply new strings to translated resource files
+  (IDS_DIRVIEW_STATUS_FMT_FOCUS & IDS_DIRVIEW_STATUS_FMT_NOFOCUS)
+  Src/Languages: *.rc resource.h
 
 2005-06-23 Kimmo
  BUG: [ 1225257 ] cvs: FileFilters broken?

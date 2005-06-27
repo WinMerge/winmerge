@@ -352,6 +352,8 @@
 #define IDS_NO_DIFF_SEL_FMT             16837
 #define IDS_1_DIFF_FOUND                16838
 #define IDS_STATUSBAR_READONLY          16839
+#define IDS_DIRVIEW_STATUS_FMT_FOCUS    16840
+#define IDS_DIRVIEW_STATUS_FMT_NOFOCUS  16841
 #define IDS_ERROR_INCOMPARABLE          17200
 #define IDS_DIRSEL_TAG                  17201
 #define IDS_OPEN_FILESDIRS              17202
