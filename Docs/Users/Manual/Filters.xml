@@ -90,21 +90,26 @@
     <sect3>
       <title>Filter files</title>
 
-      <para>Filter files are normal ASCII files, with <filename
-      class="extension">.flt</filename> extension. Filter files must be placed
-      to either:</para>
+      <para>Filter files are normal text files, with an extension of <filename
+      class="extension">.flt</filename>. Filter files must be placed
+      in either:</para>
 
       <itemizedlist>
         <listitem>
           <para>"<filename class="directory">Filters</filename>" subdirectory
-          in WinMerge program directory. This is recommended place.</para>
+          in the WinMerge program directory. This is the recommended place.</para>
         </listitem>
 
         <listitem>
           <para>"<filename class="directory">Winmerge/Filters</filename>"
-          subdirectory in user profile. This can be used for user personal
-          filter when there are many users. Or if backupping from profile
-          directory is wanted etc.</para>
+          subdirectory in user profile. Under Windows XP, this might be 
+          <filename class="directory">C:\Documents And Settings\username\Local Settings\Application Data\WinMerge\Filters</filename>
+          or
+          <filename class="directory">C:\Documents And Settings\username\Application Data\WinMerge\Filters</filename>.
+          This can be used to store personal filters for the individual user, or for a user
+          who lacks the ability to write to the WinMerge program directory.
+          This also is appropriate if backup & restore from an individual profile
+          directory is desired.</para>
         </listitem>
       </itemizedlist>
 

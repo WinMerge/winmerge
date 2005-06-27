@@ -7,6 +7,10 @@
  Docs/Users/Manual/Filters.xml
   (First line in file filters description) Minor grammar fixes, 
   and rewrite of one incomprehensible line.
+ Add example user-specific filter paths to manual.
+ Add example paths to function header comment of FileFilterHelper::LoadFileFilterDirPattern
+  Docs/Users/Manual/Filters.xml
+  Src/FilterFilterHelper.cpp
 
 2005-06-23 Kimmo
  BUG: [ 1225257 ] cvs: FileFilters broken?

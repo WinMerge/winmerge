@@ -249,7 +249,11 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
  * @brief Load in all filter patterns in a directory (unless already in map).
  * @param [in,out] patternsLoaded Map where found filterfiles are added.
  * @param [in] sPattern Directory wildcard defining files to add to map as filter files.
- * It is directoryname + filemask, for example: "C:\Program Files\WinMerge\Filters\*.flt"
+ * It is directoryname + filemask, for example, for a filter for all users:
+ * "C:\Program Files\WinMerge\Filters\*.flt"
+ * Examples of user-specific filters:
+ * "C:\\Documents And Settings\\username\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt"
+ * "C:\\Documents And Settings\\username\\Application Data\\WinMerge\\Filters\\*.flt"
  */
 void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
 		const CString & sPattern)
