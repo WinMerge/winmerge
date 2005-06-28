@@ -23,6 +23,11 @@ VC		FILE_PACK_UNPACK	DisplayBinaryFiles		.exe, .dll, .ocx, .doc, .xls
 Quickly display binary files, like Windiff.
 No packing (no save).
 
+VC		FILE_PACK_UNPACK	DisplayXMLFiles			.xml
+
+Display xml files nicely, by consistently inserting tabs and linebreaks.
+No packing (no save).
+
 VB		BUFFER_PACK_UNPACK	HideLastLetter			*.last
 
 The last non-space character is invisible in the merge editor (and restored when saving)

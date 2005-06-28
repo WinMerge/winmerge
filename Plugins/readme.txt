@@ -1,3 +1,9 @@
+2005-06-27 Christian
+ PATCH: [ 1219818 ] Plugin to display XML files
+  Two new dirs added:
+  Src\ExpatLib - This is the expat xml parser version 1.95.8
+  Plugins\src_VCPP\DisplayXMLFiles - A plugin which uses the expat parser
+
 2005-06-02 Tim
  RFE: [ 1017179 ] Plugin readme's as HTML?
   Plugins: remove files readme_developpers.txt syntax.txt
