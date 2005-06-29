@@ -2552,10 +2552,22 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	{
 		// An item has focus
 		CString sIdx, sCnt;
-		sIdx.Format(_T("%ld"), focusItem+1);
-		sCnt.Format(_T("%ld"), count);
-		// "Item %1 of %2"
-		AfxFormatString2(s, IDS_DIRVIEW_STATUS_FMT_FOCUS, sIdx, sCnt); 
+		// Don't show number to special items
+		POSITION pos = GetItemKey(focusItem);
+		if (pos != (POSITION) SPECIAL_ITEM_POS)
+		{
+			// If compare is non-recursive reduce special items count
+			BOOL bRecursive = GetDocument()->GetRecursive();
+			if (!bRecursive)
+			{
+				--focusItem;
+				--count;
+			}
+			sIdx.Format(_T("%ld"), focusItem+1);
+			sCnt.Format(_T("%ld"), count);
+			// "Item %1 of %2"
+			AfxFormatString2(s, IDS_DIRVIEW_STATUS_FMT_FOCUS, sIdx, sCnt);
+		}
 	}
 	pCmdUI->SetText(s);
 }

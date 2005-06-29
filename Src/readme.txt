@@ -1,3 +1,7 @@
+2005-06-29 Kimmo
+ PATCH: [ 1229315 ] Fix item number for non-recursive compare
+  Src: DirView.cpp
+
 2005-06-27 Christian
  PATCH: [ 1219818 ] Plugin to display XML files
   Two new dirs added:
