@@ -257,7 +257,7 @@ void CDirDoc::Rescan()
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
-	m_diffThread.SetCompareSelected(m_bMarkedRescan);
+	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
 	m_diffThread.CompareDirectories(m_pCtxt->GetNormalizedLeft(),
 			m_pCtxt->GetNormalizedRight(), m_bRecursive);
 	m_bMarkedRescan = FALSE;

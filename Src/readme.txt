@@ -1,3 +1,7 @@
+2005-06-29 Perry
+ PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)
+  Src: DirDoc.cpp
+
 2005-06-29 Kimmo
  PATCH: [ 1229315 ] Fix item number for non-recursive compare
   Src: DirView.cpp
