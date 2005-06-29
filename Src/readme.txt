@@ -1,6 +1,8 @@
 2005-06-29 Kimmo
  PATCH: [ 1229315 ] Fix item number for non-recursive compare
   Src: DirView.cpp
+ PATCH: [ 1229297 ] Align filesize column text to right
+  Src: DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp DirViewColItems.h
 
 2005-06-27 Christian
  PATCH: [ 1219818 ] Plugin to display XML files

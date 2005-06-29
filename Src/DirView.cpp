@@ -366,6 +366,7 @@ void CDirView::ReloadColumns()
 	ToDoDeleteThisValidateColumnOrdering();
 	SetColumnWidths();
 	ToDoDeleteThisValidateColumnOrdering();
+	SetColAlignments();
 }
 
 /**

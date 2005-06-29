@@ -122,6 +122,21 @@ void CDirView::UpdateColumnNames()
 	}
 }
 
+/**
+ * @brief Set alignment of columns.
+ */
+void CDirView::SetColAlignments()
+{
+	for (int i=0; i<g_ncols; ++i)
+	{
+		const DirColInfo & col = g_cols[i];
+		LVCOLUMN lvc;
+		lvc.mask = LVCF_FMT;
+		lvc.fmt = col.alignment;
+		m_pList->SetColumn(m_colorder[i], &lvc);
+	}
+}
+
 /// Compare two specified rows during a sort operation (windows callback)
 int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
 {
