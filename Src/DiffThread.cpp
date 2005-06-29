@@ -30,6 +30,7 @@
 #include "Plugins.h"
 #include "DiffItemList.h"
 #include "PathContext.h"
+#include "CompareStats.h"
 
 
 // Set this to true in order to single step
@@ -203,12 +204,18 @@ UINT DiffThread(LPVOID lpParam)
 	paths.SetRight(myStruct->context->GetNormalizedRight());
 	if (bOnlyRequested)
 	{
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 		DirScan_CompareItems(myStruct->context, myStruct->m_pAbortgate);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
 	}
 	else
 	{
-		DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth,  myStruct->context, myStruct->m_pAbortgate);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COLLECT);
+		DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth, myStruct->context, myStruct->m_pAbortgate);
+
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 		DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
 	}
 
 	// Send message to UI to update

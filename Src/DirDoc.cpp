@@ -231,6 +231,11 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_nCompMethod = mf->m_options.GetInt(OPT_CMP_METHOD);
 	m_pCtxt->m_bIgnoreSmallTimeDiff = mf->m_options.GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_pCtxt->m_pCompareStats = m_pCompareStats;
+
+	// Set total items count since we don't collect items
+	if (m_bMarkedRescan)
+		m_pCompareStats->IncreaseTotalItems(m_pDirView->GetSelectedCount());
+
 	UpdateHeaderPath(TRUE);
 	UpdateHeaderPath(FALSE);
 	// draw the headers as active ones

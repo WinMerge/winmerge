@@ -15,6 +15,8 @@
  */
 CompareStats::CompareStats()
 : m_nTotalItems(0)
+, m_nComparedItems(0)
+, m_state(STATE_IDLE)
 {
 	InitializeCriticalSection(&m_csProtect);
 	ZeroMemory(&m_counts[0], sizeof(m_counts));
@@ -47,6 +49,8 @@ void CompareStats::AddItem(int code)
 	RESULT res = GetResultFromCode(code);
 	int index = static_cast<int>(res);
 	m_counts[index] += 1;
+	++m_nComparedItems;
+	ASSERT(m_nComparedItems <= m_nTotalItems);
 	LeaveCriticalSection(&m_csProtect);
 }
 
@@ -68,7 +72,7 @@ int CompareStats::GetCount(CompareStats::RESULT result)
 /** 
  * @brief Return total count of items (so far) found.
  */
-int CompareStats::GetTotalItems()
+int CompareStats::GetTotalItems() const
 {
 	return m_nTotalItems;
 }
@@ -82,6 +86,7 @@ void CompareStats::Reset()
 	ZeroMemory(&m_counts[0], sizeof(m_counts));
 	SetCompareState(STATE_IDLE);
 	m_nTotalItems = 0;
+	m_nComparedItems = 0;
 }
 
 /** 
@@ -90,13 +95,20 @@ void CompareStats::Reset()
  */
 void CompareStats::SetCompareState(CompareStats::CMP_STATE state)
 {
+#ifdef _DEBUG
+	if (state == STATE_COLLECT && m_state != STATE_IDLE)
+		_RPTF2(_CRT_ERROR, "Invalid state change from %d to %d", m_state, state);
+	if (state == STATE_READY && m_state != STATE_COMPARE)
+		_RPTF2(_CRT_ERROR, "Invalid state change from %d to %d", m_state, state);
+#endif //_DEBUG
+
 	m_state = state;
 }
 
 /** 
  * @brief Return current comparestate.
  */
-CompareStats::CMP_STATE CompareStats::GetCompareState()
+CompareStats::CMP_STATE CompareStats::GetCompareState() const
 {
 	return m_state;
 }

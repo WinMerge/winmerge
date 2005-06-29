@@ -14,7 +14,6 @@
 #endif
 
 class CDirFrame;
-class CompareStats;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirCompStateBar dialog
@@ -75,6 +74,8 @@ private:
 	long m_lElapsed; /**< Elapsed time for compare */
 	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
 	BOOL m_bStopText; /**< Button has 'Stop' text? */
+	BOOL m_bTimerFired; /**< Has timer fired for UI update */
+	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -46,6 +46,17 @@ void CDirCompStateBar::ClearStat()
 	SetDlgItemInt(IDC_COUNT_FOLDERSKIP, 0);
 	SetDlgItemInt(IDC_COUNT_FOLDER, 0);
 	SetDlgItemInt(IDC_COUNT_ERROR, 0);
+
+	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
+	pProg->SetPos(0);
+
+	CStatic *pCompared = (CStatic *) GetDlgItem(IDC_ITEMSCOMPARED);
+	CStatic *pTotal = (CStatic *) GetDlgItem(IDC_ITEMSTOTAL);
+	pCompared->SetWindowText(_T("0"));
+	pTotal->SetWindowText(_T("0"));
+
+	m_bTimerFired = FALSE;
+	m_prevState = CompareStats::STATE_IDLE;
 }
 
 /**
@@ -53,6 +64,8 @@ void CDirCompStateBar::ClearStat()
  */
 CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 : m_bStopText(TRUE)
+, m_bTimerFired(FALSE)
+, m_prevState(CompareStats::STATE_IDLE)
 {
 }
 
@@ -127,6 +140,8 @@ void CDirCompStateBar::OnStop()
 
 	if (pDirDoc->IsCurrentScanAbortable())
 		pDirDoc->AbortCurrentScan();
+
+	m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 
 	CDirFrame * pDirFrame = static_cast<CDirFrame*>(pFrameWnd);
 	ASSERT(pDirFrame != NULL);
@@ -301,11 +316,84 @@ void CDirCompStateBar::OnTimer(UINT nIDEvent)
 {
 	if (nIDEvent == IDT_UPDATE)
 	{
-		UpdateElements();
+		CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
+		CStatic *pCompared = (CStatic *) GetDlgItem(IDC_ITEMSCOMPARED);
+		CStatic *pTotal = (CStatic *) GetDlgItem(IDC_ITEMSTOTAL);
+		CompareStats::CMP_STATE state = m_pCompareStats->GetCompareState();
+		
+		if (m_prevState == CompareStats::STATE_IDLE &&
+			state == CompareStats::STATE_COLLECT)
+		{
+			m_prevState = CompareStats::STATE_COLLECT;
+		}
+		else if (m_prevState == CompareStats::STATE_COLLECT &&
+			state == CompareStats::STATE_COLLECT)
+		{
+			TCHAR num[15] = {0};
+			_itot(m_pCompareStats->GetTotalItems(), num, 10);
+			pTotal->SetWindowText(num);
+		}
+		else if ((m_prevState == CompareStats::STATE_COLLECT ||
+				m_prevState == CompareStats::STATE_IDLE) &&
+				state == CompareStats::STATE_COMPARE)
+		{
+			TCHAR num[15] = {0};
 
-		// If compare is finished, stop timer
-		if (m_pCompareStats->GetCompareState() == CompareStats::STATE_READY)
+			// Start comparing, init progressbar
+			int totalItems = m_pCompareStats->GetTotalItems();
+			_itot(totalItems, num, 10);
+			pTotal->SetWindowText(num);
+
+			pProg->SetRange32(0, totalItems);
+			int comparedItems = m_pCompareStats->GetComparedItems();
+			_itot(comparedItems, num, 10);
+			pCompared->SetWindowText(num);
+			pProg->SetPos(comparedItems);
+			UpdateElements();
+			m_prevState = CompareStats::STATE_COMPARE;
+		}
+		else if (m_prevState == CompareStats::STATE_COMPARE &&
+				state == CompareStats::STATE_COMPARE)
+		{
+			TCHAR num[15] = {0};
+			int comparedItems = m_pCompareStats->GetComparedItems();
+			_itot(comparedItems, num, 10);
+			pCompared->SetWindowText(num);
+			pProg->SetPos(comparedItems);
+			UpdateElements();
+			m_bTimerFired = TRUE;
+		}
+		else if (m_prevState == CompareStats::STATE_COMPARE &&
+			state == CompareStats::STATE_READY)
+		{
+			TCHAR num[15] = {0};
+			int comparedItems = m_pCompareStats->GetComparedItems();
+			_itot(comparedItems, num, 10);
+			pCompared->SetWindowText(num);
+			pProg->SetPos(comparedItems);
+			UpdateElements();
 			EndUpdating();
+			m_prevState = CompareStats::STATE_READY;
+			m_bTimerFired = TRUE;
+		}
+		else if (state == CompareStats::STATE_READY)
+		{
+			if (!m_bTimerFired)
+			{
+				TCHAR num[15] = {0};
+				int totalItems = m_pCompareStats->GetTotalItems();
+				_itot(totalItems, num, 10);
+				pTotal->SetWindowText(num);
+				int comparedItems = m_pCompareStats->GetComparedItems();
+				_itot(comparedItems, num, 10);
+				pCompared->SetWindowText(num);
+				pProg->SetPos(comparedItems);
+				UpdateElements();
+				EndUpdating();
+				m_prevState = CompareStats::STATE_READY;
+				m_bTimerFired = TRUE;
+			}
+		}
 	}
 	else
 		CDialogBar::OnTimer(nIDEvent);

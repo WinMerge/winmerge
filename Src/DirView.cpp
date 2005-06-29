@@ -2056,8 +2056,6 @@ void CDirView::OnDirStatePane()
 	if (!GetDocument()->HasDiffs())
 		return;
 
-	const CDiffContext &ctxt = GetDocument()->GetDiffContext();
-
 	// Clear and recount item numbers
 	pf->clearStatus();
 	pf->UpdateStats();

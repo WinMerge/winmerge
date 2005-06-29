@@ -3,6 +3,10 @@
   Src: DirView.cpp
  PATCH: [ 1229297 ] Align filesize column text to right
   Src: DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp DirViewColItems.h
+ PATCH: [ 1229164 ] Add dir compare progress info
+  Src: CompareStats.cpp CompareStats.h DiffThread.cpp DirCompStateBar.cpp
+   DirCompStateBar.h DirDoc.cpp DirScan.cpp DirView.cpp Merge.rc Resource.h
+  Src/Languages: *.rc resource.h
 
 2005-06-27 Christian
  PATCH: [ 1219818 ] Plugin to display XML files

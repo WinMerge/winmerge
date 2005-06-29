@@ -267,6 +267,9 @@
 #define IDC_SAVECLOSING_DISCARDALL      1188
 #define IDC_MULTIDOC_FILECMP            1189
 #define IDC_MULTIDOC_DIRCMP             1190
+#define IDC_PROGRESSCOMPARE             1191
+#define IDC_ITEMSCOMPARED               1192
+#define IDC_ITEMSTOTAL                  1193
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -841,7 +844,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        224
 #define _APS_NEXT_COMMAND_VALUE         33096
-#define _APS_NEXT_CONTROL_VALUE         1191
+#define _APS_NEXT_CONTROL_VALUE         1194
 #define _APS_NEXT_SYMED_VALUE           111
 #endif
 #endif

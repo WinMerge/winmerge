@@ -54,7 +54,7 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive);
 static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 		const DiffFileData * pDiffFileData);
 static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
-	int code, DiffItemList * pList);
+	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
@@ -79,8 +79,6 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable)
 {
 	static const TCHAR backslash[] = _T("\\");
-
-	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_COLLECT);
 
 	CString sLeftDir = paths.GetLeft();
 	CString sRightDir = paths.GetRight();
@@ -118,7 +116,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
-			AddToList(subdir, &leftDirs[i], 0, nDiffCode, pList);
+			AddToList(subdir, &leftDirs[i], 0, nDiffCode, pList, pCtxt);
 			++i;
 			continue;
 		}
@@ -127,7 +125,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
 
 			// Advance right pointer over right-only entry, and then retest with new pointers
-			AddToList(subdir, 0, &rightDirs[j], nDiffCode, pList);
+			AddToList(subdir, 0, &rightDirs[j], nDiffCode, pList, pCtxt);
 			++j;
 			continue;
 		}
@@ -142,7 +140,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 					// Non-recursive compare
 					// We are only interested about list of subdirectories to show - user can open them
 					// TODO: scan one level deeper to see if directories are identical/different
-					AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList);
+					AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
 				}
 				else
 				{
@@ -152,7 +150,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 					if (!pCtxt->m_piFilterGlobal->includeDir(newsub))
 					{
 						nDiffCode |= DIFFCODE::SKIPPED;
-						AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList);
+						AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
 					}
 					else
 					{
@@ -195,7 +193,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			CString newsubfile = subprefix + leftFiles[i].name;
 			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
 			{
-				AddToList(subdir, &leftFiles[i], 0, nDiffCode, pList);
+				AddToList(subdir, &leftFiles[i], 0, nDiffCode, pList, pCtxt);
 			}
 
 			// Advance left pointer over left-only entry, and then retest with new pointers
@@ -209,7 +207,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			CString newsubfile = subprefix + rightFiles[j].name;
 			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
 			{
-				AddToList(subdir, 0, &rightFiles[j], nDiffCode, pList);
+				AddToList(subdir, 0, &rightFiles[j], nDiffCode, pList, pCtxt);
 			}
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			++j;
@@ -221,7 +219,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			CString newsubfile = subprefix + leftFiles[i].name;
 			int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
 
-			AddToList(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pList);
+			AddToList(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pList, pCtxt);
 
 			++i;
 			++j;
@@ -243,9 +241,6 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable)
 {
 	int res = 1;
-
-	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-
 	POSITION pos = list.GetFirstDiffPosition();
 	
 	while (pos != NULL)
@@ -259,7 +254,6 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable *
 		DIFFITEM di = list.GetNextDiffPosition(pos);
 		CompareDiffItem(di, pCtxt);
 	}
-	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
 	return res;
 }
 
@@ -273,9 +267,6 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable *
 int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
 {
 	int res = 1;
-
-	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-
 	POSITION pos = pCtxt->GetFirstDiffPosition();
 	
 	while (pos != NULL)
@@ -297,7 +288,6 @@ int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
 				CompareDiffItem(di, pCtxt);
 		}
 	}
-	pCtxt->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
 	return res;
 }
 
@@ -603,7 +593,7 @@ static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
  * @brief Add one compare item to list.
  */
 static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
-	int code, DiffItemList * pList)
+	int code, DiffItemList * pList, CDiffContext *pCtxt)
 {
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
@@ -643,6 +633,7 @@ static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
 		LOGLEVEL::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
 		(LPCTSTR)di.sfilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
 	);
+	pCtxt->m_pCompareStats->IncreaseTotalItems();
 	pList->AddDiff(di);
 }
 

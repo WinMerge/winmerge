@@ -57,10 +57,11 @@ public:
 	void AddItem(int code);
 	void IncreaseTotalItems(int count = 1);
 	int GetCount(CompareStats::RESULT result);
-	int GetTotalItems();
+	int GetTotalItems() const;
+	int GetComparedItems() const { return m_nComparedItems; }
 	void Reset();
 	void SetCompareState(CompareStats::CMP_STATE state);
-	CompareStats::CMP_STATE GetCompareState();
+	CompareStats::CMP_STATE GetCompareState() const;
 	
 	static CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode);
 
@@ -68,6 +69,7 @@ private:
 	int m_counts[RESULT_COUNT]; /**< Table storing result counts */
 	CRITICAL_SECTION m_csProtect; /**< For synchronizing read/write of counts */
 	long m_nTotalItems; /**< Total items found to compare */
+	long m_nComparedItems; /**< Compared items so far */
 	CMP_STATE m_state; /**< State for compare (collect, compare, ready..) */
 };
 
