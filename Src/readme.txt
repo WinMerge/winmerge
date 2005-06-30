@@ -1,3 +1,8 @@
+2005-06-30 Kimmo
+ PATCH: [ 1228647 ] MergeCatalan.rc v209 update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)
   Src: DirDoc.cpp

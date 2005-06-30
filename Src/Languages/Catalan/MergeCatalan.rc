@@ -100,9 +100,9 @@ IDR_MAINFRAME MENU
 BEGIN
     POPUP "&Fitxer"
     BEGIN
-        MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM "&Nou\tControl+N",                ID_FILE_NEW
+        MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
+        MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Surt",                       ID_APP_EXIT
     END
@@ -160,9 +160,9 @@ IDR_DIRVIEWMENU MENU
 BEGIN
     POPUP "&Fitxer"
     BEGIN
-        MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM "&Nou\tControl+N",                ID_FILE_NEW
+        MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
+        MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
         MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
@@ -171,11 +171,11 @@ BEGIN
     END
     POPUP "E&dita"
     BEGIN
-        MENUITEM "&Retalla\tCtrl+X",            ID_EDIT_CUT
-        MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
-        MENUITEM "Engan&xa\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM "&Retalla\tControl+X",            ID_EDIT_CUT
+        MENUITEM "C&opia\tControl+C",              ID_EDIT_COPY
+        MENUITEM "Engan&xa\tControl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Selecciona-ho &tot\tCtrl+A",  ID_EDIT_SELECT_ALL
+        MENUITEM "Selecciona-ho &tot\tControl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Opcions...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -214,7 +214,7 @@ BEGIN
         MENUITEM "Copia-ho &tot a la dreta",     ID_ALL_RIGHT
         MENUITEM "Copia-ho t&ot a l'esquerra",   ID_ALL_LEFT
         MENUITEM SEPARATOR
-        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
+        MENUITEM "S&uprimeix\tSupr",                ID_MERGE_DELETE
     END
     POPUP "&Eines"
     BEGIN
@@ -257,11 +257,11 @@ IDR_MERGEVIEWMENU MENU
 BEGIN
     POPUP "&Fitxer"
     BEGIN
-        MENUITEM "&Nou\tCtrl+N",                ID_FILE_NEW
-        MENUITEM "&Obre...\tCtrl+O",            ID_FILE_OPEN
-        MENUITEM "Obre un &projecte...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM "&Nou\tControl+N",                ID_FILE_NEW
+        MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
+        MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "&Desa\tCtrl+S",               ID_FILE_SAVE
+        MENUITEM "&Desa\tControl+S",               ID_FILE_SAVE
         POPUP "Desa l'&Esquerra"
         BEGIN
             MENUITEM "&Desa",                       ID_FILE_SAVE_LEFT
@@ -289,20 +289,20 @@ BEGIN
     END
     POPUP "E&dita"
     BEGIN
-        MENUITEM "&Desfés\tCtrl+Z",             ID_EDIT_UNDO
-        MENUITEM "Re&fés\tCtrl+Y",              ID_EDIT_REDO
+        MENUITEM "&Desfés\tControl+Z",             ID_EDIT_UNDO
+        MENUITEM "Re&fés\tControl+Y",              ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Retalla\tCtrl+X",            ID_EDIT_CUT
-        MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
-        MENUITEM "Engan&xa\tCtrl+V",            ID_EDIT_PASTE
+        MENUITEM "&Retalla\tControl+X",            ID_EDIT_CUT
+        MENUITEM "C&opia\tControl+C",              ID_EDIT_COPY
+        MENUITEM "Engan&xa\tControl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Selecciona-ho &tot\tCtrl+A",  ID_EDIT_SELECT_ALL
+        MENUITEM "Selecciona-ho &tot\tControl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "R&essalta les paraules diferents de la línia\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Re&ssalta els caracters diferents de la línia\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "Re&ssalta els caracters diferents de la línia\tMaj+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
-        MENUITEM "&Cerca...\tCtrl+F",           ID_EDIT_FIND
-        MENUITEM "Subst&itueix...\tCtrl+H",     ID_EDIT_REPLACE
+        MENUITEM "&Cerca...\tControl+F",           ID_EDIT_FIND
+        MENUITEM "Subst&itueix...\tControl+H",     ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         POPUP "&Seqüències d'ordres"
         BEGIN
@@ -311,10 +311,10 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Avançat"
         BEGIN
-            MENUITEM "&Copia amb el número de línia\tCtrl+Shift+C",
+            MENUITEM "&Copia amb el número de línia\tControl+Maj+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        MENUITEM "&Vés a...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Opcions...",                 ID_OPTIONS
         MENUITEM SEPARATOR
@@ -347,8 +347,8 @@ BEGIN
         MENUITEM "Copia a la &dreta\tAlt+Dreta", ID_L2R
         MENUITEM "Copia a l'&esquerra\tAlt+Esquerra", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copia a la dreta i a&vança\tAlt+Ctrl+Dreta", ID_L2RNEXT
-        MENUITEM "Copia a l'esquerra i avan&ça\tAlt+Ctrl+Esquerra", ID_R2LNEXT
+        MENUITEM "Copia a la dreta i a&vança\tAlt+Control+Dreta", ID_L2RNEXT
+        MENUITEM "Copia a l'esquerra i avan&ça\tAlt+Control+Esquerra", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "Copia-ho &tot a la dreta",     ID_ALL_RIGHT
         MENUITEM "Copia-ho t&ot a l'esquerra",   ID_ALL_LEFT
@@ -422,13 +422,13 @@ BEGIN
         BEGIN
             MENUITEM "amb l'&aplicació registrada", ID_DIR_OPEN_LEFT
             MENUITEM "amb l'&editor extern",        ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "&amb...",                     ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "a&mb...",                     ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "Obre la &dreta"
         BEGIN
             MENUITEM "amb l'&aplicació registrada", ID_DIR_OPEN_RIGHT
             MENUITEM "amb l'&editor extern",        ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "&amb...",                     ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "a&mb...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
         POPUP "C&opia els camins"
@@ -447,7 +447,7 @@ BEGIN
             MENUITEM "Di&ferències... (%1 de %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Refresh",                        ID_DIR_RESCAN
+        MENUITEM "Actualit&za",                        ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -478,7 +478,7 @@ BEGIN
     POPUP "_POPUP_"
     BEGIN
         MENUITEM "Vé&s a la diferència",                  ID_LOCBAR_GOTODIFF
-        MENUITEM "&Vés a...\tCtrl+G",           ID_EDIT_WMGOTO
+        MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Blocs &no moguts ",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&Tots el blocs moguts",           ID_DISPLAY_MOVED_ALL
@@ -657,10 +657,10 @@ BEGIN
                     WS_TABSTOP,7,57,229,10
     CONTROL         "&Permet d'executar només una instància",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,82,221,37
-    CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
+    GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,82,221,37
+    CONTROL         "Comparació de &carpeta",IDC_MULTIDOC_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+    CONTROL         "Comparació de &fitxer",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
     PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
                     WS_TABSTOP
@@ -1336,7 +1336,7 @@ BEGIN
     BEGIN
         BLOCK "040304e4"
         BEGIN
-            VALUE "Comments", "Traducció al català per Jordi Vilar\0"
+            VALUE "Comments", "Traducció al català per en Jordi Vilar\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Recursos en català del WinMerge\0"
             VALUE "FileVersion", "000.000.000.000\0"
@@ -1485,16 +1485,16 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_NEW             "Crea un document nou\nNou (Ctrl-N)"
-    ID_FILE_OPEN            "Obre un document existent\nObrir (Ctrl+O)"
+    ID_FILE_NEW             "Crea un document nou\nNou (Control-N)"
+    ID_FILE_OPEN            "Obre un document existent\nObrir (Control+O)"
     ID_FILE_CLOSE           "Tanca el document actiu\nTanca"
-    ID_FILE_SAVE            "Desa el document actiu\nDesa (Ctrl+S)"
+    ID_FILE_SAVE            "Desa el document actiu\nDesa (Control+S)"
     ID_FILE_SAVE_AS         "Desa el document actiu amb un nom nou\nAnomena i desa"
     ID_FILE_PAGE_SETUP      "Canvia les opcions d'impressió\nFormat de pàgina"
     ID_FILE_PRINT_SETUP     "Canvia la impressora i les opcions d'impressió\nConfiguració d'impressió"
     ID_FILE_PRINT           "Imprimeix el document actiu\nImprimeix"
     ID_FILE_PRINT_PREVIEW   "Visualitza pàgines senceres\nVisualització prèvia de la impressió"
-    ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Control+J)"
 END
 
 STRINGTABLE
@@ -1550,8 +1550,8 @@ BEGIN
     ID_EDIT_REPEAT          "Repeteix la darrera acció\nRepeteix"
     ID_EDIT_REPLACE         "Substitueix un text específic per un altre de diferent\nSubstitueix"
     ID_EDIT_SELECT_ALL      "Selecciona el document sencer\nSelecciona-ho tot"
-    ID_EDIT_UNDO            "Desfà la darrera acció\nDesfés (Ctrl+Z)"
-    ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés (Ctrl+Y)"
+    ID_EDIT_UNDO            "Desfà la darrera acció\nDesfés (Control+Z)"
+    ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés (Control+Y)"
 END
 
 STRINGTABLE
@@ -1757,8 +1757,8 @@ END
 // MORE STATUS PANES
 STRINGTABLE
 BEGIN
-	IDS_DIRVIEW_STATUS_FMT_FOCUS "Item %1 of %2"
-	IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Items: %1"
+	IDS_DIRVIEW_STATUS_FMT_FOCUS "Element %1 de %2"
+	IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Elements: %1"
 END
 
 // OPEN DIALOG
@@ -1793,8 +1793,7 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "El fitxer %1 està marcat com a només de lectua. Voldríeu substituir el fitxer només de lectura? (No es tracta de desar amb un nom nou.)"
     IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error en comprovar si la destinació era modificable"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
-    IDS_BACKUP_FAILED_PROMPT
-                            "Unable to backup original file:\n%1\n\nContinue anyway?"
+    IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original:\n%1\n\nVoleu continuar tot i així?"
     IDS_FILESAVE_FAILED     "Hi ha hagut un error en desar el fitxer.\n%1\n%2\nVoleu:\n\t-desar-lo amb un nom diferent (premeu D'acord)\n\r-avortar l'operació actual (Premeu Cancel·lar)?"
     IDS_FILEPACK_FAILED_LEFT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
     IDS_FILEPACK_FAILED_RIGHT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
@@ -1808,7 +1807,7 @@ END
 // Editing/Merging file
 STRINGTABLE
 BEGIN
-    IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+    IDS_VIEWS_OUTOFSYNC     "No es poden combinar les diferències quan el documents not estan en sincronia.\n\nCal que refresqueu els documents abans de continuar."
 END
 
 // VSS
@@ -2062,7 +2061,7 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "%1\n no és pas un camí absolut!"
     IDS_CANNOT_CREATE_BINARYPATCH "No es pot crear un pedaç de fitxers binaris."
     IDS_CANNOT_CREATE_DIRPATCH "No es pot crear un pedaç de directoris."
-    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+    IDS_SAVEFILES_FORPATCH  "Deseu tots els fitxers primer.\n\nCal que no hi hagi cap fitxer pendent de salvar per tal de crear un pedaç."
 END
 
 STRINGTABLE
@@ -2391,12 +2390,12 @@ END
 STRINGTABLE
 BEGIN
     ID_SHOWLINEWORDDIFF     "Ressalta les paraules diferents a la línia actual\nParaules diferents a la línia actual (F4)"
-    ID_SHOWLINECHARDIFF     "Ressalta els caracters diferents a la línia actual\nCaracters diferents a la línia actual (Shift+F4)"
-    ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Ctrl+G)"
+    ID_SHOWLINECHARDIFF     "Ressalta els caracters diferents a la línia actual\nCaracters diferents a la línia actual (Maj+F4)"
+    ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Control+G)"
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copia les línies seleccionades al Porta-retalls afegint-hi els números de línia al inici de línia"
-    ID_DIR_RESCAN            "Refresh selected items"
+    ID_DIR_RESCAN            "Actualitza els elements seleccionats"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2433,11 +2432,11 @@ BEGIN
     ID_LASTDIFF             "Es desplaça fins a la darrera diferència\nDarrera diferència (Alt+Fi)"
     ID_L2R                  "Copia el text seleccionat al fitxer de la dreta\nCopia al fitxer de la dreta (Alt+Dreta)"
     ID_R2L                  "Copia el text seleccionat al fitxer de l'esquerra\nCopia al fitxer de l'esquerra (Alt+Esquerra)"
-    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Ctrl+Alt+Dreta)"
-    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Ctrl+Alt+Esquerra)"
+    ID_L2RNEXT              "Copia la diferència a la dreta i avança a al següent\nCopia a la dreta i avança (Control+Alt+Dreta)"
+    ID_R2LNEXT              "Copia la diferència a l'esquerra i avança a la següent\nCopia a l'esquerra i avança (Control+Alt+Esquerra)"
     ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
     ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_DELETE         "Suprimeix els elements seleccionats d'ambdós directoris"
 END
 
 // TOOLS MENU
