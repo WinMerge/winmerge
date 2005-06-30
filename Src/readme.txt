@@ -2,6 +2,9 @@
  PATCH: [ 1228647 ] MergeCatalan.rc v209 update
   Submitted by Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1230344 ] MergeSwedish.rc for 2.3.4.0 beta
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)
