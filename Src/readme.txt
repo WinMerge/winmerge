@@ -17,6 +17,8 @@
    Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h
   Cannot create valid (archive) temp paths without valid document pointer
    Src: MainFrm.cpp
+ PATCH: [ 1193262 ] Switch language on run-time not change all menus
+  Src/Common: LanguageSelect.cpp
 
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)

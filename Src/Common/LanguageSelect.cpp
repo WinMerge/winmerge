@@ -5,6 +5,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
+#include "Merge.h"
 #include "LanguageSelect.h"
 #include "MainFrm.h"
 #include <locale.h>
@@ -512,7 +513,8 @@ void CLanguageSelect::ReloadMenu()
 	{
 		// set the menu of the main frame window
 		UINT idMenu = GetDocResId();
-		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)AfxGetApp()->m_pMainWnd);
+		CMergeApp *pApp = dynamic_cast<CMergeApp *> (AfxGetApp());
+		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)pApp->m_pMainWnd);
 		HMENU hNewMenu = pMainFrame->NewDefaultMenu(idMenu);
 		if (hNewMenu)
 		{
@@ -531,9 +533,11 @@ void CLanguageSelect::ReloadMenu()
 				// m_hMenuDefault is used to redraw the main menu when we close a child frame
 				// if this child frame had a different menu
 				pMainFrame->m_hMenuDefault = hNewMenu;
+				pApp->m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMergeViewMenu();
+				pApp->m_pDirTemplate->m_hMenuShared = pMainFrame->NewDirViewMenu();
 
 				// force redrawing the menu bar
-				pMainFrame->DrawMenuBar();  
+				pMainFrame->DrawMenuBar();
 			}
 		}
 	}
