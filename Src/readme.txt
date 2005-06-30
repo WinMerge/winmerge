@@ -5,6 +5,10 @@
  PATCH: [ 1230344 ] MergeSwedish.rc for 2.3.4.0 beta
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues
+  Submitted by Jochen, apply some parts now:
+  DIFFITEM API cleanup, use const CString&
+   Src: DiffItem.cpp DiffItem.h
 
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)

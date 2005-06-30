@@ -17,7 +17,7 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 /** @brief Return path to left file, including all but file name */
-CString DIFFITEM::getLeftFilepath(CString sLeftRoot) const
+CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
 {
 	CString sPath;
 	if (!isSideRight())
@@ -32,7 +32,7 @@ CString DIFFITEM::getLeftFilepath(CString sLeftRoot) const
 }
 
 /** @brief Return path to right file, including all but file name */
-CString DIFFITEM::getRightFilepath(CString sRightRoot) const
+CString DIFFITEM::getRightFilepath(const CString &sRightRoot) const
 {
 	CString sPath;
 	if (!isSideLeft())

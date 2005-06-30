@@ -84,11 +84,10 @@ struct DIFFITEM : DIFFCODE
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int ndiffs; /**< Total amount of differences */
 
-	DIFFITEM() : ndiffs(-1), nsdiffs(-1),
-		sfilename(_T("")), sSubdir(_T("")) { }
+	DIFFITEM() : ndiffs(-1), nsdiffs(-1) { }
 
-	CString getLeftFilepath(CString sLeftRoot) const;
-	CString getRightFilepath(CString sRightRoot) const;
+	CString getLeftFilepath(const CString &sLeftRoot) const;
+	CString getRightFilepath(const CString &sRightRoot) const;
 };
 
 #endif // _DIFF_ITEM_H_
