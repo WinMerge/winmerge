@@ -167,6 +167,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
 	ON_COMMAND(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnCtxtDirMoveRightTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_RIGHT_TO_BROWSE, OnUpdateCtxtDirMoveRightTo)
+	ON_UPDATE_COMMAND_UI(ID_DIR_HIDE_FILENAMES, OnUpdateHideFilenames)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_MERGE_DELETE, OnDelete)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_DELETE, OnUpdateDelete)
@@ -1170,6 +1171,15 @@ void CDirView::DeleteAllDisplayItems()
 }
 
 /**
+ * @brief Prepare for reuse.
+ *
+ */
+void CDirView::ReusingDirView()
+{
+	DeleteAllDisplayItems();
+}
+
+/**
  * @brief Given key, get index of item which has it stored.
  * This function searches from list in UI.
  */
@@ -2091,7 +2101,7 @@ int CDirView::AddSpecialItems()
 	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
 		paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
 	{
-		int bEnable = AllowUpwardDirectory(leftPath, rightPath); 
+		BOOL bEnable = AllowUpwardDirectory(leftPath, rightPath); 
 		AddParentFolderItem(bEnable);
 		retVal = 1;
 	}
@@ -2106,7 +2116,7 @@ int CDirView::AddSpecialItems()
  * FALSE : upward RESTRICTED : both paths have a different rightmost subdirectory, 
  * the move can not be reversed (probably these are the original comparison directories)
  */
-BOOL CDirView::AllowUpwardDirectory(CString leftPath, CString rightPath)
+BOOL CDirView::AllowUpwardDirectory(const CString &leftPath, const CString &rightPath)
 {
 	int lastSegmentPos = leftPath.ReverseFind(_T('/'));
 	if (lastSegmentPos == -1 || leftPath.ReverseFind(_T('\\')) > lastSegmentPos)
@@ -2402,30 +2412,20 @@ void CDirView::OnCopyFilenames()
 void CDirView::OnHideFilenames()
 {
 	int sel = -1;
-	int Cnt = 0, Max = 1000;
-	int *pCells = new int[Max];
-	// Build a dynamic int array, storing a sorted list of selected cells
+	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
-		if (Cnt == Max)
-		{
-			Max += 1000;	// Grow the array of selections
-			int *pCellsTmp = new int[Max];
-			memcpy(pCellsTmp, pCells, sizeof(int)*Cnt);
-			delete[] pCells;
-			pCells = pCellsTmp;
-		}
-		pCells[Cnt++] = sel;
+		m_pList->DeleteItem(sel--);
 	}
-	if (Cnt)
-	{
-		// Remove cells in reverse order (largest to smallest count).
-		m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
-		while (Cnt--)
-			m_pList->DeleteItem(pCells[Cnt]);
-		m_pList->SetRedraw(TRUE);	// Turn updating back on
-	}
-	delete[] pCells;
+	m_pList->SetRedraw(TRUE);	// Turn updating back on
+}
+
+/**
+ * @brief update menu item
+ */
+void CDirView::OnUpdateHideFilenames(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(m_pList->GetSelectedCount() != 0);
 }
 
 /// User chose (context menu) Move left to...
@@ -2510,7 +2510,7 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 			VERIFY(msg.LoadString(IDS_STATUS_SELITEM1));
 		else
 		{
-			TCHAR num[8] = {0};
+			TCHAR num[20] = {0};
 			_itot(items, num, 10);
 			AfxFormatString1(msg, IDS_STATUS_SELITEMS, num);
 		}

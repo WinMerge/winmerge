@@ -563,15 +563,14 @@ BOOL CDirDoc::ReusingDirDoc()
 
 	// clear diff display
 	ASSERT(m_pDirView);
-	m_pDirView->DeleteAllDisplayItems();
+	m_pDirView->ReusingDirView();
 
 	// hide the floating state bar
 	CDirFrame *pf = m_pDirView->GetParentFrame();
 	pf->ShowProcessingBar(FALSE);
 
 	// delete comparison parameters and results
-	if (m_pCtxt != NULL)
-		delete m_pCtxt;
+	delete m_pCtxt;
 	m_pCtxt = NULL;
 
 	return TRUE;
@@ -798,7 +797,7 @@ bool CDirDoc::IsCurrentScanAbortable() const
 /**
  * @brief Set directory description texts shown in headerbar
  */
-void CDirDoc::SetDescriptions(CString strLeftDesc, CString strRightDesc)
+void CDirDoc::SetDescriptions(const CString &strLeftDesc, const CString &strRightDesc)
 {
 	m_strLeftDesc = strLeftDesc;
 	m_strRightDesc = strRightDesc;

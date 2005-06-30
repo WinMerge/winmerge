@@ -110,7 +110,8 @@ public:
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
-	void SetDescriptions(CString strLeftDesc, CString strRightDesc);
+	void SetDescriptions(const CString &strLeftDesc, const CString &strRightDesc);
+
 	void SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting);
 	void FetchPluginInfos(const CString& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);

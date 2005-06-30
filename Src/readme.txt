@@ -11,6 +11,8 @@
    Src: DiffItem.cpp DiffItem.h
   Add missing ProgressBar initialisation
    Src: DirCompStateBar.cpp
+  Misc cleanups and optimizations
+   Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h
 
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)

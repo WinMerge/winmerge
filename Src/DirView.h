@@ -94,6 +94,7 @@ public:
 	int GetItemIndex(DWORD key);
 	// for populating list
 	void DeleteAllDisplayItems();
+	void ReusingDirView();
 	void SetColumnWidths();
 
 	void SortColumnsAppropriately();
@@ -103,7 +104,7 @@ public:
 	//DIFFITEM GetNextSelectedInd(int &ind);
 	DIFFITEM GetItemAt(int ind);
 	int AddSpecialItems();
-	BOOL AllowUpwardDirectory(CString leftPath, CString rightPath);
+	BOOL AllowUpwardDirectory(const CString &leftPath, const CString &rightPath);
 	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
 
@@ -323,6 +324,7 @@ protected:
 	afx_msg void OnUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	afx_msg void OnCtxtDirMoveRightTo();
 	afx_msg void OnUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateHideFilenames(CCmdUI* pCmdUI);
 	afx_msg void OnDelete();
 	afx_msg void OnUpdateDelete(CCmdUI* pCmdUI);
 	afx_msg void OnMarkedRescan();
