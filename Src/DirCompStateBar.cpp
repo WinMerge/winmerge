@@ -387,6 +387,7 @@ void CDirCompStateBar::OnTimer(UINT nIDEvent)
 				int comparedItems = m_pCompareStats->GetComparedItems();
 				_itot(comparedItems, num, 10);
 				pCompared->SetWindowText(num);
+				pProg->SetRange32(0, totalItems);
 				pProg->SetPos(comparedItems);
 				UpdateElements();
 				EndUpdating();

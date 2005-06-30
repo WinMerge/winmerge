@@ -9,6 +9,8 @@
   Submitted by Jochen, apply some parts now:
   DIFFITEM API cleanup, use const CString&
    Src: DiffItem.cpp DiffItem.h
+  Add missing ProgressBar initialisation
+   Src: DirCompStateBar.cpp
 
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)
