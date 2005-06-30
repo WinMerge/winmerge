@@ -1,3 +1,5 @@
+2005-06-30 WinMerge beta 2.3.4.0 released
+
 2005-06-30 Kimmo
  PATCH: [ 1228647 ] MergeCatalan.rc v209 update
   Submitted by Jordi Vilar
