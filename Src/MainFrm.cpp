@@ -1259,6 +1259,11 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strLeft))
 		{
 			pathsType = IS_EXISTING_DIR;
+			// Need DirDoc here to build temp path
+			if (!pDirDoc)
+			{
+				pDirDoc = GetDirDocToShow(&docNull);
+			}
 			if (strRight == strLeft)
 			{
 				strRight.Empty();

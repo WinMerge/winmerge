@@ -13,6 +13,8 @@
    Src: DirCompStateBar.cpp
   Misc cleanups and optimizations
    Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h
+  Cannot create valid (archive) temp paths without valid document pointer
+   Src: MainFrm.cpp
 
 2005-06-29 Perry
  PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)
