@@ -1,3 +1,7 @@
+2005-06-30 Kimmo
+ Update title for WinMerge 2.3, new revision number 1.1.2
+  Manual: WinMerge_help.xml
+
 2005-05-26 Kimmo
  PATCH: [ 1208641 ] Manual: update for opening archive files
   Manual: Open_paths.xml
