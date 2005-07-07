@@ -1,3 +1,8 @@
+2005-07-07 Kimmo
+ PATCH: [ 1232499 ] Language dialog box Simplified Chinese's name correction
+  Submitted by xmpdhml at sourceforge.net
+  Src/Common: LanguageSelect.cpp
+
 2005-06-30 WinMerge beta 2.3.4.0 released
 
 2005-06-30 Kimmo
