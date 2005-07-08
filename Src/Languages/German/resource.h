@@ -75,6 +75,7 @@
 #define IDB_EDIT_SELECTALL              333
 #define IDB_TOOLS_FILTERS               334
 #define IDB_TOOLS_COLUMNS               335
+#define IDB_MERGE_DELETE                336
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

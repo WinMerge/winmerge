@@ -1,3 +1,10 @@
+2005-07-08 Tim
+ PATCH: [ 1232760 ] Icon for 'Merge->Delete'
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new file: delete.bmp
+  Src/Languages: *.rc resource.h
+  Src/Languages/res new file: delete.bmp
+
 2005-07-08 Kimmo
  PATCH: [ 1234390 ] Compare >2 MB files with quick contents
   Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp

@@ -453,6 +453,7 @@ HMENU CMainFrame::NewDirViewMenu()
 	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
 	m_dirViewMenu.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
 	m_dirViewMenu.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
+	m_dirViewMenu.ModifyODMenu(NULL, ID_MERGE_DELETE, IDB_MERGE_DELETE);
 
 	m_dirViewMenu.LoadToolbar(IDR_MAINFRAME);
 	return(m_dirViewMenu.Detach());
