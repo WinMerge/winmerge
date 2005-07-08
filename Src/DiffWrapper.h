@@ -210,6 +210,7 @@ private:
 // forward declarations needed by DiffFileData
 struct file_data;
 class PrediffingInfo;
+struct DIFFITEM;
 
 /**
  * @brief C++ container for the structure (file_data) used by diffutils' diff_2_files(...)
@@ -232,7 +233,7 @@ struct DiffFileData
 	int diffutils_compare_files(int depth);
 	int byte_compare_files();
 	void GuessEncoding(int side, CDiffContext * pCtxt);
-	int prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filepath1, const CString & filepath2);
+	int prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &di);
 	BOOL Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, BOOL bMovedBlocks);
 

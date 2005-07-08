@@ -361,18 +361,8 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
  */
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 {
-	CString sLeftDir = pCtxt->GetNormalizedLeft();
-	CString sRightDir = pCtxt->GetNormalizedRight();
-	static const TCHAR backslash[] = _T("\\");
-
 	// Clear possible rescan-flag
 	di.diffcode &= ~DIFFCODE::NEEDSCAN;
-
-	if (!di.sSubdir.IsEmpty())
-	{
-		sLeftDir += backslash + di.sSubdir;
-		sRightDir += backslash + di.sSubdir;
-	}
 
 	// 1. Test against filters
 	if (di.isDirectory())
@@ -400,9 +390,8 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 		if (pCtxt->m_nCompMethod != CMP_DATE)
 		{
 			// Compare file to itself to detect encoding
-			CString filepath = sRightDir + backslash + di.sfilename;
 			DiffFileData diffdata;
-			diffdata.prepAndCompareTwoFiles(pCtxt, filepath, filepath);
+			diffdata.prepAndCompareTwoFiles(pCtxt, di);
 			StoreDiffResult(di, pCtxt, &diffdata);
 		}
 		else
@@ -416,9 +405,8 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 		if (pCtxt->m_nCompMethod != CMP_DATE)
 		{
 			// Compare file to itself to detect encoding
-			CString filepath = sLeftDir + backslash + di.sfilename;
 			DiffFileData diffdata;
-			diffdata.prepAndCompareTwoFiles(pCtxt, filepath, filepath);
+			diffdata.prepAndCompareTwoFiles(pCtxt, di);
 			StoreDiffResult(di, pCtxt, &diffdata);
 
 		}
@@ -458,13 +446,10 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			StoreDiffResult(di, pCtxt, NULL);
 			return;
 		}
-		// Files to compare
-		CString filepath1 = sLeftDir + backslash + di.sfilename;
-		CString filepath2 = sRightDir + backslash + di.sfilename;
-				// Really compare
+		// Really compare
 		DiffFileData diffdata;
-		di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, filepath1, filepath2);
-			// report result back to caller
+		di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
+		// report result back to caller
 		StoreDiffResult(di, pCtxt, &diffdata);
 	}
 				

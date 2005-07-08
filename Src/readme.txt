@@ -1,3 +1,7 @@
+2005-07-08 Kimmo
+ PATCH: [ 1234390 ] Compare >2 MB files with quick contents
+  Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp
+
 2005-07-07 Kimmo
  PATCH: [ 1232499 ] Language dialog box Simplified Chinese's name correction
   Submitted by xmpdhml at sourceforge.net

@@ -47,6 +47,17 @@ static char THIS_FILE[] = __FILE__;
 extern int recursive;
 extern CLogFile gLog;
 static int f_defcp = 0; // default codepage
+static const int MEG = 1024 * 1024; // Mega(byte)
+
+/**
+ * @brief Limit for compare by contents/quick contents.
+ * If compare by contents is selected (normal) then files bigger than limit
+ * are compared with compare by quick contents. That allows us to compare
+ * big binary files and overall makes comparing bigger files faster.
+ */
+static const int CMP_SIZE_LIMIT = 2 * MEG;
+
+static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
 
 /**
  * @brief Default constructor
@@ -1386,6 +1397,47 @@ static bool Unpack(CString & filepathTransformed,
 }
 
 /**
+ * @brief Get actual compared paths from DIFFITEM.
+ * @note If item is unique, same path is returned for both.
+ */
+void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right)
+{
+	static const TCHAR backslash[] = _T("\\");
+
+	if (di.isSideLeft())
+	{
+		// Compare file to itself to detect encoding
+		left = pCtxt->GetNormalizedLeft() + backslash;
+		if (!di.sSubdir.IsEmpty())
+			left += di.sSubdir + backslash;
+		left += di.sfilename;
+		right = left;
+	}
+	else if (di.isSideRight())
+	{
+		// Compare file to itself to detect encoding
+		right = pCtxt->GetNormalizedRight() + backslash;
+		if (!di.sSubdir.IsEmpty())
+			right += di.sSubdir + backslash;
+		right += di.sfilename;
+		left = right;
+	}
+	else
+	{
+		left = pCtxt->GetNormalizedLeft() + backslash;
+		right = pCtxt->GetNormalizedRight() + backslash;
+		if (!di.sSubdir.IsEmpty())
+		{
+			left += di.sSubdir + backslash;
+			right += di.sSubdir + backslash;
+		}
+		left += di.sfilename;
+		right += di.sfilename;
+	}
+}
+
+
+/**
  * @brief Invoke appropriate plugins for prediffing
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
@@ -1443,9 +1495,13 @@ bool DiffFileData::FilepathWithEncoding::Transform(const CString & filepath, CSt
 /**
  * @brief Prepare files (run plugins) & compare them, and return diffcode
  */
-int
-DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filepath1, const CString & filepath2) //, int * ndiffs, int * ntrivialdiffs, int unicoding[2])
+int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &di)
 {
+	int nCompMethod = pCtxt->m_nCompMethod;
+	CString filepath1;
+	CString filepath2;
+	GetComparePaths(pCtxt, di, filepath1, filepath2);
+
 	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
 	// but how can we receive the infoHandler ? DirScan actually only 
@@ -1511,13 +1567,20 @@ DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const CString & filep
 			goto exitPrepAndCompare;
 	}
 
+	// If either file is larger than 2 Megs compare files by quick contents
+	// This allows us to (faster) compare big binary files
+	if (pCtxt->m_nCompMethod == CMP_CONTENT && 
+		(di.left.size > CMP_SIZE_LIMIT || di.right.size > CMP_SIZE_LIMIT))
+	{
+		nCompMethod = CMP_QUICK_CONTENT;
+	}
 
-	if (pCtxt->m_nCompMethod == CMP_CONTENT)
+	if (nCompMethod == CMP_CONTENT)
 	{
 		// use diffutils
 		code = diffutils_compare_files(0);
 	}
-	else if (pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
+	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
 		// use our own byte-by-byte compare
 		code = byte_compare_files();
