@@ -166,10 +166,10 @@ void CPatchDlg::OnOK()
 		m_outputStyle = (enum output_style) m_comboStyle.GetCurSel();
 
 		contextSel = m_comboContext.GetCurSel();
-		if (contextSel > 0)
+		if (contextSel != CB_ERR)
 		{
 			m_comboContext.GetLBText(contextSel, contextText);
-			m_contextLines = (int) contextText[0] - '0';
+			m_contextLines = _ttoi(contextText);
 		}
 		else
 			m_contextLines = 0;
