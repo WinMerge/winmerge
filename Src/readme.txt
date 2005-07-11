@@ -3,6 +3,9 @@
   Remove PropFilter.cpp PropFilter.h
   Add PropLineFilter.cpp PropLineFilter.h
   Src: Merge.dsp MainFrm.cpp
+ PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter
+  Rename class
+   Src: PropLineFilter.cpp PropLineFilter.h
 
 2005-07-08 Tim
  PATCH: [ 1232760 ] Icon for 'Merge->Delete'

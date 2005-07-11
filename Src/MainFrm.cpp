@@ -2573,7 +2573,7 @@ void CMainFrame::OnFileNew()
 void CMainFrame::OnToolsFilters()
 {
 	CPropertySheet sht(IDS_FILTER_TITLE);
-	CPropFilter filter;
+	CPropLineFilter filter;
 	FileFiltersDlg fileFiltersDlg;
 	FILEFILTER_INFOLIST fileFilters;
 	CString selectedFilter;
