@@ -623,7 +623,7 @@ SOURCE=.\Common\PropertyPageHost.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\PropFilter.cpp
+SOURCE=.\PropLineFilter.cpp
 # End Source File
 # Begin Source File
 
@@ -1177,7 +1177,7 @@ SOURCE=.\Common\PropertyPageHost.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\PropFilter.h
+SOURCE=.\PropLineFilter.h
 # End Source File
 # Begin Source File
 

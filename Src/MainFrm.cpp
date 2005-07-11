@@ -47,7 +47,7 @@
 #include "Splash.h"
 #include "VssPrompt.h"
 #include "CCPrompt.h"
-#include "PropFilter.h"
+#include "PropLineFilter.h"
 #include "RegKey.h"
 #include "logfile.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface

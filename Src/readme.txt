@@ -1,3 +1,9 @@
+2005-07-11 Perry
+ PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter
+  Remove PropFilter.cpp PropFilter.h
+  Add PropLineFilter.cpp PropLineFilter.h
+  Src: Merge.dsp MainFrm.cpp
+
 2005-07-08 Tim
  PATCH: [ 1232760 ] Icon for 'Merge->Delete'
   Src: MainFrm.cpp Merge.rc resource.h
