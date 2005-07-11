@@ -6,6 +6,8 @@
  PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter
   Rename class
    Src: PropLineFilter.cpp PropLineFilter.h
+ PATCH: [ 1234629 ] New Chinese(Simplified) translation .rc file
+  Src/Languages: MergeChineseSimplified.rc
 
 2005-07-08 Tim
  PATCH: [ 1232760 ] Icon for 'Merge->Delete'
