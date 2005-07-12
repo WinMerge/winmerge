@@ -1,3 +1,7 @@
+2005-07-12 Perry
+ Grammar fix via rewrite for /ub option
+  Manual: Command_line.xml
+
 2005-06-30 Kimmo
  Update title for WinMerge 2.3, new revision number 1.1.2
   Manual: WinMerge_help.xml

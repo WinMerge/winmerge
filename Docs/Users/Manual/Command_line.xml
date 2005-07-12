@@ -63,7 +63,7 @@
     </listitem>
   </itemizedlist>
   <note>
-    <para><replaceable>leftpath</replaceable> and <replaceable>rightpath</replaceable> both has to be files or both has to be directories</para>
+    <para><replaceable>leftpath</replaceable> and <replaceable>rightpath</replaceable> have to both be files or both be directories</para>
   </note>
   <para>If both paths are not files or directories or one of paths is non-existant WinMerge shows Open-dialog for user to choose proper paths to open.</para>
 </sect1>
