@@ -1,3 +1,7 @@
+2005-07-13 Kimmo
+ PATCH: [ 1236602 ] Add icon for messagebox about overwriting patch file
+  Src: PatchDlg.cpp
+
 2005-07-11 Perry
  PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter
   Remove PropFilter.cpp PropFilter.h
