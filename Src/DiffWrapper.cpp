@@ -58,6 +58,7 @@ static const int MEG = 1024 * 1024; // Mega(byte)
 static const int CMP_SIZE_LIMIT = 2 * MEG;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
+static inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd);
 
 /**
  * @brief Default constructor
@@ -1671,6 +1672,7 @@ int DiffFileData::byte_compare_files()
 	FILE * fp[2]; // for files to compare
 	FileHandle fhd[2]; // to ensure file handles fp get closed
 	int i;
+	int diffcode = 0;
 
 	// Open both files
 	for (i=0; i<2; ++i)
@@ -1725,18 +1727,29 @@ int DiffFileData::byte_compare_files()
 		LPCSTR end0 = &buff[0][bfend[0]];
 		LPCSTR end1 = &buff[1][bfend[1]];
 
+		BOOL bBin0 = isBinaryBuf(&buff[0][bfstart[0]], &buff[0][bfend[0]]);
+		BOOL bBin1 = isBinaryBuf(&buff[1][bfstart[1]], &buff[1][bfend[1]]);
+
+		// If either buffer is binary file, don't bother ignoring differences
+		// for whitespaces or EOLs anymore.
+		if (bBin0 || bBin1)
+		{
+			diffcode |= DIFFCODE::BIN;
+			comparator.ResetIgnore();
+		}
+
 		// are these two buffers the same?
 		if (!comparator.CompareBuffers(ptr0, ptr1, end0, end1, eof[0], eof[1]))
-			return DIFFCODE::DIFF;
+			return diffcode | DIFFCODE::DIFF;
 
 
 		// did we finish both files?
 		if (eof[0] && eof[1])
 		{
 			if (ptr0 == end0 && ptr1 == end1)
-				return DIFFCODE::SAME;
+				return diffcode | DIFFCODE::SAME;
 			else
-				return DIFFCODE::DIFF;
+				return diffcode | DIFFCODE::DIFF;
 		}
 
 		// move our current pointers over what we just compared
@@ -1745,4 +1758,21 @@ int DiffFileData::byte_compare_files()
 		bfstart[0] += ptr0-orig0;
 		bfstart[1] += ptr1-orig1;
 	}
+}
+
+/**
+ * @brief Check if given buffer contains zero-bytes.
+ * If buffer has zero-bytes we determine it contains binary data.
+ * @param [in] bufBegin Start address of the buffer.
+ * @param [in] bufEnd End address of the buffer.
+ * @return TRUE if zero-bytes found.
+ */
+inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd)
+{
+	for (char * pByte = bufBegin; pByte <= bufEnd; ++pByte)
+	{
+		if (*pByte == 0x0)
+			return TRUE;
+	}
+	return FALSE;
 }

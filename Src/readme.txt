@@ -1,6 +1,8 @@
 2005-07-13 Kimmo
  PATCH: [ 1236602 ] Add icon for messagebox about overwriting patch file
   Src: PatchDlg.cpp
+ PATCH: [ 1236598 ] Add binary file check to quick contents compare
+  Src: ByteComparator.cpp ByteComparator.h DiffWrapper.cpp
 
 2005-07-11 Perry
  PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter

@@ -24,6 +24,7 @@ public:
 	typedef enum { RESULT_DIFF, RESULT_SAME, NEED_MORE_0, NEED_MORE_1, NEED_MORE_BOTH } COMP_RESULT;
 
 	COMP_RESULT CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1);
+	void ResetIgnore();
 
 private:
 	// settings

@@ -249,3 +249,16 @@ need_more:
 		return RESULT_SAME;
 	}
 }
+
+/**
+ * @brief Reset all ignore settings for compare.
+ * Causes compare to be done byte-per-byte which we want for binary files.
+ */
+void ByteComparator::ResetIgnore()
+{
+	m_ignore_case = false;
+	m_ignore_space_change = false;
+	m_ignore_all_space = false;
+	m_ignore_eol_diff = false;
+	m_ignore_blank_lines = false;
+}
