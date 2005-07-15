@@ -68,6 +68,16 @@ DATE:		BY:					DESCRIPTION:
 								temporarily, to sort out new directory compare)
 2005/06/22	Jochen Tucht		Change recommended version of 7-Zip to 4.20
 								Remove noise from Nagbox
+2005/07/03	Jochen Tucht		DIFFITEM has changed due to RFE [ 1205516 ]
+2005/07/04	Jochen Tucht		New global ArchiveGuessFormat() checks for
+								formats to be handled by external command line
+								tools. These take precedence over Merge7z
+								internal handlers.
+2005/07/05	Jochen Tucht		Move to Merge7z::Format::GetDefaultName() to
+								build intermediate filenames for multi-step
+								compression.
+2005/07/15	Jochen Tucht		Remove external command line tool integration
+								for now. Rethink about it after 2.4 branch.
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -79,6 +89,7 @@ DATE:		BY:					DESCRIPTION:
 #include "DirDoc.h"
 #include "MainFrm.h"
 #include "7zCommon.h"
+//#include "ExternalArchiveFormat.h"
 #include "markdown.h"
 #include <afxinet.h>
 #include <shlwapi.h>
@@ -89,6 +100,18 @@ DATE:		BY:					DESCRIPTION:
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
+{
+	// Look for command line tool first
+	/*Merge7z::Format *pFormat;
+	if (CExternalArchiveFormat::GuessFormat(path, pFormat))
+	{
+		return pFormat;
+	}*/
+	// Default to Merge7z*.dll
+	return Merge7z->GuessFormat(path);
+}
 
 /**
  * @brief Self-initializing raw C character buffer class.
@@ -506,38 +529,34 @@ void NTAPI Recall7ZipMismatchError()
 }
 
 /**
- * @brief Recursively delete folder.
+ * @brief Construct path to a temporary folder for pOwner, and clear the folder.
  */
-void CTempPath::Clear()
+CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
 {
+	CString strPath;
+	strPath.Format
+	(
+		pOwner ? _T("%sWINMERGE.%08lX\\%08lX.%s") : _T("%sWINMERGE.%08lX"),
+		paths_GetTempPath(), GetCurrentProcessId(), pOwner, pchExt
+	);
 	// SHFileOperation expects a ZZ terminated list of paths!
-	LPTSTR pchPath = m_strPath.GetBufferSetLength(lstrlen(m_strPath) + 1);
+	int cchPath = strPath.GetLength();
+	LPTSTR pchPath = strPath.GetBufferSetLength(cchPath + 1);
 	SHFILEOPSTRUCT fileop = {0, FO_DELETE, pchPath, 0, FOF_NOCONFIRMATION|FOF_SILENT|FOF_NOERRORUI, 0, 0, 0};
 	SHFileOperation(&fileop);
+	strPath.ReleaseBuffer(cchPath);
+	return strPath;
 }
 
 /**
- * @brief Prepare an additional sibling folder.
+ * @brief Delete head of temp path context list, and return its parent context.
  */
-void CTempPath::MakeSibling(LPCTSTR pchExt)
+CTempPathContext *CTempPathContext::DeleteHead()
 {
-	LPTSTR pchPath = m_strPath.GetBuffer(lstrlen(m_strPath) + lstrlen(pchExt) + 1);
-	PathRenameExtension(pchPath, pchExt);
-	m_strPath.ReleaseBuffer();
-	Clear();
-}
-
-/**
- * @brief Prepare a temporary folder.
- */
-CTempPath::CTempPath(LPVOID pOwner)
-{
-	m_strPath.Format
-	(
-		pOwner ? _T("%sWINMERGE.%08lX\\%08lX") : _T("%sWINMERGE.%08lX"),
-		paths_GetTempPath(), GetCurrentProcessId(), pOwner
-	);
-	Clear();
+	CTempPathContext *pParent = m_pParent;
+	GetClearTempPath(this, _T("*"));
+	delete this;
+	return pParent;
 }
 
 /**
@@ -588,26 +607,6 @@ BOOL CALLBACK FindNextResLang(HMODULE hModule, LPCTSTR lpType, LPCTSTR lpName, W
 		return wPrevious;
 	}
 	return TRUE;
-}
-
-/**
- * @brief Guess 7z language file name from language id.
- */
-CString NTAPI LangFile7z()
-{
-	CString langFile;
-	if (HINSTANCE hinstLang = AfxGetResourceHandle())
-	{
-		WORD wLangID = 0;
-		if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)
-		{
-			CRawString<TCHAR,4> sLng, sRgn;
-			GetLocaleInfo(wLangID, LOCALE_SISO639LANGNAME, sLng.Data, sLng.Size);
-			GetLocaleInfo(wLangID, LOCALE_SISO3166CTRYNAME, sRgn.Data, sRgn.Size);
-			langFile.Format(_T("%s-%s"), sLng.Data, sRgn.Data);
-		}
-	}
-	return langFile;
 }
 
 /**
@@ -664,10 +663,15 @@ interface Merge7z *Merge7z::Proxy::operator->()
 				pCause
 			);
 		}
+		if (HINSTANCE hinstLang = AfxGetResourceHandle())
+		{
+			WORD wLangID = 0;
+			if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)
+			{
+				flags |= wLangID << 16;
+			}
+		}
 		((interface Merge7z *)Merge7z[1])->Initialize(flags);
-#if DllBuild_Merge7z >= 9
-		((interface Merge7z *)Merge7z[1])->LoadLang(LangFile7z());
-#endif
 	}
 	return ((interface Merge7z *)Merge7z[1]);
 }
@@ -685,7 +689,7 @@ Merge7z::Proxy Merge7z =
 /**
  * @brief Tell Merge7z we are going to enumerate just 1 item.
  */
-UINT CompressSingleFile::Open()
+UINT SingleItemEnumerator::Open()
 {
 	return 1;
 }
@@ -693,7 +697,7 @@ UINT CompressSingleFile::Open()
 /**
  * @brief Pass information about the item to Merge7z.
  */
-Merge7z::Envelope *CompressSingleFile::Enum(Item &item)
+Merge7z::Envelope *SingleItemEnumerator::Enum(Item &item)
 {
 	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.Recurse;
 	item.Name = Name;
@@ -702,21 +706,12 @@ Merge7z::Envelope *CompressSingleFile::Enum(Item &item)
 }
 
 /**
- * @brief CompressSingleFile constructor. Called like a function.
+ * @brief SingleFileEnumerator constructor.
  */
-CompressSingleFile::CompressSingleFile(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name)
+SingleItemEnumerator::SingleItemEnumerator(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name)
 : FullPath(FullPath)
 , Name(Name)
 {
-	if (Merge7z::Format *piHandler = Merge7z->GuessFormat(path))
-	{
-		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
-		piHandler->CompressArchive(hwndOwner, path, this);
-	}
-	else
-	{
-		AfxMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
-	}
 }
 
 /**
@@ -761,7 +756,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.isSideLeft())
 				{
 					// Item is present on right side, i.e. folder is implied
-					m_rgImpliedFoldersRight[di.sSubdir] = PVOID(1);
+					m_rgImpliedFoldersRight[di.sRightSubdir] = PVOID(1);
 				}
 			}
 			else
@@ -770,7 +765,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.isSideRight())
 				{
 					// Item is present on left side, i.e. folder is implied
-					m_rgImpliedFoldersLeft[di.sSubdir] = PVOID(1);
+					m_rgImpliedFoldersLeft[di.sLeftSubdir] = PVOID(1);
 				}
 			}
 		}
@@ -840,15 +835,20 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		return 0;
 	}
 
+	bool isSideLeft = di.isSideLeft();
+	bool isSideRight = di.isSideRight();
+
 	Envelope *envelope = new Envelope;
 
-	envelope->Name = di.sfilename;
-	if (di.sSubdir.GetLength())
+	const CString &sFilename = m_bRight ? di.sRightFilename : di.sLeftFilename;
+	const CString &sSubdir = m_bRight ? di.sRightSubdir : di.sLeftSubdir;
+	envelope->Name = sFilename;
+	if (sSubdir.GetLength())
 	{
 		envelope->Name.Insert(0, '\\');
-		envelope->Name.Insert(0, di.sSubdir);
+		envelope->Name.Insert(0, sSubdir);
 	}
-	envelope->FullPath = di.sfilename;
+	envelope->FullPath = sFilename;
 	envelope->FullPath.Insert(0, '\\');
 	envelope->FullPath.Insert(0, m_bRight ?
 		di.getRightFilepath(pDoc->GetRightBasePath()) :
@@ -859,37 +859,44 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		if (m_bRight)
 		{
 			// Enumerating items on right side
-			if (di.isSideLeft())
+			if (isSideLeft)
 			{
 				// Item is missing on right side
-				PVOID &implied = m_rgImpliedFoldersRight[di.sSubdir];
+				PVOID &implied = m_rgImpliedFoldersRight[di.sLeftSubdir];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
-					envelope->Name = di.sSubdir;
+					envelope->Name = di.sLeftSubdir;
 					envelope->FullPath = di.getLeftFilepath(pDoc->GetLeftBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
+					isSideLeft = false;
 				}
 			}
 		}
 		else
 		{
 			// Enumerating items on left side
-			if (di.isSideRight())
+			if (isSideRight)
 			{
 				// Item is missing on left side
-				PVOID &implied = m_rgImpliedFoldersLeft[di.sSubdir];
+				PVOID &implied = m_rgImpliedFoldersLeft[di.sRightSubdir];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
-					envelope->Name = di.sSubdir;
+					envelope->Name = di.sRightSubdir;
 					envelope->FullPath = di.getRightFilepath(pDoc->GetRightBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
+					isSideRight = false;
 				}
 			}
 		}
+	}
+
+	if (m_bRight ? isSideLeft : isSideRight)
+	{
+		return envelope;
 	}
 
 	if (m_strFolderPrefix.GetLength())
@@ -903,7 +910,38 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 	item.FullPath = envelope->FullPath;
 	return envelope;
 }
- //<winerror.h>
+
+/**
+ * @brief Apply appropriate handlers from left to right.
+ */
+bool CDirView::DirItemEnumerator::MultiStepCompressArchive(LPCTSTR path)
+{
+	DeleteFile(path);
+	Merge7z::Format *piHandler = ArchiveGuessFormat(path);
+	if (piHandler)
+	{
+		HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
+		CString pathIntermediate;
+		SysFreeString(Assign(pathIntermediate, piHandler->GetDefaultName(hwndOwner, path)));
+		CString pathPrepend = path;
+		pathPrepend.ReleaseBuffer(pathPrepend.ReverseFind('\\') + 1);
+		pathIntermediate.Insert(0, pathPrepend);
+		bool bDone = MultiStepCompressArchive(pathIntermediate);
+		if (bDone)
+		{
+			piHandler->CompressArchive(hwndOwner, path,
+				&SingleItemEnumerator(path, pathIntermediate));
+			DeleteFile(pathIntermediate);
+		}
+		else
+		{
+			piHandler->CompressArchive(hwndOwner, path, this);
+		}
+		return true;
+	}
+	return false;
+}
+
 /**
  * @brief Generate archive from DirView items.
  */
@@ -923,18 +961,28 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 			//_T("z|*.z|")
 			_T("zip|*.zip|")
 			_T("jar (zip)|*.jar|")
+			_T("ear (zip)|*.ear|")
+			_T("war (zip)|*.war|")
 			_T("xpi (zip)|*.xpi|")
 			//_T("rar|*.rar|")
 			_T("tar|*.tar|")
+			_T("tar.z|*.tar.z|")
 			_T("tar.gz|*.tar.gz|")
 			_T("tar.bz2|*.tar.bz2|")
+			//_T("tz|*.tz|")
+			_T("tgz|*.tgz|")
+			_T("tbz2|*.tbz2|")
+			//_T("lzh|*.lzh|")
 			//_T("cab|*.cab|")
 			//_T("arj|*.arj|")
 			//_T("deb|*.deb|")
 			//_T("rpm|*.rpm|")
 			//_T("cpio|*.cpio|")
-			_T("|")
+			//_T("|")
 		);
+		CString strFilter; // = CExternalArchiveFormat::GetOpenFileFilterString();
+		strFilter.Insert(0, _T_Filter);
+		strFilter += _T("|");
 		// Make CFileDialog static to preserve settings across invocations:
  		static CFileDialog dlg
 		(
@@ -942,7 +990,7 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 			0,
 			0,
 			OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT | OFN_NOREADONLYRETURN,
-			_T_Filter
+			strFilter
 		);
 		dlg.m_ofn.nFilterIndex = AfxGetApp()->GetProfileInt(_T_Merge7z, _T_FilterIndex, 1);
 		// Use extension from current filter as default extension:
@@ -965,33 +1013,9 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 			AfxGetApp()->WriteProfileInt(_T_Merge7z, _T_FilterIndex, dlg.m_ofn.nFilterIndex);
 		}
 	}
-	if (path)
+	if (path && !MultiStepCompressArchive(path))
 	{
-		LPCTSTR pathFinal = 0;
-		CString strPathIntermediate;
-		if (StrRStrI(path, 0, _T(".tar.")) == PathFindExtension(path) - 4)
-		{
-			// Extension is preceeded by .tar:
-			// - Keep full path in pathFinal for actual compression.
-			// - Cut off extension to produce an intermediate tar first.
-			strPathIntermediate = pathFinal = path;
-			path = strPathIntermediate.GetBufferSetLength(strPathIntermediate.ReverseFind('.'));
-		}
-		if (Merge7z::Format *piHandler = Merge7z->GuessFormat(path))
-		{
-			HWND hwndOwner = CWnd::GetSafeOwner()->GetSafeHwnd();
-			piHandler->CompressArchive(hwndOwner, path, this);
-		}
-		else
-		{
-			AfxMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
-		}
-		if (pathFinal)
-		{
-			// Compress the intermediate tar to pathFinal, then delete it.
-			CompressSingleFile(pathFinal, path);
-			DeleteFile(path);
-		}
+		AfxMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
 	}
 #ifdef _DEBUG
 	afxDump << m_rgImpliedFoldersLeft;
@@ -1017,7 +1041,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			cchBuffer +=
 			(
 				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath)
-			).GetLength() + di.sfilename.GetLength() + 2;
+			).GetLength() + (m_bRight ? di.sRightFilename : di.sLeftFilename).GetLength() + 2;
 		}
 	}
 	LPTSTR pchBuffer = strBuffer.GetBufferSetLength(cchBuffer);
@@ -1031,7 +1055,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 				pchBuffer,
 				_T("%s\\%s"),
 				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath),
-				di.sfilename
+				m_bRight ? di.sRightFilename : di.sLeftFilename
 			) + 1;
 		}
 	}

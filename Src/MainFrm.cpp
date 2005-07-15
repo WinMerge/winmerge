@@ -225,7 +225,7 @@ CMainFrame::~CMainFrame()
 	// destroy the reg expression list
 	FreeRegExpList();
 	// Delete all temporary folders belonging to this process
-	CTempPath(0);
+	GetClearTempPath(NULL, NULL);
 
 	delete m_pSyntaxColors;
 }
@@ -1182,6 +1182,13 @@ void CMainFrame::OnOptions()
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
 	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/)
 {
+	// If the dirdoc we are supposed to use is busy doing a diff, bail out
+	if (IsComparing())
+		return FALSE;
+
+	if (pDirDoc && !pDirDoc->CloseMergeDocs())
+		return FALSE;
+
 	CString strLeft(pszLeft);
 	CString strRight(pszRight);
 	PackingInfo infoUnpacker;
@@ -1191,11 +1198,13 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
 	BOOL bRORight = dwRightFlags & FFILEOPEN_READONLY;
-	BOOL docNull;
-
-	// If the dirdoc we are supposed to use is busy doing a diff, bail out
-	if (IsComparing())
-		return FALSE;
+	// jtuc: docNull used to be uninitialized so you couldn't tell whether
+	// pDirDoc->ReusingDirDoc() would be called for passed-in pDirDoc.
+	// However, pDirDoc->ReusingDirDoc() kills temp path contexts, and I
+	// need to avoid that. This is why I'm initializing docNull to TRUE here.
+	// Note that call to pDirDoc->CloseMergeDocs() above preserves me from
+	// keeping orphaned MergeDocs in that case.
+	BOOL docNull = TRUE;
 
 	// pop up dialog unless arguments exist (and are compatible)
 	PATH_EXISTENCE pathsType = GetPairComparability(strLeft, strRight);
@@ -1254,76 +1263,49 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				  bRecurse);
 	}
 
+	CTempPathContext *pTempPathContext = NULL;
 	try
 	{
 		// Handle archives using 7-zip
-		if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strLeft))
+		if (Merge7z::Format *piHandler = ArchiveGuessFormat(strLeft))
 		{
+			pTempPathContext = new CTempPathContext;
+			CString path = GetClearTempPath(pTempPathContext, _T("0"));
+			pTempPathContext->m_strLeftDisplayRoot = strLeft;
+			pTempPathContext->m_strRightDisplayRoot = strRight;
 			pathsType = IS_EXISTING_DIR;
-			// Need DirDoc here to build temp path
-			if (!pDirDoc)
-			{
-				pDirDoc = GetDirDocToShow(&docNull);
-			}
 			if (strRight == strLeft)
 			{
 				strRight.Empty();
 			}
-			CTempPath path = pDirDoc;
 			do
 			{
 				if FAILED(piHandler->DeCompressArchive(m_hWnd, strLeft, path))
 					break;
 				if (strLeft.Find(path) == 0)
 				{
-					if (!::DeleteFile(strLeft))
-					{
-						LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-							strLeft, GetSysError(GetLastError())));
-					}
+					VERIFY(::DeleteFile(strLeft) || gLog::DeleteFileFailed(strLeft));
 				}
-				strLeft.Delete(0, strLeft.ReverseFind('\\'));
-				int dot = strLeft.ReverseFind('.');
-				if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strLeft[dot + 1]))
-				{
-					strLeft.GetBufferSetLength(dot + 2);
-					strLeft += _T("ar");
-				}
-				else
-				{
-					strLeft.GetBufferSetLength(dot);
-				}
+				SysFreeString(Assign(strLeft, piHandler->GetDefaultName(m_hWnd, strLeft)));
+				strLeft.Insert(0, '\\');
 				strLeft.Insert(0, path);
-			} while (piHandler = Merge7z->GuessFormat(strLeft));
+			} while (piHandler = ArchiveGuessFormat(strLeft));
 			strLeft = path;
-			if (Merge7z::Format *piHandler = Merge7z->GuessFormat(strRight))
+			if (Merge7z::Format *piHandler = ArchiveGuessFormat(strRight))
 			{
-				path.MakeSibling(_T(".1"));
+				path = GetClearTempPath(pTempPathContext, _T("1"));
 				do
 				{
 					if FAILED(piHandler->DeCompressArchive(m_hWnd, strRight, path))
 						break;;
 					if (strRight.Find(path) == 0)
 					{
-						if (!::DeleteFile(strRight))
-						{
-							LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-								strRight, GetSysError(GetLastError())));
-						}
+						VERIFY(::DeleteFile(strRight) || gLog::DeleteFileFailed(strRight));
 					}
-					strRight.Delete(0, strRight.ReverseFind('\\'));
-					int dot = strRight.ReverseFind('.');
-					if (piHandler != &Merge7z->TarHandler && StrChr(_T("Tt"), strRight[dot + 1]))
-					{
-						strRight.GetBufferSetLength(dot + 2);
-						strRight += _T("ar");
-					}
-					else
-					{
-						strRight.GetBufferSetLength(dot);
-					}
+					SysFreeString(Assign(strRight, piHandler->GetDefaultName(m_hWnd, strRight)));
+					strRight.Insert(0, '\\');
 					strRight.Insert(0, path);
-				} while (piHandler = Merge7z->GuessFormat(strRight));
+				} while (piHandler = ArchiveGuessFormat(strRight));
 				strRight = path;
 			}
 			else if (strRight.IsEmpty())
@@ -1337,6 +1319,11 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 					// not a Perry style patch: diff with itself...
 					strLeft = strRight = path;
 				}
+				else
+				{
+					pTempPathContext->m_strLeftDisplayRoot += _T("\\ORIGINAL");
+					pTempPathContext->m_strRightDisplayRoot += _T("\\ALTERED");
+				}
 			}
 		}
 	}
@@ -1348,16 +1335,20 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	// Determine if we want new a dirview open now that we know if it was
 	// and archive. Don't open new dirview if we are comparing files.
+	BOOL bSetRootLenght = FALSE;
 	if (!pDirDoc)
 	{
 		if (pathsType == IS_EXISTING_DIR)
+		{
 			pDirDoc = GetDirDocToShow(&docNull);
+			bSetRootLenght = TRUE;
+		}
 		else
 		{
 			pDirDoc = (CDirDoc*)theApp.m_pDirTemplate->CreateNewDocument();
 			docNull = TRUE;
 		}
-	}		
+	}
 
 	if (!docNull)
 	{
@@ -1373,20 +1364,20 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		if (pDirDoc)
 		{
 			PathContext paths(strLeft, strRight);
-			if (pDirDoc->InitCompare(paths, bRecurse))
-			{
-				gLog.Write(LOGLEVEL::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
-					strLeft, strRight);
+			// Anything that can go wrong inside InitCompare() will yield an
+			// exception. There is no point in checking return value.
+			pDirDoc->InitCompare(paths, bRecurse, bSetRootLenght, pTempPathContext);
+			gLog.Write(LOGLEVEL::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
+				strLeft, strRight);
 
-				pDirDoc->SetReadOnly(TRUE, bROLeft);
-				pDirDoc->SetReadOnly(FALSE, bRORight);
-				pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
-				pDirDoc->SetTitle(NULL);
-				m_strLeftDesc.Empty();
-				m_strRightDesc.Empty();
+			pDirDoc->SetReadOnly(TRUE, bROLeft);
+			pDirDoc->SetReadOnly(FALSE, bRORight);
+			pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
+			pDirDoc->SetTitle(NULL);
+			m_strLeftDesc.Empty();
+			m_strRightDesc.Empty();
 
-				pDirDoc->Rescan();
-			}
+			pDirDoc->Rescan();
 		}
 	}
 	else
@@ -2176,10 +2167,10 @@ void CMainFrame::OnToolsGeneratePatch()
 
 			CString leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
 			if (!leftFile.IsEmpty())
-				leftFile += _T("\\") + item.sfilename;
+				leftFile += _T("\\") + item.sLeftFilename;
 			CString rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
 			if (!rightFile.IsEmpty())
-				rightFile += _T("\\") + item.sfilename;
+				rightFile += _T("\\") + item.sRightFilename;
 
 			patcher.AddFiles(leftFile, rightFile);
 		}

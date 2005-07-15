@@ -47,7 +47,7 @@ typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
 class DirDocFilterGlobal;
 class DirDocFilterByExtension;
 class CustomStatusCursor;
-
+class CTempPathContext;
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
 
@@ -62,6 +62,7 @@ protected:
 
 // Attributes
 public:
+	CTempPathContext *m_pTempPathContext;
 // Operations
 public:
 	BOOL CloseMergeDocs();
@@ -83,7 +84,7 @@ public:
 
 // Implementation
 public:
-	BOOL InitCompare(const PathContext & paths, BOOL bRecursive);
+	void InitCompare(const PathContext & paths, BOOL bRecursive, BOOL bSetRootLength, CTempPathContext *);
 	void Rescan();
 	BOOL GetRecursive() { return m_bRecursive; }
 	BOOL GetReadOnly(BOOL bLeft) const;
@@ -111,6 +112,8 @@ public:
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
 	void SetDescriptions(const CString &strLeftDesc, const CString &strRightDesc);
+	void ApplyLeftDisplayRoot(CString &);
+	void ApplyRightDisplayRoot(CString &);
 
 	void SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting);
 	void FetchPluginInfos(const CString& filteredFilenames, 
@@ -124,6 +127,16 @@ public:
 	CString GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
 	void RemoveDiffByKey(POSITION key) { m_pCtxt->RemoveDiff(key); }
 	void SetMarkedRescan() {m_bMarkedRescan = TRUE; }
+	struct AllowUpwardDirectory
+	{
+		enum ReturnCode
+		{
+			No,
+			ParentIsRegularPath,
+			ParentIsTempPath
+		};
+	};
+	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory();
 
 protected:
 	CDiffWrapper m_diffWrapper;
@@ -149,6 +162,7 @@ private:
 	PluginManager m_pluginman;
 	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
 	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
+	int m_cchLeftRoot; /**< Don't go upward any further */
 };
 
 //{{AFX_INSERT_LOCATION}}

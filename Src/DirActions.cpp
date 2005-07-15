@@ -302,9 +302,9 @@ void CDirView::DoCopyLeftTo()
 			{
 				CString sFullDest(destPath);
 				sFullDest += _T("\\");
-				if (!di.sSubdir.IsEmpty())
-					sFullDest += di.sSubdir + _T("\\");
-				sFullDest += di.sfilename;
+				if (!di.sLeftSubdir.IsEmpty())
+					sFullDest += di.sLeftSubdir + _T("\\");
+				sFullDest += di.sLeftFilename;
 				fileOp.AddDestFile(sFullDest);
 			}
 			GetItemFileNames(sel, slFile, srFile);
@@ -355,9 +355,9 @@ void CDirView::DoCopyRightTo()
 			{
 				CString sFullDest(destPath);
 				sFullDest += _T("\\");
-				if (!di.sSubdir.IsEmpty())
-					sFullDest += di.sSubdir + _T("\\");
-				sFullDest += di.sfilename;
+				if (!di.sRightSubdir.IsEmpty())
+					sFullDest += di.sRightSubdir + _T("\\");
+				sFullDest += di.sRightFilename;
 				fileOp.AddDestFile(sFullDest);
 			}
 			GetItemFileNames(sel, slFile, srFile);
@@ -406,10 +406,10 @@ void CDirView::DoMoveLeftTo()
 			sFullDest += _T("\\");
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.sSubdir.IsEmpty())
-					sFullDest += di.sSubdir + _T("\\");
+				if (!di.sLeftSubdir.IsEmpty())
+					sFullDest += di.sLeftSubdir + _T("\\");
 			}
-			sFullDest += di.sfilename;
+			sFullDest += di.sLeftFilename;
 			act.dest = sFullDest;
 
 			GetItemFileNames(sel, slFile, srFile);
@@ -459,10 +459,10 @@ void CDirView::DoMoveRightTo()
 			sFullDest += _T("\\");
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.sSubdir.IsEmpty())
-					sFullDest += di.sSubdir + _T("\\");
+				if (!di.sRightSubdir.IsEmpty())
+					sFullDest += di.sRightSubdir + _T("\\");
 			}
-			sFullDest += di.sfilename;
+			sFullDest += di.sRightFilename;
 			act.dest = sFullDest;
 
 			GetItemFileNames(sel, slFile, srFile);
@@ -719,16 +719,16 @@ void CDirView::PerformActionList(ActionList & actionList)
  */
 void CDirView::UpdateCopiedItems(ActionList & actionList)
 {
+	CDirDoc *pDoc = GetDocument();
 	while (actionList.GetCount()>0)
 	{
 		ActionList::action act = actionList.actions.RemoveHead();
 		POSITION diffpos = GetItemKey(act.idx);
-		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
+		const DIFFITEM & di = pDoc->GetDiffByKey(diffpos);
 
 		if (actionList.atype == ActionList::ACT_COPY)
 		{
 			// Copy files and folders
-			CDirDoc *pDoc = GetDocument();
 			pDoc->SetDiffSide(DIFFCODE::BOTH, act.idx);
 			
 			// Folders don't have compare flag set!!
@@ -746,7 +746,6 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 			// Move files and folders
 			// If unique item is moved, don't bother updating statuses,
 			// just remove from list
-			CDirDoc *pDoc = GetDocument();
 			if (actionList.atype == ActionList::ACT_MOVE_LEFT)
 			{
 				if (di.isSideLeft())
@@ -776,7 +775,6 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 			// Delete files and folders
 			// If both items or unique item is deleted, don't bother updating
 			// statuses, just remove from list
-			CDirDoc *pDoc = GetDocument();
 			if (actionList.atype == ActionList::ACT_DEL_LEFT)
 			{
 				if (di.isSideLeft())
@@ -981,11 +979,12 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
 	else
 	{
 		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
-		const CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
+		const CString leftrelpath = paths_ConcatPath(di.sLeftSubdir, di.sLeftFilename);
+		const CString rightrelpath = paths_ConcatPath(di.sRightSubdir, di.sRightFilename);
 		const CString & leftpath = GetDocument()->GetLeftBasePath();
 		const CString & rightpath = GetDocument()->GetRightBasePath();
-		strLeft = paths_ConcatPath(leftpath, relpath);
-		strRight = paths_ConcatPath(rightpath, relpath);
+		strLeft = paths_ConcatPath(leftpath, leftrelpath);
+		strRight = paths_ConcatPath(rightpath, rightrelpath);
 	}
 }
 
@@ -995,24 +994,11 @@ void CDirView::GetItemFileNames(int sel, CString& strLeft, CString& strRight) co
  */
 void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 {
-	ASSERT(paths);
-	POSITION diffpos = GetItemKey(sel);
-	if (diffpos == (POSITION)SPECIAL_ITEM_POS)
-	{
-		paths->SetLeft(_T(""));
-		paths->SetRight(_T(""));
-	}
-	else
-	{
-		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
-		const CString relpath = paths_ConcatPath(di.sSubdir, di.sfilename);
-		const CString & leftpath = GetDocument()->GetLeftBasePath();
-		const CString & rightpath = GetDocument()->GetRightBasePath();
-		CString strLeft = paths_ConcatPath(leftpath, relpath);
-		CString strRight = paths_ConcatPath(rightpath, relpath);
-		paths->SetLeft(strLeft);
-		paths->SetRight(strRight);
-	}
+	CString strLeft;
+	CString strRight;
+	GetItemFileNames(sel, strLeft, strRight);
+	paths->SetLeft(strLeft);
+	paths->SetRight(strRight);
 }
 
 /// Open selected file on specified side

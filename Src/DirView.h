@@ -94,7 +94,6 @@ public:
 	int GetItemIndex(DWORD key);
 	// for populating list
 	void DeleteAllDisplayItems();
-	void ReusingDirView();
 	void SetColumnWidths();
 
 	void SortColumnsAppropriately();
@@ -104,7 +103,6 @@ public:
 	//DIFFITEM GetNextSelectedInd(int &ind);
 	DIFFITEM GetItemAt(int ind);
 	int AddSpecialItems();
-	BOOL AllowUpwardDirectory(const CString &leftPath, const CString &rightPath);
 	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
 
@@ -238,7 +236,6 @@ protected:
 	CMenu * m_pHeaderPopup;
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	CFont *m_pFont; /**< User-selected font */
-	
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);

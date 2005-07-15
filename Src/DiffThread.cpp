@@ -198,7 +198,6 @@ UINT DiffThread(LPVOID lpParam)
 
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;
-	CString subdir; // blank to start at roots specified in diff context
 
 	paths.SetLeft(myStruct->context->GetNormalizedLeft());
 	paths.SetRight(myStruct->context->GetNormalizedRight());
@@ -211,8 +210,19 @@ UINT DiffThread(LPVOID lpParam)
 	else
 	{
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COLLECT);
-		DirScan_GetItems(paths, subdir, &itemList, casesensitive, depth, myStruct->context, myStruct->m_pAbortgate);
-
+		CString subdir; // blank to start at roots specified in diff context
+#ifdef _DEBUG
+		_CrtMemState memStateBefore;
+		_CrtMemState memStateAfter;
+		_CrtMemState memStateDiff;
+		_CrtMemCheckpoint(&memStateBefore);
+#endif
+		DirScan_GetItems(paths, subdir, subdir, &itemList, casesensitive, depth,  myStruct->context, myStruct->m_pAbortgate);
+#ifdef _DEBUG
+		_CrtMemCheckpoint(&memStateAfter);
+		_CrtMemDifference(&memStateDiff, &memStateBefore, &memStateAfter);
+		_CrtMemDumpStatistics(&memStateDiff);
+#endif
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 		DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);

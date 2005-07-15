@@ -143,9 +143,12 @@ void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 {
 	UpdateVersion(di, dfi);
 	ASSERT(&dfi == &di.left || &dfi == &di.right);
-	CString spath = &dfi == &di.left ? di.getLeftFilepath(GetNormalizedLeft()) :
-			di.getRightFilepath(GetNormalizedRight());
-	CString filepath = paths_ConcatPath(spath, di.sfilename);
+	CString filepath
+	(
+		&dfi == &di.left
+	?	paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.sLeftFilename)
+	:	paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.sRightFilename)
+	);
 	dfi.Update(filepath);
 	GuessCodepageEncoding(filepath, &dfi.unicoding, &dfi.codepage, m_bGuessEncoding);
 }
@@ -173,32 +176,35 @@ static bool CheckFileForVersion(LPCTSTR ext)
 void CDiffContext::UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const
 {
 	// Check only binary files
-	LPCTSTR ext = PathFindExtension(di.sfilename);
 	dfi.version = _T("");
 	dfi.bVersionChecked = true;
 
 	if (di.isDirectory())
 		return;
 	
-	if (!CheckFileForVersion(ext))
-		return;
-
 	CString spath;
 	if (&dfi == &di.left)
 	{
 		if (di.isSideRight())
 			return;
+		LPCTSTR ext = PathFindExtension(di.sLeftFilename);
+		if (!CheckFileForVersion(ext))
+			return;
 		spath = di.getLeftFilepath(GetNormalizedLeft());
+		spath = paths_ConcatPath(spath, di.sLeftFilename);
 	}
 	else
 	{
 		ASSERT(&dfi == &di.right);
 		if (di.isSideLeft())
 			return;
+		LPCTSTR ext = PathFindExtension(di.sRightFilename);
+		if (!CheckFileForVersion(ext))
+			return;
 		spath = di.getRightFilepath(GetNormalizedRight());
+		spath = paths_ConcatPath(spath, di.sRightFilename);
 	}
-	CString filepath = paths_ConcatPath(spath, di.sfilename);
-	dfi.version = GetFixedFileVersion(filepath);
+	dfi.version = GetFixedFileVersion(spath);
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */

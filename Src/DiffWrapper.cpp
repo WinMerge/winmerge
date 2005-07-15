@@ -1405,35 +1405,25 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 {
 	static const TCHAR backslash[] = _T("\\");
 
-	if (di.isSideLeft())
+	if (!di.isSideRight())
 	{
 		// Compare file to itself to detect encoding
 		left = pCtxt->GetNormalizedLeft() + backslash;
-		if (!di.sSubdir.IsEmpty())
-			left += di.sSubdir + backslash;
-		left += di.sfilename;
-		right = left;
+		if (!di.sLeftSubdir.IsEmpty())
+			left += di.sLeftSubdir + backslash;
+		left += di.sLeftFilename;
+		if (di.isSideLeft())
+			right = left;
 	}
-	else if (di.isSideRight())
+	if (!di.isSideLeft())
 	{
 		// Compare file to itself to detect encoding
 		right = pCtxt->GetNormalizedRight() + backslash;
-		if (!di.sSubdir.IsEmpty())
-			right += di.sSubdir + backslash;
-		right += di.sfilename;
-		left = right;
-	}
-	else
-	{
-		left = pCtxt->GetNormalizedLeft() + backslash;
-		right = pCtxt->GetNormalizedRight() + backslash;
-		if (!di.sSubdir.IsEmpty())
-		{
-			left += di.sSubdir + backslash;
-			right += di.sSubdir + backslash;
-		}
-		left += di.sfilename;
-		right += di.sfilename;
+		if (!di.sRightSubdir.IsEmpty())
+			right += di.sRightSubdir + backslash;
+		right += di.sRightFilename;
+		if (di.isSideRight())
+			left = right;
 	}
 }
 

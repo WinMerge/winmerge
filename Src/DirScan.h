@@ -20,7 +20,7 @@ public:
 	virtual bool ShouldAbort() = 0;
 };
 
-int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemList * pLst,
+int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const CString & rightsubdir, DiffItemList * pLst,
 		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable);
 
 int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable);

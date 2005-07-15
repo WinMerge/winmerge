@@ -96,7 +96,13 @@ static int cmpfloat(double v1, double v2)
 static CString ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-	return di.sfilename;
+	return
+	(
+		di.sLeftFilename.IsEmpty() ? di.sRightFilename :
+		di.sRightFilename.IsEmpty() ? di.sLeftFilename :
+		di.sLeftFilename == di.sRightFilename ? di.sLeftFilename :
+		di.sLeftFilename + _T("|") + di.sRightFilename
+	);
 }
 static CString ColNameGet(const CDiffContext *, const void *p) //sfilename
 {
@@ -112,11 +118,30 @@ static CString ColExtGet(const CDiffContext *, const void *p) //sfilename
 }
 static CString ColPathGet(const CDiffContext *, const void *p)
 {
-	const CString &r = *static_cast<const CString*>(p);
-	if (r.IsEmpty())
-		return _T(".");
-	else
-		return r;
+	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
+	CString s = di.sRightSubdir;
+	const CString &t = di.sLeftSubdir;
+	int i = 0, j = 0;
+	do
+	{
+		int i_ahead = s.Find('\\', i);
+		int j_ahead = t.Find('\\', j);
+		int length_s = (i_ahead != -1 ? i_ahead : s.GetLength()) - i;
+		int length_t = (j_ahead != -1 ? j_ahead : t.GetLength()) - j;
+		if (length_s != length_t ||
+			!StrIsIntlEqual(FALSE, LPCTSTR(s) + i, LPCTSTR(t) + j, length_s))
+		{
+			CString u(LPCTSTR(t) + j, length_t + 1);
+			u.SetAt(length_t, '|');
+			s.Insert(i, u);
+			i_ahead += u.GetLength();
+		}
+		i = i_ahead + 1;
+		j = j_ahead + 1;
+	} while (i && j);
+	if (s.IsEmpty())
+		s = _T(".");
+	return s;
 }
 static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 {
@@ -302,18 +327,16 @@ static CString ColEncodingGet(const CDiffContext *, const void *p)
  * @name Functions to sort each type of column info.
  */
 /* @{ */ 
-static int ColFileNameSort(const CDiffContext *, const void *p, const void *q)
+static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
-
-	if (ldi.isDirectory() && rdi.isDirectory())
-		return ldi.sfilename.CompareNoCase(rdi.sfilename);
-	else if (ldi.isDirectory() && !rdi.isDirectory())
+	if (ldi.isDirectory() && !rdi.isDirectory())
 		return -1;
-	else if (!ldi.isDirectory() && rdi.isDirectory())
+	if (!ldi.isDirectory() && rdi.isDirectory())
 		return 1;
-	else return ldi.sfilename.CompareNoCase(rdi.sfilename);
+	return ColFileNameGet(pCtxt, p).CompareNoCase(ColFileNameGet(pCtxt, q));
+	//return ldi.sLeftFilename.CompareNoCase(rdi.sLeftFilename);
 }
 static int ColNameSort(const CDiffContext *, const void *p, const void *q)
 {
@@ -327,6 +350,10 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 	const CString &s = *static_cast<const CString*>(q);
 	return lstrcmpi(PathFindExtension(r), PathFindExtension(s));
 	//return ColExtGet(pCtxt, p).CompareNoCase(ColExtGet(pCtxt, q));
+}
+static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q)
+{
+	return ColPathGet(pCtxt, p).CompareNoCase(ColPathGet(pCtxt, q));
 }
 static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
 {
@@ -401,13 +428,13 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 DirColInfo g_cols[] =
 {
 	{ _T("Name"), IDS_COLHDR_FILENAME, IDS_COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, LVCFMT_LEFT },
-	{ _T("Path"), IDS_COLHDR_DIR, IDS_COLDESC_DIR, &ColPathGet, &ColNameSort, FIELD_OFFSET(DIFFITEM, sSubdir), 1, true, LVCFMT_LEFT },
+	{ _T("Path"), IDS_COLHDR_DIR, IDS_COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, LVCFMT_LEFT },
 	{ _T("Status"), IDS_COLHDR_RESULT, IDS_COLDESC_RESULT, &ColStatusGet, &ColStatusSort, 0, 2, true, LVCFMT_LEFT },
 	{ _T("Lmtime"), IDS_COLHDR_LTIMEM, IDS_COLDESC_LTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.mtime), 3, false, LVCFMT_LEFT },
 	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, IDS_COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.mtime), 4, false, LVCFMT_LEFT },
 	{ _T("Lctime"), IDS_COLHDR_LTIMEC, IDS_COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.ctime), -1, false, LVCFMT_LEFT },
 	{ _T("Rctime"), IDS_COLHDR_RTIMEC, IDS_COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, sfilename), 5, true, LVCFMT_LEFT },
+	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, sLeftFilename), 5, true, LVCFMT_LEFT },
 	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },
 	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false, LVCFMT_RIGHT },
 	{ _T("Newer"), IDS_COLHDR_NEWER, IDS_COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, LVCFMT_LEFT },

@@ -22,11 +22,7 @@ CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
 	CString sPath;
 	if (!isSideRight())
 	{
-		sPath = sLeftRoot;
-		if (sSubdir.GetLength())
-		{
-			sPath = paths_ConcatPath(sPath, sSubdir);
-		}
+		sPath = paths_ConcatPath(sLeftRoot, sLeftSubdir);
 	}
 	return sPath;
 }
@@ -37,11 +33,7 @@ CString DIFFITEM::getRightFilepath(const CString &sRightRoot) const
 	CString sPath;
 	if (!isSideLeft())
 	{
-		sPath = sRightRoot;
-		if (sSubdir.GetLength())
-		{
-			sPath = paths_ConcatPath(sPath, sSubdir);
-		}
+		sPath = paths_ConcatPath(sRightRoot, sRightSubdir);
 	}
 	return sPath;
 }

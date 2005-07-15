@@ -72,6 +72,8 @@ CDirDoc::CDirDoc()
 , m_statusCursor(NULL)
 , m_bReuseCloses(FALSE)
 , m_bMarkedRescan(FALSE)
+, m_pTempPathContext(NULL)
+, m_cchLeftRoot(0)
 {
 	DIFFOPTIONS options = {0};
 
@@ -100,9 +102,11 @@ CDirDoc::~CDirDoc()
 		CMergeDoc * pMergeDoc = m_MergeDocs.GetNext(pos);
 		pMergeDoc->DirDocClosing(this);
 	}
-	
 	// Delete all temporary folders belonging to this document
-	CTempPath(this);
+	while (m_pTempPathContext)
+	{
+		m_pTempPathContext = m_pTempPathContext->DeleteHead();
+	}
 }
 
 /**
@@ -174,28 +178,55 @@ void CDirDoc::Serialize(CArchive& ar)
  * Previous compare context is first free'd.
  * @param [in] paths Paths to compare
  * @param [in] bRecursive If TRUE subdirectories are included to compare.
- * @return TRUE if initialisation succeeds.
  */
-BOOL CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive)
+void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, BOOL bInitRootLength, CTempPathContext *pTempPathContext)
 {
-	BOOL bRet = FALSE;
-	
-	if (m_pCtxt != NULL)
-		delete m_pCtxt;
+	// Anything that can go wrong here will yield an exception.
+	// Default implementation of operator new() never returns NULL.
+	delete m_pCtxt;
 	
 	if (m_pCompareStats == NULL)
 		m_pCompareStats = new CompareStats();
 
 	m_pCtxt = new CDiffContext(paths.GetLeft(), paths.GetRight());
-	
-	if (m_pCtxt != NULL && m_pCompareStats != NULL)
+
+	if (pTempPathContext)
 	{
-		m_bRecursive = bRecursive;
-		// All plugin management is done by our plugin manager
-		m_pCtxt->m_piPluginInfos = &m_pluginman;
-		bRet = TRUE;
+		ApplyLeftDisplayRoot(pTempPathContext->m_strLeftDisplayRoot);
+		ApplyRightDisplayRoot(pTempPathContext->m_strRightDisplayRoot);
+		pTempPathContext->m_pParent = m_pTempPathContext;
+		m_pTempPathContext = pTempPathContext;
+		m_pTempPathContext->m_strLeftRoot = m_pCtxt->GetLeftPath();
+		m_pTempPathContext->m_strRightRoot = m_pCtxt->GetRightPath();
 	}
-	return bRet;
+
+	if (bInitRootLength)
+	{
+		m_cchLeftRoot = m_pCtxt->GetLeftPath().GetLength();
+	}
+	
+	m_bRecursive = bRecursive;
+	// All plugin management is done by our plugin manager
+	m_pCtxt->m_piPluginInfos = &m_pluginman;
+}
+
+/**
+ * @brief Tell if user may use ".." and move to parents directory
+ *
+ * @return No : upward RESTRICTED
+ * ParentIsRegularPath : upward ENABLED
+ * ParentIsTempPath : upward ENABLED
+ */
+CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory()
+{
+	return
+	(
+		GetLeftBasePath().GetLength() > m_cchLeftRoot
+	?	AllowUpwardDirectory::ParentIsRegularPath
+	:	m_pTempPathContext && m_pTempPathContext->m_pParent
+	?	AllowUpwardDirectory::ParentIsTempPath
+	:	AllowUpwardDirectory::No
+	);
 }
 
 /**
@@ -353,7 +384,7 @@ void CDirDoc::Redisplay()
 	m_pDirView->SetRedraw(FALSE);
 
 	// If non-recursive compare, add special item(s)
-	if (!m_bRecursive)
+	if (!m_bRecursive || m_pTempPathContext && m_pTempPathContext->m_pParent)
 		cnt += m_pDirView->AddSpecialItems();
 
 	int alldiffs=0;
@@ -478,7 +509,8 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 
 		if (path1 == current.getLeftFilepath(GetLeftBasePath()) &&
 			path2 == current.getRightFilepath(GetRightBasePath()) &&
-			file1 == current.sfilename)
+			file1 == current.sLeftFilename &&
+			file2 == current.sRightFilename)
 		{
 			return currentPos;
 		}
@@ -563,7 +595,7 @@ BOOL CDirDoc::ReusingDirDoc()
 
 	// clear diff display
 	ASSERT(m_pDirView);
-	m_pDirView->ReusingDirView();
+	m_pDirView->DeleteAllDisplayItems();
 
 	// hide the floating state bar
 	CDirFrame *pf = m_pDirView->GetParentFrame();
@@ -572,6 +604,11 @@ BOOL CDirDoc::ReusingDirDoc()
 	// delete comparison parameters and results
 	delete m_pCtxt;
 	m_pCtxt = NULL;
+
+	while (m_pTempPathContext)
+	{
+		m_pTempPathContext = m_pTempPathContext->DeleteHead();
+	}
 
 	return TRUE;
 }
@@ -744,7 +781,10 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 		if (!m_strLeftDesc.IsEmpty())
 			sText = m_strLeftDesc;
 		else
+		{
 			sText = m_pCtxt->GetLeftPath();
+			ApplyLeftDisplayRoot(sText);
+		}
 		nPane = 0;
 	}
 	else
@@ -752,7 +792,10 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 		if (!m_strRightDesc.IsEmpty())
 			sText = m_strRightDesc;
 		else
+		{
 			sText = m_pCtxt->GetRightPath();
+			ApplyRightDisplayRoot(sText);
+		}
 		nPane = 1;
 	}
 
@@ -804,6 +847,30 @@ void CDirDoc::SetDescriptions(const CString &strLeftDesc, const CString &strRigh
 }
 
 /**
+ * @brief Replace internal root by display root (left)
+ */
+void CDirDoc::ApplyLeftDisplayRoot(CString &sText)
+{
+	if (m_pTempPathContext)
+	{
+		sText.Delete(0, m_pTempPathContext->m_strLeftRoot.GetLength());
+		sText.Insert(0, m_pTempPathContext->m_strLeftDisplayRoot);
+	}
+}
+
+/**
+ * @brief Replace internal root by display root (right)
+ */
+void CDirDoc::ApplyRightDisplayRoot(CString &sText)
+{
+	if (m_pTempPathContext)
+	{
+		sText.Delete(0, m_pTempPathContext->m_strRightRoot.GetLength());
+		sText.Insert(0, m_pTempPathContext->m_strRightDisplayRoot);
+	}
+}
+
+/**
  * @brief Store a plugin setting for specified file comparison
  */
 void CDirDoc::SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting)
@@ -852,48 +919,45 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	else
 	{
 		// PathCompactPath() supported in versions 4.71 and higher
-		if (GetDllVersion(_T("shlwapi.dll")) >= PACKVERSION(4,71))
-		{
-			// Combine title from file/dir names
-			TCHAR *pszLeftFile;
-			TCHAR *pszRightFile;
-			CString sLeftFile;
-			CString sRightFile;
-			CRect rcClient;
-			CString strTitle;
-			const TCHAR strSeparator[] = _T(" - ");
-			CClientDC lDC(m_pDirView);
-			
-			m_pDirView->GetClientRect(&rcClient);
-			const DWORD width = rcClient.right / 3;
+		// According to
+		// "http://members.ozemail.com.au/~geoffch/samples/win32/shell/shlwapi/functions/index.html",
+		// PathCompactPath() is supported since 4.70. Anyway, as we link to shlwapi import library,
+		// we wouldn't be running if any one of the functions we link to weren't implemented. This
+		// means there is no point in checking shlwapi.dll version here.
 
-			sLeftFile = m_pCtxt->GetLeftPath();
-			pszLeftFile = sLeftFile.GetBuffer(MAX_PATH);
+		// Combine title from file/dir names
+		TCHAR *pszLeftFile;
+		TCHAR *pszRightFile;
+		CString sLeftFile;
+		CString sRightFile;
+		CRect rcClient;
+		CString strTitle;
+		const TCHAR strSeparator[] = _T(" - ");
+		CClientDC lDC(m_pDirView);
+		
+		m_pDirView->GetClientRect(&rcClient);
+		const DWORD width = rcClient.right / 3;
 
-			if (PathCompactPath(lDC.GetSafeHdc(), pszLeftFile, width))
-				strTitle = pszLeftFile;
-			else
-				strTitle = m_pCtxt->GetLeftPath();
+		sLeftFile = m_pCtxt->GetLeftPath();
+		pszLeftFile = sLeftFile.GetBuffer(MAX_PATH);
 
-			sLeftFile.ReleaseBuffer();
-			strTitle += strSeparator;
-
-			sRightFile = m_pCtxt->GetRightPath();
-			pszRightFile = sRightFile.GetBuffer(MAX_PATH);
-
-			if (PathCompactPath(lDC.GetSafeHdc(), pszRightFile, width))
-				strTitle += pszRightFile;
-			else
-				strTitle += m_pCtxt->GetRightPath();
-			sRightFile.ReleaseBuffer();
-
-			CDocument::SetTitle(strTitle);
-		}
+		if (PathCompactPath(lDC.GetSafeHdc(), pszLeftFile, width))
+			strTitle = pszLeftFile;
 		else
-		{
-			CString title;
-			VERIFY(title.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
-			CDocument::SetTitle(title);
-		}
+			strTitle = m_pCtxt->GetLeftPath();
+
+		sLeftFile.ReleaseBuffer();
+		strTitle += strSeparator;
+
+		sRightFile = m_pCtxt->GetRightPath();
+		pszRightFile = sRightFile.GetBuffer(MAX_PATH);
+
+		if (PathCompactPath(lDC.GetSafeHdc(), pszRightFile, width))
+			strTitle += pszRightFile;
+		else
+			strTitle += m_pCtxt->GetRightPath();
+		sRightFile.ReleaseBuffer();
+
+		CDocument::SetTitle(strTitle);
 	}	
 }

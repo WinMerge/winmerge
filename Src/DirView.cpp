@@ -423,17 +423,6 @@ void CDirView::OnContextMenu(CWnd*, CPoint point)
 }
 
 /**
- * @brief Return nearest ancestor which is not a child window
- */
-static CWnd * GetNonChildAncestor(CWnd * w)
-{
-	CWnd* parent = w;
-	while (parent->GetStyle() & WS_CHILD)
-		parent = parent->GetParent();
-	return parent;
-}
-
-/**
  * @brief Format context menu string and disable item if it cannot be applied.
  */
 static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2 = 0, int n3 = 0)
@@ -544,9 +533,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		if (!di.isDirectory() && !di.isBin() && !di.isSideLeft() && !di.isSideRight() && !di.isResultFiltered())
 		{
 			CString leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
-					_T("\\") + di.sfilename;
+					_T("\\") + di.sLeftFilename;
 			CString rightPath = di.getRightFilepath(pDoc->GetRightBasePath()) +
-					_T("\\") + di.sfilename;
+					_T("\\") + di.sRightFilename;
 			CString filteredFilenames = leftPath + "|" + rightPath;
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
@@ -815,16 +804,29 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
  */
 void CDirView::OpenParentDirectory()
 {
-	const CString & left = GetDocument()->GetLeftBasePath();
-	const CString & right = GetDocument()->GetRightBasePath();
+	CDirDoc *pDoc = GetDocument();
+	const CString & left = pDoc->GetLeftBasePath();
+	const CString & right = pDoc->GetRightBasePath();
 	CString leftParent = paths_GetParentPath(left);
 	CString rightParent = paths_GetParentPath(right);
 
 	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
-			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR &&
-			AllowUpwardDirectory(left, right))
-		mf->DoFileOpen(leftParent, rightParent,
-			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, GetDocument());
+			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR) // &&
+			//(pDoc->AllowUpwardDirectory() || pDoc->m_pTempPathContext && pDoc->m_pTempPathContext->m_pParent))
+	{
+		switch (pDoc->AllowUpwardDirectory())
+		{
+		case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath:
+			mf->DoFileOpen(leftParent, rightParent,
+				FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+			break;
+		case CDirDoc::AllowUpwardDirectory::ParentIsTempPath:
+			pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
+			mf->DoFileOpen(pDoc->m_pTempPathContext->m_strLeftRoot, pDoc->m_pTempPathContext->m_strRightRoot,
+				FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+			break;
+		}
+	}
 }
 
 /**
@@ -855,6 +857,9 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 		DIFFITEM di = pDoc->GetDiffByKey((POSITION)diffpos);
 
+		PathContext paths;
+		GetItemFileNames(sel, &paths);
+
 		if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
 		{
 			if (pDoc->GetRecursive())
@@ -863,15 +868,17 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			{
 				// Open subfolders if non-recursive compare
 				// Don't add folders to MRU
-				CString left, right;
-				PathContext paths;
-				GetItemFileNames(sel, &paths);
-				mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, FALSE, pDoc);
+				mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 			}
 			break;
 		}
 		else if (di.isSideLeft() || di.isSideRight())
 			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+		else if (ArchiveGuessFormat(paths.GetLeft()) && ArchiveGuessFormat(paths.GetRight()))
+		{
+			// Open archives, not adding paths to MRU
+			mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		}
 		else if (di.isBin())
 			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
 		else
@@ -887,8 +894,6 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
 			BOOL bRightRO = pDoc->GetReadOnly(FALSE);
 
-			PathContext paths;
-			GetItemFileNames(sel, &paths);
 			mf->ShowMergeDoc(pDoc, paths.GetLeft(), paths.GetRight(),
 				bLeftRO, bRightRO,
 				di.left.codepage, di.right.codepage,
@@ -1168,15 +1173,6 @@ void CDirView::DeleteAllDisplayItems()
 	// item data are just positions (diffposes)
 	// that is, they contain no memory needing to be freed
 	m_pList->DeleteAllItems();
-}
-
-/**
- * @brief Prepare for reuse.
- *
- */
-void CDirView::ReusingDirView()
-{
-	DeleteAllDisplayItems();
 }
 
 /**
@@ -1962,7 +1958,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	if (sel != -1)
 	{
 		// let the user choose a handler
-		CSelectUnpackerDlg dlg(GetDiffItem(sel).sfilename, this);
+		CSelectUnpackerDlg dlg(GetDiffItem(sel).sLeftFilename, this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker;
 		dlg.SetInitialInfoHandler(&infoUnpacker);
@@ -2101,32 +2097,11 @@ int CDirView::AddSpecialItems()
 	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
 		paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
 	{
-		BOOL bEnable = AllowUpwardDirectory(leftPath, rightPath); 
+		BOOL bEnable = pDoc->AllowUpwardDirectory() != CDirDoc::AllowUpwardDirectory::No; //|| pDoc->m_pTempPathContext && pDoc->m_pTempPathContext->m_pParent;
 		AddParentFolderItem(bEnable);
 		retVal = 1;
 	}
 	return retVal;
-}
-
-/**
- * @brief Tell if user may use ".." and move to parents directory
- *
- * @return TRUE : upward ENABLED : both paths have the same rightmost subdirectory, 
- * after we go upward, we may come back here with opening this subdirectory
- * FALSE : upward RESTRICTED : both paths have a different rightmost subdirectory, 
- * the move can not be reversed (probably these are the original comparison directories)
- */
-BOOL CDirView::AllowUpwardDirectory(const CString &leftPath, const CString &rightPath)
-{
-	int lastSegmentPos = leftPath.ReverseFind(_T('/'));
-	if (lastSegmentPos == -1 || leftPath.ReverseFind(_T('\\')) > lastSegmentPos)
-		lastSegmentPos = leftPath.ReverseFind(_T('\\'));
-	ASSERT (lastSegmentPos != -1);
-	lastSegmentPos ++;
-
-	int nSegmentSize = leftPath.GetLength() - lastSegmentPos;
-
-	return (leftPath.Right(nSegmentSize).CompareNoCase(rightPath.Right(nSegmentSize)) == 0);
 }
 
 /**
@@ -2322,7 +2297,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += di.getLeftFilepath(GetDocument()->GetLeftBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
-				strPaths += di.sfilename;
+				strPaths += di.sLeftFilename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2346,7 +2321,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
-				strPaths += di.sfilename;
+				strPaths += di.sRightFilename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2370,7 +2345,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += di.getLeftFilepath(pDoc->GetLeftBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
-				strPaths += di.sfilename;
+				strPaths += di.sLeftFilename;
 			strPaths += _T("\r\n");
 		}
 
@@ -2379,7 +2354,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
 			if (!di.isDirectory())
-				strPaths += di.sfilename;
+				strPaths += di.sRightFilename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2399,7 +2374,7 @@ void CDirView::OnCopyFilenames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.isDirectory())
 		{
-			strPaths += di.sfilename;
+			strPaths += di.sLeftFilename;
 			strPaths += _T("\r\n");
 		}
 	}

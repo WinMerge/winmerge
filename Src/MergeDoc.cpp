@@ -2918,7 +2918,10 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 			sText = m_strLeftDesc;
 		}
 		else
+		{
 			sText = m_filePaths.GetLeft();
+			m_pDirDoc->ApplyLeftDisplayRoot(sText);
+		}
 		bChanges = m_ltBuf.IsModified();
 		nPane = 0;
 	}
@@ -2930,7 +2933,10 @@ void CMergeDoc::UpdateHeaderPath(BOOL bLeft)
 			sText = m_strRightDesc;
 		}
 		else
+		{
 			sText = m_filePaths.GetRight();
+			m_pDirDoc->ApplyRightDisplayRoot(sText);
+		}
 		bChanges = m_rtBuf.IsModified();
 		nPane = 1;
 	}

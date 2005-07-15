@@ -34,8 +34,7 @@ struct DIFFCODE
 
 	int diffcode;
 
-	DIFFCODE() : diffcode(0) { }
-	DIFFCODE(int diffcode) : diffcode(diffcode) { }
+	DIFFCODE(int diffcode = 0) : diffcode(diffcode) { }
 
 	// file/directory
 	bool isDirectory() const { return ((diffcode & DIFFCODE::DIRFLAG) == DIFFCODE::DIR); }
@@ -79,8 +78,10 @@ struct DIFFITEM : DIFFCODE
 {
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
-	CString sfilename; /**< Filename (without path!) */
-	CString sSubdir; //*< Common subdirectory from root of comparison */
+	CString sLeftFilename; /**< Filename (without path!) */
+	CString sRightFilename; /**< Filename (without path!) */
+	CString sLeftSubdir; //*< Common subdirectory from root of comparison */
+	CString sRightSubdir; //*< Common subdirectory from root of comparison */
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int ndiffs; /**< Total amount of differences */
 

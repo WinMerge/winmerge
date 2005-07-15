@@ -62,6 +62,22 @@ class IDiffFilter
 public:
 	virtual BOOL includeFile(LPCTSTR szFileName) = 0;
 	virtual BOOL includeDir(LPCTSTR szDirName) = 0;
+	BOOL includeFile(LPCTSTR szFileName1, LPCTSTR szFileName2)
+	{
+		return
+		(
+			(szFileName1[0] == '\0' || includeFile(szFileName1))
+		&&	(szFileName2[0] == '\0' || includeFile(szFileName2))
+		);
+	}
+	BOOL includeDir(LPCTSTR szDirName1, LPCTSTR szDirName2)
+	{
+		return
+		(
+			(szDirName1[0] == '\0' || includeDir(szDirName1))
+		&&	(szDirName2[0] == '\0' || includeDir(szDirName2))
+		);
+	}
 };
 
 /**

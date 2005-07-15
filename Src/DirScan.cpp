@@ -53,7 +53,7 @@ static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
 static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 		const DiffFileData * pDiffFileData);
-static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
+static void AddToList(const CString & sLeftDir, const CString & sRightDir, const fentry * lent, const fentry * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
@@ -62,6 +62,18 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 /** @brief CALL_MEMBER_FN calls a method through a pointer to a method */
 #define CALL_MEMBER_FN(object,ptrToMember)  ((object).*(ptrToMember))
 
+/**
+ * @brief Help minimize memory footprint by sharing CStringData if possible.
+ * 
+ * Use OPTIMIZE_SHARE_CSTRINGDATA to conditionally include code that is merely
+ * intended to minimize memory footprint by having two CStrings share one
+ * CStringData if possible. The rule is that semantics must be identical
+ * regardless of whether OPTIMIZE_SHARE_CSTRINGDATA(X) expands to X or to
+ * nothing. If you suspect some bug to be related to this kind of optimization,
+ * then you can simply change OPTIMIZE_SHARE_CSTRINGDATA to expand to nothing,
+ * recompile, and see if bug disappears.
+ */
+#define OPTIMIZE_SHARE_CSTRINGDATA(X) X
 
 /**
  * @brief Collect file- and directory-names to list.
@@ -75,19 +87,25 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @param [in] piAbortable Interface allowing compare to be aborted
  * @return 1 normally, -1 if compare was aborted
  */
-int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemList *pList,
+int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const CString & rightsubdir, DiffItemList *pList,
 		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable)
 {
 	static const TCHAR backslash[] = _T("\\");
 
 	CString sLeftDir = paths.GetLeft();
 	CString sRightDir = paths.GetRight();
-	CString subprefix;
-	if (!subdir.IsEmpty())
+	CString leftsubprefix;
+	CString rightsubprefix;
+	if (!leftsubdir.IsEmpty())
 	{
-		sLeftDir += backslash + subdir;
-		sRightDir += backslash + subdir;
-		subprefix = subdir + backslash;
+		sLeftDir += backslash + leftsubdir;
+		sRightDir += backslash + rightsubdir;
+		leftsubprefix = leftsubdir + backslash;
+		// minimize memory footprint by having left/rightsubprefix share CStringData if possible
+		rightsubprefix = OPTIMIZE_SHARE_CSTRINGDATA
+		(
+			(LPCTSTR)leftsubdir == (LPCTSTR)rightsubdir ? leftsubprefix : 
+		) rightsubdir + backslash;
 	}
 
 	fentryArray leftDirs, leftFiles, rightDirs, rightFiles;
@@ -101,6 +119,15 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 	// Handle directories
 	// i points to current directory in left list (leftDirs)
 	// j points to current directory in right list (rightDirs)
+
+	bool bTreatDirAsEqual
+	(
+		leftDirs.GetSize() == 1
+	&&	rightDirs.GetSize() == 1
+	&&	leftFiles.GetSize() == 0
+	&&	rightFiles.GetSize() == 0
+	);
+
 	int i=0, j=0;
 	while (1)
 	{
@@ -111,57 +138,61 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 			TRACE(_T("Candidate left: leftDirs[i]=%s\n"), (LPCTSTR)leftDirs[i].name);
 		if (j<rightDirs.GetSize())
 			TRACE(_T("Candidate right: rightDirs[j]=%s\n"), (LPCTSTR)rightDirs[j].name);
-		if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
+		if (!bTreatDirAsEqual)
 		{
-			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
-
-			// Advance left pointer over left-only entry, and then retest with new pointers
-			AddToList(subdir, &leftDirs[i], 0, nDiffCode, pList, pCtxt);
-			++i;
-			continue;
-		}
-		if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
-		{
-			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
-
-			// Advance right pointer over right-only entry, and then retest with new pointers
-			AddToList(subdir, 0, &rightDirs[j], nDiffCode, pList, pCtxt);
-			++j;
-			continue;
+			if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
+			{
+				int nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
+				AddToList(leftsubdir, rightsubdir, &leftDirs[i], 0, nDiffCode, pList, pCtxt);
+				// Advance left pointer over left-only entry, and then retest with new pointers
+				++i;
+				continue;
+			}
+			if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
+			{
+				int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
+				AddToList(leftsubdir, rightsubdir, 0, &rightDirs[j], nDiffCode, pList, pCtxt);
+				// Advance right pointer over right-only entry, and then retest with new pointers
+				++j;
+				continue;
+			}
 		}
 		if (i<leftDirs.GetSize())
 		{
 			ASSERT(j<rightDirs.GetSize());
-			CString newsub = subprefix + leftDirs[i].name;
+			if (!depth)
 			{
-				int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
-				if (!depth)
+				// Non-recursive compare
+				// We are only interested about list of subdirectories to show - user can open them
+				// TODO: scan one level deeper to see if directories are identical/different
+				const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
+				AddToList(leftsubdir, rightsubdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
+			}
+			else
+			{
+				// Recursive compare
+				CString leftnewsub = leftsubprefix + leftDirs[i].name;
+				// minimize memory footprint by having left/rightnewsub share CStringData if possible
+				CString rightnewsub = OPTIMIZE_SHARE_CSTRINGDATA
+				(
+					(LPCTSTR)leftsubprefix == (LPCTSTR)rightsubprefix
+				&&	leftDirs[i].name == rightDirs[j].name ? leftnewsub :
+				) rightsubprefix + rightDirs[j].name;
+				// Test against filter so we don't include contents of filtered out directories
+				// Also this is only place we can test for both-sides directories in recursive compare
+				if (!pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub))
 				{
-					// Non-recursive compare
-					// We are only interested about list of subdirectories to show - user can open them
-					// TODO: scan one level deeper to see if directories are identical/different
-					AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
+					const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR | DIFFCODE::SKIPPED;
+					AddToList(leftsubdir, rightsubdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
 				}
 				else
 				{
-					// Recursive compare
-					// Test against filter so we don't include contents of filtered out directories
-					// Also this is only place we can test for both-sides directories in recursive compare
-					if (!pCtxt->m_piFilterGlobal->includeDir(newsub))
+					// Scan recursively all subdirectories too, we are not adding folders
+					const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR | DIFFCODE::INCLUDED;
+					if (DirScan_GetItems(paths, leftnewsub, rightnewsub, pList, casesensitive,
+							depth - 1, pCtxt, piAbortable) == -1)
 					{
-						nDiffCode |= DIFFCODE::SKIPPED;
-						AddToList(subdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
-					}
-					else
-					{
-						// Scan recursively all subdirectories too, we are not adding folders
-						nDiffCode |= DIFFCODE::INCLUDED;
-
-						if (DirScan_GetItems(paths, newsub, pList, casesensitive,
-								depth - 1, pCtxt, piAbortable) == -1)
-						{
-							return -1;
-						}
+						return -1;
 					}
 				}
 			}
@@ -189,13 +220,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() ||
 				collstr(leftFiles[i].name, rightFiles[j].name, casesensitive) < 0))
 		{
-			// Test against filter
-			CString newsubfile = subprefix + leftFiles[i].name;
-			int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
-			{
-				AddToList(subdir, &leftFiles[i], 0, nDiffCode, pList, pCtxt);
-			}
-
+			const int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
+			AddToList(leftsubdir, rightsubdir, &leftFiles[i], 0, nDiffCode, pList, pCtxt);
 			// Advance left pointer over left-only entry, and then retest with new pointers
 			++i;
 			continue;
@@ -203,12 +229,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 		if (j<rightFiles.GetSize() && (i==leftFiles.GetSize() ||
 				collstr(leftFiles[i].name, rightFiles[j].name, casesensitive) > 0))
 		{
-			// Test against filter
-			CString newsubfile = subprefix + rightFiles[j].name;
-			int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
-			{
-				AddToList(subdir, 0, &rightFiles[j], nDiffCode, pList, pCtxt);
-			}
+			const int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
+			AddToList(leftsubdir, rightsubdir, 0, &rightFiles[j], nDiffCode, pList, pCtxt);
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			++j;
 			continue;
@@ -216,11 +238,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & subdir, DiffItemL
 		if (i<leftFiles.GetSize())
 		{
 			ASSERT(j<rightFiles.GetSize());
-			CString newsubfile = subprefix + leftFiles[i].name;
-			int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
-
-			AddToList(subdir, &leftFiles[i], &rightFiles[j], nDiffCode, pList, pCtxt);
-
+			const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
+			AddToList(leftsubdir, rightsubdir, &leftFiles[i], &rightFiles[j], nDiffCode, pList, pCtxt);
 			++i;
 			++j;
 			continue;
@@ -308,16 +327,14 @@ int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
 void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 {
 	struct _stat stats;
-	CString leftpath;
-	CString rightpath;
 	BOOL bLeftExists = FALSE;
 	BOOL bRightExists = FALSE;
 
 	bExists = TRUE;
-	leftpath = di.getLeftFilepath(pCtxt->GetNormalizedLeft());
-	leftpath = paths_ConcatPath(leftpath, di.sfilename);
-	rightpath = di.getRightFilepath(pCtxt->GetNormalizedRight());
-	rightpath = paths_ConcatPath(rightpath, di.sfilename);
+	CString leftpath = di.getLeftFilepath(pCtxt->GetNormalizedLeft());
+	leftpath = paths_ConcatPath(leftpath, di.sLeftFilename);
+	CString rightpath = di.getRightFilepath(pCtxt->GetNormalizedRight());
+	rightpath = paths_ConcatPath(rightpath, di.sRightFilename);
 	
 	// Re-check if left/right sides still exists (or are added)
 	if (_tstat(leftpath, &stats) == 0)
@@ -367,7 +384,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	// 1. Test against filters
 	if (di.isDirectory())
 	{
-		if (!pCtxt->m_piFilterGlobal->includeDir(di.sfilename))
+		if (!pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename, di.sRightFilename))
 			di.diffcode |= DIFFCODE::SKIPPED;
 		else
 			di.diffcode |= DIFFCODE::INCLUDED;
@@ -378,7 +395,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	}
 	else
 	{
-		if (!pCtxt->m_piFilterGlobal->includeFile(di.sfilename))
+		if (!pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename, di.sRightFilename))
 			di.diffcode |= DIFFCODE::SKIPPED;
 		else
 			di.diffcode |= DIFFCODE::INCLUDED;
@@ -569,7 +586,7 @@ static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 	gLog.Write
 	(
 		LOGLEVEL::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		(LPCTSTR)di.sfilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
+		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
 	);
 	pCtxt->AddDiff(di);
 }
@@ -577,7 +594,7 @@ static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 /**
  * @brief Add one compare item to list.
  */
-static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
+static void AddToList(const CString & sLeftDir, const CString & sRightDir, const fentry * lent, const fentry * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt)
 {
 	// We must store both paths - we cannot get paths later
@@ -585,30 +602,39 @@ static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
 	// change to identical
 
 	DIFFITEM di;
-	di.left.unicoding = 0;
-	di.left.codepage = 0;
-	di.right.unicoding = 0;
-	di.right.codepage = 0;
 
-	if (!sDir.IsEmpty())
-		di.sSubdir = sDir;
+	di.sLeftSubdir = sLeftDir;
+	di.sRightSubdir = sRightDir;
 
 	if (lent)
 	{
-		di.sfilename = lent->name;
+		di.sLeftFilename = lent->name;
 		di.left.mtime = lent->mtime;
 		di.left.ctime = lent->ctime;
 		di.left.size = lent->size;
 		di.left.flags.attributes = lent->attrs;
 	}
+	else
+	{
+		// Don't break CDirView::DoCopyRightToLeft()
+		di.sLeftFilename = rent->name;
+	}
 
 	if (rent)
 	{
-		di.sfilename = rent->name;
+		di.sRightFilename = OPTIMIZE_SHARE_CSTRINGDATA
+		(
+			di.sLeftFilename == rent->name ? di.sLeftFilename :
+		) rent->name;
 		di.right.mtime = rent->mtime;
 		di.right.ctime = rent->ctime;
 		di.right.size = rent->size;
 		di.right.flags.attributes = rent->attrs;
+	}
+	else
+	{
+		// Don't break CDirView::DoCopyLeftToRight()
+		di.sRightFilename = lent->name;
 	}
 
 	di.diffcode = code;
@@ -616,7 +642,7 @@ static void AddToList(CString sDir, const fentry * lent, const fentry * rent,
 	gLog.Write
 	(
 		LOGLEVEL::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		(LPCTSTR)di.sfilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
+		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
 	);
 	pCtxt->m_pCompareStats->IncreaseTotalItems();
 	pList->AddDiff(di);

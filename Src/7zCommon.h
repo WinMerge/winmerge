@@ -7,32 +7,35 @@
 
 extern Merge7z::Proxy Merge7z;
 
-class CTempPath
+Merge7z::Format *ArchiveGuessFormat(LPCTSTR);
+
+CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt);
+
+/**
+ * @brief temp path context
+ */
+class CTempPathContext
 {
-	CString m_strPath;
 public:
-	operator LPCTSTR()
-	{
-		return m_strPath;
-	}
-	CTempPath(LPVOID);
-	void Clear();
-	void MakeSibling(LPCTSTR);
+	CTempPathContext *m_pParent;
+	CString m_strLeftDisplayRoot;
+	CString m_strRightDisplayRoot;
+	CString m_strLeftRoot;
+	CString m_strRightRoot;
+	CTempPathContext *DeleteHead();
 };
 
 /**
- * @brief Merge7z::DirItemEnumerator to compress a single file.
- *
- * Class has no extra leading C in its name because it is used like a function.
+ * @brief Merge7z::DirItemEnumerator to compress a single item.
  */
-class CompressSingleFile : public Merge7z::DirItemEnumerator
+class SingleItemEnumerator : public Merge7z::DirItemEnumerator
 {
 	LPCTSTR FullPath;
 	LPCTSTR Name;
 public:
 	virtual UINT Open();
 	virtual Merge7z::Envelope *Enum(Item &);
-	CompressSingleFile(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name = _T(""));
+	SingleItemEnumerator(LPCTSTR path, LPCTSTR FullPath, LPCTSTR Name = _T(""));
 };
 
 /**
@@ -62,6 +65,7 @@ private:
 	CMapStringToPtr m_rgImpliedFoldersRight;
 //	helper methods
 	DIFFITEM Next();
+	bool MultiStepCompressArchive(LPCTSTR);
 public:
 	enum
 	{
@@ -83,7 +87,6 @@ int NTAPI HasZipSupport();
 void NTAPI Recall7ZipMismatchError();
 
 DWORD NTAPI VersionOf7z(BOOL bLocal = FALSE);
-CString NTAPI LangFile7z();
 
 /**
  * @brief assign BSTR to CString, and return BSTR for optional SysFreeString()
