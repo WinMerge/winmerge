@@ -1,3 +1,10 @@
+2005-07-15 Jochen
+ PATCH: [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues (w/o command line tool integration)
+  Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffItem.cpp DiffItem.h DiffThread.cpp DiffWrapper.cpp DirActions.cpp DirDoc.cpp
+   DirDoc.h DirScan.cpp DirScan.h DirView.cpp DirView.h DirViewColItems.cpp FileFilterHelper.h MainFrm.cpp MergeDoc.cpp
+ PATCH: [ 1225880 ] Project file parsing based on CMarkdown class
+  Src: markdown.cpp markdown.h ProjectFile.cpp
+
 2005-07-13 Kimmo
  PATCH: [ 1236602 ] Add icon for messagebox about overwriting patch file
   Src: PatchDlg.cpp
