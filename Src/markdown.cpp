@@ -65,6 +65,15 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2005/01/15	Jochen Tucht		Created
 2005/02/26	Jochen Tucht		Load iconv.dll through DLLPSTUB
+2005/03/20	Jochen Tucht		Add IgnoreCase option for ASCII-7 tag/attr names.
+								Add HtmlUTags option to check for (potentially)
+								unbalanced HTML tags. Html option is combination
+								of the above. Using these options imposes
+								performance penalty, so avoid it if you can.
+								New flag CMarkdown::FileImage::Handle makes
+								CMarkdown::FileImage::FileImage() accept a
+								handle rather than a filename.
+2005/06/22	Jochen Tucht		New method CMarkdown::_HSTR::Entities().
 */
 
 #include "stdafx.h"
@@ -256,6 +265,55 @@ CMarkdown::HSTR CMarkdown::_HSTR::Resolve(const CMarkdown::EntityMap &map)
 	return H;
 }
 
+CMarkdown::HSTR CMarkdown::_HSTR::Entities()
+{
+	HSTR H = this;
+	BSTR p, q = H->B;
+	while (*(p = q))
+	{
+		OLECHAR *value = 0;
+		switch (*p)
+		{
+		case '&': value = L"&amp;"; break;
+		case '"': value = L"&quot;"; break;
+		case '\'': value = L"&apos;"; break;
+		case '<' : value = L"&lt;"; break;
+		case '>' : value = L"&gt;"; break;
+		}
+		++q;
+		if (value)
+		{
+			int i = p - H->B;
+			int j = q - H->B;
+			int cchValue = lstrlenW(value);
+			if (int cchGrow = cchValue - 1)
+			{
+				BSTR B = H->B;
+				int b = SysStringLen(B);
+				size_t cbMove = (b - j) * sizeof(OLECHAR);
+				if (cchGrow < 0)
+				{
+					memmove(q + cchGrow, q, cbMove);
+				}
+				if (!SysReAllocStringLen(&B, B, b + cchGrow))
+				{
+					continue;
+				}
+				H = (HSTR)B;
+				p = H->B + i;
+				q = H->B + j;
+				if (cchGrow > 0)
+				{
+					memmove(q + cchGrow, q, cbMove);
+				}
+			}
+			memcpy(p, value, cchValue * sizeof(OLECHAR));
+			q = p + cchValue;
+		}
+	}
+	return H;
+}
+
 CMarkdown::HSTR CMarkdown::_HSTR::Trim(const OLECHAR *pszTrimChars)
 {
 	HSTR H = this;
@@ -267,8 +325,57 @@ CMarkdown::HSTR CMarkdown::_HSTR::Trim(const OLECHAR *pszTrimChars)
 	return H;
 }
 
-CMarkdown::CMarkdown(const char *upper, const char *ahead):
-first(0), lower(0), upper(upper), ahead(ahead)
+//This is a hopefully complete list of the 36 (?) (potentially) unbalanced HTML
+//tags. It is based on tags.c from Tidy library,
+//"http://cvs.sourceforge.net/viewcvs.py/*checkout*/tidy/tidy/src/tags.c?rev=1.55".
+//It should include all tags from tag_defs[] array which are flagged either
+//CM_EMPTY (no closing tag) or CM_OPT (optional closing tag).
+
+static const char htmlUTags[]
+(
+	"area\0"
+	"base\0"
+	"basefont\0"
+	"body\0"
+	"br\0"
+	"col\0"
+	"colgroup\0"
+	"dd\0"
+	"dt\0"
+	"frame\0"
+	"head\0"
+	"hr\0"
+	"html\0"
+	"img\0"
+	"input\0"
+	"isindex\0"
+	"li\0"
+	"link\0"
+	"meta\0"
+	"optgroup\0"
+	"option\0"
+	"p\0"
+	"param\0"
+	"tbody\0"
+	"td\0"
+	"tfoot\0"
+	"th\0"
+	"thead\0"
+	"tr\0"
+	"nextid\0"
+	/* proprietary elements */
+	"bgsound\0"	//MICROSOFT
+	"embed\0"	//NETSCAPE
+	"keygen\0"	//NETSCAPE
+	"marquee\0"	//MICROSOFT
+	"spacer\0"	//NETSCAPE
+	"wbr\0"		//PROPRIETARY
+);
+
+CMarkdown::CMarkdown(const char *upper, const char *ahead, unsigned flags):
+first(0), lower(0), upper(upper), ahead(ahead),
+memcmp(flags & IgnoreCase ? ::memicmp : ::memcmp),
+utags(flags & HtmlUTags ? htmlUTags : NULL)
 {
 	if (CMarkdown::ahead > CMarkdown::upper)
 	{
@@ -283,6 +390,25 @@ CMarkdown::operator bool()
 		MAKEWORD(upper[0], upper[1]) != MAKEWORD('<', '/')
 	&&	MAKEWORD(upper[0], upper[1]) != MAKEWORD(']', '>')
 	);
+}
+
+int CMarkdown::FindTag(const char *tags, const char *markup)
+{
+	while (int len = lstrlenA(tags))
+	{
+		unsigned char c;
+		if
+		(
+			ahead - markup > len
+		&&	memcmp(markup, tags, len) == 0
+		&&	(isspace(c = markup[len]) || c == '[' || c == '>' || c == '"' || c == '\'' || c == '=')
+		)
+		{
+			return len;
+		}
+		tags += len + 1;
+	}
+	return 0;
 }
 
 void CMarkdown::Scan()
@@ -355,7 +481,7 @@ void CMarkdown::Scan()
 				}
 				break;
 			case '>':
-				if (upper[-2] == '/')
+				if (upper[-2] == '/' || utags && FindTag(utags, first + 1))
 					--depth;
 				break;
 			case '<':
@@ -369,9 +495,21 @@ void CMarkdown::Scan()
 CMarkdown &CMarkdown::Move()
 {
 	Scan();
-	while (*this && *upper != '<')
+	for (;;)
 	{
-		++upper;
+		while (*this && *upper != '<')
+		{
+			++upper;
+		}
+		if (utags && MAKEWORD(upper[0], upper[1]) == MAKEWORD('<', '/'))
+		{
+			if (int utlen = FindTag(utags, upper + 2))
+			{
+				upper += 2 + utlen;
+				continue;
+			}
+		}
+		break;
 	}
 	first = lower = upper;
 	return *this;
@@ -434,7 +572,7 @@ bool CMarkdown::Pull()
 		{
 			++lower;
 		}
-		if (lower[-1] != '/' && lower[-1] != '?')
+		if (lower[-1] != '/' && lower[-1] != '?' && !(utags && FindTag(utags, first + 1)))
 		{
 			upper = lower;
 			return true;
@@ -480,7 +618,7 @@ CMarkdown::HSTR CMarkdown::GetTagName()
 		}
 		else
 		{
-			while (q < ahead && !isspace(c = *q) && c != '[' && c != '>' && c != '"' && c != '\'' && c != '=' )
+			while (q < ahead && !isspace(c = *q) && c != '[' && c != '>' && c != '"' && c != '\'' && c != '=')
 			{
 				++q;
 			}
@@ -712,7 +850,12 @@ LPVOID NTAPI CMarkdown::FileImage::MapFile(HANDLE hFile, DWORD dwSize)
 CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags):
 pImage(NULL)
 {
-	HANDLE hFile = CreateFile(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0);
+	HANDLE hFile
+	(
+		flags & Handle
+	?	HANDLE(path)
+	:	CreateFile(path, GENERIC_READ, FILE_SHARE_READ, NULL, OPEN_EXISTING, 0, 0)
+	);
 	if (hFile != INVALID_HANDLE_VALUE)
 	{
 		cbImage = GetFileSize(hFile, 0);
@@ -756,7 +899,10 @@ pImage(NULL)
 				}
 			}
 		}
-		CloseHandle(hFile);
+		if (!(flags & Handle))
+		{
+			CloseHandle(hFile);
+		}
 	}
 	if (pImage == NULL)
 	{

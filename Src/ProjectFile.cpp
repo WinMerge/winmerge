@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include "ProjectFile.h"
+#include "markdown.h"
 
 ProjectFile::ProjectFile()
 {
@@ -31,104 +32,85 @@ ProjectFile::ProjectFile()
 }
 
 /** 
+ * @brief Get message from exception into sError, or else throw it.
+ */
+static BOOL NTAPI False(CException *e, CString *sError)
+{
+	if (sError == NULL)
+		throw e;
+	TCHAR szError[1024];
+	e->GetErrorMessage(szError, 1024);
+	*sError = szError;
+	e->Delete();
+	return FALSE;
+}
+
+/** 
  * @brief Open given path-file and read data from it to member variables.
  */
 BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 {
-	ASSERT(sError != NULL);
-	CFile file;
-	CFileException e;
-
-	if (!file.Open(path, CFile::modeRead, &e))
+	try
 	{
-		TCHAR szError[1024];
-		e.GetErrorMessage(szError, 1024);
-		*sError = szError;
-		return FALSE;
-	}
-
-	char buf[4096] = {0};
-	TCHAR buf2[4096] = {0};
-	TCHAR tmpPath[MAX_PATH] = {0};
-	UINT bytesRead = file.Read(buf, 4095);
-
-	USES_CONVERSION;
-	_tcsncpy(buf2, A2T(buf), 4096);
-
-	if (_tcsstr(buf2, _T("<?xml")) && _tcsstr(buf2, _T("?>")))
-	{
-		TCHAR *pProject = _tcsstr(buf2, _T("<project>"));
-		
-		if (pProject)
+		CMarkdown::EntityMap entities;
+		entities.Load();
+		CMarkdown::File xmlfile = path;
+		if (xmlfile.pImage == NULL)
 		{
-			TCHAR *pPaths = _tcsstr(buf2, _T("<paths>"));
-			TCHAR *pLeft = _tcsstr(buf2, _T("<left>"));
-			TCHAR *pRight = _tcsstr(buf2, _T("<right>"));
-			TCHAR *pFilter = _tcsstr(buf2, _T("<filter>"));
-			TCHAR *pSubs = _tcsstr(buf2, _T("<subfolders>"));
-
-			CString subs;
-			GetVal(pPaths, pLeft, &m_leftFile, _T("<left>"), _T("</left>"), buf2);
-			GetVal(pPaths, pRight, &m_rightFile, _T("<right>"), _T("</right>"), buf2);
-			GetVal(pPaths, pFilter, &m_filter, _T("<filter>"), _T("</filter>"), buf2);
-			if (GetVal(pPaths, pSubs, &subs, _T("<subfolders>"), _T("</subfolders>"), buf2))
-				m_subfolders = _ttoi(subs);
+			CFileException::ThrowOsError(GetLastError(), path);
 		}
+		// If encoding is other than UTF-8, assume CP_ACP
+		CMarkdown::String encoding = CMarkdown(xmlfile).Move("?xml").GetAttribute("encoding");
+		UINT codepage = lstrcmpiA(encoding.A, "UTF-8") == 0 ? CP_UTF8 : CP_ACP;
+
+		CMarkdown project = CMarkdown(xmlfile).Move("project").Pop();
+		CMarkdown paths = CMarkdown(project).Move("paths").Pop();
+		m_leftFile = CMarkdown::String(CMarkdown(paths).Move("left").GetInnerText()->Unicode(codepage)->Resolve(entities)).W;
+		m_rightFile = CMarkdown::String(CMarkdown(paths).Move("right").GetInnerText()->Unicode(codepage)->Resolve(entities)).W;
+		m_filter = CMarkdown::String(CMarkdown(paths).Move("filter").GetInnerText()->Unicode(codepage)->Resolve(entities)).W;
+		sscanf(CMarkdown::String(CMarkdown(paths).Move("subfolders").GetInnerText()).A, "%d", &m_subfolders);
 	}
-
-	file.Close();
-
+	catch (CException *e)
+	{
+		return False(e, sError);
+	}
 	return TRUE;
 }
 
 /** 
  * @brief Save data from member variables to path-file.
- * @note paths are converted to ASCII
+ * @note paths are converted to UTF-8
  */
 BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 {
-	UINT flags = CFile::modeCreate | CFile::modeWrite;
-	CFile file;
-	CFileException e;
-
-	if (!file.Open(path, flags,&e))
+	try
 	{
-		TCHAR szError[1024];
-		e.GetErrorMessage(szError, 1024);
-		*sError = szError;
-		
-		return FALSE;
+		static const char szFormat[]
+		(
+			"<?xml version='1.0' encoding='UTF-8'?>\n"
+			"<project>\n"
+			"\t<paths>\n"
+			"\t\t<left>%s</left>\n"
+			"\t\t<right>%s</right>\n"
+			"\t\t<filter>%s</filter>\n"
+			"\t\t<subfolders>%d</subfolders>\n"
+			"\t</paths>\n"
+			"</project>\n"
+		);
+		fprintf
+		(
+			CStdioFile(path, CFile::modeCreate|CFile::modeWrite|CFile::typeText).m_pStream,
+			szFormat,
+			CMarkdown::String(CMarkdown::HSTR(GetLeft().AllocSysString())->Entities()->Octets(CP_UTF8)).A,
+			CMarkdown::String(CMarkdown::HSTR(GetRight().AllocSysString())->Entities()->Octets(CP_UTF8)).A,
+			CMarkdown::String(CMarkdown::HSTR(GetFilter().AllocSysString())->Entities()->Octets(CP_UTF8)).A,
+			GetSubfolders() ? 1 : 0
+		);
 	}
-
-	TCHAR buf2[4096] = {0};
-	
-	_tcscpy(buf2,_T("<?xml version=\"1.0\"?>\n<project>\n\t<paths>\n\t\t"));
-	
-	_tcscat(buf2,_T("<left>"));
-	_tcscat(buf2,GetLeft());
-	_tcscat(buf2,_T("</left>\n\t\t"));
-	_tcscat(buf2,_T("<right>"));
-	_tcscat(buf2,GetRight());
-	_tcscat(buf2,_T("</right>\n\t\t"));
-	_tcscat(buf2,_T("<filter>"));
-	_tcscat(buf2,GetFilter());
-	_tcscat(buf2,_T("</filter>\n\t\t"));
-	_tcscat(buf2,_T("<subfolders>"));
-	_tcscat(buf2,GetSubfolders() ? _T("1") : _T("0"));
-	_tcscat(buf2,_T("</subfolders>\n"));
-	
-	_tcscat(buf2,_T("\t</paths>\n</project>"));
-
-	// convert the string from unicode to ascii, because Read is expecting ascii
-	char buf[4096] = {0};
-	
-	USES_CONVERSION;
-	strncpy(buf, T2A(buf2), 4096);
-
-
-	file.Write(buf,strlen(buf));
-	file.Close();
-
+	catch (CException *e)
+	{
+		return False(e, sError);
+	}
 	return TRUE;
 }
 

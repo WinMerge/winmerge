@@ -122,6 +122,7 @@ public:
 		// Convert(converter) converts string using an ICONV descriptor
 		_HSTR *Convert(const Converter &);
 		_HSTR *Resolve(const EntityMap &);
+		_HSTR *Entities();
 		_HSTR *Trim(const OLECHAR *);
 	} *HSTR;
 	union String
@@ -182,7 +183,13 @@ public:
 	const char *lower;	// beginning of enclosed text (valid after Move)
 	const char *upper;	// end of enclosed text (initially beginning of file)
 	const char *ahead;	// last char of file
-	CMarkdown(const char *upper, const char *ahead);
+	enum
+	{
+		IgnoreCase = 0x01,
+		HtmlUTags = 0x02,			// check for unbalanced tags
+		Html = IgnoreCase|HtmlUTags	// shortcut
+	};
+	CMarkdown(const char *upper, const char *ahead, unsigned flags = 0);
 	operator bool();				// is node ahead?
 	void Scan();					// find closing tag
 	CMarkdown &Move();				// move to next node
@@ -196,6 +203,9 @@ public:
 	HSTR GetOuterText();			// text including enclosing tags
 	HSTR GetAttribute(const char *, const void * = 0); // random or enumerate
 private:
+	int (__cdecl *const memcmp)(const void *, const void *, size_t);
+	const char *const utags;
+	int FindTag(const char *, const char *);
 	class Token;
 };
 
@@ -207,7 +217,8 @@ public:
 	LPVOID pImage;
 	enum
 	{
-		Octets = 1
+		Octets = 0x10,
+		Handle = 0x20
 	};
 	FileImage(LPCTSTR, DWORD trunc = 0, int flags = 0);
 	~FileImage();
@@ -218,9 +229,9 @@ class CMarkdown::File : public CMarkdown::FileImage, public CMarkdown
 {
 //	Construct CMarkdown object from file.
 public:
-	File(LPCTSTR path, DWORD trunc = 0):
-	CMarkdown::FileImage(path, trunc, Octets),
-	CMarkdown((const char *)pImage, (const char *)pImage + cbImage)
+	File(LPCTSTR path, DWORD trunc = 0, unsigned flags = Octets):
+	CMarkdown::FileImage(path, trunc, flags),
+	CMarkdown((const char *)pImage, (const char *)pImage + cbImage, flags)
 	{
 	}
 };
