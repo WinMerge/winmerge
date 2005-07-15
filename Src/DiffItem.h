@@ -78,10 +78,10 @@ struct DIFFITEM : DIFFCODE
 {
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
-	CString sLeftFilename; /**< Filename (without path!) */
-	CString sRightFilename; /**< Filename (without path!) */
-	CString sLeftSubdir; //*< Common subdirectory from root of comparison */
-	CString sRightSubdir; //*< Common subdirectory from root of comparison */
+	CString sLeftFilename; /**< Left filename (without path!) */
+	CString sRightFilename; /**< Right filename (without path!) */
+	CString sLeftSubdir; /**< Left subdirectory from root of comparison */
+	CString sRightSubdir; /**< Right subdirectory from root of comparison */
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int ndiffs; /**< Total amount of differences */
 
