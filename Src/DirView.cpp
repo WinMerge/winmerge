@@ -874,7 +874,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		}
 		else if (di.isSideLeft() || di.isSideRight())
 			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
-		else if (ArchiveGuessFormat(paths.GetLeft()) && ArchiveGuessFormat(paths.GetRight()))
+		else if (HasZipSupport() && ArchiveGuessFormat(paths.GetLeft()) && ArchiveGuessFormat(paths.GetRight()))
 		{
 			// Open archives, not adding paths to MRU
 			mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
