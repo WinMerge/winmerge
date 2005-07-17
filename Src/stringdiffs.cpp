@@ -571,6 +571,8 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 	// Advance py1 & py2 from beginning until find difference or end
 	while (1)
 	{
+		// Potential difference extends from py1 to pen1 and py2 to pen2
+
 		// Check if either side finished
 		if (py1 > pen1 && py2 > pen2)
 		{
@@ -590,9 +592,9 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 			if (xwhite==1 && !isSafeWhitespace(*py2))
 				break; // done with forward search
 			// gobble up all whitespace in current area
-			while (py1 < pen1 && isSafeWhitespace(*py1))
+			while (isSafeWhitespace(*py1))
 				++py1; // DBCS safe because of isSafeWhitespace above
-			while (py2 < pen2 && isSafeWhitespace(*py2))
+			while (isSafeWhitespace(*py2))
 				++py2; // DBCS safe because of isSafeWhitespace above
 			continue;
 
@@ -626,16 +628,21 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 			++py1; // DBCS safe b/c we checked above
 			++py2; // DBCS safe b/c we checked above
 		}
-
 	}
 
+	// Potential difference extends from py1 to pen1 and py2 to pen2
 
 	// Store results of advance into return variables (begin1 & begin2)
 	// -1 in a begin variable means no visible diff area
 	begin1 = (py1 > pen1) ? -1 : (py1 - pbeg1);
 	begin2 = (py2 > pen2) ? -1 : (py2 - pbeg2);
 
-	if (!alldone)
+	if (alldone)
+	{
+		end1 = pen1 - pbeg1;
+		end2 = pen2 - pbeg2;
+	}
+	else
 	{
 		LPCTSTR pz1 = pen1;
 		LPCTSTR pz2 = pen2;
@@ -644,6 +651,8 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 		// Retreat pz1 & pz2 from end until find difference or beginning
 		while (1)
 		{
+			// Potential difference extends from py1 to pz1 and from py2 to pz2
+
 			// Check if either side finished
 			if (pz1 < py1 && pz2 < py2)
 			{
@@ -685,8 +694,6 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 				// DBCS (we assume if a lead byte, then character is 2-byte)
 				if (!(pz1[0] == pz2[0] && pz1[1] == pz2[1]))
 					break; // done with forward search
-				pz1 = CharPrev(py1, pz1);
-				pz2 = CharPrev(py2, pz2);
 			}
 			else
 			{
@@ -694,10 +701,16 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 					break; // done with forward search
 				if (!matchchar(pz1[0], pz2[0], casitive))
 					break; // done with forward search
-				pz1 = CharPrev(pbeg1, pz1);
-				pz2 = CharPrev(pbeg2, pz2);
 			}
-
+			// decrement pz1 and pz2
+			if (pz1 == pbeg1)
+				pz1 = pbeg1 - 1; // earlier than pbeg1 signifies no difference
+			else
+				pz1 = CharPrev(pbeg1, pz1);
+			if (pz2 == pbeg2)
+				pz2 = pbeg2 - 1; // earlier than pbeg1 signifies no difference
+			else
+				pz2 = CharPrev(pbeg2, pz2);
 		}
 
 		// Store results of advance into return variables (end1 & end2)
@@ -711,8 +724,4 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 			end2 = pz2 - pbeg2;
 		
 	}
-
-	// Check if difference region was empty
-	if (begin1 >= end1 && begin2 >= end2)
-		begin1 = -1; // no diff
 }

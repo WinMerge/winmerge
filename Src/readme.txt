@@ -1,3 +1,7 @@
+2005-07-17 Perry
+ PATCH: [ 1239275 ] Fixes for sd_ComputeByteDiff
+  Src: stringdiffs.cpp
+
 2005-07-15 Jochen
  PATCH: [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues (w/o command line tool integration)
   Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffItem.cpp DiffItem.h DiffThread.cpp DiffWrapper.cpp DirActions.cpp DirDoc.cpp
