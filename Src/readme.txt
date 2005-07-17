@@ -1,3 +1,7 @@
+2005-07-17 Jochen
+ BUG: [ 1239605 ] Cannot open diff due to 7zip error
+  Src: DirView.cpp
+
 2005-07-17 Perry
  PATCH: [ 1239275 ] Fixes for sd_ComputeByteDiff
   Src: stringdiffs.cpp
