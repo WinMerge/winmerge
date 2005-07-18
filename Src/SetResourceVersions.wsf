@@ -3,6 +3,10 @@
 /*
  SetLanguageVersions.wsf
  Created: Perry Rapp, 2005-05-08
+ This script prompts the user for a new version number
+ and then sets it as the ProductVersion in the version resource
+ in the main (English) rc and in all subordinate (translation) rc files.
+ It also sets the FileVersion in the main (English) rc file.
 */
 
 <script language="VBScript">
