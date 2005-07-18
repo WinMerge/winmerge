@@ -1,3 +1,8 @@
+2005-07-18 Perry
+ BUG: [ 1232382 ] Inconsistent language name casing in Spanish UI (v2.3.4.0)
+  Make all language names capitalized in Spanish, as in Catalan
+   Src/Languages/Spanish: MergeSpanish.rc
+
 2005-07-17 Jochen
  BUG: [ 1239605 ] Cannot open diff due to 7zip error
   Src: DirView.cpp
