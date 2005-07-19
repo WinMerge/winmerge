@@ -1,3 +1,7 @@
+2005-07-19 Kimmo
+ PATCH: [ 1238194 ] Use proper member names in MergeDiffDetailView
+  Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
+
 2005-07-18 Perry
  BUG: [ 1232382 ] Inconsistent language name casing in Spanish UI (v2.3.4.0)
   Make all language names capitalized in Spanish, as in Catalan

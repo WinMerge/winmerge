@@ -36,12 +36,12 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CMergeDiffDetailView, CCrystalTextView)
 
 CMergeDiffDetailView::CMergeDiffDetailView()
+: m_bIsLeft(FALSE)
+, m_lineBegin(0)
+, m_lineEnd(-1)
+, m_diffLength(0)
+, m_displayLength(NROWS_INIT)
 {
-	m_bIsLeft = FALSE;
-	lineBegin = 0;
-	lineEnd = -1;
-	diffLength = 0;
-	displayLength = NROWS_INIT;
 }
 
 CMergeDiffDetailView::~CMergeDiffDetailView()
@@ -118,7 +118,7 @@ int CMergeDiffDetailView::ComputeInitialHeight()
 }
 void CMergeDiffDetailView::SetDisplayHeight(int h) 
 {
-	displayLength = (h + GetLineHeight()/10) / GetLineHeight();
+	m_displayLength = (h + GetLineHeight()/10) / GetLineHeight();
 }
 
 void CMergeDiffDetailView::OnSize(UINT nType, int cx, int cy) 
@@ -150,23 +150,20 @@ void CMergeDiffDetailView::SetSelection (const CPoint & ptStart, const CPoint & 
 	CCrystalTextView::SetSelection(ptStartNew, ptEndNew);
 }
 
-
-
-
 void CMergeDiffDetailView::OnInitialUpdate()
 {
 	CCrystalTextView::OnInitialUpdate();
 	SetFont(dynamic_cast<CMainFrame*>(AfxGetMainWnd())->m_lfDiff);
 
-	lineBegin = 0;
-	lineEnd = -1;
-	diffLength = 0;
-	displayLength = NROWS_INIT;
+	m_lineBegin = 0;
+	m_lineEnd = -1;
+	m_diffLength = 0;
+	m_displayLength = NROWS_INIT;
 }
 
 int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 {
-	if (nLineIndex < lineBegin || nLineIndex > lineEnd)
+	if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
 		return 0;
 
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
@@ -257,7 +254,7 @@ void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
 			CCrystalTextView::GetLineColors(nLineIndex, crBkgnd,
 				crText, bDrawWhitespace);
 	}
-	if (nLineIndex < lineBegin || nLineIndex > lineEnd)
+	if (nLineIndex < m_lineBegin || nLineIndex > m_lineEnd)
 		{
 			crBkgnd = GetSysColor (COLOR_WINDOW);
 			crText = GetSysColor (COLOR_WINDOW);
@@ -284,14 +281,14 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 		newlineEnd = curDiff.dend0;
 	}
 
-	if (newlineBegin == lineBegin && newlineEnd == lineEnd)
+	if (newlineBegin == m_lineBegin && newlineEnd == m_lineEnd)
 		return;
-	lineBegin = newlineBegin;
-	lineEnd = newlineEnd;
-	diffLength = lineEnd - lineBegin + 1;
+	m_lineBegin = newlineBegin;
+	m_lineEnd = newlineEnd;
+	m_diffLength = m_lineEnd - m_lineBegin + 1;
 
-	// scroll to the first line of the first diff
-	ScrollToLine(lineBegin);
+	// scroll to the first line of the diff
+	ScrollToLine(m_lineBegin);
 
 	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
@@ -320,26 +317,26 @@ BOOL CMergeDiffDetailView::EnsureInDiff(CPoint & pt)
 {
 	// first get the degenerate case out of the way
 	// no diff ?
-	if (diffLength == 0)
+	if (m_diffLength == 0)
 	{
-		if (pt.y == lineBegin && pt.x == 0)
+		if (pt.y == m_lineBegin && pt.x == 0)
 			return FALSE;
-		pt.y = lineBegin;
+		pt.y = m_lineBegin;
 		pt.x = 0;
 		return TRUE;
 	}
 
 	// not above diff
-	if (pt.y < lineBegin)
+	if (pt.y < m_lineBegin)
 	{
-		pt.y = lineBegin;
+		pt.y = m_lineBegin;
 		pt.x = 0;
 		return TRUE;
 	}
 	// not below diff
-	if (pt.y > lineEnd)
+	if (pt.y > m_lineEnd)
 	{
-		pt.y = lineEnd;
+		pt.y = m_lineEnd;
 		pt.x = GetLineLength(pt.y);
 		return TRUE;
 	}
@@ -351,14 +348,14 @@ BOOL CMergeDiffDetailView::EnsureInDiff(CPoint & pt)
 /// virtual, ensure we remain in diff
 void CMergeDiffDetailView::ScrollToSubLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/, BOOL bTrackScrollBar /*= TRUE*/)
 {
-	if (diffLength <= displayLength)
-		nNewTopLine = lineBegin;
+	if (m_diffLength <= m_displayLength)
+		nNewTopLine = m_lineBegin;
 	else
 	{
-		if (nNewTopLine < lineBegin)
-			nNewTopLine = lineBegin;
-		if (nNewTopLine + displayLength - 1 > lineEnd)
-			nNewTopLine = lineEnd - displayLength + 1;
+		if (nNewTopLine < m_lineBegin)
+			nNewTopLine = m_lineBegin;
+		if (nNewTopLine + m_displayLength - 1 > m_lineEnd)
+			nNewTopLine = m_lineEnd - m_displayLength + 1;
 	}
 	m_nTopLine = nNewTopLine;
 	
@@ -374,14 +371,10 @@ void CMergeDiffDetailView::ScrollToSubLine (int nNewTopLine, BOOL bNoSmoothScrol
 	CCrystalTextView::ScrollToSubLine(nNewTopLine, bNoSmoothScroll, bTrackScrollBar);
 }
 
-
-
 /**
-* @brief Same purpose as the one as in MergeDiffView.cpp
-*
-* @note Nearly the same code also
-*
-*/
+ * @brief Same purpose as the one as in MergeEditView.cpp
+ * @note Nearly the same code also
+ */
 void CMergeDiffDetailView::UpdateSiblingScrollPos (BOOL bHorz)
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
@@ -412,9 +405,9 @@ void CMergeDiffDetailView::UpdateSiblingScrollPos (BOOL bHorz)
 		{
 			// only modification from code in MergeEditView.cpp
 			// Where are we now, are we still in a diff ? So set to no diff
-			nNewTopLine = lineBegin = 0;
-			lineEnd = -1;
-			diffLength = 0;
+			nNewTopLine = m_lineBegin = 0;
+			m_lineEnd = -1;
+			m_diffLength = 0;
 
 			ScrollToLine(nNewTopLine);
 		}
@@ -435,13 +428,10 @@ void CMergeDiffDetailView::UpdateSiblingScrollPos (BOOL bHorz)
 	}
 }
 
-
 /**
-* @brief Same purpose as the one as in MergeDiffView.cpp
-*
-* @note Code is the same except we cast to a pointer to a CMergeDiffDetailView
-*
-*/
+ * @brief Same purpose as the one as in MergeDiffView.cpp
+ * @note Code is the same except we cast to a pointer to a CMergeDiffDetailView
+ */
 void CMergeDiffDetailView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz)
 {
 	if (pUpdateSource != this)
@@ -453,10 +443,6 @@ void CMergeDiffDetailView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BO
 		if (!bHorz)  // changed this so bHorz works right
 		{
 			ASSERT (pSrcView->m_nTopLine >= 0);
-
-			// This ASSERT is wrong: panes have different files and
-			// different linecounts
-			// ASSERT (pSrcView->m_nTopLine < GetLineCount ());
 			if (pSrcView->m_nTopLine != m_nTopLine)
 			{
 				ScrollToLine (pSrcView->m_nTopLine, TRUE, FALSE);
@@ -467,10 +453,6 @@ void CMergeDiffDetailView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BO
 		else
 		{
 			ASSERT (pSrcView->m_nOffsetChar >= 0);
-
-			// This ASSERT is wrong: panes have different files and
-			// different linelengths
-			// ASSERT (pSrcView->m_nOffsetChar < GetMaxLineLength ());
 			if (pSrcView->m_nOffsetChar != m_nOffsetChar)
 			{
 				ScrollToChar (pSrcView->m_nOffsetChar, TRUE, FALSE);
@@ -491,11 +473,11 @@ int CMergeDiffDetailView::GetDiffLineLength ()
 	// we can not use GetLineActualLength below nLineCount
 	// diff info (and lineBegin/lineEnd) are updated only during Rescan
 	// they may get invalid just after we delete some text
-	int validLineEnd = lineEnd;
-	if (lineEnd >= GetLineCount())
+	int validLineEnd = m_lineEnd;
+	if (m_lineEnd >= GetLineCount())
 		validLineEnd = GetLineCount() - 1;
 
-	for (int I = lineBegin; I <= validLineEnd; I++)
+	for (int I = m_lineBegin; I <= validLineEnd; I++)
 	{
 		int nActualLength = GetLineActualLength (I);
 		if (nMaxLineLength < nActualLength)
@@ -506,9 +488,10 @@ int CMergeDiffDetailView::GetDiffLineLength ()
 
 
 /**
- * @brief Update the horizontal scrollbar (see ccrystaltextview::RecalcHorzScrollBar)
+ * @brief Update the horizontal scrollbar
  *
  * @note The scrollbar width is the one needed for the largest view
+ * @sa ccrystaltextview::RecalcHorzScrollBar()
  */
 void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 {
@@ -548,17 +531,12 @@ void CMergeDiffDetailView::RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 	VERIFY (SetScrollInfo (SB_HORZ, &si));
 }
 
-
-
-
 void CMergeDiffDetailView::OnRefresh()
 {
 	CMergeDoc *pd = GetDocument();
 	ASSERT(pd);
 	pd->FlushAndRescan(TRUE);
 }
-
-
 
 BOOL CMergeDiffDetailView::PreTranslateMessage(MSG* pMsg)
 {
@@ -613,7 +591,7 @@ void CMergeDiffDetailView::OnUpdateShowlinechardiff(CCmdUI* pCmdUI)
 void CMergeDiffDetailView::PushCursors()
 {
 	// push lineBegin and the cursor
-	m_lineBeginPushed = lineBegin;
+	m_lineBeginPushed = m_lineBegin;
 	m_ptCursorPosPushed = m_ptCursorPos;
 	// and top line positions
 	m_nTopLinePushed = m_nTopLine;
@@ -621,23 +599,23 @@ void CMergeDiffDetailView::PushCursors()
 
 void CMergeDiffDetailView::PopCursors()
 {
-	lineBegin = m_lineBeginPushed;
-	lineEnd = lineBegin + diffLength - 1;
+	m_lineBegin = m_lineBeginPushed;
+	m_lineEnd = m_lineBegin + m_diffLength - 1;
 
 	m_ptCursorPos = m_ptCursorPosPushed;
 
-	if (lineBegin >= GetLineCount())
+	if (m_lineBegin >= GetLineCount())
 	{
 		// even the first line is invalid, stop displaying the diff
-		lineBegin = m_nTopLine = m_nTopSubLine = 0;
-		lineEnd = -1;
-		diffLength = 0;
+		m_lineBegin = m_nTopLine = m_nTopSubLine = 0;
+		m_lineEnd = -1;
+		m_diffLength = 0;
 	}
 	else
 		{
 		// just check that all positions all valid
-		lineEnd = min(lineEnd, GetLineCount()-1);
-		diffLength = lineEnd - lineBegin + 1;
+		m_lineEnd = min(m_lineEnd, GetLineCount()-1);
+		m_diffLength = m_lineEnd - m_lineBegin + 1;
 		m_ptCursorPos.y = min(m_ptCursorPos.y, GetLineCount()-1);
 		m_ptCursorPos.x = min(m_ptCursorPos.x, GetLineLength(m_ptCursorPos.y));
 	}

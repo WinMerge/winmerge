@@ -41,13 +41,13 @@ public:
 	BOOL m_bIsLeft;
 protected:
 	/// first line of diff (first displayable line)
-	int lineBegin;
+	int m_lineBegin;
 	/// last line of diff (last displayable line)
-	int lineEnd; 
+	int m_lineEnd; 
 	/// number of displayed lines
-	int diffLength;
+	int m_diffLength;
 	/// height (in lines) of the view
-	int displayLength;
+	int m_displayLength;
 
 	/// memorize first line of diff
 	int m_lineBeginPushed;
