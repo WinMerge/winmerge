@@ -1,6 +1,8 @@
 2005-07-19 Kimmo
  PATCH: [ 1238194 ] Use proper member names in MergeDiffDetailView
   Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
+ PATCH: [ 1236623 ] Increase Quick contents compare buffer size
+  Src: DiffWrapper.cpp
 
 2005-07-18 Perry
  BUG: [ 1232382 ] Inconsistent language name casing in Spanish UI (v2.3.4.0)

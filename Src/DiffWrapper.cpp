@@ -47,7 +47,8 @@ static char THIS_FILE[] = __FILE__;
 extern int recursive;
 extern CLogFile gLog;
 static int f_defcp = 0; // default codepage
-static const int MEG = 1024 * 1024; // Mega(byte)
+static const int KILO = 1024; // Kilo(byte)
+static const int MEG = 1024 * KILO; // Mega(byte)
 
 /**
  * @brief Limit for compare by contents/quick contents.
@@ -56,6 +57,11 @@ static const int MEG = 1024 * 1024; // Mega(byte)
  * big binary files and overall makes comparing bigger files faster.
  */
 static const int CMP_SIZE_LIMIT = 2 * MEG;
+
+/**
+ * @brief Quick contents compare's file buffer size
+ */
+static const int WMCMPBUFF = 32 * KILO;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
 static inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd);
@@ -1644,9 +1650,6 @@ struct FileHandle
 	~FileHandle() { Close(); }
 	FILE * m_fp;
 };
-
-// TODO: Increase WMCMPBUFF (it is set low to help shake out bugs)
-#define WMCMPBUFF 64
 
 /** @brief Compare two specified files, byte-by-byte */
 int DiffFileData::byte_compare_files()
