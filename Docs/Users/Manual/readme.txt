@@ -1,3 +1,7 @@
+2005-07-20 Tim
+ PATCH: [ 1238450 ] Build script for manual at SF.net
+  Manual/build: new file build.sh
+
 2005-07-12 Perry
  Grammar fix via rewrite for /ub option
   Manual: Command_line.xml

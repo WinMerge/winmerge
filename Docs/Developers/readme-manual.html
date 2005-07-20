@@ -11,6 +11,11 @@
       border-left: 4px solid #FFCC00;
       border-bottom: 1px solid #FFCC00;
     }
+    h4 {
+      padding: 2px;
+      border-left: 8px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
+    }
     pre {
       margin-left: 25px;
       margin-right: 25px;
@@ -131,5 +136,24 @@ local path. Replace url in second line <code>"http://www.oasis-open.org/docbook/
 </code> with valid path. At the moment it is:</p>
 
 <pre>"/usr/share/sgml/docbook/sgml-dtd-4.2-1.0-24/docbook.dtd"</pre>
+
+<h4>Own build script</h4>
+<p>We have an own build script, which replace the <code>docbook.dtd</code> url automatically and do some other works too.</p>
+
+<p>The <code>build.sh</code> script file is located at the <code>build</code> subdirectory at the <code>Manual</code> directory.
+But before you can use it at the shell server, you must give execute rights to the file:</p>
+<pre>chmod +x build.sh</pre>
+
+<p>Now you can call the script file (from the <code>build</code> directory):</p>
+<dl>
+  <dt><code>./build.sh html</code></dt>
+  <dd>Creates the HTML files under the <code>html</code> subdirectory at the <code>build</code> directory.</dd>
+  <dt><code>./build.sh pdf</code></dt>
+  <dd>Creates the PDF file under the <code>pdf</code> subdirectory at the <code>build</code> directory.</dd>
+  <dt><code>./build.sh txt</code></dt>
+  <dd>Creates the TXT file under the <code>txt</code> subdirectory at the <code>build</code> directory.</dd>
+  <dt><code>./build.sh</code></dt>
+  <dd>Is the same like <code>./build.sh html</code>.</dd>
+</dl>
 </body>
 </html>

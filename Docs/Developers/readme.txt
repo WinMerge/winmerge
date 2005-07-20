@@ -1,3 +1,7 @@
+2005-07-20 Tim
+ PATCH: [ 1238450 ] Build script for manual at SF.net
+  Developers: readme-manual.html
+
 2005-06-02 Tim
  RFE: [ 1017179 ] Plugin readme's as HTML?
   Developers: new file Plugins.html
