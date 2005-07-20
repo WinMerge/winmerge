@@ -77,6 +77,15 @@ static int cmp64(__int64 i1, __int64 i2)
 	return i1>i2 ? 1 : -1;
 }
 /**
+ * @brief Convert __int64 to int sign
+ */
+static int sign64(__int64 val)
+{
+  if (val>0) return 1;
+  if (val<0) return -1;
+  return 0;
+}
+/**
  * @brief Function to compare two diffcodes for a sort
  */
 static int cmpdiffcode(int diffcode1, int diffcode2)
@@ -418,9 +427,9 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
 	__int64 n = cmp64(r.unicoding, s.unicoding);
-	if (n) return n;
+	if (n) return sign64(n);
 	n = cmp64(r.codepage, s.codepage);
-	return n;
+	return sign64(n);
 }
 /* @} */
 

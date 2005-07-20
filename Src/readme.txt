@@ -1,3 +1,7 @@
+2005-07-20 Perry 
+ PATCH: [ 1241753 ] Fix DirViewColItems int64 cast warnings
+  Src: DirViewColItems.cpp
+
 2005-07-19 Kimmo
  PATCH: [ 1238194 ] Use proper member names in MergeDiffDetailView
   Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
