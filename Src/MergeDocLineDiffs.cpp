@@ -315,6 +315,11 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	}
 }
 
+/**
+ * @brief Return array of differences in specified line
+ * This is used by algorithm for line diff coloring
+ * (Line diff coloring is distinct from the selection highlight code)
+ */
 void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 {
 	if (nLineIndex >= m_pLeftView->GetLineCount()) return;
