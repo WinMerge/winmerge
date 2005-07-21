@@ -233,7 +233,7 @@ struct DiffFileData
 	int diffutils_compare_files(int depth);
 	int byte_compare_files();
 	void GuessEncoding(int side, CDiffContext * pCtxt);
-	int prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &di);
+	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 	BOOL Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, BOOL bMovedBlocks);
 

@@ -1,3 +1,7 @@
+2005-07-21 Perry
+ PATCH: [ 1226311 ] Record notes about why compare failed
+  Src: DiffItem.h DiffWrapper.cpp DiffWrapper.h
+
 2005-07-20 Perry 
  PATCH: [ 1241753 ] Fix DirViewColItems int64 cast warnings
   Src: DirViewColItems.cpp

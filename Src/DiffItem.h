@@ -84,6 +84,7 @@ struct DIFFITEM : DIFFCODE
 	CString sRightSubdir; /**< Right subdirectory from root of comparison */
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int ndiffs; /**< Total amount of differences */
+	CString errorDesc; /**< technical note about error */
 
 	DIFFITEM() : ndiffs(-1), nsdiffs(-1) { }
 

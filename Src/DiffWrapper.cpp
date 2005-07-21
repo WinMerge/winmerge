@@ -1492,7 +1492,7 @@ bool DiffFileData::FilepathWithEncoding::Transform(const CString & filepath, CSt
 /**
  * @brief Prepare files (run plugins) & compare them, and return diffcode
  */
-int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &di)
+int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
 	int nCompMethod = pCtxt->m_nCompMethod;
 	CString filepath1;
@@ -1524,30 +1524,45 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &d
 	//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 	// Invoke unpacking plugins
 	if (!Unpack(filepathUnpacked1, filteredFilenames, infoUnpacker))
+	{
+		di.errorDesc = _T("Unpack Error Side 1");
 		goto exitPrepAndCompare;
+	}
 
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(infoUnpacker->bToBeScanned == FALSE);
 
 	if (!Unpack(filepathUnpacked2, filteredFilenames, infoUnpacker))
+	{
+		di.errorDesc = _T("Unpack Error Side 2");
 		goto exitPrepAndCompare;
+	}
 
 	// As we keep handles open on unpacked files, Transform() may not delete them.
 	// Unpacked files will be deleted at end of this function.
 	/*diffdata.m_sFilepath[0] = */filepathTransformed1 = filepathUnpacked1;
 	/*diffdata.m_sFilepath[1] = */filepathTransformed2 = filepathUnpacked2;
 	if (!OpenFiles(filepathTransformed1, filepathTransformed2))
+	{
+		di.errorDesc = _T("OpenFiles Error (before tranform)");
 		goto exitPrepAndCompare;
+	}
 
 	// Invoke prediff'ing plugins
 	if (!m_sFilepath[0].Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, infoPrediffer, m_inf[0].desc))
+	{
+		di.errorDesc = _T("Transform Error Side 1");
 		goto exitPrepAndCompare;
+	}
 
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(infoPrediffer->bToBeScanned == FALSE);
 
 	if (!m_sFilepath[1].Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, infoPrediffer, m_inf[1].desc))
+	{
+		di.errorDesc = _T("Transform Error Side 2");
 		goto exitPrepAndCompare;
+	}
 
 	// If options are binary equivalent, we could check for filesize
 	// difference here, and bail out if files are clearly different
@@ -1561,7 +1576,10 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &d
 		//diffdata.m_sFilepath[0] = filepathTransformed1;
 		//diffdata.m_sFilepath[1] = filepathTransformed2;
 		if (!OpenFiles(filepathTransformed1, filepathTransformed2))
+		{
+			di.errorDesc = _T("OpenFiles Error (after tranform)");
 			goto exitPrepAndCompare;
+		}
 	}
 
 	// If either file is larger than 2 Megs compare files by quick contents
@@ -1576,6 +1594,8 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &d
 	{
 		// use diffutils
 		code = diffutils_compare_files(0);
+		if (code & DIFFCODE::CMPERR)
+			di.errorDesc = _T("DiffUtils Error");
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
@@ -1586,6 +1606,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, const DIFFITEM &d
 	{
 		// Print error since we should have handled by date compare earlier
 		_RPTF0(_CRT_ERROR, "Invalid compare type, DiffFileData can't handle it");
+		di.errorDesc = _T("Bad compare type");
 		goto exitPrepAndCompare;
 	}
 
