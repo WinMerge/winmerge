@@ -326,7 +326,6 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		BOOL bForced /* =FALSE */)
 {
 	DIFFOPTIONS diffOptions = {0};
-	DIFFSTATUS status = {0};
 	DiffFileInfo fileInfo;
 	BOOL diffSuccess;
 	int nResult = RESCAN_OK;
@@ -383,6 +382,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	diffSuccess = m_diffWrapper.RunFileDiff();
 
 	// Read diff-status
+	DIFFSTATUS status;
 	m_diffWrapper.GetDiffStatus(&status);
 	if (bBinary) // believe caller if we were told these are binaries
 		status.bBinaries = TRUE;
@@ -398,14 +398,15 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 				status.bRightMissingNL);
 	}
 
+	// set identical/diff result as recorded by diffutils
+	bIdentical = status.bIdentical;
+
 	// Determine errors and binary file compares
 	if (!diffSuccess)
 		nResult = RESCAN_FILE_ERR;
 	else if (status.bBinaries)
 	{
 		bBinary = TRUE;
-		if (status.bBinariesIdentical)
-			bIdentical = TRUE;
 	}
 	else
 	{

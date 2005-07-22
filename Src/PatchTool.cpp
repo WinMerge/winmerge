@@ -47,7 +47,7 @@ void CPatchTool::AddFiles(CString file1, CString file2)
  */
 int CPatchTool::CreatePatch()
 {
-	DIFFSTATUS status = {0};
+	DIFFSTATUS status;
 	BOOL bResult = TRUE;
 	BOOL bDiffSuccess;
 	int retVal = 0;

@@ -1,3 +1,7 @@
+2005-07-22 Perry
+ PATCH: [ 1242339 ] Fix CMergeDoc::Rescan to set bIdentical in all cases
+  Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchTool.cpp
+
 2005-07-21 Perry
  PATCH: [ 1226311 ] Record notes about why compare failed
   Src: DiffItem.h DiffWrapper.cpp DiffWrapper.h

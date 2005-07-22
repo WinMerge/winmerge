@@ -113,8 +113,10 @@ struct DIFFSTATUS
 	BOOL bLeftMissingNL; /**< Left file is missing EOL before EOF */
 	BOOL bRightMissingNL; /**< Right file is missing EOL before EOF */
 	BOOL bBinaries; /**< Files are binaries */
-	BOOL bBinariesIdentical; /**< Binary files are identical. */
+	BOOL bIdentical; /**< diffutils said files are identical */
 	BOOL bPatchFileFailed; /**< Creating patch file failed */
+
+	DIFFSTATUS() { memset(this, 0, sizeof(*this)); } // start out with all flags clear
 };
 
 /**

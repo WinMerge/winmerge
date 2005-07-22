@@ -333,12 +333,15 @@ BOOL CDiffWrapper::RunFileDiff()
 	{
 		m_status.bBinaries = TRUE;
 		if (bin_flag == -1)
-			m_status.bBinariesIdentical = FALSE;
+			m_status.bIdentical = FALSE;
 		else
-			m_status.bBinariesIdentical = TRUE;
+			m_status.bIdentical = TRUE;
 	}
 	else
+	{ // text files according to diffutils, so change script exists
+		m_status.bIdentical = (script == 0);
 		m_status.bBinaries = FALSE;
+	}
 	m_status.bLeftMissingNL = inf[0].missing_newline;
 	m_status.bRightMissingNL = inf[1].missing_newline;
 
