@@ -110,7 +110,7 @@ If we keep GetLineColors here, we should clear DIFF flag here
 and not in CGhostTextBuffer (when insertText/deleteText). 
 Small problem... This class doesn't derives from CGhostTextBuffer... 
 We could define a new class which derives from CGhostTextBuffer to clear the DIFF flag.
-and calls a virtual function for additionnal things to do on the flag.
+and calls a virtual function for additional things to do on the flag.
 Maybe in the future...
 */
 class CMergeEditView : public CGhostTextView

@@ -43,7 +43,7 @@
 #endif
 
 /**
- * @brief additionnal action code for WinMerge (reserve 100 first codes for CrystalEdit)
+ * @brief additional action code for WinMerge (reserve 100 first codes for CrystalEdit)
  */
 enum
 {
