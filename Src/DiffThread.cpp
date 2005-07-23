@@ -205,7 +205,7 @@ UINT DiffThread(LPVOID lpParam)
 	{
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 		DirScan_CompareItems(myStruct->context, myStruct->m_pAbortgate);
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
 	else
 	{
@@ -225,7 +225,7 @@ UINT DiffThread(LPVOID lpParam)
 #endif
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 		DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
 
 	// Send message to UI to update

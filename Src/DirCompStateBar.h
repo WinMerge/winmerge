@@ -74,8 +74,8 @@ private:
 	long m_lElapsed; /**< Elapsed time for compare */
 	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
 	BOOL m_bStopText; /**< Button has 'Stop' text? */
-	BOOL m_bTimerFired; /**< Has timer fired for UI update */
 	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
+	BOOL m_bCompareReady; /**< Compare ready, waiting for closing? */
 };
 
 //{{AFX_INSERT_LOCATION}}

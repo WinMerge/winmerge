@@ -17,6 +17,7 @@ CompareStats::CompareStats()
 : m_nTotalItems(0)
 , m_nComparedItems(0)
 , m_state(STATE_IDLE)
+, m_bCompareDone(FALSE)
 {
 	InitializeCriticalSection(&m_csProtect);
 	ZeroMemory(&m_counts[0], sizeof(m_counts));
@@ -36,7 +37,9 @@ CompareStats::~CompareStats()
  */
 void CompareStats::IncreaseTotalItems(int count /*= 1*/)
 {
+	EnterCriticalSection(&m_csProtect);
 	m_nTotalItems += count;
+	LeaveCriticalSection(&m_csProtect);
 }
 
 /** 
@@ -87,6 +90,7 @@ void CompareStats::Reset()
 	SetCompareState(STATE_IDLE);
 	m_nTotalItems = 0;
 	m_nComparedItems = 0;
+	m_bCompareDone = FALSE;
 }
 
 /** 
@@ -98,9 +102,16 @@ void CompareStats::SetCompareState(CompareStats::CMP_STATE state)
 #ifdef _DEBUG
 	if (state == STATE_COLLECT && m_state != STATE_IDLE)
 		_RPTF2(_CRT_ERROR, "Invalid state change from %d to %d", m_state, state);
-	if (state == STATE_READY && m_state != STATE_COMPARE)
+	if (state == STATE_COMPARE && m_state != STATE_COLLECT)
 		_RPTF2(_CRT_ERROR, "Invalid state change from %d to %d", m_state, state);
 #endif //_DEBUG
+
+	// New compare starting so reset ready status
+	if (state == STATE_COLLECT)
+		m_bCompareDone = FALSE;
+	// Compare ready
+	if (state == STATE_IDLE && m_state == STATE_COMPARE)
+		m_bCompareDone = TRUE;
 
 	m_state = state;
 }

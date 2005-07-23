@@ -55,7 +55,6 @@ void CDirCompStateBar::ClearStat()
 	pCompared->SetWindowText(_T("0"));
 	pTotal->SetWindowText(_T("0"));
 
-	m_bTimerFired = FALSE;
 	m_prevState = CompareStats::STATE_IDLE;
 }
 
@@ -64,7 +63,7 @@ void CDirCompStateBar::ClearStat()
  */
 CDirCompStateBar::CDirCompStateBar(CWnd* pParent /*=NULL*/)
 : m_bStopText(TRUE)
-, m_bTimerFired(FALSE)
+, m_bCompareReady(FALSE)
 , m_prevState(CompareStats::STATE_IDLE)
 {
 }
@@ -140,8 +139,6 @@ void CDirCompStateBar::OnStop()
 
 	if (pDirDoc->IsCurrentScanAbortable())
 		pDirDoc->AbortCurrentScan();
-
-	m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 
 	CDirFrame * pDirFrame = static_cast<CDirFrame*>(pFrameWnd);
 	ASSERT(pDirFrame != NULL);
@@ -259,7 +256,7 @@ BOOL CDirCompStateBar::PreTranslateMessage(MSG* pMsg)
 		}
 
 		// When the scan is finished, any key will hide the bar
-		if (m_pCompareStats->GetCompareState() == CompareStats::STATE_READY)
+		if (m_bCompareReady)
 		{
 			OnStop();
 			return TRUE;
@@ -295,6 +292,7 @@ void CDirCompStateBar::Reset()
 	m_lElapsed = 0;
 	m_lElapsed -= ::GetTickCount();
 	UpdateData(FALSE);
+	m_bCompareReady = FALSE;
 	m_ctlStop.SetWindowText(strAbort);
 	m_bStopText = TRUE;
 	// also give the focus to the button (PreTranslateMessage needs it)
@@ -319,13 +317,15 @@ void CDirCompStateBar::OnTimer(UINT nIDEvent)
 		CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
 		CStatic *pCompared = (CStatic *) GetDlgItem(IDC_ITEMSCOMPARED);
 		CStatic *pTotal = (CStatic *) GetDlgItem(IDC_ITEMSTOTAL);
-		CompareStats::CMP_STATE state = m_pCompareStats->GetCompareState();
+		const CompareStats::CMP_STATE state = m_pCompareStats->GetCompareState();
 		
+		// New compare started
 		if (m_prevState == CompareStats::STATE_IDLE &&
 			state == CompareStats::STATE_COLLECT)
 		{
 			m_prevState = CompareStats::STATE_COLLECT;
 		}
+		// Collecting items to compare
 		else if (m_prevState == CompareStats::STATE_COLLECT &&
 			state == CompareStats::STATE_COLLECT)
 		{
@@ -333,6 +333,7 @@ void CDirCompStateBar::OnTimer(UINT nIDEvent)
 			_itot(m_pCompareStats->GetTotalItems(), num, 10);
 			pTotal->SetWindowText(num);
 		}
+		// Started comparing items
 		else if ((m_prevState == CompareStats::STATE_COLLECT ||
 				m_prevState == CompareStats::STATE_IDLE) &&
 				state == CompareStats::STATE_COMPARE)
@@ -352,6 +353,7 @@ void CDirCompStateBar::OnTimer(UINT nIDEvent)
 			UpdateElements();
 			m_prevState = CompareStats::STATE_COMPARE;
 		}
+		// Comparing items
 		else if (m_prevState == CompareStats::STATE_COMPARE &&
 				state == CompareStats::STATE_COMPARE)
 		{
@@ -361,39 +363,26 @@ void CDirCompStateBar::OnTimer(UINT nIDEvent)
 			pCompared->SetWindowText(num);
 			pProg->SetPos(comparedItems);
 			UpdateElements();
-			m_bTimerFired = TRUE;
 		}
-		else if (m_prevState == CompareStats::STATE_COMPARE &&
-			state == CompareStats::STATE_READY)
+		// Compare is ready
+		// Update total items too since we might get only this one state
+		// when compare is fast.
+		else if (state == CompareStats::STATE_IDLE &&
+			m_bCompareReady == FALSE && m_pCompareStats->IsCompareDone() )
 		{
 			TCHAR num[15] = {0};
-			int comparedItems = m_pCompareStats->GetComparedItems();
+			const int totalItems = m_pCompareStats->GetTotalItems();
+			const int comparedItems = m_pCompareStats->GetComparedItems();
 			_itot(comparedItems, num, 10);
 			pCompared->SetWindowText(num);
+			_itot(totalItems, num, 10);
+			pTotal->SetWindowText(num);
+			pProg->SetRange32(0, totalItems);
 			pProg->SetPos(comparedItems);
 			UpdateElements();
 			EndUpdating();
-			m_prevState = CompareStats::STATE_READY;
-			m_bTimerFired = TRUE;
-		}
-		else if (state == CompareStats::STATE_READY)
-		{
-			if (!m_bTimerFired)
-			{
-				TCHAR num[15] = {0};
-				int totalItems = m_pCompareStats->GetTotalItems();
-				_itot(totalItems, num, 10);
-				pTotal->SetWindowText(num);
-				int comparedItems = m_pCompareStats->GetComparedItems();
-				_itot(comparedItems, num, 10);
-				pCompared->SetWindowText(num);
-				pProg->SetRange32(0, totalItems);
-				pProg->SetPos(comparedItems);
-				UpdateElements();
-				EndUpdating();
-				m_prevState = CompareStats::STATE_READY;
-				m_bTimerFired = TRUE;
-			}
+			m_prevState = CompareStats::STATE_COMPARE;
+			m_bCompareReady = TRUE;
 		}
 	}
 	else

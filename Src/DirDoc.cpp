@@ -823,7 +823,6 @@ void CDirDoc::AbortCurrentScan()
 {
 	gLog.Write(LOGLEVEL::LNOTICE, _T("Dircompare aborted!"));
 	m_diffThread.Abort();
-	m_pCompareStats->SetCompareState(CompareStats::STATE_READY);
 }
 
 /**
