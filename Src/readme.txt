@@ -1,3 +1,7 @@
+2005-07-23 Kimmo
+ BUG: [ 1241289 ] Edit point or "anchor" not updated when navigating diffs
+  Src: MergeEditView.cpp
+
 2005-07-22 Perry
  PATCH: [ 1242339 ] Fix CMergeDoc::Rescan to set bIdentical in all cases
   Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchTool.cpp

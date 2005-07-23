@@ -1373,6 +1373,8 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 			pOtherView->SetCursorPos(ptStart);
 			pCurrentView->SetAnchor(ptStart);
 			pOtherView->SetAnchor(ptStart);
+			pCurrentView->SetSelection(ptStart, ptStart);
+			pOtherView->SetSelection(ptStart, ptStart);
 		}
 
 		if (bSelectText)
