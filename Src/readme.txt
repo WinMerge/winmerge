@@ -1,3 +1,8 @@
+2005-07-24 Perry
+ PATCH: [ 1242297 ] Fix CPatchDlg::OnOK for empty paths & greatly simplify
+  Src: Merge.rc PatchDlg.cpp resource.h 
+  Src/Languages: */resource.h */Merge*.rc
+  
 2005-07-24 Kimmo
  PATCH: [ 1220485 ] Move Redisplay() from doc to view
   Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp

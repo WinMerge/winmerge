@@ -2041,7 +2041,8 @@ BEGIN
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
     IDS_FILEWRITE_ERROR     "%1 파일에 쓸 수 없습니다."
-    IDS_PATH_NOT_ABSOLUTE   "%1\n 절대 경로가 아닙니다!"
+    IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
+	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
     IDS_CANNOT_CREATE_BINARYPATCH 
                             "바이너리 파일에서는 patch 파일을 생성할 수 없습니다."
     IDS_CANNOT_CREATE_DIRPATCH "디렉토리에서는 patch 파일을 생성할 수 없습니다."

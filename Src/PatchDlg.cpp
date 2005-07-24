@@ -103,87 +103,79 @@ END_MESSAGE_MAP()
  */
 void CPatchDlg::OnOK()
 {
-	int contextSel = 0;
-	TCHAR contextText[50] = {0};
-	BOOL file1Ok = FALSE;
-	BOOL file2Ok = FALSE;
-	BOOL fileExists = FALSE;
-	BOOL fileResultOK = TRUE;
-	BOOL pathAbsolute = FALSE;
-	int overWrite = 0;
-	int selectCount = 0;
-
 	UpdateData(TRUE);
-	selectCount = m_fileList.GetCount();
 
 	// There are two different cases: single files or
 	// multiple files.  Multiple files are selected from DirView.
 	// Only if single files selected, filenames are checked here.
 	// Filenames read from Dirview must be valid ones.
+	int selectCount = m_fileList.GetCount();
 	if (selectCount == 1)
 	{
-		if (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE)
-			file1Ok = TRUE;
-		if (paths_DoesPathExist(m_file2) == IS_EXISTING_FILE)
-			file2Ok = TRUE;
+		BOOL file1Ok = (paths_DoesPathExist(m_file1) == IS_EXISTING_FILE);
+		BOOL file2Ok = (paths_DoesPathExist(m_file2) == IS_EXISTING_FILE);
 
-		if (file1Ok == FALSE)
-			AfxMessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
+		if (!file1Ok || !file2Ok)
+		{
+			if (!file1Ok)
+				AfxMessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
 
-		if (file2Ok == FALSE)
-			AfxMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
+			if (!file2Ok)
+				AfxMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
+			return;
+		}
 	}
 
-	// Check that result (patch) file is absolute path
-	if (file1Ok && file2Ok)
+	// Check that a result file was specified
+	if (m_fileResult.IsEmpty())
 	{
-		pathAbsolute = paths_IsPathAbsolute(m_fileResult);
-		if (pathAbsolute == FALSE)
-		{
-			ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
-		}
+		AfxMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
+		m_ctlResult.SetFocus();
+		return;
+	}
+ 
+	// Check that result (patch) file is absolute path
+	if (!paths_IsPathAbsolute(m_fileResult))
+	{
+		ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
+		m_ctlResult.SetFocus();
+		return;
 	}
 	
-	if (file1Ok && file2Ok && pathAbsolute)
+	BOOL fileExists = (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE);
+
+	// Result file already exists and append not selected
+	if (fileExists && !m_appendFile)
 	{
-		if (paths_DoesPathExist(m_fileResult) == IS_EXISTING_FILE)
-			fileExists = TRUE;
-
-		// Result file already exists and append not selected
-		if (fileExists && !m_appendFile)
+		if (AfxMessageBox(IDS_DIFF_FILEOVERWRITE,
+				MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN,
+				IDS_DIFF_FILEOVERWRITE) != IDYES)
 		{
-			overWrite = AfxMessageBox(IDS_DIFF_FILEOVERWRITE,
-					MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN,
-					IDS_DIFF_FILEOVERWRITE);
-			if (overWrite == IDNO)
-				fileResultOK = FALSE;
+			return;
 		}
-		else  // It's OK to write new file
-			fileResultOK = TRUE;
 	}
+	// else it's OK to write new file
 
-	if (file1Ok && file2Ok && pathAbsolute && fileResultOK)
+	m_outputStyle = (enum output_style) m_comboStyle.GetCurSel();
+
+	int contextSel = m_comboContext.GetCurSel();
+	if (contextSel != CB_ERR)
 	{
-		m_outputStyle = (enum output_style) m_comboStyle.GetCurSel();
-
-		contextSel = m_comboContext.GetCurSel();
-		if (contextSel != CB_ERR)
-		{
-			m_comboContext.GetLBText(contextSel, contextText);
-			m_contextLines = _ttoi(contextText);
-		}
-		else
-			m_contextLines = 0;
-
-		SaveSettings();
-
-		// Save combobox history
-		m_ctlFile1.SaveState(_T("Files\\DiffFile1"));
-		m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
-		m_ctlResult.SaveState(_T("Files\\DiffFileResult"));
-
-		CDialog::OnOK();
+		TCHAR contextText[50] = _T("");
+		m_comboContext.GetLBText(contextSel, contextText);
+		m_contextLines = _ttoi(contextText);
 	}
+	else
+		m_contextLines = 0;
+
+	SaveSettings();
+
+	// Save combobox history
+	m_ctlFile1.SaveState(_T("Files\\DiffFile1"));
+	m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
+	m_ctlResult.SaveState(_T("Files\\DiffFileResult"));
+
+	CDialog::OnOK();
 }
 
 /** 
