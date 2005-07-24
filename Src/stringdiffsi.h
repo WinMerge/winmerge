@@ -11,7 +11,7 @@
 #define stringdiffsi_h_included
 
 /**
- * @brief Class to hold together data needed to implement stringdiffs_Get
+ * @brief Class to hold together data needed to implement sd_ComputeWordDiffs
  */
 class stringdiffs
 {

@@ -1,7 +1,7 @@
 /** 
  * @file  stringdiffs.h
  *
- * @brief Interface file declaring stringdiffs_Get (q.v.)
+ * @brief Interface file declaring sd_ComputeWordDiffs (q.v.)
  *
  */
 // RCS ID line follows -- this is updated by CVS
@@ -35,7 +35,7 @@ struct wdiff {
 typedef CArray<wdiff, wdiff&> wdiffarray; /**< An array of differences between two strings */
 
 
-void stringdiffs_Get(const CString & str1, const CString & str2,
+void sd_ComputeWordDiffs(const CString & str1, const CString & str2,
                    bool case_sensitive, int whitespace, int breakType,
                    wdiffarray * pDiffs);
 

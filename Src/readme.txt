@@ -2,6 +2,9 @@
  PATCH: [ 1211574 ] Wrap GetTempPath and GetTempFileName for CString use
   Src: DiffWrapper.cpp FileTransform.cpp PathContext.cpp VSSHelper.cpp
    paths.cpp paths.h
+ PATCH: [ 1241930 ] Rename stringdiffs_Get to sd_ComputeWordDiffs
+  (This is cosmetic function rename)
+  Src: MergeDocLineDiffs.cpp stringdiffs.cpp stringdiffs.h stringdiffsi.h
 
 2005-07-23 Kimmo
  BUG: [ 1241289 ] Edit point or "anchor" not updated when navigating diffs

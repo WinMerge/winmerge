@@ -1,7 +1,7 @@
 /** 
  * @file  stringdiffs.cpp
  *
- * @brief Implementation file for stringdiffs_Get (q.v.)
+ * @brief Implementation file for sd_ComputeWordDiffs (q.v.)
  *
  */
 // RCS ID line follows -- this is updated by CVS
@@ -29,7 +29,7 @@ static bool isWordBreak(int breakType, TCHAR ch);
  * @brief Construct our worker object and tell it to do the work
  */
 void
-stringdiffs_Get(const CString & str1, const CString & str2,
+sd_ComputeWordDiffs(const CString & str1, const CString & str2,
 	bool case_sensitive, int whitespace, int breakType,
 	wdiffarray * pDiffs)
 {
