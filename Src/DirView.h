@@ -86,7 +86,7 @@ public:
 public:
 	CDirFrame * GetParentFrame();
 
-
+	void Redisplay();
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	POSITION GetItemKey(int idx) const;

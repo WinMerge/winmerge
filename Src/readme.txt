@@ -1,3 +1,7 @@
+2005-07-24 Kimmo
+ PATCH: [ 1220485 ] Move Redisplay() from doc to view
+  Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp
+
 2005-07-24 Perry
  PATCH: [ 1211574 ] Wrap GetTempPath and GetTempFileName for CString use
   Src: DiffWrapper.cpp FileTransform.cpp PathContext.cpp VSSHelper.cpp

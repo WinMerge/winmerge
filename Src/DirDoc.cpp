@@ -303,7 +303,7 @@ void CDirDoc::Rescan()
  * @return File- or subfolder name of item, NULL if user does not want to see it
  * @sa CDirDoc::Redisplay()
  */
-LPCTSTR CDirDoc::GetItemPathIfShowable(CDiffContext *pCtxt, const DIFFITEM & di, int llen, int rlen)
+LPCTSTR CDirDoc::GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 {
 	if (di.isResultFiltered())
 	{
@@ -368,46 +368,7 @@ void CDirDoc::Redisplay()
 	if (!m_pDirView)
 		return;
 
-	m_pDirView->ToDoDeleteThisValidateColumnOrdering();
-
-	if (m_pCtxt == NULL)
-		return;
-
-	CString s,s2;
-	UINT cnt=0;
-	int llen = m_pCtxt->GetNormalizedLeft().GetLength();
-	int rlen = m_pCtxt->GetNormalizedRight().GetLength();
-
-	m_pDirView->DeleteAllDisplayItems();
-
-	// Disable redrawing while adding new items
-	m_pDirView->SetRedraw(FALSE);
-
-	// If non-recursive compare, add special item(s)
-	if (!m_bRecursive || m_pTempPathContext && m_pTempPathContext->m_pParent)
-		cnt += m_pDirView->AddSpecialItems();
-
-	int alldiffs=0;
-	POSITION diffpos = m_pCtxt->GetFirstDiffPosition();
-	while (diffpos)
-	{
-		POSITION curdiffpos = diffpos;
-		DIFFITEM di = m_pCtxt->GetNextDiffPosition(diffpos);
-		if (!di.isResultSame())
-			++alldiffs;
-
-		LPCTSTR p=GetItemPathIfShowable(m_pCtxt, di, llen, rlen);
-
-		if (p)
-		{
-			int i = m_pDirView->AddDiffItem(cnt, di, p, curdiffpos);
-			m_pDirView->UpdateDiffItemStatus(i, di);
-			cnt++;
-		}
-	}
-	theApp.SetLastCompareResult(alldiffs);
-	m_pDirView->SortColumnsAppropriately();
-	m_pDirView->SetRedraw(TRUE);
+	m_pDirView->Redisplay();
 }
 
 CDirView * CDirDoc::GetMainView()

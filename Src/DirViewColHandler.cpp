@@ -496,7 +496,7 @@ ToDoDeleteThisValidateColumnOrdering();
 	else
 	{
 		ReloadColumns();
-		GetDocument()->Redisplay();
+		Redisplay();
 	}
 	ValidateColumnOrdering();
 }

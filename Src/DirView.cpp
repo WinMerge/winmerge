@@ -370,6 +370,48 @@ void CDirView::ReloadColumns()
 	SetColAlignments();
 }
 
+void CDirView::Redisplay()
+{
+	ToDoDeleteThisValidateColumnOrdering();
+	const CDiffContext &ctxt = GetDocument()->GetDiffContext();
+
+	CString s,s2;
+	UINT cnt=0;
+	int llen = ctxt.GetNormalizedLeft().GetLength();
+	int rlen = ctxt.GetNormalizedRight().GetLength();
+
+	DeleteAllDisplayItems();
+
+	// Disable redrawing while adding new items
+	SetRedraw(FALSE);
+
+	// If non-recursive compare, add special item(s)
+	if (!GetDocument()->GetRecursive())
+		cnt += AddSpecialItems();
+
+	int alldiffs=0;
+	POSITION diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos)
+	{
+		POSITION curdiffpos = diffpos;
+		DIFFITEM di = ctxt.GetNextDiffPosition(diffpos);
+		if (!di.isResultSame())
+			++alldiffs;
+
+		LPCTSTR p=GetDocument()->GetItemPathIfShowable(di, llen, rlen);
+
+		if (p)
+		{
+			int i = AddDiffItem(cnt, di, p, curdiffpos);
+			UpdateDiffItemStatus(i, di);
+			cnt++;
+		}
+	}
+	theApp.SetLastCompareResult(alldiffs);
+	SortColumnsAppropriately();
+	SetRedraw(TRUE);
+}
+
 /**
  * @brief User right-clicked somewhere in this view
  */
@@ -1691,7 +1733,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 
 	// Currently UI (update) message is sent after compare is ready
 	pDoc->CompareReady();
-	pDoc->Redisplay();
+	Redisplay();
 	
 	if (mf->m_options.GetBool(OPT_SCROLL_TO_FIRST))
 		OnFirstdiff();
@@ -1835,7 +1877,7 @@ void CDirView::OnTimer(UINT nIDEvent)
 		// Now redraw screen
 		UpdateColumnNames();
 		SetColumnWidths();
-		GetDocument()->Redisplay();
+		Redisplay();
 	}
 	else if (nIDEvent == IDT_CMPPANE_CLOSING)
 	{
