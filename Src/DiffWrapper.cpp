@@ -37,6 +37,7 @@
 #include <shlwapi.h>
 #include "ByteComparator.h"
 #include "codepage_detect.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -310,9 +311,8 @@ BOOL CDiffWrapper::RunFileDiff()
 	// what differences diff-engine sees!
 #ifdef _DEBUG
 	// throw the diff into a temp file
-	TCHAR lpBuffer[MAX_PATH] = {0};       // path buffer
-	GetTempPath(MAX_PATH,lpBuffer);		// get path to Temp folder
-	CString path = CString(lpBuffer) + _T("Diff.txt");
+	CString sTempPath = paths_GetTempPath(); // get path to Temp folder
+	CString path = paths_ConcatPath(sTempPath, _T("Diff.txt"));
 
 	outfile = _tfopen(path, _T("w+"));
 	if (outfile != NULL)

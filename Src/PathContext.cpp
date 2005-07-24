@@ -134,14 +134,15 @@ BOOL TempFileContext::CreateFiles(const PathContext &paths)
 
 	if (GetLeft().IsEmpty())
 	{
-		TCHAR name[MAX_PATH];
-		if (!::GetTempFileName(strTempPath, _T("_LT"), 0, name))
+		int nerr=0;
+		CString sTempPath = paths_GetTempFileName(strTempPath, _T("_LT"), &nerr);
+		if (sTempPath.IsEmpty())
 		{
 			LogErrorString(Fmt(_T("GetTempFileName() for left-side failed: %s"),
-				GetSysError(GetLastError())));
+				GetSysError(nerr)));
 			return FALSE;
 		}
-		SetLeft(name);
+		SetLeft(sTempPath);
 
 		if (!paths.GetLeft().IsEmpty())
 		{

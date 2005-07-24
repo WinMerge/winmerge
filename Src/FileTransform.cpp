@@ -30,6 +30,7 @@
 #include "FileTransform.h"
 #include "Plugins.h"
 #include "files.h"
+#include "paths.h"
 #include "multiformatText.h"
 
 #ifdef _DEBUG
@@ -409,11 +410,11 @@ BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, Prediffi
 
 BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite)
 {
-	TCHAR tempFilepath[MAX_PATH] = _T("");
-	TCHAR tempDir[MAX_PATH] = _T("");
-	if (!GetTempPath(countof(tempDir), tempDir))
+	CString tempDir = paths_GetTempPath();
+	if (tempDir.IsEmpty())
 		return FALSE;
-	if (!GetTempFileName(tempDir, _T ("_WM"), 0, tempFilepath))
+	CString tempFilepath = paths_GetTempFileName(tempDir, _T("_WM"));
+	if (tempFilepath.IsEmpty())
 		return FALSE;
 
 	int nFileChanged = 0;

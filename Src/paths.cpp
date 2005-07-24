@@ -266,12 +266,19 @@ bool paths_CreateIfNeeded(const CString & sPath)
  */
 static CString strTempPath;
 
-LPCTSTR paths_GetTempPath()
+LPCTSTR paths_GetTempPath(int * pnerr)
 {
 	if (strTempPath.IsEmpty())
 	{
 		int cchTempPath = GetTempPath(0, 0);
-		GetTempPath(cchTempPath, strTempPath.GetBufferSetLength(cchTempPath - 1));
+		if (!GetTempPath(cchTempPath, strTempPath.GetBufferSetLength(cchTempPath - 1)))
+		{
+			int err = GetLastError();
+			if (pnerr)
+				*pnerr = err;
+			CString sysErr = GetSysError(err); // for debugging
+			return strTempPath; // empty
+		}
 		strTempPath = paths_GetLongPath(strTempPath);
 	}
 	return strTempPath;
@@ -426,4 +433,23 @@ BOOL paths_IsPathAbsolute(const CString &path)
 		return TRUE;
 	else
 		return FALSE;
+}
+
+/**
+ * @brief CString wrapper for GetTempFileName
+ */
+CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr)
+{
+	TCHAR buffer[MAX_PATH];
+	if (_tcslen(lpPathName) > MAX_PATH-14) return _T(""); // failure
+	int rtn = GetTempFileName(lpPathName, lpPrefixString, 0, buffer);
+	if (!rtn)
+	{
+		int err = GetLastError();
+		if (pnerr)
+			*pnerr = err;
+		CString sysErr = GetSysError(err); // for debugging
+		return _T("");
+	}
+	return buffer;
 }

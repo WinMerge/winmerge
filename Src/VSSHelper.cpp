@@ -26,6 +26,7 @@
 #include "stdafx.h"
 #include "VSSHelper.h"
 #include "coretools.h"
+#include "paths.h"
 
 CString VSSHelper::GetProjectBase()
 {
@@ -54,22 +55,22 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 	const UINT nBufferSize = 1024;
 	TCHAR buffer[nBufferSize] = {0};
 	TCHAR buffer1[nBufferSize] = {0};
-	TCHAR tempPath[MAX_PATH] = {0};
-	TCHAR tempFile[MAX_PATH] = {0};
 	CString spath;
 	BOOL bVCPROJ = FALSE;
 
-	if (::GetTempPath(MAX_PATH, tempPath))
+	int nerr;
+	CString tempPath = paths_GetTempPath(&nerr);
+	if (tempPath.IsEmpty())
 	{
-		if (!::GetTempFileName(tempPath, _T ("_LT"), 0, tempFile))
-		{
-			LogErrorString(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile!"));
-			return FALSE;
-		}
+		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath: %s")
+			, GetSysError(nerr)));
+		return FALSE;
 	}
-	else
+	CString tempFile = paths_GetTempFileName(tempPath, _T("_LT"), &nerr);
+	if (tempFile.IsEmpty())
 	{
-		LogErrorString(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath!"));
+		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile: %s")
+			, GetSysError(nerr)));
 		return FALSE;
 	}
 
