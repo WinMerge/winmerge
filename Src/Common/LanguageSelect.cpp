@@ -193,7 +193,6 @@ CLanguageSelect::CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMe
 : CDialog(CLanguageSelect::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CLanguageSelect)
-	m_strLanguage = _T("");
 	//}}AFX_DATA_INIT
 	m_wCurLanguage = wSourceLangId;
 	m_idMainMenu = idMainMenu;
@@ -209,7 +208,6 @@ void CLanguageSelect::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CLanguageSelect)
 	DDX_Control(pDX, IDC_LANGUAGE_LIST, m_ctlLangList);
-	DDX_LBString(pDX, IDC_LANGUAGE_LIST, m_strLanguage);
 	//}}AFX_DATA_MAP
 }
 

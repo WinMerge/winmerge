@@ -56,7 +56,6 @@ private:
 	//{{AFX_DATA(CLanguageSelect)
 	enum { IDD = IDD_LANGUAGE_SELECT };
 	CListBox	m_ctlLangList;
-	CString	m_strLanguage;
 	//}}AFX_DATA
 
 
