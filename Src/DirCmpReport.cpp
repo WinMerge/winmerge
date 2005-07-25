@@ -245,7 +245,7 @@ BOOL DirCmpReport::SaveToFile(CString &sError)
 	while (pos < reportLen)
 	{
 		int curBlockSize = min(reportLen - pos, blockSize);
-		strncpy(buf, T2A((LPCTSTR)m_sReport.Mid(pos, curBlockSize)), curBlockSize);
+		strncpy(buf, T2CA((LPCTSTR)m_sReport.Mid(pos, curBlockSize)), curBlockSize);
 		file.Write(buf, curBlockSize);
 		pos += curBlockSize;
 	}

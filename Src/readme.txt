@@ -4,6 +4,8 @@
   Src new files: DirCmpReport.cpp DirCmpReportDlg.cpp DirCmpReportdlg.h
   Src/Common: coretools.h coretools.cpp
   Languages: *.rc resource.h
+ BUG: [ 1244415 ] Bad T2A call in DirCmpReport::SaveToFile
+  Src: DirCmpReport.cpp
 
 2005-07-24 Perry
  PATCH: [ 1242297 ] Fix CPatchDlg::OnOK for empty paths & greatly simplify
