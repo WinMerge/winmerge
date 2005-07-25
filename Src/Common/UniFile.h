@@ -2,7 +2,7 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-02-19 (Kimmo Varis)
+ *  @date   Edited:  2005-07-25 (Perry Rapp)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -63,9 +63,11 @@ public:
 		int nlfs;
 		int ncrlfs;
 		int nzeros;
+		int first_zero; // byte offset, initially -1
+		int last_zero; // byte offset, initially -1
 		int nlosses;
 		txtstats() { clear(); }
-		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; }
+		void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
 	};
 	virtual const txtstats & GetTxtStats() const = 0;
 };

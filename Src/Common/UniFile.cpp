@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2005
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-04-22 (Kimmo Varis)
+ *  @date   Edited:  2005-07-25 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -377,6 +377,17 @@ static int Append(CString &strBuffer, int cchHead, LPCTSTR pchTail, int cchTail,
 }
 
 /**
+ * @brief Record occurrence of binary zero to stats
+ */
+static void RecordZero(UniFile::txtstats & txstats, int offset)
+{
+	++txstats.nzeros;
+	if (txstats.first_zero == -1)
+		txstats.first_zero = offset;
+	txstats.last_zero = offset;
+}
+
+/**
  * @brief Read one (DOS or UNIX or Mac) line
  */
 BOOL UniMemFile::ReadString(CString & line, CString & eol)
@@ -398,6 +409,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		while (m_current - m_base + 1 < m_filesize)
 		{
 			wchar_t wch = *(wchar_t *)m_current;
+			int wch_offset = (m_current - m_base);
 			m_current += 2;
 			if (wch == '\n' || wch == '\r')
 			{
@@ -425,7 +437,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 			}
 			if (!wch)
 			{
-				++m_txtstats.nzeros;
+				RecordZero(m_txtstats, wch_offset);
 				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 				return TRUE;
 			}
@@ -444,6 +456,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		while (m_current - m_base < m_filesize)
 		{
 			char ch = *m_current;
+			int ch_offset = (m_current - m_base);
 			++m_current;
 			if (ch == '\n' || ch == '\r')
 			{
@@ -471,7 +484,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 			}
 			if (!ch)
 			{
-				++m_txtstats.nzeros;
+				RecordZero(m_txtstats, ch_offset);
 				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
 				return TRUE;
 			}
@@ -497,7 +510,10 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 				break;
 			}
 			if (*eolptr == 0)
-				++m_txtstats.nzeros;
+			{
+				int offset = (eolptr - m_base);
+				RecordZero(m_txtstats, offset);
+			}
 		}
 		bool lossy=false;
 		line = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, &lossy);
@@ -606,7 +622,8 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 		else if (!ch)
 		{
 			doneline = true;
-			++m_txtstats.nzeros;
+			int offset = (m_current - m_base);
+			RecordZero(m_txtstats, offset);
 		}
 		// always advance to next character
 		if (m_unicoding == ucr::UTF8)

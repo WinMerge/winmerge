@@ -4,6 +4,8 @@
  PATCH: [ 1244808 ] Remove LanguageSelect include from Merge.h
   Src: codepage.cpp DirActions.cpp Merge.cpp Merge.h
   Src/Common: LanguageSelect.h
+ PATCH: [ 1241962 ] Record zero byte location info
+  Src/Common: UniFile.cpp UniFile.h
 
 2005-07-25 Kimmo
  PATCH: [ 1243655 ] Directory compare reporting
