@@ -1,6 +1,8 @@
 2005-07-25 Perry
  BUG: [ 1244540 ] DisplayXMLFiles doesn't compile
   src_VCPP\DisplayXMLFiles: WinMergeScript.cpp
+ BUG: [ 1244546 ] DisplayXMLFiles linking looks wrong
+  src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
 
 2005-06-27 Christian
  PATCH: [ 1219818 ] Plugin to display XML files
