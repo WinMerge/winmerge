@@ -24,6 +24,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <stdio.h>
 #include "DisplayXMLFiles.h"
 #include "WinMergeScript.h"
 #include "expat.h"
