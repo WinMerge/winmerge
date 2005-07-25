@@ -64,7 +64,7 @@ void updateDefaultCodepage(int cpDefaultMode, int customCodepage)
 			break;
 		case 1:
 			TCHAR buff[32];
-			wLangId = theApp.m_lang.GetLangId();
+			wLangId = theApp.GetLangId();
 			if (GetLocaleInfo(wLangId, LOCALE_IDEFAULTANSICODEPAGE, buff, sizeof(buff)/sizeof(buff[0])))
 				f_nDefaultCodepage = _ttol(buff);
 			else

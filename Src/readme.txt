@@ -1,6 +1,9 @@
 2005-07-25 Perry
  BUG: [ 1241766 ] Debug warning: Warning: no listbox item selected.
   Src/Common: LanguageSelect.cpp LanguageSelect.h
+ PATCH: [ 1244808 ] Remove LanguageSelect include from Merge.h
+  Src: codepage.cpp DirActions.cpp Merge.cpp Merge.h
+  Src/Common: LanguageSelect.h
 
 2005-07-25 Kimmo
  PATCH: [ 1243655 ] Directory compare reporting

@@ -35,12 +35,13 @@
 
 #include "resource.h"       // main symbols
 #include "MergeDoc.h"
-#include "languageselect.h"
+
 #include "FileFilterHelper.h"
 
 struct FileFilter;
 class CAssureScriptsForThread;
 class CMainFrame;
+class CLanguageSelect;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -58,10 +59,13 @@ public:
 	BOOL m_bNeedIdleTimer;
 	CMultiDocTemplate* m_pDiffTemplate;
 	CMultiDocTemplate* m_pDirTemplate;
-	CLanguageSelect m_lang;
+	CLanguageSelect * m_pLangDlg;
 	FileFilterHelper m_globalFileFilter;
 
+	WORD GetLangId() const;
+
 	CMergeApp();
+	~CMergeApp();
 
 public:
 	void SetNeedIdleTimer();

@@ -49,6 +49,7 @@
 #include "ProjectFile.h"
 #include "CmdArgs.h"
 #include "MergeEditView.h"
+#include "LanguageSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -83,16 +84,20 @@ CMergeApp::CMergeApp() :
   m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
-, m_lang(IDR_MAINFRAME, IDR_MAINFRAME)
 // FileFilterHelper m_globalFileFilter
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
 , m_bNoninteractive(false)
 {
-	// TODO: add construction code here,
+	// add construction code here,
 	// Place all significant initialization in InitInstance
+	m_pLangDlg = new CLanguageSelect(IDR_MAINFRAME, IDR_MAINFRAME);
 }
 
+CMergeApp::~CMergeApp()
+{
+	delete m_pLangDlg; m_pLangDlg = NULL;
+}
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
 
@@ -195,8 +200,8 @@ BOOL CMergeApp::InitInstance()
 
 	// Initialize i18n (multiple language) support
 
-	m_lang.SetLogFile(&gLog);
-	m_lang.InitializeLanguage();
+	m_pLangDlg->SetLogFile(&gLog);
+	m_pLangDlg->InitializeLanguage();
 
 	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing
 
@@ -462,7 +467,7 @@ void CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStri
 
 
 	// Reload menus in case a satellite language dll was loaded above
-	m_lang.ReloadMenu();
+	m_pLangDlg->ReloadMenu();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -659,7 +664,7 @@ BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)
 
 void CMergeApp::OnViewLanguage() 
 {
-	if (m_lang.DoModal()==IDOK)
+	if (m_pLangDlg->DoModal()==IDOK)
 	{
 		//m_lang.ReloadMenu();
 		//m_LangDlg.UpdateDocTitle();
@@ -869,3 +874,9 @@ BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
 	}
 	return FALSE;
 }
+
+WORD CMergeApp::GetLangId() const
+{
+	return m_pLangDlg->GetLangId();
+}
+

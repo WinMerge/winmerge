@@ -26,6 +26,7 @@
 #include "CShellFileOp.h"
 #include "OptionsDef.h"
 #include "WaitStatusCursor.h"
+#include "LogFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
