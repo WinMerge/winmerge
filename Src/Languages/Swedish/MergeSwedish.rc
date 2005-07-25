@@ -170,10 +170,6 @@ BEGIN
     END
     POPUP "&Redigera"
     BEGIN
-        MENUITEM "&Klipp ut\tCtrl+X",           ID_EDIT_CUT
-        MENUITEM "K&opiera\tCtrl+C",            ID_EDIT_COPY
-        MENUITEM "K&listra in\tCtrl+V",         ID_EDIT_PASTE
-        MENUITEM SEPARATOR
         MENUITEM "Välj &allt\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "E&genskaper...",              ID_OPTIONS
@@ -220,6 +216,7 @@ BEGIN
         MENUITEM "&Anpassa kolumner...",        ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN
@@ -1308,7 +1305,24 @@ BEGIN
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,180,55,10
-    PUSHBUTTON      "Standard",IDC_SCOLORS_BDEFAULTS,182,179,50,14
+    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
+END
+
+IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Directory Compare Report"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Report &File:",IDC_STATIC,7,7,37,8
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
+    LTEXT           "&Style:",IDC_STATIC,7,37,18,8
+    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,211,60,50,14
 END
 
 
@@ -2010,12 +2024,6 @@ BEGIN
                             "Flytta vald fil till höger till anpassad katalog"
 END
 
-// DIRECTORY DIFFING : GENERATE REPORT
-STRINGTABLE
-BEGIN
-    IDS_DIRECTORY_REPORT_TITLE "Jämför %1 med %2"
-END
-
 // DIRECTORY DIFFING : COLUMN TITLES
 STRINGTABLE
 BEGIN
@@ -2100,6 +2108,19 @@ BEGIN
     IDS_COLDESC_NDIFFS      "Totalt antal skillnader."
     IDS_COLDESC_NSDIFFS     "Antal skillnader bortsett från ignorerade skillnader."
     IDS_COLDESC_BINARY      "Visar stjärna (*) om filen är binär."
+END
+
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_REPORT_TITLE "Jämför %1 med %2"
+    IDS_REPORT_COMMALIST    "Comma-separated list"
+    IDS_REPORT_TABLIST      "Tab-separated list"
+    IDS_REPORT_SIMPLEHTML   "Simple HTML"
+    IDS_REPORT_FILEOVERWRITE 
+                            "The report file already exists. Do you want to overwrite existing file?"
+    IDS_REPORT_ERROR        "Error creating the report:\n%1"
+    IDS_REPORT_SUCCESS      "The report is created successfully."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -2544,6 +2565,7 @@ BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "Anpassar vilka kolumner som visas"
     ID_TOOLS_GENERATEPATCH  "Skapar en patchfil"
     ID_TOOLS_FILTERS        "Väljer och ändrar filter"
+    ID_TOOLS_GENERATEREPORT "Generates a report from compare results"
 END
 
 // PLUGINS MENU

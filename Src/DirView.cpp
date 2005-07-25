@@ -44,6 +44,7 @@
 #include "OptionsDef.h"
 #include "BCMenu.h"
 #include "WindowStyle.h"
+#include "DirCmpReport.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -147,7 +148,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_FILE_RIGHT_READONLY, OnRightReadOnly)
 	ON_UPDATE_COMMAND_UI(ID_FILE_RIGHT_READONLY, OnUpdateRightReadOnly)
 	ON_COMMAND(ID_TOOLS_CUSTOMIZECOLUMNS, OnCustomizeColumns)
-	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_DIR_ZIP_LEFT, OnCtxtDirZipLeft)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
 	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
@@ -2031,68 +2032,30 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 	}
 }
 /**
- * @brief Copy the generated diffed report to clipboard
+ * @brief Generate report from dir compare results.
  */
-void CDirView::OnEditCopy() 
+void CDirView::OnToolsGenerateReport() 
 {
-	PutToClipboard(GenerateReport(), GetSafeHwnd());
-}
-
-/**
- * @brief Create a string report for the viewed diffed directory list
- * @note This function assumes longest header length is < 160.
- * @note DOS-EOL style is used for reports.
- * @todo Error handling for listcontrol access!
- */
-CString CDirView::GenerateReport()
-{
-	//Initialize
-	int nCols = m_dispcols;
-	int nRows = m_pList->GetItemCount();
-	bool onlySelected = (GetSelectedCount() > 0) ? true : false;
-	const TCHAR cSeparator = '\t';
-	CString report;
-	
-	// Report:Title
-	if (GetDocument()->HasDiffs())
+	CDirDoc *pDoc = GetDocument();
+	if (!pDoc->HasDiffs())
 	{
-		const CString & left = GetDocument()->GetLeftBasePath();
-		const CString & right = GetDocument()->GetRightBasePath();
-		AfxFormatString2(report, IDS_DIRECTORY_REPORT_TITLE, left, right);
-	}
-	report += _T("\r\n"); // Use DOS-EOL style for reports
-
-	// Report:Header
-	for (int currCol = 0; currCol < nCols; currCol++)
-	{
-		TCHAR columnName[160]; // Assuming max col header will never be > 160
-		LVCOLUMN lvc;
-		lvc.mask = LVCF_TEXT;
-		lvc.pszText = &columnName[0];
-		lvc.cchTextMax = countof(columnName);
-		if (m_pList->GetColumn(currCol, &lvc))
-			report += lvc.pszText;
-		report += cSeparator;
+		// No items, no report
+		return;
 	}
 
-	// Report:Detail. All currently displayed columns will be added
-	for (int currRow = 0;currRow < nRows; currRow++)
+	DirCmpReport report;
+	report.SetList(m_pList);
+	PathContext paths(pDoc->GetLeftBasePath(), pDoc->GetRightBasePath());
+	report.SetRootPaths(paths);
+	report.SetColumns(m_dispcols);
+	CString errStr;
+	if (report.GenerateReport(errStr))
 	{
-		if (!onlySelected || (onlySelected && 
-			(m_pList->GetItemState(currRow, LVIS_SELECTED) & LVIS_SELECTED)))
-		{
-			report += _T("\r\n"); // Use DOS-EOL style for reports
-			for (int currCol = 0; currCol < nCols; currCol++)
-			{
-				report += m_pList->GetItemText(currRow, currCol);
-
-				// Add tab-separator, but not after last field
-				if (currCol < nCols - 1)
-					report += cSeparator;
-			}
-		}
+		if (errStr.IsEmpty())
+			AfxMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+		else
+			ResMsgBox1(IDS_REPORT_ERROR, errStr, MB_OK | MB_ICONSTOP);
 	}
-	return report;
 }
 
 /**

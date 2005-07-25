@@ -1,3 +1,9 @@
+2005-07-25 Kimmo
+ PATCH: [ 1243655 ] Directory compare reporting
+  Src: DirView.cpp DirView.h DirViewColItems.cpp Merge.dsp Merge.rc resource.h
+  Src new files: DirCmpReport.cpp DirCmpReportDlg.cpp DirCmpReportdlg.h
+  Languages: *.rc resource.h
+
 2005-07-24 Perry
  PATCH: [ 1242297 ] Fix CPatchDlg::OnOK for empty paths & greatly simplify
   Src: Merge.rc PatchDlg.cpp resource.h 

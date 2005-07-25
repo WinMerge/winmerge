@@ -277,6 +277,14 @@ SOURCE=.\DirActions.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirCmpReport.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirCmpReportDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirColsDlg.cpp
 # End Source File
 # Begin Source File
@@ -950,6 +958,14 @@ SOURCE=.\DiffViewBar.h
 # Begin Source File
 
 SOURCE=.\DiffWrapper.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirCmpReport.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirCmpReportDlg.h
 # End Source File
 # Begin Source File
 

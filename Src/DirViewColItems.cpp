@@ -19,6 +19,7 @@
 #include "DirViewColItems.h"
 #include "locality.h"
 #include "unicoder.h"
+#include "coretools.h"
 
 // shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
 #ifdef UNICODE
@@ -33,24 +34,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief Return time displayed appropriately, as string
- */
-static CString
-TimeString(const __int64 * tim)
-{
-	if (!tim) return _T("---");
-	// _tcsftime does not respect user date customizations from
-	// Regional Options/Configuration Regional; COleDateTime::Format does so.
-#if _MSC_VER < 1300
-		// MSVC6
-	COleDateTime odt = (time_t)*tim;
-#else
-		// MSVC7 (VC.NET)
-	COleDateTime odt = *tim;
-#endif
-	return odt.Format();
-}
 /**
  * @brief Return string representation of encoding, eg "UCS-2LE", or "1252"
  */

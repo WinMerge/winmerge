@@ -39,6 +39,7 @@
 #define IDD_PROPPAGE_CODEPAGE           223
 #define IDD_PREFERENCES                 224
 #define IDD_PROP_COLORSYNTAX            225
+#define IDD_DIRCMP_REPORT               226
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
 #define IDB_NOTEQUAL                    302
@@ -271,6 +272,9 @@
 #define IDC_PROGRESSCOMPARE             1191
 #define IDC_ITEMSCOMPARED               1192
 #define IDC_ITEMSTOTAL                  1193
+#define IDC_REPORT_STYLECOMBO           1194
+#define IDC_REPORT_BROWSEFILE           1195
+#define IDC_REPORT_FILE                 1196
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -439,7 +443,6 @@
 #define ID_DIR_COPY_PATHNAMES_RIGHT     17657
 #define ID_DIR_COPY_PATHNAMES_BOTH      17658
 #define IDS_UNKNOWN_ARCHIVE_FORMAT      17664
-#define IDS_DIRECTORY_REPORT_TITLE      17680
 #define IDS_COLHDR_FILENAME             17696
 #define IDS_COLHDR_DIR                  17697
 #define IDS_COLHDR_RESULT               17698
@@ -496,6 +499,13 @@
 #define IDS_COLDESC_NDIFFS              17778
 #define IDS_COLDESC_NSDIFFS             17779
 #define IDS_COLDESC_BINARY              17780
+#define IDS_DIRECTORY_REPORT_TITLE      17792
+#define IDS_REPORT_COMMALIST            17793
+#define IDS_REPORT_TABLIST              17794
+#define IDS_REPORT_SIMPLEHTML           17795
+#define IDS_REPORT_FILEOVERWRITE        17796
+#define IDS_REPORT_ERROR                17797
+#define IDS_REPORT_SUCCESS              17798
 #define IDS_FILE_TO_ITSELF              18000
 #define IDS_FILESSAME                   18001
 #define IDS_FILEUNIQUE                  18002
@@ -789,6 +799,7 @@
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
 #define ID_TOOLS_LOADCONFIG             32867
+#define ID_TOOLS_GENERATEREPORT         33068
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
 #define ID_POPUP_OPEN_WITH_UNPACKER     32882
@@ -838,6 +849,7 @@
 #define ID_LOCBAR_GOTOLINE_FMT          33093
 #define ID_HELP_MERGE7ZMISMATCH         33094
 #define ID_FILE_OPENPROJECT             33095
+
 
 // Next default values for new objects
 // 

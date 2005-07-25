@@ -171,10 +171,6 @@ BEGIN
     END
     POPUP "編集(&E)"
     BEGIN
-        MENUITEM "切り取り(&T)\tCtrl+X",        ID_EDIT_CUT
-        MENUITEM "コピー(&C)\tCtrl+C",          ID_EDIT_COPY
-        MENUITEM "貼り付け(&P)\tCtrl+V",        ID_EDIT_PASTE
-        MENUITEM SEPARATOR
         MENUITEM "すべて選択(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_OPTIONS
@@ -221,6 +217,7 @@ BEGIN
         MENUITEM "列の設定(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -1314,6 +1311,23 @@ BEGIN
     PUSHBUTTON      "デフォルト",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
 
+IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Directory Compare Report"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Report &File:",IDC_STATIC,7,7,37,8
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
+    LTEXT           "&Style:",IDC_STATIC,7,37,18,8
+    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,211,60,50,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1901,12 +1915,6 @@ BEGIN
                             "右側の選択されたファイルを指定したディレクトリに移動します"
 END
 
-// DIRECTORY DIFFING : GENERATE REPORT
-STRINGTABLE
-BEGIN
-    IDS_DIRECTORY_REPORT_TITLE "%1 と %2 の比較"
-END
-
 // DIRECTORY DIFFING : COLUMN TITLES
 STRINGTABLE
 BEGIN
@@ -1991,6 +1999,19 @@ BEGIN
     IDS_COLDESC_NDIFFS      "差異の合計"
     IDS_COLDESC_NSDIFFS     "差異の合計数から無視できる差異数を差し引いた数です。"
     IDS_COLDESC_BINARY      "もし、バイナリファイルならアスタリスク(*)を表示します。"
+END
+
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_REPORT_TITLE "%1 と %2 の比較"
+    IDS_REPORT_COMMALIST    "Comma-separated list"
+    IDS_REPORT_TABLIST      "Tab-separated list"
+    IDS_REPORT_SIMPLEHTML   "Simple HTML"
+    IDS_REPORT_FILEOVERWRITE 
+                            "The report file already exists. Do you want to overwrite existing file?"
+    IDS_REPORT_ERROR        "Error creating the report:\n%1"
+    IDS_REPORT_SUCCESS      "The report is created successfully."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -2435,6 +2456,7 @@ BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "ディレクトリ比較表示の列を選択または並べ替えます"
     ID_TOOLS_GENERATEPATCH  "パッチファイル生成します"
     ID_TOOLS_FILTERS        "フィルタの選択と変更をします"
+    ID_TOOLS_GENERATEREPORT "Generates a report from compare results"
 END
 
 // PLUGINS MENU

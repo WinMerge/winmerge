@@ -171,10 +171,6 @@ BEGIN
     END
     POPUP "Be&werken"
     BEGIN
-        MENUITEM "&Knippen\tCtrl+X",            ID_EDIT_CUT
-        MENUITEM "Ko&piëeren\tCtrl+C",          ID_EDIT_COPY
-        MENUITEM "Pl&akken\tCtrl+V",            ID_EDIT_PASTE
-        MENUITEM SEPARATOR
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Eigenschappen...",           ID_OPTIONS
@@ -222,6 +218,7 @@ BEGIN
         MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN
@@ -1314,6 +1311,23 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
 
+IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Directory Compare Report"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Report &File:",IDC_STATIC,7,7,37,8
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
+    LTEXT           "&Style:",IDC_STATIC,7,37,18,8
+    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,211,60,50,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1905,6 +1919,12 @@ BEGIN
     IDS_SAVE_RIGHT_AS       "Rechter bestand opslaan als"
 END
 
+// Editing/Merging file
+STRINGTABLE
+BEGIN
+    IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+END
+
 // VSS
 STRINGTABLE
 BEGIN
@@ -2007,12 +2027,6 @@ BEGIN
                             "Geselecteerd bestand van rechts naar door gebruiker gedefinieerde map verplaatsen"
 END
 
-// DIRECTORY DIFFING : GENERATE REPORT
-STRINGTABLE
-BEGIN
-    IDS_DIRECTORY_REPORT_TITLE "%1 met %2 vergelijken"
-END
-
 // DIRECTORY DIFFING : COLUMN TITLES
 STRINGTABLE
 BEGIN
@@ -2097,6 +2111,19 @@ BEGIN
     IDS_COLDESC_NDIFFS      "Totaal aantal verschillen."
     IDS_COLDESC_NSDIFFS     "Aantal verschillen, minus de genegeerde verschillen."
     IDS_COLDESC_BINARY      "Toont sterretje (*) als het een binair bestand is."
+END
+
+// DIRECTORY DIFFING : GENERATE REPORT
+STRINGTABLE
+BEGIN
+    IDS_DIRECTORY_REPORT_TITLE "%1 met %2 vergelijken"
+    IDS_REPORT_COMMALIST    "Comma-separated list"
+    IDS_REPORT_TABLIST      "Tab-separated list"
+    IDS_REPORT_SIMPLEHTML   "Simple HTML"
+    IDS_REPORT_FILEOVERWRITE 
+                            "The report file already exists. Do you want to overwrite existing file?"
+    IDS_REPORT_ERROR        "Error creating the report:\n%1"
+    IDS_REPORT_SUCCESS      "The report is created successfully."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -2541,6 +2568,7 @@ BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "Kolommen van mapvergelijk selecteren en herordenen"
     ID_TOOLS_GENERATEPATCH  "Een patch-bestand genereren"
     ID_TOOLS_FILTERS        "Filters selecteren en wijzigen"
+    ID_TOOLS_GENERATEREPORT "Generates a report from compare results"
 END
 
 // PLUGINS MENU
