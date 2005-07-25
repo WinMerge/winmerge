@@ -141,6 +141,8 @@ BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle);
 BOOL GetFromClipboard(CString & text, HWND currentWindowHandle);
 BOOL TextInClipboard();
 
+CString TimeString(const __int64 * tim);
+
 void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 	CString &sExecutable);
 #endif

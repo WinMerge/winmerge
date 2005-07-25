@@ -2,6 +2,7 @@
  PATCH: [ 1243655 ] Directory compare reporting
   Src: DirView.cpp DirView.h DirViewColItems.cpp Merge.dsp Merge.rc resource.h
   Src new files: DirCmpReport.cpp DirCmpReportDlg.cpp DirCmpReportdlg.h
+  Src/Common: coretools.h coretools.cpp
   Languages: *.rc resource.h
 
 2005-07-24 Perry

@@ -1323,3 +1323,21 @@ void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 		sExecutable = sCmdLine;
 	}
 }
+
+/**
+ * @brief Return time displayed appropriately, as string
+ */
+CString TimeString(const __int64 * tim)
+{
+	if (!tim) return _T("---");
+	// _tcsftime does not respect user date customizations from
+	// Regional Options/Configuration Regional; COleDateTime::Format does so.
+#if _MSC_VER < 1300
+		// MSVC6
+	COleDateTime odt = (time_t)*tim;
+#else
+		// MSVC7 (VC.NET)
+	COleDateTime odt = *tim;
+#endif
+	return odt.Format();
+}
