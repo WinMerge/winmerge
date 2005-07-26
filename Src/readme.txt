@@ -2,6 +2,8 @@
  PATCH: [ 1244804 ] Add hourglass for report creating
   Src: DirCmpReport.cpp Merge.rc resource.h
   Src/Languages: *.rc resource.h
+ Remove invalid ASSERT
+  Src: CompareStats.cpp
 
 2005-07-26 Perry
  PATCH: [ 1241270 ] Fix paths.cpp GetDirName for root paths
