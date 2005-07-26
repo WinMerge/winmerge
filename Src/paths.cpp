@@ -77,6 +77,21 @@ void paths_normalize(CString & sPath)
  */
 static bool GetDirName(const CString & sDir, CString& sName)
 {
+	// FindFirstFile doesn't work for root:
+	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
+	// You cannot use root directories as the lpFileName input string for FindFirstFile—with or without a trailing backslash.
+	if (sDir.GetLength() == 2 && sDir[1] == ':')
+	{
+		// I don't know if this work for empty root directories
+		// because my first return value is not a dot directory, as I would have expected
+		WIN32_FIND_DATA ffd;
+		HANDLE h = FindFirstFile(sDir + _T("\\*"), &ffd);
+		if (h == INVALID_HANDLE_VALUE)
+			return false;
+		FindClose(h);
+		sName = sDir;
+		return true;
+	}
 	// (Couldn't get info for just the directory from CFindFile)
 	WIN32_FIND_DATA ffd;
 	HANDLE h = FindFirstFile(sDir, &ffd);

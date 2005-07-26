@@ -1,3 +1,7 @@
+2005-07-26 Perry
+ PATCH: [ 1241270 ] Fix paths.cpp GetDirName for root paths
+  Src: paths.cpp
+
 2005-07-25 Perry
  BUG: [ 1241766 ] Debug warning: Warning: no listbox item selected.
   Src/Common: LanguageSelect.cpp LanguageSelect.h
