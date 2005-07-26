@@ -13,6 +13,7 @@
 #include "DirCmpReportDlg.h"
 #include <time.h>
 #include "coretools.h"
+#include "WaitStatusCursor.h"
 
 /**
  * @brief EOL bytes for reports.
@@ -64,10 +65,12 @@ void DirCmpReport::SetColumns(int columns)
 BOOL DirCmpReport::GenerateReport(CString &errStr)
 {
 	ASSERT(m_pList != NULL);
+	BOOL bRet = FALSE;
 
 	DirCmpReportDlg dlg;
 	if (dlg.DoModal() == IDOK)
 	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_CREATEREPORT));
 		m_sReportFile = dlg.m_sReportFile;
 		if (dlg.m_nReportType == REPORT_SIMPLEHTML)
 		{
@@ -85,10 +88,9 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 			GenerateHeader();
 			GenerateContent();
 		}
-
-		return SaveToFile(errStr);
+		bRet = SaveToFile(errStr);
 	}
-	return FALSE;
+	return bRet;
 }
 
 /**

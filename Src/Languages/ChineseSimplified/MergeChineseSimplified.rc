@@ -1741,6 +1741,7 @@ BEGIN
     IDS_STATUS_COPYFILES    "正在复制文件..."
     IDS_STATUS_DELETEFILES  "正在删除文件..."
     IDS_STATUS_MOVEFILES    "正在移动文件..."
+    IDS_STATUS_CREATEREPORT "Creating the report..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -2012,7 +2013,7 @@ BEGIN
     IDS_REPORT_FILEOVERWRITE 
                             "The report file already exists. Do you want to overwrite existing file?"
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
-    IDS_REPORT_SUCCESS      "The report is created successfully."
+    IDS_REPORT_SUCCESS      "The report has been created successfully."
 END
 
 // FILE COMPARISON RESULT : MESSAGES

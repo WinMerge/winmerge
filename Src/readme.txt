@@ -1,3 +1,8 @@
+2005-07-26 Kimmo
+ PATCH: [ 1244804 ] Add hourglass for report creating
+  Src: DirCmpReport.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-07-26 Perry
  PATCH: [ 1241270 ] Fix paths.cpp GetDirName for root paths
   Src: paths.cpp
@@ -21,7 +26,7 @@
 2005-07-25 Kimmo
  PATCH: [ 1243655 ] Directory compare reporting
   Src: DirView.cpp DirView.h DirViewColItems.cpp Merge.dsp Merge.rc resource.h
-  Src new files: DirCmpReport.cpp DirCmpReportDlg.cpp DirCmpReportdlg.h
+  Src new files: DirCmpReport.cpp DirCmpReport.h DirCmpReportDlg.cpp DirCmpReportdlg.h
   Src/Common: coretools.h coretools.cpp
   Languages: *.rc resource.h
  BUG: [ 1244415 ] Bad T2A call in DirCmpReport::SaveToFile
