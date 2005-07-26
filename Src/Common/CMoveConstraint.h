@@ -2,7 +2,7 @@
   \file    CMoveConstraint.h
   \author  Perry Rapp, Creator, 1998-2004
   \date    Created: 1998
-  \date    Edited:  2004/04/22 PR
+  \date    Edited:  2005-07-26 (Perry Rapp)
 
   \brief   Declaration of CMoveConstraint
 
@@ -150,7 +150,9 @@ public:
 	bool UnSubclassWnd();
 
 	// call after all constraints established
-	void LoadPosition(LPCTSTR szName, bool position); // always loads size, may also set position
+	// always loads size, may also set position
+	void LoadPosition(LPCTSTR szKeyName, LPCTSTR szValueName, bool position);
+	void LoadPosition(LPCTSTR szValueName, bool position);
 
 	// for use when children hadn't been created yet at initialization time
 	// so their constraints had to be buffered to be initialized later
@@ -248,7 +250,8 @@ private:
 	ConstraintList m_ConstraintList;
 	bool m_bConstrainNonChildren;
 	bool m_bPersistent; // whether to save position to registry
-	CString m_sKey;
+	CString m_sRegistrySubkey; // defaults to _T("LastWindowPos")
+	CString m_sRegistryValueName; // should be name of window
 // tooltips
 	CMap<UINT, UINT, tip, tip&> m_tips;
 };

@@ -2,7 +2,7 @@
   \file    CMoveConstraint.cpp
   \author  Perry Rapp, Creator, 1998-2004
   \date    Created: 1998
-  \date    Edited:  2004/04/22 Perry Rapp
+  \date    Edited:  2005-07-26 (Perry Rapp)
 
   \brief   Implementation of CMoveConstraint
 
@@ -90,7 +90,8 @@ CMoveConstraint::Constraint::Init()
 CMoveConstraint::CMoveConstraint()
 {
 	m_bSubclassed = false;
-	m_sKey = _T("UnnamedWindow");
+	m_sRegistryValueName = _T("UnnamedWindow");
+	m_sRegistrySubkey = _T("LastWindowPos");
 	ClearMostData();
 }
 
@@ -698,11 +699,23 @@ CMoveConstraint::WindowProc(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam, L
 	return false;
 }
 
-
+/**
+ * Save size (& optionally position) in registry
+ */
 void
-CMoveConstraint::LoadPosition(LPCTSTR szName, bool position)
+CMoveConstraint::LoadPosition(LPCTSTR szKeyName, LPCTSTR szValueName, bool position)
 {
-	m_sKey = szName;
+	m_sRegistrySubkey = szKeyName;
+	LoadPosition(szValueName, position);
+}
+
+/**
+ * Save size (& optionally position) in registry
+ */
+void
+CMoveConstraint::LoadPosition(LPCTSTR szValueName, bool position)
+{
+	m_sRegistryValueName = szValueName;
 	m_bPersistent=true;
 	Persist(false, position);
 }
@@ -710,7 +723,7 @@ CMoveConstraint::LoadPosition(LPCTSTR szName, bool position)
 void
 CMoveConstraint::Persist(bool saving, bool position)
 {
-	LPCTSTR szSection = _T("LastWindowPos");
+	LPCTSTR szSection = m_sRegistrySubkey;
 	WINDOWPLACEMENT wp;
 	wp.length=sizeof(wp);
 	if (saving)
@@ -719,11 +732,11 @@ CMoveConstraint::Persist(bool saving, bool position)
 		GetWindowPlacement(m_hwndDlg, &wp);
 		RECT & rc = wp.rcNormalPosition;
 		str.Format(_T("%d,%d,%d,%d"), rc.left, rc.top, rc.right, rc.bottom);
-		AfxGetApp()->WriteProfileString(szSection, m_sKey, str);
+		AfxGetApp()->WriteProfileString(szSection, m_sRegistryValueName, str);
 	}
 	else
 	{
-		CString str = AfxGetApp()->GetProfileString(szSection, m_sKey);
+		CString str = AfxGetApp()->GetProfileString(szSection, m_sRegistryValueName);
 		GetWindowPlacement(m_hwndDlg, &wp);
 		CRect rc;
 		int ct=_stscanf(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);

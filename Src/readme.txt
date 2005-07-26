@@ -2,6 +2,10 @@
  PATCH: [ 1242008 ] Update status to binary if open fails because binary
   Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.h DirView.cpp
    MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h
+ PATCH: [ 1208208 ] Move resizeable dialogs position in registry
+  Src: OpenDlg.cpp SaveClosingDlg.cpp
+  Src/Common: CMoveConstraint.cpp CMoveConstraint.h
+
 
 2005-07-26 Kimmo
  PATCH: [ 1244804 ] Add hourglass for report creating

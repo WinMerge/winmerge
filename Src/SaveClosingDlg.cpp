@@ -115,7 +115,7 @@ BOOL SaveClosingDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
-	m_constraint.LoadPosition(_T("SaveClosingDlg"), false); // persist size via registry
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SaveClosingDlg"), false); // persist size via registry
 
 
 	return FALSE;  // return TRUE unless you set the focus to a control
