@@ -6,6 +6,8 @@
   Src: CompareStats.cpp
  PATCH: [ 1238174 ] Fix diff counts in quick contents compare
   Src: DiffWrapper.cpp DirScan.cpp
+ Handle empty filename for report
+  Src: DirCmpReportDlg.cpp
 
 2005-07-26 Perry
  PATCH: [ 1241270 ] Fix paths.cpp GetDirName for root paths

@@ -100,6 +100,13 @@ void DirCmpReportDlg::OnOK()
 	int sel = m_ctlStyle.GetCurSel();
 	m_nReportType = m_ctlStyle.GetItemData(sel);
 
+	if (m_sReportFile.IsEmpty())
+	{
+		AfxMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
+		m_ctlReportFile.SetFocus();
+		return;
+	}
+
 	if (paths_DoesPathExist(m_sReportFile) == IS_EXISTING_FILE)
 	{
 		int overWrite = AfxMessageBox(IDS_REPORT_FILEOVERWRITE,
