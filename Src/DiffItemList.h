@@ -28,6 +28,7 @@ public:
 	POSITION GetFirstDiffPosition() const;
 	DIFFITEM GetNextDiffPosition(POSITION & diffpos) const;
 	DIFFITEM GetDiffAt(POSITION diffpos) const;
+	DIFFITEM & GetDiffRefAt(POSITION diffpos);
 
 	int GetDiffCount() const;
 

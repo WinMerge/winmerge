@@ -123,6 +123,7 @@ public:
 	BOOL HasDiffs() const { return m_pCtxt != NULL; }
 	const CDiffContext & GetDiffContext() const { return *m_pCtxt; }
 	DIFFITEM GetDiffByKey(POSITION key) const { return m_pCtxt->GetDiffAt(key); }
+	DIFFITEM & GetDiffRefByKey(POSITION key) { return m_pCtxt->GetDiffRefAt(key); }
 	CString GetLeftBasePath() const { return m_pCtxt->GetNormalizedLeft(); }
 	CString GetRightBasePath() const { return m_pCtxt->GetNormalizedRight(); }
 	void RemoveDiffByKey(POSITION key) { m_pCtxt->RemoveDiff(key); }

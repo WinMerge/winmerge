@@ -59,12 +59,22 @@ DIFFITEM DiffItemList::GetNextDiffPosition(POSITION & diffpos) const
 }
 
 /**
- * @brief Get Diff Item at given position of CDiffContext array
+ * @brief Get copy of Diff Item at given position of CDiffContext array
  * @param diffpos position of item to return
  */
 DIFFITEM DiffItemList::GetDiffAt(POSITION diffpos) const
 {
 	DIFFITEM di = m_dirlist.GetAt(diffpos);
+	return di;
+}
+
+/**
+ * @brief Get Diff Item (by reference) at given position of CDiffContext array
+ * @param diffpos position of item to return
+ */
+DIFFITEM & DiffItemList::GetDiffRefAt(POSITION diffpos)
+{
+	DIFFITEM & di = m_dirlist.GetAt(diffpos);
 	return di;
 }
 

@@ -49,6 +49,7 @@ struct DIFFCODE
 	bool isResultFiltered() const { return ((diffcode & DIFFCODE::FILTERFLAGS) == DIFFCODE::SKIPPED); }
 	// type
 	bool isBin() const { return ((diffcode & DIFFCODE::TEXTFLAG) == DIFFCODE::BIN); }
+	void setBin() { diffcode &= (~DIFFCODE::TEXTFLAG); diffcode |= DIFFCODE::BIN; }
 	// rescan
 	bool isScanNeeded() const { return ((diffcode & DIFFCODE::SCANFLAGS) == DIFFCODE::NEEDSCAN); }
 

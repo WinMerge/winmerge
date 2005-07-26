@@ -898,7 +898,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			break;
 		}
 
-		DIFFITEM di = pDoc->GetDiffByKey((POSITION)diffpos);
+		DIFFITEM & di = pDoc->GetDiffRefByKey((POSITION)diffpos);
 
 		PathContext paths;
 		GetItemFileNames(sel, &paths);
@@ -937,10 +937,15 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
 			BOOL bRightRO = pDoc->GetReadOnly(FALSE);
 
-			mf->ShowMergeDoc(pDoc, paths.GetLeft(), paths.GetRight(),
+			int rtn = mf->ShowMergeDoc(pDoc, paths.GetLeft(), paths.GetRight(),
 				bLeftRO, bRightRO,
 				di.left.codepage, di.right.codepage,
 				infoUnpacker);
+			if (rtn == OPENRESULTS_FAILED_BINARY)
+			{
+				di.setBin();
+				GetDocument()->ReloadItemStatus(sel, FALSE, FALSE);
+			}
 		}
 	}
 }

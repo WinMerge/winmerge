@@ -537,7 +537,8 @@ void CMainFrame::OnFileOpen()
  * @param cpleft, cpright : left and right codepages
  * = -1 when the file must be parsed
  */
-void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight,
+int /* really an OPENRESULTS_TYPE, but MainFrm.h doesn't know that type */
+CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight,
 	BOOL bROLeft, BOOL bRORight,  int cpleft /*=-1*/, int cpright /*=-1*/,
 	PackingInfo * infoUnpacker /*= NULL*/)
 {
@@ -546,7 +547,8 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
-	if (!pMergeDoc) return; // when does this happen ?
+	if (!pMergeDoc)
+		return OPENRESULTS_FAILED_MISC; // when does this happen ?
 
 	// if an unpacker is selected, it must be used during LoadFromFile
 	// MergeDoc must memorize it for SaveToFile
@@ -581,10 +583,10 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 			cpleft = cpright = getDefaultCodepage();
 	}
 
-	bOpenSuccess = pMergeDoc->OpenDocs(szLeft, szRight,
+	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(szLeft, szRight,
 			bROLeft, bRORight, cpleft, cpright);
 
-	if (bOpenSuccess)
+	if (openResults == OPENRESULTS_SUCCESS)
 	{
 		if (docNull)
 		{
@@ -600,6 +602,7 @@ void CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight
 		CWnd* pWnd = pMergeDoc->GetParentFrame();
 		pWnd->DestroyWindow();
 	}
+	return openResults;
 }
 
 void CMainFrame::RedisplayAllDirDocs()

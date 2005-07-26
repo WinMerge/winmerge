@@ -2560,11 +2560,12 @@ int CMergeDoc::LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int code
  * @param bRORight [in] Is right file read-only
  * @param cpleft [in] Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
  * @param cpright [in] Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
- * @return Tells if files were loaded and scanned succesfully
+ * @return Success/Failure/Binary (failure) per typedef enum OpenDocsResult_TYPE
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
-BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
+OPENRESULTS_TYPE
+CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright)
 {
 	BOOL bBinary = FALSE;
@@ -2653,8 +2654,10 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)
 	{
 		if (nLeftSuccess == FRESULT_BINARY || nRightSuccess == FRESULT_BINARY)
+		{
 			CompareBinaries(sLeftFile, sRightFile, nLeftSuccess, nRightSuccess);
-		return FALSE;
+		}
+		return OPENRESULTS_FAILED_MISC;
 	}
 
 	// Now buffers data are valid
@@ -2808,7 +2811,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		// your temp directory, doing nothing is graceful enough for that).
 		ShowRescanError(nRescanResult, bBinary, bIdentical);
 		GetParentFrame()->DestroyWindow();
-		return FALSE;
+		return (bBinary ? OPENRESULTS_FAILED_BINARY: OPENRESULTS_FAILED_MISC);
 	}
 
 	// Force repaint of location pane to update it in case we had some warning
@@ -2816,7 +2819,7 @@ BOOL CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	if (m_pLeftView)
 		m_pLeftView->RepaintLocationPane();
 
-	return TRUE;
+	return OPENRESULTS_SUCCESS;
 }
 
 /**

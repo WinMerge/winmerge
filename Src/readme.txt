@@ -1,3 +1,8 @@
+2005-07-26 Perry
+ PATCH: [ 1242008 ] Update status to binary if open fails because binary
+  Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.h DirView.cpp
+   MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h
+
 2005-07-26 Kimmo
  PATCH: [ 1244804 ] Add hourglass for report creating
   Src: DirCmpReport.cpp Merge.rc resource.h

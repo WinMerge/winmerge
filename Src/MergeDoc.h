@@ -74,6 +74,15 @@ enum
 };
 
 /**
+ * @brief Result of trying to open file in MergeEditView display
+ */
+typedef enum {
+	OPENRESULTS_SUCCESS,       /**< Open succeeded */
+	OPENRESULTS_FAILED_BINARY, /**< Open failed because one or both files were binary */
+	OPENRESULTS_FAILED_MISC    /**< Open failed for some other reason */
+} OPENRESULTS_TYPE;
+
+/**
  * @brief Types for buffer. Buffer's type defines behavior
  * of buffer when saving etc.
  * 
@@ -206,7 +215,7 @@ public:
 	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
 	void RefreshOptions();
 	void UpdateResources();
-	BOOL OpenDocs(CString sLeftFile, CString sRightFile,
+	OPENRESULTS_TYPE OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
 	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);
 	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage);
