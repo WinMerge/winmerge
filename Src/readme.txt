@@ -5,6 +5,9 @@
   Src: FileFilterHelper.cpp FileFilterHelper.h FileFiltersDlg.cpp
    Merge.dsp Merge.rc paths.cpp paths.h resource.h
   Src new files: SharedFilterDlg.cpp SharedFilterDlg.h
+ PATCH: [ 1241275 ] New Shared or Private Filter dialog
+  New shared filter dialog
+   Src/Languages: */Merge*.rc */resource.h
 
 2005-07-25 Perry
  BUG: [ 1241766 ] Debug warning: Warning: no listbox item selected.

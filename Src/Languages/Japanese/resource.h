@@ -40,6 +40,7 @@
 #define IDD_PREFERENCES                 224
 #define IDD_PROP_COLORSYNTAX            225
 #define IDD_DIRCMP_REPORT               226
+#define IDD_SHARED_FILTER               227
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
 #define IDB_NOTEQUAL                    302
@@ -275,6 +276,8 @@
 #define IDC_REPORT_STYLECOMBO           1194
 #define IDC_REPORT_BROWSEFILE           1195
 #define IDC_REPORT_FILE                 1196
+#define IDC_SHARED                      1197
+#define IDC_PRIVATE                     1198
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -768,7 +771,7 @@
 #define ID_OPTIONS                      32786
 #define ID_REFRESH                      32787
 #define ID_EDIT_COPY_LINENUMBERS        32788
-#define ID_DIR_RESCAN                   33789
+#define ID_DIR_RESCAN                   32789
 #define ID_OPTIONS_SHOWIDENTICAL        32800
 #define ID_OPTIONS_SHOWDIFFERENT        32801
 #define ID_OPTIONS_SHOWUNIQUELEFT       32802
@@ -799,7 +802,7 @@
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
 #define ID_TOOLS_LOADCONFIG             32867
-#define ID_TOOLS_GENERATEREPORT         33068
+#define ID_TOOLS_GENERATEREPORT         32868
 #define ID_UNPACK_MANUAL                32880
 #define ID_UNPACK_AUTO                  32881
 #define ID_POPUP_OPEN_WITH_UNPACKER     32882
@@ -856,9 +859,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        224
+#define _APS_NEXT_RESOURCE_VALUE        228
 #define _APS_NEXT_COMMAND_VALUE         33096
-#define _APS_NEXT_CONTROL_VALUE         1194
+#define _APS_NEXT_CONTROL_VALUE         1199
 #define _APS_NEXT_SYMED_VALUE           111
 #endif
 #endif
