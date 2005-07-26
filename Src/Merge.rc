@@ -1176,22 +1176,24 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,205,133,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 138
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
+    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,79
+    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
+                    IDC_STATIC,14,20,208,19
     CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
-                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
-                    BS_MULTILINE | WS_TABSTOP,13,74,210,29
+                    IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP | 
+                    BS_MULTILINE | WS_TABSTOP,13,92,210,29
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "According to WinMerge User Interface",IDC_CP_UI,"Button",
-                    BS_AUTORADIOBUTTON,13,33,210,10
+                    BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Custom codepage :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,77,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Default codepage for ANSI files",IDC_STATIC,7,7,221,58
+                    BS_AUTORADIOBUTTON,13,68,77,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,67,56,13,ES_AUTOHSCROLL
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245

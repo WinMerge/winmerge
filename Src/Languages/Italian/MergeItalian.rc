@@ -1163,22 +1163,24 @@ BEGIN
     PUSHBUTTON      "Annulla",IDCANCEL,205,133,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 138
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Codice di pagina"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
+    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,79
+    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
+                    IDC_STATIC,14,20,208,19
     CONTROL         "Rileva le informazione sul codice di pagina per i file .html, .rc, .xml \nnecessario riavvio della sessione",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
-                    BS_MULTILINE | WS_TABSTOP,13,74,210,29
+                    BS_MULTILINE | WS_TABSTOP,13,92,210,29
     CONTROL         "Codice di pagina del sistema",IDC_CP_SYSTEM,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "In accordo con l'interfaccia di WinMerge",IDC_CP_UI,"Button",
-                    BS_AUTORADIOBUTTON,13,33,210,10
+                    BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Codice personalizzato :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,90,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,140,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Codice di pagina predefinito per i file ANSI",IDC_STATIC,7,7,221,58
+                    BS_AUTORADIOBUTTON,13,68,90,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,140,67,56,13,ES_AUTOHSCROLL
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245

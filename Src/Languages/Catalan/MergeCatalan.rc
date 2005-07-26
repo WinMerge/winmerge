@@ -1163,22 +1163,24 @@ BEGIN
     PUSHBUTTON      "Cancel·la",IDCANCEL,205,133,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 138
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Pàgina de codis"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
+    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,79
+    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
+                    IDC_STATIC,14,20,208,19
     CONTROL         "Detecta la informació de pàgina de codis per a fitxers : .html, .rc, .xml\nCal reiniciar la sessió",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
-                    BS_MULTILINE | WS_TABSTOP,13,74,220,29
+                    BS_MULTILINE | WS_TABSTOP,13,92,220,29
     CONTROL         "Pàgina de codis del sistema",IDC_CP_SYSTEM,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "En funció de l'idioma de l'interfície d'usuari del WinMerge",IDC_CP_UI,"Button",
-                    BS_AUTORADIOBUTTON,13,33,210,10
+                    BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Pàgina de codis personalitzada:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,120,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,143,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Pàgina de codis predefinida per a fitxers ANSI",IDC_STATIC,7,7,221,58
+                    BS_AUTORADIOBUTTON,13,68,120,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,143,67,56,13,ES_AUTOHSCROLL
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245

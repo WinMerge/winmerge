@@ -1,3 +1,8 @@
+2005-07-26 Kimmo
+ PATCH: [ 1208493 ] Suggest change in title of codepage options
+  Src: Merge.rc
+  Src/Languages: *.rc
+
 2005-07-26 Perry
  PATCH: [ 1242008 ] Update status to binary if open fails because binary
   Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.h DirView.cpp
@@ -5,7 +10,6 @@
  PATCH: [ 1208208 ] Move resizeable dialogs position in registry
   Src: OpenDlg.cpp SaveClosingDlg.cpp
   Src/Common: CMoveConstraint.cpp CMoveConstraint.h
-
 
 2005-07-26 Kimmo
  PATCH: [ 1244804 ] Add hourglass for report creating

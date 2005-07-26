@@ -1169,22 +1169,24 @@ BEGIN
     PUSHBUTTON      "Abbruch",IDCANCEL,205,133,50,14
 END
 
-IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 117
+IDD_PROPPAGE_CODEPAGE DIALOGEX 0, 0, 235, 138
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Zeichensatz"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
+    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,79
+    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
+                    IDC_STATIC,14,20,208,19
     CONTROL         "Ermitteln des Zeichensatzes für folgende Dateien: .html, .rc, .xml \nBenötigt einen Neustart des Programmes.",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
-                    BS_MULTILINE | WS_TABSTOP,13,74,210,29
+                    BS_MULTILINE | WS_TABSTOP,13,92,210,29
     CONTROL         "System-Zeichensatz",IDC_CP_SYSTEM,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,20,210,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "Entsprechend der WinMerge Benutzeroberfläche",IDC_CP_UI,"Button",
-                    BS_AUTORADIOBUTTON,13,33,210,10
+                    BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Benutzerdefinierter Zeichensatz:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,46,117,10
-    EDITTEXT        IDC_CUSTOM_CP_NUMBER,133,45,56,13,ES_AUTOHSCROLL
-    GROUPBOX        "Standard-Zeichensatz für ANSI-Dateien",IDC_STATIC,7,7,221,58
+                    BS_AUTORADIOBUTTON,13,68,117,10
+    EDITTEXT        IDC_CUSTOM_CP_NUMBER,133,67,56,13,ES_AUTOHSCROLL
 END
 
 IDD_MERGE7ZMISMATCH DIALOGEX 0, 0, 300, 245
