@@ -1604,6 +1604,9 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	{
 		// use our own byte-by-byte compare
 		code = byte_compare_files();
+		// Quick contents doesn't know about diff counts
+		m_ndiffs = -1;
+		m_ntrivialdiffs = -1;
 	}
 	else
 	{

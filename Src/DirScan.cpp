@@ -567,7 +567,8 @@ static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 {
 	if (pDiffFileData)
 	{
-		di.nsdiffs = pDiffFileData->m_ndiffs - pDiffFileData->m_ntrivialdiffs;
+		if (pDiffFileData->m_ntrivialdiffs > -1)
+			di.nsdiffs = pDiffFileData->m_ndiffs - pDiffFileData->m_ntrivialdiffs;
 		di.ndiffs = pDiffFileData->m_ndiffs;
 
 		if (!di.isSideLeft())
