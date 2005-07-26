@@ -102,8 +102,10 @@ public:
 	FileFilterHelper();
 	~FileFilterHelper();
 
+	CString GetGlobalFilterPathWithCreate() const;
+	CString GetUserFilterPathWithCreate() const;
+
 	FileFilterMgr * GetManager();
-	CString GetNewFileFilterPath() const { return m_sNewFileFilterPath; }
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
@@ -137,7 +139,8 @@ private:
 	CString m_sFileFilterPath;        /*< Path to current filter */
 	CString m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
-	CString m_sNewFileFilterPath;    /*< Path where new filters should be created */
+	CString m_sGlobalFilterPath;    /*< Path for shared filters */
+	CString m_sUserFilterPath;     /*< Path for user's private filters */
 
 	CRegExp m_rgx;     /*< Compiled file mask regular expression */
 };

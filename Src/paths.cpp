@@ -468,3 +468,21 @@ CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * 
 	}
 	return buffer;
 }
+
+/**
+ * @brief Return specified path if it exists or we can create it, else return empty
+ */
+CString paths_EnsurePathExist(CString sPath)
+{
+	int rtn = paths_DoesPathExist(sPath);
+	if (rtn == IS_EXISTING_DIR)
+		return sPath;
+	if (rtn == IS_EXISTING_FILE)
+		return _T("");
+	if (!paths_CreateIfNeeded(sPath))
+		return _T("");
+	if (paths_DoesPathExist(sPath) == IS_EXISTING_DIR)
+		return sPath;
+	else
+		return _T("");
+}

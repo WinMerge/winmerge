@@ -29,6 +29,7 @@
 #include "dllver.h"
 #include "FileFilterMgr.h"
 #include "paths.h"
+#include "SharedFilterDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -344,25 +345,40 @@ void FileFiltersDlg::OnBnClickedReload()
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
 	CString title;
-	CString path;
-	CString s;
-	CString tmplPath;
-	TCHAR dir[_MAX_DIR] = {0};
-	TCHAR drive[_MAX_DRIVE] = {0};
 
 	VERIFY(title.LoadString(IDS_FILEFILTER_SAVENEW));
-	path = theApp.m_globalFileFilter.GetNewFileFilterPath();
+
+	CString globalPath = theApp.m_globalFileFilter.GetGlobalFilterPathWithCreate();
+	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
+
+	if (globalPath.IsEmpty() && userPath.IsEmpty())
+	{
+		return;
+	}
+
+	CString path = (globalPath.IsEmpty() ? userPath : globalPath);
+
+	if (!globalPath.IsEmpty() && !userPath.IsEmpty())
+	{
+		path = CSharedFilterDlg::PromptForNewFilter(this, globalPath, userPath);
+		if (path.IsEmpty()) return;
+	}
+
+
 	if (path.GetLength() && path[path.GetLength()-1] != '\\')
 		path += '\\';
 
 	
-	tmplPath = path + FILE_FILTER_TEMPLATE;
+	CString tmplPath = path + FILE_FILTER_TEMPLATE;
 	
+	CString s;
 	if (SelectFile(s, path, title, IDS_FILEFILTER_FILEMASK, FALSE))
 	{
 		// Fix file extension
 		TCHAR file[_MAX_FNAME] = {0};
 		TCHAR ext[_MAX_EXT] = {0};
+		TCHAR dir[_MAX_DIR] = {0};
+		TCHAR drive[_MAX_DRIVE] = {0};
 		_tsplitpath(s, drive, dir, file, ext);
 		if (_tcslen(ext) == 0)
 		{

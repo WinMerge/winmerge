@@ -445,45 +445,44 @@ void FileFilterHelper::LoadAllFileFilters()
 	// First delete existing filters
 	m_fileFilterMgr->DeleteAllFilters();
 
-	// Application directory
-	CString sPattern = GetModulePath() + _T("\\Filters\\*") + FileFilterExt;
-	LoadFileFilterDirPattern(patternsLoaded, sPattern);
+	// Program application directory
+	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
+	LoadFileFilterDirPattern(patternsLoaded, m_sGlobalFilterPath + _T("\\*") + FileFilterExt);
 
-	// Application data path in user profile directory
+
+	// User application data path
+	m_sUserFilterPath = _T("");
 	CString sAppPath;
 	if (GetAppDataPath(sAppPath))
 	{
-		CString sPath = sAppPath + _T("\\WinMerge\\Filters");
-		TestCandidateFilterPath(sPath);
-		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*") + FileFilterExt);
+		m_sUserFilterPath = sAppPath + _T("\\WinMerge\\Filters");
+		LoadFileFilterDirPattern(patternsLoaded, m_sUserFilterPath + _T("\\*") + FileFilterExt);
 	}
-
-	// User profile local & roaming settings
-	CString sProfile;
-	if (GetUserProfilePath(sProfile))
+	else
 	{
-		CString sPath = sProfile + _T("\\Local Settings\\Application Data\\WinMerge\\Filters");
-		TestCandidateFilterPath(sPath);
-		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*") + FileFilterExt);
-
-		sPath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
-		TestCandidateFilterPath(sPath);
-		LoadFileFilterDirPattern(patternsLoaded, sPath + _T("\\*") + FileFilterExt);
+		// User profile local & roaming settings
+		CString sProfile;
+		if (GetUserProfilePath(sProfile))
+		{
+			m_sUserFilterPath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
+			LoadFileFilterDirPattern(patternsLoaded, m_sUserFilterPath + _T("\\*") + FileFilterExt);
+		}
 	}
 }
 
 /**
- * @brief Store as path for new file filters, if we still need one and this path exists
+ * @brief Return path to global filters (& create if needed), or empty if cannot create
  */
-void
-FileFilterHelper::TestCandidateFilterPath(const CString & sPath)
+CString FileFilterHelper::GetGlobalFilterPathWithCreate() const
 {
-	if (m_sNewFileFilterPath.IsEmpty())
-	{
-		if (EnsureDirectoryExists(sPath))
-		{
-			m_sNewFileFilterPath = sPath;
-		}
-	}
+	return paths_EnsurePathExist(m_sGlobalFilterPath);
+}
+
+/**
+ * @brief Return path to user filters (& create if needed), or empty if cannot create
+ */
+CString FileFilterHelper::GetUserFilterPathWithCreate() const
+{
+	return paths_EnsurePathExist(m_sUserFilterPath);
 }
 

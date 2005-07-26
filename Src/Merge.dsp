@@ -701,6 +701,10 @@ SOURCE=.\SelectUnpackerDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\SharedFilterDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\sinstance.cpp
 # End Source File
 # Begin Source File
@@ -1234,6 +1238,10 @@ SOURCE=.\Common\sbuffer.h
 # Begin Source File
 
 SOURCE=.\SelectUnpackerDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SharedFilterDlg.h
 # End Source File
 # Begin Source File
 

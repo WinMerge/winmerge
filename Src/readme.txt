@@ -1,6 +1,10 @@
 2005-07-26 Perry
  PATCH: [ 1241270 ] Fix paths.cpp GetDirName for root paths
   Src: paths.cpp
+ PATCH: [ 1241275 ] New Shared or Private Filter dialog
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFiltersDlg.cpp
+   Merge.dsp Merge.rc paths.cpp paths.h resource.h
+  Src new files: SharedFilterDlg.cpp SharedFilterDlg.h
 
 2005-07-25 Perry
  BUG: [ 1241766 ] Debug warning: Warning: no listbox item selected.
