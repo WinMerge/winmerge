@@ -1716,7 +1716,7 @@ int DiffFileData::byte_compare_files()
 	ByteComparator comparator(ignore_case_flag, ignore_space_change_flag
 		, ignore_all_space_flag, ignore_eol_diff, ignore_blank_lines_flag);
 
-	while (1)
+	while (!eof[0] && !eof[1])
 	{
 		// load or update buffers as appropriate
 		for (i=0; i<2; ++i)
@@ -1758,15 +1758,32 @@ int DiffFileData::byte_compare_files()
 			comparator.ResetIgnore();
 		}
 
-		// are these two buffers the same?
-		if (!comparator.CompareBuffers(ptr0, ptr1, end0, end1, eof[0], eof[1]))
-			return diffcode | DIFFCODE::DIFF;
+//		We need option to bail out when first diff is found? Might be a good optimization
+//		in some cases. But then we won't detect all binary files?
+
+		// Don't bother comparing if we already have detected buffers differ
+		// But we must advance pointers so we can scan full files for binary status
+		if (!(diffcode & DIFFCODE::DIFF))
+		{
+			// are these two buffers the same?
+			if (!comparator.CompareBuffers(ptr0, ptr1, end0, end1, eof[0], eof[1]))
+			{
+				diffcode |= DIFFCODE::DIFF;
+				ptr0 = end0;
+				ptr1 = end1;
+			}
+		}
+		else
+		{
+			ptr0 = end0;
+			ptr1 = end1;
+		}
 
 
 		// did we finish both files?
 		if (eof[0] && eof[1])
 		{
-			if (ptr0 == end0 && ptr1 == end1)
+			if (ptr0 == end0 && ptr1 == end1 && !(diffcode & DIFFCODE::DIFF))
 				return diffcode | DIFFCODE::SAME;
 			else
 				return diffcode | DIFFCODE::DIFF;
@@ -1778,6 +1795,7 @@ int DiffFileData::byte_compare_files()
 		bfstart[0] += ptr0-orig0;
 		bfstart[1] += ptr1-orig1;
 	}
+	return diffcode;
 }
 
 /**

@@ -1,3 +1,7 @@
+2005-07-29 Kimmo
+ PATCH: [ 1245773 ] Scan full files in quick contents compare
+  Src: DiffWrapper.cpp
+
 2005-07-26 Kimmo
  PATCH: [ 1208493 ] Suggest change in title of codepage options
   Src: Merge.rc
