@@ -14,6 +14,7 @@
 #include <time.h>
 #include "coretools.h"
 #include "WaitStatusCursor.h"
+#include "paths.h"
 
 /**
  * @brief EOL bytes for reports.
@@ -72,6 +73,14 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_CREATEREPORT));
 		m_sReportFile = dlg.m_sReportFile;
+		CString path;
+		SplitFilename(m_sReportFile, &path, NULL, NULL);
+		if (!paths_CreateIfNeeded(path))
+		{
+			VERIFY(errStr.LoadString(IDS_FOLDER_NOTEXIST));
+			return FALSE;
+		}
+
 		if (dlg.m_nReportType == REPORT_SIMPLEHTML)
 		{
 			GenerateHTMLHeader();

@@ -26,6 +26,8 @@
 #include "DiffWrapper.h"
 #include "patchDlg.h"
 #include "patchtool.h"
+#include "Coretools.h"
+#include "paths.h"
 
 /** 
  * @brief Adds files to list for patching
@@ -64,6 +66,14 @@ int CPatchTool::CreatePatch()
 
 	if (ShowDialog())
 	{
+		CString path;
+		SplitFilename(m_dlgPatch.m_fileResult, &path, NULL, NULL);
+		if (!paths_CreateIfNeeded(path))
+		{
+			AfxMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
+			return 0;
+		}
+
 		// Select patch create -mode
 		m_diffWrapper.SetUseDiffList(FALSE);
 		m_diffWrapper.SetCreatePatchFile(TRUE);
@@ -124,7 +134,8 @@ int CPatchTool::CreatePatch()
 }
 
 /** 
- * @brief Show patch options dialog and check options selected
+ * @brief Show patch options dialog and check options selected.
+ * @return TRUE if user wants to create a patch (didn't cancel dialog).
  */
 BOOL CPatchTool::ShowDialog()
 {
@@ -138,11 +149,7 @@ BOOL CPatchTool::ShowDialog()
 		if (m_dlgPatch.GetItemCount() < 1)
 			bRetVal = FALSE;
 
-		// Result file must be given
-		if (m_dlgPatch.m_fileResult.IsEmpty())
-			bRetVal = FALSE;
-		else
-			m_diffWrapper.SetPatchFile(m_dlgPatch.m_fileResult);
+		m_diffWrapper.SetPatchFile(m_dlgPatch.m_fileResult);
 
 		// These two are from dropdown list - can't be wrong
 		patchOptions.outputStyle = m_dlgPatch.m_outputStyle;

@@ -1,6 +1,8 @@
 2005-07-30 Kimmo
  PATCH: [ 1247375 ] Use Shell Edit command primarily to open files
   Src: DirActions.cpp
+ PATCH: [ 1247483 ] Create folder if one doesn't exist (for reports and patches)
+  Src: DirCmpReport.cpp PatchTool.cpp
 
 2005-07-29 Kimmo
  PATCH: [ 1245773 ] Scan full files in quick contents compare
