@@ -1,3 +1,10 @@
+2005-07-30 Perry
+ PATCH: [ 1247483 ] Create folder if one doesn't exist (for reports and patches)
+ BUG: [ 1248017 ] WinMerge\Src\DirCmpReport.cpp(80) : error C2065: 'IDS_FOLDER
+  Creating IDS_FOLDER_NOTEXIST as "Folder does not exist." and checking in to cvs trunk.
+   Src: Merge.rc resource.h
+   Src/Languages: resource.h Merge*.rc
+
 2005-07-30 Kimmo
  PATCH: [ 1247375 ] Use Shell Edit command primarily to open files
   Src: DirActions.cpp

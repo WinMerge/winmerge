@@ -2204,6 +2204,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH "Kann keine Patchdatei von Binärdateien erzeugen."
     IDS_CANNOT_CREATE_DIRPATCH "Kann keine Patchdatei von Verzeichnissen erzeugen."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+	IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE

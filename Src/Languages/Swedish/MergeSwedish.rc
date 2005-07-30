@@ -2200,6 +2200,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH "Kan inte skapa en patchfil från binära filer."
     IDS_CANNOT_CREATE_DIRPATCH "Kan inte skapa en patchfil från kataloger."
     IDS_SAVEFILES_FORPATCH  "Var god och spara ALLA filer först.\n\nAtt skapa en patch kräver att det inte finns några osparade förändringar i filerna."
+	IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE

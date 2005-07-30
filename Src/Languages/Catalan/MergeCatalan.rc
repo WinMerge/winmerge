@@ -2103,6 +2103,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH "No es pot crear un pedaç de fitxers binaris."
     IDS_CANNOT_CREATE_DIRPATCH "No es pot crear un pedaç de directoris."
     IDS_SAVEFILES_FORPATCH  "Deseu tots els fitxers primer.\n\nCal que no hi hagi cap fitxer pendent de salvar per tal de crear un pedaç."
+	IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE

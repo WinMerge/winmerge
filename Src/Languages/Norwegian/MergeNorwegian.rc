@@ -2200,6 +2200,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH "Kan ikke opprette en fil med rettelser for binære filer."
     IDS_CANNOT_CREATE_DIRPATCH "Kan ikke opprette en fil med rettelser for mapper."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+	IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE

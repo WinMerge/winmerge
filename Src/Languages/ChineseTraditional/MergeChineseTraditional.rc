@@ -2181,6 +2181,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH "無法從二進位檔案建立一個補丁檔案。"
     IDS_CANNOT_CREATE_DIRPATCH "無法從資料夾建立一個補丁檔案。"
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+	IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE

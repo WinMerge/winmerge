@@ -2091,6 +2091,7 @@ BEGIN
     IDS_CANNOT_CREATE_BINARYPATCH "バイナリファイルからパッチファイルは生成できません。"
     IDS_CANNOT_CREATE_DIRPATCH "ディレクトリからパッチファイルは生成できません。"
     IDS_SAVEFILES_FORPATCH  "まず先に全てのファイルを保存してください。\n\nパッチ生成には、変更が全て保存されている必要があります。"
+	IDS_FOLDER_NOTEXIST     "Folder does not exist."
 END
 
 STRINGTABLE
