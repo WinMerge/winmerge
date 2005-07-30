@@ -121,7 +121,7 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
  * @brief Draw maps of files.
  *
  * Draws maps of differences in files. Difference list is walked and
- * every difference is drawn with same colors than in editview.
+ * every difference is drawn with same colors as in editview.
  * @note We MUST use doubles when calculating coords to avoid rounding
  * to integers. Rounding causes miscalculation of coords.
  * @todo Use of GetNextRect() is inefficient, it reads diffs sometimes

@@ -4,6 +4,8 @@
   Creating IDS_FOLDER_NOTEXIST as "Folder does not exist." and checking in to cvs trunk.
    Src: Merge.rc resource.h
    Src/Languages: resource.h Merge*.rc
+ Cosmetic: grammar fix in comment ("same...than" => "same...as")
+  Src/LocationView.cpp
 
 2005-07-30 Kimmo
  PATCH: [ 1247375 ] Use Shell Edit command primarily to open files
