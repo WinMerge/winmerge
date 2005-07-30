@@ -1,3 +1,7 @@
+2005-07-30 Kimmo
+ PATCH: [ 1247375 ] Use Shell Edit command primarily to open files
+  Src: DirActions.cpp
+
 2005-07-29 Kimmo
  PATCH: [ 1245773 ] Scan full files in quick contents compare
   Src: DiffWrapper.cpp

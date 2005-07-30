@@ -1002,17 +1002,25 @@ void CDirView::GetItemFileNames(int sel, PathContext * paths) const
 	paths->SetRight(strRight);
 }
 
-/// Open selected file on specified side
+/**
+ * @brief Open selected file with registered application.
+ * Uses shell file associations to open file with registered
+ * application. We first try to use "Edit" action which should
+ * open file to editor, since we are more interested editing
+ * files than running them (scripts).
+ * @param [in] stype Side of file to open.
+ */
 void CDirView::DoOpen(SIDE_TYPE stype)
 {
 	int sel = GetSingleSelectedItem();
 	if (sel == -1) return;
 	CString file = GetSelectedFileName(stype);
 	if (file.IsEmpty()) return;
-	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), file, 0, 0, SW_SHOWNORMAL);
+	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("edit"), file, 0, 0, SW_SHOWNORMAL);
+	if (rtn==SE_ERR_NOASSOC)
+		rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), file, 0, 0, SW_SHOWNORMAL);
 	if (rtn==SE_ERR_NOASSOC)
 		DoOpenWith(stype);
-
 }
 
 /// Open with dialog for file on selected side
