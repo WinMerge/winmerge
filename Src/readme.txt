@@ -1,3 +1,9 @@
+2005-07-31 Perry
+ PATCH: [ 1248180 ] fix moved block code
+ BUG: [ 1248172 ] Assert failure in CDiffWrapper::RunFileDiff
+ BUG: [ 1186199 ] Assert from moved block code
+  Src: DiffWrapper.cpp
+
 2005-07-30 Perry
  PATCH: [ 1247483 ] Create folder if one doesn't exist (for reports and patches)
  BUG: [ 1248017 ] WinMerge\Src\DirCmpReport.cpp(80) : error C2065: 'IDS_FOLDER

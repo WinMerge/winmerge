@@ -1111,12 +1111,15 @@ public:
 	}
 };
 
-
 /*
  WinMerge moved block code
  This is called by diffutils code, by diff_2_files routine
  read_files earlier computed the hash chains ("equivs" file variable) and freed them,
  but the equivs numerics are still available in each line
+
+ match1 set by scan from line0 to deleted
+ match0 set by scan from line1 to inserted
+
 */
 extern "C" void moved_block_analysis(struct change ** pscript, struct file_data fd[])
 {
@@ -1360,10 +1363,11 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 			newob->deleted = e->deleted;
 			newob->link = e->link;
 			newob->match0 = -1;
-			newob->match1 = -1;
+			newob->match1 = e->match1;
 
 			e->inserted -= suffix;
 			e->deleted = 0;
+			e->match1 = -1;
 			e->link = newob;
 
 			p = newob; // next block to scan
