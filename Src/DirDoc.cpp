@@ -221,8 +221,11 @@ CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory()
 {
 	return
 	(
-		GetLeftBasePath().GetLength() > m_cchLeftRoot
-	?	AllowUpwardDirectory::ParentIsRegularPath
+        GetLeftBasePath().GetLength() > m_cchLeftRoot
+    ||  m_pTempPathContext == NULL
+	&&  lstrcmpi(PathFindFileName(GetLeftBasePath()), 
+		PathFindFileName(GetRightBasePath())) == 0
+    ?   AllowUpwardDirectory::ParentIsRegularPath
 	:	m_pTempPathContext && m_pTempPathContext->m_pParent
 	?	AllowUpwardDirectory::ParentIsTempPath
 	:	AllowUpwardDirectory::No

@@ -1,3 +1,8 @@
+2005-08-04 Kimmo
+ BUG: [ 1247700 ] Cannot browse to parent folders of selected folders
+  Fix from Jochen
+  Src: DirDoc.cpp
+
 2005-07-31 Perry
  PATCH: [ 1248180 ] fix moved block code
  BUG: [ 1248172 ] Assert failure in CDiffWrapper::RunFileDiff
