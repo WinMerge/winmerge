@@ -1,3 +1,7 @@
+2005-08-05 Kimmo
+ PATCH: [ 1249646 ] Register Shell Edit handler for projectfiles
+  InnoSetup: WinMerge Localized.iss
+
 2005-06-04 Kimmo
  PaTCH: [ 1214505 ] Installer: Assoc Projectfiles to WinMerge app
   InnoSetup: WinMerge Localized.iss
