@@ -31,6 +31,7 @@
 
 #include <direct.h>
 #include <mlang.h>
+#include "BCMenu.h"
 #include "MainFrm.h"
 #include "DirFrame.h"		// Include type information
 #include "ChildFrm.h"
@@ -165,6 +166,7 @@ CMainFrame::CMainFrame()
 {
 	m_bFirstTime = TRUE;
 	m_bEscShutdown = FALSE;
+	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 	OptionsInit(); // Implementation in OptionsInit.cpp
 	UpdateCodepageModule();
 
@@ -227,6 +229,9 @@ CMainFrame::~CMainFrame()
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
 
+	delete m_pMenus[MENU_DEFAULT];
+	delete m_pMenus[MENU_MERGEVIEW];
+	delete m_pMenus[MENU_DIRVIEW];
 	delete m_pSyntaxColors;
 }
 
@@ -358,39 +363,44 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
 	if (ID == 0)
 		ID = IDR_MAINFRAME;
 
-	if (!m_default.LoadMenu(ID))
+	if (m_pMenus[MENU_DEFAULT] == NULL)
+		m_pMenus[MENU_DEFAULT] = new BCMenu();
+	if (m_pMenus[MENU_DEFAULT] == NULL)
+		return NULL;
+
+	if (!m_pMenus[MENU_DEFAULT]->LoadMenu(ID))
 	{
 		ASSERT(FALSE);
 		return NULL;
 	}
 	
 	// Load bitmaps to menuitems
-	m_default.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
-	m_default.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
-	m_default.ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
-	m_default.ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
-	m_default.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
-	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
-	m_default.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
-	m_default.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
-	m_default.ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
-	m_default.ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
-	m_default.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
-	m_default.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
-	m_default.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
-	m_default.ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
-	m_default.ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
-	m_default.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
-	m_default.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
-	m_default.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
-	m_default.LoadToolbar(IDR_MAINFRAME);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
+	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
+	m_pMenus[MENU_DEFAULT]->LoadToolbar(IDR_MAINFRAME);
 
 	// append the scripts submenu
-	HMENU scriptsSubmenu = GetScriptsSubmenu(m_default.GetSafeHmenu());
+	HMENU scriptsSubmenu = GetScriptsSubmenu(m_pMenus[MENU_DEFAULT]->GetSafeHmenu());
 	if (scriptsSubmenu != NULL)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 
-	return(m_default.Detach());
+	return(m_pMenus[MENU_DEFAULT]->Detach());
 }
 
 /**
@@ -398,34 +408,39 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
  */
 HMENU CMainFrame::NewMergeViewMenu()
 {
-	m_mergeViewMenu.LoadMenu(IDR_MERGEVIEWMENU);
+	if (m_pMenus[MENU_MERGEVIEW] == NULL)
+		m_pMenus[MENU_MERGEVIEW] = new BCMenu();
+	if (m_pMenus[MENU_MERGEVIEW] == NULL)
+		return NULL;
+
+	m_pMenus[MENU_MERGEVIEW]->LoadMenu(IDR_MERGEVIEWMENU);
 	// Load bitmaps to menuitems
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
-	m_mergeViewMenu.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
-	m_mergeViewMenu.LoadToolbar(IDR_MAINFRAME);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
+	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
+	m_pMenus[MENU_MERGEVIEW]->LoadToolbar(IDR_MAINFRAME);
 
 	// append the scripts submenu
-	HMENU scriptsSubmenu = GetScriptsSubmenu(m_mergeViewMenu.GetSafeHmenu());
+	HMENU scriptsSubmenu = GetScriptsSubmenu(m_pMenus[MENU_MERGEVIEW]->GetSafeHmenu());
 	if (scriptsSubmenu != NULL)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 
-	return(m_mergeViewMenu.Detach());
+	return(m_pMenus[MENU_MERGEVIEW]->Detach());
 }
 
 /**
@@ -433,30 +448,35 @@ HMENU CMainFrame::NewMergeViewMenu()
  */
 HMENU CMainFrame::NewDirViewMenu()
 {
-	m_dirViewMenu.LoadMenu(IDR_DIRVIEWMENU);
-	// Load bitmaps to menuitems
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
-	m_dirViewMenu.ModifyODMenu(NULL, ID_MERGE_DELETE, IDB_MERGE_DELETE);
+	if (m_pMenus[MENU_DIRVIEW] == NULL)
+		m_pMenus[MENU_DIRVIEW] = new BCMenu();
+	if (m_pMenus[MENU_DIRVIEW] == NULL)
+		return NULL;
 
-	m_dirViewMenu.LoadToolbar(IDR_MAINFRAME);
-	return(m_dirViewMenu.Detach());
+	m_pMenus[MENU_DIRVIEW]->LoadMenu(IDR_DIRVIEWMENU);
+	// Load bitmaps to menuitems
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_PASTE, IDB_EDIT_PASTE);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_FIND, IDB_EDIT_SEARCH);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_WINDOW_CASCADE, IDB_WINDOW_CASCADE);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_WINDOW_TILE_HORZ, IDB_WINDOW_HORIZONTAL);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_WINDOW_TILE_VERT, IDB_WINDOW_VERTICAL);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_FILE_CLOSE, IDB_WINDOW_CLOSE);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_WINDOW_CHANGE_PANE, IDB_WINDOW_CHANGEPANE);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_WMGOTO, IDB_EDIT_GOTO);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_REPLACE, IDB_EDIT_REPLACE);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_VIEW_LANGUAGE, IDB_VIEW_LANGUAGE);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_VIEW_SELECTFONT, IDB_VIEW_SELECTFONT);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_APP_EXIT, IDB_FILE_EXIT);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_HELP_CONTENTS, IDB_HELP_CONTENTS);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_SELECT_ALL, IDB_EDIT_SELECTALL);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_TOOLS_FILTERS, IDB_TOOLS_FILTERS);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_TOOLS_CUSTOMIZECOLUMNS, IDB_TOOLS_COLUMNS);
+	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_MERGE_DELETE, IDB_MERGE_DELETE);
+
+	m_pMenus[MENU_DIRVIEW]->LoadToolbar(IDR_MAINFRAME);
+	return(m_pMenus[MENU_DIRVIEW]->Detach());
 }
 
 /**
@@ -473,11 +493,9 @@ void CMainFrame::OnMeasureItem(int nIDCtl,
 			CMenu* cmenu =
 				CMenu::FromHandle((HMENU)lpMeasureItemStruct->itemID);
 
-			//if (m_menu.IsMenu(cmenu) || m_default.IsMenu(cmenu))
-			if (m_default.IsMenu(cmenu))
+			if (m_pMenus[MENU_DEFAULT]->IsMenu(cmenu))
 			{
-				//m_menu.MeasureItem(lpMeasureItemStruct);
-				m_default.MeasureItem(lpMeasureItemStruct);
+				m_pMenus[MENU_DEFAULT]->MeasureItem(lpMeasureItemStruct);
 				setflag = TRUE;
 			}
 		}
@@ -494,7 +512,7 @@ LRESULT CMainFrame::OnMenuChar(UINT nChar, UINT nFlags,
 	CMenu* pMenu) 
 {
 	LRESULT lresult;
-	if(m_default.IsMenu(pMenu))
+	if(m_pMenus[MENU_DEFAULT]->IsMenu(pMenu))
 		lresult=BCMenu::FindKeyboardShortcut(nChar, nFlags, pMenu);
 	else
 		lresult=CMDIFrameWnd::OnMenuChar(nChar, nFlags, pMenu);

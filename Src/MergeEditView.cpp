@@ -27,6 +27,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "BCMenu.h"
 #include "merge.h"
 #include "LocationView.h"
 #include "MergeEditView.h"

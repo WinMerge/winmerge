@@ -2,6 +2,8 @@
  PATCH: [ 1252076 ] Improve About-dialog (unicode info, better layout)
   Src: Merge.cpp Merge.rc resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 1238168 ] Convert using BCMenu with pointers
+  Src: MainFrm.cpp MainFrm.h MergeEditView.cpp
 
 2005-08-04 Kimmo
  BUG: [ 1247700 ] Cannot browse to parent folders of selected folders

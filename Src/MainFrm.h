@@ -29,7 +29,6 @@
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
-#include "bcmenu.h"
 #include "OptionsMgr.h"
 #include "VSSHelper.h"
 
@@ -60,6 +59,7 @@ enum
 
 enum { WM_NONINTERACTIVE = 888 }; // timer value
 
+class BCMenu;
 class CDiffView;
 class CDirView;
 class CDirDoc;
@@ -177,9 +177,15 @@ public:
 protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	CToolBar    m_wndToolBar;
-	BCMenu		m_default;
-	BCMenu		m_mergeViewMenu;
-	BCMenu		m_dirViewMenu;
+
+	enum
+	{
+		MENU_DEFAULT,
+		MENU_MERGEVIEW,
+		MENU_DIRVIEW,
+		MENU_COUNT, // Add new items before this item
+	};
+	BCMenu * m_pMenus[MENU_COUNT];
 
 // Generated message map functions
 protected:
