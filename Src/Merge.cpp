@@ -57,6 +57,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// URL for hyperlink in About-dialog
+static const TCHAR WinMergeURL[] = _T("http://winmerge.org");
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
 
@@ -547,14 +550,22 @@ BOOL CAboutDlg::OnInitDialog()
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
 
+#ifdef _UNICODE
+	CString strUnicode;
+	VERIFY(strUnicode.LoadString(IDS_UNICODE));
+	m_strVersion += _T(" ");
+	m_strVersion += strUnicode;
+#endif
+
 	CString sPrivateBuild = version.GetPrivateBuild();
 	if (!sPrivateBuild.IsEmpty())
 	{
 		AfxFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT, sPrivateBuild);
 	}
 
-	m_ctlCompany.SetWindowText(version.GetLegalCopyright());
-	m_ctlWWW.m_link = _T("http://winmerge.org");
+	CString copyright = version.GetLegalCopyright();
+	m_ctlCompany.SetWindowText(copyright);
+	m_ctlWWW.m_link = WinMergeURL;
 
 	UpdateData(FALSE);
 	
@@ -794,22 +805,14 @@ void CAboutDlg::OnBnClickedOpenContributors()
 		// values < 32 are errors (ref to MSDN)
 		if ((int)ret < 32)
 		{
-			// Try to open with associated application (.rtf)
+			// Try to open with associated application (.txt)
 			ret = ShellExecute(m_hWnd, _T("open"), docPath, NULL, NULL, SW_SHOWNORMAL);
 			if ((int)ret < 32)
-			{
-				CString msg;
-				AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, _T("Notepad.exe"));
-				AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
-			}
+				ResMsgBox1(IDS_CANNOT_EXECUTE_FILE, _T("Notepad.exe"), MB_ICONSTOP);
 		}
 	}
 	else
-	{
-		CString msg;
-		AfxFormatString1(msg, IDS_ERROR_FILE_NOT_FOUND, docPath);
-		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
-	}
+		ResMsgBox1(IDS_ERROR_FILE_NOT_FOUND, docPath, MB_ICONSTOP);
 }
 
 /** 

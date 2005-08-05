@@ -1,3 +1,8 @@
+2005-08-05 Kimmo
+ PATCH: [ 1252076 ] Improve About-dialog (unicode info, better layout)
+  Src: Merge.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-08-04 Kimmo
  BUG: [ 1247700 ] Cannot browse to parent folders of selected folders
   Fix from Jochen

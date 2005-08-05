@@ -321,6 +321,7 @@
 #define IDS_OPTIONSPG_SYNTAXCOLORS      9048
 #define IDS_VERSION_FMT                 16385
 #define IDS_QUICKHELP                   16386
+#define IDS_UNICODE                     16387
 #define IDS_OPTIONS_TITLE               16400
 #define IDS_MESSAGE_BOX_ARE_RESET       16401
 #define IDS_DIFF_OPEN_NO_SET_PROPS      16402

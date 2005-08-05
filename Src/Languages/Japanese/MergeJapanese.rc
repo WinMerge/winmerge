@@ -540,7 +540,7 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOGEX 0, 0, 223, 134
+IDD_ABOUTBOX DIALOGEX 0, 0, 223, 124
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "WinMergeについて"
@@ -548,16 +548,14 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    DEFPUSHBUTTON   "OK",IDOK,184,7,32,14,WS_GROUP
-    LTEXT           "Version 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "Version 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "All rights reserved.",IDC_STATIC,7,60,170,8
-    LTEXT           "WinMergeのホームページに行く!",IDC_WWW,7,119,209,8
-    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,113,209,1
+    LTEXT           "WinMergeのホームページに行く!",IDC_WWW,7,79,209,8
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,95,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
-    LTEXT           "開発者/貢献者リストについては、以下のファイルを参照してください",IDC_STATIC,7,81,208,8
-    LTEXT           "Contributors.txt",IDC_STATIC,7,91,153,8
-    PUSHBUTTON      "表示する...",IDC_OPEN_CONTRIBUTORS,165,95,50,14
+    DEFPUSHBUTTON   "OK",IDOK,166,103,50,14
+    PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,103,65,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 374, 126
@@ -1689,6 +1687,7 @@ BEGIN
       leftpath は、左側で開くディレクトリまたはファイル名です
       rightpath は、右側で開くディレクトリまたはファイル名です
       outputpath は、省略可能なマージされたファイルの保存先ディレクトリです"
+    IDS_UNICODE             "Unicode"
 END
 
 // VARIOUS OPTIONS
