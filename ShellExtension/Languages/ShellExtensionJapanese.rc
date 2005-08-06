@@ -1,0 +1,45 @@
+//Microsoft Developer Studio generated resource script.
+//
+// $Id$
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 日本語 resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
+#ifdef _WIN32
+LANGUAGE LANG_JAPANESE, SUBLANG_DEFAULT
+#pragma code_page(932)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PROJNAME            "ShellExtension"
+    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_HELP        "WinMergeで開く"
+    IDS_CONTEXT_HELP_MANYITEMS "2項目以上は選択しないで下さい。"
+    IDS_COMPARE             "比較"
+    IDS_COMPARE_ELLIPSIS    "比較..."
+    IDS_COMPARE_TO          "比較対象として選択"
+    IDS_HELP_SAVETHIS       "このパスを保存します。 このパスと比較するために別のパスを選択してください。"
+    IDS_HELP_COMPARESAVED   "保存されたパス(%1)と比較します。"
+END
+
+#endif    // 日本語 resources
+/////////////////////////////////////////////////////////////////////////////

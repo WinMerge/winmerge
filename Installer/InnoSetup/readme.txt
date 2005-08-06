@@ -1,3 +1,8 @@
+2005-08-06 Kimmo
+ PATCH: [ 1201945 ] Localization of ShellExtension.dll
+  Submitted by Takashi Sawanaka
+  InnoSetup: WinMerge Localized.iss
+
 2005-08-05 Kimmo
  PATCH: [ 1249646 ] Register Shell Edit handler for projectfiles
   InnoSetup: WinMerge Localized.iss

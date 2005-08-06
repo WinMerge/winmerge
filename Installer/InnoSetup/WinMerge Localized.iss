@@ -381,7 +381,9 @@ Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruni
 Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
 ; end VC system files
 
-Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder
+Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
+Source: ..\Build\MergeUnicodeReleaseMinDependency\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4
+
 Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp

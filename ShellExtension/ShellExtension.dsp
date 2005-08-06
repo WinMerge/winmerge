@@ -92,7 +92,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug\ShellExtension.dll" /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug\ShellExtensionU.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeDebug
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeDebug
@@ -206,7 +206,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeReleaseMinsize\ShellExtension.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeReleaseMinsize\ShellExtensionU.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize
@@ -248,7 +248,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeReleaseMinDependency\ShellExtension.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeReleaseMinDependency\ShellExtensionU.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency
@@ -295,6 +295,27 @@ SOURCE=.\ShellExtension.cpp
 # Begin Source File
 
 SOURCE=.\ShellExtension.def
+
+!IF  "$(CFG)" == "ShellExtension - Win32 Debug"
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Unicode Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Release MinSize"
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Release MinDependency"
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Unicode Release MinSize"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Unicode Release MinDependency"
+
+# PROP Exclude_From_Build 1
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -303,7 +324,28 @@ SOURCE=.\ShellExtension.idl
 # End Source File
 # Begin Source File
 
-SOURCE=.\ShellExtension.rc
+SOURCE=.\ShellExtensionU.def
+
+!IF  "$(CFG)" == "ShellExtension - Win32 Debug"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Unicode Debug"
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Release MinSize"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Release MinDependency"
+
+# PROP Exclude_From_Build 1
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Unicode Release MinSize"
+
+!ELSEIF  "$(CFG)" == "ShellExtension - Win32 Unicode Release MinDependency"
+
+!ENDIF 
+
 # End Source File
 # Begin Source File
 
@@ -342,6 +384,115 @@ SOURCE=.\WinMergeShell.h
 # Begin Group "Resource Files"
 
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
+# Begin Source File
+
+SOURCE=.\ShellExtension.rc
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionBrazilian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionBulgarian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionCatalan.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionChineseSimplified.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionChineseTraditional.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionCzech.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionDanish.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionDutch.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionFrench.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionGerman.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionHungarian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionItalian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionJapanese.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionKorean.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionNorwegian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionPolish.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionRussian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionSlovak.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionSpanish.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionSwedish.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionTurkish.rc
+# PROP Exclude_From_Build 1
+# End Source File
 # Begin Source File
 
 SOURCE=.\WinMerge.bmp

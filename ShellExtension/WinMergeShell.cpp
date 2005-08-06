@@ -50,7 +50,9 @@
 #define EXT_ADVANCED 0x02
 
 /// Registry path to WinMerge 
-static const TCHAR f_RegDir[] = _T("Software\\Thingamahoochie\\WinMerge");
+#define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
+static const TCHAR f_RegDir[] = REGDIR;
+static const TCHAR f_RegLocaleDir[] = REGDIR _T("\\Locale");
 
 /**
  * @name Registry valuenames.
@@ -64,6 +66,8 @@ static const TCHAR f_FirstSelection[] = _T("FirstSelection");
 static const TCHAR f_RegValuePath[] = _T("Executable");
 /** Path to WinMerge[U].exe, overwrites f_RegValuePath if present. */
 static const TCHAR f_RegValuePriPath[] = _T("PriExecutable");
+/** LanguageId */
+static const TCHAR f_LanguageId[] = _T("LanguageId");
 /*@}*/
 
 /// Shown menustate
@@ -73,6 +77,29 @@ enum
 	MENU_ONESEL_NOPREV,
 	MENU_ONESEL_PREV,
 	MENU_TWOSEL,
+};
+
+#define USES_WINMERGELOCALE CWinMergeTempLocale __wmtl__
+
+class CWinMergeTempLocale
+{
+private:
+	LCID m_lcidOld;
+public:
+	CWinMergeTempLocale() {
+		CRegKeyEx reg;
+		if (reg.Open(HKEY_CURRENT_USER, f_RegLocaleDir) != ERROR_SUCCESS)
+			return;
+
+		m_lcidOld = GetThreadLocale();
+
+		int iLangId = reg.ReadDword(f_LanguageId, (DWORD)-1);
+		if (iLangId != -1)
+			SetThreadLocale(MAKELCID(iLangId, SORT_DEFAULT));
+	}
+	~CWinMergeTempLocale() {
+		SetThreadLocale(m_lcidOld);
+	}
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -93,6 +120,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 	FORMATETC fmt = {CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL};
 	STGMEDIUM stg = {TYMED_HGLOBAL};
 	HDROP hDropInfo;
+	USES_WINMERGELOCALE;
 
 	// Look for CF_HDROP data in the data object.
 	if (FAILED(pDataObj->GetData(&fmt, &stg)))
@@ -153,6 +181,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	int nItemsAdded = 0;
+	USES_WINMERGELOCALE;
 
 	// If the flags include CMF_DEFAULTONLY then we shouldn't do anything.
 	if (uFlags & CMF_DEFAULTONLY)
@@ -197,6 +226,7 @@ HRESULT CWinMergeShell::GetCommandString(UINT idCmd, UINT uFlags,
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	USES_CONVERSION;
+	USES_WINMERGELOCALE;
 
 	// Check idCmd, it must be 0 in simple mode and 0 or 1 in advanced mode.
 	if (m_dwMenuState & EXT_ADVANCED == 0)
@@ -237,6 +267,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	CString strWinMergePath;
 	BOOL bCompare = FALSE;
+	USES_WINMERGELOCALE;
 
 	// If lpVerb really points to a string, ignore this function call and bail out.
 	if (HIWORD(pCmdInfo->lpVerb) != 0)

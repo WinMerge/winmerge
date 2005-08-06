@@ -1,3 +1,10 @@
+2005-08-06 Kimmo
+ PATCH: [ 1201945 ] Localization of ShellExtension.dll
+  Submitted by Takashi Sawanaka
+  ShellExtension: Register.bat ShellExtension.dsp ShellExtension.rc WinMergeShell.cpp
+  shellExtension new file: ShellExtensionU.def
+  ShellExtension new folder: Languages
+
 2005-08-05 Kimmo
  PATCH: [ 1252076 ] Improve About-dialog (unicode info, better layout)
   Src: Merge.cpp Merge.rc resource.h

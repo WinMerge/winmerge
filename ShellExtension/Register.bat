@@ -14,13 +14,15 @@ IF "%1" == "/u" Goto Uninstall
 IF "%1" == "/U" Goto Uninstall
 
 Echo Registering ShellExtension.dll...
-RegSvr32 ShellExtension.dll
+if "%OS%" == "" RegSvr32 ShellExtension.dll
+if "%OS%" == "Windows_NT" RegSvr32 ShellExtensionU.dll
 
 Goto End
 
 :Uninstall
 Echo UnRegistering ShellExtension.dll...
-RegSvr32 /u ShellExtension.dll
+if "%OS%" == "" RegSvr32 /u ShellExtension.dll
+if "%OS%" == "Windows_NT" RegSvr32 /u ShellExtensionU.dll
 
 :End
 CLS
