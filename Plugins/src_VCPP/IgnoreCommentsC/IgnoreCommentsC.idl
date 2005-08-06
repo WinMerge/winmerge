@@ -1,0 +1,44 @@
+// IgnoreCommentsC.idl : IDL source for IgnoreCommentsC.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (IgnoreCommentsC.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(DAFE8196-A8BD-47F1-9D0C-7299D93105E7),
+		dual,
+		helpstring("IWinMergeScript Interface"),
+		pointer_default(unique)
+	]
+	interface IWinMergeScript : IDispatch
+	{
+		[propget, id(1), helpstring("property PluginEvent")] HRESULT PluginEvent([out, retval] BSTR *pVal);
+		[propget, id(2), helpstring("property PluginDescription")] HRESULT PluginDescription([out, retval] BSTR *pVal);
+		[propget, id(3), helpstring("property PluginFileFilters")] HRESULT PluginFileFilters([out, retval] BSTR *pVal);
+		[propget, id(4), helpstring("property PluginIsAutomatic")] HRESULT PluginIsAutomatic([out, retval] VARIANT_BOOL *pVal);
+		[id(5), helpstring("method PrediffBufferW")] HRESULT PrediffBufferW([in] BSTR * pText, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [out, retval] VARIANT_BOOL * pbHandled);
+	};
+
+[
+	uuid(AC67AC1C-3C43-4719-8602-6D5AC34717C5),
+	version(1.0),
+	helpstring("IgnoreCommentsC 1.0 Type Library")
+]
+library IgnoreCommentsCLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(85FC7BD5-AD05-4D91-A7FC-487AB4722DE8),
+		helpstring("WinMergeScript Class")
+	]
+	coclass WinMergeScript
+	{
+		[default] interface IWinMergeScript;
+	};
+};
+

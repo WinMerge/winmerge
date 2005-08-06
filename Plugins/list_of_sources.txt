@@ -28,6 +28,11 @@ VC		FILE_PACK_UNPACK	DisplayXMLFiles			.xml
 Display xml files nicely, by consistently inserting tabs and linebreaks.
 No packing (no save).
 
+VC		FILE_PACK_UNPACK	IgnoreCommentsC			.cpp, .cxx, .h, .hxx, .c, .php, .js
+
+Ignore comments in C/C++/PHP/JS files.
+No packing (no save).
+
 VB		BUFFER_PACK_UNPACK	HideLastLetter			*.last
 
 The last non-space character is invisible in the merge editor (and restored when saving)

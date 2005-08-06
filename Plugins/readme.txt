@@ -1,3 +1,10 @@
+2005-08-06 Kimmo
+ PATCH: [ 1150083 ] plugin to filter C-style comments CPP/JS/PHP
+  Submitted by daemonui
+  Plugins/list_of_sources.txt
+  New directory: Plugins\src_VCPP\IgnoreCommentsC
+  New file: Plugins\dlls\IgnoreCommentsC.dll
+
 2005-07-25 Perry
  BUG: [ 1244540 ] DisplayXMLFiles doesn't compile
   src_VCPP\DisplayXMLFiles: WinMergeScript.cpp
