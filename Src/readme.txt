@@ -3,6 +3,8 @@
   Src: DirDoc.cpp MergeDoc.cpp paths.cpp paths.h
  PATCH: [ 1253205 ] Remove dynamic dll loading from FilePathEdit
   Src: FilePathEdit.cpp FilePathEdit.h
+ PATCH: [ 1253350 ] Use new-style folder browse dialog
+  Src: Merge.cpp
 
 2005-08-06 Kimmo
  PATCH: [ 1201945 ] Localization of ShellExtension.dll

@@ -57,6 +57,19 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// VC 6 headers don't define these constants for folder browse dialog
+// so define them here. Copied from shlobj.h
+#ifndef BIF_EDITBOX
+#define BIF_EDITBOX            0x0010   // Add an editbox to the dialog
+#endif
+#ifndef BIF_NEWDIALOGSTYLE
+#define BIF_NEWDIALOGSTYLE     0x0040   // Use the new dialog layout with the ability to resize
+                                        // Caller needs to call OleInitialize() before using this API
+#endif
+#ifndef BIF_USENEWUI
+#define BIF_USENEWUI           (BIF_NEWDIALOGSTYLE | BIF_EDITBOX)
+#endif
+
 // URL for hyperlink in About-dialog
 static const TCHAR WinMergeURL[] = _T("http://winmerge.org");
 
@@ -633,6 +646,7 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 			LPCTSTR title /*=NULL*/, 
 			HWND hwndOwner /*=NULL*/) 
 {
+	UNREFERENCED_PARAMETER(root_path);
 	BROWSEINFO bi;
 	LPMALLOC pMalloc;
 	LPITEMIDLIST pidl;
@@ -643,7 +657,7 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 	bi.pidlRoot = NULL;  // Start from desktop folder
 	bi.pszDisplayName = szPath;
 	bi.lpszTitle = title;
-	bi.ulFlags = BIF_RETURNONLYFSDIRS; // | BIF_EDITBOX
+	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_USENEWUI;
 	bi.lpfn = NULL;
 	bi.lParam = NULL;
 
