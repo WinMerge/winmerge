@@ -624,7 +624,7 @@ void CDiffWrapper::SwapToGlobalSettings()
 void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op)
 {
 	TRY {
-		DIFFRANGE dr = {0};
+		DIFFRANGE dr;
 		dr.begin0 = begin0;
 		dr.end0 = end0;
 		dr.begin1 = begin1;
@@ -648,7 +648,7 @@ void CDiffWrapper::AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, 
  */
 void CDiffWrapper::FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left)
 {
-	DIFFRANGE dr = {0};
+	DIFFRANGE dr;
 	const int count = m_pDiffList->GetSize();
 	if (count > 0)
 	{

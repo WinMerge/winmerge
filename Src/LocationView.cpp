@@ -60,7 +60,12 @@ CLocationView::CLocationView()
 	, m_view1(0)
 	, m_visibleTop(-1)
 	, m_visibleBottom(-1)
+//	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
+	, m_bIgnoreTrivials(true)
 {
+	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
+	// There is no GUI to do this
+
 	SetConnectMovedBlocks(mf->m_options.GetInt(OPT_CONNECT_MOVED_BLOCKS));
 }
 
@@ -167,6 +172,9 @@ void CLocationView::OnDraw(CDC* pDC)
 	DrawVisibleAreaRect();
 	m_movedLines.RemoveAll();
 
+	// Adjust line coloring if ignoring trivials
+	DWORD ignoreFlags = (m_bIgnoreTrivials ? LF_TRIVIAL : 0);
+
 	while (true)
 	{
 		// here nstart0 = last line before block
@@ -184,12 +192,12 @@ void CLocationView::OnDraw(CDC* pDC)
 		BOOL bInsideDiff = ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0);
 
 		// Draw left side block
-		m_view0->GetLineColors(nstart0, cr0, crt, bwh);
+		m_view0->GetLineColors2(nstart0, ignoreFlags, cr0, crt, bwh);
 		CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
 		DrawRect(pDC, r0, cr0, bInsideDiff);
 		
 		// Draw right side block
-		m_view1->GetLineColors(nstart0, cr1, crt, bwh);
+		m_view1->GetLineColors2(nstart0, ignoreFlags, cr1, crt, bwh);
 		CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
 		DrawRect(pDC, r1, cr1, bInsideDiff);
 
@@ -286,44 +294,47 @@ void CLocationView::OnDraw(CDC* pDC)
 BOOL CLocationView::GetNextRect(int &nLineIndex)
 {
 	CMergeDoc *pDoc = GetDocument();
-	BOOL bInDiff = FALSE;
-	int nextDiff = -1;
 	const int nbLines = min(m_view0->GetLineCount(), m_view1->GetLineCount());
-	
-	++nLineIndex;
-	if (nLineIndex >= nbLines)
-		return FALSE;
 
-	bInDiff = pDoc->m_diffList.GetNextDiff(nLineIndex, nextDiff);
-	
-	// No diffs left, return last line of file.
-	if (nextDiff == -1)
+	while(1)
 	{
-		nLineIndex = nbLines - 1;
-		return TRUE;
+
+		++nLineIndex;
+		if (nLineIndex >= nbLines)
+			return FALSE;
+
+		int nextDiff = -1;
+		BOOL bInDiff = pDoc->m_diffList.GetNextDiff(nLineIndex, nextDiff);
+		
+		// No diffs left, return last line of file.
+		if (nextDiff == -1)
+		{
+			nLineIndex = nbLines - 1;
+			return TRUE;
+		}
+
+		const DIFFRANGE * dfi = pDoc->m_diffList.DiffRangeAt(nextDiff);
+		if (!dfi)
+			return FALSE;
+
+		bool ignoreDiff = (m_bIgnoreTrivials && dfi->op == OP_TRIVIAL);
+
+		if (!ignoreDiff && !bInDiff)
+		{
+			// Line not in diff. Return last non-diff line.
+			nLineIndex = dfi->dbegin0 - 1;
+			return TRUE;
+		}
+
+		// find end of diff
+		int nLineEndDiff = (dfi->blank0 == -1) ? dfi->dend1 : dfi->dend0;
+
+		nLineIndex = nLineEndDiff;
+
+		if (!ignoreDiff)
+			return TRUE;
+		// Fall through loop & look for next diff (we ignored this one)
 	}
-
-	DIFFRANGE di = {0};
-	if (!pDoc->m_diffList.GetDiff(nextDiff, di))
-		return FALSE;
-
-	// Line not in diff. Return last non-diff line.
-	if (bInDiff == FALSE)
-	{
-		nLineIndex = di.dbegin0 - 1;
-		return TRUE;
-	}
-
-	// Line is in diff. Get last line from side where all lines are present.
-	if (di.op == OP_LEFTONLY || di.op == OP_RIGHTONLY || di.op == OP_DIFF)
-	{
-		if (di.blank0 == -1)
-			nLineIndex = di.dend1;
-		else
-			nLineIndex = di.dend0;
-	}
-
-	return TRUE;
 }
 
 /** 

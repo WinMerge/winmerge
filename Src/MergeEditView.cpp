@@ -278,7 +278,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 
 	for (UINT i = 0; i < nDiffs; i++)
 	{
-		DIFFRANGE curDiff = {0};
+		DIFFRANGE curDiff;
 		VERIFY(pd->m_diffList.GetDiff(i, curDiff));
 		if ((int)curDiff.dbegin0 >= firstLine)
 		{
@@ -292,7 +292,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	lastDiff = nDiffs - 1;
 	for (i = firstDiff; i < nDiffs; i++)
 	{
-		DIFFRANGE curDiff = {0};
+		DIFFRANGE curDiff;
 		VERIFY(pd->m_diffList.GetDiff(i, curDiff));
 		if ((int)curDiff.dend0 > lastLine)
 		{
@@ -402,7 +402,26 @@ COLORREF CMergeEditView::GetColor(int nColorIndex)
 void CMergeEditView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
+	DWORD ignoreFlags = 0;
+	GetLineColors2(nLineIndex, ignoreFlags, crBkgnd, crText, bDrawWhitespace);
+}
+
+/**
+ * @brief Determine text and background color for line
+ * @param [in] nLineIndex Index of line in view (NOT line in file)
+ * @param [in] ignoreFlags Flags that caller wishes ignored
+ * @param [out] crBkgnd Backround color for line
+ * @param [out] crText Text color for line
+ *
+ * This version allows caller to suppress particular flags
+ */
+void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF & crBkgnd,
+                                COLORREF & crText, BOOL & bDrawWhitespace)
+{
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
+
+	if (dwLineFlags & ignoreFlags)
+		dwLineFlags &= (~ignoreFlags);
 
 	// Line inside diff
 	if (dwLineFlags & LF_WINMERGE_FLAGS)
@@ -863,12 +882,17 @@ void CMergeEditView::OnNextdiff()
 	int curDiff = pd->GetCurrentDiff();
 	if (curDiff != -1)
 	{
-		if (curDiff == pd->m_diffList.GetSize() - 1)
-			// We're on a last diff, so select that
-			SelectDiff(curDiff, TRUE, FALSE);
-		else
-			// We're on a diff, so select the next one
-		SelectDiff(curDiff + 1, TRUE, FALSE);
+		// We're on a diff
+		// Find out if there is a following significant diff
+		int nextDiff = curDiff;
+		if (curDiff < pd->m_diffList.GetSize() - 1)
+		{
+			nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
+			if (nextDiff == -1)
+				nextDiff = curDiff;
+		}
+		// nextDiff is the next one if there is one, else it is the one we're on
+		SelectDiff(nextDiff, TRUE, FALSE);
 	}
 	else
 	{
@@ -876,7 +900,7 @@ void CMergeEditView::OnNextdiff()
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		curDiff = pd->m_diffList.NextDiffFromLine(line);
+		curDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
 		if (curDiff >= 0)
 			SelectDiff(curDiff, TRUE, FALSE);
 	}
@@ -888,14 +912,18 @@ void CMergeEditView::OnNextdiff()
 void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_diffList.GetSize() == 0)
+	const DIFFRANGE * dfi = pd->m_diffList.LastSignificantDiffRange();
+
+	if (!dfi)
+	{
+		// There aren't any significant differences
 		pCmdUI->Enable(FALSE);
+	}
 	else
 	{
+		// Enable if the beginning of the last significant difference is after caret
 		CPoint pos = GetCursorPos();
-		DIFFRANGE diff;
-		pd->m_diffList.GetDiff(pd->m_diffList.GetSize() - 1, diff);
-		pCmdUI->Enable(pos.y < (long)diff.dbegin0);
+		pCmdUI->Enable(pos.y < (long)dfi->dbegin0);
 	}
 }
 
@@ -919,12 +947,17 @@ void CMergeEditView::OnPrevdiff()
 
 	if (curDiff != -1)
 	{
-		if (curDiff == 0)
-			// We're on a first diff, select it
-			SelectDiff(curDiff, TRUE, FALSE);
-		else
-			// We're on a diff, so select the previous one
-			SelectDiff(curDiff - 1, TRUE, FALSE);
+		// We're on a diff
+		// Find out if there is a preceding significant diff
+		int prevDiff = curDiff;
+		if (curDiff > 0)
+		{
+			prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
+			if (prevDiff == -1)
+				prevDiff = curDiff;
+		}
+		// prevDiff is the preceding one if there is one, else it is the one we're on
+		SelectDiff(prevDiff, TRUE, FALSE);
 	}
 	else
 	{
@@ -932,7 +965,7 @@ void CMergeEditView::OnPrevdiff()
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
-		curDiff = pd->m_diffList.PrevDiffFromLine(line);
+		curDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
 		if (curDiff >= 0)
 			SelectDiff(curDiff, TRUE, FALSE);
 	}
@@ -944,14 +977,18 @@ void CMergeEditView::OnPrevdiff()
 void CMergeEditView::OnUpdatePrevdiff(CCmdUI* pCmdUI)
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_diffList.GetSize() == 0)
+	const DIFFRANGE * dfi = pd->m_diffList.FirstSignificantDiffRange();
+
+	if (!dfi)
+	{
+		// There aren't any significant differences
 		pCmdUI->Enable(FALSE);
+	}
 	else
 	{
+		// Enable if the end of the first significant difference is before caret
 		CPoint pos = GetCursorPos();
-		DIFFRANGE diff;
-		pd->m_diffList.GetDiff(0, diff);
-		pCmdUI->Enable(pos.y > (long)diff.dend0);
+		pCmdUI->Enable(pos.y > (long)dfi->dend0);
 	}
 }
 
@@ -1346,7 +1383,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 	if (nDiff >= 0 && nDiff < pd->m_diffList.GetSize())
 	{
 		CPoint ptStart, ptEnd;
-		DIFFRANGE curDiff = {0};
+		DIFFRANGE curDiff;
 		pd->m_diffList.GetDiff(nDiff, curDiff);
 
 		ptStart.x = 0;

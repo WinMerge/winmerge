@@ -49,6 +49,23 @@ struct DIFFRANGE
 	int blank0;		/**< Number of blank lines in file1 */
 	int blank1;		/**< Number of blank lines in file2 */
 	BYTE op;		/**< Operation done with this diff */
+	DIFFRANGE() { memset(this, 0, sizeof(*this)); }
+};
+
+/**
+ * @brief DIFFRANGE with links for chain of non-trivial entries
+ *
+ * Next and prev are array indices used by the owner (DiffList)
+ */
+struct DiffRangeInfo
+{
+	DIFFRANGE diffrange;
+	int next; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
+	int prev; /**< link (array index) for doubly-linked chain of non-trivial DIFFRANGEs */
+
+	DiffRangeInfo() { InitLinks(); }
+	DiffRangeInfo(const DIFFRANGE & di) : diffrange(di) { InitLinks(); }
+	void InitLinks() { next = prev = -1; }
 };
 
 /**
@@ -85,11 +102,21 @@ public:
 	int LineToDiff(UINT nLine) const;
 	BOOL GetPrevDiff(int nLine, int &nDiff) const;
 	BOOL GetNextDiff(int nLine, int &nDiff) const;
-	int PrevDiffFromLine(UINT nLine) const;
-	int NextDiffFromLine(UINT nLine) const;
+	int PrevSignificantDiffFromLine(UINT nLine) const;
+	int NextSignificantDiffFromLine(UINT nLine) const;
+	int NextSignificantDiff(int nDiff) const;
+	int PrevSignificantDiff(int nDiff) const;
+	const DIFFRANGE * FirstSignificantDiffRange() const;
+	const DIFFRANGE * LastSignificantDiffRange() const;
+
+	const DIFFRANGE * DiffRangeAt(int nDiff) const;
+
+	void ConstructSignificantChain(); // must be called after diff list is entirely populated
 
 private:
-	CArray<DIFFRANGE,DIFFRANGE> m_diffs; /**< Difference list */
+	CArray<DiffRangeInfo,DiffRangeInfo> m_diffs; /**< Difference list */
+	int m_firstSignificant; /**< Index of first significant diff in m_diffs */
+	int m_lastSignificant; /**< Index of last significant diff in m_diffs */
 };
 
 #endif // _DIFFLIST_H_

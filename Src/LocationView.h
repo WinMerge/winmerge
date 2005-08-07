@@ -77,6 +77,7 @@ private:
 	int m_visibleTop; //*< Top visible line for visible area indicator */
 	int m_visibleBottom; //*< Bottom visible line for visible area indicator */
 	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
+	bool m_bIgnoreTrivials; //*< Whether to paint trivial blocks */
 
 	// Generated message map functions
 protected:

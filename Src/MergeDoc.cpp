@@ -758,7 +758,7 @@ void CMergeDoc::ListCopy(bool bSrcLeft, bool bCurrentLeft,
 	int curDiff = GetCurrentDiff();
 	if (curDiff!=-1)
 	{
-		DIFFRANGE cd = {0};
+		DIFFRANGE cd;
 		VERIFY(m_diffList.GetDiff(curDiff, cd));
 		CDiffTextBuffer& sbuf = bSrcLeft? m_ltBuf:m_rtBuf;
 		CDiffTextBuffer& dbuf = bSrcLeft? m_rtBuf:m_ltBuf;
@@ -2065,7 +2065,7 @@ void CMergeDoc::PrimeTextBuffers()
 	UINT RightExtras=0;   // extra lines added to right view
 	for (nDiff = 0; nDiff < nDiffCount; ++ nDiff)
 	{
-		DIFFRANGE curDiff = {0};
+		DIFFRANGE curDiff;
 		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// this guarantees that all the diffs are synchronized
@@ -2094,7 +2094,7 @@ void CMergeDoc::PrimeTextBuffers()
 	// add ghost lines, and set flags
 	for (nDiff = nDiffCount - 1; nDiff >= 0; nDiff --)
 	{
-		DIFFRANGE curDiff = {0};
+		DIFFRANGE curDiff;
 		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// move matched lines after curDiff
@@ -2252,36 +2252,13 @@ void CMergeDoc::PrimeTextBuffers()
 		VERIFY(m_diffList.SetDiff(nDiff, curDiff));
 	}             // for (nDiff = nDiffCount; nDiff-- > 0; )
 
-	if (m_nTrivialDiffs)
-	{
-		// The following code deletes all trivial changes
-		//
-		// #1) Copy nontrivial diffs into new array
-		CArray<DIFFRANGE,DIFFRANGE> newdiffs;
-		newdiffs.SetSize(nDiffCount - m_nTrivialDiffs);
-		UINT i,j;
-		for (i=0,j=0; j < nDiffCount; ++j)
-		{
-			// j is index into difflist
-			// i is index into newdiffs
-			// i grows more slowly than j, as i skips trivials
+	m_diffList.ConstructSignificantChain();
 
-			DIFFRANGE curDiff = {0};
-			VERIFY(m_diffList.GetDiff(j, curDiff));
-			if (curDiff.op != OP_TRIVIAL)
-			{
-				newdiffs[i] = curDiff;
-				++i;
-			}
-		}
-		// #2) Now copy from new array back into master array
-		m_diffList.SetSize(newdiffs.GetSize());
-		nDiffCount = m_diffList.GetSize();
-		for (i=0; i < nDiffCount; ++i)
-		{
-			VERIFY(m_diffList.SetDiff(i, newdiffs[i]));
-		}
-	}
+	// Used to strip trivial diffs out of the diff chain
+	// if m_nTrivialDiffs
+	// via copying them all to a new chain, then copying only non-trivials back
+	// but now we keep all diffs, including trivial diffs
+
 
 	m_ltBuf.FinishLoading();
 	m_rtBuf.FinishLoading();

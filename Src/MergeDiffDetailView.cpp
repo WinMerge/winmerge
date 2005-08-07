@@ -225,8 +225,18 @@ COLORREF CMergeDiffDetailView::GetColor(int nColorIndex)
 void CMergeDiffDetailView::GetLineColors(int nLineIndex, COLORREF & crBkgnd,
                                 COLORREF & crText, BOOL & bDrawWhitespace)
 {
+	DWORD ignoreFlags = 0;
+	GetLineColors2(nLineIndex, ignoreFlags, crBkgnd, crText, bDrawWhitespace);
+}
+/// virtual, avoid coloring the whole diff with diff color 
+void CMergeDiffDetailView::GetLineColors2(int nLineIndex, DWORD ignoreFlags,
+							COLORREF & crBkgnd, COLORREF & crText, BOOL & bDrawWhitespace)
+{
 	DWORD dwLineFlags = GetLineFlags(nLineIndex);
-	
+
+	if (dwLineFlags & ignoreFlags)
+		dwLineFlags &= (~ignoreFlags);
+
 	// Line with WinMerge flag, 
 	// Lines with only the LF_DIFF/LF_TRIVIAL flags are not colored with Winmerge colors
 	if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED))
@@ -273,7 +283,7 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 	}
 	else
 	{
-		DIFFRANGE curDiff = {0};
+		DIFFRANGE curDiff;
 		VERIFY(pd->m_diffList.GetDiff(nDiff, curDiff));
 
 		newlineBegin = curDiff.dbegin0;

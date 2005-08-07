@@ -174,6 +174,8 @@ public:
 	virtual COLORREF GetColor(int nColorIndex);
 	virtual void GetLineColors (int nLineIndex, COLORREF & crBkgnd,
 			COLORREF & crText, BOOL & bDrawWhitespace);
+	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
+		, COLORREF & crBkgnd, COLORREF & crText, BOOL & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft);
 	int GetTopLine() { return m_nTopLine; };

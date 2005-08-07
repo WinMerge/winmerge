@@ -1,3 +1,9 @@
+2005-08-07 Perry
+ PATCH: [ 1248259 ] Preserve trivial diffs in diff chain
+  Src: DiffList.cpp DiffList.h DiffWrapper.cpp LocationView.cpp
+   LocationView.h MergeDiffDetailView.cpp MergeDiffDetailView.h
+   MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+
 2005-08-07 Kimmo
  PATCH: [ 1253100 ] Shorter paths in captions
   Src: DirDoc.cpp MergeDoc.cpp paths.cpp paths.h

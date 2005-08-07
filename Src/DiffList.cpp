@@ -32,6 +32,8 @@
 DiffList::DiffList()
 {
 	m_diffs.SetSize(64);
+	m_firstSignificant = -1;
+	m_lastSignificant = -1;
 }
 
 /**
@@ -40,6 +42,8 @@ DiffList::DiffList()
 void DiffList::Clear()
 {
 	m_diffs.RemoveAll();
+	m_firstSignificant = -1;
+	m_lastSignificant = -1;
 }
 
 /**
@@ -63,28 +67,42 @@ void DiffList::SetSize(UINT nSize)
  */
 void DiffList::AddDiff(DIFFRANGE di)
 {
-	m_diffs.Add(di);
+	DiffRangeInfo dri(di);
+	m_diffs.Add(dri);
 }
 
 /**
- * @brief Returns copy of DIFFITEM from diff-list.
+ * @brief Returns copy of DIFFRANGE from diff-list.
  * @param [in] nDiff Index of DIFFITEM to return.
  * @param [out] di DIFFITEM returned (empty if error)
  * @return TRUE if DIFFITEM found from given index.
  */
 BOOL DiffList::GetDiff(int nDiff, DIFFRANGE &di) const
 {
-	ASSERT(nDiff < m_diffs.GetSize());
-	DIFFRANGE diff = {0};
-	if (nDiff >= 0 && nDiff < m_diffs.GetSize())
+	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
+	if (!dfi)
 	{
-		di = m_diffs[nDiff];
-		return TRUE;
+		DIFFRANGE empty;
+		di = empty;
+		return FALSE;
+	}
+	di = *dfi;
+	return TRUE;
+}
+
+/**
+ * @brief Return (const) pointer to DIFFRANGE entry requested
+ */
+const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
+{
+	if (nDiff>=0 && nDiff < m_diffs.GetSize())
+	{
+		return &m_diffs[nDiff].diffrange;
 	}
 	else
 	{
-		di = diff;
-		return FALSE;
+		ASSERT(0);
+		return NULL;
 	}
 }
 
@@ -114,10 +132,10 @@ BOOL DiffList::SetDiff(int nDiff, DIFFRANGE di)
  */
 int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
 {
-	ASSERT((int)nDiff < m_diffs.GetSize());
-	if (nLine < m_diffs[nDiff].dbegin0)
+	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
+	if (nLine < dfi->dbegin0)
 		return -1;
-	else if (nLine > m_diffs[nDiff].dend0)
+	else if (nLine > dfi->dend0)
 		return 1;
 	else
 		return 0;
@@ -130,9 +148,8 @@ int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
  */
 BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 {
-	ASSERT((int)nDiff < m_diffs.GetSize());
-	if (nLine >= m_diffs[nDiff].dbegin0 &&
-			nLine <= m_diffs[nDiff].dend0)
+	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
+	if (nLine >= dfi->dbegin0 && nLine <= dfi->dend0)
 		return TRUE;
 	else
 		return FALSE;
@@ -150,9 +167,9 @@ int DiffList::LineToDiff(UINT nLine) const
 		return -1;
 
 	// First check line is not before first or after last diff
-	if (nLine < m_diffs[0].dbegin0)
+	if (nLine < DiffRangeAt(0)->dbegin0)
 		return -1;
-	if (nLine > m_diffs[nDiffCount-1].dend0)
+	if (nLine > DiffRangeAt(nDiffCount-1)->dend0)
 		return -1;
 
 	// Use binary search to search for a diff.
@@ -201,7 +218,7 @@ BOOL DiffList::GetPrevDiff(int nLine, int &nDiff) const
 		bInDiff = FALSE;
 		for (int i = m_diffs.GetSize() - 1; i >= 0 ; i--)
 		{
-			if ((int)m_diffs[i].dend0 <= nLine)
+			if ((int)DiffRangeAt(i)->dend0 <= nLine)
 			{
 				numDiff = i;
 				break;
@@ -230,7 +247,7 @@ BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
 		const int nDiffCount = m_diffs.GetSize();
 		for (int i = 0; i < nDiffCount; i++)
 		{
-			if ((int)m_diffs[i].dbegin0 >= nLine)
+			if ((int)DiffRangeAt(i)->dbegin0 >= nLine)
 			{
 				numDiff = i;
 				break;
@@ -246,13 +263,14 @@ BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
  * @param [in] nLine First line searched.
  * @return Index for next difference.
  */
-int DiffList::PrevDiffFromLine(UINT nLine) const
+int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
 
 	for (int i = m_diffs.GetSize() - 1; i >= 0 ; i--)
 	{
-		if (m_diffs[i].dend0 <= nLine)
+		const DIFFRANGE * dfi = DiffRangeAt(i);
+		if (dfi->op != OP_TRIVIAL && dfi->dend0 <= nLine)
 		{
 			nDiff = i;
 			break;
@@ -266,18 +284,76 @@ int DiffList::PrevDiffFromLine(UINT nLine) const
  * @param [in] nLine First line searched.
  * @return Index for previous difference.
  */
-int DiffList::NextDiffFromLine(UINT nLine) const
+int DiffList::NextSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
 	const int nDiffCount = m_diffs.GetSize();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{
-		if (m_diffs[i].dbegin0 >= nLine)
+		const DIFFRANGE * dfi = DiffRangeAt(i);
+		if (dfi->op != OP_TRIVIAL && dfi->dbegin0 >= nLine)
 		{
 			nDiff = i;
 			break;
 		}
 	}
 	return nDiff;
+}
+
+/**
+ * @brief Construct the doubly-linked chain of significant differences
+ */
+void DiffList::ConstructSignificantChain()
+{
+	m_firstSignificant = -1;
+	m_lastSignificant = -1;
+	int prev = -1;
+	// must be called after diff list is entirely populated
+	for (int i = 0; i < m_diffs.GetSize(); ++i)
+	{
+		if (m_diffs[i].diffrange.op == OP_TRIVIAL)
+		{
+			m_diffs[i].prev = -1;
+			m_diffs[i].next = -1;
+		}
+		else
+		{
+			m_diffs[i].prev = prev;
+			if (prev != -1)
+				m_diffs[prev].next = i;
+			prev = i;
+			if (m_firstSignificant == -1)
+				m_firstSignificant = i;
+			m_lastSignificant = i;
+		}
+	}
+}
+
+int DiffList::NextSignificantDiff(int nDiff) const
+{
+	return m_diffs[nDiff].next;
+}
+
+int DiffList::PrevSignificantDiff(int nDiff) const
+{
+	return m_diffs[nDiff].prev;
+}
+
+/**
+ * @brief Return pointer to first significant diff range
+ */
+const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
+{
+	if (m_firstSignificant == -1) return NULL;
+	return DiffRangeAt(m_firstSignificant);
+}
+
+/**
+ * @brief Return pointer to last significant diff range
+ */
+const DIFFRANGE * DiffList::LastSignificantDiffRange() const
+{
+	if (m_lastSignificant == -1) return NULL;
+	return DiffRangeAt(m_lastSignificant);
 }
