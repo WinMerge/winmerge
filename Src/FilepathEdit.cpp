@@ -18,18 +18,19 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// FilepathEdit.cpp : implementation of the CFilepathEdit class
-//
+/** 
+ * @file  FilePathEdit.cpp
+ *
+ * @brief Implementation of the CFilepathEdit class.
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "BCMenu.h"
-
 #include "FilepathEdit.h"
-
-// for PathCompactPath
-//#include "Shlwapi.h"		// dynamically linked
+#include "Shlwapi.h"
 #include "dllVer.h"		
-
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -37,49 +38,19 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-
-// safe PathCompactPath call
-// as it is not supported for shlwapi.dll before 4.71
-
-typedef BOOL (STDAPICALLTYPE *PathCompactPathFnc)(
-	HDC hDC,
-	LPTSTR lpszPath,
-	UINT dx);
-
-#ifdef UNICODE
-// Windows doesn't seem to have Unicode version of GetProcAddress, so both strings here are 8-bit :(
-#define PathCompactPathName "PathCompactPathW"
-#else
-#define PathCompactPathName "PathCompactPathA"
-#endif
-
-static BOOL PathCompactPathDynamic(HDC hdc, LPTSTR lpszPath, UINT dx)
-{
-	if (GetDllVersion(_T("shlwapi.dll")) < PACKVERSION(4,71))
-	{
-		// not supported before 4.71
-		return FALSE;
-	}
-
-	Library lib;
-	if (!lib.Load(_T("shlwapi.dll")))
-	{
-		// Shouldn't happen; GetDllVersion loaded this successfully, oh well
-		return FALSE;
-	}
-	FARPROC proc = GetProcAddress(lib.Inst(), PathCompactPathName);
-	if (!proc)
-	{
-		// Shouldn't happen, 4.71 should have this, oh well
-		return FALSE;
-	}
-	PathCompactPathFnc pathproc = (PathCompactPathFnc)proc;
-	return (*pathproc)(hdc, lpszPath, dx);
-}
-
-// format a path in a pDC box of width maxWidth
-// try to cut lines only at slash characters
+/** 
+ * @brief Format path for display in header control. 
+ *
+ * Formats path so it fits to given lenght, tries to end lines after
+ * slash chars.
+ *
+ * @param [in] pDC Pointer to draw context.
+ * @param [in] nMaxWidth Maximum width of string.
+ * @param [in,out] sFilePath:
+ * - in: string to format
+ * - out: formatted string
+ * @return Number of lines path is splitted to.
+ */
 int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 {
 	int iBegin = 0;
@@ -195,7 +166,7 @@ void CFilepathEdit::RefreshDisplayText()
 	CRect rect;
 	GetRect(rect);
 	// take GetBuffer (lenght +3) to count for ellipsis
-	PathCompactPathDynamic(lDC.GetSafeHdc(), line.GetBuffer(line.GetLength()+3), rect.Width());
+	PathCompactPath(lDC.GetSafeHdc(), line.GetBuffer(line.GetLength()+3), rect.Width());
 	line.ReleaseBuffer();
 	
 	// set old font back
@@ -223,18 +194,8 @@ void CFilepathEdit::RefreshDisplayText()
  */
 LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 {
-
 	GetWholeText(m_sToolTipString);
-
-	if (GetDllVersion(_T("shlwapi.dll")) < PACKVERSION(4,70))
-		// \n in tooltip text not supported before 4.70
-		;
-	else
-		FormatFilePathForDisplayWidth(pDC, maxWidth, m_sToolTipString);
-		
-	// add the help text
-// m_sToolTipString += "\n\nRight click on the path to copy";
-
+	FormatFilePathForDisplayWidth(pDC, maxWidth, m_sToolTipString);
 	return (LPCTSTR)m_sToolTipString;
 }
 
@@ -366,5 +327,4 @@ void CFilepathEdit::OnNcPaint()
 	{
 		// no border for inactive views
 	}
-
 }

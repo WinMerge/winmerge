@@ -1,6 +1,8 @@
 2005-08-07 Kimmo
  PATCH: [ 1253100 ] Shorter paths in captions
   Src: DirDoc.cpp MergeDoc.cpp paths.cpp paths.h
+ PATCH: [ 1253205 ] Remove dynamic dll loading from FilePathEdit
+  Src: FilePathEdit.cpp FilePathEdit.h
 
 2005-08-06 Kimmo
  PATCH: [ 1201945 ] Localization of ShellExtension.dll

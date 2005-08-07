@@ -18,24 +18,18 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 // FilepathEdit.h : interface of the CFilepathEdit class
-
-// an edit class for file paths : 
-//   display the path with ellipsis to fill into the CEdit 
-//   prepare a tip with the whole path and a help 
-//   has a right-click context menu with 2 functions (copy whole path, copy filename)
-
-/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  FilePathEdit.h
+ *
+ * @brief Declaration file for CFilepathEdit class.
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #ifndef __FILEPATHEDIT_H__
 #define __FILEPATHEDIT_H__
 
-
-/////////////////////////////////////////////////////////////////////////////
-
-// format a path in a pDC box of width maxWidth
-// try to cut lines only at slash characters
 int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath);
-
 
 /** 
  * @brief Read-only control to display a filepath. 
