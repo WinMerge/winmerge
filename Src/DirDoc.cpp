@@ -864,6 +864,13 @@ void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
 
 /**
  * @brief Set document title to given string or items compared.
+ * 
+ * Formats and sets caption for directory compare window. Caption
+ * has left- and right-side paths separated with '-'.
+ *
+ * @param [in] lpszTitle New title for window if. If this parameter
+ * is not NULL we use this string, otherwise format caption from
+ * actual paths.
  */
 void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 {
@@ -881,46 +888,12 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	}
 	else
 	{
-		// PathCompactPath() supported in versions 4.71 and higher
-		// According to
-		// "http://members.ozemail.com.au/~geoffch/samples/win32/shell/shlwapi/functions/index.html",
-		// PathCompactPath() is supported since 4.70. Anyway, as we link to shlwapi import library,
-		// we wouldn't be running if any one of the functions we link to weren't implemented. This
-		// means there is no point in checking shlwapi.dll version here.
-
-		// Combine title from file/dir names
-		TCHAR *pszLeftFile;
-		TCHAR *pszRightFile;
-		CString sLeftFile;
-		CString sRightFile;
-		CRect rcClient;
 		CString strTitle;
 		const TCHAR strSeparator[] = _T(" - ");
-		CClientDC lDC(m_pDirView);
-		
-		m_pDirView->GetClientRect(&rcClient);
-		const DWORD width = rcClient.right / 3;
 
-		sLeftFile = m_pCtxt->GetLeftPath();
-		pszLeftFile = sLeftFile.GetBuffer(MAX_PATH);
-
-		if (PathCompactPath(lDC.GetSafeHdc(), pszLeftFile, width))
-			strTitle = pszLeftFile;
-		else
-			strTitle = m_pCtxt->GetLeftPath();
-
-		sLeftFile.ReleaseBuffer();
+		strTitle = paths_GetLastSubdir(m_pCtxt->GetLeftPath());
 		strTitle += strSeparator;
-
-		sRightFile = m_pCtxt->GetRightPath();
-		pszRightFile = sRightFile.GetBuffer(MAX_PATH);
-
-		if (PathCompactPath(lDC.GetSafeHdc(), pszRightFile, width))
-			strTitle += pszRightFile;
-		else
-			strTitle += m_pCtxt->GetRightPath();
-		sRightFile.ReleaseBuffer();
-
+		strTitle += paths_GetLastSubdir(m_pCtxt->GetRightPath());
 		CDocument::SetTitle(strTitle);
 	}	
 }

@@ -425,6 +425,41 @@ CString paths_GetParentPath(CString path)
 }
 
 /** 
+ * @brief Get last subdirectory of path.
+ *
+ * Returns last subdirectory name (if one exists) from given path.
+ * For example:
+ * - C:\work\myproject returns \myproject
+ * @param [in] path Original path.
+ * @return Last subdirectory in path.
+ */
+CString paths_GetLastSubdir(CString path)
+{
+	CString parentPath;
+	int len = path.GetLength();
+
+	// Remove last '\' from paths
+	if (path[len - 1] == '\\')
+	{
+		path.Delete(len - 1, 1);
+		--len;
+	}
+
+	// Find last part of path
+	int pos = path.ReverseFind('\\');
+
+	if (pos > 2)
+	{
+		path.Delete(0, pos);
+		parentPath = path;
+	}
+	else
+		return path;
+
+	return parentPath;
+}
+
+/** 
  * @brief Checks if path is absolute path
  */
 BOOL paths_IsPathAbsolute(const CString &path)

@@ -3007,48 +3007,46 @@ void CMergeDoc::SetEditedAfterRescan(BOOL bLeft)
  */
 void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 {
+	const TCHAR pszSeparator[] = _T(" - ");
+	CString sTitle;
+
 	if (lpszTitle)
-		CDocument::SetTitle(lpszTitle);
+		sTitle = lpszTitle;
 	else
 	{
-		CString strTitle;
-
-		// PathCompactPath() supported in versions 4.71 and higher
-		if (GetDllVersion(_T("shlwapi.dll")) >= PACKVERSION(4,71))
+		if (!m_strLeftDesc.IsEmpty())
+			sTitle += m_strLeftDesc;
+		else
 		{
-			// Combine title from file/dir names
-			TCHAR pszLeftFile[_MAX_PATH] = {0};
-			TCHAR pszRightFile[_MAX_PATH] = {0};
-			CString strSeparator = _T(" - ");
-			DWORD res = 0;
-
-			if (!m_strLeftDesc.IsEmpty())
-				strTitle = m_strLeftDesc;
-			else
+			CString file;
+			CString ext;
+			SplitFilename(m_filePaths.GetLeft(), NULL, &file, &ext);
+			sTitle += file;
+			if (!ext.IsEmpty())
 			{
-				if (PathCompactPathEx(pszLeftFile, m_filePaths.GetLeft(), CAPTION_PATH_MAX, res))
-					strTitle = pszLeftFile;
-				else
-					strTitle = m_filePaths.GetLeft();
-			}
-	
-			strTitle += strSeparator;
-	
-			if (!m_strRightDesc.IsEmpty())
-				strTitle += m_strRightDesc;
-			else
-			{
-				if (PathCompactPathEx(pszRightFile, m_filePaths.GetRight(), CAPTION_PATH_MAX, res))
-					strTitle += pszRightFile;
-				else
-					strTitle += m_filePaths.GetRight();
+				sTitle += _T(".");
+				sTitle += ext;
 			}
 		}
-		else
-			VERIFY(strTitle.LoadString(IDS_FILE_COMPARISON_TITLE));
 
-		CDocument::SetTitle(strTitle);	
-	}	
+		sTitle += pszSeparator;
+
+		if (!m_strRightDesc.IsEmpty())
+			sTitle += m_strRightDesc;
+		else
+		{
+			CString file;
+			CString ext;
+			SplitFilename(m_filePaths.GetRight(), NULL, &file, &ext);
+			sTitle += file;
+			if (!ext.IsEmpty())
+			{
+				sTitle += _T(".");
+				sTitle += ext;
+			}
+		}
+	}
+	CDocument::SetTitle(sTitle);
 }
 
 /**
