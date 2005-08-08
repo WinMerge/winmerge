@@ -1,3 +1,5 @@
+2005-08-08 WinMerge experimental release 2.3.5.1 (cvs)
+
 2005-08-07 Perry
  PATCH: [ 1248259 ] Preserve trivial diffs in diff chain
   Src: DiffList.cpp DiffList.h DiffWrapper.cpp LocationView.cpp
