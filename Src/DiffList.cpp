@@ -97,7 +97,8 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 {
 	if (nDiff>=0 && nDiff < m_diffs.GetSize())
 	{
-		return &m_diffs[nDiff].diffrange;
+		DiffList * pThis = const_cast<DiffList *>(this);
+		return &pThis->m_diffs.ElementAt(nDiff).diffrange;
 	}
 	else
 	{
