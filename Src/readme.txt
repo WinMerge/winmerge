@@ -1,3 +1,5 @@
+2005-08-10 WinMerge experimental release 2.3.5.2 (cvs)
+
 2005-08-10 Kimmo
  BUG: [ 1254903 ] WinMerge 2.3.5.1: Not enough memory at File Comparison
   Fix from Perry
