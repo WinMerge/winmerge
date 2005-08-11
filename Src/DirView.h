@@ -46,6 +46,20 @@ class CDirFrame;
 class PackingInfo;
 class PathContext;
 
+struct ViewCustomFlags
+{
+	enum
+	{
+		// We use extra bits so that no valid values are 0
+		// and each set of flags is in a different hex digit
+		// to make debugging easier
+		// These can always be packed down in the future
+		INVALID_CODE=0,
+		VISIBILITY=0x3, VISIBLE=0x1, HIDDEN=0x2,
+	};
+};
+
+
 namespace varprop { struct VariantValue; }
 
 /**
@@ -236,6 +250,8 @@ protected:
 	CMenu * m_pHeaderPopup;
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	CFont *m_pFont; /**< User-selected font */
+	UINT m_nHiddenItems; /**< Count of items we have hidden */
+
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd*, CPoint point);
@@ -326,6 +342,8 @@ protected:
 	afx_msg void OnUpdateDelete(CCmdUI* pCmdUI);
 	afx_msg void OnMarkedRescan();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
+	afx_msg void OnViewShowHiddenItems();
+	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

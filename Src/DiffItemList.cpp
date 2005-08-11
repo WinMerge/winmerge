@@ -118,3 +118,27 @@ void DiffItemList::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
 	di.ndiffs = diffs + ignored; // see StoreDiffResult() in DirScan.cpp
 	di.nsdiffs = diffs;
 }
+
+/**
+ * @brief Returns item's custom (user) flags.
+ * @param [in] diffpos Position of item.
+ * @return Custom flags from item.
+ */
+UINT DiffItemList::GetCustomFlags1(POSITION diffpos) const
+{
+	ASSERT(diffpos);
+	const DIFFITEM & di = m_dirlist.GetAt(diffpos);
+	return di.customFlags1;
+}
+
+/**
+ * @brief Sets item's custom (user) flags.
+ * @param [in] diffpos Position of item.
+ * @param [in] flag Value of flag to set.
+ */
+void DiffItemList::SetCustomFlags1(POSITION diffpos, UINT flag)
+{
+	ASSERT(diffpos);
+	DIFFITEM & di = m_dirlist.GetAt(diffpos);
+	di.customFlags1 = flag;
+}

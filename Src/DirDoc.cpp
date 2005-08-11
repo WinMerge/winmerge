@@ -897,3 +897,36 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 		CDocument::SetTitle(strTitle);
 	}	
 }
+
+/**
+ * @brief Set item's view-flag.
+ * @param [in] key Item fow which flag is set.
+ * @param [in] flag Flag value to set.
+ * @param [in] mask Mask for possible flag values.
+ */
+void CDirDoc::SetItemViewFlag(POSITION key, UINT flag, UINT mask)
+{
+	UINT curFlags = m_pCtxt->GetCustomFlags1(key);
+	curFlags &= ~mask; // Zero bits masked
+	curFlags |= flag;
+	m_pCtxt->SetCustomFlags1(key, curFlags);
+}
+
+/**
+ * @brief Set all item's view-flag.
+ * @param [in] flag Flag value to set.
+ * @param [in] mask Mask for possible flag values.
+ */
+void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
+{
+	POSITION pos = m_pCtxt->GetFirstDiffPosition();
+
+	while (pos != NULL)
+	{
+		UINT curFlags = m_pCtxt->GetCustomFlags1(pos);
+		curFlags &= ~mask; // Zero bits masked
+		curFlags |= flag;
+		m_pCtxt->SetCustomFlags1(pos, curFlags);
+		m_pCtxt->GetNextDiffPosition(pos);
+	}
+}

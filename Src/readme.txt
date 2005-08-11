@@ -1,3 +1,9 @@
+2005-08-11 Kimmo
+ PATCH: [ 1244009 ] Add userflags to diffitem and remember hidden status
+  Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.cpp DirDoc.h
+   DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-08-10 WinMerge experimental release 2.3.5.2 (cvs)
 
 2005-08-10 Kimmo

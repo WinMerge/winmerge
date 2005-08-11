@@ -86,8 +86,9 @@ struct DIFFITEM : DIFFCODE
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int ndiffs; /**< Total amount of differences */
 	CString errorDesc; /**< technical note about error */
+	UINT customFlags1; /**< Custom flags set 1 */
 
-	DIFFITEM() : ndiffs(-1), nsdiffs(-1) { }
+	DIFFITEM() : ndiffs(-1), nsdiffs(-1), customFlags1(0) { }
 
 	CString getLeftFilepath(const CString &sLeftRoot) const;
 	CString getRightFilepath(const CString &sRightRoot) const;

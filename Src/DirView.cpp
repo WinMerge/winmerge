@@ -77,6 +77,7 @@ CDirView::CDirView()
 , m_pHeaderPopup(NULL)
 , m_pFont(NULL)
 , m_pList(NULL)
+, m_nHiddenItems(0)
 {
 	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 }
@@ -174,6 +175,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_DELETE, OnUpdateDelete)
 	ON_COMMAND(ID_DIR_RESCAN, OnMarkedRescan)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	ON_COMMAND(ID_VIEW_SHOWHIDDENITEMS, OnViewShowHiddenItems)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -396,6 +399,11 @@ void CDirView::Redisplay()
 	{
 		POSITION curdiffpos = diffpos;
 		DIFFITEM di = ctxt.GetNextDiffPosition(diffpos);
+
+		// If item has hidden flag, don't add it
+		if (di.customFlags1 & ViewCustomFlags::HIDDEN)
+			continue;
+
 		if (!di.isResultSame())
 			++alldiffs;
 
@@ -2396,11 +2404,15 @@ void CDirView::OnCopyFilenames()
  */
 void CDirView::OnHideFilenames()
 {
+	CDirDoc *pDoc = GetDocument();
 	int sel = -1;
 	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
+		POSITION pos = GetItemKey(sel);
+		pDoc->SetItemViewFlag(pos, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 		m_pList->DeleteItem(sel--);
+		m_nHiddenItems++;
 	}
 	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
@@ -2556,3 +2568,20 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 	pCmdUI->SetText(s);
 }
 
+/**
+ * @brief Show all hidden items.
+ */
+void CDirView::OnViewShowHiddenItems()
+{
+	GetDocument()->SetItemViewFlag(ViewCustomFlags::VISIBLE, ViewCustomFlags::VISIBILITY);
+	m_nHiddenItems = 0;
+	Redisplay();
+}
+
+/**
+ * @brief Enable/Disable 'Show hidden items' menuitem.
+ */
+void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_nHiddenItems > 0);
+}

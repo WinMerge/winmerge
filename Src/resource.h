@@ -855,7 +855,7 @@
 #define ID_LOCBAR_GOTOLINE_FMT          33093
 #define ID_HELP_MERGE7ZMISMATCH         33094
 #define ID_FILE_OPENPROJECT             33095
-
+#define ID_VIEW_SHOWHIDDENITEMS         33096
 
 // Next default values for new objects
 // 

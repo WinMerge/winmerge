@@ -34,6 +34,8 @@ public:
 
 	void SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask);
 	void SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored);
+	UINT GetCustomFlags1(POSITION diffpos) const;
+	void SetCustomFlags1(POSITION diffpos, UINT flag);
 
 protected:
 	CList<DIFFITEM,DIFFITEM&> m_dirlist; /**< List of diffitems */

@@ -138,6 +138,8 @@ public:
 		};
 	};
 	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory();
+	void SetItemViewFlag(POSITION key, UINT flag, UINT mask);
+	void SetItemViewFlag(UINT flag, UINT mask);
 
 protected:
 	CDiffWrapper m_diffWrapper;
