@@ -186,6 +186,8 @@ BEGIN
         MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "显示跳过的文件(&K)",          ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
+        MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM SEPARATOR
         MENUITEM "选择字体(&F)...",             ID_VIEW_SELECTFONT
         MENUITEM "使用默认字体(&O)",            ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -413,7 +415,7 @@ BEGIN
             MENUITEM "右侧(&R)",                    ID_DIR_DEL_RIGHT
             MENUITEM "两侧(&B)",                    ID_DIR_DEL_BOTH
         END
-        MENUITEM "隐藏文件(&H)",                ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "打开左侧(&O)"
         BEGIN
@@ -1496,6 +1498,7 @@ BEGIN
     ID_FILE_PRINT           "打印当前文件\n打印"
     ID_FILE_PRINT_PREVIEW   "预览打印的效果\n打印预览"
     ID_FILE_OPENPROJECT     "打开工程文件\n打开工程 (Ctrl+J)"
+    ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
 END
 
 STRINGTABLE

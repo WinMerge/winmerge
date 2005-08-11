@@ -186,6 +186,8 @@ BEGIN
         MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
         MENUITEM "필터링된 파일 보기(&K)",      ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
+        MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM SEPARATOR
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -413,7 +415,7 @@ BEGIN
             MENUITEM "오른쪽만(&R)",                ID_DIR_DEL_RIGHT
             MENUITEM "모두(&B)",                    ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Files",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "왼쪽 파일 열기(&O)"
         BEGIN
@@ -1504,6 +1506,7 @@ BEGIN
     ID_FILE_PRINT           "현재 문서를 인쇄합니다.\n인쇄"
     ID_FILE_PRINT_PREVIEW   "미리 보기\n미리 보기"
     ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
 END
 
 STRINGTABLE

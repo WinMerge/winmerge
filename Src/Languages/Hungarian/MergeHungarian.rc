@@ -186,6 +186,8 @@ BEGIN
         MENUITEM "&Bináris fájlok mutatása",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "&Kihagyott fájlok mutatása",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
+        MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM SEPARATOR
         MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
         MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -413,7 +415,7 @@ BEGIN
             MENUITEM "&Jobb oldal",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Mindkettõ",                       ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Fájlok rejtése",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Bal oldal megnyitása"
         BEGIN
@@ -1508,6 +1510,7 @@ BEGIN
     ID_FILE_PRINT           "Az aktív dokumentum nyomtatása\nNyomtatás"
     ID_FILE_PRINT_PREVIEW   "Az oldalak megjelenítése\nNyomtatási elõnézet"
     ID_FILE_OPENPROJECT     "Projekt fájl megnyitása\nProjekt fájl (Ctrl+J)"
+    ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
 END
 
 STRINGTABLE
