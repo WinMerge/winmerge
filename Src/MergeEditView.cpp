@@ -175,6 +175,9 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
+	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
+	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
+	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2550,6 +2553,66 @@ void CMergeEditView::OnEditCopyLineNumbers()
 void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)
 {
 	CCrystalEditViewEx::OnUpdateEditCopy(pCmdUI);
+}
+
+/**
+ * @brief Open active file with associated application.
+ *
+ * First tries to open file using shell 'Edit' action, since that
+ * action open scripts etc. to editor instead of running them. If
+ * edit-action is not registered, 'Open' action is used.
+ */
+void CMergeEditView::OnOpenFile()
+{
+	CMergeDoc * pDoc = GetDocument();
+	ASSERT(pDoc != NULL);
+
+	CString sFileName = m_bIsLeft ? pDoc->m_filePaths.GetLeft() : pDoc->m_filePaths.GetRight();
+	if (sFileName.IsEmpty())
+		return;
+	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName,
+			0, 0, SW_SHOWNORMAL);
+	if (rtn==SE_ERR_NOASSOC)
+		rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), sFileName,
+			 0, 0, SW_SHOWNORMAL);
+	if (rtn==SE_ERR_NOASSOC)
+		OnOpenFileWith();
+}
+
+/**
+ * @brief Open active file with app selection dialog
+ */
+void CMergeEditView::OnOpenFileWith()
+{
+	CMergeDoc * pDoc = GetDocument();
+	ASSERT(pDoc != NULL);
+
+	CString sFileName = m_bIsLeft ? pDoc->m_filePaths.GetLeft() : pDoc->m_filePaths.GetRight();
+	if (sFileName.IsEmpty())
+		return;
+
+	CString sysdir;
+	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH))
+		return;
+	sysdir.ReleaseBuffer();
+	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + sFileName;
+	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg,
+			sysdir, SW_SHOWNORMAL);
+}
+
+/**
+ * @brief Open active file with external editor
+ */
+void CMergeEditView::OnOpenFileWithEditor()
+{
+	CMergeDoc * pDoc = GetDocument();
+	ASSERT(pDoc != NULL);
+
+	CString sFileName = m_bIsLeft ? pDoc->m_filePaths.GetLeft() : pDoc->m_filePaths.GetRight();
+	if (sFileName.IsEmpty())
+		return;
+
+	mf->OpenFileToExternalEditor(sFileName);
 }
 
 /**

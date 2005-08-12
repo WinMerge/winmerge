@@ -280,6 +280,9 @@ protected:
 	afx_msg void OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI);
 	afx_msg void OnViewLineDiffs();
 	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
+	afx_msg void OnOpenFile();
+	afx_msg void OnOpenFileWith();
+	afx_msg void OnOpenFileWithEditor();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -93,6 +93,11 @@ BEGIN
         MENUITEM "貼上(&P)",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "移至(&G)...",                 ID_EDIT_WMGOTO
+        BEGIN
+            MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
+            MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "&with...",                    ID_FILE_OPEN_WITH
+        END
     END
 END
 
@@ -2607,6 +2612,14 @@ BEGIN
     ID_NO_SCT_SCRIPTS       "WSH 找不到 - .sct 指令碼停用"
     IDS_USERCHOICE_NONE     "<無>"
     IDS_USERCHOICE_AUTOMATIC "<自動>"
+END
+
+// FILE COMPARE CONTEXT MENU
+STRINGTABLE
+BEGIN
+    ID_FILE_OPEN_REGISTERED  "Open the file with registered application"
+    ID_FILE_OPEN_WITHEDITOR  "Open the file with external editor"
+    ID_FILE_OPEN_WITH        "Open the file with a particular program"
 END
 
 // LOCATIONBAR CONTEXT MENU

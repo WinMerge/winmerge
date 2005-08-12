@@ -93,6 +93,13 @@ BEGIN
         MENUITEM "I&ncolla",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "&Vai a...",                   ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
+        POPUP "Op&en"
+        BEGIN
+            MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
+            MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "&with...",                    ID_FILE_OPEN_WITH
+        END
     END
 END
 
@@ -2625,6 +2632,14 @@ BEGIN
     ID_NO_SCT_SCRIPTS       "WSH non trovato - script .sct disattivati"
     IDS_USERCHOICE_NONE     "<Nessuno>"
     IDS_USERCHOICE_AUTOMATIC "<Automatico>"
+END
+
+// FILE COMPARE CONTEXT MENU
+STRINGTABLE
+BEGIN
+    ID_FILE_OPEN_REGISTERED  "Open the file with registered application"
+    ID_FILE_OPEN_WITHEDITOR  "Open the file with external editor"
+    ID_FILE_OPEN_WITH        "Open the file with a particular program"
 END
 
 // LOCATIONBAR CONTEXT MENU

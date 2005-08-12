@@ -1,3 +1,8 @@
+2005-08-12 Kimmo
+ PATCH: [ 1253326 ] Allow opening files to external editor from file compare
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
+  Src/Languages: *.rc resource.h
+
 2005-08-11 Kimmo
  PATCH: [ 1244009 ] Add userflags to diffitem and remember hidden status
   Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.cpp DirDoc.h
