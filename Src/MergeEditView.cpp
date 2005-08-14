@@ -158,6 +158,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_R2LNEXT, OnUpdateR2LNext)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
+	ON_COMMAND(ID_NEXT_PANE, OnChangePane)
 	ON_COMMAND(ID_EDIT_WMGOTO, OnWMGoto)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_WMGOTO, OnUpdateWMGoto)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
@@ -2108,12 +2109,21 @@ void CMergeEditView::OnUpdateR2LNext(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Change active pane in MergeView
+ * @brief Change active pane in MergeView.
+ * Changes active pane and makes sure cursor position is kept in
+ * screen. Currently we put cursor in same line than in original
+ * active pane but we could be smarter too? Maybe update cursor
+ * only when it is not visible in new pane?
  */
 void CMergeEditView::OnChangePane()
 {
 	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+	CMergeEditView *pWnd = static_cast<CMergeEditView*>(pSplitterWnd->GetActivePane());
+	CPoint ptCursor = pWnd->GetCursorPos();
 	pSplitterWnd->ActivateNext();
+	pWnd = static_cast<CMergeEditView*>(pSplitterWnd->GetActivePane());
+	ptCursor.x = 0;
+	pWnd->SetCursorPos(ptCursor);
 }
 
 /**

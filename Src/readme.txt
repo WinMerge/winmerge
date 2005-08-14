@@ -5,6 +5,8 @@
   Src/res new file: MergeDir.ico
   Src/Languages: *.rc resource.h
   Src/Languages/res new file: MergeDir.ico
+ PATCH: [ 1258063 ] Fix cursor position after pane change
+  Src: MergeEditView.cpp
 
 2005-08-12 Kimmo
  PATCH: [ 1253326 ] Allow opening files to external editor from file compare
