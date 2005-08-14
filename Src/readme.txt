@@ -1,4 +1,4 @@
-2005-08-13 Kimmo
+2005-08-14 Kimmo
  PATCH: [ 1255864 ] Different icons for Folder and File Comparison
   Icon submitted by Tim
   Src: Merge.cpp Merge.rc resource.h
@@ -7,6 +7,10 @@
   Src/Languages/res new file: MergeDir.ico
  PATCH: [ 1258063 ] Fix cursor position after pane change
   Src: MergeEditView.cpp
+ PATCH: [ 1258584 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+  ShellExtension/Languages/ShellExtensionCatalan.rc
 
 2005-08-12 Kimmo
  PATCH: [ 1253326 ] Allow opening files to external editor from file compare
