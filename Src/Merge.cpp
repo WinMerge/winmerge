@@ -236,7 +236,7 @@ BOOL CMergeApp::InitInstance()
 
 	// Directory view
 	m_pDirTemplate = new CMultiDocTemplate(
-		IDR_MERGETYPE,
+		IDR_DOC_FOLDERCMP,
 		RUNTIME_CLASS(CDirDoc),
 		RUNTIME_CLASS(CDirFrame), // custom MDI child frame
 		RUNTIME_CLASS(CDirView));

@@ -69,6 +69,7 @@ END
 // remains consistent on all systems.
 IDR_MAINFRAME           ICON                    "res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
+IDR_DOC_FOLDERCMP       ICON                    "res\\MergeDir.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

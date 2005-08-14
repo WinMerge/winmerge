@@ -13,6 +13,7 @@
 #define IDD_MERGE7ZMISMATCH             108
 #define IDR_MERGEVIEWMENU               109
 #define IDR_DIRVIEWMENU                 110
+#define IDR_DOC_FOLDERCMP               111
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
