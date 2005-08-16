@@ -2007,6 +2007,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Destra in... (%1)"
     IDS_MOVE_LEFT_TO2       "Sinistra in... (%1 su %2)"
     IDS_MOVE_RIGHT_TO2      "Destra in... (%1 su %2)"
+    IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
+    IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION

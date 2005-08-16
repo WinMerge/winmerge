@@ -281,7 +281,7 @@ void CDirView::DoCopyLeftTo()
 	CString startPath;
 	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	VERIFY(msg.LoadString(IDS_SELECT_DEST_LEFT));
 	if (!SelectFolder(destPath, startPath, msg))
 		return;
 
@@ -334,7 +334,7 @@ void CDirView::DoCopyRightTo()
 	CString startPath;
 	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	VERIFY(msg.LoadString(IDS_SELECT_DEST_RIGHT));
 	if (!SelectFolder(destPath, startPath, msg))
 		return;
 
@@ -386,7 +386,7 @@ void CDirView::DoMoveLeftTo()
 	CString startPath;
 	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	VERIFY(msg.LoadString(IDS_SELECT_DEST_LEFT));
 	if (!SelectFolder(destPath, startPath, msg))
 		return;
 
@@ -439,7 +439,7 @@ void CDirView::DoMoveRightTo()
 	CString startPath;
 	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DESTFOLDER));
+	VERIFY(msg.LoadString(IDS_SELECT_DEST_RIGHT));
 	if (!SelectFolder(destPath, startPath, msg))
 		return;
 

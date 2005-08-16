@@ -430,6 +430,8 @@
 #define IDS_MOVE_RIGHT_TO               17623
 #define IDS_MOVE_LEFT_TO2               17624
 #define IDS_MOVE_RIGHT_TO2              17625
+#define IDS_SELECT_DEST_LEFT            17626
+#define IDS_SELECT_DEST_RIGHT           17627
 #define IDS_CONFIRM_ALL_LEFT            17632
 #define IDS_CONFIRM_ALL_RIGHT           17633
 #define IDS_CONFIRM_COPY_SINGLE         17634

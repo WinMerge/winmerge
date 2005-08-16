@@ -2,6 +2,9 @@
  PATCH: [ 1258270 ] ShellExtension: allow re-selecting first item
   ShellExtension: Resource.h ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
   ShellExtension/Languages: *.rc
+ PATCH: [ 1260258 ] Show origin side for Copy To.. folder browse dialog
+  Src: DirActions.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2005-08-14 Kimmo
  PATCH: [ 1255864 ] Different icons for Folder and File Comparison
