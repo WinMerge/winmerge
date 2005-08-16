@@ -1,3 +1,8 @@
+2005-08-16 Tim
+ PATCH: [ 1215964 ] Rename 'list.txt' to 'Plugins.txt'
+  New file: Plugins\dlls\Plugins.txt
+  Removed file: Plugins\dlls\list.txt
+
 2005-08-06 Kimmo
  PATCH: [ 1150083 ] plugin to filter C-style comments CPP/JS/PHP
   Submitted by daemonui
