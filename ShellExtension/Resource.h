@@ -13,6 +13,7 @@
 #define IDS_HELP_SAVETHIS               107
 #define IDS_HELP_COMPARESTORED          108
 #define IDS_HELP_COMPARESAVED           109
+#define IDS_RESELECT_FIRST              110
 #define IDB_WINMERGE                    202
 
 // Next default values for new objects
@@ -22,6 +23,6 @@
 #define _APS_NEXT_RESOURCE_VALUE        203
 #define _APS_NEXT_COMMAND_VALUE         32768
 #define _APS_NEXT_CONTROL_VALUE         201
-#define _APS_NEXT_SYMED_VALUE           103
+#define _APS_NEXT_SYMED_VALUE           111
 #endif
 #endif

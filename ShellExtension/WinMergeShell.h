@@ -70,6 +70,8 @@ protected:
 	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	CString GetHelpText(int idCmd);
+	CString FormatCmdLine(const CString &winmergePath,
+		const CString &path1, const CString &path2);
 
 public:
     // IShellExtInit

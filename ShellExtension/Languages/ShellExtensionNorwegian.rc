@@ -39,6 +39,7 @@ BEGIN
     IDS_COMPARE_TO          "Compare To"
     IDS_HELP_SAVETHIS       "Save this path. Select another path to compare with this path."
     IDS_HELP_COMPARESAVED   "Compare to saved path (%1)"
+    IDS_RESELECT_FIRST      "Re-select First"
 END
 
 #endif    // Norwegian (Bokmal) resources

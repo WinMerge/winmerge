@@ -1,3 +1,8 @@
+2005-08-16 Kimmo
+ PATCH: [ 1258270 ] ShellExtension: allow re-selecting first item
+  ShellExtension: Resource.h ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
+  ShellExtension/Languages: *.rc
+
 2005-08-14 Kimmo
  PATCH: [ 1255864 ] Different icons for Folder and File Comparison
   Icon submitted by Tim

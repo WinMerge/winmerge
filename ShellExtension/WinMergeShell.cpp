@@ -265,6 +265,7 @@ HRESULT CWinMergeShell::GetCommandString(UINT idCmd, UINT uFlags,
 HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
+	CRegKeyEx reg;
 	CString strWinMergePath;
 	BOOL bCompare = FALSE;
 	USES_WINMERGELOCALE;
@@ -283,7 +284,6 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 
 	if (LOWORD(pCmdInfo->lpVerb) == 0)
 	{
-		CRegKeyEx reg;
 		switch (m_dwMenuState)
 		{
 		case MENU_SIMPLE:
@@ -315,9 +315,20 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	}
 	else if (LOWORD(pCmdInfo->lpVerb) == 1)
 	{
-		// "Compare..." - user wants to compare this single item and open WinMerge
-		m_strPaths[1].Empty();
-		bCompare = TRUE;
+		switch (m_dwMenuState)
+		{
+		case MENU_ONESEL_PREV:
+			m_strPreviousPath = m_strPaths[0];
+			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
+				reg.WriteString(f_FirstSelection, m_strPreviousPath);
+			bCompare = FALSE;
+			break;
+		default:
+			// "Compare..." - user wants to compare this single item and open WinMerge
+			m_strPaths[1].Empty();
+			bCompare = TRUE;
+			break;
+		}
 	}
 	else
 		return E_INVALIDARG;
@@ -325,12 +336,8 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (bCompare == FALSE)
 		return S_FALSE;
 
-	// Format command line
-	CString strCommandLine = strWinMergePath + _T(" \"") +
-		m_strPaths[0] + _T("\"");
-	
-	if (!m_strPaths[1].IsEmpty())
-		strCommandLine += _T(" \"") + m_strPaths[1] + _T("\"");
+	CString strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
+		m_strPaths[1]);
 
 	// Finally start a new WinMerge process
 	BOOL retVal = FALSE;
@@ -412,14 +419,18 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	CString strCompare;
 	CString strCompareEllipsis;
 	CString strCompareTo;
+	CString strReselect;
 	int nItemsAdded = 0;
 
 	VERIFY(strCompare.LoadString(IDS_COMPARE));
 	VERIFY(strCompareEllipsis.LoadString(IDS_COMPARE_ELLIPSIS));
 	VERIFY(strCompareTo.LoadString(IDS_COMPARE_TO));
+	VERIFY(strReselect.LoadString(IDS_RESELECT_FIRST));
 
 	switch (m_dwMenuState)
 	{
+	// No items selected earlier
+	// Select item as first item to compare
 	case MENU_ONESEL_NOPREV:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompareTo);
 		uMenuIndex++;
@@ -428,14 +439,18 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		nItemsAdded = 2;
 		break;
 
+	// One item selected earlier:
+	// Allow re-selecting first item or selecting second item
 	case MENU_ONESEL_PREV:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompare);
 		uMenuIndex++;
 		uidFirstCmd++;
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompareEllipsis);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strReselect);
 		nItemsAdded = 2;
 		break;
 
+	// Two items selected
+	// Select both items for compare
 	case MENU_TWOSEL:
 		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompare);
 		nItemsAdded = 1;
@@ -501,7 +516,47 @@ CString CWinMergeShell::GetHelpText(int idCmd)
 	}
 	else if (idCmd == 1)
 	{
-		VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP));
+		switch (m_dwMenuState)
+		{
+		case MENU_ONESEL_PREV:
+			VERIFY(strHelp.LoadString(IDS_HELP_SAVETHIS));
+			break;
+		default:
+			VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP));
+			break;
+		}
 	}
 	return strHelp;
+}
+
+/// Format commandline used to start WinMerge
+CString CWinMergeShell::FormatCmdLine(const CString &winmergePath,
+	const CString &path1, const CString &path2)
+{
+	CString strCommandline = winmergePath;
+	BOOL bOnlyFiles = FALSE;
+	
+	if (!path1.IsEmpty() && !path2.IsEmpty())
+	{
+		CFileStatus status;
+		CFileStatus status2;
+		if (CFile::GetStatus(path1, status) &&
+			CFile::GetStatus(path2, status2))
+		{
+			// Check if both paths are files
+			if ((status.m_attribute & CFile::Attribute::directory) == 0 &&
+				(status2.m_attribute & CFile::Attribute::directory) == 0)
+			{
+				bOnlyFiles = TRUE;
+			}
+		}
+	}
+
+	strCommandline += _T(" \"") +
+		path1 + _T("\"");
+	
+	if (!m_strPaths[1].IsEmpty())
+		strCommandline += _T(" \"") + path2 + _T("\"");
+
+	return strCommandline;
 }
