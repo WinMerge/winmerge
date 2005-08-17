@@ -108,7 +108,7 @@
           <filename class="directory">C:\Documents And Settings\username\Application Data\WinMerge\Filters</filename>.
           This can be used to store personal filters for the individual user, or for a user
           who lacks the ability to write to the WinMerge program directory.
-          This also is appropriate if backup & restore from an individual profile
+          This also is appropriate if backup &amp; restore from an individual profile
           directory is desired.</para>
         </listitem>
       </itemizedlist>
