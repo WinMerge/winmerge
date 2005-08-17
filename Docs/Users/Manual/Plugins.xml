@@ -82,8 +82,7 @@
   </sect2>
   <sect2>
     <title>Plugin details</title>
-    <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin : category, suggested file extensions, whether pack is available for unpack plugins, quick description.</para>
-    <para>If you don't use the <filename>setup.exe</filename>, the file is in the subdirectory "<filename class="directory">MergePlugins</filename>" and called <filename>list.txt</filename>. </para>
+    <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin with the name and a quick description. If you don't use installer <filename>Plugins.txt</filename> is found from <filename class="directory">MergePlugins</filename> subfolder.</para>
     <para>Developers may find information and code of examples in the source package, under the directory "<filename class="directory">Plugins</filename>".</para>
   </sect2>
   <sect2>

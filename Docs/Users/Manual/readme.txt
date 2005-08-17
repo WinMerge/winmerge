@@ -1,6 +1,8 @@
 2005-08-17 Tim
  BUG: [ 1261402 ] Filters.xml: Error on line 111
   Manual: Filters.xml
+ PATCH: [ 1215964 ] Rename 'list.txt' to 'Plugins.txt'
+  Manual: Plugins.xml
 
 2005-07-20 Tim
  PATCH: [ 1238450 ] Build script for manual at SF.net
