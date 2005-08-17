@@ -713,6 +713,9 @@ public :
     }
     TextType;
 
+// Tabsize is commented out since we have only GUI setting for it now.
+// Not removed because we may later want to have per-filetype settings again.
+// See ccrystaltextview.cpp for per filetype table initialization.
     struct TextDefinition
       {
         TextType type;

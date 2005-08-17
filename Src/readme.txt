@@ -1,3 +1,7 @@
+2005-08-17 Kimmo
+ PATCH: [ 1260244 ] Initialization of non-existing struct-members in editor
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2005-08-16 Kimmo
  PATCH: [ 1258270 ] ShellExtension: allow re-selecting first item
   ShellExtension: Resource.h ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
