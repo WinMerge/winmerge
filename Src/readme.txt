@@ -1,6 +1,8 @@
 2005-08-17 Kimmo
  PATCH: [ 1260244 ] Initialization of non-existing struct-members in editor
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+ PATCH: [ 1261244 ] Proper update for Merge/Delete-menuitem
+  Src: DirView.cpp DirView.h
 
 2005-08-16 Kimmo
  PATCH: [ 1258270 ] ShellExtension: allow re-selecting first item

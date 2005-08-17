@@ -364,6 +364,7 @@ private:
 	void DoUpdateOpenRight(CCmdUI* pCmdUI);
 	void DoUpdateOpenLeftWith(CCmdUI* pCmdUI);
 	void DoUpdateOpenRightWith(CCmdUI* pCmdUI);
+	void DoUpdateDelete(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);

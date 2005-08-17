@@ -1378,6 +1378,24 @@ void CDirView::DoUpdateOpenRightWith(CCmdUI* pCmdUI)
 	pCmdUI->Enable(sel>=0);
 }
 
+/**
+ * @brief Update main menu "Merge | Delete" item
+ */
+void CDirView::DoUpdateDelete(CCmdUI* pCmdUI)
+{
+	int sel = GetSingleSelectedItem();
+	if (sel != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (di.diffcode == 0 ||
+			(!IsItemDeletableOnLeft(di) && !IsItemDeletableOnRight(di)))
+		{
+			sel = -1;
+		}
+	}
+	pCmdUI->Enable(sel>=0);
+}
+
 UINT CDirView::GetSelectedCount() const
 {
 	return m_pList->GetSelectedCount();
@@ -2475,16 +2493,7 @@ void CDirView::OnDelete()
  */
 void CDirView::OnUpdateDelete(CCmdUI* pCmdUI)
 {
-	if (GetDocument()->GetReadOnly(TRUE) || GetDocument()->GetReadOnly(FALSE))
-		pCmdUI->Enable(FALSE);
-	else
-	{
-		int sel=-1;
-		if (m_pList->GetNextItem(sel, LVNI_SELECTED) != -1)
-			pCmdUI->Enable(TRUE);
-		else
-			pCmdUI->Enable(FALSE);
-	}
+	DoUpdateDelete(pCmdUI);
 }
 
 /**
