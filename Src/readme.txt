@@ -2,6 +2,9 @@
  PATCH: [ 1261220 ] Add Compare item for dirview menus
   Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 1262428 ] Fix toolbar problems with XP theming
+  Src: MainFrm.cpp Merge.dsp
+  Src/Common new files: ToolBarXPThemes.cpp ToolBarXPThemes.h
 
 2005-08-17 Kimmo
  PATCH: [ 1260244 ] Initialization of non-existing struct-members in editor

@@ -29,6 +29,7 @@
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
+#include "ToolBarXPThemes.h"
 #include "OptionsMgr.h"
 #include "VSSHelper.h"
 
@@ -176,7 +177,7 @@ public:
 
 protected:  // control bar embedded members
 	CStatusBar  m_wndStatusBar;
-	CToolBar    m_wndToolBar;
+	ToolBarXPThemes m_wndToolBar;
 
 	enum
 	{

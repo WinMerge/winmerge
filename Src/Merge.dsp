@@ -800,6 +800,10 @@ SOURCE=.\Common\textfile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\ToolBarXPThemes.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\unicoder.cpp
 # End Source File
 # Begin Source File
@@ -1298,6 +1302,10 @@ SOURCE=.\SyntaxColors.h
 # Begin Source File
 
 SOURCE=.\Common\textfile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\ToolbarXPThemes.h
 # End Source File
 # Begin Source File
 
