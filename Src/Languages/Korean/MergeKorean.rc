@@ -207,6 +207,8 @@ BEGIN
     END
     POPUP "Merge(&M)"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "다음 다른 부분(&X)\tAlt+Down", ID_NEXTDIFF
         MENUITEM "이전 다른 부분(&V)\tAlt+Up",  ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -405,6 +407,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "복사(&C)"
         BEGIN
             MENUITEM "왼쪽에서 오른쪽으로(&L)",     ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2472,6 +2476,7 @@ BEGIN
     ID_ALL_RIGHT            "모든 다른 부분을 오른쪽 파일로 복사합니다.\n모두 오른쪽으로"
     ID_ALL_LEFT             "모든 다른 부분을 왼쪽 파일로 복사합니다.\n모두 왼쪽으로"
     ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

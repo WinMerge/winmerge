@@ -207,6 +207,8 @@ BEGIN
     END
     POPUP "&Combinar"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "Diferencia &siguiente\tAlt+Down", ID_NEXTDIFF
         MENUITEM "Diferencia &anterior\tAlt+Up",   ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -405,6 +407,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "&Copiar"
         BEGIN
             MENUITEM "&Izquierda a derecha",              ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2589,6 +2593,7 @@ BEGIN
     ID_ALL_RIGHT            "Copiar todas las diferencias al lado derecho\nTodas a la derecha"
     ID_ALL_LEFT             "Copiar todas las diferencias al lado izquierdo\nTodas a la izquierda"
     ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

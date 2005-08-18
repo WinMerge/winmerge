@@ -207,6 +207,8 @@ BEGIN
     END
     POPUP "合并(&M)"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "下一处不同(&N)\tAlt+Down",    ID_NEXTDIFF
         MENUITEM "上一处不同(&P)\tAlt+Up",      ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -405,6 +407,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "复制(&C)"
         BEGIN
             MENUITEM "从左到右(&L)",                ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2458,6 +2462,7 @@ BEGIN
     ID_ALL_RIGHT            "复制所有不同到右侧文件\n所有到右侧"
     ID_ALL_LEFT             "复制所有不同到左侧文件\n所有到左侧"
     ID_MERGE_DELETE         "删除两侧中选中的项目"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

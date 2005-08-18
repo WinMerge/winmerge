@@ -159,6 +159,7 @@ private:
 	BOOL IsItemDeletableOnLeft(const DIFFITEM & di);
 	BOOL IsItemDeletableOnRight(const DIFFITEM & di);
 	BOOL IsItemDeletableOnBoth(const DIFFITEM & di);
+	BOOL IsItemOpenable(const DIFFITEM & di) const;
 	BOOL IsItemOpenableOnLeft(const DIFFITEM & di);
 	BOOL IsItemOpenableOnRight(const DIFFITEM & di);
 	BOOL IsItemOpenableOnLeftWith(const DIFFITEM & di);
@@ -344,6 +345,8 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnViewShowHiddenItems();
 	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
+	afx_msg void OnMergeCompare();
+	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -360,6 +363,7 @@ private:
 	void DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI);
+	void DoUpdateOpen(CCmdUI* pCmdUI);
 	void DoUpdateOpenLeft(CCmdUI* pCmdUI);
 	void DoUpdateOpenRight(CCmdUI* pCmdUI);
 	void DoUpdateOpenLeftWith(CCmdUI* pCmdUI);

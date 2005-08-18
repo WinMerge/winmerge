@@ -1,3 +1,8 @@
+2005-08-18 Kimmo
+ PATCH: [ 1261220 ] Add Compare item for dirview menus
+  Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
 2005-08-17 Kimmo
  PATCH: [ 1260244 ] Initialization of non-existing struct-members in editor
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h

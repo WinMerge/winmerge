@@ -177,6 +177,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_COMMAND(ID_VIEW_SHOWHIDDENITEMS, OnViewShowHiddenItems)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
+	ON_COMMAND(ID_MERGE_COMPARE, OnMergeCompare)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
@@ -1320,6 +1322,21 @@ void CDirView::OnUpdateCtxtDirOpenLeftWith(CCmdUI* pCmdUI)
 void CDirView::OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI)
 {
 	DoUpdateOpenRightWith(pCmdUI);
+}
+
+// Used for Open
+void CDirView::DoUpdateOpen(CCmdUI* pCmdUI)
+{
+	BOOL bEnable = FALSE;
+	int sel = GetSingleSelectedItem();
+	if (sel != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (IsItemOpenable(di))
+			bEnable = TRUE;
+	}
+
+	pCmdUI->Enable(bEnable);
 }
 
 // used for OpenLeft
@@ -2593,4 +2610,15 @@ void CDirView::OnViewShowHiddenItems()
 void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_nHiddenItems > 0);
+}
+
+void CDirView::OnMergeCompare()
+{
+	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
+	OpenSelection();
+}
+
+void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
+{
+	DoUpdateOpen(pCmdUI);
 }

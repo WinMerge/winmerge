@@ -902,6 +902,15 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di)
 	return TRUE;
 }
 
+/// is it possible to open item for compare ?
+BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
+{
+	// impossible if unique or binary
+	if (di.isSideRight() || di.isSideLeft() || di.isBin()) return FALSE;
+
+	// everything else can be opened
+	return TRUE;
+}
 /// is it possible to open left item ?
 BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
 {

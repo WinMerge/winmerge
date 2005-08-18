@@ -206,6 +206,8 @@ BEGIN
     END
     POPUP "&Jämför"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "&Nästa skillnad\tAlt+Ner",    ID_NEXTDIFF
         MENUITEM "&Föregående skillnad\tAlt+Upp", ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -404,6 +406,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "&Kopiera"
         BEGIN
             MENUITEM "&Vänster till höger",              ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2588,6 +2592,7 @@ BEGIN
     ID_ALL_RIGHT            "Kopierar alla skillnader till den högra filen\nKopiera allt till höger"
     ID_ALL_LEFT             "Kopierar alla skillnader till den vänstra filen\nKopiera allt till vänster"
     ID_MERGE_DELETE         "Tar bort valda objekt från båda katalogerna"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

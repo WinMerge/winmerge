@@ -207,6 +207,8 @@ BEGIN
     END
     POPUP "マージ(&M)"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "次の差異(&N)\tAlt+Down",      ID_NEXTDIFF
         MENUITEM "前の差異(&P)\tAlt+Up",        ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -405,6 +407,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "コピー(&C)"
         BEGIN
             MENUITEM "左から右に(&L)",              ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2479,6 +2483,7 @@ BEGIN
     ID_ALL_RIGHT            "すべての差異を右のファイルにコピーします\n右すべて"
     ID_ALL_LEFT             "すべての差異を左のファイルにコピーします\n左すべて"
     ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

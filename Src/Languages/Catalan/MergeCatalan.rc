@@ -207,6 +207,8 @@ BEGIN
     END
     POPUP "Co&mbinació"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "&Propera diferència\tAlt+Avall", ID_NEXTDIFF
         MENUITEM "Diferència a&nterior\tAlt+Amunt", ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -405,6 +407,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "&Copia"
         BEGIN
             MENUITEM "D'&esquerra a dreta",   ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2491,6 +2495,7 @@ BEGIN
     ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
     ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
     ID_MERGE_DELETE         "Suprimeix els elements seleccionats d'ambdós directoris"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

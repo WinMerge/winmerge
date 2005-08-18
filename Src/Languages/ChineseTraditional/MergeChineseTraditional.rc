@@ -205,6 +205,8 @@ BEGIN
     END
     POPUP "&Merge"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "下一不同(&N)\tAlt+Down",      ID_NEXTDIFF
         MENUITEM "上一不同(&P)\tAlt+Up",        ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -402,6 +404,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "複製(&C)"
         BEGIN
             MENUITEM "左邊到右邊(&L)",              ID_DIR_COPY_LEFT_TO_RIGHT
@@ -2567,6 +2571,7 @@ BEGIN
     ID_ALL_RIGHT            "複製所有不同到右邊檔案\n所有到右邊"
     ID_ALL_LEFT             "複製所有不同到左邊檔案\n所有到左邊"
     ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU
