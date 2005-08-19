@@ -1453,7 +1453,10 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
 
 ////////
-  TEXTBLOCK *pAddedBuf = new TEXTBLOCK[(nLength+1) * 3];
+  // Allocate table for max possible diff count:
+  // every char might be a diff (empty line has one char) and every diff
+  // needs three blocks plus one block at end (see called function)
+  TEXTBLOCK *pAddedBuf = new TEXTBLOCK[(nLength + 1) * 3 + 1];
   int nAddedBlocks = GetAdditionalTextBlocks(nLineIndex, pAddedBuf);
 
   TEXTBLOCK *pMergedBuf;

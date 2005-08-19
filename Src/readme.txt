@@ -1,3 +1,7 @@
+2005-08-19 Kimmo
+ BUG: [ 1262229 ] Crash with differing line endings and View Line Differences
+  Src/editlib: ccrystaltextview.cpp
+
 2005-08-18 Kimmo
  PATCH: [ 1261220 ] Add Compare item for dirview menus
   Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
