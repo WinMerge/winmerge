@@ -74,6 +74,7 @@ DATE:		BY:					DESCRIPTION:
 								CMarkdown::FileImage::FileImage() accept a
 								handle rather than a filename.
 2005/06/22	Jochen Tucht		New method CMarkdown::_HSTR::Entities().
+2005/07/29	Jochen Tucht		ByteOrder detection for 16/32 bit encodings
 */
 
 #include "stdafx.h"
@@ -114,6 +115,38 @@ CMarkdown::Converter::~Converter()
 size_t CMarkdown::Converter::iconv(const char **inbuf, size_t *inbytesleft, char **outbuf, size_t *outbytesleft) const
 {
 	return handle != INVALID_HANDLE_VALUE ? ICONV->iconv(handle, inbuf, inbytesleft, outbuf, outbytesleft) : -1;
+}
+
+size_t CMarkdown::Converter::Convert(const char *S, size_t s, char *D, size_t d) const
+{
+	// reset iconv internal state and tell if converter is valid
+	if (iconv(0, 0, 0, 0) != -1)
+	{
+		if (D == NULL)
+		{
+			while (s)
+			{
+				char buffer[100];
+				char *C = buffer;
+				size_t c = sizeof buffer;
+				if (iconv(&S, &s, &C, &c) == -1 && c == sizeof buffer)
+				{
+					// some error other than 'outbuf exhausted': stop here
+					break;
+				}
+				d += sizeof buffer - c;
+			}
+		}
+		else
+		{
+			iconv(&S, &s, &D, &d); // convert entire string
+		}
+	}
+	else
+	{
+		d = 0;
+	}
+	return d;
 }
 
 template<> UINT AFXAPI HashKey(BSTR B)
@@ -162,7 +195,7 @@ CMarkdown::HSTR CMarkdown::_HSTR::Octets(UINT codepage)
 	if (codepage != 1200) // 1200 means 'no conversion'
 	{
 		int w = SysStringLen(B);
-		int a = WideCharToMultiByte (codepage, 0, W, w, 0, 0, 0, 0);
+		int a = WideCharToMultiByte(codepage, 0, W, w, 0, 0, 0, 0);
 		H = (HSTR)SysAllocStringByteLen(0, a);
 		WideCharToMultiByte(codepage, 0, W, w, H->A, a, 0, 0);
 		SysFreeString(B);
@@ -173,31 +206,11 @@ CMarkdown::HSTR CMarkdown::_HSTR::Octets(UINT codepage)
 CMarkdown::HSTR CMarkdown::_HSTR::Convert(const CMarkdown::Converter &converter)
 {
 	HSTR H = this;
-	// reset iconv internal state and tell if converter is valid
-	if (converter.iconv(0, 0, 0, 0) != -1)
+	size_t s = SysStringByteLen(B);
+	if (size_t d = converter.Convert(A, s, 0, 0))
 	{
-		const char *R = A;
-		size_t r = SysStringByteLen(B);
-		const char *S = R;
-		size_t s = r;
-		size_t d = 0;
-		while (r)
-		{
-			char buffer[100];
-			char *C = buffer;
-			size_t c = sizeof buffer;
-			if (converter.iconv(&R, &r, &C, &c) == -1 && c == sizeof buffer)
-			{
-				// some error other than 'outbuf exhausted': stop here
-				break;
-			}
-			d += sizeof buffer - c;
-		}
 		H = (HSTR)SysAllocStringByteLen(0, d);
-		char *D = H->A;
-		// nothing should go wrong here as outbuf has now accurate size
-		converter.iconv(0, 0, 0, 0); // reset iconv internal state
-		converter.iconv(&S, &s, &D, &d); // convert entire string
+		converter.Convert(A, s, H->A, d);
 		SysFreeString(B);
 	}
 	return H;
@@ -847,8 +860,42 @@ LPVOID NTAPI CMarkdown::FileImage::MapFile(HANDLE hFile, DWORD dwSize)
 	return pMapping;
 }
 
-CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags):
-pImage(NULL)
+int CMarkdown::FileImage::GuessByteOrder(DWORD dwBOM)
+{
+	int nByteOrder = 0;
+	if (dwBOM)
+	{
+		WORD wBOM = LOWORD(dwBOM);
+		WORD wBOMhigh = HIWORD(dwBOM);
+		nByteOrder = 2;
+		if (wBOM == 0 || wBOMhigh == 0)
+		{
+			wBOM |= wBOMhigh;
+			nByteOrder = 4;
+		}
+		if (wBOM == 0xFEFF || wBOM == 0xFFFE)
+		{
+			nByteOrder += 8 + ((char *)memchr(&dwBOM, 0xFF, 4) - (char *)&dwBOM);
+		}
+		else if (LOBYTE(wBOM) == 0 || HIBYTE(wBOM) == 0)
+		{
+			BYTE cBOM = LOBYTE(wBOM) | HIBYTE(wBOM);
+			nByteOrder += ((char *)memchr(&dwBOM, cBOM, 4) - (char *)&dwBOM);
+		}
+		else if (dwBOM & 0xFFFFFF == 0xBFBBEF)
+		{
+			nByteOrder = 8 + 1;
+		}
+		else
+		{
+			nByteOrder = 1;
+		}
+	}
+	return nByteOrder;
+}
+
+CMarkdown::FileImage::FileImage(LPCTSTR path, DWORD trunc, int flags)
+: pImage(NULL), nByteOrder(0)
 {
 	HANDLE hFile
 	(
@@ -866,36 +913,81 @@ pImage(NULL)
 				cbImage = trunc;
 			}
 			pImage = MapFile(hFile, cbImage);
-			if (pImage)
+			if (pImage && cbImage >= 4 && (flags & Octets & (nByteOrder = GuessByteOrder(*(LPDWORD)pImage))))
 			{
-				if (flags & Octets && cbImage >= 2)
+				LPVOID pCopy;
+				switch (nByteOrder)
 				{
-					LPVOID pCopy;
-					switch (*(LPWCH)pImage) case 0xFFFE:
+				case 2 + 1:
+				case 2 + 1 + 8:
+					// big endian: swab first
+					cbImage &= ~1UL;
+					pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+					if (pCopy)
 					{
-						// big endian: swab first
-						cbImage &= ~1UL;
+						_swab((char *)pImage, (char *)pCopy, cbImage);
+					}
+					UnmapViewOfFile(pImage);
+					pImage = pCopy;
+					if (pImage)
+					{
+					case 2 + 0:
+					case 2 + 0 + 8:
+						// little endian
+						int cchImage = cbImage / 2;
+						LPWCH pchImage = (LPWCH)pImage;
+						if (nByteOrder & 8)
+						{
+							++pchImage;
+							--cchImage;
+						}
+						cbImage = WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, 0, 0, 0, 0);
 						pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
 						if (pCopy)
 						{
-							_swab((char *)pImage, (char *)pCopy, cbImage);
+							WideCharToMultiByte(CP_UTF8, 0, pchImage, cchImage, (LPCH)pCopy, cbImage, 0, 0);
 						}
 						UnmapViewOfFile(pImage);
 						pImage = pCopy;
-						if (pImage) case 0xFEFF:
-						{
-							// little endian
-							int cchImage = cbImage / 2 - 1;
-							cbImage = WideCharToMultiByte(CP_UTF8, 0, (LPWCH)pImage + 1, cchImage, 0, 0, 0, 0);
-							pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
-							if (pCopy)
-							{
-								WideCharToMultiByte(CP_UTF8, 0, (LPWCH)pImage + 1, cchImage, (LPCH)pCopy, cbImage, 0, 0);
-							}
-							UnmapViewOfFile(pImage);
-							pImage = pCopy;
-						}
 					}
+					break;
+				case 4 + 1:
+				case 4 + 1 + 8:
+				case 4 + 2:
+				case 4 + 2 + 8:
+					// odd word endianness: swab first
+					cbImage &= ~3UL;
+					pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+					if (pCopy)
+					{
+						_swab((char *)pImage, (char *)pCopy, cbImage);
+					}
+					UnmapViewOfFile(pImage);
+					pImage = pCopy;
+					if (pImage)
+					{
+					case 4 + 0:
+					case 4 + 0 + 8:
+					case 4 + 3:
+					case 4 + 3 + 8:
+						int cchImage = cbImage;
+						LPCH pchImage = (LPCH)pImage;
+						if (nByteOrder & 8)
+						{
+							pchImage += 4;
+							cchImage -= 4;
+						}
+						CMarkdown::Converter converter("utf-8", nByteOrder & 2 ? "ucs-4be" : "ucs-4le");
+						cbImage = converter.Convert(pchImage, cchImage, 0, 0);
+						pCopy = MapFile(INVALID_HANDLE_VALUE, cbImage);
+						if (pCopy)
+						{
+							converter.Convert(pchImage, cchImage, (LPCH)pCopy, cbImage);
+						}
+						UnmapViewOfFile(pImage);
+						pImage = pCopy;
+					}
+					break;
 				}
 			}
 		}

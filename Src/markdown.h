@@ -52,6 +52,7 @@ public:
 		Converter(const char *tocode, const char *fromcode);
 		~Converter();
 		size_t iconv(const char **inbuf, size_t *inbytesleft, char **outbuf, size_t *outbytesleft) const;
+		size_t Convert(const char *, size_t, char *, size_t) const;
 	};
 	class EntityString
 	{
@@ -185,8 +186,8 @@ public:
 	const char *ahead;	// last char of file
 	enum
 	{
-		IgnoreCase = 0x01,
-		HtmlUTags = 0x02,			// check for unbalanced tags
+		IgnoreCase = 0x10,
+		HtmlUTags = 0x20,			// check for unbalanced tags
 		Html = IgnoreCase|HtmlUTags	// shortcut
 	};
 	CMarkdown(const char *upper, const char *ahead, unsigned flags = 0);
@@ -217,12 +218,14 @@ public:
 	LPVOID pImage;
 	enum
 	{
-		Octets = 0x10,
-		Handle = 0x20
+		Handle = 1,
+		Octets = 2 + 4,
 	};
+	int nByteOrder;
 	FileImage(LPCTSTR, DWORD trunc = 0, int flags = 0);
 	~FileImage();
 	static LPVOID NTAPI MapFile(HANDLE hFile, DWORD dwSize);
+	static int NTAPI GuessByteOrder(DWORD);
 };
 
 class CMarkdown::File : public CMarkdown::FileImage, public CMarkdown

@@ -8,11 +8,12 @@
 // $Id$
 
 #include "StdAfx.h"
+#include <shlwapi.h>
 #include "codepage_detect.h"
-#include "UniFile.h"
 #include "unicoder.h"
 #include "codepage.h"
 #include "charsets.h"
+#include "markdown.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,384 +21,146 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-
-static bool GuessEncoding_html_from_unifile(UniFile * pufile, int * encoding, int * codepage);
-static bool GuessEncoding_xml_from_unifile(UniFile * pufile, int * encoding, int * codepage);
-static bool GuessEncoding_rc_from_unifile(UniFile * pufile, int * encoding, int * codepage);
-static bool codepage_from_html_line(LPCSTR line, int * codepage);
-static bool codepage_from_html_line(LPCWSTR line, int * codepage);
-static bool codepage_from_xml_line(LPCSTR line, int * codepage);
-static bool codepage_from_xml_line(LPCWSTR line, int * codepage);
-static bool codepage_from_rc_line(LPCSTR line, int * codepage);
-static bool codepage_from_rc_line(LPCWSTR line, int * codepage);
-static bool isValidCodepage(int cp);
-static bool encoding_from_attrib_value(LPCSTR valstart, int * pEncodingId);
-static bool encoding_from_attrib_value(LPCWSTR valstart, int * pEncodingId);
-static const char *stristr(const char * szStringToBeSearched, const char * szSubstringToSearchFor);
-static const wchar_t *wcsistr(const wchar_t * szStringToBeSearched, const wchar_t * szSubstringToSearchFor);
-
-/** 
- * @brief Default constructor setting color to black.
- */
 /**
- * @brief Try to deduce encoding for this file
+ * @brief Is specified codepage number valid on this system?
  */
-void
-GuessCodepageEncoding(const CString & filepath, int * unicoding, int * codepage,
-                      BOOL bGuessEncoding)
+static unsigned ValidCodepage(unsigned cp)
 {
-	UniMemFile ufile;
-	UniFile * pufile = &ufile;
-
-	if (!pufile->OpenReadOnly(filepath))
-	{
-		*unicoding = ucr::NONE;
-		*codepage = getDefaultCodepage();
-		return;
-	}
-	bool hasbom = pufile->ReadBom();
-	*unicoding = pufile->GetUnicoding();
-	*codepage = pufile->GetCodepage();
-	if (!hasbom && bGuessEncoding)
-	{
-		if (!filepath.Right(4).CompareNoCase(_T(".htm"))
-			|| !filepath.Right(5).CompareNoCase(_T(".html")))
-		{
-			GuessEncoding_html_from_unifile(pufile, unicoding, codepage);
-		}
-		else if (!filepath.Right(4).CompareNoCase(_T(".xml"))
-			|| !filepath.Right(5).CompareNoCase(_T(".xsl")))
-		{
-			GuessEncoding_xml_from_unifile(pufile, unicoding, codepage);
-		}
-		else if (!filepath.Right(3).CompareNoCase(_T(".rc")))
-		{
-			GuessEncoding_rc_from_unifile(pufile, unicoding, codepage);
-		}
-	}
-	pufile->Close();
-}
-
-/*** Return true if text begins with prefix (case-insensitive), for char */
-static bool
-StartsWithInsensitive(LPCSTR text, LPCSTR prefix, int prefixlen)
-{
-	return 0 == strnicmp(text, prefix, prefixlen);
-}
-/*** Return true if text begins with prefix (case-insensitive), for wchar_t */
-static bool
-StartsWithInsensitive(LPCWSTR text, LPCWSTR prefix, int prefixlen)
-{
-	return 0 == wcsnicmp(text, prefix, prefixlen);
-}
-
-/**
- * @brief Parser for HTML files to find encoding information
- *
- * To be removed when plugin event added for this
- */
-static bool
-GuessEncoding_html_from_unifile(UniFile * pufile, int * encoding, int * codepage)
-{
-	CString line, eol;
-	while (1)
-	{
-		if (pufile->GetLineNumber() > 30)
-			break;
-		if (!pufile->ReadString(line, eol))
-			break;
-		if (codepage_from_html_line(line, codepage))
-			return true;
-
-	}
-	return false;
+	return cp && isCodepageSupported(cp) ? cp : 0;
 }
 
 /**
  * @brief Parser for HTML files to find encoding information
  */
-static bool demoGuessEncoding_html(const char **data, int count, int * cp)
+static unsigned demoGuessEncoding_html(const char *src, size_t len)
 {
-	if (count > 30)
-		count = 30;
-	while (count--)
+	CMarkdown markdown(src, src + len, CMarkdown::Html);
+	//As <html> and <head> are optional, there is nothing to pull...
+	//markdown.Move("html").Pop().Move("head").Pop();
+	while (markdown.Move("meta"))
 	{
-		const char *line = *data++;
-		if (codepage_from_html_line(line, cp))
-			return true;
+		CMarkdown::String http_equiv = markdown.GetAttribute("http-equiv");
+		if (http_equiv.A && lstrcmpiA(http_equiv.A, "content-type") == 0)
+		{
+			CMarkdown::String content = markdown.GetAttribute("content");
+			if (char *pchKey = content.A)
+			{
+				while (int cchKey = strcspn(pchKey += strspn(pchKey, "; \t\r\n"), ";="))
+				{
+					char *pchValue = pchKey + cchKey;
+					int cchValue = strcspn(pchValue += strspn(pchValue, "= \t\r\n"), "; \t\r\n");
+					if (cchKey >= 7 && memicmp(pchKey, "charset", 7) == 0 && (cchKey == 7 || strchr(" \t\r\n", pchKey[7])))
+					{
+						pchValue[cchValue] = '\0';
+						// Is it an encoding name known to charsets module ?
+						unsigned encodingId = GetEncodingIdFromName(pchValue);
+						if (encodingId == 0)
+						{
+							if (unsigned codepage = atoi(pchValue))
+							{
+								encodingId = GetEncodingIdFromCodePage(codepage);
+							}
+						}
+						if (encodingId)
+						{
+							return GetEncodingCodePageFromId(encodingId);
+						}
+						return 0;
+					}
+					pchKey = pchValue + cchValue;
+				}
+			}
+		}
 	}
-	return false;
-}
-
-
-/**
- * @brief Deduce codepage from this line of text from an HTML file, if we can
- *
- * char version
- *
- * @todo It is unfortunate to have both a char and a wchar_t version of this.
- */
-static bool
-codepage_from_html_line(LPCSTR line, int * codepage)
-{
-	/** @todo This is not a very complete matching algorithm */
-	static LPCSTR metapref = "<meta http-equiv=\"Content-Type\" content=\"text/html; charset=";
-	static int metalen = strlen(metapref);
-
-	LPCSTR cpcandidate = stristr(line, metapref);
-	if (!cpcandidate)
-		return false;
-	cpcandidate += metalen;
-
-	int encodingId = 0;
-	if (encoding_from_attrib_value(cpcandidate, &encodingId))
-	{
-		*codepage = GetEncodingCodePageFromId(encodingId);
-		if (*codepage)
-			return true;
-	}
-
-	return false;
-}
-
-/** 
- * @brief Deduce codepage from this line of text from an HTML file, if we can
- *
- * wchar_t version
- */
-static bool
-codepage_from_html_line(LPCWSTR line, int * codepage)
-{
-	/** @todo This is not a very complete matching algorithm */
-	static LPCWSTR metapref = L"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=";
-	static int metalen = wcslen(metapref);
-
-	LPCWSTR cpcandidate = wcsistr(line, metapref);
-	if (!cpcandidate)
-		return false;
-	cpcandidate += metalen;
-
-	int encodingId = 0;
-	if (encoding_from_attrib_value(cpcandidate, &encodingId))
-	{
-		*codepage = GetEncodingCodePageFromId(encodingId);
-		if (*codepage)
-			return true;
-	}
-
-	return false;
+	return 0;
 }
 
 /**
  * @brief Parser for XML files to find encoding information
  */
-static bool
-GuessEncoding_xml_from_unifile(UniFile * pufile, int * encoding, int * codepage)
+static unsigned demoGuessEncoding_xml(const char *src, size_t len)
 {
-	CString line, eol;
-	while (1)
+	CMarkdown xml(src, src + len);
+	if (xml.Move("?xml"))
 	{
-		if (pufile->GetLineNumber() > 30)
-			break;
-		if (!pufile->ReadString(line, eol))
-			break;
-		if (codepage_from_xml_line(line, codepage))
-			return true;
-
+		CMarkdown::String encoding = xml.GetAttribute("encoding");
+		if (encoding.A)
+		{
+			// Is it an encoding name known to charsets module ?
+			unsigned encodingId = GetEncodingIdFromName(encoding.A);
+			if (encodingId == 0)
+			{
+				if (unsigned codepage = atoi(encoding.A))
+				{
+					encodingId = GetEncodingIdFromCodePage(codepage);
+				}
+			}
+			if (encodingId)
+			{
+				return GetEncodingCodePageFromId(encodingId);
+			}
+		}
 	}
-	return false;
-}
-
-/**
- * @brief Parser for HTML files to find encoding information
- *
- * To be removed when plugin event added for this
- */
-static bool demoGuessEncoding_xml(const char **data, int count, int * cp)
-{
-	if (count > 30)
-		count = 30;
-	while (count--)
-	{
-		const char *line = *data++;
-		if (codepage_from_xml_line(line, cp))
-			return true;
-	}
-	return false;
-}
-
-/** 
- * @brief Deduce codepage from this line of text from an XML file, if we can
- *
- * char version
- *
- * @todo It is unfortunate to have both a char and a wchar_t version of this.
- */
-static bool
-codepage_from_xml_line(LPCSTR line, int * codepage)
-{
-	/** @todo This is not a very complete matching algorithm */
-	static LPCSTR metapref = "<?xml version=\"1.0\" encoding=";
-	static int metalen = strlen(metapref);
-
-	LPCSTR cpcandidate = stristr(line, metapref);
-	if (!cpcandidate)
-		return false;
-	cpcandidate += metalen;
-
-	int encodingId = 0;
-	if (encoding_from_attrib_value(cpcandidate, &encodingId))
-	{
-		*codepage = GetEncodingCodePageFromId(encodingId);
-		if (*codepage)
-			return true;
-	}
-
-	return false;
-}
-
-/** 
- * @brief Deduce codepage from this line of text from an XML file, if we can
- *
- * wchar_t version
- */
-static bool
-codepage_from_xml_line(LPCWSTR line, int * codepage)
-{
-	/** @todo This is not a very complete matching algorithm */
-	static LPCWSTR metapref = L"<?xml version=\"1.0\" encoding=";
-	static int metalen = wcslen(metapref);
-
-	LPCWSTR cpcandidate = wcsistr(line, metapref);
-	if (!cpcandidate)
-		return false;
-	cpcandidate += metalen;
-	
-	int encodingId = 0;
-	if (encoding_from_attrib_value(cpcandidate, &encodingId))
-	{
-		*codepage = GetEncodingCodePageFromId(encodingId);
-		if (*codepage)
-			return true;
-	}
-
-	return false;
+	return 0;
 }
 
 /**
  * @brief Parser for rc files to find encoding information
  */
-static bool
-GuessEncoding_rc_from_unifile(UniFile * pufile, int * encoding, int * codepage)
+static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 {
-	CString line, eol;
-	while (1)
+	unsigned cp = 0;
+	const char *line = 0;
+	do
 	{
-		if (pufile->GetLineNumber() > 30)
-			break;
-		if (!pufile->ReadString(line, eol))
-			break;
-		if (codepage_from_rc_line(line, codepage))
-			return true;
-	}
-	return false;
-}
-
-
-/**
- * @brief Parser for rc files to find encoding information
- */
-static bool demoGuessEncoding_rc(const char **data, int count, int * cp)
-{
-	if (count > 30)
-		count = 30;
-	while (count--)
-	{
-		const char *line = *data++;
-		if (codepage_from_rc_line(line, cp))
-			return true;
-	}
-	return false;
-}
-
-/**
- * @brief Deduce codepage from this line of text from an HTML file, if we can
- *
- * char version
- *
- * @todo It is unfortunate to have both a char and a wchar_t version of this.
- */
-static bool
-codepage_from_rc_line(LPCSTR line, int * codepage)
-{
-	int cp=0;
-	if (1 == sscanf(line, "#pragma code_page(%d)", &cp)
-		&& isValidCodepage(cp))
-	{
-		*codepage = cp;
-		return true;
-	}
-	return false;
-
-}
-
-/**
- * @brief Deduce codepage from this line of text from an HTML file, if we can
- *
- * wchar_t version
- *
- * @todo It is unfortunate to have both a char and a wchar_t version of this.
- */
-static bool
-codepage_from_rc_line(LPCWSTR line, int * codepage)
-{
-	int cp=0;
-	if (1 == swscanf(line, L"#pragma code_page(%d)", &cp)
-		&& isValidCodepage(cp))
-	{
-		*codepage = cp;
-		return true;
-	}
-	return false;
-
-}
-
-/**
- * @brief Is specified codepage number valid on this system?
- */
-static bool isValidCodepage(int cp)
-{
-	return isCodepageSupported(cp);
+		while (len && (*src == '\r' || *src == '\n'))
+		{
+			++src;
+			--len;
+		}
+		line = src;
+		while (len && *src != '\r' && *src != '\n')
+		{
+			++src;
+			--len;
+		}
+	} while (len && sscanf(line, "#pragma code_page(%d)", &cp) != 1);
+	return ValidCodepage(cp);
 }
 
 /**
  * @brief Try to deduce encoding for this file
  */
-bool
-GuessEncoding_from_bytes(const CString & sExt, const char **data, int count, int *codepage)
+unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
 {
-	if (lstrcmpi(sExt, _T(".rc")) ==  0)
+	if (len > 4096)
+		len = 4096;
+	unsigned cp = 0;
+	if (lstrcmpi(ext, _T(".rc")) ==  0)
 	{
-		int cp=0;
-		if (demoGuessEncoding_rc(data, count, &cp))
-		{
-			*codepage = cp;
-			return true;
-		}
+		cp = demoGuessEncoding_rc(src, len);
 	}
-	else if (lstrcmpi(sExt, _T(".htm")) == 0 || lstrcmpi(sExt, _T(".html")) == 0)
+	else if (lstrcmpi(ext, _T(".htm")) == 0 || lstrcmpi(ext, _T(".html")) == 0)
 	{
-		int cp=0;
-		if (demoGuessEncoding_html(data, count, &cp))
-		{
-			*codepage = cp;
-			return true;
-		}
+		cp = demoGuessEncoding_html(src, len);
 	}
-	else if (lstrcmpi(sExt, _T(".xml")) == 0 || lstrcmpi(sExt, _T(".xsl")) == 0)
+	else if (lstrcmpi(ext, _T(".xml")) == 0 || lstrcmpi(ext, _T(".xsl")) == 0)
 	{
-		int cp=0;
-		if (demoGuessEncoding_xml(data, count, &cp))
+		cp = demoGuessEncoding_xml(src, len);
+	}
+	return cp;
+}
+
+/**
+ * @brief Try to deduce encoding for this file
+ */
+bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, int *codepage)
+{
+	if (data)
+	{
+		const char *src = data[0];
+		size_t len = data[count] - src;
+		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len))
 		{
 			*codepage = cp;
 			return true;
@@ -407,219 +170,30 @@ GuessEncoding_from_bytes(const CString & sExt, const char **data, int count, int
 }
 
 /**
- * @brief Parse an xml or html attribute into an encoding id from charset.h
+ * @brief Try to deduce encoding for this file
  */
-static bool
-encoding_from_attrib_value(LPCSTR valstart, int * pEncodingId)
+void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL bGuessEncoding)
 {
-	static char buffer[128];
-	LPCSTR end = valstart;
-	int offset = 0;
-
-	// copy candidate value into buffer (using appropriate delimiter)
-	if (*valstart == '\'')
+	CMarkdown::FileImage fi(filepath, 4096);
+	*unicoding = ucr::NONE;
+	switch (fi.nByteOrder)
 	{
-		++end;
-		// single quoted attribute
-		while (*end && (end - valstart < sizeof(buffer)-1)
-			&& *end != '\'')
+	case 8 + 2 + 0:
+		*unicoding = ucr::UCS2LE;
+		break;
+	case 8 + 2 + 1:
+		*unicoding = ucr::UCS2BE;
+		break;
+	case 8:
+		*unicoding = ucr::UTF8;
+		break;
+	}
+	if (fi.nByteOrder == 0 && bGuessEncoding)
+	{
+		LPCTSTR ext = PathFindExtension(filepath);
+		if (unsigned cp = GuessEncoding_from_bytes(ext, (char *)fi.pImage, fi.cbImage))
 		{
-			buffer[offset] = *end;
-			++end;
-			++offset;
+			*codepage = cp;
 		}
 	}
-	else if (*valstart == '"')
-	{
-		++end;
-		// double quoted attribute
-		while (*end && (end - valstart < sizeof(buffer)-1)
-			&& *end != '"')
-		{
-			buffer[offset] = *end;
-			++end;
-			++offset;
-		}
-	}
-	else
-	{
-		// unquoted attibute, so watch for space or end tag
-		while (*end && (end - valstart < sizeof(buffer)-1)
-			&& *end != ' ' && *end != '>')
-		{
-			buffer[offset] = *end;
-			++end;
-			++offset;
-		}
-	}
-	// must zero-terminate buffer
-	buffer[offset] = 0;
-
-	// Is it an encoding name known to charsets module ?
-	*pEncodingId = GetEncodingIdFromName(buffer);
-	// GetEncodingIdFromName returns non-zero if valid
-	if (*pEncodingId != 0)
-		return true;
-
-	// Is it a codepage known to charsets module ?
-	int cpnum = 0;
-	if (1 == sscanf(buffer, "%d", &cpnum))
-	{
-		*pEncodingId = GetEncodingIdFromCodePage(cpnum);
-		// GetEncodingIdFromName returns non-zero if valid
-		if (*pEncodingId != 0)
-			return true;
-	}
-
-	return false;
 }
-
-/**
- * @brief Parse an xml or html attribute into an encoding id from charset.h
- */
-static bool
-encoding_from_attrib_value(LPCWSTR valstart, int * pEncodingId)
-{
-	static wchar_t buffer[128];
-	LPCWSTR end = valstart;
-	int offset = 0;
-
-	// copy candidate value into buffer (using appropriate delimiter)
-	if (*valstart == '\'')
-	{
-		++end;
-		// single quoted attribute
-		while (*end && (end - valstart < sizeof(buffer)-1)
-			&& *end != '\'')
-		{
-			buffer[offset] = *end;
-			++end;
-			++offset;
-		}
-	}
-	else if (*valstart == '"')
-	{
-		++end;
-		// double quoted attribute
-		while (*end && (end - valstart < sizeof(buffer)-1)
-			&& *end != '"')
-		{
-			buffer[offset] = *end;
-			++end;
-			++offset;
-		}
-	}
-	else
-	{
-		// unquoted attibute, so watch for space or end tag
-		while (*end && (end - valstart < sizeof(buffer)-1)
-			&& *end != ' ' && *end != '>')
-		{
-			buffer[offset] = *end;
-			++end;
-			++offset;
-		}
-	}
-	// must zero-terminate buffer
-	buffer[offset] = 0;
-
-	// Is it an encoding name known to charsets module ?
-	USES_CONVERSION;
-	*pEncodingId = GetEncodingIdFromName(W2A(buffer));
-	// GetEncodingIdFromName returns non-zero if valid
-	if (*pEncodingId != 0)
-		return true;
-
-	// Is it a codepage known to charsets module ?
-	int cpnum = 0;
-	if (1 == swscanf(buffer, L"%d", &cpnum))
-	{
-		*pEncodingId = GetEncodingIdFromCodePage(cpnum);
-		// GetEncodingIdFromName returns non-zero if valid
-		if (*pEncodingId != 0)
-			return true;
-	}
-
-	return false;
-}
-
-
-static const char *
-stristr(const char * szStringToBeSearched, const char * szSubstringToSearchFor)
-{
-	const char * pPos = NULL;
-	char * szCopy1 = NULL;
-	char * szCopy2 = NULL;
-
-	// verify parameters
-	if (szStringToBeSearched == NULL || szSubstringToSearchFor == NULL)
-	{
-		return szStringToBeSearched;
-	}
-
-	// empty substring - return input (consistent with strstr)
-	if (strlen(szSubstringToSearchFor) == 0)
-		return szStringToBeSearched;
-
-	szCopy1 = strlwr(strdup(szStringToBeSearched));
-	szCopy2 = strlwr(strdup(szSubstringToSearchFor));
-
-	if ( szCopy1 == NULL || szCopy2 == NULL  ) {
-		// another option is to raise an exception here
-		free((void*)szCopy1);
-		free((void*)szCopy2);
-		return NULL;
-	}
-
-	pPos = strstr(szCopy1, szCopy2);
-
-	if ( pPos != NULL ) {
-		// map to the original string
-		pPos = szStringToBeSearched + (pPos - szCopy1);
-	}
-
-	free((void*)szCopy1);
-	free((void*)szCopy2);
-
-	return pPos;
-} // stristr(...)
-
-static const wchar_t *
-wcsistr(const wchar_t * szStringToBeSearched, const wchar_t * szSubstringToSearchFor)
-{
-	const wchar_t * pPos = NULL;
-	wchar_t * szCopy1 = NULL;
-	wchar_t * szCopy2 = NULL;
-
-	// verify parameters
-	if (szStringToBeSearched == NULL || szSubstringToSearchFor == NULL)
-	{
-		return szStringToBeSearched;
-	}
-
-	// empty substring - return input (consistent with strstr)
-	if (wcslen(szSubstringToSearchFor) == 0)
-		return szStringToBeSearched;
-
-	szCopy1 = wcslwr(wcsdup(szStringToBeSearched));
-	szCopy2 = wcslwr(wcsdup(szSubstringToSearchFor));
-
-	if ( szCopy1 == NULL || szCopy2 == NULL  ) {
-		// another option is to raise an exception here
-		free((void*)szCopy1);
-		free((void*)szCopy2);
-		return NULL;
-	}
-
-	pPos = wcsstr(szCopy1, szCopy2);
-
-	if ( pPos != NULL ) {
-		// map to the original string
-		pPos = szStringToBeSearched + (pPos - szCopy1);
-	}
-
-	free((void*)szCopy1);
-	free((void*)szCopy2);
-
-	return pPos;
-} // wcsistr(...)
