@@ -31,7 +31,6 @@
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
 
 ; #  Display integration options in gray rather than hiding them if the user doesn't have the application in question installed
-; #  Put Plugins.txt in docs and shortcut to it in \Plugins
 ; #  Distribute AppHelp.dll since it's required by WinMerge.exe, ShellExtension.dll, Merge7zU311.zip
 ; #  Only display TortoiseCVS option if the user has it installed
 ; #  We need to ask those that have the RCLLocalization.dll in their plugins folder if they actually want it, their answer will need to be stored in the registry
@@ -46,7 +45,6 @@
 ; #  If the user has ultra-edit installed then offer to use it as the text editor
 ; #  If the user has Aedix installed then offer to use it as the text editor
 ; #  We need to determine if our application can cooperate with WinCVS and if so how
-; #  Add Delphi 4 Detection for UnpackDFM.dll, making it both selected and visible
 ;
 ; Custom Installer Pages:
 ; #  Allow users to set their working directory via a custom installer page
@@ -420,7 +418,7 @@ Source: ..\Build\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
 Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\Plugins\dlls\list.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText
+Source: ..\Plugins\dlls\Plugins.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText; Components: ; Tasks: ; Languages: 
 
 
 [INI]
@@ -442,10 +440,6 @@ Name: {userdesktop}\WinMerge; Filename: {app}\{code:ExeName}; Tasks: desktopicon
 
 ;Quick Launch Icon
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge; Filename: {app}\{code:ExeName}; Tasks: quicklaunchicon
-
-;Documentation Shortcuts
-Name: {app}\MergePlugins\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
-
 
 [Registry]
 Root: HKCU; Subkey: Software\Thingamahoochie; Flags: uninsdeletekeyifempty

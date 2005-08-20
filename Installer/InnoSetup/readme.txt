@@ -1,3 +1,7 @@
+2005-08-20 Kimmo
+ PATCH: [ 1215964 ] Rename 'list.txt' to 'Plugins.txt'
+  InnoSetup: WinMerge Localized.iss
+
 2005-08-06 Kimmo
  PATCH: [ 1201945 ] Localization of ShellExtension.dll
   Submitted by Takashi Sawanaka
