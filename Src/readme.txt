@@ -1,3 +1,7 @@
+2005-08-20 Jochen
+ PATCH: [ 1247875 ] codepage detection based on CMarkdown class
+  Src: codepage_detect.cpp codepage_detect.h markdown.cpp markdown.h
+
 2005-08-19 Kimmo
  BUG: [ 1262229 ] Crash with differing line endings and View Line Differences
   Src/editlib: ccrystaltextview.cpp
