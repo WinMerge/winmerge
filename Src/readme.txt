@@ -1,3 +1,8 @@
+2005-08-21 Kimmo
+ PATCH: [ 1264957 ] fix Bug:[ 1246957 ] 2.3.4 regular expression replace borked
+  Submitted by Takashi Sawanaka
+  Src/editlib: cregexp.cpp
+
 2005-08-20 Jochen
  PATCH: [ 1247875 ] codepage detection based on CMarkdown class
   Src: codepage_detect.cpp codepage_detect.h markdown.cpp markdown.h

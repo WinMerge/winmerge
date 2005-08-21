@@ -906,13 +906,13 @@ static int add(int *len, LPTSTR *s, LPCTSTR a, int alen, int &flag) {
         return 0;
 
     if (*s) {
-        *s = (LPTSTR) realloc(*s, NewLen);
+        *s = (LPTSTR) realloc(*s, NewLen * sizeof(TCHAR));
         assert(*s);
-        memcpy(*s + *len, a, alen);
+        memcpy(*s + *len, a, alen * sizeof(TCHAR));
     } else {
-        *s = (LPTSTR) malloc(NewLen);
+        *s = (LPTSTR) malloc(NewLen * sizeof(TCHAR));
         assert(*s);
-        memcpy(*s, a, alen);
+        memcpy(*s, a, alen * sizeof(TCHAR));
         *len = 0;
     }
     if (flag & FLAG_UP_CASE) {
