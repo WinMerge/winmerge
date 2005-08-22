@@ -9,7 +9,7 @@
  - GuessCodepageEncoding() did not work
   Src: codepage_detect.cpp
  PATCH: [ 1264721 ] Change AllowUpwardDirectory() policy
-  Src: DirDoc.cpp DirDoc.h DirView.cpp Merge.rc resource.h
+  Src: DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp Merge.rc resource.h
 
 2005-08-21 Kimmo
  PATCH: [ 1264957 ] fix Bug:[ 1246957 ] 2.3.4 regular expression replace borked
