@@ -1,3 +1,9 @@
+2005-08-22 Jochen
+ Fix bugs from PATCH: [ 1247875 ] codepage detection based on CMarkdown class
+ - sscanf() was used in an unsafe way
+ - GuessCodepageEncoding() did not work
+  Src: codepage_detect.cpp
+
 2005-08-21 Kimmo
  PATCH: [ 1264957 ] fix Bug:[ 1246957 ] 2.3.4 regular expression replace borked
   Submitted by Takashi Sawanaka

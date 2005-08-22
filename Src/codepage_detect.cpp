@@ -106,11 +106,13 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len)
 
 /**
  * @brief Parser for rc files to find encoding information
+ * @note sscanf() requires first argument to be zero-terminated so we must
+ * copy lines to temporary buffer.
  */
 static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 {
 	unsigned cp = 0;
-	const char *line = 0;
+	char line[80];
 	do
 	{
 		while (len && (*src == '\r' || *src == '\n'))
@@ -118,12 +120,13 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 			++src;
 			--len;
 		}
-		line = src;
+		const char *base = src;
 		while (len && *src != '\r' && *src != '\n')
 		{
 			++src;
 			--len;
 		}
+		lstrcpynA(line, base, sizeof line);
 	} while (len && sscanf(line, "#pragma code_page(%d)", &cp) != 1);
 	return ValidCodepage(cp);
 }
@@ -176,6 +179,7 @@ void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL
 {
 	CMarkdown::FileImage fi(filepath, 4096);
 	*unicoding = ucr::NONE;
+	*codepage = getDefaultCodepage();
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
@@ -188,7 +192,7 @@ void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL
 		*unicoding = ucr::UTF8;
 		break;
 	}
-	if (fi.nByteOrder == 0 && bGuessEncoding)
+	if (fi.nByteOrder == 1 && bGuessEncoding)
 	{
 		LPCTSTR ext = PathFindExtension(filepath);
 		if (unsigned cp = GuessEncoding_from_bytes(ext, (char *)fi.pImage, fi.cbImage))
