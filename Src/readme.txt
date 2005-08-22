@@ -1,3 +1,8 @@
+2005-08-22 Kimmo
+ PATCH: [ 1265006 ] Japanese translation update
+  Submitted by Takashi Sawanaka
+  Src/Languages/Japanese: MergeJapanese.rc
+
 2005-08-22 Jochen
  Fix bugs from PATCH: [ 1247875 ] codepage detection based on CMarkdown class
  - sscanf() was used in an unsafe way
