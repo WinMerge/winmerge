@@ -1356,13 +1356,11 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	// Determine if we want new a dirview open now that we know if it was
 	// and archive. Don't open new dirview if we are comparing files.
-	BOOL bSetRootLenght = FALSE;
 	if (!pDirDoc)
 	{
 		if (pathsType == IS_EXISTING_DIR)
 		{
 			pDirDoc = GetDirDocToShow(&docNull);
-			bSetRootLenght = TRUE;
 		}
 		else
 		{
@@ -1387,7 +1385,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			PathContext paths(strLeft, strRight);
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
-			pDirDoc->InitCompare(paths, bRecurse, bSetRootLenght, pTempPathContext);
+			pDirDoc->InitCompare(paths, bRecurse, pTempPathContext);
 			gLog.Write(LOGLEVEL::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
 				strLeft, strRight);
 
