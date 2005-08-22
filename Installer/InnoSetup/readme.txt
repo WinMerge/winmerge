@@ -1,3 +1,9 @@
+2005-08-21 Kimmo
+ PATCH: [ 1248970 ] Icon for Projectfile
+  Icon from Tim
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup new file: MergeProject.ico
+
 2005-08-20 Kimmo
  PATCH: [ 1215964 ] Rename 'list.txt' to 'Plugins.txt'
   InnoSetup: WinMerge Localized.iss

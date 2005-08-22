@@ -360,6 +360,9 @@ Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder
 Source: WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
 Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01
 
+; Icon for projectfiles
+Source: MergeProject.ico; DestDir: {app}; Flags: promptifolder; Components: Core
+
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
 Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
@@ -452,6 +455,7 @@ Root: HKCR; Subkey: .WinMerge; ValueType: String; ValueData: WinMerge.Project.Fi
 Root: HKCR; Subkey: WinMerge.Project.File; Flags: uninsdeletekey
 Root: HKCR; Subkey: WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\{code:ExeName}"" ""%1"""; Flags: uninsdeletekey
 Root: HKCR; Subkey: WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
+Root: HKCR; Subkey: WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\MergeProject.ico"""; Flags: uninsdeletekey
 
 ; delete obsolete values
 ;In Inno Setup Version 4.18 ValueData couldn't be null and compile,
