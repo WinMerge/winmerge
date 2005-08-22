@@ -29,7 +29,7 @@
 //
 
 #include "stdafx.h"
-#include <Shlwapi.h>		// PathCompactPathEx()
+#include <Shlwapi.h>		// PathFindFileName()
 #include "Merge.h"
 #include "CompareStats.h"
 #include "DirDoc.h"
@@ -73,7 +73,6 @@ CDirDoc::CDirDoc()
 , m_bReuseCloses(FALSE)
 , m_bMarkedRescan(FALSE)
 , m_pTempPathContext(NULL)
-, m_cchLeftRoot(0)
 {
 	DIFFOPTIONS options = {0};
 
@@ -179,7 +178,7 @@ void CDirDoc::Serialize(CArchive& ar)
  * @param [in] paths Paths to compare
  * @param [in] bRecursive If TRUE subdirectories are included to compare.
  */
-void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, BOOL bInitRootLength, CTempPathContext *pTempPathContext)
+void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathContext *pTempPathContext)
 {
 	// Anything that can go wrong here will yield an exception.
 	// Default implementation of operator new() never returns NULL.
@@ -199,11 +198,6 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, BOOL bInit
 		m_pTempPathContext->m_strLeftRoot = m_pCtxt->GetLeftPath();
 		m_pTempPathContext->m_strRightRoot = m_pCtxt->GetRightPath();
 	}
-
-	if (bInitRootLength)
-	{
-		m_cchLeftRoot = m_pCtxt->GetLeftPath().GetLength();
-	}
 	
 	m_bRecursive = bRecursive;
 	// All plugin management is done by our plugin manager
@@ -217,19 +211,56 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, BOOL bInit
  * ParentIsRegularPath : upward ENABLED
  * ParentIsTempPath : upward ENABLED
  */
-CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory()
+CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory(CString &leftParent, CString &rightParent)
 {
-	return
-	(
-        GetLeftBasePath().GetLength() > m_cchLeftRoot
-    ||  m_pTempPathContext == NULL
-	&&  lstrcmpi(PathFindFileName(GetLeftBasePath()), 
-		PathFindFileName(GetRightBasePath())) == 0
-    ?   AllowUpwardDirectory::ParentIsRegularPath
-	:	m_pTempPathContext && m_pTempPathContext->m_pParent
-	?	AllowUpwardDirectory::ParentIsTempPath
-	:	AllowUpwardDirectory::No
-	);
+	const CString & left = GetLeftBasePath();
+	const CString & right = GetRightBasePath();
+	LPCTSTR lname = PathFindFileName(left);
+	LPCTSTR rname = PathFindFileName(right);
+	if (m_pTempPathContext)
+	{
+		int cchLeftRoot = m_pTempPathContext->m_strLeftRoot.GetLength();
+		if (left.GetLength() <= cchLeftRoot)
+		{
+			if (m_pTempPathContext->m_pParent)
+			{
+				leftParent = m_pTempPathContext->m_pParent->m_strLeftRoot;
+				rightParent = m_pTempPathContext->m_pParent->m_strRightRoot;
+				if (GetPairComparability(leftParent, rightParent) != IS_EXISTING_DIR)
+					return AllowUpwardDirectory::Never;
+				return AllowUpwardDirectory::ParentIsTempPath;
+			}
+			leftParent = m_pTempPathContext->m_strLeftDisplayRoot;
+			rightParent = m_pTempPathContext->m_strRightDisplayRoot;
+			if (!m_pCtxt->m_piFilterGlobal->includeFile(leftParent, rightParent))
+				return AllowUpwardDirectory::Never;
+			if (lstrcmpi(lname, _T("ORIGINAL")) == 0 && lstrcmpi(rname, _T("ALTERED")) == 0)
+			{
+				leftParent = paths_GetParentPath(leftParent);
+				rightParent = paths_GetParentPath(rightParent);
+				rname = lname;
+			}
+			if (lstrcmpi(lname, rname) == 0)
+			{
+				leftParent = paths_GetParentPath(leftParent);
+				rightParent = paths_GetParentPath(rightParent);
+				if (GetPairComparability(leftParent, rightParent) != IS_EXISTING_DIR)
+					return AllowUpwardDirectory::Never;
+				return AllowUpwardDirectory::ParentIsTempPath;
+			}
+			return AllowUpwardDirectory::No;
+		}
+		rname = lname;
+	}
+	if (lstrcmpi(lname, rname) == 0)
+	{
+		leftParent = paths_GetParentPath(left);
+		rightParent = paths_GetParentPath(right);
+		if (GetPairComparability(leftParent, rightParent) != IS_EXISTING_DIR)
+			return AllowUpwardDirectory::Never;
+		return AllowUpwardDirectory::ParentIsRegularPath;
+	}
+	return AllowUpwardDirectory::No;
 }
 
 /**
@@ -891,9 +922,9 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 		CString strTitle;
 		const TCHAR strSeparator[] = _T(" - ");
 
-		strTitle = paths_GetLastSubdir(m_pCtxt->GetLeftPath());
+		strTitle = PathFindFileName(m_pCtxt->GetLeftPath());
 		strTitle += strSeparator;
-		strTitle += paths_GetLastSubdir(m_pCtxt->GetRightPath());
+		strTitle += PathFindFileName(m_pCtxt->GetRightPath());
 		CDocument::SetTitle(strTitle);
 	}	
 }

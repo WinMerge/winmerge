@@ -39,7 +39,7 @@
 #include "locality.h"
 #include "FileTransform.h"
 #include "SelectUnpackerDlg.h"
-#include "paths.h"	// paths_GetParentPath()
+#include "paths.h"	// GetPairComparability()
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "BCMenu.h"
@@ -858,27 +858,19 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CDirView::OpenParentDirectory()
 {
 	CDirDoc *pDoc = GetDocument();
-	const CString & left = pDoc->GetLeftBasePath();
-	const CString & right = pDoc->GetRightBasePath();
-	CString leftParent = paths_GetParentPath(left);
-	CString rightParent = paths_GetParentPath(right);
-
-	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
-			paths_DoesPathExist(rightParent) == IS_EXISTING_DIR) // &&
-			//(pDoc->AllowUpwardDirectory() || pDoc->m_pTempPathContext && pDoc->m_pTempPathContext->m_pParent))
+	CString leftParent, rightParent;
+	switch (pDoc->AllowUpwardDirectory(leftParent, rightParent))
 	{
-		switch (pDoc->AllowUpwardDirectory())
-		{
-		case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath:
-			mf->DoFileOpen(leftParent, rightParent,
-				FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
-			break;
-		case CDirDoc::AllowUpwardDirectory::ParentIsTempPath:
-			pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
-			mf->DoFileOpen(pDoc->m_pTempPathContext->m_strLeftRoot, pDoc->m_pTempPathContext->m_strRightRoot,
-				FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
-			break;
-		}
+	case CDirDoc::AllowUpwardDirectory::ParentIsTempPath:
+		pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
+		// fall through (no break!)
+	case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath:
+		mf->DoFileOpen(leftParent, rightParent,
+			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		break;
+	default:
+		AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+		break;
 	}
 }
 
@@ -921,7 +913,10 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			{
 				// Open subfolders if non-recursive compare
 				// Don't add folders to MRU
-				mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+				if (GetPairComparability(paths.GetLeft(), paths.GetRight()) == IS_EXISTING_DIR)
+					mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+				else
+					AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 			}
 			break;
 		}
@@ -2142,17 +2137,19 @@ int CDirView::AddSpecialItems()
 {
 	CDirDoc *pDoc = GetDocument();
 	int retVal = 0;
-	const CString & leftPath = pDoc->GetLeftBasePath();
-	const CString & rightPath = pDoc->GetRightBasePath();
-	CString leftParent = paths_GetParentPath(leftPath);
-	CString rightParent = paths_GetParentPath(rightPath);
-
-	if (paths_DoesPathExist(leftParent) == IS_EXISTING_DIR &&
-		paths_DoesPathExist(rightParent) == IS_EXISTING_DIR)
+	BOOL bEnable = TRUE;
+	CString leftParent, rightParent;
+	switch (pDoc->AllowUpwardDirectory(leftParent, rightParent))
 	{
-		BOOL bEnable = pDoc->AllowUpwardDirectory() != CDirDoc::AllowUpwardDirectory::No; //|| pDoc->m_pTempPathContext && pDoc->m_pTempPathContext->m_pParent;
+	case CDirDoc::AllowUpwardDirectory::No:
+		bEnable = FALSE;
+		// fall through
+	default:
 		AddParentFolderItem(bEnable);
 		retVal = 1;
+		// fall through
+	case CDirDoc::AllowUpwardDirectory::Never:
+		break;
 	}
 	return retVal;
 }

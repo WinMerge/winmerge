@@ -84,7 +84,7 @@ public:
 
 // Implementation
 public:
-	void InitCompare(const PathContext & paths, BOOL bRecursive, BOOL bSetRootLength, CTempPathContext *);
+	void InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathContext *);
 	void Rescan();
 	BOOL GetRecursive() { return m_bRecursive; }
 	BOOL GetReadOnly(BOOL bLeft) const;
@@ -132,12 +132,13 @@ public:
 	{
 		enum ReturnCode
 		{
+			Never,
 			No,
 			ParentIsRegularPath,
 			ParentIsTempPath
 		};
 	};
-	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory();
+	AllowUpwardDirectory::ReturnCode AllowUpwardDirectory(CString &leftParent, CString &rightParent);
 	void SetItemViewFlag(POSITION key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
 
@@ -165,7 +166,6 @@ private:
 	PluginManager m_pluginman;
 	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
 	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
-	int m_cchLeftRoot; /**< Don't go upward any further */
 };
 
 //{{AFX_INSERT_LOCATION}}
