@@ -30,13 +30,56 @@ DATE:		BY:					DESCRIPTION:
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 2005/03/19	Jochen Tucht		Changed as explained in revision.txt
 2005/06/22	Jochen Tucht		Treat .ear and .war like .zip
+2005/07/05	Jochen Tucht		Add missing .tbz2
+2005/08/20	Jochen Tucht		Option to guess archive format by signature.
+								EnumerateDirectory() in EnumDirItems.cpp has
+								somewhat changed so I can no longer use it.
 */
 
 #include "stdafx.h"
 #include "Merge7zCommon.h"
 #include "7zip/FileManager/LangUtils.h"
 
-#include "7zip/UI/Common/EnumDirItems.cpp" // defines static void EnumerateDirectory()
+//#include "7zip/UI/Common/EnumDirItems.cpp" // defines static void EnumerateDirectory()
+using namespace NWindows;
+using namespace NFile;
+using namespace NName;
+
+void AddDirFileInfo(
+	const UString &prefix, 
+	const UString &fullPathName,
+	NFind::CFileInfoW &fileInfo, 
+	CObjectVector<CDirItem> &dirItems)
+{
+	CDirItem item;
+	item.Attributes = fileInfo.Attributes;
+	item.Size = fileInfo.Size;
+	item.CreationTime = fileInfo.CreationTime;
+	item.LastAccessTime = fileInfo.LastAccessTime;
+	item.LastWriteTime = fileInfo.LastWriteTime;
+	item.Name = prefix + fileInfo.Name;
+	item.FullPath = fullPathName;
+	dirItems.Add(item);
+}
+
+static void EnumerateDirectory(
+	const UString &baseFolderPrefix,
+	const UString &directory, 
+	const UString &prefix,
+	CObjectVector<CDirItem> &dirItems)
+{
+	NFind::CEnumeratorW enumerator(baseFolderPrefix + directory + wchar_t(kAnyStringWildcard));
+	NFind::CFileInfoW fileInfo;
+	while (enumerator.Next(fileInfo))
+	{ 
+		AddDirFileInfo(prefix, directory + fileInfo.Name, fileInfo, dirItems);
+		if (fileInfo.IsDirectory())
+		{
+			EnumerateDirectory(baseFolderPrefix, directory + fileInfo.Name + wchar_t(kDirDelimiter),
+			prefix + fileInfo.Name + wchar_t(kDirDelimiter), dirItems);
+		}
+	}
+}
 
 HINSTANCE g_hInstance;
 DWORD g_dwFlags;
@@ -64,7 +107,7 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 			char path[MAX_PATH];
 			FormatMessageA
 			(
-				FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ARGUMENT_ARRAY,
+				FORMAT_MESSAGE_FROM_STRING|FORMAT_MESSAGE_ARGUMENT_ARRAY,
 				name,
 				0,
 				0,
@@ -120,7 +163,7 @@ struct Format7zDLL *Format7zDLL::Proxy::operator->()
 IInArchive *Format7zDLL::Interface::GetInArchive()
 {
 	void *pv;
-	if COMPLAIN(proxy->CreateObject(proxy.clsid, &IID_IInArchive, &pv) != S_OK)
+	if COMPLAIN(proxy->CreateObject(&proxy.clsid, &IID_IInArchive, &pv) != S_OK)
 	{
 		Complain(RPC_S_INTERFACE_NOT_FOUND, _T("IInArchive"), proxy.handle);
 	}
@@ -133,7 +176,7 @@ IInArchive *Format7zDLL::Interface::GetInArchive()
 IOutArchive *Format7zDLL::Interface::GetOutArchive()
 {
 	void *pv;
-	if COMPLAIN(proxy->CreateObject(proxy.clsid, &IID_IOutArchive, &pv) != S_OK)
+	if COMPLAIN(proxy->CreateObject(&proxy.clsid, &IID_IOutArchive, &pv) != S_OK)
 	{
 		Complain(RPC_S_INTERFACE_NOT_FOUND, _T("IOutArchive"), proxy.handle);
 	}
@@ -522,60 +565,77 @@ int Merge7z::Initialize(DWORD dwFlags)
 static const char aCreateObject[] = "CreateObject";
 static const char aGetHandlerProperty[] = "GetHandlerProperty";
 
-#define	DEFINE_FORMAT(name, dll, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
-		EXTERN_C const GUID CLSID_##name \
-				= { l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }; \
+Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
+
+#define	DEFINE_FORMAT(name, dll, extension, signature, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
 			"%1Formats\\" dll, \
 			aCreateObject, \
 			aGetHandlerProperty, \
 			(HMODULE)0, \
-			&CLSID_##name \
+			{ l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }, \
+			signature extension + sizeof signature extension - sizeof extension, \
+			sizeof signature extension - sizeof extension \
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
 	
-/* this is how DEFINE_FORMAT expands:
-DEFINE_GUID(CLSID_CFormat7z,
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x05, 0x00, 0x00);
-
-Format7zDLL::Proxy PROXY_CFormat7z =
-{
-	"%1Formats\\7Z.DLL",
-	"CreateObject",
-	"GetHandlerProperty",
-	(HMODULE)0,
-	&CLSID_CFormat7z
-};
-
-Format7zDLL::Interface CFormat7z = PROXY_CFormat7z;/**/
-
 DEFINE_FORMAT(CFormat7z, "7Z.DLL",
+	"7z",
+	"@7z\xBC\xAF\x27\x1C",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x05, 0x00, 0x00);
 DEFINE_FORMAT(CArjHandler, "ARJ.DLL",
+	"arj",
+	"@\x60\xEA",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0A, 0x00, 0x00);
 DEFINE_FORMAT(CBZip2Handler, "BZ2.DLL",
+	"bz2 tbz2",
+	"@BZh",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x07, 0x00, 0x00);
 DEFINE_FORMAT(CCabHandler, "CAB.DLL",
+	"cab",
+	"@MSCF",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x06, 0x00, 0x00);
 DEFINE_FORMAT(CCpioHandler, "CPIO.DLL",
+	"cpio",
+	"",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x08, 0x00, 0x00);
 DEFINE_FORMAT(CDebHandler, "DEB.DLL",
+	"deb",
+	"@!<arch>\n",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0C, 0x00, 0x00);
+DEFINE_FORMAT(CLzhHandler, "LZH.DLL",
+	"lzh lha",
+	"@@@-l@@-",//"-l" doesn't work because signature starts at offset 2
+	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0E, 0x00, 0x00);
 DEFINE_FORMAT(CGZipHandler, "GZ.DLL",
+	"gz tgz",
+	"@\x1F\x8B",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x03, 0x00, 0x00);
 DEFINE_FORMAT(CRarHandler, "RAR.DLL",
+	"rar",
+	"@Rar!\x1a\x07\x00",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x02, 0x00, 0x00);
 DEFINE_FORMAT(CRpmHandler, "RPM.DLL",
+	"rpm",
+	"",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x09, 0x00, 0x00);
 DEFINE_FORMAT(CSplitHandler, "SPLIT.DLL",
+	"001",
+	"",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0B, 0x00, 0x00);
 DEFINE_FORMAT(CTarHandler, "TAR.DLL",
+	"tar",
+	"",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x04, 0x00, 0x00);
-DEFINE_FORMAT(CZipHandler, "ZIP.DLL",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x01, 0x00, 0x00);
 DEFINE_FORMAT(CZHandler, "Z.DLL",
+	"z",
+	"@\x1F\x9D",
 	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0D, 0x00, 0x00);
+DEFINE_FORMAT(CZipHandler, "ZIP.DLL",
+	"zip jar war ear xpi",
+	"@PK\x03\x04",
+	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x01, 0x00, 0x00);
 
 /**
  * @brief Construct Merge7z interface.
@@ -594,79 +654,157 @@ TarHandler(CTarHandler)
  */
 Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 {
+	if (g_dwFlags & Initialize::GuessFormatBySignature)
+		return GuessFormatBySignature(path, g_dwFlags & Initialize::GuessFormatByExtension ? path : 0);
+	return GuessFormatByExtension(path);
+}
+
+/**
+ * @brief Figure out which archiver dll to use for a given archive.
+ */
+Merge7z::Format *Merge7z::GuessFormatByExtension(LPCTSTR path)
+{
+	SZ_EXTENSION ext;
+	if (PathIsDirectory(path) || !GetExtension(path, ext))
+		return 0;
+	return GuessFormatEx(ext, 0, 0);
+}
+
+/**
+ * @brief Figure out which archiver dll to use for a given archive.
+ */
+Merge7z::Format *Merge7z::GuessFormatBySignature(LPCTSTR path, LPCTSTR extension)
+{
+	SZ_EXTENSION ext;
+	CH_SIGNATURE sig;
 	if (PathIsDirectory(path))
 		return 0;
-	ENUM_LIST
-	(
-		EnumList,
-		_ENUM(7Z)
-		ENUM(Z)
-		ENUM(ZIP)
-		ENUM(JAR)
-		ENUM(WAR)
-		ENUM(EAR)
-		ENUM(XPI)
-		ENUM(RAR)
-		ENUM(BZ2)
-		ENUM(TAR)
-		ENUM(GZ)
-		ENUM(TGZ)
-		ENUM(CAB)
-		ENUM(ARJ)
-		ENUM(CPIO)
-		ENUM(DEB)
-		ENUM(RPM)
-		_ENUM(001)
-	);
-	Format *pFormat = 0;
-	switch (EnumList->Find(PathFindExtension(path), FALSE))
+	return GuessFormatEx(GetExtension(extension, ext), sig, GetSignature(path, sig));
+}
+
+/**
+ * @brief Figure out which archiver dll to use for a given archive.
+ */
+Merge7z::Format *Merge7z::GuessFormatEx(LPCSTR ext, LPCH sig, int cchSig)
+{
+	Format7zDLL::Interface *pFormat = Format7zDLL::Interface::head;
+	Format7zDLL::Interface *pFormatByExtension = 0;
+	while (pFormat)
 	{
-	case EnumList::_7Z:
-		pFormat = &CFormat7z;
-		break;
-	case EnumList::Z:
-		pFormat = &CZHandler;
-		break;
-	case EnumList::ZIP:
-	case EnumList::JAR:
-	case EnumList::WAR:
-	case EnumList::EAR:
-	case EnumList::XPI:
-		pFormat = &CZipHandler;
-		break;
-	case EnumList::RAR:
-		pFormat = &CRarHandler;
-		break;
-	case EnumList::BZ2:
-		pFormat = &CBZip2Handler;
-		break;
-	case EnumList::TAR:
-		pFormat = &CTarHandler;
-		break;
-	case EnumList::GZ:
-	case EnumList::TGZ:
-		pFormat = &CGZipHandler;
-		break;
-	case EnumList::CAB:
-		pFormat = &CCabHandler;
-		break;
-	case EnumList::ARJ:
-		pFormat = &CArjHandler;
-		break;
-	case EnumList::CPIO:
-		pFormat = &CCpioHandler;
-		break;
-	case EnumList::DEB:
-		pFormat = &CDebHandler;
-		break;
-	case EnumList::RPM:
-		pFormat = &CRpmHandler;
-		break;
-	case EnumList::_001:
-		pFormat = &CSplitHandler;
-		break;
+		static const char aBlank[] = " ";
+		LPCSTR pchExtension = pFormat->proxy.extension;
+		int cchExtension = pFormat->proxy.signature;
+		if (cchSig > 0 && cchExtension)
+		{
+			LPCSTR pchSignature = pchExtension - cchExtension;
+			char joker = *pchSignature++;
+			--cchExtension;
+			if (cchSig >= cchExtension)
+			{
+				while (cchExtension--)
+				{
+					char expected = pchSignature[cchExtension];
+					if (expected != joker && sig[cchExtension] != expected)
+						break;
+				}
+				if (cchExtension == -1)
+					return pFormat;
+			}
+		}
+		else while
+		(
+			ext
+		&&	pFormatByExtension == 0
+		&&	(cchExtension = StrCSpnA(pchExtension += StrSpnA(pchExtension, aBlank), aBlank)) != 0
+		)
+		{
+			if (StrIsIntlEqualA(FALSE, pchExtension, ext, cchExtension) && ext[cchExtension] == '\0')
+			{
+				pFormatByExtension = pFormat;
+			}
+			pchExtension += cchExtension;
+		}
+		pFormat = pFormat->next;
 	}
-	return pFormat;
+	return pFormat ? pFormat : pFormatByExtension;
+}
+
+/**
+ * @brief Get filename extension as ANSI characters.
+ */
+LPCSTR Merge7z::GetExtension(LPCTSTR path, SZ_EXTENSION ext)
+{
+	if (path == NULL)
+		return NULL;
+	path = PathFindExtension(path);
+#ifdef UNICODE
+	return WideCharToMultiByte(CP_ACP, 0, path, -1, ext, sizeof(SZ_EXTENSION), 0, 0) > 1 ? ext + 1 : 0;
+#else
+	ext[sizeof(SZ_EXTENSION) - 2] = '\0';
+	lstrcpynA(ext, path, sizeof(SZ_EXTENSION));
+	return ext[0] != '\0' && ext[sizeof(SZ_EXTENSION) - 2] == '\0' ? ext + 1 : 0;
+#endif
+}
+
+/**
+ * @brief Read start signature from given file.
+ */
+DWORD Merge7z::GetSignature(LPCTSTR path, CH_SIGNATURE sig)
+{
+	if (sig == NULL)
+		return sizeof(CH_SIGNATURE);
+	DWORD cchSig = 0;
+	HANDLE h = CreateFile(path, GENERIC_READ, FILE_SHARE_READ|FILE_SHARE_WRITE, 0, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, 0);
+	if (h != INVALID_HANDLE_VALUE)
+	{
+		ReadFile(h, sig, sizeof(CH_SIGNATURE), &cchSig, 0);
+		if (cchSig >= 64 && MAKEWORD(sig[0],sig[1]) == IMAGE_DOS_SIGNATURE)
+		{
+			DWORD offset = 
+			(
+				LPDWORD(sig)[5]	//DOS CS:IP
+			?	512UL * (LPWORD(sig)[1] ? LPWORD(sig)[2] - 1 : LPWORD(sig)[2]) + LPWORD(sig)[1]
+			:	LPDWORD(sig)[15]
+			);
+			if (SetFilePointer(h, offset, 0, FILE_BEGIN) == offset)
+			{
+				ReadFile(h, sig, sizeof(CH_SIGNATURE), &cchSig, 0);
+				if (cchSig >= 4 + sizeof(IMAGE_FILE_HEADER) && MAKELONG(MAKEWORD(sig[0],sig[1]), MAKEWORD(sig[2],sig[3])) == MAKELONG(MAKEWORD('P','E'), 0))
+				{
+					cchSig = 0;
+					IMAGE_FILE_HEADER *pImageFileHeader = (IMAGE_FILE_HEADER *) (sig + 4);
+					offset += 4 + sizeof(IMAGE_FILE_HEADER) + pImageFileHeader->SizeOfOptionalHeader;
+					if (SetFilePointer(h, offset, 0, FILE_BEGIN) == offset)
+					{
+						int iSection = pImageFileHeader->NumberOfSections;
+						while (iSection--)
+						{
+							IMAGE_SECTION_HEADER ImageSectionHeader;
+							DWORD cbImageSectionHeader = 0;
+							ReadFile(h, &ImageSectionHeader, sizeof ImageSectionHeader, &cbImageSectionHeader, 0);
+							if (cbImageSectionHeader != sizeof ImageSectionHeader)
+								break;
+							if (memcmp(ImageSectionHeader.Name, "_winzip_", 8) == 0)
+							{
+								// looks like WinZip Self-Extractor
+								memcpy(sig, "PK\x03\x04", cchSig = 4);
+								break;
+							}
+							DWORD ahead = ImageSectionHeader.PointerToRawData + ImageSectionHeader.SizeOfRawData;
+							if (offset < ahead)
+								offset = ahead;
+						}
+						if (iSection == -1 && SetFilePointer(h, offset, 0, FILE_BEGIN) == offset)
+						{
+							ReadFile(h, sig, sizeof(CH_SIGNATURE), &cchSig, 0);
+						}
+					}
+				}
+			}
+		}
+		CloseHandle(h);
+	}
+	return cchSig;
 }
 
 /**
@@ -727,6 +865,14 @@ void ReadRegLang(CSysString &langFile)
 }
 
 /**
+ * @brief 7-Zip 4.26: ReloadLangSmart() wants this #ifdef _UNICODE.
+ * We certainly don't want to write 7-Zip's registry so we make it a NOP.
+ */
+void SaveRegLang(const CSysString &langFile)
+{
+}
+
+/**
  * @brief Export instance of Merge7z interface.
  */
 EXTERN_C
@@ -761,4 +907,3 @@ EXTERN_C HRESULT CALLBACK DllGetVersion(DLLVERSIONINFO *pdvi)
 	CopyMemory(pdvi, &dvi, pdvi->cbSize < dvi.cbSize ? pdvi->cbSize : dvi.cbSize);
 	return S_OK;
 }
-

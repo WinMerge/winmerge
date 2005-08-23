@@ -22,6 +22,7 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2003/12/09	Jochen Tucht		Created
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
+2005/08/20	Jochen Tucht		Remove unused EnumList
 */
 
 #include "stdafx.h"
@@ -110,21 +111,3 @@ void NTAPI Release(IUnknown *punk)
 	}
 }
 
-/**
- * @brief Find a keyword within an EnumList, and return its numeric value.
- */
-EnumList::Find(LPCTSTR r, BOOL fCaseSens) const
-{
-	static const TCHAR trim[] = _T(".;:() ");
-	int cch = StrCSpn(r += StrSpn(r, trim), trim);
-	int Find = 0;
-	LPCTSTR q = buffer;
-	while (LPCTSTR p = StrChr(q, '('))
-	{
-		q = StrChr(++p, ')');
-		if (StrIsIntlEqual(fCaseSens, p, r, cch) && q - p == cch)
-			break;
-		++Find;
-	}
-	return Find;
-}

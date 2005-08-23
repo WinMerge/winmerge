@@ -40,3 +40,4 @@ VERSION(2,2)
 //								Don't show error message on intentional abort
 
 "*"//2005/06/22 Jochen Tucht	Treat .ear and .war like .zip
+"*"//2005/08/20 Jochen Tucht	Option to guess archive format by signature

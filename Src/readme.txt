@@ -1,3 +1,8 @@
+2005-08-23 Jochen
+ PATCH: [ 1264723 ] Merge7z DllBuild 0013
+  Merge7z: Merge7z.h Merge7zCommon.cpp Merge7zCommon.h StdAfx.h tools.cpp tools.h revision.txt
+  Merge7z new files: Merge7z423.dsp Merge7z424.dsp Merge7z425.dsp Merge7z426.dsp
+
 2005-08-23 Kimmo
  PATCH: [ 1266442 ] Small cleanup for ShellExtension
   Also bump version number to 1.5

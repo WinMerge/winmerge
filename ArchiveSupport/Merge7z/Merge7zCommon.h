@@ -10,9 +10,12 @@
 #include "7zip/Common/FileStreams.h"
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 12
+#define DllBuild_Merge7z 13
 #define DLLPSTUB /##/
 #include "Merge7z.h"
+
+typedef char SZ_EXTENSION[8];
+typedef char CH_SIGNATURE[64]; //MAX(4 + IMAGE_SIZEOF_FILE_HEADER, 64)
 
 using namespace NWindows;
 
@@ -34,7 +37,9 @@ struct Format7zDLL
 	CreateObjectFunc CreateObject;
 	GetHandlerPropertyFunc GetHandlerProperty;
 	HMODULE handle;
-	const CLSID *clsid;
+	CLSID clsid;
+	const char *extension;
+	size_t signature;
 	struct Proxy;
 	interface Interface;
 };
@@ -47,15 +52,20 @@ struct Format7zDLL::Proxy
 	-	&((struct Format7zDLL *)0)->origin
 	];
 	HMODULE handle;
-	const CLSID *clsid;
+	CLSID clsid;
+	const char *extension;
+	size_t signature;
 	struct Format7zDLL *operator->();
 };
 
 interface Format7zDLL::Interface : Merge7z::Format
 {
 	Proxy &proxy;
-	Interface(Proxy &proxy):proxy(proxy)
+	static Interface *head;
+	Interface *next;
+	Interface(Proxy &proxy):proxy(proxy), next(head)
 	{
+		head = this;
 	}
 	void GetDefaultName(HWND, UString &);
 	virtual IInArchive *GetInArchive();

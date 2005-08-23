@@ -15,6 +15,12 @@
 #define DLLPSTUB /##/
 #endif
 
+#if DllBuild_Merge7z >= 13
+#define DllBuild_Merge7z_13 public
+#else
+#define DllBuild_Merge7z_13 private
+#endif
+
 interface Merge7z
 {
 	struct Proxy
@@ -30,6 +36,8 @@ interface Merge7z
 		{
 			Unicode = 1,
 			Local7z = 2,
+			GuessFormatBySignature = 4,
+			GuessFormatByExtension = 8,
 			Default = sizeof(TCHAR) == sizeof(WCHAR) ? Unicode : 0
 		};
 	};
@@ -116,4 +124,10 @@ interface Merge7z
 	virtual Format *GuessFormat(LPCTSTR);
 DllBuild_Merge7z_9:
 	virtual LPCTSTR LoadLang(LPCTSTR);
+DllBuild_Merge7z_13:
+	virtual Format *GuessFormatByExtension(LPCTSTR);
+	virtual Format *GuessFormatBySignature(LPCTSTR, LPCTSTR extension = 0);
+	virtual Format *GuessFormatEx(LPCSTR ext, LPCH sig, int cbSig);
+	virtual LPCSTR GetExtension(LPCTSTR, LPSTR);
+	virtual DWORD GetSignature(LPCTSTR, LPCH);
 };

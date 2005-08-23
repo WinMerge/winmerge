@@ -7,7 +7,8 @@
 //<jtuc>
 //-	help 7z sources compile with old SDK headers
 #ifndef GWLP_WNDPROC
-typedef INT_PTR LONG_PTR;
+#define INT_PTR int // MS has switched to int
+typedef long LONG_PTR;
 
 #define SetWindowLongPtr SetWindowLong
 #define GetWindowLongPtr GetWindowLong
