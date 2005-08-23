@@ -49,6 +49,8 @@
 #define EXT_ENABLED 0x01
 #define EXT_ADVANCED 0x02
 
+/// Max. filecount to select
+static const int MaxFileCount = 2;
 /// Registry path to WinMerge 
 #define REGDIR _T("Software\\Thingamahoochie\\WinMerge")
 static const TCHAR f_RegDir[] = REGDIR;
@@ -164,7 +166,7 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		// Copy the pathname into the buffer
 		DragQueryFile(hDropInfo, x, npszFile, wPathnameSize);
 
-		if (x < 2)
+		if (x < MaxFileCount)
 			m_strPaths[x] = npszFile;
 
 		delete[] npszFile;
@@ -406,7 +408,7 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_hMergeBmp, NULL);
 	
 	// Show menu item as grayed if more than two items selected
-	if (m_nSelectedItems > 2)
+	if (m_nSelectedItems > MaxFileCount)
 		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
 	
 	return 1;
@@ -471,7 +473,7 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	}
 	
 	// Show menu item as grayed if more than two items selected
-	if (m_nSelectedItems > 2)
+	if (m_nSelectedItems > MaxFileCount)
 	{
 		if (nItemsAdded == 2)
 			EnableMenuItem(hmenu, uMenuIndex - 1, MF_BYPOSITION | MF_GRAYED);
@@ -487,7 +489,7 @@ CString CWinMergeShell::GetHelpText(int idCmd)
 	CString strHelp;
 
 	// More than two items selected, advice user
-	if (m_nSelectedItems > 2)
+	if (m_nSelectedItems > MaxFileCount)
 	{
 		VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP_MANYITEMS));
 		return strHelp;

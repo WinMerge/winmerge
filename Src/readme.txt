@@ -1,3 +1,8 @@
+2005-08-23 Kimmo
+ PATCH: [ 1266442 ] Small cleanup for ShellExtension
+  Also bump version number to 1.5
+  ShellExtension: ShellExtension.rc WinMergeShell.cpp
+
 2005-08-22 Kimmo
  PATCH: [ 1265006 ] Japanese translation update
   Submitted by Takashi Sawanaka
