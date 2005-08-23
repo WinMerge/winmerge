@@ -1266,9 +1266,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 		//save the MRU left and right files.
 		if (!(dwLeftFlags & FFILEOPEN_NOMRU))
-			addToMru(pszLeft, _T("Files\\Left"));
+			addToMru(strLeft, _T("Files\\Left"));
 		if (!(dwRightFlags & FFILEOPEN_NOMRU))
-			addToMru(pszRight, _T("Files\\Right"));
+			addToMru(strRight, _T("Files\\Right"));
 	}
 
 

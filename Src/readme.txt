@@ -2,6 +2,8 @@
  PATCH: [ 1266442 ] Small cleanup for ShellExtension
   Also bump version number to 1.5
   ShellExtension: ShellExtension.rc WinMergeShell.cpp
+ PATCH: [ 1266476 ] Add ending backslash for directories opened from commandline
+  Src: MainFrm.cpp
 
 2005-08-22 Kimmo
  PATCH: [ 1265006 ] Japanese translation update
