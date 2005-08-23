@@ -138,6 +138,9 @@ Compression=lzma/ultra
 InternalCompressLevel=ultra
 SolidCompression=true
 
+; Update file associations for shell (project files)
+ChangesAssociations=true
+
 
 [Languages]
 ;Inno Setup's Native Language

@@ -1,3 +1,7 @@
+2005-08-23 Kimmo
+ PATCH: [ 1266352 ] Installer should inform shell about fileassociations
+  InnoSetup: WinMerge Localized.iss
+
 2005-08-21 Kimmo
  PATCH: [ 1248970 ] Icon for Projectfile
   Icon from Tim
