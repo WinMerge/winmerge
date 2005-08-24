@@ -23,7 +23,7 @@
  * Copyright (c) 2003 Jochen Tucht
  *
  * Remarks:	Different versions of 7-Zip are interfaced through specific
- *			versions of Merge7z (Merge7z310.dll, Merge7z311.dll, etc.)
+ *			versions of Merge7z (Merge7z311.dll, Merge7z312.dll, etc.)
  *			WinMerge can either use an installed copy of the 7-Zip software,
  *			or fallback to a local set of 7-Zip DLLs, which are to be included
  *			in the WinMerge binary distribution.
@@ -36,8 +36,12 @@
  *			4. If there is a Merge7zYYY.dll, be happy to use it.
  *			5. Sorry, no way.
  *
- *			If there is a registry variable *Settings\ForceLocal7z*
- *			of type DWORD and value 1, steps 1 and 2 will be skipped.
+ *			These rules can be customized by setting a registry variable
+ *			*Merge7z/Enable* of type DWORD to one of the following values:
+ *
+ *			0 - Entirely disable 7-Zip integration.
+ *			1 - Use installed 7-Zip if present. Otherwise, use local 7-Zip.
+ *			2 - Always use local 7-Zip.
  *
 
 Please mind 2. a) of the GNU General Public License, and log your changes below.
@@ -78,6 +82,9 @@ DATE:		BY:					DESCRIPTION:
 								compression.
 2005/07/15	Jochen Tucht		Remove external command line tool integration
 								for now. Rethink about it after 2.4 branch.
+2005/08/20	Jochen Tucht		Option to guess archive format by signature
+								Map extensions through ExternalArchiveFormat.ini
+2005/08/23	Jochen Tucht		Option to entirely disable 7-Zip integration
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -101,8 +108,41 @@ DATE:		BY:					DESCRIPTION:
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Wrap Merge7z::GuessFormat() to allow for some customizing:
+ * - Check if 7-Zip integration is enabled.
+ * - Check for filename extension mappings.
+ */
 Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 {
+	if (theApp.GetProfileInt(_T("Merge7z"), _T("Enable"), 1) == 0)
+		return NULL;
+	if (PathIsDirectory(path))
+		return NULL;
+	// Map extensions through ExternalArchiveFormat.ini
+	static TCHAR null[] = _T("");
+	static const TCHAR section[] = _T("extensions");
+	LPCTSTR entry = PathFindExtension(path);
+	TCHAR value[20];
+	static LPCTSTR filename = NULL;
+	if (filename == NULL)
+	{
+		TCHAR cPath[INTERNET_MAX_PATH_LENGTH];
+		DWORD cchPath = SearchPath(NULL, _T("ExternalArchiveFormat.ini"), NULL,
+			INTERNET_MAX_PATH_LENGTH, cPath, NULL);
+		filename = cchPath && cchPath < INTERNET_MAX_PATH_LENGTH ? StrDup(cPath) : null;
+	}
+	if (*filename &&
+		GetPrivateProfileString(section, entry, null, value, 20, filename) &&
+		*value == '.')
+	{
+		if (LPTSTR p = StrChr(value, ';'))
+		{
+			*p = '\0';
+			StrTrim(value, _T(" \t"));
+		}
+		path = value;
+	}
 	// Look for command line tool first
 	/*Merge7z::Format *pFormat;
 	if (CExternalArchiveFormat::GuessFormat(path, pFormat))
@@ -159,7 +199,7 @@ protected:
 /**
  * @brief Recommended version of 7-Zip.
  */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(20,4);
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(23,4);
 
 /**
  * @brief Registry key for C7ZipMismatchException's ReportError() popup.
@@ -334,6 +374,20 @@ BOOL CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wPara
 			if (pThis->m_pCause)
 			{
 				pThis->m_pCause->GetErrorMessage(cText.Data, cText.Size);
+				SetDlgItemText(hWnd, 107, cText.Data);
+			}
+			else
+			{
+				GetDlgItemText(hWnd, 107, cText.Data, cText.Size);
+				switch (theApp.GetProfileInt(_T("Merge7z"), _T("Enable"), 1))
+				{
+				case 0:
+					lstrcat(cText.Data, CString(MAKEINTRESOURCE(IDS_MERGE7Z_ENABLE_0)));
+					break;
+				case 2:
+					lstrcat(cText.Data, CString(MAKEINTRESOURCE(IDS_MERGE7Z_ENABLE_2)));
+					break;
+				}
 				SetDlgItemText(hWnd, 107, cText.Data);
 			}
 			GetDlgItemText(hWnd, 112, cPresent.Data, cPresent.Size);
@@ -619,9 +673,9 @@ interface Merge7z *Merge7z::Proxy::operator->()
 		char name[MAX_PATH];
 		DWORD flags = ~0;
 		CException *pCause = NULL;
-		switch (theApp.GetProfileInt(_T("Settings"), _T("ForceLocal7z"), 0))
+		switch (theApp.GetProfileInt(_T("Merge7z"), _T("Enable"), 1))
 		{
-		case 0:
+		case 1: //Use installed 7-Zip if present. Otherwise, use local 7-Zip.
 			if (DWORD ver = VersionOf7z(FALSE))
 			{
 				flags = Initialize::Default;
@@ -638,7 +692,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 					pCause = e;
 				}
 			}
-		default:
+		case 2: //Always use local 7-Zip.
 			if (DWORD ver = VersionOf7z(TRUE))
 			{
 				flags = Initialize::Default | Initialize::Local7z;
@@ -656,6 +710,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 					pCause = e;
 				}
 			}
+		default:
 			throw new C7ZipMismatchException
 			(
 				VersionOf7z(FALSE),
@@ -670,6 +725,10 @@ interface Merge7z *Merge7z::Proxy::operator->()
 			{
 				flags |= wLangID << 16;
 			}
+		}
+		if (theApp.GetProfileInt(_T("Merge7z"), _T("ProbeSignature"), 0))
+		{
+			flags |= Initialize::GuessFormatBySignature | Initialize::GuessFormatByExtension;
 		}
 		((interface Merge7z *)Merge7z[1])->Initialize(flags);
 	}

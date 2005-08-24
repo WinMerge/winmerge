@@ -549,6 +549,8 @@
 #define IDS_FOLDER_NOTEXIST             18414
 #define IDS_DIR_RESULTS_EMPTIED         18448
 #define IDS_NO_ZIP_SUPPORT              18449
+#define IDS_MERGE7Z_ENABLE_0            18450
+#define IDS_MERGE7Z_ENABLE_2            18451
 #define IDS_REGEXP_ERROR                18480
 #define IDS_REGEXP_NOMATCH              18481
 #define IDS_REGEXP_INVALID              18482

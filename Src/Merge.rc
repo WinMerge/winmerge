@@ -2124,6 +2124,8 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
                             All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
                             See manual for more info about archive support and how to enable it."
+	IDS_MERGE7Z_ENABLE_0	"\nNote: 7-Zip integration is disabled in WinMerge settings."
+	IDS_MERGE7Z_ENABLE_2	"\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
 END
 
 // Regular expression errors
