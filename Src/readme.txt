@@ -1,6 +1,8 @@
 2005-08-24 Kimmo
  PATCH: [ 1267375 ] Allow to resize file open/save dialog
   Src: Merge.cpp
+ PATCH: [ 1267383 ] Use our SelectFile() to select Project file to open
+  Src: MainFrm.cpp
 
 2005-08-24 Jochen
  PATCH: [ 1264728 ] Guess archive format by signature

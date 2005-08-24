@@ -2763,24 +2763,15 @@ void CMainFrame::OnViewToolbar()
  */
 void CMainFrame::OnFileOpenproject()
 {
-	// show a fileopen dialog with the WinMerge extension
-	CString strFileFilter;
-	strFileFilter.LoadString(IDS_PROJECTFILES);
-	CString strFileExt;
-	strFileExt.LoadString(IDS_PROJECTFILES_EXT);
-	CFileDialog dlg(true,strFileExt,0,0,strFileFilter);
+	CString strFileName;
+	CString title;
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	
 	// get the default projects path
 	CString strProjectPath = m_options.GetString(OPT_PROJECTS_PATH);
-	// set the initial directory to the projects path if present
-	if (!strProjectPath.IsEmpty())
-		dlg.m_ofn.lpstrInitialDir = strProjectPath;
-
-	if (dlg.DoModal() != IDOK)
+	if (!SelectFile(strFileName, strProjectPath, title, IDS_PROJECTFILES, TRUE))
 		return;
 	
-	// get the path part from the filename
-	CString strFileName = dlg.GetPathName();
 	strProjectPath = paths_GetParentPath(strFileName);
 	// store this as the new project path
 	m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
@@ -2789,7 +2780,7 @@ void CMainFrame::OnFileOpenproject()
 	files.Add(strFileName);
 	files.Add("");
 	
-	BOOL bRecursive = true;
+	BOOL bRecursive = TRUE;
 	//load the project file
 	if (theApp.LoadProjectFile(files,bRecursive))
 	{
