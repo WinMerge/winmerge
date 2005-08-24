@@ -1,3 +1,5 @@
+2005-08-24 WinMerge experimental release 2.3.5.3 (cvs)
+
 2005-08-24 Kimmo
  PATCH: [ 1267375 ] Allow to resize file open/save dialog
   Src: Merge.cpp
