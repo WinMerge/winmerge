@@ -60,6 +60,7 @@ public:
 	void ShowProcessingBar(BOOL bShow);
 	void NotifyHideStateBar();
 	void UpdateResources();
+	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	void SetCompareStats(CompareStats *pCompareStats);
 	void UpdateStats();
 

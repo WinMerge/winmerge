@@ -6,6 +6,10 @@
  PATCH: [ 1267520 ] byte_compare_files() opens files in text mode
   From Perry
   Src: DiffWrapper.cpp
+ PATCH: [ 1265045 ] GUI freeze after changing language
+  Submitted by Takashi Sawanaka
+  Src: ChildFrm.h DirFrame.h
+  Src/Common: LanguageSelect.cpp
 
 2005-08-24 Jochen
  PATCH: [ 1264728 ] Guess archive format by signature

@@ -4,10 +4,12 @@
 
 
 #include "stdafx.h"
+#include "merge.h"
 #include "resource.h"
-#include "Merge.h"
 #include "LanguageSelect.h"
 #include "MainFrm.h"
+#include "ChildFrm.h"
+#include "DirFrame.h"
 #include <locale.h>
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
@@ -513,30 +515,62 @@ void CLanguageSelect::ReloadMenu()
 		UINT idMenu = GetDocResId();
 		CMergeApp *pApp = dynamic_cast<CMergeApp *> (AfxGetApp());
 		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)pApp->m_pMainWnd);
-		HMENU hNewMenu = pMainFrame->NewDefaultMenu(idMenu);
-		if (hNewMenu)
+		HMENU hNewDefaultMenu = pMainFrame->NewDefaultMenu(idMenu);
+		HMENU hNewMergeMenu = pMainFrame->NewMergeViewMenu();
+		HMENU hNewDirMenu = pMainFrame->NewDirViewMenu();
+		if (hNewDefaultMenu && hNewMergeMenu && hNewDirMenu)
 		{
-			CMenu* pOldMenu = pMainFrame->GetMenu();
+			CMenu* pOldDefaultMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
+			CMenu* hOldMergeMenu = CMenu::FromHandle(pApp->m_pDiffTemplate->m_hMenuShared);
+			CMenu* hOldDirMenu = CMenu::FromHandle(pApp->m_pDirTemplate->m_hMenuShared);
 
 			// Note : for Windows98 compatibility, use FromHandle and not Attach/Detach
-			CMenu * pNewMenu = CMenu::FromHandle(hNewMenu);
-			if (pMainFrame->MDISetMenu(pNewMenu, NULL))			 
+			CMenu * pNewDefaultMenu = CMenu::FromHandle(hNewDefaultMenu);
+			CMenu * pNewMergeMenu = CMenu::FromHandle(hNewMergeMenu);
+			CMenu * pNewDirMenu = CMenu::FromHandle(hNewDirMenu);
+			
+			CWnd *pFrame = CWnd::FromHandle(::GetWindow(pMainFrame->m_hWndMDIClient, GW_CHILD));
+			while (pFrame)
 			{
-				// Don't delete the old menu
-				// There is a bug in BCMenu or in Windows98 : the new menu does not
-				// appear correctly if we destroy the old one
-//			if (pOldMenu)
-//				pOldMenu->DestroyMenu();
-
-				// m_hMenuDefault is used to redraw the main menu when we close a child frame
-				// if this child frame had a different menu
-				pMainFrame->m_hMenuDefault = hNewMenu;
-				pApp->m_pDiffTemplate->m_hMenuShared = pMainFrame->NewMergeViewMenu();
-				pApp->m_pDirTemplate->m_hMenuShared = pMainFrame->NewDirViewMenu();
-
-				// force redrawing the menu bar
-				pMainFrame->DrawMenuBar();
+				if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+					((CChildFrame *)pFrame)->SetSharedMenu(hNewMergeMenu);
+				else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
+					((CDirFrame *)pFrame)->SetSharedMenu(hNewDirMenu);
+				pFrame = pFrame->GetNextWindow();
 			}
+
+			CFrameWnd *pActiveFrame = pMainFrame->GetActiveFrame();
+			if (pActiveFrame)
+			{
+				if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+					pMainFrame->MDISetMenu(pNewMergeMenu, NULL);
+				else if (pActiveFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
+					pMainFrame->MDISetMenu(pNewDirMenu, NULL);
+				else
+					pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
+			}
+			else
+				pMainFrame->MDISetMenu(pNewDefaultMenu, NULL);
+
+			// Don't delete the old menu
+			// There is a bug in BCMenu or in Windows98 : the new menu does not
+			// appear correctly if we destroy the old one
+//			if (pOldDefaultMenu)
+//				pOldDefaultMenu->DestroyMenu();
+//			if (pOldMergeMenu)
+//				pOldMergeMenu->DestroyMenu();
+//			if (pOldDirMenu)
+//				pOldDirMenu->DestroyMenu();
+
+			// m_hMenuDefault is used to redraw the main menu when we close a child frame
+			// if this child frame had a different menu
+			pMainFrame->m_hMenuDefault = hNewDefaultMenu;
+			pApp->m_pDiffTemplate->m_hMenuShared = hNewMergeMenu;
+			pApp->m_pDirTemplate->m_hMenuShared = hNewDirMenu;
+
+			// force redrawing the menu bar
+			pMainFrame->DrawMenuBar();  
+
 		}
 	}
 }

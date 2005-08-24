@@ -44,6 +44,7 @@ class CChildFrame : public CMDIChildWnd
 public:
 	CChildFrame();
 	IHeaderBar * GetHeaderInterface();
+	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 
 // Attributes
 protected:
