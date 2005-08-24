@@ -368,3 +368,6 @@ ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
 
 ;Code Dialogs
 DeletePreviousStartMenu=A Telepítés észlelte, hogy megváltoztattad a Start Menü helyét errõl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?
+
+; Project file description
+ProjectFileDesc=WinMerge Project file

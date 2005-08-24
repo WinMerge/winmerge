@@ -361,3 +361,6 @@ ViewStartMenuFolder=&Veure la carpera del menú Inicia del WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'instal·lador ha detectat que heu canviat la ubicació del vostre menú d'inici de "%s" a "%s". Voleu esborrar la carpeta del menú d'inici anterior?
+
+; Project file description
+ProjectFileDesc=WinMerge Project file

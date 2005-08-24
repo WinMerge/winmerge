@@ -1,3 +1,8 @@
+2005-08-24 Kimmo
+ PATCH: [ 1267409 ] Shell description for project files
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup/Languages: *.isl
+
 2005-08-23 Kimmo
  PATCH: [ 1266352 ] Installer should inform shell about fileassociations
   InnoSetup: WinMerge Localized.iss

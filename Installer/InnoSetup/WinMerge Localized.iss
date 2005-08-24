@@ -455,7 +455,7 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge; Flags: uninsdeletekey
 ;set WinMerge to open those files
 ;set Notepad to edit project files
 Root: HKCR; Subkey: .WinMerge; ValueType: String; ValueData: WinMerge.Project.File; Flags: uninsdeletekey
-Root: HKCR; Subkey: WinMerge.Project.File; Flags: uninsdeletekey
+Root: HKCR; Subkey: WinMerge.Project.File; ValueType: String; ValueData: ProjectFileDesc; Flags: uninsdeletekey
 Root: HKCR; Subkey: WinMerge.Project.File\shell\open\command; ValueType: String; ValueData: """{app}\{code:ExeName}"" ""%1"""; Flags: uninsdeletekey
 Root: HKCR; Subkey: WinMerge.Project.File\shell\edit\command; ValueType: String; ValueData: """NOTEPAD.EXE"" ""%1"""; Flags: uninsdeletekey
 Root: HKCR; Subkey: WinMerge.Project.File\DefaultIcon; ValueType: String; ValueData: """{app}\MergeProject.ico"""; Flags: uninsdeletekey

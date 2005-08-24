@@ -360,3 +360,6 @@ ViewStartMenuFolder=&Podglad katalogu menu Start programu WinMerge
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalator wykryl, ze zmieniles lokalizacje menu startowego z "%s" na "%s". Czy usunac poprzedni katalog menu startowego?
+
+; Project file description
+ProjectFileDesc=WinMerge Project file

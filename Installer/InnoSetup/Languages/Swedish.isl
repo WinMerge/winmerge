@@ -366,3 +366,6 @@ ViewStartMenuFolder=Visa WinMerges startkatalog
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenymappen?
+
+; Project file description
+ProjectFileDesc=WinMerge Project file

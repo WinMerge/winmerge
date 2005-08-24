@@ -362,3 +362,6 @@ ViewStartMenuFolder=&View the WinMerge Start Menu Folder
 
 ;Code Dialogs
 DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+
+; Project file description
+ProjectFileDesc=WinMerge Project file

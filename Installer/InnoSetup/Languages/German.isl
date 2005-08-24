@@ -380,3 +380,6 @@ ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
 
 ;Code Dialogs
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
+
+; Project file description
+ProjectFileDesc=WinMerge Project file
