@@ -1701,7 +1701,7 @@ int DiffFileData::byte_compare_files()
 	// Open both files
 	for (i=0; i<2; ++i)
 	{
-		fp[i] = _tfopen(m_sFilepath[i], _T("r"));
+		fp[i] = _tfopen(m_sFilepath[i], _T("rb"));
 		if (!fp[i])
 			return DIFFCODE::CMPERR;
 		fhd[i].Assign(fp[i]);

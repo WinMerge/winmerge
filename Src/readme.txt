@@ -3,6 +3,9 @@
   Src: Merge.cpp
  PATCH: [ 1267383 ] Use our SelectFile() to select Project file to open
   Src: MainFrm.cpp
+ PATCH: [ 1267520 ] byte_compare_files() opens files in text mode
+  From Perry
+  Src: DiffWrapper.cpp
 
 2005-08-24 Jochen
  PATCH: [ 1264728 ] Guess archive format by signature
