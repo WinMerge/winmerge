@@ -94,6 +94,8 @@ BEGIN
         MENUITEM "¶K¤W(&P)",                    ID_EDIT_PASTE
         MENUITEM SEPARATOR
         MENUITEM "²¾¦Ü(&G)...",                 ID_EDIT_WMGOTO
+        MENUITEM SEPARATOR
+        POPUP "Op&en"
         BEGIN
             MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
             MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
