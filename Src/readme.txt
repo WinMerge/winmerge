@@ -1,3 +1,7 @@
+2005-08-24 Kimmo
+ PATCH: [ 1267375 ] Allow to resize file open/save dialog
+  Src: Merge.cpp
+
 2005-08-24 Jochen
  PATCH: [ 1264728 ] Guess archive format by signature
   src: 7zCommon.cpp ConfigLog.cpp Merge.rc resource.h

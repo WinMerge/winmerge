@@ -621,6 +621,7 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 	else
 		VERIFY(filters.LoadString(IDS_ALLFILES));
 	DWORD flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	flags |= OFN_ENABLESIZING; // Allow resizing 
 	CFileDialog dlg(is_open, NULL, sfile, flags, filters);
 	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
 	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
