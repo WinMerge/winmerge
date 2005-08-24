@@ -1,6 +1,6 @@
 2005-08-24 Jochen
  PATCH: [ 1264728 ] Guess archive format by signature
-  src: 7zCommon.cpp Merge.rc resource.h
+  src: 7zCommon.cpp ConfigLog.cpp Merge.rc resource.h
 
 2005-08-23 Jochen
  PATCH: [ 1264723 ] Merge7z DllBuild 0013

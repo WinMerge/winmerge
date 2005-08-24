@@ -277,8 +277,8 @@ static void WriteArchiveSupport(CStdioFile &file)
 	DWORD size = sizeof path;
 
 	WriteItem(file, 0, _T("Archive support"));
-	WriteItem(file, 1, _T("ForceLocal7z"),
-		AfxGetApp()->GetProfileInt(_T("Settings"), _T("ForceLocal7z"), 0));
+	WriteItem(file, 1, _T("Enable"),
+		AfxGetApp()->GetProfileInt(_T("Merge7z"), _T("Enable"), 0));
 
 	wsprintf(path, _T("%u.%02u"), UINT HIWORD(registered), UINT LOWORD(registered));
 	WriteItem(file, 1, _T("7-Zip software installed on your computer"), path);
