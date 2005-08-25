@@ -131,18 +131,13 @@ BOOL CDirCompStateBar::GetDefaultRect( LPRECT lpRect ) const
  */
 void CDirCompStateBar::OnStop()
 {
-	// use GetOwner and not GetParentFrame
-	// because FloatControlBar assigns the bar to a new parent frame
-	CFrameWnd * pFrameWnd = static_cast<CFrameWnd*> (GetOwner());
-	CDirDoc * pDirDoc = dynamic_cast<CDirDoc*>(pFrameWnd->GetActiveDocument());
-	ASSERT(pDirDoc != NULL);
+	CDirFrame * pFrameWnd = GetMyDirFrame();
+	CDirDoc * pDirDoc = GetMyDirDoc();
 
 	if (pDirDoc->IsCurrentScanAbortable())
 		pDirDoc->AbortCurrentScan();
 
-	CDirFrame * pDirFrame = static_cast<CDirFrame*>(pFrameWnd);
-	ASSERT(pDirFrame != NULL);
-	pDirFrame->ShowProcessingBar(FALSE);
+	GetMyDirFrame()->ShowProcessingBar(FALSE);
 }
 
 /**
@@ -152,11 +147,8 @@ void CDirCompStateBar::OnStop()
  */
 void CDirCompStateBar::OnUpdateStop(CCmdUI* pCmdUI)
 {
-	// use GetOwner and not GetParentFrame
-	// because FloatControlBar assigns the bar to a new parent frame
-	CFrameWnd * pFrameWnd = static_cast<CFrameWnd*> (GetOwner());
-	CDirDoc * pDirDoc = dynamic_cast<CDirDoc*>(pFrameWnd->GetActiveDocument());
-	ASSERT(pDirDoc != NULL);
+	CFrameWnd * pFrameWnd = GetMyDirFrame();
+	CDirDoc * pDirDoc = GetMyDirDoc();
 
 	// Change button text if scan is finished and it hasn't been yet changed. 
 	if (m_ctlStop.GetSafeHwnd())
@@ -267,6 +259,30 @@ BOOL CDirCompStateBar::PreTranslateMessage(MSG* pMsg)
 }
 
 /**
+ * @brief  Return pointer to DirFrame by casting (use GetOwner)
+ */
+CDirFrame * CDirCompStateBar::GetMyDirFrame()
+{
+	// use GetOwner and not GetParentFrame
+	// because FloatControlBar assigns the bar to a new parent frame
+	CDirFrame * pDirFrame = static_cast<CDirFrame*>(GetOwner());
+	ASSERT(pDirFrame != NULL);
+	return pDirFrame;
+}
+
+/**
+ * @brief Return pointer to our DirDoc object (get from frame)
+ */
+CDirDoc * CDirCompStateBar::GetMyDirDoc()
+{
+	CDirFrame * pFrameWnd = GetMyDirFrame();
+	CDirDoc * pDirDoc = dynamic_cast<CDirDoc*>(pFrameWnd->GetActiveDocument());
+	ASSERT(pDirDoc);
+	return pDirDoc;
+}
+
+
+/**
  * @brief Hook : this message is received when the window gets hidden. 
  * It is the only message we get when the user clicks on the upper right x.
  * (the message WM_CLOSE is processed in the parent CMiniFrameWnd)
@@ -277,9 +293,7 @@ void CDirCompStateBar::OnWindowPosChanging( WINDOWPOS* lpwndpos )
 	if (lpwndpos->flags & SWP_HIDEWINDOW)
 	{
 		// need to notify CDirFrame
-		CDirFrame * pDirFrame = static_cast<CDirFrame*>(GetOwner());
-		ASSERT(pDirFrame != NULL);
-		pDirFrame->NotifyHideStateBar();
+		GetMyDirFrame()->NotifyHideStateBar();
 	}
 }
 

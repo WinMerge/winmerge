@@ -2,6 +2,12 @@
  PATCH: [ 1273039 ] Fix fencepost error in binary check in QuickCompare
   (Fix plus some improved commenting)
   Src: DiffWrapper.cpp
+ PATCH: [ 1269567 ] Abortable quick compare
+  Src: DiffContext.cpp DiffContext.h DiffItem.h DiffThread.cpp
+   DiffWrapper.cpp DiffWrapper.h DirCompStateBar.cpp DirCompStateBar.h
+   DirDoc.cpp DirScan.cpp DirScan.h DirView.cpp DirViewColItems.cpp
+   Merge.dsp Merge.rc resource.h stringdiffs.cpp
+  Src new files: IAbortable.h
 
 2005-08-25 Jochen
  Fix broken Merge7z::GuessFormatByExtension()

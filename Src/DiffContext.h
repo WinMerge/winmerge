@@ -27,6 +27,7 @@ class PrediffingInfo;
 class IDiffFilter;
 struct DIFFITEM;
 class CompareStats;
+class IAbortable;
 
 // Interface for reporting current file, as diff traverses file tree
 class IDiffStatus
@@ -82,6 +83,10 @@ public:
 	// retrieve or manufacture plugin info for specified file comparison
 	void FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 
+	bool ShouldAbort() const;
+	void SetAbortable(IAbortable * piAbortable) { m_piAbortable = piAbortable; }
+	const IAbortable * GetAbortable() const { return m_piAbortable; }
+
 	BOOL m_bRecurse;
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
@@ -95,6 +100,7 @@ public:
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */
 	PathContext m_paths; /**< (root) paths for this context */
+	IAbortable *m_piAbortable;
 };
 
 #endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)

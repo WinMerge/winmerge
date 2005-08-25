@@ -488,7 +488,7 @@ isWordBreak(int breakType, TCHAR ch)
 	// breakType==0 means whitespace only
 	if (!breakType) return false;
 	// breakType==1 means break also on punctuation
-	return ch==',' || ch==';' || ch==':';
+	return ch==',' || ch==';' || ch==':' || ch=='.';
 }
 
 

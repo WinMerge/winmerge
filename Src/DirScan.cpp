@@ -21,6 +21,7 @@
 #include "codepage.h"
 #include "DiffItemList.h"
 #include "PathContext.h"
+#include "IAbortable.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -88,7 +89,7 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @return 1 normally, -1 if compare was aborted
  */
 int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const CString & rightsubdir, DiffItemList *pList,
-		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable)
+		bool casesensitive, int depth, CDiffContext * pCtxt)
 {
 	static const TCHAR backslash[] = _T("\\");
 
@@ -113,7 +114,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 	LoadAndSortFiles(sRightDir, &rightDirs, &rightFiles, casesensitive);
 
 	// Allow user to abort scanning
-	if (piAbortable && piAbortable->ShouldAbort())
+	if (pCtxt->ShouldAbort())
 		return -1;
 
 	// Handle directories
@@ -131,7 +132,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 	int i=0, j=0;
 	while (1)
 	{
-		if (piAbortable && piAbortable->ShouldAbort()) return -1;
+		if (pCtxt->ShouldAbort())
+			return -1;
 
 		// In debug mode, send current status to debug window
 		if (i<leftDirs.GetSize())
@@ -190,7 +192,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 					// Scan recursively all subdirectories too, we are not adding folders
 					const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR | DIFFCODE::INCLUDED;
 					if (DirScan_GetItems(paths, leftnewsub, rightnewsub, pList, casesensitive,
-							depth - 1, pCtxt, piAbortable) == -1)
+							depth - 1, pCtxt) == -1)
 					{
 						return -1;
 					}
@@ -208,7 +210,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 	i=0, j=0;
 	while (1)
 	{
-		if (piAbortable && piAbortable->ShouldAbort())
+		if (pCtxt->ShouldAbort())
 			return -1;
 
 		// In debug mode, send current status to debug window
@@ -257,14 +259,14 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
  * @param piAbortable [in] Interface allowing to abort compare
  * @return 1 if compare finished, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable)
+int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt)
 {
 	int res = 1;
 	POSITION pos = list.GetFirstDiffPosition();
 	
 	while (pos != NULL)
 	{
-		if (piAbortable && piAbortable->ShouldAbort())
+		if (pCtxt->ShouldAbort())
 		{
 			res = -1;
 			break;
@@ -283,14 +285,14 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable *
  * @param piAbortable [in] Interface allowing to abort compare
  * @return 1 if compare finished, -1 if compare was aborted
  */
-int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable)
+int DirScan_CompareItems(CDiffContext * pCtxt)
 {
 	int res = 1;
 	POSITION pos = pCtxt->GetFirstDiffPosition();
 	
 	while (pos != NULL)
 	{
-		if (piAbortable && piAbortable->ShouldAbort())
+		if (pCtxt->ShouldAbort())
 		{
 			res = -1;
 			break;
@@ -343,25 +345,26 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 		bRightExists = TRUE;
 
 	// Clear side-info and file-infos
-	di.diffcode &= ~DIFFCODE::SIDEFLAG;
+	di.setSideNone();
 	di.left.Clear();
 	di.right.Clear();
 
 	// Update infos for existing sides
 	if (bLeftExists && bRightExists)
 	{
+		di.setSideBoth();
 		di.diffcode |= DIFFCODE::BOTH;
 		pCtxt->UpdateInfoFromDiskHalf(di, di.left);
 		pCtxt->UpdateInfoFromDiskHalf(di, di.right);
 	}
 	else if (bLeftExists && !bRightExists)
 	{
-		di.diffcode |= DIFFCODE::LEFT;
+		di.setSideLeft();
 		pCtxt->UpdateInfoFromDiskHalf(di, di.left);
 	}
 	else if (!bLeftExists && bRightExists)
 	{
-		di.diffcode |= DIFFCODE::RIGHT;
+		di.setSideRight();
 		pCtxt->UpdateInfoFromDiskHalf(di, di.right);
 	}
 	else if (!bLeftExists && !bRightExists)

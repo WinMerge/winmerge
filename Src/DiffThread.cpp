@@ -31,7 +31,7 @@
 #include "DiffItemList.h"
 #include "PathContext.h"
 #include "CompareStats.h"
-
+#include "IAbortable.h"
 
 // Set this to true in order to single step
 // through entire compare process all in a single thread
@@ -72,7 +72,7 @@ class DiffThreadAbortable : public IAbortable
 {
 // Implement DirScan's IAbortable
 public:
-	virtual bool ShouldAbort() { return m_diffthread->ShouldAbort(); }
+	virtual bool ShouldAbort() const { return m_diffthread->ShouldAbort(); }
 
 // All this object does is forward ShouldAbort calls to its containing CDiffThread
 
@@ -192,6 +192,9 @@ UINT DiffThread(LPVOID lpParam)
 	UINT msgID = myStruct->msgUIUpdate;
 	bool bOnlyRequested = myStruct->bOnlyRequested;
 
+	// Stash abortable interface into context
+	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
+
 	// keep the scripts alive during the Rescan
 	// when we exit the thread, we delete this and release the scripts
 	CAssureScriptsForThread scriptsForRescan;
@@ -204,7 +207,7 @@ UINT DiffThread(LPVOID lpParam)
 	if (bOnlyRequested)
 	{
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-		DirScan_CompareItems(myStruct->context, myStruct->m_pAbortgate);
+		DirScan_CompareItems(myStruct->context);
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
 	else
@@ -217,14 +220,20 @@ UINT DiffThread(LPVOID lpParam)
 		_CrtMemState memStateDiff;
 		_CrtMemCheckpoint(&memStateBefore);
 #endif
-		DirScan_GetItems(paths, subdir, subdir, &itemList, casesensitive, depth,  myStruct->context, myStruct->m_pAbortgate);
+
+		// Build resultes list (except delaying file comparisons until below)
+		DirScan_GetItems(paths, subdir, subdir, &itemList, casesensitive, depth,  myStruct->context);
+
 #ifdef _DEBUG
 		_CrtMemCheckpoint(&memStateAfter);
 		_CrtMemDifference(&memStateDiff, &memStateBefore, &memStateAfter);
 		_CrtMemDumpStatistics(&memStateDiff);
 #endif
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-		DirScan_CompareItems(itemList, myStruct->context, myStruct->m_pAbortgate);
+
+		// Now do all pending file comparisons
+		DirScan_CompareItems(itemList, myStruct->context);
+
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
 

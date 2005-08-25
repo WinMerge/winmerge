@@ -213,6 +213,7 @@ private:
 struct file_data;
 class PrediffingInfo;
 struct DIFFITEM;
+class IAbortable;
 
 /**
  * @brief C++ container for the structure (file_data) used by diffutils' diff_2_files(...)
@@ -233,7 +234,7 @@ struct DiffFileData
 	void Close() { Reset(); }
 
 	int diffutils_compare_files(int depth);
-	int byte_compare_files();
+	int byte_compare_files(const IAbortable * piAbortable);
 	void GuessEncoding(int side, CDiffContext * pCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 	BOOL Diff2Files(struct change ** diffs, int depth,

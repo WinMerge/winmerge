@@ -1065,6 +1065,10 @@ SOURCE=.\Common\HScrollListBox.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\IAbortable.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\LanguageSelect.h
 # End Source File
 # Begin Source File

@@ -28,7 +28,8 @@
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
-#include "merge.h"
+#include <shlwapi.h>
+#include "Merge.h"
 #include "CompareStats.h"
 #include "version.h"
 #include "DiffContext.h"
@@ -36,7 +37,7 @@
 #include "coretools.h"
 #include "codepage_detect.h"
 #include "DiffItemList.h"
-#include <shlwapi.h>
+#include "IAbortable.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -63,10 +64,12 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_hDirFrame(NULL)
 , m_nCompMethod(-1)
 , m_bIgnoreSmallTimeDiff(FALSE)
+, m_pCompareStats(NULL)
+, m_pList(&m_dirlist)
+, m_piAbortable(NULL)
 {
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);
-	m_pList = &m_dirlist;
 }
 
 /**
@@ -212,4 +215,10 @@ void CDiffContext::FetchPluginInfos(const CString& filteredFilenames, PackingInf
 {
 	ASSERT(m_piPluginInfos);
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
+}
+
+/** @brief Return true only if user has requested abort */
+bool CDiffContext::ShouldAbort() const
+{
+	return m_piAbortable && m_piAbortable->ShouldAbort();
 }

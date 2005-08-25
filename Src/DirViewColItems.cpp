@@ -153,6 +153,10 @@ static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	{
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
 	}
+	else if (di.isResultAbort())
+	{
+		VERIFY(s.LoadString(IDS_ABORTED_ITEM));
+	}
 	else if (di.isResultFiltered())
 	{
 		if (di.isDirectory())
@@ -270,6 +274,10 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 	if (di.isResultError())
 	{
 		id = IDS_CANT_COMPARE_FILES;
+	}
+	else if (di.isResultAbort())
+	{
+		id = IDS_ABORTED_ITEM;
 	}
 	else if (di.isResultFiltered())
 	{

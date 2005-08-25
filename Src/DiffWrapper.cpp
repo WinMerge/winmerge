@@ -25,6 +25,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <shlwapi.h>
 #include "coretools.h"
 #include "common/unicoder.h"
 #include "diffcontext.h"
@@ -34,10 +35,10 @@
 #include "FileTransform.h"
 #include "LogFile.h"
 #include "codepage.h"
-#include <shlwapi.h>
 #include "ByteComparator.h"
 #include "codepage_detect.h"
 #include "paths.h"
+#include "IAbortable.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -1601,13 +1602,13 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	{
 		// use diffutils
 		code = diffutils_compare_files(0);
-		if (code & DIFFCODE::CMPERR)
+		if (DIFFCODE::isResultError(code))
 			di.errorDesc = _T("DiffUtils Error");
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
 		// use our own byte-by-byte compare
-		code = byte_compare_files();
+		code = byte_compare_files(pCtxt->GetAbortable());
 		// Quick contents doesn't know about diff counts
 		m_ndiffs = -1;
 		m_ntrivialdiffs = -1;
@@ -1620,7 +1621,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		goto exitPrepAndCompare;
 	}
 
-	if ((code & DIFFCODE::CMPERR) == 0)
+	if (!DIFFCODE::isResultError(code))
 	{
 		GuessEncoding(0, pCtxt);
 		GuessEncoding(1, pCtxt);
@@ -1683,7 +1684,7 @@ struct FileHandle
 };
 
 /** @brief Compare two specified files, byte-by-byte */
-int DiffFileData::byte_compare_files()
+int DiffFileData::byte_compare_files(const IAbortable * piAbortable)
 {
 	// Close any descriptors open for diffutils
 	Reset();
@@ -1726,6 +1727,9 @@ int DiffFileData::byte_compare_files()
 
 	while (!eof[0] && !eof[1])
 	{
+		if (piAbortable && piAbortable->ShouldAbort())
+			return DIFFCODE::CMPABORT;
+
 		// load or update buffers as appropriate
 		for (i=0; i<2; ++i)
 		{

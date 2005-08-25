@@ -1991,6 +1991,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Unable to compare files"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_ONLY_IN_FMT         "Only in %1"

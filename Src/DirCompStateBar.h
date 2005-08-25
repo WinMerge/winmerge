@@ -14,6 +14,7 @@
 #endif
 
 class CDirFrame;
+class CDirDoc;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirCompStateBar dialog
@@ -58,6 +59,8 @@ public:
 protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void ClearStat();
+	CDirFrame * GetMyDirFrame();
+	CDirDoc * GetMyDirDoc();
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirCompStateBar)

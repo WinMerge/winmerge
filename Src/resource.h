@@ -483,6 +483,7 @@
 #define IDS_LEFTONLY                    17736
 #define IDS_RIGHTONLY                   17737
 #define IDS_DIFFERENT                   17738
+#define IDS_ABORTED_ITEM                17739
 #define IDS_ELAPSED_TIME                17744
 #define IDS_STATUS_SELITEM1             17745
 #define IDS_STATUS_SELITEMS             17746

@@ -324,6 +324,8 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_DIRSKIP    10
 #define DIFFIMG_DIR        11
 #define DIFFIMG_ERROR      12
+// TODO: Need bitmap for Abort
+#define DIFFIMG_ABORT       9
 #define DIFFIMG_DIRUP      13
 #define DIFFIMG_DIRUP_DISABLE 14
 
@@ -334,6 +336,7 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 {
 	// Must return an image index into image list created above in OnInitDialog
 	if (di.isResultError()) return DIFFIMG_ERROR;
+	if (di.isResultAbort()) return DIFFIMG_ABORT;
 	if (di.isResultFiltered())
 		return (di.isDirectory() ? DIFFIMG_DIRSKIP : DIFFIMG_SKIP);
 	if (di.isSideLeft())

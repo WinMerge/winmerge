@@ -727,7 +727,7 @@ BOOL CDirDoc::GetReadOnly(BOOL bLeft) const
  */
 void CDirDoc::SetDiffSide(UINT diffcode, int idx)
 {
-	SetDiffStatus(diffcode, DIFFCODE::SIDEFLAG, idx);
+	SetDiffStatus(diffcode, DIFFCODE::SIDEFLAGS, idx);
 }
 
 /**

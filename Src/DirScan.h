@@ -12,19 +12,13 @@
 class CDiffContext;
 class DiffItemList;
 class PathContext;
-
-/** @brief callback to check if dirscan needs to abort */
-class IAbortable
-{
-public:
-	virtual bool ShouldAbort() = 0;
-};
+class IAbortable;
 
 int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const CString & rightsubdir, DiffItemList * pLst,
-		bool casesensitive, int depth, CDiffContext * pCtxt, IAbortable * piAbortable);
+		bool casesensitive, int depth, CDiffContext * pCtxt);
 
-int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt, IAbortable * piAbortable);
-int DirScan_CompareItems(CDiffContext * pCtxt, IAbortable * piAbortable);
+int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt);
+int DirScan_CompareItems(CDiffContext * pCtxt);
 
 void DirScan_InitializeDefaultCodepage();
 
