@@ -1,3 +1,7 @@
+2005-08-25 Jochen
+ Fix broken Merge7z::GuessFormatByExtension()
+  Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
+
 2005-08-24 WinMerge experimental release 2.3.5.3 (cvs)
 
 2005-08-24 Kimmo
