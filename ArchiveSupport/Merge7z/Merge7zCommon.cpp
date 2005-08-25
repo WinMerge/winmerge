@@ -665,9 +665,9 @@ Merge7z::Format *Merge7z::GuessFormat(LPCTSTR path)
 Merge7z::Format *Merge7z::GuessFormatByExtension(LPCTSTR path)
 {
 	SZ_EXTENSION ext;
-	if (PathIsDirectory(path) || !GetExtension(path, ext))
+	if (PathIsDirectory(path))
 		return 0;
-	return GuessFormatEx(ext, 0, 0);
+	return GuessFormatEx(GetExtension(path, ext), 0, 0);
 }
 
 /**
