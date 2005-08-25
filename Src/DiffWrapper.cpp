@@ -1707,7 +1707,11 @@ int DiffFileData::byte_compare_files()
 		fhd[i].Assign(fp[i]);
 	}
 
-	int bfstart[2], bfend[2]; // area of buffer currently holding data
+	// area of buffer currently holding data
+	int bfstart[2]; // offset into buff[i] where current data resides
+	int bfend[2]; // past-the-end pointer into buff[i], giving end of current data
+	// buff[0] has bytes to process from buff[0][bfstart[0]] to buff[0][bfend[0]-1]
+
 	bool eof[2]; // if we've finished file
 
 	// initialize our buffer pointers and end of file flags
@@ -1806,12 +1810,12 @@ int DiffFileData::byte_compare_files()
  * @brief Check if given buffer contains zero-bytes.
  * If buffer has zero-bytes we determine it contains binary data.
  * @param [in] bufBegin Start address of the buffer.
- * @param [in] bufEnd End address of the buffer.
+ * @param [in] bufEnd one-past-the-end address of the buffer.
  * @return TRUE if zero-bytes found.
  */
 inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd)
 {
-	for (char * pByte = bufBegin; pByte <= bufEnd; ++pByte)
+	for (char * pByte = bufBegin; pByte < bufEnd; ++pByte)
 	{
 		if (*pByte == 0x0)
 			return TRUE;

@@ -1,3 +1,8 @@
+2005-08-25 Perry
+ PATCH: [ 1273039 ] Fix fencepost error in binary check in QuickCompare
+  (Fix plus some improved commenting)
+  Src: DiffWrapper.cpp
+
 2005-08-25 Jochen
  Fix broken Merge7z::GuessFormatByExtension()
   Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
