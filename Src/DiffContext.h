@@ -96,6 +96,7 @@ public:
 	int m_nCompMethod; /**< Compare method */
 	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 	CompareStats *m_pCompareStats;
+	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */

@@ -1608,7 +1608,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
 		// use our own byte-by-byte compare
-		code = byte_compare_files(pCtxt->GetAbortable());
+		code = byte_compare_files(pCtxt->m_bStopAfterFirstDiff, pCtxt->GetAbortable());
 		// Quick contents doesn't know about diff counts
 		m_ndiffs = -1;
 		m_ntrivialdiffs = -1;
@@ -1683,8 +1683,13 @@ struct FileHandle
 	FILE * m_fp;
 };
 
-/** @brief Compare two specified files, byte-by-byte */
-int DiffFileData::byte_compare_files(const IAbortable * piAbortable)
+/** 
+ * @brief Compare two specified files, byte-by-byte
+ * @param [in] bStopAfterFirstDiff Stop compare after we find first difference?
+ * @param [in] piAbortable Interface allowing to abort compare
+ * @return DIFFCODE
+ */
+int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable)
 {
 	// Close any descriptors open for diffutils
 	Reset();
@@ -1780,9 +1785,14 @@ int DiffFileData::byte_compare_files(const IAbortable * piAbortable)
 			// are these two buffers the same?
 			if (!comparator.CompareBuffers(ptr0, ptr1, end0, end1, eof[0], eof[1]))
 			{
-				diffcode |= DIFFCODE::DIFF;
-				ptr0 = end0;
-				ptr1 = end1;
+				if (bStopAfterFirstDiff)
+					return diffcode | DIFFCODE::DIFF;
+				else
+				{
+					diffcode |= DIFFCODE::DIFF;
+					ptr0 = end0;
+					ptr1 = end1;
+				}
 			}
 		}
 		else

@@ -67,6 +67,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_pCompareStats(NULL)
 , m_pList(&m_dirlist)
 , m_piAbortable(NULL)
+, m_bStopAfterFirstDiff(FALSE)
 {
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);
@@ -96,6 +97,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_hDirFrame = src.m_hDirFrame;
 	m_nCompMethod = src.m_nCompMethod;
 	m_bIgnoreSmallTimeDiff = src.m_bIgnoreSmallTimeDiff;
+	m_bStopAfterFirstDiff = src.m_bStopAfterFirstDiff;
 }
 
 /**

@@ -1105,10 +1105,12 @@ BEGIN
                     7,80,221,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    LTEXT           "&File Compare method:",IDC_STATIC,7,105,70,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,79,103,84,52,CBS_DROPDOWNLIST |
+    LTEXT           "&File Compare method:",IDC_STATIC,7,105,100,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,121,50,14
+    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
+    PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156

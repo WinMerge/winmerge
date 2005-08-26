@@ -33,6 +33,7 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
 	m_bEolSensitive = FALSE;
 	m_nIgnoreWhite = -1;
 	m_bMovedBlocks = FALSE;
+	m_bStopAfterFirst = FALSE;
 	//}}AFX_DATA_INIT
 
 	m_pOptionsMgr = optionsMgr;
@@ -48,6 +49,7 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
+	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	//}}AFX_DATA_MAP
 }
 
@@ -56,6 +58,7 @@ BEGIN_MESSAGE_MAP(CPropCompare, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropCompare)
 	ON_BN_CLICKED(IDC_COMPARE_DEFAULTS, OnDefaults)
 	//}}AFX_MSG_MAP
+	ON_CBN_SELCHANGE(IDC_COMPAREMETHODCOMBO, OnCbnSelchangeComparemethodcombo)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -77,6 +80,12 @@ BOOL CPropCompare::OnInitDialog()
 	VERIFY(item.LoadString(IDS_COMPMETHOD_MODDATE));
 	combo->AddString(item);
 	combo->SetCurSel(m_compareMethod);
+
+	CButton * pBtn = (CButton*) GetDlgItem(IDC_COMPARE_STOPFIRST);
+	if (m_compareMethod == 1)
+		pBtn->EnableWindow(TRUE);
+	else
+		pBtn->EnableWindow(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -100,5 +109,17 @@ void CPropCompare::OnDefaults()
 	m_bIgnoreCase = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);
 	m_bMovedBlocks = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);
+	m_bStopAfterFirst = tmp;
 	UpdateData(FALSE);
+}
+
+void CPropCompare::OnCbnSelchangeComparemethodcombo()
+{
+	CComboBox * pCombo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
+	CButton * pBtn = (CButton*) GetDlgItem(IDC_COMPARE_STOPFIRST);
+	if (pCombo->GetCurSel() == 1)
+		pBtn->EnableWindow(TRUE);
+	else
+		pBtn->EnableWindow(FALSE);
 }

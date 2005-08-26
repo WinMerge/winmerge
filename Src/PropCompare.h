@@ -46,6 +46,7 @@ public:
 	BOOL	m_bIgnoreBlankLines;
 	int		m_nIgnoreWhite;
 	BOOL	m_bMovedBlocks;
+	BOOL	m_bStopAfterFirst;
 	//}}AFX_DATA
 
 
@@ -62,6 +63,7 @@ protected:
 	//{{AFX_MSG(CPropCompare)
 	afx_msg BOOL OnInitDialog();
 	afx_msg void OnDefaults();
+	afx_msg void OnCbnSelchangeComparemethodcombo();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

@@ -1091,10 +1091,12 @@ BEGIN
                     7,80,221,10
     CONTROL         "&Aktiver flyttet blokk-oppdagelse",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    LTEXT           "&Filsammenligningsmetode:",IDC_STATIC,7,105,85,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,95,103,84,52,CBS_DROPDOWNLIST |
+    LTEXT           "&Filsammenligningsmetode:",IDC_STATIC,7,105,100,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Standardverdier",IDC_COMPARE_DEFAULTS,7,121,70,14
+    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
+    PUSHBUTTON      "Standardverdier",IDC_COMPARE_DEFAULTS,7,139,70,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156

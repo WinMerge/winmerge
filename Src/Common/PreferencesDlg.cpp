@@ -240,6 +240,7 @@ void CPreferencesDlg::ReadOptions()
 	m_pageCompare.m_bEolSensitive = m_pOptionsMgr->GetBool(OPT_CMP_EOL_SENSITIVE) ? false : true; // Reverse
 	m_pageCompare.m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
 	m_pageCompare.m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
+	m_pageCompare.m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 
 	m_pageEditor.m_nTabSize = m_pOptionsMgr->GetInt(OPT_TAB_SIZE);
 	m_pageEditor.m_nTabType = m_pOptionsMgr->GetInt(OPT_TAB_TYPE);
@@ -291,6 +292,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_pageCompare.m_bIgnoreCase == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, m_pageCompare.m_compareMethod);
 	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_pageCompare.m_bMovedBlocks == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_pageCompare.m_bStopAfterFirst == TRUE);
 	
 	m_pOptionsMgr->SaveOption(OPT_TAB_SIZE, (int)m_pageEditor.m_nTabSize);
 	m_pOptionsMgr->SaveOption(OPT_TAB_TYPE, (int)m_pageEditor.m_nTabType);

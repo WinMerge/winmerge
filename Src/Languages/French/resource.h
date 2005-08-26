@@ -279,6 +279,7 @@
 #define IDC_REPORT_FILE                 1196
 #define IDC_SHARED                      1197
 #define IDC_PRIVATE                     1198
+#define IDC_COMPARE_STOPFIRST           1199
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -483,6 +484,7 @@
 #define IDS_LEFTONLY                    17736
 #define IDS_RIGHTONLY                   17737
 #define IDS_DIFFERENT                   17738
+#define IDS_ABORTED_ITEM                17739
 #define IDS_ELAPSED_TIME                17744
 #define IDS_STATUS_SELITEM1             17745
 #define IDS_STATUS_SELITEMS             17746
@@ -525,6 +527,7 @@
 #define IDS_SUGGEST_PRESERVEEOL         18008
 #define IDS_PREDIFFER_ERROR             18009
 #define IDS_SUGGEST_IGNORECODEPAGE      18010
+#define IDS_INVALID_DIRECTORY           18011
 #define IDS_LINEDIFF_NODIFF             18016
 #define IDS_LINEDIFF_NODIFF_CAPTION     18017
 #define IDS_NUM_REPLACED                18032
@@ -548,6 +551,8 @@
 #define IDS_FOLDER_NOTEXIST             18414
 #define IDS_DIR_RESULTS_EMPTIED         18448
 #define IDS_NO_ZIP_SUPPORT              18449
+#define IDS_MERGE7Z_ENABLE_0            18450
+#define IDS_MERGE7Z_ENABLE_2            18451
 #define IDS_REGEXP_ERROR                18480
 #define IDS_REGEXP_NOMATCH              18481
 #define IDS_REGEXP_INVALID              18482

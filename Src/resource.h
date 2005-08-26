@@ -279,6 +279,7 @@
 #define IDC_REPORT_FILE                 1196
 #define IDC_SHARED                      1197
 #define IDC_PRIVATE                     1198
+#define IDC_COMPARE_STOPFIRST           1199
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

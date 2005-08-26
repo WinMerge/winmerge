@@ -1,6 +1,11 @@
 2005-08-26 Kimmo
  PATCH: [ 1273222 ] Change COpenDlg::SelectFile() to show resizable dialog
   Src: OpenDlg.cpp
+ PATCH: [ 1267510 ] Allow stopping quick compare after first difference
+  Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp
+   Merge.rc OptionsDef.h OptionsInit.cpp PropCompare.cpp PropCompare.h resource.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages: *.rc resource.h
 
 2005-08-25 Perry
  PATCH: [ 1273039 ] Fix fencepost error in binary check in QuickCompare

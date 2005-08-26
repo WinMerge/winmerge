@@ -72,6 +72,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_CMP_EOL_SENSITIVE, true);
 	m_options.InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, false);
+	m_options.InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 
 	m_options.InitOption(OPT_CLR_DIFF, (int)RGB(239,203,5));
 	m_options.InitOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
