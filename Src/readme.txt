@@ -1,3 +1,7 @@
+2005-08-26 Kimmo
+ PATCH: [ 1273222 ] Change COpenDlg::SelectFile() to show resizable dialog
+  Src: OpenDlg.cpp
+
 2005-08-25 Perry
  PATCH: [ 1273039 ] Fix fencepost error in binary check in QuickCompare
   (Fix plus some improved commenting)

@@ -386,6 +386,7 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	VERIFY(s.LoadString(IDS_ALLFILES));
 	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	flags |= OFN_ENABLESIZING; // Allow resizing
 	CFileDialog pdlg(TRUE, NULL, dirSelTag, flags, s);
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
