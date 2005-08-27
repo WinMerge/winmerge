@@ -1,3 +1,8 @@
+2005-08-27 Kimmo
+ PATCH: [ 1273316 ] Files.txt - file listing installed files
+  InnoSetup: WinMerge Localized.iss
+  Docs/Users new file: Files.txt
+
 2005-08-24 Kimmo
  PATCH: [ 1267409 ] Shell description for project files
   InnoSetup: WinMerge Localized.iss

@@ -1,0 +1,28 @@
+List of files installed
+-----------------------
+
+This file lists files and subdirectories in WinMerge install folder. Note
+files installed depends on Windows version and selections done in
+installer. Some files are also only available in zip-files.
+
+Root directory:
+WinMerge.exe           - Ansi version of WinMerge
+WinMergeU.exe          - Unicode version of WinMerge
+Contributors.txt       - People contributing to WinMerge
+WinMerge.exe.manifest  - Manifest file enabling themes
+WinMergeU.exe.manifest - Manifest file enabling themes
+MergeProject.ico       - Project file icon
+ShellExtension.dll     - Ansi version of Shell integrarion dll
+ShellExtensionU.dll    - Unicode version of Shell integration dll
+Register.bat           - Batch file for installing ShellExtension to system
+UnRegister.bat         - Batch file to uninstalling ShellExtension from system
+
+Docs folder:
+Plugins.txt            - List of plugins installed with WinMerge
+ReadMe.txt             - Important information about WinMerge
+
+Docs/Manual folder:    - HTML manual (open index.html)
+
+Filters folder:        - Filter files installed with WinMerge
+
+MergePlugins folder:   - Plugins installed with WinMerge

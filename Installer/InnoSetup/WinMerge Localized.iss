@@ -366,6 +366,9 @@ Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components:
 ; Icon for projectfiles
 Source: MergeProject.ico; DestDir: {app}; Flags: promptifolder; Components: Core
 
+; List of installed files
+Source: ..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
+
 ;Installs the ComCtl32.dll update on any system where its DLLs are more recent
 Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
 
