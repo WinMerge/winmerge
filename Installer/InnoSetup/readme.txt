@@ -1,6 +1,9 @@
 2005-08-28 Kimmo
  PATCH: [ 1274502 ] Pick ShellExtensionU.dll from MergeUnicodeBuild-folder
   InnoSetup: WinMerge Localized.iss
+ PATCH: [ 1274559 ] Upgrade to Innosetup 5.1.5
+  Add new InnoSetup 5.1.5 compatible setup script, old remains for InnoSetup 4.x
+  InnoSetup new file: WinMerge.iss
 
 2005-08-27 Kimmo
  PATCH: [ 1273316 ] Files.txt - file listing installed files
