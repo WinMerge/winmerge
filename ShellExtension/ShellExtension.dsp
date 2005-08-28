@@ -56,7 +56,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeDebug/ShellExtension.dll" /pdbtype:sept
+# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeDebug\ShellExtension.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__Debug
 TargetPath=.\..\BuildTmp\ShellExtension__Debug
@@ -134,7 +134,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeReleaseMinsize\ShellExtension.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeRelease\ShellExtension.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__ReleaseMinSize
 TargetPath=.\..\BuildTmp\ShellExtension__ReleaseMinSize
@@ -170,7 +170,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeReleaseMinDependency\ShellExtension.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeRelease\ShellExtension.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__ReleaseMinDependency
 TargetPath=.\..\BuildTmp\ShellExtension__ReleaseMinDependency
@@ -206,7 +206,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeReleaseMinsize\ShellExtensionU.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize
@@ -248,7 +248,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeReleaseMinDependency\ShellExtensionU.dll"
+# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency

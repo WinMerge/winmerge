@@ -1,3 +1,7 @@
+2005-08-28 Kimmo
+ PATCH: [ 1274504 ] Build Shellextension dlls to same folders than WinMerge.exes
+  ShellExtension: ShellExtension.dsp
+
 2005-08-26 Kimmo
  PATCH: [ 1273222 ] Change COpenDlg::SelectFile() to show resizable dialog
   Src: OpenDlg.cpp
