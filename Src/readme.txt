@@ -1,6 +1,8 @@
 2005-08-28 Kimmo
  PATCH: [ 1274504 ] Build Shellextension dlls to same folders than WinMerge.exes
   ShellExtension: ShellExtension.dsp
+ BUG: [ 1269022 ] Additional backslash shown for root paths
+  Src: PathContext.cpp
 
 2005-08-26 Kimmo
  PATCH: [ 1273222 ] Change COpenDlg::SelectFile() to show resizable dialog

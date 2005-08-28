@@ -27,7 +27,7 @@ CString PathInfo::GetPath(BOOL bNormalized /*= TRUE*/) const
 { 
 	if (!bNormalized)
 	{
-		if (paths_EndsWithSlash(m_sPath))
+		if (!paths_EndsWithSlash(m_sPath))
 			return m_sPath + _T("\\");
 		else
 			return m_sPath;
