@@ -1,3 +1,7 @@
+2005-08-28 Kimmo
+ PATCH: [ 1274509 ] Small update for installer doc
+  Developers: readme-developers-InnoSetup.html
+
 2005-07-20 Tim
  PATCH: [ 1238450 ] Build script for manual at SF.net
   Developers: readme-manual.html

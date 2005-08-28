@@ -21,8 +21,7 @@
 <h3>Needed programs:</h3>
 <ul>
   <li>
-    <a href="http://www.jrsoftware.org/">Inno Setup</a> version 4.2.7
-    (5.x version may work too, but we haven't used it yet)
+    <a href="http://www.jrsoftware.org/">Inno Setup</a> version 5.1.5.
   </li>
   <li>
     <a href="http://www.istool.org/">ISTool</a> <strong>recommended</strong>
@@ -33,11 +32,25 @@
 <p>There is download package called "QuickStart Pack" available in Inno Setup
 downloads. It contains all needed components in one installer.</p>
 
+<h3>Installer script:</h3>
+There are two installer script files in <code>InnoSetup</code> folder:
+<ul>
+  <li>
+    <code>WinMerge.iss</code> is script currently used with InnoSetup 5.x.
+  </li>
+  <li>
+    <code>WinMerge Localized.iss</code> is InnoSetup 4.x script. Its not updated anymore
+    but we keep it available.
+  </li>
+</ul>
+
 <h3>Checklist:</h3>
 <ul>
   <li>
     Installer reads version number from <code>WinMerge.exe</code>. So make
-    sure you have version resource correctly set.
+    sure you have version resource correctly set.<br>
+    You can use script to set version info into Merge.rc and all language.rc files:
+    just run <code>Src/SetResourceVersions.bat</code> - it asks version number to set.
   </li>
   <li>
     Installer checks that files listed are present. But some files are
@@ -64,7 +77,7 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
      <li>
       <code>Manual/</code>
       <ul>
-       <li><em>Copy the entire manual directory to here</em></li>
+       <li><em>Copy the entire HTML manual directory to here</em></li>
       </ul>
      </li>
      <li><code>ShellExtension.dll</code></li>
@@ -74,8 +87,20 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
    <li>
     <code>MergeUnicodeRelease/</code>
     <ul>
+     <li><code>ShellExtensionU.dll</code></li>
      <li><code>WinMergeU.exe</code></li>
      <li><code>WinMergeU.exe.Manifest</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li>
+  <code>Docs/</code>
+  <ul>
+   <li>
+    <code>Users</code>
+    <ul>
+     <li><em>Copy the entire <code>Docs/Users</code> directory to here</em></li>
     </ul>
    </li>
   </ul>
@@ -113,7 +138,7 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
 
 <h3>Running Inno Setup to create installer</h3>
 
-<p><code>WinMerge Localized.iss</code> (in <code>InnoSetup</code> folder)
+<p><code>WinMerge.iss</code> (in <code>InnoSetup</code> folder)
 is script used to create WinMerge installer.</p>
 
 <p>Rest of this section assumes ISTool is used. If not, then refer to
@@ -121,7 +146,7 @@ InnoSetup manual for creating installer from script.</p>
 
 <ol>
   <li>
-    Start ISTool and load <code>WinMerge Localized.iss</code>
+    Start ISTool and load <code>WinMerge.iss</code>
   </li>
   <li>
     Select "Project-&gt;Verify Files..." from ISTool menu to verify
@@ -134,7 +159,7 @@ InnoSetup manual for creating installer from script.</p>
   </li>
 </ol>
 
-<p>If compile succeeds you have <code>WinMerge-version-Setup.exe</code> in
+<p>If compile succeeds you have <code>WinMerge-[version]-Setup.exe</code> in
 directory <code>InnoSetup/Output</code>.</p>
 
 <p><strong>Test installer!</strong></p>
