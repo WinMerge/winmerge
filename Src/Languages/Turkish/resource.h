@@ -42,6 +42,7 @@
 #define IDD_PROP_COLORSYNTAX            225
 #define IDD_DIRCMP_REPORT               226
 #define IDD_SHARED_FILTER               227
+#define IDD_PROP_ARCHIVE                228
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
 #define IDB_NOTEQUAL                    302
@@ -280,6 +281,11 @@
 #define IDC_SHARED                      1197
 #define IDC_PRIVATE                     1198
 #define IDC_COMPARE_STOPFIRST           1199
+#define IDC_ARCHIVE_DETECTTYPE          1200
+#define IDC_ARCHIVE_WWW                 1201
+#define IDC_ARCHIVE_ENABLE              1202
+#define IDC_ARCHIVE_INSTALSTANDALONE    1203
+#define IDC_ARCHIVE_INSTALLOCAL         1204
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -321,6 +327,7 @@
 #define IDS_OPTIONSPG_VERSIONCONTROL    9046
 #define IDS_OPTIONSPG_CODEPAGE          9047
 #define IDS_OPTIONSPG_SYNTAXCOLORS      9048
+#define IDS_OPTIONSPG_ARCHIVE           9049
 #define IDS_VERSION_FMT                 16385
 #define IDS_QUICKHELP                   16386
 #define IDS_UNICODE                     16387

@@ -37,6 +37,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 	: CDialog(IDD_PREFERENCES, pParent), m_pOptionsMgr(regOptions), m_pageCompare(regOptions),
 	m_pageColors(regOptions), m_pSyntaxColors(colors), m_pageSyntaxColors(colors)
 {
+	UNREFERENCED_PARAMETER(nMenuID);
 }
 
 CPreferencesDlg::~CPreferencesDlg()
@@ -77,6 +78,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
 	AddPage(&m_pageColors, IDS_OPTIONSPG_COLORS);
 	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_SYNTAXCOLORS);
+	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
 	AddPage(&m_pageVss, IDS_OPTIONSPG_VERSIONCONTROL);
 	AddPage(&m_pageCodepage, IDS_OPTIONSPG_CODEPAGE);
@@ -165,8 +167,7 @@ void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
 
 void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult) 
 {
-	NM_TREEVIEW* pNMTreeView = (NM_TREEVIEW*)pNMHDR;
-
+	UNREFERENCED_PARAMETER(pNMHDR);
 	HTREEITEM htiSel = m_tcPages.GetSelectedItem();
 
 	while (m_tcPages.ItemHasChildren(htiSel))
@@ -258,6 +259,11 @@ void CPreferencesDlg::ReadOptions()
 
 	m_pageVss.m_nVerSys = m_pOptionsMgr->GetInt(OPT_VCS_SYSTEM);
 	m_pageVss.m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH);
+
+	int enable = m_pOptionsMgr->GetInt(OPT_ARCHIVE_ENABLE);
+	m_pageArchive.m_bEnableSupport = enable > 0;
+	m_pageArchive.m_nInstallType = enable > 1 ? enable - 1 : 0;
+	m_pageArchive.m_bProbeType = m_pOptionsMgr->GetBool(OPT_ARCHIVE_PROBETYPE);
 }
 
 void CPreferencesDlg::SaveOptions()
@@ -333,6 +339,12 @@ void CPreferencesDlg::SaveOptions()
 
 	m_pSyntaxColors->Clone(m_pageSyntaxColors.m_pTempColors);
 	m_pSyntaxColors->SaveToRegistry();
+
+	if (m_pageArchive.m_bEnableSupport)
+		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, m_pageArchive.m_nInstallType + 1);
+	else
+		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, (int)0);
+	m_pOptionsMgr->SaveOption(OPT_ARCHIVE_PROBETYPE, m_pageArchive.m_bProbeType == TRUE);
 }
 
 void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)

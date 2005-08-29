@@ -26,6 +26,7 @@
 #include "PropColors.h"
 #include "PropCodepage.h"
 #include "PropSyntaxColors.h"
+#include "PropArchive.h"
 
 #include "propertypagehost.h"
 
@@ -63,6 +64,7 @@ protected:
 	CPropColors m_pageColors;
 	CPropCodepage m_pageCodepage;
 	CPropSyntaxColors m_pageSyntaxColors;
+	CPropArchive m_pageArchive;
 
 	SyntaxColors *m_pSyntaxColors;
 

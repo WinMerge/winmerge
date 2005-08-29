@@ -611,6 +611,10 @@ SOURCE=.\ProjectFile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropArchive.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropCodepage.cpp
 # End Source File
 # Begin Source File
@@ -628,10 +632,6 @@ SOURCE=.\PropEditor.cpp
 # Begin Source File
 
 SOURCE=.\Common\PropertyPageHost.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\PropLineFilter.cpp
 # End Source File
 # Begin Source File
 
@@ -653,6 +653,10 @@ SOURCE=.\PropGeneral.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropLineFilter.cpp
 # End Source File
 # Begin Source File
 
@@ -1185,6 +1189,10 @@ SOURCE=.\ProjectFile.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropArchive.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropCodepage.h
 # End Source File
 # Begin Source File
@@ -1205,11 +1213,11 @@ SOURCE=.\Common\PropertyPageHost.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\PropLineFilter.h
+SOURCE=.\PropGeneral.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\PropGeneral.h
+SOURCE=.\PropLineFilter.h
 # End Source File
 # Begin Source File
 
@@ -1406,6 +1414,10 @@ SOURCE=.\res\Merge.ico
 # Begin Source File
 
 SOURCE=.\res\Merge.rc2
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\MergeDir.ico
 # End Source File
 # Begin Source File
 

@@ -119,6 +119,9 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_VCS_SYSTEM, VCS_NONE);
 	m_options.InitOption(OPT_VSS_PATH, _T(""));
 
+	m_options.InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
+	m_options.InitOption(OPT_ARCHIVE_PROBETYPE, false);
+
 	// Read last used filter from registry
 	// If filter fails to set, reset to default
 	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(m_options.GetString(OPT_FILEFILTER_CURRENT));

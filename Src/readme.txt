@@ -1,3 +1,9 @@
+2005-08-29 Kimmo
+ PATCH: [ 1275345 ] Archive support options
+  Src: Merge.dsp Merge.rc OptionsDef.h OptionsInit.cpp resource.h
+  Src new files: PropArchive.cpp PropArchive.h
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+
 2005-08-28 Kimmo
  PATCH: [ 1274504 ] Build Shellextension dlls to same folders than WinMerge.exes
   ShellExtension: ShellExtension.dsp

@@ -124,4 +124,8 @@ const TCHAR OPT_FONT_DIRCMP_USECUSTOM[] = _T("FontDirCompare/Specified");
 const TCHAR OPT_VCS_SYSTEM[] = _T("Settings/VersionSystem");
 const TCHAR OPT_VSS_PATH[] = _T("Settings/VssPath");
 
+// Archive support
+const TCHAR OPT_ARCHIVE_ENABLE[] = _T("Merge7z/Enable");
+const TCHAR OPT_ARCHIVE_PROBETYPE[] = _T("Merge7z/ProbeSignature");
+
 #endif // _OPTIONS_DEF_H_

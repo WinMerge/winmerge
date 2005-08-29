@@ -1359,6 +1359,25 @@ BEGIN
     PUSHBUTTON      "キャンセル",IDCANCEL,141,55,50,14
 END
 
+IDD_PROP_ARCHIVE DIALOGEX 0, 0, 235, 126
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Archive Support"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Archive support requires 7-Zip plugin installed:",
+                    IDC_STATIC,7,7,221,8
+    LTEXT           "Download 7-zip Plugin",IDC_ARCHIVE_WWW,7,18,128,8
+    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
+    CONTROL         "&Use stand-alone 7-Zip if available",
+                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
+                    WS_GROUP | WS_TABSTOP,19,48,209,10
+    CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
+                    BS_AUTORADIOBUTTON,19,58,209,10
+    CONTROL         "&Detect archive type from file signature",
+                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,70,221,10
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1682,6 +1701,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "バージョン管理"
     IDS_OPTIONSPG_CODEPAGE     "コードページ"
     IDS_OPTIONSPG_SYNTAXCOLORS "シンタックスカラー"
+    IDS_OPTIONSPG_ARCHIVE   "Archive Support"
 END
 
 // WINMERGE CUSTOM STRINGS
