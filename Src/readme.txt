@@ -3,6 +3,10 @@
   Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
  PATCH: [ 1275940 ] Merge/Delete enabled for single item only
   Src: DirView.cpp
+ PATCH: [ 1276588 ] Catalan translation update
+  Submitted by Jordi Vilar
+  ShellExtension/Languages: ShellExtensionCatalan.rc
+  Src/Languages/Catalan: MergeCatalan.rc
 
 2005-08-29 Kimmo
  PATCH: [ 1275345 ] Archive support options

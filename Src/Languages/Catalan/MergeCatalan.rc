@@ -207,7 +207,7 @@ BEGIN
     END
     POPUP "Co&mbinació"
     BEGIN
-        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM "&Compara\tRetorn",             ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         MENUITEM "&Propera diferència\tAlt+Avall", ID_NEXTDIFF
         MENUITEM "Diferència a&nterior\tAlt+Amunt", ID_PREVDIFF
@@ -407,7 +407,7 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM "Compa&ra",                    ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         POPUP "&Copia"
         BEGIN
@@ -1090,12 +1090,12 @@ BEGIN
     CONTROL         "Igno&ra diferències de salt de línia (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
-    CONTROL         "Habilita detecció de blocs desplaçats",IDC_MOVED_BLOCKS,"Button",
+    CONTROL         "&Habilita detecció de blocs desplaçats",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "Mètode de comparació de &fitxers:",IDC_STATIC,7,105,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+    CONTROL         "&Atura després de la primera diferència",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     PUSHBUTTON      "Predeterminats",IDC_COMPARE_DEFAULTS,7,139,63,14
 END
@@ -1359,20 +1359,20 @@ END
 
 IDD_PROP_ARCHIVE DIALOGEX 0, 0, 235, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Archive Support"
+CAPTION "Suport d'arxivament"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Archive support requires 7-Zip plugin installed:",
+    LTEXT           "Per al suport d'arxivament cal tenir instal·lat el connector del 7-Zip:",
                     IDC_STATIC,7,7,221,8
-    LTEXT           "Download 7-zip Plugin",IDC_ARCHIVE_WWW,7,18,128,8
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
+    LTEXT           "Baixar el connector del 7-Zip",IDC_ARCHIVE_WWW,7,18,128,8
+    CONTROL         "&Habilita el suport de fitxers d'arxivament",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
-    CONTROL         "&Use stand-alone 7-Zip if available",
+    CONTROL         "&Usa el 7-Zip independent si està disponible",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
-    CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
+    CONTROL         "U&sa el 7-Zip local de la carpeta del WinMerge",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
-    CONTROL         "&Detect archive type from file signature",
+    CONTROL         "&Detecta el tipus d'arxiu a partir de la signatura del fitxer",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
@@ -1712,9 +1712,9 @@ BEGIN
     IDS_OPTIONSPG_COLORS      "Colors"
     IDS_OPTIONSPG_SYSTEM      "Sistema"
     IDS_OPTIONSPG_VERSIONCONTROL "Control de versions"
-    IDS_OPTIONSPG_CODEPAGE     "Pàgina de codis"
+    IDS_OPTIONSPG_CODEPAGE    "Pàgina de codis"
     IDS_OPTIONSPG_SYNTAXCOLORS "Colors de sintaxi"
-    IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_ARCHIVE     "Suport d'arxivament"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1937,8 +1937,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "De dreta a... (%1)"
     IDS_MOVE_LEFT_TO2       "D'esquerra a... (%1 de %2)"
     IDS_MOVE_RIGHT_TO2      "De dreta a... (%1 de %2)"
-    IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
-    IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
+    IDS_SELECT_DEST_LEFT    "Costat esquerre - seleccioneu la carpeta de destinació:"
+    IDS_SELECT_DEST_RIGHT   "Costat dret - seleccioneu la carpeta de destinació:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2517,7 +2517,7 @@ BEGIN
     ID_ALL_RIGHT            "Copia totes les diferènces al fitxer de la dreta\nTot a la dreta"
     ID_ALL_LEFT             "Copia totes les diferènces al fitxer de l'esquerra\nTot a l'esquerra"
     ID_MERGE_DELETE         "Suprimeix els elements seleccionats d'ambdós directoris"
-    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
+    ID_MERGE_COMPARE        "Compara l'element seleccionat (compara el primer element en cas de selecció múltiple)"
 END
 
 // TOOLS MENU
