@@ -1,6 +1,8 @@
 2005-08-30 Kimmo
  PATCH: [ 1275833 ] Fix difference navigation with ignored diffs
   Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+ PATCH: [ 1275940 ] Merge/Delete enabled for single item only
+  Src: DirView.cpp
 
 2005-08-29 Kimmo
  PATCH: [ 1275345 ] Archive support options

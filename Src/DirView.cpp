@@ -1398,17 +1398,27 @@ void CDirView::DoUpdateOpenRightWith(CCmdUI* pCmdUI)
  */
 void CDirView::DoUpdateDelete(CCmdUI* pCmdUI)
 {
-	int sel = GetSingleSelectedItem();
-	if (sel != -1)
+	// If no selected items, disable
+	int count = GetSelectedCount();
+	if (count == 0)
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
+	// Enable if one deletable item is found
+	int sel = -1;
+	count = 0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1 && count == 0)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (di.diffcode == 0 ||
-			(!IsItemDeletableOnLeft(di) && !IsItemDeletableOnRight(di)))
+		if (di.diffcode != 0 &&
+			(IsItemDeletableOnLeft(di) || IsItemDeletableOnRight(di)))
 		{
-			sel = -1;
+			++count;
 		}
 	}
-	pCmdUI->Enable(sel>=0);
+	pCmdUI->Enable(count > 0);
 }
 
 UINT CDirView::GetSelectedCount() const
