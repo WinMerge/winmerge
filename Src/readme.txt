@@ -1,3 +1,7 @@
+2005-08-30 Kimmo
+ PATCH: [ 1275833 ] Fix difference navigation with ignored diffs
+  Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+
 2005-08-29 Kimmo
  PATCH: [ 1275345 ] Archive support options
   Src: Merge.dsp Merge.rc OptionsDef.h OptionsInit.cpp resource.h

@@ -840,8 +840,11 @@ void CMergeEditView::OnUpdateEditUndo(CCmdUI* pCmdUI)
 void CMergeEditView::OnFirstdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_diffList.GetSize() > 0)
-		SelectDiff(0, TRUE, FALSE);
+	if (pd->m_diffList.HasSignificantDiffs())
+	{
+		int nDiff = pd->m_diffList.FirstSignificantDiff();
+		SelectDiff(nDiff, TRUE, FALSE);
+	}
 }
 
 /**
@@ -858,8 +861,11 @@ void CMergeEditView::OnUpdateFirstdiff(CCmdUI* pCmdUI)
 void CMergeEditView::OnLastdiff()
 {
 	CMergeDoc *pd = GetDocument();
-	if (pd->m_diffList.GetSize() > 0)
-		SelectDiff(pd->m_diffList.GetSize() - 1, TRUE, FALSE);
+	if (pd->m_diffList.HasSignificantDiffs())
+	{
+		int nDiff = pd->m_diffList.LastSignificantDiff();
+		SelectDiff(nDiff, TRUE, FALSE);
+	}
 }
 
 /**

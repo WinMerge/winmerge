@@ -260,6 +260,17 @@ BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
 }
 
 /**
+ * @brief Check if diff-list contains significant diffs.
+ * @return TRUE if list has significant diffs, FALSE otherwise.
+ */
+BOOL DiffList::HasSignificantDiffs() const
+{
+	if (m_firstSignificant == -1)
+		return FALSE;
+	return TRUE;
+}
+
+/**
  * @brief Return previous diff index from given line.
  * @param [in] nLine First line searched.
  * @return Index for next difference.
@@ -331,14 +342,38 @@ void DiffList::ConstructSignificantChain()
 	}
 }
 
+/**
+ * @brief Return index to first significant diff.
+ */
+int DiffList::FirstSignificantDiff() const
+{
+	return m_firstSignificant;
+}
+
+/**
+ * @brief Return index of next significant diff.
+ * @param [in] nDiff Index to start looking for next diff.
+ */
 int DiffList::NextSignificantDiff(int nDiff) const
 {
 	return m_diffs[nDiff].next;
 }
 
+/**
+ * @brief Return index of previous significant diff.
+ * @param [in] nDiff Index to start looking for previous diff.
+ */
 int DiffList::PrevSignificantDiff(int nDiff) const
 {
 	return m_diffs[nDiff].prev;
+}
+
+/**
+ * @brief Return index to last significant diff.
+ */
+int DiffList::LastSignificantDiff() const
+{
+	return m_lastSignificant;
 }
 
 /**

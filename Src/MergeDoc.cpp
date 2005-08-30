@@ -2727,9 +2727,10 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 
 		// scroll to first diff
 		if (mf->m_options.GetBool(OPT_SCROLL_TO_FIRST) &&
-			m_diffList.GetSize() != 0)
+			m_diffList.HasSignificantDiffs())
 		{
-			pLeft->SelectDiff(0, TRUE, FALSE);
+			int nDiff = m_diffList.FirstSignificantDiff();
+			pLeft->SelectDiff(nDiff, TRUE, FALSE);
 		}
 
 		// Enable/disable automatic rescan (rescanning after edit)

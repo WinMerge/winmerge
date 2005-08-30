@@ -102,10 +102,13 @@ public:
 	int LineToDiff(UINT nLine) const;
 	BOOL GetPrevDiff(int nLine, int &nDiff) const;
 	BOOL GetNextDiff(int nLine, int &nDiff) const;
+	BOOL HasSignificantDiffs() const;
 	int PrevSignificantDiffFromLine(UINT nLine) const;
 	int NextSignificantDiffFromLine(UINT nLine) const;
+	int FirstSignificantDiff() const;
 	int NextSignificantDiff(int nDiff) const;
 	int PrevSignificantDiff(int nDiff) const;
+	int LastSignificantDiff() const;
 	const DIFFRANGE * FirstSignificantDiffRange() const;
 	const DIFFRANGE * LastSignificantDiffRange() const;
 
