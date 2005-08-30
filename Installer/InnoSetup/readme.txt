@@ -1,3 +1,7 @@
+2005-08-30 Kimmo
+ PATCH: [ 1275874 ] Cleanup Installer a bit
+  InnoSetup: WinMerge.iss
+
 2005-08-28 Kimmo
  PATCH: [ 1274502 ] Pick ShellExtensionU.dll from MergeUnicodeBuild-folder
   InnoSetup: WinMerge Localized.iss

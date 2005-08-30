@@ -1,9 +1,9 @@
 ; RCS ID line follows -- this is updated by CVS
 ; $Id$
 ;
-;           Programmed by:  Christian Blackburn and Christian List
+;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
-; Tools Needed To Compile:  Inno Setup 4.18+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 4.18+(http://www.jrsoftware.org/isdl.php)
+; Tools Needed To Compile:  Inno Setup 5.1.4+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.4+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
 ;Directly Dependant Files:  Because this is an installer. It would be difficult to list and maintain each of the files referenced
 ;                           throughout the script in the header.  If you search this plain text script for a particular file in our CVS and it
@@ -24,9 +24,6 @@
 ;
 ; Bugs & Other Priority Items:
 ; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
-; #  UnpackDFM.dll requires ADVAPI32.dll, we'll have to bundle IE or at least display a warning :).  Also figure out if Delphi 4+ /Free Pascal wouldn't
-;    install this to begin with
-; #  Add WinMerge to the user's path so they can execute comparison's from a Dos Prompt (Cmd.exe/Command.exe)
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
 
@@ -39,22 +36,13 @@
 ; #  Application Integration:
 ; #  We need to backup the previously integrated viewer in TortoiseCVS, at uninstallation ([UninstallRun] Regedit -S Tortoise.reg)
 ;    or when the user deselects it this will need to be uninstalled
-; #  Automatically detect and configure WinMerge to work with Visual Source Safe
 ; #  We need to add support for Tortoises' SubVersion program mimicking our support settings for TortoiseCVS if possible
-; #  If the user happens to have Syn Text Editor installed then we'll make that the default text editor rather than notepad.
-; #  If the user has ultra-edit installed then offer to use it as the text editor
-; #  If the user has Aedix installed then offer to use it as the text editor
 ; #  We need to determine if our application can cooperate with WinCVS and if so how
 ;
-; Custom Installer Pages:
-; #  Allow users to set their working directory via a custom installer page
-;
 ; Things that make the user's life easier:
-; #  Evaluate current default settings in WinMerge and bug those that don't make sense
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
 ; #  Add "WinMerge is running would you like to close it now?" support with programmatic termination
 ;     -Note: We'll need to add a declares statement to our ISX code so that we can use FindWindowEx directly or a mutex search or two
-; #  Evaluate current default settings in WinMerge and bug those that don't make sense
 ; #  Rather than requiring users to restart we could just kill all intances of Explorer.exe, but we'll need to prompt the user first and restart it
 ;    once the ShellExtension.dll file has been added or removed.
 ;
@@ -73,10 +61,6 @@
 ;      4.  WinMerge on the Web
 ;      5.  Uninstall WinMerge
 ; #  Create the ability to install to two start menu groups simultaneously
-;
-; Misc
-; #  Determine whether NT 3.51 with a 3.0 or higher version of IE can run our application I don't want the system requirements
-;     in \Docs\Read Me.RTF to be inaccurate.
 ;
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
@@ -192,8 +176,7 @@ Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Type
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
 
-;Language components, please note that whatever language you chose to install in will be installed in addition to any of the language components you've
-;selected.  This is to make it easier for users that have a working localization of Inno Setup.
+;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
 Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full
 Name: Languages\Bulgarian; Description: {cm:BulgarianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Bulgarian
@@ -268,11 +251,6 @@ Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription
 ; Diff.txt is a file left over from previous versions of WinMerge (before version 2.0), we just delete it to be nice.
 Type: files; Name: {app}\Diff.txt
 
-; A few users might have some intermediate Chinese translations on their machines (from version 2.0.0.2),
-;we just delete those to be nice.
-Type: files; Name: {app}\MergeChineseSimplifiedGB2312.lang
-Type: files; Name: {app}\MergeChineseTraditionalBIG5.lang
-
 ;All of these files are removed so if the user upgrades their operating system or changes their language selections only the
 ;necessary files will be left in the installation folder
 ;Another reason these files might be strays is if a user extracted one of the experimental builds such as:
@@ -313,15 +291,6 @@ Name: {app}\MergePlugins\list.txt; Type: files; Check: not IsComponentSelected('
 ;Removes the user's guide icon if the user deselects the user's guide component.
 Name: {group}\{cm:UsersGuide}.lnk; Type: files; Check: not IsComponentSelected('Docs')
 
-
-;Removes misplaced Files
-Name: {app}\WinMerge.url; Type: files
-Name: {app}\Read Me.rtf; Type: files
-Name: {app}\Contributors.rtf; Type: files
-
-;Remove deprecated Contributors file
-Name: {app}\Docs\Contributors.rtf; Type: files
-
 ;This removes the quick launch icon in case the user chooses not to install it after previously having it installed
 Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type: files; Check: not IsTaskSelected('QuickLauchIcon')
 
@@ -335,9 +304,6 @@ Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: not IsComponen
 Name: {app}\Docs\Plugins.txt; Type: Files; Check: DontInstallPluginsText
 Name: {app}\MergePlugins; Type: DirIfEmpty; Check: not IsComponentSelected('Plugins')
 
-;Removes a CVS ignore record created by TortoiseCVS on Seier's System, I'm hoping this was never let
-;out into the wild, but it could have been
-Name: {app}\Filters\.cvsignore; TYpe: Files
 Name: {app}\Filters\ADAMulti.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\MASM.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
@@ -391,8 +357,6 @@ Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveru
 Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
 Source: ..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4
 
-Source: ..\Plugins\dlls\UnpackDFM.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
-
 Source: ..\Src\Languages\DLL\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
 Source: ..\Src\Languages\DLL\MergeChineseSimplified.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
@@ -428,7 +392,7 @@ Source: ..\Build\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly
 Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\Plugins\dlls\Plugins.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText; Components: ; Tasks: ; Languages: 
-
+Source: ..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 [INI]
 Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/; Check: GroupCreated
@@ -538,8 +502,6 @@ Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram, WinMerge}; Flags
 
 
 [UninstallDelete]
-;Remove 7-zip integration dlls possibly installed (by hand or using separate installer)
-Name: {app}\Merge7z*.dll; Type: files
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Type: Files
 Name: {group}; Type: dirifempty
 Name: {app}; Type: dirifempty
