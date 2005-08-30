@@ -4,6 +4,11 @@
  Created a INNOSETUP_4_2_7 tag for lang files before updating to newer versions
  Updated new Innosetup 5.1.x compatible lang files from http://www.jrsoftware.org/files/istrans/
   InnoSetup/Languages: *.isl
+ PATCH: [ 1276588 ] Catalan translation update
+  Submitted by Jordi Vilar
+  InnoSetup: WinMerge.iss
+  InnoSetup/Languages: Catalan.isl
+  Docs/Users/Languages new file: ReadMe-Catalan.txt
 
 2005-08-28 Kimmo
  PATCH: [ 1274502 ] Pick ShellExtensionU.dll from MergeUnicodeBuild-folder

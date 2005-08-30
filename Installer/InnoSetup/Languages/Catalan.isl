@@ -293,7 +293,7 @@ StatusUninstalling=Desinstal·lant %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 versió %2
 AdditionalIcons=Icones addicionals:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Característiques opcionals:
 CreateDesktopIcon=Crear una icona a l'&Escriptori
 CreateQuickLaunchIcon=Crear una icona a la &Barra de tasques
 ProgramOnTheWeb=%1 a Internet
@@ -345,7 +345,7 @@ TurkishLanguage=Menús i diàlegs en Turc
 
 ;Tasks
 ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
-IntegrateTortoiseCVS=Integraamb el &TortoiseCVS
+IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
 IntegrateDelphi4=Suport per a fitxers binaris del Borland® Delphi &4
 UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 
@@ -359,4 +359,4 @@ ViewStartMenuFolder=&Veure la carpera del menú Inicia del WinMerge
 DeletePreviousStartMenu=L'instal·lador ha detectat que heu canviat la ubicació del vostre menú d'inici de "%s" a "%s". Voleu esborrar la carpeta del menú d'inici anterior?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=Fitxer de projecte del WinMerge
