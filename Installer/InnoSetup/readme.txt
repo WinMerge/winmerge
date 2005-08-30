@@ -1,6 +1,7 @@
 2005-08-30 Kimmo
  PATCH: [ 1275874 ] Cleanup Installer a bit
   InnoSetup: WinMerge.iss
+ Created a INNOSETUP_4_2_7 tag for lang files before updating to newer versions
 
 2005-08-28 Kimmo
  PATCH: [ 1274502 ] Pick ShellExtensionU.dll from MergeUnicodeBuild-folder
