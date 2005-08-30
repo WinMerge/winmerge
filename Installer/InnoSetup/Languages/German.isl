@@ -1,6 +1,6 @@
 ; ******************************************************
 ; ***                                                ***
-; *** Inno Setup version 4.2.2+ German messages      ***
+; *** Inno Setup version 5.1.0+ German messages      ***
 ; ***                                                ***
 ; *** Original Author:                               ***
 ; ***                                                ***
@@ -14,28 +14,12 @@
 ;
 ; Diese Übersetzung hält sich an die neue deutsche Rechtschreibung.
 ;
-;
-; Note: When translating this text, do not add periods (.) to the end of
-; messages that didn't have them already, because on those messages Inno
-; Setup adds the periods automatically (appending a period would result in
-; two periods being displayed).
-;
-; $jrsoftware: issrc/Files/Languages/German.isl,v 1.8 2004/04/07 20:19:51 jr Exp $
+; $jrsoftware: issrc/Files/Languages/German.isl,v 1.10 2005/03/22 11:01:49 mreitz Exp $
 
 [LangOptions]
 LanguageName=Deutsch
 LanguageID=$0407
 LanguageCodePage=1252
-; If the language you are translating to requires special font faces or
-; sizes, uncomment any of the following entries and change them accordingly.
-;DialogFontName=
-;DialogFontSize=8
-;WelcomeFontName=Verdana
-;WelcomeFontSize=12
-;TitleFontName=Arial
-;TitleFontSize=29
-;CopyrightFontName=Arial
-;CopyrightFontSize=8
 
 [Messages]
 
@@ -62,6 +46,8 @@ SetupFileCorrupt=Die Setup-Dateien sind beschädigt. Besorgen Sie sich bitte eine
 SetupFileCorruptOrWrongVer=Die Setup-Dateien sind beschädigt oder inkompatibel zu dieser Version des Setups. Bitte beheben Sie das Problem, oder besorgen Sie sich eine neue Kopie des Programms.
 NotOnThisPlatform=Dieses Programm kann nicht unter %1 ausgeführt werden.
 OnlyOnThisPlatform=Dieses Programm muss unter %1 ausgeführt werden.
+OnlyOnTheseArchitectures=Dieses Programm kann nur auf Windows-Versionen installiert werden, die folgende Prozessor-Architekturen unterstützen:%n%n%1
+MissingWOW64APIs=Ihre Windows-Version enthält nicht die Funktionen, die vom Setup für eine 64-bit Installation benötigt werden. Installieren Sie bitte Service Pack %1, um dieses Problem zu beheben.
 WinVersionTooLowError=Dieses Programm benötigt %1 Version %2 oder höher.
 WinVersionTooHighError=Dieses Programm kann nicht unter %1 Version %2 oder höher installiert werden.
 AdminPrivilegesRequired=Sie müssen als Administrator angemeldet sein, um dieses Programm zu installieren.
@@ -75,11 +61,12 @@ ErrorTooManyFilesInDir=Das Setup konnte eine Datei im Ordner "%1" nicht erstelle
 
 ; *** Setup common messages
 ExitSetupTitle=Setup verlassen
-ExitSetupMessage=Das Setup ist noch nicht abgeschlossen. Wenn Sie jetzt beenden, wird das Programm nicht installiert.%n%nSie können das Setup-Programm zu einem späteren Zeitpunkt nochmals ausführen, um die Installation zu vervollständigen.%n%nSetup verlassen?
+ExitSetupMessage=Das Setup ist noch nicht abgeschlossen. Wenn Sie jetzt beenden, wird das Programm nicht installiert.%n%nSie können das Setup zu einem späteren Zeitpunkt nochmals ausführen, um die Installation zu vervollständigen.%n%nSetup verlassen?
 AboutSetupMenuItem=&Über Setup ...
 AboutSetupTitle=Über Setup
 AboutSetupMessage=%1 Version %2%n%3%n%n%1 Internet-Seite:%n%4
 AboutSetupNote=
+TranslatorNote=German translation maintained by Michael Reitz (innosetup@assimilate.de)
 
 ; *** Buttons
 ButtonBack=< &Zurück
@@ -109,7 +96,7 @@ NewFolderName=Neuer Ordner
 
 ; *** "Welcome" wizard page
 WelcomeLabel1=Willkommen zum [name] Setup-Assistenten
-WelcomeLabel2=Dieser Assistent wird jetzt [name/ver] auf Ihren Computer installieren.%n%nSie sollten alle anderen Anwendungen beenden, bevor Sie mit dem Setup fortfahren.
+WelcomeLabel2=Dieser Assistent wird jetzt [name/ver] auf Ihrem Computer installieren.%n%nSie sollten alle anderen Anwendungen beenden, bevor Sie mit dem Setup fortfahren.
 
 ; *** "Password" wizard page
 WizardPassword=Passwort
@@ -165,7 +152,6 @@ WizardSelectComponents=Komponenten auswählen
 SelectComponentsDesc=Welche Komponenten sollen installiert werden?
 SelectComponentsLabel2=Wählen Sie die Komponenten aus, die Sie installieren möchten. Klicken Sie auf "Weiter", wenn sie bereit sind fortzufahren.
 FullInstallation=Vollständige Installation
-; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
 CompactInstallation=Kompakte Installation
 CustomInstallation=Benutzerdefinierte Installation
 NoUninstallWarningTitle=Komponenten vorhanden
@@ -184,7 +170,6 @@ WizardSelectProgramGroup=Startmenü-Ordner auswählen
 SelectStartMenuFolderDesc=Wo soll das Setup die Programm-Verknüpfungen anlegen?
 SelectStartMenuFolderLabel3=Das Setup wird die Programm-Verknüpfungen im folgenden Startmenü-Ordner anlegen.
 SelectStartMenuFolderBrowseLabel=Klicken Sie auf "Weiter", um fortzufahren. Klicken Sie auf "Durchsuchen", falls Sie einen anderen Ordner auswählen möchten.
-NoIconsCheck=Keine Programm-Verknüpfungen erzeugen
 MustEnterGroupName=Sie müssen einen Ordnernamen eingeben.
 GroupNameTooLong=Der Ordnername/Pfad ist zu lang.
 InvalidGroupName=Der Ordnername ist nicht gültig.
@@ -193,7 +178,7 @@ NoProgramGroupCheck2=&Keinen Ordner im Startmenü erstellen
 
 ; *** "Ready to Install" wizard page
 WizardReady=Installation durchführen
-ReadyLabel1=Das Setup ist jetzt bereit, [name] auf Ihren Computer zu installieren.
+ReadyLabel1=Das Setup ist jetzt bereit, [name] auf Ihrem Computer zu installieren.
 ReadyLabel2a=Klicken Sie auf "Installieren", um mit der Installation zu beginnen, oder auf "Zurück", um Ihre Einstellungen zu überprüfen oder zu ändern.
 ReadyLabel2b=Klicken Sie auf "Installieren", um mit der Installation zu beginnen.
 ReadyMemoUserInfo=Benutzerinformationen:
@@ -211,21 +196,19 @@ CannotContinue=Das Setup kann nicht fortfahren. Bitte klicken Sie auf "Abbrechen
 
 ; *** "Installing" wizard page
 WizardInstalling=Installiere ...
-InstallingLabel=Warten Sie bitte während [name] auf Ihren Computer installiert wird.
+InstallingLabel=Warten Sie bitte während [name] auf Ihrem Computer installiert wird.
 
 ; *** "Setup Completed" wizard page
 FinishedHeadingLabel=Beenden des [name] Setup-Assistenten
-FinishedLabelNoIcons=Setup hat die Installation von [name] auf Ihren Computer abgeschlossen.
-FinishedLabel=Setup hat die Installation von [name] auf Ihren Computer abgeschlossen. Die Anwendung kann über die installierten Programm-Verknüpfungen gestartet werden.
+FinishedLabelNoIcons=Setup hat die Installation von [name] auf Ihrem Computer abgeschlossen.
+FinishedLabel=Setup hat die Installation von [name] auf Ihrem Computer abgeschlossen. Die Anwendung kann über die installierten Programm-Verknüpfungen gestartet werden.
 ClickFinish=Klicken Sie auf "Fertigstellen", um das Setup zu beenden.
 FinishedRestartLabel=Um die Installation von [name] abzuschließen, muss das Setup Ihren Computer neu starten. Möchten Sie jetzt neu starten?
 FinishedRestartMessage=Um die Installation von [name] abzuschließen, muss das Setup Ihren Computer neu starten.%n%nMöchten Sie jetzt neu starten?
 ShowReadmeCheck=Ja, ich möchte die LIESMICH-Datei sehen
 YesRadio=&Ja, Computer jetzt neu starten
 NoRadio=&Nein, ich werde den Computer später neu starten
-; used for example as 'MyProg.exe starten'
 RunEntryExec=%1 starten
-; used for example as 'Readme.txt anzeigen'
 RunEntryShellExec=%1 anzeigen
 
 ; *** "Setup Needs the Next Disk" stuff
@@ -295,6 +278,7 @@ UninstallOpenError=Die Datei "%1" konnte nicht geöffnet werden. Entfernen der An
 UninstallUnsupportedVer=Das Format der Deinstallations-Datei "%1" konnte nicht erkannt werden. Entfernen der Anwendung fehlgeschlagen
 UninstallUnknownEntry=In der Deinstallations-Datei wurde ein unbekannter Eintrag (%1) gefunden
 ConfirmUninstall=Sind Sie sicher, dass Sie %1 und alle zugehörigen Komponenten entfernen möchten?
+UninstallOnlyOnWin64=Diese Installation kann nur unter 64-bit Windows-Versionen entfernt werden.
 OnlyAdminCanUninstall=Diese Installation kann nur von einem Benutzer mit Administrator-Rechten entfernt werden.
 UninstallStatusLabel=Warten Sie bitte während %1 von Ihrem Computer entfernt wird.
 UninstalledAll=%1 wurde erfolgreich von Ihrem Computer entfernt.
@@ -304,7 +288,7 @@ UninstallDataCorrupted="%1"-Datei ist beschädigt. Entfernen der Anwendung fehlge
 
 ; *** Uninstallation phase messages
 ConfirmDeleteSharedFileTitle=Gemeinsame Datei entfernen?
-ConfirmDeleteSharedFile2=Das System zeigt an, dass die folgende gemeinsame Datei von keinem anderen Programm mehr benutzt wird. Möchten Sie diese Datei entfernen lassen?%n%nSollte es doch noch Programme geben, die diese Datei benutzen, und die Datei ist entfernt worden, dann werden diese Programme wahrscheinlich nicht mehr einwandfrei funktionieren. Wenn Sie sich nicht sicher sind, sollten Sie "Nein" wählen. Es schadet Ihrem System nicht, wenn Sie die Datei behalten.
+ConfirmDeleteSharedFile2=Das System zeigt an, dass die folgende gemeinsame Datei von keinem anderen Programm mehr benutzt wird. Möchten Sie diese Datei entfernen lassen?%nSollte es doch noch Programme geben, die diese Datei benutzen, und sie wird entfernt, funktionieren diese Programme vielleicht nicht mehr richtig. Wenn Sie unsicher sind, wählen Sie "Nein" um die Datei im System zu belassen. Es schadet Ihrem System nicht, wenn Sie die Datei behalten.
 SharedFileNameLabel=Dateiname:
 SharedFileLocationLabel=Ordner:
 WizardUninstalling=Entfernen (Status)

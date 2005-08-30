@@ -1,4 +1,4 @@
-; *** Inno Setup version 4.2.2+ Norwegian messages ***
+; *** Inno Setup version 5.1.0+ Norwegian messages ***
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -10,12 +10,9 @@
 ; Many thanks to the following people for language improvements and comments:
 ;
 ; Harald Habberstad, Frode Weum, Eivind Bakkestuen, Morten Johnsen,
-; Tore Ottinsen
+; Tore Ottinsen, Kristian Hyllestad
 ;
-; Translation of custom messages for WinMerge 2.2.0 by Hans Fredrik Nordhaug
-; E-mail: hansfn@users.sourceforge.net
-;
-; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.9 2004/09/24 07:19:42 josander Exp $
+; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.14 2005/03/04 20:41:19 josander Exp $
 
 [LangOptions]
 LanguageName=Norsk
@@ -47,6 +44,8 @@ SetupFileCorrupt=Installasjonsfilene er ødelagte. Vennligst skaff deg en ny kopi
 SetupFileCorruptOrWrongVer=Installasjonsfilene er ødelagte eller ikke kompatible med dette installasjonsprogrammet. Vennligst korriger problemet eller skaff deg en ny kopi av programmet.
 NotOnThisPlatform=Dette programmet kjører ikke på %1.
 OnlyOnThisPlatform=Dette programmet kjører kun på %1.
+OnlyOnTheseArchitectures=Dette programmet kan kun installeres i Windows-versjoner som er beregnet på følgende prossessorarkitekturer:%n%n%1
+MissingWOW64APIs=Din Windows-versjon mangler funksjonalitet for at installasjonsprogrammet skal gjøre en 64-bits-installasjon. Installer Service Pack %1 for å rette på dette.
 WinVersionTooLowError=Dette programmet krever %1 versjon %2 eller senere.
 WinVersionTooHighError=Dette programmet kan ikke installeres på %1 versjon %2 eller senere.
 AdminPrivilegesRequired=Administrator-rettigheter kreves for å installere dette programmet.
@@ -65,6 +64,7 @@ AboutSetupMenuItem=&Om installasjonsprogrammet...
 AboutSetupTitle=Om installasjonsprogrammet
 AboutSetupMessage=%1 versjon %2%n%3%n%n%1 hjemmeside:%n%4
 AboutSetupNote=
+TranslatorNote=Norwegian translation maintained by Jostein Chr. Andersen (jostein@josander.net)
 
 ; *** Buttons
 ButtonBack=< &Tilbake
@@ -133,7 +133,7 @@ SelectDirLabel3=Installasjonsprogrammet vil installere [name] i følgende mappe.
 SelectDirBrowseLabel=Klikk på Neste for å fortsette. Klikk på Bla gjennom hvis du vil velge en annen mappe.
 DiskSpaceMBLabel=Programmet krever minst [mb] MB med diskplass.
 ToUNCPathname=Kan ikke installere på en UNC-bane. Du må tilordne nettverksstasjonen hvis du vil installere i et nettverk.
-InvalidPath=Du må angi en full bane med stasjonsbokstav, for eksempel:%n%nC:\APP%n%heller ikke en UNC-bane som %n%n\\server\share    ER DETTE RIKTIG? SER LITT RART UT
+InvalidPath=Du må angi en full bane med stasjonsbokstav, for eksempel:%n%nC:\APP%n%Du kan ikke bruke formen:%n%n\\server\share
 InvalidDrive=Den valgte stasjonen eller UNC-delingen finnes ikke, eller er ikke tilgjengelig. Vennligst velg en annen
 DiskSpaceWarningTitle=For lite diskplass
 DiskSpaceWarning=Installasjonprogrammet krever minst %1 KB med ledig diskplass, men det er bare %2 KB ledig på den valgte stasjonen.%n%nvil du fortsette likevel?
@@ -162,14 +162,13 @@ ComponentsDiskSpaceMBLabel=Valgte alternativer krever minst [mb] MB med diskplas
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Velg tilleggsoppgaver
 SelectTasksDesc=Hvilke tilleggsoppgaver skal utføres?
-SelectTasksLabel2=Velg tileggsoppgavene som skal utføres mens [name] installeres, klikk deretter på Neste.
+SelectTasksLabel2=Velg tilleggsoppgavene som skal utføres mens [name] installeres, klikk deretter på Neste.
 
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Velg mappe på start-menyen
 SelectStartMenuFolderDesc=Hvor skal installasjonsprogrammet plassere snarveiene?
 SelectStartMenuFolderLabel3=Installasjonsprogrammet vil opprette snarveier på følgende startmeny-mappe.
 SelectStartMenuFolderBrowseLabel=Klikk på Neste for å fortsette. Klikk på Bla igjennom hvis du vil velge en annen mappe.
-NoIconsCheck=&Ikke lag ikoner
 MustEnterGroupName=Du må skrive inn et mappenavn.
 GroupNameTooLong=Det er for langt navn på mappen eller banen.
 InvalidGroupName=Navnet på mappen er ugyldig.
@@ -280,6 +279,7 @@ UninstallOpenError=Filen "%1" kunne ikke åpnes. Kan ikke avinstallere.
 UninstallUnsupportedVer=Kan ikke avinstallere. Avinstallasjons-loggfilen "%1" har et format som ikke gjenkjennes av denne versjonen av avinstallasjons-programmet
 UninstallUnknownEntry=Et ukjent parameter (%1) ble funnet i Avinstallasjons-loggfilen
 ConfirmUninstall=Er du sikker på at du helt vil fjerne %1 og alle tilhørende komponenter?
+UninstallOnlyOnWin64=Denne installasjonen kan bare uføres på 64-bit Windows.
 OnlyAdminCanUninstall=Denne installasjonen kan bare avinstalleres av en bruker med Administrator-rettigheter.
 UninstallStatusLabel=Vennligst vent mens %1 fjernes fra maskinen.
 UninstalledAll=Avinstallasjonen av %1 var vellykket

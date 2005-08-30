@@ -1,6 +1,6 @@
 ; ******************************************************
 ; ***                                                ***
-; *** Inno Setup version 4.2.2+ Czech messages       ***
+; *** Inno Setup version 5.1.0+ Czech messages       ***
 ; ***                                                ***
 ; *** Original Author:                               ***
 ; ***                                                ***
@@ -12,7 +12,7 @@
 ; ***                                                ***
 ; ******************************************************
 ;
-; $jrsoftware: issrc/Files/Languages/Czech.isl,v 1.11 2004/04/07 20:19:51 jr Exp $
+; $jrsoftware: issrc/Files/Languages/Czech.isl,v 1.16 2005/02/28 14:18:39 ibauer Exp $
 
 [LangOptions]
 LanguageName=<010C>e<0161>tina
@@ -44,6 +44,8 @@ SetupFileCorrupt=Soubory prùvodce instalací jsou poškozeny. Poøiïte si prosím no
 SetupFileCorruptOrWrongVer=Soubory prùvodce instalací jsou poškozeny nebo se nesluèují s touto verzí prùvodce instalací. Opravte prosím tuto chybu nebo si poøiïte novou kopii tohoto produktu.
 NotOnThisPlatform=Tento produkt nelze spustit ve %1.
 OnlyOnThisPlatform=Tento produkt musí být spuštìn ve %1.
+OnlyOnTheseArchitectures=Tento produkt lze nainstalovat pouze ve verzích MS Windows s podporou architektury procesorù:%n%n%1
+MissingWOW64APIs=Aktuální verze MS Windows postrádá funkce, které vyžaduje prùvodce instalací pro 64-bitovou instalaci. Opravte prosím tuto chybu nainstalováním aktualizace Service Pack %1.
 WinVersionTooLowError=Tento produkt vyžaduje %1 verzi %2 nebo vyšší.
 WinVersionTooHighError=Tento produkt nelze nainstalovat ve %1 verzi %2 nebo vyšší.
 AdminPrivilegesRequired=K instalaci tohoto produktu musíte být pøihlášeni s právy administrátora.
@@ -62,6 +64,7 @@ AboutSetupMenuItem=&O prùvodci instalací...
 AboutSetupTitle=O prùvodci instalací
 AboutSetupMessage=%1 verze %2%n%3%n%n%1 domovská stránka:%n%4
 AboutSetupNote=
+TranslatorNote=Czech translation maintained by Ing. Ivo Bauer (bauer@ozm.cz) and Lubos Stanek (lubek@users.sourceforge.net)
 
 ; *** Buttons
 ButtonBack=< &Zpìt
@@ -166,7 +169,6 @@ WizardSelectProgramGroup=Vyberte složku v nabídce Start
 SelectStartMenuFolderDesc=Kam má prùvodce instalací umístit zástupce aplikace?
 SelectStartMenuFolderLabel3=Prùvodce instalací vytvoøí zástupce aplikace v následující složce nabídky Start.
 SelectStartMenuFolderBrowseLabel=Pokraèujte klepnutím na tlaèítko Další. Chcete-li zvolit jinou složku, klepnìte na tlaèítko Procházet.
-NoIconsCheck=&Nevytváøet žádné zástupce
 MustEnterGroupName=Musíte zadat název složky.
 GroupNameTooLong=Název složky nebo cesta jsou pøíliš dlouhé.
 InvalidGroupName=Název složky není platný.
@@ -277,6 +279,7 @@ UninstallOpenError=Soubor "%1" nelze otevøít. Produkt nelze odinstalovat.
 UninstallUnsupportedVer=Prùvodci odinstalací se nepodaøilo rozpoznat formát souboru obsahujícího informace k odinstalaci produktu "%1". Produkt nelze odinstalovat
 UninstallUnknownEntry=V souboru obsahujícím informace k odinstalaci produktu byla zjištìna neznámá položka (%1)
 ConfirmUninstall=Jste si opravdu jisti, že chcete odinstalovat produkt %1 a všechny jeho souèásti?
+UninstallOnlyOnWin64=Tento produkt lze odinstalovat pouze v 64-bitových verzích MS Windows.
 OnlyAdminCanUninstall=K odinstalaci tohoto produktu musíte být pøihlášeni s právy administrátora.
 UninstallStatusLabel=Èekejte prosím dokud produkt %1 nebude odinstalován z Vašeho poèítaèe.
 UninstalledAll=Produkt %1 byl úspìšnì odinstalován z Vašeho poèítaèe.

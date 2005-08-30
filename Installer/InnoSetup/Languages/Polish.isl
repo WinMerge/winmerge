@@ -1,4 +1,4 @@
-; *** Inno Setup version 4.2.2+ Polish messages ***
+; *** Inno Setup version 5.1.0+ Polish messages ***
 ; Krzysztof Cynarski <krzysztof at cynarski.net>
 ;
 ; To download user-contributed translations of this file, go to:
@@ -9,7 +9,7 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; $jrsoftware: issrc/Files/Languages/Polish.isl,v 1.7 2004/04/07 20:19:51 jr Exp $
+; $jrsoftware: issrc/Files/Languages/Polish.isl,v 1.15 2005/02/27 19:09:39 jr Exp $
 
 [LangOptions]
 LanguageName=Polski
@@ -26,39 +26,42 @@ UninstallAppFullTitle=Odinstaluj %1
 
 ; *** Misc. common
 InformationTitle=Informacja
-ConfirmTitle=Potwierdz
-ErrorTitle=Blad
+ConfirmTitle=PotwierdŸ
+ErrorTitle=B³¹d
 
 ; *** SetupLdr messages
-SetupLdrStartupMessage=Ten program zainstaluje aplikacje %1. Czy chcesz kontynuowac?
-LdrCannotCreateTemp=Nie mozna utworzyc pliku tymczasowego. Instalacja przerwana
-LdrCannotExecTemp=Nie mozna uruchomic pliku w tymczasowym folderze. Instalacja przerwana
+SetupLdrStartupMessage=Ten program zainstaluje aplikacjê %1. Czy chcesz kontynuowaæ?
+LdrCannotCreateTemp=Nie mo¿na utworzyæ pliku tymczasowego. Instalacja przerwana
+LdrCannotExecTemp=Nie mo¿na uruchomiæ pliku w folderze tymczasowym. Instalacja przerwana
 
 ; *** Startup error messages
-LastErrorMessage=%1.%n%nBlad %2: %3
-SetupFileMissing=W folderze Instalatora brakuje pliku %1. Prosze rozwiazac ten problem lub uzyskac nowa kopie Instalatora tego programu od producenta.
-SetupFileCorrupt=Pliki skladowe Instalatora sa uszkodzone. Prosze uzyskac nowa kopie Instalatora od producenta.
-SetupFileCorruptOrWrongVer=Pliki skladowe instalatora s± uszkodzone lub niezgodne z ta wersja Instalatora. Prosze rozwiazac ten problem lub uzyskac nowa kopie Instalatora od producenta.
-NotOnThisPlatform=Ten program nie uruchomi sie pod systemem %1.
+LastErrorMessage=%1.%n%nB³¹d %2: %3
+SetupFileMissing=W folderze instalacyjnym brak pliku %1.%nProszê usun¹æ problem lub uzyskaæ now¹ kopiê programu instalacyjnego.
+SetupFileCorrupt=Pliki sk³adowe Instalatora s¹ uszkodzone. Proszê uzyskaæ now¹ kopiê Instalatora od producenta.
+SetupFileCorruptOrWrongVer=Pliki sk³adowe instalatora s¹ uszkodzone lub niezgodne z t¹ wersj¹ Instalatora. Proszê rozwi¹zaæ ten problem lub uzyskaæ now¹ kopiê Instalatora od producenta.
+NotOnThisPlatform=Tego programu nie mo¿na uruchomiæ w systemie %1.
 OnlyOnThisPlatform=Ten program wymaga systemu %1.
-WinVersionTooLowError=Ten program wymaga %1 w wersji %2 lub pózniejszej.
-WinVersionTooHighError=Ten program nie moze byc zainstalowany w wersji %2 lub pózniejszej systemu %1.
-AdminPrivilegesRequired=Musisz miec uprawnienia administratora aby zainstalowac ten program.
-PowerUserPrivilegesRequired=Musisz miec uprawnienia administratora lub uzytkownika zaawansowanego aby zainstalowac ten program.
-SetupAppRunningError=Instalator wykryl, ze %1 jest aktualnie uruchomiony.%n%nZamknij wszystkie okienka tej aplikacji, a potem wybierz przycisk OK, aby kontynuowac, lub Anuluj, aby przerwac instalacje.
-UninstallAppRunningError=Deinstalator wykryl, ze %1 jest aktualnie uruchomiony.%n%nZamknij teraz wszystkie okna tej aplikacji, a nastepnie wybierz przycisk OK, aby kontynuowac, lub Anuluj, aby przerwac deinstalacje.
+OnlyOnTheseArchitectures=Ten program mo¿e byæ uruchomiony tylko w systemie Windows zaprojektowanym na procesory o architekturach:%n%n%1
+MissingWOW64APIs=Ta wersja systemu Windows nie zawiera komponentów niezbêdnych do przeprowadzenia 64 bitowej instalacji. Aby usun¹æ ten problem, proszê zainstalowaæ Service Pack %1.
+WinVersionTooLowError=Ten program wymaga %1 w wersji %2 lub póŸniejszej.
+WinVersionTooHighError=Ten program nie mo¿e byæ zainstalowany w wersji %2 lub póŸniejszej systemu %1.
+AdminPrivilegesRequired=Aby przeprowadziæ instalacjê tego programu, U¿ytkownik musi byæ zalogowany z uprawnieniami administratora.
+PowerUserPrivilegesRequired=Aby przeprowadziæ instalacjê tego programu, U¿ytkownik musi byæ zalogowany z uprawnieniami administratora lub u¿ytkownika zaawansowanego.
+SetupAppRunningError=Instalator wykry³, ¿e %1 jest aktualnie uruchomiony.%n%nZamknij wszystkie okienka tej aplikacji, a potem wybierz przycisk OK, aby kontynuowaæ, lub Anuluj, aby przerwaæ instalacjê.
+UninstallAppRunningError=Deinstalator wykry³, ¿e %1 jest aktualnie uruchomiony.%n%nZamknij teraz wszystkie okna tej aplikacji, a nastêpnie wybierz przycisk OK, aby kontynuowaæ, lub Anuluj, aby przerwaæ deinstalacje.
 
 ; *** Misc. errors
-ErrorCreatingDir=Instalator nie mógl utworzyc folderu "%1"
-ErrorTooManyFilesInDir=Nie mozna utworzyc pliku w folderze %1, poniewaz zawiera on za duzo plików
+ErrorCreatingDir=Instalator nie móg³ utworzyæ foldera "%1"
+ErrorTooManyFilesInDir=Nie mo¿na utworzyæ pliku w folderze %1, poniewa¿ zawiera on za du¿o plików
 
 ; *** Setup common messages
-ExitSetupTitle=Zakoncz instalacje
-ExitSetupMessage=Instalacja nie zostala zakonczona. Jesli zakonczysz j± teraz, aplikacja nie bedzie zainstalowana.%n%nJesli chcesz dokonczyc instalacje innym razem, uruchom ponownie Instalatora.%n%nZakonczyc instalacje?
+ExitSetupTitle=Zakoñcz instalacjê
+ExitSetupMessage=Instalacja nie jest zakoñczona. Je¿eli przerwiesz j¹ teraz, program nie zostanie zainstalowany. Mo¿na ponowiæ instalacjê póŸniej, uruchamiaj¹c pakiet Instalatora.%n%nCzy chcesz przerwaæ instalacjê ?
 AboutSetupMenuItem=&O Instalatorze...
 AboutSetupTitle=O Instalatorze
 AboutSetupMessage=%1 wersja %2%n%3%n%n Strona domowa %1:%n%4
-AboutSetupNote=Polska wersja: Krzysztof Cynarski
+AboutSetupNote=
+TranslatorNote=Wersja Polska: Krzysztof Cynarski%n<krzysztof at cynarski.net>
 
 ; *** Buttons
 ButtonBack=< &Wstecz
@@ -70,112 +73,111 @@ ButtonYes=&Tak
 ButtonYesToAll=Tak na &wszystkie
 ButtonNo=&Nie
 ButtonNoToAll=N&ie na wszystkie
-ButtonFinish=&Zakoncz
-ButtonBrowse=&Przegladaj...
-ButtonWizardBrowse=P&rzegladaj...
+ButtonFinish=&Zakoñcz
+ButtonBrowse=&Przegl¹daj...
+ButtonWizardBrowse=P&rzegl¹daj...
 ButtonNewFolder=&Utwórz nowy folder
 
 ; *** "Select Language" dialog messages
-SelectLanguageTitle=Wybierz jezyk instalacji
-SelectLanguageLabel=Wybierz jezyk uzywany podczas instalacji:
+SelectLanguageTitle=Wybierz jêzyk instalacji
+SelectLanguageLabel=Wybierz jêzyk u¿ywany podczas instalacji:
 
 ; *** Common wizard text
-ClickNext=Wybierz przycisk Dalej, aby kontynuowac, lub Anuluj, aby zakonczyc instalacje.
+ClickNext=Wybierz przycisk Dalej, aby kontynuowaæ, lub Anuluj, aby zakoñczyæ instalacjê.
 BeveledLabel=
-BrowseDialogTitle=Wskaz folder
-BrowseDialogLabel=Wybierz folder z ponizszej listy, a nastepnie wybierz przycisk OK.
+BrowseDialogTitle=Wska¿ folder
+BrowseDialogLabel=Wybierz folder z poni¿szej listy, a nastêpnie wybierz przycisk OK.
 NewFolderName=Nowy folder
 
 ; *** "Welcome" wizard page
 WelcomeLabel1=Witamy w Kreatorze instalacji programu [name].
-WelcomeLabel2=Instalator zainstaluje teraz program [name/ver] na Twoim komputerze.%n%nZalecane jest zamkniecie wszystkich innych uruchomionych programów przed rozpoczeciem procesu instalacji.
+WelcomeLabel2=Instalator zainstaluje teraz program [name/ver] na Twoim komputerze.%n%nZalecane jest zamkniêcie wszystkich innych uruchomionych programów przed rozpoczêciem procesu instalacji.
 
 ; *** "Password" wizard page
-WizardPassword=Haslo
-PasswordLabel1=Ta instalacja jest zabezpieczona haslem.
-PasswordLabel3=Podaj haslo, potem wybierz przycisk Dalej, aby kontynuowac. W haslach rozrózniane sa duze i male litery.
-PasswordEditLabel=&Haslo:
-IncorrectPassword=Wprowadzone haslo nie jest poprawne. Spróbuj ponownie.
+WizardPassword=Has³o
+PasswordLabel1=Ta instalacja jest zabezpieczona has³em.
+PasswordLabel3=Podaj has³o, potem wybierz przycisk Dalej, aby kontynuowaæ. W has³ach rozró¿niane s¹ du¿e i ma³e litery.
+PasswordEditLabel=&Has³o:
+IncorrectPassword=Wprowadzone has³o nie jest poprawne. Spróbuj ponownie.
 
 ; *** "License Agreement" wizard page
 WizardLicense=Umowa Licencyjna
-LicenseLabel=Przed kontynuacja prosze przeczytac ponizsze wazne informacje.
-LicenseLabel3=Prosze przeczytac tekst Umowy Licencyjnej. Musisz zgodzic sie na warunki tej umowy przed kontynuacja instalacji.
-LicenseAccepted=&Akceptuje warunki umowy
-LicenseNotAccepted=&Nie akceptuje warunków umowy
+LicenseLabel=Przed kontynuacj¹ proszê przeczytaæ poni¿sze wa¿ne informacje.
+LicenseLabel3=Proszê przeczytaæ tekst Umowy Licencyjnej. Musisz zgodziæ siê na warunki tej umowy przed kontynuacj¹ instalacji.
+LicenseAccepted=&Akceptujê warunki umowy
+LicenseNotAccepted=&Nie akceptujê warunków umowy
 
 ; *** "Information" wizard pages
 WizardInfoBefore=Informacja
-InfoBeforeLabel=Przed przejeciem do dalszego etapu instalacji, prosze przeczytac ponizsza informacje.
-InfoBeforeClickLabel=Kiedy bedziesz gotowy do instalacji, kliknij przycisk Dalej.
+InfoBeforeLabel=Przed przejœciem do dalszego etapu instalacji, proszê przeczytaæ poni¿sz¹ informacjê.
+InfoBeforeClickLabel=Kiedy bêdziesz gotowy do instalacji, kliknij przycisk Dalej.
 WizardInfoAfter=Informacja
-InfoAfterLabel=Przed przejeciem do dalszego etapu instalacji, prosze przeczytac ponizsza informacje.
-InfoAfterClickLabel=Gdy bedziesz gotowy do zakonczenia instalacji, kliknij przycisk Dalej.
+InfoAfterLabel=Przed przejœciem do dalszego etapu instalacji, proszê przeczytaæ poni¿sz¹ informacjê.
+InfoAfterClickLabel=Gdy bêdziesz gotowy do zakoñczenia instalacji, kliknij przycisk Dalej.
 
 ; *** "User Information" wizard page
-WizardUserInfo=Dane Uzytkownika
-UserInfoDesc=Prosze podac swoje dane.
+WizardUserInfo=Dane U¿ytkownika
+UserInfoDesc=Proszê podaæ swoje dane.
 UserInfoName=&Nazwisko:
 UserInfoOrg=&Organizacja:
 UserInfoSerial=Numer &seryjny:
-UserInfoNameRequired=Musisz podac nazwisko.
+UserInfoNameRequired=Musisz podaæ nazwisko.
 
 ; *** "Select Destination Location" wizard page
-WizardSelectDir=Wybierz docelowa lokalizacje
-SelectDirDesc=Gdzie ma byc zainstalowany program [name]?
-SelectDirLabel3=Instalator zainstaluje program [name] do ponizszego folderu.
-SelectDirBrowseLabel=Kliknij przycisk Nastepny, aby kontynuowac. Jesli chcesz okreslic inny folder, wybierz przycisk Przegladaj.
+WizardSelectDir=Wybierz docelow¹ lokalizacjê
+SelectDirDesc=Gdzie ma byæ zainstalowany program [name]?
+SelectDirLabel3=Instalator zainstaluje program [name] do poni¿szego folderu.
+SelectDirBrowseLabel=Kliknij przycisk Dalej, aby kontynuowaæ. Jeœli chcesz okreœliæ inny folder, kliknij przycisk Przegl¹daj.
 DiskSpaceMBLabel=Potrzeba przynajmniej [mb] MB wolnego miejsca na dysku.
-ToUNCPathname=Instalator nie moze instalowac do sciezki UNC. Jesli próbujesz zainstalowac program na dysku sieciowym, najpierw zmapuj ten dysk.
-InvalidPath=Musisz wprowadzic pelna sciezke wraz z liter± dysku, np.:%n%nC:\PROGRAM%n%nlub sciezke sieciowa (UNC) w formacie:%n%n\\serwer\udzial
-InvalidDrive=Wybrany dysk lub udostepniony folder sieciowy nie istnieje. Prosze wybrac inny.
-DiskSpaceWarningTitle=Niewystarczajaca ilosc wolnego miejsca na dysku
-DiskSpaceWarning=Instalator wymaga co najmniej %1 KB wolnego miejsca na dysku. Wybrany dysk posiada tylko %2 KB dostepnego miejsca.%n%nCzy pomimo to chcesz kontynuowac?
-DirNameTooLong=Nazwa folderu lub sciezki jest za dluga.
+ToUNCPathname=Instalator nie mo¿e instalowaæ do œcie¿ki UNC. Jeœli próbujesz zainstalowaæ program na dysku sieciowym, najpierw zmapuj ten dysk.
+InvalidPath=Musisz wprowadziæ pe³n¹ œcie¿kê wraz z liter¹ dysku, np.:%n%nC:\PROGRAM%n%nlub scie¿kê sieciow¹ (UNC) w formacie:%n%n\\serwer\udzia³
+InvalidDrive=Wybrany dysk lub udostêpniony folder sieciowy nie istnieje. Proszê wybraæ inny.
+DiskSpaceWarningTitle=Niewystarczaj¹ca iloœæ wolnego miejsca na dysku
+DiskSpaceWarning=Instalator wymaga co najmniej %1 KB wolnego miejsca na dysku. Wybrany dysk posiada tylko %2 KB dostêpnego miejsca.%n%nCzy pomimo to chcesz kontynuowaæ?
+DirNameTooLong=Nazwa folderu lub œcie¿ki jest za d³uga.
 InvalidDirName=Niepoprawna nazwa folderu.
-BadDirName32=Nazwa folderu nie moze zawierac zadnego z nastepujacych znaków:%n%n%1
-DirExistsTitle=Ten folder juz istnieje
-DirExists=Folder%n%n%1%n%njuz istnieje. Czy pomimo to chcesz zainstalowac program w tym folderze?
+BadDirName32=Nazwa folderu nie mo¿e zawieraæ ¿adnego z nastêpuj¹cych znaków:%n%n%1
+DirExistsTitle=Ten folder ju¿ istnieje
+DirExists=Folder%n%n%1%n%nju¿ istnieje. Czy pomimo to chcesz zainstalowaæ program w tym folderze?
 DirDoesntExistTitle=Nie ma takiego folderu
-DirDoesntExist=Folder:%n%n%1%n%nnie istnieje. Czy chcesz, aby zostal utworzony?
+DirDoesntExist=Folder:%n%n%1%n%nnie istnieje. Czy chcesz, aby zosta³ utworzony?
 
 ; *** "Select Components" wizard page
 WizardSelectComponents=Zaznacz komponenty
-SelectComponentsDesc=Które komponenty maja byc zainstalowane?
-SelectComponentsLabel2=Zaznacz komponenty, które chcesz zainstalowac, odznacz te, których nie chcesz zainstalowac. Kliknij przycisk Dalej, aby kontynuowac.
-FullInstallation=Instalacja pelna
+SelectComponentsDesc=Które komponenty maj¹ byæ zainstalowane?
+SelectComponentsLabel2=Zaznacz komponenty, które chcesz zainstalowaæ, odznacz te, których nie chcesz zainstalowaæ. Kliknij przycisk Dalej, aby kontynuowaæ.
+FullInstallation=Instalacja pe³na
 ; if possible don't translate 'Compact' as 'Minimal' (I mean 'Minimal' in your language)
-CompactInstallation=Instalacja minimalna
-CustomInstallation=Instalacja uzytkownika
+CompactInstallation=Instalacja podstawowa
+CustomInstallation=Instalacja u¿ytkownika
 NoUninstallWarningTitle=Zainstalowane komponenty
-NoUninstallWarning=Instalator wykryl, ze w twoim komputerze s± juz zainstalowane nastepujace komponenty:%n%n%1%n%nOdznaczenie któregokolwiek z nich nie spowoduje ich odinstalacji.%n%nCzy pomimo tego chcesz kontynuowac?
+NoUninstallWarning=Instalator wykry³, ¿e w twoim komputerze s¹ ju¿ zainstalowane nastêpuj¹ce komponenty:%n%n%1%n%nOdznaczenie któregokolwiek z nich nie spowoduje ich deinstalacji.%n%nCzy pomimo tego chcesz kontynuowaæ?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
-ComponentsDiskSpaceMBLabel=Wybrane komponenty wymagaja co najmniej [mb] MB na dysku.
+ComponentsDiskSpaceMBLabel=Wybrane komponenty wymagaj¹ co najmniej [mb] MB na dysku.
 
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Zaznacz dodatkowe zadania
-SelectTasksDesc=Które dodatkowe zadania maja byc wykonane?
-SelectTasksLabel2=Zaznacz dodatkowe zadania, które Instalator ma wykonac podczas instalacji programu [name], a nastepnie kliknij przycisk Dalej, aby kontynuowac.
+SelectTasksDesc=Które dodatkowe zadania maj¹ byæ wykonane?
+SelectTasksLabel2=Zaznacz dodatkowe zadania, które Instalator ma wykonaæ podczas instalacji programu [name], a nastêpnie kliknij przycisk Dalej, aby kontynuowaæ.
 
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Wybierz folder Menu Start
-SelectStartMenuFolderDesc=Gdzie maja byc umieszczone skróty do programu?
-SelectStartMenuFolderLabel3=Instalator stworzy skróty do programu w ponizszym folderze Menu Start.
-SelectStartMenuFolderBrowseLabel=Kliknij przycisk Nastepny, aby kontynuowac. Jesli chcesz okreslic inny folder, kliknij przycisk Przegladaj.
-NoIconsCheck=&Nie twórz zadnych skrótów
-MustEnterGroupName=Musisz wprowadzic nazwe folderu.
-GroupNameTooLong=Nazwa folderu lub sciezki jest za dluga.
+SelectStartMenuFolderDesc=Gdzie maj¹ byæ umieszczone skróty do programu?
+SelectStartMenuFolderLabel3=Instalator stworzy skróty do programu w poni¿szym folderze Menu Start.
+SelectStartMenuFolderBrowseLabel=Kliknij przycisk Dalej, aby kontynuowaæ. Jeœli chcesz okreœliæ inny folder, kliknij przycisk Przegl¹daj.
+MustEnterGroupName=Musisz wprowadziæ nazwê folderu.
+GroupNameTooLong=Nazwa folderu lub œcie¿ki jest za d³uga.
 InvalidGroupName=Niepoprawna nazwa folderu.
-BadGroupName=Nazwa folderu nie moze zawierac zadnego z nastepujacych znaków:%n%n%1
-NoProgramGroupCheck2=&Nie twórz folderu w Menu Start
+BadGroupName=Nazwa folderu nie mo¿e zawieraæ ¿adnego z nastêpuj¹cych znaków:%n%n%1
+NoProgramGroupCheck2=Nie twórz folderu w &Menu Start
 
 ; *** "Ready to Install" wizard page
-WizardReady=Gotowy do rozpoczecia instalacji
-ReadyLabel1=Instalator jest juz gotowy do rozpoczecia instalacji programu [name] na twoim komputerze.
-ReadyLabel2a=Kliknij przycisk Instaluj, aby rozpoczac instalacje lub Wstecz, jesli chcesz przejrzec lub zmienic ustawienia.
-ReadyLabel2b=Kliknij przycisk Instaluj, aby kontynuowac instalacje.
-ReadyMemoUserInfo=Informacje uzytkownika:
+WizardReady=Gotowy do rozpoczêcia instalacji
+ReadyLabel1=Instalator jest ju¿ gotowy do rozpoczêcia instalacji programu [name] na twoim komputerze.
+ReadyLabel2a=Kliknij przycisk Instaluj, aby rozpocz¹æ instalacjê lub Wstecz, jeœli chcesz przejrzeæ lub zmieniæ ustawienia.
+ReadyLabel2b=Kliknij przycisk Instaluj, aby kontynuowaæ instalacjê.
+ReadyMemoUserInfo=Informacje u¿ytkownika:
 ReadyMemoDir=Lokalizacja docelowa:
 ReadyMemoType=Rodzaj instalacji:
 ReadyMemoComponents=Wybrane komponenty:
@@ -184,40 +186,40 @@ ReadyMemoTasks=Dodatkowe zadania:
 
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Przygotowanie do instalacji
-PreparingDesc=Instalator przygotowuje instalacje programu [name] na Twoim komputerze.
-PreviousInstallNotCompleted=Instalacja (usuniecie) poprzedniej wersji programu nie zostala zakonczona. Bedziesz musial ponownie uruchomic komputer, aby zakonczyc instalacje. %n%nPo ponownym uruchomieniu komputera uruchom ponownie instalatora, aby zakonczyc instalacje aplikacji [name].
-CannotContinue=Instalator nie moze kontynuowac. Kliknij przycisk Anuluj, aby przerwac instalacje.
+PreparingDesc=Instalator przygotowuje instalacjê programu [name] na Twoim komputerze.
+PreviousInstallNotCompleted=Instalacja (usuniêcie) poprzedniej wersji programu nie zosta³a zakoñczona. Bêdziesz musia³ ponownie uruchomiæ komputer, aby zakoñczyæ instalacjê. %n%nPo ponownym uruchomieniu komputera uruchom ponownie instalatora, aby zakoñczyæ instalacjê aplikacji [name].
+CannotContinue=Instalator nie mo¿e kontynuowaæ. Kliknij przycisk Anuluj, aby przerwaæ instalacjê.
 
 
 ; *** "Installing" wizard page
 WizardInstalling=Instalacja
-InstallingLabel=Poczekaj, az instalator zainstaluje aplikacje [name] na Twoim komputerze.
+InstallingLabel=Poczekaj, a¿ instalator zainstaluje aplikacjê [name] na Twoim komputerze.
 
 ; *** "Setup Completed" wizard page
-FinishedHeadingLabel=Zakonczono instalacje programu [name]
-FinishedLabelNoIcons=Instalator zakonczyl instalacje programu [name] na Twoim komputerze.
-FinishedLabel=Instalator zakonczyl instalacje programu [name] na Twoim komputerze. Aplikacja moze byc uruchomiona poprzez uzycie zainstalowanych skrótów.
-ClickFinish=Kliknij przycisk Zakoncz, aby zakonczyc instalacje.
-FinishedRestartLabel=Aby zakonczyc instalacje programu [name], Instalator musi ponownie uruchomic Twój komputer. Czy chcesz teraz wykonac restart komputera?
-FinishedRestartMessage=Aby zakonczyc instalacje programu [name], Instalator musi ponownie uruchomic Twój komputer.%n%nCzy chcesz teraz wykonac restart komputera?
-ShowReadmeCheck=Tak, chce przeczytac dodatkowe informacje
+FinishedHeadingLabel=Zakoñczono instalacjê programu [name]
+FinishedLabelNoIcons=Instalator zakoñczy³ instalacjê programu [name] na Twoim komputerze.
+FinishedLabel=Instalator zakoñczy³ instalacjê programu [name] na Twoim komputerze. Aplikacja mo¿e byæ uruchomiona poprzez u¿ycie zainstalowanych skrótów.
+ClickFinish=Kliknij przycisk Zakoñcz, aby zakoñczyæ instalacjê.
+FinishedRestartLabel=Aby zakoñczyæ instalacjê programu [name], Instalator musi ponownie uruchomiæ Twój komputer. Czy chcesz teraz wykonaæ restart komputera?
+FinishedRestartMessage=Aby zakoñczyæ instalacjê programu [name], Instalator musi ponownie uruchomiæ Twój komputer.%n%nCzy chcesz teraz wykonaæ restart komputera?
+ShowReadmeCheck=Tak, chcê przeczytaæ dodatkowe informacje
 YesRadio=&Tak, teraz uruchom ponownie
-NoRadio=&Nie, sam zrestartuje pózniej
+NoRadio=&Nie, sam zrestartujê póŸniej
 ; used for example as 'Run MyProg.exe'
 RunEntryExec=Uruchom %1
 ; used for example as 'View Readme.txt'
-RunEntryShellExec=Pokaz %1
+RunEntryShellExec=Poka¿ %1
 
 ; *** "Setup Needs the Next Disk" stuff
-ChangeDiskTitle=Instalator potrzebuje nastepnej dyskietki
-SelectDiskLabel2=Prosze wlozyc dyskietke %1 i kliknac przycisk OK.%n%nJesli pokazany ponizej folder nie okresla polozenia plików z tej dyskietki, wprowadz poprawna sciezke lub kliknij przycisk Przegladaj.
-PathLabel=S&ciezka:
-FileNotInDir2=Plik "%1" nie zostal znaleziony na dyskietce "%2". Prosze wlozyc wlasciwa dyskietke lub wybrac inny folder.
-SelectDirectoryLabel=Prosze okreslic lokalizacje nastepnej dyskietki.
+ChangeDiskTitle=Instalator potrzebuje nastêpnej dyskietki
+SelectDiskLabel2=Proszê w³o¿yæ dyskietkê %1 i klikn¹æ przycisk OK.%n%nJeœli pokazany poni¿ej folder nie okreœla po³o¿enia plików z tej dyskietki, wprowadŸ poprawn¹ œcie¿kê lub kliknij przycisk Przegl¹daj.
+PathLabel=Œ&cie¿ka:
+FileNotInDir2=Plik "%1" nie zosta³ znaleziony na dyskietce "%2". Proszê w³o¿yæ w³aœciw¹ dyskietkê lub wybraæ inny folder.
+SelectDirectoryLabel=Proszê okreœliæ lokalizacjê nastêpnej dyskietki.
 
 ; *** Installation phase messages
-SetupAborted=Instalacja nie zostala zakonczona.%n%nProsze rozwiazac problem i ponownie rozpoczac instalacje.
-EntryAbortRetryIgnore=Mozesz ponowic nieudana czynnosc, zignorowac ja (nie zalecane) lub przerwac instalacje.
+SetupAborted=Instalacja nie zosta³a zakoñczona.%n%nProszê rozwi¹zaæ problem i ponownie rozpocz¹æ instalacjê.
+EntryAbortRetryIgnore=Mo¿esz ponowiæ nieudan¹ czynnoœæ, zignorowaæ j¹ (nie zalecane) lub przerwaæ instalacjê.
 
 ; *** Installation status messages
 StatusCreateDirs=Tworzenie folderów...
@@ -227,66 +229,67 @@ StatusCreateIniEntries=Tworzenie zapisów w plikach INI...
 StatusCreateRegistryEntries=Tworzenie zapisów w rejestrze...
 StatusRegisterFiles=Rejestracja plików...
 StatusSavingUninstall=Zachowanie informacji deinstalatora...
-StatusRunProgram=Konczenie instalacji...
+StatusRunProgram=Koñczenie instalacji...
 StatusRollback=Cofanie zmian...
 
 ; *** Misc. errors
-ErrorInternal2=Wewnetrzny blad: %1
-ErrorFunctionFailedNoCode=Blad podczas wykonywania %1
-ErrorFunctionFailed=Blad podczas wykonywania %1; kod %2
-ErrorFunctionFailedWithMessage=Blad podczas wykonywania %1; kod %2.%n%3
-ErrorExecutingProgram=Nie mozna uruchomic:%n%1
+ErrorInternal2=Wewnêtrzny b³¹d: %1
+ErrorFunctionFailedNoCode=B³¹d podczas wykonywania %1
+ErrorFunctionFailed=B³¹d podczas wykonywania %1; kod %2
+ErrorFunctionFailedWithMessage=B³¹d podczas wykonywania %1; code %2.%n%3
+ErrorExecutingProgram=Nie mo¿na uruchomiæ:%n%1
 
 ; *** Registry errors
-ErrorRegOpenKey=Blad podczas otwierania klucza rejestru:%n%1\%2
-ErrorRegCreateKey=Blad podczas tworzenia klucza rejestru:%n%1\%2
-ErrorRegWriteKey=Blad podczas zapisu do klucza rejestru:%n%1\%2
+ErrorRegOpenKey=B³¹d podczas otwierania klucza rejestru:%n%1\%2
+ErrorRegCreateKey=B³¹d podczas tworzenia klucza rejestru:%n%1\%2
+ErrorRegWriteKey=B³¹d podczas zapisu do klucza rejestru:%n%1\%2
 
 ; *** INI errors
-ErrorIniEntry=Blad podczas tworzenia pozycji w pliku INI: "%1".
+ErrorIniEntry=B³¹d podczas tworzenia pozycji w pliku INI: "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Mozesz ponowic nieudana czynnosc, zignorowac ja, aby ominac ten plik (nie zalecane), lub przerwac instalacje.
-FileAbortRetryIgnore2=Mozesz ponowic nieudana czynnosc, zignorowac ja (nie zalecane) lub przerwac instalacje.
-SourceIsCorrupted=Plik zródlowy jest uszkodzony
-SourceDoesntExist=Plik zródlowy "%1" nie istnieje
-ExistingFileReadOnly=Istniejacy plik jest oznaczony jako tylko-do-odczytu.%n%nMozesz ponowic (aby usunac oznaczenie) zignorowac (aby ominac ten plik) lub przerwac instalacje.
-ErrorReadingExistingDest=Wystapil blad podczas próby odczytu istniejacego pliku:
-FileExists=Plik juz istnieje.%n%nCzy chcesz, aby Instalator zamienil go na nowy?
-ExistingFileNewer=Istniejacy plik jest nowszy niz ten, który Instalator próbuje skopiowac. Zalecanym jest zachowanie istniejacego pliku.%n%nCzy chcesz zachowac istniejacy plik?
-ErrorChangingAttr=Podczas próby zmiany atrybutów istniejacego pliku wystapil blad:
-ErrorCreatingTemp=Podczas próby utworzenia pliku w folderze docelowym wystapil blad:
-ErrorReadingSource=Podczas próby odczytu pliku zródlowego wystapil blad:
-ErrorCopying=Podczas próby kopiowania pliku wystapil blad:
-ErrorReplacingExistingFile=Podczas próby zamiany istniejacego pliku wystapil blad:
-ErrorRestartReplace=Blad RestartReplace:
-ErrorRenamingTemp=Podczas próby zmiany nazwy pliku w folderze docelowym wystapil blad:
-ErrorRegisterServer=Nie mozna zarejestrowac DLL/OCX: %1
-ErrorRegisterServerMissingExport=Eksportowana funkcja DllRegisterServer nie zostala znaleziony
-ErrorRegisterTypeLib=Nie moge zarejestrowac biblioteki typów: %1
+FileAbortRetryIgnore=Mo¿esz ponowiæ nieudan¹ czynnoœæ, zignorowaæ j¹, aby omin¹æ ten plik (nie zalecane), lub przerwaæ instalacjê.
+FileAbortRetryIgnore2=Mo¿esz ponowiæ nieudan¹ czynnoœæ, zignorowaæ j¹ (nie zalecane) lub przerwaæ instalacjê.
+SourceIsCorrupted=Plik Ÿród³owy jest uszkodzony
+SourceDoesntExist=Plik Ÿród³owy "%1" nie istnieje
+ExistingFileReadOnly=Istniej¹cy plik jest oznaczony jako tylko-do-odczytu.%n%nMo¿esz ponowiæ (aby usun¹æ oznaczenie) zignorowaæ (aby omin¹æ ten plik) lub przerwaæ instalacjê.
+ErrorReadingExistingDest=Wyst¹pi³ b³¹d podczas próby odczytu istniej¹cego pliku:
+FileExists=Plik ju¿ istnieje.%n%nCzy chcesz, aby Instalator zamieni³ go na nowy?
+ExistingFileNewer=Istniej¹cy plik jest nowszy ni¿ ten, który Instalator próbuje skopiowaæ. Zalecanym jest zachowanie istniej¹cego pliku.%n%nCzy chcesz zachowaæ istniej¹cy plik?
+ErrorChangingAttr=Wyst¹pi³ b³¹d podczas próby zmiany atrybutów docelowego pliku:
+ErrorCreatingTemp=Wyst¹pi³ b³¹d podczas próby utworzenia pliku w folderze docelowym:
+ErrorReadingSource=Wyst¹pi³ b³¹d podczas próby odczytu pliku Ÿród³owego:
+ErrorCopying=Wyst¹pi³ b³¹d podczas próby kopiowania pliku:
+ErrorReplacingExistingFile=Wyst¹pi³ b³¹d podczas próby zamiany istniej¹cego pliku:
+ErrorRestartReplace=Próba zast¹pienia plików podczas restartu komputera nie powiod³a siê.
+ErrorRenamingTemp=Wyst¹pi³ b³¹d podczas próby zmiany nazwy pliku w folderze docelowym:
+ErrorRegisterServer=Nie mo¿na zarejestrowaæ DLL/OCX: %1
+ErrorRegisterServerMissingExport=Eksportowana funkcja DllRegisterServer nie zosta³a znaleziona
+ErrorRegisterTypeLib=Nie mogê zarejestrowaæ biblioteki typów: %1
 
 ; *** Post-installation errors
-ErrorOpeningReadme=Wystapil blad podczas próby otwarcia pliku README.
-ErrorRestartingComputer=Instalator nie mógl zrestartowac tego komputera. Prosze zrobic to samodzielnie.
+ErrorOpeningReadme=Wyst¹pi³ b³¹d podczas próby otwarcia pliku README.
+ErrorRestartingComputer=Instalator nie móg³ zrestartowaæ tego komputera. Proszê zrobiæ to samodzielnie.
 
 ; *** Uninstaller messages
-UninstallNotFound=Plik "%1" nie istnieje. Nie mozna go odinstalowac.
-UninstallOpenError=Plik "%1" nie mógl byc otwarty. Nie mozna odinstalowac
-UninstallUnsupportedVer=Ta wersja programu deinstalacyjnego nie rozpoznaje formatu logu deinstalacji. Nie mozna odinstalowac
-UninstallUnknownEntry=W logu deinstalacji wystapila nie znana pozycja (%1)
-ConfirmUninstall=Czy na pewno chcesz usunac program %1 i wszystkie jego skladniki?
-OnlyAdminCanUninstall=Ta instalacja moze byc odinstalowana tylko przez uzytkownika z prawami administratora.
-UninstallStatusLabel=Poczekaj az program %1 zostanie usuniety z Twojego komputera.
-UninstalledAll=%1 zostal usuniety z Twojego komputera.
-UninstalledMost=Odinstalowywanie programu %1 zakonczone.%n%nNiektóre elementy nie mogly byc usuniete. Mozesz je usunac recznie.
-UninstalledAndNeedsRestart=Twój komputer musi byc ponownie uruchomiony, aby zakonczyc odinstalowywanie %1.%n%nCzy chcesz teraz ponownie uruchomic komputer?
-UninstallDataCorrupted=Plik "%1" jest uszkodzony. Nie mozna odinstalowac
+UninstallNotFound=Plik "%1" nie istnieje. Nie mo¿na go odinstalowaæ.
+UninstallOpenError=Plik "%1" nie móg³ byæ otwarty. Nie mo¿na odinstalowaæ
+UninstallUnsupportedVer=Ta wersja programu deinstalacyjnego nie rozpoznaje formatu logu deinstalacji. Nie mo¿na odinstalowaæ
+UninstallUnknownEntry=W logu deinstalacji wyst¹pi³a nieznana pozycja (%1)
+ConfirmUninstall=Czy na pewno chcesz usun¹æ program %1 i wszystkie jego sk³adniki?
+UninstallOnlyOnWin64=Ten program moze byæ odinstalowany tylo w 64 bitowej wersji systemu Windows.
+OnlyAdminCanUninstall=Ta instalacja mo¿e byæ odinstalowana tylko przez u¿ytkownika z prawami administratora.
+UninstallStatusLabel=Poczekaj a¿ program %1 zostanie usuniêty z Twojego komputera.
+UninstalledAll=%1 zosta³ usuniêty z Twojego komputera.
+UninstalledMost=Odinstalowywanie programu %1 zakoñczone.%n%nNiektóre elementy nie mog³y byæ usuniête. Mo¿esz je usun¹æ rêcznie.
+UninstalledAndNeedsRestart=Twój komputer musi byæ ponownie uruchomiony, aby zakoñczyæ odinstalowywanie %1.%n%nCzy chcesz teraz ponownie uruchomiæ komputer?
+UninstallDataCorrupted=Plik "%1" jest uszkodzony. Nie mo¿na odinstalowaæ
 
 ; *** Uninstallation phase messages
-ConfirmDeleteSharedFileTitle=Usunac plik wspóldzielony?
-ConfirmDeleteSharedFile2=System wykryl, ze nastepujacy plik nie jest juz uzywany przez zaden program. Czy chcesz odinstalowac ten plik wspóldzielony?%n%nJesli inne programy nadal uzywaja tego pliku, a zostanie on usuniety, moga one przestac dzialac prawidlowo. Jesli nie jestes pewny, wybierz przycisk Nie. Pozostawienie tego pliku w Twoim systemie nie spowoduje zadnych szkód.
+ConfirmDeleteSharedFileTitle=Usun¹æ plik wspó³dzielony?
+ConfirmDeleteSharedFile2=System wykry³, ¿e nastêpuj¹cy plik nie jest ju¿ u¿ywany przez ¿aden program. Czy chcesz odinstalowaæ ten plik wspó³dzielony?%n%nJeœli inne programy nadal u¿ywaj¹ tego pliku, a zostanie on usuniêty, mog¹ one przestaæ dzia³aæ prawid³owo. Jeœli nie jesteœ pewny, wybierz przycisk Nie. Pozostawienie tego pliku w Twoim systemie nie spowoduje ¿adnych szkód.
 SharedFileNameLabel=Nazwa pliku:
-SharedFileLocationLabel=Polozenie:
+SharedFileLocationLabel=Po³o¿enie:
 WizardUninstalling=Stan deinstalacji
 StatusUninstalling=Deinstalacja %1...
 
@@ -298,8 +301,8 @@ StatusUninstalling=Deinstalacja %1...
 NameAndVersion=%1 wersja %2
 AdditionalIcons=Dodatkowe ikony:
 OptionalFeatures=Optional Features:
-CreateDesktopIcon=Utwórz ikone na &pulpicie
-CreateQuickLaunchIcon=Utwórz ikone na pasku &szybkiego uruchamiania
+CreateDesktopIcon=Utwórz ikonê na &pulpicie
+CreateQuickLaunchIcon=Utwórz ikonê na pasku &szybkiego uruchamiania
 ProgramOnTheWeb=Strona WWW programu %1
 UninstallProgram=Deinstalacja programu %1
 LaunchProgram=Uruchom program %1

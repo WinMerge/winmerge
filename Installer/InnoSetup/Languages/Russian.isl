@@ -1,6 +1,6 @@
-; *** Inno Setup version 4.2.2+ Russian messages ***
+; *** Inno Setup version 5.1.0+ Russian messages ***
 ;
-; Translation is made by Dmitry Kann, http://devtools.narod.ru/
+; Translation was made by Dmitry Kann, http://www.dk-soft.org/
 ; The highest accuracy was the first priority.
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
@@ -8,7 +8,7 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; $jrsoftware: issrc/Files/Languages/Russian.isl,v 1.7 2004/04/08 05:29:15 yktoo Exp $
+; $jrsoftware: issrc/Files/Languages/Russian.isl,v 1.9 2005/02/26 08:32:52 yktoo Exp $
 
 [LangOptions]
 LanguageName=<0420><0443><0441><0441><043A><0438><0439>
@@ -40,6 +40,8 @@ SetupFileCorrupt=Установочные файлы повреждены. Пожалуйста, получите новую копию
 SetupFileCorruptOrWrongVer=Эти установочные файлы повреждены или несовместимы с данной версией программы установки. Пожалуйста, устраните проблему или получите новую копию программы.
 NotOnThisPlatform=Эта программа не будет работать в %1.
 OnlyOnThisPlatform=Эту программу можно запускать только в %1.
+OnlyOnTheseArchitectures=Установка этой программы возможна только в версиях Windows для следующих архитектур процессоров:%n%n%1
+MissingWOW64APIs=В версии Windows, в которой Вы работаете, отсутствуют функции, необходимые для выполнения 64-битной установки. Чтобы устранить эту проблему, Вам необходимо установить пакет обновления (Service Pack) %1.
 WinVersionTooLowError=Эта программа требует %1 версии %2 или выше.
 WinVersionTooHighError=Программа не может быть установлена в %1 версии %2 или выше.
 AdminPrivilegesRequired=Чтобы установить данную программу, Вы должны выполнить вход в систему как Администратор.
@@ -53,11 +55,12 @@ ErrorTooManyFilesInDir=Невозможно создать файл в каталоге "%1", так как в нём сл
 
 ; *** Setup common messages
 ExitSetupTitle=Выход из программы установки
-ExitSetupMessage=Установка не завершена. Если Вы выйдете, программа не будет установлена.%n%nВы можете установить программу в другой раз.%n%nВыйти из программы установки?
+ExitSetupMessage=Установка не завершена. Если Вы выйдете, программа не будет установлена.%n%nВы сможете завершить установку, запустив программу установки позже.%n%nВыйти из программы установки?
 AboutSetupMenuItem=&О программе...
 AboutSetupTitle=О программе
 AboutSetupMessage=%1, версия %2%n%3%n%nСайт %1:%n%4
 AboutSetupNote=
+TranslatorNote=Russian translation by Dmitry Kann, http://www.dk-soft.org/
 
 ; *** Buttons
 ButtonBack=< &Назад
@@ -71,21 +74,21 @@ ButtonNo=&Нет
 ButtonNoToAll=Н&ет для Всех
 ButtonFinish=&Завершить
 ButtonBrowse=&Обзор...
-
-; *** "Select Language" dialog messages
 ButtonWizardBrowse=&Обзор...
 ButtonNewFolder=&Создать папку
+
+; *** "Select Language" dialog messages
 SelectLanguageTitle=Выберите язык установки
 SelectLanguageLabel=Выберите язык, который будет использован в  процессе установки:
 
 ; *** Common wizard text
 ClickNext=Нажмите «Далее», чтобы продолжить, или «Отмена», чтобы выйти из программы установки.
 BeveledLabel=
-
-; *** "Welcome" wizard page
 BrowseDialogTitle=Обзор папок
 BrowseDialogLabel=Выберите папку из списка и нажмите «ОК».
 NewFolderName=Новая папка
+
+; *** "Welcome" wizard page
 WelcomeLabel1=Вас приветствует Мастер установки [name]
 WelcomeLabel2=Программа установит [name/ver] на Ваш компьютер.%n%nРекомендуется закрыть все прочие приложения перед тем, как продолжить.
 
@@ -119,7 +122,7 @@ UserInfoOrg=&Организация:
 UserInfoSerial=&Серийный номер:
 UserInfoNameRequired=Вы должны ввести имя.
 
-; *** "Select Destination Directory" wizard page
+; *** "Select Destination Location" wizard page
 WizardSelectDir=Выбор папки установки
 SelectDirDesc=В какую папку Вы хотите установить [name]?
 SelectDirLabel3=Программа установит [name] в следующую папку.
@@ -162,7 +165,6 @@ WizardSelectProgramGroup=Выберите папку в меню «Пуск»
 SelectStartMenuFolderDesc=Где программа установки должна создать ярлыки?
 SelectStartMenuFolderLabel3=Программа создаст ярлыки в следующей папке меню «Пуск».
 SelectStartMenuFolderBrowseLabel=Нажмите «Далее», чтобы продолжить. Если Вы хотите выбрать другую папку, нажмите «Обзор».
-NoIconsCheck=&Не создавать значков
 MustEnterGroupName=Вы должны ввести имя папки.
 GroupNameTooLong=Имя папки группы или путь к ней превышают допустимую длину.
 InvalidGroupName=Указанное имя папки недопустимо.
@@ -273,6 +275,7 @@ UninstallOpenError=Невозможно открыть файл "%1". Деинсталляция невозможна
 UninstallUnsupportedVer=Файл протокола для деинсталляции "%1" не распознан данной версией программы-деинсталлятора. Деинсталляция невозможна
 UninstallUnknownEntry=Встретился неизвестный пункт (%1) в файле протокола для деинсталляции
 ConfirmUninstall=Вы действительно хотите удалить %1 и все компоненты программы?
+UninstallOnlyOnWin64=Данную программу возможно деинсталлировать только в среде 64-битной Windows.
 OnlyAdminCanUninstall=Эта программа может быть деинсталлирована только пользователем с административными привилегиями.
 UninstallStatusLabel=Пожалуйста, подождите, пока %1 будет удалена с Вашего компьютера.
 UninstalledAll=Программа %1 была полностью удалена с Вашего компьютера.

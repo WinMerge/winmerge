@@ -1,23 +1,23 @@
-; *** Inno Setup version 4.1.8+ Traditional Chinese messages ***
+; *** Inno Setup version 5.1.0+ Chinese (Traditional) messages ***
 ;
 ; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/is3rdparty.htm
+;   http://www.jrsoftware.org/is3rdparty.php
+;
+; Translated by: Patrick Pang (uncleleft at yahoo.com.hk)
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
-;
-; $jrsoftware: issrc/Files/Default.isl,v 1.53 2004/02/25 01:55:24 jr Exp $
 
 [LangOptions]
-LanguageName=Chinese (Taiwan)
+LanguageName=<7e41><9ad4><4e2d><6587>
 LanguageID=$0404
+LanguageCodepage=950
 ; If the language you are translating to requires special font faces or
 ; sizes, uncomment any of the following entries and change them accordingly.
 DialogFontName=·s²Ó©úÅé
 DialogFontSize=9
-;DialogFontStandardHeight=12
 TitleFontName=Arial
 TitleFontSize=28
 WelcomeFontName=·s²Ó©úÅé
@@ -50,6 +50,8 @@ SetupFileCorrupt=¦w¸ËÀÉ®×¤w¸g·l·´¡C½Ð­«·s¨ú±o¦¹³nÅé¡C
 SetupFileCorruptOrWrongVer=¦w¸ËÀÉ®×¤w¸g·l·´¡A©Î»P¦w¸Ëµ{¦¡ªºª©¥»¤£²Å¡C½Ð­«·s¨ú±o¦¹³nÅé¡C
 NotOnThisPlatform=³o­Óµ{¦¡µLªk¦b %1 °õ¦æ¡C
 OnlyOnThisPlatform=³o­Óµ{¦¡¥²¶·¦b %1 °õ¦æ¡C
+OnlyOnTheseArchitectures=³o­Óµ{¦¡¥u¯à¦b±Mªù¬°¥H¤U³B²z¾¹¬[ºc¦Ó³]­pªº Windows ¤W¦w¸Ë:%n%n%1
+MissingWOW64APIs=³o­Óª©¥»ªº Windows ¤£¥]§t¦w¸Ëµ{¦¡°õ¦æ 64 ¦ì¤¸¦w¸Ë©Ò»Ýªº¥\¯à¡C½Ð¦w¸Ë Service Pack %1 ¥h­×¥¿¦¹°ÝÃD¡C
 WinVersionTooLowError=³o­Óµ{¦¡¥²¶·¦b %1 ª©¥» %2 ©Î¥H¤Wªº¨t²Î°õ¦æ¡C
 WinVersionTooHighError=³o­Óµ{¦¡µLªk¦w¸Ë¦b %1 ª©¥» %2 ©Î¥H¤Wªº¨t²Î¡C
 AdminPrivilegesRequired=±z¥²¶·µn¤J¦¨¨t²ÎºÞ²z­û¥H¦w¸Ë³o­Óµ{¦¡¡C
@@ -68,6 +70,7 @@ AboutSetupMenuItem=Ãö©ó¦w¸Ëµ{¦¡(&A)...
 AboutSetupTitle=Ãö©ó¦w¸Ëµ{¦¡
 AboutSetupMessage=%1 ª©¥» %2%n%3%n%n%1 ºô§}:%n%4
 AboutSetupNote=
+TranslatorNote=ÁcÅé¤¤¤å»y¨t¥Ñ Patrick Pang (uncleleft@yahoo.com.hk) ºûÅ@¡C
 
 ; *** Buttons
 ButtonBack=< ¤W¤@¨B(&B)
@@ -133,7 +136,7 @@ UserInfoNameRequired=±z¥²¶·¿é¤J±zªº¦WºÙ¡C
 WizardSelectDir=¿ï¾Ü¥Øªº¸ê®Æ§¨
 SelectDirDesc=¿ï¾Ü¦w¸Ëµ{¦¡¦w¸Ë [name] ªº¦ì¸m¡C
 SelectDirLabel3=¦w¸Ëµ{¦¡±N·|§â [name] ¦w¸Ë¨ì¤U­±ªº¸ê®Æ§¨¡C
-SelectDirBrowseLabel=Ä~Äò¦w¸Ë, ½Ð«ö[¤U¤@¨B]¡A¦pªG±z·Q¿ï¾Ü¥t¤@­Ó¸ê®Æ§¨¡A½Ð«ö [ÂsÄý]¡C
+SelectDirBrowseLabel=«ö [½T©w] Ä~Äò¡A¦pªG±z·Q¿ï¾Ü¥t¤@­Ó¸ê®Æ§¨¡A½Ð«ö [ÂsÄý]¡C
 DiskSpaceMBLabel=³Ì¤Ö»Ý­n [mb] MB ºÏºÐªÅ¶¡¡C
 ToUNCPathname=¦w¸Ëµ{¦¡µLªk¦w¸Ë©ó UNC ¸ô®|¦WºÙ¡C¦pªG±z§Æ±æ¦w¸Ë©óºô¸ô¤W¨ä¥L¹q¸£¤¤¡A±z¥²¶·«Ø¥ß¤@­Ó©T©w³s±µªººô¸ôºÏºÐ¾÷¡C
 InvalidPath=±z¥²¶·¿é¤J§¹¾ãªº¸ô®|¦WºÙ¤ÎºÏºÐ¾÷¥N½X¡C%n%n¨Ò¦p C:\App ©Î UNC ¸ô®|®æ¦¡ \\¦øªA¾¹\¦@¥Î¸ê®Æ§¨¡C
@@ -171,8 +174,7 @@ SelectTasksLabel2=¿ï¾Ü¦w¸Ëµ{¦¡¦b¦w¸Ë [name] ®É­n°õ¦æªºªþ¥[¤u§@¡AµM«á«ö [¤U¤@¨B]¡
 WizardSelectProgramGroup=¿ï¾Ü¡u¶}©l¡v¥\¯àªíªº¸ê®Æ§¨
 SelectStartMenuFolderDesc=¿ï¾Ü¦w¸Ëµ{¦¡«Ø¥ßµ{¦¡ªº±¶®|ªº¦ì¸m¡C
 SelectStartMenuFolderLabel3=¦w¸Ëµ{¦¡±N·|§âµ{¦¡ªº±¶®|«Ø¥ß¦b¤U­±ªº¡u¶}©l¡v¥\¯àªí¸ê®Æ§¨¡C
-SelectStartMenuFolderBrowseLabel=Ä~Äò¦w¸Ë, ½Ð«ö[¤U¤@¨B]¡A¦pªG±z·Q¿ï¾Ü¥t¤@­Ó¸ê®Æ§¨¡A½Ð«ö [ÂsÄý]¡C
-NoIconsCheck=¤£­n«Ø¥ß¥ô¦ó¹Ï¥Ü(&D)
+SelectStartMenuFolderBrowseLabel=«ö [½T©w] Ä~Äò¡A¦pªG±z·Q¿ï¾Ü¥t¤@­Ó¸ê®Æ§¨¡A½Ð«ö [ÂsÄý]¡C
 MustEnterGroupName=±z¥²¶·¿é¤J¤@­Ó¸ê®Æ§¨ªº¦WºÙ¡C
 GroupNameTooLong=¸ê®Æ§¨¦WºÙ©Î¸ô®|¤Óªø¡C
 InvalidGroupName=¸ê®Æ§¨¦WºÙ¤£¥¿½T¡C
@@ -225,7 +227,7 @@ SelectDirectoryLabel=½Ð«ü©w¤U¤@±iºÏ¤ùªº¦ì¸m¡C
 
 ; *** Installation phase messages
 SetupAborted=¦w¸Ë¨S¦³§¹¦¨¡C%n%n½Ð§ó¥¿°ÝÃD«á­«·s¦w¸Ë¤@¦¸¡C
-EntryAbortRetryIgnore=«ö [­«¸Õ] ­«¸Õ¤@¦¸¡A«ö¤U [©¿²¤] ¸õ¹L³o­ÓÀÉ®×¡A©Î«ö¤U [¤¤¤î] µ²§ô¦w¸Ë¡C
+EntryAbortRetryIgnore=«ö [­«¸Õ] ­«¸Õ¤@¦¸¡A«ö¤U [²¤¹L] ¸õ¹L³o­ÓÀÉ®×¡A©Î«ö¤U [¤¤¤î] µ²§ô¦w¸Ë¡C
 
 ; *** Installation status messages
 StatusCreateDirs=¥¿¦b«Ø¥ß¸ê®Æ§¨...
@@ -254,11 +256,11 @@ ErrorRegWriteKey=µLªkÅÜ§óµn¿ý¶µ¥Ø:%n%1\%2
 ErrorIniEntry=µLªk«Ø¥ß INI ¶µ¥Ø "%1"¡C
 
 ; *** File copying errors
-FileAbortRetryIgnore=«ö [­«¸Õ] ¦A¸Õ¤@¦¸¡A«ö [©¿²¤] ¸õ¹L³o­ÓÀÉ®×¡]¤£«ØÄ³¡^¡A©Î«ö [¤¤¤î] µ²§ô¦w¸Ë¡C
-FileAbortRetryIgnore2=«ö [­«¸Õ] ¦A¸Õ¤@¦¸¡A«ö [©¿²¤] Ä~Äò¶i¦æ¡]¤£«ØÄ³¡^¡A©Î«ö [¤¤¤î] µ²§ô¦w¸Ë¡C
+FileAbortRetryIgnore=«ö [­«¸Õ] ¦A¸Õ¤@¦¸¡A«ö [²¤¹L] ¸õ¹L³o­ÓÀÉ®×¡]¤£«ØÄ³¡^¡A©Î«ö [¤¤¤î] µ²§ô¦w¸Ë¡C
+FileAbortRetryIgnore2=«ö [­«¸Õ] ¦A¸Õ¤@¦¸¡A«ö [²¤¹L] Ä~Äò¶i¦æ¡]¤£«ØÄ³¡^¡A©Î«ö [¤¤¤î] µ²§ô¦w¸Ë¡C
 SourceIsCorrupted=¨Ó·½ÀÉ®×¤w¸g·l·´¡C
 SourceDoesntExist=¨Ó·½ÀÉ®× "%1" ¤£¦s¦b¡C
-ExistingFileReadOnly=ÀÉ®×ÄÝ©Ê¤w³]¬°°ßÅª¡C%n%n«ö [­«¸Õ] ±N°ßÅªÄÝ©Ê²¾°£¨Ã¦A¸Õ¤@¦¸¡A«ö [©¿²¤] ¸õ¹L³o­ÓÀÉ®×¡A©Î«ö [¤¤¤î] µ²§ô¦w¸Ë¡C
+ExistingFileReadOnly=ÀÉ®×ÄÝ©Ê¤w³]¬°°ßÅª¡C%n%n«ö [­«¸Õ] ±N°ßÅªÄÝ©Ê²¾°£¨Ã¦A¸Õ¤@¦¸¡A«ö [²¤¹L] ¸õ¹L³o­ÓÀÉ®×¡A©Î«ö [¤¤¤î] µ²§ô¦w¸Ë¡C
 ErrorReadingExistingDest=Åª¨ú¤@­Ó¤w¦s¦bªºÀÉ®×®Éµo¥Í¿ù»~:
 FileExists=ÀÉ®×¤w¸g¦s¦b¡C±z­n¨ú¥N¥Ø«eªºÀÉ®×¶Ü?
 ExistingFileNewer=¦s¦bªºÀÉ®×ª©¥»¤ñ¸û·s¡A«ØÄ³±z«O¯d¥Ø«e¤w¦s¦bªºÀÉ®×¡C%n%n±z­n«O¯d¥Ø«e¤w¦s¦bªºÀÉ®×¶Ü?
@@ -283,6 +285,7 @@ UninstallOpenError=µLªk¶}±ÒÀÉ®× "%1"¡AµLªk²¾°£µ{¦¡¡C
 UninstallUnsupportedVer=³o­Óª©¥»ªº¸Ñ°£¦w¸Ëµ{¦¡µLªk¿ëÃÑ°O¿ýÀÉ "%1" ¤§®æ¦¡¡AµLªk¸Ñ°£¦w¸Ë¡C
 UninstallUnknownEntry=¸Ñ°£¦w¸Ë°O¿ýÀÉ¤¤µo²{¥¼ª¾ªº°O¿ý (%1)¡C
 ConfirmUninstall=±z½T©w­n§¹¥þ²¾°£ %1 ¤Î¨ä¬ÛÃöªºÀÉ®×¶Ü?
+UninstallOnlyOnWin64=³o­Óµ{¦¡¥u¯à¦b 64 ¦ì¤¸ªº Windows ¤W¸Ñ°£¦w¸Ë¡C
 OnlyAdminCanUninstall=³o­Óµ{¦¡­n¨ã³Æ¨t²ÎºÞ²z­ûÅv­­ªº¨Ï¥ÎªÌ¤è¥i¸Ñ°£¦w¸Ë¡C
 UninstallStatusLabel=¥¿¦b±q±zªº¹q¸£²¾°£ %1 ¤¤¡A½Ðµy­Ô...
 UninstalledAll=%1 ¤w¸g¦¨¥\±q±zªº¹q¸£¤¤²¾°£¡C
@@ -303,16 +306,16 @@ StatusUninstalling=¥¿¦b¸Ñ°£¦w¸Ë %1...
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
-NameAndVersion=%1 version %2
-AdditionalIcons=Additional icons:
+NameAndVersion=%1 ª©¥» %2
+AdditionalIcons=ªþ¥[¹Ï¥Ü:
 OptionalFeatures=Optional Features:
-CreateDesktopIcon=Create a &desktop icon
-CreateQuickLaunchIcon=Create a &Quick Launch icon
-ProgramOnTheWeb=%1 on the Web
-UninstallProgram=Uninstall %1
-LaunchProgram=Launch %1
-AssocFileExtension=&Associate %1 with the %2 file extension
-AssocingFileExtension=Associating %1 with the %2 file extension...
+CreateDesktopIcon=«Ø¥ß®à­±¹Ï¥Ü(&D)
+CreateQuickLaunchIcon=«Ø¥ß§Ö³t±Ò°Ê¹Ï¥Ü(&Q)
+ProgramOnTheWeb=%1 ªººô¯¸
+UninstallProgram=¸Ñ°£¦w¸Ë %1
+LaunchProgram=±Ò°Ê %1
+AssocFileExtension=±N %1 »PÀÉ®×°ÆÀÉ¦W %2 ²£¥ÍÃöÁp(&A)
+AssocingFileExtension=¥¿¦b±N %1 »PÀÉ®×°ÆÀÉ¦W %2 ²£¥ÍÃöÁp...
 
 ;Things we can also localize
 CompanyName=Thingamahoochie Software

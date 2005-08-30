@@ -2,6 +2,8 @@
  PATCH: [ 1275874 ] Cleanup Installer a bit
   InnoSetup: WinMerge.iss
  Created a INNOSETUP_4_2_7 tag for lang files before updating to newer versions
+ Updated new Innosetup 5.1.x compatible lang files from http://www.jrsoftware.org/files/istrans/
+  InnoSetup/Languages: *.isl
 
 2005-08-28 Kimmo
  PATCH: [ 1274502 ] Pick ShellExtensionU.dll from MergeUnicodeBuild-folder

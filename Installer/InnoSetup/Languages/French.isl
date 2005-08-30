@@ -1,4 +1,4 @@
-; *** Inno Setup version 4.2.2+ French messages ***
+; *** Inno Setup version 5.1.0+ French messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/is3rdparty.php
@@ -12,7 +12,7 @@
 ;
 ; Contributors : Frédéric Bonduelle, Francis Pallini
 ;
-; $jrsoftware: issrc/Files/Languages/French.isl,v 1.9 2004/04/07 20:19:51 jr Exp $
+; $jrsoftware: issrc/Files/Languages/French.isl,v 1.13 2005/02/26 09:50:47 pierrey Exp $
 
 [LangOptions]
 LanguageName=Fran<00E7>ais
@@ -44,6 +44,8 @@ SetupFileCorrupt=Les fichiers d'installation sont altérés. Veuillez vous procure
 SetupFileCorruptOrWrongVer=Les fichiers d'installation sont altérés ou ne sont pas compatibles avec cette version de l'assistant d'installation. Veuillez corriger le problème ou vous procurer une nouvelle copie du programme.
 NotOnThisPlatform=Ce programme ne fonctionne pas sous %1.
 OnlyOnThisPlatform=Ce programme ne peut fonctionner que sous %1.
+OnlyOnTheseArchitectures=Ce programme ne peut être installé que sur des versions de Windows qui supportent ces architectures : %n%n%1
+MissingWOW64APIs=La version de Windows que vous utilisez ne dispose pas des fonctionnalités nécessaires pour que l'assistant puisse réaliser une installation 64 bits. Pour corriger ce problème vous devez installer le Service Pack %1.
 WinVersionTooLowError=Ce programme requiert la version %2 ou supérieure de %1.
 WinVersionTooHighError=Ce programme ne peut pas être installé sous %1 version %2 ou supérieure.
 AdminPrivilegesRequired=Vous devez disposer des droits d'administration de cet ordinateur pour installer ce programme.
@@ -62,6 +64,7 @@ AboutSetupMenuItem=&A propos...
 AboutSetupTitle=A Propos de l'assistant d'installation
 AboutSetupMessage=%1 version %2%n%3%n%nPage d'accueil de %1 :%n%4
 AboutSetupNote=
+TranslatorNote=French translation maintained by Pierre Yager (pierre@levosgien.net)
 
 ; *** Buttons
 ButtonBack=< &Précédent
@@ -133,7 +136,7 @@ ToUNCPathname=L'assistant d'installation ne supporte pas les chemins réseau. Si 
 InvalidPath=Vous devez saisir un chemin complet avec sa lettre de lecteur ; par exemple :%n%nC:\APP%n%nou un chemin réseau de la forme :%n%n\\serveur\partage
 InvalidDrive=L'unité ou l'emplacement réseau que vous avez sélectionné n'existe pas ou n'est pas accessible. Veuillez choisir une autre destination.
 DiskSpaceWarningTitle=Espace disponible insuffisant
-DiskSpaceWarning=L'assistant a besoin d'au moins %1 Ko d'espace disponible pour effectuer l'installation, mais l'unité que vous avez sélectionné ne dispose que de %2 Ko d'espace disponible.%n%nSouhaitez-vous continuer malgré tout ?
+DiskSpaceWarning=L'assistant a besoin d'au moins %1 ko d'espace disponible pour effectuer l'installation, mais l'unité que vous avez sélectionnée ne dispose que de %2 ko d'espace disponible.%n%nSouhaitez-vous continuer malgré tout ?
 DirNameTooLong=Le nom ou le chemin du dossier est trop long.
 InvalidDirName=Le nom du dossier est invalide.
 BadDirName32=Le nom du dossier ne doit contenir aucun des caractères suivants :%n%n%1
@@ -152,7 +155,7 @@ CompactInstallation=Installation compacte
 CustomInstallation=Installation personnalisée
 NoUninstallWarningTitle=Composants existants
 NoUninstallWarning=L'assistant d'installation a détecté que les composants suivants sont déjà installés sur votre système :%n%n%1%n%nDésélectionner ces composants ne les désinstallera pas pour autant.%n%nVoulez-vous continuer malgré tout ?
-ComponentSize1=%1 Ko
+ComponentSize1=%1 ko
 ComponentSize2=%1 Mo
 ComponentsDiskSpaceMBLabel=Les composants sélectionnés nécessitent au moins [mb] Mo d'espace disponible.
 
@@ -166,7 +169,6 @@ WizardSelectProgramGroup=Sélection du dossier du menu Démarrer
 SelectStartMenuFolderDesc=Où l'assistant d'installation doit-il placer les raccourcis du programme ?
 SelectStartMenuFolderLabel3=L'assistant va créer les raccourcis du programme dans le dossier du menu Démarrer indiqué ci-dessous.
 SelectStartMenuFolderBrowseLabel=Appuyez sur Suivant pour continuer. Appuyez sur Parcourir si vous souhaitez sélectionner un autre dossier du menu Démarrer.
-NoIconsCheck=&Ne pas créer d'icône
 MustEnterGroupName=Vous devez saisir un nom de dossier du menu Démarrer.
 GroupNameTooLong=Le nom ou le chemin du dossier est trop long.
 InvalidGroupName=Le nom du dossier n'est pas valide.
@@ -277,6 +279,7 @@ UninstallOpenError=Le fichier "%1" n'a pas pu être ouvert. Impossible de désinst
 UninstallUnsupportedVer=Le format du fichier journal de désinstallation "%1" n'est pas reconnu par cette version de la procédure de désinstallation. Impossible de désinstaller
 UninstallUnknownEntry=Une entrée inconnue (%1) a été rencontrée dans le fichier journal de désinstallation
 ConfirmUninstall=Voulez-vous vraiment désinstaller complètement %1 ainsi que tous ses composants ?
+UninstallOnlyOnWin64=La désinstallation de ce programme ne fonctionne qu'avec une version 64 bits de Windows.
 OnlyAdminCanUninstall=Ce programme ne peut être désinstallé que par un utilisateur disposant des droits d'administration.
 UninstallStatusLabel=Veuillez patienter pendant que %1 est retiré de votre ordinateur.
 UninstalledAll=%1 a été correctement désinstallé de cet ordinateur.
@@ -304,7 +307,7 @@ OptionalFeatures=Optional Features:
 CreateDesktopIcon=Créer une icône sur le &Bureau
 CreateQuickLaunchIcon=Créer une icône dans la barre de &Lancement rapide
 ProgramOnTheWeb=Page d'accueil de %1
-UninstallProgram=Désinstallation de %1
+UninstallProgram=Désinstaller %1
 LaunchProgram=Exécuter %1
 AssocFileExtension=&Associer %1 avec l'extension de fichier %2
 AssocingFileExtension=Associe %1 avec l'extension de fichier %2...

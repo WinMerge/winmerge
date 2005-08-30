@@ -1,28 +1,19 @@
-; *** Inno Setup version 4.1.4+ Japanese messages ***
+; *** Inno Setup version 5.1.0+ Japanese messages ***
 ;
-; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/is3rdparty.php
+; Translated by Ryou Minakami (ryou32jp@yahoo.co.jp)
 ;
-; Note: When translating this text, do not add periods (.) to the end of
-; messages that didn't have them already, because on those messages Inno
-; Setup adds the periods automatically (appending a period would result in
-; two periods being displayed).
-;
-; $jrsoftware: issrc/Files/Default.isl,v 1.51 2004/02/08 18:50:49 jr Exp $
+; $jrsoftware: issrc/Files/Default.isl,v 1.66 2005/02/25 20:23:48 mlaan Exp $
 
 [LangOptions]
 LanguageName=Japanese
 LanguageID=$0411
-; If the language you are translating to requires special font faces or
-; sizes, uncomment any of the following entries and change them accordingly.
+LanguageCodePage=932
 DialogFontName=‚l‚r ‚oƒSƒVƒbƒN
 DialogFontSize=9
 TitleFontName=‚l‚r ‚oƒSƒVƒbƒN
 TitleFontSize=29
 WelcomeFontName=‚l‚r ‚oƒSƒVƒbƒN
 WelcomeFontSize=12
-CopyrightFontName=‚l‚r ‚oƒSƒVƒbƒN
-CopyrightFontSize=8
 
 [Messages]
 
@@ -49,6 +40,8 @@ SetupFileCorrupt=ƒZƒbƒgƒAƒbƒvƒtƒ@ƒCƒ‹‚ª‰ó‚ê‚Ä‚¢‚Ü‚·BV‚µ‚¢ƒZƒbƒgƒAƒbƒvƒvƒƒOƒ‰ƒ
 SetupFileCorruptOrWrongVer=ƒZƒbƒgƒAƒbƒvƒtƒ@ƒCƒ‹‚ª‰ó‚ê‚Ä‚¢‚é‚©A‚±‚Ìƒo[ƒWƒ‡ƒ“‚ÌƒZƒbƒgƒAƒbƒv‚ÆŒİŠ·«‚ª‚ ‚è‚Ü‚¹‚ñB–â‘è‚ğ‰ğŒˆ‚·‚é‚©V‚µ‚¢ƒZƒbƒgƒAƒbƒvƒvƒƒOƒ‰ƒ€‚ğ“üè‚µ‚Ä‚­‚¾‚³‚¢B
 NotOnThisPlatform=‚±‚ÌƒvƒƒOƒ‰ƒ€‚Í %1 ‚Å‚Í“®ì‚µ‚Ü‚¹‚ñB
 OnlyOnThisPlatform=‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÌÀs‚É‚Í %1 ‚ª•K—v‚Å‚·B
+OnlyOnTheseArchitectures=‚±‚ÌƒvƒƒOƒ‰ƒ€‚Í%n%n%1ƒvƒƒZƒbƒTŒü‚¯‚ÌWindows‚É‚µ‚©ƒCƒ“ƒXƒg[ƒ‹‚Å‚«‚Ü‚¹‚ñB
+MissingWOW64APIs=Œäg—p’†‚Ì64-bit”ÅWindows‚É‚Í‚±‚ÌƒvƒƒOƒ‰ƒ€‚ğƒCƒ“ƒXƒg[ƒ‹‚µA“®ì‚³‚¹‚éˆ×‚É•K—v‚È‹@”\‚ªŠÜ‚Ü‚ê‚Ä‚¢‚Ü‚¹‚ñB‚±‚Ì–â‘è‚ğC³‚·‚éˆ×‚É‚ÍƒT[ƒrƒXƒpƒbƒN%1‚ğƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚­‚¾‚³‚¢B
 WinVersionTooLowError=‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÌÀs‚É‚Í %1 %2 ˆÈ~‚ª•K—v‚Å‚·B
 WinVersionTooHighError=‚±‚ÌƒvƒƒOƒ‰ƒ€‚Í %1 %2 ˆÈ~‚Å‚Í“®ì‚µ‚Ü‚¹‚ñB
 AdminPrivilegesRequired=‚±‚ÌƒvƒƒOƒ‰ƒ€‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é‚½‚ß‚É‚ÍŠÇ—Ò‚Æ‚µ‚ÄƒƒOƒCƒ“‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B
@@ -57,8 +50,8 @@ SetupAppRunningError=ƒZƒbƒgƒAƒbƒv‚ÍÀs’†‚Ì %1 ‚ğŒŸo‚µ‚Ü‚µ‚½B%n%nŠJ‚¢‚Ä‚¢‚éƒAƒ
 UninstallAppRunningError=ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ÍÀs’†‚Ì %1 ‚ğŒŸo‚µ‚Ü‚µ‚½B%n%nŠJ‚¢‚Ä‚¢‚éƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ‚·‚×‚Ä•Â‚¶‚Ä‚©‚çuOKv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢BuƒLƒƒƒ“ƒZƒ‹v‚ğƒNƒŠƒbƒN‚·‚é‚ÆAƒZƒbƒgƒAƒbƒv‚ğI—¹‚µ‚Ü‚·B
 
 ; *** Misc. errors
-ErrorCreatingDir=ƒtƒHƒ‹ƒ_ %1 ‚ğì¬’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
-ErrorTooManyFilesInDir=ƒtƒHƒ‹ƒ_ %1 ‚Éƒtƒ@ƒCƒ‹‚ğì¬’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½Bƒtƒ@ƒCƒ‹‚Ì”‚ª‘½‚·‚¬‚Ü‚·B
+ErrorCreatingDir=ƒfƒBƒŒƒNƒgƒŠ %1 ‚ğì¬’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½B
+ErrorTooManyFilesInDir=ƒfƒBƒŒƒNƒgƒŠ %1 ‚Éƒtƒ@ƒCƒ‹‚ğì¬’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½Bƒtƒ@ƒCƒ‹‚Ì”‚ª‘½‚·‚¬‚Ü‚·B
 
 ; *** Setup common messages
 ExitSetupTitle=ƒZƒbƒgƒAƒbƒvI—¹
@@ -67,6 +60,7 @@ AboutSetupMenuItem=ƒZƒbƒgƒAƒbƒv‚É‚Â‚¢‚Ä(&A)...
 AboutSetupTitle=ƒZƒbƒgƒAƒbƒv‚É‚Â‚¢‚Ä
 AboutSetupMessage=%1 %2%n%3%n%n%1 ƒz[ƒ€ƒy[ƒW:%n%4
 AboutSetupNote=
+TranslatorNote=
 
 ; *** Buttons
 ButtonBack=< –ß‚é(&B)
@@ -80,12 +74,12 @@ ButtonNo=‚¢‚¢‚¦(&N)
 ButtonNoToAll=‚·‚×‚Ä‚¢‚¢‚¦(&O)
 ButtonFinish=Š®—¹(&F)
 ButtonBrowse=QÆ(&B)...
-ButtonWizardBrowse=QÆ(&R)
+ButtonWizardBrowse=QÆ(&r)
 ButtonNewFolder=V‚µ‚¢ƒtƒHƒ‹ƒ_(&M)
 
 ; *** "Select Language" dialog messages
-SelectLanguageTitle=ƒZƒbƒgƒAƒbƒv‚ÌŒ¾Œê
-SelectLanguageLabel=ƒCƒ“ƒXƒgƒ‹’†‚Ég—p‚·‚éŒ¾Œê‚ğ‘I‘ğ‚µ‚Ü‚·:
+SelectLanguageTitle=ƒZƒbƒgƒAƒbƒv‚Ég—p‚·‚éŒ¾Œê‚ğ‘I‚ñ‚Å‚­‚¾‚³‚¢B
+SelectLanguageLabel=ƒCƒ“ƒXƒg[ƒ‹’†‚É—˜—p‚·‚éŒ¾Œê‚ğï‚Ñ‚Ü‚·:
 
 ; *** Common wizard text
 ClickNext=‘±s‚·‚é‚É‚ÍuŸ‚ÖvAƒZƒbƒgƒAƒbƒv‚ğI—¹‚·‚é‚É‚ÍuƒLƒƒƒ“ƒZƒ‹v‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
@@ -128,24 +122,22 @@ UserInfoOrg=‘gD(&O):
 UserInfoSerial=ƒVƒŠƒAƒ‹”Ô†(&S):
 UserInfoNameRequired=ƒ†[ƒU[–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B
 
-; *** "Select Destination Directory" wizard page
+; *** "Select Destination Location" wizard page
 WizardSelectDir=ƒCƒ“ƒXƒg[ƒ‹æ‚Ìw’è
 SelectDirDesc=[name] ‚ÌƒCƒ“ƒXƒg[ƒ‹æ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
-;SelectDirLabel2=[name] ‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚éƒtƒHƒ‹ƒ_‚ğw’è‚µ‚ÄAuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
-SelectDirLabel3=[name] ‚ğˆÈ‰º‚ÌƒtƒHƒ‹ƒ_‚ÉƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·B
-SelectDirBrowseLabel=‘±s‚·‚é‚É‚ÍAuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B•ÊƒtƒHƒ‹ƒ_‚ÉƒCƒ“ƒXƒg[ƒ‹‚·‚éê‡‚ÍAuQÆv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
+SelectDirLabel3=[name] ‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚éƒtƒHƒ‹ƒ_‚ğw’è‚µ‚ÄAuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
+SelectDirBrowseLabel=‘±‚¯‚é‚É‚ÍuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B•Ê‚ÌƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚·‚é‚É‚ÍuQÆv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
 DiskSpaceMBLabel=‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÍÅ’á [mb] MB‚ÌƒfƒBƒXƒN‹ó‚«—Ìˆæ‚ğ•K—v‚Æ‚µ‚Ü‚·B
 ToUNCPathname=ƒZƒbƒgƒAƒbƒv‚ÍUNCƒtƒHƒ‹ƒ_‚ÉƒCƒ“ƒXƒg[ƒ‹‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñBƒlƒbƒgƒ[ƒN‚ÉƒCƒ“ƒXƒg[ƒ‹‚·‚éê‡‚Íƒlƒbƒgƒ[ƒNƒhƒ‰ƒCƒu‚ÉŠ„‚è“–‚Ä‚Ä‚­‚¾‚³‚¢B
 InvalidPath=ƒhƒ‰ƒCƒu•¶š‚ğŠÜ‚ŞŠ®‘S‚ÈƒpƒX‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B%n%n—áFC:\APP%n%n‚Ü‚½‚ÍUNCŒ`®‚ÌƒpƒX‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B%n%n—áF\\server\share
 InvalidDrive=w’è‚µ‚½ƒhƒ‰ƒCƒu‚Ü‚½‚ÍUNCƒpƒX‚ªŒ©‚Â‚©‚ç‚È‚¢‚©ƒAƒNƒZƒX‚Å‚«‚Ü‚¹‚ñB•Ê‚ÌƒpƒX‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
 DiskSpaceWarningTitle=ƒfƒBƒXƒN‹ó‚«—Ìˆæ‚Ì•s‘«
 DiskSpaceWarning=ƒCƒ“ƒXƒg[ƒ‹‚É‚ÍÅ’á %1 KB‚ÌƒfƒBƒXƒN‹ó‚«—Ìˆæ‚ª•K—v‚Å‚·‚ªAw’è‚³‚ê‚½ƒhƒ‰ƒCƒu‚É‚Í %2 KB‚Ì‹ó‚«—Ìˆæ‚µ‚©‚ ‚è‚Ü‚¹‚ñB%n%n‚±‚Ì‚Ü‚Ü‘±s‚µ‚Ü‚·‚©H
-DirNameTooLong=ƒfƒBƒŒƒNƒgƒŠ–¼A–”‚ÍƒpƒX‚ª’·‰ß‚¬‚Ü‚·B
+DirNameTooLong=ƒhƒ‰ƒCƒu–¼–”‚ÍƒpƒX‚ª’·‰ß‚¬‚Ü‚·B
 InvalidDirName=ƒtƒHƒ‹ƒ_–¼‚ª–³Œø‚Å‚·B
 BadDirName32=ˆÈ‰º‚Ì•¶š‚ğŠÜ‚ŞƒtƒHƒ‹ƒ_–¼‚Íw’è‚Å‚«‚Ü‚¹‚ñB:%n%n%1
 DirExistsTitle=Šù‘¶‚ÌƒtƒHƒ‹ƒ_
 DirExists=ƒtƒHƒ‹ƒ_ %n%n%1%n%n‚ªŠù‚É‘¶İ‚µ‚Ü‚·B‚±‚Ì‚Ü‚Ü‚±‚ÌƒtƒHƒ‹ƒ_‚ÖƒCƒ“ƒXƒg[ƒ‹‚µ‚Ü‚·‚©H
-DirDoesntExistTitle=V‚µ‚¢ƒtƒHƒ‹ƒ_
 DirDoesntExistTitle=ƒtƒHƒ‹ƒ_‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB
 DirDoesntExist=ƒtƒHƒ‹ƒ_ %n%n%1%n%n‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñBV‚µ‚¢ƒtƒHƒ‹ƒ_‚ğì¬‚µ‚Ü‚·‚©H
 
@@ -171,10 +163,8 @@ SelectTasksLabel2=[name] ƒCƒ“ƒXƒg[ƒ‹‚ÉÀs‚·‚é’Ç‰Áƒ^ƒXƒN‚ğ‘I‘ğ‚µ‚ÄAuŸ‚Öv‚
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=ƒvƒƒOƒ‰ƒ€ƒOƒ‹[ƒv‚Ìw’è
 SelectStartMenuFolderDesc=ƒvƒƒOƒ‰ƒ€ƒAƒCƒRƒ“‚ğì¬‚·‚éêŠ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
-SelectStartMenuFolderLabel3=ƒZƒbƒgƒAƒbƒv‚ÍŸ‚ÌƒXƒ^[ƒgƒƒjƒ…[ƒtƒHƒ‹ƒ_‚ÉƒvƒƒOƒ‰ƒ€‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ğì¬‚µ‚Ü‚·B
-;SelectStartMenuFolderLabel2=ƒvƒƒOƒ‰ƒ€‚ÌƒAƒCƒRƒ“‚ğì¬‚·‚éƒvƒƒOƒ‰ƒ€ƒOƒ‹[ƒv‚ğw’è‚µ‚ÄAuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
-SelectStartMenuFolderBrowseLabel=‘±s‚·‚é‚É‚ÍAuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B•ÊƒtƒHƒ‹ƒ_‚ğ‘I‘ğ‚µ‚½‚¢ê‡‚ÍAuQÆv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
-NoIconsCheck=ƒAƒCƒRƒ“‚ğì¬‚µ‚È‚¢(&D)
+SelectStartMenuFolderLabel3=ƒZƒbƒgƒAƒbƒv‚ÍƒXƒ^[ƒgƒƒjƒ…[‚ÉƒvƒƒOƒ‰ƒ€‚ÌƒVƒ‡[ƒgƒJƒbƒg‚ğì¬‚µ‚Ü‚·B
+SelectStartMenuFolderBrowseLabel=‘±‚¯‚é‚É‚ÍuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢Bˆá‚¤ƒfƒBƒŒƒNƒgƒŠ‚ğ‘I‘ğ‚·‚é‚É‚ÍuQÆv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
 MustEnterGroupName=ƒOƒ‹[ƒv–¼‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
 GroupNameTooLong=ƒtƒHƒ‹ƒ_–¼–”‚ÍƒpƒX‚ª’·‰ß‚¬‚Ü‚·B
 InvalidGroupName=ƒOƒ‹[ƒv–¼‚ª–³Œø‚Å‚·B
@@ -285,12 +275,13 @@ UninstallOpenError=ƒtƒ@ƒCƒ‹ %1 ‚ğŠJ‚¯‚é‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñBƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ğÀs‚
 UninstallUnsupportedVer=ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹ƒƒOƒtƒ@ƒCƒ‹ %1 ‚ÍA‚±‚Ìƒo[ƒWƒ‡ƒ“‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹ƒvƒƒOƒ‰ƒ€‚ª”F¯‚Å‚«‚È‚¢Œ`®‚Å‚·BƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ğÀs‚Å‚«‚Ü‚¹‚ñB
 UninstallUnknownEntry=ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹ƒƒO‚É•s–¾‚ÌƒGƒ“ƒgƒŠ %1 ‚ªŒ©‚Â‚©‚è‚Ü‚µ‚½B
 ConfirmUninstall=%1 ‚Æ‚»‚ÌŠÖ˜AƒRƒ“ƒ|[ƒlƒ“ƒg‚ğ‚·‚×‚Äíœ‚µ‚Ü‚·B‚æ‚ë‚µ‚¢‚Å‚·‚©H
+UninstallOnlyOnWin64=‚±‚ÌƒvƒƒOƒ‰ƒ€‚Í64-bit”ÅWindowsã‚Å‚Ì‚İƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚Å‚«‰Â”\‚Å‚·B
 OnlyAdminCanUninstall=ƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚·‚é‚½‚ß‚É‚ÍŠÇ—ÒŒ ŒÀ‚ª•K—v‚Å‚·B
 UninstallStatusLabel=‚²g—p‚ÌƒRƒ“ƒsƒ…[ƒ^‚©‚ç %1 ‚ğíœ‚µ‚Ä‚¢‚Ü‚·B‚µ‚Î‚ç‚­‚¨‘Ò‚¿‚­‚¾‚³‚¢B
 UninstalledAll=%1 ‚Í‚²g—p‚ÌƒRƒ“ƒsƒ…[ƒ^‚©‚ç³í‚Éíœ‚³‚ê‚Ü‚µ‚½B
 UninstalledMost=%1 ‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ªŠ®—¹‚µ‚Ü‚µ‚½B%n%n‚¢‚­‚Â‚©‚Ì€–Ú‚ªíœ‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½Bè“®‚Åíœ‚µ‚Ä‚­‚¾‚³‚¢B
 UninstalledAndNeedsRestart=[name] ‚Ìíœ‚ğŠ®—¹‚·‚é‚½‚ß‚É‚ÍAƒRƒ“ƒsƒ…[ƒ^‚ğÄ‹N“®‚·‚é•K—v‚ª‚ ‚è‚Ü‚·B‚·‚®‚ÉÄ‹N“®‚µ‚Ü‚·‚©H
-UninstallDataCorrupted=ƒtƒ@ƒCƒ‹ %1 ‚ª‰ó‚ê‚Ä‚¢‚Ü‚·BƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ğÀs‚Å‚«‚Ü‚¹‚ñB
+UninstallDataCorrupted=ƒtƒ@ƒCƒ‹ "%1" ‚ª‰ó‚ê‚Ä‚¢‚Ü‚·BƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚ğÀs‚Å‚«‚Ü‚¹‚ñB
 
 ; *** Uninstallation phase messages
 ConfirmDeleteSharedFileTitle=‹¤—Lƒtƒ@ƒCƒ‹‚Ìíœ
@@ -305,16 +296,16 @@ StatusUninstalling=%1 ‚ğƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚µ‚Ä‚¢‚Ü‚·...
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
-NameAndVersion=%1 version %2
-AdditionalIcons=’Ç‰Á‚·‚éƒAƒCƒRƒ“:
+NameAndVersion=%1 ƒo[ƒWƒ‡ƒ“ %2
+AdditionalIcons=ƒAƒCƒRƒ“‚ğ’Ç‰Á‚·‚é:
 OptionalFeatures=’Ç‰Á‚·‚é‹@”\:
-CreateDesktopIcon=ƒfƒXƒNƒgƒbƒv‚ÉƒAƒCƒRƒ“‚ğì¬‚·‚é(&D)
-CreateQuickLaunchIcon=ƒNƒCƒbƒNƒ‰ƒ“ƒ`‚ÉƒAƒCƒRƒ“‚ğì¬‚·‚é(&Q)
+CreateDesktopIcon=ƒfƒXƒNƒgƒbƒvã‚ÉƒAƒCƒRƒ“‚ğì¬‚·‚é(&d)
+CreateQuickLaunchIcon=&Quick Launch ƒAƒCƒRƒ“‚ğì¬‚·‚é
 ProgramOnTheWeb=%1 on the Web
-UninstallProgram=%1 ‚ÌƒAƒ“ƒCƒ“ƒXƒg[ƒ‹
-LaunchProgram=%1 ‚ğ‹N“®
-AssocFileExtension=&Associate %1 with the %2 file extension
-AssocingFileExtension=Associating %1 with the %2 file extension...
+UninstallProgram=%1 ‚ğƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚·‚é
+LaunchProgram=%1 ‚ğÀs‚·‚é
+AssocFileExtension=%2 ƒtƒ@ƒCƒ‹Šg’£‚É %1‚ğŠÖ˜A•t‚¯‚Ü‚·B
+AssocingFileExtension=%2 ‚É %1‚ğŠÖ˜A•t‚¯‚Ü‚·B
 
 ;Things we can also localize
 CompanyName=Thingamahoochie Software

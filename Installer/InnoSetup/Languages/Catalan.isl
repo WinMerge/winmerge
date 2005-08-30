@@ -1,15 +1,8 @@
-; *** Inno Setup version 4.2.2+ Catalan messages ***
+; *** Inno Setup 5.1.0+ Catalan messages ***
 ;
-; Note: When translating this text, do not add periods (.) to the end of
-; messages that didn't have them already, because on those messages Inno
-; Setup adds the periods automatically (appending a period would result in
-; two periods being displayed).
+; Translated by Carles Millan (inno@carlesmillan.com)
 ;
-; Translated by Carles Millan
-; http://CarlesMillan.com
-; innosetup@carlesmillan.com
-;
-; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.4 2004/04/16 17:41:14 jr Exp $
+; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.10 2005/03/24 10:34:27 carles Exp $
 
 [LangOptions]
 
@@ -42,12 +35,14 @@ SetupFileCorrupt=Els fitxers d'instal·lació estan corromputs. Si us plau, obteni
 SetupFileCorruptOrWrongVer=Els fitxers d'instal·lació estan espatllats, o són incompatibles amb aquesta versió del programa. Si us plau, resoleu el problema o obteniu una nova còpia del programa.
 NotOnThisPlatform=Aquest programa no funcionarà sota %1.
 OnlyOnThisPlatform=Aquest programa només pot ser executat sota %1.
+OnlyOnTheseArchitectures=Aquest programa només pot ser instal·lat en versions de Windows dissenyades per a les següents arquitectures de processador:%n%n%1
+MissingWOW64APIs=Aquesta versió de Windows no conté la funcionalitat necessària per a realitzar una instal·lació de 64 bits. Per tal de corregir aquest problema, si us plau, instal·leu el Service Pack %1.
 WinVersionTooLowError=Aquest programa requereix %1 versió %2 o posterior.
 WinVersionTooHighError=Aquest programa no pot ser instal·lat sota %1 versió %2 o posterior.
 AdminPrivilegesRequired=Cal que tingueu privilegis d'administrador per poder instal·lar aquest programa.
 PowerUserPrivilegesRequired=Cal que accediu com a administrador o com a membre del grup Power Users en instal·lar aquest programa.
-SetupAppRunningError=El programa d'instal·lació ha detectat que %1 s'està executant actualment.%n%nSi us plau, tanqueu el programa i premeu Següent per a continuar o Cancel·lar per a sortir.
-UninstallAppRunningError=El programa de desinstal·lació ha detectat que %1 s'està executant en aquest moment.%n%nSi us plau, tanqueu el programa i premeu Següent per a continuar o Cancel·lar per a sortir.
+SetupAppRunningError=El programa d'instal·lació ha detectat que %1 s'està executant actualment.%n%nSi us plau, tanqueu el programa i premeu Acceptar per a continuar o Cancel·lar per a sortir.
+UninstallAppRunningError=El programa de desinstal·lació ha detectat que %1 s'està executant en aquest moment.%n%nSi us plau, tanqueu el programa i premeu Acceptar per a continuar o Cancel·lar per a sortir.
 
 ; *** Misc. errors
 ErrorCreatingDir=El programa d'instal·lació no ha pogut crear la carpeta "%1"
@@ -60,6 +55,7 @@ AboutSetupMenuItem=&Sobre la instal·lació...
 AboutSetupTitle=Sobre la instal·lació
 AboutSetupMessage=%1 versió %2%n%3%n%nPàgina web de %1:%n%4
 AboutSetupNote=
+TranslatorNote=Catalan translation by Carles Millan (inno@carlesmillan.com)
 
 ; *** Buttons
 ButtonBack=< &Enrera
@@ -92,11 +88,11 @@ WelcomeLabel1=Benvingut a l'assistent d'instal·lació de [name]
 WelcomeLabel2=Aquest programa instal·larà [name/ver] al vostre ordinador.%n%nÉs molt recomanable que abans de continuar tanqueu tots els altres programes oberts, per tal d'evitar conflictes durant el procés d'instal·lació.
 
 ; *** "Password" wizard page
-WizardPassword=Codi d'accés
-PasswordLabel1=Aquesta instal·lació està protegida amb un codi d'accés.
-PasswordLabel3=Indiqueu el codi d'accés i premeu Següent per a continuar. Aquest codi distingeix entre majúscules i minúscules.
-PasswordEditLabel=&Codi:
-IncorrectPassword=El codi introduït no és correcte. Torneu-ho a intentar.
+WizardPassword=Contrasenya
+PasswordLabel1=Aquesta instal·lació està protegida amb una contrasenya.
+PasswordLabel3=Indiqueu la contrasenya i premeu Següent per a continuar. Aquesta contrasenya distingeix entre majúscules i minúscules.
+PasswordEditLabel=&Contrasenya:
+IncorrectPassword=La contrasenya introduïda no és correcta. Torneu-ho a intentar.
 
 ; *** "License Agreement" wizard page
 WizardLicense=Acord de Llicència
@@ -164,7 +160,6 @@ WizardSelectProgramGroup=Trieu la carpeta del Menú Inici
 SelectStartMenuFolderDesc=On cal situar els enllaços del programa?
 SelectStartMenuFolderLabel3=El programa d'instal·lació crearà l'accés directe al programa a la següent carpeta del menú d'Inici.
 SelectStartMenuFolderBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra carpeta, premeu Cercar.
-NoIconsCheck=&No crear cap icona
 MustEnterGroupName=Cal que hi entreu un nom de carpeta.
 GroupNameTooLong=El nom de la carpeta o de la ruta és massa llarg.
 InvalidGroupName=El nom de la carpeta no és vàlid.
@@ -174,7 +169,7 @@ NoProgramGroupCheck2=&No crear una carpeta al Menú Inici
 ; *** "Ready to Install" wizard page
 WizardReady=Preparat per a instal·lar
 ReadyLabel1=El programa d'instal·lació està preparat per a iniciar la instal·lació de [name] al vostre ordinador.
-ReadyLabel2a=Premeu Instal·lar per a continuar amb la instal·lació, o Tornar si voleu revisar o modificar les opcions d'instal·lació.
+ReadyLabel2a=Premeu Instal·lar per a continuar amb la instal·lació, o Enrera si voleu revisar o modificar les opcions d'instal·lació.
 ReadyLabel2b=Premeu Instal·lar per a continuar amb la instal·lació.
 ReadyMemoUserInfo=Informació de l'usuari:
 ReadyMemoDir=Carpeta de destinació:
@@ -217,7 +212,7 @@ SelectDirectoryLabel=Si us plau, indiqueu on es troba el disc següent.
 
 ; *** Installation phase messages
 SetupAborted=La instal·lació no s'ha completat.%n%n%Si us plau, resoleu el problema i executeu de nou el programa d'instal·lació.
-EntryAbortRetryIgnore=Premeu Reintentar per a intentar-ho de nou, Ignorar per a continuar igualment, o Cancel·lar per a abandonar la instal·lació.
+EntryAbortRetryIgnore=Premeu Reintenta per a intentar-ho de nou, Ignora per a continuar igualment, o Abandona per a abandonar la instal·lació.
 
 ; *** Installation status messages
 StatusCreateDirs=Creant carpetes...
@@ -246,11 +241,11 @@ ErrorRegWriteKey=Error en escriure a la clau de registre:%n%1\%2
 ErrorIniEntry=Error en crear l'entrada INI al fitxer "%1".
 
 ; *** File copying errors
-FileAbortRetryIgnore=Premeu Reintentar per a intentar-ho de nou, Ignorar per a saltar-se aquest fitxer (no recomanat), o Cancel·lar per a abandonar la instal·lació.
-FileAbortRetryIgnore2=Premeu Reintentar per a intentar-ho de nou, Ignorar per a continuar igualment (no recomanat), o Cancel·lar per a abandonar la instal·lació.
+FileAbortRetryIgnore=Premeu Reintenta per a intentar-ho de nou, Ignora per a saltar-se aquest fitxer (no recomanat), o Abandona per a abandonar la instal·lació.
+FileAbortRetryIgnore2=Premeu Reintenta per a intentar-ho de nou, Ignora per a continuar igualment (no recomanat), o Abandona per a abandonar la instal·lació.
 SourceIsCorrupted=El fitxer d'origen està corromput
 SourceDoesntExist=El fitxer d'origen "%1" no existeix
-ExistingFileReadOnly=El fitxer és de només lectura.%n%nPremeu Reintentar per a treure-li l'atribut de només lectura i tornar-ho a intentar, Ometre per a saltar-se'l (no recomanat), o Anul·lar per a abandonar la instal·lació.
+ExistingFileReadOnly=El fitxer és de només lectura.%n%nPremeu Reintenta per a treure-li l'atribut de només lectura i tornar-ho a intentar, Ignora per a saltar-se'l (no recomanat), o Abandona per a abandonar la instal·lació.
 ErrorReadingExistingDest=S'ha produït un error en llegir el fitxer:
 FileExists=El fitxer ja existeix.%n%nVoleu que sigui sobre-escrit?
 ExistingFileNewer=El fitxer existent és més nou que el que s'intenta instal·lar. Es recomana mantenir el fitxer existent.%n%nVoleu mantenir-lo?
@@ -275,6 +270,7 @@ UninstallOpenError=El fitxer "%1" no pot ser obert. No es pot desinstal·lar.
 UninstallUnsupportedVer=El fitxer de desinstal·lació "%1" està en un format no reconegut per aquesta versió del desinstal·lador. No es pot desinstal·lar
 UninstallUnknownEntry=S'ha trobat una entrada desconeguda (%1) al fitxer de desinstal·lació.
 ConfirmUninstall=Esteu segur de voler eliminar completament %1 i tots els seus components?
+UninstallOnlyOnWin64=Aquest programa només pot ser desinstal·lat en Windows de 64 bits.
 OnlyAdminCanUninstall=Aquest programa només pot ser desinstal·lat per un usuari amb privilegis d'administrador.
 UninstallStatusLabel=Si us plau, espereu mentre s'elimina %1 del vostre ordinador.
 UninstalledAll=%1 ha estat desinstal·lat correctament del vostre ordinador.
