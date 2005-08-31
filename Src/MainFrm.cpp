@@ -1585,7 +1585,7 @@ void CMainFrame::GetFontProperties()
 
 	MIMECPINFO cpi = {0};
 	cpi.bGDICharset = ANSI_CHARSET;
-	lstrcpyW(cpi.wszFixedWidthFont, L"Courier New");
+	wcscpy(cpi.wszFixedWidthFont, L"Courier New");
 	IMultiLanguage *pMLang = NULL;
 
 	HRESULT hr = CoCreateInstance(CLSID_CMultiLanguage, NULL,

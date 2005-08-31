@@ -15,6 +15,9 @@
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
   ShellExtension/Languages: ShellExtensionSwedish.rc
+ PATCH: [ 1277588 ] Change lstrcpyW to wcscpy
+  Submitted by Perry
+  Src: MainFrm.cpp Merge.cpp
 
 2005-08-30 Kimmo
  PATCH: [ 1275833 ] Fix difference navigation with ignored diffs

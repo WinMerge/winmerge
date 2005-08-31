@@ -188,7 +188,7 @@ BOOL CMergeApp::InitInstance()
 			WCHAR *p = pszArgs;
 			for (int i = 0; i < __argc; i++)
 			{
-				lstrcpyW(p, T2W(__targv[i]));
+				wcscpy(p, T2W(__targv[i]));
 				p += lstrlenW(p) + 1;
 			}
 			*p++ = _T('\0');
