@@ -5,6 +5,10 @@
  PATCH: [ 1276916 ] Add Window/Close All menuitem
   Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
   Src/Languages: *.rc resource.h
+ PATCH: [ 1277420 ] Swedish translation update for 2.4
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+  ShellExtension/Languages: ShellExtensionSwedish.rc
 
 2005-08-30 Kimmo
  PATCH: [ 1275833 ] Fix difference navigation with ignored diffs
