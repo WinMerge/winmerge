@@ -43,7 +43,6 @@
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "BCMenu.h"
-#include "WindowStyle.h"
 #include "DirCmpReport.h"
 
 #ifdef _DEBUG
@@ -69,26 +68,26 @@ const UINT IDT_CMPPANE_CLOSING = 1;
  */
 const UINT CMPPANE_DELAY = 500;
 
-IMPLEMENT_DYNCREATE(CDirView, CListViewEx)
+IMPLEMENT_DYNCREATE(CDirView, CListView)
 
 CDirView::CDirView()
 : m_numcols(-1)
 , m_dispcols(-1)
-, m_pHeaderPopup(NULL)
-, m_pFont(NULL)
 , m_pList(NULL)
 , m_nHiddenItems(0)
 {
+	m_dwDefaultStyle &= ~LVS_TYPEMASK;
+	// Show selection all the time, so user can see current item even when
+	// focus is elsewhere (ie, on file edit window)
+	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS;
 	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
 }
 
 CDirView::~CDirView()
 {
-	m_imageList.DeleteImageList();
-	delete m_pFont;
 }
 
-BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
+BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_WM_CONTEXTMENU()
 	//{{AFX_MSG_MAP(CDirView)
 	ON_WM_LBUTTONDBLCLK()
@@ -141,7 +140,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_COMMAND(ID_REFRESH, OnRefresh)
 	ON_UPDATE_COMMAND_UI(ID_REFRESH, OnUpdateRefresh)
 	ON_WM_TIMER()
-	ON_WM_MOUSEMOVE()
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTDIR_RO, OnUpdateStatusRightRO)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTDIR_RO, OnUpdateStatusLeftRO)
 	ON_COMMAND(ID_FILE_LEFT_READONLY, OnLeftReadOnly)
@@ -181,18 +179,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListViewEx)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
-	ON_NOTIFY_REFLECT(LVN_GETINFOTIP, OnInfoTip)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 END_MESSAGE_MAP()
-
-/////////////////////////////////////////////////////////////////////////////
-// CDirView drawing
-
-void CDirView::OnDraw(CDC* /*pDC*/)
-{
-	// This is a CListView, so it is wrapped around a Windows common control
-	// which does the drawing
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView diagnostics
@@ -206,13 +194,12 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 }
 #endif //_DEBUG
 
-
 /////////////////////////////////////////////////////////////////////////////
 // CDirView message handlers
 
 void CDirView::OnInitialUpdate() 
 {
-	CListViewEx::OnInitialUpdate();
+	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
 
@@ -220,14 +207,8 @@ void CDirView::OnInitialUpdate()
 	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
 	if (pMf->m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM))
 	{
-		if (m_pFont == NULL)
-			m_pFont = new CFont;
-		
-		if (m_pFont != NULL)
-		{
-			m_pFont->CreateFontIndirect(&pMf->m_lfDir);
-				SetFont(m_pFont, TRUE);
-		}
+		m_font.CreateFontIndirect(&pMf->m_lfDir);
+		SetFont(&m_font, TRUE);
 	}
 
 	// Replace standard header with sort header
@@ -290,10 +271,6 @@ void CDirView::OnInitialUpdate()
 	// Display column headers (in appropriate order)
 	ReloadColumns();
 
-	// Show selection all the time, so user can see current item even when
-	// focus is elsewhere (ie, on file edit window)
-	WindowStyle_Add(m_pList, LVS_SHOWSELALWAYS);
-
 	// Show selection across entire row.
 	// Also allow user to rearrange columns via drag&drop of headers
 	// if they have a new enough common controls
@@ -304,10 +281,6 @@ void CDirView::OnInitialUpdate()
 	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(4,71))
 		exstyle |= LVS_EX_INFOTIP;
 	m_pList->SetExtendedStyle(exstyle);
-
-	// Disable CListViewEx's full row selection which only causes problems
-	// (tooltips and custom draw do not work!)
-	SetFullRowSel(FALSE);
 }
 
 // These are the offsets into the image list created in OnInitDialog
@@ -360,7 +333,7 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
 	OpenSelection();
-	CListViewEx::OnLButtonDblClk(nFlags, point);
+	CListView::OnLButtonDblClk(nFlags, point);
 }
 
 /**
@@ -389,10 +362,10 @@ void CDirView::Redisplay()
 	int llen = ctxt.GetNormalizedLeft().GetLength();
 	int rlen = ctxt.GetNormalizedRight().GetLength();
 
-	DeleteAllDisplayItems();
-
 	// Disable redrawing while adding new items
 	SetRedraw(FALSE);
+
+	DeleteAllDisplayItems();
 
 	// If non-recursive compare, add special item(s)
 	if (!GetDocument()->GetRecursive())
@@ -412,12 +385,9 @@ void CDirView::Redisplay()
 		if (!di.isResultSame())
 			++alldiffs;
 
-		LPCTSTR p=GetDocument()->GetItemPathIfShowable(di, llen, rlen);
-
-		if (p)
+		if (GetDocument()->IsShowable(di))
 		{
-			int i = AddDiffItem(cnt, di, p, curdiffpos);
-			UpdateDiffItemStatus(i, di);
+			AddNewItem(cnt, curdiffpos, I_IMAGECALLBACK);
 			cnt++;
 		}
 	}
@@ -827,7 +797,8 @@ void CDirView::SortColumnsAppropriately()
 	bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
 	m_ctlSortHeader.SetSortImage(ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
-	GetListCtrl ().SortItems (CompareFunc, reinterpret_cast<DWORD>(this));//pNMListView->iSubItem);
+	CompareState cs(this, sortCol, bSortAscending);
+	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD>(&cs));
 }
 
 /// Do any last minute work as view closes
@@ -839,7 +810,7 @@ void CDirView::OnDestroy()
 	SaveColumnOrders();
 	SaveColumnWidths();
 
-	CListViewEx::OnDestroy();
+	CListView::OnDestroy();
 }
 
 /**
@@ -852,7 +823,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
 		OpenSelection();
 	}
-	CListViewEx::OnChar(nChar, nRepCnt, nFlags);
+	CListView::OnChar(nChar, nRepCnt, nFlags);
 }
 
 /**
@@ -870,6 +841,8 @@ void CDirView::OpenParentDirectory()
 	case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath:
 		mf->DoFileOpen(leftParent, rightParent,
 			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		// fall through (no break!)
+	case CDirDoc::AllowUpwardDirectory::No:
 		break;
 	default:
 		AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
@@ -1203,10 +1176,6 @@ POSITION CDirView::GetItemKeyFromData(DWORD dw) const
 {
 	return (POSITION)dw;
 }
-void CDirView::SetItemKey(int idx, POSITION diffpos)
-{
-	m_pList->SetItemData(idx, (DWORD)diffpos);
-}
 
 /**
  * Given index in list control, get its associated DIFFITEM data
@@ -1221,7 +1190,7 @@ DIFFITEM CDirView::GetDiffItem(int sel)
 		static DIFFITEM item;
 		return item;
 	}
-	return GetDocument()->GetDiffByKey((POSITION)diffpos);
+	return GetDocument()->GetDiffByKey(diffpos);
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -1732,7 +1701,7 @@ CDirFrame * CDirView::GetParentFrame()
 {
 	// can't verify cast without introducing more coupling
 	// (CDirView doesn't include DirFrame.h)
-	return (CDirFrame *)CListViewEx::GetParentFrame();
+	return (CDirFrame *)CListView::GetParentFrame();
 }
 
 void CDirView::OnRefresh()
@@ -1761,7 +1730,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			return FALSE;
 		}
 	}
-	return CListViewEx::PreTranslateMessage(pMsg);
+	return CListView::PreTranslateMessage(pMsg);
 }
 
 void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
@@ -1808,7 +1777,25 @@ BOOL CDirView::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult)
 	if (hdr->code == HDN_BEGINDRAG)
 		return OnHeaderBeginDrag((LPNMHEADER)hdr, pResult);
 	
-	return CListViewEx::OnNotify(wParam, lParam, pResult);
+	return CListView::OnNotify(wParam, lParam, pResult);
+}
+
+BOOL CDirView::OnChildNotify(UINT uMsg, WPARAM wParam, LPARAM lParam, LRESULT* pResult)
+{
+	if (uMsg == WM_NOTIFY)
+	{
+		NMHDR *pNMHDR = (NMHDR *)lParam;
+		switch (pNMHDR->code)
+		{
+		case LVN_GETDISPINFO:
+			ReflectGetdispinfo((NMLVDISPINFO *)lParam);
+			return TRUE;
+		case LVN_GETINFOTIPW:
+		case LVN_GETINFOTIPA:
+			return TRUE;
+		}
+	}
+	return CListView::OnChildNotify(uMsg, wParam, lParam, pResult);
 }
 
 /**
@@ -1943,45 +1930,7 @@ void CDirView::OnTimer(UINT nIDEvent)
 		pf->ShowProcessingBar(FALSE);
 	}
 	
-	CListViewEx::OnTimer(nIDEvent);
-}
-
-/// Called before infotip is shown to get infotip text
-void CDirView::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
-{
-	LVHITTESTINFO lvhti = {0};
-	NMLVGETINFOTIP * pInfoTip = reinterpret_cast<NMLVGETINFOTIP*>(pNMHDR);
-	ASSERT(pInfoTip);
-
-	if (GetDllVersion(_T("comctl32.dll")) < PACKVERSION(4,71))
-	{
-		// LPNMLVCUSTOMDRAW->iSubItem not supported before comctl32 4.71
-		return;
-	}
-
-	// Get subitem under mouse cursor
-	lvhti.pt = m_ptLastMousePos;
-	m_pList->SubItemHitTest(&lvhti);
-
-	// Values > 0 are subitem indexes
-	// 0 is filename which gets infotip automatically by LVS_EX_INFOTIP style
-	if (lvhti.iSubItem > 0)
-	{
-		// Check that we are over icon or label
-		if ((lvhti.flags & LVHT_ONITEMICON) || (lvhti.flags & LVHT_ONITEMLABEL))
-		{
-			// Set item text to tooltip
-			CString strText = m_pList->GetItemText(lvhti.iItem, lvhti.iSubItem);
-			_tcscpy(pInfoTip->pszText, strText);
-		}
-	}
-}
-
-/// Track mouse position for showing tooltips
-void CDirView::OnMouseMove(UINT nFlags, CPoint point) 
-{
-	m_ptLastMousePos = point;
-	CListViewEx::OnMouseMove(nFlags, point);
+	CListView::OnTimer(nIDEvent);
 }
 
 /**
@@ -2172,16 +2121,7 @@ int CDirView::AddSpecialItems()
  */
 void CDirView::AddParentFolderItem(BOOL bEnable)
 {
-	int i = AddNewItem(0);
-	SetImage(i, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
-	SetItemKey(i, (POSITION) SPECIAL_ITEM_POS);
-
-	LV_ITEM lvItem;
-	lvItem.mask = LVIF_TEXT;
-	lvItem.iItem = i;
-	lvItem.iSubItem = 0;
-	lvItem.pszText = const_cast<LPTSTR>(_T(".."));
-	GetListCtrl().SetItem(&lvItem);
+	AddNewItem(0, (POSITION) SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
 }
 
 /**

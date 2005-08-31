@@ -180,6 +180,7 @@ void CDirDoc::Serialize(CArchive& ar)
  */
 void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathContext *pTempPathContext)
 {
+	m_pDirView->DeleteAllDisplayItems();
 	// Anything that can go wrong here will yield an exception.
 	// Default implementation of operator new() never returns NULL.
 	delete m_pCtxt;
@@ -195,8 +196,8 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathC
 		ApplyRightDisplayRoot(pTempPathContext->m_strRightDisplayRoot);
 		pTempPathContext->m_pParent = m_pTempPathContext;
 		m_pTempPathContext = pTempPathContext;
-		m_pTempPathContext->m_strLeftRoot = m_pCtxt->GetLeftPath();
-		m_pTempPathContext->m_strRightRoot = m_pCtxt->GetRightPath();
+		m_pTempPathContext->m_strLeftRoot = m_pCtxt->GetNormalizedLeft();
+		m_pTempPathContext->m_strRightRoot = m_pCtxt->GetNormalizedRight();
 	}
 	
 	m_bRecursive = bRecursive;
@@ -288,7 +289,10 @@ void CDirDoc::Rescan()
 
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan)
+	{
+		m_pDirView->DeleteAllDisplayItems();
 		m_pCtxt->RemoveAll();
+	}
 
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_msgUpdateStatus = MSG_STAT_UPDATE;
@@ -338,16 +342,13 @@ void CDirDoc::Rescan()
  * @return File- or subfolder name of item, NULL if user does not want to see it
  * @sa CDirDoc::Redisplay()
  */
-LPCTSTR CDirDoc::GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
+BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 {
 	if (di.isResultFiltered())
 	{
 		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
 		// wants to see skipped items show item regardless of other flags
-		if (mf->m_options.GetBool(OPT_SHOW_SKIPPED))
-			goto ShowItem;
-		else
-			return 0;
+		return mf->m_options.GetBool(OPT_SHOW_SKIPPED);
 	}
 
 	// Subfolders in non-recursive compare can only be skipped or unique
@@ -383,15 +384,7 @@ LPCTSTR CDirDoc::GetItemPathIfShowable(const DIFFITEM & di, int llen, int rlen)
 		if (di.isSideRight() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
-
-ShowItem:
-	LPCTSTR p = NULL;
-	if (di.isSideRight())
-		p = _tcsninc(di.getRightFilepath(GetLeftBasePath()), rlen);
-	else
-		p = _tcsninc(di.getLeftFilepath(GetRightBasePath()), llen);
-
-	return p;
+	return 1;
 }
 
 /**
@@ -408,21 +401,13 @@ void CDirDoc::Redisplay()
 
 CDirView * CDirDoc::GetMainView()
 {
-	// why are we doing this ? dirdocs only have one view
-
-	POSITION pos = GetFirstViewPosition(), ps2=pos;
-
-	while (pos != NULL)
+	CDirView *pView = NULL;
+	if (POSITION pos = GetFirstViewPosition())
 	{
-		CDirView* pView = (CDirView*)GetNextView(pos);
-		if (pView->IsKindOf( RUNTIME_CLASS(CDirView)))
-			return pView;
-		else
-		{
-			ASSERT(0);
-		}
+		pView = static_cast<CDirView*>(GetNextView(pos));
+		ASSERT_KINDOF(CDirView, pView);
 	}
-	return (CDirView*)GetNextView(ps2);
+	return pView;
 }
 
 /**
@@ -438,8 +423,7 @@ void CDirDoc::ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight)
 	m_pCtxt->UpdateStatusFromDisk(diffpos, bLeft, bRight);
 
 	// Update view
-	const DIFFITEM & updated = m_pCtxt->GetDiffAt(diffpos);
-	m_pDirView->UpdateDiffItemStatus(nIdx, updated);
+	m_pDirView->UpdateDiffItemStatus(nIdx);
 }
 
 void CDirDoc::InitStatusStrings()
@@ -920,12 +904,14 @@ void CDirDoc::SetTitle(LPCTSTR lpszTitle)
 	}
 	else
 	{
-		CString strTitle;
 		const TCHAR strSeparator[] = _T(" - ");
-
-		strTitle = PathFindFileName(m_pCtxt->GetLeftPath());
+		CString strPath = m_pCtxt->GetLeftPath();
+		ApplyLeftDisplayRoot(strPath);
+		CString strTitle = PathFindFileName(strPath);
 		strTitle += strSeparator;
-		strTitle += PathFindFileName(m_pCtxt->GetRightPath());
+		strPath = m_pCtxt->GetRightPath();
+		ApplyRightDisplayRoot(strPath);
+		strTitle += PathFindFileName(strPath);
 		CDocument::SetTitle(strTitle);
 	}	
 }

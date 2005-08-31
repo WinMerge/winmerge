@@ -32,7 +32,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // CDirView view
 #include <afxcview.h>
-#include "listvwex.h"
 #include "SortHeaderCtrl.h"
 
 
@@ -81,7 +80,7 @@ const UINT DefColumnWidth = 150;
  * CDiffContext items are linked by storing POSITION of CDiffContext item
  * as CDirView listitem key.
  */
-class CDirView : public CListViewEx
+class CDirView : public CListView
 {
 	class DirItemEnumerator;
 	friend DirItemEnumerator;
@@ -104,7 +103,6 @@ public:
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	POSITION GetItemKey(int idx) const;
-	void SetItemKey(int idx, POSITION diffpos);
 	int GetItemIndex(DWORD key);
 	// for populating list
 	void DeleteAllDisplayItems();
@@ -187,20 +185,30 @@ private:
 	void UpdateDeletedItems(ActionList & actions);
 	void MarkForRescan();
 // End DirActions.cpp
+	void ReflectGetdispinfo(NMLVDISPINFO *);
 
 // Implementation in DirViewCols.cpp
 public:
 	void UpdateColumnNames();
 	void SetColAlignments();
-	static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
-	int AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITION curdiffpos);
-	void UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di);
+	// class CompareState is used to pass parameters to the PFNLVCOMPARE callback function.
+	class CompareState
+	{
+	private:
+		const CDirView *const pView;
+		const CDiffContext *const pCtxt;
+		const int sortCol;
+		const bool bSortAscending;
+	public:
+		CompareState(const CDirView *, int sortCol, bool bSortAscending);
+		static int CALLBACK CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort);
+	} friend;
+	void UpdateDiffItemStatus(UINT nIdx);
 	void ToDoDeleteThisValidateColumnOrdering() { ValidateColumnOrdering(); }
 private:
 	void InitiateSort();
 	void NameColumn(int id, int subitem);
-	int AddNewItem(int i);
-	void SetSubitem(int item, int phy, LPCTSTR sz);
+	int AddNewItem(int i, POSITION diffpos, int iImage);
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
@@ -223,9 +231,9 @@ private:
 	public:
 	virtual void OnInitialUpdate();
 	protected:
-	virtual void OnDraw(CDC* pDC);      // overridden to draw this view
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual BOOL OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult);
+	virtual BOOL OnChildNotify(UINT, WPARAM, LPARAM, LRESULT*);
 	//}}AFX_VIRTUAL
 
 // Implementation
@@ -247,10 +255,8 @@ protected:
 	int m_dispcols;
 	CArray<int, int> m_colorder; /**< colorder[logical#]=physical# */
 	CArray<int, int> m_invcolorder; /**< invcolorder[physical]=logical# */
-	CPoint m_ptLastMousePos;
-	CMenu * m_pHeaderPopup;
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
-	CFont *m_pFont; /**< User-selected font */
+	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 
 	// Generated message map functions
@@ -305,7 +311,6 @@ protected:
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateRefresh(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnEditColumns();
 	afx_msg void OnLeftReadOnly();
 	afx_msg void OnUpdateLeftReadOnly(CCmdUI* pCmdUI);
@@ -351,7 +356,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
-	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
 	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:

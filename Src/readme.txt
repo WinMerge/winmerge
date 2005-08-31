@@ -1,3 +1,9 @@
+2005-08-25 Jochen
+ PATCH: [ 1275273 ] Convert CDirView to use LVN_GETDISPINFO
+ BUG: [ 1275247 ] Temp path shown in caption
+ BUG: [ 1275711 ] No backslash between top-level archive directories in header
+  Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp
+
 2005-08-31 Perry
  BUG: [ 1277300 ] version number
  PATCH: [ 1277596 ] Fix version string (IDS_VERSION_FMT) in Portuguese

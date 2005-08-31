@@ -137,115 +137,119 @@ void CDirView::SetColAlignments()
 	}
 }
 
-/// Compare two specified rows during a sort operation (windows callback)
-int CALLBACK CDirView::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
+CDirView::CompareState::CompareState(const CDirView *pView, int sortCol, bool bSortAscending)
+: pView(pView)
+, pCtxt(&pView->GetDocument()->GetDiffContext())
+, sortCol(sortCol)
+, bSortAscending(bSortAscending)
 {
-	// initialize structures to obtain required information
-	CDirView* pView = reinterpret_cast<CDirView*>(lParamSort);
+}
 
-	const CDiffContext &ctxt = pView->GetDocument()->GetDiffContext();
+/// Compare two specified rows during a sort operation (windows callback)
+int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2, LPARAM lParamSort)
+{
+	CompareState *pThis = reinterpret_cast<CompareState*>(lParamSort);
 	// Sort special items always first in dir view
 	if (lParam1 == -1)
-	  return -1;
+		return -1;
 	if (lParam2 == -1)
-	 return -1;
-	
-	POSITION diffposl = pView->GetItemKeyFromData(lParam1);
-	POSITION diffposr = pView->GetItemKeyFromData(lParam2);
-	const DIFFITEM ldi = ctxt.GetDiffAt(diffposl);
-	const DIFFITEM rdi = ctxt.GetDiffAt(diffposr);
+		return 1;
 
+	POSITION diffposl = pThis->pView->GetItemKeyFromData(lParam1);
+	POSITION diffposr = pThis->pView->GetItemKeyFromData(lParam2);
+	const DIFFITEM &ldi = pThis->pCtxt->GetDiffAt(diffposl);
+	const DIFFITEM &rdi = pThis->pCtxt->GetDiffAt(diffposr);
 	// compare 'left' and 'right' parameters as appropriate
-	int sortCol = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
-	int retVal = ColSort(&ctxt, sortCol, ldi, rdi);
-
+	int retVal = ColSort(pThis->pCtxt, pThis->sortCol, ldi, rdi);
 	// return compare result, considering sort direction
-	bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
-	return (bSortAscending) ? retVal : -retVal;
+	return pThis->bSortAscending ? retVal : -retVal;
 }
 
 /// Add new item to list view
-int CDirView::AddNewItem(int i)
+int CDirView::AddNewItem(int i, POSITION diffpos, int iImage)
 {
 	LV_ITEM lvItem;
-	lvItem.mask = 0;
+	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE;
 	lvItem.iItem = i;
 	lvItem.iSubItem = 0;
+	lvItem.pszText = LPSTR_TEXTCALLBACK;
+	lvItem.lParam = (LPARAM)diffpos;
+	lvItem.iImage = iImage;
 	return GetListCtrl().InsertItem(&lvItem);
 }
-
-/// Set a subitem on an existing item
-void CDirView::SetSubitem(int item, int phy, LPCTSTR sz)
-{
-	LV_ITEM lvItem;
-	lvItem.mask = LVIF_TEXT;
-	lvItem.iItem = item;
-	lvItem.iSubItem = phy;
-	lvItem.pszText = const_cast<LPTSTR>(sz);
-	GetListCtrl().SetItem(&lvItem);
-}
-
-
-/// Add a new diff item to dir view
-int CDirView::AddDiffItem(int index, const DIFFITEM & di, LPCTSTR szPath, POSITION curdiffpos)
-{
-	int i = AddNewItem(index);
-	SetItemKey(i, curdiffpos);
-	SetImage(i, GetDefaultColImage());
-	return i;
-}
-
 
 /**
  * @brief Update listview display of details for specified row
  * @note Customising shownd data should be done here
  */
-void CDirView::UpdateDiffItemStatus(UINT nIdx, const DIFFITEM & di)
+void CDirView::UpdateDiffItemStatus(UINT nIdx)
 {
-	BOOL bLeftNewer = FALSE;
-	BOOL bRightNewer = FALSE;
-	__int64 lmtime = di.left.mtime;
-	__int64 rmtime = di.right.mtime;
+	GetListCtrl().RedrawItems(nIdx, nIdx);
+}
 
+static CString rgDispinfoText[2]; // used in function below
+
+/**
+ * @brief Allocate a text buffer to assign to NMLVDISPINFO::item::pszText
+ * Quoting from SDK Docs:
+ *	If the LVITEM structure is receiving item text, the pszText and cchTextMax
+ *	members specify the address and size of a buffer. You can either copy text to
+ *	the buffer or assign the address of a string to the pszText member. In the
+ *	latter case, you must not change or delete the string until the corresponding
+ *	item text is deleted or two additional LVN_GETDISPINFO messages have been sent.
+ */
+static LPTSTR NTAPI AllocDispinfoText(const CString &s)
+{
+	static int i = 0;
+	LPCTSTR pszText = rgDispinfoText[i] = s;
+	i ^= 1;
+	return (LPTSTR)pszText;
+}
+
+/**
+ * @brief Respond to LVN_GETDISPINFO message
+ */
+void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
+{
+	int nIdx = pParam->item.iItem;
+	int i = ColPhysToLog(pParam->item.iSubItem);
+	POSITION key = GetItemKey(nIdx);
+	if (key == (POSITION) SPECIAL_ITEM_POS)
+	{
+		if (i == DirCol_Name)
+		{
+			pParam->item.pszText = _T("..");
+		}
+		return;
+	}
 	if (!GetDocument()->HasDiffs())
 		return;
-	const CDiffContext & ctxt = GetDocument()->GetDiffContext();
-
-	if (lmtime && rmtime)
+	const CDiffContext &ctxt = GetDocument()->GetDiffContext();
+	const DIFFITEM &di = GetDocument()->GetDiffRefByKey(key);
+	if (pParam->item.mask & LVIF_TEXT)
 	{
-		if (lmtime > rmtime)
+		CString s = ColGet(&ctxt, i, di);
+		// Add '*' to newer time field
+		if
+		(
+			i == DirCol_LmTime && di.left.mtime > di.right.mtime // Left modification time
+		||	i == DirCol_RmTime && di.left.mtime < di.right.mtime // Right modification time
+		)
 		{
-			bLeftNewer = TRUE;
+			s.Insert(0, _T("* "));
 		}
-		else if (lmtime < rmtime)
+		// Don't show result for folderitems appearing both sides
+		if ((i == DirCol_Status || i == DirCol_StatusAbbr) &&
+			di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
 		{
-			bRightNewer = TRUE;
+			s.Empty();
 		}
+		pParam->item.pszText = AllocDispinfoText(s);
 	}
-	for (int i=0; i<g_ncols; ++i)
+	if (pParam->item.mask & LVIF_IMAGE)
 	{
-		int phy = ColLogToPhys(i);
-		if (phy>=0)
-		{
-			CString s = ColGet(&ctxt, i, di);
-			
-			// Add '*' to newer time field
-			if (i == DirCol_LmTime && bLeftNewer) // Left modification time
-				s.Insert(0, _T("* "));
-			else if (i == DirCol_RmTime && bRightNewer) // Right modification time
-				s.Insert(0, _T("* "));
-
-			// Don't show result for folderitems appearing both sides
-			if ((i == DirCol_Status || i== DirCol_StatusAbbr) &&
-				di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
-			{
-				s.Empty();
-			}
-
-			SetSubitem(nIdx, phy, s);
-		}
+		pParam->item.iImage = GetColImage(di);
 	}
-	SetImage(nIdx, GetColImage(di));
 }
 
 /// store current column orders into registry
@@ -260,7 +264,6 @@ void CDirView::SaveColumnOrders()
 		theApp.WriteProfileInt(_T("DirView"), RegName, ord);
 	}
 }
-
 
 /**
  * @brief Load column orders from registry
