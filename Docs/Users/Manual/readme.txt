@@ -1,3 +1,7 @@
+2005-08-31 Kimmo
+ PATCH: [ 1276983 ] Manual: Update Quick start
+  Manual: Quick_start.xml
+
 2005-08-17 Tim
  BUG: [ 1261402 ] Filters.xml: Error on line 111
   Manual: Filters.xml

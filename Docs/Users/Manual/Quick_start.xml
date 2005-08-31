@@ -1,59 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="QuickStart">
-  <title>Quick start</title>
+  <title>Quick Start</title>
+
   <sect2>
-    <title>Opening files and directories</title>
-    <para>Start WinMerge and select "<guimenuitem>Open</guimenuitem>" from <guimenu>File</guimenu>-menu, click yellow folder icon from toolbar or press <keycombo><keycap>Ctrl</keycap><keycap>O</keycap></keycombo>. File/directory selection dialog is shown:</para>
+    <title>Opening Files and Folders</title>
+
+    <para>Start <productname>WinMerge</productname> and select
+    <guimenuitem>Open</guimenuitem> from <guimenu>File</guimenu>-menu, click
+    yellow folder icon from toolbar or press <keycombo>
+        <keycap>Ctrl</keycap>
+
+        <keycap>O</keycap>
+      </keycombo>. File/folder selection dialog opens:</para>
+
     <para><mediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/OpenDlg1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/OpenDlg1.gif" format="GIF" />
         </imageobject>
       </mediaobject></para>
-    <para>Two topmost fields in Open dialog are used to specify files/directories to compare. Comparison objects can be specified in one of four ways:</para>
+
+    <para>Two topmost fields in Open dialog are for selecting
+    files/directories to compare. Comparison objects can be specified in one
+    of four ways:</para>
+
     <para><orderedlist>
         <listitem>
           <para>Enter the path names directly into the edit fields</para>
         </listitem>
+
         <listitem>
-          <para>Click the <guibutton>Browse</guibutton> button and use the file chooser to navigate to the desired object</para>
+          <para>Click the <guibutton>Browse</guibutton> button and use the
+          file chooser to navigate to the desired object</para>
         </listitem>
+
         <listitem>
-          <para>Expand the combo box and select a previously entered path (WinMerge remembers the last 20)</para>
+          <para>Expand the combo box and select a previously entered path
+          (WinMerge remembers the last 20)</para>
         </listitem>
+
         <listitem>
-          <para>Drag &amp; drop something into the edit field from Explorer</para>
+          <para>Drag &amp; drop something into the edit field from
+          Explorer</para>
         </listitem>
       </orderedlist></para>
-    <para>Directory can be selected from Windows Open dialog (opens when "<guibutton>Browse</guibutton>"-button is selected) by browsing into directory to open and selecting "<guibutton>Open</guibutton>"-button. It does not require selecting a file. When Filename field in Windows Open dialog contains text "<guilabel>Directory Selection</guilabel>" selecting <guibutton>Open</guibutton> button selects currently visible directory.</para>
+
+    <para>Folder can be selected from Windows Open dialog (opens when
+    <guibutton>Browse</guibutton>-button is selected) by browsing into folder
+    and selecting <guibutton>Open</guibutton>-button. It does not require
+    selecting a file. When <guilabel>Filename</guilabel> field in Windows Open
+    dialog contains text "<guilabel>Directory Selection</guilabel>" selecting
+    <guibutton>Open</guibutton> button selects currently visible folder. Open
+    dialog always shows backslash "\" at end of folder name.</para>
+
     <para><note>
-        <para>There can be only file &amp; file or directory &amp; directory to open for compare. If there is file &amp; directory or other one of files/directories cannot be found WinMerge disables "<guibutton>OK</guibutton>"-button in dialog.</para>
+        <para>There can be only file &amp; file or folder &amp; folder
+        selected to open for compare. If there is file &amp; folder or other
+        one of files/folders cannot be found WinMerge disables
+        <guibutton>OK</guibutton>-button in dialog.</para>
       </note></para>
-    <para>Set of files to compare can be restricted by typing filename extensions wanted to compare into "<guilabel>Filter</guilabel>"-field. Multiple extensions can be given by separating extensions with semicolon or space. For example: <filename>*.cpp;*.hpp;*.c;*.h</filename></para>
-    <para>File filters are much more powerful way to select file/pathnames and extensions. Use "<guibutton>Select</guibutton>" button next to filters text field to see available filters and to choose filter.</para>
-    <para>If "<guilabel>Include Subfolders</guilabel>"-checkbox is checked WinMerge compares all subfolders and shows all files and folders it founds in one view. Otherwise only current folder is compared and subfolders shown so user can browse into them.</para>
+
+    <para><guilabel>Filter</guilabel> -field can be used to select files by
+    extension to compare. Default value is "*.*" which includes all files. But
+    listing one or more extensions restricts compare to only files with those
+    extensions. Multiple extensions are separated with space or semicolon. For
+    example: <filename>*.cpp;*.hpp;*.c;*.h</filename></para>
+
+    <para>File filters are much more powerful way to select files and folders.
+    Use <guibutton>Select</guibutton> button next to
+    <guilabel>Filters</guilabel> field to see available filters and to choose
+    the filter.</para>
+
+    <para>If <guilabel>Include Subfolders</guilabel>-checkbox is checked
+    WinMerge compares all subfolders and shows all files and folders it founds
+    in one view. Otherwise only current folder is compared and subfolders are
+    listed so user can browse into them.</para>
+
     <para>Unpacker selection is for plugins.</para>
+
     <tip>
-      <para>Status of currently selected files or directories is shown with text below fields. If one of paths is invalid this text tells which one it is.</para>
+      <para>Status of currently selected files or directories is shown with
+      text in bottom of the dialog. If one of the paths is invalid this text
+      tells which one it is.</para>
     </tip>
   </sect2>
+
   <sect2>
-    <title>Comparing directories</title>
+    <title>Comparing Folders</title>
+
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/dircomp1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/dircomp1.gif" format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
-    <para>If two directories were selected in Open-dialog directory compare is opened. Directory compare shows list of files and subdirectories it finds. Using <guimenu>Merge</guimenu>-menu items, toolbar items or context menu items files and directories can be managed in many ways.</para>
-    <para>If file is present in both sides (and is not binary file) it can be opened to file compare. After file compare is closed file's status is updated to directory compare.</para>
+
+    <para>If two folders were selected in Open-dialog folder compare is
+    opened. Folder compare shows list of files and subfolders it finds. Using
+    <guimenu>Merge</guimenu>-menu items, toolbar items or context menu items
+    files and folders can be managed in many ways.</para>
+
+    <para>If selected file exists in both sides (and it is not a binary file)
+    it can be opened to file compare. File can be opened by:<orderedlist>
+        <listitem>
+          <para>selecting <guimenuitem>Compare</guimenuitem> from
+          <guimenu>Merge</guimenu> menu</para>
+        </listitem>
+
+        <listitem>
+          <para>selecting <guimenuitem>Compare</guimenuitem> from context
+          menu</para>
+        </listitem>
+
+        <listitem>
+          <para>double-clicking with mouse</para>
+        </listitem>
+
+        <listitem>
+          <para>pressing <keycap>Enter</keycap> key</para>
+        </listitem>
+      </orderedlist></para>
+
+    <para>After file compare is closed file's status is updated to folder
+    compare.</para>
   </sect2>
+
   <sect2>
-    <title>Comparing files</title>
+    <title>Comparing Files</title>
+
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/filecomp1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/filecomp1.gif" format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
-    <para>File compare shows two files side by side. Different lines are highlighted with background color. One or more consecutively lines form one difference (or "diff"). WinMerge mostly works with these differences, not separate lines.</para>
-    <para>With merging commands lines in difference can be copied between sides. Gray (removed/missing) lines can be copied also. When missing lines are copied from side to another matching existing lines are removed. In screenshot above copying three lines in third difference from right to left would mean removing matching three lines from left side.</para>
-    <para>WinMerge has an simple editor to modify files. Typing, copying, cutting and pasting text works. If <guilabel>Automatic rescan</guilabel> is enabled then WinMerge updates file differences while files are edited. If <guilabel>Automatic rescan</guilabel> is disabled files can be updated selecting <guimenuitem>Refresh</guimenuitem> from <guimenu>Edit</guimenu>-menu, clicking toolbar button with two yellow arrows or pressing <keycap>F5</keycap> key.</para>
+
+    <para>File compare shows two files side by side. Different lines are
+    highlighted with background color. One or more consecutive different lines
+    form one difference (or "diff"). <productname>WinMerge</productname>
+    mostly works with these differences, not separate lines.</para>
+
+    <para><important>
+        <para>Notice how WinMerge fills missing lines in other side. Similar
+        lines are always side by side. This is different to most other
+        compare/merge programs and can take a while to learn.</para>
+      </important>With merging commands (in <guimenu>Merge</guimenu> menu)
+    lines in difference can be copied between sides. Missing lines can be
+    copied also. When missing lines are copied from side to another matching
+    existing lines are removed. In above screenshot copying three lines in
+    third difference from right to left would remove matching three lines from
+    left side.</para>
+
+    <para><productname>WinMerge</productname> has an simple integrated editor.
+    Typing, copying, cutting and pasting text works. If <guilabel>Automatic
+    rescan</guilabel> is enabled then WinMerge updates file differences while
+    files are edited. If <guilabel>Automatic rescan</guilabel> is disabled
+    files can be updated selecting <guimenuitem>Refresh</guimenuitem> from
+    <guimenu>Edit</guimenu>-menu, clicking toolbar button with two yellow
+    arrows or pressing <keycap>F5</keycap> key.</para>
   </sect2>
 </sect1>
