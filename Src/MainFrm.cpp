@@ -136,6 +136,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_TOOLBAR, OnViewToolbar)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
+	ON_MESSAGE(WM_USER, OnUser)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2807,18 +2808,33 @@ void CMainFrame::OnFileOpenproject()
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
-	LPTSTR p = (LPTSTR)(pCopyData->lpData);
+	LPWSTR p = (LPWSTR)(pCopyData->lpData);
 	int argc = pCopyData->dwData;
 	TCHAR **argv = new (TCHAR *[argc]);
+	USES_CONVERSION;
 	
 	for (int i = 0; i < argc; i++)
 	{
-		argv[i] = p;
+		argv[i] = new TCHAR[lstrlenW(p) * (sizeof(WCHAR)/sizeof(TCHAR)) + 1];
+		lstrcpy(argv[i], W2T(p));
 		while (*p) p++;
 		p++;
 	}
+
+	PostMessage(WM_USER, (WPARAM)argc, (LPARAM)argv);
+
+	return TRUE;
+}
+
+LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
+{
+	int argc = (int)wParam;
+	TCHAR **argv = (TCHAR **)lParam;
+
 	theApp.ParseArgsAndDoOpen(argc, argv, this);
 	
+	for (int i = 0; i < argc; i++)
+		delete[] argv[i];
 	delete [] argv;
 
 	return TRUE;

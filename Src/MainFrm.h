@@ -237,6 +237,7 @@ protected:
 	afx_msg void OnViewToolbar();
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
+	afx_msg LRESULT OnUser(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnTimer(UINT nIDEvent);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

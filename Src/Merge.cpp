@@ -179,16 +179,21 @@ BOOL CMergeApp::InitInstance()
 	{
 		if (instanceChecker.PreviousInstanceRunning())
 		{
+			USES_CONVERSION;
+
 			// Activate previous instance and send commandline to it
 			HWND hWnd = instanceChecker.ActivatePreviousInstance();
 			
-			TCHAR *pszArgs = new TCHAR[_tcslen(__targv[0]) + _tcslen(m_lpCmdLine) + 3];
-			TCHAR *p = pszArgs;
+			WCHAR *pszArgs = new WCHAR[_tcslen(__targv[0]) + _tcslen(m_lpCmdLine) + 3];
+			WCHAR *p = pszArgs;
 			for (int i = 0; i < __argc; i++)
-				p += wsprintf(p, _T("%s"), __targv[i]) + 1;
+			{
+				lstrcpyW(p, T2W(__targv[i]));
+				p += lstrlenW(p) + 1;
+			}
 			*p++ = _T('\0');
 			COPYDATASTRUCT data = {0};
-			data.cbData = (DWORD)(p - pszArgs) * sizeof(TCHAR);
+			data.cbData = (DWORD)(p - pszArgs) * sizeof(WCHAR);
 			data.lpData = pszArgs;
 			data.dwData = __argc;
 			SendMessage(hWnd, WM_COPYDATA, NULL, (LONG)&data);
