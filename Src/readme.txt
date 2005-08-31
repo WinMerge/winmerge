@@ -1,3 +1,9 @@
+2005-08-31 Perry
+ BUG: [ 1277300 ] version number
+ PATCH: [ 1277596 ] Fix version string (IDS_VERSION_FMT) in Portuguese
+  Fix IDS_VERSION_FMT string for Portuguese/Brazilian (was missing %1)
+  Src/Languages/Brazilian: MergeBrazilian.rc
+
 2005-08-31 Kimmo
  PATCH: [ 1265182 ] cannot transfer cmdargs from WinMergeU to WinMerge
   Submitted by Takashi Sawanaka
