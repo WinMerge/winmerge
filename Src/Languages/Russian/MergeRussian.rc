@@ -148,6 +148,7 @@ BEGIN
     POPUP "&Окно"
     BEGIN
         MENUITEM "Закрыть",                     ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Переключить &Окно\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -247,6 +248,7 @@ BEGIN
     POPUP "&Окно"
     BEGIN
         MENUITEM "Закрыть",                     ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Переключить &Окно\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -393,6 +395,7 @@ BEGIN
     POPUP "&Окно"
     BEGIN
         MENUITEM "Закрыть",                     ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Переключить &Окно\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2538,6 +2541,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Активировать следующий видимый файл\nActive next File"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

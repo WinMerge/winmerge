@@ -145,6 +145,7 @@ BEGIN
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "切换窗格(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "切换窗格(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -384,6 +386,7 @@ BEGIN
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "切换窗格(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2512,6 +2515,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "切换到下一个可见的文件窗格\n切换到下个文件"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

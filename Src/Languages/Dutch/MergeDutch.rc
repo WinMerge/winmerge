@@ -145,6 +145,7 @@ BEGIN
     POPUP "&Venster"
     BEGIN
         MENUITEM "Sluiten",                     ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -244,6 +245,7 @@ BEGIN
     POPUP "&Venster"
     BEGIN
         MENUITEM "Sluiten",                     ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -385,6 +387,7 @@ BEGIN
     POPUP "&Vensters"
     BEGIN
         MENUITEM "Sluiten",                     ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Venster wijzigen\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2645,6 +2648,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Volgend zichtbaar bestand activeren\nVolgend bestand activeren"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

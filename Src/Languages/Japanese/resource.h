@@ -830,6 +830,7 @@
 #define ID_NOT_SUGGESTED_PLUGINS        32885
 #define ID_RELOAD_PLUGINS               32886
 #define ID_WINDOW_CHANGE_PANE           32896
+#define ID_WINDOW_CLOSEALL              32897
 #define ID_HELP_CONTENTS                32912
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914

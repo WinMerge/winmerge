@@ -145,6 +145,7 @@ BEGIN
     POPUP "&Okno"
     BEGIN
         MENUITEM "Zavrít",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "&Okno"
     BEGIN
         MENUITEM "Zavrít",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -384,6 +386,7 @@ BEGIN
     POPUP "&Okno"
     BEGIN
         MENUITEM "Zavrít",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Change &Pane\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2643,6 +2646,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

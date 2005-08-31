@@ -145,6 +145,7 @@ BEGIN
     POPUP "창(&W)"
     BEGIN
         MENUITEM "닫기",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "창(pane) 이동(&P)\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "창(&W)"
     BEGIN
         MENUITEM "닫기",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "창(pane) 이동(&P)\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -384,6 +386,7 @@ BEGIN
     POPUP "창(&W)"
     BEGIN
         MENUITEM "닫기",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "창(pane) 이동(&P)\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2526,6 +2529,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "다음 파일을 활성화합니다\n다음 파일 활성화"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

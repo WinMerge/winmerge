@@ -145,6 +145,7 @@ BEGIN
     POPUP "Vind&ue"
     BEGIN
         MENUITEM "&Luk",                         ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Skift panel\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "Vind&ue"
     BEGIN
         MENUITEM "&Luk",                         ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Skift panel\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -384,6 +386,7 @@ BEGIN
     POPUP "Vind&ue"
     BEGIN
         MENUITEM "&Luk",                         ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Skift panel\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2528,6 +2531,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Aktivere den næste synlige fil\nAktiver næste fil"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

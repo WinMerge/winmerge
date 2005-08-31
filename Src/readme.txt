@@ -2,6 +2,9 @@
  PATCH: [ 1265182 ] cannot transfer cmdargs from WinMergeU to WinMerge
   Submitted by Takashi Sawanaka
   Src: MainFrm.cpp MainFrm.h Merge.cpp
+ PATCH: [ 1276916 ] Add Window/Close All menuitem
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
 
 2005-08-30 Kimmo
  PATCH: [ 1275833 ] Fix difference navigation with ignored diffs

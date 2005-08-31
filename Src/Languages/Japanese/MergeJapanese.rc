@@ -145,6 +145,7 @@ BEGIN
     POPUP "ウィンドウ(&W)"
     BEGIN
         MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "ウィンドウ(&W)"
     BEGIN
         MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -384,6 +386,7 @@ BEGIN
     POPUP "ウィンドウ(&W)"
     BEGIN
         MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2533,6 +2536,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "次のファイルをアクティブにします\n次のファイルを選択"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

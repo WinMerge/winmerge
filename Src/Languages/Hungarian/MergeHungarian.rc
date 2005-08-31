@@ -145,6 +145,7 @@ BEGIN
     POPUP "&Ablak"
     BEGIN
         MENUITEM "&Bezárás",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Panel váltása\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "&Ablak"
     BEGIN
         MENUITEM "&Bezárás",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Panel váltása\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -384,6 +386,7 @@ BEGIN
     POPUP "&Ablak"
     BEGIN
         MENUITEM "&Bezárás",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Panel váltása\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2529,6 +2532,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Következõ látható fájl aktiválása\nKövetkezõ fájl aktiválása"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

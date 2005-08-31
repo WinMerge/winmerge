@@ -144,6 +144,7 @@ BEGIN
     POPUP "F&önster"
     BEGIN
         MENUITEM "Stäng",                       ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -242,6 +243,7 @@ BEGIN
     POPUP "F&önster"
     BEGIN
         MENUITEM "Stäng",                       ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -383,6 +385,7 @@ BEGIN
     POPUP "F&önster"
     BEGIN
         MENUITEM "Stäng",                       ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2642,6 +2645,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Växlar mellan höger och vänster fil\nVäxla fil"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

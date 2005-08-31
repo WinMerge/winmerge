@@ -145,6 +145,7 @@ BEGIN
     POPUP "視窗(&W)"
     BEGIN
         MENUITEM "關閉",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "變更窗框(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,6 +244,7 @@ BEGIN
     POPUP "視窗(&W)"
     BEGIN
         MENUITEM "關閉",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "變更窗框(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -383,6 +385,7 @@ BEGIN
     POPUP "視窗(&W)"
     BEGIN
         MENUITEM "關閉",                        ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "變更窗框(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2623,6 +2626,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "啟用下一檔案可視\n啟用下一檔案"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

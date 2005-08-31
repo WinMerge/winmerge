@@ -137,6 +137,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER, OnUser)
+	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
+	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2895,4 +2897,66 @@ CMainFrame::OnTimer(UINT nIDEvent)
 		KillTimer(nIDEvent);
 		PostMessage(WM_CLOSE);
 	}
+}
+
+/**
+ * @brief Close all open windows.
+ * 
+ * Asks about saving unsaved files and then closes all open windows.
+ */
+void CMainFrame::OnWindowCloseAll()
+{
+	// save any dirty edit views
+	MergeDocList mergedocs;
+	GetAllMergeDocs(&mergedocs);
+	for (POSITION pos = mergedocs.GetHeadPosition(); pos; mergedocs.GetNext(pos))
+	{
+		CMergeDoc * pMergeDoc = mergedocs.GetAt(pos);
+		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
+		CMergeEditView * pRight = pMergeDoc->GetRightView();
+		if ((pLeft && pLeft->IsModified())
+			|| (pRight && pRight->IsModified()))
+		{
+			// Allow user to cancel closing
+			if (!pMergeDoc->SaveHelper(TRUE))
+				return;
+			else
+			{
+				// Set modified status to false so that we are not asking
+				// about saving again. 
+				pMergeDoc->m_ltBuf.SetModified(FALSE);
+				pMergeDoc->m_rtBuf.SetModified(FALSE);
+			}
+		}
+	}
+
+	DirDocList dirdocs;
+	GetAllDirDocs(&dirdocs);
+	while (!dirdocs.IsEmpty())
+	{
+		CDirDoc * pDirDoc = dirdocs.RemoveHead();
+		pDirDoc->CloseMergeDocs();
+		pDirDoc->OnCloseDocument();
+	}
+}
+
+/**
+ * @brief Enables Window/Close All item if there are open windows.
+ */ 
+void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
+{
+	MergeDocList mergedocs;
+	GetAllMergeDocs(&mergedocs);
+	if (!mergedocs.IsEmpty())
+	{
+		pCmdUI->Enable(TRUE);
+		return;
+	}
+
+	DirDocList dirdocs;
+	GetAllDirDocs(&dirdocs);
+	if (!dirdocs.IsEmpty())
+		pCmdUI->Enable(TRUE);
+	else
+		pCmdUI->Enable(FALSE);
 }

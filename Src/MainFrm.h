@@ -239,6 +239,8 @@ protected:
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser(WPARAM wParam, LPARAM lParam);
 	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnWindowCloseAll();
+	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

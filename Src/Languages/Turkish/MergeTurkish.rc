@@ -144,6 +144,7 @@ BEGIN
     POPUP "Pencereler"
     BEGIN
         MENUITEM "&Kapat",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Pencere Deðitir\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -206,6 +207,8 @@ BEGIN
     END
     POPUP "&Birleþtirme"
     BEGIN
+        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         MENUITEM "&Sonraki Fark\tAlt+Down",     ID_NEXTDIFF
         MENUITEM "&Önceki Fark\tAlt+Up",        ID_PREVDIFF
         MENUITEM SEPARATOR
@@ -240,6 +243,7 @@ BEGIN
     POPUP "Pencereler"
     BEGIN
         MENUITEM "&Kapat",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Pencere Deðitir\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -381,6 +385,7 @@ BEGIN
     POPUP "Pencereler"
     BEGIN
         MENUITEM "&Kapat",                      ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Pencere Deðitir\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2527,6 +2532,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU

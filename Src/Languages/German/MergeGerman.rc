@@ -145,6 +145,7 @@ BEGIN
     POPUP "&Fenster"
     BEGIN
         MENUITEM "&Schlieﬂen",                  ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Ausschnitt wechseln\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -247,6 +248,7 @@ BEGIN
     POPUP "&Fenster"
     BEGIN
         MENUITEM "&Schlieﬂen",                  ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Ausschnitt wechseln\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -388,6 +390,7 @@ BEGIN
     POPUP "&Fenster"
     BEGIN
         MENUITEM "&Schlieﬂen",                  ID_FILE_CLOSE
+        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Ausschnitt wechseln\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2645,6 +2648,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Aktiviert die n‰chste sichtbare Datei\nAktiviere n‰chste Datei"
+    ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
 // HELP MENU
