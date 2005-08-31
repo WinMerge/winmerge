@@ -1,6 +1,8 @@
 2005-08-31 Kimmo
  PATCH: [ 1276983 ] Manual: Update Quick start
   Manual: Quick_start.xml
+ PATCH: [ 1276985 ] Manual: Update File and Folder opening
+  Manual: Open_paths.xml
 
 2005-08-17 Tim
  BUG: [ 1261402 ] Filters.xml: Error on line 111
