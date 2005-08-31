@@ -1,3 +1,8 @@
+2005-08-31
+ PATCH: [ 1277420 ] Swedish translation update for 2.4
+  Submitted by Hans Eriksson
+  InnoSetup/Languages: Swedish.isl
+
 2005-08-30 Kimmo
  PATCH: [ 1275874 ] Cleanup Installer a bit
   InnoSetup: WinMerge.iss

@@ -301,7 +301,7 @@ StatusUninstalling=Avinstallerar %1...
 [CustomMessages]
 NameAndVersion=%1 version %2
 AdditionalIcons=Återstående ikoner:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Optionella funktioner:
 CreateDesktopIcon=Skapa en ikon på skrivbordet
 CreateQuickLaunchIcon=Skapa en ikon i Snabbstartfältet
 ProgramOnTheWeb=%1 på Webben
@@ -363,7 +363,7 @@ UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 ViewStartMenuFolder=Visa WinMerges startkatalog
 
 ;Code Dialogs
-DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenymappen?
+DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenykatalogen?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge Projektfil
