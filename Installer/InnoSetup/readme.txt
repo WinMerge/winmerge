@@ -1,4 +1,8 @@
-2005-08-31
+2005-09-01 Kimmo
+ PATCH: [ 1277750 ] Uninstall Merge7z
+  InnoSetup: WinMerge.iss
+
+2005-08-31 Kimmo
  PATCH: [ 1277420 ] Swedish translation update for 2.4
   Submitted by Hans Eriksson
   InnoSetup/Languages: Swedish.isl

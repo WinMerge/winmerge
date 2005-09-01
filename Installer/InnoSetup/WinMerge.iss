@@ -502,10 +502,16 @@ Filename: {app}\{code:ExeName}; Description: {cm:LaunchProgram, WinMerge}; Flags
 
 
 [UninstallDelete]
+;Remove 7-zip integration dlls possibly installed (by hand or using separate installer)
+Name: {app}\Merge7z*.dll; Type: files
+Name: {app}\7zip_pad.xml; Type: files
+Name: {app}\Codecs; Type: filesandordirs
+Name: {app}\Formats; Type: filesandordirs
+Name: {app}\Lang; Type: filesandordirs
+
 Name: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Type: Files
 Name: {group}; Type: dirifempty
 Name: {app}; Type: dirifempty
-
 
 
 [Code]
