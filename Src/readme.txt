@@ -1,3 +1,5 @@
+2005-09-01 WinMerge experimental release 2.3.5.4 (cvs)
+
 2005-09-01 Kimmo
  PATCH: [ 1278708 ] Updated Swedish.rc for 2.4
   Submitted by Hans Eriksson
