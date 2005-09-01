@@ -144,7 +144,7 @@ BEGIN
     POPUP "F&önster"
     BEGIN
         MENUITEM "Stäng",                       ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Stä&ng alla",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -243,7 +243,7 @@ BEGIN
     POPUP "F&önster"
     BEGIN
         MENUITEM "Stäng",                       ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Stä&ng alla",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -385,7 +385,7 @@ BEGIN
     POPUP "F&önster"
     BEGIN
         MENUITEM "Stäng",                       ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Stä&ng alla",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Växla fil\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -1813,7 +1813,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Versionskontroll"
     IDS_OPTIONSPG_CODEPAGE     "Codepage"
     IDS_OPTIONSPG_SYNTAXCOLORS "Syntaxkulörer"
-    IDS_OPTIONSPG_ARCHIVE     "Arkivstöd"
+    IDS_OPTIONSPG_ARCHIVE   "Arkivstöd"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -2645,7 +2645,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Växlar mellan höger och vänster fil\nVäxla fil"
-    ID_WINDOW_CLOSEALL      "Closes all open windows"
+    ID_WINDOW_CLOSEALL      "Stänger alla öppna fönster"
 END
 
 // HELP MENU

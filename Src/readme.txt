@@ -1,4 +1,9 @@
-2005-08-25 Jochen
+2005-09-01 Kimmo
+ PATCH: [ 1278708 ] Updated Swedish.rc for 2.4
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
+2005-08-31 Jochen
  PATCH: [ 1275273 ] Convert CDirView to use LVN_GETDISPINFO
  BUG: [ 1275247 ] Temp path shown in caption
  BUG: [ 1275711 ] No backslash between top-level archive directories in header
