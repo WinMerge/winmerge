@@ -1,73 +1,153 @@
-language    	event			name				File filter 
-
-
-VC		FILE_PACK_UNPACK	HideFirstLetter			*.nofirst, *.hidefirst
-
-The first non-space character is invisible in the merge editor (and restored when saving)	
-
-Delphi		FILE_PACK_UNPACK	UnpackDFM			*.dfm
-
-UnpackDFM is a plugin for WinMerge which allows WinMerge to compare and merge Delphi's binary dfm files.
-Written in and for Borland Delphi 4.
-Requires the runtime library vcl40.bpl, which is part of the Delphi 4 setup.
-
-VC		FILE_PACK_UNPACK	WatchBeginningOfLog		*.log
-VC		FILE_PACK_UNPACK	WatchEndOfLog			*.log
-
-For long log files, user is often interested only in the first lines or in the last lines.
-WatchBeginningOfLog truncates the files to the first 1/10th.
-WatchEndOfLog truncates the files to the first 1/10th.
-
-VC		FILE_PACK_UNPACK	DisplayBinaryFiles		.exe, .dll, .ocx, .doc, .xls
-
+--------------------------------------------------------------------------------
+DisplayBinaryFiles
+--------------------------------------------------------------------------------
 Quickly display binary files, like Windiff.
 No packing (no save).
 
-VC		FILE_PACK_UNPACK	DisplayXMLFiles			.xml
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: .exe, .dll, .ocx, .doc, .xls
+--------------------------------------------------------------------------------
 
+
+--------------------------------------------------------------------------------
+DisplayXMLFiles
+--------------------------------------------------------------------------------
 Display xml files nicely, by consistently inserting tabs and linebreaks.
 No packing (no save).
 
-VC		FILE_PACK_UNPACK	IgnoreCommentsC			.cpp, .cxx, .h, .hxx, .c, .php, .js
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: .xml
+--------------------------------------------------------------------------------
 
-Ignore comments in C/C++/PHP/JS files.
-No packing (no save).
 
-VB		BUFFER_PACK_UNPACK	HideLastLetter			*.last
+--------------------------------------------------------------------------------
+HideFirstLetter
+--------------------------------------------------------------------------------
+The first non-space character is invisible in the merge editor (and restored
+when saving).
 
-The last non-space character is invisible in the merge editor (and restored when saving)
-								
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: *.nofirst, *.hidefirst
+--------------------------------------------------------------------------------
 
-VB		BUFFER_PREDIFF		IgnoreTwoFirstCharsOrder	*.txt
 
-Sort the first two characters of both files before diffing
-
-VC		BUFFER_PREDIFF		RCLocalizationHelper		*.rc
-
-Ignore localized strings/layout in files .rc
-
-VC		BUFFER_PREDIFF		IgnoreColumns			*.txt
-VC		BUFFER_PREDIFF		IgnoreFieldsComma		*.csv
-VC		BUFFER_PREDIFF		IgnoreFieldsTab			*.txt
-
+--------------------------------------------------------------------------------
+IgnoreColumns, IgnoreFieldsComma, IgnoreFieldsTab
+--------------------------------------------------------------------------------
 Ignore differences in some columns or some fields (files with separators).
 Update the name of the dll to pass the list of columns/fields.
 
-VB		EDITOR_SCRIPT		ToUpper				---
-
-ToUpper : convert the selection to upper case
-
-VBS		EDITOR_SCRIPT		editor addin			---
-
-MakeUpper : convert the selection to upper case
-MakeLower : convert the selection to lower case
-
-VBS		EDITOR_SCRIPT		insert datetime			---
-
-InsertDate : insert date in the current locale
-InsertTime : insert time in the current locale
+    Language: VC
+       Event: BUFFER_PREDIFF
+ File filter: *.txt (IgnoreColumns, IgnoreFieldsTab)
+              *.csv (IgnoreFieldsComma)
+--------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------
+IgnoreCommentsC
+--------------------------------------------------------------------------------
+Ignore comments in C/C++/PHP/JS files.
+No packing (no save).
+
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: .cpp, .cxx, .h, .hxx, .c, .php, .js
+--------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------
+RCLocalizationHelper
+--------------------------------------------------------------------------------
+Ignore localized strings/layout in files .rc.
 
+    Language: VC
+       Event: BUFFER_PREDIFF
+ File filter: *.rc
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+WatchBeginningOfLog, WatchEndOfLog
+--------------------------------------------------------------------------------
+For long log files, user is often interested only in the first lines or in the
+last lines.
+
+ * "WatchBeginningOfLog" truncates the files to the first 1/10th.
+ * "WatchEndOfLog" truncates the files to the first 1/10th.
+
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: *.log
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+HideLastLetter
+--------------------------------------------------------------------------------
+The last non-space character is invisible in the merge editor (and restored
+when saving).
+
+    Language: VB
+       Event: BUFFER_PACK_UNPACK
+ File filter: *.last
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+IgnoreTwoFirstCharsOrder
+--------------------------------------------------------------------------------
+Sort the first two characters of both files before diffing.
+
+    Language: VB
+       Event: BUFFER_PREDIFF
+ File filter: *.txt
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+ToUpper
+--------------------------------------------------------------------------------
+ * "ToUpper" convert the selection to upper case.
+
+    Language: VB
+       Event: EDITOR_SCRIPT
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+UnpackDFM
+--------------------------------------------------------------------------------
+UnpackDFM is a plugin for WinMerge which allows WinMerge to compare and merge
+Delphi's binary dfm files. Written in and for Borland Delphi 4.
+Requires the runtime library vcl40.bpl, which is part of the Delphi 4 setup.
+
+    Language: Delphi
+       Event: FILE_PACK_UNPACK
+ File filter: *.dfm
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+editor addin
+--------------------------------------------------------------------------------
+ * "MakeUpper" convert the selection to upper case.
+ * "MakeLower" convert the selection to lower case.
+
+    Language: VBS
+       Event: EDITOR_SCRIPT
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+insert datetime
+--------------------------------------------------------------------------------
+ * "InsertDate" insert date in the current locale.
+ * "InsertTime" insert time in the current locale.
+
+    Language: VBS
+       Event: EDITOR_SCRIPT
+--------------------------------------------------------------------------------

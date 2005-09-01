@@ -1,3 +1,8 @@
+2005-09-01 Kimmo
+ PATCH: [ 1277316 ] New layout for list_of_sources.txt
+  Submitted by Tim
+  Plugins: list_of_sources.txt
+
 2005-08-16 Tim
  PATCH: [ 1215964 ] Rename 'list.txt' to 'Plugins.txt'
   New file: Plugins\dlls\Plugins.txt
