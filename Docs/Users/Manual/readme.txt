@@ -1,3 +1,7 @@
+2005-09-01 Kimmo
+ Bump revision number to 1.2.3
+  Manual: WinMerge_help.xml
+
 2005-08-31 Kimmo
  PATCH: [ 1276983 ] Manual: Update Quick start
   Manual: Quick_start.xml
