@@ -2,6 +2,8 @@
  PATCH: [ 1278708 ] Updated Swedish.rc for 2.4
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1276921 ] Replace 'Directory' with 'Folder' in Open-dialog
+  Src: Merge.rc
 
 2005-08-31 Jochen
  PATCH: [ 1275273 ] Convert CDirView to use LVN_GETDISPINFO
