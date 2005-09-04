@@ -1,6 +1,8 @@
 2005-09-04 Perry
  Cosmetic: Perry adding comments about usage of dllpstub
- Src: dllpstub.cpp dllpstub.h markdown.h
+  Src: dllpstub.cpp dllpstub.h markdown.h
+ Cosmetic: Adding comment about 7ZCommon.h include of dllpstub.h, which is not obvious
+  Src: 7ZCommon.h
 
 2005-09-04 Kimmo
  PATCH: [ 1281059 ] Avoid uninitialised members in CLanguageSelect

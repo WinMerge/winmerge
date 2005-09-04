@@ -1,5 +1,7 @@
 #define DllBuild_Merge7z 10 // Minimum DllBuild of Merge7z plugin required
 
+// We include dllpstub.h for Merge7z.h
+// Merge7z::Proxy embeds a DLLPSTUB
 #include "dllpstub.h"
 #include "../Merge7z/Merge7z.h"
 
