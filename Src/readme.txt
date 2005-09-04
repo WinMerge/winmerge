@@ -1,3 +1,7 @@
+2005-09-04 Perry
+ Cosmetic: Perry adding comments about usage of dllpstub
+ Src: dllpstub.cpp dllpstub.h markdown.h
+
 2005-09-04 Kimmo
  PATCH: [ 1281059 ] Avoid uninitialised members in CLanguageSelect
   Submitted by Csaba Raduly

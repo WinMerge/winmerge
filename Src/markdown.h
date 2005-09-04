@@ -27,7 +27,7 @@ struct ICONV
 extern struct ICONV::Proxy
 {
 //	ICONV dll proxy
-	DLLPSTUB stub;
+	DLLPSTUB stub; // DLLPSTUB must be followed by char array naming the DLL
 	LPCSTR ICONV[&((ICONV*)0)->END - &((ICONV*)0)->BEGIN];
 	HMODULE handle;
 	struct ICONV *operator->()

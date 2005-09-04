@@ -17,6 +17,19 @@
 
 /**
  * @brief stub class to help implement DLL proxies
+ *
+ * A DLLPSTUB must be embedded in an object followed immediately by a 
+ * char array name of the DLL to load
+ * Eg
+ *  ...
+ *  DLLPSTUB stub;
+ *  char dllname[50];
+ *
+ * If dll is not found, DLLPSTUB::Load will throw an exception
+ * If any of dwMajorVersion, dwMinorVersion, dwBuildNumber are non-zero
+ * the DLLPSTUB::Load will throw an exception (CO_S_NOTALLINTERFACES) unless
+ * the dll exports DllGetVersion and reports a version at least as high as
+ * requested by these members
  */
 struct DLLPSTUB
 {

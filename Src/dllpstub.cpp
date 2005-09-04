@@ -63,6 +63,9 @@ void DLLPSTUB::Throw(LPCSTR name, HMODULE handle, DWORD dwError, BOOL bFreeLibra
  */
 HMODULE DLLPSTUB::Load()
 {
+	// DLLPSTUB assumes that it is embedded in its owner
+	// followed by a char array of the DLL name to load
+	// so it access the char array via *(this + 1)
 	LPCSTR *proxy = (LPCSTR *) (this + 1);
 	HMODULE handle = NULL;
 	if (LPCSTR name = *proxy)
@@ -72,6 +75,10 @@ HMODULE DLLPSTUB::Load()
 			handle = LoadLibraryA(name);
 			if (handle)
 			{
+				// If any of the version members are non-zero
+				// then we require that DLL export "DllGetVersion"
+				// and report a version as least as high as our
+				// version number members
 				if (dwMajorVersion || dwMinorVersion || dwBuildNumber)
 				{
 					// Is the DLL up to date?
