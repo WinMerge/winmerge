@@ -1,3 +1,8 @@
+2005-09-04 Kimmo
+ PATCH: [ 1281059 ] Avoid uninitialised members in CLanguageSelect
+  Submitted by Csaba Raduly
+  Src/Common: LanguageSelect.cpp
+
 2005-09-01 WinMerge experimental release 2.3.5.4 (cvs)
 
 2005-09-01 Kimmo

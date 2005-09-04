@@ -193,6 +193,8 @@ const tLangDef lang_map[] =
 
 CLanguageSelect::CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMenu /*=TRUE*/, BOOL bUpdateTitle /*=TRUE*/, CWnd* pParent /*=NULL*/)
 : CDialog(CLanguageSelect::IDD, pParent)
+, m_hCurrentDll(0)
+, m_pLog(0)
 {
 	//{{AFX_DATA_INIT(CLanguageSelect)
 	//}}AFX_DATA_INIT
