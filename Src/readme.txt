@@ -3,6 +3,8 @@
   Src: dllpstub.cpp dllpstub.h markdown.h
  Cosmetic: Adding comment about 7ZCommon.h include of dllpstub.h, which is not obvious
   Src: 7ZCommon.h
+ Cosmetic: Adding class comment to union CMarkdown::_HSTR
+  Src: markdown.h
 
 2005-09-04 Kimmo
  PATCH: [ 1281059 ] Avoid uninitialised members in CLanguageSelect

@@ -3,6 +3,7 @@
 
 #include "dllpstub.h"
 
+// C++ interface to GNU libiconv functions
 struct ICONV
 {
 //	ICONV dll interface
@@ -24,6 +25,7 @@ struct ICONV
 	HMODULE END;
 };
 
+// Proxy which loads libiconv DLL (iconv.dll)
 extern struct ICONV::Proxy
 {
 //	ICONV dll proxy
@@ -110,6 +112,14 @@ public:
 	};
 	class FileImage;
 	class File;
+	// An _HSTR is a handle to a string
+	// It may be any one (and only one) of the following
+	//  - CHAR (use _HSTR::A)
+	//  - WCHAR (use _HSTR::W)
+	//  - TCHAR (use __HSTR::T)
+	//  - OLECHAR (use __HSTR::B)
+	// NB: Convert, Resolve, Entites, and Trim all require the _HSTR be an OLECHAR
+	//      as they use the member B
 	typedef union _HSTR
 	{
 		OLECHAR B[20];
