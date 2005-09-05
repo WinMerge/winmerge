@@ -1,103 +1,320 @@
-<sect1 id="Whatsnew22">
-  <title>What's new in 2.2</title>
+<?xml version="1.0" encoding="UTF-8"?>
+<sect1 id="Whatsnew">
+  <title>What's new in release</title>
+
   <sect2>
-    <title>Unicode support</title>
-    <para>WinMerge 2.2 is distributed with an ANSI executable (<filename>WinMerge.exe</filename>) for Windows 95/98/ME, and a Unicode executable (<filename>WinMergeU.exe</filename>) for Windows NT /200/XP. The unicode executable supports UCS-2 and UTF-8 files and filenames.</para>
+    <title>What's new in 2.4</title>
+
+    <para>WinMerge 2.4 is an important update to 2.2. Great new features and
+    usability improvements. And bug fixes.</para>
+
+    <sect3>
+      <title>Multi-document support</title>
+
+      <para>Now it is possible to open (after enabled from Options) several
+      folder- and file-compare windows inside one WinMerge instance. This
+      changes the way work is done with WinMerge.</para>
+    </sect3>
+
+    <sect3>
+      <title>Limit to single-instance</title>
+
+      <para>WinMerge can be now limited to one instance. Opening new files
+      from commandline, shell extension or external application opens new
+      windows instead of new instances.</para>
+    </sect3>
+
+    <sect3>
+      <title>Active compare paths are shown in WinMerge caption</title>
+
+      <para>This helps when switching between different instances in Task
+      Manager or in Task Switcher (<keycombo>
+          <keycap>Alt</keycap>
+
+          <keycap>Tab</keycap>
+        </keycombo>).</para>
+    </sect3>
+
+    <sect3>
+      <title>Improved archive files support</title>
+
+      <para>Archive file support is greatly improved:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Archive files can be opened from folder compare</para>
+        </listitem>
+
+        <listitem>
+          <para>WinMerge can (optionally) detect archive files from file
+          signature. This allows for example Open Office files to be detected
+          as archive files and opened.</para>
+        </listitem>
+
+        <listitem>
+          <para>Path to archive file and path inside archive is shown instead
+          of path to temporary folder</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3>
+      <title>Faster folder compare</title>
+
+      <para>Lots of important improvements have been implemented:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>New <guilabel>Quick Contents</guilabel> -compare methdod
+          allows faster compares</para>
+        </listitem>
+
+        <listitem>
+          <para>Available memory does not anymore restrict maximun
+          filesize</para>
+        </listitem>
+
+        <listitem>
+          <para>Compare statepane shows progressbar and compared/total amount
+          of items</para>
+        </listitem>
+
+        <listitem>
+          <para>Possible to re-compare only selected items (from context
+          menu)</para>
+        </listitem>
+
+        <listitem>
+          <para>Items can be hidden from view</para>
+        </listitem>
+
+        <listitem>
+          <para>Simple reports</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3>
+      <title>More usable file compare</title>
+
+      <para>Showing line difference for all diffs (enabled from View-menu) is
+      the most important change. Others include:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Character difference highlighting (more fine-grained
+          differences)</para>
+        </listitem>
+
+        <listitem>
+          <para>Selecting syntax highligh colors</para>
+        </listitem>
+
+        <listitem>
+          <para>Merge all selected differences with normal merge commands
+          (separate commands removed)</para>
+        </listitem>
+
+        <listitem>
+          <para>Opening files to external editor from file compare</para>
+        </listitem>
+
+        <listitem>
+          <para>Punctuation characters can break diffs in line differences (so
+          numbers separated by commas get properly highlighted as
+          diffs)</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3>
+      <title>Project files user interface</title>
+
+      <para>Project files can be loaded from menu <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Open Project...</guimenuitem>
+        </menuchoice>. And project files can be saved from
+      <guilabel>Open</guilabel> dialog.</para>
+    </sect3>
+  </sect2>
+
+  <sect2>
+    <title>What's new in 2.2</title>
+
+    <para>WinMerge 2.2 is distributed with an ANSI executable
+    (<filename>WinMerge.exe</filename>) for Windows 95/98/ME, and a Unicode
+    executable (<filename>WinMergeU.exe</filename>) for Windows NT /200/XP.
+    The unicode executable supports UCS-2 and UTF-8 files and
+    filenames.</para>
+
     <note>
-      <para>It is unfortunate that two executable files are needed. But there is no current way to get only one executable working. MS Unicode layer does not help WinMerge since WinMerge needs to be able to compare files in different codepages.</para>
+      <para>It is unfortunate that two executable files are needed. But there
+      is no current way to get only one executable working. MS Unicode layer
+      does not help WinMerge since WinMerge needs to be able to compare files
+      in different codepages.</para>
     </note>
-  </sect2>
-  <sect2>
-    <title>Archive support</title>
-    <para>WinMerge 2.2 can open and save several archive types. Archive support requires installing 7-zip. Refer to <filename>Read Me.rtf</filename> file for info about compatible 7-zip versions. 7-zip can be downloaded from <ulink url="http://www.7-zip.org/">7-zip.org</ulink>.</para>
-  </sect2>
-  <sect2>
-    <title>Shell integration</title>
-    <para>WinMerge 2.2 can be integrated into the Windows Shell. Shell integration adds a "<guimenuitem>WinMerge</guimenuitem>" menuitem to Windows Explorer's context menu for easy and fast comparing files and directories.</para>
-  </sect2>
-  <sect2>
-    <title>Selecting filter from commandline</title>
-    <para>New <option>-f</option> commandline switch allows selecting used filter or mask for files.</para>
-  </sect2>
-  <sect2>
-    <title>Project files</title>
-    <para>WinMerge can read paths to open from project files. Project files are simple XML files storing one or two paths, and also possibly the choice of which filter to use and whether to include subfolders.</para>
-  </sect2>
-  <sect2>
-    <title>Generating patches</title>
-    <para><ulink url="http://www.gnu.org/software/diffutils/diffutils.html">GNU/diffutils</ulink> compatible patch files can be created from two files. Several formats and compare options are supported.</para>
-  </sect2>
-  <sect2>
-    <title>Plugins</title>
-    <para>Plugins are now supported to preprocess files before actual comparison, or to extend editor functionality. Plugins can be programmed using several languages supporting COM. Example plugins are included.</para>
-  </sect2>
-  <sect2>
-    <title>Improved directory compare</title>
-    <para>Many new features and improvements:</para>
-    <itemizedlist>
-      <listitem>
-        <para>More columns have been added (e.g. file sizes and attributes), and columns may be reordered, hidden, and displayed.</para>
-      </listitem>
-      <listitem>
-        <para>Filtered items now have a distinct category (<guilabel>Skipped</guilabel>) and icons. Filtered items can be set to hidden/visible from <guimenu>View</guimenu>-menu.</para>
-      </listitem>
-      <listitem>
-        <para>There is a new floating statusbar during the compare process, and comparison may be aborted, and the the files/dirs compared so far are shown.</para>
-      </listitem>
-      <listitem>
-        <para>Newer file/directory is indicated with asterisk (<guilabel>*</guilabel>) in date field.</para>
-      </listitem>
-      <listitem>
-        <para>One or both directories can be set read-only, preventing accidental overwriting.</para>
-      </listitem>
-      <listitem>
-        <para>The number of selected items is shown in the statusbar.</para>
-      </listitem>
-    </itemizedlist>
-  </sect2>
-  <sect2>
-    <title>Improved file compare</title>
-    <para>Many new features and improvements:</para>
-    <itemizedlist>
-      <listitem>
-        <para>Rewritten undo/redo code.</para>
-      </listitem>
-      <listitem>
-        <para>Fixed "<guilabel>Ignore blank lines</guilabel>" feature.</para>
-      </listitem>
-      <listitem>
-        <para>Enhanced EOL handling (files can contain different EOL styles in one file).</para>
-      </listitem>
-      <listitem>
-        <para>Linenumber, current column and char, line length and char count shown in statusbar.</para>
-      </listitem>
-      <listitem>
-        <para>One ot both files can be set read-only to prevent accidental edits.</para>
-      </listitem>
-      <listitem>
-        <para>Copy difference to left/right and advance to next makes merging faster.</para>
-      </listitem>
-      <listitem>
-        <para>Diff pane to show current difference in two vertical panes.</para>
-      </listitem>
-      <listitem>
-        <para>Highlight word differences in lines.</para>
-      </listitem>
-      <listitem>
-        <para>Merge-mode (or 1.7 mode) to navigate and merge differences easier and faster.</para>
-      </listitem>
-      <listitem>
-        <para>Goto -dialog for moving fast to certain line or difference.</para>
-      </listitem>
-      <listitem>
-        <para>Location pane showing overall picture from files and allowing moving to location by double-clicking.</para>
-      </listitem>
-      <listitem>
-        <para>Moved lines detection. Moved lines can be shown with different color in file area and location pane.</para>
-      </listitem>
-      <listitem>
-        <para>More color options. Text color, missing line colors and moved line colors can be configured.</para>
-      </listitem>
-    </itemizedlist>
+
+    <sect3>
+      <title>Archive support</title>
+
+      <para>WinMerge 2.2 can open and save several archive types. Archive
+      support requires installing 7-zip. Refer to <filename>Read
+      Me.rtf</filename> file for info about compatible 7-zip versions. 7-zip
+      can be downloaded from <ulink
+      url="http://www.7-zip.org/">7-zip.org</ulink>.</para>
+    </sect3>
+
+    <sect3>
+      <title>Shell integration</title>
+
+      <para>WinMerge 2.2 can be integrated into the Windows Shell. Shell
+      integration adds a "<guimenuitem>WinMerge</guimenuitem>" menuitem to
+      Windows Explorer's context menu for easy and fast comparing files and
+      directories.</para>
+    </sect3>
+
+    <sect3>
+      <title>Selecting filter from commandline</title>
+
+      <para>New <option>-f</option> commandline switch allows selecting used
+      filter or mask for files.</para>
+    </sect3>
+
+    <sect3>
+      <title>Project files</title>
+
+      <para>WinMerge can read paths to open from project files. Project files
+      are simple XML files storing one or two paths, and also possibly the
+      choice of which filter to use and whether to include subfolders.</para>
+    </sect3>
+
+    <sect3>
+      <title>Generating patches</title>
+
+      <para><ulink
+      url="http://www.gnu.org/software/diffutils/diffutils.html">GNU/diffutils</ulink>
+      compatible patch files can be created from two files. Several formats
+      and compare options are supported.</para>
+    </sect3>
+
+    <sect3>
+      <title>Plugins</title>
+
+      <para>Plugins are now supported to preprocess files before actual
+      comparison, or to extend editor functionality. Plugins can be programmed
+      using several languages supporting COM. Example plugins are
+      included.</para>
+    </sect3>
+
+    <sect3>
+      <title>Improved directory compare</title>
+
+      <para>Many new features and improvements:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>More columns have been added (e.g. file sizes and attributes),
+          and columns may be reordered, hidden, and displayed.</para>
+        </listitem>
+
+        <listitem>
+          <para>Filtered items now have a distinct category
+          (<guilabel>Skipped</guilabel>) and icons. Filtered items can be set
+          to hidden/visible from <guimenu>View</guimenu>-menu.</para>
+        </listitem>
+
+        <listitem>
+          <para>There is a new floating statusbar during the compare process,
+          and comparison may be aborted, and the the files/dirs compared so
+          far are shown.</para>
+        </listitem>
+
+        <listitem>
+          <para>Newer file/directory is indicated with asterisk
+          (<guilabel>*</guilabel>) in date field.</para>
+        </listitem>
+
+        <listitem>
+          <para>One or both directories can be set read-only, preventing
+          accidental overwriting.</para>
+        </listitem>
+
+        <listitem>
+          <para>The number of selected items is shown in the statusbar.</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
+
+    <sect3>
+      <title>Improved file compare</title>
+
+      <para>Many new features and improvements:</para>
+
+      <itemizedlist>
+        <listitem>
+          <para>Rewritten undo/redo code.</para>
+        </listitem>
+
+        <listitem>
+          <para>Fixed "<guilabel>Ignore blank lines</guilabel>"
+          feature.</para>
+        </listitem>
+
+        <listitem>
+          <para>Enhanced EOL handling (files can contain different EOL styles
+          in one file).</para>
+        </listitem>
+
+        <listitem>
+          <para>Linenumber, current column and char, line length and char
+          count shown in statusbar.</para>
+        </listitem>
+
+        <listitem>
+          <para>One ot both files can be set read-only to prevent accidental
+          edits.</para>
+        </listitem>
+
+        <listitem>
+          <para>Copy difference to left/right and advance to next makes
+          merging faster.</para>
+        </listitem>
+
+        <listitem>
+          <para>Diff pane to show current difference in two vertical
+          panes.</para>
+        </listitem>
+
+        <listitem>
+          <para>Highlight word differences in lines.</para>
+        </listitem>
+
+        <listitem>
+          <para>Merge-mode (or 1.7 mode) to navigate and merge differences
+          easier and faster.</para>
+        </listitem>
+
+        <listitem>
+          <para>Goto -dialog for moving fast to certain line or
+          difference.</para>
+        </listitem>
+
+        <listitem>
+          <para>Location pane showing overall picture from files and allowing
+          moving to location by double-clicking.</para>
+        </listitem>
+
+        <listitem>
+          <para>Moved lines detection. Moved lines can be shown with different
+          color in file area and location pane.</para>
+        </listitem>
+
+        <listitem>
+          <para>More color options. Text color, missing line colors and moved
+          line colors can be configured.</para>
+        </listitem>
+      </itemizedlist>
+    </sect3>
   </sect2>
 </sect1>
