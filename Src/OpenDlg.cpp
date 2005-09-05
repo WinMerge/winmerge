@@ -595,7 +595,6 @@ void COpenDlg::OnSaveProjectButton()
 	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
 	UpdateData(TRUE);
-	
 
 	// get long name
 	CString strRight = paths_GetLongPath(m_strRight);
@@ -619,29 +618,19 @@ void COpenDlg::OnSaveProjectButton()
 
 	CString strFileFilter;
 	strFileFilter.LoadString(IDS_PROJECTFILES);
-	CString strFileExt;
-	strFileExt.LoadString(IDS_PROJECTFILES_EXT);
-	// show a fileopen dialog with the WinMerge extension
-	CFileDialog dlg(false,strFileExt,0,0,strFileFilter);
-	
+
 	// get the default projects path
 	CMainFrame* pFrame = (CMainFrame*) theApp.m_pMainWnd;
+	CString strProjectFileName;
 	CString strProjectPath = pFrame->m_options.GetString(OPT_PROJECTS_PATH);
-	// set the initial directory to the projects path if present
-	if (!strProjectPath.IsEmpty())
-		dlg.m_ofn.lpstrInitialDir = strProjectPath;
 
-	if (dlg.DoModal() != IDOK)
+	if (!::SelectFile(strProjectFileName, strProjectPath, NULL, IDS_PROJECTFILES, FALSE))
 		return;
 
 	// get the path part from the filename
-	CString strFileName = dlg.GetPathName();
-	strProjectPath = paths_GetParentPath(strFileName);
+	strProjectPath = paths_GetParentPath(strProjectFileName);
 	// store this as the new project path
 	pFrame->m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
-
-	//get the chosen filename
-	CString strProjectFileName = strFileName;
 
 	// If prefix found from start..
 	if (strExt.Find(filterPrefix, 0) == 0)
@@ -650,7 +639,7 @@ void COpenDlg::OnSaveProjectButton()
 		strExt.Delete(0, filterPrefix.GetLength());
 	}
 	
-	ProjectFile pfile;	
+	ProjectFile pfile;
 
 	//set the member of the project file
 	pfile.SetLeft(strLeft);

@@ -1,3 +1,7 @@
+2005-09-05 Kimmo
+ PATCH: [ 1281735 ] Don't silently overwrite project file
+  Src: OpenDlg.cpp
+
 2005-09-04 Perry
  Cosmetic: Perry adding comments about usage of dllpstub
   Src: dllpstub.cpp dllpstub.h markdown.h
