@@ -158,6 +158,7 @@ private:
 	BOOL IsItemDeletableOnRight(const DIFFITEM & di);
 	BOOL IsItemDeletableOnBoth(const DIFFITEM & di);
 	BOOL IsItemOpenable(const DIFFITEM & di) const;
+	BOOL AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) const;
 	BOOL IsItemOpenableOnLeft(const DIFFITEM & di);
 	BOOL IsItemOpenableOnRight(const DIFFITEM & di);
 	BOOL IsItemOpenableOnLeftWith(const DIFFITEM & di);
@@ -360,6 +361,7 @@ protected:
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);
+	bool GetSelectedItems(int * sel1, int * sel2);
 	void OpenParentDirectory();
 	void DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType);
 	void DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType);

@@ -911,6 +911,21 @@ BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 	// everything else can be opened
 	return TRUE;
 }
+/// is it possible to compare these two items?
+BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) const
+{
+	// Must not be binary
+	if (di1.isBin() || di2.isBin()) return FALSE;
+
+	// Must be both directory or neither
+	if (di1.isDirectory() != di2.isDirectory()) return FALSE;
+
+	// Must be on different sides
+	if (di1.isSideLeft() && di2.isSideRight()) return TRUE;
+	if (di1.isSideRight() && di2.isSideLeft()) return TRUE;
+
+	return FALSE;
+}
 /// is it possible to open left item ?
 BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
 {

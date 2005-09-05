@@ -1,3 +1,7 @@
+2005-09-05, Perry
+ PATCH: [ 1281371 ] Allow comparing 2 items against each other in DirView
+  Src: DirActions.cpp DirView.cpp DirView.h
+
 2005-09-05 Kimmo
  PATCH: [ 1281735 ] Don't silently overwrite project file
   Src: OpenDlg.cpp

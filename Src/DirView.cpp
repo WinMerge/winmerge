@@ -851,80 +851,212 @@ void CDirView::OpenParentDirectory()
 }
 
 /**
+ * @brief Get one or two selected items
+ *
+ * Returns false if 0 or more than 2 items selecte
+ */
+bool CDirView::GetSelectedItems(int * sel1, int * sel2)
+{
+	*sel2 = -1;
+	*sel1 = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	if (*sel1 == -1)
+		return false;
+	*sel2 = m_pList->GetNextItem(*sel1, LVNI_SELECTED);
+	if (*sel2 == -1)
+		return true;
+	int extra = m_pList->GetNextItem(*sel2, LVNI_SELECTED);
+	return (extra ==-1);
+}
+
+/**
  * @brief Open selected files or directories.
  *
  * Opens selected files to file compare. If comparing
  * directories non-recursively, then subfolders and parent
  * folder are opened too.
- * @todo This just opens first selected item - should
- * it do something different when multiple items are selected ?
+ *
+ * This handles the case that one item is selected
+ * and the case that two items are selected (one on each side)
  */
 void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
 	int sel = -1;
 	CDirDoc * pDoc = GetDocument();
 
-	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
-	{
-		POSITION diffpos = GetItemKey(sel);
 
-		// Browse to parent folder(s) selected, SPECIAL_ITEM_POS is position for
-		// special items, but there is currenly only one (parent folder)
-		if (diffpos == (POSITION) SPECIAL_ITEM_POS)
+	// First, figure out what was selected (store into pos1 & pos2)
+
+	POSITION pos1 = NULL, pos2 = NULL;
+	int sel1=-1, sel2=-1;
+	if (!GetSelectedItems(&sel1, &sel2))
+	{
+		// Must have 1 or 2 items selected
+		// Not valid action
+		return;
+	}
+
+	pos1 = GetItemKey(sel1);
+	ASSERT(pos1);
+	if (sel2 != -1)
+		pos2 = GetItemKey(sel2);
+
+	// Now handle the various cases of what was selected
+
+	if (pos1 == (POSITION) SPECIAL_ITEM_POS)
+	{
+		if (!pos2)
 		{
+			// Browse to parent folder(s) selected
+			// SPECIAL_ITEM_POS is position for
+			// special items, but there is currenly 
+			// only one (parent folder)
 			OpenParentDirectory();
-			break;
+			return;
+		}
+		else
+		{
+			// Parent directory & something else selected
+			// Not valid action
+			return;
+		}
+	}
+
+	// Common variables which both code paths below are responsible for setting
+	CString pathLeft, pathRight;
+	DIFFITEM *di1=NULL, *di2=NULL; // left & right items (di1==di2 if single selection)
+	bool isdir=false; // set if we're comparing directories
+
+	if (pos2)
+	{
+		// Two items selected, get their info
+		di1 = &pDoc->GetDiffRefByKey(pos1);
+		di2 = &pDoc->GetDiffRefByKey(pos2);
+
+		// If di1 is on right, switch them, so #1 is left
+		if (di1->isSideRight() && di2->isSideLeft())
+		{
+			DIFFITEM * temp = di1;
+			di1 = di2;
+			di2 = temp;
+			int num = sel1;
+			sel1 = sel2;
+			sel2 = num;
+		}
+		// Are they on different sides?
+		if (!di1->isSideLeft() || !di2->isSideRight())
+		{
+			// Not on different sides
+			// Not valid action
+			return;
+		}
+		// Fill in pathLeft & pathRight
+		CString temp;
+		GetItemFileNames(sel1, pathLeft, temp);
+		GetItemFileNames(sel2, temp, pathRight);
+
+		if (di1->isDirectory() && di2->isDirectory())
+		{
+			isdir=true;
+			if (GetPairComparability(pathLeft, pathRight) != IS_EXISTING_DIR)
+			{
+				AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+				return;
+			}
+		}
+		else if (di1->isDirectory() || di2->isDirectory())
+		{
+			// One is a file and one is a directory
+			// Not valid action
+			return;
 		}
 
-		DIFFITEM & di = pDoc->GetDiffRefByKey((POSITION)diffpos);
+		if (di1->isBin() || di2->isBin())
+		{
+			// At least one is binary
+			// Not valid action
+			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
+			return;
+		}
+	}
+	else
+	{
+		// Only one item selected, so perform diff on its sides
 
-		PathContext paths;
-		GetItemFileNames(sel, &paths);
+		di1 = &pDoc->GetDiffRefByKey(pos1);
+		di2 = di1;
 
-		if (di.isDirectory() && (di.isSideLeft() == di.isSideRight()))
+		GetItemFileNames(sel1, pathLeft, pathRight);
+
+		if (di1->isDirectory() && (di1->isSideLeft() == di1->isSideRight()))
 		{
 			if (pDoc->GetRecursive())
+			{
 				AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+				return;
+			}
 			else
 			{
 				// Open subfolders if non-recursive compare
 				// Don't add folders to MRU
-				if (GetPairComparability(paths.GetLeft(), paths.GetRight()) == IS_EXISTING_DIR)
-					mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
-				else
+				if (GetPairComparability(pathLeft, pathRight) != IS_EXISTING_DIR)
+				{
 					AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
-			}
-			break;
-		}
-		else if (di.isSideLeft() || di.isSideRight())
-			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
-		else if (HasZipSupport() && ArchiveGuessFormat(paths.GetLeft()) && ArchiveGuessFormat(paths.GetRight()))
-		{
-			// Open archives, not adding paths to MRU
-			mf->DoFileOpen(paths.GetLeft(), paths.GetRight(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
-		}
-		else if (di.isBin())
-			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
-		else
-		{
-			// Close open documents first (ask to save unsaved data)
-			if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS))
-			{
-				if (!pDoc->CloseMergeDocs())
 					return;
+				}
+				// Fall through and compare directories
 			}
+		}
+		else if (di1->isSideLeft() || di1->isSideRight())
+		{
+			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+			return;
+		}
+		else if (di1->isBin())
+		{
+			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
+			return;
+		}
+		// Fall through and compare files (which may be archives)
+	}
 
-			// Open identical and different files
-			BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
-			BOOL bRightRO = pDoc->GetReadOnly(FALSE);
+	// Now pathLeft, pathRight, di1, di2, and isdir are all set
+	// We have two items to compare, no matter whether same or different underlying DirView item
 
-			int rtn = mf->ShowMergeDoc(pDoc, paths.GetLeft(), paths.GetRight(),
-				bLeftRO, bRightRO,
-				di.left.codepage, di.right.codepage,
-				infoUnpacker);
-			if (rtn == OPENRESULTS_FAILED_BINARY)
+	if (isdir)
+	{
+		// Open subfolders
+		// Don't add folders to MRU
+		mf->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+	}
+	else if (HasZipSupport() && ArchiveGuessFormat(pathLeft) && ArchiveGuessFormat(pathRight))
+	{
+		// Open archives, not adding paths to MRU
+		mf->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+	}
+	else
+	{
+		// Regular file case
+
+		// Close open documents first (ask to save unsaved data)
+		if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS))
+		{
+			if (!pDoc->CloseMergeDocs())
+				return;
+		}
+
+		// Open identical and different files
+		BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
+		BOOL bRightRO = pDoc->GetReadOnly(FALSE);
+
+		int rtn = mf->ShowMergeDoc(pDoc, pathLeft, pathRight,
+			bLeftRO, bRightRO,
+			di1->left.codepage, di2->right.codepage,
+			infoUnpacker);
+		if (rtn == OPENRESULTS_FAILED_BINARY)
+		{
+			if (di1 == di2)
 			{
-				di.setBin();
+				di1->setBin();
 				GetDocument()->ReloadItemStatus(sel, FALSE, FALSE);
 			}
 		}
@@ -1294,16 +1426,35 @@ void CDirView::OnUpdateCtxtDirOpenRightWith(CCmdUI* pCmdUI)
 // Used for Open
 void CDirView::DoUpdateOpen(CCmdUI* pCmdUI)
 {
-	BOOL bEnable = FALSE;
-	int sel = GetSingleSelectedItem();
-	if (sel != -1)
+	int sel1=-1, sel2=-1;
+	if (!GetSelectedItems(&sel1, &sel2))
 	{
-		const DIFFITEM& di = GetDiffItem(sel);
-		if (IsItemOpenable(di))
-			bEnable = TRUE;
+		// 0 items or more than 2 items seleted
+		pCmdUI->Enable(FALSE);
+		return;
 	}
-
-	pCmdUI->Enable(bEnable);
+	if (sel2 == -1)
+	{
+		// One item selected
+		const DIFFITEM& di = GetDiffItem(sel1);
+		if (!IsItemOpenable(di))
+		{
+			pCmdUI->Enable(FALSE);
+			return;
+		}
+	}
+	else
+	{
+		// Two items selected
+		const DIFFITEM& di1 = GetDiffItem(sel1);
+		const DIFFITEM& di2 = GetDiffItem(sel2);
+		if (!AreItemsOpenable(di1, di2))
+		{
+			pCmdUI->Enable(FALSE);
+			return;
+		}
+	}
+	pCmdUI->Enable(TRUE);
 }
 
 // used for OpenLeft
