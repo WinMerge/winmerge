@@ -335,9 +335,6 @@ Source: MergeProject.ico; DestDir: {app}; Flags: promptifolder; Components: Core
 ; List of installed files
 Source: ..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
-;Installs the ComCtl32.dll update on any system where its DLLs are more recent
-Source: Runtimes\50comupd.exe; DestDir: {tmp}; Flags: DeleteAfterInstall; Check: InstallComCtlUpdate
-
 ; We still need APPHelp.dll!
 
 ; begin VC system files
@@ -492,9 +489,6 @@ Root: HKCU; SubKey: Software\Microsoft\Windows\CurrentVersion\Explorer\MenuOrder
 
 
 [Run]
-;Installs the Microsoft Common Controls Update
-Filename: {tmp}\50comupd.exe; Parameters: /r:n /q:1; StatusMsg: {cm:UpdatingCommonControls}; Check: InstallComCtlUpdate
-
 ;This will no longer appear unless the user chose to make a start menu group in the first place
 Filename: {win}\Explorer.exe; Description: {cm:ViewStartMenuFolder}; Parameters: """{group}"""; Flags: waituntilidle postinstall skipifsilent unchecked; Check: GroupCreated
 
@@ -515,10 +509,6 @@ Name: {app}; Type: dirifempty
 
 
 [Code]
-Var
-    {Determines two things whether or not ComCtrl is needed and whether or not we've already checked}
-    intComCtlNeeded: Integer;
-
 {Determines whether or not the user chose to create a start menu}
 Function GroupCreated(): boolean;
 Var
@@ -805,35 +795,6 @@ Begin
 	else
 	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "' + strVersion + '.  The version detected did not meet the required value.', mbInformation, MB_OK);
     }
-end;
-
-{Determines whether or not to Install the Comctl Update
-Note: this confusing code isn't Seier's it's from jrsoftware.org :)
-}
-function InstallComCtlUpdate: Boolean;
-var
-  MS, LS: Cardinal;
-begin
-    Case intComCtlNeeded of
-        -1: Result := False;
-        0:
-            begin
-
-                // Only install if the existing comctl32.dll is < 5.80
-                Result := False;
-                intComCtlNeeded := -1;
-                if GetVersionNumbers(ExpandConstant('{sys}\comctl32.dll'), MS, LS) then
-                    begin
-                        if MS < $00050050 then
-                            begin
-                                Result := True;
-                                intComCtlNeeded := 1
-                            end;
-                    end
-            end;
-        1: Result := True;
-
-    end;
 end;
 
 {Install Plugins.txt if plugins are installed}

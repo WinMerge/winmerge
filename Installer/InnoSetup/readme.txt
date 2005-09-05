@@ -1,3 +1,8 @@
+2005-09-05 Kimmo
+ PATCH: [ 1281638 ] Drop ComCtl32 update from installer
+  InnoSetup: WinMerge.iss
+  Removed file InnoSetup/Runtimes: 50comupd.exe  
+
 2005-09-01 Kimmo
  PATCH: [ 1277750 ] Uninstall Merge7z
   InnoSetup: WinMerge.iss
