@@ -449,10 +449,10 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: string; ValueN
 
 ;Enables or disables the Context Menu preference based on what the user selects during install
 ;Initially the Context menu is explicitly disabled:
-Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 0
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 0; Check: not IsTaskSelected('ShellExtension')
 
 ;If the user chose to use the context menu then we re-enable it.  This is necessary so it'll turn on and off not just on.
-Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge; ValueType: dword; ValueName: ContextMenuEnabled; ValueData: 1; Tasks: ShellExtension; Check: not ShellMenuEnabled()
 
 ;If WinMerge.exe is installed then we'll automatically configure WinMerge as the differencing application
 Root: HKCU; SubKey: Software\TortoiseCVS; ValueType: string; ValueName: External Diff Application; ValueData: {app}\{code:ExeName}; Flags: uninsdeletevalue; Tasks: TortoiseCVS
@@ -923,4 +923,14 @@ Begin
     If CurPage = wpInstalling Then
             {Delete the previous start menu group if the location has changed since the last install}
             DeletePreviousStartMenu;
+End;
+
+// Checks if context menu is already enabled for shell extension
+// If so, we won't overwrite its existing value in [Registry] section
+Function ShellMenuEnabled(): Boolean;
+Begin
+  If RegValueExists(HKCU, 'Software\Thingamahoochie\WinMerge', 'ContextMenuEnabled') Then
+    result := True
+  Else
+    result := False;
 End;

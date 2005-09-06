@@ -1,3 +1,7 @@
+2005-09-06 Kimmo
+ PATCH: [ 1282479 ] Don't set shell context menu to default value
+  InnoSetup: WinMerge.iss
+
 2005-09-05 Kimmo
  PATCH: [ 1281638 ] Drop ComCtl32 update from installer
   InnoSetup: WinMerge.iss
