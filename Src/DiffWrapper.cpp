@@ -1744,7 +1744,8 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 			}
 			if (!eof[i] && bfend[i]<countof(buff[i])-1)
 			{
-				int rtn = fread(buff[i], 1, countof(buff[i]), fp[i]);
+				int space = countof(buff[i]) - bfend[i];
+				int rtn = fread(&buff[i][bfend[i]], 1, space, fp[i]);
 				if (ferror(fp[i]))
 					return DIFFCODE::CMPERR;
 				if (feof(fp[i]))

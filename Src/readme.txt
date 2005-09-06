@@ -1,3 +1,8 @@
+2005-09-06 Kimmo
+ PATCH: [ 1273040 ] Fix buffer handling in Quick Compare
+  Submitted by Perry
+  Src: DiffWrapper.cpp
+
 2005-09-05, Perry
  PATCH: [ 1281371 ] Allow comparing 2 items against each other in DirView
   Src: DirActions.cpp DirView.cpp DirView.h
