@@ -12,6 +12,7 @@
 class CStaticLink : public CStatic {
 public:
 	CStaticLink();
+	~CStaticLink();
 
 	// you can change these any time:
 	COLORREF	 m_colorUnvisited;		 // color for unvisited
@@ -26,9 +27,11 @@ public:
 protected:
 	DECLARE_DYNAMIC(CStaticLink)
 	CFont		 m_font;						 // underline font for text control
+	HCURSOR		m_hCursor;
 
 	// message handlers
 	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	afx_msg void	OnClicked();
+	afx_msg BOOL OnSetCursor(WPARAM wParam, LPARAM lParam);
 	DECLARE_MESSAGE_MAP()
 };

@@ -1401,6 +1401,10 @@ SOURCE=.\res\folderskip.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\hand.cur
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\lfile.bmp
 # End Source File
 # Begin Source File

@@ -2,6 +2,12 @@
  PATCH: [ 1273040 ] Fix buffer handling in Quick Compare
   Submitted by Perry
   Src: DiffWrapper.cpp
+ PATCH: [ 1282322 ] Use different cursor (hand) with static link
+  Src: Merge.dsp Merge.rc resource.h
+  Src/Common: StatLink.cpp StatLink.h
+  Src/res new file: hand.cur
+  Src/Languages: *.rc resource.h
+  Src/Languages/*/res new file: hand.cur
 
 2005-09-05, Perry
  PATCH: [ 1281371 ] Allow comparing 2 items against each other in DirView

@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////
-// CStaticLink 1997 Microsoft Systems Journal. 
+// CStaticLink 1997 Microsoft Systems Journal.
 // If this program works, it was written by Paul DiLascia.
 // If not, I don't know who wrote it.
 //
@@ -9,6 +9,7 @@
 //
 #include "StdAfx.h"
 #include "StatLink.h"
+#include "resource.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,6 +22,7 @@ IMPLEMENT_DYNAMIC(CStaticLink, CStatic)
 BEGIN_MESSAGE_MAP(CStaticLink, CStatic)
 	ON_WM_CTLCOLOR_REFLECT()
 	ON_CONTROL_REFLECT(STN_CLICKED, OnClicked)
+	ON_WM_SETCURSOR()
 END_MESSAGE_MAP()
 
 ///////////////////
@@ -31,6 +33,12 @@ CStaticLink::CStaticLink()
 	m_colorUnvisited = RGB(0,0,255);		 // blue
 	m_colorVisited   = RGB(128,0,128);	 // purple
 	m_bVisited       = FALSE;				 // not visited yet
+	m_hCursor = ::LoadCursor(AfxGetInstanceHandle(), MAKEINTRESOURCE(IDR_MERGEHAND));
+}
+
+CStaticLink::~CStaticLink()
+{
+	DestroyCursor(m_hCursor);
 }
 
 //////////////////
@@ -46,7 +54,7 @@ HBRUSH CStaticLink::CtlColor(CDC* pDC, UINT /*nCtlColor*/)
 		// Otherwise, I'll never get any mouse clicks!
 		::SetWindowLong(m_hWnd, GWL_STYLE, dwStyle | SS_NOTIFY);
 	}
-	
+
 	HBRUSH hbr = NULL;
 	if ((dwStyle & 0xFF) <= SS_RIGHT) {
 
@@ -90,4 +98,11 @@ void CStaticLink::OnClicked()
 		TRACE(_T("*** WARNING: CStaticLink: unable to execute file %s\n"),
 			(LPCTSTR)m_link);
 	}
+}
+
+BOOL CStaticLink::OnSetCursor(WPARAM wParam, LPARAM lParam)
+{
+	ASSERT(m_hCursor != NULL);
+	::SetCursor(m_hCursor);
+	return TRUE;
 }

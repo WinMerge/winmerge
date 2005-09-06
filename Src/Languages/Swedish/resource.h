@@ -14,6 +14,7 @@
 #define IDR_MERGEVIEWMENU               109
 #define IDR_DIRVIEWMENU                 110
 #define IDR_DOC_FOLDERCMP               111
+#define IDR_MERGEHAND                   112
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202
@@ -878,13 +879,13 @@
 #define ID_VIEW_SHOWHIDDENITEMS         33096
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        228
 #define _APS_NEXT_COMMAND_VALUE         33096
 #define _APS_NEXT_CONTROL_VALUE         1199
-#define _APS_NEXT_SYMED_VALUE           111
+#define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

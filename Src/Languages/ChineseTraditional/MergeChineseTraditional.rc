@@ -1611,6 +1611,7 @@ IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 //
 
 IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
+IDR_MERGEHAND           CURSOR                  "res\\hand.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
