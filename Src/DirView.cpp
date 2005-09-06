@@ -932,8 +932,13 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		di1 = &pDoc->GetDiffRefByKey(pos1);
 		di2 = &pDoc->GetDiffRefByKey(pos2);
 
-		// If di1 is on right, switch them, so #1 is left
-		if (di1->isSideRight() && di2->isSideLeft())
+		// Check for binary & side compatibility & file/dir compatibility
+		if (!AreItemsOpenable(*di1, *di2))
+		{
+			return;
+		}
+		// Ensure that di1 is on left (swap if needed)
+		if (di1->isSideRight() || (di1->isSideBoth() && di2->isSideLeft()))
 		{
 			DIFFITEM * temp = di1;
 			di1 = di2;
@@ -942,40 +947,19 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			sel1 = sel2;
 			sel2 = num;
 		}
-		// Are they on different sides?
-		if (!di1->isSideLeft() || !di2->isSideRight())
-		{
-			// Not on different sides
-			// Not valid action
-			return;
-		}
 		// Fill in pathLeft & pathRight
 		CString temp;
 		GetItemFileNames(sel1, pathLeft, temp);
 		GetItemFileNames(sel2, temp, pathRight);
 
-		if (di1->isDirectory() && di2->isDirectory())
+		if (di1->isDirectory())
 		{
 			isdir=true;
 			if (GetPairComparability(pathLeft, pathRight) != IS_EXISTING_DIR)
 			{
 				AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 				return;
-			}
-		}
-		else if (di1->isDirectory() || di2->isDirectory())
-		{
-			// One is a file and one is a directory
-			// Not valid action
-			return;
-		}
-
-		if (di1->isBin() || di2->isBin())
-		{
-			// At least one is binary
-			// Not valid action
-			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
-			return;
+			} 
 		}
 	}
 	else

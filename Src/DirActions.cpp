@@ -920,9 +920,13 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 	// Must be both directory or neither
 	if (di1.isDirectory() != di2.isDirectory()) return FALSE;
 
-	// Must be on different sides
-	if (di1.isSideLeft() && di2.isSideRight()) return TRUE;
-	if (di1.isSideRight() && di2.isSideLeft()) return TRUE;
+	// Must be on different sides, or one on one side & one on both
+	if (di1.isSideLeft() && (di2.isSideRight() || di2.isSideBoth()))
+		return TRUE;
+	if (di1.isSideRight() && (di2.isSideLeft() || di2.isSideBoth()))
+		return TRUE;
+	if (di1.isSideBoth() && (di2.isSideLeft() || di2.isSideRight()))
+		return TRUE;
 
 	return FALSE;
 }

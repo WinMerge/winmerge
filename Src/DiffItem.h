@@ -53,6 +53,7 @@ public:
 	void setSideLeft() { SetSide(DIFFCODE::LEFT); }
 	bool isSideRight() const { return CheckSide(diffcode, DIFFCODE::RIGHT); }
 	void setSideRight() { SetSide(DIFFCODE::RIGHT); }
+	bool isSideBoth() const { return CheckSide(diffcode, DIFFCODE::BOTH); }
 	void setSideBoth() { SetSide(DIFFCODE::BOTH); }
 	void setSideNone() { SetSide(0); }
 	// compare result
