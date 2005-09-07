@@ -1,3 +1,6 @@
+2005-09-07 2.3.6 WinMerge beta 2.3.6.0 released
+2005-09-07 R2_4 branch created for 2.4 release
+
 2005-09-07 Kimmo
  PATCH: [ 1283217 ] Inactive linediff color is too bright
   Src: OptionsInit.cpp
