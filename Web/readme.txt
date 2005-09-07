@@ -1,3 +1,7 @@
+2005-09-07 Tim
+ PATCH: [ 1282546 ] Web: Download page
+  Web: page.inc new file downloads.php
+
 2005-06-08 Tim
  PATCH: [ 1215982 ] Web: Remove arrow image from web site
   Web\css: all.css print.css
