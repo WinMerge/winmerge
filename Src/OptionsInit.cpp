@@ -89,7 +89,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)RGB(248,112,78));
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)RGB(252, 181, 163));
 	m_options.InitOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)RGB(0,0,0));
-	m_options.InitOption(OPT_CLR_WORDDIFF, (int)RGB(255,255,0));
+	m_options.InitOption(OPT_CLR_WORDDIFF, (int)RGB(241,226,173));
 	m_options.InitOption(OPT_CLR_SELECTED_WORDDIFF, (int)RGB(255,160,160));
 	m_options.InitOption(OPT_CLR_WORDDIFF_TEXT, (int)RGB(0,0,0));
 	m_options.InitOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)RGB(0,0,0));

@@ -1,3 +1,7 @@
+2005-09-07 Kimmo
+ PATCH: [ 1283217 ] Inactive linediff color is too bright
+  Src: OptionsInit.cpp
+
 2005-09-07 Perry
  PATCH: [ 1282587 ] Allow compare 2 items when one on both sides
   Src: DiffItem.h DirActions.cpp DirView.cpp
