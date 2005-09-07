@@ -1,9 +1,13 @@
+2005-09-07 Kimmo
+ Bump revision number to 1.1.4
+  Manual: WinMerge_help.xml
+
 2005-09-05 Kimmo
  PATCH: [ 1281561 ] Manual: Whats new in 2.4
   Manual: Whatsnew_2_1.xml
 
 2005-09-01 Kimmo
- Bump revision number to 1.2.3
+ Bump revision number to 1.1.3
   Manual: WinMerge_help.xml
 
 2005-08-31 Kimmo
