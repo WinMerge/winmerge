@@ -971,6 +971,9 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 		GetItemFileNames(sel1, pathLeft, pathRight);
 
+		if (di1->isDirectory())
+			isdir = true;
+
 		if (di1->isDirectory() && (di1->isSideLeft() == di1->isSideRight()))
 		{
 			if (pDoc->GetRecursive())

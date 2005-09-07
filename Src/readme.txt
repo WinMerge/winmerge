@@ -1,6 +1,8 @@
 2005-09-07 Perry
  PATCH: [ 1282587 ] Allow compare 2 items when one on both sides
   Src: DiffItem.h DirActions.cpp DirView.cpp
+ BUG: [ 1283986 ] Cannot drill into directories
+  Src: DirView.cpp
 
 2005-09-06 Kimmo
  PATCH: [ 1273040 ] Fix buffer handling in Quick Compare
