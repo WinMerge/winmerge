@@ -1,3 +1,7 @@
+2005-09-07
+ This file only contains history until 2005-09-07.
+ See Changes.txt for more up-to-date information.
+
 2005-09-07 2.3.6 WinMerge beta 2.3.6.0 released
 2005-09-07 R2_4 branch created for 2.4 release
 
