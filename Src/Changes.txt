@@ -1,6 +1,10 @@
 2005-09-08, Perry
- Added ChangeLogs folder to project, and put Changes.txt (this),
- readme.txt, and CHANGELO into new ChangeLogs folder.
+ PATCH: [ 1284890 ] Use Changes.txt instead of readme.txt for ChangeLog
+  Added ChangeLogs folder to project, and put Changes.txt (this),
+  readme.txt, and CHANGELO into new ChangeLogs folder.
+ PATCH: [ 1283466 ] French translation
+  New translation by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
 
 2005-09-07, Perry
  Previous change history is in file readme.txt

@@ -51,7 +51,7 @@ BEGIN
     "LANGUAGE LANG_FRENCH, SUBLANG_FRENCH\r\n"
     "#pragma code_page(1252)\r\n"
     "#endif\r\n"
-    "#include ""res\\Merge.rc2""  // non-Microsoft Visual C++ edited resources\r\n"
+    "#include ""res\\Merge.rc2""    // non-Microsoft Visual C++ edited resources\r\n"
     "#include ""afxres.rc""         // Standard components\r\n"
     "#include ""afxprint.rc""       // printing/print preview resources\r\n"
     "#endif\0"
@@ -95,11 +95,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Atteindre...",                ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        POPUP "Op&en"
+        POPUP "&Ouvrir"
         BEGIN
-            MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
-            MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
-            MENUITEM "&with...",                    ID_FILE_OPEN_WITH
+            MENUITEM "avec l'application &désignée",  ID_FILE_OPEN_REGISTERED
+            MENUITEM "avec l'éditeur &externe",       ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "&avec...",                      ID_FILE_OPEN_WITH
         END
     END
 END
@@ -116,7 +116,7 @@ BEGIN
     END
     POPUP "&Edition"
     BEGIN
-        MENUITEM "&Options...",                  ID_OPTIONS
+        MENUITEM "&Préférences...",              ID_OPTIONS
     END
     POPUP "&Affichage"
     BEGIN
@@ -145,9 +145,9 @@ BEGIN
     POPUP "Fe&nêtre"
     BEGIN
         MENUITEM "&Fermer",                     ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Fermer &tout",                ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "C&hanger de volet\tF6",       ID_WINDOW_CHANGE_PANE
+        MENUITEM "Chan&ger de volet\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "Mosaïque &horizontale",       ID_WINDOW_TILE_HORZ
         MENUITEM "Mosaïque &verticale",         ID_WINDOW_TILE_VERT
@@ -182,7 +182,7 @@ BEGIN
     BEGIN
         MENUITEM "Sélectionner &tout\tCtrl+A",   ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Options...",                  ID_OPTIONS
+        MENUITEM "&Préférences...",              ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Actual&iser\tF5",              ID_REFRESH
     END
@@ -195,7 +195,7 @@ BEGIN
         MENUITEM "Fichiers &binaires",                ID_OPTIONS_SHOWBINARIES
         MENUITEM "Fichiers ig&norés",                 ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
-        MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM "Afficher les éléments cachés",      ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "Choisir une &police...",            ID_VIEW_SELECTFONT
         MENUITEM "&Utiliser la police par défaut",    ID_VIEW_USEDEFAULTFONT
@@ -208,7 +208,7 @@ BEGIN
     END
     POPUP "Fu&sionner"
     BEGIN
-        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM "Co&mparer\tEnter",                  ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         MENUITEM "Différence &suivante\tAlt+Down",    ID_NEXTDIFF
         MENUITEM "Différence &précédente\tAlt+Up",    ID_PREVDIFF
@@ -220,8 +220,8 @@ BEGIN
         MENUITEM "Copier vers la dr&oite\tAlt+Right", ID_L2R
         MENUITEM "Copier vers la ga&uche\tAlt+Left",  ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Tout cop&ier vers la droite",                                ID_ALL_RIGHT
-        MENUITEM "Tout copi&er vers la gauche",                                ID_ALL_LEFT
+        MENUITEM "Tout cop&ier vers la droite",       ID_ALL_RIGHT
+        MENUITEM "Tout copi&er vers la gauche",       ID_ALL_LEFT
         MENUITEM SEPARATOR
         MENUITEM "Su&pprimer\tDel",                   ID_MERGE_DELETE
     END
@@ -230,7 +230,7 @@ BEGIN
         MENUITEM "&Ajuster les colonnes...",    ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
-        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        MENUITEM "Générer un &rapport...",      ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -244,9 +244,9 @@ BEGIN
     POPUP "Fe&nêtre"
     BEGIN
         MENUITEM "&Fermer",                     ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Fermer &tout",                ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "C&hanger de volet\tF6",       ID_WINDOW_CHANGE_PANE
+        MENUITEM "Chan&ger de volet\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "Mosaïque &horizontale",       ID_WINDOW_TILE_HORZ
         MENUITEM "Mosaïque &verticale",         ID_WINDOW_TILE_VERT
@@ -327,7 +327,7 @@ BEGIN
         END
         MENUITEM "&Atteindre...\tCtrl+G",        ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "&Options...",                  ID_OPTIONS
+        MENUITEM "&Préférences...",              ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Actual&iser\tF5",              ID_REFRESH
     END
@@ -386,9 +386,9 @@ BEGIN
     POPUP "Fe&nêtre"
     BEGIN
         MENUITEM "&Fermer",                     ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Fermer &tout",                ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
-        MENUITEM "C&hanger de volet\tF6",       ID_WINDOW_CHANGE_PANE
+        MENUITEM "Chan&ger de volet\tF6",       ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "Mosaïque &horizontale",       ID_WINDOW_TILE_HORZ
         MENUITEM "Mosaïque &verticale",         ID_WINDOW_TILE_VERT
@@ -410,7 +410,7 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM "Co&mparer",                         ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         POPUP "&Copier"
         BEGIN
@@ -430,7 +430,7 @@ BEGIN
             MENUITEM "à &droite",                     ID_DIR_DEL_RIGHT
             MENUITEM "des deu&x côtés",               ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "D&issimuler l'élément(s)",          ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Ouvrir à &gauche"
         BEGIN
@@ -447,21 +447,21 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Copier le c&hemin complet"
         BEGIN
-            MENUITEM "de &gauche (%1 of %2)",         ID_DIR_COPY_PATHNAMES_LEFT
-            MENUITEM "de &droite (%1 of %2)",         ID_DIR_COPY_PATHNAMES_RIGHT
-            MENUITEM "des deu&x côtés (%1 of %2)",    ID_DIR_COPY_PATHNAMES_BOTH
+            MENUITEM "de &gauche (%1 de %2)",         ID_DIR_COPY_PATHNAMES_LEFT
+            MENUITEM "de &droite (%1 de %2)",         ID_DIR_COPY_PATHNAMES_RIGHT
+            MENUITEM "des deu&x côtés (%1 de %2)",    ID_DIR_COPY_PATHNAMES_BOTH
         END
         MENUITEM "Copier le nom de &fichier",         ID_DIR_COPY_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Co&mpresser"
         BEGIN
-            MENUITEM "à &gauche... (%1 of %2)",       ID_DIR_ZIP_LEFT
-            MENUITEM "à &droite... (%1 of %2)",       ID_DIR_ZIP_RIGHT
-            MENUITEM "les deu&x côtés... (%1 of %2)", ID_DIR_ZIP_BOTH
-            MENUITEM "les di&fférences...(%1 of %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "à &gauche... (%1 de %2)",       ID_DIR_ZIP_LEFT
+            MENUITEM "à &droite... (%1 de %2)",       ID_DIR_ZIP_RIGHT
+            MENUITEM "les deu&x côtés... (%1 de %2)", ID_DIR_ZIP_BOTH
+            MENUITEM "les di&fférences...(%1 de %2)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Refresh",                        ID_DIR_RESCAN
+        MENUITEM "&Actualiser",                       ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -572,7 +572,7 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,95,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     DEFPUSHBUTTON   "OK",IDOK,166,103,50,14
-    PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,103,65,14
+    PUSHBUTTON      "Collaborateurs",IDC_OPEN_CONTRIBUTORS,7,103,65,14
 END
 
 IDD_OPEN DIALOGEX 0, 0, 364, 126
@@ -660,7 +660,7 @@ BEGIN
     CONTROL         "&Atteindre automatiquement la première différence",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,17,183,10
-    CONTROL         "&Sans Splash Screen",IDC_DISABLE_SPLASH,"Button",
+    CONTROL         "&Sans page de garde",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,80,10
     CONTROL         "Fermer automatiquement la fenêtre &récapitulative",IDC_CMPPANE_AUTOCLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
@@ -1099,7 +1099,7 @@ BEGIN
     LTEXT           "&Methode de comparaison:",IDC_STATIC,7,105,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+    CONTROL         "&Arrêter à la première différence",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     PUSHBUTTON      "&Défauts",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
@@ -1123,16 +1123,16 @@ BEGIN
     EDITTEXT        IDC_TAB_EDIT,90,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Insérer &tabulation",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,120,63,67,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,120,63,97,10
     CONTROL         "Insérer &espace",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,120,72,67,10
+                    BS_AUTORADIOBUTTON,120,72,97,10
     GROUPBOX        "Colorer les différences de ligne",IDC_LINE_COLORING_GROUP,7,97,
                     221,41
     CONTROL         "A&fficher les différences",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
     CONTROL         "&Distinguer les mots",IDC_BREAK_ON_WORDS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,16,120,201,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
 END
 
@@ -1186,10 +1186,10 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Page de code"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,79
-    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
+    GROUPBOX        "Page de code par défaut",IDC_STATIC,7,7,221,79
+    LTEXT           "Selectionnez la page de code par défaut qui est assumé lors du chargement des fichiers non-Unicode:",
                     IDC_STATIC,14,20,208,19
-    CONTROL         "&Détecter la page de code pour les fichiers suivants : .html, .rc, .xml \nnécéssite un redémarrage de session",
+    CONTROL         "&Détecter la page de code pour les fichiers suivants :\n.html, .rc, .xml \nnécéssite un redémarrage de session",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,92,210,29
     CONTROL         "Page de code &système",IDC_CP_SYSTEM,"Button",
@@ -1197,7 +1197,7 @@ BEGIN
     CONTROL         "Conformément à l'&interface usager WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Page de code sti&pulée :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,68,77,10
+                    BS_AUTORADIOBUTTON,13,68,97,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,67,56,13,ES_AUTOHSCROLL
 END
 
@@ -1238,7 +1238,7 @@ BEGIN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "périmé",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Plugiciel sur le chemin principal:",9001,2,160,100,8
-    CONTROL         "Ne plus afficher ce &message.\n(Il peut toujours être réactiver au menu des options.)",
+    CONTROL         "Ne plus afficher ce &message.\n(Il peut toujours être réactiver au menu des préférences.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
@@ -1251,12 +1251,12 @@ END
 IDD_PREFERENCES DIALOGEX 0, 0, 367, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Options"
+CAPTION "Préférences"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,241,237,50,14
-    PUSHBUTTON      "Help",IDC_TREEOPT_HELP,295,237,50,14
+    PUSHBUTTON      "Ann&uler",IDCANCEL,241,237,50,14
+    PUSHBUTTON      "Aide",IDC_TREEOPT_HELP,295,237,50,14
     CONTROL         "Tree1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
@@ -1268,7 +1268,7 @@ END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Dialog"
+CAPTION "Couleurs de la syntaxe"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "Mots clés:",IDC_STATIC,0,20,70,8
@@ -1326,57 +1326,58 @@ BEGIN
                     WS_EX_CLIENTEDGE
     CONTROL         "Surbrillance",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,180,55,10
-    PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
+    PUSHBUTTON      "Defauts",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
 
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Directory Compare Report"
+CAPTION "Répertoire du rapport de comparaison"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Report &File:",IDC_STATIC,7,7,37,8
+    LTEXT           "Fichier du &rapport:",IDC_STATIC,7,7,197,8
     COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
                     WS_TABSTOP
-    PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
+    PUSHBUTTON      "Parcourir...",IDC_REPORT_BROWSEFILE,211,18,50,14
     LTEXT           "&Style:",IDC_STATIC,7,37,18,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,211,60,50,14
+    PUSHBUTTON      "Ann&uler",IDCANCEL,211,60,50,14
 END
 
 IDD_SHARED_FILTER DIALOGEX 0, 0, 250, 75
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Shared or Private Filter"
+CAPTION "Filtre partagé ou privé"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Which type of filter do you want to create?",IDC_STATIC,
+    LTEXT           "Quel type de filtre voulez-vous créer ?",IDC_STATIC,
                     20,7,141,11
-    CONTROL         "Shared Filter (for all users on this machine)",IDC_SHARED,"Button",
+    CONTROL         "Filtre partagé (pour tous les usagers de l'odinateur)",IDC_SHARED,"Button",
                     BS_AUTORADIOBUTTON,28,22,230,10
-    CONTROL         "Private Filter (only for current user)",IDC_PRIVATE,"Button",
+    CONTROL         "Filtre privé (pour l'usager actuel seulement)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,28,37,230,10
     DEFPUSHBUTTON   "OK",IDOK,37,55,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,141,55,50,14
+    PUSHBUTTON      "Ann&uler",IDCANCEL,141,55,50,14
 END
 
 IDD_PROP_ARCHIVE DIALOGEX 0, 0, 235, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Archive Support"
+CAPTION "Support d'archives"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Archive support requires 7-Zip plugin installed:",
+    LTEXT           "Le support d'archives nécéssite l'installation du plugiciel 7-Zip:",
                     IDC_STATIC,7,7,221,8
-    LTEXT           "Download 7-zip Plugin",IDC_ARCHIVE_WWW,7,18,128,8
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
+    LTEXT           "Télécharger le plugiciel 7-zip",IDC_ARCHIVE_WWW,7,18,128,8
+    CONTROL         "&Qualifier le support d'archives",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
-    CONTROL         "&Use stand-alone 7-Zip if available",
+    CONTROL         "&Utiliser le mode autonome de 7-Zip si disponible",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
-    CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
+    CONTROL         "U&tiliser les composants locaux de 7-Zip (répertoire WinMerge)",
+                    IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
-    CONTROL         "&Detect archive type from file signature",
+    CONTROL         "&Detecter le type d'archives avec un fichier de signature",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
@@ -1514,7 +1515,6 @@ IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 //
 
 IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
-IDR_MERGEHAND           CURSOR                  "res\\hand.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1549,7 +1549,7 @@ BEGIN
     ID_FILE_PRINT           "Imprime le document actif\nImprimer"
     ID_FILE_PRINT_PREVIEW   "Affiche les pages entières\nAperçu avant impression"
     ID_FILE_OPENPROJECT     "Ouvrir un fichier de projet\nFichier de projet (Ctrl+J)"
-    ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+    ID_VIEW_SHOWHIDDENITEMS "Rendre visible à nouveau tous les éléments cachés"
 END
 
 STRINGTABLE
@@ -1703,7 +1703,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL  "Controle de version"
     IDS_OPTIONSPG_CODEPAGE        "Page de code"
     IDS_OPTIONSPG_SYNTAXCOLORS    "Couleurs de la syntaxe"
-    IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_ARCHIVE         "Support des archives"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1732,9 +1732,9 @@ END
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_OPTIONS_TITLE          "Options (%1)"
+    IDS_OPTIONS_TITLE          "Préférences (%1)"
     IDS_MESSAGE_BOX_ARE_RESET  "Tous les messages seront réaffichés."
-    IDS_DIFF_OPEN_NO_SET_PROPS "Certains fichiers de la session courante ont été modifiés. Les changements d'options seront en vigueur lors de la prochaine comparaison de fichier."
+    IDS_DIFF_OPEN_NO_SET_PROPS "Certains fichiers de la session courante ont été modifiés. Les changements de préférences seront en vigueur lors de la prochaine comparaison de fichier."
     IDS_FONT_CHANGE            "Le changement de police sera en vigueur lors de la prochaine comparaison de fichier."
 END
 
@@ -1796,7 +1796,7 @@ BEGIN
     IDS_STATUS_COPYFILES         "Copie des fichiers en cours..."
     IDS_STATUS_DELETEFILES       "Suppression des fichiers en cours..."
     IDS_STATUS_MOVEFILES         "Déplacement des fichiers en cours..."
-    IDS_STATUS_CREATEREPORT "Creating the report..."
+    IDS_STATUS_CREATEREPORT      "Creation du rapport..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1806,7 +1806,7 @@ BEGIN
     IDS_EMPTY_LINE_STATUS_INFO  "Ligne: %s"
     IDS_LINE_STATUS_INFO        "Lg: %s  Col: %d/%d  Car: %d/%d"
     IDS_MERGEMODE_MERGING       "Fusion"
-    IDS_DIFF_NUMBER_STATUS_FMT  "Différence %1 parmi %2"
+    IDS_DIFF_NUMBER_STATUS_FMT  "Différence %1 de %2"
     IDS_NO_DIFF_SEL_FMT         "%1 Différences trouvées"
     IDS_1_DIFF_FOUND            "1 Différence trouvée"
     IDS_STATUSBAR_READONLY      "LS" // Lecture seulement
@@ -1815,8 +1815,8 @@ END
 // MORE STATUS PANES
 STRINGTABLE
 BEGIN
-	IDS_DIRVIEW_STATUS_FMT_FOCUS "Item %1 of %2"
-	IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Items: %1"
+	IDS_DIRVIEW_STATUS_FMT_FOCUS   "Élément %1 de %2"
+	IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Élément: %1"
 END
 
 // OPEN DIALOG
@@ -1851,8 +1851,7 @@ BEGIN
     IDS_SAVEREADONLY_FMT      "%1 est en lecture seule. Voulez-vous outrepasser ? (Choisissez Non pour enregistrer avec un nouveau nom.)"
     IDS_ERROR_FILE_WRITEABLE  "Erreur en vérifiant les droits en écriture de la destination"
     IDS_ERROR_BACKUP          "Erreur lors du backup du fichier"
-    IDS_BACKUP_FAILED_PROMPT
-                            "Unable to backup original file:\n%1\n\nContinue anyway?"
+    IDS_BACKUP_FAILED_PROMPT  "Ne peut effectuer le backup du fichier d'origine:\n%1\n\nContinuer quand même ?"
     IDS_FILESAVE_FAILED       "Erreur lors de l'enregistrement.\n%1\n%2\nVoulez-vous:\n\t-utiliser un nom autre nom de fichier (Ok)\n\t-avorter l'opération en cours (Annuler)?"
     IDS_FILEPACK_FAILED_LEFT  "Le plugiciel '%2' ne peut compressé le fichier modifié de gauche dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILEPACK_FAILED_RIGHT "Le plugiciel '%2' ne peut compressé le fichier modifié de droite dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
@@ -1905,12 +1904,12 @@ BEGIN
     ID_DIR_HIDE_FILENAMES       "Dissimuler l'élément sélectionné (filtre instantané)"
     IDS_COPY_TO_LEFT            "De droite à gauche (%1)"
     IDS_COPY_TO_RIGHT           "De gauche à droite (%1)"
-    IDS_COPY_TO_LEFT2           "De droite à gauche (%1 of %2)"
-    IDS_COPY_TO_RIGHT2          "De gauche à droite (%1 of %2)"
+    IDS_COPY_TO_LEFT2           "De droite à gauche (%1 de %2)"
+    IDS_COPY_TO_RIGHT2          "De gauche à droite (%1 de %2)"
     IDS_COPY_LEFT_TO            "De gauche vers... (%1)"
     IDS_COPY_RIGHT_TO           "De droite vers... (%1)"
-    IDS_COPY_LEFT_TO2           "De gauche vers... (%1 of %2)"
-    IDS_COPY_RIGHT_TO2          "De droite vers... (%1 of %2)"
+    IDS_COPY_LEFT_TO2           "De gauche vers... (%1 de %2)"
+    IDS_COPY_RIGHT_TO2          "De droite vers... (%1 de %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
@@ -1919,16 +1918,16 @@ BEGIN
     IDS_DEL_LEFT_FMT        "À gauche (%1)"
     IDS_DEL_RIGHT_FMT       "À droite (%1)"
     IDS_DEL_BOTH_FMT        "Des deux côtés (%1)"
-    IDS_DEL_LEFT_FMT2       "À gauche (%1 of %2)"
-    IDS_DEL_RIGHT_FMT2      "À droite (%1 of %2)"
-    IDS_DEL_BOTH_FMT2       "Des deux côtés (%1 of %2)"
+    IDS_DEL_LEFT_FMT2       "À gauche (%1 de %2)"
+    IDS_DEL_RIGHT_FMT2      "À droite (%1 de %2)"
+    IDS_DEL_BOTH_FMT2       "Des deux côtés (%1 de %2)"
     IDS_SELECT_DESTFOLDER   "Choisir un répertoire de destination"
     IDS_MOVE_LEFT_TO        "De gauche vers... (%1)"
     IDS_MOVE_RIGHT_TO       "De droite vers... (%1)"
-    IDS_MOVE_LEFT_TO2       "De gauche vers... (%1 of %2)"
-    IDS_MOVE_RIGHT_TO2      "De droite vers... (%1 of %2)"
-    IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
-    IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
+    IDS_MOVE_LEFT_TO2       "De gauche vers... (%1 de %2)"
+    IDS_MOVE_RIGHT_TO2      "De droite vers... (%1 de %2)"
+    IDS_SELECT_DEST_LEFT    "Côté gauche - choisir répertoire de destination:"
+    IDS_SELECT_DEST_RIGHT   "Côté droit - choisir répertoire de destination:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2061,13 +2060,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIRECTORY_REPORT_TITLE "Comparer %1 avec %2"
-    IDS_REPORT_COMMALIST    "Comma-separated list"
-    IDS_REPORT_TABLIST      "Tab-separated list"
-    IDS_REPORT_SIMPLEHTML   "Simple HTML"
-    IDS_REPORT_FILEOVERWRITE 
-                            "The report file already exists. Do you want to overwrite existing file?"
-    IDS_REPORT_ERROR        "Error creating the report:\n%1"
-    IDS_REPORT_SUCCESS      "The report has been created successfully."
+    IDS_REPORT_COMMALIST       "Liste délimitée par des virgules"
+    IDS_REPORT_TABLIST         "Liste délimitée par des tabulations"
+    IDS_REPORT_SIMPLEHTML      "Format HTML"
+    IDS_REPORT_FILEOVERWRITE   "Le rapport existe déjà. Voulez-vous écraser le fichier existant?"
+    IDS_REPORT_ERROR           "Erreur à la création du rapport:\n%1"
+    IDS_REPORT_SUCCESS         "Le rapport a été créé avec succès."
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -2084,9 +2082,9 @@ BEGIN
                             Voulez-vous considérer l'égalité des caractères de fin de ligne pour cette comparaison ?\n\n\
                             Notez bien: Si vous voulez toujours considérer une telle égalité. \
                             Définnissez l'option: Ignorer les différences de fin de ligne \
-                            à la fenêtre des Options sous l'onglet Comparaison \
-                            (accessible avec le menu Edition/Options)."
-    IDS_SUGGEST_PRESERVEEOL "Les fins de ligne sont de type différent (DOS/UNIX/MAC) au fichier '%1'.\n Selon les options en vigueur, elles seront uniformisées au type principal.\n Désirez-vous changer l'option et préserver les différences ?"
+                            à la fenêtre des Préférences sous l'onglet Comparaison \
+                            (accessible avec le menu Edition/Préférences)."
+    IDS_SUGGEST_PRESERVEEOL "Les fins de ligne sont de type différent (DOS/UNIX/MAC) au fichier '%1'.\n Selon les préférences en vigueur, elles seront uniformisées au type principal.\n Désirez-vous changer l'option et préserver les différences ?"
     IDS_PREDIFFER_ERROR     "Une erreur est survenue pendant la pré-comparaison du fichier '%1' avec le plugiciel '%2'. La pré-comparaison ne sera donc plus utilisée."
     IDS_SUGGEST_IGNORECODEPAGE "Les fichiers n'ont pas la même page de code à gauche (cp%d) et à droite (cp%d). \nL'affichage est ainsi meilleurs cependant les copie/fusion seront dangeureuses.\nDésirez-vous traiter les deux fichiers avec la page de code windows par défaut (recommandé)?"
 END
@@ -2124,12 +2122,12 @@ BEGIN
     IDS_DIFF_CONTEXT        "Contexte"
     IDS_DIFF_UNIFIED        "Unifié"
     IDS_FILEWRITE_ERROR     "Ne peut écrire au fichier %1."
-    IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
-	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
+    IDS_PATH_NOT_ABSOLUTE   "Le chemin spécifié n'est pas un chemin absolu: %1"
+    IDS_MUST_SPECIFY_OUTPUT "Indiquez un fichier de sortie"
     IDS_CANNOT_CREATE_BINARYPATCH "Ne peut créé un fichier de retouche depuis un fichier binaire."
     IDS_CANNOT_CREATE_DIRPATCH    "Ne peut créé un fichier de retouche depuis des répertoires."
     IDS_SAVEFILES_FORPATCH  "S.V.P enregister tous les fichiers.\n\nGénérer une retouche requiert l'état non modifié des fichiers."
-	IDS_FOLDER_NOTEXIST     "Folder does not exist."
+	IDS_FOLDER_NOTEXIST     "Le répertoire n'existe pas."
 END
 
 STRINGTABLE
@@ -2460,10 +2458,10 @@ BEGIN
     ID_SHOWLINEWORDDIFF     "Distinguer les mots de la ligne courante\nMots différents de la ligne courante (F4)"
     ID_SHOWLINECHARDIFF     "Distinguer les caractères de la ligne courante\nCaractères différents de la ligne courante (Shift+F4)"
     ID_EDIT_WMGOTO          "Atteindre une ligne ou une différence\nAtteindre (Ctrl+G)"
-    ID_OPTIONS              "Modifier les options du programme\nOptions"
+    ID_OPTIONS              "Modifier les préférences du programme\nPréférences"
     ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copier les lignes sélectionnés vers le presse-papiers en les précédants d'un numéro de ligne"
-    ID_DIR_RESCAN            "Refresh selected items"
+    ID_DIR_RESCAN            "Actualiser les éléments selectionnés"
 END
 
 // VIEW MENU (FILE TYPE)
@@ -2504,8 +2502,8 @@ BEGIN
     ID_R2LNEXT              "Copier la différence vers la gauche et Avancer\nCopy Left and Advance (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "Copier toutes les différences vers le fichier de droite\nCopier Tout à Droite"
     ID_ALL_LEFT             "Copier toutes les différences vers le fichier de gauche\nCopier Tout à Gauche"
-    ID_MERGE_DELETE         "Delete selected items from both directories"
-    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
+    ID_MERGE_DELETE         "Détruire les éléments selectionnés pour les deux répertoires"
+    ID_MERGE_COMPARE        "Comparer l'élément selectionné (premier élément retenu si sélection multiple)"
 END
 
 // TOOLS MENU
@@ -2514,7 +2512,7 @@ BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "Sélectionner et ordonner les colonnes de la fenêtre de comparaison des répertoires"
     ID_TOOLS_GENERATEPATCH    "Générer un fichier de retouche"
     ID_TOOLS_FILTERS          "Sélectionner et modifier les filtres"
-    ID_TOOLS_GENERATEREPORT "Generates a report from compare results"
+    ID_TOOLS_GENERATEREPORT   "Générer un rapport des résultats de la comparaison"
 END
 
 // PLUGINS MENU
@@ -2533,7 +2531,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Basculer vers l'autre volet\nActive l'autre volet"
-    ID_WINDOW_CLOSEALL      "Closes all open windows"
+    ID_WINDOW_CLOSEALL      "Fermer toutes les fenêtres"
 END
 
 // HELP MENU
@@ -2560,9 +2558,9 @@ END
 // FILE COMPARE CONTEXT MENU
 STRINGTABLE
 BEGIN
-    ID_FILE_OPEN_REGISTERED  "Open the file with registered application"
-    ID_FILE_OPEN_WITHEDITOR  "Open the file with external editor"
-    ID_FILE_OPEN_WITH        "Open the file with a particular program"
+    ID_FILE_OPEN_REGISTERED  "Ouvrir le fichier avec l'application désignée"
+    ID_FILE_OPEN_WITHEDITOR  "Ouvrir le fichier avec l'éditeur externe"
+    ID_FILE_OPEN_WITH        "Ouvrir le fichier avec le programme indiqué"
 END
 
 // LOCATIONBAR CONTEXT MENU
@@ -2572,7 +2570,7 @@ BEGIN
     ID_DISPLAY_MOVED_ALL    "Afficher tous les blocs déplacés"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Afficher le bloc déplacé de la différence courante"
     ID_LOCBAR_GOTODIFF      "Atteindre l'endroit pointé à la barre de localisation"
-    ID_LOCBAR_GOTODIFF_FMT  "Atteindre la différence %1 of %2"
+    ID_LOCBAR_GOTODIFF_FMT  "Atteindre la différence %1 de %2"
     ID_LOCBAR_GOTOLINE_FMT  "Atteindre la ligne %1"
 END
 
