@@ -1,3 +1,7 @@
+2005-09-09, Tim
+ PATCH: [ 1285404 ] Various Updates in German Translation
+  Src/Languages/German: MergeGerman.rc
+
 2005-09-08, Perry
  PATCH: [ 1284890 ] Use Changes.txt instead of readme.txt for ChangeLog
   Added ChangeLogs folder to project, and put Changes.txt (this),
