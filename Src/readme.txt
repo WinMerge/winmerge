@@ -1,5 +1,5 @@
 2005-09-07
- This file only contains history until 2005-09-07.
+ Old history from 2002-11-18 through 2005-09-07.
  See Changes.txt for more up-to-date information.
 
 2005-09-07 2.3.6 WinMerge beta 2.3.6.0 released

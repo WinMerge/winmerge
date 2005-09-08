@@ -2182,10 +2182,22 @@ SOURCE=.\diffutils\src\UTIL.C
 
 # End Source File
 # End Group
+# Begin Group "ChangeLogs"
+
+# PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\CHANGELO
+# End Source File
+# Begin Source File
+
+SOURCE=.\Changes.txt
+# End Source File
 # Begin Source File
 
 SOURCE=.\ReadMe.txt
 # End Source File
+# End Group
 # End Target
 # End Project
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}

@@ -1,2 +1,6 @@
+2005-09-08, Perry
+ Added ChangeLogs folder to project, and put Changes.txt (this),
+ readme.txt, and CHANGELO into new ChangeLogs folder.
+
 2005-09-07, Perry
  Previous change history is in file readme.txt
