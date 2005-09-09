@@ -1,3 +1,8 @@
+2005-09-09, Perry
+ BUG: [ 1284304 ] StaticLink crashes after mouse over event
+  Changed signature of CStaticLink::OnSetCursor to start with CWnd *
+  Src\Common: StaticLink.cpp StaticLink.h
+
 2005-09-09, Tim
  PATCH: [ 1285404 ] Various Updates in German Translation
   Src/Languages/German: MergeGerman.rc

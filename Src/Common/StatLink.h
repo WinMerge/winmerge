@@ -32,6 +32,6 @@ protected:
 	// message handlers
 	afx_msg HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	afx_msg void	OnClicked();
-	afx_msg BOOL OnSetCursor(WPARAM wParam, LPARAM lParam);
+	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	DECLARE_MESSAGE_MAP()
 };

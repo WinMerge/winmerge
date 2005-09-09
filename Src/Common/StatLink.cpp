@@ -100,7 +100,7 @@ void CStaticLink::OnClicked()
 	}
 }
 
-BOOL CStaticLink::OnSetCursor(WPARAM wParam, LPARAM lParam)
+BOOL CStaticLink::OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message) 
 {
 	ASSERT(m_hCursor != NULL);
 	::SetCursor(m_hCursor);
