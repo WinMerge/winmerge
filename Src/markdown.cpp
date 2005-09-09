@@ -75,6 +75,8 @@ DATE:		BY:					DESCRIPTION:
 								handle rather than a filename.
 2005/06/22	Jochen Tucht		New method CMarkdown::_HSTR::Entities().
 2005/07/29	Jochen Tucht		ByteOrder detection for 16/32 bit encodings
+2005/09/09	Jochen Tucht		Patch by Takashi Sawanaka fixes crash due to
+								reading beyond end of text with HtmlUTags option
 */
 
 #include "stdafx.h"
@@ -514,7 +516,7 @@ CMarkdown &CMarkdown::Move()
 		{
 			++upper;
 		}
-		if (utags && MAKEWORD(upper[0], upper[1]) == MAKEWORD('<', '/'))
+		if (utags && upper < ahead && *upper == '<')
 		{
 			if (int utlen = FindTag(utags, upper + 2))
 			{
