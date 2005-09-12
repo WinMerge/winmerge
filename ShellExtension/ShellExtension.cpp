@@ -112,7 +112,13 @@ STDAPI DllRegisterServer(void)
 	// user is not an administrator.  (The code should request KEY_WRITE, which
 	// is all that's necessary.)
 
-	if ((GetVersion() & 0x80000000UL) == 0)
+	// Read also:
+	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/
+	// platform/shell/programmersguide/shell_int/shell_int_extending/
+	// extensionhandlers/shell_ext.asp
+	// We ONLY need this additional key for NT4.0!
+	DWORD dwWinVersion = GetVersion();
+	if (((dwWinVersion & 0x80000000UL) == 0) && LOWORD(dwWinVersion) == 4)
 	{
 		CRegKey reg;
 		LONG lRet;
@@ -144,7 +150,8 @@ STDAPI DllUnregisterServer(void)
 	// Note that if we get an error along the way, I don't bail out since I want
 	// to do the normal ATL unregistration stuff too.
 
-	if ((GetVersion() & 0x80000000UL) == 0)
+	DWORD dwWinVersion = GetVersion();
+	if (((dwWinVersion & 0x80000000UL) == 0) && LOWORD(dwWinVersion) == 4)
 	{
 		CRegKey reg;
 		LONG lRet;

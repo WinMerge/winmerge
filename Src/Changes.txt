@@ -1,3 +1,8 @@
+2005-09-12 Kimmo
+ PATCH: 1284150 Fix Shell Extension registering problem
+  Also bump version to 1.6
+  ShellExtension: ShellExtension.cpp ShellExtension.rc
+
 2005-09-09, Perry
  BUG: [ 1284304 ] StaticLink crashes after mouse over event
   Changed signature of CStaticLink::OnSetCursor to start with CWnd *
