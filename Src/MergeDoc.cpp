@@ -438,7 +438,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
 
 		// Identical files are also updated
-		if (m_diffList.GetSize() == 0)
+		if (!m_diffList.HasSignificantDiffs())
 			bIdentical = TRUE;
 
 		// just apply some options to the views
@@ -1214,7 +1214,7 @@ BOOL CMergeDoc::SaveModified()
 
 void CMergeDoc::SetCurrentDiff(int nDiff)
 {
-	if (nDiff >= 0 && nDiff < m_diffList.GetSize())
+	if (nDiff >= 0 && nDiff < m_diffList.LastSignificantDiff())
 		m_nCurDiff = nDiff;
 	else
 		m_nCurDiff = -1;
@@ -1914,8 +1914,8 @@ void CMergeDoc::OnFileSave()
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+			BOOL bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
 					m_nTrivialDiffs, bIdentical);
 		}
 	}
@@ -1945,8 +1945,8 @@ void CMergeDoc::OnFileSaveLeft()
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+			BOOL bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
 					m_nTrivialDiffs, bIdentical);
 		}
 	}
@@ -1976,8 +1976,8 @@ void CMergeDoc::OnFileSaveRight()
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+			BOOL bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
 					m_nTrivialDiffs, bIdentical);
 		}
 	}
@@ -2007,7 +2007,7 @@ void CMergeDoc::OnFileSaveAsRight()
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
 	CString sIdx,sCnt,s;
-	const int nDiffs = m_diffList.GetSize();
+	const int nDiffs = m_diffList.GetSignificantDiffs();
 	
 	// Files are identical - show text "Identical"
 	if (nDiffs <= 0)
@@ -2376,8 +2376,8 @@ BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
 			if (m_bLeftEditAfterRescan || m_bRightEditAfterRescan)
 				FlushAndRescan(FALSE);
 
-			BOOL bIdentical = (m_diffList.GetSize() == 0); // True if status should be set to identical
-			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSize(),
+			BOOL bIdentical = !m_diffList.HasSignificantDiffs(); // True if status should be set to identical
+			m_pDirDoc->UpdateChangedItem(m_filePaths, m_diffList.GetSignificantDiffs(),
 					m_nTrivialDiffs, bIdentical);
 		}
 	}

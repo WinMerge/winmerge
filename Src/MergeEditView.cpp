@@ -271,7 +271,7 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	lastDiff = -1;
 
 	CMergeDoc *pd = GetDocument();
-	const int nDiffs = pd->m_diffList.GetSize();
+	const int nDiffs = pd->m_diffList.GetSignificantDiffs();
 	if (nDiffs == 0)
 		return;
 
@@ -636,7 +636,7 @@ void CMergeEditView::OnCurdiff()
 	CMergeDoc *pd = GetDocument();
 
 	// If no diffs, nothing to select
-	if (pd->m_diffList.GetSize() == 0)
+	if (!pd->m_diffList.HasSignificantDiffs())
 		return;
 
 	// GetCurrentDiff() returns -1 if no diff selected
@@ -1222,7 +1222,7 @@ void CMergeEditView::OnUpdateAllLeft(CCmdUI* pCmdUI)
 {
 	// Check that left side is not readonly
 	if (!IsReadOnly(TRUE))
-		pCmdUI->Enable(GetDocument()->m_diffList.GetSize() != 0);
+		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
 		pCmdUI->Enable(FALSE);
 }
@@ -1248,7 +1248,7 @@ void CMergeEditView::OnUpdateAllRight(CCmdUI* pCmdUI)
 {
 	// Check that right side is not readonly
 	if (!IsReadOnly(FALSE))
-		pCmdUI->Enable(GetDocument()->m_diffList.GetSize() != 0);
+		pCmdUI->Enable(GetDocument()->m_diffList.HasSignificantDiffs());
 	else
 		pCmdUI->Enable(FALSE);
 }

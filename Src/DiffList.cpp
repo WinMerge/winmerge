@@ -48,10 +48,34 @@ void DiffList::Clear()
 
 /**
  * @brief Returns count of items in diff list.
+ * This function returns total amount of items (diffs) in list. So returned
+ * count includes significant and non-significant diffs.
+ * @note Use GetSignificantDiffs() to get count of non-ignored diffs.
  */
 int DiffList::GetSize()
 {
 	return m_diffs.GetSize();
+}
+
+/**
+ * @brief Returns count of significant diffs in the list.
+ * This function returns total count of significant diffs in list. So returned
+ * count doesn't include non-significant diffs.
+ */
+int DiffList::GetSignificantDiffs() const
+{
+	int nSignificants = 0;
+	const int nDiffCount = m_diffs.GetSize();
+
+	for (int i = 0; i < nDiffCount; i++)
+	{
+		const DIFFRANGE * dfi = DiffRangeAt(i);
+		if (dfi->op != OP_TRIVIAL)
+		{
+			++nSignificants;
+		}
+	}
+	return nSignificants;
 }
 
 /**

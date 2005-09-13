@@ -93,6 +93,7 @@ public:
 	DiffList();
 	void Clear();
 	int GetSize();
+	int GetSignificantDiffs() const;
 	void SetSize(UINT nSize);
 	void AddDiff(DIFFRANGE di);
 	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;

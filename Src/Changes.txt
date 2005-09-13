@@ -1,5 +1,9 @@
+2005-09-13 Kimmo
+ PATCH: [ 1289037 ] Some (non)significant diff count fixes
+  Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+
 2005-09-12 Kimmo
- PATCH: 1284150 Fix Shell Extension registering problem
+ PATCH: [ 1284150 ] Fix Shell Extension registering problem
   Also bump version to 1.6
   ShellExtension: ShellExtension.cpp ShellExtension.rc
 
