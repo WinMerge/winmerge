@@ -145,7 +145,7 @@ BEGIN
     POPUP "Fi&nestra"
     BEGIN
         MENUITEM "&Tanca",                      ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "T&anca-ho tot",               ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Canvia de &subfinestra\tF6",     ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -244,7 +244,7 @@ BEGIN
     POPUP "Fi&nestra"
     BEGIN
         MENUITEM "&Tanca",                      ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "T&anca-ho tot",               ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Canvia de &subfinestra\tF6",     ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -386,7 +386,7 @@ BEGIN
     POPUP "Fi&nestra"
     BEGIN
         MENUITEM "&Tanca",                      ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "T&anca-ho tot",               ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Canvia de &subfinestra\tF6",     ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -2548,7 +2548,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "Activa el següent fitxer visible\nActiva següent fitxer"
-    ID_WINDOW_CLOSEALL      "Closes all open windows"
+    ID_WINDOW_CLOSEALL      "Tanca totes les finestres obertes"
 END
 
 // HELP MENU
