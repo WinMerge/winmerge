@@ -1,3 +1,7 @@
+2005-09-15, Tim
+ PATCH: [ 1292279 ] Various Updates in German Translation
+  Src/Languages/German: MergeGerman.rc
+
 2005-09-14 Kimmo
  PATCH: [ 1290477 ] Catalan translation update
   Submitted by Jordi Vilar

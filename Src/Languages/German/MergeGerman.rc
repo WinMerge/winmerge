@@ -1352,35 +1352,35 @@ END
 
 IDD_SHARED_FILTER DIALOGEX 0, 0, 250, 75
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Shared or Private Filter"
+CAPTION "Gemeinsamer oder privater Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Which type of filter do you want to create?",IDC_STATIC,
-                    20,7,141,11
-    CONTROL         "Shared Filter (for all users on this machine)",IDC_SHARED,"Button",
+    LTEXT           "Welche Art von Filter möchten Sie erzeugen?",IDC_STATIC,
+                    20,7,181,11
+    CONTROL         "Gemeinsamer Filter (für alle Benutzer auf diesem Computer)",IDC_SHARED,"Button",
                     BS_AUTORADIOBUTTON,28,22,230,10
-    CONTROL         "Private Filter (only for current user)",IDC_PRIVATE,"Button",
+    CONTROL         "Privater Filter (nur für den aktuellen Benutzer)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,28,37,230,10
     DEFPUSHBUTTON   "OK",IDOK,37,55,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,141,55,50,14
+    PUSHBUTTON      "Abbruch",IDCANCEL,141,55,50,14
 END
 
 IDD_PROP_ARCHIVE DIALOGEX 0, 0, 235, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Archive Support"
+CAPTION "Archiv-Unterstützung"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Archive support requires 7-Zip plugin installed:",
+    LTEXT           "Die Archiv-Unterstützung erfordert das installierte 7-Zip Plugin:",
                     IDC_STATIC,7,7,221,8
-    LTEXT           "Download 7-zip Plugin",IDC_ARCHIVE_WWW,7,18,128,8
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
+    LTEXT           "7-Zip Plugin herunterladen",IDC_ARCHIVE_WWW,7,18,128,8
+    CONTROL         "&Archiv-Unterstützung aktivieren",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
-    CONTROL         "&Use stand-alone 7-Zip if available",
+    CONTROL         "&Eigenständiges 7-Zip verwenden, wenn vorhanden",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
-    CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
+    CONTROL         "&Lokales 7-Zip vom WinMerge-Ordner verwenden",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
-    CONTROL         "&Detect archive type from file signature",
+    CONTROL         "&Archivtyp aus der Dateisignatur ermitteln",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
@@ -2040,8 +2040,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "Rechts nach... (%1)"
     IDS_MOVE_LEFT_TO2       "Links nach... (%1 von %2)"
     IDS_MOVE_RIGHT_TO2      "Rechts nach... (%1 von %2)"
-    IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
-    IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
+    IDS_SELECT_DEST_LEFT    "Linke Seite - Zielordner auswählen:"
+    IDS_SELECT_DEST_RIGHT   "Rechte Seite - Zielordner auswählen:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2239,11 +2239,11 @@ BEGIN
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
     IDS_FILEWRITE_ERROR     "Konnte nicht in die Datei %1 schreiben."
-    IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
-	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
+    IDS_PATH_NOT_ABSOLUTE   "Der angegebene Ausgabepfad ist kein absoluter Pfad: %1"
+	IDS_MUST_SPECIFY_OUTPUT "Geben Sie eine Ausgabedatei an."
     IDS_CANNOT_CREATE_BINARYPATCH "Kann keine Patchdatei von Binärdateien erzeugen."
     IDS_CANNOT_CREATE_DIRPATCH "Kann keine Patchdatei von Verzeichnissen erzeugen."
-    IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
+    IDS_SAVEFILES_FORPATCH  "Bitte speichern Sie zuerst alle Dateien.\n\nDas Erzeugen eines Patches erfordert, dass es keine ungespeicherten Änderungen in den Dateien gibt."
 	IDS_FOLDER_NOTEXIST     "Der Ordner existiert nicht."
 END
 
