@@ -169,6 +169,102 @@
           <entry><keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Right Arrow</keycap></keycombo></entry>
           <entry>Copy difference from left side to right side and select next difference</entry>
         </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>F2</keycap></keycombo></entry>
+          <entry>Toggle Bookmark</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>F2</keycap></keycombo></entry>
+          <entry>Next Bookmark</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Shift</keycap><keycap>F2</keycap></keycombo></entry>
+          <entry>Prev Bookmark</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>Shift</keycap><keycap>F2</keycap></keycombo></entry>
+          <entry>Clear All Bookmarks</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>0</keycap></keycombo></entry>
+          <entry>Goto Bookmark   0</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>0</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 0</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>1</keycap></keycombo></entry>
+          <entry>Goto Bookmark   1</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>1</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 1</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>2</keycap></keycombo></entry>
+          <entry>Goto Bookmark   2</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>2</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 2</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>3</keycap></keycombo></entry>
+          <entry>Goto Bookmark   3</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>3</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 3</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>4</keycap></keycombo></entry>
+          <entry>Goto Bookmark   4</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>4</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 4</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>5</keycap></keycombo></entry>
+          <entry>Goto Bookmark   5</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>5</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 5</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>6</keycap></keycombo></entry>
+          <entry>Goto Bookmark   6</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>6</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 6</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>7</keycap></keycombo></entry>
+          <entry>Goto Bookmark   7</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>7</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 7</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>8</keycap></keycombo></entry>
+          <entry>Goto Bookmark   8</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>8</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 8</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Alt</keycap><keycap>9</keycap></keycombo></entry>
+          <entry>Goto Bookmark   9</entry>
+        </row>
+        <row>
+          <entry><keycombo><keycap>Ctrl</keycap><keycap>9</keycap></keycombo></entry>
+          <entry>Toggle Bookmark 9</entry>
+        </row>
       </tbody>
     </tgroup>
   </table>

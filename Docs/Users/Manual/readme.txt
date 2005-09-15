@@ -1,3 +1,8 @@
+2005-09-15 Kimmo
+ PATCH: [ 1286016 ] Shortcut keys for bookmarks
+  Submitted by Sigvald Refsum
+  Manual: Shortcut_keys.xml
+
 2005-09-07 Kimmo
  Bump revision number to 1.1.4
   Manual: WinMerge_help.xml
