@@ -1,0 +1,22 @@
+2005-09-16 Kimmo
+ PATCH: [ 1292327 ] Manual: introduction updates
+  Manual: Introduction.xml
+ PATCH: [ 1292336 ] Manual: update installation doc
+  Manual: Install.xml
+
+2005-09-15 Kimmo
+ PATCH: [ 1286016 ] Shortcut keys for bookmarks
+  Submitted by Sigvald Refsum
+  Manual: Shortcut_keys.xml
+
+2005-09-07 Kimmo
+ Bump revision number to 1.1.4
+  Manual: WinMerge_help.xml
+
+2005-09-05 Kimmo
+ PATCH: [ 1281561 ] Manual: Whats new in 2.4
+  Manual: Whatsnew_2_1.xml
+
+2005-09-05 Kimmo
+ Previous change history is in file readme.txt
+ (I made a mistake -- forgot to create this file until 2005-09-16)
