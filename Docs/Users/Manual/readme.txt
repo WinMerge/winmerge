@@ -1,3 +1,7 @@
+2005-09-16 Kimmo
+ PATCH: [ 1292327 ] Manual: introduction updates
+  Manual: Introduction.xml
+
 2005-09-15 Kimmo
  PATCH: [ 1286016 ] Shortcut keys for bookmarks
   Submitted by Sigvald Refsum

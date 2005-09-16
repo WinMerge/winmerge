@@ -23,8 +23,8 @@
 
   <para>Goal of WinMerge development is to make comparing and synch/merge of
   directories and files easy and fast. While maintaining maximum reliability.
-  Easiness reduces user errors. Version 2.2 is remarkably better in this goal
-  than version 2.0.</para>
+  Easiness reduces user errors. Version 2.2 was already good and version 2.4
+  still improves in many areas.</para>
 
   <para>Please note that WinMerge is not freeware, but it is <ulink
   url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licenced.</para>
@@ -42,7 +42,8 @@
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable
       versions</ulink> are recommended for most users. If you are unsure about
-      what version to use - use latest stable version.</para>
+      what version to use - use latest stable version. Stable versions have
+      even second number, for example 2.0, 2.2, 2.4</para>
     </sect3>
 
     <sect3>
@@ -52,8 +53,8 @@
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta
       versions</ulink> are for people who want to test latest features and
       improvements done after last stable version. Beta versions are not so
-      extensively tested as stable versions are and probably have some
-      bugs.</para>
+      extensively tested as stable versions are and probably have some bugs.
+      Beta versions have odd second number, for example 2.1 and 2.3</para>
     </sect3>
 
     <sect3>
@@ -86,9 +87,21 @@
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug
     report</ulink>. Please attach as much information as you can, at least the
     version number of WinMerge you are using. If you can, attach also
-    configuration log which you can see from menu <menuchoice><guimenu>Help</guimenu>
-    <guimenuitem>Configuration...</guimenuitem></menuchoice> Good information in
-    bug report means better change for bug to be fixed faster.</para>
+    configuration log which you can see from menu <menuchoice>
+        <guimenu>Help</guimenu>
+
+        <guimenuitem>Configuration...</guimenuitem>
+      </menuchoice> Good information in bug report means better change for bug
+    to be fixed faster.</para>
+
+    <important>
+      <para>Include version number in bug reports. Version number can be
+      checked from <menuchoice>
+          <guimenu>Help</guimenu>
+
+          <guimenuitem>About WinMerge</guimenuitem>
+        </menuchoice> dialog.</para>
+    </important>
   </sect2>
 
   <sect2>
