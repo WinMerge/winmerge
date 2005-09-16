@@ -1,6 +1,8 @@
 2005-09-16 Kimmo
  PATCH: [ 1292327 ] Manual: introduction updates
   Manual: Introduction.xml
+ PATCH: [ 1292336 ] Manual: update installation doc
+  Manual: Install.xml
 
 2005-09-15 Kimmo
  PATCH: [ 1286016 ] Shortcut keys for bookmarks

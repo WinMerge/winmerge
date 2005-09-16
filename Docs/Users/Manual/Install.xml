@@ -151,24 +151,14 @@
     to system, only <filename>WinMerge[U].exe</filename> is needed to run
     WinMerge.</para>
 
-    <para>Archive files have correct folder structure (except for
-    <filename>ShellExtension.dll</filename> see note below). WinMerge should
-    be unzipped preserving folder structure to destination folder, for example
+    <para>Archive files have correct folder structure. WinMerge should be
+    unzipped preserving folder structure to destination folder, for example
     <filename class="directory">C:\Program Files\</filename>. Root folder
     created has name <filename
     class="directory">/WinMerge-<replaceable>version</replaceable></filename>,
-    for example <filename class="directory">/WinMerge-2.2.0</filename>. This
+    for example <filename class="directory">/WinMerge-2.4.0</filename>. This
     folder can be renamed or files copied to other folder (preserving folder
     structure!).</para>
-
-    <note>
-      <para><filename>ShellExtension.dll</filename> is in two subfolders,
-      <filename class="directory">/ShellExtension_Ansi</filename> and
-      <filename class="directory">/ShellExtension_Unicode</filename>. For most
-      users file in <filename class="directory">ShellExtension_Ansi</filename>
-      is good choice. That file must be copied to same directory with
-      <filename>WinMerge.exe</filename>.</para>
-    </note>
 
     <para>After unzipping files WinMerge is ready to run! ShellExtension and
     Archive Integration may need additional steps (see below).</para>
@@ -182,10 +172,10 @@
     shell integration.</para>
 
     <para>If install program is not used, shell integration dll
-    (<filename>ShellExtension.dll</filename>) must be registered separately.
-    This is done by running <filename>register.bat</filename> from WinMerge
-    directory. Reboot is recommended after installing so Windows updates all
-    its references.</para>
+    (<filename>ShellExtension[U].dll</filename>) must be registered
+    separately. This is done by running <filename>register.bat</filename> from
+    WinMerge directory. Reboot is recommended after installing so Windows
+    updates all its references.</para>
 
     <note>
       <para>Installing shell integration requires administrative user
@@ -210,22 +200,20 @@
 
     <para>To install archive support, download and install 7-Zip plugin
     (Merge7zInstaller, see below) from <ulink
-    url="http://www.winmerge.org/">WinMerge.org</ulink>. </para>
+    url="http://www.winmerge.org/">WinMerge.org</ulink>.</para>
 
     <para>WinMerge automatically detects installed 7-zip in system, there is
-    no need to any configuration. But WinMerge supports only certain versions
-    of 7-Zip. Please check 7-Zip version compatibility from <filename>Read
-    Me.rft</filename>-file.</para>
+    no need to any configuration.</para>
 
     <para>7-zip integration needs compatible <filename>Merge7z*.dll</filename>
     file in WinMerge program directory. <filename>*</filename> comes from
-    7-Zip version installed. For example 7-Zip version 3.13 needs
-    <filename>Merge7z313.dll</filename>. And if
+    7-Zip version installed. For example 7-Zip version 4.23 needs
+    <filename>Merge7z423.dll</filename>. And if
     <filename>WinMergeU.exe</filename> (unicode version) is used, then
     "<filename>U</filename>" is also added to filename:
-    <filename>Merge7z313U.dll</filename>. If needed dll file is for some
+    <filename>Merge7z423U.dll</filename>. If needed dll file is for some
     reason missing it can be copied to WinMerge directory, for example from
-    zip-archive downloadable in WinMerge download page.</para>
+    7z-archive downloadable in WinMerge download page.</para>
 
     <para>If <filename>Merge7z*.dll</filename> file is missing, WinMerge
     informs user with message showing filename of needed file and recommended
@@ -242,8 +230,9 @@
       for them: they show supported versions. Filename is formatted
       <filename>Merge7zInstallerXXX-YYY-ZZZ.exe</filename>. XXX is build
       number, YYY earliest 7-Zip version supported and ZZZ latest 7-Zip
-      version supported. For example Merge7zInstaller0010-311-415.exe means
-      build version 10, and support for 7-Zip versions 3.11 - 4.15</para>
+      version supported. For example
+      <filename>Merge7zInstaller0014-311-426.exe</filename> means build
+      version 14, and support for 7-Zip versions 3.11 - 4.26.</para>
 
       <para>This separate installer is much more flexible since we can update
       it whenever 7-Zip is updated. And we don't add files users don't need to
