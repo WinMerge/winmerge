@@ -1,6 +1,8 @@
 2005-09-16 Kimmo
  PATCH: [ 1292120 ] More significant diff navigations fixes
   Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+ BUG: [ 1290305 ] ShellExtensionU.dll info missing from config log
+  Src: ConfigLog.cpp
 
 2005-09-15, Tim
  PATCH: [ 1292279 ] Various Updates in German Translation
