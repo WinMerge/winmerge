@@ -96,6 +96,20 @@ void DiffList::AddDiff(DIFFRANGE di)
 }
 
 /**
+ * @brief Checks if diff in given list index is significant or not.
+ * @param [in] nDiff Index of DIFFITEM to check.
+ * @return TRUE if diff is significant.
+ */
+BOOL DiffList::IsDiffSignificant(int nDiff) const
+{
+	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
+	if (dfi->op != OP_TRIVIAL)
+		return TRUE;
+	else
+		return FALSE;
+}
+
+/**
  * @brief Returns copy of DIFFRANGE from diff-list.
  * @param [in] nDiff Index of DIFFITEM to return.
  * @param [out] di DIFFITEM returned (empty if error)

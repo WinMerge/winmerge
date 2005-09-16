@@ -86,6 +86,10 @@ enum
  *
  * This class stores diffs in list and also offers diff-related
  * functions to e.g. check if linenumber is inside diff.
+ *
+ * There are two kinds of diffs:
+ * - significant diffs are 'normal' diffs we want to merge and browse
+ * - non-significant diffs are diffs ignored by linefilters
  */
 class DiffList
 {
@@ -96,6 +100,7 @@ public:
 	int GetSignificantDiffs() const;
 	void SetSize(UINT nSize);
 	void AddDiff(DIFFRANGE di);
+	BOOL IsDiffSignificant(int nDiff) const;
 	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
 	BOOL SetDiff(int nDiff, DIFFRANGE di);
 	int LineRelDiff(UINT nLine, UINT nDiff) const;

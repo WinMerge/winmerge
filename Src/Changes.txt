@@ -1,3 +1,7 @@
+2005-09-16 Kimmo
+ PATCH: [ 1292120 ] More significant diff navigations fixes
+  Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+
 2005-09-15, Tim
  PATCH: [ 1292279 ] Various Updates in German Translation
   Src/Languages/German: MergeGerman.rc

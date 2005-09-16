@@ -262,12 +262,13 @@ CString CMergeEditView::GetSelectedText()
  * @brief Get diffs inside selection.
  * @param [out] firstDiff First diff inside selection
  * @param [out] lastDiff Last diff inside selection
+ * @note -1 is returned in parameters if diffs cannot be determined
  * @todo This shouldn't be called when there is no diffs, so replace
  * first 'if' with ASSERT()?
  */
 void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 {
-	firstDiff = 0;
+	firstDiff = -1;
 	lastDiff = -1;
 
 	CMergeDoc *pd = GetDocument();
@@ -280,28 +281,33 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	if (lastLine < firstLine)
 		return;
 
-	for (UINT i = 0; i < nDiffs; i++)
+	firstDiff = pd->m_diffList.NextSignificantDiffFromLine(firstLine);
+	lastDiff = pd->m_diffList.PrevSignificantDiffFromLine(lastLine);
+	if (firstDiff != -1 && lastDiff != -1)
 	{
-		DIFFRANGE curDiff;
-		VERIFY(pd->m_diffList.GetDiff(i, curDiff));
-		if ((int)curDiff.dbegin0 >= firstLine)
+		DIFFRANGE di;
+		
+		// Check that first selected line is first diff's first line or above it
+		VERIFY(pd->m_diffList.GetDiff(firstDiff, di));
+		if ((int)di.dbegin0 < firstLine)
 		{
-			firstDiff = i;
-			break;
+			if (firstDiff < lastDiff)
+				++firstDiff;
 		}
-	}
-	if (i == nDiffs)
-		return;
 
-	lastDiff = nDiffs - 1;
-	for (i = firstDiff; i < nDiffs; i++)
-	{
-		DIFFRANGE curDiff;
-		VERIFY(pd->m_diffList.GetDiff(i, curDiff));
-		if ((int)curDiff.dend0 > lastLine)
+		// Check that last selected line is last diff's last line or below it
+		VERIFY(pd->m_diffList.GetDiff(lastDiff, di));
+		if ((int)di.dend0 > lastLine)
 		{
-				lastDiff = i-1;
-				break;
+			if (firstDiff < lastDiff)
+				--lastDiff;
+		}
+
+		// Special case: one-line diff is not selected if cursor is in it
+		if (firstLine == lastLine)
+		{
+			firstDiff = -1;
+			lastDiff = -1;
 		}
 	}
 }
@@ -651,7 +657,7 @@ void CMergeEditView::OnCurdiff()
 		// If cursor is inside diff, select that diff
 		CPoint pos = GetCursorPos();
 		nDiff = pd->m_diffList.LineToDiff(pos.y);
-		if (nDiff != -1)
+		if (nDiff != -1 && pd->m_diffList.IsDiffSignificant(nDiff))
 			SelectDiff(nDiff, TRUE, FALSE);
 	}
 }
@@ -666,10 +672,11 @@ void CMergeEditView::OnUpdateCurdiff(CCmdUI* pCmdUI)
 	int nCurrentDiff = pd->GetCurrentDiff();
 	if (nCurrentDiff == -1)
 	{
-		if (pd->m_diffList.LineToDiff(pos.y) == -1)
-			pCmdUI->Enable(FALSE);
-		else
+		int nNewDiff = pd->m_diffList.LineToDiff(pos.y);
+		if (nNewDiff != -1 && pd->m_diffList.IsDiffSignificant(nNewDiff))
 			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
 	}
 	else
 		pCmdUI->Enable(TRUE);
@@ -1046,7 +1053,7 @@ void CMergeEditView::OnLButtonDblClk(UINT nFlags, CPoint point)
 	CPoint pos = GetCursorPos();
 
 	int diff = pd->m_diffList.LineToDiff(pos.y);
-	if (diff != -1)
+	if (diff != -1 && pd->m_diffList.IsDiffSignificant(diff))
 		SelectDiff(diff, FALSE, FALSE);
 
 	CCrystalEditViewEx::OnLButtonDblClk(nFlags, point);
@@ -1107,15 +1114,15 @@ void CMergeEditView::OnL2r()
 	int firstDiff, lastDiff;
 	GetFullySelectedDiffs(firstDiff, lastDiff);
 
-	if (lastDiff >= firstDiff)
+	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
-		if (currentDiff != -1)
+		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 			pDoc->ListCopy(true, !!m_bIsLeft);
 		else
 			pDoc->CopyMultipleList(true, !!m_bIsLeft, firstDiff, lastDiff);
 	}
-	else if (currentDiff != -1)
+	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
 		pDoc->ListCopy(true, !!m_bIsLeft);
@@ -1135,7 +1142,7 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 
 		// If one or more diffs inside selection OR
 		// there is an active diff
-		if (lastDiff >= firstDiff)
+		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 			pCmdUI->Enable(TRUE);
 		else
 			pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
@@ -1165,15 +1172,15 @@ void CMergeEditView::OnR2l()
 	int firstDiff, lastDiff;
 	GetFullySelectedDiffs(firstDiff, lastDiff);
 
-	if (lastDiff >= firstDiff)
+	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
-		if (currentDiff != -1)
+		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 			pDoc->ListCopy(false, !!m_bIsLeft);
 		else
 			pDoc->CopyMultipleList(false, !!m_bIsLeft, firstDiff, lastDiff);
 	}
-	else if (currentDiff != -1)
+	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
 		pDoc->ListCopy(false, !!m_bIsLeft);
@@ -1193,7 +1200,7 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 
 		// If one or more diffs inside selection OR
 		// there is an active diff
-		if (lastDiff >= firstDiff)
+		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 			pCmdUI->Enable(TRUE);
 		else
 			pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);

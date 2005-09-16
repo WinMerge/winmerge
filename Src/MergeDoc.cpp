@@ -1214,7 +1214,7 @@ BOOL CMergeDoc::SaveModified()
 
 void CMergeDoc::SetCurrentDiff(int nDiff)
 {
-	if (nDiff >= 0 && nDiff < m_diffList.LastSignificantDiff())
+	if (nDiff >= 0 && nDiff <= m_diffList.LastSignificantDiff())
 		m_nCurDiff = nDiff;
 	else
 		m_nCurDiff = -1;
