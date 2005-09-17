@@ -1,3 +1,8 @@
+2005-09-17 Kimmo
+ PATCH: [ 1293296 ] Manual: Updates for folder compare
+  Manual: Compare_dirs.xml
+  Manual/Screenshots: dircomp1.gif Dircomp_status1.gif Dircomp_status2.gif
+
 2005-09-16 Kimmo
  PATCH: [ 1292327 ] Manual: introduction updates
   Manual: Introduction.xml

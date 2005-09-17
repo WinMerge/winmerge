@@ -1,292 +1,558 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="CompareDirs">
-  <title>Comparing directories</title>
-  <para>The Directory compare window displays all of the files and subdirectories compared in a sortable list view. Files and subdirectories may be synchronized by copying or deleting, and actions may be performed on multiple items simultaneously. The columns displayed may be changed and reordered.</para>
+  <title>Comparing Folders</title>
+
+  <para>The Folder compare window displays all of the files and subfolders
+  compared in a sortable list view. Files and subfolders may be synchronized
+  by copying or deleting, and actions may be performed on multiple items
+  simultaneously. The columns displayed may be changed and reordered.</para>
+
   <mediaobject>
     <imageobject>
-      <imagedata fileref="screenshots/dircomp1.gif" format="GIF"/>
+      <imagedata fileref="screenshots/dircomp1.gif" format="GIF" />
     </imageobject>
   </mediaobject>
-  <para>Directory comparison has two different modes. The mode is selected in the Open dialog with the "<guilabel>Include Subfolders</guilabel>"-checkbox.<itemizedlist>
+
+  <para>Folder comparison has two different modes. The mode is selected in the
+  Open dialog with the "<guilabel>Include
+  Subfolders</guilabel>"-checkbox.<itemizedlist>
       <listitem>
-        <para>When subfolders are included, all subfolders and their contents are compared. Files are displayed depending on the options on the <guimenu>View</guimenu> menu (eg, <guimenuitem>Show Identical Files</guimenuitem>). Common directories are never displayed (but all files inside of them are). Directories only existing on one side are displayed according to the <guimenu>View</guimenu> menu options (eg, <guimenuitem>Show Left Unique Files</guimenuitem>).</para>
-        <para>This mode does not allow browsing folders and can be slow if there are many subfolders and files.</para>
+        <para>When subfolders are included, all subfolders and their contents
+        are compared. Files are displayed depending on the options on the
+        <guimenu>View</guimenu> menu (eg, <guimenuitem>Show Identical
+        Files</guimenuitem>). Common folders are never displayed (but all
+        files inside of them are). Folders only existing on one side are
+        displayed according to the <guimenu>View</guimenu> menu options (eg,
+        <guimenuitem>Show Left Unique Files</guimenuitem>).</para>
+
+        <para>This mode does not allow browsing folders and can be slow if
+        there are many subfolders and files. But it is easy to see and handle
+        different files in whole folder structure.</para>
       </listitem>
+
       <listitem>
-        <para>When subfolders are not included only files in selected folders and names of subfolders are shown.</para>
-        <para>This mode allows browsing folders by opening subfolders and parent folders. This mode has the advantage of speed, as it may be much faster when there are many subfolders that need not be examined. Also the display may be easier to manage, showing only items in one folder.</para>
+        <para>When subfolders are not included only files in selected folders
+        and names of subfolders are shown.</para>
+
+        <para>This mode allows browsing folders by opening subfolders and
+        parent folders. This mode has the advantage of speed, as it may be
+        much faster when there are many subfolders that need not be examined.
+        Also the display may be easier to manage, showing only items in one
+        folder.</para>
       </listitem>
     </itemizedlist></para>
+
   <sect2>
-    <title>Directory compare statepane</title>
-    <para>During directory compare proceeds, following statepane is shown:</para>
+    <title>Folder Compare Statepane</title>
+
+    <para>During folder compare proceeds, following statepane is shown:</para>
+
     <para><mediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/Dircomp_status1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/Dircomp_status1.gif" format="GIF" />
         </imageobject>
       </mediaobject></para>
-    <para>Directory compare can be stopped by selecting "<guibutton>Stop</guibutton>"-button and results for files and directories compared so far are shown. After directory compare finishes, "<guibutton>Stop</guibutton>" button text is changed to "<guibutton>Press any key</guibutton>". Now statepane can be closed by selecting that button or pressing any key from keyboard.</para>
-    <para>Statepane can be opened from <guimenu>View</guimenu>-menu again if needed. Statepane always shows current status of compare so it can be used to verify there are no different files left to handle.</para>
+
+    <para>Statepane shows several kinds of status and progress information. At
+    the top there are numbers of already compared items per category. So this
+    compare has found 107 similar text files so far. Bottom of pane is
+    progressbar. And left to progressbar are numbers of items compared and
+    total items found to compare. So this compare has compared 203 items from
+    total of 312 items.</para>
+
+    <important>
+      <para>Progressbar is for item counts. As there usually are different
+      sized files in compare it does directly map to time used/remaining. So
+      50/100 items does not strictly mean compare is in half by time
+      used.</para>
+    </important>
+
+    <para>Folder compare can be stopped by selecting
+    "<guibutton>Stop</guibutton>"-button and results for files and folders
+    compared so far are shown. After folder compare finishes,
+    "<guibutton>Stop</guibutton>" button text is changed to "<guibutton>Press
+    any key</guibutton>". Now statepane can be closed by selecting that button
+    or pressing any key from keyboard.</para>
+
+    <para>Statepane can be opened from <guimenu>View</guimenu>-menu again if
+    needed. Statepane always shows current status of compare so it can be used
+    to verify there are no different files left to handle.</para>
+
     <tip>
-      <para>Enable option "<guilabel>Close Compare statepane automatically</guilabel>" and statepane closes automatically after compare is ready.</para>
+      <para>Enable option "<guilabel>Close Compare statepane
+      automatically</guilabel>" and statepane closes automatically after
+      compare is ready.</para>
     </tip>
+
     <para><mediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/Dircomp_status2.gif" format="GIF"/>
+          <imagedata fileref="screenshots/Dircomp_status2.gif" format="GIF" />
         </imageobject>
       </mediaobject></para>
   </sect2>
+
   <sect2>
-    <title>Compare results</title>
-    <para>Files and directories are compared and divided into several categories:<simplelist>
+    <title>Compare Results</title>
+
+    <para>Files and folders are compared and divided into several
+    categories:<simplelist>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/equal.gif" format="GIF"/>
+              <imagedata fileref="screenshots/equal.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Identical text files</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/notequal.gif" format="GIF"/>
+              <imagedata fileref="screenshots/notequal.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Differing text files</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binary.gif" format="GIF"/>
+              <imagedata fileref="screenshots/binary.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Identical binary files</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binarydiff.gif" format="GIF"/>
+              <imagedata fileref="screenshots/binarydiff.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Differing binary files</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfolder.gif" format="GIF"/>
+              <imagedata fileref="screenshots/lfolder.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Left-only folders</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfolder.gif" format="GIF"/>
+              <imagedata fileref="screenshots/rfolder.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Right-only folders</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfile.gif" format="GIF"/>
+              <imagedata fileref="screenshots/lfile.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Left-only files</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfile.gif" format="GIF"/>
+              <imagedata fileref="screenshots/rfile.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Right-only files</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/folderskip.gif" format="GIF"/>
+              <imagedata fileref="screenshots/folderskip.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Skipped directories (filtered out)</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/fileskip.gif" format="GIF"/>
+              <imagedata fileref="screenshots/fileskip.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Skipped files (filtered out)</member>
+
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/error.gif" format="GIF"/>
+              <imagedata fileref="screenshots/error.gif" format="GIF" />
             </imageobject>
-          </inlinemediaobject> Directories &amp; files that couldn't be compared. This usually happens when other program has locked the file.</member>
+          </inlinemediaobject> Items that couldn't be compared. This usually
+        happens when other program has locked the file.</member>
       </simplelist></para>
   </sect2>
+
   <sect2>
-    <title>Selecting files to show</title>
-    <para>In "<guimenu>View</guimenu>" menu there are several choises for selecting which categories listed above to show/hide.</para>
+    <title>Selecting Items to Show</title>
+
+    <para>In "<guimenu>View</guimenu>" menu there are several choises for
+    selecting which categories listed above to show/hide.</para>
+
     <itemizedlist>
       <listitem>
-        <para><guimenuitem>Show identical files</guimenuitem> : shows and hides files detected as identical</para>
+        <para><guimenuitem>Show identical files</guimenuitem> : shows and
+        hides files detected as identical</para>
       </listitem>
+
       <listitem>
-        <para><guimenuitem>Show different files</guimenuitem> : shows and hides files detected as different</para>
+        <para><guimenuitem>Show different files</guimenuitem> : shows and
+        hides files detected as different</para>
       </listitem>
+
       <listitem>
-        <para><guimenuitem>Show left unique files</guimenuitem> : shows and hides files and directories present only in left side</para>
+        <para><guimenuitem>Show left unique files</guimenuitem> : shows and
+        hides files and directories present only in left side</para>
       </listitem>
+
       <listitem>
-        <para><guimenuitem>Show right unique files</guimenuitem> : shows and hides files and directories present only in right side</para>
+        <para><guimenuitem>Show right unique files</guimenuitem> : shows and
+        hides files and directories present only in right side</para>
       </listitem>
+
       <listitem>
-        <para><guimenuitem>Show binary files</guimenuitem> : shows and hides files detected as binaries</para>
+        <para><guimenuitem>Show binary files</guimenuitem> : shows and hides
+        files detected as binaries</para>
       </listitem>
+
       <listitem>
-        <para><guimenuitem>Show skipped files</guimenuitem> : shows and hides files and directories filtered out by file filters</para>
+        <para><guimenuitem>Show skipped files</guimenuitem> : shows and hides
+        files and directories filtered out by file filters</para>
       </listitem>
     </itemizedlist>
   </sect2>
+
   <sect2>
-    <title>Columns in directory compare</title>
-    <para>By default these columns are visible: </para>
+    <title>Columns in Folder Compare</title>
+
+    <para>By default these columns are visible:</para>
+
     <itemizedlist>
       <listitem>
         <para><guilabel>Filename</guilabel></para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Directory</guilabel> : Relative directoryname for compare path. If subdirectories are not included this is empty.</para>
+        <para><guilabel>Directory</guilabel> : Relative foldername for compare
+        path. If subfolders are not included this is empty.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Comparison result</guilabel> : Verbose comparison result (see also <guilabel>Short Result</guilabel>)</para>
+        <para><guilabel>Comparison result</guilabel> : Verbose comparison
+        result (see also <guilabel>Short Result</guilabel>)</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Left Date</guilabel> &amp; <guilabel>Right Date</guilabel>: Modification date of item. Note that newer date is prefixed with asterisk "<guilabel>*</guilabel>".</para>
+        <para><guilabel>Left Date</guilabel> &amp; <guilabel>Right
+        Date</guilabel>: Modification date of item. Note that newer date is
+        prefixed with asterisk "<guilabel>*</guilabel>".</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Extension</guilabel> : File's extension, handy for sorting</para>
+        <para><guilabel>Extension</guilabel> : File's extension, handy for
+        sorting</para>
       </listitem>
     </itemizedlist>
-    <para>Following columns are available through "<guimenuitem>Customize Columns</guimenuitem>"-dialog:</para>
+
+    <para>Following columns are available through "<guimenuitem>Customize
+    Columns</guimenuitem>"-dialog:</para>
+
     <itemizedlist>
       <listitem>
-        <para><guilabel>Binary</guilabel> : Column contains asterisk "<guilabel>*</guilabel>" when file is binary. Handy for sorting and to use with "<guilabel>Short Result</guilabel>"-column.</para>
+        <para><guilabel>Binary</guilabel> : Column contains asterisk
+        "<guilabel>*</guilabel>" when file is binary. Handy for sorting and to
+        use with "<guilabel>Short Result</guilabel>"-column.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Left Attributes</guilabel> &amp; <guilabel>Right Attributes</guilabel> : Shows fileattributes.</para>
+        <para><guilabel>Left Attributes</guilabel> &amp; <guilabel>Right
+        Attributes</guilabel> : Shows fileattributes.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Left Creation Time</guilabel> &amp; <guilabel>Right Creation Time</guilabel> : Item creation time.</para>
+        <para><guilabel>Left Creation Time</guilabel> &amp; <guilabel>Right
+        Creation Time</guilabel> : Item creation time.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Left Encoding</guilabel> &amp; <guilabel>Right Encoding</guilabel> : File encoding.</para>
+        <para><guilabel>Left Encoding</guilabel> &amp; <guilabel>Right
+        Encoding</guilabel> : File encoding.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Left File Version</guilabel> &amp; <guilabel>Right File Version</guilabel> : Version number from file if present. Note that this is read for only some binary files.</para>
+        <para><guilabel>Left File Version</guilabel> &amp; <guilabel>Right
+        File Version</guilabel> : Version number from file if present. Note
+        that this is read for only some binary files.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Left Size</guilabel> &amp; <guilabel>Right Size</guilabel> : File size in bytes.</para>
+        <para><guilabel>Left Size</guilabel> &amp; <guilabel>Right
+        Size</guilabel> : File size in bytes.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Newer File</guilabel> : Shows which side is newer.</para>
+        <para><guilabel>Newer File</guilabel> : Shows which side is
+        newer.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>#differences</guilabel> : Amount of total differences found from files.</para>
+        <para><guilabel>#differences</guilabel> : Amount of total differences
+        found from files.</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>#sig. differences</guilabel> : Amount of significant differences, total differences - ignored differences.</para>
+        <para><guilabel>#sig. differences</guilabel> : Amount of significant
+        differences, total differences - ignored differences.</para>
       </listitem>
     </itemizedlist>
   </sect2>
+
   <sect2>
     <title>Browsing folders</title>
-    <para>Browsing folders is only possible when subfolders are not included to compare. Then parent folders ("<guilabel>..</guilabel>"-item) and subfolders existing in both sides can be compared by opening them.</para>
-    <para>Parent folder can be opened if it is not same directory. These two icons indicate if parent folder can be opened:
-</para>
+
+    <para>Browsing folders is only possible when subfolders are not included
+    to compare. Then parent folders ("<guilabel>..</guilabel>"-item) and
+    subfolders existing in both sides can be compared by opening them.</para>
+
+    <para>Parent folder can be opened if it is not same directory. These two
+    icons indicate if parent folder can be opened:</para>
+
     <simplelist type="vert">
       <member><inlinemediaobject>
           <imageobject>
-            <imagedata fileref="screenshots/folderup.gif" format="GIF"/>
+            <imagedata fileref="screenshots/folderup.gif" format="GIF" />
           </imageobject>
         </inlinemediaobject> Parent folder can be opened.</member>
+
       <member><inlinemediaobject>
           <imageobject>
-            <imagedata fileref="screenshots/folderup_disable.gif" format="GIF"/>
+            <imagedata fileref="screenshots/folderup_disable.gif" format="GIF" />
           </imageobject>
-        </inlinemediaobject> Parent folder cannot be opened. It propably is same directory for both sides.</member>
+        </inlinemediaobject> Parent folder cannot be opened. It propably is
+      same directory for both sides.</member>
     </simplelist>
   </sect2>
+
   <sect2>
-    <title>Navigation in directory compare</title>
-    <para>In addition moving selection using mouse or keyboard, also <guimenu>Merge</guimenu>-menu navigation commands, toolbar buttons and shortcut keys can be used. For example "<guimenuitem>Next diff</guimenuitem>" finds next different file and selects it.</para>
+    <title>Navigation in Folder Compare</title>
+
+    <para>In addition moving selection using mouse or keyboard, also
+    <guimenu>Merge</guimenu>-menu navigation commands, toolbar buttons and
+    shortcut keys can be used. For example "<guimenuitem>Next
+    diff</guimenuitem>" finds next different file and selects it.</para>
+
     <note>
-      <para>Unique files and directories are considered as different ones.</para>
+      <para>Unique files and folders are considered as different ones.</para>
     </note>
-    <para>Multiple files/directories can be selected. However not all operations are possible with multi-selection.</para>
+
+    <para>Multiple files/folders can be selected. However not all operations
+    are possible with multi-selection.</para>
   </sect2>
+
   <sect2>
-    <title>File operations in directory compare</title>
+    <title>File Operations in Folder Compare</title>
+
     <sect3>
       <title>Copying, moving and deleting</title>
-      <para></para>
-      <para>Directory compare allows user to copy and delete files and directories. File operations are available through context menu (right-click with mouse). Also files can be opened to associated program or into external editor.</para>
-      <para>In file operation menu, there are one or two numbers shown, depending on files/folders selected. If there is one number shown, for example "<guimenuitem>Copy/Left to... (5)</guimenuitem>" that means there is 5 items selected, and all items can be copied. But if there is two numbers shown, for example "<guimenuitem>Copy/Left to... (3 of 5)</guimenuitem>", that means there are 5 items selected but only 3 items can be copied.</para>
-      <para>Most common operation is copying files from side to side. File can be copied from side to side using <guimenu>Merge</guimenu>-menu items, toolbar buttons and context menu. If multiple files are selected, or file to overwrite is read-only, confirmation dialog is shown.</para>
-      <para>Sometimes it is useful to copy certain files and/or directories to another directory instead of another compared directory. This can be done selecting "<guimenuitem>Copy/Left to...</guimenuitem>" or "<guimenuitem>Copy/Right to...</guimenuitem>" items.</para>
-      <para>Another file/directory operation is deleting. Items in another or both sides can be deleted. There is "<guilabel>Send deleted files into Recycle Bin</guilabel>" option in system options. Its higly recommended to keep that option enabled so deletion can be undone if accidents happen. Note however recycle bin does not help if its disabled from Windows settings.</para>
+
+      <para>Folder compare allows user to copy and delete files and folders.
+      File operations are available through context menu (right-click with
+      mouse). Also files can be opened to associated program or into external
+      editor.</para>
+
+      <para>In file operation menu, there are one or two numbers shown,
+      depending on files/folders selected. If there is one number shown, for
+      example "<guimenuitem>Copy/Left to... (5)</guimenuitem>" that means
+      there is 5 items selected, and all items can be copied. But if there is
+      two numbers shown, for example "<guimenuitem>Copy/Left to... (3 of
+      5)</guimenuitem>", that means there are 5 items selected but only 3
+      items can be copied.</para>
+
+      <para>Most common operation is copying files from side to side. File can
+      be copied from side to side using <guimenu>Merge</guimenu>-menu items,
+      toolbar buttons and context menu. If multiple files are selected, or
+      file to overwrite is read-only, confirmation dialog is shown.</para>
+
+      <para>Sometimes it is useful to copy certain files and/or directories to
+      another directory instead of another compared directory. This can be
+      done selecting "<guimenuitem>Copy/Left to...</guimenuitem>" or
+      "<guimenuitem>Copy/Right to...</guimenuitem>" items.</para>
+
+      <para>Another file/folder operation is deleting. Items in another or
+      both sides can be deleted. There is "<guilabel>Send deleted files into
+      Recycle Bin</guilabel>" option in system options. It is higly
+      recommended to keep that option enabled so deletion can be undone if
+      accidents happen. Note however recycle bin does not help if its disabled
+      from Windows settings.</para>
+
       <para>Moving is just shortcut for copy + delete.</para>
+
       <warning>
-        <para>File/directory deletion cannot be undone if recycle bin is not used!</para>
+        <para>File/folder deletion cannot be undone if <guilabel>Recycle
+        Bin</guilabel> is not used!</para>
       </warning>
     </sect3>
+
     <sect3>
       <title>Opening files</title>
+
       <para>There are three items in <guimenu>Open</guimenu>-menus:</para>
+
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>With Registered Application</guimenuitem> : Opens file with application registered handling filetype for Windows, if there is one.</para>
+          <para><guimenuitem>With Registered Application</guimenuitem> : Opens
+          file with application registered handling filetype for Windows, if
+          there is one.</para>
         </listitem>
+
         <listitem>
-          <para><guimenuitem>With External Editor</guimenuitem> : Open with external editor. Default editor can be selected from options, Notepad is used by default.</para>
+          <para><guimenuitem>With External Editor</guimenuitem> : Open with
+          external editor. Default editor can be selected from options,
+          Notepad is used by default.</para>
         </listitem>
+
         <listitem>
-          <para><guimenuitem>With ...</guimenuitem> : Opens "<guilabel>Open With...</guilabel>" dialog asking from user with which application files should be opened.</para>
+          <para><guimenuitem>With ...</guimenuitem> : Opens "<guilabel>Open
+          With...</guilabel>" dialog asking from user with which application
+          files should be opened.</para>
         </listitem>
       </itemizedlist>
     </sect3>
+
     <sect3>
       <title>Archiving</title>
-      <para><guimenu>Zip</guimenu>-menu in directory compare context menu allows adding selected items to archive file.</para>
+
+      <para><guimenu>Zip</guimenu>-menu in directory compare context menu
+      allows adding selected items to archive file.</para>
+
       <note>
-        <para>Archive support requires that compatible version of <ulink url="http://www.7-zip.org/">7-zip</ulink> is installed to system.</para>
+        <para>Archive support requires that 7-Zip plugin is installed to
+        system.</para>
       </note>
+
       <para>Zip-submenumenu has four items:</para>
+
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>Left...</guimenuitem> : Adds left-side files and folders (recursively) to the archive file</para>
+          <para><guimenuitem>Left...</guimenuitem> : Adds left-side files and
+          folders (recursively) to the archive file</para>
         </listitem>
+
         <listitem>
-          <para><guimenuitem>Right...</guimenuitem> : Adds right-side files and folders (recursively) to the archive file</para>
+          <para><guimenuitem>Right...</guimenuitem> : Adds right-side files
+          and folders (recursively) to the archive file</para>
         </listitem>
+
         <listitem>
-          <para><guimenuitem>Both...</guimenuitem> : Adds files and folders (recursively) from both sides to the archive file. Because filenames are same, files must be put to subfolders inside archive. Left-side files are put to subfolder <filename class="directory">Original/</filename> and right-side files are put to subfolder <filename class="directory">Altered/</filename>.</para>
+          <para><guimenuitem>Both...</guimenuitem> : Adds files and folders
+          (recursively) from both sides to the archive file. Because filenames
+          are same, files must be put to subfolders inside archive. Left-side
+          files are put to subfolder <filename
+          class="directory">Original/</filename> and right-side files are put
+          to subfolder <filename class="directory">Altered/</filename>.</para>
         </listitem>
+
         <listitem>
-          <para><guimenuitem>Differences...</guimenuitem> : This is like above <guimenuitem>Both</guimenuitem>, but this item adds only different files (including unique files) from both sides.</para>
+          <para><guimenuitem>Differences...</guimenuitem> : This is like above
+          <guimenuitem>Both</guimenuitem>, but this item adds only different
+          files (including unique files) from both sides.</para>
         </listitem>
       </itemizedlist>
-      <para>After selecting one of <guimenu>Zip</guimenu>-menu items dialog pops up asking filename and archive type from user. WinMerge cannot add files to existing archive files but it always creates new archive file.</para>
+
+      <para>After selecting one of <guimenu>Zip</guimenu>-menu items dialog
+      pops up asking filename and archive type from user. WinMerge cannot add
+      files to existing archive files but it always creates new archive
+      file.</para>
+
       <tip>
-        <para>WinMerge looks for subfolders <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename> in archive files. If archive file contains these subfolders and same filename is given to both sides WinMerge compares contents of those two folders.</para>
+        <para>WinMerge looks for subfolders <filename
+        class="directory">Original/</filename> and <filename
+        class="directory">Altered/</filename> in archive files. If archive
+        file contains these subfolders and same filename is given to both
+        sides WinMerge compares contents of those two folders.</para>
       </tip>
-      <para>If directory compare shows contents of archive files WinMerge updates changes done to files in file compare into original archive file. But WinMerge does not update archive contents for files added/deleted/copied. User can create a new archive file using above menuitems instead.</para>
+
+      <para>If directory compare shows contents of archive files WinMerge
+      updates changes done to files in file compare into original archive
+      file. But WinMerge does not update archive contents for files
+      added/deleted/copied. User can create a new archive file using above
+      menuitems instead.</para>
     </sect3>
   </sect2>
+
   <sect2>
-    <title>Copying path- or filenames</title>
-    <para>In context menu there are items for copyging selected items' paths or filenames to clipboard. This feature makes it easy so get list of changed files, for changelogs etc.</para>
+    <title>Copying Path- or Filenames</title>
+
+    <para>In context menu there are items for copyging selected items' paths
+    or filenames to clipboard. This feature makes it easy so get list of
+    changed files, for changelogs etc.</para>
+
     <itemizedlist>
       <listitem>
-        <para><guimenuitem>Copy Pathnames</guimenuitem> has three subchoices like other file handling functions. It copies full pathnames of selected items to clipboard, one per line.</para>
+        <para><guimenuitem>Copy Pathnames</guimenuitem> has three subchoices
+        like other file handling functions. It copies full pathnames of
+        selected items to clipboard, one per line.</para>
       </listitem>
+
       <listitem>
-        <para><guimenuitem>Copy Filenames</guimenuitem> copies only filenames without paths.</para>
+        <para><guimenuitem>Copy Filenames</guimenuitem> copies only filenames
+        without paths.</para>
       </listitem>
     </itemizedlist>
   </sect2>
+
   <sect2>
-    <title>Customising directory compare</title>
-    <para>There are many ways to customize directory compare:<itemizedlist>
+    <title>Customising Folder Compare</title>
+
+    <para>There are many ways to customize folder compare:<itemizedlist>
         <listitem>
-          <para>Sorting by column : Sorted by column can be selected by clicking column name with mouse. Little arrow appears next to column name indicating that results are sorted by this column and sort order.</para>
+          <para>Sorting by column : Sorted by column can be selected by
+          clicking column name with mouse. Little arrow appears next to column
+          name indicating that results are sorted by this column and sort
+          order.</para>
         </listitem>
+
         <listitem>
-          <para>Selecting visible columns : "<guilabel>Display Columns</guilabel>" dialog can be opened from <guimenu>Tools</guimenu>-menu or by right-clicking column header with mouse.</para>
+          <para>Selecting visible columns : "<guilabel>Display
+          Columns</guilabel>" dialog can be opened from
+          <guimenu>Tools</guimenu>-menu or by right-clicking column header
+          with mouse.</para>
         </listitem>
+
         <listitem>
-          <para>Changing order of columns : Order can be changed in "<guilabel>Display Columns</guilabel>" dialog or by drag &amp; dropping column names with mouse.</para>
+          <para>Changing order of columns : Order can be changed in
+          "<guilabel>Display Columns</guilabel>" dialog or by drag &amp;
+          dropping column names with mouse.</para>
         </listitem>
       </itemizedlist></para>
   </sect2>
+
   <sect2>
-    <title>Protecting directories / read-only directories</title>
-    <para>If user wants to protect one or both sides from changes, user can set them to read-only from <guimenu>File</guimenu>-menu.</para>
+    <title>Protecting Folders / Read-only Folders</title>
+
+    <para>If user wants to protect one or both sides from changes, user can
+    set them to read-only from <guimenu>File</guimenu>-menu.</para>
+
     <important>
-      <para>Setting read-only protects files and directories in current compare view only.</para>
+      <para>Setting read-only protects files and folders in current compare
+      view only.</para>
     </important>
-    <para>Protected status is inherited to opened files from directory compare. If user compares two directories, sets another to protected and opens two files for comparing, file opened from protected side has protection set too.</para>
-    <para>Protection status is shown in statusbar, there are panes for left and right side.</para>
+
+    <para>Protected status is inherited to opened files from directory
+    compare. If user compares two folders, sets another to protected and opens
+    two files for comparing, file opened from protected side has protection
+    set too.</para>
+
+    <para>Protection status is shown in statusbar, there are own panes for
+    left and right side.</para>
+  </sect2>
+
+  <sect2>
+    <title>Hiding Items</title>
+
+    <para>Selected items can be hidden from view using context menu item
+    <guimenuitem>Hide Items</guimenuitem>. Hidden items are not shown until
+    next refresh is done. All hidden items can be re-shown selecting
+    <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>Show Hidden Items</guimenuitem>
+      </menuchoice>.</para>
+
+    <para>Hiding items is handy to remove already handled items from the view.
+    So when you have merged files, use context menu item to hide them. It is a
+    lot easier to see what items are left to merge. Get used to it! It saves
+    your time!</para>
+  </sect2>
+
+  <sect2>
+    <title>Refreshing Only Selected Items</title>
+
+    <para>Full refresh of large folders can take a long time. In 2.2 and
+    earlier versions of WinMerge user always had to do full refresh after
+    editing files outside WinMerge. WinMerge 2.4 can refresh just selected
+    items. Select <guimenuitem>Refresh</guimenuitem> from context menu.</para>
   </sect2>
 </sect1>
