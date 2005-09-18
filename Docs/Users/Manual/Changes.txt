@@ -1,3 +1,11 @@
+2005-09-18 Kimmo
+ PATCH: [ 1294162 ] Manual: First update to file compare
+  Manual: Compare_filex.xml
+  Manual/Screenshots: filecomp1.gif filecomp_context1.gif filecomp_statusbar1.gif
+   linediff.gif
+  Manual/Screenshots new files: File_headerbar1.gif Merge_menu.gif
+  Manual/Screenshots deleted files File_headerbar1.jpg Merge_menu.jpg
+
 2005-09-17 Kimmo
  PATCH: [ 1293296 ] Manual: Updates for folder compare
   Manual: Compare_dirs.xml

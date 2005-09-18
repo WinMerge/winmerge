@@ -1,201 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="CompareFiles">
-  <title>Comparing files</title>
-  <para>File compare window is basically two files opened to editor into two horizontal panes. Editing files is the big difference between 1.7.1 and newer versions. Editing allows user to easily do small changes without need to open files to other editor or development environment.</para>
+  <title>Comparing Files</title>
+
+  <para>File compare window is basically two files opened to editor into two
+  horizontal panes. Editing files is the big difference between 1.7.1 and
+  newer versions. Editing allows user to easily do small changes without need
+  to open the files to other editor or development environment.</para>
+
   <tip>
-    <para>If <guilabel>Automatic rescan</guilabel> is not enabled manual refresh is recommended after editing.</para>
+    <para>If <guilabel>Automatic rescan</guilabel> is not enabled manual
+    refresh is recommended after editing.</para>
   </tip>
+
   <mediaobject>
     <imageobject>
-      <imagedata fileref="screenshots/filecomp1.gif" format="GIF"/>
+      <imagedata fileref="screenshots/filecomp1.gif" format="GIF" />
     </imageobject>
   </mediaobject>
+
   <sect2>
-    <title>Showing the differences</title>
-    <para>WinMerge uses different (user configurable) colors to highlight and select differences. By default WinMerge shows different lines with yellow background and missing lines with gray background. If user selects the difference, it is shown with red background and missing lines with milder red.</para>
+    <title>Showing the Differences</title>
+
+    <para>WinMerge uses different (user configurable) colors to highlight and
+    select differences. By default WinMerge shows different lines with yellow
+    background and missing lines with gray background. If user selects the
+    difference, it is shown with red background and missing lines with milder
+    red.</para>
   </sect2>
+
   <sect2>
-    <title>File headerbar</title>
-    <para>File headerbar has many functionalities. See screenshot below:</para>
+    <title>File Headerbar</title>
+
+    <para>File headerbar has many functionalities. See screenshot
+    below:</para>
+
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/File_headerbar1.jpg" format="JPG"/>
+          <imagedata fileref="screenshots/File_headerbar1.gif" format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
-    <para>Firstly, headerbar shows filename and full path for file. Headerbar also shows:<itemizedlist>
+
+    <para>Firstly, headerbar shows filename and full path for file. Headerbar
+    also shows:<itemizedlist>
         <listitem>
-          <para>current active file with sunken border (like in screenshot), non-active file is shown with flat headerbar.</para>
+          <para>current active file with sunken border (like in screenshot),
+          non-active file is shown with flat headerbar.</para>
         </listitem>
+
         <listitem>
-          <para>if file has unsaved changes. This is indicated by adding asterisk (<guilabel>*</guilabel>) before filename, like in screenshot.</para>
+          <para>if file has unsaved changes. This is indicated by adding
+          asterisk (<guilabel>*</guilabel>) before filename, like in
+          screenshot.</para>
         </listitem>
       </itemizedlist></para>
-    <para>Headerbar also has context menu with items to copy full path or filename to clipboard.</para>
+
+    <para>Headerbar also has context menu with items to copy full path or
+    filename to clipboard.</para>
   </sect2>
+
   <sect2>
     <title>Statusbar</title>
+
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/filecomp_statusbar1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/filecomp_statusbar1.gif"
+                     format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
-    <para>Statusbar upper line shows information about current line. In first pane:</para>
+
+    <para>Statusbar upper line shows information about current line. In first
+    pane:</para>
+
     <itemizedlist>
       <listitem>
         <para><guilabel>Ln</guilabel> : current linenumber</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Col</guilabel>: current column for cursor and total number of columns in line</para>
+        <para><guilabel>Col</guilabel>: current column for cursor and total
+        number of columns in line</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>Ch</guilabel> : current char for cursor and total number of chars in line</para>
+        <para><guilabel>Ch</guilabel> : current char for cursor and total
+        number of chars in line</para>
       </listitem>
+
       <listitem>
-        <para><guilabel>EOL</guilabel> : current line EOL style (shown only when <guilabel>Preserve original EOL chars</guilabel>-option is enabled)</para>
+        <para><guilabel>EOL</guilabel> : current line EOL style (shown only
+        when <guilabel>Preserve original EOL chars</guilabel>-option is
+        enabled)</para>
       </listitem>
     </itemizedlist>
+
     <note>
-      <para><guilabel>Col</guilabel> counts <keycap>TAB</keycap> as <replaceable>X</replaceable> chars (as defined in editor options) and <guilabel>Ch</guilabel> counts <keycap>TAB</keycap> as one.</para>
+      <para><guilabel>Col</guilabel> counts <keycap>TAB</keycap> as
+      <replaceable>X</replaceable> chars (as defined in editor options) and
+      <guilabel>Ch</guilabel> counts <keycap>TAB</keycap> as one.</para>
     </note>
-    <para>Next two panes show <guilabel>RO</guilabel> if file is protected and file's EOL style ("<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>"). Note these two different ways to show EOL style. When per-line EOL style is not remembered, EOL style is shown on own pane in statusbar. And when per-line EOL style is remembered line's EOL style is shown after char number. When per-line EOL style is used there is no file-wide EOL style.</para>
-    <para>Difference between column and char is that column counts tabulator chararcter as so many (space) chars as it occupies (4 by default, can be changed from options). But char count counts tabulator char as one char.</para>
-    <para>Lower line in statusbar shows current difference and amount of differences. Text can be:<itemizedlist>
+
+    <para>Next two panes show <guilabel>RO</guilabel> if file is protected and
+    file's EOL style
+    ("<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>").
+    Note these two different ways to show EOL style. When per-line EOL style
+    is not remembered, EOL style is shown on own pane in statusbar. And when
+    per-line EOL style is remembered line's EOL style is shown after char
+    number. When per-line EOL style is used there is no file-wide EOL
+    style.</para>
+
+    <para>Difference between column and char is that column counts tabulator
+    character as so many (space) chars as it occupies (4 by default, can be
+    changed from options). But char count counts tabulator char as one
+    char.</para>
+
+    <para>Lower line in statusbar shows current difference and amount of
+    differences. Text can be:<itemizedlist>
         <listitem>
-          <para><guilabel>Identical</guilabel> : files are identical there are no differences</para>
+          <para><guilabel>Identical</guilabel> : files are identical there are
+          no differences</para>
         </listitem>
+
         <listitem>
-          <para><guilabel>X differences</guilabel> : amount of differences, no difference is selected</para>
+          <para><guilabel>X differences</guilabel> : amount of differences, no
+          difference is selected</para>
         </listitem>
+
         <listitem>
-          <para><guilabel>Difference X of Y</guilabel> : amount of differences (<guilabel>Y</guilabel>) and number of selected difference (<guilabel>X</guilabel>)</para>
+          <para><guilabel>Difference X of Y</guilabel> : amount of differences
+          (<guilabel>Y</guilabel>) and number of selected difference
+          (<guilabel>X</guilabel>)</para>
         </listitem>
       </itemizedlist></para>
   </sect2>
+
   <sect2>
-    <title>Difference navigation</title>
-    <para>Difference navigation commands are in <guimenu>Merge</guimenu> menu:</para>
+    <title>Difference Navigation</title>
+
+    <para>Difference navigation commands are in <guimenu>Merge</guimenu>
+    menu:</para>
+
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/Merge_menu.jpg" format="JPG"/>
+          <imagedata fileref="screenshots/Merge_menu.gif" format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
+
     <sect3>
       <title>Selecting a difference</title>
-      <para>Before difference can be merged, it must be selected. Selecting can happen by difference navigation keys/items (see below) or by selecting wanted difference directly:</para>
+
+      <para>Before difference can be merged, it must be selected. Selecting
+      can happen by difference navigation keys/items (see below) or by
+      selecting wanted difference directly:</para>
+
       <itemizedlist>
         <listitem>
           <para>Double-click over difference with mouse</para>
         </listitem>
+
         <listitem>
-          <para>Move cursor inside difference and select it with <guimenuitem>Current Difference</guimenuitem>.</para>
+          <para>Move cursor inside difference and select it with
+          <guimenuitem>Current Difference</guimenuitem>.</para>
         </listitem>
       </itemizedlist>
     </sect3>
+
     <sect3>
       <title>Navigating differences</title>
-      <para><guimenu>Merge</guimenu>-menu has items for navigating to next/previous and first/last difference. Navigation is always done based on current cursor location. So <guimenuitem>Next Difference</guimenuitem>-command selects next difference from cursor, not from current selected difference.</para>
+
+      <para><guimenu>Merge</guimenu>-menu has items for navigating to
+      next/previous and first/last difference. Navigation is always done based
+      on current cursor location. So <guimenuitem>Next
+      Difference</guimenuitem>-command selects next difference from cursor,
+      not from current selected difference.</para>
+
       <note>
-        <para>When difference is selected with navigation commands cursor is moved to begin of first line of difference. In both files.</para>
+        <para>When difference is selected with navigation commands cursor is
+        moved to begin of first line of difference. In both files.</para>
       </note>
     </sect3>
+
     <sect3>
       <title><guimenuitem>Current Difference</guimenuitem>-command</title>
+
       <para>This command has two important functions:<itemizedlist>
           <listitem>
-            <para>When there is no difference selected and cursor is inside difference, it selects this difference. This is very handy way to select difference from keyboard.</para>
+            <para>When there is no difference selected and cursor is inside
+            difference, it selects this difference. This is very handy way to
+            select difference from keyboard.</para>
           </listitem>
+
           <listitem>
-            <para>When there is selected difference, it scrolls to selected difference. This is handy if user has scrolled selected difference out of screen. So this allows user to scroll files to see other contents and quickly return back to selected difference.</para>
+            <para>When there is selected difference, it scrolls to selected
+            difference. This is handy if user has scrolled selected difference
+            out of screen. So this allows user to scroll files to see other
+            contents and quickly return back to selected difference.</para>
           </listitem>
         </itemizedlist></para>
     </sect3>
+
     <sect3>
       <title>Go To line or difference</title>
-      <para>Using <guimenuitem>Go To</guimenuitem> from <guimenu>Edit</guimenu>-menu user can jump to certain line or difference. Go To -dialog prefills current line and side to Go To -dialog.</para>
+
+      <para>Using <guimenuitem>Go To</guimenuitem> from
+      <guimenu>Edit</guimenu>-menu user can jump to certain line or
+      difference. Go To -dialog prefills current line and side to Go To
+      -dialog.</para>
+
       <tip>
-        <para>Go To line number is useful if there is need to merge same change to several target files from one original file. Rather than using <guimenuitem>Find</guimenuitem> or difference navigation it is faster to jump to first line of difference.</para>
+        <para>Go To line number is useful if there is need to merge same
+        change to several target files from one original file. Rather than
+        using <guimenuitem>Find</guimenuitem> or difference navigation it is
+        faster to jump to first line of difference.</para>
       </tip>
     </sect3>
-    <sect3>
-      <title>Merge mode</title>
-      <para>Merge mode can be enabled from the <guimenu>File</guimenu>-menu. It restores the WinMerge 1.7.1 single keys for difference merging and navigating:</para>
-      <itemizedlist>
-        <listitem>
-          <para><keycap>Up-</keycap> and <keycap>Down arrow</keycap> keys select previous and next difference</para>
-        </listitem>
-        <listitem>
-          <para><keycap>Left-</keycap> and <keycap>Right arrow</keycap> keys merge difference to left side or right side.</para>
-        </listitem>
-      </itemizedlist>
-      <para>Unlike the normal mode, in this schema the <keycap>Alt</keycap>-key is not needed for these basic operations (which makes them quicker and more convenient). Note that <keycombo><keycap>Shift</keycap><keycap>Arrow</keycap></keycombo>, <keycombo><keycap>Alt</keycap><keycap>Arrow</keycap></keycombo> and <keycombo><keycap>Ctrl</keycap><keycap>Alt</keycap><keycap>Arrow</keycap></keycombo> keys work in merge mode like in normal mode.</para>
-      <para>When merge mode is enabled <guilabel>Merge</guilabel> text is shown in statusbar. </para>
-    </sect3>
   </sect2>
+
   <sect2>
-    <title>Merging differences</title>
-    <para>Merging commands are located in <guimenu>Merge</guimenu>-menu after navigation commands. Basically there are only two types of merging commands - copy difference from right to left and copy difference from left to right. Additional commands make merging several differences easier.</para>
-    <para><guimenuitem>Copy to Right</guimenuitem> and <guimenuitem>Copy to Left</guimenuitem> copy difference from side to side. At simplest this means replacing text in destination difference with text in source difference. But because difference can contain also removed lines, new lines may be created or some lines removed.</para>
-    <para>WinMerge rescans files after every merging operation. This is done to ensure differences were copied correctly and all changes after last rescanning are taken care of. If <guilabel>Automatic rescan</guilabel>-option is not set, user may have edited files and differences may not have shown correctly before merging. If result of merging is not what were wanted, user can undo merging operation.</para>
+    <title>Merging Differences</title>
+
+    <para>Merging commands are located in <guimenu>Merge</guimenu>-menu after
+    navigation commands. Basically there are only two types of merging
+    commands - copy difference from right to left and copy difference from
+    left to right. Additional commands make merging several differences
+    easier.</para>
+
+    <para><guimenuitem>Copy to Right</guimenuitem> and <guimenuitem>Copy to
+    Left</guimenuitem> copy difference from side to side. At simplest this
+    means replacing text in destination difference with text in source
+    difference. But because difference can contain also removed lines, new
+    lines may be created or some lines removed.</para>
+
+    <para>WinMerge rescans files after every merging operation. This is done
+    to ensure differences were copied correctly and all changes after last
+    rescanning are taken care of. If <guilabel>Automatic
+    rescan</guilabel>-option is not set, user may have edited files and
+    differences may not have shown correctly before merging. If result of
+    merging is not what were wanted, user can undo merging operation.</para>
+
     <important>
-      <para>It is strongly adviced to run <guimenuitem>Rescan</guimenuitem> (<keycap>F5</keycap>) before merging differences if <guilabel>Automatic rescan</guilabel> is set off.</para>
+      <para>It is strongly advised to run <guimenuitem>Rescan</guimenuitem>
+      (<keycap>F5</keycap>) before merging differences if <guilabel>Automatic
+      rescan</guilabel> is set off.</para>
     </important>
-    <para><guimenuitem>Copy to Right/Left and Advance</guimenuitem>-commands merge current difference and then select next difference (if there is one). Using these commands makes merging several differences easier and faster.</para>
-    <para><guimenuitem>Copy All to Right/Left</guimenuitem>-commands sync two open files merging all differences.</para>
-    <para><guimenuitem>Copy diffs in Left/Right selection to Right/Left</guimenuitem>-commands allow user to select several differences and merge them in one command. User can even select whole file and then merge all differences with one command. These commands are handy when there are several small differences that should be merged. Its easier and faster to select those differences first and then merge with these commands than merging those differences one by one.</para>
+
+    <para><guimenuitem>Copy to Right/Left and Advance</guimenuitem>-commands
+    merge current difference and then select next difference (if there is
+    one). Using these commands makes merging several differences easier and
+    faster.</para>
+
+    <para><guimenuitem>Copy All to Right/Left</guimenuitem>-commands sync two
+    open files merging all differences.</para>
+
+    <para><guimenuitem>Copy diffs in Left/Right selection to
+    Right/Left</guimenuitem>-commands allow user to select several differences
+    and merge them in one command. User can even select whole file and then
+    merge all differences with one command. These commands are handy when
+    there are several small differences that should be merged. Its easier and
+    faster to select those differences first and then merge with these
+    commands than merging those differences one by one.</para>
   </sect2>
+
+  <sect2>
+    <title>Merge Mode</title>
+
+    <para>Merge mode can be enabled from the <guimenu>File</guimenu>-menu. It
+    restores the WinMerge 1.7.1 single keys for difference merging and
+    navigating:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><keycap>Up-</keycap> and <keycap>Down arrow</keycap> keys select
+        previous and next difference</para>
+      </listitem>
+
+      <listitem>
+        <para><keycap>Left-</keycap> and <keycap>Right arrow</keycap> keys
+        merge difference to left side or right side.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Unlike the normal mode, in this schema the <keycap>Alt</keycap>-key
+    is not needed for these basic operations (which makes them quicker and
+    more convenient). Note that <keycombo>
+        <keycap>Shift</keycap>
+
+        <keycap>Arrow</keycap>
+      </keycombo>, <keycombo>
+        <keycap>Alt</keycap>
+
+        <keycap>Arrow</keycap>
+      </keycombo> and <keycombo>
+        <keycap>Ctrl</keycap>
+
+        <keycap>Alt</keycap>
+
+        <keycap>Arrow</keycap>
+      </keycombo> keys work in merge mode like in normal mode.</para>
+
+    <para>When merge mode is enabled <guilabel>Merge</guilabel> text is shown
+    in statusbar.</para>
+  </sect2>
+
   <sect2>
     <title>Refreshing</title>
-    <para>Refreshing updates differences after changes are made to files. Its important to do refresh before merging changes between files.</para>
+
+    <para>Refreshing updates differences after changes are made to files. Its
+    important to do refresh before merging changes between files.</para>
+
     <note>
-      <para>Refresh does not reload file. That means, if another programs has updated files etc, those changes are not seen. Refresh updates differences according changes user has done.</para>
+      <para>Refresh does not reload file. That means, if another programs has
+      updated files etc, those changes are not seen. Refresh updates
+      differences according changes user has done.</para>
     </note>
   </sect2>
+
   <sect2>
-    <title>View whitespaces</title>
-    <para>When enabled from <guimenu>View</guimenu> menu <guimenuitem>View Whitespace</guimenuitem> feature shows all whitespace characters (spaces, tabulators, line ends). This is very useful for example when there are spaces in other file and tabulators in other. Also, if <guilabel>Preserve original EOL chars</guilabel> is enabled, WinMerge shows type of EOL (<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>).</para>
+    <title>View Whitespaces</title>
+
+    <para>When enabled from <guimenu>View</guimenu> menu <guimenuitem>View
+    Whitespace</guimenuitem> feature shows all whitespace characters (spaces,
+    tabulators, line ends). This is very useful for example when there are
+    spaces in other file and tabulators in other. Also, if <guilabel>Preserve
+    original EOL chars</guilabel> is enabled, WinMerge shows type of EOL
+    (<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>).</para>
   </sect2>
+
   <sect2>
-    <title>Editing files</title>
-    <para>Normal editing features work in WinMerge editor. User can type and delete text, select text, copy, cut and paste text etc. There is some customisation because there can be removed lines in files (lines existing only in other side). Anyway these customisations are not usually visible to users otherwise that lines can sometimes "jump" when WinMerge has to relocate matching/non-matching files.</para>
+    <title>Editing Files</title>
+
+    <para>Normal editing features work in WinMerge editor. User can type and
+    delete text, select text, copy, cut and paste text etc. There is some
+    customisation because there can be removed lines in files (lines existing
+    only in other side). Anyway these customisations are not usually visible
+    to users otherwise that lines can sometimes "jump" when WinMerge has to
+    relocate matching/non-matching files.</para>
   </sect2>
+
   <sect2>
-    <title>Difference inside line</title>
-    <para>Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines. This feature is called <guilabel>Highlight File Diff</guilabel>. It is available in <guimenu>Edit</guimenu>-menu, toolbar and shortcut key (<keycap>F4</keycap>). In screenshot below there is one difference highlighted. First time whole difference area in one line is highlighted. Repeating cycles through individual changed words.</para>
+    <title>Difference Inside Line</title>
+
+    <para>Many times it is useful to see exact differences inside lines.
+    WinMerge can highlight different area between lines. This feature is
+    called <guilabel>Highlight File Diff</guilabel>. It is available in
+    <guimenu>Edit</guimenu>-menu, toolbar and shortcut key
+    (<keycap>F4</keycap>). In screenshot below there is one difference
+    highlighted. First time whole difference area in one line is highlighted.
+    Repeating cycles through individual changed words.</para>
+
     <mediaobject>
       <imageobject>
-        <imagedata fileref="screenshots/linediff.gif" format="GIF"/>
+        <imagedata fileref="screenshots/linediff.gif" format="GIF" />
       </imageobject>
     </mediaobject>
   </sect2>
+
   <sect2>
-    <title>Context menu</title>
-    <para>File compare context menu contains items for frequently used features:</para>
-    <para>
-<inlinemediaobject>
+    <title>Context Menu</title>
+
+    <para>File compare context menu contains items for frequently used
+    features:</para>
+
+    <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/filecomp_context1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/filecomp_context1.gif" format="GIF" />
         </imageobject>
       </inlinemediaobject></para>
-    <para>All these items work like selected from main menu.</para>
+
+    <para>Most of these items are familiar from Main menu. Worth noting is
+    last item <guimenuitem>Open</guimenuitem>. It allows to open file with
+    (system) registered application or with external editor.</para>
   </sect2>
+
   <sect2>
     <title>Fonts</title>
+
     <para>Font used by editor can be changed from <menuchoice>
         <guimenu>View</guimenu>
+
         <guimenuitem>Select Font...</guimenuitem>
-      </menuchoice>. Due to limitations in the editor, only fixed width fonts are supported in WinMerge.</para>
-    <para>Font suggestions for use of WinMerge with East Asian languages:</para>
+      </menuchoice>. Due to limitations in the editor, only fixed width fonts
+    are supported in WinMerge.</para>
+
+    <para>Font suggestions for use of WinMerge with East Asian
+    languages:</para>
+
     <itemizedlist>
       <listitem>
-        <para>Simplified Chinese texts with the <guilabel>SimSun</guilabel> or <guilabel>SimHei</guilabel> fixed-width fonts</para>
+        <para>Simplified Chinese texts with the <guilabel>SimSun</guilabel> or
+        <guilabel>SimHei</guilabel> fixed-width fonts</para>
       </listitem>
+
       <listitem>
-        <para>Traditional Chinese texts with the <guilabel>MingLiU</guilabel> fixed-width font, or</para>
+        <para>Traditional Chinese texts with the <guilabel>MingLiU</guilabel>
+        fixed-width font, or</para>
       </listitem>
+
       <listitem>
-        <para>Japanese texts with the <guilabel>MS Gothic</guilabel> or <guilabel>MS Mincho</guilabel> fixed-width fonts</para>
+        <para>Japanese texts with the <guilabel>MS Gothic</guilabel> or
+        <guilabel>MS Mincho</guilabel> fixed-width fonts</para>
       </listitem>
+
       <listitem>
-        <para>Korean texts with the <guilabel>GulimChe</guilabel> fixed-width font (not Gulim as this variant uses proportional-spacing glyphs that are not centered in grid cells and then poorly aligned in fixed-width mode)</para>
+        <para>Korean texts with the <guilabel>GulimChe</guilabel> fixed-width
+        font (not Gulim as this variant uses proportional-spacing glyphs that
+        are not centered in grid cells and then poorly aligned in fixed-width
+        mode)</para>
       </listitem>
     </itemizedlist>
   </sect2>
