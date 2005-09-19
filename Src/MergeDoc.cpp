@@ -1499,6 +1499,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			++lineno;
 			preveol = eol;
 
+#ifdef _DEBUG
 			// send occasional line counts to trace
 			// (at 100, 500, 1000, 5000, etc)
 			if (lineno == next_line_report)
@@ -1513,8 +1514,10 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 				next_line_report = next_line_multiple * next_line_report;
 				next_line_multiple = (next_line_multiple == 5) ? 2 : 5;
 			}
+#endif // _DEBUG
 		} while (!done);
 
+#ifdef _DEBUG
 		// Send report of duration to trace (if it took a while)
 		COleDateTime end = COleDateTime::GetCurrentTime();
 		COleDateTimeSpan duration = end - start;
@@ -1524,6 +1527,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			CString strace = GetLineByteTimeReport(lineno, dwBytesRead, start);
 			TRACE(_T("%s\n"), (LPCTSTR)strace);
 		}
+#endif // _DEBUG
 
 		// fix array size (due to our manual exponential growth
 		m_aLines.SetSize(lineno);

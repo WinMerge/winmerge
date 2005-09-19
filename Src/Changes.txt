@@ -1,3 +1,7 @@
+2005-09-19 Kimmo
+ PATCH: [ 1294514 ] Set file loading traces debug-only
+  Src: MergeDoc.cpp
+
 2005-09-16 Kimmo
  PATCH: [ 1292120 ] More significant diff navigations fixes
   Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
