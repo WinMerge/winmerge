@@ -74,6 +74,32 @@
     </sect3>
 
     <sect3>
+      <title>Allow only one instance to run</title>
+
+      <para>Limits WinMerge program instances to one. If new instance is tried
+      to start, old instance is activated instead. If new instance is tried to
+      open with paths, new paths replace existing ones in previous instance.
+      Or, if multiple compare window support is enabled new compare windows
+      are opened for new paths. (See below.)</para>
+    </sect3>
+
+    <sect3>
+      <title>Enable multiple compare windows for</title>
+
+      <para>Allows opening multiple folder or file compare windows into one
+      WinMerge instance. WinMerge has separate compare documents for folder-
+      and file compare and this option allows selecting multi-window support
+      for both of them independently.</para>
+
+      <note>
+        <para>File compare windows are always related to folder compare
+        windows. Even if you disable multiple file compare windows you still
+        can open one file compare window for every folder compare
+        window.</para>
+      </note>
+    </sect3>
+
+    <sect3>
       <title>Reset messageboxes (Reset-button)</title>
 
       <para>WinMerge allows user to hide (suppress) some common messageboxes.
@@ -207,6 +233,11 @@
           code which skips plugins and moved block detection. The only
           advantage of this method over Full Contents is that this method does
           not load the files into method, and so is faster.</para>
+
+          <para>Drawback is linefilters are not applied when comparing. Even
+          if linefilters ignore all differences in files and files are
+          considered identical by <guilabel>Full Contents</guilabel> -compare
+          method this method sees files as different.</para>
         </listitem>
 
         <listitem>
@@ -217,8 +248,24 @@
           modification dates.</para>
         </listitem>
       </itemizedlist>
+    </sect3>
 
-      <para></para>
+    <sect3>
+      <title>Stop after first difference</title>
+
+      <note>
+        <para>This option is enabled only when <guilabel>Quick
+        Contents</guilabel> -compare method is selected.</para>
+      </note>
+
+      <para><emphasis></emphasis>This option allows to optimize compare by not
+      looking whole files, but only until first difference is found.</para>
+
+      <para>Drawback is WinMerge may be unable to recognize binary files as
+      such. This is even likely if first difference is in begin of file. Don't
+      enable this if you don't know which kind of files you are comparing. If
+      you know your files then this is a nice way to make compare even
+      faster.</para>
     </sect3>
   </sect2>
 
@@ -325,6 +372,30 @@ EOL differences.</screen>
       or spaces (amount specified by tab size -option) when
       <keycap>Tab</keycap>-key is pressed.</para>
     </sect3>
+
+    <sect3>
+      <title>Line Difference Coloring</title>
+
+      <para>This option controls coloring of differences inside lines.
+      Normally (<guilabel>Break at whitespace</guilabel> selected) finding
+      differences stops at whitespace characters. This basically means whole
+      words are highlighted. </para>
+
+      <para>But if <guilabel>Break at whitespace or punctuation</guilabel> is
+      selected difference finding stops at punctuation charactes as well. When
+      this is selected WinMerge can better handle comma separated lists etc.
+      For example, for lines:</para>
+
+      <para><screen>10,20,30,40,50</screen></para>
+
+      <para>and</para>
+
+      <para><screen>10,25,30,45,50</screen></para>
+
+      <para>WinMerge would highlight whole lines when using <guilabel>Break at
+      whitespace</guilabel> but only numbers 20/25 and 40/25 when using
+      <guilabel>Break at whitespace or punctuation</guilabel>.</para>
+    </sect3>
   </sect2>
 
   <sect2>
@@ -378,6 +449,38 @@ EOL differences.</screen>
         <command><replaceable>&lt;path to .exe&gt;</replaceable></command>
         <option>-option1</option> <option>-option2</option>
         <option><replaceable>...</replaceable></option></para>
+      </tip>
+    </sect3>
+  </sect2>
+
+  <sect2>
+    <title>Archive Support</title>
+
+    <para>This page contains download link to 7-zip plugin and contains option
+    related to archive support.</para>
+
+    <sect3>
+      <title>Enable archive file support</title>
+
+      <para>Enables or disables archive file support (based on 7-Zip
+      integration).</para>
+
+      <para>Like described in Installation section of this manual, there are
+      two different methods how 7-zip can be integrated. Integration method
+      can be changed using this option dialog after install.</para>
+    </sect3>
+
+    <sect3>
+      <title>Detect archive support from file signature</title>
+
+      <para>Enabling this option allows WinMerge to recognize archive files
+      even if their file extension is not know archive type. Basically
+      WinMerge reads beginning of file and searches archive-specific signature
+      bytes.</para>
+
+      <tip>
+        <para>This option allows WinMerge to recognize and for example Open
+        Office files.</para>
       </tip>
     </sect3>
   </sect2>
