@@ -1,3 +1,7 @@
+2005-09-19 Tim
+ PATCH: [ 1295767 ] German Translation for 'Highlight Line * Diff'
+  Src/Languages/German: MergeGerman.rc
+
 2005-09-19 Kimmo
  PATCH: [ 1294514 ] Set file loading traces debug-only
   Src: MergeDoc.cpp

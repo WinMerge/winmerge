@@ -83,8 +83,8 @@ BEGIN
         MENUITEM "&Nach rechts kopieren",       ID_L2R
         MENUITEM "N&ach links kopieren",        ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "Zeilen-Wortunterschied &hervorheben", ID_SHOWLINEWORDDIFF
+        MENUITEM "Zeilen-&Zeichenunterschied hervorheben", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Rückgängig",                 ID_EDIT_UNDO
         MENUITEM "&Wiederherstellen",           ID_EDIT_REDO
@@ -313,8 +313,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Alles &markieren\tStrg+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
+        MENUITEM "Zeilen-Wortunterschied &hervorheben\tF4", ID_SHOWLINEWORDDIFF
+        MENUITEM "Zeilen-&Zeichenunterschied hervorheben\tUmschalt+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
         MENUITEM "Erse&tzen...\tStrg+H",        ID_EDIT_REPLACE
@@ -2572,8 +2572,8 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF     "Hebt den Wortunterschied in der aktuellen Zeile hervor.\nWortunterschied in der aktuellen Zeile (F4)"
+    ID_SHOWLINECHARDIFF     "Hebt den Zeichenunterschied in der aktuellen Zeile hervor.\nZeichenunterschied in der aktuellen Zeile (Umschalt+F4)"
     ID_EDIT_WMGOTO          "Geht zur Zeile oder zum Unterschied.\nGehe nach (Strg+G)"
     ID_OPTIONS              "Nimmt Programm-Einstellungen vor.\nEinstellungen"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
