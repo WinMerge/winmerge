@@ -112,7 +112,7 @@ BEGIN
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
         MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Es&ci",                       ID_APP_EXIT
+        MENUITEM "&Esci",                       ID_APP_EXIT
     END
     POPUP "&Modifica"
     BEGIN
@@ -171,12 +171,12 @@ BEGIN
     BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
-        MENUITEM "Apri progetto...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Fil&e di sinistra di Sola lettura", ID_FILE_LEFT_READONLY
         MENUITEM "F&ile di destra di Sola lettura", ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "Es&ci",                       ID_APP_EXIT
+        MENUITEM "&Esci",                       ID_APP_EXIT
     END
     POPUP "&Modifica"
     BEGIN
@@ -296,7 +296,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Modalità 'Unione'\tF9",      ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
-        MENUITEM "Es&ci",                       ID_APP_EXIT
+        MENUITEM "&Esci",                       ID_APP_EXIT
     END
     POPUP "&Modifica"
     BEGIN
@@ -1196,7 +1196,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "In accordo con l'interfaccia di WinMerge",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
-    CONTROL         "Codice personalizzato :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Codice personalizzato:",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,68,90,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,140,67,56,13,ES_AUTOHSCROLL
 END
@@ -1214,7 +1214,7 @@ BEGIN
                     IDC_STATIC,2,26,296,26
     LTEXT           "Ci deve essere un plugin appropriato (Merge7z*.dll) in questo percorso.",
                     IDC_STATIC,2,52,296,18
-    LTEXT           "Utilizza per favore la versione di 7-Zip raccomandata qui sotto fino alla disponbilità\ndi nuove versioni.",
+    LTEXT           "Utilizza per favore la versione di 7-Zip raccomandata qui sotto fino alla disponbilità di\nnuove versioni.",
                     IDC_STATIC,2,70,296,26
     CTEXT           "Versione",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
@@ -1369,9 +1369,9 @@ BEGIN
     LTEXT           "Il supporto per gli archivi richiede l'installazione del plugin per 7-Zip:",
                     IDC_STATIC,7,7,221,8
     LTEXT           "Scarica il plugin per 7-Zip",IDC_ARCHIVE_WWW,7,18,128,8
-    CONTROL         "&Attiva il supporto per i file di archivi",IDC_ARCHIVE_ENABLE,"Button",
+    CONTROL         "&Attiva il supporto per i file di archivio",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
-    CONTROL         "&Utilizza 7-Zip installato se disponibile",
+    CONTROL         "&Utilizza installazione standard di 7-Zip se disponibile",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
     CONTROL         "U&tilizza 7-Zip posizionato nella cartella di WinMerge",IDC_ARCHIVE_INSTALLOCAL,"Button",
@@ -2001,7 +2001,7 @@ BEGIN
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 e superiore)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
     IDS_BREAK_ON_WHITESPACE "Interrompi agli spazi bianchi"
-    IDS_BREAK_ON_PUNCTUATION "Interrompi agli spazi bianchi o alla punteggiatura"
+    IDS_BREAK_ON_PUNCTUATION "Interrompi agli spazi bianchi o punteggiatura"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
