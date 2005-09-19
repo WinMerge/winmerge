@@ -1,6 +1,9 @@
 2005-09-19 Kimmo
  PATCH: [ 1294514 ] Set file loading traces debug-only
   Src: MergeDoc.cpp
+ PATCH: [ 1295473 ] updated italian rc file for winmerge 2.3.6
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
 
 2005-09-16 Kimmo
  PATCH: [ 1292120 ] More significant diff navigations fixes
