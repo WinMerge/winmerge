@@ -9,7 +9,6 @@
 #include "stdafx.h"
 #include "Merge.h"
 #include "PropArchive.h"
-#include ".\proparchive.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -55,7 +54,7 @@ END_MESSAGE_MAP()
  */
 BOOL CPropArchive::OnInitDialog()
 {
-	m_wwwLink.m_link = _T("http://winmerge.org");
+	m_wwwLink.m_link = _T("http://winmerge.org/downloads.php");
 	UpdateData(FALSE);
 
 	UpdateControls();

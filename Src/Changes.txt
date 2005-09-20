@@ -2,6 +2,8 @@
  PATCH: [ 1295701 ] Scrolling for dir compare report filename
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 1295758 ] Update URL for downloads page (archive options)
+  Src: PropArchive.cpp
 
 2005-09-19 Tim
  PATCH: [ 1295767 ] German Translation for 'Highlight Line * Diff'
