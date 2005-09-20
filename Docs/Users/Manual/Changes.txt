@@ -1,6 +1,9 @@
 2005-09-20 Kimmo
  PATCH: [ 1295568 ] Manual: New Open-dialog screenshot
   Manual/screenshots: OpenDlg1.gif
+ PATCH: [ 1295601 ] Manual: Add linediff coloring
+  Manual: Compare_files.xml
+  Manual/screenshots new file: filecomp_inlinediff.gif
 
 2005-09-19 Kimmo
  PATCH: [ 1294595 ] Manual: Update options

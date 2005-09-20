@@ -337,7 +337,29 @@
   </sect2>
 
   <sect2>
-    <title>Difference Inside Line</title>
+    <title>Line Difference Highlight</title>
+
+    <para>Maybe the greatest new feature in WinMerge 2.4 is difference
+    highlight in all differences and lines in differences. Screenshot tells it
+    best:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="screenshots/filecomp_inlinediff.gif" />
+      </imageobject>
+    </mediaobject>
+
+    <para>This feature can be turned on/off from menu <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>View Line Differences</guimenuitem>
+      </menuchoice>. There are couple of options for the feature in
+    Edit-options and <guilabel>Line Difference Coloring</guilabel>
+    frame.</para>
+  </sect2>
+
+  <sect2>
+    <title>Line Difference Selection</title>
 
     <para>Many times it is useful to see exact differences inside lines.
     WinMerge can highlight different area between lines. This feature is
