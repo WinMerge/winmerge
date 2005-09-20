@@ -1,4 +1,4 @@
-2005-09-20
+2005-09-20 Kimmo
  PATCH: [ 1295701 ] Scrolling for dir compare report filename
   Src: Merge.rc
   Src/Languages: *.rc
