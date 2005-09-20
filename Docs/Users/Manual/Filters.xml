@@ -67,9 +67,8 @@
 
     <para>A file filter is a set of rules saved to one file. Every file and
     directory is tested against all these rules before comparing. Files and
-	directories that match the rules are excluded if it is an inclusive
-	filter, or included if it is an exclusive filter.
-    </para>
+    directories that match the rules are excluded if it is an inclusive
+    filter, or included if it is an exclusive filter.</para>
 
     <tip>
       <para>Ignored items have "<guilabel>Skipped</guilabel>" status in
@@ -91,25 +90,27 @@
       <title>Filter files</title>
 
       <para>Filter files are normal text files, with an extension of <filename
-      class="extension">.flt</filename>. Filter files must be placed
-      in either:</para>
+      class="extension">.flt</filename>. Filter files must be placed in
+      either:</para>
 
       <itemizedlist>
         <listitem>
           <para>"<filename class="directory">Filters</filename>" subdirectory
-          in the WinMerge program directory. This is the recommended place.</para>
+          in the WinMerge program directory. This is the recommended
+          place.</para>
         </listitem>
 
         <listitem>
           <para>"<filename class="directory">Winmerge/Filters</filename>"
-          subdirectory in user profile. Under Windows XP, this might be 
-          <filename class="directory">C:\Documents And Settings\username\Local Settings\Application Data\WinMerge\Filters</filename>
-          or
-          <filename class="directory">C:\Documents And Settings\username\Application Data\WinMerge\Filters</filename>.
-          This can be used to store personal filters for the individual user, or for a user
-          who lacks the ability to write to the WinMerge program directory.
-          This also is appropriate if backup &amp; restore from an individual profile
-          directory is desired.</para>
+          subdirectory in user profile. Under Windows XP, this might be
+          <filename class="directory">C:\Documents And Settings\username\Local
+          Settings\Application Data\WinMerge\Filters</filename> or <filename
+          class="directory">C:\Documents And Settings\username\Application
+          Data\WinMerge\Filters</filename>. This can be used to store personal
+          filters for the individual user, or for a user who lacks the ability
+          to write to the WinMerge program directory. This also is appropriate
+          if backup &amp; restore from an individual profile directory is
+          desired.</para>
         </listitem>
       </itemizedlist>
 
@@ -232,6 +233,11 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
     to add begin (<constant>"^"</constant>) or end (<constant>"$"</constant>)
     marker to rule. Or both markers if exact line is wanted to
     filtered.</para>
+
+    <tip>
+      <para>There are some troubles with "$" and end-of-line. One way to
+      work-around these troubles is to use "\W$" when possible.</para>
+    </tip>
 
     <para>Rules can be added and edited in Filters-dialog (Menu: <menuchoice>
         <guimenu>Tools</guimenu>
