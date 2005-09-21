@@ -1,3 +1,8 @@
+2005-09-21 Kimmo
+ PATCH: [ 1297406 ] updated hungarian translation
+  Submitted by Márton Balázs
+  Src/Languages/Hungarian: MergeHungarian.rc
+
 2005-09-20 Kimmo
  PATCH: [ 1295701 ] Scrolling for dir compare report filename
   Src: Merge.rc
