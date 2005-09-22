@@ -1,3 +1,9 @@
+2005-09-21 Christian
+ PATCH: [ 1252903 ] Plugin to display MS Word files
+  Plugins/list_of_sources.txt
+  New directory: Plugins\src_VB\CompareMSWordFiles
+  New file: Plugins\dlls\CompareMSWordFiles.dll
+
 2005-09-01 Kimmo
  PATCH: [ 1277316 ] New layout for list_of_sources.txt
   Submitted by Tim
