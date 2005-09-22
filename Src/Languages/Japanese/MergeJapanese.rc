@@ -145,7 +145,7 @@ BEGIN
     POPUP "ウィンドウ(&W)"
     BEGIN
         MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "全て閉じる(&S)",              ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -208,7 +208,7 @@ BEGIN
     END
     POPUP "マージ(&M)"
     BEGIN
-        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM "比較(&M)\tEnter",             ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         MENUITEM "次の差異(&N)\tAlt+Down",      ID_NEXTDIFF
         MENUITEM "前の差異(&P)\tAlt+Up",        ID_PREVDIFF
@@ -244,7 +244,7 @@ BEGIN
     POPUP "ウィンドウ(&W)"
     BEGIN
         MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "全て閉じる(&S)",              ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -386,7 +386,7 @@ BEGIN
     POPUP "ウィンドウ(&W)"
     BEGIN
         MENUITEM "閉じる(&O)",                  ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "全て閉じる(&S)",              ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "ペインを変更する(&P)\tF6",    ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -1100,7 +1100,7 @@ BEGIN
     LTEXT           "ファイル比較方法(&F):",IDC_STATIC,7,105,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+    CONTROL         "最初の差異で比較を終了する(&T)",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     PUSHBUTTON      "デフォルト",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
@@ -1336,11 +1336,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "ディレクトリ比較レポート"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "レポートファイル(&F):",IDC_STATIC,7,7,37,8
+    LTEXT           "レポートファイル(&F):",IDC_STATIC,7,7,57,8
     COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
                     CBS_AUTOHSCROLL | WS_TABSTOP
     PUSHBUTTON      "参照...",IDC_REPORT_BROWSEFILE,211,18,50,14
-    LTEXT           "スタイル(&S):",IDC_STATIC,7,37,18,8
+    LTEXT           "スタイル(&S):",IDC_STATIC,7,37,38,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
@@ -1364,20 +1364,20 @@ END
 
 IDD_PROP_ARCHIVE DIALOGEX 0, 0, 235, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Archive Support"
+CAPTION "アーカイブサポート"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Archive support requires 7-Zip plugin installed:",
+    LTEXT           "アーカイブサポート機能の使用には、7-Zip プラグインのインストールが必要です:",
                     IDC_STATIC,7,7,221,8
-    LTEXT           "Download 7-zip Plugin",IDC_ARCHIVE_WWW,7,18,128,8
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
+    LTEXT           "7-zip プラグイン ダウンロード",IDC_ARCHIVE_WWW,7,18,128,8
+    CONTROL         "アーカイブファイルサポートを有効にする(&E)",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
-    CONTROL         "&Use stand-alone 7-Zip if available",
+    CONTROL         "利用可能であれば、スタンドアロンの7-Zipを使用する(&U)",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
-    CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
+    CONTROL         "WinMergeフォルダのローカルな7-Zipを使用する(&S)",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
-    CONTROL         "&Detect archive type from file signature",
+    CONTROL         "ファイルのシグネチャからアーカイブの種類を検出する(&D)",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
@@ -1704,7 +1704,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "バージョン管理"
     IDS_OPTIONSPG_CODEPAGE     "コードページ"
     IDS_OPTIONSPG_SYNTAXCOLORS "シンタックスカラー"
-    IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_ARCHIVE   "アーカイブサポート"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -2536,7 +2536,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "次のファイルをアクティブにします\n次のファイルを選択"
-    ID_WINDOW_CLOSEALL      "Closes all open windows"
+    ID_WINDOW_CLOSEALL      "開いている全てのウインドウを閉じます"
 END
 
 // HELP MENU

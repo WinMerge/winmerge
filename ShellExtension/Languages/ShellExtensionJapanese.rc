@@ -39,7 +39,7 @@ BEGIN
     IDS_COMPARE_TO          "比較対象として選択"
     IDS_HELP_SAVETHIS       "このパスを保存します。 このパスと比較するために別のパスを選択してください。"
     IDS_HELP_COMPARESAVED   "保存されたパス(%1)と比較します。"
-    IDS_RESELECT_FIRST      "Re-select First"
+    IDS_RESELECT_FIRST      "一つ目のファイルを再選択"
 END
 
 #endif    // 日本語 resources
