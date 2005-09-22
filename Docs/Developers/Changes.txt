@@ -1,0 +1,6 @@
+2005-09-22 Kimmo
+ PATCH: [ 1298109 ] Docs: Document ShellExtension versioning
+  Developers: readme-developers.html
+
+2005-09-22 Kimmo
+ Previous change history is in file readme.txt

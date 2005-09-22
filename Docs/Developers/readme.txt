@@ -1,3 +1,7 @@
+2005-09-22 Kimmo
+ New file Changes.txt created.
+ See Changes.txt for more up-to-date information.
+
 2005-08-28 Kimmo
  PATCH: [ 1274509 ] Small update for installer doc
   Developers: readme-developers-InnoSetup.html

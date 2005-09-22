@@ -138,7 +138,7 @@ directly in the text in bug postings, or patch postings. For example, see
 <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216&amp;func=detail&amp;aid=824987">PATCH [ 824987 ] "Change binary-file detection (look only for zeros)"</a>,
 which gives the change directly in the text.</p>
 
-<p>Note, however, that sourceforge trackers currently ignore tabs, so if 
+<p>Note, however, that sourceforge trackers currently ignore tabs, so if
 can convert tabs to spaces in your posting, it helps greatly.</p>
 
 <p>Bugfixes may be treated less formally, especially for simple ones, or for
@@ -269,7 +269,7 @@ any of the following three methods at least.
  You may use
  <a href="http://www.elphin.com/products/stampver.html">StampVer</a> to stamp
  the version number into the executables after they are compiled; Christian is
- familiar with this process. 
+ familiar with this process.
  </li><li>
  You may also use the old-fashioned process
  of simply copying all the sources, changing the <code>Merge.rc</code> in the copy using
@@ -280,8 +280,28 @@ any of the following three methods at least.
 Whatever method you use, please double-check the
 executable version numbers before uploading and releasing them.</p>
 
+<p>
+  Now that 2.4 release has translations for Shell Extension we must also carefully
+  version it. If we don't update version number installer won't install updated version.
+  There are no scripts or other tools to update version number, it must be done by hand
+  to <code>ShellExtension.rc</code> file (make sure you update all four numbers!). Version numbers
+  follow the rule:
+</p>
+<pre>
+1.6.1.0
+| | | |
+| | | `------- Not used - 0 (or your own build version?)
+| | `--------- Translation updates or other minor changes increase this by one
+| `----------- New features, bug fixes and other changes affecting to behavior
+|                increase this number by one
+`------------- Denotes a major release with major changes.
+</pre>
 <ul>
-  <li><em>TODO: What about versioning ShellExtension.dll ?</em></li>
+  <li>Make sure that version number is updated every time you do a new release!</li>
+  <li>If there are only small changes not affecting behaviour or translation updates<br>
+    - increase 3rd number by one</li>
+  <li>If there's been new features, bug fixes or other non-minor changes<br>
+    - increase 2nd number by one</li>
 </ul>
 
 <p>Filenames in file releases follow this standard:</p>
@@ -422,7 +442,7 @@ Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set</p>
     <p><strong>Patches</strong>: developers update the files : add new items, remove deleted ones,
     move moved items (controls going from one dialog to another one). No care of layout or visual check of dialogs.
     With such updates, languages dll are valid (no crash).</p>
-    
+
     <p><em>We may reduce this work to the languages used by experimental testers (and, for other languages,
     for the next beta/release, reapply together all patches since the last beta/release localization).</em></p>
   </li>
