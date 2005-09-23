@@ -1,3 +1,8 @@
+2005-09-23 Perry
+ PATCH: [ 1301504 ] Danish ShellExtension translation
+  Submitted by Christial List
+   ShellExtension/Languages: ShellExtensionDanish.rc
+
 2005-09-22 Kimmo
  PATCH: [ 1297642 ] Japanese translation update
   Submitted by Takashi Sawanaka
