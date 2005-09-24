@@ -376,23 +376,35 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 /**
  * @brief Compare two diffitems and add results to difflist in context.
  *
+ * This function does the actual compare for previously gathered list of
+ * items. Basically we:
+ * - ignore items matching filefilters
+ * - add non-ignored directories (no compare for directory items)
+ * - add  unique files
+ * - compare files
+ *
  * @param [in] di DiffItem to compare
  * @param [in,out] pCtxt Compare context: contains difflist, encoding info etc.
  */
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 {
-	// Clear possible rescan-flag
+	// Clear rescan-request flag (not set by all codepaths)
 	di.diffcode &= ~DIFFCODE::NEEDSCAN;
 
 	// 1. Test against filters
 	if (di.isDirectory())
 	{
 		if (!pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename, di.sRightFilename))
+		{
 			di.diffcode |= DIFFCODE::SKIPPED;
+			StoreDiffResult(di, pCtxt, NULL);
+			return;
+		}
 		else
 			di.diffcode |= DIFFCODE::INCLUDED;
 
-		// Done for directories now
+		// We don't actually 'compare' directories, just add non-ignored
+		// directories to list.
 		StoreDiffResult(di, pCtxt, NULL);
 		return;
 	}
@@ -404,12 +416,12 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			di.diffcode |= DIFFCODE::INCLUDED;
 	}
 
-	// Add unique files
+	// 2. Add unique files
+	// We must compare unique files to itself to detect encoding
 	if (di.isSideLeft())
 	{
 		if (pCtxt->m_nCompMethod != CMP_DATE)
 		{
-			// Compare file to itself to detect encoding
 			DiffFileData diffdata;
 			diffdata.prepAndCompareTwoFiles(pCtxt, di);
 			StoreDiffResult(di, pCtxt, &diffdata);
@@ -424,7 +436,6 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	{
 		if (pCtxt->m_nCompMethod != CMP_DATE)
 		{
-			// Compare file to itself to detect encoding
 			DiffFileData diffdata;
 			diffdata.prepAndCompareTwoFiles(pCtxt, di);
 			StoreDiffResult(di, pCtxt, &diffdata);
@@ -436,16 +447,9 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 		}
 		return;
 	}
-	// Compare two files
+	// 3. Compare two files
 	else
 	{
-		/*LPCTSTR leftname = leftFiles[i].name;
-		LPCTSTR rightname = rightFiles[j].name;
-
-		gLog.Write(_T("Comparing: n0=%s, n1=%s, d0=%s, d1=%s"), 
-		leftname, rightname, (LPCTSTR)sLeftDir, (LPCTSTR)sRightDir);
-		*/
-
 		if (pCtxt->m_nCompMethod == CMP_DATE)
 		{
 			// Compare by modified date
