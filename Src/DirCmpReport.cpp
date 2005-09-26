@@ -15,6 +15,7 @@
 #include "coretools.h"
 #include "WaitStatusCursor.h"
 #include "paths.h"
+#include "UniFile.h"
 
 /**
  * @brief EOL bytes for reports.
@@ -233,34 +234,16 @@ void DirCmpReport::GenerateHTMLFooter()
  */
 BOOL DirCmpReport::SaveToFile(CString &sError)
 {
-	const UINT flags = CFile::modeCreate | CFile::modeWrite;
-	CFile file;
-	CFileException e;
+	UniStdioFile file;
 	
-	if (!file.Open(m_sReportFile, flags, &e))
+	if (!file.Open(m_sReportFile, _T("wt")))
 	{
-		TCHAR szError[1024];
-		e.GetErrorMessage(szError, 1024);
-		sError = szError;
-		
+		sError = GetSysError(GetLastError());		
 		return FALSE;
 	}
 
-	// Convert to ANSI since most programs don't handle unicode files
-	int reportLen = m_sReport.GetLength();
-	int pos = 0;
-	const int blockSize = 4095;
-	char buf[blockSize + 1] = {0};
-	
-	USES_CONVERSION;
-	while (pos < reportLen)
-	{
-		int curBlockSize = min(reportLen - pos, blockSize);
-		strncpy(buf, T2CA((LPCTSTR)m_sReport.Mid(pos, curBlockSize)), curBlockSize);
-		file.Write(buf, curBlockSize);
-		pos += curBlockSize;
-	}
-	
+	file.SetCodepage(GetACP());
+	file.WriteString(m_sReport);	
 	file.Close();
 
 	return TRUE;
