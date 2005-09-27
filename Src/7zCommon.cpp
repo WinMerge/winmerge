@@ -136,6 +136,8 @@ Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 		GetPrivateProfileString(section, entry, null, value, 20, filename) &&
 		*value == '.')
 	{
+		// Remove end-of-line comments (in string returned from GetPrivateProfileString)
+		// that is, remove semicolon & whatever follows it
 		if (LPTSTR p = StrChr(value, ';'))
 		{
 			*p = '\0';
@@ -143,6 +145,10 @@ Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 		}
 		path = value;
 	}
+
+	// PATCH [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues
+	// command line integration portion is not yet applied
+	// so following code not yet valid, so temporarily commented out
 	// Look for command line tool first
 	/*Merge7z::Format *pFormat;
 	if (CExternalArchiveFormat::GuessFormat(path, pFormat))
@@ -150,6 +156,7 @@ Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 		return pFormat;
 	}*/
 	// Default to Merge7z*.dll
+
 	return Merge7z->GuessFormat(path);
 }
 
