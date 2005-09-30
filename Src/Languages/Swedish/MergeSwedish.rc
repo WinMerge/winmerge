@@ -1208,7 +1208,7 @@ BEGIN
     LTEXT           "Kan inte detektera version av 7-Zip (är det inte installerat?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "Arkivstöd kräver antingen att version 3.11 eller högre av 7-Zip är installerat på din dator, eller att dess\nödvändiga komponenter kopieras till WinMerges programkatalog för fristående användning.",
+    LTEXT           "Arkivstöd kräver antingen att version 3.11 eller högre av 7-Zip är installerat på din dator, eller att dess\nnödvändiga komponenter kopieras till WinMerges programkatalog för fristående användning.",
                     IDC_STATIC,2,26,296,26
     LTEXT           "Det måste också finnas ett lämligt gränssnitts-plugin (Merge7z*.dll) i sökvägen.",
                     IDC_STATIC,2,52,296,18

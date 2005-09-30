@@ -1,3 +1,8 @@
+2005-09-30 Tim
+ PATCH: [ 1309423 ] Small typo in MergeSwedish.rc
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2005-09-27 Perry
  PATCH: [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues
   Cosmetic, transcribing comment from patch discussion
