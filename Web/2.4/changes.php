@@ -8,7 +8,7 @@
 <?php
   print($page->convertChanges2Html('changes.txt'));
 ?>
-<p>For older changes look at the <a href="/2.2/changes.php">Change History</a> from <a href="/2.2/index.php">WinMerge 2.0</a>.</p>
+<p>For older changes look at the <a href="/2.2/changes.php">Change History</a> from <a href="/2.2/index.php">WinMerge 2.2</a>.</p>
 <?php
   $page->printFoot();
 ?>
