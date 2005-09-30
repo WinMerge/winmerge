@@ -1,3 +1,10 @@
+2005-09-30 Tim
+ PATCH: [ 1308987 ] Website changes for new stable release 2.4.0
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.2: index.php new file downloads.php
+  Web\2.4: new file *.php *.txt
+  Web\2.4\images: new file *.gif
+
 2005-09-07 Tim
  PATCH: [ 1282546 ] Web: Download page
   Web: page.inc new file downloads.php

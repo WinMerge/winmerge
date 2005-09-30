@@ -1,0 +1,2022 @@
+2005-09-29 2.4.0 Stable Release
+
+2005-09-29 Kimmo
+ PATCH: [ 1302710 ] generating a report is slow
+  Submitted by Takashi Sawanaka
+  Src: DirCmpReport.cpp
+ Bump ShellExtension version to 1.6.1
+  ShellExtensions: ShellExtension.rc
+ Update Help URL for 2.4
+  MainFrm.cpp
+
+2005-09-26 Kimmo
+ PATCH: [ 1302608 ] crash on generating a report
+  Submitted by Takashi Sawanaka
+  Src: DirCmpReport.cpp
+
+2005-09-24 Kimmo
+ BUG: [ 1298687 ] The files marked as 'skipped' are compared
+  Fix from Takashi Sawanaka, comment updates by me
+   Src: DirScan.cpp
+
+2005-09-23 Perry
+ PATCH: [ 1301504 ] Danish ShellExtension translation
+  Submitted by Christial List
+   ShellExtension/Languages: ShellExtensionDanish.rc
+
+2005-09-22 Kimmo
+ PATCH: [ 1297642 ] Japanese translation update
+  Submitted by Takashi Sawanaka
+   ShellExtension/Languages: ShellExtensionJapanese.rc
+   Src/Languages/Japanese: MergeJapanese.rc
+
+2005-09-21 Kimmo
+ PATCH: [ 1297406 ] updated hungarian translation
+  Submitted by Márton Balázs
+  Src/Languages/Hungarian: MergeHungarian.rc
+
+2005-09-20 WinMerge 2.4.0 Release Candidate 1 (2.3.8.0) released
+
+2005-09-20 Kimmo
+ PATCH: [ 1295701 ] Scrolling for dir compare report filename
+  Src: Merge.rc
+  Src/Languages: *.rc
+ PATCH: [ 1295758 ] Update URL for downloads page (archive options)
+  Src: PropArchive.cpp
+
+2005-09-19 Tim
+ PATCH: [ 1295767 ] German Translation for 'Highlight Line * Diff'
+  Src/Languages/German: MergeGerman.rc
+
+2005-09-19 Kimmo
+ PATCH: [ 1294514 ] Set file loading traces debug-only
+  Src: MergeDoc.cpp
+ PATCH: [ 1295473 ] updated italian rc file for winmerge 2.3.6
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+
+2005-09-16 Kimmo
+ BUG: [ 1290305 ] ShellExtensionU.dll info missing from config log
+  Src: ConfigLog.cpp
+ PATCH: [ 1289037 ] Some (non)significant diff count fixes
+ PATCH: [ 1292120 ] More significant diff navigations fixes
+  Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+
+2005-09-15, Tim
+ PATCH: [ 1292279 ] Various Updates in German Translation
+  Src/Languages/German: MergeGerman.rc
+
+2005-09-14 Kimmo
+ PATCH: [ 1290477 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
+2005-09-11 Perry
+ PATCH: [ 1283466 ] French translation
+  New translation by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+ BUG: [ 1284304 ] StaticLink crashes after mouse over event
+  Changed signature of CStaticLink::OnSetCursor to start with CWnd *
+  Src\Common: StaticLink.cpp StaticLink.h
+
+2005-09-09 Jochen
+ Fix bug from PATCH: [ 1247875 ] codepage detection based on CMarkdown class
+ HTML files without encoding declaration could cause crash due to reading beyond end of text
+ The fix was submitted by Takashi Sawanaka
+  Src: markdown.cpp
+ 
+2005-09-09 Tim
+ PATCH: [ 1285404 ] Various Updates in German Translation
+  Src/Languages/German: MergeGerman.rc
+
+2005-09-07 2.3.6 WinMerge beta 2.3.6.0 released
+
+2005-09-07 Kimmo
+ PATCH: 1284150 Fix Shell Extension registering problem
+  Also bump version to 1.6
+  ShellExtension: ShellExtension.cpp ShellExtension.rc
+
+2005-09-07 R2_4 branch created for 2.4 release
+
+2005-09-07 Kimmo
+ PATCH: [ 1283217 ] Inactive linediff color is too bright
+  Src: OptionsInit.cpp
+
+2005-09-07 Perry
+ PATCH: [ 1282587 ] Allow compare 2 items when one on both sides
+  Src: DiffItem.h DirActions.cpp DirView.cpp
+ BUG: [ 1283986 ] Cannot drill into directories
+  Src: DirView.cpp
+
+2005-09-06 Kimmo
+ PATCH: [ 1273040 ] Fix buffer handling in Quick Compare
+  Submitted by Perry
+  Src: DiffWrapper.cpp
+ PATCH: [ 1282322 ] Use different cursor (hand) with static link
+  Src: Merge.dsp Merge.rc resource.h
+  Src/Common: StatLink.cpp StatLink.h
+  Src/res new file: hand.cur
+  Src/Languages: *.rc resource.h
+  Src/Languages/*/res new file: hand.cur
+
+2005-09-05, Perry
+ PATCH: [ 1281371 ] Allow comparing 2 items against each other in DirView
+  Src: DirActions.cpp DirView.cpp DirView.h
+
+2005-09-05 Kimmo
+ PATCH: [ 1281735 ] Don't silently overwrite project file
+  Src: OpenDlg.cpp
+
+2005-09-04 Perry
+ Cosmetic: Perry adding comments about usage of dllpstub
+  Src: dllpstub.cpp dllpstub.h markdown.h
+ Cosmetic: Adding comment about 7ZCommon.h include of dllpstub.h, which is not obvious
+  Src: 7ZCommon.h
+ Cosmetic: Adding class comment to union CMarkdown::_HSTR
+  Src: markdown.h
+
+2005-09-04 Kimmo
+ PATCH: [ 1281059 ] Avoid uninitialised members in CLanguageSelect
+  Submitted by Csaba Raduly
+  Src/Common: LanguageSelect.cpp
+
+2005-09-01 WinMerge experimental release 2.3.5.4 (cvs)
+
+2005-09-01 Kimmo
+ PATCH: [ 1278708 ] Updated Swedish.rc for 2.4
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1276921 ] Replace 'Directory' with 'Folder' in Open-dialog
+  Src: Merge.rc
+
+2005-08-31 Jochen
+ PATCH: [ 1275273 ] Convert CDirView to use LVN_GETDISPINFO
+ BUG: [ 1275247 ] Temp path shown in caption
+ BUG: [ 1275711 ] No backslash between top-level archive directories in header
+  Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp
+
+2005-08-31 Perry
+ BUG: [ 1277300 ] version number
+ PATCH: [ 1277596 ] Fix version string (IDS_VERSION_FMT) in Portuguese
+  Fix IDS_VERSION_FMT string for Portuguese/Brazilian (was missing %1)
+  Src/Languages/Brazilian: MergeBrazilian.rc
+
+2005-08-31 Kimmo
+ PATCH: [ 1265182 ] cannot transfer cmdargs from WinMergeU to WinMerge
+  Submitted by Takashi Sawanaka
+  Src: MainFrm.cpp MainFrm.h Merge.cpp
+ PATCH: [ 1276916 ] Add Window/Close All menuitem
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+ PATCH: [ 1277420 ] Swedish translation update for 2.4
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+  ShellExtension/Languages: ShellExtensionSwedish.rc
+ PATCH: [ 1277588 ] Change lstrcpyW to wcscpy
+  Submitted by Perry
+  Src: MainFrm.cpp Merge.cpp
+
+2005-08-30 Kimmo
+ PATCH: [ 1275833 ] Fix difference navigation with ignored diffs
+  Src: DiffList.cpp DiffList.h MergeDoc.cpp MergeEditView.cpp
+ PATCH: [ 1275940 ] Merge/Delete enabled for single item only
+  Src: DirView.cpp
+ PATCH: [ 1276588 ] Catalan translation update
+  Submitted by Jordi Vilar
+  ShellExtension/Languages: ShellExtensionCatalan.rc
+  Src/Languages/Catalan: MergeCatalan.rc
+
+2005-08-29 Kimmo
+ PATCH: [ 1275345 ] Archive support options
+  Src: Merge.dsp Merge.rc OptionsDef.h OptionsInit.cpp resource.h
+  Src new files: PropArchive.cpp PropArchive.h
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+
+2005-08-28 Kimmo
+ PATCH: [ 1274504 ] Build Shellextension dlls to same folders than WinMerge.exes
+  ShellExtension: ShellExtension.dsp
+ BUG: [ 1269022 ] Additional backslash shown for root paths
+  Src: PathContext.cpp
+
+2005-08-26 Kimmo
+ PATCH: [ 1273222 ] Change COpenDlg::SelectFile() to show resizable dialog
+  Src: OpenDlg.cpp
+ PATCH: [ 1267510 ] Allow stopping quick compare after first difference
+  Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp
+   Merge.rc OptionsDef.h OptionsInit.cpp PropCompare.cpp PropCompare.h resource.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages: *.rc resource.h
+
+2005-08-25 Perry
+ PATCH: [ 1273039 ] Fix fencepost error in binary check in QuickCompare
+  (Fix plus some improved commenting)
+  Src: DiffWrapper.cpp
+ PATCH: [ 1269567 ] Abortable quick compare
+  Src: DiffContext.cpp DiffContext.h DiffItem.h DiffThread.cpp
+   DiffWrapper.cpp DiffWrapper.h DirCompStateBar.cpp DirCompStateBar.h
+   DirDoc.cpp DirScan.cpp DirScan.h DirView.cpp DirViewColItems.cpp
+   Merge.dsp Merge.rc resource.h stringdiffs.cpp
+  Src new files: IAbortable.h
+
+2005-08-25 Jochen
+ Fix broken Merge7z::GuessFormatByExtension()
+  Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
+
+2005-08-24 WinMerge experimental release 2.3.5.3 (cvs)
+
+2005-08-24 Kimmo
+ PATCH: [ 1267375 ] Allow to resize file open/save dialog
+  Src: Merge.cpp
+ PATCH: [ 1267383 ] Use our SelectFile() to select Project file to open
+  Src: MainFrm.cpp
+ PATCH: [ 1267520 ] byte_compare_files() opens files in text mode
+  From Perry
+  Src: DiffWrapper.cpp
+ PATCH: [ 1265045 ] GUI freeze after changing language
+  Submitted by Takashi Sawanaka
+  Src: ChildFrm.h DirFrame.h
+  Src/Common: LanguageSelect.cpp
+
+2005-08-24 Jochen
+ PATCH: [ 1264728 ] Guess archive format by signature
+  src: 7zCommon.cpp ConfigLog.cpp Merge.rc resource.h
+
+2005-08-23 Jochen
+ PATCH: [ 1264723 ] Merge7z DllBuild 0013
+  Merge7z: Merge7z.h Merge7zCommon.cpp Merge7zCommon.h StdAfx.h tools.cpp tools.h revision.txt
+  Merge7z new files: Merge7z423.dsp Merge7z424.dsp Merge7z425.dsp Merge7z426.dsp
+
+2005-08-23 Kimmo
+ PATCH: [ 1266442 ] Small cleanup for ShellExtension
+  Also bump version number to 1.5
+  ShellExtension: ShellExtension.rc WinMergeShell.cpp
+ PATCH: [ 1266476 ] Add ending backslash for directories opened from commandline
+  Src: MainFrm.cpp
+
+2005-08-22 Kimmo
+ PATCH: [ 1265006 ] Japanese translation update
+  Submitted by Takashi Sawanaka
+  Src/Languages/Japanese: MergeJapanese.rc
+
+2005-08-22 Jochen
+ Fix bugs from PATCH: [ 1247875 ] codepage detection based on CMarkdown class
+ - sscanf() was used in an unsafe way
+ - GuessCodepageEncoding() did not work
+  Src: codepage_detect.cpp
+ PATCH: [ 1264721 ] Change AllowUpwardDirectory() policy
+  Src: DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp Merge.rc resource.h
+
+2005-08-21 Kimmo
+ PATCH: [ 1264957 ] fix Bug:[ 1246957 ] 2.3.4 regular expression replace borked
+  Submitted by Takashi Sawanaka
+  Src/editlib: cregexp.cpp
+
+2005-08-20 Jochen
+ PATCH: [ 1247875 ] codepage detection based on CMarkdown class
+  Src: codepage_detect.cpp codepage_detect.h markdown.cpp markdown.h
+
+2005-08-19 Kimmo
+ BUG: [ 1262229 ] Crash with differing line endings and View Line Differences
+  Src/editlib: ccrystaltextview.cpp
+
+2005-08-18 Kimmo
+ PATCH: [ 1261220 ] Add Compare item for dirview menus
+  Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+ PATCH: [ 1262428 ] Fix toolbar problems with XP theming
+  Src: MainFrm.cpp Merge.dsp
+  Src/Common new files: ToolBarXPThemes.cpp ToolBarXPThemes.h
+
+2005-08-17 Kimmo
+ PATCH: [ 1260244 ] Initialization of non-existing struct-members in editor
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+ PATCH: [ 1261244 ] Proper update for Merge/Delete-menuitem
+  Src: DirView.cpp DirView.h
+
+2005-08-16 Kimmo
+ PATCH: [ 1258270 ] ShellExtension: allow re-selecting first item
+  ShellExtension: Resource.h ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
+  ShellExtension/Languages: *.rc
+ PATCH: [ 1260258 ] Show origin side for Copy To.. folder browse dialog
+  Src: DirActions.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-08-14 Kimmo
+ PATCH: [ 1255864 ] Different icons for Folder and File Comparison
+  Icon submitted by Tim
+  Src: Merge.cpp Merge.rc resource.h
+  Src/res new file: MergeDir.ico
+  Src/Languages: *.rc resource.h
+  Src/Languages/res new file: MergeDir.ico
+ PATCH: [ 1258063 ] Fix cursor position after pane change
+  Src: MergeEditView.cpp
+ PATCH: [ 1258584 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+  ShellExtension/Languages/ShellExtensionCatalan.rc
+
+2005-08-12 Kimmo
+ PATCH: [ 1253326 ] Allow opening files to external editor from file compare
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
+  Src/Languages: *.rc resource.h
+
+2005-08-11 Kimmo
+ PATCH: [ 1244009 ] Add userflags to diffitem and remember hidden status
+  Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.cpp DirDoc.h
+   DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-08-10 WinMerge experimental release 2.3.5.2 (cvs)
+
+2005-08-10 Kimmo
+ BUG: [ 1254903 ] WinMerge 2.3.5.1: Not enough memory at File Comparison
+  Fix from Perry
+  Src: DiffList.cpp
+
+2005-08-08 WinMerge experimental release 2.3.5.1 (cvs)
+
+2005-08-07 Perry
+ PATCH: [ 1248259 ] Preserve trivial diffs in diff chain
+  Src: DiffList.cpp DiffList.h DiffWrapper.cpp LocationView.cpp
+   LocationView.h MergeDiffDetailView.cpp MergeDiffDetailView.h
+   MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+
+2005-08-07 Kimmo
+ PATCH: [ 1253100 ] Shorter paths in captions
+  Src: DirDoc.cpp MergeDoc.cpp paths.cpp paths.h
+ PATCH: [ 1253205 ] Remove dynamic dll loading from FilePathEdit
+  Src: FilePathEdit.cpp FilePathEdit.h
+ PATCH: [ 1253350 ] Use new-style folder browse dialog
+  Src: Merge.cpp
+
+2005-08-06 Kimmo
+ PATCH: [ 1201945 ] Localization of ShellExtension.dll
+  Submitted by Takashi Sawanaka
+  ShellExtension: Register.bat ShellExtension.dsp ShellExtension.rc WinMergeShell.cpp
+  shellExtension new file: ShellExtensionU.def
+  ShellExtension new folder: Languages
+
+2005-08-05 Kimmo
+ PATCH: [ 1252076 ] Improve About-dialog (unicode info, better layout)
+  Src: Merge.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+ PATCH: [ 1238168 ] Convert using BCMenu with pointers
+  Src: MainFrm.cpp MainFrm.h MergeEditView.cpp
+
+2005-08-04 Kimmo
+ BUG: [ 1247700 ] Cannot browse to parent folders of selected folders
+  Fix from Jochen
+  Src: DirDoc.cpp
+
+2005-07-31 Perry
+ PATCH: [ 1248180 ] fix moved block code
+ BUG: [ 1248172 ] Assert failure in CDiffWrapper::RunFileDiff
+ BUG: [ 1186199 ] Assert from moved block code
+  Src: DiffWrapper.cpp
+
+2005-07-30 Perry
+ PATCH: [ 1247483 ] Create folder if one doesn't exist (for reports and patches)
+ BUG: [ 1248017 ] WinMerge\Src\DirCmpReport.cpp(80) : error C2065: 'IDS_FOLDER
+  Creating IDS_FOLDER_NOTEXIST as "Folder does not exist." and checking in to cvs trunk.
+   Src: Merge.rc resource.h
+   Src/Languages: resource.h Merge*.rc
+ Cosmetic: grammar fix in comment ("same...than" => "same...as")
+  Src/LocationView.cpp
+
+2005-07-30 Kimmo
+ PATCH: [ 1247375 ] Use Shell Edit command primarily to open files
+  Src: DirActions.cpp
+ PATCH: [ 1247483 ] Create folder if one doesn't exist (for reports and patches)
+  Src: DirCmpReport.cpp PatchTool.cpp
+
+2005-07-29 Kimmo
+ PATCH: [ 1245773 ] Scan full files in quick contents compare
+  Src: DiffWrapper.cpp
+
+2005-07-26 Kimmo
+ PATCH: [ 1208493 ] Suggest change in title of codepage options
+  Src: Merge.rc
+  Src/Languages: *.rc
+
+2005-07-26 Perry
+ PATCH: [ 1242008 ] Update status to binary if open fails because binary
+  Src: DiffItem.h DiffItemList.cpp DiffItemList.h DirDoc.h DirView.cpp
+   MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h
+ PATCH: [ 1208208 ] Move resizeable dialogs position in registry
+  Src: OpenDlg.cpp SaveClosingDlg.cpp
+  Src/Common: CMoveConstraint.cpp CMoveConstraint.h
+
+2005-07-26 Kimmo
+ PATCH: [ 1244804 ] Add hourglass for report creating
+  Src: DirCmpReport.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+ Remove invalid ASSERT
+  Src: CompareStats.cpp
+ PATCH: [ 1238174 ] Fix diff counts in quick contents compare
+  Src: DiffWrapper.cpp DirScan.cpp
+ Handle empty filename for report
+  Src: DirCmpReportDlg.cpp
+
+2005-07-26 Perry
+ PATCH: [ 1241270 ] Fix paths.cpp GetDirName for root paths
+  Src: paths.cpp
+ PATCH: [ 1241275 ] New Shared or Private Filter dialog
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFiltersDlg.cpp
+   Merge.dsp Merge.rc paths.cpp paths.h resource.h
+  Src new files: SharedFilterDlg.cpp SharedFilterDlg.h
+ PATCH: [ 1241275 ] New Shared or Private Filter dialog
+  New shared filter dialog
+   Src/Languages: */Merge*.rc */resource.h
+
+2005-07-25 Perry
+ BUG: [ 1241766 ] Debug warning: Warning: no listbox item selected.
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+ PATCH: [ 1244808 ] Remove LanguageSelect include from Merge.h
+  Src: codepage.cpp DirActions.cpp Merge.cpp Merge.h
+  Src/Common: LanguageSelect.h
+ PATCH: [ 1241962 ] Record zero byte location info
+  Src/Common: UniFile.cpp UniFile.h
+
+2005-07-25 Kimmo
+ PATCH: [ 1243655 ] Directory compare reporting
+  Src: DirView.cpp DirView.h DirViewColItems.cpp Merge.dsp Merge.rc resource.h
+  Src new files: DirCmpReport.cpp DirCmpReport.h DirCmpReportDlg.cpp DirCmpReportdlg.h
+  Src/Common: coretools.h coretools.cpp
+  Languages: *.rc resource.h
+ BUG: [ 1244415 ] Bad T2A call in DirCmpReport::SaveToFile
+  Src: DirCmpReport.cpp
+
+2005-07-24 Perry
+ PATCH: [ 1242297 ] Fix CPatchDlg::OnOK for empty paths & greatly simplify
+  Src: Merge.rc PatchDlg.cpp resource.h 
+  Src/Languages: */resource.h */Merge*.rc
+  
+2005-07-24 Kimmo
+ PATCH: [ 1220485 ] Move Redisplay() from doc to view
+  Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp
+
+2005-07-24 Perry
+ PATCH: [ 1211574 ] Wrap GetTempPath and GetTempFileName for CString use
+  Src: DiffWrapper.cpp FileTransform.cpp PathContext.cpp VSSHelper.cpp
+   paths.cpp paths.h
+ PATCH: [ 1241930 ] Rename stringdiffs_Get to sd_ComputeWordDiffs
+  (This is cosmetic function rename)
+  Src: MergeDocLineDiffs.cpp stringdiffs.cpp stringdiffs.h stringdiffsi.h
+
+2005-07-23 Kimmo
+ BUG: [ 1241289 ] Edit point or "anchor" not updated when navigating diffs
+  Src: MergeEditView.cpp
+ PATCH: [ 1243221 ] Cleanup CompareStats
+  Src: CompareStats.cpp CompareStats.h DiffThread.cpp DirCompStateBar.cpp
+   DirCompStateBar.h DirDoc.cpp 
+
+2005-07-22 Perry
+ PATCH: [ 1242339 ] Fix CMergeDoc::Rescan to set bIdentical in all cases
+  Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchTool.cpp
+ BUG: [ 1241990 ] Typo in MergeDoc.h: additionnal => additional
+  Fix spelling additionnal => additional
+  Src: MergeDoc.h MergeEditView.h
+
+2005-07-21 Perry
+ PATCH: [ 1226311 ] Record notes about why compare failed
+  Src: DiffItem.h DiffWrapper.cpp DiffWrapper.h
+
+2005-07-20 Perry 
+ PATCH: [ 1241753 ] Fix DirViewColItems int64 cast warnings
+  Src: DirViewColItems.cpp
+ Cosmetic: Add function header comment to CMergeDoc::GetWordDiffArray
+  Src: MergeDocLineDiffs.cpp
+
+2005-07-19 Kimmo
+ PATCH: [ 1238194 ] Use proper member names in MergeDiffDetailView
+  Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
+ PATCH: [ 1236623 ] Increase Quick contents compare buffer size
+  Src: DiffWrapper.cpp
+
+2005-07-18 Perry
+ BUG: [ 1232382 ] Inconsistent language name casing in Spanish UI (v2.3.4.0)
+  Make all language names capitalized in Spanish, as in Catalan
+   Src/Languages/Spanish: MergeSpanish.rc
+ Cosmetic: add explanatory comments to comment inside of SetResourceVersions.wsf
+  Src: SetResourceVersions.wsf
+
+2005-07-17 Jochen
+ BUG: [ 1239605 ] Cannot open diff due to 7zip error
+  Src: DirView.cpp
+
+2005-07-17 Perry
+ PATCH: [ 1239275 ] Fixes for sd_ComputeByteDiff
+  Src: stringdiffs.cpp
+
+2005-07-15 Jochen
+ PATCH: [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues (w/o command line tool integration)
+  Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffItem.cpp DiffItem.h DiffThread.cpp DiffWrapper.cpp DirActions.cpp DirDoc.cpp
+   DirDoc.h DirScan.cpp DirScan.h DirView.cpp DirView.h DirViewColItems.cpp FileFilterHelper.h MainFrm.cpp MergeDoc.cpp
+ PATCH: [ 1225880 ] Project file parsing based on CMarkdown class
+  Src: markdown.cpp markdown.h ProjectFile.cpp
+
+2005-07-13 Kimmo
+ PATCH: [ 1236602 ] Add icon for messagebox about overwriting patch file
+  Src: PatchDlg.cpp
+ PATCH: [ 1236598 ] Add binary file check to quick contents compare
+  Src: ByteComparator.cpp ByteComparator.h DiffWrapper.cpp
+
+2005-07-11 Perry
+ PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter
+  Remove PropFilter.cpp PropFilter.h
+  Add PropLineFilter.cpp PropLineFilter.h
+  Src: Merge.dsp MainFrm.cpp
+ PATCH: [ 1229024 ] Rename CPropFilter to CPropLineFilter
+  Rename class
+   Src: PropLineFilter.cpp PropLineFilter.h
+ PATCH: [ 1234629 ] New Chinese(Simplified) translation .rc file
+  Src/Languages: MergeChineseSimplified.rc
+
+2005-07-08 Tim
+ PATCH: [ 1232760 ] Icon for 'Merge->Delete'
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new file: delete.bmp
+  Src/Languages: *.rc resource.h
+  Src/Languages/res new file: delete.bmp
+
+2005-07-08 Kimmo
+ PATCH: [ 1234390 ] Compare >2 MB files with quick contents
+  Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp
+ PATCH: [ 1234793 ] Patch generate: 11-line context doesn't work
+  Src: PatchDlg.cpp
+
+2005-07-07 Kimmo
+ PATCH: [ 1232499 ] Language dialog box Simplified Chinese's name correction
+  Submitted by xmpdhml at sourceforge.net
+  Src/Common: LanguageSelect.cpp
+
+2005-06-30 WinMerge beta 2.3.4.0 released
+
+2005-06-30 Kimmo
+ PATCH: [ 1228647 ] MergeCatalan.rc v209 update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1230344 ] MergeSwedish.rc for 2.3.4.0 beta
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1229867 ] RFE [ 1205516 ], RFE [ 887948 ], and other issues
+  Submitted by Jochen, apply some parts now:
+  DIFFITEM API cleanup, use const CString&
+   Src: DiffItem.cpp DiffItem.h
+  Add missing ProgressBar initialisation
+   Src: DirCompStateBar.cpp
+  Misc cleanups and optimizations
+   Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h
+  Cannot create valid (archive) temp paths without valid document pointer
+   Src: MainFrm.cpp
+ PATCH: [ 1193262 ] Switch language on run-time not change all menus
+  Src/Common: LanguageSelect.cpp
+
+2005-06-29 Perry
+ PATCH: [ 1220421 ] warning in cvs trunk (probably a bool/BOOL mismatch)
+  Src: DirDoc.cpp
+
+2005-06-29 Kimmo
+ PATCH: [ 1229315 ] Fix item number for non-recursive compare
+  Src: DirView.cpp
+ PATCH: [ 1229297 ] Align filesize column text to right
+  Src: DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp DirViewColItems.h
+ PATCH: [ 1229164 ] Add dir compare progress info
+  Src: CompareStats.cpp CompareStats.h DiffThread.cpp DirCompStateBar.cpp
+   DirCompStateBar.h DirDoc.cpp DirScan.cpp DirView.cpp Merge.rc Resource.h
+  Src/Languages: *.rc resource.h
+
+2005-06-27 Christian
+ PATCH: [ 1219818 ] Plugin to display XML files
+  Two new dirs added:
+  Src/ExpatLib - This is the expat xml parser version 1.95.8
+  Plugins/src_VCPP/DisplayXMLFiles - A plugin which uses the expat parser
+
+2005-06-27 Perry
+ PATCH: [ 1213781 ] Fill item location into statusbar in dirview
+  DirFrame.cpp DirFrame.h DirView.cpp DirView.h Merge.rc resource.h
+ Apply new strings to translated resource files
+  (IDS_DIRVIEW_STATUS_FMT_FOCUS & IDS_DIRVIEW_STATUS_FMT_NOFOCUS)
+  Src/Languages: *.rc resource.h
+ Docs/Users/Manual/Filters.xml
+  (First line in file filters description) Minor grammar fixes, 
+  and rewrite of one incomprehensible line.
+ Add example user-specific filter paths to manual.
+ Add example paths to function header comment of FileFilterHelper::LoadFileFilterDirPattern
+  Docs/Users/Manual/Filters.xml
+  Src/FilterFilterHelper.cpp
+ BUG: [ 1228493 ] Copy Pathnames/Right doesn't work
+  Src: DirView.cpp
+
+2005-06-23 Kimmo
+ BUG: [ 1225257 ] cvs: FileFilters broken?
+  Restore behavior in 2.3.3.5 and earlier for directory filtering
+  Src: DirScan.cpp
+
+2005-06-22 Jochen
+ RFE: [ 1205833 ] You can unzip more than just zip #1: Treat .ear and .war like .zip
+  Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
+ Change recommended version of 7-Zip to 4.20; remove noise from Merge7z Nagbox
+  Src: 7zCommon.cpp  
+ PATCH: [ 1215162 ] Merge7zInstaller update
+  Merge7zInstaller: Files.rc2 Installer.cpp Installer.rc Merge7zInstaller.dsp 
+
+2005-06-22 Kimmo
+ PATCH: [ 1225090 ] Fix bug that additional item gets selected in dircompare
+  Src: DirActions.cpp
+
+2005-06-22 Perry
+ Cosmetic: Fix grammar in comment (directory -> directories)
+  Src: FileFilterHelper.cpp
+
+2005-06-21 Kimmo
+ PATCH: [ 1223754 ] Improve dircompare stats system
+  Src: DiffContext.cpp DiffContext.h DiffThread.cpp DirCompareStateBar.cpp
+   DirCompareStateBar.h DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h DirScan.cpp
+   DirScan.h DirView.cpp Merge.dsp
+  Src new files: CompareStats.cpp CompareStats.h
+
+2005-06-21 WinMerge experimental release 2.3.3.6 (cvs)
+
+2005-06-21 Kimmo
+ PATCH: [ 1224249 ] Use constant for dirview special items
+  Src: DirActions.cpp DirView.cpp DirView.h
+
+2005-06-17 Kimmo
+ PATCH: [ 1221672 ] MergeSwedish. rc 1.207 update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+ BUG: [ 1222705 ] DiffFileInfo copy constructor broken (current CVS)
+  Src: DiffFileInfo.cpp DiffFileInfo.h DiffItem.cpp DiffItem.h FileInfo.cpp FileInfo.h
+ PATCH: [ 1220492 ] Improve backup-fail message to show actual filename
+  Src: MainFrm.cpp Merge.rc
+  Src/Languages: *.rc
+
+2005-06-15 Kimmo
+ PATCH: [ 1220472 ] Don't lose selection when deleting items from dir compare
+  Src: DirActions.cpp
+
+2005-06-15 Perry
+ PATCH: [ 1220416 ] error C2065: '_stat' : undeclared identifier
+  Src: DirScan.cpp
+
+2005-06-13 Kimmo
+ PATCH: [ 1219333 ] Wrong confirmation message when deleting unique items
+  Src: DirActions.cpp
+ PATCH: [ 1218661 ] Rescan selected items
+  Src: DiffItem.h DiffThread.cpp DiffThread.h DirActions.cpp DirDoc.cpp DirDoc.h
+   DirScan.cpp DirScan.h DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-06-12 Kimmo
+ BUG: [ 1218133 ] German options dialog is too wide
+  Src/Languages/German: MergeGerman.rc
+ PATCH: [ 1213634 ] Don't store two path copies in PathContext
+  Src: PathContext.cpp PathContext.h
+
+2005-06-11 Tim
+ BUG: [ 1218096 ] Options: 'Line Diff Coloring' frame don't fit
+  Src: Merge.rc
+  Src/Languages: *.rc
+
+2005-06-11 Perry
+ PATCH: [ 1217850 ] French Translation R2_3_5
+  Updated French translation by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+ PATCH: [ 1213909 ] Updated Dutch translation
+  Dutch update by Jigal van Hemert
+  (for 2.2, but propagating many translations to trunk)
+   Src/Languages/Dutch: MergeDutch.rc
+
+2005-06-08 Kimmo
+ PATCH: [ 1213649 ] Add copyconstructor to (Diff)FileInfo
+  Src: DiffFileInfo.cpp DiffFileInfo.h FileInfo.cpp FileInfo.h
+ PATCH: [ 1205724 ] Two-phase directory compare
+  Src: 7zCommon.cpp 7zCommon.h DiffContext.cpp DiffContext.h DiffThread.cpp
+   DirActions.cpp DirDoc.h DirScan.cpp DirScan.h DirView.cpp DirView.h
+   DirViewColHandler.cpp Merge.dsp 
+  Src new files: DiffItem.cpp DiffItem.h DiffItemList.cpp DiffItemList.h
+
+2005-06-08 Perry
+ PATCH: [ 1213238 ] noninteractive switch
+  Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h
+  Src new files: CmdArgs.cpp CmdArgs.h
+
+2005-06-08 WinMerge experimental release 2.3.3.5 (cvs)
+
+2005-06-08 Kimmo
+ PATCH: [ 1216706 ] Ignore case for project file file-extension
+  Src: Merge.cpp
+ BUG: [ 1216821 ] Untitled buffers, Save doesn't work
+  Src: MergeDoc.cpp
+
+2005-06-08 Perry
+ Remove nonexistent stampver.inf from Merge.dsp
+  (No patch because sourceforge.net is unresponsive)
+  Src: Merge.dsp
+
+2005-06-07 Kimmo
+ PATCH: [ 1216033 ] Options to enable/disable multiple compare documents
+  Src: DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h Merge.rc
+   OptionsDef.h OptionsInit.cpp PropGeneral.cpp PropGeneral.h resource.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages: *.rc resource.h
+
+2005-06-06 Kimmo
+ PATCH: [ 1215235 ] Allow removing items from comboboxes
+  Src: OpenDlg.cpp OpenDlg.h
+  Src/Common: SuperComboBox.cpp
+
+2005-06-05 Tim
+ RFE: [ 1203923 ] New refresh icon
+  Src/res: Toolbar.bmp
+  Src/Languages: Toolbar.bmp
+
+2005-06-04 Kimmo
+ PATCH: [ 1214575 ] Add 'Delete' item for dir compare main menu
+ Trying again applying languages..
+  Src/Languages: *.rc resource.h
+
+2005-06-05 Jochen
+ Support 7-Zip 4.20
+  Merge7z new files: Merge7z420.dsp
+
+2005-06-04 Kimmo
+ PATCH: [ 1214575 ] Add 'Delete' item for dir compare main menu
+  Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-06-02 Perry
+ PATCH: [ 1213161 ] Set return code based on last diff result
+ Src: DirDoc.cpp Merge.cpp Merge.h MergeDoc.cpp
+
+2005-06-01 Perry
+ Add commenting & array bounds checking to CMergeApp::LoadProjectFile
+  Src: Merge.cpp
+
+2005-06-01 Kimmo
+ PATCH: [ 1210059 ] Sanity check difference before merging it
+  Src: Merge.rc MergeDoc.cpp MergeDoc.h resource.h
+  Src/Languages: *.rc resource.h
+
+2005-05-31 Perry
+ PATCH: [ 1206727 ] decouple codepage module from options files
+  Src: codepage.cpp codepage.h MainFrm.cpp MainFrm.h
+  Src/Common: LanguageSelect.cpp
+ BUG: [ 1209386 ] Comparing by quick differences jams WinMerge
+  Src: ByteComparator.cpp
+
+2005-05-27 Kimmo
+ PATCH: [ 1209294 ] Remove running stampver-tool post-build
+  Src: Merge.dsp
+
+2005-05-26 Kimmo
+ BUG: [ 1201463 ] Prediffer submenu looks broken
+  Src: Merge.rc
+  Src/Languages: *.rc
+ BUG: [ 1198263 ] MergeKorean translation credit wrong?
+  Src/Languages/Korean: MergeKorean.rc
+ BUG: [ 1208504 ] Newer right file marked identical comparing by modified date
+  Src: DirScan.cpp
+
+2005-05-26 Jochen
+ PATCH: [ 1191245 ] Merge7z DllBuild 0011
+  Merge7z: Merge7z311.cpp Merge7z409.cpp Merge7zCommon.cpp Merge7zCommon.h revision.txt
+   Merge7z416.dsp Merge7z417.dsp Merge7z418.dsp Merge7z419.dsp
+ PATCH: [ 1191248 ] Merge7zInstaller update
+  Merge7zInstaller: Files.rc2 Installer.cpp Installer.rc Merge7zInstaller.dsp
+
+2005-05-26 Kimmo
+ PATCH: [ 1208537 ] Small cleanup for CDirView::OpenSelection()
+  Src: DirView.cpp
+ PATCH: [ 1208801 ] SetFilter() must set default filter in error case
+  Src: FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp OptionsInit.cpp
+
+2005-05-25 Kimmo
+ PATCH: [ 1207820 ] Remove non-const GetPath() from PathContext
+  Src: PathContext.h
+ Remove unused strings from CDirView::GetItemFileNames()
+  Src: DirActions.cpp
+
+2005-05-25 Perry
+ PATCH: [ 1206753 ] Make SaveClosing dialog resizable
+  Src: Merge.rc SaveClosingDlg.cpp SaveClosingDlg.h
+
+2005-05-24 Perry
+ PATCH: [ 1206808 ] Store temp filename in variable in FileTransform_Unpacking
+  Src: FileTransform.cpp
+ PATCH: [ 1206757 ] Remove unneeded include from DiffViewBar.cpp
+  Src: DiffViewBar.cpp
+ PATCH: [ 1206732 ] Remove unneeded include from VssPrompt.cpp
+  Src: VssPrompt.cpp
+ BUG: [ 1207417 ] Two GetDocument() functions in CDirView
+  Cosmetic: Added explanatory comment per discussion
+  Src: DirView.h
+ PATCH: [ 1206755 ] Remove unneeded include from ColorButton.cpp
+  Src: ColorButton.cpp
+ PATCH: [ 1206734 ] Remove unneeded include from FilepathEdit.cpp
+  Src: FilepathEdit.cpp
+ PATCH: [ 1206730 ] Remove meaningless comments on includes in Splash.cpp
+  Src: Splash.cpp
+ PATCH: [ 1208198 ] Update CMoveConstraint with settable grip
+  Src/Common: CMoveConstraint.cpp CMoveConstraint.h
+
+2005-02-23 Kimmo
+ PATCH: [ 1206647 ] Add trailing slash to MRU paths
+  Src: MainFrm.cpp
+
+2005-05-21 Perry
+ PATCH: [ 1206085 ] Translate new options dialog to German
+  Src/Languages/German: MergeGerman.rc
+
+2005-05-20 Perry
+ PATCH: [ 1187777 ] New LoadConfig function
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp MainFrm.h
+   Merge.rc resource.h
+
+2005-05-18 WinMerge experimental release 2.3.3.4 (cvs)
+
+2005-05-18 Kimmo
+ PATCH: [ 1203680 ] Fix tab adding spaces in unicode builds
+  Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1203615 ] Fix opening manual from new Options-dialog
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+
+2005-05-18 Perry
+ PATCH: [ 1197969 ] New script to update production version in translations
+  Src new files: SetResourceVersions.bat SetResourceVersions.wsf
+  Docs/Developers/readme-developers.html.
+ PATCH: [ 1201804 ] Fix anchor & caret in shift-f4 operation
+  Src: MergeDocLineDiffs.cpp
+  Src/editlib: ccrystaltextview.h
+ Update language count (19->21, three occurrences)
+  Docs/Developers/readme-developers.html.
+ Note that sourceforge tracker doesn't display tabs.
+  Docs/Developers/readme-developers.html.
+
+2005-05-17 Perry
+ PATCH: [ 1203707 ] tiny code rearrangement for debugging
+  Src: MergeDoc.cpp
+
+2005-05-17 Kimmo
+ PATCH: [ 1203079 ] Don't ask about saving files after options change
+  Src: MainFrm.cpp MergeEditView.cpp
+ PATCH: [ 1202813 ] Swedish translated ReadMe.txt
+  Submitted by Hans Eriksson
+  Docs/Users/Languages: ReadMe-Swedish.txt
+ PATCH: [ 1201834 ] Remove old readme-translations
+  Removed files: Docs/Users/Languages: *.rtf Contributors.txt Read me.txt
+
+2005-05-16 Kimmo
+ Add change to DirView.cpp I missed from patch #1184626 (single instance/multidoc)
+  Src: DirView.cpp
+
+2005-05-15 Perry
+ PATCH: [ 1201961 ] Japanese translation update
+  (version 2, to translate syntax colors)
+  Src/Languages/Japanese: MergeJapanese.rc
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  More dialogs, and most of the strings
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 1202060 ] Recognize .lang files as having versioninfo
+  Src: DiffContext.cpp
+
+2005-05-14 Perry
+ PATCH: [ 1201703 ] Swedish MergeSwedish.rc update
+  Src/Languages/MergeSwedish.rc
+ (Copy update note from this readme to Docs/Users/Manual/readme.txt
+  for patch 1199600)
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Applied some dialog translations.
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 1201961 ] Japanese translation update
+  Src/Languages/Japanese: MergeJapanese.rc
+ BUG: [ 1190652 ] warning in cvs code in DirScan.cpp
+  Src: DirScan.cpp
+
+2005-05-13 Kimmo
+ PATCH: [ 1201434 ] New ReadMe.txt
+  Innosetup: WinMerge Localized.iss
+  Innosetup removed file: Read Me.htm
+  Users/Docs new file: ReadMe.txt
+  Users/Docs removed files: Read me.txt Read Me.rtf
+
+2005-05-13 Perry
+ PATCH: [ 1201029 ] Catalan translation update
+  Src/Languages/Catalan: MergeCatalan.rc
+ BUG: [ 1197964 ] MergeBulgarian string versioninfo translated
+  Added English/1252 section to Bulgarian, as MergeCatalan has.
+  (Adding English/1251 section did not work on US Windows system.)
+  Src/Languages/Bulgarian: MergeBulgarian.rc
+ PATCH: [ 1201125 ] Add checking to AppendMenu calls in building prediffer subme
+  Src: MergeEditView.cpp
+ PATCH: [ 1201130 ] Fix prediffers menu for multiple menu brokenness
+  Src: MainFrm.cpp
+ Cosmetic: Expand header comments on GetScriptsSubmenu & GetPrediffersSubmenu
+  Src: MainFrm.cpp
+ Cosmetic: Fix synchro spelling in MergeFrench.rc (one currence LANGAGE => LANGUAGE)
+  Src/Languages/French: MergeFrench.rc
+
+2005-05-12 Kimmo
+ BUG: [ 1198435 ] Comma missing from ID_LOCBAR_GOTODIFF menuitem
+  Src: Merge.rc
+  Src/Languages: *.rc
+ PATCH: [ 1199889 ] Ask to save modified files before creating a patch
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-05-12 Perry
+ PATCH: [ 1199600 ] Minor update to text encoding docs in manual
+  Docs/Users/Manual: Text_encoding.xml
+
+2005-05-11 Kimmo
+ PATCH: [ 1199194 ] Optimization for difflist
+  Src: DiffList.cpp DiffList.h
+ PATCH: [ 1198955 ] Discard all button on Save modified pane
+  Submitted by Ferenc Kubatovics
+  Src: Merge.rc MergeDoc.cpp resource.h SaveClosingDlg.cpp SaveClosingDlg.h
+  Src/Languages: *.rc resource.h
+ Update UpdateAll_resource_h.bat to update Turkish too
+  Src/Languages: UpdateAll_resource_h.bat
+ Update Contributors list
+  Docs/Users: Contributors.txt
+
+2005-05-10 Perry
+ BUG [ 1198622 ] Generated patch is broken when comparing UTF8 files
+  Bail out of OlecharToUTF8 if BOM not UCS-2 (to avoid scrambling text).m
+  Src/Common: multiformatText.cpp
+ Improve comments heading & in OlecharToUTF8
+  Src/Common: multiformatText.cpp
+
+2005-05-09 Perry
+ PATCH [ 1195486 ] Remember dircompare sort column
+  Fix to save options after editing, so columns don't revert.
+  Src: DirView.cpp
+
+2005-05-09 WinMerge experimental release 2.3.3.3 (cvs)
+
+2005-05-09 Kimmo
+ BUG: [ 1198235 ] Debug warnings under Unicode Debug
+  Fix memory leak from PropSyntaxColors.cpp
+  Src: PropSyntaxColors.cpp
+
+2005-05-09 Perry
+ PATCH: [ 1197727 ] New method ResMsgBox1 to simplify cookie-cutter code
+  Src: MainFrm.cpp PatchDlg.cpp StdAfx.cpp StdAfx.h
+ BUG: [ 1197972 ] current cvs doesn't compile
+  Src: MainFrm.h
+ BUG [ 1193561 ] v2.2, version copyrights not all up-to-date
+  Adjusted all to say 1996-2005 just as English
+  Src/Languages: Merge*.rc
+ BUG: [ 1198258 ] Several lang dlls do not have versioninfo
+  Fixed hex-encoded codepage in string portion of versioninfo
+  Src/Languaegs: Merge*.rc
+
+
+2005-05-08 Kimmo
+ PATCH: [ 1196889 ] Move options initializations to own file
+  Src: MainFrm.cpp Merge.dsp
+  Src new file: OptionsInit.cpp
+
+2005-05-08 Perry
+ BUG: [ 1193163 ] "Gerenate Patch" deletes the original files if UTF-8/16
+  Added argument (areTempFiles) to method SetCompareFiles, and used in RunFileDiff.
+ (also BUG [ 1197527 ] Patch Generator browse button not defaulting correctly)
+  Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchDlg.cpp PatchTool.cpp
+
+2005-05-07 Perry
+ BUG: [ 1197310 ] Turkish fails to compile, current CVS
+ BUG: [ 1197310 ] Turkish trunk translation is from v2.2
+  Src/Languages/Turkish: MergeTurkish.rc
+ BUG: [ 1193229 ] options/codepage dialog out-of-date
+  Added ",.xml" to message (replaced all non-1252 messages)
+  Src: Merge.rc
+  Src/Languages/*: *.rc
+ BUG: [ 1166574 ] IDS_SUGGEST_IGNORECODEPAGE is misleading
+  Src: Merge.rc
+  Src/Languages/*: *.rc
+ BUG: [ 1193562 ] v2.2 charset in MergeGerman wrong
+  Src: Merge.rc
+  Src/Languages/*: *.rc
+ BUG: [ 1197397 ] Turkish missing from BuildAll.bat
+  Src/Languages/BuildAll.bat
+ BUG: [ 1197310 ] Turkish trunk translation is from v2.2
+  Copy all dialogs & string tables from English
+  Also remove some obsolete keywords (PURE, DISCARDABLE, etc)
+  Src/Languages/Turkish: MergeTurkish.rc resource.h
+
+2005-05-06 Kimmo
+ BUG: [ 1193260 ] Problems with the current German translation
+  Src: MainFrm.cpp
+ PATCH: [ 1196119 ] Select syntax highlight colors
+  Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDiffDetail.cpp MergeDoc.cpp
+   MergeEditView.cpp resource.h
+  Src new files: PropSyntaxColors.cpp PropSyntaxColors.h Syntaxcolors.cpp SyntaxColors.h
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+  Src/editlib: asp.cpp basic.cpp batch.cpp ccrystaltextview.cpp ccrystaltextview.h
+   cplusplus.cpp csharp.cpp dcl.cpp fortran.cpp html.cpp ini.cpp innosetup.cpp is.cpp
+   java.cpp lisp.cpp nsis.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp
+   sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+  Src/Languages: *.rc resource.h
+
+2005-05-06 Perry
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Most of the menu updates from patch; no other updates from patch
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc resource.h
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Some of the string table translations
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+
+2005-05-05 Kimmo
+ PATCH: [ 1195486 ] Remember dircompare sort column
+  Src: DirView.cpp DirView.h DirViewColHandler.cpp MainFrm.cpp OptionsDef.h
+
+2005-05-03 Perry
+ PATCH: [ 1157486 ] New options for wordbreak characters
+  (Fixed patch to use existing OPT_WORDDIFF_HIGHLIGHT instead of new option)
+  Src: MainFrm.cpp Merge.rc MergeDoc.cpp MergeDoc.h MergeDocLineDiffs.cpp
+   OptionsDef.h PropEditor.cpp PropEditor.h resource.h stringdiffs.cpp
+   stringdiffs.h stringdiffsi.h
+  Src/Languages: *.rc
+ Add Turkish translation (direct copy from version 2.2)
+  Src/Languages/Turkish: * and res/*
+
+2005-05-02 Kimmo
+ BUG: [ 1193059 ] Problems with the mouse at file comparison
+  Don't refresh filecompare every time mouse is clicked
+  Src: MergeEditView.cpp
+ PATCH: [ 1193447 ] Optimise location pane update.
+  Src: LocationView.cpp
+ BUG: [ 1193260 ] Problems with the current German translation
+  Src/Languages/German: MergeGerman.rc
+
+2005-05-01 Kimmo
+ PATCH: [ 1193033 ] Clarify file saving failed messagebox
+  Src: Merge.rc MergeDoc.cpp
+  Src/Languages: *.rc
+
+2005-04-30 Kimmo
+ PATCH: [ 1192741 ] Fix panes resetting when right-clicking with mouse
+  Src: LocationView.cpp MergeEditView.cpp
+ BUG: [ 1189723 ] COpenDlg::RemoveTrailingSlash() is unused
+  Src: OpenDlg.cpp OpenDlg.h
+
+2005-04-28 Tim
+ PATCH: [ 1190544 ] Translated Read Me-German.rtf
+  Docs/Users/Languages: Read Me-German.rtf
+
+2005-04-28 WinMerge experimental release 2.3.3.2 (cvs)
+
+2005-04-26 Kimmo
+ PATCH: [ 1189875 ] Small cleanup for line replace code
+  Src: MergeDoc.cpp
+ PATCH: [ 1189718 ] OpenDlg: add trailing slash to directory names
+  Src: OpenDlg.cpp paths.cpp paths.h
+ PATCH: [ 1189692 ] Cleanup Dircompare init
+  Src: DirDoc.cpp DirDoc.h MainFrm.cpp PathContext.cpp PathContext.h
+ BUG: [ 1181883 ] Inconsistent behavior: select font vs. Use default
+  Src: MainFrm.cpp MainFrm.h
+ PATCH: [ 1190173 ] Hungarian translation (based on 2.3.3.1)
+  Submitted by Márton Balázs
+  Src/Languages/Hungarian: MergeHungarian.rc
+
+2005-04-25 Kimmo
+ BUG: [ 1179790 ] ReadMe-Hungarian.rtf file is missing
+  docs/Users/Languages new file: Read Me-Hungarian.rtf
+ PATCH: [ 1183368 ] Add option to ignore less than 3 seconds time difference
+  Src: MergeDoc.cpp
+
+2005-04-24 Kimmo
+ PATCH: [ 1186884 ] Restrict access to DirDoc's DiffContext
+  Src: 7zCommon.cpp DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpc
+   DirDoc.h DirView.cpp DirView.h DirViewColHandler.cpp DirViewColItems.cpp
+   MainFrm.cpp MergeDoc.cpp
+ BUG: [ 1183031 ] Shared file give "parameter not correct error"
+  Additional fix from Perry
+  Src/Common: UniFile.cpp
+ PATCH: [ 1183368 ] Add option to ignore less than 3 seconds time difference
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirScan.cpp MainFrm.cpp Merge.rc
+   OptionsDef.h PropRegistry.cpp PropRegistry.h resource.h stdafx.h
+  Src/Common: PreferencesDlg.cpp
+
+2005-04-23 Kimmo
+ PATCH: [ 1184626 ] Allow only single instance to run. (2)
+ BUG: [ 1188363 ] Cannot open include file: 'sinstance.h': No such file or dir
+  Src/common new files: sinstance.h sinstance.cpp
+
+2005-04-22 Kimmo
+ BUG: [ 1187714 ] Cannot save my newly created text file (add missing line)
+  Src: PathContext.h
+ PATCH: [ 1184626 ] Allow only single instance to run. (2)
+  Submitted by Takashi Sawanaka
+  Src: ChildFrm.cpp DirDoc.cpp DirDoc.h DirView.cpp MainFrm.cpp MainFrm.h Merge.cpp
+   Merge.dsp Merge.h Merge.rc OptionsDef.h PropGeneral.cpp PropGeneral.h resource.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages: resource.h *.rc
+ BUG: [ 1183031 ] Shared file give "parameter not correct error"
+  Fix from Robin Sandlin and Perry
+  Src/Common: UniFile.cpp
+
+2005-04-22 Perry
+ BUG: [ 1188063 ] UTF-8 file saving problem, the file header BOM missing.
+ Src/Common: UniFile.cpp
+
+2005-04-22 Kimmo
+ BUG: [ 1187714 ] Cannot save my newly created text file
+  Src: MergeDoc.cpp PathContext.h
+ Correct Polish translator name in Contributors list
+  Docs/Users: Contributors.txt
+
+2005-04-20 Kimmo
+ PATCH: [ 1185489 ] Tempfile path context
+  Src: MergeDoc.cpp MergeDoc.h PathContext.cpp PathContext.h
+ PATCH: [ 1184023 ] Syntax highlighting for Inno Setup files
+  Submitted by Tim
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/editlib new file: innosetup.cpp
+
+2005-04-19 Kimmo
+ PATCH: [ 1183772 ] Update Italian translation + readme
+  Submitted by Andrea Decorte
+  Src/Languages/Italian: MergeItalian.rc
+  Docs/users/Languages: Read Me-Italian.rtf
+
+2005-04-18 Kimmo
+ PATCH: [ 1183481 ] Updated Polish translation
+  From Pawel Wawrzysko
+  Src/Languages/Polish: MergePolish.rc
+  Docs/users/Languages: Read Me-Polish.rtf
+  InnoSetup/Languages: Pölish.isl
+ PATCH: [ 1183669 ] Updated ReadMe-ChineseTraditional.rtf
+  From Koko
+  Docs/users/Languages: Read Me-Chinese_Traditional.rtf
+ PATCH: [ 1181092 ] Path context class
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h MainFrm.cpp Merge.dsp
+   MergeDoc.cpp MergeDoc.h
+  Src new files: PathContext.cpp PathContext.h
+
+2005-04-17 Perry
+ (Cosmetic) Add HTML entity escapes for Chinese simplified
+  Src/Common: LanguageSelect.cpp
+
+>>>>>>> 1.1601
+2005-04-14 Kimmo
+ PATCH: [ 1182416 ] Fix Compare by date hang
+  Src: DiffContext.cpp DiffContext.h DiffWrapper.cpp DiffWrapper.h DirScan.cpp 
+
+2005-04-13 Perry
+ BUG: [ 1181906 ] Comment in LoadFromDirectory maybe wrong?
+  (cosmetic)
+  Src: FileFilterMgr.cpp
+
+2005-04-12 Perry
+ (Cosmetic) Add HTML entity escapes for several language names
+  Src/Common: LanguageSelect.cpp
+ PATCH: [ 1162668 ] Serialize font settings
+  Src: MainFrm.cpp Merge.dsp
+  Src new files: AppSerialize.cpp AppSerialize.h
+
+2005-04-12 WinMerge experimental release 2.3.3.1 (cvs)
+
+2005-04-12 Kimmo
+ PATCH: [ 1179941 ] Syntax highlighting for NSIS files
+  Submitted by Tim
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/editlib new file: nsis.cpp
+ PATCH: [ 1181157 ] Swedish translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+ Fix Russian lang file compile error
+  Src/Languages/Russian: MergeRussian.rc
+
+2005-04-11 Kimmo
+ PATCH: [ 1180768 ] Russian translation update
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
+
+2005-04-08 Kimmo
+ PATCH: [ 1178885 ] Merge diffs inside selection (with normal merge item)
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
+  Src/Languages: *.rc resource.h
+
+2005-04-07 Kimmo
+ PATCH: [ 1175731 ] Own menus for file- and directory compare
+  Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-04-05 Kimmo
+ PATCH: [ 1176040 ] French translation 2.3 branch
+  Submitted by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+ PATCH: [ 1176574 ] catalan translation update (setup)
+  Submitted by Jordi Vilar
+  InnoSetup: WinMerge Localized.iss
+  InnoSetup/Languages: Catalan.isl
+  Docs/Users/Languages: Read Me-Catalan.rtf
+ PATCH [ 1176741 ] Swedish ReadMe-Swedish.rtf file
+  Submitted by Hans Eriksson
+  Docs/Users/Languages: Read Me-Swedish.rtf
+ Update contributors file (Add Dutch and French translators)
+  Docs/Users: Contributors.txt
+ PATCH: [ 1176600 ] Drag location pane indicator with mouse
+  Src: LocationView.cpp LocationView.h
+ PATCH: [ 1168568 ] Cleanup some VSSHelper code
+  Src: VSSHelper.cpp VSSHelper.h
+
+2005-04-03 Kimmo
+ PATCH: [ 1175319 ] Dutch translation update
+  Submitted by Michel Coene
+  Src/Languages/Dutch: MergeDutch.rc
+
+2005-04-02 Kimmo
+ PATCH: [ 1175065 ] Use view lines when scrolling from location pane
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp
+
+2005-04-01 Kimmo
+ PATCH: [ 1174935 ] Russian translation update
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
+
+2005-03-30 Kimmo
+ PATCH: [ 1173072 ] hungarian translation for current beta (2.3.2.0)
+  Submitted by Márton Balázs
+  Src/Languages: Hungarian/MergeHungarian.rc
+
+2005-03-29 Kimmo
+ PATCH: [ 1171805 ] Update italian translation
+  Submitted by Andrea Decorte
+  InnoSetup/Languages: Italian.isl
+ PATCH: [ 1172427 ] Norwegian translation for 2.2.2 / CVS head
+  Submitted by Hans Fr. Nordhaug
+  Src/Languages/Norwegian: MergeNorwegian.rc
+
+2005-03-29 Jochen
+ BUG: [ 1172080 ] Unable to translate IDD_MERGE7ZMISMATCH string
+  Src: Merge.rc
+  Src/Languages: Merge*.rc
+ Widen Merge7z plugin download button in catalan translation
+  Src/Languages/Catalan: MergeCatalan.rc
+ Fix typo in MergeGerman.rc
+  Src/Languages/German: MergeGerman.rc
+
+2005-03-28 Kimmo
+ PATCH: [ 1169997 ] catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
+2005-03-23 Kimmo
+ PATCH: [ 1168733 ] Doc for options
+  Docs/Developers new file: Options.html
+
+2005-03-21 Kimmo
+ BUG: [ 1162037 ] Missing localization (German)
+  Translation update from Tim Gerundt
+  Src/Languages/German/MergeGerman.rc
+ PATCH: [ 1162644 ] Tree-style options-dialog
+  Src: MainFrm.cpp Merge.dsp Merge.rc resource.h
+  Src/Common new files PreferencesDlg.cpp PreferencesDlg.h PropertyPageHost.cpp
+   PropertyPageHost.h wclassdefines.h WinClasses.cpp WinClasses.h
+  Src/Languages: Merge*.rc resource.h
+
+2005-03-20 Kimmo
+ PATCH: [ 1165515 ] Improve drawing location pane moved block lines
+  Src: LocationView.cpp LocationView.h
+
+2005-03-20 Jochen
+ Update IDD_MERGE7ZMISMATCH resource in localized RC files
+  Src/Languages: Merge*.rc
+
+2005-03-19 Perry
+ PATCH: [ 1157769 ] Move GuessEncoding functions into one file
+  Src: DiffContext.cpp DiffContext.cpp MainFrm.cpp Merge.dsp
+  Src/Common: UniFile.cpp UniFile.h
+  Src new: codepage_detect.cpp codepage_detect.h
+
+2005-03-18 Perry
+ PATCH: [ 1155977 ] Log scriptlet plugin errors
+  Src: Plugins.cpp
+ PATCH: [ 1162571 ] Simplify SplitFilename
+  Src/Common: coretools.cpp
+ Cosmetic (new comments)
+  Src/Common: LanguageSelect.cpp
+
+2005-03-16 Kimmo
+ PATCH: [ 1161709 ] Virtual InitOption() and SaveOption() for COptionsMgr
+  Src/Common: OptionsMgr.h
+
+2005-03-16 Jochen
+ Widen controls to display Merge7z plugin names (unicode names got chopped off)
+  Src: Merge.rc
+ BUG: [ 1154551 ] Merge7zInstaller download link focus issue
+  Src: 7zCommon.cpp
+
+2005-03-15 Jochen
+ Add Merge7z415(U).dll to Merge7zInstaller
+  Merge7zInstaller: Files.rc2
+ Merge7zInstaller - Initialize filename in Open dialog to "*.exe"
+  Merge7zInstaller: Installer.cpp
+ Fix typo in IDD_MERGE7ZMISMATCH dialog
+  Src: Merge.rc
+
+2005-03-15 WinMerge beta 2.3.2.0 released
+
+2005-03-15 Kimmo
+ Add include I missed from fix to bug #1154153
+  Src: MainFrm.cpp
+ Remove version numbers accidentally applied earlier
+  Src: Merge.rc
+
+2005-03-14 Kimmo
+ BUG: [ 1154153 ] Poor font choice for default font
+  Fix submitted by Takashi Sawanaka
+  Src: MainFrm.cpp
+
+2005-03-13 Kimmo
+ BUG: [ 1162374 ] Recent WinMerge doesn't support NT4
+  Src/Common: UniFile.cpp
+
+2005-03-13 Jochen
+ BUG: [ 1162369 ] short path name problem
+  Fix paths_GetLongPath(), which erroneously added trailing backslash when passing in short path.
+  Src: paths.cpp
+
+2005-03-13 Kimmo
+ PATCH: [ 1161671 ] Convert couple of VCS options to COptionsMgr
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+ BUG: [ 1160919 ] Bad layout in the OpenDialog
+  Fix submitted by Tim
+  Languages/German: MergeGerman.rc
+
+2005-03-11 Kimmo
+ PATCH: [ 1160923 ] Remove CMainFrame::m_nCompMethod (ugly hack)
+  Src: DirDoc.cpp MainFrm.cpp MainFrm.h
+
+2005-03-10 Kimmo
+ PATCH: [ 1160064 ] Undo for Copy All
+  Src: MergeDoc.cpp MergeDoc.h
+ Fix invalid compare for VSS dialog returnvalue
+  Src: MainFrm.cpp
+
+2005-03-09 Perry
+ PATCH: [ 1157359 ] Minor change for FILEFILTER_INFOLIST
+  Src: FileFilterHelper.h
+ PATCH: [ 1159465 ] Add Jesus (Mack) to contributors/Spanish
+  Add [Jesús M. Delgado 'MacK'] to Spanish contributors. 
+  Alphabetize Swedish contributors.
+  Users/Docs: Contributors.txt
+
+2005-03-08 Perry
+ Cosmetic: Added & doxygen'd comments, and prefixed members with m_.
+  Src: FilepathEdit.cpp FilepathEdit.h
+ BUG: [ 1143619 ] Unicode chars in filename display as '_'
+  Remove ES_OEMCONVERT from edit boxes in IDD_EDITOR_HEADERBAR.
+  Src: Merge.rc
+  Src/Languages: Merge*.rc
+
+2005-03-08 WinMerge experimental release 2.3.1.6 (cvs)
+
+2005-03-08 Kimmo
+ PATCH: [ 1158456 ] Fix setting font for headerbar editcontrols
+  Src: EditorFilepathBar.cpp EditorFilepathBar.h
+ PATCH: [ 1158484 ] Fix assert from headerbar-setactive() when closing views
+  Src: EditorFilepathBar.cpp EditorFilepathBar.h
+ PATCH: [ 1159112 ] Swedish translation revision
+  Submitted by Hans Eriksson
+  Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1158136 ] Spanish translation revised
+  Submitted by Jesus M. Delgado 'Mack'
+  Languages/Spanish: MergeSpanish.rc
+
+2005-03-07 Perry
+ PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
+ Postlude: Alter WindowStyle_Add to call CWnd::ModifyStyle.
+  Src/Common: WindowStyle.cpp
+
+2005-03-06 Tim
+ PATCH: [ 1156198 ] Non-standard html in developer docs
+  Docs/Developers: readme-developers-*.html
+
+2005-03-06 Perry
+ PATCH: [ 1157524 ] Fix view line length
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+ PATCH: [ 964676 ] rc file lacks bytes after DIALOGEX defs
+  Add 0,0,0x1 to any FONT line lacking it, for all DIALOGEX dialogs
+  Src: Merge.rc
+  Languages: Merge*.rc
+ PATCH: [ 968285 ] DBCS fixes from Sawanaka
+  (continuing editlib portions)
+  Src/editlib: batch.cpp crystaleditview.cpp crystaltextview2.cpp cplusplus.cpp
+   cregexp.cpp csharp.cpp dcl.cpp filesup.cpp fortran.cpp html.cpp js.cpp
+   java.cpp list.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp
+   sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+ PATCH: [ 1157859 ] Add LVS_SHOWSELALWAYS style to dirview
+  Src: DirView.cpp Merge.dsp
+  Common new files: WindowStyle.cpp WindowStyle.h
+
+
+2005-03-05 Perry
+ Rename CDirFrame::SetFilter to CDirFrame::SetFilterStatusDisplay for easier greps.
+  Src: DirDoc.cpp DirFrame.cpp DirFrame.h
+ More filter clarifying renames
+  Src: DirDoc.cpp FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp
+ Rename FilterHelper's GetUseMask to IsUsingMask.
+  Src: FileFilterHelper.cpp FileFilterHelper.h MainFrm.cpp OpenDlg.cpp
+ BUG: [ 1153184 ] DiffWrapper.cpp missing NEW redefinition
+  Added boilerplate new redefintion for DEBUG builds to DiffWrapper.cpp
+  Src: DiffWrapper.cpp
+ PATCH: [ 1157015 ] Spanish translation update
+  Lots of updates to Spanish translation by Jesus M. Delgado 'Mack'
+  Src/Languages/Spanish: MergeSpanish.rc
+ PATCH: [ 1157145 ] FileFilterHelper doesn't have boilerplate new redefinition
+  Src: FileFilterHelper.cpp
+ PATCH: [ 968285 ] DBCS fixes from Sawanaka
+  Applied asp & basic portions (there are many more)
+  editlib: asp.cpp basic.cpp
+
+2005-03-04 Perry
+ PATCH: [ 1147039 ] experimental patch for colored word diff
+  Merge all the easy new Japanese string translations
+   (Omit major changes to IDD_PROPPAGE_EDITOR & IDD_MERGE7ZMISMATCH.
+  Languages: Japanese/MergeJapanese.rc
+ PATCH: [ 1112871 ] new byte_compare function to bypass diffutils
+  Src: DiffContext.h DiffWrapper.cpp DiffWrapper.h DirDoc.cpp DirScan.cpp Merge.dsp
+  Src new files: ByteComparator.cpp ByteComparator.h
+
+2005-03-04 Kimmo
+ PATCH: [ 1155319 ] Select font for dir compare view
+  We must allow selecting file compare font even if no open views
+  Src: Mainfrm.cpp
+ PATCH: [ 1155436 ] Remove non-const GetDiffAt() from CDiffContext
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp DirView.h DirViewColHandler.cpp
+ PATCH: [ 1156188 ] Updated readme-innosetup
+  Docs/Developers: readme-developers-InnoSetup.html
+ PATCH: [ 1147039 ] experimental patch for colored word diff
+  Submitted by Takashi Sawanaka
+  Src: MainFrm.cpp Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h MergeDoc.h
+   MergeDocLineDiffs.cpp MergeEditView.cpp MergeEditView.h OptionsDef.h
+   PropColors.cpp PropColors.h resource.h
+  Src/editlib: asp.cpp basic.cpp batch.cpp ccrystaltextview.cpp ccrystaltextview.h
+   cplusplus.cpp csharp.cpp dcl.cpp fortran.cpp html.cpp ini.cpp is.cpp java.cpp
+   lisp.cpp pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp sgml.cpp sh.cpp
+   siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+  Src/Languages: *.rc resource.h
+
+2005-03-04 Perry
+ PATCH: [ 1156253 ] Fix filter helper handling of new filters
+ BUG: [ 1153018 ] Create new filter, now cannot find it
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFiltersDlg.cpp Merge.cpp
+   Merge.h paths.cpp paths.h
+
+2005-03-03 Kimmo
+ PATCH: [ 1155319 ] Select font for dir compare view
+  Src: DirView.cpp DirView.h MainFrm.cpp MainFrm.h Merge.rc OptionsDef.h
+  Languages: *.rc
+ PATCH: [ 1154667 ] Make CDiffContext paths private members
+  Src: DiffContext.cpp DiffContext.h DirActions.cpp DirDoc.cpp DirScan.cpp DirView.cpp
+
+2005-03-02 Perry
+ PATCH: [ 1154259 ] Non blurred 'error.bmp'
+  New clearer error bitmap from Tim Gerundt
+ Languages: res/error.bmp
+
+2005-03-03 Perry
+ PATCH: [ 1151951 ] Alter getRightFilepath for root paths
+ re: BUG: [ 1105933 ] Problem accessing files in network shares and removables
+  Src: DiffContext.cpp
+
+2005-03-02 Kimmo
+ BUG: [ 975226 ] Editor: Always refresh with Del-Key
+  Fix submitted by Takashi Sawanaka
+  Src: MergeEditView.cpp
+
+2005-03-02 Perry
+ PATCH: [ 1154259 ] Non blurred 'error.bmp'
+  New clearer error bitmap from Tim Gerundt
+  Src/Res: error.bmp
+ PATCH: [ 1153127 ] Rename Filepath to FilepathWithEncoding
+  Src: DiffWrapper.cpp DiffWrapper.h
+ PATCH: [ 967230 ] Initialize default language from locale
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+
+
+2005-03-01 WinMerge experimental release 2.3.1.5 (cvs)
+
+2005-03-01 Kimmo
+ PATCH: [ 1153870 ] Disable redrawing dir compare view while adding items
+  Src: DirDoc.cpp
+
+2005-03-01 Jochen
+ PATCH: [ 1152341 ] Merge7z update (DllBuild_Merge7z_10)
+  Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp Merge7z407.dsp Merge7z408.dsp
+   Merge7z409.cpp Merge7z409.dsp Merge7z410.dsp Merge7z411.dsp Merge7z412.dsp Merge7z413.dsp Merge7z414.dsp
+   Merge7z415.dsp Merge7zCommon.cpp Merge7zCommon.h revision.txt tools.cpp tools.h
+ PATCH: [ 1152469 ] Add Merge7zInstaller download link
+  Src: 7zCommon.cpp 7zCommon.h dllpstub.cpp dllpstub.h markdown.cpp markdown.h Merge.dsp Merge.rc
+
+2005-02-28 Perry
+ BUG: [ 895732 ] paths_GetLongPath usually ignores 2nd parameter
+  Remove 2nd parameter entirely from paths_GetLongPath, and improve documentation.
+  Src: Merge.cpp OpenDlg.cpp paths.cpp paths.h readme.txt
+
+2005-02-28 Kimmo
+ PATCH: [ 1153091 ] Fix selecting default font from View menu
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+ PATCH: [ 1144545 ] Project Handling Patch3 (remember last valid project path)
+  Submitted by Andreas Morsing
+  Src: MainFrm.cpp OpenDlg.cpp OptionsDef.h
+
+2005-02-28 Perry
+ BUG: [ 1039158 ] Confusing EOL differences messagebox
+  Src: Merge.rc
+  Languages: Merge*.rc
+
+2005-02-27 Perry
+ PATCH: [ 1112636 ] Suggest cosmetic change in DiffFileData::OpenFiles
+  (new method DiffFileData::Filepath::AssignPath)
+  Src: DiffWrapper.cpp DiffWrapper.h
+ BUG [ 1144425 ] German: Options/codepage dlg needs adjust
+  (Fix by Tim Gerundt)
+  Languages: MergeGerman.rc
+ PATCH: [ 925085 ] Propose failing files 2gigs+ in size
+  Src/Common: UniFile.cpp
+
+2005-02-27 Kimmo
+ BUG: [ 1153017 ] FileFilterHelper::SetFilter ASSERTS on empty string
+  Src: FileFilterHelper.cpp
+
+2005-02-27 Perry
+ BUG: [ 1152913 ] LocationView type bugs?
+  (Fixed 17 type conversion warnings in MSVC.NET 2003, mostly by explicit casts)
+  Src: LocationView.cpp
+ PATCH: [ 1152967 ] Fix re_match_2 declaration warnings
+  Src/diffutils/lib: REGEX.C
+ BUG: [ 1038897 ] Weird comment in DiffWrapper.cpp
+  cosmetic: removing obsolete comment, improving existing comments
+  Src: DiffWrapper.cpp
+ Cosmetic: Add more explanation to function header of 
+  FileFilterHelper::LoadFileFilterDirPattern.
+  Src: FileFilterHelper.cpp
+ BUG: [ 1152911 ] CListCtrlEx::Dump is an infinite loop.
+  Src/Common: listvwex.h
+
+2005-02-26 Jochen
+ PATCH: [ 1152256 ] UniFile may fail to read last line
+  Src/Common: UniFile.cpp
+ Attempt to fix bug [1152375] 'Help -> Archive Support disabled' broken
+  Src: 7zCommon.cpp
+
+2005-02-26 Perry
+ PATCH: [ 1151949 ] Fix CDirDoc::FindItemFromPaths for root
+  Src: DirDoc.cpp
+
+2005-02-23 Perry
+ PATCH: [ 1145016 ] i18n the version control strings
+  Src: Merge.rc PropVss.cpp PropVss.h resource.h
+  Languages: resource.h Merge*.rc
+
+2005-02-23 WinMerge experimental release 2.3.1.4 (cvs)
+
+2005-02-23 Kimmo
+ PATCH: [ 1149081 ] Invalid string compare in CChildFrm.cpp
+  Src: ChildFrm.cpp
+ PATCH: [ 1149365 ] Check linenumber to goto for upper limit
+  Src: MergeEditView.cpp
+ PATCH: [ 1149388 ] Check for previous compare text before find again
+  Src/editlib: ccrystaltextview.cpp
+ Add compiler-selecting ifdef to Unifile.cpp to make it compile with MSVC6 and MSVC7
+  Src/Common: UniFile.cpp
+
+2005-02-22 Kimmo
+ PATCH: [ 1145522 ] fix crash on search
+  Submitted by Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+ BUG: [ 1144580 ] markdown.cpp compile error with VS 2003
+  Fix from Jochen
+  Src: markdown.h
+
+2005-02-21 Kimmo
+ Update Docbook instructions in devel doc (path changed in sf.net)
+  Docs/Developers: readme-developers.html
+
+2005-02-20 Perry
+ BUG [ 1144978 ] No languages available in development
+  Fix CopyAll.bat, and cosmetic changes to LanguageSelect.*
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+  Languages: CopyAll.bat
+
+2005-02-20 Tim
+ Fix 'cliboard' typo in rc files.
+  Languages: *.rc
+
+2005-02-20 Perry
+ BUG: [ 1144917 ] cvs source does not compile: '_stati64' : undeclared identif
+  Fix ANSI compilation of stati64
+  Src/Common: UniFile.cpp
+
+2005-02-20 Kimmo
+ PATCH: [ 1144588 ] Remove show bak files setting from configlog
+  Src: ConfigLog.cpp ConfigLog.h
+
+2005-02-19 Kimmo
+ PATCH: [ 1144059 ] Allow getting filestatus from open file in UniXXXFile
+  Common: UniFile.cpp UniFile.h
+ Fix compile error in MainFrm.cpp
+  Src: MainFrm.cpp
+ Add typecast for VC6
+  Common UniFile.cpp
+
+2005-02-18 Kimmo
+ PATCH: [ 1124475 ] Update of the swedish translation
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
+2005-02-17 Kimmo
+ PATCH: [ 1124380 ] Use _tstati64() in UniLocalFile::DoGetFileStatus()
+  Common: UniFile.cpp UniFile.h
+
+2005-02-16 Kimmo
+ PATCH: [ 1123539 ] Small improvement for code creating backup copy
+  Src: MainFrm.cpp
+
+2005-02-13 Kimmo
+ PATCH: [ 1118261 ] Allow creating and deleting filefilters from UI
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.cpp
+   FileFiltersDlg.cpp FileFiltersDlg.h Merge.cpp Merge.rc Plugins.cpp Plugins.h resource.h
+  Filters new file: FileFilter.tmpl
+
+2005-02-10 Kimmo
+ PATCH: [ 1116778 ] Project Handling patch
+  Submitted by Andreas Morsing
+  Src: MainFrm.cpp MainFrm.h Merge.rc OpenDlg.cpp OpenDlg.h ProjectFile.cpp ProjectFile.h resource.h
+  Languages: *.rc resource.h
+  Docs/Users: Contributors.txt
+
+2005-02-07 Kimmo
+ PATCH: [ 1117375 ] Rememer status/toolbar visible status
+  Src: MainFrm.cpp MainFrm.h OptionsDef.h
+
+2005-01-22 Jochen
+ PATCH: [ 1107467 ] Detect 7-Zip version from 7zip_pad.xml (2)
+  Src: 7zCommon.cpp 7zCommon.h ConfigLog.cpp Merge.dsp Merge.rc paths.cpp paths.h 
+  Src new files: charsets.c charsets.h language.c language.h markdown.cpp markdown.h
+  Src/Common: version.cpp version.h
+
+2005-02-03 Kimmo
+ PATCH: [ 1114360 ] Non-blocking file filter editing
+  Src: DiffFileInfo.cpp DiffFileInfo.h DirDoc.cpp DirViewColItems.cpp FileFilterHelper.cpp
+   FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.h MainFrm.cpp Merge.dsp
+  Src new files: FileInfo.cpp FileInfo.h
+
+2005-02-02 Kimmo
+ BUG: [ 1039592 ] No differences shown after changing EOL options when loading
+  Src: MergeDoc.cpp MergeEditView.cpp MergeEditView.h
+
+2005-02-01 Kimmo
+ Backout fix for bug [ 1110826 ] Regex $ breaks linefilter
+  Src: MainFrm.cpp
+
+2005-01-30 Kimmo
+ BUG: [ 1110826 ] Regex $ breaks linefilter
+  Src: MainFrm.cpp
+ PATCH: [ 1112111 ] Confusing message for identical scratchpads
+  Src: MergeDoc.cpp
+
+2005-01-29 Kimmo
+ PATCH: [ 1108716 ] Load lang files from 'Languages' subdirectory
+  Src/Common: LanguageSelect.cpp
+
+2005-01-28 Perry
+  Src/Common: unicoder.cpp
+   cosmetic: add comments to get_unicode_char
+
+2005-01-27 Kimmo
+ PATCH: [ 946600 ] Copy lines with linenumbers
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h resource.h
+  Languages: *.rc resource.h
+
+2005-01-24 WinMerge experimental release 2.3.1.3 (cvs)
+
+2005-01-23 Perry
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  (Applied UniFile.cpp portion of this patch)
+  Src/Common: UniFile.cpp UniFile.h
+  Src: MergeDoc.cpp
+ BUG: [ 1029643 ] (Catalan) Options/codepage too crowded
+  Moved codepage edit box over 20 units, widened label 10 units
+  Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  (Applied UniFile.cpp portion of this patch)
+  Minor adjustment (remove "sline(1024)" which broken VS.NET compilation).
+  Src: MergeDoc.cpp
+
+2005-01-23 Kimmo
+ PATCH: [ 1107508 ] Add dirview statusbar panel showing current filter name
+  Src: DirDoc.cpp DirFrame.cpp DirFrame.h resource.h
+  Languages: resource.h
+ Update MASM filter file
+  Submitted by Matt Bossard (to forum)
+  Filters file: MASM.flt
+ Fix bug that left path was shown twice in caption
+  Src: DirDoc.cpp
+
+2005-01-23 Perry
+ PATCH: [ 1107516 ] Suggest code simplification for DiffFileInfo ctr
+  Src: DiffFileInfo.h
+ PATCH: [ 1103530 ] Include codepages in "force unification" question
+  Src: MainFrm.cpp Merge.rc
+  Languages: *.rc
+ Minor grammar fixes & wording changes
+  Docs/Developers/readme-developers.html
+ Add section on "Forcing compiler version with MakeResDll"
+  Docs/Developers/readme-developers.html
+ PATCH: [ 1107686 ] Fix LANGAGE to LANGUAGE in Merge.rc
+  Src: Merge.rc
+  Languages: *.rc
+ PATCH: [ 1103530 ] Include codepages in "force unification" question
+  Placeholder in Japanese text.
+  Languages/Japanese: MergeJapanese.rc
+ PATCH: [ 1039228 ] add codepage info strings
+  Src: codepage.cpp codepage.h Merge.rc resource.h
+  Src/Languages: Merge*.rc, resource.h
+ BUG: [ 1162653 ] CMainFrame::ShowVSSError doesn't always log error
+  Src: MainFrm.cpp
+ BUG: [ 1157554 ] MergeKorean IDD_FILEFILTERS not DIALOGEX
+  Src/Languages/Korean: MergeKorean.rc
+
+2005-01-22 Perry
+ PATCH: [ 1107484 ] Fix broken version columns
+  Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h 
+   DirViewColItems.cpp
+
+2005-01-22 Jochen
+ PATCH: [ 1103266 ] Merge7z update (DllBuild_Merge7z_9)
+  Merge7z: Merge7z.h Merge7z311.cpp Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp Merge7z407.dsp Merge7z408.dsp
+   Merge7z409.cpp Merge7z409.dsp Merge7z410.dsp Merge7z411.dsp Merge7z412.dsp Merge7z413.dsp Merge7z414.dsp
+   Merge7zCommon.cpp Merge7zCommon.h revision.txt
+ PATCH: [ 1103274 ] Merge7z interface plugin installer
+  Merge7zInstaller: Files.rc2 Installer.cpp Installer.rc Merge7zInstaller.dsp resource.h
+
+2005-01-21 Perry
+ PATCH: [ 1103542 ] Declare _MBCS in ANSI builds
+  Src: Merge.dsp
+
+2005-01-21 Kimmo
+ BUG: [ 1002327 ] "Untitled left" not translated when language switches
+  Src: MergeDoc.cpp
+ PATCH: [ 1106330 ] Change position in locationpane with single mouseclick
+  Src: LocationView.cpp LocationView.h
+ PATCH: [ 1106383 ] Show few chars of 'context' when horizontal scrolling lines
+  Src/editlib: ccrystaltextview.cpp
+
+2005-01-20 Kimmo
+ PATCH: [ 1105640 ] Properly update locationpane visible area indicator
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h
+ Add new MASM filter file
+  Submitted by Matt Bossard (to forum)
+  Filters new file: MASM.flt
+
+2005-01-18 Kimmo
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  View scrolling optimisation from Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+
+2005-01-13 Kimmo
+ PATCH: [ 1001341 ] Update edit view status bar on language change
+  Submitted by Perry
+  Src: ChildFrm.cpp ChildFrm.h DirDoc.cpp DirFrame.cpp DirView.cpp
+   MainFrm.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp 
+
+2005-01-12 Kimmo
+ PATCH: [ 1100462 ] Center find result in file compare
+  Src/editlib: ccrystaltextview.cpp
+
+2005-01-11 WinMerge experimental release 2.3.1.2 (cvs)
+
+2005-01-11 Kimmo
+ PATCH: [ 1100176 ] small fix in DirDoc RefreshOptions
+  Submitted by Jim Fougeron
+  Src: DirDoc.cpp
+ Update contributors.txt (Jim Fougeron)
+  Doc/Users: Contributors.txt
+
+2005-01-10 Kimmo
+ Add Hungarian to resource.h updates in UpdateAll_resource_h.bat
+  Src/Languages: UpdateAll_resource_h.bat
+ PATCH: [ 1099011 ] Added "Hide files" to right click menu (onthefly filter)
+  Submitted by Jim Fougeron
+  Src: DirView.cpp DirView.h Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-01-09 Kimmo
+ PATCH: [ 1019445 ] IDS_WINMERGE_THIS_DIRECTORY is unused
+  Src: Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+
+2005-01-08 Kimmo
+ PATCH: [ 1098340 ] crash rarely when starting many winmerge continuously
+  Anonymous submission
+  Src: FileFilterMgr.cpp
+
+2005-01-06 Kimmo
+ PATCH: [ 1096609 ] Show tooltips for filefilter dialog list
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h
+
+2005-01-05 Kimmo
+ PATCH: [ 1094534 ] Add description field for file filters
+  Src: FileFilterHelper.cpp FileFilterHelper.h FileFilterMgr.cpp FileFilterMgr.h
+   FileFiltersDlg.cpp FileFiltersDlg.h MainFrm.cpp Merge.rc resource.h
+  Src/Languages: *.rc resource.h
+  Filters: ADAMulti.flt Merge_GnuC_loose.flt Merge_VB_loose.flt Merge_VC_loose.flt
+   XML_html.flt
+ PATCH: [ 1094467 ] Update contributors: Tim is now developer
+  Docs/Users: Contributors.txt
+
+2005-01-03 Kimmo
+ PATCH: [ 1094474 ] Visible area indicator for location pane
+  Src: LocationView.cpp LocationView.h MergeEditView.h
+
+2005-01-02 Kimmo
+ PATCH: [ 1088049 ] Ask about saving when Window/Close is selected
+  Src: MergeEditView.cpp MergeEditView.h
+
+2004-12-29 Perry
+ BUG: [ 1064942 ] Copyright notice????
+  Bumped copyright year to continue through 2005
+   Src: Merge.rc
+ BUG: [ 859995 ] convertToBuffer assumes ISO-8895-1 codepage
+  Add comment about flawed code in actual code
+   Src/Common: unicoder.cpp
+ BUG: [ 859995 ] convertToBuffer assumes ISO-8895-1 codepage
+  Removed flawed and unused method convertToBuffer.
+   Src/Common: unicoder.cpp unicoder.h
+
+2004-12-17 Kimmo
+ PATCH: [ 1086601 ] Dircompare statepane miscounting skipped items
+  Src: DirCompStateBar.cpp
+ PATCH: [ 1086745 ] Find- and Replace-dialogs to remember strings too
+  Src/editlib: ccrystaltextview.cpp ceditreplacedlg.cpp ceditreplacedlg.h
+   cfindtextdlg.cpp cfindtextdlg.h
+
+2004-12-15 Tim
+ RFE: [ 1085099 ] 'fileskip.bmp' looks to similar to 'equal.bmp'
+  Src/res: fileskip.bmp
+  Languages: fileskip.bmp
+
+2004-12-05 WinMerge experimental release 2.3.1.1 (cvs)
+
+2004-12-04 Kimmo
+ PATCH: [ 1078505 ] Use DOS eol as filename/pathname clipboard separator
+  Src: DirView.cpp
+ PATCH: [ 981218 ] Show filenames/paths in caption
+  Src: DirDoc.cpp DirDoc.h DirView.cpp DirView.h MainFrm.cpp MergeDoc.cpp MergeDoc.h 
+
+2004-12-03 Kimmo
+ PATCH: [ 1068011 ] Partial French translation
+  Submitted by Matthieu Pupat
+  Src/Languages/French: MergeFrench.rc
+  Docs/Users: Contributors.txt
+
+2004-12-01 Kimmo
+ PATCH: [ 1075591 ] Disable file filter edit button for no filter selection
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  Additional optimisation from Takashi Sawanaka
+  Src/editlib: ccrystaltextview.cpp
+ 
+2004-11-27 Jochen
+ Remove unneeded system.cpp (no longer present in 7z411+) from Merge7z DSPs
+  Merge7z: Merge7z311.dsp Merge7z312.dsp Merge7z313.dsp
+  Merge7z407.dsp Merge7z408.dsp Merge7z409.dsp Merge7z410.dsp Merge7z411.dsp Merge7z412.dsp
+
+2004-11-20 Kimmo
+ PATCH: [ 1058142 ] update coloring of batch file
+  Submitted by Andre Arpin
+  Src/editlib: batch.cpp
+
+2004-11-17 Kimmo
+ PATCH: [ 1067374 ] Norwegian translation for 2.2.0
+  Submitted by Hans Fr. Nordhaug
+  Src/Languages/Norwegian: MergeNorwegian.rc
+
+2004-11-14 Kimmo
+ PATCH: [ 1065462 ] Show all skipped items when selected so
+  Src: DirDoc.cpp
+
+2004-11-12 Kimmo
+ PATCH: [ 1057062 ] Separate Skipped flags from compare result flags
+  Src: DiffContext.h DirCompStateBar.cpp DirDoc.cpp DirScan.cpp
+   DirView.cpp DirViewColItems.cpp
+
+2004-11-11 Kimmo
+ PATCH: [ 1063342 ] Fix problem in XML syntax highlight and backslash
+  Src/editlib: xml.cpp
+ BUG: [ 1063100 ] Files with a space not handled (Clearcase integration)
+  Src: MainFrm.cpp
+ PATCH: [ 1059785 ] Simplify dir compare item update after copy etc
+  Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h
+   DirActions.cpp DirDoc.cpp DirDoc.h
+
+2004-11-09 Jochen
+ PATCH: [ 1062082 ] Fix bug [1057997] (long lines issue)
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+ PATCH: [ 1059604 ] Fix bug [1048997] archive popup interferes with Help menu
+  Src: 7zCommon.cpp
+
+2004-11-09 Perry
+ PATCH: [ 1050329 ] readme-developers-InnoSetup.html
+  Docs/Developers: readme-developers-InnoSetup.html
+
+2004-11-07 Kimmo
+ BUG: [ 828065 ] More overlapping letters in Dansk/Norsk
+  Fix from Christian
+  Src/Languages/Danish: MergeDanish.rc 
+
+2004-11-06 Perry
+ PATCH: [ 1053475 ] Exponentially grow long lines when reading
+  Src/Common: UniFile.cpp UniFile.h
+  Src: Merge.dsp MergeDoc.cpp
+ Fix UniFile.cpp for UNICODE build (PATCH: [ 1053475 ]).
+
+2004-11-05 Kimmo
+ PATCH: [ 1061155 ] Updated danish translation
+  Submitted by Christian
+  Src/Languages/Danish: MergeDanish.rc
+
+2004-11-03 Kimmo
+ PATCH: [ 1058992 ] More flexible whitespaces for file filter files
+  Src: FileFilterMgr.cpp
+ BUG: [ 1058947 ] Filter files sensitive to spaces
+  Add new file filter for ADAMulti (from jpizzi)
+  Filters new file: ADAMulti.flt
+ PATCH: [ 1053282 ] Korean translation
+  Submitted by Sukjoon, Hwang
+  Src/Languages/Korean: MergeKorean.rc
+
+2004-11-02 Kimmo
+ PATCH: [ 1058293 ] The finished german language file
+  Submitted by Tim Gerundt
+  Src/Languages/German: MergeGerman.rc
+ BUG: [ 1057699 ] GetModTime() in DirDoc.cpp is unused
+  Src: DirDoc.cpp
+
+2004-11-01 Kimmo
+ PATCH: [ 1057719 ] Add Hungarian translator to Contributors list
+  Docs/Users: Contributors.txt
+
+2004-10-31 Perry
+ PATCH: [ 1036683 ] unicoder.cpp always use GetACP codepage (remove dead variable)
+  Src/Common: unicoder.cpp
+
+2004-10-30 Perry
+ PATCH: [ 1055624 ] The finished hungarian language file
+  (translation credit in versioninfo)
+ Src/Languages: Hungarian/MergeHungarian.rc
+
+2004-10-29 Jochen
+ Add Merge7z410.dsp
+  Merge7z: Merge7z410.dsp
+
+2004-10-29 Kimmo
+ PATCH: [ 1055681 ] Add Bool type for options and convert existing options
+  Src: DirActions.cpp DirDoc.cpp DirView.cpp MainFrm.cpp MergeDiffDetailView.cpp
+   MergeDoc.cpp MergeEditView.cpp OpenDlg.cpp
+  Src/Common: OptionsMgr.cpp OptionsMgr.h varprop.h
+
+2004-10-28 Kimmo
+ PATCH: [ 1055551 ] Move cursor to begin of previous line when deleting diff
+  Src: MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+ PATCH: [ 1053234 ] Suggested expansions for Organization.txt
+  Submitted by Perry
+  Docs/Developers: Organisation.txt
+
+2004-10-28 Perry
+ PATCH: [ 1055067 ] Add Hungarian support
+  Src/Common: LanguageSelect.cpp
+ PATCH: [ 1055624 ] The finished hungarian language file
+  Src/Languages: Hungarian/*
+ PATCH: [ 1053421 ] Changing warning level to 3 in release targets
+  Src: Merge.dsp
+
+2004-10-27 Perry
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Fix warnings for signed/unsigned comparison
+  Src: DiffList.cpp
+
+2004-10-26 Kimmo
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Last minute updates to files I forgot to add (thanks Perry!)
+  Src: DiffList.cpp DiffList.h
+
+2004-10-25 Perry
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Src: DiffList.cpp DiffList.h
+
+2004-10-25 Kimmo
+ PATCH: [ 1003457 ] Move difflist to new class DiffList
+  Src: DiffWrapper.cpp DiffWrapper.h LocationView.h Merge.dsp
+   MergeDiffDetailView.cpp MergeDoc.cpp MergeDoc.h MergeEditView.cpp
+ BUG: [ 1052762 ] WinMerge VERY slow to startup
+  Src: BCMenu.cpp
