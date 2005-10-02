@@ -1,3 +1,7 @@
+2005-10-02 Jochen
+ Merge7z DllBuild 0015
+  Merge7z: Merge7z427.dsp Merge7z428.dsp Merge7z429.dsp Merge7zCommon.cpp Merge7zCommon.h revision.txt
+
 2005-09-30 Tim
  PATCH: [ 1309423 ] Small typo in MergeSwedish.rc
   Submitted by Hans Eriksson

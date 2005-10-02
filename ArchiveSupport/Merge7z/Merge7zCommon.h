@@ -10,7 +10,7 @@
 #include "7zip/Common/FileStreams.h"
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 14
+#define DllBuild_Merge7z 15
 #define DLLPSTUB /##/
 #include "Merge7z.h"
 
@@ -37,7 +37,7 @@ struct Format7zDLL
 	CreateObjectFunc CreateObject;
 	GetHandlerPropertyFunc GetHandlerProperty;
 	HMODULE handle;
-	CLSID clsid;
+	//CLSID clsid;
 	const char *extension;
 	size_t signature;
 	struct Proxy;
@@ -52,7 +52,7 @@ struct Format7zDLL::Proxy
 	-	&((struct Format7zDLL *)0)->origin
 	];
 	HMODULE handle;
-	CLSID clsid;
+	//CLSID clsid;
 	const char *extension;
 	size_t signature;
 	struct Format7zDLL *operator->();
@@ -68,6 +68,7 @@ interface Format7zDLL::Interface : Merge7z::Format
 		head = this;
 	}
 	void GetDefaultName(HWND, UString &);
+	virtual HRESULT CreateObject(const GUID *interfaceID, void **outObject);
 	virtual IInArchive *GetInArchive();
 	virtual HRESULT DeCompressArchive(HWND, LPCTSTR path, LPCTSTR folder);
 	virtual IOutArchive *GetOutArchive();

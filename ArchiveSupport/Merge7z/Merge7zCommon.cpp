@@ -34,6 +34,7 @@ DATE:		BY:					DESCRIPTION:
 2005/08/20	Jochen Tucht		Option to guess archive format by signature.
 								EnumerateDirectory() in EnumDirItems.cpp has
 								somewhat changed so I can no longer use it.
+2005/10/02	Jochen Tucht		Add CHM format
 */
 
 #include "stdafx.h"
@@ -158,12 +159,34 @@ struct Format7zDLL *Format7zDLL::Proxy::operator->()
 }
 
 /**
+ * @brief Ask archiver dll for an interface of given class.
+ */
+HRESULT Format7zDLL::Interface::CreateObject(const GUID *interfaceID, void **outObject)
+{
+	PROPVARIANT value;
+	HRESULT result = proxy->GetHandlerProperty(NArchive::kClassID, &value);
+	if SUCCEEDED(result)
+	{
+		if (value.vt != VT_BSTR || SysStringByteLen(value.bstrVal) != sizeof(GUID))
+		{
+			result = DISP_E_TYPEMISMATCH;
+		}
+		else
+		{
+			result = proxy->CreateObject((const CLSID *)value.bstrVal, interfaceID, outObject);
+		}
+		VariantClear((VARIANT *)&value);
+	}
+	return result;
+}
+
+/**
  * @brief Ask archiver dll for an instance of IInArchive.
  */
 IInArchive *Format7zDLL::Interface::GetInArchive()
 {
 	void *pv;
-	if COMPLAIN(proxy->CreateObject(&proxy.clsid, &IID_IInArchive, &pv) != S_OK)
+	if COMPLAIN(CreateObject(&IID_IInArchive, &pv) != S_OK)
 	{
 		Complain(RPC_S_INTERFACE_NOT_FOUND, _T("IInArchive"), proxy.handle);
 	}
@@ -176,7 +199,7 @@ IInArchive *Format7zDLL::Interface::GetInArchive()
 IOutArchive *Format7zDLL::Interface::GetOutArchive()
 {
 	void *pv;
-	if COMPLAIN(proxy->CreateObject(&proxy.clsid, &IID_IOutArchive, &pv) != S_OK)
+	if COMPLAIN(CreateObject(&IID_IOutArchive, &pv) != S_OK)
 	{
 		Complain(RPC_S_INTERFACE_NOT_FOUND, _T("IOutArchive"), proxy.handle);
 	}
@@ -567,75 +590,33 @@ static const char aGetHandlerProperty[] = "GetHandlerProperty";
 
 Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
 
-#define	DEFINE_FORMAT(name, dll, extension, signature, l, w1, w2, b1, b2, b3, b4, b5, b6, b7, b8) \
+#define	DEFINE_FORMAT(name, dll, extension, signature) \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
 			"%1Formats\\" dll, \
 			aCreateObject, \
 			aGetHandlerProperty, \
 			(HMODULE)0, \
-			{ l, w1, w2, { b1, b2,  b3,  b4,  b5,  b6,  b7,  b8 } }, \
 			signature extension + sizeof signature extension - sizeof extension, \
 			sizeof signature extension - sizeof extension \
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
-	
-DEFINE_FORMAT(CFormat7z, "7Z.DLL",
-	"7z",
-	"@7z\xBC\xAF\x27\x1C",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x05, 0x00, 0x00);
-DEFINE_FORMAT(CArjHandler, "ARJ.DLL",
-	"arj",
-	"@\x60\xEA",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0A, 0x00, 0x00);
-DEFINE_FORMAT(CBZip2Handler, "BZ2.DLL",
-	"bz2 tbz2",
-	"@BZh",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x07, 0x00, 0x00);
-DEFINE_FORMAT(CCabHandler, "CAB.DLL",
-	"cab",
-	"@MSCF",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x06, 0x00, 0x00);
-DEFINE_FORMAT(CCpioHandler, "CPIO.DLL",
-	"cpio",
-	"",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x08, 0x00, 0x00);
-DEFINE_FORMAT(CDebHandler, "DEB.DLL",
-	"deb",
-	"@!<arch>\n",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0C, 0x00, 0x00);
-DEFINE_FORMAT(CLzhHandler, "LZH.DLL",
-	"lzh lha",
-	"@@@-l@@-",//"-l" doesn't work because signature starts at offset 2
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0E, 0x00, 0x00);
-DEFINE_FORMAT(CGZipHandler, "GZ.DLL",
-	"gz tgz",
-	"@\x1F\x8B",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x03, 0x00, 0x00);
-DEFINE_FORMAT(CRarHandler, "RAR.DLL",
-	"rar",
-	"@Rar!\x1a\x07\x00",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x02, 0x00, 0x00);
-DEFINE_FORMAT(CRpmHandler, "RPM.DLL",
-	"rpm",
-	"",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x09, 0x00, 0x00);
-DEFINE_FORMAT(CSplitHandler, "SPLIT.DLL",
-	"001",
-	"",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0B, 0x00, 0x00);
-DEFINE_FORMAT(CTarHandler, "TAR.DLL",
-	"tar",
-	"",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x04, 0x00, 0x00);
-DEFINE_FORMAT(CZHandler, "Z.DLL",
-	"z",
-	"@\x1F\x9D",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x0D, 0x00, 0x00);
-DEFINE_FORMAT(CZipHandler, "ZIP.DLL",
-	"zip jar war ear xpi",
-	"@PK\x03\x04",
-	0x23170F69, 0x40C1, 0x278A, 0x10, 0x00, 0x00, 0x01, 0x10, 0x01, 0x00, 0x00);
+
+DEFINE_FORMAT(CFormat7z,		"7Z.DLL",		"7z", "@7z\xBC\xAF\x27\x1C");
+DEFINE_FORMAT(CArjHandler,		"ARJ.DLL",		"arj", "@\x60\xEA");
+DEFINE_FORMAT(CBZip2Handler,	"BZ2.DLL",		"bz2 tbz2", "@BZh");
+DEFINE_FORMAT(CCabHandler,		"CAB.DLL",		"cab", "@MSCF");
+DEFINE_FORMAT(CCpioHandler,		"CPIO.DLL",		"cpio", "");
+DEFINE_FORMAT(CDebHandler,		"DEB.DLL",		"deb", "@!<arch>\n");
+DEFINE_FORMAT(CLzhHandler,		"LZH.DLL",		"lzh lha", "@@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
+DEFINE_FORMAT(CGZipHandler,		"GZ.DLL",		"gz tgz", "@\x1F\x8B");
+DEFINE_FORMAT(CRarHandler,		"RAR.DLL",		"rar", "@Rar!\x1a\x07\x00");
+DEFINE_FORMAT(CRpmHandler,		"RPM.DLL",		"rpm", "");
+DEFINE_FORMAT(CSplitHandler,	"SPLIT.DLL",	"001", "");
+DEFINE_FORMAT(CTarHandler,		"TAR.DLL",		"tar", "");
+DEFINE_FORMAT(CZHandler,		"Z.DLL",		"z", "@\x1F\x9D");
+DEFINE_FORMAT(CZipHandler,		"ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");
+DEFINE_FORMAT(CChmHandler,		"CHM.DLL",		"chm chi chq chw hxs hxi hxr hxq hxw lit", "@ITSF");
 
 /**
  * @brief Construct Merge7z interface.
