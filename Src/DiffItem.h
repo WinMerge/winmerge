@@ -14,10 +14,27 @@
 #endif
 
 /**
- * @brief values for DIFFITEM.code
+ * @brief Status of one item comparison, stored as bitfields
+ *
+ * Bitmask can be seen as a 4 dimensional space; that is, there are four
+ * different attributes, and each entry picks one of each attribute
+ * independently.
+ *
+ * One dimension is how the compare went: same or different or
+ * skipped or error.
+ *
+ * One dimension is file mode: text or binary (text is only if
+ * both sides were text)
+ *
+ * One dimension is existence: both sides, left only, or right only
+ *
+ * One dimension is type: directory, or file
  */
 struct DIFFCODE
 {
+	/**
+	 * @brief values for DIFFITEM.diffcode
+	 */
 	enum
 	{
 		// We use extra bits so that no valid values are 0
@@ -76,20 +93,6 @@ public:
 
 /**
  * @brief information about one diff (including files on both sides)
- *
- * Bitmask can be seen as a 4 dimensional space; that is, there are four
- * different attributes, and each entry picks one of each attribute
- * independently.
- *
- * One dimension is how the compare went: same or different or
- * skipped or error.
- *
- * One dimension is file mode: text or binary (text is only if
- * both sides were text)
- *
- * One dimension is existence: both sides, left only, or right only
- *
- * One dimension is type: directory, or file
  *
  * @note times in fileinfo's are seconds since January 1, 1970.
  * See Dirscan.cpp/fentry and Dirscan.cpp/LoadFiles()

@@ -1,3 +1,7 @@
+2005-10-02 Perry
+ PATCH: [ 1253949 ] cosmetic comment fix
+  Src: DiffItem.h
+
 2005-10-02 Jochen
  Merge7z DllBuild 0015
   Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
