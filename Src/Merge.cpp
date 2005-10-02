@@ -273,15 +273,8 @@ BOOL CMergeApp::InitInstance()
 	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
 	pMainFrame->MDISetMenu(pNewMenu, NULL);
 
-	// Parse command line for standard shell commands, DDE, file open
-	//CCommandLineInfo cmdInfo;
-	//ParseCommandLine(cmdInfo);
-
-	/* Dispatch commands specified on the command line
-	if( cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew )
-		cmdInfo.m_nShellCommand = CCommandLineInfo::FileNothing;
-	if (!ProcessShellCommand(cmdInfo))
-		return FALSE;*/
+	// Command line parsing is handled not by MFC wizard's CComandLineInfo
+	// but rather by ParseArgsAndDoOpen below
 
 	//Track it so any other instances can find it.
 	instanceChecker.TrackFirstInstanceRunning();
