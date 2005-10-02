@@ -393,7 +393,7 @@ void CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStri
 	if (cmdArgs.HasEmptySwitchInsensitive(_T("ur")))
 		dwRightFlags |= FFILEOPEN_NOMRU;
 
-	// -ub to not add paths to MRU
+	// -ub to add neither right nor left path to MRU
 	if (cmdArgs.HasEmptySwitchInsensitive(_T("ub")))
 	{
 		dwLeftFlags |= FFILEOPEN_NOMRU;

@@ -3,6 +3,8 @@
   Src: DiffItem.h
  PATCH: [ 1253950 ] cosmetic--remove old code in InitInstance
   Src: Merge.cpp
+ PATCH: [ 1253951 ] trivial cosmetic comment upgrade in arg parsing
+  Src: Merge.cpp
 
 2005-10-02 Jochen
  Merge7z DllBuild 0015
