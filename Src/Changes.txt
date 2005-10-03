@@ -2,6 +2,9 @@
  PATCH: [ 1302710 ] generating a report is slow
   Submitted by Takashi Sawanaka
   Src: DirCmpReport.cpp
+ PATCH: [ 1310214 ] Shell extension italian translation
+  Submitted by Andrea Decorte
+  ShellExtension/Languages: ShellExtensionItalian.rc
 
 2005-10-02 Perry
  PATCH: [ 1253949 ] cosmetic comment fix
