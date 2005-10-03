@@ -1,3 +1,8 @@
+2005-10-03 Perry
+ PATCH: [ 1302710 ] generating a report is slow
+  Perry added comments explaining one code line
+  Src: DirCmpReport.cpp
+
 2005-10-03 Kimmo
  PATCH: [ 1302710 ] generating a report is slow
   Submitted by Takashi Sawanaka

@@ -82,6 +82,8 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 			return FALSE;
 		}
 
+		// Preallocate large CString buffer to speed up building the string
+		// (because CString::Append is not smart enough to preallocate exponentially)
 		m_sReport.GetBufferSetLength(m_pList->GetItemCount() * 512);
 
 		if (dlg.m_nReportType == REPORT_SIMPLEHTML)
