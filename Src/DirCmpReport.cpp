@@ -82,6 +82,8 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 			return FALSE;
 		}
 
+		m_sReport.GetBufferSetLength(m_pList->GetItemCount() * 512);
+
 		if (dlg.m_nReportType == REPORT_SIMPLEHTML)
 		{
 			GenerateHTMLHeader();
