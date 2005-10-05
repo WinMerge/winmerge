@@ -2637,6 +2637,7 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		if (nLeftSuccess == FRESULT_BINARY || nRightSuccess == FRESULT_BINARY)
 		{
 			CompareBinaries(sLeftFile, sRightFile, nLeftSuccess, nRightSuccess);
+			return OPENRESULTS_FAILED_BINARY;
 		}
 		return OPENRESULTS_FAILED_MISC;
 	}

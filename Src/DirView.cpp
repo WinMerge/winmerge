@@ -880,7 +880,6 @@ bool CDirView::GetSelectedItems(int * sel1, int * sel2)
  */
 void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
-	int sel = -1;
 	CDirDoc * pDoc = GetDocument();
 
 
@@ -1044,7 +1043,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			if (di1 == di2)
 			{
 				di1->setBin();
-				GetDocument()->ReloadItemStatus(sel, FALSE, FALSE);
+				GetDocument()->ReloadItemStatus(sel1, FALSE, FALSE);
 			}
 		}
 	}

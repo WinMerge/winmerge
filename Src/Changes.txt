@@ -1,3 +1,8 @@
+2005-10-05 Perry
+ PATCH: [ 1242008 ] Update status to binary if open fails because binary
+  Follow on for 2nd case
+ Src: DirView.cpp MergeDoc.cpp
+
 2005-10-03 Perry
  PATCH: [ 1302710 ] generating a report is slow
   Perry added comments explaining one code line
