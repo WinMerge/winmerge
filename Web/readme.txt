@@ -1,3 +1,7 @@
+2005-10-10 Tim
+ PATCH: [ 1321007 ] Web: Screenshots for 2.4
+  Web\2.4\images: *.gif
+
 2005-09-30 Tim
  PATCH: [ 1308987 ] Website changes for new stable release 2.4.0
   Web: downloads.php index.php page.inc WinMergePAD.xml
