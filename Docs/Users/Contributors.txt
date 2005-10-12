@@ -104,10 +104,12 @@ Other Contributors (code, ideas, testing..):
 * Tim Musschoot
 * Vincent Osele
 * Michael Richter
+* Markus Rollmann
 * Takashi Sawanaka
 * Philippe Verdy
 * Vikrant
 * Gilbert Wellisch
+
 
 
 WinMerge includes code from:
