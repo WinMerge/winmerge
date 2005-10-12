@@ -1,3 +1,8 @@
+2005-10-12 Kimmo
+ PATCH: [ 1323107 ] Patch for crash on save filenames with different cases
+  From anonymous submitter
+  Src: DirDcoc.cpp
+
 2005-10-05 Perry
  PATCH: [ 1242008 ] Update status to binary if open fails because binary
   Follow on for 2nd case

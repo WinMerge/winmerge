@@ -462,7 +462,7 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 	SplitFilename(pathRight, &path2, &file2, 0);
 
 	// Filenames must be identical
-	if (file1 != file2)
+	if (file1.CompareNoCase(file2) != 0)
 		return NULL;
 
 	// Path can contain (because of difftools?) '/' and '\'
