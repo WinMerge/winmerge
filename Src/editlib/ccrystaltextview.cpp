@@ -2358,14 +2358,18 @@ PrintLineHeight (CDC * pdc, int nLine)
   ASSERT (nLine >= 0 && nLine < GetLineCount ());
   ASSERT (m_nPrintLineHeight > 0);
   int nLength = GetLineLength (nLine);
-  if (nLength == 0)
-    return m_nPrintLineHeight;
-
   CString line;
-  LPCTSTR pszChars = GetLineChars (nLine);
-  ExpandChars (pszChars, 0, nLength, line, 0);
+  if (nLength == 0)
+  {
+    line = "X";
+  } else
+  {
+    LPCTSTR pszChars = GetLineChars (nLine);
+    ExpandChars (pszChars, 0, nLength, line, 0);
+  }
+  
   CRect rcPrintArea = m_rcPrintArea;
-  pdc->DrawText (line, &rcPrintArea, DT_LEFT | DT_NOPREFIX | DT_TOP | DT_WORDBREAK | DT_CALCRECT);
+  pdc->DrawText (line, &rcPrintArea, DT_LEFT | DT_NOPREFIX | DT_TOP |  DT_CALCRECT);
   return rcPrintArea.Height ();
 }
 
@@ -2486,6 +2490,12 @@ RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
 void CCrystalTextView::
 OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
+  if (m_pnPages != NULL)
+    {
+      delete[] m_pnPages;
+      m_pnPages = NULL;
+    }
+
   ASSERT (m_pnPages == NULL);
   ASSERT (m_pPrintFont == NULL);
   CFont *pDisplayFont = GetFont ();
@@ -2529,6 +2539,29 @@ OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
 void CCrystalTextView::
 OnPrint (CDC * pdc, CPrintInfo * pInfo)
 {
+  LOGFONT lf;
+  memset (&lf, 0, sizeof (lf));
+  _tcscpy (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
+  lf.lfHeight = -MulDiv (11, pdc->GetDeviceCaps (LOGPIXELSY), 72);
+  lf.lfWeight = FW_NORMAL;
+  lf.lfItalic = FALSE;
+  lf.lfCharSet = DEFAULT_CHARSET;
+  lf.lfOutPrecision = OUT_DEFAULT_PRECIS;
+  lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
+  lf.lfQuality = DEFAULT_QUALITY;
+  lf.lfPitchAndFamily = DEFAULT_PITCH;
+
+  CFont font;
+  font.CreateFontIndirect(&lf);
+  CFont* prevFont = pdc->SelectObject(&font);
+
+  const COLORREF defaultLineColor = RGB(0,0,0);
+  const COLORREF defaultBgColor = RGB(255,255,255);
+
+  // TODO: calc maximum chars on a line; 
+  // GetScreenChars() doesn't work right while printing
+  const int maxLineChars = 100;
+
   if (m_pnPages == NULL)
     {
       RecalcPageLayouts (pdc, pInfo);
@@ -2536,35 +2569,59 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
     }
 
   ASSERT (pInfo->m_nCurPage >= 1 && (int) pInfo->m_nCurPage <= m_nPrintPages);
-  int nLine = m_pnPages[pInfo->m_nCurPage - 1];
+  int nLine    = m_pnPages[pInfo->m_nCurPage - 1];
   int nEndLine = GetLineCount ();
+
   if ((int) pInfo->m_nCurPage < m_nPrintPages)
-    nEndLine = m_pnPages[pInfo->m_nCurPage];
-  TRACE (_T ("Printing page %d of %d, lines %d - %d\n"), pInfo->m_nCurPage, m_nPrintPages,
-         nLine, nEndLine - 1);
+    {
+      nEndLine = m_pnPages[pInfo->m_nCurPage];
+    }
+
+  TRACE (_T ("Printing page %d of %d, lines %d - %d\n"), 
+        pInfo->m_nCurPage, m_nPrintPages,nLine, nEndLine - 1);
+
+  pdc->SetTextColor(defaultLineColor);
+  pdc->SetBkColor(defaultBgColor);
 
   if (m_bPrintHeader)
-    PrintHeader (pdc, pInfo->m_nCurPage);
+    {
+      PrintHeader (pdc, pInfo->m_nCurPage);
+    }
+
   if (m_bPrintFooter)
-    PrintFooter (pdc, pInfo->m_nCurPage);
+    {
+      PrintFooter (pdc, pInfo->m_nCurPage);
+    }
 
   int y = m_rcPrintArea.top;
   for (; nLine < nEndLine; nLine++)
     {
-      int nLineLength = GetLineLength (nLine);
-      if (nLineLength == 0)
-        {
-          y += m_nPrintLineHeight;
-          continue;
-        }
-
       CRect rcPrintRect = m_rcPrintArea;
       rcPrintRect.top = y;
-      LPCTSTR pszChars = GetLineChars (nLine);
+
+      int nLineLength = GetLineLength (nLine);
       CString line;
-      ExpandChars (pszChars, 0, nLineLength, line, 0);
-      y += pdc->DrawText (line, &rcPrintRect, DT_LEFT | DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+
+      if (nLineLength > 0)
+        {
+          LPCTSTR pszChars = GetLineChars (nLine);
+          ExpandChars (pszChars, 0, nLineLength, line, 0);
+        }
+
+      line += CString(' ', maxLineChars - line.GetLength());
+
+      BOOL bDrawWhitespace = FALSE;
+      COLORREF crBkgnd, crText;
+      GetLineColors (nLine, crBkgnd, crText, bDrawWhitespace);
+
+      pdc->SetTextColor((crText == CLR_NONE) ? defaultLineColor : crText);
+      pdc->SetBkColor((crBkgnd == CLR_NONE) ? defaultBgColor : crBkgnd);
+
+      CString str;
+      y += pdc->DrawText (line, &rcPrintRect, DT_LEFT | DT_NOPREFIX | DT_TOP );
     }
+
+  pdc->SelectObject(prevFont);
 }
 
 

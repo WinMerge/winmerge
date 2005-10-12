@@ -285,6 +285,9 @@ BEGIN
             MENUITEM "Opslaan &als...",         ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
+        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM SEPARATOR
         MENUITEM "Links all&een lezen",         ID_FILE_LEFT_READONLY
         MENUITEM "Re&chts alleen lezen",        ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR

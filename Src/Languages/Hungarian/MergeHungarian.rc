@@ -284,6 +284,9 @@ BEGIN
             MENUITEM "Menté&s más néven...",                 ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
+        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM SEPARATOR
         MENUITEM "Bal oldal csak &olvasható",             ID_FILE_LEFT_READONLY
         MENUITEM "Jobb oldal csak o&lvasható",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR

@@ -284,6 +284,9 @@ BEGIN
             MENUITEM "Áí´æÎª(&A)...",               ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
+        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM SEPARATOR
         MENUITEM "×ó²àÖ»¶Á(&E)",                ID_FILE_LEFT_READONLY
         MENUITEM "ÓÒ²àÖ»¶Á(&G)",                ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR

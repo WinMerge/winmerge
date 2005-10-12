@@ -2,6 +2,12 @@
  PATCH: [ 1323107 ] Patch for crash on save filenames with different cases
   From anonymous submitter
   Src: DirDcoc.cpp
+ PATCH: [ 1286629 ] print support
+  Submitted by Markus Rollmann
+  Src: MainFrm.cpp Merge.rc MergeEditView.cpp MergeEditView.h
+  Src/Common: SplitterWndEx.cpp SplitterWndEx.h
+  Src/editlib: ccrystaleditview.cpp
+  Src/Languages: *.rc
 
 2005-10-05 Perry
  PATCH: [ 1242008 ] Update status to binary if open fails because binary

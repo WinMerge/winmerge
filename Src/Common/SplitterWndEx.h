@@ -28,6 +28,8 @@ public:
 	void EqualizeRows(); 
 	void EqualizeCols(); 
 
+	void MasterPrint(CDC* pDC, CPrintInfo* pInfo);
+
 private:
 	BOOL m_bBarLocked;
 	BOOL m_bResizePanes;

@@ -2350,7 +2350,13 @@ void CMainFrame::OnReloadPlugins()
 
 void CMainFrame::UpdatePrediffersMenu()
 {
-	HMENU hMainMenu = GetMenu()->m_hMenu;
+	CMenu* menu = GetMenu();
+	if (menu == NULL)
+	{
+		return;
+	}
+
+	HMENU hMainMenu = menu->m_hMenu;
 	HMENU prediffersSubmenu = GetPrediffersSubmenu(hMainMenu);
 	if (prediffersSubmenu != NULL)
 	{

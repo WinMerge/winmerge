@@ -42,6 +42,7 @@
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
+#include "SplitterWndEx.h" // For printing (OnPrint, SlavePrint)
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2664,4 +2665,14 @@ void CMergeEditView::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
 	pCmdUI->SetCheck(m_bWordDiffHighlight);
+}
+
+void CMergeEditView::OnPrint(CDC* pDC, CPrintInfo* pInfo) 
+{
+	((CSplitterWndEx*)GetParentSplitter(this, FALSE))->MasterPrint(pDC, pInfo);
+}
+
+void CMergeEditView::SlavePrint(CDC* pDC, CPrintInfo* pInfo)
+{
+	CGhostTextView::OnPrint(pDC,pInfo);
 }

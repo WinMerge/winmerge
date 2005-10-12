@@ -99,6 +99,7 @@ enum MERGE_LINEFLAGS
 
 class IMergeEditStatus;
 class CLocationView;
+class CMergeDoc;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -181,6 +182,7 @@ public:
 	int GetTopLine() { return m_nTopLine; };
 	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); };
 	void RepaintLocationPane();
+	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
@@ -195,6 +197,7 @@ public:
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
 	//}}AFX_VIRTUAL
 
 // Implementation

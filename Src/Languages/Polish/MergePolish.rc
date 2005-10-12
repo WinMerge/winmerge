@@ -284,6 +284,9 @@ BEGIN
             MENUITEM "Zachowaj &jako...",                 ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
+        MENUITEM "&Print...",                   ID_FILE_PRINT
+        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM SEPARATOR
         MENUITEM "Lewa tylko &odczyt",             ID_FILE_LEFT_READONLY
         MENUITEM "Prawa t&ylko odczyt",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
