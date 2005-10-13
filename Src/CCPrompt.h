@@ -36,6 +36,10 @@ protected:
 	afx_msg void OnSaveas();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+public:
+	BOOL m_bMultiCheckouts;
+	BOOL m_bCheckin;
 };
 
 //{{AFX_INSERT_LOCATION}}

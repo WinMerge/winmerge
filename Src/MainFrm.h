@@ -124,6 +124,7 @@ public:
 	void UpdateCodepageModule();
 	void GetDirViews(DirViewList * pDirViews);
 	void GetMergeEditViews(MergeEditViewList * pMergeViews);
+	void CheckinToClearCase(CString strDestinationPath);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -154,6 +155,8 @@ public:
 	CString m_strVssUser; /**< Visual Source Safe User ID */
 	CString m_strVssPassword; /**< Visual Source Safe Password */
 	CString m_strVssDatabase;
+	CString m_strCCComment; /**< ClearCase comment */
+	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
 	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
 	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
 	BOOL m_bVssSuppressPathCheck; /**< Suppresses VSS int code asking about different path */

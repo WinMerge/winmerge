@@ -986,7 +986,7 @@ HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL
     si.lpDesktop = _T("");
     si.lpTitle = NULL;
     si.dwFlags = STARTF_USESHOWWINDOW;
-    si.wShowWindow = (WORD)(bMinimized? SW_MINIMIZE : SW_NORMAL);
+    si.wShowWindow = (WORD)(SW_HIDE);
     si.cbReserved2 = 0;
     si.lpReserved2 = NULL;
 

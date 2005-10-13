@@ -186,6 +186,8 @@ CMainFrame::CMainFrame()
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
 	// uncomment this when the GUI allows to toggle the mode
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
+	m_strCCComment = _T("");
+	m_bCheckinVCS = FALSE;
 
 	// TODO: read preference for logging
 
@@ -1109,7 +1111,19 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	{
 		// prompt for user choice
 		CCCPrompt dlg;
-		userChoice = dlg.DoModal();
+		if (!m_CheckOutMulti)
+		{
+			dlg.m_bMultiCheckouts = FALSE;
+			dlg.m_comments = _T("");
+			dlg.m_bCheckin = FALSE;
+			userChoice = dlg.DoModal();
+			m_CheckOutMulti = dlg.m_bMultiCheckouts;
+			m_strCCComment = dlg.m_comments;
+			m_bCheckinVCS = dlg.m_bCheckin;
+		}
+		else // Dialog already shown and user selected to "checkout all"
+			userChoice = IDOK;
+
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
@@ -1123,7 +1137,9 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			DWORD code;
 			CString args;
-			args.Format(_T("checkout -c \"%s\" \"%s\""), dlg.m_comments, sname);
+
+			// checkout operation
+			args.Format(_T("checkout -c \"%s\" \"%s\""), m_strCCComment, sname);
 			CString vssPath = m_options.GetString(OPT_VSS_PATH);
 			HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
 			if (hVss!=INVALID_HANDLE_VALUE)
@@ -2965,4 +2981,59 @@ void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
 		pCmdUI->Enable(TRUE);
 	else
 		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Checkin in file into ClearCase.
+ */ 
+void CMainFrame::CheckinToClearCase(CString strDestinationPath)
+{
+	CString spath, sname;
+	SplitFilename(strDestinationPath, &spath, &sname, 0);
+	DWORD code;
+	CString args;
+	
+	// checkin operation
+	args.Format(_T("checkin -nc \"%s\""), sname);
+	CString vssPath = m_options.GetString(OPT_VSS_PATH);
+	HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
+	if (hVss!=INVALID_HANDLE_VALUE)
+	{
+		WaitForSingleObject(hVss, INFINITE);
+		GetExitCodeProcess(hVss, &code);
+		CloseHandle(hVss);
+				
+		if (code != 0)
+		{
+			if (AfxMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)
+			{
+				// undo checkout operation
+				args.Format(_T("uncheckout -rm \"%s\""), sname);
+				HANDLE hVss = RunIt(vssPath, args, TRUE, TRUE);
+				if (hVss!=INVALID_HANDLE_VALUE)
+				{
+					WaitForSingleObject(hVss, INFINITE);
+					GetExitCodeProcess(hVss, &code);
+					CloseHandle(hVss);
+					
+					if (code != 0)
+					{
+						AfxMessageBox(IDS_VSS_UNCOERROR, MB_ICONSTOP);
+						return;
+					}
+				}
+				else
+				{
+					AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+					return;
+				}				
+			}
+			return;
+		}
+	}
+	else
+	{
+		AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+		return;
+	}
 }

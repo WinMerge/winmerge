@@ -729,6 +729,10 @@ void CDirView::UpdateCopiedItems(ActionList & actionList)
 
 		if (actionList.atype == ActionList::ACT_COPY)
 		{
+			//checkin file
+			if (mf->m_bCheckinVCS)
+				mf->CheckinToClearCase(act.dest);
+
 			// Copy files and folders
 			pDoc->SetDiffSide(DIFFCODE::BOTH, act.idx);
 			
