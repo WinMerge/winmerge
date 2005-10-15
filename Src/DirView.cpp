@@ -997,11 +997,6 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
 			return;
 		}
-		else if (di1->isBin())
-		{
-			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
-			return;
-		}
 		// Fall through and compare files (which may be archives)
 	}
 
@@ -1022,6 +1017,12 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 	else
 	{
 		// Regular file case
+
+		if (di1->isBin() || di2->isBin())
+		{
+			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
+			return;
+		}
 
 		// Close open documents first (ask to save unsaved data)
 		if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS))
