@@ -752,18 +752,22 @@ BEGIN
     PUSHBUTTON      "Afbryd",IDCANCEL,247,58,50,14
 END
 
-IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
+IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "CheckOut",IDOK,35,90,50,14
-    PUSHBUTTON      "Afbryd",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "Gem som...",IDC_SAVE_AS,114,90,50,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "CheckOut",IDOK,169,115,50,14
+    PUSHBUTTON      "Afbryd",IDCANCEL,223,115,50,14
+    PUSHBUTTON      "Gem som...",IDC_SAVE_AS,169,115,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentarer",IDC_STATIC,18,7,47,10
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
+    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
@@ -1878,6 +1882,8 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "Arbejdsmappen for VSS og mappen for den aktuelle fil er ikke ens. Vil du fortsætte?"
     IDS_VSS_NODATABASES     "Ingen VSS database(r) fundet!"
     IDS_VSS_ERRORFROM       "Fejl fra VSS:"
+    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
+    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
 END
 
 // VSS system

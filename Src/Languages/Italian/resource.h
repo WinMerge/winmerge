@@ -171,6 +171,7 @@
 #define IDC_MULTI_CHECKOUT              1082
 #define IDC_CHECK2                      1083
 #define IDC_BREAK_ON_WORDS              1083
+#define IDC_CHECKIN                     1083
 #define IDC_VCPROJ_SYNC                 1084
 #define IDC_UNPACKER_NAME               1085
 #define IDC_UNPACKER_ALLOW_ALL          1086
@@ -412,6 +413,8 @@
 #define IDS_VSSFOLDER_AND_FILE_NOMATCH  17268
 #define IDS_VSS_NODATABASES             17269
 #define IDS_VSS_ERRORFROM               17270
+#define IDS_VSS_CHECKINERROR            17271
+#define IDS_VSS_UNCOERROR               17272
 #define IDS_VIEWS_OUTOFSYNC             17300
 #define ID_DIR_COPY_LEFT_TO_RIGHT       17600
 #define ID_DIR_COPY_LEFT_TO_BROWSE      17601

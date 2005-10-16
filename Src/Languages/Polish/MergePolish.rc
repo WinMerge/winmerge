@@ -755,15 +755,19 @@ END
 IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Racjonalne dopasowanie wielkoœci"
+CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "SprawdŸ",IDOK,35,90,68,14
-    PUSHBUTTON      "Anuluj",IDCANCEL,194,90,68,14
-    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,114,90,68,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "CheckOut",IDOK,114,115,50,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,223,115,50,14
+    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,168,115,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Komentarze",IDC_STATIC,18,7,56,10
+    CONTROL         "Zastosuj do wszystkich",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
+    CONTROL         "CheckIn po CheckOut",IDC_CHECKIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
@@ -1994,6 +1998,8 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "Katalog roboczy VSS oraz lokalizacja bie¿acego pliku nie zgadzaj¹ siê. Kontynuowaæ?"
     IDS_VSS_NODATABASES     "Nie znaleziono bazy VSS!"
     IDS_VSS_ERRORFROM       "B³¹d VSS:"
+    IDS_VSS_CHECKINERROR     "System œledzenia wersji zwróci³ b³¹d podczas operacji checkin.\n Proszê sprawdziæ config_spec u¿ywanego widoku.\n Cofn¹æ operacjê checkout?"
+    IDS_VSS_UNCOERROR        "System œledzenia wersji zwróci³ b³¹d podczas operacji uncheckout.\n Proszê sprawdziæ config_spec u¿ywanego widoku."
 END
 
 // VSS system
@@ -2002,7 +2008,7 @@ BEGIN
     IDS_VCS_NONE            "Brak"
     IDS_VCS_VSS4            "(Visual SourceSafe (poni¿ej 5.0)"
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 i wy¿ej)"
-    IDS_VCS_CLEARCASE       "Racjonalne dopasowanie wielkoœci"
+    IDS_VCS_CLEARCASE       "Rational ClearCase"
     IDS_BREAK_ON_WHITESPACE "Break at whitespace"
     IDS_BREAK_ON_PUNCTUATION "Break at whitespace or punctuation"
 END

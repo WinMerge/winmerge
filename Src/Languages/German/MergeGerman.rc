@@ -756,18 +756,22 @@ BEGIN
     PUSHBUTTON      "Abbrechen",IDCANCEL,247,58,50,14
 END
 
-IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
+IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "Auschecken",IDOK,35,90,50,14
-    PUSHBUTTON      "Abbrechen",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "Speichern unter...",IDC_SAVE_AS,108,90,64,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "Auschecken",IDOK,169,115,50,14
+    PUSHBUTTON      "Abbrechen",IDCANCEL,223,90,50,14
+    PUSHBUTTON      "Speichern unter...",IDC_SAVE_AS,169,115,64,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentar",IDC_STATIC,18,7,242,10
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
+    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
@@ -1995,6 +1999,8 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "Der VSS-Arbeitsordner und die Position der aktuellen Datei stimmen nicht überein. Fortsetzen?"
     IDS_VSS_NODATABASES     "Keine VSS Datenbank(en) gefunden!"
     IDS_VSS_ERRORFROM       "Fehler vom VSS:"
+    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
+    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
 END
 
 // VSS system

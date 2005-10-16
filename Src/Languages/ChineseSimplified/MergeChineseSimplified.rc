@@ -746,18 +746,22 @@ BEGIN
     PUSHBUTTON      "取消",IDCANCEL,247,58,50,14
 END
 
-IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
+IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "调试",IDOK,35,90,50,14
-    PUSHBUTTON      "取消",IDCANCEL,194,90,50,14
-    PUSHBUTTON      "另存为...",IDC_SAVE_AS,114,90,50,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "调试",IDOK,169,115,50,14
+    PUSHBUTTON      "取消",IDCANCEL,223,115,50,14
+    PUSHBUTTON      "另存为...",IDC_SAVE_AS,169,115,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "批注",-1,18,7,34,10
+    LTEXT           "批注",IDC_STATIC,18,7,34,10
+    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
+    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
@@ -1871,6 +1875,8 @@ BEGIN
                             "VSS 工作文件夹(Working Folder)与当前文件位置不符。是否继续？"
     IDS_VSS_NODATABASES     "未找到 VSS 数据库！"
     IDS_VSS_ERRORFROM       "VSS 返回错误:"
+    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
+    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
 END
 
 // VSS system
