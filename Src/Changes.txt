@@ -1,3 +1,7 @@
+2005-10-18 Tim
+ PATCH: [ 1330059 ] Translated 3 missing sentences to German
+  Src/Languages/German: MergeGerman.rc
+
 2005-10-15 Perry
  PATCH: [ 1326813 ] Fix binary detection to allow archives
   Src: DirView.cpp

@@ -288,8 +288,8 @@ BEGIN
             MENUITEM "Speichern &unter...",         ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "&Drucken...",                 ID_FILE_PRINT
+        MENUITEM "Druck&vorschau",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
         MENUITEM "R&echts schreibgeschützt",     ID_FILE_RIGHT_READONLY
@@ -768,9 +768,9 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentar",IDC_STATIC,18,7,242,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "Auf alle Objekte anwenden",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+    CONTROL         "Einchecken nach Auschecken",IDC_CHECKIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
@@ -1972,8 +1972,8 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "Fehler beim Prüfen des Zielverzeichnisses auf Schreibschutz"
     IDS_ERROR_BACKUP        "Fehler beim Erstellen einer Sicherheitskopie"
     IDS_BACKUP_FAILED_PROMPT
-                            "Unable to backup original file:\n%1\n\nContinue anyway?"
-    IDS_FILESAVE_FAILED     "Saving file failed.\n%1\n%2\nDo you want to:\n\t-use a different filename (Press Ok)\n\t-abort the current operation (Press Cancel)?"
+                            "Nicht imstande die Sicherheitskopie zu erstellen:\n%1\n\nTrotzdem fortfahren?"
+    IDS_FILESAVE_FAILED     "Speichern der Datei fehlgeschlagen.\n%1\n%2\nMöchten Sie:\n\t-einen anderen Dateinamen verwenden? (Ok drücken)\n\t-die aktuelle Operation abbrechen? (Abbruch drücken)"
     IDS_FILEPACK_FAILED_LEFT "Plugin '%2' kann Ihre Änderungen der linken Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
     IDS_FILECHANGED_ONDISK  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie geladen hat.\n\nGeänderte Datei überschreiben?"
@@ -1986,7 +1986,7 @@ END
 // Editing/Merging file
 STRINGTABLE
 BEGIN
-    IDS_VIEWS_OUTOFSYNC     "Cannot merge differences when documents are not in synch.\n\nRefresh documents before continuing."
+    IDS_VIEWS_OUTOFSYNC     "Kann Unterschiede nicht vermischen, wenn Dokumente nicht in Synchronität sind.\n\nAktualisieren Sie die Dokumente, bevor Sie fortfahren."
 END
 
 // VSS
@@ -2204,12 +2204,12 @@ BEGIN
     IDS_FILEBINARY          "Binärdateien können nicht visuell verglichen werden."
     IDS_TEMP_FILEERROR      "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."
     IDS_FILEISDIR           "Verzeichnisse können nicht visuell verglichen werden."
-    IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\n\
-                            Do you want to treat all carriage return types as equivalent for this comparison?\n\n\
-                            Note: If you always want to treat all carriage return types \
-                            as equivalent, set the option 'Ignore carriage return \
-                            differences..' in the Compare tab of the options dialog\
-                            (available under Edit/Options)."
+    IDS_SUGGEST_IGNOREEOL   "Die Dateien haben ein unterschiedliches Zeilenumbruch-Format.\n\n\
+                            Möchten Sie alle Zeilenumbrüche für diesen Vergleich als Gleichwertig behandeln?\n\n\
+                            Hinweis: Wenn Sie immer alle Zeilenumbruch-Formate als Gleichwertig behandeln \
+                            wollen, aktivieren Sie die Option 'Zeilenumbruchunterschiede \
+                            ignorieren' unter 'Vergleichen' im Einstellungsdialog \
+                            (erreichbar unter Bearbeiten/Einstellungen)."
     IDS_SUGGEST_PRESERVEEOL "Die Zeilenumbrüche in der Datei '%1' sind von unterschiedlichen Formaten (DOS/UNIX/MAC).\nMit den aktuellen Einstellungen werden sie zum Hauptformat vereinheitlicht.\nMöchten Sie die Einstellungen ändern und das Mischen der Zeilenumbruch-Formate erlauben?"
     IDS_PREDIFFER_ERROR      "Ein Fehler trat beim Prediffing der Datei '%1' mit dem Plugin '%2' auf. Das Prediffing wird daher nicht mehr angewendet."
     IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
