@@ -627,12 +627,28 @@ void COpenDlg::OnSaveProjectButton()
 	if (!::SelectFile(strProjectFileName, strProjectPath, NULL, IDS_PROJECTFILES, FALSE))
 		return;
 
+	if (strProjectFileName.IsEmpty())
+		return;
+
+	// Add projectfile extension if it is missing
+	// So we allow 'filename.otherext' but add extension for 'filename'
+	CString filename;
+	CString extension;
+	SplitFilename(strProjectFileName, NULL, &filename, &extension);
+	if (extension.IsEmpty())
+	{
+		CString projectFileExt;
+		projectFileExt.LoadString(IDS_PROJECTFILES_EXT);
+		strProjectFileName += _T(".");
+		strProjectFileName += projectFileExt;
+	}
+
 	// get the path part from the filename
 	strProjectPath = paths_GetParentPath(strProjectFileName);
 	// store this as the new project path
 	pFrame->m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
 
-	// If prefix found from start..
+	// If prefix found from start of filter field text
 	if (strExt.Find(filterPrefix, 0) == 0)
 	{
 		// Remove prefix + space
