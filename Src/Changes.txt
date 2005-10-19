@@ -1,3 +1,8 @@
+2005-10-19 Kimmo
+ PATCH: [ 1329951 ] Readme.txt points to version 2.2 manual
+  Docs/Users: ReadMe.txt
+  Docs/Users/Languages: ReadMe-Catalan.txt ReadMe-Swedish.txt
+
 2005-10-18 Tim
  PATCH: [ 1330059 ] Translated 3 missing sentences to German
   Src/Languages/German: MergeGerman.rc

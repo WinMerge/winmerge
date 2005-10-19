@@ -9,17 +9,18 @@ http://winmerge.org
 
 Inici ràpid amb el WinMerge:
 Llegiu el capítol Quick-start del manual en línia per a començar amb el WinMerge:
-http://www.winmerge.org/2.2/manual/quickstart.html
+http://www.winmerge.org/2.4/manual/quickstart.html
 
 Manual HTML:
 El manual està disponible en línia a
-http://www.winmerge.org/2.2/manual/
+http://www.winmerge.org/2.4/manual/
 Possiblement també estigui instal·lada localment (si així es va triar) i es pot 
 baixar separadament des de http://www.winmerge.org/ (veieu la documentació)
 
 Suport d'arxivament:
 El WinMerge empra el 7-Zip per al suport de fitxers d'arxivament. 7-Zip (http://www.7-zip.org)
-és una eina d'arxivament de codi obert. Per tal d'instal·lar el suport de fitxers d'arxivament, baixeu l'instal·lador del connector del 7-Zip des de http://www.winmerge.org/.
+és una eina d'arxivament de codi obert. Per tal d'instal·lar el suport de fitxers 
+d'arxivament, baixeu l'instal·lador del connector del 7-Zip des de http://www.winmerge.org/.
 
 Tot instal·lant el suport d'arxivament:
 Es recomana instal·lar l'aplicació del 7-Zip. De no ser possible per qualsevol motiu, 
