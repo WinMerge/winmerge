@@ -1,3 +1,7 @@
+2005-10-20
+ Old history from 2004-05-07 through 2005-09-06.
+ See Changes.txt for more up-to-date information.
+ 
 2005-09-06 Kimmo
  PATCH: [ 1282479 ] Don't set shell context menu to default value
   InnoSetup: WinMerge.iss
