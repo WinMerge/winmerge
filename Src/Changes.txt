@@ -1,3 +1,10 @@
+2005-10-20 Tim
+ PATCH: [ 1330179 ] Icon for 'Print'
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new file: print.bmp
+  Src/Languages: *.rc resource.h
+  Src/Languages/res new file: print.bmp
+
 2005-10-20 Kimmo
  PATCH: [ 1332365 ] Make some DirActions.cpp functions consts
   Src: DirActions.cpp DirView.h

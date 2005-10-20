@@ -1625,6 +1625,7 @@ IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
 IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
+IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
