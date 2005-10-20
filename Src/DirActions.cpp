@@ -848,7 +848,7 @@ BOOL CDirView::GetSelectedDirNames(CString& strLeft, CString& strRight) const
 }
 
 /// is it possible to copy item to left ?
-BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
+BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di) const
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
@@ -861,7 +861,7 @@ BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to copy item to right ?
-BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
+BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di) const
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
@@ -874,7 +874,7 @@ BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to delete left item ?
-BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di)
+BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di) const
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
@@ -884,7 +884,7 @@ BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to delete right item ?
-BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di)
+BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di) const
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
@@ -895,7 +895,7 @@ BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to delete both items ?
-BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di)
+BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
 {
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
@@ -935,7 +935,7 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 	return FALSE;
 }
 /// is it possible to open left item ?
-BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
+BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di) const
 {
 	// impossible if only on right
 	if (di.isSideRight()) return FALSE;
@@ -944,7 +944,7 @@ BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to open right item ?
-BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di)
+BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di) const
 {
 	// impossible if only on left
 	if (di.isSideLeft()) return FALSE;
@@ -953,17 +953,17 @@ BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to open left ... item ?
-BOOL CDirView::IsItemOpenableOnLeftWith(const DIFFITEM & di)
+BOOL CDirView::IsItemOpenableOnLeftWith(const DIFFITEM & di) const
 {
 	return (!di.isDirectory() && IsItemOpenableOnLeft(di));
 }
 /// is it possible to open with ... right item ?
-BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di)
+BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di) const
 {
 	return (!di.isDirectory() && IsItemOpenableOnRight(di));
 }
 /// is it possible to copy to... left item?
-BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di)
+BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di) const
 {
 	// impossible if only on right
 	if (di.isSideRight()) return FALSE;
@@ -972,7 +972,7 @@ BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di)
 	return TRUE;
 }
 /// is it possible to copy to... right item?
-BOOL CDirView::IsItemCopyableToOnRight(const DIFFITEM & di)
+BOOL CDirView::IsItemCopyableToOnRight(const DIFFITEM & di) const
 {
 	// impossible if only on left
 	if (di.isSideLeft()) return FALSE;

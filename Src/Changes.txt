@@ -1,3 +1,7 @@
+2005-10-20 Kimmo
+ PATCH: [ 1332365 ] Make some DirActions.cpp functions consts
+  Src: DirActions.cpp DirView.h
+
 2005-10-19 Kimmo
  PATCH: [ 1329951 ] Readme.txt points to version 2.2 manual
   Docs/Users: ReadMe.txt
