@@ -1,0 +1,6 @@
+2005-10-20 Kimmo
+ PATCH: [ 1332160 ] Fix Project file description in shell
+   InnoSetup: WinMerge.iss
+  
+2005-10-20 Kimmo
+ Previous change history is in file readme.txt
