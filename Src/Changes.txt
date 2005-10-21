@@ -1,6 +1,8 @@
 2005-10-21 Kimmo
  PATCH: [ 1333545 ] Small improvement to Open-dialog folder selection
   Src: OpenDlg.cpp
+ PATCH: [ 1333581 ] Increase quick compare limit and make it option
+  Src: DiffContext.h DiffWrapper.cpp DirDoc.cpp OptionsDef.h OptionsInit.cpp
 
 2005-10-20 Tim
  PATCH: [ 1330179 ] Icon for 'Print'

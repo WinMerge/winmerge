@@ -97,6 +97,7 @@ public:
 	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
 	CompareStats *m_pCompareStats;
 	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
+	int m_nQuickCompareLimit; /**< Bigger files are always compared with quick compare */
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */

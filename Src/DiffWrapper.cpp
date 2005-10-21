@@ -50,15 +50,6 @@ extern int recursive;
 extern CLogFile gLog;
 static int f_defcp = 0; // default codepage
 static const int KILO = 1024; // Kilo(byte)
-static const int MEG = 1024 * KILO; // Mega(byte)
-
-/**
- * @brief Limit for compare by contents/quick contents.
- * If compare by contents is selected (normal) then files bigger than limit
- * are compared with compare by quick contents. That allows us to compare
- * big binary files and overall makes comparing bigger files faster.
- */
-static const int CMP_SIZE_LIMIT = 2 * MEG;
 
 /**
  * @brief Quick contents compare's file buffer size
@@ -1590,10 +1581,11 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		}
 	}
 
-	// If either file is larger than 2 Megs compare files by quick contents
+	// If either file is larger than limit compare files by quick contents
 	// This allows us to (faster) compare big binary files
 	if (pCtxt->m_nCompMethod == CMP_CONTENT && 
-		(di.left.size > CMP_SIZE_LIMIT || di.right.size > CMP_SIZE_LIMIT))
+		(di.left.size > pCtxt->m_nQuickCompareLimit ||
+		di.right.size > pCtxt->m_nQuickCompareLimit))
 	{
 		nCompMethod = CMP_QUICK_CONTENT;
 	}
