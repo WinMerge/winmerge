@@ -1,3 +1,7 @@
+2005-10-21 Kimmo
+ PATCH: [ 1333545 ] Small improvement to Open-dialog folder selection
+  Src: OpenDlg.cpp
+
 2005-10-20 Tim
  PATCH: [ 1330179 ] Icon for 'Print'
   Src: MainFrm.cpp Merge.rc resource.h

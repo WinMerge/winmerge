@@ -124,8 +124,6 @@ void COpenDlg::OnLeftButton()
 		SplitFilename(s, &sfolder, &sname, &sext);
 		if (sext == PROJECTFILE_EXT)
 			LoadProjectFile(s);
-		else if (sname == dirSelTag)
-			m_strLeft = sfolder + '\\';
 		else
 			m_strLeft = s;
 		UpdateData(FALSE);
@@ -155,8 +153,6 @@ void COpenDlg::OnRightButton()
 		SplitFilename(s, &sfolder, &sname, &sext);
 		if (sext == PROJECTFILE_EXT)
 			LoadProjectFile(s);
-		else if (sname == dirSelTag)
-			m_strRight = sfolder + '\\';
 		else
 			m_strRight = s;
 		UpdateData(FALSE);
@@ -377,6 +373,15 @@ void COpenDlg::UpdateButtonStates()
 
 /** 
  * @brief Shows file/folder selection dialog.
+ *
+ * We need this custom function so we can select files and folders with the
+ * same dialog.
+ * - If existing filename is selected return it
+ * - If filename in (CFileDialog) editbox and current folder doesn't form
+ * a valid path to file, return current folder.
+ * @param [out] path Selected folder/filename
+ * @param [in] pszFolder Initial folder shown
+ * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
  */
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
 {
@@ -385,7 +390,7 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 
 	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	VERIFY(s.LoadString(IDS_ALLFILES));
-	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	DWORD flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 	flags |= OFN_ENABLESIZING; // Allow resizing
 	CFileDialog pdlg(TRUE, NULL, dirSelTag, flags, s);
 	CString title;
@@ -393,9 +398,18 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	pdlg.m_ofn.lpstrTitle = title;
 	pdlg.m_ofn.lpstrInitialDir = pszFolder;
 
-	if (pdlg.DoModal()==IDOK)
+	if (pdlg.DoModal() == IDOK)
 	{
-	 	path = pdlg.GetPathName(); 
+	 	CFileStatus status;
+		path = pdlg.GetPathName();
+
+		if (!CFile::GetStatus(path, status))
+		{
+			// We have a valid folder name, but propably garbage as a filename.
+			// Return folder name
+			CString folder = GetPathOnly(path);
+			path = folder + '\\';
+		}
 	 	return TRUE;
 	}
 	else
