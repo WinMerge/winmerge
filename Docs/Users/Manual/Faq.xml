@@ -161,11 +161,27 @@
 
       <qandaentry>
         <question>
+          <para>WinMerge tells my files are binary files even when they are
+          not?</para>
+        </question>
+
+        <answer>
+          <para>There is one or more zero-bytes in your file(s). If WinMerge
+          finds zero-bytes from files it detects files as binary files. You
+          can try to remove those zero-bytes from files. Or open files with
+          DisplayBinaryFiles -plugin. DisplayBinaryFiles -plugin allows
+          viewing binary files but does not allow saving changed files.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
           <para>I cannot merge binary files?</para>
         </question>
 
         <answer>
-          <para>WinMerge can only show if binary files are identical or
+          <para>WinMerge does not include binary file viewer/editor so
+          WinMerge can only show if binary files are identical or
           different.</para>
         </answer>
       </qandaentry>
