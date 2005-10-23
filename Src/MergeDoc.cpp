@@ -1313,6 +1313,11 @@ void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
 	m_strTempPath = path;
 }
 
+bool CMergeDoc::CDiffTextBuffer::IsInitialized() const
+{
+	return !!m_bInit;
+}
+
 /**
  * @brief Examine statistics in textFileStats and return a crystaltextbuffer enum value for line style
  */

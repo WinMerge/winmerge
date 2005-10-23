@@ -184,6 +184,7 @@ public :
 		*/
 		virtual void OnNotifyLineHasBeenEdited(int nLine);
 
+		bool IsInitialized() const;
 
 	} friend;
 

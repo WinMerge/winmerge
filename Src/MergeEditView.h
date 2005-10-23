@@ -188,7 +188,9 @@ public:
 	static HMENU createScriptsSubmenu(HMENU hMenu);
 	HMENU createPrediffersSubmenu(HMENU hMenu);
 
-// Overrides
+	bool IsInitialized() const;
+
+	// Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeEditView)
 	public:

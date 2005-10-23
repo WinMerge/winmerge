@@ -136,6 +136,8 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
  */
 void CLocationView::OnDraw(CDC* pDC)
 {
+	if (!m_view0->IsInitialized()) return;
+
 	CRect rc;
 	GetClientRect(rc);
 

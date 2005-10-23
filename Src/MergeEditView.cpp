@@ -2676,3 +2676,11 @@ void CMergeEditView::SlavePrint(CDC* pDC, CPrintInfo* pInfo)
 {
 	CGhostTextView::OnPrint(pDC,pInfo);
 }
+
+
+bool CMergeEditView::IsInitialized() const
+{
+	CMergeEditView * pThis = const_cast<CMergeEditView *>(this);
+	CMergeDoc::CDiffTextBuffer * pBuffer = dynamic_cast<CMergeDoc::CDiffTextBuffer *>(pThis->LocateTextBuffer());
+	return pBuffer->IsInitialized();
+}
