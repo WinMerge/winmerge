@@ -2,6 +2,9 @@
  PATCH: [ 1334484 ] Skip location view paint if buffer not initialized
   Src: LocationView.cpp MergeDoc.cpp MergeDoc.h
    MergeEditView.cpp MergeEditView.h
+ Cosmetic changes to GetFunctionsFromScript, to document 
+  arguments passed to GetTypeInfo.
+ Src: Plugins.cpp
 
 2005-10-21 Kimmo
  PATCH: [ 1333545 ] Small improvement to Open-dialog folder selection

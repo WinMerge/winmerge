@@ -96,10 +96,12 @@ int GetFunctionsFromScript(LPDISPATCH piDispatch, BSTR *& namesArray, int *& IdA
 	UINT iValidFunc = 0;
 	if (piDispatch)
 	{
-		ITypeInfo *piTypeInfo;
-		if SUCCEEDED(hr = piDispatch->GetTypeInfo(0, 0, &piTypeInfo))
+		ITypeInfo *piTypeInfo=0;
+		unsigned int  iTInfo = 0; // 0 for type information of IDispatch itself
+		LCID  lcid=0; // locale for localized method names (ignore if no localized names)
+		if SUCCEEDED(hr = piDispatch->GetTypeInfo(iTInfo, lcid, &piTypeInfo))
 		{
-			TYPEATTR *pTypeAttr;
+			TYPEATTR *pTypeAttr=0;
 			if SUCCEEDED(hr = piTypeInfo->GetTypeAttr(&pTypeAttr))
 			{
 				// allocate arrays for the returned structures
