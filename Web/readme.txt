@@ -1,3 +1,7 @@
+2005-10-24 Tim
+ PATCH: [Web] Updated translation instructions
+  Web\developer\l10n: instructions.php
+
 2005-10-10 Tim
  PATCH: [ 1321007 ] Web: Screenshots for 2.4
   Web\2.4\images: *.gif
