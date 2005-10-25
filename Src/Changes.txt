@@ -1,3 +1,7 @@
+2005-10-25 Perry
+ PATCH: [ 1334444 ] Remove needless (& therefore confusing) cast
+  Src: LocationView.cpp
+
 2005-10-23 Perry
  PATCH: [ 1334484 ] Skip location view paint if buffer not initialized
   Src: LocationView.cpp MergeDoc.cpp MergeDoc.h

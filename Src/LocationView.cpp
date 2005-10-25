@@ -191,7 +191,7 @@ void CLocationView::OnDraw(CDC* pDC)
 		// here nstart0 = first line of block
 		int nBeginY = (int) (nstart0 * LineInPix + Y_OFFSET);
 		int nEndY = (int) ((blockHeight + nstart0) * LineInPix + Y_OFFSET);
-		BOOL bInsideDiff = ((CMergeEditView*)m_view0)->IsLineInCurrentDiff(nstart0);
+		BOOL bInsideDiff = m_view0->IsLineInCurrentDiff(nstart0);
 
 		// Draw left side block
 		m_view0->GetLineColors2(nstart0, ignoreFlags, cr0, crt, bwh);
