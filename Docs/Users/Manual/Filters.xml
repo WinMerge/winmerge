@@ -251,6 +251,9 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
         <guimenuitem>Refresh</guimenuitem>
       </menuchoice> or <keycap>F5</keycap>.</para>
 
+    <para>Maximum length for linefilter (all lines in dialog) is 255
+    characters.</para>
+
     <example>
       <title>Some example line filters</title>
 
