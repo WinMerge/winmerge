@@ -156,7 +156,7 @@ static UINT indicators[] =
 };
 
 static const TCHAR DocsPath[] = _T("\\Docs\\Manual\\index.html");
-static const TCHAR DocsURL[] = _T("http://winmerge.org/2.2/manual/index.html");
+static const TCHAR DocsURL[] = _T("http://winmerge.org/2.4/manual/index.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
