@@ -548,6 +548,7 @@ void CDirView::PerformActionList(ActionList & actionList)
 	CString startPath;
 	UINT operation = 0;
 	UINT operFlags = 0;
+	BOOL bUserCancelled = FALSE;
 
 	// Reset suppressing VSS dialog for multiple files.
 	// Set in CMainFrame::SaveToVersionControl().
@@ -608,10 +609,14 @@ void CDirView::PerformActionList(ActionList & actionList)
 			if (nRetVal == -1)
 			{
 				bSucceed = FALSE;
+				bUserCancelled = TRUE; // So we exit without file operations done
 				AfxMessageBox(strErr, MB_OK | MB_ICONERROR);
 			}
 			else if (nRetVal == IDCANCEL)
+			{
+				bUserCancelled = TRUE;
 				bSucceed = FALSE; // User canceled, so we don't continue
+			}
 			else if (nRetVal == IDNO)
 			{
 				actionList.actions.RemoveAt(curPos);
@@ -676,10 +681,12 @@ void CDirView::PerformActionList(ActionList & actionList)
 		return;
 	}
 
+	if (bUserCancelled)
+		return;
+
 	// Now process files/directories that got added to list
 	BOOL bOpStarted = FALSE;
 	int apiRetVal = 0;
-	BOOL bUserCancelled = FALSE;
 	BOOL bFileOpSucceed = fileOp.Go(&bOpStarted, &apiRetVal, &bUserCancelled);
 
 	// All succeeded

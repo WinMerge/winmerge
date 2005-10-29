@@ -1,3 +1,7 @@
+2005-10-29 Kimmo
+ PATCH: [ 1341183 ] Fix VSS checkout canceling
+  Src: DirActions.cpp MainFrm.cpp
+
 2005-10-25 Perry
  PATCH: [ 1334444 ] Remove needless (& therefore confusing) cast
   Src: LocationView.cpp

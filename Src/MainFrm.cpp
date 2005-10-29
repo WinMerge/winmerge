@@ -925,6 +925,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				return FALSE;
 			}
 		}
+		else
+			return FALSE; // User selected cancel
 	}
 	break;
 	case VCS_VSS5: // CVisual SourceSafe 5.0+ (COM)
@@ -1106,6 +1108,8 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			END_CATCH_ALL
 		}
+		else
+			return FALSE; // User selected cancel
 	}
 	break;
 	case VCS_CLEARCASE:
