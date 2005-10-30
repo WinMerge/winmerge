@@ -76,7 +76,7 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 
 	CString strExt;
 	SplitFilename(strSavePath, NULL, NULL, &strExt);
-	if (strExt.CompareNoCase(_T("vcproj")) == 0 || strExt.CompareNoCase(_T("sln")))
+	if (strExt.CompareNoCase(_T("vcproj")) == 0 || strExt.CompareNoCase(_T("sln")) == 0)
 	{
 		GetFullVSSPath(strSavePath, bVCPROJ);
 
