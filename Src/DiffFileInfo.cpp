@@ -37,12 +37,13 @@ static __int64 FileTimeToInt64(FILETIME & ft)
 /**
  * @brief Update fileinfo from given file
  * @param [in] sFilePath Full path to file/directory to update
+ * @return TRUE if file exists
  */
-void DiffFileInfo::Update(CString sFilePath)
+BOOL DiffFileInfo::Update(LPCTSTR sFilePath)
 {
 	// CFileFind doesn't expose the attributes
 	// CFileStatus doesn't expose 64 bit size
-
+	BOOL Update = FALSE;
 	WIN32_FIND_DATA wfd;
 	HANDLE h = FindFirstFile(sFilePath, &wfd);
 	__int64 mtime64 = 0;
@@ -53,13 +54,14 @@ void DiffFileInfo::Update(CString sFilePath)
 	{
 		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
 		flags.attributes = wfd.dwFileAttributes;
-
 		// No size for directory (remains as -1)
 		if ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
 			size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
 		FindClose(h);
+		Update = TRUE;
 	}
 	mtime = mtime64;
+	return Update;
 }
 
 /**

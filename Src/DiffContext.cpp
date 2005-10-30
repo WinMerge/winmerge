@@ -143,19 +143,22 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
 
 /**
  * @brief Update information from disk (for one side)
+ * @return TRUE if file exists
  */
-void CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
+BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 {
-	UpdateVersion(di, dfi);
-	ASSERT(&dfi == &di.left || &dfi == &di.right);
 	CString filepath
 	(
 		&dfi == &di.left
 	?	paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.sLeftFilename)
 	:	paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.sRightFilename)
 	);
-	dfi.Update(filepath);
+	if (!dfi.Update(filepath))
+		return FALSE;
+	UpdateVersion(di, dfi);
+	ASSERT(&dfi == &di.left || &dfi == &di.right);
 	GuessCodepageEncoding(filepath, &dfi.unicoding, &dfi.codepage, m_bGuessEncoding);
+	return TRUE;
 }
 
 /**

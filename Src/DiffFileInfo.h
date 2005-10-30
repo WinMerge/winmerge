@@ -89,7 +89,7 @@ struct DiffFileInfo : public FileInfo
 	// We could stash a pointer here to the parent DIFFITEM
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
 	
-	void Update(CString sFilePath);
+	BOOL Update(LPCTSTR sFilePath);
 	void Clear();
 };
 

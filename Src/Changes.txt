@@ -1,6 +1,9 @@
 2005-10-30 Kimmo
  PATCH: [ 1341813 ] VSS project linking misdetects project files
   Src: VSSHelper.cpp
+ PATCH: [ 1310710 ] Fix bug #1309450
+  Submitted by Jochen
+  Src: DiffContext.cpp DiffContext.h DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp
 
 2005-10-29 Kimmo
  PATCH: [ 1341183 ] Fix VSS checkout canceling

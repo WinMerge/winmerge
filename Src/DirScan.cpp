@@ -8,7 +8,6 @@
 
 #include "stdafx.h"
 #include <shlwapi.h>
-#include <sys/stat.h>
 #include "DirScan.h"
 #include "CompareStats.h"
 #include "common/unicoder.h"
@@ -328,48 +327,25 @@ int DirScan_CompareItems(CDiffContext * pCtxt)
  */
 void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 {
-	struct _stat stats;
-	BOOL bLeftExists = FALSE;
-	BOOL bRightExists = FALSE;
-
-	bExists = TRUE;
-	CString leftpath = di.getLeftFilepath(pCtxt->GetNormalizedLeft());
-	leftpath = paths_ConcatPath(leftpath, di.sLeftFilename);
-	CString rightpath = di.getRightFilepath(pCtxt->GetNormalizedRight());
-	rightpath = paths_ConcatPath(rightpath, di.sRightFilename);
-	
-	// Re-check if left/right sides still exists (or are added)
-	if (_tstat(leftpath, &stats) == 0)
-		bLeftExists = TRUE;
-	if (_tstat(rightpath, &stats) == 0)
-		bRightExists = TRUE;
-
 	// Clear side-info and file-infos
-	di.setSideNone();
 	di.left.Clear();
 	di.right.Clear();
-
-	// Update infos for existing sides
-	if (bLeftExists && bRightExists)
+	BOOL bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, di.left);
+	BOOL bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, di.right);
+	bExists = bLeftExists && bRightExists;
+	if (bLeftExists)
 	{
-		di.setSideBoth();
-		di.diffcode |= DIFFCODE::BOTH;
-		pCtxt->UpdateInfoFromDiskHalf(di, di.left);
-		pCtxt->UpdateInfoFromDiskHalf(di, di.right);
+		if (bRightExists)
+			di.setSideBoth();
+		else
+			di.setSideLeft();
 	}
-	else if (bLeftExists && !bRightExists)
+	else
 	{
-		di.setSideLeft();
-		pCtxt->UpdateInfoFromDiskHalf(di, di.left);
-	}
-	else if (!bLeftExists && bRightExists)
-	{
-		di.setSideRight();
-		pCtxt->UpdateInfoFromDiskHalf(di, di.right);
-	}
-	else if (!bLeftExists && !bRightExists)
-	{
-		bExists = FALSE;
+		if (bRightExists)
+			di.setSideRight();
+		else
+			di.setSideNone();
 	}
 }
 
@@ -390,94 +366,74 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 {
 	// Clear rescan-request flag (not set by all codepaths)
 	di.diffcode &= ~DIFFCODE::NEEDSCAN;
-
-	// 1. Test against filters
+	// Is it a directory?
 	if (di.isDirectory())
 	{
-		if (!pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename, di.sRightFilename))
-		{
-			di.diffcode |= DIFFCODE::SKIPPED;
-			StoreDiffResult(di, pCtxt, NULL);
-			return;
-		}
-		else
+		// 1. Test against filters
+		if (pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename, di.sRightFilename))
 			di.diffcode |= DIFFCODE::INCLUDED;
-
+		else
+			di.diffcode |= DIFFCODE::SKIPPED;
 		// We don't actually 'compare' directories, just add non-ignored
 		// directories to list.
 		StoreDiffResult(di, pCtxt, NULL);
-		return;
 	}
 	else
 	{
-		if (!pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename, di.sRightFilename))
-			di.diffcode |= DIFFCODE::SKIPPED;
-		else
+		// 1. Test against filters
+		if (pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename, di.sRightFilename))
+		{
 			di.diffcode |= DIFFCODE::INCLUDED;
-	}
-
-	// 2. Add unique files
-	// We must compare unique files to itself to detect encoding
-	if (di.isSideLeft())
-	{
-		if (pCtxt->m_nCompMethod != CMP_DATE)
-		{
-			DiffFileData diffdata;
-			diffdata.prepAndCompareTwoFiles(pCtxt, di);
-			StoreDiffResult(di, pCtxt, &diffdata);
-		}
-		else
-		{
-			StoreDiffResult(di, pCtxt, NULL);
-		}
-		return;
-	}
-	else if (di.isSideRight())
-	{
-		if (pCtxt->m_nCompMethod != CMP_DATE)
-		{
-			DiffFileData diffdata;
-			diffdata.prepAndCompareTwoFiles(pCtxt, di);
-			StoreDiffResult(di, pCtxt, &diffdata);
-
-		}
-		else
-		{
-			StoreDiffResult(di, pCtxt, NULL);
-		}
-		return;
-	}
-	// 3. Compare two files
-	else
-	{
-		if (pCtxt->m_nCompMethod == CMP_DATE)
-		{
-			// Compare by modified date
-			__int64 nTimeDiff = di.left.mtime - di.right.mtime;
-			// Remove sign
-			nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
-			if (pCtxt->m_bIgnoreSmallTimeDiff)
+			// 2. Add unique files
+			// We must compare unique files to itself to detect encoding
+			if (di.isSideLeft() || di.isSideRight())
 			{
-				// If option to ignore small timediffs (couple of seconds)
-				// is set, decrease absolute difference by allowed diff
-				nTimeDiff -= SmallTimeDiff;
+				if (pCtxt->m_nCompMethod != CMP_DATE)
+				{
+					DiffFileData diffdata;
+					diffdata.prepAndCompareTwoFiles(pCtxt, di);
+					StoreDiffResult(di, pCtxt, &diffdata);
+				}
+				else
+				{
+					StoreDiffResult(di, pCtxt, NULL);
+				}
 			}
-			if (nTimeDiff <= 0)
-				di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
+			// 3. Compare two files
+			else if (pCtxt->m_nCompMethod == CMP_DATE)
+			{
+				// Compare by modified date
+				__int64 nTimeDiff = di.left.mtime - di.right.mtime;
+				// Remove sign
+				nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
+				if (pCtxt->m_bIgnoreSmallTimeDiff)
+				{
+					// If option to ignore small timediffs (couple of seconds)
+					// is set, decrease absolute difference by allowed diff
+					nTimeDiff -= SmallTimeDiff;
+				}
+				if (nTimeDiff <= 0)
+					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
+				else
+					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
+				// report result back to caller
+				StoreDiffResult(di, pCtxt, NULL);
+			}
 			else
-				di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
-			// report result back to caller
-			StoreDiffResult(di, pCtxt, NULL);
-			return;
+			{
+				// Really compare
+				DiffFileData diffdata;
+				di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
+				// report result back to caller
+				StoreDiffResult(di, pCtxt, &diffdata);
+			}
 		}
-		// Really compare
-		DiffFileData diffdata;
-		di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
-		// report result back to caller
-		StoreDiffResult(di, pCtxt, &diffdata);
+		else
+		{
+			di.diffcode |= DIFFCODE::SKIPPED;
+			StoreDiffResult(di, pCtxt, NULL);
+		}
 	}
-				
-	return;
 }
 
 /**

@@ -77,7 +77,7 @@ public:
 	//@}
 
 	// change an existing difference
-	void UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
+	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
 	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight);
 
 	// retrieve or manufacture plugin info for specified file comparison
