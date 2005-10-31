@@ -4,6 +4,9 @@
   Src/Languages: *.rc
  PATCH: [ 1342871 ] Disable Copy Filenames for folders
   Src: DirView.cpp DirView.h
+ PATCH: [ 1343059 ] Swedish translation update for 2.5.0.1 experimental
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2005-10-30 Kimmo
  PATCH: [ 1341813 ] VSS project linking misdetects project files

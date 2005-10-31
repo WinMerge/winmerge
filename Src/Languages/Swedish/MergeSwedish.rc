@@ -283,8 +283,8 @@ BEGIN
             MENUITEM "Spara so&m...",               ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "&Skriv ut...",                   ID_FILE_PRINT
+        MENUITEM "Förhandsgranska u&tskrift",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
         MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
@@ -629,7 +629,7 @@ BEGIN
     EDITTEXT        IDC_USER,45,78,58,14,ES_AUTOHSCROLL
     LTEXT           "Lösenord:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
-    CONTROL         "Länk till Destination VSS project",IDC_VCPROJ_SYNC,"Button",
+    CONTROL         "Länk till Destination VSS-projekt",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Tillämpa på alla objekt",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
@@ -763,9 +763,9 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Kommentarer",IDC_STATIC,18,7,47,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "Använd på alla objekt",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+    CONTROL         "Checka in efter Checka ut",IDC_CHECKIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
@@ -925,7 +925,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "Ignorera blanka rader",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
-    CONTROL         "Skiftlägeskänslig",IDC_DIFF_CASESENSITIVE,"Button",
+    CONTROL         "VERSAL/gemen-känslig",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
     CONTROL         "Inklu&dera kommandorad",IDC_DIFF_INCLCMDLINE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
@@ -1095,7 +1095,7 @@ BEGIN
                     BS_AUTORADIOBUTTON,14,41,206,10
     CONTROL         "Ignorera blan&ka rader",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
-    CONTROL         "&Ignorera skiftläge",IDC_IGNCASE_CHECK,"Button",
+    CONTROL         "&Ignorera VERSAL/gemen-skillnader",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "Igno&rera skillnader i radslut (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
@@ -1151,7 +1151,7 @@ END
 
 IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
-CAPTION "Filefilters"
+CAPTION "Filfilter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Lista1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
@@ -1994,13 +1994,13 @@ STRINGTABLE
 BEGIN
     IDS_NOPROJECT           "Du måste ange sökvägen till ett SourceSafe-projekt för att fortsätta (t.ex.:  $/MittProjekt)"
     IDS_VSS_CHECKOUT_STATUS "Hämtar filer från VSS..."
-    IDS_VSSERROR            "Versionshanteringssystemet returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
+    IDS_VSSERROR            "Versionshanteringssystemet (VSS) returnerade ett fel under försöket att checka ut filen. Det går inte att fortsätta..."
     IDS_VSS_RUN_ERROR       "Fel vid utförande av kommando för versionshanteringssystem."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS arbetskalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS-arbetskatalogen och läget på den aktuella filen matchar inte. Vill du fortsätta ändå?"
     IDS_VSS_NODATABASES     "Ingen VSS databas hittad!"
     IDS_VSS_ERRORFROM       "Fel från VSS:"
-    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
+    IDS_VSS_CHECKINERROR     "Versionshanteringssystemet (VSS) returnerade ett fel under försöket att checka in filen.\n Var god och, kontrollera konfigurationsspecifikation på använd markering.\n Ångra checka ut åtgärd?"
+    IDS_VSS_UNCOERROR        "Versionshanteringssystemet (VSS) returnerade ett fel under försöket att ångra checka ut av filen.\n Var god och, kontrollera konfigurationsspecifikation på använd markering. "
 END
 
 // VSS system
@@ -2085,10 +2085,10 @@ END
 STRINGTABLE
 BEGIN
     IDS_UNKNOWN_ARCHIVE_FORMAT "Okänt arkivformat"
-    ID_DIR_ZIP_LEFT         "Lägg till saker från vänster sida till arkivet"
-    ID_DIR_ZIP_RIGHT        "Lägg till saker från höger sida till arkivet"
-    ID_DIR_ZIP_BOTH         "Lägg till saker från båda sidor till arkivet"
-    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Lägg till olika saker till arkivet (båda sidor)"
+    ID_DIR_ZIP_LEFT         "Lägg till objekt från vänster sida till arkivet"
+    ID_DIR_ZIP_RIGHT        "Lägg till objekt från höger sida till arkivet"
+    ID_DIR_ZIP_BOTH         "Lägg till objekt från båda sidor till arkivet"
+    ID_DIR_ZIP_BOTH_DIFFS_ONLY "Lägg till olika objekt till arkivet (från båda sidor)"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
                             "Flytta vald fil till vänster till anpassad katalog"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
@@ -2146,8 +2146,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_ELAPSED_TIME        "Förfluten tid: %ld ms"
-    IDS_STATUS_SELITEM1     "1 sak vald"
-    IDS_STATUS_SELITEMS     "%1 saker valda"
+    IDS_STATUS_SELITEM1     "1 objekt valt"
+    IDS_STATUS_SELITEMS     "%1 objekt valda"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
