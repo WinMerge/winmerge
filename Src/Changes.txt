@@ -2,6 +2,8 @@
  RFE: [ 1324314 ] CTRL+W to close current diff
   Src: Merge.rc
   Src/Languages: *.rc
+ PATCH: [ 1342871 ] Disable Copy Filenames for folders
+  Src: DirView.cpp DirView.h
 
 2005-10-30 Kimmo
  PATCH: [ 1341813 ] VSS project linking misdetects project files

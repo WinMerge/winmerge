@@ -162,6 +162,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_RIGHT, OnCopyRightPathnames)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
+	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
 	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
 	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveLeftTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
@@ -1528,6 +1529,22 @@ void CDirView::DoUpdateDelete(CCmdUI* pCmdUI)
 	pCmdUI->Enable(count > 0);
 }
 
+/**
+ * @brief Update dirview context menu "Copy Filenames" item
+ */
+void CDirView::DoUpdateCopyFilenames(CCmdUI* pCmdUI)
+{
+	int sel =- 1;
+	int count = 0;
+	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(sel);
+		if (di.diffcode != 0 && !di.isDirectory())
+			++count;
+	}
+	pCmdUI->Enable(count > 0);
+}
+
 UINT CDirView::GetSelectedCount() const
 {
 	return m_pList->GetSelectedCount();
@@ -2520,6 +2537,14 @@ void CDirView::OnCopyFilenames()
 		}
 	}
 	PutToClipboard(strPaths, mf->GetSafeHwnd());
+}
+
+/**
+ * @brief Enable/Disable dirview Copy Filenames context menu item.
+ */
+void CDirView::OnUpdateCopyFilenames(CCmdUI* pCmdUI)
+{
+	DoUpdateCopyFilenames(pCmdUI);
 }
 
 /**

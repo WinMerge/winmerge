@@ -338,6 +338,7 @@ protected:
 	afx_msg void OnCopyRightPathnames();
 	afx_msg void OnCopyBothPathnames();
 	afx_msg void OnCopyFilenames();
+	afx_msg void OnUpdateCopyFilenames(CCmdUI* pCmdUI);
 	afx_msg void OnHideFilenames();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnCtxtDirMoveLeftTo();
@@ -375,6 +376,7 @@ private:
 	void DoUpdateOpenLeftWith(CCmdUI* pCmdUI);
 	void DoUpdateOpenRightWith(CCmdUI* pCmdUI);
 	void DoUpdateDelete(CCmdUI* pCmdUI);
+	void DoUpdateCopyFilenames(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
