@@ -1,3 +1,7 @@
+2005-11-01 Kimmo
+ PATCH: [ 1344213 ] Manual: typo fixes for Configuration part
+  Manual: Configuration.xml
+
 2005-10-29 Kimmo
  PATCH: [ 1341076 ] Manual: Mention maximum linefilter length
   Manual: Filters.xml
