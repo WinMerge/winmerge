@@ -1,6 +1,8 @@
 2005-11-01 Kimmo
  PATCH: [ 1344213 ] Manual: typo fixes for Configuration part
   Manual: Configuration.xml
+ PATCH: [ 1344219 ] Manual: New FAQ items about archive files detection
+  Manual: Faq.xml
 
 2005-10-29 Kimmo
  PATCH: [ 1341076 ] Manual: Mention maximum linefilter length

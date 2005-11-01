@@ -123,6 +123,18 @@
           files/paths per side.</para>
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Can WinMerge open Open Office files?</para>
+        </question>
+
+        <answer>
+          <para>Yes, enable <guilabel>Detect archive type from file
+          signature</guilabel> option in <guilabel>Archive
+          Options</guilabel>.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
 
@@ -358,6 +370,19 @@
 
         <answer>
           <para>Unfortunately WinMerge can only use 7-zip.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Can WinMerge open archive files with non-standard
+          file-extensions? (For example .jar files as zip-files)</para>
+        </question>
+
+        <answer>
+          <para>Yes, enable <guilabel>Detect archive type from file
+          signature</guilabel> option in <guilabel>Archive
+          Options</guilabel>.</para>
         </answer>
       </qandaentry>
     </qandaset>
