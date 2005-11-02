@@ -301,7 +301,7 @@ StatusUninstalling=Entferne %1 ...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 Version %2
 AdditionalIcons=Zusätzliche Symbole:
-OptionalFeatures=Optional Features:
+OptionalFeatures=Optionale Funktionen:
 CreateDesktopIcon=&Desktop-Symbol anlegen
 CreateQuickLaunchIcon=Symbol in der Schnellstartleiste anlegen
 ProgramOnTheWeb=%1 im Internet
@@ -366,4 +366,4 @@ ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge Projektdatei

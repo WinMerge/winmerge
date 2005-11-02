@@ -1,3 +1,7 @@
+2005-11-02 Tim
+ Translate "OptionalFeatures" and "ProjectFileDesc" to German
+  InnoSetup/Languages: German.isl
+
 2005-10-20 Kimmo
  PATCH: [ 1332160 ] Fix Project file description in shell
    InnoSetup: WinMerge.iss
