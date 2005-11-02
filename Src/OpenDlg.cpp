@@ -35,6 +35,8 @@
 #include "OptionsDef.h"
 #include "MainFrm.h"
 #include "ProjectFile.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -108,7 +110,7 @@ END_MESSAGE_MAP()
 void COpenDlg::OnLeftButton()
 {
 	CString s;
-	CString sfolder, sname, sext;
+	CString sfolder, sext;
 	CString dirSelTag;
 	CFileStatus status;
 	UpdateData(TRUE); 
@@ -121,8 +123,8 @@ void COpenDlg::OnLeftButton()
 		sfolder = GetPathOnly(m_strLeft);
 	if (SelectFile(s, sfolder))
 	{
-		SplitFilename(s, &sfolder, &sname, &sext);
-		if (sext == PROJECTFILE_EXT)
+		SplitFilename(s, NULL, NULL, &sext);
+		if (sext.CompareNoCase(PROJECTFILE_EXT) == 0)
 			LoadProjectFile(s);
 		else
 			m_strLeft = s;
@@ -137,7 +139,7 @@ void COpenDlg::OnLeftButton()
 void COpenDlg::OnRightButton() 
 {
 	CString s;
-	CString sfolder, sname, sext;
+	CString sfolder, sext;
 	CString dirSelTag;
 	CFileStatus status;
 	UpdateData(TRUE);
@@ -150,8 +152,8 @@ void COpenDlg::OnRightButton()
 		sfolder = GetPathOnly(m_strRight);
 	if (SelectFile(s, sfolder))
 	{
-		SplitFilename(s, &sfolder, &sname, &sext);
-		if (sext == PROJECTFILE_EXT)
+		SplitFilename(s, NULL, NULL, &sext);
+		if (sext.CompareNoCase(PROJECTFILE_EXT) == 0)
 			LoadProjectFile(s);
 		else
 			m_strRight = s;
@@ -385,37 +387,52 @@ void COpenDlg::UpdateButtonStates()
  */
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
 {
+	TCHAR filterStr[MAX_PATH] = {0};
+	TCHAR fileStr[MAX_PATH] = {0};
 	CString s;
 	CString dirSelTag;
+	CString title;
 
 	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
 	VERIFY(s.LoadString(IDS_ALLFILES));
-	DWORD flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	flags |= OFN_ENABLESIZING; // Allow resizing
-	CFileDialog pdlg(TRUE, NULL, dirSelTag, flags, s);
-	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-	pdlg.m_ofn.lpstrTitle = title;
-	pdlg.m_ofn.lpstrInitialDir = pszFolder;
 
-	if (pdlg.DoModal() == IDOK)
+	// Set initial filename to folder selection tag
+	dirSelTag += _T("."); // Treat it as filename
+	_tcsncpy(fileStr, dirSelTag, dirSelTag.GetLength() + 1);
+	// Convert extension mask
+	_tcsncpy(filterStr, s, s.GetLength());
+	ConvertFilter(filterStr);
+
+	OPENFILENAME ofn;
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = GetSafeHwnd();
+	ofn.lpstrFilter = filterStr;
+	ofn.lpstrCustomFilter = NULL;
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFile = fileStr;
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrInitialDir = pszFolder;
+	ofn.lpstrTitle = (LPCTSTR)title;
+	ofn.lpstrFileTitle = NULL;
+	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+
+	BOOL bRetVal = GetOpenFileName((LPOPENFILENAME)&ofn);
+
+	if (bRetVal)
 	{
-	 	CFileStatus status;
-		path = pdlg.GetPathName();
-
-		if (!CFile::GetStatus(path, status))
+		path = fileStr;
+		struct _stati64 statBuffer;
+		int nRetVal = _tstati64(path, &statBuffer);
+		if (nRetVal == -1)
 		{
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
-			CString folder = GetPathOnly(path);
+			CString folder = GetPathOnly(fileStr);
 			path = folder + '\\';
 		}
-	 	return TRUE;
 	}
-	else
-	{
-		return FALSE;
-	}
+	return bRetVal;
 }
 
 void COpenDlg::OnSelchangeLeftCombo() 

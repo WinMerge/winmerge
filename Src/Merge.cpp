@@ -600,7 +600,9 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 			 UINT filterid /*=0*/,
 			 BOOL is_open /*=TRUE*/) 
 {
+	TCHAR filterStr[MAX_PATH] = {0};
 	CString sfile;
+	path.Empty();
 
 	// check if specified path is a file
 	if (root_path!=NULL)
@@ -618,19 +620,35 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 		VERIFY(filters.LoadString(filterid));
 	else
 		VERIFY(filters.LoadString(IDS_ALLFILES));
-	DWORD flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	flags |= OFN_ENABLESIZING; // Allow resizing 
-	CFileDialog dlg(is_open, NULL, sfile, flags, filters);
-	dlg.m_ofn.lpstrTitle = (LPCTSTR)title;
-	dlg.m_ofn.lpstrInitialDir = (LPTSTR)root_path;
 
-	if (dlg.DoModal()==IDOK)
-	{
-	 	path = dlg.GetPathName();
-	 	return TRUE;
-	}
-	path = _T("");
-	return FALSE;	   
+	// Convert extension mask
+	_tcsncpy(filterStr, filters, filters.GetLength());
+	ConvertFilter(filterStr);
+
+	OPENFILENAME ofn;
+	ofn.lStructSize = sizeof(OPENFILENAME);
+	ofn.hwndOwner = AfxGetMainWnd()->GetSafeHwnd();
+	ofn.lpstrFilter = filterStr;
+	ofn.lpstrCustomFilter = NULL;
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFile = sfile.GetBuffer(MAX_PATH);
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrInitialDir = (LPCTSTR)root_path;
+	ofn.lpstrTitle = (LPCTSTR)title;
+	ofn.lpstrFileTitle = NULL;
+	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+
+	BOOL bRetVal = FALSE;
+	if (is_open)
+		bRetVal = GetOpenFileName((LPOPENFILENAME)&ofn);
+	else
+		bRetVal = GetSaveFileName((LPOPENFILENAME)&ofn);
+
+	sfile.ReleaseBuffer();
+	if (bRetVal)
+		path = sfile;
+	
+	return bRetVal;
 }
 
 /** 
@@ -675,6 +693,33 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 		pMalloc->Release();
 	}
 	return bRet;
+}
+
+/** 
+ * @brief Helper function for converting filter format.
+ *
+ * MFC functions separate filter strings with | char which is also
+ * good choice to safe into resource. But WinAPI32 functions we use
+ * needs '\0' as separator. This function replaces '|'s with '\0's.
+ *
+ * @param [in,out] filterStr
+ * - in Mask string to convert
+ * - out Converted string
+ */
+void ConvertFilter(LPTSTR filterStr)
+{
+	TCHAR *ch = 0;
+	TCHAR *strPtr = filterStr;
+	do
+	{
+		ch = _tcschr(strPtr, '|');
+		if (ch)
+		{
+			strPtr = ch + 1;
+			*ch = '\0';
+		}
+	}
+	while (ch != 0);
 }
 
 BOOL CMergeApp::PreTranslateMessage(MSG* pMsg)

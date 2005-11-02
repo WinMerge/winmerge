@@ -2,6 +2,8 @@
  BUG: [ 1341243 ] Current Find string is too fragile
   Was resetting find string after rescanning
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1342550 ] Modernize file selection dialog
+  Src: Merge.cpp Merge.h OpenDlg.cpp
 
 2005-11-02 Tim
  PATCH: [ 1345382 ] Translated Shell Extension to German
