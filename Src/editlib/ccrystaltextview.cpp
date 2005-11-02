@@ -472,6 +472,7 @@ CCrystalTextView::CCrystalTextView ()
   m_bSelMargin = FALSE;
   m_bWordWrap = FALSE;
   m_bDragSelection = FALSE;
+  m_bLastSearch = FALSE;
   //BEGIN SW
   m_panSubLines = new CArray<int, int>();
   ASSERT( m_panSubLines );
@@ -1848,7 +1849,6 @@ ResetView ()
   m_bHorzScrollBarLocked = FALSE;
   if (::IsWindow (m_hWnd))
     UpdateCaret ();
-  m_bLastSearch = FALSE;
   m_bShowInactiveSelection = TRUE; // FP: reverted because I like it
   m_bPrintHeader = FALSE;
   m_bPrintFooter = TRUE;

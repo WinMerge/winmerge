@@ -1,3 +1,8 @@
+2005-11-02 Kimmo
+ BUG: [ 1341243 ] Current Find string is too fragile
+  Was resetting find string after rescanning
+  Src/editlib: ccrystaltextview.cpp
+
 2005-11-02 Tim
  PATCH: [ 1345382 ] Translated Shell Extension to German
   ShellExtension/Languages: ShellExtensionGerman.rc
