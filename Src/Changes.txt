@@ -1,3 +1,5 @@
+2005-11-02 WinMerge experimental release 2.5.0.1 (cvs)
+
 2005-11-02 Kimmo
  BUG: [ 1341243 ] Current Find string is too fragile
   Was resetting find string after rescanning
