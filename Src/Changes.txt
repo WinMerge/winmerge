@@ -3,6 +3,7 @@
   Was resetting find string after rescanning
   Src/editlib: ccrystaltextview.cpp
  PATCH: [ 1342550 ] Modernize file selection dialog
+ PATCH: [ 1345110 ] Properly compare projectfile extension
   Src: Merge.cpp Merge.h OpenDlg.cpp
 
 2005-11-02 Tim
