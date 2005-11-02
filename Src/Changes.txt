@@ -1,3 +1,7 @@
+2005-11-02 Tim
+ PATCH: [ 1345382 ] Translated Shell Extension to German
+  ShellExtension/Languages: ShellExtensionGerman.rc
+
 2005-10-31 Kimmo
  RFE: [ 1324314 ] CTRL+W to close current diff
   Src: Merge.rc
