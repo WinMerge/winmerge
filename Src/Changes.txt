@@ -5,6 +5,8 @@
  PATCH: [ 1342550 ] Modernize file selection dialog
  PATCH: [ 1345110 ] Properly compare projectfile extension
   Src: Merge.cpp Merge.h OpenDlg.cpp
+ Bump ShellExtension version to 1.6.2
+  ShellExtension: ShellExtension.rc
 
 2005-11-02 Tim
  PATCH: [ 1345382 ] Translated Shell Extension to German
