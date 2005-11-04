@@ -85,9 +85,19 @@ Modify the filename to specify the columns. See IgnoreColumn for the syntax.
 DisplayBinaryFiles
 --------------------------------------------------------------------------------
 To display the differences between two binary files.
-It is not an hexa editor, just a simple compare like with Windiff.
+This is not a hex editor, but simply a way to display files which have
+reasonable lines (carriage returns), per WinMerge's textual display style.
 This can help for detecting changed strings in binaries.
 
-Note: Replaces all 0 with 0x20 (spaces). This is a lossy operation.
-      Files can be only diffed, not merged.
+Note: Replaces all 0 with 0x20 (spaces). 
+This is a lossy operation, which means that the files can only be displayed;
+they cannot be saved, so there is no point in trying to merge.
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+DisplayXMLFiles
+--------------------------------------------------------------------------------
+To preprocess XML files, to insert lines around elements, so they display
+more legibly. This is to fix XML files which do not have line returns in
+convenient locations.
 --------------------------------------------------------------------------------
