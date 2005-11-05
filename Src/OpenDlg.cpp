@@ -405,7 +405,8 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	ConvertFilter(filterStr);
 
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof(OPENFILENAME);
+	memset(&ofn, 0, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = GetSafeHwnd();
 	ofn.lpstrFilter = filterStr;
 	ofn.lpstrCustomFilter = NULL;
@@ -413,11 +414,11 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	ofn.lpstrFile = fileStr;
 	ofn.nMaxFile = MAX_PATH;
 	ofn.lpstrInitialDir = pszFolder;
-	ofn.lpstrTitle = (LPCTSTR)title;
+	ofn.lpstrTitle = title;
 	ofn.lpstrFileTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 
-	BOOL bRetVal = GetOpenFileName((LPOPENFILENAME)&ofn);
+	BOOL bRetVal = GetOpenFileName(&ofn);
 
 	if (bRetVal)
 	{
