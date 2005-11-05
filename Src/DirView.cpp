@@ -870,6 +870,19 @@ bool CDirView::GetSelectedItems(int * sel1, int * sel2)
 }
 
 /**
+ * @brief Return true if this unpacker handles binary files
+ */
+static bool
+IsBinaryUnpacker(PackingInfo * infoUnpacker)
+{
+	if (!infoUnpacker)
+		return false;
+	if (!_tcsstr(infoUnpacker->pluginName, _T("BinaryFile")))
+		return false;
+	return true;
+}
+
+/**
  * @brief Open selected files or directories.
  *
  * Opens selected files to file compare. If comparing
@@ -1021,8 +1034,11 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 		if (di1->isBin() || di2->isBin())
 		{
-			AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
-			return;
+			if (!IsBinaryUnpacker(infoUnpacker))
+			{
+				AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
+				return;
+			}
 		}
 
 		// Close open documents first (ask to save unsaved data)
