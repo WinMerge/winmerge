@@ -239,8 +239,9 @@ CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory(CString 
 			{
 				leftParent = paths_GetParentPath(leftParent);
 				rightParent = paths_GetParentPath(rightParent);
-				rname = lname;
 			}
+			lname = PathFindFileName(leftParent);
+			rname = PathFindFileName(rightParent);
 			if (lstrcmpi(lname, rname) == 0)
 			{
 				leftParent = paths_GetParentPath(leftParent);

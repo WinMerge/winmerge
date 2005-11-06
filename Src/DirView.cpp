@@ -355,24 +355,24 @@ void CDirView::ReloadColumns()
 
 void CDirView::Redisplay()
 {
+	CDirDoc *pDoc = GetDocument();
 	ToDoDeleteThisValidateColumnOrdering();
-	const CDiffContext &ctxt = GetDocument()->GetDiffContext();
+	const CDiffContext &ctxt = pDoc->GetDiffContext();
 
-	CString s,s2;
-	UINT cnt=0;
-	int llen = ctxt.GetNormalizedLeft().GetLength();
-	int rlen = ctxt.GetNormalizedRight().GetLength();
-
+	UINT cnt = 0;
 	// Disable redrawing while adding new items
 	SetRedraw(FALSE);
 
 	DeleteAllDisplayItems();
 
 	// If non-recursive compare, add special item(s)
-	if (!GetDocument()->GetRecursive())
+	if (!pDoc->GetRecursive() ||
+		pDoc->AllowUpwardDirectory(CString(), CString()) == CDirDoc::AllowUpwardDirectory::ParentIsTempPath)
+	{
 		cnt += AddSpecialItems();
+	}
 
-	int alldiffs=0;
+	int alldiffs = 0;
 	POSITION diffpos = ctxt.GetFirstDiffPosition();
 	while (diffpos)
 	{
@@ -386,7 +386,7 @@ void CDirView::Redisplay()
 		if (!di.isResultSame())
 			++alldiffs;
 
-		if (GetDocument()->IsShowable(di))
+		if (pDoc->IsShowable(di))
 		{
 			AddNewItem(cnt, curdiffpos, I_IMAGECALLBACK);
 			cnt++;

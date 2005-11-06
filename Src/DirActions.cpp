@@ -23,6 +23,7 @@
 #include "coretools.h"
 #include "OutputDlg.h"
 #include "paths.h"
+#include "7zCommon.h"
 #include "CShellFileOp.h"
 #include "OptionsDef.h"
 #include "WaitStatusCursor.h"
@@ -925,8 +926,27 @@ BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 /// is it possible to compare these two items?
 BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) const
 {
-	// Must not be binary
-	if (di1.isBin() || di2.isBin()) return FALSE;
+	CString sLeftBasePath = GetDocument()->GetLeftBasePath();
+	CString sRightBasePath = GetDocument()->GetRightBasePath();
+	CString sLeftPath1 = paths_ConcatPath(di1.getLeftFilepath(sLeftBasePath), di1.sLeftFilename);
+	CString sLeftPath2 = paths_ConcatPath(di2.getLeftFilepath(sLeftBasePath), di2.sLeftFilename);
+	CString sRightPath1 = paths_ConcatPath(di1.getRightFilepath(sRightBasePath), di1.sRightFilename);
+	CString sRightPath2 = paths_ConcatPath(di2.getRightFilepath(sRightBasePath), di2.sRightFilename);
+	// Must not be binary (unless archive)
+	if
+	(
+		(di1.isBin() || di2.isBin())
+	&&!	(
+			HasZipSupport()
+		&&	(sLeftPath1.IsEmpty() || ArchiveGuessFormat(sLeftPath1))
+		&&	(sRightPath1.IsEmpty() || ArchiveGuessFormat(sRightPath1))
+		&&	(sLeftPath2.IsEmpty() || ArchiveGuessFormat(sLeftPath2))
+		&&	(sRightPath2.IsEmpty() || ArchiveGuessFormat(sRightPath2))
+		)
+	)
+	{
+		return FALSE;
+	}
 
 	// Must be both directory or neither
 	if (di1.isDirectory() != di2.isDirectory()) return FALSE;
@@ -937,6 +957,12 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 	if (di1.isSideRight() && (di2.isSideLeft() || di2.isSideBoth()))
 		return TRUE;
 	if (di1.isSideBoth() && (di2.isSideLeft() || di2.isSideRight()))
+		return TRUE;
+
+	// Allow to compare items if left & right path refer to same directory
+	// (which means there is effectively two files involved). No need to check
+	// side flags. If files weren't on both sides, we'd have no DIFFITEMs.
+	if (sLeftBasePath.CompareNoCase(sRightBasePath) == 0)
 		return TRUE;
 
 	return FALSE;
