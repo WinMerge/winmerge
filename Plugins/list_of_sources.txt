@@ -96,6 +96,16 @@ No packing (no save).
  File filter: *.doc
 --------------------------------------------------------------------------------
 
+--------------------------------------------------------------------------------
+DisplayMSExcelFiles
+--------------------------------------------------------------------------------
+Displays the text content of a MS Excel file, stripping away all formatting and embedded objects.
+No packing (no save).
+
+    Language: VB
+       Event: FILE_PACK_UNPACK
+ File filter: *.xls
+--------------------------------------------------------------------------------
 
 --------------------------------------------------------------------------------
 HideLastLetter

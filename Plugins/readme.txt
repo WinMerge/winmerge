@@ -1,4 +1,10 @@
 2005-09-21 Christian
+ PATCH: [ 1341559 ] New CompareMSExcelFiles plugin
+  Plugins/list_of_sources.txt
+  New directory: Plugins\src_VB\CompareMSExcelFiles
+  New file: Plugins\dlls\CompareMSExcelFiles.dll
+
+2005-09-21 Christian
  PATCH: [ 1252903 ] Plugin to display MS Word files
   Plugins/list_of_sources.txt
   New directory: Plugins\src_VB\CompareMSWordFiles
