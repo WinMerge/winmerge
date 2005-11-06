@@ -1,3 +1,8 @@
+2005-11-06 Jochen
+ PATCH: [ 1327413 ] Fix bug in CDirDoc::AllowUpwardDirectory()
+ Change CDirView::AreItemsOpenable() to consider archive files as openable
+  Src: DirActions.cpp DirDoc.cpp DirView.cpp
+
 2005-11-05 Perry
  PATCH: [ 1337905 ] Allow comparing binary files with binary unpacker
   Src: DirView.cpp
