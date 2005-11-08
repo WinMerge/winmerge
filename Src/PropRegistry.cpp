@@ -27,6 +27,7 @@
 #include "PropRegistry.h"
 #include "RegKey.h"
 #include "coretools.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -179,18 +180,15 @@ void CPropRegistry::SaveMergePath()
 /// Open file browse dialog to locate editor
 void CPropRegistry::OnBrowseEditor()
 {
-	CString s;
-	VERIFY(s.LoadString(IDS_PROGRAMFILES));
-	DWORD flags = OFN_NOTESTFILECREATE | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
-	CFileDialog pdlg(TRUE, NULL, _T(""), flags, s);
+	CString path;
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-	pdlg.m_ofn.lpstrTitle = (LPCTSTR)title;
 
-	if (pdlg.DoModal() == IDOK)
-	 	m_strEditorPath = pdlg.GetPathName();
-
-	UpdateData(FALSE);
+	if (SelectFile(path, NULL, title, IDS_PROGRAMFILES, TRUE))
+	{
+		m_strEditorPath = path;
+		UpdateData(FALSE);
+	}
 }
 
 /// Enable/Disable "Advanced menu" checkbox.

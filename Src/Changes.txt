@@ -1,6 +1,8 @@
 2005-11-08 Kimmo
  Merge Perry's fix for OpenDlg/SelectFile() to Merge.cpp/SelectFile() (PATCH #1348733)
   Src: Merge.cpp
+ PATCH: [ 1350489 ] Use SelectFile() for external editor selection
+  Src: PropRegistry.cpp
 
 2005-11-06 Jochen
  PATCH: [ 1327413 ] Fix bug in CDirDoc::AllowUpwardDirectory()
