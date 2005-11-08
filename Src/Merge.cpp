@@ -626,7 +626,8 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 	ConvertFilter(filterStr);
 
 	OPENFILENAME ofn;
-	ofn.lStructSize = sizeof(OPENFILENAME);
+	memset(&ofn, 0, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = AfxGetMainWnd()->GetSafeHwnd();
 	ofn.lpstrFilter = filterStr;
 	ofn.lpstrCustomFilter = NULL;
@@ -640,9 +641,9 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 
 	BOOL bRetVal = FALSE;
 	if (is_open)
-		bRetVal = GetOpenFileName((LPOPENFILENAME)&ofn);
+		bRetVal = GetOpenFileName(&ofn);
 	else
-		bRetVal = GetSaveFileName((LPOPENFILENAME)&ofn);
+		bRetVal = GetSaveFileName(&ofn);
 
 	sfile.ReleaseBuffer();
 	if (bRetVal)
