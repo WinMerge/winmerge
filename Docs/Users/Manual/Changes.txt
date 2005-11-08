@@ -1,6 +1,8 @@
 2005-11-08 Kimmo
  PATCH: [ 1350794 ] Manual: Update About doc chapter
   Manual: About_Doc.xml
+ PATCH: [ 1350819 ] Manual: Small improvements for folder compare
+  Manual: Compare_dirs.xml
 
 2005-11-01 Kimmo
  PATCH: [ 1344213 ] Manual: typo fixes for Configuration part

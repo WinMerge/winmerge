@@ -42,6 +42,21 @@
       </listitem>
     </itemizedlist></para>
 
+  <para>WinMerge 2.4 is finally capable to compare large binary files. There
+  is new <guilabel>Compare by Quick Contents</guilabel> -compare method which
+  makes it possible. For more information about different compare methods see
+  <link linkend="Configuration">Options &amp; configuration</link> -chapter.
+  In WinMerge 2.4 all files bigger than 4 MB (megabytes) are automatically
+  compared with Compare by Quick Contents -method. Downsides for this method
+  are that linefilters do not work and there is no difference counts
+  information in folder compare UI. For most cases this should not matter
+  since so big files usually are binary files.</para>
+
+  <para>For advanced users: If that limit does not feel good (you have lots
+  of big text files) it can be changed via registry value:
+  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit.
+  As usual be careful when changing values directly to registry!</para>
+
   <sect2>
     <title>Folder Compare Statepane</title>
 
@@ -62,8 +77,8 @@
 
     <important>
       <para>Progressbar is for item counts. As there usually are different
-      sized files in compare it does directly map to time used/remaining. So
-      50/100 items does not strictly mean compare is in half by time
+      sized files in compare it does not directly map to time used/remaining.
+      So 50/100 items does not strictly mean compare is in half by time
       used.</para>
     </important>
 
@@ -79,9 +94,8 @@
     to verify there are no different files left to handle.</para>
 
     <tip>
-      <para>Enable option "<guilabel>Close Compare statepane
-      automatically</guilabel>" and statepane closes automatically after
-      compare is ready.</para>
+      <para>Enable option <guilabel>Close Compare statepane automatically</guilabel>
+      and statepane closes automatically after compare is ready.</para>
     </tip>
 
     <para><mediaobject>
@@ -168,7 +182,7 @@
   <sect2>
     <title>Selecting Items to Show</title>
 
-    <para>In "<guimenu>View</guimenu>" menu there are several choises for
+    <para>In "<guimenu>View</guimenu>" menu there are several choices for
     selecting which categories listed above to show/hide.</para>
 
     <itemizedlist>
@@ -215,8 +229,8 @@
       </listitem>
 
       <listitem>
-        <para><guilabel>Directory</guilabel> : Relative foldername for compare
-        path. If subfolders are not included this is empty.</para>
+        <para><guilabel>Directory</guilabel> : Relative folder name for
+        compare path. If subfolders are not included this is empty.</para>
       </listitem>
 
       <listitem>
@@ -248,7 +262,7 @@
 
       <listitem>
         <para><guilabel>Left Attributes</guilabel> &amp; <guilabel>Right
-        Attributes</guilabel> : Shows fileattributes.</para>
+        Attributes</guilabel> : Shows file attributes.</para>
       </listitem>
 
       <listitem>
@@ -290,11 +304,14 @@
   </sect2>
 
   <sect2>
-    <title>Browsing folders</title>
+    <title>Browsing Folders</title>
 
     <para>Browsing folders is only possible when subfolders are not included
-    to compare. Then parent folders ("<guilabel>..</guilabel>"-item) and
-    subfolders existing in both sides can be compared by opening them.</para>
+    to compare (<guilabel>Include Subfolders</guilabel> checkbox is not
+    checked in <guilabel>Open</guilabel>-dialog). Parent folders
+    ("<guilabel>..</guilabel>"-item) and subfolders existing in both sides can
+    be compared by double-clicking with mouse over them or selecting them and
+    pressing <keycap>Enter</keycap>.</para>
 
     <para>Parent folder can be opened if it is not same directory. These two
     icons indicate if parent folder can be opened:</para>
@@ -310,7 +327,7 @@
           <imageobject>
             <imagedata fileref="screenshots/folderup_disable.gif" format="GIF" />
           </imageobject>
-        </inlinemediaobject> Parent folder cannot be opened. It propably is
+        </inlinemediaobject> Parent folder cannot be opened. It probably is
       same directory for both sides.</member>
     </simplelist>
   </sect2>
@@ -362,10 +379,11 @@
 
       <para>Another file/folder operation is deleting. Items in another or
       both sides can be deleted. There is "<guilabel>Send deleted files into
-      Recycle Bin</guilabel>" option in system options. It is higly
-      recommended to keep that option enabled so deletion can be undone if
-      accidents happen. Note however recycle bin does not help if its disabled
-      from Windows settings.</para>
+      Recycle Bin</guilabel>" option in system options (See <link
+      linkend="Configuration">Options &amp; Configuration</link> -chapter). It
+      is highly recommended to keep that option enabled so deletion can be
+      undone if accidents happen. Note however recycle bin does not help if
+      its disabled from Windows settings.</para>
 
       <para>Moving is just shortcut for copy + delete.</para>
 
@@ -399,6 +417,12 @@
           files should be opened.</para>
         </listitem>
       </itemizedlist>
+
+      <tip>
+        <para>Selecting <guilabel>With Registered Application</guilabel> when
+        folder is selected usually opens that folder into new Explorer
+        window.</para>
+      </tip>
     </sect3>
 
     <sect3>
@@ -465,9 +489,9 @@
   <sect2>
     <title>Copying Path- or Filenames</title>
 
-    <para>In context menu there are items for copyging selected items' paths
-    or filenames to clipboard. This feature makes it easy so get list of
-    changed files, for changelogs etc.</para>
+    <para>In context menu there are items for copying selected items' paths or
+    filenames to clipboard. This feature makes it easy so get list of changed
+    files, for changelogs etc.</para>
 
     <itemizedlist>
       <listitem>
