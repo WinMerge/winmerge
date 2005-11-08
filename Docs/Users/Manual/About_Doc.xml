@@ -1,7 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="AboutDoc">
-  <title>About this document</title>
-  <para>This is manual for WinMerge 2.2.</para>
-  <para>This manual is important reading for old and new users of WinMerge 2.2. There are lot of new features and improvements to old features in 2.2. Reading this manual ensures user knows abilities and limitations of WinMerge.</para>
-  <para>The <link linkend="QuickStart">Quick start</link> gets user started with WinMerge.</para>
-  <para>The <link linkend="Faq">FAQ chapter</link> contains answers to many common questions asked from developers. Please check first if your question is answered there before submitting questions to <ulink url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>.</para>
+  <title>About This Document</title>
+
+  <para>This is a manual for WinMerge 2.4.</para>
+
+  <para>This manual is important reading for old and new users of WinMerge
+  2.4. There are lot of new features and improvements to old features in 2.4.
+  Reading this manual ensures user knows abilities and limitations of
+  WinMerge.</para>
+
+  <para>Please read at least the following chapters:</para>
+
+  <para>The <link linkend="QuickStart">Quick start</link> -chapter gets user
+  quickly started with WinMerge. After reading this chapter you know WinMerge
+  basic usage.</para>
+
+  <para>The <link linkend="CompareDirs">Comparing Folders</link> -chapter
+  guides to folder comparison.</para>
+
+  <para>The <link linkend="CompareFiles">Comparing Files</link> -chapter
+  guides to file comparison.</para>
+
+  <para>The <link linkend="Configuration">Options and Configuration</link>
+  -chapter helps to customize WinMerge to your needs.</para>
+
+  <para>Following chapters are suggested reading for more efficient working
+  with WinMerge:</para>
+
+  <para>The <link linkend="OpenPaths">Opening Files and Folders</link>
+  -chapter introduces several ways (there are many!) to open files and folders
+  to WinMerge. Do you know how to use Shell Extension context menu in advanced
+  mode?</para>
+
+  <para>The <link linkend="Plugins">Plugins</link> -chapter introduces
+  plugins.</para>
+
+  <para>The <link linkend="Filters">Filters</link> -chapter guides to using
+  file- and line -filters.</para>
+
+  <para>The <link linkend="CommandLine">Commandline</link> -chapter lists
+  commandline parameters for WinMerge (for using with other tools).</para>
+
+  <para>The <link linkend="Faq">FAQ chapter</link> contains answers to many
+  common questions asked from developers. Please check first if your question
+  is answered there before submitting questions to <ulink
+  url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>.</para>
 </sect1>
