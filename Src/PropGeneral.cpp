@@ -30,6 +30,8 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "PropGeneral.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,24 +42,21 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral property page
 
-IMPLEMENT_DYNCREATE(CPropGeneral, CPropertyPage)
-
 /** 
  * @brief Constructor initialising members.
  */
-CPropGeneral::CPropGeneral() : CPropertyPage(CPropGeneral::IDD)
+CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral::IDD)
+, m_pOptionsMgr(optionsMgr)
+, m_bBackup(FALSE)
+, m_bScroll(FALSE)
+, m_bDisableSplash(FALSE)
+, m_bAutoCloseCmpPane(FALSE)
+, m_bSingleInstance(FALSE)
+, m_bVerifyPaths(FALSE)
+, m_bCloseWindowWithEsc(TRUE)
+, m_bMultipleFileCmp(FALSE)
+, m_bMultipleDirCmp(FALSE)
 {
-	//{{AFX_DATA_INIT(CPropGeneral)
-	m_bBackup = FALSE;
-	m_bScroll = FALSE;
-	m_bDisableSplash = FALSE;
-	m_bAutoCloseCmpPane = FALSE;
-	m_bSingleInstance = FALSE;
-	m_bVerifyPaths = TRUE;
-	m_bCloseWindowWithEsc = TRUE;
-	m_bMultipleFileCmp = FALSE;
-	m_bMultipleDirCmp = FALSE;
-	//}}AFX_DATA_INIT
 }
 
 CPropGeneral::~CPropGeneral()
@@ -94,6 +93,38 @@ BEGIN_MESSAGE_MAP(CPropGeneral, CPropertyPage)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropGeneral::ReadOptions()
+{
+	m_bBackup = m_pOptionsMgr->GetBool(OPT_CREATE_BACKUPS);
+	m_bScroll = m_pOptionsMgr->GetBool(OPT_SCROLL_TO_FIRST);
+	m_bDisableSplash = m_pOptionsMgr->GetBool(OPT_DISABLE_SPLASH);
+	m_bAutoCloseCmpPane = m_pOptionsMgr->GetBool(OPT_AUTOCLOSE_CMPPANE);
+	m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
+	m_bVerifyPaths = m_pOptionsMgr->GetBool(OPT_VERIFY_OPEN_PATHS);
+	m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
+	m_bMultipleFileCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_MERGEDOCS);
+	m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropGeneral::WriteOptions()
+{
+	m_pOptionsMgr->SaveOption(OPT_CREATE_BACKUPS, m_bBackup == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_AUTOCLOSE_CMPPANE, m_bAutoCloseCmpPane == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral message handlers

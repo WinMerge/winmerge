@@ -9,6 +9,8 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "PropEditor.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -21,23 +23,19 @@ static const int MAX_TABSIZE = 64;
 /////////////////////////////////////////////////////////////////////////////
 // CPropEditor dialog
 
-IMPLEMENT_DYNCREATE(CPropEditor, CPropertyPage)
-
-CPropEditor::CPropEditor() : CPropertyPage(CPropEditor::IDD)
+CPropEditor::CPropEditor(COptionsMgr *optionsMgr) : CPropertyPage(CPropEditor::IDD)
+, m_pOptionsMgr(optionsMgr)
+, m_bHiliteSyntax(FALSE)
+, m_nTabType(-1)
+, m_nTabSize(0)
+, m_bAutomaticRescan(FALSE)
+, m_bAllowMixedEol(FALSE)
+, m_bApplySyntax(FALSE)
+, m_bViewLineDifferences(FALSE)
+, m_bBreakOnWords(FALSE)
+, m_nBreakType(0)
 {
-	//{{AFX_DATA_INIT(CPropEditor)
-	m_bHiliteSyntax = FALSE;
-	m_nTabType = -1;
-	m_nTabSize = 0;
-	m_bAutomaticRescan = FALSE;
-	m_bAllowMixedEol = FALSE;
-	m_bApplySyntax = FALSE;
-	m_bViewLineDifferences = FALSE;
-	m_bBreakOnWords = FALSE;
-	m_nBreakType = 0;
-	//}}AFX_DATA_INIT
 }
-
 
 void CPropEditor::DoDataExchange(CDataExchange* pDX)
 {
@@ -62,6 +60,38 @@ BEGIN_MESSAGE_MAP(CPropEditor, CDialog)
 	ON_BN_CLICKED(IDC_HILITE_CHECK, OnSyntaxHighlight)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropEditor::ReadOptions()
+{
+	m_nTabSize = m_pOptionsMgr->GetInt(OPT_TAB_SIZE);
+	m_nTabType = m_pOptionsMgr->GetInt(OPT_TAB_TYPE);
+	m_bAutomaticRescan = m_pOptionsMgr->GetBool(OPT_AUTOMATIC_RESCAN);
+	m_bHiliteSyntax = m_pOptionsMgr->GetBool(OPT_SYNTAX_HIGHLIGHT);
+	m_bAllowMixedEol = m_pOptionsMgr->GetBool(OPT_ALLOW_MIXED_EOL);
+	m_bApplySyntax = m_pOptionsMgr->GetBool(OPT_UNREC_APPLYSYNTAX);
+	m_bViewLineDifferences = m_pOptionsMgr->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	m_bBreakOnWords = m_pOptionsMgr->GetBool(OPT_BREAK_ON_WORDS);
+	m_nBreakType = m_pOptionsMgr->GetInt(OPT_BREAK_TYPE);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropEditor::WriteOptions()
+{
+	m_pOptionsMgr->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
+	m_pOptionsMgr->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
+	m_pOptionsMgr->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_UNREC_APPLYSYNTAX, m_bApplySyntax == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
+	m_pOptionsMgr->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
+	m_pOptionsMgr->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropEditor message handlers

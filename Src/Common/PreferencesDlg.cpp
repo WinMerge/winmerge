@@ -34,8 +34,12 @@ const TCHAR PATHDELIM = '>';
 
 CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 		UINT nMenuID, CWnd* pParent)   // standard constructor
-	: CDialog(IDD_PREFERENCES, pParent), m_pOptionsMgr(regOptions), m_pageCompare(regOptions),
-	m_pageColors(regOptions), m_pSyntaxColors(colors), m_pageSyntaxColors(colors)
+	: CDialog(IDD_PREFERENCES, pParent), m_pOptionsMgr(regOptions),
+	m_pageGeneral(regOptions), m_pageCompare(regOptions),
+	m_pageColors(regOptions), m_pSyntaxColors(colors),
+	m_pageSyntaxColors(colors), m_pageArchive(regOptions),
+	m_pageCodepage(regOptions), m_pageEditor(regOptions),
+	m_pageSystem(regOptions), m_pageVss(regOptions)
 {
 	UNREFERENCED_PARAMETER(nMenuID);
 }
@@ -213,138 +217,32 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 	return sPath;
 }
 
-void CPreferencesDlg::SetDefaultEditor(LPCTSTR szDefaultEditor)
-{
-	m_sDefaultEditor = szDefaultEditor;
-}
-
 void CPreferencesDlg::ReadOptions()
 {
-	m_pageGeneral.m_bBackup = m_pOptionsMgr->GetBool(OPT_CREATE_BACKUPS);
-	m_pageGeneral.m_bScroll = m_pOptionsMgr->GetBool(OPT_SCROLL_TO_FIRST);
-	m_pageGeneral.m_bDisableSplash = m_pOptionsMgr->GetBool(OPT_DISABLE_SPLASH);
-	m_pageGeneral.m_bAutoCloseCmpPane = m_pOptionsMgr->GetBool(OPT_AUTOCLOSE_CMPPANE);
-	m_pageGeneral.m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
-	m_pageGeneral.m_bVerifyPaths = m_pOptionsMgr->GetBool(OPT_VERIFY_OPEN_PATHS);
-	m_pageGeneral.m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
-	m_pageGeneral.m_bMultipleFileCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	m_pageGeneral.m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
-
-	m_pageSystem.m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD);
-	m_pageSystem.GetContextRegValues();
-	m_pageSystem.m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
-	m_pageSystem.m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
-
-	m_pageCompare.m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	m_pageCompare.m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	m_pageCompare.m_bIgnoreCase = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
-	m_pageCompare.m_bEolSensitive = m_pOptionsMgr->GetBool(OPT_CMP_EOL_SENSITIVE) ? false : true; // Reverse
-	m_pageCompare.m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
-	m_pageCompare.m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
-	m_pageCompare.m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
-
-	m_pageEditor.m_nTabSize = m_pOptionsMgr->GetInt(OPT_TAB_SIZE);
-	m_pageEditor.m_nTabType = m_pOptionsMgr->GetInt(OPT_TAB_TYPE);
-	m_pageEditor.m_bAutomaticRescan = m_pOptionsMgr->GetBool(OPT_AUTOMATIC_RESCAN);
-	m_pageEditor.m_bHiliteSyntax = m_pOptionsMgr->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_pageEditor.m_bAllowMixedEol = m_pOptionsMgr->GetBool(OPT_ALLOW_MIXED_EOL);
-	m_pageEditor.m_bApplySyntax = m_pOptionsMgr->GetBool(OPT_UNREC_APPLYSYNTAX);
-	m_pageEditor.m_bViewLineDifferences = m_pOptionsMgr->GetBool(OPT_WORDDIFF_HIGHLIGHT);
-	m_pageEditor.m_bBreakOnWords = m_pOptionsMgr->GetBool(OPT_BREAK_ON_WORDS);
-	m_pageEditor.m_nBreakType = m_pOptionsMgr->GetInt(OPT_BREAK_TYPE);
-
-	m_pageCodepage.m_nCodepageSystem = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_MODE);
-	m_pageCodepage.m_nCustomCodepageValue = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_CUSTOM);
-	m_pageCodepage.m_bDetectCodepage = m_pOptionsMgr->GetBool(OPT_CP_DETECT);
-
-	m_pageVss.m_nVerSys = m_pOptionsMgr->GetInt(OPT_VCS_SYSTEM);
-	m_pageVss.m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH);
-
-	int enable = m_pOptionsMgr->GetInt(OPT_ARCHIVE_ENABLE);
-	m_pageArchive.m_bEnableSupport = enable > 0;
-	m_pageArchive.m_nInstallType = enable > 1 ? enable - 1 : 0;
-	m_pageArchive.m_bProbeType = m_pOptionsMgr->GetBool(OPT_ARCHIVE_PROBETYPE);
+	m_pageGeneral.ReadOptions();
+	m_pageColors.ReadOptions();
+	m_pageSystem.ReadOptions();
+	m_pageCompare.ReadOptions();
+	m_pageEditor.ReadOptions();
+	m_pageCodepage.ReadOptions();
+	m_pageVss.ReadOptions();
+	m_pageArchive.ReadOptions();
 }
 
 void CPreferencesDlg::SaveOptions()
 {
-	CString sExtEditor;
-
-	m_pOptionsMgr->SaveOption(OPT_CREATE_BACKUPS, m_pageGeneral.m_bBackup == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_SCROLL_TO_FIRST, m_pageGeneral.m_bScroll == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_DISABLE_SPLASH, m_pageGeneral.m_bDisableSplash == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_AUTOCLOSE_CMPPANE, m_pageGeneral.m_bAutoCloseCmpPane == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_pageGeneral.m_bSingleInstance == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_VERIFY_OPEN_PATHS, m_pageGeneral.m_bVerifyPaths == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_pageGeneral.m_bCloseWindowWithEsc == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_pageGeneral.m_bMultipleFileCmp == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_pageGeneral.m_bMultipleDirCmp == TRUE);
-
-	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_pageSystem.m_bUseRecycleBin == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_pageSystem.m_bIgnoreSmallTimeDiff == TRUE);
-
-
-	m_pageSystem.SaveMergePath();
-	sExtEditor = m_pageSystem.m_strEditorPath;
-	sExtEditor.TrimLeft();
-	sExtEditor.TrimRight();
-	if (sExtEditor.IsEmpty())
-		sExtEditor = m_sDefaultEditor;
-	m_pOptionsMgr->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
-
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_pageCompare.m_nIgnoreWhite);
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_pageCompare.m_bIgnoreBlankLines == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_EOL_SENSITIVE, m_pageCompare.m_bEolSensitive == FALSE); // Reverse
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_pageCompare.m_bIgnoreCase == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, m_pageCompare.m_compareMethod);
-	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_pageCompare.m_bMovedBlocks == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_pageCompare.m_bStopAfterFirst == TRUE);
-	
-	m_pOptionsMgr->SaveOption(OPT_TAB_SIZE, (int)m_pageEditor.m_nTabSize);
-	m_pOptionsMgr->SaveOption(OPT_TAB_TYPE, (int)m_pageEditor.m_nTabType);
-	m_pOptionsMgr->SaveOption(OPT_AUTOMATIC_RESCAN, m_pageEditor.m_bAutomaticRescan == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_ALLOW_MIXED_EOL, m_pageEditor.m_bAllowMixedEol == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_pageEditor.m_bHiliteSyntax == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_UNREC_APPLYSYNTAX, m_pageEditor.m_bApplySyntax == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_pageEditor.m_bViewLineDifferences);
-	m_pOptionsMgr->SaveOption(OPT_BREAK_ON_WORDS, !!m_pageEditor.m_bBreakOnWords);
-	m_pOptionsMgr->SaveOption(OPT_BREAK_TYPE, m_pageEditor.m_nBreakType);
-
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF, m_pageColors.m_clrDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, m_pageColors.m_clrSelDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, m_pageColors.m_clrDiffDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, m_pageColors.m_clrSelDiffDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_TEXT, m_pageColors.m_clrDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, m_pageColors.m_clrSelDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF, m_pageColors.m_clrTrivial);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, m_pageColors.m_clrTrivialDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, m_pageColors.m_clrTrivialText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK, m_pageColors.m_clrMoved);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, m_pageColors.m_clrMovedDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, m_pageColors.m_clrMovedText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, m_pageColors.m_clrSelMoved);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_pageColors.m_clrSelMovedDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_pageColors.m_clrSelMovedText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF, m_pageColors.m_clrWordDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF, m_pageColors.m_clrSelWordDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, m_pageColors.m_clrWordDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, m_pageColors.m_clrSelWordDiffText);
-
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, m_pageCodepage.m_nCodepageSystem);
-	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, m_pageCodepage.m_nCustomCodepageValue);
-	m_pOptionsMgr->SaveOption(OPT_CP_DETECT, m_pageCodepage.m_bDetectCodepage == TRUE);
-
-	m_pOptionsMgr->SaveOption(OPT_VCS_SYSTEM, (int)m_pageVss.m_nVerSys);
-	m_pOptionsMgr->SaveOption(OPT_VSS_PATH, m_pageVss.m_strPath);
+	m_pageGeneral.WriteOptions();
+	m_pageSystem.WriteOptions();
+	m_pageCompare.WriteOptions();
+	m_pageEditor.WriteOptions();
+	m_pageColors.WriteOptions();
+	m_pageCodepage.WriteOptions();
+	m_pageVss.WriteOptions();	
 
 	m_pSyntaxColors->Clone(m_pageSyntaxColors.m_pTempColors);
 	m_pSyntaxColors->SaveToRegistry();
 
-	if (m_pageArchive.m_bEnableSupport)
-		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, m_pageArchive.m_nInstallType + 1);
-	else
-		m_pOptionsMgr->SaveOption(OPT_ARCHIVE_ENABLE, (int)0);
-	m_pOptionsMgr->SaveOption(OPT_ARCHIVE_PROBETYPE, m_pageArchive.m_bProbeType == TRUE);
+	m_pageArchive.WriteOptions();
 }
 
 void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)

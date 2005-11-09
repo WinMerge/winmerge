@@ -27,7 +27,10 @@
 #include "PropRegistry.h"
 #include "RegKey.h"
 #include "coretools.h"
-#include "Merge.h"
+#include "Merge.h" // SelectFile()
+#include "MainFrm.h" // GetDefaultEditor()
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -50,15 +53,14 @@ static LPCTSTR f_RegValuePath = _T("Executable");
 // CPropRegistry dialog
 
 
-CPropRegistry::CPropRegistry()
+CPropRegistry::CPropRegistry(COptionsMgr *optionsMgr)
 	: CPropertyPage(CPropRegistry::IDD)
+, m_pOptionsMgr(optionsMgr)
+, m_bContextAdded(FALSE)
+, m_bUseRecycleBin(TRUE)
+, m_bContextAdvanced(FALSE)
+, m_bIgnoreSmallTimeDiff(FALSE)
 {
-	//{{AFX_DATA_INIT(CPropRegistry)
-	m_bContextAdded = FALSE;
-	m_bUseRecycleBin = TRUE;
-	m_bContextAdvanced = FALSE;
-	m_bIgnoreSmallTimeDiff = FALSE;
-	//}}AFX_DATA_INIT
 }
 
 void CPropRegistry::DoDataExchange(CDataExchange* pDX)
@@ -79,6 +81,37 @@ BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropRegistry::ReadOptions()
+{
+	m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD);
+	GetContextRegValues();
+	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
+	m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropRegistry::WriteOptions()
+{
+	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
+	CString sDefaultEditor = pMf->GetDefaultEditor();
+
+	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
+
+	SaveMergePath();
+	CString sExtEditor = m_strEditorPath;
+	sExtEditor.TrimLeft();
+	sExtEditor.TrimRight();
+	if (sExtEditor.IsEmpty())
+		sExtEditor = sDefaultEditor;
+	m_pOptionsMgr->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropRegistry message handlers

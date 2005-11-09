@@ -1185,7 +1185,6 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 void CMainFrame::OnOptions() 
 {
 	CPreferencesDlg dlg(&m_options, m_pSyntaxColors);
-	dlg.SetDefaultEditor(GetDefaultEditor());
 	int rv = dlg.DoModal();
 
 	if (rv == IDOK)

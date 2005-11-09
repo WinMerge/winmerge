@@ -1073,6 +1073,10 @@ SOURCE=.\IAbortable.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\IOptionsPanel.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\LanguageSelect.h
 # End Source File
 # Begin Source File

@@ -25,18 +25,15 @@ static char THIS_FILE[] = __FILE__;
  * @brief Constructor
  */
 CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare::IDD)
+ , m_pOptionsMgr(optionsMgr)
+ , m_compareMethod(-1)
+ , m_bIgnoreCase(FALSE)
+ , m_bIgnoreBlankLines(FALSE)
+ , m_bEolSensitive(FALSE)
+ , m_nIgnoreWhite(-1)
+ , m_bMovedBlocks(FALSE)
+ , m_bStopAfterFirst(FALSE)
 {
-	//{{AFX_DATA_INIT(CPropCompare)
-	m_compareMethod = -1;
-	m_bIgnoreCase = FALSE;
-	m_bIgnoreBlankLines = FALSE;
-	m_bEolSensitive = FALSE;
-	m_nIgnoreWhite = -1;
-	m_bMovedBlocks = FALSE;
-	m_bStopAfterFirst = FALSE;
-	//}}AFX_DATA_INIT
-
-	m_pOptionsMgr = optionsMgr;
 }
 
 void CPropCompare::DoDataExchange(CDataExchange* pDX)
@@ -60,6 +57,34 @@ BEGIN_MESSAGE_MAP(CPropCompare, CPropertyPage)
 	//}}AFX_MSG_MAP
 	ON_CBN_SELCHANGE(IDC_COMPAREMETHODCOMBO, OnCbnSelchangeComparemethodcombo)
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropCompare::ReadOptions()
+{
+	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	m_bIgnoreCase = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
+	m_bEolSensitive = m_pOptionsMgr->GetBool(OPT_CMP_EOL_SENSITIVE) ? false : true; // Reverse
+	m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
+	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
+	m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropCompare::WriteOptions()
+{
+	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
+	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CMP_EOL_SENSITIVE, m_bEolSensitive == FALSE); // Reverse
+	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
+	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropCompare message handlers

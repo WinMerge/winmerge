@@ -7,21 +7,22 @@
 #if !defined(AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
-// PropVss.h : header file
-//
+#include "IOptionsPanel.h"
+
+class COptionsMgr;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss dialog
 
 /** @brief Options property page covering Visual SourceSafe integration */
-class CPropVss : public CPropertyPage
+class CPropVss : public CPropertyPage, public IOptionsPanel
 {
-	DECLARE_DYNCREATE(CPropVss)
-
 // Construction
 public:
-	CPropVss();
+	CPropVss(COptionsMgr *optionsMgr);
 	~CPropVss();
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
 // Dialog Data
 	//{{AFX_DATA(CPropVss)
@@ -54,6 +55,8 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+private:
+	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

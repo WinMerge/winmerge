@@ -9,8 +9,9 @@
 #ifndef _PROPPAGE_COMPARE_H_
 #define _PROPPAGE_COMPARE_H_
 
-class COptionsMgr;
+#include "IOptionsPanel.h"
 
+class COptionsMgr;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropCompare dialog
@@ -26,16 +27,19 @@ class COptionsMgr;
  * Compare methods:
  *  - compare by contents
  *  - compare by modified date
+ *  - compare by quick contents
  *
- * @author Tim Musschoot, several modifications by Kimmo Varis
+ * @author Tim Musschoot, several modifications by others
  */
-class CPropCompare : public CPropertyPage
+class CPropCompare : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
     enum CompareMethod { BY_CONTENTS, BY_DATE};
 
 	CPropCompare(COptionsMgr *optionsMgr);
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
 // Dialog Data
 	//{{AFX_DATA(CPropCompare)

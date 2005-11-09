@@ -30,6 +30,8 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "PropCodepage.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,15 +42,12 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPropCodepage property page
 
-IMPLEMENT_DYNCREATE(CPropCodepage, CPropertyPage)
-
-CPropCodepage::CPropCodepage() : CPropertyPage(CPropCodepage::IDD)
+CPropCodepage::CPropCodepage(COptionsMgr *optionsMgr) : CPropertyPage(CPropCodepage::IDD)
+, m_pOptionsMgr(optionsMgr)
+, m_nCodepageSystem(-1)
+, m_nCustomCodepageValue(0)
+, m_bDetectCodepage(FALSE)
 {
-	//{{AFX_DATA_INIT(CPropCodepage)
-	m_nCodepageSystem = -1;
-	m_nCustomCodepageValue = 0;
-	m_bDetectCodepage = FALSE;
-	//}}AFX_DATA_INIT
 }
 
 CPropCodepage::~CPropCodepage()
@@ -74,6 +73,26 @@ BEGIN_MESSAGE_MAP(CPropCodepage, CPropertyPage)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropCodepage::ReadOptions()
+{
+	m_nCodepageSystem = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_MODE);
+	m_nCustomCodepageValue = m_pOptionsMgr->GetInt(OPT_CP_DEFAULT_CUSTOM);
+	m_bDetectCodepage = m_pOptionsMgr->GetBool(OPT_CP_DETECT);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropCodepage::WriteOptions()
+{
+	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_MODE, (int)m_nCodepageSystem);
+	m_pOptionsMgr->SaveOption(OPT_CP_DEFAULT_CUSTOM, (int)m_nCustomCodepageValue);
+	m_pOptionsMgr->SaveOption(OPT_CP_DETECT, m_bDetectCodepage == TRUE);
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CPropCodepage message handlers
 
@@ -85,9 +104,9 @@ BOOL CPropCodepage::OnInitDialog()
 
 	// Enable/disable "Custom codepage" edit field
 	if (IsDlgButtonChecked(IDC_CP_CUSTOM))
-		GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(TRUE);
+		pEdit->EnableWindow(TRUE);
 	else
-		GetDlgItem(IDC_CUSTOM_CP_NUMBER)->EnableWindow(FALSE);
+		pEdit->EnableWindow(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

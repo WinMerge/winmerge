@@ -1,4 +1,3 @@
-
 /** 
  * @file  PropArchive.h
  *
@@ -12,18 +11,20 @@
 #define _PROP_ARCHIVE_H_
 
 #include "StatLink.h"
+#include "IOptionsPanel.h"
 
+class COptionsMgr;
 
 /** 
  * @brief Class for Archive Support options page.
  */
 class CPropArchive : public CPropertyPage
 {
-	DECLARE_DYNAMIC(CPropArchive)
-
 public:
-	CPropArchive();
+	CPropArchive(COptionsMgr *optionsMgr);
 	virtual ~CPropArchive();
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
 // Dialog Data
 	enum { IDD = IDD_PROP_ARCHIVE };
@@ -41,5 +42,8 @@ public:
 	BOOL m_bEnableSupport;
 	int m_nInstallType;
 	BOOL m_bProbeType;
+
+private:
+	COptionsMgr *m_pOptionsMgr;
 };
 #endif // _PROP_ARCHIVE_H_

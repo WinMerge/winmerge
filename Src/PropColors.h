@@ -12,6 +12,7 @@
 
 
 #include "ColorButton.h"
+#include "IOptionsPanel.h"
 
 class COptionsMgr;
 
@@ -21,12 +22,15 @@ const int CustomColorsAmount = 16;
 // CPropColors dialog
 
 /** @brief Property page for colors options; used in options property sheet */
-class CPropColors : public CPropertyPage
+class CPropColors : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
 
 	CPropColors(COptionsMgr *optionsMgr);
+	virtual void ReadOptions();
+	virtual void WriteOptions();
+	
 // Dialog Data
 	//{{AFX_DATA(CPropColors)
 	enum { IDD = IDD_PROPPAGE_COLORS };

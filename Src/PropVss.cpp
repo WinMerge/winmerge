@@ -25,6 +25,8 @@
 #include "merge.h"
 #include "MainFrm.h" // VCS_* constants
 #include "PropVss.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,13 +37,10 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss property page
 
-IMPLEMENT_DYNCREATE(CPropVss, CPropertyPage)
-
-CPropVss::CPropVss() : CPropertyPage(CPropVss::IDD)
+CPropVss::CPropVss(COptionsMgr *optionsMgr) : CPropertyPage(CPropVss::IDD)
+, m_pOptionsMgr(optionsMgr)
+, m_nVerSys(-1)
 {
-	//{{AFX_DATA_INIT(CPropVss)
-	m_nVerSys = -1;
-	//}}AFX_DATA_INIT
 }
 
 CPropVss::~CPropVss()
@@ -67,6 +66,24 @@ BEGIN_MESSAGE_MAP(CPropVss, CPropertyPage)
 	ON_CBN_SELENDOK(IDC_VER_SYS, OnSelendokVerSys)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropVss::ReadOptions()
+{
+	m_nVerSys = m_pOptionsMgr->GetInt(OPT_VCS_SYSTEM);
+	m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropVss::WriteOptions()
+{
+	m_pOptionsMgr->SaveOption(OPT_VCS_SYSTEM, (int)m_nVerSys);
+	m_pOptionsMgr->SaveOption(OPT_VSS_PATH, m_strPath);
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss message handlers

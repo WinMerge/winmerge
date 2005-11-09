@@ -10,19 +10,23 @@
 #if !defined(AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_)
 #define AFX_PROPEDITOR_H__1F2D57BB_6C09_488B_834D_575A94B2BDB8__INCLUDED_
 
+#include "IOptionsPanel.h"
+
+class COptionsMgr;
+
 /////////////////////////////////////////////////////////////////////////////
 // CPropEditor dialog
 
 /**
  * @brief Property page for editor options.
  */
-class CPropEditor : public CPropertyPage
+class CPropEditor : public CPropertyPage, public IOptionsPanel
 {
-	DECLARE_DYNCREATE(CPropEditor)
-
 // Construction
 public:
-	CPropEditor();
+	CPropEditor(COptionsMgr *optionsMgr);
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
 // Dialog Data
 	//{{AFX_DATA(CPropEditor)
@@ -59,6 +63,9 @@ protected:
 	afx_msg void OnSyntaxHighlight();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

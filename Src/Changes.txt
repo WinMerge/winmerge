@@ -1,3 +1,11 @@
+2005-11-09 Kimmo
+ PATCH: [ 1350638 ] Move options read/write code to options panels
+  Src: MainFrm.cpp Merge.dsp PropArchive.cpp PropArchive.h PropCodepage.cpp PropCodepage.h
+   PropColors.cpp PropColors.h PropCompare.cpp PropCompare.h PropEditor.cpp PropEditor.h
+   PropGeneral.cpp PropGeneral.h PropRegistry.cpp PropRegistry.h PropVss.cpp PropVss.h
+  Src new file: IOptionsPanel.h
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+
 2005-11-08 Kimmo
  Merge Perry's fix for OpenDlg/SelectFile() to Merge.cpp/SelectFile() (PATCH #1348733)
   Src: Merge.cpp

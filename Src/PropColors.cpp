@@ -23,52 +23,12 @@ static const TCHAR Section[] = _T("Custom Colors");
 /////////////////////////////////////////////////////////////////////////////
 // CPropColors dialog
 
+/** 
+ * @brief Default constructor.
+ */
 CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::IDD)
+, m_pOptionsMgr(optionsMgr)
 {
-	//{{AFX_DATA_INIT(CPropColors)
-	m_clrDiff = optionsMgr->GetInt(OPT_CLR_DIFF);
-	m_clrSelDiff = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
-	m_clrDiffDeleted = optionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
-	m_clrSelDiffDeleted = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_clrDiffText = optionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
-	m_clrSelDiffText = optionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_clrTrivial = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_clrTrivialDeleted = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_clrTrivialText = optionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_clrMoved = optionsMgr->GetInt(OPT_CLR_MOVEDBLOCK);
-	m_clrMovedDeleted = optionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_clrMovedText = optionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_clrSelMoved = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_clrSelMovedDeleted = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_clrSelMovedText = optionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	m_clrWordDiff = optionsMgr->GetInt(OPT_CLR_WORDDIFF);
-	m_clrSelWordDiff = optionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF);
-	m_clrWordDiffText = optionsMgr->GetInt(OPT_CLR_WORDDIFF_TEXT);
-	m_clrSelWordDiffText = optionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
-
-	// Set colors for buttons, do NOT invalidate
-	m_cDiff.SetColor(m_clrDiff, FALSE);
-	m_cSelDiff.SetColor(m_clrSelDiff, FALSE);
-	m_cDiffDeleted.SetColor(m_clrDiffDeleted, FALSE);
-	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted, FALSE);
-	m_cDiffText.SetColor(m_clrDiffText, FALSE);
-	m_cSelDiffText.SetColor(m_clrSelDiffText, FALSE);
-	m_cTrivial.SetColor(m_clrTrivial, FALSE);
-	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted, FALSE);
-	m_cTrivialText.SetColor(m_clrTrivialText, FALSE);
-	m_cMoved.SetColor(m_clrMoved, FALSE);
-	m_cMovedDeleted.SetColor(m_clrMovedDeleted, FALSE);
-	m_cMovedText.SetColor(m_clrMovedText, FALSE);
-	m_cSelMoved.SetColor(m_clrSelMoved, FALSE);
-	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted, FALSE);
-	m_cSelMovedText.SetColor(m_clrSelMovedText, FALSE);
-	m_cWordDiff.SetColor(m_clrWordDiff, FALSE);
-	m_cSelWordDiff.SetColor(m_clrSelWordDiff, FALSE);
-	m_cWordDiffText.SetColor(m_clrWordDiffText, FALSE);
-	m_cSelWordDiffText.SetColor(m_clrSelWordDiffText, FALSE);
-
-	m_pOptionsMgr = optionsMgr;
-	//}}AFX_DATA_INIT
 }
 
 void CPropColors::DoDataExchange(CDataExchange* pDX)
@@ -122,6 +82,79 @@ BEGIN_MESSAGE_MAP(CPropColors, CDialog)
 	ON_BN_CLICKED(IDC_SEL_WORDDIFFERENCE_TEXT_COLOR, OnSelWordDifferenceTextColor)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
+
+/** 
+ * @brief Reads options values from storage to UI.
+ */
+void CPropColors::ReadOptions()
+{
+	m_clrDiff = m_pOptionsMgr->GetInt(OPT_CLR_DIFF);
+	m_clrSelDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
+	m_clrDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
+	m_clrSelDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_clrDiffText = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
+	m_clrSelDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_clrTrivial = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_clrTrivialDeleted = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_clrTrivialText = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_clrMoved = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK);
+	m_clrMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_clrMovedText = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_clrSelMoved = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_clrSelMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_clrSelMovedText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_clrWordDiff = m_pOptionsMgr->GetInt(OPT_CLR_WORDDIFF);
+	m_clrSelWordDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_clrWordDiffText = m_pOptionsMgr->GetInt(OPT_CLR_WORDDIFF_TEXT);
+	m_clrSelWordDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+
+	// Set colors for buttons, do NOT invalidate
+	m_cDiff.SetColor(m_clrDiff, FALSE);
+	m_cSelDiff.SetColor(m_clrSelDiff, FALSE);
+	m_cDiffDeleted.SetColor(m_clrDiffDeleted, FALSE);
+	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted, FALSE);
+	m_cDiffText.SetColor(m_clrDiffText, FALSE);
+	m_cSelDiffText.SetColor(m_clrSelDiffText, FALSE);
+	m_cTrivial.SetColor(m_clrTrivial, FALSE);
+	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted, FALSE);
+	m_cTrivialText.SetColor(m_clrTrivialText, FALSE);
+	m_cMoved.SetColor(m_clrMoved, FALSE);
+	m_cMovedDeleted.SetColor(m_clrMovedDeleted, FALSE);
+	m_cMovedText.SetColor(m_clrMovedText, FALSE);
+	m_cSelMoved.SetColor(m_clrSelMoved, FALSE);
+	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted, FALSE);
+	m_cSelMovedText.SetColor(m_clrSelMovedText, FALSE);
+	m_cWordDiff.SetColor(m_clrWordDiff, FALSE);
+	m_cSelWordDiff.SetColor(m_clrSelWordDiff, FALSE);
+	m_cWordDiffText.SetColor(m_clrWordDiffText, FALSE);
+	m_cSelWordDiffText.SetColor(m_clrSelWordDiffText, FALSE);
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ */
+void CPropColors::WriteOptions()
+{
+	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF, (int)m_clrDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, (int)m_clrSelDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, (int)m_clrDiffDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)m_clrSelDiffDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_TEXT, (int)m_clrDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)m_clrSelDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF, (int)m_clrTrivial);
+	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)m_clrTrivialDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, (int)m_clrTrivialText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK, (int)m_clrMoved);
+	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, (int)m_clrMovedDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, (int)m_clrMovedText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)m_clrSelMoved);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)m_clrSelMovedDeleted);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)m_clrSelMovedText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF, (int)m_clrWordDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF, (int)m_clrSelWordDiff);
+	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)m_clrWordDiffText);
+	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)m_clrSelWordDiffText);
+}
 
 /** 
  * @brief User wants to change difference color

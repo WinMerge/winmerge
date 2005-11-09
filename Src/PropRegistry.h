@@ -25,6 +25,9 @@
 #ifndef PropRegistry_h_included
 #define PropRegistry_h_included
 
+#include "IOptionsPanel.h"
+
+class COptionsMgr;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropRegistry dialog
@@ -32,15 +35,14 @@
 /**
  * @brief Property page for registry options; used in options property sheet
  */
-class CPropRegistry : public CPropertyPage
+class CPropRegistry : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
 
-	CPropRegistry();   // standard constructor
-	void GetContextRegValues();
-	void SaveMergePath();
-	void AdvancedContextMenuCheck();
+	CPropRegistry(COptionsMgr *optionsMgr);
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
 // Dialog Data
 	//{{AFX_DATA(CPropRegistry)
@@ -69,8 +71,13 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+	void GetContextRegValues();
+	void SaveMergePath();
+	void AdvancedContextMenuCheck();
+
 // Implementation data
-protected:
+private:
+	COptionsMgr * m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

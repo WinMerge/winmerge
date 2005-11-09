@@ -9,6 +9,9 @@
 #if !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_
 
+#include "IOptionsPanel.h"
+
+class COptionsMgr;
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropGeneral dialog
@@ -16,14 +19,14 @@
 /**
  * @brief Class for General options -propertypage.
  */
-class CPropGeneral : public CPropertyPage
+class CPropGeneral : public CPropertyPage, public IOptionsPanel
 {
-	DECLARE_DYNCREATE(CPropGeneral)
-
 // Construction
 public:
-	CPropGeneral();
+	CPropGeneral(COptionsMgr *optionsMgr);
 	~CPropGeneral();
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
 // Dialog Data
 	//{{AFX_DATA(CPropGeneral)
@@ -57,6 +60,8 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+private:
+	COptionsMgr *m_pOptionsMgr;
 };
 
 //{{AFX_INSERT_LOCATION}}

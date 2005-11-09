@@ -45,7 +45,6 @@ public:
 		UINT nMenuID = 0, CWnd* pParent = NULL);   // standard constructor
 	virtual ~CPreferencesDlg();
 
-	void SetDefaultEditor(LPCTSTR szDefaultEditor);
 	void SetSyntaxColors(SyntaxColors *pColors);
 
 protected:
@@ -99,7 +98,6 @@ protected:
 
 private:
 	COptionsMgr *m_pOptionsMgr;
-	CString m_sDefaultEditor;
 
 };
 
