@@ -4,8 +4,17 @@
 
   <para>File compare window is basically two files opened to editor into two
   horizontal panes. Editing files is the big difference between 1.7.1 and
-  newer versions. Editing allows user to easily do small changes without need
-  to open the files to other editor or development environment.</para>
+  newer versions. Editing allows user to easily do small changes without the
+  need to open the files to other editor or development environment.</para>
+
+  <para>WinMerge editor is not comparable to specialized editor programs, but
+  it has basic features like
+  <guilabel>Undo</guilabel>/<guilabel>Redo</guilabel>,
+  <guilabel>Find</guilabel>/<guilabel>Replace</guilabel> and
+  <guilabel>Goto</guilabel> (to linenumber). The editor also has a syntax
+  highlighting feature supporting several file formats (colors configurable).
+  Note however WinMerge does not syntax highlight text inside differences.
+  Syntax highlighting can be disabled from options.</para>
 
   <tip>
     <para>If <guilabel>Automatic rescan</guilabel> is not enabled manual
@@ -31,7 +40,7 @@
   <sect2>
     <title>File Headerbar</title>
 
-    <para>File headerbar has many functionalities. See screenshot
+    <para>The file headerbar has several functionalities. See screenshot
     below:</para>
 
     <para><inlinemediaobject>
@@ -40,21 +49,23 @@
         </imageobject>
       </inlinemediaobject></para>
 
-    <para>Firstly, headerbar shows filename and full path for file. Headerbar
-    also shows:<itemizedlist>
+    <para>Headerbar shows full path to the open file. If the path is longer
+    than available space one part of the path is replaced with an ellipsis
+    (...). Headerbar also shows:<itemizedlist>
         <listitem>
-          <para>current active file with sunken border (like in screenshot),
-          non-active file is shown with flat headerbar.</para>
+          <para>the current active file with sunken border (like in the above
+          screenshot), the non-active file is shown with flat
+          headerbar.</para>
         </listitem>
 
         <listitem>
-          <para>if file has unsaved changes. This is indicated by adding
-          asterisk (<guilabel>*</guilabel>) before filename, like in
-          screenshot.</para>
+          <para>if the file has been modified (has unsaved changes). This is
+          indicated by adding asterisk (<guilabel>*</guilabel>) before the
+          filename, like in the screenshot.</para>
         </listitem>
       </itemizedlist></para>
 
-    <para>Headerbar also has context menu with items to copy full path or
+    <para>Headerbar has a context menu with items to copy full path or
     filename to clipboard.</para>
   </sect2>
 
@@ -228,7 +239,10 @@
     Left</guimenuitem> copy difference from side to side. At simplest this
     means replacing text in destination difference with text in source
     difference. But because difference can contain also removed lines, new
-    lines may be created or some lines removed.</para>
+    lines may be created or some lines removed. If there are several
+    differences selected, then all fully selected differences are merged with
+    one command. This makes merging many small differences a lot
+    faster.</para>
 
     <para>WinMerge rescans files after every merging operation. This is done
     to ensure differences were copied correctly and all changes after last
@@ -240,7 +254,17 @@
     <important>
       <para>It is strongly advised to run <guimenuitem>Rescan</guimenuitem>
       (<keycap>F5</keycap>) before merging differences if <guilabel>Automatic
-      rescan</guilabel> is set off.</para>
+      rescan</guilabel> is set off. Usually files get out of sync when editing
+      and merging differences may have unpredictable results. If merging
+      result looks incorrect try undoing (<menuchoice>
+          <guimenu>Edit</guimenu>
+
+          <guimenuitem>Undo</guimenuitem>
+        </menuchoice> from menu or <keycombo>
+          <keycap>Ctrl</keycap>
+
+          <keycap>Z</keycap>
+        </keycombo>) it and rescanning files. And then merging again.</para>
     </important>
 
     <para><guimenuitem>Copy to Right/Left and Advance</guimenuitem>-commands
@@ -249,15 +273,16 @@
     faster.</para>
 
     <para><guimenuitem>Copy All to Right/Left</guimenuitem>-commands sync two
-    open files merging all differences.</para>
+    open files by merging all differences. Note that you can undo this whole
+    operation with one undo command.</para>
 
-    <para><guimenuitem>Copy diffs in Left/Right selection to
-    Right/Left</guimenuitem>-commands allow user to select several differences
-    and merge them in one command. User can even select whole file and then
-    merge all differences with one command. These commands are handy when
-    there are several small differences that should be merged. Its easier and
-    faster to select those differences first and then merge with these
-    commands than merging those differences one by one.</para>
+    <tip>
+      <para>Enable <guilabel>Automatically scroll to first
+      difference</guilabel> -option from general options. This saves you from
+      scrolling to first difference and selecting it. See <link
+      linkend="Configuration">Options &amp; Configuration</link> -chapter for
+      more information.</para>
+    </tip>
   </sect2>
 
   <sect2>
@@ -339,9 +364,8 @@
   <sect2>
     <title>Line Difference Highlight</title>
 
-    <para>Maybe the greatest new feature in WinMerge 2.4 is difference
-    highlight in all differences and lines in differences. Screenshot tells it
-    best:</para>
+    <para>Maybe the greatest new feature in WinMerge 2.4 is the difference
+    highlight in all differences of the files.</para>
 
     <mediaobject>
       <imageobject>
@@ -349,13 +373,24 @@
       </imageobject>
     </mediaobject>
 
-    <para>This feature can be turned on/off from menu <menuchoice>
+    <para>This feature can be enabled and disabled from menu <menuchoice>
         <guimenu>View</guimenu>
 
         <guimenuitem>View Line Differences</guimenuitem>
-      </menuchoice>. There are couple of options for the feature in
-    Edit-options and <guilabel>Line Difference Coloring</guilabel>
-    frame.</para>
+      </menuchoice>.</para>
+
+    <para>With default settings WinMerge uses whitespace characters (namely
+    spaces and tabulators) to separate words. WinMerge does not consider
+    commas or dots as word separators. That means WinMerge thinks "For
+    Example" is two words but "For,Example" is one word. More characters can
+    be included as word-separator characters from editor options (select from
+    menu <menuchoice>
+        <guimenu>Edit</guimenu>
+
+        <guimenuitem>Options</guimenuitem>
+      </menuchoice> and <guilabel>Editor</guilabel> page). See <link
+    linkend="Configuration">Options &amp; Configuration</link> -chapter for
+    more information.</para>
   </sect2>
 
   <sect2>
@@ -390,7 +425,9 @@
 
     <para>Most of these items are familiar from Main menu. Worth noting is
     last item <guimenuitem>Open</guimenuitem>. It allows to open file with
-    (system) registered application or with external editor.</para>
+    (system) registered application or with external editor. Also context menu
+    merge-commands are not relative to active file. They always merge the
+    selected difference.</para>
   </sect2>
 
   <sect2>
