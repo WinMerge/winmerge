@@ -1,3 +1,108 @@
+2005-11-10 2.4.2 Stable Release
+
+2005-11-10 Kimmo
+ Bump ShellExtension version number to 1.6.2
+  ShellExtension: ShellExtension.rc
+
+2005-11-08 Kimmo
+ Merge Perry's fix for OpenDlg/SelectFile() to Merge.cpp/SelectFile() (PATCH #1348733)
+  Src: Merge.cpp
+ PATCH: [ 1350489 ] Use SelectFile() for external editor selection
+  Src: PropRegistry.cpp
+ PATCH: [ 1350696 ] Remove Window/Close All menuitem from 2.4 branch
+  Src: MainFrm.cpp
+
+2005-11-07 Kimmo
+ BUG: [ 1341243 ] Current Find string is too fragile
+  Was resetting find string after rescanning
+  Src/editlib: ccrystaltextview.cpp
+
+2005-11-06 Jochen
+ PATCH: [ 1327413 ] Fix bug in CDirDoc::AllowUpwardDirectory()
+  Src: DirActions.cpp DirDoc.cpp DirView.cpp
+
+2005-11-05 Perry
+ PATCH: [ 1334484 ] Skip location view paint if buffer not initialized
+  Src: LocationView.cpp MergeDoc.cpp MergeDoc.h
+   MergeEditView.cpp MergeEditView.h
+ PATCH: [ 1348733 ] Fix open dialog for cvs version 2.4
+  Src: OpenDlg.cpp
+
+2005-11-04 Perry
+ PATCH: [ 1335072 ] Add text to Plugins.txt to cover DisplayXMLFiles
+  Plugins/dlls: Plugins.txt
+
+2005-11-04 Kimmo
+ RFE: [ 1324314 ] CTRL+W to close current diff
+  Src: Merge.rc
+  Src/Languages: *.rc
+ PATCH: [ 1342550 ] Modernize file selection dialog
+ PATCH: [ 1345110 ] Properly compare projectfile extension
+  Src: Merge.cpp Merge.h OpenDlg.cpp
+
+2005-11-02 Tim
+ PATCH: [ 1345382 ] Translated Shell Extension to German
+  ShellExtension/Languages: ShellExtensionGerman.rc
+
+2005-11-01 Kimmo
+ PATCH: [ 1342871 ] Disable Copy Filenames for folders
+  Src: DirView.cpp DirView.h
+
+2005-10-30 Kimmo
+ PATCH: [ 1341813 ] VSS project linking misdetects project files
+  Src: VSSHelper.cpp
+
+2005-10-29 Kimmo
+ PATCH: [ 1341183 ] Fix VSS checkout canceling
+  Src: DirActions.cpp MainFrm.cpp
+ PATCH: [ 1333545 ] Small improvement to Open-dialog folder selection
+  Src: OpenDlg.cpp
+
+2005-10-23 Kimmo
+ PATCH: [ 1333581 ] Increase quick compare limit and make it option
+  Src: DiffContext.h DiffWrapper.cpp DirDoc.cpp OptionsDef.h OptionsInit.cpp
+
+2005-10-20 Kimmo
+ BUG: [ 1326621 ] Extention ".WinMerge" is omitted
+  Src: OpenDlg.cpp
+
+2005-10-19 Kimmo
+ PATCH: [ 1329951 ] Readme.txt points to version 2.2 manual
+  Docs/Users: ReadMe.txt
+  Docs/Users/Languages: ReadMe-Catalan.txt ReadMe-Swedish.txt
+
+2005-10-18 Tim
+ PATCH: [ 1330059 ] Translated 3 missing sentences to German
+  Src/Languages/German: MergeGerman.rc
+
+2005-10-15 Perry
+ PATCH: [ 1326813 ] Fix binary detection to allow archives
+  Src: DirView.cpp
+
+2005-10-12 Kimmo
+ PATCH: [ 1323107 ] Patch for crash on save filenames with different cases
+  From anonymous submitter
+  Src: DirDcoc.cpp
+
+2005-10-08 Kimmo
+ BUG: [ 1309450 ] All files in directory are scanned regardless of Filter
+  Src: DirScan.cpp
+
+2005-10-05 Perry
+ PATCH: [ 1242008 ] Update status to binary if open fails because binary
+  Follow on for 2nd case
+ Src: DirView.cpp MergeDoc.cpp
+
+2005-10-03 Kimmo
+ PATCH: [ 1310214 ] Shell extension italian translation
+  Submitted by Andrea Decorte
+  ShellExtension/Languages: ShellExtensionItalian.rc
+
+2005-09-30 Tim
+ PATCH: [ 1309423 ] Small typo in MergeSwedish.rc
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2005-09-29 2.4.0 Stable Release
 
 2005-09-29 Kimmo

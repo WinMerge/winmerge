@@ -218,9 +218,9 @@
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
           $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=360001\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=360001\" title=\"Release Notes\">Notes</a>)</li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=369981\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=369981\" title=\"Release Notes\">Notes</a>)</li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=360005\">Documentation</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=369986\">Documentation</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
           $temp .= "</ul>\n";

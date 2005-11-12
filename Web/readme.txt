@@ -1,3 +1,8 @@
+2005-11-12 Tim
+ PATCH: [ 1353472 ] Website changes for new stable release 2.4.2
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.4: changes.txt index.php
+
 2005-10-24 Tim
  PATCH: [Web] Updated translation instructions
   Web\developer\l10n: instructions.php
