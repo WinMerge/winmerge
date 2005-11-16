@@ -1,3 +1,7 @@
+2005-11-16
+ PATCH: [ 1356783 ] Use OptionsMgr in SyntaxColors class
+  Src: MainFrm.cpp SyntaxColors.cpp SyntaxColors.h
+
 2005-11-09 Kimmo
  PATCH: [ 1350638 ] Move options read/write code to options panels
   Src: MainFrm.cpp Merge.dsp PropArchive.cpp PropArchive.h PropCodepage.cpp PropCodepage.h

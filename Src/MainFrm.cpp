@@ -222,7 +222,7 @@ CMainFrame::CMainFrame()
 
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
-		m_pSyntaxColors->ReadFromRegistry();
+		m_pSyntaxColors->Initialize(&m_options);
 }
 
 CMainFrame::~CMainFrame()

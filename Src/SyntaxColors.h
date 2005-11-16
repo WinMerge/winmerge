@@ -12,6 +12,8 @@
 #include "stdafx.h"
 #include <Windows.h>
 
+class CRegOptions;
+
 /** 
  * @brief Indexes to color table
  */
@@ -56,7 +58,14 @@ typedef CArray<COLORREF, COLORREF&> ColorArray;
 typedef CArray<BOOL, BOOL&> BoolArray;
 
 /** 
- * @brief Stores color information for syntax highlight.
+ * @brief Wrapper for Syntax coloring colors.
+ *
+ * This class is wrapper for syntax colors. We can use this class in editor
+ * class and everywhere we need to refer to syntax colors. Class uses our
+ * normal options-manager for loading / saving values to storage.
+ *
+ * @todo We don't really need those arrays to store color values since we now
+ * use options-manager.
  */
 class SyntaxColors
 {
@@ -69,12 +78,14 @@ public:
 	BOOL GetBold(UINT index) const { return m_bolds[index]; }
 	void SetBold(UINT index, BOOL bold);
 	void SetDefaults();
+	void Initialize(CRegOptions *pOptionsMgr);
 	void SaveToRegistry();
 	void ReadFromRegistry();
 
 private:
 	ColorArray m_colors; /**< Syntax highlight colors */
 	BoolArray m_bolds; /**< Bold font enable/disable */
+	CRegOptions * m_pOptions; /**< Options-manager for storage */
 };
 
 
