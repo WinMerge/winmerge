@@ -1,3 +1,15 @@
+2005-11-17 Kimmo
+ PATCH: [ 1349645 ] Folder Compare Statistics dialog
+ PATCH: [ 1347787 ] Use non-modal dialog for dir compare status
+  Src: DirDoc.cpp DirDoc.h DirFrame.cpp DirFrame.h DirView.cpp DirView.h Merge.cpp Merge.dsp
+   Merge.rc resource.h
+  Src new files: CompareStatisticsDlg.cpp CompareStatisticsDlg.h DirCompProgressDlg.cpp
+   DirCompProgressDlg.h
+  Src deleted files: DirCompStateBar.cpp DirCompStateBar.h
+  Src/res new file: sigma.bmp
+  Src/Languages: *.rc resource.h
+
+
 2005-11-16
  PATCH: [ 1356783 ] Use OptionsMgr in SyntaxColors class
   Src: MainFrm.cpp SyntaxColors.cpp SyntaxColors.h

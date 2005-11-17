@@ -44,6 +44,8 @@
 #include "OptionsDef.h"
 #include "BCMenu.h"
 #include "DirCmpReport.h"
+#include "DirCompProgressDlg.h"
+#include "CompareStatisticsDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -56,18 +58,6 @@ static char THIS_FILE[] = __FILE__;
 
 enum { COLUMN_REORDER=99 };
 
-/**
- * @brief ID for timer closing Compare Pane after delay
- */
-const UINT IDT_CMPPANE_CLOSING = 1;
-
-/**
- * @brief Delay (in milliseconds) for closing Compare Pane
- * after compare is ready. This delay is only applied if
- * automatic closing is enabled.
- */
-const UINT CMPPANE_DELAY = 500;
-
 IMPLEMENT_DYNCREATE(CDirView, CListView)
 
 CDirView::CDirView()
@@ -75,6 +65,7 @@ CDirView::CDirView()
 , m_dispcols(-1)
 , m_pList(NULL)
 , m_nHiddenItems(0)
+, m_pCmpProgressDlg(NULL)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -85,6 +76,7 @@ CDirView::CDirView()
 
 CDirView::~CDirView()
 {
+	delete m_pCmpProgressDlg;
 }
 
 BEGIN_MESSAGE_MAP(CDirView, CListView)
@@ -152,8 +144,6 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_ZIP_RIGHT, OnCtxtDirZipRight)
 	ON_COMMAND(ID_DIR_ZIP_BOTH, OnCtxtDirZipBoth)
 	ON_COMMAND(ID_DIR_ZIP_BOTH_DIFFS_ONLY, OnCtxtDirZipBothDiffsOnly)
-	ON_COMMAND(ID_VIEW_DIR_STATEPANE, OnDirStatePane)
-	ON_UPDATE_COMMAND_UI(ID_VIEW_DIR_STATEPANE, OnUpdateDirStatePane)
 	ON_COMMAND(ID_EDIT_SELECT_ALL, OnSelectAll)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_SELECT_ALL, OnUpdateSelectAll)
 	ON_COMMAND_RANGE(ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, OnPluginPredifferMode)
@@ -178,6 +168,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
 	ON_COMMAND(ID_MERGE_COMPARE, OnMergeCompare)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
+	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
@@ -329,6 +320,19 @@ int CDirView::GetDefaultColImage() const
 	return DIFFIMG_ERROR;
 }
 
+void CDirView::StartCompare(CompareStats *pCompareStats)
+{
+	if (m_pCmpProgressDlg == NULL)
+		m_pCmpProgressDlg = new DirCompProgressDlg();
+
+	if (!::IsWindow(m_pCmpProgressDlg->GetSafeHwnd()))
+		m_pCmpProgressDlg->Create(IDD_DIRCOMP_PROGRESS, this);
+
+	m_pCmpProgressDlg->ShowWindow(SW_SHOW);
+	m_pCmpProgressDlg->SetCompareStat(pCompareStats);
+	m_pCmpProgressDlg->SetDirDoc(GetDocument());
+	m_pCmpProgressDlg->StartUpdating();
+}
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
@@ -1919,16 +1923,14 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
  */
 LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
-	// Close compare pane when compare is ready
-	if (mf->m_options.GetBool(OPT_AUTOCLOSE_CMPPANE))
-	{
-		SetTimer(IDT_CMPPANE_CLOSING, CMPPANE_DELAY, NULL);
-	}
+	UNREFERENCED_PARAMETER(wParam);
+	UNREFERENCED_PARAMETER(lParam);
 
 	CDirDoc * pDoc = GetDocument();
 	ASSERT(pDoc);
 
 	// Currently UI (update) message is sent after compare is ready
+	m_pCmpProgressDlg->CloseDialog();
 	pDoc->CompareReady();
 	Redisplay();
 	
@@ -2094,13 +2096,7 @@ void CDirView::OnTimer(UINT nIDEvent)
 		SetColumnWidths();
 		Redisplay();
 	}
-	else if (nIDEvent == IDT_CMPPANE_CLOSING)
-	{
-		KillTimer(IDT_CMPPANE_CLOSING);
-		CDirFrame *pf = GetParentFrame();
-		pf->ShowProcessingBar(FALSE);
-	}
-	
+
 	CListView::OnTimer(nIDEvent);
 }
 
@@ -2233,30 +2229,6 @@ void CDirView::OnToolsGenerateReport()
 			ResMsgBox1(IDS_REPORT_ERROR, errStr, MB_OK | MB_ICONSTOP);
 	}
 }
-
-/**
- * @brief Show directory compare statepane
- */
-void CDirView::OnDirStatePane()
-{
-	CDirFrame *pf = GetParentFrame();
-	if (!GetDocument()->HasDiffs())
-		return;
-
-	// Clear and recount item numbers
-	pf->clearStatus();
-	pf->UpdateStats();
-	pf->ShowProcessingBar(TRUE);
-}
-
-/**
- * @brief Enable menuitem for compare statepane
- */
-void CDirView::OnUpdateDirStatePane(CCmdUI* pCmdUI)
-{
-	pCmdUI->Enable(GetDocument()->HasDiffs());
-}
-
 
 /**
  * @brief Add special items for non-recursive compare
@@ -2750,4 +2722,11 @@ void CDirView::OnMergeCompare()
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)
 {
 	DoUpdateOpen(pCmdUI);
+}
+
+void CDirView::OnViewCompareStatistics()
+{
+	CompareStatisticsDlg dlg;
+	dlg.SetCompareStats(GetDocument()->GetCompareStats());
+	dlg.DoModal();
 }

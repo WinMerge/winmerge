@@ -221,6 +221,10 @@ SOURCE=.\ColorButton.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CompareStatisticsDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CompareStats.cpp
 # End Source File
 # Begin Source File
@@ -289,7 +293,7 @@ SOURCE=.\DirColsDlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\DirCompStateBar.cpp
+SOURCE=.\DirCompProgressDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -921,6 +925,10 @@ SOURCE=.\ColorButton.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\CompareStatisticsDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CompareStats.h
 # End Source File
 # Begin Source File
@@ -985,7 +993,7 @@ SOURCE=.\DirColsDlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\DirCompStateBar.h
+SOURCE=.\DirCompProgressDlg.h
 # End Source File
 # Begin Source File
 
@@ -1446,6 +1454,10 @@ SOURCE=.\res\rfile.bmp
 # Begin Source File
 
 SOURCE=.\res\rfolder.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\sigma.bmp
 # End Source File
 # Begin Source File
 

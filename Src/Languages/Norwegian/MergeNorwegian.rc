@@ -202,7 +202,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
-        MENUITEM "&Sammenligningsvindu",        ID_VIEW_DIR_STATEPANE
+        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
     END
@@ -992,71 +992,21 @@ BEGIN
                     ES_READONLY
 END
 
-IDD_DIRCOMPSTATE DIALOGEX 0, 0, 415, 59
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD
+IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION " Folder Compare Progress"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "",IDC_STATIC,3,4,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,3,24,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,56,4,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,56,24,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,109,4,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,109,24,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,162,4,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,162,24,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,215,4,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,215,24,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,268,4,51,17,SS_SUNKEN | NOT WS_GROUP
-    LTEXT           "",IDC_STATIC,268,24,51,17,SS_SUNKEN | NOT WS_GROUP
-    CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP,7,8,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_ERROR,IDC_STATIC,"Static",SS_BITMAP,7,27,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP,60,8,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP,60,27,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP,113,8,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP,113,27,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP,165,8,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP,165,27,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP,218,8,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP,218,27,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_FOLDERSKIP,IDC_STATIC,"Static",SS_BITMAP,271,8,12,11,
-                    WS_EX_STATICEDGE
-    CONTROL         IDB_FILESKIP,IDC_STATIC,"Static",SS_BITMAP,271,27,12,11,
-                    WS_EX_STATICEDGE
-    RTEXT           "",IDC_COUNT_FOLDER,24,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_ERROR,24,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_LFOLDER,76,10,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    RTEXT           "",IDC_COUNT_RFOLDER,76,29,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    RTEXT           "",IDC_COUNT_EQUAL,129,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_NOTEQUAL,129,29,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    RTEXT           "",IDC_COUNT_BINARYSAME,182,10,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    RTEXT           "",IDC_COUNT_BINARYDIFF,182,29,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    RTEXT           "",IDC_COUNT_LFILE,235,10,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_RFILE,235,29,26,8,SS_REALSIZEIMAGE | 0x2000
-    RTEXT           "",IDC_COUNT_FOLDERSKIP,288,10,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    RTEXT           "",IDC_COUNT_FILESKIP,288,29,26,8,SS_REALSIZEIMAGE |
-                    0x2000
-    DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,327,17,83,14
-    CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,4,
-                    47,314,9
-    RTEXT           "0",IDC_ITEMSCOMPARED,326,47,30,8
-    LTEXT           "0",IDC_ITEMSTOTAL,370,47,30,8
-    LTEXT           "/",IDC_STATIC,361,47,8,8
+    DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,239,7,83,14
+    CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,8,
+                    32,314,9
+    RTEXT           "0",IDC_ITEMSCOMPARED,150,18,30,8
+    LTEXT           "0",IDC_ITEMSTOTAL,194,18,30,8
+    LTEXT           "/",IDC_STATIC,186,18,8,8
+    LTEXT           "Comparing items...",IDC_STATIC,7,7,150,8
+    LTEXT           "Items compared / Items total:",IDC_STATIC,7,18,129,8
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
@@ -2609,7 +2559,7 @@ BEGIN
     ID_VIEW_WHITESPACE      "Viser et tegn for mellomrom"
     ID_VIEW_DETAIL_BAR      "Veksle forskjellsvindu"
     ID_VIEW_LOCATION_BAR    "Plasseringsvindu viser oversiktbilde av filene"
-    ID_VIEW_DIR_STATEPANE   "Vis mappesammenligningsvindu"
+    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Velg språk til brukergrensesnittet\nSpråk"
     ID_VIEW_LINEDIFFS       "Vis forskjeller på en linje med forskjellig farge\nVis linjeforskjell"
 END

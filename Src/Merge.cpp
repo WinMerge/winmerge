@@ -300,7 +300,6 @@ BOOL CMergeApp::InitInstance()
 		{
 			CDirView * pDirView = DirViews.RemoveHead();
 			CDirFrame *pf = pDirView->GetParentFrame();
-			pf->ShowProcessingBar(FALSE);
 		}
 		pMainFrame->PostMessage(WM_CLOSE, 0, 0);
 	}

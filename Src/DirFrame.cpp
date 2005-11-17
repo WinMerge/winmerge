@@ -116,13 +116,6 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}	
 
-	// Dir frame has a floating bar displayed during comparison
-	if (!CreateStateBar())
-	{
-		TRACE0("Failed to create floating dialog bar\n");
-		return -1;      // fail to create
-	}	
-
 	// Directory frame has a status bar
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
@@ -140,24 +133,6 @@ int CDirFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText, TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText, TRUE);
 	return 0;
-}
-
-/**
- * @brief Create, or recreate, the floating state bar
- *
- * This is the bar with the file counts updated during a directory comparison
- */
-bool CDirFrame::CreateStateBar()
-{
-	if (IsWindow(m_wndCompStateBar.m_hWnd))
-	{
-		m_wndCompStateBar.DestroyWindow();
-	}
-	// Dir frame has a floating bar displayed during comparison
-	if (!m_wndCompStateBar.Create(this))
-		return false;
-	m_wndCompStateBar.EnableDocking(0);
-	return true;
 }
 
 /**
@@ -201,13 +176,6 @@ void CDirFrame::ActivateFrame(int nCmdShow)
 		nCmdShow = SW_SHOWNORMAL;
 
 	CMDIChildWnd::ActivateFrame(nCmdShow);
-	m_bFrameIsActive = TRUE;
-
-	// hide the floating bar
-	ShowProcessingBar(FALSE);
-
-	// and set its initial position (centered at 1/3 of screen)
-	SetStateBarLoc();
 
 	// prepare file path bar to look as a status bar
 	if (m_wndFilePathBar.LookLikeThisWnd(&m_wndStatusBar) == TRUE)
@@ -219,36 +187,6 @@ void CDirFrame::ActivateFrame(int nCmdShow)
  */
 void CDirFrame::UpdateResources()
 {
-	// Ensure show state is correct
-	BOOL StateBarVisible = m_bStateBarIsActive;
-
-	CreateStateBar();
-	if (!StateBarVisible)
-		m_wndCompStateBar.ShowWindow(SW_HIDE);
-	SetStateBarLoc();
-	
-	if (StateBarVisible)
-	{
-		m_wndCompStateBar.UpdateElements();
-		ShowProcessingBar(StateBarVisible);
-	}
-}
-
-/**
- * @brief Set the location of the state control bar
- */
-void CDirFrame::SetStateBarLoc()
-{
-	CRect rc;
-	GetWindowRect(&rc);
-	CPoint origin;
-	origin.x = (rc.left+rc.right)/2;
-	origin.y = (rc.top+rc.bottom)/3;
-	CRect rcBar;
-	m_wndCompStateBar.GetDefaultRect(&rcBar);
-	origin -= rcBar.CenterPoint();
-	// always call once FloatControlBar for a floating bar
-	FloatControlBar(&m_wndCompStateBar, origin);
 }
 
 /**
@@ -294,149 +232,4 @@ void CDirFrame::OnSize(UINT nType, int cx, int cy)
 	CMDIChildWnd::OnSize(nType, cx, cy);
 	
 	m_wndFilePathBar.Resize();
-}
-
-/// clear counters used to track diff progress
-void CDirFrame::clearStatus()
-{
-	m_wndCompStateBar.Reset();
-}
-
-/** 
- * @brief Interface to show/hide the floating state bar
- */
-void CDirFrame::ShowProcessingBar(BOOL bShow)
-{
-	if (bShow) 
-	{
-		ShowControlBar(&m_wndCompStateBar, TRUE, FALSE);
-		// disable the list view as long as the state bar is shown
-		GetActiveView()->EnableWindow(FALSE);
-		m_wndCompStateBar.StartUpdating();
-	}
-	else if (!bShow)
-	{
-		m_wndCompStateBar.EndUpdating();
-		ShowControlBar(&m_wndCompStateBar, FALSE, FALSE);
-	}
-
-	m_bStateBarIsActive = bShow;
-}
-
-
-/** 
- * @brief Enable the list view when the state bar becomes inactive
- */
-void CDirFrame::NotifyHideStateBar()
-{
-	if (GetParentFrame()->GetActiveDocument() != NULL)
-		return;
-	if (!m_bFrameIsActive)
-		// bar hidden because the frame get unactived
-		return;
-	
-	m_bStateBarIsActive = FALSE;
-
-	if (!GetActiveView()->IsWindowEnabled())
-	{
-		// enable the list view and set the focus
-		GetActiveView()->EnableWindow();
-		GetActiveView()->SetFocus();
-	}
-}
-
-/**
- * @brief Override of the MFC functions (see windows help)
- * 
- * @note Hides the state bar when the document is inactive
- * (it is a topmost bar, and we don't want to display it above the new active document)
- */
-void CDirFrame::OnMDIActivate(BOOL bActivate, CWnd* pActivateWnd, CWnd* pDeactivateWnd) 
-{
-
-	if (bActivate == TRUE)
-		if (m_bStateBarIsActive)
-			ShowControlBar(&m_wndCompStateBar, TRUE, FALSE);		
-
-	CMDIChildWnd::OnMDIActivate(bActivate, pActivateWnd, pDeactivateWnd);
-	m_bFrameIsActive = bActivate;
-	
-	if (bActivate == FALSE)
-		if (m_bStateBarIsActive)
-			ShowControlBar(&m_wndCompStateBar, FALSE, FALSE);
-}
-
-/** 
- * @brief Override of the MFC functions (see windows help)
- *
- * @note: this line 'pParentFrame->ShowWindow' is bad with MDI
- * It disturbs the coloring of the document caption if there are two docs
- * (light blue for inactive / blue for active)
- */
-void CDirFrame::ShowControlBar( CControlBar* pBar, BOOL bShow, BOOL bDelay )
-{
-	ASSERT(pBar != NULL);
-	CFrameWnd* pParentFrame = pBar->GetDockingFrame();
-	ASSERT(pParentFrame->GetTopLevelParent() == GetTopLevelParent());
-		// parent frame of bar must be related
-
-	if (bDelay)
-	{
-		pBar->DelayShow(bShow);
-		pParentFrame->DelayRecalcLayout();
-	}
-	else
-	{
-		pBar->SetWindowPos(NULL, 0, 0, 0, 0,
-			SWP_NOZORDER|SWP_NOMOVE|SWP_NOSIZE|SWP_NOACTIVATE|
-			(bShow ? SWP_SHOWWINDOW : SWP_HIDEWINDOW));
-		// call DelayShow to clear any contradictory DelayShow
-		pBar->DelayShow(bShow);
-		if (bShow || !pBar->IsFloating())
-			pParentFrame->RecalcLayout(FALSE);
-	}
-
-	// show or hide the floating frame as appropriate
-	if (pBar->IsFloating())
-	{
-		int nVisCount = pBar->m_pDockBar != NULL ?
-			pBar->m_pDockBar->GetDockedVisibleCount() : bShow ? 1 : 0;
-		if (nVisCount == 1 && bShow)
-		{
-			pParentFrame->m_nShowDelay = -1;
-			if (bDelay)
-			{
-				pParentFrame->m_nShowDelay = SW_SHOWNA;
-				pParentFrame->RecalcLayout(FALSE);
-			}
-			else
-				pParentFrame->ShowWindow(SW_SHOWNA);
-		}
-		else if (nVisCount == 0)
-		{
-			ASSERT(!bShow);
-			pParentFrame->m_nShowDelay = -1;
-			if (bDelay)
-				pParentFrame->m_nShowDelay = SW_HIDE;
-			else
-				pParentFrame->SetWindowPos(NULL, 0, 0, 0, 0, SWP_HIDEWINDOW | SWP_NOACTIVATE  | SWP_NOMOVE | SWP_NOSIZE);
-				// bug : this hides the window and give focus to the parent
-				// (also parent may be disabled too)
-				// pParentFrame->ShowWindow(SW_HIDE);
-		}
-		else if (!bDelay)
-		{
-			pParentFrame->RecalcLayout(FALSE);
-		}
-	}
-}
-
-void CDirFrame::SetCompareStats(CompareStats *pCompareStats)
-{
-	m_wndCompStateBar.SetCompareStat(pCompareStats);
-}
-
-void CDirFrame::UpdateStats()
-{
-	m_wndCompStateBar.UpdateElements();
 }

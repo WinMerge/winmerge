@@ -29,7 +29,7 @@
 #define IDD_GENERATE_PATCH              211
 #define IDD_DIRCOLS                     212
 #define IDD_SELECTUNPACKER              213
-#define IDD_DIRCOMPSTATE                214
+#define IDD_DIRCOMP_PROGRESS            214
 #define IDD_WMGOTO                      215
 #define IDD_PROPPAGE_COMPARE            216
 #define IDD_PROPPAGE_EDITOR             217
@@ -44,6 +44,7 @@
 #define IDD_DIRCMP_REPORT               226
 #define IDD_SHARED_FILTER               227
 #define IDD_PROP_ARCHIVE                228
+#define IDD_COMPARE_STATISTICS          229
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
 #define IDB_NOTEQUAL                    302
@@ -82,6 +83,7 @@
 #define IDB_TOOLS_COLUMNS               335
 #define IDB_MERGE_DELETE                336
 #define IDB_FILE_PRINT                  337
+#define IDB_SIGMA                       338
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -289,6 +291,17 @@
 #define IDC_ARCHIVE_ENABLE              1202
 #define IDC_ARCHIVE_INSTALSTANDALONE    1203
 #define IDC_ARCHIVE_INSTALLOCAL         1204
+#define IDC_STAT_IDENTICFOLDER          1205
+#define IDC_STAT_IDENTICFILE            1206
+#define IDC_STAT_IDENTICBINARY          1207
+#define IDC_STAT_DIFFFILE               1208
+#define IDC_STAT_DIFFBINARY             1209
+#define IDC_STAT_LUNIQFOLDER            1210
+#define IDC_STAT_LUNIQFILE              1211
+#define IDC_STAT_RUNIQFOLDER            1212
+#define IDC_STAT_RUNIQFILE              1213
+#define IDC_STAT_TOTALFOLDER            1214
+#define IDC_STAT_TOTALFILE              1215
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -806,7 +819,7 @@
 #define ID_VIEW_WHITESPACE              32818
 #define ID_VIEW_DETAIL_BAR              32819
 #define ID_VIEW_LOCATION_BAR            32820
-#define ID_VIEW_DIR_STATEPANE           32821
+#define ID_VIEW_DIR_STATISTICS          32821
 #define ID_VIEW_LANGUAGE                32822
 #define ID_VIEW_LINEDIFFS               32823
 #define ID_PREVDIFF                     32832

@@ -284,9 +284,7 @@ void CDirDoc::Rescan()
 	gLog.Write(LOGLEVEL::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
 			m_pCtxt->GetLeftPath(), m_pCtxt->GetRightPath());
 	m_pCompareStats->Reset();
-	pf->SetCompareStats(m_pCompareStats);
-	pf->clearStatus();
-	pf->ShowProcessingBar(TRUE);
+	m_pDirView->StartCompare(m_pCompareStats);
 
 	// Don't clear if only scanning selected items
 	if (!m_bMarkedRescan)
@@ -579,10 +577,6 @@ BOOL CDirDoc::ReusingDirDoc()
 	ASSERT(m_pDirView);
 	m_pDirView->DeleteAllDisplayItems();
 
-	// hide the floating state bar
-	CDirFrame *pf = m_pDirView->GetParentFrame();
-	pf->ShowProcessingBar(FALSE);
-
 	// delete comparison parameters and results
 	delete m_pCtxt;
 	m_pCtxt = NULL;
@@ -809,8 +803,6 @@ void CDirDoc::AbortCurrentScan()
 
 /**
  * @brief Returns true if there is an active scan that hasn't been aborted.
- *
- * @todo: This is for Update command handler of menu item or toolbar button to cancel scan
  */
 bool CDirDoc::IsCurrentScanAbortable() const
 {

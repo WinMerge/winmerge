@@ -44,6 +44,8 @@ class CDirFrame;
 
 class PackingInfo;
 class PathContext;
+class DirCompProgressDlg;
+class CompareStats;
 
 struct ViewCustomFlags
 {
@@ -99,6 +101,7 @@ public:
 public:
 	CDirFrame * GetParentFrame();
 
+	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
 	void UpdateResources();
 	void LoadColumnHeaderItems();
@@ -259,6 +262,7 @@ protected:
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
+	DirCompProgressDlg * m_pCmpProgressDlg;
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
@@ -328,8 +332,6 @@ protected:
 	afx_msg void OnCtxtDirZipBoth();
 	afx_msg void OnCtxtDirZipBothDiffsOnly();
 	afx_msg void OnUpdateCtxtDir(CCmdUI* pCmdUI);
-	afx_msg void OnDirStatePane();
-	afx_msg void OnUpdateDirStatePane(CCmdUI* pCmdUI);
 	afx_msg void OnSelectAll();
 	afx_msg void OnUpdateSelectAll(CCmdUI* pCmdUI);
 	afx_msg void OnPluginPredifferMode(UINT nID);
@@ -354,6 +356,7 @@ protected:
 	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare();
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
+	afx_msg void OnViewCompareStatistics();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
