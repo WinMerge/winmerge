@@ -1220,6 +1220,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1336,6 +1338,61 @@ BEGIN
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
+
+IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Compare Statistics"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
+    LTEXT           "Files:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
+    RTEXT           "Text:",IDC_STATIC,11,26,56,8
+    CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,24,12,11
+    RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
+    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,37,12,11
+    RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
+    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
+    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,64,12,11
+    RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
+    CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,64,12,11
+    RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
+    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,77,12,11
+    RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
+    CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,77,12,11
+    RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
+    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,102,12,11
+    RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
+    CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,102,12,11
+    RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
+    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,115,12,11
+    RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
+    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,140,12,11
+    RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
+    CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,140,12,11
+    RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
+    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1464,6 +1521,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1704,6 +1762,7 @@ BEGIN
     IDS_ALLFILES            "All Files (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1736,7 +1795,7 @@ END
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_WINDOW_TITLE "Directory Comparison Results"
+    IDS_DIRECTORY_WINDOW_TITLE "Folder Comparison Results"
     IDS_FILE_COMPARISON_TITLE "File Comparison"
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
@@ -1780,14 +1839,14 @@ END
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "Select two existing directories or files to compare"
-    IDS_DIRSEL_TAG          "Directory Selection"
-    IDS_OPEN_FILESDIRS      "Select two directories or two files to compare."
+    IDS_ERROR_INCOMPARABLE  "Select two existing folders or files to compare"
+    IDS_DIRSEL_TAG          "Folder Selection"
+    IDS_OPEN_FILESDIRS      "Select two folders or two files to compare."
     IDS_OPEN_LEFTINVALID    "Left path is invalid!"
     IDS_OPEN_RIGHTINVALID   "Right path is invalid!"
     IDS_OPEN_BOTHINVALID    "Both paths are invalid!"
     IDS_OPEN_UNPACKERDISABLED "Choose two files to enable unpacker selection."
-    IDS_OPEN_MISMATCH       "Cannot compare file and directory!"
+    IDS_OPEN_MISMATCH       "Cannot compare file and folder!"
 END
 
 // LOADING FILE
@@ -1968,6 +2027,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Unable to compare files"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "File skipped"
     IDS_DIR_SKIPPED         "Directory skipped"
     IDS_ONLY_IN_FMT         "Only in %1"
@@ -2051,6 +2111,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
     IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2100,6 +2161,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Archive support is not enabled.\n
                             All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.
                             See manual for more info about archive support and how to enable it."
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors
@@ -2238,7 +2307,7 @@ BEGIN
     IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
     IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
     IDS_MANIPURI            "Manipuri"
-    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
+    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmål)"
     IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
     IDS_POLISH              "Polski"
     IDS_PORTUGUESE          "Portugese"
@@ -2467,6 +2536,7 @@ BEGIN
     ID_ALL_RIGHT            "Copy all differences to the right file\nAll Right"
     ID_ALL_LEFT             "Copy all differences to the left file\nAll Left"
     ID_MERGE_DELETE         "Delete selected items from both directories"
+    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
 END
 
 // TOOLS MENU

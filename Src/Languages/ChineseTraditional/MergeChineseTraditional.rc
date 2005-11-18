@@ -1209,6 +1209,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1617,6 +1619,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1857,6 +1860,7 @@ BEGIN
     IDS_ALLFILES            "所有檔案 (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge 專案檔案 (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2121,6 +2125,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "無法比對檔案"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "檔案已略過"
     IDS_DIR_SKIPPED         "資料夾已略過"
     IDS_ONLY_IN_FMT         "只在 %1"
@@ -2199,6 +2204,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "檔案結束是 (DOS/UNIX/MAC) 不同類型在檔案 '%1'。\n 以目前選項， 它們會統一到主類型。\n 你要變更選項並保留不同的檔案結束嗎 ？"
     IDS_PREDIFFER_ERROR      "一個錯誤發生於前置不同檔案 '%1' 以外掛 '%2'。 前置不同無法再套用。"
     IDS_SUGGEST_IGNORECODEPAGE "找到不同碼頁在左邊 (cp%d) 和右邊 (cp%d) 檔案。 \n以它的碼頁顯示每一檔案會有較佳顯示但對合併/複製會有危險。\n你要強迫兩邊使用預設的碼頁嗎 (建議使用)？"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2248,6 +2254,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "未啟用保存支援。\n
                             所有支援保存的需要的元件 (7-zip 和/或 Merge7z*.dll) 找不到。
                             請參考手冊取得更多資訊有關保存支援和如何啟用它。"
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors

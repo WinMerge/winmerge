@@ -1221,6 +1221,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1632,6 +1634,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1872,6 +1875,7 @@ BEGIN
     IDS_ALLFILES            "Todos los archivos (*.*)|*.*||"
     IDS_PROJECTFILES        "Ficheros de Proyecto de WinMerge (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2136,6 +2140,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "No se pueden comparar los ficheros"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "Fichero omitido"
     IDS_DIR_SKIPPED         "Directorio omitido"
     IDS_ONLY_IN_FMT         "Solamente en %1"
@@ -2219,6 +2224,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Los EOL son de tipos diferentes(DOS/UNIX/MAC) en el fichero '%1'.\n Con las opciones actuales, serán unificados al tipo prncipal.\n ¿Desea cambiar las opciones y preservar los EOL diferentes?"
     IDS_PREDIFFER_ERROR      "Ocurrió un error ejecutando el prediffing en el fichero '%1' con el complemento '%2'. El prediffing no será aplicado de nuevo."
     IDS_SUGGEST_IGNORECODEPAGE "Las páginas de códigos son diferentes en el fichero de la izquierda (cp%d) y el de la derecha (cp%d). \nMostrar cada fichero en su página de códigos dará una mejor visualización, pero combinar/copiar sería peligroso.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2268,6 +2274,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "El soporte de archivado no está habilitado.\n
                             Los componentes necesarios(7-zip y/o Merge7z*.dll) para el archivado no están disponibles.
                             Compruebe el manual para más información acerca del soporte de archivado y cómo habilitarlo."                            
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors

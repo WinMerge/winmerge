@@ -84,6 +84,8 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnDestroy();
 	afx_msg void OnHelpButton();
+	afx_msg void OnImportButton();
+	afx_msg void OnExportButton();
 	afx_msg void OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
@@ -93,7 +95,7 @@ protected:
 	void AddPage(CPropertyPage* pPage, LPCTSTR szPath);
 	void SetActivePage(int nPage);
 	CString GetItemPath(HTREEITEM hti);
-	void ReadOptions();
+	void ReadOptions(BOOL bUpdate = FALSE);
 	void SaveOptions();
 
 private:

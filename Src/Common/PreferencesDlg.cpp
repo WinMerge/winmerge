@@ -17,6 +17,7 @@
 #include "SyntaxColors.h"
 #include "PreferencesDlg.h"
 #include "MainFrm.h"
+#include "Merge.h" // SelectFile()
 
 #include "winclasses.h"
 #include "wclassdefines.h"
@@ -61,6 +62,8 @@ BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	ON_WM_DESTROY()
 	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelpButton)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOPT_PAGES, OnSelchangedPages)
+	ON_BN_CLICKED(IDC_TREEOPT_IMPORT, OnImportButton)
+	ON_BN_CLICKED(IDC_TREEOPT_EXPORT, OnExportButton)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -217,7 +220,11 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 	return sPath;
 }
 
-void CPreferencesDlg::ReadOptions()
+/**
+ * @brief Read options from storage to UI controls.
+ * @param [in] bUpdate If TRUE UpdateData() is called
+ */
+void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 {
 	m_pageGeneral.ReadOptions();
 	m_pageColors.ReadOptions();
@@ -227,8 +234,23 @@ void CPreferencesDlg::ReadOptions()
 	m_pageCodepage.ReadOptions();
 	m_pageVss.ReadOptions();
 	m_pageArchive.ReadOptions();
+
+	if (bUpdate)
+	{
+		m_pageGeneral.UpdateData(FALSE);
+		m_pageColors.UpdateData(FALSE);
+		m_pageSystem.UpdateData(FALSE);
+		m_pageCompare.UpdateData(FALSE);
+		m_pageEditor.UpdateData(FALSE);
+		m_pageCodepage.UpdateData(FALSE);
+		m_pageVss.UpdateData(FALSE);
+		m_pageArchive.UpdateData(FALSE);
+	}
 }
 
+/**
+ * @brief Write options from UI to storage.
+ */
 void CPreferencesDlg::SaveOptions()
 {
 	m_pageGeneral.WriteOptions();
@@ -248,4 +270,41 @@ void CPreferencesDlg::SaveOptions()
 void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 {
 	m_pSyntaxColors = pColors;
+}
+
+/**
+ * @brief Imports options from file.
+ */
+void CPreferencesDlg::OnImportButton()
+{
+	CString s;
+	CString caption;
+	VERIFY(caption.LoadString(IDS_OPT_IMPORT_CAPTION));
+	if (SelectFile(s, NULL, caption, IDS_INIFILES, TRUE))
+	{
+		if (m_pOptionsMgr->ImportOptions(s) == OPT_OK)
+		{
+			ReadOptions(TRUE);
+			AfxMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
+		}
+		else
+			AfxMessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
+	}
+}
+
+/**
+ * @brief Exports options to file.
+ */
+void CPreferencesDlg::OnExportButton()
+{
+	CString s;
+	CString caption;
+	VERIFY(caption.LoadString(IDS_OPT_EXPORT_CAPTION));
+	if (SelectFile(s, NULL, caption, IDS_INIFILES, FALSE))
+	{
+		if (m_pOptionsMgr->ExportOptions(s) == OPT_OK)
+			AfxMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
+		else
+			AfxMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
+	}
 }

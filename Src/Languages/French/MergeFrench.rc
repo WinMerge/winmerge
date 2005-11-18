@@ -1222,6 +1222,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Catégories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1521,6 +1523,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1529,6 +1532,7 @@ IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
 //
 
 IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
+IDR_MERGEHAND           CURSOR                  "res\\hand.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1760,6 +1764,7 @@ BEGIN
     IDS_ALLFILES            "Tous les fichiers (*.*)|*.*||"
     IDS_PROJECTFILES        "Fichiers de projet WinMerge (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2021,6 +2026,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Impossible de comparer les fichiers"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "Fichier ignoré"
     IDS_DIR_SKIPPED         "Répertoire ignoré"
     IDS_ONLY_IN_FMT         "Uniquement dans %1"
@@ -2103,6 +2109,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Les fins de ligne sont de type différent (DOS/UNIX/MAC) au fichier '%1'.\n Selon les préférences en vigueur, elles seront uniformisées au type principal.\n Désirez-vous changer l'option et préserver les différences ?"
     IDS_PREDIFFER_ERROR     "Une erreur est survenue pendant la pré-comparaison du fichier '%1' avec le plugiciel '%2'. La pré-comparaison ne sera donc plus utilisée."
     IDS_SUGGEST_IGNORECODEPAGE "Les fichiers n'ont pas la même page de code à gauche (cp%d) et à droite (cp%d). \nL'affichage est ainsi meilleurs cependant les copie/fusion seront dangeureuses.\nDésirez-vous traiter les deux fichiers avec la page de code windows par défaut (recommandé)?"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2152,6 +2159,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Le support d'archives n'est pas qualifié.\n
                             Tous les composants requis (7-zip et/ou Merge7z*.dll) pour le support d'archives ne peuvent être trouvés.
                             Consulter la documentation au sujet du support d'archives indiquant comment le qualifier."
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors

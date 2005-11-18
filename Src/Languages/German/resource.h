@@ -302,6 +302,8 @@
 #define IDC_STAT_RUNIQFILE              1213
 #define IDC_STAT_TOTALFOLDER            1214
 #define IDC_STAT_TOTALFILE              1215
+#define IDC_TREEOPT_IMPORT              1216
+#define IDC_TREEOPT_EXPORT              1217
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -356,6 +358,7 @@
 #define IDS_ALLFILES                    16418
 #define IDS_PROJECTFILES                16419
 #define IDS_PROJECTFILES_EXT            16420
+#define IDS_INIFILES                    16421
 #define IDS_COMPMETHOD_FULL_CONTENTS    16432
 #define IDS_COMPMETHOD_QUICK_CONTENTS   16433
 #define IDS_COMPMETHOD_MODDATE          16434
@@ -578,6 +581,12 @@
 #define IDS_NO_ZIP_SUPPORT              18449
 #define IDS_MERGE7Z_ENABLE_0            18450
 #define IDS_MERGE7Z_ENABLE_2            18451
+#define IDS_OPT_EXPORT_CAPTION          18452
+#define IDS_OPT_IMPORT_CAPTION          18453
+#define IDS_OPT_IMPORT_DONE             18454
+#define IDS_OPT_EXPORT_DONE             18455
+#define IDS_OPT_IMPORT_ERR              18456
+#define IDS_OPT_EXPORT_ERR              18457
 #define IDS_REGEXP_ERROR                18480
 #define IDS_REGEXP_NOMATCH              18481
 #define IDS_REGEXP_INVALID              18482

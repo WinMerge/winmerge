@@ -1220,6 +1220,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Kategorier",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1631,6 +1633,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1871,6 +1874,7 @@ BEGIN
     IDS_ALLFILES            "Alla filer (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge Projektfiler (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2135,6 +2139,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Kan inte jämföra filerna"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "Hoppat över filen"
     IDS_DIR_SKIPPED         "Hoppat över katalogen"
     IDS_ONLY_IN_FMT         "Bara i %1"
@@ -2218,6 +2223,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
     IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2267,6 +2273,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Arkivstöd är inte startat.\n
                             Alla krävda komponenter (7-zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.
                             Se manualen för mer information om arkivstöd och hur man startar det."
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors

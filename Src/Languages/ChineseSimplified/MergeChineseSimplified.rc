@@ -1211,6 +1211,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " 分类",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE | 
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1506,6 +1508,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1560,7 +1563,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_MRU_FIRST       "打开这个文件"
+    ID_FILE_MRU_FILE1       "打开这个文件"
     ID_FILE_MRU_FILE2       "打开这个文件"
     ID_FILE_MRU_FILE3       "打开这个文件"
     ID_FILE_MRU_FILE4       "打开这个文件"
@@ -1747,6 +1750,7 @@ BEGIN
     IDS_ALLFILES            "所有文件 (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge 工程文件 (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1974,7 +1978,6 @@ BEGIN
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "将两侧中不相同的添加到压缩包"
     ID_DIR_MOVE_LEFT_TO_BROWSE "将左侧选中的文件移动到指定文件夹"
     ID_DIR_MOVE_RIGHT_TO_BROWSE "将右侧选中的文件移动到指定文件夹"
-
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES
@@ -2012,6 +2015,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "无法对比文件"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "文件已跳过"
     IDS_DIR_SKIPPED         "文件夹已跳过"
     IDS_ONLY_IN_FMT         "只在 %1"
@@ -2090,6 +2094,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "在文件“%1”中含有不同的换行符(DOS/UNIX/MAC)。\n对应于当前的选项，它们将统一成为一种格式。\n您要改变选项设置以保留原始的不同的换行符吗？"
     IDS_PREDIFFER_ERROR     "在使用插件“%2”对文件“%1”进行预比较时发生了一个错误。预比较将不会被采用。"
     IDS_SUGGEST_IGNORECODEPAGE "左右两侧为不同代码页的文件(左侧为cp%d，右侧为cp%d)。\n分别以不同代码页显示将会有较好的效果，但是合并/复制会有危险。\n您要以Wiondows默认的代码页显示两个文件吗(推荐)？"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2137,6 +2142,14 @@ STRINGTABLE
 BEGIN
     IDS_DIR_RESULTS_EMPTIED "当前的文件夹对比结果将会被清除。"
     IDS_NO_ZIP_SUPPORT      "没有启用压缩包支持。\n \n没找到支持压缩包所需要的组件(7-zip 或 Merge7z*.dll)。\n请查看手册获得有关压缩包支持及如何启用的更多信息。"
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors

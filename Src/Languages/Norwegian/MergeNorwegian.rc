@@ -1220,6 +1220,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
+    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1336,6 +1338,61 @@ BEGIN
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
+
+IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Compare Statistics"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
+    LTEXT           "Files:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
+    RTEXT           "Text:",IDC_STATIC,11,26,56,8
+    CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,24,12,11
+    RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
+    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,37,12,11
+    RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
+    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
+    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,64,12,11
+    RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
+    CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,64,12,11
+    RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
+    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,77,12,11
+    RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
+    CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,77,12,11
+    RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
+    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,102,12,11
+    RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
+    CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,102,12,11
+    RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
+    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,115,12,11
+    RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
+    CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
+    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    72,140,12,11
+    RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
+    CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
+                    131,140,12,11
+    RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
+    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1576,6 +1633,7 @@ IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
+IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1816,6 +1874,7 @@ BEGIN
     IDS_ALLFILES            "Alle filer (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge prosjektfiler (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
+    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2080,6 +2139,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Kan ikke sammenligne filer"
+    IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "Fil hoppet over"
     IDS_DIR_SKIPPED         "Mappe hoppet over"
     IDS_ONLY_IN_FMT         "Kun i %1"
@@ -2163,6 +2223,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Linjeskiftene (EOL) er forskjellig (DOS/UNIX/MAC) i filen '%1'.\n Med gjeldende innstillinger vil de bli endret til hovedtypen.\n Vil du endre innstillingene og bevare de forskjellig linjeskiftene?"
     IDS_PREDIFFER_ERROR      "En feil oppstod under forhåndsforskjell for filen '%1' med programtillegget '%2'. Forhåndsforskjellen blir ikke brukt mer."
     IDS_SUGGEST_IGNORECODEPAGE "Forskjelling tegntabell funnet i venstre (cp%d) og høyre (cp%d) fil. \nVisning av filene i hvert sin tegntabell ser best ut, men fletting/flytting er farlig.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2212,6 +2273,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Arkivstøtte er ikke arkivert.\n
                             Alle nødvendig komponenter (7-zip og/eller Merge7z*.dll) for arkivstøtte ble ikke funnet.
                             Se manualen for mer informasjon om arkivstøtte og hvordan aktivere den."
+    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_OPT_EXPORT_CAPTION  "Select file for export"
+    IDS_OPT_IMPORT_CAPTION  "Select file for import"
+    IDS_OPT_IMPORT_DONE     "Options imported from the file."
+    IDS_OPT_EXPORT_DONE     "Options exported to the file."
+    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
+    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
 END
 
 // Regular expression errors

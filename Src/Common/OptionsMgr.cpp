@@ -404,6 +404,108 @@ int COptionsMgr::GetDefault(CString name, bool & value) const
 }
 
 /**
+ * @brief Export options to file.
+ *
+ * This function enumerates through our options storage and saves
+ * every option name and value to file.
+ *
+ * @param [in] filename Filename where optios are written.
+ * @return
+ * - OPT_OK when succeeds
+ * - OPT_ERR when writing to the file fails
+ */
+int COptionsMgr::ExportOptions(CString filename)
+{
+	int retVal = OPT_OK;
+	POSITION pos = m_optionsMap.GetStartPosition();
+	while (pos && retVal == OPT_OK)
+	{
+		COption option;
+		CString name;
+		CString strVal;
+		m_optionsMap.GetNextAssoc(pos, name, option);
+		varprop::VariantValue value = option.Get();
+		if (value.getType() == varprop::VT_BOOL)
+		{
+			if (value.getBool())
+				strVal = _T("1");
+			else
+				strVal = _T("0");
+		}
+		else if (value.getType() == varprop::VT_INT)
+		{
+			strVal.Format(_T("%d"), value.getInt());
+		}
+		else if (value.getType() == varprop::VT_STRING)
+		{
+			strVal = value.getString();
+		}
+
+		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name, strVal, filename);
+		if (!bRet)
+			retVal = OPT_ERR;
+	}
+	return retVal;
+}
+
+/**
+ * @brief Export options to file.
+ *
+ * This function reads options values and names from given file and
+ * updates values to our options storage. If valuename does not exist
+ * already in options storage its is not created.
+ *
+ * @param [in] filename Filename where optios are written.
+ * @return 
+ * - OPT_OK when succeeds
+ * - OPT_NOTFOUND if file wasn't found or didn't contain values
+ */
+int COptionsMgr::ImportOptions(CString filename)
+{
+	int retVal = OPT_OK;
+	CString name;
+	const int BufSize = 2048; // This should be enough for a long time..
+	TCHAR buf[BufSize] = {0};
+
+	// Query keys - returns NULL separated strings
+	DWORD len = GetPrivateProfileString(_T("WinMerge"), NULL, _T(""),buf, BufSize, filename);
+	if (len == 0)
+		return OPT_NOTFOUND;
+
+	TCHAR *pKey = buf;
+	while (*pKey != NULL)
+	{
+		varprop::VariantValue value = Get(pKey);
+		if (value.getType() == varprop::VT_BOOL)
+		{
+			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename);
+			value.SetBool(boolVal == 1);
+		}
+		else if (value.getType() == varprop::VT_INT)
+		{
+			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename);
+			value.SetInt(intVal);
+		}
+		else if (value.getType() == varprop::VT_STRING)
+		{
+			TCHAR strVal[MAX_PATH] = {0};
+			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH, filename);
+			CString csVal = strVal;
+			value.SetString(csVal);
+		}
+		Set(pKey, value);
+
+		pKey += _tcslen(pKey);
+
+		// Check: pointer is not past string end, and next char is not null
+		// double NULL char ends the keynames string
+		if ((pKey < buf + len) && (*(pKey + 1) != NULL))
+			pKey++;
+	}
+	return retVal;
+}
+
+/**
  * @brief Split option name to path (in registry) and
  * valuename (in registry).
  *

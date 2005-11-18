@@ -98,6 +98,8 @@ public:
 	virtual int SaveOption(CString name, UINT value);
 	virtual int SaveOption(CString name, COLORREF value);
 
+	virtual int ExportOptions(CString filename);
+	virtual int ImportOptions(CString filename);
 
 private:
 	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;
