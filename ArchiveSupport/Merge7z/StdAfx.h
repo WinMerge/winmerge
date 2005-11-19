@@ -9,13 +9,27 @@
 #ifndef GWLP_WNDPROC
 #define INT_PTR int // MS has switched to int
 typedef long LONG_PTR;
+typedef unsigned long ULONG_PTR;
 
-#define SetWindowLongPtr SetWindowLong
-#define GetWindowLongPtr GetWindowLong
+#define GetWindowLongPtrA   GetWindowLongA
+#define GetWindowLongPtrW   GetWindowLongW
+#define SetWindowLongPtrA   SetWindowLongA
+#define SetWindowLongPtrW   SetWindowLongW
+
+#ifdef UNICODE
+#define GetWindowLongPtr  GetWindowLongPtrW
+#define SetWindowLongPtr  SetWindowLongPtrW
+#else
+#define SetWindowLongPtr  SetWindowLongPtrA
+#define GetWindowLongPtr  GetWindowLongPtrA
+#endif // !UNICODE
 
 #define GWLP_WNDPROC GWL_WNDPROC
 #define GWLP_USERDATA GWL_USERDATA
 #define DWLP_MSGRESULT DWL_MSGRESULT
+
+#define IS_INTRESOURCE(_r) (((ULONG_PTR)(_r) >> 16) == 0)
+
 //#define BIF_NEWDIALOGSTYLE 0
 //#define BTNS_BUTTON 0	
 #endif

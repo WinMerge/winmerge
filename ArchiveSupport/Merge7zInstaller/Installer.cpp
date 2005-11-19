@@ -109,7 +109,7 @@ void InstallFile(HWND hWnd, LPTSTR lpName, LPCTSTR lpType, LPTSTR path, int cchP
 		FILETIME ft, ftLocal;
 		if (SystemTimeToFileTime(st, &ftLocal))
 		{
-			LocalFileTimeToFileTime(&ftLocal, &ft);
+			//LocalFileTimeToFileTime(&ftLocal, &ft);
 			SetFileTime(hFile, &ft, &ft, &ft);
 		}
 		CloseHandle(hFile);

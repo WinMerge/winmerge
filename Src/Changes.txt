@@ -1,3 +1,8 @@
+2005-11-19 Jochen
+ Merge7z DllBuild 0017
+  Merge7z: StdAfx.h Merge7zCommon.cpp Merge7zCommon.h revision.txt
+  Merge7zInstaller: Files.rc2 Installer.cpp
+
 2005-11-18 Kimmo
  PATCH: [ 1358408 ] Import and export for options
   Src: Merge.rc resource.h

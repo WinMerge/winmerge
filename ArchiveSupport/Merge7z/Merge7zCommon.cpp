@@ -35,6 +35,7 @@ DATE:		BY:					DESCRIPTION:
 								EnumerateDirectory() in EnumDirItems.cpp has
 								somewhat changed so I can no longer use it.
 2005/10/02	Jochen Tucht		Add CHM format
+2005/11/19	Jochen Tucht		Minor changes to build against 7z430 beta
 */
 
 #include "stdafx.h"
@@ -83,15 +84,33 @@ static void EnumerateDirectory(
 }
 
 HINSTANCE g_hInstance;
+#ifndef _UNICODE
+bool g_IsNT = false;
+static bool IsItWindowsNT()
+{
+  OSVERSIONINFO versionInfo;
+  versionInfo.dwOSVersionInfoSize = sizeof(versionInfo);
+  if (!::GetVersionEx(&versionInfo)) 
+    return false;
+  return (versionInfo.dwPlatformId == VER_PLATFORM_WIN32_NT);
+}
+#endif
+
 DWORD g_dwFlags;
 CHAR g_cPath7z[MAX_PATH];
 
 /**
  * @brief Dll entry point
  */
-BOOL APIENTRY DllMain(HINSTANCE hModule, DWORD, LPVOID)
+BOOL APIENTRY DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID)
 {
-	g_hInstance = hModule;
+	if (dwReason == DLL_PROCESS_ATTACH)
+	{
+		g_hInstance = hInstance;
+#		ifndef _UNICODE
+		g_IsNT = IsItWindowsNT();
+#		endif
+	}
 	return TRUE;
 }
 
@@ -852,6 +871,17 @@ void ReadRegLang(CSysString &langFile)
 void SaveRegLang(const CSysString &langFile)
 {
 }
+
+#ifndef _UNICODE
+void ReadRegLang(UString &langFile)
+{
+	langFile = GetUnicodeString(g_LangPath);
+}
+
+void SaveRegLang(const UString &langFile)
+{
+}
+#endif
 
 /**
  * @brief Export instance of Merge7z interface.
