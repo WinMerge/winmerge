@@ -1,6 +1,7 @@
 2005-11-19 Jochen
  Merge7z DllBuild 0017
   Merge7z: StdAfx.h Merge7zCommon.cpp Merge7zCommon.h revision.txt
+  Merge7z new files: Merge7z430.dsp
   Merge7zInstaller: Files.rc2 Installer.cpp
 
 2005-11-18 Kimmo
