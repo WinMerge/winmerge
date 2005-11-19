@@ -72,8 +72,8 @@ BuildCmds= \
 	FOR %%A IN (Zip\Lang\*.*) DO del %%A \
 	Merge7zInstaller /commit /standalone /select M M Zip \
 	cd Zip \
-	7za a ..\Merge7z.7z -r * -mx5 \
-	7za a -tzip ..\Merge7z.zip -r * -mx5 \
+	7za a ..\Merge7z.7z -bd -r * -mx5 \
+	7za a -tzip ..\Merge7z.zip -bd -r * \
 	
 
 "$(OUTDIR)\Merge7z.7z" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"

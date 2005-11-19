@@ -106,10 +106,9 @@ void InstallFile(HWND hWnd, LPTSTR lpName, LPCTSTR lpType, LPTSTR path, int cchP
 	{
 		DWORD dwNumberOfBytesWritten;
 		BOOL bSuccess = WriteFile(hFile, pResource, dwSize, &dwNumberOfBytesWritten, 0);
-		FILETIME ft, ftLocal;
-		if (SystemTimeToFileTime(st, &ftLocal))
+		FILETIME ft;
+		if (SystemTimeToFileTime(st, &ft))
 		{
-			//LocalFileTimeToFileTime(&ftLocal, &ft);
 			SetFileTime(hFile, &ft, &ft, &ft);
 		}
 		CloseHandle(hFile);
