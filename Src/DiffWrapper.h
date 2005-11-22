@@ -224,6 +224,9 @@ struct DiffFileData
 
 	static void SetDefaultCodepage(int defcp); // set codepage to assume for all unknown files
 
+// enums
+	enum { DIFFS_UNKNOWN=-1, DIFFS_UNKNOWN_QUICKCOMPARE=-9 };
+
 // instance interface
 
 	DiffFileData();

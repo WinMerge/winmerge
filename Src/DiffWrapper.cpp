@@ -829,8 +829,8 @@ DiffFileData::DiffFileData()
 	for (int i=0; i<2; ++i)
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
 	m_used = false;
-	m_ndiffs = 0;
-	m_ntrivialdiffs = 0;
+	m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
+	m_ntrivialdiffs = DiffFileData::DIFFS_UNKNOWN;
 	Reset();
 	// Set default codepages
 	for (i=0; i<sizeof(m_sFilepath)/sizeof(m_sFilepath[0]); ++i)
@@ -1602,8 +1602,9 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// use our own byte-by-byte compare
 		code = byte_compare_files(pCtxt->m_bStopAfterFirstDiff, pCtxt->GetAbortable());
 		// Quick contents doesn't know about diff counts
-		m_ndiffs = -1;
-		m_ntrivialdiffs = -1;
+		// Set to special value to indicate invalid
+		m_ndiffs = DIFFS_UNKNOWN_QUICKCOMPARE;
+		m_ntrivialdiffs = DIFFS_UNKNOWN_QUICKCOMPARE;
 	}
 	else
 	{

@@ -211,7 +211,15 @@ static CString ColDiffsGet(const CDiffContext *, const void *p)
 {
 	const int &r = *static_cast<const int*>(p);
 	CString s;
-	if (r != -1)
+	if (r == DiffFileData::DIFFS_UNKNOWN_QUICKCOMPARE)
+	{ // QuickCompare, unknown
+		s = _T("*");
+	}
+	else if (r == DiffFileData::DIFFS_UNKNOWN)
+	{ // Unique item
+		s = _T("");
+	}
+	else
 	{
 		s.Format(_T("%ld"), r);
 		s = locality::GetLocaleStr(s);

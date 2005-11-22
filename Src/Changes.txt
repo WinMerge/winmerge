@@ -1,3 +1,7 @@
+2005-11-22 Perry
+ PATCH: [ 1334277 ] Show asterisk in #diffs for QuickCompare results
+  Src: DiffWrapper.cpp DiffWrapper.h DirViewColItems.cpp
+
 2005-11-19 Jochen
  Merge7z DllBuild 0017
   Merge7z: StdAfx.h Merge7zCommon.cpp Merge7zCommon.h revision.txt
