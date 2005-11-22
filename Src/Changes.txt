@@ -1,3 +1,7 @@
+2005-11-22 Tim
+ PATCH: [ 1363114 ] Add '*.ctl;*.pag;*.dsr' to Visual Basic highlighter
+  Src/editlib: ccrystaltextview.cpp
+
 2005-11-22 Kimmo
  PATCH: [ 1362882 ] Remove option for autoclosing compare statepane
   Src: Merge.rc OptionsDef.h OptionsInit.cpp PropGeneral.cpp PropGeneral.h resource.h
