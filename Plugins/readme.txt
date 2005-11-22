@@ -1,4 +1,4 @@
-2005-11-21 Perry
+2005-11-22 Perry
  PATCH: [ 1334589 ] Encoding maps for Expat parser, for DisplayXmlFiles plugin
   Plugins\src_VCPP\DisplayXMLFiles altered files:
    DisplayXMLFiles.dsp DisplayXMLFiles.rc WinMergeScript.cpp
@@ -7,6 +7,8 @@
    map_data_8859*.h (1-11, 13-16)
   Plugins\src_VCPP\DisplayXMLFiles\mappings\ISO8859 new files:
    8859*.TXT (1-11, 13-16)
+ BUG: [ 1277320 ] Plugins.txt not up-to-date
+  Plugins/dll/IgnoreCommentsC
 
 2005-09-21 Christian
  PATCH: [ 1341559 ] New CompareMSExcelFiles plugin

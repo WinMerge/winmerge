@@ -94,6 +94,7 @@ This is a lossy operation, which means that the files can only be displayed;
 they cannot be saved, so there is no point in trying to merge.
 --------------------------------------------------------------------------------
 
+
 --------------------------------------------------------------------------------
 DisplayXMLFiles
 --------------------------------------------------------------------------------
@@ -101,3 +102,12 @@ To preprocess XML files, to insert lines around elements, so they display
 more legibly. This is to fix XML files which do not have line returns in
 convenient locations.
 --------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+IgnoreCommentsC
+--------------------------------------------------------------------------------
+Transform C/CPP to compare without comments - save not possible
+Note: This is a prediffer, so it cannot currently be selected from the open dialog.
+--------------------------------------------------------------------------------
+
