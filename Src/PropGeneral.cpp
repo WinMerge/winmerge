@@ -50,7 +50,6 @@ CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral
 , m_bBackup(FALSE)
 , m_bScroll(FALSE)
 , m_bDisableSplash(FALSE)
-, m_bAutoCloseCmpPane(FALSE)
 , m_bSingleInstance(FALSE)
 , m_bVerifyPaths(FALSE)
 , m_bCloseWindowWithEsc(TRUE)
@@ -78,7 +77,6 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_BACKUP_CHECK, m_bBackup);
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
-	DDX_Check(pDX, IDC_CMPPANE_AUTOCLOSE, m_bAutoCloseCmpPane);
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
@@ -102,7 +100,6 @@ void CPropGeneral::ReadOptions()
 	m_bBackup = m_pOptionsMgr->GetBool(OPT_CREATE_BACKUPS);
 	m_bScroll = m_pOptionsMgr->GetBool(OPT_SCROLL_TO_FIRST);
 	m_bDisableSplash = m_pOptionsMgr->GetBool(OPT_DISABLE_SPLASH);
-	m_bAutoCloseCmpPane = m_pOptionsMgr->GetBool(OPT_AUTOCLOSE_CMPPANE);
 	m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
 	m_bVerifyPaths = m_pOptionsMgr->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
@@ -118,7 +115,6 @@ void CPropGeneral::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_CREATE_BACKUPS, m_bBackup == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_AUTOCLOSE_CMPPANE, m_bAutoCloseCmpPane == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);

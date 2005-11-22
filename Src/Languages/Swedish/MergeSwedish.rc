@@ -663,21 +663,19 @@ BEGIN
                     7,17,206,10
     CONTROL         "&Visa inte Startskärm",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Stäng jämför Statuspanel automatiskt",IDC_CMPPANE_AUTOCLOSE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "St&äng fönster med ESC",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Verifiera sökvägar i Öppna-dialogen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,206,10
+                    WS_TABSTOP,7,47,206,10
     CONTROL         "&Tillåt bara en upplaga att köra",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "Starta flera jämförfönster för",IDC_STATIC,7,82,221,37
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    GROUPBOX        "Starta flera jämförfönster för",IDC_STATIC,7,72,221,37
     CONTROL         "&Jämför kataloger",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "Jäm&för filer",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
-    PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge tillåter döljande av några vanliga meddelanderutor. Tryck på knappen för att göra alla meddelanderutor synliga igen.",
                     IDC_STATIC,7,124,168,31

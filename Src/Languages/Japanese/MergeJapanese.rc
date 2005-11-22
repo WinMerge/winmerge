@@ -665,22 +665,19 @@ BEGIN
                     17,206,10
     CONTROL         "スプラッシュ画面を非表示(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "自動的に比較状況ペインを閉じる(&C)",
-                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,37,206,10
     CONTROL         "ESCキーでウインドウを閉じる(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "開くダイアログで自動的にパスを検査する",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,206,10
+                    WS_TABSTOP,7,47,206,10
     CONTROL         "複数のインスタンスを起動しない(&O)",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "複数の比較ウインドウを有効",IDC_STATIC,7,82,221,37
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    GROUPBOX        "複数の比較ウインドウを有効",IDC_STATIC,7,72,221,37
     CONTROL         "フォルダ比較(&F)",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "ファイル比較(&E)",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
-    PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。 全てのメッセージボックスを再び表示させるには、ボタンを押下してください。",
                     IDC_STATIC,7,124,168,31

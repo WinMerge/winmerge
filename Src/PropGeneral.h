@@ -34,7 +34,6 @@ public:
 	BOOL  m_bBackup;
 	BOOL  m_bScroll;
 	BOOL  m_bDisableSplash;
-	BOOL  m_bAutoCloseCmpPane;
 	BOOL  m_bSingleInstance;
 	BOOL  m_bVerifyPaths;
 	BOOL  m_bCloseWindowWithEsc;

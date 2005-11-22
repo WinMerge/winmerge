@@ -664,22 +664,19 @@ BEGIN
                     17,206,10
     CONTROL         "&Splash Screen letiltása",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "Az összehasonlító állapotablak automatikus &bezárása",
-                    IDC_CMPPANE_AUTOCLOSE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,37,206,10
     CONTROL         "Ablakok bezárása az &ESC billentyûvel",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Automatikus útvonalellenõrzés a &Megnyitás ablakban",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,206,10
+                    WS_TABSTOP,7,47,206,10
     CONTROL         "Csak &egy példány futásának engedélyezése",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "Többszörös összehasonlító ablakok engedélyezése:",IDC_STATIC,7,82,221,37
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    GROUPBOX        "Többszörös összehasonlító ablakok engedélyezése:",IDC_STATIC,7,72,221,37
     CONTROL         "&Mappa összehasonlításkor",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "&Fájl összehasonlításkor",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
-    PUSHBUTTON      "Visszaállít",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    PUSHBUTTON      "Visszaállít",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
     LTEXT           "A WinMerge lehetõvé teszi néhány általánosságban látható üzenet elrejtését. Nyomd meg a gombot az üzenetek újbóli megjelenítéséhez.",
                     IDC_STATIC,7,124,168,31

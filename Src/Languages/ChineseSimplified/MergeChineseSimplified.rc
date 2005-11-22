@@ -660,21 +660,19 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
     CONTROL         "停用启动屏幕(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,100,10
-    CONTROL         "自动关闭对比结果窗(&C)",IDC_CMPPANE_AUTOCLOSE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "ESC关闭窗口(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "在“打开”对话框中自动验证路径",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,57,206,10
+                    WS_TABSTOP,7,47,206,10
     CONTROL         "只允许运行一个实例(&A)",IDC_SINGLE_INSTANCE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,67,206,10
-    GROUPBOX        "允许多个对比窗口",IDC_STATIC,7,82,221,37
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    GROUPBOX        "允许多个对比窗口",IDC_STATIC,7,72,221,37
     CONTROL         "文件夹对比(&F)",IDC_MULTIDOC_DIRCMP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "文件对比(&E)",IDC_MULTIDOC_FILECMP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,104,206,10
-    PUSHBUTTON      "重置",IDC_RESET_ALL_MESSAGE_BOXES,178,132,50,13,NOT
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    PUSHBUTTON      "重置",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge 允许您隐藏一些消息提示。\n点击此按钮以使所有隐藏的消息提示重新显示。",
                     IDC_STATIC,7,124,168,31

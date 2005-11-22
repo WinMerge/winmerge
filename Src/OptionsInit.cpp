@@ -54,7 +54,6 @@ void CMainFrame::OptionsInit()
 
 	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(""));
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, true);
-	m_options.InitOption(OPT_AUTOCLOSE_CMPPANE, false);
 	m_options.InitOption(OPT_SINGLE_INSTANCE, false);
 	m_options.InitOption(OPT_MERGE_MODE, false);
 	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, false);
