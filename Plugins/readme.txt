@@ -1,3 +1,13 @@
+2005-11-21 Perry
+ PATCH: [ 1334589 ] Encoding maps for Expat parser, for DisplayXmlFiles plugin
+  Plugins\src_VCPP\DisplayXMLFiles altered files:
+   DisplayXMLFiles.dsp DisplayXMLFiles.rc WinMergeScript.cpp
+  Plugins\src_VCPP\DisplayXMLFiles new files:
+   expat_maps.cpp expat_maps.h MakeExpatEncod.rb
+   map_data_8859*.h (1-11, 13-16)
+  Plugins\src_VCPP\DisplayXMLFiles\mappings\ISO8859 new files:
+   8859*.TXT (1-11, 13-16)
+
 2005-09-21 Christian
  PATCH: [ 1341559 ] New CompareMSExcelFiles plugin
   Plugins/list_of_sources.txt

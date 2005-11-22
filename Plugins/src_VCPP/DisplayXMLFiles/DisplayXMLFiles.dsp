@@ -209,6 +209,10 @@ SOURCE=.\DisplayXMLFiles.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\expat_maps.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
@@ -219,6 +223,70 @@ SOURCE=.\WinMergeScript.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\expat_maps.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_1.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_10.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_11.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_13.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_14.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_15.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_16.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_2.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_3.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_4.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_5.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_6.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_7.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_8.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\map_data_8859_9.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\Resource.h
