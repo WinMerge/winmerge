@@ -2,6 +2,9 @@
  PATCH: [ 1362882 ] Remove option for autoclosing compare statepane
   Src: Merge.rc OptionsDef.h OptionsInit.cpp PropGeneral.cpp PropGeneral.h resource.h
   Src/Languages: *.rc resource.h
+ BUG: [ 1355884 ] 2.4.2 fails to open dvd files
+  File/folder selection dialog couldn't open read-only folders
+  Src: OpenDlg.cpp
 
 2005-11-22 Perry
  PATCH: [ 1334277 ] Show asterisk in #diffs for QuickCompare results

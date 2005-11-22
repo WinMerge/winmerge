@@ -416,7 +416,7 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	ofn.lpstrInitialDir = pszFolder;
 	ofn.lpstrTitle = title;
 	ofn.lpstrFileTitle = NULL;
-	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
 
 	BOOL bRetVal = GetOpenFileName(&ofn);
 
