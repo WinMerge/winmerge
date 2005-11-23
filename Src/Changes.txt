@@ -1,3 +1,5 @@
+2005-11-23 WinMerge experimental release 2.5.0.2 (cvs)
+
 2005-11-22 Tim
  PATCH: [ 1363114 ] Add '*.ctl;*.pag;*.dsr' to Visual Basic highlighter
   Src/editlib: ccrystaltextview.cpp
@@ -41,8 +43,7 @@
   Src/res new file: sigma.bmp
   Src/Languages: *.rc resource.h
 
-
-2005-11-16
+2005-11-16 Kimmo
  PATCH: [ 1356783 ] Use OptionsMgr in SyntaxColors class
   Src: MainFrm.cpp SyntaxColors.cpp SyntaxColors.h
 
