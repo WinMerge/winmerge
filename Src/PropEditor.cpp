@@ -121,10 +121,6 @@ BOOL CPropEditor::OnInitDialog()
 	LoadBreakTypeStrings();
 	UpdateDataToWindow();
 
-	/// @TODO Need to implement the option controlled by this control, 2005-05-03, Perry
-	GetDlgItem(IDC_BREAK_ON_WORDS)->ShowWindow(SW_HIDE);
-
-
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }

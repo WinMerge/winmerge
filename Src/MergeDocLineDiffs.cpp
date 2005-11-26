@@ -359,10 +359,25 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
 	int xwhite = diffOptions.nIgnoreWhitespace;
-	int breakType = GetBreakType();
+	int breakType = GetBreakType(); // whitespace only or include punctuation
+	bool byteColoring = GetByteColoringOption();
 
-	// Make the call to stringdiffs, which does all the hard & tedious computations
-	sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, pworddiffs);
+	if (byteColoring)
+	{
+		int begin1, begin2, end1, end2;
+		sd_ComputeByteDiff(str1, str2, casitive, xwhite, begin1, begin2, end1, end2);
+		if (begin1 != -1 || begin2 != -1)
+		{
+			wdiff wdf(begin1, end1, begin2, end2);
+			pworddiffs->Add(wdf);
+
+		}
+	}
+	else
+	{
+		// Make the call to stringdiffs, which does all the hard & tedious computations
+		sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, pworddiffs);
+	}
 
 	return;
 }

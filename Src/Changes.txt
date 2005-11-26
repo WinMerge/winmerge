@@ -1,3 +1,7 @@
+2005-11-26 Perry
+ PATCH: [ 1241935 ] Implement Line Diff coloring on byte diffs
+  Src: MergeDoc.cpp MergeDoc.h MergeDocLineDiffs.cpp PropEditor.cpp
+
 2005-11-23 WinMerge experimental release 2.5.0.2 (cvs)
 
 2005-11-22 Tim
