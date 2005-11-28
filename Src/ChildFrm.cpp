@@ -200,16 +200,16 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// tell merge doc about these views
 	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
 	pDoc->SetMergeViews(pLeft, pRight);
-	pLeft->m_bIsLeft = TRUE;
-	pRight->m_bIsLeft = FALSE;
+	pLeft->m_nThisPane = 0;
+	pRight->m_nThisPane = 1;
 
 	// stash left & right detail pointers into the mergedoc
 	CMergeDiffDetailView * pLeftDetail = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(0,0);
 	CMergeDiffDetailView * pRightDetail = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(1,0);
 	// tell merge doc about these views
 	pDoc->SetMergeDetailViews(pLeftDetail, pRightDetail);
-	pLeftDetail->m_bIsLeft = TRUE;
-	pRightDetail->m_bIsLeft = FALSE;
+	pLeftDetail->m_nThisPane = 0;
+	pRightDetail->m_nThisPane = 1;
 	
 	return TRUE;
 }

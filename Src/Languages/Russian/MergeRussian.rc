@@ -348,6 +348,8 @@ BEGIN
         MENUITEM "Показы&вать невидимые",       ID_VIEW_WHITESPACE
         MENUITEM "Показывать отличия в строках", ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
         MENUITEM "Пане&ль сравнения",           ID_VIEW_DETAIL_BAR
@@ -2524,6 +2526,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Выбор языка пользователя\nLanguage"
     ID_VIEW_LINEDIFFS       "Выделить отличия в строках разными цветами\nShow Line Diff"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

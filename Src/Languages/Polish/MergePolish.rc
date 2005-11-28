@@ -342,6 +342,8 @@ BEGIN
         MENUITEM "&Poka¿ bia³e znaki",          ID_VIEW_WHITESPACE
         MENUITEM "Poka¿ ró¿nice &linii",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "Pasek &narzêdzi",             ID_VIEW_TOOLBAR
         MENUITEM "Pasek s&tanu",                ID_VIEW_STATUS_BAR
         MENUITEM "Panel &ró¿nic",                  ID_VIEW_DETAIL_BAR
@@ -2630,6 +2632,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Wybierz jêzyk interfejsu u¿ytkownika\nJêzyk"
     ID_VIEW_LINEDIFFS       "Poka¿ ró¿nice w liniach o ró¿nym kolorze\nPoka¿ ró¿ne linie"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

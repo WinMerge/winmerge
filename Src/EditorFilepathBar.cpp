@@ -54,8 +54,8 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 		return FALSE;
 
 	// subclass the two custom edit boxes
-	m_EditLeft.SubClassEdit(IDC_STATIC_TITLE_LEFT, this);
-	m_EditRight.SubClassEdit(IDC_STATIC_TITLE_RIGHT, this);
+	m_Edit[0].SubClassEdit(IDC_STATIC_TITLE_LEFT, this);
+	m_Edit[1].SubClassEdit(IDC_STATIC_TITLE_RIGHT, this);
 
 	return TRUE;
 };
@@ -88,8 +88,8 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 			if (pFont->GetLogFont(&lfFont))
 			{
 				m_pFont->CreateFontIndirect(&lfFont);
-				m_EditLeft.SetFont(m_pFont);
-				m_EditRight.SetFont(m_pFont);
+				m_Edit[0].SetFont(m_pFont);
+				m_Edit[1].SetFont(m_pFont);
 			}
 		}
 	}
@@ -120,19 +120,19 @@ void CEditorFilePathBar::Resize()
 	GetWindowPlacement(&infoBar);
 
 	WINDOWPLACEMENT info1;
-	m_EditLeft.GetWindowPlacement(&info1);
+	m_Edit[0].GetWindowPlacement(&info1);
 	info1.rcNormalPosition.right = infoBar.rcNormalPosition.right /
 		PaneCount - 2;
-	m_EditLeft.SetWindowPlacement(&info1);
-	m_EditLeft.RefreshDisplayText();
+	m_Edit[0].SetWindowPlacement(&info1);
+	m_Edit[0].RefreshDisplayText();
 
 	WINDOWPLACEMENT info2;
-	m_EditRight.GetWindowPlacement(&info2);
+	m_Edit[1].GetWindowPlacement(&info2);
 	info2.rcNormalPosition.left = infoBar.rcNormalPosition.right /
 		PaneCount + 2;
 	info2.rcNormalPosition.right = infoBar.rcNormalPosition.right;
-	m_EditRight.SetWindowPlacement(&info2);
-	m_EditRight.RefreshDisplayText();
+	m_Edit[1].SetWindowPlacement(&info2);
+	m_Edit[1].RefreshDisplayText();
 }
 /** 
  * @brief resize both controls to given sizes (the ones of the splitter views)
@@ -145,16 +145,16 @@ void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
 	WINDOWPLACEMENT info1;
 
 	// resize left filename
-	m_EditLeft.GetWindowPlacement(&info1);
+	m_Edit[0].GetWindowPlacement(&info1);
 	info1.rcNormalPosition.right = info1.rcNormalPosition.left + leftWidth + 4;
-	m_EditLeft.SetWindowPlacement(&info1);
-	m_EditLeft.RefreshDisplayText();
+	m_Edit[0].SetWindowPlacement(&info1);
+	m_Edit[0].RefreshDisplayText();
 
 	// resize right filename
 	info1.rcNormalPosition.left = info1.rcNormalPosition.right + 3;
 	info1.rcNormalPosition.right = info1.rcNormalPosition.left + rightWidth + 4;
-	m_EditRight.SetWindowPlacement(&info1);
-	m_EditRight.RefreshDisplayText();
+	m_Edit[1].SetWindowPlacement(&info1);
+	m_Edit[1].RefreshDisplayText();
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -226,10 +226,7 @@ void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
 	if (m_hWnd == NULL)
 		return;
 
-	if (pane == PANE_LEFT)
-		m_EditLeft.SetWholeText(lpszString);
-	else
-		m_EditRight.SetWholeText(lpszString);
+	m_Edit[pane].SetWholeText(lpszString);
 }
 
 /** 
@@ -246,8 +243,5 @@ void CEditorFilePathBar::SetActive(int pane, BOOL bActive)
 	if (m_hWnd == NULL)
 		return;
 
-	if (pane == PANE_LEFT)
-		m_EditLeft.SetActive(bActive);
-	else
-		m_EditRight.SetActive(bActive);
+	m_Edit[pane].SetActive(bActive);
 }

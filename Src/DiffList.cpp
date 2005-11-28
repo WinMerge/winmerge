@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include "DiffList.h"
 #include "DiffWrapper.h"
+#include "coretools.h"
 
 /**
  * @brief Default constructor, initialises difflist to 64 items.
@@ -430,4 +431,19 @@ const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 {
 	if (m_lastSignificant == -1) return NULL;
 	return DiffRangeAt(m_lastSignificant);
+}
+
+/**
+ * @brief Swap members of diffrange
+ */
+void DiffList::Swap()
+{
+	for (int i = 0; i < m_diffs.GetSize(); ++i)
+	{
+		swap<UINT>(&m_diffs[i].diffrange.begin0, &m_diffs[i].diffrange.begin1);
+		swap<UINT>(&m_diffs[i].diffrange.end0, &m_diffs[i].diffrange.end1);
+		swap<UINT>(&m_diffs[i].diffrange.dbegin0, &m_diffs[i].diffrange.dbegin1);
+		swap<UINT>(&m_diffs[i].diffrange.dend0, &m_diffs[i].diffrange.dend1);
+		swap<int>(&m_diffs[i].diffrange.blank0, &m_diffs[i].diffrange.blank1);
+	}
 }

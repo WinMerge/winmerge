@@ -127,7 +127,7 @@ class CDiffTextBuffer : public CGhostTextBuffer
 		friend class CMergeDoc;
 private :
 		CMergeDoc * m_pOwnerDoc;
-		BOOL m_bIsLeft; /**< Left/Right side */
+		int m_nThisPane; /**< Left/Right side */
 		BOOL FlagIsSet(UINT line, DWORD flag);
 		CString m_strTempPath;
 		int unpackerSubcode;
@@ -165,7 +165,7 @@ public :
 		int getCodepage() const { return m_codepage; }
 		void setCodepage(int value) { m_codepage = value; }
 
-		CDiffTextBuffer(CMergeDoc * pDoc, BOOL bLeft);
+		CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 
 		// If line has text (excluding eol), set strLine to text (excluding eol)
 		BOOL GetLine(int nLineIndex, CString &strLine);
@@ -192,8 +192,7 @@ public :
 
 // Begin declaration of CMergeDoc
 
-	CDiffTextBuffer m_ltBuf; /**< Left side text buffer */
-	CDiffTextBuffer m_rtBuf; /**< Right side text buffer */
+	CDiffTextBuffer *m_ptBuf[2]; /**< Left/Right side text buffer */
 
 protected: // create from serialization only
 	CMergeDoc();
@@ -202,41 +201,39 @@ protected: // create from serialization only
 	
 	// Operations
 public:	
-	DiffFileInfo m_leftSaveFileInfo;
-	DiffFileInfo m_rightSaveFileInfo;
-	DiffFileInfo m_leftRescanFileInfo;
-	DiffFileInfo m_rightRescanFileInfo;
+	DiffFileInfo *m_pSaveFileInfo[2];
+	DiffFileInfo *m_pRescanFileInfo[2];
 	DiffList m_diffList;
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	PathContext m_filePaths; /**< Filepaths for this document */
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
 
-	void UpdateHeaderPath(BOOL bLeft);
-	void UpdateHeaderActivity(BOOL bLeft, BOOL bActivate);
+	void UpdateHeaderPath(int pane);
+	void UpdateHeaderActivity(int pane, BOOL bActivate);
 	void RefreshOptions();
 	void UpdateResources();
 	OPENRESULTS_TYPE OpenDocs(CString sLeftFile, CString sRightFile,
 		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
 	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);
-	int LoadFile(CString sFileName, BOOL bLeft, BOOL & readOnly, int codepage);
+	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
 	void ShowRescanError(int nRescanResult, BOOL bBinary, BOOL bIdentical);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
-	void CopyAllList(bool bSrcLeft, bool bCurrentLeft);
-	void CopyMultipleList(bool bSrcLeft, bool bCurrentLeft, int firstDiff, int lastDiff);
+	void CopyAllList(int srcPane, int dstPane);
+	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
 	BOOL SanityCheckDiff(DIFFRANGE dr);
-	void ListCopy(bool bSrcLeft, bool bCurrentLeft, bool bGroupWithPrevious = false);
+	void ListCopy(int srcPane, int dstPane, bool bGroupWithPrevious = false);
 	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, CString & sError,
-		BOOL bLeft, PackingInfo * pInfoTempUnpacker);
-	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
-	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, BOOL bLeft);
+		int nBuffer, PackingInfo * pInfoTempUnpacker);
+	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
+	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int leftLine);
 	int LeftLineInMovedBlock(int rightLine);
 	void SetDiffViewMode(BOOL bEnable);
-	void SetEditedAfterRescan(BOOL bLeft);
+	void SetEditedAfterRescan(int nBuffer);
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
 	void SetPrediffer(PrediffingInfo * infoPrediffer);
@@ -246,11 +243,14 @@ public:
 	void SetDirDoc(CDirDoc * pDirDoc);
 	void DirDocClosing(CDirDoc * pDirDoc);
 	BOOL CloseNow();
+	void SwapFiles();
 
-	CMergeEditView * GetLeftView() const { return m_pLeftView; }
-	CMergeEditView * GetRightView() const { return m_pRightView; }
-	CMergeDiffDetailView * GetLeftDetailView() const { return m_pLeftDetailView; }
-	CMergeDiffDetailView * GetRightDetailView() const { return m_pRightDetailView; }
+	CMergeEditView * GetLeftView() const { return m_pView[0]; }
+	CMergeEditView * GetRightView() const { return m_pView[1]; }
+	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
+	CMergeDiffDetailView * GetLeftDetailView() const { return m_pDetailView[0]; }
+	CMergeDiffDetailView * GetRightDetailView() const { return m_pDetailView[1]; }
+	CMergeDiffDetailView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
 	CChildFrame * GetParentFrame();
 
 	// Overrides
@@ -278,7 +278,7 @@ private:
 // Implementation
 public:
 	BOOL IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
-		BOOL bSave, BOOL bLeft);
+		BOOL bSave, int nBuffer);
 	BOOL SaveHelper(BOOL bAllowCancel);
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
@@ -293,7 +293,6 @@ public:
 
 // implementation methods
 private:
-	BOOL GetOptionInt(LPCTSTR name) const;
 	BOOL GetOptionBool(LPCTSTR name) const;
 	bool GetBreakType() const;
 	bool GetByteColoringOption() const;
@@ -301,23 +300,18 @@ private:
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
-	CMergeEditView * m_pLeftView; /**< Pointer to left view */
-	CMergeEditView * m_pRightView; /**< Pointer to right view */
-	CMergeDiffDetailView * m_pLeftDetailView;
-	CMergeDiffDetailView * m_pRightDetailView;
+	CMergeEditView * m_pView[2]; /**< Pointer to left/right view */
+	CMergeDiffDetailView * m_pDetailView[2];
 	CDirDoc * m_pDirDoc;
 	BOOL m_bEnableRescan; /**< Automatic rescan enabled/disabled */
 	COleDateTime m_LastRescan; /**< Time of last rescan (for delaying) */ 
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
 	PackingInfo * m_pInfoUnpacker;
-	CString m_strLeftDesc; /**< Left side description text */
-	CString m_strRightDesc; /**< Right side description text */
-	BUFFERTYPE m_nLeftBufferType;
-	BUFFERTYPE m_nRightBufferType;
+	CString m_strDesc[2]; /**< Left/right side description text */
+	BUFFERTYPE m_nBufferType[2];
 	BOOL m_bMergingMode; /**< Merging or Edit mode */
-	BOOL m_bLeftEditAfterRescan; /**< Left doc edited after rescanning */
-	BOOL m_bRightEditAfterRescan; /**< Right doc edited after rescanning */
+	BOOL m_bEditAfterRescan[2]; /**< Left/right doc edited after rescanning */
 	TempFileContext * m_pTempFiles; /**< Temp files for compared files */
 
 // friend access

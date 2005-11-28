@@ -342,6 +342,8 @@ BEGIN
         MENUITEM "空白を表示(&V)",              ID_VIEW_WHITESPACE
         MENUITEM "行内の差異を表示(&W)",        ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "ペインの交換(&A)",            ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "Diffペイン(&P)",              ID_VIEW_DETAIL_BAR
@@ -2518,6 +2520,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "現在のユーザーインターフェース言語を選択します\n言語"
     ID_VIEW_LINEDIFFS       "行内の差異を色を変えて表示します\n行内の差異を表示"
+    ID_VIEW_SWAPPANES       "2つのペインの位置を交換します"
 END
 
 // MERGE MENU

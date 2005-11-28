@@ -39,8 +39,10 @@ public:
 	PathContext(CString sLeft, CString sRight);
 	CString GetLeft(BOOL bNormalized = TRUE) const;
 	CString GetRight(BOOL bNormalized = TRUE) const;
+	CString GetPath(int index, BOOL bNormalized = TRUE) const;
 	void SetLeft(LPCTSTR path);
 	void SetRight(LPCTSTR path);
+	void SetPath(int index, LPCTSTR path);
 
 private:
 	PathInfo m_pathLeft; /**< First path (left path at start) */
@@ -57,7 +59,7 @@ public:
 	BOOL CreateFiles(const PathContext &paths);
 	BOOL FilesExist();
 	void DeleteFiles();
-	const CString & GetPath() const { return m_sTempPath; }
+	const CString & GetTempPath() const { return m_sTempPath; }
 
 private:
 	CString m_sTempPath;

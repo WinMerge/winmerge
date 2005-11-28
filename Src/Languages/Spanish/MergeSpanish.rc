@@ -342,6 +342,8 @@ BEGIN
         MENUITEM "Mostrar &espacios",            ID_VIEW_WHITESPACE
         MENUITEM "Mostrar diferencias de &línea",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "Barra de &herramientas",      ID_VIEW_TOOLBAR
         MENUITEM "Barra de &estado",            ID_VIEW_STATUS_BAR
         MENUITEM "Panel de di&ferencias",                  ID_VIEW_DETAIL_BAR
@@ -2630,6 +2632,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Permite seleccionar el idioma del interface de usuario\nIdioma"
     ID_VIEW_LINEDIFFS       "Muestra las diferencias en las líneas en un color diferente\nMostrar diferencias de línea"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

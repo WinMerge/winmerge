@@ -341,6 +341,8 @@ BEGIN
         MENUITEM "檢視空白和跳格(&V)",          ID_VIEW_WHITESPACE
         MENUITEM "檢視列不同(&W)",              ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "工具列(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
         MENUITEM "不同窗框(&P)",                ID_VIEW_DETAIL_BAR
@@ -2610,6 +2612,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
     ID_VIEW_LINEDIFFS       "以不同色彩顯示列內的不同\n顯示列不同"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

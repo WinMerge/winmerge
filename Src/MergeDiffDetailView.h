@@ -38,7 +38,7 @@ protected:
 
 // Attributes
 public:
-	BOOL m_bIsLeft;
+	int m_nThisPane;
 protected:
 	/// first line of diff (first displayable line)
 	int m_lineBegin;

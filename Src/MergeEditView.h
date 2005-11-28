@@ -123,7 +123,7 @@ protected:
 
 // Attributes
 public:
-	BOOL m_bIsLeft;
+	int m_nThisPane;
 	LONG m_nModifications;
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
@@ -150,7 +150,7 @@ private:
 public:
 	void RefreshOptions();
 	BOOL EnableRescan(BOOL bEnable);
-	BOOL IsReadOnly(BOOL bLeft);
+	BOOL IsReadOnly(int pane);
 	void ShowDiff(BOOL bScroll, BOOL bSelectText);
 	virtual void OnEditOperation(int nAction, LPCTSTR pszText);
 	void UpdateLineLengths();
@@ -178,7 +178,7 @@ public:
 	virtual void GetLineColors2 (int nLineIndex, DWORD ignoreFlags
 		, COLORREF & crBkgnd, COLORREF & crText, BOOL & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
-	void GotoLine(UINT nLine, BOOL bRealLine, BOOL bLeft);
+	void GotoLine(UINT nLine, BOOL bRealLine, int pane);
 	int GetTopLine() { return m_nTopLine; };
 	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); };
 	void RepaintLocationPane();
@@ -288,6 +288,8 @@ protected:
 	afx_msg void OnOpenFile();
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
+	afx_msg void OnViewSwapPanes();
+	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

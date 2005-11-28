@@ -78,7 +78,7 @@ protected:
 
 private:
 	// this dialog uses custom edit boxes
-	CFilepathEdit m_EditLeft, m_EditRight;
+	CFilepathEdit m_Edit[2];
 	CFont * m_pFont; /**< Font for editcontrols */
 };
 

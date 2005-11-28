@@ -342,6 +342,8 @@ BEGIN
         MENUITEM "&Vis mellomrom",              ID_VIEW_WHITESPACE
         MENUITEM "V&is linjeforksjell",         ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
         MENUITEM "&Forskjellsvindu",            ID_VIEW_DETAIL_BAR
@@ -2629,6 +2631,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Velg språk til brukergrensesnittet\nSpråk"
     ID_VIEW_LINEDIFFS       "Vis forskjeller på en linje med forskjellig farge\nVis linjeforskjell"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

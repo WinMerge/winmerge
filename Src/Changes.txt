@@ -1,4 +1,14 @@
-2005-12-28 Perry
+2005-11-28 Kimmo
+ PATCH: [ 1265295 ] Swap file compare panes (use pointers for buffers)
+  Submitted by Takashi Sawanaka
+  Src: ChildFrm.cpp DiffList.cpp DiffList.h DirDoc.cpp EditorFilepathBar.cpp
+   EditorFilepathBar.h LocationView.cpp LocationView.h MainFrm.cpp Merge.rc
+   MergeDiffDetailView.cpp MergeDiffDetailView.h MergeDoc.cpp MergeDoc.h
+   MergeDocLineDiffs.cpp MergeEditView.cpp MergeEditView.h PathContext.cpp
+   PathContext.h resource.h
+  Src/Languages: *.rc resource.h
+
+2005-11-28 Perry
  PATCH: [ 1336598 ] Add extensions DisplayXMLFiles plugin
  Add several new extensions, bump version (1.0.2.0 -> 1.0.3.0)
   Plugins\src_VCPP\DisplayXMLFiles:

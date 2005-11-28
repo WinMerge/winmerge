@@ -36,7 +36,7 @@ static char THIS_FILE[] = __FILE__;
 IMPLEMENT_DYNCREATE(CMergeDiffDetailView, CCrystalTextView)
 
 CMergeDiffDetailView::CMergeDiffDetailView()
-: m_bIsLeft(FALSE)
+: m_nThisPane(0)
 , m_lineBegin(0)
 , m_lineEnd(-1)
 , m_diffLength(0)
@@ -78,14 +78,12 @@ CMergeDoc* CMergeDiffDetailView::GetDocument() // non-debug version is inline
 // CMergeDiffDetailView message handlers
 CCrystalTextBuffer *CMergeDiffDetailView::LocateTextBuffer ()
 {
-	if (m_bIsLeft)
-		return &GetDocument()->m_ltBuf;
-	return &GetDocument()->m_rtBuf;
+	return GetDocument()->m_ptBuf[m_nThisPane];
 }
 
 void CMergeDiffDetailView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
 {
-	TRACE(_T("Scroll %s: pos=%d\n"), m_bIsLeft? _T("left"):_T("right"), pos);
+	TRACE(_T("Scroll %s: pos=%d\n"), m_nThisPane == 0 ? _T("left"):_T("right"), pos);
 	if (bDoScroll
 		&& (code == SB_THUMBPOSITION
 			|| code == SB_THUMBTRACK))
@@ -186,16 +184,8 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
 	for (int i = 0; i < nWordDiffs; i++)
 	{
-		if (m_bIsLeft)
-		{
-			pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[0];
-			pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[0] + 1;
-		}
-		else
-		{
-			pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[1];
-			pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[1] + 1;
-		}
+		pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[m_nThisPane];
+		pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[m_nThisPane] + 1;
 		pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
 		pBuf[1 + i * 2].m_nBgColorIndex = COLORINDEX_HIGHLIGHTBKGND1 | COLORINDEX_APPLYFORCE;
 		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
@@ -559,8 +549,8 @@ BOOL CMergeDiffDetailView::PreTranslateMessage(MSG* pMsg)
 		{
 			// Set modified status to false so that we are not asking
 			// about saving again
-			pd->m_ltBuf.SetModified(FALSE);
-			pd->m_rtBuf.SetModified(FALSE);
+			pd->m_ptBuf[0]->SetModified(FALSE);
+			pd->m_ptBuf[1]->SetModified(FALSE);
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 			return FALSE;
 		}

@@ -121,6 +121,7 @@ public:
 	const DIFFRANGE * DiffRangeAt(int nDiff) const;
 
 	void ConstructSignificantChain(); // must be called after diff list is entirely populated
+	void Swap();
 
 private:
 	CArray<DiffRangeInfo,DiffRangeInfo> m_diffs; /**< Difference list */

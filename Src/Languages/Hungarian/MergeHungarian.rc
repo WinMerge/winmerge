@@ -342,6 +342,8 @@ BEGIN
         MENUITEM "&Szóközök mutatása",            ID_VIEW_WHITESPACE
         MENUITEM "Sorok &eltérésének mutatása",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
         MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
         MENUITEM "Eltérés &panel",                  ID_VIEW_DETAIL_BAR
@@ -2514,6 +2516,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Add meg a használni kívánt nyelvet\nNyelv"
     ID_VIEW_LINEDIFFS       "A sorok közötti különbségek kijelzés más-más színnel\nSorok eltérésének mutatása"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

@@ -306,8 +306,8 @@ void CDirDoc::Rescan()
 	if (m_bMarkedRescan)
 		m_pCompareStats->IncreaseTotalItems(m_pDirView->GetSelectedCount());
 
-	UpdateHeaderPath(TRUE);
-	UpdateHeaderPath(FALSE);
+	UpdateHeaderPath(0);
+	UpdateHeaderPath(1);
 	// draw the headers as active ones
 	pf->GetHeaderInterface()->SetActive(0, TRUE);
 	pf->GetHeaderInterface()->SetActive(1, TRUE);
@@ -626,6 +626,10 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
 	POSITION pos = FindItemFromPaths(paths.GetLeft(), paths.GetRight());
+	// TODO: when this happens?
+	if (!pos)
+		// Two files were swapped.
+		pos = FindItemFromPaths(paths.GetRight(), paths.GetLeft());
 	ASSERT(pos);
 	int ind = m_pDirView->GetItemIndex((DWORD)pos);
 

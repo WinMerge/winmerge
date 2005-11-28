@@ -1805,8 +1805,8 @@ void CMainFrame::OnClose()
 			{
 				// Set modified status to false so that we are not asking
 				// about saving again. 
-				pMergeDoc->m_ltBuf.SetModified(FALSE);
-				pMergeDoc->m_rtBuf.SetModified(FALSE);
+				pMergeDoc->m_ptBuf[0]->SetModified(FALSE);
+				pMergeDoc->m_ptBuf[1]->SetModified(FALSE);
 			}
 		}
 	}
@@ -2178,7 +2178,7 @@ void CMainFrame::OnToolsGeneratePatch()
 	{
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		// If there are changes in files, tell user to save them first
-		if (pMergeDoc->m_ltBuf.IsModified() || pMergeDoc->m_ltBuf.IsModified())
+		if (pMergeDoc->m_ptBuf[0]->IsModified() || pMergeDoc->m_ptBuf[0]->IsModified())
 		{
 			bOpenDialog = FALSE;
 			AfxMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
@@ -2950,8 +2950,8 @@ void CMainFrame::OnWindowCloseAll()
 			{
 				// Set modified status to false so that we are not asking
 				// about saving again. 
-				pMergeDoc->m_ltBuf.SetModified(FALSE);
-				pMergeDoc->m_rtBuf.SetModified(FALSE);
+				pMergeDoc->m_ptBuf[0]->SetModified(FALSE);
+				pMergeDoc->m_ptBuf[1]->SetModified(FALSE);
 			}
 		}
 	}

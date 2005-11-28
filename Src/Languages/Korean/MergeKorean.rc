@@ -342,6 +342,8 @@ BEGIN
         MENUITEM "공백 보기(&V)",               ID_VIEW_WHITESPACE
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
+        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM SEPARATOR
         MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
         MENUITEM "선택 비교창 보기(&P)",        ID_VIEW_DETAIL_BAR
@@ -2511,6 +2513,7 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "언어를 선택합니다.\n언어"
     ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
 END
 
 // MERGE MENU

@@ -78,7 +78,7 @@ HighlightDiffRect(CMergeDiffDetailView * pView, const CRect & rc)
 void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 {
 	CRect rc1, rc2;
-	Computelinediff(m_pLeftView, m_pRightView, pView->GetCursorPos().y, &rc1, &rc2, difflvl);
+	Computelinediff(m_pView[0], m_pView[1], pView->GetCursorPos().y, &rc1, &rc2, difflvl);
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
@@ -91,8 +91,8 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 	}
 
 	// Actually display selection areas on screen in both edit panels
-	HighlightDiffRect(m_pLeftView, rc1);
-	HighlightDiffRect(m_pRightView, rc2);
+	HighlightDiffRect(m_pView[0], rc1);
+	HighlightDiffRect(m_pView[1], rc2);
 }
 
 /**
@@ -101,7 +101,7 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl)
 {
 	CRect rc1, rc2;
-	Computelinediff(m_pLeftDetailView, m_pRightDetailView, pView->GetCursorPos().y, &rc1, &rc2, difflvl);
+	Computelinediff(m_pDetailView[0], m_pDetailView[1], pView->GetCursorPos().y, &rc1, &rc2, difflvl);
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
@@ -114,8 +114,8 @@ void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl)
 	}
 
 	// Actually display selection areas on screen in both detail panels
-	HighlightDiffRect(m_pLeftDetailView, rc1);
-	HighlightDiffRect(m_pRightDetailView, rc2);
+	HighlightDiffRect(m_pDetailView[0], rc1);
+	HighlightDiffRect(m_pDetailView[1], rc2);
 }
 
 /**
@@ -322,14 +322,14 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
  */
 void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 {
-	if (nLineIndex >= m_pLeftView->GetLineCount()) return;
-	if (nLineIndex >= m_pRightView->GetLineCount()) return;
+	if (nLineIndex >= m_pView[0]->GetLineCount()) return;
+	if (nLineIndex >= m_pView[1]->GetLineCount()) return;
 
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	CString str1 = m_pLeftView->GetLineChars(nLineIndex);
-	CString str2 = m_pRightView->GetLineChars(nLineIndex);
+	CString str1 = m_pView[0]->GetLineChars(nLineIndex);
+	CString str2 = m_pView[1]->GetLineChars(nLineIndex);
 
 	if (!diffOptions.bEolSensitive)
 	{
@@ -353,8 +353,8 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 	}
 
 	// We truncate diffs to remain inside line (ie, to not flag eol characters)
-	int width1 = m_pLeftView->GetLineLength(nLineIndex);
-	int width2 = m_pRightView->GetLineLength(nLineIndex);
+	int width1 = m_pView[0]->GetLineLength(nLineIndex);
+	int width2 = m_pView[1]->GetLineLength(nLineIndex);
 
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
