@@ -52,8 +52,8 @@ STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 	// xsd - XML schema files
 	// xsl - XML style sheet, xslt-fo, whatever
 	// xslt - XML style sheet
-	// svg - Vector graphics (in XML)
-	// wsf (windows scripting host files in xml)
+	// svg - Scalable Vector graphics
+	// wsf - Windows Scripting Host files
 	*pVal = SysAllocString(L"\\.xml;\\.xsd;\\.xsl;\\.xslt;\\.svg;\\.wsf$");
 	return S_OK;
 }
