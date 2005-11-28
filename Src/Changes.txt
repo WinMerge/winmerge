@@ -1,3 +1,11 @@
+2005-12-28 Perry
+ PATCH: [ 1336598 ] Add extensions DisplayXMLFiles plugin
+ Add several new extensions, bump version (1.0.2.0 -> 1.0.3.0)
+  Plugins\src_VCPP\DisplayXMLFiles:
+   DisplayXMLFiles.dsp DisplayXMLFiles.rc WinMergeScript.cpp
+  Plugins\dlls:
+   DisplayXMLFiles.dll
+
 2005-11-26 Perry
  PATCH: [ 1241935 ] Implement Line Diff coloring on byte diffs
   Src: MergeDoc.cpp MergeDoc.h MergeDocLineDiffs.cpp PropEditor.cpp

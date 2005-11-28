@@ -48,7 +48,13 @@ STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"\\.xml$");
+	// xml - XML files
+	// xsd - XML schema files
+	// xsl - XML style sheet, xslt-fo, whatever
+	// xslt - XML style sheet
+	// svg - Vector graphics (in XML)
+	// wsf (windows scripting host files in xml)
+	*pVal = SysAllocString(L"\\.xml;\\.xsd;\\.xsl;\\.xslt;\\.svg;\\.wsf$");
 	return S_OK;
 }
 

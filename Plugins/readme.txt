@@ -1,3 +1,11 @@
+2005-12-28 Perry
+ PATCH: [ 1336598 ] Add extensions DisplayXMLFiles plugin
+ Add several new extensions, bump version (1.0.2.0 -> 1.0.3.0)
+  Plugins\src_VCPP\DisplayXMLFiles:
+   DisplayXMLFiles.dsp DisplayXMLFiles.rc WinMergeScript.cpp
+  Plugins\dlls:
+   DisplayXMLFiles.dll
+
 2005-11-22 Perry
  PATCH: [ 1334589 ] Encoding maps for Expat parser, for DisplayXmlFiles plugin
   Plugins\src_VCPP\DisplayXMLFiles altered files:
