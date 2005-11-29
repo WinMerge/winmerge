@@ -2999,18 +2999,24 @@ void CMergeDoc::UpdateResources()
 	GetRightView()->UpdateResources();
 }
 
-
-// Lookup named property and return as BOOL
-BOOL CMergeDoc::GetOptionBool(LPCTSTR name) const
+// Lookup named property and return as int
+BOOL CMergeDoc::GetOptionInt(LPCTSTR name) const
 {
 	// Currently options are held by the main frame, in a subobject called m_options
 	return mf->m_options.GetInt(name);
 }
 
+// Lookup named property and return as BOOL
+BOOL CMergeDoc::GetOptionBool(LPCTSTR name) const
+{
+	// Currently options are held by the main frame, in a subobject called m_options
+	return mf->m_options.GetBool(name);
+}
+
 // Return current word breaking break type setting (whitespace only or include punctuation)
 bool CMergeDoc::GetBreakType() const
 {
-	return !!GetOptionBool(OPT_BREAK_TYPE);
+	return !!GetOptionInt(OPT_BREAK_TYPE);
 }
 
 // Return true to do line diff colors at the byte level (false to do them at word level)
