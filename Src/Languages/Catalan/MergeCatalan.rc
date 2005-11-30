@@ -202,7 +202,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "Estadístiques de &comparació",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
     END
@@ -284,8 +284,8 @@ BEGIN
             MENUITEM "&Anomena i desa...",          ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "&Imprimeix...",                   ID_FILE_PRINT
+        MENUITEM "&Visualització prèvia de la impressió",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
         MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
@@ -342,7 +342,7 @@ BEGIN
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
         MENUITEM "&Veure les diferències de la línia", ID_VIEW_LINEDIFFS
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM "&Intercanvia les subfinestres", ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
@@ -636,7 +636,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Aplica a &tots els elements",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "&Extreu",IDOK,47,145,62,14
+    DEFPUSHBUTTON   "&Extreu (check-out)",IDOK,47,145,62,14
     PUSHBUTTON      "&Anomena i desa...",IDC_SAVE_AS,116,145,62,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,187,145,62,14
 END
@@ -758,15 +758,15 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "&Extreu",IDOK,169,115,67,14
+    DEFPUSHBUTTON   "&Extreu (check-out)",IDOK,169,115,67,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,223,115,67,14
     PUSHBUTTON      "Anomena i &desa...",IDC_SAVE_AS,169,115,67,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comentaris",IDC_STATIC,18,7,38,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "Aplica-ho a tots els elements",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+    CONTROL         "Reintegra (check-in) després d'extreure (check-out)",IDC_CHECKIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
@@ -997,17 +997,17 @@ IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION " Folder Compare Progress"
+CAPTION "Progrés de la comparació de carpeta"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,239,7,83,14
+    DEFPUSHBUTTON   "&Atura",IDC_COMPARISON_STOP,239,7,83,14
     CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,8,
                     32,314,9
     RTEXT           "0",IDC_ITEMSCOMPARED,150,18,30,8
     LTEXT           "0",IDC_ITEMSTOTAL,194,18,30,8
     LTEXT           "/",IDC_STATIC,186,18,8,8
-    LTEXT           "Comparing items...",IDC_STATIC,7,7,150,8
-    LTEXT           "Items compared / Items total:",IDC_STATIC,7,18,129,8
+    LTEXT           "Comparant elements...",IDC_STATIC,7,7,150,8
+    LTEXT           "Elements comparats / Elements totals:",IDC_STATIC,7,18,129,8
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
@@ -1221,8 +1221,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categories",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
-    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
-    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
+    PUSHBUTTON      "Importa...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Exporta...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1343,43 +1343,43 @@ END
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Compare Statistics"
+CAPTION "Estadístiques de comparació"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
-    LTEXT           "Files:",IDC_STATIC,131,7,39,8
-    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
+    LTEXT           "Carpetes:",IDC_STATIC,72,7,38,8
+    LTEXT           "Fitxers:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "Diferents",IDC_STATIC,7,15,186,40
     RTEXT           "Text:",IDC_STATIC,11,26,56,8
     CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,24,12,11
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    RTEXT           "Binaris:",IDC_STATIC,10,40,56,8
     CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,37,12,11
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
-    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
-    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    GROUPBOX        "Únics",IDC_STATIC,7,55,186,40
+    RTEXT           "Esquerra:",IDC_STATIC,11,66,56,8
     CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,64,12,11
     RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
     CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,64,12,11
     RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
-    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    RTEXT           "Dreta:",IDC_STATIC,11,79,56,8
     CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,77,12,11
     RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
     CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,77,12,11
     RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
-    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    GROUPBOX        "Idèntics",IDC_STATIC,7,95,186,37
     CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,102,12,11
     RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
     CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,102,12,11
     RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    RTEXT           "Binaris:",IDC_STATIC,10,117,56,8
     CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,115,12,11
     RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
@@ -1391,7 +1391,7 @@ BEGIN
     CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,140,12,11
     RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
-    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+    DEFPUSHBUTTON   "Tanca",IDOK,200,140,50,14
 END
 
 
@@ -1777,7 +1777,7 @@ BEGIN
     IDS_ALLFILES            "Tots els fitxers (*.*)|*.*||"
     IDS_PROJECTFILES        "Fitxers de projecte del WinMerge (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
-    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+    IDS_INIFILES            "Fitxers d'options de configuració (*.ini)|*.ini|Tots els fitxers (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1903,15 +1903,15 @@ END
 // VSS
 STRINGTABLE
 BEGIN
-    IDS_NOPROJECT           "Cal que especifiqueu el camí a un projecte del SourceSafe per tal de continuar (p.ex.:  $/MyProject)"
-    IDS_VSS_CHECKOUT_STATUS "Extreu fitxers de VSS..."
-    IDS_VSSERROR            "El sistema de control de versions ha retornat un error en extreure el fitxer. No es pot continuar..."
+    IDS_NOPROJECT           "Cal que especifiqueu el camí a un projecte del SourceSafe per tal de continuar (p.ex.:  $/ElMeuProjecte)"
+    IDS_VSS_CHECKOUT_STATUS "Extreu (check-out) fitxers del VSS..."
+    IDS_VSSERROR            "El sistema de control de versions ha retornat un error en extreure (check-out) el fitxer. No es pot continuar..."
     IDS_VSS_RUN_ERROR       "S'ha produït un error en executar una ordre del sistema de control de versions."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "La carpeta de treball del VSS i la ubicació del fitxer actual no concorden. Voleu continuar?"
-    IDS_VSS_NODATABASES     "No s'han trobat cap base de dades de VSS!"
-    IDS_VSS_ERRORFROM       "Error de VSS:"
-    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
+    IDS_VSS_NODATABASES     "No s'han trobat cap base de dades del VSS!"
+    IDS_VSS_ERRORFROM       "Error del VSS:"
+    IDS_VSS_CHECKINERROR     "El sistema de control de versions ha retornat un error en intentar retornar el fitxer.\nReviseu les especificacions de configuració de la vista emprada.\nVoleu desfer la operació d'extracció (check-out)?"
+    IDS_VSS_UNCOERROR        "El sistema de control de versions ha retornat un error en intentar desfer l'extracció (check-out) del fitxer.\nReviseu les especificacions de configuració de la vista emprada."
 END
 
 // VSS system
@@ -2041,7 +2041,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "No es pot comparar els fitxers"
-    IDS_ABORTED_ITEM        "Item aborted"
+    IDS_ABORTED_ITEM        "Element avortat"
     IDS_FILE_SKIPPED        "Fitxer omès"
     IDS_DIR_SKIPPED         "Directori omès"
     IDS_ONLY_IN_FMT         "Només a %1"
@@ -2125,7 +2125,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
-    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_INVALID_DIRECTORY   "La carpeta seleccionada és invàlida."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2175,14 +2175,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "El suport d'arxivament no està habilitat.\n
                             Els components necessaris (7-zip i/o Merge7z*.dll) per al suport d'arxivament no s'han pogut trobar.
                             Vegeu el manual per a més informació quan al suport per a arxivament i com habilitar-lo."
-    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
-    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
-    IDS_OPT_EXPORT_CAPTION  "Select file for export"
-    IDS_OPT_IMPORT_CAPTION  "Select file for import"
-    IDS_OPT_IMPORT_DONE     "Options imported from the file."
-    IDS_OPT_EXPORT_DONE     "Options exported to the file."
-    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
-    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
+    IDS_MERGE7Z_ENABLE_0    "\nNota: La integració del 7-Zip està desabilitada des dels ajustos del WinMerge."
+    IDS_MERGE7Z_ENABLE_2    "\nNota: La integració del 7-Zip està restringida com a operació independent des dels ajustos del WinMerge."
+    IDS_OPT_EXPORT_CAPTION  "Trieu el fitxer per a exportar"
+    IDS_OPT_IMPORT_CAPTION  "Trieu el fitxer per a importar"
+    IDS_OPT_IMPORT_DONE     "S'ha importat les opcions des del fitxer."
+    IDS_OPT_EXPORT_DONE     "S'ha exportat les opcions al fitxer."
+    IDS_OPT_IMPORT_ERR      "No s'ha pogut importar les opcions del fitxer."
+    IDS_OPT_EXPORT_ERR      "No s'ha pogut escriure les opcions al fitxer."
 END
 
 // Regular expression errors
@@ -2530,10 +2530,10 @@ BEGIN
     ID_VIEW_WHITESPACE      "Mostra els caràcters d'espais"
     ID_VIEW_DETAIL_BAR      "Mostra la subfinestra de diferències"
     ID_VIEW_LOCATION_BAR    "Mostra la subfinestra d'ubicació amb una image general dels fitxers"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATISTICS  "Mostra el quadre de diàleg d'estadístiques de comparació de carpeta"
     ID_VIEW_LANGUAGE        "Selecciona l'idioma de la interfície d'usuari\nIdioma"
     ID_VIEW_LINEDIFFS       "Mostra les diferències dins les línies en un color diferent\nMostra les diferències de línia"
-    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
+    ID_VIEW_SWAPPANES       "Intercanvia la posició d'ambdues subfinestres"
 END
 
 // MERGE MENU

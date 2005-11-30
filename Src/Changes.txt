@@ -1,3 +1,9 @@
+2005-11-30 Kimmo
+ PATCH: [ 1369544 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Docs/Users/Languages: ReadMe-Catalan.txt
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2005-11-30 Perry
  Cosmetic: add comment to DiffThread giving value of msgID variable
   (to help debugging).
