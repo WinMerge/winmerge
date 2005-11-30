@@ -48,7 +48,6 @@ struct DiffFuncStruct
 	CString path2;
 	CDiffContext * context;
 	UINT msgUIUpdate;
-	UINT msgStatusUpdate;
 	HWND hWindow;
 	UINT nThreadState;
 	BOOL bRecursive;
@@ -57,7 +56,6 @@ struct DiffFuncStruct
 	DiffFuncStruct()
 		: context(0)
 		, msgUIUpdate(0)
-		, msgStatusUpdate(0)
 		, hWindow(0)
 		, nThreadState(THREAD_NOTSTARTED)
 		, bRecursive(FALSE)
