@@ -3,6 +3,9 @@
   Src: DiffThread.cpp
  BUG: [ 1369856 ] Crashed when interface language is changed
   Src: DirDoc.cpp
+ BUG: [ 1368755 ] Want comment on format line in 7ZCommon.cpp
+  Cosmetic: adding explanatory comment to Merge7z::Proxy::operator->
+  Src: 7zCommon.cpp
 
 2005-11-30 Kimmo
  PATCH: [ 1369544 ] Catalan translation update

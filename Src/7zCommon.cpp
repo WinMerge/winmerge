@@ -675,8 +675,16 @@ BOOL CALLBACK FindNextResLang(HMODULE hModule, LPCTSTR lpType, LPCTSTR lpName, W
  */
 interface Merge7z *Merge7z::Proxy::operator->()
 {
+	// As long as the Merge7z*.DLL has not yet been loaded, Merge7z
+	// [0] points to the name of the DLL (with placeholders for 7-
+	// Zip major and minor version numbers). Once the DLL has been
+	// loaded successfully, Merge7z[0] is set to NULL, causing the
+	// if to fail on subsequent calls.
+
 	if (const char *format = Merge7z[0])
 	{
+		// Merge7z has not yet been loaded
+
 		char name[MAX_PATH];
 		DWORD flags = ~0;
 		CException *pCause = NULL;
