@@ -1,3 +1,8 @@
+2005-11-30 Perry
+ Cosmetic: add comment to DiffThread giving value of msgID variable
+  (to help debugging).
+  Src: DiffThread.cpp
+
 2005-11-28 Perry
  BUG: [ 1368492 ] cvs ASSERT failing
  Fix reversion bug from Patch [ 1265295 ]

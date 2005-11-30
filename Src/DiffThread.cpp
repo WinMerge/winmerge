@@ -239,6 +239,7 @@ UINT DiffThread(LPVOID lpParam)
 
 	// Send message to UI to update
 	myStruct->nThreadState = THREAD_COMPLETED;
+	// msgID=MSG_UI_UPDATE=1025 (2005-11-29, Perry)
 	PostMessage(hWnd, msgID, NULL, NULL);
 	return 1;
 }
