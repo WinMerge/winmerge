@@ -3,6 +3,10 @@
   Submitted by Jordi Vilar
   Docs/Users/Languages: ReadMe-Catalan.txt
   Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1265295 ] Swap file compare panes (use pointers for buffers)
+  Forgot to update resource.h in language folders
+  Src/Languages: resource.h
+
 
 2005-11-30 Perry
  Cosmetic: add comment to DiffThread giving value of msgID variable
