@@ -396,6 +396,12 @@ void CDirDoc::Redisplay()
 	if (!m_pDirView)
 		return;
 
+	// Do not redisplay an empty CDirView
+	// Not only does it not have results, but AddSpecialItems will crash
+	// trying to dereference null context pointer to get to paths
+	if (!HasDiffs())
+		return;
+
 	m_pDirView->Redisplay();
 }
 
