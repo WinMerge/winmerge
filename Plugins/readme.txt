@@ -1,4 +1,12 @@
-2005-12-28 Perry
+2005-12-01 Perry
+ Add support for Microsoft proprietary Windows codepages
+ Plugsin\src_VCPP\DisplayXMLFiles:
+  expat_maps.cpp
+  New map_data_CP*.h (1250-1258)
+ New Plugsin\src_VCPP\DisplayXMLFiles\mappings\VENDORs\MICSFT\WINDOWS
+  CP*.TXT (1250-1258
+
+2005-11-28 Perry
  PATCH: [ 1336598 ] Add extensions DisplayXMLFiles plugin
  Add several new extensions, bump version (1.0.2.0 -> 1.0.3.0)
   Plugins\src_VCPP\DisplayXMLFiles:

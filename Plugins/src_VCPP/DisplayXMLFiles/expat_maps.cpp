@@ -26,6 +26,7 @@
 
 #include "StdAfx.h"
 #include <stdio.h>
+
 #include "expat.h"
 #include "expat_maps.h"
 #include "map_data_8859_1.h"
@@ -43,6 +44,14 @@
 #include "map_data_8859_14.h"
 #include "map_data_8859_15.h"
 #include "map_data_8859_16.h"
+#include "map_data_CP1250.h"
+#include "map_data_CP1251.h"
+#include "map_data_CP1252.h"
+#include "map_data_CP1253.h"
+#include "map_data_CP1254.h"
+#include "map_data_CP1255.h"
+#include "map_data_CP1256.h"
+#include "map_data_CP1257.h"
 
 struct map_info { const char * name; int * mapdata; };
 
@@ -62,12 +71,53 @@ static map_info known_maps[] = {
 	,{ "ISO-8859-14", &map_data_8859_14[0] }
 	,{ "ISO-8859-15", &map_data_8859_15[0] }
 	,{ "ISO-8859-16", &map_data_8859_16[0] }
+	,{ "CP-1250", &map_data_CP1250[0] }
+	,{ "CP-1251", &map_data_CP1251[0] }
+	,{ "CP-1252", &map_data_CP1252[0] }
+	,{ "CP-1253", &map_data_CP1253[0] }
+	,{ "CP-1254", &map_data_CP1254[0] }
+	,{ "CP-1255", &map_data_CP1255[0] }
+	,{ "CP-1256", &map_data_CP1256[0] }
+	,{ "CP-1257", &map_data_CP1257[0] }
 };
 
 static void populate_encoding_info(const map_info * mapinfo, XML_Encoding * info);
+static int do_maps_getMap(const XML_Char *name, XML_Encoding *info);
+
+static const char * aliases[] = {
+	"ISO8859-", "ISO-8859-"
+	, "WINDOWS-", "CP-"
+	, "WINDOWS", "CP-"
+	, "CP", "CP-"
+};
 
 int
 expat_maps_getMap(const XML_Char *name, XML_Encoding *info)
+{
+	for (int i=0; i<sizeof(aliases)/sizeof(aliases[0]); i += 2)
+	{
+		const char * alias = aliases[i];
+		const char * cpref = aliases[i+1];
+		const char * str0 = aliases[0];
+		const char * str1 = aliases[1];
+		const char * str2 = aliases[2];
+		const char * str3 = aliases[3];
+		int aliaslen = strlen(alias);
+		if (0 == strnicmp(name, alias, aliaslen) && isdigit(name[aliaslen]))
+		{
+			int cpreflen = strlen(cpref);
+			char cname[256];
+			strcpy(cname, cpref);
+			strncat(cname, &name[aliaslen], sizeof(cname)-cpreflen);
+			cname[sizeof(cname)-1] = 0;
+			return do_maps_getMap(cname, info);
+		}
+	}
+	return do_maps_getMap(name, info);
+}
+
+static int
+do_maps_getMap(const XML_Char *name, XML_Encoding *info)
 {
 	for (int i=0; i<sizeof(known_maps)/sizeof(known_maps[0]); ++i)
 	{
