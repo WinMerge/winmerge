@@ -60,7 +60,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 : m_bRecurse(FALSE)
 , m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
-, m_msgUpdateStatus(0)
 , m_hDirFrame(NULL)
 , m_nCompMethod(-1)
 , m_bIgnoreSmallTimeDiff(FALSE)
@@ -93,7 +92,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_paths.SetRight(pszRight);
 	m_pList = src.m_pList;
 	m_piFilterGlobal = src.m_piFilterGlobal;
-	m_msgUpdateStatus = src.m_msgUpdateStatus;
 	m_hDirFrame = src.m_hDirFrame;
 	m_nCompMethod = src.m_nCompMethod;
 	m_bIgnoreSmallTimeDiff = src.m_bIgnoreSmallTimeDiff;

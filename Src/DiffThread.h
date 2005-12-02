@@ -72,7 +72,6 @@ private:
 	DiffFuncStruct * m_pDiffParm;
 	DiffThreadAbortable * m_pAbortgate;
 	UINT m_msgUpdateUI;
-	UINT m_msgUpdateStatus;
 	HWND m_hWnd;
 	bool m_bAborting;
 	bool m_bOnlyRequested;

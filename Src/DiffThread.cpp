@@ -88,7 +88,6 @@ CDiffThread::CDiffThread()
 	m_pDiffParm = new DiffFuncStruct;
 	m_pAbortgate = new DiffThreadAbortable(this);
 	m_msgUpdateUI = 0;
-	m_msgUpdateStatus = 0;
 	m_hWnd = 0;
 	m_bAborting = FALSE;
 }
@@ -155,7 +154,6 @@ void CDiffThread::SetHwnd(HWND hWnd)
 void CDiffThread::SetMessageIDs(UINT updateMsg, UINT statusMsg)
 {
 	m_msgUpdateUI = updateMsg;
-	m_msgUpdateStatus = statusMsg;
 }
 
 /**

@@ -90,7 +90,6 @@ public:
 	BOOL m_bRecurse;
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
-	UINT m_msgUpdateStatus;
 	HWND m_hDirFrame;
 	BOOL m_bGuessEncoding;
 	int m_nCompMethod; /**< Compare method */
