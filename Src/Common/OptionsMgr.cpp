@@ -464,7 +464,7 @@ int COptionsMgr::ImportOptions(CString filename)
 {
 	int retVal = OPT_OK;
 	CString name;
-	const int BufSize = 2048; // This should be enough for a long time..
+	const int BufSize = 10240; // This should be enough for a long time..
 	TCHAR buf[BufSize] = {0};
 
 	// Query keys - returns NULL separated strings

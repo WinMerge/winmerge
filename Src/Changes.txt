@@ -1,3 +1,8 @@
+2005-12-02 Kimmo
+ PATCH: [ 1358408 ] Import and export for options
+  Increase buffer size
+  Src/Common: OptionsMgr.cpp
+
 2005-12-02 Perry
  PATCH: [ 1369660 ] Delete unused variables m_msgUpdateStatus
   Cosmetic cleanup
@@ -21,7 +26,6 @@
  PATCH: [ 1265295 ] Swap file compare panes (use pointers for buffers)
   Forgot to update resource.h in language folders
   Src/Languages: resource.h
-
 
 2005-11-30 Perry
  Cosmetic: add comment to DiffThread giving value of msgID variable
