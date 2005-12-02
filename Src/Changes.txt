@@ -1,3 +1,8 @@
+2005-12-02 Perry
+ PATCH: [ 1369660 ] Delete unused variables m_msgUpdateStatus
+  Cosmetic cleanup
+  Src: DirDoc.cpp
+
 2005-11-30 Perry
  PATCH: [ 1369657 ] Delete unused variable DiffFuncStruct::msgStatusUpdate
   Src: DiffThread.cpp
