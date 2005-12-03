@@ -297,6 +297,7 @@ private:
 	BOOL GetOptionBool(LPCTSTR name) const;
 	bool GetBreakType() const;
 	bool GetByteColoringOption() const;
+	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 
 // Implementation data
 protected:

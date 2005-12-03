@@ -557,6 +557,8 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 	int n = MultiByteToWideChar(cpin, flags, (LPCSTR)src, srclen, wbuff, wlen-1);
 	if (!n)
 	{
+		int nsyserr = ::GetLastError();
+		CString syserrstr = GetSysError(nsyserr);
 		delete [] wbuff;
 		dest[0] = '?';
 		return 1;
@@ -568,7 +570,18 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 	wlen = n;
 	int clen = wlen * 2 + 6;
 	BOOL defaulted=FALSE;
-	n = WideCharToMultiByte(cpout, flags, wbuff, n, dest, destsize-1, NULL, &defaulted);
+	BOOL * pdefaulted = &defaulted;
+	if (cpout == CP_UTF8)
+	{
+		flags = 0;
+		pdefaulted = NULL;
+	}
+	n = WideCharToMultiByte(cpout, flags, wbuff, n, dest, destsize-1, NULL, pdefaulted);
+	if (!n)
+	{
+		int nsyserr = ::GetLastError();
+		CString syserrstr = GetSysError(nsyserr);
+	}
 	dest[n] = 0;
 	delete [] wbuff;
 	if (lossy)

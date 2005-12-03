@@ -41,7 +41,8 @@ static int f_nDefaultCodepage; // store the default codepage as specified by use
 
 static int f_bInitialized = false;
 
-// map number to bit code, 0x01 = supported, 0x10 = installed
+// map number to bit code
+enum { CP_SUPPORTED_FLAG=0x01, CP_INSTALLED_FLAG=0x10 };
 static CMap<int, int, int, int> f_codepage_status;
 
 // map name to number
@@ -128,7 +129,7 @@ static BOOL CALLBACK EnumInstalledCodePagesProc(LPTSTR lpCodePageString)
 	{
 		int value = 0;
 		f_codepage_status.Lookup(codepage, value);
-		value |= 0x10; // installed
+		value |= CP_INSTALLED_FLAG; // installed
 		f_codepage_status[codepage] = value;
 		RecordAliases(lpCodePageString, codepage);
 	}
@@ -145,7 +146,7 @@ static BOOL CALLBACK EnumSupportedCodePagesProc(LPTSTR lpCodePageString)
 	{
 		int value = 0;
 		f_codepage_status.Lookup(codepage, value);
-		value |= 0x01; // installed
+		value |= CP_SUPPORTED_FLAG; // supported (but not necessarily installed)
 		f_codepage_status[codepage] = value;
 		RecordAliases(lpCodePageString, codepage);
 	}
@@ -168,7 +169,7 @@ bool isCodepageInstalled(int codepage)
 {
 	initialize();
 	int value=0;
-	return f_codepage_status.Lookup(codepage, value) && (value & 0x01);
+	return f_codepage_status.Lookup(codepage, value) && (value & CP_INSTALLED_FLAG);
 }
 
 /**
@@ -178,7 +179,7 @@ bool isCodepageSupported(int codepage)
 {
 	initialize();
 	int value=0;
-	return f_codepage_status.Lookup(codepage, value) && (value & 0x10);
+	return f_codepage_status.Lookup(codepage, value) && (value & CP_SUPPORTED_FLAG);
 }
 
 static codepage_wminfo f_codepageinfo[] = {
@@ -270,11 +271,11 @@ void getCodepages(CArray<int, int> * pages, bool includeUninstalled)
 	{
 		int codepage=0, status=0;
 		f_codepage_status.GetNextAssoc(pos, codepage, status);
-		if (status & 0x01)
+		if (status & CP_INSTALLED_FLAG)
 		{
 			pages->Add(codepage);
 		}
-		else if (includeUninstalled && (status & 0x10))
+		else if (includeUninstalled && (status & CP_SUPPORTED_FLAG))
 		{
 			pages->Add(codepage);
 		}

@@ -21,13 +21,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief Is specified codepage number valid on this system?
- */
-static unsigned ValidCodepage(unsigned cp)
-{
-	return cp && isCodepageSupported(cp) ? cp : 0;
-}
 
 /**
  * @brief Parser for HTML files to find encoding information
@@ -128,7 +121,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 		}
 		lstrcpynA(line, base, sizeof line);
 	} while (len && sscanf(line, "#pragma code_page(%d)", &cp) != 1);
-	return ValidCodepage(cp);
+	return cp;
 }
 
 /**

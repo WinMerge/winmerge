@@ -1,3 +1,8 @@
+2005-12-03 Perry
+ PATCH: [ 1335128 ] Ignore uninstalled codepages
+  Src: MergeDoc.cpp MergeDoc.h codepage.cpp codepage_detect.cpp
+  Src/Common: unicoder.cpp
+
 2005-12-02 Kimmo
  PATCH: [ 1358408 ] Import and export for options
   Increase buffer size

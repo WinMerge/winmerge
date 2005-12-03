@@ -28,6 +28,8 @@
 // $Id$
 
 #include "stdafx.h"
+#include <Shlwapi.h>		// PathCompactPathEx()
+
 #include "Merge.h"
 #include "direct.h"
 #include "MainFrm.h"
@@ -55,7 +57,7 @@
 #include "DiffList.h"
 #include "sbuffer.h"
 #include "dllver.h"
-#include <Shlwapi.h>		// PathCompactPathEx()
+#include "codepage.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -2500,6 +2502,19 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 }
 
 /**
+ * @brief Is specified codepage number valid for use in WinMerge Merge Editor?
+ */
+bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
+{
+	if (!cp) // 0 is our signal value for invalid
+		return false;
+	// Codepage must be actually installed on system
+	// for us to be able to use it
+	// We accept whatever codepages that codepage module says are installed
+	return isCodepageInstalled(cp);
+}
+
+/**
  * @brief Loads files and does initial rescan
  * @param sLeftFile [in] File to open to left side
  * @param sRightFile [in] File to open to right side
@@ -2518,6 +2533,12 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	BOOL bBinary = FALSE;
 	BOOL bIdentical = FALSE;
 	int nRescanResult = RESCAN_OK;
+
+	// Filter out invalid codepages, or editor will display all blank
+	if (!IsValidCodepageForMergeEditor(cpleft))
+		cpleft = 0;
+	if (!IsValidCodepageForMergeEditor(cpright))
+		cpright = 0;
 
 	// clear undo stack
 	undoTgt.clear();
