@@ -12,10 +12,11 @@
   Plugins\src_VCPP\DisplayXMLFiles:
    DisplayXMLFiles.dsp DisplayXMLFiles.rc WinMergeScript.cpp
   Plugins\dlls:
-   DisplayXMLFiles.dll
+   DisplayXMLFiles.dll (v1.0.3.0)
 
 2005-11-22 Perry
  PATCH: [ 1334589 ] Encoding maps for Expat parser, for DisplayXmlFiles plugin
+ Bump version (1.0.0.1 => 1.0.2.0)
   Plugins\src_VCPP\DisplayXMLFiles altered files:
    DisplayXMLFiles.dsp DisplayXMLFiles.rc WinMergeScript.cpp
   Plugins\src_VCPP\DisplayXMLFiles new files:
@@ -61,10 +62,11 @@
  BUG: [ 1244546 ] DisplayXMLFiles linking looks wrong
   src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
  BUG: [ 1244536 ] DisplayXMLFiles missing from Plugins/dlls
-  Plugins\dlls: new file DisplayXMLFiles.dll
+  Plugins\dlls: new file DisplayXMLFiles.dll (v1.0.0.1)
 
 2005-06-27 Christian
  PATCH: [ 1219818 ] Plugin to display XML files
+ Original version: 1.0.0.1
   Two new dirs added:
   Src\ExpatLib - This is the expat xml parser version 1.95.8
   Plugins\src_VCPP\DisplayXMLFiles - A plugin which uses the expat parser
