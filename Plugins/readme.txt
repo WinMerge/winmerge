@@ -29,15 +29,17 @@
 
 2005-09-21 Christian
  PATCH: [ 1341559 ] New CompareMSExcelFiles plugin
+ Original version: 1.0.0.0
   Plugins/list_of_sources.txt
   New directory: Plugins\src_VB\CompareMSExcelFiles
-  New file: Plugins\dlls\CompareMSExcelFiles.dll
+  New file: Plugins\dlls\CompareMSExcelFiles.dll (v1.0.0.0)
 
 2005-09-21 Christian
  PATCH: [ 1252903 ] Plugin to display MS Word files
+ Original version: 1.0.0.0
   Plugins/list_of_sources.txt
   New directory: Plugins\src_VB\CompareMSWordFiles
-  New file: Plugins\dlls\CompareMSWordFiles.dll
+  New file: Plugins\dlls\CompareMSWordFiles.dll (v1.0.0.0)
 
 2005-09-01 Kimmo
  PATCH: [ 1277316 ] New layout for list_of_sources.txt
@@ -79,6 +81,8 @@
  PATCH [ 1206215 ] Fix DisplayBinaryFiles dll source to compile
  BUG [ 1206209 ] DisplayBinaryFiles.dll does not compile under MSVC7 (2003)
  BUG [ 1205960 ] DisplayBinaryFiles code does not compile in debug
+ Bump version (1.0.0.1 => 1.0.1.0)
+ (Binary version in Plugins\dlls not updated)
   Fix compilation for DisplayBinaryFiles, for both MSVC6 (debug) and MSVC7
   DisplayBinaryFiles: DisplayBinaryFiles.dsp typeinfoex.h WinMergeScript.cpp
    new file ChangeLog.txt
@@ -96,7 +100,7 @@
 2004-06-21 Laoran
  PATCH: [ 972299 ] Unpacker for comparing binary files
   Plugins: list of sources.txt
-  Plugins\dlls add: DisplayBinaryFiles.dll
+  Plugins\dlls add: DisplayBinaryFiles.dll (v1.0.0.1)
   Plugins\dlls: list.txt
   Plugins\src_VCPP\DisplayBinaryFiles add: all files
 
@@ -145,7 +149,7 @@
   Submitted by Michael Richter
   Plugins/Delphi/UnpackFDM: UnpackFDM.dpr UnpackFDMLib_TLB.pas
    WinMergeUnit.pas
-  Plugins/dlls: UnpackFDM.dll
+  Plugins/dlls: UnpackFDM.dll (no version)
 
 2003-12-17 Laoran
  update plugin docs and examples, consequence of patch #853147 
