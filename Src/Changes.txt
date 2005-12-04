@@ -1,7 +1,7 @@
 2005-12-04 Jochen
- CMarkdown::FileImage::GuessByteOrder(): Fix UTF-8 signature detection
+ CMarkdown::FileImage::GuessByteOrder(), GuessCodepageEncoding(): Fix UTF-8 signature detection
  CMarkdown::GetTagName(): Strip bogus trailing slash in name of empty tag
-  Src: markdown.cpp
+  Src: markdown.cpp codepage_detect.cpp
 
 2005-12-03 Perry
  PATCH: [ 1335128 ] Ignore uninstalled codepages
