@@ -1,6 +1,12 @@
+2005-12-03 Perry
+ DisplayBinaryFiles
+  Update binary copy (from v1.0.0.1 to v1.0.1.0)
+  Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.1.0
+ Plugins\dlls: DisplayBinaryFiles.dll (v1.0.1.0)
+
 2005-12-01 Perry
  Add support for Microsoft proprietary Windows codepages
- Plugsin\src_VCPP\DisplayXMLFiles:
+ Plugins\src_VCPP\DisplayXMLFiles:
   expat_maps.cpp
   New map_data_CP*.h (1250-1258)
  New Plugsin\src_VCPP\DisplayXMLFiles\mappings\VENDORs\MICSFT\WINDOWS
