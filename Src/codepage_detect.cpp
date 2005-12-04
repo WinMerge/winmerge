@@ -127,7 +127,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 /**
  * @brief Try to deduce encoding for this file
  */
-unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
+static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
 {
 	if (len > 4096)
 		len = 4096;

@@ -1,3 +1,7 @@
+2005-12-04 Perry
+ PATCH: [ 1372974 ] Make local function "GuessEncoding_from_bytes" static
+  Src: codepage_detect.cpp
+
 2005-12-04 Jochen
  CMarkdown::FileImage::GuessByteOrder(), GuessCodepageEncoding(): Fix UTF-8 signature detection
  CMarkdown::GetTagName(): Strip bogus trailing slash in name of empty tag
