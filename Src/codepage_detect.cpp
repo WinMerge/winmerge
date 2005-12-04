@@ -181,7 +181,7 @@ void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL
 	case 8 + 2 + 1:
 		*unicoding = ucr::UCS2BE;
 		break;
-	case 8:
+	case 8 + 1:
 		*unicoding = ucr::UTF8;
 		break;
 	}
