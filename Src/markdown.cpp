@@ -1,19 +1,19 @@
 /* markdown.cpp: Pull-parse XML sources
  * Copyright (c) 2005 Jochen Tucht
  *
- * License:	This program is free software; you can redistribute it and/or modify
- *			it under the terms of the GNU General Public License as published by
- *			the Free Software Foundation; either version 2 of the License, or
- *			(at your option) any later version.
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Lesser General Public
+ * License as published by the Free Software Foundation; either
+ * version 2.1 of the License, or (at your option) any later version.
  *
- *			This program is distributed in the hope that it will be useful,
- *			but WITHOUT ANY WARRANTY; without even the implied warranty of
- *			MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *			GNU General Public License for more details.
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Lesser General Public License for more details.
  *
- *			You should have received a copy of the GNU General Public License
- *			along with this program; if not, write to the Free Software
- *			Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * You should have received a copy of the GNU Lesser General Public
+ * License along with this library; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * OS/Libs:	Win32/MFC/shlwapi/iconv
  *			iconv.dll is loaded on demand, and is not required as long as
@@ -59,7 +59,7 @@
  *
  *			There are lots of related articles on the web, though.
 
-Please mind 2. a) of the GNU General Public License, and log your changes below.
+Please mind 2. b) of the GNU LGPL terms, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
@@ -77,6 +77,8 @@ DATE:		BY:					DESCRIPTION:
 2005/07/29	Jochen Tucht		ByteOrder detection for 16/32 bit encodings
 2005/09/09	Jochen Tucht		Patch by Takashi Sawanaka fixes crash due to
 								reading beyond end of text with HtmlUTags option
+2005/12/04	Jochen Tucht		Fix UTF-8 signature detection
+								Strip bogus trailing slash in name of empty tag
 */
 
 #include "stdafx.h"
@@ -633,7 +635,7 @@ CMarkdown::HSTR CMarkdown::GetTagName()
 		}
 		else
 		{
-			while (q < ahead && !isspace(c = *q) && c != '[' && c != '>' && c != '"' && c != '\'' && c != '=')
+			while (q < ahead && !isspace(c = *q) && c != '[' && c != '>' && c != '"' && c != '\'' && c != '=' && c != '/')
 			{
 				++q;
 			}
@@ -840,7 +842,7 @@ CMarkdown::HSTR CMarkdown::GetAttribute(const char *key, const void *pv)
 		lower = p;
 		return 0;
 	}
-	return (HSTR)SysAllocStringByteLen((const char *)pv, lstrlenA((const char *)pv));
+	return pv ? (HSTR)SysAllocStringByteLen((const char *)pv, lstrlenA((const char *)pv)) : 0;
 }
 
 LPVOID NTAPI CMarkdown::FileImage::MapFile(HANDLE hFile, DWORD dwSize)
@@ -884,7 +886,7 @@ int CMarkdown::FileImage::GuessByteOrder(DWORD dwBOM)
 			BYTE cBOM = LOBYTE(wBOM) | HIBYTE(wBOM);
 			nByteOrder += ((char *)memchr(&dwBOM, cBOM, 4) - (char *)&dwBOM);
 		}
-		else if (dwBOM & 0xFFFFFF == 0xBFBBEF)
+		else if ((dwBOM & 0xFFFFFF) == 0xBFBBEF)
 		{
 			nByteOrder = 8 + 1;
 		}
