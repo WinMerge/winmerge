@@ -120,13 +120,14 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 	// i points to current directory in left list (leftDirs)
 	// j points to current directory in right list (rightDirs)
 
-	bool bTreatDirAsEqual
-	(
-		leftDirs.GetSize() == 1
-	&&	rightDirs.GetSize() == 1
-	&&	leftFiles.GetSize() == 0
-	&&	rightFiles.GetSize() == 0
-	);
+	// If there is only one directory on each side, and no files
+	// then pretend the directories have the same name
+	bool bTreatDirAsEqual = 
+		  (leftDirs.GetSize() == 1)
+		&& (rightDirs.GetSize() == 1)
+		&& (leftFiles.GetSize() == 0)
+		&& (rightFiles.GetSize() == 0)
+		;
 
 	int i=0, j=0;
 	while (1)
