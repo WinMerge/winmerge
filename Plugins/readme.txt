@@ -1,3 +1,14 @@
+2005-12-05 Perry
+ PATCH: [ 923044 ] Partial compare large files
+ WatchBeginningOfLog
+  Update rc file ("WinMerge plugin" and year), and initial check-in of binary
+  Plugins\WatchBeginningOfLog\WatchBeginningOfLog.rc
+  Plugins\dlls: new WatchBeginningOfLog.dll (v1.0.0.1)
+ WatchEndOfLog
+  Update rc file ("WinMerge plugin" and year), and initial check-in of binary
+  Plugins\WatchEndOfLog\WatchEndOfLog.rc
+  Plugins\dlls: new WatchEndOfLog.dll (v1.0.0.1)
+
 2005-12-03 Perry
  DisplayBinaryFiles
   Update binary copy (from v1.0.0.1 to v1.0.1.0)
