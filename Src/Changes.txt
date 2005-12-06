@@ -5,6 +5,8 @@
  PATCH: [ 1373037 ] Fix filter dialog to correctly add new filters
   Submitted by Perry
   Src: FileFiltersDlg.cpp
+ PATCH: [ 1370183 ] ShellExtension: better way to check for WinMerge executable
+  ShellExtension: WinMergeShell.cpp
 
 2005-12-04 Perry
  PATCH: [ 1372974 ] Make local function "GuessEncoding_from_bytes" static

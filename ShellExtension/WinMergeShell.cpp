@@ -44,6 +44,8 @@
 #include "WinMergeShell.h"
 #include "RegKey.h"
 #include "coretools.h"
+#include <sys/types.h>
+#include <sys/stat.h>
 
 /// Flags for enabling and mode of extension
 #define EXT_ENABLED 0x01
@@ -387,8 +389,9 @@ BOOL CWinMergeShell::CheckExecutable(CString path)
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
 		// Check if file exists
-		CFileStatus status;
-		if (CFile::GetStatus(path, status))
+		struct _stati64 statBuffer;
+		int nRetVal = _tstati64(path, &statBuffer);
+		if (nRetVal > -1)
 			return TRUE;
 	}
 	return FALSE;
