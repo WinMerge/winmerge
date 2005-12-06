@@ -1,3 +1,5 @@
+2005-12-06 WinMerge experimental release 2.5.0.3 (cvs)
+
 2005-12-06 Kimmo
  PATCH: [ 1372589 ] Document tildas in config
   Submitted by Perry
