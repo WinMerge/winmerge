@@ -1,3 +1,9 @@
+2005-12-06 Perry
+ PATCH [ 1372575 ] Fix link for DisplayXmlFiles plugin
+  Plugins\dlls: DisplayXMLFiles.dll (v1.0.4.0)
+  Plugins\src_VCPP\DisplayXMLFiles: 
+   DisplayXMLFiles.dsp DisplayXMLFiles.rc
+
 2005-12-05 Perry
  PATCH: [ 923044 ] Partial compare large files
  WatchBeginningOfLog
