@@ -1,6 +1,8 @@
 2005-12-06 Perry
  PATCH [ 1372575 ] Fix link for DisplayXmlFiles plugin
   (Plugins)
+ TODO [ 1341058 ] ToDoDeleteThisValidateColumnOrdering()
+  Src: DirView.cpp DirView.h DirViewColHandler.cpp
 
 2005-12-06 WinMerge experimental release 2.5.0.3 (cvs)
 

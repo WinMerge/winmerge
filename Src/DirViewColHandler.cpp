@@ -436,7 +436,6 @@ void CDirView::MoveColumn(int psrc, int pdest)
  */
 void CDirView::OnEditColumns()
 {
-ToDoDeleteThisValidateColumnOrdering();
 	CDirColsDlg dlg;
 	// List all the currently displayed columns
 	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)

@@ -347,20 +347,15 @@ void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point)
 void CDirView::ReloadColumns()
 {
 	LoadColumnHeaderItems();
-	ToDoDeleteThisValidateColumnOrdering();
 
-	ToDoDeleteThisValidateColumnOrdering();
 	UpdateColumnNames();
-	ToDoDeleteThisValidateColumnOrdering();
 	SetColumnWidths();
-	ToDoDeleteThisValidateColumnOrdering();
 	SetColAlignments();
 }
 
 void CDirView::Redisplay()
 {
 	CDirDoc *pDoc = GetDocument();
-	ToDoDeleteThisValidateColumnOrdering();
 	const CDiffContext &ctxt = pDoc->GetDiffContext();
 
 	UINT cnt = 0;
@@ -605,7 +600,6 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
  */
 void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 {
-	ToDoDeleteThisValidateColumnOrdering();
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
