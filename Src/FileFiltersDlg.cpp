@@ -400,6 +400,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		// Remove all from filterslist and re-add so we can update UI
 		CString selected;
 		m_Filters->RemoveAll();
+		theApp.m_globalFileFilter.LoadAllFileFilters();
 		theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
 		UpdateFiltersList();

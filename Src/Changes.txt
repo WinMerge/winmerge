@@ -2,6 +2,9 @@
  PATCH: [ 1372589 ] Document tildas in config
   Submitted by Perry
   Src: ConfigLog.cpp
+ PATCH: [ 1373037 ] Fix filter dialog to correctly add new filters
+  Submitted by Perry
+  Src: FileFiltersDlg.cpp
 
 2005-12-04 Perry
  PATCH: [ 1372974 ] Make local function "GuessEncoding_from_bytes" static
