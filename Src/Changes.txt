@@ -7,6 +7,8 @@
   Src: FileFiltersDlg.cpp
  PATCH: [ 1370183 ] ShellExtension: better way to check for WinMerge executable
   ShellExtension: WinMergeShell.cpp
+ Bump ShellExtension version to 1.7.0
+  ShellExtension: ShellExtension.rc
 
 2005-12-04 Perry
  PATCH: [ 1372974 ] Make local function "GuessEncoding_from_bytes" static
