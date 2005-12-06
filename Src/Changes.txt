@@ -1,3 +1,8 @@
+2005-12-06 Kimmo
+ PATCH: [ 1372589 ] Document tildas in config
+  Submitted by Perry
+  Src: ConfigLog.cpp
+
 2005-12-04 Perry
  PATCH: [ 1372974 ] Make local function "GuessEncoding_from_bytes" static
   Src: codepage_detect.cpp

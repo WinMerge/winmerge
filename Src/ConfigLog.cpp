@@ -214,6 +214,7 @@ static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
 	?	_T("%*s%-20s %s=%u.%02u %s=%04u\n")
 	:	_T("%*s%-20s %s=%u.%02u %s=%04u path=%s\n"),
 		indent,
+		// Tilde prefix for modules currently mapped into WinMerge
 		GetModuleHandle(path) ? _T("~") : _T("")/*name*/,
 		name,
 		vi.m_dvi.cbSize > FIELD_OFFSET(DLLVERSIONINFO, dwMajorVersion)
@@ -389,6 +390,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	FileWriteString(m_sFileName);
 	FileWriteString(_T("\n* Please add this information (or attach this file)\n"));
 	FileWriteString(_T("* when reporting bugs.\n"));
+	FileWriteString(_T("Module names prefixed with tilda (~) are currently loaded in WinMerge process.\n"));
 
 // Platform stuff
 	FileWriteString(_T("\n\nVersion information:\n"));
