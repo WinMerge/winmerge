@@ -3,6 +3,9 @@
   Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.2)
   Plugins\src_VCPP\RCLocalizationHelper:
    RCLocalizationHelper.dsp RCLocalizationHelper.rc typeinfoex.h
+ Fix compile paths froma above (plugins go in MergePlugins subdirectory)
+  Plugins\src_VCPP\RCLocalizationHelper:
+   RCLocalizationHelper.dsp
 
 2005-12-06 Perry
  PATCH [ 1372575 ] Fix link for DisplayXmlFiles plugin
