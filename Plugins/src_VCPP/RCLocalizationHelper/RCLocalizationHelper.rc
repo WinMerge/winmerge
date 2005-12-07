@@ -54,8 +54,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
+ FILEVERSION 1,0,0,2
+ PRODUCTVERSION 1,0,0,2
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -68,17 +68,21 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904B0"
+        BLOCK "040904b0"
         BEGIN
+            VALUE "Comments", "WinMerge plugin\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "RCLocalizationHelper Module\0"
-            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "FileVersion", "1, 0, 0, 2\0"
             VALUE "InternalName", "RCLocalizationHelper\0"
-            VALUE "LegalCopyright", "Copyright 2003\0"
-            VALUE "OriginalFilename", "RCLocalizationHelper.DLL\0"
-            VALUE "ProductName", "RCLocalizationHelper Module\0"
-            VALUE "ProductVersion", "1, 0, 0, 1\0"
+            VALUE "LegalCopyright", "Copyright 2003-2005\0"
+            VALUE "LegalTrademarks", "\0"
             VALUE "OLESelfRegister", "\0"
+            VALUE "OriginalFilename", "RCLocalizationHelper.DLL\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "RCLocalizationHelper Module\0"
+            VALUE "ProductVersion", "1, 0, 0, 2\0"
+            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"

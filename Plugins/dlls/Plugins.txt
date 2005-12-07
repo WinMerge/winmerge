@@ -111,3 +111,11 @@ Transform C/CPP to compare without comments - save not possible
 Note: This is a prediffer, so it cannot currently be selected from the open dialog.
 --------------------------------------------------------------------------------
 
+
+--------------------------------------------------------------------------------
+RCLocalizationHelper
+--------------------------------------------------------------------------------
+Preprocesses RC files by stripping out language strings, to enable
+comparing differnt language versions of the same RC file and ignoring
+the translations.
+--------------------------------------------------------------------------------

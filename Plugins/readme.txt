@@ -1,3 +1,9 @@
+2005-12-07 Perry
+ PATCH [ 1374931 ] Bugfixes & upload binary for RCLocalizationHelper
+  Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.2)
+  Plugins\src_VCPP\RCLocalizationHelper:
+   RCLocalizationHelper.dsp RCLocalizationHelper.rc typeinfoex.h
+
 2005-12-06 Perry
  PATCH [ 1372575 ] Fix link for DisplayXmlFiles plugin
   Plugins\dlls: DisplayXMLFiles.dll (v1.0.4.0)

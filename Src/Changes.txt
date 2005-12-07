@@ -1,6 +1,10 @@
+2005-12-07 Perry
+ PATCH [ 1374931 ] Bugfixes & upload binary for RCLocalizationHelper
+  (RCLocalizationHelper plugin)
+
 2005-12-06 Perry
  PATCH [ 1372575 ] Fix link for DisplayXmlFiles plugin
-  (Plugins)
+  (DisplayXMLFiles plugin)
  TODO [ 1341058 ] ToDoDeleteThisValidateColumnOrdering()
   Src: DirView.cpp DirView.h DirViewColHandler.cpp
 
