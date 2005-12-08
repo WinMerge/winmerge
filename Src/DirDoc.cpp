@@ -625,28 +625,32 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
  * @param [in] nDiffs Total amount of differences
  * @param [in] nTrivialDiffs Amount of ignored differences
  * @param [in] bIdentical TRUE if files became identical, FALSE otherwise.
- * @note Filenames must be same, otherwise function asserts.
  */
 void CDirDoc::UpdateChangedItem(PathContext &paths,
 	UINT nDiffs, UINT nTrivialDiffs, BOOL bIdentical)
 {
 	POSITION pos = FindItemFromPaths(paths.GetLeft(), paths.GetRight());
-	// TODO: when this happens?
+	// If we failed files could have been swapped so lets try again
 	if (!pos)
-		// Two files were swapped.
 		pos = FindItemFromPaths(paths.GetRight(), paths.GetLeft());
-	ASSERT(pos);
-	int ind = m_pDirView->GetItemIndex((DWORD)pos);
+	
+	// Update status if paths were found for items.
+	// Fail means we had unique items compared as 'renamed' items
+	// so there really is not status to update.
+	if (pos > 0)
+	{
+		int ind = m_pDirView->GetItemIndex((DWORD)pos);
 
-	// Figure out new status code
-	UINT diffcode = (bIdentical ? DIFFCODE::SAME : DIFFCODE::DIFF);
+		// Figure out new status code
+		UINT diffcode = (bIdentical ? DIFFCODE::SAME : DIFFCODE::DIFF);
 
-	// Update both views and diff context memory
-	SetDiffCompare(diffcode, ind);
+		// Update both views and diff context memory
+		SetDiffCompare(diffcode, ind);
 
-	if (nDiffs != -1 && nTrivialDiffs != -1)
-		SetDiffCounts(nDiffs, nTrivialDiffs, ind);
-	ReloadItemStatus(ind, TRUE, TRUE);
+		if (nDiffs != -1 && nTrivialDiffs != -1)
+			SetDiffCounts(nDiffs, nTrivialDiffs, ind);
+		ReloadItemStatus(ind, TRUE, TRUE);
+	}
 }
 
 /**
