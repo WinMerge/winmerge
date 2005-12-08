@@ -442,6 +442,54 @@
           </itemizedlist>
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>How do I compare UTF-8 files? WinMerge is not showing them
+          correctly.</para>
+        </question>
+
+        <answer>
+          <para>Using WinMerge encoding detection.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>If they are XML files, they should have an encoding
+              attribute in the XML declaration, which should say "UTF-8". For
+              example: <screen>&lt;?xml version="1.0" encoding="UTF-8"?&gt;</screen></para>
+            </listitem>
+
+            <listitem>
+              <para>If they are HTML files, they should have the encoding
+              embedded in a content attribute in a meta tag in the header. For
+              example: <screen>&lt;meta http-equiv="content-type" content="text/html; charset=UTF-8"&gt;</screen></para>
+            </listitem>
+
+            <listitem>
+              <para>For WinMerge to read encodings specified in XML or HTML
+              (or Windows RC resource) files, the option checkbox
+              <guilabel>Detect codepage info for...</guilabel> in
+              <guilabel>Codepage</guilabel> options (<menuchoice>
+                  <guimenu>Edit</guimenu>
+
+                  <guimenuitem>Options</guimenuitem>
+                </menuchoice> from main menu) must be checked.</para>
+            </listitem>
+          </itemizedlist>
+        </answer>
+
+        <answer>
+          <para>For all other cases, to instruct WinMerge to assume that all
+          documents are UTF-8, set the default WinMerge codepage to 65001
+          (which is Microsoft's code for UTF-8) in
+          <guilabel>Codepage</guilabel> options (<menuchoice>
+              <guimenu>Edit</guimenu>
+
+              <guimenuitem>Options</guimenuitem>
+            </menuchoice> from main menu) and then <guilabel>Custom
+          Codepage</guilabel>.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
 
