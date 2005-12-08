@@ -134,9 +134,8 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
  */
 void FileFilterMgr::RemoveFilter(LPCTSTR szFilterFile)
 {
-	const int items = m_filters.GetSize();
-
-	for (int i = 0; i < items; i++)
+	// Note that m_filters.GetSize can change during loop
+	for (int i = 0; i < m_filters.GetSize(); i++)
 	{
 		FileFilter * pFilter = m_filters.GetAt(i);
 		if (pFilter->fullpath.CompareNoCase(szFilterFile) == 0)
