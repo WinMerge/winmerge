@@ -1,3 +1,7 @@
+2005-12-08 Perry
+ PATCH: [ 1376457 ] Need clarification in platform test in ShellExtension
+  ShellExtension: ShellExtension.cpp
+
 2005-12-08 Takashi
  fix two-line-end-markers bug that was reported in:
   "PATCH: [ 1372716 ] patch for RFE:[ 922992 ] Word Wrap/split long lines" 

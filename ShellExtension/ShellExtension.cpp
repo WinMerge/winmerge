@@ -116,9 +116,18 @@ STDAPI DllRegisterServer(void)
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/
 	// platform/shell/programmersguide/shell_int/shell_int_extending/
 	// extensionhandlers/shell_ext.asp
-	// We ONLY need this additional key for NT4.0!
-	DWORD dwWinVersion = GetVersion();
-	if (((dwWinVersion & 0x80000000UL) == 0) && LOWORD(dwWinVersion) == 4)
+
+	DWORD dwWinVersionPacked = GetVersion();
+
+	// Parse the GetVersion result
+	bool is9x = ((dwWinVersionPacked & 0x80000000UL) == 1);
+	DWORD dwWindowsMajorVersion = (LOBYTE(LOWORD(dwWinVersionPacked)));
+	DWORD dwWindowsMinorVersion = (HIBYTE(LOWORD(dwWinVersionPacked)));
+	// Win 9x does not have build numbers
+	DWORD dwBuild = (is9x ? 0 : (DWORD)(HIWORD(dwWinVersionPacked)));
+
+	// Special code for Windows NT 4.0 only
+	if (!is9x && dwWindowsMajorVersion == 4)
 	{
 		CRegKey reg;
 		LONG lRet;
