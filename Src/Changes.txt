@@ -2,6 +2,8 @@
  PATCH: [ 1374782 ] fix for bug 1300957 Crash on save 'unique' file comparison
   Submitted by Oliver Mellet, some additional comment improvements by me.
   Src: DirDoc.cpp
+ Takashi is now developer, Olivier Mellet submitted a patch
+  Docs/Users: Contributors.txt
 
 2005-12-08 Perry
  PATCH: [ 1376457 ] Need clarification in platform test in ShellExtension

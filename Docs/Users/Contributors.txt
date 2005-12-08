@@ -14,6 +14,7 @@ Other developers:
 * Dennis Limm
 * Chris Mumford
 * Perry Rapp
+* Takashi Sawanaka
 * Christian "Seier" Blackburn (Installer)
 * Jochen Tucht
 * Kimmo Varis
@@ -100,12 +101,12 @@ Other Contributors (code, ideas, testing..):
 * Ferenc Kubatovics
 * Vladimir Lukianov
 * Harry Mckame
+* Oliver Mellet
 * Andreas Morsing
 * Tim Musschoot
 * Vincent Osele
 * Michael Richter
 * Markus Rollmann
-* Takashi Sawanaka
 * Philippe Verdy
 * Vikrant
 * Gilbert Wellisch
