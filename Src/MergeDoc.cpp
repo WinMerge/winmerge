@@ -2738,8 +2738,8 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 			mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
 		pRight->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
 			mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
-		pLeft->SetWordWrapping(FALSE);
-		pRight->SetWordWrapping(FALSE);
+		pLeft->SetWordWrapping(mf->m_options.GetBool(OPT_WORDWRAP));
+		pRight->SetWordWrapping(mf->m_options.GetBool(OPT_WORDWRAP));
 
 		pLeftDetail->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
 		pRightDetail->SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));

@@ -177,11 +177,14 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
+	ON_COMMAND(ID_VIEW_WORDWRAP, OnViewWordWrap)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewSwapPanes)
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -521,7 +524,7 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 		ASSERT (nCurrentCol >= 0 && nCurrentCol < pSplitterWnd->GetColumnCount ());
 
 		// limit the TopLine : must be smaller than GetLineCount for all the panels
-		int newTopLine = m_nTopLine;
+		int newTopSubLine = m_nTopSubLine;
 		int nRows = pSplitterWnd->GetRowCount ();
 		int nCols = pSplitterWnd->GetColumnCount ();
 		for (int nRow = 0; nRow < nRows; nRow++)
@@ -530,12 +533,12 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 			{
 				CMergeEditView *pSiblingView = static_cast<CMergeEditView*>(GetSiblingView (nRow, nCol));
 				if (pSiblingView != NULL)
-					if (pSiblingView->GetLineCount() <= newTopLine)
-						newTopLine = pSiblingView->GetLineCount()-1;
+					if (pSiblingView->GetSubLineCount() <= newTopSubLine)
+						newTopSubLine = pSiblingView->GetSubLineCount()-1;
 			}
 		}
-		if (m_nTopLine != newTopLine)
-			ScrollToLine(newTopLine);
+		if (m_nTopSubLine != newTopSubLine)
+			ScrollToSubLine(newTopSubLine);
 
 		for (nRow = 0; nRow < nRows; nRow++)
 		{
@@ -564,14 +567,14 @@ void CMergeEditView::OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHo
 		CMergeEditView *pSrcView = static_cast<CMergeEditView*>(pUpdateSource);
 		if (!bHorz)  // changed this so bHorz works right
 		{
-			ASSERT (pSrcView->m_nTopLine >= 0);
+			ASSERT (pSrcView->m_nTopSubLine >= 0);
 
 			// This ASSERT is wrong: panes have different files and
 			// different linecounts
 			// ASSERT (pSrcView->m_nTopLine < GetLineCount ());
-			if (pSrcView->m_nTopLine != m_nTopLine)
+			if (pSrcView->m_nTopSubLine != m_nTopSubLine)
 			{
-				ScrollToLine (pSrcView->m_nTopLine, TRUE, FALSE);
+				ScrollToSubLine (pSrcView->m_nTopSubLine, TRUE, FALSE);
 				UpdateCaret ();
 				RecalcVertScrollBar(TRUE);
 			}
@@ -1301,6 +1304,16 @@ void CMergeEditView::OnEditOperation(int nAction, LPCTSTR pszText)
 		}
 		else
 			pDoc->FlushAndRescan();
+	}
+	else
+	{
+		if (m_bWordWrap)
+		{
+			// Update other pane for sync line.
+			CCrystalEditView *pView = pDoc->GetView(1 - m_nThisPane);
+			if (pView)
+				pView->Invalidate();
+		}
 	}
 }
 
@@ -2190,6 +2203,7 @@ void CMergeEditView::RefreshOptions()
 
 	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_bWordDiffHighlight = mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	SetWordWrapping(mf->m_options.GetBool(OPT_WORDWRAP));
 	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
@@ -2599,6 +2613,53 @@ void CMergeEditView::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(m_bWordDiffHighlight);
 }
 
+/**
+ * @brief Enables/disables word wrap
+ */
+void CMergeEditView::OnViewWordWrap()
+{
+	mf->m_options.SaveOption(OPT_WORDWRAP, !m_bWordWrap);
+
+	// Call CMergeDoc RefreshOptions() to refresh *both* views
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewWordWrap(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(m_bWordWrap);
+}
+
+void CMergeEditView::OnSize(UINT nType, int cx, int cy) 
+{
+	if (!IsInitialized())
+		return;
+
+	CMergeDoc * pDoc = GetDocument();
+	if (m_nThisPane == 0)
+	{
+		// To calculate subline index correctly
+		// we have to invalidate line cache in all pane before calling the function related the subline.
+		for (int nPane = 0; nPane < 2; nPane++) 
+		{
+			CMergeEditView *pView = pDoc->GetView(nPane);
+			if (pView)
+			{
+				pView->InvalidateScreenRect();
+				pView->Invalidate();
+			}
+		}
+	}
+	// recalculate m_nTopSubLine
+	m_nTopSubLine = GetSubLineIndex(m_nTopLine);
+
+	UpdateCaret();
+	
+	RecalcVertScrollBar();
+	RecalcHorzScrollBar();
+}
+
 void CMergeEditView::OnPrint(CDC* pDC, CPrintInfo* pInfo) 
 {
 	((CSplitterWndEx*)GetParentSplitter(this, FALSE))->MasterPrint(pDC, pInfo);
@@ -2615,6 +2676,33 @@ bool CMergeEditView::IsInitialized() const
 	CMergeEditView * pThis = const_cast<CMergeEditView *>(this);
 	CMergeDoc::CDiffTextBuffer * pBuffer = dynamic_cast<CMergeDoc::CDiffTextBuffer *>(pThis->LocateTextBuffer());
 	return pBuffer->IsInitialized();
+}
+
+/**
+ * @brief returns the number of empty lines which are added for synchronizing the line in two panes.
+ */
+int CMergeEditView::GetEmptySubLines( int nLineIndex )
+{
+	int	nBreaks[2] = {0};
+	CMergeDoc * pDoc = GetDocument();
+	CMergeEditView *pLeftView = pDoc->GetLeftView();
+	CMergeEditView *pRightView = pDoc->GetRightView();
+	if (pLeftView)
+	{
+		if (nLineIndex >= pLeftView->GetLineCount())
+			return 0;
+		pLeftView->WrapLineCached( nLineIndex, pLeftView->GetScreenChars(), NULL, nBreaks[0] );
+	}
+	if (pRightView) {
+		if (nLineIndex >= pRightView->GetLineCount())
+			return 0;
+		pRightView->WrapLineCached( nLineIndex, pRightView->GetScreenChars(), NULL, nBreaks[1] );
+	}
+
+	if (nBreaks[m_nThisPane] < nBreaks[1 - m_nThisPane])
+		return nBreaks[1 - m_nThisPane] - nBreaks[m_nThisPane];
+	else
+		return 0;
 }
 
 /**

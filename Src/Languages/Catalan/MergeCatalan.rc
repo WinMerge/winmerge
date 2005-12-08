@@ -341,6 +341,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
         MENUITEM "&Veure les diferències de la línia", ID_VIEW_LINEDIFFS
+        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Intercanvia les subfinestres", ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -2534,6 +2535,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Selecciona l'idioma de la interfície d'usuari\nIdioma"
     ID_VIEW_LINEDIFFS       "Mostra les diferències dins les línies en un color diferent\nMostra les diferències de línia"
     ID_VIEW_SWAPPANES       "Intercanvia la posició d'ambdues subfinestres"
+    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
 END
 
 // MERGE MENU

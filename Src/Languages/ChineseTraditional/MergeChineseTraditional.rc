@@ -340,6 +340,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "檢視空白和跳格(&V)",          ID_VIEW_WHITESPACE
         MENUITEM "檢視列不同(&W)",              ID_VIEW_LINEDIFFS
+        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -2613,6 +2614,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
     ID_VIEW_LINEDIFFS       "以不同色彩顯示列內的不同\n顯示列不同"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
+    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
 END
 
 // MERGE MENU

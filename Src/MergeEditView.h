@@ -181,6 +181,7 @@ public:
 	void GotoLine(UINT nLine, BOOL bRealLine, int pane);
 	int GetTopLine() { return m_nTopLine; };
 	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); };
+	virtual int GetEmptySubLines( int nLineIndex );
 	void RepaintLocationPane();
 	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);
 
@@ -285,11 +286,14 @@ protected:
 	afx_msg void OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI);
 	afx_msg void OnViewLineDiffs();
 	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
+	afx_msg void OnViewWordWrap();
+	afx_msg void OnUpdateViewWordWrap(CCmdUI* pCmdUI);
 	afx_msg void OnOpenFile();
 	afx_msg void OnOpenFileWith();
 	afx_msg void OnOpenFileWithEditor();
 	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

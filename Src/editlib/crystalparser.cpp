@@ -53,19 +53,20 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 	int			nTabWidth = m_pTextView->GetTabSize();
 	int			nLineCharCount = 0;
 	int			nCharCount = 0;
+	int			nCharPos = 0;
 	LPCTSTR	szLine = m_pTextView->GetLineChars( nLineIndex );
 	int			nLastBreakPos = 0;
 	int			nLastCharBreakPos = 0;
-	BOOL		bWhitespace = FALSE;
+	BOOL		bBreakable = FALSE;
 
-	for( int i = 0; i < nLineLength; i++ )
+	for( int i = 0; i < nLineLength; i += CharNext(szLine + i) - (szLine + i) )
 	{
 		// remember position of whitespace for wrap
-		if( bWhitespace )
+		if( bBreakable )
 		{
 			nLastBreakPos = i;
 			nLastCharBreakPos = nCharCount;
-			bWhitespace = FALSE;
+			bBreakable = FALSE;
 		}
 
 		// increment char counter (evtl. expand tab)
@@ -76,33 +77,48 @@ void CCrystalParser::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreaks,
 		}
 		else
 		{
-			nLineCharCount++;
-			nCharCount++;
+			if( IsDBCSLeadByte((BYTE)szLine[i]) )
+			{
+				nLineCharCount += 2;
+				nCharCount += 2;
+			}
+			else
+			{
+				nLineCharCount += m_pTextView->GetCharWidthFromChar(szLine[i]) / m_pTextView->GetCharWidth();
+				nCharCount += m_pTextView->GetCharWidthFromChar(szLine[i]) / m_pTextView->GetCharWidth();
+			}
 		}
 
 		// remember whitespace
-		if( szLine[i] == _T('\t') || szLine[i] == _T(' ') )
-			bWhitespace = TRUE;
+		WORD wCharType;
+#ifdef _UNICODE
+		GetStringTypeW(CT_CTYPE3, &szLine[i], 1, &wCharType);
+#else
+		if (IsDBCSLeadByte((BYTE)szLine[i]))
+			GetStringTypeA(LOCALE_USER_DEFAULT,CT_CTYPE3, &szLine[i], 2, &wCharType);
+		else
+			wCharType = 0;
+#endif
+		if( szLine[i] == _T('\t') || szLine[i] == _T(' ') || (wCharType & (C3_IDEOGRAPH | C3_HIRAGANA | C3_KATAKANA)))
+			bBreakable = TRUE;
 
 		// wrap line
 		if( nLineCharCount >= nMaxLineWidth )
 		{
-			if( anBreaks )
+			// if no wrap position found, but line is to wide, 
+			// wrap at current position
+			if( nLastBreakPos == 0 )
 			{
-				// if no wrap position found, but line is to wide, 
-				// wrap at current position
-				if( (nBreaks && nLastBreakPos == anBreaks[nBreaks - 1]) || (!nBreaks && !nLastBreakPos) )
-				{
-					nLastBreakPos = i;
-					nLastCharBreakPos = nCharCount;
-				}
-
-				anBreaks[nBreaks++] = nLastBreakPos;
+				nLastBreakPos = i;
+				nLastCharBreakPos = nCharCount;
 			}
+			if( anBreaks )
+				anBreaks[nBreaks++] = nLastBreakPos;
 			else
 				nBreaks++;
 
 			nLineCharCount = nCharCount - nLastCharBreakPos;
+			nLastBreakPos = 0;
 		}
 	}
 }

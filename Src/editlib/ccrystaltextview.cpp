@@ -697,7 +697,8 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
           int nScrollLines = m_nTopSubLine - nNewTopSubLine;
           m_nTopSubLine = nNewTopSubLine;
           // OnDraw() uses m_nTopLine to determine topline
-          m_nTopLine = m_nTopSubLine;
+          int dummy;
+          GetLineBySubLine(m_nTopSubLine, m_nTopLine, dummy);
           ScrollWindow(0, nScrollLines * GetLineHeight());
           UpdateWindow();
           if (bTrackScrollBar)
@@ -1265,6 +1266,21 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
   }
 }
 
+/**
+ * @brief Invalidate items related screen size.
+ */
+void CCrystalTextView::InvalidateScreenRect()
+{
+  if (m_pCacheBitmap != NULL)
+    {
+      m_pCacheBitmap->DeleteObject ();
+      delete m_pCacheBitmap;
+      m_pCacheBitmap = NULL;
+    }
+  m_nScreenChars = -1;
+  m_nScreenLines = -1;
+  InvalidateLineCache(0, -1);
+}
 
 void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &rcClip,
          TEXTBLOCK *pBuf, int nBlocks, int &nActualItem, 
@@ -1581,6 +1597,15 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   */
   //END SW
   delete[] pBuf;
+
+  // Draw empty sublines
+  int nEmptySubLines = GetEmptySubLines(nLineIndex);
+  if (nEmptySubLines > 0)
+    {
+      CRect frect = rc;
+      frect.top = frect.bottom - nEmptySubLines * GetLineHeight();
+      pdc->FillSolidRect(frect, crBkgnd == CLR_NONE ? GetColor(COLORINDEX_WHITESPACE) : crBkgnd);
+    }
 }
 
 COLORREF CCrystalTextView::
@@ -1736,7 +1761,7 @@ OnDraw (CDC * pdc)
   if (m_pCacheBitmap == NULL)
     {
       m_pCacheBitmap = new CBitmap;
-      VERIFY(m_pCacheBitmap->CreateCompatibleBitmap(pdc, rcClient.Width(), nLineHeight));
+      VERIFY(m_pCacheBitmap->CreateCompatibleBitmap(pdc, rcClient.Width(), rcClient.Height()));
     }
   CBitmap *pOldBitmap = cacheDC.SelectObject (m_pCacheBitmap);
 
@@ -1754,7 +1779,6 @@ OnDraw (CDC * pdc)
     rcCacheLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
   }
 
-  int		nBreaks;
   const int nMaxLineChars = GetScreenChars();
   //END SW
 
@@ -1762,11 +1786,11 @@ OnDraw (CDC * pdc)
   while (rcLine.top < rcClient.bottom)
     {
       //BEGIN SW
-      nBreaks = 0;
+      int nSubLines = 1;
       if( nCurrentLine < nLineCount /*&& GetLineLength( nCurrentLine ) > nMaxLineChars*/ )
-        WrapLineCached( nCurrentLine, nMaxLineChars, NULL, nBreaks );
+         nSubLines = GetSubLines(nCurrentLine);
 
-      rcLine.bottom = rcLine.top + (nBreaks + 1) * nLineHeight;
+      rcLine.bottom = rcLine.top + nSubLines * nLineHeight;
       rcCacheLine.bottom = rcCacheLine.top + rcLine.Height();
       rcCacheMargin.bottom = rcCacheMargin.top + rcLine.Height();
 
@@ -1834,6 +1858,7 @@ ResetView ()
           m_apFonts[I] = NULL;
         }
     }
+  InvalidateLineCache( 0, -1 );
   m_ParseCookies->RemoveAll();
   m_pnActualLineLength->RemoveAll();
   m_ptCursorPos.x = 0;
@@ -2003,7 +2028,24 @@ int CCrystalTextView::GetSubLines( int nLineIndex )
   int	nBreaks = 0;
   WrapLineCached( nLineIndex, GetScreenChars(), NULL, nBreaks );
 
-  return nBreaks + 1;
+  return GetEmptySubLines(nLineIndex) + nBreaks + 1;
+}
+
+int CCrystalTextView::GetEmptySubLines( int nLineIndex )
+{
+  return 0;
+}
+
+BOOL CCrystalTextView::IsEmptySubLineIndex( int nSubLineIndex )
+{
+  int nLineIndex;
+  int dummy;
+  GetLineBySubLine(nSubLineIndex, nLineIndex, dummy);
+  int nSubLineIndexNextLine = GetSubLineIndex(nLineIndex) + GetSubLines(nLineIndex);
+  if (nSubLineIndexNextLine - GetEmptySubLines(nLineIndex) <= nSubLineIndex && nSubLineIndex < nSubLineIndexNextLine)
+    return TRUE;
+  else
+    return FALSE;
 }
 
 int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint )
@@ -2908,23 +2950,16 @@ OnSize (UINT nType, int cx, int cy)
   SubLineCursorPosToTextPos( CPoint( 0, m_nTopSubLine ), topPos );
   //END SW
 
-  if (m_pCacheBitmap != NULL)
-    {
-      m_pCacheBitmap->DeleteObject ();
-      delete m_pCacheBitmap;
-      m_pCacheBitmap = NULL;
-    }
-  m_nScreenLines = -1;
-  m_nScreenChars = -1;
-
   //BEGIN SW
   // we have to recompute the line wrapping
-  InvalidateLineCache( 0, -1 );
+  InvalidateScreenRect();
 
   // compute new top sub line
   CPoint	topSubLine;
   CharPosToPoint( topPos.y, topPos.x, topSubLine );
-  m_nTopSubLine = topPos.y + topSubLine.y;
+  m_nTopSubLine = GetSubLineIndex(topPos.y) + topSubLine.y;
+
+  ScrollToSubLine( m_nTopSubLine );
 
   // set caret to right position
   UpdateCaret();
@@ -3098,11 +3133,20 @@ OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
 void CCrystalTextView::
 RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
 {
+  SCROLLINFO si = {0};
+  si.cbSize = sizeof (si);
+
+  if (m_bWordWrap)
+    {
+      // Disable horizontal scroll bar
+      si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
+      SetScrollInfo (SB_HORZ, &si);
+      return;
+    }
+
   const int nScreenChars = GetScreenChars();
   const int nMaxLineLen = GetMaxLineLength ();
 
-  SCROLLINFO si = {0};
-  si.cbSize = sizeof (si);
   if (bPositionOnly)
     {
       si.fMask = SIF_POS;
@@ -3634,11 +3678,19 @@ EnsureVisible (CPoint pt)
   if( nNewTopSubLine >= nSubLineCount )
     nNewTopSubLine = nSubLineCount - 1;
 
-  // WINMERGE: This line fixes (cursor) slowdown after merges!
-  // I don't know exactly why, but propably we are setting
-  // m_nTopLine to zero in ResetView() and are not setting to
-  // valid value again.  Maybe this is a good place to set it?
-  m_nTopLine = nNewTopSubLine;
+  if (!m_bWordWrap)
+    {
+      // WINMERGE: This line fixes (cursor) slowdown after merges!
+      // I don't know exactly why, but propably we are setting
+      // m_nTopLine to zero in ResetView() and are not setting to
+      // valid value again. Maybe this is a good place to set it?
+      m_nTopLine = nNewTopSubLine;
+    }
+  else
+    {
+      int dummy;
+      GetLineBySubLine(nNewTopSubLine, m_nTopLine, dummy);
+    }
 
   if( nNewTopSubLine != m_nTopSubLine )
     {
@@ -3995,16 +4047,9 @@ void CCrystalTextView::
 SetFont (const LOGFONT & lf)
 {
   m_lfBaseFont = lf;
-  m_nScreenLines = -1;
-  m_nScreenChars = -1;
   m_nCharWidth = -1;
   m_nLineHeight = -1;
-  if (m_pCacheBitmap != NULL)
-    {
-      m_pCacheBitmap->DeleteObject ();
-      delete m_pCacheBitmap;
-      m_pCacheBitmap = NULL;
-    }
+  InvalidateScreenRect();
   for (int I = 0; I < 4; I++)
     {
       if (m_apFonts[I] != NULL)
@@ -5360,7 +5405,13 @@ void CCrystalTextView::SetWordWrapping( BOOL bWordWrap )
   m_bWordWrap = bWordWrap;
 
   if( IsWindow( m_hWnd ) )
-    InvalidateLines( 0, -1, TRUE );
+  {
+    InvalidateScreenRect();
+    Invalidate();
+    m_nTopSubLine = GetSubLineIndex(m_nTopLine);
+    RecalcVertScrollBar();
+    RecalcHorzScrollBar();
+  }
 }
 
 CCrystalParser *CCrystalTextView::SetParser( CCrystalParser *pParser )
@@ -5706,11 +5757,19 @@ void CCrystalTextView::EnsureVisible (CPoint ptStart, CPoint ptEnd)
   if( nNewTopSubLine >= nSubLineCount )
     nNewTopSubLine = nSubLineCount - 1;
 
-  // WINMERGE: This line fixes (cursor) slowdown after merges!
-  // I don't know exactly why, but propably we are setting
-  // m_nTopLine to zero in ResetView() and are not setting to
-  // valid value again.  Maybe this is a good place to set it?
-  m_nTopLine = nNewTopSubLine;
+  if (!m_bWordWrap)
+    {
+      // WINMERGE: This line fixes (cursor) slowdown after merges!
+      // I don't know exactly why, but propably we are setting
+      // m_nTopLine to zero in ResetView() and are not setting to
+      // valid value again. Maybe this is a good place to set it?
+      m_nTopLine = nNewTopSubLine;
+    }
+  else
+    {
+      int dummy;
+      GetLineBySubLine(nNewTopSubLine, m_nTopLine, dummy);
+    }
 
   if( nNewTopSubLine != m_nTopSubLine )
     {

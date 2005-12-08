@@ -341,6 +341,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Afficher les espaces",             ID_VIEW_WHITESPACE
         MENUITEM "Afficher la granularité des lignes", ID_VIEW_LINEDIFFS
+        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -2518,6 +2519,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Sélectionner le langage de l'interface\nLangage"
     ID_VIEW_LINEDIFFS       "Afficher les différences des lignes avec différentes couleurs\nAfficher différences des lignes"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
+    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
 END
 
 // MERGE MENU

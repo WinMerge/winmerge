@@ -830,6 +830,7 @@
 #define ID_VIEW_DIR_STATISTICS          32821
 #define ID_VIEW_LANGUAGE                32822
 #define ID_VIEW_LINEDIFFS               32823
+#define ID_VIEW_WORDWRAP                32824
 #define ID_PREVDIFF                     32832
 #define ID_NEXTDIFF                     32833
 #define ID_FIRSTDIFF                    32834

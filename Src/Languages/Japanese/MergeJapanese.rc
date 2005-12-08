@@ -202,7 +202,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "比較統計(&R)",                ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -284,8 +284,8 @@ BEGIN
             MENUITEM "名前を付けて保存(&A)...", ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "印刷(&P)...",                 ID_FILE_PRINT
+        MENUITEM "印刷プレビュー(&R)",          ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "左を読み取り専用(&E)",        ID_FILE_LEFT_READONLY
         MENUITEM "右を読み取り専用(&I)",        ID_FILE_RIGHT_READONLY
@@ -341,6 +341,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "空白を表示(&V)",              ID_VIEW_WHITESPACE
         MENUITEM "行内の差異を表示(&W)",        ID_VIEW_LINEDIFFS
+        MENUITEM "行を右端で折返す(&R)",        ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "ペインの交換(&A)",            ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -584,7 +585,7 @@ END
 IDD_OPEN DIALOGEX 0, 0, 374, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
-CAPTION "ファイルまたはディレクトリの選択..."
+CAPTION "ファイルまたはフォルダの選択..."
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "左(&L):",IDC_STATIC,13,24,55,8
@@ -610,7 +611,7 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,60,14
     PUSHBUTTON      "キャンセル",IDCANCEL,306,28,60,14
-    GROUPBOX        "比較するファイルまたはディレクトリ",IDC_FILES_DIRS_GROUP,7,
+    GROUPBOX        "比較するファイルまたはフォルダ",IDC_FILES_DIRS_GROUP,7,
                      7,292,111
     PUSHBUTTON      "プロジェクトの保存",IDC_SAVEPROJECT,306,56,60,14
 END
@@ -765,9 +766,9 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "コメント",IDC_STATIC,18,7,34,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "全ての項目に適用する",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+    CONTROL         "チェックアウト後チェックインする",IDC_CHECKIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
@@ -998,17 +999,17 @@ IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION " Folder Compare Progress"
+CAPTION " フォルダ比較進行状況"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,239,7,83,14
+    DEFPUSHBUTTON   "停止",IDC_COMPARISON_STOP,239,7,83,14
     CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,8,
                     32,314,9
     RTEXT           "0",IDC_ITEMSCOMPARED,150,18,30,8
     LTEXT           "0",IDC_ITEMSTOTAL,194,18,30,8
     LTEXT           "/",IDC_STATIC,186,18,8,8
-    LTEXT           "Comparing items...",IDC_STATIC,7,7,150,8
-    LTEXT           "Items compared / Items total:",IDC_STATIC,7,18,129,8
+    LTEXT           "項目を比較しています...",IDC_STATIC,7,7,150,8
+    LTEXT           "比較した項目 / 全項目数:",IDC_STATIC,7,18,129,8
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
@@ -1168,7 +1169,7 @@ BEGIN
     LTEXT           "７－Zipのバージョンが検出できません。(インストールされていない?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
-    LTEXT           "アーカイブサポートを有効にするには 7-Zip のバージョン 3.11 以降をインストールするか、\nスタンドアロン操作のために必要なコンポーネントをプログラムディレクトリにコピーしてください。",
+    LTEXT           "アーカイブサポートを有効にするには 7-Zip のバージョン 3.11 以降をインストールするか、\nスタンドアロン操作のために必要なコンポーネントをプログラムフォルダにコピーしてください。",
                     IDC_STATIC,2,26,296,26
     LTEXT           "また、適切なインターフェースプラグイン (Merge7z*.dll) がPATH上に存在していなければなりません。",
                     IDC_STATIC,2,52,296,18
@@ -1222,8 +1223,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " カテゴリ",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
-    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
-    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
+    PUSHBUTTON      "インポート...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "エキスポート...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1292,7 +1293,7 @@ END
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "ディレクトリ比較レポート"
+CAPTION "フォルダ比較レポート"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "レポートファイル(&F):",IDC_STATIC,7,7,57,8
@@ -1344,55 +1345,55 @@ END
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Compare Statistics"
+CAPTION "比較統計"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
-    LTEXT           "Files:",IDC_STATIC,131,7,39,8
-    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
-    RTEXT           "Text:",IDC_STATIC,11,26,56,8
+    LTEXT           "フォルダ:",IDC_STATIC,72,7,38,8
+    LTEXT           "ファイル:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "差異",IDC_STATIC,7,15,186,40
+    RTEXT           "テキスト:",IDC_STATIC,11,26,56,8
     CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,24,12,11
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    RTEXT           "バイナリ:",IDC_STATIC,10,40,56,8
     CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,37,12,11
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
-    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
-    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    GROUPBOX        "片方のみ",IDC_STATIC,7,55,186,40
+    RTEXT           "左側:",IDC_STATIC,11,66,56,8
     CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,64,12,11
     RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
     CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,64,12,11
     RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
-    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    RTEXT           "右側:",IDC_STATIC,11,79,56,8
     CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,77,12,11
     RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
     CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,77,12,11
     RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
-    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    GROUPBOX        "同一",IDC_STATIC,7,95,186,37
     CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,102,12,11
     RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
     CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,102,12,11
     RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    RTEXT           "バイナリ:",IDC_STATIC,10,117,56,8
     CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,115,12,11
     RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
-    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    RTEXT           "合計:",IDC_STATIC,13,142,56,8
     CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,140,12,11
     RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
     CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,140,12,11
     RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
-    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+    DEFPUSHBUTTON   "閉じる",IDOK,200,140,50,14
 END
 
 
@@ -1730,7 +1731,7 @@ BEGIN
     IDS_VERSION_FMT         "Version %1 - Japanese"
     IDS_QUICKHELP           "シンタックス : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
       /? or -? このヘルプを表示します
-      /r or -r 再帰的にディレクトリを比較します
+      /r or -r 再帰的にフォルダを比較します
       /e or -e Escキーの押下でWinMergeを終了します
       /f or -f  ファイルマスクまたはフィルタ名を設定します
       /ul or -ul 左パスをMRUに追加しません
@@ -1738,11 +1739,11 @@ BEGIN
       /ub or -ub 両側のパスをMRUに追加しません
       /wl or -wl 左側を読み取り専用で開きます
       /wr or -wr 右側を読み取り専用で開きます
-      /dl or -dl ディレクトリ/ファイル名の代わりに説明文を左側に表示します
-      /dr or -dr ディレクトリ/ファイル名の代わりに説明文を右側に表示します
-      leftpath は、左側で開くディレクトリまたはファイル名です
-      rightpath は、右側で開くディレクトリまたはファイル名です
-      outputpath は、省略可能なマージされたファイルの保存先ディレクトリです"
+      /dl or -dl フォルダ/ファイル名の代わりに説明文を左側に表示します
+      /dr or -dr フォルダ/ファイル名の代わりに説明文を右側に表示します
+      leftpath は、左側で開くフォルダまたはファイル名です
+      rightpath は、右側で開くフォルダまたはファイル名です
+      outputpath は、省略可能なマージされたファイルの保存先フォルダです"
     IDS_UNICODE             "Unicode"
 END
 
@@ -1796,7 +1797,7 @@ END
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_WINDOW_TITLE "ディレクトリ比較結果"
+    IDS_DIRECTORY_WINDOW_TITLE "フォルダ比較結果"
     IDS_FILE_COMPARISON_TITLE "ファイル比較"
     IDS_EMPTY_LEFT_FILE     "左無題"
     IDS_EMPTY_RIGHT_FILE    "右無題"
@@ -1840,14 +1841,14 @@ END
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "存在するディレクトリまたは、ファイルを選択してください"
+    IDS_ERROR_INCOMPARABLE  "存在するフォルダまたは、ファイルを選択してください"
     IDS_DIRSEL_TAG          "Directory Selection"
-    IDS_OPEN_FILESDIRS      "2つのディレクトリまたは、2つのファイルを選択してください。"
+    IDS_OPEN_FILESDIRS      "2つのフォルダまたは、2つのファイルを選択してください。"
     IDS_OPEN_LEFTINVALID    "左側のパスは不正なパスです!"
     IDS_OPEN_RIGHTINVALID   "右側のパスは不正なパスです!"
     IDS_OPEN_BOTHINVALID    "両側のパスは不正なパスです!"
     IDS_OPEN_UNPACKERDISABLED "展開プラグイン選択を有効にするにはファイルを二つ選択してください。"
-    IDS_OPEN_MISMATCH       "ファイルとディレクトリは比較できません!"
+    IDS_OPEN_MISMATCH       "ファイルとフォルダは比較できません!"
 END
 
 // LOADING FILE
@@ -1897,8 +1898,8 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS作業フォルダと現在のファイル位置は一致していません。続行しますか?"
     IDS_VSS_NODATABASES     "VSSのデータベースがみつかりません!"
     IDS_VSS_ERRORFROM       "VSSからのエラー:"
-    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
+    IDS_VSS_CHECKINERROR     "バージョン管理システムは、ファイルのチェックイン試行時にエラーを返しました。\n 使用しているビューの設定を確認してください。\n チェックアウトをキャンセルしますか?"
+    IDS_VSS_UNCOERROR        "バージョン管理システムは、ファイルのチェックアウトキャンセル時にエラーを返しました。\n 使用しているビューの設定を確認してください。 "
 END
 
 // VSS system
@@ -1915,10 +1916,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "選択されたファイルを指定ディレクトリにコピーします"
-    ID_DIR_COPY_LEFT_TO_BROWSE "選択されたファイルを選択されたディレクトリにコピーします"
-    ID_DIR_COPY_RIGHT_TO_LEFT "選択されたファイルを指定ディレクトリにコピーします"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "選択されたファイルを選択されたディレクトリにコピーします"
+    ID_DIR_COPY_LEFT_TO_RIGHT "選択されたファイルを指定フォルダにコピーします"
+    ID_DIR_COPY_LEFT_TO_BROWSE "選択されたファイルを選択されたフォルダにコピーします"
+    ID_DIR_COPY_RIGHT_TO_LEFT "選択されたファイルを指定フォルダにコピーします"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "選択されたファイルを選択されたフォルダにコピーします"
     ID_DIR_DEL_LEFT         "左の選択された項目を削除します"
     ID_DIR_DEL_RIGHT        "右の選択された項目を削除します"
     ID_DIR_DEL_BOTH         "両側の選択された項目を削除します"
@@ -1959,7 +1960,7 @@ BEGIN
     IDS_CONFIRM_COPY_SINGLE "本当に\n\n%1\nを\n%2\nにコピーしますか?"
     IDS_CONFIRM_COPY2DIR    "本当に選択された %2個の項目の内 %1個をコピーしますか?"
     IDS_CONFIRM_DELETE_ITEMS "本当に選択された%2個の項目の内 %1個を削除しますか?"
-    IDS_CONFIRM_DELETE_DIR  "ディレクトリ\n\n%1\nを削除しますか?"
+    IDS_CONFIRM_DELETE_DIR  "フォルダ\n\n%1\nを削除しますか?"
     IDS_CONFIRM_DELETE_SINGLE "本当に\n\n%1\nを削除しますか?"
 END
 
@@ -1988,16 +1989,16 @@ BEGIN
     ID_DIR_ZIP_BOTH         "アーカイブに両側の項目を追加します"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "アーカイブに差異のある両側の項目を追加します"
     ID_DIR_MOVE_LEFT_TO_BROWSE 
-                            "左側の選択されたファイルを指定したディレクトリに移動します"
+                            "左側の選択されたファイルを指定したフォルダに移動します"
     ID_DIR_MOVE_RIGHT_TO_BROWSE 
-                            "右側の選択されたファイルを指定したディレクトリに移動します"
+                            "右側の選択されたファイルを指定したフォルダに移動します"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "ファイル名"
-    IDS_COLHDR_DIR          "ディレクトリ"
+    IDS_COLHDR_DIR          "フォルダ"
     IDS_COLHDR_RESULT       "比較結果"
     IDS_COLHDR_LTIMEM       "左日付"
     IDS_COLHDR_RTIMEM       "右日付"
@@ -2030,7 +2031,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "ファイルを比較でません"
     IDS_ABORTED_ITEM        "Item aborted"
     IDS_FILE_SKIPPED        "スキップされたファイル"
-    IDS_DIR_SKIPPED         "スキップされたディレクトリ"
+    IDS_DIR_SKIPPED         "スキップされたフォルダ"
     IDS_ONLY_IN_FMT         " %1 内のみ存在"
     IDS_BIN_FILES_SAME      "バイナリファイルは同一です"
     IDS_IDENTICAL           "同一"
@@ -2052,8 +2053,8 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "ファイル名または、ディレクトリ名"
-    IDS_COLDESC_DIR         "サブディレクトリが含まれたときのサブディレクトリ名"
+    IDS_COLDESC_FILENAME    "ファイル名または、フォルダ名"
+    IDS_COLDESC_DIR         "サブフォルダが含まれたときのサブフォルダ名"
     IDS_COLDESC_RESULT      "長い形式の比較結果表示"
     IDS_COLDESC_LTIMEM      "左側の更新日付"
     IDS_COLDESC_RTIMEM      "右側の更新日付"
@@ -2098,11 +2099,11 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "同じファイルが両側のパネルで開かれています。"
     IDS_FILESSAME           "選択されたファイルは同一です。"
-    IDS_FILEUNIQUE          "選択されたファイルは、両側のディレクトリに存在しないため、比較できません。"
+    IDS_FILEUNIQUE          "選択されたファイルは、両側のフォルダに存在しないため、比較できません。"
     IDS_FILEERROR           "ファイルの比較時にエラーが発生しました。"
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"
-    IDS_FILEISDIR           "ディレクトリは、ビジュアルに比較できません。"
+    IDS_FILEISDIR           "フォルダは、ビジュアルに比較できません。"
     IDS_SUGGEST_IGNOREEOL   "ファイル内に異なる改行タイプが存在しています。\n\n\
                             ファイル内に存在する改行文字の違いを無視しますか?\n\n\
                             注意: 常にすべての改行文字タイプを等価なものとみなしたい場合は、\n\
@@ -2112,7 +2113,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
     IDS_SUGGEST_IGNORECODEPAGE "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページをデフォルトコードページとして扱いますが、よろしいですか(推奨)?"
-    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_INVALID_DIRECTORY   "選択されたフォルダは無効です。"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2140,8 +2141,8 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIFF_SUCCEEDED      "パッチファイル書込みに成功しました。"
-    IDS_DIFF_ITEM1NOTFOUND  "1. 項目がみつからないか、ディレクトリです!"
-    IDS_DIFF_ITEM2NOTFOUND  "2. 項目がみつからないか、ディレクトリです!"
+    IDS_DIFF_ITEM1NOTFOUND  "1. 項目がみつからないか、フォルダです!"
+    IDS_DIFF_ITEM2NOTFOUND  "2. 項目がみつからないか、フォルダです!"
     IDS_DIFF_FILEOVERWRITE  "出力結果ファイルは既に存在します。 上書きしますか?"
     IDS_DIFF_SELECTEDFILES  "[%1 個のファイルが選択されています]"
     IDS_DIFF_NORMAL         "ノーマル"
@@ -2151,25 +2152,25 @@ BEGIN
     IDS_PATH_NOT_ABSOLUTE   "指定した出力パスは、絶対パスではありません: %1"
 	IDS_MUST_SPECIFY_OUTPUT "出力パスを指定してください"
     IDS_CANNOT_CREATE_BINARYPATCH "バイナリファイルからパッチファイルは生成できません。"
-    IDS_CANNOT_CREATE_DIRPATCH "ディレクトリからパッチファイルは生成できません。"
+    IDS_CANNOT_CREATE_DIRPATCH "フォルダからパッチファイルは生成できません。"
     IDS_SAVEFILES_FORPATCH  "まず先に全てのファイルを保存してください。\n\nパッチ生成には、変更が全て保存されている必要があります。"
 	IDS_FOLDER_NOTEXIST     "フォルダは存在しません。"
 END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "現在のディレクトリ比較結果はクリアされます。"
+    IDS_DIR_RESULTS_EMPTIED "現在のフォルダ比較結果はクリアされます。"
     IDS_NO_ZIP_SUPPORT      "アーカイブサポートが有効になっていません。\n
                             アーカイブサポートの為に必要なコンポーネント(7-zip と Merge7z*.dll) が見つかりません。
                             アーカイブサポートとそれを有効にする方法についての情報は、マニュアルを参照してください。"
-    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
-    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
-    IDS_OPT_EXPORT_CAPTION  "Select file for export"
-    IDS_OPT_IMPORT_CAPTION  "Select file for import"
-    IDS_OPT_IMPORT_DONE     "Options imported from the file."
-    IDS_OPT_EXPORT_DONE     "Options exported to the file."
-    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
-    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
+    IDS_MERGE7Z_ENABLE_0    "\n注意: 7-Zip 統合は、WinMergeの設定により無効になっています。"
+    IDS_MERGE7Z_ENABLE_2    "\n注意: 7-Zip 統合は、WinMergeの設定によりスタンドアロン操作に制限されています。"
+    IDS_OPT_EXPORT_CAPTION  "エキスポートするファイルを指定してください"
+    IDS_OPT_IMPORT_CAPTION  "インポートするファイルを選択してください"
+    IDS_OPT_IMPORT_DONE     "設定情報がファイルからインポートされました。"
+    IDS_OPT_EXPORT_DONE     "設定情報をファイルにエキスポートしました。"
+    IDS_OPT_IMPORT_ERR      "ファイルから設定情報のインポートに失敗しました。"
+    IDS_OPT_EXPORT_ERR      "ファイルへの設定情報の書き込みに失敗しました。"
 END
 
 // Regular expression errors
@@ -2478,8 +2479,8 @@ BEGIN
     ID_FILE_SAVE_RIGHT      "右のファイルを保存します"
     ID_FILE_SAVEAS_LEFT     "左のファイルを名前を付けて保存します..."
     ID_FILE_SAVEAS_RIGHT    "右のファイルを名前を付けて保存します..."
-    ID_FILE_LEFT_READONLY   "左のファイル/ディレクトリをリードオンリー状態に変更します"
-    ID_FILE_RIGHT_READONLY  "右のファイル/ディレクトリをリードオンリー状態に変更します"
+    ID_FILE_LEFT_READONLY   "左のファイル/フォルダをリードオンリー状態に変更します"
+    ID_FILE_RIGHT_READONLY  "右のファイル/フォルダをリードオンリー状態に変更します"
     ID_EOL_TO_DOS           "EOLをDOSタイプに変換します"
     ID_EOL_TO_UNIX          "EOLをUnixタイプに変換します"
     ID_EOL_TO_MAC           "EOLをMACタイプに変換します"
@@ -2517,10 +2518,11 @@ BEGIN
     ID_VIEW_WHITESPACE      "空白文字を表示します"
     ID_VIEW_DETAIL_BAR      "Diffペインの表示/非表示を切り替えます"
     ID_VIEW_LOCATION_BAR    "ロケーションペインはファイルの内容全体をピクチャとして表示します"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATISTICS  "フォルダ比較統計ダイアログを表示します。"
     ID_VIEW_LANGUAGE        "現在のユーザーインターフェース言語を選択します\n言語"
     ID_VIEW_LINEDIFFS       "行内の差異を色を変えて表示します\n行内の差異を表示"
     ID_VIEW_SWAPPANES       "2つのペインの位置を交換します"
+    ID_VIEW_WORDWRAP        "行を右端で折り返します。\n行を右端で折返す"
 END
 
 // MERGE MENU
@@ -2537,14 +2539,14 @@ BEGIN
     ID_R2LNEXT              "差異を左にコピーし、次の差異に進みます\n左にコピーし次へ (Ctrl+Alt+Left)"
     ID_ALL_RIGHT            "すべての差異を右のファイルにコピーします\n右すべて"
     ID_ALL_LEFT             "すべての差異を左のファイルにコピーします\n左すべて"
-    ID_MERGE_DELETE         "両側のディレクトリから選択された項目を削除します"
+    ID_MERGE_DELETE         "両側のフォルダから選択された項目を削除します"
     ID_MERGE_COMPARE        "選択された項目を比較します (複数の項目が選択されていた場合、最初の項目を比較します)"
 END
 
 // TOOLS MENU
 STRINGTABLE
 BEGIN
-    ID_TOOLS_CUSTOMIZECOLUMNS "ディレクトリ比較表示の列を選択または並べ替えます"
+    ID_TOOLS_CUSTOMIZECOLUMNS "フォルダ比較表示の列を選択または並べ替えます"
     ID_TOOLS_GENERATEPATCH  "パッチファイル生成します"
     ID_TOOLS_FILTERS        "フィルタの選択と変更をします"
     ID_TOOLS_GENERATEREPORT "比較結果からレポートを生成します"
@@ -2553,7 +2555,7 @@ END
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_UNPACK_MANUAL        "展開プラグインをユーザーが選択します (ディレクトリ比較のときは展開しません)"
+    ID_UNPACK_MANUAL        "展開プラグインをユーザーが選択します (フォルダ比較のときは展開しません)"
     ID_UNPACK_AUTO          "自動的に展開プラグインを選択し、両側のファイルに適用します (どちらかのファイルには、拡張子が必要です)"
     ID_POPUP_OPEN_WITH_UNPACKER "このファイルを編集するための展開プラグインを選択します"
     ID_NO_PREDIFFER         "比較前処理プラグインを使用しない (標準)"

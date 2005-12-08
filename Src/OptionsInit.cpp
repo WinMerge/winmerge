@@ -37,6 +37,7 @@ void CMainFrame::OptionsInit()
 
 	m_options.InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	m_options.InitOption(OPT_WORDDIFF_HIGHLIGHT, true);
+	m_options.InitOption(OPT_WORDWRAP, false);
 	m_options.InitOption(OPT_DISABLE_SPLASH, false);
 	m_options.InitOption(OPT_CREATE_BACKUPS, true);
 	m_options.InitOption(OPT_VIEW_WHITESPACE, false);

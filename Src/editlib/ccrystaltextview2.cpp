@@ -252,7 +252,10 @@ MoveUp (BOOL bSelect)
       if (m_nIdealCharPos == -1)
         m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
 		//BEGIN SW
-		SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine - 1 ), m_ptCursorPos );
+		do {
+			nSubLine--;
+		} while (IsEmptySubLineIndex(nSubLine));
+		SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
 		/*ORIGINAL
 		m_ptCursorPos.y --;
 		m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);
@@ -288,7 +291,10 @@ MoveDown (BOOL bSelect)
       if (m_nIdealCharPos == -1)
         m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
 		//BEGIN SW
-		SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine + 1 ), m_ptCursorPos );
+		do {
+			nSubLine++;
+		} while (IsEmptySubLineIndex(nSubLine));
+		SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
 		/*ORIGINAL
 		m_ptCursorPos.y ++;
 		m_ptCursorPos.x = ApproxActualOffset(m_ptCursorPos.y, m_nIdealCharPos);

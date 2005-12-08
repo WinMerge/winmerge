@@ -275,6 +275,9 @@ protected :
 	*/
 	int GetSubLines( int nLineIndex );
 
+	virtual int GetEmptySubLines( int nLineIndex );
+	BOOL IsEmptySubLineIndex( int nSubLineIndex );
+
 	/**
 	Converts the given character position for the given line into a point.
 
@@ -524,6 +527,7 @@ protected:
 	-1 (default) all lines from nLineIndex1 to the end are invalidated.
 	*/
 	virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
+	void InvalidateScreenRect();
 	//END SW
 
     //  Syntax coloring overrides

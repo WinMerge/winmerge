@@ -345,6 +345,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
         MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
+        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -2633,6 +2634,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
     ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
+    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
 END
 
 // MERGE MENU
