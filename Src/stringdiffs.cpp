@@ -538,6 +538,18 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 	LPCTSTR pbeg1 = (LPCTSTR)str1;
 	LPCTSTR pbeg2 = (LPCTSTR)str2;
 
+	if (len1 == 0 || len2 == 0)
+	{
+		if (len1 == len2)
+		{
+			begin1 = -1;
+			begin2 = -1;
+		}
+		end1 = len1 - 1;
+		end2 = len2 - 1;
+		return;
+	}
+
 	// cursors from front, which we advance to beginning of difference
 	LPCTSTR py1 = pbeg1;
 	LPCTSTR py2 = pbeg2;
