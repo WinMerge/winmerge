@@ -1,4 +1,9 @@
 2005-12-08 Takashi
+ fix two-line-end-markers bug that was reported in:
+  "PATCH: [ 1372716 ] patch for RFE:[ 922992 ] Word Wrap/split long lines" 
+ Src: stringdiffs.cpp
+
+2005-12-08 Takashi
  PATCH: [ 1372716 ] patch for RFE:[ 922992 ] Word Wrap/split long lines 
   Src: Merge.rc MergeDoc.cpp MergeEditView.cpp MergeEditView.h OptionsDef.h
    OptionsInit.cpp resource.h 
