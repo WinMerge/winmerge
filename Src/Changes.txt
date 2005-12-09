@@ -2,6 +2,8 @@
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Remainder of dialogs
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ BUG: [ 1376825 ] infinite loop bug in byte diffs
+  Src: stringdiffs.cpp
    
 2005-12-08 Perry
  PATCH: [1374728 ] Fix filter dialog delete

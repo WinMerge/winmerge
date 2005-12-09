@@ -694,7 +694,7 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 				if (xwhite==1)
 					break; // done with reverse search
 				while (pz2 > py2 && isSafeWhitespace(*pz2))
-					pz2 = CharPrev(py1, pz2);
+					pz2 = CharPrev(py2, pz2);
 				continue;
 			}
 
