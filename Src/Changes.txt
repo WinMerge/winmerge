@@ -7,6 +7,8 @@
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   A few string resources
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 1249007 ] Short size column
+  Src: DirViewColItems.cpp locality.cpp locality.h Merge.rc resource.h
    
 2005-12-08 Perry
  PATCH: [1374728 ] Fix filter dialog delete

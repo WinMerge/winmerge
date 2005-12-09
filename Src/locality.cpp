@@ -77,13 +77,13 @@ CString NumToLocaleStr(UINT n)
  * NB: We are not converting digits from ASCII via LOCALE_SNATIVEDIGITS
  *   So we always use ASCII digits, instead of, eg, the Chinese digits
  */
-CString GetLocaleStr(const CString & str)
+CString GetLocaleStr(const CString & str, int decimalDigits)
 {
 	// Fill in currency format with locale info
 	// except we hardcode for no decimal
 	NUMBERFMT NumFormat;
 	memset(&NumFormat, 0, sizeof(NumFormat));
-	NumFormat.NumDigits = 0; // LOCALE_IDIGITS
+	NumFormat.NumDigits = decimalDigits; // LOCALE_IDIGITS
 	NumFormat.LeadingZero = getLocaleUint(LOCALE_ILZERO, 0);
 	NumFormat.Grouping = GetLocaleGrouping(3);
 	NumFormat.lpDecimalSep = _T("."); // should not be used

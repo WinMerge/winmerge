@@ -12,7 +12,7 @@
 namespace locality {
 
 CString NumToLocaleStr(UINT n);
-CString GetLocaleStr(const CString & str);
+CString GetLocaleStr(const CString & str, int decimalDigits = 0);
 
 };
 

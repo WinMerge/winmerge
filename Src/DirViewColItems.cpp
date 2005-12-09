@@ -34,6 +34,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#define KILO 1024
+
 /**
  * @brief Return string representation of encoding, eg "UCS-2LE", or "1252"
  */
@@ -86,6 +88,78 @@ static int cmpfloat(double v1, double v2)
 	if (v1<v2)
 		return -1;
 	return 0;
+}
+/**
+ * @brief Formats a size as a short string (locale-sensitive but not language sensitive)
+ *
+ * MakeShortSize(500) = "500b" 
+ * MakeShortSize(1024) = "1Kb"
+ * MakeShortSize(12000) = "1.7Kb"
+ * MakeShortSize(200000) = "195Kb" 
+ */
+static CString MakeShortSize(__int64 size)
+{
+#pragma warning(disable:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
+	double fsize = size;
+#pragma warning(default:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
+	double number=0;
+	int ndigits=0;
+	CString suffix;
+
+	if (size < KILO)
+	{
+		number = fsize;
+		suffix = _T("b");
+	}
+	else if (size < KILO * KILO)
+	{
+		number = fsize/KILO;
+		suffix = _T("Kb");
+		if (size < KILO * 10)
+		{
+			ndigits = 2;
+		}
+		else if (size < KILO * 100)
+		{
+			ndigits = 1;
+		}
+	}
+	else if (size < KILO * KILO * KILO)
+	{
+		number = fsize/(KILO * KILO);
+		suffix = _T("Gb");
+		if (size < KILO * KILO * 10)
+		{
+			ndigits = 2;
+		}
+		else if (size < KILO * KILO * 100)
+		{
+			ndigits = 1;
+		}
+	}
+	else if (size < (__int64)KILO * KILO * KILO * KILO)
+	{
+		number = fsize/((__int64)KILO * KILO * KILO);
+		suffix = _T("Tb");
+		if (size < (__int64)KILO * KILO * KILO * 10)
+		{
+			ndigits = 2;
+		}
+		else if (size < (__int64)KILO * KILO * KILO * 100)
+		{
+			ndigits = 1;
+		}
+	}
+	else
+	{
+		// overflow
+		return _T(">Pb");
+	}
+
+	CString s;
+	s.Format(_T("%lf"), number);
+	s = locality::GetLocaleStr(s, ndigits) + suffix;
+	return s;
 }
 
 /**
@@ -204,6 +278,16 @@ static CString ColSizeGet(const CDiffContext *, const void *p)
 	{
 		s.Format(_T("%I64d"), r);
 		s = locality::GetLocaleStr(s);
+	}
+	return s;
+}
+static CString ColSizeShortGet(const CDiffContext *, const void *p)
+{
+	const __int64 &r = *static_cast<const __int64*>(p);
+	CString s;
+	if (r != -1)
+	{
+		s = MakeShortSize(r);
 	}
 	return s;
 }
@@ -452,6 +536,8 @@ DirColInfo g_cols[] =
 	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, sLeftFilename), 5, true, LVCFMT_LEFT },
 	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },
 	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false, LVCFMT_RIGHT },
+	{ _T("LsizeShort"), IDS_COLHDR_LSIZE_SHORT, IDS_COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },
+	{ _T("RsizeShort"), IDS_COLHDR_RSIZE_SHORT, IDS_COLDESC_RSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false, LVCFMT_RIGHT },
 	{ _T("Newer"), IDS_COLHDR_NEWER, IDS_COLDESC_NEWER, &ColNewerGet, &ColNewerSort, 0, -1, true, LVCFMT_LEFT },
 	{ _T("Lversion"), IDS_COLHDR_LVERSION, IDS_COLDESC_LVERSION, &ColLversionGet, &ColLversionSort, 0, -1, true, LVCFMT_LEFT },
 	{ _T("Rversion"), IDS_COLHDR_RVERSION, IDS_COLDESC_RVERSION, &ColRversionGet, &ColRversionSort, 0, -1, true, LVCFMT_LEFT },

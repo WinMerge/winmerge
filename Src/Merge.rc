@@ -2001,7 +2001,7 @@ BEGIN
                             "Move selected file on right to custom directory"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
@@ -2012,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Left Creation Time"
     IDS_COLHDR_RTIMEC       "Right Creation Time"
     IDS_COLHDR_NEWER        "Newer File"
@@ -2022,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
@@ -2057,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 items selected"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
@@ -2068,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "File's extension."
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Left side creation time."
     IDS_COLDESC_RTIMEC      "Right side creation time."
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
