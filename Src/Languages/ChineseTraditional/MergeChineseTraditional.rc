@@ -2582,8 +2582,8 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SHOWLINEWORDDIFF                   "在目前列強調字不同\n在目前列字不同 (F4)"
+    ID_SHOWLINECHARDIFF                   "在目前列強調字元不同\n在目前列字元不同 (Shift+F4)"
     ID_EDIT_WMGOTO          "移至列或不同\n移至 (Ctrl+G)"
     ID_OPTIONS              "設定程式選項\n選項"
     ID_REFRESH              "更新顯示\n更新 (F5)"
@@ -2610,7 +2610,7 @@ BEGIN
     ID_VIEW_WHITESPACE      "顯示空白和跳格字元"
     ID_VIEW_DETAIL_BAR      "切換不同窗框"
     ID_VIEW_LOCATION_BAR    "位置窗框顯示綜覽圖片從檔案"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATISTICS                   "顯示資料夾比較狀態窗框"
     ID_VIEW_LANGUAGE        "選取目前用戶介面語言\n語言"
     ID_VIEW_LINEDIFFS       "以不同色彩顯示列內的不同\n顯示列不同"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
