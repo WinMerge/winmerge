@@ -9,6 +9,9 @@
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
  PATCH: [ 1249007 ] Short size column
   Src: DirViewColItems.cpp locality.cpp locality.h Merge.rc resource.h
+ PATCH: [ 1377362 ] Fix coretools to MakeResDll compiles
+ BUG: [ 1377361 ] MakeResDll broken b/c coretools broken
+  Src/Common: coretools.cpp
    
 2005-12-08 Perry
  PATCH: [1374728 ] Fix filter dialog delete

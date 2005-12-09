@@ -7,6 +7,9 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 #include "stdafx.h"
+#ifndef __AFXDISP_H__
+#include <afxdisp.h>
+#endif // __AFXDISP_H__
 #include <stdio.h>
 #include <io.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
