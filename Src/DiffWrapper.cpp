@@ -833,9 +833,10 @@ DiffFileData::DiffFileData()
 	m_ntrivialdiffs = DiffFileData::DIFFS_UNKNOWN;
 	Reset();
 	// Set default codepages
-	for (i=0; i<sizeof(m_sFilepath)/sizeof(m_sFilepath[0]); ++i)
+	for (i=0; i<sizeof(m_FileLocation)/sizeof(m_FileLocation[0]); ++i)
 	{
-		m_sFilepath[i].codepage = f_defcp;
+		m_FileLocation[i].unicoding = ucr::NONE;
+		m_FileLocation[i].codepage = f_defcp;
 	}
 }
 
@@ -849,8 +850,8 @@ DiffFileData::~DiffFileData()
 /** @brief Open file descriptors in the inf structure (return false if failure) */
 bool DiffFileData::OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
 {
-	m_sFilepath[0].AssignPath(szFilepath1);
-	m_sFilepath[1].AssignPath(szFilepath2);
+	m_FileLocation[0].setPath(szFilepath1);
+	m_FileLocation[1].setPath(szFilepath2);
 	bool b = DoOpenFiles();
 	if (!b)
 		Reset();
@@ -866,7 +867,7 @@ bool DiffFileData::DoOpenFiles()
 	{
 		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
 		USES_CONVERSION;
-		m_inf[i].name = strdup(T2CA(m_sFilepath[i]));
+		m_inf[i].name = strdup(T2CA(m_FileLocation[i].filepath));
 		if (m_inf[i].name == NULL)
 			return false;
 
@@ -875,7 +876,7 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
-		m_inf[i].desc = _topen(m_sFilepath[i], O_RDONLY|O_BINARY, _S_IREAD);
+			m_inf[i].desc = _topen(m_FileLocation[i].filepath, O_RDONLY|O_BINARY, _S_IREAD);
 		}
 		if (m_inf[i].desc < 0)
 			return false;
@@ -885,7 +886,7 @@ bool DiffFileData::DoOpenFiles()
 		{
 			return false;
 		}
-		if (m_sFilepath[1] == m_sFilepath[0])
+		if (0 == m_FileLocation[1].filepath.CompareNoCase(m_FileLocation[0].filepath))
 		{
 			m_inf[1].desc = m_inf[0].desc;
 		}
@@ -928,13 +929,12 @@ void DiffFileData::Reset()
 /**
  * @brief Try to deduce encoding for this file
  */
-void DiffFileData::FilepathWithEncoding::GuessEncoding(const char **data, int count)
+void DiffFileData::Filepath_GuessEncoding(FileLocation & fpenc, const char **data, int count)
 {
-	if (unicoding == 0)
+	if (fpenc.unicoding == 0)
 	{
-		const CString & filepath = *this;
-		CString sExt = PathFindExtension(filepath);
-		GuessEncoding_from_bytes(sExt, data, count, &codepage);
+		CString sExt = PathFindExtension(fpenc.filepath);
+		GuessEncoding_from_bytes(sExt, data, count, &fpenc.codepage);
 	}
 }
 
@@ -944,7 +944,7 @@ void DiffFileData::GuessEncoding(int side, CDiffContext * pCtxt)
 	if (!pCtxt->m_bGuessEncoding)
 		return;
 
-	m_sFilepath[side].GuessEncoding(m_inf[side].linbuf + m_inf[side].linbuf_base, 
+	Filepath_GuessEncoding(m_FileLocation[side], m_inf[side].linbuf + m_inf[side].linbuf_base, 
 	                                m_inf[side].valid_lines - m_inf[side].linbuf_base);
 }
 
@@ -1438,15 +1438,15 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::FilepathWithEncoding::Transform(const CString & filepath, CString & filepathTransformed,
+bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
 	const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
 
 	UniFileBom bom = fd; // guess encoding
-	unicoding = bom.unicoding;
+	fpenc.unicoding = bom.unicoding;
 
-	if (unicoding && unicoding != ucr::UCS2LE)
+	if (fpenc.unicoding && fpenc.unicoding != ucr::UCS2LE)
 	{
 		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
 		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
@@ -1477,7 +1477,7 @@ bool DiffFileData::FilepathWithEncoding::Transform(const CString & filepath, CSt
 			return false;
 	}
 
-	if (unicoding)
+	if (fpenc.unicoding)
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
@@ -1548,7 +1548,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	}
 
 	// Invoke prediff'ing plugins
-	if (!m_sFilepath[0].Transform(filepathUnpacked1, filepathTransformed1, filteredFilenames, infoPrediffer, m_inf[0].desc))
+	if (!Filepath_Transform(m_FileLocation[0], filepathUnpacked1, filepathTransformed1, filteredFilenames, infoPrediffer, m_inf[0].desc))
 	{
 		di.errorDesc = _T("Transform Error Side 1");
 		goto exitPrepAndCompare;
@@ -1557,7 +1557,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(infoPrediffer->bToBeScanned == FALSE);
 
-	if (!m_sFilepath[1].Transform(filepathUnpacked2, filepathTransformed2, filteredFilenames, infoPrediffer, m_inf[1].desc))
+	if (!Filepath_Transform(m_FileLocation[1], filepathUnpacked2, filepathTransformed2, filteredFilenames, infoPrediffer, m_inf[1].desc))
 	{
 		di.errorDesc = _T("Transform Error Side 2");
 		goto exitPrepAndCompare;
@@ -1700,7 +1700,7 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 	// Open both files
 	for (i=0; i<2; ++i)
 	{
-		fp[i] = _tfopen(m_sFilepath[i], _T("rb"));
+		fp[i] = _tfopen(m_FileLocation[i].filepath, _T("rb"));
 		if (!fp[i])
 			return DIFFCODE::CMPERR;
 		fhd[i].Assign(fp[i]);

@@ -27,6 +27,9 @@
 #ifndef _DIFFWRAPPER_H
 #define _DIFFWRAPPER_H
 
+#include "FileLocation.h"
+
+
 class CDiffContext;
 class PrediffingInfo;
 struct DIFFRANGE;
@@ -245,6 +248,7 @@ struct DiffFileData
 
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
+/*
 	struct FilepathWithEncoding : CString
 	{
 		int unicoding;
@@ -256,7 +260,13 @@ struct DiffFileData
 			const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
 		void GuessEncoding(const char **data, int count);
 		void AssignPath(const CString & sFilePath) { CString::operator=(sFilePath); }
-	} m_sFilepath[2];
+	}
+*/
+	FileLocation m_FileLocation[2];
+	bool Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
+		const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
+	void Filepath_GuessEncoding(FileLocation & fpenc, const char **data, int count);
+
 	int m_ndiffs;
 	int m_ntrivialdiffs;
 	struct UniFileBom // detect unicode file and quess encoding

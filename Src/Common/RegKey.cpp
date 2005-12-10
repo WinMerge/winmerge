@@ -193,9 +193,9 @@ CString CRegKeyEx::ReadString (LPCTSTR pszKey, LPCTSTR defval)
 		&dwType, (LPBYTE) string, &dwSize);
 
 	if (lReturn == ERROR_SUCCESS)
-		return CString(string);
+		return string;
 	else
-		return CString(defval);
+		return defval;
 }
 
 void CRegKeyEx::ReadChars (LPCTSTR pszKey, LPTSTR pData, DWORD dwLen, LPCTSTR defval)

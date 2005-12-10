@@ -213,8 +213,8 @@ public:
 	void UpdateHeaderActivity(int pane, BOOL bActivate);
 	void RefreshOptions();
 	void UpdateResources();
-	OPENRESULTS_TYPE OpenDocs(CString sLeftFile, CString sRightFile,
-		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright);
+	OPENRESULTS_TYPE OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
+		BOOL bROLeft, BOOL bRORight);
 	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);
 	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage);
 	void RescanIfNeeded(float timeOutInSecond);

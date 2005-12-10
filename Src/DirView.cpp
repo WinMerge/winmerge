@@ -1050,10 +1050,16 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
 		BOOL bRightRO = pDoc->GetReadOnly(FALSE);
 
-		int rtn = mf->ShowMergeDoc(pDoc, pathLeft, pathRight,
-			bLeftRO, bRightRO,
-			di1->left.codepage, di2->right.codepage,
-			infoUnpacker);
+		FileLocation filelocLeft(pathLeft);
+		filelocLeft.unicoding = di1->left.unicoding;
+		filelocLeft.codepage = di1->left.codepage;
+
+		FileLocation filelocRight(pathRight);
+		filelocRight.unicoding = di2->right.unicoding;
+		filelocRight.codepage = di2->right.codepage;
+
+		int rtn = mf->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
+			bLeftRO, bRightRO, infoUnpacker);
 		if (rtn == OPENRESULTS_FAILED_BINARY)
 		{
 			if (di1 == di2)

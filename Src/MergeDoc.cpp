@@ -2516,29 +2516,33 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 
 /**
  * @brief Loads files and does initial rescan
- * @param sLeftFile [in] File to open to left side
- * @param sRightFile [in] File to open to right side
+ * @param filelocLeft [in] File to open to left side (path & encoding info)
+ * @param fileLocRight [in] File to open to right side (path & encoding info)
  * @param bROLeft [in] Is left file read-only
  * @param bRORight [in] Is right file read-only
- * @param cpleft [in] Is left file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
- * @param cpright [in] Is right file's 8-bit codepage (eg, 1252) if applicable (0 is unknown or N/A)
  * @return Success/Failure/Binary (failure) per typedef enum OpenDocsResult_TYPE
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
 OPENRESULTS_TYPE
-CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
-		BOOL bROLeft, BOOL bRORight, int cpleft, int cpright)
+CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
+		BOOL bROLeft, BOOL bRORight)
 {
 	BOOL bBinary = FALSE;
 	BOOL bIdentical = FALSE;
 	int nRescanResult = RESCAN_OK;
 
 	// Filter out invalid codepages, or editor will display all blank
-	if (!IsValidCodepageForMergeEditor(cpleft))
-		cpleft = 0;
-	if (!IsValidCodepageForMergeEditor(cpright))
-		cpright = 0;
+	if (filelocLeft.unicoding == ucr::NONE
+		&& !IsValidCodepageForMergeEditor(filelocLeft.codepage))
+	{
+		filelocLeft.codepage = 0;
+	}
+	if (filelocRight.unicoding == ucr::NONE
+		&& !IsValidCodepageForMergeEditor(filelocRight.codepage))
+	{
+		filelocRight.codepage = 0;
+	}
 
 	// clear undo stack
 	undoTgt.clear();
@@ -2552,8 +2556,11 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 	m_pDetailView[1]->DetachFromBuffer();
 
 	// free the buffers
-	m_ptBuf[0]->FreeAll ();
-	m_ptBuf[1]->FreeAll ();
+	m_ptBuf[0]->FreeAll();
+	m_ptBuf[1]->FreeAll();
+
+	CString sLeftFile = filelocLeft.filepath;
+	CString sRightFile = filelocRight.filepath;
 
 	// build the text being filtered, "|" separates files as it is forbidden in filenames
 	m_strBothFilenames = sLeftFile + _T("|") + sRightFile;
@@ -2575,7 +2582,7 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		m_pRescanFileInfo[0]->Update(sLeftFile);
 
 		// Load left side file
-		nLeftSuccess = LoadFile(sLeftFile, 0, bROLeft, cpleft);
+		nLeftSuccess = LoadFile(sLeftFile, 0, bROLeft, filelocLeft.codepage);
 	}
 	else
 	{
@@ -2602,7 +2609,7 @@ CMergeDoc::OpenDocs(CString sLeftFile, CString sRightFile,
 		m_pSaveFileInfo[1]->Update(sRightFile);
 		m_pRescanFileInfo[1]->Update(sRightFile);
 		if (nLeftSuccess == FRESULT_OK || nLeftSuccess == FRESULT_BINARY)
-			nRightSuccess = LoadFile(sRightFile, 1, bRORight, cpright);
+			nRightSuccess = LoadFile(sRightFile, 1, bRORight, filelocRight.codepage);
 	}
 	else
 	{

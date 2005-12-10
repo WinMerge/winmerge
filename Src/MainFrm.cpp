@@ -556,19 +556,33 @@ void CMainFrame::OnFileOpen()
 }
 
 /**
+ * @brief Check for BOM, and also, if bGuessEncoding, try to deduce codepage
+ *
+ * Unpacks info from FileLocation & delegates all work to codepage_detect module
+ */
+static void
+FileLocationGuessEncodings(FileLocation & fileloc, BOOL bGuessEncoding)
+{
+	GuessCodepageEncoding(fileloc.filepath, &fileloc.unicoding, &fileloc.codepage, bGuessEncoding);
+}
+
+/**
  * @brief Creates new MergeDoc instance and shows documents
  *
  * @param cpleft, cpright : left and right codepages
  * = -1 when the file must be parsed
  */
 int /* really an OPENRESULTS_TYPE, but MainFrm.h doesn't know that type */
-CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight,
-	BOOL bROLeft, BOOL bRORight,  int cpleft /*=-1*/, int cpright /*=-1*/,
+CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, const FileLocation & ifilelocRight,
+	BOOL bROLeft, BOOL bRORight,
 	PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
 	BOOL bOpenSuccess = FALSE;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
+
+	// Make local copies, so we can change encoding if we guess it below
+	FileLocation filelocLeft = ifilelocLeft, filelocRight = ifilelocRight;
 
 	ASSERT(pMergeDoc);		// must ASSERT to get an answer to the question below ;-)
 	if (!pMergeDoc)
@@ -582,33 +596,33 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc, LPCTSTR szLeft, LPCTSTR szRight,
 
 	// detect codepage
 	BOOL bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
-	if (cpleft == -1)
+	if (filelocLeft.unicoding == ucr::NONE && filelocLeft.codepage == -1)
 	{
-		CString filepath = szLeft;
-		int unicoding;
-		GuessCodepageEncoding(filepath, &unicoding, &cpleft, bGuessEncoding);
-	}
-	if (cpright == -1)
-	{
-		CString filepath = szRight;
-		int unicoding;
-		GuessCodepageEncoding(filepath, &unicoding, &cpright, bGuessEncoding);
+		FileLocationGuessEncodings(filelocLeft, bGuessEncoding);
 	}
 
-	if (cpleft != cpright)
+	if (filelocRight.unicoding == ucr::NONE && filelocRight.codepage == -1)
+	{
+		FileLocationGuessEncodings(filelocRight, bGuessEncoding);
+	}
+
+	// TODO (Perry, 2005-12-04)
+	// Should we do any unification if unicodings are different?
+
+	if (filelocLeft.codepage != filelocRight.codepage)
 	{
 		CString msg;
-		msg.Format(IDS_SUGGEST_IGNORECODEPAGE, cpleft, cpright);
+		msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.codepage, filelocRight.codepage);
 		int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
 		// Two files with different codepages
 		// Warn and propose to use the default codepage for both
 		int userChoice = AfxMessageBox(msg, msgflags);
 		if (userChoice == IDYES)
-			cpleft = cpright = getDefaultCodepage();
+			filelocLeft.codepage = filelocRight.codepage = getDefaultCodepage();
 	}
 
-	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(szLeft, szRight,
-			bROLeft, bRORight, cpleft, cpright);
+	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(filelocLeft, filelocRight,
+			bROLeft, bRORight);
 
 	if (openResults == OPENRESULTS_SUCCESS)
 	{
@@ -1236,9 +1250,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	CString strLeft(pszLeft);
 	CString strRight(pszRight);
 	PackingInfo infoUnpacker;
-	// TODO: Need to allow user to specify these some day
-	int cpleft= -1; // to be initialized/guessed in ShowMergeDoc
-	int cpright= -1; // to be initialized/guessed in ShowMergeDoc
 
 	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
 	BOOL bRORight = dwRightFlags & FFILEOPEN_READONLY;
@@ -1273,8 +1284,6 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		infoUnpacker = dlg.m_infoHandler;
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
-		cpleft= -1; // to be initialized/guessed in ShowMergeDoc
-		cpright= -1; // to be initialized/guessed in ShowMergeDoc
 	}
 	else
 	{
@@ -1427,8 +1436,11 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		gLog.Write(LOGLEVEL::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
 			strLeft, strRight);
 		
-		ShowMergeDoc(pDirDoc, strLeft, strRight, bROLeft, bRORight,
-			cpleft, cpright, &infoUnpacker);
+		FileLocation filelocLeft(strLeft);
+		FileLocation filelocRight(strRight);
+
+		ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, bROLeft, bRORight,
+			&infoUnpacker);
 	}
 	return TRUE;
 }
@@ -2598,8 +2610,10 @@ void CMainFrame::OnFileNew()
 	// Use default codepage
 	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
 	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
-	ShowMergeDoc(pDirDoc, _T(""), _T(""), FALSE, FALSE, 
-		getDefaultCodepage(), getDefaultCodepage());
+	FileLocation filelocLeft; // empty, unspecified (so default) encoding
+	FileLocation filelocRight;
+	ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, FALSE, FALSE);
+
 
 	// Empty descriptors now that docs are open
 	m_strLeftDesc.Empty();

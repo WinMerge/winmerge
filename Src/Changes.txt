@@ -3,6 +3,10 @@
   Plugins\src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
   Src\ExpatMapLib added
   Many files moved from DisplayXMLFiles to new ExpatMapLib
+ PATCH: [ 1373020 ] Carry unicoding, codepage, & file path together
+  Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirView.cpp
+   MainFrm.cpp MainFrm.h Merge.dsp MergeDoc.cpp MergeDoc.h
+  Src\Common: RegKey.cpp
 
 2005-12-09 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)

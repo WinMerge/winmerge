@@ -1053,6 +1053,10 @@ SOURCE=.\FileInfo.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileLocation.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\FilepathEdit.h
 # End Source File
 # Begin Source File
