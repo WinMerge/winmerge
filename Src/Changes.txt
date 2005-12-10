@@ -1,3 +1,9 @@
+2005-12-10 Perry
+ PATCH: [ 1371384 ] Move Expat maps into WinMerge src
+  Plugins\src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
+  Src\ExpatMapLib added
+  Many files moved from DisplayXMLFiles to new ExpatMapLib
+
 2005-12-09 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Remainder of dialogs

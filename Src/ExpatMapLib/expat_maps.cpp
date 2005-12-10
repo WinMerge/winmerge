@@ -26,6 +26,9 @@
 
 #include "StdAfx.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <cstring>
+#include <ctype.h>
 
 #include "expat.h"
 #include "expat_maps.h"
@@ -90,6 +93,11 @@ static const char * aliases[] = {
 	, "WINDOWS", "CP-"
 	, "CP", "CP-"
 };
+
+const char * expat_maps_getVersion()
+{
+	return "V1.0.0.0";
+}
 
 int
 expat_maps_getMap(const XML_Char *name, XML_Encoding *info)

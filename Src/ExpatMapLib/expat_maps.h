@@ -28,5 +28,6 @@
 #define expat_maps_h_included
 
 int expat_maps_getMap(const XML_Char *name, XML_Encoding *info);
+const char * expat_maps_getVersion();
 
 #endif // expat_maps_h_included

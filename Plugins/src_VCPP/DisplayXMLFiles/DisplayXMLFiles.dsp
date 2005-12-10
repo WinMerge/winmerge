@@ -47,7 +47,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\..\..\Src\ExpatLib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /FR /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\..\..\Src\ExpatLib" /I "..\..\..\Src\ExpatMapLib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /FR /YX /FD /GZ /c
 # ADD BASE RSC /l 0x40c /d "_DEBUG"
 # ADD RSC /l 0x40c /d "_DEBUG"
 BSC32=bscmake.exe
@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"..\..\..\Src\ExpatLib\Debug_static"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"..\..\..\Src\ExpatLib\Debug_static" /libpath:"..\..\..\Src\ExpatMapLib\Debug_static"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Unicode Debug"
 
@@ -71,7 +71,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\..\..\Src\ExpatLib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /I "..\..\..\Src\ExpatLib" /I "..\..\..\Src\ExpatMapLib" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /GZ /c
 # ADD BASE RSC /l 0x40c /d "_DEBUG"
 # ADD RSC /l 0x40c /d "_DEBUG"
 BSC32=bscmake.exe
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"..\..\..\Src\ExpatLib\Debug_static"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept /libpath:"..\..\..\Src\ExpatLib\Debug_static" /libpath:"..\..\..\Src\ExpatMapLib\Debug_static"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Release MinSize"
 
@@ -95,7 +95,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /I "..\..\..\Src\ExpatMapLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
@@ -103,7 +103,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static" /libpath:"..\..\..\Src\ExpatMapLib\Release_static"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Release MinDependency"
 
@@ -119,7 +119,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /I "..\..\..\Src\ExpatMapLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
@@ -127,7 +127,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static" /libpath:"..\..\..\Src\ExpatMapLib\Release_static"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Unicode Release MinSize"
 
@@ -143,7 +143,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /I "..\..\..\Src\ExpatMapLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
@@ -151,7 +151,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static" /libpath:"..\..\..\Src\ExpatMapLib\Release_static"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Unicode Release MinDependency"
 
@@ -167,7 +167,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\Src\ExpatLib" /I "..\..\..\Src\ExpatMapLib" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XML_STATIC" /YX /FD /c
 # ADD BASE RSC /l 0x40c /d "NDEBUG"
 # ADD RSC /l 0x40c /d "NDEBUG"
 BSC32=bscmake.exe
@@ -175,7 +175,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /libpath:"..\..\..\Src\ExpatLib\Release_static" /libpath:"..\..\..\Src\ExpatMapLib\Release_static"
 
 !ENDIF 
 
@@ -209,10 +209,6 @@ SOURCE=.\DisplayXMLFiles.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\expat_maps.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
@@ -223,70 +219,6 @@ SOURCE=.\WinMergeScript.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
-# Begin Source File
-
-SOURCE=.\expat_maps.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_1.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_10.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_11.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_13.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_14.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_15.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_16.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_2.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_3.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_4.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_5.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_6.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_7.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_8.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\map_data_8859_9.h
-# End Source File
 # Begin Source File
 
 SOURCE=.\Resource.h
