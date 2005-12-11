@@ -1,3 +1,12 @@
+2005-12-11 Kimmo
+ PATCH: [ 1371994 ] Enable hi-color icons for folder compare
+  Icons from Tim (Thanks!)
+  Src: CompareStatisticsDlg.cpp DirView.cpp Merge.rc resource.h
+  res new files: folder.ico folderskip.ico lfolder.ico rfolder.ico
+  res deleted files: folder.bmp folderskip.bmp lfolder.bmp rfolder.bmp
+  Src/Languages: *.rc resource.h
+  Src/Languages/res: new and deleted files like in res above
+
 2005-12-10 Perry
  PATCH: [ 1371384 ] Move Expat maps into WinMerge src
   Plugins\src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp

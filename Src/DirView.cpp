@@ -191,6 +191,8 @@ CDirDoc* CDirView::GetDocument() // non-debug version is inline
 
 void CDirView::OnInitialUpdate() 
 {
+	const int iconCX = 16;
+	const int iconCY = 16;
 	CListView::OnInitialUpdate();
 	m_pList = &GetListCtrl();
 	GetDocument()->SetDirView(this);
@@ -209,7 +211,7 @@ void CDirView::OnInitialUpdate()
 
 	// Load the bitmaps used for the list view (to reflect diff status)
 	CBitmap bm;
-	VERIFY (m_imageList.Create (16, 16, ILC_MASK, 0, 1));
+	VERIFY (m_imageList.Create (iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
 	VERIFY (bm.LoadBitmap (IDB_LFILE));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
@@ -231,21 +233,17 @@ void CDirView::OnInitialUpdate()
 	VERIFY (bm.LoadBitmap (IDB_BINARYDIFF));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_LFOLDER));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_RFOLDER));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
-	bm.Detach();
+	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_LFOLDER), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
+	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_RFOLDER), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
 	VERIFY (bm.LoadBitmap (IDB_FILESKIP));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_FOLDERSKIP));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_FOLDER));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
-	bm.Detach();
+	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_FOLDERSKIP), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
+	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_FOLDER), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
 	VERIFY (bm.LoadBitmap (IDB_ERROR));
 	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
 	bm.Detach();

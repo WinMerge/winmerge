@@ -70,6 +70,10 @@ END
 IDR_MAINFRAME           ICON                    "res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "res\\MergeDir.ico"
+IDI_FOLDER              ICON                    "res\\folder.ico"
+IDI_LFOLDER             ICON                    "res\\lfolder.ico"
+IDI_RFOLDER             ICON                    "res\\rfolder.ico"
+IDI_FOLDERSKIP          ICON                    "res\\folderskip.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1361,22 +1365,19 @@ BEGIN
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
     GROUPBOX        "ï–ï˚ÇÃÇ›",IDC_STATIC,7,55,186,40
     RTEXT           "ç∂ë§:",IDC_STATIC,11,66,56,8
-    CONTROL         IDB_LFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    72,64,12,11
+    ICON            "",IDC_STAT_ILUNIQFOLDER,72,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
     CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,64,12,11
     RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
     RTEXT           "âEë§:",IDC_STATIC,11,79,56,8
-    CONTROL         IDB_RFOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    72,77,12,11
+    ICON            "",IDC_STAT_IRUNIQFOLDER,72,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
     CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,77,12,11
     RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
     GROUPBOX        "ìØàÍ",IDC_STATIC,7,95,186,37
-    CONTROL         IDB_FOLDER,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    72,102,12,11
+    ICON            "",IDC_STAT_IIDENTICFOLDER,72,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
     CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,102,12,11
@@ -1488,18 +1489,14 @@ END
 
 IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
 IDB_SPLASH              BITMAP                  "res\\splash1.bmp"
-IDB_LFOLDER             BITMAP                  "res\\lfolder.bmp"
 IDB_EQUAL               BITMAP                  "res\\equal.bmp"
 IDB_NOTEQUAL            BITMAP                  "res\\notequal.bmp"
-IDB_RFOLDER             BITMAP                  "res\\rfolder.bmp"
 IDB_UNKNOWN             BITMAP                  "res\\unknown.bmp"
 IDB_BINARYSAME          BITMAP                  "res\\binary.bmp"
 IDB_LFILE               BITMAP                  "res\\lfile.bmp"
 IDB_RFILE               BITMAP                  "res\\rfile.bmp"
 IDB_BINARYDIFF          BITMAP                  "res\\binarydiff.bmp"
-IDB_FOLDERSKIP          BITMAP                  "res\\folderskip.bmp"
 IDB_FILESKIP            BITMAP                  "res\\fileskip.bmp"
-IDB_FOLDER              BITMAP                  "res\\folder.bmp"
 IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
 IDB_EDIT_CUT            BITMAP                  "res\\cut.bmp"
 IDB_EDIT_PASTE          BITMAP                  "res\\paste.bmp"

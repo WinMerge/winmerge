@@ -32,6 +32,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Icon size
+static const int IconCX = 16;
+static const int IconCY = 16;
+
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
 
@@ -115,6 +119,20 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	// Total
 	m_sTotalFolders.Format(_T("%d"), totalFolders);
 	m_sTotalFiles.Format(_T("%d"), totalFiles);
+
+	// Load small folder icons
+	CStatic * pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ILUNIQFOLDER);
+	HICON hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_LFOLDER), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFOLDER);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_RFOLDER), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IIDENTICFOLDER);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_FOLDER), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
 
 	UpdateData(FALSE);
 

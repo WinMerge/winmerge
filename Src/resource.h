@@ -48,7 +48,6 @@
 #define IDB_ERROR                       300
 #define IDB_EQUAL                       301
 #define IDB_NOTEQUAL                    302
-#define IDB_RFOLDER                     303
 #define IDB_UNKNOWN                     304
 #define IDB_BINARYSAME                  305
 #define IDB_LFILE                       306
@@ -56,11 +55,8 @@
 #define IDB_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
-#define IDB_LFOLDER                     311
 #define IDB_BINARYDIFF                  312
-#define IDB_FOLDERSKIP                  313
 #define IDB_FILESKIP                    314
-#define IDB_FOLDER                      315
 #define IDB_EDIT_COPY                   316
 #define IDB_EDIT_CUT                    317
 #define IDB_EDIT_PASTE                  318
@@ -84,6 +80,10 @@
 #define IDB_MERGE_DELETE                336
 #define IDB_FILE_PRINT                  337
 #define IDB_SIGMA                       338
+#define IDI_FOLDER                      500
+#define IDI_LFOLDER                     501
+#define IDI_RFOLDER                     502
+#define IDI_FOLDERSKIP                  503
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001
@@ -303,6 +303,9 @@
 #define IDC_STAT_TOTALFILE              1215
 #define IDC_TREEOPT_IMPORT              1216
 #define IDC_TREEOPT_EXPORT              1217
+#define IDC_STAT_ILUNIQFOLDER           1218
+#define IDC_STAT_IRUNIQFOLDER           1219
+#define IDC_STAT_IIDENTICFOLDER         1220
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -916,7 +919,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        228
 #define _APS_NEXT_COMMAND_VALUE         33098
-#define _APS_NEXT_CONTROL_VALUE         1199
+#define _APS_NEXT_CONTROL_VALUE         1221
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif
