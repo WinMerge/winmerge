@@ -1,3 +1,7 @@
+2005-12-11 Perry
+ PATCH: [ 1372549 ] readme for Merge7z distributables
+  Merge7z: readme.txt
+
 2005-12-11 Kimmo
  PATCH: [ 1371994 ] Enable hi-color icons for folder compare
   Icons from Tim (Thanks!)
