@@ -1,3 +1,6 @@
+2005-12-13 Perry
+ PATCH: [ 1377545 ] Remove needless casts
+
 2005-12-11 Perry
  PATCH: [ 1372549 ] readme for Merge7z distributables
   Merge7z: readme.txt
@@ -17,10 +20,12 @@
   Src\ExpatMapLib added
   Many files moved from DisplayXMLFiles to new ExpatMapLib
  PATCH: [ 1373020 ] Carry unicoding, codepage, & file path together
+ & PATCH: [ 1377545 ] Remove needless casts
   Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirView.cpp
    MainFrm.cpp MainFrm.h Merge.dsp MergeDoc.cpp MergeDoc.h
   Src\Common: RegKey.cpp
   NEW Src\FileLocation.h
+
 
 2005-12-09 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
