@@ -1,3 +1,8 @@
+2005-12-13 Perry
+ PATCH [ 1374981 ] Improvement for RCLocalizationHelper
+  Plugins\src_VCPP\RCLocalizationHelper:
+   WinMergeScript.cpp
+
 2005-12-07 Perry
  PATCH [ 1374931 ] Bugfixes & upload binary for RCLocalizationHelper
   Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.2)

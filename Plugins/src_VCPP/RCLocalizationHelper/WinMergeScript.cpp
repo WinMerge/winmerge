@@ -39,18 +39,14 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	long nSize = *pSize;
 
 	int iSrc, iDst;
+	// bPrend is one when we're processing (& copying text to output)
+	// it is 0 when we're inside a string constant (& not copying text to output)
 	int bPrend = 1;
 	for (iSrc = 0, iDst = 0 ; iSrc < nSize ; iSrc++)
 	{
 		if (text[iSrc] == L'"')
 		{
 			bPrend = 1 - bPrend;
-			continue;
-		}
-		if (text[iSrc] == L'\n' || text[iSrc] == L'\r')
-		{
-			bPrend = 1;
-			text[iDst ++] = text[iSrc];
 			continue;
 		}
 		if (text[iSrc] >= L'0' && text[iSrc] <= L'9')
