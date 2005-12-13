@@ -1,3 +1,9 @@
+2005-12-13 Kimmo
+ PATCH: [ 1378174 ] Share Src/res between translations
+  Src/Languages: *.rc
+  Src/Languages/res: removed .bmp .cur and .ico files and WinMergeSplash.psd
+   splash1.bmp and splash WinMergeSplash.psd not removed from Catalan
+
 2005-12-13 Perry
  PATCH: [ 1377545 ] Remove needless casts
 
