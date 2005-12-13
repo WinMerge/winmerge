@@ -67,13 +67,15 @@ END
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDR_MAINFRAME           ICON                    "res\\Merge.ico"
-IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
-IDR_DOC_FOLDERCMP       ICON                    "res\\MergeDir.ico"
-IDI_FOLDER              ICON                    "res\\folder.ico"
-IDI_LFOLDER             ICON                    "res\\lfolder.ico"
-IDI_RFOLDER             ICON                    "res\\rfolder.ico"
-IDI_FOLDERSKIP          ICON                    "res\\folderskip.ico"
+
+// Load shared resources from Src\res
+IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
+IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
+IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
+IDI_FOLDER              ICON                    "..\\..\\res\\folder.ico"
+IDI_LFOLDER             ICON                    "..\\..\\res\\lfolder.ico"
+IDI_RFOLDER             ICON                    "..\\..\\res\\rfolder.ico"
+IDI_FOLDERSKIP          ICON                    "..\\..\\res\\folderskip.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1500,41 +1502,42 @@ END
 //
 // Bitmap
 //
+// Catalan has localized splash screen.
 
-IDR_MAINFRAME           BITMAP                  "res\\Toolbar.bmp"
+IDR_MAINFRAME           BITMAP                  "..\\..\\res\\Toolbar.bmp"
 IDB_SPLASH              BITMAP                  "res\\splash1.bmp"
-IDB_EQUAL               BITMAP                  "res\\equal.bmp"
-IDB_NOTEQUAL            BITMAP                  "res\\notequal.bmp"
-IDB_UNKNOWN             BITMAP                  "res\\unknown.bmp"
-IDB_BINARYSAME          BITMAP                  "res\\binary.bmp"
-IDB_LFILE               BITMAP                  "res\\lfile.bmp"
-IDB_RFILE               BITMAP                  "res\\rfile.bmp"
-IDB_BINARYDIFF          BITMAP                  "res\\binarydiff.bmp"
-IDB_FILESKIP            BITMAP                  "res\\fileskip.bmp"
-IDB_EDIT_COPY           BITMAP                  "res\\copy.bmp"
-IDB_EDIT_CUT            BITMAP                  "res\\cut.bmp"
-IDB_EDIT_PASTE          BITMAP                  "res\\paste.bmp"
-IDB_EDIT_SEARCH         BITMAP                  "res\\search.bmp"
-IDB_WINDOW_CASCADE      BITMAP                  "res\\cascade.bmp"
-IDB_WINDOW_HORIZONTAL   BITMAP                  "res\\horizontally.bmp"
-IDB_WINDOW_VERTICAL     BITMAP                  "res\\vertically.bmp"
-IDB_WINDOW_CLOSE        BITMAP                  "res\\close.bmp"
-IDB_WINDOW_CHANGEPANE   BITMAP                  "res\\change_pane.bmp"
-IDB_EDIT_GOTO           BITMAP                  "res\\go_to.bmp"
-IDB_EDIT_REPLACE        BITMAP                  "res\\replace.bmp"
-IDB_VIEW_LANGUAGE       BITMAP                  "res\\language.bmp"
-IDB_VIEW_SELECTFONT     BITMAP                  "res\\select_font.bmp"
-IDB_FILE_EXIT           BITMAP                  "res\\exit.bmp"
-IDB_HELP_CONTENTS       BITMAP                  "res\\help_contents.bmp"
-IDB_ERROR               BITMAP                  "res\\error.bmp"
-IDB_FOLDERUP            BITMAP                  "res\\folderup.bmp"
-IDB_FOLDERUP_DISABLE    BITMAP                  "res\\folderup_disable.bmp"
-IDB_EDIT_SELECTALL      BITMAP                  "res\\select_all.bmp"
-IDB_TOOLS_FILTERS       BITMAP                  "res\\filters.bmp"
-IDB_TOOLS_COLUMNS       BITMAP                  "res\\customize_columns.bmp"
-IDB_MERGE_DELETE        BITMAP                  "res\\delete.bmp"
-IDB_FILE_PRINT          BITMAP                  "res\\print.bmp"
-IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
+IDB_EQUAL               BITMAP                  "..\\..\\res\\equal.bmp"
+IDB_NOTEQUAL            BITMAP                  "..\\..\\res\\notequal.bmp"
+IDB_UNKNOWN             BITMAP                  "..\\..\\res\\unknown.bmp"
+IDB_BINARYSAME          BITMAP                  "..\\..\\res\\binary.bmp"
+IDB_LFILE               BITMAP                  "..\\..\\res\\lfile.bmp"
+IDB_RFILE               BITMAP                  "..\\..\\res\\rfile.bmp"
+IDB_BINARYDIFF          BITMAP                  "..\\..\\res\\binarydiff.bmp"
+IDB_FILESKIP            BITMAP                  "..\\..\\res\\fileskip.bmp"
+IDB_EDIT_COPY           BITMAP                  "..\\..\\res\\copy.bmp"
+IDB_EDIT_CUT            BITMAP                  "..\\..\\res\\cut.bmp"
+IDB_EDIT_PASTE          BITMAP                  "..\\..\\res\\paste.bmp"
+IDB_EDIT_SEARCH         BITMAP                  "..\\..\\res\\search.bmp"
+IDB_WINDOW_CASCADE      BITMAP                  "..\\..\\res\\cascade.bmp"
+IDB_WINDOW_HORIZONTAL   BITMAP                  "..\\..\\res\\horizontally.bmp"
+IDB_WINDOW_VERTICAL     BITMAP                  "..\\..\\res\\vertically.bmp"
+IDB_WINDOW_CLOSE        BITMAP                  "..\\..\\res\\close.bmp"
+IDB_WINDOW_CHANGEPANE   BITMAP                  "..\\..\\res\\change_pane.bmp"
+IDB_EDIT_GOTO           BITMAP                  "..\\..\\res\\go_to.bmp"
+IDB_EDIT_REPLACE        BITMAP                  "..\\..\\res\\replace.bmp"
+IDB_VIEW_LANGUAGE       BITMAP                  "..\\..\\res\\language.bmp"
+IDB_VIEW_SELECTFONT     BITMAP                  "..\\..\\res\\select_font.bmp"
+IDB_FILE_EXIT           BITMAP                  "..\\..\\res\\exit.bmp"
+IDB_HELP_CONTENTS       BITMAP                  "..\\..\\res\\help_contents.bmp"
+IDB_ERROR               BITMAP                  "..\\..\\res\\error.bmp"
+IDB_FOLDERUP            BITMAP                  "..\\..\\res\\folderup.bmp"
+IDB_FOLDERUP_DISABLE    BITMAP                  "..\\..\\res\\folderup_disable.bmp"
+IDB_EDIT_SELECTALL      BITMAP                  "..\\..\\res\\select_all.bmp"
+IDB_TOOLS_FILTERS       BITMAP                  "..\\..\\res\\filters.bmp"
+IDB_TOOLS_COLUMNS       BITMAP                  "..\\..\\res\\customize_columns.bmp"
+IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
+IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
+IDB_SIGMA               BITMAP                  "..\\..\\res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1542,8 +1545,8 @@ IDB_SIGMA               BITMAP                  "res\\sigma.bmp"
 // Cursor
 //
 
-IDR_MARGIN_CURSOR       CURSOR                  "res\\mg_cur.cur"
-IDR_MERGEHAND           CURSOR                  "res\\hand.cur"
+IDR_MARGIN_CURSOR       CURSOR                  "..\\..\\res\\mg_cur.cur"
+IDR_MERGEHAND           CURSOR                  "..\\..\\res\\hand.cur"
 
 /////////////////////////////////////////////////////////////////////////////
 //
