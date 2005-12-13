@@ -1,0 +1,21 @@
+EditBinaryFiles\ChangeLog.txt
+
+2005-05-21, Perry Rapp
+ Created ChangeLog.
+ Fixed compilation under MSVC6 by removing global namespace qualifier on InlineIsEqualGUID.
+ Fixed compilation under MSVC7 by change fstream.h to fstream and adding using for std.
+ Added ChangeLog to project.
+ Fixed project link to typeinfoex.h (it is in current directory not parent).
+ Note: Current version is 1.0.0.1.
+ Added unicheck.* files and fixed to handle unicode encodings if BOM found.
+ Bumped current version to 1.0.1.0 (and copyright notice to this year)
+
+2005-05-23, Perry Rapp
+ Created EditBinaryFiles as port from DisplayBinaryFiles
+
+2005-12-05, Perry Rapp
+ Rewrote internals, made it work only for non-Unicode, got Unpacker & packer working.
+
+2005-12-08, Perry Rapp
+ Removed unused code.
+ Added Setting class & read escape optionally from registry.

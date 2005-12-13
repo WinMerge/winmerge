@@ -1,0 +1,46 @@
+// EditBinaryFiles.idl : IDL source for EditBinaryFiles.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (DisplayBinaryFiles.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+	[
+		object,
+		uuid(EE2B99F0-1386-41d2-8B97-810897E2D9B5),
+		dual,
+		helpstring("IWinMergeScript Interface"),
+		pointer_default(unique)
+	]
+	interface IWinMergeScript : IDispatch
+	{
+		[propget, id(1), helpstring("property PluginEvent")] HRESULT PluginEvent([out, retval] BSTR *pVal);
+		[propget, id(2), helpstring("property PluginDescription")] HRESULT PluginDescription([out, retval] BSTR *pVal);
+		[propget, id(3), helpstring("property PluginFileFilters")] HRESULT PluginFileFilters([out, retval] BSTR *pVal);
+		[propget, id(4), helpstring("property PluginIsAutomatic")] HRESULT PluginIsAutomatic([out, retval] VARIANT_BOOL *pVal);
+		[id(5), helpstring("method UnpackBufferA")] HRESULT UnpackBufferA([in] SAFEARRAY(unsigned char) * pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess);
+		[id(6), helpstring("method PackBufferA")] HRESULT PackBufferA([in] SAFEARRAY(unsigned char) * pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT subcode, [out, retval] VARIANT_BOOL * pbSuccess);
+		[id(7), helpstring("method UnpackFile")] HRESULT UnpackFile([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess);
+		[id(8), helpstring("method PackFile")] HRESULT PackFile([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess);
+	};
+
+[
+	uuid(687BDBB6-1070-45c9-9790-F87D074BB958),
+	version(1.0),
+	helpstring("EditBinaryFiles 1.0 Type Library")
+]
+library EDITBINARYFILESLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(7FCE76F8-E22E-4c09-B642-E9A6C04C7EF1),
+		helpstring("WinMergeScript Class")
+	]
+	coclass WinMergeScript
+	{
+		[default] interface IWinMergeScript;
+	};
+};

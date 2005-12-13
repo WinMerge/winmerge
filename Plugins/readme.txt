@@ -1,10 +1,19 @@
 2005-12-13 Perry
- PATCH [ 1374981 ] Improvement for RCLocalizationHelper
+ PATCH: [ 1373255 ] New EditBinaryFiles plugin
+  NEW Plugins\src_VCPP\EditBinaryFiles
+   ByteMapping.cpp ByteMapping.h ChangeLog.txt EditBinaryFiles.cpp
+   EditBinaryFiles.def EditBinaryFiles.dsp EditBinaryFiles.idl
+   EditBinaryFiles.rc Resource.h Setting.cpp Setting.h
+   StdAfx.cpp StdAfx.h Unpacker.cpp Unpacker.h WinMergeScript.cpp
+   WinMergeScript.h typeinfoex.h unicheck.cpp unicheck.h
+
+2005-12-13 Perry
+ PATCH: [ 1374981 ] Improvement for RCLocalizationHelper
   Plugins\src_VCPP\RCLocalizationHelper:
    WinMergeScript.cpp
 
 2005-12-07 Perry
- PATCH [ 1374931 ] Bugfixes & upload binary for RCLocalizationHelper
+ PATCH: [ 1374931 ] Bugfixes & upload binary for RCLocalizationHelper
   Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.2)
   Plugins\src_VCPP\RCLocalizationHelper:
    RCLocalizationHelper.dsp RCLocalizationHelper.rc typeinfoex.h
