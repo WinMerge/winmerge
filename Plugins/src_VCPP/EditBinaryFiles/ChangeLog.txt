@@ -19,3 +19,7 @@ EditBinaryFiles\ChangeLog.txt
 2005-12-08, Perry Rapp
  Removed unused code.
  Added Setting class & read escape optionally from registry.
+
+2005-12-13, Perry Rapp
+ Add to WinMerge cvs.
+ Add binary to WinMerge Plugins\dlls (1.0.1.0)

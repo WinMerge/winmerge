@@ -1,5 +1,12 @@
 2005-12-13 Perry
  PATCH: [ 1373255 ] New EditBinaryFiles plugin
+ & BUG: [ 1379276 ] EditBinaryFiles not added to infrastructure
+  Plugins\dlls: NEW EditBinaryFiles.dll (V1.0.1.0)
+   (Compiled MSVC6sp6, ANSI, MinDependency, WinXP)
+  Plugins\src_VCPP\EditBinaryFiles: ChangeLog.txt
+
+2005-12-13 Perry
+ PATCH: [ 1373255 ] New EditBinaryFiles plugin
   NEW Plugins\src_VCPP\EditBinaryFiles
    ByteMapping.cpp ByteMapping.h ChangeLog.txt EditBinaryFiles.cpp
    EditBinaryFiles.def EditBinaryFiles.dsp EditBinaryFiles.idl
