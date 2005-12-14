@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
         MENUITEM "レポートの生成(&R)...",       ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -370,8 +378,8 @@ BEGIN
         MENUITEM "右にコピー(&R)\tAlt+Right",   ID_L2R
         MENUITEM "左にコピー(&E)\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "右にコピーして次に進む(&O)\tAlt+Ctrl+Right", ID_R2LNEXT
         MENUITEM "左にコピーして次に進む(&T)\tAlt+Ctrl+Left", ID_L2RNEXT
+        MENUITEM "右にコピーして次に進む(&O)\tAlt+Ctrl+Right", ID_R2LNEXT
         MENUITEM SEPARATOR
         MENUITEM "全てを右にコピー(&A)",        ID_ALL_RIGHT
         MENUITEM "全てを左にコピー(&Y)",        ID_ALL_LEFT
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -454,7 +466,6 @@ BEGIN
         BEGIN
             MENUITEM "登録されたアプリケーションで(&R)", ID_DIR_OPEN_RIGHT
             MENUITEM "外部エディタで(&E)",          ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "プログラムの選択(&W)...",     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
@@ -721,8 +732,8 @@ BEGIN
     CONTROL         "正規表現(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "検索する方向",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "上へ(&U)",IDC_EDIT_DIRECTION_UP,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,154,34,57,10
+    CONTROL         "上へ(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                   WS_GROUP,154,34,57,10
     CONTROL         "下へ(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,57,10
     DEFPUSHBUTTON   "次を検索(&F)",IDOK,226,7,50,14,WS_GROUP
@@ -1424,17 +1435,14 @@ BEGIN
         BLOCK "041103a4"
         BEGIN
             VALUE "Comments", "Translated by sawanaka@d1.dion.ne.jp\0"
-            VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "(C) 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
-            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1827,7 +1835,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "差異 %1/%2"
     IDS_NO_DIFF_SEL_FMT     "%1個の差異が見つかりました"
     IDS_1_DIFF_FOUND        "1個の差異が見つかりました"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // Read Only
 END
 
 // MORE STATUS PANES
@@ -1993,7 +2001,7 @@ BEGIN
                             "右側の選択されたファイルを指定したフォルダに移動します"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "ファイル名"
@@ -2004,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "拡張子"
     IDS_COLHDR_LSIZE        "左サイズ"
     IDS_COLHDR_RSIZE        "右サイズ"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "左作成日時"
     IDS_COLHDR_RTIMEC       "右作成日時"
     IDS_COLHDR_NEWER        "新しいファイル"
@@ -2014,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "右属性"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "左エンコーディング"
@@ -2049,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1個の項目を選択"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "ファイル名または、フォルダ名"
@@ -2060,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "ファイル拡張子"
     IDS_COLDESC_LSIZE       "左側ファイルのバイト数"
     IDS_COLDESC_RSIZE       "右側ファイルのバイト数"
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "左側の作成時刻"
     IDS_COLDESC_RTIMEC      "右側の作成時刻"
     IDS_COLDESC_NEWER       "どちらが最新の変更日付かを示します。"

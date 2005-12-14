@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugin"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
         MENUITEM "Genera &rapporto...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugin"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugin"
     BEGIN
@@ -666,11 +678,11 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Generale"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Salva copia di bac&kup del file originale",IDC_BACKUP_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
+    CONTROL         "Salva copia di bac&kup del file originale",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "&Visualizza automaticamente la prima differenza",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,211,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,211,10
     CONTROL         "&Disattiva la schermata iniziale",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "C&hiudi finestra con ESC",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -711,8 +723,8 @@ CAPTION "Trova"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Tro&va:",IDC_STATIC,7,9,50,8
-    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN | WS_VSCROLL |
-                    CBS_AUTOHSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Solo &parole intere",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
     CONTROL         "&Maiuscolo/Minuscolo",IDC_EDIT_MATCH_CASE,"Button",
@@ -1028,8 +1040,8 @@ BEGIN
     GROUPBOX        "File",IDC_STATIC,7,27,57,35
     CONTROL         "&Sinistra",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,48,10
-    CONTROL         "&Destra",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,
-                    13,48,47,10
+    CONTROL         "&Destra",IDC_WMGOTO_FILERIGHT,"Button",
+                    BS_AUTORADIOBUTTON,13,48,47,10
     GROUPBOX        "Vai a ...",IDC_STATIC,69,27,78,35
     CONTROL         "Li&nea",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,76,38,68,10
@@ -1053,9 +1065,8 @@ BEGIN
                     14,41,206,10
     CONTROL         "Ign&ora le linee vuote",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
-    CONTROL         "Ig&nora le differenze tra maiuscole e minuscole",
-                    IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,70,221,10
+    CONTROL         "Ig&nora le differenze tra maiuscole e minuscole",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "Igno&ra le differenze di carriage return (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
@@ -1123,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Salvare i file modificati?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1424,7 +1435,6 @@ BEGIN
         BLOCK "041004e4"
         BEGIN
             VALUE "Comments", "Translated by Andrea Decorte(aka Klenje), previously by Michele Merega\0"
-            VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Applicazione di WinMerge\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
@@ -1433,7 +1443,6 @@ BEGIN
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
-            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1443,119 +1452,6 @@ BEGIN
 END
 
 #endif    // !_MAC
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 216
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 115
-    END
-
-    IDD_OPEN, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 349
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 108
-    END
-
-    IDD_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 251
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 141
-    END
-
-    IDD_PROP_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 85
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_PROPPAGE_LARGE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 128
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_CLEARCASE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 272
-        VERTGUIDE, 18
-        VERTGUIDE, 35
-        VERTGUIDE, 244
-        VERTGUIDE, 261
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 104
-    END
-
-    IDD_PROPSYNTAX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_FILTER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_COLORS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_EDITOR_HEADERBAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 366
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 4
-    END
-
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 266
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 155
-    END
-
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 333
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 173
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1795,7 +1691,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Clicca con il tasto destro sul percorso per copiare"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&OK"
@@ -1939,7 +1835,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Differenza %1 su %2"
     IDS_NO_DIFF_SEL_FMT     "%1 differenze trovate"
     IDS_1_DIFF_FOUND        "1 differenza trovata"
-    IDS_STATUSBAR_READONLY  "SL"
+    IDS_STATUSBAR_READONLY  "SL" // Sola lettura
 END
 
 // MORE STATUS PANES
@@ -2105,7 +2001,7 @@ BEGIN
                             "Sposta il file selezionato sulla destra in una cartella personalizzata"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Nome del file"
@@ -2116,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Estensione"
     IDS_COLHDR_LSIZE        "Dimensioni file di sinistra"
     IDS_COLHDR_RSIZE        "Dimensioni file di destra"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Data creazione file sinistra"
     IDS_COLHDR_RTIMEC       "Data creazione file destra"
     IDS_COLHDR_NEWER        "File più recente"
@@ -2126,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Attributi destra"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Codifica di sinistra"
@@ -2161,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 elementi selezionati"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Nome del file o della cartella."
@@ -2172,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Estensione del file."
     IDS_COLDESC_LSIZE       "Dimensioni del file di sinistra in byte."
     IDS_COLDESC_RSIZE       "Dimensioni del file di destra in byte."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Data e ora di creazione del file di sinistra."
     IDS_COLDESC_RTIMEC      "Data e ora di creazione del file di destra."
     IDS_COLDESC_NEWER       "Mostra quale file ha la data dell'ultima modifica più recente."

@@ -5,6 +5,13 @@
   Czech: MergeCzech.rc
   Danish: MergeDanish.rc
   Dutch: MergeDutch.rc
+ Update & synchronize translations: French German Hungarian Italian Japanese
+  Src/Languages:
+  French: MergeFrench.rc
+  German: MergeGerman.rc
+  Hungarian: MergeHungarian.rc
+  Italian: MergeItalian.rc
+  Japanese: MergeJapanese.rc
 
 2005-12-13 Perry
  PATCH: [ 1379894 ] Fix handling of unknown encoding

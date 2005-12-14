@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
         MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Bõvítmények"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
         MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "&Jelentés generálása...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Bõvítmények"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
         MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Bõvítmények"
     BEGIN
@@ -1122,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Módosított fájlok mentése?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1823,7 +1835,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Ennyi különség: %1 ennyibõl: %2"
     IDS_NO_DIFF_SEL_FMT     "%1 különbséget találtam"
     IDS_1_DIFF_FOUND        "1 különbséget találtam"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // Read Only
 END
 
 // MORE STATUS PANES
@@ -1989,7 +2001,7 @@ BEGIN
                             "A kijelölt jobb oldali fájlok áthelyezése tetszõleges könyvtárba"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Fájlnév"
@@ -2000,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Kiterjesztés"
     IDS_COLHDR_LSIZE        "Bal oldali méret"
     IDS_COLHDR_RSIZE        "Jobb oldali méret"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Bal oldali létrehozási idõ"
     IDS_COLHDR_RTIMEC       "Jobb oldali létrehozási idõ"
     IDS_COLHDR_NEWER        "Újabb fájl"
@@ -2010,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Jobb oldali attribútumok"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Bal oldali kódolás"
@@ -2045,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 elem kiválasztva"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "fájlnév vagy könyvtárnév."
@@ -2056,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Fájlok kiterjesztése."
     IDS_COLDESC_LSIZE       "Bal oldali fájl mérete bájtokban."
     IDS_COLDESC_RSIZE       "Jobb oldali fájl mérete bájtokban."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Bal oldal létrehozási ideje."
     IDS_COLDESC_RTIMEC      "Jobb oldal létrehozási ideje."
     IDS_COLDESC_NEWER       "Megmutatja, melyik oldalnak újabb a létrehozási dátuma."

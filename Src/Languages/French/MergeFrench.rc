@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
         MENUITEM "Générer un &rapport...",      ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -580,8 +592,7 @@ BEGIN
     LTEXT           "Version 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Tous droits réservés.",IDC_STATIC,7,60,170,8
-    LTEXT           "Découvrez la page d'accueil de WinMerge !",IDC_WWW,7,
-                    79,209,8
+    LTEXT           "Découvrez la page d'accueil de WinMerge !",IDC_WWW,7,79,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,95,209,1
     LTEXT           "[VERSION COPYRIGHT GOES HERE]",IDC_COMPANY,7,49,209,8
     DEFPUSHBUTTON   "OK",IDOK,166,103,50,14
@@ -617,8 +628,8 @@ BEGIN
     LTEXT           "Statut:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Ann&uler",IDCANCEL,306,28,50,14
-    GROUPBOX        "Fichiers ou répertoires à comparer :",IDC_FILES_DIRS_GROUP,7,7,
-                    292,111
+    GROUPBOX        "Fichiers ou répertoires à comparer :",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
     PUSHBUTTON      "&Enreg. projet",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -667,12 +678,11 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Général"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Crée un &backup des fichiers originaux",
-                    IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,7,145,10
+    CONTROL         "Crée un &backup des fichiers originaux",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,145,10
     CONTROL         "&Atteindre automatiquement la première différence",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,183,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,183,10
     CONTROL         "&Sans page de garde",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,80,10
     CONTROL         "Fermer les fenêtres avec la &touche ESC",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -722,8 +732,8 @@ BEGIN
     CONTROL         "E&xpressions régulières",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Direction",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "Vers le &Haut",IDC_EDIT_DIRECTION_UP,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,154,34,57,10
+    CONTROL         "Vers le &Haut",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,154,34,57,10
     CONTROL         "Vers le &Bas",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,57,10
     DEFPUSHBUTTON   "&Suivant",IDOK,226,7,50,14,WS_GROUP
@@ -787,7 +797,8 @@ BEGIN
     CONTROL         "Ignorer les lignes avec les modèles suivants :",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "Expressions régulières (une par ligne)",IDC_STATIC,7,28,221,8
+    LTEXT           "Expressions régulières (une par ligne)",IDC_STATIC,7,28,
+                    221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
@@ -1046,12 +1057,12 @@ CAPTION "Comparaison"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Caractères d'espacement",IDC_STATIC,7,7,221,50
-    CONTROL         "C&omparer",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
+    CONTROL         "C&omparer",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
     CONTROL         "Ignorer les chan&gements",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "&Tout ignorer",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
+    CONTROL         "&Tout ignorer",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
     CONTROL         "Ignorer les lignes &vides",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "Ignorer la ca&sse",IDC_IGNCASE_CHECK,"Button",
@@ -1123,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Enregister les fichiers modifiés ?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1341,8 +1352,7 @@ BEGIN
     CONTROL         "&Utiliser le mode autonome de 7-Zip si disponible",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
-    CONTROL         "U&tiliser les composants locaux de 7-Zip (répertoire WinMerge)",
-                    IDC_ARCHIVE_INSTALLOCAL,"Button",
+    CONTROL         "U&tiliser les composants locaux de 7-Zip (répertoire WinMerge)",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
     CONTROL         "&Detecter le type d'archives avec un fichier de signature",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
@@ -1425,17 +1435,14 @@ BEGIN
         BLOCK "040c04e4"
         BEGIN
             VALUE "Comments", "Translated by Gil Andre, continued by Laurent Ganier\0"
-            VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
-            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1684,7 +1691,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Click droit pour copier le chemin"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK         "&Ok"
@@ -1870,7 +1877,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT      "%1 est en lecture seule. Voulez-vous outrepasser ? (Choisissez Non pour enregistrer avec un nouveau nom.)"
     IDS_ERROR_FILE_WRITEABLE  "Erreur en vérifiant les droits en écriture de la destination"
     IDS_ERROR_BACKUP          "Erreur lors du backup du fichier"
-    IDS_BACKUP_FAILED_PROMPT  "Ne peut effectuer le backup du fichier d'origine:\n%1\n\nContinuer quand même ?"
+    IDS_BACKUP_FAILED_PROMPT
+                              "Ne peut effectuer le backup du fichier d'origine:\n%1\n\nContinuer quand même ?"
     IDS_FILESAVE_FAILED       "Erreur lors de l'enregistrement.\n%1\n%2\nVoulez-vous:\n\t-utiliser un nom autre nom de fichier (Ok)\n\t-avorter l'opération en cours (Annuler)?"
     IDS_FILEPACK_FAILED_LEFT  "Le plugiciel '%2' ne peut compressé le fichier modifié de gauche dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
     IDS_FILEPACK_FAILED_RIGHT "Le plugiciel '%2' ne peut compressé le fichier modifié de droite dans '%1'.\n\nLe fichier original est conservé.\n\nVoulez-vous enregistrer la version décompressée sous un autre nom ?"
@@ -1987,11 +1995,13 @@ BEGIN
     ID_DIR_ZIP_RIGHT            "Ajouter les éléments du côté droit au fichier d'archives"
     ID_DIR_ZIP_BOTH             "Ajouter les éléments des deux côté au fichier d'archives"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY  "Ajouter les éléments distincts des deux côté au fichier d'archives"
-    ID_DIR_MOVE_LEFT_TO_BROWSE  "Déplacer le fichier sélectionné de gauche vers un répertoire à indentifer"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE "Déplacer le fichier sélectionné de droite vers un répertoire à indentifer"
+    ID_DIR_MOVE_LEFT_TO_BROWSE
+                                "Déplacer le fichier sélectionné de gauche vers un répertoire à indentifer"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
+                                "Déplacer le fichier sélectionné de droite vers un répertoire à indentifer"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Nom du fichier"
@@ -2002,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Taille gauche"
     IDS_COLHDR_RSIZE        "Taille droite"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Date cré. gauche"
     IDS_COLHDR_RTIMEC       "Date cré. droit"
     IDS_COLHDR_NEWER        "Plus récent"
@@ -2012,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Attributs droits"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Page de code gauche"
@@ -2047,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 éléments sélectionnés"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Nom de fichier ou de répertoire."
@@ -2058,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Extension du fichier."
     IDS_COLDESC_LSIZE       "Taille du fichier du côté gauche en octets."
     IDS_COLDESC_RSIZE       "Taille du fichier du côté droit en octets."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Temps de creation du côté gauche."
     IDS_COLDESC_RTIMEC      "Temps de creation du côté droit."
     IDS_COLDESC_NEWER       "Indique le côté ayant la date de modification la plus récente."
@@ -2085,7 +2109,8 @@ BEGIN
     IDS_REPORT_COMMALIST       "Liste délimitée par des virgules"
     IDS_REPORT_TABLIST         "Liste délimitée par des tabulations"
     IDS_REPORT_SIMPLEHTML      "Format HTML"
-    IDS_REPORT_FILEOVERWRITE   "Le rapport existe déjà. Voulez-vous écraser le fichier existant?"
+    IDS_REPORT_FILEOVERWRITE
+                               "Le rapport existe déjà. Voulez-vous écraser le fichier existant?"
     IDS_REPORT_ERROR           "Erreur à la création du rapport:\n%1"
     IDS_REPORT_SUCCESS         "Le rapport a été créé avec succès."
 END
