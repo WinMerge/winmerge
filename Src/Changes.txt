@@ -1,3 +1,8 @@
+2005-12-13 Perry
+ PATCH: [ 1379894 ] Fix handling of unknown encoding
+  Src: MainFrm.cpp
+  Src/Common: unicoder.cpp
+
 2005-12-13 Kimmo
  PATCH: [ 1378174 ] Share Src/res between translations
   Src/Languages: *.rc

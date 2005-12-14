@@ -596,11 +596,14 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 
 	// detect codepage
 	BOOL bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
+	if (filelocLeft.unicoding == -1)
+		filelocLeft.unicoding = ucr::NONE;
 	if (filelocLeft.unicoding == ucr::NONE && filelocLeft.codepage == -1)
 	{
 		FileLocationGuessEncodings(filelocLeft, bGuessEncoding);
 	}
-
+	if (filelocRight.unicoding == -1)
+		filelocRight.unicoding = ucr::NONE;
 	if (filelocRight.unicoding == ucr::NONE && filelocRight.codepage == -1)
 	{
 		FileLocationGuessEncodings(filelocRight, bGuessEncoding);
