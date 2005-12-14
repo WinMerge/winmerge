@@ -2,6 +2,12 @@
  PATCH: [ 1379894 ] Fix handling of unknown encoding
   Src: MainFrm.cpp
   Src/Common: unicoder.cpp
+ Update & synchronize translations: Brazilian Bulgarian Catalan ChineseSimplified
+  Src/Languages:
+  Brazilian: MergeBrazilian.rc
+  Bulgarian: MergeBulgarian.rc
+  Catalan: MergeCatalan.rc
+  ChineseSimplified: MergeChineseSimplified.rc
 
 2005-12-13 Kimmo
  PATCH: [ 1378174 ] Share Src/res between translations

@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "插件(&P)"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "插件(&P)"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "插件(&P)"
     BEGIN
@@ -594,16 +606,18 @@ CAPTION "选择文件或文件夹..."
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "左侧(&L):",IDC_STATIC,13,24,40,8    
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL |
-                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "浏览(&B)...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "右侧(&R):",IDC_STATIC,13,40,40,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
-                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL |WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "浏览(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "过滤器(&F):",IDC_STATIC,13,56,40,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "选择...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "解包程序(&U):",IDC_STATIC,13,72,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
@@ -614,7 +628,8 @@ BEGIN
     LTEXT           "状态:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "确定",IDOK,306,11,50,14
     PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
-    GROUPBOX        "要对比的文件或文件夹",IDC_FILES_DIRS_GROUP,7,7,292,111
+    GROUPBOX        "要对比的文件或文件夹",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
     PUSHBUTTON      "保存工程",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -653,7 +668,7 @@ BEGIN
     LTEXT           "版本控制系统(&V)",IDC_STATIC,7,7,221,10
     COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "cleartool.exe 路径(&P):",IDC_SCROLL_CHECK,7,37,221,10
+    LTEXT           "cleartool.exe 路径(&P):",IDC_VSS_L1,7,37,221,10
     EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
     PUSHBUTTON      "浏览(&B)...",IDC_BROWSE_BUTTON,178,48,50,14
 END
@@ -665,8 +680,9 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "备份原始文件(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,83,10
-    CONTROL         "自动滚动到第一处不同(&S)",IDC_SCROLL_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
+    CONTROL         "自动滚动到第一处不同(&S)",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,129,10
     CONTROL         "停用启动屏幕(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,100,10
     CONTROL         "ESC关闭窗口(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -674,13 +690,13 @@ BEGIN
     CONTROL         "在“打开”对话框中自动验证路径",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,47,206,10
-    CONTROL         "只允许运行一个实例(&A)",IDC_SINGLE_INSTANCE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    CONTROL         "只允许运行一个实例(&A)",IDC_SINGLE_INSTANCE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     GROUPBOX        "允许多个对比窗口",IDC_STATIC,7,72,221,37
-    CONTROL         "文件夹对比(&F)",IDC_MULTIDOC_DIRCMP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
-    CONTROL         "文件对比(&E)",IDC_MULTIDOC_FILECMP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
+    CONTROL         "文件夹对比(&F)",IDC_MULTIDOC_DIRCMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
+    CONTROL         "文件对比(&E)",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "重置",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
     LTEXT           "WinMerge 允许您隐藏一些消息提示。\n点击此按钮以使所有隐藏的消息提示重新显示。",
@@ -695,8 +711,8 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "确定",IDOK,154,16,52,14
     PUSHBUTTON      "取消",IDCANCEL,154,33,52,14
-    LISTBOX         1037,5,16,141,89,LBS_SORT | LBS_NOINTEGRALHEIGHT |
-                    WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
+                    WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "可用的语言:",IDC_STATIC,7,7,140,8
 END
 
@@ -716,9 +732,10 @@ BEGIN
     CONTROL         "使用正则表达式(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "方向",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "向上(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
-                    154,33,50,10
-    CONTROL         "向下(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",BS_AUTORADIOBUTTON,154,44,41,12
+    CONTROL         "向上(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,154,33,50,10
+    CONTROL         "向下(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,154,44,41,12
     DEFPUSHBUTTON   "查找下一处(&F)",IDOK,226,7,50,14,WS_GROUP
     PUSHBUTTON      "取消",IDCANCEL,226,24,50,14
 END
@@ -741,13 +758,13 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "使用规则表达式(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
-    CONTROL         "至文件末尾不再从头搜索(&D)",IDC_EDIT_SCOPE_DONT_WRAP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
+    CONTROL         "至文件末尾不再从头搜索(&D)",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "替换范围",IDC_STATIC,149,40,90,36,WS_GROUP
-    CONTROL         "选中内容(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
-                    154,51,80,10
-    CONTROL         "整个文件(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,154,61,
-                    80,10
+    CONTROL         "选中内容(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
+    CONTROL         "整个文件(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,154,61,80,10
     DEFPUSHBUTTON   "找下一个(&F)",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
     PUSHBUTTON      "替换(&R)",IDC_EDIT_REPLACE,247,24,50,14
     PUSHBUTTON      "全部替换(&A)",IDC_EDIT_REPLACE_ALL,247,41,50,14
@@ -777,11 +794,13 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "行过滤器"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "忽略符合下列样式的行",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,7,221,15
-    LTEXT           "正则表达式 (每行一个):",-1,7,28,221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL |
-                    ES_WANTRETURN
+    CONTROL         "忽略符合下列样式的行",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "正则表达式 (每行一个):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
+                    ES_AUTOHSCROLL | ES_WANTRETURN
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 196
@@ -790,11 +809,13 @@ CAPTION "颜色"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "不同:",IDC_STATIC,7,29,90,8
-    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,29,17,
-                    14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     RTEXT           "已选择:",IDC_STATIC,7,49,90,8
-    CONTROL         "已选择",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,49,17,
-                    14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "已选择",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CTEXT           "背景",IDC_STATIC,96,15,50,8
     CTEXT           "已删除",IDC_STATIC,145,15,38,8
     CONTROL         "Dif",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
@@ -863,8 +884,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "对话框"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "确定",1,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+    DEFPUSHBUTTON   "确定",IDOK,106,136,50,14
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
+                    WS_VSCROLL
 END
 
 IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
@@ -1039,12 +1061,12 @@ BEGIN
                     WS_GROUP,14,19,206,10
     CONTROL         "忽略空白和制表符更改(&H)",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "忽略所有空白和制表符(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
-    CONTROL         "忽略空行(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,60,221,10
-    CONTROL         "忽略大小写(&E)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,70,221,10
+    CONTROL         "忽略所有空白和制表符(&A)",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
+    CONTROL         "忽略空行(&K)",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
+    CONTROL         "忽略大小写(&E)",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "忽略换行符差别(&R) (DOS/UNIX/MAC)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
@@ -1112,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "保存修改后的文件吗？"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1432,6 +1454,7 @@ END
 
 #endif    // !_MAC
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Toolbar
@@ -1669,7 +1692,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "右键点击路径复制到剪贴板"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "确定(&O)"
@@ -1737,8 +1760,7 @@ STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "选项 (%1)"
     IDS_MESSAGE_BOX_ARE_RESET "所有提示信息已经重设为显示。"
-    IDS_DIFF_OPEN_NO_SET_PROPS
-                            "在当前文件对比期间已有修改。在重新启动当前文件对比前，一些设置不会生效。"
+    IDS_DIFF_OPEN_NO_SET_PROPS "在当前文件对比期间已有修改。在重新启动当前文件对比前，一些设置不会生效。"
     IDS_FONT_CHANGE         "选择的字体更改不会应用到已经打开的比较窗口。"
 END
 
@@ -1856,12 +1878,11 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "%1 标记为只读。您希望覆盖只读文件吗？选“否”可以用其它文件名保存。"
     IDS_ERROR_FILE_WRITEABLE "目标可写入性检查出错"
     IDS_ERROR_BACKUP        "备份文件时出错"
-    IDS_BACKUP_FAILED_PROMPT "无法备份原始文件:\n%1\n\n仍然继续吗？"
+    IDS_BACKUP_FAILED_PROMPT
+                            "无法备份原始文件:\n%1\n\n仍然继续吗？"
     IDS_FILESAVE_FAILED     "保存文件失败。\n%1\n%2\n请选择:\n\t-用其它文件名保存(点击“确定”)\n\t-中止当前操作(点击“取消”)"
-    IDS_FILEPACK_FAILED_LEFT
-                            "插件 '%2' 无法将您对左侧文件的修改打包到 '%1' 中。\n\n原始文件不会改变。\n\n您要将未打包的版本保存为其它文件吗？"
-    IDS_FILEPACK_FAILED_RIGHT
-                            "插件 '%2' 无法将您对右侧文件的修改打包到 '%1' 中。\n\n原始文件不会改变。\n\n您要将未打包的版本保存为其它文件吗？"
+    IDS_FILEPACK_FAILED_LEFT "插件 '%2' 无法将您对左侧文件的修改打包到 '%1' 中。\n\n原始文件不会改变。\n\n您要将未打包的版本保存为其它文件吗？"
+    IDS_FILEPACK_FAILED_RIGHT "插件 '%2' 无法将您对右侧文件的修改打包到 '%1' 中。\n\n原始文件不会改变。\n\n您要将未打包的版本保存为其它文件吗？"
     IDS_FILECHANGED_ONDISK  "%1\n在 WinMerge 打开此文件后，\n其它程序又对它进行了修改。\n\n要覆盖已被修改的文件吗？"
     IDS_SAVEREADONLY_MULTI  "%1\n文件标记为只读。您要覆盖只读的文件吗？"
     IDS_FILECHANGED_RESCAN  "%1\n在 WinMerge 上次扫描此文件后，\n其它程序又对它进行了修改。\n\n要刷新文件内容，请关闭当前对比窗口并重新打开这两个文件。"
@@ -1882,8 +1903,7 @@ BEGIN
     IDS_VSS_CHECKOUT_STATUS "从VSS中签出文件..."
     IDS_VSSERROR            "在签出(Checkout)文件时版本控制系统返回一个错误。无法继续..."
     IDS_VSS_RUN_ERROR       "执行版本控制系统命令时出错。"
-    IDS_VSSFOLDER_AND_FILE_NOMATCH
-                            "VSS 工作文件夹(Working Folder)与当前文件位置不符。是否继续？"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS 工作文件夹(Working Folder)与当前文件位置不符。是否继续？"
     IDS_VSS_NODATABASES     "未找到 VSS 数据库！"
     IDS_VSS_ERRORFROM       "VSS 返回错误:"
     IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
@@ -1976,11 +1996,13 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "从右侧添加到压缩包"
     ID_DIR_ZIP_BOTH         "从两侧添加到压缩包"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "将两侧中不相同的添加到压缩包"
-    ID_DIR_MOVE_LEFT_TO_BROWSE "将左侧选中的文件移动到指定文件夹"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE "将右侧选中的文件移动到指定文件夹"
+    ID_DIR_MOVE_LEFT_TO_BROWSE
+                            "将左侧选中的文件移动到指定文件夹"
+    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+                            "将右侧选中的文件移动到指定文件夹"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "文件名称"
@@ -1991,6 +2013,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "扩展名"
     IDS_COLHDR_LSIZE        "左侧文件大小"
     IDS_COLHDR_RSIZE        "右侧文件大小"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "左侧建立时间"
     IDS_COLHDR_RTIMEC       "右侧建立时间"
     IDS_COLHDR_NEWER        "较新的文件"
@@ -2001,7 +2030,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "右侧属性"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "左侧文件编码"
@@ -2036,7 +2065,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "选择了 %1 个项目"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "文件名或文件夹名。"
@@ -2047,6 +2076,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "文件的扩展名。"
     IDS_COLDESC_LSIZE       "左侧文件长度字节数。"
     IDS_COLDESC_RSIZE       "右侧文件长度字节数。"
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "左侧的创建时间。"
     IDS_COLDESC_RTIMEC      "右侧的创建时间。"
     IDS_COLDESC_NEWER       "显示出哪侧是较晚修改过的。"

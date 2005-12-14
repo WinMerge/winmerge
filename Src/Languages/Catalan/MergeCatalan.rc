@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Connectors"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
         MENUITEM "Gene&ra un informe...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Connectors"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Connectors"
     BEGIN
@@ -666,11 +678,11 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "General"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Guarda una còpia del fitxer original",IDC_BACKUP_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
+    CONTROL         "&Guarda una còpia del fitxer original",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "&Desplaça automàticament fins a la primera diferència",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,211,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,211,10
     CONTROL         "Inhabilita la pantalla de &benvinguda",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "T&anca les finestres amb ESC",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -1122,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Voleu desar els fitxers modificats?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1884,7 +1896,8 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "El fitxer %1 està marcat com a només de lectua. Voldríeu substituir el fitxer només de lectura? (No es tracta de desar amb un nom nou.)"
     IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error en comprovar si la destinació era modificable"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
-    IDS_BACKUP_FAILED_PROMPT "No es pot desar una còpia de seguretat del fitxer original:\n%1\n\nVoleu continuar tot i així?"
+    IDS_BACKUP_FAILED_PROMPT 
+                             "No es pot desar una còpia de seguretat del fitxer original:\n%1\n\nVoleu continuar tot i així?"
     IDS_FILESAVE_FAILED     "Hi ha hagut un error en desar el fitxer.\n%1\n%2\nVoleu:\n\t-desar-lo amb un nom diferent (premeu D'acord)\n\r-avortar l'operació actual (Premeu Cancel·lar)?"
     IDS_FILEPACK_FAILED_LEFT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
     IDS_FILEPACK_FAILED_RIGHT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de la dreta altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
@@ -2007,7 +2020,7 @@ BEGIN
                             "Mou els fitxers seleccionats de la dreta al directori especificat"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Nom"
@@ -2018,6 +2031,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extensió"
     IDS_COLHDR_LSIZE        "Mida esquerra"
     IDS_COLHDR_RSIZE        "Mida dreta"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Data de creació esquerra"
     IDS_COLHDR_RTIMEC       "Data de creació dreta"
     IDS_COLHDR_NEWER        "Fitxer més nou"
@@ -2028,7 +2048,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Atributs dreta"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Codificació esquerra"
@@ -2063,7 +2083,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 elements seleccionats"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Nom del fitxer o directori."
@@ -2074,6 +2094,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Extensió del fitxer."
     IDS_COLDESC_LSIZE       "Mida en bytes del fitxer esquerre."
     IDS_COLDESC_RSIZE       "Mida en bytes del fitxer dret."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Data de creació del fitxer esquerre."
     IDS_COLDESC_RTIMEC      "Data de creació del fitxer dret."
     IDS_COLDESC_NEWER       "Diu quin costat te una data de modificació més recent."

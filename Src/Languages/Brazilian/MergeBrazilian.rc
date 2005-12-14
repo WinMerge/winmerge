@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -512,6 +524,7 @@ BEGIN
     END
 END
 
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Accelerator
@@ -615,8 +628,8 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Cancelar",IDCANCEL,306,28,50,14
-    GROUPBOX        "Arquivos ou Diretórios a Comparar",IDC_FILES_DIRS_GROUP,7,7,292,
-                    111
+    GROUPBOX        "Arquivos ou Diretórios a Comparar",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
     PUSHBUTTON   "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -658,7 +671,6 @@ BEGIN
     LTEXT           "&Caminho para cleartool.exe:",IDC_VSS_L1,7,37,221,10
     EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Procurar...",IDC_BROWSE_BUTTON,178,48,50,14
-
 END
 
 IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 222
@@ -666,12 +678,11 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Geral"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Guardar cópia de segurança do arquivo original",
-                    IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,206,10
+    CONTROL         "&Guardar cópia de segurança do arquivo original",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,206,10
     CONTROL         "Posicionar a&utomaticamente na primeira diferença",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,206,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,206,10
     CONTROL         "&Desabilitar Splash Screen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "Cl&ose windows with ESC",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -716,14 +727,13 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Somente p&alavras iguais",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
-    CONTROL         "&Diferenciar maiúsculas de minúsculas",
-                    IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,37,135,10
+    CONTROL         "&Diferenciar maiúsculas de minúsculas",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX |WS_TABSTOP,7,37,135,10
     CONTROL         "&Expressão regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Direção",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "A&cima",IDC_EDIT_DIRECTION_UP,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,154,34,57,10
+    CONTROL         "A&cima",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,154,34,57,10
     CONTROL         "A&baixo",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,57,10
     DEFPUSHBUTTON   "&Próximo",IDOK,226,7,50,14,WS_GROUP
@@ -744,9 +754,8 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Somente p&alavras iguais",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "&Diferenciar maiúsculas de minúsculas",
-                    IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,54,135,10
+    CONTROL         "&Diferenciar maiúsculas de minúsculas",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX |WS_TABSTOP,7,54,135,10
     CONTROL         "&Expressão regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
@@ -788,7 +797,8 @@ BEGIN
     CONTROL         "Ignorar linhas que combinem com o padrão a seguir",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "Expressões (uma por linha):",IDC_STATIC,7,28,221,8
+    LTEXT           "Expressões (uma por linha):",IDC_STATIC,7,28,
+                    221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
@@ -1047,13 +1057,12 @@ CAPTION "Compare"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Whitespace",IDC_STATIC,7,7,221,50
-    CONTROL         "Comparar e&spaços em branco",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
-    CONTROL         "&Ignorar moficações nos espaços em branco",
-                    IDC_WHITE_CHANGE,"Button",BS_AUTORADIOBUTTON |
-                    BS_MULTILINE,14,30,206,10
-    CONTROL         "Ignora t&odos espaços em branco",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
+    CONTROL         "Comparar e&spaços em branco",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
+    CONTROL         "&Ignorar moficações nos espaços em branco",IDC_WHITE_CHANGE,"Button",
+                    BS_AUTORADIOBUTTON | BS_MULTILINE,14,30,206,10
+    CONTROL         "Ignora t&odos espaços em branco",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
     CONTROL         "Ignorar linhas em bran&co",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "Ignorar &maísculas/minúsculas",IDC_IGNCASE_CHECK,"Button",
@@ -1125,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Save modified files?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1426,17 +1435,14 @@ BEGIN
         BLOCK "041604e4"
         BEGIN
             VALUE "Comments", "Translated by Wender Cris de Souza Firmino & Noreuzis\0"
-            VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge\0"
-            VALUE "FileVersion", "999.999.999.999\0"
+            VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "999.999.999.999\0"
-            VALUE "SpecialBuild", "\0"
+            VALUE "ProductVersion", "000.000.000.000\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1446,119 +1452,6 @@ BEGIN
 END
 
 #endif    // !_MAC
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 216
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 128
-    END
-
-    IDD_OPEN, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 349
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 108
-    END
-
-    IDD_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 251
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 141
-    END
-
-    IDD_PROP_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 104
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_PROPPAGE_LARGE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 257
-        VERTGUIDE, 125
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_CLEARCASE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 272
-        VERTGUIDE, 18
-        VERTGUIDE, 35
-        VERTGUIDE, 244
-        VERTGUIDE, 261
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 104
-    END
-
-    IDD_PROPSYNTAX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_FILTER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_COLORS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_EDITOR_HEADERBAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 366
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 4
-    END
-
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 266
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 155
-    END
-
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 333
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 173
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1798,7 +1691,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -2108,7 +2001,7 @@ BEGIN
                             "Move selected file on right to custom directory"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Nome de Arquivo"
@@ -2119,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extensão"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Left Creation Time"
     IDS_COLHDR_RTIMEC       "Right Creation Time"
     IDS_COLHDR_NEWER        "Newer File"
@@ -2129,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
@@ -2164,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 items selected"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
@@ -2175,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "File's extension."
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Left side creation time."
     IDS_COLDESC_RTIMEC      "Right side creation time."
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
