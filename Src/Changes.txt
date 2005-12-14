@@ -1,3 +1,11 @@
+2005-12-14 Perry
+ Update & synchronize translations: ChineseTraditional Czech Danish Dutch
+  Src/Languages:
+  ChineseTraditional: MergeChineseTraditional.rc
+  Czech: MergeCzech.rc
+  Danish: MergeDanish.rc
+  Dutch: MergeDutch.rc
+
 2005-12-13 Perry
  PATCH: [ 1379894 ] Fix handling of unknown encoding
   Src: MainFrm.cpp

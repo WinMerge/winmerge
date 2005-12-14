@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -197,8 +201,7 @@ BEGIN
         MENUITEM "Toon &Identieke bestanden",   ID_OPTIONS_SHOWIDENTICAL
         MENUITEM "Toon &Niet gelijke bestanden", ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Toon &Unieke Bestanden (links)", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Toon &Unieke Bestanden (rechts)",
-                                                ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Toon &Unieke Bestanden (rechts)", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
@@ -238,6 +241,10 @@ BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -381,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plug-ins"
     BEGIN
@@ -504,7 +515,7 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "G&a naar verschil"                   ID_LOCBAR_GOTODIFF
+        MENUITEM "G&a naar verschil",                   ID_LOCBAR_GOTODIFF
         MENUITEM "&Ga naar...",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Gee&n verplaatste blokken",            ID_DISPLAY_MOVED_NONE
@@ -617,8 +628,8 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Annuleren",IDCANCEL,306,28,50,14
-    GROUPBOX        "Bestanden of mappen om te vergelijken",IDC_FILES_DIRS_GROUP,7,7,
-                    292,111
+    GROUPBOX        "Bestanden of mappen om te vergelijken",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
     PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -670,8 +681,8 @@ BEGIN
     CONTROL         "&Reservekopie orginele bestand",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
     CONTROL         "&Automatisch naar eerste verschil gaan",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,136,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,136,10
     CONTROL         "Splash Screen uitscha&kelen",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,87,10
     CONTROL         "Vensters met ESC sl&uiten",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -1054,9 +1065,8 @@ BEGIN
                     14,41,206,10
     CONTROL         "Lege regels negeren",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
-    CONTROL         "N&iet hoofdlettergevoelig",
-                    IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,70,221,10
+    CONTROL         "N&iet hoofdlettergevoelig",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "&Regeleindeverschillen (DOS/UNIX/MAC) negeren",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
@@ -1124,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Gewijzigde bestanden opslaan?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1449,119 +1459,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 216
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 115
-    END
-
-    IDD_OPEN, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 349
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 108
-    END
-
-    IDD_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 251
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 141
-    END
-
-    IDD_PROP_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 85
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_PROPPAGE_LARGE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 263
-        VERTGUIDE, 125
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_CLEARCASE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 272
-        VERTGUIDE, 18
-        VERTGUIDE, 35
-        VERTGUIDE, 244
-        VERTGUIDE, 261
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 104
-    END
-
-    IDD_PROPSYNTAX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_FILTER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_COLORS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_EDITOR_HEADERBAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 366
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 4
-    END
-
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 266
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 155
-    END
-
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 333
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 173
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Toolbar
 //
 
@@ -1797,7 +1694,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Klik rechts op het pad om het te kopiëren"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "OK"
@@ -2036,6 +1933,7 @@ BEGIN
     ID_DIR_DEL_LEFT         "Geselecteerde item aan de linker kant verwijderen"
     ID_DIR_DEL_RIGHT        "Geselecteerde item aan de rechter kant verwijderen"
     ID_DIR_DEL_BOTH         "Geselecteerde item(s) aan beide kanten verwijderen"
+    ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
     IDS_COPY_TO_LEFT        "Van rechts naar links (%1)"
     IDS_COPY_TO_RIGHT       "Van links naar rechts (%1)"
     IDS_COPY_TO_LEFT2       "Van rechts naar links (%1 van %2)"
@@ -2044,7 +1942,6 @@ BEGIN
     IDS_COPY_RIGHT_TO       "Van rechts naar... (%1)"
     IDS_COPY_LEFT_TO2       "Van links naar... (%1 van %2)"
     IDS_COPY_RIGHT_TO2      "Van rechts naar... (%1 van %2)"
-
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
@@ -2107,7 +2004,7 @@ BEGIN
                             "Geselecteerd bestand van rechts naar door gebruiker gedefinieerde map verplaatsen"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Bestandsnaam"
@@ -2118,6 +2015,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extensie"
     IDS_COLHDR_LSIZE        "Grootte links"
     IDS_COLHDR_RSIZE        "Grootte rechts"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Aanmaaktijd links"
     IDS_COLHDR_RTIMEC       "Aanmaaktijd rechts"
     IDS_COLHDR_NEWER        "Nieuwer bestand"
@@ -2128,7 +2032,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Attributen rechts"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Tekenset links"
@@ -2163,7 +2067,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 items geselecteerd"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Bestandsnaam of mapnaam."
@@ -2174,6 +2078,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Bestandsextensie."
     IDS_COLDESC_LSIZE       "Bestandsgrootte in bytes voor linker zijde."
     IDS_COLDESC_RSIZE       "Bestandsgrootte in bytes voor rechter zijde."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Aanmaaktijdstip linker zijde."
     IDS_COLDESC_RTIMEC      "Aanmaaktijdstip rechter zijde."
     IDS_COLDESC_NEWER       "Geeft aan welke zijde het recentst gewijzigd is."
@@ -2739,9 +2650,9 @@ END
 #define _AFX_NO_TRACKER_RESOURCES
 #define _AFX_NO_PROPERTY_RESOURCES
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NLD)
 #ifdef _WIN32
-LANGUAGE 9, 1
+LANGUAGE LANG_DUTCH, SUBLANG_DUTCH
 #pragma code_page(1252)
 #endif
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources

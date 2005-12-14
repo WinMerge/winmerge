@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -331,7 +339,8 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "進階"
         BEGIN
-            MENUITEM "複製連同列號(&C)\tCtrl+Shift+C", ID_EDIT_COPY_LINENUMBERS
+            MENUITEM "複製連同列號(&C)\tCtrl+Shift+C",
+                                                ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "移至(&G)...\tCtrl+G",         ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -379,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "濾鏡(&F)...",                 ID_TOOLS_FILTERS
         MENUITEM "產生補丁(&G)...",             ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "外掛(&P)"
     BEGIN
@@ -593,16 +606,18 @@ CAPTION "選取檔案或資料夾..."
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "左邊(&L):",IDC_STATIC,13,24,40,8
-    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN | CBS_AUTOHSCROLL |
-                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&B)...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "右邊(&R):",IDC_STATIC,13,40,40,8
-    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
-                    WS_VSCROLL | WS_TABSTOP,WS_EX_ACCEPTFILES
+    COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_ACCEPTFILES
     PUSHBUTTON      "瀏覽(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "濾鏡(&F):",IDC_STATIC,13,56,40,8
-    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN | CBS_AUTOHSCROLL |
-                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "選取...",IDC_SELECT_FILTER,242,54,50,12
     RTEXT           "解封包(&U):",IDC_STATIC,13,72,40,8
     EDITTEXT        IDC_UNPACKER_EDIT,56,70,181,12,ES_AUTOHSCROLL |
@@ -613,7 +628,9 @@ BEGIN
     LTEXT           "狀態:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "確定",IDOK,306,11,50,14
     PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
-    GROUPBOX        "要比對的檔案或資料夾",IDC_FILES_DIRS_GROUP,7,7,292,111
+    GROUPBOX        "要比對的檔案或資料夾",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
+    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -651,7 +668,7 @@ BEGIN
     LTEXT           "版本系統(&V)",IDC_STATIC,7,7,221,10
     COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
-    LTEXT           "cleartool.exe 路徑(&P):",IDC_SCROLL_CHECK,7,37,221,10
+    LTEXT           "cleartool.exe 路徑(&P):",IDC_VSS_L1,7,37,221,10
     EDITTEXT        IDC_PATH_EDIT,7,48,166,14,ES_AUTOHSCROLL
     PUSHBUTTON      "瀏覽(&B)...",IDC_BROWSE_BUTTON,178,48,50,14
 END
@@ -661,12 +678,13 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "一般"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,7,83,10
-    CONTROL         "自動地捲動到第一個不同(&S)",IDC_SCROLL_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
-    CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,27,100,10
+    CONTROL         "備份原始的檔案(&B)",IDC_BACKUP_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,83,10
+    CONTROL         "自動地捲動到第一個不同(&S)",
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,129,10
+    CONTROL         "停用引人注目的螢幕(&D)",IDC_DISABLE_SPLASH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,100,10
     CONTROL         "按下 ESC 時關閉視窗(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "在開啟對話盒自動地驗證路徑",
@@ -693,8 +711,8 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "確定",IDOK,154,16,52,14
     PUSHBUTTON      "取消",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
-                    WS_TABSTOP | LBS_SORT
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
+                    WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "可用的語言:",IDC_STATIC,7,7,140,8
 END
 
@@ -707,16 +725,17 @@ BEGIN
     LTEXT           "要找什麼(&N):",IDC_STATIC,7,9,50,8
     COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
-                    WS_GROUP | WS_TABSTOP,7,27,135,10
-    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,37,135,10
-    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,47,135,10
+    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
+    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
+    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "方向",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
-                    154,34,57,10
-    CONTROL         "下移(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",BS_AUTORADIOBUTTON,154,44,57,10
+    CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP, 154,34,57,10
+    CONTROL         "下移(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
+                    BS_AUTORADIOBUTTON,154,44,57,10
     DEFPUSHBUTTON   "找下一個(&F)",IDOK,226,7,50,14,WS_GROUP
     PUSHBUTTON      "取消",IDCANCEL,226,24,50,14
 END
@@ -733,19 +752,19 @@ BEGIN
     LTEXT           "取代以(&P):",IDC_STATIC,7,24,65,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",BS_AUTOCHECKBOX |
-                    WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,54,135,10
-    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,64,135,10
+    CONTROL         "全字拼寫須相符(&W)",IDC_EDIT_WHOLE_WORD,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
+    CONTROL         "大小寫須相符(&C)",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
+    CONTROL         "一般運算式(&E)",IDC_EDIT_REGEXP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "不要包裹檔案結束(&D)",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "取代在",IDC_STATIC,149,40,90,36,WS_GROUP
-    CONTROL         "選取(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",BS_AUTORADIOBUTTON | WS_GROUP,
-                    154,51,80,10
-    CONTROL         "整個檔案(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",BS_AUTORADIOBUTTON,154,61,
-                    80,10
+    CONTROL         "選取(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
+    CONTROL         "整個檔案(&O)",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
+                    BS_AUTORADIOBUTTON,154,61,80,10
     DEFPUSHBUTTON   "找下一個(&F)",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
     PUSHBUTTON      "取代(&R)",IDC_EDIT_REPLACE,247,24,50,14
     PUSHBUTTON      "全部取代(&A)",IDC_EDIT_REPLACE_ALL,247,41,50,14
@@ -775,11 +794,13 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "列濾鏡"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "忽略列符合下列的樣式",IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,7,221,15
-    LTEXT           "一般運算式 (每列一個):",IDC_STATIC,7,28,221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE | ES_AUTOHSCROLL |
-                    ES_WANTRETURN
+    CONTROL         "忽略列符合下列的樣式",
+                    IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    7,221,15
+    LTEXT           "一般運算式 (每列一個):",IDC_STATIC,7,28,
+                    221,8
+    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
+                    ES_AUTOHSCROLL | ES_WANTRETURN
 END
 
 IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 196
@@ -788,11 +809,13 @@ CAPTION "色彩"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "不同:",IDC_STATIC,7,29,90,8
-    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,29,17,
-                    14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "不同",IDC_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,29,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     RTEXT           "選取的不同:",IDC_STATIC,7,49,90,8
-    CONTROL         "不同",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW | WS_TABSTOP,113,49,17,
-                    14,WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+    CONTROL         "不同",IDC_SEL_DIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,49,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CTEXT           "背景",IDC_STATIC,96,15,50,8
     CTEXT           "已刪除",IDC_STATIC,145,15,38,8
     CONTROL         "不同",IDC_DIFFERENCE_DELETED_COLOR,"Button",BS_OWNERDRAW |
@@ -862,7 +885,8 @@ CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "確定",IDOK,106,136,50,14
-    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY | WS_VSCROLL
+    EDITTEXT        IDC_EDIT1,7,7,264,123,ES_MULTILINE | ES_READONLY |
+                    WS_VSCROLL
 END
 
 IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
@@ -1037,12 +1061,12 @@ BEGIN
                     WS_GROUP,14,19,206,10
     CONTROL         "忽略空白和跳格更改(&H)",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
-    CONTROL         "忽略空白列(&K)",IDC_IGNBLANKS_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,60,221,10
-    CONTROL         "忽略大小寫(&C)",IDC_IGNCASE_CHECK,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,70,221,10
+    CONTROL         "忽略所有空白和跳格(&A)",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
+    CONTROL         "忽略空白列(&K)",IDC_IGNBLANKS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
+    CONTROL         "忽略大小寫(&C)",IDC_IGNCASE_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "忽略換行不同(DOS/UNIX/MAC)(&R)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
@@ -1110,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "要儲存修改的檔案嗎?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1432,119 +1456,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 216
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 115
-    END
-
-    IDD_OPEN, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 349
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 108
-    END
-
-    IDD_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 251
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 141
-    END
-
-    IDD_PROP_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 85
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_PROPPAGE_LARGE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        VERTGUIDE, 128
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_CLEARCASE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 272
-        VERTGUIDE, 18
-        VERTGUIDE, 35
-        VERTGUIDE, 244
-        VERTGUIDE, 261
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 104
-    END
-
-    IDD_PROPSYNTAX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_FILTER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_COLORS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_EDITOR_HEADERBAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 366
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 4
-    END
-
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 266
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 155
-    END
-
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 333
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 173
-    END
-END
-#endif    // APSTUDIO_INVOKED
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Toolbar
 //
 
@@ -1674,7 +1585,7 @@ END
 
 STRINGTABLE
 BEGIN
-    ID_FILE_MRU_FIRST       "開啟這個文件"
+    ID_FILE_MRU_FILE1       "開啟這個文件"
     ID_FILE_MRU_FILE2       "開啟這個文件"
     ID_FILE_MRU_FILE3       "開啟這個文件"
     ID_FILE_MRU_FILE4       "開啟這個文件"

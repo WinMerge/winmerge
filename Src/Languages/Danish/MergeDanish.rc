@@ -138,6 +138,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtre...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generer en Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -237,6 +241,10 @@ BEGIN
         MENUITEM "&Filtre...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generer en Patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -380,6 +388,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtre...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generer en Patch...",          ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -715,8 +727,8 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Sammenlign &hele ordet",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
-    CONTROL         "Sammenlign store/små &bogstaver",IDC_EDIT_MATCH_CASE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
+    CONTROL         "Sammenlign store/små &bogstaver",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "Regulært &udtryk",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Retning",IDC_STATIC,148,23,70,36,WS_GROUP
@@ -742,8 +754,8 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Sammenlign &hele ordet",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "&Sammenlign store/små bogstaver",IDC_EDIT_MATCH_CASE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
+    CONTROL         "&Sammenlign store/små bogstaver",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "Regulært &udtryk",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "&Begynd ikke forfra efter enden af filen",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
@@ -785,7 +797,8 @@ BEGIN
     CONTROL         "Ignorer linjer der følger det følgende mønster",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "Regulære udtryk (et pr linje):",IDC_STATIC,7,28,221,8
+    LTEXT           "Regulære udtryk (et pr linje):",IDC_STATIC,7,28,
+                    221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
@@ -1044,12 +1057,12 @@ CAPTION "Sammenlign"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Mellemrum",IDC_STATIC,7,7,221,50
-    CONTROL         "&Sammenlign",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
+    CONTROL         "&Sammenlign",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
     CONTROL         "&Ignorer ændringer",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "I&gnorer alle",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
+    CONTROL         "I&gnorer alle",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
     CONTROL         "Ignorer blan&ke linjer",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "Ignorer store/små &bogstaver",IDC_IGNCASE_CHECK,"Button",
@@ -1121,7 +1134,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Gem ændrede filer?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1988,7 +2001,7 @@ BEGIN
                             "Flyt den valgte fil på højre side til udvalgt mappe"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filnavn"
@@ -1999,6 +2012,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Venstre størrelse"
     IDS_COLHDR_RSIZE        "Højre størrelse"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Venstre oprettelsesdato"
     IDS_COLHDR_RTIMEC       "Højre oprettelsesdato"
     IDS_COLHDR_NEWER        "Nyeste fil"
@@ -2009,7 +2029,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Højre attributter"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Venstre Encoding"
@@ -2044,7 +2064,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 elementer valgt"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filnavn eller mappenavn."
@@ -2055,6 +2075,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Filens extension."
     IDS_COLDESC_LSIZE       "Venstre filstørrelse i bytes."
     IDS_COLDESC_RSIZE       "Højre filstørrelse i bytes."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Venstre side oprettelsesdato."
     IDS_COLDESC_RTIMEC      "Højre side oprettelsesdato."
     IDS_COLDESC_NEWER       "Fortæller hvilken side har den nyeste ændringsdato."
