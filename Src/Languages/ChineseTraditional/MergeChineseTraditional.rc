@@ -134,10 +134,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
     END
-    POPUP "&Tools"
+    POPUP "工具(&T)"
     BEGIN
-        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
-        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "濾鏡(&F)...",                 ID_TOOLS_FILTERS
+        MENUITEM "產生補丁(&G)...",             ID_TOOLS_GENERATEPATCH
         POPUP "&Advanced"
         BEGIN
             MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
@@ -235,11 +235,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
-    POPUP "&Tools"
+    POPUP "工具(&T)"
     BEGIN
-        MENUITEM "&Customize Columns...",       ID_TOOLS_CUSTOMIZECOLUMNS
-        MENUITEM "&Filters...",                 ID_TOOLS_FILTERS
-        MENUITEM "&Generate Patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "自訂欄位(&C)...",             ID_TOOLS_CUSTOMIZECOLUMNS
+        MENUITEM "濾鏡(&F)...",                 ID_TOOLS_FILTERS
+        MENUITEM "產生補丁(&G)...",             ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
         POPUP "&Advanced"
         BEGIN
@@ -649,7 +649,7 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "用戶:",IDC_STATIC,7,99,36,8
     EDITTEXT        IDC_USER,48,96,70,14,ES_AUTOHSCROLL
-    RTEXT           "Password:",IDC_STATIC,122,99,55,8
+    RTEXT           "密碼:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
     CONTROL         "連結到目標 VSS 專案",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
@@ -1165,7 +1165,7 @@ BEGIN
     GROUPBOX        "預設的碼頁於 ANSI 檔案",IDC_STATIC,7,7,221,79
     LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
                     IDC_STATIC,14,20,208,19
-    CONTROL         "Detect codepage info for these files : .html, .rc, .xml \nneed to restart session",
+    CONTROL         "偵測碼頁資訊於這些檔案 : .html, .rc \n需要重新啟動",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,92,210,29
     CONTROL         "系統碼頁",IDC_CP_SYSTEM,"Button",
@@ -2410,17 +2410,17 @@ BEGIN
 	IDS_CP_DOS_GREEK                "MS-DOS 希臘"
 	IDS_CP_DOS_BALTIC               "MS-DOS 波羅的海里姆"
 	IDS_CP_DOS_LATIN1               "MS-DOS 拉丁 1"
-	IDS_CP_DOS_GREEK1               "MS-DOS Greek 1"
-	IDS_CP_DOS_LATIN2               "MS-DOS Latin 2"
-	IDS_CP_DOS_CYRILLIC             "MS-DOS Cyrillic"
-	IDS_CP_DOS_TURKISH              "MS-DOS Turkish"
-	IDS_CP_DOS_PORTUGUESE           "MS-DOS Portuguese"
+	IDS_CP_DOS_GREEK1               "MS-DOS 希臘 1"
+	IDS_CP_DOS_LATIN2               "MS-DOS 拉丁 2"
+	IDS_CP_DOS_CYRILLIC             "MS-DOS 西里里克"
+	IDS_CP_DOS_TURKISH              "MS-DOS 土耳其"
+	IDS_CP_DOS_PORTUGUESE           "MS-DOS 葡萄牙"
 END
 
 // CODEPAGES #2 (more DOS)
 STRINGTABLE
 BEGIN
-	IDS_CP_DOS_ICELANDIC            "MS-DOS Icelandic"
+	IDS_CP_DOS_ICELANDIC            "MS-DOS 冰島"
 	IDS_CP_DOS_HEBREW               "MS-DOS Hebrew"
 	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS French Canada"
 	IDS_CP_DOS_NORDIC               "MS-DOS Nordic"
@@ -2431,31 +2431,31 @@ END
 // CODEPAGES #3 (Windows)
 STRINGTABLE
 BEGIN
-	IDS_CP_WINDOWS_THAI             "Windows Thai"
-	IDS_CP_WINDOWS_JAPANESE         "Windows Japanese"
-	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows Simplified Chinese"
-	IDS_CP_WINDOWS_KOREAN           "Windows Korean"
-	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows Traditional Chinese"
-	IDS_CP_WINDOWS_LATIN2           "Windows Latin 2"
-	IDS_CP_WINDOWS_CYRILLIC         "Windows Cyrillic (Slavic)"
-	IDS_CP_WINDOWS_LATIN1           "Windows Latin 1"
+	IDS_CP_WINDOWS_THAI             "Windows 泰國"
+	IDS_CP_WINDOWS_JAPANESE         "Windows 日本"
+	IDS_CP_WINDOWS_CHINESE_SIMP     "Windows 簡體中文"
+	IDS_CP_WINDOWS_KOREAN           "Windows 韓國"
+	IDS_CP_WINDOWS_CHINESE_TRAD     "Windows 繁體中文"
+	IDS_CP_WINDOWS_LATIN2           "Windows 拉丁 2"
+	IDS_CP_WINDOWS_CYRILLIC         "Windows 西里里克 (斯拉夫)"
+	IDS_CP_WINDOWS_LATIN1           "Windows 拉丁 1"
 	IDS_CP_WINDOWS_GREEK            "Windows Greek"
-	IDS_CP_WINDOWS_TURKISH          "Windows Latin 5 (Turkish)"
-	IDS_CP_WINDOWS_HEBREW           "Windows Hebrew"
-	IDS_CP_WINDOWS_ARABIC           "Windows Arabic"
-	IDS_CP_WINDOWS_BALTIC           "Windows Baltic Rim"
-	IDS_CP_WINDOWS_VIETNAM          "Windows Vietnamese"
+	IDS_CP_WINDOWS_TURKISH          "Windows 拉丁 5 (土耳其)"
+	IDS_CP_WINDOWS_HEBREW           "Windows 希伯來"
+	IDS_CP_WINDOWS_ARABIC           "Windows 阿拉伯"
+	IDS_CP_WINDOWS_BALTIC           "Windows 波羅的海里姆"
+	IDS_CP_WINDOWS_VIETNAM          "Windows 越南"
 END
 
 // CODEPAGES #4 (Macintosh)
 STRINGTABLE
 BEGIN
-	IDS_CP_MACINTOSH_ROMAN          "Macintosh Roman"
+	IDS_CP_MACINTOSH_ROMAN          "Macintosh 羅馬"
 	IDS_CP_MACINTOSH_GREEK          "Macintosh Greek"
-	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh Cyrillic"
+	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh 西里里克"
 	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh "
 	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Central Europe"
-	IDS_CP_MACINTOSH_TURKISH        "Macintosh Turkish"
+	IDS_CP_MACINTOSH_TURKISH        "Macintosh 土耳其"
 END
 
 // CODEPAGES #5 (Extra (alias) information)
