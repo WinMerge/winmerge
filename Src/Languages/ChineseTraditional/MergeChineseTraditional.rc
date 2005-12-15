@@ -1878,7 +1878,7 @@ BEGIN
     IDS_ERROR_FILE_WRITEABLE "錯誤檢查目標寫入性"
     IDS_ERROR_BACKUP        "錯誤備份檔案"
     IDS_BACKUP_FAILED_PROMPT
-                            "Unable to backup original file:\n%1\n\nContinue anyway?"
+                            "無法備份原始的檔案。\n無論如何要繼續嗎？"
     IDS_FILESAVE_FAILED     "儲存檔案失敗。\n%1\n%2\n你要以一個不同名稱儲存檔案嗎？"
     IDS_FILEPACK_FAILED_LEFT "外掛 '%2' 無法封包你對左邊檔案的變更回到 '%1'.\n\n原始檔案不會變更。\n\n你要儲存解封包版本為另一檔案嗎？"
     IDS_FILEPACK_FAILED_RIGHT "外掛 '%2' 無法封包你對右邊檔案的變更回到 '%1'.\n\n原始檔案不會變更。\n\n你要儲存解封包版本為另一檔案嗎？"
@@ -2151,7 +2151,7 @@ BEGIN
     IDS_DIFF_CONTEXT        "快顯"
     IDS_DIFF_UNIFIED        "統一"
     IDS_FILEWRITE_ERROR     "無法寫入到檔案 %1。"
-    IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
+    IDS_PATH_NOT_ABSOLUTE   "%1\n 不是絕對路徑！"
 	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
     IDS_CANNOT_CREATE_BINARYPATCH "無法從二進位檔案建立一個補丁檔案。"
     IDS_CANNOT_CREATE_DIRPATCH "無法從資料夾建立一個補丁檔案。"
@@ -2421,11 +2421,11 @@ END
 STRINGTABLE
 BEGIN
 	IDS_CP_DOS_ICELANDIC            "MS-DOS 冰島"
-	IDS_CP_DOS_HEBREW               "MS-DOS Hebrew"
-	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS French Canada"
-	IDS_CP_DOS_NORDIC               "MS-DOS Nordic"
-	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS Cyrillic CIS 1"
-	IDS_CP_DOS_GREEK2               "MS-DOS Greek 2"
+	IDS_CP_DOS_HEBREW               "MS-DOS 希伯來"
+	IDS_CP_DOS_FRENCH_CANADA        "MS-DOS 法屬加拿大"
+	IDS_CP_DOS_NORDIC               "MS-DOS 北極"
+	IDS_CP_DOS_CYRILLIC_CIS1        "MS-DOS 西里里克 CIS 1"
+	IDS_CP_DOS_GREEK2               "MS-DOS 希臘 2"
 END
 
 // CODEPAGES #3 (Windows)
@@ -2439,7 +2439,7 @@ BEGIN
 	IDS_CP_WINDOWS_LATIN2           "Windows 拉丁 2"
 	IDS_CP_WINDOWS_CYRILLIC         "Windows 西里里克 (斯拉夫)"
 	IDS_CP_WINDOWS_LATIN1           "Windows 拉丁 1"
-	IDS_CP_WINDOWS_GREEK            "Windows Greek"
+	IDS_CP_WINDOWS_GREEK            "Windows 希臘"
 	IDS_CP_WINDOWS_TURKISH          "Windows 拉丁 5 (土耳其)"
 	IDS_CP_WINDOWS_HEBREW           "Windows 希伯來"
 	IDS_CP_WINDOWS_ARABIC           "Windows 阿拉伯"
@@ -2451,10 +2451,10 @@ END
 STRINGTABLE
 BEGIN
 	IDS_CP_MACINTOSH_ROMAN          "Macintosh 羅馬"
-	IDS_CP_MACINTOSH_GREEK          "Macintosh Greek"
+	IDS_CP_MACINTOSH_GREEK          "Macintosh 希臘"
 	IDS_CP_MACINTOSH_CYRILLIC       "Macintosh 西里里克"
 	IDS_CP_MACINTOSH_CENTRAL_EUROPE "Macintosh "
-	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh Central Europe"
+	IDS_CP_MACINTOSH_ICELANDIC      "Macintosh 中歐"
 	IDS_CP_MACINTOSH_TURKISH        "Macintosh 土耳其"
 END
 
@@ -2464,13 +2464,13 @@ BEGIN
 	IDS_CP_WINDOWS_JAPANESE_EXTRA   ""
 	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA ""
 	IDS_CP_WINDOWS_KOREAN_EXTRA     ""
-	IDS_CP_WINDOWS_LATIN2_EXTRA     "Approximates ISO-8859-2"
+	IDS_CP_WINDOWS_LATIN2_EXTRA     "大約 ISO-8859-2"
 	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA ""
 	IDS_CP_WINDOWS_CYRILLIC_EXTRA   ""
-	IDS_CP_WINDOWS_LATIN1_EXTRA     "Approximates ISO-8859-1"
-	IDS_CP_WINDOWS_GREEK_EXTRA      "Approximates ISO-8859-7"
-	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approximates ISO-8859-9"
-	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
+	IDS_CP_WINDOWS_LATIN1_EXTRA     "大約 ISO-8859-1"
+	IDS_CP_WINDOWS_GREEK_EXTRA      "大約 ISO-8859-7"
+	IDS_CP_WINDOWS_TURKISH_EXTRA    "大約 ISO-8859-9"
+	IDS_CP_WINDOWS_HEBREW_EXTRA     "大約 ISO-8859-8"
 END
 
 // MENU STRINGS

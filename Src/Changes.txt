@@ -4,6 +4,9 @@
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
  PATCH: [ 1379226 ] Fix Display Plugins BuildTmp paths
   (See plugins)  
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Last updates from submitted patch
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
 
 2005-12-14 Perry
  Update & synchronize translations: ChineseTraditional Czech Danish Dutch
