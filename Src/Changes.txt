@@ -7,6 +7,8 @@
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Last updates from submitted patch
   Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ BUG: [ 1381879 ] Unused variable in unicoder.cpp
+  Src/common: unicoder.cpp
 
 2005-12-14 Perry
  Update & synchronize translations: ChineseTraditional Czech Danish Dutch

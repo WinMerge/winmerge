@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-12-13 (Perry Rapp)
+ *  @date   Edited:  2005-12-15 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -568,7 +568,6 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 	// Now convert to TCHAR (which means defcodepage)
 	flags = WC_NO_BEST_FIT_CHARS; // TODO: Think about this
 	wlen = n;
-	int clen = wlen * 2 + 6;
 	BOOL defaulted=FALSE;
 	BOOL * pdefaulted = &defaulted;
 	if (cpout == CP_UTF8)
