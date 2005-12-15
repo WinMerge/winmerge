@@ -1,3 +1,14 @@
+2005-12-15 Perry
+ PATCH: [ 1379226 ] Fix Display Plugins BuildTmp paths
+  Plugins\src_VCPP\DisplayBinaryFiles:
+   DisplayBinaryFiles.dsp DisplayBinaryFiles.rc
+  Plugins\src_VCPP\DisplayXMLFiles:
+   DisplayXMLFiles.dsp DisplayXMLFiles.rc
+  Plugins\dlls: DisplayBinaryFiles.dll (v1.0.2.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
+  Plugins\dlls: DisplayXMLFiles.dll (v1.0.6.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.6.0
+
 2005-12-13 Perry
  PATCH: [ 1373255 ] New EditBinaryFiles plugin
  & BUG: [ 1379276 ] EditBinaryFiles not added to infrastructure
