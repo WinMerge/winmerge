@@ -1,3 +1,7 @@
+2005-12-16 Kimmo
+ PATCH: [ 1381984 ] Folder compare progressdialog could be drawn off-screen
+  Src: DirCompProgressDlg.cpp
+
 2005-12-16 Perry
  PATCH: [ 1380083 ] Fix EditBinaryFiles Plugin BuildTmp paths
   Plugins\src_VCPP\EditBinaryFiles: EditBinaryFiles.dsp

@@ -14,6 +14,11 @@
 #include "DirFrame.h"
 #include "CompareStats.h"
 
+#ifdef COMPILE_MULTIMON_STUBS
+#undef COMPILE_MULTIMON_STUBS
+#endif
+#include <multimon.h>
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -265,8 +270,22 @@ void DirCompProgressDlg::CenterToParent()
 	x -= rectBar.right / 2;
 	y -= rectBar.bottom / 2;
 
-	SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
-		rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
+	// Calculate real desktop coordinates (if we have multiple monitors or
+	// virtual desktops
+	CRect dsk_rc;
+	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
+	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
+	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
+
+	// Only move Open-dialog if its fully visible in new position
+	CPoint ptLeftTop(x, y);
+	CPoint ptRightBottom(rectBar.right, rectBar.bottom);
+	if (dsk_rc.PtInRect(ptLeftTop) && dsk_rc.PtInRect(ptRightBottom))
+	{
+		SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
+			rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
+	}
 }
 
 /** 
