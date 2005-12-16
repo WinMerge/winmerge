@@ -3,7 +3,9 @@
   Bump version from 1.0.0.2 to 1.0.0.3
   Plugins\src_VCPP\RCLocalizationHelper:
    WinMergeScript.cpp RCLocalizationHelper.rc
- Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.3)
+  Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.3)
+ PATCH: [ 1380083 ] Fix EditBinaryFiles Plugin BuildTmp paths
+  Plugins\src_VCPP\EditBinaryFiles: EditBinaryFiles.dsp
 
 2005-12-15 Perry
  PATCH: [ 1379226 ] Fix Display Plugins BuildTmp paths
