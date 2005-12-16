@@ -39,7 +39,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	long nSize = *pSize;
 
 	int iSrc, iDst;
-	// bPrend is one when we're processing (& copying text to output)
+	// bPrend is 1 when we're processing (& copying text to output)
 	// it is 0 when we're inside a string constant (& not copying text to output)
 	int bPrend = 1;
 	for (iSrc = 0, iDst = 0 ; iSrc < nSize ; iSrc++)
@@ -49,21 +49,26 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 			bPrend = 1 - bPrend;
 			continue;
 		}
-		if (text[iSrc] >= L'0' && text[iSrc] <= L'9')
+		if (bPrend)
 		{
-			if (iDst == 0 || iswspace(text[iDst-1]) || text[iDst-1] == L',')
+			if (text[iSrc] >= L'0' && text[iSrc] <= L'9')
 			{
-				if (text[iSrc] == L'0' && iSrc+1 < nSize && text[iSrc+1] == L'x')
-					iSrc += 2;
-				while (iSrc < nSize && (text[iSrc] >= L'0' && text[iSrc] <= L'9'))
-					iSrc ++;
-				iSrc --;
-				continue;
+				if (iDst == 0 || iswspace(text[iDst-1]) || text[iDst-1] == L',')
+				{
+					if (text[iSrc] == L'0' && iSrc+1 < nSize && text[iSrc+1] == L'x')
+						iSrc += 2;
+					while (iSrc < nSize && (text[iSrc] >= L'0' && text[iSrc] <= L'9'))
+						iSrc ++;
+					iSrc --;
+					continue;
+				}
 			}
 		}
 
 		if (bPrend)
+		{
 			text[iDst ++] = text[iSrc];
+		}
 	}
 
 	// set the new size

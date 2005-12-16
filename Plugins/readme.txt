@@ -1,3 +1,10 @@
+2005-12-16 Perry
+ PATCH: [ 1379270 ] Fix RCLocalizationHelper to skip numeric handling in strings
+  Bump version from 1.0.0.2 to 1.0.0.3
+  Plugins\src_VCPP\RCLocalizationHelper:
+   WinMergeScript.cpp RCLocalizationHelper.rc
+ Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.3)
+
 2005-12-15 Perry
  PATCH: [ 1379226 ] Fix Display Plugins BuildTmp paths
   Plugins\src_VCPP\DisplayBinaryFiles:
@@ -12,7 +19,7 @@
 2005-12-13 Perry
  PATCH: [ 1373255 ] New EditBinaryFiles plugin
  & BUG: [ 1379276 ] EditBinaryFiles not added to infrastructure
-  Plugins\dlls: NEW EditBinaryFiles.dll (V1.0.1.0)
+  Plugins\dlls: NEW EditBinaryFiles.dll (v1.0.1.0)
    (Compiled MSVC6sp6, ANSI, MinDependency, WinXP)
   Plugins\src_VCPP\EditBinaryFiles: ChangeLog.txt
 
