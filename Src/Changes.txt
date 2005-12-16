@@ -1,3 +1,7 @@
+2005-12-16 Perry
+ PATCH: [ 1380083 ] Fix EditBinaryFiles Plugin BuildTmp paths
+  Plugins\src_VCPP\EditBinaryFiles: EditBinaryFiles.dsp
+
 2005-12-16 Kimmo
  PATCH: [ 1381975 ] Don't open Open-dialog outside screen
   Src: MainFrm.cpp OpenDlg.cpp
@@ -13,8 +17,6 @@
   Src/ExpatMapLib: expat_maps_static.dsp
  PATCH: [ 1379228 ] Fix Merge7zInstaller BuildTmp paths
   Merge7zInstaller: Merge7zInstaller.dsp
- PATCH: [ 1380083 ] Fix EditBinaryFiles Plugin BuildTmp paths
-  Plugins\src_VCPP\EditBinaryFiles: EditBinaryFiles.dsp
 
 2005-12-16 Kimmo
  PATCH: [ 1381935 ] Simplify DirView icon loading
