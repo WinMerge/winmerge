@@ -1,6 +1,8 @@
 2005-12-16 Perry
  BUG: [ 1380019 ] Bulgarian translation has wrong language id
   Src/Languages/Bulgarian: MergeBulgarian.rc
+ PATCH: [ 1382131 ] English rc file has numbers instead of symbols for language
+  Src: Merge.rc
 
 2005-12-16 Kimmo
  PATCH: [ 1381935 ] Simplify DirView icon loading

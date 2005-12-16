@@ -2646,7 +2646,7 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 #ifdef _WIN32
-LANGUAGE 9, 1
+LANGUAGE LANG_ENGLISH, SUBLANG_DEFAULT
 #pragma code_page(1252)
 #endif
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
