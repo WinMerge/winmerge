@@ -2651,10 +2651,10 @@ END
 #define _AFX_NO_TRACKER_RESOURCES
 #define _AFX_NO_PROPERTY_RESOURCES
 
-#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_BGR)
 #ifdef _WIN32
-LANGUAGE 9, 1
-#pragma code_page(1252)
+LANGUAGE LANG_BULGARIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
 #endif
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources
 #include "afxres.rc"         // Standard components
