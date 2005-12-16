@@ -1,3 +1,7 @@
+2005-12-16 Kimmo
+ PATCH: [ 1381935 ] Simplify DirView icon loading
+  Src: DirView.cpp
+
 2005-12-16 Jochen
  BUG: [ 1382021 ] Merge7z432 missing?
   Merge7z new files: Merge7z431.dsp Merge7z432.dsp

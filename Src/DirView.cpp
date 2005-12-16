@@ -210,48 +210,45 @@ void CDirView::OnInitialUpdate()
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
 	// Load the bitmaps used for the list view (to reflect diff status)
+	const COLORREF ColorWhite = RGB(255, 255, 255);
 	CBitmap bm;
 	VERIFY (m_imageList.Create (iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
 	VERIFY (bm.LoadBitmap (IDB_LFILE));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_RFILE));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_NOTEQUAL));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_EQUAL));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_UNKNOWN));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_BINARYSAME));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_BINARYDIFF));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
-	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_LFOLDER), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
-	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_RFOLDER), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFOLDER)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFOLDER)));
 	VERIFY (bm.LoadBitmap (IDB_FILESKIP));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
-	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_FOLDERSKIP), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
-	VERIFY (-1 != m_imageList.Add((HICON)LoadImage(AfxGetInstanceHandle(),
-		MAKEINTRESOURCE(IDI_FOLDER), IMAGE_ICON, iconCX, iconCY, LR_SHARED)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERSKIP)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDER)));
 	VERIFY (bm.LoadBitmap (IDB_ERROR));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_FOLDERUP));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	VERIFY (bm.LoadBitmap (IDB_FOLDERUP_DISABLE));
-	VERIFY (-1 != m_imageList.Add (&bm, RGB (255, 255, 255)));
+	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
 	bm.Detach();
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
