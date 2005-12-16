@@ -3,6 +3,9 @@
   Src/Languages/Bulgarian: MergeBulgarian.rc
  PATCH: [ 1382131 ] English rc file has numbers instead of symbols for language
   Src: Merge.rc
+ PATCH: [ 1379227 ] Fix ExpatLibs BuildTmp paths
+  Src/ExpatLib: expat_static.dsp
+  Src/ExpatMapLib: expat_maps_static.dsp
 
 2005-12-16 Kimmo
  PATCH: [ 1381935 ] Simplify DirView icon loading
