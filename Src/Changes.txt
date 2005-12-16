@@ -1,3 +1,7 @@
+2005-12-16 Jochen
+ BUG: [ 1382021 ] Merge7z432 missing?
+  Merge7z new files: Merge7z431.dsp Merge7z432.dsp
+
 2005-12-15 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
   Some more synchronizing from submitted patch
