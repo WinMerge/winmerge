@@ -52,7 +52,6 @@
 #include "RegKey.h"
 #include "logfile.h"
 #include "ssapi.h"      // BSP - Includes for Visual Source Safe COM interface
-#include "multimon.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "PatchTool.h"
@@ -73,6 +72,9 @@
 #include "ProjectFile.h"
 #include "PreferencesDlg.h"
 #include "AppSerialize.h"
+
+#define COMPILE_MULTIMON_STUBS
+#include <multimon.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

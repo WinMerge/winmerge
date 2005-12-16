@@ -1,3 +1,8 @@
+2005-12-16 Kimmo
+ PATCH: [ 1381975 ] Don't open Open-dialog outside screen
+  Src: MainFrm.cpp OpenDlg.cpp
+  Src removed file: multimon.h
+
 2005-12-16 Perry
  BUG: [ 1380019 ] Bulgarian translation has wrong language id
   Src/Languages/Bulgarian: MergeBulgarian.rc

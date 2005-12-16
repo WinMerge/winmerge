@@ -38,6 +38,11 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+#ifdef COMPILE_MULTIMON_STUBS
+#undef COMPILE_MULTIMON_STUBS
+#endif
+#include <multimon.h>
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -566,8 +571,26 @@ void COpenDlg::CenterToMainFrame()
 	x -= rectBar.right / 2;
 	y -= rectBar.bottom / 2;
 
-	SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
-		rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
+	// This refreshes dialog size after m_constraint rezizing dialog so we get
+	// correct dialog positioning
+	CenterWindow();
+
+	// Calculate real desktop coordinates (if we have multiple monitors or
+	// virtual desktops
+	CRect dsk_rc;
+	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
+	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
+	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
+
+	// Only move Open-dialog if its fully visible in new position
+	CPoint ptLeftTop(x, y);
+	CPoint ptRightBottom(x + rectBar.right, y + rectBar.bottom);
+	if (dsk_rc.PtInRect(ptLeftTop) && dsk_rc.PtInRect(ptRightBottom))
+	{
+		SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
+			rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
+	}
 }
 
 /** 
