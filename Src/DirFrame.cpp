@@ -29,7 +29,6 @@
 
 #include "stdafx.h"
 #include "Merge.h"
-#include "CompareStats.h"
 #include "DirFrame.h"
 #include "FilepathEdit.h"
 #include "DirDoc.h"
