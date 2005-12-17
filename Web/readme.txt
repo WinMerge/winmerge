@@ -1,3 +1,8 @@
+2005-12-17 Tim
+ PATCH: [ 1382921 ] Website changes for new stable release 2.4.4
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.4: changes.txt index.php
+
 2005-11-28 Tim
  Add 'Takashi Sawanaka' to developers.
   Web\developer: developers.xml

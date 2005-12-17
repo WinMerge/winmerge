@@ -1,3 +1,67 @@
+2005-12-15 2.4.4 Stable Release
+
+2005-12-15 Kimmo
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Merge trivial updates from 2.5.x
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ Takashi is now developer
+  Docs/Users: Contributors.txt
+ PATCH: [ 1373037 ] Fix filter dialog to correctly add new filters
+  Submitted by Perry
+  Src: FileFiltersDlg.cpp
+ Bump ShellExtension version number to 1.6.3
+  ShellExtension: ShellExtension.rc
+
+2005-12-15 Kimmo
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Merge trivial updates from 2.5.x
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+
+2005-12-11 Kimmo
+ PATCH: [ 1369544 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Docs/Users/Languages: ReadMe-Catalan.txt
+  Src/Languages/Catalan: MergeCatalan.rc
+
+2005-12-09 Kimmo
+ PATCH: [1374728 ] Fix filter dialog delete
+  Submitted by Perry
+  Src: FileFilterMgr.cpp
+ fix two-line-end-markers bug that was reported in:
+  "PATCH: [ 1372716 ] patch for RFE:[ 922992 ] Word Wrap/split long lines" 
+  Submitted by Takashi
+  Src: stringdiffs.cpp
+ BUG: [ 1376825 ] infinite loop bug in byte diffs
+  Submitted by Perry
+  Src: stringdiffs.cpp
+ PATCH: [ 1372589 ] Document tildas in config
+  Submitted by Perry
+  Src: ConfigLog.cpp
+ BUG: [ 1377361 ] MakeResDll broken b/c coretools broken
+  Submitted by Perry
+  Src/Common: coretools.cpp
+
+2005-12-08 Kimmo
+ PATCH: [ 1370183 ] ShellExtension: better way to check for WinMerge executable
+  ShellExtension: WinMergeShell.cpp
+
+2005-12-02 Kimmo
+ BUG: [ 1355884 ] 2.4.2 fails to open dvd files
+  File/folder selection dialog couldn't open read-only folders
+  Src: OpenDlg.cpp
+
+2005-11-30 Perry
+ BUG: [ 1369856 ] Crashed when interface language is changed
+  Src: DirDoc.cpp
+
+2005-11-28 Perry
+ PATCH: [ 1337905 ] Allow comparing binary files with binary unpacker
+  Src: DirView.cpp
+
+2005-11-22 Tim
+ PATCH: [ 1363114 ] Add '*.ctl;*.pag;*.dsr' to Visual Basic highlighter
+  Src/editlib: ccrystaltextview.cpp
+
 2005-11-10 2.4.2 Stable Release
 
 2005-11-10 Kimmo
