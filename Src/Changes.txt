@@ -1,3 +1,7 @@
+2005-12-17 Takashi
+ PATCH: [ 1378795 ] The searched word is not highlighted correctly
+  Src/editlib: ccrystaltextview.cpp
+
 2005-12-17 Perry
  PATCH: [ 1382955 ] Remove unused CompareStats.h include from DirFrame.cpp
   Src: DirFrame.cpp

@@ -4250,7 +4250,7 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
             return nCur + (pszPos - pszFindWhere);
           if (pszPos > pszFindWhere && xisalnum (pszPos[-1]))
             {
-              nCur += (pszPos - pszFindWhere);
+              nCur += (pszPos - pszFindWhere + 1);
               pszFindWhere = pszPos + 1;
               continue;
             }
