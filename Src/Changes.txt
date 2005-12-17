@@ -1,4 +1,8 @@
 2005-12-17 Takashi
+ PATCH: [ 1378771 ] Fix for BUG:[ 1376552 ] char offset not getting updated when...
+  Src: ChildFrm.cpp MergeEditView.cpp
+
+2005-12-17 Takashi
  PATCH: [ 1378795 ] The searched word is not highlighted correctly
   Src/editlib: ccrystaltextview.cpp
 

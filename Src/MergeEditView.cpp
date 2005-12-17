@@ -1698,7 +1698,23 @@ OnUpdateCaret()
 			curChar = cursorPos.x + 1;
 			chars = GetLineLength(nScreenLine);
 			column = CalculateActualOffset(nScreenLine, cursorPos.x) + 1;
-			columns = CalculateActualOffset(nScreenLine, chars) + 1;
+			
+			// Calculate subline offset
+			int *anBreaks = new int[chars];
+			int nBreaks;
+			int nSubLineOffset = chars;
+			WrapLineCached( nScreenLine, GetScreenChars(), anBreaks, nBreaks );
+			for (int i = 0; i < nBreaks; i++)
+			{
+				if (cursorPos.x < anBreaks[i])
+				{
+					nSubLineOffset = anBreaks[i] - 1;
+					break;
+				}
+			}
+			delete anBreaks;
+
+			columns = CalculateActualOffset(nScreenLine, nSubLineOffset) + 1;
 			chars++;
 			if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
 				sEol = GetTextBufferEol(nScreenLine);

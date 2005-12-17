@@ -650,8 +650,8 @@ static CString EolString(const CString & sEol)
 void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		int nColumns, int nChar, int nChars, LPCTSTR szEol)
 {
-	if (m_sLine.Compare(szLine) != 0 || m_nColumn != nColumn ||
-		m_nChars != nChars || m_sEol.Compare(szEol) != 0)
+	if (m_sLine.Compare(szLine) != 0 || m_nColumn != nColumn || m_nColumns != nColumns ||
+		m_nChar != nChar || m_nChars != nChars || m_sEol.Compare(szEol) != 0)
 	{
 		m_sLine = szLine;
 		m_nColumn = nColumn;
