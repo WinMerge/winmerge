@@ -54,4 +54,4 @@ RFE (feature request) tracker:
 http://sourceforge.net/tracker/?group_id=13216&atid=363216
 
 
-WinMerge developers
+- The WinMerge Developers

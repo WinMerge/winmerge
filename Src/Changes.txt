@@ -1,6 +1,8 @@
 2005-12-17 Kimmo
  BUG: [ 1379277 ] typo fix for docs
   Docs/Developers: Plugins.html
+ BUG: [ 1375661 ] Readme incomplete in WinMerge 2.5.0.3
+  Docs/Users: ReadMe.txt
 
 2005-12-17 Takashi
  PATCH: [ 1378771 ] Fix for BUG:[ 1376552 ] char offset not getting updated when...
