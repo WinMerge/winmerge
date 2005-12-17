@@ -3,6 +3,8 @@
   Docs/Developers: Plugins.html
  BUG: [ 1375661 ] Readme incomplete in WinMerge 2.5.0.3
   Docs/Users: ReadMe.txt
+ PaTCH: [ 1382966 ] Remove empty CMergeEditView::AddMod() and ResetMod()
+  Src: MergeEditView.cpp MergeEditView.h
 
 2005-12-17 Takashi
  PATCH: [ 1378771 ] Fix for BUG:[ 1376552 ] char offset not getting updated when...

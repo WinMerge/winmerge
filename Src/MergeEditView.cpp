@@ -316,16 +316,6 @@ void CMergeEditView::GetFullySelectedDiffs(int & firstDiff, int & lastDiff)
 	}
 }
 
-void CMergeEditView::AddMod()
-{
-
-}
-
-void CMergeEditView::ResetMod()
-{
-
-}
-
 void CMergeEditView::OnInitialUpdate()
 {
 	CCrystalEditViewEx::OnInitialUpdate();

@@ -158,8 +158,6 @@ public:
 	void SelectNone();
 	void SelectDiff(int nDiff, BOOL bScroll =TRUE, BOOL bSelectText =TRUE);
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
-	void ResetMod();
-	void AddMod();
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	CString GetSelectedText();
 	CString GetLineText(int idx);
