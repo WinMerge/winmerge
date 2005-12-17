@@ -88,7 +88,7 @@
     <p>Transform a file in a viewable format (for example, decompress a file...)</p>
     <ul>
       <li>The editor displays the unpacked data.</li>
-      <li>Sometimes files may be packed again (zipped files...). An additionnal function is of course necessary.</li>
+      <li>Sometimes files may be packed again (zipped files...). An additional function is of course necessary.</li>
       <li>If the author of the plugin created this function, file may be saved again in the compressed format.</li>
       <li>Else the file can only be saved in a text format. To avoid problems, you are proposed to change the filename when saving a changed file.</li>
     </ul>
@@ -186,7 +186,7 @@
   </tr>
 </table>
 
-<p><b>Note</b> : <code>PACK_UNPACK</code> functions use an additionnal parameter. The value may be set during <code>UnpackBuffer</code>.
+<p><b>Note</b> : <code>PACK_UNPACK</code> functions use an additional parameter. The value may be set during <code>UnpackBuffer</code>.
 When file is changed, the value is forwarded to <code>PackBuffer</code>.
 The goal is to pass a parameter from <code>UnpackBuffer</code> to <code>PackBuffer</code>.<br />
 For example, the plugin may handle several compressed formats, and use this value to recompress a file in
@@ -374,11 +374,11 @@ This parameter is mandatory for the functions syntax. But you don't have to set 
 
 <h3><a name="write">How to write plugins quickly ?</a></h3>
 <p>Easiest plugins are scriptlets.</p>
-<p>Just VBscript (or JavaScript probably) with an additionnal section <code>&lt;implement&gt;</code>. See examples.<br />
+<p>Just VBscript (or JavaScript probably) with an additional section <code>&lt;implement&gt;</code>. See examples.<br />
 But they are difficult to debug. And valid only for <code>EDITOR_SCRIPT</code> events.</p>
 
 <h4>VC++ plugins :</h4>
-<p>The most difficult to write when you do it from scratch. See in <code>Plugins/syntax.txt</code>, there are three additionnal steps from normal COM dll.</p>
+<p>The most difficult to write when you do it from scratch. See in <code>Plugins/syntax.txt</code>, there are three additional steps from normal COM dll.</p>
 <p>But easy to write from an existing plugin.</p>
 <ol>
   <li>Select a C++ plugin with the same API</li>
@@ -387,7 +387,7 @@ But they are difficult to debug. And valid only for <code>EDITOR_SCRIPT</code> e
   <li>Write your custom code : <code>WinMergeScript.cpp</code> holds all the important functions.</li>
 </ol>
 
-<h4>Additionnal steps to write a plugin in C++</h4>
+<h4>Additional steps to write a plugin in C++</h4>
 <ul>
   <li>do not register the dll : delete everything in 'settings'->'custom build'</li>
   <li>do not register the dll : delete the file <code>.rgs</code>, and the registry section in the file <code>.rc</code></li>
