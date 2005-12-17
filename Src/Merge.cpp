@@ -606,9 +606,7 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 	// check if specified path is a file
 	if (root_path!=NULL)
 	{
-		CFileStatus status;
-		if (CFile::GetStatus(root_path,status)
-			&& (status.m_attribute!=CFile::Attribute::directory))
+		if (paths_DoesPathExist(root_path) == IS_EXISTING_FILE)
 		{
 			SplitFilename(root_path, 0, &sfile, 0);
 		}
@@ -851,8 +849,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 	CString docPath = defPath + _T("\\contributors.txt");
 	HINSTANCE ret = 0;
 	
-	CFileStatus status;
-	if (CFile::GetStatus(docPath, status))
+	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)
 	{
 		// Now, add quotation marks so ShellExecute() doesn't fail if path
 		// includes spaces

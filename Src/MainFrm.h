@@ -265,6 +265,7 @@ private:
 	CDirDoc * GetDirDocToShow(BOOL * pNew);
 	void ShowFontChangeMessage();
 	void OptionsInit();
+	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 };
 
 extern CMainFrame *mf;

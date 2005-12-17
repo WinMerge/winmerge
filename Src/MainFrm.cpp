@@ -757,11 +757,7 @@ void CMainFrame::OnHelpGnulicense()
 	CString spath = GetModulePath() + _T("\\Copying");
 	CString url = _T("http://www.gnu.org/copyleft/gpl.html");
 	
-	CFileStatus status;
-	if (CFile::GetStatus(spath, status))
-		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"), spath, NULL, SW_SHOWNORMAL);
-	else
-		ShellExecute(NULL, _T("open"), url, NULL, NULL, SW_SHOWNORMAL);
+	OpenFileOrUrl(spath, url);
 }
 
 /**
@@ -1454,10 +1450,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 {
 	// first, make a backup copy of the original
-	CFileStatus status;
-
 	// create backup copy of file if destination file exists
-	if (m_options.GetBool(OPT_CREATE_BACKUPS) && CFile::GetStatus(pszPath, status))
+	if (m_options.GetBool(OPT_CREATE_BACKUPS) 
+		&& paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
 	{
 		// Add backup extension if pathlength allows it
 		BOOL success = TRUE;
@@ -1740,16 +1735,22 @@ BOOL CMainFrame::IsComparing()
 	return FALSE;
 }
 
+/**
+ * @brief Open file, if it exists, else open url
+ */
+void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
+{
+	if (paths_DoesPathExist(szFile) == IS_EXISTING_FILE)
+		ShellExecute(m_hWnd, _T("open"), _T("notepad.exe"), szFile, NULL, SW_SHOWNORMAL);
+	else
+		ShellExecute(NULL, _T("open"), szUrl, NULL, NULL, SW_SHOWNORMAL);
+}
+
 void CMainFrame::OnHelpContents() 
 {
 	CString spath = GetModulePath(0) + DocsPath;
 
-	CFileStatus status;
-	if (CFile::GetStatus(spath, status))
-		ShellExecute(NULL, _T("open"), spath, NULL, NULL, SW_SHOWNORMAL);
-	else
-		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
-
+	OpenFileOrUrl(spath, DocsURL);
 }
 
 void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 

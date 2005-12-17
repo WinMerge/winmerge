@@ -1,6 +1,10 @@
 2005-12-17 Perry
  PATCH: [ 1382955 ] Remove unused CompareStats.h include from DirFrame.cpp
   Src: DirFrame.cpp
+ PATCH: [ 1376711 ] Change CFile::GetStatus to paths_DoesPathExist
+  Src: files.cpp MainFrm.cpp MainFrm.h Merge.cpp MergeDoc.cpp OpenDlg.cpp
+   PathContext.cpp
+  Src/Common: coretools.cpp
 
 2005-12-16 Kimmo
  PATCH: [ 1381984 ] Folder compare progressdialog could be drawn off-screen

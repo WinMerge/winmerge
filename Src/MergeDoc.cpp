@@ -58,6 +58,7 @@
 #include "sbuffer.h"
 #include "dllver.h"
 #include "codepage.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -999,9 +1000,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	// Check third arg possibly given from command-line
 	if (!mf->m_strSaveAsPath.IsEmpty())
 	{
-		CFileStatus status;
-		if (CFile::GetStatus(mf->m_strSaveAsPath, status)
-			&& (status.m_attribute & CFile::Attribute::directory))
+		if (paths_DoesPathExist(mf->m_strSaveAsPath) == IS_EXISTING_DIR)
 		{
 			// third arg was a directory, so get append the filename
 			CString sname;

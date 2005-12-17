@@ -216,17 +216,15 @@ BOOL TempFileContext::CreateFiles(const PathContext &paths)
  */
 BOOL TempFileContext::FilesExist()
 {
-	CFileStatus s1,s2;
 	BOOL bLeftExists = FALSE;
 	BOOL bRightExists = FALSE;
 
 	if (!GetLeft().IsEmpty())
-		bLeftExists = CFile::GetStatus(GetLeft(), s1);
+		bLeftExists = (paths_DoesPathExist(GetLeft()) == IS_EXISTING_FILE);
 	if (!GetRight().IsEmpty())
-		bRightExists = CFile::GetStatus(GetRight(), s2);
+		bLeftExists = (paths_DoesPathExist(GetRight()) == IS_EXISTING_FILE);
 	
 	return bLeftExists || bRightExists;
-
 }
 
 /**

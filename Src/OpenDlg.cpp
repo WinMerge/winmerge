@@ -117,13 +117,12 @@ void COpenDlg::OnLeftButton()
 	CString s;
 	CString sfolder, sext;
 	CString dirSelTag;
-	CFileStatus status;
 	UpdateData(TRUE); 
 
+
 	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-	if (CFile::GetStatus(m_strLeft, status)
-		&& (status.m_attribute & CFile::Attribute::directory))
-			sfolder = m_strLeft;
+	if (paths_DoesPathExist(m_strLeft) == IS_EXISTING_DIR)
+		sfolder = m_strLeft;
 	else
 		sfolder = GetPathOnly(m_strLeft);
 	if (SelectFile(s, sfolder))
@@ -146,13 +145,11 @@ void COpenDlg::OnRightButton()
 	CString s;
 	CString sfolder, sext;
 	CString dirSelTag;
-	CFileStatus status;
 	UpdateData(TRUE);
 
 	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-	if (CFile::GetStatus(m_strRight, status)
-		&& (status.m_attribute & CFile::Attribute::directory))
-			sfolder = m_strRight;
+	if (paths_DoesPathExist(m_strRight) == IS_EXISTING_DIR)
+		sfolder = m_strRight;
 	else 
 		sfolder = GetPathOnly(m_strRight);
 	if (SelectFile(s, sfolder))
