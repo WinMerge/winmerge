@@ -1,9 +1,14 @@
+2005-12-19 Perry
+ PATCH: [ 1383120 ] Fix background colors in WinMerge
+  Src: SyntaxColors.cpp SyntaxColors.h
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
+
 2005-12-17 Kimmo
  BUG: [ 1379277 ] typo fix for docs
   Docs/Developers: Plugins.html
  BUG: [ 1375661 ] Readme incomplete in WinMerge 2.5.0.3
   Docs/Users: ReadMe.txt
- PaTCH: [ 1382966 ] Remove empty CMergeEditView::AddMod() and ResetMod()
+ PATCH: [ 1382966 ] Remove empty CMergeEditView::AddMod() and ResetMod()
   Src: MergeEditView.cpp MergeEditView.h
 
 2005-12-17 Takashi

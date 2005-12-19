@@ -80,8 +80,13 @@ public:
 	void SetDefaults();
 	void Initialize(CRegOptions *pOptionsMgr);
 	void SaveToRegistry();
-	void ReadFromRegistry();
 
+// Implementation methods
+private:
+	bool IsThemeableColorIndex(int nColorIndex) const;
+	bool GetSystemColorIndex(int nColorIndex, int * pSysIndex) const;
+
+// Implementation data
 private:
 	ColorArray m_colors; /**< Syntax highlight colors */
 	BoolArray m_bolds; /**< Bold font enable/disable */

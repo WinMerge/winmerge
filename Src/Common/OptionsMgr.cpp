@@ -754,13 +754,16 @@ int CRegOptions::InitOption(CString name, LPCTSTR defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptions::InitOption(CString name, int defaultValue)
+int CRegOptions::InitOption(CString name, int defaultValue, bool serializable)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
 	
 	defValue.SetInt(defaultValue);
-	retVal = InitOption(name, defValue);
+	if (serializable)
+		retVal = InitOption(name, defValue);
+	else
+		Add(name, defValue);
 	return retVal;
 }
 

@@ -87,7 +87,7 @@ public:
 	virtual int InitOption(CString name,
 		varprop::VariantValue defaultValue) = 0;
 	virtual int InitOption(CString name, LPCTSTR defaultValue) = 0;
-	virtual int InitOption(CString name, int defaultValue) = 0;
+	virtual int InitOption(CString name, int defaultValue, bool serializable=true) = 0;
 	virtual int InitOption(CString name, bool defaultValue) = 0;
 
 	virtual int SaveOption(CString name) = 0;
@@ -116,7 +116,7 @@ public:
 
 	virtual int InitOption(CString name, varprop::VariantValue defaultValue);
 	virtual int InitOption(CString name, LPCTSTR defaultValue);
-	virtual int InitOption(CString name, int defaultValue);
+	virtual int InitOption(CString name, int defaultValue, bool serializable=true);
 	virtual int InitOption(CString name, bool defaultValue);
 
 	virtual int SaveOption(CString name);

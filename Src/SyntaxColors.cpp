@@ -46,6 +46,33 @@ void SyntaxColors::Clone(SyntaxColors *pColors)
 	m_bolds.Copy(pColors->m_bolds);
 }
 
+bool SyntaxColors::IsThemeableColorIndex(int nColorIndex) const
+{
+	int temp=0;
+	return GetSystemColorIndex(nColorIndex, &temp);
+}
+
+/**
+ * @brief Get system color for this index (if this varies with theme)
+ */
+bool SyntaxColors::GetSystemColorIndex(int nColorIndex, int * pSysIndex) const
+{
+	switch (nColorIndex)
+	{
+		case COLORINDEX_WHITESPACE :
+		case COLORINDEX_BKGND:
+			*pSysIndex = COLOR_WINDOW;
+			return true;
+		case COLORINDEX_NORMALTEXT:
+			*pSysIndex = COLOR_WINDOWTEXT;
+			return true;
+		case COLORINDEX_SELMARGIN:
+			*pSysIndex = COLOR_SCROLLBAR;
+			return true;
+	}
+	return false;
+}
+
 /**
  * @brief Set default color values.
  */
@@ -55,18 +82,22 @@ void SyntaxColors::SetDefaults()
 	{
 		COLORREF color;
 
-		switch (i)
+		int nSysIndex = 0;
+		if (GetSystemColorIndex(i, &nSysIndex))
 		{
-		case COLORINDEX_WHITESPACE :
-		case COLORINDEX_BKGND:
-			color = GetSysColor (COLOR_WINDOW);
-			break;
-		case COLORINDEX_NORMALTEXT:
-			color = GetSysColor (COLOR_WINDOWTEXT);
-			break;
-		case COLORINDEX_SELMARGIN:
-			color = GetSysColor (COLOR_SCROLLBAR);
-			break;
+			// Colors that vary with Windows theme
+			color = GetSysColor(nSysIndex);
+		}
+		else switch (i)
+		{
+			// Theme colors are handled above by GetSystemColorIndex
+			//
+			// COLORINDEX_WHITESPACE
+			// COLORINDEX_BKGND:
+			// COLORINDEX_NORMALTEXT:
+			// COLORINDEX_SELMARGIN:
+
+			// Hardcoded defaults
 		case COLORINDEX_PREPROCESSOR:
 			color = RGB (0, 128, 192);
 			break;
@@ -172,7 +203,11 @@ void SyntaxColors::Initialize(CRegOptions *pOptionsMgr)
 		COLORREF ref;
 		valuename.Format(_T("%s/Color%02u"), DefColorsPath, i);
 		color = m_colors.GetAt(i);
-		m_pOptions->InitOption(valuename, color);
+
+		// Themeable colors are not read from the registry
+		// Currently (2005-12) we have no GUI to specify the themable colors anyway
+		bool serializable = !IsThemeableColorIndex(i);
+		m_pOptions->InitOption(valuename, color, serializable);
 		color = m_pOptions->GetInt(valuename);
 		ref = color;
 		m_colors.SetAt(i, ref);
@@ -213,42 +248,3 @@ void SyntaxColors::SaveToRegistry()
 	}
 }
 
-/**
- * @brief Read color values from storage.
- */
-void SyntaxColors::ReadFromRegistry()
-{
-	ASSERT(m_pOptions);
-	CString valuename;
-
-	valuename = DefColorsPath + '/';
-	valuename += _T("Values");
-	int count = m_pOptions->GetInt(valuename);
-
-	// Color count matches we propably have correct set saved
-	// otherwise fallback to default colors
-	if (count == COLORINDEX_COUNT)
-	{
-		for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
-		{
-			int color = 0;
-			COLORREF ref;
-			valuename.Format(_T("%s/Color%02u"), DefColorsPath, i);
-			color = m_pOptions->GetInt(valuename);
-			ref = color;
-			m_colors.SetAt(i, ref);
-
-			int nBold = 0;
-			BOOL bBold = FALSE;
-			valuename.Format(_T("%s/Bold%02u"), DefColorsPath, i);
-			nBold = m_pOptions->GetInt(valuename);
-			bBold = nBold ? TRUE : FALSE;
-			m_bolds.SetAt(i, bBold);
-		}
-	}
-	else
-	{
-		m_colors.SetSize(COLORINDEX_COUNT);
-		SetDefaults();
-	}
-}
