@@ -1,3 +1,8 @@
+2005-12-19 Perry
+  TODO: [ 1379276 ] EditBinaryFiles not added to infrastructure
+   Add EditBinaryFiles to plugins list_of_sources.txt
+   Plugins: list_of_sources.txt
+
 2005-12-16 Perry
  PATCH: [ 1379270 ] Fix RCLocalizationHelper to skip numeric handling in strings
   Bump version from 1.0.0.2 to 1.0.0.3

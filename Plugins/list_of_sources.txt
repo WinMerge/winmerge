@@ -11,6 +11,19 @@ No packing (no save).
 
 
 --------------------------------------------------------------------------------
+EditBinaryFiles
+--------------------------------------------------------------------------------
+Allow editing of binary files (if line based), using escape scheme for bytes under
+0x20.
+
+
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: .exe, .dll, .ocx, .doc, .xls
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
 DisplayXMLFiles
 --------------------------------------------------------------------------------
 Display xml files nicely, by consistently inserting tabs and linebreaks.
