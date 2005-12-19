@@ -1,3 +1,8 @@
+2005-12-19 Perry
+ BUG: [ 1384830 ] FAQ suggests non-proportional fonts available in 2.4+
+  removed version numbers ("WinMerge does not support non-proportional fonts")
+  Manual Faq.xml
+
 2005-12-08 Kimmo
  PATCH: [ 1375564 ] New encoding FAQ (UTF-8)
   Submitted by Perry
