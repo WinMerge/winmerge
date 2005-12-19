@@ -618,7 +618,7 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 	{
 		CString msg;
 		msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.codepage, filelocRight.codepage);
-		int msgflags = MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN;
+		int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
 		// Two files with different codepages
 		// Warn and propose to use the default codepage for both
 		int userChoice = AfxMessageBox(msg, msgflags);
@@ -814,7 +814,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 				// Multiple files or folder
 				AfxFormatString1(s, IDS_SAVEREADONLY_MULTI, strSavePath);
 				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
-						MB_ICONQUESTION | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
+						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
 						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
 			}
 			else
@@ -822,7 +822,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 				// Single file
 				AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
 				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
-						MB_ICONQUESTION | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
+						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
 			}
 		}
@@ -1098,7 +1098,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				{
 					// BSP - if the directories are different, let the user confirm the CheckOut
 					int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
-							MB_YESNO | MB_YES_TO_ALL | MB_ICONQUESTION);
+							MB_YESNO | MB_YES_TO_ALL | MB_ICONWARNING);
 
 					if (iRes == IDNO)
 					{
@@ -1468,7 +1468,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 		if (!success)
 		{
 			if (ResMsgBox1(IDS_BACKUP_FAILED_PROMPT, pszPath,
-					MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN, 
+					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, 
 					IDS_BACKUP_FAILED_PROMPT) != IDYES)
 				return FALSE;
 		}

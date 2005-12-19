@@ -426,7 +426,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 
 		CString sConfirm;
 		AfxFormatString1(sConfirm, IDS_CONFIRM_DELETE_SINGLE, path);
-		int res = AfxMessageBox(sConfirm, MB_ICONQUESTION | MB_YESNO);
+		int res = AfxMessageBox(sConfirm, MB_ICONWARNING | MB_YESNO);
 		if (res == IDYES)
 		{
 			if (DeleteFile(path))

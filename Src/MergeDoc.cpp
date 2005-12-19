@@ -2473,7 +2473,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 		{
 			CString s;
 			AfxFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
-			if (AfxMessageBox(s, MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN,
+			if (AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
 				IDS_SUGGEST_PRESERVEEOL) == IDYES)
 			{
 				// the user wants to keep the original chars
@@ -2661,7 +2661,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		// All lines will differ, that is not very interesting and probably not wanted.
 		// Propose to turn off the option 'sensitive to EOL'
 		CString s = LoadResString(IDS_SUGGEST_IGNOREEOL);
-		if (AfxMessageBox(s, MB_YESNO|MB_ICONQUESTION|MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
+		if (AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 		{
 			diffOptions.bEolSensitive = FALSE;
 			m_diffWrapper.SetOptions(&diffOptions);

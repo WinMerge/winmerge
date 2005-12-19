@@ -149,7 +149,7 @@ void CPatchDlg::OnOK()
 	if (fileExists && !m_appendFile)
 	{
 		if (AfxMessageBox(IDS_DIFF_FILEOVERWRITE,
-				MB_YESNO | MB_ICONQUESTION | MB_DONT_ASK_AGAIN,
+				MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
 				IDS_DIFF_FILEOVERWRITE) != IDYES)
 		{
 			return;
