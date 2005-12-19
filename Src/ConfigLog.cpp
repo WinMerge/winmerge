@@ -36,6 +36,7 @@
 #include "unicoder.h"
 #include "codepage.h"
 #include "7zcommon.h"
+#include "CompareOptions.h"
 
 
 // Static function declarations

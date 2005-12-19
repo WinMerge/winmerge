@@ -47,18 +47,6 @@ enum
 };
 
 /**
- * @brief Whitespace options
- *
- * DIFFOPTIONS structs nIgnoreWhitespace can have these values
- */
-enum
-{
-	WHITESPACE_COMPARE_ALL = 0,
-	WHITESPACE_IGNORE_CHANGE,
-	WHITESPACE_IGNORE_ALL
-};
-
-/**
  * @brief Patch styles
  *
  * Diffutils can output patch in these formats.

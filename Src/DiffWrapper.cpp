@@ -39,6 +39,7 @@
 #include "codepage_detect.h"
 #include "paths.h"
 #include "IAbortable.h"
+#include "CompareOptions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

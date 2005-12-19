@@ -925,6 +925,10 @@ SOURCE=.\ColorButton.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\CompareOptions.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\CompareStatisticsDlg.h
 # End Source File
 # Begin Source File

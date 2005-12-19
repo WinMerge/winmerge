@@ -2,6 +2,9 @@
  PATCH: [ 1383120 ] Fix background colors in WinMerge
   Src: SyntaxColors.cpp SyntaxColors.h
   Src/Common: OptionsMgr.cpp OptionsMgr.h
+ PATCH: [ 1384181 ] Fix byte difference fencepost/infinite loop
+  Src: CompareOptions.h ConfigLog.cpp DiffWrapper.cpp DiffWrapper.h
+   Merge.dsp PatchDlg.cpp stringdiffs.cpp
 
 2005-12-17 Kimmo
  BUG: [ 1379277 ] typo fix for docs
@@ -130,7 +133,6 @@
    MainFrm.cpp MainFrm.h Merge.dsp MergeDoc.cpp MergeDoc.h
   Src\Common: RegKey.cpp
   NEW Src\FileLocation.h
-
 
 2005-12-09 Perry
  PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)

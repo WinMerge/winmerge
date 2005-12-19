@@ -28,6 +28,7 @@
 #include "diff.h"
 #include "coretools.h"
 #include "paths.h"
+#include "CompareOptions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -10,10 +10,7 @@
 #include "stdafx.h"
 #include <mbctype.h>
 #include "stringdiffs.h"
-
-class stuff {
-	int j;
-};
+#include "CompareOptions.h"
 #include "stringdiffsi.h"
 
 #ifdef _DEBUG
@@ -519,7 +516,38 @@ LastChar(LPCTSTR psz, int len)
 }
 
 /**
+ * @brief advance current pointer over whitespace, until not whitespace or beyond end
+ * @param pcurrent [in,out] current location (to be advanced)
+ * @param end [in] last valid position (only go one beyond this)
+ */
+static void
+AdvanceOverWhitespace(LPCTSTR * pcurrent, LPCTSTR end)
+{
+	// advance over whitespace
+	while (*pcurrent <= end && isSafeWhitespace(**pcurrent))
+		++(*pcurrent); // DBCS safe because of isSafeWhitespace above
+}
+
+/**
+ * @brief back current pointer over whitespace, until not whitespace or at start
+ * @param pcurrent [in,out] current location (to be backed up)
+ * @param start [in] first valid position (do not go before this)
+ *
+ * NB: Unlike AdvanceOverWhitespace, this will not go over the start
+ * This because WinMerge doesn't need to, and also CharPrev cannot easily do so
+ */
+static void
+RetreatOverWhitespace(LPCTSTR * pcurrent, LPCTSTR start)
+{
+	// back over whitespace
+	while (*pcurrent > start && isSafeWhitespace(**pcurrent))
+		*pcurrent = CharPrev(start, *pcurrent); // DBCS safe because of isSafeWhitespace above
+}
+
+/**
  * @brief Compute begin1,begin2,end1,end2 to display byte difference between strings str1 & str2
+ * @param casitive [in] true for case-sensitive, false for case-insensitive
+ * @param xwhite [in] This governs whether we handle whitespace specially (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
  *
  * Assumes whitespace is never leadbyte or trailbyte!
  */
@@ -558,8 +586,11 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 	LPCTSTR pen1 = LastChar(py1, len1);
 	LPCTSTR pen2 = LastChar(py2, len2);
 
-	if (xwhite)
+	if (xwhite != WHITESPACE_COMPARE_ALL)
 	{
+		// Ignore leading and trailing whitespace
+		// by advancing py1 and py2
+		// and retreating pen1 and pen2
 		while (py1 < pen1 && isSafeWhitespace(*py1))
 			++py1; // DBCS safe because of isSafeWhitespace above
 		while (py2 < pen2 && isSafeWhitespace(*py2))
@@ -599,24 +630,33 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 		}
 
 		// handle all the whitespace logic (due to WinMerge whitespace settings)
-		if (xwhite && isSafeWhitespace(*py1))
+		if (xwhite!=WHITESPACE_COMPARE_ALL && isSafeWhitespace(*py1))
 		{
-			if (xwhite==1 && !isSafeWhitespace(*py2))
+			if (xwhite==WHITESPACE_IGNORE_CHANGE && !isSafeWhitespace(*py2))
+			{
+				// py1 is white but py2 is not
+				// in WHITESPACE_IGNORE_CHANGE mode,
+				// this doesn't qualify as skippable whitespace
 				break; // done with forward search
+			}
 			// gobble up all whitespace in current area
-			while (isSafeWhitespace(*py1))
-				++py1; // DBCS safe because of isSafeWhitespace above
-			while (isSafeWhitespace(*py2))
-				++py2; // DBCS safe because of isSafeWhitespace above
+			AdvanceOverWhitespace(&py1, pen1); // will go beyond end
+			AdvanceOverWhitespace(&py2, pen2); // will go beyond end
 			continue;
 
 		}
-		if (xwhite && isSafeWhitespace(*py2))
+		if (xwhite!=WHITESPACE_COMPARE_ALL && isSafeWhitespace(*py2))
 		{
-			if (xwhite==1)
+			if (xwhite==WHITESPACE_IGNORE_CHANGE && !isSafeWhitespace(*py1))
+			{
+				// py2 is white but py1 is not
+				// in WHITESPACE_IGNORE_CHANGE mode,
+				// this doesn't qualify as skippable whitespace
 				break; // done with forward search
-			while (py2 < pen2 && isSafeWhitespace(*py2))
-				++py2; // multibyte safe because of isSafeWhitespace above
+			}
+			// gobble up all whitespace in current area
+			AdvanceOverWhitespace(&py1, pen1); // will go beyond end
+			AdvanceOverWhitespace(&py2, pen2); // will go beyond end
 			continue;
 		}
 
@@ -677,24 +717,33 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 			}
 
 			// handle all the whitespace logic (due to WinMerge whitespace settings)
-			if (xwhite && isSafeWhitespace(*pz1))
+			if (xwhite!=WHITESPACE_COMPARE_ALL && isSafeWhitespace(*pz1))
 			{
-				if (xwhite==1 && !isSafeWhitespace(*pz2))
+				if (xwhite==WHITESPACE_IGNORE_CHANGE && !isSafeWhitespace(*pz2))
+				{
+					// pz1 is white but pz2 is not
+					// in WHITESPACE_IGNORE_CHANGE mode,
+					// this doesn't qualify as skippable whitespace
 					break; // done with reverse search
+				}
 				// gobble up all whitespace in current area
-				while (pz1 > py1 && isSafeWhitespace(*pz1))
-					pz1 = CharPrev(py1, pz1);
-				while (pz2 > py2 && isSafeWhitespace(*pz2))
-					pz2 = CharPrev(py2, pz2);
+				RetreatOverWhitespace(&pz1, py1); // will not go over beginning
+				RetreatOverWhitespace(&pz2, py2); // will not go over beginning
 				continue;
 
 			}
-			if (xwhite && isSafeWhitespace(*pz2))
+			if (xwhite!=WHITESPACE_COMPARE_ALL && isSafeWhitespace(*pz2))
 			{
-				if (xwhite==1)
+				if (xwhite==WHITESPACE_IGNORE_CHANGE && !isSafeWhitespace(*pz1))
+				{
+					// pz2 is white but pz1 is not
+					// in WHITESPACE_IGNORE_CHANGE mode,
+					// this doesn't qualify as skippable whitespace
 					break; // done with reverse search
-				while (pz2 > py2 && isSafeWhitespace(*pz2))
-					pz2 = CharPrev(py2, pz2);
+				}
+				// gobble up all whitespace in current area
+				RetreatOverWhitespace(&pz1, py1); // will not go over beginning
+				RetreatOverWhitespace(&pz2, py2); // will not go over beginning
 				continue;
 			}
 
