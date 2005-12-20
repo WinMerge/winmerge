@@ -8,7 +8,7 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>Why is there two executable files,
+          <para>Why are there two executable files,
           <filename>WinMerge.exe</filename> and
           <filename>WinMergeU.exe</filename>?</para>
         </question>
@@ -16,23 +16,27 @@
         <answer>
           <itemizedlist>
             <listitem>
-              <para><filename>WinMerge.exe</filename> is ANSI executable which
+              <para><filename>WinMerge.exe</filename> is an ANSI (8-bit) executable which
               works in all 32-bit Windows systems. It does not have Unicode
               support.</para>
 
               <para>Internally, it stores only ANSI characters (256
-              possibilities). If you open an Unicode (65536 possible
-              characters) file, the characters must be converted to the ANSI
-              character set. Conversion can be approximative (accents are
+              possibilities). If you open a Unicode file, the characters 
+              must be converted to the ANSI codepage. As there are
+              over 100,000 Unicode characters, and only 256 can be
+              represented in the ANSI codepage, data loss may
+              occur. Conversion may be approximative (accents are
               lost), or impossible (characters appear as "?").</para>
 
-              <para><filename>WinMerge.exe</filename> can neither open files
-              when filename is not writeable in the current ANSI set.</para>
+              <para><filename>WinMerge.exe</filename> also can not open files
+              with names outside the current ANSI codepag (e.g., WinMerge.exe
+              can not open a file with a Hebrew name, if run on an English
+              system. WinMergeU.exe can open such files.</para>
             </listitem>
 
             <listitem>
-              <para><filename>WinMergeU.exe</filename> is Unicode enabled
-              executable which works in Windows NT4, Windows 2000 and newer
+              <para><filename>WinMergeU.exe</filename> is a Unicode enabled
+              executable which works on Windows NT4, Windows 2000, and newer
               systems.</para>
             </listitem>
           </itemizedlist>
@@ -81,7 +85,9 @@
         <answer>
           <para>Unfortunately not. We acknowledge it would be good feature but
           have no plans to implement it in near future. This can be somewhat
-          work-arounded using two WinMerge instances.</para>
+          worked around by using two WinMerge instances. (One developer has
+          begun preliminary work on this feature, but it is not yet 
+          available, even in experimental releases.)</para>
         </answer>
       </qandaentry>
 
@@ -95,7 +101,7 @@
           <para>Not currently. If somebody wants to help/work with
           cross-platform support (using <ulink
           url="http://www.wxwidgets.org/">wxWidgets</ulink> for example) we
-          are interested of course.</para>
+          are interested, of course.</para>
         </answer>
       </qandaentry>
 
@@ -107,7 +113,7 @@
         <answer>
           <para>Which kind of CVS integration WinMerge should have? Adding CVS
           client features to WinMerge is questionable since there are many
-          good CVS clients already. Conflict file resolution is feature we are
+          good CVS clients already. Conflict file resolution is a feature we are
           planning to add in future releases.</para>
         </answer>
       </qandaentry>
@@ -119,7 +125,7 @@
 
         <answer>
           <para>MRU is the abbreviation for "Most Recently Used", and means
-          the history lists in Open-dialog thats containing 20 last used
+          the history lists in the Open-dialog which contain the 20 last used
           files/paths per side.</para>
         </answer>
       </qandaentry>
@@ -179,10 +185,13 @@
 
         <answer>
           <para>There is one or more zero-bytes in your file(s). If WinMerge
-          finds zero-bytes from files it detects files as binary files. You
-          can try to remove those zero-bytes from files. Or open files with
-          DisplayBinaryFiles -plugin. DisplayBinaryFiles -plugin allows
-          viewing binary files but does not allow saving changed files.</para>
+          finds zero-bytes from files, it considers the files to be binary files. You
+          can try to remove those zero-bytes from files. Alternatively, you may open 
+          the files with the DisplayBinaryFiles plugin. This plugin allows viewing 
+          binary files, but not editing them. If you have a very recent version of
+          WinMerge (2.5.0.4+), you may use the new EditBinaryFiles plugin, which does allow
+          editing binary files (using an escape scheme for representing non-printable
+          characters).</para>
         </answer>
       </qandaentry>
 
@@ -192,9 +201,9 @@
         </question>
 
         <answer>
-          <para>WinMerge does not include binary file viewer/editor so
-          WinMerge can only show if binary files are identical or
-          different.</para>
+          <para>A plugin to merge binary files has only recently been added to WinMerge,
+          and is not in any release before 2.5.0.4. Therefore, WinMerge can only show 
+          if binary files are identical or different.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -241,7 +250,7 @@
           <para>For Unicode files (UCS-2, UTF-8), use
           <filename>WinMergeU.exe</filename>.</para>
 
-          <para>For ANSI files, this is probably due to code-page problem. If
+          <para>For ANSI files, this is probably due to code-page problems. If
           "<guilabel>Use codepage info</guilabel>" is selected from
           <guimenuitem>Options</guimenuitem>, turn that off and see if it
           helps.</para>
@@ -261,12 +270,12 @@
 
       <qandaentry>
         <question>
-          <para>What means delaying of (automatic) rescan? Why it is
+          <para>What is delaying of (automatic) rescan? Why it is
           needed?</para>
         </question>
 
         <answer>
-          <para>When <guilabel>Automatic Rescan</guilabel> is enabled WinMerge
+          <para>When <guilabel>Automatic Rescan</guilabel> is enabled, WinMerge
           delays rescanning while user edits files. So there is no rescanning
           happening when user types text but shortly after user has finished
           typing. Without this delaying WinMerge would do rescan after every
@@ -283,7 +292,7 @@
 
         <answer>
           <para>Unfortunately printing is not supported. This is one area
-          where we really appreciate help in implementation!</para>
+          where we would really appreciate help in implementation!</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -295,7 +304,7 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>I want that WinMerge is closed with single
+          <para>I want WinMerge to close with a single
           <keycap>ESC</keycap> press after I'm done?</para>
         </question>
 
@@ -311,14 +320,14 @@
         </question>
 
         <answer>
-          <para>Tell program to invoke WinMerge with the <option>/ub</option>
+          <para>Tell your external program to invoke WinMerge with the <option>/ub</option>
           option, which tells WinMerge to not add the files to the MRU.</para>
         </answer>
       </qandaentry>
 
       <qandaentry>
         <question>
-          <para>But program I'm using doesn't allow commandline
+          <para>But the program I'm using doesn't allow commandline
           parameters!</para>
         </question>
 
@@ -394,7 +403,7 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>How do I tell if my file is coded in the local windows
+          <para>How do I tell if my file is coded in the local windows (ie, ANSI)
           codepage?</para>
         </question>
 
@@ -499,12 +508,12 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>Is there way to create patch files from commandline?</para>
+          <para>Is there way to create patch files from the commandline?</para>
         </question>
 
         <answer>
           <para>No. It may be added in later versions but until then Win32
-          port of diffutils can be used. Win32 port of diffutils (and patch)
+          port of diffutils can be used. The Win32 port of diffutils (and patch)
           can be downloaded from <productname>GnuWin32</productname> project
           from SourceForge: <ulink
           url="???">http://sourceforge.net/projects/gnuwin32</ulink></para>
@@ -517,7 +526,7 @@
         </question>
 
         <answer>
-          <para>No. Patch tool from GnuWin32 project can be used for patch
+          <para>No. The patch tool from GnuWin32 project can be used for patch
           applying since WinMerge produces GNU/diffutils compatible patch
           files. See above question.</para>
         </answer>
