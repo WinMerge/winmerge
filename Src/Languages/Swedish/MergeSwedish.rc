@@ -207,7 +207,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "Jämfö&rstatistik",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
     END
@@ -346,9 +346,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Visa &mellanslag",            ID_VIEW_WHITESPACE
         MENUITEM "Visa &radskillnader",         ID_VIEW_LINEDIFFS
-        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM "R&adbryt rader",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM "Vä&xla placering",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
         MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
@@ -652,7 +652,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Versionsstyrningssystem"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Versionsstyringssystem:",IDC_STATIC,7,7,221,10
+    LTEXT           "&Versionsstyrningssystem:",IDC_STATIC,7,7,221,10
     COMBOBOX        IDC_VER_SYS,7,18,166,98,CBS_DROPDOWNLIST | WS_VSCROLL |
                     WS_TABSTOP
     LTEXT           "&Sökväg till Cleartool.exe:",IDC_VSS_L1,7,37,221,10
@@ -901,11 +901,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Patchgenerator"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "Fil1:",IDC_STATIC,7,10,36,8
+    RTEXT           "Fil 1:",IDC_STATIC,7,10,36,8
     COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Bläddra...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
-    RTEXT           "Fil2:",IDC_STATIC,7,27,36,8
+    RTEXT           "Fil 2:",IDC_STATIC,7,27,36,8
     COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Bläddra...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
@@ -1006,14 +1006,14 @@ EXSTYLE WS_EX_TOOLWINDOW
 CAPTION " Folder Compare Progress"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,239,7,83,14
+    DEFPUSHBUTTON   "Stopp",IDC_COMPARISON_STOP,239,7,83,14
     CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,8,
                     32,314,9
     RTEXT           "0",IDC_ITEMSCOMPARED,150,18,30,8
     LTEXT           "0",IDC_ITEMSTOTAL,194,18,30,8
     LTEXT           "/",IDC_STATIC,186,18,8,8
-    LTEXT           "Comparing items...",IDC_STATIC,7,7,150,8
-    LTEXT           "Items compared / Items total:",IDC_STATIC,7,18,129,8
+    LTEXT           "Jämför objekt...",IDC_STATIC,7,7,150,8
+    LTEXT           "Objekt jämförda / Objekt totalt:",IDC_STATIC,7,18,129,8
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
@@ -1111,7 +1111,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "Filfilter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Lista1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
+    CONTROL         "Lista 1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Nytt...",IDC_FILTERFILE_NEWBTN,188,114,50,14
@@ -1152,7 +1152,7 @@ BEGIN
     GROUPBOX        "Standard Codepage",IDC_STATIC,7,7,221,79
     LTEXT           "Välj den codepage som används som standard när icke-Unicode filer öppnas:",
                     IDC_STATIC,14,20,208,19
-    CONTROL         "Detektera codepage information för dessa filer : .html, .rc, .xml \nkräver omstart av programmet",
+    CONTROL         "Detektera codepageinformation för dessa filer : .html, .rc, .xml \nDetta kräver en omstart av WinMerge",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,92,210,29
     CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
@@ -1214,21 +1214,21 @@ END
 IDD_PREFERENCES DIALOGEX 0, 0, 376, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Options"
+CAPTION "Inställningar"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,187,237,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,241,237,50,14
     PUSHBUTTON      "Hjälp",IDC_TREEOPT_HELP,295,237,50,14
-    CONTROL         "Träd1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
+    CONTROL         "Träd 1",IDC_TREEOPT_PAGES,"SysTreeView32",TVS_DISABLEDRAGDROP |
                     TVS_SHOWSELALWAYS | WS_BORDER | WS_TABSTOP,7,20,96,202
     CONTROL         "",IDC_TREEOPT_HOSTFRAME,"Static",SS_BLACKFRAME | NOT WS_VISIBLE |
                     WS_DISABLED,110,0,259,222
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Kategorier",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
-    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
-    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
+    PUSHBUTTON      "Importera...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Exportera...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1246,47 +1246,47 @@ BEGIN
     RTEXT           "Användare 1:",IDC_STATIC,0,160,70,8
     RTEXT           "Användare 2:",IDC_STATIC,0,180,70,8
     CTEXT           "Text",IDC_STATIC,73,7,34,8
-    CONTROL         "Knapp1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,21,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,60,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,80,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,120,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,160,55,10
-    CONTROL         "Knapp1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
+    CONTROL         "Knapp 1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     CONTROL         "Fet",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
@@ -1352,49 +1352,49 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Compare Statistics"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
-    LTEXT           "Files:",IDC_STATIC,131,7,39,8
-    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
+    LTEXT           "Kataloger:",IDC_STATIC,72,7,38,8
+    LTEXT           "Filer:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "Olika",IDC_STATIC,7,15,186,40
     RTEXT           "Text:",IDC_STATIC,11,26,56,8
     CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,24,12,11
-    RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    RTEXT           "Statisk",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
+    RTEXT           "Binär:",IDC_STATIC,10,40,56,8
     CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,37,12,11
-    RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
-    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
-    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    RTEXT           "Statisk",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
+    GROUPBOX        "Unik",IDC_STATIC,7,55,186,40
+    RTEXT           "Vänster:",IDC_STATIC,11,66,56,8
     ICON            "",IDC_STAT_ILUNIQFOLDER,72,64,16,16
-    RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
+    RTEXT           "Statisk",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
     CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,64,12,11
-    RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
-    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    RTEXT           "Statisk",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
+    RTEXT           "Höger:",IDC_STATIC,11,79,56,8
     ICON            "",IDC_STAT_IRUNIQFOLDER,72,77,16,16
-    RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
+    RTEXT           "Statisk",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
     CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,77,12,11
-    RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
-    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    RTEXT           "Statisk",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
+    GROUPBOX        "Identisk",IDC_STATIC,7,95,186,37
     ICON            "",IDC_STAT_IIDENTICFOLDER,72,102,16,16
-    RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
+    RTEXT           "Statisk",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
     CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,102,12,11
-    RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    RTEXT           "Statisk",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
+    RTEXT           "Binär:",IDC_STATIC,10,117,56,8
     CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,115,12,11
-    RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
+    RTEXT           "Statisk",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
-    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    RTEXT           "Totalt:",IDC_STATIC,13,142,56,8
     CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     72,140,12,11
-    RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
+    RTEXT           "Statisk",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
     CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
                     131,140,12,11
-    RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
-    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+    RTEXT           "Statisk",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
+    DEFPUSHBUTTON   "Stäng",IDOK,200,140,50,14
 END
 
 
@@ -1421,9 +1421,9 @@ BEGIN
     BEGIN
         BLOCK "041d04e4"
         BEGIN
-            VALUE "Comments", "Translated by Göran Håkansson, contributions from Hans Eriksson\0"
+            VALUE "Comments", "Översatt av Göran Håkansson, bidrag från Hans Eriksson\0"
             VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "WinMerge Application\0"
+            VALUE "FileDescription", "WinMerge Applikation\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
@@ -1842,7 +1842,7 @@ BEGIN
     IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:
       /? eller -? visar denna hjälp
       /r eller -r får WinMerge att jämföra kataloger rekursivt
-      /e eller -e låter WinMerge stängas med en enkel esc tryckning
+      /e eller -e låter WinMerge stängas med en enkel ESC-tryckning
       /f eller -f anger filmask eller filternamn för jämförelse
       /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna
       /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna
@@ -1874,7 +1874,7 @@ BEGIN
     IDS_ALLFILES            "Alla filer (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge Projektfiler (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
-    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+    IDS_INIFILES            "Inställningsfiler (*.ini)|*.ini|Alla Filer (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1900,7 +1900,7 @@ END
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_CC_CMD              "&Sökväg till cleartool.exe:"
+    IDS_CC_CMD              "&Sökväg till Cleartool.exe:"
     IDS_VSS_CMD             "&Sökväg till SS.EXE:"
 END
 
@@ -2015,7 +2015,7 @@ END
 // VSS system
 STRINGTABLE
 BEGIN
-    IDS_VCS_NONE            "Ingen"
+    IDS_VCS_NONE            "Inget"
     IDS_VCS_VSS4            "Visual SourceSafe (lägre än 5.0)"
     IDS_VCS_VSS5            "Visual SourceSafe (5.0 eller högre)"
     IDS_VCS_CLEARCASE       "Rational ClearCase"
@@ -2139,7 +2139,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Kan inte jämföra filerna"
-    IDS_ABORTED_ITEM        "Item aborted"
+    IDS_ABORTED_ITEM        "Objekt avbrutet"
     IDS_FILE_SKIPPED        "Hoppat över filen"
     IDS_DIR_SKIPPED         "Hoppat över katalogen"
     IDS_ONLY_IN_FMT         "Bara i %1"
@@ -2223,7 +2223,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
     IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
-    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_INVALID_DIRECTORY   "Den valda katalogen är ogiltig."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2273,14 +2273,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Arkivstöd är inte startat.\n
                             Alla krävda komponenter (7-zip och/eller Merge7z*.dll) för arkivstöd kan inte hittas.
                             Se manualen för mer information om arkivstöd och hur man startar det."
-    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
-    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
-    IDS_OPT_EXPORT_CAPTION  "Select file for export"
-    IDS_OPT_IMPORT_CAPTION  "Select file for import"
-    IDS_OPT_IMPORT_DONE     "Options imported from the file."
-    IDS_OPT_EXPORT_DONE     "Options exported to the file."
-    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
-    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
+    IDS_MERGE7Z_ENABLE_0    "\nNotera: 7-Zip integration är avstängd i WinMerges inställningar."
+    IDS_MERGE7Z_ENABLE_2    "\nNotera: 7-Zip integration är begränsad till fristående användning i WinMerges inställningar."
+    IDS_OPT_EXPORT_CAPTION  "Välj fil att exportera"
+    IDS_OPT_IMPORT_CAPTION  "Välj fil att importera"
+    IDS_OPT_IMPORT_DONE     "Inställningar importerades från filen."
+    IDS_OPT_EXPORT_DONE     "Inställningar exporterades till filen."
+    IDS_OPT_IMPORT_ERR      "Det gick inte att importera inställningar från filen."
+    IDS_OPT_EXPORT_ERR      "Det gick inte att spara inställningar till filen."
 END
 
 // Regular expression errors
@@ -2628,11 +2628,11 @@ BEGIN
     ID_VIEW_WHITESPACE      "Visar ett tecken för mellanslag"
     ID_VIEW_DETAIL_BAR      "Visar eller gömmer skillnadsfältet\nVäxla skillnadsfältet"
     ID_VIEW_LOCATION_BAR    "Skillnadsbilden visar en övergripande bild av filerna"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATISTICS  "Visar dialog med katalogjämförelsestatistik"
     ID_VIEW_LANGUAGE        "Väljer språk för användargränssnittet\nSpråk"
     ID_VIEW_LINEDIFFS       "Visar skillnader inom rader med olika färg\nVisa radskillnad"
-    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
-    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
+    ID_VIEW_SWAPPANES       "Växlar placering på de två filerna"
+    ID_VIEW_WORDWRAP        "Startar radbrytning\nRadbrytning"
 END
 
 // MERGE MENU

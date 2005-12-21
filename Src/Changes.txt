@@ -2,6 +2,9 @@
  BUG: [ 1385518 ] Batch file syntax highlighting weirdness
   Fix from Tim
   Src/editlib: batch.cpp
+ PATCH: [ 1387297 ] Swedish translation update for 2.5.0.3+
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2005-12-21 Perry
  PATCH: [ 1386442 ] Local variable uses m_ prefix in CChildFrame
