@@ -1,3 +1,5 @@
+2005-12-21 WinMerge experimental release 2.5.0.4 (cvs)
+
 2005-12-21 Kimmo
  BUG: [ 1385518 ] Batch file syntax highlighting weirdness
   Fix from Tim
