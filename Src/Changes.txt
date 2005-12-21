@@ -1,3 +1,7 @@
+2005-12-21 Perry
+ PATCH: [ 1386442 ] Local variable uses m_ prefix in CChildFrame
+  Src: ChildFrm.cpp
+
 2005-12-19 Kimmo
  PATCH: [ 1384646 ] Replace Question icons with warning icons in messageboxes
   Src: DirActions.cpp FileFiltersDlg.cpp MainFrm.cpp MergeDoc.cpp PatchDlg.cpp
