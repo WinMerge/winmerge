@@ -659,10 +659,9 @@ ParseLineBatch (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIt
   BOOL bFirstChar = (dwCookie & ~COOKIE_EXT_COMMENT) == 0;
   BOOL bRedefineBlock = TRUE;
   BOOL bDecIndex = FALSE;
-  BOOL bOneWord = TRUE;
   int nIdentBegin = -1;
   int nPrevI = -1;
-  for (int I = 0;; nPrevI = I, I = ::CharNext(pszChars+I) - pszChars)
+  for (int I = 0;; nPrevI = I, I = CharNext(pszChars+I) - pszChars)
     {
       if (bRedefineBlock)
         {
@@ -680,8 +679,6 @@ ParseLineBatch (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIt
           else if (dwCookie & COOKIE_PREPROCESSOR)
             {
               DEFINE_BLOCK (nPos, COLORINDEX_PREPROCESSOR);
-              if (!bOneWord) dwCookie &= ~COOKIE_PREPROCESSOR;
-                bOneWord = FALSE;
             }
           else
             {
@@ -732,6 +729,13 @@ out:
               bRedefineBlock = TRUE;
             }
           continue;
+        }
+
+      if (dwCookie & COOKIE_PREPROCESSOR)
+        {
+          DEFINE_BLOCK (I, COLORINDEX_PREPROCESSOR);
+          dwCookie |= COOKIE_PREPROCESSOR;
+          break;
         }
 
       //  Normal text

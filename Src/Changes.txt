@@ -1,3 +1,8 @@
+2005-12-21 Kimmo
+ BUG: [ 1385518 ] Batch file syntax highlighting weirdness
+  Fix from Tim
+  Src/editlib: batch.cpp
+
 2005-12-21 Perry
  PATCH: [ 1386442 ] Local variable uses m_ prefix in CChildFrame
   Src: ChildFrm.cpp
