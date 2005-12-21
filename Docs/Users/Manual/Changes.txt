@@ -1,3 +1,7 @@
+2005-12-21 Kimmo
+ BUG: [ 1384832 ] ulink has ??? in FAQ
+  Manual: Faq.xml
+
 2005-12-20 Perry
  PATCH: [ 1384834 ] Copyedited FAQ
   Manual: Faq.xml

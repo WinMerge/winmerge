@@ -516,7 +516,8 @@
           port of diffutils can be used. The Win32 port of diffutils (and patch)
           can be downloaded from <productname>GnuWin32</productname> project
           from SourceForge: <ulink
-          url="???">http://sourceforge.net/projects/gnuwin32</ulink></para>
+          url="http://sourceforge.net/projects/gnuwin32/">
+          http://sourceforge.net/projects/gnuwin32</ulink></para>
         </answer>
       </qandaentry>
 
