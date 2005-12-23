@@ -1,3 +1,15 @@
+2005-12-23 Kimmo
+ PATCH: [ 1388456 ] Convert rest of folder compare bitmaps to icons
+  Icons from Tim (Thanks!)
+  Src: CompareStatisticsDlg.cpp DirView.cpp Merge.dsp Merge.rc resource.h
+  Src/res added files: binarydiff.ico equalbinary.ico equalfile.ico error.ico
+   fileskip.ico folderup.ico folderup_disable.ico lfile.ico notequalfile.ico
+   rfile.ico sigma.ico unknown.ico
+  Src/res removed files: binary.bmp binarydiff.bmp error.bmp fileskip.bmp
+   folderup.bmp folderup_disable.bmp lfile.bmp notequal.bmp rfile.bmp
+   sigma.bmp unknown.bmp
+  Src/Languages: *.rc resource.h
+
 2005-12-21 WinMerge experimental release 2.5.0.4 (cvs)
 
 2005-12-21 Kimmo

@@ -125,13 +125,55 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	HICON hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
 		MAKEINTRESOURCE(IDI_LFOLDER), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
+
 	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFOLDER);
 	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
 		MAKEINTRESOURCE(IDI_RFOLDER), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
+	
 	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IIDENTICFOLDER);
 	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
 		MAKEINTRESOURCE(IDI_FOLDER), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+	
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_INOTEQUAL);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_NOTEQUALFILE), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IDIFFBINFILE);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_BINARYDIFF), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ILUNIQFILE);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_LFILE), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IRUNIQFILE);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_RFILE), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IEQUALFILE);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_EQUALFILE), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_IEQUALBINFILE);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_EQUALBINARY), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ITOTALFOLDERS);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_SIGMA), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
+	pBitmapCtrl->SetIcon(hIcon);
+
+	pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ITOTALFILES);
+	hIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+		MAKEINTRESOURCE(IDI_SIGMA), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
 
 	UpdateData(FALSE);

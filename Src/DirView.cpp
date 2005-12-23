@@ -209,47 +209,23 @@ void CDirView::OnInitialUpdate()
 	if (HWND hWnd = ListView_GetHeader(m_pList->m_hWnd))
 		m_ctlSortHeader.SubclassWindow(hWnd);
 
-	// Load the bitmaps used for the list view (to reflect diff status)
-	const COLORREF ColorWhite = RGB(255, 255, 255);
-	CBitmap bm;
+	// Load the icons used for the list view (to reflect diff status)
 	VERIFY (m_imageList.Create (iconCX, iconCY, ILC_COLOR32 | ILC_MASK, 15, 1));
-	VERIFY (bm.LoadBitmap (IDB_LFILE));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_RFILE));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_NOTEQUAL));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_EQUAL));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_UNKNOWN));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_BINARYSAME));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_BINARYDIFF));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFILE)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFILE)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALFILE)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_UNKNOWN)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALBINARY)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_BINARYDIFF)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFOLDER)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFOLDER)));
-	VERIFY (bm.LoadBitmap (IDB_FILESKIP));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FILESKIP)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERSKIP)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDER)));
-	VERIFY (bm.LoadBitmap (IDB_ERROR));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_FOLDERUP));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
-	VERIFY (bm.LoadBitmap (IDB_FOLDERUP_DISABLE));
-	VERIFY (-1 != m_imageList.Add (&bm, ColorWhite));
-	bm.Detach();
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ERROR)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP_DISABLE)));
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Restore column orders as they had them last time they ran

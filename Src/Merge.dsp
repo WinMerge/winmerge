@@ -1401,7 +1401,19 @@ SOURCE=.\res\binarydiff.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\binarydiff.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\equal.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\equalbinary.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\equalfile.ico
 # End Source File
 # Begin Source File
 
@@ -1409,7 +1421,15 @@ SOURCE=.\res\error.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\error.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\fileskip.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\fileskip.ico
 # End Source File
 # Begin Source File
 
@@ -1417,7 +1437,23 @@ SOURCE=.\res\folder.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\folder.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\folderskip.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\folderskip.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\folderup.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\folderup_disable.ico
 # End Source File
 # Begin Source File
 
@@ -1429,7 +1465,15 @@ SOURCE=.\res\lfile.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\lfile.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\lfolder.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\lfolder.ico
 # End Source File
 # Begin Source File
 
@@ -1457,7 +1501,15 @@ SOURCE=.\res\notequal.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\notequalfile.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\rfile.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\rfile.ico
 # End Source File
 # Begin Source File
 
@@ -1465,7 +1517,15 @@ SOURCE=.\res\rfolder.bmp
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\rfolder.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\sigma.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\sigma.ico
 # End Source File
 # Begin Source File
 
@@ -1482,6 +1542,10 @@ SOURCE=.\res\Toolbar.bmp
 # Begin Source File
 
 SOURCE=.\res\unknown.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\unknown.ico
 # End Source File
 # Begin Source File
 

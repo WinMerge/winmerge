@@ -75,6 +75,18 @@ IDI_FOLDER              ICON                    "..\\..\\res\\folder.ico"
 IDI_LFOLDER             ICON                    "..\\..\\res\\lfolder.ico"
 IDI_RFOLDER             ICON                    "..\\..\\res\\rfolder.ico"
 IDI_FOLDERSKIP          ICON                    "..\\..\\res\\folderskip.ico"
+IDI_EQUALFILE           ICON                    "..\\..\\res\\equalfile.ico"
+IDI_NOTEQUALFILE        ICON                    "..\\..\\res\\notequalfile.ico"
+IDI_UNKNOWN             ICON                    "..\\..\\res\\unknown.ico"
+IDI_EQUALBINARY         ICON                    "..\\..\\res\\equalbinary.ico"
+IDI_LFILE               ICON                    "..\\..\\res\\lfile.ico"
+IDI_RFILE               ICON                    "..\\..\\res\\rfile.ico"
+IDI_BINARYDIFF          ICON                    "..\\..\\res\\binarydiff.ico"
+IDI_FILESKIP            ICON                    "..\\..\\res\\fileskip.ico"
+IDI_COMPARE_ERROR       ICON                    "..\\..\\res\\error.ico"
+IDI_FOLDERUP            ICON                    "..\\..\\res\\folderup.ico"
+IDI_FOLDERUP_DISABLE    ICON                    "..\\..\\res\\folderup_disable.ico"
+IDI_SIGMA               ICON                    "..\\..\\res\\sigma.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1355,43 +1367,35 @@ BEGIN
     LTEXT           "Files:",IDC_STATIC,131,7,39,8
     GROUPBOX        "Different",IDC_STATIC,7,15,186,40
     RTEXT           "Text:",IDC_STATIC,11,26,56,8
-    CONTROL         IDB_NOTEQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,24,12,11
+    ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
     RTEXT           "Binary:",IDC_STATIC,10,40,56,8
-    CONTROL         IDB_BINARYDIFF,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,37,12,11
+    ICON            "",IDC_STAT_IDIFFBINFILE, 131,37,16,16
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
     GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
     RTEXT           "Left:",IDC_STATIC,11,66,56,8
     ICON            "",IDC_STAT_ILUNIQFOLDER,72,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
-    CONTROL         IDB_LFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,64,12,11
+    ICON            "",IDC_STAT_ILUNIQFILE,131,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
     RTEXT           "Right:",IDC_STATIC,11,79,56,8
     ICON            "",IDC_STAT_IRUNIQFOLDER,72,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
-    CONTROL         IDB_RFILE,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,77,12,11
+    ICON            "",IDC_STAT_IRUNIQFILE,131,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
     GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
     ICON            "",IDC_STAT_IIDENTICFOLDER,72,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
-    CONTROL         IDB_EQUAL,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,102,12,11
+    ICON            "",IDC_STAT_IEQUALFILE,131,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
     RTEXT           "Binary:",IDC_STATIC,10,117,56,8
-    CONTROL         IDB_BINARYSAME,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,115,12,11
+    ICON            "",IDC_STAT_IEQUALBINFILE,131,115,16,16
     RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
     RTEXT           "Total:",IDC_STATIC,13,142,56,8
-    CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    72,140,12,11
+    ICON            "",IDC_STAT_ITOTALFOLDERS,72,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
-    CONTROL         IDB_SIGMA,IDC_STATIC,"Static",SS_BITMAP | SS_SUNKEN,
-                    131,140,12,11
+    ICON            "",IDC_STAT_ITOTALFILES,131,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
     DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
 END
@@ -1489,14 +1493,6 @@ END
 
 IDR_MAINFRAME           BITMAP                  "..\\..\\res\\Toolbar.bmp"
 IDB_SPLASH              BITMAP                  "..\\..\\res\\splash1.bmp"
-IDB_EQUAL               BITMAP                  "..\\..\\res\\equal.bmp"
-IDB_NOTEQUAL            BITMAP                  "..\\..\\res\\notequal.bmp"
-IDB_UNKNOWN             BITMAP                  "..\\..\\res\\unknown.bmp"
-IDB_BINARYSAME          BITMAP                  "..\\..\\res\\binary.bmp"
-IDB_LFILE               BITMAP                  "..\\..\\res\\lfile.bmp"
-IDB_RFILE               BITMAP                  "..\\..\\res\\rfile.bmp"
-IDB_BINARYDIFF          BITMAP                  "..\\..\\res\\binarydiff.bmp"
-IDB_FILESKIP            BITMAP                  "..\\..\\res\\fileskip.bmp"
 IDB_EDIT_COPY           BITMAP                  "..\\..\\res\\copy.bmp"
 IDB_EDIT_CUT            BITMAP                  "..\\..\\res\\cut.bmp"
 IDB_EDIT_PASTE          BITMAP                  "..\\..\\res\\paste.bmp"
@@ -1512,15 +1508,11 @@ IDB_VIEW_LANGUAGE       BITMAP                  "..\\..\\res\\language.bmp"
 IDB_VIEW_SELECTFONT     BITMAP                  "..\\..\\res\\select_font.bmp"
 IDB_FILE_EXIT           BITMAP                  "..\\..\\res\\exit.bmp"
 IDB_HELP_CONTENTS       BITMAP                  "..\\..\\res\\help_contents.bmp"
-IDB_ERROR               BITMAP                  "..\\..\\res\\error.bmp"
-IDB_FOLDERUP            BITMAP                  "..\\..\\res\\folderup.bmp"
-IDB_FOLDERUP_DISABLE    BITMAP                  "..\\..\\res\\folderup_disable.bmp"
 IDB_EDIT_SELECTALL      BITMAP                  "..\\..\\res\\select_all.bmp"
 IDB_TOOLS_FILTERS       BITMAP                  "..\\..\\res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "..\\..\\res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
-IDB_SIGMA               BITMAP                  "..\\..\\res\\sigma.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
