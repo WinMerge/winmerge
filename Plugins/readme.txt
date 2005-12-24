@@ -8,6 +8,9 @@
    Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
   WatchEndOfLog.dll (v1.0.0.2)
    Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
+ Bugfix for patch above; put binaries into MergePlugin subdirectories.
+  Plugins\src_VCPP\WatchBeginningOfLog: WatchBeginningOfLog.dsp
+  Plugins\src_VCPP\WatchEndOfLog: WatchEndOfLog.dsp
 
 2005-12-19 Perry
  TODO: [ 1379276 ] EditBinaryFiles not added to infrastructure
