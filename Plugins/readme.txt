@@ -1,7 +1,18 @@
+2005-12-24 Perry
+ PATCH: [ 1386809 ] Move temporaries out of src tree - log plugins
+  Plugins\src_VCPP\WatchBeginningOfLog: 
+   WatchBeginningOfLog.dsp WatchBeginningOfLog.rc
+  Plugins\src_VCPP\WatchEndOfLog: 
+   WatchEndOfLog.dsp WatchEndOfLog.rc
+ Plugins\dlls: WatchBeginningOfLog.dll (v1.0.0.2)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
+  WatchEndOfLog.dll (v1.0.0.2)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
+
 2005-12-19 Perry
-  TODO: [ 1379276 ] EditBinaryFiles not added to infrastructure
-   Add EditBinaryFiles to plugins list_of_sources.txt
-   Plugins: list_of_sources.txt
+ TODO: [ 1379276 ] EditBinaryFiles not added to infrastructure
+  Add EditBinaryFiles to plugins list_of_sources.txt
+  Plugins: list_of_sources.txt
 
 2005-12-16 Perry
  PATCH: [ 1379270 ] Fix RCLocalizationHelper to skip numeric handling in strings
