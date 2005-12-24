@@ -11,6 +11,8 @@
  Bugfix for patch above; put binaries into MergePlugin subdirectories.
   Plugins\src_VCPP\WatchBeginningOfLog: WatchBeginningOfLog.dsp
   Plugins\src_VCPP\WatchEndOfLog: WatchEndOfLog.dsp
+ PATCH: [ 1384813 ] Alphabetize entries in Plugins list_of_sources.txt
+  list_of_sources.txt
 
 2005-12-19 Perry
  TODO: [ 1379276 ] EditBinaryFiles not added to infrastructure

@@ -11,15 +11,26 @@ No packing (no save).
 
 
 --------------------------------------------------------------------------------
-EditBinaryFiles
+DisplayMSExcelFiles
 --------------------------------------------------------------------------------
-Allow editing of binary files (if line based), using escape scheme for bytes under
-0x20.
+Displays the text content of a MS Excel file, stripping away all formatting and embedded objects.
+No packing (no save).
 
-
-    Language: VC
+    Language: VB
        Event: FILE_PACK_UNPACK
- File filter: .exe, .dll, .ocx, .doc, .xls
+ File filter: *.xls
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+DisplayMSWordFiles
+--------------------------------------------------------------------------------
+Displays the text content of a MS Word file, stripping away all formatting and embedded objects.
+No packing (no save).
+
+    Language: VB
+       Event: FILE_PACK_UNPACK
+ File filter: *.doc
 --------------------------------------------------------------------------------
 
 
@@ -36,6 +47,30 @@ No packing (no save).
 
 
 --------------------------------------------------------------------------------
+EditBinaryFiles
+--------------------------------------------------------------------------------
+Allow editing of binary files (if line based), using escape scheme for bytes under
+0x20.
+
+
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: .exe, .dll, .ocx, .doc, .xls
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+editor addin
+--------------------------------------------------------------------------------
+ * "MakeUpper" convert the selection to upper case.
+ * "MakeLower" convert the selection to lower case.
+
+    Language: VBS
+       Event: EDITOR_SCRIPT
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
 HideFirstLetter
 --------------------------------------------------------------------------------
 The first non-space character is invisible in the merge editor (and restored
@@ -44,6 +79,29 @@ when saving).
     Language: VC
        Event: FILE_PACK_UNPACK
  File filter: *.nofirst, *.hidefirst
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+HideLastLetter
+--------------------------------------------------------------------------------
+The last non-space character is invisible in the merge editor (and restored
+when saving).
+
+    Language: VB
+       Event: BUFFER_PACK_UNPACK
+ File filter: *.last
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+IgnoreTwoFirstCharsOrder
+--------------------------------------------------------------------------------
+Sort the first two characters of both files before diffing.
+
+    Language: VB
+       Event: BUFFER_PREDIFF
+ File filter: *.txt
 --------------------------------------------------------------------------------
 
 
@@ -73,6 +131,17 @@ No packing (no save).
 
 
 --------------------------------------------------------------------------------
+insert datetime
+--------------------------------------------------------------------------------
+ * "InsertDate" insert date in the current locale.
+ * "InsertTime" insert time in the current locale.
+
+    Language: VBS
+       Event: EDITOR_SCRIPT
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
 RCLocalizationHelper
 --------------------------------------------------------------------------------
 Ignore localized strings/layout in files .rc.
@@ -80,66 +149,6 @@ Ignore localized strings/layout in files .rc.
     Language: VC
        Event: BUFFER_PREDIFF
  File filter: *.rc
---------------------------------------------------------------------------------
-
-
---------------------------------------------------------------------------------
-WatchBeginningOfLog, WatchEndOfLog
---------------------------------------------------------------------------------
-For long log files, user is often interested only in the first lines or in the
-last lines.
-
- * "WatchBeginningOfLog" truncates the files to the first 1/10th.
- * "WatchEndOfLog" truncates the files to the first 1/10th.
-
-    Language: VC
-       Event: FILE_PACK_UNPACK
- File filter: *.log
---------------------------------------------------------------------------------
-
-
---------------------------------------------------------------------------------
-DisplayMSWordFiles
---------------------------------------------------------------------------------
-Displays the text content of a MS Word file, stripping away all formatting and embedded objects.
-No packing (no save).
-
-    Language: VB
-       Event: FILE_PACK_UNPACK
- File filter: *.doc
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
-DisplayMSExcelFiles
---------------------------------------------------------------------------------
-Displays the text content of a MS Excel file, stripping away all formatting and embedded objects.
-No packing (no save).
-
-    Language: VB
-       Event: FILE_PACK_UNPACK
- File filter: *.xls
---------------------------------------------------------------------------------
-
---------------------------------------------------------------------------------
-HideLastLetter
---------------------------------------------------------------------------------
-The last non-space character is invisible in the merge editor (and restored
-when saving).
-
-    Language: VB
-       Event: BUFFER_PACK_UNPACK
- File filter: *.last
---------------------------------------------------------------------------------
-
-
---------------------------------------------------------------------------------
-IgnoreTwoFirstCharsOrder
---------------------------------------------------------------------------------
-Sort the first two characters of both files before diffing.
-
-    Language: VB
-       Event: BUFFER_PREDIFF
- File filter: *.txt
 --------------------------------------------------------------------------------
 
 
@@ -167,22 +176,15 @@ Requires the runtime library vcl40.bpl, which is part of the Delphi 4 setup.
 
 
 --------------------------------------------------------------------------------
-editor addin
+WatchBeginningOfLog, WatchEndOfLog
 --------------------------------------------------------------------------------
- * "MakeUpper" convert the selection to upper case.
- * "MakeLower" convert the selection to lower case.
+For long log files, user is often interested only in the first lines or in the
+last lines.
 
-    Language: VBS
-       Event: EDITOR_SCRIPT
---------------------------------------------------------------------------------
+ * "WatchBeginningOfLog" truncates the files to the first 1/10th.
+ * "WatchEndOfLog" truncates the files to the first 1/10th.
 
-
---------------------------------------------------------------------------------
-insert datetime
---------------------------------------------------------------------------------
- * "InsertDate" insert date in the current locale.
- * "InsertTime" insert time in the current locale.
-
-    Language: VBS
-       Event: EDITOR_SCRIPT
+    Language: VC
+       Event: FILE_PACK_UNPACK
+ File filter: *.log
 --------------------------------------------------------------------------------
