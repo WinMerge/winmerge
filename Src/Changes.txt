@@ -8,6 +8,8 @@
    Hungarian: MergeHungarian.rc
    Italian: MergeItalian.rc
    Japanese: MergeJapanese.rc
+ Remove needless cast
+  Src/Common: unicoder.cpp
 
 2005-12-23 Kimmo
  PATCH: [ 1388456 ] Convert rest of folder compare bitmaps to icons

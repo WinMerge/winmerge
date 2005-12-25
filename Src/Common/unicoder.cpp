@@ -493,7 +493,7 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	DWORD flags = 0;
 	int wlen = len*2+6;
 	LPWSTR wbuff = str.GetBuffer(wlen);
-	int n = MultiByteToWideChar(codepage, flags, (LPCSTR)lpd, len, wbuff, wlen-1);
+	int n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
 	if (n)
 	{
 		str.ReleaseBuffer(n);
