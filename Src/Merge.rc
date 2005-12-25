@@ -1436,6 +1436,7 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
+            VALUE "Comments", "English translation by developers"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
@@ -1824,7 +1825,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_1_DIFF_FOUND        "1 Difference Found"
-    IDS_STATUSBAR_READONLY  "RO" // Read Only
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES

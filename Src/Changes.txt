@@ -1,3 +1,14 @@
+2005-12-25 Perry
+ Update & synchronize translations: Danish Dutch French Hungarian Italian Japanese
+  Src: Merge.rc
+  Src/Languages:
+   Danish: MergeDanish.rc
+   Dutch: MergeDutch.rc
+   French: MergeFrench.rc
+   Hungarian: MergeHungarian.rc
+   Italian: MergeItalian.rc
+   Japanese: MergeJapanese.rc
+
 2005-12-23 Kimmo
  PATCH: [ 1388456 ] Convert rest of folder compare bitmaps to icons
   Icons from Tim (Thanks!)

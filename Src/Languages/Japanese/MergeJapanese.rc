@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 resources
+// 日本語 (Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
 #ifdef _WIN32
@@ -1827,7 +1827,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "差異 %1/%2"
     IDS_NO_DIFF_SEL_FMT     "%1個の差異が見つかりました"
     IDS_1_DIFF_FOUND        "1個の差異が見つかりました"
-    IDS_STATUSBAR_READONLY  "RO" // Read Only
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
@@ -2625,7 +2625,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // 日本語 resources
+#endif    // 日本語 (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

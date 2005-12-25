@@ -1827,7 +1827,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT  "Différence %1 de %2"
     IDS_NO_DIFF_SEL_FMT         "%1 Différences trouvées"
     IDS_1_DIFF_FOUND            "1 Différence trouvée"
-    IDS_STATUSBAR_READONLY      "LS" // Lecture seulement
+    IDS_STATUSBAR_READONLY      "LS" // = "Lecture seulement"
 END
 
 // MORE STATUS PANES

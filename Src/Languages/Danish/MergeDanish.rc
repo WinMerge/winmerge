@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Danish resources
+// Danish (Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_DAN)
 #ifdef _WIN32
@@ -2625,7 +2625,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // Danish resources
+#endif    // Danish (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

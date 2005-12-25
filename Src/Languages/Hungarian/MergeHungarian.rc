@@ -1827,7 +1827,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Ennyi különség: %1 ennyibõl: %2"
     IDS_NO_DIFF_SEL_FMT     "%1 különbséget találtam"
     IDS_1_DIFF_FOUND        "1 különbséget találtam"
-    IDS_STATUSBAR_READONLY  "RO" // Read Only
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
