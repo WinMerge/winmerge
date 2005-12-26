@@ -150,6 +150,10 @@ BEGIN
     BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "플러그인(&P)"
     BEGIN
@@ -249,6 +253,10 @@ BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "플러그인(&P)"
     BEGIN
@@ -392,6 +400,10 @@ BEGIN
     BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "플러그인(&P)"
     BEGIN
@@ -630,7 +642,8 @@ BEGIN
     LTEXT           "상태:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "확인",IDOK,306,11,50,14
     PUSHBUTTON      "취소",IDCANCEL,306,28,50,14
-    GROUPBOX        "비교할 디렉토리/파일",IDC_FILES_DIRS_GROUP,7,7,292,111
+    GROUPBOX        "비교할 디렉토리/파일",IDC_FILES_DIRS_GROUP,7,
+                7,292,111
     PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -681,8 +694,9 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "원본 파일 백업(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,75,10
-    CONTROL         "처음 다른 부분으로 자동 스크롤(&S)",IDC_SCROLL_CHECK,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,129,10
+    CONTROL         "처음 다른 부분으로 자동 스크롤(&S)",
+                 IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                 17,129,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,98,10
     CONTROL         "ESC로 창 닫기(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -699,7 +713,8 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,179,122,50,13,NOT 
                     WS_TABSTOP
-    LTEXT           "",IDC_STATIC,7,124,171,31
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+                 IDC_STATIC,7,124,171,31
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 111
@@ -710,8 +725,8 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "확인",IDOK,154,16,52,14
     PUSHBUTTON      "취소",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_SORT | 
-                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89, LBS_NOINTEGRALHEIGHT |
+                WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "선택 가능한 언어:",IDC_STATIC,7,7,140,8
 END
 
@@ -731,8 +746,8 @@ BEGIN
     CONTROL         "정규 표현식(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "방향",IDC_STATIC,148,23,70,36,WS_GROUP
-    CONTROL         "위로(&U)",IDC_EDIT_DIRECTION_UP,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,154,34,57,10
+    CONTROL         "위로(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
+                 WS_GROUP,154,34,57,10
     CONTROL         "아래로(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,57,10
     DEFPUSHBUTTON   "다음 찾기(&F)",IDOK,226,7,50,14,WS_GROUP
@@ -757,8 +772,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "정규 표현식(&E)",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
-    CONTROL         "EOF랩(Wrap End of File) 하지 않기",IDC_EDIT_SCOPE_DONT_WRAP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
+    CONTROL         "EOF랩(Wrap End of File) 하지 않기",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "적용 범위",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "현재 파일(&S)",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
@@ -778,8 +793,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "체크아웃",IDOK,169,115,50,14
     PUSHBUTTON      "취소",IDCANCEL,223,115,50,14
-    PUSHBUTTON      "다른 이름으로 저장...",IDC_SAVE_AS,169,115,84,14,NOT 
-                    WS_VISIBLE
+    PUSHBUTTON      "다른 이름으로 저장...",IDC_SAVE_AS,169,115,84,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "코멘트",IDC_STATIC,18,7,34,10
@@ -794,9 +808,11 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "라인 필터"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "아래 패턴과 일치하는 라인 무시",IDC_IGNOREREGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,221,15
-    LTEXT           "정규 표현식 (매1라인마다 적용):",IDC_STATIC,7,28,221,8
+    CONTROL         "아래 패턴과 일치하는 라인 무시",
+                IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                7,221,15
+    LTEXT           "정규 표현식 (매1라인마다 적용):",IDC_STATIC,7,28,
+                221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
@@ -836,29 +852,29 @@ BEGIN
     CONTROL         "Dif",IDC_TRIVIAL_DIFF_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_TRIVIAL_DIFF_TEXT_COLOR,"Button",
+                    BS_OWNERDRAW |                     WS_TABSTOP,199,69,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,113,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     RTEXT           "이동한 부분:",IDC_STATIC,7,89,90,8
-    CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_MOVEDBLOCK_DELETED_COLOR,"Button",
+                    BS_OWNERDRAW | WS_TABSTOP,156,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Dif",IDC_MOVEDBLOCK_TEXT_COLOR,"Button",
+                BS_OWNERDRAW | WS_TABSTOP,199,89,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
     RTEXT           "선택된 이동한 부분:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,
-                    WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+                    BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_TEXT_COLOR,"Button",
-                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,
-                    WS_EX_TRANSPARENT | WS_EX_CLIENTEDGE
+                    BS_OWNERDRAW | WS_TABSTOP,199,109,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     RTEXT           "Word Difference:",IDC_STATIC,7,129,90,8
     CONTROL         "Dif",IDC_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,129,17,14,WS_EX_TRANSPARENT |
@@ -894,8 +910,8 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "삭제한 파일은 휴지통으로(&P)",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "탐색기 메뉴에 추가(&A)",IDC_EXPLORER_CONTEXT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
+    CONTROL         "탐색기 메뉴에 추가(&A)",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "Advanced 메뉴 활성화(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     CONTROL         "Ignore time differences less than 3 seconds",
@@ -921,8 +937,8 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "찾아보기(&O)...",IDC_DIFF_BROWSE_FILE2,283,24,52,14
     PUSHBUTTON      "위치바꾸기(&S)",IDC_DIFF_SWAPFILES,283,41,52,14
-    CONTROL         "존재하는 파일에 덧붙이기(&A)",IDC_DIFF_APPENDFILE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
+    CONTROL         "존재하는 파일에 덧붙이기(&A)",IDC_DIFF_APPENDFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
     LTEXT           "결과(&R):",IDC_STATIC,7,66,37,8
     COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN | 
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -937,10 +953,10 @@ BEGIN
     GROUPBOX        "공백문자(whitespace)",IDC_STATIC,155,81,123,46
     CONTROL         "모두 비교(&P)",IDC_DIFF_WHITESPACE_COMPARE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,162,92,110,10
-    CONTROL         "바뀐부분 비교 안함(&G)",IDC_DIFF_WHITESPACE_IGNORE,
-                    "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
-    CONTROL         "모두 비교 안함(&N)",IDC_DIFF_WHITESPACE_IGNOREALL,
-                    "Button",BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
+    CONTROL         "바뀐부분 비교 안함(&G)",IDC_DIFF_WHITESPACE_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,102,110,10
+    CONTROL         "모두 비교 안함(&N)",IDC_DIFF_WHITESPACE_IGNOREALL,"Button",
+                    BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "공백 라인 무시(&E)",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
     CONTROL         "대소문자 구분(&T)",IDC_DIFF_CASESENSITIVE,"Button",
@@ -1036,8 +1052,8 @@ BEGIN
     LTEXT           "이동(&O):",IDC_STATIC,7,9,36,8
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "파일",IDC_STATIC,7,27,57,35
-    CONTROL         "왼쪽(&L)",IDC_WMGOTO_FILELEFT,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,13,38,48,10
+    CONTROL         "왼쪽(&L)",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,13,38,48,10
     CONTROL         "오른쪽(&R)",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,47,10
     GROUPBOX        "이동할 곳",IDC_STATIC,69,27,78,35
@@ -1055,12 +1071,12 @@ CAPTION "비교"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "공백",IDC_STATIC,7,7,221,50
-    CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
+    CONTROL         "공백 비교(&W)",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
     CONTROL         "바뀐 공백 무시(&H)",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "모든 공백 무시(&A)",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
+    CONTROL         "모든 공백 무시(&A)",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
     CONTROL         "공백 라인 무시(&K)",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "대소문자 무시(&C)",IDC_IGNCASE_CHECK,"Button",
@@ -1085,8 +1101,9 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "구문 하이라이트",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
-    CONTROL         "Apply to &unrecognized side",IDC_UNREC_APPLYSYNTAX,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,18,18,204,10
+    CONTROL         "Apply to &unrecognized side",
+                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
+                     WS_TABSTOP,18,18,204,10
     CONTROL         "자동 리스캔(&R)",IDC_AUTOMRESCAN_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "원본 EOL 보존(&P)",IDC_MIXED_EOL,"Button",
@@ -1110,13 +1127,14 @@ BEGIN
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95
-STYLE DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
 END
 
 IDD_FILEFILTERS DIALOGEX 0, 0, 356, 135
-STYLE DS_FIXEDSYS | WS_CHILD | WS_CAPTION
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_CAPTION
 CAPTION "파일 필터"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1130,7 +1148,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "수정 파일 저장"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1735,8 +1753,7 @@ STRINGTABLE
 BEGIN
     IDS_OPTIONS_TITLE       "옵션 (%1)"
     IDS_MESSAGE_BOX_ARE_RESET "이제 모든 메세지박스가 활성화됩니다."
-    IDS_DIFF_OPEN_NO_SET_PROPS 
-                            "수정되었습니다.  몇몇 설정은 파일비교를 재시작할 때까지 적용되지 않습니다."
+    IDS_DIFF_OPEN_NO_SET_PROPS "수정되었습니다.  몇몇 설정은 파일비교를 재시작할 때까지 적용되지 않습니다."
     IDS_FONT_CHANGE         "바뀐 폰트는 현재 비교창에는 적용되지 않습니다."
 END
 
@@ -1812,7 +1829,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "다른 파일(%1 of %2)"
     IDS_NO_DIFF_SEL_FMT     "%1개의 다른 부분 존재"
     IDS_1_DIFF_FOUND        "1개의 다른 부분 존재"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
@@ -1879,8 +1896,7 @@ BEGIN
     IDS_VSS_CHECKOUT_STATUS "VSS 체크아웃 파일..."
     IDS_VSSERROR            "체크아웃 실행 중 에러가 발생하였습니다.  더 이상 진행할 수 없습니다..."
     IDS_VSS_RUN_ERROR       "버전관리시스템 명령 실행 실패."
-    IDS_VSSFOLDER_AND_FILE_NOMATCH 
-                            "VSS 워킹 폴더와 현재 파일의 경로가 일치하지 않습니다. 계속하겠습니까?"
+    IDS_VSSFOLDER_AND_FILE_NOMATCH "VSS 워킹 폴더와 현재 파일의 경로가 일치하지 않습니다. 계속하겠습니까?"
     IDS_VSS_NODATABASES     "VSS database(s)가 존재하지 않습니다!"
     IDS_VSS_ERRORFROM       "VSS 에러:"
     IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
@@ -1979,7 +1995,7 @@ BEGIN
                             "오른쪽 선택파일 위치지정 이동"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "파일 이름"
@@ -1990,6 +2006,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "확장자"
     IDS_COLHDR_LSIZE        "왼쪽 크기"
     IDS_COLHDR_RSIZE        "오른쪽 크기"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "왼쪽 생성 시간"
     IDS_COLHDR_RTIMEC       "오른쪽 생성 시간"
     IDS_COLHDR_NEWER        "최신 파일"
@@ -2000,7 +2023,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "오른쪽 속성"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "왼쪽 인코딩"
@@ -2035,7 +2058,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 항목 선택"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "디렉토리 이름 또는 파일 이름."
@@ -2046,6 +2069,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "파일 확장자."
     IDS_COLDESC_LSIZE       "왼쪽 파일 크기(byte)."
     IDS_COLDESC_RSIZE       "오른쪽 파일 크기(byte)."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "왼쪽 생성 시간."
     IDS_COLDESC_RTIMEC      "오른쪽 생성 시간."
     IDS_COLDESC_NEWER       "어느쪽이 더 최근에 수정된 건지 알려줍니다."
@@ -2596,7 +2626,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // Korean resources
+#endif    // Korean (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
@@ -2612,7 +2642,7 @@ END
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_KOR)
 #ifdef _WIN32
-LANGUAGE 9, 1
+LANGUAGE LANG_KOREAN, SUBLANG_DEFAULT
 #pragma code_page(949)
 #endif
 #include "res\Merge.rc2"  // non-Microsoft Visual C++ edited resources

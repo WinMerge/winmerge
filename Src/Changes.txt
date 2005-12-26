@@ -10,6 +10,13 @@
    Japanese: MergeJapanese.rc
  Remove needless cast
   Src/Common: unicoder.cpp
+ Update & synchronize translations: Korean Norwegian Polish Russian
+  Src: Merge.rc
+  Src/Languages:
+   Korean: MergeKorean.rc
+   Norwegian: MergeNorwegian.rc
+   Polish: MergePolish.rc
+   Russian: MergeRussian.rc
 
 2005-12-23 Kimmo
  PATCH: [ 1388456 ] Convert rest of folder compare bitmaps to icons
