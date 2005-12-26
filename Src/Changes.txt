@@ -1,3 +1,7 @@
+2005-12-26 Perry
+ PATCH: [ 1388704 ] Simplified Chinese language .rc file for RC1
+  Src/Languages/ChineseSimplified: MergeChineseSimplified.rc
+
 2005-12-25 Perry
  Update & synchronize translations: Danish Dutch French Hungarian Italian Japanese
   Src: Merge.rc

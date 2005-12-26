@@ -1,6 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //translated by liaobin@jite.net 2003-07-15
 //translation updated by xmpdhml@bj1860.net 2005-07-08
+//translation updated by xmpdhml@bj1860.net 2005-12-23
 //$Id$
 #include "resource.h"
 
@@ -113,11 +114,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "转到(&G)...",                 ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        POPUP "Op&en"
+        POPUP "打开(&E)"
         BEGIN
-            MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
-            MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
-            MENUITEM "&with...",                    ID_FILE_OPEN_WITH
+            MENUITEM "用默认程序(&R)",              ID_FILE_OPEN_REGISTERED
+            MENUITEM "用外部编辑器(&E)",            ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "选择程序(&W)...",             ID_FILE_OPEN_WITH
         END
     END
 END
@@ -167,7 +168,7 @@ BEGIN
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "全部关闭(&S)",                ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "切换窗格(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -217,20 +218,20 @@ BEGIN
         MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
         MENUITEM "显示跳过的文件(&K)",          ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
-        MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM "显示隐藏的项目(&E)",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "选择字体(&F)...",             ID_VIEW_SELECTFONT
         MENUITEM "使用默认字体(&O)",            ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "对比结果窗(&R)",              ID_VIEW_DIR_STATEPANE
         MENUITEM SEPARATOR
         MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
     END
     POPUP "合并(&M)"
     BEGIN
-        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM "对比(&M)\tEnter",             ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         MENUITEM "下一处不同(&N)\tAlt+Down",    ID_NEXTDIFF
         MENUITEM "上一处不同(&P)\tAlt+Up",      ID_PREVDIFF
@@ -252,7 +253,7 @@ BEGIN
         MENUITEM "选择列(&C)...",               ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
-        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        MENUITEM "生成报告(&R)...",         ID_TOOLS_GENERATEREPORT
         POPUP "&Advanced"
         BEGIN
             MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
@@ -270,7 +271,7 @@ BEGIN
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "全部关闭(&S)",                ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "切换窗格(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -412,7 +413,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "用解包程序打开(&E)",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        POPUP "预比较(&P)"
+        POPUP "预对比(&P)"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -422,7 +423,7 @@ BEGIN
     POPUP "窗口(&W)"
     BEGIN
         MENUITEM "关闭",                        ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "全部关闭(&S)",                ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "切换窗格(&P)\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -446,7 +447,7 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM "对比(&A)",                    ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         POPUP "复制(&C)"
         BEGIN
@@ -516,7 +517,7 @@ END
 
 IDR_POPUP_PLUGINS_SETTINGS MENU
 BEGIN
-    POPUP "预比较设置"
+    POPUP "预对比设置"
     BEGIN
         MENUITEM "不使用(&N)",                  ID_PREDIFF_MANUAL
         MENUITEM "自动",                        ID_PREDIFF_AUTO
@@ -748,7 +749,7 @@ BEGIN
                     WS_GROUP,154,33,50,10
     CONTROL         "向下(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,41,12
-    DEFPUSHBUTTON   "查找下一处(&F)",IDOK,226,7,50,14,WS_GROUP
+    DEFPUSHBUTTON   "找下一个(&F)",IDOK,226,7,50,14,WS_GROUP
     PUSHBUTTON      "取消",IDCANCEL,226,24,50,14
 END
 
@@ -1065,7 +1066,7 @@ END
 
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Compare"
+CAPTION "对比"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "空白",IDC_STATIC,7,7,221,50
@@ -1087,14 +1088,14 @@ BEGIN
     LTEXT           "文件对比方法(&F)",IDC_STATIC,7,105,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
+    CONTROL         "遇到首处不同后停止(&T)",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     PUSHBUTTON      "默认",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Editor"
+CAPTION "编辑器"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "语法高亮(&H)",IDC_HILITE_CHECK,"Button",
@@ -1174,8 +1175,8 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "代码页"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Default Codepage",IDC_STATIC,7,7,221,79
-    LTEXT           "Select the default codepage assumed when loading non-Unicode files:",
+    GROUPBOX        "默认代码页",IDC_STATIC,7,7,221,79
+    LTEXT           "请选择载入非Unicode文件时默认的代码页",
                     IDC_STATIC,14,20,208,19
     CONTROL         "对以下文件进行代码页检测 : .html, .rc, .xml\n需要重启会话",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
@@ -1322,51 +1323,51 @@ END
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Directory Compare Report"
+CAPTION "目录对比报告"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Report &File:",IDC_STATIC,7,7,37,8
+    LTEXT           "报告文件(&F):",IDC_STATIC,7,7,45,8
     COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
                     CBS_AUTOHSCROLL | WS_TABSTOP
-    PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
-    LTEXT           "&Style:",IDC_STATIC,7,37,18,8
+    PUSHBUTTON      "浏览...",IDC_REPORT_BROWSEFILE,211,18,50,14
+    LTEXT           "样式(&S):",IDC_STATIC,7,37,18,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,211,60,50,14
+    DEFPUSHBUTTON   "确定",IDOK,157,60,50,14
+    PUSHBUTTON      "取消",IDCANCEL,211,60,50,14
 END
 
 IDD_SHARED_FILTER DIALOGEX 0, 0, 250, 75
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Shared or Private Filter"
+CAPTION "共享或私有过滤器"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Which type of filter do you want to create?",IDC_STATIC,
+    LTEXT           "您要创建哪种过滤器？",IDC_STATIC,
                     20,7,141,11
-    CONTROL         "Shared Filter (for all users on this machine)",IDC_SHARED,"Button",
+    CONTROL         "共享过滤器(为本机的所有用户)",IDC_SHARED,"Button",
                     BS_AUTORADIOBUTTON,28,22,230,10
-    CONTROL         "Private Filter (only for current user)",IDC_PRIVATE,"Button",
+    CONTROL         "私有过滤器(只为当前用户)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,28,37,230,10
-    DEFPUSHBUTTON   "OK",IDOK,37,55,50,14
-    PUSHBUTTON      "Cancel",IDCANCEL,141,55,50,14
+    DEFPUSHBUTTON   "确定",IDOK,37,55,50,14
+    PUSHBUTTON      "取消",IDCANCEL,141,55,50,14
 END
 
 IDD_PROP_ARCHIVE DIALOGEX 0, 0, 235, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Archive Support"
+CAPTION "压缩包支持"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Archive support requires 7-Zip plugin installed:",
+    LTEXT           "压缩包支持需要安装 7-Zip 插件:",
                     IDC_STATIC,7,7,221,8
-    LTEXT           "Download 7-zip Plugin",IDC_ARCHIVE_WWW,7,18,128,8
-    CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
+    LTEXT           "下载 7-zip 插件",IDC_ARCHIVE_WWW,7,18,128,8
+    CONTROL         "启用压缩文件支持(&E)",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
-    CONTROL         "&Use stand-alone 7-Zip if available",
+    CONTROL         "使用已有的单独 7-Zip 程序(&U)",
                     IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
                     WS_GROUP | WS_TABSTOP,19,48,209,10
-    CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
+    CONTROL         "使用 WinMerge 目录下自带的 7-Zip (&S)",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
-    CONTROL         "&Detect archive type from file signature",
+    CONTROL         "依据署名检测文件类型(&D)",
                     IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,70,221,10
 END
@@ -1567,7 +1568,7 @@ BEGIN
     ID_FILE_PRINT           "打印当前文件\n打印"
     ID_FILE_PRINT_PREVIEW   "预览打印的效果\n打印预览"
     ID_FILE_OPENPROJECT     "打开工程文件\n打开工程 (Ctrl+J)"
-    ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+    ID_VIEW_SHOWHIDDENITEMS "重新显示所有隐藏的项目"
 END
 
 STRINGTABLE
@@ -1714,14 +1715,14 @@ END
 STRINGTABLE
 BEGIN
     IDS_OPTIONSPG_GENERAL   "一般"
-    IDS_OPTIONSPG_COMPARE   "比较"
+    IDS_OPTIONSPG_COMPARE   "对比"
     IDS_OPTIONSPG_EDITOR    "编辑器"
     IDS_OPTIONSPG_COLORS    "颜色"
     IDS_OPTIONSPG_SYSTEM    "系统"
     IDS_OPTIONSPG_VERSIONCONTROL "版本控制"
     IDS_OPTIONSPG_CODEPAGE  "代码页"
     IDS_OPTIONSPG_SYNTAXCOLORS "语法高亮"
-    IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_ARCHIVE   "压缩包支持"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1753,7 +1754,7 @@ BEGIN
     IDS_OPTIONS_TITLE       "选项 (%1)"
     IDS_MESSAGE_BOX_ARE_RESET "所有提示信息已经重设为显示。"
     IDS_DIFF_OPEN_NO_SET_PROPS "在当前文件对比期间已有修改。在重新启动当前文件对比前，一些设置不会生效。"
-    IDS_FONT_CHANGE         "选择的字体更改不会应用到已经打开的比较窗口。"
+    IDS_FONT_CHANGE         "选择的字体更改不会应用到已经打开的对比窗口。"
 END
 
 // BROWSE FILE
@@ -1815,7 +1816,7 @@ BEGIN
     IDS_STATUS_COPYFILES    "正在复制文件..."
     IDS_STATUS_DELETEFILES  "正在删除文件..."
     IDS_STATUS_MOVEFILES    "正在移动文件..."
-    IDS_STATUS_CREATEREPORT "Creating the report..."
+    IDS_STATUS_CREATEREPORT "创建报告..."
 END
 
 // STATUS BAR : OTHER PANES (MOSTLY FOR EDITOR)
@@ -1834,8 +1835,8 @@ END
 // MORE STATUS PANES
 STRINGTABLE
 BEGIN
-	IDS_DIRVIEW_STATUS_FMT_FOCUS "Item %1 of %2"
-	IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Items: %1"
+    IDS_DIRVIEW_STATUS_FMT_FOCUS "第 %1 项目，共 %2"
+    IDS_DIRVIEW_STATUS_FMT_NOFOCUS "项目: %1"
 END
 
 // OPEN DIALOG
@@ -1948,8 +1949,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO       "右侧到... (%1)"
     IDS_MOVE_LEFT_TO2       "左侧到... (%1 共%2)"
     IDS_MOVE_RIGHT_TO2      "右侧到... (%1 共%2)"
-    IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
-    IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
+    IDS_SELECT_DEST_LEFT    "左侧 - 请选择目标文件夹:"
+    IDS_SELECT_DEST_RIGHT   "右侧 - 请选择目标文件夹:"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2062,7 +2063,7 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "文件名或文件夹名。"
     IDS_COLDESC_DIR         "所处的子文件夹名。"
-    IDS_COLDESC_RESULT      "比较结果，较长的格式。"
+    IDS_COLDESC_RESULT      "对比结果，较长的格式。"
     IDS_COLDESC_LTIMEM      "左侧的最后修改日期。"
     IDS_COLDESC_RTIMEM      "右侧的最后修改日期。"
     IDS_COLDESC_EXTENSION   "文件的扩展名。"
@@ -2080,7 +2081,7 @@ BEGIN
     IDS_COLDESC_NEWER       "显示出哪侧是较晚修改过的。"
     IDS_COLDESC_LVERSION    "左侧文件的版本，只对一些文件类型有效。"
     IDS_COLDESC_RVERSION    "右侧文件的版本，只对一些文件类型有效。"
-    IDS_COLDESC_RESULT_ABBR "短格式的比较结果。"
+    IDS_COLDESC_RESULT_ABBR "短格式的对比结果。"
     IDS_COLDESC_LATTRIBUTES "左侧的属性。"
     IDS_COLDESC_RATTRIBUTES "右侧的属性。"
 END
@@ -2099,13 +2100,13 @@ END
 STRINGTABLE
 BEGIN
     IDS_DIRECTORY_REPORT_TITLE "对比 %1 和 %2"
-    IDS_REPORT_COMMALIST    "Comma-separated list"
-    IDS_REPORT_TABLIST      "Tab-separated list"
-    IDS_REPORT_SIMPLEHTML   "Simple HTML"
+    IDS_REPORT_COMMALIST    "逗号分隔的列表"
+    IDS_REPORT_TABLIST      "制表符分隔的列表"
+    IDS_REPORT_SIMPLEHTML   "简单HTML"
     IDS_REPORT_FILEOVERWRITE 
-                            "The report file already exists. Do you want to overwrite existing file?"
-    IDS_REPORT_ERROR        "Error creating the report:\n%1"
-    IDS_REPORT_SUCCESS      "The report has been created successfully."
+                            "报告文件已经存在，要覆盖吗？"
+    IDS_REPORT_ERROR        "创建报告时出错:\n%1"
+    IDS_REPORT_SUCCESS      "成功创建报告。"
 END
 
 // FILE COMPARISON RESULT : MESSAGES
@@ -2118,9 +2119,9 @@ BEGIN
     IDS_FILEBINARY          "二进制文件无法作视觉的对比。"
     IDS_TEMP_FILEERROR      "无法创建临时文件。请检查您的临时路径设置。"
     IDS_FILEISDIR           "不能在文件夹和文件之间做对比。"
-    IDS_SUGGEST_IGNOREEOL   "文件含有不同的换行符\n\n您要在此次对比中忽略换行符的差别吗？\n\n提示：如果您总是忽略换行符的不同，请在“编辑/选项”的“比较”页中勾选“忽略换行符差别”。"
+    IDS_SUGGEST_IGNOREEOL   "文件含有不同的换行符\n\n您要在此次对比中忽略换行符的差别吗？\n\n提示：如果您总是忽略换行符的不同，请在“编辑/选项”的“对比”页中勾选“忽略换行符差别”。"
     IDS_SUGGEST_PRESERVEEOL "在文件“%1”中含有不同的换行符(DOS/UNIX/MAC)。\n对应于当前的选项，它们将统一成为一种格式。\n您要改变选项设置以保留原始的不同的换行符吗？"
-    IDS_PREDIFFER_ERROR     "在使用插件“%2”对文件“%1”进行预比较时发生了一个错误。预比较将不会被采用。"
+    IDS_PREDIFFER_ERROR     "在使用插件“%2”对文件“%1”进行预对比时发生了一个错误。预对比将不会被采用。"
     IDS_SUGGEST_IGNORECODEPAGE "左右两侧为不同代码页的文件(左侧为cp%d，右侧为cp%d)。\n分别以不同代码页显示将会有较好的效果，但是合并/复制会有危险。\n您要以Wiondows默认的代码页显示两个文件吗(推荐)？"
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
 END
@@ -2158,12 +2159,12 @@ BEGIN
     IDS_DIFF_CONTEXT        "Context"
     IDS_DIFF_UNIFIED        "Unified"
     IDS_FILEWRITE_ERROR     "无法写入文件 %1。"
-    IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
-	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
+    IDS_PATH_NOT_ABSOLUTE   "指定的路径不是绝对路径: %1"
+    IDS_MUST_SPECIFY_OUTPUT "请指定输出文件"
     IDS_CANNOT_CREATE_BINARYPATCH "无法为二进制文件创建 pactch。"
     IDS_CANNOT_CREATE_DIRPATCH "无法为文件夹创建 pactch。"
     IDS_SAVEFILES_FORPATCH  "请保存文件。\n\n创建 patch 要求文件中没有未保存的改动。"
-	IDS_FOLDER_NOTEXIST     "Folder does not exist."
+    IDS_FOLDER_NOTEXIST     "文件夹不存在。"
 END
 
 STRINGTABLE
@@ -2209,174 +2210,174 @@ END
 // LANGUAGE NAMES #1
 STRINGTABLE
 BEGIN
-    IDS_AFRIKAANS           "Afrikaans"
-    IDS_ALBANIAN            "Albanian"
-    IDS_ARABIC_SAUDI        "Arabic (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "Arabic (Iraq)"
-    IDS_ARABIC_EGYPT        "Arabic (Egyptian)"
-    IDS_ARABIC_LIBYA        "Arabic (Libyan)"
-    IDS_ARABIC_ALGERIA      "Arabic (Algerian)"
-    IDS_ARABIC_MOROCCO      "Arabic (Moroccan)"
-    IDS_ARABIC_TUNISIA      "Arabic (Tunisian)"
-    IDS_ARABIC_OMAN         "Arabic (Oman)"
-    IDS_ARABIC_YEMEN        "Arabic (Yemen)"
-    IDS_ARABIC_SYRIA        "Arabic (Syrian)"
-    IDS_ARABIC_JORDAN       "Arabic (Jordan)"
+    IDS_AFRIKAANS           "南非荷兰语"
+    IDS_ALBANIAN            "阿尔巴尼亚语"
+    IDS_ARABIC_SAUDI        "阿拉伯语 (沙特阿拉伯)"
+    IDS_ARABIC_IRAQ         "阿拉伯语 (伊拉克)"
+    IDS_ARABIC_EGYPT        "阿拉伯语 (埃及)"
+    IDS_ARABIC_LIBYA        "阿拉伯语 (利比亚)"
+    IDS_ARABIC_ALGERIA      "阿拉伯语 (阿尔及利亚)"
+    IDS_ARABIC_MOROCCO      "阿拉伯语 (摩洛哥)"
+    IDS_ARABIC_TUNISIA      "阿拉伯语 (突尼斯)"
+    IDS_ARABIC_OMAN         "阿拉伯语 (阿曼)"
+    IDS_ARABIC_YEMEN        "阿拉伯语 (也门)"
+    IDS_ARABIC_SYRIA        "阿拉伯语 (叙利亚)"
+    IDS_ARABIC_JORDAN       "阿拉伯语 (约旦)"
 END
 
 // LANGUAGE NAMES #2
 STRINGTABLE
 BEGIN
-    IDS_ARABIC_LEBANON      "Arabic (Lebanon)"
-    IDS_ARABIC_KUWAIT       "Arabic (Kuwait)"
-    IDS_ARABIC_UAE          "Arabic (UAE)"
-    IDS_ARABIC_BAHRAIN      "Arabic (Bahrain)"
-    IDS_ARABIC_QATAR        "Arabic (Qatar)"
-    IDS_ARMENIAN            "Armenian"
-    IDS_AZERI_LATIN         "Azeri (Latin)"
-    IDS_AZERI_CYRILLIC      "Azeri (Cyrillic)"
-    IDS_BASQUE              "Basque"
-    IDS_BELARUSIAN          "Belarusian"
-    IDS_BULGARIAN           "Bulgarian"
-    IDS_CATALAN             "Catalan"
-    IDS_CHINESE_TRADITIONAL "Chinese (Traditional)"
-    IDS_CHINESE_SIMPLIFIED  "Chinese (Simplified)"
-    IDS_CHINESE_HONGKONG    "Chinese (Hong Kong)"
-    IDS_CHINESE_SINGAPORE   "Chinese (Singapore)"
+    IDS_ARABIC_LEBANON      "阿拉伯语 (黎巴嫩)"
+    IDS_ARABIC_KUWAIT       "阿拉伯语 (科威特)"
+    IDS_ARABIC_UAE          "阿拉伯语 (阿拉伯联合酋长国)"
+    IDS_ARABIC_BAHRAIN      "阿拉伯语 (巴林)"
+    IDS_ARABIC_QATAR        "阿拉伯语 (卡塔尔)"
+    IDS_ARMENIAN            "亚美尼亚语"
+    IDS_AZERI_LATIN         "阿塞拜疆语 (拉丁文)"
+    IDS_AZERI_CYRILLIC      "阿塞拜疆语 (西里尔文)"
+    IDS_BASQUE              "巴斯克语"
+    IDS_BELARUSIAN          "白俄罗斯语"
+    IDS_BULGARIAN           "保加利亚语"
+    IDS_CATALAN             "加泰罗尼亚语"
+    IDS_CHINESE_TRADITIONAL "中文 (繁体)"
+    IDS_CHINESE_SIMPLIFIED  "中文 (简体)"
+    IDS_CHINESE_HONGKONG    "中文 (香港)"
+    IDS_CHINESE_SINGAPORE   "中文 (新加坡)"
 END
 
 // LANGUAGE NAMES #3
 STRINGTABLE
 BEGIN
-    IDS_CHINESE_MACAU       "Chinese (Macau SAR)"
-    IDS_CROATIAN            "Croatian"
-    IDS_CZECH               "Czech"
-    IDS_DANISH              "Dansk"
-    IDS_DUTCH               "Dutch"
-    IDS_DUTCH_BELGIAN       "Dutch (Belgium)"
-    IDS_ENGLISH_US          "English (US)"
-    IDS_ENGLISH_UK          "English (UK)"
-    IDS_ENGLISH_AUS         "English (Australian)"
-    IDS_ENGLISH_CAN         "English (Canadian)"
-    IDS_ENGLISH_NZ          "English (New Zealand)"
-    IDS_ENGLISH_EIRE        "English (Irish)"
-    IDS_ENGLISH_SOUTH_AFRICA "English (So. African)"
-    IDS_ENGLISH_JAMAICA     "English (Jamaican)"
-    IDS_ENGLISH_CARIBBEAN   "English (Caribbean)"
-    IDS_ENGLISH_BELIZE      "English (Belize)"
+    IDS_CHINESE_MACAU       "中文 (澳门)"
+    IDS_CROATIAN            "克罗地亚语"
+    IDS_CZECH               "捷克语"
+    IDS_DANISH              "丹麦语"
+    IDS_DUTCH               "荷兰语 (荷兰)"
+    IDS_DUTCH_BELGIAN       "荷兰语 (比利时)"
+    IDS_ENGLISH_US          "英语 (美国)"
+    IDS_ENGLISH_UK          "英语 (英国)"
+    IDS_ENGLISH_AUS         "英语 (澳大利亚)"
+    IDS_ENGLISH_CAN         "英语 (加拿大)"
+    IDS_ENGLISH_NZ          "英语 (新西兰)"
+    IDS_ENGLISH_EIRE        "英语 (爱尔兰)"
+    IDS_ENGLISH_SOUTH_AFRICA "英语 (南非)"
+    IDS_ENGLISH_JAMAICA     "英语 (牙买加)"
+    IDS_ENGLISH_CARIBBEAN   "英语 (加勒比海)"
+    IDS_ENGLISH_BELIZE      "英语 (伯利兹)"
 END
 
 // LANGUAGE NAMES #4
 STRINGTABLE
 BEGIN
-    IDS_ENGLISH_TRINIDAD    "English (Trinidad)"
-    IDS_ENGLISH_ZIMBABWE    "English (Zimbabwe)"
-    IDS_ENGLISH_PHILIPPINES "English (Philippines)"
-    IDS_ESTONIAN            "Eesti"
-    IDS_FAEROESE            "Faeroese"
-    IDS_FARSI               "Farsi"
-    IDS_FINNISH             "Suomi"
-    IDS_FRENCH              "French"
-    IDS_FRENCH_BELGIAN      "French (Belgique)"
-    IDS_FRENCH_CANADIAN     "French (Canada)"
-    IDS_FRENCH_SWISS        "French (Switzerland)"
-    IDS_FRENCH_LUXEMBOURG   "French (Luxembourg)"
-    IDS_FRENCH_MONACO       "French (Monaco)"
-    IDS_GEORGIAN            "Georgian"
-    IDS_GERMAN              "German (Germany)"
-    IDS_GERMAN_SWISS        "German (Switzerland)"
+    IDS_ENGLISH_TRINIDAD    "英语 (特立尼达)"
+    IDS_ENGLISH_ZIMBABWE    "英语 (津巴布韦)"
+    IDS_ENGLISH_PHILIPPINES "英语 (菲律宾)"
+    IDS_ESTONIAN            "爱沙尼亚语"
+    IDS_FAEROESE            "法罗群岛语"
+    IDS_FARSI               "波斯语"
+    IDS_FINNISH             "芬兰语"
+    IDS_FRENCH              "法语 (法国)"
+    IDS_FRENCH_BELGIAN      "法语 (比利时)"
+    IDS_FRENCH_CANADIAN     "法语 (加拿大)"
+    IDS_FRENCH_SWISS        "法语 (瑞士)"
+    IDS_FRENCH_LUXEMBOURG   "法语 (卢森堡)"
+    IDS_FRENCH_MONACO       "法语 (摩纳哥)"
+    IDS_GEORGIAN            "格鲁吉亚语"
+    IDS_GERMAN              "德语 (德国)"
+    IDS_GERMAN_SWISS        "德语 (瑞士)"
 END
 
 // LANGUAGE NAMES #5
 STRINGTABLE
 BEGIN
-    IDS_GERMAN_AUSTRIAN     "German (Austria)"
-    IDS_GERMAN_LUXEMBOURG   "German (Luxembourg)"
-    IDS_GERMAN_LIECHTENSTEIN "German (Liechtenstein)"
-    IDS_GREEK               "Greek"
-    IDS_HEBREW              "Hebrew"
-    IDS_HINDI               "Hindi"
-    IDS_HUNGARIAN           "Hungarian"
-    IDS_ICELANDIC           "Icelandic"
-    IDS_INDONESIAN          "Indonesian"
-    IDS_ITALIAN             "Italian"
-    IDS_ITALIAN_SWISS       "Italian (Swiss)"
-    IDS_JAPANESE            "Japanese"
-    IDS_KASHMIRI            "Kashmiri (India)"
-    IDS_KAZAK               "Kazakh"
-    IDS_KOREAN              "Korean"
-    IDS_KOREAN_JOHAB        "Korean (Johab)"
+    IDS_GERMAN_AUSTRIAN     "德语 (奥地利)"
+    IDS_GERMAN_LUXEMBOURG   "德语 (卢森堡)"
+    IDS_GERMAN_LIECHTENSTEIN "德语 (列支敦士登)"
+    IDS_GREEK               "希腊语"
+    IDS_HEBREW              "希伯来语"
+    IDS_HINDI               "印地语"
+    IDS_HUNGARIAN           "匈牙利语"
+    IDS_ICELANDIC           "冰岛语"
+    IDS_INDONESIAN          "印度尼西亚语"
+    IDS_ITALIAN             "意大利语 (意大利)"
+    IDS_ITALIAN_SWISS       "意大利语 (瑞士)"
+    IDS_JAPANESE            "日语"
+    IDS_KASHMIRI            "克什米尔语 (印度)"
+    IDS_KAZAK               "哈萨克语"
+    IDS_KOREAN              "朝鲜语"
+    IDS_KOREAN_JOHAB        "朝鲜语 (JoHab)"
 END
 
 // LANGUAGE NAMES #6
 STRINGTABLE
 BEGIN
-    IDS_LATVIAN             "Latvian"
-    IDS_LITHUANIAN          "Lithuanian"
-    IDS_MALAY_MALAYSIA      "Malay (Malaysian)"
-    IDS_MALAY_BRUNEI_DARUSSALAM "Malay (Brunei Darussalam)"
-    IDS_MANIPURI            "Manipuri"
-    IDS_NORWEGIAN_BOKMAL    "Norwegian (Bokmal)"
-    IDS_NORWEGIAN_NYNORSK   "Norwegian (Nynorsk)"
-    IDS_POLISH              "Polski"
-    IDS_PORTUGUESE          "Portugese"
-    IDS_PORTUGUESE_BRAZILIAN "Portugese (Brazil)"
-    IDS_ROMANIAN            "Romanian"
-    IDS_RUSSIAN             "Russian"
-    IDS_SANSKRIT            "Sanskrit"
-    IDS_SERBIAN_LATIN       "Serbian (Latin)"
-    IDS_SERBIAN_CYRILLIC    "Serbian (Cyrillic)"
-    IDS_SINDHI              "Sindhi"
+    IDS_LATVIAN             "拉脱维亚语"
+    IDS_LITHUANIAN          "立陶宛语"
+    IDS_MALAY_MALAYSIA      "马来语 (马来西亚)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "马来语 (文莱达鲁萨兰)"
+    IDS_MANIPURI            "曼尼普尔语"
+    IDS_NORWEGIAN_BOKMAL    "挪威语 (博克马尔)"
+    IDS_NORWEGIAN_NYNORSK   "挪威语 (尼诺斯克)"
+    IDS_POLISH              "波兰语"
+    IDS_PORTUGUESE          "葡萄牙语 (葡萄牙)"
+    IDS_PORTUGUESE_BRAZILIAN "葡萄牙语 (巴西)"
+    IDS_ROMANIAN            "罗马尼亚语"
+    IDS_RUSSIAN             "俄语"
+    IDS_SANSKRIT            "梵文"
+    IDS_SERBIAN_LATIN       "塞尔维亚语 (拉丁语)"
+    IDS_SERBIAN_CYRILLIC    "塞尔维亚语 (塞瑞利克)"
+    IDS_SINDHI              "信德语"
 END
 
 // LANGUAGE NAMES #7
 STRINGTABLE
 BEGIN
-    IDS_SLOVAK              "Slovak"
-    IDS_SLOVENIAN           "Slovenian"
-    IDS_SPANISH             "Spanish"
-    IDS_SPANISH_MEXICAN     "Spanish (Mexican)"
-    IDS_SPANISH_MODERN      "Spanish (Modern)"
-    IDS_SPANISH_GUATEMALA   "Spanish (Guatemala)"
-    IDS_SPANISH_COSTA_RICA  "Spanish (Costa Rica)"
-    IDS_SPANISH_PANAMA      "Spanish (Panama)"
-    IDS_SPANISH_DOMINICAN   "Spanish (Dominican)"
-    IDS_SPANISH_VENEZUELA   "Spanish (Venezuela)"
-    IDS_SPANISH_COLOMBIA    "Spanish (Colombia)"
-    IDS_SPANISH_PERU        "Spanish (Peru)"
-    IDS_SPANISH_ARGENTINA   "Spanish (Argentina)"
-    IDS_SPANISH_ECUADOR     "Spanish (Ecuador)"
-    IDS_SPANISH_CHILE       "Spanish (Chile)"
-    IDS_SPANISH_URUGUAY     "Spanish (Uruguay)"
+    IDS_SLOVAK              "斯洛伐克语"
+    IDS_SLOVENIAN           "斯洛文尼亚语"
+    IDS_SPANISH             "西班牙语 (传统风格)"
+    IDS_SPANISH_MEXICAN     "西班牙语 (墨西哥)"
+    IDS_SPANISH_MODERN      "西班牙语 (现代风格)"
+    IDS_SPANISH_GUATEMALA   "西班牙语 (危地马拉)"
+    IDS_SPANISH_COSTA_RICA  "西班牙语 (哥斯达黎加)"
+    IDS_SPANISH_PANAMA      "西班牙语 (巴拿马)"
+    IDS_SPANISH_DOMINICAN   "西班牙语 (多米尼加共和国)"
+    IDS_SPANISH_VENEZUELA   "西班牙语 (委内瑞拉)"
+    IDS_SPANISH_COLOMBIA    "西班牙语 (哥伦比亚)"
+    IDS_SPANISH_PERU        "西班牙语 (秘鲁)"
+    IDS_SPANISH_ARGENTINA   "西班牙语 (阿根廷)"
+    IDS_SPANISH_ECUADOR     "西班牙语 (厄瓜多尔)"
+    IDS_SPANISH_CHILE       "西班牙语 (智利)"
+    IDS_SPANISH_URUGUAY     "西班牙语 (乌拉圭)"
 END
 
 // LANGUAGE NAMES #8
 STRINGTABLE
 BEGIN
-    IDS_SPANISH_PARAGUAY    "Spanish (Paraguay)"
-    IDS_SPANISH_BOLIVIA     "Spanish (Bolivia)"
-    IDS_SPANISH_EL_SALVADOR "Spanish (El Salvador)"
-    IDS_SPANISH_HONDURAS    "Spanish (Honduras)"
-    IDS_SPANISH_NICARAGUA   "Spanish (Nicaragua)"
-    IDS_SPANISH_PUERTO_RICO "Spanish (Puerto Rico)"
-    IDS_SWAHILI             "Swahili (Kenya)"
-    IDS_SWEDISH             "Swedish"
-    IDS_SWEDISH_FINLAND     "Swedish (Finland)"
-    IDS_TAMIL               "Tamil"
-    IDS_TATAR               "Tatar (Tatarstan)"
-    IDS_THAI                "Thai"
-    IDS_TURKISH             "Turkish"
-    IDS_UKRANIAN            "Ukranian"
-    IDS_URDU_PAKISTAN       "Urdu (Pakistan)"
-    IDS_URDU_INDIA          "Urdu (India)"
+    IDS_SPANISH_PARAGUAY    "西班牙语 (巴拉圭)"
+    IDS_SPANISH_BOLIVIA     "西班牙语 (玻利维亚)"
+    IDS_SPANISH_EL_SALVADOR "西班牙语 (萨尔瓦多)"
+    IDS_SPANISH_HONDURAS    "西班牙语 (洪都拉斯)"
+    IDS_SPANISH_NICARAGUA   "西班牙语 (尼加拉瓜)"
+    IDS_SPANISH_PUERTO_RICO "西班牙语 (波多黎各)"
+    IDS_SWAHILI             "斯瓦希里语 (肯尼亚)"
+    IDS_SWEDISH             "瑞典语"
+    IDS_SWEDISH_FINLAND     "瑞典语 (芬兰)"
+    IDS_TAMIL               "泰米尔语"
+    IDS_TATAR               "鞑靼语 (鞑靼斯坦共和国)"
+    IDS_THAI                "泰语"
+    IDS_TURKISH             "土耳其语"
+    IDS_UKRANIAN            "乌克兰语"
+    IDS_URDU_PAKISTAN       "乌尔都语 (巴基斯坦)"
+    IDS_URDU_INDIA          "乌尔都语 (印度)"
 END
 
 // LANGUAGE NAMES #9
 STRINGTABLE
 BEGIN
-    IDS_UZBEK_LATIN         "Uzbek (Latin)"
-    IDS_UZBEK_CYRILLIC      "Uzbek (Cyrillic)"
-    IDS_VIETNAMESE          "Vietnamese"
+    IDS_UZBEK_LATIN         "乌兹别克语 (拉丁文)"
+    IDS_UZBEK_CYRILLIC      "乌兹别克语 (西里尔文)"
+    IDS_VIETNAMESE          "越南语"
 END
 
 // CODEPAGE GEOGRAPHIC GROUPS
@@ -2525,7 +2526,7 @@ BEGIN
     ID_VIEW_WHITESPACE      "显示空白和制表符字符"
     ID_VIEW_DETAIL_BAR      "显示/隐藏对比窗格"
     ID_VIEW_LOCATION_BAR    "位置窗格显示文件的总体情况"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATEPANE   "显示文件夹对比结果窗"
     ID_VIEW_LANGUAGE        "选择当前用户接口语言\n语言"
     ID_VIEW_LINEDIFFS       "以不同的颜色显示行中的不同\n显示行中不同"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
@@ -2547,7 +2548,7 @@ BEGIN
     ID_ALL_RIGHT            "复制所有不同到右侧文件\n所有到右侧"
     ID_ALL_LEFT             "复制所有不同到左侧文件\n所有到左侧"
     ID_MERGE_DELETE         "删除两侧中选中的项目"
-    ID_MERGE_COMPARE        "Compare selected item (compare first item if multiple items selected)"
+    ID_MERGE_COMPARE        "对比选中的项目(当多选时对比第一个项目)"
 END
 
 // TOOLS MENU
@@ -2556,7 +2557,7 @@ BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "选择及排序文件夹对比显示的列"
     ID_TOOLS_GENERATEPATCH  "生成一个patch文件"
     ID_TOOLS_FILTERS        "选择及修改过滤器"
-    ID_TOOLS_GENERATEREPORT "Generates a report from compare results"
+    ID_TOOLS_GENERATEREPORT "由对比结果生成报告"
 END
 
 // PLUGINS MENU
@@ -2565,7 +2566,7 @@ BEGIN
     ID_UNPACK_MANUAL        "让用户选择解包程序 (对比文件夹时不进行解包)"
     ID_UNPACK_AUTO          "在两个文件上应用适当的解包程序 (文件只需要有适当的扩展名)"
     ID_POPUP_OPEN_WITH_UNPACKER "选择一个解包程序来编辑这个文件"
-    ID_NO_PREDIFFER         "没有预比较程序 (普通)"
+    ID_NO_PREDIFFER         "没有预对比程序 (普通)"
     ID_SUGGESTED_PLUGINS    "推荐的插件"
     ID_NOT_SUGGESTED_PLUGINS "其它插件"
     ID_RELOAD_PLUGINS       "卸载所有插件并重新载入 (开发者用)"
@@ -2575,7 +2576,7 @@ END
 STRINGTABLE
 BEGIN
     ID_WINDOW_CHANGE_PANE   "切换到下一个可见的文件窗格\n切换到下个文件"
-    ID_WINDOW_CLOSEALL      "Closes all open windows"
+    ID_WINDOW_CLOSEALL      "关闭所有打开的窗口"
 END
 
 // HELP MENU
@@ -2591,8 +2592,8 @@ END
 STRINGTABLE
 BEGIN
     ID_TITLE_PLUGINS_SETTINGS "插件设置"
-    ID_PREDIFF_MANUAL       "没有预比较程序"
-    ID_PREDIFF_AUTO         "如果可能，进行预比较"
+    ID_PREDIFF_MANUAL       "没有预对比程序"
+    ID_PREDIFF_AUTO         "如果可能，进行预对比"
     ID_NO_EDIT_SCRIPTS      "< 空 >"
     ID_NO_SCT_SCRIPTS       "WSH 未打到 - .sct 脚本已禁用"
     IDS_USERCHOICE_NONE     "<无>"
@@ -2602,9 +2603,9 @@ END
 // FILE COMPARE CONTEXT MENU
 STRINGTABLE
 BEGIN
-    ID_FILE_OPEN_REGISTERED  "Open the file with registered application"
-    ID_FILE_OPEN_WITHEDITOR  "Open the file with external editor"
-    ID_FILE_OPEN_WITH        "Open the file with a particular program"
+    ID_FILE_OPEN_REGISTERED "用系统默认程序打开文件"
+    ID_FILE_OPEN_WITHEDITOR "用外部编辑器打开文件"
+    ID_FILE_OPEN_WITH       "选择程序以打开文件"
 END
 
 // LOCATIONBAR CONTEXT MENU
