@@ -1,4 +1,11 @@
 2005-12-27 Perry
+ PATCH: [ 1390793 ] New global function GetOptionMgr
+  Src: DirActions.cpp DirDoc.cpp DirView.cpp DirViewColHandler.cpp
+   LocationView.cpp MainFrm.cpp MainFrm.h MergeDiffDetailView.cpp
+   MergeDoc.cpp MergeEditView.cpp OpenDlg.cpp
+  Src/Common: OptionsMgr.h
+
+2005-12-27 Perry
  PATCH: [ 1382130 ] New line-based RCLocalizationHelper
   See plugins.
 

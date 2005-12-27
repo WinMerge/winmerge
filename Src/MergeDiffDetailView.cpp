@@ -16,6 +16,7 @@
 #include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
+#include "OptionsMgr.h"
 #include "ChildFrm.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
@@ -105,7 +106,7 @@ BOOL CMergeDiffDetailView::PrimeListWithFile()
 	// Set the tab size now, just in case the options change...
 	// We don't update it at the end of OnOptions, 
 	// we can update it safely now
-	SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
+	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 
 	return TRUE;
 }
@@ -168,7 +169,7 @@ int CMergeDiffDetailView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pB
 	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
 		return 0;
 
-	if (!mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT))
+	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
 		return 0;
 
 	int nLineLength = GetLineLength(nLineIndex);
@@ -199,13 +200,13 @@ COLORREF CMergeDiffDetailView::GetColor(int nColorIndex)
 	switch (nColorIndex & ~COLORINDEX_APPLYFORCE)
 	{
 	case COLORINDEX_HIGHLIGHTBKGND1:
-		return mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF);
+		return GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
 	case COLORINDEX_HIGHLIGHTTEXT1:
-		return mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+		return GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 	case COLORINDEX_HIGHLIGHTBKGND2:
-		return mf->m_options.GetInt(OPT_CLR_WORDDIFF);
+		return GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
 	case COLORINDEX_HIGHLIGHTTEXT2:
-		return mf->m_options.GetInt(OPT_CLR_WORDDIFF_TEXT);
+		return GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
 	default:
 		return CCrystalTextView::GetColor(nColorIndex);
 	}
@@ -231,19 +232,19 @@ void CMergeDiffDetailView::GetLineColors2(int nLineIndex, DWORD ignoreFlags,
 	// Lines with only the LF_DIFF/LF_TRIVIAL flags are not colored with Winmerge colors
 	if (dwLineFlags & (LF_WINMERGE_FLAGS & ~LF_DIFF & ~LF_TRIVIAL & ~LF_MOVED))
 	{
-		crText = mf->m_options.GetInt(OPT_CLR_DIFF);
+		crText = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
 		bDrawWhitespace = TRUE;
 
 		if (dwLineFlags & LF_GHOST)
 		{
-			crBkgnd = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
+			crBkgnd = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
 		}
 
 	}
 	else
 	{
 		// If no syntax hilighting
-		if (!mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT))
+		if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
 			crBkgnd = GetSysColor (COLOR_WINDOW);
 			crText = GetSysColor (COLOR_WINDOWTEXT);

@@ -109,7 +109,8 @@ public:
 		CString *psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL);
-	int ShowMergeDoc(CDirDoc * pDirDoc, const FileLocation & filelocLeft, const FileLocation & filelocRight, BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker = NULL);
+	int ShowMergeDoc(CDirDoc * pDirDoc, const FileLocation & filelocLeft,
+		const FileLocation & filelocRight, BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
 	BOOL CreateBackup(LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
@@ -126,6 +127,7 @@ public:
 	void GetDirViews(DirViewList * pDirViews);
 	void GetMergeEditViews(MergeEditViewList * pMergeViews);
 	void CheckinToClearCase(CString strDestinationPath);
+	COptionsMgr * GetTheOptionsMgr() { return &m_options; }
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -142,7 +144,6 @@ protected:
 
 // Public implementation data
 public:
-	CRegOptions m_options; /**< Options manager */
 	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
@@ -153,10 +154,12 @@ public:
 	 * @name Version Control System (VCS) integration.
 	 */
 	/*@{*/ 
+protected:
 	CString m_strVssUser; /**< Visual Source Safe User ID */
 	CString m_strVssPassword; /**< Visual Source Safe Password */
 	CString m_strVssDatabase;
 	CString m_strCCComment; /**< ClearCase comment */
+public:
 	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
 	BOOL m_CheckOutMulti; /**< Suppresses VSS int. code asking checkout for every file */
 	BOOL m_bVCProjSync; /**< VC project opened from VSS sync? */
@@ -178,8 +181,10 @@ public:
 	/*@}*/
 
 // Implementation data
+protected:
 
-protected:  // control bar embedded members
+
+	// control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	ToolBarXPThemes m_wndToolBar;
 
@@ -192,6 +197,7 @@ protected:  // control bar embedded members
 	};
 	BCMenu * m_pMenus[MENU_COUNT];
 
+	CRegOptions m_options; /**< Options manager */
 // Generated message map functions
 protected:
 	void GetFontProperties();

@@ -71,7 +71,7 @@ CDirView::CDirView()
 	// Show selection all the time, so user can see current item even when
 	// focus is elsewhere (ie, on file edit window)
 	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS;
-	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
+	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 }
 
 CDirView::~CDirView()
@@ -198,9 +198,9 @@ void CDirView::OnInitialUpdate()
 	GetDocument()->SetDirView(this);
 
 	// Load user-selected font
-	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
-	if (pMf->m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM))
+	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_USECUSTOM))
 	{
+		CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
 		m_font.CreateFontIndirect(&pMf->m_lfDir);
 		SetFont(&m_font, TRUE);
 	}
@@ -738,20 +738,20 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	// set sort parameters and handle ascending/descending
 	NM_LISTVIEW* pNMListView = (NM_LISTVIEW*) pNMHDR;
-	int oldSortColumn = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
+	int oldSortColumn = GetOptionsMgr()->GetInt(OPT_DIRVIEW_SORT_COLUMN);
 	int sortcol = m_invcolorder[pNMListView->iSubItem];
 	if (sortcol == oldSortColumn)
 	{
 		// Swap direction
-		bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
-		mf->m_options.SaveOption(OPT_DIRVIEW_SORT_ASCENDING, !bSortAscending);
+		bool bSortAscending = GetOptionsMgr()->GetBool(OPT_DIRVIEW_SORT_ASCENDING);
+		GetOptionsMgr()->SaveOption(OPT_DIRVIEW_SORT_ASCENDING, !bSortAscending);
 	}
 	else
 	{
-		mf->m_options.SaveOption(OPT_DIRVIEW_SORT_COLUMN, sortcol);
+		GetOptionsMgr()->SaveOption(OPT_DIRVIEW_SORT_COLUMN, sortcol);
 		// most columns start off ascending, but not dates
 		bool bSortAscending = IsDefaultSortAscending(sortcol);
-		mf->m_options.SaveOption(OPT_DIRVIEW_SORT_ASCENDING, bSortAscending);
+		GetOptionsMgr()->SaveOption(OPT_DIRVIEW_SORT_ASCENDING, bSortAscending);
 	}
 
 	SortColumnsAppropriately();
@@ -760,11 +760,11 @@ void CDirView::OnColumnClick(NMHDR *pNMHDR, LRESULT *pResult)
 
 void CDirView::SortColumnsAppropriately()
 {
-	int sortCol = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
+	int sortCol = GetOptionsMgr()->GetInt(OPT_DIRVIEW_SORT_COLUMN);
 	if (sortCol == -1)
 		return;
 
-	bool bSortAscending = mf->m_options.GetBool(OPT_DIRVIEW_SORT_ASCENDING);
+	bool bSortAscending = GetOptionsMgr()->GetBool(OPT_DIRVIEW_SORT_ASCENDING);
 	m_ctlSortHeader.SetSortImage(ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
 	CompareState cs(this, sortCol, bSortAscending);
@@ -1011,7 +1011,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		}
 
 		// Close open documents first (ask to save unsaved data)
-		if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS))
+		if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS))
 		{
 			if (!pDoc->CloseMergeDocs())
 				return;
@@ -1905,7 +1905,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	pDoc->CompareReady();
 	Redisplay();
 	
-	if (mf->m_options.GetBool(OPT_SCROLL_TO_FIRST))
+	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 		OnFirstdiff();
 	else
 		MoveSelection(0, 0, 0);
@@ -2395,7 +2395,7 @@ void CDirView::ResetColumnWidths()
  */
 void CDirView::RefreshOptions()
 {
-	m_bEscCloses = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
+	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 }
 
 /**

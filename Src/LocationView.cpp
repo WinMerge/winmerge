@@ -10,7 +10,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
-#include "MainFrm.h"
+#include "OptionsMgr.h"
 #include "MergeEditView.h"
 #include "LocationView.h"
 #include "MergeDoc.h"
@@ -64,7 +64,7 @@ CLocationView::CLocationView()
 	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
 	// There is no GUI to do this
 
-	SetConnectMovedBlocks(mf->m_options.GetInt(OPT_CONNECT_MOVED_BLOCKS));
+	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
 
 	m_view[0] = NULL;
 	m_view[1] = NULL;
@@ -87,7 +87,7 @@ void CLocationView::SetConnectMovedBlocks(int displayMovedBlocks)
 	if (m_displayMovedBlocks == displayMovedBlocks)
 		return;
 
-	mf->m_options.SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
+	GetOptionsMgr()->SaveOption(OPT_CONNECT_MOVED_BLOCKS, displayMovedBlocks);
 	m_displayMovedBlocks = displayMovedBlocks;
 	if (this->GetSafeHwnd() != NULL)
 		if (IsWindowVisible())

@@ -34,6 +34,7 @@
 #include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
+#include "OptionsMgr.h"
 #include "WaitStatusCursor.h"
 #include "MergeEditStatus.h"
 #include "FileTransform.h"
@@ -70,29 +71,29 @@ CMergeEditView::CMergeEditView()
 	SetParser(&m_xParser);
 	m_bAutomaticRescan = FALSE;
 	fTimerWaitingForIdle = 0;
-	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
+	m_bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 
-	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bWordDiffHighlight = mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT);
-	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
-	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
-	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
-	m_cachedColors.clrSelDiffDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_cachedColors.clrDiffText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
-	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_cachedColors.clrTrivialText = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_cachedColors.clrMoved = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK);
-	m_cachedColors.clrMovedDeleted = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrMovedText = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrSelMoved = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_cachedColors.clrSelMovedDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrSelMovedText = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrWordDiff = mf->m_options.GetInt(OPT_CLR_WORDDIFF);
-	m_cachedColors.clrSelWordDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF);
-	m_cachedColors.clrWordDiffText = mf->m_options.GetInt(OPT_CLR_WORDDIFF_TEXT);
-	m_cachedColors.clrSelWordDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+	m_bSyntaxHighlight = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
+	m_bWordDiffHighlight = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
+	m_cachedColors.clrSelDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF);
+	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
+	m_cachedColors.clrSelDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_cachedColors.clrDiffText = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_TEXT);
+	m_cachedColors.clrSelDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_cachedColors.clrTrivial = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_cachedColors.clrTrivialDeleted = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_cachedColors.clrTrivialText = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_cachedColors.clrMoved = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK);
+	m_cachedColors.clrMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrMovedText = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrSelMoved = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_cachedColors.clrSelMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrSelMovedText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
+	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
+	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
 CMergeEditView::~CMergeEditView()
@@ -237,7 +238,7 @@ BOOL CMergeEditView::PrimeListWithFile()
 	// Set the tab size now, just in case the options change...
 	// We don't update it at the end of OnOptions,
 	// we can update it safely now
-	SetTabSize(mf->m_options.GetInt(OPT_TAB_SIZE));
+	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 
 	return TRUE;
 }
@@ -1706,7 +1707,7 @@ OnUpdateCaret()
 
 			columns = CalculateActualOffset(nScreenLine, nSubLineOffset) + 1;
 			chars++;
-			if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
+			if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 				sEol = GetTextBufferEol(nScreenLine);
 			else
 				sEol = _T("hidden");
@@ -1972,7 +1973,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
-	if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
+	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 		pCmdUI->SetText(_T(""));
 	else
 		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -1983,7 +1984,7 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 {
-	if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL))
+	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 		pCmdUI->SetText(_T(""));
 	else
 		GetDocument()->GetRightView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -2046,7 +2047,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 			break;
 	}
 
-	if (mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL) ||
+	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		nStyle != m_pTextBuffer->GetCRLFMode())
 	{
 		pCmdUI->Enable(TRUE);
@@ -2199,36 +2200,36 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
  */
 void CMergeEditView::RefreshOptions()
 { 
-	m_bCloseWithEsc = mf->m_options.GetBool(OPT_CLOSE_WITH_ESC);
-	m_bAutomaticRescan = mf->m_options.GetBool(OPT_AUTOMATIC_RESCAN);
+	m_bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
 
-	if (mf->m_options.GetInt(OPT_TAB_TYPE) == 0)
+	if (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0)
 		SetInsertTabs(TRUE);
 	else
 		SetInsertTabs(FALSE);
 
-	m_bSyntaxHighlight = mf->m_options.GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bWordDiffHighlight = mf->m_options.GetBool(OPT_WORDDIFF_HIGHLIGHT);
-	SetWordWrapping(mf->m_options.GetBool(OPT_WORDWRAP));
-	m_cachedColors.clrDiff = mf->m_options.GetInt(OPT_CLR_DIFF);
-	m_cachedColors.clrSelDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF);
-	m_cachedColors.clrDiffDeleted = mf->m_options.GetInt(OPT_CLR_DIFF_DELETED);
-	m_cachedColors.clrSelDiffDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_cachedColors.clrDiffText = mf->m_options.GetInt(OPT_CLR_DIFF_TEXT);
-	m_cachedColors.clrSelDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_cachedColors.clrTrivial = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_cachedColors.clrTrivialDeleted = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_cachedColors.clrTrivialText = mf->m_options.GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_cachedColors.clrMoved = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK);
-	m_cachedColors.clrMovedDeleted = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrMovedText = mf->m_options.GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrSelMoved = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_cachedColors.clrSelMovedDeleted = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_cachedColors.clrSelMovedText = mf->m_options.GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	m_cachedColors.clrWordDiff = mf->m_options.GetInt(OPT_CLR_WORDDIFF);
-	m_cachedColors.clrSelWordDiff = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF);
-	m_cachedColors.clrWordDiffText = mf->m_options.GetInt(OPT_CLR_WORDDIFF_TEXT);
-	m_cachedColors.clrSelWordDiffText = mf->m_options.GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
+	m_bSyntaxHighlight = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
+	m_bWordDiffHighlight = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
+	m_cachedColors.clrSelDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF);
+	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
+	m_cachedColors.clrSelDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
+	m_cachedColors.clrDiffText = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_TEXT);
+	m_cachedColors.clrSelDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
+	m_cachedColors.clrTrivial = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF);
+	m_cachedColors.clrTrivialDeleted = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
+	m_cachedColors.clrTrivialText = GetOptionsMgr()->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
+	m_cachedColors.clrMoved = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK);
+	m_cachedColors.clrMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrMovedText = GetOptionsMgr()->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrSelMoved = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
+	m_cachedColors.clrSelMovedDeleted = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
+	m_cachedColors.clrSelMovedText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
+	m_cachedColors.clrWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF);
+	m_cachedColors.clrSelWordDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF);
+	m_cachedColors.clrWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_WORDDIFF_TEXT);
+	m_cachedColors.clrSelWordDiffText = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
 }
 
 /**
@@ -2280,6 +2281,9 @@ void CMergeEditView::OnNoPrediffer()
 {
 	OnPrediffer(ID_NO_PREDIFFER);
 }
+/**
+ * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
+ */
 void CMergeEditView::OnPrediffer(UINT nID )
 {
 	CMergeDoc *pd = GetDocument();
@@ -2605,7 +2609,7 @@ void CMergeEditView::RepaintLocationPane()
  */
 void CMergeEditView::OnViewLineDiffs()
 {
-	mf->m_options.SaveOption(OPT_WORDDIFF_HIGHLIGHT, !m_bWordDiffHighlight);
+	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !m_bWordDiffHighlight);
 
 	// Call CMergeDoc RefreshOptions() to refresh *both* views
 	CMergeDoc *pDoc = GetDocument();
@@ -2624,7 +2628,7 @@ void CMergeEditView::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnViewWordWrap()
 {
-	mf->m_options.SaveOption(OPT_WORDWRAP, !m_bWordWrap);
+	GetOptionsMgr()->SaveOption(OPT_WORDWRAP, !m_bWordWrap);
 
 	// Call CMergeDoc RefreshOptions() to refresh *both* views
 	CMergeDoc *pDoc = GetDocument();

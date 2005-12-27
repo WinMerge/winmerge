@@ -13,13 +13,13 @@
 #include "Merge.h"
 #include "DirView.h"
 #include "DirDoc.h"
-#include "MainFrm.h"
 #include "resource.h"
 #include "coretools.h"
 #include "dllver.h"
 #include "DirViewColItems.h"
 #include "DirColsDlg.h"
 #include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -471,7 +471,7 @@ void CDirView::OnEditColumns()
 	const CDirColsDlg::ColumnArray & cols = dlg.GetColumns();
 	ClearColumnOrders();
 	m_dispcols = 0;
-	const int sortColumn = mf->m_options.GetInt(OPT_DIRVIEW_SORT_COLUMN);
+	const int sortColumn = GetOptionsMgr()->GetInt(OPT_DIRVIEW_SORT_COLUMN);
 	for (int i=0; i<cols.GetSize(); ++i)
 	{
 		int log = cols[i].log_col;
@@ -486,8 +486,8 @@ void CDirView::OnEditColumns()
 		// If sorted column was hidden, reset sorting
 		if (log == sortColumn && phy < 0)
 		{
-			mf->m_options.Reset(OPT_DIRVIEW_SORT_COLUMN);
-			mf->m_options.Reset(OPT_DIRVIEW_SORT_ASCENDING);
+			GetOptionsMgr()->Reset(OPT_DIRVIEW_SORT_COLUMN);
+			GetOptionsMgr()->Reset(OPT_DIRVIEW_SORT_ASCENDING);
 		}
 	}
 	if (m_dispcols < 1)

@@ -136,5 +136,6 @@ private:
 	CString m_registryRoot;
 
 };
+COptionsMgr * GetOptionsMgr();
 
 #endif // _OPTIONS_MGR_

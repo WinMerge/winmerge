@@ -76,11 +76,11 @@ CDirDoc::CDirDoc()
 {
 	DIFFOPTIONS options = {0};
 
-	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
-	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
+	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
+	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = GetOptionsMgr()->GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
 }
@@ -294,11 +294,11 @@ void CDirDoc::Rescan()
 	}
 
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
-	m_pCtxt->m_bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
-	m_pCtxt->m_nCompMethod = mf->m_options.GetInt(OPT_CMP_METHOD);
-	m_pCtxt->m_bIgnoreSmallTimeDiff = mf->m_options.GetBool(OPT_IGNORE_SMALL_FILETIME);
-	m_pCtxt->m_bStopAfterFirstDiff = mf->m_options.GetBool(OPT_CMP_STOP_AFTER_FIRST);
-	m_pCtxt->m_nQuickCompareLimit = mf->m_options.GetInt(OPT_CMP_QUICK_LIMIT);
+	m_pCtxt->m_bGuessEncoding = GetOptionsMgr()->GetBool(OPT_CP_DETECT);
+	m_pCtxt->m_nCompMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
+	m_pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	m_pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+	m_pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
 	m_pCtxt->m_pCompareStats = m_pCompareStats;
 
 	// Set total items count since we don't collect items
@@ -347,7 +347,7 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 	{
 		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
 		// wants to see skipped items show item regardless of other flags
-		return mf->m_options.GetBool(OPT_SHOW_SKIPPED);
+		return GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
 	}
 
 	// Subfolders in non-recursive compare can only be skipped or unique
@@ -358,29 +358,29 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeft() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_LEFT))
+		if (di.isSideLeft() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRight() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT))
+		if (di.isSideRight() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	else
 	{
 		// file type filters
-		if (di.isBin() && !mf->m_options.GetBool(OPT_SHOW_BINARIES))
+		if (di.isBin() && !GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES))
 			return 0;
 
 		// result filters
-		if (di.isResultSame() && !mf->m_options.GetBool(OPT_SHOW_IDENTICAL))
+		if (di.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
 			return 0;
 		if (di.isResultError() && !mf->m_bShowErrors)
 			return 0;
-		if (di.isResultDiff() && !mf->m_options.GetBool(OPT_SHOW_DIFFERENT))
+		if (di.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeft() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_LEFT))
+		if (di.isSideLeft() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRight() && !mf->m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT))
+		if (di.isSideRight() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	return 1;
@@ -603,7 +603,7 @@ CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 {
 	CMergeDoc * pMergeDoc = 0;
 	// policy -- use an existing merge doc if available
-	if (!mf->m_options.GetBool(OPT_MULTIDOC_MERGEDOCS) && !m_MergeDocs.IsEmpty())
+	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS) && !m_MergeDocs.IsEmpty())
 	{
 		*pNew = FALSE;
 		pMergeDoc = m_MergeDocs.GetHead();
@@ -678,11 +678,11 @@ void CDirDoc::RefreshOptions()
 {
 	DIFFOPTIONS options;
 
-	m_diffWrapper.SetDetectMovedBlocks(mf->m_options.GetBool(OPT_CMP_MOVED_BLOCKS));
-	options.nIgnoreWhitespace = mf->m_options.GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = mf->m_options.GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	options.bIgnoreCase = mf->m_options.GetBool(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = mf->m_options.GetBool(OPT_CMP_EOL_SENSITIVE);
+	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
+	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	options.bEolSensitive = GetOptionsMgr()->GetBool(OPT_CMP_EOL_SENSITIVE);
 
 	m_diffWrapper.SetOptions(&options);
 	if (m_pDirView)

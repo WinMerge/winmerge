@@ -27,6 +27,9 @@
 // $Id$
 
 #include "stdafx.h"
+#include <sys/types.h>
+#include <sys/stat.h>
+
 #include "Merge.h"
 #include "OpenDlg.h"
 #include "coretools.h"
@@ -34,9 +37,8 @@
 #include "SelectUnpackerDlg.h"
 #include "OptionsDef.h"
 #include "MainFrm.h"
+#include "OptionsMgr.h"
 #include "ProjectFile.h"
-#include <sys/types.h>
-#include <sys/stat.h>
 
 #ifdef COMPILE_MULTIMON_STUBS
 #undef COMPILE_MULTIMON_STUBS
@@ -214,14 +216,14 @@ void COpenDlg::OnOK()
 			theApp.m_globalFileFilter.SetFilter(_T("*.*"));
 			m_strExt = _T("*.*");
 		}
-		mf->m_options.SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
 	}
 	else
 	{
 		BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(m_strExt);
 		if (!bFilterSet)
 			m_strExt = theApp.m_globalFileFilter.GetFilterNameOrMask();
-		mf->m_options.SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
+		GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, m_strExt);
 	}
 
 	SaveComboboxStates();
@@ -313,7 +315,7 @@ BOOL COpenDlg::OnInitDialog()
 			LogErrorString(_T("Failed to add string to filters combo list!"));
 	}
 
-	if (!mf->m_options.GetBool(OPT_VERIFY_OPEN_PATHS))
+	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
 		m_ctlOk.EnableWindow(TRUE);
 		m_ctlUnpacker.EnableWindow(TRUE);
@@ -346,7 +348,7 @@ void COpenDlg::UpdateButtonStates()
 	
 	// Enable buttons as appropriate
 	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
-	if (mf->m_options.GetBool(OPT_VERIFY_OPEN_PATHS))
+	if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
 		m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
 		m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
@@ -559,7 +561,7 @@ void COpenDlg::CenterToMainFrame()
 {
 	CRect rectFrame;
 	CRect rectBar;
-	mf->GetWindowRect(&rectFrame);
+	AfxGetMainWnd()->GetWindowRect(&rectFrame);
 	GetClientRect(&rectBar);
 	// Middlepoint of MainFrame
 	int x = rectFrame.left + (rectFrame.right - rectFrame.left) / 2;
@@ -672,9 +674,8 @@ void COpenDlg::OnSaveProjectButton()
 	strFileFilter.LoadString(IDS_PROJECTFILES);
 
 	// get the default projects path
-	CMainFrame* pFrame = (CMainFrame*) theApp.m_pMainWnd;
 	CString strProjectFileName;
-	CString strProjectPath = pFrame->m_options.GetString(OPT_PROJECTS_PATH);
+	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 
 	if (!::SelectFile(strProjectFileName, strProjectPath, NULL, IDS_PROJECTFILES, FALSE))
 		return;
@@ -698,7 +699,7 @@ void COpenDlg::OnSaveProjectButton()
 	// get the path part from the filename
 	strProjectPath = paths_GetParentPath(strProjectFileName);
 	// store this as the new project path
-	pFrame->m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH,strProjectPath);
 
 	// If prefix found from start of filter field text
 	if (strExt.Find(filterPrefix, 0) == 0)

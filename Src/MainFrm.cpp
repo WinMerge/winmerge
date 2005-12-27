@@ -1248,8 +1248,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	if (pDirDoc && !pDirDoc->CloseMergeDocs())
 		return FALSE;
 
-	CString strLeft(pszLeft);
-	CString strRight(pszRight);
+	CString strLeft = pszLeft;
+	CString strRight = pszRight;
 	PackingInfo infoUnpacker;
 
 	BOOL bROLeft = dwLeftFlags & FFILEOPEN_READONLY;
@@ -3060,4 +3060,13 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 		AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 		return;
 	}
+}
+
+/**
+ * @brief Access to the singleton options manager
+ */
+COptionsMgr *
+GetOptionsMgr() 
+{
+	return mf->GetTheOptionsMgr();
 }
