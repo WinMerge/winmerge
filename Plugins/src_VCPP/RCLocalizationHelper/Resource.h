@@ -4,6 +4,12 @@
 //
 #define IDS_PROJNAME                    100
 #define IDR_WINMERGESCRIPT              101
+#define IDS_EXT_NOT_DLL                 101
+#define IDS_BAD_IGNORE_LINES_COUNT      102
+#define IDS_MISSING_IGNORE_ENTRY        103
+#define IDS_BAD_EXP                     104
+#define IDS_BAD_SUBS_COUNT              105
+#define IDS_MISSING_SUBS_ENTRY          106
 
 // Next default values for new objects
 // 

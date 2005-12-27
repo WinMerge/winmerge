@@ -6,6 +6,16 @@
 #include "RegExp.h"
 
 
+// Stub out TRACE macros if not available
+// (They are available for MFC)
+static void donothing() { }
+#ifndef TRACE0
+#define TRACE0(qq) if (0) donothing()
+#endif
+#ifndef TRACE1
+#define TRACE1(qq, rr) if (0) donothing()
+#endif
+
 // definition	number	opnd?	meaning 
 #define	END		0		// no	End of program. 
 #define	BOL		1		// no	Match beginning of line. 

@@ -1,3 +1,7 @@
+2005-12-27 Perry
+ PATCH: [ 1382130 ] New line-based RCLocalizationHelper
+  See plugins.
+
 2005-12-26 Perry
  PATCH: [ 1388704 ] Simplified Chinese language .rc file for RC1
   Src/Languages/ChineseSimplified: MergeChineseSimplified.rc

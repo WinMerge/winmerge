@@ -1,3 +1,19 @@
+2005-12-27 Perry
+ PATCH: [ 1382130 ] New line-based RCLocalizationHelper
+  Bump version from 1.0.0.3 to 1.0.1.0
+  Plugins\src_VCPP\RCLocalizationHelper:
+   NEW PatternSet.cpp PatternSet.h PluginError.cpp PluginError.h
+   NEW widestr.h
+   NEW RCLocalizationHelper.ini RCLocalizationHelperU.ini
+   RCLocalizationHelper.dsp RCLocalizationHelper.rc Resource.h
+   WinMergeScript.cpp
+ Plugins\dlls:
+  NEW RCLocalizationHelper.ini RCLocalizationHelperU.ini
+  RCLocalizationHelper.dll (v1.0.1.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.1.0
+  RCLocalizationHelperU.dll (v1.0.1.0)
+   Compiled from current CVS (UNICODE) (VC6sp6) Unicode Release MinDependency, v1.0.1.0
+
 2005-12-24 Perry
  PATCH: [ 1386809 ] Move temporaries out of src tree - log plugins
   Plugins\src_VCPP\WatchBeginningOfLog: 

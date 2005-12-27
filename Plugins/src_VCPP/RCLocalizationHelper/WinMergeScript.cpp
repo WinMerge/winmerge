@@ -2,6 +2,8 @@
 #include "stdafx.h"
 #include "RCLocalizationHelper.h"
 #include "WinMergeScript.h"
+#include "widestr.h"
+#include "PatternSet.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
@@ -33,44 +35,76 @@ STDMETHODIMP CWinMergeScript::get_PluginIsAutomatic(VARIANT_BOOL *pVal)
 	return S_OK;
 }
 
+/*
+ * Find number of characters from start to end of current line, including start
+ * Stop before maxlen characters
+ */
+static int
+GetLineLength(const WCHAR * start, int maxlen)
+{
+	for (int i=0; (maxlen == -1 || i < maxlen); ++i)
+	{
+		if (start[i] == '\n' || start[i] == '\r' || start[i] == 0)
+			return i;
+	}
+	return i;
+}
+
 STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BOOL *pbChanged, VARIANT_BOOL *pbHandled)
 {
+	HINSTANCE hinst = _Module.GetModuleInstance();
+
+	PatternSet ps;
+	if (!ps.loadPatterns(hinst))
+	{
+		*pbChanged = VARIANT_FALSE;
+		*pbHandled = VARIANT_FALSE;
+		return E_FAIL;
+	}
+
 	WCHAR * text = *pText;
 	long nSize = *pSize;
 
-	int iSrc, iDst;
-	// bPrend is 1 when we're processing (& copying text to output)
-	// it is 0 when we're inside a string constant (& not copying text to output)
-	int bPrend = 1;
-	for (iSrc = 0, iDst = 0 ; iSrc < nSize ; iSrc++)
-	{
-		if (text[iSrc] == L'"')
-		{
-			bPrend = 1 - bPrend;
-			continue;
-		}
-		if (bPrend)
-		{
-			if (text[iSrc] >= L'0' && text[iSrc] <= L'9')
-			{
-				if (iDst == 0 || iswspace(text[iDst-1]) || text[iDst-1] == L',')
-				{
-					if (text[iSrc] == L'0' && iSrc+1 < nSize && text[iSrc+1] == L'x')
-						iSrc += 2;
-					while (iSrc < nSize && (text[iSrc] >= L'0' && text[iSrc] <= L'9'))
-						iSrc ++;
-					iSrc --;
-					continue;
-				}
-			}
-		}
+	int iSrc=0, iDst=0;
 
-		if (bPrend)
+	widestr wstr(512);
+
+	// bQuoting is false when we're processing (& copying text to output)
+	// it is true when we're inside a string constant (& not copying text to output)
+	bool bQuoting = false;
+
+	while (iSrc < nSize)
+	{
+		int linelen = GetLineLength(&text[iSrc], nSize - iSrc);
+		if (linelen)
 		{
-			text[iDst ++] = text[iSrc];
+			wstr.set(&text[iSrc], linelen);
+			if (!bQuoting)
+			{
+				// Make any pattern changes
+				// eg, skipping lines flagged for omission
+				// or suppressing numbers (dialog positions)
+				//  (codepage declarations, language declarations)
+				ps.processLine(wstr);
+			}
+			for (int i=0; i<wstr.length(); ++i)
+			{
+				if (ps.shouldIgnoreQuotes() && wstr.at(i) == '"')
+				{
+					bQuoting = !bQuoting;
+				}
+				if (!bQuoting)
+					text[iDst++] = wstr.at(i);
+			}
+			iSrc += linelen;
+		}
+		// copy all line terminations, even inside quotes
+		while (iSrc < nSize && (text[iSrc] == '\n' || text[iSrc] == '\r'))
+		{
+			text[iDst++] = text[iSrc];
+			++iSrc;
 		}
 	}
-
 	// set the new size
 	*pSize = iDst;
 
