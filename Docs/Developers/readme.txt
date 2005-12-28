@@ -1,3 +1,7 @@
+2005-12-28 Perry
+ BUG: [ 1389855 ] grammar fix in plugin docs
+  Plugins.html
+
 2005-09-22 Kimmo
  New file Changes.txt created.
  See Changes.txt for more up-to-date information.
