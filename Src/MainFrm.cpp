@@ -611,19 +611,36 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 		FileLocationGuessEncodings(filelocRight, bGuessEncoding);
 	}
 
-	// TODO (Perry, 2005-12-04)
-	// Should we do any unification if unicodings are different?
-
-	if (filelocLeft.codepage != filelocRight.codepage)
+	if (!IsUnicodeBuild())
 	{
-		CString msg;
-		msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.codepage, filelocRight.codepage);
-		int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
-		// Two files with different codepages
-		// Warn and propose to use the default codepage for both
-		int userChoice = AfxMessageBox(msg, msgflags);
-		if (userChoice == IDYES)
-			filelocLeft.codepage = filelocRight.codepage = getDefaultCodepage();
+		// In ANSI (8-bit) build, character loss can occur in merging
+		// if the two buffers use different encodings
+		if (filelocLeft.unicoding == ucr::NONE
+			&& filelocRight.unicoding == ucr::NONE
+			&& filelocLeft.codepage != filelocRight.codepage)
+		{
+			CString msg;
+			msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.codepage, filelocRight.codepage);
+			int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
+			// Two files with different codepages
+			// Warn and propose to use the default codepage for both
+			int userChoice = AfxMessageBox(msg, msgflags);
+			if (userChoice == IDYES)
+				filelocLeft.codepage = filelocRight.codepage = getDefaultCodepage();
+		}
+		else if (filelocLeft.unicoding != filelocRight.unicoding)
+		{
+			CString leftUnicoding = ucr::GetUnicodesetName((ucr::UNICODESET)filelocLeft.unicoding);
+			CString rightUnicoding = ucr::GetUnicodesetName((ucr::UNICODESET)filelocRight.unicoding);
+			CString msg;
+			msg.Format(IDS_DIFFERENT_UNICODINGS, leftUnicoding, rightUnicoding);
+			int msgflags = MB_OK | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
+			// Two files with different codepages
+			// Warn and propose to use the default codepage for both
+			int userChoice = AfxMessageBox(msg, msgflags);
+			if (userChoice == IDYES)
+				filelocLeft.codepage = filelocRight.codepage = getDefaultCodepage();
+		}
 	}
 
 	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(filelocLeft, filelocRight,

@@ -79,6 +79,7 @@ struct gLog
 	static UINT DeleteFileFailed(LPCTSTR path);
 };
 
+bool IsUnicodeBuild();
 
 	/** @brief include for the custom dialog boxes, with do not ask/display again */
 #include "MessageBoxDialog.h"

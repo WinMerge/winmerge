@@ -154,3 +154,15 @@ int GetClipTcharTextFormat()
 	return CF_TEXT;
 #endif // _UNICODE
 }
+
+/**
+ * @brief Return true if Unicode (16-bit) build
+ */
+bool IsUnicodeBuild()
+{
+#ifdef UNICODE
+	return true;
+#else
+	return false;
+#endif
+}

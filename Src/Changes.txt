@@ -1,3 +1,9 @@
+2005-12-28 Perry
+ PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build
+  Also introduces new error IDS_DIFFERENT_UNICODINGS and new
+   global function IsUnicodeBuild.
+  Src: ConfigLog.cpp MainFrm.cpp Merge.rc resource.h StdAfx.cpp StdAfx.h
+
 2005-12-27 Perry
  PATCH: [ 1390793 ] New global function GetOptionMgr
   Src: DirActions.cpp DirDoc.cpp DirView.cpp DirViewColHandler.cpp

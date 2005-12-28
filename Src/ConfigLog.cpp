@@ -751,6 +751,10 @@ CString CConfigLog::GetBuildFlags()
 	flags += " _UNICODE ";
 #endif
 
+#ifdef _MBCS
+	flags += " _MBCS ";
+#endif
+
 	return flags;
 }
 
