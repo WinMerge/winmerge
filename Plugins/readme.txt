@@ -1,3 +1,14 @@
+2005-12-28 Perry
+ BUG: [ 1391212 ] New RCLocalizationHelper doesn't handle escaped quotes
+  Bump version from 1.0.1.0 to 1.0.2.0.
+  Plugins\src_VCPP\RCLocalizationHelper:
+   RCLocalizationHelper.rc WinMergeScript.cpp
+ Plugins\dlls:
+  RCLocalizationHelper.dll (v1.0.2.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
+  RCLocalizationHelperU.dll (v1.0.2.0)
+   Compiled from current CVS (UNICODE) (VC6sp6) Unicode Release MinDependency, v1.0.2.0
+
 2005-12-27 Perry
  PATCH: [ 1382130 ] New line-based RCLocalizationHelper
   Bump version from 1.0.0.3 to 1.0.1.0

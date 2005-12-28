@@ -92,6 +92,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 				if (ps.shouldIgnoreQuotes() && wstr.at(i) == '"')
 				{
 					bQuoting = !bQuoting;
+					continue; // include neither opening nor closing double quotes
 				}
 				if (!bQuoting)
 					text[iDst++] = wstr.at(i);
