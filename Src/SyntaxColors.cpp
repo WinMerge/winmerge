@@ -16,7 +16,7 @@ static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
  * @brief Constructor, initialise with default colors.
  */
 SyntaxColors::SyntaxColors()
-: m_pOptions(NULL)
+: m_pOptionsMgr(NULL)
 {
 	m_colors.SetSize(COLORINDEX_COUNT);
 	m_bolds.SetSize(COLORINDEX_COUNT);
@@ -27,7 +27,7 @@ SyntaxColors::SyntaxColors()
  * @brief Copy constructor.
  */
 SyntaxColors::SyntaxColors(SyntaxColors *pColors)
-: m_pOptions(NULL)
+: m_pOptionsMgr(NULL)
 {
 	m_colors.SetSize(COLORINDEX_COUNT);
 	m_bolds.SetSize(COLORINDEX_COUNT);
@@ -181,17 +181,17 @@ void SyntaxColors::SetBold(UINT index, BOOL bold)
  * @brief Initialize color table.
  * @param [in] pOptionsMgr pointer to OptionsMgr used as storage.
  */
-void SyntaxColors::Initialize(CRegOptions *pOptionsMgr)
+void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 {
 	ASSERT(pOptionsMgr);
 	CString valuename;
 
-	m_pOptions = pOptionsMgr;
+	m_pOptionsMgr = pOptionsMgr;
 
 	int count = COLORINDEX_COUNT;
 	valuename = DefColorsPath + '/';
 	valuename += _T("Values");
-	m_pOptions->InitOption(valuename, count);
+	m_pOptionsMgr->InitOption(valuename, count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
@@ -207,8 +207,8 @@ void SyntaxColors::Initialize(CRegOptions *pOptionsMgr)
 		// Themeable colors are not read from the registry
 		// Currently (2005-12) we have no GUI to specify the themable colors anyway
 		bool serializable = !IsThemeableColorIndex(i);
-		m_pOptions->InitOption(valuename, color, serializable);
-		color = m_pOptions->GetInt(valuename);
+		m_pOptionsMgr->InitOption(valuename, color, serializable);
+		color = m_pOptionsMgr->GetInt(valuename);
 		ref = color;
 		m_colors.SetAt(i, ref);
 	
@@ -216,8 +216,8 @@ void SyntaxColors::Initialize(CRegOptions *pOptionsMgr)
 		BOOL bBold = FALSE;
 		valuename.Format(_T("%s/Bold%02u"), DefColorsPath, i);
 		bBold = m_bolds.GetAt(i);
-		m_pOptions->InitOption(valuename, (int) bBold);
-		nBold = m_pOptions->GetInt(valuename);
+		m_pOptionsMgr->InitOption(valuename, (int) bBold);
+		nBold = m_pOptionsMgr->GetInt(valuename);
 		bBold = nBold ? TRUE : FALSE;
 		m_bolds.SetAt(i, bBold);
 	}
@@ -229,22 +229,22 @@ void SyntaxColors::Initialize(CRegOptions *pOptionsMgr)
  */
 void SyntaxColors::SaveToRegistry()
 {
-	ASSERT(m_pOptions);
+	ASSERT(m_pOptionsMgr);
 	CString valuename;
 
 	int count = COLORINDEX_COUNT;
 	valuename = DefColorsPath + '/';
 	valuename += _T("Values");
-	m_pOptions->SetInt(valuename, count);
+	m_pOptionsMgr->SetInt(valuename, count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
 	{
 		valuename.Format(_T("%s/Color%02u"), DefColorsPath, i);
 		int color = m_colors.GetAt(i);
-		m_pOptions->SetInt(valuename, color);
+		m_pOptionsMgr->SetInt(valuename, color);
 		valuename.Format(_T("%s/Bold%02u"), DefColorsPath, i);
 		BOOL bold = m_bolds.GetAt(i);
-		m_pOptions->SetInt(valuename, bold);
+		m_pOptionsMgr->SetInt(valuename, bold);
 	}
 }
 

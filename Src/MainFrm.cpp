@@ -2493,7 +2493,7 @@ typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;
  * @brief Copy one piece of data from options object to config log, or vice-versa
  */
 static void
-LoadConfigIntSetting(int * cfgval, CRegOptions & options, const CString & name, ConfigLogDirection cfgdir)
+LoadConfigIntSetting(int * cfgval, COptionsMgr & options, const CString & name, ConfigLogDirection cfgdir)
 {
 	if (cfgdir == ToConfigLog)
 	{
@@ -2509,7 +2509,7 @@ LoadConfigIntSetting(int * cfgval, CRegOptions & options, const CString & name, 
  * @brief Copy one piece of data from options object to config log, or vice-versa
  */
 static void
-LoadConfigBoolSetting(BOOL * cfgval, CRegOptions & options, const CString & name, ConfigLogDirection cfgdir)
+LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr & options, const CString & name, ConfigLogDirection cfgdir)
 {
 	if (cfgdir == ToConfigLog)
 	{
@@ -2522,10 +2522,10 @@ LoadConfigBoolSetting(BOOL * cfgval, CRegOptions & options, const CString & name
 }
 
 /**
- * @brief Pass options settings from "RegOptions" object to config log, or vice-versa
+ * @brief Pass options settings from options manager object to config log, or vice-versa
  */
 static void
-LoadConfigLog(CConfigLog & configLog, CRegOptions & options, LOGFONT & lfDiff, ConfigLogDirection cfgdir)
+LoadConfigLog(CConfigLog & configLog, COptionsMgr & options, LOGFONT & lfDiff, ConfigLogDirection cfgdir)
 {
 	LoadConfigIntSetting(&configLog.m_diffOptions.nIgnoreWhitespace, options, OPT_CMP_IGNORE_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);

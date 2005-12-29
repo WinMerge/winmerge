@@ -78,7 +78,6 @@ typedef CTypedPtrList<CPtrList, CDirView *> DirViewList;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 
-class CRegOptions;
 class PackingInfo;
 
 /**
@@ -197,7 +196,7 @@ protected:
 	};
 	BCMenu * m_pMenus[MENU_COUNT];
 
-	CRegOptions m_options; /**< Options manager */
+	CRegOptionsMgr m_options; /**< Options manager */
 // Generated message map functions
 protected:
 	void GetFontProperties();

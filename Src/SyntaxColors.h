@@ -12,7 +12,7 @@
 #include "stdafx.h"
 #include <Windows.h>
 
-class CRegOptions;
+class COptionsMgr;
 
 /** 
  * @brief Indexes to color table
@@ -78,7 +78,7 @@ public:
 	BOOL GetBold(UINT index) const { return m_bolds[index]; }
 	void SetBold(UINT index, BOOL bold);
 	void SetDefaults();
-	void Initialize(CRegOptions *pOptionsMgr);
+	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveToRegistry();
 
 // Implementation methods
@@ -90,7 +90,7 @@ private:
 private:
 	ColorArray m_colors; /**< Syntax highlight colors */
 	BoolArray m_bolds; /**< Bold font enable/disable */
-	CRegOptions * m_pOptions; /**< Options-manager for storage */
+	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 
 

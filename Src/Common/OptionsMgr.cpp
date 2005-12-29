@@ -516,7 +516,7 @@ int COptionsMgr::ImportOptions(CString filename)
  * @param [out] srPath Path (key) in registry
  * @param [out] strValue Value in registry
  */
-void CRegOptions::SplitName(CString strName, CString &strPath,
+void CRegOptionsMgr::SplitName(CString strName, CString &strPath,
 	CString &strValue)
 {
 	int pos = strName.ReverseFind('/');
@@ -547,7 +547,7 @@ void CRegOptions::SplitName(CString strName, CString &strPath,
  * @note This function must handle ANSI and UNICODE data!
  * @todo Handles only string and integer types
  */
-int CRegOptions::LoadValueFromReg(HKEY hKey, CString strName,
+int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, CString strName,
 	varprop::VariantValue &value)
 {
 	CString strPath;
@@ -628,7 +628,7 @@ int CRegOptions::LoadValueFromReg(HKEY hKey, CString strName,
  * @param [in] value value to write to registry value
  * @todo Handles only string and integer types
  */
-int CRegOptions::SaveValueToReg(HKEY hKey, CString strValueName,
+int CRegOptionsMgr::SaveValueToReg(HKEY hKey, CString strValueName,
 	varprop::VariantValue value)
 {
 	LONG retValReg = 0;
@@ -672,7 +672,7 @@ int CRegOptions::SaveValueToReg(HKEY hKey, CString strValueName,
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptions::InitOption(CString name, varprop::VariantValue defaultValue)
+int CRegOptionsMgr::InitOption(CString name, varprop::VariantValue defaultValue)
 {
 	CString strPath;
 	CString strValueName;
@@ -738,7 +738,7 @@ int CRegOptions::InitOption(CString name, varprop::VariantValue defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptions::InitOption(CString name, LPCTSTR defaultValue)
+int CRegOptionsMgr::InitOption(CString name, LPCTSTR defaultValue)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -754,7 +754,7 @@ int CRegOptions::InitOption(CString name, LPCTSTR defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptions::InitOption(CString name, int defaultValue, bool serializable)
+int CRegOptionsMgr::InitOption(CString name, int defaultValue, bool serializable)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -773,7 +773,7 @@ int CRegOptions::InitOption(CString name, int defaultValue, bool serializable)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptions::InitOption(CString name, bool defaultValue)
+int CRegOptionsMgr::InitOption(CString name, bool defaultValue)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -787,7 +787,7 @@ int CRegOptions::InitOption(CString name, bool defaultValue)
  * @brief Load option from registry.
  * @note Currently handles only integer and string options!
  */
-int CRegOptions::LoadOption(CString name)
+int CRegOptionsMgr::LoadOption(CString name)
 {
 	varprop::VariantValue value;
 	CString strPath;
@@ -826,7 +826,7 @@ int CRegOptions::LoadOption(CString name)
  * @brief Save option to registry
  * @note Currently handles only integer and string options!
  */
-int CRegOptions::SaveOption(CString name)
+int CRegOptionsMgr::SaveOption(CString name)
 {
 	varprop::VariantValue value;
 	CString strPath;
@@ -864,7 +864,7 @@ int CRegOptions::SaveOption(CString name)
 /**
  * @brief Set new value for option and save option to registry
  */
-int CRegOptions::SaveOption(CString name, varprop::VariantValue value)
+int CRegOptionsMgr::SaveOption(CString name, varprop::VariantValue value)
 {
 	int retVal = OPT_OK;
 	retVal = Set(name, value);
@@ -876,7 +876,7 @@ int CRegOptions::SaveOption(CString name, varprop::VariantValue value)
 /**
  * @brief Set new string value for option and save option to registry
  */
-int CRegOptions::SaveOption(CString name, CString value)
+int CRegOptionsMgr::SaveOption(CString name, CString value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
@@ -891,7 +891,7 @@ int CRegOptions::SaveOption(CString name, CString value)
 /**
  * @brief Set new integer value for option and save option to registry
  */
-int CRegOptions::SaveOption(CString name, int value)
+int CRegOptionsMgr::SaveOption(CString name, int value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
@@ -906,7 +906,7 @@ int CRegOptions::SaveOption(CString name, int value)
 /**
  * @brief Set new boolean value for option and save option to registry
  */
-int CRegOptions::SaveOption(CString name, bool value)
+int CRegOptionsMgr::SaveOption(CString name, bool value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
@@ -924,7 +924,7 @@ int CRegOptions::SaveOption(CString name, bool value)
  * Sets path used as root path when loading/saving options. Paths
  * given to other functions are relative to this path.
  */
-int CRegOptions::SetRegRootKey(CString key)
+int CRegOptionsMgr::SetRegRootKey(CString key)
 {
 	HKEY hKey = NULL;
 	LONG retValReg = 0;

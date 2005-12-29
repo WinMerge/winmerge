@@ -7,8 +7,6 @@
 #ifndef __CODEPAGE_H__
 #define __CODEPAGE_H__
 
-class CRegOptions;
-
 void updateDefaultCodepage(int cpDefaultMode, int customCodepage);
 int getDefaultCodepage();
 

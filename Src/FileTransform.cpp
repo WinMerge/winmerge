@@ -313,6 +313,7 @@ BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL b
 	BOOL bSuccess = TRUE;
 	if (bufferData.GetNChangedValid() > 0)
 	{
+		// bufferData changes filepath here to temp filepath
 		bSuccess = bufferData.SaveAsFile(filepath);
 	}
 

@@ -1,3 +1,10 @@
+2005-12-29 Perry
+ PATCH: [ 1390774 ] Rename CRegOptions to CRegOptionsMgr
+  Docs\Developers: Options.html
+  Src\Common: OptionsMgr.cpp OptionsMgr.h
+  Src: FileTransform.cpp MainFrm.cpp MainFrm.h SyntaxColors.cpp
+   SyntaxColors.h codepage.h
+
 2005-12-28 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build
   Also introduces new error IDS_DIFFERENT_UNICODINGS and new

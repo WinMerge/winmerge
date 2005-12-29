@@ -66,7 +66,7 @@ private:
 };
 
 /**
- * @brief Class to store list of options
+ * @brief Class to store list of options, and interface to saving & loading same
  */
 class COptionsMgr
 {
@@ -106,9 +106,9 @@ private:
 };
 
 /**
- * @brief Class to load/save options to registry
+ * @brief Registry-based implementation of OptionsMgr interface (q.v.)
  */
-class CRegOptions : public COptionsMgr
+class CRegOptionsMgr: public COptionsMgr
 {
 public:
 	int LoadOption(CString name);
