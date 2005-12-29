@@ -6,6 +6,8 @@
    SyntaxColors.h codepage.h
  PATCH: [ 1392650 ] Fix locals of CDiffWrapper::RunFileDiff
   Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchTool.cpp
+ PATCH: [ 1392729 ] Cleanup variables in RunFileDiff
+  Src: DiffWrapper.cpp
 
 2005-12-28 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build

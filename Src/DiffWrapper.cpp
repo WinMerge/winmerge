@@ -226,11 +226,6 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
 
-	// perform rescan
-	CString sdir0, sdir1, sname0, sname1, sext0, sext1;
-	struct change *e, *p;
-	struct change *script = NULL;
-
 	// Are our working files overwritable (temp)?
 	BOOL bMayOverwrite = (areTempFiles == YESTEMPFILES);
 
@@ -275,17 +270,15 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	FileTransform_UCS2ToUTF8(strFile2Temp, bMayOverwrite);
 
 	DiffFileData diffdata;
-
 	// This opens & fstats both files (if it succeeds)
 	if (!diffdata.OpenFiles(strFile1Temp, strFile2Temp))
 	{
 		return FALSE;
 	}
 
-	file_data * inf = diffdata.m_inf;
-
 	/* Compare the files, if no error was found.  */
 	int bin_flag = 0;
+	struct change *script = NULL;
 	bRet = Diff2Files(&script, &diffdata, &bin_flag);
 
 	// We don't anymore create diff-files for every rescan.
@@ -326,6 +319,7 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 		m_status.bIdentical = (script == 0);
 		m_status.bBinaries = FALSE;
 	}
+	file_data * inf = diffdata.m_inf;
 	m_status.bLeftMissingNL = inf[0].missing_newline;
 	m_status.bRightMissingNL = inf[1].missing_newline;
 
@@ -394,9 +388,7 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	if (!m_status.bBinaries && m_bUseDiffList)
 	{
 		struct change *next = script;
-		int trans_a0, trans_b0, trans_a1, trans_b1;
-		int first0, last0, first1, last1, deletes, inserts, op;
-		struct change *thisob, *end;
+		struct change *thisob=0, *end=0;
 		
 		while (next)
 		{
@@ -416,7 +408,9 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 			//(*printfun) (thisob);
 			{					
 				/* Determine range of line numbers involved in each file.  */
+				int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
+				int op=0;
 				if (deletes || inserts || thisob->trivial)
 				{
 					if (deletes && inserts)
@@ -429,8 +423,9 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 						op = OP_TRIVIAL;
 					
 					/* Print the lines that the first file has.  */
-					translate_range (&inf[0], first0, last0, &trans_a0, &trans_b0);
-					translate_range (&inf[1], first1, last1, &trans_a1, &trans_b1);
+					int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
+					translate_range(&inf[0], first0, last0, &trans_a0, &trans_b0);
+					translate_range(&inf[1], first1, last1, &trans_a1, &trans_b1);
 
 					// Store information about these blocks in moved line info
 					if (thisob->match0>=0)
@@ -465,11 +460,15 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 		}
 	}			
 
-	// cleanup the script
-	for (e = script; e; e = p)
+	if (script)
 	{
-		p = e->link;
-		free (e);
+		struct change *e=0, *p=0;
+		// cleanup the script
+		for (e = script; e; e = p)
+		{
+			p = e->link;
+			free(e);
+		}
 	}
 
 
