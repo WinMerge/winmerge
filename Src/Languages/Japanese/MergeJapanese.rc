@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 日本語 (Default) resources
+// Japanese (Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_JPN)
 #ifdef _WIN32
@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -180,7 +182,7 @@ BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
-        MENUITEM "アーカイブサポートが無効です(&R)...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "アーカイブサポートが無効です(&R)...",   ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU一般公衆利用許諾契約書(&G)...", ID_HELP_GNULICENSE
         MENUITEM "WinMergeについて(&A)...",     ID_APP_ABOUT
@@ -283,7 +285,7 @@ BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
-        MENUITEM "アーカイブサポートが無効です(&R)...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "アーカイブサポートが無効です(&R)...",  ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU一般公衆利用許諾契約書(&G)...", ID_HELP_GNULICENSE
         MENUITEM "WinMergeについて(&A)...",     ID_APP_ABOUT
@@ -435,7 +437,7 @@ BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
-        MENUITEM "アーカイブサポートが無効です(&R)...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "アーカイブサポートが無効です(&R)...",  ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU一般公衆利用許諾契約書(&G)...", ID_HELP_GNULICENSE
         MENUITEM "WinMergeについて(&A)...",     ID_APP_ABOUT
@@ -2625,7 +2627,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // 日本語 (Default) resources
+#endif    // Japanese (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

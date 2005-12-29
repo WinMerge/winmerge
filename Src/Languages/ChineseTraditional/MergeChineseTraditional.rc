@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -745,7 +747,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "方向",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "上移(&U)",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
-                    WS_GROUP, 154,34,57,10
+                    WS_GROUP,154,34,57,10
     CONTROL         "下移(&D)",IDC_EDIT_DIRECTION_DOWN,"Button",
                     BS_AUTORADIOBUTTON,154,44,57,10
     DEFPUSHBUTTON   "找下一個(&F)",IDOK,226,7,50,14,WS_GROUP
@@ -1683,7 +1685,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "在要複製的路徑點選右鼠"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "確定(&O)"
@@ -1827,7 +1829,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "不同 %1 在 %2"
     IDS_NO_DIFF_SEL_FMT         "%1 個不同找到"
     IDS_1_DIFF_FOUND        "1 個不同找到"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
@@ -1993,7 +1995,7 @@ BEGIN
                             "移動右邊選取項目到自訂資料夾"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "檔案名稱"
@@ -2004,6 +2006,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "副檔名"
     IDS_COLHDR_LSIZE        "左邊"
     IDS_COLHDR_RSIZE        "右邊"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "左邊建立時間"
     IDS_COLHDR_RTIMEC       "右邊建立時間"
     IDS_COLHDR_NEWER        "較新檔案"
@@ -2014,7 +2023,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "右邊屬性"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "左邊編碼"
@@ -2049,7 +2058,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 個項目已選取"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "檔案名稱或資料夾名稱。"
@@ -2060,6 +2069,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "檔案副檔名。"
     IDS_COLDESC_LSIZE       "左邊檔案位元組大小。"
     IDS_COLDESC_RSIZE       "右邊檔案位元組大小。"
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "左邊建立時間。"
     IDS_COLDESC_RTIMEC      "右邊建立時間。"
     IDS_COLDESC_NEWER       "告知那邊有較新的修改日期。"

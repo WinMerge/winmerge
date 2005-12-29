@@ -67,7 +67,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -149,6 +151,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtreler",                  ID_TOOLS_FILTERS
         MENUITEM "&Yama Üret...",               ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Eklentiler"
     BEGIN
@@ -248,6 +254,10 @@ BEGIN
         MENUITEM "&Filtreler",                  ID_TOOLS_FILTERS
         MENUITEM "&Yama Üret...",               ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Eklentiler"
     BEGIN
@@ -391,6 +401,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filtreler",                  ID_TOOLS_FILTERS
         MENUITEM "&Yama Üret...",               ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Eklentiler"
     BEGIN
@@ -433,6 +447,8 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
+        MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        MENUITEM SEPARATOR
         POPUP "&Copy"
         BEGIN
             MENUITEM "&Left to Right",              ID_DIR_COPY_LEFT_TO_RIGHT
@@ -517,8 +533,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&No Moved Blocks",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&All Moved Blocks",           ID_DISPLAY_MOVED_ALL
-        MENUITEM "Moved Block for &Current Diff", 
-                                                ID_DISPLAY_MOVED_FOLLOW_DIFF
+        MENUITEM "Moved Block for &Current Diff", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
 
@@ -1424,19 +1439,15 @@ BEGIN
     BEGIN
         BLOCK "041f04e6"
         BEGIN
-            VALUE "Comments", "\0"
-            VALUE "CompanyName", "\0"
-			VALUE "Comments", "Translated by Ozkan UNVER\0"
+            VALUE "Comments", "Translated by Ozkan UNVER\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
-            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1817,7 +1828,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_1_DIFF_FOUND        "1 Difference Found"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
@@ -1983,7 +1994,7 @@ BEGIN
                             "Move selected file on right to custom directory"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filename"
@@ -1994,6 +2005,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extension"
     IDS_COLHDR_LSIZE        "Left Size"
     IDS_COLHDR_RSIZE        "Right Size"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Left Creation Time"
     IDS_COLHDR_RTIMEC       "Right Creation Time"
     IDS_COLHDR_NEWER        "Newer File"
@@ -2004,7 +2022,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Right Attributes"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
@@ -2039,7 +2057,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 items selected"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
@@ -2050,6 +2068,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "File's extension."
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Left side creation time."
     IDS_COLDESC_RTIMEC      "Right side creation time."
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."

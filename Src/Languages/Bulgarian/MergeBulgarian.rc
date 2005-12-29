@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Bulgarian resources
+// Bulgarian (Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_BGR)
 #ifdef _WIN32
@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -180,7 +182,7 @@ BEGIN
         MENUITEM "&Съдържание...\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "Настрои&ки...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&Обществен GNU лиценз...",      ID_HELP_GNULICENSE
         MENUITEM "&За WinMerge...",          ID_APP_ABOUT
@@ -283,7 +285,7 @@ BEGIN
         MENUITEM "&Съдържание...\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "Настрои&ки...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&Обществен GNU лиценз...",      ID_HELP_GNULICENSE
         MENUITEM "&За WinMerge...",          ID_APP_ABOUT
@@ -802,7 +804,7 @@ BEGIN
 END
 
 IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
-STYLE DS_SETFONT | WS_CHILD | WS_DISABLED | WS_CAPTION
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Linefilters"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1146,7 +1148,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Save modified files?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1701,7 +1703,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Right click on the path to copy"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1845,7 +1847,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Разлики %1 от %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Намерени разлики"
     IDS_1_DIFF_FOUND        "1 Difference Found"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
@@ -2011,7 +2013,7 @@ BEGIN
                             "Move selected file on right to custom directory"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Име"
@@ -2022,6 +2024,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Разширение"
     IDS_COLHDR_LSIZE        "Размер от ляво"
     IDS_COLHDR_RSIZE        "Големина на дясната част"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Време за направа на лявата част"
     IDS_COLHDR_RTIMEC       "Време за направа на дясната част"
     IDS_COLHDR_NEWER        "Нови файлове"
@@ -2032,7 +2041,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Атрибути от дясно"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
@@ -2067,7 +2076,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 items selected"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filename or directory name."
@@ -2078,6 +2087,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "File's extension."
     IDS_COLDESC_LSIZE       "Left file size in bytes."
     IDS_COLDESC_RSIZE       "Right file size in bytes."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Left side creation time."
     IDS_COLDESC_RTIMEC      "Right side creation time."
     IDS_COLDESC_NEWER       "Tells which side has newer modification date."
@@ -2629,7 +2645,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // Bulgarian resources
+#endif    // Bulgarian (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

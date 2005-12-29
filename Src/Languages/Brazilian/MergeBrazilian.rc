@@ -68,7 +68,8 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -180,7 +181,7 @@ BEGIN
         MENUITEM "&Conteúdo...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licença Pública GNU...",      ID_HELP_GNULICENSE
         MENUITEM "&Sobre o WinMerge...",        ID_APP_ABOUT
@@ -283,7 +284,7 @@ BEGIN
         MENUITEM "&Conteúdo...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licença Pública GNU...",      ID_HELP_GNULICENSE
         MENUITEM "&Sobre o WinMerge...",        ID_APP_ABOUT
@@ -740,7 +741,7 @@ BEGIN
     CONTROL         "Somente p&alavras iguais",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
     CONTROL         "&Diferenciar maiúsculas de minúsculas",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX |WS_TABSTOP,7,37,135,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "&Expressão regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Direção",IDC_STATIC,148,23,70,36,WS_GROUP
@@ -767,7 +768,7 @@ BEGIN
     CONTROL         "Somente p&alavras iguais",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
     CONTROL         "&Diferenciar maiúsculas de minúsculas",IDC_EDIT_MATCH_CASE,"Button",
-                    BS_AUTOCHECKBOX |WS_TABSTOP,7,54,135,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "&Expressão regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
@@ -1827,7 +1828,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Diferença %1 de %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Diferenças encontradas"
     IDS_1_DIFF_FOUND        "1 Diferença encontrada"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES

@@ -1,6 +1,7 @@
 //Microsoft Developer Studio generated resource script.
 //
 // $Id$
+
 #include "resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
@@ -14,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Swedish resources
+// Swedish (Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_SVE)
 #ifdef _WIN32
@@ -67,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -149,6 +152,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -175,7 +182,7 @@ BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rkivstöd avstängt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rkivstöd avstängt...",      ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -248,6 +255,10 @@ BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
         MENUITEM "Generera &Rapport...",         ID_TOOLS_GENERATEREPORT
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -274,7 +285,7 @@ BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rkivstöd avstängt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rkivstöd avstängt...",      ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -391,6 +402,10 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
+        POPUP "&Advanced"
+        BEGIN
+            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -422,7 +437,7 @@ BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rkivstöd avstängt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rkivstöd avstängt...",      ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "GNU General Public License...", ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -627,8 +642,8 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
-    GROUPBOX        "Filer eller kataloger som skall jämföras",IDC_FILES_DIRS_GROUP,7,7,
-                    292,111
+    GROUPBOX        "Filer eller kataloger som skall jämföras",IDC_FILES_DIRS_GROUP,7,
+                    7,292,111
     PUSHBUTTON      "Spara Projekt",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -648,7 +663,7 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Användare:",IDC_STATIC,7,99,36,8
     EDITTEXT        IDC_USER,45,78,58,14,ES_AUTOHSCROLL
-    LTEXT           "Lösenord:",IDC_STATIC,122,99,55,8
+    RTEXT           "Lösenord:",IDC_STATIC,122,99,55,8
     EDITTEXT        IDC_PASSWORD,180,96,70,14,ES_PASSWORD | ES_AUTOHSCROLL
     CONTROL         "Länk till Destination VSS-projekt",IDC_VCPROJ_SYNC,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
@@ -680,8 +695,8 @@ BEGIN
     CONTROL         "&Gör backup på originalfiler",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "Rulla automati&skt till första skillnaden",
-                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
-                    7,17,206,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,206,10
     CONTROL         "&Visa inte Startskärm",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "St&äng fönster med ESC",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -726,8 +741,8 @@ BEGIN
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Matcha &hela ord",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,27,135,10
-    CONTROL         "Mat&cha VERSALER och gemener",IDC_EDIT_MATCH_CASE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
+    CONTROL         "Mat&cha VERSALER och gemener",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "&Reguljärt uttryck",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Riktning",IDC_STATIC,148,23,70,36,WS_GROUP
@@ -753,8 +768,8 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Matcha &hela ord",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "Mat&cha versaler och gemener",IDC_EDIT_MATCH_CASE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
+    CONTROL         "Mat&cha versaler och gemener",IDC_EDIT_MATCH_CASE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "&Reguljärt utryck",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
     CONTROL         "Vänd inte vid slutet av filen",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
@@ -796,7 +811,8 @@ BEGIN
     CONTROL         "Ignorera rader som matchar följande mönster",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "Reguljära uttryck (ett per rad):",IDC_STATIC,7,28,221,8
+    LTEXT           "Reguljära uttryck (ett per rad):",IDC_STATIC,7,28,
+                    221,8
     EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
@@ -894,9 +910,8 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Spara borttagna filer i Papperskorgen",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "Lägg till i Utforskarens popup-meny",
-                    IDC_EXPLORER_CONTEXT,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,17,222,10
+    CONTROL         "Lägg till i Utforskarens popup-meny",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "A&nvänd avancerad meny",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     CONTROL         "Ignorera tidsskillnad mindre än 3 sekunder",
@@ -913,18 +928,18 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Patchgenerator"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "Fil 1:",IDC_STATIC,7,10,36,8
+    LTEXT           "Fil 1:",IDC_STATIC,7,10,36,8
     COMBOBOX        IDC_DIFF_FILE1,48,7,230,93,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Bläddra...",IDC_DIFF_BROWSE_FILE1,283,7,50,14
-    RTEXT           "Fil 2:",IDC_STATIC,7,27,36,8
+    LTEXT           "Fil 2:",IDC_STATIC,7,27,36,8
     COMBOBOX        IDC_DIFF_FILE2,48,24,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Bläddra...",IDC_DIFF_BROWSE_FILE2,283,24,50,14
     PUSHBUTTON      "Byt",IDC_DIFF_SWAPFILES,283,41,50,14
     CONTROL         "Lägg till i existerande fil",IDC_DIFF_APPENDFILE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,48,51,230,10
-    RTEXT           "Resultat:",IDC_STATIC,7,66,37,8
+    LTEXT           "Resultat:",IDC_STATIC,7,66,37,8
     COMBOBOX        IDC_DIFF_FILERESULT,48,63,230,96,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Bläddra...",IDC_DIFF_BROWSE_RESULT,283,63,50,14
@@ -1039,8 +1054,8 @@ BEGIN
     GROUPBOX        "Fil",IDC_STATIC,7,27,57,35
     CONTROL         "&Vänster",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,48,10
-    CONTROL         "&Höger",IDC_WMGOTO_FILERIGHT,"Button",BS_AUTORADIOBUTTON,
-                    13,48,47,10
+    CONTROL         "&Höger",IDC_WMGOTO_FILERIGHT,"Button",
+                    BS_AUTORADIOBUTTON,13,48,47,10
     GROUPBOX        "Gå till vad",IDC_STATIC,69,27,78,35
     CONTROL         "Ra&d",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,76,38,68,10
@@ -1056,12 +1071,12 @@ CAPTION "Jämför"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Mellanslag",IDC_STATIC,7,7,221,50
-    CONTROL         "Jämför &mellanslag",IDC_WHITESPACE,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,19,206,10
+    CONTROL         "Jämför &mellanslag",IDC_WHITESPACE,"Button",BS_AUTORADIOBUTTON |
+                    WS_GROUP,14,19,206,10
     CONTROL         "Ignorera mellanslagsä&ndringar",IDC_WHITE_CHANGE,"Button",
                     BS_AUTORADIOBUTTON,14,30,206,10
-    CONTROL         "Ignorera &alla mellanslag",IDC_ALL_WHITE,"Button",
-                    BS_AUTORADIOBUTTON,14,41,206,10
+    CONTROL         "Ignorera &alla mellanslag",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
+                    14,41,206,10
     CONTROL         "Ignorera blan&ka rader",IDC_IGNBLANKS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
     CONTROL         "&Ignorera VERSAL/gemen-skillnader",IDC_IGNCASE_CHECK,"Button",
@@ -1133,7 +1148,7 @@ END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
-    WS_SYSMENU
+    WS_SYSMENU | WS_THICKFRAME
 CAPTION "Spara ändrade filer?"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1426,17 +1441,14 @@ BEGIN
         BLOCK "041d04e4"
         BEGIN
             VALUE "Comments", "Översatt av Göran Håkansson, bidrag från Hans Eriksson\0"
-            VALUE "CompanyName", "\0"
             VALUE "FileDescription", "WinMerge Applikation\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
             VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
-            VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
-            VALUE "SpecialBuild", "\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1446,119 +1458,6 @@ BEGIN
 END
 
 #endif    // !_MAC
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// DESIGNINFO
-//
-
-#ifdef APSTUDIO_INVOKED
-GUIDELINES DESIGNINFO DISCARDABLE
-BEGIN
-    IDD_ABOUTBOX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 216
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 115
-    END
-
-    IDD_OPEN, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 349
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 108
-    END
-
-    IDD_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 251
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 141
-    END
-
-    IDD_PROP_VSS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 88
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_PROPPAGE_LARGE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 252
-        VERTGUIDE, 138
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 150
-    END
-
-    IDD_CLEARCASE, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 272
-        VERTGUIDE, 18
-        VERTGUIDE, 35
-        VERTGUIDE, 244
-        VERTGUIDE, 261
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 104
-    END
-
-    IDD_PROPSYNTAX, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_FILTER, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_PROPPAGE_COLORS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 228
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 149
-    END
-
-    IDD_EDITOR_HEADERBAR, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 366
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 4
-    END
-
-    IDD_DIRCOLS, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 266
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 155
-    END
-
-    IDD_GENERATE_PATCH, DIALOG
-    BEGIN
-        LEFTMARGIN, 7
-        RIGHTMARGIN, 333
-        TOPMARGIN, 7
-        BOTTOMMARGIN, 173
-    END
-END
-#endif    // APSTUDIO_INVOKED
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1786,7 +1685,7 @@ BEGIN
     IDC_STATIC_TITLE_RIGHT  "Högerklicka på sökvägen för att kopiera"
 END
 
-// IDS_MESSAGEBOX_OK SYNCHRO
+// "DO NOT SHOW AGAIN" MESSAGEBOXES
 STRINGTABLE
 BEGIN
     IDS_MESSAGEBOX_OK       "&Ok"
@@ -1930,7 +1829,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Skillnad %1 av %2"
     IDS_NO_DIFF_SEL_FMT     "%1 skillnader funna"
     IDS_1_DIFF_FOUND        "1 skillnad funnen"
-    IDS_STATUSBAR_READONLY  "Skrivskyddad"
+    IDS_STATUSBAR_READONLY  "Skrivskyddad" // = "Skrivskyddad"
 END
 
 // MORE STATUS PANES
@@ -2096,7 +1995,7 @@ BEGIN
                             "Flytta vald fil till höger till anpassad katalog"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES
+// DIRECTORY DIFFING : COLUMN TITLES #1
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Filnamn"
@@ -2107,6 +2006,13 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Filtillägg"
     IDS_COLHDR_LSIZE        "Vänster storlek"
     IDS_COLHDR_RSIZE        "Höger storlek"
+    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
+    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+END
+
+// DIRECTORY DIFFING : COLUMN TITLES #2
+STRINGTABLE
+BEGIN
     IDS_COLHDR_LTIMEC       "Vänster skapaddatum"
     IDS_COLHDR_RTIMEC       "Höger skapaddatum"
     IDS_COLHDR_NEWER        "Nyare filer"
@@ -2117,7 +2023,7 @@ BEGIN
     IDS_COLHDR_RATTRIBUTES  "Höger attribut"
 END
 
-// DIRECTORY DIFFING : COLUMN TITLES (2)
+// DIRECTORY DIFFING : COLUMN TITLES #3
 STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Vänster kodning"
@@ -2152,7 +2058,7 @@ BEGIN
     IDS_STATUS_SELITEMS     "%1 objekt valda"
 END
 
-// DIRECTORY DIFFING : COLUMN DESCRIPTIONS
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Filnamn eller katalognamn."
@@ -2163,6 +2069,13 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Filsuffix."
     IDS_COLDESC_LSIZE       "Vänster fils storlek i bytes."
     IDS_COLDESC_RSIZE       "Höger fils storlek i bytes."
+    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
+    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+END
+
+// DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
+STRINGTABLE
+BEGIN
     IDS_COLDESC_LTIMEC      "Vänster sidas skapelsetid."
     IDS_COLDESC_RTIMEC      "Höger sidas skapelsetid."
     IDS_COLDESC_NEWER       "Visar vilken sida som har ett nyare ändringsdatum."
@@ -2714,7 +2627,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // Swedish resources
+#endif    // Swedish (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

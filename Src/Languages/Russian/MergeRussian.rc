@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -690,7 +692,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Основные"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Делать резервную копию оригинала",IDC_BACKUP_CHECK, "Button",
+    CONTROL         "&Делать резервную копию оригинала",IDC_BACKUP_CHECK,"Button",
                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "Автоматически &установить на первое отличие",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
@@ -1221,7 +1223,7 @@ BEGIN
     CTEXT           "",121,204,132,58,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "отсутств.",122,264,132,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Компоненты 7-Zip для самостоятельных операций:",IDC_STATIC,
-                    2,144,142,16
+                    2,144,142,10,SS_CENTERIMAGE
     CTEXT           "пусто",130,146,144,56,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "устарел",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN

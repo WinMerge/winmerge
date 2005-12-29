@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -180,7 +182,7 @@ BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
-        MENUITEM "Supporto per gli a&rchivi inattivo...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Supporto per gli a&rchivi inattivo...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
         MENUITEM "Infor&mazioni su WinMerge...", ID_APP_ABOUT
@@ -283,7 +285,7 @@ BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
-        MENUITEM "Supporto per gli a&rchivi inattivo...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Supporto per gli a&rchivi inattivo...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
         MENUITEM "Infor&mazioni su WinMerge...", ID_APP_ABOUT
@@ -435,7 +437,7 @@ BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
-        MENUITEM "Supporto per gli a&rchivi inattivo...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Supporto per gli a&rchivi inattivo...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
         MENUITEM "Infor&mazioni su WinMerge...", ID_APP_ABOUT

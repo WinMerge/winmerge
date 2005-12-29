@@ -69,7 +69,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -225,7 +227,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "工具栏(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "状态栏(&S)",                  ID_VIEW_STATUS_BAR
-        MENUITEM "对比结果窗(&R)",              ID_VIEW_DIR_STATEPANE
+        MENUITEM "Compa&re Statistics",              ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "语言(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -495,7 +497,7 @@ BEGIN
             MENUITEM "左侧(&L)...(%1个 共%2个)",    ID_DIR_ZIP_LEFT
             MENUITEM "右侧(&R)...(%1个 共%2个)",    ID_DIR_ZIP_RIGHT
             MENUITEM "两侧(&B)...(%1个 共%2个)",    ID_DIR_ZIP_BOTH
-            MENUITEM "两侧不同(&D)...(%1个 共%2个)",ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "两侧不同(&D)...(%1个 共%2个)", ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
         MENUITEM "刷新(&R)",                    ID_DIR_RESCAN
@@ -625,7 +627,7 @@ BEGIN
     PUSHBUTTON      "浏览(&B)...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "右侧(&R):",IDC_STATIC,13,40,40,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
-                    CBS_AUTOHSCROLL |WS_VSCROLL | WS_TABSTOP,
+                    CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "浏览(&W)...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "过滤器(&F):",IDC_STATIC,13,56,40,8
@@ -914,7 +916,7 @@ BEGIN
     CONTROL         "允许高级菜单(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     CONTROL         "忽略不足3秒的时间差别",
-                    IDC_IGNORE_SMALLTIMEDIFF,"Button", BS_AUTOCHECKBOX |
+                    IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,8,39,222,10
     LTEXT           "外部编辑器(&E)",IDC_STATIC,7,49,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,59,167,14,ES_AUTOHSCROLL
@@ -1829,7 +1831,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "第 %1 处不同(共 %2 处)"
     IDS_NO_DIFF_SEL_FMT     "共找到 %1 处不同"
     IDS_1_DIFF_FOUND        "找到 1 处不同"
-    IDS_STATUSBAR_READONLY  "只读"
+    IDS_STATUSBAR_READONLY  "只读" // = "Read Only"
 END
 
 // MORE STATUS PANES

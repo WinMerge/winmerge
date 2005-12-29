@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -725,7 +727,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "확인",IDOK,154,16,52,14
     PUSHBUTTON      "취소",IDCANCEL,154,33,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89, LBS_NOINTEGRALHEIGHT |
+    LISTBOX         IDC_LANGUAGE_LIST,5,16,141,89,LBS_NOINTEGRALHEIGHT |
                 WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "선택 가능한 언어:",IDC_STATIC,7,7,140,8
 END
@@ -2166,8 +2168,7 @@ BEGIN
     IDS_FILEWRITE_ERROR     "%1 파일에 쓸 수 없습니다."
     IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
 	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
-    IDS_CANNOT_CREATE_BINARYPATCH 
-                            "바이너리 파일에서는 patch 파일을 생성할 수 없습니다."
+    IDS_CANNOT_CREATE_BINARYPATCH  "바이너리 파일에서는 patch 파일을 생성할 수 없습니다."
     IDS_CANNOT_CREATE_DIRPATCH "디렉토리에서는 patch 파일을 생성할 수 없습니다."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 	IDS_FOLDER_NOTEXIST     "Folder does not exist."

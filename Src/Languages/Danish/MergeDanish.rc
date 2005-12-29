@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -180,7 +182,7 @@ BEGIN
         MENUITEM "&Indhold...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "&Understøttelse for arkivering afbrudt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Understøttelse for arkivering afbrudt...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -283,7 +285,7 @@ BEGIN
         MENUITEM "&Indhold...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "&Understøttelse for arkivering afbrudt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Understøttelse for arkivering afbrudt...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -435,7 +437,7 @@ BEGIN
         MENUITEM "&Indhold...\tF1",             ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "&Understøttelse for arkivering afbrudt...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Understøttelse for arkivering afbrudt...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -1827,7 +1829,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Forskel %1 af %2"
     IDS_NO_DIFF_SEL_FMT     "%1 forskelle fundet"
     IDS_1_DIFF_FOUND        "1 forskel fundet"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES

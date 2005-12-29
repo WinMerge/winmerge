@@ -15,7 +15,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Catalan resources
+// Catalan (Default) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CAT)
 #ifdef _WIN32
@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -180,7 +182,7 @@ BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
-        MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Llicència Pública de &GNU...", ID_HELP_GNULICENSE
         MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
@@ -283,7 +285,7 @@ BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
-        MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Llicència Pública de &GNU...", ID_HELP_GNULICENSE
         MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
@@ -1846,7 +1848,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Diferència %1 de %2"
     IDS_NO_DIFF_SEL_FMT     "S'han trobat %1 diferènces"
     IDS_1_DIFF_FOUND        "S'ha trobat una diferència"
-    IDS_STATUSBAR_READONLY  "RO"
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
@@ -2644,7 +2646,7 @@ BEGIN
 END
 
 // END STRINGS SYNCHRO
-#endif    // Catalan resources
+#endif    // Catalan (Default) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

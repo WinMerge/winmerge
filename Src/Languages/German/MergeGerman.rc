@@ -68,7 +68,9 @@ END
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
 
-// Load shared resources from Src\res
+// Normally translations share these icons from the English versions
+// (in Src\res)
+
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
 IDR_MERGETYPE           ICON                    "..\\..\\res\\MergeDoc.ico"
 IDR_DOC_FOLDERCMP       ICON                    "..\\..\\res\\MergeDir.ico"
@@ -217,7 +219,7 @@ BEGIN
         MENUITEM "Binär&dateien anzeigen",      ID_OPTIONS_SHOWBINARIES
         MENUITEM "Übersprun&gene Dateien anzeigen", ID_OPTIONS_SHOWSKIPPED
         MENUITEM SEPARATOR
-        MENUITEM "Verstec&kte Objekte anzeigen",ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM "Verstec&kte Objekte anzeigen",  ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
@@ -1827,7 +1829,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Unterschied %1 von %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Unterschiede gefunden"
     IDS_1_DIFF_FOUND        "1 Unterschied gefunden"
-    IDS_STATUSBAR_READONLY  "RO" // Read Only
+    IDS_STATUSBAR_READONLY  "RO" // = "Read Only"
 END
 
 // MORE STATUS PANES
