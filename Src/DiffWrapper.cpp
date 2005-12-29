@@ -1530,8 +1530,8 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 	// As we keep handles open on unpacked files, Transform() may not delete them.
 	// Unpacked files will be deleted at end of this function.
-	/*diffdata.m_sFilepath[0] = */filepathTransformed1 = filepathUnpacked1;
-	/*diffdata.m_sFilepath[1] = */filepathTransformed2 = filepathUnpacked2;
+	filepathTransformed1 = filepathUnpacked1;
+	filepathTransformed2 = filepathUnpacked2;
 	if (!OpenFiles(filepathTransformed1, filepathTransformed2))
 	{
 		di.errorDesc = _T("OpenFiles Error (before tranform)");
