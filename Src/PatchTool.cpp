@@ -89,9 +89,8 @@ int CPatchTool::CreatePatch()
 			CString filename2 = files.rfile;
 			
 			// Set up DiffWrapper
-			m_diffWrapper.SetCompareFiles(filename1, filename2, NOTEMPFILES);
 			m_diffWrapper.SetPrediffer(NULL);
-			bDiffSuccess = m_diffWrapper.RunFileDiff();
+			bDiffSuccess = m_diffWrapper.RunFileDiff(filename1, filename2, NOTEMPFILES);
 			m_diffWrapper.GetDiffStatus(&status);
 
 			if (!bDiffSuccess)

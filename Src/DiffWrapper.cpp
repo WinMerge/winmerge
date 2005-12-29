@@ -92,18 +92,6 @@ CDiffWrapper::~CDiffWrapper()
 }
 
 /**
- * @brief Sets files to compare
- */
-void CDiffWrapper::SetCompareFiles(CString file1, CString file2, ARETEMPFILES areTempFiles)
-{
-	m_sFile1 = file1;
-	m_sFile2 = file2;
-	m_sFile1.Replace('/', '\\');
-	m_sFile2.Replace('/', '\\');
-	m_areTempFiles = areTempFiles;
-}
-
-/**
  * @brief Sets filename of produced patch-file
  */
 void CDiffWrapper::SetPatchFile(CString file)
@@ -224,12 +212,15 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 /**
  * @brief Runs diff-engine
  */
-BOOL CDiffWrapper::RunFileDiff()
+BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMPFILES areTempFiles)
 {
+	filepath1.Replace('/', '\\');
+	filepath2.Replace('/', '\\');
+
 	BOOL bRet = TRUE;
 	USES_CONVERSION;
-	CString strFile1Temp = m_sFile1;
-	CString strFile2Temp = m_sFile2;
+	CString strFile1Temp = filepath1;
+	CString strFile2Temp = filepath2;
 	SwapToInternalSettings();
 
 	if (m_bUseDiffList)
@@ -241,7 +232,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	struct change *script = NULL;
 
 	// Are our working files overwritable (temp)?
-	BOOL bMayOverwrite = (m_areTempFiles == YESTEMPFILES);
+	BOOL bMayOverwrite = (areTempFiles == YESTEMPFILES);
 
 	// Do the preprocessing now, overwrite the temp files
 	// NOTE: FileTransform_UCS2ToUTF8() may create new temp
@@ -358,7 +349,7 @@ BOOL CDiffWrapper::RunFileDiff()
 			{
 				CString switches = FormatSwitchString();
 				_ftprintf(outfile, _T("diff%s %s %s\n"),
-					switches, m_sFile1, m_sFile2);
+					switches, filepath1, filepath2);
 			}
 
 			// Output patchfile
@@ -486,7 +477,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	diffdata.Close();
 
 	// Delete temp files transformation functions possibly created
-	if (m_sFile1.CompareNoCase(strFile1Temp) != 0)
+	if (filepath1.CompareNoCase(strFile1Temp) != 0)
 	{
 		if (!::DeleteFile(strFile1Temp))
 		{
@@ -495,7 +486,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		}
 		strFile1Temp.Empty();
 	}
-	if (m_sFile2.CompareNoCase(strFile2Temp) != 0)
+	if (filepath2.CompareNoCase(strFile2Temp) != 0)
 	{
 		if (!::DeleteFile(strFile2Temp))
 		{

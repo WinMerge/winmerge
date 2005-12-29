@@ -138,7 +138,6 @@ class CDiffWrapper
 public:
 	CDiffWrapper();
 	~CDiffWrapper();
-	void SetCompareFiles(CString file1, CString file2, ARETEMPFILES areTempFiles);
 	void SetPatchFile(CString file);
 	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options);
@@ -156,7 +155,7 @@ public:
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	BOOL GetCreatePatchFile() const;
 	BOOL SetCreatePatchFile(BOOL bCreatePatchFile);
-	BOOL RunFileDiff();
+	BOOL RunFileDiff(CString & filepath1, CString & filepath2, ARETEMPFILES areTempFiles);
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
@@ -181,9 +180,6 @@ private:
 	DIFFSETTINGS m_settings;
 	DIFFSETTINGS m_globalSettings;	// Temp for storing globals
 	DIFFSTATUS m_status;
-	CString m_sFile1;
-	CString m_sFile2;
-	ARETEMPFILES m_areTempFiles;
 	CString m_sPatchFile;
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;
