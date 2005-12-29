@@ -135,11 +135,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 		if (pCtxt->ShouldAbort())
 			return -1;
 
-		// In debug mode, send current status to debug window
-		if (i<leftDirs.GetSize())
-			TRACE(_T("Candidate left: leftDirs[i]=%s\n"), (LPCTSTR)leftDirs[i].name);
-		if (j<rightDirs.GetSize())
-			TRACE(_T("Candidate right: rightDirs[j]=%s\n"), (LPCTSTR)rightDirs[j].name);
+		// Comparing directories leftDirs[i].name to rightDirs[j].name
+
 		if (!bTreatDirAsEqual)
 		{
 			if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
@@ -213,11 +210,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 		if (pCtxt->ShouldAbort())
 			return -1;
 
-		// In debug mode, send current status to debug window
-		if (i<leftFiles.GetSize())
-			TRACE(_T("Candidate left: leftFiles[i]=%s\n"), (LPCTSTR)leftFiles[i].name);
-		if (j<rightFiles.GetSize())
-			TRACE(_T("Candidate right: rightFiles[j]=%s\n"), (LPCTSTR)rightFiles[j].name);
+
+		// Comparing file leftFiles[i].name to rightFiles[j].name
 		
 		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() ||
 				collstr(leftFiles[i].name, rightFiles[j].name, casesensitive) < 0))

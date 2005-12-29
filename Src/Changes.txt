@@ -10,6 +10,8 @@
   Src: DiffWrapper.cpp
  BUG: [ 1369646 ] Confusing half-commented lines in DiffFileData::prepAndCompa
   Src: DiffWrapper.cpp
+ BUG: [ 1392740 ] Clutter in debug output
+  Src: DirScan.cpp
 
 2005-12-28 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build
