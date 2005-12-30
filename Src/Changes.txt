@@ -2,6 +2,7 @@
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build
   Also introduces new error IDS_DIFFERENT_UNICODINGS and new
    global function IsUnicodeBuild.
+  (Post-application)
   Doing language synchronizations for this patch.
   Src: Merge.rc
    Languages\Brazilian\MergeBrazilian.rc
@@ -24,6 +25,11 @@
    Languages\Spanish\MergeSpanish.rc
    Languages\Swedish\MergeSwedish.rc
    Languages\Turkish\MergeTurkish.rc
+ PATCH: [ 1212368 ] Display correct paths in context patches
+  (Post-application)
+  Revising patched code, removing unneeded dispname added when patch applied
+  Src: DiffWrapper.cpp
+  diffutils\src: CONTEXT.C DIFF.H
 
 2005-12-29 Perry
  PATCH: [ 1390774 ] Rename CRegOptions to CRegOptionsMgr

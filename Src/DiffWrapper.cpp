@@ -867,8 +867,10 @@ bool DiffFileData::DoOpenFiles()
 	{
 		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
 		USES_CONVERSION;
-		m_inf[i].name = strdup(T2CA(m_FileLocation[i].filepath));
-		m_inf[i].dispname = strdup(T2CA(m_sDisplayFilepath[i]));
+		// Actual paths are m_FileLocation[i].filepath
+		// but these are often temporary files
+		// Displayable (original) paths are m_sDisplayFilepath[i]
+		m_inf[i].name = strdup(T2CA(m_sDisplayFilepath[i]));
 		if (m_inf[i].name == NULL)
 			return false;
 
