@@ -87,9 +87,10 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
 	void ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
-		DWORD & dwLeftFlags, DWORD & dwRightFlags);
+		DWORD & dwLeftFlags, DWORD & dwRightFlags, CString & prediffer);
 	void ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame);
 	BOOL LoadProjectFile(CStringArray & files, BOOL & recursive);
+	void ReloadMenu();
 
 
 

@@ -33,6 +33,9 @@ ProjectFile::ProjectFile()
 
 /** 
  * @brief Get message from exception into sError, or else throw it.
+ *
+ * If this successfully extracts the error description into the string, it simply returns FALSE
+ * If it fails to extract the error description, it rethrows the exception
  */
 static BOOL NTAPI False(CException *e, CString *sError)
 {

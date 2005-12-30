@@ -182,6 +182,8 @@ public:
 	virtual int GetEmptySubLines( int nLineIndex );
 	void RepaintLocationPane();
 	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);
+	bool SetPredifferByName(const CString & prediffer);
+	void SetPredifferByMenu(UINT nID);
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
@@ -207,6 +209,8 @@ protected:
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 	virtual void OnUpdateCaret();
 	BOOL MergeModeKeyDown(MSG* pMsg);
+	int FindPrediffer(const CString & prediffer) const;
+
 
 	// Generated message map functions
 protected:

@@ -47,7 +47,6 @@
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
 #include "ProjectFile.h"
-#include "CmdArgs.h"
 #include "MergeEditView.h"
 #include "LanguageSelect.h"
 
@@ -307,181 +306,6 @@ BOOL CMergeApp::InitInstance()
 	return TRUE;
 }
 
-void CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
-{
-	CStringArray files;
-	UINT nFiles=0;
-	BOOL recurse=FALSE;
-	files.SetSize(2);
-	DWORD dwLeftFlags = FFILEOPEN_NONE;
-	DWORD dwRightFlags = FFILEOPEN_NONE;
-
-	// Split commandline arguments into files & flags & recursive flag
-	ParseArgs(argc, argv, pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags);
-
-	if (LoadProjectFile(files, recurse))
-	{
-		if (!files[0].IsEmpty())
-			dwLeftFlags |= FFILEOPEN_PROJECT;
-		if (!files[1].IsEmpty())
-			dwRightFlags |= FFILEOPEN_PROJECT;
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], files[1],
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	else if (nFiles>2)
-	{
-		dwLeftFlags |= FFILEOPEN_CMDLINE;
-		dwRightFlags |= FFILEOPEN_CMDLINE;
-		pMainFrame->m_strSaveAsPath = files[2];
-		pMainFrame->DoFileOpen(files[0], files[1],
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	else if (nFiles>1)
-	{
-		dwLeftFlags |= FFILEOPEN_CMDLINE;
-		dwRightFlags |= FFILEOPEN_CMDLINE;
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], files[1],
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	else if (nFiles>0)
-	{
-		dwLeftFlags |= FFILEOPEN_CMDLINE;
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], _T(""),
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-}
-
-/// Process commandline arguments
-void CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
-		DWORD & dwLeftFlags, DWORD & dwRightFlags)
-{
-	CmdArgs cmdArgs(argc, argv);
-
-	// -? for help
-	if (cmdArgs.HasEmptySwitch(_T("?")))
-	{
-		CString s;
-		VERIFY(s.LoadString(IDS_QUICKHELP));
-		AfxMessageBox(s, MB_ICONINFORMATION);
-	}
-
-	// -r to compare recursively
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("r")))
-		recurse = TRUE;
-
-	// -e to allow closing with single esc press
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("e")))
-		pMainFrame->m_bEscShutdown = TRUE;
-
-	// -wl to open left path as read-only
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("wl")))
-		dwLeftFlags |= FFILEOPEN_READONLY;
-
-	// -wr to open right path as read-only
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("wr")))
-		dwRightFlags |= FFILEOPEN_READONLY;
-
-	// -ul to not add left path to MRU
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("ul")))
-		dwLeftFlags |= FFILEOPEN_NOMRU;
-
-	// -ur to not add right path to MRU
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("ur")))
-		dwRightFlags |= FFILEOPEN_NOMRU;
-
-	// -ub to add neither right nor left path to MRU
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("ub")))
-	{
-		dwLeftFlags |= FFILEOPEN_NOMRU;
-		dwRightFlags |= FFILEOPEN_NOMRU;
-	}
-
-	// -noninteractive to suppress message boxes & close with result code
-	if (cmdArgs.HasEmptySwitchInsensitive(_T("noninteractive")))
-	{
-		m_bNoninteractive = true;
-	}
-
-	// Can't get switches with arguments from cmdArgs
-	// because cmdArgs recognizes arguments using colons not spaces
-
-	for (int i = 1; i < argc; i++)
-	{
-		LPCTSTR pszParam = argv[i];
-		if (pszParam[0] == '-' || pszParam[0] == '/')
-		{
-			// remove flag specifier
-			++pszParam;
-
-
-			// -dl "desc" - description for left file
-			// Shown instead of filename
-			if (!_tcsicmp(pszParam, _T("dl")))
-			{
-				if (i < (argc - 1))
-				{
-					LPCTSTR pszDesc = argv[i+1];
-					pMainFrame->m_strLeftDesc = pszDesc;
-					i++;	// Just read next parameter
-				}
-			}
-
-			// -dr "desc" - description for left file
-			// Shown instead of filename
-			if (!_tcsicmp(pszParam, _T("dr")))
-			{
-				if (i < (argc - 1))
-				{
-					LPCTSTR pszDesc = argv[i+1];
-					pMainFrame->m_strRightDesc = pszDesc;
-					i++;	// Just read next parameter
-				}
-			}
-
-			// -f "mask" - file filter mask ("*.h *.cpp")
-			if (!_tcsicmp(pszParam, _T("f")))
-			{
-				if (i < (argc - 1))
-				{
-					CString sFilter = argv[i+1];
-					sFilter.TrimLeft();
-					sFilter.TrimRight();
-					m_globalFileFilter.SetFilter(sFilter);
-					i++;	// Just read next parameter
-				}
-			}
-		}
-		else
-		{
-			CString sParam = pszParam;
-			CString sFile = paths_GetLongPath(sParam);
-			files.SetAtGrow(nFiles, sFile);
-			nFiles++;
-		}
-	}
-
-	// if "compare file dir" make it "compare file dir\file"
-	if (nFiles >= 2)
-	{
-		PATH_EXISTENCE p1 = paths_DoesPathExist(files[0]);
-		PATH_EXISTENCE p2 = paths_DoesPathExist(files[1]);
-		if (p1 == IS_EXISTING_FILE && p2 == IS_EXISTING_DIR)
-		{
-			TCHAR fname[_MAX_PATH], fext[_MAX_PATH];
-			_tsplitpath(files[0], NULL, NULL, fname, fext);
-			if (files[1].Right(1) != _T('\\'))
-				files[1] += _T('\\');
-			files[1] = files[1] + fname + fext;
-		}
-	}
-
-
-	// Reload menus in case a satellite language dll was loaded above
-	m_pLangDlg->ReloadMenu();
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // CAboutDlg dialog used for App About
@@ -936,5 +760,14 @@ BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
 WORD CMergeApp::GetLangId() const
 {
 	return m_pLangDlg->GetLangId();
+}
+
+/**
+ * @brief Reload main menu(s) (for language change)
+ */
+void
+CMergeApp::	ReloadMenu()
+{
+	m_pLangDlg->ReloadMenu();
 }
 

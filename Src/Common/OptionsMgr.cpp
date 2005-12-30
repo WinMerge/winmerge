@@ -95,20 +95,83 @@ varprop::VariantValue COption::GetDefault() const
 }
 
 /**
+ * @brief Convert string to integer, or return false if not an integer number
+ */
+static bool
+getInt(const CString & str, int & val)
+{
+	if (str.IsEmpty()) return false;
+	for (int i=0; i<str.GetLength(); ++i)
+	{
+		TCHAR ch = str[i];
+		if (!_istascii(ch) || !_istdigit(ch)) return false;
+	}
+	val = _ttoi(str);
+	return true;
+}
+
+/**
+ * @brief Convert value to desired type (or return false)
+ */
+bool COption::CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType)
+{
+	if (value.getType() == varprop::VT_STRING)
+	{
+		CString svalue = value.getString();
+		switch(nType)
+		{
+		case varprop::VT_INT:
+			// Convert string to integer
+			{
+				int val=0;
+				if (!getInt(svalue, val)) return false;
+				value.SetInt(val);
+				return true;
+			}
+		case varprop::VT_BOOL:
+			// Convert string to boolean
+			{
+				if (svalue == _T("1") || !svalue.CompareNoCase(_T("Yes"))
+					|| !svalue.CompareNoCase(_T("True")))
+				{
+					value.SetBool(true);
+					return true;
+				}
+				if (svalue == _T("0") || !svalue.CompareNoCase(_T("No"))
+					|| !svalue.CompareNoCase(_T("False")))
+				{
+					value.SetBool(false);
+					return true;
+				}
+				return false;
+			}
+		}
+	}
+	return false;
+}
+
+/**
  * @brief Set option value.
  * 
  * Set new value for option. Type of value must match to type
  * set when option was initialised.
  * @sa COption::Init()
  */
-int COption::Set(varprop::VariantValue value)
+int COption::Set(varprop::VariantValue value, coercion_type coercion)
 {
 	int retVal = OPT_OK;
 
 	// Check that type matches
 	varprop::VT_TYPE inType = value.getType();
 	if (value.getType() != m_value.getType())
+	{
+		if (coercion == coerce)
+		{
+			if (CoerceType(value, m_value.getType()))
+				return Set(value, nocoerce);
+		}
 		return OPT_WRONG_TYPE;
+	}
 
 	switch (inType)
 	{
@@ -268,7 +331,7 @@ bool COptionsMgr::GetBool(CString name) const
 /**
  * @brief Set new value for option
  */
-int COptionsMgr::Set(CString name, varprop::VariantValue value)
+int COptionsMgr::Set(CString name, varprop::VariantValue value, COption::coercion_type coercion)
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -277,7 +340,7 @@ int COptionsMgr::Set(CString name, varprop::VariantValue value)
 	optionFound = m_optionsMap.Lookup(name, tmpOption);
 	if (optionFound == TRUE)
 	{
-		retVal = tmpOption.Set(value);
+		retVal = tmpOption.Set(value, coercion);
 		if (retVal == OPT_OK)
 			m_optionsMap.SetAt(name, tmpOption);
 	}
@@ -883,6 +946,21 @@ int CRegOptionsMgr::SaveOption(CString name, CString value)
 
 	val.SetString(value);
 	retVal = Set(name, val);
+	if (retVal == OPT_OK)
+		retVal = SaveOption(name);
+	return retVal;
+}
+
+/**
+ * @brief Set new string value for option, with coercion, and save option to registry
+ */
+int CRegOptionsMgr::CoerceAndSaveOption(CString name, CString value)
+{
+	varprop::VariantValue val;
+	int retVal = OPT_OK;
+
+	val.SetString(value);
+	retVal = Set(name, val, COption::coerce);
 	if (retVal == OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;

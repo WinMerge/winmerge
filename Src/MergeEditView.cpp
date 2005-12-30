@@ -2289,6 +2289,18 @@ void CMergeEditView::OnPrediffer(UINT nID )
 	CMergeDoc *pd = GetDocument();
 	ASSERT(pd);
 
+	SetPredifferByMenu(nID);
+	pd->FlushAndRescan(TRUE);
+}
+
+/**
+ * @brief Handler for all prediffer choices, including ID_PREDIFF_MANUAL, ID_PREDIFF_AUTO, ID_NO_PREDIFFER, & specific prediffers
+ */
+void CMergeEditView::SetPredifferByMenu(UINT nID )
+{
+	CMergeDoc *pd = GetDocument();
+	ASSERT(pd);
+
 	if (nID == ID_NO_PREDIFFER)
 	{
 		m_CurrentPredifferID = nID;
@@ -2329,7 +2341,48 @@ void CMergeEditView::OnPrediffer(UINT nID )
 
 	// update the prediffer and rescan
 	pd->SetPrediffer(&prediffer);
-	pd->FlushAndRescan(TRUE);
+}
+
+/**
+ * @brief Look through available prediffers, and return ID of requested one, if found
+ */
+int CMergeEditView::FindPrediffer(const CString & prediffer) const
+{
+	int i;
+	int ID = ID_PREDIFFERS_FIRST;
+
+	// Search file prediffers
+	PluginArray * piScriptArray = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"FILE_PREDIFF");
+	for (i=0; i<piScriptArray->GetSize(); ++i, ++ID)
+	{
+		PluginInfo & plugin = piScriptArray->ElementAt(i);
+		if (plugin.name == prediffer)
+			return ID;
+	}
+
+	// Search buffer prediffers
+	PluginArray * piScriptArray2 = 
+		CAllThreadsScripts::GetActiveSet()->GetAvailableScripts(L"BUFFER_PREDIFF");
+	for (i=0; i<piScriptArray2->GetSize(); ++i, ++ID)
+	{
+		PluginInfo & plugin = piScriptArray2->ElementAt(i);
+		if (plugin.name == prediffer)
+			return ID;
+	}
+	return -1;
+}
+
+
+/**
+ * @brief Look through available prediffers, and return ID of requested one, if found
+ */
+bool CMergeEditView::SetPredifferByName(const CString & prediffer)
+{
+	int id = FindPrediffer(prediffer);
+	if (id<0) return false;
+	SetPredifferByMenu(id);
+	return true;
 }
 
 /**

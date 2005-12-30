@@ -1256,7 +1256,8 @@ void CMainFrame::OnOptions()
  * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing
  */
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
-	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/)
+	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
+	CString prediffer /*=_T("")*/)
 {
 	// If the dirdoc we are supposed to use is busy doing a diff, bail out
 	if (IsComparing())
@@ -1456,6 +1457,12 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		
 		FileLocation filelocLeft(strLeft);
 		FileLocation filelocRight(strRight);
+
+		if (!prediffer.IsEmpty())
+		{
+			CString strBothFilenames = strLeft + _T("|") + strRight;
+			pDirDoc->SetPluginPrediffer(strBothFilenames, prediffer);
+		}
 
 		ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, bROLeft, bRORight,
 			&infoUnpacker);

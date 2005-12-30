@@ -29,6 +29,7 @@ class PluginManager : public IPluginInfos
 public:
 	~PluginManager();
 	void SetPrediffSetting(const CString & filteredFilenames, int newsetting);
+	void SetPrediffer(const CString & filteredFilenames, const CString & prediffer);
 
 private:
 	// Implement IPluginInfos

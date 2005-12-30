@@ -67,8 +67,9 @@ public:
 	BOOL TestAgainstRegList(LPCTSTR szTest);
 
 public:
+	CString     filepath;
 	LPDISPATCH  lpDispatch;
-	CString     name;
+	CString     name; // usually filename, except for special cases (like auto or no)
 	CString     filtersText;
 	CString     description;
 	BOOL        bUnicodeMode;

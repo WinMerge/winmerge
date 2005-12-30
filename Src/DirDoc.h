@@ -116,6 +116,7 @@ public:
 	void ApplyRightDisplayRoot(CString &);
 
 	void SetPluginPrediffSetting(const CString & filteredFilenames, int newsetting);
+	void SetPluginPrediffer(const CString & filteredFilenames, const CString & prediffer);
 	void FetchPluginInfos(const CString& filteredFilenames, 
 	                      PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 	BOOL IsShowable(const DIFFITEM & di);

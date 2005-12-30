@@ -509,6 +509,10 @@ SOURCE=.\Merge.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\MergeArgs.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\MergeDiffDetailView.cpp
 # End Source File
 # Begin Source File
@@ -1130,6 +1134,10 @@ SOURCE=.\markdown.h
 # Begin Source File
 
 SOURCE=.\Merge.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MergeArgs.h
 # End Source File
 # Begin Source File
 

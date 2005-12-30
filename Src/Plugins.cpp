@@ -512,6 +512,9 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	drv.m_lpDispatch = NULL;
 
 	plugin.lpDispatch = lpDispatch;
+
+	plugin.filepath = scriptletFilepath;
+
 	return 1;
 }
 

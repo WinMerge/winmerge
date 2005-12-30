@@ -282,8 +282,12 @@ BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL b
 	BOOL bHandled = FALSE;
 
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
-	if (plugin == NULL)
+	if (!plugin)
+	{
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
+		if (!plugin)
+			return FALSE;
+	}
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler.bWithFile)
 	{

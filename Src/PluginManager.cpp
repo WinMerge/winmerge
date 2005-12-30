@@ -58,3 +58,11 @@ void PluginManager::SetPrediffSetting(const CString & filteredFilenames, int new
 	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
 	infoPrediffer->Initialize(newsetting);
 }
+
+void PluginManager::SetPrediffer(const CString & filteredFilenames, const CString & prediffer)
+{
+	PackingInfo * infoUnpacker = 0;
+	PrediffingInfo * infoPrediffer = 0;
+	FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
+	infoPrediffer->pluginName = prediffer;
+}

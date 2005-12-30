@@ -52,12 +52,15 @@ enum
 class COption
 {
 public:
+	typedef enum { nocoerce, coerce } coercion_type;
+public:
 	int Init(CString name, varprop::VariantValue defaultVal);
 	varprop::VariantValue Get() const;
 	varprop::VariantValue GetDefault() const;
-	int Set(varprop::VariantValue value);
+	int Set(varprop::VariantValue value, coercion_type coercion=nocoerce);
 	int SetDefault(varprop::VariantValue defaultValue); 
 	void Reset();
+	bool CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType);
 
 private:
 	CString m_strName;
@@ -78,7 +81,7 @@ public:
 	void SetInt(const CString & name, int value) { SaveOption(name, value); }
 	bool GetBool(CString name) const;
 	void SetBool(const CString & name, bool value) { SaveOption(name, value); }
-	int Set(CString name, varprop::VariantValue value);
+	int Set(CString name, varprop::VariantValue value, COption::coercion_type coercion=COption::nocoerce);
 	int Reset(CString name);
 	int GetDefault(CString name, CString & value) const;
 	int GetDefault(CString name, DWORD & value) const;
@@ -93,6 +96,7 @@ public:
 	virtual int SaveOption(CString name) = 0;
 	virtual int SaveOption(CString name, varprop::VariantValue value) = 0;
 	virtual int SaveOption(CString name, CString value) = 0;
+	virtual int CoerceAndSaveOption(CString name, CString value) = 0;
 	virtual int SaveOption(CString name, int value) = 0;
 	virtual int SaveOption(CString name, bool value) = 0;
 	virtual int SaveOption(CString name, UINT value);
@@ -121,6 +125,7 @@ public:
 
 	virtual int SaveOption(CString name);
 	virtual int SaveOption(CString name, varprop::VariantValue value);
+	virtual int CoerceAndSaveOption(CString name, CString value);
 	virtual int SaveOption(CString name, CString value);
 	virtual int SaveOption(CString name, int value);
 	virtual int SaveOption(CString name, bool value);

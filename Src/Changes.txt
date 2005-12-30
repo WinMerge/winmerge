@@ -37,6 +37,14 @@
  PATCH: [ 1212368 ] Display correct paths in context patches
   Src: DiffWrapper.cpp DiffWrapper.h
   diffutils\src: CONTEXT.C DIFF.H
+ PATCH: [ 1390454 ] new commandline arguments (prediffer, ignorews...)
+  Src: ConfigLog.cpp DirDoc.cpp DirDoc.h FileTransform.cpp
+   MainFrm.cpp MainFrm.h Merge.cpp Merge.dsp Merge.h
+   MergeEditView.cpp MergeEditView.h
+   PluginManager.cpp PluginManager.h Plugins.cpp Plugins.h
+   ProjectFile.cpp
+  Src New files: MergeArgs.h MergeArgs.cpp
+  Src/Common: CmdArgs.cpp CmdArgs.h OptionsMgr.cpp OptionsMgr.h
 
 2005-12-28 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build

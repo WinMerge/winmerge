@@ -865,6 +865,14 @@ void CDirDoc::SetPluginPrediffSetting(const CString & filteredFilenames, int new
 }
 
 /**
+ * @brief Store a plugin setting for specified file comparison
+ */
+void CDirDoc::SetPluginPrediffer(const CString & filteredFilenames, const CString & prediffer)
+{
+	m_pluginman.SetPrediffer(filteredFilenames, prediffer);
+}
+
+/**
  * @brief Retrieve any cached plugin info for specified comparison
  */
 void CDirDoc::FetchPluginInfos(const CString& filteredFilenames, 
