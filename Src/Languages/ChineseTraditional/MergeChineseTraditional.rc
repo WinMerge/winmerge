@@ -2122,8 +2122,14 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "這些檔案使用不同的換行類型。\n\n你要處理所有換行類型相等於這個比較嗎？\n\n注意： 如果你要處理所有換行類型相等, 設定選項 '忽略換行不同..' 在選項對話盒(可用於編輯/選項) 的比較標籤。"
     IDS_SUGGEST_PRESERVEEOL "檔案結束是 (DOS/UNIX/MAC) 不同類型在檔案 '%1'。\n 以目前選項， 它們會統一到主類型。\n 你要變更選項並保留不同的檔案結束嗎 ？"
     IDS_PREDIFFER_ERROR      "一個錯誤發生於前置不同檔案 '%1' 以外掛 '%2'。 前置不同無法再套用。"
-    IDS_SUGGEST_IGNORECODEPAGE "找到不同碼頁在左邊 (cp%d) 和右邊 (cp%d) 檔案。 \n以它的碼頁顯示每一檔案會有較佳顯示但對合併/複製會有危險。\n你要強迫兩邊使用預設的碼頁嗎 (建議使用)？"
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+END
+
+// Encoding issues
+STRINGTABLE
+BEGIN
+    IDS_SUGGEST_IGNORECODEPAGE "找到不同碼頁在左邊 (cp%d) 和右邊 (cp%d) 檔案。 \n以它的碼頁顯示每一檔案會有較佳顯示但對合併/複製會有危險。\n你要強迫兩邊使用預設的碼頁嗎 (建議使用)？"
+    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 END
 
 // EDITOR : SHOW LINE DIFF

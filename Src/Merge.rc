@@ -437,7 +437,7 @@ BEGIN
         MENUITEM "&Contents...\tF1",            ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "A&rchive Support disabled...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&About WinMerge...",          ID_APP_ABOUT

@@ -2127,8 +2127,14 @@ BEGIN
 
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
-    IDS_SUGGEST_IGNORECODEPAGE "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページをデフォルトコードページとして扱いますが、よろしいですか(推奨)?"
     IDS_INVALID_DIRECTORY   "選択されたフォルダは無効です。"
+END
+
+// Encoding issues
+STRINGTABLE
+BEGIN
+    IDS_SUGGEST_IGNORECODEPAGE "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページをデフォルトコードページとして扱いますが、よろしいですか(推奨)?"
+    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 END
 
 // EDITOR : SHOW LINE DIFF

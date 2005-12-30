@@ -437,7 +437,7 @@ BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
-        MENUITEM "Suport d'&arxivament inhabilitat...",ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Llicència Pública de &GNU...", ID_HELP_GNULICENSE
         MENUITEM "&Quant al WinMerge...",       ID_APP_ABOUT
@@ -2146,8 +2146,14 @@ BEGIN
                             menú Edita/Opcions...)."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
-    IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
     IDS_INVALID_DIRECTORY   "La carpeta seleccionada és invàlida."
+END
+
+// Encoding issues
+STRINGTABLE
+BEGIN
+    IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
+    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 END
 
 // EDITOR : SHOW LINE DIFF

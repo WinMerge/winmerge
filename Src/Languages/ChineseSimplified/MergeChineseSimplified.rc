@@ -2124,8 +2124,14 @@ BEGIN
     IDS_SUGGEST_IGNOREEOL   "文件含有不同的换行符\n\n您要在此次对比中忽略换行符的差别吗？\n\n提示：如果您总是忽略换行符的不同，请在“编辑/选项”的“对比”页中勾选“忽略换行符差别”。"
     IDS_SUGGEST_PRESERVEEOL "在文件“%1”中含有不同的换行符(DOS/UNIX/MAC)。\n对应于当前的选项，它们将统一成为一种格式。\n您要改变选项设置以保留原始的不同的换行符吗？"
     IDS_PREDIFFER_ERROR     "在使用插件“%2”对文件“%1”进行预对比时发生了一个错误。预对比将不会被采用。"
-    IDS_SUGGEST_IGNORECODEPAGE "左右两侧为不同代码页的文件(左侧为cp%d，右侧为cp%d)。\n分别以不同代码页显示将会有较好的效果，但是合并/复制会有危险。\n您要以Wiondows默认的代码页显示两个文件吗(推荐)？"
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+END
+
+// Encoding issues
+STRINGTABLE
+BEGIN
+    IDS_SUGGEST_IGNORECODEPAGE "左右两侧为不同代码页的文件(左侧为cp%d，右侧为cp%d)。\n分别以不同代码页显示将会有较好的效果，但是合并/复制会有危险。\n您要以Wiondows默认的代码页显示两个文件吗(推荐)？"
+    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 END
 
 // EDITOR : SHOW LINE DIFF

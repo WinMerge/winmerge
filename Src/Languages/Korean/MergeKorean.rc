@@ -2129,8 +2129,14 @@ BEGIN
                             (available under Edit/Options)."
     IDS_SUGGEST_PRESERVEEOL "'%1'은 서로 다른 EOL(DOS/UNIX/MAC)로 작성되었습니다.\n 현재 옵션으로는 모든 EOL이 하나로 바뀌게 됩니다.\n 원본 EOL을 유지하기 원하십니까 ?"
     IDS_PREDIFFER_ERROR     "'%2' 플러그인으로 '%1'을 prediff하는 중 에러가 발생했습니다. 더 이상 prediff가 수행되지 않습니다."
-    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+END
+
+// Encoding issues
+STRINGTABLE
+BEGIN
+    IDS_SUGGEST_IGNORECODEPAGE "Different codepages found in left (cp%d) and right (cp%d) files. \nDisplaying each file in its codepage will give a better display but merging/copying will be dangerous.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 END
 
 // EDITOR : SHOW LINE DIFF

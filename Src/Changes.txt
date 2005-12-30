@@ -1,3 +1,30 @@
+2005-12-30 Perry
+ PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build
+  Also introduces new error IDS_DIFFERENT_UNICODINGS and new
+   global function IsUnicodeBuild.
+  Doing language synchronizations for this patch.
+  Src: Merge.rc
+   Languages\Brazilian\MergeBrazilian.rc
+   Languages\Bulgarian\MergeBulgarian.rc
+   Languages\Catalan\MergeCatalan.rc
+   Languages\ChineseSimplified\MergeChineseSimplified.rc
+   Languages\ChineseTraditional\MergeChineseTraditional.rc
+   Languages\Czech\MergeCzech.rc
+   Languages\Danish\MergeDanish.rc
+   Languages\Dutch\MergeDutch.rc
+   Languages\German\MergeGerman.rc
+   Languages\Hungarian\MergeHungarian.rc
+   Languages\Italian\MergeItalian.rc
+   Languages\Japanese\MergeJapanese.rc
+   Languages\Korean\MergeKorean.rc
+   Languages\Norwegian\MergeNorwegian.rc
+   Languages\Polish\MergePolish.rc
+   Languages\Russian\MergeRussian.rc
+   Languages\Slovak\MergeSlovak.rc
+   Languages\Spanish\MergeSpanish.rc
+   Languages\Swedish\MergeSwedish.rc
+   Languages\Turkish\MergeTurkish.rc
+
 2005-12-29 Perry
  PATCH: [ 1390774 ] Rename CRegOptions to CRegOptionsMgr
   Docs\Developers: Options.html
