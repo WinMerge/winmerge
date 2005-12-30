@@ -32,6 +32,9 @@
   diffutils\src: CONTEXT.C DIFF.H
  PATCH: [ 1393239 ] Split functions out of RunFileDiff
   Src: DiffWrapper.cpp DiffWrapper.h
+ PATCH: [ 1392229 ] Fix Column item handling
+  Src: DirView.h DirViewColHandler.cpp DirViewColItems.cpp
+   DirViewColItems.h
 
 2005-12-29 Perry
  PATCH: [ 1390774 ] Rename CRegOptions to CRegOptionsMgr

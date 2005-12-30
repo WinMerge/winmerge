@@ -524,7 +524,7 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
  *  then custom get & custom sort functions (NULL for generic properties)
  *  then default order (or -1 if not shown by default), then whether to start ascending
  */
-DirColInfo g_cols[] =
+static DirColInfo f_cols[] =
 {
 	{ _T("Name"), IDS_COLHDR_FILENAME, IDS_COLDESC_FILENAME, &ColFileNameGet, &ColFileNameSort, 0, 0, true, LVCFMT_LEFT },
 	{ _T("Path"), IDS_COLHDR_DIR, IDS_COLDESC_DIR, &ColPathGet, &ColPathSort, 0, 1, true, LVCFMT_LEFT },
@@ -554,24 +554,95 @@ DirColInfo g_cols[] =
 /**
  * @brief Count of all known columns
  */
-int g_ncols = countof(g_cols);
+int g_ncols = countof(f_cols);
 
 /**
  * @brief Registry base value name for saving/loading info for this column
  */
-CString CDirView::GetColRegValueNameBase(int col) const
+CString
+CDirView::GetColRegValueNameBase(int col) const
 {
-	ASSERT(col>=0 && col<countof(g_cols));
+	ASSERT(col>=0 && col<countof(f_cols));
 	CString regName;
-	regName.Format(_T("WDirHdr_%s"), g_cols[col].regName);
+	regName.Format(_T("WDirHdr_%s"), f_cols[col].regName);
 	return regName;
 }
 
 /**
  * @brief Get default physical order for specified logical column
  */
-int CDirView::GetColDefaultOrder(int col) const
+int
+CDirView::GetColDefaultOrder(int col) const
 {
-	ASSERT(col>=0 && col<countof(g_cols));
-	return g_cols[col].physicalIndex;
+	ASSERT(col>=0 && col<countof(f_cols));
+	return f_cols[col].physicalIndex;
+}
+
+/**
+ * @brief Return the info about the specified physical column
+ */
+const DirColInfo *
+CDirView::DirViewColItems_GetDirColInfo(int col) const
+{
+	if (col < 0 || col >= sizeof(f_cols)/sizeof(f_cols[0]))
+	{
+		ASSERT(0); // fix caller, should not ask for nonexistent columns
+		return 0;
+	}
+	return &f_cols[col];
+}
+
+/**
+ * @brief Check if specified physical column has specified resource id name
+ */
+static bool
+IsColById(int col, int id)
+{
+	if (col < 0 || col >= sizeof(f_cols)/sizeof(f_cols[0]))
+	{
+		ASSERT(0); // fix caller, should not ask for nonexistent columns
+		return false;
+	}
+	return f_cols[col].idName == id;
+}
+
+/**
+ * @brief Is specified physical column the name column?
+ */
+bool
+CDirView::IsColName(int col) const
+{
+	return IsColById(col, IDS_COLHDR_FILENAME);
+}
+/**
+ * @brief Is specified physical column the left modification time column?
+ */
+bool
+CDirView::IsColLmTime(int col) const
+{
+	return IsColById(col, IDS_COLHDR_LTIMEM);
+}
+/**
+ * @brief Is specified physical column the right modification time column?
+ */
+bool
+CDirView::IsColRmTime(int col) const
+{
+	return IsColById(col, IDS_COLHDR_RTIMEM);
+}
+/**
+ * @brief Is specified physical column the full status (result) column?
+ */
+bool
+CDirView::IsColStatus(int col) const
+{
+	return IsColById(col, IDS_COLHDR_RESULT);
+}
+/**
+ * @brief Is specified physical column the full status (result) column?
+ */
+bool
+CDirView::IsColStatusAbbr(int col) const
+{
+	return IsColById(col, IDS_COLHDR_RESULT_ABBR);
 }

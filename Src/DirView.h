@@ -46,6 +46,7 @@ class PackingInfo;
 class PathContext;
 class DirCompProgressDlg;
 class CompareStats;
+struct DirColInfo;
 
 struct ViewCustomFlags
 {
@@ -191,7 +192,7 @@ private:
 // End DirActions.cpp
 	void ReflectGetdispinfo(NMLVDISPINFO *);
 
-// Implementation in DirViewCols.cpp
+// Implementation in DirViewColHandler.cpp
 public:
 	void UpdateColumnNames();
 	void SetColAlignments();
@@ -224,9 +225,21 @@ private:
 	void ResetColumnOrdering();
 	void MoveColumn(int psrc, int pdest);
 	CString GetColRegValueNameBase(int col) const;
-	int GetColDefaultOrder(int col) const;
-private:
+	CString ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di);
+	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi) const;
 // End DirViewCols.cpp
+
+// Implementation in DirViewColItems.cpp
+	int GetColDefaultOrder(int col) const;
+	const DirColInfo * DirViewColItems_GetDirColInfo(int col) const;
+	bool IsColName(int col) const;
+	bool IsColLmTime(int col) const;
+	bool IsColRmTime(int col) const;
+	bool IsColStatus(int col) const;
+	bool IsColStatusAbbr(int col) const;
+// End DirViewColItems.cpp
+
+private:
 
 // Overrides
 	// ClassWizard generated virtual function overrides
