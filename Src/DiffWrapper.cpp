@@ -59,6 +59,7 @@ static const int WMCMPBUFF = 32 * KILO;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
 static inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd);
+static void FreeDiffUtilsScript(struct change * & script);
 
 /**
  * @brief Default constructor
@@ -328,149 +329,17 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	// Create patch file
 	if (!m_status.bBinaries && m_bCreatePatchFile)
 	{
-		outfile = NULL;
-		if (!m_sPatchFile.IsEmpty())
-		{
-			if (m_bAppendFiles)
-				outfile = _tfopen(m_sPatchFile, _T("a+"));
-			else
-				outfile = _tfopen(m_sPatchFile, _T("w+"));
-		}
-
-		if (outfile != NULL)
-		{
-			// Print "command line"
-			if (m_bAddCmdLine)
-			{
-				CString switches = FormatSwitchString();
-				_ftprintf(outfile, _T("diff%s %s %s\n"),
-					switches, filepath1, filepath2);
-			}
-
-			// Output patchfile
-			switch (output_style)
-			{
-			case OUTPUT_CONTEXT:
-				print_context_header(inf, 0);
-				print_context_script(script, 0);
-				break;
-			case OUTPUT_UNIFIED:
-				print_context_header(inf, 1);
-				print_context_script(script, 1);
-				break;
-			case OUTPUT_ED:
-				print_ed_script(script);
-				break;
-			case OUTPUT_FORWARD_ED:
-				pr_forward_ed_script(script);
-				break;
-			case OUTPUT_RCS:
-				print_rcs_script(script);
-				break;
-			case OUTPUT_NORMAL:
-				print_normal_script(script);
-				break;
-			case OUTPUT_IFDEF:
-				print_ifdef_script(script);
-				break;
-			case OUTPUT_SDIFF:
-				print_sdiff_script(script);
-			}
-			
-			fclose(outfile);
-			outfile = NULL;
-		}
-		else
-			m_status.bPatchFileFailed = TRUE;
+		WritePatchFile(script, filepath1, filepath2, inf);
 	}
 	
 	// Go through diffs adding them to WinMerge's diff list
 	// This is done on every WinMerge's doc rescan!
 	if (!m_status.bBinaries && m_bUseDiffList)
 	{
-		struct change *next = script;
-		struct change *thisob=0, *end=0;
-		
-		while (next)
-		{
-			/* Find a set of changes that belong together.  */
-			thisob = next;
-			end = find_change(next);
-			
-			/* Disconnect them from the rest of the changes,
-			making them a hunk, and remember the rest for next iteration.  */
-			next = end->link;
-			end->link = 0;
-#ifdef DEBUG
-			debug_script(thisob);
-#endif
-
-			/* Print thisob hunk.  */
-			//(*printfun) (thisob);
-			{					
-				/* Determine range of line numbers involved in each file.  */
-				int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
-				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
-				int op=0;
-				if (deletes || inserts || thisob->trivial)
-				{
-					if (deletes && inserts)
-						op = OP_DIFF;
-					else if (deletes)
-						op = OP_LEFTONLY;
-					else if (inserts)
-						op = OP_RIGHTONLY;
-					else
-						op = OP_TRIVIAL;
-					
-					/* Print the lines that the first file has.  */
-					int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
-					translate_range(&inf[0], first0, last0, &trans_a0, &trans_b0);
-					translate_range(&inf[1], first1, last1, &trans_a1, &trans_b1);
-
-					// Store information about these blocks in moved line info
-					if (thisob->match0>=0)
-					{
-						ASSERT(thisob->inserted);
-						for (int i=0; i<thisob->inserted; ++i)
-						{
-							int line0 = i+thisob->match0 + (trans_a0-first0-1);
-							int line1 = i+thisob->line1 + (trans_a1-first1-1);
-							m_moved1[line1]=line0;
-						}
-					}
-					if (thisob->match1>=0)
-					{
-						ASSERT(thisob->deleted);
-						for (int i=0; i<thisob->deleted; ++i)
-						{
-							int line0 = i+thisob->line0 + (trans_a0-first0-1);
-							int line1 = i+thisob->match1 + (trans_a1-first1-1);
-							m_moved0[line0]=line1;
-						}
-					}
-
-					AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
-					TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
-						trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
-				}
-			}
-			
-			/* Reconnect the script so it will all be freed properly.  */
-			end->link = next;
-		}
+		LoadWinMergeDiffsFromDiffUtilsScript(script, diffdata.m_inf);
 	}			
 
-	if (script)
-	{
-		struct change *e=0, *p=0;
-		// cleanup the script
-		for (e = script; e; e = p)
-		{
-			p = e->link;
-			free(e);
-		}
-	}
+	FreeDiffUtilsScript(script);
 
 
 	// Done with diffutils filedata
@@ -1833,4 +1702,161 @@ inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd)
 			return TRUE;
 	}
 	return FALSE;
+}
+
+/**
+ * @brief Free script (the diffutils linked list of differences)
+ */
+static void
+FreeDiffUtilsScript(struct change * & script)
+{
+	if (!script) return;
+	struct change *e=0, *p=0;
+	// cleanup the script
+	for (e = script; e; e = p)
+	{
+		p = e->link;
+		free(e);
+	}
+	script = 0;
+}
+
+/**
+ * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
+ */
+void
+CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf)
+{
+	struct change *next = script;
+	struct change *thisob=0, *end=0;
+	
+	while (next)
+	{
+		/* Find a set of changes that belong together.  */
+		thisob = next;
+		end = find_change(next);
+		
+		/* Disconnect them from the rest of the changes,
+		making them a hunk, and remember the rest for next iteration.  */
+		next = end->link;
+		end->link = 0;
+#ifdef DEBUG
+		debug_script(thisob);
+#endif
+
+		/* Print thisob hunk.  */
+		//(*printfun) (thisob);
+		{					
+			/* Determine range of line numbers involved in each file.  */
+			int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
+			analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
+			int op=0;
+			if (deletes || inserts || thisob->trivial)
+			{
+				if (deletes && inserts)
+					op = OP_DIFF;
+				else if (deletes)
+					op = OP_LEFTONLY;
+				else if (inserts)
+					op = OP_RIGHTONLY;
+				else
+					op = OP_TRIVIAL;
+				
+				/* Print the lines that the first file has.  */
+				int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
+				translate_range(&inf[0], first0, last0, &trans_a0, &trans_b0);
+				translate_range(&inf[1], first1, last1, &trans_a1, &trans_b1);
+
+				// Store information about these blocks in moved line info
+				if (thisob->match0>=0)
+				{
+					ASSERT(thisob->inserted);
+					for (int i=0; i<thisob->inserted; ++i)
+					{
+						int line0 = i+thisob->match0 + (trans_a0-first0-1);
+						int line1 = i+thisob->line1 + (trans_a1-first1-1);
+						m_moved1[line1]=line0;
+					}
+				}
+				if (thisob->match1>=0)
+				{
+					ASSERT(thisob->deleted);
+					for (int i=0; i<thisob->deleted; ++i)
+					{
+						int line0 = i+thisob->line0 + (trans_a0-first0-1);
+						int line1 = i+thisob->match1 + (trans_a1-first1-1);
+						m_moved0[line0]=line1;
+					}
+				}
+
+				AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
+				TRACE(_T("left=%d,%d   right=%d,%d   op=%d\n"),
+					trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, op);
+			}
+		}
+		
+		/* Reconnect the script so it will all be freed properly.  */
+		end->link = next;
+	}
+}
+
+/**
+ * @brief Write out a patch file of the differences, using already computed diffutils script
+ */
+void
+CDiffWrapper::WritePatchFile(struct change * script, const CString & filepath1, const CString & filepath2, file_data * inf)
+{
+	outfile = NULL;
+	if (!m_sPatchFile.IsEmpty())
+	{
+		LPCTSTR mode = (m_bAppendFiles ? _T("a+") : _T("w+"));
+		outfile = _tfopen(m_sPatchFile, mode);
+	}
+
+	if (!outfile)
+	{
+		m_status.bPatchFileFailed = TRUE;
+		return;
+	}
+
+	// Print "command line"
+	if (m_bAddCmdLine)
+	{
+		CString switches = FormatSwitchString();
+		_ftprintf(outfile, _T("diff%s %s %s\n"),
+			switches, filepath1, filepath2);
+	}
+
+	// Output patchfile
+	switch (output_style)
+	{
+	case OUTPUT_CONTEXT:
+		print_context_header(inf, 0);
+		print_context_script(script, 0);
+		break;
+	case OUTPUT_UNIFIED:
+		print_context_header(inf, 1);
+		print_context_script(script, 1);
+		break;
+	case OUTPUT_ED:
+		print_ed_script(script);
+		break;
+	case OUTPUT_FORWARD_ED:
+		pr_forward_ed_script(script);
+		break;
+	case OUTPUT_RCS:
+		print_rcs_script(script);
+		break;
+	case OUTPUT_NORMAL:
+		print_normal_script(script);
+		break;
+	case OUTPUT_IFDEF:
+		print_ifdef_script(script);
+		break;
+	case OUTPUT_SDIFF:
+		print_sdiff_script(script);
+	}
+	
+	fclose(outfile);
+	outfile = NULL;
 }

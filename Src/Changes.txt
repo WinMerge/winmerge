@@ -30,6 +30,8 @@
   Revising patched code, removing unneeded dispname added when patch applied
   Src: DiffWrapper.cpp
   diffutils\src: CONTEXT.C DIFF.H
+ PATCH: [ 1393239 ] Split functions out of RunFileDiff
+  Src: DiffWrapper.cpp DiffWrapper.h
 
 2005-12-29 Perry
  PATCH: [ 1390774 ] Rename CRegOptions to CRegOptionsMgr

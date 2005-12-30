@@ -35,6 +35,7 @@ class PrediffingInfo;
 struct DIFFRANGE;
 class DiffList;
 struct DiffFileData;
+struct file_data;
 
 /**
  * @brief Different compare methods
@@ -175,6 +176,8 @@ protected:
 	CString FormatSwitchString();
 	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status);
+	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
+	void WritePatchFile(struct change * script, const CString & filepath1, const CString & filepath2, file_data * inf);
 
 private:
 	DIFFSETTINGS m_settings;
@@ -230,27 +233,14 @@ struct DiffFileData
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 	BOOL Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, BOOL bMovedBlocks);
-
-	file_data * m_inf;
-	bool m_used; // whether m_inf has real data
-/*
-	struct FilepathWithEncoding : CString
-	{
-		int unicoding;
-		int codepage;
-		FilepathWithEncoding():unicoding(0),codepage(0)
-		{
-		}
-		bool Transform(const CString & filepath, CString & filepathTransformed,
-			const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
-		void GuessEncoding(const char **data, int count);
-		void AssignPath(const CString & sFilePath) { CString::operator=(sFilePath); }
-	}
-*/
-	FileLocation m_FileLocation[2];
 	bool Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
 		const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
 	void Filepath_GuessEncoding(FileLocation & fpenc, const char **data, int count);
+
+// Data (public)
+	file_data * m_inf;
+	bool m_used; // whether m_inf has real data
+	FileLocation m_FileLocation[2];
 
 	CString m_sDisplayFilepath[2];
 	int m_ndiffs;
