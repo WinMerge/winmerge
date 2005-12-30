@@ -222,6 +222,7 @@ struct DiffFileData
 	bool OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2);
 	void Reset();
 	void Close() { Reset(); }
+	void SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2);
 
 	int diffutils_compare_files(int depth);
 	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
@@ -251,6 +252,7 @@ struct DiffFileData
 		const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
 	void Filepath_GuessEncoding(FileLocation & fpenc, const char **data, int count);
 
+	CString m_sDisplayFilepath[2];
 	int m_ndiffs;
 	int m_ntrivialdiffs;
 	struct UniFileBom // detect unicode file and quess encoding

@@ -34,6 +34,9 @@
    Languages\Spanish\MergeSpanish.rc
    Languages\Swedish\MergeSwedish.rc
    Languages\Turkish\MergeTurkish.rc
+ PATCH: [ 1212368 ] Display correct paths in context patches
+  Src: DiffWrapper.cpp DiffWrapper.h
+  diffutils\src: CONTEXT.C DIFF.H
 
 2005-12-28 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build

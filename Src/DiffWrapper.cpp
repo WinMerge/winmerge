@@ -270,6 +270,7 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	FileTransform_UCS2ToUTF8(strFile2Temp, bMayOverwrite);
 
 	DiffFileData diffdata;
+	diffdata.SetDisplayFilepaths(filepath1, filepath2); // store true names for diff utils patch file
 	// This opens & fstats both files (if it succeeds)
 	if (!diffdata.OpenFiles(strFile1Temp, strFile2Temp))
 	{
@@ -849,6 +850,14 @@ bool DiffFileData::OpenFiles(LPCTSTR szFilepath1, LPCTSTR szFilepath2)
 	return b;
 }
 
+/** @brief stash away true names for display, before opening files */
+void DiffFileData::SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2)
+{
+	m_sDisplayFilepath[0] = szTrueFilepath1;
+	m_sDisplayFilepath[1] = szTrueFilepath2;
+}
+
+
 /** @brief Open file descriptors in the inf structure (return false if failure) */
 bool DiffFileData::DoOpenFiles()
 {
@@ -859,6 +868,7 @@ bool DiffFileData::DoOpenFiles()
 		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
 		USES_CONVERSION;
 		m_inf[i].name = strdup(T2CA(m_FileLocation[i].filepath));
+		m_inf[i].dispname = strdup(T2CA(m_sDisplayFilepath[i]));
 		if (m_inf[i].name == NULL)
 			return false;
 
@@ -1532,6 +1542,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	// Unpacked files will be deleted at end of this function.
 	filepathTransformed1 = filepathUnpacked1;
 	filepathTransformed2 = filepathUnpacked2;
+	SetDisplayFilepaths(filepath1, filepath2); // store true names for diff utils patch file
 	if (!OpenFiles(filepathTransformed1, filepathTransformed2))
 	{
 		di.errorDesc = _T("OpenFiles Error (before tranform)");

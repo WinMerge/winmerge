@@ -48,12 +48,13 @@ print_context_label (mark, inf, label)
      struct file_data *inf;
      char const *label;
 {
+  const char * fname = inf->dispname ? inf->dispname : inf->name;
   if (label)
     fprintf (outfile, "%s %s\n", mark, label);
   else
     /* See Posix.2 section 4.17.6.1.4 for this format.  */
     fprintf (outfile, "%s %s\t%s",
-	     mark, inf->name, ctime (&inf->stat.st_mtime));
+	     mark, fname, ctime (&inf->stat.st_mtime));
 }
 
 /* Print a header for a context diff, with the file names and dates.  */
