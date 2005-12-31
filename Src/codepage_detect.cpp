@@ -21,6 +21,85 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Prefixes to handle when searching for codepage names
+ */
+static LPCTSTR f_wincp_prefixes[] =
+{
+	_T("WINDOWS-")
+	, _T("WINDOWS")
+	, _T("CP")
+	, _T("CP-")
+	, _T("MSDOS")
+	, _T("MSDOS-")
+};
+
+/**
+ * @brief Is string non-empty and comprised entirely of numbers?
+ */
+static bool
+isNumeric(const CString & str)
+{
+	if (str.IsEmpty())
+		return false;
+	for (int i=0; i<str.GetLength(); ++i)
+	{
+		TCHAR ch = str[i];
+		if (!_istascii(ch) || !_istdigit(ch))
+			return false;
+	}
+	return true;
+}
+
+/**
+ * @brief Try to to match codepage name from codepages module, & watch for f_wincp_prefixes aliases
+ */
+static int
+FindEncodingIdFromNameOrAlias(CString encodingName)
+{
+	USES_CONVERSION;
+
+	// Try name as given
+	unsigned encodingId = GetEncodingIdFromName(T2A(encodingName));
+	if (encodingId) return encodingId;
+
+	// Handle purely numeric values (codepages)
+	if (isNumeric(encodingName))
+	{
+		unsigned codepage = _ttoi(encodingName);
+		if (codepage)
+			encodingId = GetEncodingIdFromCodePage(codepage);
+		return encodingId;
+	}
+
+	for (int i=0; i<sizeof(f_wincp_prefixes)/sizeof(f_wincp_prefixes[0]); ++i)
+	{
+		// prefix is, eg, "WINDOWS-"
+		CString prefix = f_wincp_prefixes[i];
+		prefix.MakeUpper();
+		// check if encodingName starts with prefix
+		if (encodingName.GetLength() > prefix.GetLength())
+		{
+			CString encpref = encodingName.Left(prefix.GetLength());
+			encpref.MakeUpper();
+			if (prefix == encpref)
+			{
+				// encoding is, eg, "windows-1251"
+				CString remainder = encodingName.Mid(prefix.GetLength());
+				// remainder is, eg, "1251"
+				if (isNumeric(remainder))
+				{
+					unsigned codepage = _ttoi(remainder);
+					if (codepage)
+						encodingId = GetEncodingIdFromCodePage(codepage);
+					return encodingId;
+				}
+			}
+		}
+	}
+
+	return 0; // failed
+}
 
 /**
  * @brief Parser for HTML files to find encoding information
@@ -46,14 +125,7 @@ static unsigned demoGuessEncoding_html(const char *src, size_t len)
 					{
 						pchValue[cchValue] = '\0';
 						// Is it an encoding name known to charsets module ?
-						unsigned encodingId = GetEncodingIdFromName(pchValue);
-						if (encodingId == 0)
-						{
-							if (unsigned codepage = atoi(pchValue))
-							{
-								encodingId = GetEncodingIdFromCodePage(codepage);
-							}
-						}
+						unsigned encodingId = FindEncodingIdFromNameOrAlias(pchValue);
 						if (encodingId)
 						{
 							return GetEncodingCodePageFromId(encodingId);
@@ -79,15 +151,8 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len)
 		CMarkdown::String encoding = xml.GetAttribute("encoding");
 		if (encoding.A)
 		{
-			// Is it an encoding name known to charsets module ?
-			unsigned encodingId = GetEncodingIdFromName(encoding.A);
-			if (encodingId == 0)
-			{
-				if (unsigned codepage = atoi(encoding.A))
-				{
-					encodingId = GetEncodingIdFromCodePage(codepage);
-				}
-			}
+			// Is it an encoding name we can find in charsets module ?
+			unsigned encodingId = FindEncodingIdFromNameOrAlias(encoding.A);
 			if (encodingId)
 			{
 				return GetEncodingCodePageFromId(encodingId);

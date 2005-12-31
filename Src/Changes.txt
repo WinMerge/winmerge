@@ -1,3 +1,8 @@
+2005-12-31 Perry
+ PATCH: [ 1394247 ] Fix GuessEncoding recognition of codepages
+ BUG: [ 1394234 ] GuessEncodings fails to recognize CP-437
+  Src: codepage_detect.cpp
+
 2005-12-30 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build
   Also introduces new error IDS_DIFFERENT_UNICODINGS and new
