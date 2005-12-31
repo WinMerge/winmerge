@@ -2,6 +2,8 @@
  PATCH: [ 1394247 ] Fix GuessEncoding recognition of codepages
  BUG: [ 1394234 ] GuessEncodings fails to recognize CP-437
   Src: codepage_detect.cpp
+ PATCH: [ 1393979 ] Delete unused DiffWrapper fnc cleanup_script
+  Src: DiffWrapper.cpp
 
 2005-12-30 Perry
  PATCH: [ 1391732 ] Do not offer to unify codepages in UNICODE build

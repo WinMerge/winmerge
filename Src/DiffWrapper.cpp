@@ -1240,18 +1240,6 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 
 }
 
-void cleanup_script(struct change ** pscript)
-{
-	struct change * script = *pscript;
-	struct change *p,*e;
-	for (e = script; e; e = p)
-	{
-		p = e->link;
-		free (e);
-	}
-	*pscript = 0;
-}
-
 /**
  * @brief Invoke appropriate plugins for unpacking
  * return false if anything fails
