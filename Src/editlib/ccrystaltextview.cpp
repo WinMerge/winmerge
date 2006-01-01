@@ -4742,10 +4742,11 @@ OnEditRepeat ()
     sText = m_pszLastFindWhat;
   else
     {
+      // If last find-text exists, cut it to first line
       bEnable = !sText.IsEmpty ();
       if (bEnable)
         {
-          int pos = sText.Find (_T('\n'));
+          int pos = sText.FindOneOf (_T("\r\n"));
           if (pos >= 0)
             sText = sText.Left (pos);
         }
