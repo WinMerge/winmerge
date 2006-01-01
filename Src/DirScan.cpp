@@ -390,7 +390,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					// Add possible binary flag for unique items
 					if (diffCode & DIFFCODE::BIN)
 						di.diffcode |= DIFFCODE::BIN;
-					StoreDiffResult(di, pCtxt, &diffdata, &sRule);
+					StoreDiffResult(di, pCtxt, &diffdata);
 				}
 				else
 				{

@@ -3,6 +3,8 @@
   Src: DirScan.cpp
  PATCH: [ 1394464 ] Find again code doesn't recognize dos/mac EOLs
   Src/editlib: ccrystaltextview.cpp
+ BUG: [ 1394851 ] cvs trunk does not compile (DirScan.cpp, sRule)
+  Src: DirScan.cpp
 
 2005-12-31 Perry
  PATCH: [ 1394247 ] Fix GuessEncoding recognition of codepages
