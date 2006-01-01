@@ -1176,6 +1176,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			CString args;
 
 			// checkout operation
+			m_strCCComment.Replace(_T("\""), _T("\\\""));
 			args.Format(_T("checkout -c \"%s\" \"%s\""), m_strCCComment, sname);
 			CString vssPath = m_options.GetString(OPT_VSS_PATH);
 			HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
