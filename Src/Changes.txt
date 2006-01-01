@@ -2,6 +2,8 @@
  PATCH: [ 1394759 ] Allows quotes in Rational ClearCase checkout comment
   Submitted by Gal Hammer
   Src: MainFrm.cpp
+ Add Gal Hammer to contributors list
+  Docs/Users: Contributors.txt
 
 2006-01-01 Perry
  BUG: [ 1394857 ] cvs trunk does not compile, ANSI, FindEncodingIdFromNameOrAl
