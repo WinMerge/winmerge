@@ -1,3 +1,7 @@
+2006-01-01 Kimmo
+ PATCH: [ 1392347 ] Fix status after synching unique binary files
+  Src: DirScan.cpp
+
 2005-12-31 Perry
  PATCH: [ 1394247 ] Fix GuessEncoding recognition of codepages
  BUG: [ 1394234 ] GuessEncodings fails to recognize CP-437

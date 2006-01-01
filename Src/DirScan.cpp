@@ -187,7 +187,6 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 				else
 				{
 					// Scan recursively all subdirectories too, we are not adding folders
-					const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR | DIFFCODE::INCLUDED;
 					if (DirScan_GetItems(paths, leftnewsub, rightnewsub, pList, casesensitive,
 							depth - 1, pCtxt) == -1)
 					{
@@ -386,8 +385,12 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 				if (pCtxt->m_nCompMethod != CMP_DATE)
 				{
 					DiffFileData diffdata;
-					diffdata.prepAndCompareTwoFiles(pCtxt, di);
-					StoreDiffResult(di, pCtxt, &diffdata);
+					int diffCode = diffdata.prepAndCompareTwoFiles(pCtxt, di);
+					
+					// Add possible binary flag for unique items
+					if (diffCode & DIFFCODE::BIN)
+						di.diffcode |= DIFFCODE::BIN;
+					StoreDiffResult(di, pCtxt, &diffdata, &sRule);
 				}
 				else
 				{
