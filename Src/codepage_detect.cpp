@@ -60,7 +60,7 @@ FindEncodingIdFromNameOrAlias(CString encodingName)
 	USES_CONVERSION;
 
 	// Try name as given
-	unsigned encodingId = GetEncodingIdFromName(T2A(encodingName));
+	unsigned encodingId = GetEncodingIdFromName(T2CA(encodingName));
 	if (encodingId) return encodingId;
 
 	// Handle purely numeric values (codepages)

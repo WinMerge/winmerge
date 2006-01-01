@@ -1,3 +1,7 @@
+2006-01-01 Perry
+ BUG: [ 1394857 ] cvs trunk does not compile, ANSI, FindEncodingIdFromNameOrAl
+  Src: codepage_detect.cpp
+
 2006-01-01 Kimmo
  PATCH: [ 1392347 ] Fix status after synching unique binary files
   Src: DirScan.cpp
