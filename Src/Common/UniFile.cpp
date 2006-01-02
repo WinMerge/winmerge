@@ -750,7 +750,6 @@ bool UniStdioFile::DoOpen(LPCTSTR filename, LPCTSTR mode)
 		return false;
 
 	DWORD sizehi = (DWORD)(m_filesize >> 32);
-	DWORD sizelo = (DWORD)(m_filesize & 0xFFFFFFFF);
 
 	if (sizehi)
 	{
