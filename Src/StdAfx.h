@@ -13,6 +13,7 @@
 #if !defined(AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
+#define WINVER 0x400
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
 // Common MFC headers
