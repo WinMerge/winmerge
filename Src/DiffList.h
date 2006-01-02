@@ -122,6 +122,7 @@ public:
 
 	void ConstructSignificantChain(); // must be called after diff list is entirely populated
 	void Swap();
+	void GetExtraLinesCounts(int &nLeftLines, int &nRightLines);
 
 private:
 	CArray<DiffRangeInfo,DiffRangeInfo> m_diffs; /**< Difference list */

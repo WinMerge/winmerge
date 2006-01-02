@@ -447,3 +447,32 @@ void DiffList::Swap()
 		swap<int>(&m_diffs[i].diffrange.blank0, &m_diffs[i].diffrange.blank1);
 	}
 }
+
+/**
+ * @brief Count number of lines to add to sides (because of synch).
+ * @param [out] nLeftLines Number of lines to add to left side.
+ * @param [out] nRightLines Number of lines to add to right side.
+ */
+void DiffList::GetExtraLinesCounts(int &nLeftLines, int &nRightLines)
+{
+	nLeftLines = 0;
+	nRightLines = 0;
+	int nDiffCount = GetSize();
+
+	for (int nDiff = 0; nDiff < nDiffCount; ++nDiff)
+	{
+		DIFFRANGE curDiff;
+		VERIFY(GetDiff(nDiff, curDiff));
+
+		// this guarantees that all the diffs are synchronized
+		ASSERT(curDiff.begin0 + nLeftLines == curDiff.begin1 + nRightLines);
+		int nline0 = curDiff.end0 - curDiff.begin0 + 1;
+		int nline1 = curDiff.end1 - curDiff.begin1 + 1;
+		int nextra = nline0 - nline1;
+
+		if (nextra > 0)
+			nRightLines += nextra;
+		else
+			nLeftLines -= nextra;
+	}
+}

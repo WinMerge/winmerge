@@ -2051,24 +2051,9 @@ void CMergeDoc::PrimeTextBuffers()
 	int nDiffCount = m_diffList.GetSize();
 
 	// walk the diff list and calculate numbers of extra lines to add
-	UINT LeftExtras=0;   // extra lines added to left view
-	UINT RightExtras=0;   // extra lines added to right view
-	for (nDiff = 0; nDiff < nDiffCount; ++ nDiff)
-	{
-		DIFFRANGE curDiff;
-		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
-
-		// this guarantees that all the diffs are synchronized
-		ASSERT(curDiff.begin0+LeftExtras == curDiff.begin1+RightExtras);
-		int nline0 = curDiff.end0-curDiff.begin0+1;
-		int nline1 = curDiff.end1-curDiff.begin1+1;
-		int nextra = nline0-nline1;
-
-		if (nextra > 0)
-			RightExtras += nextra;
-		else
-			LeftExtras -= nextra;
-	}
+	int LeftExtras = 0;   // extra lines added to left view
+	int RightExtras = 0;   // extra lines added to right view
+	m_diffList.GetExtraLinesCounts(LeftExtras, RightExtras);
 
 	// resize m_aLines once for each view
 	UINT lcount0 = m_ptBuf[0]->GetLineCount();
