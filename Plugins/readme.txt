@@ -1,3 +1,8 @@
+2006-01-02 Perry
+ BUG: [ 1394707 ] Copy&paste compilation error in IgnoreFieldsComma
+  Fix include to say IgnoreFieldsComma.h (not IgnoreFieldsTab.h)
+  Plugins\src_VCPP\IgnoreFieldsComma\WinMergeScript.cpp
+
 2005-12-28 Perry
  BUG: [ 1391212 ] New RCLocalizationHelper doesn't handle escaped quotes
   Bump version from 1.0.1.0 to 1.0.2.0.

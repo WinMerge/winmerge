@@ -1,6 +1,6 @@
 // WinMergeScript.cpp : Implementation of CWinMergeScript
 #include "stdafx.h"
-#include "IgnoreFieldsTab.h"
+#include "IgnoreFieldsComma.h"
 #include "WinMergeScript.h"
 
 /////////////////////////////////////////////////////////////////////////////
