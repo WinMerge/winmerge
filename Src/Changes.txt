@@ -1,3 +1,7 @@
+2006-01-02 Kimmo
+ Remove unused variable from VSSHelper.cpp/VSSHelper::ReLinkVCProj()
+  Src: VSSHelper.cpp
+
 2006-01-02 Perry
  PATCH: [ 1392647 ] Prefix members with m_ in storage_for_plugins
   Src/Common: multiformatText.cpp multiformatText.h

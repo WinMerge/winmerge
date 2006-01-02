@@ -54,7 +54,6 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 {
 	const UINT nBufferSize = 1024;
 	TCHAR buffer[nBufferSize] = {0};
-	TCHAR buffer1[nBufferSize] = {0};
 	CString spath;
 	BOOL bVCPROJ = FALSE;
 
