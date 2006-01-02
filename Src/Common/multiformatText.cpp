@@ -46,33 +46,33 @@ static char THIS_FILE[] = __FILE__;
 
 void storageForPlugins::Initialize()
 {
-	bstr.Empty();
-	array.Clear();
-	tempFilenameDst = _T("");
+	m_bstr.Empty();
+	m_array.Clear();
+	m_tempFilenameDst = _T("");
 }
 
 void storageForPlugins::SetDataFileAnsi(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
 {
-	this->filename = filename;
-	nChangedValid = 0;
-	nChanged = 0;
-	bOriginalIsUnicode = FALSE;
+	m_filename = filename;
+	m_nChangedValid = 0;
+	m_nChanged = 0;
+	m_bOriginalIsUnicode = FALSE;
 	m_bCurrentIsUnicode = FALSE;
 	m_bCurrentIsFile = TRUE;
-	bOverwriteSourceFile = bOverwrite;
-	codepage = getDefaultCodepage();
+	m_bOverwriteSourceFile = bOverwrite;
+	m_codepage = getDefaultCodepage();
 	Initialize();
 }
 void storageForPlugins::SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/)
 {
-	this->filename = filename;
-	nChangedValid = 0;
-	nChanged = 0;
-	bOriginalIsUnicode = TRUE;
+	m_filename = filename;
+	m_nChangedValid = 0;
+	m_nChanged = 0;
+	m_bOriginalIsUnicode = TRUE;
 	m_bCurrentIsUnicode = TRUE;
 	m_bCurrentIsFile = TRUE;
-	bOverwriteSourceFile = bOverwrite;
-	codepage = getDefaultCodepage();
+	m_bOverwriteSourceFile = bOverwrite;
+	m_codepage = getDefaultCodepage();
 	Initialize();
 }
 void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*= FALSE*/) 
@@ -92,21 +92,21 @@ void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*=
 
 LPCTSTR storageForPlugins::GetDestFileName()
 {
-	if (tempFilenameDst.IsEmpty())
+	if (m_tempFilenameDst.IsEmpty())
 	{
 		TCHAR tempDir[MAX_PATH] = _T("");
 		if (!GetTempPath(countof(tempDir), tempDir))
 			return NULL;
 
-		if (!GetTempFileName(tempDir, _T ("_WM"), 0, tempFilenameDst.GetBuffer(MAX_PATH)))
+		if (!GetTempFileName(tempDir, _T ("_WM"), 0, m_tempFilenameDst.GetBuffer(MAX_PATH)))
 		{
-			tempFilenameDst.ReleaseBuffer();
-			tempFilenameDst.Empty();
+			m_tempFilenameDst.ReleaseBuffer();
+			m_tempFilenameDst.Empty();
 			return NULL;
 		}
-		tempFilenameDst.ReleaseBuffer();
+		m_tempFilenameDst.ReleaseBuffer();
 	}
-	return tempFilenameDst;
+	return m_tempFilenameDst;
 }
 
 
@@ -115,44 +115,44 @@ void storageForPlugins::ValidateNewFile()
 	// changed data are : file, nChanged
 	// nChanged passed as pointer so already upToDate
 	// now update file
-	if (nChangedValid == nChanged)
+	if (m_nChangedValid == m_nChanged)
 	{
 		// plugin succeeded, but nothing changed, just delete the new file
-		if (!::DeleteFile(tempFilenameDst))
+		if (!::DeleteFile(m_tempFilenameDst))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-				, tempFilenameDst, GetSysError(GetLastError())));
+				, m_tempFilenameDst, GetSysError(GetLastError())));
 		}
 		// we may reuse the temp filename
 		// tempFilenameDst.Empty();
 	}
 	else
 	{
-		nChangedValid = nChanged;
-		if (bOverwriteSourceFile)
+		m_nChangedValid = m_nChanged;
+		if (m_bOverwriteSourceFile)
 		{
-			if (!::DeleteFile(filename))
+			if (!::DeleteFile(m_filename))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-					, filename, GetSysError(GetLastError())));
+					, m_filename, GetSysError(GetLastError())));
 			}
-			::MoveFile(tempFilenameDst, filename);
+			::MoveFile(m_tempFilenameDst, m_filename);
 		}
 		else
 		{
 			// do not delete the original file name
-			filename = tempFilenameDst;
+			m_filename = m_tempFilenameDst;
 			// for next transformation, we may overwrite/delete the source file
-			bOverwriteSourceFile = TRUE;
+			m_bOverwriteSourceFile = TRUE;
 		}
-		tempFilenameDst.Empty();
+		m_tempFilenameDst.Empty();
 	}
 }
 void storageForPlugins::ValidateNewBuffer()
 {
 	// changed data are : buffer, nChanged
 	// passed as pointers so already upToDate
-	nChangedValid = nChanged;
+	m_nChangedValid = m_nChanged;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -164,19 +164,19 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 	// if we create a file, we remove the remaining previous file 
 	if (bNewIsFile)
 	{
-		if (bOverwriteSourceFile)
+		if (m_bOverwriteSourceFile)
 		{
-			::DeleteFile(filename);
-			::MoveFile(tempFilenameDst, filename);
+			::DeleteFile(m_filename);
+			::MoveFile(m_tempFilenameDst, m_filename);
 		}
 		else
 		{
 			// do not delete the original file name
-			filename = tempFilenameDst;
+			m_filename = m_tempFilenameDst;
 			// for next transformation, we may overwrite/delete the source file
-			bOverwriteSourceFile = TRUE;
+			m_bOverwriteSourceFile = TRUE;
 		}
-		tempFilenameDst.Empty();
+		m_tempFilenameDst.Empty();
 	}
 
 	// old memory structures are freed
@@ -185,9 +185,9 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 		if (bNewIsFile || m_bCurrentIsUnicode != bNewIsUnicode)
 		{
 			if (m_bCurrentIsUnicode)
-				bstr.Empty();
+				m_bstr.Empty();
 			else
-				array.Clear();
+				m_array.Clear();
 		}
 
 	m_bCurrentIsUnicode = bNewIsUnicode;
@@ -197,7 +197,7 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 LPCTSTR storageForPlugins::GetDataFileUnicode()
 {
 	if (m_bCurrentIsFile && m_bCurrentIsUnicode)
-		return filename;
+		return m_filename;
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
@@ -208,7 +208,7 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	if (m_bCurrentIsFile)
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, filename, filename.GetLength()+1);
+		_tcsncpy(fileDataIn.fileName, m_filename, m_filename.GetLength()+1);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -222,13 +222,13 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	{
 		if (m_bCurrentIsUnicode)
 		{
-			pwchar = BSTR(bstr);
-			nchars = bstr.Length();
+			pwchar = BSTR(m_bstr);
+			nchars = m_bstr.Length();
 		}
 		else
 		{
-			array.AccessData((void**)&pchar);
-			nchars = array.GetOneDimSize();
+			m_array.AccessData((void**)&pchar);
+			nchars = m_array.GetOneDimSize();
 		}
 	}
 
@@ -239,7 +239,7 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	// Init filedata struct and open file as memory mapped (out file)
 	GetDestFileName();
 	MAPPEDFILEDATA fileDataOut = {0};
-	_tcscpy(fileDataOut.fileName, tempFilenameDst);
+	_tcscpy(fileDataOut.fileName, m_tempFilenameDst);
 	fileDataOut.bWritable = TRUE;
 	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
 	fileDataOut.dwSize = textForeseenSize + 2;  
@@ -256,7 +256,8 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 		{
 			// Ansi to UCS-2 conversion, from unicoder.cpp maketstring
 			DWORD flags = 0;
-			textRealSize = MultiByteToWideChar(codepage, flags, pchar, nchars, (WCHAR*)((char*)fileDataOut.pMapBase+bom_bytes), textForeseenSize-1)
+			textRealSize = MultiByteToWideChar(m_codepage, flags, pchar, nchars, 
+				(WCHAR*)((char*)fileDataOut.pMapBase+bom_bytes), textForeseenSize-1)
 				             * sizeof(WCHAR);
 		}
 		// size may have changed
@@ -267,7 +268,7 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	if (m_bCurrentIsFile)
 		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		array.UnaccessData();
+		m_array.UnaccessData();
 
 	if (!bOpenSuccess)
 		return NULL;
@@ -275,19 +276,19 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	if ((textRealSize == 0) && (textForeseenSize > 0))
 	{
 		// conversion error
-		::DeleteFile(tempFilenameDst);
+		::DeleteFile(m_tempFilenameDst);
 		return NULL;
 	}
 
 	ValidateInternal(TRUE, TRUE);
-	return filename;
+	return m_filename;
 }
 
 
 BSTR * storageForPlugins::GetDataBufferUnicode()
 {
 	if (!m_bCurrentIsFile && m_bCurrentIsUnicode)
-		return &bstr;
+		return &m_bstr;
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
@@ -298,7 +299,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	if (m_bCurrentIsFile) 
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcscpy(fileDataIn.fileName, filename);
+		_tcscpy(fileDataIn.fileName, m_filename);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -318,8 +319,8 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	}
 	else
 	{
-		array.AccessData((void**)&pchar);
-		nchars = array.GetOneDimSize();
+		m_array.AccessData((void**)&pchar);
+		nchars = m_array.GetOneDimSize();
 	}
 
 	// Compute the dest size (in bytes)
@@ -343,12 +344,12 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 		{
 			// Ansi to UCS-2 conversion, from unicoder.cpp maketstring
 			DWORD flags = 0;
-			textRealSize = MultiByteToWideChar(codepage, flags, pchar, nchars, pbstrBuffer, textForeseenSize-1)
-				             * sizeof(WCHAR);
+			textRealSize = MultiByteToWideChar(m_codepage, flags, pchar,
+				nchars, pbstrBuffer, textForeseenSize-1) * sizeof(WCHAR);
 		}
 		// size may have changed, and we can not reallocate a CComBSTR
 		// with append, at least we can force the size
-		if (FAILED(bstr.Append(BSTR(tempBSTR), textRealSize/sizeof(WCHAR))))
+		if (FAILED(m_bstr.Append(BSTR(tempBSTR), textRealSize/sizeof(WCHAR))))
 			bAllocSuccess = FALSE;
 	}
 
@@ -356,19 +357,19 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	if (m_bCurrentIsFile)
 		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		array.UnaccessData();
+		m_array.UnaccessData();
 
 	if (!bAllocSuccess)
 		return NULL;
 
 	ValidateInternal(FALSE, TRUE);
-	return &bstr;
+	return &m_bstr;
 }
 
 LPCTSTR storageForPlugins::GetDataFileAnsi()
 {
 	if (m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		return filename;
+		return m_filename;
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
@@ -379,7 +380,7 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	if (m_bCurrentIsFile)
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, filename, filename.GetLength()+1);
+		_tcsncpy(fileDataIn.fileName, m_filename, m_filename.GetLength()+1);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -393,13 +394,13 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	{
 		if (m_bCurrentIsUnicode)
 		{
-			pwchar = BSTR(bstr);
-			nchars = bstr.Length();
+			pwchar = BSTR(m_bstr);
+			nchars = m_bstr.Length();
 		}
 		else
 		{
-			array.AccessData((void**)&pchar);
-			nchars = array.GetOneDimSize();
+			m_array.AccessData((void**)&pchar);
+			nchars = m_array.GetOneDimSize();
 		}
 	}
 
@@ -412,7 +413,7 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	// Init filedata struct and open file as memory mapped (out file)
 	GetDestFileName();
 	MAPPEDFILEDATA fileDataOut = {0};
-	_tcscpy(fileDataOut.fileName, tempFilenameDst);
+	_tcscpy(fileDataOut.fileName, m_tempFilenameDst);
 	fileDataOut.bWritable = TRUE;
 	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
 	fileDataOut.dwSize = textForeseenSize;  
@@ -423,7 +424,8 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 		{
 			// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
 			DWORD flags = 0;
-			textRealSize = WideCharToMultiByte(codepage, flags, pwchar, nchars, (char*)fileDataOut.pMapBase, textForeseenSize, NULL, NULL);
+			textRealSize = WideCharToMultiByte(m_codepage, flags, pwchar, nchars,
+				(char*)fileDataOut.pMapBase, textForeseenSize, NULL, NULL);
 		}
 		else
 		{
@@ -437,7 +439,7 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	if (m_bCurrentIsFile)
 		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		array.UnaccessData();
+		m_array.UnaccessData();
 
 	if (!bOpenSuccess)
 		return NULL;
@@ -445,19 +447,19 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	if ((textRealSize == 0) && (textForeseenSize > 0))
 	{
 		// conversion error
-		::DeleteFile(tempFilenameDst);
+		::DeleteFile(m_tempFilenameDst);
 		return NULL;
 	}
 
 	ValidateInternal(TRUE, FALSE);
-	return filename;
+	return m_filename;
 }
 
 
 COleSafeArray * storageForPlugins::GetDataBufferAnsi()
 {
 	if (!m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		return &array;
+		return &m_array;
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
@@ -468,7 +470,7 @@ COleSafeArray * storageForPlugins::GetDataBufferAnsi()
 	if (m_bCurrentIsFile) 
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcscpy(fileDataIn.fileName, filename);
+		_tcscpy(fileDataIn.fileName, m_filename);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -488,8 +490,8 @@ COleSafeArray * storageForPlugins::GetDataBufferAnsi()
 	}
 	else
 	{
-		pwchar = BSTR(bstr);
-		nchars = bstr.Length();
+		pwchar = BSTR(m_bstr);
+		nchars = m_bstr.Length();
 	}
 
 	// Compute the dest size (in bytes)
@@ -499,31 +501,31 @@ COleSafeArray * storageForPlugins::GetDataBufferAnsi()
 	int textRealSize = textForeseenSize;
 
 	// allocate the memory
-	array.CreateOneDim(VT_UI1, textForeseenSize);
+	m_array.CreateOneDim(VT_UI1, textForeseenSize);
 	char * parrayData;
-	array.AccessData((void**)&parrayData);
+	m_array.AccessData((void**)&parrayData);
 
 	// fill in the data
 	if (m_bCurrentIsUnicode)
 	{
 		// UCS-2 to Ansi conversion, from unicoder.cpp convertToBuffer
 		DWORD flags = 0;
-		textRealSize = WideCharToMultiByte(codepage, flags, pwchar, nchars, parrayData, textForeseenSize, NULL, NULL);
+		textRealSize = WideCharToMultiByte(m_codepage, flags, pwchar, nchars, parrayData, textForeseenSize, NULL, NULL);
 	}
 	else
 	{
 		CopyMemory(parrayData, pchar, nchars);
 	}
 	// size may have changed
-	array.UnaccessData();
-	array.ResizeOneDim(textRealSize);
+	m_array.UnaccessData();
+	m_array.ResizeOneDim(textRealSize);
 
 	// Release pointers to source data
 	if (m_bCurrentIsFile)
 		files_closeFileMapped(&fileDataIn, 0xFFFFFFFF, FALSE);
 
 	ValidateInternal(FALSE, FALSE);
-	return &array;
+	return &m_array;
 }
 
 

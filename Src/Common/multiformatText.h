@@ -31,10 +31,10 @@ class storageForPlugins
 public:
 	~storageForPlugins()
 	{
-		if (!tempFilenameDst)
-			::DeleteFile(tempFilenameDst);
-		bstr.Empty();
-		array.Clear();
+		if (!m_tempFilenameDst)
+			::DeleteFile(m_tempFilenameDst);
+		m_bstr.Empty();
+		m_array.Clear();
 	}
 
 	/// Get data as unicode buffer (BSTR)
@@ -55,7 +55,7 @@ public:
 	/// Initial load
 	void SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite = FALSE);
 	/// Set codepage to use for ANSI<->UNICODE conversions
-	void SetCodepage(int code) { codepage = code; };
+	void SetCodepage(int code) { m_codepage = code; };
 	/// Initial load
 	void SetDataFileAnsi(LPCTSTR filename, BOOL bOverwrite = FALSE);
 	/// Initial load
@@ -64,7 +64,7 @@ public:
 	BOOL SaveAsFile(CString & filename)
 	{
 		LPCTSTR newFilename;
-		if (bOriginalIsUnicode)
+		if (m_bOriginalIsUnicode)
 			newFilename = GetDataFileUnicode();
 		else
 			newFilename = GetDataFileAnsi();
@@ -80,48 +80,50 @@ public:
 	/// Warning : the format may be different from the original one
 	void GetLastValidFile(CString & filename)
 	{
-		if (!tempFilenameDst)
-			::DeleteFile(tempFilenameDst);
-		tempFilenameDst.Empty();
-		filename = this->filename;
+		if (!m_tempFilenameDst)
+			::DeleteFile(m_tempFilenameDst);
+		m_tempFilenameDst.Empty();
+		filename = this->m_filename;
 	}
 
 	/// return number of transformation until now
-	int & GetNChanged() { return nChanged; };
+	int & GetNChanged() { return m_nChanged; };
 	/// return number of valid transformation until now
-	int & GetNChangedValid() { return nChangedValid; };
+	int & GetNChangedValid() { return m_nChangedValid; }
 	/// return format of original data
-	int GetOriginalMode() { return bOriginalIsUnicode; };
+	int GetOriginalMode() const { return m_bOriginalIsUnicode; }
 
 private:
 	void Initialize();
 	void ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode);
 
+// Implementation data
+private:
 	// original data mode ANSI/UNICODE
-	int bOriginalIsUnicode;
+	int m_bOriginalIsUnicode;
 
 	// current format of data : BUFFER/FILE, ANSI/UNICODE
 	int m_bCurrentIsUnicode;
 	int m_bCurrentIsFile;
 	// can we overwrite the current file (different from original file when nChangedValid>=1)
-	BOOL bOverwriteSourceFile;	
+	BOOL m_bOverwriteSourceFile;	
 	// number of valid transformation since load
-	int nChangedValid;
+	int m_nChangedValid;
 	// data storage when mode is BUFFER UNICODE
-	CComBSTR bstr;
+	CComBSTR m_bstr;
 	// data storage when mode is BUFFER ANSI
-	COleSafeArray array;
+	COleSafeArray m_array;
 	// data storage when mode is FILE
-	CString filename;
+	CString m_filename;
 	// error during conversion ?
-	BOOL bError;
+	BOOL m_bError;
 	// codepage for ANSI mode
-	int codepage;
+	int m_codepage;
 
 	// temporary number of transformations, transformed by caller
-	int nChanged;
+	int m_nChanged;
 	// temporary destination filename
-	CString tempFilenameDst;
+	CString m_tempFilenameDst;
 };
 
 
