@@ -3,7 +3,8 @@
 //translation updated by xmpdhml@bj1860.net 2005-07-08
 //translation updated by xmpdhml@bj1860.net 2005-12-23
 //$Id$
-#include "resource.h"
+
+#include "..\..\resource.h"
 
 #define APSTUDIO_READONLY_SYMBOLS
 /////////////////////////////////////////////////////////////////////////////

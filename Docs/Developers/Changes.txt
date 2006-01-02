@@ -1,3 +1,7 @@
+2006-01-02 Perry
+ PATCH: [ 1394717 ] Fix resource.h include for translations
+  readme-developers.html
+
 2005-09-22 Kimmo
  PATCH: [ 1298109 ] Docs: Document ShellExtension versioning
   Developers: readme-developers.html

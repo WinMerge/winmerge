@@ -1,6 +1,10 @@
 2006-01-02 Perry
  PATCH: [ 1392647 ] Prefix members with m_ in storage_for_plugins
   Src/Common: multiformatText.cpp multiformatText.h
+ PATCH: [ 1394717 ] Fix resource.h include for translations
+  Src/Languages: */Merge*.rc
+  Src/Languages deleted: UpdateAll_resource_h.bat
+  Src/Languages deleted: */resource.h (localized versions of resource.h)
 
 2006-01-01 Kimmo
  PATCH: [ 1394759 ] Allows quotes in Rational ClearCase checkout comment
