@@ -1,6 +1,10 @@
 2006-01-02 Perry
  PATCH: [ 1395487 ] Unused local variable in UniStdioFile::DoOpen()
+  (Delete unused variable)
   Src/Common: UniFile.cpp
+ BUG: [ 1395497 ] Unused local variables in CMergeDoc::GetWordDiffArray()
+  (Delete unused variables)
+  Src: MergeDocLineDiffs.cpp
 
 2006-01-02 Kimmo
  Remove unused variable from VSSHelper.cpp/VSSHelper::ReLinkVCProj()

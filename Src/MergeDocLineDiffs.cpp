@@ -352,10 +352,6 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 			str2 = str2.Left(i+1);
 	}
 
-	// We truncate diffs to remain inside line (ie, to not flag eol characters)
-	int width1 = m_pView[0]->GetLineLength(nLineIndex);
-	int width2 = m_pView[1]->GetLineLength(nLineIndex);
-
 	// Options that affect comparison
 	bool casitive = !diffOptions.bIgnoreCase;
 	int xwhite = diffOptions.nIgnoreWhitespace;
