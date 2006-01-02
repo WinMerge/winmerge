@@ -87,10 +87,12 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				// skip over any line delimiters on either side
 				while (ptr0 < end0 && iseolch(*ptr0))
 				{
+					// m_bol0 not used because m_ignore_eol_diff
 					++ptr0;
 				}
 				while (ptr1 < end1 && iseolch(*ptr1))
 				{
+					// m_bol1 not used because m_ignore_eol_diff
 					++ptr1;
 				}
 				if ( (ptr0 == end0 && !eof0) || (ptr1 == end1 && !eof1) )
@@ -105,6 +107,7 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 					// finish split CR/LF pair on 0-side
 					if (ptr0 < end0 && *ptr0 == '\n')
 					{
+						// m_bol0 not used because m_ignore_eol_diff
 						++ptr0;
 					}
 					m_eol0 = true;
@@ -114,11 +117,13 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				{
 					if (ptr0 < end0 && *ptr0 == '\n')
 					{
+						// m_bol0 not used because m_ignore_eol_diff
 						++ptr0;
 						m_eol0 = true;
 					}
 					else if (ptr0 < end0 && *ptr0 == '\r')
 					{
+						// m_bol0 not used because m_ignore_eol_diff
 						++ptr0;
 						m_eol0 = true;
 						if (ptr0 == end0 && !eof0)
@@ -134,6 +139,7 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 					// finish split CR/LF pair on 1-side
 					if (ptr1 < end1 && *ptr1 == '\n')
 					{
+						// m_bol1 not used because m_ignore_eol_diff
 						++ptr1;
 					}
 					m_eol1 = true;
@@ -143,11 +149,13 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				{
 					if (ptr1 < end1 && *ptr1 == '\n')
 					{
+						// m_bol1 not used because m_ignore_eol_diff
 						++ptr1;
 						m_eol1 = true;
 					}
 					else if (ptr1 < end1 && *ptr1 == '\r')
 					{
+						// m_bol1 not used because m_ignore_eol_diff
 						++ptr1;
 						m_eol1 = true;
 						if (ptr1 == end1 && !eof1)
@@ -175,10 +183,10 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				}
 			}
 		}
-        else
-        { // do not ignore eol differences
+		else
+		{ // do not ignore eol differences
 			if (m_ignore_blank_lines)
-            {
+			{
 				if (m_bol0)
 				{
 					while (ptr0 < end0 && iseolch(*ptr0))
@@ -197,8 +205,8 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				{
 					goto need_more;
 				}
-            }
-        }
+			}
+		}
 
 		if ( ptr0 == end0 || ptr1 == end1)
 		{
@@ -225,6 +233,8 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 			return RESULT_DIFF; // buffers are different
 		if (ptr0 < end0 && ptr1 < end1)
 		{
+			m_bol0 = iseolch(c0);
+			m_bol1 = iseolch(c1);
 			++ptr0;
 			++ptr1;
 			continue;

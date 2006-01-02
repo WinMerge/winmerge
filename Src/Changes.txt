@@ -8,7 +8,10 @@
  BUG: [ 1395107 ] MergeKorean.rc not compile in cvs trunk
   (resource.h => ..\..\resource.h fix missed Korean somehow)
   Src/Languages/Korean: MergeKorean.rc
-
+ PATCH: [ 1394073 ] Fix ByteComparator: m_bol0
+  (Change in ByteComparator.h is cosmetic typo fix in comment)
+  (Fixes some bad tabbing as well)
+  Src: ByteComparator.cpp ByteComparator.h
 
 2006-01-01 Kimmo
  PATCH: [ 1394759 ] Allows quotes in Rational ClearCase checkout comment

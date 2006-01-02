@@ -38,7 +38,7 @@ private:
 	bool m_eol0; // 0-side has an eol
 	bool m_eol1; // 1-side has an eol
 	bool m_cr0; // 0-side has a CR at end of buffer (might be split CR/LF)
-	bool m_cr1; // 0-side has a CR at end of buffer (might be split CR/LF)
+	bool m_cr1; // 1-side has a CR at end of buffer (might be split CR/LF)
 	bool m_bol0; //0-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines)
-	bool m_bol1; //0-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines)
+	bool m_bol1; //1-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines)
 };
