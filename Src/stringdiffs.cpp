@@ -503,7 +503,7 @@ LastChar(LPCTSTR psz, int len)
 
 	LPCTSTR lastValid = psz+len-1;
 
-	LPCTSTR prev=0;
+	LPCTSTR prev=psz;
 	while (psz<lastValid)
 	{
 		prev = psz;

@@ -5,6 +5,8 @@
  BUG: [ 1395497 ] Unused local variables in CMergeDoc::GetWordDiffArray()
   (Delete unused variables)
   Src: MergeDocLineDiffs.cpp
+ BUG: [ 1395494 ] stringdiffs.cpp / LastChar() returning uninitialized value?
+  Src: stringdiffs.cpp
 
 2006-01-02 Kimmo
  Remove unused variable from VSSHelper.cpp/VSSHelper::ReLinkVCProj()
