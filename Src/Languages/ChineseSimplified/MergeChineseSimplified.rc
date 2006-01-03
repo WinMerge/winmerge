@@ -2537,7 +2537,7 @@ BEGIN
     ID_VIEW_WHITESPACE      "显示空白和制表符字符"
     ID_VIEW_DETAIL_BAR      "显示/隐藏对比窗格"
     ID_VIEW_LOCATION_BAR    "位置窗格显示文件的总体情况"
-    ID_VIEW_DIR_STATEPANE   "显示文件夹对比结果窗"
+    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "选择当前用户接口语言\n语言"
     ID_VIEW_LINEDIFFS       "以不同的颜色显示行中的不同\n显示行中不同"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"

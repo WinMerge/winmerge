@@ -1,3 +1,7 @@
+2006-01-03 Perry
+ BUG: [ 1390849 ] cvs trunk MergeChineseSimplified doesn't compile
+  Src/Languages: ChineseSimplified: MergeChineseSimplified.rc
+
 2006-01-02 Perry
  PATCH: [ 1383802 ] Cleanup line difference options in Editor-options
   Src: Merge.rc PropEditor.cpp PropEditor.h resource.h
