@@ -4,6 +4,8 @@
  PATCH: [ 1383802 ] Cleanup line difference options in Editor-options
   Translations
   Src/Language: */Merge*.rc
+ PATCH: [ 1391550 ] vbs script to check & optionally merge WinMerge resources
+  Src: new CheckTranslations.vbs
 
 2006-01-02 Kimmo
  PATCH: [ 1395474 ] Define WINVER for compiling with VS.net
