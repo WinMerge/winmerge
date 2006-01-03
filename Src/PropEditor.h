@@ -46,6 +46,9 @@ private:
 // Implementation methods
 	void LoadBreakTypeStrings();
 	void UpdateDataToWindow() { UpdateData(FALSE); }
+	void UpdateDataFromWindow() { UpdateData(TRUE); }
+	void UpdateLineDiffControls();
+	void EnableDlgItem(int item, bool enable);
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -62,6 +65,7 @@ protected:
 	afx_msg BOOL OnInitDialog();
 	afx_msg void OnSyntaxHighlight();
 	//}}AFX_MSG
+	afx_msg void OnLineDiffControlClicked();
 	DECLARE_MESSAGE_MAP()
 
 private:

@@ -314,6 +314,8 @@
 #define IDC_STAT_IEQUALBINFILE          1226
 #define IDC_STAT_ITOTALFOLDERS          1227
 #define IDC_STAT_ITOTALFILES            1228
+#define IDC_EDITOR_CHARLEVEL            1229
+#define IDC_EDITOR_WORDLEVEL            1230
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -928,7 +930,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        228
 #define _APS_NEXT_COMMAND_VALUE         33098
-#define _APS_NEXT_CONTROL_VALUE         1221
+#define _APS_NEXT_CONTROL_VALUE         1231
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

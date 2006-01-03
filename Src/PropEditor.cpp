@@ -49,7 +49,7 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	DDX_Check(pDX, IDC_UNREC_APPLYSYNTAX, m_bApplySyntax);
 	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
-	DDX_Check(pDX, IDC_BREAK_ON_WORDS, m_bBreakOnWords);
+	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
 	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
 	//}}AFX_DATA_MAP
 }
@@ -59,6 +59,9 @@ BEGIN_MESSAGE_MAP(CPropEditor, CDialog)
 	//{{AFX_MSG_MAP(CPropEditor)
 	ON_BN_CLICKED(IDC_HILITE_CHECK, OnSyntaxHighlight)
 	//}}AFX_MSG_MAP
+	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
+	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)
+	ON_BN_CLICKED(IDC_EDITOR_WORDLEVEL, OnLineDiffControlClicked)
 END_MESSAGE_MAP()
 
 /** 
@@ -120,6 +123,7 @@ BOOL CPropEditor::OnInitDialog()
 
 	LoadBreakTypeStrings();
 	UpdateDataToWindow();
+	UpdateLineDiffControls();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -152,3 +156,34 @@ void CPropEditor::OnSyntaxHighlight()
 		m_bApplySyntax = FALSE;
 	}
 }
+
+/**
+ * @brief Handlers any clicks in any of the line differencing controls
+ */
+void CPropEditor::OnLineDiffControlClicked()
+{
+	UpdateLineDiffControls();
+}
+
+/**
+ * @brief Shortcut to enable or disable a control
+ */
+void CPropEditor::EnableDlgItem(int item, bool enable)
+{
+	GetDlgItem(item)->EnableWindow(!!enable);
+}
+
+/** 
+ * @brief Update availability of line difference controls
+ *
+ */
+void CPropEditor::UpdateLineDiffControls()
+{
+	UpdateDataFromWindow();
+	// Can only choose char/word level if line differences are enabled
+	EnableDlgItem(IDC_EDITOR_CHARLEVEL, !!m_bViewLineDifferences);
+	EnableDlgItem(IDC_EDITOR_WORDLEVEL, !!m_bViewLineDifferences);
+	// Can only choose break type if line differences are enabled & we're breaking on words
+	EnableDlgItem(IDC_BREAK_TYPE, m_bViewLineDifferences && m_bBreakOnWords);
+}
+
