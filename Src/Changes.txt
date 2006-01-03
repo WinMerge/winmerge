@@ -1,3 +1,9 @@
+2006-01-03 Kimmo
+ PATCH: [ 1394877 ] Find selected text with Ctrl+F3
+  Src: Merge.rc
+  Src/editlib: ccrystaltextview.cpp
+  Src/Language: */Merge*.rc
+
 2006-01-03 Takashi
  PATCH: [ 1390104 ] fix for BUG: [ 1384069 ] Wrapped lines have incorrect column
   Src: MergeEditView.cpp

@@ -4753,6 +4753,16 @@ OnEditRepeat ()
             sText = sText.Left (pos);
         }
     }
+
+  // CTRL-F3 will find selected text..
+  BOOL bControlKey = (::GetAsyncKeyState(VK_CONTROL)& 0x8000) != 0;
+  if (bControlKey && IsSelection())
+    {
+      bEnable = TRUE;
+      CPoint ptSelStart, ptSelEnd;
+      GetSelection (ptSelStart, ptSelEnd);
+      GetText (ptSelStart, ptSelEnd, sText);
+    }
   if (bEnable)
     {
       CPoint ptFoundPos;
