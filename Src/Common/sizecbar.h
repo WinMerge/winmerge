@@ -1,14 +1,14 @@
 /////////////////////////////////////////////////////////////////////////
 //
-// CSizingControlBar            Version 2.42
+// CSizingControlBar            Version 2.44
 //
-// Created: Jan 24, 1998        Last Modified: Feb 10, 2000
+// Created: Jan 24, 1998        Last Modified: March 31, 2002
 //
 // See the official site at www.datamekanix.com for documentation and
 // the latest news.
 //
 /////////////////////////////////////////////////////////////////////////
-// Copyright (C) 1998-2000 by Cristi Posea. All rights reserved.
+// Copyright (C) 1998-2002 by Cristi Posea. All rights reserved.
 //
 // This code is free for personal and commercial use, providing this 
 // notice remains intact in the source files and all eventual changes are
@@ -24,7 +24,6 @@
 //
 // Send bug reports, bug fixes, enhancements, requests, flames, etc. to
 // cristi@datamekanix.com or post them at the message board at the site.
-//
 /////////////////////////////////////////////////////////////////////////
 
 #if !defined(__SIZECBAR_H__)
@@ -120,13 +119,12 @@ public:
 // Implementation
 public:
     virtual ~CSizingControlBar();
-		void extendBar(CPoint deltaSize);
-
+    
 protected:
     // implementation helpers
     UINT GetEdgeHTCode(int nEdge);
     BOOL GetEdgeRect(CRect rcWnd, UINT nHitTest, CRect& rcEdge);
-    virtual void StartTracking(UINT nHitTest);
+    virtual void StartTracking(UINT nHitTest, CPoint point);
     virtual void StopTracking();
     virtual void OnTrackUpdateSize(CPoint& point);
     virtual void OnTrackInvertTracker();
@@ -136,6 +134,7 @@ protected:
     virtual void AlignControlBars();
     void GetRowInfo(int& nFirst, int& nLast, int& nThis);
     void GetRowSizingBars(CSCBArray& arrSCBars);
+    void GetRowSizingBars(CSCBArray& arrSCBars, int& nThis);
     BOOL NegotiateSpace(int nLengthTotal, BOOL bHorz);
 
 protected:
@@ -148,10 +147,10 @@ protected:
     CSize   m_szMinHorz;
     CSize   m_szMinVert;
     CSize   m_szMinFloat;
-    CSize   m_szMinT;
-    CSize   m_szMaxT;
-    CSize   m_szOld;
-    CPoint  m_ptOld;
+    int     m_nTrackPosMin;
+    int     m_nTrackPosMax;
+    int     m_nTrackPosOld;
+    int     m_nTrackEdgeOfs;
     BOOL    m_bTracking;
     BOOL    m_bKeepSize;
     BOOL    m_bParentSizing;

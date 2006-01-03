@@ -1,14 +1,14 @@
 /////////////////////////////////////////////////////////////////////////
 //
-// CSizingControlBarG           Version 2.42
+// CSizingControlBarG           Version 2.44
 // 
-// Created: Jan 24, 1998        Last Modified: Feb 10, 2000
+// Created: Jan 24, 1998        Last Modified: March 31, 2002
 //
 // See the official site at www.datamekanix.com for documentation and
 // the latest news.
 //
 /////////////////////////////////////////////////////////////////////////
-// Copyright (C) 1998-2000 by Cristi Posea. All rights reserved.
+// Copyright (C) 1998-2002 by Cristi Posea. All rights reserved.
 //
 // This code is free for personal and commercial use, providing this 
 // notice remains intact in the source files and all eventual changes are
@@ -30,8 +30,6 @@
 //
 
 #include "stdafx.h"
-#include "sizecbar.h"
-#include "sizecbarg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -78,13 +76,15 @@ void CSizingControlBarG::OnNcLButtonUp(UINT nHitTest, CPoint point)
 
 void CSizingControlBarG::NcCalcClient(LPRECT pRc, UINT nDockBarID)
 {
+    CRect rcBar(pRc); // save the bar rect
+
     // subtract edges
     baseCSizingControlBarG::NcCalcClient(pRc, nDockBarID);
 
     if (!HasGripper())
         return;
 
-    CRect rc(pRc);
+    CRect rc(pRc); // the client rect as calculated by the base class
 
     BOOL bHorz = (nDockBarID == AFX_IDW_DOCKBAR_TOP) ||
                  (nDockBarID == AFX_IDW_DOCKBAR_BOTTOM);
@@ -97,11 +97,11 @@ void CSizingControlBarG::NcCalcClient(LPRECT pRc, UINT nDockBarID)
     // set position for the "x" (hide bar) button
     CPoint ptOrgBtn;
     if (bHorz)
-        ptOrgBtn = CPoint(rc.left - 8, rc.top + 5);
+        ptOrgBtn = CPoint(rc.left - 13, rc.top);
     else
-        ptOrgBtn = CPoint(rc.right - 7, rc.top - 8);
+        ptOrgBtn = CPoint(rc.right - 12, rc.top - 13);
 
-    m_biHide.Move(ptOrgBtn - CRect(pRc).TopLeft());
+    m_biHide.Move(ptOrgBtn - rcBar.TopLeft());
 
     *pRc = rc;
 }

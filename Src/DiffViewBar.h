@@ -14,7 +14,7 @@
 
 
 #include "sizecbar.h"
-#include "sizecbarg.h"
+#include "scbarg.h"
 #include "SplitterWndEx.h"
 
 // You must #define this for viewbar to compile properly

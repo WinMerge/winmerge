@@ -103,19 +103,6 @@ void CDiffViewBar::UpdateBarHeight(int DiffPanelHeight)
 	GetClientRect(rc);
 	m_pwndDetailSplitter->MoveWindow(rc);
 	m_pwndDetailSplitter->RecalcLayout();
-
-	if (DiffPanelHeight == 0)
-		return;
-
-	// and resize the control bar
-	int hDetailLeft,hmin;
-	int hDetailRight;
-	m_pwndDetailSplitter->GetRowInfo(0, hDetailLeft, hmin);
-	m_pwndDetailSplitter->GetRowInfo(1, hDetailRight, hmin);
-	int sum = hDetailLeft+hDetailRight;
-	int dsum = 2*DiffPanelHeight - sum;
-	if (DiffPanelHeight >= 0 && dsum != 0)
-		extendBar(CPoint (0,dsum));
 }
 
 

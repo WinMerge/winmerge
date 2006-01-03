@@ -69,16 +69,13 @@ BOOL CLocationBar::Create(
 }
 
 
-///	Create the frame window associated with the view bar. */
+///	Create the frame window associated with the view bar.
 int CLocationBar::OnCreate(LPCREATESTRUCT lpCreateStruct) 
 {
 	if (TViewBarBase::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
 	SetSCBStyle(SCBS_EDGELEFT | SCBS_EDGERIGHT | SCBS_SIZECHILD);
-
-	extendBar(CPoint(40,0));
-	
 	return 0;
 }
 

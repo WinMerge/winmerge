@@ -1,14 +1,14 @@
 /////////////////////////////////////////////////////////////////////////
 //
-// CSizingControlBar            Version 2.42
+// CSizingControlBar            Version 2.44
 //
-// Created: Jan 24, 1998        Last Modified: Feb 10, 2000
+// Created: Jan 24, 1998        Last Modified: March 31, 2002
 //
 // See the official site at www.datamekanix.com for documentation and
 // the latest news.
 //
 /////////////////////////////////////////////////////////////////////////
-// Copyright (C) 1998-2000 by Cristi Posea. All rights reserved.
+// Copyright (C) 1998-2002 by Cristi Posea. All rights reserved.
 //
 // This code is free for personal and commercial use, providing this 
 // notice remains intact in the source files and all eventual changes are
@@ -30,28 +30,26 @@
 // the version to be sure you get the latest one ;)
 //
 // Hint: These classes are intended to be used as base classes. Do not
-// simply add your code to these file - instead create a new class
+// simply add your code to these files - instead create a new class
 // derived from one of CSizingControlBarXX classes and put there what
 // you need. See CMyBar classes in the demo projects for examples.
 // Modify this file only to fix bugs, and don't forget to send me a copy.
-//
 /////////////////////////////////////////////////////////////////////////
-//
 // Acknowledgements:
-//  o   Thanks to Harlan R. Seymour (harlan@harlanseymour.com) for his
-//      continuous support during development of this code.
-//  o   Thanks to Dundas Software (www.dundas.com) for the opportunity 
+//  o   Thanks to Harlan R. Seymour for his continuous support during
+//      development of this code.
+//  o   Thanks to Dundas Software for the opportunity 
 //      to test this code on real-life applications.
 //  o   Some ideas for the gripper came from the CToolBarEx flat toolbar
-//      by Joerg Koenig (Joerg.Koenig@rhein-neckar.de). Thanks, Joerg!
-//  o   Thanks to Robert Wolpow (wolpow@geocities.com) for the code on 
-//      which CDockContext based dialgonal resizing is based.
+//      by Joerg Koenig. Thanks, Joerg!
+//  o   Thanks to Robert Wolpow for the code on which CDockContext based
+//      dialgonal resizing is based.
 //  o   Thanks to the following people for various bug fixes and/or
 //      enhancements: Chris Maunder, Jakawan Ratiwanich, Udo Schaefer,
-//      Anatoly Ivasyuk.
+//      Anatoly Ivasyuk, Peter Hauptmann, DJ(?), Pat Kusbel, Aleksey
+//      Malyshev.
 //  o   And, of course, many thanks to all of you who used this code,
 //      for the invaluable feedback I received.
-//
 /////////////////////////////////////////////////////////////////////////
 
 // sizecbar.cpp : implementation file
@@ -191,7 +189,7 @@ int CSizingControlBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
         &m_bDragShowContent, 0);
 
     // uncomment this line if you want raised borders
-    m_dwSCBStyle |= SCBS_SHOWEDGES;
+//    m_dwSCBStyle |= SCBS_SHOWEDGES;
 
     return 0;
 }
@@ -356,74 +354,6 @@ void CSizingControlBar::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
             m_bKeepSize = TRUE;
 }
 
-/// extend if the client area is high or wide enough
-void CSizingControlBar::extendBar(CPoint deltaSize)
-{
-	if (IsFloating())
-		return;
-
-
-	BOOL bHorz = IsHorzDocked();
-	m_szOld = bHorz ? m_szHorz : m_szVert;
-
-	// compute the resize side 
-	// as now, we only extend towards/from the client area
-	if (bHorz)
-		deltaSize.x = 0;
-	else
-		deltaSize.y = 0;
-	if (deltaSize.x == 0 && deltaSize.y == 0)
-		return;
-
-
-	// compute the limits
-	CSCBArray arrSCBars;
-	GetRowSizingBars(arrSCBars);
-
-	// compute the minsize as the max minsize of the sizing bars on row
-	m_szMinT = bHorz ? m_szMinHorz : m_szMinVert;
-	for (int i = 0; i < arrSCBars.GetSize(); i++)
-		if (bHorz)
-			m_szMinT.cy = max(m_szMinT.cy, arrSCBars[i]->m_szMinHorz.cy);
-		else
-			m_szMinT.cx = max(m_szMinT.cx, arrSCBars[i]->m_szMinVert.cx);
-
-	// compute the maxsize
-	m_szMaxT = m_szOld;
-	// the control bar cannot grow with more than the size of
-	// remaining client area of the mainframe
-	CRect rc;
-	m_pDockSite->RepositionBars(0, 0xFFFF, AFX_IDW_PANE_FIRST,
-		reposQuery, &rc, NULL, TRUE);
-	m_szMaxT += rc.Size() - CSize(4, 4);
-
-
-
- 
-	// enforce the limits
-	CSize szDelta = deltaSize;
-	CSize sizeNew = m_szOld + szDelta;
-	sizeNew.cx = max(m_szMinT.cx, min(m_szMaxT.cx, sizeNew.cx));
-	sizeNew.cy = max(m_szMinT.cy, min(m_szMaxT.cy, sizeNew.cy));
-
-	szDelta = sizeNew - m_szOld;
-	if (szDelta == CSize(0, 0))
-		return; // no size change
-
-		(bHorz ? m_szHorz : m_szVert) = sizeNew; // save the new size
-
-		for (i = 0; i < arrSCBars.GetSize(); i++)
-		{   // track simultaneously
-			CSizingControlBar* pBar = arrSCBars[i];
-			(bHorz ? pBar->m_szHorz.cy : pBar->m_szVert.cx) =
-				bHorz ? sizeNew.cy : sizeNew.cx;
-		}
-
-		if (m_bDragShowContent)
-			m_pDockSite->DelayRecalcLayout();
-}
-
-
 /////////////////////////////////////////////////////////////////////////
 // Mouse Handling
 //
@@ -460,7 +390,7 @@ void CSizingControlBar::OnNcLButtonDown(UINT nHitTest, CPoint point)
         return;
 
     if ((nHitTest >= HTSIZEFIRST) && (nHitTest <= HTSIZELAST))
-        StartTracking(nHitTest); // sizing edge hit
+        StartTracking(nHitTest, point); // sizing edge hit
 }
 
 void CSizingControlBar::OnLButtonUp(UINT nFlags, CPoint point)
@@ -482,7 +412,12 @@ void CSizingControlBar::OnRButtonDown(UINT nFlags, CPoint point)
 void CSizingControlBar::OnMouseMove(UINT nFlags, CPoint point)
 {
     if (m_bTracking)
-        OnTrackUpdateSize(point);
+    {
+        CPoint ptScreen = point;
+        ClientToScreen(&ptScreen);
+
+        OnTrackUpdateSize(ptScreen);
+    }
 
     baseCSizingControlBar::OnMouseMove(nFlags, point);
 }
@@ -521,21 +456,19 @@ void CSizingControlBar::OnNcCalcSize(BOOL bCalcValidRects,
     // compute the the client area
     m_dwSCBStyle &= ~SCBS_EDGEALL;
 
+    // add resizing edges between bars on the same row
     if (!IsFloating() && m_pDockBar != NULL)
     {
         CSCBArray arrSCBars;
-        GetRowSizingBars(arrSCBars);
+        int nThis;
+        GetRowSizingBars(arrSCBars, nThis);
 
-        for (int i = 0; i < arrSCBars.GetSize(); i++)
-            if (arrSCBars[i] == this)
-            {
-                if (i > 0)
-                    m_dwSCBStyle |= IsHorzDocked() ?
-                        SCBS_EDGELEFT : SCBS_EDGETOP;
-                if (i < arrSCBars.GetSize() - 1)
-                    m_dwSCBStyle |= IsHorzDocked() ?
-                        SCBS_EDGERIGHT : SCBS_EDGEBOTTOM;
-            }
+        BOOL bHorz = IsHorzDocked();
+        if (nThis > 0)
+            m_dwSCBStyle |= bHorz ? SCBS_EDGELEFT : SCBS_EDGETOP;
+
+        if (nThis < arrSCBars.GetUpperBound())
+            m_dwSCBStyle |= bHorz ? SCBS_EDGERIGHT : SCBS_EDGEBOTTOM;
     }
 
     NcCalcClient(&lpncsp->rgrc[0], m_nDockBarID);
@@ -579,7 +512,7 @@ void CSizingControlBar::NcCalcClient(LPRECT pRc, UINT nDockBarID)
 void CSizingControlBar::OnNcPaint()
 {
     // get window DC that is clipped to the non-client area
-    CWindowDC dc(this);
+    CWindowDC dc(this); // the HDC will be released by the destructor
 
     CRect rcClient, rcBar;
     GetClientRect(rcClient);
@@ -595,15 +528,9 @@ void CSizingControlBar::OnNcPaint()
     bm.CreateCompatibleBitmap(&dc, rcBar.Width(), rcBar.Height());
     CBitmap* pOldBm = mdc.SelectObject(&bm);
 
-    // client area is not our bussiness :)
-    dc.ExcludeClipRect(rcClient);
-
     // draw borders in non-client area
     CRect rcDraw = rcBar;
     DrawBorders(&mdc, rcDraw);
-
-    // erase parts not drawn
-    mdc.IntersectClipRect(rcDraw);
 
     // erase the NC background
     mdc.FillRect(rcDraw, CBrush::FromHandle(
@@ -620,9 +547,11 @@ void CSizingControlBar::OnNcPaint()
 
     NcPaintGripper(&mdc, rcClient);
 
-    dc.BitBlt(0, 0, rcBar.Width(), rcBar.Height(), &mdc, 0, 0, SRCCOPY);
+    // client area is not our bussiness :)
+    dc.IntersectClipRect(rcBar);
+    dc.ExcludeClipRect(rcClient);
 
-    ReleaseDC(&dc);
+    dc.BitBlt(0, 0, rcBar.Width(), rcBar.Height(), &mdc, 0, 0, SRCCOPY);
 
     mdc.SelectObject(pOldBm);
     bm.DeleteObject();
@@ -689,7 +618,7 @@ void CSizingControlBar::OnClose()
 /////////////////////////////////////////////////////////////////////////
 // CSizingControlBar implementation helpers
 
-void CSizingControlBar::StartTracking(UINT nHitTest)
+void CSizingControlBar::StartTracking(UINT nHitTest, CPoint point)
 {
     SetCapture();
 
@@ -697,51 +626,68 @@ void CSizingControlBar::StartTracking(UINT nHitTest)
     if (!m_bDragShowContent)
         RedrawWindow(NULL, NULL, RDW_ALLCHILDREN | RDW_UPDATENOW);
 
-    BOOL bHorz = IsHorzDocked();
-
-    m_szOld = bHorz ? m_szHorz : m_szVert;
-
-    CRect rc;
-    GetWindowRect(&rc);
-    CRect rcEdge;
-    VERIFY(GetEdgeRect(rc, nHitTest, rcEdge));
-    m_ptOld = rcEdge.CenterPoint();
-
     m_htEdge = nHitTest;
     m_bTracking = TRUE;
 
+    BOOL bHorz = IsHorzDocked();
+    BOOL bHorzTracking = m_htEdge == HTLEFT || m_htEdge == HTRIGHT;
+
+    m_nTrackPosOld = bHorzTracking ? point.x : point.y;
+
+    CRect rcBar, rcEdge;
+    GetWindowRect(rcBar);
+    GetEdgeRect(rcBar, m_htEdge, rcEdge);
+    m_nTrackEdgeOfs = m_nTrackPosOld -
+        (bHorzTracking ? rcEdge.CenterPoint().x : rcEdge.CenterPoint().y);
+    
     CSCBArray arrSCBars;
-    GetRowSizingBars(arrSCBars);
+    int nThis;
+    GetRowSizingBars(arrSCBars, nThis);
 
-    // compute the minsize as the max minsize of the sizing bars on row
-    m_szMinT = bHorz ? m_szMinHorz : m_szMinVert;
-    for (int i = 0; i < arrSCBars.GetSize(); i++)
-        if (bHorz)
-            m_szMinT.cy = max(m_szMinT.cy, arrSCBars[i]->m_szMinHorz.cy);
-        else
-            m_szMinT.cx = max(m_szMinT.cx, arrSCBars[i]->m_szMinVert.cx);
-
-    m_szMaxT = m_szOld;
+    m_nTrackPosMin = m_nTrackPosMax = m_nTrackPosOld;
     if (!IsSideTracking())
     {
-        // the control bar cannot grow with more than the size of
+        // calc minwidth as the max minwidth of the sizing bars on row
+        int nMinWidth = bHorz ? m_szMinHorz.cy : m_szMinVert.cx;
+        for (int i = 0; i < arrSCBars.GetSize(); i++)
+            nMinWidth = max(nMinWidth, bHorz ? 
+                arrSCBars[i]->m_szMinHorz.cy :
+                arrSCBars[i]->m_szMinVert.cx);
+        int nExcessWidth = (bHorz ? m_szHorz.cy : m_szVert.cx) - nMinWidth;
+
+        // the control bar cannot grow with more than the width of
         // remaining client area of the mainframe
+        CRect rcT;
         m_pDockSite->RepositionBars(0, 0xFFFF, AFX_IDW_PANE_FIRST,
-            reposQuery, &rc, NULL, TRUE);
-        m_szMaxT += rc.Size() - CSize(4, 4);
+            reposQuery, &rcT, NULL, TRUE);
+        int nMaxWidth = bHorz ? rcT.Height() - 2 : rcT.Width() - 2;
+
+        BOOL bTopOrLeft = m_htEdge == HTTOP || m_htEdge == HTLEFT;
+
+        m_nTrackPosMin -= bTopOrLeft ? nMaxWidth : nExcessWidth;
+        m_nTrackPosMax += bTopOrLeft ? nExcessWidth : nMaxWidth;
     }
     else
     {
-        // side tracking: max size is the actual size plus the amount
-        // the neighbour bar can be decreased to reach its minsize
+        // side tracking:
+        // max size is the actual size plus the amount the other
+        // sizing bars can be decreased until they reach their minsize
+        if (m_htEdge == HTBOTTOM || m_htEdge == HTRIGHT)
+            nThis++;
+
         for (int i = 0; i < arrSCBars.GetSize(); i++)
-            if (arrSCBars[i] == this) break;
+        {
+            CSizingControlBar* pBar = arrSCBars[i];
 
-        CSizingControlBar* pBar = arrSCBars[i +
-            ((m_htEdge == HTTOP || m_htEdge == HTLEFT) ? -1 : 1)];
+            int nExcessWidth = bHorz ? 
+                pBar->m_szHorz.cx - pBar->m_szMinHorz.cx :
+                pBar->m_szVert.cy - pBar->m_szMinVert.cy;
 
-        m_szMaxT += (bHorz ? pBar->m_szHorz : pBar->m_szVert) -
-            CSize(pBar->m_szMinHorz.cx, pBar->m_szMinVert.cy);
+            if (i < nThis)
+                m_nTrackPosMin -= nExcessWidth;
+            else
+                m_nTrackPosMax += nExcessWidth;
+        }
     }
 
     OnTrackInvertTracker(); // draw tracker
@@ -761,53 +707,75 @@ void CSizingControlBar::OnTrackUpdateSize(CPoint& point)
 {
     ASSERT(!IsFloating());
 
-    CPoint pt = point;
-    ClientToScreen(&pt);
-    CSize szDelta = pt - m_ptOld;
+    BOOL bHorzTrack = m_htEdge == HTLEFT || m_htEdge == HTRIGHT;
 
-    CSize sizeNew = m_szOld;
-    switch (m_htEdge)
-    {
-    case HTLEFT:    sizeNew -= CSize(szDelta.cx, 0); break;
-    case HTTOP:     sizeNew -= CSize(0, szDelta.cy); break;
-    case HTRIGHT:   sizeNew += CSize(szDelta.cx, 0); break;
-    case HTBOTTOM:  sizeNew += CSize(0, szDelta.cy); break;
-    }
+    int nTrackPos = bHorzTrack ? point.x : point.y;
+    nTrackPos = max(m_nTrackPosMin, min(m_nTrackPosMax, nTrackPos));
 
-    // enforce the limits
-    sizeNew.cx = max(m_szMinT.cx, min(m_szMaxT.cx, sizeNew.cx));
-    sizeNew.cy = max(m_szMinT.cy, min(m_szMaxT.cy, sizeNew.cy));
+    int nDelta = nTrackPos - m_nTrackPosOld;
 
-    BOOL bHorz = IsHorzDocked();
-    szDelta = sizeNew - (bHorz ? m_szHorz : m_szVert);
-
-    if (szDelta == CSize(0, 0))
-        return; // no size change
+    if (nDelta == 0)
+        return; // no pos change
 
     OnTrackInvertTracker(); // erase tracker
 
-    (bHorz ? m_szHorz : m_szVert) = sizeNew; // save the new size
+    m_nTrackPosOld = nTrackPos;
+    
+    BOOL bHorz = IsHorzDocked();
+
+    CSize sizeNew = bHorz ? m_szHorz : m_szVert;
+    switch (m_htEdge)
+    {
+    case HTLEFT:    sizeNew -= CSize(nDelta, 0); break;
+    case HTTOP:     sizeNew -= CSize(0, nDelta); break;
+    case HTRIGHT:   sizeNew += CSize(nDelta, 0); break;
+    case HTBOTTOM:  sizeNew += CSize(0, nDelta); break;
+    }
 
     CSCBArray arrSCBars;
-    GetRowSizingBars(arrSCBars);
+    int nThis;
+    GetRowSizingBars(arrSCBars, nThis);
 
-    for (int i = 0; i < arrSCBars.GetSize(); i++)
-        if (!IsSideTracking())
-        {   // track simultaneously
+    if (!IsSideTracking())
+        for (int i = 0; i < arrSCBars.GetSize(); i++)
+        {
             CSizingControlBar* pBar = arrSCBars[i];
+            // make same width (or height)
             (bHorz ? pBar->m_szHorz.cy : pBar->m_szVert.cx) =
                 bHorz ? sizeNew.cy : sizeNew.cx;
         }
-        else
-        {   // adjust the neighbour's size too
-            if (arrSCBars[i] != this) continue;
+    else
+    {
+        int nGrowingBar = nThis;
+        BOOL bBefore = m_htEdge == HTTOP || m_htEdge == HTLEFT;
+        if (bBefore && nDelta > 0)
+            nGrowingBar--;
+        if (!bBefore && nDelta < 0)
+            nGrowingBar++;
+        if (nGrowingBar != nThis)
+            bBefore = !bBefore;
 
-            CSizingControlBar* pBar = arrSCBars[i +
-                ((m_htEdge == HTTOP || m_htEdge == HTLEFT) ? -1 : 1)];
+        // nGrowing is growing
+        nDelta = abs(nDelta);
+        CSizingControlBar* pBar = arrSCBars[nGrowingBar];
+        (bHorz ? pBar->m_szHorz.cx : pBar->m_szVert.cy) += nDelta;
 
-            (bHorz ? pBar->m_szHorz.cx : pBar->m_szVert.cy) -=
-                bHorz ? szDelta.cx : szDelta.cy;
+        // the others are shrinking
+        int nFirst = bBefore ? nGrowingBar - 1 : nGrowingBar + 1;
+        int nLimit = bBefore ? -1 : arrSCBars.GetSize();
+
+        for (int i = nFirst; nDelta != 0 && i != nLimit; i += (bBefore ? -1 : 1))
+        {
+            CSizingControlBar* pBar = arrSCBars[i];
+                
+            int nDeltaT = min(nDelta,
+                (bHorz ? pBar->m_szHorz.cx : pBar->m_szVert.cy) -
+                (bHorz ? pBar->m_szMinHorz.cx : pBar->m_szMinVert.cy));
+
+            (bHorz ? pBar->m_szHorz.cx : pBar->m_szVert.cy) -= nDeltaT;
+            nDelta -= nDeltaT;
         }
+    }
 
     OnTrackInvertTracker(); // redraw tracker at new pos
 
@@ -833,16 +801,11 @@ void CSizingControlBar::OnTrackInvertTracker()
             CRect(rcDock.left + 1, rc.top, rcDock.right - 1, rc.bottom) :
             CRect(rc.left, rcDock.top + 1, rc.right, rcDock.bottom - 1);
 
+    BOOL bHorzTracking = m_htEdge == HTLEFT || m_htEdge == HTRIGHT;
+    int nOfs = m_nTrackPosOld - m_nTrackEdgeOfs;
+    nOfs -= bHorzTracking ? rc.CenterPoint().x : rc.CenterPoint().y;
+    rc.OffsetRect(bHorzTracking ? nOfs : 0, bHorzTracking ? 0 : nOfs);
     rc.OffsetRect(-rcFrame.TopLeft());
-
-    CSize sizeNew = bHorz ? m_szHorz : m_szVert;
-    CSize sizeDelta = sizeNew - m_szOld;
-    if (m_nDockBarID == AFX_IDW_DOCKBAR_LEFT && m_htEdge == HTTOP ||
-        m_nDockBarID == AFX_IDW_DOCKBAR_RIGHT && m_htEdge != HTBOTTOM ||
-        m_nDockBarID == AFX_IDW_DOCKBAR_TOP && m_htEdge == HTLEFT ||
-        m_nDockBarID == AFX_IDW_DOCKBAR_BOTTOM && m_htEdge != HTRIGHT)
-        sizeDelta = -sizeDelta;
-    rc.OffsetRect(sizeDelta);
 
     CDC *pDC = m_pDockSite->GetDCEx(NULL,
         DCX_WINDOW | DCX_CACHE | DCX_LOCKWINDOWUPDATE);
@@ -923,19 +886,31 @@ void CSizingControlBar::GetRowInfo(int& nFirst, int& nLast, int& nThis)
 
 void CSizingControlBar::GetRowSizingBars(CSCBArray& arrSCBars)
 {
+    int nThis; // dummy
+    GetRowSizingBars(arrSCBars, nThis);
+}
+
+void CSizingControlBar::GetRowSizingBars(CSCBArray& arrSCBars, int& nThis)
+{
     arrSCBars.RemoveAll();
 
-    int nFirst, nLast, nThis;
-    GetRowInfo(nFirst, nLast, nThis);
+    int nFirstT, nLastT, nThisT;
+    GetRowInfo(nFirstT, nLastT, nThisT);
 
-    for (int i = nFirst; i <= nLast; i++)
+    nThis = -1;
+    for (int i = nFirstT; i <= nLastT; i++)
     {
         CSizingControlBar* pBar =
             (CSizingControlBar*) m_pDockBar->m_arrBars[i];
         if (HIWORD(pBar) == 0) continue; // placeholder
         if (!pBar->IsVisible()) continue;
         if (pBar->IsKindOf(RUNTIME_CLASS(CSizingControlBar)))
+        {
+            if (pBar == this)
+                nThis = arrSCBars.GetSize();
+
             arrSCBars.Add(pBar);
+        }
     }
 }
 
@@ -1020,11 +995,11 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
     {
         ASSERT(arrSCBars[0] == this);
 
-        if (nDelta != 0)
-        {
-            m_bKeepSize = FALSE;
-            (bHorz ? m_szHorz.cx : m_szVert.cy) += nDelta;
-        }
+        if (nDelta == 0)
+            return TRUE;
+        
+        m_bKeepSize = FALSE;
+        (bHorz ? m_szHorz.cx : m_szVert.cy) += nDelta;
 
         return TRUE;
     }
@@ -1384,7 +1359,9 @@ void CSCBMiniDockFrameWnd::OnSize(UINT nType, int cx, int cy)
 {
     CSizingControlBar* pBar = GetSizingControlBar();
     if ((pBar != NULL) && (GetStyle() & MFS_4THICKFRAME) == 0
-        && pBar->IsVisible())
+        && pBar->IsVisible() &&
+        cx + 4 >= pBar->m_szMinFloat.cx &&
+        cy + 4 >= pBar->m_szMinFloat.cy)
         pBar->m_szFloat = CSize(cx + 4, cy + 4);
 
     baseCSCBMiniDockFrameWnd::OnSize(nType, cx, cy);
@@ -1418,12 +1395,15 @@ void CSCBMiniDockFrameWnd::OnWindowPosChanging(WINDOWPOS FAR* lpwndpos)
             lpwndpos->flags |= SWP_NOSIZE; // don't size this time
             // prevents flicker
             pBar->m_pDockBar->ModifyStyle(0, WS_CLIPCHILDREN);
+
             // enable diagonal resizing
-            ModifyStyle(MFS_4THICKFRAME, 0);
+            DWORD dwStyleRemove = MFS_4THICKFRAME;
 #ifndef _SCB_MINIFRAME_CAPTION
             // remove caption
-            ModifyStyle(WS_SYSMENU|WS_CAPTION, 0);
+            dwStyleRemove |= WS_SYSMENU|WS_CAPTION;
 #endif
+            ModifyStyle(dwStyleRemove, 0);
+
             DelayRecalcLayout();
             pBar->PostMessage(WM_NCPAINT);
         }

@@ -709,6 +709,10 @@ SOURCE=.\SaveClosingDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\scbarg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\SelectUnpackerDlg.cpp
 # End Source File
 # Begin Source File
@@ -722,10 +726,6 @@ SOURCE=.\Common\sinstance.cpp
 # Begin Source File
 
 SOURCE=.\Common\sizecbar.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\sizecbarg.cpp
 # End Source File
 # Begin Source File
 
@@ -1281,6 +1281,10 @@ SOURCE=.\Common\sbuffer.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\scbarg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\SelectUnpackerDlg.h
 # End Source File
 # Begin Source File
@@ -1294,10 +1298,6 @@ SOURCE=.\Common\sinstance.h
 # Begin Source File
 
 SOURCE=.\Common\sizecbar.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\sizecbarg.h
 # End Source File
 # Begin Source File
 

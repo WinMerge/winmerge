@@ -12,7 +12,7 @@
 
 
 #include "sizecbar.h"
-#include "sizecbarg.h"
+#include "scbarg.h"
 
 
 // You must #define this for viewbar to compile properly

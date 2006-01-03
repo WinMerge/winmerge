@@ -3,6 +3,11 @@
   Src: Merge.rc
   Src/editlib: ccrystaltextview.cpp
   Src/Language: */Merge*.rc
+ PATCH: [ 1395584 ] Update CSizingControlBar to latest version
+  Src: DiffViewBar.cpp DiffViewBar.h LocationBar.cpp LocationBar.h Merge.dsp StdAfx.h
+  Src/Common: sizecbar.cpp sizecbar.h
+  Src/Common new files: scbarg.cpp scbarg.h
+  Src/Common deleted files: sizecbarg.cpp sizecbarg.h
 
 2006-01-03 Takashi
  PATCH: [ 1390104 ] fix for BUG: [ 1384069 ] Wrapped lines have incorrect column
