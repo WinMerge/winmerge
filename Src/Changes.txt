@@ -8,6 +8,10 @@
   Src/Common: sizecbar.cpp sizecbar.h
   Src/Common new files: scbarg.cpp scbarg.h
   Src/Common deleted files: sizecbarg.cpp sizecbarg.h
+ PATCH: [ 1383262 ] Fix bitmap leak in ShellExtension
+  Also bump version number to 1.7.1
+  Submitted by Perry
+  ShellExtension: ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
 
 2006-01-03 Takashi
  PATCH: [ 1390104 ] fix for BUG: [ 1384069 ] Wrapped lines have incorrect column

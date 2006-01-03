@@ -113,8 +113,9 @@ public:
 CWinMergeShell::CWinMergeShell()
 {
 	m_dwMenuState = 0;
-	m_hMergeBmp = LoadBitmap(_Module.GetModuleInstance(),
+	HBITMAP hMergeBmp = LoadBitmap(_Module.GetModuleInstance(),
 			MAKEINTRESOURCE(IDB_WINMERGE));
+	m_MergeBmp.Attach(hMergeBmp);
 }
 
 /// Reads selected paths
@@ -353,10 +354,12 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 		&stInfo, &processInfo);
 
-	if (retVal)
-		return S_OK;
-	else
+	if (!retVal)
 		return S_FALSE;
+
+	CloseHandle(processInfo.hThread);
+	CloseHandle(processInfo.hProcess);
+	return S_OK;
 }
 
 /// Reads WinMerge path from registry
@@ -407,8 +410,8 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu);
 	
 	// Add bitmap
-	if (m_hMergeBmp != NULL)
-		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_hMergeBmp, NULL);
+	if ((HBITMAP)m_MergeBmp != NULL)
+		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
 	
 	// Show menu item as grayed if more than two items selected
 	if (m_nSelectedItems > MaxFileCount)
@@ -468,11 +471,11 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	}
 	
 	// Add bitmap
-	if (m_hMergeBmp != NULL)
+	if ((HBITMAP)m_MergeBmp != NULL)
 	{
 		if (nItemsAdded == 2)
-			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, m_hMergeBmp, NULL);
-		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_hMergeBmp, NULL);
+			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, m_MergeBmp, NULL);
+		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
 	}
 	
 	// Show menu item as grayed if more than two items selected

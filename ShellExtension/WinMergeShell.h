@@ -60,7 +60,7 @@ END_COM_MAP()
 protected:
     CString m_strPaths[2]; /**< Paths for selected items */
 	CString m_strPreviousPath; /**< Previously selected path */
-	HBITMAP m_hMergeBmp; /**< Icon */
+	CBitmap m_MergeBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
 	DWORD m_dwMenuState; /**< Shown menuitems */
