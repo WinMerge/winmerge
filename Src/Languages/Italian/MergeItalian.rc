@@ -1120,10 +1120,12 @@ BEGIN
                     221,41
     CONTROL         "Mostra differenze di linea",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
-    CONTROL         "Interrompi alle parole",IDC_BREAK_ON_WORDS,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,148,108,73,8
+    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
+    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
+                    BS_AUTORADIOBUTTON,14,128,122,10
     COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
-                    WS_VSCROLL | WS_TABSTOP
+                    WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
 IDD_MESSAGE_BOX DIALOGEX 0, 0, 186, 95

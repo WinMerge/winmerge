@@ -1,6 +1,9 @@
 2006-01-02 Perry
  PATCH: [ 1383802 ] Cleanup line difference options in Editor-options
   Src: Merge.rc PropEditor.cpp PropEditor.h resource.h
+ PATCH: [ 1383802 ] Cleanup line difference options in Editor-options
+  Translations
+  Src/Language: */Merge*.rc
 
 2006-01-02 Kimmo
  PATCH: [ 1395474 ] Define WINVER for compiling with VS.net
