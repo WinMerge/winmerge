@@ -113,15 +113,15 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 					m_eol0 = true;
 					m_cr0 = false;
 				}
-				if (!m_eol0)
+				if (ptr0 < end0)
 				{
-					if (ptr0 < end0 && *ptr0 == '\n')
+					if (*ptr0 == '\n')
 					{
 						// m_bol0 not used because m_ignore_eol_diff
 						++ptr0;
 						m_eol0 = true;
 					}
-					else if (ptr0 < end0 && *ptr0 == '\r')
+					else if (*ptr0 == '\r')
 					{
 						// m_bol0 not used because m_ignore_eol_diff
 						++ptr0;
@@ -132,6 +132,14 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 							m_cr0 = true;
 							m_eol0 = true;
 						}
+						else if (ptr0 < end0 && *ptr0 == '\n')
+						{
+							++ptr0;
+						}
+					}
+					else
+					{
+						m_eol0 = false;
 					}
 				}
 				if (m_cr1)
@@ -145,15 +153,15 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 					m_eol1 = true;
 					m_cr1 = false;
 				}
-				if (!m_eol1)
+				if (ptr1 < end1)
 				{
-					if (ptr1 < end1 && *ptr1 == '\n')
+					if (*ptr1 == '\n')
 					{
 						// m_bol1 not used because m_ignore_eol_diff
 						++ptr1;
 						m_eol1 = true;
 					}
-					else if (ptr1 < end1 && *ptr1 == '\r')
+					else if (*ptr1 == '\r')
 					{
 						// m_bol1 not used because m_ignore_eol_diff
 						++ptr1;
@@ -164,6 +172,14 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 							m_cr1 = true;
 							m_eol1 = true;
 						}
+						else if (ptr1 < end1 && *ptr1 == '\n')
+						{
+							++ptr1;
+						}
+					}
+					else
+					{
+						m_eol1 = false;
 					}
 				}
 				if (m_cr0 || m_cr1)
