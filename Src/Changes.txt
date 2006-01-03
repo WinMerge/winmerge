@@ -1,3 +1,8 @@
+2006-01-03 Takashi
+ PATCH: [ 1390104 ] fix for BUG: [ 1384069 ] Wrapped lines have incorrect column
+  Src: MergeEditView.cpp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2006-01-03 Perry
  BUG: [ 1390849 ] cvs trunk MergeChineseSimplified doesn't compile
   Src/Languages: ChineseSimplified: MergeChineseSimplified.rc

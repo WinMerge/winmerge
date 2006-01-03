@@ -215,7 +215,7 @@ protected :
     CPoint ClientToText (const CPoint & point);
     CPoint TextToClient (const CPoint & point);
     void InvalidateLines (int nLine1, int nLine2, BOOL bInvalidateMargin = FALSE);
-    int CalculateActualOffset (int nLineIndex, int nCharIndex);
+    int CalculateActualOffset (int nLineIndex, int nCharIndex, BOOL bAccumulate = FALSE);
 
     //  Printing
     int m_nPrintPages;

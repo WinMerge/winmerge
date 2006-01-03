@@ -3584,7 +3584,7 @@ ParseLine (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
 }
 
 int CCrystalTextView::
-CalculateActualOffset (int nLineIndex, int nCharIndex)
+CalculateActualOffset (int nLineIndex, int nCharIndex, BOOL bAccumulate)
 {
   const ViewableWhitespaceChars * lpspc = GetViewableWhitespaceChars(GetACP());
   const int nLength = GetLineLength (nLineIndex);
@@ -3620,6 +3620,8 @@ CalculateActualOffset (int nLineIndex, int nCharIndex)
       else
         nOffset += GetCharWidthFromDisplayableChar(lpspc, pszChars[I]) / GetCharWidth();
     }
+  if (bAccumulate)
+    return nOffset;
   //BEGIN SW
   if( nPreBreak == I && nBreaks )
     return 0;
