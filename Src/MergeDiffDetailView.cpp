@@ -42,6 +42,8 @@ CMergeDiffDetailView::CMergeDiffDetailView()
 , m_lineEnd(-1)
 , m_diffLength(0)
 , m_displayLength(NROWS_INIT)
+, m_nPrevPaneHeight(0)
+, m_hwndFrame(NULL)
 {
 }
 
@@ -126,6 +128,14 @@ void CMergeDiffDetailView::OnSize(UINT nType, int cx, int cy)
 	CRect rc;
 	GetWindowRect(rc);
 	SetDisplayHeight(rc.Height());
+
+	// If height changed tell frame to store new size
+	if (cx != m_nPrevPaneHeight)
+	{
+		m_nPrevPaneHeight = cx;
+		if (m_hwndFrame != NULL)
+			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0); 
+	}
 }
 
 
@@ -644,4 +654,12 @@ void CMergeDiffDetailView::OnChangePane()
 void CMergeDiffDetailView::OnUpdateChangePane(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Store HWND for parent frame.
+ */
+void CMergeDiffDetailView::SetFrameHwnd(HWND hwndFrame)
+{
+	m_hwndFrame = hwndFrame;
 }

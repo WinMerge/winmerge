@@ -56,6 +56,10 @@ protected:
 	/// memorize top line positions
 	int m_nTopLinePushed;
 
+private:
+	HWND m_hwndFrame; //*< Frame window handle */
+	UINT m_nPrevPaneHeight;
+
 // Operations
 private:
 	int GetDiffLineLength();
@@ -67,8 +71,10 @@ public:
 	void UpdateResources();
 	BOOL IsModified() { return FALSE; }
 	BOOL PrimeListWithFile();
-	int ComputeInitialHeight(); 
-	void SetDisplayHeight(int h); 
+	int ComputeInitialHeight();
+	void SetDisplayHeight(int h);
+	void SetFrameHwnd(HWND hwndFrame);
+
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE );
 

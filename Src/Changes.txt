@@ -1,3 +1,9 @@
+2006-01-04 Kimmo
+ PATCH: [ 1393635 ] Save pane sizes and positions when they change
+  Src: ChildFrm.cpp ChildFrm.h DiffViewBar.cpp DiffViewBar.h LocationBar.cpp
+   LocationBar.h LocationView.cpp LocationView.h MergeDiffDetailView.cpp
+   MergeDiffDetailView.h StdAfx.h
+
 2006-01-04 Perry
  Cosmetic; normalizing blank lines to agree with English Merge.rc
   Src\Languages:

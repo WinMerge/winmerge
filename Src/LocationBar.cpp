@@ -29,6 +29,7 @@ IMPLEMENT_DYNAMIC(CLocationBar, TViewBarBase);
 //////////////////////////////////////////////////////////////////////
 
 CLocationBar::CLocationBar()
+: m_hwndFrame(NULL)
 {
 }
 
@@ -43,6 +44,7 @@ BEGIN_MESSAGE_MAP(CLocationBar, TViewBarBase)
 	ON_WM_CREATE()
 	ON_WM_LBUTTONDOWN()
 	ON_WM_SIZE()
+	ON_WM_WINDOWPOSCHANGED()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -87,9 +89,9 @@ int CLocationBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
 void CLocationBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	TViewBarBase::OnLButtonDown(nFlags, point);
-  if (m_pDockBar != NULL)
-  {
-    if (IsVertDocked() == FALSE)
+	if (m_pDockBar != NULL)
+	{
+		if (IsVertDocked() == FALSE)
 			m_pDockContext->ToggleDocking();
 	}
 }
@@ -97,4 +99,29 @@ void CLocationBar::OnLButtonDown(UINT nFlags, CPoint point)
 void CLocationBar::OnSize(UINT nType, int cx, int cy) 
 {
 	TViewBarBase::OnSize(nType, cx, cy);
+}
+
+/** 
+ * @brief Informs parent frame (CChildFrame) when bar is closed.
+ *
+ * After bar is closed parent frame saves bar states.
+ */
+void CLocationBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+{
+	TViewBarBase::OnWindowPosChanged(lpwndpos);
+
+	if (m_hwndFrame != NULL)
+	{
+		// If WINDOWPOS.flags has SWP_HIDEWINDOW flag set
+		if ((lpwndpos->flags & SWP_HIDEWINDOW) != 0)
+			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
+	}
+}
+
+/** 
+ * @brief Stores HWND of frame window (CChildFrame).
+ */
+void CLocationBar::SetFrameHwnd(HWND hwndFrame)
+{
+	m_hwndFrame = hwndFrame;
 }

@@ -60,6 +60,8 @@ CLocationView::CLocationView()
 	, m_visibleBottom(-1)
 //	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 	, m_bIgnoreTrivials(true)
+	, m_hwndFrame(NULL)
+	, m_nPrevPaneWidth(0)
 {
 	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
 	// There is no GUI to do this
@@ -78,6 +80,7 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_LBUTTONDBLCLK()
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
+	ON_WM_SIZE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -112,6 +115,8 @@ CMergeDoc* CLocationView::GetDocument() // non-debug version is inline
  */
 void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 {
+	UNREFERENCED_PARAMETER(pSender);
+	UNREFERENCED_PARAMETER(lHint);
 	CMergeDoc* pDoc = GetDocument();
 	m_view[0] = pDoc->GetLeftView();
 	m_view[1] = pDoc->GetRightView();
@@ -735,4 +740,29 @@ void CLocationView::DrawConnectLines()
 
 	pClientDC->SelectObject(oldObj);
 	ReleaseDC(pClientDC);
+}
+
+/** 
+ * @brief Stores HWND of frame window (CChildFrame).
+ */
+void CLocationView::SetFrameHwnd(HWND hwndFrame)
+{
+	m_hwndFrame = hwndFrame;
+}
+
+/** 
+ * @brief Request frame window to store sizes.
+ *
+ * When locationview size changes we want to save new size
+ * for new windows. But we must do it through frame window.
+ */
+void CLocationView::OnSize(UINT nType, int cx, int cy) 
+{
+	CView::OnSize(nType, cx, cy);
+	if (cx != m_nPrevPaneWidth)
+	{
+		m_nPrevPaneWidth = cx;
+		if (m_hwndFrame != NULL)
+			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
+	}
 }

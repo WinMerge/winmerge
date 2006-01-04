@@ -38,6 +38,7 @@ public:
 
 	int  GetPanelHeight();
 	void UpdateBarHeight(int DiffPanelHeight);
+	void SetFrameHwnd(HWND hwndFrame);
 
 protected:
 	CSplitterWndEx * m_pwndDetailSplitter;
@@ -54,8 +55,13 @@ public:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+
+private:
+	HWND m_hwndFrame; //*< Frame window handle */
+
 };
 
 

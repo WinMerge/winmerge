@@ -63,6 +63,7 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_LOCATION_BAR, OnBarCheck)
+	ON_MESSAGE(MSG_STORE_PANESIZES, OnStorePaneSizes)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -113,18 +114,12 @@ CChildFrame::~CChildFrame()
 BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CCreateContext* pContext)
 {
-	//lpcs->style |= WS_MAXIMIZE;
 	// create a splitter with 1 row, 2 columns
 	if (!m_wndSplitter.CreateStatic(this, 1, 2, WS_CHILD | WS_VISIBLE | WS_HSCROLL | WS_VSCROLL) )
 	{
 		TRACE0("Failed to CreateStaticSplitter\n");
 		return FALSE;
 	}
-	
-	// add the first splitter pane - the default view in column 0
-	//int width=theApp.GetProfileInt(_T("Settings"), _T("WLeft"), 0);
-	//if (width<=0)
-	//	width = rc.Width()/2;
 
 	if (!m_wndSplitter.CreateView(0, 0,
 		RUNTIME_CLASS(CMergeEditView), CSize(-1, 200), pContext))
@@ -189,8 +184,6 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	m_wndDetailSplitter.ResizablePanes(TRUE);
 	m_wndDetailBar.setSplitter(&m_wndDetailSplitter);
 
-
-
 	// stash left & right pointers into the mergedoc
 	CMergeEditView * pLeft = (CMergeEditView *)m_wndSplitter.GetPane(0,0);
 	CMergeEditView * pRight = (CMergeEditView *)m_wndSplitter.GetPane(0,1);
@@ -211,12 +204,17 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	pLeftDetail->m_nThisPane = 0;
 	pRightDetail->m_nThisPane = 1;
 	
+	// Set frame window handles so we can post stage changes back
+	((CLocationView *)pWnd)->SetFrameHwnd(GetSafeHwnd());
+	pLeftDetail->SetFrameHwnd(GetSafeHwnd());
+	pRightDetail->SetFrameHwnd(GetSafeHwnd());
+	m_wndLocationBar.SetFrameHwnd(GetSafeHwnd());
+	m_wndDetailBar.SetFrameHwnd(GetSafeHwnd());
 	return TRUE;
 }
 
 BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
-
 	return CMDIChildWnd::PreCreateWindow(cs);
 }
 
@@ -557,7 +555,8 @@ void CChildFrame::UpdateHeaderSizes()
 	}
 }
 
-IHeaderBar * CChildFrame::GetHeaderInterface() {
+IHeaderBar * CChildFrame::GetHeaderInterface()
+{
 	return &m_wndFilePathBar;
 }
 
@@ -671,4 +670,13 @@ void CChildFrame::UpdateResources()
 {
 	m_leftStatus.UpdateResources();
 	m_rightStatus.UpdateResources();
+}
+
+/**
+ * @brief Save pane sizes and positions when one of panes requests it.
+ */
+LRESULT CChildFrame::OnStorePaneSizes(WPARAM wParam, LPARAM lParam)
+{
+	SavePosition();
+	return 0;
 }

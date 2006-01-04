@@ -29,6 +29,7 @@ IMPLEMENT_DYNAMIC(CDiffViewBar, TViewBarBase);
 
 CDiffViewBar::CDiffViewBar()
 : m_pwndDetailSplitter(0)
+, m_hwndFrame(NULL)
 {
 }
 
@@ -43,6 +44,7 @@ BEGIN_MESSAGE_MAP(CDiffViewBar, TViewBarBase)
 	ON_WM_CREATE()
 	ON_WM_SIZE()
 	ON_WM_LBUTTONDOWN()
+	ON_WM_WINDOWPOSCHANGED()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -105,10 +107,6 @@ void CDiffViewBar::UpdateBarHeight(int DiffPanelHeight)
 	m_pwndDetailSplitter->RecalcLayout();
 }
 
-
-
-
-
 void CDiffViewBar::OnSize(UINT nType, int cx, int cy) 
 {
 	TViewBarBase::OnSize(nType, cx, cy);
@@ -122,7 +120,6 @@ void CDiffViewBar::OnSize(UINT nType, int cx, int cy)
 		UpdateBarHeight(-1);
 }
 
-
 /**
 * @note The window must always be docked after movement
 * there are too much troubles if we get reparented to some minidockbar 
@@ -131,9 +128,34 @@ void CDiffViewBar::OnSize(UINT nType, int cx, int cy)
 void CDiffViewBar::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	TViewBarBase::OnLButtonDown(nFlags, point);
-  if (m_pDockBar != NULL)
-  {
-    if (IsHorzDocked() == FALSE)
+	if (m_pDockBar != NULL)
+	{
+		if (IsHorzDocked() == FALSE)
 			m_pDockContext->ToggleDocking();
 	}
+}
+
+/** 
+ * @brief Informs parent frame (CChildFrame) when bar is closed.
+ *
+ * After bar is closed parent frame saves bar states.
+ */
+void CDiffViewBar::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+{
+	TViewBarBase::OnWindowPosChanged(lpwndpos);
+
+	if (m_hwndFrame != NULL)
+	{
+		// If WINDOWPOS.flags has SWP_HIDEWINDOW flag set
+		if ((lpwndpos->flags & SWP_HIDEWINDOW) != 0)
+			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
+	}
+}
+
+/** 
+ * @brief Stores HWND of frame window (CChildFrame).
+ */
+void CDiffViewBar::SetFrameHwnd(HWND hwndFrame)
+{
+	m_hwndFrame = hwndFrame;
 }

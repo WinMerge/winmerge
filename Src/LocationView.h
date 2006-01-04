@@ -41,6 +41,7 @@ public:
 	DECLARE_DYNCREATE(CLocationView)
 	void SetConnectMovedBlocks(int displayMovedBlocks);
 	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
+	void SetFrameHwnd(HWND hwndFrame);
 
 protected:
 
@@ -50,7 +51,6 @@ protected:
 	public:
 	virtual void OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint);
 	virtual void OnDraw(CDC* pDC);
-	afx_msg void OnClose();
 	//}}AFX_VIRTUAL
 
 	CMergeDoc* GetDocument();
@@ -77,6 +77,8 @@ private:
 	int m_visibleBottom; //*< Bottom visible line for visible area indicator */
 	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 	bool m_bIgnoreTrivials; //*< Whether to paint trivial blocks */
+	HWND m_hwndFrame; //*< Frame window handle */
+	UINT m_nPrevPaneWidth; //*< Previous pane width, used to track width changes */
 
 	// Generated message map functions
 protected:
@@ -86,6 +88,8 @@ protected:
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnClose();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
