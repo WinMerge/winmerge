@@ -105,6 +105,7 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_CBN_SELENDCANCEL(IDC_RIGHT_COMBO, UpdateButtonStates)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
+	ON_WM_ACTIVATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -725,4 +726,20 @@ void COpenDlg::OnSaveProjectButton()
 		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, strProjectFileName, err);
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
+}
+
+/** 
+ * @brief Update control states when dialog is activated.
+ *
+ * Update control states when user re-activates dialog. User might have
+ * switched for other program to e.g. update files/folders and then
+ * swiches back to WinMerge. Its nice to see WinMerge detects updated
+ * files/folders.
+ */
+void COpenDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CDialog::OnActivate(nState, pWndOther, bMinimized);
+
+	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
+		UpdateButtonStates();
 }

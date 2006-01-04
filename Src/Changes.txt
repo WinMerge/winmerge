@@ -3,6 +3,8 @@
   Src: ChildFrm.cpp ChildFrm.h DiffViewBar.cpp DiffViewBar.h LocationBar.cpp
    LocationBar.h LocationView.cpp LocationView.h MergeDiffDetailView.cpp
    MergeDiffDetailView.h StdAfx.h
+ PATCH: [ 1396413 ] Update Open dialog controls when its activated
+  Src: OpenDlg.cpp OpenDlg.h
 
 2006-01-04 Perry
  Cosmetic; normalizing blank lines to agree with English Merge.rc
