@@ -1,3 +1,7 @@
+2006-01-04 Tim
+ PATCH: [ 1394596 ] Make l10n web page more detailed
+  Web\developer\l10n: index.php
+
 2005-12-17 Tim
  PATCH: [ 1382921 ] Website changes for new stable release 2.4.4
   Web: downloads.php index.php page.inc WinMergePAD.xml
