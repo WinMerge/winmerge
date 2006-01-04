@@ -1,3 +1,11 @@
+2006-01-04 Perry
+ Cosmetic; normalizing blank lines to agree with English Merge.rc
+  Src\Languages:
+   Brazilian\MergeBrazilian.rc
+   ChineseSimplified\MergeChineseSimplified.rc
+   Korean\MergeKorean.rc
+   Norwegian\MergeNorwegian.rc
+
 2006-01-03 Kimmo
  PATCH: [ 1394877 ] Find selected text with Ctrl+F3
   Src: Merge.rc

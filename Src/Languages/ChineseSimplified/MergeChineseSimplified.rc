@@ -1454,7 +1454,6 @@ BEGIN
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
             VALUE "ProductVersion", "000.000.000.000\0"
-
         END
     END
     BLOCK "VarFileInfo"

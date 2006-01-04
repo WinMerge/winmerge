@@ -474,14 +474,12 @@ BEGIN
         BEGIN
             MENUITEM "연결 프로그램(&R)",           ID_DIR_OPEN_LEFT
             MENUITEM "외부 편집기(&E)",             ID_DIR_OPEN_LEFT_WITHEDITOR
-
             MENUITEM "프로그램 선택(&W)...",        ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "오른쪽 파일 열기(&O)"
         BEGIN
             MENUITEM "연결 프로그램(&R)",           ID_DIR_OPEN_RIGHT
             MENUITEM "외부 편집기(&E)",             ID_DIR_OPEN_RIGHT_WITHEDITOR
-
             MENUITEM "프로그램 선택(&W)...",        ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
