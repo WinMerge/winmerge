@@ -1,3 +1,7 @@
+2006-01-05 Tim
+ PATCH: [ 1394598 ] Small addition to translation instructions
+  Web\developer\l10n: instructions.php
+
 2006-01-04 Tim
  PATCH: [ 1394596 ] Make l10n web page more detailed
   Web\developer\l10n: index.php

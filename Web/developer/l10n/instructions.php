@@ -53,7 +53,10 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
 <ul>
   <li>Do not translate the first 75 lines.</li>
   <li>Do not translate anything that is all uppercase letters.</li>
-  <li>The <code>&amp;</code> sign is for accelerator buttons, try to make them meaningful in your language.</li>
+  <li>
+    The <code>&amp;</code> sign is for accelerator buttons, try to make them meaningful in your language.<br />
+    <em>The Chinese translations handle accelerators by including them in parentheses at the end of the string (and using the English accelerators), eg, "×´Ì¬À¸(&amp;S)".</em>
+  </li>
   <li>Don't translate the following strings, as they have special meaning in Visual C++: <code>"Button"</code>, <code>"MS Sans Serif"</code> and <code>"MS Shell Dlg"</code>.</li>
 </ul>
 
