@@ -1,3 +1,5 @@
+2006-01-05 WinMerge experimental release 2.5.0.5 (cvs)
+
 2006-01-04 Kimmo
  PATCH: [ 1393635 ] Save pane sizes and positions when they change
   Src: ChildFrm.cpp ChildFrm.h DiffViewBar.cpp DiffViewBar.h LocationBar.cpp
