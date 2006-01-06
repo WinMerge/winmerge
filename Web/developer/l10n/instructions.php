@@ -45,7 +45,7 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
 </pre>
 <p>And here is the translation into Danish:</p>
 <pre class="code">
-    CONTROL         "Inds�t &amp;mellemrum",IDC_PROP_INSERT_SPACES,"Button",
+    CONTROL         "Indsæt &amp;mellemrum",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,77,72,59,10
 </pre>
 
@@ -55,7 +55,7 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
   <li>Do not translate anything that is all uppercase letters.</li>
   <li>
     The <code>&amp;</code> sign is for accelerator buttons, try to make them meaningful in your language.<br />
-    <em>The Chinese translations handle accelerators by including them in parentheses at the end of the string (and using the English accelerators), eg, "״̬��(&amp;S)".</em>
+    <em>The Chinese translations handle accelerators by including them in parentheses at the end of the string (and using the English accelerators), eg, "状态栏(&amp;S)".</em>
   </li>
   <li>Don't translate the following strings, as they have special meaning in Visual C++: <code>"Button"</code>, <code>"MS Sans Serif"</code> and <code>"MS Shell Dlg"</code>.</li>
 </ul>

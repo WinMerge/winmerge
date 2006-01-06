@@ -1,3 +1,9 @@
+2006-01-06 Perry
+ Transcode instructions.php into UTF-8
+  (example above line 52 was in CP1252)
+  (example below line 52 was in GB2312)
+  Web\developer\l10n: instructions.php
+ 
 2006-01-05 Tim
  PATCH: [ 1394598 ] Small addition to translation instructions
   Web\developer\l10n: instructions.php
