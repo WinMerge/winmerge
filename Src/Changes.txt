@@ -2,6 +2,8 @@
  PATCH: [ 1398064 ] Catalan translation update
  By Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1398959 ] Implement GuessEncoding in QuickCompare
+  Src: codepage_detect.cpp DiffWrapper.cpp DiffWrapper.h
 
 2006-01-05 WinMerge experimental release 2.5.0.5 (cvs)
 

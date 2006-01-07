@@ -253,7 +253,9 @@ void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL
 	if (fi.nByteOrder == 1 && bGuessEncoding)
 	{
 		LPCTSTR ext = PathFindExtension(filepath);
-		if (unsigned cp = GuessEncoding_from_bytes(ext, (char *)fi.pImage, fi.cbImage))
+		const char *src = (char *)fi.pImage;
+		size_t len = fi.cbImage;
+		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len))
 		{
 			*codepage = cp;
 		}

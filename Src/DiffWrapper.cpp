@@ -799,9 +799,9 @@ void DiffFileData::Reset()
 }
 
 /**
- * @brief Try to deduce encoding for this file
+ * @brief Try to deduce encoding for this file (given copy in memory)
  */
-void DiffFileData::Filepath_GuessEncoding(FileLocation & fpenc, const char **data, int count)
+void DiffFileData::GuessEncoding_from_buffer(FileLocation & fpenc, const char **data, int count)
 {
 	if (fpenc.unicoding == 0)
 	{
@@ -810,14 +810,21 @@ void DiffFileData::Filepath_GuessEncoding(FileLocation & fpenc, const char **dat
 	}
 }
 
-/** @brief Guess encoding for one file */
-void DiffFileData::GuessEncoding(int side, CDiffContext * pCtxt)
+/** @brief Guess encoding for one file (in DiffContext memory buffer) */
+void DiffFileData::GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt)
 {
-	if (!pCtxt->m_bGuessEncoding)
-		return;
-
-	Filepath_GuessEncoding(m_FileLocation[side], m_inf[side].linbuf + m_inf[side].linbuf_base, 
+	GuessEncoding_from_buffer(m_FileLocation[side], m_inf[side].linbuf + m_inf[side].linbuf_base, 
 	                                m_inf[side].valid_lines - m_inf[side].linbuf_base);
+}
+
+/** @brief Guess encoding for one file (in DiffContext memory buffer) */
+void DiffFileData::GuessEncoding_from_FileLocation(FileLocation & fpenc)
+{
+	if (fpenc.unicoding == 0)
+	{
+		BOOL bGuess = TRUE;
+		GuessCodepageEncoding(fpenc.filepath, &fpenc.unicoding, &fpenc.codepage, bGuess);
+	}
 }
 
 /** @brief Compare two specified files */
@@ -1457,6 +1464,15 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		code = diffutils_compare_files(0);
 		if (DIFFCODE::isResultError(code))
 			di.errorDesc = _T("DiffUtils Error");
+
+		if (!DIFFCODE::isResultError(code) && pCtxt->m_bGuessEncoding)
+		{
+			// entire file is in memory in the diffutils buffers
+			// inside the diff context, so may as well use in-memory copy
+			GuessEncoding_from_buffer_in_DiffContext(0, pCtxt);
+			GuessEncoding_from_buffer_in_DiffContext(1, pCtxt);
+		}
+	
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
@@ -1466,6 +1482,12 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		// Set to special value to indicate invalid
 		m_ndiffs = DIFFS_UNKNOWN_QUICKCOMPARE;
 		m_ntrivialdiffs = DIFFS_UNKNOWN_QUICKCOMPARE;
+
+		if (!DIFFCODE::isResultError(code) && pCtxt->m_bGuessEncoding)
+		{
+			GuessEncoding_from_FileLocation(m_FileLocation[0]);
+			GuessEncoding_from_FileLocation(m_FileLocation[1]);
+		}
 	}
 	else
 	{
@@ -1475,11 +1497,6 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		goto exitPrepAndCompare;
 	}
 
-	if (!DIFFCODE::isResultError(code))
-	{
-		GuessEncoding(0, pCtxt);
-		GuessEncoding(1, pCtxt);
-	}
 
 exitPrepAndCompare:
 	Reset();

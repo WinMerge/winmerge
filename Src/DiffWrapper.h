@@ -229,13 +229,14 @@ struct DiffFileData
 
 	int diffutils_compare_files(int depth);
 	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
-	void GuessEncoding(int side, CDiffContext * pCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 	BOOL Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, BOOL bMovedBlocks);
 	bool Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
 		const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
-	void Filepath_GuessEncoding(FileLocation & fpenc, const char **data, int count);
+	void GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt);
+	static void GuessEncoding_from_buffer(FileLocation & fpenc, const char **data, int count);
+	void GuessEncoding_from_FileLocation(FileLocation & fpenc);
 
 // Data (public)
 	file_data * m_inf;
