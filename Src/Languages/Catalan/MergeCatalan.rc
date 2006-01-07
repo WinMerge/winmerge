@@ -152,9 +152,9 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Avançat"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "&Carrega la configuració...", ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Connectors"
@@ -255,9 +255,9 @@ BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
         MENUITEM "Gene&ra un informe...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
+        POPUP "&Avançat"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "&Carrega la configuració...", ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Connectors"
@@ -369,7 +369,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
         MENUITEM "&Veure les diferències de la línia", ID_VIEW_LINEDIFFS
-        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM "A&justa les línies",          ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Intercanvia les subfinestres", ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -402,9 +402,9 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Avançat"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "&Carrega la configuració...", ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Connectors"
@@ -1121,9 +1121,9 @@ BEGIN
                     221,41
     CONTROL         "Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,124,8
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
+    CONTROL         "Nivell de &caràcter",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
+    CONTROL         "Nivell de &paraula:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
     COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
@@ -2028,8 +2028,8 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Extensió"
     IDS_COLHDR_LSIZE        "Mida esquerra"
     IDS_COLHDR_RSIZE        "Mida dreta"
-    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
-    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+    IDS_COLHDR_RSIZE_SHORT  "Mida dreta (breu)"
+    IDS_COLHDR_LSIZE_SHORT  "Mida esquerra (breu)"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
@@ -2091,8 +2091,8 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Extensió del fitxer."
     IDS_COLDESC_LSIZE       "Mida en bytes del fitxer esquerre."
     IDS_COLDESC_RSIZE       "Mida en bytes del fitxer dret."
-    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
-    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+    IDS_COLDESC_LSIZE_SHORT "Mida del fitxer esquerre en format abreujat."
+    IDS_COLDESC_RSIZE_SHORT "Mida del fitxer dret en format abreujat."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
@@ -2156,7 +2156,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
-    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_DIFFERENT_UNICODINGS   "Advertiment: Els fitxers empren codificacions diferents, l'esquerre=%s i el dret=%s, i en combinar-los es podria perdre informació."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2565,7 +2565,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Selecciona l'idioma de la interfície d'usuari\nIdioma"
     ID_VIEW_LINEDIFFS       "Mostra les diferències dins les línies en un color diferent\nMostra les diferències de línia"
     ID_VIEW_SWAPPANES       "Intercanvia la posició d'ambdues subfinestres"
-    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
+    ID_VIEW_WORDWRAP        "Permet l'ajustament de paraules\nAjusta les línies"
 END
 
 // MERGE MENU
