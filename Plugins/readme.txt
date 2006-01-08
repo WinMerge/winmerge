@@ -1,3 +1,8 @@
+2006-01-09 Perry
+ BUG [ 1394706 ] IgnoreCommentsC.h in cvs (shouldn't be)
+ Plugins\src_VCPP\IgnoreCommentsC
+  Deleted IgnoreCommentsC.h (automatically generated file)
+
 2006-01-02 Perry
  BUG: [ 1394707 ] Copy&paste compilation error in IgnoreFieldsComma
   Fix include to say IgnoreFieldsComma.h (not IgnoreFieldsTab.h)
