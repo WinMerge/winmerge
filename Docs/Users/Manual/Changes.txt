@@ -1,3 +1,7 @@
+2006-01-08 Perry
+ BUG: [ 1396950 ] Manual installation doesn't specify admin access
+  Manual: Install.xml
+
 2005-12-21 Kimmo
  BUG: [ 1384832 ] ulink has ??? in FAQ
   Manual: Faq.xml

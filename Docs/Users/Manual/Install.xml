@@ -16,15 +16,16 @@
     <para>WinMerge can be installed using installer or by unzipping files from
     archive.</para>
 
-    <note>
-      <para>Installer requires Admin-user rights in Windows NT4/2000/XP. If
-      you don't have Admin-user rights you can install WinMerge by unzipping
-      from archive file.</para>
-    </note>
   </sect2>
 
   <sect2>
     <title>Using installer (recommended)</title>
+
+    <note>
+      <para>Installer requires Admin-user rights in Windows NT4/2000/XP. If
+      you don't have Admin-user rights you can install WinMerge by unzipping
+      from archive file (see that section).</para>
+    </note>
 
     <para>This is recommended for most users. Installer asks location where
     WinMerge is installed, installs files, configures shell integration and
