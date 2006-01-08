@@ -400,7 +400,7 @@ private:
 	DIFFITEM GetDiffItem(int sel);
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;
-	void MoveSelection(int currentInd, int i, int selCount);
+	void MoveFocus(int currentInd, int i, int selCount);
 	void SaveColumnWidths();
 	void SaveColumnOrders();
 	void FixReordering();

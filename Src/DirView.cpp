@@ -1587,7 +1587,7 @@ void CDirView::OnFirstdiff()
 		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
-			MoveSelection(currentInd, i, selCount);
+			MoveFocus(currentInd, i, selCount);
 			found = TRUE;
 		}
 		i++;
@@ -1618,7 +1618,7 @@ void CDirView::OnLastdiff()
 		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
-			MoveSelection(currentInd, i, selCount);
+			MoveFocus(currentInd, i, selCount);
 			found = TRUE;
 		}
 		i--;
@@ -1652,7 +1652,7 @@ void CDirView::OnNextdiff()
 		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
-			MoveSelection(currentInd, i, selCount);
+			MoveFocus(currentInd, i, selCount);
 			found = TRUE;
 		}
 		i++;
@@ -1691,7 +1691,7 @@ void CDirView::OnPrevdiff()
 		const DIFFITEM &di = GetItemAt(i);
 		if (IsItemNavigableDiff(di))
 		{
-			MoveSelection(currentInd, i, selCount);
+			MoveFocus(currentInd, i, selCount);
 			found = TRUE;
 		}
 		i--;
@@ -1824,16 +1824,25 @@ bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 	return true;
 }
 
-// move focus (& selection if only one selected) from currentInd to i
-void CDirView::MoveSelection(int currentInd, int i, int selCount)
+/**
+ * @brief Move focus to specified item (and selection if multiple items not selected)
+ *
+ * Moves the focus from item [currentInd] to item [i]
+ * Additionally, if there are not multiple items selected, 
+ *  deselects item [currentInd] and selects item [i]
+ */
+void CDirView::MoveFocus(int currentInd, int i, int selCount)
 {
 	if (selCount <= 1)
 	{
+		// Not multiple items selected, so bring selection with us
 		m_pList->SetItemState(currentInd, 0, LVIS_SELECTED);
 		m_pList->SetItemState(currentInd, 0, LVIS_FOCUSED);
 		m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
 	}
 
+	// Move focus to specified item
+	// (this automatically defocuses old item)
 	m_pList->SetItemState(i, LVIS_FOCUSED, LVIS_FOCUSED);
 	m_pList->EnsureVisible(i, FALSE);
 }
@@ -1908,7 +1917,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
 		OnFirstdiff();
 	else
-		MoveSelection(0, 0, 0);
+		MoveFocus(0, 0, 0);
 
 	return 0; // return value unused
 }

@@ -839,7 +839,7 @@ void CDirView::UpdateDeletedItems(ActionList & actionList)
 	}
 	if (curSel < 1)
 		++curSel;
-	MoveSelection(0, curSel - 1, 0);
+	MoveFocus(0, curSel - 1, 0);
 }
 
 /// Get directories of first selected item

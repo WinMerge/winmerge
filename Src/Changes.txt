@@ -1,3 +1,8 @@
+2006-01-09 Perry
+ BUG: [ 1396222 ] CDirView::MoveSelection() is confused
+ (Rename MoveSelection to MoveFocus & add more commenting)
+  Src: DirActions.cpp DirView.cpp DirView.h
+
 2006-01-07 Perry
  PATCH: [ 1398064 ] Catalan translation update
  By Jordi Vilar
