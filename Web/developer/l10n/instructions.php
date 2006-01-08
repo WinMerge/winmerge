@@ -2,6 +2,7 @@
   include('../../page.inc');
 
   $page = new Page;
+  $page->setCharset('UTF-8');
   $page->printHead('WinMerge: Translations instructions', WINMERGE_DEV);
 ?>
 <h2>Translations instructions</h2>

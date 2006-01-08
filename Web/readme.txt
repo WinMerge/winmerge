@@ -1,3 +1,7 @@
+2006-01-08 Tim
+ Add "setCharset('UTF-8')" to file instructions.php
+  Web\developer\l10n: instructions.php
+
 2006-01-06 Perry
  Transcode instructions.php into UTF-8
   (example above line 52 was in CP1252)
