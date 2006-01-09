@@ -2339,19 +2339,23 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	gLog.Write(LOGLEVEL::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
 		files[0], files[1]);
 
-	// Load project file
-	CString sExt;
-	SplitFilename(files[0], NULL, NULL, &sExt);
-	if (sExt == PROJECTFILE_EXT)
+	if (wNumFilesDropped == 1)
 	{
-		CStringArray filesArray;
-		BOOL bRecursive = FALSE;
-		filesArray.Add(files[0]);
-		filesArray.Add(files[1]);
-		if (theApp.LoadProjectFile(filesArray, bRecursive))
+		// Load project file if appropriate extension
+		CString sExt;
+		SplitFilename(files[0], NULL, NULL, &sExt);
+		if (sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
 		{
-			DoFileOpen(filesArray[0], filesArray[1], FFILEOPEN_NONE, FFILEOPEN_NONE, bRecursive);
-			return;
+			CStringArray filesArray;
+			BOOL bRecursive = FALSE;
+			filesArray.Add(files[0]);
+			filesArray.Add(files[0]);
+			// LoadProjectFile requires two files
+			if (theApp.LoadProjectFile(filesArray, bRecursive))
+			{
+				DoFileOpen(filesArray[0], filesArray[1], FFILEOPEN_NONE, FFILEOPEN_NONE, bRecursive);
+				return;
+			}
 		}
 	}
 
