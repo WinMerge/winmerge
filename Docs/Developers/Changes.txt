@@ -2,6 +2,10 @@
  PATCH: [ 1394717 ] Fix resource.h include for translations
   readme-developers.html
 
+2005-12-28 Perry
+ BUG: [ 1389855 ] grammar fix in plugin docs
+  Plugins.html
+
 2005-09-22 Kimmo
  PATCH: [ 1298109 ] Docs: Document ShellExtension versioning
   Developers: readme-developers.html
