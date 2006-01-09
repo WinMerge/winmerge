@@ -1,3 +1,7 @@
+2006-01-09 Tim
+ BUG: [ 1394597 ] l10n status page is outdated
+  Web\developer\l10n: status.php status.xml
+
 2006-01-08 Tim
  Add "setCharset('UTF-8')" to file instructions.php
   Web\developer\l10n: instructions.php

@@ -9,7 +9,7 @@
 <l10n>
   <language>
     <name>Portugese (Brazilian)</name>
-    <status>4</status>
+    <status>3</status>
     <authors>
       <author>
         <name>Wender Firmino</name>
@@ -22,7 +22,7 @@
   </language>
   <language>
     <name>Bulgarian</name>
-    <status>2</status>
+    <status>4</status>
     <authors>
       <author>
         <name>sld</name>
@@ -43,6 +43,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
@@ -56,9 +57,16 @@
       <author>
         <name>Liaobin</name>
         <email>liaobin at jite dot net</email>
+        <comment>2.0</comment>
+      </author>
+      <author>
+        <name>xmpdhml</name>
+        <email>xmpdhml at users dot sourceforge dot net</email>
+        <comment>2.4</comment>
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.0</version>
     </versions>
   </language>
@@ -141,10 +149,12 @@
       <author>
         <name>Jean FJ</name>
         <email>jean-f-j at users.sourceforge dot net</email>
-        <comment>2.2</comment>
+        <comment>2.4, 2.3 &amp; 2.2</comment>
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
+      <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
       <version>2.0</version>
@@ -168,10 +178,11 @@
       <author>
         <name>Tim Gerundt</name>
         <email>tim at gerundt dot de</email>
-        <comment>2.3, 2.2 &amp; 2.1</comment>
+        <comment>2.4, 2.3, 2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
@@ -189,6 +200,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
     </versions>
@@ -204,10 +216,11 @@
       <author>
         <name>Andrea Decorte (Klenje)</name>
         <email>klenje at users dot sourceforge dot net</email>
-        <comment>2.3, 2.2 &amp; 2.1</comment>
+        <comment>2.4, 2.3, 2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
@@ -225,6 +238,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
@@ -296,7 +310,7 @@
   </language>
   <language>
     <name>Slovak</name>
-    <status>4</status>
+    <status>3</status>
     <authors>
       <author>
         <name>majvan</name>
@@ -340,10 +354,11 @@
       <author>
         <name>Hans Eriksson</name>
         <email>hans dot ericson at bredband dot net</email>
-        <comment>2.3, 2.2 &amp; 2.1</comment>
+        <comment>2.4, 2.3, 2.2 &amp; 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
       <version>2.1</version>
