@@ -1,3 +1,7 @@
+2006-01-11 Tim
+ PATCH: [ 1401420 ] New 'MergeDir' icon
+  Src/res: MergeDir.ico
+
 2006-01-10 Perry
  PATCH: [ 1400830 ] Fix drop to only do LoadProjectFile when 1 file dropped
  BUG: [ 1400797 ] Dropping two project files doesn't work to compare them
