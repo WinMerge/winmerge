@@ -16,17 +16,17 @@
         <answer>
           <itemizedlist>
             <listitem>
-              <para><filename>WinMerge.exe</filename> is an ANSI (8-bit) executable which
-              works in all 32-bit Windows systems. It does not have Unicode
-              support.</para>
+              <para><filename>WinMerge.exe</filename> is an ANSI (8-bit)
+              executable which works in all 32-bit Windows systems. It does
+              not have Unicode support.</para>
 
               <para>Internally, it stores only ANSI characters (256
-              possibilities). If you open a Unicode file, the characters 
-              must be converted to the ANSI codepage. As there are
-              over 100,000 Unicode characters, and only 256 can be
-              represented in the ANSI codepage, data loss may
-              occur. Conversion may be approximative (accents are
-              lost), or impossible (characters appear as "?").</para>
+              possibilities). If you open a Unicode file, the characters must
+              be converted to the ANSI codepage. As there are over 100,000
+              Unicode characters, and only 256 can be represented in the ANSI
+              codepage, data loss may occur. Conversion may be approximative
+              (accents are lost), or impossible (characters appear as
+              "?").</para>
 
               <para><filename>WinMerge.exe</filename> also can not open files
               with names outside the current ANSI codepag (e.g., WinMerge.exe
@@ -86,8 +86,8 @@
           <para>Unfortunately not. We acknowledge it would be good feature but
           have no plans to implement it in near future. This can be somewhat
           worked around by using two WinMerge instances. (One developer has
-          begun preliminary work on this feature, but it is not yet 
-          available, even in experimental releases.)</para>
+          begun preliminary work on this feature, but it is not yet available,
+          even in experimental releases.)</para>
         </answer>
       </qandaentry>
 
@@ -113,8 +113,8 @@
         <answer>
           <para>Which kind of CVS integration WinMerge should have? Adding CVS
           client features to WinMerge is questionable since there are many
-          good CVS clients already. Conflict file resolution is a feature we are
-          planning to add in future releases.</para>
+          good CVS clients already. Conflict file resolution is a feature we
+          are planning to add in future releases.</para>
         </answer>
       </qandaentry>
 
@@ -139,6 +139,29 @@
           <para>Yes, enable <guilabel>Detect archive type from file
           signature</guilabel> option in <guilabel>Archive
           Options</guilabel>.</para>
+        </answer>
+      </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Why do large files sometimes show as different in the
+          directory view, but come up as identical in the merge editor?</para>
+        </question>
+
+        <answer>
+          <para>This is because large files use the "<guilabel>Quick
+          Compare</guilabel>" method, even when the [<menuchoice>
+              <guimenu>Edit</guimenu>
+
+              <guimenuitem>Options /</guimenuitem>
+            </menuchoice> <guilabel>Compare</guilabel> / <guilabel>File
+          Compare Method</guilabel>] setting is set to "<guilabel>Full
+          Compare</guilabel>". This is a speed optimization. To test if this
+          is causing the behavior you're seeing, you could raise the limit for
+          the <guilabel>Quick Compare</guilabel> threshold for large files. It
+          is stored in the registry as:</para>
+
+          <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>
         </answer>
       </qandaentry>
     </qandaset>
@@ -185,12 +208,13 @@
 
         <answer>
           <para>There is one or more zero-bytes in your file(s). If WinMerge
-          finds zero-bytes from files, it considers the files to be binary files. You
-          can try to remove those zero-bytes from files. Alternatively, you may open 
-          the files with the DisplayBinaryFiles plugin. This plugin allows viewing 
-          binary files, but not editing them. If you have a very recent version of
-          WinMerge (2.5.0.4+), you may use the new EditBinaryFiles plugin, which does allow
-          editing binary files (using an escape scheme for representing non-printable
+          finds zero-bytes from files, it considers the files to be binary
+          files. You can try to remove those zero-bytes from files.
+          Alternatively, you may open the files with the DisplayBinaryFiles
+          plugin. This plugin allows viewing binary files, but not editing
+          them. If you have a very recent version of WinMerge (2.5.0.4+), you
+          may use the new EditBinaryFiles plugin, which does allow editing
+          binary files (using an escape scheme for representing non-printable
           characters).</para>
         </answer>
       </qandaentry>
@@ -201,9 +225,10 @@
         </question>
 
         <answer>
-          <para>A plugin to merge binary files has only recently been added to WinMerge,
-          and is not in any release before 2.5.0.4. Therefore, WinMerge can only show 
-          if binary files are identical or different.</para>
+          <para>A plugin to merge binary files has only recently been added to
+          WinMerge, and is not in any release before 2.5.0.4. Therefore,
+          WinMerge can only show if binary files are identical or
+          different.</para>
         </answer>
       </qandaentry>
     </qandaset>
@@ -263,8 +288,8 @@
         </question>
 
         <answer>
-          <para>Unfortunately WinMerge supports only
-          non-proportional fonts.</para>
+          <para>Unfortunately WinMerge supports only non-proportional
+          fonts.</para>
         </answer>
       </qandaentry>
 
@@ -275,13 +300,13 @@
         </question>
 
         <answer>
-          <para>When <guilabel>Automatic Rescan</guilabel> is enabled, WinMerge
-          delays rescanning while user edits files. So there is no rescanning
-          happening when user types text but shortly after user has finished
-          typing. Without this delaying WinMerge would do rescan after every
-          typed letter and editing files would become slow. This delaying
-          especially improves editing of bigger files which can take several
-          seconds to rescan.</para>
+          <para>When <guilabel>Automatic Rescan</guilabel> is enabled,
+          WinMerge delays rescanning while user edits files. So there is no
+          rescanning happening when user types text but shortly after user has
+          finished typing. Without this delaying WinMerge would do rescan
+          after every typed letter and editing files would become slow. This
+          delaying especially improves editing of bigger files which can take
+          several seconds to rescan.</para>
         </answer>
       </qandaentry>
 
@@ -304,8 +329,8 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>I want WinMerge to close with a single
-          <keycap>ESC</keycap> press after I'm done?</para>
+          <para>I want WinMerge to close with a single <keycap>ESC</keycap>
+          press after I'm done?</para>
         </question>
 
         <answer>
@@ -320,8 +345,9 @@
         </question>
 
         <answer>
-          <para>Tell your external program to invoke WinMerge with the <option>/ub</option>
-          option, which tells WinMerge to not add the files to the MRU.</para>
+          <para>Tell your external program to invoke WinMerge with the
+          <option>/ub</option> option, which tells WinMerge to not add the
+          files to the MRU.</para>
         </answer>
       </qandaentry>
 
@@ -403,8 +429,8 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>How do I tell if my file is coded in the local windows (ie, ANSI)
-          codepage?</para>
+          <para>How do I tell if my file is coded in the local windows (ie,
+          ANSI) codepage?</para>
         </question>
 
         <answer>
@@ -508,14 +534,15 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>Is there way to create patch files from the commandline?</para>
+          <para>Is there way to create patch files from the
+          commandline?</para>
         </question>
 
         <answer>
           <para>No. It may be added in later versions but until then Win32
-          port of diffutils can be used. The Win32 port of diffutils (and patch)
-          can be downloaded from <productname>GnuWin32</productname> project
-          from SourceForge: <ulink
+          port of diffutils can be used. The Win32 port of diffutils (and
+          patch) can be downloaded from <productname>GnuWin32</productname>
+          project from SourceForge: <ulink
           url="http://sourceforge.net/projects/gnuwin32/">
           http://sourceforge.net/projects/gnuwin32</ulink></para>
         </answer>

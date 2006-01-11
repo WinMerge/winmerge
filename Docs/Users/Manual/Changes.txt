@@ -1,6 +1,9 @@
 2006-01-11 Kimmo
  Update copyright year, WinMerge version to 2.5 and revision
   Manual: WinMerge_help.xml
+ PATCH: [ 1382020 ] New FAQ entry for large file Quick Compare
+  Submitted by Perry
+  Manual: Faq.xml
 
 2006-01-08 Perry
  BUG: [ 1396950 ] Manual installation doesn't specify admin access
