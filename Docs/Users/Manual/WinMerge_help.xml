@@ -1,78 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN"
+"http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd" [
+<!ENTITY AboutDoc SYSTEM "About_Doc.xml">
 <!ENTITY QuickStart SYSTEM "Quick_start.xml">
+<!ENTITY Introduction SYSTEM "Introduction.xml">
+<!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
+<!ENTITY Install SYSTEM "Install.xml">
+<!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
+<!ENTITY OpenPaths SYSTEM "Open_paths.xml">
+<!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
+<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
+<!ENTITY Configuration SYSTEM "Configuration.xml">
 <!ENTITY TextEncoding SYSTEM "Text_encoding.xml">
+<!ENTITY Locales SYSTEM "Locales.xml">
+<!ENTITY Plugins SYSTEM "Plugins.xml">
+<!ENTITY Filters SYSTEM "Filters.xml">
+<!ENTITY VersionControl SYSTEM "Version_control.xml">
 <!ENTITY CommandLine SYSTEM "Command_line.xml">
 <!ENTITY FAQ SYSTEM "Faq.xml">
-<!ENTITY Install SYSTEM "Install.xml">
-<!ENTITY CompareDirs SYSTEM "Compare_dirs.xml">
-<!ENTITY Plugins SYSTEM "Plugins.xml">
-<!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
-<!ENTITY Configuration SYSTEM "Configuration.xml">
-<!ENTITY OpenPaths SYSTEM "Open_paths.xml">
-<!ENTITY CompareFiles SYSTEM "Compare_files.xml">
-<!ENTITY Locales SYSTEM "Locales.xml">
-<!ENTITY AboutDoc SYSTEM "About_Doc.xml">
 <!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
-<!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
-<!ENTITY Introduction SYSTEM "Introduction.xml">
-<!ENTITY VersionControl SYSTEM "Version_control.xml">
-<!ENTITY Filters SYSTEM "Filters.xml">
 ]>
 <article id="index">
   <articleinfo>
-    <title>WinMerge 2.3 Manual</title>
+    <title>WinMerge 2.5 Manual</title>
+
     <productname>WinMerge</productname>
-    <releaseinfo><emphasis>Revision 1.1.4</emphasis></releaseinfo>
+
+    <releaseinfo><emphasis>Revision 1.2.0</emphasis></releaseinfo>
+
     <copyright>
-      <year>2004-2005</year>
+      <year>2004-2006</year>
+
       <holder>Thingamahoochie Software.</holder>
     </copyright>
+
     <legalnotice>
-      <para>Information in this document is subject to change without notice. Other products and companies referred to herein are trademarks or registered trademarks of their respective companies or mark holders.</para>
+      <para>Information in this document is subject to change without notice.
+      Other products and companies referred to herein are trademarks or
+      registered trademarks of their respective companies or mark
+      holders.</para>
     </legalnotice>
+
     <authorgroup>
       <author>
         <surname>Varis</surname>
+
         <firstname>Kimmo</firstname>
       </author>
+
       <author>
         <surname>Grimm</surname>
+
         <firstname>Dean</firstname>
       </author>
+
       <author>
         <surname>Ganier</surname>
+
         <firstname>Laurent</firstname>
       </author>
+
       <author>
         <surname>Gerundt</surname>
+
         <firstname>Tim</firstname>
       </author>
+
       <author>
         <surname>Rapp</surname>
+
         <firstname>Perry</firstname>
       </author>
+
       <author>
         <contrib>and all others who helped with this.</contrib>
       </author>
     </authorgroup>
   </articleinfo>
+
   &AboutDoc;
+
   &QuickStart;
+
   &Introduction;
+
   &WhatsNew21;
+
   &Install;
+
   &IntroductDiffing;
+
   &OpenPaths;
+
   &CompareDirs;
+
   &CompareFiles;
+
   &Configuration;
+
   &TextEncoding;
+
   &Locales;
+
   &Plugins;
+
   &Filters;
+
   &VersionControl;
+
   &CommandLine;
+
   &FAQ;
+
   &ShortCuts;
 </article>
