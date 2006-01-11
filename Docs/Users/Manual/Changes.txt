@@ -4,6 +4,9 @@
  PATCH: [ 1382020 ] New FAQ entry for large file Quick Compare
   Submitted by Perry
   Manual: Faq.xml
+ PATCH: [ 1401001 ] Add note to filters manual that Unicode is not supported
+  Submitted by Perry
+  Manual: Filters.xml
 
 2006-01-08 Perry
  BUG: [ 1396950 ] Manual installation doesn't specify admin access
