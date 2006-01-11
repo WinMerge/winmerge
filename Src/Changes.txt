@@ -2,6 +2,11 @@
  PATCH: [ 1402774 ] Use dark red color for 'binarydiff.ico'
   Submitted by Tim
   Src/res: binarydiff.ico
+ PATCH: [ 1400845 ] Allow Shift+Ctrl+F3 to search selected text backwards
+  With addition from Takashi for Shift+F3 backwards search
+  Src: Merge.rc
+  Src/editlib: ccrystaltextview.cpp
+  Src/Language: */Merge*.rc
 
 2006-01-11 Tim
  PATCH: [ 1401420 ] New 'MergeDir' icon

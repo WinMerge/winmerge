@@ -4756,6 +4756,8 @@ OnEditRepeat ()
 
   // CTRL-F3 will find selected text..
   BOOL bControlKey = (::GetAsyncKeyState(VK_CONTROL)& 0x8000) != 0;
+  // CTRL-SHIFT-F3 will find selected text, but opposite direction
+  BOOL bShiftKey = (::GetAsyncKeyState(VK_SHIFT)& 0x8000) != 0;
   if (bControlKey && IsSelection())
     {
       bEnable = TRUE;
@@ -4763,6 +4765,10 @@ OnEditRepeat ()
       GetSelection (ptSelStart, ptSelEnd);
       GetText (ptSelStart, ptSelEnd, sText);
     }
+  if (bShiftKey)
+    m_dwLastSearchFlags |= FIND_DIRECTION_UP;
+  else
+    m_dwLastSearchFlags &= ~FIND_DIRECTION_UP;
   if (bEnable)
     {
       CPoint ptFoundPos;
