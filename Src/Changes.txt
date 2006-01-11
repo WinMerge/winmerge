@@ -7,6 +7,8 @@
   Src: Merge.rc
   Src/editlib: ccrystaltextview.cpp
   Src/Language: */Merge*.rc
+ BUG: [ 1400829 ] Crash trying to open location pane context menu
+  Src: LocationView.cpp
 
 2006-01-11 Tim
  PATCH: [ 1401420 ] New 'MergeDir' icon

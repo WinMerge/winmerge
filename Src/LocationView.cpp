@@ -456,6 +456,8 @@ BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
 	}
 	else if (bar == BAR_YAREA)
 	{
+		// Outside bars, use left bar
+		bar = BAR_LEFT;
 		line = GetLineFromYPos(point.y, rc, bar, FALSE);
 	}
 	else
@@ -522,6 +524,9 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	// If cursor over bar, format string with linenumber, else disable item
 	if (bar != BAR_NONE)
 	{
+		// If outside bar area use left bar
+		if (bar == BAR_YAREA)
+			bar = BAR_LEFT;
 		nLine = GetLineFromYPos(pt.y, rc, bar);
 		strNum.Format(_T("%d"), nLine + 1); // Show linenumber not lineindex
 	}
