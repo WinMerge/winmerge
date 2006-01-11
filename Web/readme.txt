@@ -1,3 +1,7 @@
+2006-01-11 Tim
+ PATCH: [ 1402858 ] Web: New background color for 'important' and 'note'
+  Web\css: all.css
+
 2006-01-09 Tim
  BUG: [ 1394597 ] l10n status page is outdated
   Web\developer\l10n: status.php status.xml

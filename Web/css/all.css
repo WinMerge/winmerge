@@ -83,14 +83,14 @@ h1, h2, h3, h4 {
 
 p.important {
 	padding: 5px;
-	background-color: #EEEEEE;
+	background-color: #FFDDDD;
 	border: 1px solid red;
 	font-weight: bold;
 }
 
 p.note {
 	padding: 5px;
-	background-color: #EEEEEE;
+	background-color: #DDDDFF;
 	border: 1px solid blue;
 }
 

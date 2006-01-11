@@ -1,3 +1,7 @@
+2006-01-11 Tim
+ PATCH: [ 1402858 ] Web: New background color for 'important' and 'note'
+  readme-developers.html
+
 2006-01-02 Perry
  PATCH: [ 1394717 ] Fix resource.h include for translations
   readme-developers.html
