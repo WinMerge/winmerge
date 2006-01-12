@@ -709,6 +709,10 @@ SOURCE=.\SaveClosingDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\scbarcf.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\scbarg.cpp
 # End Source File
 # Begin Source File
@@ -1278,6 +1282,10 @@ SOURCE=.\SaveClosingDlg.h
 # Begin Source File
 
 SOURCE=.\Common\sbuffer.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\scbarcf.h
 # End Source File
 # Begin Source File
 

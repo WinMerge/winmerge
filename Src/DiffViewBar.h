@@ -14,12 +14,11 @@
 
 
 #include "sizecbar.h"
-#include "scbarg.h"
+#include "scbarcf.h"
 #include "SplitterWndEx.h"
 
 // You must #define this for viewbar to compile properly
-#define TViewBarBase CSizingControlBarG
-//#define TViewBarBase CSizingControlBar
+#define TViewBarBase CSizingControlBarCF
 
 class CDiffViewBar : public TViewBarBase
 {

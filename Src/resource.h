@@ -579,6 +579,8 @@
 #define IDS_EDIT_TEXT_NOT_FOUND         18033
 #define ID_EDITOR_COPY_PATH             18048
 #define ID_EDITOR_COPY_FILENAME         18049
+#define IDS_LOCBAR_CAPTION              18064
+#define IDS_DIFFBAR_CAPTION             18065
 #define IDS_DIFF_SUCCEEDED              18400
 #define IDS_DIFF_ITEM1NOTFOUND          18401
 #define IDS_DIFF_ITEM2NOTFOUND          18402

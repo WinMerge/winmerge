@@ -1,3 +1,9 @@
+2006-01-12 Kimmo
+ PATCH: [ 1399263 ] Captioned panes (new style)
+  Src: ChildFrm.cpp DiffViewBar.h LocationBar.h Merge.dsp Merge.rc resource.h
+  Src/Common new files: scbarcf.cpp scbarcf.h
+  Src/Language: */Merge*.rc
+
 2006-01-12 Tim
  PATCH: [ 1403412 ] German: Option 'Line Difference Coloring' looks broken
   Src/Languages/German: MergeGerman.rc

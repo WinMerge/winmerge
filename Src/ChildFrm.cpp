@@ -140,7 +140,9 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	if (!m_wndLocationBar.Create(this, _T(""), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
+	CString sCaption;
+	VERIFY(sCaption.LoadString(IDS_LOCBAR_CAPTION));
+	if (!m_wndLocationBar.Create(this, sCaption, WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
 	{
 		TRACE0("Failed to create LocationBar\n");
 		return FALSE;
@@ -153,7 +155,8 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	if (!m_wndDetailBar.Create(this, _T(""), WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
+	VERIFY(sCaption.LoadString(IDS_DIFFBAR_CAPTION));
+	if (!m_wndDetailBar.Create(this, sCaption, WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
 	{
 		TRACE0("Failed to create DiffViewBar\n");
 		return FALSE;
