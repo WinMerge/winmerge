@@ -1119,15 +1119,15 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,99,63,123,10
     CONTROL         "&Leerzeichen einfügen",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,99,72,123,10
-    GROUPBOX        "Zeilenunterschied-Färbung",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+    GROUPBOX        "Zeilenunterschied-Färbung",IDC_LINE_COLORING_GROUP,7,95,
+                    221,61
     CONTROL         "Zeilenunterschied anzeigen",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,163,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 

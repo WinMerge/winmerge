@@ -1,3 +1,7 @@
+2006-01-12 Tim
+ PATCH: [ 1403412 ] German: Option 'Line Difference Coloring' looks broken
+  Src/Languages/German: MergeGerman.rc
+
 2006-01-11 WinMerge beta release 2.5.2
 
 2006-01-11 Kimmo
