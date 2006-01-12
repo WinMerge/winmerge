@@ -38,6 +38,14 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/////////////////////////////////////////////////////////////////////////////
+// CFilepathEdit message handlers
+BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
+	ON_WM_CONTEXTMENU()
+	ON_WM_CTLCOLOR_REFLECT()
+END_MESSAGE_MAP()
+
+
 /** 
  * @brief Format path for display in header control. 
  *
@@ -99,6 +107,11 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 
 /////////////////////////////////////////////////////////////////////////////
 // CFilepathEdit construction/destruction
+CFilepathEdit::CFilepathEdit()
+ : m_crBackGnd(RGB(255, 255, 255))
+ , m_crText(RGB(0,0,0))
+{
+}
 
 BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
@@ -231,15 +244,6 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 	CloseClipboard ();
 }
 
-
-/////////////////////////////////////////////////////////////////////////////
-// CFilepathEdit message handlers
-BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
-	ON_WM_CONTEXTMENU()
-	ON_WM_NCPAINT()
-END_MESSAGE_MAP()
-
-
 void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 {
 	{
@@ -300,31 +304,59 @@ void CFilepathEdit::SetActive(BOOL bActive)
 {
 	m_bActive = bActive;
 
+	if (m_hWnd == NULL)
+		return;
+
 	CRect rcWnd;
 	GetWindowRect(&rcWnd);
 
-	// Cause non-client calculation and paint
-	SetWindowPos( NULL,
-                rcWnd.left,
-                rcWnd.top,
-                rcWnd.Width(),
-                rcWnd.Height(),
-                SWP_DRAWFRAME | SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOACTIVATE | SWP_NOCOPYBITS 
-              );
-}
-
-void CFilepathEdit::OnNcPaint()
-{
-#ifdef NO_BORDER_CHANGE
-	int m_bActive = TRUE;
-#endif
-
-	if (m_bActive == TRUE)
+	if (bActive)
 	{
-		CEdit::OnNcPaint(); // do default
+		SetTextColor(::GetSysColor(COLOR_CAPTIONTEXT));
+		SetBackColor(::GetSysColor(COLOR_ACTIVECAPTION));
 	}
 	else
 	{
-		// no border for inactive views
+		SetTextColor(::GetSysColor(COLOR_INACTIVECAPTIONTEXT));
+		SetBackColor(::GetSysColor(COLOR_INACTIVECAPTION));
 	}
 }
+
+HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor) 
+{
+	// Return a non-NULL brush if the parent's 
+	//handler should not be called
+
+	//set text color
+	pDC->SetTextColor(m_crText);
+
+	//set the text's background color
+	pDC->SetBkColor(m_crBackGnd);
+
+	//return the brush used for background this sets control background
+	return m_brBackGnd;
+}
+
+void CFilepathEdit::SetBackColor(COLORREF rgb)
+{
+	//set background color ref (used for text's background)
+	m_crBackGnd = rgb;
+	
+	//free brush
+	if (m_brBackGnd.GetSafeHandle())
+		m_brBackGnd.DeleteObject();
+	//set brush to new color
+	m_brBackGnd.CreateSolidBrush(rgb);
+	
+	//redraw
+	Invalidate(TRUE);
+}
+void CFilepathEdit::SetTextColor(COLORREF rgb)
+{
+	//set text color ref
+	m_crText = rgb;
+
+	//redraw
+	Invalidate(TRUE);
+}
+

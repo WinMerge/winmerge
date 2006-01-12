@@ -3,6 +3,8 @@
   Src: ChildFrm.cpp DiffViewBar.h LocationBar.h Merge.dsp Merge.rc resource.h
   Src/Common new files: scbarcf.cpp scbarcf.h
   Src/Language: */Merge*.rc
+ PATCH: [ 1399738 ] Filename bars to use caption colors
+  Src: ChildFrm.cpp FilePathEdit.cpp FilePathEdit.h
 
 2006-01-12 Tim
  PATCH: [ 1403412 ] German: Option 'Line Difference Coloring' looks broken

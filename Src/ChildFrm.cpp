@@ -256,8 +256,6 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	EnableDocking(CBRS_ALIGN_TOP|CBRS_ALIGN_BOTTOM|CBRS_ALIGN_LEFT | CBRS_ALIGN_RIGHT);
 
-//	ModifyStyle(WS_THICKFRAME,0); // this is necessary to prevent the sizing tab on right
-
 	// Merge frame has a header bar at top
 	if (!m_wndFilePathBar.Create(this))
 	{
@@ -265,7 +263,9 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 
-//	ModifyStyle(0,WS_THICKFRAME);
+	// Set filename bars inactive so colors get initialized
+	m_wndFilePathBar.SetActive(0, FALSE);
+	m_wndFilePathBar.SetActive(1, FALSE);
 
 	// Merge frame also has a dockable bar at the very left
 	// created in OnCreateClient 
