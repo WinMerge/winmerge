@@ -2,7 +2,7 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-07-25 (Perry Rapp)
+ *  @date   Edited:  2006-01-13 (Perry Rapp)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -160,7 +160,9 @@ private:
 };
 
 /**
- * @brief Regular buffered file
+ * @brief Regular buffered file (write-only access)
+ * (ReadString methods have never been implemented,
+ *  because UniMemFile above is good for reading)
  */
 class UniStdioFile : public UniLocalFile
 {

@@ -1,3 +1,8 @@
+2006-01-13 Perry
+ PATCH: [ 1403454 ] Add comment to UniStdioFile.h
+ (Cosmetic)
+  Src/Common: UniFile.h
+
 2006-01-13 Kimmo
  PATCH: [ 1039677 ] Alter text of Reset button label
   Src: Merge.rc
