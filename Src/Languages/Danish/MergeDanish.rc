@@ -716,7 +716,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "Nulstil",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge tillader at man kan afbryde nogle af de almindelige pop-up beskeder. Tryk på nulstil for at få dem allesammen til at dukke op igen.",
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
                     IDC_STATIC,7,124,168,31
 END
 

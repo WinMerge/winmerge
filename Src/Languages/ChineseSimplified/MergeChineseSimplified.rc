@@ -718,7 +718,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "重置",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge 允许您隐藏一些消息提示。\n点击此按钮以使所有隐藏的消息提示重新显示。",
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
                     IDC_STATIC,7,124,168,31
 END
 

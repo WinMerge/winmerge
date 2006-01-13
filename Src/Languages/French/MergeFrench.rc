@@ -714,7 +714,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "&Initialiser",IDC_RESET_ALL_MESSAGE_BOXES,178,192,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge permet de dissimuler certaines boîtes de message. Appuyer sur ce bouton pour les rendre visibles à nouveau.",
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
                     IDC_STATIC,7,124,168,31
 END
 

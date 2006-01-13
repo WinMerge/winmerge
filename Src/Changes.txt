@@ -1,3 +1,8 @@
+2006-01-13 Kimmo
+ PATCH: [ 1039677 ] Alter text of Reset button label
+  Src: Merge.rc
+  Src/Language: */Merge*.rc
+
 2006-01-12 Kimmo
  PATCH: [ 1399263 ] Captioned panes (new style)
   Src: ChildFrm.cpp DiffViewBar.h LocationBar.h Merge.dsp Merge.rc resource.h

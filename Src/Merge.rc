@@ -716,7 +716,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press button to make all messageboxes visible again.",
+    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
                     IDC_STATIC,7,124,168,31
 END
 
@@ -1030,7 +1030,7 @@ BEGIN
 END
 
 IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE |
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
 CAPTION " Folder Compare Progress"
@@ -1379,7 +1379,7 @@ BEGIN
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Compare Statistics"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -2164,7 +2164,7 @@ BEGIN
 END
 
 // FILE COMPARE: PANE CAPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LOCBAR_CAPTION      "Location Pane"
     IDS_DIFFBAR_CAPTION     "Diff Pane"
