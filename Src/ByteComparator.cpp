@@ -58,7 +58,14 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 		if (m_ignore_space_change)
 		{
 			// Skip over any whitespace if on both sides
-			if (m_wsflag || (!eof0 && !eof1 && iswsch(*ptr0) && iswsch(*ptr1)))
+			
+			if (ptr0 < end0 && ptr1 < end1 && iswsch(*ptr0) && iswsch(*ptr1))
+			{
+				m_wsflag = true;
+				++ptr0;
+				++ptr1;
+			}
+			if (m_wsflag)
 			{
 				// skip over consecutive whitespace
 				while (ptr0 < end0 && iswsch(*ptr0))

@@ -2,6 +2,9 @@
  PATCH: [ 1403454 ] Add comment to UniStdioFile.h
  (Cosmetic)
   Src/Common: UniFile.h
+ PATCH: [ 1403893 ] Fix whitespace error in ByteCompare
+ BUG: [ 1400779 ] Whitespace bug in ByteComparator
+  Src: ByteComparator.cpp
 
 2006-01-13 Kimmo
  PATCH: [ 1039677 ] Alter text of Reset button label
