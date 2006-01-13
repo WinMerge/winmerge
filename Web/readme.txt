@@ -1,3 +1,9 @@
+2006-01-13 Tim
+ PATCH: [ 1404317 ] Web: Known Limitations page
+  Web: page.inc
+  Web\2.4: new file limitations.php
+  Web\2.4\images: new file statusbar.gif
+
 2006-01-11 Tim
  PATCH: [ 1402858 ] Web: New background color for 'important' and 'note'
   Web\css: all.css

@@ -214,6 +214,7 @@
           $temp .= "  <li><a href=\"/2.4/manual/index.html\">Manual</a></li>\n";
           $temp .= "  <li><a href=\"/2.4/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.4/changes.php\">Change History</a></li>\n";
+          $temp .= "  <li><a href=\"/2.4/limitations.php\">Known Limitations</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
