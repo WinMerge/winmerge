@@ -216,11 +216,6 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	return TRUE;
 }
 
-BOOL CChildFrame::PreCreateWindow(CREATESTRUCT& cs)
-{
-	return CMDIChildWnd::PreCreateWindow(cs);
-}
-
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame message handlers
 

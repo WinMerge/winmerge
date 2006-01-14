@@ -541,14 +541,6 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 	}
 }
 
-BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
-{
-	// TODO: Modify the Window class or styles here by modifying
-	//  the CREATESTRUCT cs
-
-	return CMDIFrameWnd::PreCreateWindow(cs);
-}
-
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame message handlers
 
