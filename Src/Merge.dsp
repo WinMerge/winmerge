@@ -389,6 +389,10 @@ SOURCE=.\EditorFilepathBar.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileActionScript.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileFilterHelper.cpp
 # End Source File
 # Begin Source File
@@ -1046,6 +1050,10 @@ SOURCE=.\EditorFilepathBar.h
 # Begin Source File
 
 SOURCE=.\Exceptions.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FileActionScript.h
 # End Source File
 # Begin Source File
 

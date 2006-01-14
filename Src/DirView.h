@@ -34,6 +34,9 @@
 #include <afxcview.h>
 #include "SortHeaderCtrl.h"
 
+#ifndef _FILEACTIONSCRIPT_H_
+#include "FileActionScript.h"
+#endif
 
 struct DIFFITEM;
 
@@ -124,27 +127,6 @@ public:
 
 // Implementation types
 private:
-	/** 
-	 * @brief An ActionList is a multifile copy or delete operation
-	 * When the user selects one or many files in the dirview, and then
-	 * invokes, eg, right-click Copy Left, an ActionList is built
-	 **/
-	struct ActionList
-	{
-		// types used in the ActionList
-		typedef enum { ACT_COPY = 1, ACT_DEL_LEFT, ACT_DEL_RIGHT, ACT_DEL_BOTH,
-			ACT_MOVE_LEFT, ACT_MOVE_RIGHT } ACT_TYPE;
-		struct action { CString src; CString dest; BOOL dirflag; int idx; int code;}; /**< One file action */
-		typedef CList<int, int> DeletedItemList; // indices into display list control
-		// Data members of the ActionList
-		int selcount; // #items in full selection (not all may be affected)
-		ACT_TYPE atype;
-		CList<action, action&> actions;
-		CStringList errors;
-		DeletedItemList deletedItems;
-		ActionList(ACT_TYPE at) : selcount(0), atype(at) { }
-		int GetCount() const { return actions.GetCount(); }
-	};
 	typedef enum { SIDE_LEFT=1, SIDE_RIGHT } SIDE_TYPE;
 
 // Implementation in DirActions.cpp
@@ -183,11 +165,10 @@ private:
 	void DoOpenWith(SIDE_TYPE stype);
 	void DoOpenWithEditor(SIDE_TYPE stype);
 	void ApplyPluginPrediffSetting(int newsetting);
-	void ConfirmAndPerformActions(ActionList & actions);
-	BOOL ConfirmActionList(const ActionList & actions);
-	void PerformActionList(ActionList & actions);
-	void UpdateCopiedItems(ActionList & actions);
-	void UpdateDeletedItems(ActionList & actions);
+	void ConfirmAndPerformActions(FileActionScript & actions, int selCount);
+	BOOL ConfirmActionList(const FileActionScript & actions, int selCount);
+	void PerformActionList(FileActionScript & actions);
+	void UpdateAfterFileScript(FileActionScript & actionList);
 	void MarkForRescan();
 // End DirActions.cpp
 	void ReflectGetdispinfo(NMLVDISPINFO *);
