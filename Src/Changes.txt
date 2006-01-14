@@ -1,3 +1,7 @@
+2006-01-14 Perry
+ PATCH: [ 1403457 ] Support Unicode file filter files
+  Src: FileFilterMgr.cpp
+
 2006-01-14 Kimmo
  PATCH: [ 1372044 ] Add FileActionScript for folder compare actions
   Src: DirActions.cpp DirView.h Merge.dsp

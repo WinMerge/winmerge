@@ -18,6 +18,7 @@
 #include "stdafx.h"
 #include "FileFilterMgr.h"
 #include "RegExp.h"
+#include "UniFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -211,9 +212,12 @@ static void AddFilterPattern(FileFilterList & filterList, CString & str)
  */
 FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
 {
-	CStdioFile file;
-	if (!file.Open(szFilepath, CFile::modeRead | CFile::shareDenyNone))
+	UniMemFile file;
+	if (!file.OpenReadOnly(szFilepath))
 		return NULL;
+
+	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
+
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
 	pfilter->name = szFilename; // default if no name
