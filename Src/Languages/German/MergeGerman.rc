@@ -1922,10 +1922,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Kopiert die ausgewählte Datei ins angegebene Verzeichnis."
-    ID_DIR_COPY_LEFT_TO_BROWSE "Kopiert die ausgewählte Datei in ein beliebiges Verzeichnis."
-    ID_DIR_COPY_RIGHT_TO_LEFT "Kopiert die ausgewählte Datei ins angegebene Verzeichnis."
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopiert die ausgewählte Datei in ein beliebiges Verzeichnis."
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
     ID_DIR_DEL_LEFT         "Löscht ausgewähltes Objekt auf der linken Seite."
     ID_DIR_DEL_RIGHT        "Löscht ausgewähltes Objekt auf der rechten Seite."
     ID_DIR_DEL_BOTH         "Löscht ausgewählte Objekte auf beiden Seiten."

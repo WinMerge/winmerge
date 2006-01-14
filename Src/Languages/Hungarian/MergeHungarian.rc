@@ -1922,10 +1922,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Kijelölt fájl másolása a megnevezett könyvtárba"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Kijelölt fájl másolása tetszõleges könyvtárba"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Kijelölt fájl másolása a megnevezett könyvtárba"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Kijelölt fájl másolása tetszõleges könyvtárba"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
     ID_DIR_DEL_LEFT         "Kijelölt bal oldali elem törlése"
     ID_DIR_DEL_RIGHT        "Kijelölt jobb oldali elem törlése"
     ID_DIR_DEL_BOTH         "Kijelölt elem(ek) törlése mindkét oldalon"

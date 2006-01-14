@@ -1940,10 +1940,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Копиране на файловете към избраната директория"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected file to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Копиране на файловете към избраната директория"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected file to custom directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
     ID_DIR_DEL_LEFT         "Изтриване на избрания обект от ляво"
     ID_DIR_DEL_RIGHT        "Изтриване на избрания обект от дясно"
     ID_DIR_DEL_BOTH         "Изтриване на избрания обект(и) от двете страни"

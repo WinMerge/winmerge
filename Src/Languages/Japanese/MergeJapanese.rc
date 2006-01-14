@@ -1922,10 +1922,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "選択されたファイルを指定フォルダにコピーします"
-    ID_DIR_COPY_LEFT_TO_BROWSE "選択されたファイルを選択されたフォルダにコピーします"
-    ID_DIR_COPY_RIGHT_TO_LEFT "選択されたファイルを指定フォルダにコピーします"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "選択されたファイルを選択されたフォルダにコピーします"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
     ID_DIR_DEL_LEFT         "左の選択された項目を削除します"
     ID_DIR_DEL_RIGHT        "右の選択された項目を削除します"
     ID_DIR_DEL_BOTH         "両側の選択された項目を削除します"

@@ -2,6 +2,9 @@
  PATCH: [ 1372044 ] Add FileActionScript for folder compare actions
   Src: DirActions.cpp DirView.h Merge.dsp
   Src new files: FileActionScript.cpp FileActionScript.h
+ PATCH: [ 1385672 ] Replace some 'file's with 'item's
+  Src: Merge.rc
+  Src/Language: */Merge*.rc
 
 2006-01-14 Perry
  TODO: [ 1395638 ] CChildFrame::PreCreateWindow() does nothing

@@ -1922,10 +1922,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "선택 파일중 왼쪽에만 존재하는 파일을 오른쪽으로 복사합니다."
-    ID_DIR_COPY_LEFT_TO_BROWSE "선택 파일을 특정 디렉토리로 복사합니다."
-    ID_DIR_COPY_RIGHT_TO_LEFT "선택 파일중 오른쪽에만 존재하는 파일을 왼쪽으로 복사합니다."
-    ID_DIR_COPY_RIGHT_TO_BROWSE "선택 파일을 특정 디렉토리로 복사합니다."
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
     ID_DIR_DEL_LEFT         "선택한 파일 중 왼쪽 파일만 삭제합니다."
     ID_DIR_DEL_RIGHT        "선택한 파일 중 오른쪽 파일만 삭제합니다."
     ID_DIR_DEL_BOTH         "선택한 파일을 양쪽 모두에서 삭제합니다."

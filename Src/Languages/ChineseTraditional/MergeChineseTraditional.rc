@@ -1922,10 +1922,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "複製選取的檔案到已命名的資料夾"
-    ID_DIR_COPY_LEFT_TO_BROWSE "複製選取的檔案到自訂資料夾"
-    ID_DIR_COPY_RIGHT_TO_LEFT "複製選取的檔案到已命名的資料夾"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "複製選取的檔案到自訂資料夾"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
     ID_DIR_DEL_LEFT         "刪除在左邊的選取項目"
     ID_DIR_DEL_RIGHT        "刪除在右邊的選取項目"
     ID_DIR_DEL_BOTH         "刪除兩邊的選取項目"
