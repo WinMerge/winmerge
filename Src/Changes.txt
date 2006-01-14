@@ -5,6 +5,9 @@
  PATCH: [ 1385672 ] Replace some 'file's with 'item's
   Src: Merge.rc
   Src/Language: */Merge*.rc
+ PATCH: [ 1405340 ] Add XP shadow to folderskip.ico
+  Submitted by Tim
+  Src/res: folderskip.ico
 
 2006-01-14 Perry
  TODO: [ 1395638 ] CChildFrame::PreCreateWindow() does nothing
