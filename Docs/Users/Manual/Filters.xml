@@ -70,11 +70,6 @@
     directories that match the rules are excluded if it is an inclusive
     filter, or included if it is an exclusive filter.</para>
 
-    <note>
-      <para>WinMerge does not support Unicode file filters; a file filter
-      should be in the user's current 8-bit (ANSI) codepage.</para>
-    </note>
-
     <tip>
       <para>Ignored items have "<guilabel>Skipped</guilabel>" status in
       directory compare. User can select them to visible or hidden from

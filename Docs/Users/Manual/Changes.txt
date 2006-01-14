@@ -1,3 +1,9 @@
+2006-01-14 Perry
+ PATCH: [ 1403457 ] Support Unicode file filter files
+  Remove limitation (file filters now handle unicode files)
+  (reverses my PATCH: [ 1401001 ])
+  Manual: Filters.xml
+
 2006-01-11 Kimmo
  Update copyright year, WinMerge version to 2.5 and revision
   Manual: WinMerge_help.xml
