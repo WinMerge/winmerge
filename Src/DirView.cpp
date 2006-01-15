@@ -200,8 +200,7 @@ void CDirView::OnInitialUpdate()
 	// Load user-selected font
 	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_USECUSTOM))
 	{
-		CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
-		m_font.CreateFontIndirect(&pMf->m_lfDir);
+		m_font.CreateFontIndirect(&GetMainFrame()->m_lfDir);
 		SetFont(&m_font, TRUE);
 	}
 
@@ -809,7 +808,7 @@ void CDirView::OpenParentDirectory()
 		pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
 		// fall through (no break!)
 	case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath:
-		mf->DoFileOpen(leftParent, rightParent,
+		GetMainFrame()->DoFileOpen(leftParent, rightParent,
 			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 		// fall through (no break!)
 	case CDirDoc::AllowUpwardDirectory::No:
@@ -990,12 +989,12 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		mf->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 	}
 	else if (HasZipSupport() && ArchiveGuessFormat(pathLeft) && ArchiveGuessFormat(pathRight))
 	{
 		// Open archives, not adding paths to MRU
-		mf->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 	}
 	else
 	{
@@ -1029,7 +1028,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		filelocRight.unicoding = di2->right.unicoding;
 		filelocRight.codepage = di2->right.codepage;
 
-		int rtn = mf->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
+		int rtn = GetMainFrame()->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
 			bLeftRO, bRightRO, infoUnpacker);
 		if (rtn == OPENRESULTS_FAILED_BINARY)
 		{
@@ -2427,7 +2426,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, mf->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2451,7 +2450,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, mf->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2484,7 +2483,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, mf->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2504,7 +2503,7 @@ void CDirView::OnCopyFilenames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, mf->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**

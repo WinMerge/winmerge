@@ -537,7 +537,7 @@ void COpenDlg::OnSelectFilter()
 	curFilter.TrimLeft();
 	curFilter.TrimRight();
 
-	mf->SelectFilter();
+	GetMainFrame()->SelectFilter();
 	
 	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	if (theApp.m_globalFileFilter.IsUsingMask())

@@ -83,7 +83,7 @@ int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
 		return retVal;
 
 	// TODO: First param is not used!
-	int nRetVal = pMf->SyncFileToVCS(_T(""), path, bApplyToAll, &strErr);
+	int nRetVal = GetMainFrame()->SyncFileToVCS(_T(""), path, bApplyToAll, &strErr);
 	if (nRetVal == -1)
 	{
 		retVal = SCRIPT_FAIL; // So we exit without file operations done

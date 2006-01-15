@@ -83,7 +83,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 extern CLogFile gLog;
-CMainFrame *mf = NULL;
 
 static BOOL add_regexp PARAMS((struct regexp_list **, char const*, BOOL bShowError));
 /////////////////////////////////////////////////////////////////////////////
@@ -265,8 +264,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	mf = this;
-	
 	// build the initial reg expression list
 	RebuildRegExpList(FALSE);
 	GetFontProperties();
@@ -589,7 +586,7 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 	pMergeDoc->SetUnpacker(infoUnpacker);
 
 	// detect codepage
-	BOOL bGuessEncoding = mf->m_options.GetBool(OPT_CP_DETECT);
+	BOOL bGuessEncoding =GetOptionsMgr()->GetBool(OPT_CP_DETECT);
 	if (filelocLeft.unicoding == -1)
 		filelocLeft.unicoding = ucr::NONE;
 	if (filelocLeft.unicoding == ucr::NONE && filelocLeft.codepage == -1)
@@ -2023,27 +2020,27 @@ void CMainFrame::ApplyViewWhitespace()
 		CMergeDiffDetailView * pRightDetail = pMergeDoc->GetRightDetailView();
 		if (pLeft)
 		{
-			pLeft->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
-			pLeft->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+			pLeft->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+			pLeft->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pRight)
 		{
-			pRight->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
-			pRight->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+			pRight->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+			pRight->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pLeftDetail)
 		{
-			pLeftDetail->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
-			pLeftDetail->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+			pLeftDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+			pLeftDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 		if (pRightDetail)
 		{
-			pRightDetail->SetViewTabs(mf->m_options.GetBool(OPT_VIEW_WHITESPACE));
-			pRightDetail->SetViewEols(mf->m_options.GetBool(OPT_VIEW_WHITESPACE),
-				mf->m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+			pRightDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+			pRightDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+				GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 		}
 	}
 }
@@ -3089,5 +3086,17 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 COptionsMgr *
 GetOptionsMgr() 
 {
-	return mf->GetTheOptionsMgr();
+	return GetMainFrame()->GetTheOptionsMgr();
+}
+
+/**
+ * @brief Access to the singleton main frame (where we have some globals)
+ */
+CMainFrame * GetMainFrame()
+{
+	CWnd * mainwnd = AfxGetMainWnd();
+	ASSERT(mainwnd);
+	CMainFrame *pMainframe = dynamic_cast<CMainFrame*>(mainwnd);
+	ASSERT(pMainframe);
+	return pMainframe;
 }

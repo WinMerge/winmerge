@@ -559,7 +559,7 @@ void CMergeApp::OnViewLanguage()
 	{
 		//m_lang.ReloadMenu();
 		//m_LangDlg.UpdateDocTitle();
-		mf->UpdateResources();
+		GetMainFrame()->UpdateResources();
 	}
 }
 
@@ -661,8 +661,7 @@ void CMergeApp::InitializeFileFilters()
 /** @brief Open help from mainframe when user presses F1*/
 void CMergeApp::OnHelp()
 {
-	if (mf)
-		mf->ShowHelp();
+	GetMainFrame()->ShowHelp();
 }
 
 /** @brief Open Contributors.rtf */
@@ -770,4 +769,3 @@ CMergeApp::	ReloadMenu()
 {
 	m_pLangDlg->ReloadMenu();
 }
-

@@ -354,7 +354,7 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 	if (!m_bRecursive && di.isDirectory())
 	{
 		// result filters
-		if (di.isResultError() && !mf->m_bShowErrors)
+		if (di.isResultError() && !GetMainFrame()->m_bShowErrors)
 			return 0;
 
 		// left/right filters
@@ -372,7 +372,7 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 		// result filters
 		if (di.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
 			return 0;
-		if (di.isResultError() && !mf->m_bShowErrors)
+		if (di.isResultError() && !GetMainFrame()->m_bShowErrors)
 			return 0;
 		if (di.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
 			return 0;

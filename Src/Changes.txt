@@ -1,3 +1,10 @@
+2006-01-15 Perry
+ PATCH: [ 1333600 ] Get rid of global MainFrame pointer (part1)
+  Src: DirActions.cpp DirDoc.cpp DirView.cpp FileActionScript.cpp
+   MainFrm.cpp MainFrm.h Merge.cpp MergeDoc.cpp MergeEditView.cpp
+   OpenDlg.cpp PropRegistry.cpp
+  Src\Common: PreferencesDlg.cpp
+
 2006-01-14 Perry
  PATCH: [ 1403457 ] Support Unicode file filter files
   Src: FileFilterMgr.cpp

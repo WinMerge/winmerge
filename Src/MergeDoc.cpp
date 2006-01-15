@@ -999,27 +999,27 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	bSaveSuccess = FALSE;
 	
 	// Check third arg possibly given from command-line
-	if (!mf->m_strSaveAsPath.IsEmpty())
+	if (!GetMainFrame()->m_strSaveAsPath.IsEmpty())
 	{
-		if (paths_DoesPathExist(mf->m_strSaveAsPath) == IS_EXISTING_DIR)
+		if (paths_DoesPathExist(GetMainFrame()->m_strSaveAsPath) == IS_EXISTING_DIR)
 		{
 			// third arg was a directory, so get append the filename
 			CString sname;
 			SplitFilename(szPath, 0, &sname, 0);
-			strSavePath = mf->m_strSaveAsPath;
-			if (mf->m_strSaveAsPath.Right(1) != _T('\\'))
+			strSavePath = GetMainFrame()->m_strSaveAsPath;
+			if (GetMainFrame()->m_strSaveAsPath.Right(1) != _T('\\'))
 				strSavePath += _T('\\');
 			strSavePath += sname;
 		}
 		else
-			strSavePath = mf->m_strSaveAsPath;	
+			strSavePath = GetMainFrame()->m_strSaveAsPath;	
 	}
 
-	nRetVal = mf->HandleReadonlySave(strSavePath, FALSE, bApplyToAll);
+	nRetVal = GetMainFrame()->HandleReadonlySave(strSavePath, FALSE, bApplyToAll);
 	if (nRetVal == IDCANCEL)
 		return FALSE;
 
-	if (!mf->CreateBackup(strSavePath))
+	if (!GetMainFrame()->CreateBackup(strSavePath))
 		return FALSE;
 
 	// FALSE as long as the user is not satisfied
@@ -1173,7 +1173,7 @@ void CMergeDoc::SetDiffViewMode(BOOL bEnable)
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	// Allow user to cancel closing
-	if (!mf->m_bEscShutdown && SaveHelper(TRUE))
+	if (!GetMainFrame()->m_bEscShutdown && SaveHelper(TRUE))
 	{
 		// Set modified status to false so that we are not asking
 		// about saving again in OnCloseDocument()
@@ -2463,7 +2463,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 				IDS_SUGGEST_PRESERVEEOL) == IDYES)
 			{
 				// the user wants to keep the original chars
-				mf->SetEOLMixed(TRUE);
+				GetMainFrame()->SetEOLMixed(TRUE);
 				GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, true);
 			}
 		}
@@ -2554,13 +2554,13 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	int nLeftSuccess = FRESULT_ERROR;
 	if (!sLeftFile.IsEmpty())
 	{
-		if (mf->m_strLeftDesc.IsEmpty())
+		if (GetMainFrame()->m_strLeftDesc.IsEmpty())
 			m_nBufferType[0] = BUFFER_NORMAL;
 		else
 		{
 			m_nBufferType[0] = BUFFER_NORMAL_NAMED;
-			m_strDesc[0] = mf->m_strLeftDesc;
-			mf->m_strLeftDesc.Empty();
+			m_strDesc[0] = GetMainFrame()->m_strLeftDesc;
+			GetMainFrame()->m_strLeftDesc.Empty();
 		}
 
 		m_pSaveFileInfo[0]->Update(sLeftFile);
@@ -2574,7 +2574,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		m_nBufferType[0] = BUFFER_UNNAMED;
 
 		m_ptBuf[0]->InitNew();
-		m_strDesc[0] = mf->m_strLeftDesc;
+		m_strDesc[0] = GetMainFrame()->m_strLeftDesc;
 		nLeftSuccess = FRESULT_OK;
 	}
 	
@@ -2582,13 +2582,13 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	int nRightSuccess = FRESULT_ERROR;
 	if (!sRightFile.IsEmpty())
 	{
-		if (mf->m_strRightDesc.IsEmpty())
+		if (GetMainFrame()->m_strRightDesc.IsEmpty())
 			m_nBufferType[1] = BUFFER_NORMAL;
 		else
 		{
 			m_nBufferType[1] = BUFFER_NORMAL_NAMED;
-			m_strDesc[1] = mf->m_strRightDesc;
-			mf->m_strRightDesc.Empty();
+			m_strDesc[1] = GetMainFrame()->m_strRightDesc;
+			GetMainFrame()->m_strRightDesc.Empty();
 		}
 
 		m_pSaveFileInfo[1]->Update(sRightFile);
@@ -2601,7 +2601,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		m_nBufferType[1] = BUFFER_UNNAMED;
 
 		m_ptBuf[1]->InitNew();
-		m_strDesc[1] = mf->m_strRightDesc;
+		m_strDesc[1] = GetMainFrame()->m_strRightDesc;
 		nRightSuccess = FRESULT_OK;
 	}
 
@@ -2627,10 +2627,10 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	m_pDetailView[0]->AttachToBuffer();
 	m_pDetailView[1]->AttachToBuffer();
 
-	m_pView[0]->SetColorContext(mf->m_pSyntaxColors);
-	m_pView[1]->SetColorContext(mf->m_pSyntaxColors);
-	m_pDetailView[0]->SetColorContext(mf->m_pSyntaxColors);
-	m_pDetailView[1]->SetColorContext(mf->m_pSyntaxColors);
+	m_pView[0]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
+	m_pView[1]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
+	m_pDetailView[0]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
+	m_pDetailView[1]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
 
 	// Set read-only statuses
 	m_ptBuf[0]->SetReadOnly(bROLeft);
@@ -2666,7 +2666,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 
 	// recreate the sub menu (to fill the "selected prediffers")
 	// keep after Rescan (in automatic mode, prediffer is set during the first Rescan)
-	mf->UpdatePrediffersMenu();
+	GetMainFrame()->UpdatePrediffersMenu();
 
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK && bBinary == FALSE)

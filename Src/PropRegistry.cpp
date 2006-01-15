@@ -98,8 +98,7 @@ void CPropRegistry::ReadOptions()
  */
 void CPropRegistry::WriteOptions()
 {
-	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
-	CString sDefaultEditor = pMf->GetDefaultEditor();
+	CString sDefaultEditor = GetMainFrame()->GetDefaultEditor();
 
 	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);

@@ -570,8 +570,8 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 {
 	// Reset suppressing VSS dialog for multiple files.
 	// Set in CMainFrame::SaveToVersionControl().
-	mf->m_CheckOutMulti = FALSE;
-	mf->m_bVssSuppressPathCheck = FALSE;
+	GetMainFrame()->m_CheckOutMulti = FALSE;
+	GetMainFrame()->m_bVssSuppressPathCheck = FALSE;
 
 	// Check option and enable putting deleted items to Recycle Bin
 	if (GetOptionsMgr()->GetBool(OPT_USE_RECYCLE_BIN))
@@ -604,8 +604,8 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		switch (act.UIResult)
 		{
 		case FileActionItem::UI_SYNC:
-			if (mf->m_bCheckinVCS)
-				mf->CheckinToClearCase(act.dest);
+			if (GetMainFrame()->m_bCheckinVCS)
+				GetMainFrame()->CheckinToClearCase(act.dest);
 
 			// Syncronized item is both-sides item
 			pDoc->SetDiffSide(DIFFCODE::BOTH, act.context);
@@ -945,7 +945,7 @@ void CDirView::DoOpenWithEditor(SIDE_TYPE stype)
 	CString file = GetSelectedFileName(stype);
 	if (file.IsEmpty()) return;
 
-	mf->OpenFileToExternalEditor(file);
+	GetMainFrame()->OpenFileToExternalEditor(file);
 }
 
 /**

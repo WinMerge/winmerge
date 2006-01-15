@@ -120,8 +120,7 @@ void CPreferencesDlg::OnDestroy()
 
 void CPreferencesDlg::OnHelpButton() 
 {
-	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
-	pMf->ShowHelp();
+	GetMainFrame()->ShowHelp();
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)

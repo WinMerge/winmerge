@@ -329,7 +329,7 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 
 	CMergeDoc* pDoc = GetDocument();
 	pDoc->UpdateHeaderActivity(m_nThisPane, bActivate);
-	mf->UpdatePrediffersMenu();
+	GetMainFrame()->UpdatePrediffersMenu();
 }
 
 int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
@@ -2629,7 +2629,7 @@ void CMergeEditView::OnOpenFileWithEditor()
 	if (sFileName.IsEmpty())
 		return;
 
-	mf->OpenFileToExternalEditor(sFileName);
+	GetMainFrame()->OpenFileToExternalEditor(sFileName);
 }
 
 /**

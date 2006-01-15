@@ -272,7 +272,7 @@ private:
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 };
 
-extern CMainFrame *mf;
+CMainFrame * GetMainFrame(); // access to the singleton main frame object
 
 /////////////////////////////////////////////////////////////////////////////
 
