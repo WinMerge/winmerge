@@ -2133,6 +2133,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Linjeskiftene (EOL) er forskjellig (DOS/UNIX/MAC) i filen '%1'.\n Med gjeldende innstillinger vil de bli endret til hovedtypen.\n Vil du endre innstillingene og bevare de forskjellig linjeskiftene?"
     IDS_PREDIFFER_ERROR      "En feil oppstod under forhåndsforskjell for filen '%1' med programtillegget '%2'. Forhåndsforskjellen blir ikke brukt mer."
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
 END
 
 // Encoding issues

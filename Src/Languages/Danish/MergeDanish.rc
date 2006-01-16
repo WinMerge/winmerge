@@ -2133,6 +2133,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Filernes EOL er forskellige typer (DOS/UNIX/MAC) i filen '%1'.\n Med de nuværende indstillinger, vil de blive omdannet til hovedtypen.\n Vil du ændrer indstilingerne og bevare de forskellige EOL ?"
     IDS_PREDIFFER_ERROR      "Der skete en fejl under prediffing af filen '%1' med plugin '%2'. Denne prediffing er ikke brugt mere."
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
 END
 
 // Encoding issues

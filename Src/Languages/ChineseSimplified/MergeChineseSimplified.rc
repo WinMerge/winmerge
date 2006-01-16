@@ -2130,6 +2130,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "在文件“%1”中含有不同的换行符(DOS/UNIX/MAC)。\n对应于当前的选项，它们将统一成为一种格式。\n您要改变选项设置以保留原始的不同的换行符吗？"
     IDS_PREDIFFER_ERROR     "在使用插件“%2”对文件“%1”进行预对比时发生了一个错误。预对比将不会被采用。"
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
 END
 
 // Encoding issues

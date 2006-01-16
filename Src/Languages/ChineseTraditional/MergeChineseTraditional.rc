@@ -2128,6 +2128,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "檔案結束是 (DOS/UNIX/MAC) 不同類型在檔案 '%1'。\n 以目前選項， 它們會統一到主類型。\n 你要變更選項並保留不同的檔案結束嗎 ？"
     IDS_PREDIFFER_ERROR      "一個錯誤發生於前置不同檔案 '%1' 以外掛 '%2'。 前置不同無法再套用。"
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
 END
 
 // Encoding issues

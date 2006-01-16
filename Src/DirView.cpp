@@ -974,9 +974,26 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 				// Fall through and compare directories
 			}
 		}
-		else if (di1->isSideLeft() || di1->isSideRight())
+		else if (di1->isSideLeft())
 		{
-			AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+			// Open left-only item to editor if its not a folder or binary
+			if (isdir)
+				AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+			else if (di1->isBin())
+				AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
+			else
+				DoOpenWithEditor(SIDE_LEFT);
+			return;
+		}
+		else if (di1->isSideRight())
+		{
+			// Open right-only item to editor if its not a folder or binary
+			if (isdir)
+				AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+			else if (di1->isBin())
+				AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
+			else
+				DoOpenWithEditor(SIDE_RIGHT);
 			return;
 		}
 		// Fall through and compare files (which may be archives)

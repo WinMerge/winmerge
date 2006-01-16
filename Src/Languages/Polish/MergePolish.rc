@@ -2133,6 +2133,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "W pliku '%1' znaki EOL maj¹ ró¿ne typy (DOS/UNIX/MAC).\n Przy bie¿¹cych ustawieniach zostan¹ zunifikowane do g³ównego typu.\n Czy zmieniæ opcje i zachowaæ ró¿ne znaki EOL?"
     IDS_PREDIFFER_ERROR      "B³¹d przy wstêpnym porównaniu pliku '%1' za pomoc¹ wtyczki '%2'. Wstêpne porównanie nie zostanie zastosowane."
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
+    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
 END
 
 // Encoding issues

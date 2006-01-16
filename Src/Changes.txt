@@ -1,3 +1,8 @@
+2006-01-16 Kimmo
+ PATCH: [ 1406203 ] Open unique files to external editor
+  Src: DirView.cpp Merge.rc resource.h
+  Src/Language: */Merge*.rc
+
 2006-01-15 Perry
  PATCH: [ 1333600 ] Get rid of global MainFrame pointer (part1)
   Src: DirActions.cpp DirDoc.cpp DirView.cpp FileActionScript.cpp
