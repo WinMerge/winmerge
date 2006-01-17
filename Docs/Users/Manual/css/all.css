@@ -11,17 +11,22 @@
 }
 
 .caution {
+  background-color: #FFDDAA;
   border: 1px solid olive;
 }
 .important {
+  background-color: #FFFFDD;
   border: 1px solid olive;
 }
 .note {
-  border: 1px solid black;
+  background-color: #DDDDFF;
+  border: 1px solid blue;
 }
 .tip {
-  border: 1px solid black;
+  background-color: #DDFFDD;
+  border: 1px solid green;
 }
 .warning {
+  background-color: #FFDDDD;
   border: 1px solid red;
 }

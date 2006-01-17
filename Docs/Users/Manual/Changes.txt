@@ -2,6 +2,9 @@
  PATCH: [ 1405344 ] Manual: New icons
   Manual/screenshots: binarydiff.gif equal.gif error.gif fileskip.gif
     folderskip.gif lfile.gif lfolder.gif notequal.gif rfile.gif rfolder.gif
+ PATCH: [ 1405261 ] Manual: Background colors for Notes and Co. (XSL)
+  Manual/build: build_html.bat build_html.xsl build_htmlhelp.bat build_htmlhelp.xsl
+  Manual/css: all.css help.css print.css
 
 2006-01-14 Perry
  PATCH: [ 1403457 ] Support Unicode file filter files

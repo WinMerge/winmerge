@@ -18,17 +18,22 @@
 }
 
 .caution {
+  background-color: white;
   border: 1px solid black;
 }
 .important {
+  background-color: white;
   border: 1px solid black;
 }
 .note {
+  background-color: white;
   border: 1px solid black;
 }
 .tip {
+  background-color: white;
   border: 1px solid black;
 }
 .warning {
+  background-color: white;
   border: 1px solid black;
 }
