@@ -1,3 +1,7 @@
+2006-01-17 Kimmo
+ PATCH: [ 1407555 ] Manual: add new shortcuts for find
+  Manual: Shortcut_keys.xml
+
 2006-01-17 Tim
  PATCH: [ 1405344 ] Manual: New icons
   Manual/screenshots: binarydiff.gif equal.gif error.gif fileskip.gif
