@@ -184,6 +184,6 @@ void CPropEditor::UpdateLineDiffControls()
 	EnableDlgItem(IDC_EDITOR_CHARLEVEL, !!m_bViewLineDifferences);
 	EnableDlgItem(IDC_EDITOR_WORDLEVEL, !!m_bViewLineDifferences);
 	// Can only choose break type if line differences are enabled & we're breaking on words
-	EnableDlgItem(IDC_BREAK_TYPE, m_bViewLineDifferences && m_bBreakOnWords);
+	EnableDlgItem(IDC_BREAK_TYPE, !!m_bViewLineDifferences);
 }
 

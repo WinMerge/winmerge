@@ -183,8 +183,8 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	static CRect lastRc1, lastRc2;
 	static int whichdiff=-2; // last diff highlighted (-2==none, -1=whole line)
 
-	// Only remember place in cycle if same line and same view (and not doing bytelevel)
-	if (lastView != pView1 || lastLine != line || difflvl==BYTEDIFF)
+	// Only remember place in cycle if same line and same view
+	if (lastView != pView1 || lastLine != line)
 	{
 		lastView = pView1;
 		lastLine = line;
@@ -226,19 +226,10 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	bool casitive = !diffOptions.bIgnoreCase;
 	int xwhite = diffOptions.nIgnoreWhitespace;
 
-	if (difflvl==BYTEDIFF)
-	{
-		int begin1=-1, end1=-1, begin2=-1, end2=-1;
-		sd_ComputeByteDiff(str1, str2, casitive, xwhite, begin1, begin2, end1, end2);
-		SetLineHighlightRect(begin1, end1, line, width1, rc1);
-		SetLineHighlightRect(begin2, end2, line, width2, rc2);
-		return;
-	}
-
 	// Make the call to stringdiffs, which does all the hard & tedious computations
 	wdiffarray worddiffs;
 	bool breakType = GetBreakType();
-	sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, &worddiffs);
+	sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, difflvl == BYTEDIFF, &worddiffs);
 
 	if (!worddiffs.GetSize())
 	{
@@ -358,22 +349,8 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 	int breakType = GetBreakType(); // whitespace only or include punctuation
 	bool byteColoring = GetByteColoringOption();
 
-	if (byteColoring)
-	{
-		int begin1, begin2, end1, end2;
-		sd_ComputeByteDiff(str1, str2, casitive, xwhite, begin1, begin2, end1, end2);
-		if (begin1 != -1 || begin2 != -1)
-		{
-			wdiff wdf(begin1, end1, begin2, end2);
-			pworddiffs->Add(wdf);
-
-		}
-	}
-	else
-	{
 		// Make the call to stringdiffs, which does all the hard & tedious computations
-		sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, pworddiffs);
-	}
+	sd_ComputeWordDiffs(str1, str2, casitive, xwhite, breakType, byteColoring, pworddiffs);
 
 	return;
 }

@@ -21,13 +21,14 @@ static char THIS_FILE[] = __FILE__;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, TCHAR ch);
+static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const CString& str2, bool casitive, int xwhite);
 
 /**
  * @brief Construct our worker object and tell it to do the work
  */
 void
 sd_ComputeWordDiffs(const CString & str1, const CString & str2,
-	bool case_sensitive, int whitespace, int breakType,
+	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	wdiffarray * pDiffs)
 {
 	stringdiffs sdiffs(str1, str2, case_sensitive, whitespace, breakType, pDiffs);
@@ -36,6 +37,9 @@ sd_ComputeWordDiffs(const CString & str1, const CString & str2,
 	sdiffs.BuildWordDiffList();
 	// Now copy m_wdiffs into caller-supplied m_pDiffs (coalescing adjacents if possible)
 	sdiffs.PopulateDiffs();
+	// Adjust the range of the word diff down to byte level.
+	if (byte_level)
+		wordLevelToByteLevel(pDiffs, str1, str2, case_sensitive, whitespace);
 }
 
 /**
@@ -784,5 +788,28 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 		else
 			end2 = pz2 - pbeg2;
 		
+	}
+}
+
+/**
+ * @brief adjust the range of the specified word diffs down to byte level.
+ * @param str1, str2 [in] line to be compared
+ * @param casitive [in] true for case-sensitive, false for case-insensitive
+ * @param xwhite [in] This governs whether we handle whitespace specially (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
+ */
+static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const CString& str2, bool casitive, int xwhite)
+{
+	for (int i = 0; i < pDiffs->GetSize(); i++)
+	{
+		int begin1, begin2, end1, end2;
+		wdiff *pDiff = &(*pDiffs)[i];
+		CString str1_2, str2_2;
+		str1_2 = str1.Mid(pDiff->start[0], pDiff->end[0] - pDiff->start[0] + 1);
+		str2_2 = str2.Mid(pDiff->start[1], pDiff->end[1] - pDiff->start[1] + 1);
+		sd_ComputeByteDiff(str1_2, str2_2, casitive, xwhite, begin1, begin2, end1, end2);
+		pDiff->end[0] = pDiff->start[0] + end1;
+		pDiff->end[1] = pDiff->start[1] + end2;
+		pDiff->start[0] += begin1;
+		pDiff->start[1] += begin2;
 	}
 }
