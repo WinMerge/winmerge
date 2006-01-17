@@ -2138,7 +2138,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "El mateix fitxer és obert a ambdues subfinestres."
     IDS_FILESSAME           "Els fitxers seleccionats són idèntics."
-    IDS_FILEUNIQUE          "El fitxer seleccionat no existeix a tots dos directories i per tant no es pot comparar."
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "S'ha produït un error en comparar els fitxers."
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."

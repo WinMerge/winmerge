@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Die gleiche Datei ist in beiden Feldern ausgewählt."
     IDS_FILESSAME           "Die ausgewählten Dateien sind identisch."
-    IDS_FILEUNIQUE          "Die ausgewählte Datei ist nicht in beiden Verzeichnissen vorhanden und konnte deshalb nicht verglichen werden."
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "Beim Vergleichen der Dateien ist ein Fehler aufgetreten."
     IDS_FILEBINARY          "Binärdateien können nicht visuell verglichen werden."
     IDS_TEMP_FILEERROR      "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."

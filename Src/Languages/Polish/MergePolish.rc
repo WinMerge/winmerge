@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Ten sam plik otwierany w obu panelach."
     IDS_FILESSAME           "Wybrane pliki s¹ identyczne."
-    IDS_FILEUNIQUE          "Wybrany plik nie istnieje w obu katalogach i nie podlega porównaniu."
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "B³¹d podczas porównywania plików."
     IDS_FILEBINARY          "Pliki binarne nie mog¹ byæ porównywane wizualnie."
     IDS_TEMP_FILEERROR      "Nie mo¿na utworzyæ plików tymczasowych. SprawdŸ ustawienie œcie¿ki tymczasowej."

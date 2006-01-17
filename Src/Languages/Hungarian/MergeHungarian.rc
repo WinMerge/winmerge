@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Ugyanaz a fájl van megnyitva mindkét panelen."
     IDS_FILESSAME           "A kijelölt fájlok ugyanazok."
-    IDS_FILEUNIQUE          "A kijelölt fájl nem található meg mindkét könyvtárban, ezért nem lehet összehasonlítani."
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "Hiba történt a fájlok összehasonlításakor."
     IDS_FILEBINARY          "Bináris fájlok nem hasonlíthatóak össze vizuálisan."
     IDS_TEMP_FILEERROR      "Nem lehetett létrehozni az ideiglenes fájlokat. Ellenõrizd az ideiglenes könyvtár beállításait."

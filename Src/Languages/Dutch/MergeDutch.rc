@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Hetzelfde bestand is in beide vensters geopend."
     IDS_FILESSAME           "De geselecteerde bestanden zijn identiek"
-    IDS_FILEUNIQUE          "Het geselecteerde bestand bestaat slechts in één map en kon daarom niet vergeleken woren"
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "Fout opgetreden tijdens het vergelijken van de bestanden"
     IDS_FILEBINARY          "Binaire bestanden kunnen niet zichtbaar vergeleken worden."
     IDS_TEMP_FILEERROR      "Tijdelijke bestanden konden niet aangemaakt worden. Controleer de instelling voor het pad van tijdelijke bestanden."

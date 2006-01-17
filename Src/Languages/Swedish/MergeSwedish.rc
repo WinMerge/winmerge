@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Samma fil är öppnad i vänster och höger panel."
     IDS_FILESSAME           "De valda filerna är identiska."
-    IDS_FILEUNIQUE          "Den valda filen finns inte i båda katalogerna och kan därför inte jämföras"
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."

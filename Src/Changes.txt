@@ -1,3 +1,8 @@
+2006-01-17 Kimmo
+ PATCH: [ 1406207 ] Fix error message for unique folders
+  Src: DirView.cpp Merge.rc resource.h
+  Src/Language: */Merge*.rc
+
 2006-01-17 Perry
  PATCH: [ 1401711 ] A hybrid of word diff and char diff
  Submitted by Takashi Sawanaka

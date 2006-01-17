@@ -562,7 +562,7 @@
 #define IDS_REPORT_SUCCESS              17798
 #define IDS_FILE_TO_ITSELF              18000
 #define IDS_FILESSAME                   18001
-#define IDS_FILEUNIQUE                  18002
+#define IDS_FOLDERUNIQUE                18002
 #define IDS_FILEERROR                   18003
 #define IDS_FILEBINARY                  18004
 #define IDS_TEMP_FILEERROR              18005

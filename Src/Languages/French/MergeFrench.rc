@@ -2115,7 +2115,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Le même fichier est ouvert dans les deux volets."
     IDS_FILESSAME           "Les fichiers sélectionnés sont identiques."
-    IDS_FILEUNIQUE          "Le fichier sélectionné n'existe pas dans les deux répertoires et ne peut donc pas être comparé."
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "Erreur lors de la comparaison des fichiers."
     IDS_FILEBINARY          "Les fichiers binaires ne peuvent être visuellement comparés"
     IDS_TEMP_FILEERROR      "Des fichiers temporaires ne peuvent être créés. Vérifiez la définition du chemin temporaire."

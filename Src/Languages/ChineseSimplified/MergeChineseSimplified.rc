@@ -2121,7 +2121,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "两侧打开的是同一个文件。"
     IDS_FILESSAME           "选择的文件完全相同。"
-    IDS_FILEUNIQUE          "选择的文件不存在于两侧的文件夹，因此无法对比。"
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "一个错误发生于对比文件时。"
     IDS_FILEBINARY          "二进制文件无法作视觉的对比。"
     IDS_TEMP_FILEERROR      "无法创建临时文件。请检查您的临时路径设置。"

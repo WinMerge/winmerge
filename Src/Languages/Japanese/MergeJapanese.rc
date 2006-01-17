@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "同じファイルが両側のパネルで開かれています。"
     IDS_FILESSAME           "選択されたファイルは同一です。"
-    IDS_FILEUNIQUE          "選択されたファイルは、両側のフォルダに存在しないため、比較できません。"
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "ファイルの比較時にエラーが発生しました。"
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"

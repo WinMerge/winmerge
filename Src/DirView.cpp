@@ -978,7 +978,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		{
 			// Open left-only item to editor if its not a folder or binary
 			if (isdir)
-				AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+				AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
 			else if (di1->isBin())
 				AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
 			else
@@ -989,7 +989,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		{
 			// Open right-only item to editor if its not a folder or binary
 			if (isdir)
-				AfxMessageBox(IDS_FILEUNIQUE, MB_ICONINFORMATION);
+				AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
 			else if (di1->isBin())
 				AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
 			else

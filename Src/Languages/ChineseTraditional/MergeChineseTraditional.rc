@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "相同檔案開啟於兩邊。"
     IDS_FILESSAME           "選取的檔案完全相同。"
-    IDS_FILEUNIQUE          "選取的檔案不存在於兩邊的資料夾，因此無法比對。"
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "一個錯誤發生於比對檔案時。"
     IDS_FILEBINARY          "二進制檔案無法作視覺的比對。"
     IDS_TEMP_FILEERROR      "暫時檔案無法建立。 檢查你的暫時路徑設定。"

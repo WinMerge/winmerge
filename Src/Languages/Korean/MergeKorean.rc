@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "양쪽 창에 동일한 파일이 열려있습니다."
     IDS_FILESSAME           "선택한 파일들은 내용이 동일합니다.."
-    IDS_FILEUNIQUE          "선택한 파일은 양쪽 디렉토리에 모두 존재하는 파일이 아닙니다."
+    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
     IDS_FILEERROR           "파일 비교 도중 에러가 발생했습니다."
     IDS_FILEBINARY          "바이너리 파일은 비교할 수 없습니다."
     IDS_TEMP_FILEERROR      "임시 파일을 생성할 수 없습니다. 임시 파일 설정을 확인하세요."
