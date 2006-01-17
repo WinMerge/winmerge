@@ -1,3 +1,8 @@
+2006-01-17 Tim
+ PATCH: [ 1405344 ] Manual: New icons
+  Manual/screenshots: binarydiff.gif equal.gif error.gif fileskip.gif
+    folderskip.gif lfile.gif lfolder.gif notequal.gif rfile.gif rfolder.gif
+
 2005-09-16
  New file Changes.txt created.
  See Changes.txt for more up-to-date information.
