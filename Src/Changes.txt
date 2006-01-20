@@ -1,3 +1,9 @@
+2006-01-20 Kimmo
+ BUG: [ 1408587 ] Unused DoScroll() function in Merge*View
+  Remove DoScroll() from CMergeEditView and CMergeDiffDetailView
+  Src: MergeDiffDetailView.cpp MergeDiffDetailView.h MergeEditView.cpp
+   MergeEditView.h
+
 2006-01-17 Kimmo
  PATCH: [ 1406207 ] Fix error message for unique folders
   Src: DirView.cpp Merge.rc resource.h

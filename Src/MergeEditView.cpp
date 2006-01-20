@@ -213,20 +213,6 @@ CCrystalTextBuffer *CMergeEditView::LocateTextBuffer()
 }
 
 /**
- * @brief Scroll to line
- * @todo Unused function?
- */
-void CMergeEditView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
-{
-	TRACE(_T("Scroll %s: pos=%d\n"), m_nThisPane == 0 ? _T("left"):_T("right"), pos);
-	if (bDoScroll && (code == SB_THUMBPOSITION || code == SB_THUMBTRACK))
-	{
-		ScrollToLine(pos);
-	}
-	CCrystalEditViewEx::OnVScroll(code, pos, NULL);
-}
-
-/**
  * @brief Update any resources necessary after a GUI language change
  */
 void CMergeEditView::UpdateResources()

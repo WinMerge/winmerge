@@ -161,7 +161,6 @@ public:
 	void GetFullySelectedDiffs(int & firstDiff, int & lastDiff);
 	CString GetSelectedText();
 	CString GetLineText(int idx);
-	void DoScroll(UINT code, UINT pos, BOOL bDoScroll);
 	CMergeDoc* GetDocument();
 	void UpdateResources();
 	BOOL IsModified() { return (LocateTextBuffer()->IsModified()); }

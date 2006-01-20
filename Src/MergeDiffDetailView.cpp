@@ -84,18 +84,6 @@ CCrystalTextBuffer *CMergeDiffDetailView::LocateTextBuffer ()
 	return GetDocument()->m_ptBuf[m_nThisPane];
 }
 
-void CMergeDiffDetailView::DoScroll(UINT code, UINT pos, BOOL bDoScroll)
-{
-	TRACE(_T("Scroll %s: pos=%d\n"), m_nThisPane == 0 ? _T("left"):_T("right"), pos);
-	if (bDoScroll
-		&& (code == SB_THUMBPOSITION
-			|| code == SB_THUMBTRACK))
-	{
-		ScrollToLine(pos);
-	}
-	CCrystalTextView::OnVScroll(code, pos, NULL);
-}
-
 /**
  * @brief Update any resources necessary after a GUI language change
  */

@@ -66,7 +66,6 @@ private:
 
 public:
 	virtual CCrystalTextBuffer *LocateTextBuffer ();
-	void DoScroll(UINT code, UINT pos, BOOL bDoScroll);
 	CMergeDoc* GetDocument();
 	void UpdateResources();
 	BOOL IsModified() { return FALSE; }
