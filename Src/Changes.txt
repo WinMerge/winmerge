@@ -1,3 +1,7 @@
+2006-01-21 Kimmo
+ PATCH: [ 1411150 ] Add GetActiveMergeView for MergeDoc
+  Src: MergeDoc.cpp MergeDoc.h
+
 2006-01-21 Perry
  PATCH: [ 1407740 ] Polish translation update (for version 2.4.4.0)
   Submitted by dr_prozac

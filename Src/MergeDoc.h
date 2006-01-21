@@ -43,11 +43,12 @@
 #endif
 
 /**
- * @brief additional action code for WinMerge (reserve 100 first codes for CrystalEdit)
+ * @brief Additional action codes for WinMerge.
+ * @note Reserve first 100 for CrystalEditor
  */
 enum
 {
-	CE_ACTION_MERGE = 100,
+	CE_ACTION_MERGE = 100, /**< Merging action */
 };
 
 /**
@@ -81,6 +82,14 @@ typedef enum {
 	OPENRESULTS_FAILED_BINARY, /**< Open failed because one or both files were binary */
 	OPENRESULTS_FAILED_MISC    /**< Open failed for some other reason */
 } OPENRESULTS_TYPE;
+
+enum MERGEVIEW_INDEX_TYPE
+{
+	MERGEVIEW_LEFT = 0,         /**< Left MergeView */
+	MERGEVIEW_RIGHT,            /**< Right MergeView */
+	MERGEVIEW_LEFT_DETAIL = 10, /**< Left DetailView */
+	MERGEVIEW_RIGHT_DETAIL,     /**< Right DetailView */
+};
 
 /**
  * @brief Types for buffer. Buffer's type defines behavior
@@ -209,6 +218,7 @@ public:
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
 
+	int GetActiveMergeView();
 	void UpdateHeaderPath(int pane);
 	void UpdateHeaderActivity(int pane, BOOL bActivate);
 	void RefreshOptions();
