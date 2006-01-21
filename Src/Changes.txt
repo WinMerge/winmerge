@@ -1,3 +1,9 @@
+2006-01-21 Perry
+ PATCH: [ 1407740 ] Polish translation update (for version 2.4.4.0)
+  Submitted by dr_prozac
+  (Perry merging many of these to cvs trunk)
+   Src/Language/Polish: MergePolish.rc
+
 2006-01-20 Kimmo
  BUG: [ 1408587 ] Unused DoScroll() function in Merge*View
   Remove DoScroll() from CMergeEditView and CMergeDiffDetailView
