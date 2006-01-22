@@ -269,7 +269,7 @@ void COption::Reset()
 /**
  * @brief Add new option to list.
  */
-int COptionsMgr::Add(CString name, varprop::VariantValue defaultValue)
+int COptionsMgr::AddOption(CString name, varprop::VariantValue defaultValue)
 {
 	int retVal = OPT_OK;
 	COption tmpOption;
@@ -737,61 +737,57 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, CString strValueName,
  */
 int CRegOptionsMgr::InitOption(CString name, varprop::VariantValue defaultValue)
 {
+	// Check type & bail if null
+	int valType = defaultValue.getType();
+	if (valType == varprop::VT_NULL)
+		return OPT_ERR;
+
+	// If we're not loading & saving options, bail
+	if (!m_serializing)
+		return AddOption(name, defaultValue);
+
+	// Figure out registry path, for saving value
 	CString strPath;
 	CString strValueName;
-	CString strRegPath = m_registryRoot;
+	SplitName(name, strPath, strValueName);
+	CString strRegPath = m_registryRoot + strPath;
+
+	// Open key. Create new key if it does not exist.
 	HKEY hKey = NULL;
-	LONG retValReg = 0;
-	DWORD type = 0;
-	DWORD size = MAX_PATH;
 	DWORD action = 0;
+	LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath, NULL, _T(""),
+		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
+
+	if (retValReg != ERROR_SUCCESS)
+		return OPT_OK;
+
+	// Check previous value
+	DWORD type = 0;
 	BYTE dataBuf[MAX_PATH] = {0};
-	int retVal = OPT_OK;
-	int valType = varprop::VT_NULL;
+	DWORD size = MAX_PATH;
+	retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName,
+		0, &type, dataBuf, &size);
 
-	// Check type
-	valType = defaultValue.getType();
-	if (valType == varprop::VT_NULL)
-		retVal = OPT_NOTFOUND;
-
+	// Actually save value into our in-memory options table
+	int retVal = AddOption(name, defaultValue);
+	
+	// Update registry if appropriate
 	if (retVal == OPT_OK)
 	{
-		SplitName(name, strPath, strValueName);
-		strRegPath += strPath;
-
-		// Open key. Create new key if it does not exist.
-		retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath, NULL, _T(""),
-			REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
-
-		if (retValReg == ERROR_SUCCESS)
+		// Value didn't exist. Save default value to registry
+		if (retValReg == ERROR_FILE_NOT_FOUND)
 		{
-			retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName,
-				0, &type, dataBuf, &size);
-
-			retVal = Add(name, defaultValue);
-			
-			if (retVal == OPT_OK)
-			{
-				// Value didn't exist. Save default value to registry
-				if (retValReg == ERROR_FILE_NOT_FOUND)
-				{
-					retVal = SaveValueToReg(hKey, strValueName,	defaultValue);
-				}
-				// Value already exists so read it.
-				else if (retValReg == ERROR_SUCCESS)
-				{
-					retVal = LoadValueFromReg(hKey, name, defaultValue);
-					if (retVal == OPT_OK)
-						retVal = Set(name, defaultValue);
-				}
-			}
-			RegCloseKey(hKey);
+			retVal = SaveValueToReg(hKey, strValueName,	defaultValue);
 		}
-		else
+		// Value already exists so read it.
+		else if (retValReg == ERROR_SUCCESS)
 		{
-			retVal = OPT_ERR;
+			retVal = LoadValueFromReg(hKey, name, defaultValue);
+			if (retVal == OPT_OK)
+				retVal = Set(name, defaultValue);
 		}
 	}
+	RegCloseKey(hKey);
 	return retVal;
 }
 
@@ -826,7 +822,7 @@ int CRegOptionsMgr::InitOption(CString name, int defaultValue, bool serializable
 	if (serializable)
 		retVal = InitOption(name, defValue);
 	else
-		Add(name, defValue);
+		AddOption(name, defValue);
 	return retVal;
 }
 
@@ -891,6 +887,8 @@ int CRegOptionsMgr::LoadOption(CString name)
  */
 int CRegOptionsMgr::SaveOption(CString name)
 {
+	if (!m_serializing) return OPT_OK;
+
 	varprop::VariantValue value;
 	CString strPath;
 	CString strValueName;

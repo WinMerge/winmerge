@@ -51,11 +51,11 @@ struct ArgSetting
 	LPCTSTR CmdArgName;
 	LPCTSTR WinMergeOptionName;
 };
-
 static ArgSetting f_ArgSettings[] = 
 {
 	{ _T("ignorews"), OPT_CMP_IGNORE_WHITESPACE }
 	, { _T("ignoreblanklines"), OPT_CMP_IGNORE_BLANKLINES }
+	, { _T("ignorecase"), OPT_CMP_IGNORE_CASE }
 };
 
 
@@ -75,7 +75,10 @@ CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
 
 	// Split commandline arguments into files & flags & recursive flag
 	ParseArgs(argc, argv, pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags, prediffer);
+	if (m_bShowUsage)
+		return;
 
+	// LoadProjectFiles returns false if neither argument is a project file
 	if (LoadProjectFile(files, recurse))
 	{
 		if (!files[0].IsEmpty())
@@ -123,12 +126,7 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 	// -? for help
 	if (cmdArgs.HasEmptySwitch(_T("?")))
 	{
-		// TODO: This help string does not include new options (eg, prediffer:xxx)
-		// Also, this help string is difficult for translators
-		// So we need a new solution for help string
-		CString s;
-		VERIFY(s.LoadString(IDS_QUICKHELP));
-		AfxMessageBox(s, MB_ICONINFORMATION);
+		m_bShowUsage = true;
 	}
 
 	cmdArgs.SetCaseSensitive(false);
@@ -173,6 +171,22 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 	// Get prediffer if specified (otherwise prediffer will be blank, which is default)
 	cmdArgs.GetSwitch(_T("prediffer"), prediffer);
 
+	if (cmdArgs.HasSwitch(_T("noprefs")))
+	{
+		// /noprefs means do not load or remember options (preferences)
+
+		// turn off serializing to registry
+		GetOptionsMgr()->SetSerializing(false);
+		// load all default settings
+		GetMainFrame()->ResetOptions();
+	}
+
+	if (cmdArgs.HasSwitch(_T("minimize")))
+	{
+		// /minimize means minimize the main window
+		m_nCmdShow = SW_MINIMIZE;
+	}
+
 	// Handle all switches in the f_ArgSettings table
 	// this are arguments mapped to WinMerge options
 	for (int i=0; i<sizeof(f_ArgSettings)/sizeof(f_ArgSettings[0]); ++i)
@@ -183,11 +197,12 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 		CString value;
 		if (cmdArgs.GetSwitch(cmdargName, value))
 		{
+			// eg, treat "/ignorews" as "/ignorews:1"
+			if (value.IsEmpty())
+				value = _T("1");
 			GetOptionsMgr()->CoerceAndSaveOption(optName, value);
 		}
 	}
-
-
 
 	// Can't get switches with arguments from cmdArgs
 	// because cmdArgs recognizes arguments using colons not spaces

@@ -1,3 +1,22 @@
+2006-01-22 Perry
+ PATCH: [ 1411406 ] self-tests and new arguments and new diff2winmerge.exe
+  Src: Changes.txt MainFrm.cpp MainFrm.h Merge.cpp Merge.h MergeArgs.cpp
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
+  New directory diff2winmerge:
+   Changes.txt ReadMe.txt Resource.h StdAfx.cpp StdAfx.h diff2winmerge.cpp
+   diff2winmerge.dsp diff2winmerge.h diff2winmerge.rc
+  New directory selftests:
+   testdiff.pl
+   subdir m: 
+    t001a.txt t001b.txt t002a.txt t002b.txt t003a.txt t003b.txt
+    t004a.txt t004b.txt
+   subdir u: 
+    t001a.txt t001b.txt t002a.txt t002b.txt t003a.txt t003b.txt
+    t004a.txt t004b.txt
+   subdir w:
+    t001a.txt t001b.txt t002a.txt t002b.txt  t003a.txtt003b.txt
+    t004a.txt t004b.txt
+
 2006-01-21 Kimmo
  PATCH: [ 1411150 ] Add GetActiveMergeView for MergeDoc
   Src: MergeDoc.cpp MergeDoc.h

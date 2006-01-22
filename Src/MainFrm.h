@@ -127,6 +127,7 @@ public:
 	void GetMergeEditViews(MergeEditViewList * pMergeViews);
 	void CheckinToClearCase(CString strDestinationPath);
 	COptionsMgr * GetTheOptionsMgr() { return &m_options; }
+	void ResetOptions() { OptionsInit(); }
 
 // Overrides
 	// ClassWizard generated virtual function overrides

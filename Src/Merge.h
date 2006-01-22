@@ -86,9 +86,13 @@ protected:
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
+
+	// In MergeArgs.cpp
 	void ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags, CString & prediffer);
 	void ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame);
+	// End MergeArgs.cpp
+
 	BOOL LoadProjectFile(CStringArray & files, BOOL & recursive);
 	void ReloadMenu();
 
@@ -104,6 +108,7 @@ private:
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNoninteractive;
+	bool m_bShowUsage;
 };
 
 extern CMergeApp theApp;

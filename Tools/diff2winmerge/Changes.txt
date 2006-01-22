@@ -1,0 +1,4 @@
+diff2winmerge
+
+2006-01-22, Perry Rapp
+ Committed to WinMerge cvs

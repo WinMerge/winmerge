@@ -103,6 +103,7 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
 , m_bNoninteractive(false)
+, m_bShowUsage(false)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -278,12 +279,23 @@ BOOL CMergeApp::InitInstance()
 	//Track it so any other instances can find it.
 	instanceChecker.TrackFirstInstanceRunning();
 
+	ParseArgsAndDoOpen(__argc, __targv, pMainFrame);
+
 	// The main window has been initialized, so show and update it.
 	//pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->ActivateFrame(m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
-	ParseArgsAndDoOpen(__argc, __targv, pMainFrame);
+	if (m_bShowUsage)
+	{
+		// TODO: This help string does not include new options (eg, prediffer:xxx)
+		// Also, this help string is difficult for translators
+		// So we need a new solution for help string
+		CString s;
+		VERIFY(s.LoadString(IDS_QUICKHELP));
+		AfxMessageBox(s, MB_ICONINFORMATION);
+		m_bNoninteractive = false;
+	}
 
 	if (hMutex)
 	{
@@ -611,7 +623,9 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 	if ( pParentWnd == NULL )
 	{
 		// Try to retrieve a handle to the last active popup.
-		pParentWnd = GetMainWnd()->GetLastActivePopup();
+		CWnd * mainwnd = GetMainWnd();
+		if (mainwnd)
+			pParentWnd = mainwnd->GetLastActivePopup();
 	}
 
 	// Use our own message box implementation, which adds the

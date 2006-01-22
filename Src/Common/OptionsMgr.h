@@ -74,7 +74,7 @@ private:
 class COptionsMgr
 {
 public:
-	int Add(CString name, varprop::VariantValue defaultValue);
+	int AddOption(CString name, varprop::VariantValue defaultValue);
 	varprop::VariantValue Get(CString name) const;
 	CString GetString(CString name) const;
 	int GetInt(const CString & name) const;
@@ -104,6 +104,8 @@ public:
 
 	virtual int ExportOptions(CString filename);
 	virtual int ImportOptions(CString filename);
+	
+	virtual void SetSerializing(bool serializing=true) = 0;
 
 private:
 	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;
@@ -115,6 +117,8 @@ private:
 class CRegOptionsMgr: public COptionsMgr
 {
 public:
+	CRegOptionsMgr() : m_serializing(true) { }
+
 	int LoadOption(CString name);
 	int SetRegRootKey(CString path);
 
@@ -130,6 +134,8 @@ public:
 	virtual int SaveOption(CString name, int value);
 	virtual int SaveOption(CString name, bool value);
 
+	virtual void SetSerializing(bool serializing=true) { m_serializing = serializing; }
+
 protected:
 	void SplitName(CString strName, CString &strPath, CString &strValue);
 	int LoadValueFromReg(HKEY hKey, CString strName,
@@ -139,6 +145,7 @@ protected:
 
 private:
 	CString m_registryRoot;
+	bool m_serializing;
 
 };
 COptionsMgr * GetOptionsMgr();

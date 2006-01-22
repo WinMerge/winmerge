@@ -1797,7 +1797,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
 	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
-	if (theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
+	if (nCmdShow != SW_MINIMIZE && theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
 	{
 		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);	
 	}
