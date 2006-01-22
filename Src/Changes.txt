@@ -1,3 +1,7 @@
+2006-01-22 Tim
+ PATCH: [ 1411102 ] Add '*.dsl' and '*.jsp' to syntax highlighter
+  Src/editlib: ccrystaleditview.cpp
+
 2006-01-22 Perry
  PATCH: [ 1411406 ] self-tests and new arguments and new diff2winmerge.exe
   Src: Changes.txt MainFrm.cpp MainFrm.h Merge.cpp Merge.h MergeArgs.cpp
