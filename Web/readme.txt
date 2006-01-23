@@ -1,3 +1,7 @@
+2006-01-23 Tim
+ BUG: [ 1412395 ] Misspelling in l10n docs
+  Web\developer\l10n: instructions.php
+
 2006-01-13 Tim
  PATCH: [ 1404317 ] Web: Known Limitations page
   Web: page.inc

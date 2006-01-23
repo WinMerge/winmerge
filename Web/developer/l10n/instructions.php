@@ -76,7 +76,7 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
 
 <p>Then one of the developers will compile and test your translation; if there are problems, we will contact you to get them resolved. When everything is working your translation will be included in the next release of WinMerge.</p>
 
-<p>When the next major release is emminent, we will notify you again to give you a chance to update the translation with any new/changed strings.</p>
+<p>When the next major release is imminent, we will notify you again to give you a chance to update the translation with any new/changed strings.</p>
 
 <h3><a name="shellextension">ShellExtension</a></h3>
 <p>ShellExtension can be translated by translating <code>.rc</code> resource file similarly to WinMerge executable.
