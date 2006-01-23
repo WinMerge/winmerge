@@ -5,13 +5,13 @@
   <sect2>
     <title>Opening Files and Folders</title>
 
-    <para>Start <productname>WinMerge</productname> and select
-    <guimenuitem>Open</guimenuitem> from <guimenu>File</guimenu>-menu, click
-    yellow folder icon from toolbar or press <keycombo>
+    <para>Start <productname>WinMerge</productname> and either select
+    <guimenuitem>Open</guimenuitem> from the <guimenu>File</guimenu>-menu, or
+    click the yellow folder icon on the toolbar, or press <keycombo>
         <keycap>Ctrl</keycap>
 
         <keycap>O</keycap>
-      </keycombo>. File/folder selection dialog opens:</para>
+      </keycombo>. The file/folder selection dialog opens:</para>
 
     <para><mediaobject>
         <imageobject>
@@ -59,21 +59,24 @@
         <guibutton>OK</guibutton>-button in dialog.</para>
       </note></para>
 
-    <para><guilabel>Filter</guilabel> -field can be used to select files by
+    <para><guilabel>Filter</guilabel> field can be used to select files by
     extension to compare. Default value is "*.*" which includes all files. But
     listing one or more extensions restricts compare to only files with those
     extensions. Multiple extensions are separated with space or semicolon. For
-    example: <filename>*.cpp;*.hpp;*.c;*.h</filename></para>
+    example, entering the file filter <filename>*.cpp;*.hpp;*.c;*.h</filename>
+    will cause WinMerge to ignore all files except C and C++ source
+    files.</para>
 
-    <para>File filters are much more powerful way to select files and folders.
-    Use <guibutton>Select</guibutton> button next to
-    <guilabel>Filters</guilabel> field to see available filters and to choose
-    the filter.</para>
+    <para>File filters are a much more powerful way (than extension filters)
+    to select files and folders. Use the <guibutton>Select</guibutton> button
+    next to the <guilabel>Filters</guilabel> field to see a list of available
+    filters, and to choose a file filter to use.</para>
 
-    <para>If <guilabel>Include Subfolders</guilabel>-checkbox is checked
-    WinMerge compares all subfolders and shows all files and folders it founds
-    in one view. Otherwise only current folder is compared and subfolders are
-    listed so user can browse into them.</para>
+    <para>If the <guilabel>Include Subfolders</guilabel> checkbox is checked
+    then WinMerge compares all subfolders and shows all files and folders it
+    finds in one view. Otherwise only the current folder is compared, and
+    subfolders are listed by name (without their contents), so the user can
+    browse into them.</para>
 
     <para>Unpacker selection is for plugins.</para>
 
@@ -93,13 +96,14 @@
         </imageobject>
       </inlinemediaobject></para>
 
-    <para>If two folders were selected in Open-dialog folder compare is
-    opened. Folder compare shows list of files and subfolders it finds. Using
-    <guimenu>Merge</guimenu>-menu items, toolbar items or context menu items
-    files and folders can be managed in many ways.</para>
+    <para>If two folders were selected in the Open dialog then the folder
+    compare window is opened. Folder compare shows list of files and
+    subfolders found by WinMerge. Using <guimenu>Merge</guimenu> menu items,
+    toolbar items, or context menu items, files and folders can be managed in
+    many ways.</para>
 
-    <para>If selected file exists in both sides (and it is not a binary file)
-    it can be opened to file compare. File can be opened by:<orderedlist>
+    <para>If the selected file exists in both sides (and it is not a binary
+    file) it can be opened to file compare. File can be opened by:<orderedlist>
         <listitem>
           <para>selecting <guimenuitem>Compare</guimenuitem> from
           <guimenu>Merge</guimenu> menu</para>
@@ -139,14 +143,14 @@
 
     <para><important>
         <para>Notice how WinMerge fills missing lines in other side. Similar
-        lines are always side by side. This is different to most other
+        lines are always side by side. This is different from most other
         compare/merge programs and can take a while to learn.</para>
       </important>With merging commands (in <guimenu>Merge</guimenu> menu)
     lines in difference can be copied between sides. Missing lines can be
-    copied also. When missing lines are copied from side to another matching
-    existing lines are removed. In above screenshot copying three lines in
-    third difference from right to left would remove matching three lines from
-    left side.</para>
+    copied also. When missing lines are copied from one side to another,
+    matching existing lines are removed. In the above screenshot, copying
+    three lines in third difference from right to left would remove matching
+    three lines from left side.</para>
 
     <para><productname>WinMerge</productname> has an simple integrated editor.
     Typing, copying, cutting and pasting text works. If <guilabel>Automatic
