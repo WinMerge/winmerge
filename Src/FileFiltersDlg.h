@@ -43,10 +43,14 @@ public:
 	void SetFilterArray(FILEFILTER_INFOLIST * fileFilters);
 	CString GetSelected();
 	void SetSelected(CString selected);
-	void InitList();
-	void UpdateFiltersList();
 
+
+
+// Implementation data
+private:
 	CString m_sFileFilterPath;
+	CPoint m_ptLastMousePos;
+	FILEFILTER_INFOLIST * m_Filters;
 
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
@@ -55,6 +59,13 @@ public:
 	//}}AFX_DATA
 
 
+// Implementation methods
+private:
+	void InitList();
+	void SelectFilterByIndex(int index);
+	void AddToGrid(int filterIndex);
+	void UpdateFiltersList();
+
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(FileFiltersDlg)
@@ -62,11 +73,7 @@ public:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
-// Implementation
-protected:
-	FILEFILTER_INFOLIST * m_Filters;
 
-	void AddToGrid(int filterIndex);
 	// Generated message map functions
 	//{{AFX_MSG(FileFiltersDlg)
 	virtual BOOL OnInitDialog();
@@ -81,10 +88,6 @@ protected:
 	afx_msg void OnBnClickedFilterfileDelete();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-
-private:
-	CPoint m_ptLastMousePos;
-
 };
 
 //{{AFX_INSERT_LOCATION}}

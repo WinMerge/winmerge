@@ -1,3 +1,7 @@
+2006-01-22 Perry
+ PATCH: [ 1405540 ] Cleanup filters dialog
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h
+
 2006-01-22 Tim
  PATCH: [ 1411102 ] Add '*.dsl' and '*.jsp' to syntax highlighter
   Src/editlib: ccrystaleditview.cpp

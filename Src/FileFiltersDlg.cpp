@@ -137,6 +137,16 @@ void FileFiltersDlg::InitList()
 }
 
 /**
+ * @brief Select filter by index in the listview
+ */
+void FileFiltersDlg::SelectFilterByIndex(int index)
+{
+	m_listFilters.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
+	BOOL bPartialOk = FALSE;
+	m_listFilters.EnsureVisible(index, bPartialOk);
+}
+
+/**
  * @brief Called before dialog is shown.
  */
 BOOL FileFiltersDlg::OnInitDialog()
@@ -148,8 +158,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 	CString desc;
 	if (m_sFileFilterPath.IsEmpty())
 	{
-		m_listFilters.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
-		m_listFilters.EnsureVisible(0, FALSE);
+		SelectFilterByIndex(0);
 		return TRUE;
 	}
 
@@ -160,8 +169,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 		desc.ReleaseBuffer();
 		if (desc.CompareNoCase(m_sFileFilterPath) == 0)
 		{
-			m_listFilters.SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
-			m_listFilters.EnsureVisible(i, FALSE);
+			SelectFilterByIndex(i);
 		}
 	}
 
@@ -240,6 +248,14 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 /**
+ * @brief Shortcut to enable or disable a control
+ */
+static void EnableDlgItem(CWnd * parent, int item, bool enable)
+{
+	parent->GetDlgItem(item)->EnableWindow(!!enable);
+}
+
+/**
  * @brief Called when item state is changed.
  *
  * Disable Edit-button when "None" filter is selected.
@@ -252,21 +268,13 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	if (pNMLV->uNewState & LVIS_SELECTED)
 	{
 		CString txtNone;
-		CButton *btn = (CButton *) GetDlgItem(IDC_FILTERFILE_EDITBTN);
-		CButton *btnDel = (CButton *) GetDlgItem(IDC_FILTERFILE_DELETEBTN);
 		VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
 		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
-		if (txt.CompareNoCase(txtNone) == 0)
-		{
-			btn->EnableWindow(FALSE);
-			btnDel->EnableWindow(FALSE);
-		}
-		else
-		{
-			btn->EnableWindow(TRUE);
-			btnDel->EnableWindow(TRUE);
-		}
+		BOOL isNone = (txt.CompareNoCase(txtNone) == 0);
+
+		EnableDlgItem(this, IDC_FILTERFILE_EDITBTN, !isNone);
+		EnableDlgItem(this, IDC_FILTERFILE_DELETEBTN, !isNone);
 	}
 	*pResult = 0;
 }
