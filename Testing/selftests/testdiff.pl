@@ -10,7 +10,16 @@ use warnings;
 
 my $testCount=0;
 my $failCount=0;
-my $DIFF = "..\\Build\\MergeUnicodeDebug\\diff2winmergeU.exe ..\\Build\\MergeUnicodeDebug\\WinMergeU.exe /noprefs /noninteractive /minimize";
+
+# diff2winmergeU translates gnu diff style arguments (eg "-b") to WinMerge style arguments (eg "/ignorews:1")
+
+# WinMerge arguments used:
+#  "/noprefs" do not load options from registry
+#  "/noninteractive" close as soon as file compare completes
+#  "/minimize" keep main window minimized
+#  "/ub" do not add files to MRU (neither left nor right)
+
+my $DIFF = "..\\Build\\MergeUnicodeDebug\\diff2winmergeU.exe ..\\Build\\MergeUnicodeDebug\\WinMergeU.exe /noprefs /noninteractive /minimize /ub";
 
 # Global options
 my $noisy=0; # 1 to echo every test

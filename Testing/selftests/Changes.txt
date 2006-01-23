@@ -1,6 +1,10 @@
 selftest\Changes.txt
 
 2006-01-23, Perry
+ Added "/ub" flag to WinMerge invocation, to stop polluting MRU
+  (and added comments explaining arguments)
+
+2006-01-23, Perry
  Added readme.txt, Changes.txt (this file).
  Added noisy_testdiff.bat (so can easily double-click to get noisy version).
  Added test files from BUG#1406950.
