@@ -1,3 +1,14 @@
+2006-01-23 Perry
+ Add repro files to selftests from 
+  BUG [ 1406950 ] QuickCompare vs diffutils, disagree on trailing whitespace
+ Current selftests status: Failure count: 9 (of 108)
+  Failing -b t002 (all 3 platforms)
+  Failing -bi t002 (all 3 platforms)
+  Failing -b bug1406950 (all 3 platforms)
+ PATCH: [ 1406950 ] QuickCompare vs diffutils, disagree on trailing whitespace
+  Src: ByteComparator.cpp
+ (selftests results unimproved, because selftest uses diffutils core, not QuickCompare)
+
 2006-01-22 Perry
  PATCH: [ 1405540 ] Cleanup filters dialog
   Src: FileFiltersDlg.cpp FileFiltersDlg.h
@@ -10,23 +21,11 @@
  PATCH: [ 1411406 ] self-tests and new arguments and new diff2winmerge.exe
   Src: Changes.txt MainFrm.cpp MainFrm.h Merge.cpp Merge.h MergeArgs.cpp
   Src/Common: OptionsMgr.cpp OptionsMgr.h
-  New directory diff2winmerge:
-   Changes.txt ReadMe.txt Resource.h StdAfx.cpp StdAfx.h diff2winmerge.cpp
-   diff2winmerge.dsp diff2winmerge.h diff2winmerge.rc
-  New directory selftests:
-   testdiff.pl
-   subdir m: 
-    t001a.txt t001b.txt t002a.txt t002b.txt t003a.txt t003b.txt
-    t004a.txt t004b.txt
-   subdir u: 
-    t001a.txt t001b.txt t002a.txt t002b.txt t003a.txt t003b.txt
-    t004a.txt t004b.txt
-   subdir w:
-    t001a.txt t001b.txt t002a.txt t002b.txt  t003a.txtt003b.txt
-    t004a.txt t004b.txt
+  New directory WinMerge/diff2winmerge, for diff2winmerge utility
+  New directory WinMerge/selftests added
  Current selftests status: Failure count: 6 (of 108)
-  Failing -b t002a (all 3 platforms)
-  Failing -bi t002a (all 3 platforms)
+  Failing -b t002 (all 3 platforms)
+  Failing -bi t002 (all 3 platforms)
 
 2006-01-21 Kimmo
  PATCH: [ 1411150 ] Add GetActiveMergeView for MergeDoc

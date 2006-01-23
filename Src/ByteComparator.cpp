@@ -57,14 +57,95 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 		}
 		if (m_ignore_space_change)
 		{
-			// Skip over any whitespace if on both sides
+			// Skip over whitespace change
+			// Also skip whitespace on one side if 
+			//  either end of line or end of file on other
 			
-			if (ptr0 < end0 && ptr1 < end1 && iswsch(*ptr0) && iswsch(*ptr1))
+			// Handle case of whitespace on side0
+			// (First four cases)
+			if (ptr0 < end0 && iswsch(*ptr0))
 			{
-				m_wsflag = true;
-				++ptr0;
-				++ptr1;
+				// Whitespace on side0
+
+				if (ptr1 < end1)
+				{
+					if (iswsch(*ptr1))
+					{
+						// whitespace on both sides
+						m_wsflag = true;
+						m_bol0=false;
+						++ptr0;
+						m_bol1=false;
+						++ptr1;
+					}
+					else if (iseolch(*ptr1))
+					{
+						// whitespace on side 0 (end of line on side 1)
+						m_wsflag = true;
+						m_bol0=false;
+						++ptr0;
+					}
+				}
+				else // ptr1 == end1
+				{
+					if (!eof1)
+					{
+						// Whitespace on side0, don't know what is on side1
+						// Cannot tell if matching whitespace yet
+						goto need_more;
+					}
+					else // eof1
+					{
+						// Whitespace on side0, eof on side1
+						m_wsflag = true;
+						m_bol0=false;
+						++ptr0;
+					}
+				}
 			}
+			else
+			{
+				// Handle case of whitespace on side1
+				// but not whitespace on side0 (that was handled above)
+				// (Remaining three cases)
+				if (ptr1 < end1 && iswsch(*ptr1))
+				{
+					// Whitespace on side1
+
+					if (ptr0 < end0)
+					{
+						// "whitespace on both sides"
+						// should not come here, it should have been
+						// handled above
+						ASSERT(!iswsch(*ptr0));
+
+						if (iseolch(*ptr0))
+						{
+							// whitespace on side 1 (eol on side 0)
+							m_wsflag = true;
+							m_bol1=false;
+							++ptr1;
+						}
+					}
+					else // ptr0 == end0
+					{
+						if (!eof0)
+						{
+							// Whitespace on side1, don't know what is on side0
+							// Cannot tell if matching whitespace yet
+							goto need_more;
+						}
+						else // eof0
+						{
+							// Whitespace on side1, eof on side0
+							m_wsflag = true;
+							m_bol1=false;
+							++ptr1;
+						}
+					}
+				}
+			}
+
 			if (m_wsflag)
 			{
 				// skip over consecutive whitespace
@@ -81,6 +162,8 @@ ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR e
 				}
 				if ( (ptr0 == end0 && !eof0) || (ptr1 == end1 && !eof1) )
 				{
+					// if run out of buffer on either side
+					// must fetch more, to continue skipping whitespace
 					m_wsflag = true;
 					goto need_more;
 				}
