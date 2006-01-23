@@ -1,0 +1,20 @@
+selftest\Changes.txt
+
+2006-01-23, Perry
+ Added readme.txt, Changes.txt (this file).
+ Added noisy_testdiff.bat (so can easily double-click to get noisy version).
+ Added test files from BUG#1406950.
+  u,m,w: bug1406950a.txt bug1406950b.txt
+
+2006-01-22, Perry
+ Initial version, initial files:
+   testdiff.pl
+   subdir m: 
+    t001a.txt t001b.txt t002a.txt t002b.txt t003a.txt t003b.txt
+    t004a.txt t004b.txt
+   subdir u: 
+    t001a.txt t001b.txt t002a.txt t002b.txt t003a.txt t003b.txt
+    t004a.txt t004b.txt
+   subdir w:
+    t001a.txt t001b.txt t002a.txt t002b.txt  t003a.txtt003b.txt
+    t004a.txt t004b.txt

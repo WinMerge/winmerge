@@ -2,7 +2,7 @@
 # Self-tests for diffutils diff & WinMerge
 #
 # Created: 2006-01-21, Perry Rapp
-# Edited:  2006-01-21, Perry Rapp
+# Edited:  2006-01-23, Perry Rapp
 #
 
 use strict;
@@ -86,6 +86,12 @@ sub testdiffs {
   test3set "t004", "-Ei", 1;
   test3set "t004", "-Bi", 0;
   test3set "t004", "-bi", 1;
+
+  # two line file differing only in whitespace at end of line
+  test3set "bug1406950", "-q", 1;
+  test3set "bug1406950", "-B", 1;
+  test3set "bug1406950", "-b", 0;
+  test3set "bug1406950", "-w", 0;
 }
 
 # Pass in file base names, flags to use, and expected result (0 or 1)
