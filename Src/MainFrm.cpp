@@ -156,7 +156,7 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
-static const TCHAR DocsPath[] = _T("\\Docs\\Manual\\index.html");
+static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
 static const TCHAR DocsURL[] = _T("http://winmerge.org/2.4/manual/index.html");
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1760,11 +1760,21 @@ void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 		ShellExecute(NULL, _T("open"), szUrl, NULL, NULL, SW_SHOWNORMAL);
 }
 
+/**
+ * @brief Open help.
+ *
+ * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
+ */
 void CMainFrame::OnHelpContents() 
 {
-	CString spath = GetModulePath(0) + DocsPath;
-
-	OpenFileOrUrl(spath, DocsURL);
+	CString sPath = GetModulePath(0) + DocsPath;
+	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		ShellExecute(m_hWnd, _T("open"), sPath, NULL, NULL, SW_SHOWNORMAL);
+	else
+	{
+		//sPath = DocsURL;
+		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
+	}
 }
 
 void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 

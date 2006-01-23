@@ -1,3 +1,7 @@
+2006-01-23 Kimmo
+ PATCH: [ 1406840 ] Use HTMLHelp locally
+  Src: MainFrm.cpp
+
 2006-01-23 Perry
  Add repro files to selftests from 
   BUG [ 1406950 ] QuickCompare vs diffutils, disagree on trailing whitespace
