@@ -63,14 +63,15 @@ const UINT RESCAN_TIMEOUT = 1000;
 IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
 
 CMergeEditView::CMergeEditView()
+: m_bCurrentLineIsDiff(FALSE)
+, m_pLocationView(NULL)
+, m_nThisPane(0)
+, m_nModifications(0)
+, m_piMergeEditStatus(0)
+, m_bAutomaticRescan(FALSE)
+, fTimerWaitingForIdle(0)
 {
-	m_pLocationView = NULL;
-	m_nThisPane = 0;
-	m_nModifications = 0;
-	m_piMergeEditStatus = 0;
 	SetParser(&m_xParser);
-	m_bAutomaticRescan = FALSE;
-	fTimerWaitingForIdle = 0;
 	m_bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 
 	m_bSyntaxHighlight = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
@@ -1063,6 +1064,7 @@ void CMergeEditView::UpdateLineLengths()
  * Difference is copied from left to right when
  * - difference is selected
  * - difference is inside selection (allows merging multiple differences).
+ * - cursor is inside diff
  *
  * If there is selected diff outside selection, we copy selected
  * difference only.
@@ -1075,6 +1077,19 @@ void CMergeEditView::OnL2r()
 
 	CMergeDoc *pDoc = GetDocument();
 	int currentDiff = pDoc->GetCurrentDiff();
+
+	if (currentDiff == -1)
+	{
+		// No selected diff
+		// If cursor is inside diff get number of that diff
+		if (m_bCurrentLineIsDiff)
+		{
+			CPoint pt;
+			pt = GetCursorPos();
+			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
+		}
+	}
+
 	int firstDiff, lastDiff;
 	GetFullySelectedDiffs(firstDiff, lastDiff);
 
@@ -1082,14 +1097,14 @@ void CMergeEditView::OnL2r()
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
-			pDoc->ListCopy(0, 1);
+			pDoc->ListCopy(0, 1, currentDiff);
 		else
 			pDoc->CopyMultipleList(0, 1, firstDiff, lastDiff);
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
-		pDoc->ListCopy(0, 1);
+		pDoc->ListCopy(0, 1, currentDiff);
 	}
 }
 
@@ -1105,11 +1120,17 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 		GetFullySelectedDiffs(firstDiff, lastDiff);
 
 		// If one or more diffs inside selection OR
-		// there is an active diff
+		// there is an active diff OR
+		// cursor is inside diff
 		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 			pCmdUI->Enable(TRUE);
 		else
-			pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+		{
+			if (GetDocument()->GetCurrentDiff() != -1)
+				pCmdUI->Enable(TRUE);
+			else
+				pCmdUI->Enable(m_bCurrentLineIsDiff);
+		}
 	}
 	else
 		pCmdUI->Enable(FALSE);
@@ -1121,6 +1142,7 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
  * Difference is copied from left to right when
  * - difference is selected
  * - difference is inside selection (allows merging multiple differences).
+ * - cursor is inside diff
  *
  * If there is selected diff outside selection, we copy selected
  * difference only.
@@ -1133,6 +1155,18 @@ void CMergeEditView::OnR2l()
 
 	CMergeDoc *pDoc = GetDocument();
 	int currentDiff = pDoc->GetCurrentDiff();
+	if (currentDiff == -1)
+	{
+		// No selected diff
+		// If cursor is inside diff get number of that diff
+		if (m_bCurrentLineIsDiff)
+		{
+			CPoint pt;
+			pt = GetCursorPos();
+			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
+		}
+	}
+
 	int firstDiff, lastDiff;
 	GetFullySelectedDiffs(firstDiff, lastDiff);
 
@@ -1140,14 +1174,14 @@ void CMergeEditView::OnR2l()
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
-			pDoc->ListCopy(1, 0);
+			pDoc->ListCopy(1, 0, currentDiff);
 		else
 			pDoc->CopyMultipleList(1, 0, firstDiff, lastDiff);
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
-		pDoc->ListCopy(1, 0);
+		pDoc->ListCopy(1, 0, currentDiff);
 	}
 }
 
@@ -1163,11 +1197,17 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 		GetFullySelectedDiffs(firstDiff, lastDiff);
 
 		// If one or more diffs inside selection OR
-		// there is an active diff
+		// there is an active diff OR
+		// cursor is inside diff
 		if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 			pCmdUI->Enable(TRUE);
 		else
-			pCmdUI->Enable(GetDocument()->GetCurrentDiff()!=-1);
+		{
+			if (GetDocument()->GetCurrentDiff() != -1)
+				pCmdUI->Enable(TRUE);
+			else
+				pCmdUI->Enable(m_bCurrentLineIsDiff);
+		}
 	}
 	else
 		pCmdUI->Enable(FALSE);
@@ -1660,9 +1700,11 @@ OnUpdateCaret()
 		int column = -1;
 		int columns = -1;
 		int curChar = -1;
+		DWORD dwLineFlags = 0;
 
+		dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
 		// Is this a ghost line ?
-		if (m_pTextBuffer->GetLineFlags(nScreenLine) & LF_GHOST)
+		if (dwLineFlags & LF_GHOST)
 		{
 			// Ghost lines display eg "Line 12-13"
 			sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
@@ -1684,6 +1726,12 @@ OnUpdateCaret()
 		}
 		m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
 			curChar, chars, sEol);
+
+		// Is cursor inside difference?
+		if (dwLineFlags & LF_WINMERGE_FLAGS)
+			m_bCurrentLineIsDiff = TRUE;
+		else
+			m_bCurrentLineIsDiff = FALSE;
 
 		if (m_pLocationView)
 		{
@@ -2751,3 +2799,11 @@ void CMergeEditView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
 	pCmdUI->Enable(TRUE);
 }
 
+/**
+ * @brief Check if cursor is inside difference.
+ * @return TRUE if cursor is inside difference.
+ */
+BOOL CMergeEditView::IsCursorInDiff() const
+{
+	return m_bCurrentLineIsDiff;
+}

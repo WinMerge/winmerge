@@ -146,6 +146,8 @@ private:
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
 
+	BOOL m_bCurrentLineIsDiff; /**< TRUE if current line is diff-line */
+
 // Operations
 public:
 	void RefreshOptions();
@@ -189,6 +191,7 @@ public:
 	HMENU createPrediffersSubmenu(HMENU hMenu);
 
 	bool IsInitialized() const;
+	BOOL IsCursorInDiff() const;
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

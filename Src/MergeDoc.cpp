@@ -776,10 +776,11 @@ BOOL CMergeDoc::SanityCheckDiff(DIFFRANGE dr)
  * @brief Copy selected (=current) difference from from side to side.
  * @param [in] srcPane Source side from which diff is copied
  * @param [in] dstPane Destination side
+ * @param [in] nDiff Diff to copy, if -1 function determines it.
  * @param [in] bGroupWithPrevious Adds diff to same undo group with
  * previous action (allows one undo for copy all)
  */
-void CMergeDoc::ListCopy(int srcPane, int dstPane,
+void CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		bool bGroupWithPrevious /*= false*/)
 {
 	// suppress Rescan during this method
@@ -787,12 +788,33 @@ void CMergeDoc::ListCopy(int srcPane, int dstPane,
 	// it will wreck the line status array to rescan as we merge)
 	RescanSuppress suppressRescan(*this);
 
-	// make sure we're on a diff
-	int curDiff = GetCurrentDiff();
-	if (curDiff!=-1)
+	// If diff-number not given, determine it from active view
+	if (nDiff == -1)
+	{
+		nDiff = GetCurrentDiff();
+
+		// No current diff, but maybe cursor is in diff?
+		if (nDiff == -1 && (m_pView[srcPane]->IsCursorInDiff() ||
+			m_pView[dstPane]->IsCursorInDiff()))
+		{
+			// Find out diff under cursor
+			CPoint ptCursor;
+			int nActiveView = GetActiveMergeView();
+			if (nActiveView == MERGEVIEW_LEFT || nActiveView == MERGEVIEW_RIGHT)
+				ptCursor = m_pView[nActiveView]->GetCursorPos();
+			else if (nActiveView == MERGEVIEW_LEFT_DETAIL ||
+					nActiveView == MERGEVIEW_RIGHT_DETAIL)
+			{
+				ptCursor = m_pView[nActiveView - MERGEVIEW_LEFT_DETAIL]->GetCursorPos();
+			}
+			nDiff = m_diffList.LineToDiff(ptCursor.y);
+		}
+	}
+
+	if (nDiff != -1)
 	{
 		DIFFRANGE cd;
-		VERIFY(m_diffList.GetDiff(curDiff, cd));
+		VERIFY(m_diffList.GetDiff(nDiff, cd));
 		CDiffTextBuffer& sbuf = *m_ptBuf[srcPane];
 		CDiffTextBuffer& dbuf = *m_ptBuf[dstPane];
 		BOOL bSrcWasMod = sbuf.IsModified();

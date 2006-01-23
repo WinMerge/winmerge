@@ -1,6 +1,8 @@
 2006-01-23 Kimmo
  PATCH: [ 1406840 ] Use HTMLHelp locally
   Src: MainFrm.cpp
+ PATCH: [ 1411727 ] Merge inactive diff when cursor is inside it
+  Src: MergeDoc.cpp MergeDoc.h MergeEditView.cpp MergeEditView.h
 
 2006-01-23 Perry
  Add repro files to selftests from 
