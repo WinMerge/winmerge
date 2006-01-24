@@ -1,3 +1,7 @@
+2006-01-24 Kimmo
+ Bump revision number to 1.2.1
+  Manual: WinMerge_help.xml
+
 2006-01-23 Kimmo
  PATCH: [ 1412405 ] Some edits to About & QuickStart pages of manual
   Submitted by Perry
