@@ -1,3 +1,5 @@
+2006-01-24 WinMerge experimental release 2.5.3.1 (cvs)
+
 2006-01-23 Kimmo
  PATCH: [ 1406840 ] Use HTMLHelp locally
   Src: MainFrm.cpp
