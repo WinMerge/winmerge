@@ -382,7 +382,7 @@ Source: ..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyex
 ;Documentation
 Source: ..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\Build\Manual\*; DestDir: {app}\Docs\Manual\; Flags: overwritereadonly recursesubdirs uninsremovereadonly sortfilesbyextension; Components: docs
+Source: ..\Docs\Users\Manual\build\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: docs
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
@@ -402,7 +402,7 @@ Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\WinMerge (ANSI); Filename: {app}\WinMerge.exe; IconIndex: 0; MinVersion: 0,4; Components: core
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\Plugins.txt; Filename: {app}\Docs\Plugins.txt; Check: InstallPluginsText
-Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\Manual\index.html; Components: docs
+Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm; Components: docs
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 
 ;Desktop Icon

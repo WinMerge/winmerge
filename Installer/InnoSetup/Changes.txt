@@ -1,3 +1,7 @@
+2006-01-24 Kimmo
+ PATCH: [ 1413909 ] Install HTMLHelp manual
+  InnoSetup: WinMerge.iss
+
 2005-11-02 Tim
  Translate "OptionalFeatures" and "ProjectFileDesc" to German
   InnoSetup/Languages: German.isl
