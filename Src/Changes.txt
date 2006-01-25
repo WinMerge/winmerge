@@ -1,7 +1,10 @@
 2006-01-25 Perry
  BUG: [ 1412237 ] InitOption return value wrong if RegCreateKey fails
   Fix unused wrong return value of InitOption & improve one comment
- Src/Common: OptionsMgr.cpp
+  Src/Common: OptionsMgr.cpp
+ BUG: [ 1414868 ] Bug in byte_compare (early finish)
+  (Also added some comments.)
+  Src: DiffWrapper.cpp
 
 2006-01-24 WinMerge experimental release 2.5.3.1 (cvs)
 

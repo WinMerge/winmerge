@@ -1601,7 +1601,12 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 	ByteComparator comparator(ignore_case_flag, ignore_space_change_flag
 		, ignore_all_space_flag, ignore_eol_diff, ignore_blank_lines_flag);
 
-	while (!eof[0] && !eof[1])
+	// Begin loop
+	// we handle the files in WMCMPBUFF sized buffers (variable buff[][])
+	// That is, we do one buffer full at a time
+	// or even less, as we process until one side buffer is empty, then reload that one
+	// and continue
+	while (!eof[0] || !eof[1])
 	{
 		if (piAbortable && piAbortable->ShouldAbort())
 			return DIFFCODE::CMPABORT;
