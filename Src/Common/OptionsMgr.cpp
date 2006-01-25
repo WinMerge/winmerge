@@ -759,7 +759,7 @@ int CRegOptionsMgr::InitOption(CString name, varprop::VariantValue defaultValue)
 		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
 
 	if (retValReg != ERROR_SUCCESS)
-		return OPT_OK;
+		return OPT_ERR;
 
 	// Check previous value
 	DWORD type = 0;
@@ -771,7 +771,7 @@ int CRegOptionsMgr::InitOption(CString name, varprop::VariantValue defaultValue)
 	// Actually save value into our in-memory options table
 	int retVal = AddOption(name, defaultValue);
 	
-	// Update registry if appropriate
+	// Update registry if successfully saved to in-memory table
 	if (retVal == OPT_OK)
 	{
 		// Value didn't exist. Save default value to registry

@@ -1,3 +1,8 @@
+2006-01-25 Perry
+ BUG: [ 1412237 ] InitOption return value wrong if RegCreateKey fails
+  Fix unused wrong return value of InitOption & improve one comment
+ Src/Common: OptionsMgr.cpp
+
 2006-01-24 WinMerge experimental release 2.5.3.1 (cvs)
 
 2006-01-23 Kimmo
