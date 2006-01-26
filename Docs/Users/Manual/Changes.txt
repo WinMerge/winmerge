@@ -1,3 +1,7 @@
+2006-01-27 Tim
+ TODO: [ 1413926 ] Build manual file(s) to /Build
+  Manual/build: configuration.bat
+
 2006-01-26 Tim
  PATCH: [ 1414983 ] Manual: Make build path configurable (XSL)
   Manual/build: build_html.bat build_htmlhelp.bat configuration.bat
