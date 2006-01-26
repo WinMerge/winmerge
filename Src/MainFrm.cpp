@@ -29,6 +29,7 @@
 #include "stdafx.h"
 #include "Merge.h"
 
+#include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <direct.h>
 #include <mlang.h>
 #include "BCMenu.h"
@@ -1769,12 +1770,9 @@ void CMainFrame::OnHelpContents()
 {
 	CString sPath = GetModulePath(0) + DocsPath;
 	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
-		ShellExecute(m_hWnd, _T("open"), sPath, NULL, NULL, SW_SHOWNORMAL);
+		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_TOPIC, NULL);
 	else
-	{
-		//sPath = DocsURL;
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
-	}
 }
 
 void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 

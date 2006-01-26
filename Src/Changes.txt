@@ -1,3 +1,7 @@
+2006-01-26 Kimmo
+ PATCH: [ 1413230 ] Use HtmlHelp API to open help
+  Src: MainFrm.cpp Merge.dsp
+
 2006-01-25 Perry
  BUG: [ 1412237 ] InitOption return value wrong if RegCreateKey fails
   Fix unused wrong return value of InitOption & improve one comment
