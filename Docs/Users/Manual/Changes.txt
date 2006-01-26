@@ -1,3 +1,7 @@
+2006-01-26 Tim
+ PATCH: [ 1414983 ] Manual: Make build path configurable (XSL)
+  Manual/build: build_html.bat build_htmlhelp.bat configuration.bat
+
 2006-01-24 Kimmo
  Bump revision number to 1.2.1
   Manual: WinMerge_help.xml

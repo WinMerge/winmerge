@@ -14,4 +14,8 @@ set docbook_saxon_xsl=c:\docbook\xsl\extensions\saxon651.jar
 rem HTML Help Compiler...
 set docbook_hhc_exe=c:\docbook\bin\hhc.exe
 
+rem Build directory...
+rem Use "." for the current directory.
+set docbook_build_path=.
+
 @echo on

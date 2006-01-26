@@ -4,7 +4,7 @@ call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
 set docbook_use_stylesheet=build_htmlhelp.xsl
-set docbook_outputdir=htmlhelp
+set docbook_outputdir=%docbook_build_path%\htmlhelp
 
 if not exist "%docbook_outputdir%" mkdir "%docbook_outputdir%"
 
