@@ -1,7 +1,10 @@
 2006-01-28 Perry
  PATCH: [ 1414904 ] updated italian translation for winmerge 2.5.3.1
-  submitted by A. Decorte
+  Submitted by A. Decorte
   InnoSetup\Languages: Italian.isl
+ PATCH: [ 1415165 ] Updated Swedish translation for 2.5.3.1+
+  Submitted by Hans Eriksson
+  Src\Languages\Swedish: MergeSwedish.rc
 
 2006-01-26 Kimmo
  PATCH: [ 1413230 ] Use HtmlHelp API to open help

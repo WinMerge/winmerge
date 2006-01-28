@@ -152,9 +152,9 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Avancerat"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "&Öppna Konfiguration...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Plugins"
@@ -255,9 +255,9 @@ BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
         MENUITEM "Generera &Rapport...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
+        POPUP "&Avancerat"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "&Öppna Konfiguration...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Plugins"
@@ -402,9 +402,9 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Avancerat"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "&Öppna Konfiguration...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Plugins"
@@ -697,7 +697,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Gör backup på originalfiler",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
-    CONTROL         "Rulla automati&skt till första skillnaden",
+    CONTROL         "Gå automati&skt till första skillnaden",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     17,206,10
     CONTROL         "&Visa inte Startskärm",IDC_DISABLE_SPLASH,"Button",
@@ -714,9 +714,9 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "Jäm&för filer",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "Återstarta",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
+    PUSHBUTTON      "Återställ",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
+    LTEXT           "WinMerge tillåter döljande av några meddelanderutor. Klicka på Återställ-knappen för att göra alla meddelanderutor synliga igen.",
                     IDC_STATIC,7,124,168,31
 END
 
@@ -771,7 +771,7 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Matcha &hela ord",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "Mat&cha versaler och gemener",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "Mat&cha VERSALER och gemener",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "&Reguljärt utryck",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
@@ -1033,7 +1033,7 @@ IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION " Folder Compare Progress"
+CAPTION "Katalogjämförelsens fortskridande"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "Stopp",IDC_COMPARISON_STOP,239,7,83,14
@@ -1059,7 +1059,7 @@ BEGIN
                     WS_GROUP,13,38,48,10
     CONTROL         "&Höger",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,47,10
-    GROUPBOX        "Gå till vad",IDC_STATIC,69,27,78,35
+    GROUPBOX        "Gå till rad",IDC_STATIC,69,27,78,35
     CONTROL         "Ra&d",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,76,38,68,10
     CONTROL         "&Skillnad",IDC_WMGOTO_TODIFF,"Button",
@@ -1123,9 +1123,9 @@ BEGIN
                     221,41
     CONTROL         "Visa radskillnader",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
+    CONTROL         "&Teckennivå",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
+    CONTROL         "&Ordnivå:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
     COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
@@ -1207,7 +1207,7 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
     LTEXT           "Arkivstöd kräver antingen att version 3.11 eller högre av 7-Zip är installerat på din dator, eller att dess\nnödvändiga komponenter kopieras till WinMerges programkatalog för fristående användning.",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "Det måste också finnas ett lämligt gränssnitts-plugin (Merge7z*.dll) i sökvägen.",
+    LTEXT           "Det måste också finnas ett lämpligt gränssnitts-plugin (Merge7z*.dll) i sökvägen.",
                     IDC_STATIC,2,52,296,18
     LTEXT           "Var god och använd den version av 7-Zip som rekommenderas nedanför tills gränssnitts-plugins för senare\nversioner blir tillgängliga.",
                     IDC_STATIC,2,70,296,26
@@ -1381,7 +1381,7 @@ END
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Compare Statistics"
+CAPTION "Jämförstatistik"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Kataloger:",IDC_STATIC,72,7,38,8
@@ -1922,10 +1922,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopiera valt objekt till namngiven katalog"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Kopiera valt objekt till angiven katalog"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopiera valt objekt till namngiven katalog"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopiera valt objekt till angiven katalog"
     ID_DIR_DEL_LEFT         "Ta bort valda objekt på vänster sida"
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
     ID_DIR_DEL_BOTH         "Ta bort valda objekt på båda sidor"
@@ -2011,8 +2011,8 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Filtillägg"
     IDS_COLHDR_LSIZE        "Vänster storlek"
     IDS_COLHDR_RSIZE        "Höger storlek"
-    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
-    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+    IDS_COLHDR_RSIZE_SHORT  "Höger Filstorlek (Förkortad)"
+    IDS_COLHDR_LSIZE_SHORT  "Vänster Filstorlek (Förkortad)"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
@@ -2074,8 +2074,8 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Filsuffix."
     IDS_COLDESC_LSIZE       "Vänster fils storlek i bytes."
     IDS_COLDESC_RSIZE       "Höger fils storlek i bytes."
-    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
-    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+    IDS_COLDESC_LSIZE_SHORT "Vänster filstorlek är förkortad."
+    IDS_COLDESC_RSIZE_SHORT "Höger filstorlek är förkortad."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
@@ -2119,7 +2119,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Samma fil är öppnad i vänster och höger panel."
     IDS_FILESSAME           "De valda filerna är identiska."
-    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
+    IDS_FOLDERUNIQUE        "Den valda katalogen finns bara på andra sidan och kan därför inte öppnas."
     IDS_FILEERROR           "Ett fel inträffade under jämförelsen av filerna."
     IDS_FILEBINARY          "Binära filer kan inte jämföras visuellt."
     IDS_TEMP_FILEERROR      "Temporära filer kunde inte skapas. Kontrollera inställningarna för dina temporära sökvägar."
@@ -2133,14 +2133,14 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Radsluten är av olika typer (DOS/UNIX/MAC) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
     IDS_PREDIFFER_ERROR      "Ett fel uppstod vid prediffing av filen '%1' med plugin '%2'. Prediffing används inte mer."
     IDS_INVALID_DIRECTORY   "Den valda katalogen är ogiltig."
-    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
+    IDS_CANNOT_OPEN_BINARYFILE  "Kan inte öppna en binär fil för att editera."
 END
 
 // Encoding issues
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
-    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_DIFFERENT_UNICODINGS   "Varning: Filerna använder olika filkodningar, vänster=%s och höger=%s, och sammanfogning kan leda till förlust av information."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2167,8 +2167,8 @@ END
 // FILE COMPARE: PANE CAPTIONS
 STRINGTABLE 
 BEGIN
-    IDS_LOCBAR_CAPTION      "Location Pane"
-    IDS_DIFFBAR_CAPTION     "Diff Pane"
+    IDS_LOCBAR_CAPTION      "Skillnadsfält"
+    IDS_DIFFBAR_CAPTION     "Skillnadsbild"
 END
 
 // CREATE PATCH
