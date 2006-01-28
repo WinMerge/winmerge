@@ -556,13 +556,6 @@ IHeaderBar * CChildFrame::GetHeaderInterface()
 	return &m_wndFilePathBar;
 }
 
-BOOL CChildFrame::OnNotify(WPARAM wParam, LPARAM lParam, LRESULT* pResult) 
-{
-	// TODO: Add your specialized code here and/or call the base class
-	
-	return CMDIChildWnd::OnNotify(wParam, lParam, pResult);
-}
-
 void CChildFrame::OnTimer(UINT nIDEvent) 
 {
 	if (IsWindowVisible())

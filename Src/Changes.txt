@@ -7,6 +7,8 @@
   Src\Languages\Swedish: MergeSwedish.rc
  PATCH: [ 1414195 ] Delete two old TODO notes
   Src: ChildFrm.cpp
+ PATCH: [ 1414196 ] Delete useless CChildFrame::OnNotify method
+  Src: ChildFrm.cpp ChildFrm.h
 
 2006-01-26 Kimmo
  PATCH: [ 1413230 ] Use HtmlHelp API to open help
