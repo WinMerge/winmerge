@@ -379,4 +379,4 @@ ViewStartMenuFolder=&Visualizza cartella del menu Start di WinMerge
 DeletePreviousStartMenu=L'installer ha rilevato che il tuo menu Start è stato spostato da "%s" a "%s". Desideri eliminare la precedente cartella del menu Start?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=File di progetto di WinMerge
