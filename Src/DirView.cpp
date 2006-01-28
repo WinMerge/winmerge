@@ -584,9 +584,8 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 		AfxGetMainWnd());
 }	
 
-/// Make a string out of a number
-// TODO: Ought to introduce commas every three digits, except this is locale-specific
-// How to do this with locale sensitivity ?
+/** @brief Convert number to string, with commas
+between digits in locale-appropriate manner */
 CString NumToStr(int n)
 {
 	CString s = locality::NumToLocaleStr(n);
