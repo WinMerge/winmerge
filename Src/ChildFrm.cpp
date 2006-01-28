@@ -388,8 +388,6 @@ void CChildFrame::ActivateFrame(int nCmdShow)
 	{
 		m_bActivated = TRUE;
 
-		// TODO : delete oldkey /*		if(theApp.GetProfileInt(_T("Settings"), _T("LeftMax"), TRUE))
-		// TODO : delete oldkey /*		if(theApp.GetProfileInt(_T("Settings"), _T("DirViewMax"), TRUE))
 		// get the active child frame, and a flag whether it is maximized
 		if (oldActiveFrame == NULL)
 			// for the first frame, get the restored/maximized state from the registry
