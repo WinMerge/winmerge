@@ -382,7 +382,7 @@ Source: ..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyex
 ;Documentation
 Source: ..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\Docs\Users\Manual\build\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: docs
+Source: ..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: docs
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
