@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "ª©¥» %1"
-    IDS_QUICKHELP           "»yªk : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
-      /? or -? displays this help
-      /r or -r tells winmerge to compare directories recursively
-      /e or -e allows WinMerge to be closed with a single esc keypress
-      /f or -f sets filemask or filtername for compare
-      /ul or -ul tells winmerge to not add left path to MRU
-      /ur or -ur tells winmerge to not add right path to MRU
-      /ub or -ub tells winmerge to not add both paths to MRU
-      /wl or -wl initially opens left side as read-only
-      /wr or -wr initially opens right side as read-only
-      /dl or -dl adds a description for left side shown instead of directory/filename
-      /dr or -dr adds a description for right side shown instead of directory/filename
-      leftpath is the directory or filename to open on the left side
-      rightpath is the directory or filename to open on the right side
-      outputpath is an optional output directory where you want merged files to be saved"
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "»yªk : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
+    IDS_CMDLINE_WHERE       "where:"
+    IDS_CMDLINE_HELP        "/? or -? displays this help"
+    IDS_CMDLINE_RECURSIVE   "/r or -r tells winmerge to compare directories recursively"
+    IDS_CMDLINE_ESCKEY      "/e or -e allows WinMerge to be closed with a single esc keypress"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f or -f sets filemask or filtername for compare"
+    IDS_CMDLINE_FORGETLEFT  "/ul or -ul tells winmerge to not add left path to MRU"
+    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur tells winmerge to not add right path to MRU"
+    IDS_CMDLINE_FORGETBOTH  "/ub or -ub tells winmerge to not add both paths to MRU"
+    IDS_CMDLINE_LEFT_RO  "/wl or -wl initially opens left side as read-only"
+    IDS_CMDLINE_RIGHT_RO  "/wr or -wr initially opens right side as read-only"
+    IDS_CMDLINE_LEFT_DESC  "/dl or -dl adds a description for left side shown instead of directory/filename"
+    IDS_CMDLINE_RIGHT_DESC "/dr or -dr adds a description for right side shown instead of directory/filename"
+    IDS_CMDLINE_LEFTPATH  "leftpath is the directory or filename to open on the left side"
+    IDS_CMDLINE_RIGHTPATH  "rightpath is the directory or filename to open on the right side"
+    IDS_CMDLINE_OUTPUTPATH "outputpath is an optional output directory where you want merged files to be saved"
 END
 
 // VARIOUS OPTIONS

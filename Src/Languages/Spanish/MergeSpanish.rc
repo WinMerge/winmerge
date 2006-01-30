@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Versión %1 - Español"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mascara/nombre] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl descizq] [/dr descdcha] rutaizq rutadcha [rutasalida]\n\ndonde:
-      /? or -? muestra esta ayuda
-      /r or -r compara los directorios de forma recursiva (incluir subdirectorios)
-      /e or -e permite que WinMergw se cierre con la tecla ESC
-      /f or -f establece la mascara de ficheros o mascara de líneas para la comparación
-      /ul or -ul no añadir la ruta izquierda a MRU
-      /ur or -ur no añadir la ruta derecha a MRU
-      /ub or -ub no añadir ninguna ruta a MRU
-      /wl or -wl abrir inicialmente el lado izquierdo como sólo lectura
-      /wr or -wr abrir inicialmente el lado derecho como sólo lectura
-      /dl or -dl añade una descripción al lado izquierdo en vez de la ruta directorio/nombre de fichero
-      /dr or -dr añade una descripción al lado derecho en vez de la ruta directorio/nombre de fichero      
-			rutaizq es el directorio o nombre de fichero a ser abierto en el lado izquierdo
-			rutadcha es el directorio o nombre de fichero a ser abierto en el lado derecho
-			rutasalida es un directorio opcional donde se guardaran los ficheros combinados"      
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "rutaizq rutadcha [rutasalida]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mascara/nombre"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "descizq"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "descdcha"
+    IDS_CMDLINE_WHERE       "donde:"
+    IDS_CMDLINE_HELP        "/? or -? muestra esta ayuda"
+    IDS_CMDLINE_RECURSIVE   "/r or -r compara los directorios de forma recursiva (incluir subdirectorios)"
+    IDS_CMDLINE_ESCKEY      "/e or -e permite que WinMergw se cierre con la tecla ESC"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f or -f establece la mascara de ficheros o mascara de líneas para la comparación"
+    IDS_CMDLINE_FORGETLEFT  "/ul or -ul no añadir la ruta izquierda a MRU"
+    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur no añadir la ruta derecha a MRU"
+    IDS_CMDLINE_FORGETBOTH  "/ub or -ub no añadir ninguna ruta a MRU"
+    IDS_CMDLINE_LEFT_RO  "/wl or -wl abrir inicialmente el lado izquierdo como sólo lectura"
+    IDS_CMDLINE_RIGHT_RO  "/wr or -wr abrir inicialmente el lado derecho como sólo lectura"
+    IDS_CMDLINE_LEFT_DESC  "/dl or -dl añade una descripción al lado izquierdo en vez de la ruta directorio/nombre de fichero"
+    IDS_CMDLINE_RIGHT_DESC "/dr or -dr añade una descripción al lado derecho en vez de la ruta directorio/nombre de fichero      "
+    IDS_CMDLINE_LEFTPATH  "rutaizq es el directorio o nombre de fichero a ser abierto en el lado izquierdo"
+    IDS_CMDLINE_RIGHTPATH  "rutadcha es el directorio o nombre de fichero a ser abierto en el lado derecho"
+    IDS_CMDLINE_OUTPUTPATH "rutasalida es un directorio opcional donde se guardaran los ficheros combinados"
 END
 
 // VARIOUS OPTIONS

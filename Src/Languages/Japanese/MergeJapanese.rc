@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1 - Japanese"
-    IDS_QUICKHELP           "シンタックス : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\nwhere:
-      /? or -? このヘルプを表示します
-      /r or -r 再帰的にフォルダを比較します
-      /e or -e Escキーの押下でWinMergeを終了します
-      /f or -f  ファイルマスクまたはフィルタ名を設定します
-      /ul or -ul 左パスをMRUに追加しません
-      /ur or -ur 右パスをMRUに追加しません
-      /ub or -ub 両側のパスをMRUに追加しません
-      /wl or -wl 左側を読み取り専用で開きます
-      /wr or -wr 右側を読み取り専用で開きます
-      /dl or -dl フォルダ/ファイル名の代わりに説明文を左側に表示します
-      /dr or -dr フォルダ/ファイル名の代わりに説明文を右側に表示します
-      leftpath は、左側で開くフォルダまたはファイル名です
-      rightpath は、右側で開くフォルダまたはファイル名です
-      outputpath は、省略可能なマージされたファイルの保存先フォルダです"
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "シンタックス : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
+    IDS_CMDLINE_WHERE       "where:"
+    IDS_CMDLINE_HELP        "/? or -? このヘルプを表示します"
+    IDS_CMDLINE_RECURSIVE   "/r or -r 再帰的にフォルダを比較します"
+    IDS_CMDLINE_ESCKEY      "/e or -e Escキーの押下でWinMergeを終了します"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f or -f  ファイルマスクまたはフィルタ名を設定します"
+    IDS_CMDLINE_FORGETLEFT  "/ul or -ul 左パスをMRUに追加しません"
+    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur 右パスをMRUに追加しません"
+    IDS_CMDLINE_FORGETBOTH  "/ub or -ub 両側のパスをMRUに追加しません"
+    IDS_CMDLINE_LEFT_RO  "/wl or -wl 左側を読み取り専用で開きます"
+    IDS_CMDLINE_RIGHT_RO  "/wr or -wr 右側を読み取り専用で開きます"
+    IDS_CMDLINE_LEFT_DESC  "/dl or -dl フォルダ/ファイル名の代わりに説明文を左側に表示します"
+    IDS_CMDLINE_RIGHT_DESC "/dr or -dr フォルダ/ファイル名の代わりに説明文を右側に表示します"
+    IDS_CMDLINE_LEFTPATH  "leftpath は、左側で開くフォルダまたはファイル名です"
+    IDS_CMDLINE_RIGHTPATH  "rightpath は、右側で開くフォルダまたはファイル名です"
+    IDS_CMDLINE_OUTPUTPATH "outputpath は、省略可能なマージされたファイルの保存先フォルダです"
 END
 
 // VARIOUS OPTIONS

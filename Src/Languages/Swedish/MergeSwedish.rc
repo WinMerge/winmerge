@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl leftdesc] [/dr rightdesc] leftpath rightpath [outputpath]\n\ndär:
-      /? eller -? visar denna hjälp
-      /r eller -r får WinMerge att jämföra kataloger rekursivt
-      /e eller -e låter WinMerge stängas med en enkel ESC-tryckning
-      /f eller -f anger filmask eller filternamn för jämförelse
-      /ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna
-      /ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna
-      /ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna
-      /wl or -wl öppnar vänster fil som skrivskyddad i början
-      /wr or -wr öppnar höger fil som skrivskyddad i början
-      /dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn
-      /dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn
-      leftpath är katalogen eller filnamnet att öppna på vänster sida
-      rightpath är katalogen eller filnamnet att öppna på höger sida
-      outputpath är en optionell outputkatalog där du vill att ändrade filer ska sparas"
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
+    IDS_CMDLINE_WHERE       "där:"
+    IDS_CMDLINE_HELP        "/? eller -? visar denna hjälp"
+    IDS_CMDLINE_RECURSIVE   "/r eller -r får WinMerge att jämföra kataloger rekursivt"
+    IDS_CMDLINE_ESCKEY      "/e eller -e låter WinMerge stängas med en enkel ESC-tryckning"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f eller -f anger filmask eller filternamn för jämförelse"
+    IDS_CMDLINE_FORGETLEFT  "/ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna"
+    IDS_CMDLINE_FORGETRIGHT  "/ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna"
+    IDS_CMDLINE_FORGETBOTH  "/ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna"
+    IDS_CMDLINE_LEFT_RO  "/wl or -wl öppnar vänster fil som skrivskyddad i början"
+    IDS_CMDLINE_RIGHT_RO  "/wr or -wr öppnar höger fil som skrivskyddad i början"
+    IDS_CMDLINE_LEFT_DESC  "/dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn"
+    IDS_CMDLINE_RIGHT_DESC "/dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn"
+    IDS_CMDLINE_LEFTPATH  "leftpath är katalogen eller filnamnet att öppna på vänster sida"
+    IDS_CMDLINE_RIGHTPATH  "rightpath är katalogen eller filnamnet att öppna på höger sida"
+    IDS_CMDLINE_OUTPUTPATH "outputpath är en optionell outputkatalog där du vill att ändrade filer ska sparas"
 END
 
 // VARIOUS OPTIONS

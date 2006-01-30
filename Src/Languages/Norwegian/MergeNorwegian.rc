@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Versjon %1"
-    IDS_QUICKHELP           "Syntaks : WinMerge [/r] [/e] [/f mask/name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl vbeskr] [/dr hbeskr] vsti hsti [utsti]\n\nhvor:
-      /? eller -? viser denne hjelpen
-      /r eller -r ber WinMerge om å sammenligne mapper rekursivt
-      /e eller -e tillater lukking WinMerge ved kun å trykke ESC
-      /f eller -f sett filmaske eller filternavn for sammenligning
-      /ul eller -ul forteller WinMerge å ikke legge til venstre sti til MRU
-      /ur eller -ur forteller WinMerge å ikke legge til høyre sti til MRU
-      /ub eller -ub forteller WinMerge å ikke legge til noen av stiene til MRU
-      /wl eller -wl åpner venstre side skrivebskyttet initielt
-      /wr eller -wr åpner høyre side skrivebskyttet initielt
-      /dl eller -dl legger til en beskrivelse for venstre side i steden for mappe/filnavn
-      /dr eller -dr legger til en beskrivelse for høyre side i steden for mappe/filnavn
-      vsti er mappen eller filen som skal åpnes på venstre side
-      hsti er mappen eller filen som skal åpnes på høyre side
-      utsti er en valgfri mappe hvor flettede filer blir lagret"
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "Syntaks : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "vsti hsti [utsti]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "vbeskr"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "hbeskr"
+    IDS_CMDLINE_WHERE       "hvor:"
+    IDS_CMDLINE_HELP        "/? eller -? viser denne hjelpen"
+    IDS_CMDLINE_RECURSIVE   "/r eller -r ber WinMerge om å sammenligne mapper rekursivt"
+    IDS_CMDLINE_ESCKEY      "/e eller -e tillater lukking WinMerge ved kun å trykke ESC"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f eller -f sett filmaske eller filternavn for sammenligning"
+    IDS_CMDLINE_FORGETLEFT  "/ul eller -ul forteller WinMerge å ikke legge til venstre sti til MRU"
+    IDS_CMDLINE_FORGETRIGHT  "/ur eller -ur forteller WinMerge å ikke legge til høyre sti til MRU"
+    IDS_CMDLINE_FORGETBOTH  "/ub eller -ub forteller WinMerge å ikke legge til noen av stiene til MRU"
+    IDS_CMDLINE_LEFT_RO  "/wl eller -wl åpner venstre side skrivebskyttet initielt"
+    IDS_CMDLINE_RIGHT_RO  "/wr eller -wr åpner høyre side skrivebskyttet initielt"
+    IDS_CMDLINE_LEFT_DESC  "/dl eller -dl legger til en beskrivelse for venstre side i steden for mappe/filnavn"
+    IDS_CMDLINE_RIGHT_DESC "/dr eller -dr legger til en beskrivelse for høyre side i steden for mappe/filnavn"
+    IDS_CMDLINE_LEFTPATH  "vsti er mappen eller filen som skal åpnes på venstre side"
+    IDS_CMDLINE_RIGHTPATH  "hsti er mappen eller filen som skal åpnes på høyre side"
+    IDS_CMDLINE_OUTPUTPATH "utsti er en valgfri mappe hvor flettede filer blir lagret"
 END
 
 // VARIOUS OPTIONS

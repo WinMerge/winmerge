@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Wersja %1"
-    IDS_QUICKHELP           "Sk³adnia: WinMerge [/r] [/e] [/f maska/nazwa] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl lewypanel] [/dr prawypanel] lewaœcie¿ka prawaœcie¿ka[œcie¿kawyjœciowa]\n\ngdzie:
-      /? lub -? wyœwietla pomoc
-      /r lub -r wskazuje winmerge, by porównywaæ katalogi rekursywnie
-      /e lub -e pozwala zamkn¹æ WinMerge przez naciœniêcie esc
-      /f lub -f ustawia maskê pliku lub nazwê filtra dla porównania
-      /ul lub -ul mówi winmerge, ¿e nie nale¿y dodawaæ lewej œcie¿ki do listy ostatnio u¿ywanych
-      /ur lub -ur mówi winmerge, ¿e nie nale¿y dodawaæ prawej œcie¿ki do listy ostatnio u¿ywanych
-      /ub lub -ub mówi winmerge, ¿e nie nale¿y dodawaæ obu œcie¿ek do listy ostatnio u¿ywanych
-      /wl lub -wl otwiera lewy panel tylko do odczytu
-      /wr lub -wr otwiera prawy panel tylko do odczytu
-      /dl lub -dl dodaje opis dla lewej strony zamiast katalogu/pliku
-      /dr lub -dr dodaje opis dla prawej strony zamiast katalogu/pliku
-      lewaœcie¿ka to katalog lub plik, który ma byæ otwarty w lewym panelu
-      prawaœcie¿ka to katalog lub plik, który ma byæ otwarty w prawym panelu
-      œcie¿kawyjœciowa to opcjonalny ktalaog wyjœciowy, gdzie maj¹ byæ zachowane scalone pliki"
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "Sk³adnia: WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "lewaœcie¿ka prawaœcie¿ka[œcie¿kawyjœciowa]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "maska/nazwa"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "lewypanel"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "prawypanel"
+    IDS_CMDLINE_WHERE       "gdzie:"
+    IDS_CMDLINE_HELP        "/? lub -? wyœwietla pomoc"
+    IDS_CMDLINE_RECURSIVE   "/r lub -r wskazuje winmerge, by porównywaæ katalogi rekursywnie"
+    IDS_CMDLINE_ESCKEY      "/e lub -e pozwala zamkn¹æ WinMerge przez naciœniêcie esc"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f lub -f ustawia maskê pliku lub nazwê filtra dla porównania"
+    IDS_CMDLINE_FORGETLEFT  "/ul lub -ul mówi winmerge, ¿e nie nale¿y dodawaæ lewej œcie¿ki do listy ostatnio u¿ywanych"
+    IDS_CMDLINE_FORGETRIGHT  "/ur lub -ur mówi winmerge, ¿e nie nale¿y dodawaæ prawej œcie¿ki do listy ostatnio u¿ywanych"
+    IDS_CMDLINE_FORGETBOTH  "/ub lub -ub mówi winmerge, ¿e nie nale¿y dodawaæ obu œcie¿ek do listy ostatnio u¿ywanych"
+    IDS_CMDLINE_LEFT_RO  "/wl lub -wl otwiera lewy panel tylko do odczytu"
+    IDS_CMDLINE_RIGHT_RO  "/wr lub -wr otwiera prawy panel tylko do odczytu"
+    IDS_CMDLINE_LEFT_DESC  "/dl lub -dl dodaje opis dla lewej strony zamiast katalogu/pliku"
+    IDS_CMDLINE_RIGHT_DESC "/dr lub -dr dodaje opis dla prawej strony zamiast katalogu/pliku"
+    IDS_CMDLINE_LEFTPATH  "lewaœcie¿ka to katalog lub plik, który ma byæ otwarty w lewym panelu"
+    IDS_CMDLINE_RIGHTPATH  "prawaœcie¿ka to katalog lub plik, który ma byæ otwarty w prawym panelu"
+    IDS_CMDLINE_OUTPUTPATH "œcie¿kawyjœciowa to opcjonalny ktalaog wyjœciowy, gdzie maj¹ byæ zachowane scalone pliki"
 END
 
 // VARIOUS OPTIONS

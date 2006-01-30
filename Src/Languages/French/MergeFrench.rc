@@ -1731,7 +1731,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1 - Français"
-    IDS_QUICKHELP           "Syntaxe : WinMerge [/r] [/e] [/f masque/filtre] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl description] [/dr description] CheminGauche CheminDroit [CheminSortie]\n\noù:
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "Syntaxe : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "CheminGauche CheminDroit [CheminSortie]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "masque/filtre"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "description"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "description"
+    IDS_CMDLINE_WHERE       "où:"
+    IDS_CMDLINE_HELP        "/? or -? affiche cet aide"
+    IDS_CMDLINE_RECURSIVE   "/r or -r indique de comparer recursivement les répertoires"
+    IDS_CMDLINE_ESCKEY      "/e or -e permet la fermeture avec la touche esc"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f or -f défini un masque ou un filtre, de fichier pour comparer"
+    IDS_CMDLINE_FORGETLEFT  "/ul or -ul indique de ne pas ajouter le chemin de gauche à mes documents récents"
+    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur indique de ne pas ajouter le chemin de droite à mes documents récents"
+    IDS_CMDLINE_FORGETBOTH  "/ub or -ub indique de ne pas ajouter les deux chemins à mes documents récents"
+    IDS_CMDLINE_LEFT_RO  "/wl or -wl ouvre initialement le côté gauche en leture seulement"
+    IDS_CMDLINE_RIGHT_RO  "/wr or -wr ouvre initialement le côté droit  en leture seulement"
+    IDS_CMDLINE_LEFT_DESC  "/dl or -dl indique une description plutot que le chemin complet pour le côté gauche"
+    IDS_CMDLINE_RIGHT_DESC "/dr or -dr indique une description plutot que le chemin complet pour le côté droit"
+    IDS_CMDLINE_LEFTPATH  "CheminGauche est le répertoire ou le fichier à ouvrir du côté gauche"
+    IDS_CMDLINE_RIGHTPATH  "CheminDroit  est le répertoire ou le fichier à ouvrir du côté droit"
+    IDS_CMDLINE_OUTPUTPATH "CheminSortie est un répertoire optionel où enregistrer les fichiers fusionnés"
+    IDS_QUICKHELP           "Syntaxe : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/f masque/filtre] [/dl description] [/dr description] CheminGauche CheminDroit [CheminSortie]\n\noù:
       /? or -? affiche cet aide
       /r or -r indique de comparer recursivement les répertoires
       /e or -e permet la fermeture avec la touche esc

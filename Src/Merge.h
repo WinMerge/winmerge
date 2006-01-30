@@ -91,6 +91,7 @@ protected:
 	void ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags, CString & prediffer);
 	void ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame);
+	CString GetUsageDescription();
 	// End MergeArgs.cpp
 
 	BOOL LoadProjectFile(CStringArray & files, BOOL & recursive);

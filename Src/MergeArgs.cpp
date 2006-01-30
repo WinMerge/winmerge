@@ -280,3 +280,40 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 	// Reload menus in case a satellite language dll was loaded above
 	ReloadMenu();
 }
+
+/** @brief Wrap one line of cmdline help in appropriate whitespace */
+static CString CmdlineOption(int idres)
+{
+	CString str = LoadResString(idres) + _T(" \n");
+	return str;
+}
+
+/** @brief Put together string of all cmdline arguments */
+CString
+CMergeApp::GetUsageDescription()
+{
+
+	CString str;
+	str += LoadResString(IDS_CMDLINE_SYNTAX);
+	str += _T(" [/f ") + LoadResString(IDS_CMDLINE_SYNTAX_ARG_FILTER) + _T("]");
+	str += _T(" [/dl ") + LoadResString(IDS_CMDLINE_SYNTAX_LEFTDESC) + _T("]");
+	str += _T(" [/dr ") + LoadResString(IDS_CMDLINE_SYNTAX_RIGHTDESC) + _T("]");
+	str += _T(" ");
+	str += LoadResString(IDS_CMDLINE_SYNTAX_ARGS);
+	str += _T("\n\n") + LoadResString(IDS_CMDLINE_WHERE) + _T(" \n");
+	str += CmdlineOption(IDS_CMDLINE_HELP);
+	str += CmdlineOption(IDS_CMDLINE_RECURSIVE);
+	str += CmdlineOption(IDS_CMDLINE_ESCKEY);
+	str += CmdlineOption(IDS_CMDLINE_FILEMASK);
+	str += CmdlineOption(IDS_CMDLINE_FORGETLEFT);
+	str += CmdlineOption(IDS_CMDLINE_FORGETRIGHT);
+	str += CmdlineOption(IDS_CMDLINE_FORGETBOTH);
+	str += CmdlineOption(IDS_CMDLINE_LEFT_RO);
+	str += CmdlineOption(IDS_CMDLINE_RIGHT_RO);
+	str += CmdlineOption(IDS_CMDLINE_LEFT_DESC);
+	str += CmdlineOption(IDS_CMDLINE_RIGHT_DESC);
+	str += CmdlineOption(IDS_CMDLINE_LEFTPATH);
+	str += CmdlineOption(IDS_CMDLINE_RIGHTPATH);
+	str += CmdlineOption(IDS_CMDLINE_OUTPUTPATH);
+	return str;
+}

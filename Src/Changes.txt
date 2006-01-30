@@ -1,3 +1,8 @@
+2006-01-29 Perry
+ PATCH: [ 1415895 ] Split cmdline help string into chunks
+  Src: Merge.cpp Merge.h Merge.rc MergeArgs.cpp resource.h
+  Src/Languages: */*.rc
+
 2006-01-28 Perry
  PATCH: [ 1414904 ] updated italian translation for winmerge 2.5.3.1
   Submitted by A. Decorte

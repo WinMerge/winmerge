@@ -288,11 +288,7 @@ BOOL CMergeApp::InitInstance()
 
 	if (m_bShowUsage)
 	{
-		// TODO: This help string does not include new options (eg, prediffer:xxx)
-		// Also, this help string is difficult for translators
-		// So we need a new solution for help string
-		CString s;
-		VERIFY(s.LoadString(IDS_QUICKHELP));
+		CString s = GetUsageDescription();
 		AfxMessageBox(s, MB_ICONINFORMATION);
 		m_bNoninteractive = false;
 	}

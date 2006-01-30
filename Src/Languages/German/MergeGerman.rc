@@ -1735,22 +1735,37 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1 - Deutsch"
-    IDS_QUICKHELP           "Syntax : WinMerge [/r] [/e] [/f Maske/Name] [/ul] [/ur] [/ub] [/wl] [/wr] [/dl LinkeBeschreibung] [/dr RechteBeschreibung] LinkerPfad RechterPfad [AusgabePfad]\n\nWo:
-      /? oder -? zeigt diese Hilfe
-      /r oder -r befiehlt WinMerge, Verzeichnisse rekursiv zu vergleichen
-      /e oder -e erlaubt, dass WinMerge mit einem einzelnen ESC-Tastendruck geschlossen wird
-      /f oder -f setzt die Dateimaske oder den Filtername für den Vergleich
-      /ul oder -ul befiehlt WinMerge, den linken Pfad nicht der 'Kürzlich verwendet'-Liste hinzuzufügen
-      /ur oder -ur befiehlt WinMerge, den rechten Pfad nicht der 'Kürzlich verwendet'-Liste hinzuzufügen
-      /ub oder -ub befiehlt WinMerge, beide Pfade nicht der 'Kürzlich verwendet'-Liste hinzuzufügen
-      /wl oder -wl öffnet die linke Seite zunächst als schreibgeschützt
-      /wr oder -wr öffnet die rechte Seite zunächst als schreibgeschützt
-      /dl oder -dl fügt eine Beschreibung für die linke Seite hinzu, die anstelle vom Verzeichnis/Dateinamen gezeigt wird
-      /dr oder -dr fügt eine Beschreibung für die rechte Seite hinzu, die anstelle vom Verzeichnis/Dateinamen gezeigt wird
-      LinkerPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der linken Seite
-      RechterPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der rechten Seite
-      AusgabePfad ist ein optionales Ausgabeverzeichnis, in dem Sie die vermischten Dateien speichern möchten"
     IDS_UNICODE             "Unicode"
+END
+
+// WINMERGE COMMAND LINE HELP#1
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX_ARGS "LinkerPfad RechterPfad [AusgabePfad]"
+    IDS_CMDLINE_SYNTAX_ARG_FILTER  "Maske/Name"
+    IDS_CMDLINE_SYNTAX_LEFTDESC    "LinkeBeschreibung"
+    IDS_CMDLINE_SYNTAX_RIGHTDESC   "RechteBeschreibung"
+    IDS_CMDLINE_WHERE       "Wo:"
+    IDS_CMDLINE_HELP        "/? oder -? zeigt diese Hilfe"
+    IDS_CMDLINE_RECURSIVE   "/r oder -r befiehlt WinMerge, Verzeichnisse rekursiv zu vergleichen"
+    IDS_CMDLINE_ESCKEY      "/e oder -e erlaubt, dass WinMerge mit einem einzelnen ESC-Tastendruck geschlossen wird"
+END
+
+// WINMERGE COMMAND LINE HELP#2
+STRINGTABLE
+BEGIN
+    IDS_CMDLINE_FILEMASK  "/f oder -f setzt die Dateimaske oder den Filtername für den Vergleich"
+    IDS_CMDLINE_FORGETLEFT  "/ul oder -ul befiehlt WinMerge, den linken Pfad nicht der 'Kürzlich verwendet'-Liste hinzuzufügen"
+    IDS_CMDLINE_FORGETRIGHT  "/ur oder -ur befiehlt WinMerge, den rechten Pfad nicht der 'Kürzlich verwendet'-Liste hinzuzufügen"
+    IDS_CMDLINE_FORGETBOTH  "/ub oder -ub befiehlt WinMerge, beide Pfade nicht der 'Kürzlich verwendet'-Liste hinzuzufügen"
+    IDS_CMDLINE_LEFT_RO  "/wl oder -wl öffnet die linke Seite zunächst als schreibgeschützt"
+    IDS_CMDLINE_RIGHT_RO  "/wr oder -wr öffnet die rechte Seite zunächst als schreibgeschützt"
+    IDS_CMDLINE_LEFT_DESC  "/dl oder -dl fügt eine Beschreibung für die linke Seite hinzu, die anstelle vom Verzeichnis/Dateinamen gezeigt wird"
+    IDS_CMDLINE_RIGHT_DESC "/dr oder -dr fügt eine Beschreibung für die rechte Seite hinzu, die anstelle vom Verzeichnis/Dateinamen gezeigt wird"
+    IDS_CMDLINE_LEFTPATH  "LinkerPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der linken Seite"
+    IDS_CMDLINE_RIGHTPATH  "RechterPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der rechten Seite"
+    IDS_CMDLINE_OUTPUTPATH "AusgabePfad ist ein optionales Ausgabeverzeichnis, in dem Sie die vermischten Dateien speichern möchten"
 END
 
 // VARIOUS OPTIONS
