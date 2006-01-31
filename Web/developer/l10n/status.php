@@ -36,7 +36,7 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
   print("    <th class=\"left\">Language</th>\n");
   print("    <th class=\"left\">Status</th>\n");
   print("    <th class=\"left\">Author</th>\n");
-  print("    <th class=\"center\" colspan=\"6\">Versions</th>\n");
+  print("    <th class=\"center\" colspan=\"7\">Versions</th>\n");
   print("  </tr>\n");
   $languages = $status['L10N'][0]['LANGUAGE'];
   $languages = $page->multisortArray($languages, 'NAME', SORT_ASC);
@@ -85,6 +85,7 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
     }
     print("</td>\n");
 
+    $version_25 = '&nbsp;';
     $version_24 = '&nbsp;';
     $version_23 = '&nbsp;';
     $version_22 = '&nbsp;';
@@ -95,6 +96,9 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
       $version = $versions[$j]['VALUE'];
       
       switch ($version) {
+        case '2.5':
+          $version_25 = '<span title="latest development version">2.5</span>';
+          break;
         case '2.4':
           $version_24 = '<strong title="latest stable version">2.4</strong>';
           break;
@@ -115,6 +119,7 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
           break;
       }
     }
+    print("    <td class=\"center\">" . $version_25 . "</td>\n");
     print("    <td class=\"center\">" . $version_24 . "</td>\n");
     print("    <td class=\"center\">" . $version_23 . "</td>\n");
     print("    <td class=\"center\">" . $version_22 . "</td>\n");

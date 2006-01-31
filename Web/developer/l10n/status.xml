@@ -43,6 +43,7 @@
       </author>
     </authors>
     <versions>
+      <version>2.5</version>
       <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
@@ -216,10 +217,11 @@
       <author>
         <name>Andrea Decorte (Klenje)</name>
         <email>klenje at users dot sourceforge dot net</email>
-        <comment>2.4, 2.3, 2.2 &amp; 2.1</comment>
+        <comment>2.5 - 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.5</version>
       <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
@@ -354,10 +356,11 @@
       <author>
         <name>Hans Eriksson</name>
         <email>hans dot ericson at bredband dot net</email>
-        <comment>2.4, 2.3, 2.2 &amp; 2.1</comment>
+        <comment>2.5 - 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.5</version>
       <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>

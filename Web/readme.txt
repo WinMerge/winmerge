@@ -1,3 +1,7 @@
+2006-01-31 Tim
+ PATCH: [ 1418972 ] Web: Add version '2.5' to translation status
+  Web\developer\l10n: status.php status.xml
+
 2006-01-23 Tim
  BUG: [ 1412395 ] Misspelling in l10n docs
   Web\developer\l10n: instructions.php
