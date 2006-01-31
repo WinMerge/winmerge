@@ -1,3 +1,7 @@
+2006-01-31 Tim
+ PATCH: [ 1419171 ] Various Updates in German Translation for WinMerge 2.5
+  Src/Languages/German: MergeGerman.rc
+
 2006-01-29 Perry
  PATCH: [ 1415895 ] Split cmdline help string into chunks
   Src: Merge.cpp Merge.h Merge.rc MergeArgs.cpp resource.h

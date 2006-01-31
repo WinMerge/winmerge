@@ -152,7 +152,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Erweitert"
         BEGIN
             MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
         END
@@ -255,7 +255,7 @@ BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
         MENUITEM "&Bericht generieren...",      ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
+        POPUP "&Erweitert"
         BEGIN
             MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
         END
@@ -369,9 +369,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
         MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
-        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM "Zeilen &umbrechen",           ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM "Ausschnitt v&ertauschen",     ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
@@ -402,7 +402,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Erweitert"
         BEGIN
             MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
         END
@@ -1042,8 +1042,8 @@ BEGIN
     RTEXT           "0",IDC_ITEMSCOMPARED,150,18,30,8
     LTEXT           "0",IDC_ITEMSTOTAL,194,18,30,8
     LTEXT           "/",IDC_STATIC,186,18,8,8
-    LTEXT           "Comparing items...",IDC_STATIC,7,7,150,8
-    LTEXT           "Items compared / Items total:",IDC_STATIC,7,18,129,8
+    LTEXT           "Vergleiche Objekte...",IDC_STATIC,7,7,150,8
+    LTEXT           "Objekte verglichen / Objekte gesamt:",IDC_STATIC,7,18,129,8
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
@@ -1259,8 +1259,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Kategorien",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
-    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
-    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
+    PUSHBUTTON      "Importieren...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Exportieren...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1384,41 +1384,41 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Compare Statistics"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
-    LTEXT           "Files:",IDC_STATIC,131,7,39,8
-    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
+    LTEXT           "Ordner:",IDC_STATIC,72,7,38,8
+    LTEXT           "Dateien:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "Unterschiedlich",IDC_STATIC,7,15,186,40
     RTEXT           "Text:",IDC_STATIC,11,26,56,8
     ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    RTEXT           "Binär:",IDC_STATIC,10,40,56,8
     ICON            "",IDC_STAT_IDIFFBINFILE, 131,37,16,16
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
-    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
-    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    GROUPBOX        "Eindeutig",IDC_STATIC,7,55,186,40
+    RTEXT           "Links:",IDC_STATIC,11,66,56,8
     ICON            "",IDC_STAT_ILUNIQFOLDER,72,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_ILUNIQFILE,131,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
-    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    RTEXT           "Rechts:",IDC_STATIC,11,79,56,8
     ICON            "",IDC_STAT_IRUNIQFOLDER,72,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_IRUNIQFILE,131,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
-    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    GROUPBOX        "Identisch",IDC_STATIC,7,95,186,37
     ICON            "",IDC_STAT_IIDENTICFOLDER,72,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_IEQUALFILE,131,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    RTEXT           "Binär:",IDC_STATIC,10,117,56,8
     ICON            "",IDC_STAT_IEQUALBINFILE,131,115,16,16
     RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
-    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    RTEXT           "Gesamt:",IDC_STATIC,13,142,56,8
     ICON            "",IDC_STAT_ITOTALFOLDERS,72,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_ITOTALFILES,131,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
-    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+    DEFPUSHBUTTON   "Schließen",IDOK,200,140,50,14
 END
 
 
@@ -1785,7 +1785,7 @@ BEGIN
     IDS_ALLFILES            "Alle Dateien (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge Projektdatei (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
-    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+    IDS_INIFILES            "Einstellungsdateien (*.ini)|*.ini|Alle Dateien (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1937,10 +1937,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Kopiert ausgewähltes Objekt ins angegebene Verzeichnis."
+    ID_DIR_COPY_LEFT_TO_BROWSE "Kopiert ausgewähltes Objekt in ein beliebiges Verzeichnis."
+    ID_DIR_COPY_RIGHT_TO_LEFT "Kopiert ausgewähltes Objekt ins angegebene Verzeichnis."
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Kopiert ausgewähltes Objekt in ein beliebiges Verzeichnis."
     ID_DIR_DEL_LEFT         "Löscht ausgewähltes Objekt auf der linken Seite."
     ID_DIR_DEL_RIGHT        "Löscht ausgewähltes Objekt auf der rechten Seite."
     ID_DIR_DEL_BOTH         "Löscht ausgewählte Objekte auf beiden Seiten."
@@ -2009,9 +2009,9 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Fügt Objekte von der rechten Seite zum Archiv hinzu."
     ID_DIR_ZIP_BOTH         "Fügt Objekte von beiden Seiten zum Archiv hinzu."
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Fügt unterschiedliche Objekte zum Archiv hinzu (beide Seiten)."
-    ID_DIR_MOVE_LEFT_TO_BROWSE 
+    ID_DIR_MOVE_LEFT_TO_BROWSE
                             "Verschiebt die ausgewählte Datei in ein beliebiges Verzeichnis."
-    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
                             "Verschiebt die ausgewählte Datei in ein beliebiges Verzeichnis."
 END
 
@@ -2026,8 +2026,8 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Erweiterung"
     IDS_COLHDR_LSIZE        "Linke Größe"
     IDS_COLHDR_RSIZE        "Rechte Größe"
-    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
-    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+    IDS_COLHDR_RSIZE_SHORT  "Rechte Größe (Kurz)"
+    IDS_COLHDR_LSIZE_SHORT  "Linke Größe (Kurz)"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
@@ -2057,7 +2057,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Dateien können nicht verglichen werden"
-    IDS_ABORTED_ITEM        "Item aborted"
+    IDS_ABORTED_ITEM        "Objekt abgebrochen"
     IDS_FILE_SKIPPED        "Datei übersprungen"
     IDS_DIR_SKIPPED         "Verzeichnis übersprungen"
     IDS_ONLY_IN_FMT         "Nur in %1"
@@ -2089,8 +2089,8 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Dateierweiterung."
     IDS_COLDESC_LSIZE       "Linke Dateigröße in Byte."
     IDS_COLDESC_RSIZE       "Rechte Dateigröße in Byte."
-    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
-    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+    IDS_COLDESC_LSIZE_SHORT "Linke Dateigröße gekürzt."
+    IDS_COLDESC_RSIZE_SHORT "Rechte Dateigröße gekürzt."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
@@ -2123,7 +2123,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Komma-getrennte Liste"
     IDS_REPORT_TABLIST      "Tab-getrennte Liste"
     IDS_REPORT_SIMPLEHTML   "Einfaches HTML"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_FILEOVERWRITE
                             "Der Bericht existiert bereits. Überschreiben?"
     IDS_REPORT_ERROR        "Fehler beim Erzeugen des Berichtes:\n%1"
     IDS_REPORT_SUCCESS      "Der Bericht wurde erfolgreich geschrieben."
@@ -2134,7 +2134,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Die gleiche Datei ist in beiden Feldern ausgewählt."
     IDS_FILESSAME           "Die ausgewählten Dateien sind identisch."
-    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
+    IDS_FOLDERUNIQUE        "Der ausgewählte Ordner besteht nur in einer Seite und kann deshalb nicht geöffnet werden."
     IDS_FILEERROR           "Beim Vergleichen der Dateien ist ein Fehler aufgetreten."
     IDS_FILEBINARY          "Binärdateien können nicht visuell verglichen werden."
     IDS_TEMP_FILEERROR      "Temporäre Dateien konnten nicht erzeugt werden. Überprüfen Sie Ihre Einstellungen für temporäre Dateien."
@@ -2147,8 +2147,8 @@ BEGIN
                             (erreichbar unter Bearbeiten/Einstellungen)."
     IDS_SUGGEST_PRESERVEEOL "Die Zeilenumbrüche in der Datei '%1' sind von unterschiedlichen Formaten (DOS/UNIX/MAC).\nMit den aktuellen Einstellungen werden sie zum Hauptformat vereinheitlicht.\nMöchten Sie die Einstellungen ändern und das Mischen der Zeilenumbruch-Formate erlauben?"
     IDS_PREDIFFER_ERROR      "Ein Fehler trat beim Prediffing der Datei '%1' mit dem Plugin '%2' auf. Das Prediffing wird daher nicht mehr angewendet."
-    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
-    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
+    IDS_INVALID_DIRECTORY   "Der ausgewählte Ordner ist ungültig."
+    IDS_CANNOT_OPEN_BINARYFILE  "Kann keine Binärdatei im Editor öffnen."
 END
 
 // Encoding issues
@@ -2180,10 +2180,10 @@ BEGIN
 END
 
 // FILE COMPARE: PANE CAPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_LOCBAR_CAPTION      "Location Pane"
-    IDS_DIFFBAR_CAPTION     "Diff Pane"
+    IDS_LOCBAR_CAPTION      "Positionsleiste"
+    IDS_DIFFBAR_CAPTION     "Unterschiedsleiste"
 END
 
 // CREATE PATCH
@@ -2214,12 +2214,12 @@ BEGIN
                             Entnehmen Sie dem Handbuch mehr Informationen über die Archiv-Unterstützung und wie sie aktiviert wird."
     IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
     IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
-    IDS_OPT_EXPORT_CAPTION  "Select file for export"
-    IDS_OPT_IMPORT_CAPTION  "Select file for import"
-    IDS_OPT_IMPORT_DONE     "Options imported from the file."
-    IDS_OPT_EXPORT_DONE     "Options exported to the file."
-    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
-    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
+    IDS_OPT_EXPORT_CAPTION  "Datei zum Exportieren auswählen"
+    IDS_OPT_IMPORT_CAPTION  "Datei zum Importieren auswählen"
+    IDS_OPT_IMPORT_DONE     "Einstellungen aus der Datei importiert."
+    IDS_OPT_EXPORT_DONE     "Einstellungen in die Datei exportiert."
+    IDS_OPT_IMPORT_ERR      "Konnte die Einstellungen nicht aus der Datei importieren."
+    IDS_OPT_EXPORT_ERR      "Konnte die Einstellungen nicht in die Datei exportieren."
 END
 
 // Regular expression errors
@@ -2570,8 +2570,8 @@ BEGIN
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
     ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
-    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
-    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
+    ID_VIEW_SWAPPANES       "Vertauscht die Position der beiden Ausschnitte."
+    ID_VIEW_WORDWRAP        "Aktiviert das Umbrechen der Zeilen.\nZeilen umbrechen"
 END
 
 // MERGE MENU
