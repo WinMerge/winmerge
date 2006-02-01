@@ -1,3 +1,9 @@
+2006-02-01 Kimmo
+ PATCH: [ 1419329 ] Select Line Difference
+  Src: Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h MergeEditView.cpp
+   MergeEditView.h resource.h
+  Src/Language: */Merge*.rc
+
 2006-02-01 Perry
  BUG: [ 1419317 ] link error on 8-bit cvs trunk
   Add HtmlHelp.lib to link lines MergeRelease, MergeDebug, MergeUnicodeRelease.

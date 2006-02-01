@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "Copia a la &dreta",            ID_L2R
         MENUITEM "Copia a l'&esquerra",          ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Re&ssalta les paraules diferents de la línia", ID_SHOWLINEWORDDIFF
-        MENUITEM "Ress&alta els caracters diferents de la línia", ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Desfés",                      ID_EDIT_UNDO
         MENUITEM "Re&fés",                       ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "C&opia\tControl+C",              ID_EDIT_COPY
         MENUITEM "Engan&xa\tControl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Selecciona-ho &tot\tControl+A",  ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "R&essalta les paraules diferents de la línia\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Re&ssalta els caracters diferents de la línia\tMaj+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Cerca...\tControl+F",           ID_EDIT_FIND
         MENUITEM "Subst&itueix...\tControl+H",     ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1497,7 +1493,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2558,8 +2554,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Ressalta les paraules diferents a la línia actual\nParaules diferents a la línia actual (F4)"
-    ID_SHOWLINECHARDIFF     "Ressalta els caracters diferents a la línia actual\nCaracters diferents a la línia actual (Maj+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Control+G)"
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"

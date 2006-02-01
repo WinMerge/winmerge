@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "Kopiuj na praw¹",              ID_L2R
         MENUITEM "Kopiuj na lew¹",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Podœwietl ró¿nicê s³owa w linii",   ID_SHOWLINEWORDDIFF
-        MENUITEM "Po&dœwietl ró¿nicê znaku w linii",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Cofnij",                      ID_EDIT_UNDO
         MENUITEM "&Powtórz",                     ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "&Kopiuj\tCtrl+C",             ID_EDIT_COPY
         MENUITEM "Wk&lej\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Wybierz &wszystkie\tCtrl+A",         ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "&Podœwietl ró¿nicê s³owa w linii\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Podœ&wietl ró¿nicê znaku w linii\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "W&yszukaj...\tCtrl+F",        ID_EDIT_FIND
         MENUITEM "&Zast¹p...\tCtrl+H",          ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2539,8 +2535,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Podœwietl ró¿nice s³ów w bie¿¹cej linii\nRó¿nice s³ów w bie¿¹cej linii (F4)"
-    ID_SHOWLINECHARDIFF     "Podœwietl ró¿nice znaków w bie¿¹cej linii\nRó¿nice znaków w bie¿¹cej linii (Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "PrzejdŸ do linii lub ró¿nicy\nIdŸ do (Ctrl+G)"
     ID_OPTIONS              "Ustaw opcje programu\nOpcje"
     ID_REFRESH              "Odœwie¿ podgl¹d\nOdœwie¿ (F5)"

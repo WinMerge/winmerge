@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "&Nach rechts kopieren",       ID_L2R
         MENUITEM "N&ach links kopieren",        ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Zeilen-Wortunterschied &hervorheben", ID_SHOWLINEWORDDIFF
-        MENUITEM "Zeilen-&Zeichenunterschied hervorheben", ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Rückgängig",                 ID_EDIT_UNDO
         MENUITEM "&Wiederherstellen",           ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "&Kopieren\tStrg+C",           ID_EDIT_COPY
         MENUITEM "E&infügen\tStrg+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Alles &markieren\tStrg+A",    ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "Zeilen-Wortunterschied &hervorheben\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Zeilen-&Zeichenunterschied hervorheben\tUmschalt+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
         MENUITEM "Erse&tzen...\tStrg+H",        ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2539,8 +2535,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Hebt den Wortunterschied in der aktuellen Zeile hervor.\nWortunterschied in der aktuellen Zeile (F4)"
-    ID_SHOWLINECHARDIFF     "Hebt den Zeichenunterschied in der aktuellen Zeile hervor.\nZeichenunterschied in der aktuellen Zeile (Umschalt+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Geht zur Zeile oder zum Unterschied.\nGehe nach (Strg+G)"
     ID_OPTIONS              "Nimmt Programm-Einstellungen vor.\nEinstellungen"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"

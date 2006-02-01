@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "Kopírovat vp&ravo",           ID_L2R
         MENUITEM "Kopírovat vl&evo",            ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff",   ID_SHOWLINEWORDDIFF
-        MENUITEM "H&ighlight Line Char Diff",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Zpet",                        ID_EDIT_UNDO
         MENUITEM "&Redo",                        ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "&Kopírovat\tCtrl+C",          ID_EDIT_COPY
         MENUITEM "V&ložit\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "&Highlight Line Word Diff\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Highlight Line Char Diff\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "F&ind...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "Repla&ce...\tCtrl+H",         ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2200,7 +2196,7 @@ BEGIN
     IDS_FILEWRITE_ERROR     "Could not write to file %1."
     IDS_PATH_NOT_ABSOLUTE   "The specified output path is not an absolute path: %1"
 	IDS_MUST_SPECIFY_OUTPUT "Specify an output file"
-    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a pactch file from binary files."
+    IDS_CANNOT_CREATE_BINARYPATCH "Cannot create a patch file from binary files."
     IDS_CANNOT_CREATE_DIRPATCH "Cannot create a patch file from directories."
     IDS_SAVEFILES_FORPATCH  "Please save all files first.\n\nCreating a patch requires that there are no unsaved changes in files."
 	IDS_FOLDER_NOTEXIST     "Folder does not exist."
@@ -2539,8 +2535,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Highlight word difference in current line\nWord Diff in Current Line (F4)"
-    ID_SHOWLINECHARDIFF     "Highlight char difference in current line\nChar Diff in Current Line (Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Go to line or difference\nGo to (Ctrl+G)"
     ID_OPTIONS              "Nastavit možnosti programu\nOptions"
     ID_REFRESH              "Refresh display\nRefresh (F5)"

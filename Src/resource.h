@@ -849,8 +849,7 @@
 #define ID_EOL_TO_UNIX                  32775
 #define ID_EOL_TO_MAC                   32776
 #define ID_FILE_MERGINGMODE             32777
-#define ID_SHOWLINEWORDDIFF             32783
-#define ID_SHOWLINECHARDIFF             32784
+#define ID_SELECTLINEDIFF               32784
 #define ID_EDIT_WMGOTO                  32785
 #define ID_OPTIONS                      32786
 #define ID_REFRESH                      32787

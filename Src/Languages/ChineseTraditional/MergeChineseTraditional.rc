@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "複製到右邊(&R)",              ID_L2R
         MENUITEM "複製到左邊(&L)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "強調列的字不同(&H)",          ID_SHOWLINEWORDDIFF
-        MENUITEM "強調列的字元不同(&I)",        ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "復原(&U)",                    ID_EDIT_UNDO
         MENUITEM "重做(&R)",                    ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "複製(&C)\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "貼上(&P)\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "全選(&A)\tCtrl+A",            ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "強調列的字不同(&H)\tF4",      ID_SHOWLINEWORDDIFF
-        MENUITEM "強調列的字元不同(&H)\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "尋找(&I)...\tCtrl+F",         ID_EDIT_FIND
         MENUITEM "取代(&C)...\tCtrl+H",         ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2534,8 +2530,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF                   "在目前列強調字不同\n在目前列字不同 (F4)"
-    ID_SHOWLINECHARDIFF                   "在目前列強調字元不同\n在目前列字元不同 (Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "移至列或不同\n移至 (Ctrl+G)"
     ID_OPTIONS              "設定程式選項\n選項"
     ID_REFRESH              "更新顯示\n更新 (F5)"

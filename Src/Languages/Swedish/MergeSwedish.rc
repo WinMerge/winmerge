@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "Kopiera till &höger",         ID_L2R
         MENUITEM "Kopiera till &vänster",       ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Markera ordskillnad på rad", ID_SHOWLINEWORDDIFF
-        MENUITEM "M&arkera teckenskillnad på rad", ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Ångra",                      ID_EDIT_UNDO
         MENUITEM "&Gör om",                     ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "K&opiera\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "K&listra in\tCtrl+V",         ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Välj &allt\tCtrl+A",         ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "&Markera ordskillnad på rad\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "&Markera teckenskillnad på rad\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "S&ök...\tCtrl+F",             ID_EDIT_FIND
         MENUITEM "&Ersätt...\tCtrl+H",          ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2539,8 +2535,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Markerar ordskillnad på aktuell rad\nOrdskillnad på aktuell rad (F4)"
-    ID_SHOWLINECHARDIFF     "Markerar teckenskillnad på aktuell rad\nTeckenskillnad på aktuell rad (Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Går till rad eller skillnad\nGå till (Ctrl+G)"
     ID_OPTIONS              "Ändrar programinställningar\nEgenskaper"
     ID_REFRESH              "Uppdaterar innehållet\nUppdatera (F5)"

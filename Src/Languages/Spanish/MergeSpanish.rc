@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "Copiar al lado &derecho",      ID_L2R
         MENUITEM "Copiar al lado &izquierdo",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Resaltar pa&labras diferentes",   ID_SHOWLINEWORDDIFF
-        MENUITEM "Resaltar ca&racteres diferentes",   ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Des&hacer",                   ID_EDIT_UNDO
         MENUITEM "&Rehacer",                        ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "&Copiar\tCtrl+C",             ID_EDIT_COPY
         MENUITEM "&Pegar\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "&Seleccionar todo\tCtrl+A",         ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "Resaltar pa&labras diferentes\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Resaltar ca&racteres diferentes\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Buscar...\tCtrl+F",            ID_EDIT_FIND
         MENUITEM "R&eemplazar...\tCtrl+H",         ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2539,8 +2535,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Resaltar las palabras diferentes en la línea actual\nPalabras dif. en línea actual(F4)"
-    ID_SHOWLINECHARDIFF     "Resaltar los caracteres diferentes en la línea actual\nCaracteres dif. en línea actual(Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Ir a línea o diferencia\nIr a (Ctrl+G)"
     ID_OPTIONS              "Especificar propiedades de la aplicación\nConfiguración"
     ID_REFRESH              "Refrescar la vista\nRefrescar(F5)"

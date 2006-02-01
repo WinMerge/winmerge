@@ -101,8 +101,7 @@ BEGIN
         MENUITEM "Copier vers la &droite",       ID_L2R
         MENUITEM "Copier vers la &gauche",       ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Disti&nguer les mots d'une ligne",        ID_SHOWLINEWORDDIFF
-        MENUITEM "Distingu&er les caractères d'une ligne",  ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Ann&uler",                     ID_EDIT_UNDO
         MENUITEM "&Rétablir",                    ID_EDIT_REDO
@@ -336,10 +335,8 @@ BEGIN
         MENUITEM "Co&pier\tCtrl+C",              ID_EDIT_COPY
         MENUITEM "Co&ller\tCtrl+V",              ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "Sélectionner &tout\tCtrl+A",   ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "Disti&nguer les mots d'une ligne\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Distingu&er les caractères d'une ligne\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Rechercher...\tCtrl+F",       ID_EDIT_FIND
         MENUITEM "Re&mplacer...\tCtrl+H",        ID_EDIT_REPLACE
@@ -572,8 +569,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1475,7 +1471,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -1761,21 +1757,6 @@ BEGIN
     IDS_CMDLINE_LEFTPATH  "CheminGauche est le répertoire ou le fichier à ouvrir du côté gauche"
     IDS_CMDLINE_RIGHTPATH  "CheminDroit  est le répertoire ou le fichier à ouvrir du côté droit"
     IDS_CMDLINE_OUTPUTPATH "CheminSortie est un répertoire optionel où enregistrer les fichiers fusionnés"
-    IDS_QUICKHELP           "Syntaxe : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr] [/f masque/filtre] [/dl description] [/dr description] CheminGauche CheminDroit [CheminSortie]\n\noù:
-      /? or -? affiche cet aide
-      /r or -r indique de comparer recursivement les répertoires
-      /e or -e permet la fermeture avec la touche esc
-      /f or -f défini un masque ou un filtre, de fichier pour comparer
-      /ul or -ul indique de ne pas ajouter le chemin de gauche à mes documents récents
-      /ur or -ur indique de ne pas ajouter le chemin de droite à mes documents récents
-      /ub or -ub indique de ne pas ajouter les deux chemins à mes documents récents
-      /wl or -wl ouvre initialement le côté gauche en leture seulement
-      /wr or -wr ouvre initialement le côté droit  en leture seulement
-      /dl or -dl indique une description plutot que le chemin complet pour le côté gauche
-      /dr or -dr indique une description plutot que le chemin complet pour le côté droit
-      CheminGauche est le répertoire ou le fichier à ouvrir du côté gauche
-      CheminDroit  est le répertoire ou le fichier à ouvrir du côté droit
-      CheminSortie est un répertoire optionel où enregistrer les fichiers fusionnés"
     IDS_UNICODE             "Unicode"
 END
 
@@ -2550,8 +2531,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Distinguer les mots de la ligne courante\nMots différents de la ligne courante (F4)"
-    ID_SHOWLINECHARDIFF     "Distinguer les caractères de la ligne courante\nCaractères différents de la ligne courante (Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Atteindre une ligne ou une différence\nAtteindre (Ctrl+G)"
     ID_OPTIONS              "Modifier les préférences du programme\nPréférences"
     ID_REFRESH              "Actualiser l'affichage\nActualiser (F5)"

@@ -252,10 +252,8 @@ protected:
 	afx_msg void OnUpdateFileSaveRight(CCmdUI* pCmdUI);
 	afx_msg void OnRefresh();
 	afx_msg void OnUpdateFileSave(CCmdUI* pCmdUI);
-	afx_msg void OnShowlineworddiff();
-	afx_msg void OnShowlinechardiff();
-	afx_msg void OnUpdateShowlineworddiff(CCmdUI* pCmdUI);
-	afx_msg void OnUpdateShowlinechardiff(CCmdUI* pCmdUI);
+	afx_msg void OnSelectLineDiff();
+	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnUpdateEditReplace(CCmdUI* pCmdUI);
 	afx_msg void OnLeftReadOnly();

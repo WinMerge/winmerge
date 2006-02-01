@@ -103,8 +103,7 @@ BEGIN
         MENUITEM "Скопировать на &правую панель", ID_L2R
         MENUITEM "Скопировать на &левую панель", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Подсветить словарные отличия в линии", ID_SHOWLINEWORDDIFF
-        MENUITEM "Подсветить с&имвольные отличия в линии", ID_SHOWLINECHARDIFF
+        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Отмена",                     ID_EDIT_UNDO
         MENUITEM "В&ернуть",                    ID_EDIT_REDO
@@ -338,10 +337,8 @@ BEGIN
         MENUITEM "&Копировать\tCtrl+C",         ID_EDIT_COPY
         MENUITEM "&Вставить\tCtrl+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
+        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
         MENUITEM "В&ыбрать Все\tCtrl+A",        ID_EDIT_SELECT_ALL
-        MENUITEM SEPARATOR
-        MENUITEM "&Подсветить словарные отличия в линии\tF4", ID_SHOWLINEWORDDIFF
-        MENUITEM "Подсветить с&имвольные отличия в линии\tShift+F4", ID_SHOWLINECHARDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Найти...\tCtrl+F",           ID_EDIT_FIND
         MENUITEM "&Заменить...\tCtrl+H",        ID_EDIT_REPLACE
@@ -574,8 +571,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
-    VK_F4,          ID_SHOWLINEWORDDIFF,    VIRTKEY, NOINVERT
-    VK_F4,          ID_SHOWLINECHARDIFF,    VIRTKEY, SHIFT, NOINVERT
+    VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
@@ -1479,7 +1475,7 @@ BEGIN
     BUTTON      ID_EDIT_UNDO
     BUTTON      ID_EDIT_REDO
     SEPARATOR
-    BUTTON      ID_SHOWLINEWORDDIFF
+    BUTTON      ID_SELECTLINEDIFF
     SEPARATOR
     BUTTON      ID_NEXTDIFF
     BUTTON      ID_PREVDIFF
@@ -2532,8 +2528,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SHOWLINEWORDDIFF     "Подсветить словарные отличия в текущей строке\nСловарное отличие в текущей строке (F4)"
-    ID_SHOWLINECHARDIFF     "Подсветить символьные отличия в текущей строке\nСимвольное отличие в текущей строке (Shift+F4)"
+    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
     ID_EDIT_WMGOTO          "Перейти на строку или отличие\nGo to (Ctrl+G)"
     ID_OPTIONS              "Установить программные настройки\nНастройки"
     ID_REFRESH              "Обновить экран\nRefresh (F5)"

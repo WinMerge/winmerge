@@ -56,10 +56,8 @@ BEGIN_MESSAGE_MAP(CMergeDiffDetailView, CCrystalTextView)
 	//{{AFX_MSG_MAP(CMergeDiffDetailView)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_REFRESH, OnRefresh)
-	ON_COMMAND(ID_SHOWLINEWORDDIFF, OnShowlineworddiff)
-	ON_COMMAND(ID_SHOWLINECHARDIFF, OnShowlinechardiff)
-	ON_UPDATE_COMMAND_UI(ID_SHOWLINEWORDDIFF, OnUpdateShowlineworddiff)
-	ON_UPDATE_COMMAND_UI(ID_SHOWLINECHARDIFF, OnUpdateShowlinechardiff)
+	ON_COMMAND(ID_SELECTLINEDIFF, OnSelectLineDiff)
+	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
 	//}}AFX_MSG_MAP
@@ -559,32 +557,28 @@ BOOL CMergeDiffDetailView::PreTranslateMessage(MSG* pMsg)
 	return CCrystalTextView::PreTranslateMessage(pMsg);
 }
 
-/// Highlight difference in current line
-void CMergeDiffDetailView::OnShowlineworddiff() 
+/**
+ * @brief Select linedifference in the current line.
+ *
+ * Select line difference in current line. Selection type
+ * is choosed by highlight type.
+ */
+void CMergeDiffDetailView::OnSelectLineDiff() 
 {
+	CMergeDoc::DIFFLEVEL level = CMergeDoc::BYTEDIFF;
+	if (GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS))
+		level = CMergeDoc::WORDDIFF;
+
 	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this, CMergeDoc::WORDDIFF);
+	GetDocument()->Showlinediff(this, level);
 }
 
-/// Highlight difference in current line
-void CMergeDiffDetailView::OnShowlinechardiff() 
-{
-	// Pass this to the document, to compare this file to other
-	GetDocument()->Showlinediff(this, CMergeDoc::BYTEDIFF);
-}
-
-/// Enable highlight menuitem if current line is flagged as having a difference
-void CMergeDiffDetailView::OnUpdateShowlineworddiff(CCmdUI* pCmdUI) 
+/// Enable select difference menuitem if current line is inside difference.
+void CMergeDiffDetailView::OnUpdateSelectLineDiff(CCmdUI* pCmdUI) 
 {
 	int line = GetCursorPos().y;
-	BOOL enable = GetLineFlags(line) & LF_DIFF;
+	BOOL enable = (GetLineFlags(line) & LF_DIFF) != 0;
 	pCmdUI->Enable(enable);
-}
-
-/// Enable highlight menuitem if current line is flagged as having a difference
-void CMergeDiffDetailView::OnUpdateShowlinechardiff(CCmdUI* pCmdUI) 
-{
-	OnUpdateShowlineworddiff(pCmdUI);
 }
 
 void CMergeDiffDetailView::PushCursors()
