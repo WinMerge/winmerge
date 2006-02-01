@@ -1,3 +1,8 @@
+2006-02-01 Perry
+ BUG: [ 1419317 ] link error on 8-bit cvs trunk
+  Add HtmlHelp.lib to link lines MergeRelease, MergeDebug, MergeUnicodeRelease.
+  Src: Merge.dsp
+
 2006-01-31 Tim
  PATCH: [ 1419171 ] Various Updates in German Translation for WinMerge 2.5
   Src/Languages/German: MergeGerman.rc
