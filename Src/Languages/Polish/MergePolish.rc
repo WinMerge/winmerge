@@ -1030,7 +1030,7 @@ BEGIN
 END
 
 IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE |
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
 CAPTION " Postêp porównania folderów"
@@ -1127,7 +1127,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "Poziom &s³ów:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1239,7 +1239,7 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
     CONTROL         "Pobieranie wtyczek",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
-    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1278,50 +1278,50 @@ BEGIN
     RTEXT           "U¿ytkownika 1:",IDC_STATIC,0,160,70,8
     RTEXT           "U¿ytkownika 2:",IDC_STATIC,0,180,70,8
     CTEXT           "Tekst",IDC_STATIC,73,7,34,8
-    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Pogrubienie",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pogrubienie",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,21,55,10
-    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Pogrubienie",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
-    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Pogrubienie",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pogrubienie",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,60,55,10
-    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Pogrubienie",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pogrubienie",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,80,55,10
-    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Pogrubienie",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
-    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Pogrubienie",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pogrubienie",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,120,55,10
-    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Pogrubienie",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Pogrubienie",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pogrubienie",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,160,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Pogrubienie",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Pogrubienie",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,180,55,10
     PUSHBUTTON      "Domyœlne",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
@@ -1333,11 +1333,11 @@ CAPTION "Raport porównania folderów"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&Plik raportu:",IDC_STATIC,7,7,37,8
-    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL |
                     CBS_AUTOHSCROLL | WS_TABSTOP
     PUSHBUTTON      "Przegl¹daj...",IDC_REPORT_BROWSEFILE,211,18,50,14
     LTEXT           "&Styl:",IDC_STATIC,7,37,18,8
-    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
     PUSHBUTTON      "Anuluj",IDCANCEL,211,60,50,14
@@ -1369,17 +1369,17 @@ BEGIN
     CONTROL         "&W³¹cz wsparcie dla archiwów",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
     CONTROL         "&U¿yj stacjonarnego 7-Zip, jeœli dostêpny",
-                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
+                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP | WS_TABSTOP,19,48,209,10
     CONTROL         "U¿y&j lokalnego 7-Zip z folderu WinMerge",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
     CONTROL         "Wy&krywaj typ archiwum z sygnatury pliku",
-                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
+                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,70,221,10
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Statystyki porównania"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1719,13 +1719,13 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-    IDS_OPTIONSPG_GENERAL     "Ogólne"
-    IDS_OPTIONSPG_COMPARE     "Porównaj"
-    IDS_OPTIONSPG_EDITOR      "Edytor"
-    IDS_OPTIONSPG_COLORS      "Kolory"
-    IDS_OPTIONSPG_SYSTEM      "System"
+    IDS_OPTIONSPG_GENERAL   "Ogólne"
+    IDS_OPTIONSPG_COMPARE   "Porównaj"
+    IDS_OPTIONSPG_EDITOR    "Edytor"
+    IDS_OPTIONSPG_COLORS    "Kolory"
+    IDS_OPTIONSPG_SYSTEM    "System"
     IDS_OPTIONSPG_VERSIONCONTROL "Kontrola wersji"
-    IDS_OPTIONSPG_CODEPAGE     "Strona kodowa"
+    IDS_OPTIONSPG_CODEPAGE  "Strona kodowa"
     IDS_OPTIONSPG_SYNTAXCOLORS "Kolory sk³adni"
     IDS_OPTIONSPG_ARCHIVE   "Wsparcie dla archiwów"
 END
@@ -2123,7 +2123,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Lista z przecinkami"
     IDS_REPORT_TABLIST      "Lista z tabulatorami"
     IDS_REPORT_SIMPLEHTML   "Prosty HTML"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_FILEOVERWRITE
                             "Plik raportu ju¿ istnieje. Czy chcesz nadpisaæ istniej¹cy plik ?"
     IDS_REPORT_ERROR        "B³¹d przy tworzeniu raportu:\n%1"
     IDS_REPORT_SUCCESS      "Raport zosta³ pomyœlnie utworzony."
@@ -2180,7 +2180,7 @@ BEGIN
 END
 
 // FILE COMPARE: PANE CAPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LOCBAR_CAPTION      "Okno lokacji"
     IDS_DIFFBAR_CAPTION     "Okno Diff"
@@ -2577,7 +2577,7 @@ END
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "Przewiñ do poprzedniej róznicy\nPoprz. Ró¿n. ( Alt Up )" 
+    ID_PREVDIFF             "Przewiñ do poprzedniej róznicy\nPoprz. Ró¿n. ( Alt Up )"
     ID_NEXTDIFF             "Przewiñ do nastêpnej ró¿nicy\nNast. ró¿n. (Alt Down)"
     ID_FIRSTDIFF            "Przewiñ do pierwszej ró¿nicy\nPierwsza (Alt+Home)"
     ID_CURDIFF              "Przewiñ do bie¿¹cej ró¿nicy\nBie¿¹ca (Alt+Enter)"

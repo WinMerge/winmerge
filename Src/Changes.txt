@@ -12,6 +12,8 @@
   Src: MainFrm.cpp OpenDlg.cpp paths.cpp paths.h
  Cosmetic: synchronizing whitespace to English version
   Src/Languages/*: MergeTurkish.rc MergeSwedish.rc MergeSpanish.rc
+ Cosmetic: synchronizing whitespace to English version
+  Src/Languages/*: MergePolish.rc
 
 2006-01-31 Tim
  PATCH: [ 1419171 ] Various Updates in German Translation for WinMerge 2.5
