@@ -1,3 +1,8 @@
+2006-02-01 Perry
+ PATCH: [ 1412386 ] Adding readme files
+  Moved readme.txt to Changes_old.txt & added real readme.txt
+  InnoSetup: Changes_old.txt readme.txt
+
 2006-01-30 Kimmo
  PATCH: [ 1417858 ] Fix manual path
   InnoSetup: WinMerge.iss

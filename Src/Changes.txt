@@ -1,3 +1,8 @@
+2006-02-01 Perry
+ PATCH: [ 1412386 ] Adding readme files
+  New WinMerge/readme.txt
+  (Various other directories affected -- readme.txt & Changes.txt files)
+
 2006-02-01 Kimmo
  PATCH: [ 1419329 ] Select Line Difference
   Src: Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h MergeEditView.cpp

@@ -2,3 +2,6 @@ diff2winmerge
 
 2006-01-22, Perry Rapp
  Committed to WinMerge cvs
+ Initial version, initial files:
+   Changes.txt ReadMe.txt Resource.h StdAfx.cpp StdAfx.h diff2winmerge.cpp
+   diff2winmerge.dsp diff2winmerge.h diff2winmerge.rc
