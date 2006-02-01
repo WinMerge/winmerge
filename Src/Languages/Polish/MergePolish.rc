@@ -604,7 +604,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "O programie WinMerge"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     LTEXT           "Wersja 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(kompilacja prywatna)",IDC_PRIVATEBUILD,63,33,153,8
@@ -622,17 +622,17 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
 CAPTION "Wybierz pliki lub katalogi..."
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&Lewa:",IDC_STATIC,13,24,30,8
+    RTEXT           "&Lewa:",IDC_STATIC,13,24,40,8
     COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "&Szukaj...",IDC_LEFT_BUTTON,242,22,50,12
-    RTEXT           "&Prawa:",IDC_STATIC,13,40,24,8
+    RTEXT           "&Prawa:",IDC_STATIC,13,40,40,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
     PUSHBUTTON      "S&zukaj...",IDC_RIGHT_BUTTON,242,38,50,12
-    RTEXT           "&Filtr:",IDC_STATIC,13,56,43,8
+    RTEXT           "&Filtr:",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     PUSHBUTTON      "Wybierz...",IDC_SELECT_FILTER,242,54,50,12
@@ -672,9 +672,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Zastosuj do wszystkich",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "SprawdŸ",IDOK,53,145,50,14
-    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,123,145,68,14
-    PUSHBUTTON      "Anuluj",IDCANCEL,193,145,68,14
+    DEFPUSHBUTTON   "SprawdŸ",IDOK,91,145,50,14
+    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,145,145,50,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,200,145,50,14
 END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
@@ -696,12 +696,12 @@ CAPTION "Ogólne"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Kopia zapasowa orygina³u",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,145,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "PrzejdŸ automatycznie do pierwszej ró¿nicy",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,183,10
+                    17,206,10
     CONTROL         "&Wy³¹cz ekran powitalny",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,100,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "Zam&knij okna klawiszem ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Automatycznie weryfikuj œcie¿ki w oknie Otwórz",
@@ -747,7 +747,7 @@ BEGIN
     CONTROL         "Wielkoœæ &liter",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "Wyra¿enie &regularne",IDC_EDIT_REGEXP,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
     GROUPBOX        "Kierunek",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "Do &góry",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,154,34,57,10
@@ -757,7 +757,7 @@ BEGIN
     PUSHBUTTON      "Anuluj",IDCANCEL,226,24,50,14
 END
 
-IDD_EDIT_REPLACE DIALOGEX 36, 44, 311, 90
+IDD_EDIT_REPLACE DIALOGEX 36, 44, 304, 90
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Zast¹p"
@@ -782,24 +782,24 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "Ca³y &plik",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,154,61,80,10
-    DEFPUSHBUTTON   "&Nastêpny",IDC_EDIT_SKIP,247,4,57,14,WS_GROUP
-    PUSHBUTTON      "&Zast¹p",IDC_EDIT_REPLACE,247,24,57,14
-    PUSHBUTTON      "&Wszystkie",IDC_EDIT_REPLACE_ALL,247,41,57,14
-    PUSHBUTTON      "Anuluj",IDCANCEL,247,58,57,14
+    DEFPUSHBUTTON   "&Nastêpny",IDC_EDIT_SKIP,247,7,50,14,WS_GROUP
+    PUSHBUTTON      "&Zast¹p",IDC_EDIT_REPLACE,247,24,50,14
+    PUSHBUTTON      "&Wszystkie",IDC_EDIT_REPLACE_ALL,247,41,50,14
+    PUSHBUTTON      "Anuluj",IDCANCEL,247,58,50,14
 END
 
-IDD_CLEARCASE DIALOGEX 0, 0, 279, 111
+IDD_CLEARCASE DIALOGEX 0, 0, 279, 134
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "SprawdŸ",IDOK,114,115,50,14
+    DEFPUSHBUTTON   "SprawdŸ",IDOK,169,115,50,14
     PUSHBUTTON      "Anuluj",IDCANCEL,223,115,50,14
-    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,168,115,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,169,115,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Komentarze",IDC_STATIC,18,7,56,10
+    LTEXT           "Komentarze",IDC_STATIC,18,7,54,10
     CONTROL         "Zastosuj do wszystkich",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
     CONTROL         "CheckIn po CheckOut",IDC_CHECKIN,"Button",
@@ -1090,14 +1090,14 @@ BEGIN
     CONTROL         "W³¹cz &wykrywanie przeniesionych bloków",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "&Metoda porównania plików:",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,1109,103,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Zatrzymaj po pierwszej ró¿nicy",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     PUSHBUTTON      "Domyœlne",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Edytor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1120,14 +1120,14 @@ BEGIN
     CONTROL         "Wstaw spacje",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,137,10
     GROUPBOX        "Kolorowanie ró¿nic linii",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+                    221,61
     CONTROL         "Poka¿ ró¿nice linii",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "Poziom &znaków",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "Poziom &s³ów:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 

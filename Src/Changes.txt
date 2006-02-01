@@ -14,6 +14,9 @@
   Src/Languages/*: MergeTurkish.rc MergeSwedish.rc MergeSpanish.rc
  Cosmetic: synchronizing whitespace to English version
   Src/Languages/*: MergePolish.rc
+ Updating Polish dialog control layout to English (except where
+  would hinder appearance)
+  Src/Languages/*: MergePolish.rc
 
 2006-01-31 Tim
  PATCH: [ 1419171 ] Various Updates in German Translation for WinMerge 2.5
