@@ -521,3 +521,13 @@ CString paths_EnsurePathExist(CString sPath)
 	else
 		return _T("");
 }
+
+/** @brief Return Windows directory as CString */
+CString paths_GetWindowsDirectory()
+{
+	CString str;
+	GetWindowsDirectory(str.GetBuffer(MAX_PATH), MAX_PATH);
+	str.ReleaseBuffer();
+	return str;
+}
+

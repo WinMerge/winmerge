@@ -27,5 +27,6 @@ CString paths_GetLastSubdir(CString path);
 bool IsSlash(LPCTSTR pszStart, int nPos);
 BOOL paths_IsPathAbsolute(const CString &path);
 CString paths_EnsurePathExist(CString sPath);
+CString paths_GetWindowsDirectory();
 
 #endif // paths_h_included

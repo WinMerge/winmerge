@@ -2489,10 +2489,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
  */
 CString CMainFrame::GetDefaultEditor()
 {
-	CString path;
-	GetWindowsDirectory(path.GetBuffer(MAX_PATH), MAX_PATH);
-	path.ReleaseBuffer();
-	path += _T("\\NOTEPAD.EXE");
+	CString path = paths_GetWindowsDirectory() + _T("\\NOTEPAD.EXE");
 	return path;
 }
 

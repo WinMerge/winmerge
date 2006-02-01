@@ -424,6 +424,7 @@ BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder)
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
 
 	BOOL bRetVal = GetOpenFileName(&ofn);
+	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName
 
 	if (bRetVal)
 	{

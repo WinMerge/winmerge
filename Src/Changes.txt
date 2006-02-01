@@ -5,6 +5,11 @@
  PATCH: [ 1419582 ] Polish translation update for latest v2.5
   Contributed by dr_prozac
   Src/Languages/Polish: MergePolish.rc
+ PATCH: [ 1421018 ] Fix handle leak in GetOpenFileName
+ BUG: [ 1418765 ] 2.4.4.0U maintain opened a handle on folders
+  Adds new method paths_GetWindowsDirectory & resets current
+   directory to WINDIR after GetOpenFileName call
+  Src: MainFrm.cpp OpenDlg.cpp paths.cpp paths.h
 
 2006-01-31 Tim
  PATCH: [ 1419171 ] Various Updates in German Translation for WinMerge 2.5
