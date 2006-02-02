@@ -1,3 +1,8 @@
+2006-02-02 Perry
+ PATCH: [ 1422052 ] Correction of Swedish for 2.5.3.1+
+ Contributed by Hans Eriksson
+ Src/Languages/Swedish: Merge Swedish
+ 
 2006-02-01 Perry
  PATCH: [ 1412386 ] Adding readme files
   New WinMerge/readme.txt
