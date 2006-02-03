@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "DisplayXMLFiles"=".\DisplayXMLFiles.dsp" - Package Owner=<4>
+Project: "DisplayXMLFiles"=.\DisplayXMLFiles.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -14,11 +14,26 @@ Package=<4>
     Begin Project Dependency
     Project_Dep_Name expat_static
     End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name expat_maps_static
+    End Project Dependency
 }}}
 
 ###############################################################################
 
-Project: "expat_static"="..\..\..\Src\ExpatLib\expat_static.dsp" - Package Owner=<4>
+Project: "expat_maps_static"=..\..\..\Src\ExpatMapLib\expat_maps_static.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "expat_static"=..\..\..\Src\ExpatLib\expat_static.dsp - Package Owner=<4>
 
 Package=<5>
 {{{
