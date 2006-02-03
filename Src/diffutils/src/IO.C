@@ -213,6 +213,12 @@ slurp (current)
     }
 }
 
+static int
+ISWSPACE (char ch)
+{
+	return ch==' ' || ch=='\t';
+}
+
 /* Split the file into lines, simultaneously computing the equivalence class for
    each line. */
 static void
@@ -270,7 +276,7 @@ find_and_hash_each_line (current)
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
-		if (! isspace (c))
+		if (! ISWSPACE (c))
 		  h = HASH (h, isupper (c) ? tolower (c) : c);
 	      }
 	  else if (ignore_space_change_flag)
@@ -278,12 +284,36 @@ find_and_hash_each_line (current)
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
-		if (isspace (c))
+		if (ISWSPACE (c))
 		  {
-		    while (isspace (c = *p++))
-		      if (c == '\n' || (c == '\r' && *p != '\n'))
-			goto hashing_done;
-		    h = HASH (h, ' ');
+		    /* skip whitespace after whitespace */
+		    while (ISWSPACE (c = *p++))
+		      ;
+		    if (c=='\n')
+		      {
+			goto hashing_done; /* never hash trailing \n */
+		      }
+		    else if (c == '\r')
+		      {
+			/*
+			    \r must be hashed if !ignore_eol_diff
+			    Also, we must always advance to end of line
+			    which means we can only stop on \r if not
+			    followed by \n
+			*/
+			if (ignore_eol_diff)
+			  {
+			    if (*p == '\n') /* continue to LF after CR */
+			      continue;
+			    else
+			      goto hashing_done;
+			  }
+		      }
+		    else
+		      {
+			/* runs of whitespace not ending line hashed as one space */
+		        h = HASH (h, ' ');
+		      }
 		  }
 		/* c is now the first non-space.  */
 		h = HASH (h, isupper (c) ? tolower (c) : c);
@@ -303,7 +333,7 @@ find_and_hash_each_line (current)
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
-		if (! isspace (c))
+		if (! ISWSPACE (c))
 		  h = HASH (h, c);
 	      }
 	  else if (ignore_space_change_flag)
@@ -311,14 +341,39 @@ find_and_hash_each_line (current)
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
-		if (isspace (c))
+		if (ISWSPACE (c))
 		  {
-		    while (isspace (c = *p++))
-		      if (c == '\n' || (c == '\r' && *p != '\n'))
-			goto hashing_done;
-		    h = HASH (h, ' ');
+		    /* skip whitespace after whitespace */
+		    while (ISWSPACE (c = *p++))
+		      ;
+		    if (c=='\n')
+		      {
+			goto hashing_done; /* never hash trailing \n */
+		      }
+		    else if (c == '\r')
+		      {
+			/*
+			    \r must be hashed if !ignore_eol_diff
+			    Also, we must always advance to end of line
+			    which means we can only stop on \r if not
+			    followed by \n
+			*/
+			if (ignore_eol_diff)
+			  {
+			    if (*p == '\n') /* continue to LF after CR */
+			      continue;
+			    else
+			      goto hashing_done;
+			  }
+		      }
+		    else
+		      {
+			/* runs of whitespace not ending line hashed as one space */
+		        h = HASH (h, ' ');
+		      }
 		  }
 		/* c is now the first non-space.  */
+		/* c can be a \r (CR) if !ignore_eol_diff */
 		h = HASH (h, c);
 	      }
 	  else
@@ -367,6 +422,7 @@ find_and_hash_each_line (current)
 	    *bucket = i;
 	    break;
 	  }
+	/* "line_cmp" changed to "lines_differ" by diffutils 2.8.1 */
 	else if (eqs[i].hash == h
 		 && (eqs[i].length == length || varies)
 		 && ! line_cmp (eqs[i].line, eqs[i].length, ip, length))

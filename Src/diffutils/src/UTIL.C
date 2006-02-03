@@ -295,6 +295,13 @@ finish_output ()
   outfile = 0;
 }
 
+
+static int
+ISWSPACE (char ch)
+{
+	return ch==' ' || ch=='\t';
+}
+
 /* Compare two lines (typically one from each input file)
    according to the command line options.
    Return 1 if the lines differ, like `memcmp'.  */
@@ -347,7 +354,7 @@ line_cmp (s1, len1, s2, len2)
 	  if (ignore_all_space_flag)
 	    {
 	      /* For -w, just skip past any white space.  */
-	      while (isspace (c1) && c1 != '\n' && c1 != '\r') 
+	      while (ISWSPACE (c1))
 		{
 		  if (t1-s1<(int)len1)
 		    {
@@ -359,7 +366,7 @@ line_cmp (s1, len1, s2, len2)
 		      break;
 		    }
 		}
-	      while (isspace (c2) && c2 != '\n' && c2 != '\r') 
+	      while (ISWSPACE (c2))
 		{
 		  if (t2-s2<(int)len2)
 		    {
@@ -377,36 +384,46 @@ line_cmp (s1, len1, s2, len2)
 	      /* For -b, advance past any sequence of white space in line 1
 		 and consider it just one Space, or nothing at all
 		 if it is at the end of the line.  */
-	      if (isspace (c1) && c1 != '\r' && c1 != '\n')
+	      if (ISWSPACE (c1))
 		{
 		  while (t1-s1<(int)len1)
 		    {
 		      c1 = *t1++;
-		      if (! isspace (c1))
+		      if (c1 == '\r' || c1 == '\n')
+		        {
+			  /* ignore whitespace but handle \r below (depending on ignore_eol_diff) */
+			  break; 
+		        }
+		      if (! ISWSPACE (c1))
 			{
 			  --t1;
 			  c1 = ' ';
 			  break;
 			}
 		    }
-		  if (t1-s1==(int)len1)
+		  if (t1-s1==(int)len1 && c1 != '\r')
 		    c1 = 0;
 		}
 
 	      /* Likewise for line 2.  */
-	      if (isspace (c2) && c2 != '\r' && c2 != '\n')
+	      if (ISWSPACE (c2))
 		{
 		  while (t2-s2<(int)len2)
 		    {
 		      c2 = *t2++;
-		      if (! isspace (c2))
+		      if (c2 == '\r' || c2 == '\n')
+		        {
+			  /* ignore whitespace but handle \r below (depending on ignore_eol_diff) */
+			  break; 
+		        }
+		      if (! ISWSPACE (c2))
 			{
 			  --t2;
 			  c2 = ' ';
 			  break;
 			}
 		    }
-		  if (t2-s2==(int)len2)
+		  if (t2-s2==(int)len2 && c2 != '\r')
 		    c2 = 0;
 		}
 
@@ -444,6 +461,14 @@ line_cmp (s1, len1, s2, len2)
 		c1 = (unsigned char)toupper (c1);
 	      if (islower (c2))
 		c2 = (unsigned char)toupper (c2);
+	    }
+
+	  if (ignore_eol_diff)
+	    {
+	      if (c1 == '\r')
+		c1 = 0;
+	      else if (c2 == '\r')
+		c2 = 0;
 	    }
 
 	  if (c1 != c2)

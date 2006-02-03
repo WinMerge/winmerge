@@ -1,4 +1,12 @@
 2006-02-03 Perry
+ PATCH: [ 1409651 ] fix diffutils handling trailing whitespace
+  Src/diffutils/src: IO.C UTIL.C
+ Current selftests status: Failure count: 24 (of 480)
+  Failing -b t002 (u & m platforms, all 4 builds)
+  Failing -bi t002 (u & m platforms, all 4 builds)
+  Failing -b bug1406950 (u & m platforms, all 4 builds)
+
+2006-02-03 Perry
  PATCH: [ 1423060 ] Modify perl selftest to test all 4 builds
  Changes to selftest
  Current selftests status: Failure count: 36 (of 480)
