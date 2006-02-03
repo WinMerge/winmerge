@@ -648,6 +648,29 @@ BOOL CLanguageSelect::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
+	CMainFrame::SetMainIcon(this);
+
+	// setup handler for resizing this dialog	
+	m_constraint.InitializeCurrentSize(this);
+	// configure how individual controls adjust when dialog resizes
+	m_constraint.ConstrainItem(IDC_LANGUAGE_LIST, 0, 1, 0, 1); // grows right & down
+	m_constraint.ConstrainItem(IDCANCEL, .3, 0, 1, 0); // slides down, floats right
+	m_constraint.ConstrainItem(IDOK, .6, 0, 1, 0); // slides down, floats right
+	m_constraint.SubclassWnd(); // install subclassing
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LanguageSelectDlg"), false); // persist size via registry
+
+	GetMainFrame()->CenterToMainFrame(this);
+
+	LoadAndDisplayLanguages();
+
+	return TRUE;
+}
+
+/**
+ * @brief Load languages available on disk, and display in list, and select current
+ */
+void CLanguageSelect::LoadAndDisplayLanguages()
+{
 	if (m_wLangIds.GetSize()<=0)
 	{
 		// get all available resource only Dlls
@@ -682,8 +705,6 @@ BOOL CLanguageSelect::OnInitDialog()
 			break;
 		}
 	}
-	
-	return TRUE;  
 }
 
 

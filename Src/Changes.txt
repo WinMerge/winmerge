@@ -8,6 +8,10 @@
  PATCH: [ 1421694 ] Widen comments label in Rational ClearCase dialog
   Src: Merge.rc
   Src/Languages: */Merge*.rc
+ PATCH: [ 1423461 ] Rearrange language select dialog
+  Src: MainFrm.cpp MainFrm.h Merge.rc OpenDlg.cpp OpenDlg.h
+  Src/Common: LanguageSelect.cpp LanguageSelect.h
+  Src/Languages: */Merge*.rc
 
 2006-02-02 Perry
  PATCH: [ 1422052 ] Correction of Swedish for 2.5.3.1+

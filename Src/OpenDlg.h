@@ -87,7 +87,6 @@ private:
 protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
-	void CenterToMainFrame();
 	BOOL LoadProjectFile(CString path);
 	void TrimPaths();
 

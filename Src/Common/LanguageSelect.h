@@ -7,8 +7,13 @@
 
 #include "LogFile.h"
 
+#ifndef CMoveConstraint_h
+#include "CMoveConstraint.h"
+#endif
+
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
+
 #define LANGUAGE_SECTION  _T("Locale")
 #define COUNTRY_ENTRY     _T("LanguageId")
 
@@ -29,7 +34,10 @@ public:
 	void SetLogFile(CLogFile* pLog) { m_pLog = pLog; }
 	
 
+// Implementation data
 private:
+	prdlg::CMoveConstraint m_constraint; 
+	CWordArray   m_wLangIds;
 	BOOL m_bReloadMenu;
 	BOOL m_bUpdateTitle;
 	HMODULE m_hModule;
@@ -37,20 +45,22 @@ private:
 	UINT m_idDocMenu;
 	HINSTANCE  m_hCurrentDll;
 	WORD	   m_wCurLanguage;
-	int GetLanguageArrayIndex( WORD LangId );
 	CStringArray m_DllFileNameAry;
+
+// Implementation methods
+private:
+	int GetLanguageArrayIndex( WORD LangId );
 	BOOL    LoadResourceDLL(LPCTSTR lpDllFileName = NULL);
 	BOOL    SetLanguage(WORD LangId, bool override=false);
 	BOOL    SetLanguageOverride(WORD LangId) { return SetLanguage(LangId, true); }
 	void    GetDllsAt( LPCTSTR SearchPath, CStringArray& DllAry );
 	BOOL    GetLanguage( const CString& DllName, WORD& uiLanguage ) ;
-	
 	UINT    GetDocResId();
 	CString GetPath( LPCTSTR FileName);
 	CString GetLanguagePath(LPCTSTR FileName);
-	
 	CString GetLanguageString( WORD LangId );
 	CString GetNativeLanguageNameString( int idx );
+	void LoadAndDisplayLanguages();
 
 // Dialog Data
 	//{{AFX_DATA(CLanguageSelect)
@@ -67,9 +77,6 @@ private:
 	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV support
 	//}}AFX_VIRTUAL
 
-// Implementation
-protected:
-   CWordArray   m_wLangIds;
 
 	// Generated message map functions
 	//{{AFX_MSG(CLanguageSelect)

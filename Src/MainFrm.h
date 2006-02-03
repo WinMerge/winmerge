@@ -128,6 +128,8 @@ public:
 	void CheckinToClearCase(CString strDestinationPath);
 	COptionsMgr * GetTheOptionsMgr() { return &m_options; }
 	void ResetOptions() { OptionsInit(); }
+	static void CenterToMainFrame(CDialog * dlg);
+	static void SetMainIcon(CDialog * dlg);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

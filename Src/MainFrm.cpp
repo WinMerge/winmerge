@@ -3105,3 +3105,53 @@ CMainFrame * GetMainFrame()
 	ASSERT(pMainframe);
 	return pMainframe;
 }
+
+/** 
+ * @brief Move dialog to center of MainFrame
+ */
+void CMainFrame::CenterToMainFrame(CDialog * dlg)
+{
+	CRect rectFrame;
+	CRect rectBar;
+	AfxGetMainWnd()->GetWindowRect(&rectFrame);
+	dlg->GetClientRect(&rectBar);
+	// Middlepoint of MainFrame
+	int x = rectFrame.left + (rectFrame.right - rectFrame.left) / 2;
+	int y = rectFrame.top + (rectFrame.bottom - rectFrame.top) / 2;
+	// Reduce by half of dialog's size
+	x -= rectBar.right / 2;
+	y -= rectBar.bottom / 2;
+
+	// This refreshes dialog size after m_constraint rezizing dialog so we get
+	// correct dialog positioning
+	dlg->CenterWindow();
+
+	// Calculate real desktop coordinates (if we have multiple monitors or
+	// virtual desktops
+	CRect dsk_rc;
+	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
+	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
+	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
+	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
+
+	// Only move Open-dialog if its fully visible in new position
+	CPoint ptLeftTop(x, y);
+	CPoint ptRightBottom(x + rectBar.right, y + rectBar.bottom);
+	if (dsk_rc.PtInRect(ptLeftTop) && dsk_rc.PtInRect(ptRightBottom))
+	{
+		dlg->SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
+			rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
+	}
+}
+
+/**
+ * @brief Assign the main WinMerge 16x16 icon to dialog
+ */
+void CMainFrame::SetMainIcon(CDialog * dlg)
+{
+	// Note: LoadImage gets shared icon, don't need to destroy
+	HICON hMergeIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
+			MAKEINTRESOURCE(IDR_MAINFRAME), IMAGE_ICON, 16, 16,
+			LR_DEFAULTSIZE | LR_SHARED);
+	dlg->SetIcon(hMergeIcon, TRUE);
+}

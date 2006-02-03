@@ -261,11 +261,7 @@ BOOL COpenDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 	
-	// Note: LoadImage gets shared icon, its not needed to destroy
-	HICON hMergeIcon = (HICON) LoadImage(AfxGetInstanceHandle(),
-			MAKEINTRESOURCE(IDR_MAINFRAME), IMAGE_ICON, 16, 16,
-			LR_DEFAULTSIZE | LR_SHARED);
-	SetIcon(hMergeIcon, TRUE);
+	CMainFrame::SetMainIcon(this);
 
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
@@ -287,7 +283,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenDlg"), false); // persist size via registry
 
-	CenterToMainFrame();
+	CMainFrame::CenterToMainFrame(this);
 
 	m_ctlLeft.LoadState(_T("Files\\Left"));
 	m_ctlRight.LoadState(_T("Files\\Right"));
@@ -556,43 +552,6 @@ void COpenDlg::OnSelectFilter()
 	}
 }
 
-/** 
- * @brief Move Open-dialog to center of MainFrame
- */
-void COpenDlg::CenterToMainFrame()
-{
-	CRect rectFrame;
-	CRect rectBar;
-	AfxGetMainWnd()->GetWindowRect(&rectFrame);
-	GetClientRect(&rectBar);
-	// Middlepoint of MainFrame
-	int x = rectFrame.left + (rectFrame.right - rectFrame.left) / 2;
-	int y = rectFrame.top + (rectFrame.bottom - rectFrame.top) / 2;
-	// Reduce by half of dialog's size
-	x -= rectBar.right / 2;
-	y -= rectBar.bottom / 2;
-
-	// This refreshes dialog size after m_constraint rezizing dialog so we get
-	// correct dialog positioning
-	CenterWindow();
-
-	// Calculate real desktop coordinates (if we have multiple monitors or
-	// virtual desktops
-	CRect dsk_rc;
-	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
-	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
-	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
-	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
-
-	// Only move Open-dialog if its fully visible in new position
-	CPoint ptLeftTop(x, y);
-	CPoint ptRightBottom(x + rectBar.right, y + rectBar.bottom);
-	if (dsk_rc.PtInRect(ptLeftTop) && dsk_rc.PtInRect(ptRightBottom))
-	{
-		SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
-			rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
-	}
-}
 
 /** 
  * @brief Read paths and filter from project file.
