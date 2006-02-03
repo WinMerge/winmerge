@@ -1,3 +1,11 @@
+2006-02-03 Perry
+ PATCH: [ 1423060 ] Modify perl selftest to test all 4 builds
+ Changes to selftest
+ Current selftests status: Failure count: 36 (of 480)
+  Failing -b t002 (all 3 platforms, all 4 builds)
+  Failing -bi t002 (all 3 platforms, all 4 builds)
+  Failing -b bug1406950 (all 3 platforms, all 4 builds)
+
 2006-02-02 Perry
  PATCH: [ 1422052 ] Correction of Swedish for 2.5.3.1+
  Contributed by Hans Eriksson
