@@ -1,8 +1,18 @@
 selftest\Changes.txt
 
+2006-02-03, Perry
+ PATCH: [ 1423060 ] Modify perl selftest to test all 4 builds
+  Test all 4 builds (not just MergeUnicodeDebug).
+  Check up front that necessary programs exist: WinMerge(U).exe & diff2merge(U).exe.
+  Reprint failures at end if "noisy" option.
+ Affected:
+  testdiff.pl
+
 2006-01-23, Perry
  Added "/ub" flag to WinMerge invocation, to stop polluting MRU
   (and added comments explaining arguments)
+ Affected:
+  testdiff.pl
 
 2006-01-23, Perry
  Added readme.txt, Changes.txt (this file).

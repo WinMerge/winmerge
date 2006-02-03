@@ -2,7 +2,7 @@
 # Self-tests for diffutils diff & WinMerge
 #
 # Created: 2006-01-21, Perry Rapp
-# Edited:  2006-01-23, Perry Rapp
+# Edited:  2006-02-03, Perry Rapp
 #
 
 use strict;
@@ -10,6 +10,7 @@ use warnings;
 
 my $testCount=0;
 my $failCount=0;
+my $failmsgs="";
 
 # diff2winmergeU translates gnu diff style arguments (eg "-b") to WinMerge style arguments (eg "/ignorews:1")
 
@@ -19,7 +20,16 @@ my $failCount=0;
 #  "/minimize" keep main window minimized
 #  "/ub" do not add files to MRU (neither left nor right)
 
-my $DIFF = "..\\Build\\MergeUnicodeDebug\\diff2winmergeU.exe ..\\Build\\MergeUnicodeDebug\\WinMergeU.exe /noprefs /noninteractive /minimize /ub";
+my @testprogs = (
+  [ "MergeUnicodeDebug", "diff2winmergeU.exe", "WinMergeU.exe" ],
+  [ "MergeUnicodeRelease", "diff2winmergeU.exe", "WinMergeU.exe" ],
+  [ "MergeDebug", "diff2winmerge.exe", "WinMerge.exe" ],
+  [ "MergeRelease", "diff2winmerge.exe", "WinMerge.exe" ]
+ );
+
+my $wmargs = " /noprefs /noninteractive /minimize /ub";
+# "..\\Build\\MergeUnicodeDebug\\diff2winmergeU.exe ..\\Build\\MergeUnicodeDebug\\WinMergeU.exe /noprefs /noninteractive /minimize /ub";
+my $DIFF = $wmargs;
 
 # Global options
 my $noisy=0; # 1 to echo every test
@@ -27,6 +37,7 @@ my $abort=0; # 1 to abort at first failure
 
 # Predeclare subs
 
+sub checkRequiredPrograms;
 sub processArgs;
 sub testdiffs;
 sub test3set;
@@ -36,12 +47,14 @@ sub rpterr;
 
 # Main Code
 
+ checkRequiredPrograms;
+
  processArgs;
 
  testdiffs;
 
  # Pause so user can review output
- print "Failure count: $failCount (of $testCount) -- Press <enter>\n";
+ print "\nFailure count: $failCount (of $testCount) -- Press <enter>\n";
  my $temp = <STDIN>;
 
 
@@ -101,6 +114,11 @@ sub testdiffs {
   test3set "bug1406950", "-B", 1;
   test3set "bug1406950", "-b", 0;
   test3set "bug1406950", "-w", 0;
+
+  if ($noisy == 1) { 
+    # reprint all failure messages, because they were lost in the noise
+    print $failmsgs;
+  }
 }
 
 # Pass in file base names, flags to use, and expected result (0 or 1)
@@ -131,21 +149,27 @@ sub testdiff {
   my $flags = $_[2];
   my $result = $_[3];
 
-  if ($noisy == 1) { 
-    my $ordCount = $testCount+1;
-    print "$ordCount) diffing $flags $file1 $file2 (expect $result)\n";
+  # Test each supported build
+  for my $i ( 0 .. $#testprogs ) {
+
+    my $diff2merge = getDiff2merge($i);
+    my $winmerge = getWinMerge($i);
+    my $cmd = "$diff2merge $winmerge $wmargs";
+
+    if ($noisy == 1) {
+      my $ordCount = $testCount+1;
+      print "$ordCount) diffing $flags $file1 $file2 (expect $result) [$winmerge]\n";
+    }
+
+    system("$cmd $flags $file1 $file2");
+    my $exit_value  = $? >> 8;
+
+    $testCount = $testCount + 1;
+
+    if ($exit_value != $result) {
+       rpterr("$flags $file1 vs $file2 => $result ($exit_value) [$winmerge ]");
+    }
   }
-
-
-  system("$DIFF $flags $file1 $file2");
-  my $exit_value  = $? >> 8;
-
-  $testCount = $testCount + 1;
-
-  if ($exit_value != $result) {
-     rpterr("$flags $file1 vs $file2 => $result ($exit_value)\n");
-  }
-
 }
 
 sub processArgs {
@@ -157,11 +181,39 @@ sub processArgs {
 }
 
 sub rpterr {
-  print "FAILED TEST: @_";
   $failCount = $failCount + 1;
+  my $msg = "FAILED TEST ($failCount): @_";
+  print $msg;
+  $failmsgs = "$failmsgs\n$msg";
   if ($abort != 0) {
     print "Aborting after $testCount tests\n";
     exit; 
   }
 }
 
+sub checkRequiredPrograms {
+
+  my $missing = "";
+  for my $i ( 0 .. $#testprogs ) {
+    my $diff2merge = getDiff2merge($i);
+    my $WinMerge = getWinMerge($i);
+    -e $diff2merge or $missing = "$missing\n$diff2merge";
+    -e $WinMerge or $missing = "$missing\n$WinMerge";
+  }
+
+  if (length($missing)>0) {
+    die "Missing required files:$missing\n";
+  }
+}
+
+# Request diff2merge path
+# Takes argument from 0-3 for build to test
+sub getDiff2merge {
+  "..\\Build\\$testprogs[$_[0]][0]\\$testprogs[$_[0]][1]";
+}
+
+# Request WinMerge path
+# Takes argument from 0-3 for build to test
+sub getWinMerge {
+  "..\\Build\\$testprogs[$_[0]][0]\\$testprogs[$_[0]][2]";
+}
