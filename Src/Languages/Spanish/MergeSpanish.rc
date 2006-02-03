@@ -795,7 +795,7 @@ BEGIN
     PUSHBUTTON      "Guardar como...",IDC_SAVE_AS,169,115,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Comentarios",IDC_STATIC,18,7,34,10
+    LTEXT           "Comentarios",IDC_STATIC,18,7,80,10
     CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
     CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",

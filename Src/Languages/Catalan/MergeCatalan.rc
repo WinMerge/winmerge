@@ -795,7 +795,7 @@ BEGIN
     PUSHBUTTON      "Anomena i &desa...",IDC_SAVE_AS,169,115,67,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Comentaris",IDC_STATIC,18,7,38,10
+    LTEXT           "Comentaris",IDC_STATIC,18,7,80,10
     CONTROL         "Aplica-ho a tots els elements",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
     CONTROL         "Reintegra (check-in) després d'extreure (check-out)",IDC_CHECKIN,"Button",

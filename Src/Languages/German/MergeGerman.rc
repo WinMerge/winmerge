@@ -795,7 +795,7 @@ BEGIN
     PUSHBUTTON      "Speichern unter...",IDC_SAVE_AS,169,115,64,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
-    LTEXT           "Kommentar",IDC_STATIC,18,7,242,10
+    LTEXT           "Kommentar",IDC_STATIC,18,7,80,10
     CONTROL         "Auf alle Objekte anwenden",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
     CONTROL         "Einchecken nach Auschecken",IDC_CHECKIN,"Button",
