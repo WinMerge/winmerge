@@ -74,6 +74,13 @@
 #include "PreferencesDlg.h"
 #include "AppSerialize.h"
 
+/*
+ One source file must compile the stubs for multimonitor
+ by defining the symbol COMPILE_MULTIMON_STUBS & including <multimon.h>
+*/
+#ifdef COMPILE_MULTIMON_STUBS
+#undef COMPILE_MULTIMON_STUBS
+#endif
 #define COMPILE_MULTIMON_STUBS
 #include <multimon.h>
 
