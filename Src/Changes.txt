@@ -6,6 +6,11 @@
  BUG: [ 1383052 ] warning C4005: 'COMPILE_MULTIMON_STUBS' : macro redefinition
   (Wrap multimon def with ifndef
   Src: MainFrm.cpp
+ PATCH: [ 1423461 ] Rearrange language select dialog
+  Revise patch applied earlier: put Ok on left and Cancel on right.
+  (Also fix French dialog which was left out before.)
+  Src: Merge.rc
+  Src/Languages: */Merge*.rc
   
 2006-02-03 Perry
  PATCH: [ 1409651 ] fix diffutils handling trailing whitespace
