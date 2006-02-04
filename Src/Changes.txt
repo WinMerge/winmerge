@@ -13,6 +13,9 @@
   Src/Languages: */Merge*.rc
  PATCH: [ 1421199 ] Fix plugin menu for when location or diff detail view active
   Src: ChildFrm.cpp ChildFrm.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h
+ PATCH: [ 1414904 ] updated italian translation for winmerge 2.5.3.1
+  Submitted by A. Decorte
+  Src/Languages/Italian: MergeItalian.rc
   
 2006-02-03 Perry
  PATCH: [ 1409651 ] fix diffutils handling trailing whitespace

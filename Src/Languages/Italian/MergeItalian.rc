@@ -151,9 +151,9 @@ BEGIN
     BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Avanzate"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "Ca&rica configurazione...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Plugin"
@@ -225,7 +225,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra degli &strumenti",      ID_VIEW_TOOLBAR
         MENUITEM "&Barra di stato",             ID_VIEW_STATUS_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "Statistic&he del confronto",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Lingua...",                  ID_VIEW_LANGUAGE
     END
@@ -254,9 +254,9 @@ BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
         MENUITEM "Genera &rapporto...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
+        POPUP "&Avanzate"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "Ca&rica configurazione...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Plugin"
@@ -311,8 +311,8 @@ BEGIN
             MENUITEM "S&alva con nome...",      ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "Stam&pa...",                   ID_FILE_PRINT
+        MENUITEM "Anteprima &di stampa",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Fil&e di sinistra di Sola lettura", ID_FILE_LEFT_READONLY
         MENUITEM "F&ile di destra di Sola lettura", ID_FILE_RIGHT_READONLY
@@ -368,7 +368,7 @@ BEGIN
         MENUITEM "Visualizza &differenze nelle linee",      ID_VIEW_LINEDIFFS
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
-        MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
+        MENUITEM "Sc&ambia pannelli",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
         MENUITEM "Barra degli &strumenti",      ID_VIEW_TOOLBAR
         MENUITEM "&Barra di stato",             ID_VIEW_STATUS_BAR
@@ -399,9 +399,9 @@ BEGIN
     BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "&Avanzate"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "Ca&rica configurazione...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "&Plugin"
@@ -712,7 +712,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "Ripristina",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
+    LTEXT           "WinMerge ti permette di nascondere alcuni messaggi comuni. Premi il pulsante Ripristina per rendere di nuovo visibili tutti i messaggi.",
                     IDC_STATIC,7,124,168,31
 END
 
@@ -796,9 +796,9 @@ BEGIN
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Commenti",IDC_STATIC,18,7,80,10
-    CONTROL         "Apply to all items",IDC_MULTI_CHECKOUT,"Button",
+    CONTROL         "Applica a tutti gli elementi",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,83,235,8
-    CONTROL         "CheckIn after checkout",IDC_CHECKIN,"Button",
+    CONTROL         "Reinserisci dopo l'estrazione",IDC_CHECKIN,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
@@ -1029,7 +1029,7 @@ IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION " Folder Compare Progress"
+CAPTION " Progresso del confronto tra cartelle"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,239,7,83,14
@@ -1038,8 +1038,8 @@ BEGIN
     RTEXT           "0",IDC_ITEMSCOMPARED,150,18,30,8
     LTEXT           "0",IDC_ITEMSTOTAL,194,18,30,8
     LTEXT           "/",IDC_STATIC,186,18,8,8
-    LTEXT           "Comparing items...",IDC_STATIC,7,7,150,8
-    LTEXT           "Items compared / Items total:",IDC_STATIC,7,18,129,8
+    LTEXT           "Confronto in corso...",IDC_STATIC,7,7,150,8
+    LTEXT           "Elementi confrontati / Totale elementi:",IDC_STATIC,7,18,129,8
 END
 
 IDD_WMGOTO DIALOGEX 0, 0, 210, 70
@@ -1119,9 +1119,9 @@ BEGIN
                     221,41
     CONTROL         "Mostra differenze di linea",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
+    CONTROL         "Livello &caratteri",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
+    CONTROL         "Livello &parole:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
     COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
@@ -1255,8 +1255,8 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,230,338,1
     LTEXT           " Categorie",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
-    PUSHBUTTON      "Import...",IDC_TREEOPT_IMPORT,7,237,50,14
-    PUSHBUTTON      "Export...",IDC_TREEOPT_EXPORT,62,237,50,14
+    PUSHBUTTON      "Importa...",IDC_TREEOPT_IMPORT,7,237,50,14
+    PUSHBUTTON      "Esporta...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
 IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
@@ -1277,47 +1277,47 @@ BEGIN
     CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Grassetto",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,110,21,55,10
     CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
+    CONTROL         "Grassetto",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
     CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "Grassetto",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,60,55,10
     CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "Grassetto",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,80,55,10
     CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_OPERATORS_BOLD,"Button",
+    CONTROL         "Grassetto",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
     CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "Grassetto",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,120,55,10
     CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
+    CONTROL         "Grassetto",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
     CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "Grassetto",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,160,55,10
     CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
                     WS_EX_CLIENTEDGE
-    CONTROL         "Grossetto",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
+    CONTROL         "Grassetto",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,180,55,10
     PUSHBUTTON      "Predefinito",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
@@ -1325,7 +1325,7 @@ END
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Rapporto sul confronto di cartelle"
+CAPTION "Rapporto sul confronto tra cartelle"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&File di rapporto:",IDC_STATIC,7,7,37,8
@@ -1377,44 +1377,44 @@ END
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Compare Statistics"
+CAPTION "Statistiche del confronto"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Folders:",IDC_STATIC,72,7,38,8
-    LTEXT           "Files:",IDC_STATIC,131,7,39,8
-    GROUPBOX        "Different",IDC_STATIC,7,15,186,40
-    RTEXT           "Text:",IDC_STATIC,11,26,56,8
+    LTEXT           "Cartelle:",IDC_STATIC,72,7,38,8
+    LTEXT           "File:",IDC_STATIC,131,7,39,8
+    GROUPBOX        "Diversi",IDC_STATIC,7,15,186,40
+    RTEXT           "Testo:",IDC_STATIC,11,26,56,8
     ICON            "",IDC_STAT_INOTEQUAL,131,24,16,16
     RTEXT           "Static",IDC_STAT_DIFFFILE,146,25,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,40,56,8
+    RTEXT           "Binari:",IDC_STATIC,10,40,56,8
     ICON            "",IDC_STAT_IDIFFBINFILE, 131,37,16,16
     RTEXT           "Static",IDC_STAT_DIFFBINARY,146,38,38,10,SS_SUNKEN
-    GROUPBOX        "Unique",IDC_STATIC,7,55,186,40
-    RTEXT           "Left:",IDC_STATIC,11,66,56,8
+    GROUPBOX        "Unici",IDC_STATIC,7,55,186,40
+    RTEXT           "Sinistra:",IDC_STATIC,11,66,56,8
     ICON            "",IDC_STAT_ILUNIQFOLDER,72,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFOLDER,86,65,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_ILUNIQFILE,131,64,16,16
     RTEXT           "Static",IDC_STAT_LUNIQFILE,146,65,38,10,SS_SUNKEN
-    RTEXT           "Right:",IDC_STATIC,11,79,56,8
+    RTEXT           "Destra:",IDC_STATIC,11,79,56,8
     ICON            "",IDC_STAT_IRUNIQFOLDER,72,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFOLDER,86,78,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_IRUNIQFILE,131,77,16,16
     RTEXT           "Static",IDC_STAT_RUNIQFILE,146,78,38,10,SS_SUNKEN
-    GROUPBOX        "Identical",IDC_STATIC,7,95,186,37
+    GROUPBOX        "Identici",IDC_STATIC,7,95,186,37
     ICON            "",IDC_STAT_IIDENTICFOLDER,72,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFOLDER,86,103,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_IEQUALFILE,131,102,16,16
     RTEXT           "Static",IDC_STAT_IDENTICFILE,146,103,38,10,SS_SUNKEN
-    RTEXT           "Binary:",IDC_STATIC,10,117,56,8
+    RTEXT           "Binari:",IDC_STATIC,10,117,56,8
     ICON            "",IDC_STAT_IEQUALBINFILE,131,115,16,16
     RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
-    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    RTEXT           "Totale:",IDC_STATIC,13,142,56,8
     ICON            "",IDC_STAT_ITOTALFOLDERS,72,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_ITOTALFILES,131,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFILE,146,141,38,10,SS_SUNKEN
-    DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
+    DEFPUSHBUTTON   "Chiudi",IDOK,200,140,50,14
 END
 
 
@@ -1781,7 +1781,7 @@ BEGIN
     IDS_ALLFILES            "Tutti i file (*.*)|*.*||"
     IDS_PROJECTFILES        "File di progetto di WinMerge (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
-    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+    IDS_INIFILES            "File delle opzioni (*.ini)|*.ini|Tutti i file (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1915,8 +1915,8 @@ BEGIN
     IDS_VSSFOLDER_AND_FILE_NOMATCH "La cartella di lavoro di VSS e la posizione del file corrente non coincidono. Continuare?"
     IDS_VSS_NODATABASES     "Nessun database di VSS trovato!"
     IDS_VSS_ERRORFROM       "Errore di VSS:"
-    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
+    IDS_VSS_CHECKINERROR     "Il sistema di versioning ha restituito un errore tentando di reinserire il file.\n Controlla per favore la configurazione della vista utilizzata.\n Annullare l'operazione di estrazione?"
+    IDS_VSS_UNCOERROR        "Il sistema di versioning ha restituito un errore tentando di annullare l'estrazione del file.\n Controlla per favore la configurazione della vista utilizzata."
 END
 
 // VSS system
@@ -1933,10 +1933,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copia elemento selezionato in una cartella specifica"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copia elemento selezionato in una cartella personalizzata"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copia elemento selezionato in una cartella specifica"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copia elemento selezionato in una cartella personalizzata"
     ID_DIR_DEL_LEFT         "Elimina la voce selezionata sulla sinistra"
     ID_DIR_DEL_RIGHT        "Elimina la voce selezionata sulla destra"
     ID_DIR_DEL_BOTH         "Elimina gli elementi selezionati in entrambi i lati"
@@ -2022,8 +2022,8 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Estensione"
     IDS_COLHDR_LSIZE        "Dimensioni file di sinistra"
     IDS_COLHDR_RSIZE        "Dimensioni file di destra"
-    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
-    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+    IDS_COLHDR_RSIZE_SHORT  "Dim. file destra (breve)"
+    IDS_COLHDR_LSIZE_SHORT  "Dim. file destra (breve)"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
@@ -2053,7 +2053,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "Impossibile confrontare i file"
-    IDS_ABORTED_ITEM        "Item aborted"
+    IDS_ABORTED_ITEM        "Elemento annullato"
     IDS_FILE_SKIPPED        "File saltato"
     IDS_DIR_SKIPPED         "Cartella saltata"
     IDS_ONLY_IN_FMT         "Solo in %1"
@@ -2085,8 +2085,8 @@ BEGIN
     IDS_COLDESC_EXTENSION   "Estensione del file."
     IDS_COLDESC_LSIZE       "Dimensioni del file di sinistra in byte."
     IDS_COLDESC_RSIZE       "Dimensioni del file di destra in byte."
-    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
-    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+    IDS_COLDESC_LSIZE_SHORT "Dimensioni abbreviate del file di sinistra."
+    IDS_COLDESC_RSIZE_SHORT "Dimensioni abbreviate del file di destra."
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
@@ -2130,7 +2130,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "Lo stesso file è aperto in entrambi i pannelli."
     IDS_FILESSAME           "I file selezionati sono identici."
-    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
+    IDS_FOLDERUNIQUE        "La cartella selezionata esiste solo nell'altro lato per cui non può essere aperta."
     IDS_FILEERROR           "Si è verificato un errore durante il confronto dei file."
     IDS_FILEBINARY          "I file di tipo binario non possono essere confrontati visualmente."
     IDS_TEMP_FILEERROR      "Impossibile creare file temporanei. Controlla le impostazioni del percorso per i file temporanei."
@@ -2143,15 +2143,15 @@ BEGIN
                             (raggiungibile dal menu Modifica->Opzioni)."
     IDS_SUGGEST_PRESERVEEOL "Gli EOL sono di tipi diversi (DOS/UNIX/MAC) nel file '%1'.\nCon le opzioni correnti, essi verranno unificati nel tipo principale.\nDesideri cambiare le opzioni e conservare gli EOL diversi ?"
     IDS_PREDIFFER_ERROR      "C'è stato un errore nel prediffing del file '%1' con il plugin '%2'. Il prediffing non verrà più applicato."
-    IDS_INVALID_DIRECTORY   "The selected folder is invalid."
-    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
+    IDS_INVALID_DIRECTORY   "La cartella selezionata non è valida."
+    IDS_CANNOT_OPEN_BINARYFILE  "Impossibile aprire file binario nell'editor."
 END
 
 // Encoding issues
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
-    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_DIFFERENT_UNICODINGS   "Attenzione: i file usano codifiche differenti, sinistra=%s e destra=%s, e l'unione può causare una perdita di informazioni."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2178,8 +2178,8 @@ END
 // FILE COMPARE: PANE CAPTIONS
 STRINGTABLE 
 BEGIN
-    IDS_LOCBAR_CAPTION      "Location Pane"
-    IDS_DIFFBAR_CAPTION     "Diff Pane"
+    IDS_LOCBAR_CAPTION      "Pannello della locazione"
+    IDS_DIFFBAR_CAPTION     "Pannello delle differenze"
 END
 
 // CREATE PATCH
@@ -2208,14 +2208,14 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Il supporto per gli archivi non è attivo.\n
                             Nessuno dei componenti necessari (7-zip e/o Merge7z*.dll) per il supporto sono stati trovati.
                             Guarda il manuale per ulteriori informazioni sugli archivi e come attivare il supporto per essi."
-    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
-    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
-    IDS_OPT_EXPORT_CAPTION  "Select file for export"
-    IDS_OPT_IMPORT_CAPTION  "Select file for import"
-    IDS_OPT_IMPORT_DONE     "Options imported from the file."
-    IDS_OPT_EXPORT_DONE     "Options exported to the file."
-    IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
-    IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
+    IDS_MERGE7Z_ENABLE_0    "\nNota: l'integrazione con 7-Zip è stata disattivata nelle opzioni di WinMerge."
+    IDS_MERGE7Z_ENABLE_2    "\nNote: l'integrazione con 7-Zip è limitata a una installazione standalone nelle opzioni di WinMerge."
+    IDS_OPT_EXPORT_CAPTION  "Scegli file per l'esportazione"
+    IDS_OPT_IMPORT_CAPTION  "Scegli file per l'importazione"
+    IDS_OPT_IMPORT_DONE     "Opzioni importate dal file."
+    IDS_OPT_EXPORT_DONE     "Opzioni esportate nel file."
+    IDS_OPT_IMPORT_ERR      "Impossibile importare le opzioni dal file."
+    IDS_OPT_EXPORT_ERR      "Impossibile esportare le opzioni nel file."
 END
 
 // Regular expression errors
@@ -2562,11 +2562,11 @@ BEGIN
     ID_VIEW_WHITESPACE      "Mostra gli spazi bianchi"
     ID_VIEW_DETAIL_BAR      "Mostra il pannello delle differenze"
     ID_VIEW_LOCATION_BAR    "Il pannello della locazione mostra un'immagine complessiva dei file"
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATISTICS  "Mostra la finestra con le statistiche del confronto tra cartelle"
     ID_VIEW_LANGUAGE        "Seleziona la lingua dell'interfaccia utente\nLingua"
     ID_VIEW_LINEDIFFS       "Mostra le differenze all'interno delle linee con colori diversi\nMostra differenze nelle linee"
-    ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
-    ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
+    ID_VIEW_SWAPPANES       "Scambia le posizioni dei due pannelli"
+    ID_VIEW_WORDWRAP        "Vai a capo automaticamente\nVa a capo automaticamente (word wrap)"
 END
 
 // MERGE MENU
