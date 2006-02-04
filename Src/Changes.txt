@@ -1,6 +1,8 @@
 2006-02-04 Perry
  PATCH: [ 1424142 ] Wrap two lwdisp macros in ifndef
   Src/Common: lwdisp.h
+ Undo PATCH: [ 1424142 ] Wrap two lwdisp macros in ifndef
+  Src/Common: lwdisp.h
   
 2006-02-03 Perry
  PATCH: [ 1409651 ] fix diffutils handling trailing whitespace
