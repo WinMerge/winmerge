@@ -16,6 +16,9 @@
  PATCH: [ 1414904 ] updated italian translation for winmerge 2.5.3.1
   Submitted by A. Decorte
   Src/Languages/Italian: MergeItalian.rc
+ PATCH: [ 1423907 ] Fix diffutils hashing of \r
+  Src/diffutils: IO.C UTIL.C
+ Current selftests status: Failure count: 0 (of 480)
   
 2006-02-03 Perry
  PATCH: [ 1409651 ] fix diffutils handling trailing whitespace

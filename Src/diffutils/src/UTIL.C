@@ -386,51 +386,60 @@ line_cmp (s1, len1, s2, len2)
 		 if it is at the end of the line.  */
 	      if (ISWSPACE (c1))
 		{
-		  while (t1-s1<(int)len1)
+		  /* Any whitespace sequence counts as one space */
+		  c1 = ' ';
+		  /* Skip to end of whitespace sequence */
+		  while (t1-s1<(int)len1 && ISWSPACE(*t1))
+		    ++t1;
+		  /* if c1 is whitespace and c2 is end of line
+		  we must advance c1 to next char, because c1
+		  whitespace matches the nothing in c2 */
+		  if (c2=='\r' || c2=='\n')
 		    {
-		      c1 = *t1++;
-		      if (c1 == '\r' || c1 == '\n')
-		        {
-			  /* ignore whitespace but handle \r below (depending on ignore_eol_diff) */
-			  break; 
-		        }
-		      if (! ISWSPACE (c1))
-			{
-			  --t1;
-			  c1 = ' ';
-			  break;
-			}
+		      if (t1-s1<(int)len1)
+			c1 = *t1++;
+		      else
+			c1 = 0;
 		    }
-		  if (t1-s1==(int)len1 && c1 != '\r')
-		    c1 = 0;
 		}
 
 	      /* Likewise for line 2.  */
 	      if (ISWSPACE (c2))
 		{
-		  while (t2-s2<(int)len2)
+		  /* Any whitespace sequence counts as one space */
+		  c2 = ' ';
+		  /* Skip to end of whitespace sequence */
+		  while (t2-s2<(int)len2 && ISWSPACE(*t2))
+		    ++t2;
+		  /* if c2 is whitespace and c1 is end of line
+		  we must advance c1 to next char, because c2
+		  whitespace matches the nothing in c1 */
+		  if (c1=='\r' || c1=='\n')
 		    {
-		      c2 = *t2++;
-		      if (c2 == '\r' || c2 == '\n')
-		        {
-			  /* ignore whitespace but handle \r below (depending on ignore_eol_diff) */
-			  break; 
-		        }
-		      if (! ISWSPACE (c2))
-			{
-			  --t2;
-			  c2 = ' ';
-			  break;
-			}
+		      if (t2-s2<(int)len2)
+			c2 = *t2++;
+		      else
+			c2 = 0;
 		    }
-		  if (t2-s2==(int)len2 && c2 != '\r')
-		    c2 = 0;
 		}
+
+	      /*
+	      Whitespace at end of line matches end of file
+	      make them both say ' ' so they match, and the one
+	      not at end will get advanced
+	      */
+	      if (c1 != c2)
+	        {
+		  if (c1==' ' && !c2)
+		    c2 = ' ';
+		  else if (c2==' ' && !c1)
+		    c1 = ' ';
+	        }
 
 	      if (c1 != c2)
 		{
 		  /* backtracking necessary when matching "cat and" against "cat  and"
-		     because the spaces got matched with equality, so not "a" and " "
+		     because the spaces got matched with equality, so now "a" and " "
 		     are mismatches */
 
 		  /* If we went too far when doing the simple test

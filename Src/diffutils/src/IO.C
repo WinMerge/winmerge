@@ -280,7 +280,8 @@ find_and_hash_each_line (current)
 		  h = HASH (h, isupper (c) ? tolower (c) : c);
 	      }
 	  else if (ignore_space_change_flag)
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+	    /* Note that \r must be hashed (if !ignore_eol_diff) */
+	    while ((c = *p++) != '\n')
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
@@ -316,7 +317,10 @@ find_and_hash_each_line (current)
 		      }
 		  }
 		/* c is now the first non-space.  */
+		/* c can be a \r (CR) if !ignore_eol_diff */
 		h = HASH (h, isupper (c) ? tolower (c) : c);
+		if (c == '\r' && *p != '\n')
+		  goto hashing_done;
 	      }
 	  else
 	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
@@ -337,7 +341,8 @@ find_and_hash_each_line (current)
 		  h = HASH (h, c);
 	      }
 	  else if (ignore_space_change_flag)
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+	    /* Note that \r must be hashed (if !ignore_eol_diff) */
+	    while ((c = *p++) != '\n')
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
@@ -375,6 +380,8 @@ find_and_hash_each_line (current)
 		/* c is now the first non-space.  */
 		/* c can be a \r (CR) if !ignore_eol_diff */
 		h = HASH (h, c);
+		if (c == '\r' && *p != '\n')
+		  goto hashing_done;
 	      }
 	  else
 	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
@@ -593,7 +600,7 @@ find_identical_ends (filevec)
   /* Skip back to last line-beginning in the prefix,
      and then discard up to HORIZON_LINES lines from the prefix.  */
   i = horizon_lines;
-  while (p0 != buffer0 && (p0[-1] != '\n' || i--))
+  while (p0 != buffer0 && ((p0[-1] != '\n' && (p0[-1] != '\r' || p0[0] == '\n')) || i--))
     --p0, --p1;
 
   /* Record the prefix.  */
@@ -630,11 +637,11 @@ find_identical_ends (filevec)
 	 this line to the main body.  Discard up to HORIZON_LINES lines from
 	 the identical suffix.  Also, discard one extra line,
 	 because shift_boundaries may need it.  */
-      i = horizon_lines + !((buffer0 == p0 || p0[-1] == '\n')
+      i = horizon_lines + !((buffer0 == p0 || p0[-1] == '\n' || (p0[-1] == '\r' && p0[0] != '\n'))
 			    &&
-			    (buffer1 == p1 || p1[-1] == '\n'));
+			    (buffer1 == p1 || p1[-1] == '\n' || (p1[-1] == '\r' && p1[0] != '\n')));
       while (i-- && p0 != end0)
-	while (*p0++ != '\n')
+	while (*p0++ != '\n' && (p0[-1] != '\r' || p0[0] == '\n'))
 	  ;
 
       p1 += p0 - (char HUGE *)beg0;
