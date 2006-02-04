@@ -35,6 +35,8 @@
 #include "DiffViewBar.h"
 #include "LocationBar.h"
 
+class CMergeDoc;
+
 /** 
  * @brief Frame class for file compare, handles panes, statusbar etc.
  */
@@ -43,8 +45,14 @@ class CChildFrame : public CMDIChildWnd
 	DECLARE_DYNCREATE(CChildFrame)
 public:
 	CChildFrame();
+
+// Operations
+public:
+	void UpdateResources();
+	void CloseNow();
 	IHeaderBar * GetHeaderInterface();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
+	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 
 // Attributes
 protected:
@@ -81,13 +89,7 @@ protected:
 	MergeStatus m_leftStatus;
 	MergeStatus m_rightStatus;
 
-// Operations
-public:
-	void UpdateResources();
-private:
-	BOOL EnsureValidDockState(CDockState& state);
 
-public:
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -100,17 +102,19 @@ public:
 	//}}AFX_VIRTUAL
 
 // Implementation
-public:
+private:
+	BOOL EnsureValidDockState(CDockState& state);
 	void UpdateDiffDockbarHeight(int DiffPanelHeight);
 	void SavePosition();
 	virtual ~CChildFrame();
-	void CloseNow();
 
 // Generated message map functions
-protected:
+private:
 	int m_nLastSplitPos;
 	void UpdateHeaderSizes();
 	BOOL m_bActivated;
+	CMergeDoc * m_pMergeDoc;
+
 	//{{AFX_MSG(CChildFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();

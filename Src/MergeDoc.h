@@ -218,7 +218,8 @@ public:
 	/// String of concatenated filenames as text to apply plugins filter to
 	CString m_strBothFilenames;
 
-	int GetActiveMergeView();
+	int GetActiveMergeViewIndexType() const;
+	CMergeEditView * GetActiveMergeView();
 	void UpdateHeaderPath(int pane);
 	void UpdateHeaderActivity(int pane, BOOL bActivate);
 	void RefreshOptions();

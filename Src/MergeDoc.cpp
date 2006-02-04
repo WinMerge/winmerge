@@ -257,20 +257,37 @@ BOOL CMergeDoc::OnNewDocument()
  * @brief Determines currently active view.
  * @return one of MERGEVIEW_INDEX_TYPE values or -1 in error.
  */
-int CMergeDoc::GetActiveMergeView()
+int CMergeDoc::GetActiveMergeViewIndexType() const
 {
-	CCrystalTextView* curView = dynamic_cast<CCrystalTextView*> (GetParentFrame()->GetActiveView());
-	if (curView == m_pView[0])
+	CMergeDoc * pThis = const_cast<CMergeDoc *>(this);
+	// Get active view pointer
+	CView * pActiveView = pThis->GetParentFrame()->GetActiveView();
+	// Cast it to common base of all our views
+	CCrystalTextView* curView = dynamic_cast<CCrystalTextView*> (pActiveView);
+	// Now test it against all our views to see which it is
+	if (curView == GetLeftView())
 		return MERGEVIEW_LEFT;
-	else if (curView == m_pView[1])
+	else if (curView == GetRightView())
 		return MERGEVIEW_RIGHT;
-	else if (curView == m_pDetailView[0])
+	else if (curView == GetLeftDetailView())
 		return MERGEVIEW_LEFT_DETAIL;
-	else if (curView == m_pDetailView[1])
+	else if (curView == GetRightDetailView())
 		return MERGEVIEW_RIGHT_DETAIL;
 
 	_RPTF0(_CRT_ERROR, "Invalid view pointer!");
 	return -1;
+}
+
+/**
+ * @brief Return active merge edit view (or left one if neither active)
+ */
+CMergeEditView * CMergeDoc::GetActiveMergeView()
+{
+	CView * pActiveView = GetParentFrame()->GetActiveView();
+	CMergeEditView * pMergeEditView = dynamic_cast<CMergeEditView *>(pActiveView);
+	if (!pMergeEditView)
+		pMergeEditView = GetLeftView(); // default to left view (in case some location or detail view active)
+	return pMergeEditView;
 }
 
 void CMergeDoc::SetUnpacker(PackingInfo * infoNewHandler)
@@ -799,13 +816,13 @@ void CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		{
 			// Find out diff under cursor
 			CPoint ptCursor;
-			int nActiveView = GetActiveMergeView();
-			if (nActiveView == MERGEVIEW_LEFT || nActiveView == MERGEVIEW_RIGHT)
-				ptCursor = m_pView[nActiveView]->GetCursorPos();
-			else if (nActiveView == MERGEVIEW_LEFT_DETAIL ||
-					nActiveView == MERGEVIEW_RIGHT_DETAIL)
+			int nActiveViewIndexType = GetActiveMergeViewIndexType();
+			if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+				ptCursor = m_pView[nActiveViewIndexType]->GetCursorPos();
+			else if (nActiveViewIndexType == MERGEVIEW_LEFT_DETAIL ||
+					nActiveViewIndexType == MERGEVIEW_RIGHT_DETAIL)
 			{
-				ptCursor = m_pView[nActiveView - MERGEVIEW_LEFT_DETAIL]->GetCursorPos();
+				ptCursor = m_pView[nActiveViewIndexType - MERGEVIEW_LEFT_DETAIL]->GetCursorPos();
 			}
 			nDiff = m_diffList.LineToDiff(ptCursor.y);
 		}
@@ -1856,15 +1873,15 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
 
-	int nActiveView = GetActiveMergeView();
+	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 
 	// store cursors and hide caret
 	m_pView[0]->PushCursors();
 	m_pView[1]->PushCursors();
 	m_pDetailView[0]->PushCursors();
 	m_pDetailView[1]->PushCursors();
-	if (nActiveView == MERGEVIEW_LEFT || nActiveView == MERGEVIEW_RIGHT)
-		m_pView[nActiveView]->HideCursor();
+	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+		m_pView[nActiveViewIndexType]->HideCursor();
 
 	BOOL bBinary = FALSE;
 	BOOL bIdentical = FALSE;
@@ -1875,26 +1892,26 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	m_pView[1]->PopCursors();
 	m_pDetailView[0]->PopCursors();
 	m_pDetailView[1]->PopCursors();
-	if (nActiveView == MERGEVIEW_LEFT || nActiveView == MERGEVIEW_RIGHT)
-		m_pView[nActiveView]->ShowCursor();
+	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+		m_pView[nActiveViewIndexType]->ShowCursor();
 
 	// because of ghostlines, m_nTopLine may differ just after Rescan
 	// scroll both views to the same top line
 	CMergeEditView * fixedView = m_pView[0];
-	if (nActiveView == MERGEVIEW_LEFT || nActiveView == MERGEVIEW_RIGHT)
+	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
 		// only one view needs to scroll so do not scroll the active view
-		fixedView = m_pView[nActiveView];
+		fixedView = m_pView[nActiveViewIndexType];
 	fixedView->UpdateSiblingScrollPos(FALSE);
 
 	// make sure we see the cursor from the curent view
-	if (nActiveView == MERGEVIEW_LEFT || nActiveView == MERGEVIEW_RIGHT)
-		m_pView[nActiveView]->EnsureVisible(m_pView[nActiveView]->GetCursorPos());
+	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
+		m_pView[nActiveViewIndexType]->EnsureVisible(m_pView[nActiveViewIndexType]->GetCursorPos());
 
 	// scroll both diff views to the same top line
 	CMergeDiffDetailView * fixedDetailView = m_pDetailView[0];
-	if (nActiveView == MERGEVIEW_LEFT_DETAIL || nActiveView == MERGEVIEW_RIGHT_DETAIL)
+	if (nActiveViewIndexType == MERGEVIEW_LEFT_DETAIL || nActiveViewIndexType == MERGEVIEW_RIGHT_DETAIL)
 		// only one view needs to scroll so do not scroll the active view
-		fixedDetailView = m_pDetailView[nActiveView - MERGEVIEW_LEFT_DETAIL];
+		fixedDetailView = m_pDetailView[nActiveViewIndexType - MERGEVIEW_LEFT_DETAIL];
 	fixedDetailView->UpdateSiblingScrollPos(FALSE);
 
 	// Refresh display

@@ -273,6 +273,7 @@ private:
 	void ShowFontChangeMessage();
 	void OptionsInit();
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
+	CMergeEditView * GetActiveMergeEditView();
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object

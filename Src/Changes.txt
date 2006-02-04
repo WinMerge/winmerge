@@ -11,6 +11,8 @@
   (Also fix French dialog which was left out before.)
   Src: Merge.rc
   Src/Languages: */Merge*.rc
+ PATCH: [ 1421199 ] Fix plugin menu for when location or diff detail view active
+  Src: ChildFrm.cpp ChildFrm.h MainFrm.cpp MainFrm.h MergeDoc.cpp MergeDoc.h
   
 2006-02-03 Perry
  PATCH: [ 1409651 ] fix diffutils handling trailing whitespace

@@ -2419,6 +2419,26 @@ void CMainFrame::OnReloadPlugins()
 	UpdatePrediffersMenu();
 }
 
+/** @brief Return active merge edit view, if can figure it out/is available */
+CMergeEditView * CMainFrame::GetActiveMergeEditView()
+{
+	// NB: GetActiveDocument does not return the Merge Doc 
+	//     even when the merge edit view is in front
+	// NB: CChildFrame::GetActiveView returns NULL when location view active
+	// So we have this rather complicated logic to try to get a merge edit view
+	// We look at the front child window, which should be a frame
+	// and we can get a MergeEditView from it, if it is a CChildFrame
+	// (DirViews use a different frame type)
+	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
+	if (!pFrame) return 0;
+	// Try to get the active MergeEditView (ie, left or right)
+	if (pFrame->GetActiveView() && pFrame->GetActiveView()->IsKindOf(RUNTIME_CLASS(CMergeEditView)))
+	{
+		return dynamic_cast<CMergeEditView *>(pFrame->GetActiveView());
+	}
+	return pFrame->GetMergeDoc()->GetActiveMergeView();
+}
+
 void CMainFrame::UpdatePrediffersMenu()
 {
 	CMenu* menu = GetMenu();
@@ -2431,7 +2451,7 @@ void CMainFrame::UpdatePrediffersMenu()
 	HMENU prediffersSubmenu = GetPrediffersSubmenu(hMainMenu);
 	if (prediffersSubmenu != NULL)
 	{
-		CMergeEditView * pEditView = dynamic_cast<CMergeEditView*> (GetActiveFrame()->GetActiveView());
+		CMergeEditView * pEditView = GetActiveMergeEditView();
 		if (pEditView)
 			pEditView->createPrediffersSubmenu(prediffersSubmenu);
 		else

@@ -104,6 +104,7 @@ CChildFrame::CChildFrame()
 {
 	m_bActivated = FALSE;
 	m_nLastSplitPos = 0;
+	m_pMergeDoc = 0;
 }
 
 CChildFrame::~CChildFrame()
@@ -194,8 +195,8 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	pLeft->SetStatusInterface(&m_leftStatus);
 	pRight->SetStatusInterface(&m_rightStatus);
 	// tell merge doc about these views
-	CMergeDoc * pDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
-	pDoc->SetMergeViews(pLeft, pRight);
+	m_pMergeDoc = dynamic_cast<CMergeDoc *>(pContext->m_pCurrentDoc);
+	m_pMergeDoc->SetMergeViews(pLeft, pRight);
 	pLeft->m_nThisPane = 0;
 	pRight->m_nThisPane = 1;
 
@@ -203,7 +204,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	CMergeDiffDetailView * pLeftDetail = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(0,0);
 	CMergeDiffDetailView * pRightDetail = (CMergeDiffDetailView *)m_wndDetailSplitter.GetPane(1,0);
 	// tell merge doc about these views
-	pDoc->SetMergeDetailViews(pLeftDetail, pRightDetail);
+	m_pMergeDoc->SetMergeDetailViews(pLeftDetail, pRightDetail);
 	pLeftDetail->m_nThisPane = 0;
 	pRightDetail->m_nThisPane = 1;
 	
