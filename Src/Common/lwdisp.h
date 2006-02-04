@@ -74,7 +74,9 @@ extern "C"{
 	#define VT_BSTRA            14
 	#define VT_BSTRT            VT_BSTRA
 #endif
+#ifndef VTS_UI1
 #define VTS_UI1             "\x0F"      // a 'BYTE'
+#endif
 
 // parameter types: by reference VTs
 #define VTS_PI2             "\x42"      // a 'short*'
@@ -89,7 +91,9 @@ extern "C"{
 #define VTS_PBOOL           "\x4B"      // a 'VARIANT_BOOL*'
 #define VTS_PVARIANT        "\x4C"      // a 'VARIANT*'
 #define VTS_PUNKNOWN        "\x4D"      // an 'IUnknown**'
+#ifndef VTS_PUI1
 #define VTS_PUI1            "\x4F"      // a 'BYTE*'
+#endif
 
 // special VT_ and VTS_ values
 #define VTS_NONE            NULL        // used for members with 0 params
