@@ -1169,6 +1169,10 @@ SOURCE=.\MergeEditView.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\MergeLineFlags.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\MessageBoxDialog.h
 # End Source File
 # Begin Source File

@@ -60,6 +60,7 @@
 #include "codepage.h"
 #include "paths.h"
 #include "OptionsMgr.h"
+#include "MergeLineFlags.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -546,7 +547,7 @@ void CMergeDoc::FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDif
 			}
 		}
 	}
-	// TODO: Need to record actual moved information
+	// todo: Need to record actual moved information
 }
 
 /**

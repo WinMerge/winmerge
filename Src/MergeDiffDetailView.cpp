@@ -12,7 +12,6 @@
 
 #include "stdafx.h"
 #include "merge.h"
-#include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
 #include "MergeDoc.h"
 #include "MainFrm.h"
@@ -20,6 +19,7 @@
 #include "ChildFrm.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
+#include "MergeLineFlags.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

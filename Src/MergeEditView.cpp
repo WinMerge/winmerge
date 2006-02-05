@@ -44,6 +44,7 @@
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
 #include "SplitterWndEx.h" // For printing (OnPrint, SlavePrint)
+#include "MergeLineFlags.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

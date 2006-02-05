@@ -70,27 +70,6 @@ const UINT CONTEXT_LINES_BELOW = 3;
 
 
 /////////////////////////////////////////////////////////////////////////////
-
-/** 
-We use the current ccrystalEditor flags 
-
-This flag must be cleared and set in MergeEditView.cpp 
-and MergeDoc.cpp (Rescan) only.
-
-GetLineColors reads it to choose the line color.
-*/
-enum MERGE_LINEFLAGS
-{
-	LF_DIFF = 0x00200000L,
-	LF_TRIVIAL = 0x00800000L,
-	LF_MOVED = 0x01000000L,
-};
-
-// WINMERGE_FLAGS is MERGE_LINEFLAGS | GHOST_LINEFLAGS | LF_TRIVIAL | LF_MOVED
-#define LF_WINMERGE_FLAGS    0x01E00000
-
-
-/////////////////////////////////////////////////////////////////////////////
 // CMergeEditView view
 #ifndef __EDTLIB_H
 #include "edtlib.h"
@@ -107,6 +86,7 @@ It hooks the painting of ghost lines (GetLineColors), the shared
 scrollbar (OnUpdateSibling...).
 It offers the UI interface commands to work with diffs 
 
+@todo
 If we keep GetLineColors here, we should clear DIFF flag here
 and not in CGhostTextBuffer (when insertText/deleteText). 
 Small problem... This class doesn't derives from CGhostTextBuffer... 

@@ -16,6 +16,7 @@
 #include "MergeDoc.h"
 #include "BCMenu.h"
 #include "OptionsDef.h"
+#include "MergeLineFlags.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

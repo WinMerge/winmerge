@@ -1,3 +1,9 @@
+2006-02-05 Perry
+ PATCH: [ 1414201 ] Cleanup Merge Line Flags
+  Src: LocationView.cpp Merge.dsp MergeDiffDetailView.cpp MergeDoc.cpp
+   MergeEditView.cpp MergeEditView.h 
+  NEW Src: MergeLineFlags.h
+
 2006-02-05 Kimmo
  PATCH: [ 1424264 ] Use 'Item' instead of file in View-menu
   Src: Merge.rc
