@@ -1,3 +1,7 @@
+2006-02-05 Perry
+ Fix Italian Edit/Options/Editor line selection controls.
+  Src/Languages/Italian/MergeItalian.rc
+
 2006-02-05 Kimmo
  BUG: [ 1422257 ] Wrong text in tooltip
   (Dutch translation had wrong shortcut keys in tooltip)
