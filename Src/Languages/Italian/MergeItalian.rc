@@ -103,7 +103,7 @@ BEGIN
         MENUITEM "&Copia a destra",             ID_L2R
         MENUITEM "Co&pia a sinistra",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "&Seleziona differenze nella riga",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Annul&la",                    ID_EDIT_UNDO
         MENUITEM "&Ripristina",                 ID_EDIT_REDO
@@ -337,7 +337,7 @@ BEGIN
         MENUITEM "C&opia\tCtrl+C",              ID_EDIT_COPY
         MENUITEM "I&ncolla\tCtrl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Seleziona &differenze nella riga\tF4", ID_SELECTLINEDIFF
         MENUITEM "Se&leziona tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "Tro&va...\tCtrl+F",            ID_EDIT_FIND
@@ -366,7 +366,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Visualizza spazi bianchi",   ID_VIEW_WHITESPACE
         MENUITEM "Visualizza &differenze nelle linee",      ID_VIEW_LINEDIFFS
-        MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
+        MENUITEM "A capo a&utomatico",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sc&ambia pannelli",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR

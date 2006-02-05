@@ -1,6 +1,10 @@
 2006-02-05 Perry
  Fix Italian Edit/Options/Editor line selection controls.
   Src/Languages/Italian/MergeItalian.rc
+ PATCH: [ 1414904 ] updated italian translation for winmerge 2.5.3.1
+  Submitted by A. Decorte
+  New updates for selecting current diffs and wrap lines.
+  Src/Languages/Italian/MergeItalian.rc
 
 2006-02-05 Kimmo
  BUG: [ 1422257 ] Wrong text in tooltip
