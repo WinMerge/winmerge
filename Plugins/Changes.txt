@@ -1,3 +1,9 @@
+2006-02-05 Perry
+ Add line filter so RCLocalization ignores codepages even if not ignoring numbers
+  Plugins\dlls: RCLocalizationHelper.ini RCLocalizationHelperU.ini
+  Plugins\src_VCPP\RCLocalizationHelper: 
+   RCLocalizationHelper.ini RCLocalizationHelperU.ini
+
 2006-02-03 Perry
  PATCH: [ 1423147 ] Fix lib links of cvs DisplayXMLFiles
   Fix link lines
