@@ -2,6 +2,9 @@
  BUG: [ 1422257 ] Wrong text in tooltip
   (Dutch translation had wrong shortcut keys in tooltip)
   Src/Languages/Dutch/MergeDutch.rc
+ PATCH: [ 1424535 ] Czech Translation
+  Submitted by Jan Hryz
+  Src/Languages/Czech/MergeCzech.rc
 
 2006-02-04 Perry
  PATCH: [ 1424142 ] Wrap two lwdisp macros in ifndef
