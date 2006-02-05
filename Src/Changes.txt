@@ -40,6 +40,7 @@
  PATCH: [ 1423907 ] Fix diffutils hashing of \r
   Src/diffutils: IO.C UTIL.C
  Current selftests status: Failure count: 0 (of 480)
+ Created branch "R_diffutils_branch"
   
 2006-02-03 Perry
  PATCH: [ 1409651 ] fix diffutils handling trailing whitespace
