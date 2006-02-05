@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "表示(&V)"
     BEGIN
-        MENUITEM "同一ファイルの表示(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "差異ファイルの表示(&D)",      ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "左のみに存在するファイルの表示(&E)", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "右のみに存在するファイルの表示(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "バイナリファイルの表示(&H)",  ID_OPTIONS_SHOWBINARIES
-        MENUITEM "スキップされたファイルの表示(&K)", ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "非表示の項目を表示(&E)",      ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2543,15 +2543,15 @@ BEGIN
     ID_DIR_RESCAN            "選択された項目の情報を最新にします"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "正確に一致しているファイルを表示します"
-    ID_OPTIONS_SHOWDIFFERENT "差異のあるファイルを表示します"
-    ID_OPTIONS_SHOWUNIQUELEFT "右側にのみ存在するファイルを表示します"
-    ID_OPTIONS_SHOWUNIQUERIGHT "右側にのみ存在するファイルを表示します"
-    ID_OPTIONS_SHOWBINARIES "バイナリファイルを表示します"
-    ID_OPTIONS_SHOWSKIPPED  "スキップされたファイルを表示します"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "&Visualització"
     BEGIN
-        MENUITEM "Mostra els fitxers &idèntics", ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Mostra els fitxers di&ferents", ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Mostra els fitxers únics de l'&esquerra", ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Mostra els fitxers únics de la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Mostra els fitxers &binaris", ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Mostra els fitxers &omesos",  ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Mostra els elements ama&gats",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2562,15 +2562,15 @@ BEGIN
     ID_DIR_RESCAN            "Actualitza els elements seleccionats"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Visualitza els fitxers que singuin exactament idèntics"
-    ID_OPTIONS_SHOWDIFFERENT "Visualitza els fitxers que tinguin diferències"
-    ID_OPTIONS_SHOWUNIQUELEFT "Visualitza els fitxers existents únicament a l'esquerra"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Visualitza els fitxers existents únicament a la dreta"
-    ID_OPTIONS_SHOWBINARIES "Visualitza els fitxers binaris"
-    ID_OPTIONS_SHOWSKIPPED  "Visualitza els fitxers omesos"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

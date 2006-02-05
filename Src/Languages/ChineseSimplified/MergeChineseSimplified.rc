@@ -213,12 +213,12 @@ BEGIN
     END
     POPUP "视图(&V)"
     BEGIN
-        MENUITEM "显示完全相同的文件(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "显示不同的文件(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "显示只在左侧的文件(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "显示只在右侧的文件(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "显示二进制文件(&H)",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "显示跳过的文件(&K)",          ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "显示隐藏的项目(&E)",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2538,15 +2538,15 @@ BEGIN
     ID_DIR_RESCAN           "刷新选中的项目"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "显示完全相同的文件"
-    ID_OPTIONS_SHOWDIFFERENT "显示有不同的文件"
-    ID_OPTIONS_SHOWUNIQUELEFT "显示只存在于左侧的文件"
-    ID_OPTIONS_SHOWUNIQUERIGHT "显示只存在于右侧的文件"
-    ID_OPTIONS_SHOWBINARIES "显示二进制文件"
-    ID_OPTIONS_SHOWSKIPPED  "显示路过的文件"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

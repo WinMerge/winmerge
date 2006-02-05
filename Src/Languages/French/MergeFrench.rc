@@ -209,12 +209,12 @@ BEGIN
     END
     POPUP "&Affichage"
     BEGIN
-        MENUITEM "Fichiers &identiques",              ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Fichiers &différents",              ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Fichiers uniquement à &gauche",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Fichiers uniquement à d&roite",     ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Fichiers &binaires",                ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Fichiers ig&norés",                 ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Afficher les éléments cachés",      ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2539,15 +2539,15 @@ BEGIN
     ID_DIR_RESCAN            "Actualiser les éléments selectionnés"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL   "Afficher ou masquer les fichiers identiques"
-    ID_OPTIONS_SHOWDIFFERENT   "Afficher ou masquer les fichiers différents"
-    ID_OPTIONS_SHOWUNIQUELEFT  "Afficher ou masquer les fichiers qui n'existent que dans le volet gauche"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Afficher ou masquer les fichiers qui n'existent que dans le volet droit"
-    ID_OPTIONS_SHOWBINARIES    "Afficher ou masquer les fichiers binaires"
-    ID_OPTIONS_SHOWSKIPPED     "Afficher ou masquer les fichiers omis"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "보기(&V)"
     BEGIN
-        MENUITEM "동일한 파일 보기(&I)",        ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "다른 파일 보기(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "왼쪽만 존재하는 디렉토리/파일 보기(&F)",  ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "오른쪽만 존재하는 디렉토리/파일 보기(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "바이너리 파일 보기(&H)",      ID_OPTIONS_SHOWBINARIES
-        MENUITEM "필터링된 파일 보기(&K)",      ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2541,15 +2541,15 @@ BEGIN
     ID_DIR_RESCAN            "Refresh selected items"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "내용이 동일한 파일들을 표시합니다."
-    ID_OPTIONS_SHOWDIFFERENT "내용이 동일하지 않은 파일들을 표시합니다."
-    ID_OPTIONS_SHOWUNIQUELEFT "왼쪽에만 존재하는 디렉토리/파일을 표시합니다."
-    ID_OPTIONS_SHOWUNIQUERIGHT "오른쪽에만 존재하는 디렉토리/파일을 표시합니다."
-    ID_OPTIONS_SHOWBINARIES "바이너리 파일을 표시합니다."
-    ID_OPTIONS_SHOWSKIPPED  "필터링된 파일을 표시합니다."
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

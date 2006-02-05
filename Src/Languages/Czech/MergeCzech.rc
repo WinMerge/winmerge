@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "&Zobrazit"
     BEGIN
-        MENUITEM "Ukázat s&hodné soubory", ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Ukázat ro&zdílné soubory",  ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Ukázat &levé jedineèné soubory",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Ukázat p&ravé jedineèné soubory",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Ukázat &binární soubory",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Ukázat pø&eskoèené soubory",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Ukázat &skryté položky",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2536,15 +2536,15 @@ BEGIN
     ID_DIR_RESCAN            "Obnoví vybrané položky"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Zobrazí soubory, které se pøesnì shodují"
-    ID_OPTIONS_SHOWDIFFERENT "Zobrazí soubory, ve kterých jsou rozdíly"
-    ID_OPTIONS_SHOWUNIQUELEFT "Zobrazí soubory, které existují pouze na levé stranì"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Zobrazí soubory, které existují pouze na pravé stranì"
-    ID_OPTIONS_SHOWBINARIES "Zobrazí binární soubory"
-    ID_OPTIONS_SHOWSKIPPED  "Zobrazí pøeskoèené soubory"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

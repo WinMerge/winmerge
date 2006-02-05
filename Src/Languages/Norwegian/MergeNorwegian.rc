@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "&Vis"
     BEGIN
-        MENUITEM "Vis &identiske filer",        ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Vis &forskjellige filer",     ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Vis &venstre unike filer",    ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Vis &høyre unike filer",      ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Vis &binære filer",           ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Vis &utelatte filer",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2543,15 +2543,15 @@ BEGIN
     ID_DIR_RESCAN            "Refresh selected items"
 END
 
-// VIEW MENU (FILE TYPE)
+// VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Viser filer som er helt like"
-    ID_OPTIONS_SHOWDIFFERENT "Viser filer som har forskjeller"
-    ID_OPTIONS_SHOWUNIQUELEFT "Viser filer som kun eksisterer på venstre side"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Viser filer som kun eksisterer på høyre side"
-    ID_OPTIONS_SHOWBINARIES "Viser binære filer"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

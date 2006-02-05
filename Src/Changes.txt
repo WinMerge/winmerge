@@ -1,3 +1,8 @@
+2006-02-05 Kimmo
+ PATCH: [ 1424264 ] Use 'Item' instead of file in View-menu
+  Src: Merge.rc
+  Src/Language: */Merge*.rc
+
 2006-02-05 Perry
  Fix Italian Edit/Options/Editor line selection controls.
   Src/Languages/Italian/MergeItalian.rc

@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "檢視(&V)"
     BEGIN
-        MENUITEM "顯示完全相同的檔案(&I)",      ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "顯示不同的檔案(&D)",          ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "顯示左邊單一的檔案(&F)",      ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "顯示右邊單一的檔案(&G)",      ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "顯示二進制檔案(&H)",          ID_OPTIONS_SHOWBINARIES
-        MENUITEM "顯示略過的檔案(&K)",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2541,12 +2541,12 @@ END
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "顯示完全相同的檔案"
-    ID_OPTIONS_SHOWDIFFERENT "顯示有不同的檔案"
-    ID_OPTIONS_SHOWUNIQUELEFT "顯示只存在於左邊的檔案"
-    ID_OPTIONS_SHOWUNIQUERIGHT "顯示只存在於右邊的檔案"
-    ID_OPTIONS_SHOWBINARIES "顯示二進制檔案"
-    ID_OPTIONS_SHOWSKIPPED  "顯示略過的檔案"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU

@@ -211,12 +211,12 @@ BEGIN
     END
     POPUP "E&xibir"
     BEGIN
-        MENUITEM "Exibir Arquivos &Idênticos",  ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Exibir Arquivos &Diferentes", ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Só arquivos da &Esquerda",    ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Só Arquivos da Di&reita",     ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Exibir Arquivos &Binários",   ID_OPTIONS_SHOWBINARIES
-        MENUITEM "Show S&kipped Files",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -2546,12 +2546,12 @@ END
 // VIEW MENU (FILE TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Exibe arquivos que são exatamente iguais"
-    ID_OPTIONS_SHOWDIFFERENT "Exibe arquivos que contêm diferenças"
-    ID_OPTIONS_SHOWUNIQUELEFT "Exibir arquivos que existam apenas no lado esquerdo"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Exibir arquivos que existam apenas no lado direito"
-    ID_OPTIONS_SHOWBINARIES "Exibir arquivos binários"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped files"
+    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
+    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
+    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
+    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
+    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
 END
 
 // VIEW MENU
