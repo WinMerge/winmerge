@@ -1,3 +1,7 @@
+2006-02-06 Perry
+ Synchronizing Slovak translation to English where feasible.
+  Src/Languages/Slovak: MergeSlovak.rc
+
 2006-02-05 Perry
  PATCH: [ 1414201 ] Cleanup Merge Line Flags
   Src: LocationView.cpp Merge.dsp MergeDiffDetailView.cpp MergeDoc.cpp

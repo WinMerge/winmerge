@@ -600,9 +600,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "O programe"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    LTEXT           "Verzia 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "Verzia 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Vöetky pr·va vyhradenÈ.",IDC_STATIC,7,60,170,8
     LTEXT           "NavötÌvte www str·nku programu WinMerge!",IDC_WWW,7,79,209,8
@@ -612,7 +612,7 @@ BEGIN
     PUSHBUTTON      "Contributors",IDC_OPEN_CONTRIBUTORS,7,103,65,14
 END
 
-IDD_OPEN DIALOGEX 0, 0, 366, 126
+IDD_OPEN DIALOGEX 0, 0, 364, 126
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
     WS_THICKFRAME
 CAPTION "V˝ber s˙borov a adres·rov..."
@@ -622,12 +622,12 @@ BEGIN
     COMBOBOX        IDC_LEFT_COMBO,56,22,182,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "&Prech·dzaù...",IDC_LEFT_BUTTON,241,22,50,12
+    PUSHBUTTON      "&Prech·dzaù...",IDC_LEFT_BUTTON,242,22,50,12
     RTEXT           "P&rav˝:",IDC_STATIC,13,40,40,8
     COMBOBOX        IDC_RIGHT_COMBO,56,38,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "Pr&ech·dzaù...",IDC_RIGHT_BUTTON,241,38,50,12
+    PUSHBUTTON      "Pr&ech·dzaù...",IDC_RIGHT_BUTTON,242,38,50,12
     RTEXT           "Pr&Ìpony:",IDC_STATIC,13,56,40,8
     COMBOBOX        IDC_EXT_COMBO,56,54,182,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
@@ -639,10 +639,10 @@ BEGIN
     CONTROL         "&Include Subfolders",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,56,86,181,10
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
-    DEFPUSHBUTTON   "OK",IDOK,307,11,50,14
-    PUSHBUTTON      "Storno",IDCANCEL,307,28,50,14
+    DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
+    PUSHBUTTON      "Storno",IDCANCEL,306,28,50,14
     GROUPBOX        "S˙bory alebo adres·re pre porovnanie",IDC_FILES_DIRS_GROUP,7,
-                    7,293,111
+                    7,292,111
     PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
@@ -686,7 +686,7 @@ BEGIN
     PUSHBUTTON      "&Prech·dzaù",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 247, 222
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "HlavnÈ nastavenia"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1093,7 +1093,7 @@ BEGIN
     PUSHBUTTON      "Defaults",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1115,15 +1115,15 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,120,63,73,10
     CONTROL         "Vkladaù medzery",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,120,72,69,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,95,
+                    221,61
     CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
