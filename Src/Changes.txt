@@ -3,6 +3,9 @@
   Src/Languages/Slovak: MergeSlovak.rc
  Synchronizing Swedish translation to English where feasible.
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1392413 ] Track lossy encodings & warn user
+  Src: FileFilterMgr.cpp Merge.rc MergeDoc.cpp files.h resource.h
+  Src/Common: UniFile.cpp UniFile.h unicoder.cpp
 
 2006-02-05 Perry
  PATCH: [ 1414201 ] Cleanup Merge Line Flags

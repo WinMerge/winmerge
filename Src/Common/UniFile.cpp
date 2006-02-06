@@ -1,9 +1,9 @@
 /**
  *  @file   UniFile.cpp
- *  @author Perry Rapp, Creator, 2003-2005
+ *  @author Perry Rapp, Creator, 2003-2006
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-07-25 (Perry Rapp)
+ *  @date   Edited:  2006-02-06 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -352,10 +352,10 @@ bool UniMemFile::ReadBom()
 /**
  * @brief Read one (DOS or UNIX or Mac) line. Do not include eol chars.
  */
-BOOL UniMemFile::ReadString(CString & line)
+BOOL UniMemFile::ReadString(CString & line, bool * lossy)
 {
 	CString eol;
-	BOOL ok = ReadString(line, eol);
+	BOOL ok = ReadString(line, eol, lossy);
 	return ok;
 }
 
@@ -390,7 +390,7 @@ static void RecordZero(UniFile::txtstats & txstats, int offset)
 /**
  * @brief Read one (DOS or UNIX or Mac) line
  */
-BOOL UniMemFile::ReadString(CString & line, CString & eol)
+BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 {
 	line = _T("");
 	eol = _T("");
@@ -515,8 +515,9 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol)
 				RecordZero(m_txtstats, offset);
 			}
 		}
-		bool lossy=false;
-		line = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, &lossy);
+		line = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, lossy);
+		if (lossy && *lossy)
+			++m_txtstats.nlosses;
 		if (!eof)
 		{
 			eol += (TCHAR)*eolptr;
@@ -820,23 +821,23 @@ bool UniStdioFile::ReadBom()
 	return (m_data != 0);
 }
 
-BOOL UniStdioFile::ReadString(CString & line)
+BOOL UniStdioFile::ReadString(CString & line, bool * lossy)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
 
-BOOL UniStdioFile::ReadString(CString & line, CString & eol)
+BOOL UniStdioFile::ReadString(CString & line, CString & eol, bool * lossy)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
-BOOL UniStdioFile::ReadString(sbuffer & sline)
+BOOL UniStdioFile::ReadString(sbuffer & sline, bool * lossy)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;
 }
-BOOL UniStdioFile::ReadString(sbuffer & sline, CString & eol)
+BOOL UniStdioFile::ReadString(sbuffer & sline, CString & eol, bool * lossy)
 {
 	ASSERT(0); // unimplemented -- currently cannot read from a UniStdioFile!
 	return FALSE;

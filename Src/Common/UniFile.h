@@ -1,8 +1,8 @@
 /** 
  *  @file   UniFile.h
- *  @author Perry Rapp, Creator, 2003
+ *  @author Perry Rapp, Creator, 2003-2006
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-01-13 (Perry Rapp)
+ *  @date   Edited:  2006-02-06 (Perry Rapp)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
@@ -49,8 +49,8 @@ public:
 	virtual void SetCodepage(int codepage) = 0;
 
 public:
-	virtual BOOL ReadString(CString & line) = 0;
-	virtual BOOL ReadString(CString & line, CString & eol) = 0;
+	virtual BOOL ReadString(CString & line, bool * lossy) = 0;
+	virtual BOOL ReadString(CString & line, CString & eol, bool * lossy) = 0;
 
 	virtual int GetLineNumber() const = 0;
 	virtual __int64 GetPosition() const = 0;
@@ -139,8 +139,8 @@ public:
 	virtual bool ReadBom();
 
 public:
-	virtual BOOL ReadString(CString & line);
-	virtual BOOL ReadString(CString & line, CString & eol);
+	virtual BOOL ReadString(CString & line, bool * lossy);
+	virtual BOOL ReadString(CString & line, CString & eol, bool * lossy);
 
 	virtual __int64 GetPosition() const { return m_current - m_base; }
 
@@ -184,11 +184,11 @@ public:
 	virtual bool ReadBom();
 
 protected:
-	virtual BOOL ReadString(CString & line);
-	virtual BOOL ReadString(CString & line, CString & eol);
+	virtual BOOL ReadString(CString & line, bool * lossy);
+	virtual BOOL ReadString(CString & line, CString & eol, bool * lossy);
 public:
-	virtual BOOL ReadString(sbuffer & line);
-	virtual BOOL ReadString(sbuffer & line, CString & eol);
+	virtual BOOL ReadString(sbuffer & line, bool * lossy);
+	virtual BOOL ReadString(sbuffer & line, CString & eol, bool * lossy);
 
 	virtual __int64 GetPosition() const;
 

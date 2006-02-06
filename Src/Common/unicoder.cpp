@@ -1,8 +1,8 @@
 /**
  *  @file   unicoder.cpp
- *  @author Perry Rapp, Creator, 2003-2004
+ *  @author Perry Rapp, Creator, 2003-2006
  *  @date   Created: 2003-10
- *  @date   Edited:  2005-12-15 (Perry Rapp)
+ *  @date   Edited:  2006-02-06 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -490,19 +490,32 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	// Convert input to Unicode, using specified codepage
 	// TCHAR is wchar_t, so convert into CString (str)
 	CString str;
-	DWORD flags = 0;
+	DWORD flags = MB_ERR_INVALID_CHARS;
 	int wlen = len*2+6;
 	LPWSTR wbuff = str.GetBuffer(wlen);
 	int n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
 	if (n)
 	{
 		str.ReleaseBuffer(n);
+		return str;
 	}
 	else
 	{
+		*lossy = true;
+		if (GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
+		{
+			flags = 0;
+			// wlen & wbuff are still fine
+			n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
+			if (n)
+			{
+				str.ReleaseBuffer(n);
+				return str;
+			}
+		}
 		str = _T("?");
+		return str;
 	}
-	return str;
 
 #else
 	if (EqualCodepages(codepage, getDefaultCodepage()))

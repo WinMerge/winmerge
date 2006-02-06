@@ -222,7 +222,8 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilenam
 	pfilter->fullpath = szFilepath;
 	pfilter->name = szFilename; // default if no name
 	CString sLine;
-	while (file.ReadString(sLine))
+	bool lossy=false;
+	while (file.ReadString(sLine, &lossy))
 	{
 		sLine.TrimLeft();
 		sLine.TrimRight();

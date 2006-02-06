@@ -1448,7 +1448,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		if (!FileTransform_Unpacking(sFileName, sToFindUnpacker, infoUnpacker, &unpackerSubcode))
 		{
 			InitNew(); // leave crystal editor in valid, empty state
-			return FRESULT_ERROR_UNPACK;
+			return FileLoadResult::FRESULT_ERROR_UNPACK;
 		}
 	}
 	else
@@ -1456,7 +1456,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		if (!FileTransform_Unpacking(sFileName, infoUnpacker, &unpackerSubcode))
 		{
 			InitNew(); // leave crystal editor in valid, empty state
-			return FRESULT_ERROR_UNPACK;
+			return FileLoadResult::FRESULT_ERROR_UNPACK;
 		}
 	}
 	// we use the same unpacker for both files, so it must be defined after first file
@@ -1465,7 +1465,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	LPCTSTR pszFileName = sFileName;
 
 	CString sExt;
-	int nRetVal = FRESULT_OK;
+	DWORD nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
@@ -1482,7 +1482,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 	if (!pufile->OpenReadOnly(pszFileName))
 	{
-		nRetVal = FRESULT_ERROR;
+		nRetVal = FileLoadResult::FRESULT_ERROR;
 		UniFile::UniError uniErr = pufile->GetLastUniError();
 		if (uniErr.hasError())
 		{
@@ -1516,13 +1516,14 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		preveol = "\n";
 		
 		do {
-			done = !pufile->ReadString(sline, eol);
+			bool lossy=false;
+			done = !pufile->ReadString(sline, eol, &lossy);
 
 
 			const UniFile::txtstats & tstats = pufile->GetTxtStats();
 			if (tstats.nzeros)
 			{
-				nRetVal = FRESULT_BINARY;
+				nRetVal = FileLoadResult::FRESULT_BINARY;
 				ResetInit(); // leave crystal editor in valid, empty state
 				goto LoadFromFileExit;
 			}
@@ -1540,6 +1541,10 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			}
 
 			sline += eol; // TODO: opportunity for optimization, as CString append is terrible
+			if (lossy)
+			{
+				// TODO: Should record lossy status of line
+			}
 			AppendLine(lineno, sline, sline.GetLength());
 			++lineno;
 			preveol = eol;
@@ -1607,16 +1612,19 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		// WinMerge may display impure files, but the default option is to unify the EOL
 		// We return this info to the caller, so it may display a confirmation box
 		if (IsTextFileStylePure(pufile->GetTxtStats()))
-			nRetVal = FRESULT_OK;
+			nRetVal = FileLoadResult::FRESULT_OK;
 		else
-			nRetVal = FRESULT_OK_IMPURE;
+			nRetVal = FileLoadResult::FRESULT_OK_IMPURE;
 
 		// stash original encoding away
 		m_unicoding = pufile->GetUnicoding();
 		m_codepage = pufile->GetCodepage();
 
 		if (pufile->GetTxtStats().nlosses)
+		{
+			FileLoadResult::AddModifier(nRetVal, FileLoadResult::FRESULT_LOSSY);
 			readOnly = TRUE;
+		}
 	}
 	
 LoadFromFileExit:
@@ -2495,7 +2503,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 {
 	CDiffTextBuffer *pBuf;
 	CString sError;
-	int retVal = FRESULT_ERROR;
+	DWORD retVal = FileLoadResult::FRESULT_ERROR;
 
 	pBuf = m_ptBuf[nBuffer];
 	nBuffer == 0 ? m_filePaths.SetLeft(sFileName) : m_filePaths.SetRight(sFileName);
@@ -2508,10 +2516,10 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
 	// it left the pBuf in a valid (but empty) state via a call to InitNew
 
-	if (retVal == FRESULT_OK_IMPURE)
+	if (FileLoadResult::IsErrorUnpack(retVal))
 	{
 		// File loaded, and multiple EOL types in this file
-		retVal = FRESULT_OK;
+		FileLoadResult::SetMainOk(retVal);
 		// By default, WinMerge unifies EOL to the most used type (when diffing or saving)
 		// As some info are lost, we request a confirmation from the user
 		if (!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
@@ -2528,7 +2536,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 		}
 	}
 
-	if (retVal == FRESULT_ERROR)
+	if (FileLoadResult::IsError(retVal))
 	{
 		// Error from Unifile/system
 		if (!sOpenError.IsEmpty())
@@ -2537,7 +2545,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 			AfxFormatString1(sError, IDS_ERROR_FILE_NOT_FOUND, sFileName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 	}
-	else if (retVal == FRESULT_ERROR_UNPACK)
+	else if (FileLoadResult::IsErrorUnpack(retVal))
 	{
 		AfxFormatString1(sError, IDS_ERROR_FILE_NOT_UNPACKED, sFileName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
@@ -2610,7 +2618,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	m_strBothFilenames = sLeftFile + _T("|") + sRightFile;
 
 	// Load left side file
-	int nLeftSuccess = FRESULT_ERROR;
+	DWORD nLeftSuccess = FileLoadResult::FRESULT_ERROR;
 	if (!sLeftFile.IsEmpty())
 	{
 		if (GetMainFrame()->m_strLeftDesc.IsEmpty())
@@ -2634,11 +2642,11 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 
 		m_ptBuf[0]->InitNew();
 		m_strDesc[0] = GetMainFrame()->m_strLeftDesc;
-		nLeftSuccess = FRESULT_OK;
+		nLeftSuccess = FileLoadResult::FRESULT_OK;
 	}
 	
 	// Load right side only if left side was succesfully loaded
-	int nRightSuccess = FRESULT_ERROR;
+	DWORD nRightSuccess = FileLoadResult::FRESULT_ERROR;
 	if (!sRightFile.IsEmpty())
 	{
 		if (GetMainFrame()->m_strRightDesc.IsEmpty())
@@ -2652,8 +2660,10 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 
 		m_pSaveFileInfo[1]->Update(sRightFile);
 		m_pRescanFileInfo[1]->Update(sRightFile);
-		if (nLeftSuccess == FRESULT_OK || nLeftSuccess == FRESULT_BINARY)
+		if (FileLoadResult::IsOk(nLeftSuccess) || FileLoadResult::IsBinary(nLeftSuccess))
+		{
 			nRightSuccess = LoadFile(sRightFile, 1, bRORight, filelocRight.codepage);
+		}
 	}
 	else
 	{
@@ -2661,7 +2671,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 
 		m_ptBuf[1]->InitNew();
 		m_strDesc[1] = GetMainFrame()->m_strRightDesc;
-		nRightSuccess = FRESULT_OK;
+		nRightSuccess = FileLoadResult::FRESULT_OK;
 	}
 
 	// scratchpad : we don't call LoadFile, so
@@ -2670,14 +2680,36 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		m_pInfoUnpacker->Initialize(PLUGIN_MANUAL);
 
 	// Bail out if either side failed
-	if (nLeftSuccess != FRESULT_OK || nRightSuccess != FRESULT_OK)
+	if (!FileLoadResult::IsOk(nLeftSuccess) || !FileLoadResult::IsOk(nRightSuccess))
 	{
-		if (nLeftSuccess == FRESULT_BINARY || nRightSuccess == FRESULT_BINARY)
+		if (FileLoadResult::IsBinary(nLeftSuccess) || FileLoadResult::IsBinary(nRightSuccess))
 		{
 			CompareBinaries(sLeftFile, sRightFile, nLeftSuccess, nRightSuccess);
 			return OPENRESULTS_FAILED_BINARY;
 		}
 		return OPENRESULTS_FAILED_MISC;
+	}
+
+	// Warn user if file load was lossy (bad encoding)
+	if (FileLoadResult::IsLossy(nLeftSuccess) || FileLoadResult::IsLossy(nRightSuccess))
+	{
+		// TODO: It would be nice to report how many lines were lossy
+		// we did calculate those numbers when we loaded the files, in the text stats
+
+		int idres=0;
+		if (FileLoadResult::IsLossy(nLeftSuccess) && FileLoadResult::IsLossy(nRightSuccess))
+		{
+			idres = IDS_LOSSY_TRANSCODING_BOTH;
+		}
+		else if (FileLoadResult::IsLossy(nLeftSuccess))
+		{
+			idres = IDS_LOSSY_TRANSCODING_LEFT;
+		}
+		else
+		{
+			idres = IDS_LOSSY_TRANSCODING_RIGHT;
+		}
+		AfxMessageBox(idres, MB_ICONSTOP);
 	}
 
 	// Now buffers data are valid
@@ -2860,7 +2892,7 @@ void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeft
 	BOOL bIdentical = FALSE;
 
 	// Compare binary files
-	if (nLeftSuccess == FRESULT_BINARY && nRightSuccess == FRESULT_BINARY)
+	if (FileLoadResult::IsBinary(nLeftSuccess) && FileLoadResult::IsBinary(nRightSuccess))
 	{
 		bBinary = TRUE; // Compare binary files
 		nRescanResult = Rescan(bBinary, bIdentical);
@@ -2869,7 +2901,7 @@ void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeft
 	if (nRescanResult == RESCAN_OK)
 	{
 		// Format message shown to user: both files are binaries
-		if (nLeftSuccess == FRESULT_BINARY && nRightSuccess == FRESULT_BINARY)
+		if (FileLoadResult::IsBinary(nLeftSuccess) && FileLoadResult::IsBinary(nRightSuccess))
 		{
 			CString msg;
 			CString msg2;
@@ -2882,12 +2914,12 @@ void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeft
 			msg += msg2;
 			AfxMessageBox(msg, MB_ICONINFORMATION);
 		}
-		else if (nLeftSuccess == FRESULT_BINARY || nRightSuccess == FRESULT_BINARY)
+		else if (FileLoadResult::IsBinary(nLeftSuccess) || FileLoadResult::IsBinary(nRightSuccess))
 		{
 			// Other file binary, other text
 			CString msg;
 			CString msg2;
-			if (nLeftSuccess == FRESULT_BINARY)
+			if (FileLoadResult::IsBinary(nLeftSuccess))
 				AfxFormatString1(msg, IDS_OTHER_IS_BINARY, sLeftFile);
 			else
 				AfxFormatString1(msg, IDS_OTHER_IS_BINARY, sRightFile);
