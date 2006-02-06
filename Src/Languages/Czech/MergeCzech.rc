@@ -2147,6 +2147,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "V souborech vlevo (cp%d) a vpravo (cp%d) bylo nalezeno rozdílné kódování.\nZobrazení každého souboru v jeho znakové stránce poskytne lepší náhled, ale sluèování nebo kopírování bude nebezpeèné.\nChcete kódování u obou souborù upravit na výchozí znakovou stránku Windows (doporuèeno)?"
     IDS_DIFFERENT_UNICODINGS   "Upozornìní: Soubory používají rozdílné kódování, levé=%s a pravé=%s, a sluèování mùže vést ke ztrátì informací."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

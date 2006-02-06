@@ -2152,6 +2152,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Forskjelling tegntabell funnet i venstre (cp%d) og høyre (cp%d) fil. \nVisning av filene i hvert sin tegntabell ser best ut, men fletting/flytting er farlig.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
     IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

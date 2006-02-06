@@ -2147,6 +2147,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "找到不同碼頁在左邊 (cp%d) 和右邊 (cp%d) 檔案。 \n以它的碼頁顯示每一檔案會有較佳顯示但對合併/複製會有危險。\n你要強迫兩邊使用預設的碼頁嗎 (建議使用)？"
     IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

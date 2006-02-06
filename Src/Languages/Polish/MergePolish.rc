@@ -2152,6 +2152,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Ró¿ne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d). \nWyœwietlanie ka¿dego pliku w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/skopiowanie bêdzie niebezpieczne.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
     IDS_DIFFERENT_UNICODINGS   "Ostrze¿enie: Pliki u¿ywaj¹ ró¿nego kodowania, lewy=%s a prawy=%s, a ich po³¹czenie mo¿e spowodowaæ utratê informacji."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

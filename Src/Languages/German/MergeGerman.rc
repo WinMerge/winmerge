@@ -2152,6 +2152,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
     IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

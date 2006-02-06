@@ -2152,6 +2152,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Il file sinistro (cp%d) e destro (cp%d) non hanno lo stesso codice di pagina.\nLa visualizzazione di ciascun file con il proprio codice di pagina fornirà una migliore visualizzazione ma l'unione/copia sarà pericolosa.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
     IDS_DIFFERENT_UNICODINGS   "Attenzione: i file usano codifiche differenti, sinistra=%s e destra=%s, e l'unione può causare una perdita di informazioni."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

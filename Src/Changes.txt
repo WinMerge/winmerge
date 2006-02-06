@@ -6,6 +6,8 @@
  PATCH: [ 1392413 ] Track lossy encodings & warn user
   Src: FileFilterMgr.cpp Merge.rc MergeDoc.cpp files.h resource.h
   Src/Common: UniFile.cpp UniFile.h unicoder.cpp
+ PATCH: [ 1392413 ] Track lossy encodings & warn user
+  Src/Languages/*: Merge*.rc
 
 2006-02-05 Perry
  PATCH: [ 1414201 ] Cleanup Merge Line Flags

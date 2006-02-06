@@ -2149,6 +2149,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "左右两侧为不同代码页的文件(左侧为cp%d，右侧为cp%d)。\n分别以不同代码页显示将会有较好的效果，但是合并/复制会有危险。\n您要以Wiondows默认的代码页显示两个文件吗(推荐)？"
     IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

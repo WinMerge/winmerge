@@ -2152,6 +2152,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
     IDS_DIFFERENT_UNICODINGS   "Varning: Filerna använder olika filkodningar, vänster=%s och höger=%s, och sammanfogning kan leda till förlust av information."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF

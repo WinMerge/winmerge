@@ -2171,6 +2171,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
     IDS_DIFFERENT_UNICODINGS   "Advertiment: Els fitxers empren codificacions diferents, l'esquerre=%s i el dret=%s, i en combinar-los es podria perdre informació."
+    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
 END
 
 // EDITOR : SHOW LINE DIFF
