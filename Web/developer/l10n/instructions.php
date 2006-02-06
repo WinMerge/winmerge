@@ -56,7 +56,8 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
   <li>Do not translate anything that is all uppercase letters.</li>
   <li>
     The <code>&amp;</code> sign is for accelerator buttons, try to make them meaningful in your language.<br />
-    <em>The Chinese translations handle accelerators by including them in parentheses at the end of the string (and using the English accelerators), eg, "状态栏(&amp;S)".</em>
+    <em>The Chinese translations handle accelerators by including them in parentheses at the end of the string (and using the English accelerators), eg, "状态栏(&amp;S)".<br />
+    This is per the instructions for double-byte languages given in section "Access Key Definition" in Microsoft's Localization guidelines.</em>
   </li>
   <li>Don't translate the following strings, as they have special meaning in Visual C++: <code>"Button"</code>, <code>"MS Sans Serif"</code> and <code>"MS Shell Dlg"</code>.</li>
 </ul>
