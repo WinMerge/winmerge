@@ -2,7 +2,7 @@
 # Self-tests for diffutils diff & WinMerge
 #
 # Created: 2006-01-21, Perry Rapp
-# Edited:  2006-02-073, Perry Rapp
+# Edited:  2006-02-07, Perry Rapp
 #
 
 use strict;
@@ -75,6 +75,9 @@ sub testdiffs {
   #  -B  --ignore-blank-lines  Ignore changes whose lines are all blank.
   #  -q  (this is used to fill in as blank argument)
 
+  # Each call to test3set does the test for all 3 platforms (unix, mac, win)
+
+  # files differ only in case
   test3set "t001", "-q", 1;
   test3set "t001", "-i", 0;
   test3set "t001", "-E", 1;
@@ -85,6 +88,7 @@ sub testdiffs {
   test3set "t001", "-Bi", 0;
   test3set "t001", "-bi", 0;
 
+  # files differ only in length of middle whitespace
   test3set "t002", "-q", 1;
   test3set "t002", "-i", 1;
   test3set "t002", "-E", 1;
@@ -95,6 +99,7 @@ sub testdiffs {
   test3set "t002", "-Bi", 1;
   test3set "t002", "-bi", 0;
 
+  # 2nd file has line broken into two lines, so always different for WinMerge
   test3set "t003", "-q", 1;
   test3set "t003", "-i", 1;
   test3set "t003", "-E", 1;
@@ -105,6 +110,7 @@ sub testdiffs {
   test3set "t003", "-Bi", 1;
   test3set "t003", "-bi", 1;
 
+  # 2nd file has extra blank line in middle
   test3set "t004", "-q", 1;
   test3set "t004", "-i", 1;
   test3set "t004", "-E", 1;
@@ -120,6 +126,47 @@ sub testdiffs {
   test3set "bug1406950", "-B", 1;
   test3set "bug1406950", "-b", 0;
   test3set "bug1406950", "-w", 0;
+
+  # empty file against itself
+  testdiff "mixed/empty.txt", "mixed/empty.txt", "-q", 0;
+  testdiff "mixed/empty.txt", "mixed/empty.txt", "-w", 0;
+  testdiff "mixed/empty.txt", "mixed/empty.txt", "-B", 0;
+
+  # empty file against file with one empty win line  
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-q", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-b", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-w", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-B", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-Bw", 0;
+
+  # empty file against file with one empty unix line  
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-q", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-b", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-w", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-B", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-Bw", 0;
+
+  # empty file against file with one empty mac line  
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-q", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-b", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-w", 1;
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-B", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-Bw", 0;
+
+  # empty line win file vs. empty line unix file
+  testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-q", 1;
+  testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-w", 1;
+  testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-B", 0;
+
+  # empty line win file vs. empty line mac file
+  testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-q", 1;
+  testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-w", 1;
+  testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-B", 0;
+
+  # empty line unix file vs. empty line mac file
+  testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-q", 1;
+  testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-w", 1;
+  testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-B", 0;
 
   if ($noisy == 1) { 
     # reprint all failure messages, because they were lost in the noise

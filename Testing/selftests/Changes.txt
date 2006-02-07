@@ -5,6 +5,11 @@ selftest\Changes.txt
   Add build arguments so don't have to test all builds
  Affected:
   testdiff.pl
+ PATCH: [ 1425770 ] Add some selftests with empty files
+ Affected:
+  testdiff.pl
+ New:
+  mixed: empty.txt empty_m.txt empty_u.txt empty_w.txt
 
 2006-02-03, Perry
  PATCH: [ 1423060 ] Modify perl selftest to test all 4 builds
