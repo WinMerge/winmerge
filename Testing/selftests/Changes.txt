@@ -1,6 +1,12 @@
 selftest\Changes.txt
 
 2006-02-07, Perry
+ PATCH: [ 1426371 ] Fix selftests for all builds
+  Fix argument parsing (broken by PATCH [ 1425765 ] below)
+ Affected:
+  testdiff.pl
+
+2006-02-07, Perry
  PATCH: [ 1425765 ] Add optional build argument to testdiff.pl
   Add build arguments so don't have to test all builds
  Affected:

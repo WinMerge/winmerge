@@ -230,27 +230,39 @@ sub testdiff {
 sub processArgs {
   my $argnum;
   my $arg;
+  my $buildset=0;
   foreach $argnum (0 .. $#ARGV) {
     $arg = $ARGV[$argnum];
     if ($arg eq "noisy") { $noisy=1; }
     if ($arg eq "abort") { $abort=1; }
     if ($arg eq "--help" or $arg eq "/?") { doUsage; }
-    if ($arg eq "MergeUnicodeDebug" or $arg eq "UnicodeDebug") { $testBuilds{'MergeUnicodeDebug'} = 1; }
-    if ($arg eq "MergeUnicodeRelease" or $arg eq "UnicodeRelease") { $testBuilds{'MergeUnicodeRelease'} = 1; }
-    if ($arg eq "MergeDebug" or $arg eq "Debug") { $testBuilds{'MergeDebug'} = 1; }
-    if ($arg eq "MergeRelease" or $arg eq "Release") { $testBuilds{'MergeRelease'} = 1; }
+    if ($arg eq "MergeUnicodeDebug" or $arg eq "UnicodeDebug") {
+      $testBuilds{'MergeUnicodeDebug'} = 1;
+      $buildset = 1;
+    }
+    if ($arg eq "MergeUnicodeRelease" or $arg eq "UnicodeRelease") {
+      $testBuilds{'MergeUnicodeRelease'} = 1;
+      $buildset = 1;
+    }
+    if ($arg eq "MergeDebug" or $arg eq "Debug") {
+      $testBuilds{'MergeDebug'} = 1;
+      $buildset = 1;
+    }
+    if ($arg eq "MergeRelease" or $arg eq "Release") {
+      $testBuilds{'MergeRelease'} = 1;
+      $buildset = 1;
+    }
     if ($arg eq "all") { $testMergeAll=1; }
   }
   # if no build chosen, all are tested
-  if ($testMergeUnicodeDebug==0 and $testMergeUnicodeRelease==0 
-    and $testMergeDebug==0 and $testMergeRelease==0) {
+  if ($buildset == 0) {
       $testMergeAll=1;
   }
   if ($testMergeAll==1) {
-    $testBuilds{'UnicodeDebug'} = 1;
-    $testBuilds{'UnicodeRelease'} = 1;
-    $testBuilds{'Debug'} = 1;
-    $testBuilds{'Release'} = 1;
+    $testBuilds{'MergeUnicodeDebug'} = 1;
+    $testBuilds{'MergeUnicodeRelease'} = 1;
+    $testBuilds{'MergeDebug'} = 1;
+    $testBuilds{'MergeRelease'} = 1;
   }
 }
 
