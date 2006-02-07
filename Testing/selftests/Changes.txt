@@ -1,5 +1,11 @@
 selftest\Changes.txt
 
+2006-02-07, Perry
+ PATCH: [ 1425765 ] Add optional build argument to testdiff.pl
+  Add build arguments so don't have to test all builds
+ Affected:
+  testdiff.pl
+
 2006-02-03, Perry
  PATCH: [ 1423060 ] Modify perl selftest to test all 4 builds
   Test all 4 builds (not just MergeUnicodeDebug).

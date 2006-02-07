@@ -2,7 +2,7 @@
 # Self-tests for diffutils diff & WinMerge
 #
 # Created: 2006-01-21, Perry Rapp
-# Edited:  2006-02-03, Perry Rapp
+# Edited:  2006-02-073, Perry Rapp
 #
 
 use strict;
@@ -11,6 +11,7 @@ use warnings;
 my $testCount=0;
 my $failCount=0;
 my $failmsgs="";
+my %testBuilds = ();
 
 # diff2winmergeU translates gnu diff style arguments (eg "-b") to WinMerge style arguments (eg "/ignorews:1")
 
@@ -34,7 +35,11 @@ my $DIFF = $wmargs;
 # Global options
 my $noisy=0; # 1 to echo every test
 my $abort=0; # 1 to abort at first failure
-
+my $testMergeUnicodeDebug=0; # 1 to test this build
+my $testMergeUnicodeRelease=0; # 1 to test this build
+my $testMergeDebug=0; # 1 to test this build
+my $testMergeRelease=0; # 1 to test this build
+my $testMergeAll=0; # 1 to test all builds
 # Predeclare subs
 
 sub checkRequiredPrograms;
@@ -44,12 +49,13 @@ sub test3set;
 sub testpair;
 sub testdiff;
 sub rpterr;
+sub doUsage;
 
 # Main Code
 
- checkRequiredPrograms;
-
  processArgs;
+
+ checkRequiredPrograms;
 
  testdiffs;
 
@@ -151,33 +157,59 @@ sub testdiff {
 
   # Test each supported build
   for my $i ( 0 .. $#testprogs ) {
+    my $build = $testprogs[$i][0];
+    if (exists $testBuilds{$build} and $testBuilds{$build} == 1) {
+      my $diff2merge = getDiff2merge($i);
+      my $winmerge = getWinMerge($i);
+      my $cmd = "$diff2merge $winmerge $wmargs";
 
-    my $diff2merge = getDiff2merge($i);
-    my $winmerge = getWinMerge($i);
-    my $cmd = "$diff2merge $winmerge $wmargs";
+      if ($noisy == 1) {
+        my $ordCount = $testCount+1;
+        print "$ordCount) diffing $flags $file1 $file2 (expect $result) [$winmerge]\n";
+      }
 
-    if ($noisy == 1) {
-      my $ordCount = $testCount+1;
-      print "$ordCount) diffing $flags $file1 $file2 (expect $result) [$winmerge]\n";
-    }
+      system("$cmd $flags $file1 $file2");
+      my $exit_value  = $? >> 8;
 
-    system("$cmd $flags $file1 $file2");
-    my $exit_value  = $? >> 8;
+      $testCount = $testCount + 1;
 
-    $testCount = $testCount + 1;
-
-    if ($exit_value != $result) {
-       rpterr("$flags $file1 vs $file2 => $result ($exit_value) [$winmerge ]");
+      if ($exit_value != $result) {
+         rpterr("$flags $file1 vs $file2 => $result ($exit_value) [$winmerge ]");
+      }
     }
   }
 }
 
 sub processArgs {
   my $argnum;
+  my $arg;
   foreach $argnum (0 .. $#ARGV) {
-    if ($ARGV[$argnum] eq "noisy") { $noisy=1; }
-    if ($ARGV[$argnum] eq "abort") { $abort=1; }
-  }  
+    $arg = $ARGV[$argnum];
+    if ($arg eq "noisy") { $noisy=1; }
+    if ($arg eq "abort") { $abort=1; }
+    if ($arg eq "--help" or $arg eq "/?") { doUsage; }
+    if ($arg eq "MergeUnicodeDebug" or $arg eq "UnicodeDebug") { $testBuilds{'MergeUnicodeDebug'} = 1; }
+    if ($arg eq "MergeUnicodeRelease" or $arg eq "UnicodeRelease") { $testBuilds{'MergeUnicodeRelease'} = 1; }
+    if ($arg eq "MergeDebug" or $arg eq "Debug") { $testBuilds{'MergeDebug'} = 1; }
+    if ($arg eq "MergeRelease" or $arg eq "Release") { $testBuilds{'MergeRelease'} = 1; }
+    if ($arg eq "all") { $testMergeAll=1; }
+  }
+  # if no build chosen, all are tested
+  if ($testMergeUnicodeDebug==0 and $testMergeUnicodeRelease==0 
+    and $testMergeDebug==0 and $testMergeRelease==0) {
+      $testMergeAll=1;
+  }
+  if ($testMergeAll==1) {
+    $testBuilds{'UnicodeDebug'} = 1;
+    $testBuilds{'UnicodeRelease'} = 1;
+    $testBuilds{'Debug'} = 1;
+    $testBuilds{'Release'} = 1;
+  }
+}
+
+sub doUsage {
+  print "testdiff [noisy] [abort] [all] [UnicodeDebug] [UnicodeRelease] [Debug] [Release]";
+  exit;
 }
 
 sub rpterr {
@@ -195,12 +227,16 @@ sub checkRequiredPrograms {
 
   my $missing = "";
   for my $i ( 0 .. $#testprogs ) {
-    my $diff2merge = getDiff2merge($i);
-    my $WinMerge = getWinMerge($i);
-    -e $diff2merge or $missing = "$missing\n$diff2merge";
-    -e $WinMerge or $missing = "$missing\n$WinMerge";
-  }
 
+    my $build = $testprogs[$i][0];
+    if (exists $testBuilds{$build} and $testBuilds{$build} == 1) {
+
+      my $diff2merge = getDiff2merge($i);
+      my $WinMerge = getWinMerge($i);
+      -e $diff2merge or $missing = "$missing\n$diff2merge";
+      -e $WinMerge or $missing = "$missing\n$WinMerge";
+    }
+  }
   if (length($missing)>0) {
     die "Missing required files:$missing\n";
   }
