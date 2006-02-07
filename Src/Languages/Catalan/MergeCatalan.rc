@@ -1328,11 +1328,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Informe de comparació de directoris"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "&Fitxer d'informe:",IDC_STATIC,7,7,37,8
+    LTEXT           "&Fitxer d'informe:",IDC_STATIC,7,7,100,8
     COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
                     CBS_AUTOHSCROLL | WS_TABSTOP
     PUSHBUTTON      "Navega...",IDC_REPORT_BROWSEFILE,211,18,50,14
-    LTEXT           "&Estil:",IDC_STATIC,7,37,18,8
+    LTEXT           "&Estil:",IDC_STATIC,7,37,35,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "D'acord",IDOK,157,60,50,14

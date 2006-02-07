@@ -1,3 +1,9 @@
+2006-02-07 Kimmo
+ PATCH: [ 1424535 ] Czech Translation, Submitted by Jan Hryz
+  Fix dir compare report dialog layout
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-02-06 Perry
  Synchronizing Slovak translation to English where feasible.
   Src/Languages/Slovak: MergeSlovak.rc

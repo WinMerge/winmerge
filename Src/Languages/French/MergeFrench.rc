@@ -1324,11 +1324,11 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Répertoire du rapport de comparaison"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Fichier du &rapport:",IDC_STATIC,7,7,197,8
+    LTEXT           "Fichier du &rapport:",IDC_STATIC,7,7,150,8
     COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
                     CBS_AUTOHSCROLL | WS_TABSTOP
     PUSHBUTTON      "Parcourir...",IDC_REPORT_BROWSEFILE,211,18,50,14
-    LTEXT           "&Style:",IDC_STATIC,7,37,18,8
+    LTEXT           "&Style:",IDC_STATIC,7,37,35,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
