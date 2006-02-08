@@ -600,8 +600,20 @@ find_identical_ends (filevec)
   /* Skip back to last line-beginning in the prefix,
      and then discard up to HORIZON_LINES lines from the prefix.  */
   i = horizon_lines;
-  while (p0 != buffer0 && ((p0[-1] != '\n' && (p0[-1] != '\r' || p0[0] == '\n')) || i--))
+  /* This loop can be done in one line, but isn't not easy to read, so unrolled into simple statements */
+  while (p0 != buffer0)
+    {
+      /* we know p0[-1] == p1[-1], but maybe p0[0] != p1[0] */
+      int linestart=0;
+      if (p0[-1] == '\n')
+	linestart=1;
+      /* only count \r if not followed by a \n on either side */
+      if (p0[-1] == '\r' && p0[0] != '\n' && p1[0] != '\n')
+	linestart=1;
+      if (linestart && !(i--))
+	break;
     --p0, --p1;
+    }
 
   /* Record the prefix.  */
   filevec[0].prefix_end = p0;
