@@ -1,3 +1,9 @@
+2006-02-08 Kimmo
+ PATCH: [ 1426499 ] Move Save Projectfile to File menu
+  Src: DirDoc.cpp DirDoc.h MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp
+   MergeDoc.h OpenDlg.cpp OpenDlg.h resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-02-08 Perry
  PATCH: [ 1424884 ] Fix UniStdioFile encoding of TCHAR
   Src\Common: UniFile.cpp unicoder.cpp unicoder.h

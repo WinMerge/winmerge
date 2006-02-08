@@ -94,7 +94,6 @@ protected:
 	//{{AFX_MSG(COpenDlg)
 	afx_msg void OnLeftButton();
 	afx_msg void OnRightButton();
-	afx_msg void OnSaveProjectButton();
 	virtual void OnOK();
 	virtual void OnCancel();
 	afx_msg void SaveComboboxStates();

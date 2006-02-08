@@ -150,6 +150,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)
 		// NOTE - the ClassWizard will add and remove member functions here.
+	afx_msg void OnSaveProject();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

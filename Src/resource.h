@@ -239,7 +239,6 @@
 #define IDC_CP_UI                       1148
 #define IDC_CP_CUSTOM                   1149
 #define IDC_CUSTOM_CP_NUMBER            1150
-#define IDC_SAVEPROJECT                 1151
 #define IDC_FILTERFILE_NEWBTN           1152
 #define IDC_FILTERFILE_DELETEBTN        1153
 #define IDC_WORDDIFFERENCE_COLOR        1154
@@ -946,6 +945,7 @@
 #define ID_FILE_OPENPROJECT             33095
 #define ID_VIEW_SHOWHIDDENITEMS         33096
 #define ID_VIEW_SWAPPANES               33097
+#define ID_FILE_SAVEPROJECT             33098
 
 // Next default values for new objects
 //

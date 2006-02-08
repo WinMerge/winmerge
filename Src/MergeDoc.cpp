@@ -60,6 +60,7 @@
 #include "codepage.h"
 #include "paths.h"
 #include "OptionsMgr.h"
+#include "ProjectFile.h"
 #include "MergeLineFlags.h"
 
 #ifdef _DEBUG
@@ -95,6 +96,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_LEFT, OnFileSaveAsLeft)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3158,4 +3160,33 @@ void CMergeDoc::SwapFiles()
 	UpdateHeaderPath(1);
 
 	UpdateAllViews(NULL);
+}
+
+/** 
+ * @brief Allows user to save current paths and filter as projectfile.
+ */
+void CMergeDoc::OnSaveProject()
+{
+	CString strProjectFileName = GetMainFrame()->AskProjectFileName();
+	if (strProjectFileName.IsEmpty())
+		return;
+
+	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	ProjectFile pfile;
+
+	//set the member of the project file
+	pfile.SetLeft(m_filePaths.GetLeft());
+	pfile.SetFilter(FilterNameOrMask);
+	pfile.SetRight(m_filePaths.GetRight());
+	pfile.SetSubfolders(false);
+
+	CString err;
+	//save the project
+	pfile.Save(strProjectFileName,&err);
+	if (!err.IsEmpty())
+	{
+		CString msg;
+		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, strProjectFileName, err);
+		AfxMessageBox(msg, MB_ICONSTOP);
+	}
 }

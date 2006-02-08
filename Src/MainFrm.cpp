@@ -3182,3 +3182,39 @@ void CMainFrame::SetMainIcon(CDialog * dlg)
 			LR_DEFAULTSIZE | LR_SHARED);
 	dlg->SetIcon(hMergeIcon, TRUE);
 }
+
+/**
+ * @brief Asks Projectfile filename and path from user.
+ * @return Path, empty if user canceled.
+ */
+CString CMainFrame::AskProjectFileName()
+{
+	// get the default projects path
+	CString strProjectFileName;
+	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
+
+	if (!::SelectFile(strProjectFileName, strProjectPath, NULL, IDS_PROJECTFILES, FALSE))
+		return _T("");
+
+	if (strProjectFileName.IsEmpty())
+		return _T("");
+
+	// Add projectfile extension if it is missing
+	// So we allow 'filename.otherext' but add extension for 'filename'
+	CString filename;
+	CString extension;
+	SplitFilename(strProjectFileName, NULL, &filename, &extension);
+	if (extension.IsEmpty())
+	{
+		CString projectFileExt;
+		projectFileExt.LoadString(IDS_PROJECTFILES_EXT);
+		strProjectFileName += _T(".");
+		strProjectFileName += projectFileExt;
+	}
+
+	// get the path part from the filename
+	strProjectPath = paths_GetParentPath(strProjectFileName);
+	// store this as the new project path
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
+	return strProjectFileName;
+}

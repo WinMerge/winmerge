@@ -130,6 +130,7 @@ public:
 	void ResetOptions() { OptionsInit(); }
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
+	CString AskProjectFileName();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
