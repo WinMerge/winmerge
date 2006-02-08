@@ -138,7 +138,7 @@ CMergeDoc::CMergeDoc()
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = GetOptionsMgr()->GetBool(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
 	m_diffWrapper.SetOptions(&options);
 	m_diffWrapper.SetPrediffer(NULL);
@@ -2731,7 +2731,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 	if (m_ptBuf[0]->GetCRLFMode() != m_ptBuf[1]->GetCRLFMode() &&
-		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) && diffOptions.bEolSensitive)
+		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) && !diffOptions.bIgnoreEol)
 	{
 		// Options and files not are not compatible :
 		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
@@ -2740,9 +2740,9 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		CString s = LoadResString(IDS_SUGGEST_IGNOREEOL);
 		if (AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 		{
-			diffOptions.bEolSensitive = FALSE;
+			diffOptions.bIgnoreEol = TRUE;
 			m_diffWrapper.SetOptions(&diffOptions);
-			GetOptionsMgr()->SaveOption(OPT_CMP_EOL_SENSITIVE, false);
+			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, true);
 		}
 	}
 
@@ -2946,7 +2946,7 @@ void CMergeDoc::RefreshOptions()
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = GetOptionsMgr()->GetBool(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
 	m_diffWrapper.SetOptions(&options);
 

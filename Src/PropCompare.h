@@ -45,7 +45,7 @@ public:
 	//{{AFX_DATA(CPropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
 	int		m_compareMethod;
-	BOOL	m_bEolSensitive;
+	BOOL	m_bIgnoreEol;
 	BOOL	m_bIgnoreCase;
 	BOOL	m_bIgnoreBlankLines;
 	int		m_nIgnoreWhite;

@@ -69,7 +69,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_CMP_IGNORE_WHITESPACE, (int)0);
 	m_options.InitOption(OPT_CMP_IGNORE_BLANKLINES, false);
 	m_options.InitOption(OPT_CMP_IGNORE_CASE, false);
-	m_options.InitOption(OPT_CMP_EOL_SENSITIVE, true);
+	m_options.InitOption(OPT_CMP_IGNORE_EOL, false);
 	m_options.InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, false);
 	m_options.InitOption(OPT_CMP_STOP_AFTER_FIRST, false);

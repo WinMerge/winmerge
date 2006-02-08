@@ -84,7 +84,7 @@ struct DIFFOPTIONS
 	int nIgnoreWhitespace;
 	BOOL bIgnoreCase;
 	BOOL bIgnoreBlankLines;
-	BOOL bEolSensitive;
+	BOOL bIgnoreEol;
 };
 
 /**

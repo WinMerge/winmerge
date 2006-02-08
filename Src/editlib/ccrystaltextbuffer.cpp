@@ -524,7 +524,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
             {
               // 2002-11-26  Perry fixed bug & added optional sensitivity to CR
               // remove EOL characters
-              if (!m_EolSensitive && nCurrentLength>1)
+              if (m_IgnoreEol && nCurrentLength>1)
                 {
                   TCHAR prevChar = pcLineBuf[nCurrentLength-2];
                   pcLineBuf[nCurrentLength - (prevChar==0x0D?2:1) ] = '\0';

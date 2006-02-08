@@ -2563,7 +2563,7 @@ LoadConfigLog(CConfigLog & configLog, COptionsMgr & options, LOGFONT & lfDiff, C
 	LoadConfigIntSetting(&configLog.m_diffOptions.nIgnoreWhitespace, options, OPT_CMP_IGNORE_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreCase, options, OPT_CMP_IGNORE_CASE, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_diffOptions.bEolSensitive, options, OPT_CMP_EOL_SENSITIVE, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreEol, options, OPT_CMP_IGNORE_EOL, cfgdir);
 	
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowIdent, options, OPT_SHOW_IDENTICAL, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowDiff, options, OPT_SHOW_DIFFERENT, cfgdir);

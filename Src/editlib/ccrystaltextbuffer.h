@@ -114,7 +114,7 @@ protected :
     BOOL m_bReadOnly;
     BOOL m_bModified;
     int m_nCRLFMode;
-    BOOL m_EolSensitive;
+    BOOL m_IgnoreEol;
     BOOL m_bCreateBackupFile;
     int m_nUndoBufSize;
     BOOL m_bInsertTabs;
@@ -308,7 +308,7 @@ public :
     BOOL GetReadOnly () const;
     void SetReadOnly (BOOL bReadOnly = TRUE);
 
-    void SetEolSensitivity(BOOL EolSensitive) { m_EolSensitive = EolSensitive; }
+    void SetIgnoreEol(BOOL IgnoreEol) { m_IgnoreEol = IgnoreEol; }
 
     //  Text modification functions
     virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);

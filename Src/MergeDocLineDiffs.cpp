@@ -197,7 +197,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	CString str1 = pView1->GetLineChars(line);
 	CString str2 = pView2->GetLineChars(line);
 
-	if (!diffOptions.bEolSensitive)
+	if (diffOptions.bIgnoreEol)
 	{
 		/* Commented out code because GetLineActualLength is buggy
 		// Chop of eol (end of line) characters
@@ -322,7 +322,7 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 	CString str1 = m_pView[0]->GetLineChars(nLineIndex);
 	CString str2 = m_pView[1]->GetLineChars(nLineIndex);
 
-	if (!diffOptions.bEolSensitive)
+	if (diffOptions.bIgnoreEol)
 	{
 		/* Commented out code because GetLineActualLength is buggy
 		// Chop of eol (end of line) characters

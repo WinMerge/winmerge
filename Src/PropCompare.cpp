@@ -29,7 +29,7 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
  , m_compareMethod(-1)
  , m_bIgnoreCase(FALSE)
  , m_bIgnoreBlankLines(FALSE)
- , m_bEolSensitive(FALSE)
+ , m_bIgnoreEol(TRUE)
  , m_nIgnoreWhite(-1)
  , m_bMovedBlocks(FALSE)
  , m_bStopAfterFirst(FALSE)
@@ -43,7 +43,7 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_CBIndex(pDX, IDC_COMPAREMETHODCOMBO, m_compareMethod);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
-	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bEolSensitive);
+	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
@@ -66,7 +66,7 @@ void CPropCompare::ReadOptions()
 	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	m_bIgnoreCase = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
-	m_bEolSensitive = m_pOptionsMgr->GetBool(OPT_CMP_EOL_SENSITIVE) ? false : true; // Reverse
+	m_bIgnoreEol = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOL) ? true : false;
 	m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
 	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
 	m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
@@ -79,7 +79,7 @@ void CPropCompare::WriteOptions()
 {
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_EOL_SENSITIVE, m_bEolSensitive == FALSE); // Reverse
+	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol);
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
 	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
@@ -126,8 +126,8 @@ void CPropCompare::OnDefaults()
 	m_compareMethod = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_WHITESPACE, tmp);
 	m_nIgnoreWhite = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_EOL_SENSITIVE, tmp);
-	m_bEolSensitive = !tmp; // Reverse
+	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_EOL, tmp);
+	m_bIgnoreEol = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
 	m_bIgnoreBlankLines = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_CASE, tmp);

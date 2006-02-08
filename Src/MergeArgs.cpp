@@ -45,6 +45,11 @@ static char THIS_FILE[] = __FILE__;
 
 /**
  * @brief Mapping from commandline argument name (eg, ignorews) to WinMerge option name (eg, Settings/IgnoreSpace)
+ *
+ * These arguments take an optional colon and number, like so:
+ *  "/ignoreblanklines"  (makes WinMerge ignore blank lines)
+ *  "/ignoreblanklines:1"  (makes WinMerge ignore blank lines)
+ *  "/ignoreblanklines:0"  (makes WinMerge not ignore blank lines)
  */
 struct ArgSetting
 {
@@ -56,6 +61,7 @@ static ArgSetting f_ArgSettings[] =
 	{ _T("ignorews"), OPT_CMP_IGNORE_WHITESPACE }
 	, { _T("ignoreblanklines"), OPT_CMP_IGNORE_BLANKLINES }
 	, { _T("ignorecase"), OPT_CMP_IGNORE_CASE }
+	, { _T("ignoreeol"), OPT_CMP_IGNORE_EOL }
 };
 
 

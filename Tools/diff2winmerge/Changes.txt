@@ -1,5 +1,11 @@
 diff2winmerge
 
+2006-02-08, Perry Rapp
+ Add option "g" mapped to option "/ignoreeol:1"
+ Bump version from 1.0.0.0 to 1.0.1.0
+ Add Changes.txt (this) to Visual Studio project.
+ Fix temp object path for UnicodeRelease target.
+
 2006-01-22, Perry Rapp
  Committed to WinMerge cvs
  Initial version, initial files:

@@ -80,7 +80,7 @@ CDirDoc::CDirDoc()
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = GetOptionsMgr()->GetBool(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
 	m_diffWrapper.SetOptions(&options);
 }
@@ -682,7 +682,7 @@ void CDirDoc::RefreshOptions()
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bEolSensitive = GetOptionsMgr()->GetBool(OPT_CMP_EOL_SENSITIVE);
+	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
 	m_diffWrapper.SetOptions(&options);
 	if (m_pDirView)

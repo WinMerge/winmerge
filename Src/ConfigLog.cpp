@@ -429,7 +429,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 
 	WriteItemYesNo(2, _T("Ignore blank lines"), &m_diffOptions.bIgnoreBlankLines);
 	WriteItemYesNo(2, _T("Ignore case"), &m_diffOptions.bIgnoreCase);
-	WriteItemYesNoInverted(2, _T("Ignore carriage return differences"), &m_diffOptions.bEolSensitive);
+	WriteItemYesNo(2, _T("Ignore carriage return differences"), &m_diffOptions.bIgnoreEol);
 
 	WriteItemWhitespace(2, _T("Whitespace compare"), &m_diffOptions.nIgnoreWhitespace);
 

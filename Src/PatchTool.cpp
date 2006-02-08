@@ -165,7 +165,7 @@ BOOL CPatchTool::ShowDialog()
 
 		// Use this because non-sensitive setting can't write
 		// patch file EOLs correctly
-		diffOptions.bEolSensitive = TRUE;
+		diffOptions.bIgnoreEol = FALSE;
 		
 		diffOptions.bIgnoreCase = !m_dlgPatch.m_caseSensitive;
 		m_diffWrapper.SetOptions(&diffOptions);

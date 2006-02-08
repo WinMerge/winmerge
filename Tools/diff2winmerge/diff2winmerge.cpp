@@ -52,6 +52,7 @@ static LPCTSTR argmap[] = {
 	, _T("b"), _T("--ignore-space-change"), _T("/ignorews:1")
 	, _T("w"), _T("--ignore-all-space"), _T("/ignorews:2")
 	, _T("B"), _T("--ignore-blank-lines"), _T("/ignoreblanklines:1")
+	, _T("g"), _T("--ignore-line_terminators"), _T("/ignoreeol:1")
 };
 
 static bool

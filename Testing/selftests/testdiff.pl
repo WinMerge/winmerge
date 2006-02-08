@@ -73,6 +73,7 @@ sub testdiffs {
   #  -b  --ignore-space-change  Ignore changes in the amount of white space.
   #  -w  --ignore-all-space  Ignore all white space.
   #  -B  --ignore-blank-lines  Ignore changes whose lines are all blank.
+  #  -g  --ignore-line_terminators Treat all line terminations as same (not yet implemented in diffutils)
   #  -q  (this is used to fill in as blank argument)
 
   # Each call to test3set does the test for all 3 platforms (unix, mac, win)
@@ -84,6 +85,7 @@ sub testdiffs {
   test3set "t001", "-b", 1;
   test3set "t001", "-w", 1;
   test3set "t001", "-B", 1;
+  test3set "t001", "-g", 1;
   test3set "t001", "-Ei", 0;
   test3set "t001", "-Bi", 0;
   test3set "t001", "-bi", 0;
@@ -95,6 +97,7 @@ sub testdiffs {
   test3set "t002", "-b", 0;
   test3set "t002", "-w", 0;
   test3set "t002", "-B", 1;
+  test3set "t001", "-g", 1;
   test3set "t002", "-Ei", 1;
   test3set "t002", "-Bi", 1;
   test3set "t002", "-bi", 0;
@@ -106,6 +109,7 @@ sub testdiffs {
   test3set "t003", "-b", 1;
   test3set "t003", "-w", 1;
   test3set "t003", "-B", 1;
+  test3set "t001", "-g", 1;
   test3set "t003", "-Ei", 1;
   test3set "t003", "-Bi", 1;
   test3set "t003", "-bi", 1;
@@ -117,6 +121,7 @@ sub testdiffs {
   test3set "t004", "-b", 1;
   test3set "t004", "-w", 1;
   test3set "t004", "-B", 0;
+  test3set "t001", "-g", 1;
   test3set "t004", "-Ei", 1;
   test3set "t004", "-Bi", 0;
   test3set "t004", "-bi", 1;
@@ -137,36 +142,72 @@ sub testdiffs {
   testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-b", 1;
   testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-w", 1;
   testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-B", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-g", 1;
   testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-Bw", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_w.txt", "-Bg", 0;
 
   # empty file against file with one empty unix line  
   testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-q", 1;
   testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-b", 1;
   testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-w", 1;
   testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-B", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-g", 1;
   testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-Bw", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_u.txt", "-Bg", 0;
 
   # empty file against file with one empty mac line  
   testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-q", 1;
   testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-b", 1;
   testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-w", 1;
   testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-B", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-g", 1;
   testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-Bw", 0;
+  testdiff "mixed/empty.txt", "mixed/empty_m.txt", "-Bg", 0;
 
   # empty line win file vs. empty line unix file
   testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-q", 1;
   testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-w", 1;
   testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-B", 0;
+  testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-g", 0;
+  testdiff "mixed/empty_w.txt", "mixed/empty_u.txt", "-Bg", 0;
 
   # empty line win file vs. empty line mac file
   testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-q", 1;
   testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-w", 1;
   testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-B", 0;
+  testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-g", 0;
+  testdiff "mixed/empty_w.txt", "mixed/empty_m.txt", "-Bg", 0;
 
   # empty line unix file vs. empty line mac file
   testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-q", 1;
   testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-w", 1;
   testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-B", 0;
+  testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-g", 0;
+  testdiff "mixed/empty_u.txt", "mixed/empty_m.txt", "-Bg", 0;
+
+  # files differ only in case & platform, win vs. unix
+  testdiff "w/t001a.txt", "u/t001b.txt", "-q", 1;
+  testdiff "w/t001a.txt", "u/t001b.txt", "-i", 1;
+  testdiff "w/t001a.txt", "u/t001b.txt", "-w", 1;
+  testdiff "w/t001a.txt", "u/t001b.txt", "-B", 1;
+  testdiff "w/t001a.txt", "u/t001b.txt", "-g", 1;
+  testdiff "w/t001a.txt", "u/t001b.txt", "-gi", 0;
+
+  # files differ only in case & platform, win vs. mac
+  testdiff "w/t001a.txt", "m/t001b.txt", "-q", 1;
+  testdiff "w/t001a.txt", "m/t001b.txt", "-i", 1;
+  testdiff "w/t001a.txt", "m/t001b.txt", "-w", 1;
+  testdiff "w/t001a.txt", "m/t001b.txt", "-B", 1;
+  testdiff "w/t001a.txt", "m/t001b.txt", "-g", 1;
+  testdiff "w/t001a.txt", "m/t001b.txt", "-gi", 0;
+
+  # files differ only in case & platform, unix vs. mac
+  testdiff "u/t001a.txt", "m/t001b.txt", "-q", 1;
+  testdiff "u/t001a.txt", "m/t001b.txt", "-i", 1;
+  testdiff "u/t001a.txt", "m/t001b.txt", "-w", 1;
+  testdiff "u/t001a.txt", "m/t001b.txt", "-B", 1;
+  testdiff "u/t001a.txt", "m/t001b.txt", "-g", 1;
+  testdiff "u/t001a.txt", "m/t001b.txt", "-gi", 0;
 
   if ($noisy == 1) { 
     # reprint all failure messages, because they were lost in the noise

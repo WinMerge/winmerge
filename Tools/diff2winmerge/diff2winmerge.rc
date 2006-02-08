@@ -77,8 +77,8 @@ LANGUAGE LANG_SPANISH, 0xC
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,0
- PRODUCTVERSION 1,0,0,0
+ FILEVERSION 1,0,1,0
+ PRODUCTVERSION 1,0,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -96,14 +96,14 @@ BEGIN
             VALUE "Comments", "WinMerge frontend\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "diff2winmerge\0"
-            VALUE "FileVersion", "1, 0, 0, 0\0"
+            VALUE "FileVersion", "1, 0, 1, 0\0"
             VALUE "InternalName", "diff2winmerge\0"
             VALUE "LegalCopyright", "Copyright © 2006\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "diff2winmerge.exe\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "diff2winmerge\0"
-            VALUE "ProductVersion", "1, 0, 0, 0\0"
+            VALUE "ProductVersion", "1, 0, 1, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END
