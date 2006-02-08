@@ -194,7 +194,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nowy\tCtrl+N",               ID_FILE_NEW
         MENUITEM "&Porównaj...\tCtrl+O",        ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Otwórz projekt ...\tCtrl+J",  ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Lewa tylko &odczyt",             ID_FILE_LEFT_READONLY
         MENUITEM "Prawa t&ylko odczyt",            ID_FILE_RIGHT_READONLY
@@ -297,7 +299,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nowy\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Porównaj...\tCtrl+O",        ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Otwórz projekt ...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Zachowaj\tCtrl+S",           ID_FILE_SAVE
         POPUP "Zachowaj &lew¹"
@@ -643,7 +647,6 @@ BEGIN
     PUSHBUTTON      "Anuluj",IDCANCEL,306,28,50,14
     GROUPBOX        "Obiekty do porównania",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Zachowaj projekt",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1570,6 +1573,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Wyœwietl cale strony\nPodgl¹d wydruku"
     ID_FILE_OPENPROJECT     "Otwórz plik projektu\nPlik projektu (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Poka¿ wszystkie ukryte elementy"
+    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
 STRINGTABLE

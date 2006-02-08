@@ -196,7 +196,9 @@ BEGIN
     BEGIN
         MENUITEM "新建(&N)\tCtrl+N",            ID_FILE_NEW
         MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "打开工程...\tCtrl+J",         ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "左侧只读(&E)",                ID_FILE_LEFT_READONLY
         MENUITEM "右侧只读(&G)",                ID_FILE_RIGHT_READONLY
@@ -299,7 +301,9 @@ BEGIN
     BEGIN
         MENUITEM "新建(&N)\tCtrl+N",            ID_FILE_NEW
         MENUITEM "打开(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "打开工程...\tCtrl+J",         ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "保存左侧(&L)"
@@ -645,7 +649,6 @@ BEGIN
     PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
     GROUPBOX        "要对比的文件或文件夹",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "保存工程",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166

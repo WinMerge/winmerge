@@ -192,7 +192,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nouveau\tCtrl+N",             ID_FILE_NEW
         MENUITEM "&Ouvrir...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Ouvrir un &projet...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Côté gauc&he lecture seulement",  ID_FILE_LEFT_READONLY
         MENUITEM "Côté droi&t  lecture seulement",  ID_FILE_RIGHT_READONLY
@@ -295,7 +297,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nouveau\tCtrl+N",             ID_FILE_NEW
         MENUITEM "&Ouvrir...\tCtrl+O",           ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Ouvrir un &projet...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Enregistrer\tCtrl+S",         ID_FILE_SAVE
         POPUP "Enregistrer à &gauche"
@@ -641,7 +645,6 @@ BEGIN
     PUSHBUTTON      "Ann&uler",IDCANCEL,306,28,50,14
     GROUPBOX        "Fichiers ou répertoires à comparer :",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "&Enreg. projet",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1566,6 +1569,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Affiche les pages entières\nAperçu avant impression"
     ID_FILE_OPENPROJECT     "Ouvrir un fichier de projet\nFichier de projet (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Rendre visible à nouveau tous les éléments cachés"
+    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
 STRINGTABLE

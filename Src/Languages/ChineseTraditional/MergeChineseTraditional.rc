@@ -643,7 +643,6 @@ BEGIN
     PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
     GROUPBOX        "要比對的檔案或資料夾",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1570,6 +1569,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
     ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
 STRINGTABLE

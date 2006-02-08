@@ -194,7 +194,9 @@ BEGIN
     BEGIN
         MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "左を読み取り専用(&E)",        ID_FILE_LEFT_READONLY
         MENUITEM "右を読み取り専用(&I)",        ID_FILE_RIGHT_READONLY
@@ -297,7 +299,9 @@ BEGIN
     BEGIN
         MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "左のファイルを保存(&L)"
@@ -643,7 +647,6 @@ BEGIN
     PUSHBUTTON      "キャンセル",IDCANCEL,306,28,60,14
     GROUPBOX        "比較するファイルまたはフォルダ",IDC_FILES_DIRS_GROUP,7,
                      7,292,111
-    PUSHBUTTON      "プロジェクトの保存",IDC_SAVEPROJECT,306,56,60,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1570,6 +1573,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "印刷イメージを表示します\n印刷プレビュー"
     ID_FILE_OPENPROJECT     "プロジェクトを開きます\nプロジェクトを開く (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "非表示にした項目を表示します"
+    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
 STRINGTABLE

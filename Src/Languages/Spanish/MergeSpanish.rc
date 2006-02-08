@@ -194,7 +194,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nuevo\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Abrir...\tCtrl+O",        ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Abrir pro&yecto...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Lado i&zquierdo sólo lectura",             ID_FILE_LEFT_READONLY
         MENUITEM "Lado d&erecho sólo lectura",            ID_FILE_RIGHT_READONLY
@@ -297,7 +299,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nuevo\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Abrir...\tCtrl+O",        ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Abrir pro&yecto...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Guardar\tCtrl+S",            ID_FILE_SAVE
         POPUP "Guardar lado &Izquierdo"
@@ -643,7 +647,6 @@ BEGIN
     PUSHBUTTON      "Cancelar",IDCANCEL,306,28,50,14
     GROUPBOX        "Objetos para Comparar",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
-    PUSHBUTTON      "Guardar proy.",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1570,6 +1573,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Mostrar vista preliminar\nVista preliminar"
     ID_FILE_OPENPROJECT     "Abrir ficheros del proyecto\nProyecto (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
 STRINGTABLE

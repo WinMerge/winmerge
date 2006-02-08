@@ -194,7 +194,9 @@ BEGIN
     BEGIN
         MENUITEM "새로 만들기&(N)\tCtrl+N",     ID_FILE_NEW
         MENUITEM "열기(&O)...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "왼쪽을 읽기전용으로(E&)",     ID_FILE_LEFT_READONLY
         MENUITEM "오른쪽을 읽기전용으로(&G)",   ID_FILE_RIGHT_READONLY
@@ -297,7 +299,9 @@ BEGIN
     BEGIN
         MENUITEM "새로 만들기&(N)\tCtrl+N",     ID_FILE_NEW
         MENUITEM "열기(&O)...\tCtrl+O",         ID_FILE_OPEN
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM SEPARATOR
+        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "저장(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "왼쪽 저장(&L)"
@@ -643,7 +647,6 @@ BEGIN
     PUSHBUTTON      "취소",IDCANCEL,306,28,50,14
     GROUPBOX        "비교할 디렉토리/파일",IDC_FILES_DIRS_GROUP,7,
                 7,292,111
-    PUSHBUTTON      "Save project",IDC_SAVEPROJECT,306,56,50,14
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -1570,6 +1573,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "미리 보기\n미리 보기"
     ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
 STRINGTABLE
