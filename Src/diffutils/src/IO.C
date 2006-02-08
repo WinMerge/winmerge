@@ -481,8 +481,9 @@ find_and_hash_each_line (current)
 
       line++;
 
-      while (*p++ != '\n')
-	;
+      while (p[0] != '\n' && (p[0] != '\r' || p[1] == '\n'))
+	p++;
+      p++;
     }
 
   /* Done with cache in local variables.  */
@@ -506,13 +507,13 @@ prepare_text_end (current)
   FSIZE buffered_chars = current->buffered_chars;
   char HUGE *p = current->buffer;
 
-  if (buffered_chars == 0 || p[buffered_chars - 1] == '\n')
+  if (buffered_chars == 0 || p[buffered_chars - 1] == '\n' || p[buffered_chars - 1] == '\r')
     current->missing_newline = 0;
   else
     {
       p[buffered_chars++] = '\n';
       current->buffered_chars = buffered_chars;
-      current->missing_newline = ! ignore_blank_lines_flag;
+      current->missing_newline = p[buffered_chars-2] != '\r' && ! ignore_blank_lines_flag;
     }
   
   /* Don't use uninitialized storage when planting or using sentinels.  */
