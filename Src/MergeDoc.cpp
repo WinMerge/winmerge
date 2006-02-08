@@ -2518,7 +2518,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
 	// it left the pBuf in a valid (but empty) state via a call to InitNew
 
-	if (FileLoadResult::IsErrorUnpack(retVal))
+	if (FileLoadResult::IsOkImpure(retVal))
 	{
 		// File loaded, and multiple EOL types in this file
 		FileLoadResult::SetMainOk(retVal);

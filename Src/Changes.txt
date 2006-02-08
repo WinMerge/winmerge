@@ -1,3 +1,7 @@
+2006-02-08 Perry
+ PATCH: [ 1427845 ] Double-click fails to open, no message
+  Src: MergeDoc.cpp
+
 2006-02-08 Kimmo
  PATCH: [ 1426499 ] Move Save Projectfile to File menu
   Src: DirDoc.cpp DirDoc.h MainFrm.cpp MainFrm.h Merge.rc MergeDoc.cpp
