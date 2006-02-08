@@ -1,4 +1,7 @@
 2006-02-08 Perry
+ Current selftests status: Failure count: 0 (of 588)
+
+2006-02-08 Perry
  PATCH: [ 1424867 ] Fix common prefix code for \r\n
   Src\diffutils\src: IO.C
  PATCH: [ 1426793 ] Fix diffutils that counts lines in suffix
