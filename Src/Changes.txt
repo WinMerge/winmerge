@@ -1,4 +1,8 @@
 2006-02-08 Perry
+ PATCH: [ 1424884 ] Fix UniStdioFile encoding of TCHAR
+  Src\Common: UniFile.cpp unicoder.cpp unicoder.h
+
+2006-02-08 Perry
  Current selftests status: Failure count: 0 (of 756)
 
 2006-02-08 Perry

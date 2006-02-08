@@ -2,7 +2,7 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2006
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-06 (Perry Rapp)
+ *  @date   Edited:  2006-02-08 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
@@ -402,14 +402,18 @@ byteToUnicode (unsigned char ch, UINT codepage)
 		return '?';
 }
 
-void getDefaultEncoding(UNICODESET * unicoding, int * codepage)
+/**
+ * @brief Return encoding used for TCHAR & CString
+ */
+void getInternalEncoding(UNICODESET * unicoding, int * codepage)
 {
 #ifdef _UNICODE
 	*unicoding = UCS2LE;
 	*codepage = 0;
 #else
+	// NB: Windows always draws in CP_ACP, not CP_THREAD_ACP, so we must use CP_ACP as an internal codepage
 	*unicoding = NONE;
-	*codepage = getDefaultCodepage();
+	*codepage = CP_ACP;
 #endif
 }
 

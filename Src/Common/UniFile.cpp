@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2006
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-06 (Perry Rapp)
+ *  @date   Edited:  2006-02-08 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -896,7 +896,7 @@ BOOL UniStdioFile::WriteString(const CString & line)
 	ucr::buffer * buff = (ucr::buffer *)m_pucrbuff;
 	ucr::UNICODESET unicoding1=ucr::NONE;
 	int codepage1=0;
-	ucr::getDefaultEncoding(&unicoding1, &codepage1); // What CString & TCHARs represent
+	ucr::getInternalEncoding(&unicoding1, &codepage1); // What CString & TCHARs represent
 	const unsigned char * src = (const UCHAR *)(LPCTSTR)line;
 	int srcbytes = line.GetLength() * sizeof(TCHAR);
 	bool lossy = ucr::convert(unicoding1, codepage1, src, srcbytes, (ucr::UNICODESET)m_unicoding, m_codepage, buff);

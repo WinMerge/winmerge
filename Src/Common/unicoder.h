@@ -2,7 +2,7 @@
  *  @file   unicoder.h
  *  @author Perry Rapp, Creator, 2003-2004
  *  @date   Created: 2003-10
- *  @date   Edited:  2004-12-28 (Perry Rapp)
+ *  @date   Edited:  2006-02-08 (Perry Rapp)
  *
  *  @brief  Declaration of utility unicode conversion routines
  */ 
@@ -40,7 +40,7 @@ CString maketchar(UINT unich, bool & lossy);
 CString maketchar(UINT unich, bool & lossy, UINT codepage);
 UINT byteToUnicode(unsigned char ch);
 UINT byteToUnicode(unsigned char ch, UINT codepage);
-void getDefaultEncoding(UNICODESET * unicoding, int * codepage);
+void getInternalEncoding(UNICODESET * unicoding, int * codepage);
 
 // generic function to do all conversions
 bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, int srcbytes, UNICODESET unicoding2, int codepage2, buffer * dest);
