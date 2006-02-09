@@ -35,6 +35,7 @@ Localization:
 
 * Czech:
   Jiri Tax
+  Jan Hryz
 
 * Danish:
   Christian List
@@ -99,6 +100,7 @@ Other Contributors (code, ideas, testing..):
 * Jim Fougeron
 * Marvin Gouw
 * Gal Hammer
+* Jan Hryz
 * Ferenc Kubatovics
 * Vladimir Lukianov
 * Harry Mckame
