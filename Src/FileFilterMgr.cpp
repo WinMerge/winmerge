@@ -19,6 +19,7 @@
 #include "FileFilterMgr.h"
 #include "RegExp.h"
 #include "UniFile.h"
+#include "coretools.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -81,16 +82,10 @@ FileFilterMgr::~FileFilterMgr()
  */
 void FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
 {
-	TCHAR dir[_MAX_DRIVE] = {0};
-	TCHAR path[_MAX_PATH] = {0};
-	TCHAR filename[_MAX_PATH] = {0};
-	TCHAR ext[_MAX_EXT] = {0};
+	CString filterFile;
+	CString ext;
 
-	_tsplitpath(szFilterFile, dir, path, filename, ext);
-
-	CString filterPath = dir;
-	filterPath += path;
-	CString filterFile = filename;
+	SplitFilename(szFilterFile, NULL, &filterFile, &ext);
 	filterFile += ext;
 
 	FileFilter * pFilter = LoadFilterFile(szFilterFile, filterFile);

@@ -1,3 +1,7 @@
+2006-02-09 Kimmo
+ PATCH: [ 1427851 ] Small cleanup for FileFilterMgr::AddFilter()
+  Src: FileFilterMgr.cpp
+
 2006-02-08 Perry
  PATCH: [ 1427845 ] Double-click fails to open, no message
   Src: MergeDoc.cpp
