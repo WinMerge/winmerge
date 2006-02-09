@@ -31,6 +31,7 @@
 
 <h3>Table of Contents</h3>
 <ol>
+  <li><a href="#Compiling">Compiling</a></li>
   <li><a href="#Code_changes">Code changes</a></li>
   <li><a href="#MakePatchDirs">MakePatchDirs</a></li>
   <li><a href="#Minor_code_changes_and_bug_fixes">Minor code changes and bug fixes</a></li>
@@ -45,6 +46,28 @@
   <li><a href="#Logging">Logging</a></li>
   <li><a href="#ShellExt">Shell Extension</a></li>
 </ol>
+
+<h3><a name="Compiling">Compiling</a></h3>
+
+<p>Compiling sources is usually the first thing you want to do. Source packages for
+different versions are available from SourceForge.net.</p>
+
+<p>WinMerge releases are compiled with Microsoft Visual Studio 6 + Service
+Pack 6. Also Visual Studio 2003 is supported. The only additional package you
+need is a <b>HTML Help Workshop</b>. It is a part of Platform SDK which comes
+with Visual Studio 2003. HTML Help Workshop can be also downloaded from:
+<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
+HTMLHelp download</a>.</p>
+
+<p>Visual Studio project file comes with WinMerge sources. After opening the
+project file you need to add HTML Help Workshop path as additional include- and
+library-path.</p>
+
+<p>NOTE: There might be problems compiling/debugging with Visual Studio 2003 when using
+HTML Help WorkShop from Platform SDK in Visual Studio directory. Download and
+install HTML Workhop as stand-alone and include headers and libraries from standalone
+directory. Propable cause is that including files from Platform SDK directories breaks
+things.</p>
 
 <h3><a name="Code_changes">Code changes</a></h3>
 

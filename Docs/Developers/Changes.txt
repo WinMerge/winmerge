@@ -1,3 +1,7 @@
+2006-02-09 Kimmo
+ PATCH: [ 1427951 ] Add compiling instructions (for HTML help)
+  readme-developers.html
+
 2006-01-11 Tim
  PATCH: [ 1402858 ] Web: New background color for 'important' and 'note'
   readme-developers.html
