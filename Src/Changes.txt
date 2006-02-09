@@ -1,3 +1,5 @@
+2006-02-09 WinMerge experimental release 2.5.3.2 (cvs)
+
 2006-02-09 Kimmo
  PATCH: [ 1427851 ] Small cleanup for FileFilterMgr::AddFilter()
   Src: FileFilterMgr.cpp
