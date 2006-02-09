@@ -1,6 +1,8 @@
 2006-02-08 Perry
  PATCH: [ 1427845 ] Double-click fails to open, no message
   Src: MergeDoc.cpp
+ BUG: [ 1427956 ] Differences count in Folder Compare wrong?
+  Src: DiffWrapper.cpp
 
 2006-02-08 Kimmo
  PATCH: [ 1426499 ] Move Save Projectfile to File menu

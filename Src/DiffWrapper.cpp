@@ -841,6 +841,10 @@ int DiffFileData::diffutils_compare_files(int depth)
 	}
 	int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 
+	// make sure to start counting diffs at 0
+	// (usually it is -1 at this point, for unknown)
+	m_ndiffs = 0;
+
 	// Free change script (which we don't want)
 	if (script != NULL)
 	{
