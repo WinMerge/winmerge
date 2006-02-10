@@ -1227,16 +1227,6 @@ int CMergeDoc::LeftLineInMovedBlock(int apparentRightLine)
 		return -1;
 }
 
-void CMergeDoc::SetDiffViewMode(BOOL bEnable)
-{
-	if (bEnable)
-	{
-	}
-	else
-	{
-	}
-}
-
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	// Allow user to cancel closing

@@ -19,6 +19,9 @@
  PATCH: [ 1427563 ] Give descriptive name to CMergeDoc::SaveHelper
   Src: MainFrm.cpp MergeDiffDetailView.cpp MergeDoc.cpp
    MergeDoc.h MergeEditView.cpp
+ PATCH: [ 1426593 ] Remove empty CMergeDoc::SetDiffViewMode()
+  Submitted by Kimmo
+  Src: MergeDoc.cpp MergeDoc.h
 
 2006-02-09 WinMerge experimental release 2.5.3.2 (cvs)
 

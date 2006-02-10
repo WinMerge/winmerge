@@ -243,7 +243,6 @@ public:
 	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
 	int RightLineInMovedBlock(int leftLine);
 	int LeftLineInMovedBlock(int rightLine);
-	void SetDiffViewMode(BOOL bEnable);
 	void SetEditedAfterRescan(int nBuffer);
 
 	void SetUnpacker(PackingInfo * infoUnpacker);
