@@ -16,6 +16,9 @@
    lisp.cpp nsis.cpp pascal.cpp perl.cpp php.cpp python.cpp
    rexx.cpp rsrc.cpp sgml.cpp sh.cpp siod.cpp sql.cpp
    tcl.cpp tex.cpp xml.cpp
+ PATCH: [ 1427563 ] Give descriptive name to CMergeDoc::SaveHelper
+  Src: MainFrm.cpp MergeDiffDetailView.cpp MergeDoc.cpp
+   MergeDoc.h MergeEditView.cpp
 
 2006-02-09 WinMerge experimental release 2.5.3.2 (cvs)
 

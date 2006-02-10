@@ -1846,7 +1846,7 @@ void CMainFrame::OnClose()
 			|| (pRight && pRight->IsModified()))
 		{
 			// Allow user to cancel closing
-			if (!pMergeDoc->SaveHelper(TRUE))
+			if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
 				return;
 			else
 			{
@@ -3014,7 +3014,7 @@ void CMainFrame::OnWindowCloseAll()
 			|| (pRight && pRight->IsModified()))
 		{
 			// Allow user to cancel closing
-			if (!pMergeDoc->SaveHelper(TRUE))
+			if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
 				return;
 			else
 			{

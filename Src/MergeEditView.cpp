@@ -2480,8 +2480,10 @@ void CMergeEditView::OnWindowClose()
  	CMergeDoc *pDoc = GetDocument();
 
 	// Allow user to cancel closing
-	if (!pDoc->SaveHelper(TRUE))
+	if (!pDoc->PromptAndSaveIfNeeded(TRUE))
+	{
 		return;
+	}
 	else
 	{
 		// Set modified to false so we don't ask again about saving

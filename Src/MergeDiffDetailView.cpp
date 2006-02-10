@@ -543,7 +543,7 @@ BOOL CMergeDiffDetailView::PreTranslateMessage(MSG* pMsg)
 	{
 		// Ask about saving unsaved document, allow to cancel closing
 		CMergeDoc *pd = GetDocument();
-		if (pd->SaveHelper(TRUE))
+		if (pd->PromptAndSaveIfNeeded(TRUE))
 		{
 			// Set modified status to false so that we are not asking
 			// about saving again

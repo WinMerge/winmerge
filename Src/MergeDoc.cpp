@@ -1240,7 +1240,7 @@ void CMergeDoc::SetDiffViewMode(BOOL bEnable)
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	// Allow user to cancel closing
-	if (!GetMainFrame()->m_bEscShutdown && SaveHelper(TRUE))
+	if (!GetMainFrame()->m_bEscShutdown && PromptAndSaveIfNeeded(TRUE))
 	{
 		// Set modified status to false so that we are not asking
 		// about saving again in OnCloseDocument()
@@ -1249,7 +1249,9 @@ BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/)
 		return TRUE;
 	}
 	else
+	{
 		return FALSE;
+	}
 }
 
 // If WinMerge is closed, CMainFrame::OnClose already takes
@@ -2365,7 +2367,7 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
  * @todo If we have filename and description for file, what should
  * we do after saving to different filename? Empty description?
  */
-BOOL CMergeDoc::SaveHelper(BOOL bAllowCancel)
+BOOL CMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 {
 	const BOOL bLModified = m_ptBuf[0]->IsModified();
 	const BOOL bRModified = m_ptBuf[1]->IsModified();
@@ -2492,7 +2494,7 @@ void CMergeDoc::DirDocClosing(CDirDoc * pDirDoc)
 BOOL CMergeDoc::CloseNow()
 {
 	// Allow user to cancel closing
-	if (!SaveHelper(TRUE))
+	if (!PromptAndSaveIfNeeded(TRUE))
 		return FALSE;
 
 	GetParentFrame()->CloseNow();

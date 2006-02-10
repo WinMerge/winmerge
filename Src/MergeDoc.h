@@ -290,7 +290,7 @@ private:
 public:
 	BOOL IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 		BOOL bSave, int nBuffer);
-	BOOL SaveHelper(BOOL bAllowCancel);
+	BOOL PromptAndSaveIfNeeded(BOOL bAllowCancel);
 	std::vector<CMergeEditView*> undoTgt;
 	std::vector<CMergeEditView*>::iterator curUndo;
 	void FlushAndRescan(BOOL bForced = FALSE);
