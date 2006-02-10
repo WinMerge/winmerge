@@ -387,7 +387,8 @@ void CMergeDiffDetailView::UpdateSiblingScrollPos (BOOL bHorz)
 		int nNewTopLine = m_nTopLine;
 		int nRows = pSplitterWnd->GetRowCount ();
 		int nCols = pSplitterWnd->GetColumnCount ();
-		for (int nRow = 0; nRow < nRows; nRow++)
+		int nRow=0;
+		for (nRow = 0; nRow < nRows; nRow++)
 		{
 			for (int nCol = 0; nCol < nCols; nCol++)
 			{

@@ -81,7 +81,8 @@ ParseLineIni (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItem
   BOOL bRedefineBlock = TRUE;
   BOOL bDecIndex = FALSE;
   int nIdentBegin = -1;
-  for (int I = 0;; I++)
+  int I=0;
+  for (I = 0;; I++)
     {
       if (bRedefineBlock)
         {

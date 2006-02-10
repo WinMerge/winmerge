@@ -2263,7 +2263,8 @@ void CMergeDoc::PrimeTextBuffers()
 			// flag lines
 			{
 				// left side
-				for (UINT i = curDiff.dbegin0; i <= curDiff.dend0 ; i++)
+				UINT i=0;
+				for (i = curDiff.dbegin0; i <= curDiff.dend0 ; i++)
 				{
 					if (curDiff.blank0 == -1 || (int)i < curDiff.blank0)
 					{

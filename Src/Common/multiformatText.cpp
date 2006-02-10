@@ -556,7 +556,8 @@ static UINT TransformUcs2ToUtf8(LPCWSTR psUcs, UINT nUcs, LPSTR pcsUtf, UINT nUt
 	int nremains = nUtf;
 
 	// quick way 
-	for (UINT i = 0 ; i < nUcs && nremains > 10; ++i)
+	UINT i=0;
+	for (i = 0 ; i < nUcs && nremains > 10; ++i)
 		nremains -= ucr::to_utf8_advance(psUcs[i], pc);
 
 	// be careful for the end of the buffer, risk of overflow because

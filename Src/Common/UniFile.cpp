@@ -3,7 +3,7 @@
  *  @author Perry Rapp, Creator, 2003-2006
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-08 (Perry Rapp)
+ *  @date   Edited:  2006-02-09 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -502,7 +502,8 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 	if (m_unicoding == ucr::NONE)
 	{
 		bool eof=true;
-		for (LPBYTE eolptr = m_current; (eolptr - m_base + (m_charsize-1) < m_filesize); ++eolptr)
+		LPBYTE eolptr=0;
+		for (eolptr = m_current; (eolptr - m_base + (m_charsize-1) < m_filesize); ++eolptr)
 		{
 			if (*eolptr == '\n' || *eolptr == '\r')
 			{

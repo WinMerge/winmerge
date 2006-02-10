@@ -504,7 +504,8 @@ void CMergeEditView::UpdateSiblingScrollPos (BOOL bHorz)
 		int newTopSubLine = m_nTopSubLine;
 		int nRows = pSplitterWnd->GetRowCount ();
 		int nCols = pSplitterWnd->GetColumnCount ();
-		for (int nRow = 0; nRow < nRows; nRow++)
+		int nRow=0;
+		for (nRow = 0; nRow < nRows; nRow++)
 		{
 			for (int nCol = 0; nCol < nCols; nCol++)
 			{

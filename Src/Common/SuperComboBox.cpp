@@ -378,13 +378,13 @@ CString CSuperComboBox::ExpandShortcut(CString &inFile)
             // Make sure it's ANSI
             WORD wsz[MAX_PATH];
 #ifdef _UNICODE
-	     wcsncpy(wsz, lpsz, sizeof(wsz)/sizeof(WCHAR));
+	     wcsncpy((wchar_t *)wsz, lpsz, sizeof(wsz)/sizeof(WCHAR));
 #else
             ::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
 #endif
 
             // Load shortcut
-            hres = ppf->Load(wsz, STGM_READ);
+            hres = ppf->Load((LPCOLESTR)wsz, STGM_READ);
             if (SUCCEEDED(hres)) {
 				WIN32_FIND_DATA wfd;
 				// find the path from that

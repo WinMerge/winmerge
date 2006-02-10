@@ -291,7 +291,8 @@ ParseLineBasic (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIt
   BOOL bDecIndex = FALSE;
   int nIdentBegin = -1;
   int nPrevI = -1;
-  for (int I = 0;; nPrevI = I, I = ::CharNext(pszChars+I) - pszChars)
+  int I=0;
+  for (I = 0;; nPrevI = I, I = ::CharNext(pszChars+I) - pszChars)
     {
       if (bRedefineBlock)
         {

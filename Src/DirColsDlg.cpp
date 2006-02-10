@@ -124,7 +124,8 @@ void CDirColsDlg::OnUp()
 {
 	CHScrollListBox * list = &m_list_show;
 	// find the first item not selected
-	for (int i=0; i<list->GetCount(); ++i)
+	int i=0;
+	for (i=0; i<list->GetCount(); ++i)
 	{
 		if (!list->GetSel(i))
 			break;
@@ -159,7 +160,8 @@ void CDirColsDlg::OnDown()
 {
 	CHScrollListBox * list = &m_list_show;
 	// find the lst item not selected
-	for (int i=list->GetCount()-1; i>=0; --i)
+	int i=0;
+	for (i=list->GetCount()-1; i>=0; --i)
 	{
 		if (!list->GetSel(i))
 			break;
@@ -244,7 +246,8 @@ void CDirColsDlg::UpdateEnables()
 void CDirColsDlg::OnOK() 
 {
 	// Update all the data in m_cols according to layout on screen
-	for (int i=0; i<m_list_show.GetCount(); ++i)
+	int i=0;
+	for (i=0; i<m_list_show.GetCount(); ++i)
 	{
 		column * col1 = &m_cols[m_list_show.GetItemData(i)];
 		col1->phy_col = i;
@@ -281,7 +284,8 @@ void CDirColsDlg::OnLbnSelchangeListShow()
 			int data = m_list_show.GetItemData(i);
 			CString str;
 			
-			for (int j = 0; j < m_cols.GetSize(); j++)
+			int j=0;
+			for (j = 0; j < m_cols.GetSize(); j++)
 			{
 				if (m_cols.GetAt(j).log_col == data)
 					break;
@@ -304,7 +308,8 @@ void CDirColsDlg::OnLbnSelchangeListHide()
 			int data = m_list_hide.GetItemData(i);
 			CString str;
 			
-			for (int j = 0; j < m_cols.GetSize(); j++)
+			int j=0;
+			for (j = 0; j < m_cols.GetSize(); j++)
 			{
 				if (m_cols.GetAt(j).log_col == data)
 					break;

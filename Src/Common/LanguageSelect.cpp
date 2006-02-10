@@ -687,7 +687,8 @@ void CLanguageSelect::LoadAndDisplayLanguages()
 		
 // Fill the ComboBox
 	CString Language;
-	for ( int i = 0; i < m_wLangIds.GetSize(); i++)
+	int i=0;
+	for (i = 0; i < m_wLangIds.GetSize(); i++)
 	{
 		CString Language = GetLanguageString(m_wLangIds[i]);
 		if ( !Language.IsEmpty() )

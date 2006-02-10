@@ -168,7 +168,8 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 	// estimate size (upper bound)
 	int nBufSize = 0;
-	for (int i=nStartLine; i<=nEndLine; ++i)
+	int i=0;
+	for (i=nStartLine; i<=nEndLine; ++i)
 		nBufSize += (GetFullLineLength(i) + 2); // in case we insert EOLs
 	LPTSTR pszBuf = text.GetBuffer(nBufSize);
 

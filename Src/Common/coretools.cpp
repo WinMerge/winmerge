@@ -645,6 +645,13 @@ CString LegalizeFileName(LPCTSTR szFileName)
 	return CString(tempname);
 }
 
+static double tenpow(double expon)
+{
+	int base=10;
+	double rtn = pow(base, expon);
+	return rtn;
+}
+
 void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 {
 	pDX->PrepareEditCtrl(nIDC);
@@ -707,7 +714,7 @@ void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 			p = _tcstok(fstr, negsign);
 			if (p != NULL)
 			{
-				double shift = (pow(10, _tcslen(p)));
+				double shift = tenpow(_tcslen(p));
 				if (shift)
 					value += (float)(_tcstod(p,NULL)/shift);
 				else
@@ -791,7 +798,7 @@ void DDX_Double( CDataExchange* pDX, int nIDC, double& value )
 			p = _tcstok(fstr, negsign);
 			if (p != NULL)
 			{
-				double shift = (pow(10, _tcslen(p)));
+				double shift = tenpow(_tcslen(p));
 				if (shift)
 					value += /*(float)*/(_tcstod(p,NULL)/shift);
 				else
@@ -1015,7 +1022,8 @@ BOOL HasExited(HANDLE hProcess, DWORD *pCode)
      return FALSE;
 }
 
-
+#ifdef BROKEN
+// This function assigns to path, which is clearly bad as path is LPCTSTR
 BOOL IsLocalPath(LPCTSTR path)
 {
 
@@ -1027,10 +1035,9 @@ BOOL IsLocalPath(LPCTSTR path)
   BOOL bUNC=FALSE;
   BOOL bLocal=FALSE;
 
-  _TCHAR* pLoc;
+  TCHAR* pLoc=0;
 
   CString szInfo;
-
 
   //We need to get the root directory into an sz
   if((pLoc=_tcsstr(path, _T("\\\\")))!=NULL)
@@ -1062,7 +1069,6 @@ BOOL IsLocalPath(LPCTSTR path)
     }
     _tcscpy(finalpath, temppath);
   }
-
 
   if(bUNC)
   {
@@ -1121,6 +1127,7 @@ BOOL IsLocalPath(LPCTSTR path)
 
   return bLocal;
 }
+#endif
 
 // return module's path component (without filename)
 CString GetModulePath(HMODULE hModule /* = NULL*/)

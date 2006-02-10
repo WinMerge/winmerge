@@ -2605,7 +2605,8 @@ BOOL BCMenu::RemoveMenu(UINT uiId,UINT nFlags)
 					}
 				}
 				int num = pSubMenu->GetMenuItemCount();
-				for(int i=num-1;i>=0;--i)pSubMenu->RemoveMenu(i,MF_BYPOSITION);
+				int i=0;
+				for(i=num-1;i>=0;--i)pSubMenu->RemoveMenu(i,MF_BYPOSITION);
 				for(i=m_MenuList.GetUpperBound();i>=0;i--){
 					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);
@@ -2668,7 +2669,8 @@ BOOL BCMenu::DeleteMenu(UINT uiId,UINT nFlags)
 					}
 				}
 				int num = pSubMenu->GetMenuItemCount();
-				for(int i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
+				int i=0;
+				for(i=num-1;i>=0;--i)pSubMenu->DeleteMenu(i,MF_BYPOSITION);
 				for(i=m_MenuList.GetUpperBound();i>=0;i--){
 					if(m_MenuList[i]->nID==(UINT)pSubMenu->m_hMenu){
 						delete m_MenuList.GetAt(i);

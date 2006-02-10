@@ -33,7 +33,8 @@ CCrystalTextBlock::CCrystalTextBlock( TEXTBLOCK *pTextBlock, int &rnActualItems 
 BOOL CCrystalTextBlock::Add( int nCharPos, int nColorIndex )
 {
 	// insert new text block sorted by character position
-	for( int i = 0; i < m_rnActualItems && m_pTextBlock[i].m_nCharPos < nCharPos; i++ );
+	int i=0;
+	for(i = 0; i < m_rnActualItems && m_pTextBlock[i].m_nCharPos < nCharPos; i++ );
 
 	// insert text block
 	if( i < m_rnActualItems )

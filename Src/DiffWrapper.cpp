@@ -687,7 +687,8 @@ DiffFileData::SetDefaultCodepage(int defcp)
 DiffFileData::DiffFileData()
 {
 	m_inf = new file_data[2];
-	for (int i=0; i<2; ++i)
+	int i=0;
+	for (i=0; i<2; ++i)
 		memset(&m_inf[i], 0, sizeof(m_inf[i]));
 	m_used = false;
 	m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
@@ -1006,7 +1007,7 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 	for (e = script; e; e = p)
 	{
 		p = e->link;
-		int i;
+		int i=0;
 		for (i=e->line0; i-(e->line0) < (e->deleted); ++i)
 			map.Add(i, fd[0].equivs[i], 0);
 		for (i=e->line1; i-(e->line1) < (e->inserted); ++i)
@@ -1022,7 +1023,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		// scan down block for a match
 		p = e->link;
 		EqGroup * pgroup = 0;
-		for (int i=e->line0; i-(e->line0) < (e->deleted); ++i)
+		int i=0;
+		for (i=e->line0; i-(e->line0) < (e->deleted); ++i)
 		{
 			EqGroup * tempgroup = map.find(fd[0].equivs[i]);
 			if (tempgroup->isPerfectMatch())
@@ -1139,7 +1141,8 @@ extern "C" void moved_block_analysis(struct change ** pscript, struct file_data 
 		// scan down block for a match
 		p = e->link;
 		EqGroup * pgroup = 0;
-		for (int j=e->line1; j-(e->line1) < (e->inserted); ++j)
+		int j=0;
+		for (j=e->line1; j-(e->line1) < (e->inserted); ++j)
 		{
 			EqGroup * tempgroup = map.find(fd[1].equivs[j]);
 			if (tempgroup->isPerfectMatch())

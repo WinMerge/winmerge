@@ -570,7 +570,7 @@ void CSizingControlBar::OnPaint()
     CPaintDC dc(this);
 }
 
-UINT CSizingControlBar::OnNcHitTest(CPoint point)
+LRESULT CSizingControlBar::OnNcHitTest(CPoint point)
 {
     CRect rcBar, rcEdge;
     GetWindowRect(rcBar);
@@ -927,7 +927,8 @@ BOOL CSizingControlBar::NegotiateSpace(int nLengthTotal, BOOL bHorz)
     int nWidthMax = 0;
     CSizingControlBar* pBar;
 
-    for (int i = nFirst; i <= nLast; i++)
+    int i=0;
+    for (i = nFirst; i <= nLast; i++)
     {
         pBar = (CSizingControlBar*) m_pDockBar->m_arrBars[i];
         if (HIWORD(pBar) == 0) continue; // placeholder

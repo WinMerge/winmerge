@@ -263,7 +263,8 @@ void CDirView::LoadColumnOrders()
 	// Load column orders
 	// Break out if one is missing
 	// Break out & mark failure (m_dispcols == -1) if one is invalid
-	for (int i=0; i<m_numcols; ++i)
+	int i=0;
+	for (i=0; i<m_numcols; ++i)
 	{
 		CString RegName = GetColRegValueNameBase(i) + _T("_Order");
 		int ord = theApp.GetProfileInt(_T("DirView"), RegName, -2);
@@ -401,7 +402,8 @@ void CDirView::MoveColumn(int psrc, int pdest)
 	m_colorder[m_invcolorder[psrc]] = pdest;
 	// shift all other affected columns
 	int dir = psrc > pdest ? +1 : -1;
-	for (int i=pdest; i!=psrc; i += dir)
+	int i=0;
+	for (i=pdest; i!=psrc; i += dir)
 	{
 		m_colorder[m_invcolorder[i]] = i+dir;
 	}
@@ -429,7 +431,8 @@ void CDirView::OnEditColumns()
 		dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l, col);
 	}
 	// Now add all the columns not currently displayed
-	for (int l=0; l<GetColLogCount(); ++l)
+	int l=0;
+	for (l=0; l<GetColLogCount(); ++l)
 	{
 		if (ColLogToPhys(l)==-1)
 		{

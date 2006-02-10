@@ -112,10 +112,9 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
  */
 void DirCmpReport::GenerateHeader()
 {
-	long nTime;
-	_int64 nTime64;
+	time_t nTime=0;
 	time(&nTime);
-	nTime64 = nTime;
+	_int64 nTime64 = nTime;
 	CString sCurTime = TimeString(&nTime64);
 
 	AfxFormatString2(m_sReport, IDS_DIRECTORY_REPORT_TITLE,
@@ -158,7 +157,6 @@ void DirCmpReport::GenerateContent()
 				m_sReport += m_sSeparator;
 		}
 	}
-
 }
 
 /**
@@ -166,10 +164,9 @@ void DirCmpReport::GenerateContent()
  */
 void DirCmpReport::GenerateHTMLHeader()
 {
-	long nTime;
-	_int64 nTime64;
+	time_t nTime=0;
 	time(&nTime);
-	nTime64 = nTime;
+	_int64 nTime64 = nTime;
 	CString sCurTime = TimeString(&nTime64);
 
 	m_sReport = _T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n");
