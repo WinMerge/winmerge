@@ -1,3 +1,8 @@
+2006-02-10 Perry
+ PATCH: [ 1428800 ] Fix ListCopy/AllLeft
+ BUG: [ 1428791 ] All Left gave me a bunch of msgboxes
+  Src: MergeDoc.cpp MergeDoc.h
+
 2006-02-09 WinMerge experimental release 2.5.3.2 (cvs)
 
 2006-02-09 Kimmo

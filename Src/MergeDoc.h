@@ -236,7 +236,7 @@ public:
 	void CopyAllList(int srcPane, int dstPane);
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
 	BOOL SanityCheckDiff(DIFFRANGE dr);
-	void ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false);
+	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false);
 	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, CString & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);

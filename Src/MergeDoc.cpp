@@ -740,14 +740,18 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	// because we don't rescan() so it does not change
 
 	SetCurrentDiff(lastDiff);
-	ListCopy(srcPane, dstPane);
+	bool bGroupWithPrevious=false;
+	if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
+		return; // sync failure
 
 	// copy from bottom up is more efficient
 	for(int i = lastDiff - 1; i >= firstDiff; --i)
 	{
 		SetCurrentDiff(i);
 		// Group merge with previous (merge undo data to one action)
-		ListCopy(srcPane, dstPane, true);
+		bGroupWithPrevious=true;
+		if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
+			return; // sync failure
 	}
 
 	suppressRescan.Clear(); // done suppress Rescan
@@ -798,9 +802,10 @@ BOOL CMergeDoc::SanityCheckDiff(DIFFRANGE dr)
  * @param [in] dstPane Destination side
  * @param [in] nDiff Diff to copy, if -1 function determines it.
  * @param [in] bGroupWithPrevious Adds diff to same undo group with
+ * @return true if ok, false if sync failure & need to abort copy
  * previous action (allows one undo for copy all)
  */
-void CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
+bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		bool bGroupWithPrevious /*= false*/)
 {
 	// suppress Rescan during this method
@@ -846,7 +851,7 @@ void CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 		if (bInSync == FALSE)
 		{
 			AfxMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
-			return;
+			return false; // abort copying
 		}
 
 		// If we remove whole diff from current view, we must fix cursor
@@ -914,6 +919,7 @@ void CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 
 	suppressRescan.Clear(); // done suppress Rescan
 	FlushAndRescan();
+	return true;
 }
 
 /**
