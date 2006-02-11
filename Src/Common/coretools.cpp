@@ -6,6 +6,7 @@
  */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
+
 #include "stdafx.h"
 #include <stdio.h>
 #include <io.h>
@@ -15,9 +16,14 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <math.h>
-#include "coretools.h"
 #include <winsock.h>
 #include <assert.h>
+
+#ifndef __AFXDISP_H__
+#include <afxdisp.h>
+#endif
+
+#include "coretools.h"
 
 #ifndef countof
 #define countof(array)  (sizeof(array)/sizeof((array)[0]))

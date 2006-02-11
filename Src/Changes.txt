@@ -1,3 +1,7 @@
+2006-02-11 Perry
+ PATCH: [ 1429517 ] Fix coretools.cpp compilation (for MakeResDll)
+  Src/Common: coretools.cpp
+
 2006-02-10 Perry
  PATCH: [ 1428800 ] Fix ListCopy/AllLeft
  BUG: [ 1428791 ] All Left gave me a bunch of msgboxes
