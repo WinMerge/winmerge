@@ -766,6 +766,9 @@ BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
 	return FALSE;
 }
 
+/**
+ * @brief Return windows language ID of current WinMerge GUI language
+ */
 WORD CMergeApp::GetLangId() const
 {
 	return m_pLangDlg->GetLangId();
@@ -775,7 +778,7 @@ WORD CMergeApp::GetLangId() const
  * @brief Reload main menu(s) (for language change)
  */
 void
-CMergeApp::	ReloadMenu()
+CMergeApp::ReloadMenu()
 {
 	m_pLangDlg->ReloadMenu();
 }
