@@ -5,6 +5,8 @@
   Src: Merge.cpp
  Synchronizing Turkish translation to English where feasible.
   Src/Languages/Turkish: MergeTurkish.rc
+ Update Swedish Options/Editor to current English layout
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-02-10 Perry
  PATCH: [ 1428800 ] Fix ListCopy/AllLeft

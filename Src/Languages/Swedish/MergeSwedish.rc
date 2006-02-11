@@ -1115,18 +1115,18 @@ BEGIN
     EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,138,63,71,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,85,63,71,10
     CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,138,72,71,10
+                    BS_AUTORADIOBUTTON,85,72,71,10
     GROUPBOX        "Radskillnadskulörer",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+                    221,61
     CONTROL         "Visa radskillnader",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "&Teckennivå",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Ordnivå:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
