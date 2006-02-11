@@ -3,6 +3,8 @@
   Src/Common: coretools.cpp
  PATCH: [ 1427838 ] code cleanup bottom of merge.cpp
   Src: Merge.cpp
+ Synchronizing Turkish translation to English where feasible.
+  Src/Languages/Turkish: MergeTurkish.rc
 
 2006-02-10 Perry
  PATCH: [ 1428800 ] Fix ListCopy/AllLeft
