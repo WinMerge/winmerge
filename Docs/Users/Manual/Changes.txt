@@ -1,3 +1,7 @@
+2006-02-12 Tim
+ BUG: [ 1428754 ] HTML Help build broken?
+  Manual/build: build_htmlhelp.bat
+
 2006-01-27 Tim
  TODO: [ 1413926 ] Build manual file(s) to /Build
   Manual/build: configuration.bat

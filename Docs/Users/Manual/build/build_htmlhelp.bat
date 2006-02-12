@@ -4,9 +4,11 @@ call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
 set docbook_use_stylesheet=build_htmlhelp.xsl
-set docbook_outputdir=%docbook_build_path%\htmlhelp
+set docbook_outputdir=htmlhelp
+set docbook_outputdir_final=%docbook_build_path%\%docbook_outputdir%
 
 if not exist "%docbook_outputdir%" mkdir "%docbook_outputdir%"
+if not exist "%docbook_outputdir_final%" mkdir "%docbook_outputdir_final%"
 
 echo Copy images...
 if not exist "%docbook_outputdir%\images" mkdir "%docbook_outputdir%\images"
@@ -27,21 +29,37 @@ if exist "htmlhelp.hhp" goto compile
 :compile
 echo Compile HTML Help...
 %docbook_hhc_exe% "htmlhelp.hhp"
+move "htmlhelp.chm" "%docbook_outputdir_final%\WinMerge.chm"
 
+:clean
 echo Cleaning...
-deltree /Y "%docbook_outputdir%\images"
-deltree /Y "%docbook_outputdir%\screenshots"
-deltree /Y "%docbook_outputdir%\css"
 del "%docbook_outputdir%\*.html"
 del "htmlhelp.hhp"
 del "toc.hhc"
-move "htmlhelp.chm" "%docbook_outputdir%\WinMerge.chm"
 
+rem if Windows NT/2000/XP...
+if "%OS%" == "Windows_NT" goto cleannt
+rem if Windows 9x...
+if "%OS%" == "" goto clean9x
+
+:clean9x
+deltree /Y "%docbook_outputdir%\images"
+deltree /Y "%docbook_outputdir%\screenshots"
+deltree /Y "%docbook_outputdir%\css"
+if not "%docbook_build_path%" == "." deltree /Y "%docbook_outputdir%"
+echo Finished!
+goto end
+
+:cleannt
+rd /S /Q "%docbook_outputdir%\images"
+rd /S /Q "%docbook_outputdir%\screenshots"
+rd /S /Q "%docbook_outputdir%\css"
+if not "%docbook_build_path%" == "." rd /S /Q "%docbook_outputdir%"
 echo Finished!
 goto end
 
 :error
-echo ERORR!!!
+echo ERROR!!!
 goto end
 
 :end
