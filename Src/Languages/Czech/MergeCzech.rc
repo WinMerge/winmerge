@@ -1014,15 +1014,15 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
     PUSHBUTTON      "Storno",IDCANCEL,156,99,50,14
-    LTEXT           "&Pøevadìè souborù:",IDC_STATIC,7,18,50,10
+    LTEXT           "&Pøevadìè souborù:",IDC_STATIC,7,18,91,10
     COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Zobrazit všechny pøevadìèe (nekontrolovat podle pøípony)",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
-    LTEXT           "Seznam pøípon:",IDC_STATIC,7,36,49,10
+    LTEXT           "Seznam pøípon:",IDC_STATIC,7,36,91,10
     LTEXT           "Popis:",IDC_STATIC,7,52,47,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,98,34,176,12,
                     ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
                     ES_READONLY

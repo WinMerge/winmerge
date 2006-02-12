@@ -1020,9 +1020,9 @@ BEGIN
     CONTROL         "Visualizza tutti gli scompattatori, non verificare l'estensione",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,218,13
-    LTEXT           "Lista delle estensioni:",IDC_STATIC,7,36,88,10
+    LTEXT           "Lista delle estensioni:",IDC_STATIC,7,36,91,10
     LTEXT           "Descrizione:",IDC_STATIC,7,52,47,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,188,12,
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,98,34,188,12,
                     ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
                     ES_READONLY

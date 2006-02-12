@@ -1018,7 +1018,7 @@ BEGIN
     CONTROL         "&Visualitza tots els desempaquetadors sense verificar l'extensió",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,218,13
-    LTEXT           "&Llistat d'extensions:",IDC_STATIC,7,36,88,10
+    LTEXT           "&Llistat d'extensions:",IDC_STATIC,7,36,91,10
     LTEXT           "&Descripció:",IDC_STATIC,7,52,47,10
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,98,34,188,12,
                     ES_AUTOHSCROLL | ES_READONLY
