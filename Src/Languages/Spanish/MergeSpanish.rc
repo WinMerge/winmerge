@@ -1014,15 +1014,15 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "OK",IDOK,87,99,50,14
     PUSHBUTTON      "Cancelar",IDCANCEL,156,99,50,14
-    LTEXT           "Desempaquet.:",IDC_STATIC,7,18,50,10
+    LTEXT           "Desempaquet.:",IDC_STATIC,7,18,91,10
     COMBOBOX        IDC_UNPACKER_NAME,98,16,188,63,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "Mostrar todos los desempaquetadores,no comprobar exts.",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     BS_LEFTTEXT | WS_TABSTOP,7,74,202,13
-    LTEXT           "Extensiones:",IDC_STATIC,7,36,49,10
+    LTEXT           "Extensiones:",IDC_STATIC,7,36,91,10
     LTEXT           "Descripción:",IDC_STATIC,7,52,47,10
-    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,97,34,176,12,
+    EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,98,34,176,12,
                     ES_AUTOHSCROLL | ES_READONLY
     EDITTEXT        IDC_UNPACKER_DESCRIPTION,58,50,228,12,ES_AUTOHSCROLL |
                     ES_READONLY
