@@ -1,3 +1,7 @@
+2006-02-12 Kimmo
+ BUG: [ 1412404 ] Manual example looks wrong
+  Manual: Quick_start.xml
+
 2006-02-12 Tim
  BUG: [ 1428754 ] HTML Help build broken?
   Manual/build: build_htmlhelp.bat

@@ -138,8 +138,8 @@
 
     <para>File compare shows two files side by side. Different lines are
     highlighted with background color. One or more consecutive different lines
-    form one difference (or "diff"). <productname>WinMerge</productname>
-    mostly works with these differences, not separate lines.</para>
+    form one difference (or "diff"). WinMerge mostly works with these
+    differences, not separate lines.</para>
 
     <para><important>
         <para>Notice how WinMerge fills missing lines in other side. Similar
@@ -149,14 +149,14 @@
     lines in difference can be copied between sides. Missing lines can be
     copied also. When missing lines are copied from one side to another,
     matching existing lines are removed. In the above screenshot, copying
-    three lines in third difference from right to left would remove matching
-    three lines from left side.</para>
+    lines in second difference from the left to the right would remove
+    matching lines from the left side.</para>
 
-    <para><productname>WinMerge</productname> has an simple integrated editor.
-    Typing, copying, cutting and pasting text works. If <guilabel>Automatic
-    rescan</guilabel> is enabled then WinMerge updates file differences while
-    files are edited. If <guilabel>Automatic rescan</guilabel> is disabled
-    files can be updated selecting <guimenuitem>Refresh</guimenuitem> from
+    <para>WinMerge has an simple integrated editor. Typing, copying, cutting
+    and pasting text works. If <guilabel>Automatic rescan</guilabel> is
+    enabled then WinMerge updates file differences while files are edited. If
+    <guilabel>Automatic rescan</guilabel> is disabled files can be updated
+    selecting <guimenuitem>Refresh</guimenuitem> from
     <guimenu>Edit</guimenu>-menu, clicking toolbar button with two yellow
     arrows or pressing <keycap>F5</keycap> key.</para>
   </sect2>
