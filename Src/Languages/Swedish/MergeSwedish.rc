@@ -1719,13 +1719,13 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-    IDS_OPTIONSPG_GENERAL     "Generell"
-    IDS_OPTIONSPG_COMPARE     "Jämför"
-    IDS_OPTIONSPG_EDITOR      "Editor"
-    IDS_OPTIONSPG_COLORS      "Kulörer"
-    IDS_OPTIONSPG_SYSTEM      "System"
+    IDS_OPTIONSPG_GENERAL   "Generell"
+    IDS_OPTIONSPG_COMPARE   "Jämför"
+    IDS_OPTIONSPG_EDITOR    "Editor"
+    IDS_OPTIONSPG_COLORS    "Kulörer"
+    IDS_OPTIONSPG_SYSTEM    "System"
     IDS_OPTIONSPG_VERSIONCONTROL "Versionskontroll"
-    IDS_OPTIONSPG_CODEPAGE     "Codepage"
+    IDS_OPTIONSPG_CODEPAGE  "Codepage"
     IDS_OPTIONSPG_SYNTAXCOLORS "Syntaxkulörer"
     IDS_OPTIONSPG_ARCHIVE   "Arkivstöd"
 END

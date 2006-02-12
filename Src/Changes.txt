@@ -1,3 +1,11 @@
+2006-12-22 Perry
+ Adjust whitespace to match English translation
+ Also update Russian options/editor controls to match English
+  Src\Languages\Russian: MergeRussian.rc
+  Src\Languages\Slovak: MergeSlovak.rc
+  Src\Languages\Swedish: MergeSwedish.rc
+  Src\Languages\Turkish: MergeTurkish.rc
+
 2006-02-11 Perry
  PATCH: [ 1429517 ] Fix coretools.cpp compilation (for MakeResDll)
   Src/Common: coretools.cpp

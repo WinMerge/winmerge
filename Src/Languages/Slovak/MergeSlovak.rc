@@ -1029,7 +1029,7 @@ BEGIN
 END
 
 IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 329, 47
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE |
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
 CAPTION " Folder Compare Progress"
@@ -1054,12 +1054,12 @@ BEGIN
     LTEXT           "G&oto:",IDC_STATIC,7,9,36,8
     EDITTEXT        IDC_WMGOTO_PARAM,45,7,102,14,ES_AUTOHSCROLL | ES_NUMBER
     GROUPBOX        "File",IDC_STATIC,7,27,57,35
-    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "&Left",IDC_WMGOTO_FILELEFT,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,13,38,48,10
     CONTROL         "&Right",IDC_WMGOTO_FILERIGHT,"Button",
                     BS_AUTORADIOBUTTON,13,48,47,10
     GROUPBOX        "Goto what",IDC_STATIC,69,27,78,35
-    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON | 
+    CONTROL         "Li&ne",IDC_WMGOTO_TOLINE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,76,38,68,10
     CONTROL         "&Difference",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,76,48,68,10
@@ -1126,7 +1126,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1210,7 +1210,7 @@ BEGIN
                     IDC_STATIC,2,52,296,18
     LTEXT           "Please use the version of 7-Zip recommended below until interface plugins for later\nversions become available.",
                     IDC_STATIC,2,70,296,26
-    CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
+    CTEXT           "Version",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
     CTEXT           "Plugin required\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
@@ -1218,7 +1218,7 @@ BEGIN
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
+    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE |
                     SS_SUNKEN
     CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "7-Zip software installed on your computer:",IDC_STATIC,
@@ -1233,12 +1233,12 @@ BEGIN
     CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Plugins on path:",9001,2,160,100,8
     CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,236,226,50,14,WS_GROUP
     CONTROL         "Plugin Download",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     236,160,62,10
-    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1277,50 +1277,50 @@ BEGIN
     RTEXT           "User 1:",IDC_STATIC,0,160,70,8
     RTEXT           "User 2:",IDC_STATIC,0,180,70,8
     CTEXT           "Text",IDC_STATIC,73,7,34,8
-    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Bold",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,21,55,10
-    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Bold",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
-    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Bold",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,60,55,10
-    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Bold",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,80,55,10
-    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Bold",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
-    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Bold",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,120,55,10
-    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Bold",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Bold",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,160,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Bold",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,180,55,10
     PUSHBUTTON      "Defaults",IDC_SCOLORS_BDEFAULTS,182,179,50,14
 END
@@ -1332,11 +1332,11 @@ CAPTION "Directory Compare Report"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Report &File:",IDC_STATIC,7,7,100,8
-    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL |
                     CBS_AUTOHSCROLL | WS_TABSTOP
     PUSHBUTTON      "Browse...",IDC_REPORT_BROWSEFILE,211,18,50,14
     LTEXT           "&Style:",IDC_STATIC,7,37,35,8
-    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
     PUSHBUTTON      "Cancel",IDCANCEL,211,60,50,14
@@ -1368,17 +1368,17 @@ BEGIN
     CONTROL         "&Enable archive file support",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
     CONTROL         "&Use stand-alone 7-Zip if available",
-                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
+                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP | WS_TABSTOP,19,48,209,10
     CONTROL         "U&se local 7-Zip from WinMerge folder",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
     CONTROL         "&Detect archive type from file signature",
-                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
+                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,70,221,10
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Compare Statistics"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -2009,9 +2009,9 @@ BEGIN
     ID_DIR_ZIP_RIGHT        "Add items from right side to archive"
     ID_DIR_ZIP_BOTH         "Add items from both sides to archive"
     ID_DIR_ZIP_BOTH_DIFFS_ONLY "Add different items to archive (both sides)"
-    ID_DIR_MOVE_LEFT_TO_BROWSE 
+    ID_DIR_MOVE_LEFT_TO_BROWSE
                             "Move selected file on left to custom directory"
-    ID_DIR_MOVE_RIGHT_TO_BROWSE 
+    ID_DIR_MOVE_RIGHT_TO_BROWSE
                             "Move selected file on right to custom directory"
 END
 
@@ -2123,7 +2123,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Comma-separated list"
     IDS_REPORT_TABLIST      "Tab-separated list"
     IDS_REPORT_SIMPLEHTML   "Simple HTML"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_FILEOVERWRITE
                             "The report file already exists. Do you want to overwrite existing file?"
     IDS_REPORT_ERROR        "Error creating the report:\n%1"
     IDS_REPORT_SUCCESS      "The report has been created successfully."
@@ -2183,7 +2183,7 @@ BEGIN
 END
 
 // FILE COMPARE: PANE CAPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
     IDS_LOCBAR_CAPTION      "Location Pane"
     IDS_DIFFBAR_CAPTION     "Diff Pane"
