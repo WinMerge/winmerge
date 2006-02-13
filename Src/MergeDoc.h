@@ -285,6 +285,11 @@ private:
 	void Computelinediff(CCrystalTextView * pView, CCrystalTextView * pOther, int line, CRect * rc1, CRect * rc2, DIFFLEVEL difflvl);
 // End MergeDocLineDiffs.cpp
 
+// Implementation in MergeDocEncoding.cpp
+public:
+	void DoFileEncodingDialog();
+// End MergeDocEncoding.cpp
+
 // Implementation
 public:
 	BOOL IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
@@ -340,6 +345,7 @@ protected:
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
+	afx_msg void OnFileEncoding();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

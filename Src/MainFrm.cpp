@@ -562,7 +562,7 @@ void CMainFrame::OnFileOpen()
 static void
 FileLocationGuessEncodings(FileLocation & fileloc, BOOL bGuessEncoding)
 {
-	GuessCodepageEncoding(fileloc.filepath, &fileloc.unicoding, &fileloc.codepage, bGuessEncoding);
+	GuessCodepageEncoding(fileloc.filepath, &fileloc.encoding, bGuessEncoding);
 }
 
 /**
@@ -595,15 +595,15 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 
 	// detect codepage
 	BOOL bGuessEncoding =GetOptionsMgr()->GetBool(OPT_CP_DETECT);
-	if (filelocLeft.unicoding == -1)
-		filelocLeft.unicoding = ucr::NONE;
-	if (filelocLeft.unicoding == ucr::NONE && filelocLeft.codepage == -1)
+	if (filelocLeft.encoding.m_unicoding == -1)
+		filelocLeft.encoding.m_unicoding = ucr::NONE;
+	if (filelocLeft.encoding.m_unicoding == ucr::NONE && filelocLeft.encoding.m_codepage == -1)
 	{
 		FileLocationGuessEncodings(filelocLeft, bGuessEncoding);
 	}
-	if (filelocRight.unicoding == -1)
-		filelocRight.unicoding = ucr::NONE;
-	if (filelocRight.unicoding == ucr::NONE && filelocRight.codepage == -1)
+	if (filelocRight.encoding.m_unicoding == -1)
+		filelocRight.encoding.m_unicoding = ucr::NONE;
+	if (filelocRight.encoding.m_unicoding == ucr::NONE && filelocRight.encoding.m_codepage == -1)
 	{
 		FileLocationGuessEncodings(filelocRight, bGuessEncoding);
 	}
@@ -612,31 +612,42 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 	{
 		// In ANSI (8-bit) build, character loss can occur in merging
 		// if the two buffers use different encodings
-		if (filelocLeft.unicoding == ucr::NONE
-			&& filelocRight.unicoding == ucr::NONE
-			&& filelocLeft.codepage != filelocRight.codepage)
+		if (filelocLeft.encoding.m_unicoding == ucr::NONE
+			&& filelocRight.encoding.m_unicoding == ucr::NONE
+			&& filelocLeft.encoding.m_codepage != filelocRight.encoding.m_codepage)
 		{
 			CString msg;
-			msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.codepage, filelocRight.codepage);
+			msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.encoding.m_codepage, filelocRight.encoding.m_codepage);
 			int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
 			// Two files with different codepages
 			// Warn and propose to use the default codepage for both
 			int userChoice = AfxMessageBox(msg, msgflags);
 			if (userChoice == IDYES)
-				filelocLeft.codepage = filelocRight.codepage = getDefaultCodepage();
+			{
+				if (filelocLeft.encoding.m_codepage != getDefaultCodepage())
+				{
+					filelocLeft.encoding.SetCodepage(getDefaultCodepage());
+					filelocLeft.encoding.m_bom = false;
+					filelocLeft.encoding.m_guessed = false;
+				}
+				if (filelocRight.encoding.m_codepage != getDefaultCodepage())
+				{
+					filelocRight.encoding.SetCodepage(getDefaultCodepage());
+					filelocRight.encoding.m_bom = false;
+					filelocRight.encoding.m_guessed = false;
+				}
+			}
 		}
-		else if (filelocLeft.unicoding != filelocRight.unicoding)
+		else if (filelocLeft.encoding.m_unicoding != filelocRight.encoding.m_unicoding)
 		{
-			CString leftUnicoding = ucr::GetUnicodesetName((ucr::UNICODESET)filelocLeft.unicoding);
-			CString rightUnicoding = ucr::GetUnicodesetName((ucr::UNICODESET)filelocRight.unicoding);
+			CString leftEncoding = filelocLeft.encoding.GetName();
+			CString rightEnicoding = filelocRight.encoding.GetName();
 			CString msg;
-			msg.Format(IDS_DIFFERENT_UNICODINGS, leftUnicoding, rightUnicoding);
+			msg.Format(IDS_DIFFERENT_UNICODINGS, leftEncoding, rightEnicoding);
 			int msgflags = MB_OK | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
 			// Two files with different codepages
 			// Warn and propose to use the default codepage for both
-			int userChoice = AfxMessageBox(msg, msgflags);
-			if (userChoice == IDYES)
-				filelocLeft.codepage = filelocRight.codepage = getDefaultCodepage();
+			AfxMessageBox(msg, msgflags);
 		}
 	}
 

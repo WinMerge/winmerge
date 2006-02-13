@@ -201,6 +201,8 @@ BEGIN
         MENUITEM "L&eft Read-only",             ID_FILE_LEFT_READONLY
         MENUITEM "Ri&ght Read-only",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
+        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM SEPARATOR
         MENUITEM "&Koniec",                     ID_APP_EXIT
     END
     POPUP "Úpr&avy"
@@ -617,8 +619,7 @@ BEGIN
 END
 
 IDD_OPEN DIALOGEX 0, 0, 364, 126
-STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU |
-    WS_THICKFRAME
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_THICKFRAME
 CAPTION "Výber súborov a adresárov..."
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
@@ -1420,6 +1421,35 @@ BEGIN
     DEFPUSHBUTTON   "Close",IDOK,200,140,50,14
 END
 
+IDD_LOAD_SAVE_CODEPAGE DIALOGEx DISCARDABLE  0, 0, 196, 163
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_THICKFRAME
+CAPTION "Codepage"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "&Apply",IDOK,26,145,50,14
+    PUSHBUTTON      "&Cancel",IDCANCEL,118,145,50,14
+    GROUPBOX        "Affects",IDC_AFFECTS_GROUP,7,7,182,36
+    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,17,67,8
+    LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,91,17,89,8
+    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,13,28,67,8
+    LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,91,28,89,8
+    GROUPBOX        "Loading",IDC_LOADING_GROUP,6,48,182,34
+    LTEXT           "Load files using codepage:",IDC_LOAD_FILES_LABEL,9,63,
+                    97,10
+    EDITTEXT        IDC_LOAD_CODEPAGE_TEXTBOX,113,62,36,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_LOAD_CODEPAGE_BROWSE,156,63,23,10
+    CONTROL         "Use same codepage for loading and saving",
+                    IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,6,85,182,10
+    GROUPBOX        "Saving",IDC_SAVING_GROUP,6,100,182,34
+    LTEXT           "Save files using codepage:",IDC_SAVE_FILES_LABEL,8,115,
+                    97,10
+    EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,113,114,36,12,ES_AUTOHSCROLL
+    PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,156,115,23,10
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1971,6 +2001,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "Right to... (%1 of %2)"
     IDS_SELECT_DEST_LEFT    "Left side - select destination folder:"
     IDS_SELECT_DEST_RIGHT   "Right side - select destination folder:"
+    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
+    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2537,6 +2569,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
     ID_EOL_TO_MAC           "Convert EOL to MAC mode"
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
+    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
 END
 
 // EDIT MENU

@@ -30,6 +30,8 @@
 #include "LogFile.h"
 #include "DiffItem.h"
 #include "FileActionScript.h"
+#include "LoadSaveCodepageDlg.h"
+#include "IntToIntMap.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -982,4 +984,122 @@ void CDirView::MarkForRescan()
 		GetDocument()->SetDiffStatus(DIFFCODE::NEEDSCAN, DIFFCODE::SCANFLAGS, sel);
 	}
 	GetDocument()->SetMarkedRescan();
+}
+
+/**
+ * @brief Return string such as "15 of 30 Files Affected" or "30 Files Affected"
+ */
+static CString
+FormatFilesAffectedString(int nFilesAffected, int nFilesTotal)
+{
+	CString fmt;
+	if (nFilesAffected == nFilesTotal)
+		AfxFormatString1(fmt, IDS_FILES_AFFECTED_FMT, NumToStr(nFilesTotal));
+	else
+		AfxFormatString2(fmt, IDS_FILES_AFFECTED_FMT2, NumToStr(nFilesAffected), NumToStr(nFilesTotal));
+	return fmt;
+}
+
+/**
+ * @brief Count left & right files, and number with editable text encoding
+ * @param nLeft [out]  #files on left side selected
+ * @param nLeftAffected [out]  #files on left side selected which can have text encoding changed
+ * @param nRight [out]  #files on right side selected
+ * @param nRightAffected [out]  #files on right side selected which can have text encoding changed
+ *
+ * Affected files include all except unicode files
+ */
+void CDirView::FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg)
+{
+	IntToIntMap currentCodepages;
+	int nLeft=0, nLeftAffected=0, nRight=0, nRightAffected=0;
+	int i = -1;
+	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
+	{
+		const DIFFITEM& di = GetDiffItem(i);
+		if (di.diffcode == 0) // Invalid value, this must be special item
+			continue;
+		if (di.isDirectory())
+			continue;
+
+		if (di.isSideLeftOrBoth())
+		{
+			// exists on left
+			++nLeft;
+			if (di.left.IsEditableEncoding())
+				++nLeftAffected;
+			int codepage = di.left.encoding.m_codepage;
+			currentCodepages.Increment(codepage);
+		}
+		if (di.isSideRightOrBoth())
+		{
+			++nRight;
+			if (di.right.IsEditableEncoding())
+				++nRightAffected;
+			int codepage = di.right.encoding.m_codepage;
+			currentCodepages.Increment(codepage);
+		}
+	}
+
+	// Format strings such as "25 of 30 Files Affected"
+	CString sLeftAffected = FormatFilesAffectedString(nLeftAffected, nLeft);
+	CString sRightAffected = FormatFilesAffectedString(nRightAffected, nRight);
+	dlg->SetLeftRightAffectStrings(sLeftAffected, sRightAffected);
+	int codepage = currentCodepages.FindMaxKey();
+	dlg->SetCodepages(codepage);
+}
+
+/**
+ * @brief Display file encoding dialog to user & handle user's choices
+ *
+ * This handles DirView invocation, so multiple files may be affected
+ */
+void CDirView::DoFileEncodingDialog()
+{
+	CLoadSaveCodepageDlg dlg;
+	// set up labels about what will be affected
+	FormatEncodingDialogDisplays(&dlg);
+	dlg.EnableSaveCodepage(false); // disallow setting a separate codepage for saving
+
+	// Invoke dialog
+	int rtn = dlg.DoModal();
+	if (rtn != IDOK) return;
+
+	int nCodepage = dlg.GetLoadCodepage();
+
+	bool doLeft = dlg.DoesAffectLeft();
+	bool doRight = dlg.DoesAffectRight();
+
+	int i=-1;
+	while ((i = m_pList->GetNextItem(i, LVNI_SELECTED)) != -1)
+	{
+		DIFFITEM & di = GetDiffItemRef(i);
+		if (di.diffcode == 0) // Invalid value, this must be special item
+			continue;
+		if (di.isDirectory())
+			continue;
+
+		// Does it exist on left? (ie, right or both)
+		if (doLeft && di.isSideLeftOrBoth() && di.left.IsEditableEncoding())
+		{
+			di.left.encoding.SetCodepage(nCodepage);
+		}
+		// Does it exist on right (ie, left or both)
+		if (doRight && di.isSideRightOrBoth() && di.right.IsEditableEncoding())
+		{
+			di.right.encoding.SetCodepage(nCodepage);
+		}
+	}
+	m_pList->InvalidateRect(NULL);
+	m_pList->UpdateWindow();
+
+	// TODO: We could loop through any active merge windows belonging to us
+	// and see if any of their files are affected
+	// but, if they've been edited, we cannot throw away the user's work?
+}
+
+void CDirView::DoUpdateFileEncodingDialog(CCmdUI* pCmdUI)
+{
+	BOOL haveSelectedItems = (m_pList->GetNextItem(-1, LVNI_SELECTED) != -1);
+	pCmdUI->Enable(haveSelectedItems);
 }

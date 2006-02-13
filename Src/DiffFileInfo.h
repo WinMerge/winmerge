@@ -29,6 +29,10 @@
 #include "FileInfo.h"
 #endif
 
+#ifndef FileTextEncoding_h_included
+#include "FileTextEncoding.h"
+#endif
+
 /**
  * @brief Class for fileflags and coding info.
  */
@@ -74,23 +78,25 @@ struct DiffFileFlags : public FileFlags
 	};
 };
 
+
 /**
  * @brief Information for file
  */
 struct DiffFileInfo : public FileInfo
 {
+// data
 	bool bVersionChecked; /**< true if version string is up-to-date */
 	DiffFileFlags flags; /**< file attributes */
-	int codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
-	int unicoding; /**< Unicode encoding (ucr::CODESET) */
-	DiffFileInfo() { Clear(); }
-
-	CString getEncodingString() const;
+	FileTextEncoding encoding; /**< unicode or codepage info */
 	// We could stash a pointer here to the parent DIFFITEM
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
-	
+
+// methods
+
+	DiffFileInfo() { Clear(); }
 	BOOL Update(LPCTSTR sFilePath);
 	void Clear();
+	bool IsEditableEncoding() const;
 };
 
 #endif // _DIFF_FILE_INFO_H_INCLUDED

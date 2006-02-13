@@ -16,6 +16,14 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+/** @brief Make and return a diffitem with no data */
+DIFFITEM DIFFITEM::MakeEmptyDiffItem() // static
+{
+	DIFFITEM di;
+	di.empty = true;
+	return di;
+}
+
 /** @brief Return path to left file, including all but file name */
 CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
 {

@@ -1,15 +1,18 @@
 #ifndef FileLocation_included
 #define FileLocation_included
 
+#ifndef FileTextEncoding_h_included
+#include "FileTextEncoding.h"
+#endif
+
 struct FileLocation
 {
 	CString filepath;
-	int unicoding;
-	int codepage;
-	FileLocation() : unicoding(-1), codepage(-1)
+	FileTextEncoding encoding;
+	FileLocation()
 	{
 	}
-	FileLocation(LPCTSTR path) : filepath(path), unicoding(-1), codepage(-1)
+	FileLocation(LPCTSTR path) : filepath(path)
 	{
 	}
 // Methods

@@ -534,14 +534,12 @@ static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
 
 		if (!di.isSideLeft())
 		{
-			di.right.unicoding = pDiffFileData->m_FileLocation[1].unicoding;
-			di.right.codepage = pDiffFileData->m_FileLocation[1].codepage;
+			di.right.encoding = pDiffFileData->m_FileLocation[1].encoding;
 		}
 		
 		if (!di.isSideRight())
 		{
-			di.left.unicoding = pDiffFileData->m_FileLocation[0].unicoding;
-			di.left.codepage = pDiffFileData->m_FileLocation[0].codepage;
+			di.left.encoding = pDiffFileData->m_FileLocation[0].encoding;
 		}
 	}
 

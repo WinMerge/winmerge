@@ -697,8 +697,7 @@ DiffFileData::DiffFileData()
 	// Set default codepages
 	for (i=0; i<sizeof(m_FileLocation)/sizeof(m_FileLocation[0]); ++i)
 	{
-		m_FileLocation[i].unicoding = ucr::NONE;
-		m_FileLocation[i].codepage = f_defcp;
+		m_FileLocation[i].encoding.SetCodepage(f_defcp);
 	}
 }
 
@@ -804,10 +803,10 @@ void DiffFileData::Reset()
  */
 void DiffFileData::GuessEncoding_from_buffer(FileLocation & fpenc, const char **data, int count)
 {
-	if (fpenc.unicoding == 0)
+	if (!fpenc.encoding.m_bom)
 	{
 		CString sExt = PathFindExtension(fpenc.filepath);
-		GuessEncoding_from_bytes(sExt, data, count, &fpenc.codepage);
+		GuessEncoding_from_bytes(sExt, data, count, &fpenc.encoding);
 	}
 }
 
@@ -821,10 +820,10 @@ void DiffFileData::GuessEncoding_from_buffer_in_DiffContext(int side, CDiffConte
 /** @brief Guess encoding for one file (in DiffContext memory buffer) */
 void DiffFileData::GuessEncoding_from_FileLocation(FileLocation & fpenc)
 {
-	if (fpenc.unicoding == 0)
+	if (!fpenc.encoding.m_bom)
 	{
 		BOOL bGuess = TRUE;
-		GuessCodepageEncoding(fpenc.filepath, &fpenc.unicoding, &fpenc.codepage, bGuess);
+		GuessCodepageEncoding(fpenc.filepath, &fpenc.encoding, bGuess);
 	}
 }
 
@@ -879,30 +878,37 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 {
 	size = 0;
 	unicoding = ucr::NONE;
-	if (fd != -1)
+	if (fd == -1) 
+		return;
+	long tmp = _lseek(fd, 0, SEEK_SET);
+	switch (_read(fd, buffer, 3))
 	{
-		long tmp = _lseek(fd, 0, SEEK_SET);
-		switch (_read(fd, buffer, 3))
-		{
-			case 3:
+		case 3:
+			if (buffer[0] == 0xEF && buffer[1] == 0xBB && buffer[2] == 0xBF)
+			{
 				size = 3;
 				unicoding = ucr::UTF8;
-				if (buffer[0] == 0xEF && buffer[1] == 0xBB && buffer[2] == 0xBF)
-					break;
-			case 2:
+				break;
+			}
+			// fall through & try the 2-byte BOMs
+		case 2:
+			if (buffer[0] == 0xFF && buffer[1] == 0xFE)
+			{
 				size = 2;
 				unicoding = ucr::UCS2LE;
-				if (buffer[0] == 0xFF && buffer[1] == 0xFE)
-					break;
+				break;
+			}
+			if (buffer[0] == 0xFE && buffer[1] == 0xFF)
+			{
+				size = 2;
 				unicoding = ucr::UCS2BE;
-				if (buffer[0] == 0xFE && buffer[1] == 0xFF)
-					break;
-			default:
-				size = 0;
-				unicoding = ucr::NONE;
-		}
-		_lseek(fd, tmp, SEEK_SET);
+				break;
+			}
+		default:
+			size = 0;
+			unicoding = ucr::NONE;
 	}
+	_lseek(fd, tmp, SEEK_SET);
 }
 
 /** @brief Create int array with size elements, and set initial entries to initvalue */
@@ -1317,10 +1323,12 @@ bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const CString & file
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
 
-	UniFileBom bom = fd; // guess encoding
-	fpenc.unicoding = bom.unicoding;
+	// Read BOM to check for Unicode
+	UniFileBom bom = fd;
+	if (bom.unicoding)
+		fpenc.encoding.SetUnicoding(bom.unicoding);
 
-	if (fpenc.unicoding && fpenc.unicoding != ucr::UCS2LE)
+	if (fpenc.encoding.m_unicoding && fpenc.encoding.m_unicoding != ucr::UCS2LE)
 	{
 		// second step : normalize Unicode to OLECHAR (most of time, do nothing) (OLECHAR = UCS-2LE in Windows)
 		bMayOverwrite = (filepathTransformed != filepath); // may overwrite if we've already copied to temp file
@@ -1351,7 +1359,7 @@ bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const CString & file
 			return false;
 	}
 
-	if (fpenc.unicoding)
+	if (fpenc.encoding.m_unicoding)
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file

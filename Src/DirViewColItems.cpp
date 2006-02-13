@@ -37,23 +37,6 @@ static char THIS_FILE[] = __FILE__;
 #define KILO 1024
 
 /**
- * @brief Return string representation of encoding, eg "UCS-2LE", or "1252"
- */
-static CString EncodingString(int unicoding, int codepage)
-{
-	if (unicoding == ucr::UCS2LE)
-		return _T("UCS-2LE");
-	if (unicoding == ucr::UCS2BE)
-		return _T("UCS-2BE");
-	if (unicoding == ucr::UTF8)
-		return _T("UTF-8");
-	CString str;
-	LPTSTR s = str.GetBuffer(32);
-	_sntprintf(s, 32, _T("%d"), codepage);
-	str.ReleaseBuffer();
-	return str;
-}
-/**
  * @brief Function to compare two __int64s for a sort
  */
 static int cmp64(__int64 i1, __int64 i2)
@@ -416,7 +399,7 @@ static CString ColAttrGet(const CDiffContext *, const void *p)
 static CString ColEncodingGet(const CDiffContext *, const void *p)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
-	return EncodingString(r.unicoding, r.codepage);
+	return r.encoding.GetName();
 }
 /**
  * @}
@@ -509,10 +492,7 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
-	__int64 n = cmp64(r.unicoding, s.unicoding);
-	if (n) return sign64(n);
-	n = cmp64(r.codepage, s.codepage);
-	return sign64(n);
+	return FileTextEncoding::Collate(r.encoding, s.encoding);
 }
 /* @} */
 

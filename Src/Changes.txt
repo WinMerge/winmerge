@@ -1,3 +1,14 @@
+2006-02-13 Perry
+ PATCH: [ 1212124 ] File encoding GUI
+  Src: DiffContext.cpp DiffFileInfo.cpp DiffFileInfo.h DiffItem.cpp
+   DiffItem.h DiffThread.cpp DiffWrapper.cpp DirActions.cpp
+   DirScan.cpp DirView.cpp DirView.h DirViewColItems.cpp FileLocation.h
+   MainFrm.cpp Merge.dsp Merge.rc MergeDoc.cpp MergeDoc.h OpenDlg.cpp
+   codepage_detect.cpp codepage_detect.h resource.h
+  NEW Src: FileTextEncoding.cpp FileTextEncoding.h IntToIntMap.h
+   LoadSaveCodepageDlg.cpp LoadSaveCodepageDlg.h MergeDocEncoding.cpp
+   dlgutil.cpp dlgutil.h
+
 2006-02-12 Perry
  Adjust whitespace to match English translation
  Also update Russian options/editor controls to match English

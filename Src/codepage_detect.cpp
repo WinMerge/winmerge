@@ -14,6 +14,7 @@
 #include "codepage.h"
 #include "charsets.h"
 #include "markdown.h"
+#include "FileTextEncoding.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -215,7 +216,7 @@ static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t le
 /**
  * @brief Try to deduce encoding for this file
  */
-bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, int *codepage)
+bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, FileTextEncoding * encoding)
 {
 	if (data)
 	{
@@ -223,7 +224,8 @@ bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, int *co
 		size_t len = data[count] - src;
 		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len))
 		{
-			*codepage = cp;
+			encoding->Clear();
+			encoding->SetCodepage(cp);
 			return true;
 		}
 	}
@@ -233,22 +235,30 @@ bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, int *co
 /**
  * @brief Try to deduce encoding for this file
  */
-void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL bGuessEncoding)
+void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL bGuessEncoding)
 {
 	CMarkdown::FileImage fi(filepath, 4096);
-	*unicoding = ucr::NONE;
-	*codepage = getDefaultCodepage();
+	encoding->SetCodepage(getDefaultCodepage());
+	encoding->m_bom = false;
+	encoding->m_guessed = false;
 	switch (fi.nByteOrder)
 	{
 	case 8 + 2 + 0:
-		*unicoding = ucr::UCS2LE;
+		encoding->SetUnicoding(ucr::UCS2LE);
+		encoding->m_bom = true;
 		break;
 	case 8 + 2 + 1:
-		*unicoding = ucr::UCS2BE;
+		encoding->SetUnicoding(ucr::UCS2BE);
+		encoding->m_bom = true;
 		break;
 	case 8 + 1:
-		*unicoding = ucr::UTF8;
+		encoding->SetUnicoding(ucr::UTF8);
+		encoding->m_bom = true;
 		break;
+	default:
+		encoding->m_bom = false;
+		break;
+
 	}
 	if (fi.nByteOrder == 1 && bGuessEncoding)
 	{
@@ -257,7 +267,8 @@ void GuessCodepageEncoding(LPCTSTR filepath, int *unicoding, int *codepage, BOOL
 		size_t len = fi.cbImage;
 		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len))
 		{
-			*codepage = cp;
+			encoding->SetCodepage(cp);
+			encoding->m_guessed = true;
 		}
 	}
 }

@@ -67,8 +67,10 @@ public:
 	bool isDirectory() const { return Check(diffcode, DIFFCODE::DIRFLAGS, DIFFCODE::DIR); }
 	// left/right
 	bool isSideLeft() const { return CheckSide(diffcode, DIFFCODE::LEFT); }
+	bool isSideLeftOrBoth() const { return isSideLeft() || isSideBoth(); }
 	void setSideLeft() { SetSide(DIFFCODE::LEFT); }
 	bool isSideRight() const { return CheckSide(diffcode, DIFFCODE::RIGHT); }
+	bool isSideRightOrBoth() const { return isSideRight() || isSideBoth(); }
 	void setSideRight() { SetSide(DIFFCODE::RIGHT); }
 	bool isSideBoth() const { return CheckSide(diffcode, DIFFCODE::BOTH); }
 	void setSideBoth() { SetSide(DIFFCODE::BOTH); }
@@ -96,6 +98,10 @@ public:
  *
  * @note times in fileinfo's are seconds since January 1, 1970.
  * See Dirscan.cpp/fentry and Dirscan.cpp/LoadFiles()
+ *
+ * Note: A DIFFITEM has a DIFFCODE, but unfortunately for historical reasons
+ *   it still has an inheritance relationship
+ *  (That is to say, fixing this would affect a lot of code.)
  */
 struct DIFFITEM : DIFFCODE
 {
@@ -109,8 +115,11 @@ struct DIFFITEM : DIFFCODE
 	int ndiffs; /**< Total amount of differences */
 	CString errorDesc; /**< technical note about error */
 	UINT customFlags1; /**< Custom flags set 1 */
+	bool empty; /**< flag to mark diffitem that doesn't have any data */
 
-	DIFFITEM() : ndiffs(-1), nsdiffs(-1), customFlags1(0) { }
+	static DIFFITEM MakeEmptyDiffItem();
+
+	DIFFITEM() : ndiffs(-1), nsdiffs(-1), customFlags1(0), empty(false) { }
 
 	CString getLeftFilepath(const CString &sLeftRoot) const;
 	CString getRightFilepath(const CString &sRightRoot) const;

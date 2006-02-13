@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include "FileInfo.h"
 #include "DiffFileInfo.h"
+#include "unicoder.h"
 
 /**
  * @brief Convert a FILETIME to a long (standard time)
@@ -71,6 +72,14 @@ void DiffFileInfo::Clear()
 {
 	FileInfo::Clear();
 	bVersionChecked = false;
-	codepage = 0;
-	unicoding = 0;
+	encoding.Clear();
+}
+
+
+/**
+ * @brief Return true if file is in any Unicode encoding
+ */
+bool DiffFileInfo::IsEditableEncoding() const
+{
+	return encoding.m_bom == false;
 }

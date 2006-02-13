@@ -45,6 +45,7 @@
 #define IDD_SHARED_FILTER               227
 #define IDD_PROP_ARCHIVE                228
 #define IDD_COMPARE_STATISTICS          229
+#define IDD_LOAD_SAVE_CODEPAGE          230
 #define IDB_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -315,6 +316,22 @@
 #define IDC_STAT_ITOTALFILES            1228
 #define IDC_EDITOR_CHARLEVEL            1229
 #define IDC_EDITOR_WORDLEVEL            1230
+#define IDC_AFFECTS_GROUP               1241
+#define IDC_AFFECTS_LEFT_BTN            1242
+#define IDC_AFFECTS_BOTH_BTN            1243
+#define IDC_AFFECTS_RIGHT_BTN           1244
+#define IDC_AFFECTS_SUMMARY             1245
+#define IDC_LOAD_FILES_LABEL            1246
+#define IDC_LOAD_CODEPAGE_TEXTBOX       1247
+#define IDC_LOAD_CODEPAGE_BROWSE        1248
+#define IDC_LOAD_SAVE_SAME_CODEPAGE     1249
+#define IDC_SAVE_FILES_LABEL            1250
+#define IDC_SAVE_CODEPAGE_TEXTBOX       1251
+#define IDC_SAVE_CODEPAGE_BROWSE        1252
+#define IDC_LOADING_GROUP               1253
+#define IDC_SAVING_GROUP                1254
+#define IDC_LEFT_FILES_LABEL            1260
+#define IDC_RIGHT_FILES_LABEL           1261
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -946,15 +963,18 @@
 #define ID_VIEW_SHOWHIDDENITEMS         33096
 #define ID_VIEW_SWAPPANES               33097
 #define ID_FILE_SAVEPROJECT             33098
+#define ID_FILE_ENCODING                33100
+#define IDS_FILES_AFFECTED_FMT          33110
+#define IDS_FILES_AFFECTED_FMT2         33111
 
 // Next default values for new objects
-//
+// 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        228
-#define _APS_NEXT_COMMAND_VALUE         33098
-#define _APS_NEXT_CONTROL_VALUE         1231
+#define _APS_NEXT_COMMAND_VALUE         33112
+#define _APS_NEXT_CONTROL_VALUE         1261
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

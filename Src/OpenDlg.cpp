@@ -39,6 +39,7 @@
 #include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "ProjectFile.h"
+#include "dlgutil.h"
 
 #ifdef COMPILE_MULTIMON_STUBS
 #undef COMPILE_MULTIMON_STUBS
@@ -110,6 +111,82 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg message handlers
+
+/**
+ * @brief Handler for WM_INITDIALOG; conventional location to initialize controls
+ * At this point dialog and control windows exist
+ */
+
+BOOL COpenDlg::OnInitDialog() 
+{
+	CDialog::OnInitDialog();
+	
+	// setup handler for resizing this dialog	
+	m_constraint.InitializeCurrentSize(this);
+	// configure how individual controls adjust when dialog resizes
+	m_constraint.ConstrainItem(IDC_LEFT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_RIGHT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
+	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
+	m_constraint.DisallowHeightGrowth();
+	m_constraint.SubclassWnd(); // install subclassing
+	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenDlg"), false); // persist size via registry
+
+	dlgutil_CenterToMainFrame(this);
+
+	m_ctlLeft.LoadState(_T("Files\\Left"));
+	m_ctlRight.LoadState(_T("Files\\Right"));
+	m_ctlExt.LoadState(_T("Files\\Ext"));
+	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
+	
+	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	BOOL bMask = theApp.m_globalFileFilter.IsUsingMask();
+
+	if (!bMask)
+	{
+		CString filterPrefix;
+		VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+		FilterNameOrMask.Insert(0, filterPrefix);
+	}
+
+	int ind = m_ctlExt.FindStringExact(0, FilterNameOrMask);
+	if (ind != CB_ERR)
+		m_ctlExt.SetCurSel(ind);
+	else
+	{
+		ind = m_ctlExt.InsertString(0, FilterNameOrMask);
+		if (ind != CB_ERR)
+			m_ctlExt.SetCurSel(ind);
+		else
+			LogErrorString(_T("Failed to add string to filters combo list!"));
+	}
+
+	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
+	{
+		m_ctlOk.EnableWindow(TRUE);
+		m_ctlUnpacker.EnableWindow(TRUE);
+		m_ctlSelectUnpacker.EnableWindow(TRUE);
+	}
+
+	UpdateButtonStates();
+
+	if (!m_bOverwriteRecursive)
+		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
+
+	m_strUnpacker = m_infoHandler.pluginName;
+	UpdateData(FALSE);
+	SetStatus(IDS_OPEN_FILESDIRS);
+	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
+	return TRUE;
+}
 
 /** 
  * @brief Called when "Browse..." button is selected for left path.
@@ -253,80 +330,6 @@ void COpenDlg::SaveComboboxStates()
 	m_ctlLeft.SaveState(_T("Files\\Left"));
 	m_ctlRight.SaveState(_T("Files\\Right"));
 	m_ctlExt.SaveState(_T("Files\\Ext"));
-}
-
-/** @brief Handler for WM_INITDIALOG; conventional location to initialize controls */
-BOOL COpenDlg::OnInitDialog() 
-{
-	CDialog::OnInitDialog();
-	
-	CMainFrame::SetMainIcon(this);
-
-	// setup handler for resizing this dialog	
-	m_constraint.InitializeCurrentSize(this);
-	// configure how individual controls adjust when dialog resizes
-	m_constraint.ConstrainItem(IDC_LEFT_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_RIGHT_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_EXT_COMBO, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_UNPACKER_EDIT, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_FILES_DIRS_GROUP, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_LEFT_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_RIGHT_BUTTON, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_SELECT_UNPACKER, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDC_OPEN_STATUS, 0, 1, 0, 0); // grows right
-	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
-	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
-	m_constraint.DisallowHeightGrowth();
-	m_constraint.SubclassWnd(); // install subclassing
-	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenDlg"), false); // persist size via registry
-
-	CMainFrame::CenterToMainFrame(this);
-
-	m_ctlLeft.LoadState(_T("Files\\Left"));
-	m_ctlRight.LoadState(_T("Files\\Right"));
-	m_ctlExt.LoadState(_T("Files\\Ext"));
-	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
-	
-	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	BOOL bMask = theApp.m_globalFileFilter.IsUsingMask();
-
-	if (!bMask)
-	{
-		CString filterPrefix;
-		VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
-		FilterNameOrMask.Insert(0, filterPrefix);
-	}
-
-	int ind = m_ctlExt.FindStringExact(0, FilterNameOrMask);
-	if (ind != CB_ERR)
-		m_ctlExt.SetCurSel(ind);
-	else
-	{
-		ind = m_ctlExt.InsertString(0, FilterNameOrMask);
-		if (ind != CB_ERR)
-			m_ctlExt.SetCurSel(ind);
-		else
-			LogErrorString(_T("Failed to add string to filters combo list!"));
-	}
-
-	if (!GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
-	{
-		m_ctlOk.EnableWindow(TRUE);
-		m_ctlUnpacker.EnableWindow(TRUE);
-		m_ctlSelectUnpacker.EnableWindow(TRUE);
-	}
-
-	UpdateButtonStates();
-
-	if (!m_bOverwriteRecursive)
-		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
-
-	m_strUnpacker = m_infoHandler.pluginName;
-	UpdateData(FALSE);
-	SetStatus(IDS_OPEN_FILESDIRS);
-	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
-	return TRUE;
 }
 
 /** 

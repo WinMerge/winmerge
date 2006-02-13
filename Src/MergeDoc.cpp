@@ -97,6 +97,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
+	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2586,15 +2587,21 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	int nRescanResult = RESCAN_OK;
 
 	// Filter out invalid codepages, or editor will display all blank
-	if (filelocLeft.unicoding == ucr::NONE
-		&& !IsValidCodepageForMergeEditor(filelocLeft.codepage))
+	if (filelocLeft.encoding.m_unicoding == ucr::NONE
+		&& !IsValidCodepageForMergeEditor(filelocLeft.encoding.m_codepage))
 	{
-		filelocLeft.codepage = 0;
+		int cp = getDefaultCodepage();
+		if (!IsValidCodepageForMergeEditor(cp))
+			cp = CP_ACP;
+		filelocLeft.encoding.SetCodepage(cp);
 	}
-	if (filelocRight.unicoding == ucr::NONE
-		&& !IsValidCodepageForMergeEditor(filelocRight.codepage))
+	if (filelocRight.encoding.m_unicoding == ucr::NONE
+		&& !IsValidCodepageForMergeEditor(filelocRight.encoding.m_codepage))
 	{
-		filelocRight.codepage = 0;
+		int cp = getDefaultCodepage();
+		if (!IsValidCodepageForMergeEditor(cp))
+			cp = CP_ACP;
+		filelocRight.encoding.SetCodepage(cp);
 	}
 
 	// clear undo stack
@@ -2635,7 +2642,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		m_pRescanFileInfo[0]->Update(sLeftFile);
 
 		// Load left side file
-		nLeftSuccess = LoadFile(sLeftFile, 0, bROLeft, filelocLeft.codepage);
+		nLeftSuccess = LoadFile(sLeftFile, 0, bROLeft, filelocLeft.encoding.m_codepage);
 	}
 	else
 	{
@@ -2663,7 +2670,7 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		m_pRescanFileInfo[1]->Update(sRightFile);
 		if (FileLoadResult::IsOk(nLeftSuccess) || FileLoadResult::IsBinary(nLeftSuccess))
 		{
-			nRightSuccess = LoadFile(sRightFile, 1, bRORight, filelocRight.codepage);
+			nRightSuccess = LoadFile(sRightFile, 1, bRORight, filelocRight.encoding.m_codepage);
 		}
 	}
 	else
@@ -3189,3 +3196,12 @@ void CMergeDoc::OnSaveProject()
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 }
+
+/**
+ * @brief Display encodings to user
+ */
+void CMergeDoc::OnFileEncoding()
+{
+	DoFileEncodingDialog();
+}
+

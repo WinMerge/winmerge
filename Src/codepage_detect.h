@@ -1,9 +1,10 @@
 #ifndef codepage_detect_h_included
 #define codepage_detect_h_included
 
-void GuessCodepageEncoding(LPCTSTR filepath, int * unicoding, int * codepage, 
-                           BOOL bGuessEncoding);
+struct FileTextEncoding;
 
-bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, int *codepage);
+void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL bGuessEncoding);
+
+bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, FileTextEncoding * encoding);
 
 #endif // codepage_detect_h_included

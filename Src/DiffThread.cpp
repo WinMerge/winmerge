@@ -217,7 +217,7 @@ UINT DiffThread(LPVOID lpParam)
 		_CrtMemCheckpoint(&memStateBefore);
 #endif
 
-		// Build resultes list (except delaying file comparisons until below)
+		// Build results list (except delaying file comparisons until below)
 		DirScan_GetItems(paths, subdir, subdir, &itemList, casesensitive, depth,  myStruct->context);
 
 #ifdef _DEBUG

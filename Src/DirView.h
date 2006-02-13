@@ -34,9 +34,7 @@
 #include <afxcview.h>
 #include "SortHeaderCtrl.h"
 
-#ifndef _FILEACTIONSCRIPT_H_
-#include "FileActionScript.h"
-#endif
+class FileActionScript;
 
 struct DIFFITEM;
 
@@ -50,6 +48,7 @@ class PathContext;
 class DirCompProgressDlg;
 class CompareStats;
 struct DirColInfo;
+class CLoadSaveCodepageDlg;
 
 struct ViewCustomFlags
 {
@@ -136,6 +135,7 @@ private:
 	CString GetSelectedFileName(SIDE_TYPE stype) const;
 	void GetItemFileNames(int sel, CString& strLeft, CString& strRight) const;
 	void GetItemFileNames(int sel, PathContext * paths) const;
+	void FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg);
 	BOOL IsItemLeftOnly(int code);
 	BOOL IsItemRightOnly(int code);
 	BOOL IsItemCopyableToLeft(const DIFFITEM & di) const;
@@ -170,6 +170,8 @@ private:
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
 	void MarkForRescan();
+	void DoFileEncodingDialog();
+	void DoUpdateFileEncodingDialog(CCmdUI* pCmdUI);
 // End DirActions.cpp
 	void ReflectGetdispinfo(NMLVDISPINFO *);
 
@@ -350,6 +352,8 @@ protected:
 	afx_msg void OnMergeCompare();
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	afx_msg void OnViewCompareStatistics();
+	afx_msg void OnFileEncoding();
+	afx_msg void OnUpdateFileEncoding(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
@@ -378,7 +382,9 @@ private:
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
 	POSITION GetItemKeyFromData(DWORD dw) const;
-	DIFFITEM GetDiffItem(int sel);
+	DIFFITEM GetDiffItem(int sel) const;
+	DIFFITEM & GetDiffItemRef(int sel);
+	const DIFFITEM & GetDiffItemConstRef(int sel) const;
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;
 	void MoveFocus(int currentInd, int i, int selCount);

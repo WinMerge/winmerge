@@ -169,7 +169,9 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_MERGE_COMPARE, OnMergeCompare)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
-	//}}AFX_MSG_MAP
+	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
+	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
+ 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 END_MESSAGE_MAP()
@@ -477,7 +479,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	//-	Archive related menu items follow the above suggestion.
 	//-	For disabling to work properly, the tracking frame's m_bAutoMenuEnable
 	//	member has to temporarily be turned off.
-	int nTotal = 0;
+	int nTotal = 0; // total #items (includes files & directories, either side)
 	int nCopyableToLeft = 0;
 	int nCopyableToRight = 0;
 	int nDeletableOnLeft = 0;
@@ -523,6 +525,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			++nDiffItems;
 		if (IsItemOpenableOnLeft(di) || IsItemOpenableOnRight(di))
 			++nOpenableOnBoth;
+
 		++nTotal;
 
 		// note the prediffer flag for 'files present on both sides and not skipped'
@@ -1037,12 +1040,10 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		BOOL bRightRO = pDoc->GetReadOnly(FALSE);
 
 		FileLocation filelocLeft(pathLeft);
-		filelocLeft.unicoding = di1->left.unicoding;
-		filelocLeft.codepage = di1->left.codepage;
+		filelocLeft.encoding = di1->left.encoding;
 
 		FileLocation filelocRight(pathRight);
-		filelocRight.unicoding = di2->right.unicoding;
-		filelocRight.codepage = di2->right.codepage;
+		filelocRight.encoding = di2->right.encoding;
 
 		int rtn = GetMainFrame()->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
 			bLeftRO, bRightRO, infoUnpacker);
@@ -1306,17 +1307,41 @@ POSITION CDirView::GetItemKeyFromData(DWORD dw) const
 /**
  * Given index in list control, get its associated DIFFITEM data
  */
-DIFFITEM CDirView::GetDiffItem(int sel)
+DIFFITEM CDirView::GetDiffItem(int sel) const
+{
+	// make a copy of a reference, and return copy
+	DIFFITEM di = GetDiffItemConstRef(sel);
+	return di;
+}
+
+/**
+ * Given index in list control, get modifiable reference to its DIFFITEM data
+ */
+DIFFITEM & CDirView::GetDiffItemRef(int sel)
 {
 	POSITION diffpos = GetItemKey(sel);
 	
 	// If it is special item, return empty DIFFITEM
 	if (diffpos == (POSITION) SPECIAL_ITEM_POS)
 	{
-		static DIFFITEM item;
-		return item;
+		// TODO: It would be better if there were individual items
+		// for whatever these special items are
+		// because here we have to hope client does not modify this
+		// static (shared) item
+		static DIFFITEM emptyItem = DIFFITEM::MakeEmptyDiffItem();
+		return emptyItem;
 	}
-	return GetDocument()->GetDiffByKey(diffpos);
+	return GetDocument()->GetDiffRefByKey(diffpos);
+}
+
+/**
+ * Given index in list control, get modifiable reference to its DIFFITEM data
+ */
+const DIFFITEM & CDirView::GetDiffItemConstRef(int sel) const
+{
+	CDirView * pDirView = const_cast<CDirView *>(this);
+	return pDirView->GetDiffItemRef(sel);
+
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -2724,4 +2749,20 @@ void CDirView::OnViewCompareStatistics()
 	CompareStatisticsDlg dlg;
 	dlg.SetCompareStats(GetDocument()->GetCompareStats());
 	dlg.DoModal();
+}
+
+/**
+ * @brief Display file encoding dialog & handle user's actions
+ */
+void CDirView::OnFileEncoding()
+{
+	DoFileEncodingDialog();
+}
+
+/**
+ * @brief Update "File Encoding" item
+ */
+void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI) 
+{
+	DoUpdateFileEncodingDialog(pCmdUI);
 }

@@ -155,7 +155,7 @@ BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi)
 		return FALSE;
 	UpdateVersion(di, dfi);
 	ASSERT(&dfi == &di.left || &dfi == &di.right);
-	GuessCodepageEncoding(filepath, &dfi.unicoding, &dfi.codepage, m_bGuessEncoding);
+	GuessCodepageEncoding(filepath, &dfi.encoding, m_bGuessEncoding);
 	return TRUE;
 }
 

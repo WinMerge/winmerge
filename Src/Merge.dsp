@@ -372,6 +372,10 @@ SOURCE=.\DirViewColItems.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\dlgutil.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\dllproxy.c
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
@@ -417,6 +421,10 @@ SOURCE=.\files.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileTextEncoding.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileTransform.cpp
 # End Source File
 # Begin Source File
@@ -438,6 +446,10 @@ SOURCE=.\Common\LanguageSelect.cpp
 # Begin Source File
 
 SOURCE=.\Common\listvwex.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\LoadSaveCodepageDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -539,6 +551,10 @@ SOURCE=.\MergeDoc.cpp
 
 !ENDIF 
 
+# End Source File
+# Begin Source File
+
+SOURCE=.\MergeDocEncoding.cpp
 # End Source File
 # Begin Source File
 
@@ -1033,6 +1049,10 @@ SOURCE=.\DirViewColItems.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\dlgutil.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\dllproxy.h
 # End Source File
 # Begin Source File
@@ -1085,6 +1105,10 @@ SOURCE=.\files.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileTextEncoding.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileTransform.h
 # End Source File
 # Begin Source File
@@ -1105,6 +1129,10 @@ SOURCE=.\IAbortable.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\IntToIntMap.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\IOptionsPanel.h
 # End Source File
 # Begin Source File
@@ -1114,6 +1142,10 @@ SOURCE=.\Common\LanguageSelect.h
 # Begin Source File
 
 SOURCE=.\Common\listvwex.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LoadSaveCodepageDlg.h
 # End Source File
 # Begin Source File
 
