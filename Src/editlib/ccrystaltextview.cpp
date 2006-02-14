@@ -874,16 +874,24 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
             AppendStringAdv(line, nCurPos, lpspc->c_space);
           else if (pszChars[i] == '\r' || pszChars[i] == '\n')
             {
-              if (pszChars[i] == '\r' && m_bViewEols && m_bDistinguishEols)
-                AppendStringAdv(line, nCurPos, lpspc->c_cr);
-              else if (pszChars[i] == '\n' && m_bViewEols && m_bDistinguishEols)
-                AppendStringAdv(line, nCurPos, lpspc->c_lf);
-              else if (m_bViewEols)
+              if (m_bViewEols)
                 {
-                  AppendStringAdv(line, nCurPos, lpspc->c_eol);
-                  // hide the second sign
-                  i = nLength-1;
-                }
+                  if (pszChars[i] == '\n' && !m_bDistinguishEols && i+nOffset>0 && pszChars[i-1] == '\r')
+                    {
+                      // Ignore \n after \r
+                    }
+                  else
+                    {
+                      if (pszChars[i] == '\r' && m_bDistinguishEols)
+                        AppendStringAdv(line, nCurPos, lpspc->c_cr);
+                      else if (pszChars[i] == '\n' && m_bDistinguishEols)
+                        AppendStringAdv(line, nCurPos, lpspc->c_lf);
+                      else
+                        {
+                          AppendStringAdv(line, nCurPos, lpspc->c_eol);
+                        }
+                    }
+                 }
             }
           else
             {
