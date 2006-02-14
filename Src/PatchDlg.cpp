@@ -250,6 +250,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 	CString title;
 
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+	folder = m_file1;
 	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
 		ChangeFile(s, TRUE);
@@ -268,6 +269,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 	CString title;
 
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+	folder = m_file2;
 	if (SelectFile(s, folder, title, NULL, TRUE))
 	{
 		ChangeFile(s, FALSE);

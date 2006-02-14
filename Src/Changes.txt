@@ -1,3 +1,8 @@
+2006-02-14 Kimmo
+ BUG: [ 1197976 ] GeneratePatch file browse not intialized correctly
+  Fix submitted by Perry
+  Src: PatchDlg.cpp
+
 2006-02-14 Perry
  PATCH: [ 1431131 ] Fix VS.NET 2003 compilation
   Src\Common: coretools.cpp scbarg.cpp scbarg.h sizecbar.cpp sizecbar.h
