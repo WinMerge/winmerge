@@ -2,6 +2,8 @@
  PATCH: [ 1431205 ] Fix ViewWhitespace \r\n bug
  BUG: [ 1431012 ] View line differences adds additional EOL char
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1431197 ] Fix off-by-one highlight error
+  Src: stringdiffs.cpp
 
 2006-02-14 Kimmo
  BUG: [ 1197976 ] GeneratePatch file browse not intialized correctly

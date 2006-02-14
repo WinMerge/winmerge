@@ -807,9 +807,25 @@ static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const
 		str1_2 = str1.Mid(pDiff->start[0], pDiff->end[0] - pDiff->start[0] + 1);
 		str2_2 = str2.Mid(pDiff->start[1], pDiff->end[1] - pDiff->start[1] + 1);
 		sd_ComputeByteDiff(str1_2, str2_2, casitive, xwhite, begin1, begin2, end1, end2);
-		pDiff->end[0] = pDiff->start[0] + end1;
-		pDiff->end[1] = pDiff->start[1] + end2;
-		pDiff->start[0] += begin1;
-		pDiff->start[1] += begin2;
+		if (begin1 == -1)
+		{
+			// no visible diff on side1
+			pDiff->end[0] = pDiff->start[0];
+		}
+		else
+		{
+			pDiff->end[0] = pDiff->start[0] + end1;
+			pDiff->start[0] += begin1;
+		}
+		if (begin2 == -1)
+		{
+			// no visible diff on side2
+			pDiff->end[1] = pDiff->start[1];
+		}
+		else
+		{
+			pDiff->end[1] = pDiff->start[1] + end2;
+			pDiff->start[1] += begin2;
+		}
 	}
 }
