@@ -4,6 +4,9 @@
   Src/editlib: ccrystaltextview.cpp
  PATCH: [ 1431197 ] Fix off-by-one highlight error
   Src: stringdiffs.cpp
+ Fix button movement on LanguageSelect (broken by PATCH#1423461).
+ Also add cvs id comment at top, and doxygen file label.
+  Src\Common: LanguageSelect.cpp
 
 2006-02-14 Kimmo
  BUG: [ 1197976 ] GeneratePatch file browse not intialized correctly

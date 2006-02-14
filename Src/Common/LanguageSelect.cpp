@@ -1,6 +1,10 @@
 /**
+ * @file  LanguageSelect.cpp
+ *
  * @brief Implements the Language Selection dialog class (which contains the language data)
  */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 
 #include "stdafx.h"
@@ -654,8 +658,8 @@ BOOL CLanguageSelect::OnInitDialog()
 	m_constraint.InitializeCurrentSize(this);
 	// configure how individual controls adjust when dialog resizes
 	m_constraint.ConstrainItem(IDC_LANGUAGE_LIST, 0, 1, 0, 1); // grows right & down
-	m_constraint.ConstrainItem(IDCANCEL, .3, 0, 1, 0); // slides down, floats right
-	m_constraint.ConstrainItem(IDOK, .6, 0, 1, 0); // slides down, floats right
+	m_constraint.ConstrainItem(IDCANCEL, .6, 0, 1, 0); // slides down, floats right
+	m_constraint.ConstrainItem(IDOK, .3, 0, 1, 0); // slides down, floats right
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LanguageSelectDlg"), false); // persist size via registry
 
