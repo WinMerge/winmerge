@@ -1,5 +1,3 @@
-@echo off
-
 rem DocBook...
 set docbook_path=c:\docbook
 
@@ -17,5 +15,3 @@ set docbook_hhc_exe=c:\docbook\bin\hhc.exe
 rem Build directory...
 rem Use "." for the current directory.
 set docbook_build_path=..\..\..\..\Build\Manual
-
-@echo on

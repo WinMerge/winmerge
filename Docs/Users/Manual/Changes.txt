@@ -1,3 +1,7 @@
+2006-02-14 Tim
+ PATCH: [ 1431053 ] Manual: Remove echo off/on from configuration.bat (XSL)
+  Manual/build: configuration.bat
+
 2006-02-12 Kimmo
  BUG: [ 1412404 ] Manual example looks wrong
   Manual: Quick_start.xml
