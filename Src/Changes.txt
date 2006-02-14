@@ -1,6 +1,9 @@
 2006-02-14 Perry
  PATCH: [ 1431131 ] Fix VS.NET 2003 compilation
   Src\Common: coretools.cpp scbarg.cpp scbarg.h sizecbar.cpp sizecbar.h
+ Shrink Swedish dialog IDD_PROPPAGE_LARGE to same size as English
+  (all controls already were the same size anyway)
+  Src\Languages\Swedish: MergeSwedish.rc
 
 2006-02-13 Perry
  PATCH: [ 1212124 ] File encoding GUI
