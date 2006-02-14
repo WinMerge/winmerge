@@ -97,6 +97,7 @@
 
 2006-02-08 Perry
  PATCH: [ 1424884 ] Fix UniStdioFile encoding of TCHAR
+ BUG: [ 1402379 ] A character display and save error with encoding of unicode
   Src\Common: UniFile.cpp unicoder.cpp unicoder.h
 
 2006-02-08 Perry
