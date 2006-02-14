@@ -36,6 +36,14 @@
 #pragma once
 #endif // _MSC_VER >= 1000
 
+// MFC 8/VS.NET 2005 has breaking change in OnNcHitTest return value
+#ifndef NCHITTEST_RESULT
+#if _MSC_VER >= 1400
+#define NCHITTEST_RESULT LRESULT
+#else
+#define NCHITTEST_RESULT UINT
+#endif
+#endif
 
 #if defined(_SCB_MINIFRAME_CAPTION) && !defined(_SCB_REPLACE_MINIFRAME)
     #error "_SCB_MINIFRAME_CAPTION requires _SCB_REPLACE_MINIFRAME"
@@ -164,7 +172,7 @@ protected:
     afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnNcPaint();
     afx_msg void OnNcCalcSize(BOOL bCalcValidRects, NCCALCSIZE_PARAMS FAR* lpncsp);
-    afx_msg LRESULT OnNcHitTest(CPoint point);
+    afx_msg NCHITTEST_RESULT OnNcHitTest(CPoint point);
     afx_msg void OnCaptureChanged(CWnd *pWnd);
     afx_msg void OnSettingChange(UINT uFlags, LPCTSTR lpszSection);
     afx_msg void OnLButtonUp(UINT nFlags, CPoint point);

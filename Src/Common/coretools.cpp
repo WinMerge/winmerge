@@ -651,9 +651,9 @@ CString LegalizeFileName(LPCTSTR szFileName)
 	return CString(tempname);
 }
 
-static double tenpow(double expon)
+static double tenpow(int expon)
 {
-	int base=10;
+	double base=10;
 	double rtn = pow(base, expon);
 	return rtn;
 }
