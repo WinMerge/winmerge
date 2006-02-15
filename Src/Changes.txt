@@ -1,3 +1,7 @@
+2006-02-15 Perry
+ PATCH: [ 1431636 ] IgnoreEOL broken in cvs trunk
+  Src: PropCompare.cpp
+
 2006-02-15 Kimmo
  PATCH: [ 1431768 ] Write paths to patch files as given
   Src: DiffWrapper.cpp
