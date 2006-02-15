@@ -1,3 +1,7 @@
+2006-02-15 Kimmo
+ PATCH: [ 1431768 ] Write paths to patch files as given
+  Src: DiffWrapper.cpp
+
 2006-02-14 Perry
  PATCH: [ 1431205 ] Fix ViewWhitespace \r\n bug
  BUG: [ 1431012 ] View line differences adds additional EOL char

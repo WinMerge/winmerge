@@ -215,6 +215,11 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
  */
 BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMPFILES areTempFiles)
 {
+	// Store given paths for patch writing
+	// We want to write paths to patch files exactly as given
+	CString sFirstOrigPath = filepath1;
+	CString sSecondOrigPath = filepath2;
+
 	filepath1.Replace('/', '\\');
 	filepath2.Replace('/', '\\');
 
@@ -329,7 +334,21 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	// Create patch file
 	if (!m_status.bBinaries && m_bCreatePatchFile)
 	{
-		WritePatchFile(script, filepath1, filepath2, inf);
+		// file_data inf_patch[2] is diffutils working area data
+		// We make a complete copy of it in order to tweak the paths
+		// to be exactly what the user said originally (eg, slash
+		// direction), so patch writing code will write them out
+		// correctly (in user's perspective)
+		USES_CONVERSION;
+		file_data inf_patch[2] = {0};
+		CopyMemory(&inf_patch, inf, sizeof(file_data) * 2);
+		inf_patch[0].name = strdup(T2CA(sFirstOrigPath));
+		inf_patch[1].name = strdup(T2CA(sSecondOrigPath));
+
+		WritePatchFile(script, filepath1, filepath1, &inf_patch[0]);
+
+		free((void *)inf_patch[0].name);
+		free((void *)inf_patch[1].name);
 	}
 	
 	// Go through diffs adding them to WinMerge's diff list
