@@ -83,12 +83,14 @@ Sub Main
     While UBound(DiffList)>0
       Dim PromptMsg
       PromptMsg = GeneratePrompt(DiffList)
-      rtn = MsgBox(PromptMsg, MB_YESNO + MB_ICONQUESTION)
-      If rtn <> IDYES Then Exit Sub
+      rtn = MsgBox(PromptMsg, MB_YESNOCANCEL + MB_ICONQUESTION)
+      If rtn = IDCANCEL Then Exit Sub
       DiffCount = UBound(DiffList)
       Language = DiffList(DiffCount)
       ReDim Preserve DiffList(DiffCount-1)
-      rtn = CompareEnglishTo(WinMergePath, Language, "")
+      If rtn = IDYES Then
+        rtn = CompareEnglishTo(WinMergePath, Language, "")
+      End If
     Wend
   End If
 
