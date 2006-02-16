@@ -8,6 +8,8 @@
   Contributed by Jan Hryz
   Src/Languages/Czech: MergeCzech.rc
   ShellExtension/Languages/ShellExtensionCzech.rc
+ A few control adjustments matching Czech to English (many left)
+  Src/Languages/Czech: MergeCzech.rc
 
 2006-02-15 Perry
  PATCH: [ 1431636 ] IgnoreEOL broken in cvs trunk
