@@ -1,6 +1,9 @@
 2006-02-16 Perry
  PATCH: [ 1431771 ] Alter CheckTranslations.vbs to YesNoCancel
   Src/Languages: CheckTranslations.vbs
+ PATCH: [ 1419582 ] Polish translation update for latest v2.5
+  Contributed by dr_prozac
+  Src/Languages/Polish: MergePolish.rc
 
 2006-02-15 Perry
  PATCH: [ 1431636 ] IgnoreEOL broken in cvs trunk

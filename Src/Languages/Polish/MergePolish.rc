@@ -105,14 +105,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
-        MENUITEM "&Cofnij",                      ID_EDIT_UNDO
-        MENUITEM "&Powtórz",                     ID_EDIT_REDO
+        MENUITEM "&Cofnij",                       ID_EDIT_UNDO
+        MENUITEM "&Powtórz",                       ID_EDIT_REDO
         MENUITEM SEPARATOR
-        MENUITEM "&Wytnij",                      ID_EDIT_CUT
-        MENUITEM "&Kopiuj",                      ID_EDIT_COPY
-        MENUITEM "Wk&lej",                       ID_EDIT_PASTE
+        MENUITEM "&Wytnij",                        ID_EDIT_CUT
+        MENUITEM "&Kopiuj",                       ID_EDIT_COPY
+        MENUITEM "Wk&lej",                      ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&PrzejdŸ do",                     ID_EDIT_WMGOTO
+        MENUITEM "&PrzejdŸ do",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         POPUP "&Otwórz"
         BEGIN
@@ -215,12 +215,12 @@ BEGIN
     END
     POPUP "&Widok"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Poka¿ &identyczne archiwa",   ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Poka¿ &ró¿ne archiwa",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Poka¿ &unikatowe dla lewej",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Poka¿ u&nikatowe dla prawej",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Poka¿ pliki &binarnes",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Poka¿ po&miniête",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Poka¿ elementy u&kryte",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -673,7 +673,7 @@ BEGIN
     CONTROL         "Zastosuj do wszystkich",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
     DEFPUSHBUTTON   "SprawdŸ",IDOK,91,145,50,14
-    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,145,145,50,14
+    PUSHBUTTON      "Zapisz jako...",IDC_SAVE_AS,145,145,50,14
     PUSHBUTTON      "Anuluj",IDCANCEL,200,145,50,14
 END
 
@@ -796,7 +796,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "SprawdŸ",IDOK,169,115,50,14
     PUSHBUTTON      "Anuluj",IDCANCEL,223,115,50,14
-    PUSHBUTTON      "Zachowaj jako...",IDC_SAVE_AS,169,115,50,14,NOT WS_VISIBLE
+    PUSHBUTTON      "Zapisz jako...",IDC_SAVE_AS,169,115,50,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Komentarze",IDC_STATIC,18,7,80,10
@@ -2586,12 +2586,12 @@ END
 // VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
+    ID_OPTIONS_SHOWIDENTICAL "Wyœwietla pliki, które s¹ dok³adnie identyczne"
+    ID_OPTIONS_SHOWDIFFERENT "Wyswietla pliki z ró¿nicami"
+    ID_OPTIONS_SHOWUNIQUELEFT "Wyswietla pliki istniej¹ce tylko po lewej"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Wyswietla pliki istniej¹ce tylko po prawej"
+    ID_OPTIONS_SHOWBINARIES "Wyœwietla pliki binarne"
+    ID_OPTIONS_SHOWSKIPPED  "Wyœwietla pominiête pliki"
 END
 
 // VIEW MENU
