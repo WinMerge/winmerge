@@ -32,14 +32,14 @@ STRINGTABLE
 BEGIN
     IDS_PROJNAME            "ShellExtension"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Open with WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 2 items"
-    IDS_COMPARE             "Compare"
-    IDS_COMPARE_ELLIPSIS    "Compare..."
-    IDS_COMPARE_TO          "Compare To"
-    IDS_HELP_SAVETHIS       "Save this path. Select another path to compare with this path."
-    IDS_HELP_COMPARESAVED   "Compare to saved path (%1)"
-    IDS_RESELECT_FIRST      "Re-select First"
+    IDS_CONTEXT_HELP        "Otevøít ve WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Prosím vyberte ne více než 2 položky."
+    IDS_COMPARE             "Porovnat"
+    IDS_COMPARE_ELLIPSIS    "Porovnat..."
+    IDS_COMPARE_TO          "Porovnat s"
+    IDS_HELP_SAVETHIS       "Uloží tuto cestu do pamìti. Potom vyberte jinou cestu k porovnání s touto cestou."
+    IDS_HELP_COMPARESAVED   "Porovná s cestou uloženou do pamìti (%1)"
+    IDS_RESELECT_FIRST      "Porovnat znovu"
 END
 
 #endif    // Czech resources

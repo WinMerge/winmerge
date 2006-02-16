@@ -103,7 +103,7 @@ BEGIN
         MENUITEM "Kopírovat dop&rava",           ID_L2R
         MENUITEM "Kopírovat do&leva",            ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "Vybrat roz&díl v øádku",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Zpìt",                        ID_EDIT_UNDO
         MENUITEM "Znov&u",                        ID_EDIT_REDO
@@ -137,7 +137,7 @@ BEGIN
     BEGIN
         MENUITEM "Možnost&i...",                 ID_OPTIONS
     END
-    POPUP "&Pohled"
+    POPUP "&Zobrazit"
     BEGIN
         MENUITEM "&Vybrat písmo...",            ID_VIEW_SELECTFONT
         MENUITEM "P&oužít výchozí písmo",      ID_VIEW_USEDEFAULTFONT
@@ -196,7 +196,7 @@ BEGIN
         MENUITEM "&Otevøít...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Otevøít pro&jekt...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Uložit &projekt...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "L&evý pouze pro ètení",             ID_FILE_LEFT_READONLY
         MENUITEM "Pr&avý pouze pro ètení",            ID_FILE_RIGHT_READONLY
@@ -215,12 +215,12 @@ BEGIN
     END
     POPUP "&Zobrazit"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Ukázat s&hodné položky",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Ukázat ro&zdílné položky",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Ukázat &levé jedineèné položky",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Ukázat p&ravé jedineèné položky",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Ukázat pø&eskoèené položky",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Ukázat &binární soubory",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Ukázat &skryté položky",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -303,7 +303,7 @@ BEGIN
         MENUITEM "&Otevøít...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Otevøít pro&jekt...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Uložit &projekt...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Uložit\tCtrl+S",             ID_FILE_SAVE
         POPUP "Uložit &levý"
@@ -343,7 +343,7 @@ BEGIN
         MENUITEM "&Kopírovat\tCtrl+C",          ID_EDIT_COPY
         MENUITEM "&Vložit\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Vybrat roz&díl v øádku\tF4", ID_SELECTLINEDIFF
         MENUITEM "Vybr&at vše\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Najít...\tCtrl+F",            ID_EDIT_FIND
@@ -714,7 +714,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "&souborù",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "V&rátit",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
+    PUSHBUTTON      "V&rátit",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,14,NOT
                     WS_TABSTOP
     LTEXT           "Nìkterá obecná okna se zprávami je možno skrýt.\nPo stisknutí tlaèítka Vrátit se všechna tato okna opìt budou objevovat.",
                     IDC_STATIC,7,124,168,31
@@ -991,12 +991,12 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Zobrazit sloupce"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Zobrazit sloupce",IDC_GROUP_SHOW,7,7,129,109
-    LISTBOX         IDC_LIST_SHOW,48,19,80,90,LBS_NOINTEGRALHEIGHT |
+    GROUPBOX        "Zobrazit sloupce",IDC_GROUP_SHOW,7,7,145,102
+    LISTBOX         IDC_LIST_SHOW,52,19,92,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&Nahoru",IDC_UP,14,45,27,14
-    PUSHBUTTON      "&Dolù",IDC_DOWN,14,63,27,14
-    GROUPBOX        "Skrýt sloupce",IDC_GROUP_HIDE,180,7,96,109
+    PUSHBUTTON      "&Nahoru",IDC_UP,15,45,30,14
+    PUSHBUTTON      "&Dolù",IDC_DOWN,15,63,30,14
+    GROUPBOX        "Skrýt sloupce",IDC_GROUP_HIDE,193,7,96,109
     LISTBOX         IDC_LIST_HIDE,188,19,80,90,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     PUSHBUTTON      "<==",IDC_ADD,143,45,29,14
@@ -1601,9 +1601,9 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Zmìní možnosti tiskárny\nNastavení tisku"
     ID_FILE_PRINT           "Vytiskne aktivní dokument\nTisk"
     ID_FILE_PRINT_PREVIEW   "Zobrazí celé stránky\nNáhled tisku"
-    ID_FILE_OPENPROJECT     "Otevøít projekt\nProjekt (Ctrl+J)"
+    ID_FILE_OPENPROJECT     "Otevøe projekt ze souboru\nOtevøít projekt (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Znovu zviditelní všechny skryté položky"
-    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
+    ID_FILE_SAVEPROJECT     "Uloží aktuální cesty a volby do souboru projektu\nUložit projekt"
 END
 
 STRINGTABLE
@@ -2058,8 +2058,8 @@ BEGIN
     IDS_COLHDR_EXTENSION    "Pøípona"
     IDS_COLHDR_LSIZE        "Velikost vlevo"
     IDS_COLHDR_RSIZE        "Velikost vpravo"
-    IDS_COLHDR_RSIZE_SHORT  "Velikost vlevo (krátce)"
-    IDS_COLHDR_LSIZE_SHORT  "Velikost vpravo (krátce)"
+    IDS_COLHDR_RSIZE_SHORT  "Velikost vpravo (krátce)"
+    IDS_COLHDR_LSIZE_SHORT  "Velikost vlevo (krátce)"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
@@ -2183,9 +2183,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "V souborech vlevo (cp%d) a vpravo (cp%d) bylo nalezeno rozdílné kódování.\nZobrazení každého souboru v jeho znakové stránce poskytne lepší náhled, ale sluèování nebo kopírování bude nebezpeèné.\nChcete kódování u obou souborù upravit na výchozí znakovou stránku Windows (doporuèeno)?"
     IDS_DIFFERENT_UNICODINGS   "Upozornìní: Soubory používají rozdílné kódování, levé=%s a pravé=%s, a sluèování mùže vést ke ztrátì informací."
-    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
-    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
-    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
+    IDS_LOSSY_TRANSCODING_BOTH  "Došlo ke ztrátì informací zpùsobené chybami kódování u obou souborù."
+    IDS_LOSSY_TRANSCODING_RIGHT "Došlo ke ztrátì informací zpùsobené chybami kódování u pravého souboru."
+    IDS_LOSSY_TRANSCODING_LEFT  "Došlo ke ztrátì informací zpùsobené chybami kódování u levého souboru."
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2273,7 +2273,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_REGEXP_UNMATCHED_RPAREN "Nespárované ) or \\)"
+    IDS_REGEXP_UNMATCHED_RPAREN "Nespárované ) nebo \\)"
 END
 
 // LANGUAGE NAMES #1
@@ -2568,7 +2568,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
+    ID_SELECTLINEDIFF       "Vybere oblast rozdílù v aktuálním øádku\nRozdíl v aktuálním øádku"
     ID_EDIT_WMGOTO          "Pøejde na daný øádek nebo na daný rozdíl\nPøejít na (Ctrl+G)"
     ID_OPTIONS              "Umožní zmìnit nastavení aplikace\nMožnosti"
     ID_REFRESH              "Obnoví zobrazení\nObnovit (F5)"
@@ -2579,12 +2579,12 @@ END
 // VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
+    ID_OPTIONS_SHOWIDENTICAL "Zobrazí položky, které se pøesnì shodují\nUkázat shodné položky"
+    ID_OPTIONS_SHOWDIFFERENT "Zobrazí položky, ve kterých jsou rozdíly\nUkázat rozdílné položky"
+    ID_OPTIONS_SHOWUNIQUELEFT "Zobrazí položky, které existují pouze na levé stranì\nUkázat levé jedineèné položky"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Zobrazí položky, které existují pouze na pravé stranì\nUkázat pravé jedineèné položky"
+    ID_OPTIONS_SHOWBINARIES "Zobrazí binární soubory\nUkázat binární soubory"
+    ID_OPTIONS_SHOWSKIPPED  "Zobrazí pøeskoèené položky\nUkázat pøeskoèené položky"
 END
 
 // VIEW MENU
