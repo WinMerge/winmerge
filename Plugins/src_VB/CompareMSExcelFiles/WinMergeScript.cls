@@ -37,6 +37,9 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
+Dim myLastErrorNumber As Long
+Dim myLastErrorString As String
+
 Private Declare Function GetTempPath Lib "kernel32" _
     Alias "GetTempPathA" (ByVal nBufferLength As Long, _
     ByVal lpBuffer As String) As Long
@@ -62,8 +65,29 @@ Public Property Get PluginIsAutomatic() As Boolean
     PluginIsAutomatic = True
 End Property
 
+Public Property Get LastErrorNumber() As Long
+    LastErrorNumber = myLastErrorNumber
+End Property
+Public Property Get LastErrorString() As String
+    LastErrorString = myLastErrorString
+End Property
+Private Function GetComponentCount(objDoc As Object)
+'  Returns 0 if there is a problem accessing VBComponents
+'  On Error GoTo ErrHandler
+  
+  GetComponentCount = objDoc.VBProject.VBComponents.Count
+  
+  Exit Function
+
+ErrHandler:
+  GetComponentCount = 0
+End Function
+
 Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
     On Error GoTo CleanUp
+    
+    myLastErrorNumber = 0
+    myLastErrorString = ""
     
     ' Start MS Excel
     Dim objWD As Object
@@ -78,18 +102,123 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     Dim arrTempPaths() As String
     ReDim arrTempPaths(objDoc.Worksheets.Count - 1) As String
     
+    ' (ProjectComponents may be zero due to Code Access Security)
+    Dim ProjectComponents As Long
+    ProjectComponents = GetComponentCount(objDoc)
+    
+    Dim macTempPaths() As String
+    If ProjectComponents > 0 Then
+        ReDim macTempPaths(ProjectComponents - 1) As String
+    End If
+
     Dim iCountSheets As Integer
     iCountSheets = 0
     
     Dim oTextToSave As String
     
+    ' Document Properties that are not easy to get
+    oTextToSave = oTextToSave & "Document Properties" & vbCrLf
+    oTextToSave = oTextToSave + "There are " & objDoc.Excel4MacroSheets.Count & _
+        " Microsoft Excel 4.0 macro sheets in this workbook." & vbCrLf
+    If ProjectComponents > 0 Then
+        oTextToSave = oTextToSave + "The VB Project Name is " & objDoc.VBProject.Name & vbCrLf
+        oTextToSave = oTextToSave + "There are " & objDoc.VBProject.VBComponents.Count & _
+            " Microsoft Excel macros in this workbook." & vbCrLf
+    End If
+
+    Dim itemValue As String
     Dim hFile As Long
+    
+    ' Get the document properties
+    On Error Resume Next
+    Dim p As Object
+    For Each p In objDoc.BuiltinDocumentProperties
+        oTextToSave = oTextToSave + p.Name
+        oTextToSave = oTextToSave & " = "
+        itemValue = "?"
+        itemValue = objDoc.BuiltinDocumentProperties.Item(p.Name).Value
+        If itemValue <> "" Then
+            oTextToSave = oTextToSave + itemValue
+        End If
+       oTextToSave = oTextToSave + vbCrLf
+    Next
+    On Error GoTo 0
+    oTextToSave = oTextToSave & vbCrLf
+
+    ' Get the Macros
+    If ProjectComponents > 0 Then
+        oTextToSave = oTextToSave & "Macros in document" & vbCrLf
+        On Error Resume Next
+        Dim VBComp As Object
+        Dim iCountMacros As Integer
+        For Each VBComp In objDoc.VBProject.VBComponents
+            VBComp = objDoc.VBProject.VBComponents(iCountMacros)
+            oTextToSave = oTextToSave & VBComp.Name & vbCrLf
+    
+            macTempPaths(iCountMacros) = CreateTempFile("WMS")
+    
+            ' Remove the temporary file
+            Kill macTempPaths(iCountMacros)
+    
+            ' Save the text content of the macro
+            VBComp.Export macTempPaths(iCountMacros)
+    
+            ' Read the content back from the file
+            hFile = FreeFile
+            Open macTempPaths(iCountMacros) For Input Shared As #hFile
+            'oTextToSave = oTextToSave + macTempPaths(iCountMacros) + vbCrLf
+            
+            Dim oMacroLine As String
+            Do While Not EOF(1)   ' Loop until end of file.
+               Line Input #hFile, oMacroLine   ' Read line into variable.
+    
+               oTextToSave = oTextToSave + oMacroLine + vbCrLf
+            Loop
+    
+            Close #hFile
+    
+            oTextToSave = oTextToSave + vbCrLf
+            iCountMacros = iCountMacros + 1
+        'Next VBComp
+        Next
+        oTextToSave = oTextToSave & vbCrLf
+        On Error GoTo 0
+    End If
+   
+    ' Names
+    oTextToSave = oTextToSave & "Names in document" & vbCrLf
+    On Error Resume Next
+    Dim nms As Object
+    Set nms = objDoc.Names
+    Dim iCountNames As Integer
+    For iCountNames = 1 To nms.Count
+        oTextToSave = oTextToSave + nms(iCountNames).Name
+        oTextToSave = oTextToSave & " = "
+        itemValue = "?"
+        itemValue = nms(iCountNames).Value
+        If itemValue <> "" Then
+            oTextToSave = oTextToSave + itemValue
+        End If
+        oTextToSave = oTextToSave + vbCrLf
+        iCountNames = iCountNames + 1
+    Next
+    On Error GoTo 0
+    oTextToSave = oTextToSave & vbCrLf
+    
     Dim objSheet As Object
     For Each objSheet In objDoc.Worksheets
-        
+
         objSheet.Activate
         oTextToSave = oTextToSave + objSheet.Name + vbCrLf
         
+        ' Get the comments for this sheet
+        Dim cmt As Object
+        Dim c As Object
+        Set cmt = objSheet.Comments
+        For Each c In cmt
+            oTextToSave = oTextToSave + c.Author + " " + c.Text + vbCrLf
+        Next
+
         arrTempPaths(iCountSheets) = CreateTempFile("WMS")
         
         ' Remove the temporary file
@@ -137,6 +266,9 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     subcode = 1
     
 CleanUp:
+    myLastErrorNumber = Err
+    myLastErrorString = CStr(Err) & ": " & Error(myLastErrorNumber)
+
     If Not objWD Is Nothing Then
         ' Stop MS Excel
         objWD.Quit

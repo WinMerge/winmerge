@@ -1,3 +1,13 @@
+2006-02-17 Perry
+ PATCH: [ 1430464 ] Excel - compare macros, comments, document properties etc
+  Submitted by Arthur Barrett
+  Bump version from 1.0.0.0 to 1.0.1.0
+  Plugins\src_VB\CompareMSExcelFiles: 
+   CompareMSExcelFiles.vbp WinMergeScript.cls
+  Plugins\dlls:
+   CompareMSExcelFiles.dll (v1.0.1.0)
+    Compiled from current CVS (VB6) v1.0.1
+  
 2006-02-05 Perry
  Add line filter so RCLocalization ignores codepages even if not ignoring numbers
   Plugins\dlls: RCLocalizationHelper.ini RCLocalizationHelperU.ini
