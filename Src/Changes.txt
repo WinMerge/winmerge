@@ -1,3 +1,8 @@
+2006-02-16 Perry
+ BUG: [ 1395475 ] VTS_UI1 & VTSPUI1 macro redefinition warnings (VS.NET)
+  Fixed VTS_PUI1 (which previous patch for this bug missed).
+  Src\Common: lwdisp.h
+
 2006-02-16 Kimmo
  PATCH: [ 1424535 ] Czech Translation, Submitted by Jan Hryz
   Improve folder compare columns dialog (idea for new arrows from Catalan translation)
