@@ -1,3 +1,7 @@
+2006-02-17 Perry
+ BUG: [ 1395483 ] Signed/unsigned mismatch warning from LocationView.cpp
+  Src: LocationView.cpp
+
 2006-02-16 Perry
  BUG: [ 1395475 ] VTS_UI1 & VTSPUI1 macro redefinition warnings (VS.NET)
   Fixed VTS_PUI1 (which previous patch for this bug missed).

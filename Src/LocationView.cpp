@@ -32,7 +32,7 @@ static const DWORD Y_OFFSET = 5;
 /** 
  * @brief Size of y-margin for visible area indicator (in pixels)
  */
-static const UINT INDICATOR_MARGIN = 2;
+static const long INDICATOR_MARGIN = 2;
 
 /** 
  * @brief Max pixels in view per line in file
