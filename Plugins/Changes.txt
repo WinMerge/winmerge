@@ -7,6 +7,13 @@
   Plugins\dlls:
    CompareMSExcelFiles.dll (v1.0.1.0)
     Compiled from current CVS (VB6) v1.0.1
+ Bugfix for my previous checkin today: comment back in error handler
+  Bump version from 1.0.1.0 to 1.0.2.0
+  Plugins\src_VB\CompareMSExcelFiles: 
+   CompareMSExcelFiles.vbp WinMergeScript.cls
+  Plugins\dlls:
+   CompareMSExcelFiles.dll (v1.0.2.0)
+    Compiled from current CVS (VB6) v1.0.2
   
 2006-02-05 Perry
  Add line filter so RCLocalization ignores codepages even if not ignoring numbers

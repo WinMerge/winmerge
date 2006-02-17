@@ -73,7 +73,7 @@ Public Property Get LastErrorString() As String
 End Property
 Private Function GetComponentCount(objDoc As Object)
 '  Returns 0 if there is a problem accessing VBComponents
-'  On Error GoTo ErrHandler
+  On Error GoTo ErrHandler
   
   GetComponentCount = objDoc.VBProject.VBComponents.Count
   
