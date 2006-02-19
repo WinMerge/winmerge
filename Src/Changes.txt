@@ -1,3 +1,7 @@
+2006-02-19 Christian
+ PATCH: [ 1429125 ] Return number of diffs instead of true/false
+  Src: MergeDoc.cpp
+
 2006-02-17 Perry
  BUG: [ 1395483 ] Signed/unsigned mismatch warning from LocationView.cpp
   Src: LocationView.cpp

@@ -511,7 +511,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_bEditAfterRescan[1] = FALSE;
 	}
 
-	theApp.SetLastCompareResult(bIdentical ? 0 : 1);
+	theApp.SetLastCompareResult(m_diffList.GetSignificantDiffs());
 
 	m_pRescanFileInfo[0]->Update(m_filePaths.GetLeft());
 	m_pRescanFileInfo[1]->Update(m_filePaths.GetRight());
