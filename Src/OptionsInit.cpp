@@ -53,7 +53,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_TAB_SIZE, (int)4);
 	m_options.InitOption(OPT_TAB_TYPE, (int)0);	// 0 means tabs inserted
 
-	m_options.InitOption(OPT_EXT_EDITOR_CMD, _T(GetDefaultEditor()));
+	m_options.InitOption(OPT_EXT_EDITOR_CMD, GetDefaultEditor());
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, true);
 	m_options.InitOption(OPT_SINGLE_INSTANCE, false);
 	m_options.InitOption(OPT_MERGE_MODE, false);
