@@ -1,6 +1,9 @@
 2006-02-19 Perry
  PATCH: [ 1433931 ] Add comment before isBin checks in DirView
   Src: DirView.cpp
+ PATCH: [ 1424153 ] Remove VTS_PUI1 from lwdisp.h
+ BUG: [ 1395475 ] VTS_UI1 & VTSPUI1 macro redefinition warnings (VS.NET)
+  Src\Common: lwdisp.h
 
 2006-02-19 Christian
  PATCH: [ 1429125 ] Return number of diffs instead of true/false
