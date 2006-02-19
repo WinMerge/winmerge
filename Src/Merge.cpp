@@ -696,7 +696,7 @@ void CAboutDlg::OnBnClickedOpenContributors()
 			// Try to open with associated application (.txt)
 			ret = ShellExecute(m_hWnd, _T("open"), docPath, NULL, NULL, SW_SHOWNORMAL);
 			if ((int)ret < 32)
-				ResMsgBox1(IDS_CANNOT_EXECUTE_FILE, _T("Notepad.exe"), MB_ICONSTOP);
+				ResMsgBox1(IDS_ERROR_EXECUTE_FILE, _T("Notepad.exe"), MB_ICONSTOP);
 		}
 	}
 	else

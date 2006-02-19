@@ -4,6 +4,10 @@
  PATCH: [ 1424153 ] Remove VTS_PUI1 from lwdisp.h
  BUG: [ 1395475 ] VTS_UI1 & VTSPUI1 macro redefinition warnings (VS.NET)
   Src\Common: lwdisp.h
+ PATCH: [ 1433927 ] Fix external editor default and messages
+ BUG: [ 1433774 ] default editor is blank
+  Src: MainFrm.cpp Merge.cpp Merge.rc OptionsInit.cpp resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-02-19 Christian
  PATCH: [ 1429125 ] Return number of diffs instead of true/false

@@ -200,9 +200,6 @@ CMainFrame::CMainFrame()
 
 	// TODO: read preference for logging
 
-	if (m_options.GetString(OPT_EXT_EDITOR_CMD).IsEmpty())
-		m_options.SaveOption(OPT_EXT_EDITOR_CMD, GetDefaultEditor());
-
 	CString vssPath = m_options.GetString(OPT_VSS_PATH);
 	if (vssPath.IsEmpty())
 	{
@@ -2509,7 +2506,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		{
 			// Error invoking external editor
 			CString msg;
-			AfxFormatString1(msg, IDS_CANNOT_EXECUTE_FILE, sExtEditor);
+			AfxFormatString1(msg, IDS_ERROR_EXECUTE_FILE, sExtEditor);
 			AfxMessageBox(msg, MB_ICONSTOP);
 		}
 	}
@@ -2517,7 +2514,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	{
 		// Don't know how to invoke external editor (it doesn't end with
 		// an obvious executable extension)
-		ResMsgBox1(IDS_CANNOT_EXECUTE_FILE, sExtEditor, MB_ICONSTOP);
+		ResMsgBox1(IDS_UNKNOWN_EXECUTE_FILE, sExtEditor, MB_ICONSTOP);
 	}
 	return TRUE;
 }
