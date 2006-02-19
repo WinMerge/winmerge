@@ -233,7 +233,7 @@ BOOL CMergeApp::InitInstance()
 
 	// Merge Edit view
 	m_pDiffTemplate = new CMultiDocTemplate(
-		IDR_MERGETYPE,
+		IDR_MERGEDOCTYPE,
 		RUNTIME_CLASS(CMergeDoc),
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
 		RUNTIME_CLASS(CMergeEditView));
@@ -241,7 +241,7 @@ BOOL CMergeApp::InitInstance()
 
 	// Directory view
 	m_pDirTemplate = new CMultiDocTemplate(
-		IDR_DOC_FOLDERCMP,
+		IDR_DIRDOCTYPE,
 		RUNTIME_CLASS(CDirDoc),
 		RUNTIME_CLASS(CDirFrame), // custom MDI child frame
 		RUNTIME_CLASS(CDirView));

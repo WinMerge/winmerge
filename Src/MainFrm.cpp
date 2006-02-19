@@ -422,7 +422,7 @@ HMENU CMainFrame::NewMergeViewMenu()
 	if (m_pMenus[MENU_MERGEVIEW] == NULL)
 		return NULL;
 
-	m_pMenus[MENU_MERGEVIEW]->LoadMenu(IDR_MERGEVIEWMENU);
+	m_pMenus[MENU_MERGEVIEW]->LoadMenu(IDR_MERGEDOCTYPE);
 	// Load bitmaps to menuitems
 	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
 	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);
@@ -463,7 +463,7 @@ HMENU CMainFrame::NewDirViewMenu()
 	if (m_pMenus[MENU_DIRVIEW] == NULL)
 		return NULL;
 
-	m_pMenus[MENU_DIRVIEW]->LoadMenu(IDR_DIRVIEWMENU);
+	m_pMenus[MENU_DIRVIEW]->LoadMenu(IDR_DIRDOCTYPE);
 	// Load bitmaps to menuitems
 	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_COPY, IDB_EDIT_COPY);
 	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_EDIT_CUT, IDB_EDIT_CUT);

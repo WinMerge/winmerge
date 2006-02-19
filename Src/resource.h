@@ -3,7 +3,6 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
-#define IDR_MERGETYPE                   101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
 #define IDR_POPUP_MERGEVIEW             104
@@ -11,9 +10,10 @@
 #define IDR_POPUP_LOCATIONBAR           106
 #define IDD_SAVECLOSING                 107
 #define IDD_MERGE7ZMISMATCH             108
-#define IDR_MERGEVIEWMENU               109
-#define IDR_DIRVIEWMENU                 110
-#define IDR_DOC_FOLDERCMP               111
+#define IDR_MERGEDOCTYPE                109
+#define IDR_MERGEVIEWMENU               109 // = IDR_MERGEDOCTYPE
+#define IDR_DIRDOCTYPE                  110
+#define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_MERGEHAND                   112
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201

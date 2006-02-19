@@ -72,8 +72,8 @@ END
 // (in Src\res)
 
 IDR_MAINFRAME           ICON                    "res\\Merge.ico"
-IDR_MERGETYPE           ICON                    "res\\MergeDoc.ico"
-IDR_DOC_FOLDERCMP       ICON                    "res\\MergeDir.ico"
+IDR_MERGEDOCTYPE        ICON                    "res\\MergeDoc.ico"
+IDR_DIRDOCTYPE          ICON                    "res\\MergeDir.ico"
 IDI_FOLDER              ICON                    "res\\folder.ico"
 IDI_LFOLDER             ICON                    "res\\lfolder.ico"
 IDI_RFOLDER             ICON                    "res\\rfolder.ico"
@@ -1696,7 +1696,7 @@ END
 STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
-    IDR_MERGETYPE           "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDR_MERGEDOCTYPE        "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
 END
 
 // CUSTOM CONTROLS
