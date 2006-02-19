@@ -1019,6 +1019,11 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 	{
 		// Regular file case
 
+		// Binary attributes are set after files are unpacked
+		// so after plugins such as the MS-Office plugins have had a chance to make them textual
+		// We haven't done unpacking yet in this diff, but if a binary flag is already set, 
+		// then it was set in a previous diff after unpacking, so we trust it
+
 		if (di1->isBin() || di2->isBin())
 		{
 			if (!IsBinaryUnpacker(infoUnpacker))

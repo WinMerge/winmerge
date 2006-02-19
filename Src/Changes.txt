@@ -1,3 +1,7 @@
+2006-02-19 Perry
+ PATCH: [ 1433931 ] Add comment before isBin checks in DirView
+  Src: DirView.cpp
+
 2006-02-19 Christian
  PATCH: [ 1429125 ] Return number of diffs instead of true/false
   Src: MergeDoc.cpp
