@@ -1,3 +1,7 @@
+2006-02-20 Kimmo
+ Remove outdated planning file
+  Planning_2_2.txt
+
 2006-02-09 Kimmo
  PATCH: [ 1427951 ] Add compiling instructions (for HTML help)
   readme-developers.html
