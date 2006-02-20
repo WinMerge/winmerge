@@ -1,3 +1,7 @@
+2006-02-20 Kimmo
+ Remove outdated and unused files
+  Innosetup: WinMerge Beta.txt WinMerge Localized.iss
+
 2006-02-01 Perry
  PATCH: [ 1412386 ] Adding readme files
   Moved readme.txt to Changes_old.txt & added real readme.txt
