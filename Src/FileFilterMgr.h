@@ -78,8 +78,10 @@ public:
 	// access to array of filters
 	int GetFilterCount() const { return m_filters.GetSize(); }
 	CString GetFilterName(int i) const;
+	CString GetFilterName(const FileFilter *pFilter) const;
 	CString GetFilterPath(int i) const;
 	CString GetFilterDesc(int i) const;
+	CString GetFilterDesc(const FileFilter *pFilter) const;
 	FileFilter * GetFilterByPath(LPCTSTR szFilterName);
 	CString GetFullpath(FileFilter * pfilter) const;
 

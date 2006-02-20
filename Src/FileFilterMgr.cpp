@@ -357,6 +357,12 @@ CString FileFilterMgr::GetFilterName(int i) const
 	return m_filters[i]->name; 
 }
 
+/** @brief Return name of filter. */
+CString FileFilterMgr::GetFilterName(const FileFilter *pFilter) const
+{
+	return pFilter->name; 
+}
+
 /**
  * @brief Return description of filter.
  *
@@ -366,6 +372,12 @@ CString FileFilterMgr::GetFilterName(int i) const
 CString FileFilterMgr::GetFilterDesc(int i) const
 {
 	return m_filters[i]->description; 
+}
+
+/** @brief Return description of filter. */
+CString FileFilterMgr::GetFilterDesc(const FileFilter *pFilter) const
+{
+	return pFilter->description;
 }
 
 /**

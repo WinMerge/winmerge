@@ -1,3 +1,9 @@
+2006-02-20 Perry
+ PATCH: [ 1405603 ] New Test dialog for file filters
+  Src: FileFilterMgr.cpp FileFilterMgr.h FileFiltersDlg.cpp
+   FileFiltersDlg.h Merge.dsp Merge.rc resource.h
+  Src new: TestFilterDlg.cpp TestFilterDlg.h
+
 2006-02-20 Kimmo
  PATCH: [ 1178743 ] Disable lang menu if no additional langs installed
   Src: Merge.cpp Merge.h

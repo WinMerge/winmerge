@@ -30,6 +30,7 @@
 #include "FileFilterMgr.h"
 #include "paths.h"
 #include "SharedFilterDlg.h"
+#include "TestFilterDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -65,6 +66,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
 	ON_BN_CLICKED(IDC_FILTERFILE_EDITBTN, OnFiltersEditbtn)
 	ON_NOTIFY(NM_DBLCLK, IDC_FILTERFILE_LIST, OnDblclkFiltersList)
 	ON_WM_MOUSEMOVE()
+	ON_BN_CLICKED(IDC_FILTERFILE_TEST_BTN, OnBnClickedFilterfileTestButton)
 	ON_BN_CLICKED(IDC_FILTERFILE_NEWBTN, OnBnClickedFilterfileNewbutton)
 	ON_BN_CLICKED(IDC_FILTERFILE_DELETEBTN, OnBnClickedFilterfileDelete)
 	//}}AFX_MSG_MAP
@@ -155,7 +157,6 @@ BOOL FileFiltersDlg::OnInitDialog()
 
 	InitList();
 
-	CString desc;
 	if (m_sFileFilterPath.IsEmpty())
 	{
 		SelectFilterByIndex(0);
@@ -165,8 +166,7 @@ BOOL FileFiltersDlg::OnInitDialog()
 	int count = m_listFilters.GetItemCount();
 	for (int i = 0; i < count; i++)
 	{
-		m_listFilters.GetItemText(i, 2, desc.GetBuffer(MAX_PATH), MAX_PATH);
-		desc.ReleaseBuffer();
+		CString desc = m_listFilters.GetItemText(i, 2);
 		if (desc.CompareNoCase(m_sFileFilterPath) == 0)
 		{
 			SelectFilterByIndex(i);
@@ -182,12 +182,12 @@ BOOL FileFiltersDlg::OnInitDialog()
  */
 void FileFiltersDlg::AddToGrid(int filterIndex)
 {
-	m_listFilters.InsertItem(filterIndex + 1,
-		m_Filters->GetAt(filterIndex).name);
-	m_listFilters.SetItemText(filterIndex + 1, 1,
-		m_Filters->GetAt(filterIndex).description);
-	m_listFilters.SetItemText(filterIndex + 1, 2,
-		m_Filters->GetAt(filterIndex).fullpath);
+	const FileFilterInfo & filterinfo = m_Filters->GetAt(filterIndex);
+	int item = filterIndex + 1;
+
+	m_listFilters.InsertItem(item, filterinfo.name);
+	m_listFilters.SetItemText(item, 1, filterinfo.description);
+	m_listFilters.SetItemText(item, 2, filterinfo.fullpath);
 }
 
 /**
@@ -195,13 +195,8 @@ void FileFiltersDlg::AddToGrid(int filterIndex)
  */
 void FileFiltersDlg::OnOK()
 {
-	CString path;
-	int sel =- 1;
-
-	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
-	m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
-	path.ReleaseBuffer();
-	m_sFileFilterPath = path;
+	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
+	m_sFileFilterPath = m_listFilters.GetItemText(sel, 2);
 
 	CDialog::OnOK();
 }
@@ -220,7 +215,6 @@ void FileFiltersDlg::OnOK()
  */
 void FileFiltersDlg::OnFiltersEditbtn()
 {
-	CString path;
 	int sel =- 1;
 
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
@@ -228,9 +222,7 @@ void FileFiltersDlg::OnFiltersEditbtn()
 	// Can't edit first "None"
 	if (sel > 0)
 	{
-		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),
-			MAX_PATH);
-		path.ReleaseBuffer();
+		CString path = m_listFilters.GetItemText(sel, 2);
 
 		theApp.m_globalFileFilter.EditFileFilter(path);
 	}
@@ -253,6 +245,16 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 static void EnableDlgItem(CWnd * parent, int item, bool enable)
 {
 	parent->GetDlgItem(item)->EnableWindow(!!enable);
+}
+
+/** @brief Is item "item" in list the <None> item? */
+bool FileFiltersDlg::IsFilterItemNone(int item) const
+{
+	CString txtNone;
+	VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
+	CString txt = m_listFilters.GetItemText(item, 0);
+
+	return (txt.CompareNoCase(txtNone) == 0);
 }
 
 /**
@@ -339,6 +341,36 @@ void FileFiltersDlg::OnBnClickedReload()
 			pMgr->ReloadFilterFromDisk(pFilter);
 		}
 	}
+}
+
+/**
+ * @brief Called when user presses "Test" button.
+ *
+ * Asks filename for new filter from user (using standard
+ * file picker dialog) and copies template file to that
+ * name. Opens new filterfile for editing.
+ * @todo (At least) Warn if user puts filter to outside
+ * filter directories?
+ */
+void FileFiltersDlg::OnBnClickedFilterfileTestButton()
+{
+	UpdateData(TRUE);
+
+	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
+	if (sel == -1) return;
+	if (IsFilterItemNone(sel)) return;
+	
+	m_sFileFilterPath = m_listFilters.GetItemText(sel, 2);
+
+	// Ensure filter is up-to-date (user probably just edited it)
+	theApp.m_globalFileFilter.ReloadUpdatedFilters();
+
+	FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+	FileFilter * pFileFilter = pMgr->GetFilterByPath(m_sFileFilterPath);
+	if (!pFileFilter) return;
+
+	CTestFilterDlg dlg(this, pFileFilter, pMgr);
+	dlg.DoModal();
 }
 
 /**

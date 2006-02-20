@@ -64,6 +64,7 @@ private:
 	void InitList();
 	void SelectFilterByIndex(int index);
 	void AddToGrid(int filterIndex);
+	bool IsFilterItemNone(int item) const;
 	void UpdateFiltersList();
 
 // Overrides
@@ -84,6 +85,7 @@ private:
 	afx_msg void OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedReload();
+	afx_msg void OnBnClickedFilterfileTestButton();
 	afx_msg void OnBnClickedFilterfileNewbutton();
 	afx_msg void OnBnClickedFilterfileDelete();
 	//}}AFX_MSG

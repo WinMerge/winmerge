@@ -46,6 +46,7 @@
 #define IDD_PROP_ARCHIVE                228
 #define IDD_COMPARE_STATISTICS          229
 #define IDD_LOAD_SAVE_CODEPAGE          230
+#define IDD_TEST_FILTER                 231
 #define IDB_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -332,6 +333,14 @@
 #define IDC_SAVING_GROUP                1254
 #define IDC_LEFT_FILES_LABEL            1260
 #define IDC_RIGHT_FILES_LABEL           1261
+#define IDC_FILTERFILE_TEST_BTN         1264
+#define IDC_HEADER                      1271
+#define IDC_PROMPT_LABEL                1272
+#define IDC_TEST_BTN                    1273
+#define IDC_TEST_TEXT                   1274
+#define IDC_RESULTS                     1275
+#define IDC_IS_DIRECTORY                1276
+#define IDC_HEADER_FILTER_NAME          1277
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -973,9 +982,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        228
+#define _APS_NEXT_RESOURCE_VALUE        232
 #define _APS_NEXT_COMMAND_VALUE         33112
-#define _APS_NEXT_CONTROL_VALUE         1261
+#define _APS_NEXT_CONTROL_VALUE         1280
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif
