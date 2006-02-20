@@ -102,6 +102,7 @@ protected:
 	//{{AFX_MSG(CMergeApp)
 	afx_msg void OnAppAbout();
 	afx_msg void OnViewLanguage();
+	afx_msg void OnUpdateViewLanguage(CCmdUI* pCmdUI);
 	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

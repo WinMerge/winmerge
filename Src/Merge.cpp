@@ -79,6 +79,7 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	//{{AFX_MSG_MAP(CMergeApp)
 	ON_COMMAND(ID_APP_ABOUT, OnAppAbout)
 	ON_COMMAND(ID_VIEW_LANGUAGE, OnViewLanguage)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LANGUAGE, OnUpdateViewLanguage)
 	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
@@ -569,6 +570,16 @@ void CMergeApp::OnViewLanguage()
 		//m_LangDlg.UpdateDocTitle();
 		GetMainFrame()->UpdateResources();
 	}
+}
+
+void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
+{
+	UINT nLangCount = m_pLangDlg->GetAvailLangCount();
+	
+	if (nLangCount == 0)
+		pCmdUI->Enable(FALSE);
+	else
+		pCmdUI->Enable(TRUE);
 }
 
 int CMergeApp::ExitInstance() 

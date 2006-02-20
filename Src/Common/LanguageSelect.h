@@ -24,6 +24,7 @@ class CLanguageSelect : public CDialog
 public:
 	void SetModuleHandle(HMODULE hModule) { m_hModule = hModule; }
 	CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMenu =TRUE, BOOL bUpdateTitle =TRUE, CWnd* pParent = NULL);   // standard constructor
+	UINT GetAvailLangCount();
 	void GetAvailLangs( CWordArray& uiLanguageAry, CStringArray& DllFileNameAry );	   
 	WORD GetLangId() { return m_wCurLanguage; };
 	void InitializeLanguage();

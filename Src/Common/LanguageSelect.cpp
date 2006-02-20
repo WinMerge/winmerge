@@ -481,6 +481,32 @@ CString CLanguageSelect::GetLanguagePath(LPCTSTR FileName)
 	return Path;
 }
 
+/**
+ * @brief Return how many languages are available.
+ */
+UINT CLanguageSelect::GetAvailLangCount() 
+{
+	CString strPath;
+	TCHAR filespec[MAX_PATH+1] = {0};
+	WORD wLanguage = 0;
+	UINT nLangCount = 0;
+	
+	if ( GetModuleFileName(m_hModule, filespec, _MAX_PATH ))
+	{
+		strPath = GetLanguagePath(filespec);
+		CStringArray dlls;
+		
+		GetDllsAt(strPath, dlls );
+		
+		for ( int i = 0; i < dlls.GetSize(); i++ )
+		{
+			if ( GetLanguage( dlls[i], wLanguage ) )
+				nLangCount++;		
+		}
+	}
+	return nLangCount;
+}
+
 void CLanguageSelect::GetAvailLangs( CWordArray& wLanguageAry,
 									CStringArray& DllFileNames ) 
 {
