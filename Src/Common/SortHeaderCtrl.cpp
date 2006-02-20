@@ -1,3 +1,12 @@
+/**
+ *  @file SortHeaderCtrl.cpp
+ *
+ *  @brief Implementation of CSortHeaderCtrl
+ */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+//////////////////////////////////////////////////////////////////////
+
 #include "stdafx.h"
 #include "SortHeaderCtrl.h"
 

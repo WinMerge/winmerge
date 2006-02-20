@@ -2,10 +2,12 @@
  *  @file   UniFile.h
  *  @author Perry Rapp, Creator, 2003-2006
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-06 (Perry Rapp)
+ *  @date   Edited:  2006-02-20 (Perry Rapp)
  *
  *  @brief  Declaration of Memory-Mapped Unicode enabled file class
  */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #ifndef UniFile_h_included
 #define UniFile_h_included

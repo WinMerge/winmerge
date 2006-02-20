@@ -3,10 +3,12 @@
  *  @author Perry Rapp, Creator, 2003-2006
  *  @author Kimmo Varis, 2004-2005
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-09 (Perry Rapp)
+ *  @date   Edited:  2006-02-20 (Perry Rapp)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 /* The MIT License
 Copyright (c) 2003 Perry Rapp

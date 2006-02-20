@@ -3,6 +3,8 @@
  *
  *  @brief Implementation of generic named property classes
  */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"

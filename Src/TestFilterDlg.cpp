@@ -1,5 +1,10 @@
-// TestFilterDlg.cpp : implementation file
-//
+/** 
+ * @file  TestFilterDlg.cpp
+ *
+ * @brief Dialog for testing file filters
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "resource.h"

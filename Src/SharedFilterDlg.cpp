@@ -1,5 +1,10 @@
-// SharedFilterDlg.cpp : implementation file
-//
+/** 
+ * @file  SharedFilterDlg.cpp
+ *
+ * @brief Dialog where user choose shared or private filter
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"

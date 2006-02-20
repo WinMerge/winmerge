@@ -1,5 +1,11 @@
-// TestFilterDlg.h : header file
-//
+/** 
+ * @file  TestFilterDlg.h
+ *
+ * @brief Declaration file for CTestFilterDlg class
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_TESTFILTERDLG_H__1261AD7A_512F_47BC_882F_2E2D41C5072F__INCLUDED_)
 #define AFX_TESTFILTERDLG_H__1261AD7A_512F_47BC_882F_2E2D41C5072F__INCLUDED_
@@ -11,6 +17,7 @@
 struct FileFilter;
 class FileFilterMgr;
 
+/** @brief Dialog allowing user to test out file filter strings */
 class CTestFilterDlg : public CDialog
 {
 // Construction

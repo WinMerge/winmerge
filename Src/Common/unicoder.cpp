@@ -2,10 +2,12 @@
  *  @file   unicoder.cpp
  *  @author Perry Rapp, Creator, 2003-2006
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-08 (Perry Rapp)
+ *  @date   Edited:  2006-02-20 (Perry Rapp)
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 /* The MIT License
 Copyright (c) 2003 Perry Rapp

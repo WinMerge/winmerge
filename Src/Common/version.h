@@ -3,6 +3,8 @@
  *
  *  @brief Declaration of CVersionInfo class
  */ 
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #ifndef VERSIONTOOLS_H
 #define VERSIONTOOLS_H

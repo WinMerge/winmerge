@@ -1,5 +1,12 @@
-/* textfile.h
-*/  
+/** 
+ * @file  textfile.h
+ *
+ * @brief Declaration file for CTextFile
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #ifndef TEXTFILE_H
 #define TEXTFILE_H
 

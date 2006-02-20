@@ -1,5 +1,10 @@
-// ByteComparator.cpp
-//
+/** 
+ * @file  ByteComparator.cpp
+ *
+ * @brief QuickCompare code; code to compare two buffers, byte-by-byte, respecting compare options
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "ByteComparator.h"

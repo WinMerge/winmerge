@@ -3,6 +3,12 @@
   Src: FileFilterMgr.cpp FileFilterMgr.h FileFiltersDlg.cpp
    FileFiltersDlg.h Merge.dsp Merge.rc resource.h
   Src new: TestFilterDlg.cpp TestFilterDlg.h
+ PATCH: [ 1433312 ] Add cvs tags to source files
+  Src: ByteComparator.cpp SharedFilterDlg.cpp StdAfx.cpp
+   TestFilterDlg.cpp TestFilterDlg.h ViewableWhitespace.cpp
+  Src/Common: SortHeaderCtrl.cpp SortHeaderCtrl.h UniFile.cpp
+   UniFile.h textfile.cpp textfile.h unicoder.cpp unicoder.h
+   varprop.cpp varprop.h version.cpp version.h
 
 2006-02-20 Kimmo
  PATCH: [ 1178743 ] Disable lang menu if no additional langs installed

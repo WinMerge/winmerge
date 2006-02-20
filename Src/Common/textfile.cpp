@@ -1,6 +1,12 @@
-/* textfile.cpp  
-   Implementation file for CTextFile class
-*/       
+/** 
+ * @file  textfile.cpp
+ *
+ * @brief Implementation file for CTextFile
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "stdafx.h"
 #include "textfile.h" 
 #include "ctype.h"

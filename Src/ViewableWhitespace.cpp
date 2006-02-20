@@ -1,3 +1,11 @@
+/** 
+ * @file  ViewableWhitespace.cpp
+ *
+ * @brief Repository of character tables used to display whitespace (when View/Whitespace enabled)
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "StdAfx.h" 
 #include "ViewableWhitespace.h"
 
