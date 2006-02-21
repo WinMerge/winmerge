@@ -78,18 +78,18 @@ AppSupportURL=http://WinMerge.org/
 AppUpdatesURL=http://WinMerge.org/
 
 ;This is in case an older version of the installer happened to be
-DirExistsWarning=No
+DirExistsWarning=no
 
 ;This requires IS Pack 4.18(full install).
 AppVersion={#AppVersion}
 
 ;Tells the installer to only display a select language dialog if the an exact match wasn't found
-ShowLanguageDialog=Auto
+ShowLanguageDialog=auto
 
 DefaultDirName={pf}\WinMerge
 DefaultGroupName=WinMerge
-DisableStartupPrompt=yes
-AllowNoIcons=yes
+DisableStartupPrompt=true
+AllowNoIcons=true
 InfoBeforeFile=..\Docs\users\GPL.rtf
 InfoAfterFile=..\Docs\users\ReadMe.txt
 
@@ -106,7 +106,7 @@ VersionInfoVersion={#AppVersion}
 ;Artwork References
 WizardImageFile=Art\Large Logo.bmp
 WizardSmallImageFile=Art\Small Logo.bmp
-WizardImageStretch=No
+WizardImageStretch=false
 
 SetupIconFile=..\src\res\Merge.ico
 
@@ -124,6 +124,8 @@ SolidCompression=true
 
 ; Update file associations for shell (project files)
 ChangesAssociations=true
+OutputDir=..\Build
+AlwaysShowComponentsList=true
 
 
 [Languages]
