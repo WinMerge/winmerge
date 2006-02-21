@@ -1,3 +1,7 @@
+2006-02-21 Tim
+ BUG: [ 1435491 ] Developer instructions needs to be updated
+  Web\developer: needed.php
+
 2006-02-06 Tim
  PATCH: [ 1424249 ] Add note about double-byte accelerators to l10n developer.ph
   Web\developer\l10n: instructions.php
