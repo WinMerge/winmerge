@@ -123,6 +123,19 @@ BEGIN
     END
 END
 
+IDR_POPUP_MERGEDETAILVIEW MENU
+BEGIN
+    POPUP "_POPUP_"
+    BEGIN
+        MENUITEM "C&opy to Right",              ID_L2R
+        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM SEPARATOR
+        MENUITEM "Cu&t",                        ID_EDIT_CUT
+        MENUITEM "&Copy",                       ID_EDIT_COPY
+        MENUITEM "&Paste",                      ID_EDIT_PASTE
+    END
+END
+
 IDR_MAINFRAME MENU
 BEGIN
     POPUP "&File"

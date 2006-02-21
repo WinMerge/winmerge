@@ -73,6 +73,7 @@ public:
 	int ComputeInitialHeight();
 	void SetDisplayHeight(int h);
 	void SetFrameHwnd(HWND hwndFrame);
+	BOOL IsReadOnly(int pane);
 
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE );
@@ -129,6 +130,11 @@ protected:
 	afx_msg void OnUpdateSelectLineDiff(CCmdUI* pCmdUI);
 	afx_msg void OnChangePane();
 	afx_msg void OnUpdateChangePane(CCmdUI* pCmdUI);
+	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnL2r();
+	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
+	afx_msg void OnR2l();
+	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

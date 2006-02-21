@@ -15,6 +15,7 @@
 #define IDR_DIRDOCTYPE                  110
 #define IDR_DIRVIEWMENU                 110 // = IDR_DIRDOCTYPE
 #define IDR_MERGEHAND                   112
+#define IDR_POPUP_MERGEDETAILVIEW       113
 #define IDD_ABOUTBOX                    200
 #define IDD_PROP_VSS                    201
 #define IDD_OPEN                        202

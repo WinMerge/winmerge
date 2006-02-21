@@ -1,3 +1,8 @@
+2006-02-21 Kimmo
+ PATCH: [ 1435384 ] Add context menu for diff pane
+  Src: Merge.rc MergeDiffDetailView.cpp MergeDiffDetailView.h resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-02-21 Perry
  PATCH: [ 1405603 ] New Test dialog for file filters
   (Forgot to do all the language resources)

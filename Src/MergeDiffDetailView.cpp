@@ -20,6 +20,8 @@
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
 #include "MergeLineFlags.h"
+#include "BCMenu.h"
+#include "WaitStatusCursor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -27,7 +29,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-#define NROWS_INIT	4
+static const UINT NROWS_INIT = 4;
 
 #define MY_IDW_PANE_FIRST    AFX_IDW_PANE_FIRST  
 
@@ -60,6 +62,11 @@ BEGIN_MESSAGE_MAP(CMergeDiffDetailView, CCrystalTextView)
 	ON_UPDATE_COMMAND_UI(ID_SELECTLINEDIFF, OnUpdateSelectLineDiff)
 	ON_COMMAND(ID_WINDOW_CHANGE_PANE, OnChangePane)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CHANGE_PANE, OnUpdateChangePane)
+	ON_WM_CONTEXTMENU()
+	ON_COMMAND(ID_L2R, OnL2r)
+	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
+	ON_COMMAND(ID_R2L, OnR2l)
+	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -645,4 +652,113 @@ void CMergeDiffDetailView::OnUpdateChangePane(CCmdUI* pCmdUI)
 void CMergeDiffDetailView::SetFrameHwnd(HWND hwndFrame)
 {
 	m_hwndFrame = hwndFrame;
+}
+
+/**
+ * @brief Offer a context menu
+ */
+void CMergeDiffDetailView::OnContextMenu(CWnd* pWnd, CPoint point)
+{
+	// Create the menu and populate it with the available functions
+	BCMenu menu;
+	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEDETAILVIEW));
+	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+
+	BCMenu *pSub = (BCMenu *)menu.GetSubMenu(0);
+	ASSERT(pSub != NULL);
+
+	// Context menu opened using keyboard has no coordinates
+	if (point.x == -1 && point.y == -1)
+	{
+		CRect rect;
+		GetClientRect(rect);
+		ClientToScreen(rect);
+
+		point = rect.TopLeft();
+		point.Offset(5, 5);
+	}
+
+	pSub->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON,
+		point.x, point.y, AfxGetMainWnd());
+}
+
+/**
+ * @brief Copy diff from left pane to right pane
+ */
+void CMergeDiffDetailView::OnL2r()
+{
+	// Check that right side is not readonly
+	if (IsReadOnly(1))
+		return;
+	
+	CMergeDoc *pDoc = GetDocument();
+	int currentDiff = pDoc->GetCurrentDiff();
+
+	if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
+	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
+		pDoc->ListCopy(0, 1, currentDiff);
+	}
+}
+
+/**
+ * @brief Called when "Copy to left" item is updated
+ */
+void CMergeDiffDetailView::OnUpdateL2r(CCmdUI* pCmdUI)
+{
+	// Check that right side is not readonly
+	if (!IsReadOnly(1))
+	{
+		if (GetDocument()->GetCurrentDiff() != -1)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
+	}
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Copy diff from right pane to left pane
+ */
+void CMergeDiffDetailView::OnR2l()
+{
+	// Check that left side is not readonly
+	if (IsReadOnly(0))
+		return;
+
+	CMergeDoc *pDoc = GetDocument();
+	int currentDiff = pDoc->GetCurrentDiff();
+
+	if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
+	{
+		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
+		pDoc->ListCopy(1, 0, currentDiff);
+	}
+}
+
+/**
+ * @brief Called when "Copy to right" item is updated
+ */
+void CMergeDiffDetailView::OnUpdateR2l(CCmdUI* pCmdUI)
+{
+	// Check that left side is not readonly
+	if (!IsReadOnly(0))
+	{
+		if (GetDocument()->GetCurrentDiff() != -1)
+			pCmdUI->Enable(TRUE);
+		else
+			pCmdUI->Enable(FALSE);
+	}
+	else
+		pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Returns if buffer is read-only
+ * @note This has no any relation to file being read-only!
+ */
+BOOL CMergeDiffDetailView::IsReadOnly(int pane)
+{
+	return GetDocument()->m_ptBuf[pane]->GetReadOnly();
 }
