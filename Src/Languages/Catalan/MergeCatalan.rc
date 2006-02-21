@@ -301,7 +301,9 @@ BEGIN
     BEGIN
         MENUITEM "&Nou\tControl+N",                ID_FILE_NEW
         MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Desa\tControl+S",               ID_FILE_SAVE
         POPUP "Desa l'&Esquerra"
@@ -604,7 +606,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Quant al WinMerge"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     LTEXT           "Versió 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Muntatge Privat)",IDC_PRIVATEBUILD,63,33,153,8
@@ -697,14 +699,14 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "&Desplaça automàticament fins a la primera diferència",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,211,10
+                    17,206,10
     CONTROL         "Inhabilita la pantalla de &benvinguda",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "T&anca les finestres amb ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "&Verifica els trajectes automàticament al diàleg d'Obrir",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,47,229,10
+                    WS_TABSTOP,7,47,206,10
     CONTROL         "&Permet d'executar només una instància",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,72,221,37
@@ -1063,7 +1065,7 @@ BEGIN
     CONTROL         "&Diferència",IDC_WMGOTO_TODIFF,"Button",
                     BS_AUTORADIOBUTTON,76,48,68,10
     DEFPUSHBUTTON   "&Vés-hi",IDOK,153,7,50,14
-    PUSHBUTTON      "Cancel·la",IDCANCEL,154,24,50,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,153,24,50,14
 END
 
 IDD_PROPPAGE_COMPARE DIALOGEX 0, 0, 235, 156
@@ -1117,15 +1119,15 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,128,63,94,10
     CONTROL         "In&sereix espais",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,128,72,94,10
-    GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+    GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,95,
+                    221,61
     CONTROL         "Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,124,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "Nivell de &caràcter",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "Nivell de &paraula:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1144,9 +1146,10 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Nou...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "Edita...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Suprimeix...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "Nou...",IDC_FILTERFILE_NEWBTN,180,114,50,14
+    PUSHBUTTON      "Edita...",IDC_FILTERFILE_EDITBTN,240,114,50,14
+    PUSHBUTTON      "Suprimeix...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1446,6 +1449,23 @@ BEGIN
                     97,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,113,114,36,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,156,115,23,10
+END
+
+IDD_TEST_FILTER DIALOGEX 0, 0, 187, 112
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Test Filter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Close",IDCANCEL,65,94,50,14
+    LTEXT           "Testing filter ...",IDC_HEADER,8,7,172,11
+    LTEXT           "Enter text to test:",IDC_PROMPT_LABEL,8,24,74,8
+    PUSHBUTTON      "&Test",IDC_TEST_BTN,116,39,49,12
+    EDITTEXT        IDC_TEST_TEXT,91,22,86,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RESULTS,7,58,173,29,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "Directory Name",IDC_IS_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,40,92,8
+    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,83,6,93,12
 END
 
 
@@ -1799,7 +1819,7 @@ BEGIN
     IDS_CMDLINE_ESCKEY      "/e o -e permet tancar el WinMerge amb una única polsació d'Esc"
 END
 
-// WINMERGE COMMAND LINE HELP#1
+// WINMERGE COMMAND LINE HELP#2
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f o -f especifica la màscara de fitxers o el nom del filtre per a comparar"

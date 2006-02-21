@@ -606,7 +606,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "WinMerge 정보"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     LTEXT           "Version 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
@@ -672,8 +672,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "모든 항목에 적용",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "Check Out",IDOK,70,145,50,14
-    PUSHBUTTON      "다른이름으로 저장...",IDC_SAVE_AS,124,145,74,14
+    DEFPUSHBUTTON   "Check Out",IDOK,91,145,50,14
+    PUSHBUTTON      "다른이름으로 저장...",IDC_SAVE_AS,145,145,50,14
     PUSHBUTTON      "취소",IDCANCEL,200,145,50,14
 END
 
@@ -696,12 +696,12 @@ CAPTION "일반"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "원본 파일 백업(&B)",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,75,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "처음 다른 부분으로 자동 스크롤(&S)",
                  IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                 17,129,10
+                 17,206,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,98,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "ESC로 창 닫기(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "열기 대화상자에서 자동으로 올바른 경로인지 검사",
@@ -714,7 +714,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,179,122,50,13,NOT 
+    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT 
                     WS_TABSTOP
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
                     IDC_STATIC,7,124,168,31
@@ -1097,7 +1097,7 @@ BEGIN
     PUSHBUTTON      "기본값",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "편집기"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1113,21 +1113,21 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "탭(Tabs)",IDC_STATIC,7,54,221,33,WS_GROUP
     LTEXT           "탭 크기(&T):",IDC_STATIC,15,68,42,8
-    EDITTEXT        IDC_TAB_EDIT,60,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
+    EDITTEXT        IDC_TAB_EDIT,60,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "탭(tab) 삽입(&T)",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "공백(space) 삽입(&N)",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,137,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,95,
+                    221,61
     CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1146,9 +1146,10 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "편집...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,180,114,50,14
+    PUSHBUTTON      "편집...",IDC_FILTERFILE_EDITBTN,240,114,50,14
+    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1448,6 +1449,23 @@ BEGIN
                     97,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,113,114,36,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,156,115,23,10
+END
+
+IDD_TEST_FILTER DIALOGEX 0, 0, 187, 112
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Test Filter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Close",IDCANCEL,65,94,50,14
+    LTEXT           "Testing filter ...",IDC_HEADER,8,7,172,11
+    LTEXT           "Enter text to test:",IDC_PROMPT_LABEL,8,24,74,8
+    PUSHBUTTON      "&Test",IDC_TEST_BTN,116,39,49,12
+    EDITTEXT        IDC_TEST_TEXT,91,22,86,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RESULTS,7,58,173,29,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "Directory Name",IDC_IS_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,40,92,8
+    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,83,6,93,12
 END
 
 

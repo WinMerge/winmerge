@@ -1,3 +1,9 @@
+2006-02-21 Perry
+ PATCH: [ 1405603 ] New Test dialog for file filters
+  (Forgot to do all the language resources)
+ and misc RC file fixes (eg, many fixes in editor proppage)
+ New: Src/Languages: WinMerge_Resource_Discrepencies.txt
+
 2006-02-20 Perry
  PATCH: [ 1405603 ] New Test dialog for file filters
   Src: FileFilterMgr.cpp FileFilterMgr.h FileFiltersDlg.cpp

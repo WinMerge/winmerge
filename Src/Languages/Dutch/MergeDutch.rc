@@ -606,9 +606,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "About WinMerge"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,20,20
+    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
-    LTEXT           "Versie 1.0",IDC_VERSION,63,23,84,8,SS_NOPREFIX
+    LTEXT           "Versie 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Alle rechten voorbehouden.",IDC_STATIC,7,60,170,8
     LTEXT           "Bezoek deWinMerge HomePage!",IDC_WWW,7,79,209,8
@@ -690,18 +690,18 @@ BEGIN
     PUSHBUTTON      "&Bladeren...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 247, 222
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Algemeen"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Reservekopie orginele bestand",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,114,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "&Automatisch naar eerste verschil gaan",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,136,10
+                    17,206,10
     CONTROL         "Splash Screen uitscha&kelen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,87,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "Vensters met ESC sl&uiten",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Paden automatisch controleren in het venster Openen",
@@ -991,7 +991,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Kolommen weergeven"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Kolommen weergeven",IDC_GROUP_SHOW,,7,7,145,102
+    GROUPBOX        "Kolommen weergeven",IDC_GROUP_SHOW,7,7,145,102
     LISTBOX         IDC_LIST_SHOW,52,18,92,83,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
     PUSHBUTTON      "&Omhoog",IDC_UP,15,45,30,14
@@ -1097,7 +1097,7 @@ BEGIN
     PUSHBUTTON      "Standaardinstellingen",IDC_COMPARE_DEFAULTS,7,139,50,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1119,15 +1119,15 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "&Spaties invoegen",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,137,10
-    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+    GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,95,
+                    221,61
     CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1146,9 +1146,10 @@ BEGIN
     CONTROL         "Lijst1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "Bewerken...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "New...",IDC_FILTERFILE_NEWBTN,180,114,50,14
+    PUSHBUTTON      "Bewerken...",IDC_FILTERFILE_EDITBTN,240,114,50,14
+    PUSHBUTTON      "Delete...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1448,6 +1449,23 @@ BEGIN
                     97,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,113,114,36,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,156,115,23,10
+END
+
+IDD_TEST_FILTER DIALOGEX 0, 0, 187, 112
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Test Filter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Close",IDCANCEL,65,94,50,14
+    LTEXT           "Testing filter ...",IDC_HEADER,8,7,172,11
+    LTEXT           "Enter text to test:",IDC_PROMPT_LABEL,8,24,74,8
+    PUSHBUTTON      "&Test",IDC_TEST_BTN,116,39,49,12
+    EDITTEXT        IDC_TEST_TEXT,91,22,86,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RESULTS,7,58,173,29,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "Directory Name",IDC_IS_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,40,92,8
+    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,83,6,93,12
 END
 
 

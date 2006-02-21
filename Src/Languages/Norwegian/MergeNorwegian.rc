@@ -690,18 +690,18 @@ BEGIN
     PUSHBUTTON      "&Åpne...",IDC_BROWSE_BUTTON,178,48,50,14
 END
 
-IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 241, 222
+IDD_PROPPAGE_LARGE DIALOGEX 0, 0, 235, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Generelt"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Sikkerhetskopier originale filer",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,81,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "Automatisk &rulling til første forskjell",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,117,10
+                    17,206,10
     CONTROL         "&Fjern oppstartsbilde",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,79,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "L&ukk vinduer med ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
     CONTROL         "Verifiser stier automatisk i Åpne-dialoger",
@@ -739,7 +739,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Søk"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "F&inn hva:",IDC_STATIC,7,9,36,8
+    LTEXT           "F&inn hva:",IDC_STATIC,7,9,50,8
     COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Sammenlign bare &hele ord",IDC_EDIT_WHOLE_WORD,"Button",
@@ -1120,14 +1120,14 @@ BEGIN
     CONTROL         "Sett inn mellomrom",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,110,72,110,10
     GROUPBOX        "Line Difference Coloring",IDC_LINE_COLORING_GROUP,7,97,
-                    221,41
+                    221,61
     CONTROL         "View line differences",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,16,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,16,120,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1146,9 +1146,10 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Ny...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "Rediger...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "Slett...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "Ny...",IDC_FILTERFILE_NEWBTN,180,114,50,14
+    PUSHBUTTON      "Rediger...",IDC_FILTERFILE_EDITBTN,240,114,50,14
+    PUSHBUTTON      "Slett...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1448,6 +1449,23 @@ BEGIN
                     97,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,113,114,36,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,156,115,23,10
+END
+
+IDD_TEST_FILTER DIALOGEX 0, 0, 187, 112
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Test Filter"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Close",IDCANCEL,65,94,50,14
+    LTEXT           "Testing filter ...",IDC_HEADER,8,7,172,11
+    LTEXT           "Enter text to test:",IDC_PROMPT_LABEL,8,24,74,8
+    PUSHBUTTON      "&Test",IDC_TEST_BTN,116,39,49,12
+    EDITTEXT        IDC_TEST_TEXT,91,22,86,12,ES_AUTOHSCROLL
+    EDITTEXT        IDC_RESULTS,7,58,173,29,ES_MULTILINE | ES_AUTOHSCROLL | 
+                    ES_READONLY | WS_VSCROLL
+    CONTROL         "Directory Name",IDC_IS_DIRECTORY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,40,92,8
+    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,83,6,93,12
 END
 
 
@@ -1782,7 +1800,7 @@ BEGIN
     IDS_CMDLINE_ESCKEY      "/e eller -e tillater lukking WinMerge ved kun å trykke ESC"
 END
 
-// WINMERGE COMMAND LINE HELP#1
+// WINMERGE COMMAND LINE HELP#2
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f eller -f sett filmaske eller filternavn for sammenligning"
