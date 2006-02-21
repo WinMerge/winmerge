@@ -1,3 +1,7 @@
+2006-02-21 Kimmo
+ PATCH: [ 1435488 ] Update for readme-developers.html
+  readme-developers.html
+
 2006-02-20 Kimmo
  Remove outdated planning file
   Planning_2_2.txt

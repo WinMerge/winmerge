@@ -71,22 +71,8 @@ things.</p>
 
 <h3><a name="Code_changes">Code changes</a></h3>
 
-<p>In 2003 WinMerge has seen a happy spurt in development activity. Several new
-developers have joined in actively with developer cvs access, and also
-some users have contributed elaborate patches, and participated in ongoing
-discussions.</p>
-
-<p>This is exciting, and also leads to a fair amount of rapid change, so we
-adopted some guidelines to help safeguard our WinMerge development somewhat.</p>
-
-<p>The original guidelines suggested were posted to the developer's mailing list
-(which is not archived). What is documented here is the actual procedures
-which we have been following, which are of course similar, as we developed
-our actual procedures based on the original suggested guidelines.</p>
-
-<p>If you do not like some part of these guidelines, please feel free to
-post a message to the developer's mailing list or the developer's forum
-discussing the matter.</p>
+<p>Please follow these guidelines when submitting changes to WinMerge sources
+as patches.</p>
 
 <ol>
   <li><p>Post development intentions:</p>
@@ -98,12 +84,9 @@ discussing the matter.</p>
       <li>
         If you are implementing a new feature, put a note in the SourceForge RFE
         (request for enhancement) that you're implementing it. If there is no
-        SourceForge RFE, create one.
-      </li>
-      <li>
-        If you are rewriting or refactoring code, and the change is not small,
-        then post your intent. The developer's mailing list or the developer's
-        forum at SourceForge would be good places to post your plan.
+        SourceForge RFE, create one. Alternatively you can discuss about new
+        features in Developers-forum. Please use this! It is a lot less work
+        wasted when we agree about design first.
       </li>
     </ul>
   </li>
@@ -143,8 +126,9 @@ discussing the matter.</p>
     major patches.</p>
   </li>
   <li>
-    <p>Add a note in <code>readme.txt</code> telling what files you committed, and what bug/RFE/patch you solved.
-    This is very important so everybody else has a change to figure out who did what and when.</p>
+    <p>Add a note in <code>changes.txt</code> telling what files you committed,
+    and what bug/RFE/patch you solved. This is very important so everybody else
+    has a change to figure out who did what and when.</p>
   </li>
 </ol>
 
@@ -193,9 +177,9 @@ conform to the local one, in whichever files you are at work.</p>
     </ul>
   </li>
   <li>
-    <p>Crystal Text Editor (<code>WinMerge/editlib/*</code>) and diffutils code (<code>io.c</code>, <code>normal.c</code>, <code>util.c</code>)
-    use traditional Unix style coding. <code>analyze.c</code> should be in this format, but we have
-    made a mess of it :(</p>
+    <p>Crystal Text Editor (<code>WinMerge/editlib/*</code>) and diffutils code (<code>io.c</code>,
+    <code>normal.c</code>, <code>util.c</code>) use traditional Unix style coding.
+    <code>analyze.c</code> should be in this format, but we have made a mess of it :(</p>
     <ul>
       <li>Code indents are spaces, with tabs used to abbreviate eight consecutive spaces.</li>
       <li>
@@ -266,8 +250,8 @@ However, some of our older releases do not follow this scheme.</p>
 <h3><a name="Packaging_file_releases">Packaging file releases</a></h3>
 
 <p>On SourceForge there is some space to put in Release Notes and Change Notes.
-For experimental releases make sure to put in a note stating what you would like people to test in this release,
-and a note telling people that this is indeed experimental, so they should not expect everything to work perfectly.
+For experimental releases make sure to put in a note telling people that this is indeed experimental,
+so they should not expect everything to work perfectly.
 For beta builds we paste in all the changes since the last beta release, so that people can see exactly what changed.
 For major releases, we paste in the list of changes since the last major release, and this list can become very long.</p>
 
@@ -291,8 +275,7 @@ any of the following three methods at least.
  </li><li>
  You may use
  <a href="http://www.elphin.com/products/stampver.html">StampVer</a> to stamp
- the version number into the executables after they are compiled; Christian is
- familiar with this process.
+ the version number into the executables after they are compiled.
  </li><li>
  You may also use the old-fashioned process
  of simply copying all the sources, changing the <code>Merge.rc</code> in the copy using
