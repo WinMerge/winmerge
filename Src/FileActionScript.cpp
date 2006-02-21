@@ -217,24 +217,32 @@ BOOL FileActionScript::Run()
 
 	CreateOperationsScripts();
 
-	if (m_bHasOperations[0] == TRUE)
-		bFileOpSucceed = m_pOperations[0]->Go(&bOpStarted,
-				&apiRetVal, &bUserCancelled);
-
-	if (m_bHasOperations[1] == TRUE)
+	__try
 	{
-		if (bFileOpSucceed && !bUserCancelled)
-			bFileOpSucceed = m_pOperations[1]->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
-		else
-			bRetVal = FALSE;
+		if (m_bHasOperations[0] == TRUE)
+			bFileOpSucceed = m_pOperations[0]->Go(&bOpStarted,
+					&apiRetVal, &bUserCancelled);
+
+		if (m_bHasOperations[1] == TRUE)
+		{
+			if (bFileOpSucceed && !bUserCancelled)
+				bFileOpSucceed = m_pOperations[1]->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
+			else
+				bRetVal = FALSE;
+		}
+
+		if (m_bHasOperations[2] == TRUE)
+		{
+			if (bFileOpSucceed && !bUserCancelled)
+				bFileOpSucceed = m_pOperations[2]->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
+			else
+				bRetVal = FALSE;
+		}
 	}
-
-	if (m_bHasOperations[2] == TRUE)
+	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
-		if (bFileOpSucceed && !bUserCancelled)
-			bFileOpSucceed = m_pOperations[2]->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
-		else
-			bRetVal = FALSE;
+		bFileOpSucceed = FALSE;
+		bRetVal = FALSE;
 	}
 
 	if (!bFileOpSucceed || bUserCancelled)
