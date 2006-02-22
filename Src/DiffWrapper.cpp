@@ -884,7 +884,11 @@ int DiffFileData::diffutils_compare_files(int depth)
 	// diff_2_files set bin_flag to +1 if same binary
 
 	if (bin_flag != 0)
+	{
 		code = code & ~DIFFCODE::TEXT | DIFFCODE::BIN;
+		m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
+	}
+
 
 	if (bin_flag < 0)
 		code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
@@ -1496,6 +1500,13 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	{
 		// use diffutils
 		code = diffutils_compare_files(0);
+		// If unique item, it was being compared to itself to determine encoding
+		// and the #diffs is invalid
+		if (!di.isSideRight() || !di.isSideLeft())
+		{
+			m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
+			m_ntrivialdiffs = DiffFileData::DIFFS_UNKNOWN;
+		}
 		if (DIFFCODE::isResultError(code))
 			di.errorDesc = _T("DiffUtils Error");
 
