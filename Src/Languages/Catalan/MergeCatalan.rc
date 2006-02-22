@@ -103,7 +103,7 @@ BEGIN
         MENUITEM "Copia a la &dreta",            ID_L2R
         MENUITEM "Copia a l'&esquerra",          ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "&Selecciona la diferència a la línia\tF4",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Desfés",                      ID_EDIT_UNDO
         MENUITEM "Re&fés",                       ID_EDIT_REDO
@@ -209,7 +209,7 @@ BEGIN
         MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Desa el p&rojecte...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
         MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
@@ -228,12 +228,12 @@ BEGIN
     END
     POPUP "&Visualització"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Mostra els elements &idèntics", ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Mostra els elements di&ferents", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Mostra els elements únics de l'&esquerra", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Mostra els elements únics de la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Mostra els elements &omesos",  ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Mostra els elements &binaris", ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Mostra els elements ama&gats",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -356,7 +356,7 @@ BEGIN
         MENUITEM "C&opia\tControl+C",              ID_EDIT_COPY
         MENUITEM "Engan&xa\tControl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Selecciona la diferència a la línia\tF4", ID_SELECTLINEDIFF
         MENUITEM "Selecciona-ho &tot\tControl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Cerca...\tControl+F",           ID_EDIT_FIND
@@ -548,7 +548,7 @@ BEGIN
         MENUITEM "Vé&s a la diferència",                  ID_LOCBAR_GOTODIFF
         MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "Blocs &no moguts ",            ID_DISPLAY_MOVED_NONE
+        MENUITEM "Blocs &no moguts",            ID_DISPLAY_MOVED_NONE
         MENUITEM "&Tots el blocs moguts",           ID_DISPLAY_MOVED_ALL
         MENUITEM "Blocs moguts per a la &diferència actual", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
@@ -729,7 +729,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
     PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
                     WS_TABSTOP
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
+    LTEXT           "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó de Reinicialització per a fer visibles tots els quadres de missatges altre cop.",
                     IDC_STATIC,7,124,168,31
 END
 
@@ -1653,7 +1653,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Visualitza pàgines senceres\nVisualització prèvia de la impressió"
     ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Control+J)"
     ID_VIEW_SHOWHIDDENITEMS "Torna a fer visibles tots els elements amagats"
-    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
+    ID_FILE_SAVEPROJECT     "Desa els camins i les opcions actuals a un fitxer de projecte\nDesa fitxer de projecte"
 END
 
 STRINGTABLE
@@ -2017,10 +2017,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "Copia l'element seleccionat al directori indicat"
+    ID_DIR_COPY_LEFT_TO_BROWSE "Copia l'element seleccionat en un directori a triar"
+    ID_DIR_COPY_RIGHT_TO_LEFT "Copia l'element seleccionat al directori indicat"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "Copia l'element seleccionat en un directori a triar"
     ID_DIR_DEL_LEFT         "Suprimeix els elements seleccionats a l'esquerra"
     ID_DIR_DEL_RIGHT        "Suprimeix els elements seleccionats a la dreta"
     ID_DIR_DEL_BOTH         "Suprimeix els element(s) seleccionat(s) a ambdues bandes"
@@ -2076,7 +2076,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Obre el fitxer de la dreta"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Obre el fitxer de la dreta en un editor extern"
     ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
-    IDS_ERROR_EXECUTE_FILE   "Failed to execute external editor: %1"
+    IDS_ERROR_EXECUTE_FILE   "No es pot executar el %1"
     IDS_UNKNOWN_EXECUTE_FILE "Unknown extension on external editor: %1"
     ID_DIR_COPY_FILENAMES   "Copia els noms dels fitxers al Porta-retalls"
     ID_DIR_COPY_PATHNAMES_LEFT "Copia el camí al fitxer de l'esquerra al Porta-retalls"
@@ -2217,7 +2217,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "El mateix fitxer és obert a ambdues subfinestres."
     IDS_FILESSAME           "Els fitxers seleccionats són idèntics."
-    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
+    IDS_FOLDERUNIQUE        "La carpeta seleccionada només existeix a un altra banda i per tant no es pot obrir."
     IDS_FILEERROR           "S'ha produït un error en comparar els fitxers."
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
@@ -2231,7 +2231,7 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
     IDS_INVALID_DIRECTORY   "La carpeta seleccionada és invàlida."
-    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
+    IDS_CANNOT_OPEN_BINARYFILE  "No es poden obrir fitxers binaris a l'editor."
 END
 
 // Encoding issues
@@ -2239,9 +2239,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Els fitxers de l'esquerra (cp%d) i de la dreta (cp%d) no tenen la mateixa pàgina de codis.\nEn mostrar cada fitxer en la seva pròpia pàgina de codis millora la seva visualització però fa perillosa la combinació/còpia.\nVoleu tractar ambdós fitxers com si fossin en la pàgina de codis predeterminada del Windows (recomanat)?"
     IDS_DIFFERENT_UNICODINGS   "Advertiment: Els fitxers empren codificacions diferents, l'esquerre=%s i el dret=%s, i en combinar-los es podria perdre informació."
-    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
-    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
-    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
+    IDS_LOSSY_TRANSCODING_BOTH  "S'ha perdut informació degut a errors de codificació: ambdós fitxers"
+    IDS_LOSSY_TRANSCODING_RIGHT "S'ha perdut informació degut a errors de codificació: fitxer dret"
+    IDS_LOSSY_TRANSCODING_LEFT  "S'ha perdut informació degut a errors de codificació: fitxer esquerre"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2626,7 +2626,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
+    ID_SELECTLINEDIFF       "Selecciona l'àrea de diferència a la línia actual\nDiferència a la línia actual (F4)"
     ID_EDIT_WMGOTO          "Va fins a una línia o una diferència\nVés a (Control+G)"
     ID_OPTIONS              "Especifica opcions del programa\nOpcions"
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
@@ -2637,12 +2637,12 @@ END
 // VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
+    ID_OPTIONS_SHOWIDENTICAL "Visualitza els elements que singuin exactament iguals\nMostra elements idèntics"
+    ID_OPTIONS_SHOWDIFFERENT "Visualitza els elements que tinguin diferències\nMostra elements diferents"
+    ID_OPTIONS_SHOWUNIQUELEFT "Visualitza els elements existents únicament a l'esquerra\nMostra elements únics de l'esquerra"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Visualitza els elements existents únicament a la dreta\nMostra elements únics de la dreta"
+    ID_OPTIONS_SHOWBINARIES "Visualitza els elements binaris\nMostra elements binaris"
+    ID_OPTIONS_SHOWSKIPPED  "Visualitza els elements omesos\nMostra elements omesos"
 END
 
 // VIEW MENU
