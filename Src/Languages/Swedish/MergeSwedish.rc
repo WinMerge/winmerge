@@ -103,7 +103,7 @@ BEGIN
         MENUITEM "Kopiera till &höger",         ID_L2R
         MENUITEM "Kopiera till &vänster",       ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "&Markera skillnad på rad",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Ångra",                      ID_EDIT_UNDO
         MENUITEM "&Gör om",                     ID_EDIT_REDO
@@ -209,7 +209,7 @@ BEGIN
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Sp&ara Projekt...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
         MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
@@ -228,12 +228,12 @@ BEGIN
     END
     POPUP "&Visa"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Visa &identiska objekt",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Visa &olika objekt",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Visa v&änsterunika objekt",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Visa h&ögerunika objekt",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Visa ö&verhoppade objekt",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "V&isa binära filer",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Visa dold&a objekt",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -316,7 +316,7 @@ BEGIN
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Sp&ara Projekt...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Spara\tCtrl+S",              ID_FILE_SAVE
         POPUP "Spara &Vänster fil"
@@ -356,7 +356,7 @@ BEGIN
         MENUITEM "K&opiera\tCtrl+C",            ID_EDIT_COPY
         MENUITEM "K&listra in\tCtrl+V",         ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Markera skillnad &på rad\tF4", ID_SELECTLINEDIFF
         MENUITEM "Välj &allt\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "S&ök...\tCtrl+F",             ID_EDIT_FIND
@@ -1634,7 +1634,7 @@ BEGIN
     ID_FILE_PRINT_PREVIEW   "Visar helsida\nFörhandsgranska"
     ID_FILE_OPENPROJECT     "Öppna Projektfil\nProjektfil(Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Gör alla dolda objekt synliga igen"
-    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
+    ID_FILE_SAVEPROJECT     "Sparar aktuella sökvägar och inställningar till Projektfil\nSpara Projektfil"
 END
 
 STRINGTABLE
@@ -1940,7 +1940,7 @@ BEGIN
     IDS_ERROR_FILE_NOT_UNPACKED "Filen är inte uppackad: %1"
     IDS_BINFILES_IDENTICAL   "%1\n%2\n\när identiska binära filer."
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\när olika binära filer."
-    IDS_OTHER_IS_BINARY      "%1\n\när en binär fil. Kan inte jämföra binära och textfiler."
+    IDS_OTHER_IS_BINARY      "%1\n\när en binär fil. Kan inte jämföra binära filer med textfiler."
     IDS_ERROR_FILEOPEN       "Kan inte öppna fil\n%1\n\n%2"
 END
 
@@ -2057,7 +2057,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Öppna den högra filen"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
     ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
-    IDS_ERROR_EXECUTE_FILE   "Failed to execute external editor: %1"
+    IDS_ERROR_EXECUTE_FILE   "Kan inte starta %1"
     IDS_UNKNOWN_EXECUTE_FILE "Unknown extension on external editor: %1"
     ID_DIR_COPY_FILENAMES   "Kopiera filnamn till klippbordet"
     ID_DIR_COPY_PATHNAMES_LEFT "Kopiera vänster sidas sökvägar till klippbordet"
@@ -2220,9 +2220,9 @@ STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
     IDS_DIFFERENT_UNICODINGS   "Varning: Filerna använder olika filkodningar, vänster=%s och höger=%s, och sammanfogning kan leda till förlust av information."
-    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
-    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
-    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
+    IDS_LOSSY_TRANSCODING_BOTH  "Information förlorades på grund av kodningsfel i: båda filerna"
+    IDS_LOSSY_TRANSCODING_RIGHT "Information förlorades på grund av kodningsfel i: höger fil"
+    IDS_LOSSY_TRANSCODING_LEFT  "Information förlorades på grund av kodningsfel i: vänster fil"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2600,14 +2600,14 @@ BEGIN
     ID_EOL_TO_DOS           "Konverterar radslut till DOS-format"
     ID_EOL_TO_UNIX          "Konverterar radslut till UNIX-format"
     ID_EOL_TO_MAC           "Konverterar radslut till MAC-format"
-    ID_FILE_MERGINGMODE     "Växlar mellan Editera mode och Merge mode"
+    ID_FILE_MERGINGMODE     "Växlar mellan Editeramod och Mergemod"
     ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
 END
 
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
+    ID_SELECTLINEDIFF       "Markerar skillnad på aktuell rad\nSkillnad på aktuell rad"
     ID_EDIT_WMGOTO          "Går till rad eller skillnad\nGå till (Ctrl+G)"
     ID_OPTIONS              "Ändrar programinställningar\nEgenskaper"
     ID_REFRESH              "Uppdaterar innehållet\nUppdatera (F5)"
@@ -2618,12 +2618,12 @@ END
 // VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
+    ID_OPTIONS_SHOWIDENTICAL "Visar objekt som är exakt lika\nVisa identiska objekt"
+    ID_OPTIONS_SHOWDIFFERENT "Visar objekt som har skillnader\nVisa skillnader i objekt"
+    ID_OPTIONS_SHOWUNIQUELEFT "Visar objekt som bara finns på vänster sida\nVisa vänsterunika objekt"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Visar objekt som bara finns på höger sida\nVisa högerunika objekt"
+    ID_OPTIONS_SHOWBINARIES "Visar binära filer\nVisa binära filer"
+    ID_OPTIONS_SHOWSKIPPED  "Visar överhoppade objekt\nVisa överhoppade objekt"
 END
 
 // VIEW MENU

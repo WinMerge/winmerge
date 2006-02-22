@@ -7,6 +7,9 @@
  PATCH: [ 1428686 ] Catalan translation update
   By Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1430321 ] Swedish translation update and feedback on WinMerge 2.5.3.2
+  By Hans Eriksson
+  Src\Languages\Swedish: MergeSwedish.rc
 
 2006-02-21 Kimmo
  PATCH: [ 1435384 ] Add context menu for diff pane
