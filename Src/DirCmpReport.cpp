@@ -18,13 +18,6 @@
 #include "UniFile.h"
 
 /**
- * @brief EOL bytes for reports.
- * Since we are in Windows we want to use DOS-EOL.
- * @note HTML report doesn't use this.
- */
-static const TCHAR ReportEOL[] = _T("\r\n");
-
-/**
  * @brief Constructor.
  */
 DirCmpReport::DirCmpReport()
@@ -119,8 +112,8 @@ void DirCmpReport::GenerateHeader()
 
 	AfxFormatString2(m_sReport, IDS_DIRECTORY_REPORT_TITLE,
 			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
-	m_sReport += ReportEOL;
-	m_sReport += sCurTime + ReportEOL;
+	m_sReport += _T("\n");
+	m_sReport += sCurTime + _T("\n");
 
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
@@ -147,7 +140,7 @@ void DirCmpReport::GenerateContent()
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
-		m_sReport += ReportEOL;
+		m_sReport += _T("\n");
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
 			m_sReport += m_pList->GetItemText(currRow, currCol);
@@ -236,12 +229,21 @@ void DirCmpReport::GenerateHTMLFooter()
 BOOL DirCmpReport::SaveToFile(CString &sError)
 {
 	UniStdioFile file;
+
+	// @todo
+	// We could support Windows or Unix or Mac style here of course
+	// Right now we're always doing Windows style lines
+
+	m_sReport.Replace(_T("\n"), _T("\r\n"));
 	
-	if (!file.Open(m_sReportFile, _T("wt")))
+	if (!file.OpenCreate(m_sReportFile))
 	{
 		sError = GetSysError(GetLastError());		
 		return FALSE;
 	}
+
+	// @todo
+	// Should support Unicode output here
 
 	file.SetCodepage(GetACP());
 	file.WriteString(m_sReport);	
