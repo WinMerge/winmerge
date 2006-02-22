@@ -2,6 +2,8 @@
  PATCH: [ 1435431 ] Fix GenerateReport lines
   Submitted by Perry
   Src: DirCmpReport.cpp
+ PATCH: [ 1395721 ] VS.NET 2003 warning of SEH bug
+  Src: Merge.dsp
 
 2006-02-21 Kimmo
  PATCH: [ 1435384 ] Add context menu for diff pane
