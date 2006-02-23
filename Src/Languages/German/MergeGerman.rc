@@ -103,7 +103,7 @@ BEGIN
         MENUITEM "&Nach rechts kopieren",       ID_L2R
         MENUITEM "N&ach links kopieren",        ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "Zeilen&unterschied markieren", ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Rückgängig",                 ID_EDIT_UNDO
         MENUITEM "&Wiederherstellen",           ID_EDIT_REDO
@@ -127,12 +127,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "&Nach rechts kopieren",       ID_L2R
+        MENUITEM "N&ach links kopieren",        ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "Auss&chneiden"                ID_EDIT_CUT
+        MENUITEM "&Kopieren",                   ID_EDIT_COPY
+        MENUITEM "E&infügen",                   ID_EDIT_PASTE
     END
 END
 
@@ -208,8 +208,8 @@ BEGIN
         MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
         MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Pro&jekt öffnen...\tStrg+J",  ID_FILE_OPENPROJECT
+        MENUITEM "Proje&kt speichern...",       ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
         MENUITEM "R&echts schreibgeschützt",     ID_FILE_RIGHT_READONLY
@@ -228,12 +228,12 @@ BEGIN
     END
     POPUP "&Ansicht"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "&Identische Objekte anzeigen", ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "&Unterschiedliche Objekte anzeigen", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Eindeutige Objekte &links anzeigen", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Eindeutige Objekte &rechts anzeigen", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Übersprun&gene Objekte anzeigen", ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Binär&dateien anzeigen",      ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Verstec&kte Objekte anzeigen",  ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -315,8 +315,8 @@ BEGIN
         MENUITEM "&Neu\tStrg+N",                ID_FILE_NEW
         MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Pro&jekt öffnen...\tStrg+J",  ID_FILE_OPENPROJECT
+        MENUITEM "Proje&kt speichern...",       ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Speichern\tStrg+S",          ID_FILE_SAVE
         POPUP "&Links speichern"
@@ -356,7 +356,7 @@ BEGIN
         MENUITEM "&Kopieren\tStrg+C",           ID_EDIT_COPY
         MENUITEM "E&infügen\tStrg+V",           ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Zeilen&unterschied markieren\tF4", ID_SELECTLINEDIFF
         MENUITEM "Alles &markieren\tStrg+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Suchen...\tStrg+F",          ID_EDIT_FIND
@@ -1159,7 +1159,7 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "&Testen",IDC_FILTERFILE_TEST_BTN,120,114,50,14
     PUSHBUTTON      "Neu...",IDC_FILTERFILE_NEWBTN,180,114,50,14
     PUSHBUTTON      "Bearbeiten...",IDC_FILTERFILE_EDITBTN,240,114,50,14
     PUSHBUTTON      "Löschen...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
@@ -2032,8 +2032,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "Rechts nach... (%1 von %2)"
     IDS_SELECT_DEST_LEFT    "Linke Seite - Zielordner auswählen:"
     IDS_SELECT_DEST_RIGHT   "Rechte Seite - Zielordner auswählen:"
-    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
-    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
+    IDS_FILES_AFFECTED_FMT  "(%1 Dateien betroffen)"
+    IDS_FILES_AFFECTED_FMT2 "(%1 von %2 Dateien betroffen)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2607,7 +2607,7 @@ END
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
+    ID_SELECTLINEDIFF       "Markiert den unterschiedlichen Bereich in der aktuellen Zeile.\nUnterschied in der aktuellen Zeile"
     ID_EDIT_WMGOTO          "Geht zur Zeile oder zum Unterschied.\nGehe nach (Strg+G)"
     ID_OPTIONS              "Nimmt Programm-Einstellungen vor.\nEinstellungen"
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
@@ -2618,12 +2618,12 @@ END
 // VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
+    ID_OPTIONS_SHOWIDENTICAL "Objekte anzeigen die exakt gleich sind.\nIdentische Objekte"
+    ID_OPTIONS_SHOWDIFFERENT "Objekte anzeigen die Unterschiede haben.\nUnterschiedliche Objekte anzeigen"
+    ID_OPTIONS_SHOWUNIQUELEFT "Zeigt eindeutige Objekte auf der linken Seite an.\nEindeutige Objekte links anzeigen"
+    ID_OPTIONS_SHOWUNIQUERIGHT "Zeigt eindeutige Objekte auf der rechten Seite an.\nEindeutige Objekte rechts anzeigen"
+    ID_OPTIONS_SHOWBINARIES "Zeigt Binärdateien an.\nBinärdateien anzeigen"
+    ID_OPTIONS_SHOWSKIPPED  "Zeigt übersprungene Objekte an.\nÜbersprungene Objekte anzeigen"
 END
 
 // VIEW MENU

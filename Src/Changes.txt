@@ -1,3 +1,7 @@
+2006-02-24 Tim
+ PATCH: [ 1437677 ] Various Updates in German Translation for WinMerge 2.5
+  Src/Languages/German: MergeGerman.rc
+
 2006-02-22 Kimmo
  PATCH: [ 1435431 ] Fix GenerateReport lines
   Submitted by Perry
