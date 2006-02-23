@@ -1,3 +1,10 @@
+2006-02-23 Kimmo
+ PATCH: [ 1436127 ] Add VS2003 runtimes to installer
+  InnoSetup: WinMerge.iss
+  InnoSetup/Runtimes new files: mfc71.dll mfc71u.dll msvcp71.dll msvcr71.dll
+  InnoSetup/Runtimes deleted files: atla.dll atlu.dll mfc42.dll mfc42u.dll
+   msvcrt.dll oleaut32.dll
+
 2006-02-21 Kimmo
  PATCH: [ 1435514 ] Minor tweaks for installer
   InnoSetup: WinMerge.iss

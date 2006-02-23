@@ -340,17 +340,10 @@ Source: ..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Component
 ; We still need APPHelp.dll!
 
 ; begin VC system files
-
-;Atl.dll
-Source: Runtimes\Atla.dll; DestDir: {sys}; Destname: Atl.dll; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 4, 0; Components: Runtimes
-Source: Runtimes\Atlu.dll; DestDir: {sys}; Destname: Atl.dll; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4; Components: Runtimes
-
-Source: Runtimes\mfc42.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
-Source: Runtimes\mfc42u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4; Components: Runtimes
-
-Source: Runtimes\msvcrt.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
-
-Source: Runtimes\OleAut32.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
+Source: Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
+Source: Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4; Components: Runtimes
+Source: Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
+Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
 ; end VC system files
 
 Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
