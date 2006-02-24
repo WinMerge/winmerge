@@ -79,6 +79,7 @@ const UINT CONTEXT_LINES_BELOW = 3;
 class IMergeEditStatus;
 class CLocationView;
 class CMergeDoc;
+struct DIFFRANGE;
 
 /**
 This class is the base class for WinMerge editor panels.
@@ -172,6 +173,7 @@ public:
 
 	bool IsInitialized() const;
 	BOOL IsCursorInDiff() const;
+	BOOL IsDiffVisible(int nDiff);
 
 	// Overrides
 	// ClassWizard generated virtual function overrides

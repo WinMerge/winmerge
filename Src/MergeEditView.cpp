@@ -849,9 +849,17 @@ void CMergeEditView::OnUpdateLastdiff(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Go to next diff
- * @note If no diff selected, next diff below cursor
- * is selected.
+ * @brief Go to next diff and select it.
+ *
+ * Finds and selects next difference. There are several cases:
+ * - if there is selected difference, and that difference is visible
+ * on screen, next found difference is selected.
+ * - if there is selected difference but it is not visible, next
+ * difference from cursor position is selected. This is what user
+ * expects to happen and is natural thing to do. Also reduces
+ * needless scrolling.
+ * - if there is no selected difference, next difference from cursor
+ * position is selected.
  */
 void CMergeEditView::OnNextdiff()
 {
@@ -865,9 +873,17 @@ void CMergeEditView::OnNextdiff()
 	if (curDiff != -1)
 	{
 		// We're on a diff
-		// Find out if there is a following significant diff
 		int nextDiff = curDiff;
-		if (curDiff < pd->m_diffList.GetSize() - 1)
+		if (!IsDiffVisible(curDiff))
+		{
+			// Selected difference not visible, select next from cursor
+			int line = GetCursorPos().y;
+			if (!IsValidTextPosY(CPoint(0, line)))
+				line = m_nTopLine;
+			nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
+		}
+		// Find out if there is a following significant diff
+		else if (curDiff < pd->m_diffList.GetSize() - 1)
 		{
 			nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
 			if (nextDiff == -1)
@@ -910,12 +926,17 @@ void CMergeEditView::OnUpdateNextdiff(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Goes to previous diff and selects it.
+ * @brief Go to previous diff and select it.
  *
- * Called when user selects "Previous Difference".
- * @note If no diff is selected, previous diff above cursor
- * is selected.
- * @sa CMergeEditView::SelectDiff()
+ * Finds and selects previous difference. There are several cases:
+ * - if there is selected difference, and that difference is visible
+ * on screen, previous found difference is selected.
+ * - if there is selected difference but it is not visible, previous
+ * difference from cursor position is selected. This is what user
+ * expects to happen and is natural thing to do. Also reduces
+ * needless scrolling.
+ * - if there is no selected difference, previous difference from cursor
+ * position is selected.
  */
 void CMergeEditView::OnPrevdiff()
 {
@@ -926,12 +947,19 @@ void CMergeEditView::OnPrevdiff()
 
 	// GetCurrentDiff() returns -1 if no diff selected
 	int curDiff = pd->GetCurrentDiff();
-
 	if (curDiff != -1)
 	{
 		// We're on a diff
-		// Find out if there is a preceding significant diff
 		int prevDiff = curDiff;
+		if (!IsDiffVisible(curDiff))
+		{
+			// Selected difference not visible, select previous from cursor
+			int line = GetCursorPos().y;
+			if (!IsValidTextPosY(CPoint(0, line)))
+				line = m_nTopLine;
+			prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
+		}
+		// Find out if there is a preceding significant diff
 		if (curDiff > 0)
 		{
 			prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
@@ -2803,4 +2831,33 @@ void CMergeEditView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
 BOOL CMergeEditView::IsCursorInDiff() const
 {
 	return m_bCurrentLineIsDiff;
+}
+
+/**
+ * @brief Determine if difference is visible on screen.
+ * @param [in] nDiff Number of diff to check.
+ * @return TRUE if difference is visible.
+ */
+BOOL CMergeEditView::IsDiffVisible(int nDiff)
+{
+	CMergeDoc *pd = GetDocument();
+	CPoint ptStart, ptEnd;
+
+	DIFFRANGE diff;
+	pd->m_diffList.GetDiff(nDiff, diff);
+	ptStart.x = 0;
+	ptStart.y = diff.dbegin0;
+	ptEnd.x = 0;
+	ptEnd.y = diff.dend0;
+
+	if (ptStart.y < m_nTopLine ||
+		(ptEnd.y >= m_nTopLine + GetScreenLines()) ||
+		(ptEnd.y - ptStart.y) >= GetScreenLines())
+	{
+		return FALSE;
+	}
+	else
+	{
+		return TRUE;
+	}
 }
