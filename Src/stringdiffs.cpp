@@ -186,8 +186,8 @@ startdiff:
 			e1 = m_words1[w1].start-1;
 			e2 = m_words2[w2].start-1;
 			// Now backtrack over matching whitespace
-			int pe1 = (w1 ? m_words1[w1-1].end+1 : -1);
-			int pe2 = (w2 ? m_words2[w2-1].end+1 : -1);
+			int pe1 = (w1 ? m_words1[w1-1].end : -1);
+			int pe2 = (w2 ? m_words2[w2-1].end : -1);
 			while (e1 > pe1
 				&& e2 > pe2
 				&& m_str1[e1] == m_str2[e2])

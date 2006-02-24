@@ -1,6 +1,9 @@
 2006-02-24 Kimmo
  PATCH: [ 1437758 ] Improve diff selection when selected diff not visible
   Src: MergeEditView.cpp MergeEditView.h
+ PATCH: [ 1431607 ] Fix worddiff highlight error
+  Submitted by Perry
+  Src: stringdiffs.cpp
 
 2006-02-24 Tim
  PATCH: [ 1437677 ] Various Updates in German Translation for WinMerge 2.5
