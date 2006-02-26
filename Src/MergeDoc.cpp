@@ -773,7 +773,15 @@ BOOL CMergeDoc::SanityCheckDiff(DIFFRANGE dr)
 {
 	int cd_dbegin = dr.dbegin0;
 	int cd_dend = dr.dend0;
+
+	// Must ensure line number is in range before getting line flags
+	if (cd_dend >= m_ptBuf[0]->GetLineCount())
+		return FALSE;
 	DWORD dwLeftFlags = m_ptBuf[0]->GetLineFlags(cd_dend);
+
+	// Must ensure line number is in range before getting line flags
+	if (cd_dend >= m_ptBuf[1]->GetLineCount())
+		return FALSE;
 	DWORD dwRightFlags = m_ptBuf[1]->GetLineFlags(cd_dend);
 
 	// Optimization - check last line first so we don't need to

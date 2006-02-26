@@ -2,6 +2,9 @@
  PATCH: [ 1435470 ] Remove CTextFile
   Src: Merge.dsp
   Deleted Src\Common: textfile.cpp textfile.h
+ PATCH: [ 1439229 ] Fix CMergeDoc::SanityCheckD not to dereference illegal lines
+ BUG: [ 1438390 ] Crash when editting the attached files
+  Src: MergeDoc.cpp
 
 2006-02-24 Kimmo
  PATCH: [ 1437758 ] Improve diff selection when selected diff not visible
