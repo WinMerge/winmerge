@@ -5,6 +5,9 @@
  PATCH: [ 1439229 ] Fix CMergeDoc::SanityCheckD not to dereference illegal lines
  BUG: [ 1438390 ] Crash when editting the attached files
   Src: MergeDoc.cpp
+ PATCH: [ 1434007 ] Move source control code out of MainFrm.cpp
+  Src: MainFrm.cpp MainFrm.h Merge.dsp
+  New Src: SourceControl.cpp
 
 2006-02-24 Kimmo
  PATCH: [ 1437758 ] Improve diff selection when selected diff not visible

@@ -757,6 +757,10 @@ SOURCE=.\Common\SortHeaderCtrl.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\SourceControl.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Splash.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"

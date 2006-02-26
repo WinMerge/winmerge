@@ -113,7 +113,6 @@ public:
 	void UpdateResources();
 	BOOL CreateBackup(LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
-	BOOL SaveToVersionControl(CString& strSavePath);
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();
 	BOOL OpenFileToExternalEditor(CString file);
@@ -143,6 +142,11 @@ public:
 // Implementation methods
 protected:
 	virtual ~CMainFrame();
+// Implementation in SourceControl.cpp
+	void InitializeSourceControlMembers();
+	BOOL SaveToVersionControl(CString& strSavePath);
+// End SourceControl.cpp
+
 
 // Public implementation data
 public:
