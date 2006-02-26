@@ -1,5 +1,6 @@
 2006-02-26 Perry
  PATCH: [ 1435470 ] Remove CTextFile
+  Src: Merge.dsp
   Deleted Src\Common: textfile.cpp textfile.h
 
 2006-02-24 Kimmo
