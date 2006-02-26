@@ -1,3 +1,7 @@
+2006-02-26 Perry
+ PATCH: [ 1435470 ] Remove CTextFile
+  Deleted Src\Common: textfile.cpp textfile.h
+
 2006-02-24 Kimmo
  PATCH: [ 1437758 ] Improve diff selection when selected diff not visible
   Src: MergeEditView.cpp MergeEditView.h
