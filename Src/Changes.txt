@@ -1,3 +1,7 @@
+2006-02-27 Perry
+ BUG: [ 1439350 ] Russian language name in LanguageSelect?
+  Src/Common: LanguageSelect.cpp
+
 2006-02-26 Perry
  PATCH: [ 1435470 ] Remove CTextFile
   Src: Merge.dsp

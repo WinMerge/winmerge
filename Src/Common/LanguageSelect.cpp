@@ -147,7 +147,7 @@ const tLangDef lang_map[] =
 	{IDS_PORTUGUESE_BRAZILIAN, L"Portugu\x00EAs brasileiro", "Portugues brasileiro*", MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN), _T("ptb")},
 //	{IDS_ROMANIAN, L"Rom\xE2n\x0103", MAKELANGID(LANG_ROMANIAN, SUBLANG_DEFAULT), _T("")},
 	//       Rom&#226;n&#259; [Romanian rendered in HTML Unicode codepoint escapes]
-	{IDS_RUSSIAN, L"\x0440\x0443\0x0441\x0441\x043A\x0438\x0439", "Ruskiyi*", MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT), _T("rus")},
+	{IDS_RUSSIAN, L"\x0440\x0443\x0441\x0441\x043A\x0438\x0439", "Ruskiyi*", MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT), _T("rus")},
 	//       &#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; [Russian rendered in HTML Unicode codepoint escapes]
 //	{IDS_SANSKRIT, NONATIVE, MAKELANGID(LANG_SANSKRIT, SUBLANG_DEFAULT), _T("")},
 	{IDS_SERBIAN_LATIN, L"Srpski", "Srpski", MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_LATIN), _T("")},
