@@ -767,6 +767,10 @@ CString CLanguageSelect::GetNativeLanguageNameString( int idx )
 	// Otherwise, take the name from the RC file (which will be the name from the English RC
 	// file, as none of the other RC files have language name entries, and the names in the
 	// English RC file are all ASCII, so they fit into any codepage)
+	//
+	// Note: Even in Unicode build, we still do this test of conversion to current codepage
+	// because if the name fits in the current codepage, then we're sure they have glyphs
+	// otherwise, they might not have glyphs in their current font, so it might be illegible
 	LPCWSTR name = lang_map[idx].m_NativeName;
 	if (name[0])
 	{

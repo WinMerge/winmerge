@@ -1,3 +1,9 @@
+2006-02-28 Perry
+ BUG: [ 1439360 ] Native languages sometimes suppressed in Unicode Build
+ Add note to CLanguageSelect::GetNativeLanguageNameString
+  explaining why codepage check is done even for Unicode build.
+ Src/Common: LanguageSelect.cpp
+
 2006-02-27 Perry
  BUG: [ 1439350 ] Russian language name in LanguageSelect?
   Src/Common: LanguageSelect.cpp
