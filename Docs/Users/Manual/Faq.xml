@@ -320,6 +320,19 @@
           where we would really appreciate help in implementation!</para>
         </answer>
       </qandaentry>
+
+      <qandaentry>
+        <question>
+          <para>Can I hide similar lines in editor (so that only different
+          lines are visible)?</para>
+        </question>
+
+        <answer>
+          <para>No, you can't. Many users have requested this feature but we
+          don't have any plans to implement it. We don't believe it would
+          really improve usability.</para>
+        </answer>
+      </qandaentry>
     </qandaset>
   </sect2>
 

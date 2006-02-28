@@ -2,6 +2,8 @@
  PATCH: [ 1440383 ] Suggested addition to manual about bug reports
   Submitted by Perry
   Manual: Introduction.xml
+ PATCH: [ 1440435 ] Manual: add FAQ item about hiding similar lines in editor
+  Manual: Faq.xml
 
 2006-02-14 Tim
  PATCH: [ 1431053 ] Manual: Remove echo off/on from configuration.bat (XSL)
