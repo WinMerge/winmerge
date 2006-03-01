@@ -1,3 +1,229 @@
+2006-02-28 2.4.6 Stable Release
+
+2006-02-27 Kimmo
+ PATCH: [ 1439229 ] Fix CMergeDoc::SanityCheckD not to dereference illegal lines
+  Submitted by Perry
+  Src: MergeDoc.cpp
+
+2006-02-27 Perry
+ BUG: [ 1439350 ] Russian language name in LanguageSelect?
+  Src/Common: LanguageSelect.cpp
+
+2006-02-24 Kimmo
+ PATCH: [ 1426793 ] Fix diffutils that counts lines in suffix
+  Submitted by Perry
+  Src\diffutils\src: IO.C
+
+2006-02-23 Kimmo
+ PATCH: [ 1435431 ] Fix GenerateReport lines
+  Submitted by Perry
+  Src: DirCmpReport.cpp
+ PATCH: [ 1434270 ] Fix difference counts
+  Submitted by Perry
+  Src: DiffWrapper.cpp DiffWrapper.h DirViewColItems.cpp
+
+2006-02-22 Kimmo
+ PATCH: [ 1433125 ] Trap errors from filesystem during actions
+  Add SEH protection for filesystem actions
+  Src: DirActions.cpp DirView.h
+ PATCH: [ 1436855 ] Typo in lang files (change pactch to patch)
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+ PATCH: [ 1395721 ] VS.NET 2003 warning of SEH bug
+  Src: Merge.dsp
+
+2006-02-20 Perry
+ PATCH: [ 1424867 ] Fix common prefix code for \r\n
+  Src\diffutils\src: IO.C
+
+2006-02-19 Perry
+ PATCH: [ 1423907 ] Fix diffutils hashing of \r
+  Src/diffutils/src: IO.C UTIL.C
+ PATCH: [ 1433931 ] Add comment before isBin checks in DirView
+  Src: DirView.cpp
+
+2006-02-19 Christian
+ PATCH: [ 1429125 ] Return number of diffs instead of true/false
+  Src: MergeDoc.cpp
+
+2006-02-18 Perry
+ PATCH: [ 1409651 ] fix diffutils handling trailing whitespace
+  Src/diffutils/src: IO.C UTIL.C
+
+2006-02-17 Perry
+ PATCH: [ 1407909 ] Fix QuickCompare handling of trailing whitespace
+ BUG: [ 1406950 ] QuickCompare vs diffutils, disagree on trailing whitespace
+  Src: ByteComparator.cpp
+
+2006-02-16 Kimmo
+ PATCH: [ 1431768 ] Write paths to patch files as given
+  Src: DiffWrapper.cpp DiffWrapper.h
+ BUG: [ 1383052 ] warning C4005: 'COMPILE_MULTIMON_STUBS' : macro redefinition
+  (Wrap multimon def with ifndef) Submitted by Perry
+  Src: MainFrm.cpp
+
+2006-02-15 Kimmo
+ PATCH: [ 1395847 ] Integration with Rational ClearCase
+  Submitted by Gal Hammer
+  Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.h MergeDoc.cpp MergeDoc.h
+  Src/Common: coretools.cpp coretools.h
+
+2006-02-14 Perry
+ PATCH: [ 1421018 ] Fix handle leak in GetOpenFileName
+ BUG: [ 1418765 ] 2.4.4.0U maintain opened a handle on folders
+  Adds new method paths_GetWindowsDirectory & resets current
+   directory to WINDIR after GetOpenFileName call
+  Src: MainFrm.cpp OpenDlg.cpp paths.cpp paths.h
+ PATCH: [ 1424884 ] Fix UniStdioFile encoding of TCHAR
+ BUG: [ 1402379 ] A character display and save error with encoding of unicode
+  Src\Common: UniFile.cpp unicoder.cpp unicoder.h
+
+2006-02-13 Kimmo
+ Add Jan Hryz as Czech translator and contributor
+  Docs/Users: Contributors.txt
+
+2006-02-09 Perry
+ BUG: [ 1427956 ] Differences count in Folder Compare wrong?
+  Make sure to set diff count to 0 just before counting them
+  (Not sure if bug affects this branch, but fix is safe.)
+  Src: DiffWrapper.cpp
+
+2006-02-07 Kimmo
+ PATCH: [ 1424535 ] Czech Translation, Submitted by Jan Hryz
+  Fix dir compare report dialog layout
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
+2006-02-05 Kimmo
+ BUG: [ 1422257 ] Wrong text in tooltip
+  (Dutch translation had wrong shortcut keys in tooltip)
+  Src/Languages/Dutch/MergeDutch.rc
+ PATCH: [ 1424535 ] Czech Translation
+  Submitted by Jan Hryz
+  Src/Languages/Czech/MergeCzech.rc
+
+2006-02-04 Perry
+ PATCH: [ 1414868 ] Bug in byte_compare (early finish)
+  Fix while loop in DiffFileData::byte_compare_files
+  Src: DiffWrapper.cpp
+ PATCH: [ 1422008 ] Implement GuessEncoding in QuickCompare for 2.4
+  Src: DiffWrapper.cpp DiffWrapper.h
+ PATCH: [ 1403893 ] Fix whitespace error in ByteCompare
+  Src: ByteComparator.cpp
+
+2006-02-03 Perry
+ PATCH: [ 1421694 ] Widen comments label in Rational ClearCase dialog
+  Src: Merge.rc
+  Src/Languages: */Merge*.rc
+
+2006-02-01 Kimmo
+ PATCH: [ 1420776 ] Fix casesensitive filename compare in DiffWrapper
+  Src: DiffWrapper.cpp
+
+2006-01-28 Perry
+ PATCH: [ 1414904 ] updated italian translation for winmerge 2.5.3.1
+  submitted by A. Decorte
+  InnoSetup\Languages: Italian.isl
+
+2006-01-22 Tim
+ PATCH: [ 1411102 ] Add '*.dsl' and '*.jsp' to syntax highlighter
+  Src/editlib: ccrystaleditview.cpp
+
+2006-01-21 Perry
+ PATCH: [ 1407740 ] Polish translation update (for version 2.4.4.0)
+  Submitted by dr_prozac
+   Src/Language/Polish: MergePolish.rc
+ PATCH: [ 1403457 ] Support Unicode file filter files
+  Src: FileFilterMgr.cpp
+
+2006-01-15 Kimmo
+ PATCH: [ 1394877 ] Find selected text with Ctrl+F3
+ PATCH: [ 1400845 ] Allow Shift+Ctrl+F3 to search selected text backwards
+  Src: Merge.rc
+  Src/editlib: ccrystaltextview.cpp
+  Src/Language: */Merge*.rc
+
+2006-01-13 Kimmo
+ PATCH: [ 1396413 ] Update Open dialog controls when its activated
+  Src: OpenDlg.cpp OpenDlg.h
+ Fix error in merging patch [ 1394759 ]
+  Src: MainFrm.cpp
+
+2006-01-12 Kimmo
+ PATCH: [ 1394759 ] Allows quotes in Rational ClearCase checkout comment
+  Submitted by Gal Hammer
+  Src: MainFrm.cpp
+ Add Gal Hammer to contributors list
+  Docs/Users: Contributors.txt
+
+2006-01-10 Perry
+ PATCH: [ 1400830 ] Fix drop to only do LoadProjectFile when 1 file dropped
+ BUG: [ 1400797 ] Dropping two project files doesn't work to compare them
+  (Also fixes extension test to be case-sensitive)
+  Src: MainFrm.cpp
+
+2006-01-09 Perry
+ PATCH: [ 1212161 ] Fix handling of \r\n in ByteComparator
+  Src: ByteComparator.cpp
+ PATCH: [ 1335128 ] Ignore uninstalled codepages
+ BUG: [ 1334592 ] Empty edit buffer if known but unsupported encoding
+  Src: MergeDoc.cpp MergeDoc.h codepage.cpp codepage_detect.cpp
+  Src/Common: unicoder.cpp
+ PATCH: [ 1394073 ] Fix ByteComparator: m_bol0
+ BUG: [ 1394069 ] ByteComparator::m_bol0 not getting cleared
+  Src: ByteComparator.cpp ByteComparator.h
+
+2006-01-07 Kimmo
+ PATCH: [ 1392347 ] Fix status after synching unique binary files
+  Src: DirScan.cpp
+ PATCH: [ 1395584 ] Update CSizingControlBar to latest version
+  Src: DiffViewBar.cpp DiffViewBar.h LocationBar.cpp LocationBar.h Merge.dsp StdAfx.h
+  Src/Common: sizecbar.cpp sizecbar.h
+  Src/Common new files: scbarg.cpp scbarg.h
+  Src/Common deleted files: sizecbarg.cpp sizecbarg.h
+
+2006-01-06 Takashi
+ PATCH: [ 1378795 ] The searched word is not highlighted correctly
+  Src/editlib: ccrystaltextview.cpp
+
+2006-01-02 Kimmo
+ PATCH: [ 1395474 ] Define WINVER for compiling with VS.net
+  Src: StdAfx.h
+
+2006-01-02 Perry
+ BUG: [ 1395494 ] stringdiffs.cpp / LastChar() returning uninitialized value?
+  Src: stringdiffs.cpp
+
+2006-01-01 Kimmo
+ PATCH: [ 1394464 ] Find again code doesn't recognize dos/mac EOLs
+  Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1381975 ] Don't open Open-dialog outside screen
+  Src: MainFrm.cpp OpenDlg.cpp
+
+2005-12-31 Perry
+ PATCH: [ 1384181 ] Fix byte difference fencepost/infinite loop
+  Src: CompareOptions.h ConfigLog.cpp DiffWrapper.cpp DiffWrapper.h
+   Merge.dsp PatchDlg.cpp stringdiffs.cpp
+
+2005-12-28 Tim
+ BUG: [ 1385518 ] Batch file syntax highlighting weirdness
+  Src/editlib: batch.cpp
+
+2005-12-26 Perry
+ PATCH: [ 1388704 ] Simplified Chinese language .rc file for RC1
+ Also fix a couple controls which had numeric ids instead of symbolic ones.
+  Src/Languages/ChineseSimplified: MergeChineseSimplified.rc
+
+2005-12-18 Perry
+ PATCH: [ 1383262 ] Fix bitmap leak in ShellExtension
+  (including version bump from 1.6.3.0 to 1.6.4.0)
+  ShellExtension: ShellExtension.rc WinMergeShell.cpp WinMergeShell.h
+
+2005-12-15 Perry
+ PATCH: [ 1188787 ] New Chinese translation rc file (from PATCH 1183476)
+  Last updates from submitted patch
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+
 2005-12-15 2.4.4 Stable Release
 
 2005-12-15 Kimmo

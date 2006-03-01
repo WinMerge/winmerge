@@ -28,9 +28,9 @@
 <p><img src="2.4/images/screenshot.gif" alt="Screenshot of WinMerge"></p>
 <p>See the <a href="2.4/screenshots.php">screenshots page</a> for more screenshots.</p>
 
-<h2>WinMerge 2.4.4 - latest stable version</h2>
-<p><a href="2.4/index.php">WinMerge 2.4.4</a> is the latest stable version, and it is recommended for most users.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.4-Setup.exe">Download WinMerge 2.4.4 Installer</a></p>
+<h2>WinMerge 2.4.6 - latest stable version</h2>
+<p><a href="2.4/index.php">WinMerge 2.4.6</a> is the latest stable version, and it is recommended for most users.</p>
+<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.6-Setup.exe">Download WinMerge 2.4.6 Installer</a></p>
 
 <h2>WinMerge 2.2.4 - older stable version</h2>
 <p><a href="2.2/index.php">WinMerge 2.2.4</a> is an older version.</p>
@@ -47,8 +47,8 @@
 -->
 
 <h2>Installation</h2>
-<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.4-Setup.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.4-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.6-Setup.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.6-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
 <p>For more details please look at the <a href="2.4/manual/installing.html">Installation section</a> from the <a href="2.4/manual/index.html">Manual</a>.</p>
 
