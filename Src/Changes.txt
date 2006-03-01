@@ -1,3 +1,9 @@
+2006-03-01 Kimmo
+ PATCH: [ 1424535 ] Czech Translation, Submitted by Jan Hryz
+  Improve unpacker selection dialog and new filter location selection dialog
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-03-01 Tim
  PATCH: [ 1438233 ] New icons for 'notequalfile', 'lfile' and 'rfile'
   Src/res: lfile.ico notequalfile.ico rfile.ico
