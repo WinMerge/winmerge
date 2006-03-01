@@ -1,3 +1,7 @@
+2006-03-01 Tim
+ PATCH: [ 1438233 ] New icons for 'notequalfile', 'lfile' and 'rfile'
+  Src/res: lfile.ico notequalfile.ico rfile.ico
+
 2006-03-01 Kimmo
  PATCH: [ 1436855 ] Typo in lang files (change pactch to patch)
   Src/Languages/*: Merge*.rc
