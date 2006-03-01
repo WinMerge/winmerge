@@ -273,8 +273,9 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 		VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
 		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
-		BOOL isNone = (txt.CompareNoCase(txtNone) == 0);
+		bool isNone = (txt.CompareNoCase(txtNone) == 0);
 
+		EnableDlgItem(this, IDC_FILTERFILE_TEST_BTN, !isNone);
 		EnableDlgItem(this, IDC_FILTERFILE_EDITBTN, !isNone);
 		EnableDlgItem(this, IDC_FILTERFILE_DELETEBTN, !isNone);
 	}

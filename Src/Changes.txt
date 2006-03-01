@@ -1,6 +1,9 @@
 2006-03-01 Kimmo
  PATCH: [ 1436855 ] Typo in lang files (change pactch to patch)
   Src/Languages/*: Merge*.rc
+ BUG: [ 1440774 ] Test button for file filters enabled for no filter
+  Fix submitted by Gal Hammer
+  Src: FileFiltersDlg.cpp
 
 2006-02-28 Perry
  BUG: [ 1439360 ] Native languages sometimes suppressed in Unicode Build
