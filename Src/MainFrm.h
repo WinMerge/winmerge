@@ -155,6 +155,7 @@ public:
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	VSSHelper m_vssHelper;
 	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
+	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 
 	/**
 	 * @name Version Control System (VCS) integration.

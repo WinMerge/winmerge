@@ -382,6 +382,18 @@ endSplit:
 	}
 }
 
+// Split Rational ClearCase view name (file_name@@file_version).
+void SplitViewName(LPCTSTR s, CString * path, CString * name, CString * ext)
+{
+	CString sViewName = s;
+	int nOffset = sViewName.Find(_T("@@"));
+	if (-1 != nOffset)
+	{
+		sViewName = sViewName.Left(nOffset);
+		SplitFilename(sViewName, path, name, ext);
+	}
+}
+
 // Test code for SplitFilename above
 void TestSplitFilename()
 {

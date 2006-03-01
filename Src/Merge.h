@@ -90,6 +90,8 @@ protected:
 	// In MergeArgs.cpp
 	void ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags, CString & prediffer);
+ 	void ParseCCaseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles,
+ 		DWORD & dwLeftFlags, DWORD & dwRightFlags);
 	void ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame);
 	CString GetUsageDescription();
 	// End MergeArgs.cpp

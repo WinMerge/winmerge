@@ -80,9 +80,27 @@ CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
 	CString prediffer;
 
 	// Split commandline arguments into files & flags & recursive flag
-	ParseArgs(argc, argv, pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags, prediffer);
-	if (m_bShowUsage)
-		return;
+
+	// Rational ClearCase has a weird way of executing external
+	// tools which replace the build-in ones. It also doesn't allow
+	// you to define which parameters to send to the executable.
+	// So, in order to run as an external tool, WinMerge should do:
+	// if argv[0] is "xcompare" then it "knows" that it was
+	// executed from ClearCase. In this case, it should read and
+	// parse ClearCase's command line parameters and not the
+	// "regular" parameters. More information can be found in
+	// C:\Program Files\Rational\ClearCase\lib\mgrs\mgr_info.h file.
+
+	if (lstrcmpi(argv[0], _T("xcompare")))
+	{
+		ParseArgs(argc, argv, pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags, prediffer);
+		if (m_bShowUsage)
+			return;
+	}
+	else
+	{
+		ParseCCaseArgs(argc, argv, pMainFrame, files, nFiles, dwLeftFlags, dwRightFlags);
+	}
 
 	// LoadProjectFiles returns false if neither argument is a project file
 	if (LoadProjectFile(files, recurse))
@@ -286,6 +304,52 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 
 	// Reload menus in case a satellite language dll was loaded above
 	ReloadMenu();
+}
+
+/// Process Rational ClearCase command line arguments
+void
+CMergeApp::ParseCCaseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles,
+		DWORD & dwLeftFlags, DWORD & dwRightFlags)
+{
+	pMainFrame->m_bClearCaseTool = TRUE;
+	pMainFrame->m_bEscShutdown = TRUE;
+
+	dwLeftFlags |= FFILEOPEN_READONLY | FFILEOPEN_NOMRU;
+	dwRightFlags |= FFILEOPEN_READONLY | FFILEOPEN_NOMRU;
+
+	// First description belong to the left file.
+	CString *pDesc = &(pMainFrame->m_strLeftDesc);
+
+	for (int i = 1; i < argc; i++)
+	{
+		LPCTSTR pszParam = argv[i];
+		if (pszParam[0] == '-')
+		{
+			// remove flag specifier
+			++pszParam;
+
+			// -fname "desc" - description for a file
+			// Shown instead of filename
+			if (!_tcsicmp(pszParam, _T("fname")))
+			{
+				if (i < (argc - 1))
+				{
+					LPCTSTR pszDesc = argv[i+1];
+					*pDesc = pszDesc;
+					i++; // Just read next parameter
+
+					// Next description belong to the right file.
+					pDesc = &(pMainFrame->m_strRightDesc);
+				}
+			}
+		}
+		else
+		{
+			CString sFile = paths_GetLongPath(pszParam);
+			files.SetAtGrow(nFiles, sFile);
+			nFiles++;
+		}
+	}
 }
 
 /** @brief Wrap one line of cmdline help in appropriate whitespace */

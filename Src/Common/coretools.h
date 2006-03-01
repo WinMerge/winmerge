@@ -107,6 +107,7 @@ void GetLocalDrives(LPTSTR letters);
 void replace_char(LPTSTR s, int target, int repl);
 BOOL FileExtMatches(LPCTSTR filename, LPCTSTR ext);
 void SplitFilename(LPCTSTR s, CString * path, CString * name, CString * ext);
+void SplitViewName(LPCTSTR s, CString * path, CString * name, CString * ext);
 void TestSplitFilename();
 void AddExtension(LPTSTR name, LPCTSTR ext);
 BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s);

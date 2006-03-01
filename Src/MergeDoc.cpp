@@ -2790,10 +2790,10 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
 		CString sextL, sextR;
-		SplitFilename(sLeftFile, 0, 0, &sextL);
+		GetFileExt(sLeftFile, m_strDesc[0], sextL);
 		BOOL bLeftTyped = pLeft->SetTextType(sextL);
 		pLeftDetail->SetTextType(sextL);
-		SplitFilename(sRightFile, 0, 0, &sextR);
+		GetFileExt(sRightFile, m_strDesc[1], sextR);
 		BOOL bRightTyped = pRight->SetTextType(sextR);
 		pRightDetail->SetTextType(sextR);
 
@@ -3213,3 +3213,23 @@ void CMergeDoc::OnFileEncoding()
 	DoFileEncodingDialog();
 }
 
+// Return file extension either from file name or file description (if WinMerge is used as an
+// external Rational ClearCase tool.
+void CMergeDoc::GetFileExt(const CString& sFileName, const CString& sDescription, CString& sExt)
+{
+	SplitFilename(sFileName, NULL, NULL, &sExt);
+
+	if (TRUE == GetMainFrame()->m_bClearCaseTool)
+	{
+		// If no extension found in real file name.
+		if (TRUE == sExt.IsEmpty())
+		{
+			SplitViewName(sFileName, NULL, NULL, &sExt);
+		}
+		// If no extension found in repository file name.
+		if (TRUE == sExt.IsEmpty())
+		{
+			SplitViewName(sDescription, NULL, NULL, &sExt);
+		}
+	}
+}

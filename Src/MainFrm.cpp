@@ -173,6 +173,7 @@ CMainFrame::CMainFrame()
 {
 	m_bFirstTime = TRUE;
 	m_bEscShutdown = FALSE;
+	m_bClearCaseTool = FALSE;
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 	OptionsInit(); // Implementation in OptionsInit.cpp
 	UpdateCodepageModule();

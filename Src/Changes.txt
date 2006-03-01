@@ -4,6 +4,10 @@
  BUG: [ 1440774 ] Test button for file filters enabled for no filter
   Fix submitted by Gal Hammer
   Src: FileFiltersDlg.cpp
+ PATCH: [ 1395847 ] Integration with Rational ClearCase
+  Submitted by Gal Hammer
+  Src: MainFrm.cpp MainFrm.h Merge.h MergeArgs.cpp MergeDoc.cpp MergeDoc.h
+  Src/Common: coretools.cpp coretools.h
 
 2006-02-28 Perry
  BUG: [ 1439360 ] Native languages sometimes suppressed in Unicode Build
