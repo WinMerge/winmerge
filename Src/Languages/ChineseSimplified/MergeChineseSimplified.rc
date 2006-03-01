@@ -2264,7 +2264,7 @@ BEGIN
     IDS_FILEWRITE_ERROR     "无法写入文件 %1。"
     IDS_PATH_NOT_ABSOLUTE   "指定的路径不是绝对路径: %1"
     IDS_MUST_SPECIFY_OUTPUT "请指定输出文件"
-    IDS_CANNOT_CREATE_BINARYPATCH "无法为二进制文件创建 pactch。"
+    IDS_CANNOT_CREATE_BINARYPATCH "无法为二进制文件创建 patch。"
     IDS_CANNOT_CREATE_DIRPATCH "无法为文件夹创建 pactch。"
     IDS_SAVEFILES_FORPATCH  "请保存文件。\n\n创建 patch 要求文件中没有未保存的改动。"
     IDS_FOLDER_NOTEXIST     "文件夹不存在。"

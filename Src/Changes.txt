@@ -1,3 +1,7 @@
+2006-03-01 Kimmo
+ PATCH: [ 1436855 ] Typo in lang files (change pactch to patch)
+  Src/Languages/*: Merge*.rc
+
 2006-02-28 Perry
  BUG: [ 1439360 ] Native languages sometimes suppressed in Unicode Build
  Add note to CLanguageSelect::GetNativeLanguageNameString
