@@ -1,3 +1,8 @@
+2006-03-02 Tim
+ PATCH: [ 1437770 ] Icons for 'Generate Patch' and 'Generate Report'
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new files: patch.bmp report.bmp
+
 2006-03-02 Kimmo
  PATCH: [ 1441124 ] Improve filter test dialog
   Src: Merge.rc

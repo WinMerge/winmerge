@@ -71,6 +71,8 @@
 #define IDB_TOOLS_COLUMNS               335
 #define IDB_MERGE_DELETE                336
 #define IDB_FILE_PRINT                  337
+#define IDB_TOOLS_GENERATEPATCH         338
+#define IDB_TOOLS_GENERATEREPORT        339
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502
