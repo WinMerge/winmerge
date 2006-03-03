@@ -1,3 +1,8 @@
+2006-03-03 Kimmo
+ PATCH: [ 1441387 ] Improve File Encoding dialog
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-03-02 Tim
  PATCH: [ 1437770 ] Icons for 'Generate Patch' and 'Generate Report'
   Src: MainFrm.cpp Merge.rc resource.h
