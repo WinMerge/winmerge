@@ -1,0 +1,43 @@
+MakeResDll/Changes.txt
+Add new items to top
+
+2006-03-03 Perry
+ PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
+ Add Changes.txt change log (this file).
+  MakeResDll: new Changes.txt
+
+2004-02-20 Perry
+ Add GetClipTcharTextFormat (needed by coretools now) to StdAfx.*
+  MakeResDll: StdAfx.cpp StdAfx.h
+ Fix MakeResDll.dsp to compile (new directory structure).
+  MakeResDll\MakeResDll.dsp
+
+2004-01-24 Perry
+ [ 882650 ] Move temp build files out of Build into BuildTmp
+  Src: Merge.dsp
+  MakeResDll: MakeResDll.dsp
+
+2003-10-23 Perry
+ Handle lib & includes for MakeResDll (& rearrange globals). 
+ Bump version from 1.0.1.0 to 1.0.2.0.
+  MakeResDll: MakeResDll.cpp MakeResDll.rc readme.txt
+ Handle lib & includes for .NET and .NET 2003 in MakeResDll.
+ Fix location of RegKey.h in MakeResDll.
+  MakeResDll: MakeResDll.cpp MakeResDll.dsp readme.txt
+
+2003-10-22 Perry
+ Fix compile for MakeResDll
+  common: coretools.cpp
+ Fix MakeResDll for MSVC.NET & MSVC.NET 2003.
+ Bump MakeResDll version from 1.0.0.1 to 1.0.1.0.
+  MakeResDll: MakeResDll.cpp MakeResDll.rc
+ Add readme.txt to MakeResDll.
+  MakeResDll: MakeResDll.dsp readme.txt
+ Fix MakeResDll to not create keys not found.
+  MakeResDll: MakeResDll.cpp
+
+2003-07-24 Perry
+ PATCH: [ 773981 ] Modify language build process to eliminate msgboxes
+  (also added a version resource to MakeResDll, as it lacked one)
+  Languages: BuildAll.bat BuildDll.bat
+  MakeResDll: MakeResDll.cpp MakeResDll.rc

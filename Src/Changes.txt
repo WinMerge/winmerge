@@ -1,3 +1,8 @@
+2006-03-03 Perry
+ PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
+ Add Changes.txt change log (this file).
+  MakeResDll: new Changes.txt
+
 2006-03-03 Kimmo
  PATCH: [ 1441387 ] Improve File Encoding dialog
   Src: Merge.rc
