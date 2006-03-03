@@ -30,6 +30,7 @@
 #include "stdafx.h"
 #include "Merge.h"
 
+#include "AboutDlg.h"
 #include "MainFrm.h"
 #include "ChildFrm.h"
 #include "DirFrame.h"
@@ -37,8 +38,6 @@
 #include "DirDoc.h"
 #include "DirView.h"
 #include "Splash.h"
-#include "version.h"
-#include "statlink.h"
 #include "logfile.h"
 #include "coretools.h"
 #include "paths.h"
@@ -69,8 +68,6 @@ static char THIS_FILE[] = __FILE__;
 #define BIF_USENEWUI           (BIF_NEWDIALOGSTYLE | BIF_EDITBOX)
 #endif
 
-// URL for hyperlink in About-dialog
-static const TCHAR WinMergeURL[] = _T("http://winmerge.org");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
@@ -315,105 +312,11 @@ BOOL CMergeApp::InitInstance()
 	return TRUE;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////
-// CAboutDlg dialog used for App About
-
-/** 
- * @brief About-dialog class
- */
-class CAboutDlg : public CDialog
-{
-public:
-	CAboutDlg();
-
-// Dialog Data
-	//{{AFX_DATA(CAboutDlg)
-	enum { IDD = IDD_ABOUTBOX };
-	CStatic	m_ctlCompany;
-	CStaticLink	m_ctlWWW;
-	CString	m_strVersion;
-	CString m_strPrivateBuild;
-	//}}AFX_DATA
-
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAboutDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
-
-// Implementation
-protected:
-	//{{AFX_MSG(CAboutDlg)
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-public:
-	afx_msg void OnBnClickedOpenContributors();
-};
-
-CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
-{
-	//{{AFX_DATA_INIT(CAboutDlg)
-	//}}AFX_DATA_INIT
-}
-
-void CAboutDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CAboutDlg)
-	DDX_Control(pDX, IDC_COMPANY, m_ctlCompany);
-	DDX_Control(pDX, IDC_WWW, m_ctlWWW);
-	DDX_Text(pDX, IDC_VERSION, m_strVersion);
-	DDX_Text(pDX, IDC_PRIVATEBUILD, m_strPrivateBuild);
-	//}}AFX_DATA_MAP
-}
-
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
-	//{{AFX_MSG_MAP(CAboutDlg)
-	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_OPEN_CONTRIBUTORS, OnBnClickedOpenContributors)
-END_MESSAGE_MAP()
-
 // App command to run the dialog
 void CMergeApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;
 	aboutDlg.DoModal();
-}
-
-/** 
- * @brief Read version info from resource to dialog.
- */
-BOOL CAboutDlg::OnInitDialog() 
-{
-	CDialog::OnInitDialog();
-	
-	CVersionInfo version;
-	CString sVersion = version.GetFixedProductVersion();
-	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
-
-#ifdef _UNICODE
-	CString strUnicode;
-	VERIFY(strUnicode.LoadString(IDS_UNICODE));
-	m_strVersion += _T(" ");
-	m_strVersion += strUnicode;
-#endif
-
-	CString sPrivateBuild = version.GetPrivateBuild();
-	if (!sPrivateBuild.IsEmpty())
-	{
-		AfxFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT, sPrivateBuild);
-	}
-
-	CString copyright = version.GetLegalCopyright();
-	m_ctlCompany.SetWindowText(copyright);
-	m_ctlWWW.m_link = WinMergeURL;
-
-	UpdateData(FALSE);
-	
-	return TRUE;  // return TRUE unless you set the focus to a control
-	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -685,35 +588,6 @@ void CMergeApp::OnHelp()
 	GetMainFrame()->ShowHelp();
 }
 
-/** @brief Open Contributors.rtf */
-void CAboutDlg::OnBnClickedOpenContributors()
-{
-	CString defPath = GetModulePath();
-	// Don't add quotation marks yet, CFile doesn't like them
-	CString docPath = defPath + _T("\\contributors.txt");
-	HINSTANCE ret = 0;
-	
-	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)
-	{
-		// Now, add quotation marks so ShellExecute() doesn't fail if path
-		// includes spaces
-		docPath.Insert(0, _T("\""));
-		docPath.Insert(docPath.GetLength(), _T("\""));
-		ret = ShellExecute(m_hWnd, NULL, _T("notepad"), docPath, defPath, SW_SHOWNORMAL);
-
-		// values < 32 are errors (ref to MSDN)
-		if ((int)ret < 32)
-		{
-			// Try to open with associated application (.txt)
-			ret = ShellExecute(m_hWnd, _T("open"), docPath, NULL, NULL, SW_SHOWNORMAL);
-			if ((int)ret < 32)
-				ResMsgBox1(IDS_ERROR_EXECUTE_FILE, _T("Notepad.exe"), MB_ICONSTOP);
-		}
-	}
-	else
-		ResMsgBox1(IDS_ERROR_FILE_NOT_FOUND, docPath, MB_ICONSTOP);
-}
-
 /** 
  * @brief Read paths and filter from project file.
  *
@@ -788,8 +662,7 @@ WORD CMergeApp::GetLangId() const
 /**
  * @brief Reload main menu(s) (for language change)
  */
-void
-CMergeApp::ReloadMenu()
+void CMergeApp::ReloadMenu()
 {
 	m_pLangDlg->ReloadMenu();
 }

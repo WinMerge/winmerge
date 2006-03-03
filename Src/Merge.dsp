@@ -159,6 +159,10 @@ SOURCE=.\7zCommon.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\AboutDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\AppSerialize.cpp
 # End Source File
 # Begin Source File
@@ -910,6 +914,10 @@ SOURCE=.\WMGotoDlg.cpp
 # Begin Source File
 
 SOURCE=.\7zCommon.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\AboutDlg.h
 # End Source File
 # Begin Source File
 

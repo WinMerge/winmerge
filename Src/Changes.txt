@@ -2,6 +2,9 @@
  PATCH: [ 1441387 ] Improve File Encoding dialog
   Src: Merge.rc
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1442107 ] Move About-dialog code to separate files from Merge.cpp
+  Src: Merge.cpp Merge.dsp
+  Src new files: AboutDlg.cpp AboutDlg.h
 
 2006-03-02 Tim
  PATCH: [ 1437770 ] Icons for 'Generate Patch' and 'Generate Report'
