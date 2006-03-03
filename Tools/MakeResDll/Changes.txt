@@ -5,6 +5,9 @@ Add new items to top
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
  Add Changes.txt change log (this file).
   MakeResDll: new Changes.txt
+ PATCH: [ 1424636 ] New BuildOneLanguage.vbs & fix MakeResDll exit
+  MakeResDll: MakeResDll.cpp StdAfx.h
+  Src\Languages: BuildDll.bat BuildOneLanguage.vbs
 
 2004-02-20 Perry
  Add GetClipTcharTextFormat (needed by coretools now) to StdAfx.*

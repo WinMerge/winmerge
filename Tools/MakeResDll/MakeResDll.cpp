@@ -89,8 +89,10 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		FixPath();
 
 		CString s, strOutFile;
-		if (BuildDll(gsRCScript, gsOutPath, sname, strOutFile)
-			&& !gbSilent && !gbBatch)
+		BOOL ok = BuildDll(gsRCScript, gsOutPath, sname, strOutFile);
+		if (!ok)
+			nRetCode = 1;
+		if (ok && !gbSilent && !gbBatch)
 		{
 			AfxFormatString1(s, IDS_SUCCESS_FMT, strOutFile);
 			AfxMessageBox(s, MB_ICONINFORMATION);
@@ -298,7 +300,10 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 		Status(_T("Done\r\n"));
 	}
 	else
+	{
 		Status(_T("Error creating process\r\n"));
+		goto build_failed;
+	}
 	
 	_tcscpy(temp, gVcPaths.sLibs);
 	p = _tcstok(temp, ";\r\n\t");
