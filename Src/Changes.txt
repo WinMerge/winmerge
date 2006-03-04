@@ -15,6 +15,9 @@
  PATCH: [ 1396506 ] customizable text colors
  Add missing files
   Src: new PropTextColors.cpp PropTextColors.h
+ PATCH: [ 1396506 ] customizable text colors
+ Fix compilation (MSVC.NET 2003 correctly gave error that MSVC6 ignored)
+  Src: PreferencesDlg.cpp
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll

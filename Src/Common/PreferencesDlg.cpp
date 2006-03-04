@@ -40,7 +40,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageGeneral(regOptions)
 , m_pageCompare(regOptions)
 , m_pageMergeColors(regOptions)
-, m_pSyntaxColors(regOptions, colors)
+, m_pSyntaxColors(colors)
 , m_pageTextColors(regOptions, colors)
 , m_pageSyntaxColors(regOptions, colors)
 , m_pageArchive(regOptions)
