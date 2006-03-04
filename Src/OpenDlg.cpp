@@ -387,52 +387,67 @@ void COpenDlg::UpdateButtonStates()
  * @param [in] pszFolder Initial folder shown
  * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
  */
-BOOL COpenDlg::SelectFile(CString& path, LPCTSTR pszFolder) 
+BOOL COpenDlg::SelectFile(
+	CString& path, 
+	LPCTSTR initialPath) 
 {
-	TCHAR filterStr[MAX_PATH] = {0};
-	TCHAR fileStr[MAX_PATH] = {0};
-	CString s;
-	CString dirSelTag;
+	BOOL is_open = TRUE; // this method is only for common file open dialog
+
 	CString title;
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+
+	CString dirSelTag;
+
+	// This will tell common file dialog what to show
+	// and also this will hold its return value
+	CString sSelectedFile;
+
+	int filterid = IDS_ALLFILES;
+
+	if (!filterid)
+		filterid = IDS_ALLFILES;
+	CString filters;
+	VERIFY(filters.LoadString(filterid));
+	// Convert extension mask from MFC style separators ('|')
+	//  to Win32 style separators ('\0')
+	LPTSTR filtersStr = filters.GetBuffer(0);
+	ConvertFilter(filtersStr);
 
 	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-	VERIFY(s.LoadString(IDS_ALLFILES));
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 
 	// Set initial filename to folder selection tag
 	dirSelTag += _T("."); // Treat it as filename
-	_tcsncpy(fileStr, dirSelTag, dirSelTag.GetLength() + 1);
-	// Convert extension mask
-	_tcsncpy(filterStr, s, s.GetLength());
-	ConvertFilter(filterStr);
+	sSelectedFile = dirSelTag;
 
 	OPENFILENAME ofn;
 	memset(&ofn, 0, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = GetSafeHwnd();
-	ofn.lpstrFilter = filterStr;
+	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;
-	ofn.lpstrFile = fileStr;
+	ofn.lpstrFile = sSelectedFile.GetBuffer(MAX_PATH);
 	ofn.nMaxFile = MAX_PATH;
-	ofn.lpstrInitialDir = pszFolder;
+	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title;
 	ofn.lpstrFileTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
 
 	BOOL bRetVal = GetOpenFileName(&ofn);
+	// common file dialog populated sSelectedFile variable's buffer
+	sSelectedFile.ReleaseBuffer();
 	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName
 
 	if (bRetVal)
 	{
-		path = fileStr;
+		path = sSelectedFile;
 		struct _stati64 statBuffer;
 		int nRetVal = _tstati64(path, &statBuffer);
 		if (nRetVal == -1)
 		{
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
-			CString folder = GetPathOnly(fileStr);
+			CString folder = GetPathOnly(sSelectedFile);
 			path = folder + '\\';
 		}
 	}

@@ -8,6 +8,8 @@
    PropVss.h SyntaxColors.cpp SyntaxColors.h resource.h
   Src\Common: PreferencesDlg.cpp PreferencesDlg.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1439335 ] Reset cwd in Merge.cpp SelectFile
+  Src: Merge.cpp OpenDlg.cpp
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll

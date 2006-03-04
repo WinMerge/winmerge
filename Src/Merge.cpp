@@ -322,53 +322,59 @@ void CMergeApp::OnAppAbout()
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp commands
 
-/** 
+/**
  * @brief Helper function for selecting dir/file
  * @param [out] path Selected path is returned in this string
- * @param [in] root_path Initial path (and file) shown when dialog is opened
+ * @param [in] initialPath Initial path (and file) shown when dialog is opened
  * @param [in] title Title for path selection dialog
  * @param [in] filterid 0 or STRING ID for filter string - 0 means "All files (*.*)"
  * @param [in] is_open Selects Open/Save -dialog
  */
-BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/, 
+BOOL SelectFile(
+	CString& path,
+	LPCTSTR initialPath /*=NULL*/,
 			 LPCTSTR title /*= _T("Open")*/, 
 			 UINT filterid /*=0*/,
 			 BOOL is_open /*=TRUE*/) 
 {
-	TCHAR filterStr[MAX_PATH] = {0};
-	CString sfile;
-	path.Empty();
+	path.Empty(); // Clear output param
+
+	// This will tell common file dialog what to show
+	// and also this will hold its return value
+	CString sSelectedFile;
 
 	// check if specified path is a file
-	if (root_path!=NULL)
+	if (initialPath && initialPath[0])
 	{
-		if (paths_DoesPathExist(root_path) == IS_EXISTING_FILE)
+		// If initial path info includes a file
+		// we put the bare filename into sSelectedFile
+		// so the common file dialog will start up with that file selected
+		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
 		{
-			SplitFilename(root_path, 0, &sfile, 0);
+			SplitFilename(initialPath, 0, &sSelectedFile, 0);
 		}
 	}
 	
+	if (!filterid)
+		filterid = IDS_ALLFILES;
 	CString filters;
-	if (filterid != 0)
 		VERIFY(filters.LoadString(filterid));
-	else
-		VERIFY(filters.LoadString(IDS_ALLFILES));
-
-	// Convert extension mask
-	_tcsncpy(filterStr, filters, filters.GetLength());
-	ConvertFilter(filterStr);
+	// Convert extension mask from MFC style separators ('|')
+	//  to Win32 style separators ('\0')
+	LPTSTR filtersStr = filters.GetBuffer(-1);
+	ConvertFilter(filtersStr);
 
 	OPENFILENAME ofn;
 	memset(&ofn, 0, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = AfxGetMainWnd()->GetSafeHwnd();
-	ofn.lpstrFilter = filterStr;
+	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;
-	ofn.lpstrFile = sfile.GetBuffer(MAX_PATH);
+	ofn.lpstrFile = sSelectedFile.GetBuffer(MAX_PATH);
 	ofn.nMaxFile = MAX_PATH;
-	ofn.lpstrInitialDir = (LPCTSTR)root_path;
-	ofn.lpstrTitle = (LPCTSTR)title;
+	ofn.lpstrInitialDir = initialPath;
+	ofn.lpstrTitle = title;
 	ofn.lpstrFileTitle = NULL;
 	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 
@@ -377,10 +383,12 @@ BOOL SelectFile(CString& path, LPCTSTR root_path /*=NULL*/,
 		bRetVal = GetOpenFileName(&ofn);
 	else
 		bRetVal = GetSaveFileName(&ofn);
+	// common file dialog populated sSelectedFile variable's buffer
+	sSelectedFile.ReleaseBuffer();
+	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName
 
-	sfile.ReleaseBuffer();
 	if (bRetVal)
-		path = sfile;
+		path = sSelectedFile;
 	
 	return bRetVal;
 }
