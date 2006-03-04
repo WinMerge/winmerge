@@ -40,6 +40,7 @@
 #define IDS_USAGE_SLASH_I               882
 #define IDS_USAGE_SLASH_Y               883
 #define IDS_USAGE_SLASH_G               884
+#define IDS_MISSING_RC_FILE             890
 
 // Next default values for new objects
 // 

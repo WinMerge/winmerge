@@ -52,6 +52,7 @@ static void InitModulePaths();
 static void Usage();
 static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
+static bool DoesFileExist(LPCTSTR filepath);
 
 using namespace std;
 
@@ -307,10 +308,16 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	CString strLinkArgs;
 	CString libs;
 	TCHAR temp[2048], *p;
-	CFileStatus status;
 	HANDLE hLink;
 	CString strOutFolder(pszOutputPath);
 	CString strStem(pszOutputStem);
+
+	// Check RC file exists
+	if (!DoesFileExist(pszRCPath))
+	{
+		Status(IDS_MISSING_RC_FILE, pszRCPath);
+		return FALSE;
+	}
 
 	CString sScriptDir;
 	SplitFilename(pszRCPath, &sScriptDir, NULL, NULL);
@@ -408,19 +415,24 @@ build_failed:
 	return FALSE;
 }
 
+static bool DoesFileExist(LPCTSTR filepath)
+{
+	CFileStatus status;
+	return CFile::GetStatus(filepath, status) != FALSE;
+}
+
 static BOOL CheckCompiler()
 {
 	// look for the compiler
-	CFileStatus status;
-	
-	if (!CFile::GetStatus(gVcPaths.sRCExe, status))
+	if (!DoesFileExist(gVcPaths.sRCExe))
 	{
 		Status(IDS_BAD_RC_PATH_FMT, gVcPaths.sRCExe);
 		Usage();
 		return FALSE;
 	}
 
-	if (!CFile::GetStatus(gVcPaths.sLinkExe, status))
+	// look for the linker
+	if (!DoesFileExist(gVcPaths.sLinkExe))
 	{
 		Status(IDS_BAD_LINK_PATH_FMT, gVcPaths.sLinkExe);
 		Usage();
