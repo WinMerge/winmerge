@@ -25,6 +25,8 @@ class CPropGeneral : public CPropertyPage, public IOptionsPanel
 public:
 	CPropGeneral(COptionsMgr *optionsMgr);
 	~CPropGeneral();
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 

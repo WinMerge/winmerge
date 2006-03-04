@@ -8,9 +8,11 @@
 
 #include "stdafx.h"
 #include "SyntaxColors.h"
+#include "OptionsDef.h"
 #include "OptionsMgr.h"
 
 static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
+static const TCHAR Section[] = _T("Custom Colors");
 
 /**
  * @brief Constructor, initialise with default colors.
@@ -204,9 +206,15 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 		valuename.Format(_T("%s/Color%02u"), DefColorsPath, i);
 		color = m_colors.GetAt(i);
 
-		// Themeable colors are not read from the registry
-		// Currently (2005-12) we have no GUI to specify the themable colors anyway
-		bool serializable = !IsThemeableColorIndex(i);
+		// Special handling for themable colors
+		// These are text colors which by default follow the current system colors
+		// unless the user has overridden this behavior to specify them explicitly
+		bool serializable = true;
+		if (IsThemeableColorIndex(i))
+		{
+			if (m_pOptionsMgr->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING))
+				serializable = false;
+		}
 		m_pOptionsMgr->InitOption(valuename, color, serializable);
 		color = m_pOptionsMgr->GetInt(valuename);
 		ref = color;
@@ -245,6 +253,30 @@ void SyntaxColors::SaveToRegistry()
 		valuename.Format(_T("%s/Bold%02u"), DefColorsPath, i);
 		BOOL bold = m_bolds.GetAt(i);
 		m_pOptionsMgr->SetInt(valuename, bold);
+	}
+}
+
+void SyntaxColors_Load(COLORREF * colors, int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		CString sEntry;
+		sEntry.Format(_T("%d"), i);
+		colors[i] = ::AfxGetApp()->GetProfileInt(Section,
+			sEntry, RGB(255, 255, 255));
+	}
+}
+
+void SyntaxColors_Save(COLORREF * colors, int count)
+{
+	for (int i = 0; i < count; i++)
+	{
+		CString sEntry;
+		sEntry.Format(_T("%d"), i);
+		if (colors[i] == RGB(255, 255, 255))
+			::AfxGetApp()->WriteProfileString(Section, sEntry, NULL);
+		else 
+			::AfxGetApp()->WriteProfileInt(Section, sEntry, colors[i]);
 	}
 }
 

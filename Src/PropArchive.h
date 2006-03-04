@@ -11,7 +11,10 @@
 #define _PROP_ARCHIVE_H_
 
 #include "StatLink.h"
+
+#ifndef _IOPTIONSPANEL_H_
 #include "IOptionsPanel.h"
+#endif
 
 class COptionsMgr;
 
@@ -23,6 +26,8 @@ class CPropArchive : public CPropertyPage
 public:
 	CPropArchive(COptionsMgr *optionsMgr);
 	virtual ~CPropArchive();
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 
@@ -44,6 +49,6 @@ public:
 	BOOL m_bProbeType;
 
 private:
-	COptionsMgr *m_pOptionsMgr;
+	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 #endif // _PROP_ARCHIVE_H_

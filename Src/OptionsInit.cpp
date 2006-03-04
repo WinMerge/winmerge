@@ -94,6 +94,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_CLR_SELECTED_WORDDIFF, (int)RGB(255,160,160));
 	m_options.InitOption(OPT_CLR_WORDDIFF_TEXT, (int)RGB(0,0,0));
 	m_options.InitOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)RGB(0,0,0));
+	m_options.InitOption(OPT_CLR_DEFAULT_TEXT_COLORING, true);
 
 	m_options.InitOption(OPT_PROJECTS_PATH,_T(""));
 

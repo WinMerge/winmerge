@@ -700,6 +700,11 @@ SOURCE=.\PropSyntaxColors.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropTextColors.cpp
+# End Source File
+# Begin Source File
+
+
 SOURCE=.\PropVss.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -1314,6 +1319,10 @@ SOURCE=.\PropRegistry.h
 # Begin Source File
 
 SOURCE=.\PropSyntaxColors.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropTextColors.h
 # End Source File
 # Begin Source File
 

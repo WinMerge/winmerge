@@ -7,7 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"
+#include "resource.h"
 #include "SyntaxColors.h"
 #include "PropSyntaxColors.h"
 
@@ -17,13 +17,14 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static const TCHAR Section[] = _T("Custom Colors");
 
 // CPropEditorColor dialog
 
 IMPLEMENT_DYNAMIC(CPropSyntaxColors, CPropertyPage)
-CPropSyntaxColors::CPropSyntaxColors(SyntaxColors *pColors)
+
+CPropSyntaxColors::CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
 : CPropertyPage(CPropSyntaxColors::IDD)
+, m_pOptionsMgr(optionsMgr)
 , m_nKeywordsBold(0)
 , m_nFunctionsBold(0)
 , m_nCommentsBold(0)
@@ -34,7 +35,7 @@ CPropSyntaxColors::CPropSyntaxColors(SyntaxColors *pColors)
 , m_nUser1Bold(0)
 , m_nUser2Bold(0)
 {
-	m_pTempColors = new SyntaxColors(pColors);
+	m_pTempColors = pColors;
 
 	// Set colors for buttons, do NOT invalidate
 	m_btnKeywordsText.SetColor(m_pTempColors->GetColor(COLORINDEX_KEYWORD), FALSE);
@@ -60,7 +61,6 @@ CPropSyntaxColors::CPropSyntaxColors(SyntaxColors *pColors)
 
 CPropSyntaxColors::~CPropSyntaxColors()
 {
-	delete m_pTempColors;
 }
 
 void CPropSyntaxColors::DoDataExchange(CDataExchange* pDX)
@@ -118,142 +118,91 @@ BEGIN_MESSAGE_MAP(CPropSyntaxColors, CPropertyPage)
 	ON_BN_CLICKED(IDC_SCOLOR_USER2_BOLD, OnBnClickedEcolorUser2Bold)
 END_MESSAGE_MAP()
 
+// CPropSyntaxColor message handlers
 
-// CPropEditorColor message handlers
-
-void CPropSyntaxColors::OnBnClickedEcolorKeywords()
+/** 
+ * @brief Reads options values from storage to UI.
+ * (Property sheet calls this before displaying all property pages)
+ */
+void CPropSyntaxColors::ReadOptions()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_KEYWORD));
+}
+
+/** 
+ * @brief Writes options values from UI to storage.
+ * (Property sheet calls this after displaying all property pages)
+ */
+void CPropSyntaxColors::WriteOptions()
+{
+	// User can only change colors via BrowseColorAndSave,
+	// which writes to m_pTempColors
+	// so user's latest choices are in m_pTempColors
+	// (we don't have to read them from screen)
+	m_pTempColors->SaveToRegistry();
+}
+
+/** 
+ * @brief Let user browse common color dialog, and select a color & save to registry
+ */
+void CPropSyntaxColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
+{
+	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
+	CColorDialog dialog(currentColor);
 	LoadCustomColors();
 	dialog.m_cc.lpCustColors = m_cCustColors;
 	
 	if (dialog.DoModal() == IDOK)
 	{
-		COLORREF temp = dialog.GetColor();
-		m_btnKeywordsText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_KEYWORD, temp);
+		currentColor = dialog.GetColor();
+		colorButton.SetColor(currentColor);
+		m_pTempColors->SetColor(colorIndex, currentColor);
 	}
 	SaveCustomColors();
+}
+
+void CPropSyntaxColors::OnBnClickedEcolorKeywords()
+{
+	BrowseColorAndSave(m_btnKeywordsText, COLORINDEX_KEYWORD);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorFunctions()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_FUNCNAME));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnFunctionsText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_FUNCNAME, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnFunctionsText, COLORINDEX_FUNCNAME);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorComments()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_COMMENT));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnCommentsText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_COMMENT, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnCommentsText, COLORINDEX_COMMENT);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorNumbers()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_NUMBER));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnNumbersText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_NUMBER, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnNumbersText, COLORINDEX_NUMBER);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorOperators()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_OPERATOR));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnOperatorsText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_OPERATOR, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnOperatorsText, COLORINDEX_OPERATOR);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorStrings()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_STRING));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnStringsText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_STRING, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnStringsText, COLORINDEX_STRING);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorPreprocessor()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_PREPROCESSOR));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnPreprocessorText.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_PREPROCESSOR, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnPreprocessorText, COLORINDEX_PREPROCESSOR);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorUser1()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_USER1));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnUser1Text.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_USER1, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnUser1Text, COLORINDEX_USER1);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorUser2()
 {
-	CColorDialog dialog(m_pTempColors->GetColor(COLORINDEX_USER2));
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		COLORREF temp = dialog.GetColor();
-		m_btnUser2Text.SetColor(temp);
-		m_pTempColors->SetColor(COLORINDEX_USER2, temp);
-	}
-	SaveCustomColors();
+	BrowseColorAndSave(m_btnUser2Text, COLORINDEX_USER2);
 }
 
 void CPropSyntaxColors::OnBnClickedEcolorsBdefaults()
@@ -287,13 +236,7 @@ void CPropSyntaxColors::OnBnClickedEcolorsBdefaults()
  */
 void CPropSyntaxColors::LoadCustomColors()
 {
-	for (int i = 0; i < NumCustomColors; i++)
-	{
-		CString sEntry;
-		sEntry.Format(_T("%d"), i);
-		m_cCustColors[i] = ::AfxGetApp()->GetProfileInt(Section,
-			sEntry, RGB(255, 255, 255));
-	}
+	SyntaxColors_Load(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
 
 /** 
@@ -301,16 +244,9 @@ void CPropSyntaxColors::LoadCustomColors()
  */
 void CPropSyntaxColors::SaveCustomColors()
 {
-	for (int i = 0; i < NumCustomColors; i++)
-	{
-		CString sEntry;
-		sEntry.Format(_T("%d"), i);
-		if (m_cCustColors[i] == RGB(255, 255, 255))
-			::AfxGetApp()->WriteProfileString(Section, sEntry, NULL);
-		else 
-			::AfxGetApp()->WriteProfileInt(Section, sEntry, m_cCustColors[i]);
-	}
+	SyntaxColors_Save(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
 }
+
 void CPropSyntaxColors::OnBnClickedEcolorKeywordsBold()
 {
 	UpdateBoldStatus(m_btnKeywordsBold, COLORINDEX_KEYWORD);
@@ -372,3 +308,4 @@ void CPropSyntaxColors::UpdateBoldStatus(CButton &btn, UINT colorIndex)
 	else
 		m_pTempColors->SetBold(colorIndex, FALSE);
 }
+

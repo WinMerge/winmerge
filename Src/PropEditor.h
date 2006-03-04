@@ -25,6 +25,8 @@ class CPropEditor : public CPropertyPage, public IOptionsPanel
 // Construction
 public:
 	CPropEditor(COptionsMgr *optionsMgr);
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 

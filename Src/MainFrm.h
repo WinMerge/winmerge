@@ -154,7 +154,7 @@ public:
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
 	VSSHelper m_vssHelper;
-	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
+	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors; }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 
 	/**
@@ -205,6 +205,8 @@ protected:
 	BCMenu * m_pMenus[MENU_COUNT];
 
 	CRegOptionsMgr m_options; /**< Options manager */
+	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
+
 // Generated message map functions
 protected:
 	void GetFontProperties();
@@ -283,6 +285,7 @@ private:
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object
+SyntaxColors * GetMainSyntaxColors(); // access to the singleton set of syntax colors
 
 /////////////////////////////////////////////////////////////////////////////
 

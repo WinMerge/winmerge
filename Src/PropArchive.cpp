@@ -21,11 +21,11 @@ static char THIS_FILE[] = __FILE__;
 // CPropArchive dialog
 
 CPropArchive::CPropArchive(COptionsMgr *optionsMgr)
-	: CPropertyPage(CPropArchive::IDD)
-	, m_pOptionsMgr(optionsMgr)
-	, m_bEnableSupport(false)
-	, m_nInstallType(0)
-	, m_bProbeType(false)
+: CPropertyPage(CPropArchive::IDD)
+, m_pOptionsMgr(optionsMgr)
+, m_bEnableSupport(false)
+, m_nInstallType(0)
+, m_bProbeType(false)
 {
 }
 

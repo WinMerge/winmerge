@@ -24,8 +24,9 @@
 #include "PropVss.h"
 #include "PropRegistry.h"
 #include "PropColors.h"
-#include "PropCodepage.h"
+#include "PropTextColors.h"
 #include "PropSyntaxColors.h"
+#include "PropCodepage.h"
 #include "PropArchive.h"
 
 #include "propertypagehost.h"
@@ -60,8 +61,9 @@ protected:
 	CPropEditor m_pageEditor;
 	CPropVss m_pageVss;	
 	CPropRegistry m_pageSystem;
-	CPropColors m_pageColors;
 	CPropCodepage m_pageCodepage;
+	CPropMergeColors m_pageMergeColors;
+	CPropTextColors m_pageTextColors;
 	CPropSyntaxColors m_pageSyntaxColors;
 	CPropArchive m_pageArchive;
 

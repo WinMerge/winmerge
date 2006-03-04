@@ -879,6 +879,7 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
  */
 void CMainFrame::OnOptions() 
 {
+	// Using singleton shared syntax colors
 	CPreferencesDlg dlg(&m_options, m_pSyntaxColors);
 	int rv = dlg.DoModal();
 
@@ -2796,6 +2797,14 @@ CMainFrame * GetMainFrame()
 	CMainFrame *pMainframe = dynamic_cast<CMainFrame*>(mainwnd);
 	ASSERT(pMainframe);
 	return pMainframe;
+}
+
+/**
+ * @brief Access to the singleton set of syntax colors
+ */
+SyntaxColors * GetMainSyntaxColors()
+{
+	return GetMainFrame()->GetMainSyntaxColors();
 }
 
 /** 

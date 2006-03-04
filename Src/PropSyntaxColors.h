@@ -11,28 +11,36 @@
 #define _PROP_SYNTAX_COLORS_H_
 
 #include "ColorButton.h"
-#include "afxwin.h"
+
+#ifndef _IOPTIONSPANEL_H_
+#include "IOptionsPanel.h"
+#endif
 
 class SyntaxColors;
 
 const int NumCustomColors = 16;
 
-class CPropSyntaxColors : public CPropertyPage
+class CPropSyntaxColors : public CPropertyPage, public IOptionsPanel
 {
 	DECLARE_DYNAMIC(CPropSyntaxColors)
 
+// Construction & Destruction
 public:
-	CPropSyntaxColors(SyntaxColors *pColors);
+	CPropSyntaxColors(COptionsMgr *optionsMgr, SyntaxColors *pColors);
 	virtual ~CPropSyntaxColors();
 
-// Dialog Data
-	enum { IDD = IDD_PROP_COLORSYNTAX };
+// Implement IOptionsPanel
+	virtual void ReadOptions();
+	virtual void WriteOptions();
 
-	SyntaxColors *m_pTempColors;
+// Dialog Data
+public:
+
+private:
+	enum { IDD = IDD_PROPPAGE_COLORS_SYNTAX };
 
 protected:
 
-	COLORREF m_cCustColors[NumCustomColors];
 
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	afx_msg void OnBnClickedEcolorKeywords();
@@ -57,6 +65,7 @@ protected:
 
 	void LoadCustomColors();
 	void SaveCustomColors();
+	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	int GetCheckVal(UINT nColorIndex);
 	void UpdateBoldStatus(CButton &btn, UINT colorIndex);
 
@@ -90,5 +99,9 @@ private:
 	CButton m_btnPreProcessorBold;
 	CButton m_btnUser1Bold;
 	CButton m_btnUser2Bold;
+
+	SyntaxColors *m_pTempColors;
+	COLORREF m_cCustColors[COLORINDEX_COUNT];
+	COptionsMgr * m_pOptionsMgr;
 };
 #endif // _PROP_SYNTAX_COLORS_H_

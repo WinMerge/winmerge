@@ -42,7 +42,8 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPropCodepage property page
 
-CPropCodepage::CPropCodepage(COptionsMgr *optionsMgr) : CPropertyPage(CPropCodepage::IDD)
+CPropCodepage::CPropCodepage(COptionsMgr *optionsMgr)
+ : CPropertyPage(CPropCodepage::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_nCodepageSystem(-1)
 , m_nCustomCodepageValue(0)

@@ -35,12 +35,19 @@ const TCHAR PATHDELIM = '>';
 
 CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 		UINT nMenuID, CWnd* pParent)   // standard constructor
-	: CDialog(IDD_PREFERENCES, pParent), m_pOptionsMgr(regOptions),
-	m_pageGeneral(regOptions), m_pageCompare(regOptions),
-	m_pageColors(regOptions), m_pSyntaxColors(colors),
-	m_pageSyntaxColors(colors), m_pageArchive(regOptions),
-	m_pageCodepage(regOptions), m_pageEditor(regOptions),
-	m_pageSystem(regOptions), m_pageVss(regOptions)
+: CDialog(IDD_PREFERENCES, pParent)
+, m_pOptionsMgr(regOptions)
+, m_pageGeneral(regOptions)
+, m_pageCompare(regOptions)
+, m_pageMergeColors(regOptions)
+, m_pSyntaxColors(regOptions, colors)
+, m_pageTextColors(regOptions, colors)
+, m_pageSyntaxColors(regOptions, colors)
+, m_pageArchive(regOptions)
+, m_pageCodepage(regOptions)
+, m_pageEditor(regOptions)
+, m_pageSystem(regOptions)
+, m_pageVss(regOptions)
 {
 	UNREFERENCED_PARAMETER(nMenuID);
 }
@@ -83,7 +90,8 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageGeneral, IDS_OPTIONSPG_GENERAL);
 	AddPage(&m_pageCompare, IDS_OPTIONSPG_COMPARE);
 	AddPage(&m_pageEditor, IDS_OPTIONSPG_EDITOR);
-	AddPage(&m_pageColors, IDS_OPTIONSPG_COLORS);
+	AddPage(&m_pageMergeColors, IDS_OPTIONSPG_COLORS);
+	AddPage(&m_pageTextColors, IDS_OPTIONSPG_TEXTCOLORS);
 	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_SYNTAXCOLORS);
 	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
@@ -226,7 +234,9 @@ CString CPreferencesDlg::GetItemPath(HTREEITEM hti)
 void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 {
 	m_pageGeneral.ReadOptions();
-	m_pageColors.ReadOptions();
+	m_pageMergeColors.ReadOptions();
+	m_pageTextColors.ReadOptions();
+	m_pageSyntaxColors.ReadOptions();
 	m_pageSystem.ReadOptions();
 	m_pageCompare.ReadOptions();
 	m_pageEditor.ReadOptions();
@@ -237,7 +247,9 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 	if (bUpdate)
 	{
 		m_pageGeneral.UpdateData(FALSE);
-		m_pageColors.UpdateData(FALSE);
+		m_pageMergeColors.UpdateData(FALSE);
+		m_pageTextColors.UpdateData(FALSE);
+		m_pageSyntaxColors.UpdateData(FALSE);
 		m_pageSystem.UpdateData(FALSE);
 		m_pageCompare.UpdateData(FALSE);
 		m_pageEditor.UpdateData(FALSE);
@@ -256,13 +268,11 @@ void CPreferencesDlg::SaveOptions()
 	m_pageSystem.WriteOptions();
 	m_pageCompare.WriteOptions();
 	m_pageEditor.WriteOptions();
-	m_pageColors.WriteOptions();
+	m_pageMergeColors.WriteOptions();
+	m_pageTextColors.WriteOptions();
+	m_pageSyntaxColors.WriteOptions();
 	m_pageCodepage.WriteOptions();
 	m_pageVss.WriteOptions();	
-
-	m_pSyntaxColors->Clone(m_pageSyntaxColors.m_pTempColors);
-	m_pSyntaxColors->SaveToRegistry();
-
 	m_pageArchive.WriteOptions();
 }
 

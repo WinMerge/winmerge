@@ -17,10 +17,13 @@ class COptionsMgr;
 /** @brief Options property page covering Visual SourceSafe integration */
 class CPropVss : public CPropertyPage, public IOptionsPanel
 {
-// Construction
+
+// Construction & Destruction
 public:
 	CPropVss(COptionsMgr *optionsMgr);
 	~CPropVss();
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 

@@ -39,8 +39,9 @@ class CPropRegistry : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
-
 	CPropRegistry(COptionsMgr *optionsMgr);
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 

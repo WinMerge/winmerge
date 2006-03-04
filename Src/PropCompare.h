@@ -38,19 +38,21 @@ public:
     enum CompareMethod { BY_CONTENTS, BY_DATE};
 
 	CPropCompare(COptionsMgr *optionsMgr);
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 
 // Dialog Data
 	//{{AFX_DATA(CPropCompare)
 	enum { IDD = IDD_PROPPAGE_COMPARE };
-	int		m_compareMethod;
-	BOOL	m_bIgnoreEol;
-	BOOL	m_bIgnoreCase;
-	BOOL	m_bIgnoreBlankLines;
-	int		m_nIgnoreWhite;
-	BOOL	m_bMovedBlocks;
-	BOOL	m_bStopAfterFirst;
+	int     m_compareMethod;
+	BOOL    m_bIgnoreEol;
+	BOOL    m_bIgnoreCase;
+	BOOL    m_bIgnoreBlankLines;
+	int     m_nIgnoreWhite;
+	BOOL    m_bMovedBlocks;
+	BOOL    m_bStopAfterFirst;
 	//}}AFX_DATA
 
 

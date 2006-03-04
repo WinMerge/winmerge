@@ -60,6 +60,7 @@ END_MESSAGE_MAP()
 
 /** 
  * @brief Reads options values from storage to UI.
+ * (Property sheet calls this before displaying all property pages)
  */
 void CPropCompare::ReadOptions()
 {
@@ -74,6 +75,7 @@ void CPropCompare::ReadOptions()
 
 /** 
  * @brief Writes options values from UI to storage.
+ * (Property sheet calls this after displaying all property pages)
  */
 void CPropCompare::WriteOptions()
 {

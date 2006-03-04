@@ -1,7 +1,7 @@
 /** 
  * @file  PropColors.cpp
  *
- * @brief Implementation of CPropColors propertysheet
+ * @brief Implementation of CPropMergeColors propertysheet
  */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
@@ -21,20 +21,21 @@ static char THIS_FILE[] = __FILE__;
 static const TCHAR Section[] = _T("Custom Colors");
 
 /////////////////////////////////////////////////////////////////////////////
-// CPropColors dialog
+// CPropMergeColors dialog
 
 /** 
  * @brief Default constructor.
  */
-CPropColors::CPropColors(COptionsMgr *optionsMgr) : CPropertyPage(CPropColors::IDD)
+CPropMergeColors::CPropMergeColors(COptionsMgr *optionsMgr)
+ : CPropertyPage(CPropMergeColors::IDD)
 , m_pOptionsMgr(optionsMgr)
 {
 }
 
-void CPropColors::DoDataExchange(CDataExchange* pDX)
+void CPropMergeColors::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropColors)
+	//{{AFX_DATA_MAP(CPropMergeColors)
 	DDX_Control(pDX, IDC_TRIVIAL_DIFF_DELETED_COLOR, m_cTrivialDeleted);
 	DDX_Control(pDX, IDC_TRIVIAL_DIFF_COLOR, m_cTrivial);
 	DDX_Control(pDX, IDC_SEL_DIFFERENCE_TEXT_COLOR, m_cSelDiffText);
@@ -58,8 +59,8 @@ void CPropColors::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropColors, CDialog)
-	//{{AFX_MSG_MAP(CPropColors)
+BEGIN_MESSAGE_MAP(CPropMergeColors, CDialog)
+	//{{AFX_MSG_MAP(CPropMergeColors)
 	ON_BN_CLICKED(IDC_DIFFERENCE_COLOR, OnDifferenceColor)
 	ON_BN_CLICKED(IDC_DIFFERENCE_DELETED_COLOR, OnDifferenceDeletedColor)
 	ON_BN_CLICKED(IDC_SEL_DIFFERENCE_DELETED_COLOR, OnSelDifferenceDeletedColor)
@@ -85,429 +86,232 @@ END_MESSAGE_MAP()
 
 /** 
  * @brief Reads options values from storage to UI.
+ * (Property sheet calls this before displaying all property pages)
  */
-void CPropColors::ReadOptions()
+void CPropMergeColors::ReadOptions()
 {
-	m_clrDiff = m_pOptionsMgr->GetInt(OPT_CLR_DIFF);
-	m_clrSelDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF);
-	m_clrDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_DELETED);
-	m_clrSelDiffDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_DELETED);
-	m_clrDiffText = m_pOptionsMgr->GetInt(OPT_CLR_DIFF_TEXT);
-	m_clrSelDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_DIFF_TEXT);
-	m_clrTrivial = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF);
-	m_clrTrivialDeleted = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_DELETED);
-	m_clrTrivialText = m_pOptionsMgr->GetInt(OPT_CLR_TRIVIAL_DIFF_TEXT);
-	m_clrMoved = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK);
-	m_clrMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_DELETED);
-	m_clrMovedText = m_pOptionsMgr->GetInt(OPT_CLR_MOVEDBLOCK_TEXT);
-	m_clrSelMoved = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK);
-	m_clrSelMovedDeleted = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED);
-	m_clrSelMovedText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT);
-	m_clrWordDiff = m_pOptionsMgr->GetInt(OPT_CLR_WORDDIFF);
-	m_clrSelWordDiff = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF);
-	m_clrWordDiffText = m_pOptionsMgr->GetInt(OPT_CLR_WORDDIFF_TEXT);
-	m_clrSelWordDiffText = m_pOptionsMgr->GetInt(OPT_CLR_SELECTED_WORDDIFF_TEXT);
-
-	// Set colors for buttons, do NOT invalidate
-	m_cDiff.SetColor(m_clrDiff, FALSE);
-	m_cSelDiff.SetColor(m_clrSelDiff, FALSE);
-	m_cDiffDeleted.SetColor(m_clrDiffDeleted, FALSE);
-	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted, FALSE);
-	m_cDiffText.SetColor(m_clrDiffText, FALSE);
-	m_cSelDiffText.SetColor(m_clrSelDiffText, FALSE);
-	m_cTrivial.SetColor(m_clrTrivial, FALSE);
-	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted, FALSE);
-	m_cTrivialText.SetColor(m_clrTrivialText, FALSE);
-	m_cMoved.SetColor(m_clrMoved, FALSE);
-	m_cMovedDeleted.SetColor(m_clrMovedDeleted, FALSE);
-	m_cMovedText.SetColor(m_clrMovedText, FALSE);
-	m_cSelMoved.SetColor(m_clrSelMoved, FALSE);
-	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted, FALSE);
-	m_cSelMovedText.SetColor(m_clrSelMovedText, FALSE);
-	m_cWordDiff.SetColor(m_clrWordDiff, FALSE);
-	m_cSelWordDiff.SetColor(m_clrSelWordDiff, FALSE);
-	m_cWordDiffText.SetColor(m_clrWordDiffText, FALSE);
-	m_cSelWordDiffText.SetColor(m_clrSelWordDiffText, FALSE);
+	SerializeColors(READ_OPTIONS);
 }
 
 /** 
  * @brief Writes options values from UI to storage.
+ * (Property sheet calls this after displaying all property pages)
  */
-void CPropColors::WriteOptions()
+void CPropMergeColors::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF, (int)m_clrDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF, (int)m_clrSelDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_DELETED, (int)m_clrDiffDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_DELETED, (int)m_clrSelDiffDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_DIFF_TEXT, (int)m_clrDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_DIFF_TEXT, (int)m_clrSelDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF, (int)m_clrTrivial);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_DELETED, (int)m_clrTrivialDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_TRIVIAL_DIFF_TEXT, (int)m_clrTrivialText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK, (int)m_clrMoved);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_DELETED, (int)m_clrMovedDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_MOVEDBLOCK_TEXT, (int)m_clrMovedText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK, (int)m_clrSelMoved);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, (int)m_clrSelMovedDeleted);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, (int)m_clrSelMovedText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF, (int)m_clrWordDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF, (int)m_clrSelWordDiff);
-	m_pOptionsMgr->SaveOption(OPT_CLR_WORDDIFF_TEXT, (int)m_clrWordDiffText);
-	m_pOptionsMgr->SaveOption(OPT_CLR_SELECTED_WORDDIFF_TEXT, (int)m_clrSelWordDiffText);
+	SerializeColors(WRITE_OPTIONS);
+}
+
+/** 
+ * @brief Let user browse common color dialog, and select a color
+ */
+void CPropMergeColors::BrowseColor(CColorButton & colorButton, COLORREF & currentColor)
+{
+	CColorDialog dialog(currentColor);
+	LoadCustomColors();
+	dialog.m_cc.lpCustColors = m_cCustColors;
+	
+	if (dialog.DoModal() == IDOK)
+	{
+		currentColor = dialog.GetColor();
+		colorButton.SetColor(currentColor);
+	}
+	SaveCustomColors();
 }
 
 /** 
  * @brief User wants to change difference color
  */
-void CPropColors::OnDifferenceColor() 
+void CPropMergeColors::OnDifferenceColor() 
 {
-	CColorDialog dialog(m_clrDiff);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrDiff = dialog.GetColor();
-		m_cDiff.SetColor(m_clrDiff);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cDiff, m_clrDiff);
 }
 
 /** 
  * @brief User wants to change selected difference color
  */
-void CPropColors::OnSelDifferenceColor() 
+void CPropMergeColors::OnSelDifferenceColor() 
 {
-	CColorDialog dialog(m_clrSelDiff);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelDiff = dialog.GetColor();
-		m_cSelDiff.SetColor(m_clrSelDiff);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelDiff, m_clrSelDiff);
 }
 
 /** 
  * @brief User wants to change deleted difference color
  */
-void CPropColors::OnDifferenceDeletedColor() 
+void CPropMergeColors::OnDifferenceDeletedColor() 
 {
-	CColorDialog dialog(m_clrDiffDeleted);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrDiffDeleted = dialog.GetColor();
-		m_cDiffDeleted.SetColor(m_clrDiffDeleted);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cDiffDeleted, m_clrDiffDeleted);
 }
 
 /** 
  * @brief User wants to change selected & deleted difference color
  */
-void CPropColors::OnSelDifferenceDeletedColor() 
+void CPropMergeColors::OnSelDifferenceDeletedColor() 
 {
-	CColorDialog dialog(m_clrSelDiffDeleted);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelDiffDeleted = dialog.GetColor();
-		m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelDiffDeleted, m_clrSelDiffDeleted);
 }
 
 /** 
  * @brief User wants to change difference text color
  */
-void CPropColors::OnDifferenceTextColor() 
+void CPropMergeColors::OnDifferenceTextColor() 
 {
-	CColorDialog dialog(m_clrDiffText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrDiffText = dialog.GetColor();
-		m_cDiffText.SetColor(m_clrDiffText);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cDiffText, m_clrDiffText);
 }
 
 /** 
  * @brief User wants to change selected difference text color
  */
-void CPropColors::OnSelDifferenceTextColor() 
+void CPropMergeColors::OnSelDifferenceTextColor() 
 {
-	CColorDialog dialog(m_clrSelDiffText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelDiffText = dialog.GetColor();
-		m_cSelDiffText.SetColor(m_clrSelDiffText);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelDiffText, m_clrSelDiffText);
 }
 
 /** 
  * @brief User wants to change trivial difference color
  */
-void CPropColors::OnTrivialDiffColor() 
+void CPropMergeColors::OnTrivialDiffColor() 
 {
-	CColorDialog dialog(m_clrTrivial);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrTrivial = dialog.GetColor();
-		m_cTrivial.SetColor(m_clrTrivial);
-	}
-	SaveCustomColors();	
+	BrowseColor(m_cTrivial, m_clrTrivial);
 }
 
 /** 
  * @brief User wants to change deleted trivial difference color
  */
-void CPropColors::OnTrivialDiffDeletedColor() 
+void CPropMergeColors::OnTrivialDiffDeletedColor() 
 {
-	CColorDialog dialog(m_clrTrivialDeleted);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrTrivialDeleted = dialog.GetColor();
-		m_cTrivialDeleted.SetColor(m_clrTrivialDeleted);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cTrivialDeleted, m_clrTrivialDeleted);
 }
 
-void CPropColors::OnTrivialDiffTextColor()
+void CPropMergeColors::OnTrivialDiffTextColor()
 {
-	CColorDialog dialog(m_clrTrivialText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrTrivialText = dialog.GetColor();
-		m_cTrivialText.SetColor(m_clrTrivialText);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cTrivialText, m_clrTrivialText);
 }
 
-void CPropColors::OnMovedColor()
+void CPropMergeColors::OnMovedColor()
 {
-	CColorDialog dialog(m_clrMoved);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrMoved = dialog.GetColor();
-		m_cMoved.SetColor(m_clrMoved);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cMoved, m_clrMoved);
 }
 
-void CPropColors::OnMovedDeletedColor()
+void CPropMergeColors::OnMovedDeletedColor()
 {
-	CColorDialog dialog(m_clrMovedDeleted);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrMovedDeleted = dialog.GetColor();
-		m_cMovedDeleted.SetColor(m_clrMovedDeleted);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cMovedDeleted, m_clrMovedDeleted);
 }
 
-void CPropColors::OnMovedTextColor()
+void CPropMergeColors::OnMovedTextColor()
 {
-	CColorDialog dialog(m_clrMovedText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrMovedText = dialog.GetColor();
-		m_cMovedText.SetColor(m_clrMovedText);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cMovedText, m_clrMovedText);
 }
 
-void CPropColors::OnSelMovedColor()
+void CPropMergeColors::OnSelMovedColor()
 {
-	CColorDialog dialog(m_clrSelMoved);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelMoved = dialog.GetColor();
-		m_cSelMoved.SetColor(m_clrSelMoved);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelMoved, m_clrSelMoved);
 }
 
-void CPropColors::OnSelMovedDeletedColor()
+void CPropMergeColors::OnSelMovedDeletedColor()
 {
-	CColorDialog dialog(m_clrSelMovedDeleted);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelMovedDeleted = dialog.GetColor();
-		m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelMovedDeleted, m_clrSelMovedDeleted);
 }
 
-void CPropColors::OnSelMovedTextColor()
+void CPropMergeColors::OnSelMovedTextColor()
 {
-	CColorDialog dialog(m_clrSelMovedText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelMovedText = dialog.GetColor();
-		m_cSelMovedText.SetColor(m_clrSelMovedText);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelMovedText, m_clrSelMovedText);
 }
 
 /** 
  * @brief User wants to change word difference color
  */
-void CPropColors::OnWordDifferenceColor() 
+void CPropMergeColors::OnWordDifferenceColor() 
 {
-	CColorDialog dialog(m_clrWordDiff);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrWordDiff = dialog.GetColor();
-		m_cWordDiff.SetColor(m_clrWordDiff);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cWordDiff, m_clrWordDiff);
 }
 
 /** 
  * @brief User wants to change selected word difference color
  */
-void CPropColors::OnSelWordDifferenceColor() 
+void CPropMergeColors::OnSelWordDifferenceColor() 
 {
-	CColorDialog dialog(m_clrSelWordDiff);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-	
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrSelWordDiff = dialog.GetColor();
-		m_cSelWordDiff.SetColor(m_clrSelWordDiff);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cSelWordDiff, m_clrSelWordDiff);
 }
 
 /** 
  * @brief User wants to change word difference text color
  */
-void CPropColors::OnWordDifferenceTextColor() 
+void CPropMergeColors::OnWordDifferenceTextColor() 
 {
-	CColorDialog dialog(m_clrWordDiffText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
-
-	if (dialog.DoModal() == IDOK)
-	{
-		m_clrWordDiffText = dialog.GetColor();
-		m_cWordDiffText.SetColor(m_clrWordDiffText);
-	}
-	SaveCustomColors();
+	BrowseColor(m_cWordDiffText, m_clrWordDiffText);
 }
 
 /** 
  * @brief User wants to change selected word difference text color
  */
-void CPropColors::OnSelWordDifferenceTextColor() 
+void CPropMergeColors::OnSelWordDifferenceTextColor() 
 {
-	CColorDialog dialog(m_clrSelWordDiffText);
-	LoadCustomColors();
-	dialog.m_cc.lpCustColors = m_cCustColors;
+	BrowseColor(m_cSelWordDiffText, m_clrSelWordDiffText);
+}
+
+void CPropMergeColors::SerializeColors(OPERATION op)
+{
+	SerializeColor(op, m_cDiff, OPT_CLR_DIFF, m_clrDiff);
+	SerializeColor(op, m_cDiffDeleted, OPT_CLR_DIFF_DELETED, m_clrDiffDeleted);
+	SerializeColor(op, m_cSelDiff, OPT_CLR_SELECTED_DIFF, m_clrSelDiff);
+
+	SerializeColor(op, m_cDiffText, OPT_CLR_DIFF_TEXT, m_clrDiffText);
+	SerializeColor(op, m_cSelDiffDeleted, OPT_CLR_SELECTED_DIFF_DELETED, m_clrSelDiffDeleted);
+	SerializeColor(op, m_cSelDiffText, OPT_CLR_SELECTED_DIFF_TEXT, m_clrSelDiffText);
+
+	SerializeColor(op, m_cTrivial, OPT_CLR_TRIVIAL_DIFF, m_clrTrivial);
+	SerializeColor(op, m_cTrivialDeleted, OPT_CLR_TRIVIAL_DIFF_DELETED, m_clrTrivialDeleted);
+	SerializeColor(op, m_cTrivialText, OPT_CLR_TRIVIAL_DIFF_TEXT, m_clrTrivialText);
 	
-	if (dialog.DoModal() == IDOK)
+	SerializeColor(op, m_cMoved, OPT_CLR_MOVEDBLOCK, m_clrMoved);
+	SerializeColor(op, m_cMovedDeleted, OPT_CLR_MOVEDBLOCK_DELETED, m_clrMovedDeleted);
+	SerializeColor(op, m_cMovedText, OPT_CLR_MOVEDBLOCK_TEXT, m_clrMovedText);
+	
+	SerializeColor(op, m_cSelMoved, OPT_CLR_SELECTED_MOVEDBLOCK, m_clrSelMoved);
+	SerializeColor(op, m_cSelMovedDeleted, OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_clrSelMovedDeleted);
+	SerializeColor(op, m_cSelMovedText, OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText);
+	
+	SerializeColor(op, m_cWordDiff, OPT_CLR_WORDDIFF, m_clrWordDiff);
+	SerializeColor(op, m_cSelWordDiff, OPT_CLR_SELECTED_WORDDIFF, m_clrSelWordDiff);
+	
+	SerializeColor(op, m_cWordDiffText, OPT_CLR_WORDDIFF_TEXT, m_clrWordDiffText);
+	SerializeColor(op, m_cSelWordDiffText, OPT_CLR_SELECTED_WORDDIFF_TEXT, m_clrSelWordDiffText);
+}
+
+void CPropMergeColors::SerializeColor(OPERATION op, CColorButton & btn, LPCTSTR optionName, COLORREF & color)
+{
+	switch (op)
 	{
-		m_clrSelWordDiffText = dialog.GetColor();
-		m_cSelWordDiffText.SetColor(m_clrSelWordDiffText);
+	case SET_DEFAULTS:
+		m_pOptionsMgr->GetDefault(optionName, color);
+		btn.SetColor(color);
+		return;
+
+	case WRITE_OPTIONS:
+		m_pOptionsMgr->SaveOption(optionName, (int)color);
+		return;
+
+	case READ_OPTIONS:
+		color = m_pOptionsMgr->GetInt(optionName);
+		// Set colors for buttons, do NOT invalidate
+		btn.SetColor(color, FALSE);
+		return;
 	}
-	SaveCustomColors();
 }
 
 /** 
  * @brief Resets colors to defaults
  */
-void CPropColors::OnDefaults()
+void CPropMergeColors::OnDefaults()
 {
-	m_pOptionsMgr->GetDefault(OPT_CLR_DIFF, m_clrDiff);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_DIFF, m_clrSelDiff);
-	m_pOptionsMgr->GetDefault(OPT_CLR_DIFF_DELETED, m_clrDiffDeleted);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_DIFF_DELETED, m_clrSelDiffDeleted);
-	m_pOptionsMgr->GetDefault(OPT_CLR_DIFF_TEXT, m_clrDiffText);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_DIFF_TEXT, m_clrSelDiffText);
-	m_pOptionsMgr->GetDefault(OPT_CLR_TRIVIAL_DIFF, m_clrTrivial);
-	m_pOptionsMgr->GetDefault(OPT_CLR_TRIVIAL_DIFF_DELETED, m_clrTrivialDeleted);
-	m_pOptionsMgr->GetDefault(OPT_CLR_TRIVIAL_DIFF_TEXT, m_clrTrivialText);
-	m_pOptionsMgr->GetDefault(OPT_CLR_MOVEDBLOCK, m_clrMoved);
-	m_pOptionsMgr->GetDefault(OPT_CLR_MOVEDBLOCK_DELETED, m_clrMovedDeleted);
-	m_pOptionsMgr->GetDefault(OPT_CLR_MOVEDBLOCK_TEXT, m_clrMovedText);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK, m_clrSelMoved);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK_DELETED, m_clrSelMovedDeleted);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_MOVEDBLOCK_TEXT, m_clrSelMovedText);
-	m_pOptionsMgr->GetDefault(OPT_CLR_WORDDIFF, m_clrWordDiff);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_WORDDIFF, m_clrSelWordDiff);
-	m_pOptionsMgr->GetDefault(OPT_CLR_WORDDIFF_TEXT, m_clrWordDiffText);
-	m_pOptionsMgr->GetDefault(OPT_CLR_SELECTED_WORDDIFF_TEXT, m_clrSelWordDiffText);
-
-	m_cDiff.SetColor(m_clrDiff);
-	m_cSelDiff.SetColor(m_clrSelDiff);
-	m_cDiffDeleted.SetColor(m_clrDiffDeleted);
-	m_cSelDiffDeleted.SetColor(m_clrSelDiffDeleted);
-	m_cDiffText.SetColor(m_clrDiffText);
-	m_cSelDiffText.SetColor(m_clrSelDiffText);
-	m_cTrivial.SetColor(m_clrTrivial);
-	m_cTrivialDeleted.SetColor(m_clrTrivialDeleted);
-	m_cTrivialText.SetColor(m_clrTrivialText);
-	m_cMoved.SetColor(m_clrMoved);
-	m_cMovedDeleted.SetColor(m_clrMovedDeleted);
-	m_cMovedText.SetColor(m_clrMovedText);
-	m_cSelMoved.SetColor(m_clrSelMoved);
-	m_cSelMovedDeleted.SetColor(m_clrSelMovedDeleted);
-	m_cSelMovedText.SetColor(m_clrSelMovedText);
-	m_cWordDiff.SetColor(m_clrWordDiff);
-	m_cSelWordDiff.SetColor(m_clrSelWordDiff);
-	m_cWordDiffText.SetColor(m_clrWordDiffText);
-	m_cSelWordDiffText.SetColor(m_clrSelWordDiffText);
+	SerializeColors(SET_DEFAULTS);
 }
 
 /** 
  * @brief Loads color selection dialog's custom colors from registry
  */
-void CPropColors::LoadCustomColors()
+void CPropMergeColors::LoadCustomColors()
 {
 	for (int i = 0; i < CustomColorsAmount; i++)
 	{
@@ -521,7 +325,7 @@ void CPropColors::LoadCustomColors()
 /** 
  * @brief Saves color selection dialog's custom colors to registry
  */
-void CPropColors::SaveCustomColors()
+void CPropMergeColors::SaveCustomColors()
 {
 	for (int i = 0; i < CustomColorsAmount; i++)
 	{

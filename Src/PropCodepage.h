@@ -22,6 +22,8 @@ class CPropCodepage : public CPropertyPage, public IOptionsPanel
 public:
 	CPropCodepage(COptionsMgr *optionsMgr);
 	~CPropCodepage();
+
+// Implement IOptionsPanel
 	virtual void ReadOptions();
 	virtual void WriteOptions();
 

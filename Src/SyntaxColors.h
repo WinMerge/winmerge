@@ -93,5 +93,7 @@ private:
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 
+void SyntaxColors_Load(COLORREF * colors, int count);
+void SyntaxColors_Save(COLORREF * colors, int count);
 
 #endif // _SYNTAX_COLORS_H_

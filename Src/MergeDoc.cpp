@@ -2734,10 +2734,11 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	m_pDetailView[0]->AttachToBuffer();
 	m_pDetailView[1]->AttachToBuffer();
 
-	m_pView[0]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
-	m_pView[1]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
-	m_pDetailView[0]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
-	m_pDetailView[1]->SetColorContext(GetMainFrame()->m_pSyntaxColors);
+	// Currently there is only one set of syntax colors, which all documents & views share
+	m_pView[0]->SetColorContext(GetMainSyntaxColors());
+	m_pView[1]->SetColorContext(GetMainSyntaxColors());
+	m_pDetailView[0]->SetColorContext(GetMainSyntaxColors());
+	m_pDetailView[1]->SetColorContext(GetMainSyntaxColors());
 
 	// Set read-only statuses
 	m_ptBuf[0]->SetReadOnly(bROLeft);

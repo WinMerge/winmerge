@@ -38,16 +38,17 @@
 #define IDD_MESSAGE_BOX                 219
 #define IDD_EDIT_FIND                   220
 #define IDD_EDIT_REPLACE                221
-#define IDD_PROPPAGE_COLORS             222
+#define IDD_PROPPAGE_COLORS_WINMERGE    222
 #define IDD_PROPPAGE_CODEPAGE           223
 #define IDD_PREFERENCES                 224
-#define IDD_PROP_COLORSYNTAX            225
+#define IDD_PROPPAGE_COLORS_SYNTAX      225
 #define IDD_DIRCMP_REPORT               226
 #define IDD_SHARED_FILTER               227
 #define IDD_PROP_ARCHIVE                228
 #define IDD_COMPARE_STATISTICS          229
 #define IDD_LOAD_SAVE_CODEPAGE          230
 #define IDD_TEST_FILTER                 231
+#define IDD_PROPPAGE_COLORS_TEXT        232
 #define IDB_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -344,6 +345,18 @@
 #define IDC_RESULTS                     1275
 #define IDC_IS_DIRECTORY                1276
 #define IDC_HEADER_FILTER_NAME          1277
+#define IDC_DEFAULT_STANDARD_COLORS     1281
+#define IDC_CUSTOM_COLORS_GROUP         1282
+#define IDC_WHITESPACE_COLOR_LABEL      1283
+#define IDC_TEXT_COLOR_LABEL            1284
+#define IDC_SELECTION_COLOR_LABEL       1285
+#define IDC_TEXT_COLUMN_LABEL           1286
+#define IDC_BACKGROUND_COLUMN_LABEL     1287
+#define IDC_WHITESPACE_BKGD_COLOR       1288
+#define IDC_REGULAR_BKGD_COLOR          1289
+#define IDC_SELECTION_BKGD_COLOR        1290
+#define IDC_SELECTION_TEXT_COLOR        1291
+#define IDC_REGULAR_TEXT_COLOR          1292
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -381,11 +394,12 @@
 #define IDS_OPTIONSPG_COMPARE           9042
 #define IDS_OPTIONSPG_EDITOR            9043
 #define IDS_OPTIONSPG_COLORS            9044
-#define IDS_OPTIONSPG_SYSTEM            9045
-#define IDS_OPTIONSPG_VERSIONCONTROL    9046
-#define IDS_OPTIONSPG_CODEPAGE          9047
-#define IDS_OPTIONSPG_SYNTAXCOLORS      9048
-#define IDS_OPTIONSPG_ARCHIVE           9049
+#define IDS_OPTIONSPG_TEXTCOLORS        9045
+#define IDS_OPTIONSPG_SYNTAXCOLORS      9046
+#define IDS_OPTIONSPG_SYSTEM            9047
+#define IDS_OPTIONSPG_VERSIONCONTROL    9048
+#define IDS_OPTIONSPG_CODEPAGE          9049
+#define IDS_OPTIONSPG_ARCHIVE           9050
 #define IDS_VERSION_FMT                 16385
 #define IDS_UNICODE                     16387
 #define IDS_OPTIONS_TITLE               16400
@@ -987,7 +1001,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        232
 #define _APS_NEXT_COMMAND_VALUE         33112
-#define _APS_NEXT_CONTROL_VALUE         1280
+#define _APS_NEXT_CONTROL_VALUE         1295
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

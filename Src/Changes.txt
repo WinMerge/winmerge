@@ -1,3 +1,14 @@
+2006-03-04 Perry
+ PATCH: [ 1396506 ] customizable text colors
+  Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDoc.cpp
+   OptionsDef.h OptionsInit.cpp PropArchive.cpp PropArchive.h
+   PropCodepage.cpp PropCodepage.h PropColors.cpp PropColors.h
+   PropCompare.cpp PropCompare.h PropEditor.h PropGeneral.h
+   PropRegistry.h PropSyntaxColors.cpp PropSyntaxColors.h
+   PropVss.h SyntaxColors.cpp SyntaxColors.h resource.h
+  Src\Common: PreferencesDlg.cpp PreferencesDlg.h
+  Src/Languages/*: Merge*.rc
+
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
  Add Changes.txt change log (this file).
