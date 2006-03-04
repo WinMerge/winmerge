@@ -137,6 +137,10 @@ SOURCE=.\StdAfx.h
 # End Group
 # Begin Source File
 
+SOURCE=.\Changes.txt
+# End Source File
+# Begin Source File
+
 SOURCE=.\readme.txt
 # End Source File
 # End Target

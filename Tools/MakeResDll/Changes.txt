@@ -12,6 +12,11 @@ Add new items to top
  PATCH: [ 1442238 ] Fix MakeResDll to work with VS.NET 2003
  Bump version from 1.0.4.0 to 1.0.5.0.
   MakeResDll: MakeResDll.cpp MakeResDll.rc
+ PATCH: [ 1442791 ] Update MakeResDll project
+ Add Changes.txt to project.
+ Bump MakeResDll version from 1.0.5.0 to 1.0.6.0.
+ Change version copyright from "2003" to "2003-2006"
+  MakeResDll: MakeResDll.dsp MakeResDll.rc
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll

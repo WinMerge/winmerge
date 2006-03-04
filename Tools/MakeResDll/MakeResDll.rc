@@ -132,8 +132,8 @@ LANGUAGE LANG_SPANISH, 0x9
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,5,0
- PRODUCTVERSION 1,0,5,0
+ FILEVERSION 1,0,6,0
+ PRODUCTVERSION 1,0,6,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -151,14 +151,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Compiler for WinMerge language DLLs\0"
-            VALUE "FileVersion", "1.0.5.0\0"
+            VALUE "FileVersion", "1.0.6.0\0"
             VALUE "InternalName", "MakeResDll\0"
-            VALUE "LegalCopyright", "Copyright © 2003\0"
+            VALUE "LegalCopyright", "Copyright © 2003-2006\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MakeResDll.exe\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "1.0.5.0\0"
+            VALUE "ProductVersion", "1.0.6.0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

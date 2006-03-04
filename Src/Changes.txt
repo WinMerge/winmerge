@@ -9,6 +9,10 @@
   MakeResDll: MakeResDll.cpp MakeResDll.rc resource.h
  PATCH: [ 1442238 ] Fix MakeResDll to work with VS.NET 2003
   MakeResDll: MakeResDll.cpp MakeResDll.rc
+ PATCH: [ 1442791 ] Update MakeResDll project
+ Add Changes.txt to project.
+ Change version copyright from "2003" to "2003-2006"
+  MakeResDll: MakeResDll.dsp MakeResDll.rc
 
 2006-03-04 Perry (MSVC6)
  Current selftests status: Failure count: 0 (of 756)
