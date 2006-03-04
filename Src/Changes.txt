@@ -1,5 +1,16 @@
 2006-03-04 Perry
  PATCH: [ 1396506 ] customizable text colors
+ Fix compilation (MSVC.NET 2003 correctly gave error that MSVC6 ignored)
+  Src: PreferencesDlg.cpp
+ PATCH: [ 1442125 ] Improvements for MakeResDll parsing
+  MakeResDll: MakeResDll.cpp MakeResDll.rc resource.h
+  Src\Common: RegKey.cpp RegKey.h
+
+2006-03-04 Perry (MSVC6)
+ Current selftests status: Failure count: 0 (of 756)
+
+2006-03-04 Perry
+ PATCH: [ 1396506 ] customizable text colors
   Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDoc.cpp
    OptionsDef.h OptionsInit.cpp PropArchive.cpp PropArchive.h
    PropCodepage.cpp PropCodepage.h PropColors.cpp PropColors.h
@@ -15,9 +26,6 @@
  PATCH: [ 1396506 ] customizable text colors
  Add missing files
   Src: new PropTextColors.cpp PropTextColors.h
- PATCH: [ 1396506 ] customizable text colors
- Fix compilation (MSVC.NET 2003 correctly gave error that MSVC6 ignored)
-  Src: PreferencesDlg.cpp
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll

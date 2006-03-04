@@ -25,6 +25,21 @@
 #define IDS_EXE_FILTER                  501
 #define IDS_RESOURCE_SIZE_NO_MATCH      868
 #define IDS_ERR_CREATE_RES_FILE         869
+#define IDS_ERROR_MKDIR                 870
+#define IDS_ERROR_MISSING_SWITCH_ARG    871
+#define IDS_LAST_ARG_SHOULD_BE_RC       872
+#define IDS_USAGE_TITLE                 873
+#define IDS_USAGE_OPTIONS               874
+#define IDS_USAGE_SLASH_P               875
+#define IDS_USAGE_SLASH_S               876
+#define IDS_USAGE_SLASH_B               877
+#define IDS_USAGE_SLASH_V               878
+#define IDS_USAGE_SLASH_O               879
+#define IDS_USAGE_SLASH_R               880
+#define IDS_USAGE_SLASH_L               881
+#define IDS_USAGE_SLASH_I               882
+#define IDS_USAGE_SLASH_Y               883
+#define IDS_USAGE_SLASH_G               884
 
 // Next default values for new objects
 // 

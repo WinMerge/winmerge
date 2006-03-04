@@ -83,12 +83,32 @@ BEGIN
     IDS_RESOURCE_SIZE_NO_MATCH 
                             "Resource sizes don't match, unable to continue"
     IDS_ERR_CREATE_RES_FILE "Unable to create resource file"
+    IDS_ERROR_MKDIR         "Error creating directory: %1"
+    IDS_ERROR_MISSING_SWITCH_ARG 
+                            "Bad arguments, switch requires following argument: %1"
+    IDS_LAST_ARG_SHOULD_BE_RC "Last argument should be RC file: %1"
+    IDS_USAGE_TITLE         "USAGE:  MakeResDll [options]  MyRcScript.rc"
+    IDS_USAGE_OPTIONS       "OPTIONS:"
+    IDS_USAGE_SLASH_P       "\t/p : Pause after build"
+    IDS_USAGE_SLASH_S       "\t/s : Run silently"
+    IDS_USAGE_SLASH_B       "\t/b : Batch mode (no message boxes on success)"
+    IDS_USAGE_SLASH_V       "\t/v : Verbose output"
+    IDS_USAGE_SLASH_O       "\t/o <output path>: Specify the output directory for the language DLL"
 END
 
 STRINGTABLE DISCARDABLE 
 BEGIN
     IDS_PRESS_ANY_KEY       "<< press ENTER to continue >>"
     IDS_SUCCESS_FMT         "The resource DLL was built successfully, and can be found in the following location:\r\n\r\n%1"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_USAGE_SLASH_R       "\t/r <path to rc.exe>: Specify the path to the resource compiler executable"
+    IDS_USAGE_SLASH_L       "\t/l <path to link.exe>: Specify the path to the linker"
+    IDS_USAGE_SLASH_I       "\t/i <include paths separated by semicolons>: Specify include paths"
+    IDS_USAGE_SLASH_Y       "\t/y <library paths separated by semicolons>: Specify library paths"
+    IDS_USAGE_SLASH_G       "\t/g <lang_id>: Specify the language ID"
 END
 
 #endif    // English (U.S.) resources
@@ -111,8 +131,8 @@ LANGUAGE LANG_SPANISH, 0x9
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,2,0
- PRODUCTVERSION 1,0,2,0
+ FILEVERSION 1,0,3,0
+ PRODUCTVERSION 1,0,3,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -130,14 +150,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "Compiler for WinMerge language DLLs\0"
-            VALUE "FileVersion", "000.000.000.000\0"
+            VALUE "FileVersion", "1.0.3.0\0"
             VALUE "InternalName", "MakeResDll\0"
             VALUE "LegalCopyright", "Copyright © 2003\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MakeResDll.exe\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "000.000.000.000\0"
+            VALUE "ProductVersion", "1.0.3.0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

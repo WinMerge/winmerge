@@ -1,8 +1,14 @@
-// MakeResDll.cpp : Defines the entry point for the console application.
-//
+/** 
+ * @file  MakeResDll.cpp
+ *
+ * @brief Code to compile & link a language satellite resource DLL, using Visual Studio
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "MakeResDll.h"
+// Following files included from WinMerge/Src/Common
 #include "coretools.h"
 #include "RegKey.h"
 
@@ -38,14 +44,14 @@ BOOL gbBatch=FALSE;
 BOOL gbSilent=FALSE;
 BOOL gbVerbose=FALSE;
 
-BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile);
-BOOL CheckCompiler();
-void Status(LPCTSTR szText);
-void Status(UINT idstrText, LPCTSTR szText1 = NULL, LPCTSTR szText2 = NULL);
-void InitModulePaths();
-void Usage();
-BOOL ProcessArgs(int argc, TCHAR* argv[]);
-void FixPath();
+static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile);
+static BOOL CheckCompiler();
+static void Status(LPCTSTR szText);
+static void Status(UINT idstrText, LPCTSTR szText1 = NULL, LPCTSTR szText2 = NULL);
+static void InitModulePaths();
+static void Usage();
+static BOOL ProcessArgs(int argc, TCHAR* argv[]);
+static void FixPath();
 
 using namespace std;
 
@@ -109,7 +115,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	return nRetCode;
 }
 
-void FixPath()
+static void FixPath()
 {
 	CString strPath(getenv(_T("PATH")));
 	CString spath;
@@ -129,12 +135,20 @@ void FixPath()
 		_tprintf(_T("New path: %s\r\n"), strPath);
 }
 
-BOOL ProcessArgs(int argc, TCHAR* argv[])
+// Display status message saying this arg requires another arg
+// and return FALSE
+static BOOL MissingArg(LPCTSTR arg)
+{
+	Status(IDS_ERROR_MISSING_SWITCH_ARG, arg);
+	return FALSE;
+}
+
+static BOOL ProcessArgs(int argc, TCHAR* argv[])
 {
 	gsLang.Format(_T("%04x"), MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
-	gsRCScript = argv[argc-1];
+	gsRCScript = _T("");
 
-	for (int i=1; i < argc-1; i++)
+	for (int i=1; i < argc; i++)
 	{
 		if (!_tcsicmp(argv[i], _T("-r"))
 			|| !_tcsicmp(argv[i], _T("/r")))
@@ -143,7 +157,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			if (i < argc-1)
 				gVcPaths.sRCExe = argv[i];
 			else
-				return FALSE;
+				return MissingArg(argv[i]);
 		}
 		else if (!_tcsicmp(argv[i], _T("-p"))
 			|| !_tcsicmp(argv[i], _T("/p")))
@@ -175,7 +189,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			if (i < argc-1)
 				gVcPaths.sLinkExe = argv[i];
 			else
-				return FALSE;
+				return MissingArg(argv[i]);
 		}
 		else if (!_tcsicmp(argv[i], _T("-g"))
 			|| !_tcsicmp(argv[i], _T("/g")))
@@ -184,7 +198,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			if (i < argc-1)
 				gsLang = argv[i];
 			else
-				return FALSE;
+				return MissingArg(argv[i]);
 		}
 		else if (!_tcsicmp(argv[i], _T("-i"))
 			|| !_tcsicmp(argv[i], _T("/i")))
@@ -195,7 +209,7 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 				gVcPaths.sIncludes = argv[i];
 			}
 			else
-				return FALSE;
+				return MissingArg(argv[i]);
 		}
 		else if (!_tcsicmp(argv[i], _T("-o"))
 			|| !_tcsicmp(argv[i], _T("/o")))
@@ -204,10 +218,14 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 			if (i < argc-1)
 			{
 				gsOutPath = argv[i];
-				MkDirEx(gsOutPath);
+				if (!MkDirEx(gsOutPath))
+				{
+					Status(IDS_ERROR_MKDIR, gsOutPath);
+					return FALSE;
+				}
 			}
 			else
-				return FALSE;
+				return MissingArg(argv[i]);
 		}
 		else if (!_tcsicmp(argv[i], _T("-y"))
 			|| !_tcsicmp(argv[i], _T("/y")))
@@ -229,34 +247,62 @@ BOOL ProcessArgs(int argc, TCHAR* argv[])
 
 			}
 			else
-				return FALSE;
+				return MissingArg(argv[i]);
 		}
+		else
+		{
+			if (i != argc-1)
+			{
+				Status(IDS_LAST_ARG_SHOULD_BE_RC, argv[i]);
+				return FALSE;
+			}
+			gsRCScript = argv[i];
+		}
+	}
+	if (gsRCScript.IsEmpty())
+	{
+		Status(IDS_LAST_ARG_SHOULD_BE_RC, argv[argc-1]);
+		return FALSE;
 	}
 	return TRUE;
 }
 
+// Display resource string on its own line
+static void displine(int nId)
+{
+	if (!nId)
+	{
+		_tprintf(_T("\n"));
+		return;
+	}
+	CString str;
+	str.LoadString(nId);
+	_tprintf(_T("%s\n"), (LPCTSTR)str);
+}
 
-void Usage()
+// Display usage information
+static void Usage()
 {
 	if (gbSilent)
 		return;
 
-	_putts(_T("USAGE:  MakeResDll [options]  MyRcScript.rc\r\n"));
-	_putts(_T("OPTIONS:\r\n"));
-	_putts(_T("\t/p : Pause after build\r\n"));
-	_putts(_T("\t/s : Run silently\r\n"));
-	_putts(_T("\t/b : Batch mode (no message boxes on success)\r\n"));
-	_putts(_T("\t/v : Verbose output\r\n"));
-	_putts(_T("\t/o <output path>: Specify the output directory for the language DLL\r\n"));
-	_putts(_T("\t/r <path to rc.exe>: Specify the path to the resource compiler executable\r\n"));
-	_putts(_T("\t/l <path to link.exe>: Specify the path to the linker\r\n"));
-	_putts(_T("\t/i <include paths separated by semicolons>: Specify include paths\r\n"));
-	_putts(_T("\t/y <library paths separated by semicolons>: Specify library paths\r\n"));
-	_putts(_T("\t/g <lang_id>: Specify the language ID\r\n"));
-	_putts(_T("\r\n"));
+	displine(0);
+	displine(IDS_USAGE_TITLE);
+	displine(IDS_USAGE_OPTIONS);
+	displine(IDS_USAGE_SLASH_P);
+	displine(IDS_USAGE_SLASH_S);
+	displine(IDS_USAGE_SLASH_B);
+	displine(IDS_USAGE_SLASH_V);
+	displine(IDS_USAGE_SLASH_O);
+	displine(IDS_USAGE_SLASH_R);
+	displine(IDS_USAGE_SLASH_I);
+	displine(IDS_USAGE_SLASH_L);
+	displine(IDS_USAGE_SLASH_Y);
+	displine(IDS_USAGE_SLASH_G);
+	displine(0);
 }
 
-BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile)
+static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile)
 {
 	CString strLinkArgs;
 	CString libs;
@@ -270,7 +316,11 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 	SplitFilename(pszRCPath, &sScriptDir, NULL, NULL);
 
 	Status(IDS_CREATE_OUTDIR);
-	MkDirEx(strOutFolder);
+	if (!MkDirEx(strOutFolder))
+	{
+		Status(IDS_ERROR_MKDIR, gsOutPath);
+		return FALSE;
+	}
 	Status(_T("OK\r\n"));
 
 	CString strRCArgs;
@@ -300,10 +350,7 @@ BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, C
 		Status(_T("Done\r\n"));
 	}
 	else
-	{
 		Status(_T("Error creating process\r\n"));
-		goto build_failed;
-	}
 	
 	_tcscpy(temp, gVcPaths.sLibs);
 	p = _tcstok(temp, ";\r\n\t");
@@ -361,7 +408,7 @@ build_failed:
 	return FALSE;
 }
 
-BOOL CheckCompiler()
+static BOOL CheckCompiler()
 {
 	// look for the compiler
 	CFileStatus status;
@@ -383,13 +430,13 @@ BOOL CheckCompiler()
 	return TRUE;
 }
 
-void Status(LPCTSTR szText)
+static void Status(LPCTSTR szText)
 {
 	if (!gbSilent)
 		_tprintf(_T("%s"), szText);
 }
 
-void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /*= NULL*/)
+static void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /*= NULL*/)
 {
 	if (gbSilent)
 		return;
@@ -426,7 +473,7 @@ QueryRegUser(CRegKeyEx & reg, LPCTSTR key)
 
 
 // Find locations of RC compiler and linker
-void InitModulePaths()
+static void InitModulePaths()
 {
 	// Initialize module variables
 	gVcPaths.Clear();

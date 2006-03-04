@@ -1,6 +1,12 @@
 MakeResDll/Changes.txt
 Add new items to top
 
+2006-03-04 Perry
+ PATCH: [ 1442125 ] Improvements for MakeResDll parsing
+ Bump version from 1.0.2.0 to 1.0.3.0.
+  MakeResDll: MakeResDll.cpp MakeResDll.rc resource.h
+  Src\Common: RegKey.cpp RegKey.h
+
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
  Add Changes.txt change log (this file).
