@@ -10,6 +10,8 @@
   Src/Languages/*: Merge*.rc
  PATCH: [ 1439335 ] Reset cwd in Merge.cpp SelectFile
   Src: Merge.cpp OpenDlg.cpp
+ PATCH: [ 1442082 ] Fix MakeDirs to not error if directory exists
+  Src\Common: coretools.cpp
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll

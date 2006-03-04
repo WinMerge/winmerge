@@ -535,6 +535,50 @@ SwapEndian(short int val)
 #endif
 }
 
+// Get user language description of error, if available
+static CString MyGetSysError(int nerr)
+{
+	LPVOID lpMsgBuf;
+	CString str = _T("?");
+	if (FormatMessage( 
+		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
+		FORMAT_MESSAGE_FROM_SYSTEM | 
+		FORMAT_MESSAGE_IGNORE_INSERTS,
+		NULL,
+		nerr,
+		0, // Default language
+		(LPTSTR) &lpMsgBuf,
+		0,
+		NULL 
+		))
+	{
+		str = (LPCTSTR)lpMsgBuf;
+	}
+	// Free the buffer.
+	LocalFree( lpMsgBuf );
+	return str;
+}
+
+// Create directory (via Win32 API)
+// if success, or already exists, return TRUE
+// if failure, return system error string
+// (NB: Win32 CreateDirectory reports failure if already exists)
+static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, CString * perrstr)
+{
+	LPSECURITY_ATTRIBUTES lpSecurityAttributes = NULL;
+	int rtn = CreateDirectory(lpPathName, lpSecurityAttributes);
+	if (!rtn)
+	{
+		int errnum = GetLastError();
+		// Consider it success if directory already exists
+		if (errnum == ERROR_ALREADY_EXISTS)
+			return TRUE;
+		CString errdesc = MyGetSysError(errnum);
+		if (perrstr)
+			perrstr->Format(_T("%d: %s"), errnum, (LPCTSTR)errdesc);
+	}
+	return rtn;
+}
 
 BOOL MkDirEx(LPCTSTR filename)
 {
@@ -548,28 +592,35 @@ BOOL MkDirEx(LPCTSTR filename)
 		p=_tcschr(_tcsinc(tempPath),_T('\\'));
 	else
 		p=tempPath;
+	CString errstr;
 	if (p!=NULL)
 		for (; *p != _T('\0'); p = _tcsinc(p))
 		{
 			if (*p == _T('\\'))
 			{
 				_tccpy(p, _T("\0"));
-				if (!CreateDirectory(tempPath, NULL)
-					&& !CreateDirectory(tempPath, NULL))
-					TRACE(_T("Failed to create folder %s (%ld)\n"),tempPath, GetLastError());
-				_tccpy(p, _T("\\"));
+				if (0 && _tcscmp(tempPath, _T(".")) == 0)
+				{
+					// Don't call CreateDirectory(".")
+				}
+				else
+				{
+					if (!MyCreateDirectoryIfNeeded(tempPath, &errstr)
+						&& !MyCreateDirectoryIfNeeded(tempPath, &errstr))
+						TRACE(_T("Failed to create folder %s: %s\n"), tempPath, (LPCTSTR)errstr);
+					_tccpy(p, _T("\\"));
+				}
 			}
 
 		}
 
-		if (!CreateDirectory(filename, NULL)
-			&& !CreateDirectory(filename, NULL))
-			TRACE(_T("Failed to create folder %s (%ld)\n"),filename, GetLastError());
+		if (!MyCreateDirectoryIfNeeded(filename, &errstr)
+			&& !MyCreateDirectoryIfNeeded(filename, &errstr))
+			TRACE(_T("Failed to create folder %s: %s\n"), filename, (LPCTSTR)errstr);
 
 	CFileStatus status;
 	return (CFile::GetStatus(filename, status));
 }
-
 
 float
 RoundMeasure(float measure, float units)
