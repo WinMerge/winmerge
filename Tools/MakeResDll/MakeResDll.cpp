@@ -28,8 +28,8 @@ struct VcPaths
 	CString sVcBaseFolder;
 	CString sIncludes;
 	CString sLibs;
+	CString sAdditionalPath;
 	bool needsInfo() const { return sRCExe.IsEmpty() || sLinkExe.IsEmpty() || sIncludes.IsEmpty() || sLibs.IsEmpty(); }
-	void Clear() { sRCExe = _T(""); sLinkExe = _T(""); sVcBaseFolder = _T(""); sIncludes = _T(""); sLibs = _T(""); }
 };
 
 static VcPaths gVcPaths;
@@ -53,6 +53,7 @@ static void Usage();
 static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
 static bool DoesFileExist(LPCTSTR filepath);
+static void TrimPath(CString & sPath);
 
 using namespace std;
 
@@ -131,6 +132,11 @@ static void FixPath()
 	strPath += _T(";");
 	strPath += spath;
 	strPath += _T(";");
+
+	if (!gVcPaths.sAdditionalPath.IsEmpty())
+	{
+		strPath += gVcPaths.sAdditionalPath + _T(";");
+	}
 	putenv(strPath);
 	if (gbVerbose)
 		_tprintf(_T("New path: %s\r\n"), strPath);
@@ -487,9 +493,6 @@ QueryRegUser(CRegKeyEx & reg, LPCTSTR key)
 // Find locations of RC compiler and linker
 static void InitModulePaths()
 {
-	// Initialize module variables
-	gVcPaths.Clear();
-
 	// All our work is looking for entries in the registry
 	CRegKeyEx reg;
 
@@ -522,6 +525,7 @@ static void InitModulePaths()
 		&& (sVcVersion.IsEmpty() || sVcVersion == _T("Net2003"))
 		&& QueryRegMachine(reg, dirs71))
 	{
+		// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\ 
 		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
 		if (!gVcPaths.sVcBaseFolder.IsEmpty())
@@ -531,6 +535,14 @@ static void InitModulePaths()
 				gVcPaths.sRCExe.Format(_T("%sbin\\rc.exe"), gVcPaths.sVcBaseFolder);
 			if (gVcPaths.sLinkExe.IsEmpty())
 				gVcPaths.sLinkExe.Format(_T("%sbin\\link.exe"), gVcPaths.sVcBaseFolder);
+
+			if (QueryRegMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1")))
+			{
+				// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\ 
+				gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
+				TrimPath(gVcPaths.sAdditionalPath);
+			}
+
 
 			// NB: Following is speculative, based on observation of 7.0
 			// Now also grab includes & libs
@@ -550,6 +562,9 @@ static void InitModulePaths()
 				{
 					gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
 					gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+					// @todo
+					// What about this?
+					// gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), _T("C:\\Program Files\\Microsoft Visual Studio .NET 2003\\SDK\\v1.1"));
 				}
 				reg.Close();
 			}
@@ -577,7 +592,6 @@ static void InitModulePaths()
 			// The user customized ones are not in the registry, but off in a DAT file under
 			// ...\Local Settings\Application Data\Microsoft\VisualStudio\7.0
 			// so we just take the default installation ones
-			// NB: The 7.1 version below is speculative
 			LPCTSTR bd70 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
 			if (QueryRegMachine(reg, bd70))
 			{
@@ -672,4 +686,17 @@ static void InitModulePaths()
 	_tprintf(_T("	%s\r\n"), gVcPaths.sLinkExe);
 	_tprintf(_T("  inc: %s\r\n"), gVcPaths.sIncludes);
 	_tprintf(_T("  lib: %s\r\n"), gVcPaths.sLibs);
+}
+
+// Return true if character is a directory separator slash
+static bool IsSlash(TCHAR ch)
+{
+	return ch == '\\' || ch == '/';
+}
+
+// Remove any trailing slashes
+static void TrimPath(CString & sPath)
+{
+	if (sPath.GetLength() && IsSlash(sPath[sPath.GetLength()-1]))
+		sPath = sPath.Left(sPath.GetLength()-1);
 }

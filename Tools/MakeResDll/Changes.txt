@@ -9,6 +9,9 @@ Add new items to top
  PATCH: [ 1442134 ] MakeResDll: check that RC file exists
  Bump version from 1.0.3.0 to 1.0.4.0.
   MakeResDll: MakeResDll.cpp MakeResDll.rc resource.h
+ PATCH: [ 1442238 ] Fix MakeResDll to work with VS.NET 2003
+ Bump version from 1.0.4.0 to 1.0.5.0.
+  MakeResDll: MakeResDll.cpp MakeResDll.rc
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
