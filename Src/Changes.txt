@@ -12,6 +12,9 @@
   Src: Merge.cpp OpenDlg.cpp
  PATCH: [ 1442082 ] Fix MakeDirs to not error if directory exists
   Src\Common: coretools.cpp
+ PATCH: [ 1396506 ] customizable text colors
+ Add missing files
+  Src: new PropTextColors.cpp PropTextColors.h
 
 2006-03-03 Perry
  PATCH: [ 1442699 ] New Changes.txt file for MakeResDll
