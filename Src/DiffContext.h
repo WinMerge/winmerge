@@ -87,7 +87,6 @@ public:
 	void SetAbortable(IAbortable * piAbortable) { m_piAbortable = piAbortable; }
 	const IAbortable * GetAbortable() const { return m_piAbortable; }
 
-	BOOL m_bRecurse;
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
 	HWND m_hDirFrame;

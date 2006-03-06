@@ -71,13 +71,13 @@ static ArgSetting f_ArgSettings[] =
 void
 CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
 {
-	CStringArray files;
 	UINT nFiles=0;
+	DWORD dwLeftFlags = FFILEOPEN_CMDLINE;
+	DWORD dwRightFlags = FFILEOPEN_CMDLINE;
 	BOOL recurse=FALSE;
-	files.SetSize(2);
-	DWORD dwLeftFlags = FFILEOPEN_NONE;
-	DWORD dwRightFlags = FFILEOPEN_NONE;
 	CString prediffer;
+	CStringArray files;
+	files.SetSize(2);
 
 	// Split commandline arguments into files & flags & recursive flag
 
@@ -102,39 +102,34 @@ CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
 		ParseCCaseArgs(argc, argv, pMainFrame, files, nFiles, dwLeftFlags, dwRightFlags);
 	}
 
-	// LoadProjectFiles returns false if neither argument is a project file
-	if (LoadProjectFile(files, recurse))
+	pMainFrame->m_strSaveAsPath = _T("");
+
+	if (nFiles>2)
 	{
-		if (!files[0].IsEmpty())
-			dwLeftFlags |= FFILEOPEN_PROJECT;
-		if (!files[1].IsEmpty())
-			dwRightFlags |= FFILEOPEN_PROJECT;
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], files[1],
-			dwLeftFlags, dwRightFlags, recurse);
-	}
-	else if (nFiles>2)
-	{
-		dwLeftFlags |= FFILEOPEN_CMDLINE;
-		dwRightFlags |= FFILEOPEN_CMDLINE;
 		pMainFrame->m_strSaveAsPath = files[2];
 		pMainFrame->DoFileOpen(files[0], files[1],
 			dwLeftFlags, dwRightFlags, recurse, NULL, prediffer);
 	}
 	else if (nFiles>1)
 	{
-		dwLeftFlags |= FFILEOPEN_CMDLINE;
-		dwRightFlags |= FFILEOPEN_CMDLINE;
-		pMainFrame->m_strSaveAsPath = _T("");
+		DWORD dwLeftFlags = FFILEOPEN_CMDLINE;
+		DWORD dwRightFlags = FFILEOPEN_CMDLINE;
 		pMainFrame->DoFileOpen(files[0], files[1],
 			dwLeftFlags, dwRightFlags, recurse, NULL, prediffer);
 	}
-	else if (nFiles>0)
+	else if (nFiles==1)
 	{
-		dwLeftFlags |= FFILEOPEN_CMDLINE;
-		pMainFrame->m_strSaveAsPath = _T("");
-		pMainFrame->DoFileOpen(files[0], _T(""),
-			dwLeftFlags, dwRightFlags, recurse, NULL, prediffer);
+		CString sFilepath = files[0];
+		if (IsProjectFile(sFilepath))
+		{
+			LoadAndOpenProjectFile(sFilepath);
+		}
+		else
+		{
+			dwRightFlags = FFILEOPEN_NONE;
+			pMainFrame->DoFileOpen(sFilepath, _T(""),
+				dwLeftFlags, dwRightFlags, recurse, NULL, prediffer);
+		}
 	}
 }
 

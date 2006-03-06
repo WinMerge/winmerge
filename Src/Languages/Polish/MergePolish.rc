@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Gotowe"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Utwórz nowy dokument\nNowy"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Zmieñ opcje drukarki i wydruku\nUstawienia wydruku"
     ID_FILE_PRINT           "Wydrukuj bie¿¹cy dokument\nDrukuj"
     ID_FILE_PRINT_PREVIEW   "Wyœwietl cale strony\nPodgl¹d wydruku"
-    ID_FILE_OPENPROJECT     "Otwórz plik projektu\nPlik projektu (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Poka¿ wszystkie ukryte elementy"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Otwórz plik projektu\nPlik projektu (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "WyjdŸ z programu; program pyta, czy zachowaæ dokumenty\nWyjdŸ"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Otwórz ten dokument"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "Wróæ do poprzedniego panelu\nPoprzedni panel"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Otwórz aktywny dokument w nowym oknie\nNowe okno"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Podziel aktywne okno na panele\nPodziel"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Wyma¿ wybór\nWyma¿"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "Powtórz cofniêt¹ czynnoœæ\nPowtórz"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Poka¿ lub ukryj pasek narzêdzi\nPrze³¹cz pasek narzêdzi"
     ID_VIEW_STATUS_BAR      "Poka¿ lub ukryj pasek stanu\nPrze³¹cz pasek stanu"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Zmieñ rozmiar okna"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Aktywuj to okno"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Zamknij podgl¹d wydruku\nAnuluj podgl¹d"

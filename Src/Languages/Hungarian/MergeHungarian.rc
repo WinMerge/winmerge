@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Kész"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Új dokumentumok létrehozása\nÚj dokumentum (Ctrl+N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "A nyomtató és a nyomtatási opciók megváltoztatása\nNyomtatóbeállítás"
     ID_FILE_PRINT           "Az aktív dokumentum nyomtatása\nNyomtatás"
     ID_FILE_PRINT_PREVIEW   "Az oldalak megjelenítése\nNyomtatási elõnézet"
-    ID_FILE_OPENPROJECT     "Projekt fájl megnyitása\nProjekt fájl (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Minden rejtett elem legyen újból látható"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Projekt fájl megnyitása\nProjekt fájl (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "A program bezárása; a nem mentett fájlok elmentésének lehetõségével\nKilépés"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "A dokumentum megnyitása"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "Váltás az elõzõ ablak paneljára\nElõzõ panel"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Új ablak nyitása az aktív dokumentumhoz\nÚj ablak"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Az aktív ablak felbontása panelekre\nFelbontás"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "A kijelölés törlése\nTörlés"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "Az utoljára visszavont mûvelet megismétlése\nMégis (Ctrl+Y)"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Megmutatja vagy elrejti az Eszköztárat\nEszköztár"
     ID_VIEW_STATUS_BAR      "Megmutatja vagy elrejti az Állapotsort\nÁllapotsor"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Az ablak méretének változtatása"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Ennek az ablaknak az aktiválása"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "A Nyomtatási elõnézet bezárása\nNyomtatási elõnézet bezárása"

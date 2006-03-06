@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "レディ"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "記録"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "新しいドキュメントを生成します\n新規ドキュメント (Ctrl-N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "プリンタ/印刷オプションの変更\n印刷設定"
     ID_FILE_PRINT           "作業中のドキュメントを印刷します\n印刷"
     ID_FILE_PRINT_PREVIEW   "印刷イメージを表示します\n印刷プレビュー"
-    ID_FILE_OPENPROJECT     "プロジェクトを開きます\nプロジェクトを開く (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "非表示にした項目を表示します"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "プロジェクトを開きます\nプロジェクトを開く (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "アプリケーションを終了し、ファイルの保存を指示します\n終了"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "指定のファイルを開く"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "前のウィンドウペインに切り替えます\n前のペイン"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "作業中のウィンドウを複写して表示します\n新規ウィンドウ"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "作業中のウィンドウを分割します\n分割"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "選択範囲を消去します\n削除"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "直前に行った動作を繰り返す\n繰り返す (Ctrl+Y)"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "ツールバーの表示/非表示を切り替えます\nツールバー表示のトグル"
     ID_VIEW_STATUS_BAR      "ステータスバーの表示/非表示を切り替えます\nステータスバー表示のトグル"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "ウィンドウのサイズを変更"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "指定のウィンドウを表示"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "印刷プレビューモードを終了します\nプレビューのキャンセル"

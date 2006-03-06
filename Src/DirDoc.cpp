@@ -971,26 +971,27 @@ void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
  */
 void CDirDoc::OnSaveProject()
 {
-	CString strProjectFileName = GetMainFrame()->AskProjectFileName();
-	if (strProjectFileName.IsEmpty())
+	CString sProject = GetMainFrame()->AskProjectFileName();
+	if (sProject.IsEmpty())
 		return;
 
 	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	ProjectFile pfile;
+	ProjectFile project;
 
 	//set the member of the project file
-	pfile.SetLeft(m_pCtxt->GetLeftPath());
-	pfile.SetFilter(FilterNameOrMask);
-	pfile.SetRight(m_pCtxt->GetRightPath());
-	pfile.SetSubfolders(m_pCtxt->m_bRecurse);
+	project.SetLeft(m_pCtxt->GetLeftPath());
+	project.SetFilter(FilterNameOrMask);
+	project.SetRight(m_pCtxt->GetRightPath());
+	project.SetSubfolders(m_bRecursive);
 
-	CString err;
 	//save the project
-	pfile.Save(strProjectFileName,&err);
-	if (!err.IsEmpty())
+	CString sErr;
+	if (!project.Save(sProject, &sErr))
 	{
+		if (sErr.IsEmpty())
+			sErr = LoadResString(IDS_UNK_ERROR_SAVING_PROJECT);
 		CString msg;
-		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, strProjectFileName, err);
+		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr);
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 }

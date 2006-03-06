@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Pronto"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Create empty documents\nNew Documents (Ctrl+N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Alterar a impressora e as configurações de impressão\nConfigurar impressora"
     ID_FILE_PRINT           "Imprimir o documento ativo\nImprimir"
     ID_FILE_PRINT_PREVIEW   "Visualizar impressão\nVisualizar Impressão"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "Sair do programa; pede para salvar documentos\nSair"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Abrir este documento"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "Ativa o painel anterior\nPainel anterior"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Abre outra janela para o documento ativo\nNova Janela"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Divide a janela ativa em painéis\nDivide"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Apaga o texto selecionado\nApaga"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "Refaz a última ação desfeita\nRefaz"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Exibe ou esconde a barra de ferramentas\nChavea Barra de Ferramentas"
     ID_VIEW_STATUS_BAR      "Exibe ou esconde a barra de status\nChavea Barra de Status"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Altera o tamanho da janela"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Ativar esta janela"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Fechar a visualização de impressão\nCancelar Preview"

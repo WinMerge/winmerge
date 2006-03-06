@@ -596,67 +596,60 @@ void CMergeApp::OnHelp()
 	GetMainFrame()->ShowHelp();
 }
 
+
+/**
+ * @brief Is specified file a project file?
+ */
+bool CMergeApp::IsProjectFile(const CString & filepath) const
+{
+	CString sExt;
+	SplitFilename(filepath, NULL, NULL, &sExt);
+	if (sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+		return true;
+	else
+		return false;
+}
+
 /** 
- * @brief Read paths and filter from project file.
+ * @brief Read project and perform comparison specified
  *
  * Tries to find project file in files[0] and files[1] by extension
  * If cannot find one, returns FALSE
  */
-BOOL CMergeApp::LoadProjectFile(CStringArray & files, BOOL & recursive)
+bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 {
-	CString filterPrefix;
-	CString err;
-	ProjectFile pfile;
-	CString ProjectFileName;
-	CString ext;
+	if (sProject.IsEmpty())
+		return false;
 
-	// Look for project file in files[0] and files[1]
-
-	if (files.GetSize() < 2)
-		return FALSE; // code further down assumes files[0] and files[1] exist
-
-	SplitFilename(files[0], NULL, NULL, &ext);
-	if (ext.CompareNoCase(PROJECTFILE_EXT) == 0)
+	ProjectFile project;
+	CString sErr;
+	if (!project.Read(sProject, &sErr))
 	{
-		ProjectFileName = files[0];
+		if (sErr.IsEmpty())
+			sErr = LoadResString(IDS_UNK_ERROR_READING_PROJECT);
+		CString msg;
+		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr);
+		AfxMessageBox(msg, MB_ICONSTOP);
+		return false;
 	}
-	else
+	CString sLeft, sRight;
+	BOOL bRecursive=FALSE;
+	project.GetPaths(sLeft, sRight, bRecursive);
+	if (project.HasFilter())
 	{
-		SplitFilename(files[1], NULL, NULL, &ext);
-		if (ext.CompareNoCase(PROJECTFILE_EXT) == 0)
-			ProjectFileName = files[1];
-		else
-			return FALSE;
+		CString filter = project.GetFilter();
+		filter.TrimLeft();
+		filter.TrimRight();
+		m_globalFileFilter.SetFilter(filter);
 	}
 
-	// We found project file, and stored it in ProjectFileName
+	DWORD dwLeftFlags = (sLeft.IsEmpty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT);
+	DWORD dwRightFlags = (sRight.IsEmpty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT);
 
-	if (!ProjectFileName.IsEmpty())
-	{
-		if (!pfile.Read(ProjectFileName, &err))
-		{
-			if (!err.IsEmpty())
-			{
-				CString msg;
-				AfxFormatString2(msg, IDS_ERROR_FILEOPEN, ProjectFileName, err);
-				AfxMessageBox(msg, MB_ICONSTOP);
-			}
-			return FALSE;
-		}
-		else
-		{
-			pfile.GetPaths(files[0], files[1], recursive);
-			if (pfile.HasFilter())
-			{
-				CString filter = pfile.GetFilter();
-				filter.TrimLeft();
-				filter.TrimRight();
-				m_globalFileFilter.SetFilter(filter);
-			}
-		}
-		return TRUE;
-	}
-	return FALSE;
+	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
+	
+	BOOL rtn = GetMainFrame()->DoFileOpen(sLeft, sRight, dwLeftFlags, dwRightFlags, bRecursive);
+	return !!rtn;
 }
 
 /**

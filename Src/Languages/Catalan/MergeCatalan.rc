@@ -1656,6 +1656,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Preparat"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1666,6 +1667,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Crea un document nou\nNou (Control-N)"
@@ -1677,8 +1679,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Canvia la impressora i les opcions d'impressió\nConfiguració d'impressió"
     ID_FILE_PRINT           "Imprimeix el document actiu\nImprimeix"
     ID_FILE_PRINT_PREVIEW   "Visualitza pàgines senceres\nVisualització prèvia de la impressió"
-    ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Control+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Torna a fer visibles tots els elements amagats"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Control+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Desa els camins i les opcions actuals a un fitxer de projecte\nDesa fitxer de projecte"
 END
 
@@ -1688,6 +1701,7 @@ BEGIN
     ID_APP_EXIT             "Surt de l'aplicació i us demana que deseu els documents\nSurt"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Obre aquest document"
@@ -1714,6 +1728,7 @@ BEGIN
     ID_PREV_PANE            "Canvia de nou a la subfinestra anterior\nSubfinestra prèvia"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Obre una altra finestra per al document actiu\nFinestra nova"
@@ -1724,6 +1739,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Divideix la finestra activa en subfinestres\nDivideix"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Suprimeix la selecció\nSuprimeix"
@@ -1739,12 +1755,14 @@ BEGIN
     ID_EDIT_REDO            "Refà la darrera acció desfeta\nRefés (Control+Y)"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Mostra o amaga la barra d'eines\nBarra d'eines"
     ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat\nBarra d'estat"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Canvia la mida de la finestra"
@@ -1763,6 +1781,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Activa aquesta finestra"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Tanca el mode de visualització prèvia\nTanca"

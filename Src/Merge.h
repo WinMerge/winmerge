@@ -96,10 +96,10 @@ protected:
 	CString GetUsageDescription();
 	// End MergeArgs.cpp
 
-	BOOL LoadProjectFile(CStringArray & files, BOOL & recursive);
+	bool LoadAndOpenProjectFile(const CString & sFilepath);
+	bool IsProjectFile(const CString & filepath) const;
+
 	void ReloadMenu();
-
-
 
 	//{{AFX_MSG(CMergeApp)
 	afx_msg void OnAppAbout();

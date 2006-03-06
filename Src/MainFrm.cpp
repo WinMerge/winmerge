@@ -2009,24 +2009,11 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	gLog.Write(LOGLEVEL::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
 		files[0], files[1]);
 
-	if (wNumFilesDropped == 1)
+	// Check if they dropped a project file
+	if (wNumFilesDropped == 1 && theApp.IsProjectFile(files[0]))
 	{
-		// Load project file if appropriate extension
-		CString sExt;
-		SplitFilename(files[0], NULL, NULL, &sExt);
-		if (sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
-		{
-			CStringArray filesArray;
-			BOOL bRecursive = FALSE;
-			filesArray.Add(files[0]);
-			filesArray.Add(files[0]);
-			// LoadProjectFile requires two files
-			if (theApp.LoadProjectFile(filesArray, bRecursive))
-			{
-				DoFileOpen(filesArray[0], filesArray[1], FFILEOPEN_NONE, FFILEOPEN_NONE, bRecursive);
-				return;
-			}
-		}
+		theApp.LoadAndOpenProjectFile(files[0]);
+		return;
 	}
 
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
@@ -2528,38 +2515,20 @@ void CMainFrame::OnViewToolbar()
  */
 void CMainFrame::OnFileOpenproject()
 {
-	CString strFileName;
+	CString sFilepath;
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	
 	// get the default projects path
 	CString strProjectPath = m_options.GetString(OPT_PROJECTS_PATH);
-	if (!SelectFile(strFileName, strProjectPath, title, IDS_PROJECTFILES, TRUE))
+	if (!SelectFile(sFilepath, strProjectPath, title, IDS_PROJECTFILES, TRUE))
 		return;
 	
-	strProjectPath = paths_GetParentPath(strFileName);
+	strProjectPath = paths_GetParentPath(sFilepath);
 	// store this as the new project path
 	m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
 
-	CStringArray files;
-	files.Add(strFileName);
-	files.Add("");
-	
-	BOOL bRecursive = TRUE;
-	//load the project file
-	if (theApp.LoadProjectFile(files,bRecursive))
-	{
-		//if the project file is read begin to compare
-		DWORD dwLeftFlags = FFILEOPEN_NONE;
-		DWORD dwRightFlags = FFILEOPEN_NONE;
-		//check if the paths are empty
-		if (!files[0].IsEmpty())
-			dwLeftFlags |= FFILEOPEN_PROJECT;
-		if (!files[1].IsEmpty())
-			dwRightFlags |= FFILEOPEN_PROJECT;
-		m_strSaveAsPath = _T("");
-		DoFileOpen(files[0], files[1], dwLeftFlags, dwRightFlags, bRecursive);
-	}
+	theApp.LoadAndOpenProjectFile(sFilepath);
 }
 
 /**

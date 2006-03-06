@@ -695,6 +695,8 @@
 #define IDS_VCS_CLEARCASE               18500
 #define IDS_BREAK_ON_WHITESPACE         18501
 #define IDS_BREAK_ON_PUNCTUATION        18502
+#define IDS_UNK_ERROR_READING_PROJECT   18510
+#define IDS_UNK_ERROR_SAVING_PROJECT    18511
 #define IDD_LANGUAGE_SELECT             30000
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004

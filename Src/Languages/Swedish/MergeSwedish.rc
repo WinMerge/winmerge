@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Klar"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Skapar nya dokument\nNya Dokument (Ctrl+N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Ändrar skrivare och skrivarens inställningar\nSkrivarinställningar"
     ID_FILE_PRINT           "Skriver ut det aktiva dokumentet\nSkriv ut"
     ID_FILE_PRINT_PREVIEW   "Visar helsida\nFörhandsgranska"
-    ID_FILE_OPENPROJECT     "Öppna Projektfil\nProjektfil(Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Gör alla dolda objekt synliga igen"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Öppna Projektfil\nProjektfil(Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Sparar aktuella sökvägar och inställningar till Projektfil\nSpara Projektfil"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "Avslutar WinMerge och frågar om du vill spara dokument\nAvsluta"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Öppna det här dokumentet"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "Växlar till förra fönstret\nFörra fönstret"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Öppnar ett nytt fönster med det aktiva dokumentet\nNytt fönster"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Delar det aktiva fönstret\nDela"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Tar bort den markerade texten\nTa bort"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "Gör om den tidigare ångrade åtgärden\nGör om"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Visar eller gömmer verktygsfältet\nVäxla verktygsfält"
     ID_VIEW_STATUS_BAR      "Visar eller gömmer statusfältet\nVäxla statusfältet"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Ändra fönsterstorlek"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Aktiverar det här fönstret"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Aktiverar det här fönstret"

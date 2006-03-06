@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "就緒"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "建立空文件\n新文件 (Ctrl+N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "變更印表機和列印選項\n列印設定"
     ID_FILE_PRINT           "列印作用中文件\n列印"
     ID_FILE_PRINT_PREVIEW   "顯示整頁\n預覽列印"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "離開應用程式；提示要儲存文件\n結束"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "開啟這個文件"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "切換回上一個視窗\n上一視窗"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "為作用中文件開啟另一個視窗\n新視窗"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "分割目前視窗\n分割"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "清除選取的範圍\n刪除"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "重做之前未完成的動作\n重做"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "顯示或隱藏工具列\n切換工具列"
     ID_VIEW_STATUS_BAR      "顯示或隱藏狀態列\n切換狀態列"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "更改視窗大小"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "啟用這個視窗"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "關閉預覽列印模式\n取消預覽"

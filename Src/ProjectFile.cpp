@@ -34,15 +34,18 @@ ProjectFile::ProjectFile()
 /** 
  * @brief Get message from exception into sError, or else throw it.
  *
- * If this successfully extracts the error description into the string, it simply returns FALSE
- * If it fails to extract the error description, it rethrows the exception
+ * If caller provided the address of an error string (sError),
+ *  this populates the error string (if possible) and returns FALSE
+ *
+ * If caller did not provide the address of an error string (sError==NULL)
+ *  this rethrows the error
  */
 static BOOL NTAPI False(CException *e, CString *sError)
 {
 	if (sError == NULL)
 		throw e;
-	TCHAR szError[1024];
-	e->GetErrorMessage(szError, 1024);
+	TCHAR szError[4096] = _T("");
+	e->GetErrorMessage(szError, sizeof(szError)/sizeof(szError[0]));
 	*sError = szError;
 	e->Delete();
 	return FALSE;
@@ -50,6 +53,8 @@ static BOOL NTAPI False(CException *e, CString *sError)
 
 /** 
  * @brief Open given path-file and read data from it to member variables.
+ *
+ * Errors are returned in sError, unless it is NULL, in which case they are thrown
  */
 BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 {

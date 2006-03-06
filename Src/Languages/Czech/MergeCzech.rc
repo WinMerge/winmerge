@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Pøipraven"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "Vytvoøí nové dokumenty\nNové dokumenty (Ctrl+N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Zmìní možnosti tiskárny\nNastavení tisku"
     ID_FILE_PRINT           "Vytiskne aktivní dokument\nTisk"
     ID_FILE_PRINT_PREVIEW   "Zobrazí celé stránky\nNáhled tisku"
-    ID_FILE_OPENPROJECT     "Otevøe projekt ze souboru\nOtevøít projekt (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Znovu zviditelní všechny skryté položky"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Otevøe projekt ze souboru\nOtevøít projekt (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Uloží aktuální cesty a volby do souboru projektu\nUložit projekt"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "Ukonèí aplikaci; dotáže se na uložení dokumentù\nKonec"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Otevøe tento dokument"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "Pøepne do pøedchozího panelu v oknì\nPøedchozí panel"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Otevøe jiné okno pro aktivní dokument\nNové okno"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Rozdìlí aktivní okno do panelù\nRozdìlit"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Vymaže výbìr\nVymazat"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "Znovu provede pøedtím vrácenou akci\nZnovu (Ctrl+Y)"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Zobrazí nebo skryje panel nástrojù\nPanel nástrojù"
     ID_VIEW_STATUS_BAR      "Zobrazí nebo skryje stavový øádek\nStavový øádek"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Mìní velikost okna"
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Aktivovat toto okno"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Ukonèí režim náhledu tisku\nZrušit náhled"

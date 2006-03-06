@@ -1,3 +1,10 @@
+2006-03-06 Perry
+ PATCH: [ 1435361 ] Fix and cleanup project file code
+  Src: DiffContext.cpp DiffContext.h DirDoc.cpp MainFrm.cpp
+   Merge.cpp Merge.h Merge.rc MergeArgs.cpp ProjectFile.cpp
+   resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-03-04 Perry
  PATCH: [ 1396506 ] customizable text colors
  Fix compilation (MSVC.NET 2003 correctly gave error that MSVC6 ignored)

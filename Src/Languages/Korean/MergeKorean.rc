@@ -1637,6 +1637,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "준비"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1647,6 +1648,7 @@ BEGIN
     ID_INDICATOR_REC        "REC"
 END
 
+// Generic File menu commands
 STRINGTABLE
 BEGIN
     ID_FILE_NEW             "빈 문서를 생성합니다\n새문서 (Ctrl-N)"
@@ -1658,8 +1660,19 @@ BEGIN
     ID_FILE_PRINT_SETUP     "프린터를 바꾸거나 인쇄 옵션을 수정합니다.\n인쇄 설정"
     ID_FILE_PRINT           "현재 문서를 인쇄합니다.\n인쇄"
     ID_FILE_PRINT_PREVIEW   "미리 보기\n미리 보기"
-    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+END
+
+STRINGTABLE
+BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Open project file\nProject file (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1669,6 +1682,7 @@ BEGIN
     ID_APP_EXIT             "프로그램을 종료합니다.\n종료"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "선택 문서 열기"
@@ -1695,6 +1709,7 @@ BEGIN
     ID_PREV_PANE            "이전 창(pane)으로 이동합니다.\n이전 창(pane)"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "새 창으로 문서를 엽니다.\n새 창으로"
@@ -1705,6 +1720,7 @@ BEGIN
     ID_WINDOW_SPLIT         "현재 창을 분할합니다.\n분할"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "선택 영역을 삭제합니다.\n삭제"
@@ -1720,12 +1736,14 @@ BEGIN
     ID_EDIT_REDO            "다시 실행합니다.\n다시 실행"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "툴바를 보거나 숨깁니다.\n툴바 보기"
     ID_VIEW_STATUS_BAR      "상태 표시줄을 보거나 숨깁니다.\n상태표시줄 보기"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "창의 크기를 조정합니다."
@@ -1744,6 +1762,7 @@ BEGIN
     AFX_IDS_MDICHILD        "이 창을 활성화합니다."
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "미리보기를 종료합니다.\n미리보기 종료"

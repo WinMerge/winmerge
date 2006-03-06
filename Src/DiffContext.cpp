@@ -57,8 +57,7 @@ static char THIS_FILE[]=__FILE__;
  * @param [in] pszRight Initial right-side path.
  */
 CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
-: m_bRecurse(FALSE)
-, m_piFilterGlobal(NULL)
+: m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
 , m_hDirFrame(NULL)
 , m_nCompMethod(-1)
@@ -87,7 +86,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	// and then the temporary goes away
 	// so the temporary never exists while the user is interacting with the GUI
 
-	m_bRecurse=src.m_bRecurse;
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);
 	m_pList = src.m_pList;
