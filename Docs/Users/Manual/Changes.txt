@@ -1,3 +1,7 @@
+2006-03-06 Kimmo
+ Bump manual version to 1.2.2
+  Manual: WinMerge_help.xml
+
 2006-03-01 Tim
  PATCH: [ 1405344 ] Manual: New icons
   Manual/screenshots: lfile.gif notequal.gif rfile.gif
