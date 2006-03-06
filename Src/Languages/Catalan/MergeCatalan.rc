@@ -1635,6 +1635,8 @@ IDB_TOOLS_FILTERS       BITMAP                  "..\\..\\res\\filters.bmp"
 IDB_TOOLS_COLUMNS       BITMAP                  "..\\..\\res\\customize_columns.bmp"
 IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
+IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
+IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

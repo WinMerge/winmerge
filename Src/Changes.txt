@@ -1,6 +1,8 @@
 2006-03-06 Tim
  BUG: [ 1442866 ] German RC format error
   Src/Languages/German: MergeGerman.rc
+ BUG: [ 1442865 ] languages lack generate patch & report bitmaps
+  Src/Languages/*: Merge*.rc
 
 2006-03-06 Perry
  PATCH: [ 1435361 ] Fix and cleanup project file code
