@@ -1,3 +1,7 @@
+2006-03-06 Perry
+ BUG: [ 1444211 ] bug in current SelectFile
+  Src: Merge.cpp
+
 2006-03-06 Tim
  BUG: [ 1442866 ] German RC format error
   Src/Languages/German: MergeGerman.rc

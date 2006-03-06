@@ -361,7 +361,7 @@ BOOL SelectFile(
 		VERIFY(filters.LoadString(filterid));
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
-	LPTSTR filtersStr = filters.GetBuffer(-1);
+	LPTSTR filtersStr = filters.GetBuffer(0);
 	ConvertFilter(filtersStr);
 
 	OPENFILENAME ofn;
