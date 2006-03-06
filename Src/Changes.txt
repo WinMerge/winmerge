@@ -1,3 +1,7 @@
+2006-03-06 Tim
+ BUG: [ 1442866 ] German RC format error
+  Src/Languages/German: MergeGerman.rc
+
 2006-03-06 Perry
  PATCH: [ 1435361 ] Fix and cleanup project file code
   Src: DiffContext.cpp DiffContext.h DirDoc.cpp MainFrm.cpp

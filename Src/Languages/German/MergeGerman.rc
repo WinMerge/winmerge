@@ -130,7 +130,7 @@ BEGIN
         MENUITEM "&Nach rechts kopieren",       ID_L2R
         MENUITEM "N&ach links kopieren",        ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Auss&chneiden"                ID_EDIT_CUT
+        MENUITEM "Auss&chneiden",               ID_EDIT_CUT
         MENUITEM "&Kopieren",                   ID_EDIT_COPY
         MENUITEM "E&infügen",                   ID_EDIT_PASTE
     END
