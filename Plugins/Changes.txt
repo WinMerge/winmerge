@@ -1,3 +1,23 @@
+Plugins\Changes.txt
+Add new items to top
+(This summarizes all changes to all plugins.)
+
+2006-03-06 Perry
+ PATCH: [ 1441050 ] Fix RCLocalizationHelper
+ Fix RCLocalizationHelper to detect in-place changes.
+ Also fail if substitutions expand string (which is better 
+  than corrupting string).
+ (And other code cleanup.)
+  Plugins\src_VCPP\RCLocalizationHelper:
+   PatternSet.cpp PatternSet.h PluginError.cpp PluginError.h
+   RCLocalizationHelper.dsp RCLocalizationHelper.rc WinMergeScript.cpp
+   New ChangeLog.txt
+ Plugins\dlls:
+  RCLocalizationHelper.dll (v1.0.3.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.3.0
+  RCLocalizationHelperU.dll (v1.0.3.0)
+   Compiled from current CVS (UNICODE) (VC6sp6) Unicode Release MinDependency, v1.0.3.0
+
 2006-02-17 Perry
  PATCH: [ 1430464 ] Excel - compare macros, comments, document properties etc
   Submitted by Arthur Barrett

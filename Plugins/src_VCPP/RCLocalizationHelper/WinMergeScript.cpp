@@ -1,4 +1,14 @@
-// WinMergeScript.cpp : Implementation of CWinMergeScript
+/** 
+ * @file  WinMergeScript.cpp
+ *
+ * @brief Implementation of the main COM object CWinMergeScript
+ *
+ * This object implements the method PrediffBufferW (q.v.).
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "stdafx.h"
 #include "RCLocalizationHelper.h"
 #include "WinMergeScript.h"
@@ -73,6 +83,8 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	// it is true when we're inside a string constant (& not copying text to output)
 	bool bQuoting = false;
 
+	bool changed = false;
+
 	while (iSrc < nSize)
 	{
 		int linelen = GetLineLength(&text[iSrc], nSize - iSrc);
@@ -85,7 +97,18 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 				// eg, skipping lines flagged for omission
 				// or suppressing numbers (dialog positions)
 				//  (codepage declarations, language declarations)
-				ps.processLine(wstr);
+				if (ps.processLine(wstr))
+				{
+					changed=true;
+				}
+				if (wstr.length() > linelen)
+				{
+					// Error
+					// We don't support substitutions that make 
+					// text longer
+					// TODO: Call PluginErrorFmt()
+					return E_FAIL;
+				}
 			}
 			for (int i=0; i<wstr.length(); ++i)
 			{
@@ -109,7 +132,7 @@ STDMETHODIMP CWinMergeScript::PrediffBufferW(BSTR *pText, INT *pSize, VARIANT_BO
 	// set the new size
 	*pSize = iDst;
 
-	if (iDst == nSize)
+	if (iDst == nSize && !changed)
 		*pbChanged = VARIANT_FALSE;
 	else
 		*pbChanged = VARIANT_TRUE;

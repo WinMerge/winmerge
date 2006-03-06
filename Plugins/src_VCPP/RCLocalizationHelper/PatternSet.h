@@ -1,3 +1,16 @@
+/** 
+ * @file  PatternSet.h
+ *
+ * @brief Declaration of PatternSet class
+ *
+ * This applied an arbitrary number of regular expression transformations
+ * either to make lines empty or to change them.
+ *
+ * This uses the CRegExp class from WinMerge Src\Common.
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #ifndef PatternSet_h_included
 #define PatternSet_h_included
 

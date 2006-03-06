@@ -1,0 +1,78 @@
+RCLocalizationHelper\ChangeLog.txt
+Add new items to top
+
+2006-03-06, Perry Rapp
+ PATCH: [ 1441050 ] Fix RCLocalizationHelper
+ Fix RCLocalizationHelper to detect in-place changes.
+ Also fail if substitutions expand string (which is better 
+  than corrupting string).
+ Created ChangeLog (this file).
+ Added file headers including CVS Ids to various source files.
+ Bump version from 1.0.2.0 to 1.0.3.0 (and copyright date to 2006).
+  Plugins\src_VCPP\RCLocalizationHelper:
+   PatternSet.cpp PatternSet.h PluginError.cpp PluginError.h
+   RCLocalizationHelper.dsp RCLocalizationHelper.rc WinMergeScript.cpp
+   New ChangeLog.txt
+
+2006-02-05 Perry
+ Add line filter so RCLocalization ignores codepages even if not ignoring numbers
+  Plugins\dlls: RCLocalizationHelper.ini RCLocalizationHelperU.ini
+  Plugins\src_VCPP\RCLocalizationHelper: 
+   RCLocalizationHelper.ini RCLocalizationHelperU.ini
+
+2005-12-28 Perry
+ BUG: [ 1391212 ] New RCLocalizationHelper doesn't handle escaped quotes
+  Bump version from 1.0.1.0 to 1.0.2.0.
+  Plugins\src_VCPP\RCLocalizationHelper:
+   RCLocalizationHelper.rc WinMergeScript.cpp
+ Plugins\dlls:
+  RCLocalizationHelper.dll (v1.0.2.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.2.0
+  RCLocalizationHelperU.dll (v1.0.2.0)
+   Compiled from current CVS (UNICODE) (VC6sp6) Unicode Release MinDependency, v1.0.2.0
+
+2005-12-27 Perry
+ PATCH: [ 1382130 ] New line-based RCLocalizationHelper
+  Bump version from 1.0.0.3 to 1.0.1.0
+  Plugins\src_VCPP\RCLocalizationHelper:
+   NEW PatternSet.cpp PatternSet.h PluginError.cpp PluginError.h
+   NEW widestr.h
+   NEW RCLocalizationHelper.ini RCLocalizationHelperU.ini
+   RCLocalizationHelper.dsp RCLocalizationHelper.rc Resource.h
+   WinMergeScript.cpp
+ Plugins\dlls:
+  NEW RCLocalizationHelper.ini RCLocalizationHelperU.ini
+  RCLocalizationHelper.dll (v1.0.1.0)
+   Compiled from current CVS (ANSI) (VC6sp6) Release MinDependency, v1.0.1.0
+  RCLocalizationHelperU.dll (v1.0.1.0)
+   Compiled from current CVS (UNICODE) (VC6sp6) Unicode Release MinDependency, v1.0.1.0
+
+2005-12-16 Perry
+ PATCH: [ 1379270 ] Fix RCLocalizationHelper to skip numeric handling in strings
+  Bump version from 1.0.0.2 to 1.0.0.3
+  Plugins\src_VCPP\RCLocalizationHelper:
+   WinMergeScript.cpp RCLocalizationHelper.rc
+  Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.3)
+
+2005-12-13 Perry
+ PATCH: [ 1374981 ] Improvement for RCLocalizationHelper
+  Plugins\src_VCPP\RCLocalizationHelper:
+   WinMergeScript.cpp
+
+2005-12-07 Perry
+ PATCH: [ 1374931 ] Bugfixes & upload binary for RCLocalizationHelper
+  Plugins\dlls: RCLocalizationHelper.dll (v1.0.0.2)
+  Plugins\src_VCPP\RCLocalizationHelper:
+   RCLocalizationHelper.dsp RCLocalizationHelper.rc typeinfoex.h
+ Fix compile paths froma above (plugins go in MergePlugins subdirectory)
+  Plugins\src_VCPP\RCLocalizationHelper:
+   RCLocalizationHelper.dsp
+
+2003-12-17 Laoran
+ update plugin docs and examples, consequence of patch #853147 
+  plugins\dlls: RCLocalizationHelper.dll list.txt
+  plugins\src_VCPP\RCLocalizationHelper: RCLocalizationHelper.idl WinMergeScript.cpp WinMergeScript.h
+
+2003-11-04 Laoran
+ adapt plugins filters to the syntax of regular expressions
+  Plugins\dlls: RCLocalizationHelper.dll

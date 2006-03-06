@@ -272,5 +272,9 @@ SOURCE=.\WinMergeScript.h
 SOURCE=.\WinMergeScript.rgs
 # End Source File
 # End Group
+# Begin Source File
+
+SOURCE=.\ChangeLog.txt
+# End Source File
 # End Target
 # End Project

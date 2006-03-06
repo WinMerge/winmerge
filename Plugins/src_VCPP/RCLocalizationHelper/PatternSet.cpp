@@ -1,3 +1,17 @@
+/** 
+ * @file  PatternSet.cpp
+ *
+ * @brief Implementation of PatternSet class
+ *
+ * This applied an arbitrary number of regular expression transformations
+ * either to make lines empty or to change them.
+ *
+ * This uses the CRegExp class from WinMerge Src\Common.
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
+
 #include "stdafx.h"
 #include <stdio.h>
 #include "PatternSet.h"
@@ -166,6 +180,8 @@ PatternSet::processLine(widestr & wstr)
 			return true;
 		}
 	}
+
+	bool matched=false;
 	int j=0;
 	for (i=0; i<m_substitutionsCount; ++i)
 	{
@@ -184,6 +200,8 @@ PatternSet::processLine(widestr & wstr)
 			wstr2.append(T2COLE(replstr));
 			LPCWSTR tail = wstr.mid(start+len);
 			wstr2.append(tail);
+			if (wcscmp(wstr.string(), wstr2.string()) != 0)
+				matched = true;
 			wstr.set(wstr2.string());
 			if (j<15)
 			{
@@ -199,6 +217,5 @@ PatternSet::processLine(widestr & wstr)
 		}
 	}
 
-	
-	return false;
+	return matched;
 }

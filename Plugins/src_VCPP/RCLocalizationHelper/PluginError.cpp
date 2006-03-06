@@ -1,3 +1,17 @@
+/** 
+ * @file  PluginError.cpp
+ *
+ * @brief Implementation of global Plugin Error functions
+ *
+ * These display a string (either specified or from string resouce)
+ * via a MessageBox.
+ * @todo These need to be altered to store error in property,
+ * when Plugin Errors are implemented.
+ *
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "StdAfx.h"
 #include <stdio.h>
 #include "PluginError.h"
@@ -80,5 +94,4 @@ static void PluginErrorDisplay(LPCTSTR message)
 	UINT uType = MB_OK + MB_ICONSTOP;
 	LPCTSTR caption = _T("PluginErrorCaption");
 	MessageBox(NULL, message, caption, uType);
-
 }
