@@ -1,6 +1,12 @@
+Src\Changes.txt
+Add new items to top.
+(This summarizes all changes to all files under Src, including Src\Languages.)
+
 2006-03-06 Perry
  BUG: [ 1444211 ] bug in current SelectFile
   Src: Merge.cpp
+ PATCH: [ 1443841 ] Add header comment to Src/Changes.txt
+  Src: Changes.txt
 
 2006-03-06 Tim
  BUG: [ 1442866 ] German RC format error
