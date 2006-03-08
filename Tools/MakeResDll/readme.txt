@@ -3,12 +3,12 @@ MakeResDll
 This program invokes a resource compiler and a linker to produce 
 a language DLL from an RC source file.
 
-It searches the registry to find, in order of preference, 
-Visual Studio .NET 2003, Visual Studio .NET, Visual Studio 6,
-and Visual Studio 5.
-
-Visual Studio 2005 is not yet supported, but there is an outstanding
-patch for it.
+It searches the registry to find, in order of preference:
+ Visual Studio .NET 2005
+ Visual Studio .NET 2003
+ Visual Studio .NET (2002)
+ Visual Studio 6
+ Visual Studio 5 
 
 It reads paths from the registry to find the locations for
 the RC compiler, the linker, and the include and library paths
@@ -16,13 +16,17 @@ the RC compiler, the linker, and the include and library paths
 compiler and linker).
 
 You may force it to use a particular version of MakeResDll by
-setting the registry value "VcVersion" under key
- HKCU\Software\\Thingamahoochie\\MakeResDll\\Settings
-Use these values:
+invoking it with the /ui switch, which will bring up a dialog
+allowing you to choose the version of Visual Studio desired.
+
+This actually simply sets the registry value "VcVersion" 
+under key HKCU\Software\\Thingamahoochie\\MakeResDll\\Settings
+as follows:
  MSVC5: VcVersion=5
  MSVC6: VcVersion=6
  MSVC.Net 2002: VcVersion=Net
  MSVC.Net 2003: VcVersion=Net2003
+ MSVC.Net 2005: VcVersion=Net2005
 
 If you wish to override the paths used for some arcane reason,
 these settings may be set -- the following example shows it

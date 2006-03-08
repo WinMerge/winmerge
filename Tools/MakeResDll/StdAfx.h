@@ -21,6 +21,11 @@
 
 // TODO: reference additional headers your program requires here
 
+CString LoadResString(int id);
+class CRegKeyEx;
+bool RegOpenMachine(CRegKeyEx & reg, LPCTSTR key);
+bool RegOpenUser(CRegKeyEx & reg, LPCTSTR key);
+
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
 

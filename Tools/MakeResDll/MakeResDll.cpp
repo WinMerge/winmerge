@@ -11,6 +11,8 @@
 // Following files included from WinMerge/Src/Common
 #include "coretools.h"
 #include "RegKey.h"
+// Local files
+#include "VsVersionDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -32,18 +34,25 @@ struct VcPaths
 	bool needsInfo() const { return sRCExe.IsEmpty() || sLinkExe.IsEmpty() || sIncludes.IsEmpty() || sLibs.IsEmpty(); }
 };
 
+// File-level globals
 static VcPaths gVcPaths;
+static CWinApp theApp;
+static CString gsLang;
+static CString gsVcBin;
+static CString gsRCScript;
+static CString gsOutPath;
+static BOOL gbPause=FALSE;
+BOOL static gbBatch=FALSE;
+static BOOL gbSilent=FALSE;
+static BOOL gbVerbose=FALSE;
+static bool gbUi=false;
+static LPCTSTR gVs80VcBaseDir = _T("SOFTWARE\\Microsoft\\VisualStudio\\8.0\\Setup\\VC");
+static LPCTSTR gVs71VcBaseDir = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\Setup\\VC");
+static LPCTSTR gVs70VcBaseDir = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\Setup\\VC");
+static LPCTSTR gVs6VcBaseDir = _T("SOFTWARE\\Microsoft\\DevStudio\\6.0\\Products\\Microsoft Visual C++");
+static LPCTSTR gVs5VcBaseDir = _T("Software\\Microsoft\\DevStudio\\5.0\\Directories");
 
-CWinApp theApp;
-CString gsLang;
-CString gsVcBin;
-CString gsRCScript;
-CString gsOutPath;
-BOOL gbPause=FALSE;
-BOOL gbBatch=FALSE;
-BOOL gbSilent=FALSE;
-BOOL gbVerbose=FALSE;
-
+// Static functions
 static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile);
 static BOOL CheckCompiler();
 static void Status(LPCTSTR szText);
@@ -54,9 +63,13 @@ static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
 static bool DoesFileExist(LPCTSTR filepath);
 static void TrimPath(CString & sPath);
+static void DisplayUi();
 
 using namespace std;
 
+/**
+ * @brief Main entry point of (console mode) application
+ */
 int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 {
 	int nRetCode = 0;
@@ -82,6 +95,12 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		{
 			Usage();
 			return 1;
+		}
+
+		if (gbUi)
+		{
+			DisplayUi();
+			return 0;
 		}
 
 		CString spath, sname, sext;
@@ -117,6 +136,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	return nRetCode;
 }
 
+/**
+ * @brief Add paths to RC compiler & linker to the PATH environment variable
+ */
 static void FixPath()
 {
 	CString strPath(getenv(_T("PATH")));
@@ -142,14 +164,18 @@ static void FixPath()
 		_tprintf(_T("New path: %s\r\n"), strPath);
 }
 
-// Display status message saying this arg requires another arg
-// and return FALSE
+/**
+ * @brief Display status message saying this arg requires another arg and return FALSE
+ */
 static BOOL MissingArg(LPCTSTR arg)
 {
 	Status(IDS_ERROR_MISSING_SWITCH_ARG, arg);
 	return FALSE;
 }
 
+/**
+ * @brief Parse the arguments and set switches accordingly
+ */
 static BOOL ProcessArgs(int argc, TCHAR* argv[])
 {
 	gsLang.Format(_T("%04x"), MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
@@ -256,6 +282,11 @@ static BOOL ProcessArgs(int argc, TCHAR* argv[])
 			else
 				return MissingArg(argv[i]);
 		}
+		else if (!_tcsicmp(argv[i], _T("-ui"))
+			|| !_tcsicmp(argv[i], _T("/ui")))
+		{
+			gbUi = true;
+		}
 		else
 		{
 			if (i != argc-1)
@@ -282,8 +313,7 @@ static void displine(int nId)
 		_tprintf(_T("\n"));
 		return;
 	}
-	CString str;
-	str.LoadString(nId);
+	CString str = LoadResString(nId);
 	_tprintf(_T("%s\n"), (LPCTSTR)str);
 }
 
@@ -466,27 +496,13 @@ static void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /
 		else if (szText1!=NULL)
 			AfxFormatString1(s, idstrText, szText1);
 		else
-			s.LoadString(idstrText);
+			s = LoadResString(idstrText);
 		Status(s);
 	}
 	CATCH_ALL (e)
 	{
 	}
 	END_CATCH_ALL;
-}
-
-// Read-only open of registry key under HKEY_LOCAL_MACHINE
-static bool
-QueryRegMachine(CRegKeyEx & reg, LPCTSTR key)
-{
-	return reg.OpenNoCreateWithAccess(HKEY_LOCAL_MACHINE, key, KEY_QUERY_VALUE) == ERROR_SUCCESS;
-}
-
-// Read-only open of registry key under HKEY_CURRENT_USER
-static bool
-QueryRegUser(CRegKeyEx & reg, LPCTSTR key)
-{
-	return reg.OpenNoCreateWithAccess(HKEY_CURRENT_USER, key, KEY_QUERY_VALUE) == ERROR_SUCCESS;
 }
 
 
@@ -502,56 +518,66 @@ static void InitModulePaths()
 
 	// Check for user-configured overrides
 	LPCTSTR settings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
-	if (QueryRegUser(reg, settings))
+	if (RegOpenUser(reg, settings))
 	{
 		gVcPaths.sVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
 		if (gVcPaths.sRCExe.IsEmpty())
 			gVcPaths.sRCExe = reg.ReadString(_T("RCExe"), _T(""));
 		if (gVcPaths.sLinkExe.IsEmpty())
 			gVcPaths.sLinkExe = reg.ReadString(_T("LinkExe"), _T(""));
+		// This is the main way for the user to override these settings
+		// VcVersion values handled:
+		// Net2005 - Use Microsoft Visual Studio .NET 2005
+		// Net2003 - Use Microsoft Visual Studio .NET 2003
+		// Net     - Use Microsoft Visual Studio .NET (2002)
+		// 6       - Use Microsoft Visual Studio 6
+		// 5       - Use Microsoft Visual Studio 5
 		sVcVersion = reg.ReadString(_T("VcVersion"), _T(""));
 		reg.Close();
 	}
 
-	// NB
-	// The default install includes for VisualStudio .NET do not include MFC
-	// which appears to be
-	// INCLUDE: %MSVCDir%\ATLMFC\INCLUDE
-	// LIB: %MSVCDir%\ATLMFC\LIB
+	// Check for VisualStudio .NET 2005
+	// Version 8.0
 
-	// check for VisualStudio .NET 2003
-	LPCTSTR dirs71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\Setup\\VC");
 	if (gVcPaths.needsInfo()
-		&& (sVcVersion.IsEmpty() || sVcVersion == _T("Net2003"))
-		&& QueryRegMachine(reg, dirs71))
+		&& (sVcVersion.IsEmpty() || sVcVersion == _T("Net2005"))
+		&& RegOpenMachine(reg, gVs80VcBaseDir))
 	{
-		// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\ 
+		// Get root directory of Visual C
+		// eg, C:\Program Files\Microsoft Visual Studio 8\VC\ 
 		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
+		
+		// Get root directory of Visual Studio
+		LPCTSTR Vc71VsBase = _T("SOFTWARE\\Microsoft\\VisualStudio\\8.0\\Setup\\VS");
+		CString sVsRoot;
+		if (RegOpenMachine(reg, Vc71VsBase))
+		{
+			// eg, C:\Program Files\Microsoft Visual Studio 8\ 
+			sVsRoot = reg.ReadString(_T("ProductDir"), _T(""));
+			reg.Close();
+		}
+
 		if (!gVcPaths.sVcBaseFolder.IsEmpty())
 		{
-			// Found MSVC .NET 2003, so grab resource compiler & linker
+			// Found MSVC .NET 2005, so grab resource compiler & linker
 			if (gVcPaths.sRCExe.IsEmpty())
 				gVcPaths.sRCExe.Format(_T("%sbin\\rc.exe"), gVcPaths.sVcBaseFolder);
 			if (gVcPaths.sLinkExe.IsEmpty())
 				gVcPaths.sLinkExe.Format(_T("%sbin\\link.exe"), gVcPaths.sVcBaseFolder);
 
-			if (QueryRegMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1")))
+			if (RegOpenMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\8.0")))
 			{
-				// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\ 
+				// eg, C:\Program Files\Microsoft Visual Studio 8\Common7\IDE\ 
 				gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
 				TrimPath(gVcPaths.sAdditionalPath);
 			}
 
-
-			// NB: Following is speculative, based on observation of 7.0
 			// Now also grab includes & libs
 			// The default installation ones are in HKLM
-			// The user customized ones are not in the registry, but off in a DAT file under
-			// ...\Local Settings\Application Data\Microsoft\VisualStudio\7.1
 			// so we just take the default installation ones
 			LPCTSTR bd71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
-			if (QueryRegMachine(reg, bd71))
+			if (RegOpenMachine(reg, bd71))
 			{
 				if (gVcPaths.sIncludes.IsEmpty())
 				{
@@ -562,20 +588,90 @@ static void InitModulePaths()
 				{
 					gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
 					gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-					// @todo
-					// What about this?
-					// gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), _T("C:\\Program Files\\Microsoft Visual Studio .NET 2003\\SDK\\v1.1"));
+					if (!sVsRoot.IsEmpty())
+					{
+						// eg C:\Program Files\Microsoft Visual Studio 8\SDK\v1.1"));
+						CString sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
+						gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir);
+					}
 				}
 				reg.Close();
 			}
 		}
 	}
 
-	// check for VisualStudio .NET
-	LPCTSTR dirs70 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\Setup\\VC");
+	// Check for VisualStudio .NET 2003
+	// Version 7.1
+
+	if (gVcPaths.needsInfo()
+		&& (sVcVersion.IsEmpty() || sVcVersion == _T("Net2003"))
+		&& RegOpenMachine(reg, gVs71VcBaseDir))
+	{
+		// Get root directory of Visual C
+		// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\ 
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+		
+		// Get root directory of Visual Studio
+		LPCTSTR Vc71VsBase = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\Setup\\VS");
+		CString sVsRoot;
+		if (RegOpenMachine(reg, Vc71VsBase))
+		{
+			// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\ 
+			sVsRoot = reg.ReadString(_T("ProductDir"), _T(""));
+			reg.Close();
+		}
+
+		if (!gVcPaths.sVcBaseFolder.IsEmpty())
+		{
+			// Found MSVC .NET 2003, so grab resource compiler & linker
+			if (gVcPaths.sRCExe.IsEmpty())
+				gVcPaths.sRCExe.Format(_T("%sbin\\rc.exe"), gVcPaths.sVcBaseFolder);
+			if (gVcPaths.sLinkExe.IsEmpty())
+				gVcPaths.sLinkExe.Format(_T("%sbin\\link.exe"), gVcPaths.sVcBaseFolder);
+
+			if (RegOpenMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1")))
+			{
+				// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\ 
+				gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
+				TrimPath(gVcPaths.sAdditionalPath);
+			}
+
+			// Now also grab includes & libs
+			// The default installation ones are in HKLM
+			// The user customized ones are not in the registry, but off in a DAT file under
+			// ...\Local Settings\Application Data\Microsoft\VisualStudio\7.1
+			// so we just take the default installation ones
+			LPCTSTR bd71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
+			if (RegOpenMachine(reg, bd71))
+			{
+				if (gVcPaths.sIncludes.IsEmpty())
+				{
+					gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+					gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+				}
+				if (gVcPaths.sLibs.IsEmpty())
+				{
+					gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+					gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+					if (!sVsRoot.IsEmpty())
+					{
+						// eg C:\Program Files\Microsoft Visual Studio .NET 2003\SDK\v1.1"));
+						CString sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
+						gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir);
+					}
+				}
+				reg.Close();
+			}
+		}
+	}
+
+	// Check for VisualStudio .NET (2002)
+	// Version 7.0
+
 	if (gVcPaths.needsInfo()
 		&& (sVcVersion.IsEmpty() || sVcVersion == _T("Net"))
-		&& QueryRegMachine(reg, dirs70))
+		&& RegOpenMachine(reg, gVs70VcBaseDir))
 	{
 		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
@@ -593,7 +689,7 @@ static void InitModulePaths()
 			// ...\Local Settings\Application Data\Microsoft\VisualStudio\7.0
 			// so we just take the default installation ones
 			LPCTSTR bd70 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
-			if (QueryRegMachine(reg, bd70))
+			if (RegOpenMachine(reg, bd70))
 			{
 				CString fmwk = gVcPaths.sVcBaseFolder+_T("FrameworkSDK\\");
 				if (gVcPaths.sIncludes.IsEmpty())
@@ -613,31 +709,35 @@ static void InitModulePaths()
 		}
 	}
 
-	// check for devstudio 6
-	LPCTSTR dirs6 = _T("Software\\Microsoft\\DevStudio\\6.0\\Directories");
+	// Check for Visual Studio 6
+	// Version 6
+
 	if (gVcPaths.needsInfo()
 		&& (sVcVersion.IsEmpty() || sVcVersion == _T("6"))
-		&& QueryRegUser(reg, dirs6))
+		&& RegOpenMachine(reg, gVs6VcBaseDir))
 	{
-		gVcPaths.sVcBaseFolder = reg.ReadString(_T("Install Dirs"), _T(""));
+		// eg, C:\Program Files\Microsoft Visual Studio\VC98
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
 		if (!gVcPaths.sVcBaseFolder.IsEmpty())
 		{
-			// Found MSVC6, so grab resource compiler & linker
+			LPCTSTR Dev6Dirs = _T("Software\\Microsoft\\DevStudio\\6.0\\Directories");
+			if (RegOpenUser(reg, Dev6Dirs))
+			{
+				// eg, C:\Program Files\Microsoft Visual Studio\COMMON\MSDev98\Bin
+				CString sVsDevBin = reg.ReadString(_T("Install Dirs"), _T(""));
 			if (gVcPaths.sRCExe.IsEmpty())
-				gVcPaths.sRCExe.Format(_T("%s\\rc.exe"), gVcPaths.sVcBaseFolder);
+					gVcPaths.sRCExe.Format(_T("%s\\rc.exe"), sVsDevBin);
+			}
 
-			CString spath, spath2, spath3, sname;
-			SplitFilename(gVcPaths.sVcBaseFolder, &spath, &sname, NULL);
-			SplitFilename(spath, &spath2, &sname, NULL);
-			SplitFilename(spath2, &spath3, &sname, NULL);
-			gVcPaths.sVcBaseFolder = spath3;
+
+			// Get linker
 			if (gVcPaths.sLinkExe.IsEmpty())
-				gVcPaths.sLinkExe.Format(_T("%s\\vc98\\bin\\link.exe"), spath3);
+				gVcPaths.sLinkExe.Format(_T("%s\\bin\\link.exe"), gVcPaths.sVcBaseFolder);
 
 			// Now also grab includes & libs
 			LPCTSTR bd = _T("Software\\Microsoft\\DevStudio\\6.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
-			if (QueryRegUser(reg, bd))
+			if (RegOpenUser(reg, bd))
 			{
 				if (gVcPaths.sIncludes.IsEmpty())
 					gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
@@ -649,11 +749,12 @@ static void InitModulePaths()
 		}
 	}
 
-	// check for devstudio 5
-	LPCTSTR dirs5 = _T("Software\\Microsoft\\DevStudio\\5.0\\Directories");
+	// Check for Visual Studio 5
+	// Version 5
+
 	if (gVcPaths.needsInfo()
 		&& (sVcVersion.IsEmpty() || sVcVersion == _T("5"))
-		&& QueryRegUser(reg, dirs5))
+		&& RegOpenUser(reg, gVs5VcBaseDir))
 	{
 		gVcPaths.sVcBaseFolder = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
@@ -667,7 +768,7 @@ static void InitModulePaths()
 
 			// Now also grab includes & libs
 			LPCTSTR bd = _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
-			if (QueryRegUser(reg, bd))
+			if (RegOpenUser(reg, bd))
 			{
 				if (gVcPaths.sIncludes.IsEmpty())
 					gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
@@ -679,8 +780,6 @@ static void InitModulePaths()
 		}
 	}
 
-
-
 	_tprintf(_T("Build paths:\r\n"));
 	_tprintf(_T("	%s\r\n"), gVcPaths.sRCExe);
 	_tprintf(_T("	%s\r\n"), gVcPaths.sLinkExe);
@@ -688,15 +787,64 @@ static void InitModulePaths()
 	_tprintf(_T("  lib: %s\r\n"), gVcPaths.sLibs);
 }
 
-// Return true if character is a directory separator slash
+/**
+ * @brief Return true if character is a directory separator slash
+ */
 static bool IsSlash(TCHAR ch)
 {
 	return ch == '\\' || ch == '/';
 }
 
-// Remove any trailing slashes
+/**
+ * @brief Remove any trailing slashes
+ */
 static void TrimPath(CString & sPath)
 {
 	if (sPath.GetLength() && IsSlash(sPath[sPath.GetLength()-1]))
 		sPath = sPath.Left(sPath.GetLength()-1);
 }
+
+/**
+ * @brief Display dialog to let user choose preferences (Visual Studio version)
+ */
+static void DisplayUi()
+{
+	CRegKeyEx reg;
+	CVsVersionDlg dlg;
+
+	if (RegOpenMachine(reg, gVs80VcBaseDir))
+	{
+		dlg.m_sBaseDir[CVsVersionDlg::VS2005] = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+	}
+	if (RegOpenMachine(reg, gVs71VcBaseDir))
+	{
+		dlg.m_sBaseDir[CVsVersionDlg::VS2003] = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+	}
+	if (RegOpenMachine(reg, gVs70VcBaseDir))
+	{
+		dlg.m_sBaseDir[CVsVersionDlg::VS2002] = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+	}
+	if (RegOpenMachine(reg, gVs6VcBaseDir))
+	{
+		dlg.m_sBaseDir[CVsVersionDlg::VS6] = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+	}
+	if (RegOpenMachine(reg, gVs6VcBaseDir))
+	{
+		dlg.m_sBaseDir[CVsVersionDlg::VS6] = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+	}
+	if (RegOpenMachine(reg, gVs5VcBaseDir))
+	{
+		dlg.m_sBaseDir[CVsVersionDlg::VS5] = reg.ReadString(_T("ProductDir"), _T(""));
+		reg.Close();
+	}
+
+	if (dlg.DoModal() == IDOK)
+	{
+	}
+}
+

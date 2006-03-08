@@ -3,6 +3,7 @@
 // Used by MakeResDll.rc
 //
 #define IDS_HELLO                       1
+#define IDD_VSVERSION                   101
 #define IDR_MAINFRAME                   128
 #define IDS_BADBASEDIR                  129
 #define IDS_CHOOSEOUTDIR                130
@@ -41,14 +42,24 @@
 #define IDS_USAGE_SLASH_Y               883
 #define IDS_USAGE_SLASH_G               884
 #define IDS_MISSING_RC_FILE             890
+#define IDS_NO_VS_FOUND                 891
+#define IDS_ERROR_WRITING_PREF          892
+#define IDC_VSTUDIO_GROUP               1001
+#define IDC_VS2005_BTN                  1003
+#define IDC_INSTALL_DIR_TEXT            1004
+#define IDC_VS2003_BTN                  1005
+#define IDC_VS6_BTN                     1006
+#define IDC_VS2002_BTN                  1007
+#define IDC_VS5_BTN                     1008
+#define IDC_INSTALL_DIR_LABEL           1009
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        101
+#define _APS_NEXT_RESOURCE_VALUE        102
 #define _APS_NEXT_COMMAND_VALUE         40001
-#define _APS_NEXT_CONTROL_VALUE         1000
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

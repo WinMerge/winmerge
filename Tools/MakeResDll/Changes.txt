@@ -5,6 +5,10 @@ Add new items to top
  Update MakeResDll readme with current information (MSVC.Net 2003 works
   now), and better explanation of how to pick a specific version.
   MakeResDll: readme.txt
+ PATCH: [ 1443391 ] Update MakeResDll for VS.NET 2005
+  MakeResDll: MakeResDll.cpp MakeResDll.dsp MakeResDll.rc
+   StdAfx.cpp StdAfx.h readme.txt resource.h
+  New MakeResDll: Merge.ico VsVersionDlg.cpp VsVersionDlg.h
 
 2006-03-04 Perry
  PATCH: [ 1442125 ] Improvements for MakeResDll parsing

@@ -49,6 +49,63 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// Dialog
+//
+
+IDD_VSVERSION DIALOG DISCARDABLE  0, 0, 186, 177
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "MakeResDll Visual Studio Version"
+FONT 9, "‚l‚r ‚oƒSƒVƒbƒN"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,34,156,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,111,156,50,14
+    GROUPBOX        "Visual Studio Versions",IDC_VSTUDIO_GROUP,7,7,172,141
+    CONTROL         "Visual Studio .NET 2005",IDC_VS2005_BTN,"Button",
+                    BS_AUTORADIOBUTTON,14,22,108,14
+    EDITTEXT        IDC_INSTALL_DIR_TEXT,14,129,155,13,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    CONTROL         "Visual Studio .NET 2003",IDC_VS2003_BTN,"Button",
+                    BS_AUTORADIOBUTTON,14,39,108,14
+    CONTROL         "Visual Studio 6",IDC_VS6_BTN,"Button",
+                    BS_AUTORADIOBUTTON,14,73,108,14
+    CONTROL         "Visual Studio .NET (2002)",IDC_VS2002_BTN,"Button",
+                    BS_AUTORADIOBUTTON,14,56,108,14
+    CONTROL         "Visual Studio 5",IDC_VS5_BTN,"Button",
+                    BS_AUTORADIOBUTTON,14,90,108,14
+    LTEXT           "Installation Path:",IDC_INSTALL_DIR_LABEL,15,113,70,10
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_VSVERSION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 179
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "Merge.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // String Table
 //
 
@@ -83,21 +140,10 @@ BEGIN
     IDS_RESOURCE_SIZE_NO_MATCH 
                             "Resource sizes don't match, unable to continue"
     IDS_ERR_CREATE_RES_FILE "Unable to create resource file"
-    IDS_MISSING_RC_FILE     "RC file not found: %1"
     IDS_ERROR_MKDIR         "Error creating directory: %1"
     IDS_ERROR_MISSING_SWITCH_ARG 
                             "Bad arguments, switch requires following argument: %1"
     IDS_LAST_ARG_SHOULD_BE_RC "Last argument should be RC file: %1"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
-    IDS_PRESS_ANY_KEY       "<< press ENTER to continue >>"
-    IDS_SUCCESS_FMT         "The resource DLL was built successfully, and can be found in the following location:\r\n\r\n%1"
-END
-
-STRINGTABLE DISCARDABLE 
-BEGIN
     IDS_USAGE_TITLE         "USAGE:  MakeResDll [options]  MyRcScript.rc"
     IDS_USAGE_OPTIONS       "OPTIONS:"
     IDS_USAGE_SLASH_P       "\t/p : Pause after build"
@@ -105,11 +151,24 @@ BEGIN
     IDS_USAGE_SLASH_B       "\t/b : Batch mode (no message boxes on success)"
     IDS_USAGE_SLASH_V       "\t/v : Verbose output"
     IDS_USAGE_SLASH_O       "\t/o <output path>: Specify the output directory for the language DLL"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
     IDS_USAGE_SLASH_R       "\t/r <path to rc.exe>: Specify the path to the resource compiler executable"
     IDS_USAGE_SLASH_L       "\t/l <path to link.exe>: Specify the path to the linker"
     IDS_USAGE_SLASH_I       "\t/i <include paths separated by semicolons>: Specify include paths"
     IDS_USAGE_SLASH_Y       "\t/y <library paths separated by semicolons>: Specify library paths"
     IDS_USAGE_SLASH_G       "\t/g <lang_id>: Specify the language ID"
+    IDS_MISSING_RC_FILE     "RC file not found: %1"
+    IDS_NO_VS_FOUND         "No versions of Visual Studio found"
+    IDS_ERROR_WRITING_PREF  "Error writing preference to registry"
+END
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+    IDS_PRESS_ANY_KEY       "<< press ENTER to continue >>"
+    IDS_SUCCESS_FMT         "The resource DLL was built successfully, and can be found in the following location:\r\n\r\n%1"
 END
 
 #endif    // English (U.S.) resources
@@ -146,7 +205,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "240a04b0"
+        BLOCK "040904b0"
         BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
@@ -164,7 +223,7 @@ BEGIN
     END
     BLOCK "VarFileInfo"
     BEGIN
-        VALUE "Translation", 0x240a, 1200
+        VALUE "Translation", 0x409, 1200
     END
 END
 
