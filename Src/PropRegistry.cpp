@@ -103,7 +103,8 @@ void CPropRegistry::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
 
-	SaveMergePath();
+	SaveMergePath(); // saves context menu settings as well
+
 	CString sExtEditor = m_strEditorPath;
 	sExtEditor.TrimLeft();
 	sExtEditor.TrimRight();
@@ -159,7 +160,7 @@ void CPropRegistry::OnAddToExplorer()
 	AdvancedContextMenuCheck();
 }
 
-/// Saves given path to registry for ShellExtension
+/// Saves given path to registry for ShellExtension, and Context Menu settings
 void CPropRegistry::SaveMergePath()
 {
 	TCHAR temp[MAX_PATH] = {0};
