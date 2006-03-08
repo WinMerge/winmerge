@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-08 Kimmo
+ PATCH: [ 1441392 ] New Splash Screen
+  Submitted by Alexander Skinner
+  Src: Splash.cpp
+  Src/res: splash1.bmp
+
 2006-03-08 Perry
  Update MakeResDll readme with current information (MSVC.Net 2003 works
   now), and better explanation of how to pick a specific version.

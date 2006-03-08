@@ -19,7 +19,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file Splash.cpp
+ * @file Src/Splash.cpp
  *
  * @brief Implementation of splashscreen class
  *
@@ -38,6 +38,25 @@
 #undef THIS_FILE
 static char BASED_CODE THIS_FILE[] = __FILE__;
 #endif
+
+/** 
+ * @brief Area for version text in splash image.
+ * Text is right-aligned, so reserve space to left side for longer text.
+ */
+static const CRect VersionTextArea(365, 5, 469, 20);
+
+/** 
+ * @brief Area for developers list.
+ */
+static const CRect DevelopersArea(20, 98, 190, 190);
+
+/** 
+ * @brief Area for copyright text.
+ */
+static const CRect CopyrightArea(20, 210, 190, 330);
+
+static const TCHAR CopyrightText[] = _T("Copyright (C) 1996-2006 Dean P. Grimm / Thingamahoochie Software All right reserved.");
+static const TCHAR DevelopersText[] = _T("Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"); 
 
 /////////////////////////////////////////////////////////////////////////////
 //   Splash Screen class
@@ -190,22 +209,43 @@ void CSplashWnd::OnPaint()
 
 	CVersionInfo version;
 	CString s;
-	CFont ft,*oldfont=NULL;
+	CFont versionFont;
+	CFont textFont;
+	CFont *oldfont = NULL;
 
-	int fontHeight = -MulDiv(10, dc.GetDeviceCaps(LOGPIXELSY), 72);
-	BOOL fontSuccess = ft.CreateFont(fontHeight, 0, 0, 0, FW_BOLD, FALSE, FALSE,
+	int fontHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
+	BOOL fontSuccess = versionFont.CreateFont(fontHeight, 0, 0, 0, FW_BOLD, FALSE, FALSE,
 		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
 		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
 	if (fontSuccess)
-		oldfont = dc.SelectObject(&ft);
+		oldfont = dc.SelectObject(&versionFont);
 
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(s, IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
-	dc.TextOut(69, 131, s);
+	
+	CRect area = VersionTextArea;
+	dc.DrawTextEx(s, &area, DT_RIGHT | DT_TOP, NULL);
+
+	fontSuccess = textFont.CreateFont(fontHeight, 0, 0, 0, 0, FALSE, FALSE,
+		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
+	if (fontSuccess)
+	{
+		// We already stored oldfont in previous font change
+		if (oldfont == NULL)
+			oldfont = dc.SelectObject(&textFont);
+		else
+			dc.SelectObject(&textFont);
+	}
+
+	area = DevelopersArea;
+	dc.DrawTextEx(DevelopersText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK, NULL);
+	area = CopyrightArea;
+	dc.DrawTextEx(CopyrightText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK, NULL);
+
 	if (oldfont != NULL)
 		dc.SelectObject(oldfont);
-
 }
 
 /** 
