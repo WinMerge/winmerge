@@ -351,7 +351,7 @@ protected:
 private:
 	void PrimeTextBuffers();
 	void FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDiffTextBuffer * pBuffer);
-	void GetFileExt(const CString& sFileName, const CString& sDescription, CString& sExt);
+	CString GetFileExt(const CString& sFileName, const CString& sDescription);
 };
 
 /////////////////////////////////////////////////////////////////////////////
