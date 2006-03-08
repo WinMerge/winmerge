@@ -48,12 +48,12 @@ static const CRect VersionTextArea(365, 5, 469, 20);
 /** 
  * @brief Area for developers list.
  */
-static const CRect DevelopersArea(20, 98, 190, 190);
+static const CRect DevelopersArea(20, 98, 190, 210);
 
 /** 
  * @brief Area for copyright text.
  */
-static const CRect CopyrightArea(20, 210, 190, 330);
+static const CRect CopyrightArea(20, 230, 190, 330);
 
 static const TCHAR CopyrightText[] = _T("Copyright (C) 1996-2006 Dean P. Grimm / Thingamahoochie Software All right reserved.");
 static const TCHAR DevelopersText[] = _T("Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"); 
