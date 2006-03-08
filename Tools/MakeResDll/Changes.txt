@@ -1,6 +1,11 @@
 MakeResDll/Changes.txt
 Add new items to top
 
+2006-03-08 Perry
+ Update MakeResDll readme with current information (MSVC.Net 2003 works
+  now), and better explanation of how to pick a specific version.
+  MakeResDll: readme.txt
+
 2006-03-04 Perry
  PATCH: [ 1442125 ] Improvements for MakeResDll parsing
  Bump version from 1.0.2.0 to 1.0.3.0.
