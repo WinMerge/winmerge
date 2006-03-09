@@ -225,7 +225,7 @@ void CSplashWnd::OnPaint()
 	dc.SetBkMode(TRANSPARENT);
 	
 	CRect area = VersionTextArea;
-	dc.DrawTextEx(s, &area, DT_RIGHT | DT_TOP, NULL);
+	dc.DrawText(s, &area, DT_RIGHT | DT_TOP);
 
 	fontSuccess = textFont.CreateFont(fontHeight, 0, 0, 0, 0, FALSE, FALSE,
 		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
@@ -240,9 +240,9 @@ void CSplashWnd::OnPaint()
 	}
 
 	area = DevelopersArea;
-	dc.DrawTextEx(DevelopersText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK, NULL);
+	dc.DrawText(DevelopersText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
 	area = CopyrightArea;
-	dc.DrawTextEx(CopyrightText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK, NULL);
+	dc.DrawText(CopyrightText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
 
 	if (oldfont != NULL)
 		dc.SelectObject(oldfont);

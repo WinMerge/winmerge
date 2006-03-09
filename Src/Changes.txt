@@ -5,6 +5,8 @@ Add new items to top.
 2006-03-09 Kimmo
  PATCH: [ 1445996 ] Fix wrong PgDown scrolling after mousescroll
   Src/editlib: ccrystaltextview2.cpp
+ BUG: [ 1446648 ] cvs trunk doesn't compile
+  Src: Splash.cpp
 
 2006-03-08 Kimmo
  PATCH: [ 1441392 ] New Splash Screen
