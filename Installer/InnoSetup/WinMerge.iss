@@ -340,10 +340,10 @@ Source: ..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Component
 ; We still need APPHelp.dll!
 
 ; begin VC system files
-Source: Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
-Source: Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; MinVersion: 0, 4; Components: Runtimes
+Source: Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
+Source: Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Runtimes
 Source: Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
-Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall regserver sharedfile; Components: Runtimes
+Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
 ; end VC system files
 
 Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0

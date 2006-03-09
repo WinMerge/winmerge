@@ -1,3 +1,7 @@
+2006-03-09 Kimmo
+ PATCH: [ 1445719 ] Fix broken installer (2.5.3.3)
+  InnoSetup: WinMerge.iss
+
 2006-02-23 Kimmo
  PATCH: [ 1436127 ] Add VS2003 runtimes to installer
   InnoSetup: WinMerge.iss
