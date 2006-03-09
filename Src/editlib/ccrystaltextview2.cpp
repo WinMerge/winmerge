@@ -421,15 +421,16 @@ MovePgDn (BOOL bSelect)
 		nNewTopSubLine = nSubLineCount - 1;
 	if (m_nTopSubLine != nNewTopSubLine)
 	{
+		m_ptCursorPos.y = nNewTopSubLine;
 		ScrollToSubLine(nNewTopSubLine);
-		UpdateSiblingScrollPos(FALSE);
+        UpdateSiblingScrollPos(FALSE);
 	}
 
 	// setting cursor
-	CPoint	subLinePos;
+	CPoint subLinePos;
 	CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
 
-	int			nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y + GetScreenLines() - 1;
+	int nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y + GetScreenLines() - 1;
 
 	if( nSubLine > nSubLineCount - 1 )
 		nSubLine = nSubLineCount - 1;

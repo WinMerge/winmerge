@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-09 Kimmo
+ PATCH: [ 1445996 ] Fix wrong PgDown scrolling after mousescroll
+  Src/editlib: ccrystaltextview2.cpp
+
 2006-03-08 Kimmo
  PATCH: [ 1441392 ] New Splash Screen
   Submitted by Alexander Skinner
