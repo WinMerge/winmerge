@@ -191,8 +191,8 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 	m_pOptionsMgr = pOptionsMgr;
 
 	int count = COLORINDEX_COUNT;
-	valuename = DefColorsPath + '/';
-	valuename += _T("Values");
+	valuename = DefColorsPath;
+	valuename += _T("/Values");
 	m_pOptionsMgr->InitOption(valuename, count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)

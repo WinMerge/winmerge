@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-10 Perry
+ PATCH: [ 1445434 ] SyntaxColors scrambling reg values
+  Src: SyntaxColors.cpp
+  
 2006-03-10 WinMerge experimental release 2.5.3.4 (cvs)
 
 2006-03-09 Kimmo
