@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-10 Kimmp
+ Remove unneeded splash image (Splash2.bmp) as noted in Patch item #1441392
+  Src/res removed file: Splash2.bmp
+
 2006-03-10 Perry
  PATCH: [ 1445434 ] SyntaxColors scrambling reg values
   Src: SyntaxColors.cpp
