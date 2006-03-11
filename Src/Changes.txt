@@ -17,6 +17,8 @@ Add new items to top.
    WinMerge_logo_trans.gif
  Change Splashscreen text to according to Dean's wish
   Src: Splash.cpp
+ Add Alexander Skinner to contributors list
+  Docs/Users: Contributors.txt
 
 2006-03-11 Takashi
  BUG:  [ 1441389 ] Comparing root directory - mysterious
