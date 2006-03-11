@@ -1611,10 +1611,8 @@ END
 //
 // Bitmap
 //
-// Catalan has localized splash screen.
 
 IDR_MAINFRAME           BITMAP                  "..\\..\\res\\Toolbar.bmp"
-IDB_SPLASH              BITMAP                  "res\\splash1.bmp"
 IDB_EDIT_COPY           BITMAP                  "..\\..\\res\\copy.bmp"
 IDB_EDIT_CUT            BITMAP                  "..\\..\\res\\cut.bmp"
 IDB_EDIT_PASTE          BITMAP                  "..\\..\\res\\paste.bmp"

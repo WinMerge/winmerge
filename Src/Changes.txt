@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-11 Kimmo
+ PATCH: [ 1447506 ] Don't include splash bitmap to lang files
+  Src/Languages/*: Merge*.rc
+ Remove Catalan localized splash screen
+  Src/Languages/Catalan/res removed files: splash1.bmp WinMergeSplash.psd
+
 2006-03-11 Takashi
  BUG:  [ 1441389 ] Comparing root directory - mysterious
   Src: DiffWrapper.cpp
@@ -12,7 +18,7 @@ Add new items to top.
  PATCH: [ 1447547 ] Add more comments to CMergeDoc::PrimeTextBuffers
   Src: MergeDoc.cpp
 
-2006-03-10 Kimmp
+2006-03-10 Kimmo
  Remove unneeded splash image (Splash2.bmp) as noted in Patch item #1441392
   Src/res removed file: Splash2.bmp
 
