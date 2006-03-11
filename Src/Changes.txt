@@ -7,6 +7,8 @@ Add new items to top.
   Src/Languages/*: Merge*.rc
  Remove Catalan localized splash screen
   Src/Languages/Catalan/res removed files: splash1.bmp WinMergeSplash.psd
+ BUG: [ 1447851 ] Not enough space for version info in new splash screen
+  Src: Splash.cpp
 
 2006-03-11 Takashi
  BUG:  [ 1441389 ] Comparing root directory - mysterious

@@ -42,8 +42,9 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 /** 
  * @brief Area for version text in splash image.
  * Text is right-aligned, so reserve space to left side for longer text.
+ * @note Translations may have language name after version number.
  */
-static const CRect VersionTextArea(365, 5, 469, 20);
+static const CRect VersionTextArea(255, 5, 469, 20);
 
 /** 
  * @brief Area for developers list.
