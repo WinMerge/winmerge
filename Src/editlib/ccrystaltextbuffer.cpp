@@ -318,6 +318,31 @@ AppendLine (int nLineIndex, LPCTSTR pszChars, int nLength /*= -1*/ )
   ASSERT (li.m_nLength + li.m_nEolChars <= li.m_nMax);
 }
 
+/**
+ * @brief Copy line range [line1;line2] to range starting at newline1
+ *
+ * NB: Lines are assigned, not inserted
+ *
+ * Example#1:
+ *   MoveLine(5,7,100)
+ *    line1=5
+ *    line2=7
+ *    newline1=100
+ *    ldiff=95
+ *     l=10  lines[105] = lines[10]
+ *     l=9   lines[104] = lines[9]
+ *     l=8   lines[103] = lines[8]
+ *
+ * Example#2:
+ *   MoveLine(40,42,10)
+ *    line1=40
+ *    line2=42
+ *    newline1=10
+ *    ldiff=-30
+ *     l=40  lines[10] = lines[40]
+ *     l=41  lines[11] = lines[41]
+ *     l=42  lines[12] = lines[42]
+ */
 void CCrystalTextBuffer::MoveLine(int line1, int line2, int newline1)
 {
 	int ldiff = newline1 - line1;
