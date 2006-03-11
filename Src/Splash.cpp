@@ -30,6 +30,7 @@
 #include "stdafx.h"
 #include "resource.h"
 
+#include "Picture.h"
 #include "Splash.h"
 #include "version.h"
 
@@ -69,6 +70,7 @@ CSplashWnd* CSplashWnd::c_pSplashWnd;
  * @brief Default constructor.
  */
 CSplashWnd::CSplashWnd()
+ : m_pPicture(NULL)
 {
 }
 
@@ -140,26 +142,35 @@ BOOL CSplashWnd::PreTranslateAppMessage(MSG* pMsg)
 }
 
 /** 
- * @brief Loads splashscreen bitmap
+ * @brief Loads splashscreen image.
+ * Loads splashscreen image from resource and creates window with same size.
  */
 BOOL CSplashWnd::Create(CWnd* pParentWnd /*= NULL*/)
 {
-	if (!m_bitmap.LoadBitmap(IDB_SPLASH))
+	if (m_pPicture == NULL)
+		m_pPicture = new CPicture();
+
+	if (m_pPicture == NULL)
 		return FALSE;
 
-	BITMAP bm;
-	m_bitmap.GetBitmap(&bm);
+	if (!m_pPicture->Load(IDR_SPLASH))
+		return FALSE;
+
+	CSize imgSize = m_pPicture->GetImageSize();
 
 	return CreateEx(0,
 		AfxRegisterWndClass(0, AfxGetApp()->LoadStandardCursor(IDC_ARROW)),
-		NULL, WS_POPUP | WS_VISIBLE, 0, 0, bm.bmWidth, bm.bmHeight, pParentWnd->GetSafeHwnd(), NULL);
+		NULL, WS_POPUP | WS_VISIBLE, 0, 0, imgSize.cx, imgSize.cy, pParentWnd->GetSafeHwnd(), NULL);
 }
 
 /** 
- * @brief Destroy the window, and update the mainframe.
+ * @brief Destroy the window and splash image then update the mainframe.
  */
 void CSplashWnd::HideSplashScreen()
 {
+	m_pPicture->Free();
+	delete m_pPicture;
+	m_pPicture = NULL;
 	DestroyWindow();
 	AfxGetMainWnd()->UpdateWindow();
 }
@@ -190,23 +201,14 @@ int CSplashWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 }
 
 /** 
- * @brief Add version text to bitmap.
+ * @brief Paint splashscreen.
+ * Draws image to window size (which is already set to image size).
+ * Then adds texts over image.
  */
 void CSplashWnd::OnPaint()
 {
 	CPaintDC dc(this);
-
-	CDC dcImage;
-	if (!dcImage.CreateCompatibleDC(&dc))
-		return;
-
-	BITMAP bm;
-	m_bitmap.GetBitmap(&bm);
-
-	// Paint the image.
-	CBitmap* pOldBitmap = dcImage.SelectObject(&m_bitmap);
-	dc.BitBlt(0, 0, bm.bmWidth, bm.bmHeight, &dcImage, 0, 0, SRCCOPY);
-	dcImage.SelectObject(pOldBitmap);
+	m_pPicture->Render(&dc);
 
 	CVersionInfo version;
 	CString s;

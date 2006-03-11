@@ -627,6 +627,10 @@ SOURCE=.\paths.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\Picture.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PluginManager.cpp
 # End Source File
 # Begin Source File
@@ -703,7 +707,6 @@ SOURCE=.\PropSyntaxColors.cpp
 SOURCE=.\PropTextColors.cpp
 # End Source File
 # Begin Source File
-
 
 SOURCE=.\PropVss.cpp
 
@@ -1263,6 +1266,10 @@ SOURCE=.\PathContext.h
 # Begin Source File
 
 SOURCE=.\paths.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\Picture.h
 # End Source File
 # Begin Source File
 

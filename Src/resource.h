@@ -49,7 +49,7 @@
 #define IDD_LOAD_SAVE_CODEPAGE          230
 #define IDD_TEST_FILTER                 231
 #define IDD_PROPPAGE_COLORS_TEXT        232
-#define IDB_SPLASH                      308
+#define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
 #define IDB_EDIT_COPY                   316

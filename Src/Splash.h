@@ -18,7 +18,7 @@
 //
 /////////////////////////////////////////////////////////////////////////////
 /**
- * @file  Splash.h
+ * @file  Src/Splash.h
  *
  * @brief Declaration file for CSplashWnd
  *
@@ -29,9 +29,13 @@
 #ifndef _SPLASH_SCRN_
 #define _SPLASH_SCRN_
 
-/////////////////////////////////////////////////////////////////////////////
-//   Splash Screen class
+class CPicture;
 
+/**
+ * @brief Splash screen class.
+ * Loads image from resource and shows it as a splash screen
+ * at program startup.
+ */
 class CSplashWnd : public CWnd
 {
 // Construction
@@ -39,8 +43,8 @@ protected:
 	CSplashWnd();
 
 // Attributes:
-public:
-	CBitmap m_bitmap;
+private:
+	CPicture * m_pPicture; /**< Image loader/viewer for splash image */
 
 // Operations
 public:

@@ -21,6 +21,12 @@ Add new items to top.
   Docs/Users: Contributors.txt
  PATCH: [ 1447348 ] Build language files to Build directory
   Src/Languages: BuildDll.bat
+ PATCH: [ 1447806 ] Use JPEG splashscreen
+  Src: Merge.dsp Merge.rc resource.h Splash.cpp Splash.h
+  Src/Common new files: Picture.cpp Picture.h
+  Src/res new file: splash.jpg
+  Src/res deleted file: splash1.bmp
+  Src/Languages/*: Merge*.rc
 
 2006-03-11 Takashi
  BUG:  [ 1441389 ] Comparing root directory - mysterious
