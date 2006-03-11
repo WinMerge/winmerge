@@ -1316,7 +1316,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 	if (!di.isSideRight())
 	{
 		// Compare file to itself to detect encoding
-		left = pCtxt->GetNormalizedLeft() + backslash;
+		left = pCtxt->GetNormalizedLeft();
+		if (!paths_EndsWithSlash(left))
+			left += backslash;
 		if (!di.sLeftSubdir.IsEmpty())
 			left += di.sLeftSubdir + backslash;
 		left += di.sLeftFilename;
@@ -1326,7 +1328,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 	if (!di.isSideLeft())
 	{
 		// Compare file to itself to detect encoding
-		right = pCtxt->GetNormalizedRight() + backslash;
+		right = pCtxt->GetNormalizedRight();
+		if (!paths_EndsWithSlash(right))
+			right += backslash;
 		if (!di.sRightSubdir.IsEmpty())
 			right += di.sRightSubdir + backslash;
 		right += di.sRightFilename;
