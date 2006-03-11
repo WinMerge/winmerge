@@ -19,6 +19,8 @@ Add new items to top.
   Src: Splash.cpp
  Add Alexander Skinner to contributors list
   Docs/Users: Contributors.txt
+ PATCH: [ 1447348 ] Build language files to Build directory
+  Src/Languages: BuildDll.bat
 
 2006-03-11 Takashi
  BUG:  [ 1441389 ] Comparing root directory - mysterious

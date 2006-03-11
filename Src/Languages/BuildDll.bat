@@ -13,7 +13,7 @@ if '%1==' goto end
 
 echo Building %1
 set rcScript=.\%1\Merge%1.rc
-set outputdir=.\DLL
+set outputdir=..\..\Build\Languages
 
 .\MakeResDll -v -b -o %outputdir% %rcScript%
 
