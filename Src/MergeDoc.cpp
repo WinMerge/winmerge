@@ -2149,12 +2149,14 @@ void CMergeDoc::PrimeTextBuffers()
 		VERIFY(m_diffList.GetDiff(nDiff, curDiff));
 
 		// move matched lines after curDiff
-		int nline0 = lcount0 - curDiff.end0 - 1;
-		int nline1 = lcount1 - curDiff.end1 - 1;
+		int nline0 = lcount0 - curDiff.end0 - 1; // #lines on left after current diff
+		int nline1 = lcount1 - curDiff.end1 - 1; // #lines on right after current diff
 		// Matched lines should really match...
 		// But matched lines after last diff may differ because of empty last line (see function's note)
 		if (nDiff < nDiffCount - 1)
 			ASSERT(nline0 == nline1);
+		// Move all lines after current diff down as far as needed
+		// for any ghost lines we're about to insert
 		m_ptBuf[0]->MoveLine(curDiff.end0+1, lcount0-1, lcount0new-nline0);
 		m_ptBuf[1]->MoveLine(curDiff.end1+1, lcount1-1, lcount1new-nline1);
 		lcount0new -= nline0;
@@ -2163,8 +2165,8 @@ void CMergeDoc::PrimeTextBuffers()
 		lcount1 -= nline1;
 
 		// move unmatched lines and add ghost lines
-		nline0 = curDiff.end0 - curDiff.begin0 + 1;
-		nline1 = curDiff.end1 - curDiff.begin1 + 1;
+		nline0 = curDiff.end0 - curDiff.begin0 + 1; // #lines in diff on left
+		nline1 = curDiff.end1 - curDiff.begin1 + 1; // #lines in diff on right
 		int nextra = nline0-nline1;
 		int nextraAbs = (nextra >= 0) ? nextra : -nextra;
 

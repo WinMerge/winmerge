@@ -5,6 +5,8 @@ Add new items to top.
 2006-03-11 Perry
  PATCH:  [ 1447539 ] Add explanatory comment to CCrystalTextBuffer::MoveLine
   Src/editlib: ccrystaltextbuffer.cpp
+ PATCH: [ 1447547 ] Add more comments to CMergeDoc::PrimeTextBuffers
+  Src: MergeDoc.cpp
 
 2006-03-10 Kimmp
  Remove unneeded splash image (Splash2.bmp) as noted in Patch item #1441392
