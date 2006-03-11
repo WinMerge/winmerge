@@ -9,6 +9,12 @@ Add new items to top.
   Src/Languages/Catalan/res removed files: splash1.bmp WinMergeSplash.psd
  BUG: [ 1447851 ] Not enough space for version info in new splash screen
   Src: Splash.cpp
+ PaTCH: [ 1445377 ] WinMerge Logos (72 DPI)
+  Submitted by Alexander Skinner
+  Add new folder Docs/Logos
+  New Docs/Logos files: readme.txt WinMerge_logo_24bit.png
+   WinMerge_logo_shadow_24bit.png WinMerge_logo_shadow_trans.tif
+   WinMerge_logo_trans.gif
 
 2006-03-11 Takashi
  BUG:  [ 1441389 ] Comparing root directory - mysterious
