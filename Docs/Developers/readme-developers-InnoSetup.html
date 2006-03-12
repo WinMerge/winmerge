@@ -33,16 +33,7 @@
 downloads. It contains all needed components in one installer.</p>
 
 <h3>Installer script:</h3>
-There are two installer script files in <code>InnoSetup</code> folder:
-<ul>
-  <li>
-    <code>WinMerge.iss</code> is script currently used with InnoSetup 5.x.
-  </li>
-  <li>
-    <code>WinMerge Localized.iss</code> is InnoSetup 4.x script. Its not updated anymore
-    but we keep it available.
-  </li>
-</ul>
+Installer script is in <code>InnoSetup</code> folder: <code>WinMerge.iss</code>
 
 <h3>Checklist:</h3>
 <ul>
@@ -54,13 +45,13 @@ There are two installer script files in <code>InnoSetup</code> folder:
   </li>
   <li>
     Installer checks that files listed are present. But some files are
-    included as directory (like <code>/Manual</code>) or as filemask (like
+    included as folder (like <code>/Plugins/Dlls</code>) or as filemask (like
     <code>*.flt</code>) so take extra care to make sure all needed files
     are present in locations shown below.
   </li>
 </ul>
 
-<h3>Directory structure and files needed:</h3>
+<h3>Folder structure and files needed:</h3>
 
 <p>These files are produced by compiling WinMerge, documentation etc, but
 that's not subject of this document, refer to <a href="readme-developers.html">readme-developers.html</a>.</p>
@@ -71,15 +62,21 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
  <li>
   <code>Build/</code>
   <ul>
+    <li>
+     <code>Languages</code>
+     <ul>
+      <li><code>*.lang</code></li>
+     </ul>
+    </li>
+    <li>
+     <code>Manual/htmlhelp</code>
+     <ul>
+      <li><code>WinMerge.chm</code></li>
+     </ul>
+    </li>
    <li>
     <code>MergeRelease/</code>
     <ul>
-     <li>
-      <code>Manual/</code>
-      <ul>
-       <li><em>Copy the entire HTML manual directory to here</em></li>
-      </ul>
-     </li>
      <li><code>ShellExtension.dll</code></li>
      <li><code>WinMerge.exe</code></li>
     </ul>
@@ -100,7 +97,7 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
    <li>
     <code>Users</code>
     <ul>
-     <li><em>Copy the entire <code>Docs/Users</code> directory to here</em></li>
+     <li><em>Copy the entire <code>Docs/Users</code> folder to here</em></li>
     </ul>
    </li>
   </ul>
@@ -115,24 +112,8 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
  <li>
   <code>InnoSetup/</code>
   <ul>
-   <li><em>Copy the entire InnoSetup source directory to here</em></li>
+   <li><em>Copy the entire InnoSetup source folder to here</em></li>
   </ul>
- </li>
- <li>
-  <code>Src/</code>
-   <ul>
-    <li>
-     <code>Languages/</code>
-     <ul>
-      <li>
-       <code>DLL/</code>
-       <ul>
-        <li><code>*.lang</code></li>
-       </ul>
-      </li>
-     </ul>
-    </li>
-   </ul>
  </li>
 </ul>
 
@@ -160,7 +141,7 @@ InnoSetup manual for creating installer from script.</p>
 </ol>
 
 <p>If compile succeeds you have <code>WinMerge-[version]-Setup.exe</code> in
-directory <code>InnoSetup/Output</code>.</p>
+folder <code>/Build</code>.</p>
 
 <p><strong>Test installer!</strong></p>
 

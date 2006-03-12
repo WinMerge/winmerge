@@ -1,26 +1,30 @@
+2006-03-12 Kimmo
+ PATCH: [ 1448004 ] Update installer doc
+  Developers: readme-developers-Innosetup.html
+
 2006-02-21 Kimmo
  PATCH: [ 1435488 ] Update for readme-developers.html
-  readme-developers.html
+  Developers: readme-developers.html
 
 2006-02-20 Kimmo
  Remove outdated planning file
-  Planning_2_2.txt
+  Developers: Planning_2_2.txt
 
 2006-02-09 Kimmo
  PATCH: [ 1427951 ] Add compiling instructions (for HTML help)
-  readme-developers.html
+  Developers: readme-developers.html
 
 2006-01-11 Tim
  PATCH: [ 1402858 ] Web: New background color for 'important' and 'note'
-  readme-developers.html
+  Developers: readme-developers.html
 
 2006-01-02 Perry
  PATCH: [ 1394717 ] Fix resource.h include for translations
-  readme-developers.html
+  Developers: readme-developers.html
 
 2005-12-28 Perry
  BUG: [ 1389855 ] grammar fix in plugin docs
-  Plugins.html
+  Developers: Plugins.html
 
 2005-09-22 Kimmo
  PATCH: [ 1298109 ] Docs: Document ShellExtension versioning
