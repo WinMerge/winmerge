@@ -53,6 +53,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Location for folder compare specific help to open.
+ */
+static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/CompareDirs.html");
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirView
 
@@ -171,6 +177,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
+	ON_COMMAND(ID_HELP, OnHelp)
  	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
@@ -2770,4 +2777,10 @@ void CDirView::OnFileEncoding()
 void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI) 
 {
 	DoUpdateFileEncodingDialog(pCmdUI);
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void CDirView::OnHelp()
+{
+	GetMainFrame()->ShowHelp(DirViewHelpLocation);
 }

@@ -120,6 +120,10 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_USEDEFAULTFONT, OnUpdateViewUsedefaultfont)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_UPDATE_COMMAND_UI(ID_HELP_CONTENTS, OnUpdateHelpContents)
+	ON_COMMAND(ID_HELP_INDEX, OnHelpIndex)
+	ON_UPDATE_COMMAND_UI(ID_HELP_INDEX, OnUpdateHelpIndex)
+	ON_COMMAND(ID_HELP_SEARCH, OnHelpSearch)
+	ON_UPDATE_COMMAND_UI(ID_HELP_SEARCH, OnUpdateHelpSearch)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
@@ -1435,11 +1439,11 @@ void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 }
 
 /**
- * @brief Open help.
+ * @brief Open help contents.
  *
  * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
  */
-void CMainFrame::OnHelpContents() 
+void CMainFrame::OnHelpContents()
 {
 	CString sPath = GetModulePath(0) + DocsPath;
 	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
@@ -1448,7 +1452,65 @@ void CMainFrame::OnHelpContents()
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
 }
 
+/**
+ * @brief Enable Open help contents -menuitem.
+ */
 void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Open help index.
+ *
+ * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
+ */
+void CMainFrame::OnHelpIndex()
+{
+	CString sPath = GetModulePath(0) + DocsPath;
+	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_INDEX, NULL);
+	else
+		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
+}
+
+/**
+ * @brief Disable Open help index -menuitem.
+ */
+void CMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI) 
+{
+	pCmdUI->Enable(FALSE);
+}
+
+/**
+ * @brief Open help search.
+ *
+ * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
+ */
+void CMainFrame::OnHelpSearch()
+{
+	CString sPath = GetModulePath(0) + DocsPath;
+	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+	{
+		HH_FTS_QUERY q = {0};
+		q.fExecute = TRUE;
+		q.fTitleOnly = FALSE;
+		q.fUniCodeStrings = TRUE;
+		q.fStemmedSearch = FALSE;
+		q.pszSearchQuery = _T("");
+		q.pszWindow = NULL;
+		q.cbStruct = sizeof(q);
+
+		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_SEARCH, (DWORD)&q);
+	}
+	else
+		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
+}
+
+/**
+ * @brief Enable Open help search -menuitem.
+ */
+void CMainFrame::OnUpdateHelpSearch(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
 }
@@ -2463,10 +2525,23 @@ void CMainFrame::ShowVSSError(CException *e, CString strItem)
 
 /**
  * @brief Show Help - this is for opening help from outside mainframe.
+ * @param [in] helpLocation Location inside help, if NULL main help is opened.
  */
-void CMainFrame::ShowHelp()
+void CMainFrame::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 {
-	OnHelpContents();
+	if (helpLocation == NULL)
+	{
+		OnHelpContents();
+	}
+	else
+	{
+		CString sPath = GetModulePath(0) + DocsPath;
+		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		{
+			sPath += helpLocation;
+			::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_TOPIC, NULL);
+		}
+	}
 }
 
 /**

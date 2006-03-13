@@ -192,6 +192,8 @@ BEGIN
     POPUP "&Súgó"
     BEGIN
         MENUITEM "&Tartalomjegyzék...\tF1",            ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguráció...",           ID_HELP_GETCONFIG
         MENUITEM "Ar&chívum támogatás tiltva...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "&Súgó"
     BEGIN
         MENUITEM "&Tartalomjegyzék...\tF1",            ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguráció...",           ID_HELP_GETCONFIG
         MENUITEM "Ar&chívum támogatás tiltva...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "&Súgó"
     BEGIN
         MENUITEM "&Tartalomjegyzék...\tF1",            ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguráció...",           ID_HELP_GETCONFIG
         MENUITEM "Ar&chívum támogatás tiltva...", ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "A jelenlegi WinMerge verziószámának és egyéb adatainak fájlba mentése"
     ID_HELP_GNULICENSE      "A GNU public license megjelenítése"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

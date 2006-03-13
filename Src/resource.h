@@ -949,6 +949,7 @@
 #define ID_HELP_GETCONFIG               32913
 #define ID_HELP_GNULICENSE              32914
 #define IDS_PRIVATEBUILD_FMT            32915
+#define ID_HELP_SEARCH                  32916
 #define ID_TITLE_PLUGINS_SETTINGS       32928
 #define ID_PREDIFF_MANUAL               32929
 #define ID_PREDIFF_AUTO                 32930

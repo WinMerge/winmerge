@@ -190,6 +190,8 @@ BEGIN
     POPUP "A&ide"
     BEGIN
         MENUITEM "&Rubriques d'aide\tF1",       ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Support d'archives disqualifié...", ID_HELP_MERGE7ZMISMATCH
@@ -211,6 +213,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Côté gauc&he lecture seulement",  ID_FILE_LEFT_READONLY
         MENUITEM "Côté droi&t  lecture seulement",  ID_FILE_RIGHT_READONLY
+        MENUITEM SEPARATOR
+        MENUITEM "File &Encoding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Quitter",                     ID_APP_EXIT
     END
@@ -295,6 +299,8 @@ BEGIN
     POPUP "A&ide"
     BEGIN
         MENUITEM "&Rubriques d'aide\tF1",       ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Support d'archives disqualifié...", ID_HELP_MERGE7ZMISMATCH
@@ -447,6 +453,8 @@ BEGIN
     POPUP "A&ide"
     BEGIN
         MENUITEM "&Rubriques d'aide\tF1",       ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Support d'archives disqualifié...", ID_HELP_MERGE7ZMISMATCH
@@ -2692,6 +2700,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Affiche les informations de version et de configuration de WinMerge avec un fichier de texte"
     ID_HELP_GNULICENSE      "Afficher la licence GNU avec le fureteur"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

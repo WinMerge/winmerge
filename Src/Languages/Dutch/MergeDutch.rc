@@ -192,6 +192,8 @@ BEGIN
     POPUP "&Help"
     BEGIN
         MENUITEM "&Inhoud...\tF1",              ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "&Help"
     BEGIN
         MENUITEM "&Inhoud...\tF1",              ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "&Help"
     BEGIN
         MENUITEM "&Inhoud...\tF1",              ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguratie...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchiefondersteuning uitgeschakeld...",  ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "De huidige WinMerge versie en configuratie naar een tekstbestand wegschrijven"
     ID_HELP_GNULICENSE      "De GNU publieke licentie tonen"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

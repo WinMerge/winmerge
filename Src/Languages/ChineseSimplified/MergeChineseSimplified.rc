@@ -194,6 +194,8 @@ BEGIN
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "用户手册(&C)...\tF1",         ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "配置(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "压缩包支持已禁用(&R)...",     ID_HELP_MERGE7ZMISMATCH
@@ -301,6 +303,8 @@ BEGIN
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "用户手册(&C)...\tF1",         ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "配置(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "压缩包支持已禁用(&R)...",     ID_HELP_MERGE7ZMISMATCH
@@ -453,6 +457,8 @@ BEGIN
     POPUP "帮助(&H)"
     BEGIN
         MENUITEM "用户手册(&C)...\tF1",         ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "配置(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "压缩包支持已禁用(&R)...",     ID_HELP_MERGE7ZMISMATCH
@@ -2743,6 +2749,8 @@ BEGIN
     ID_HELP_GETCONFIG       "将当前的 WinMerge 版本信息及配置输出到文本文件"
     ID_HELP_GNULICENSE      "显示 GNU 公共授权"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

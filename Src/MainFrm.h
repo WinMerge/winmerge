@@ -120,7 +120,7 @@ public:
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void ShowVSSError(CException *e, CString strItem);
-	void ShowHelp();
+	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void UpdateCodepageModule();
 	void GetDirViews(DirViewList * pDirViews);
 	void GetMergeEditViews(MergeEditViewList * pMergeViews);
@@ -236,6 +236,10 @@ protected:
 	afx_msg void OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI);
 	afx_msg void OnHelpContents();
 	afx_msg void OnUpdateHelpContents(CCmdUI* pCmdUI);
+	afx_msg void OnHelpIndex();
+	afx_msg void OnUpdateHelpIndex(CCmdUI* pCmdUI);
+	afx_msg void OnHelpSearch();
+	afx_msg void OnUpdateHelpSearch(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnViewWhitespace();
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);

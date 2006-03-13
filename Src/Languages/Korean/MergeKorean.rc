@@ -192,6 +192,8 @@ BEGIN
     POPUP "도움말(&H)"
     BEGIN
         MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "설정(&O)...",           ID_HELP_GETCONFIG
         MENUITEM "압축파일 지원에 대하여(&R)...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "도움말(&H)"
     BEGIN
         MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "설정(&O)...",           ID_HELP_GETCONFIG
         MENUITEM "압축파일 지원에 대하여(&R)...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "도움말(&H)"
     BEGIN
         MENUITEM "목차(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "설정(&O)...",           ID_HELP_GETCONFIG
         MENUITEM "압축파일 지원에 대하여(&R)...", ID_HELP_MERGE7ZMISMATCH
@@ -2746,6 +2752,8 @@ BEGIN
     ID_HELP_GETCONFIG       "WinMerge 버전정보 및 설정을 텍스트 파일로 출력합니다"
     ID_HELP_GNULICENSE      "GNU public license 봅니다."
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

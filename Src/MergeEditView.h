@@ -278,6 +278,7 @@ protected:
 	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

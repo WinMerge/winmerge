@@ -192,6 +192,8 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
         MENUITEM "Supporto per gli a&rchivi inattivo...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
         MENUITEM "Supporto per gli a&rchivi inattivo...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
         MENUITEM "Supporto per gli a&rchivi inattivo...", ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Invia le informazioni sulla versione e la configurazione corrente di WinMerge a un file di testo"
     ID_HELP_GNULICENSE      "Visualizza la licenza pubblica GNU"
     IDS_PRIVATEBUILD_FMT    "Build privata: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

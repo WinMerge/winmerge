@@ -192,6 +192,8 @@ BEGIN
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
@@ -2766,6 +2772,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Treu informació de versió i configuració actuals del WinMerge en un fitxer de text"
     ID_HELP_GNULICENSE      "Mostra la Llicència Pública General de GNU"
     IDS_PRIVATEBUILD_FMT    "Muntatge privat: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

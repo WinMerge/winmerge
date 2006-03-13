@@ -192,6 +192,8 @@ BEGIN
     POPUP "A&yuda"
     BEGIN
         MENUITEM "&Contenido...\tF1",           ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "Conf&iguracion...",           ID_HELP_GETCONFIG
         MENUITEM "Soporte de &archivado deshabilitado...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "A&yuda"
     BEGIN
         MENUITEM "&Contenido...\tF1",           ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "Conf&iguracion...",           ID_HELP_GETCONFIG
         MENUITEM "Soporte de &archivado deshabilitado...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "A&yuda"
     BEGIN
         MENUITEM "&Contenido...\tF1",           ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "Conf&iguracion...",           ID_HELP_GETCONFIG
         MENUITEM "Soporte de &archivado deshabilitado...", ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Escribe la información de la versión actual de Winmerge y la configuración a un fichero de texto"
     ID_HELP_GNULICENSE      "Muestra la Licencia Pública GNU"
     IDS_PRIVATEBUILD_FMT    "Compilación Privada: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

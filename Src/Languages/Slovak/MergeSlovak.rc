@@ -192,6 +192,8 @@ BEGIN
     POPUP "Po&moc"
     BEGIN
         MENUITEM "O&bsah...\tF1",               ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "Po&moc"
     BEGIN
         MENUITEM "O&bsah...\tF1",               ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "Po&moc"
     BEGIN
         MENUITEM "O&bsah...\tF1",               ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
     ID_HELP_GNULICENSE      "Zobraziù GNU licenciu"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

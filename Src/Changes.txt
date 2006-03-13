@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-13 Kimmo
+ PATCH: [ 1447927 ] Add Help Search to menu, open correct manual location
+  Src: DirView.cpp DirView.h MainFrm.cpp MainFrm.h Merge.rc MergeEditView.cpp
+   MergeEditView.h resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-03-11 Kimmo
  PATCH: [ 1447506 ] Don't include splash bitmap to lang files
   Src/Languages/*: Merge*.rc

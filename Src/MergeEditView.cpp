@@ -58,6 +58,11 @@ static char THIS_FILE[] = __FILE__;
 const UINT IDT_RESCAN = 2;
 const UINT RESCAN_TIMEOUT = 1000;
 
+/**
+ * @brief Location for file compare specific help to open.
+ */
+static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/CompareFiles.html");
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView
 
@@ -186,6 +191,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewSwapPanes)
 	ON_WM_SIZE()
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2860,4 +2866,10 @@ BOOL CMergeEditView::IsDiffVisible(int nDiff)
 	{
 		return TRUE;
 	}
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void CMergeEditView::OnHelp()
+{
+	GetMainFrame()->ShowHelp(MergeViewHelpLocation);
 }

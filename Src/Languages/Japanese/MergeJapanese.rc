@@ -192,6 +192,8 @@ BEGIN
     POPUP "ヘルプ(&H)"
     BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "アーカイブサポートが無効です(&R)...",   ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "ヘルプ(&H)"
     BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "アーカイブサポートが無効です(&R)...",  ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "ヘルプ(&H)"
     BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "アーカイブサポートが無効です(&R)...",  ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "現在の WinMerge のバージョン情報と設定をテキストファイルに出力します"
     ID_HELP_GNULICENSE      "GNU一般公衆利用許諾契約書を表示します"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

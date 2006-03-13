@@ -192,6 +192,8 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
@@ -2748,6 +2754,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Ausgeben der aktuellen WinMerge Versionsinformationen und Konfiguration in eine Textdatei."
     ID_HELP_GNULICENSE      "Zeigt die ""GNU public license"" an."
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

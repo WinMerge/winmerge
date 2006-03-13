@@ -192,6 +192,8 @@ BEGIN
     POPUP "說明(&H)"
     BEGIN
         MENUITEM "內容(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "組態(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "停用保存支援(&R)",            ID_HELP_MERGE7ZMISMATCH
@@ -299,6 +301,8 @@ BEGIN
     POPUP "說明(&H)"
     BEGIN
         MENUITEM "內容(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "組態(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "停用保存支援(&R)...",         ID_HELP_MERGE7ZMISMATCH
@@ -451,6 +455,8 @@ BEGIN
     POPUP "說明(&H)"
     BEGIN
         MENUITEM "內容(&C)...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Index...",                   ID_HELP_INDEX
+        MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "組態(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "停用保存支援(&R)...",         ID_HELP_MERGE7ZMISMATCH
@@ -2743,6 +2749,8 @@ BEGIN
     ID_HELP_GETCONFIG       "輸出目前 WinMerge 版本資訊和組態到文字檔案"
     ID_HELP_GNULICENSE      "顯示 GNU 公共授權"
     IDS_PRIVATEBUILD_FMT    " 私人建立: %1"
+    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
+    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
