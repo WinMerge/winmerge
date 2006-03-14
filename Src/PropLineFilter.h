@@ -47,6 +47,7 @@ protected:
 	//{{AFX_MSG(CPropLineFilter)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnIgnoreregexp();
+	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

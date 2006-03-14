@@ -2,6 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-14 Kimmo
+ PATCH: [ 1449038 ] Add Help-button to Open-dialog
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h Merge.rc OpenDlg.cpp OpenDlg.h
+   PropLineFilter.cpp PropLineFilter.h
+  Src/Common: PreferencesDlg.cpp
+  Src/Languages/*: Merge*.rc
+
 2006-03-13 Kimmo
  PATCH: [ 1447927 ] Add Help Search to menu, open correct manual location
   Src: DirView.cpp DirView.h MainFrm.cpp MainFrm.h Merge.rc MergeEditView.cpp

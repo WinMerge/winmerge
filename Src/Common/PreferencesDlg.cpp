@@ -28,6 +28,11 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Location for file compare specific help to open.
+ */
+static TCHAR OptionsHelpLocation[] = _T("::/htmlhelp/Configuration.html");
+
 /////////////////////////////////////////////////////////////////////////////
 // CPreferencesDlg dialog
 
@@ -67,6 +72,7 @@ void CPreferencesDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPreferencesDlg, CDialog)
 	//{{AFX_MSG_MAP(CPreferencesDlg)
 	ON_WM_DESTROY()
+	ON_COMMAND(ID_HELP, OnHelpButton)
 	ON_BN_CLICKED(IDC_TREEOPT_HELP, OnHelpButton)
 	ON_NOTIFY(TVN_SELCHANGED, IDC_TREEOPT_PAGES, OnSelchangedPages)
 	ON_BN_CLICKED(IDC_TREEOPT_IMPORT, OnImportButton)
@@ -128,7 +134,7 @@ void CPreferencesDlg::OnDestroy()
 
 void CPreferencesDlg::OnHelpButton() 
 {
-	GetMainFrame()->ShowHelp();
+	GetMainFrame()->ShowHelp(OptionsHelpLocation);
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)

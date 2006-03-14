@@ -105,6 +105,7 @@ protected:
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

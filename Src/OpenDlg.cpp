@@ -57,6 +57,11 @@ const UINT IDT_CHECKFILES = 1;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
+/**
+ * @brief Location for file compare specific help to open.
+ */
+static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/OpenPaths.html");
+
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
 
@@ -106,6 +111,7 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	ON_WM_ACTIVATE()
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -136,6 +142,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.ConstrainItem(IDC_SELECT_FILTER, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDOK, 1, 0, 0, 0); // slides right
 	m_constraint.ConstrainItem(IDCANCEL, 1, 0, 0, 0); // slides right
+	m_constraint.ConstrainItem(ID_HELP, 1, 0, 0, 0); // slides right
 	m_constraint.DisallowHeightGrowth();
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenDlg"), false); // persist size via registry
@@ -630,4 +637,10 @@ void COpenDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 
 	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
 		UpdateButtonStates();
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void COpenDlg::OnHelp()
+{
+	GetMainFrame()->ShowHelp(OpenDlgHelpLocation);
 }

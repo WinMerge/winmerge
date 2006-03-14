@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "MainFrm.h"
 #include "PropLineFilter.h"
 
 #ifdef _DEBUG
@@ -15,6 +16,11 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+/**
+ * @brief Location for file compare specific help to open.
+ */
+static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter property page
@@ -48,6 +54,7 @@ void CPropLineFilter::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CPropLineFilter, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropLineFilter)
 	ON_BN_CLICKED(IDC_IGNOREREGEXP, OnIgnoreregexp)
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -74,4 +81,10 @@ void CPropLineFilter::OnIgnoreregexp()
 	m_cPattern.EnableWindow(m_bIgnoreRegExp);
 	if (m_bIgnoreRegExp)
 		m_cPattern.SetFocus();
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void CPropLineFilter::OnHelp()
+{
+	GetMainFrame()->ShowHelp(FilterHelpLocation);
 }

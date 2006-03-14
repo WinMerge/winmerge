@@ -88,6 +88,7 @@ private:
 	afx_msg void OnBnClickedFilterfileTestButton();
 	afx_msg void OnBnClickedFilterfileNewbutton();
 	afx_msg void OnBnClickedFilterfileDelete();
+	afx_msg void OnHelp();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

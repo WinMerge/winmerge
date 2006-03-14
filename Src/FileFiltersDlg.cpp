@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "MainFrm.h"
 #include "FileFiltersDlg.h"
 #include "coretools.h"
 #include "dllver.h"
@@ -38,7 +39,15 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief Template file used when creating new filefilter.
+ */
 static const TCHAR FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
+
+/**
+ * @brief Location for file compare specific help to open.
+ */
+static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
@@ -69,6 +78,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
 	ON_BN_CLICKED(IDC_FILTERFILE_TEST_BTN, OnBnClickedFilterfileTestButton)
 	ON_BN_CLICKED(IDC_FILTERFILE_NEWBTN, OnBnClickedFilterfileNewbutton)
 	ON_BN_CLICKED(IDC_FILTERFILE_DELETEBTN, OnBnClickedFilterfileDelete)
+	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
 	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
@@ -506,4 +516,10 @@ void FileFiltersDlg::UpdateFiltersList()
 	{
 		AddToGrid(i);
 	}
+}
+
+/** @brief Open help from mainframe when user presses F1*/
+void FileFiltersDlg::OnHelp()
+{
+	GetMainFrame()->ShowHelp(FilterHelpLocation);
 }
