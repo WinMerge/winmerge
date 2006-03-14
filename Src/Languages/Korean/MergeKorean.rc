@@ -665,6 +665,7 @@ BEGIN
     LTEXT           "상태:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "확인",IDOK,306,11,50,14
     PUSHBUTTON      "취소",IDCANCEL,306,28,50,14
+    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
     GROUPBOX        "비교할 디렉토리/파일",IDC_FILES_DIRS_GROUP,7,
                 7,292,111
 END

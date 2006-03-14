@@ -667,6 +667,7 @@ BEGIN
     LTEXT           "状态:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "确定",IDOK,306,11,50,14
     PUSHBUTTON      "取消",IDCANCEL,306,28,50,14
+    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
     GROUPBOX        "要对比的文件或文件夹",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END

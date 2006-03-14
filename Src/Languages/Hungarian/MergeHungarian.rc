@@ -665,6 +665,7 @@ BEGIN
     LTEXT           "Állapot:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "Rendben",IDOK,306,11,50,14
     PUSHBUTTON      "Mégsem",IDCANCEL,306,28,50,14
+    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
     GROUPBOX        "Összehasonlítandó fájlok vagy könyvtárak",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END

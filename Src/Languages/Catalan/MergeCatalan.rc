@@ -665,6 +665,7 @@ BEGIN
     LTEXT           "Estat:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "D'acord",IDOK,306,11,62,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,306,28,62,14
+    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
     GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END

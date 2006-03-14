@@ -665,6 +665,7 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "Porównaj",IDOK,306,11,50,14
     PUSHBUTTON      "Anuluj",IDCANCEL,306,28,50,14
+    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
     GROUPBOX        "Obiekty do porównania",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END

@@ -665,6 +665,7 @@ BEGIN
     LTEXT           "Статус:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,310,11,50,14
     PUSHBUTTON      "Отмена",IDCANCEL,310,28,50,14
+    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
     GROUPBOX        "Файлы или каталоги для сравнивания",IDC_FILES_DIRS_GROUP,7,
                 7,298,111
 END
