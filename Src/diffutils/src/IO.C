@@ -281,7 +281,7 @@ find_and_hash_each_line (current)
 	      }
 	  else if (ignore_space_change_flag)
 	    /* Note that \r must be hashed (if !ignore_eol_diff) */
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
@@ -342,7 +342,7 @@ find_and_hash_each_line (current)
 	      }
 	  else if (ignore_space_change_flag)
 	    /* Note that \r must be hashed (if !ignore_eol_diff) */
-	    while ((c = *p++) != '\n')
+	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
 	      {
 		if (ignore_eol_diff && (c=='\r' || c=='\n'))
 		  continue;
