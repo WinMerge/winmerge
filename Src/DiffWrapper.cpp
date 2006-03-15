@@ -702,7 +702,10 @@ DiffFileData::SetDefaultCodepage(int defcp)
 	f_defcp = defcp;
 }
 
-/** @brief Simple initialization of DiffFileData */
+/**
+ * @brief Simple initialization of DiffFileData
+ * @note Diffcounts are initialized to invalid values, not zeros.
+ */
 DiffFileData::DiffFileData()
 {
 	m_inf = new file_data[2];
@@ -846,7 +849,12 @@ void DiffFileData::GuessEncoding_from_FileLocation(FileLocation & fpenc)
 	}
 }
 
-/** @brief Compare two specified files */
+/**
+ * @brief Compare two specified files.
+ *
+ * @param [in] Current directory depth.
+ * @return Compare result as DIFFCODE.
+ */
 int DiffFileData::diffutils_compare_files(int depth)
 {
 	int bin_flag = 0;
@@ -863,6 +871,7 @@ int DiffFileData::diffutils_compare_files(int depth)
 	// make sure to start counting diffs at 0
 	// (usually it is -1 at this point, for unknown)
 	m_ndiffs = 0;
+	m_ntrivialdiffs = 0;
 
 	// Free change script (which we don't want)
 	if (script != NULL)
@@ -885,13 +894,17 @@ int DiffFileData::diffutils_compare_files(int depth)
 
 	if (bin_flag != 0)
 	{
+		// Clear text-flag, set binary flag
+		// We don't know diff counts for binary files
 		code = code & ~DIFFCODE::TEXT | DIFFCODE::BIN;
 		m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
 	}
 
-
 	if (bin_flag < 0)
+	{
+		// Clear same-flag, set diff-flag
 		code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
+	}
 
 	return code;
 }
@@ -1506,7 +1519,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		code = diffutils_compare_files(0);
 		// If unique item, it was being compared to itself to determine encoding
 		// and the #diffs is invalid
-		if (!di.isSideRight() || !di.isSideLeft())
+		if (di.isSideRight() || di.isSideLeft())
 		{
 			m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
 			m_ntrivialdiffs = DiffFileData::DIFFS_UNKNOWN;
@@ -1521,7 +1534,6 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			GuessEncoding_from_buffer_in_DiffContext(0, pCtxt);
 			GuessEncoding_from_buffer_in_DiffContext(1, pCtxt);
 		}
-	
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{

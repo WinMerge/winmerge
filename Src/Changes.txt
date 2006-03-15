@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-15 Kimmo
+ PATCH: [ 1449868 ] Fix difference counts
+  Src: DiffWrapper.cpp
+
 2006-03-14 Kimmo
  PATCH: [ 1449038 ] Add Help-button to Open-dialog
   Src: FileFiltersDlg.cpp FileFiltersDlg.h Merge.rc OpenDlg.cpp OpenDlg.h
