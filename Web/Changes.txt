@@ -1,3 +1,9 @@
+2006-03-15 Tim
+ PATCH: [ 1449943 ] Web: Use new logo
+  Web: page.inc
+  Web\css: print.css
+  Web\images: new file logo.gif
+
 2006-03-01 Tim
  PATCH: [ 1441282 ] Website changes for new stable release 2.4.6
   Web: downloads.php index.php page.inc WinMergePAD.xml
