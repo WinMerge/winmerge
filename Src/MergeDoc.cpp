@@ -2579,7 +2579,7 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 }
 
 /**
- * @brief Loads files and does initial rescan
+ * @brief Loads files and does initial rescan.
  * @param filelocLeft [in] File to open to left side (path & encoding info)
  * @param fileLocRight [in] File to open to right side (path & encoding info)
  * @param bROLeft [in] Is left file read-only
@@ -2588,8 +2588,7 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
  * @todo Options are still read from CMainFrame, this will change
  * @sa CMainFrame::ShowMergeDoc()
  */
-OPENRESULTS_TYPE
-CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
+OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		BOOL bROLeft, BOOL bRORight)
 {
 	BOOL bBinary = FALSE;
@@ -2700,12 +2699,19 @@ CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 	// Bail out if either side failed
 	if (!FileLoadResult::IsOk(nLeftSuccess) || !FileLoadResult::IsOk(nRightSuccess))
 	{
+		OPENRESULTS_TYPE retVal = OPENRESULTS_FAILED_MISC;
 		if (FileLoadResult::IsBinary(nLeftSuccess) || FileLoadResult::IsBinary(nRightSuccess))
 		{
 			CompareBinaries(sLeftFile, sRightFile, nLeftSuccess, nRightSuccess);
-			return OPENRESULTS_FAILED_BINARY;
+			retVal = OPENRESULTS_FAILED_BINARY;
 		}
-		return OPENRESULTS_FAILED_MISC;
+		CChildFrame *pFrame = GetParentFrame();
+		if (pFrame)
+		{
+			// Use verify macro to trap possible error in debug.
+			VERIFY(pFrame->DestroyWindow());
+		}
+		return retVal;
 	}
 
 	// Warn user if file load was lossy (bad encoding)

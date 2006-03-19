@@ -632,6 +632,7 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 		}
 	}
 
+	// Note that OpenDocs() takes care of closing compare window when needed.
 	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(filelocLeft, filelocRight,
 			bROLeft, bRORight);
 
@@ -644,12 +645,6 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 		}
 		else
 			MDINext();
-	}
-	else
-	{
-		// Close file compare when loading files fails
-		CWnd* pWnd = pMergeDoc->GetParentFrame();
-		pWnd->DestroyWindow();
 	}
 	return openResults;
 }
