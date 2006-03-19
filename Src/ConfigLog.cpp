@@ -434,6 +434,8 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemWhitespace(2, _T("Whitespace compare"), &m_diffOptions.nIgnoreWhitespace);
 
 	WriteItemYesNo(2, _T("Detect moved blocks"), &m_miscSettings.bMovedBlocks);
+	WriteItem(m_file, 2, _T("Compare method"), m_compareSettings.nCompareMethod);
+	WriteItemYesNo(2, _T("Stop after first diff"), &m_compareSettings.bStopAfterFirst);
 
 	FileWriteString(_T("\n Other settings:\n"));
 	WriteItemYesNo(2, _T("Automatic rescan"), &m_miscSettings.bAutomaticRescan);

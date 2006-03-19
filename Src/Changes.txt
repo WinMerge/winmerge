@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-19 Kimmo
+ PATCH: [ 1449892 ] Add compare method to configlog
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+
 2006-03-17 Tim
  PATCH: [ 1449571 ] Add '*.pm' and '*.plx' to Perl highlighter
   Src/editlib: ccrystaleditview.cpp

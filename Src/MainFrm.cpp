@@ -2279,7 +2279,9 @@ LoadConfigLog(CConfigLog & configLog, COptionsMgr & options, LOGFONT & lfDiff, C
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreCase, options, OPT_CMP_IGNORE_CASE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreEol, options, OPT_CMP_IGNORE_EOL, cfgdir);
-	
+	LoadConfigIntSetting(&configLog.m_compareSettings.nCompareMethod, options, OPT_CMP_METHOD, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_compareSettings.bStopAfterFirst, options, OPT_CMP_STOP_AFTER_FIRST, cfgdir);
+
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowIdent, options, OPT_SHOW_IDENTICAL, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowDiff, options, OPT_SHOW_DIFFERENT, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_viewSettings.bShowUniqueLeft, options, OPT_SHOW_UNIQUE_LEFT, cfgdir);

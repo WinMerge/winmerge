@@ -28,6 +28,15 @@
 class CfgSettings;
 
 /** 
+ * @brief Compare-related settings.
+ */
+struct COMPARESETTINGS
+{
+	int nCompareMethod;
+	BOOL bStopAfterFirst;
+};
+
+/** 
  * @brief View settings for directory compare
  */
 struct VIEWSETTINGS
@@ -83,6 +92,7 @@ public:
 	~CConfigLog();
 
 	DIFFOPTIONS m_diffOptions;
+	COMPARESETTINGS m_compareSettings;
 	VIEWSETTINGS m_viewSettings;
 	MISCSETTINGS m_miscSettings;
 	CPSETTINGS m_cpSettings;
