@@ -9,6 +9,9 @@ Add new items to top.
  PATCH: [ 1452288 ] Add ASP.NET filefilter
   By By Jon Galloway and Josh Blair
   Filters new file: ASPNET.flt
+ PATCH: [ 1454720 ] Fix resizable dialogs missing captionbar close button
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2006-03-19 Kimmo
  PATCH: [ 1449892 ] Add compare method to configlog
