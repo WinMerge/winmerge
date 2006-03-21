@@ -55,8 +55,10 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("AppActivate"),
     _T ("Asc"),
     _T ("Atn"),
+    _T ("Attribute"),
     _T ("Beep"),
     _T ("Begin"),
+    _T ("BeginProperty"),
     _T ("Boolean"),
     _T ("ByRef"),
     _T ("ByVal"),
@@ -91,6 +93,7 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Loop"),
     _T ("Each"),
     _T ("End"),
+    _T ("EndProperty"),
     _T ("Enum"),
     _T ("EOF"),
     _T ("Erase"),
@@ -209,6 +212,7 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Val"),
     _T ("Variant"),
     _T ("VarType"),
+    _T ("Version"),
     _T ("While"),
     _T ("Wend"),
     _T ("With"),
@@ -222,7 +226,7 @@ IsXKeyword (LPTSTR apszKeywords[], LPCTSTR pszChars, int nLength)
 {
   for (int L = 0; apszKeywords[L] != NULL; L++)
     {
-      if (_tcsncmp (apszKeywords[L], pszChars, nLength) == 0
+      if (_tcsnicmp (apszKeywords[L], pszChars, nLength) == 0
             && apszKeywords[L][nLength] == 0)
         return TRUE;
     }
