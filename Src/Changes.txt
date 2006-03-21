@@ -15,6 +15,8 @@ Add new items to top.
  PATCH: [ 1455430 ] New Splash Screen Revision 2
   Submitted by Alexander Skinner
   Src/res: splash.jpg
+ Remove obsolete splashscreen image (for old splashscreen)
+  Src/res removed file: WinMergesplash.psd
 
 2006-03-19 Kimmo
  PATCH: [ 1449892 ] Add compare method to configlog
