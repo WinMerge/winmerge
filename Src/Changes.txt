@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-21 Kimmo
+ PATCH: [ 1448599 ] WinMerge Program Icon Set
+  Submitted by Alexander Skinner
+  Src/res: Merge.ico
+
 2006-03-19 Kimmo
  PATCH: [ 1449892 ] Add compare method to configlog
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
