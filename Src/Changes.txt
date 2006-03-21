@@ -12,6 +12,9 @@ Add new items to top.
  PATCH: [ 1454720 ] Fix resizable dialogs missing captionbar close button
   Src: Merge.rc
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1455430 ] New Splash Screen Revision 2
+  Submitted by Alexander Skinner
+  Src/res: splash.jpg
 
 2006-03-19 Kimmo
  PATCH: [ 1449892 ] Add compare method to configlog
