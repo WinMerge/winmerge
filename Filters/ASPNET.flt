@@ -1,0 +1,38 @@
+## This is a directory/file filter for WinMerge 
+## This filter lets through only files ASP.NET developers care about 
+name: ASP.NET Devel 
+
+## This is an exclusive filter 
+## (it lets through only matching files) 
+def: exclude 
+
+## Filters for filenames begin with f: 
+## Filters for directories begin with d: 
+## (Inline comments begin with " ##" and extend to the end of the line) 
+
+f: \.xml$ 
+f: \.xlst$ 
+f: \.dtd$ 
+f: \.html$ 
+f: \.htm$ 
+f: \.css$ 
+f: \.gif$ 
+f: \.bmp$ 
+f: \.jpg$ 
+f: \.png$ 
+f: \.js$ 
+f: \.dll$ 
+f: \.aspx$ 
+f: \.asmx$ 
+f: \.ascx$ 
+f: \.vb$ 
+f: \.resx$ 
+f: \.cs$ 
+f: \.js$ 
+f: \.vbproj$ 
+f: \.csproj$ 
+f: \.sln$ 
+f: \.webinfo$ 
+f: \.config$ 
+
+d: \\*$ ## Subdirectories 
