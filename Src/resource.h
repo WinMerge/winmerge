@@ -577,6 +577,8 @@
 #define IDS_COLHDR_NDIFFS               17716
 #define IDS_COLHDR_NSDIFFS              17717
 #define IDS_COLHDR_BINARY               17718
+#define IDS_COLHDR_LEOL_TYPE            17719
+#define IDS_COLHDR_REOL_TYPE            17720
 #define IDS_CANT_COMPARE_FILES          17728
 #define IDS_FILE_SKIPPED                17729
 #define IDS_DIR_SKIPPED                 17730
@@ -615,6 +617,8 @@
 #define IDS_COLDESC_NDIFFS              17780
 #define IDS_COLDESC_NSDIFFS             17781
 #define IDS_COLDESC_BINARY              17782
+#define IDS_COLDESC_LEOL_TYPE           17783
+#define IDS_COLDESC_REOL_TYPE           17784
 #define IDS_DIRECTORY_REPORT_TITLE      17792
 #define IDS_REPORT_COMMALIST            17793
 #define IDS_REPORT_TABLIST              17794
@@ -887,6 +891,10 @@
 #define IDS_CP_WINDOWS_GREEK_EXTRA      30328
 #define IDS_CP_WINDOWS_TURKISH_EXTRA    30329
 #define IDS_CP_WINDOWS_HEBREW_EXTRA     30340
+#define IDS_EOL_DOS                     30400
+#define IDS_EOL_MAC                     30401
+#define IDS_EOL_UNIX                    30402
+#define IDS_EOL_MIXED                   30403
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_RIGHT              32769
 #define ID_FILE_SAVEAS_LEFT             32770

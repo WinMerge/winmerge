@@ -2168,6 +2168,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "요약 결과"
     IDS_COLHDR_LATTRIBUTES  "왼쪽 속성"
     IDS_COLHDR_RATTRIBUTES  "오른쪽 속성"
+    IDS_COLHDR_LEOL_TYPE    "Left EOL"
+    IDS_COLHDR_REOL_TYPE    "Right EOL"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2231,6 +2233,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "간략한 요약 결과."
     IDS_COLDESC_LATTRIBUTES "왼쪽 속성."
     IDS_COLDESC_RATTRIBUTES "오른쪽 속성."
+    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
+    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2646,6 +2650,15 @@ BEGIN
 	IDS_CP_WINDOWS_GREEK_EXTRA      "Approximates ISO-8859-7"
 	IDS_CP_WINDOWS_TURKISH_EXTRA    "Approximates ISO-8859-9"
 	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
+END
+
+// EOL types shown in folder compare EOL type column
+STRINGTABLE
+BEGIN
+    IDS_EOL_DOS             "Win"
+    IDS_EOL_MAC             "Mac"
+    IDS_EOL_UNIX            "Unix"
+    IDS_EOL_MIXED           "Mixed"
 END
 
 // MENU STRINGS

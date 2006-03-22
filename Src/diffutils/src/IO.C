@@ -400,11 +400,16 @@ find_and_hash_each_line (current)
 	  /* Remove all eols characters and adjust line length */
 	  if (length>1 && p[-2]=='\r' && p[-1]=='\n')
 	  {
+	    ++current->count_crlfs;
 	    ((char HUGE *)p)[-2] = 0;
 	    length -= 2;
 	  }
 	  else if (p[-1] == '\n' || p[-1] == '\r')
 	  {
+	    if (p[-1] == '\n')
+	      ++current->count_lfs;
+	    else
+	      ++current->count_crs;
 	    ((char HUGE *)p)[-1] = 0;
 	    --length;
 	  }

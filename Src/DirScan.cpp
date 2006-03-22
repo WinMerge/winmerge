@@ -51,7 +51,7 @@ static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
-static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
+static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const DiffFileData * pDiffFileData);
 static void AddToList(const CString & sLeftDir, const CString & sRightDir, const fentry * lent, const fentry * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
@@ -370,7 +370,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			di.diffcode |= DIFFCODE::SKIPPED;
 		// We don't actually 'compare' directories, just add non-ignored
 		// directories to list.
-		StoreDiffResult(di, pCtxt, NULL);
+		StoreDiffData(di, pCtxt, NULL);
 	}
 	else
 	{
@@ -390,11 +390,11 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					// Add possible binary flag for unique items
 					if (diffCode & DIFFCODE::BIN)
 						di.diffcode |= DIFFCODE::BIN;
-					StoreDiffResult(di, pCtxt, &diffdata);
+					StoreDiffData(di, pCtxt, &diffdata);
 				}
 				else
 				{
-					StoreDiffResult(di, pCtxt, NULL);
+					StoreDiffData(di, pCtxt, NULL);
 				}
 			}
 			// 3. Compare two files
@@ -415,7 +415,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 				else
 					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
 				// report result back to caller
-				StoreDiffResult(di, pCtxt, NULL);
+				StoreDiffData(di, pCtxt, NULL);
 			}
 			else
 			{
@@ -423,13 +423,13 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 				DiffFileData diffdata;
 				di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
 				// report result back to caller
-				StoreDiffResult(di, pCtxt, &diffdata);
+				StoreDiffData(di, pCtxt, &diffdata);
 			}
 		}
 		else
 		{
 			di.diffcode |= DIFFCODE::SKIPPED;
-			StoreDiffResult(di, pCtxt, NULL);
+			StoreDiffData(di, pCtxt, NULL);
 		}
 	}
 }
@@ -523,11 +523,17 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
 /**
  * @brief Send one file or directory result back through the diff context
  */
-static void StoreDiffResult(DIFFITEM &di, CDiffContext * pCtxt,
+static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const DiffFileData * pDiffFileData)
 {
 	if (pDiffFileData)
 	{
+		// Set text statistics
+		if (di.isSideLeftOrBoth())
+			di.left.m_textStats = pDiffFileData->m_textStats0;
+		if (di.isSideRightOrBoth())
+			di.right.m_textStats = pDiffFileData->m_textStats1;
+
 		if (pDiffFileData->m_ntrivialdiffs > -1)
 			di.nsdiffs = pDiffFileData->m_ndiffs - pDiffFileData->m_ntrivialdiffs;
 		di.ndiffs = pDiffFileData->m_ndiffs;

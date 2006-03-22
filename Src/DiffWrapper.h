@@ -29,6 +29,9 @@
 
 #include "FileLocation.h"
 
+#ifndef FileTextStats_h_included
+#include "FileTextStats.h"
+#endif
 
 class CDiffContext;
 class PrediffingInfo;
@@ -242,6 +245,7 @@ struct DiffFileData
 	file_data * m_inf;
 	bool m_used; // whether m_inf has real data
 	FileLocation m_FileLocation[2];
+	FileTextStats m_textStats0, m_textStats1;
 
 	CString m_sDisplayFilepath[2];
 	int m_ndiffs;

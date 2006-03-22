@@ -6,6 +6,11 @@ Add new items to top.
  PATCH: [ 1455706 ] Catalan translation update
   Submitted by Jordi Vilar
   Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1406944 ] Compute text statistics in QuickCompare
+  Src: ByteComparator.cpp ByteComparator.h DiffFileInfo.cpp DiffFileInfo.h DiffWrapper.cpp
+   Diffwrapper.h DirScan.cpp DirViewColItems.cpp Merge.dsp Merge.rc resource.h
+  Src/diffutils/src: DIFF.H IO.C
+  Src/Languages/*: Merge*.rc
 
 2006-03-21 Tim
  PATCH: [ 1455663 ] Add new keywords to Visual Basic highlighter

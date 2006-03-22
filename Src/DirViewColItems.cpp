@@ -401,6 +401,40 @@ static CString ColEncodingGet(const CDiffContext *, const void *p)
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	return r.encoding.GetName();
 }
+static CString ColEOLTypeGet(const CDiffContext *, const void *p)
+{
+	const FileTextStats &stats = *static_cast<const FileTextStats *>(p);
+
+	if (stats.ncrlfs == 0 && stats.ncrs == 0 && stats.nlfs == 0)
+	{
+		return _T("");
+	}
+
+	int id = 0;
+	if (stats.ncrlfs > 0 && stats.ncrs == 0 && stats.nlfs == 0)
+	{
+		id = IDS_EOL_DOS;
+	}
+	else if (stats.ncrlfs == 0 && stats.ncrs > 0 && stats.nlfs == 0)
+	{
+		id = IDS_EOL_MAC;
+	}
+	else if (stats.ncrlfs == 0 && stats.ncrs == 0 && stats.nlfs > 0)
+	{
+		id = IDS_EOL_UNIX;
+	}
+	else
+	{
+		CString s = LoadResString(IDS_EOL_MIXED);
+		CString strstats;
+		strstats.Format(_T(":%d/%d/%d"), stats.ncrlfs, stats.ncrs, stats.nlfs);
+		s += strstats;
+		return s;
+	}
+	
+	return LoadResString(id);
+}
+
 /**
  * @}
  */
@@ -494,6 +528,13 @@ static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
 	return FileTextEncoding::Collate(r.encoding, s.encoding);
 }
+static int ColEOLTypeSort(const CDiffContext *, const void *p, const void *q)
+{
+	const CString &r = *static_cast<const CString*>(p);
+	const CString &s = *static_cast<const CString*>(q);
+	return r.CompareNoCase(s);
+}
+
 /* @} */
 
 /**
@@ -529,6 +570,8 @@ static DirColInfo f_cols[] =
 	{ _T("Rencoding"), IDS_COLHDR_RENCODING, IDS_COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, right), -1, true, LVCFMT_LEFT },
 	{ _T("Sndiffs"), IDS_COLHDR_NDIFFS, IDS_COLDESC_NDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, ndiffs), -1, false, LVCFMT_RIGHT },
 	{ _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, IDS_COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
+	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColEOLTypeGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, left.m_textStats), -1, true, LVCFMT_LEFT },
+	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColEOLTypeGet, &ColEOLTypeSort, FIELD_OFFSET(DIFFITEM, right.m_textStats), -1, true, LVCFMT_LEFT },
 };
 
 /**

@@ -73,6 +73,7 @@ void DiffFileInfo::Clear()
 	FileInfo::Clear();
 	bVersionChecked = false;
 	encoding.Clear();
+	m_textStats.clear();
 }
 
 

@@ -1,3 +1,9 @@
+#ifndef ByteComparator_h_included
+#define ByteComparator_h_included
+
+struct FileTextStats;
+
+
 class ByteComparator
 {
 public:
@@ -23,7 +29,9 @@ public:
 public:
 	typedef enum { RESULT_DIFF, RESULT_SAME, NEED_MORE_0, NEED_MORE_1, NEED_MORE_BOTH } COMP_RESULT;
 
-	COMP_RESULT CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1);
+	COMP_RESULT CompareBuffers(FileTextStats & stats0, FileTextStats & stats1,
+		LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1,
+		int offset0, int offset1);
 	void ResetIgnore();
 
 private:
@@ -42,3 +50,5 @@ private:
 	bool m_bol0; //0-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines)
 	bool m_bol1; //1-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines)
 };
+
+#endif // ByteComparator_h_included

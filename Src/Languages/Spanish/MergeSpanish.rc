@@ -2168,6 +2168,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Resultados abreviados"
     IDS_COLHDR_LATTRIBUTES  "Atributos izq."
     IDS_COLHDR_RATTRIBUTES  "Atributos dcha."
+    IDS_COLHDR_LEOL_TYPE    "Left EOL"
+    IDS_COLHDR_REOL_TYPE    "Right EOL"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2231,6 +2233,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "Resultados de la comparación abreviados."
     IDS_COLDESC_LATTRIBUTES "Attributos del fichero del lado izquierdo."
     IDS_COLDESC_RATTRIBUTES "Attributos del fichero del lado derecho."
+    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
+    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2648,6 +2652,15 @@ BEGIN
 	IDS_CP_WINDOWS_GREEK_EXTRA      "Aproximadamente ISO-8859-7"
 	IDS_CP_WINDOWS_TURKISH_EXTRA    "Aproximadamente ISO-8859-9"
 	IDS_CP_WINDOWS_HEBREW_EXTRA     "Aproximadamente ISO-8859-8"
+END
+
+// EOL types shown in folder compare EOL type column
+STRINGTABLE
+BEGIN
+    IDS_EOL_DOS             "Win"
+    IDS_EOL_MAC             "Mac"
+    IDS_EOL_UNIX            "Unix"
+    IDS_EOL_MIXED           "Mixed"
 END
 
 // MENU STRINGS

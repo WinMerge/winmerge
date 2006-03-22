@@ -33,6 +33,10 @@
 #include "FileTextEncoding.h"
 #endif
 
+#ifndef FileTextStats_h_included
+#include "FileTextStats.h"
+#endif
+
 /**
  * @brief Class for fileflags and coding info.
  */
@@ -88,6 +92,8 @@ struct DiffFileInfo : public FileInfo
 	bool bVersionChecked; /**< true if version string is up-to-date */
 	DiffFileFlags flags; /**< file attributes */
 	FileTextEncoding encoding; /**< unicode or codepage info */
+	FileTextStats m_textStats; /**< EOL, zero-byte etc counts */
+
 	// We could stash a pointer here to the parent DIFFITEM
 	// but, I ran into trouble with, I think, the DIFFITEM copy constructor
 

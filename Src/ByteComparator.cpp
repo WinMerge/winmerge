@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "ByteComparator.h"
+#include "FileTextStats.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,15 +29,85 @@ static inline bool iswsch(TCHAR ch)
     return ch==' ' || ch=='\t';
 }
 
+static void
+TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof, bool crflag, int offset)
+{
+	LPCSTR start = ptr; // remember for recording zero-byte offsets
+
+	// Handle any crs left from last buffer
+	if (crflag)
+	{
+		if (ptr < end && *ptr == '\n')
+		{
+			++stats.ncrlfs;
+			++ptr;
+		}
+		else
+		{
+			++stats.ncrs;
+		}
+	}
+	for ( ; ptr < end; ++ptr)
+	{
+		char ch = *ptr;
+		if (ch == 0)
+		{
+			++stats.nzeros;
+			int index = offset + (ptr - start);
+			if (stats.first_zero == -1)
+				stats.first_zero = index;
+			stats.last_zero = index;
+		}
+		else if (ch == '\r')
+		{
+			if (ptr+1 < end)
+			{
+				if (ptr[1] == '\n')
+				{
+					++stats.ncrlfs;
+					++ptr;
+				}
+				else
+				{
+					++stats.ncrs;
+				}
+			}
+			else if (eof)
+			{
+				++stats.ncrs;
+			}
+			else
+			{
+				// else last byte of buffer
+				// leave alone, the CompareBuffers loop will set the appropriate m_cr flag
+				// and we'll handle it next time we're called
+			}
+		}
+		else if (ch == '\n')
+		{
+			++stats.nlfs;
+		}
+	}
+}
+
 /**
  * Compare buffers pointed to by ptr0 and ptr1, advancing them
- * End of buffers given by end0 and end1
+ * End of buffers given by end0 and end1 (these point past last valid byte)
+ * eof0 is true if this is the last buffer for side0 (and similarly eof1 for side 1)
+ * offset0 is how far this buffer is into the file (ie, 0 the first time called)
  * Return true if equal, false if different
  * Take into account global diffutils flags such as ignore_space_change_flag
  */
 ByteComparator::COMP_RESULT
-ByteComparator::CompareBuffers(LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1)
+ByteComparator::CompareBuffers(FileTextStats & stats0, FileTextStats & stats1,
+	LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1,
+	int offset0, int offset1)
 {
+	// First, update file text statistics by doing a full scan
+	// for 0s and all types of line delimiters
+	TextScan(stats0, ptr0, end0, eof0, m_cr0, offset0);
+	TextScan(stats1, ptr1, end1, eof1, m_cr1, offset1);
+
 	// cycle through buffer data performing actual comparison
 	while (true)
 	{

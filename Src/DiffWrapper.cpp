@@ -40,6 +40,7 @@
 #include "paths.h"
 #include "IAbortable.h"
 #include "CompareOptions.h"
+#include "FileTextStats.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -58,7 +59,6 @@ static const int KILO = 1024; // Kilo(byte)
 static const int WMCMPBUFF = 32 * KILO;
 
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
-static inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd);
 static void FreeDiffUtilsScript(struct change * & script);
 
 /**
@@ -1420,6 +1420,10 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	CString filepath2;
 	GetComparePaths(pCtxt, di, filepath1, filepath2);
 
+	// Reset text stats
+	m_textStats0.clear();
+	m_textStats1.clear();
+
 	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
 	// but how can we receive the infoHandler ? DirScan actually only 
@@ -1573,6 +1577,25 @@ exitPrepAndCompare:
 	return code;
 }
 
+/**
+ * @brief Copy text stat results from diffutils back into the FileTextStats structure
+ */
+static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats)
+{
+	myTextStats->ncrlfs = inf->count_crlfs;
+	myTextStats->ncrs = inf->count_crs;
+	myTextStats->nlfs = inf->count_lfs;
+}
+
+/**
+ * @brief Copy both left & right text stats results back into the DiffFileData text stats
+ */
+static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData)
+{
+	CopyTextStats(&inf[0], &diffData->m_textStats0);
+	CopyTextStats(&inf[1], &diffData->m_textStats1);
+}
+
 BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	int * bin_status)
 {
@@ -1581,6 +1604,7 @@ BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	{
 		// Diff files. depth is zero because we are not comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status, m_bDetectMovedBlocks);
+		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
@@ -1597,6 +1621,7 @@ BOOL DiffFileData::Diff2Files(struct change ** diffs, int depth,
 	__try
 	{
 		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks);
+		CopyDiffutilTextStats(m_inf, this);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
@@ -1702,35 +1727,24 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 		LPCSTR end0 = &buff[0][bfend[0]];
 		LPCSTR end1 = &buff[1][bfend[1]];
 
-		BOOL bBin0 = isBinaryBuf(&buff[0][bfstart[0]], &buff[0][bfend[0]]);
-		BOOL bBin1 = isBinaryBuf(&buff[1][bfstart[1]], &buff[1][bfend[1]]);
+		int offset0 = (ptr0 - &buff[0][0]);
+		int offset1 = (ptr1 - &buff[1][0]);
 
-		// If either buffer is binary file, don't bother ignoring differences
-		// for whitespaces or EOLs anymore.
-		if (bBin0 || bBin1)
+		// are these two buffers the same?
+		if (!comparator.CompareBuffers(m_textStats0, m_textStats1, 
+			ptr0, ptr1, end0, end1, eof[0], eof[1], offset0, offset1))
 		{
-			diffcode |= DIFFCODE::BIN;
-			comparator.ResetIgnore();
-		}
-
-//		We need option to bail out when first diff is found? Might be a good optimization
-//		in some cases. But then we won't detect all binary files?
-
-		// Don't bother comparing if we already have detected buffers differ
-		// But we must advance pointers so we can scan full files for binary status
-		if (!(diffcode & DIFFCODE::DIFF))
-		{
-			// are these two buffers the same?
-			if (!comparator.CompareBuffers(ptr0, ptr1, end0, end1, eof[0], eof[1]))
+			if (bStopAfterFirstDiff)
 			{
-				if (bStopAfterFirstDiff)
-					return diffcode | DIFFCODE::DIFF;
-				else
-				{
-					diffcode |= DIFFCODE::DIFF;
-					ptr0 = end0;
-					ptr1 = end1;
-				}
+				// By bailing out here
+				// we leave our text statistics incomplete
+				return diffcode | DIFFCODE::DIFF;
+			}
+			else
+			{
+				diffcode |= DIFFCODE::DIFF;
+				ptr0 = end0;
+				ptr1 = end1;
 			}
 		}
 		else
@@ -1743,10 +1757,22 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 		// did we finish both files?
 		if (eof[0] && eof[1])
 		{
-			if (ptr0 == end0 && ptr1 == end1 && !(diffcode & DIFFCODE::DIFF))
-				return diffcode | DIFFCODE::SAME;
-			else
+
+			BOOL bBin0 = (m_textStats0.nzeros>0);
+			BOOL bBin1 = (m_textStats1.nzeros>0);
+			if (bBin0 || bBin1)
+			{
+				diffcode |= DIFFCODE::BIN;
+			}
+
+			// If either unfinished, they differ
+			if (ptr0 != end0 || ptr1 != end1)
+				diffcode = (diffcode & DIFFCODE::DIFF);
+			
+			if (diffcode & DIFFCODE::DIFF)
 				return diffcode | DIFFCODE::DIFF;
+			else
+				return diffcode | DIFFCODE::SAME;
 		}
 
 		// move our current pointers over what we just compared
@@ -1756,23 +1782,6 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 		bfstart[1] += ptr1-orig1;
 	}
 	return diffcode;
-}
-
-/**
- * @brief Check if given buffer contains zero-bytes.
- * If buffer has zero-bytes we determine it contains binary data.
- * @param [in] bufBegin Start address of the buffer.
- * @param [in] bufEnd one-past-the-end address of the buffer.
- * @return TRUE if zero-bytes found.
- */
-inline BOOL isBinaryBuf(char * bufBegin, char * bufEnd)
-{
-	for (char * pByte = bufBegin; pByte < bufEnd; ++pByte)
-	{
-		if (*pByte == 0x0)
-			return TRUE;
-	}
-	return FALSE;
 }
 
 /**

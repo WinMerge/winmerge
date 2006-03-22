@@ -283,6 +283,9 @@ struct file_data {
     /* 1 more than the maximum equivalence value used for this or its
        sibling file. */
     int equiv_max;
+
+    /* text stats for WinMerge */
+    int count_crlfs, count_crs, count_lfs;
 };
 
 /* Describe the two files currently being compared.  */

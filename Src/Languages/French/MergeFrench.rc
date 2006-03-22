@@ -742,7 +742,7 @@ END
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-APTION "Langage"
+CAPTION "Langage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "OK",IDOK,30,123,52,14
@@ -2114,6 +2114,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Résultat"
     IDS_COLHDR_LATTRIBUTES  "Attributs gauches"
     IDS_COLHDR_RATTRIBUTES  "Attributs droits"
+    IDS_COLHDR_LEOL_TYPE    "Left EOL"
+    IDS_COLHDR_REOL_TYPE    "Right EOL"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2177,6 +2179,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "Resultat de la comparison, format abrégé."
     IDS_COLDESC_LATTRIBUTES "Attributs du côté gauche."
     IDS_COLDESC_RATTRIBUTES "Attributs du côté droit."
+    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
+    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2594,6 +2598,15 @@ BEGIN
     IDS_CP_WINDOWS_GREEK_EXTRA         "Se rapproche de ISO-8859-7"
     IDS_CP_WINDOWS_TURKISH_EXTRA       "Se rapproche de ISO-8859-9"
     IDS_CP_WINDOWS_HEBREW_EXTRA        "Se rapproche de ISO-8859-8"
+END
+
+// EOL types shown in folder compare EOL type column
+STRINGTABLE
+BEGIN
+    IDS_EOL_DOS             "Win"
+    IDS_EOL_MAC             "Mac"
+    IDS_EOL_UNIX            "Unix"
+    IDS_EOL_MIXED           "Mixed"
 END
 
 // MENU STRINGS
