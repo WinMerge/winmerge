@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-22 Kimmo
+ PATCH: [ 1455706 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
+
 2006-03-21 Tim
  PATCH: [ 1455663 ] Add new keywords to Visual Basic highlighter
   Src\editlib: basic.cpp

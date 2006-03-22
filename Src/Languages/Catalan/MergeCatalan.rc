@@ -127,12 +127,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "Copia a la &dreta",            ID_L2R
+        MENUITEM "Copia a l'&esquerra",          ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "&Retalla",                     ID_EDIT_CUT
+        MENUITEM "C&opia",                       ID_EDIT_COPY
+        MENUITEM "Engan&xa",                     ID_EDIT_PASTE
     END
 END
 
@@ -192,8 +192,8 @@ BEGIN
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Índex...",                   ID_HELP_INDEX
+        MENUITEM "&Cerca...",                   ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
@@ -216,7 +216,7 @@ BEGIN
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
         MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "&Codificació del fitxer",      ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Surt",                       ID_APP_EXIT
     END
@@ -235,7 +235,7 @@ BEGIN
         MENUITEM "Mostra els elements únics de l'&esquerra", ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Mostra els elements únics de la &dreta", ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Mostra els elements &omesos",  ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Mostra els elements &binaris", ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Mostra els fitxers &binaris", ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "Mostra els elements ama&gats",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -301,8 +301,8 @@ BEGIN
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Índex...",                   ID_HELP_INDEX
+        MENUITEM "&Cerca...",                   ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
@@ -320,7 +320,7 @@ BEGIN
         MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Desa el p&rojecte...",           ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Desa\tControl+S",               ID_FILE_SAVE
         POPUP "Desa l'&Esquerra"
@@ -373,7 +373,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "Avançat"
         BEGIN
-            MENUITEM "&Copia amb el número de línia\tControl+Maj+C",
+            MENUITEM "&Copia amb els números de línia\tControl+Maj+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
         MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
@@ -396,7 +396,7 @@ BEGIN
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
         MENUITEM "Subfinest&ra de diferències", ID_VIEW_DETAIL_BAR
-        MENUITEM "Subfinestra d'&ubicació",      ID_VIEW_LOCATION_BAR
+        MENUITEM "Subfinestra d'&ubicació",     ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
     END
@@ -455,8 +455,8 @@ BEGIN
     POPUP "&Ajuda"
     BEGIN
         MENUITEM "&Temes de l'ajuda...\tF1",    ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Índex...",                   ID_HELP_INDEX
+        MENUITEM "&Cerca...",                   ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "C&onfiguració...",            ID_HELP_GETCONFIG
         MENUITEM "Suport d'&arxivament inhabilitat...", ID_HELP_MERGE7ZMISMATCH
@@ -474,10 +474,10 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Copia"
         BEGIN
-            MENUITEM "D'&esquerra a dreta",   ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "D'e&squerra a...",         ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "De &dreta a esquerra",    ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "De d&reta a...",            ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "D'&esquerra a dreta",         ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "D'e&squerra a...",            ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "De &dreta a esquerra",        ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "De d&reta a...",              ID_DIR_COPY_RIGHT_TO_BROWSE
         END
         POPUP "&Mou"
         BEGIN
@@ -551,11 +551,11 @@ IDR_POPUP_LOCATIONBAR MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "Vé&s a la diferència",                  ID_LOCBAR_GOTODIFF
-        MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
+        MENUITEM "Vé&s a la diferència",        ID_LOCBAR_GOTODIFF
+        MENUITEM "&Vés a...\tControl+G",        ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Blocs &no moguts",            ID_DISPLAY_MOVED_NONE
-        MENUITEM "&Tots el blocs moguts",           ID_DISPLAY_MOVED_ALL
+        MENUITEM "&Tots el blocs moguts",       ID_DISPLAY_MOVED_ALL
         MENUITEM "Blocs moguts per a la &diferència actual", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
 END
@@ -666,7 +666,7 @@ BEGIN
     LTEXT           "Estat:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "D'acord",IDOK,306,11,62,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,306,28,62,14
-    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
+    PUSHBUTTON      "Ajuda",ID_HELP,306,45,50,14
     GROUPBOX        "Fitxers o directoris a comparar",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END
@@ -679,7 +679,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "",IDC_STATIC,7,7,243,47,SS_SUNKEN
     LTEXT           "IDS_SAVEVSS_FMT",IDC_MESSAGE,14,13,231,34
-    LTEXT           "&Base de dades:",IDC_STATIC,7,63,49,12
+    LTEXT           "&Base de dades:",IDC_STATIC,7,64,49,8
     COMBOBOX        IDC_DATABASE_LIST,59,63,191,114,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     LTEXT           "&Projecte:",IDC_STATIC,7,81,36,8
@@ -693,9 +693,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Aplica a &tots els elements",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "&Extreu (check-out)",IDOK,47,145,62,14
-    PUSHBUTTON      "&Anomena i desa...",IDC_SAVE_AS,116,145,62,14
-    PUSHBUTTON      "Cancel·la",IDCANCEL,187,145,62,14
+    DEFPUSHBUTTON   "&Extreu (check-out)",IDOK,30,145,70,14
+    PUSHBUTTON      "&Anomena i desa...",IDC_SAVE_AS,105,145,70,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,180,145,70,14
 END
 
 IDD_PROP_VSS DIALOGEX 0, 0, 235, 157
@@ -787,7 +787,7 @@ BEGIN
     LTEXT           "&Cerca:",IDC_STATIC,7,9,65,8
     COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    LTEXT           "Substitueix-ho p&er:",IDC_STATIC,7,24,65,17
+    LTEXT           "Substitueix-ho p&er:",IDC_STATIC,7,24,65,8
     COMBOBOX        IDC_EDIT_REPLACE_WITH,75,22,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "N&omés paraules senceres",IDC_EDIT_WHOLE_WORD,"Button",
@@ -815,9 +815,9 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Rational Clearcase"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "&Extreu (check-out)",IDOK,169,115,67,14
-    PUSHBUTTON      "Cancel·la",IDCANCEL,223,115,67,14
-    PUSHBUTTON      "Anomena i &desa...",IDC_SAVE_AS,169,115,67,14,NOT WS_VISIBLE
+    DEFPUSHBUTTON   "&Extreu (check-out)",IDOK,115,115,70,14
+    PUSHBUTTON      "Cancel·la",IDCANCEL,190,115,70,14
+    PUSHBUTTON      "Anomena i &desa...",IDC_SAVE_AS,115,115,70,14,NOT WS_VISIBLE
     EDITTEXT        IDC_COMMENTS,18,21,243,56,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_AUTOHSCROLL | ES_WANTRETURN | WS_VSCROLL | WS_HSCROLL
     LTEXT           "Comentaris",IDC_STATIC,18,7,80,10
@@ -913,7 +913,7 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    PUSHBUTTON      "Predeterminats",IDC_COLORDEFAULTS_BTN,166,170,59,14
+    PUSHBUTTON      "Predeterminats",IDC_COLORDEFAULTS_BTN,166,170,62,14
 END
 
 IDD_OUTPUT DIALOGEX 0, 0, 278, 157
@@ -939,7 +939,7 @@ BEGIN
     CONTROL         "Habilita el &menú avançat",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     CONTROL         "Ignora diferències en l'hora inferiors a 3 segons",
-                    IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX | 
+                    IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,8,39,222,10
     LTEXT           "&Editor extern:",IDC_STATIC,7,49,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,59,167,14,ES_AUTOHSCROLL
@@ -984,7 +984,7 @@ BEGIN
     CONTROL         "Ign&ora les línies en blanc",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
     CONTROL         "&Distingeix entre majúscules i minúscules",IDC_DIFF_CASESENSITIVE,"Button",
-                    BS_AUTOCHECKBOX | BS_MULTILINE | WS_TABSTOP,7,145,142,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
     CONTROL         "Inc&lou-hi la línia de comandes",IDC_DIFF_INCLCMDLINE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
     CONTROL         "Obre-ho en un &editor extern",IDC_DIFF_OPENTOEDITOR,"Button",
@@ -1023,7 +1023,7 @@ BEGIN
     PUSHBUTTON      "<<",IDC_ADD,159,45,27,14
     PUSHBUTTON      ">>",IDC_REMOVE,159,63,27,14
     EDITTEXT        IDC_COLDLG_DESC,7,115,294,22,ES_MULTILINE | ES_READONLY
-    PUSHBUTTON      "Predeterminats",IDC_COLDLG_DEFAULTS,7,143,50,14
+    PUSHBUTTON      "Predeterminats",IDC_COLDLG_DEFAULTS,7,143,62,14
     DEFPUSHBUTTON   "D'acord",IDOK,197,143,50,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,251,143,50,14
 END
@@ -1039,9 +1039,9 @@ BEGIN
     LTEXT           "&Desempaquetador de fitxer:",IDC_STATIC,7,9,63,8
     COMBOBOX        IDC_UNPACKER_NAME,72,7,200,54,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&Visualitza tots els desempaquetadors sense verificar l'extensió",
-                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,72,66,200,10
+    CONTROL         "&Visualitza tots els desempaquetadors sense verificar l'extensió", 
+                    IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX | BS_MULTILINE |
+                    WS_TABSTOP,72,64,200,14
     LTEXT           "&Llistat d'extensions:",IDC_STATIC,7,26,63,8
     LTEXT           "&Descripció:",IDC_STATIC,7,43,63,8
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,72,24,200,12,
@@ -1110,15 +1110,15 @@ BEGIN
                     7,80,221,10
     CONTROL         "&Habilita detecció de blocs desplaçats",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    LTEXT           "Mètode de comparació de &fitxers:",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
+    LTEXT           "Mètode de comparació de &fitxers:",IDC_STATIC,7,105,113,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,120,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Atura després de la primera diferència",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     PUSHBUTTON      "Predeterminats",IDC_COMPARE_DEFAULTS,7,139,63,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1143,7 +1143,7 @@ BEGIN
     GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,95,
                     221,61
     CONTROL         "Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,128,8
     CONTROL         "Nivell de &caràcter",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "Nivell de &paraula:",IDC_EDITOR_WORDLEVEL,"Button",
@@ -1167,10 +1167,10 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
-    PUSHBUTTON      "Nou...",IDC_FILTERFILE_NEWBTN,180,114,50,14
-    PUSHBUTTON      "Edita...",IDC_FILTERFILE_EDITBTN,240,114,50,14
-    PUSHBUTTON      "Suprimeix...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
+    PUSHBUTTON      "&Prova",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "&Nou...",IDC_FILTERFILE_NEWBTN,180,114,50,14
+    PUSHBUTTON      "&Edita...",IDC_FILTERFILE_EDITBTN,240,114,50,14
+    PUSHBUTTON      "&Suprimeix...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -1233,7 +1233,7 @@ BEGIN
                     IDC_STATIC,2,52,296,18
     LTEXT           "Useu la versió del 7-Zip recomanada a continuació fins que hi hagi connectors d'enllaç\ndisponibles per a versions posteriors.",
                     IDC_STATIC,2,70,296,26
-    CTEXT           "Versió",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE | 
+    CTEXT           "Versió",IDC_STATIC,146,98,56,20,SS_CENTERIMAGE |
                     SS_SUNKEN
     CTEXT           "Connector requerit\n(dllbuild %04u)",102,204,98,94,20,
                     SS_SUNKEN
@@ -1241,7 +1241,7 @@ BEGIN
                     SS_CENTERIMAGE
     CTEXT           "0.00",110,146,120,20,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "present",109,168,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
-    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE | 
+    CTEXT           "Merge7z000U.dll",111,204,120,58,10,SS_CENTERIMAGE |
                     SS_SUNKEN
     CTEXT           "present",112,264,120,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Programari del 7-Zip instal·lat:",IDC_STATIC,
@@ -1255,13 +1255,13 @@ BEGIN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "antiquat",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Camí als connectors:",9001,2,160,100,8
-    CONTROL         "&No tornis a mostrar aquest missatge.\n(Sempre podeu recuperar aquest missatge des de l'ajuda)",
-                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
+    CONTROL         "&No tornis a mostrar aquest missatge.\n(Sempre podeu recuperar aquest missatge des del menú d'ajuda)",
+                    106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "D'acord",IDOK,236,226,50,14,WS_GROUP
     CONTROL         "Baixada del connector",108,"Button",BS_OWNERDRAW | WS_TABSTOP,
                     218,160,80,10
-    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL | 
+    LISTBOX         105,2,170,296,52,LBS_NOINTEGRALHEIGHT | WS_VSCROLL |
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1300,52 +1300,52 @@ BEGIN
     RTEXT           "Usuari 1:",IDC_STATIC,0,160,70,8
     RTEXT           "Usuari 2:",IDC_STATIC,0,180,70,8
     CTEXT           "Text",IDC_STATIC,73,7,34,8
-    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_KEYWORDS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,19,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Negreta",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Negreta",IDC_SCOLOR_KEYWORDS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,21,55,10
-    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_FUNCTIONS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,39,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Negreta",IDC_SCOLOR_FUNCTIONS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,40,55,10
-    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_COMMENTS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,59,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Negreta",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Negreta",IDC_SCOLOR_COMMENTS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,60,55,10
-    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_NUMBERS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,79,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Negreta",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Negreta",IDC_SCOLOR_NUMBERS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,80,55,10
-    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_OPERATORS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,99,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Negreta",IDC_SCOLOR_OPERATORS_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,100,55,10
-    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_STRINGS,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,119,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Negreta",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Negreta",IDC_SCOLOR_STRINGS_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,120,55,10
-    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_PREPROCESSOR,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,139,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
     CONTROL         "Negreta",IDC_SCOLOR_PREPROCESSOR_BOLD,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,110,140,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_USER1,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,159,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Negreta",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Negreta",IDC_SCOLOR_USER1_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,160,55,10
-    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT | 
+    CONTROL         "Button1",IDC_SCOLOR_USER2,"Button",BS_OWNERDRAW |
+                    WS_TABSTOP,83,179,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    CONTROL         "Negreta",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "Negreta",IDC_SCOLOR_USER2_BOLD,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,110,180,55,10
-    PUSHBUTTON      "Predeterminats",IDC_SCOLORS_BDEFAULTS,182,179,50,14
+    PUSHBUTTON      "Predeterminats",IDC_SCOLORS_BDEFAULTS,162,179,70,14
 END
 
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
@@ -1355,11 +1355,11 @@ CAPTION "Informe de comparació de directoris"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&Fitxer d'informe:",IDC_STATIC,7,7,100,8
-    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL | 
+    COMBOBOX        IDC_REPORT_FILE,7,17,197,70,CBS_DROPDOWN | WS_VSCROLL |
                     CBS_AUTOHSCROLL | WS_TABSTOP
     PUSHBUTTON      "Navega...",IDC_REPORT_BROWSEFILE,211,18,50,14
     LTEXT           "&Estil:",IDC_STATIC,7,37,35,8
-    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     DEFPUSHBUTTON   "D'acord",IDOK,157,60,50,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,211,60,50,14
@@ -1373,7 +1373,7 @@ BEGIN
     LTEXT           "Quina mena de filtre voleu crear?",IDC_STATIC,
                     14,7,141,11
     CONTROL         "Filtre compartit (per a tots els usuaris d'aquesta màquina)",IDC_SHARED,"Button",
-                    BS_AUTORADIOBUTTON,20,22,190,10
+                    BS_AUTORADIOBUTTON,20,22,196,10
     CONTROL         "Filtre privat (només per a l'usuari actual)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,20,37,196,10
     DEFPUSHBUTTON   "D'acord",IDOK,65,55,50,14
@@ -1391,12 +1391,12 @@ BEGIN
     CONTROL         "&Habilita el suport de fitxers d'arxivament",IDC_ARCHIVE_ENABLE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,221,10
     CONTROL         "&Usa el 7-Zip independent si està disponible",
-                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON | 
+                    IDC_ARCHIVE_INSTALSTANDALONE,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP | WS_TABSTOP,19,48,209,10
     CONTROL         "U&sa el 7-Zip local de la carpeta del WinMerge",IDC_ARCHIVE_INSTALLOCAL,"Button",
                     BS_AUTORADIOBUTTON,19,58,209,10
     CONTROL         "&Detecta el tipus d'arxiu a partir de la signatura del fitxer",
-                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX | 
+                    IDC_ARCHIVE_DETECTTYPE,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,70,221,10
 END
 
@@ -1446,47 +1446,47 @@ END
 IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 178, 138
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Codepage"
+CAPTION "Pàgina de codis"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Affects",IDC_AFFECTS_GROUP,5,7,166,36
-    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
+    GROUPBOX        "Afectament",IDC_AFFECTS_GROUP,5,7,166,36
+    CONTROL         "&Esquerra",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,18,54,8
-    LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,70,18,93,8
-    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
+    LTEXT           "(Afecta)",IDC_LEFT_FILES_LABEL,70,18,93,8
+    CONTROL         "&Dreta",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,29,54,8
-    LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,29,93,8
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,48,166,63
-    LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,64,72,10
+    LTEXT           "(Afecta)",IDC_RIGHT_FILES_LABEL,70,29,93,8
+    GROUPBOX        "Selecciona pàgina de codis per a",IDC_LOADING_GROUP,5,48,166,63
+    LTEXT           "&Càrrega de fitxers:",IDC_LOAD_FILES_LABEL,12,64,72,10
     EDITTEXT        IDC_LOAD_CODEPAGE_TEXTBOX,86,63,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_LOAD_CODEPAGE_BROWSE,139,64,23,10
-    LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,79,67,10
+    LTEXT           "&Desament de fitxers:",IDC_SAVE_FILES_LABEL,12,79,67,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,86,79,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,139,80,23,10
-    CONTROL         "&Use same codepage for both",
+    CONTROL         "&Empra la mateixa pàgina de codis a ambdós",
                     IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,96,150,10
-    DEFPUSHBUTTON   "&Apply",IDOK,65,117,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,121,117,50,14
+    DEFPUSHBUTTON   "&Aplica",IDOK,65,117,50,14
+    PUSHBUTTON      "&Cancel·la",IDCANCEL,121,117,50,14
 END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Test Filter"
+CAPTION "Prova de filtre"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
-    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,74,8
+    LTEXT           "Provant el filtre ...",IDC_HEADER,7,7,82,8
+    LTEXT           "(nom del filtre)",IDC_HEADER_FILTER_NAME,90,6,152,8
+    LTEXT           "&Entreu el text a provar:",IDC_PROMPT_LABEL,7,21,82,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
-    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Nom de la carpeta",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,24,8
+    LTEXT           "Resultat:",IDC_STATIC,7,49,42,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP
-    DEFPUSHBUTTON   "&Test",IDC_TEST_BTN,133,121,50,14
-    PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
+    DEFPUSHBUTTON   "&Prova",IDC_TEST_BTN,133,121,50,14
+    PUSHBUTTON      "&Tanca",IDCANCEL,192,121,50,14
 END
 
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 197, 157
@@ -1494,15 +1494,15 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Default system colors for normal text",
-                    IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,25,14,148,10
-    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+    CONTROL         "Colors predeterminats del sistema per a text normal",
+                    IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | BS_MULTILINE |
+                    WS_TABSTOP,25,12,161,14
+    GROUPBOX        "Color de text personalitzat",IDC_CUSTOM_COLORS_GROUP,27,33,159,
                     111
-    LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
-    LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
-    LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
-    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
+    LTEXT           "Espais:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
+    LTEXT           "Text regular:",IDC_TEXT_COLOR_LABEL,31,87,61,8
+    LTEXT           "Selecció:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
+    CTEXT           "Fons",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
     CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
     CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,113,58,17,14
@@ -1706,8 +1706,8 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Control+J)"
-    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
-    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_UNK_ERROR_READING_PROJECT "S'ha produït un error desconegut en intentar obrir un fitxer de projecte"
+    IDS_UNK_ERROR_SAVING_PROJECT "S'ha produït un error desconegut en intentar desar un fitxer de projecte"
     ID_FILE_SAVEPROJECT     "Desa els camins i les opcions actuals a un fitxer de projecte\nDesa fitxer de projecte"
 END
 
@@ -1865,7 +1865,7 @@ BEGIN
     IDS_OPTIONSPG_EDITOR      "Editor"
     IDS_OPTIONSPG_COLORS      "Colors"
     IDS_OPTIONSPG_SYNTAXCOLORS "Colors de sintaxi"
-    IDS_OPTIONSPG_TEXTCOLORS "Text Colors"
+    IDS_OPTIONSPG_TEXTCOLORS  "Colors de text"
     IDS_OPTIONSPG_SYSTEM      "Sistema"
     IDS_OPTIONSPG_VERSIONCONTROL "Control de versions"
     IDS_OPTIONSPG_CODEPAGE    "Pàgina de codis"
@@ -2033,7 +2033,7 @@ BEGIN
     IDS_SAVEREADONLY_FMT    "El fitxer %1 està marcat com a només de lectua. Voldríeu substituir el fitxer només de lectura? (No es tracta de desar amb un nom nou.)"
     IDS_ERROR_FILE_WRITEABLE "Hi ha hagut un error en comprovar si la destinació era modificable"
     IDS_ERROR_BACKUP        "Hi ha hagut un error en crear una còpia de seguretat del fitxer"
-    IDS_BACKUP_FAILED_PROMPT 
+    IDS_BACKUP_FAILED_PROMPT
                              "No es pot desar una còpia de seguretat del fitxer original:\n%1\n\nVoleu continuar tot i així?"
     IDS_FILESAVE_FAILED     "Hi ha hagut un error en desar el fitxer.\n%1\n%2\nVoleu:\n\t-desar-lo amb un nom diferent (premeu D'acord)\n\r-avortar l'operació actual (Premeu Cancel·lar)?"
     IDS_FILEPACK_FAILED_LEFT "El connector '%2' no pot tornar a empaquetar els vostres canvis al fitxer de l'esquerra altre cop cap a '%1'.\n\nEl fitxer original no es canviarà.\n\nVoleu desar la versió desempaquetada en un altre fitxer?"
@@ -2113,8 +2113,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "De dreta a... (%1 de %2)"
     IDS_SELECT_DEST_LEFT    "Costat esquerre - seleccioneu la carpeta de destinació:"
     IDS_SELECT_DEST_RIGHT   "Costat dret - seleccioneu la carpeta de destinació:"
-    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
-    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
+    IDS_FILES_AFFECTED_FMT  "(%1 fitxers afectats)"
+    IDS_FILES_AFFECTED_FMT2 "(%1 de %2 fitxers afectats)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2138,8 +2138,8 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Obre el fitxer de la dreta"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Obre el fitxer de la dreta en un editor extern"
     ID_DIR_OPEN_RIGHT_WITH  "Obre el fitxer de la dreta amb..."
-    IDS_ERROR_EXECUTE_FILE   "No es pot executar el %1"
-    IDS_UNKNOWN_EXECUTE_FILE "Unknown extension on external editor: %1"
+    IDS_ERROR_EXECUTE_FILE   "No s'ha pogut executar l'editor extern: %1"
+    IDS_UNKNOWN_EXECUTE_FILE "Extensió desconeguda a l'editor extern: %1"
     ID_DIR_COPY_FILENAMES   "Copia els noms dels fitxers al Porta-retalls"
     ID_DIR_COPY_PATHNAMES_LEFT "Copia el camí al fitxer de l'esquerra al Porta-retalls"
     ID_DIR_COPY_PATHNAMES_RIGHT "Copia el camí al fitxer de la dreta al Porta-retalls"
@@ -2268,7 +2268,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Llista delimitada per comes"
     IDS_REPORT_TABLIST      "Llista delimitada per tabulacions"
     IDS_REPORT_SIMPLEHTML   "HTML símple"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_FILEOVERWRITE
                             "El fitxer d'informe ja existeix. Voleu sobreescriure'l?"
     IDS_REPORT_ERROR        "Hi ha hagut un error creant l'informe:\n%1"
     IDS_REPORT_SUCCESS      "L'informe s'ha creat satisfactòriament."
@@ -2284,11 +2284,11 @@ BEGIN
     IDS_FILEBINARY          "Els fitxers binaris no es poden comparar visualment."
     IDS_TEMP_FILEERROR      "No s'han pogut obrir els fitxers temporals. Comproveu els ajustos de camí temporal."
     IDS_FILEISDIR           "Els fitxers de directori no es poden comparar visualment."
-    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\n\n
-                            Voleu tractar tots els salts de línia com equivalents per a aquesta comparacio?\n\n
-                            Nota: Si voleu tractar els salts de línia sempre com\n
-                            equivalents, especifiqueu l'opció 'Ignora diferències de\n
-                            salt de línia...' al quadre d'opcions (disponible des del\n
+    IDS_SUGGEST_IGNOREEOL   "Els fitxers tenen salts de línia de diferent mena.\n\n\
+                            Voleu tractar tots els salts de línia com a equivalents per a aquesta comparacio?\n\n\
+                            Nota: Si voleu tractar els salts de línia sempre com a \
+                            equivalents, especifiqueu l'opció 'Ignora diferències de \
+                            salt de línia...' al quadre d'opcions (disponible des del \
                             menú Edita/Opcions...)."
     IDS_SUGGEST_PRESERVEEOL "Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\nAmb les opcions actual, s'unificaran al tipus principal.\nVoleu canviar les opcions i preservar les diferents menes de salt de línia?"
     IDS_PREDIFFER_ERROR     "Hi ha hagut un error prediferenciant el fitxer '%1' amb el connector '%2'. No es tornarà a aplicar la prediferenciació."
@@ -2328,10 +2328,10 @@ BEGIN
 END
 
 // FILE COMPARE: PANE CAPTIONS
-STRINGTABLE 
+STRINGTABLE
 BEGIN
-    IDS_LOCBAR_CAPTION      "Location Pane"
-    IDS_DIFFBAR_CAPTION     "Diff Pane"
+    IDS_LOCBAR_CAPTION      "Subfinestra d'ubicació"
+    IDS_DIFFBAR_CAPTION     "Subfinestra de diferències"
 END
 
 // CREATE PATCH
@@ -2682,7 +2682,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Converteix el salt de línia al mode del UNIX"
     ID_EOL_TO_MAC           "Converteix el salt de línia al mode del MAC"
     ID_FILE_MERGINGMODE     "Commuta entre els modes d'edició i el de combinació"
-    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
+    ID_FILE_ENCODING        "Mostra i ajusta les propietats de codificació de fixter\nPropietats de codificació de fitxer"
 END
 
 // EDIT MENU
@@ -2775,8 +2775,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Treu informació de versió i configuració actuals del WinMerge en un fitxer de text"
     ID_HELP_GNULICENSE      "Mostra la Llicència Pública General de GNU"
     IDS_PRIVATEBUILD_FMT    "Muntatge privat: %1"
-    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
-    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
+    ID_HELP_INDEX           "Obre l'índex de l'ajuda del WinMerge\nÍndex de l'ajuda"
+    ID_HELP_SEARCH          "Obre la cerca a l'ajuda del WinMerge\nCerca a l'ajuda"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
