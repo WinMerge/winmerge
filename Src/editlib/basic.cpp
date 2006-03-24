@@ -265,7 +265,7 @@ IsBasicNumber (LPCTSTR pszChars, int nLength)
   return TRUE;
 }
 
-#define DEFINE_BLOCK(pos, colorindex) \
+#define DEFINE_BLOCK(pos, colorindex)   \
 ASSERT((pos) >= 0 && (pos) <= nLength);\
 if (pBuf != NULL)\
   {\
@@ -276,11 +276,11 @@ if (pBuf != NULL)\
         nActualItems ++;}\
   }
 
-#define COOKIE_COMMENT      0x0001
-#define COOKIE_PREPROCESSOR   0x0002
-#define COOKIE_EXT_COMMENT    0x0004
-#define COOKIE_STRING     0x0008
-#define COOKIE_CHAR       0x0010
+#define COOKIE_COMMENT          0x0001
+#define COOKIE_PREPROCESSOR     0x0002
+#define COOKIE_EXT_COMMENT      0x0004
+#define COOKIE_STRING           0x0008
+#define COOKIE_CHAR             0x0010
 
 DWORD CCrystalTextView::
 ParseLineBasic (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems)
@@ -307,16 +307,11 @@ ParseLineBasic (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualIt
             {
               DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
             }
-          else if (dwCookie & (COOKIE_STRING))
+          else if (dwCookie & (COOKIE_CHAR | COOKIE_STRING))
             {
               DEFINE_BLOCK (nPos, COLORINDEX_STRING);
             }
-          //Use COOKIE_CHAR for comments, because Visual Basic use ' for comments.
-          else if (dwCookie & (COOKIE_CHAR))
-            {
-              DEFINE_BLOCK (nPos, COLORINDEX_COMMENT);
-            }
-            else
+          else
             {
               if (xisalnum (pszChars[nPos]) || pszChars[nPos] == '.' && nPos > 0 && (!xisalpha (*::CharPrev(pszChars, pszChars + nPos)) && !xisalpha (*::CharNext(pszChars + nPos))))
                 {
@@ -348,7 +343,7 @@ out:
       //  String constant "...."
       if (dwCookie & COOKIE_STRING)
         {
-          if (pszChars[I] == '"' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
+          if (pszChars[I] == '"')
             {
               dwCookie &= ~COOKIE_STRING;
               bRedefineBlock = TRUE;
@@ -356,34 +351,12 @@ out:
           continue;
         }
 
-      //  Char constant '..'
-      if (dwCookie & COOKIE_CHAR)
-        {
-          if (pszChars[I] == '\'' && (I == 0 || I == 1 && pszChars[nPrevI] != '\\' || I >= 2 && (pszChars[nPrevI] != '\\' || pszChars[nPrevI] == '\\' && *::CharPrev(pszChars, pszChars + nPrevI) == '\\')))
-            {
-              dwCookie &= ~COOKIE_CHAR;
-              bRedefineBlock = TRUE;
-            }
-          continue;
-        }
-
       if (pszChars[I] == '\'')
         {
-          // if (I + 1 < nLength && pszChars[I + 1] == '\'' || I + 2 < nLength && pszChars[I + 1] != '\\' && pszChars[I + 2] == '\'' || I + 3 < nLength && pszChars[I + 1] == '\\' && pszChars[I + 3] == '\'')
-          if (!I || !xisalnum (pszChars[nPrevI]))
-            {
-              DEFINE_BLOCK (I, COLORINDEX_STRING);
-              dwCookie |= COOKIE_CHAR;
-              continue;
-            }
-        }
-      if (I > 2 && !xisalnum (pszChars[I]) && (pszChars[nPrevI] == 'M' || pszChars[nPrevI] == 'm') && (*::CharPrev(pszChars, pszChars + nPrevI) == 'E' || *::CharPrev(pszChars, pszChars + nPrevI) == 'e') && (pszChars[I - 3] == 'R' || pszChars[I - 3] == 'r'))
-        {
-          DEFINE_BLOCK (I - 3, COLORINDEX_COMMENT);
+          DEFINE_BLOCK (I, COLORINDEX_COMMENT);
           dwCookie |= COOKIE_COMMENT;
           break;
         }
-
 
       //  Normal text
       if (pszChars[I] == '"')
@@ -479,8 +452,6 @@ out:
         }
     }
 
-  if (pszChars[nLength - 1] != '\\' || m_pTextBuffer->IsMBSTrail(nLineIndex, nLength - 1))
-    dwCookie &= COOKIE_EXT_COMMENT;
+  dwCookie &= COOKIE_EXT_COMMENT;
   return dwCookie;
 }
-
