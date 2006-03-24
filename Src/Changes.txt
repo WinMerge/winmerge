@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-24 Kimmo
+ BUG: [ 1455656 ] GPL text still contains 'How to Apply These Terms...'
+  Docs/Users: GPL.rtf
+
 2006-03-22 WinMerge experimental release 2.5.3.5 (cvs)
 
 2006-03-22 Kimmo
