@@ -1588,17 +1588,30 @@ void CDirView::DoUpdateCopyFilenames(CCmdUI* pCmdUI)
 	pCmdUI->Enable(count > 0);
 }
 
+/**
+ * @brief Return count of selected items in folder compare.
+ */
 UINT CDirView::GetSelectedCount() const
 {
 	return m_pList->GetSelectedCount();
 }
 
+/**
+ * @brief Return index of first selected item in folder compare.
+ */
 int CDirView::GetFirstSelectedInd()
 {
 	return m_pList->GetNextItem(-1, LVNI_SELECTED);
 }
 
-/*DIFFITEM CDirView::GetNextSelectedInd(int &ind)
+/**
+ * @brief Get index of next selected item in folder compare.
+ * @param [in,out] ind
+ * - IN current index, for which next index is searched
+ * - OUT new index of found item
+ * @return DIFFITEM in found index.
+ */
+DIFFITEM CDirView::GetNextSelectedInd(int &ind)
 {
 	DIFFITEM di;
 	int sel =- 1;
@@ -1608,18 +1621,17 @@ int CDirView::GetFirstSelectedInd()
 	ind = sel;
 	
 	return di;
-}*/
+}
 
+/**
+ * @brief Return DIFFITEM from given index.
+ * @param [in] ind Index from where DIFFITEM is wanted.
+ * @return DIFFITEM in given index.
+ */
 DIFFITEM CDirView::GetItemAt(int ind)
 {
-	if (ind != -1)
-	{	
-		return GetDiffItem(ind);
-	}
-	// 26.01.2004 jtuc: seems to be nerver reached...
-	ASSERT(FALSE);
-	DIFFITEM di;
-	return di;
+	ASSERT(ind != -1); // Trap programmer errors in debug
+	return GetDiffItem(ind);
 }
 
 // Go to first diff

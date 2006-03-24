@@ -1965,9 +1965,9 @@ void CMainFrame::OnToolsGeneratePatch()
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
 		CDirView *pView = pDoc->GetMainView();
 
-		// Get first selected item from dirview to patch dialog
+		// Get selected items from folder compare
 		int ind = pView->GetFirstSelectedInd();
-		if (ind != -1)
+		while (ind != -1)
 		{
 			const DIFFITEM item = pView->GetItemAt(ind);
 			if (item.isBin())
@@ -1985,6 +1985,7 @@ void CMainFrame::OnToolsGeneratePatch()
 				rightFile += _T("\\") + item.sRightFilename;
 
 			patcher.AddFiles(leftFile, rightFile);
+			pView->GetNextSelectedInd(ind);
 		}
 	}
 

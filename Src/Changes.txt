@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-24 Kimmo
+ PATCH: [ 1457203 ] Create patch from multiple files in folder compare
+  Src: DirView.cpp DirView.h MainFrm.cpp
+
 2006-03-24 Tim
  PATCH: [ 1457306 ] Revamped Visual Basic syntax highlighter
   Src\editlib: basic.cpp

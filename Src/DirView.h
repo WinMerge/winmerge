@@ -118,7 +118,7 @@ public:
 
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
-	//DIFFITEM GetNextSelectedInd(int &ind);
+	DIFFITEM GetNextSelectedInd(int &ind);
 	DIFFITEM GetItemAt(int ind);
 	int AddSpecialItems();
 	void AddParentFolderItem(BOOL bEnable);
