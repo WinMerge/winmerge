@@ -215,11 +215,6 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
  */
 BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMPFILES areTempFiles)
 {
-	// Store given paths for patch writing
-	// We want to write paths to patch files exactly as given
-	CString sFirstOrigPath = filepath1;
-	CString sSecondOrigPath = filepath2;
-
 	filepath1.Replace('/', '\\');
 	filepath2.Replace('/', '\\');
 
@@ -334,21 +329,7 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	// Create patch file
 	if (!m_status.bBinaries && m_bCreatePatchFile)
 	{
-		// file_data inf_patch[2] is diffutils working area data
-		// We make a complete copy of it in order to tweak the paths
-		// to be exactly what the user said originally (eg, slash
-		// direction), so patch writing code will write them out
-		// correctly (in user's perspective)
-		USES_CONVERSION;
-		file_data inf_patch[2] = {0};
-		CopyMemory(&inf_patch, inf, sizeof(file_data) * 2);
-		inf_patch[0].name = strdup(T2CA(sFirstOrigPath));
-		inf_patch[1].name = strdup(T2CA(sSecondOrigPath));
-
-		WritePatchFile(script, filepath1, filepath1, &inf_patch[0]);
-
-		free((void *)inf_patch[0].name);
-		free((void *)inf_patch[1].name);
+		WritePatchFile(script, filepath1, filepath1, &inf[0]);
 	}
 	
 	// Go through diffs adding them to WinMerge's diff list
@@ -1596,6 +1577,17 @@ static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData)
 	CopyTextStats(&inf[1], &diffData->m_textStats1);
 }
 
+/**
+ * @brief Compare two files using diffutils.
+ *
+ * Compare two files (in DiffFileData param) using diffutils. Run diffutils
+ * inside SEH so we can trap possible error and exceptions. If error or
+ * execption is trapped, return compare failure.
+ * @param [out] diffs Pointer to list of change structs where diffdata is stored.
+ * @param [in] diffData files to compare.
+ * @param [out] bin_status used to return binary status from compare.
+ * @return TRUE when compare succeeds, FALSE if error happened during compare.
+ */
 BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	int * bin_status)
 {
@@ -1881,11 +1873,29 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 }
 
 /**
- * @brief Write out a patch file of the differences, using already computed diffutils script
+ * @brief Write out a patch file.
+ * Writes patch file using already computed diffutils script. Converts path
+ * delimiters from \ to / since we want to keep compatibility with patch-tools.
+ * @param [in] script list of changes.
+ * @param [in] filepath1 first file
+ * @param [in] filepath2 second file
+ * @param [in] inf file_data table containing filenames
+ * @todo filepath1 and filepath2 aren't really needed, paths are already in inf.
  */
-void
-CDiffWrapper::WritePatchFile(struct change * script, const CString & filepath1, const CString & filepath2, file_data * inf)
+void CDiffWrapper::WritePatchFile(struct change * script,
+		const CString & filepath1, const CString & filepath2,
+		file_data * inf)
 {
+	USES_CONVERSION;
+	file_data inf_patch[2] = {0};
+	CopyMemory(&inf_patch, inf, sizeof(file_data) * 2);
+	CString pathLeft = inf_patch[0].name;
+	pathLeft.Replace('\\', '/');
+	CString pathRight = inf_patch[1].name;
+	pathRight.Replace('\\', '/');
+	inf_patch[0].name = strdup(T2CA(pathLeft));
+	inf_patch[1].name = strdup(T2CA(pathRight));
+
 	outfile = NULL;
 	if (!m_sPatchFile.IsEmpty())
 	{
@@ -1911,11 +1921,11 @@ CDiffWrapper::WritePatchFile(struct change * script, const CString & filepath1, 
 	switch (output_style)
 	{
 	case OUTPUT_CONTEXT:
-		print_context_header(inf, 0);
+		print_context_header(inf_patch, 0);
 		print_context_script(script, 0);
 		break;
 	case OUTPUT_UNIFIED:
-		print_context_header(inf, 1);
+		print_context_header(inf_patch, 1);
 		print_context_script(script, 1);
 		break;
 	case OUTPUT_ED:
@@ -1939,4 +1949,7 @@ CDiffWrapper::WritePatchFile(struct change * script, const CString & filepath1, 
 	
 	fclose(outfile);
 	outfile = NULL;
+
+	free((void *)inf_patch[0].name);
+	free((void *)inf_patch[1].name);
 }
