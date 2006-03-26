@@ -5,6 +5,8 @@ Add new items to top.
 2006-03-26 Kimmo
  PATCH: [ 1458066 ] Use / as path delimiter in patch files
   Src: DiffWrapper.cpp
+ PATCH: [ 1406944 ] Compute text statistics in QuickCompare
+  Src new file: FileTextStats.h
 
 2006-03-24 Kimmo
  PATCH: [ 1457203 ] Create patch from multiple files in folder compare
