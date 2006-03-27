@@ -40,23 +40,20 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPatchDlg dialog
 
-
+/** 
+ * @brief Constructor, initializes members.
+ */
 CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CPatchDlg::IDD, pParent)
+	, m_caseSensitive(FALSE)
+	, m_ignoreBlanks(0)
+	, m_whitespaceCompare(0)
+	, m_appendFile(FALSE)
+	, m_openToEditor(FALSE)
+	, m_includeCmdLine(FALSE)
+	, m_outputStyle(OUTPUT_NORMAL)
+	, m_contextLines(0)
 {
-	//{{AFX_DATA_INIT(CPatchDlg)
-	m_caseSensitive = TRUE;
-	m_file1 = _T("");
-	m_file2 = _T("");
-	m_fileResult = _T("");
-	m_ignoreBlanks = 0;
-	m_whitespaceCompare = 0;
-	m_appendFile = FALSE;
-	m_openToEditor = FALSE;
-	m_includeCmdLine = FALSE;
-	m_outputStyle = OUTPUT_NORMAL;
-	m_contextLines = 0;
-	//}}AFX_DATA_INIT
 }
 
 
@@ -172,15 +169,24 @@ void CPatchDlg::OnOK()
 	SaveSettings();
 
 	// Save combobox history
-	m_ctlFile1.SaveState(_T("Files\\DiffFile1"));
-	m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
 	m_ctlResult.SaveState(_T("Files\\DiffFileResult"));
-
+	// Don't save filenames if multiple file selected (as editbox reads
+	// [X files selected])
+	if (selectCount <= 1)
+	{
+		m_ctlFile1.SaveState(_T("Files\\DiffFile1"));
+		m_ctlFile2.SaveState(_T("Files\\DiffFile2"));
+	}
+	
 	CDialog::OnOK();
 }
 
 /** 
- * @brief Initialise dialog data
+ * @brief Initialise dialog data.
+ *
+ * There are two cases for filename editboxes:
+ * - if one file was added to list then we show that filename
+ * - if multiple files were added we show text [X files selected]
  */
 BOOL CPatchDlg::OnInitDialog()
 {
@@ -240,7 +246,7 @@ BOOL CPatchDlg::OnInitDialog()
 }
 
 /** 
- * @brief Select left file
+ * @brief Select the left file.
  */
 void CPatchDlg::OnDiffBrowseFile1()
 {
@@ -259,7 +265,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 }
 
 /** 
- * @brief Select right file
+ * @brief Select the right file.
  */
 void CPatchDlg::OnDiffBrowseFile2()
 {
@@ -278,9 +284,12 @@ void CPatchDlg::OnDiffBrowseFile2()
 }
 
 /** 
- * @brief Changes file in patchfiles list and to UI.
+ * @brief Changes original file to patch.
+ * This function sets new file for left/right file to create patch from.
+ * @param [in] sFile New file for patch creation.
+ * @param [in] bLeft If true left file is changed, otherwise right file.
  */
-void CPatchDlg::ChangeFile(CString sFile, BOOL bLeft)
+void CPatchDlg::ChangeFile(const CString &sFile, BOOL bLeft)
 {
 	PATCHFILES pf;
 	int count = GetItemCount();
@@ -314,7 +323,7 @@ void CPatchDlg::ChangeFile(CString sFile, BOOL bLeft)
 }
 
 /** 
- * @brief Select patch file
+ * @brief Select the patch file.
  */
 void CPatchDlg::OnDiffBrowseResult()
 {
@@ -334,7 +343,7 @@ void CPatchDlg::OnDiffBrowseResult()
 }
 
 /** 
- * @brief Called when File1 combo selection is changed
+ * @brief Called when File1 combo selection is changed.
  */
 void CPatchDlg::OnSelchangeFile1Combo() 
 {
@@ -350,7 +359,7 @@ void CPatchDlg::OnSelchangeFile1Combo()
 }
 
 /** 
- * @brief Called when File2 combo selection is changed
+ * @brief Called when File2 combo selection is changed.
  */
 void CPatchDlg::OnSelchangeFile2Combo() 
 {
@@ -362,12 +371,11 @@ void CPatchDlg::OnSelchangeFile2Combo()
 		m_ctlFile2.SetWindowText(file);
 		ChangeFile(file, FALSE);
 		m_file2 = file;
-
 	}
 }
 
 /** 
- * @brief Called when Result combo selection is changed
+ * @brief Called when Result combo selection is changed.
  */
 void CPatchDlg::OnSelchangeResultCombo() 
 {
@@ -380,7 +388,11 @@ void CPatchDlg::OnSelchangeResultCombo()
 }
 
 /** 
- * @brief Change diff style, enable/disable context selection
+ * @brief Called when diff style dropdown selection is changed.
+ * Called when diff style dropdown selection is changed.
+ * If the new selection is context patch or unified patch format then
+ * enable context lines selection control. Otherwise context lines selection
+ * is disabled.
  */
 void CPatchDlg::OnSelchangeDiffStyle()
 {
@@ -405,7 +417,7 @@ void CPatchDlg::OnSelchangeDiffStyle()
 }
 
 /** 
- * @brief Swap filenames on file1 and file2
+ * @brief Swap filenames on file1 and file2.
  */
 void CPatchDlg::OnDiffSwapFiles()
 {
@@ -432,7 +444,7 @@ void CPatchDlg::OnDiffSwapFiles()
 }
 
 /** 
- * @brief Add file to internal list
+ * @brief Add file to internal list.
  */
 void CPatchDlg::AddItem(PATCHFILES pf)
 {
@@ -440,7 +452,8 @@ void CPatchDlg::AddItem(PATCHFILES pf)
 }
 
 /** 
- * @brief Returns amount of files in internal list
+ * @brief Returns amount of files in internal list.
+ * @return Count of filepairs in list.
  */
 int CPatchDlg::GetItemCount()
 {
@@ -449,6 +462,7 @@ int CPatchDlg::GetItemCount()
 
 /** 
  * @brief Return ref to first files in internal list
+ * @return POSITION of first item in list.
  */
 POSITION CPatchDlg::GetFirstItem()
 {
@@ -457,6 +471,10 @@ POSITION CPatchDlg::GetFirstItem()
 
 /** 
  * @brief Return next files in internal list
+ * @param [in, out] pos
+ * - in POSITION for item to get
+ * - out Next item's POSITION
+ * @return PATCHFILE from given position.
  */
 PATCHFILES CPatchDlg::GetNextItem(POSITION &pos)
 {
@@ -464,7 +482,9 @@ PATCHFILES CPatchDlg::GetNextItem(POSITION &pos)
 }
 
 /** 
- * @brief Set files in given pos of internal list
+ * @brief Set files in given pos of internal list.
+ * @param [in] pos POSITION of item to set.
+ * @param [in] pf PATCHFILES to set in given position.
  */
 void CPatchDlg::SetItemAt(POSITION pos, PATCHFILES pf)
 {
@@ -472,7 +492,7 @@ void CPatchDlg::SetItemAt(POSITION pos, PATCHFILES pf)
 }
 
 /** 
- * @brief Empties internal file list
+ * @brief Empties internal file list.
  */
 void CPatchDlg::ClearItems()
 {
@@ -480,7 +500,7 @@ void CPatchDlg::ClearItems()
 }
 
 /** 
- * @brief Loads patch dialog settings from registry
+ * @brief Loads patch dialog settings from registry.
  */
 void CPatchDlg::LoadSettings()
 {
@@ -535,7 +555,7 @@ void CPatchDlg::LoadSettings()
 }
 
 /** 
- * @brief Saves patch dialog settings to registry
+ * @brief Saves patch dialog settings to registry.
  */
 void CPatchDlg::SaveSettings()
 {
@@ -549,7 +569,7 @@ void CPatchDlg::SaveSettings()
 }
 
 /** 
- * @brief Resets patch dialog settings to defaults
+ * @brief Resets patch dialog settings to defaults.
  */
 void CPatchDlg::OnDefaultSettings()
 {

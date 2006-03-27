@@ -33,17 +33,23 @@
 // PatchDlg dialog
 
 /** 
- * @brief Filepair to create patch
+ * @brief Files used for patch creating.
+ * Stores paths of two files used to create a patch. Left side file
+ * is considered as "original" file and right side file as "changed" file.
+ * Times are for printing filetimes to patch file.
  */
 struct PATCHFILES
 {
-	CString lfile;
-	CString rfile;
-	time_t ltime, rtime;
+	CString lfile; /**< Left file */
+	CString rfile; /**< Right file */
+	time_t ltime; /**< Left time */
+	time_t rtime; /**< Right time */
 };
 
 /** 
- * @brief Dialog class for Generate Patch -dialog
+ * @brief Dialog class for Generate Patch -dialog.
+ * This dialog allows user to select files from which to create a patch,
+ * patch file's filename and several options related to patch.
  */
 class CPatchDlg : public CDialog
 {
@@ -78,8 +84,8 @@ public:
 	BOOL m_includeCmdLine;
 	//}}AFX_DATA
 
-	enum output_style m_outputStyle;
-	int m_contextLines;
+	enum output_style m_outputStyle; /**< Patch style (context, unified etc.) */
+	int m_contextLines; /**< How many context lines are added. */
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -91,9 +97,9 @@ public:
 // Implementation
 protected:
 
-	CList<PATCHFILES, PATCHFILES> m_fileList;
+	CList<PATCHFILES, PATCHFILES&> m_fileList; /**< Source files to create patch from */
 	
-	void ChangeFile(CString sFile, BOOL bLeft);
+	void ChangeFile(const CString &sFile, BOOL bLeft);
 	void LoadSettings();
 	void SaveSettings();
 

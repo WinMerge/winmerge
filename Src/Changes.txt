@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1459284 ] Update of MergeSwedish.rc for WinMerge 2.5.3.5+
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1458852 ] Fix UI for multiple file patches
+  Src: PatchDlg.cpp PatchDlg.h
 
 2006-03-26 Kimmo
  PATCH: [ 1458066 ] Use / as path delimiter in patch files
