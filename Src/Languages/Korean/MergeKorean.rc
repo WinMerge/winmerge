@@ -719,8 +719,8 @@ BEGIN
     CONTROL         "원본 파일 백업(&B)",IDC_BACKUP_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "처음 다른 부분으로 자동 스크롤(&S)",
-                 IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                 17,206,10
+                    IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
+                    17,206,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "ESC로 창 닫기(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
@@ -730,15 +730,19 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,72,221,37
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,88,
+                    221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT 
-                    WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,110,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,124,168,31
+                    IDC_STATIC,7,140,168,31
+    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
+                    WS_TABSTOP
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
@@ -2801,6 +2805,14 @@ BEGIN
     ID_LOCBAR_GOTODIFF      "커서가 있는 다른 부분으로 이동합니다."
     ID_LOCBAR_GOTODIFF_FMT  "다른 부분으로 이동합니다. (%1 of %2)"
     ID_LOCBAR_GOTOLINE_FMT  "%1라인으로 이동"
+END
+
+// AUTOCOMPLETE COMBOBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
+    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
+    IDS_AUTOCOMPLETE_MRU	"From MRU list"
 END
 
 // END STRINGS SYNCHRO

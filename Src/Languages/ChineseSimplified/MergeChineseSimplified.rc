@@ -732,15 +732,18 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "只允许运行一个实例(&A)",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "允许多个对比窗口",IDC_STATIC,7,72,221,37
     CONTROL         "文件夹对比(&F)",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,206,10
     CONTROL         "文件对比(&E)",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "重置",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
-                    WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,110,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,124,168,31
+                    IDC_STATIC,7,140,168,31
+    PUSHBUTTON      "重置",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
+                    WS_TABSTOP
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
@@ -2798,6 +2801,14 @@ BEGIN
     ID_LOCBAR_GOTODIFF      "转到光标处不同"
     ID_LOCBAR_GOTODIFF_FMT  "转到第 %1 处不同(共 %2 处)(&O)"
     ID_LOCBAR_GOTOLINE_FMT  "转到第 %1 行(&O)"
+END
+
+// AUTOCOMPLETE COMBOBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
+    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
+    IDS_AUTOCOMPLETE_MRU	"From MRU list"
 END
 
 // END STRINGS SYNCHRO

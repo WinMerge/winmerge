@@ -4,6 +4,9 @@
 #include "stdafx.h"
 #include "SuperComboBox.h"
 
+#include <shlwapi.h>
+#include <shldisp.h>
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -48,6 +51,7 @@ CSuperComboBox::CSuperComboBox(BOOL bAdd /*= TRUE*/, UINT idstrAddText /*= 0*/)
 	m_bEditChanged=FALSE;
 	m_bDoComplete = FALSE;
 	m_bAutoComplete = FALSE;
+
 	m_strCurSel = _T("");
 	if (bAdd)
 	{
@@ -266,6 +270,72 @@ BOOL CSuperComboBox::OnAddTemplate()
 	// do nothing, this should get overridden
 	// return TRUE if template is added
 	return FALSE;
+}
+
+void CSuperComboBox::SetAutoComplete(INT nSource)
+{
+	switch (nSource)
+	{
+		case AUTO_COMPLETE_DISABLED:
+			m_bAutoComplete = FALSE;
+			break;
+
+		case AUTO_COMPLETE_FILE_SYSTEM:
+		{
+			// Disable the build-in auto-completion and use the Windows
+			// shell functionality.
+			m_bAutoComplete = FALSE;
+
+			// ComboBox's edit control is alway 1001.
+			CWnd *pWnd = GetDlgItem(1001);
+			ASSERT(NULL != pWnd);
+			::SHAutoComplete(pWnd->m_hWnd, SHACF_FILESYSTEM);
+
+			/*
+			::CoCreateInstance(CLSID_AutoComplete, NULL, CLSCTX_INPROC_SERVER,
+				IID_IAutoComplete, (LPVOID*)&m_pAutoComplete);
+			
+			if (NULL != m_pAutoComplete)
+			{
+				IUnknown *punkSource;
+				::CoCreateInstance(CLSID_ACListISF, NULL, CLSCTX_INPROC_SERVER,
+					IID_IACList, (LPVOID*)&punkSource);
+				if (NULL != punkSource)
+				{
+					IACList2 *pal2;
+					if (SUCCEEDED(punkSource->QueryInterface(IID_IACList2, (LPVOID*)&pal2)))
+					{
+						pal2->SetOptions(ACLO_FILESYSONLY);
+						pal2->Release();
+						
+						IAutoComplete2 *pac2;
+						if (SUCCEEDED(m_pAutoComplete->QueryInterface(IID_IAutoComplete2, (LPVOID*)&pac2)))
+						{
+							pac2->SetOptions(ACO_AUTOSUGGEST);
+							pac2->Release();
+						}
+						m_pAutoComplete->Init(pWnd->m_hWnd, punkSource, NULL, NULL);
+					}
+					
+					punkSource->Release();
+					
+					m_pAutoComplete->Release();
+					m_pAutoComplete = NULL;
+				}
+			}
+			*/
+
+			break;
+		}
+
+		case AUTO_COMPLETE_RECENTLY_USED:
+			m_bAutoComplete = TRUE;
+			break;
+
+		default:
+			ASSERT(!"Unknown AutoComplete source.");
+			m_bAutoComplete = FALSE;
+	}
 }
 
 void CSuperComboBox::ResetContent()

@@ -48,6 +48,7 @@ const TCHAR OPT_MERGE_MODE[] = _T("Settings/MergingMode");
 const TCHAR OPT_CLOSE_WITH_ESC[] = _T("Settings/CloseWithEsc");
 const TCHAR OPT_LOGGING[] = _T("Settings/Logging");
 const TCHAR OPT_VERIFY_OPEN_PATHS[] = _T("Settings/VerifyOpenPaths");
+const TCHAR OPT_AUTO_COMPLETE_SOURCE[] = _T("Settings/AutoCompleteSource");
 const TCHAR OPT_IGNORE_SMALL_FILETIME[] = _T("Settings/IgnoreSmallFileTime");
 
 const TCHAR OPT_CP_DEFAULT_MODE[] = _T("Settings/CodepageDefaultMode");

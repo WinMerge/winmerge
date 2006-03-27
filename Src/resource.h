@@ -357,6 +357,7 @@
 #define IDC_SELECTION_BKGD_COLOR        1290
 #define IDC_SELECTION_TEXT_COLOR        1291
 #define IDC_REGULAR_TEXT_COLOR          1292
+#define IDC_AUTO_COMPLETE_SOURCE        1293
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1004,6 +1005,9 @@
 #define ID_FILE_ENCODING                33100
 #define IDS_FILES_AFFECTED_FMT          33110
 #define IDS_FILES_AFFECTED_FMT2         33111
+#define IDS_AUTOCOMPLETE_DISABLED       33112
+#define IDS_AUTOCOMPLETE_FILE_SYS       33113
+#define IDS_AUTOCOMPLETE_MRU            33114
 
 // Next default values for new objects
 // 
@@ -1011,8 +1015,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        232
-#define _APS_NEXT_COMMAND_VALUE         33112
-#define _APS_NEXT_CONTROL_VALUE         1295
+#define _APS_NEXT_COMMAND_VALUE         33115
+#define _APS_NEXT_CONTROL_VALUE         1294
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

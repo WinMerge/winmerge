@@ -55,6 +55,7 @@ CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral
 , m_bCloseWindowWithEsc(TRUE)
 , m_bMultipleFileCmp(FALSE)
 , m_bMultipleDirCmp(FALSE)
+, m_nAutoCompleteSource(0)
 {
 }
 
@@ -62,10 +63,22 @@ CPropGeneral::~CPropGeneral()
 {
 }
 
-
 BOOL CPropGeneral::OnInitDialog()
 {
 	CPropertyPage::OnInitDialog();
+
+	CComboBox *pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_COMPLETE_SOURCE);
+	ASSERT(NULL != pWnd);
+
+	CString str;
+	VERIFY(str.LoadString(IDS_AUTOCOMPLETE_DISABLED));
+	pWnd->AddString(str);
+	VERIFY(str.LoadString(IDS_AUTOCOMPLETE_FILE_SYS));
+	pWnd->AddString(str);
+	VERIFY(str.LoadString(IDS_AUTOCOMPLETE_MRU));
+	pWnd->AddString(str);
+
+	pWnd->SetCurSel(m_nAutoCompleteSource);
 
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -82,6 +95,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
 	DDX_Check(pDX, IDC_MULTIDOC_FILECMP, m_bMultipleFileCmp);
 	DDX_Check(pDX, IDC_MULTIDOC_DIRCMP, m_bMultipleDirCmp);
+	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	//}}AFX_DATA_MAP
 }
 
@@ -105,6 +119,7 @@ void CPropGeneral::ReadOptions()
 	m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bMultipleFileCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_MERGEDOCS);
 	m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
+	m_nAutoCompleteSource = m_pOptionsMgr->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 }
 
 /** 
@@ -120,6 +135,7 @@ void CPropGeneral::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 }
 
 /////////////////////////////////////////////////////////////////////////////

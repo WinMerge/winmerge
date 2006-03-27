@@ -44,6 +44,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
 	m_options.InitOption(OPT_SCROLL_TO_FIRST, false);
 	m_options.InitOption(OPT_VERIFY_OPEN_PATHS, true);
+	m_options.InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)0);
 
 	m_options.InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
 	m_options.InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);

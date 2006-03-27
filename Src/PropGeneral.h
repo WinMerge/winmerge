@@ -41,6 +41,7 @@ public:
 	BOOL  m_bCloseWindowWithEsc;
 	BOOL	m_bMultipleFileCmp;
 	BOOL	m_bMultipleDirCmp;
+	int		m_nAutoCompleteSource;
 	//}}AFX_DATA
 
 

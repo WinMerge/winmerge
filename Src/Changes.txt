@@ -8,6 +8,12 @@ Add new items to top.
   Src/Languages/Swedish: MergeSwedish.rc
  PATCH: [ 1458852 ] Fix UI for multiple file patches
   Src: PatchDlg.cpp PatchDlg.h
+ PATCH: [ 1441718 ] Auto Complete on files or folders selection
+  Submitted by Gal Hammer
+  Src/Common: SuperComboBox.cpp SupercompoBox.h
+  Src: Merge.rc OpenDlg.cpp OptionsDef.h OptionsInit.cpp PropGeneral.cpp
+   PropGeneral.h resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-03-26 Kimmo
  PATCH: [ 1458066 ] Use / as path delimiter in patch files

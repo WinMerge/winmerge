@@ -6,7 +6,6 @@
 #endif // _MSC_VER >= 1000
 // ComboBoxEx.h : header file
 //
-#include <shlobj.h>
 
 /////////////////////////////////////////////////////////////////////////////
 // CSuperComboBox window
@@ -26,8 +25,15 @@ protected:
 
 public:
 
+	enum
+	{
+		AUTO_COMPLETE_DISABLED		= 0,
+		AUTO_COMPLETE_FILE_SYSTEM,
+		AUTO_COMPLETE_RECENTLY_USED
+	};
+
 // Operations
-	void SetAutoComplete( BOOL bAutoComplete ) { m_bAutoComplete = bAutoComplete; }
+	void SetAutoComplete(INT nSource);
 
 public:
 

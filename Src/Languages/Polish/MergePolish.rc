@@ -730,15 +730,19 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "Zezwól na uruchomienie tylko &jednej instancji programu",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    GROUPBOX        "W³¹cz wiele okien porównania dla",IDC_STATIC,7,72,221,37
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "W³¹cz wiele okien porównania dla",IDC_STATIC,7,88,
+                    221,37
     CONTROL         "Porównania &folderów",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,206,10
     CONTROL         "Porównania &plików",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "Resetuj",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
-                    WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,110,206,10
     LTEXT           "WinMerge pozwala ukryæ niektóre komunikaty. Naciœnij przycisk, aby wyœwietlaæ wszystkie komunikaty.",
-                    IDC_STATIC,7,124,168,31
+                    IDC_STATIC,7,140,168,31
+    PUSHBUTTON      "Resetuj",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
+                    WS_TABSTOP
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
@@ -2803,6 +2807,14 @@ BEGIN
     ID_LOCBAR_GOTODIFF      "IdŸ do ró¿nicy pod kursorem"
     ID_LOCBAR_GOTODIFF_FMT  "IdŸ &do ró¿nicy %1 z %2"
     ID_LOCBAR_GOTOLINE_FMT  "&IdŸ do linii %1"
+END
+
+// AUTOCOMPLETE COMBOBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
+    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
+    IDS_AUTOCOMPLETE_MRU	"From MRU list"
 END
 
 // END STRINGS SYNCHRO

@@ -730,15 +730,19 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "&Permet d'executar només una instància",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,72,221,37
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,88,
+                    221,37
     CONTROL         "Comparació de &carpetes",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,206,10
     CONTROL         "Comparació de &fitxers",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
-                    WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,110,206,10
     LTEXT           "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó de Reinicialització per a fer visibles tots els quadres de missatges altre cop.",
-                    IDC_STATIC,7,124,168,31
+                    IDC_STATIC,7,140,168,31
+    PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
+                    WS_TABSTOP
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
@@ -2821,6 +2825,14 @@ BEGIN
     ID_LOCBAR_GOTODIFF      "Va fins a la diferència sota la busca"
     ID_LOCBAR_GOTODIFF_FMT  "Va fins a la diferència %1 de %2"
     ID_LOCBAR_GOTOLINE_FMT  "Va fins a la línia %1"
+END
+
+// AUTOCOMPLETE COMBOBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
+    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
+    IDS_AUTOCOMPLETE_MRU	"From MRU list"
 END
 
 // END STRINGS SYNCHRO

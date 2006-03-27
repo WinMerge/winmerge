@@ -153,7 +153,14 @@ BOOL COpenDlg::OnInitDialog()
 	m_ctlRight.LoadState(_T("Files\\Right"));
 	m_ctlExt.LoadState(_T("Files\\Ext"));
 	UpdateData(m_strLeft.IsEmpty() && m_strRight.IsEmpty());
-	
+
+	int nSource = GetOptionsMgr()->GetInt(OPT_AUTO_COMPLETE_SOURCE);
+	if (nSource > 0)
+	{
+		m_ctlLeft.SetAutoComplete(nSource);
+		m_ctlRight.SetAutoComplete(nSource);
+	}
+
 	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	BOOL bMask = theApp.m_globalFileFilter.IsUsingMask();
 

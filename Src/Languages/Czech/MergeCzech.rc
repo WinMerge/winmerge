@@ -730,15 +730,19 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "Povolit pouze jedno &hlavní okno aplikace",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    GROUPBOX        "Povolit více oken pro porovnání",IDC_STATIC,7,72,221,37
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    GROUPBOX        "Povolit více oken pro porovnání",IDC_STATIC,7,88,
+                    221,37
     CONTROL         "s&ložek",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,84,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,206,10
     CONTROL         "&souborù",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,94,206,10
-    PUSHBUTTON      "V&rátit",IDC_RESET_ALL_MESSAGE_BOXES,178,122,50,13,NOT
-                    WS_TABSTOP
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,110,206,10
     LTEXT           "Nìkterá obecná okna se zprávami je možno skrýt.\nPo stisknutí tlaèítka Vrátit se všechna tato okna opìt budou objevovat.",
-                    IDC_STATIC,7,124,168,31
+                    IDC_STATIC,7,140,168,31
+    PUSHBUTTON      "V&rátit",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
+                    WS_TABSTOP
 END
 
 IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
@@ -2796,6 +2800,14 @@ BEGIN
     ID_LOCBAR_GOTODIFF      "Pøejde na øádek nebo rozdíl pod ukazatelem"
     ID_LOCBAR_GOTODIFF_FMT  "&Pøejít na rozdíl %1 z %2"
     ID_LOCBAR_GOTOLINE_FMT  "&Pøejít na øádek %1"
+END
+
+// AUTOCOMPLETE COMBOBOX OPTIONS
+STRINGTABLE
+BEGIN
+    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
+    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
+    IDS_AUTOCOMPLETE_MRU	"From MRU list"
 END
 
 // END STRINGS SYNCHRO
