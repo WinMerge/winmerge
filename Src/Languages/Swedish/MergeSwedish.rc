@@ -127,12 +127,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "Kop&iera till höger",          ID_L2R
+        MENUITEM "Kop&iera till vänster",        ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "Kl&ipp ut",                    ID_EDIT_CUT
+        MENUITEM "&Kopiera",                     ID_EDIT_COPY
+        MENUITEM "&Klistra in",                  ID_EDIT_PASTE
     END
 END
 
@@ -193,7 +193,7 @@ BEGIN
     BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Sök...",                     ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rkivstöd avstängt...",      ID_HELP_MERGE7ZMISMATCH
@@ -216,7 +216,7 @@ BEGIN
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
         MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "Fil&kodning",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Avsluta",                    ID_APP_EXIT
     END
@@ -302,7 +302,7 @@ BEGIN
     BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Sök...",                     ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rkivstöd avstängt...",      ID_HELP_MERGE7ZMISMATCH
@@ -456,7 +456,7 @@ BEGIN
     BEGIN
         MENUITEM "&Innehåll...\tF1",            ID_HELP_CONTENTS
         MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Sök...",                     ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "K&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rkivstöd avstängt...",      ID_HELP_MERGE7ZMISMATCH
@@ -666,7 +666,7 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,306,28,50,14
-    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
+    PUSHBUTTON      "Hjälp",ID_HELP,306,45,50,14
     GROUPBOX        "Filer eller kataloger som skall jämföras",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END
@@ -1132,11 +1132,11 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
     CONTROL         "Tillåt blandade radslutstyper",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulator",IDC_STATIC,7,54,245,33,WS_GROUP
-    LTEXT           "&Tabulatorsteg:",IDC_STATIC,15,68,50,8
+    GROUPBOX        "Tabbar",IDC_STATIC,7,54,245,33,WS_GROUP
+    LTEXT           "&Tabbsteg:",IDC_STATIC,15,68,50,8
     EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
-    CONTROL         "Infoga tabulatorer",IDC_PROP_INSERT_TABS,"Button",
+    CONTROL         "Infoga tabbar",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,71,10
     CONTROL         "Infoga mellanslag",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,71,10
@@ -1204,16 +1204,16 @@ CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     GROUPBOX        "Standard Codepage",IDC_STATIC,7,7,221,79
-    LTEXT           "Välj den codepage som används som standard när icke-Unicode filer öppnas:",
+    LTEXT           "Välj den Codepage som används som standard när icke-Unicode filer öppnas:",
                     IDC_STATIC,14,20,208,19
-    CONTROL         "Detektera codepageinformation för dessa filer : .html, .rc, .xml \nDetta kräver en omstart av WinMerge",
+    CONTROL         "Detektera Codepageinformation för dessa filer : .html, .rc, .xml \nDetta kräver en omstart av WinMerge",
                     IDC_DETECT_CODEPAGE,"Button",BS_AUTOCHECKBOX | BS_TOP |
                     BS_MULTILINE | WS_TABSTOP,13,92,210,29
-    CONTROL         "System codepage",IDC_CP_SYSTEM,"Button",
+    CONTROL         "System Codepage",IDC_CP_SYSTEM,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,13,42,210,10
     CONTROL         "Enligt WinMerges användargränssnitt",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
-    CONTROL         "Anpassad codepage :",IDC_CP_CUSTOM,"Button",
+    CONTROL         "Anpassad Codepage :",IDC_CP_CUSTOM,"Button",
                     BS_AUTORADIOBUTTON,13,68,77,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,67,56,13,ES_AUTOHSCROLL
 END
@@ -1449,25 +1449,25 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Codepage"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Affects",IDC_AFFECTS_GROUP,5,7,166,36
-    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
+    GROUPBOX        "Påverkar",IDC_AFFECTS_GROUP,5,7,166,36
+    CONTROL         "&Vänster",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,18,54,8
-    LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,70,18,93,8
-    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
+    LTEXT           "(Påverkar)",IDC_LEFT_FILES_LABEL,70,18,93,8
+    CONTROL         "&Höger",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,29,54,8
-    LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,29,93,8
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,48,166,63
-    LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,64,72,10
+    LTEXT           "(Påverkar)",IDC_RIGHT_FILES_LABEL,70,29,93,8
+    GROUPBOX        "Välj Codepage för",IDC_LOADING_GROUP,5,48,166,63
+    LTEXT           "&Filöppnande:",IDC_LOAD_FILES_LABEL,12,64,72,10
     EDITTEXT        IDC_LOAD_CODEPAGE_TEXTBOX,86,63,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_LOAD_CODEPAGE_BROWSE,139,64,23,10
-    LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,79,67,10
+    LTEXT           "Filsparande:",IDC_SAVE_FILES_LABEL,12,79,67,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,86,79,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,139,80,23,10
-    CONTROL         "&Use same codepage for both",
+    CONTROL         "&Använd samma Codepage för båda",
                     IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,96,150,10
-    DEFPUSHBUTTON   "&Apply",IDOK,65,117,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,121,117,50,14
+    DEFPUSHBUTTON   "&Verkställ",IDOK,65,117,50,14
+    PUSHBUTTON      "&Avbryt",IDCANCEL,121,117,50,14
 END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
@@ -1475,18 +1475,18 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Test Filter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
-    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,74,8
+    LTEXT           "Testar filter ...",IDC_HEADER,7,7,82,8
+    LTEXT           "(filternamn)",IDC_HEADER_FILTER_NAME,90,6,152,8
+    LTEXT           "&Skriv in text att testa:",IDC_PROMPT_LABEL,7,21,74,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
-    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Katalognamn",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,24,8
+    LTEXT           "Resultat:",IDC_STATIC,7,49,24,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP
-    DEFPUSHBUTTON   "&Test",IDC_TEST_BTN,133,121,50,14
-    PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
+    DEFPUSHBUTTON   "&Testa",IDC_TEST_BTN,133,121,50,14
+    PUSHBUTTON      "&Stäng",IDCANCEL,192,121,50,14
 END
 
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 197, 157
@@ -1494,15 +1494,15 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Default system colors for normal text",
+    CONTROL         "Standard systemkulörer för normal text",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,14,148,10
-    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+    GROUPBOX        "Anpassade textkulörer",IDC_CUSTOM_COLORS_GROUP,27,33,159,
                     111
-    LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
-    LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
-    LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
-    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
+    LTEXT           "Mellanslag:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
+    LTEXT           "Vanlig text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
+    LTEXT           "Markering:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
+    CTEXT           "Bakgrund",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
     CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
     CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,113,58,17,14
@@ -1688,8 +1688,8 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_OPENPROJECT     "Öppna Projektfil\nProjektfil(Ctrl+J)"
-    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
-    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_UNK_ERROR_READING_PROJECT "Okänt fel vid försök att öppna projektfil"
+    IDS_UNK_ERROR_SAVING_PROJECT "Okänt fel vid försök att spara projektfil"
     ID_FILE_SAVEPROJECT     "Sparar aktuella sökvägar och inställningar till Projektfil\nSpara Projektfil"
 END
 
@@ -1847,7 +1847,7 @@ BEGIN
     IDS_OPTIONSPG_EDITOR    "Editor"
     IDS_OPTIONSPG_COLORS    "Kulörer"
     IDS_OPTIONSPG_SYNTAXCOLORS "Syntaxkulörer"
-    IDS_OPTIONSPG_TEXTCOLORS "Text Colors"
+    IDS_OPTIONSPG_TEXTCOLORS "Textkulörer"
     IDS_OPTIONSPG_SYSTEM    "System"
     IDS_OPTIONSPG_VERSIONCONTROL "Versionskontroll"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
@@ -2095,8 +2095,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "Höger till... (%1 av %2)"
     IDS_SELECT_DEST_LEFT    "Vänster sida - välj destinationskatalog:"
     IDS_SELECT_DEST_RIGHT   "Höger sida - välj destinationskatalog:"
-    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
-    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
+    IDS_FILES_AFFECTED_FMT  "(%1 filer påverkade)"
+    IDS_FILES_AFFECTED_FMT2 "(%1 av %2 filer påverkade)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2121,7 +2121,7 @@ BEGIN
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Öppna den högra filen med en extern editor"
     ID_DIR_OPEN_RIGHT_WITH  "Öppna den högra filen med ..."
     IDS_ERROR_EXECUTE_FILE   "Kan inte starta %1"
-    IDS_UNKNOWN_EXECUTE_FILE "Unknown extension on external editor: %1"
+    IDS_UNKNOWN_EXECUTE_FILE "Okänt suffix för extern editor: %1"
     ID_DIR_COPY_FILENAMES   "Kopiera filnamn till klippbordet"
     ID_DIR_COPY_PATHNAMES_LEFT "Kopiera vänster sidas sökvägar till klippbordet"
     ID_DIR_COPY_PATHNAMES_RIGHT "Kopiera höger sidas sökvägar till klippbordet"
@@ -2168,8 +2168,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Kort resultat"
     IDS_COLHDR_LATTRIBUTES  "Vänster attribut"
     IDS_COLHDR_RATTRIBUTES  "Höger attribut"
-    IDS_COLHDR_LEOL_TYPE    "Left EOL"
-    IDS_COLHDR_REOL_TYPE    "Right EOL"
+    IDS_COLHDR_LEOL_TYPE    "Vänster radslutstyp"
+    IDS_COLHDR_REOL_TYPE    "Höger radslutstyp"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2233,8 +2233,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "Kortfattat jämförelseresultat."
     IDS_COLDESC_LATTRIBUTES "Vänster sidas attribut."
     IDS_COLDESC_RATTRIBUTES "Höger sidas attribut."
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "Vänster sidas filradslutstyp"
+    IDS_COLDESC_REOL_TYPE   "Höger sidas filradslutstyp"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2285,7 +2285,7 @@ END
 // Encoding issues
 STRINGTABLE
 BEGIN
-    IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma codepage. \nAtt visa varje fil i dess egen codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer codepage informationen. Önskar du detta ?"
+    IDS_SUGGEST_IGNORECODEPAGE "Vänster (cp%d) och höger (cp%d) fil har inte samma Codepage. \nAtt visa varje fil i dess egen Codepage ger en bättre visning men sammanfogning/kopierande blir farligt.\nVi föreslår att du glömmer Codepage informationen. Önskar du detta ?"
     IDS_DIFFERENT_UNICODINGS   "Varning: Filerna använder olika filkodningar, vänster=%s och höger=%s, och sammanfogning kan leda till förlust av information."
     IDS_LOSSY_TRANSCODING_BOTH  "Information förlorades på grund av kodningsfel i: båda filerna"
     IDS_LOSSY_TRANSCODING_RIGHT "Information förlorades på grund av kodningsfel i: höger fil"
@@ -2657,10 +2657,10 @@ END
 // EOL types shown in folder compare EOL type column
 STRINGTABLE
 BEGIN
-    IDS_EOL_DOS             "Win"
-    IDS_EOL_MAC             "Mac"
-    IDS_EOL_UNIX            "Unix"
-    IDS_EOL_MIXED           "Mixed"
+    IDS_EOL_DOS             "DOS"
+    IDS_EOL_MAC             "MAC"
+    IDS_EOL_UNIX            "UNIX"
+    IDS_EOL_MIXED           "Blandad"
 END
 
 // MENU STRINGS
@@ -2677,7 +2677,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Konverterar radslut till UNIX-format"
     ID_EOL_TO_MAC           "Konverterar radslut till MAC-format"
     ID_FILE_MERGINGMODE     "Växlar mellan Editeramod och Mergemod"
-    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
+    ID_FILE_ENCODING        "Visar och ändrar filkodningsegenskaper\nFilkodningsegenskaper"
 END
 
 // EDIT MENU
@@ -2770,8 +2770,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Sparar aktuell WinMerge Versionsinfo och Konfiguration till en textfil"
     ID_HELP_GNULICENSE      "Visar GNU General Public License"
     IDS_PRIVATEBUILD_FMT    "Privat Build: %1"
-    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
-    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
+    ID_HELP_INDEX           "Öppnar WinMerges Hjälpindex\nHjälpindex"
+    ID_HELP_SEARCH          "Öppnar WinMerges Hjälpsökning\nHjälpsökning"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

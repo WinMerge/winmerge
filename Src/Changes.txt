@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-03-27 Kimmo
+ PATCH: [ 1459284 ] Update of MergeSwedish.rc for WinMerge 2.5.3.5+
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2006-03-26 Kimmo
  PATCH: [ 1458066 ] Use / as path delimiter in patch files
   Src: DiffWrapper.cpp
