@@ -2,11 +2,19 @@
 
 /*
  SetLanguageVersions.wsf
- Created: Perry Rapp, 2005-05-08
+
+ Created: 2005-05-08, Perry Rapp
+ Edited:  2006-03-08, Perry Rapp
+
  This script prompts the user for a new version number
  and then sets it as the ProductVersion in the version resource
  in the main (English) rc and in all subordinate (translation) rc files.
- It also sets the FileVersion in the main (English) rc file.
+ It also sets the FileVersion in the main (English) rc file, and clears
+  the PrivateBuild flag (if it is the only one set), in the main rc file.
+
+ RCS ID line follows -- this is updated by CVS
+ $Id$
+
 */
 
 <script language="VBScript">
@@ -201,6 +209,7 @@ function ProcessFile(filepath, filename, params)
   params.found2=0; // ProductVersion
   params.found3=0; // FILEVERSIOn
   params.found4=0; // FileVersion
+  params.found5=0; // PrivateBuild 0x8L
   
   while (!ifile.atEndOfStream)
   {
@@ -267,7 +276,7 @@ function ProcessLine(MainRc, line, params)
     return line;
   }
 
- // Only set File Version value in main RC file
+ // Stuff below (file version, PrivateBuild) is only for main RC file
   if (MainRc != true)
     return line;
 
@@ -295,6 +304,21 @@ function ProcessLine(MainRc, line, params)
       + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
     return line;
   }
+
+ // Clear Private Build flag in release version
+  var regexString = /^ *FILEFLAGS 0x8L$/
+  if (regexString.test(line))
+  {
+    ++params.found5;
+    if (params.found5 != 1)
+    {
+      return line;
+    }
+    var start = line.search(/8L/);
+    line = line.substring(0, start) + "0L";
+    return line;
+  }
+
 
   return line;
 }

@@ -12,6 +12,9 @@ Add new items to top.
  BUG: [ 1460236 ] Splash localization is broken
   Src: Merge.rc resource.h Splash.cpp
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1445426 ] Clear PrivateBuild flag in SetResourceVersions.wsf
+  Submitted by Perry
+  Src: SetResourceVersions.wsf
 
 2006-04-05 Takashi
  BUG: [ 1458714 ] [Replace All] doesn't work
