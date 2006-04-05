@@ -375,6 +375,8 @@
 #define IDC_SCRIPT_LAST                 8749
 #define IDC_PREDIFFERS_FIRST            8750
 #define IDC_PREDIFFERS_LAST             8799
+#define IDS_SPLASH_DEVELOPERS           8976
+#define IDS_SPLASH_GPLTEXT              8977
 #define IDS_MESSAGEBOX_OK               9001
 #define IDS_MESSAGEBOX_CANCEL           9002
 #define IDS_MESSAGEBOX_ABORT            9003

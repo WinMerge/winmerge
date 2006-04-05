@@ -57,9 +57,6 @@ static const CRect DevelopersArea(20, 93, 190, 210);
  */
 static const CRect CopyrightArea(20, 215, 190, 330);
 
-static const TCHAR DevelopersText[] = _T("Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"); 
-static const TCHAR GPLText[] = _T("WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details.");
-
 /////////////////////////////////////////////////////////////////////////////
 //   Splash Screen class
 
@@ -242,10 +239,13 @@ void CSplashWnd::OnPaint()
 			dc.SelectObject(&textFont);
 	}
 
+	CString text;
+	VERIFY(text.LoadString(IDS_SPLASH_DEVELOPERS));
 	area = DevelopersArea;
-	dc.DrawText(DevelopersText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	dc.DrawText(text, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	VERIFY(text.LoadString(IDS_SPLASH_GPLTEXT));
 	area = CopyrightArea;
-	dc.DrawText(GPLText, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	dc.DrawText(text, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
 
 	if (oldfont != NULL)
 		dc.SelectObject(oldfont);

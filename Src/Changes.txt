@@ -9,6 +9,9 @@ Add new items to top.
  BUG: [ 1461328 ] Commandline handling overwrites flags?
   Fix from Gal Hammer
   Src: MergeArgs.cpp
+ BUG: [ 1460236 ] Splash localization is broken
+  Src: Merge.rc resource.h Splash.cpp
+  Src/Languages/*: Merge*.rc
 
 2006-04-05 Takashi
  BUG: [ 1458714 ] [Replace All] doesn't work
