@@ -28,12 +28,14 @@
 #include "PatchDlg.h"
 
 /** 
- * @brief Provides patch creation functionality
+ * @brief Provides patch creation functionality.
  */
 class CPatchTool
 {
 public:
-	void AddFiles(CString file1, CString file2);
+	void AddFiles(const CString &file1, const CString &file2);
+	void AddFiles(const CString &file1, const CString &altPath1,
+		const CString &file2, const CString &altPath2);
 	int CreatePatch();
 	CString GetPatchFile() const;
 	BOOL GetOpenToEditor() const;
@@ -42,11 +44,11 @@ protected:
 	BOOL ShowDialog();
 
 private:
-	CList<PATCHFILES,PATCHFILES> m_fileList;
-	CDiffWrapper m_diffWrapper;
-	CPatchDlg m_dlgPatch;
-	CString m_sPatchFile;
-	BOOL m_bOpenToEditor;
+	CList<PATCHFILES, PATCHFILES&> m_fileList; /**< List of files to patch. */
+	CDiffWrapper m_diffWrapper; /**< DiffWrapper instance we use to create patch. */
+	CPatchDlg m_dlgPatch; /**< Dialog for selecting files and options. */
+	CString m_sPatchFile; /**< Patch file path and filename. */
+	BOOL m_bOpenToEditor; /**< Is patch file opened to external editor? */
 };
 
 #endif	// _PATCHTOOL_H_

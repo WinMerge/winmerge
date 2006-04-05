@@ -32,11 +32,24 @@
 /** 
  * @brief Adds files to list for patching
  */
-void CPatchTool::AddFiles(CString file1, CString file2)
+void CPatchTool::AddFiles(const CString &file1, const CString &file2)
 {
 	PATCHFILES files;
 	files.lfile = file1;
 	files.rfile = file2;
+
+	// TODO: Read and add file's timestamps
+	m_fileList.AddTail(files);
+}
+
+void CPatchTool::AddFiles(const CString &file1, const CString &altPath1,
+		const CString &file2, const CString &altPath2)
+{
+	PATCHFILES files;
+	files.lfile = file1;
+	files.rfile = file2;
+	files.pathLeft = altPath1;
+	files.pathRight = altPath2;
 
 	// TODO: Read and add file's timestamps
 	m_fileList.AddTail(files);
@@ -90,7 +103,9 @@ int CPatchTool::CreatePatch()
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetPrediffer(NULL);
-			bDiffSuccess = m_diffWrapper.RunFileDiff(filename1, filename2, NOTEMPFILES);
+			m_diffWrapper.SetPaths(files.lfile, files.rfile);
+			m_diffWrapper.SetAlternativePaths(files.pathLeft, files.pathRight);
+			bDiffSuccess = m_diffWrapper.RunFileDiff(NOTEMPFILES);
 			m_diffWrapper.GetDiffStatus(&status);
 
 			if (!bDiffSuccess)

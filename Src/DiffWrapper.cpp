@@ -86,6 +86,9 @@ CDiffWrapper::CDiffWrapper()
 	line_end_char = '\n';
 }
 
+/**
+ * @brief Destructor.
+ */
 CDiffWrapper::~CDiffWrapper()
 {
 	if (m_infoPrediffer)
@@ -93,16 +96,20 @@ CDiffWrapper::~CDiffWrapper()
 }
 
 /**
- * @brief Sets filename of produced patch-file
+ * @brief Sets filename of produced patch-file.
+ * @param [in] file Filename of patch file.
  */
-void CDiffWrapper::SetPatchFile(CString file)
+void CDiffWrapper::SetPatchFile(const CString &file)
 {
 	m_sPatchFile = file;
 	m_sPatchFile.Replace('/', '\\');
 }
 
 /**
- * @brief Sets pointer to external diff-list filled when analysing files
+ * @brief Sets pointer to DiffList getting compare results.
+ * CDiffWrapper adds compare results to DiffList. This function
+ * sets external DiffList which gets compare results.
+ * @param [in] difflist Pointer to DiffList getting compare results.
  */
 void CDiffWrapper::SetDiffList(DiffList *diffList)
 {
@@ -111,18 +118,24 @@ void CDiffWrapper::SetDiffList(DiffList *diffList)
 }
 
 /**
- * @brief Returns current set of options used by diff-engine
+ * @brief Returns current set of options used by diff-engine.
+ * This function converts internally used diff-options to
+ * format used outside CDiffWrapper and returns them.
+ * @param [in,out] options Pointer to structure getting used options.
  */
-void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
+void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
 {
 	ASSERT(options);
 	InternalGetOptions(options);
 }
 
 /**
- * @brief Set options used by diff-engine
+ * @brief Set options for Diff-engine.
+ * This function converts given options to format CDiffWrapper uses
+ * internally and stores them.
+ * @param [in] options Pointer to structure having new options.
  */
-void CDiffWrapper::SetOptions(DIFFOPTIONS *options)
+void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
 	ASSERT(options);
 	InternalSetOptions(options);
@@ -132,7 +145,7 @@ void CDiffWrapper::SetOptions(DIFFOPTIONS *options)
  * @brief Set text tested to find the prediffer automatically.
  * Most probably a concatenated string of both filenames.
  */
-void CDiffWrapper::SetTextForAutomaticPrediff(CString text)
+void CDiffWrapper::SetTextForAutomaticPrediff(const CString &text)
 {
 	m_sToFindPrediffer = text;
 }
@@ -153,9 +166,10 @@ void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer)
 }
 
 /**
- * @brief Get options used for patch creation
+ * @brief Returns current set of options used for patch-file creation.
+ * @param [in, out] options Pointer to structure where options are stored.
  */
-void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options)
+void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options) const
 {
 	ASSERT(options);
 	options->nContext = m_settings.context;
@@ -164,9 +178,10 @@ void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options)
 }
 
 /**
- * @brief Set options used for patch creation
+ * @brief Set options used for patch-file creation.
+ * @param [in] options Pointer to structure having new options.
  */
-void CDiffWrapper::SetPatchOptions(PATCHOPTIONS *options)
+void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 {
 	ASSERT(options);
 	m_settings.context = options->nContext;
@@ -175,7 +190,11 @@ void CDiffWrapper::SetPatchOptions(PATCHOPTIONS *options)
 }
 
 /**
- * @brief Determines if external diff-list is used
+ * @brief Determines if external results-list is used.
+ * When diff'ing files results are stored to external DiffList,
+ * set by SetDiffList(). This function determines if we are currently
+ * using that external list.
+ * @return TRUE if results are added to external DiffList.
  */
 BOOL CDiffWrapper::GetUseDiffList() const
 {
@@ -183,7 +202,11 @@ BOOL CDiffWrapper::GetUseDiffList() const
 }
 
 /**
- * @brief Enables/disables external diff-list usage
+ * @brief Enables/disables external result-list.
+ * CDiffWrapper uses external DiffList to return compare results.
+ * This function enables/disables usage of that external DiffList.
+ * @param [in] bUseDifList TRUE if external DiffList is used.
+ * @return Old value of the setting.
  */
 BOOL CDiffWrapper::SetUseDiffList(BOOL bUseDiffList)
 {
@@ -193,7 +216,8 @@ BOOL CDiffWrapper::SetUseDiffList(BOOL bUseDiffList)
 }
 
 /**
- * @brief Determines if patch-file is created
+ * @brief Determines if patch-file is created.
+ * @return TRUE if patch file will be created.
  */
 BOOL CDiffWrapper::GetCreatePatchFile() const 
 {
@@ -201,7 +225,9 @@ BOOL CDiffWrapper::GetCreatePatchFile() const
 }
 
 /**
- * @brief Enables/disables creation of patch-file
+ * @brief Enables/disables creation of patch-file.
+ * @param [in] bCreatePatchFile If TRUE patch file will be created.
+ * @return Previous value for setting.
  */
 BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 {
@@ -211,10 +237,38 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 }
 
 /**
- * @brief Runs diff-engine
+ * @brief Set source paths for diffing two files.
+ * Sets full paths to two files we are diffing.
+ * @param [in] filepath1 First file to compare "original file".
+ * @param [in] filepath2 Second file to compare "changed file".
  */
-BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMPFILES areTempFiles)
+void CDiffWrapper::SetPaths(const CString &filepath1, const CString &filepath2)
 {
+	m_s1File = filepath1;
+	m_s2File = filepath2;
+}
+
+/**
+ * @brief Set alternative paths for compared files.
+ * Sets alternative paths for diff'ed files. These alternative paths might not
+ * be real paths. For example when creating a patch file from folder compare
+ * we want to use relative paths.
+ * @param [in] altPath1 Alternative file path of first file.
+ * @param [in] altPath2 Alternative file path of second file.
+ */
+void CDiffWrapper::SetAlternativePaths(const CString &altPath1, const CString &altPath2)
+{
+	m_s1AlternativePath = altPath1;
+	m_s2AlternativePath = altPath2;
+}
+
+/**
+ * @brief Runs diff-engine.
+ */
+BOOL CDiffWrapper::RunFileDiff(ARETEMPFILES areTempFiles)
+{
+	CString filepath1(m_s1File);
+	CString filepath2(m_s2File);
 	filepath1.Replace('/', '\\');
 	filepath2.Replace('/', '\\');
 
@@ -329,7 +383,7 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 	// Create patch file
 	if (!m_status.bBinaries && m_bCreatePatchFile)
 	{
-		WritePatchFile(script, filepath1, filepath1, &inf[0]);
+		WritePatchFile(script, &inf[0]);
 	}
 	
 	// Go through diffs adding them to WinMerge's diff list
@@ -372,7 +426,7 @@ BOOL CDiffWrapper::RunFileDiff(CString & filepath1, CString & filepath2, ARETEMP
 /**
  * @brief Return current diffutils options
  */
-void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options)
+void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options) const
 {
 	int nIgnoreWhitespace = 0;
 
@@ -391,7 +445,7 @@ void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options)
 /**
  * @brief Set diffutils options
  */
-void CDiffWrapper::InternalSetOptions(DIFFOPTIONS *options)
+void CDiffWrapper::InternalSetOptions(const DIFFOPTIONS *options)
 {
 	m_settings.ignoreAllSpace = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_ALL);
 	m_settings.ignoreSpaceChange = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_CHANGE);
@@ -1877,24 +1931,27 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
  * Writes patch file using already computed diffutils script. Converts path
  * delimiters from \ to / since we want to keep compatibility with patch-tools.
  * @param [in] script list of changes.
- * @param [in] filepath1 first file
- * @param [in] filepath2 second file
  * @param [in] inf file_data table containing filenames
  * @todo filepath1 and filepath2 aren't really needed, paths are already in inf.
  */
-void CDiffWrapper::WritePatchFile(struct change * script,
-		const CString & filepath1, const CString & filepath2,
-		file_data * inf)
+void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 {
 	USES_CONVERSION;
 	file_data inf_patch[2] = {0};
 	CopyMemory(&inf_patch, inf, sizeof(file_data) * 2);
-	CString pathLeft = inf_patch[0].name;
-	pathLeft.Replace('\\', '/');
-	CString pathRight = inf_patch[1].name;
-	pathRight.Replace('\\', '/');
-	inf_patch[0].name = strdup(T2CA(pathLeft));
-	inf_patch[1].name = strdup(T2CA(pathRight));
+	
+	// Get paths, primarily use alternative paths, only if they are empty
+	// use full filepaths
+	CString path1(m_s1AlternativePath);
+	CString path2(m_s2AlternativePath);
+	if (path1.IsEmpty())
+		path1 = m_s1File;
+	if (path2.IsEmpty())
+		path2 = m_s2File;
+	path1.Replace('\\', '/');
+	path2.Replace('\\', '/');
+	inf_patch[0].name = strdup(T2CA(path1));
+	inf_patch[1].name = strdup(T2CA(path2));
 
 	outfile = NULL;
 	if (!m_sPatchFile.IsEmpty())
@@ -1914,7 +1971,7 @@ void CDiffWrapper::WritePatchFile(struct change * script,
 	{
 		CString switches = FormatSwitchString();
 		_ftprintf(outfile, _T("diff%s %s %s\n"),
-			switches, filepath1, filepath2);
+			switches, path1, path2);
 	}
 
 	// Output patchfile

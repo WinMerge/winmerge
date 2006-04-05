@@ -41,9 +41,12 @@
 struct PATCHFILES
 {
 	CString lfile; /**< Left file */
+	CString pathLeft; /**< Left path added to patch file */
 	CString rfile; /**< Right file */
+	CString pathRight; /**< Right path added to patch file */
 	time_t ltime; /**< Left time */
 	time_t rtime; /**< Right time */
+	PATCHFILES() : ltime(0), rtime(0) {};
 };
 
 /** 

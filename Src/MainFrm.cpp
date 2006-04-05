@@ -1966,26 +1966,46 @@ void CMainFrame::OnToolsGeneratePatch()
 		CDirView *pView = pDoc->GetMainView();
 
 		// Get selected items from folder compare
+		BOOL bValidFiles = TRUE;
 		int ind = pView->GetFirstSelectedInd();
-		while (ind != -1)
+		while (ind != -1 && bValidFiles)
 		{
 			const DIFFITEM item = pView->GetItemAt(ind);
 			if (item.isBin())
+			{
 				AfxMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
+				bValidFiles = FALSE;
+			}
 			else if (item.isDirectory())
+			{
 				AfxMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
+				bValidFiles = FALSE;
+			}
 
-			CString leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
-			if (!leftFile.IsEmpty())
-				leftFile += _T("\\") + item.sLeftFilename;
-			CString rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
-			if (!rightFile.IsEmpty())
-				rightFile += _T("\\") + item.sRightFilename;
+			if (bValidFiles)
+			{
+				// Format full paths to files (leftFile/rightFile)
+				CString leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
+				if (!leftFile.IsEmpty())
+					leftFile += _T("\\") + item.sLeftFilename;
+				CString rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
+				if (!rightFile.IsEmpty())
+					rightFile += _T("\\") + item.sRightFilename;
 
-			patcher.AddFiles(leftFile, rightFile);
-			pView->GetNextSelectedInd(ind);
+				// Format relative paths to files in folder compare
+				CString leftpatch = item.sLeftSubdir;
+				if (!leftpatch.IsEmpty())
+					leftpatch += _T("/");
+				leftpatch += item.sLeftFilename;
+				CString rightpatch = item.sRightSubdir;
+				if (!rightpatch.IsEmpty())
+					rightpatch += _T("/");
+				rightpatch += item.sRightFilename;
+				patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
+				pView->GetNextSelectedInd(ind);
+			}
 		}
 	}
 

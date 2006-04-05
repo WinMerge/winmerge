@@ -84,10 +84,10 @@ typedef enum {
  */
 struct DIFFOPTIONS
 {
-	int nIgnoreWhitespace;
-	BOOL bIgnoreCase;
-	BOOL bIgnoreBlankLines;
-	BOOL bIgnoreEol;
+	int nIgnoreWhitespace; /**< Ignore whitespace -option. */
+	BOOL bIgnoreCase; /**< Ignore case -option. */
+	BOOL bIgnoreBlankLines; /**< Ignore blank lines -option. */
+	BOOL bIgnoreEol; /**< Ignore EOL differences -option. */
 };
 
 /**
@@ -95,9 +95,9 @@ struct DIFFOPTIONS
  */
 struct PATCHOPTIONS
 {
-	enum output_style outputStyle;
-	int nContext;
-	BOOL bAddCommandline;
+	enum output_style outputStyle; /**< Patch file style. */
+	int nContext; /**< Number of context lines. */
+	BOOL bAddCommandline; /**< Add diff-style commandline to patch file. */
 };
 
 /**
@@ -142,15 +142,15 @@ class CDiffWrapper
 public:
 	CDiffWrapper();
 	~CDiffWrapper();
-	void SetPatchFile(CString file);
+	void SetPatchFile(const CString &file);
 	void SetDiffList(DiffList *diffList);
-	void GetOptions(DIFFOPTIONS *options);
-	void SetOptions(DIFFOPTIONS *options);
-	void SetTextForAutomaticPrediff(CString text);
+	void GetOptions(DIFFOPTIONS *options) const;
+	void SetOptions(const DIFFOPTIONS *options);
+	void SetTextForAutomaticPrediff(const CString &text);
 	void SetPrediffer(PrediffingInfo * prediffer =NULL);
 	void GetPrediffer(PrediffingInfo * prediffer);
-	void GetPatchOptions(PATCHOPTIONS *options);
-	void SetPatchOptions(PATCHOPTIONS *options);
+	void GetPatchOptions(PATCHOPTIONS *options) const;
+	void SetPatchOptions(const PATCHOPTIONS *options);
 	BOOL GetUseDiffList() const;
 	BOOL SetUseDiffList(BOOL bUseDiffList);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks) { m_bDetectMovedBlocks = bDetectMovedBlocks; }
@@ -159,7 +159,9 @@ public:
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	BOOL GetCreatePatchFile() const;
 	BOOL SetCreatePatchFile(BOOL bCreatePatchFile);
-	BOOL RunFileDiff(CString & filepath1, CString & filepath2, ARETEMPFILES areTempFiles);
+	void SetPaths(const CString &filepath1, const CString &filepath2);
+	void SetAlternativePaths(const CString &altPath1, const CString &altPath2);
+	BOOL RunFileDiff(ARETEMPFILES areTempFiles);
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
@@ -172,30 +174,34 @@ public:
 	void ClearMovedLists();
 
 protected:
-	void InternalGetOptions(DIFFOPTIONS *options);
-	void InternalSetOptions(DIFFOPTIONS *options);
+	void InternalGetOptions(DIFFOPTIONS *options) const;
+	void InternalSetOptions(const DIFFOPTIONS *options);
 	void SwapToInternalSettings();
 	void SwapToGlobalSettings();
 	CString FormatSwitchString();
 	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status);
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
-	void WritePatchFile(struct change * script, const CString & filepath1, const CString & filepath2, file_data * inf);
+	void WritePatchFile(struct change * script, file_data * inf);
 
 private:
-	DIFFSETTINGS m_settings;
+	DIFFSETTINGS m_settings; 
 	DIFFSETTINGS m_globalSettings;	// Temp for storing globals
 	DIFFSTATUS m_status;
-	CString m_sPatchFile;
+	CString m_s1File; /**< Full path to first diff'ed file. */
+	CString m_s2File; /**< Full path to second diff'ed file. */
+	CString m_s1AlternativePath; /**< First file's alternative path (may be relative). */
+	CString m_s2AlternativePath; /**< Second file's alternative path (may be relative). */
+	CString m_sPatchFile; /**< Full path to created patch file. */
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;
 	/// prediffer info are stored only for MergeDoc
 	CString m_sToFindPrediffer;
-	BOOL m_bUseDiffList;
-	BOOL m_bDetectMovedBlocks;
-	BOOL m_bCreatePatchFile;
-	BOOL m_bAddCmdLine;
-	BOOL m_bAppendFiles;
+	BOOL m_bUseDiffList; /**< Are results returned in difflist? */
+	BOOL m_bDetectMovedBlocks; /**< Are moved blocks detected? */
+	BOOL m_bCreatePatchFile; /**< Do we create a patch file? */
+	BOOL m_bAddCmdLine; /**< Do we add commandline to patch file? */
+	BOOL m_bAppendFiles; /**< Do we append to existing patch file? */
 	int m_nDiffs;
 	DiffList *m_pDiffList;
 	CMap<int, int, int, int> m_moved0;

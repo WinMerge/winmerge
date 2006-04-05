@@ -430,10 +430,9 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	// Clear moved lines lists
 	m_diffWrapper.ClearMovedLists();
 
-	// Run diff
-	CString sLeftFilepath = m_pTempFiles->GetLeft();
-	CString sRightFilepath = m_pTempFiles->GetRight();
-	diffSuccess = m_diffWrapper.RunFileDiff(sLeftFilepath, sRightFilepath, YESTEMPFILES);
+	// Set paths for diffing and run diff
+	m_diffWrapper.SetPaths(m_pTempFiles->GetLeft(), m_pTempFiles->GetRight());
+	diffSuccess = m_diffWrapper.RunFileDiff(YESTEMPFILES);
 
 	// Read diff-status
 	DIFFSTATUS status;
