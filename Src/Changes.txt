@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1460749 ] Print relative paths to patch files
   Src: DiffWrapper.cpp DiffWrapper.h MainFrm.cpp MergeDoc.cpp PatchDlg.h
    PatchTool.cpp PatchTool.h
+ BUG: [ 1461328 ] Commandline handling overwrites flags?
+  Fix from Gal Hammer
+  Src: MergeArgs.cpp
 
 2006-04-05 Takashi
  BUG: [ 1458714 ] [Replace All] doesn't work

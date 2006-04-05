@@ -104,20 +104,20 @@ CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
 
 	pMainFrame->m_strSaveAsPath = _T("");
 
-	if (nFiles>2)
+	if (nFiles > 2)
 	{
 		pMainFrame->m_strSaveAsPath = files[2];
 		pMainFrame->DoFileOpen(files[0], files[1],
 			dwLeftFlags, dwRightFlags, recurse, NULL, prediffer);
 	}
-	else if (nFiles>1)
+	else if (nFiles > 1)
 	{
-		DWORD dwLeftFlags = FFILEOPEN_CMDLINE;
-		DWORD dwRightFlags = FFILEOPEN_CMDLINE;
+		dwLeftFlags |= FFILEOPEN_CMDLINE;
+		dwRightFlags |= FFILEOPEN_CMDLINE;
 		pMainFrame->DoFileOpen(files[0], files[1],
 			dwLeftFlags, dwRightFlags, recurse, NULL, prediffer);
 	}
-	else if (nFiles==1)
+	else if (nFiles == 1)
 	{
 		CString sFilepath = files[0];
 		if (IsProjectFile(sFilepath))
