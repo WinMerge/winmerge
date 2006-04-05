@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-05 Tim
+ PATCH: [ 1461896 ] Syntax highlighting of HTML for ASP not complete
+  Src\editlib: asp.cpp
+
 2006-04-05 Kimmo
  PATCH: [ 1460749 ] Print relative paths to patch files
   Src: DiffWrapper.cpp DiffWrapper.h MainFrm.cpp MergeDoc.cpp PatchDlg.h
