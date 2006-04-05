@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-05 Takashi
+ BUG: [ 1458714 ] [Replace All] doesn't work
+  Src/editlib: ceditreplacedlg.cpp
+
 2006-03-27 Kimmo
  PATCH: [ 1459284 ] Update of MergeSwedish.rc for WinMerge 2.5.3.5+
   Submitted by Hans Eriksson
