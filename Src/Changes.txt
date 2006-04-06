@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-06 Kimmo
+ BUG: [ 1463137 ] MergeArgs.h is empty file?
+  Remove MergeArgs.h
+  Src: Merge.dsp
+  Src removed file: MergeArgs.h
+
 2006-04-05 Tim
  PATCH: [ 1461896 ] Syntax highlighting of HTML for ASP not complete
   Src\editlib: asp.cpp

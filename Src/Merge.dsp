@@ -1205,10 +1205,6 @@ SOURCE=.\Merge.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\MergeArgs.h
-# End Source File
-# Begin Source File
-
 SOURCE=.\MergeDiffDetailView.h
 # End Source File
 # Begin Source File
