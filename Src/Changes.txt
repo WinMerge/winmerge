@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-09 Kimmo
+ BUG: [ 1383719 ] ShellExtension resources opening in IDE fails
+  Fix from Sdottaka
+  ShellExtension/Languages/*.rc
+
 2006-04-06 Kimmo
  BUG: [ 1463137 ] MergeArgs.h is empty file?
   Remove MergeArgs.h
