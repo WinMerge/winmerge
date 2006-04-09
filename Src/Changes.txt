@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-09 Tim
+ BUG: [ 1461375 ] Forgot old patch #981526 for sgml.cpp, sh.cpp and tcl.cpp?
+  Src\editlib: sgml.cpp sh.cpp tcl.cpp
+
 2006-04-09 Kimmo
  BUG: [ 1383719 ] ShellExtension resources opening in IDE fails
   Fix from Sdottaka
