@@ -6,6 +6,9 @@ Add new items to top.
  BUG: [ 1383719 ] ShellExtension resources opening in IDE fails
   Fix from Sdottaka
   ShellExtension/Languages/*.rc
+ BUG: [ 1465893 ] Compile error with VC6 (SuperComboBox.cpp)
+  Fix from Gal Hammer
+  Src/Common: SuperComboBox.cpp
 
 2006-04-06 Kimmo
  BUG: [ 1463137 ] MergeArgs.h is empty file?

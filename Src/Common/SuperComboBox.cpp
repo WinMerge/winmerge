@@ -5,7 +5,6 @@
 #include "SuperComboBox.h"
 
 #include <shlwapi.h>
-#include <shldisp.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
