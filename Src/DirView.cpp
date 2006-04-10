@@ -58,6 +58,12 @@ static char THIS_FILE[] = __FILE__;
  */
 static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/CompareDirs.html");
 
+/**
+ * @brief Limit (in seconds) to signal compare is ready for user.
+ * If compare takes longer than this value (in seconds) we inform
+ * user about it. Current implementation uses MessageBeep(IDOK).
+ */
+const int TimeToSignalCompare = 3;
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirView
@@ -72,6 +78,7 @@ CDirView::CDirView()
 , m_pList(NULL)
 , m_nHiddenItems(0)
 , m_pCmpProgressDlg(NULL)
+, m_compareStart(0)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
@@ -311,6 +318,9 @@ void CDirView::StartCompare(CompareStats *pCompareStats)
 	m_pCmpProgressDlg->SetCompareStat(pCompareStats);
 	m_pCmpProgressDlg->SetDirDoc(GetDocument());
 	m_pCmpProgressDlg->StartUpdating();
+
+	m_compareStart = clock();
+
 }
 
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
@@ -1982,6 +1992,11 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		OnFirstdiff();
 	else
 		MoveFocus(0, 0, 0);
+
+	// If compare took more than TimeToSignalCompare seconds, notify user
+	clock_t compareEnd = clock();
+	if (compareEnd - m_compareStart > TimeToSignalCompare * CLOCKS_PER_SEC)
+		MessageBeep(IDOK);
 
 	return 0; // return value unused
 }

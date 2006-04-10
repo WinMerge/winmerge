@@ -258,6 +258,7 @@ protected:
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	DirCompProgressDlg * m_pCmpProgressDlg;
+	clock_t m_compareStart; /**< Starting processtime of the compare */
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
