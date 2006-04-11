@@ -884,23 +884,29 @@ void CMergeEditView::OnNextdiff()
 		{
 			// Selected difference not visible, select next from cursor
 			int line = GetCursorPos().y;
+			// Make sure we aren't in the first line of the diff
+			++line;
 			if (!IsValidTextPosY(CPoint(0, line)))
 				line = m_nTopLine;
 			nextDiff = pd->m_diffList.NextSignificantDiffFromLine(line);
 		}
-		// Find out if there is a following significant diff
-		else if (curDiff < pd->m_diffList.GetSize() - 1)
+		else
 		{
-			nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
-			if (nextDiff == -1)
-				nextDiff = curDiff;
+			// Find out if there is a following significant diff
+			if (curDiff < pd->m_diffList.GetSize() - 1)
+			{
+				nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
+				if (nextDiff == -1)
+					nextDiff = curDiff;
+			}
 		}
 		// nextDiff is the next one if there is one, else it is the one we're on
 		SelectDiff(nextDiff, TRUE, FALSE);
 	}
 	else
 	{
-		// we're not on a diff, so figure out which one to select
+		// We don't have a selected difference,
+		// but cursor can be inside inactive diff
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;
@@ -961,23 +967,29 @@ void CMergeEditView::OnPrevdiff()
 		{
 			// Selected difference not visible, select previous from cursor
 			int line = GetCursorPos().y;
+			// Make sure we aren't in the last line of the diff
+			--line;
 			if (!IsValidTextPosY(CPoint(0, line)))
 				line = m_nTopLine;
 			prevDiff = pd->m_diffList.PrevSignificantDiffFromLine(line);
 		}
-		// Find out if there is a preceding significant diff
-		if (curDiff > 0)
+		else
 		{
-			prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
-			if (prevDiff == -1)
-				prevDiff = curDiff;
+			// Find out if there is a preceding significant diff
+			if (curDiff > 0)
+			{
+				prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
+				if (prevDiff == -1)
+					prevDiff = curDiff;
+			}
 		}
 		// prevDiff is the preceding one if there is one, else it is the one we're on
 		SelectDiff(prevDiff, TRUE, FALSE);
 	}
 	else
 	{
-		// we're not on a diff, so figure out which one to select
+		// We don't have a selected difference,
+		// but cursor can be inside inactive diff
 		int line = GetCursorPos().y;
 		if (!IsValidTextPosY(CPoint(0, line)))
 			line = m_nTopLine;

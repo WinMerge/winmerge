@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-11 Kimmo
+ PATCH: [ 1467872 ] Fix diff navigation for first-line of diff
+  Src: MergeEditView.cpp
+
 2006-04-10 Kimmo
  PATCH: [ 1467305 ] Beep when long compare is ready
   Src: DirView.cpp DirView.h
