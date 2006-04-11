@@ -1871,6 +1871,14 @@ BEGIN
     IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
+// REPORT FILES
+STRINGTABLE
+BEGIN
+    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+END
+
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
@@ -2211,6 +2219,7 @@ BEGIN
     IDS_REPORT_COMMALIST       "Liste délimitée par des virgules"
     IDS_REPORT_TABLIST         "Liste délimitée par des tabulations"
     IDS_REPORT_SIMPLEHTML      "Format HTML"
+    IDS_REPORT_SIMPLEXML    "Simple XML"
     IDS_REPORT_FILEOVERWRITE
                                "Le rapport existe déjà. Voulez-vous écraser le fichier existant?"
     IDS_REPORT_ERROR           "Erreur à la création du rapport:\n%1"

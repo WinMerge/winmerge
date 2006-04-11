@@ -626,9 +626,10 @@
 #define IDS_REPORT_COMMALIST            17793
 #define IDS_REPORT_TABLIST              17794
 #define IDS_REPORT_SIMPLEHTML           17795
-#define IDS_REPORT_FILEOVERWRITE        17796
-#define IDS_REPORT_ERROR                17797
-#define IDS_REPORT_SUCCESS              17798
+#define IDS_REPORT_SIMPLEXML            17796
+#define IDS_REPORT_FILEOVERWRITE        17797
+#define IDS_REPORT_ERROR                17798
+#define IDS_REPORT_SUCCESS              17799
 #define IDS_FILE_TO_ITSELF              18000
 #define IDS_FILESSAME                   18001
 #define IDS_FOLDERUNIQUE                18002
@@ -704,6 +705,9 @@
 #define IDS_BREAK_ON_PUNCTUATION        18502
 #define IDS_UNK_ERROR_READING_PROJECT   18510
 #define IDS_UNK_ERROR_SAVING_PROJECT    18511
+#define IDS_TEXT_REPORT_FILES           18540
+#define IDS_HTML_REPORT_FILES           18541
+#define IDS_XML_REPORT_FILES            18542
 #define IDD_LANGUAGE_SELECT             30000
 #define IDS_AFRIKAANS                   30003
 #define IDS_ALBANIAN                    30004

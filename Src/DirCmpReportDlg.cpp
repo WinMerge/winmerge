@@ -12,7 +12,7 @@
 #include "Merge.h"
 #include "Coretools.h"
 #include "DirCmpReportDlg.h"
-#include "DirCmpReport.h"
+#include "DirReportTypes.h"
 #include "paths.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
@@ -43,6 +43,30 @@ BEGIN_MESSAGE_MAP(DirCmpReportDlg, CDialog)
 	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
 END_MESSAGE_MAP()
 
+struct ReportTypeInfo
+{
+	REPORT_TYPE reportType; // enum
+	int idDisplay; // resource string to display
+	int browseFilter; // filter to use in common file save dialog
+};
+static ReportTypeInfo f_types[] = {
+	{ REPORT_TYPE_COMMALIST,
+		IDS_REPORT_COMMALIST,
+		IDS_TEXT_REPORT_FILES
+	},
+	{ REPORT_TYPE_TABLIST,
+		IDS_REPORT_TABLIST,
+		IDS_TEXT_REPORT_FILES
+	},
+	{ REPORT_TYPE_SIMPLEHTML,
+		IDS_REPORT_SIMPLEHTML,
+		IDS_HTML_REPORT_FILES
+	},
+	{ REPORT_TYPE_SIMPLEXML,
+		IDS_REPORT_SIMPLEXML,
+		IDS_XML_REPORT_FILES
+	},
+};
 
 /**
  * @brief Dialog initializer function.
@@ -53,17 +77,14 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 
-	CString str;
-	VERIFY(str.LoadString(IDS_REPORT_COMMALIST));
-	int ind = m_ctlStyle.InsertString(0, str);
-	m_ctlStyle.SetItemData(ind, DirCmpReport::REPORT_COMMALIST);
-	m_ctlStyle.SelectString(0, str);
-	VERIFY(str.LoadString(IDS_REPORT_TABLIST));
-	ind = m_ctlStyle.InsertString(1, str);
-	m_ctlStyle.SetItemData(ind, DirCmpReport::REPORT_TABLIST);
-	VERIFY(str.LoadString(IDS_REPORT_SIMPLEHTML));
-	ind = m_ctlStyle.InsertString(2, str);
-	m_ctlStyle.SetItemData(ind, DirCmpReport::REPORT_SIMPLEHTML);
+	for (int i=0; i<sizeof(f_types)/sizeof(f_types[0]); ++i)
+	{
+		const ReportTypeInfo & info = f_types[i];
+		int ind = m_ctlStyle.InsertString(i, LoadResString(info.idDisplay));
+		m_ctlStyle.SetItemData(ind, info.reportType);
+
+	}
+	m_ctlStyle.SetCurSel(0);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -74,19 +95,19 @@ BOOL DirCmpReportDlg::OnInitDialog()
  */
 void DirCmpReportDlg::OnBtnClickReportBrowse()
 {
-	CString s;
-	CString folder;
-	CString name;
-	CString title;
-
 	UpdateData(TRUE);
-	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-	folder = m_sReportFile;
-	if (SelectFile(s, folder, title, NULL, FALSE))
+
+	CString title = LoadResString(IDS_SAVE_AS_TITLE);
+	CString folder = m_sReportFile;
+	int filterid = f_types[m_ctlStyle.GetCurSel()].browseFilter;
+
+	CString chosenFilepath;
+	if (SelectFile(chosenFilepath, folder, title, filterid, FALSE))
 	{
-		SplitFilename(s, &folder, &name, NULL);
-		m_sReportFile = s;
-		m_ctlReportFile.SetWindowText(s);
+		CString name;
+		SplitFilename(chosenFilepath, &folder, &name, NULL);
+		m_sReportFile = chosenFilepath;
+		m_ctlReportFile.SetWindowText(chosenFilepath);
 	}
 }
 
@@ -98,7 +119,7 @@ void DirCmpReportDlg::OnOK()
 	UpdateData(TRUE);
 
 	int sel = m_ctlStyle.GetCurSel();
-	m_nReportType = m_ctlStyle.GetItemData(sel);
+	m_nReportType = (REPORT_TYPE)m_ctlStyle.GetItemData(sel);
 
 	if (m_sReportFile.IsEmpty())
 	{

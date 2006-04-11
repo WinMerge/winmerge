@@ -5,6 +5,11 @@ Add new items to top.
 2006-04-11 Kimmo
  PATCH: [ 1467872 ] Fix diff navigation for first-line of diff
   Src: MergeEditView.cpp
+ PATCH: [ 1443719 ] xml output reports
+  Submitted by Perry, modified by me
+  Src: DirCmpReport.cpp DirCmpReport.h DirCmpReportDlg.cpp DirCmpReportDlg.h
+   DirView.cpp DirView.h Merge.dsp Merge.rc resource.h
+  Src new file: DirReportTypes.h
 
 2006-04-10 Kimmo
  PATCH: [ 1467305 ] Beep when long compare is ready

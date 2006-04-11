@@ -1923,6 +1923,14 @@ BEGIN
     IDS_INIFILES            "Soubory nastavení (*.ini)|*.ini|Všechny soubory (*.*)|*.*||"
 END
 
+// REPORT FILES
+STRINGTABLE
+BEGIN
+    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+END
+
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
@@ -2265,7 +2273,8 @@ BEGIN
     IDS_REPORT_COMMALIST    "Seznam oddìlený èárkami"
     IDS_REPORT_TABLIST      "Seznam oddìlený tabelátory"
     IDS_REPORT_SIMPLEHTML   "Soubor HTML"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_FILEOVERWRITE
                             "Soubor protokolu již existuje. Chcete ho pøepsat?"
     IDS_REPORT_ERROR        "Chyba pøi vytváøení protokolu:\n%1"
     IDS_REPORT_SUCCESS      "Protokol byl úspìšnì vytvoøen."

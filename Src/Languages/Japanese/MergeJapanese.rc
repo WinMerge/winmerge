@@ -1923,6 +1923,14 @@ BEGIN
     IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
+// REPORT FILES
+STRINGTABLE
+BEGIN
+    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+END
+
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
@@ -2265,7 +2273,8 @@ BEGIN
     IDS_REPORT_COMMALIST    "CSV形式"
     IDS_REPORT_TABLIST      "TAB区切り形式"
     IDS_REPORT_SIMPLEHTML   "単純なHTML形式"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_FILEOVERWRITE
                             "レポートファイルは既に存在しています。存在しているファイルを上書きしますが?"
     IDS_REPORT_ERROR        "レポート生成エラー:\n%1"
     IDS_REPORT_SUCCESS      "レポート生成に成功しました。"

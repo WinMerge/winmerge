@@ -2262,6 +2262,20 @@ void CDirView::OnUpdateCtxtOpenWithUnpacker(CCmdUI* pCmdUI)
 			pCmdUI->Enable(FALSE);
 	}
 }
+
+/**
+ * @brief Fill string list with current dirview column registry key names
+ */
+void CDirView::GetCurrentColRegKeys(CStringArray & colKeys)
+{
+	int nphyscols = GetListCtrl().GetHeaderCtrl()->GetItemCount();
+	for (int col=0; col<nphyscols; ++col)
+	{
+		int logcol = ColPhysToLog(col);
+		colKeys.Add(GetColRegValueNameBase(logcol));
+	}
+}
+
 /**
  * @brief Generate report from dir compare results.
  */
@@ -2274,7 +2288,12 @@ void CDirView::OnToolsGenerateReport()
 		return;
 	}
 
-	DirCmpReport report;
+	// Make list of registry keys for columns
+	// (needed for XML reports)
+	CStringArray colKeys;
+	GetCurrentColRegKeys(colKeys);
+
+	DirCmpReport report(colKeys);
 	report.SetList(m_pList);
 	PathContext paths(pDoc->GetLeftBasePath(), pDoc->GetRightBasePath());
 	report.SetRootPaths(paths);

@@ -10,6 +10,10 @@
 #ifndef _DIRCMPREPORTDLG_H_
 #define _DIRCMPREPORTDLG_H_
 
+#ifndef DirReportTypes_h_included
+#include "DirReportTypes.h"
+#endif
+
 #include "SuperComboBox.h"
 
 // DirCmpReportDlg dialog
@@ -37,7 +41,7 @@ public:
 	CSuperComboBox m_ctlReportFile; /**< Report filename control */
 	CString m_sReportFile; /**< Report filename string */
 	CComboBox m_ctlStyle; /**< Report type control */
-	int m_nReportType; /**< Report type integer */
+	REPORT_TYPE m_nReportType; /**< Report type integer */
 };
 
 #endif // _DIRCMPREPORTDLG_H_

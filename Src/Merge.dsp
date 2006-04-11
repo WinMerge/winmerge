@@ -1057,6 +1057,10 @@ SOURCE=.\DirFrame.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirReportTypes.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirScan.h
 # End Source File
 # Begin Source File

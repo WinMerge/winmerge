@@ -1923,6 +1923,14 @@ BEGIN
     IDS_INIFILES            "Pliki ustawieñ (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
+// REPORT FILES
+STRINGTABLE
+BEGIN
+    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+END
+
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
@@ -2265,6 +2273,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Lista z przecinkami"
     IDS_REPORT_TABLIST      "Lista z tabulatorami"
     IDS_REPORT_SIMPLEHTML   "Prosty HTML"
+    IDS_REPORT_SIMPLEXML    "Simple XML"
     IDS_REPORT_FILEOVERWRITE
                             "Plik raportu ju¿ istnieje. Czy chcesz nadpisaæ istniej¹cy plik ?"
     IDS_REPORT_ERROR        "B³¹d przy tworzeniu raportu:\n%1"

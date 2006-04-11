@@ -1923,6 +1923,14 @@ BEGIN
     IDS_INIFILES            "File delle opzioni (*.ini)|*.ini|Tutti i file (*.*)|*.*||"
 END
 
+// REPORT FILES
+STRINGTABLE
+BEGIN
+    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+END
+
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
@@ -2265,7 +2273,8 @@ BEGIN
     IDS_REPORT_COMMALIST    "Lista separata da virgole"
     IDS_REPORT_TABLIST      "Lista separata da Tab"
     IDS_REPORT_SIMPLEHTML   "HTML semplice"
-    IDS_REPORT_FILEOVERWRITE 
+    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_FILEOVERWRITE
                             "Il file di rapporto esiste già. Vuoi sovrascrivere il file esistente?"
     IDS_REPORT_ERROR        "Errore nella creazione del rapporto:\n%1"
     IDS_REPORT_SUCCESS      "Il rapporto è stato creato con successo."

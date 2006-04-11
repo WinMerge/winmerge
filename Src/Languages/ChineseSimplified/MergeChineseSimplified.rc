@@ -1924,6 +1924,14 @@ BEGIN
     IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 END
 
+// REPORT FILES
+STRINGTABLE
+BEGIN
+    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+END
+
 // COMPARE OPTIONS
 STRINGTABLE
 BEGIN
@@ -2266,6 +2274,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "逗号分隔的列表"
     IDS_REPORT_TABLIST      "制表符分隔的列表"
     IDS_REPORT_SIMPLEHTML   "简单HTML"
+    IDS_REPORT_SIMPLEXML    "Simple XML"
     IDS_REPORT_FILEOVERWRITE 
                             "报告文件已经存在，要覆盖吗？"
     IDS_REPORT_ERROR        "创建报告时出错:\n%1"

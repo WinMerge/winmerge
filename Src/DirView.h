@@ -120,7 +120,6 @@ public:
 	int GetFirstSelectedInd();
 	DIFFITEM GetNextSelectedInd(int &ind);
 	DIFFITEM GetItemAt(int ind);
-	int AddSpecialItems();
 	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
 
@@ -243,6 +242,8 @@ protected:
 	int GetLastDifferentItem();
 	int GetColImage(const DIFFITEM & di) const;
 	int GetDefaultColImage() const;
+	int AddSpecialItems();
+	void GetCurrentColRegKeys(CStringArray & colKeys);
 
 // Implementation data
 protected:

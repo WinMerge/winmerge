@@ -23,23 +23,14 @@
  * reports. Downside is we only have data that is visible in GUI.
  *
  * @todo We should read DIFFITEMs from CDirDoc and format data to better
- * fit for reporting. Dublicating formatting and sorting code should be
+ * fit for reporting. Duplicating formatting and sorting code should be
  * avoided.
  */
 class DirCmpReport
 {
 public:
-	/**
-	 * @brief Report types in selection list.
-	 */
-	enum REPORT_TYPE
-	{
-		REPORT_COMMALIST = 0, /**< Comma-separated list */
-		REPORT_TABLIST, /**< Tab-separated list */
-		REPORT_SIMPLEHTML, /**< Simple html table */
-	};
 
-	DirCmpReport();
+	DirCmpReport(const CStringArray & colRegKeys);
 	void SetList(CListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
 	void SetColumns(int columns);
@@ -49,8 +40,10 @@ protected:
 	void GenerateHeader();
 	void GenerateContent();
 	void GenerateHTMLHeader();
-	void GenerateHTMLContent();
+	void GenerateXmlHeader();
+	void GenerateXmlHtmlContent(bool xml);
 	void GenerateHTMLFooter();
+	void GenerateXmlFooter();
 	BOOL SaveToFile(CString &sError);
 
 private:
@@ -60,6 +53,7 @@ private:
 	CString m_sSeparator; /**< Column separator for report */
 	CString m_sReport; /**< Report as string */
 	CString m_sReportFile; /**< Filename for report */
+	const CStringArray & m_colRegKeys; /**< Key names for currently displayed columns */
 };
 
 #endif // _DIRCMPREPORT_H_
