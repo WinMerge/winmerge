@@ -2831,22 +2831,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			pLeft->SelectDiff(nDiff, TRUE, FALSE);
 		}
 
-		// Enable/disable automatic rescan (rescanning after edit)
-		pLeft->EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
-		pRight->EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
-
-		// SetTextType will revert to language dependent defaults for tab
-		pLeft->SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
-		pRight->SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
-		pLeft->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-		pRight->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-		pLeft->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
-		pRight->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
-		pLeft->SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
-		pRight->SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
-
 		pLeftDetail->SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 		pRightDetail->SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 		pLeftDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
@@ -2858,18 +2842,12 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		pLeftDetail->SetWordWrapping(FALSE);
 		pRightDetail->SetWordWrapping(FALSE);
 
-		// Enable Backspace at beginning of line
-		pLeft->SetDisableBSAtSOL(FALSE);
-		pRight->SetDisableBSAtSOL(FALSE);
-		
 		// set the frame window header
 		UpdateHeaderPath(0);
 		UpdateHeaderPath(1);
 
-		// Set tab type (tabs/spaces)
-		BOOL bInsertTabs = (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
-		pLeft->SetInsertTabs(bInsertTabs);
-		pRight->SetInsertTabs(bInsertTabs);
+		pLeft->DocumentsLoaded();
+		pRight->DocumentsLoaded();
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created

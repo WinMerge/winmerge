@@ -2885,3 +2885,34 @@ void CMergeEditView::OnHelp()
 {
 	GetMainFrame()->ShowHelp(MergeViewHelpLocation);
 }
+
+/**
+ * @brief Called after document is loaded.
+ * This function is called from CMergeDoc::OpenDocs() after documents are
+ * loaded. So this is good place to set View's options etc.
+ */
+void CMergeEditView::DocumentsLoaded()
+{
+	// Enable/disable automatic rescan (rescanning after edit)
+	EnableRescan(GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN));
+
+	// SetTextType will revert to language dependent defaults for tab
+	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
+	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+
+	// Enable Backspace at beginning of line
+	SetDisableBSAtSOL(FALSE);
+
+	// Set tab type (tabs/spaces)
+	BOOL bInsertTabs = (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0);
+	SetInsertTabs(bInsertTabs);
+
+	// Sometimes WinMerge doesn't update scrollbars correctly (they remain
+	// disabled) after docs are open in screen. So lets make sure they are
+	// really updated, even though this is unnecessary in most cases.
+	RecalcHorzScrollBar();
+	RecalcVertScrollBar();
+}

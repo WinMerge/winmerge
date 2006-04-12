@@ -166,6 +166,7 @@ public:
 	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);
 	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
+	void DocumentsLoaded();
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);

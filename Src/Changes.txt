@@ -5,6 +5,8 @@ Add new items to top.
 2006-04-12 Kimmo
  PATCH: [ 1468691 ] Center folder compare status dialog to mainframe
   Src: DirView.cpp
+ PaTCH: [ 1468783 ] Fix disabled scrollbars after loading files
+  Src: MergeDoc.cpp MergeEditView.cpp MergeEditView.h
 
 2006-04-11 Kimmo
  PATCH: [ 1467872 ] Fix diff navigation for first-line of diff
