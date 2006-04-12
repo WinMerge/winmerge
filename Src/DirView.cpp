@@ -275,7 +275,7 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_DIRSKIP    10
 #define DIFFIMG_DIR        11
 #define DIFFIMG_ERROR      12
-// TODO: Need bitmap for Abort
+// TODO: Need bitmap for Abort (now it is same than skipped)
 #define DIFFIMG_ABORT       9
 #define DIFFIMG_DIRUP      13
 #define DIFFIMG_DIRUP_DISABLE 14
@@ -301,11 +301,21 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 	// diff
 	return (di.isBin() ? DIFFIMG_BINDIFF : DIFFIMG_DIFF);
 }
+
+/**
+ * @brief Get default folder compare status image.
+ */
 int CDirView::GetDefaultColImage() const
 {
 	return DIFFIMG_ERROR;
 }
 
+/**
+ * @brief Called before compare is started.
+ * CDirDoc calls this function before new compare is started, so this
+ * is good place to setup GUI for compare.
+ * @param [in] pCompareStats Pointer to class having current compare stats.
+ */
 void CDirView::StartCompare(CompareStats *pCompareStats)
 {
 	if (m_pCmpProgressDlg == NULL)
@@ -320,9 +330,12 @@ void CDirView::StartCompare(CompareStats *pCompareStats)
 	m_pCmpProgressDlg->StartUpdating();
 
 	m_compareStart = clock();
-
 }
 
+/**
+ * @brief Called when folder compare row is double-clicked with mouse.
+ * Selected item is opened to folder or file compare.
+ */
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
@@ -342,6 +355,11 @@ void CDirView::ReloadColumns()
 	SetColAlignments();
 }
 
+/**
+ * @brief Redisplay folder compare view.
+ * This function clears folder compare view and then adds
+ * items from current compare to it.
+ */
 void CDirView::Redisplay()
 {
 	CDirDoc *pDoc = GetDocument();
