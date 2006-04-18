@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-19 Takashi
+ PATCH: [ 1445996 ] Fix wrong PgDown scrolling after mousescroll(2)
+  Src/editlib: ccrystaltextview2.cpp
+
 2006-04-12 WinMerge experimental release 2.5.3.6 (cvs)
 
 2006-04-12 Kimmo

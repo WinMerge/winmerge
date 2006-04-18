@@ -368,6 +368,10 @@ MovePgUp (BOOL bSelect)
 		nNewTopSubLine = 0;
 	if (m_nTopSubLine != nNewTopSubLine)
 	{
+		int nDummy;
+		int nNewTopLine;
+		GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
+		m_ptCursorPos.y = nNewTopLine;
 		ScrollToSubLine(nNewTopSubLine);
 		UpdateSiblingScrollPos(FALSE);
 	}
@@ -417,11 +421,14 @@ MovePgDn (BOOL bSelect)
 	int nNewTopSubLine = m_nTopSubLine + GetScreenLines() - 1;
 	int nSubLineCount = GetSubLineCount();
 
-	if (nNewTopSubLine > nSubLineCount)
+	if (nNewTopSubLine > nSubLineCount - 1)
 		nNewTopSubLine = nSubLineCount - 1;
 	if (m_nTopSubLine != nNewTopSubLine)
 	{
-		m_ptCursorPos.y = nNewTopSubLine;
+		int nDummy;
+		int nNewTopLine;
+		GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
+		m_ptCursorPos.y = nNewTopLine;
 		ScrollToSubLine(nNewTopSubLine);
         UpdateSiblingScrollPos(FALSE);
 	}
