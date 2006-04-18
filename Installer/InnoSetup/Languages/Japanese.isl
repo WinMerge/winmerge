@@ -358,6 +358,7 @@ ReadMe=Read Me
 UsersGuide=ユーザーガイド
 UpdatingCommonControls=システムのコモンコントロールをアップデートしています
 ViewStartMenuFolder=WinMerge スタートメニューフォルダを表示(&V)
+PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=インストーラは、スタートメニューフォルダの位置が "%s" から "%s" に変更されたことを検出しました. 以前のスタートメニューフォルダを削除しますか?

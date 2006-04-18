@@ -1,6 +1,9 @@
 2006-04-18 Kimmo
  PATCH: [ 1471760 ] Remove plugins.txt reference from component selection
-  InnoSetup/Languages: .isl
+  InnoSetup/Languages: *.isl
+ PATCH: [ 1471767 ] Change Plugins.txt in Start-menu to Plugins
+  InnoSetup: WinMerge.iss
+  InnoSetup/Languages: *.isl
 
 2006-03-12 Kimmo
  PATCH: [ 1447991 ] Let installer pick lang files from build folder

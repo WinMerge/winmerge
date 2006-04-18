@@ -374,6 +374,7 @@ ReadMe=Leggimi
 UsersGuide=Guida per l'utente
 UpdatingCommonControls=Aggiornamento dei controlli comuni del sistema in corso...
 ViewStartMenuFolder=&Visualizza cartella del menu Start di WinMerge
+PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'installer ha rilevato che il tuo menu Start è stato spostato da "%s" a "%s". Desideri eliminare la precedente cartella del menu Start?

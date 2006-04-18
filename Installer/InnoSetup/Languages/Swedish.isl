@@ -361,6 +361,7 @@ ReadMe=Läs Mig
 UsersGuide=Användarguide
 UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 ViewStartMenuFolder=Visa WinMerges startkatalog
+PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenykatalogen?

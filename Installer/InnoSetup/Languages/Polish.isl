@@ -360,6 +360,7 @@ ReadMe=Czytaj to
 UsersGuide=Przewodnik uzytkownika
 UpdatingCommonControls=Aktualizacja wspólnych kontrolek systemowych
 ViewStartMenuFolder=&Podglad katalogu menu Start programu WinMerge
+PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalator wykryl, ze zmieniles lokalizacje menu startowego z "%s" na "%s". Czy usunac poprzedni katalog menu startowego?

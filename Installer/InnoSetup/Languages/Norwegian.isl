@@ -366,6 +366,7 @@ ReadMe=LesMeg
 UsersGuide=Brukermanual
 UpdatingCommonControls=Oppdater systemets felles kontrollelement
 ViewStartMenuFolder=&Vis WinMerge sin startmeny-mappe
+PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installasjonsprogrammet har oppdaget at du har endret plasseringen av startmenyen fra "%s" til "%s". Vil du slette den forrige startmeny-mappen?

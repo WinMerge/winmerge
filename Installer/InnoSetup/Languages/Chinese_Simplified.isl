@@ -361,6 +361,7 @@ ReadMe=Read Me
 UsersGuide=User's Guide
 UpdatingCommonControls=Updating the System's Common Controls
 ViewStartMenuFolder=&View the WinMerge Start Menu Folder
+PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
