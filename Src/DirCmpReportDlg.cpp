@@ -25,30 +25,40 @@ DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
 {
 }
 
-DirCmpReportDlg::~DirCmpReportDlg()
-{
-}
-
+/**
+ * @brief Map dialog controls to member variables.
+ * This function maps dialog controls with member variables so
+ * when UpdateData() is called controls and member variables
+ * get updated.
+ */
 void DirCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_REPORT_FILE, m_ctlReportFile);
 	DDX_Control(pDX, IDC_REPORT_STYLECOMBO, m_ctlStyle);
 	DDX_Text(pDX, IDC_REPORT_FILE, m_sReportFile);
-
 }
-
 
 BEGIN_MESSAGE_MAP(DirCmpReportDlg, CDialog)
 	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
 END_MESSAGE_MAP()
 
+/**
+ * @brief Definition for structure containing report types.
+ * This struct is used to form a report types list. This list
+ * can be then used to initialize the GUI for reports.
+ */
 struct ReportTypeInfo
 {
-	REPORT_TYPE reportType; // enum
-	int idDisplay; // resource string to display
-	int browseFilter; // filter to use in common file save dialog
+	REPORT_TYPE reportType; /**< Report-type ID */
+	int idDisplay; /**< Resource-string ID (shown in file-selection dialog) */
+	int browseFilter; /**< File-extension filter (resource-string ID) */
 };
+
+/**
+ * @brief List of report types.
+ * This list is used to initialize the GUI.
+ */
 static ReportTypeInfo f_types[] = {
 	{ REPORT_TYPE_COMMALIST,
 		IDS_REPORT_COMMALIST,
@@ -77,7 +87,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
 
-	for (int i=0; i<sizeof(f_types)/sizeof(f_types[0]); ++i)
+	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
 		const ReportTypeInfo & info = f_types[i];
 		int ind = m_ctlStyle.InsertString(i, LoadResString(info.idDisplay));
@@ -85,6 +95,9 @@ BOOL DirCmpReportDlg::OnInitDialog()
 
 	}
 	m_ctlStyle.SetCurSel(0);
+	// Set selected path to variable so file selection dialog shows
+	// correct filename and path.
+	m_ctlStyle.GetWindowText(m_sReportFile);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

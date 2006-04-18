@@ -2,7 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2006-04-19 Takashi
+2006-04-18 Kimmo
+ PATCH: [ 1471835 ] Fix setting filename in folder-compare report dialog
+  Src: DirCmpReportDlg.cpp DirCmpReportDlg.h
+
+2006-04-18 Takashi
  PATCH: [ 1445996 ] Fix wrong PgDown scrolling after mousescroll(2)
   Src/editlib: ccrystaltextview2.cpp
 
