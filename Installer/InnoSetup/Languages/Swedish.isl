@@ -324,7 +324,7 @@ AppCoreFiles=WinMerge Kärnfiler
 ApplicationRuntimes=Applikationsexekuterbara filer
 UsersGuide=Användarguide
 Filters=Filter
-Plugins=Plugins (Se Plugins.txt)
+Plugins=Plugins
 
 ;Localization Components
 Languages=Språk

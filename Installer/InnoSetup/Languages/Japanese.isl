@@ -321,7 +321,7 @@ AppCoreFiles=WinMerge コアファイル
 ApplicationRuntimes=アプリケーションランタイム
 UsersGuide=ユーザーガイド
 Filters=フィルタ
-Plugins=プラグイン (Plugins.txtを参照)
+Plugins=プラグイン
 
 ;Localization Components
 Languages=言語

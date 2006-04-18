@@ -345,7 +345,7 @@ AppCoreFiles=A WinMerge kéreg fájljai
 ApplicationRuntimes=Az alkalmazás futásidejû fájljai
 UsersGuide=Felhasználói kézikönyv
 Filters=Szûrõk
-Plugins=Bõvítmények (Lásd a Plugins.txt fájlt)
+Plugins=Bõvítmények
 
 ;Localization Components
 Languages=Nyelvek

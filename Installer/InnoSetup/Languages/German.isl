@@ -324,7 +324,7 @@ AppCoreFiles=WinMerge Hauptdateien
 ApplicationRuntimes=Laufzeitbibliotheken
 UsersGuide=Benutzerhandbuch
 Filters=Filter
-Plugins=Plugins (Siehe Plugins.txt)
+Plugins=Plugins
 
 ;Localization Components
 Languages=Sprachen

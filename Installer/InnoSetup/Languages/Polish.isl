@@ -323,7 +323,7 @@ AppCoreFiles=WinMerge ? pliki zasadnicze
 ApplicationRuntimes=Moduly wykonywalne
 UsersGuide=Przewodnik uzytkownika
 Filters=Filtry
-Plugins=Wtyczki (Zob. Plugins.txt)
+Plugins=Wtyczki
 
 ;Localization Components
 Languages=Jezyki

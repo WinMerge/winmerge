@@ -329,7 +329,7 @@ AppCoreFiles=WinMerge kjernefiler
 ApplicationRuntimes=Program kjørefiler
 UsersGuide=Brukermanual
 Filters=Filter
-Plugins=Programtillegg (Se Plugins.txt)
+Plugins=Programtillegg
 
 ;Localization Components
 Languages=Språk
