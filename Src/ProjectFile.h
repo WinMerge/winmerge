@@ -55,6 +55,7 @@ public:
 	void GetPaths(CString & sLeft, CString & sRight, BOOL & bSubFolders) const;
 
 protected:
+	BOOL Serialize(bool writing, LPCTSTR path, CString *sError);
 	BOOL GetVal(TCHAR *pPaths, TCHAR *pVal, CString * sval,
 		TCHAR *ptag1, TCHAR *ptag2, TCHAR *pbuf);
 

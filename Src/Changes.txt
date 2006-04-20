@@ -8,6 +8,10 @@ Add new items to top.
   Src: DirView.cpp Merge.rc resource.h
   Src/res new file: aborted.ico
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1400653 ] Write project files using objects
+  Submitted by Perry
+  Src: Merge.dsp ProjectFile.cpp ProjectFile.h
+  Src new files: XmlDoc.cpp XmlDoc.h
 
 2006-04-18 Kimmo
  PATCH: [ 1471835 ] Fix setting filename in folder-compare report dialog

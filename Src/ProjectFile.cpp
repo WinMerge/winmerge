@@ -24,7 +24,7 @@
 
 #include "stdafx.h"
 #include "ProjectFile.h"
-#include "markdown.h"
+#include "XmlDoc.h"
 
 ProjectFile::ProjectFile()
 {
@@ -34,18 +34,15 @@ ProjectFile::ProjectFile()
 /** 
  * @brief Get message from exception into sError, or else throw it.
  *
- * If caller provided the address of an error string (sError),
- *  this populates the error string (if possible) and returns FALSE
- *
- * If caller did not provide the address of an error string (sError==NULL)
- *  this rethrows the error
+ * If this successfully extracts the error description into the string, it simply returns FALSE
+ * If it fails to extract the error description, it rethrows the exception
  */
 static BOOL NTAPI False(CException *e, CString *sError)
 {
 	if (sError == NULL)
 		throw e;
-	TCHAR szError[4096] = _T("");
-	e->GetErrorMessage(szError, sizeof(szError)/sizeof(szError[0]));
+	TCHAR szError[1024];
+	e->GetErrorMessage(szError, 1024);
 	*sError = szError;
 	e->Delete();
 	return FALSE;
@@ -53,36 +50,10 @@ static BOOL NTAPI False(CException *e, CString *sError)
 
 /** 
  * @brief Open given path-file and read data from it to member variables.
- *
- * Errors are returned in sError, unless it is NULL, in which case they are thrown
  */
 BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 {
-	try
-	{
-		CMarkdown::EntityMap entities;
-		entities.Load();
-		CMarkdown::File xmlfile = path;
-		if (xmlfile.pImage == NULL)
-		{
-			CFileException::ThrowOsError(GetLastError(), path);
-		}
-		// If encoding is other than UTF-8, assume CP_ACP
-		CMarkdown::String encoding = CMarkdown(xmlfile).Move("?xml").GetAttribute("encoding");
-		UINT codepage = lstrcmpiA(encoding.A, "UTF-8") == 0 ? CP_UTF8 : CP_ACP;
-
-		CMarkdown project = CMarkdown(xmlfile).Move("project").Pop();
-		CMarkdown paths = CMarkdown(project).Move("paths").Pop();
-		m_leftFile = CMarkdown::String(CMarkdown(paths).Move("left").GetInnerText()->Unicode(codepage)->Resolve(entities)).W;
-		m_rightFile = CMarkdown::String(CMarkdown(paths).Move("right").GetInnerText()->Unicode(codepage)->Resolve(entities)).W;
-		m_filter = CMarkdown::String(CMarkdown(paths).Move("filter").GetInnerText()->Unicode(codepage)->Resolve(entities)).W;
-		sscanf(CMarkdown::String(CMarkdown(paths).Move("subfolders").GetInnerText()).A, "%d", &m_subfolders);
-	}
-	catch (CException *e)
-	{
-		return False(e, sError);
-	}
-	return TRUE;
+	return Serialize(false, path, sError);
 }
 
 /** 
@@ -91,29 +62,38 @@ BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
  */
 BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 {
+	return Serialize(true, path, sError);
+}
+
+	
+/** 
+ * @brief Read or write project file
+ */
+BOOL ProjectFile::Serialize(bool writing, LPCTSTR path, CString *sError)
+{
 	try
 	{
-		static const char szFormat[]
-		(
-			"<?xml version='1.0' encoding='UTF-8'?>\n"
-			"<project>\n"
-			"\t<paths>\n"
-			"\t\t<left>%s</left>\n"
-			"\t\t<right>%s</right>\n"
-			"\t\t<filter>%s</filter>\n"
-			"\t\t<subfolders>%d</subfolders>\n"
-			"\t</paths>\n"
-			"</project>\n"
-		);
-		fprintf
-		(
-			CStdioFile(path, CFile::modeCreate|CFile::modeWrite|CFile::typeText).m_pStream,
-			szFormat,
-			CMarkdown::String(CMarkdown::HSTR(GetLeft().AllocSysString())->Entities()->Octets(CP_UTF8)).A,
-			CMarkdown::String(CMarkdown::HSTR(GetRight().AllocSysString())->Entities()->Octets(CP_UTF8)).A,
-			CMarkdown::String(CMarkdown::HSTR(GetFilter().AllocSysString())->Entities()->Octets(CP_UTF8)).A,
-			GetSubfolders() ? 1 : 0
-		);
+		XmlDoc::XML_LOADSAVE loadSave = (writing ? XmlDoc::XML_SAVE : XmlDoc::XML_LOAD);
+
+		XmlDoc doc(path, loadSave, _T("UTF-8"));
+		doc.Begin();
+		{
+			XmlElement project(doc, _T("project"));
+			{
+				XmlElement paths(doc, _T("paths"));
+				{
+					XmlElement(doc, _T("left"), m_leftFile);
+				} {
+					XmlElement(doc, _T("right"), m_rightFile);
+				} {
+					XmlElement(doc, _T("filter"), m_filter);
+				} {
+					XmlElement(doc, _T("subfolders"), m_subfolders);
+				}
+			}
+		}
+		doc.End();
+
 	}
 	catch (CException *e)
 	{
