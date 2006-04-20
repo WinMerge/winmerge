@@ -88,6 +88,7 @@ IDI_COMPARE_ERROR       ICON                    "..\\..\\res\\error.ico"
 IDI_FOLDERUP            ICON                    "..\\..\\res\\folderup.ico"
 IDI_FOLDERUP_DISABLE    ICON                    "..\\..\\res\\folderup_disable.ico"
 IDI_SIGMA               ICON                    "..\\..\\res\\sigma.ico"
+IDI_COMPARE_ABORTED     ICON                    "..\\..\\res\\aborted.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //

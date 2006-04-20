@@ -241,6 +241,7 @@ void CDirView::OnInitialUpdate()
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ERROR)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP_DISABLE)));
+	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ABORTED)));
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
 
 	// Restore column orders as they had them last time they ran
@@ -275,10 +276,9 @@ void CDirView::OnInitialUpdate()
 #define DIFFIMG_DIRSKIP    10
 #define DIFFIMG_DIR        11
 #define DIFFIMG_ERROR      12
-// TODO: Need bitmap for Abort (now it is same than skipped)
-#define DIFFIMG_ABORT       9
 #define DIFFIMG_DIRUP      13
 #define DIFFIMG_DIRUP_DISABLE 14
+#define DIFFIMG_ABORT      15
 
 /**
  * @brief Return image index appropriate for this row

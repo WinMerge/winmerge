@@ -90,6 +90,7 @@
 #define IDI_FOLDERUP                    513
 #define IDI_FOLDERUP_DISABLE            514
 #define IDI_SIGMA                       515
+#define IDI_COMPARE_ABORTED             516
 #define IDC_LEFT_EDIT                   1000
 #define IDC_FILE_EDIT                   1000
 #define IDC_LEFT_BUTTON                 1001

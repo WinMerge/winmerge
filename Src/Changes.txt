@@ -2,6 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-20 Kimmo
+ TODO: [ 1469363 ] Need image for aborted status in folder compare
+  Icon from Tim
+  Src: DirView.cpp Merge.rc resource.h
+  Src/res new file: aborted.ico
+  Src/Languages/*: Merge*.rc
+
 2006-04-18 Kimmo
  PATCH: [ 1471835 ] Fix setting filename in folder-compare report dialog
   Src: DirCmpReportDlg.cpp DirCmpReportDlg.h
