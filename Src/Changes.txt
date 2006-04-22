@@ -5,6 +5,9 @@ Add new items to top.
 2006-04-22 Kimmo
  PATCH: [ 1473635 ] Move some results update code to DirDoc
   Src: DirActions.cpp DirDoc.cpp DirDoc.h
+ PATCH: [ 1468691 ] Center folder compare status dialog to mainframe
+  Adding line I missed previous time applying the patch (2006-04-12)
+  Src: DirView.cpp
 
 2006-04-20 Kimmo
  TODO: [ 1469363 ] Need image for aborted status in folder compare

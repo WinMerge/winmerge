@@ -325,6 +325,7 @@ void CDirView::StartCompare(CompareStats *pCompareStats)
 		m_pCmpProgressDlg->Create(IDD_DIRCOMP_PROGRESS, this);
 
 	m_pCmpProgressDlg->ShowWindow(SW_SHOW);
+	GetMainFrame()->CenterToMainFrame(m_pCmpProgressDlg);
 	m_pCmpProgressDlg->SetCompareStat(pCompareStats);
 	m_pCmpProgressDlg->SetDirDoc(GetDocument());
 	m_pCmpProgressDlg->StartUpdating();
