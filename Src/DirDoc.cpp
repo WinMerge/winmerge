@@ -46,6 +46,7 @@
 #include "OptionsDef.h"
 #include "dllver.h"
 #include "ProjectFile.h"
+#include "FileActionScript.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -419,7 +420,11 @@ CDirView * CDirDoc::GetMainView()
 
 /**
  * @brief Update in-memory diffitem status from disk and update view
- * @param nIdx Index of item in UI list
+ * @param [in] nIdx Index of item in UI list.
+ * @param [in] bLeft If TRUE left-side item is updated.
+ * @param [in] bRight If TRUE right-side item is updated.
+ * @todo DO NOT UPDATE VIEW HERE! It is very inefficient taking
+ * this function is called separately for every item.
  */
 void CDirDoc::ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight)
 {
@@ -893,6 +898,62 @@ void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
 
 	// Update diff counts
 	m_pCtxt->SetDiffCounts(diffpos, diffs, ignored);
+}
+
+/**
+ * @brief Update results for FileActionItem.
+ * This functions is called to update DIFFITEM after FileActionItem.
+ * @param [in] act Action that was done.
+ * @param [in] pos List position for DIFFITEM affected.
+ */
+void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
+{
+	ASSERT(pos != NULL);
+	DIFFITEM di;
+	di = GetDiffByKey(pos);
+
+	// Use FileActionItem types for simplicity for now.
+	// Better would be to use FileAction contained, since it is not
+	// UI dependent.
+	switch (act.atype)
+	{
+	case FileActionItem::UI_SYNC:
+		SetDiffSide(DIFFCODE::BOTH, act.context);
+		if (act.dirflag)
+			SetDiffCompare(DIFFCODE::NOCMP, act.context);
+		else
+			SetDiffCompare(DIFFCODE::SAME, act.context);
+		SetDiffCounts(0, 0, act.context);
+		break;
+
+	case FileActionItem::UI_DEL_LEFT:
+		if (di.isSideLeft())
+		{
+			RemoveDiffByKey(pos);
+		}
+		else
+		{
+			SetDiffSide(DIFFCODE::RIGHT, act.context);
+			SetDiffCompare(DIFFCODE::NOCMP, act.context);
+		}
+		break;
+
+	case FileActionItem::UI_DEL_RIGHT:
+		if (di.isSideRight())
+		{
+			RemoveDiffByKey(pos);
+		}
+		else
+		{
+			SetDiffSide(DIFFCODE::LEFT, act.context);
+			SetDiffCompare(DIFFCODE::NOCMP, act.context);
+		}
+		break;
+
+	case FileActionItem::UI_DEL_BOTH:
+		RemoveDiffByKey(pos);
+		break;
+	}
 }
 
 /**

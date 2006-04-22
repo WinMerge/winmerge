@@ -48,11 +48,17 @@ class DirDocFilterGlobal;
 class DirDocFilterByExtension;
 class CustomStatusCursor;
 class CTempPathContext;
+struct FileActionItem;
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc document
 
 /**
- * @brief Documentclass for directory compare
+ * @brief Class for folder compare data.
+ * This class is "document" class for folder compare. It has compare context,
+ * which in turn has a list of differences and other compare result data.
+ * This class also has compare statistics which are updated during compare.
+ * GUI calls this class to operate with results.
  */
 class CDirDoc : public CDocument
 {
@@ -108,6 +114,7 @@ public:
 	CDiffThread m_diffThread;
 	void SetDiffStatus(UINT diffcode, UINT mask, int idx);
 	void SetDiffCounts(UINT diffs, UINT ignored, int idx);
+	void UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos);
 	void UpdateHeaderPath(BOOL bLeft);
 	void AbortCurrentScan();
 	bool IsCurrentScanAbortable() const;
@@ -156,10 +163,10 @@ protected:
 
 	// Implementation data
 private:
-	CDiffContext *m_pCtxt; /**< Pointer to diff-data */
-	CDirView *m_pDirView;
-	CompareStats *m_pCompareStats;
-	MergeDocPtrList m_MergeDocs;
+	CDiffContext *m_pCtxt; /**< Pointer to compare results-data */
+	CDirView *m_pDirView; /**< Pointer to GUI */
+	CompareStats *m_pCompareStats; /**< Compare statistics */
+	MergeDocPtrList m_MergeDocs; /**< List of file compares opened from this compare */
 	BOOL m_bROLeft; /**< Is left side read-only */
 	BOOL m_bRORight; /**< Is right side read-only */
 	BOOL m_bRecursive; /**< Is current compare recursive? */

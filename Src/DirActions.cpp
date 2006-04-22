@@ -588,13 +588,17 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 }
 
 /**
- * @brief Update DirView ui after running FileActionScript.
+ * @brief Update results after running FileActionScript.
+ * This functions is called after script is finished to update
+ * results (including UI).
+ * @param [in] actionlist Script that was run.
  */
 void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 {
 	BOOL bItemsRemoved = FALSE;
 	int curSel = GetFirstSelectedInd();
 	CDirDoc *pDoc = GetDocument();
+
 	while (actionList.GetCount()>0)
 	{
 		// Start handling from tail of list, so removing items
@@ -603,24 +607,21 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		POSITION diffpos = GetItemKey(act.context);
 		const DIFFITEM & di = pDoc->GetDiffByKey(diffpos);
 
+		// Synchronized items may need VCS operations
+		if (act.UIResult == FileActionItem::UI_SYNC)
+		{
+			if (GetMainFrame()->m_bCheckinVCS)
+				GetMainFrame()->CheckinToClearCase(act.dest);
+		}
+
+		// Update doc (difflist)
+		pDoc->UpdateDiffAfterOperation(act, diffpos);
+
+		// Update UI
 		switch (act.UIResult)
 		{
 		case FileActionItem::UI_SYNC:
-			if (GetMainFrame()->m_bCheckinVCS)
-				GetMainFrame()->CheckinToClearCase(act.dest);
-
-			// Syncronized item is both-sides item
-			pDoc->SetDiffSide(DIFFCODE::BOTH, act.context);
-			
-			// Folders don't have compare flag set!!
-			if (act.dirflag)
-				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.context);
-			else
-				pDoc->SetDiffCompare(DIFFCODE::SAME, act.context);
-
-			pDoc->SetDiffCounts(0, 0, act.context);
 			pDoc->ReloadItemStatus(act.context, TRUE, TRUE);
-
 			break;
 		
 		case FileActionItem::UI_DESYNC:
@@ -630,14 +631,11 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		case FileActionItem::UI_DEL_LEFT:
 			if (di.isSideLeft())
 			{
-				pDoc->RemoveDiffByKey(diffpos);
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
 			}
 			else
 			{
-				pDoc->SetDiffSide(DIFFCODE::RIGHT, act.context);
-				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.context);
 				pDoc->ReloadItemStatus(act.context, TRUE, FALSE);
 			}
 			break;
@@ -645,20 +643,16 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		case FileActionItem::UI_DEL_RIGHT:
 			if (di.isSideRight())
 			{
-				pDoc->RemoveDiffByKey(diffpos);
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
 			}
 			else
 			{
-				pDoc->SetDiffSide(DIFFCODE::LEFT, act.context);
-				pDoc->SetDiffCompare(DIFFCODE::NOCMP, act.context);
 				pDoc->ReloadItemStatus(act.context, FALSE, TRUE);
 			}
 			break;
 
 		case FileActionItem::UI_DEL_BOTH:
-			pDoc->RemoveDiffByKey(diffpos);
 			m_pList->DeleteItem(act.context);
 			bItemsRemoved = TRUE;
 			break;
