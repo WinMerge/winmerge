@@ -128,12 +128,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "Kopírovat dop&rava",              ID_L2R
+        MENUITEM "Kopírovat do&leva",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "Vyj&mout",                        ID_EDIT_CUT
+        MENUITEM "&Kopírovat",                       ID_EDIT_COPY
+        MENUITEM "&Vložit",                      ID_EDIT_PASTE
     END
 END
 
@@ -194,8 +194,8 @@ BEGIN
     POPUP "Nápo&vìda"
     BEGIN
         MENUITEM "&Obsah...\tF1",               ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Rejstøík...",                   ID_HELP_INDEX
+        MENUITEM "&Hledat...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Nastavení...",           ID_HELP_GETCONFIG
         MENUITEM "&Podpora archivace vypnuta...", ID_HELP_MERGE7ZMISMATCH
@@ -218,7 +218,7 @@ BEGIN
         MENUITEM "L&evý pouze pro ètení",             ID_FILE_LEFT_READONLY
         MENUITEM "Pr&avý pouze pro ètení",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "Kó&dování souborù",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Konec",                      ID_APP_EXIT
     END
@@ -303,8 +303,8 @@ BEGIN
     POPUP "Nápo&vìda"
     BEGIN
         MENUITEM "&Obsah...\tF1",               ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Rejstøík...",                   ID_HELP_INDEX
+        MENUITEM "&Hledat...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Nastavení...",           ID_HELP_GETCONFIG
         MENUITEM "&Podpora archivace vypnuta...", ID_HELP_MERGE7ZMISMATCH
@@ -457,8 +457,8 @@ BEGIN
     POPUP "Nápo&vìda"
     BEGIN
         MENUITEM "&Obsah...\tF1",               ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Rejstøík...",                   ID_HELP_INDEX
+        MENUITEM "&Hledat...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Nastavení...",           ID_HELP_GETCONFIG
         MENUITEM "&Podpora archivace vypnuta...", ID_HELP_MERGE7ZMISMATCH
@@ -668,7 +668,7 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,50,14
     PUSHBUTTON      "Storno",IDCANCEL,306,28,50,14
-    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
+    PUSHBUTTON      "Nápovìda",ID_HELP,306,45,50,14
     GROUPBOX        "Soubory nebo složky k porovnání",IDC_FILES_DIRS_GROUP,7,
                     7,292,111
 END
@@ -732,7 +732,7 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "Povolit pouze jedno &hlavní okno aplikace",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    LTEXT           "Automatické &dokonèování:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Povolit více oken pro porovnání",IDC_STATIC,7,88,
@@ -1452,63 +1452,63 @@ END
 IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 178, 138
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Codepage"
+CAPTION "Kódování"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Affects",IDC_AFFECTS_GROUP,5,7,166,36
-    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
+    GROUPBOX        "Vliv",IDC_AFFECTS_GROUP,5,7,166,36
+    CONTROL         "V&levo",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,18,54,8
-    LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,70,18,93,8
-    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
+    LTEXT           "(ovlivnìno)",IDC_LEFT_FILES_LABEL,70,18,93,8
+    CONTROL         "Vp&ravo",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,29,54,8
-    LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,29,93,8
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,48,166,63
-    LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,64,72,10
+    LTEXT           "(ovlivnìno)",IDC_RIGHT_FILES_LABEL,70,29,93,8
+    GROUPBOX        "Zvolte kódování pro",IDC_LOADING_GROUP,5,48,166,63
+    LTEXT           "&Naètení souboru:",IDC_LOAD_FILES_LABEL,12,64,72,10
     EDITTEXT        IDC_LOAD_CODEPAGE_TEXTBOX,86,63,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_LOAD_CODEPAGE_BROWSE,139,64,23,10
-    LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,79,67,10
+    LTEXT           "&Uložení souboru:",IDC_SAVE_FILES_LABEL,12,79,67,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,86,79,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,139,80,23,10
-    CONTROL         "&Use same codepage for both",
+    CONTROL         "Použít &stejnou znakovou stránku pro oba",
                     IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,96,150,10
-    DEFPUSHBUTTON   "&Apply",IDOK,65,117,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,121,117,50,14
+    DEFPUSHBUTTON   "P&oužít",IDOK,65,117,50,14
+    PUSHBUTTON      "Storno",IDCANCEL,121,117,50,14
 END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Test Filter"
+CAPTION "Zkouška filtru"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
-    LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,74,8
+    LTEXT           "Zkouška filtru ...",IDC_HEADER,7,7,82,8
+    LTEXT           "(název filtru)",IDC_HEADER_FILTER_NAME,90,6,152,8
+    LTEXT           "&Vložte text ke zkoušce:",IDC_PROMPT_LABEL,7,21,74,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
-    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Název složky",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,24,8
+    LTEXT           "Výsledek:",IDC_STATIC,7,49,24,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP
-    DEFPUSHBUTTON   "&Test",IDC_TEST_BTN,133,121,50,14
-    PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
+    DEFPUSHBUTTON   "Z&kusit",IDC_TEST_BTN,133,121,50,14
+    PUSHBUTTON      "&Zavøít",IDCANCEL,192,121,50,14
 END
 
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 197, 157
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Dialog"
+CAPTION "Barvy textu"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Default system colors for normal text",
+    CONTROL         "Výchozí systémové barvy normálního textu",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,14,148,10
-    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+    GROUPBOX        "Vlastní barvy textu",IDC_CUSTOM_COLORS_GROUP,27,33,159,
                     111
-    LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
-    LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
-    LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
-    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
+    LTEXT           "Okolí textu:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
+    LTEXT           "Øádný text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
+    LTEXT           "Výbìr:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
+    CTEXT           "Pozadí",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
     CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
     CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,113,58,17,14
@@ -1714,8 +1714,8 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_OPENPROJECT     "Otevøe projekt ze souboru\nOtevøít projekt (Ctrl+J)"
-    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
-    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_UNK_ERROR_READING_PROJECT "Neznámá chyba pøi pokusu o otevøení souboru projektu"
+    IDS_UNK_ERROR_SAVING_PROJECT "Neznámá chyba pøi pokusu o uložení souboru projektu"
     IDS_PROJFILEDLG_CAPTION "Project File"
     ID_FILE_SAVEPROJECT     "Uloží aktuální cesty a volby do souboru projektu\nUložit projekt"
 END
@@ -1881,7 +1881,7 @@ BEGIN
     IDS_OPTIONSPG_EDITOR    "Editor"
     IDS_OPTIONSPG_COLORS    "Barvy"
     IDS_OPTIONSPG_SYNTAXCOLORS "Barvy syntaxe"
-    IDS_OPTIONSPG_TEXTCOLORS "Text Colors"
+    IDS_OPTIONSPG_TEXTCOLORS "Barvy textu"
     IDS_OPTIONSPG_SYSTEM    "Systém"
     IDS_OPTIONSPG_VERSIONCONTROL "Kontrola verzí"
     IDS_OPTIONSPG_CODEPAGE  "Kódování"
@@ -1949,9 +1949,9 @@ END
 // REPORT FILES
 STRINGTABLE
 BEGIN
-    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+    IDS_TEXT_REPORT_FILES   "Textové soubory (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Všechny soubory (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "Soubory HTML (*.htm,*.html)|*.htm;*.html|Všechny soubory (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "Soubory XML (*.xml)|*.xml|Všechny soubory (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2137,8 +2137,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "P&ravé do... (%1 z %2)"
     IDS_SELECT_DEST_LEFT    "Zvolte cílovou složku pro položky z levé strany:"
     IDS_SELECT_DEST_RIGHT   "Zvolte cílovou složku pro položky z pravé strany:"
-    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
-    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
+    IDS_FILES_AFFECTED_FMT  "(ovlivnìno souborù: %1)"
+    IDS_FILES_AFFECTED_FMT2 "(ovlivnìno souborù: %1 z %2)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2162,8 +2162,8 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "Otevøe položku vpravo"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "Otevøe soubor vpravo v externím editoru"
     ID_DIR_OPEN_RIGHT_WITH  "Otevøe soubor vpravo ve zvolené aplikaci"
-    IDS_ERROR_EXECUTE_FILE   "Failed to execute external editor: %1"
-    IDS_UNKNOWN_EXECUTE_FILE "Unknown extension on external editor: %1"
+    IDS_ERROR_EXECUTE_FILE   "Nelze spustit externí editor: %1"
+    IDS_UNKNOWN_EXECUTE_FILE "Neznámé rozšíøení externího editoru: %1"
     ID_DIR_COPY_FILENAMES   "Zkopíruje názvy položek do schránky"
     ID_DIR_COPY_PATHNAMES_LEFT "Zkopíruje cesty položek vlevo do schránky"
     ID_DIR_COPY_PATHNAMES_RIGHT "Zkopíruje cesty položek vpravo do schránky"
@@ -2210,8 +2210,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Struèný výsledek"
     IDS_COLHDR_LATTRIBUTES  "Atributy vlevo"
     IDS_COLHDR_RATTRIBUTES  "Atributy vpravo"
-    IDS_COLHDR_LEOL_TYPE    "Left EOL"
-    IDS_COLHDR_REOL_TYPE    "Right EOL"
+    IDS_COLHDR_LEOL_TYPE    "Konce øádkù vlevo"
+    IDS_COLHDR_REOL_TYPE    "Konce øádkù vpravo"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2275,8 +2275,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "Struèný výsledek porovnání"
     IDS_COLDESC_LATTRIBUTES "Atributy souboru na levé stranì"
     IDS_COLDESC_RATTRIBUTES "Atributy souboru na pravé stranì"
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "Typ konce øádkù v souboru na levé stranì"
+    IDS_COLDESC_REOL_TYPE   "Typ konce øádkù v souboru na pravé stranì"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2296,7 +2296,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Seznam oddìlený èárkami"
     IDS_REPORT_TABLIST      "Seznam oddìlený tabelátory"
     IDS_REPORT_SIMPLEHTML   "Soubor HTML"
-    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_SIMPLEXML    "Soubor XML"
     IDS_REPORT_FILEOVERWRITE
                             "Soubor protokolu již existuje. Chcete ho pøepsat?"
     IDS_REPORT_ERROR        "Chyba pøi vytváøení protokolu:\n%1"
@@ -2696,7 +2696,7 @@ BEGIN
     IDS_EOL_DOS             "Win"
     IDS_EOL_MAC             "Mac"
     IDS_EOL_UNIX            "Unix"
-    IDS_EOL_MIXED           "Mixed"
+    IDS_EOL_MIXED           "Rùzné"
 END
 
 // MENU STRINGS
@@ -2713,7 +2713,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Pøevede konce øádkù do typu UNIX"
     ID_EOL_TO_MAC           "Pøevede konce øádkù do typu MAC"
     ID_FILE_MERGINGMODE     "Pøepíná mezi režimem úprav a režimem sluèování"
-    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
+    ID_FILE_ENCODING        "Ukáže a pøizpùsobí vlastnosti kódování souboru\nVlastnosti kódování souboru"
 END
 
 // EDIT MENU
@@ -2806,8 +2806,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Vytvoøí textový soubor obsahující informace o aktuální verzi aplikace WinMerge a o místní konfiguraci"
     ID_HELP_GNULICENSE      "Zobrazí veøejnou licenci &GNU"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
-    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
+    ID_HELP_INDEX           "Otevøe rejstøík nápovìdy pro aplikaci WinMerge\nRejstøík nápovìdy"
+    ID_HELP_SEARCH          "Otevøe hledání v nápovìdì pro aplikaci WinMerge\nHledat nápovìdu"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
@@ -2844,9 +2844,9 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
-    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU	"From MRU list"
+    IDS_AUTOCOMPLETE_DISABLED   "Vypnuto"
+    IDS_AUTOCOMPLETE_FILE_SYS   "Systém souborù"
+    IDS_AUTOCOMPLETE_MRU	"Naposledy použité"
 END
 
 // END STRINGS SYNCHRO

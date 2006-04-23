@@ -8,6 +8,9 @@ Add new items to top.
    MergeDoc.h resource.h
   Src new files: ProjectFilePathsDlg.cpp ProjectFilePathsDlg.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1472622 ] Czech translation - update
+  Submitted by: Jan Hryz
+  Src/Languages/Czech/MergeCzec.rc
 
 2006-04-22 Kimmo
  PATCH: [ 1473635 ] Move some results update code to DirDoc
