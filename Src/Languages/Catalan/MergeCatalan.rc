@@ -735,27 +735,27 @@ BEGIN
     LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,88,
+    GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,87,
                     221,37
     CONTROL         "Comparació de &carpetes",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,100,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,98,206,10
     CONTROL         "Comparació de &fitxers",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,110,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,108,206,10
     LTEXT           "El WinMerge permet ocultar alguns quadres de missatges comuns. Premeu el botó de Reinicialització per a fer visibles tots els quadres de missatges altre cop.",
                     IDC_STATIC,7,140,168,31
     PUSHBUTTON      "Reinicialitza",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
                     WS_TABSTOP
 END
 
-IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 213, 142
+IDD_LANGUAGE_SELECT DIALOGEX 0, 0, 214, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
 CAPTION "Idioma"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    PUSHBUTTON      "D'acord",IDOK,30,123,52,14
+    PUSHBUTTON      "D'acord",IDOK,47,123,52,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,115,123,52,14
-    LISTBOX         IDC_LANGUAGE_LIST,5,16,200,99,LBS_NOINTEGRALHEIGHT |
+    LISTBOX         IDC_LANGUAGE_LIST,7,16,200,99,LBS_NOINTEGRALHEIGHT |
                     WS_VSCROLL | WS_TABSTOP | LBS_SORT
     LTEXT           "Idiomes disponibles:",IDC_STATIC,7,7,140,8
 END
@@ -1052,7 +1052,7 @@ BEGIN
     LTEXT           "&Descripció:",IDC_STATIC,7,43,63,8
     EDITTEXT        IDC_UNPACKER_SUPPORTED_EXTENSIONS,72,24,200,12,
                     ES_AUTOHSCROLL | ES_READONLY
-    EDITTEXT        IDC_UNPACKER_DESCRIPTION,72,41,200,20,ES_AUTOHSCROLL |
+    EDITTEXT        IDC_UNPACKER_DESCRIPTION,72,41,200,20,ES_MULTILINE | ES_AUTOVSCROLL |
                     ES_READONLY
 END
 

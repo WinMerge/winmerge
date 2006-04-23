@@ -11,6 +11,9 @@ Add new items to top.
  PATCH: [ 1472622 ] Czech translation - update
   Submitted by: Jan Hryz
   Src/Languages/Czech/MergeCzec.rc
+ PATCH: [ 1472622 ] Czech translation - update (apply dialog fixes)
+  Submitted by: Jan Hryz
+  Src/Languages/*: Merge*.rc
 
 2006-04-22 Kimmo
  PATCH: [ 1473635 ] Move some results update code to DirDoc
