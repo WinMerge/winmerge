@@ -647,6 +647,10 @@ SOURCE=.\ProjectFile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ProjectFilePathsDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropArchive.cpp
 # End Source File
 # Begin Source File
@@ -1294,6 +1298,10 @@ SOURCE=.\Common\PreferencesDlg.h
 # Begin Source File
 
 SOURCE=.\ProjectFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ProjectFilePathsDlg.h
 # End Source File
 # Begin Source File
 

@@ -45,7 +45,6 @@
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "dllver.h"
-#include "ProjectFile.h"
 #include "FileActionScript.h"
 
 #ifdef _DEBUG
@@ -150,7 +149,6 @@ BOOL CDirDoc::OnNewDocument()
 BEGIN_MESSAGE_MAP(CDirDoc, CDocument)
 	//{{AFX_MSG_MAP(CDirDoc)
 		// NOTE - the ClassWizard will add and remove mapping macros here.
-	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -1024,35 +1022,5 @@ void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
 		curFlags |= flag;
 		m_pCtxt->SetCustomFlags1(pos, curFlags);
 		m_pCtxt->GetNextDiffPosition(pos);
-	}
-}
-
-/** 
- * @brief Allows user to save current paths and filter as projectfile.
- */
-void CDirDoc::OnSaveProject()
-{
-	CString sProject = GetMainFrame()->AskProjectFileName();
-	if (sProject.IsEmpty())
-		return;
-
-	CString FilterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	ProjectFile project;
-
-	//set the member of the project file
-	project.SetLeft(m_pCtxt->GetLeftPath());
-	project.SetFilter(FilterNameOrMask);
-	project.SetRight(m_pCtxt->GetRightPath());
-	project.SetSubfolders(m_bRecursive);
-
-	//save the project
-	CString sErr;
-	if (!project.Save(sProject, &sErr))
-	{
-		if (sErr.IsEmpty())
-			sErr = LoadResString(IDS_UNK_ERROR_SAVING_PROJECT);
-		CString msg;
-		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr);
-		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 }

@@ -49,6 +49,7 @@
 #define IDD_LOAD_SAVE_CODEPAGE          230
 #define IDD_TEST_FILTER                 231
 #define IDD_PROPPAGE_COLORS_TEXT        232
+#define IDD_PROJFILES_PATHS             233
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -359,6 +360,15 @@
 #define IDC_SELECTION_TEXT_COLOR        1291
 #define IDC_REGULAR_TEXT_COLOR          1292
 #define IDC_AUTO_COMPLETE_SOURCE        1293
+#define IDC_PROJ_RFILE_EDIT             1294
+#define IDC_PROJ_FILTER_EDIT            1295
+#define IDC_PROJ_LFILE_BROWSE           1296
+#define IDC_PROJ_RFILE_BROWSE           1297
+#define IDC_PROJ_FILTER_SELECT          1298
+#define IDC_PROJ_INC_SUBFOLDERS         1299
+#define IDC_PROJ_SAVE                   1300
+#define IDC_PROJ_OPEN                   1301
+#define IDC_PROJ_LFILE_EDIT             1302
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -706,6 +716,7 @@
 #define IDS_BREAK_ON_PUNCTUATION        18502
 #define IDS_UNK_ERROR_READING_PROJECT   18510
 #define IDS_UNK_ERROR_SAVING_PROJECT    18511
+#define IDS_PROJFILEDLG_CAPTION         18512
 #define IDS_TEXT_REPORT_FILES           18540
 #define IDS_HTML_REPORT_FILES           18541
 #define IDS_XML_REPORT_FILES            18542

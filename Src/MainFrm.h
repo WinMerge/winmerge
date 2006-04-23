@@ -91,7 +91,7 @@ public:
 
 // Attributes
 public:	
-	BOOL m_bShowErrors;
+	BOOL m_bShowErrors; /**< Show folder compare error items? */
 	LOGFONT m_lfDiff; /**< MergeView user-selected font */
 	LOGFONT m_lfDir; /**< DirView user-selected font */
 
@@ -129,7 +129,6 @@ public:
 	void ResetOptions() { OptionsInit(); }
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
-	CString AskProjectFileName();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -153,7 +152,7 @@ public:
 	BOOL m_bFirstTime; /**< If first time frame activated, get  pos from reg */
 	CString m_strSaveAsPath; /**< "3rd path" where output saved if given */
 	BOOL m_bEscShutdown; /**< If commandline switch -e given ESC closes appliction */
-	VSSHelper m_vssHelper;
+	VSSHelper m_vssHelper; /**< Helper class for VSS integration */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors; }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 
@@ -164,7 +163,7 @@ public:
 protected:
 	CString m_strVssUser; /**< Visual Source Safe User ID */
 	CString m_strVssPassword; /**< Visual Source Safe Password */
-	CString m_strVssDatabase;
+	CString m_strVssDatabase; /**< Visual Source Safe database */
 	CString m_strCCComment; /**< ClearCase comment */
 public:
 	BOOL m_bCheckinVCS;     /**< TRUE if files should be checked in after checkout */
@@ -202,7 +201,7 @@ protected:
 		MENU_DIRVIEW,
 		MENU_COUNT, // Add new items before this item
 	};
-	BCMenu * m_pMenus[MENU_COUNT];
+	BCMenu * m_pMenus[MENU_COUNT]; /**< Menus for different views */
 
 	CRegOptionsMgr m_options; /**< Options manager */
 	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
@@ -264,6 +263,7 @@ protected:
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
+	afx_msg void OnSaveProject();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

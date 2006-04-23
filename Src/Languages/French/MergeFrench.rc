@@ -142,6 +142,7 @@ BEGIN
         MENUITEM "&Nouveau\tCtrl+N",             ID_FILE_NEW
         MENUITEM "&Ouvrir...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM "Ouvrir un &projet...\tCtrl+J", ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Quitter",                     ID_APP_EXIT
     END
@@ -1168,6 +1169,7 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
+    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
     PUSHBUTTON      "&Nouveau...",IDC_FILTERFILE_NEWBTN,188,114,50,14
     PUSHBUTTON      "É&diter...",IDC_FILTERFILE_EDITBTN,244,114,50,14
     PUSHBUTTON      "&Supprimer...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
@@ -1489,6 +1491,53 @@ BEGIN
     PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
 END
 
+IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 197, 157
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Dialog"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Default system colors for normal text",
+                    IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,25,14,148,10
+    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+                    111
+    LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
+    LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
+    LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
+    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
+    CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
+    CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,58,17,14
+    CONTROL         "Btn",IDC_REGULAR_BKGD_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,87,17,14
+    CONTROL         "Btn",IDC_SELECTION_BKGD_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,113,116,17,14
+    CONTROL         "Btn",IDC_SELECTION_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,156,116,17,14
+    CONTROL         "Btn",IDC_REGULAR_TEXT_COLOR,"Button",BS_OWNERDRAW | 
+                    WS_TABSTOP,156,87,17,14
+END
+
+IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Paths"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
+    EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
+    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1627,6 +1676,7 @@ BEGIN
     AFX_IDS_IDLEMESSAGE     "Prêt"
 END
 
+// Generic status bar strings
 STRINGTABLE
 BEGIN
     ID_INDICATOR_EXT        "EXT"
@@ -1648,8 +1698,16 @@ BEGIN
     ID_FILE_PRINT_SETUP     "Change les options d'imprimante et d'impression\nConfiguration de l'impression"
     ID_FILE_PRINT           "Imprime le document actif\nImprimer"
     ID_FILE_PRINT_PREVIEW   "Affiche les pages entières\nAperçu avant impression"
-    ID_FILE_OPENPROJECT     "Ouvrir un fichier de projet\nFichier de projet (Ctrl+J)"
     ID_VIEW_SHOWHIDDENITEMS "Rendre visible à nouveau tous les éléments cachés"
+END
+
+// WinMerge Project Files
+STRINGTABLE
+BEGIN
+    ID_FILE_OPENPROJECT     "Ouvrir un fichier de projet\nFichier de projet (Ctrl+J)"
+    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
+    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_PROJFILEDLG_CAPTION "Project File"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1659,6 +1717,7 @@ BEGIN
     ID_APP_EXIT             "Ferme l'application et propose d'enregistrer les documents\nQuitter"
 END
 
+// MRU list
 STRINGTABLE
 BEGIN
     ID_FILE_MRU_FILE1       "Ouvrir ce document"
@@ -1685,6 +1744,7 @@ BEGIN
     ID_PREV_PANE            "Revient au volet précédent\nVolet précédent"
 END
 
+// Generic window menu commands
 STRINGTABLE
 BEGIN
     ID_WINDOW_NEW           "Ouvre une nouvelle fenêtre pour le document actif\nNouvelle fenêtre"
@@ -1695,6 +1755,7 @@ BEGIN
     ID_WINDOW_SPLIT         "Fractionne la fenêtre active en deux volets\nFractionner"
 END
 
+// Generic Edit commands
 STRINGTABLE
 BEGIN
     ID_EDIT_CLEAR           "Efface la sélection\nEffacer"
@@ -1710,12 +1771,14 @@ BEGIN
     ID_EDIT_REDO            "Rétablit l'action précédemment annulée\nRétablir"
 END
 
+// View bar commands
 STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Affiche ou masque la barre d'outils\nBarre d'outils"
     ID_VIEW_STATUS_BAR      "Affiche ou masque la barre d'état\nBarre d'état"
 END
 
+// Windows System menu
 STRINGTABLE
 BEGIN
     AFX_IDS_SCSIZE          "Change la taille de la fenêtre"
@@ -1734,6 +1797,7 @@ BEGIN
     AFX_IDS_MDICHILD        "Active cette fenêtre"
 END
 
+// Print Preview
 STRINGTABLE
 BEGIN
     AFX_IDS_PREVIEW_CLOSE   "Ferme le mode d'aperçu avant impression\nFermer l'aperçu"

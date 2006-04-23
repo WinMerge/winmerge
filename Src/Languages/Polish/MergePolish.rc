@@ -144,6 +144,7 @@ BEGIN
         MENUITEM "&Nowy\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Porównaj...\tCtrl+O",        ID_FILE_OPEN
         MENUITEM "Otwórz projekt ...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Zakoñcz",                     ID_APP_EXIT
     END
@@ -1521,6 +1522,26 @@ BEGIN
                     WS_TABSTOP,156,87,17,14
 END
 
+IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Paths"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
+    EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
+    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1695,6 +1716,7 @@ BEGIN
     ID_FILE_OPENPROJECT     "Otwórz plik projektu\nPlik projektu (Ctrl+J)"
     IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
     IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_PROJFILEDLG_CAPTION "Project File"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 

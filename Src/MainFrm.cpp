@@ -68,6 +68,7 @@
 #include "ProjectFile.h"
 #include "PreferencesDlg.h"
 #include "AppSerialize.h"
+#include "ProjectFilePathsDlg.h"
 
 /*
  One source file must compile the stubs for multimonitor
@@ -147,6 +148,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_MESSAGE(WM_USER, OnUser)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
+	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2919,38 +2921,43 @@ void CMainFrame::SetMainIcon(CDialog * dlg)
 	dlg->SetIcon(hMergeIcon, TRUE);
 }
 
-/**
- * @brief Asks Projectfile filename and path from user.
- * @return Path, empty if user canceled.
+/** 
+ * @brief Opens dialog for user to Load, edit and save project files.
  */
-CString CMainFrame::AskProjectFileName()
+void CMainFrame::OnSaveProject()
 {
-	// get the default projects path
-	CString strProjectFileName;
-	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
+	CPropertySheet sht(IDS_PROJFILEDLG_CAPTION);
+	ProjectFilePathsDlg pathsDlg;
+	sht.AddPage(&pathsDlg);
+	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
-	if (!::SelectFile(strProjectFileName, strProjectPath, NULL, IDS_PROJECTFILES, FALSE))
-		return _T("");
+	CString left;
+	CString right;
+	CFrameWnd * pFrame = GetActiveFrame();
+	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
-	if (strProjectFileName.IsEmpty())
-		return _T("");
-
-	// Add projectfile extension if it is missing
-	// So we allow 'filename.otherext' but add extension for 'filename'
-	CString filename;
-	CString extension;
-	SplitFilename(strProjectFileName, NULL, &filename, &extension);
-	if (extension.IsEmpty())
+	if (bMergeFrame)
 	{
-		CString projectFileExt;
-		projectFileExt.LoadString(IDS_PROJECTFILES_EXT);
-		strProjectFileName += _T(".");
-		strProjectFileName += projectFileExt;
+		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
+		left = pMergeDoc->m_filePaths.GetLeft();
+		right = pMergeDoc->m_filePaths.GetRight();
+		pathsDlg.SetPaths(left, right);
+	}
+	else if (bDirFrame)
+	{
+		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
+		CDirView *pView = pDoc->GetMainView();
+		int ind = pView->GetFirstSelectedInd();
+		const DIFFITEM item = pView->GetItemAt(ind);
+		left = item.getLeftFilepath(pDoc->GetLeftBasePath());
+		left += "\\";
+		right = item.getRightFilepath(pDoc->GetRightBasePath());
+		right += "\\";
+		pathsDlg.SetPaths(left, right);
 	}
 
-	// get the path part from the filename
-	strProjectPath = paths_GetParentPath(strProjectFileName);
-	// store this as the new project path
-	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
-	return strProjectFileName;
+	CString filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
+	pathsDlg.m_sFilter = filterNameOrMask;
+	sht.DoModal();
 }

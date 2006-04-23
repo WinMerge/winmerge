@@ -2,6 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-23 Kimmo
+ PATCH: [ 1473902 ] Add dialog for editing and saving project files
+  Src: DirDoc.cpp DirDoc.h MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDoc.cpp
+   MergeDoc.h resource.h
+  Src new files: ProjectFilePathsDlg.cpp ProjectFilePathsDlg.h
+  Src/Languages/*: Merge*.rc
+
 2006-04-22 Kimmo
  PATCH: [ 1473635 ] Move some results update code to DirDoc
   Src: DirActions.cpp DirDoc.cpp DirDoc.h

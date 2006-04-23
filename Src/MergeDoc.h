@@ -344,7 +344,6 @@ protected:
 	afx_msg void OnFileSaveAsLeft();
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
-	afx_msg void OnSaveProject();
 	afx_msg void OnFileEncoding();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
