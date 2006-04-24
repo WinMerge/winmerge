@@ -7,6 +7,8 @@ Add new items to top.
   Src: XmlDoc.cpp XmlDoc.h
  PATCH: [ 1475092 ] Add DocumentsLoaded() to MergeDiffDetailView
   Src: MergeDiffDetailView.cpp MergeDiffDetailView.h MergeDoc.cpp
+ Gal Hammer is now a developer
+  Docs/Users: Contributors.txt
 
 2006-04-23 Kimmo
  PATCH: [ 1473902 ] Add dialog for editing and saving project files

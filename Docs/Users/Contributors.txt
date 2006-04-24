@@ -11,6 +11,7 @@ Project lead:
 Other developers:
 * Laurent Ganier
 * Tim Gerundt
+* Gal Hammer
 * Dennis Limm
 * Chris Mumford
 * Perry Rapp
@@ -99,7 +100,6 @@ Other Contributors (code, ideas, testing..):
 * Hern Chen
 * Jim Fougeron
 * Marvin Gouw
-* Gal Hammer
 * Jan Hryz
 * Ferenc Kubatovics
 * Vladimir Lukianov
