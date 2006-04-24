@@ -51,6 +51,7 @@ public:
 	typedef enum { XML_LOAD, XML_SAVE } XML_LOADSAVE;
 
 	XmlDoc(LPCTSTR path, XML_LOADSAVE loadSave, LPCTSTR encoding);
+	~XmlDoc();
 	void Begin();
 	void End();
 
@@ -115,4 +116,3 @@ friend XmlDoc;
 
 
 #endif // XmlDoc_h_included
-

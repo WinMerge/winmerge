@@ -67,6 +67,15 @@ XmlDoc::XmlDoc(LPCTSTR path, XML_LOADSAVE loadSave, LPCTSTR encoding)
 }
 
 /**
+ * @brief Destructor, delete dynamically created load-object.
+ */
+XmlDoc::~XmlDoc()
+{
+	if (m_load)
+		delete m_load;
+}
+
+/**
  * @brief 2nd stage construction of XmlDoc object (so can throw exception)
  */
 void
@@ -96,11 +105,22 @@ XmlDoc::End()
 {
 	if (m_loadSave == XML_SAVE)
 	{
-		CString xml = GetXml();
-		CStdioFile file(m_path, CFile::modeCreate|CFile::modeWrite);
-		file.SeekToEnd();
-		file.WriteString(xml);
-		file.Close();
+		// Open file in exclusive mode to make sure there are no other readers
+		// or writers to same file
+		CStdioFile file;
+		BOOL bSuccess = file.Open(m_path, CFile::modeCreate | CFile::modeWrite |
+				CFile::shareExclusive, NULL);
+		if (bSuccess)
+		{
+			CString xml = GetXml();
+			file.SeekToEnd();
+			file.WriteString(xml);
+			file.Close();
+		}
+		else
+		{
+			CFileException::ThrowOsError(GetLastError(), m_path);
+		}
 	}
 }
 
@@ -290,6 +310,3 @@ XmlElement::~XmlElement()
 	m_doc.EndTag(this);
 	delete m_load;
 }
-
-
-

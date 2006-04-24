@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-24 Kimmo
+ PATCH: [ 1474884 ] Fix XmlDoc not releasing file handles
+  Src: XmlDoc.cpp XmlDoc.h
+
 2006-04-23 Kimmo
  PATCH: [ 1473902 ] Add dialog for editing and saving project files
   Src: DirDoc.cpp DirDoc.h MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDoc.cpp
