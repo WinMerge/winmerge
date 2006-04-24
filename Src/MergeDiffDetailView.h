@@ -74,6 +74,7 @@ public:
 	void SetDisplayHeight(int h);
 	void SetFrameHwnd(HWND hwndFrame);
 	BOOL IsReadOnly(int pane);
+	void DocumentsLoaded();
 
 	virtual void UpdateSiblingScrollPos (BOOL bHorz);
 	virtual void RecalcHorzScrollBar (BOOL bPositionOnly = FALSE );
@@ -99,7 +100,7 @@ public:
 
 protected:
 	BOOL EnsureInDiff(CPoint & pt);
-  virtual void ScrollToSubLine (int nNewTopLine, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE);
+	virtual void ScrollToSubLine (int nNewTopLine, BOOL bNoSmoothScroll = FALSE, BOOL bTrackScrollBar = TRUE);
 
 // Overrides
 	// ClassWizard generated virtual function overrides

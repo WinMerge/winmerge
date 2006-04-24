@@ -2830,23 +2830,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			pLeft->SelectDiff(nDiff, TRUE, FALSE);
 		}
 
-		pLeftDetail->SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
-		pRightDetail->SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
-		pLeftDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-		pRightDetail->SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-		pLeftDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
-		pRightDetail->SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
-		pLeftDetail->SetWordWrapping(FALSE);
-		pRightDetail->SetWordWrapping(FALSE);
-
 		// set the frame window header
 		UpdateHeaderPath(0);
 		UpdateHeaderPath(1);
 
 		pLeft->DocumentsLoaded();
 		pRight->DocumentsLoaded();
+		pLeftDetail->DocumentsLoaded();
+		pRightDetail->DocumentsLoaded();
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created

@@ -38,6 +38,9 @@ static const UINT NROWS_INIT = 4;
 
 IMPLEMENT_DYNCREATE(CMergeDiffDetailView, CCrystalTextView)
 
+/**
+ * @brief Constructor.
+ */
 CMergeDiffDetailView::CMergeDiffDetailView()
 : m_nThisPane(0)
 , m_lineBegin(0)
@@ -84,6 +87,11 @@ CMergeDoc* CMergeDiffDetailView::GetDocument() // non-debug version is inline
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDiffDetailView message handlers
+
+/**
+ * @brief Get TextBuffer associated with view.
+ * @return pointer to textbuffer associated with the view.
+ */
 CCrystalTextBuffer *CMergeDiffDetailView::LocateTextBuffer ()
 {
 	return GetDocument()->m_ptBuf[m_nThisPane];
@@ -106,15 +114,29 @@ BOOL CMergeDiffDetailView::PrimeListWithFile()
 	return TRUE;
 }
 
+/**
+ * @brief Compute initial height of view.
+ * @return Initial height set for view.
+ */
 int CMergeDiffDetailView::ComputeInitialHeight() 
 {
 	return GetLineHeight() * NROWS_INIT;
 }
+
+/**
+ * @brief Set view's height.
+ * @param [in] h new view height in lines
+ * @todo Calculation seems suspicious...
+ */
 void CMergeDiffDetailView::SetDisplayHeight(int h) 
 {
 	m_displayLength = (h + GetLineHeight()/10) / GetLineHeight();
 }
 
+/**
+ * @brief Called when window size is changed.
+ * Recalculates view size and stores new size to registry.
+ */
 void CMergeDiffDetailView::OnSize(UINT nType, int cx, int cy) 
 {
 	CCrystalTextView::OnSize(nType, cx, cy);
@@ -130,7 +152,6 @@ void CMergeDiffDetailView::OnSize(UINT nType, int cx, int cy)
 			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0); 
 	}
 }
-
 
 /// virtual, ensure we remain in diff
 void CMergeDiffDetailView::EnsureVisible (CPoint pt)
@@ -761,4 +782,18 @@ void CMergeDiffDetailView::OnUpdateR2l(CCmdUI* pCmdUI)
 BOOL CMergeDiffDetailView::IsReadOnly(int pane)
 {
 	return GetDocument()->m_ptBuf[pane]->GetReadOnly();
+}
+
+/**
+ * @brief Called after document is loaded.
+ * This function is called from CMergeDoc::OpenDocs() after documents are
+ * loaded. So this is good place to set View's options etc.
+ */
+void CMergeDiffDetailView::DocumentsLoaded()
+{
+	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
+	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
+			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+	SetWordWrapping(FALSE);
 }
