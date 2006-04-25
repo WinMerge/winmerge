@@ -606,6 +606,8 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		FileActionItem act = actionList.actions.RemoveTail();
 		POSITION diffpos = GetItemKey(act.context);
 		const DIFFITEM & di = pDoc->GetDiffByKey(diffpos);
+		BOOL bUpdateLeft = FALSE;
+		BOOL bUpdateRight = FALSE;
 
 		// Synchronized items may need VCS operations
 		if (act.UIResult == FileActionItem::UI_SYNC)
@@ -621,7 +623,8 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 		switch (act.UIResult)
 		{
 		case FileActionItem::UI_SYNC:
-			pDoc->ReloadItemStatus(act.context, TRUE, TRUE);
+			bUpdateLeft = TRUE;
+			bUpdateRight = TRUE;
 			break;
 		
 		case FileActionItem::UI_DESYNC:
@@ -636,7 +639,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			}
 			else
 			{
-				pDoc->ReloadItemStatus(act.context, TRUE, FALSE);
+				bUpdateLeft = TRUE;
 			}
 			break;
 
@@ -648,7 +651,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			}
 			else
 			{
-				pDoc->ReloadItemStatus(act.context, FALSE, TRUE);
+				bUpdateRight = TRUE;
 			}
 			break;
 
@@ -656,6 +659,12 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			m_pList->DeleteItem(act.context);
 			bItemsRemoved = TRUE;
 			break;
+		}
+
+		if (bUpdateLeft || bUpdateRight)
+		{
+			pDoc->UpdateStatusFromDisk(diffpos, bUpdateLeft, bUpdateRight);
+			UpdateDiffItemStatus(act.context);
 		}
 	}
 	

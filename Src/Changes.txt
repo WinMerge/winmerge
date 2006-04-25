@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-25 Kimmo
+ PATCH: [ 1475776 ] Optimize dirview UI updates
+  Src: DirActions.cpp DirDoc.cpp DirDoc.h
+
 2006-04-24 Kimmo
  PATCH: [ 1474884 ] Fix XmlDoc not releasing file handles
   Src: XmlDoc.cpp XmlDoc.h

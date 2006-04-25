@@ -105,6 +105,7 @@ public:
 	void SetDiffCompare(UINT diffcode, int idx);
 	void UpdateResources();
 	void InitStatusStrings();
+	void UpdateStatusFromDisk(POSITION diffPos, BOOL bLeft, BOOL bRight);
 	void ReloadItemStatus(UINT nIdx, BOOL bLeft, BOOL bRight);
 	void Redisplay();
 	virtual ~CDirDoc();
