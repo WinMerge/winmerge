@@ -1140,14 +1140,14 @@ BEGIN
     CONTROL         "保持原始的换行符(&P)",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "制表符",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "宽度(&T)",IDC_STATIC,10,68,43,8
+    LTEXT           "宽度(&T)",IDC_STATIC,14,68,42,8
     EDITTEXT        IDC_TAB_EDIT,60,66,22,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "插入制表符(&T)",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,85,63,137,10
     CONTROL         "插入空格(&N)",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,85,72,137,10
-    GROUPBOX        "行中对比",IDC_LINE_COLORING_GROUP,7,95,
+    GROUPBOX        "行中对比",IDC_LINE_COLORING_GROUP,7,97,
                     221,61
     CONTROL         "显示行中不同",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
@@ -1221,7 +1221,7 @@ BEGIN
     CONTROL         "与 WinMerge 用户界面一致",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "指定代码页 :",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,68,77,10
+                    BS_AUTORADIOBUTTON,13,68,98,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,67,56,13,ES_AUTOHSCROLL
 END
 
@@ -1484,11 +1484,11 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
     LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,74,8
+    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,80,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
     CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,24,8
+    LTEXT           "Result:",IDC_STATIC,7,49,34,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP

@@ -1124,7 +1124,7 @@ BEGIN
     PUSHBUTTON      "Standardverdier",IDC_COMPARE_DEFAULTS,7,139,70,14
 END
 
-IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Editor"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1139,7 +1139,7 @@ BEGIN
     CONTROL         "&Bevar original EOL-tegn",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulator",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "&Tabulatorstørrelse:",IDC_STATIC,15,68,61,8
+    LTEXT           "&Tabulatorstørrelse:",IDC_STATIC,14,68,61,8
     EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Sett inn tabulatorer",IDC_PROP_INSERT_TABS,"Button",
@@ -1154,7 +1154,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1220,7 +1220,7 @@ BEGIN
     CONTROL         "I følge WinMerge brukergrensesnitt",IDC_CP_UI,"Button",
                     BS_AUTORADIOBUTTON,13,55,210,10
     CONTROL         "Tilpasset tegntabell:",IDC_CP_CUSTOM,"Button",
-                    BS_AUTORADIOBUTTON,13,68,77,10
+                    BS_AUTORADIOBUTTON,13,68,98,10
     EDITTEXT        IDC_CUSTOM_CP_NUMBER,123,67,56,13,ES_AUTOHSCROLL
 END
 
@@ -1483,11 +1483,11 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
     LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,74,8
+    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,80,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
     CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,24,8
+    LTEXT           "Result:",IDC_STATIC,7,49,34,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP

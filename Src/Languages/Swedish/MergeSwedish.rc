@@ -1139,7 +1139,7 @@ BEGIN
     CONTROL         "Tillåt blandade radslutstyper",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabbar",IDC_STATIC,7,54,245,33,WS_GROUP
-    LTEXT           "&Tabbsteg:",IDC_STATIC,15,68,50,8
+    LTEXT           "&Tabbsteg:",IDC_STATIC,14,68,50,8
     EDITTEXT        IDC_TAB_EDIT,81,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "Infoga tabbar",IDC_PROP_INSERT_TABS,"Button",
@@ -1483,11 +1483,11 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Testar filter ...",IDC_HEADER,7,7,82,8
     LTEXT           "(filternamn)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Skriv in text att testa:",IDC_PROMPT_LABEL,7,21,74,8
+    LTEXT           "&Skriv in text att testa:",IDC_PROMPT_LABEL,7,21,80,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
     CONTROL         "&Katalognamn",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Resultat:",IDC_STATIC,7,49,24,8
+    LTEXT           "Resultat:",IDC_STATIC,7,49,34,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP

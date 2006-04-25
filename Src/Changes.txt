@@ -5,6 +5,9 @@ Add new items to top.
 2006-04-25 Kimmo
  PATCH: [ 1475776 ] Optimize dirview UI updates
   Src: DirActions.cpp DirDoc.cpp DirDoc.h
+ PATCH: [ 1472622 ] Czech translation - update (more dialog fixes)
+  Submitted by: Jan Hryz
+  Src/Languages/*: Merge*.rc
 
 2006-04-24 Kimmo
  PATCH: [ 1474884 ] Fix XmlDoc not releasing file handles

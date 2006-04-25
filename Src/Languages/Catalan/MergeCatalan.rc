@@ -1139,14 +1139,14 @@ BEGIN
     CONTROL         "&Preserva els caracters de salt de línia originals",IDC_MIXED_EOL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
     GROUPBOX        "Tabulacions",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "&Mida de les tabulacions:",IDC_STATIC,15,68,88,8
+    LTEXT           "&Mida de les tabulacions:",IDC_STATIC,14,68,88,8
     EDITTEXT        IDC_TAB_EDIT,103,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Insereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,128,63,94,10
     CONTROL         "In&sereix espais",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,128,72,94,10
-    GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,95,
+    GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,97,
                     221,61
     CONTROL         "Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,108,128,8
