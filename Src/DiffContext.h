@@ -59,7 +59,7 @@ public:
 
 	// add & remove differences
 	virtual void AddDiff(const DIFFITEM & di);
-	void UpdateVersion(DIFFITEM & di, DiffFileInfo & dfi) const;
+	void UpdateVersion(DIFFITEM & di, BOOL bLeft) const;
 
 	//@{
 	/**
@@ -77,7 +77,7 @@ public:
 	//@}
 
 	// change an existing difference
-	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, DiffFileInfo & dfi);
+	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft);
 	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight);
 
 	// retrieve or manufacture plugin info for specified file comparison
@@ -89,11 +89,11 @@ public:
 
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
-	HWND m_hDirFrame;
+	HWND m_hDirFrame; /**< Handle to a folder compare frame */
 	BOOL m_bGuessEncoding;
 	int m_nCompMethod; /**< Compare method */
 	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */
-	CompareStats *m_pCompareStats;
+	CompareStats *m_pCompareStats; /**< Pointer to compare statistics */
 	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 	int m_nQuickCompareLimit; /**< Bigger files are always compared with quick compare */
 

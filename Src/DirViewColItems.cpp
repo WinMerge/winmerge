@@ -318,25 +318,25 @@ static CString ColNewerGet(const CDiffContext *, const void *p)
 	}
 	return _T("***");
 }
-static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, const DiffFileInfo * pfinfo)
+static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, BOOL bLeft)
 {
-	if (!pfinfo->bVersionChecked)
+	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
+	DiffFileInfo & dfi = bLeft ? di.left : di.right;
+	if (!dfi.bVersionChecked)
 	{
-		DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
-		DiffFileInfo & dfi = const_cast<DiffFileInfo &>(*pfinfo);
-		pCtxt->UpdateVersion(di, dfi);
+		pCtxt->UpdateVersion(di, bLeft);
 	}
-	return pfinfo->version;
+	return dfi.version;
 }
 static CString ColLversionGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	return GetVersion(pCtxt, &di, &di.left);
+	return GetVersion(pCtxt, &di, TRUE);
 }
 static CString ColRversionGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	return GetVersion(pCtxt, &di, &di.right);
+	return GetVersion(pCtxt, &di, FALSE);
 }
 static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 {

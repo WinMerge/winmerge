@@ -324,8 +324,8 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 	// Clear side-info and file-infos
 	di.left.Clear();
 	di.right.Clear();
-	BOOL bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, di.left);
-	BOOL bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, di.right);
+	BOOL bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, TRUE);
+	BOOL bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, FALSE);
 	bExists = bLeftExists && bRightExists;
 	if (bLeftExists)
 	{
