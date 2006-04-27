@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-04-28 Tim
+ PATCH: [ 1477957 ] Fix 'Help' button position in German translation
+  Src/Languages/German: MergeGerman.rc
+
 2006-04-26 Kimmo
  PATCH: [ 1476279 ] Cleanup CDiffContext::UpdateInfoFromDiskHalf() and its usage
   Src: Diffcontext.cpp DiffContext.h DirScan.cpp DirViewColItems.cpp
