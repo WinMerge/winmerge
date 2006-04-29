@@ -378,6 +378,13 @@ BEGIN
             MENUITEM "&Kopieren mit Zeilennummern\tStrg+Umschalt+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
+        POPUP "&Bookmarks"
+        BEGIN
+            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+        END
         MENUITEM "&Gehe nach...\tStrg+G",       ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Einstellungen...",           ID_OPTIONS
@@ -391,6 +398,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
         MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
+        MENUITEM "View Line &Numbers"           ID_VIEW_LINENUMBERS
         MENUITEM "Zeilen &umbrechen",           ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Ausschnitt v&ertauschen",     ID_VIEW_SWAPPANES
@@ -1659,6 +1667,7 @@ IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
 IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
 IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
+IDR_MARGIN_ICONS        BITMAP                  "..\\..\\res\\mg_icons.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2732,6 +2741,10 @@ BEGIN
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopiert die ausgewählten Zeilen in die Zwischenablage und fügt Zeilennummern vor den Zeilenanfang."
     ID_DIR_RESCAN            "Aktualisiert die ausgewählten Objekte."
+    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2757,6 +2770,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
     ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
     ID_VIEW_SWAPPANES       "Vertauscht die Position der beiden Ausschnitte."
+    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
     ID_VIEW_WORDWRAP        "Aktiviert das Umbrechen der Zeilen.\nZeilen umbrechen"
 END
 

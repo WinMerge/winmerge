@@ -185,6 +185,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewLineDiffs)
 	ON_COMMAND(ID_VIEW_WORDWRAP, OnViewWordWrap)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
+	ON_COMMAND(ID_VIEW_LINENUMBERS, OnViewLineNumbers)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_LINENUMBERS, OnUpdateViewLineNumbers)
 	ON_COMMAND(ID_FILE_OPEN_REGISTERED, OnOpenFile)
 	ON_COMMAND(ID_FILE_OPEN_WITHEDITOR, OnOpenFileWithEditor)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
@@ -2270,6 +2272,7 @@ void CMergeEditView::RefreshOptions()
 	m_bSyntaxHighlight = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_bWordDiffHighlight = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
@@ -2738,6 +2741,24 @@ void CMergeEditView::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Enables/disables line number
+ */
+void CMergeEditView::OnViewLineNumbers()
+{
+	GetOptionsMgr()->SaveOption(OPT_VIEW_LINENUMBERS, !GetViewLineNumbers());
+
+	// Call CMergeDoc RefreshOptions() to refresh *both* views
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+}
+
+void CMergeEditView::OnUpdateViewLineNumbers(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(GetViewLineNumbers());
+}
+
+/**
  * @brief Enables/disables word wrap
  */
 void CMergeEditView::OnViewWordWrap()
@@ -2902,6 +2923,7 @@ void CMergeEditView::DocumentsLoaded()
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
 			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
+	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 
 	// Enable Backspace at beginning of line
 	SetDisableBSAtSOL(FALSE);

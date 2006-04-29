@@ -378,6 +378,13 @@ BEGIN
             MENUITEM "Copiar con &números de línea\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
+        POPUP "&Bookmarks"
+        BEGIN
+            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+        END
         MENUITEM "Ir &a...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Conf&iguración...",             ID_OPTIONS
@@ -1659,6 +1666,7 @@ IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
 IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
 IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
+IDR_MARGIN_ICONS        BITMAP                  "..\\..\\res\\mg_icons.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2732,6 +2740,10 @@ BEGIN
     ID_REFRESH              "Refrescar la vista\nRefrescar(F5)"
     ID_EDIT_COPY_LINENUMBERS "Copiar las líneas seleccionadas al portapapeles añadiendo números de línea al principio de cada una de ellas"
     ID_DIR_RESCAN            "Refresh selected items"
+    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2757,6 +2769,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Permite seleccionar el idioma del interface de usuario\nIdioma"
     ID_VIEW_LINEDIFFS       "Muestra las diferencias en las líneas en un color diferente\nMostrar diferencias de línea"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
+    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
     ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
 END
 

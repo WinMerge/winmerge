@@ -378,6 +378,13 @@ BEGIN
             MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
+        POPUP "&Bookmarks"
+        BEGIN
+            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+        END
         MENUITEM "&Go To...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Opçõe&s...",                  ID_OPTIONS
@@ -391,6 +398,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "E&xibir Espaços",             ID_VIEW_WHITESPACE
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
+        MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
@@ -1659,6 +1667,7 @@ IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
 IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
 IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
+IDR_MARGIN_ICONS        BITMAP                  "..\\..\\res\\mg_icons.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2732,6 +2741,10 @@ BEGIN
     ID_REFRESH              "Atualizar tela\nAtualizar (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copy selected lines to clipboard adding linenumbers to line begin"
     ID_DIR_RESCAN            "Refresh selected items"
+    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2757,6 +2770,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Seleciona o Idioma usado na interface\nLíngua"
     ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
+    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
     ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
 END
 

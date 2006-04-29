@@ -98,6 +98,7 @@ private :
     BOOL m_bViewEols;
     BOOL m_bDistinguishEols;
     BOOL m_bSelMargin;
+    BOOL m_bViewLineNumbers;
     DWORD m_dwFlags;
 
     //  Amount of lines/characters that completely fits the client area
@@ -444,7 +445,7 @@ protected:
     void DrawLineHelper (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip, int nColorIndex, int nBgColorIndex,
                          COLORREF crText, COLORREF crBkgnd, LPCTSTR pszChars, int nOffset, int nCount, int &nActualOffset, CPoint ptTextPos);
     virtual void DrawSingleLine (CDC * pdc, const CRect & rect, int nLineIndex);
-    virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex);
+    virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
 
     int GetCharWidthFromChar(TCHAR ch);
 	int GetCharWidthFromString(LPCTSTR lpsz);
@@ -651,6 +652,8 @@ public :
     void SetTabSize (int nTabSize);
     BOOL GetSelectionMargin ();
     void SetSelectionMargin (BOOL bSelMargin);
+	BOOL GetViewLineNumbers() const;
+	void SetViewLineNumbers(BOOL bViewLineNumbers);
     void GetFont (LOGFONT & lf);
     void SetFont (const LOGFONT & lf);
     DWORD GetFlags ();

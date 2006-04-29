@@ -116,6 +116,8 @@ static char THIS_FILE[] = __FILE__;
 const UINT	MAX_TAB_LEN	= 64; 
 #define SMOOTH_SCROLL_FACTOR        6
 
+#define ICON_INDEX_WRAPLINE         15
+
 #pragma warning ( disable : 4100 )
 ////////////////////////////////////////////////////////////////////////////
 // CCrystalTextView
@@ -469,7 +471,8 @@ CCrystalTextView::CCrystalTextView ()
   AFX_ZERO_INIT_OBJECT (CView);
   m_rxnode = NULL;
   m_pszMatched = NULL;
-  m_bSelMargin = FALSE;
+  m_bSelMargin = TRUE;
+  m_bViewLineNumbers = FALSE;
   m_bWordWrap = FALSE;
   m_bDragSelection = FALSE;
   m_bLastSearch = FALSE;
@@ -1639,8 +1642,15 @@ GetLineFlags (int nLineIndex) const
   return m_pTextBuffer->GetLineFlags (nLineIndex);
 }
 
+/**
+ * @brief Draw selection margin.
+ * @param [in] pdc         Pointer to draw context.
+ * @param [in] rect        The rectangle to draw.
+ * @param [in] nLineIndex  Index of line in view.
+ * @param [in] nLineNumber Line number to display. if -1, it's not displayed.
+ */
 void CCrystalTextView::
-DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex)
+DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
 {
   if (!m_bSelMargin)
     {
@@ -1649,6 +1659,19 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex)
     }
 
   pdc->FillSolidRect (rect, GetColor (COLORINDEX_SELMARGIN));
+
+  if (m_bViewLineNumbers && nLineNumber > 0)
+    {
+      TCHAR szNumbers[32];
+      wsprintf(szNumbers, _T("%d"), nLineNumber);
+      CFont *pOldFont = pdc->SelectObject(GetFont());
+      COLORREF clrOldColor = pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
+      UINT uiOldAlign = pdc->SetTextAlign(TA_RIGHT);
+      pdc->TextOut(rect.right - 2, rect.top, szNumbers, lstrlen(szNumbers));
+      pdc->SetTextAlign(uiOldAlign);
+      pdc->SelectObject(pOldFont);
+      pdc->SetTextColor(clrOldColor);
+    }
 
   int nImageIndex = -1;
   if (nLineIndex >= 0)
@@ -1672,7 +1695,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex)
           LF_BOOKMARKS,
           LF_INVALID_BREAKPOINT
         };
-      for (int I = 0; I <= sizeof (adwFlags) / sizeof (adwFlags[0]); I++)
+      for (int I = 0; I < sizeof (adwFlags) / sizeof (adwFlags[0]); I++)
         {
           if ((dwLineFlags & adwFlags[I]) != 0)
             {
@@ -1682,20 +1705,32 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex)
         }
     }
 
+  if (m_pIcons == NULL)
+    {
+      m_pIcons = new CImageList;
+      VERIFY (m_pIcons->Create (IDR_MARGIN_ICONS, 12, 12, RGB (255, 255, 255)));
+    }
   if (nImageIndex >= 0)
     {
-      if (m_pIcons == NULL)
-        {
-          m_pIcons = new CImageList;
-          VERIFY (m_pIcons->Create (IDR_MARGIN_ICONS, 16, 16, RGB (255, 255, 255)));
-        }
     //BEGIN SW
-    CPoint pt(rect.left + 2, rect.top + (GetLineHeight() - 16) / 2);
+    CPoint pt(rect.left, rect.top + (GetLineHeight() - 12) / 2);
     /*ORIGINAL
     CPoint pt(rect.left + 2, rect.top + (rect.Height() - 16) / 2);
     *///END SW
     VERIFY(m_pIcons->Draw(pdc, nImageIndex, pt, ILD_TRANSPARENT));
       VERIFY (m_pIcons->Draw (pdc, nImageIndex, pt, ILD_TRANSPARENT));
+    }
+
+  // draw wrapped-line-icon
+  if (nLineNumber > 0)
+    {
+      int nBreaks = 0;
+      WrapLineCached( nLineIndex, GetScreenChars(), NULL, nBreaks );
+      for (int i = 0; i < nBreaks; i++)
+        {
+          CPoint pt(rect.right - 12, rect.top + (GetLineHeight() - 12) / 2 + (i+1) * GetLineHeight());
+          m_pIcons->Draw (pdc, ICON_INDEX_WRAPLINE, pt, ILD_TRANSPARENT);
+        }
     }
 }
 
@@ -1812,12 +1847,12 @@ OnDraw (CDC * pdc)
         {
           if (nCurrentLine < nLineCount)
             {
-              DrawMargin (&cacheDC, rcCacheMargin, nCurrentLine);
+              DrawMargin (&cacheDC, rcCacheMargin, nCurrentLine, nCurrentLine + 1);
               DrawSingleLine (&cacheDC, rcCacheLine, nCurrentLine);
             }
           else
             {
-              DrawMargin (&cacheDC, rcCacheMargin, -1);
+              DrawMargin (&cacheDC, rcCacheMargin, -1, -1);
               DrawSingleLine (&cacheDC, rcCacheLine, -1);
             }
 
@@ -3854,6 +3889,10 @@ UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext,
     }
   else
     {
+      if (m_bViewLineNumbers)
+        // if enabling linenumber, we must invalidate all line-cache in visible area because selection margin width changes dynamically.
+        nLineIndex = m_nTopLine < nLineIndex ? m_nTopLine : nLineIndex;
+
       if (nLineIndex == -1)
         nLineIndex = 0;         //  Refresh all text
 
@@ -4051,6 +4090,22 @@ SetSelectionMargin (BOOL bSelMargin)
           m_nScreenChars = -1;
           Invalidate ();
           RecalcHorzScrollBar ();
+        }
+    }
+}
+
+void CCrystalTextView::
+SetViewLineNumbers (BOOL bViewLineNumbers)
+{
+  if (m_bViewLineNumbers != bViewLineNumbers)
+    {
+      m_bViewLineNumbers = bViewLineNumbers;
+      if (::IsWindow (m_hWnd))
+        {
+          InvalidateScreenRect ();
+          m_nTopSubLine = GetSubLineIndex(m_nTopLine);
+          RecalcHorzScrollBar ();
+          UpdateCaret ();
         }
     }
 }
@@ -5002,10 +5057,32 @@ GetSelectionMargin ()
   return m_bSelMargin;
 }
 
+BOOL CCrystalTextView::
+GetViewLineNumbers () const
+{
+  return m_bViewLineNumbers;
+}
+
 int CCrystalTextView::
 GetMarginWidth ()
 {
-  return m_bSelMargin ? 20 : 1;
+  int nMarginWidth = 0;
+
+  if (m_bSelMargin)
+    {
+      nMarginWidth += 12;
+      if (m_bViewLineNumbers)
+        {
+          int nLines = GetLineCount();
+          for (int n = 0; nLines; n++)
+            nLines /= 10;
+        nMarginWidth += GetCharWidth() * n + 4;
+      }
+    }
+  else
+    nMarginWidth ++;
+
+  return nMarginWidth;
 }
 
 BOOL CCrystalTextView::

@@ -75,6 +75,8 @@
 #define IDB_FILE_PRINT                  337
 #define IDB_TOOLS_GENERATEPATCH         338
 #define IDB_TOOLS_GENERATEREPORT        339
+#define IDR_MARGIN_ICONS                340
+#define IDR_MARGIN_CURSOR               341
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502
@@ -945,6 +947,7 @@
 #define ID_VIEW_LANGUAGE                32822
 #define ID_VIEW_LINEDIFFS               32823
 #define ID_VIEW_WORDWRAP                32824
+#define ID_VIEW_LINENUMBERS             32825
 #define ID_PREVDIFF                     32832
 #define ID_NEXTDIFF                     32833
 #define ID_FIRSTDIFF                    32834
@@ -1026,6 +1029,10 @@
 #define IDS_AUTOCOMPLETE_DISABLED       33112
 #define IDS_AUTOCOMPLETE_FILE_SYS       33113
 #define IDS_AUTOCOMPLETE_MRU            33114
+#define ID_EDIT_TOGGLE_BOOKMARK         33115
+#define ID_EDIT_GOTO_NEXT_BOOKMARK      33116
+#define ID_EDIT_GOTO_PREV_BOOKMARK      33117
+#define ID_EDIT_CLEAR_ALL_BOOKMARKS     33118
 
 // Next default values for new objects
 // 
@@ -1033,7 +1040,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        232
-#define _APS_NEXT_COMMAND_VALUE         33115
+#define _APS_NEXT_COMMAND_VALUE         33119
 #define _APS_NEXT_CONTROL_VALUE         1294
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

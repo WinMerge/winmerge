@@ -104,7 +104,7 @@ BEGIN
         MENUITEM "右にコピー(&O)",              ID_L2R
         MENUITEM "左にコピー(&Y)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "行内の差異を選択する",        ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "元に戻す(&U)",                ID_EDIT_UNDO
         MENUITEM "やり直し(&R)",                ID_EDIT_REDO
@@ -128,12 +128,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "右へコピー(&O)",              ID_L2R
+        MENUITEM "左へコピー(&Y)",              ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "切り取り(&T)",                ID_EDIT_CUT
+        MENUITEM "コピー(&C)",                  ID_EDIT_COPY
+        MENUITEM "貼り付け(&P)",                ID_EDIT_PASTE
     END
 END
 
@@ -144,7 +144,7 @@ BEGIN
         MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J", ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
+        MENUITEM "プロジェクトを保存する(&V)...", ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "終了(&X)",                    ID_APP_EXIT
     END
@@ -166,9 +166,9 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "高度な設定(&A)"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "設定情報ファイルの読込み(&L)...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "プラグイン(&P)"
@@ -194,8 +194,8 @@ BEGIN
     POPUP "ヘルプ(&H)"
     BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "索引(&I)...",                 ID_HELP_INDEX
+        MENUITEM "検索(&S)...",                 ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "アーカイブサポートが無効です(&R)...",   ID_HELP_MERGE7ZMISMATCH
@@ -213,12 +213,12 @@ BEGIN
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "プロジェクトの保存(&V)...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "左を読み取り専用(&E)",        ID_FILE_LEFT_READONLY
         MENUITEM "右を読み取り専用(&I)",        ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "ファイルエンコーディング(&E)",      ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "終了(&X)",                    ID_APP_EXIT
     END
@@ -232,12 +232,12 @@ BEGIN
     END
     POPUP "表示(&V)"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "同一項目の表示(&I)",          ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "差異項目の表示(&D)",          ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "左のみに存在する項目の表示(&E)", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "右のみに存在する項目の表示(&G)", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "スキップされた項目の表示(&K)", ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "バイナリファイルの表示(&H)",  ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
         MENUITEM "非表示の項目を表示(&E)",      ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
@@ -275,9 +275,9 @@ BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
         MENUITEM "レポートの生成(&R)...",       ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
+        POPUP "高度な設定(&A)"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "設定情報ファイルの読込み(&L)...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "プラグイン(&P)"
@@ -303,8 +303,8 @@ BEGIN
     POPUP "ヘルプ(&H)"
     BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "索引(&I)...",                 ID_HELP_INDEX
+        MENUITEM "検索(&S)...",                 ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "アーカイブサポートが無効です(&R)...",  ID_HELP_MERGE7ZMISMATCH
@@ -322,7 +322,7 @@ BEGIN
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "プロジェクトの保存(&V)...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "保存(&S)\tCtrl+S",            ID_FILE_SAVE
         POPUP "左のファイルを保存(&L)"
@@ -362,7 +362,7 @@ BEGIN
         MENUITEM "コピー(&C)\tCtrl+C",          ID_EDIT_COPY
         MENUITEM "貼り付け(&P)\tCtrl+V",        ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "行内の差異を選択(&D)\tF4", ID_SELECTLINEDIFF
         MENUITEM "すべて選択(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "検索(&F)...\tCtrl+F",         ID_EDIT_FIND
@@ -378,6 +378,13 @@ BEGIN
             MENUITEM "行番号付きでコピー(&C)\tCtrl+Shift+C",
                                                 ID_EDIT_COPY_LINENUMBERS
         END
+        POPUP "ブックマーク(&B)"
+        BEGIN
+            MENUITEM "ブックマークの作成・削除(&T)\tCtrl+F2",ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "次のブックマークへ移動(&N)\tF2",       ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "前のブックマークへ移動(&P)\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "全てのブックマークをクリア(&C)",       ID_EDIT_CLEAR_ALL_BOOKMARKS
+        END
         MENUITEM "ジャンプ(&G)...\tCtrl+G",     ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_OPTIONS
@@ -391,6 +398,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "空白を表示(&V)",              ID_VIEW_WHITESPACE
         MENUITEM "行内の差異を表示(&W)",        ID_VIEW_LINEDIFFS
+        MENUITEM "行番号を表示(&N)",            ID_VIEW_LINENUMBERS
         MENUITEM "行を右端で折返す(&R)",        ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "ペインの交換(&A)",            ID_VIEW_SWAPPANES
@@ -424,9 +432,9 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
+        POPUP "高度な設定(&A)"
         BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
+            MENUITEM "設定情報ファイル読込み(&L)...",         ID_TOOLS_LOADCONFIG
         END
     END
     POPUP "プラグイン(&P)"
@@ -457,8 +465,8 @@ BEGIN
     POPUP "ヘルプ(&H)"
     BEGIN
         MENUITEM "目次(&C)...\tF1",             ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "索引(&I)...",                 ID_HELP_INDEX
+        MENUITEM "検索(&S)...",                 ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_HELP_GETCONFIG
         MENUITEM "アーカイブサポートが無効です(&R)...",  ID_HELP_MERGE7ZMISMATCH
@@ -668,7 +676,7 @@ BEGIN
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
     DEFPUSHBUTTON   "OK",IDOK,306,11,60,14
     PUSHBUTTON      "キャンセル",IDCANCEL,306,28,60,14
-    PUSHBUTTON      "Help",ID_HELP,306,45,50,14
+    PUSHBUTTON      "ヘルプ",ID_HELP,306,45,60,14
     GROUPBOX        "比較するファイルまたはフォルダ",IDC_FILES_DIRS_GROUP,7,
                      7,292,111
 END
@@ -732,7 +740,7 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "複数のインスタンスを起動しない(&O)",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    LTEXT           "開くダイアログのオートコンプリート(&O):",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "複数の比較ウインドウを有効",IDC_STATIC,7,87,
@@ -741,7 +749,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,98,206,10
     CONTROL         "ファイル比較(&E)",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,108,206,10
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
+    LTEXT           "WinMerge は、いくつかの共通メッセージボックスを非表示にできます。 全てのメッセージボックスを再び表示させるには、リセットボタンを押下してください。",
                     IDC_STATIC,7,140,168,31
     PUSHBUTTON      "リセット",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
                     WS_TABSTOP
@@ -940,7 +948,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "削除されたファイルをごみ箱に移動する(&P)",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "エクスプローラーコンテキストメニューに追加(&A)",IDC_EXPLORER_CONTEXT,
+    CONTROL         "エクスプローラーのコンテキストメニューに追加(&A)",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "拡張メニューを有効にする(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
@@ -1150,11 +1158,11 @@ BEGIN
                     221,61
     CONTROL         "行内差異を表示する",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
+    CONTROL         "文字単位(&C)",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
+    CONTROL         "単語単位(&W):",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_BREAK_TYPE,24,140,143,44,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 
@@ -1173,7 +1181,7 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "テスト(&T)...",IDC_FILTERFILE_TEST_BTN,120,114,50,14
     PUSHBUTTON      "新規...",IDC_FILTERFILE_NEWBTN,180,114,50,14
     PUSHBUTTON      "編集...",IDC_FILTERFILE_EDITBTN,240,114,50,14
     PUSHBUTTON      "削除...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
@@ -1230,7 +1238,7 @@ EXSTYLE WS_EX_NOPARENTNOTIFY
 CAPTION "WinMerge - アーカイブサポートが無効"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "７－Zipのバージョンが検出できません。(インストールされていない?)",107,2,
+    LTEXT           "7-Zipのバージョンが検出できません。(インストールされていない?)",107,2,
                     2,296,18
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
     LTEXT           "アーカイブサポートを有効にするには 7-Zip のバージョン 3.11 以降をインストールするか、\nスタンドアロン操作のために必要なコンポーネントをプログラムフォルダにコピーしてください。",
@@ -1452,47 +1460,47 @@ END
 IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 178, 138
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Codepage"
+CAPTION "コードページ"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Affects",IDC_AFFECTS_GROUP,5,7,166,36
-    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
+    GROUPBOX        "作用",IDC_AFFECTS_GROUP,5,7,166,36
+    CONTROL         "左(&L)",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,18,54,8
     LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,70,18,93,8
-    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "右(&R)",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,29,54,8
     LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,29,93,8
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,48,166,63
+    GROUPBOX        "コードページの選択",IDC_LOADING_GROUP,5,48,166,63
     LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,64,72,10
     EDITTEXT        IDC_LOAD_CODEPAGE_TEXTBOX,86,63,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_LOAD_CODEPAGE_BROWSE,139,64,23,10
-    LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,79,67,10
+    LTEXT           "ファイル保存(&S)",IDC_SAVE_FILES_LABEL,12,79,67,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,86,79,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,139,80,23,10
-    CONTROL         "&Use same codepage for both",
+    CONTROL         "両側に同じコードページを使用",
                     IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,96,150,10
-    DEFPUSHBUTTON   "&Apply",IDOK,65,117,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,121,117,50,14
+    DEFPUSHBUTTON   "適用(&A)",IDOK,65,117,50,14
+    PUSHBUTTON      "キャンセル(&C)",IDCANCEL,121,117,50,14
 END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Test Filter"
+CAPTION "フィルタのテスト"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
+    LTEXT           "テストするフィルタ...",IDC_HEADER,7,7,82,8
     LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,80,8
+    LTEXT           "テストするテキストの入力(&E):",IDC_PROMPT_LABEL,7,21,80,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
-    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "フォルダ名(&F)",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,34,8
+    LTEXT           "結果:",IDC_STATIC,7,49,34,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP
-    DEFPUSHBUTTON   "&Test",IDC_TEST_BTN,133,121,50,14
-    PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
+    DEFPUSHBUTTON   "テスト(&T)",IDC_TEST_BTN,133,121,50,14
+    PUSHBUTTON      "閉じる(&C)",IDCANCEL,192,121,50,14
 END
 
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 197, 157
@@ -1500,16 +1508,16 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Default system colors for normal text",
+    CONTROL         "通常テキストにデフォルトシステムカラーを使用",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,14,148,10
-    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+    GROUPBOX        "カスタムテキストカラー",IDC_CUSTOM_COLORS_GROUP,27,33,159,
                     111
-    LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
-    LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
-    LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
-    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
-    CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
+    LTEXT           "空白:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
+    LTEXT           "標準テキスト:",IDC_TEXT_COLOR_LABEL,31,87,61,8
+    LTEXT           "選択:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
+    CTEXT           "背景",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
+    CTEXT           "テキスト",IDC_TEXT_COLUMN_LABEL,145,44,29,8
     CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,113,58,17,14
     CONTROL         "Btn",IDC_REGULAR_BKGD_COLOR,"Button",BS_OWNERDRAW | 
@@ -1525,22 +1533,22 @@ END
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Paths"
+CAPTION "パス"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    RTEXT           "左側(&L):",IDC_STATIC,7,11,40,8
     EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
-    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    PUSHBUTTON      "参照...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "右側(&R):",IDC_STATIC,7,28,40,8
     EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
-    RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
+    PUSHBUTTON      "参照...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    RTEXT           "フィルタ(&F):",IDC_STATIC,7,46,40,8
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
-    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+    PUSHBUTTON      "選択...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "サブフォルダを含む(&I)",IDC_PROJ_INC_SUBFOLDERS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
-    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
-    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+    PUSHBUTTON      "開く...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "保存...",IDC_PROJ_SAVE,265,76,50,14
 END
 
 #ifndef _MAC
@@ -1566,11 +1574,11 @@ BEGIN
     BEGIN
         BLOCK "041103a4"
         BEGIN
-            VALUE "Comments", "Translated by sawanaka@d1.dion.ne.jp\0"
+            VALUE "Comments", "Japanese translation by sawanaka@d1.dion.ne.jp\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(C) 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", " 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
@@ -1659,6 +1667,7 @@ IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
 IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
 IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
 IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
+IDR_MARGIN_ICONS        BITMAP                  "..\\..\\res\\mg_icons.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1714,10 +1723,10 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_OPENPROJECT     "プロジェクトを開きます\nプロジェクトを開く (Ctrl+J)"
-    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
-    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
-    IDS_PROJFILEDLG_CAPTION "Project File"
-    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
+    IDS_UNK_ERROR_READING_PROJECT "未知のエラー:プロジェクトファイルが開けません"
+    IDS_UNK_ERROR_SAVING_PROJECT "未知のエラー:プロジェクトファイルが保存できません"
+    IDS_PROJFILEDLG_CAPTION "プロジェクトファイル"
+    ID_FILE_SAVEPROJECT     "現在のパスとオプション設定をプロジェクトファイルに保存します\nプロジェクトファイルの保存"
 END
 
 STRINGTABLE
@@ -1876,15 +1885,15 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-    IDS_OPTIONSPG_GENERAL     "一般"
-    IDS_OPTIONSPG_COMPARE     "比較"
-    IDS_OPTIONSPG_EDITOR      "エディタ"
-    IDS_OPTIONSPG_COLORS      "色"
+    IDS_OPTIONSPG_GENERAL   "一般"
+    IDS_OPTIONSPG_COMPARE   "比較"
+    IDS_OPTIONSPG_EDITOR    "エディタ"
+    IDS_OPTIONSPG_COLORS    "色"
     IDS_OPTIONSPG_SYNTAXCOLORS "シンタックスカラー"
-    IDS_OPTIONSPG_TEXTCOLORS "Text Colors"
-    IDS_OPTIONSPG_SYSTEM      "システム"
+    IDS_OPTIONSPG_TEXTCOLORS "テキストカラー"
+    IDS_OPTIONSPG_SYSTEM    "システム"
     IDS_OPTIONSPG_VERSIONCONTROL "バージョン管理"
-    IDS_OPTIONSPG_CODEPAGE     "コードページ"
+    IDS_OPTIONSPG_CODEPAGE  "コードページ"
     IDS_OPTIONSPG_ARCHIVE   "アーカイブサポート"
 END
 
@@ -1943,7 +1952,7 @@ BEGIN
     IDS_ALLFILES            "すべてのファイル (*.*)|*.*||"
     IDS_PROJECTFILES        "WinMerge プロジェクトファイル (*.WinMerge)|*.WinMerge||"
     IDS_PROJECTFILES_EXT    "WinMerge"
-    IDS_INIFILES            "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+    IDS_INIFILES            "設定ファイル (*.ini)|*.ini|すべてのファイル(*.*)|*.*||"
 END
 
 // REPORT FILES
@@ -2029,7 +2038,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_ERROR_INCOMPARABLE  "存在するフォルダまたは、ファイルを選択してください"
-    IDS_DIRSEL_TAG          "Directory Selection"
+    IDS_DIRSEL_TAG          "Folder Selection"
     IDS_OPEN_FILESDIRS      "2つのフォルダまたは、2つのファイルを選択してください。"
     IDS_OPEN_LEFTINVALID    "左側のパスは不正なパスです!"
     IDS_OPEN_RIGHTINVALID   "右側のパスは不正なパスです!"
@@ -2103,10 +2112,10 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)
 STRINGTABLE
 BEGIN
-    ID_DIR_COPY_LEFT_TO_RIGHT "Copy selected item to named directory"
-    ID_DIR_COPY_LEFT_TO_BROWSE "Copy selected item to custom directory"
-    ID_DIR_COPY_RIGHT_TO_LEFT "Copy selected item to named directory"
-    ID_DIR_COPY_RIGHT_TO_BROWSE "Copy selected item to custom directory"
+    ID_DIR_COPY_LEFT_TO_RIGHT "選択された項目を指定フォルダにコピーします"
+    ID_DIR_COPY_LEFT_TO_BROWSE "選択された項目を選択されたフォルダにコピーします"
+    ID_DIR_COPY_RIGHT_TO_LEFT "選択された項目を指定フォルダにコピーします"
+    ID_DIR_COPY_RIGHT_TO_BROWSE "選択された項目を選択されたフォルダにコピーします"
     ID_DIR_DEL_LEFT         "左の選択された項目を削除します"
     ID_DIR_DEL_RIGHT        "右の選択された項目を削除します"
     ID_DIR_DEL_BOTH         "両側の選択された項目を削除します"
@@ -2137,8 +2146,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "右から参照先へ... (%1 / %2)"
     IDS_SELECT_DEST_LEFT    "左側 - コピー/移動先フォルダの指定:"
     IDS_SELECT_DEST_RIGHT   "右側 - コピー/移動先フォルダの指定:"
-    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
-    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
+    IDS_FILES_AFFECTED_FMT  "(%1 個のファイルに作用)"
+    IDS_FILES_AFFECTED_FMT2 "(%1/%2 個のファイルに作用)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2162,8 +2171,8 @@ BEGIN
     ID_DIR_OPEN_RIGHT       "右のファイルを開きます"
     ID_DIR_OPEN_RIGHT_WITHEDITOR "外部エディタで右のファイルを開きます"
     ID_DIR_OPEN_RIGHT_WITH  "右のファイルを選択したアプリケーションで開きます..."
-    IDS_ERROR_EXECUTE_FILE   "Failed to execute external editor: %1"
-    IDS_UNKNOWN_EXECUTE_FILE "Unknown extension on external editor: %1"
+    IDS_ERROR_EXECUTE_FILE   "外部エディタの実行に失敗しました: %1"
+    IDS_UNKNOWN_EXECUTE_FILE "外部エディタの拡張子が未知の拡張子です: %1"
     ID_DIR_COPY_FILENAMES   "クリップボードにファイル名をコピーします"
     ID_DIR_COPY_PATHNAMES_LEFT "左側のパス名をクリップボードにコピーします"
     ID_DIR_COPY_PATHNAMES_RIGHT "右側のパス名をクリップボードにコピーします"
@@ -2195,8 +2204,8 @@ BEGIN
     IDS_COLHDR_EXTENSION    "拡張子"
     IDS_COLHDR_LSIZE        "左サイズ"
     IDS_COLHDR_RSIZE        "右サイズ"
-    IDS_COLHDR_RSIZE_SHORT  "Right Size (Short)"
-    IDS_COLHDR_LSIZE_SHORT  "Left Size (Short)"
+    IDS_COLHDR_RSIZE_SHORT  "右サイズ (短縮)"
+    IDS_COLHDR_LSIZE_SHORT  "左サイズ (短縮)"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
@@ -2210,8 +2219,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "簡易結果表示"
     IDS_COLHDR_LATTRIBUTES  "左属性"
     IDS_COLHDR_RATTRIBUTES  "右属性"
-    IDS_COLHDR_LEOL_TYPE    "Left EOL"
-    IDS_COLHDR_REOL_TYPE    "Right EOL"
+    IDS_COLHDR_LEOL_TYPE    "左EOL"
+    IDS_COLHDR_REOL_TYPE    "右EOL"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2228,7 +2237,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_CANT_COMPARE_FILES  "ファイルを比較でません"
-    IDS_ABORTED_ITEM        "Item aborted"
+    IDS_ABORTED_ITEM        "中断された項目"
     IDS_FILE_SKIPPED        "スキップされたファイル"
     IDS_DIR_SKIPPED         "スキップされたフォルダ"
     IDS_ONLY_IN_FMT         " %1 内のみ存在"
@@ -2260,8 +2269,8 @@ BEGIN
     IDS_COLDESC_EXTENSION   "ファイル拡張子"
     IDS_COLDESC_LSIZE       "左側ファイルのバイト数"
     IDS_COLDESC_RSIZE       "右側ファイルのバイト数"
-    IDS_COLDESC_LSIZE_SHORT "Left file size abbreviated."
-    IDS_COLDESC_RSIZE_SHORT "Right file size abbreviated."
+    IDS_COLDESC_LSIZE_SHORT "左側ファイルのバイト数(短縮形)"
+    IDS_COLDESC_RSIZE_SHORT "右側ファイルのバイト数(短縮形)"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#2
@@ -2275,8 +2284,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "短い形式の比較結果表示"
     IDS_COLDESC_LATTRIBUTES "左側の属性"
     IDS_COLDESC_RATTRIBUTES "右側の属性"
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "左側のEOLタイプ"
+    IDS_COLDESC_REOL_TYPE   "右側のEOLタイプ"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2308,7 +2317,7 @@ STRINGTABLE
 BEGIN
     IDS_FILE_TO_ITSELF      "同じファイルが両側のパネルで開かれています。"
     IDS_FILESSAME           "選択されたファイルは同一です。"
-    IDS_FOLDERUNIQUE        "The selected folder exists only in other side and therefore cannot be opened."
+    IDS_FOLDERUNIQUE        "選択されたファイルは、両側のフォルダに存在しないため、開けません。"
     IDS_FILEERROR           "ファイルの比較時にエラーが発生しました。"
     IDS_FILEBINARY          "バイナリファイルは視覚的に比較できません。"
     IDS_TEMP_FILEERROR      "テンポラリファイルが作成できませんでした。テンポラリパス設定を確認してください。"
@@ -2322,17 +2331,17 @@ BEGIN
     IDS_SUGGEST_PRESERVEEOL "ファイル'%1'内に異なるタイプ(DOS/UNIX/MAC)のEOLが存在しています。\n 現在のオプション設定では、主なEOLに統一されます。\n オプションを変更して、異なるEOLを保持するようにしますか?"
     IDS_PREDIFFER_ERROR      "プラグイン'%2'でファイル'%1'の比較前処理の実行中にエラーが発生しました。比較前処理は以降行なわれません。"
     IDS_INVALID_DIRECTORY   "選択されたフォルダは無効です。"
-    IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
+    IDS_CANNOT_OPEN_BINARYFILE  "バイナリファイルをエディタで開くことはできません。"
 END
 
 // Encoding issues
 STRINGTABLE
 BEGIN
     IDS_SUGGEST_IGNORECODEPAGE "開いたファイルで異なったコードページが検出されました。左(cp%d)、右(cp%d)\n各々のファイルをそのコードページで表示すれば、正しく表示されますが、マージやコピーが危険になります。\nコードページをデフォルトコードページとして扱いますが、よろしいですか(推奨)?"
-    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
-    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
-    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
-    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
+    IDS_DIFFERENT_UNICODINGS   "警告: 互いに異なったエンコーディングのファイルです。 左側=%s 右側=%s マージする場合、情報が失われるかもしれません。"
+    IDS_LOSSY_TRANSCODING_BOTH  "エンコーディングエラーにより情報が失われています。(両側のファイル)"
+    IDS_LOSSY_TRANSCODING_RIGHT "エンコーディングエラーにより情報が失われています。(右側のファイル)"
+    IDS_LOSSY_TRANSCODING_LEFT  "エンコーディングエラーにより情報が失われています。(左側のファイル)"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2359,8 +2368,8 @@ END
 // FILE COMPARE: PANE CAPTIONS
 STRINGTABLE 
 BEGIN
-    IDS_LOCBAR_CAPTION      "Location Pane"
-    IDS_DIFFBAR_CAPTION     "Diff Pane"
+    IDS_LOCBAR_CAPTION      "ロケーションペイン"
+    IDS_DIFFBAR_CAPTION     "Diffペイン"
 END
 
 // CREATE PATCH
@@ -2720,29 +2729,33 @@ BEGIN
     ID_EOL_TO_UNIX          "EOLをUnixタイプに変換します"
     ID_EOL_TO_MAC           "EOLをMACタイプに変換します"
     ID_FILE_MERGINGMODE     "現在のモードから編集モードまたはマージモードを切り替えます"
-    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
+    ID_FILE_ENCODING        "ファイルエンコーディング情報の表示と設定を行います。\nファイルエンコーディングプロパティ"
 END
 
 // EDIT MENU
 STRINGTABLE
 BEGIN
-    ID_SELECTLINEDIFF       "Select difference area in the current line\nDifference in the Current Line"
+    ID_SELECTLINEDIFF       "現在行の差異部分を選択します\n現在の行内差異"
     ID_EDIT_WMGOTO          "指定した行または、差異へ移動します\nジャンプ (Ctrl+G)"
     ID_OPTIONS              "プログラムオプションを設定します\nオプション"
     ID_REFRESH              "最新の情報に更新します\n表示更新 (F5)"
     ID_EDIT_COPY_LINENUMBERS "選択された行の先頭に行番号を付加してクリップボードへコピーします"
     ID_DIR_RESCAN            "選択された項目の情報を最新にします"
+    ID_EDIT_TOGGLE_BOOKMARK     "ブックマークの作成・削除を行います"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "次のブックマークに移動します"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "前のブックマークに移動します"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "全てのブックマークを削除します"
 END
 
 // VIEW MENU (ITEM TYPE)
 STRINGTABLE
 BEGIN
-    ID_OPTIONS_SHOWIDENTICAL "Displays items that are exactly the same\nShow Identical Items"
-    ID_OPTIONS_SHOWDIFFERENT "Displays items that have differences\nShow Different Items"
-    ID_OPTIONS_SHOWUNIQUELEFT "Displays items that exist in only on the left side\nShow Left Unique Items"
-    ID_OPTIONS_SHOWUNIQUERIGHT "Displays items that exist in only on the right side\nShow Right Unique Items"
-    ID_OPTIONS_SHOWBINARIES "Displays binary files\nShow Binary Files"
-    ID_OPTIONS_SHOWSKIPPED  "Displays skipped items\nShow Skipped Items"
+    ID_OPTIONS_SHOWIDENTICAL "正確に一致している項目を表示します\n同一項目の表示"
+    ID_OPTIONS_SHOWDIFFERENT "差異のある項目を表示します\n差異項目の表示"
+    ID_OPTIONS_SHOWUNIQUELEFT "右側にのみ存在する項目を表示します\n左のみに存在する項目の表示"
+    ID_OPTIONS_SHOWUNIQUERIGHT "右側にのみ存在する項目を表示します\n右のみに存在する項目の表示"
+    ID_OPTIONS_SHOWBINARIES "バイナリファイルを表示します\nバイナリファイルの表示"
+    ID_OPTIONS_SHOWSKIPPED  "スキップされた項目を表示します\nスキップされた項目の表示"
 END
 
 // VIEW MENU
@@ -2757,6 +2770,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "現在のユーザーインターフェース言語を選択します\n言語"
     ID_VIEW_LINEDIFFS       "行内の差異を色を変えて表示します\n行内の差異を表示"
     ID_VIEW_SWAPPANES       "2つのペインの位置を交換します"
+    ID_VIEW_LINENUMBERS     "行番号を表示します\n行番号を表示"
     ID_VIEW_WORDWRAP        "行を右端で折り返します。\n行を右端で折返す"
 END
 
@@ -2851,9 +2865,9 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
-    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU	"From MRU list"
+    IDS_AUTOCOMPLETE_DISABLED   "無効"
+    IDS_AUTOCOMPLETE_FILE_SYS   "ファイルシステム"
+    IDS_AUTOCOMPLETE_MRU        "最近使ったリスト"
 END
 
 // END STRINGS SYNCHRO

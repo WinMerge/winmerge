@@ -271,6 +271,8 @@ protected:
 	afx_msg void OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI);
 	afx_msg void OnViewLineDiffs();
 	afx_msg void OnUpdateViewLineDiffs(CCmdUI* pCmdUI);
+	afx_msg void OnViewLineNumbers();
+	afx_msg void OnUpdateViewLineNumbers(CCmdUI* pCmdUI);
 	afx_msg void OnViewWordWrap();
 	afx_msg void OnUpdateViewWordWrap(CCmdUI* pCmdUI);
 	afx_msg void OnOpenFile();

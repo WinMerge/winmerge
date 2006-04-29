@@ -108,6 +108,7 @@ public:
 
 	int ComputeApparentLine (int nRealLine) const;
 	int ComputeRealLine (int nApparentLine) const;
+	virtual void DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber);
 
 };
 
