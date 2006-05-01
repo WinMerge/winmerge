@@ -2,7 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2006-04-49 Takashi
+2006-05-01 Takashi
+ PATCH: [ 1475649 ] Enable selection margin and line numbers
+  Src/res new file: mg_icons.bmp
+
+2006-04-29 Takashi
  PATCH: [ 1475649 ] Enable selection margin and line numbers
   Src: GhostTextView.cpp GhostTextView.h Merge.rc MergeEditView.cpp
    MergeEditView.h OptionsDef.h OptionsInit.cpp resource.h
