@@ -97,7 +97,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 	m_ctlStyle.SetCurSel(0);
 	// Set selected path to variable so file selection dialog shows
 	// correct filename and path.
-	m_ctlStyle.GetWindowText(m_sReportFile);
+	m_ctlReportFile.GetWindowText(m_sReportFile);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

@@ -12,6 +12,9 @@ Add new items to top.
    fortran.cpp html.cpp ini.cpp innosetup.cpp is.cpp java.cpp lisp.cpp nsis.cpp
    pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp sgml.cpp sh.cpp
    siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+ PATCH: [ 1471835 ] Fix setting filename in folder-compare report dialog
+  Fix bug in the original patch
+  Src: DirCmpReportDlg.cpp
 
 2006-05-01 Takashi
  PATCH: [ 1475649 ] Enable selection margin and line numbers
