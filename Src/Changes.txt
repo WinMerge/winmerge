@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-02 Kimmo
+ PATCH: [ 1479007 ] WinMerge Icon Set Revision 3
+  Submitted by Alexander Skinner
+  Src/res: Merge.ico
+
 2006-05-01 Takashi
  PATCH: [ 1475649 ] Enable selection margin and line numbers
   Src/res new file: mg_icons.bmp
