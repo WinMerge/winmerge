@@ -6,6 +6,12 @@ Add new items to top.
  PATCH: [ 1479007 ] WinMerge Icon Set Revision 3
   Submitted by Alexander Skinner
   Src/res: Merge.ico
+ BUG: [ 1474782 ] Crash when comparing SQL with with binary data
+  Fix suggested by anonymous submitter
+  Src/editlib: asp.cpp basic.cpp batch.cpp cplusplus.cpp csharp.cpp dcl.cpp
+   fortran.cpp html.cpp ini.cpp innosetup.cpp is.cpp java.cpp lisp.cpp nsis.cpp
+   pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp sgml.cpp sh.cpp
+   siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
 
 2006-05-01 Takashi
  PATCH: [ 1475649 ] Enable selection margin and line numbers

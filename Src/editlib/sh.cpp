@@ -187,7 +187,9 @@ ParseLineSh (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItems
         }
 out:
 
-      if (I == nLength)
+      // Can be bigger than length if there is binary data
+      // See bug #1474782 Crash when comparing SQL with with binary data
+      if (I >= nLength)
         break;
 
       if (dwCookie & COOKIE_COMMENT)
