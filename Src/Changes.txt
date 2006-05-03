@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-03 Kimmo
+ PATCH: [ 1480652 ] Small fix for XML syntax highlight
+  Src/editlib: xml.cpp
+
 2006-05-02 Kimmo
  PATCH: [ 1479007 ] WinMerge Icon Set Revision 3
   Submitted by Alexander Skinner

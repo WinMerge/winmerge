@@ -380,7 +380,7 @@ out:
 
       if (bFirstChar)
         {
-          if (!_istspace (pszChars[I]))
+          if (!xisspace (pszChars[I]))
             bFirstChar = FALSE;
         }
 
