@@ -71,6 +71,7 @@ IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
 CMergeEditView::CMergeEditView()
 : m_bCurrentLineIsDiff(FALSE)
 , m_pLocationView(NULL)
+, m_hLocationview(NULL)
 , m_nThisPane(0)
 , m_nModifications(0)
 , m_piMergeEditStatus(0)
@@ -1781,11 +1782,7 @@ OnUpdateCaret()
 		else
 			m_bCurrentLineIsDiff = FALSE;
 
-		if (m_pLocationView)
-		{
-			m_pLocationView->UpdateVisiblePos(m_nTopLine,
-				m_nTopLine + GetScreenLines());
-		}
+		UpdateLocationViewPosition(m_nTopLine, m_nTopLine + GetScreenLines());
 	}
 }
 /**
@@ -2605,7 +2602,7 @@ void CMergeEditView::OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar
 		break;
 	}
 
-	m_pLocationView->UpdateVisiblePos(nCurPos);
+	UpdateLocationViewPosition(nCurPos);
 }
 
 /**
@@ -2937,4 +2934,36 @@ void CMergeEditView::DocumentsLoaded()
 	// really updated, even though this is unnecessary in most cases.
 	RecalcHorzScrollBar();
 	RecalcVertScrollBar();
+}
+
+/**
+ * @brief Set LocationView pointer.
+ * CLocationView calls this function to set pointer to itself,
+ * so we can call locationview to update it.
+ * @param [in] hView Handle to CLocationView.
+ * @param [in] pView Pointer to CLocationView.
+ */
+void CMergeEditView::SetLocationView(HWND hView,
+		const CLocationView * pView /*=NULL*/)
+{
+	m_hLocationview = hView;
+	m_pLocationView = const_cast<CLocationView *>(pView);
+}
+
+/**
+ * @brief Update LocationView position.
+ * This function updates LocationView position to given lines.
+ * Usually we want to lines in file compare view and area in
+ * LocationView to match. Be extra carefull to not call non-existing
+ * LocationView.
+ * @param [in] nTopLine Top line of current view.
+ * @param [in] nBottomLine Bottom line of current view.
+ */
+void CMergeEditView::UpdateLocationViewPosition(int nTopLine /*=-1*/,
+		int nBottomLine /*= -1*/)
+{
+	if (m_hLocationview != NULL && IsWindow(m_hLocationview))
+	{
+		m_pLocationView->UpdateVisiblePos(nTopLine, nBottomLine);
+	}
 }

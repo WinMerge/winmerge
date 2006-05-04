@@ -107,7 +107,6 @@ public:
 	int m_nThisPane;
 	LONG m_nModifications;
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
-	CLocationView * m_pLocationView; /**< Pointer to locationview */
 
 protected:
 	/** Controls if rescan is done after edit events */
@@ -128,6 +127,8 @@ private:
 	int m_CurrentPredifferID;
 
 	BOOL m_bCurrentLineIsDiff; /**< TRUE if current line is diff-line */
+	CLocationView * m_pLocationView; /**< Pointer to locationview */
+	HWND m_hLocationview; /**< Handle to locationview */
 
 // Operations
 public:
@@ -167,6 +168,8 @@ public:
 	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
+	void SetLocationView(HWND hView, const CLocationView * pView = NULL);
+	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
