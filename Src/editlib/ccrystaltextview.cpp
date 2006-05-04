@@ -492,6 +492,7 @@ CCrystalTextView::CCrystalTextView ()
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
   m_bRememberLastPos = false;
+  m_nMaxLineLength = -1;
 
   m_pColors = NULL;
 }

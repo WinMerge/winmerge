@@ -8,6 +8,9 @@ Add new items to top.
   Src/Languages/*: Merge*.rc
  PATCH: [ 1481391 ] Make LocationView update from MergeView more safe
   Src: LocationView.cpp MergeEditView.cpp MergeEditView.h
+ BUG: [ 1456356 ] Scrollbars sometimes not initially active
+  Another possible fix..
+  Src/editlib: ccrystaltextview.cpp
 
 2006-05-03 Kimmo
  PATCH: [ 1480652 ] Small fix for XML syntax highlight
