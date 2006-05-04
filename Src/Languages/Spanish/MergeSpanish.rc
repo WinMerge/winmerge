@@ -2714,6 +2714,17 @@ BEGIN
     IDS_EOL_MIXED           "Mixed"
 END
 
+// Folder compare short size suffixes
+STRINGTABLE
+BEGIN
+    IDS_SUFFIX_BYTE         " B"
+    IDS_SUFFIX_KILO         " KB"
+    IDS_SUFFIX_MEGA         " MB"
+    IDS_SUFFIX_GIGA         " GB"
+    IDS_SUFFIX_TERA         " TB"
+    IDS_SUFFIX_PETA         " PB"
+END
+
 // MENU STRINGS
 // FILE MENU
 STRINGTABLE

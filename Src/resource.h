@@ -916,6 +916,12 @@
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
 #define IDS_EOL_MIXED                   30403
+#define IDS_SUFFIX_BYTE                 30416
+#define IDS_SUFFIX_KILO                 30417
+#define IDS_SUFFIX_MEGA                 30418
+#define IDS_SUFFIX_GIGA                 30419
+#define IDS_SUFFIX_TERA                 30420
+#define IDS_SUFFIX_PETA                 30421
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_RIGHT              32769
 #define ID_FILE_SAVEAS_LEFT             32770

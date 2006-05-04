@@ -34,7 +34,17 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-#define KILO 1024
+/**
+ * @name Constants for short sizes.
+ */
+/* @{ */
+static const UINT KILO = 1024;
+static const UINT MEGA = 1024 * KILO;
+static const UINT GIGA = 1024 * MEGA;
+static const __int64 TERA = 1024 * (__int64) GIGA;
+/**
+ * @}
+ */
 
 /**
  * @brief Function to compare two __int64s for a sort
@@ -73,31 +83,35 @@ static int cmpfloat(double v1, double v2)
 	return 0;
 }
 /**
- * @brief Formats a size as a short string (locale-sensitive but not language sensitive)
+ * @brief Formats a size as a short string.
  *
- * MakeShortSize(500) = "500b" 
+ * MakeShortSize(500) = "500b"
  * MakeShortSize(1024) = "1Kb"
  * MakeShortSize(12000) = "1.7Kb"
- * MakeShortSize(200000) = "195Kb" 
+ * MakeShortSize(200000) = "195Kb"
+ * @param [in] size File's size to convert.
+ * @return Size string with localized suffix.
+ * @note Localized suffix strings are read from resource.
+ * @todo Can't handle > terabyte filesizes.
  */
 static CString MakeShortSize(__int64 size)
 {
 #pragma warning(disable:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
 	double fsize = size;
 #pragma warning(default:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
-	double number=0;
-	int ndigits=0;
+	double number = 0;
+	int ndigits = 0;
 	CString suffix;
 
 	if (size < KILO)
 	{
 		number = fsize;
-		suffix = _T("b");
+		VERIFY(suffix.LoadString(IDS_SUFFIX_BYTE));
 	}
-	else if (size < KILO * KILO)
+	else if (size < MEGA)
 	{
-		number = fsize/KILO;
-		suffix = _T("Kb");
+		number = fsize / KILO;
+		VERIFY(suffix.LoadString(IDS_SUFFIX_KILO));
 		if (size < KILO * 10)
 		{
 			ndigits = 2;
@@ -107,36 +121,39 @@ static CString MakeShortSize(__int64 size)
 			ndigits = 1;
 		}
 	}
-	else if (size < KILO * KILO * KILO)
+	else if (size < GIGA)
 	{
-		number = fsize/(KILO * KILO);
-		suffix = _T("Gb");
-		if (size < KILO * KILO * 10)
+		number = fsize / (MEGA);
+		VERIFY(suffix.LoadString(IDS_SUFFIX_MEGA));
+		if (size < MEGA * 10)
 		{
 			ndigits = 2;
 		}
-		else if (size < KILO * KILO * 100)
+		else if (size < MEGA * 100)
 		{
 			ndigits = 1;
 		}
 	}
-	else if (size < (__int64)KILO * KILO * KILO * KILO)
+	else if (size < (__int64)TERA)
 	{
-		number = fsize/((__int64)KILO * KILO * KILO);
-		suffix = _T("Tb");
-		if (size < (__int64)KILO * KILO * KILO * 10)
+		number = fsize / ((__int64)GIGA);
+		VERIFY(suffix.LoadString(IDS_SUFFIX_GIGA));
+		if (size < (__int64)GIGA * 10)
 		{
 			ndigits = 2;
 		}
-		else if (size < (__int64)KILO * KILO * KILO * 100)
+		else if (size < (__int64)GIGA * 100)
 		{
 			ndigits = 1;
 		}
 	}
 	else
 	{
-		// overflow
-		return _T(">Pb");
+		// overflow (?) -- show ">TB"
+		CString s(_T(">"));
+		VERIFY(suffix.LoadString(IDS_SUFFIX_TERA));
+		s += suffix;
+		return s;
 	}
 
 	CString s;

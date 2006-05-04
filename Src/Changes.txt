@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2005-05-04 Kimmo
+ PATCH: [ 1481213 ] Fix foldercompare short-size suffixes and localize them
+  Src: DirViewColItems.cpp Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-05-03 Kimmo
  PATCH: [ 1480652 ] Small fix for XML syntax highlight
   Src/editlib: xml.cpp
