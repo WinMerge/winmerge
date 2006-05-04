@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-04 WinMerge experimental release 2.5.3.7 (cvs)
+
 2005-05-04 Kimmo
  PATCH: [ 1481213 ] Fix foldercompare short-size suffixes and localize them
   Src: DirViewColItems.cpp Merge.rc resource.h
