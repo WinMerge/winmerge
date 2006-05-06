@@ -1,5 +1,9 @@
 DisplayBinaryFiles\ChangeLog.txt
 
+2006-05-04 Kimmo
+ Removed .doc and .xls from extension list
+ Updated version number to 1.0.3.0
+
 2005-05-21, Perry Rapp
  Created ChangeLog.
  Fixed compilation under MSVC6 by removing global namespace qualifier on InlineIsEqualGUID.

@@ -24,7 +24,7 @@ STDMETHODIMP CWinMergeScript::get_PluginDescription(BSTR *pVal)
 
 STDMETHODIMP CWinMergeScript::get_PluginFileFilters(BSTR *pVal)
 {
-	*pVal = SysAllocString(L"\\.exe$;\\.dll$;\\.ocx$;\\.doc$;\\.xls$");
+	*pVal = SysAllocString(L"\\.exe$;\\.dll$;\\.ocx$");
 	return S_OK;
 }
 
