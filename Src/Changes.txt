@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-06 Tim
+ PATCH: [ 1482411 ] Add line before 'Open Project' in main menu
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-05-06 Kimmo
  PATCH: [ 1482688 ] sgml.cpp contains "lt" twice
   Src/editlib: sgml.cpp

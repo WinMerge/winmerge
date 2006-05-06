@@ -143,6 +143,7 @@ BEGIN
     BEGIN
         MENUITEM "&Új\tCtrl+N",                ID_FILE_NEW
         MENUITEM "M&egnyitás...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Projekt megnyitása...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR

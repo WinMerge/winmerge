@@ -143,6 +143,7 @@ BEGIN
     BEGIN
         MENUITEM "&Nou\tControl+N",                ID_FILE_NEW
         MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR

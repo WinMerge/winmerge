@@ -143,6 +143,7 @@ BEGIN
     BEGIN
         MENUITEM "新規作成(&N)\tCtrl+N",        ID_FILE_NEW
         MENUITEM "開く(&O)...\tCtrl+O",         ID_FILE_OPEN
+        MENUITEM SEPARATOR
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J", ID_FILE_OPENPROJECT
         MENUITEM "プロジェクトを保存する(&V)...", ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
