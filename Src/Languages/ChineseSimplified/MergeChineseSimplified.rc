@@ -1521,15 +1521,20 @@ BEGIN
     CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
     CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
     CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,58,17,14
+                    WS_TABSTOP,113,58,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CONTROL         "Btn",IDC_REGULAR_BKGD_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,87,17,14
+                    WS_TABSTOP,113,87,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CONTROL         "Btn",IDC_SELECTION_BKGD_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,113,116,17,14
+                    WS_TABSTOP,113,116,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CONTROL         "Btn",IDC_SELECTION_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,156,116,17,14
+                    WS_TABSTOP,156,116,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
     CONTROL         "Btn",IDC_REGULAR_TEXT_COLOR,"Button",BS_OWNERDRAW | 
-                    WS_TABSTOP,156,87,17,14
+                    WS_TABSTOP,156,87,17,14,WS_EX_TRANSPARENT |
+                    WS_EX_CLIENTEDGE
 END
 
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97

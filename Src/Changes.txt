@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-06 Tim
+ BUG: [ 1481053 ] Options: Text Colors should use 3D-Look too
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-05-06 Kimmo
  BUG: [ 1363364 ] DisplayBinaryFiles extension list wrong
   Also bump version of plugin to 1.0.3.0
