@@ -1991,8 +1991,9 @@ void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Called when compare thread asks UI update
+ * @brief Called when compare thread asks UI update.
  * @note Currently thread asks update after compare is ready
+ * or aborted.
  */
 LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 {
@@ -2002,8 +2003,11 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	CDirDoc * pDoc = GetDocument();
 	ASSERT(pDoc);
 
-	// Currently UI (update) message is sent after compare is ready
+	// Close and destroy the dialog after compare
 	m_pCmpProgressDlg->CloseDialog();
+	delete m_pCmpProgressDlg;
+	m_pCmpProgressDlg = NULL;
+
 	pDoc->CompareReady();
 	Redisplay();
 	

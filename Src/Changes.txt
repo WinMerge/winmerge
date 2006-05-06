@@ -7,6 +7,8 @@ Add new items to top.
   Src/editlib: sgml.cpp
  PATCH: [ 1482694 ] xml.cpp contains "lt" twice
   Src/editlib: xml.cpp
+ PATCH: [ 1482765 ] Fix closing folder compare progress dialog
+  Src: DirCompProgressDlg.cpp DirCompProgressDlg.h DirView.cpp
 
 2006-05-04 WinMerge experimental release 2.5.3.7 (cvs)
 

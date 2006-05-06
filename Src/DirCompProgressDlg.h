@@ -20,10 +20,18 @@ class CDirDoc;
 // DirCompProgressDlg dialog
 
 /**
- * @brief Class for directory compare statusdialog
+ * @brief Class for directory compare statusdialog.
  * 
- * Implements non-modal dialog directory compares.
- * Shows compare progress and allows stopping compare.
+ * Implements non-modal dialog directory compares. We create this
+ * modeless dialog when we start the compare and destroy it after
+ * compare is ready. Dialog itself shows counts of total found items
+ * and items compared so far. And nice progressbar for user to have some
+ * idea how compare is going.
+ *
+ * Status updates are fired by periodic timer events. We have shared
+ * datastructure with compare code. Compare code updates status information
+ * to datastructure during compare. When timer event fires, dialog reads
+ * that datastructure and updates the GUI.
  */
 class DirCompProgressDlg : public CDialog
 {
@@ -60,18 +68,16 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(DirCompProgressDlg)
 	afx_msg BOOL OnInitDialog();
-	afx_msg void OnUpdateStop(CCmdUI* pCmdUI);
 	afx_msg void OnTimer(UINT nIDEvent);
 	afx_msg void OnBnClickedComparisonStop();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 private:
-	long m_lElapsed; /**< Elapsed time for compare */
 	CompareStats *m_pCompareStats; /**< Pointer to comparestats */
 	CompareStats::CMP_STATE m_prevState; /**< Previous state for compare (to track changes) */
 	BOOL m_bCompareReady; /**< Compare ready, waiting for closing? */
-	CDirDoc * m_pDirDoc;
+	CDirDoc * m_pDirDoc; /**< Pointer to dirdoc we are comparing */
 };
 
 //{{AFX_INSERT_LOCATION}}

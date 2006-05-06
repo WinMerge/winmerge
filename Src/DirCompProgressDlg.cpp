@@ -98,22 +98,6 @@ BOOL DirCompProgressDlg::OnInitDialog()
 }
 
 /**
- * @brief Update button text (Stop/Close).
- *
- * Changes button text after compare is ready.
- */
-void DirCompProgressDlg::OnUpdateStop(CCmdUI* pCmdUI)
-{
-	// Change button text if scan is finished and it hasn't been yet changed. 
-//		m_lElapsed += ::GetTickCount();
-//		CString text;
-//		text.Format(IDS_ELAPSED_TIME, m_lElapsed);
-//			pFrameWnd->SetMessageText(text);
-//	}
-//	pCmdUI->Enable(TRUE);
-}
-
-/**
  * @brief Handle WM_KEYDOWN messages before normal processing
  * to allow any key close stateDlg.
  */
@@ -217,7 +201,6 @@ void DirCompProgressDlg::OnTimer(UINT nIDEvent)
 	}
 	else
 		CDialog::OnTimer(nIDEvent);
-
 }
 
 /**
@@ -241,10 +224,12 @@ void DirCompProgressDlg::EndUpdating()
 /**
  * @brief User selects to stop compare.
  *
- * Aborts compare and hides status panel.
- * @note We don't call EndDialog() or similar to close this dialog.
- * When compare is aborted thread sends UI (DirView) message to update
- * itself. Messagehandler code (in DirView) closes this dialog.
+ * Tells document to abort current compare.
+ * @note We don't close this dialog in this function. Instead we tell
+ * compare thread to abort. Which in turn causes message sent to CDirView
+ * about compare ready/abort. And CDirView calls CloseDialog().
+ * Yes, it could be simpler, but this assures we don't close dialog while
+ * thread is still comparing items.
  */
 void DirCompProgressDlg::OnBnClickedComparisonStop()
 {
@@ -294,7 +279,7 @@ void DirCompProgressDlg::CenterToParent()
 void DirCompProgressDlg::CloseDialog()
 {
 	EndUpdating();
-	EndDialog(IDOK);
+	DestroyWindow();
 }
 
 /** 
