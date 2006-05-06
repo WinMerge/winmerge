@@ -1,3 +1,7 @@
+2006-05-06 Kimmo
+ Update doxygen config file
+  Developers: doxygen.cfg
+
 2006-03-12 Kimmo
  PATCH: [ 1448004 ] Update installer doc
   Developers: readme-developers-Innosetup.html
