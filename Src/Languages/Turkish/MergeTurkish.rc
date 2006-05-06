@@ -1674,6 +1674,10 @@ IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
 IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
 IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
 IDR_MARGIN_ICONS        BITMAP                  "..\\..\\res\\mg_icons.bmp"
+IDB_EDIT_TOGGLE_BOOKMARK BITMAP                 "..\\..\\res\\toggle_bookmark.bmp"
+IDB_EDIT_GOTO_NEXT_BOOKMARK BITMAP              "..\\..\\res\\next_bookmark.bmp"
+IDB_EDIT_GOTO_PREV_BOOKMARK BITMAP              "..\\..\\res\\prev_bookmark.bmp"
+IDB_EDIT_CLEAR_ALL_BOOKMARKS BITMAP             "..\\..\\res\\clear_bookmarks.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

@@ -77,6 +77,10 @@
 #define IDB_TOOLS_GENERATEREPORT        339
 #define IDR_MARGIN_ICONS                340
 #define IDR_MARGIN_CURSOR               341
+#define IDB_EDIT_TOGGLE_BOOKMARK        342
+#define IDB_EDIT_GOTO_NEXT_BOOKMARK     343
+#define IDB_EDIT_GOTO_PREV_BOOKMARK     344
+#define IDB_EDIT_CLEAR_ALL_BOOKMARKS    345
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502

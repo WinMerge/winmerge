@@ -6,6 +6,11 @@ Add new items to top.
  BUG: [ 1481053 ] Options: Text Colors should use 3D-Look too
   Src: Merge.rc
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1482352 ] Icons for 'Bookmarks' feature
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new files: clear_bookmarks.bmp next_bookmark.bmp prev_bookmark.bmp
+   toggle_bookmark.bmp
+  Src/Languages/*: Merge*.rc
 
 2006-05-06 Kimmo
  BUG: [ 1363364 ] DisplayBinaryFiles extension list wrong
