@@ -100,7 +100,6 @@ static LPTSTR s_apszUser2KeywordList[] =
     _T ("quot"),
     _T ("amp"),
     _T ("lt"),
-    _T ("lt"),
     _T ("gt"),
     _T ("copy"),
     _T ("reg"),
