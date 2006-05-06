@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-06 Kimmo
  PATCH: [ 1482688 ] sgml.cpp contains "lt" twice
   Src/editlib: sgml.cpp
+ PATCH: [ 1482694 ] xml.cpp contains "lt" twice
+  Src/editlib: xml.cpp
 
 2006-05-04 WinMerge experimental release 2.5.3.7 (cvs)
 
