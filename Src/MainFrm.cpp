@@ -211,6 +211,15 @@ CMainFrame::CMainFrame()
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
 		m_pSyntaxColors->Initialize(&m_options);
+
+	// If filter path is not defined, set it to My Documents -folder
+	CString pathMyFolders = m_options.GetString(OPT_FILTER_USERPATH);
+	if (pathMyFolders.IsEmpty())
+	{
+		pathMyFolders = paths_GetMyDocuments(GetSafeHwnd());
+		m_options.SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
+		theApp.m_globalFileFilter.SetFileFilterPath(pathMyFolders);
+	}
 }
 
 CMainFrame::~CMainFrame()
@@ -890,6 +899,10 @@ void CMainFrame::OnOptions()
 
 	if (rv == IDOK)
 	{
+		// Set new filterpath
+		CString filterPath = m_options.GetString(OPT_FILTER_USERPATH);
+		theApp.m_globalFileFilter.SetUserFilterPath(filterPath);
+
 		UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
 		SetEOLMixed(m_options.GetBool(OPT_ALLOW_MIXED_EOL));

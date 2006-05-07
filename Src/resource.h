@@ -375,6 +375,8 @@
 #define IDC_PROJ_SAVE                   1300
 #define IDC_PROJ_OPEN                   1301
 #define IDC_PROJ_LFILE_EDIT             1302
+#define IDC_FILTER_USER_BROWSE          1303
+#define IDC_FILTER_USER_PATH            1304
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1051,7 +1053,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        232
 #define _APS_NEXT_COMMAND_VALUE         33119
-#define _APS_NEXT_CONTROL_VALUE         1294
+#define _APS_NEXT_CONTROL_VALUE         1305
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

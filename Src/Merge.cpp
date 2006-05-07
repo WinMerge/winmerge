@@ -584,9 +584,20 @@ BOOL CMergeApp::OnIdle(LONG lCount)
 	return FALSE;
 }
 
-/** @brief Load any known file filters */
+/**
+ * @brief Load any known file filters.
+ *
+ * This function loads filter files from paths we know contain them.
+ * @note User's filter location may not be set yet.
+ */
 void CMergeApp::InitializeFileFilters()
 {
+	CString filterPath = GetProfileString(_T("Settings"), _T("UserFilterPath"), _T(""));
+
+	if (!filterPath.IsEmpty())
+	{
+		m_globalFileFilter.SetUserFilterPath(filterPath);
+	}
 	m_globalFileFilter.LoadAllFileFilters();
 }
 

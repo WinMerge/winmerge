@@ -157,6 +157,19 @@ CString FileFilterHelper::GetFileFilterPath(CString filterName) const
 }
 
 /** 
+ * @brief Set User's filter folder.
+ * @param [in] filterPath Location of User's filters.
+ */
+void FileFilterHelper::SetUserFilterPath(const CString & filterPath)
+{
+	CString path(filterPath);
+
+	if (path[path.GetLength() - 1] != '\\')
+		path += _T("\\");
+	m_sUserSelFilterPath = path;
+}
+
+/** 
  * @brief Select between mask and filterfile.
  */
 void FileFilterHelper::UseMask(BOOL bUseMask)
@@ -449,14 +462,15 @@ void FileFilterHelper::LoadAllFileFilters()
 	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
 	LoadFileFilterDirPattern(patternsLoaded, m_sGlobalFilterPath + _T("\\*") + FileFilterExt);
 
+	LoadFileFilterDirPattern(patternsLoaded, m_sUserSelFilterPath + _T("\\*") + FileFilterExt);
 
 	// User application data path
-	m_sUserFilterPath = _T("");
+	m_sUserProfilePath.Empty();
 	CString sAppPath;
 	if (GetAppDataPath(sAppPath))
 	{
-		m_sUserFilterPath = sAppPath + _T("\\WinMerge\\Filters");
-		LoadFileFilterDirPattern(patternsLoaded, m_sUserFilterPath + _T("\\*") + FileFilterExt);
+		m_sUserProfilePath = sAppPath + _T("\\WinMerge\\Filters");
+		LoadFileFilterDirPattern(patternsLoaded, m_sUserProfilePath + _T("\\*") + FileFilterExt);
 	}
 	else
 	{
@@ -464,8 +478,8 @@ void FileFilterHelper::LoadAllFileFilters()
 		CString sProfile;
 		if (GetUserProfilePath(sProfile))
 		{
-			m_sUserFilterPath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
-			LoadFileFilterDirPattern(patternsLoaded, m_sUserFilterPath + _T("\\*") + FileFilterExt);
+			m_sUserProfilePath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
+			LoadFileFilterDirPattern(patternsLoaded, m_sUserProfilePath + _T("\\*") + FileFilterExt);
 		}
 	}
 }
@@ -483,6 +497,6 @@ CString FileFilterHelper::GetGlobalFilterPathWithCreate() const
  */
 CString FileFilterHelper::GetUserFilterPathWithCreate() const
 {
-	return paths_EnsurePathExist(m_sUserFilterPath);
+	return paths_EnsurePathExist(m_sUserSelFilterPath);
 }
 

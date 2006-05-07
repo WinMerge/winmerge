@@ -392,6 +392,8 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  * name. Opens new filterfile for editing.
  * @todo (At least) Warn if user puts filter to outside
  * filter directories?
+ * @todo Warn user instead of silently failing when there
+ * are no defined filter folders.
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
@@ -415,10 +417,8 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		if (path.IsEmpty()) return;
 	}
 
-
 	if (path.GetLength() && path[path.GetLength()-1] != '\\')
 		path += '\\';
-
 	
 	CString tmplPath = path + FILE_FILTER_TEMPLATE;
 	

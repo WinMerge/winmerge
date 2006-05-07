@@ -33,7 +33,11 @@ class COptionsMgr;
 // CPropRegistry dialog
 
 /**
- * @brief Property page for registry options; used in options property sheet
+ * @brief Property page for system options; used in options property sheet.
+ *
+ * This class implements property sheet for what we consider System-options.
+ * It allows user to select options like whether to use Recycle Bin for
+ * deleted files and External text editor.
  */
 class CPropRegistry : public CPropertyPage, public IOptionsPanel
 {
@@ -53,6 +57,7 @@ public:
 	BOOL	m_bUseRecycleBin;
 	BOOL	m_bContextAdvanced;
 	BOOL	m_bIgnoreSmallTimeDiff;
+	CString m_strUserFilterPath;
 	//}}AFX_DATA
 
 	// Overrides
@@ -69,6 +74,7 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnBrowseEditor();
+	afx_msg void OnBrowseFilterPath();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -78,7 +84,7 @@ protected:
 
 // Implementation data
 private:
-	COptionsMgr * m_pOptionsMgr;
+	COptionsMgr * m_pOptionsMgr; /**< Pointer to options manager */
 };
 
 //{{AFX_INSERT_LOCATION}}

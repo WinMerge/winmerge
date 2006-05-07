@@ -10,6 +10,7 @@
 #include "paths.h"
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
+#include <shlobj.h>
 
 bool IsSlash(LPCTSTR pszStart, int nPos)
 {
@@ -531,3 +532,30 @@ CString paths_GetWindowsDirectory()
 	return str;
 }
 
+/**
+ * @brief Return User's My Documents Folder.
+ * This function returns full path to User's My Documents -folder.
+ * @param [in] hWindow Parent window.
+ * @return Full path to My Documents -folder.
+ */
+CString paths_GetMyDocuments(HWND hWindow)
+{
+	LPITEMIDLIST pidl;
+	LPMALLOC pMalloc;
+	CString path;
+	TCHAR szPath[MAX_PATH];
+
+	HRESULT rv = SHGetSpecialFolderLocation(hWindow, CSIDL_PERSONAL, &pidl);
+	if (rv == S_OK)
+	{
+		if (SHGetPathFromIDList(pidl, szPath))
+		{
+			path = szPath;
+		}
+
+		SHGetMalloc(&pMalloc);
+		pMalloc->Free(pidl);
+		pMalloc->Release();
+	}
+	return path;
+}

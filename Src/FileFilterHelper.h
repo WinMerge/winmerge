@@ -111,6 +111,7 @@ public:
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
 	CString GetFileFilterName(CString filterPath) const;
 	CString GetFileFilterPath(CString filterName) const;
+	void SetUserFilterPath(const CString & filterPath);
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
@@ -140,7 +141,8 @@ private:
 	CString m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
 	CString m_sGlobalFilterPath;    /*< Path for shared filters */
-	CString m_sUserFilterPath;     /*< Path for user's private filters */
+	CString m_sUserProfilePath;     /*< Path for user's profile folder */
+	CString m_sUserSelFilterPath;     /*< Path for user's private filters */
 
 	CRegExp m_rgx;     /*< Compiled file mask regular expression */
 };

@@ -72,6 +72,7 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
+	DDX_Text(pDX, IDC_FILTER_USER_PATH, m_strUserFilterPath);
 	//}}AFX_DATA_MAP
 }
 
@@ -79,6 +80,7 @@ BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	//{{AFX_MSG_MAP(CPropRegistry)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
+	ON_BN_CLICKED(IDC_FILTER_USER_BROWSE, OnBrowseFilterPath)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -91,6 +93,7 @@ void CPropRegistry::ReadOptions()
 	GetContextRegValues();
 	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
 	m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
+	m_strUserFilterPath = m_pOptionsMgr->GetString(OPT_FILTER_USERPATH);
 }
 
 /** 
@@ -111,6 +114,11 @@ void CPropRegistry::WriteOptions()
 	if (sExtEditor.IsEmpty())
 		sExtEditor = sDefaultEditor;
 	m_pOptionsMgr->SaveOption(OPT_EXT_EDITOR_CMD, sExtEditor);
+
+	CString sFilterPath = m_strUserFilterPath;
+	sFilterPath.TrimLeft();
+	sFilterPath.TrimRight();
+	m_pOptionsMgr->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -234,5 +242,19 @@ void CPropRegistry::AdvancedContextMenuCheck()
 		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(FALSE);
 		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
 		m_bContextAdvanced = FALSE;
+	}
+}
+
+/// Open Folder selection dialog for user to select filter folder.
+void CPropRegistry::OnBrowseFilterPath()
+{
+	CString path;
+	CString title;
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+
+	if (SelectFolder(path, NULL, title, GetSafeHwnd()))
+	{
+		m_strUserFilterPath = path;
+		UpdateData(FALSE);
 	}
 }
