@@ -5,6 +5,8 @@ Add new items to top
  PATCH: [ 1446649 ] Fix MakeResDll ui
   Submitted by Perry
   MakeResDll: MakeResDll.cpp StdAfx.h VsVersionDlg.cpp VsVersionDlg.h
+ Update icon to WinMerge's current icon
+  MakeResDll: Merge.ico
 
 2006-03-08 Perry
  Update MakeResDll readme with current information (MSVC.Net 2003 works
