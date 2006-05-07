@@ -44,7 +44,6 @@ public:
 	void SetCompareStat(CompareStats * pCompareStats);
 	void StartUpdating();
 	void EndUpdating();
-	void CenterToParent();
 	void CloseDialog();
 	void SetDirDoc(CDirDoc *pDirDoc);
 

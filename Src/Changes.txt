@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-07 Kimmo
+ PATCH: [ 1483107 ] Remove dublicated code from folder compare progress dlg
+  Src: DirCompProgressDlg.cpp DirCompProgressDlg.h
+
 2006-05-06 Tim
  BUG: [ 1481053 ] Options: Text Colors should use 3D-Look too
   Src: Merge.rc

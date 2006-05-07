@@ -91,7 +91,6 @@ END_MESSAGE_MAP()
 BOOL DirCompProgressDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
-	CenterToParent();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -209,7 +208,6 @@ void DirCompProgressDlg::OnTimer(UINT nIDEvent)
 void DirCompProgressDlg::StartUpdating()
 {
 	ClearStat();
-	CenterToParent();
 	SetTimer(IDT_UPDATE, UPDATE_INTERVAL, NULL);
 }
 
@@ -236,41 +234,6 @@ void DirCompProgressDlg::OnBnClickedComparisonStop()
 	ASSERT(m_pDirDoc); // Must be set using SetDirDoc()
 	EndUpdating();
 	m_pDirDoc->AbortCurrentScan();
-}
-
-/** 
- * @brief Move dialog to center of dirview
- */
-void DirCompProgressDlg::CenterToParent()
-{
-	CRect rectFrame;
-	CRect rectBar;
-	CWnd * pWnd = GetParent();
-	pWnd->GetWindowRect(&rectFrame);
-	GetClientRect(&rectBar);
-	// Middlepoint of dirview
-	int x = rectFrame.left + (rectFrame.right - rectFrame.left) / 2;
-	int y = rectFrame.top + (rectFrame.bottom - rectFrame.top) / 2;
-	// Reduce by half of dialog's size
-	x -= rectBar.right / 2;
-	y -= rectBar.bottom / 2;
-
-	// Calculate real desktop coordinates (if we have multiple monitors or
-	// virtual desktops
-	CRect dsk_rc;
-	dsk_rc.left = ::GetSystemMetrics(SM_XVIRTUALSCREEN);
-	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
-	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
-	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
-
-	// Only move Open-dialog if its fully visible in new position
-	CPoint ptLeftTop(x, y);
-	CPoint ptRightBottom(rectBar.right, rectBar.bottom);
-	if (dsk_rc.PtInRect(ptLeftTop) && dsk_rc.PtInRect(ptRightBottom))
-	{
-		SetWindowPos(&CWnd::wndTop, x, y, rectBar.right,
-			rectBar.bottom, SWP_NOOWNERZORDER | SWP_NOSIZE );
-	}
 }
 
 /** 
