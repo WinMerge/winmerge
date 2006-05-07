@@ -42,8 +42,9 @@ static LPCTSTR myregvals[] =
 
 static LPCTSTR mysettings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
 
-CVsVersionDlg::CVsVersionDlg(CWnd* pParent /*=NULL*/)
+CVsVersionDlg::CVsVersionDlg(const CStringArray & VsBaseDirs, CWnd* pParent /*=NULL*/)
 : CDialog(CVsVersionDlg::IDD, pParent)
+, m_VsBaseDirs(VsBaseDirs)
 , m_nVersion(VS_NONE)
 , m_bestversion(VS_NONE)
 {
@@ -115,23 +116,38 @@ BOOL CVsVersionDlg::OnInitDialog()
  */
 void CVsVersionDlg::DisableUninstalledVersions()
 {
-	CheckVersion(VS2005);
-	CheckVersion(VS2003);
-	CheckVersion(VS2002);
-	CheckVersion(VS6);
-	CheckVersion(VS5);
+	CheckVersion(VS_2005);
+	CheckVersion(VS_2003);
+	CheckVersion(VS_2002);
+	CheckVersion(VS_6);
+	CheckVersion(VS_5);
 }
 
 /**
  * @brief Disable choice if not available (& keep track of best available)
  */
-void CVsVersionDlg::CheckVersion(int vsnum)
+void CVsVersionDlg::CheckVersion(VS_VERSION vsnum)
 {
 	int vsbutton = mybuttons[vsnum];
-	if (m_sBaseDir[vsnum].IsEmpty())
+	if (m_VsBaseDirs[vsnum].IsEmpty())
 		GetDlgItem(vsbutton)->EnableWindow(FALSE);
 	else if (vsnum > m_bestversion)
 		m_bestversion = vsnum;
+}
+
+/**
+ * @brief Map registry value to enum value, eg, "Net2003" => VS2003
+ */
+VS_VERSION CVsVersionDlg::MapRegistryValue(const CString & val) // static
+{
+	for (int i=0; i<VS_COUNT; ++i)
+	{
+		if (val == myregvals[i])
+		{
+			return (VS_VERSION)i;
+		}
+	}
+	return VS_NONE;
 }
 
 /**
@@ -146,14 +162,7 @@ void CVsVersionDlg::SelectInitialVersion()
 	{
 		CString sVcVersion = reg.ReadString(_T("VcVersion"), _T(""));
 		reg.Close();
-		for (int i=0; i<VS_COUNT; ++i)
-		{
-			if (myregvals[i] == sVcVersion)
-			{
-				m_nVersion = i;
-				break;
-			}
-		}
+		m_nVersion = MapRegistryValue(sVcVersion);
 	}
 	if (m_nVersion == VS_NONE)
 	{
@@ -168,7 +177,7 @@ void CVsVersionDlg::SelectInitialVersion()
 /**
  * @brief check (or uncheck) specified version button (using VS5... enum)
  */
-void CVsVersionDlg::CheckVersionButton(int nversion, bool checked)
+void CVsVersionDlg::CheckVersionButton(VS_VERSION nversion, bool checked)
 {
 	ASSERT(nversion>VS_NONE && nversion<VS_COUNT);
 	int vsbutton = mybuttons[nversion];
@@ -183,11 +192,11 @@ void CVsVersionDlg::UpdateInstallDir()
 	// First uncheck all buttons (otherwise disabled ones don't get cleared)
 	for (int i=0; i<VS_COUNT; ++i)
 	{
-		CheckVersionButton(i, false);
+		CheckVersionButton((VS_VERSION)i, false);
 	}
 	if (m_nVersion>=0 && m_nVersion<VS_COUNT)
 	{
-		CString txt = m_sBaseDir[m_nVersion];
+		CString txt = m_VsBaseDirs[m_nVersion];
 		m_txtInstallDir.SetWindowText(txt);
 		CheckVersionButton(m_nVersion, true);
 	}
@@ -199,31 +208,31 @@ void CVsVersionDlg::UpdateInstallDir()
 
 void CVsVersionDlg::OnVs2005Btn() 
 {
-	m_nVersion = VS2005;
+	m_nVersion = VS_2005;
 	UpdateInstallDir();
 }
 
 void CVsVersionDlg::OnVs2003Btn() 
 {
-	m_nVersion = VS2003;
+	m_nVersion = VS_2003;
 	UpdateInstallDir();
 }
 
 void CVsVersionDlg::OnVs2002Btn() 
 {
-	m_nVersion = VS2002;
+	m_nVersion = VS_2002;
 	UpdateInstallDir();
 }
 
 void CVsVersionDlg::OnVs6Btn() 
 {
-	m_nVersion = VS6;
+	m_nVersion = VS_6;
 	UpdateInstallDir();
 }
 
 void CVsVersionDlg::OnVs5Btn() 
 {
-	m_nVersion = VS5;
+	m_nVersion = VS_5;
 	UpdateInstallDir();
 }
 

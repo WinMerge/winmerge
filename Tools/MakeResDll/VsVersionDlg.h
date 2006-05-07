@@ -23,24 +23,25 @@ class CVsVersionDlg : public CDialog
 {
 // Construction
 public:
-	CVsVersionDlg(CWnd* pParent = NULL);   // standard constructor
+	CVsVersionDlg(const CStringArray & VsBaseDirs, CWnd* pParent = NULL);   // standard constructor
 
-	enum { VS_NONE=-1, VS5=0, VS6, VS2002, VS2003, VS2005, VS_COUNT };
-	CString m_sBaseDir[VS_COUNT];
-	int m_nVersion;
+	VS_VERSION m_nVersion;
+
+	static VS_VERSION MapRegistryValue(const CString & val);
 
 // Implementation
 private:
-	int m_bestversion;
-	prdlg::CMoveConstraint m_constraint; 
+	VS_VERSION m_bestversion;
+	prdlg::CMoveConstraint m_constraint;
+	const CStringArray & m_VsBaseDirs;
 
 private:
 
 	void DisableUninstalledVersions();
-	void CheckVersion(int vsnum);
+	void CheckVersion(VS_VERSION vsnum);
 	void SelectInitialVersion();
 	void UpdateInstallDir();
-	void CheckVersionButton(int nversion, bool checked);
+	void CheckVersionButton(VS_VERSION nversion, bool checked);
 
 // Dialog Data
 	//{{AFX_DATA(CVsVersionDlg)
