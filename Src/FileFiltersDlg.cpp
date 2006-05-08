@@ -394,6 +394,7 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  * filter directories?
  * @todo Warn user instead of silently failing when there
  * are no defined filter folders.
+ * @bug Doesn't fail or inform if copying template file fails.
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
@@ -409,6 +410,11 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		return;
 	}
 
+	CString templatePath(globalPath);
+	if (templatePath[templatePath.GetLength()-1] != '\\')
+		templatePath += "\\";
+	templatePath += FILE_FILTER_TEMPLATE;
+
 	CString path = (globalPath.IsEmpty() ? userPath : globalPath);
 
 	if (!globalPath.IsEmpty() && !userPath.IsEmpty())
@@ -419,8 +425,6 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (path.GetLength() && path[path.GetLength()-1] != '\\')
 		path += '\\';
-	
-	CString tmplPath = path + FILE_FILTER_TEMPLATE;
 	
 	CString s;
 	if (SelectFile(s, path, title, IDS_FILEFILTER_FILEMASK, FALSE))
@@ -443,7 +447,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			s += FileFilterExt;
 		}
 
-		CopyFile(tmplPath, s, TRUE);
+		CopyFile(templatePath, s, TRUE);
 		theApp.m_globalFileFilter.EditFileFilter(s);
 		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
 		pMgr->AddFilter(s);

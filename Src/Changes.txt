@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-08 Kimmo
+ PATCH: [ 1483344 ] Fix creating private file filters
+  Src: FileFiltersDlg.cpp
+
 2006-05-07 Kimmo
  PATCH: [ 1483107 ] Remove dublicated code from folder compare progress dlg
   Src: DirCompProgressDlg.cpp DirCompProgressDlg.h
