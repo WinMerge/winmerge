@@ -17,14 +17,25 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
+/**
+ * @brief Global name for mutes protecting log file access.
+ */
 static const TCHAR MutexName[] = _T("WINMERGE_LOG_MUTEX");
 
 /**
+ * @brief Constant for Megabyte.
+ */
+static const int MEGA = 1024 * 1024;
+
+/**
  * @brief Constructor
+ * @param [in] szLogName Logfile name (not including path).
+ * @param [in] szLogPath Folder for log file.
+ * @param [in] bDeleteExisting Do we delete existing log file with same name?
  */
 CLogFile::CLogFile(LPCTSTR szLogName /*= NULL*/,
 	 LPCTSTR szLogPath /*= NULL*/, BOOL bDeleteExisting /*=FALSE*/)
-	: m_nMaxSize(1024 * 1024) // 1MB
+	: m_nMaxSize(MEGA)
 	, m_bEnabled(FALSE)
 	, m_nDefaultLevel(LOGLEVEL::LMSG)
 	, m_nMaskLevel(LOGLEVEL::LALL)
@@ -34,7 +45,7 @@ CLogFile::CLogFile(LPCTSTR szLogName /*= NULL*/,
 }
 
 /**
- * @brief Destructor
+ * @brief Destructor.
  */
 CLogFile::~CLogFile()
 {
@@ -43,11 +54,15 @@ CLogFile::~CLogFile()
 }
 
 /**
- * @brief Set logfilename
+ * @brief Set logfilename.
+ * @param [in] strFile Filename of logfile.
+ * @param [in] strPath Folder for logfile.
  * @param bDelExisting If TRUE, existing logfile with same name
  * is deleted.
+ * @return Full path to logfile.
+ * @note If strPath param is empty then system TEMP folder is used.
  */
-CString CLogFile::SetFile(CString strFile, CString strPath,
+CString CLogFile::SetFile(const CString & strFile, const CString & strPath,
 	BOOL bDelExisting /*= FALSE*/)
 {
 	TCHAR temp[MAX_PATH] = {0};
@@ -73,7 +88,8 @@ CString CLogFile::SetFile(CString strFile, CString strPath,
 }
 
 /**
- * @brief Enable/Disable writing log
+ * @brief Enable/Disable writing log.
+ * @param [in] bEnable If TRUE logging is enabled.
  */
 void CLogFile::EnableLogging(BOOL bEnable)
 {
@@ -96,6 +112,7 @@ void CLogFile::EnableLogging(BOOL bEnable)
 
 /**
  * @brief Return default level for log messages
+ * @return Default log level.
  */
 UINT CLogFile::GetDefaultLevel() const
 {
@@ -104,6 +121,7 @@ UINT CLogFile::GetDefaultLevel() const
 
 /**
  * @brief Set default level for log messages
+ * @param [in] logLevel New default message loglevel.
  */
 void CLogFile::SetDefaultLevel(UINT logLevel)
 {
@@ -114,6 +132,7 @@ void CLogFile::SetDefaultLevel(UINT logLevel)
  * @brief Get log message mask.
  *
  * Mask allows to select which level messages are written to log.
+ * @return Current mask Level.
  */
 UINT CLogFile::GetMaskLevel() const
 {
@@ -121,7 +140,8 @@ UINT CLogFile::GetMaskLevel() const
 }
 
 /**
- * @brief Set log message mask
+ * @brief Set log message mask.
+ * @param [in] maskLevel New masking level for outputted messages.
  */
 void CLogFile::SetMaskLevel(UINT maskLevel)
 {
@@ -129,7 +149,9 @@ void CLogFile::SetMaskLevel(UINT maskLevel)
 }
 
 /**
- * @brief Write formatted message with default log level
+ * @brief Write formatted message with default log level.
+ * @param [in] pszFormat Message format specifiers.
+ * @return Nonzero if LOGLEVEL::LSILENTVERIFY flag is set.
  */
 UINT CLogFile::Write(LPCTSTR pszFormat, ...)
 {
@@ -144,7 +166,11 @@ UINT CLogFile::Write(LPCTSTR pszFormat, ...)
 }
 
 /**
- * @brief Write message from resource with default level
+ * @brief Write message from resource with default level.
+ * This function loads messageformat specifier string from
+ * resource. And applies given parameters to it.
+ * @param [in] idFormatString Resource id for message.
+ * @return Nonzero if LOGLEVEL::LSILENTVERIFY flag is set.
  */
 UINT CLogFile::Write(DWORD idFormatString, ...)
 {
@@ -161,7 +187,10 @@ UINT CLogFile::Write(DWORD idFormatString, ...)
 }
 
 /**
- * @brief Write formatted message to log with given level
+ * @brief Write formatted message to log with given level.
+ * @param [in] level Level for message.
+ * @param [in] pszFormat Messageformat specifier.
+ * @return Nonzero if LOGLEVEL::LSILENTVERIFY flag is set.
  */
 UINT CLogFile::Write(UINT level, LPCTSTR pszFormat, ...)
 {
@@ -176,7 +205,10 @@ UINT CLogFile::Write(UINT level, LPCTSTR pszFormat, ...)
 }
 
 /**
- * @brief Write message from resource to log with given level
+ * @brief Write message from resource to log with given level.
+ * @param [in] level Messagelevel for this message.
+ * @param [in] idFormatString ResourceID for message.
+ * @return Nonzero if LOGLEVEL::LSILENTVERIFY flag is set.
  */
 UINT CLogFile::Write(UINT level, DWORD idFormatString, ...)
 {
@@ -193,8 +225,10 @@ UINT CLogFile::Write(UINT level, DWORD idFormatString, ...)
 }
 
 /**
- * @brief Format and Write message to log.
- * @note this function is used only internally by other write-functions.
+ * @brief Internal function for writing the messages.
+ * @param [in] level Message's level.
+ * @param [in] pszFormat Message's format specifier.
+ * @param [in] arglist Message argumets to format string.
  */
 void CLogFile::WriteV(UINT level, LPCTSTR pszFormat, va_list arglist)
 {
@@ -217,8 +251,8 @@ void CLogFile::WriteV(UINT level, LPCTSTR pszFormat, va_list arglist)
 }
 
 /**
- * @brief Write new line to log.
- * @note this function is used only internally by other write-functions.
+ * @brief Internal function to write new line to log-file.
+ * @param [in] msg Message to add to log-file.
  */
 void CLogFile::WriteRaw(LPCTSTR msg)
 {
@@ -241,24 +275,10 @@ void CLogFile::WriteRaw(LPCTSTR msg)
 	}
 }
 
-void CLogFile::WriteError(CString JobID, CString ProcessID, CString Event, long ecode, CString CIndex)
-{
-	if (!m_bEnabled)
-		return;
-	
-	JobID.TrimRight();
-	ProcessID.TrimRight();
-	Event.TrimRight();
-	CIndex.TrimRight();
-	
-	CString sWriteString;
-	
-	sWriteString.Format(_T("%s %s %s %ld %s"),JobID, ProcessID, Event, ecode, CIndex);
-	Write(sWriteString);
-}
-
 /**
  * @brief Prune log file if it exceeds max given size.
+ * @param [in] f Pointer to FILE structure.
+ * @todo This is not safe function at all. We should check return values!
  */
 void CLogFile::Prune(FILE *f)
 {
@@ -283,7 +303,9 @@ void CLogFile::Prune(FILE *f)
 }
 
 /**
- * @brief Return message prefix for given loglevel.
+ * @brief Return message prefix string for given loglevel.
+ * @param [in] level Level to query prefix string.
+ * @return Pointer to string containing prefix.
  */
 LPCTSTR CLogFile::GetPrefix(UINT level) const
 {

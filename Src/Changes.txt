@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-08 Kimmo
  PATCH: [ 1483344 ] Fix creating private file filters
   Src: FileFiltersDlg.cpp
+ PATCH: [ 1483486 ] Add commenting for CLogFile
+  Src/Common: LogFile.cpp LogFile.h
 
 2006-05-07 Kimmo
  PATCH: [ 1483107 ] Remove dublicated code from folder compare progress dlg
