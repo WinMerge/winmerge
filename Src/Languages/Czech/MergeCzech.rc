@@ -145,7 +145,7 @@ BEGIN
         MENUITEM "&Otevøít...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Otevøít pro&jekt...\tCtrl+J", ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
+        MENUITEM "Uložit &projekt...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Konec",                      ID_APP_EXIT
     END
@@ -379,12 +379,12 @@ BEGIN
             MENUITEM "&Kopírovat s èísly øádkù\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        POPUP "&Bookmarks"
+        POPUP "Zá&ložky"
         BEGIN
-            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
-            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "Pøepnout &záložku\tCtrl+F2",   ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Další záložka\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Pøedchozí záložka\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "Zrušit &všechny záložky",      ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "Pø&ejít na...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -399,7 +399,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Zobrazit netisknutelné &znaky", ID_VIEW_WHITESPACE
         MENUITEM "Zobrazit rozdíly v øá&dcích", ID_VIEW_LINEDIFFS
-        MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
+        MENUITEM "Zobrazit èísla øád&kù",       ID_VIEW_LINENUMBERS
         MENUITEM "Za&lamovat øádky",            ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Za&mìnit panely",             ID_VIEW_SWAPPANES
@@ -1185,7 +1185,7 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
+    PUSHBUTTON      "Z&kouška",IDC_FILTERFILE_TEST_BTN,120,114,50,14
     PUSHBUTTON      "&Nový...",IDC_FILTERFILE_NEWBTN,180,114,50,14
     PUSHBUTTON      "&Upravit...",IDC_FILTERFILE_EDITBTN,240,114,50,14
     PUSHBUTTON      "O&dstranit...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
@@ -1300,7 +1300,7 @@ BEGIN
     LTEXT           " Kategorie",IDC_STATIC,7,7,96,13,SS_CENTERIMAGE |
                     SS_SUNKEN
     PUSHBUTTON      "&Naèíst...",IDC_TREEOPT_IMPORT,7,237,50,14
-    PUSHBUTTON      "&Uložit...",IDC_TREEOPT_EXPORT,62,237,50,14
+    PUSHBUTTON      "&Uložit...",IDC_TREEOPT_EXPORT,61,237,50,14
 END
 
 IDD_PROPPAGE_COLORS_SYNTAX DIALOGEX 0, 0, 235, 214
@@ -1515,7 +1515,7 @@ BEGIN
     CONTROL         "Výchozí systémové barvy normálního textu",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,14,148,10
-    GROUPBOX        "Vlastní barvy textu",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+    GROUPBOX        "Vlastní barvy textu",IDC_CUSTOM_COLORS_GROUP,25,33,159,
                     111
     LTEXT           "Okolí textu:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
     LTEXT           "Øádný text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
@@ -1542,22 +1542,22 @@ END
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Paths"
+CAPTION "Cesty"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    RTEXT           "V&levo:",IDC_STATIC,7,11,40,8
     EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
-    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    PUSHBUTTON      "&Procházet...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "Vp&ravo:",IDC_STATIC,7,28,40,8
     EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
-    RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
+    PUSHBUTTON      "Pr&ocházet...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    RTEXT           "&Filtr:",IDC_STATIC,7,46,40,8
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
-    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+    PUSHBUTTON      "&Vybrat...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "Vèetnì pod&složek",IDC_PROJ_INC_SUBFOLDERS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
-    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
-    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+    PUSHBUTTON      "&Naèíst...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "&Uložit...",IDC_PROJ_SAVE,265,76,50,14
 END
 
 #ifndef _MAC
@@ -1738,7 +1738,7 @@ BEGIN
     ID_FILE_OPENPROJECT     "Otevøe projekt ze souboru\nOtevøít projekt (Ctrl+J)"
     IDS_UNK_ERROR_READING_PROJECT "Neznámá chyba pøi pokusu o otevøení souboru projektu"
     IDS_UNK_ERROR_SAVING_PROJECT "Neznámá chyba pøi pokusu o uložení souboru projektu"
-    IDS_PROJFILEDLG_CAPTION "Project File"
+    IDS_PROJFILEDLG_CAPTION "Projekt"
     ID_FILE_SAVEPROJECT     "Uloží aktuální cesty a volby do souboru projektu\nUložit projekt"
 END
 
@@ -2725,7 +2725,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SUFFIX_BYTE         " B"
-    IDS_SUFFIX_KILO         " KB"
+    IDS_SUFFIX_KILO         " kB"
     IDS_SUFFIX_MEGA         " MB"
     IDS_SUFFIX_GIGA         " GB"
     IDS_SUFFIX_TERA         " TB"
@@ -2758,10 +2758,10 @@ BEGIN
     ID_REFRESH              "Obnoví zobrazení\nObnovit (F5)"
     ID_EDIT_COPY_LINENUMBERS "Zkopíruje vybrané øádky do schránky a pøidá jim na zaèátek jejich èísla øádkù"
     ID_DIR_RESCAN            "Obnoví vybrané položky"
-    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
-    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
-    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
-    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
+    ID_EDIT_TOGGLE_BOOKMARK     "Založí nebo zruší záložku"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Pøejde na další záložku"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Pøejde na pøedchozí záložku"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Zruší všechny záložky"
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2787,7 +2787,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Umožní zvolit jazyk uživatelského prostøedí aplikace\nJazyk"
     ID_VIEW_LINEDIFFS       "Ukáže rozdíly v øádcích odlišnou barvou\nRozdíly v øádcích"
     ID_VIEW_SWAPPANES       "Zamìní umístìní panelù s porovnáním souborù"
-    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
+    ID_VIEW_LINENUMBERS     "Zobrazí nebo skryje èísla øádkù\nZobrazit èísla øádkù"
     ID_VIEW_WORDWRAP        "Pøepíná zalamování øádkù\nZalamovat øádky"
 END
 

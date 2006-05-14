@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-14 Kimmo
+ PATCH: [ 1485861 ] Czech translation - update
+  Submitted by: Jan Hryz
+  Src/Languages/Czech/MergeCzec.rc
+
 2006-05-08 Kimmo
  PATCH: [ 1483344 ] Fix creating private file filters
   Src: FileFiltersDlg.cpp
