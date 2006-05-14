@@ -3,6 +3,59 @@
   <title>What's new in release</title>
 
   <sect2>
+    <title>What's new in 2.5</title>
+
+    <para>WinMerge 2.5 is our development version. It contains lots of fixes
+    and improvements done after 2.4 releases. This list contains few most
+    important ones:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Simpler and auto-closing folder compare progress bar</para>
+      </listitem>
+
+      <listitem>
+        <para>Line numbers in file compare</para>
+      </listitem>
+
+      <listitem>
+        <para>Word-wrap in file compare</para>
+      </listitem>
+
+      <listitem>
+        <para>GUI for bookmarks in file compare</para>
+      </listitem>
+
+      <listitem>
+        <para>Better character-level difference indication in file
+        compare</para>
+      </listitem>
+
+      <listitem>
+        <para>New Short size- and EOL type- columns in folder compare</para>
+      </listitem>
+
+      <listitem>
+        <para>Merge difference which has cursor inside it (no need to select
+        difference first)</para>
+      </listitem>
+
+      <listitem>
+        <para>Improved Project file saving and editing</para>
+      </listitem>
+
+      <listitem>
+        <para>Creating patch file from multiple files (selected in folder
+        compare)</para>
+      </listitem>
+
+      <listitem>
+        <para>User-defined folder for file filters</para>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2>
     <title>What's new in 2.4</title>
 
     <para>WinMerge 2.4 is an important update to 2.2. Great new features and

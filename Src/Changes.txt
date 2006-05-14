@@ -14,6 +14,8 @@ Add new items to top.
   Docs/Users/Manual/screenshots: OpenDlg1.gif
  PATCH: [ 1484013 ] Manual: small changes to Introduction chapter
   Docs/Users/Manual: Introduction.xml
+ PATCH: [ 1484092 ] Manual: preliminary whats new list for 2.5
+  Docs/Users/Manual: Whatsnew_2_1.xml
 
 2006-05-08 Kimmo
  PATCH: [ 1483344 ] Fix creating private file filters
