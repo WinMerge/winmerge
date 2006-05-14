@@ -18,6 +18,8 @@ Add new items to top.
   Docs/Users/Manual: Whatsnew_2_1.xml
  PATCH: [ 1484101 ] Manual: Add index
   Docs/Users/Manual: WinMerge_help.xml
+ PATCH: [ 1484142 ] Manual: update some options descriptions
+  Docs/Users/Manual: Configuration.xml
 
 2006-05-08 Kimmo
  PATCH: [ 1483344 ] Fix creating private file filters
