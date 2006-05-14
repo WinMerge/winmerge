@@ -5,9 +5,13 @@
   <sect2>
     <title>Opening Files and Folders</title>
 
-    <para>Start <productname>WinMerge</productname> and either select
-    <guimenuitem>Open</guimenuitem> from the <guimenu>File</guimenu>-menu, or
-    click the yellow folder icon on the toolbar, or press <keycombo>
+    <indexterm>
+      <primary>Open Dialog</primary>
+    </indexterm>
+
+    <para>Start WinMerge and either select <guimenuitem>Open</guimenuitem>
+    from the <guimenu>File</guimenu>-menu, or click the yellow folder icon on
+    the toolbar, or press <keycombo>
         <keycap>Ctrl</keycap>
 
         <keycap>O</keycap>
@@ -19,9 +23,8 @@
         </imageobject>
       </mediaobject></para>
 
-    <para>Two topmost fields in Open dialog are for selecting
-    files/directories to compare. Comparison objects can be specified in one
-    of four ways:</para>
+    <para>Two topmost fields in Open dialog are for selecting files/folders to
+    compare. Comparison objects can be specified in one of four ways:</para>
 
     <para><orderedlist>
         <listitem>
@@ -48,9 +51,11 @@
     <guibutton>Browse</guibutton>-button is selected) by browsing into folder
     and selecting <guibutton>Open</guibutton>-button. It does not require
     selecting a file. When <guilabel>Filename</guilabel> field in Windows Open
-    dialog contains text "<guilabel>Directory Selection</guilabel>" selecting
-    <guibutton>Open</guibutton> button selects currently visible folder. Open
-    dialog always shows backslash "\" at end of folder name.</para>
+    dialog contains text "<guilabel>Folder Selection</guilabel>" selecting
+    <guibutton>Open</guibutton> button selects currently visible folder. Also
+    if filename in Windows Open dialog does not match any real file parent
+    folder is selected. Open dialog always shows backslash "\" at end of
+    folder name.</para>
 
     <para><note>
         <para>There can be only file &amp; file or folder &amp; folder
@@ -64,8 +69,8 @@
     listing one or more extensions restricts compare to only files with those
     extensions. Multiple extensions are separated with space or semicolon. For
     example, entering the file filter <filename>*.cpp;*.hpp;*.c;*.h</filename>
-    will cause WinMerge to ignore all files except C and C++ source
-    files.</para>
+    will cause WinMerge to ignore all files except C and C++ source files. You
+    can only filter by file extension, not by filename.</para>
 
     <para>File filters are a much more powerful way (than extension filters)
     to select files and folders. Use the <guibutton>Select</guibutton> button
@@ -81,10 +86,14 @@
     <para>Unpacker selection is for plugins.</para>
 
     <tip>
-      <para>Status of currently selected files or directories is shown with
-      text in bottom of the dialog. If one of the paths is invalid this text
-      tells which one it is.</para>
+      <para>Status of currently selected files or folders is shown with text
+      in bottom of the dialog. If one of the paths is invalid this text tells
+      which one it is.</para>
     </tip>
+
+    <para>Project files are one handy way to open frequently used folders. See
+    <link linkend="OpenPaths">Opening Files and Folders</link> for more
+    information about project files.</para>
   </sect2>
 
   <sect2>
