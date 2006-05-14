@@ -145,7 +145,7 @@ BEGIN
         MENUITEM "&Öppna...\tCtrl+O",           ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
+        MENUITEM "Sp&ara Projekt...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Avsluta",                    ID_APP_EXIT
     END
@@ -379,12 +379,12 @@ BEGIN
             MENUITEM "&Kopiera med radnummer\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        POPUP "&Bookmarks"
+        POPUP "&Bokmärken"
         BEGIN
-            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
-            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "&Växla Bokmärke\tCtrl+F2",     ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Nästa Bokmärke\tF2",          ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Tidigare Bokmärke\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Ta bort alla Bokmärken",      ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "&Gå till...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -399,7 +399,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Visa &mellanslag",            ID_VIEW_WHITESPACE
         MENUITEM "Visa &radskillnader",         ID_VIEW_LINEDIFFS
-        MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
+        MENUITEM "Visa rad&nummer",             ID_VIEW_LINENUMBERS
         MENUITEM "R&adbryt rader",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Vä&xla placering",                 ID_VIEW_SWAPPANES
@@ -741,7 +741,7 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "&Tillåt bara en upplaga att köra",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    LTEXT           "Ö&ppna-dialog Auto-Komplettera:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Starta flera jämförfönster för",IDC_STATIC,7,87,
@@ -1542,22 +1542,22 @@ END
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Paths"
+CAPTION "Sökvägar"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    RTEXT           "&Vänster:",IDC_STATIC,7,11,40,8
     EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
-    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    PUSHBUTTON      "Bläddra...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "&Höger:",IDC_STATIC,7,28,40,8
     EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    PUSHBUTTON      "Bläddra...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
     RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
-    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+    PUSHBUTTON      "Välj...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "&Inkludera underkataloger",IDC_PROJ_INC_SUBFOLDERS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
-    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
-    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+    PUSHBUTTON      "Öppna...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "Spara...",IDC_PROJ_SAVE,265,76,50,14
 END
 
 #ifndef _MAC
@@ -1738,7 +1738,7 @@ BEGIN
     ID_FILE_OPENPROJECT     "Öppna Projektfil\nProjektfil(Ctrl+J)"
     IDS_UNK_ERROR_READING_PROJECT "Okänt fel vid försök att öppna projektfil"
     IDS_UNK_ERROR_SAVING_PROJECT "Okänt fel vid försök att spara projektfil"
-    IDS_PROJFILEDLG_CAPTION "Project File"
+    IDS_PROJFILEDLG_CAPTION "Projektfil"
     ID_FILE_SAVEPROJECT     "Sparar aktuella sökvägar och inställningar till Projektfil\nSpara Projektfil"
 END
 
@@ -1865,8 +1865,8 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
-    IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
+    IDS_SPLASH_DEVELOPERS   "Utvecklare:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
+    IDS_SPLASH_GPLTEXT      "WinMerge kommer med ABSOLUT INGA GARANTIER. Detta är fri programvara och du är välkommen att vidaredistribuera den under vissa omständigheter; se GNU Public License i Hjälpmenyn för detaljer."
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES
@@ -1971,9 +1971,9 @@ END
 // REPORT FILES
 STRINGTABLE
 BEGIN
-    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+    IDS_TEXT_REPORT_FILES   "Text-filer (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alla filer (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML-filer (*.htm,*.html)|*.htm;*.html|Alla filer (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML-filer (*.xml)|*.xml|Alla filer (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2318,7 +2318,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Komma-separerad lista"
     IDS_REPORT_TABLIST      "Tabb-separerad lista"
     IDS_REPORT_SIMPLEHTML   "Enkel HTML"
-    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_SIMPLEXML    "Enkel XML"
     IDS_REPORT_FILEOVERWRITE
                             "Rapportfilen finns redan. Vill du skriva över denna fil?"
     IDS_REPORT_ERROR        "Fel vid skapande av rapport:\n%1"
@@ -2765,10 +2765,10 @@ BEGIN
     ID_REFRESH              "Uppdaterar innehållet\nUppdatera (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopierar valda rader till klippboken och adderar radnummer till radernas start"
     ID_DIR_RESCAN            "Uppdaterar valda objekt"
-    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
-    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
-    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
-    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
+    ID_EDIT_TOGGLE_BOOKMARK     "Växlar Bokmärke"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Går till nästa Bokmärke"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Går till tidigare Bokmärke"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Tar bort alla Bokmärken"
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2794,7 +2794,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Väljer språk för användargränssnittet\nSpråk"
     ID_VIEW_LINEDIFFS       "Visar skillnader inom rader med olika färg\nVisa radskillnad"
     ID_VIEW_SWAPPANES       "Växlar placering på de två filerna"
-    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
+    ID_VIEW_LINENUMBERS     "Visar radnummer\nVisa radnummer"
     ID_VIEW_WORDWRAP        "Startar radbrytning\nRadbrytning"
 END
 
@@ -2889,9 +2889,9 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
-    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU        "From MRU list"
+    IDS_AUTOCOMPLETE_DISABLED   "Avstängd"
+    IDS_AUTOCOMPLETE_FILE_SYS   "Från Filsystem"
+    IDS_AUTOCOMPLETE_MRU        "Från Senast Använda filer"
 END
 
 // END STRINGS SYNCHRO

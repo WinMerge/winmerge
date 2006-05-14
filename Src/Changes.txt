@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1485861 ] Czech translation - update
   Submitted by: Jan Hryz
   Src/Languages/Czech/MergeCzec.rc
+ PATCH: [ 1483553 ] Swedish MergeSwedish.rc 1.304 2.5.3.7 update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-05-08 Kimmo
  PATCH: [ 1483344 ] Fix creating private file filters
