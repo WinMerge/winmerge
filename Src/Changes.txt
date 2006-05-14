@@ -12,6 +12,8 @@ Add new items to top.
  PATCH: [ 1484004 ] Manual: new Open-dialog screenshot and small fixes
   Docs/Users/Manual: Quick_start.xml
   Docs/Users/Manual/screenshots: OpenDlg1.gif
+ PATCH: [ 1484013 ] Manual: small changes to Introduction chapter
+  Docs/Users/Manual: Introduction.xml
 
 2006-05-08 Kimmo
  PATCH: [ 1483344 ] Fix creating private file filters

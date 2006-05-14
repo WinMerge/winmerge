@@ -23,11 +23,16 @@
 
   <para>Goal of WinMerge development is to make comparing and synch/merge of
   directories and files easy and fast. While maintaining maximum reliability.
-  Easiness reduces user errors. Version 2.2 was already good and version 2.4
-  still improves in many areas.</para>
+  Easiness reduces user errors. Latest 2.4 version was already good and
+  popular version. In-development version 2.5 still improves in many areas.
+  Note that 2.5 releases (beta or experimental) are not yet considered
+  production-level releases.</para>
 
-  <para>Please note that WinMerge is not freeware, but it is <ulink
-  url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licenced.</para>
+  <para>Please note that WinMerge is not a freeware, but it is <ulink
+  url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licenced. We have
+  given you a good tool for free, so please follow our licence and submit your
+  improvements back to us. We are happy to get help improving WinMerge
+  further. It is advantage for all WinMerge users.</para>
 
   <sect2>
     <title>WinMerge versions</title>
@@ -39,26 +44,43 @@
     <sect3>
       <title>Stable versions</title>
 
+      <indexterm>
+        <primary>Stable versions</primary>
+      </indexterm>
+
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable
       versions</ulink> are recommended for most users. If you are unsure about
       what version to use - use latest stable version. Stable versions have
-      even second number, for example 2.0, 2.2, 2.4</para>
+      even second number, for example 2.2, 2.4</para>
     </sect3>
 
     <sect3>
       <title>Beta versions</title>
+
+      <indexterm>
+        <primary>Beta versions</primary>
+      </indexterm>
 
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta
       versions</ulink> are for people who want to test latest features and
       improvements done after last stable version. Beta versions are not so
       extensively tested as stable versions are and probably have some bugs.
-      Beta versions have odd second number, for example 2.1 and 2.3</para>
+      Beta versions have odd second number, for example 2.3 and 2.5. Beta
+      versions can be used in production, they are not expected to have major
+      bugs. But there is always a risk with using beta-level release, so
+      consider it carefully. We have tried to release new stable series once a
+      year, so it may be worth waiting for few months for next stable
+      release...</para>
     </sect3>
 
     <sect3>
       <title>Experimental versions</title>
+
+      <indexterm>
+        <primary>Experimental versions</primary>
+      </indexterm>
 
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental
@@ -77,6 +99,12 @@
 
   <sect2>
     <title>Getting support and reporting bugs</title>
+
+    <indexterm>
+      <primary>Support</primary>
+
+      <secondary>Reporting bugs</secondary>
+    </indexterm>
 
     <para><ulink
     url="http://sourceforge.net/forum/forum.php?forum_id=41637">Open
@@ -117,6 +145,10 @@
   <sect2>
     <title>WinMerge source codes and development</title>
 
+    <indexterm>
+      <primary>WinMerge development</primary>
+    </indexterm>
+
     <para>WinMerge source codes are available in <ulink
     url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
     page and from <ulink
@@ -125,14 +157,17 @@
     and alter them. If you find (and fix) bugs, improve something etc, please
     submit your changes back to us as <ulink
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patches</ulink>
-    and help improve this product!</para>
+    and help improve this product! If you publish your altered version, you
+    are required to publish changes source code too, it is what <ulink
+    url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licence is about.
+    Please respect it.</para>
 
-    <para>While WinMerge development has been fast in last two years, all this
-    work is done by people in their spare time. Nobody gets paid for improving
-    WinMerge. We try to fix bugs as we find them or somebody reports them to
-    us. We really try - we use WinMerge too. But there is absolutely no
-    promises for new features. We always appreciate any help with WinMerge, be
-    it testing, documenting, translating or coding.</para>
+    <para>While WinMerge development has been fast in last couple of years,
+    all this work is done by people in their spare time. Nobody gets paid for
+    improving WinMerge. We try to fix bugs as we find them or somebody reports
+    them to us. We really try - we use WinMerge too. But there is absolutely
+    no promises for new features. We always appreciate any help with WinMerge,
+    be it testing, documenting, translating or coding.</para>
 
     <sect3>
       <title>Participating to WinMerge development</title>
