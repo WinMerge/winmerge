@@ -1,3 +1,9 @@
+2006-05-15 Tim
+ TODO: [ 1483281 ] Update installer graphics for new icon
+  InnoSetup/Art: Large Logo.bmp Small Logo.bmp
+  InnoSetup/Art deleted files: Large Logo.rle Small Logo.rle
+  InnoSetup/Art/Src deleted files: Large Logo.ufo Small Logo.ico
+
 2006-04-18 Kimmo
  PATCH: [ 1471760 ] Remove plugins.txt reference from component selection
   InnoSetup/Languages: *.isl
