@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-15 Kimmo
  PATCH: [ 1489133 ] Manual: document new filter location(s)
   Docs/Users/Manual: Filters.xml
+ PATCH: [ 1489091 ] Enable Help/Index
+  Src: MainFrm.cpp
 
 2006-05-15 Gal
  PATCH: [ 1488637 ] PHP/ASP Syntax Highlighting Fix (Bug 1441643)

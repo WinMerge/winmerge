@@ -1493,7 +1493,7 @@ void CMainFrame::OnHelpIndex()
  */
 void CMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI) 
 {
-	pCmdUI->Enable(FALSE);
+	pCmdUI->Enable(TRUE);
 }
 
 /**
