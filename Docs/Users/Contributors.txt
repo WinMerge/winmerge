@@ -20,6 +20,8 @@ Other developers:
 * Jochen Tucht
 * Kimmo Varis
 
+Graphic Design:
+* Alexander Skinner
 
 Localization:
 * Bulgarian:	
@@ -110,7 +112,6 @@ Other Contributors (code, ideas, testing..):
 * Vincent Osele
 * Michael Richter
 * Markus Rollmann
-* Alexander Skinner (logos, icons, splashscreen)
 * Philippe Verdy
 * Vikrant
 * Gilbert Wellisch
