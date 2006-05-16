@@ -2699,7 +2699,10 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
           ExpandChars (pszChars, 0, nLineLength, line, 0);
         }
 
-      line += CString(' ', maxLineChars - line.GetLength());
+      // Append whitespace chars to end of line
+      int nAppendedChars = maxLineChars - line.GetLength();
+      if (nAppendedChars > 0)
+        line += CString(' ', nAppendedChars);
 
       BOOL bDrawWhitespace = FALSE;
       COLORREF crBkgnd, crText;

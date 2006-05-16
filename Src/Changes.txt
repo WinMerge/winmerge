@@ -12,6 +12,9 @@ Add new items to top.
  BUG: [ 1487856 ] Long delay if many language dlls
   Src: Merge.cpp
   Src/Common: LanguageSelect.cpp LanguageSelect.h
+ BUG: [ 1487854 ] ASSERT in CCrystalTextView::OnPrint
+  Fix suggested by Mallato
+  Src/editlib: ccrystaltextview.cpp
 
 2006-05-15 Gal
  PATCH: [ 1488637 ] PHP/ASP Syntax Highlighting Fix (Bug 1441643)
