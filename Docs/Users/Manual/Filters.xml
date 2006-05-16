@@ -3,24 +3,24 @@
   <title>Filters</title>
 
   <para>There are two kinds of filters in WinMerge: file filters for filtering
-  files and directories in directory compare and line filters for ignoring
-  lines from files before comparing.</para>
+  files and folders in folder compare and line filters for ignoring lines from
+  files before comparing.</para>
 
   <sect2>
     <title>Regular expressions</title>
 
     <para>Filters are based on regular expressions (regexps). Each line filter
-    or file filter rule is regexp which is matched against file/directory name
-    or line.</para>
+    or file filter rule is regexp which is matched against file/folder name or
+    line.</para>
 
     <para>Regexps can be very complex to read. Luckily most file filtering
-    needs are for file extensions. Filters installed with WinMerge show how to
-    filter file extensions.</para>
+    needs are for file extensions. File filters installed with WinMerge have
+    many useful examples.</para>
 
     <sect3>
       <title>Help with regexps</title>
 
-      <para>There are many guides and help sites in Web:</para>
+      <para>There are many guides and help sites in Web, for example:</para>
 
       <variablelist>
         <varlistentry>
@@ -66,13 +66,13 @@
     <title>File filters</title>
 
     <para>A file filter is a set of rules saved to one file. Every file and
-    directory is tested against all these rules before comparing. Files and
-    directories that match the rules are excluded if it is an inclusive
-    filter, or included if it is an exclusive filter.</para>
+    folder is tested against all these rules before comparing. Files and
+    folders that match the rules are excluded if it is an inclusive filter, or
+    included if it is an exclusive filter.</para>
 
     <tip>
-      <para>Ignored items have "<guilabel>Skipped</guilabel>" status in
-      directory compare. User can select them to visible or hidden from
+      <para>Ignored items have "<guilabel>Skipped</guilabel>" status in folder
+      compare. User can select them to visible or hidden from
       <guimenu>View</guimenu> menu. Usually its wise to keep skipped items
       hidden.</para>
     </tip>
@@ -83,36 +83,47 @@
         <guimenu>Tools</guimenu>
 
         <guimenuitem>Filters</guimenuitem>
-      </menuchoice>. Also empty filter can be selected when no directories or
+      </menuchoice>. Also empty filter can be selected when no folders or
     files are ignored.</para>
 
     <sect3>
       <title>Filter files</title>
 
       <para>Filter files are normal text files, with an extension of <filename
-      class="extension">.flt</filename>. Filter files must be placed in
-      either:</para>
+      class="extension">.flt</filename>. Files have defined format which is
+      explained later in this chapter. Filters-dialog allows creating new
+      filter files based on template file. Filter files can be created from
+      the scrach but using template file is the recommended way to create a
+      new filter.</para>
+
+      <para>Filter files have two possible locations:</para>
 
       <itemizedlist>
         <listitem>
-          <para>"<filename class="directory">Filters</filename>" subdirectory
-          in the WinMerge program directory. This is the recommended
-          place.</para>
+          <para>"<filename class="directory">Filters</filename>" subfolder in
+          the WinMerge program folder. E.g. <filename
+          class="directory">C:\Program
+          Files\WinMerge\Filters</filename>.</para>
         </listitem>
 
         <listitem>
-          <para>"<filename class="directory">Winmerge/Filters</filename>"
-          subdirectory in user profile. Under Windows XP, this might be
-          <filename class="directory">C:\Documents And Settings\username\Local
-          Settings\Application Data\WinMerge\Filters</filename> or <filename
-          class="directory">C:\Documents And Settings\username\Application
-          Data\WinMerge\Filters</filename>. This can be used to store personal
-          filters for the individual user, or for a user who lacks the ability
-          to write to the WinMerge program directory. This also is appropriate
-          if backup &amp; restore from an individual profile directory is
-          desired.</para>
+          <para>User-defined folder. Selected in Options (<menuchoice>
+              <guimenu>Edit</guimenu>
+
+              <guimenuitem>Options </guimenuitem>
+            </menuchoice><guilabel>&gt; System &gt;
+          </guilabel><guilabel>Filter Folder)</guilabel>. By default it is
+          <filename class="directory">My Documents</filename> -folder.</para>
         </listitem>
       </itemizedlist>
+
+      <important>
+        <para>With WinMerge 2.5.4 and later filter files should not be anymore
+        placed to profile folder like with earlier versions. Using
+        user-defined folder for filter files provices more flexibility and
+        easier access to filter files. WinMerge still reads filters from
+        profile folder for backwards compatibility.</para>
+      </important>
 
       <para>First part of filter file defines name and basic functionality of
       the filter:</para>
@@ -121,18 +132,18 @@
 def: include</screen>where <constant>def</constant>: is:<itemizedlist>
           <listitem>
             <para><constant>include</constant> - inclusive filter. This filter
-            type filters out files and directories that match rules in
+            type filters out files and folders that match rules in
             filter.</para>
           </listitem>
 
           <listitem>
             <para><constant>exclude</constant> - exclusive filter. This filter
-            type lets through files and directories that match rules in
+            type lets through files and folders that match rules in
             filter.</para>
           </listitem>
         </itemizedlist>When using exclusive filter its worth noting that the
-      filter must contain rule to include all wanted subdirectories. Usually
-      its wise to use this rule to include all subdirectories:</para>
+      filter must contain rule to include all wanted subfolders. Usually its
+      wise to use this rule to include all subfolders:</para>
 
       <screen>d: \\*$ ## Subdirectories</screen>
 
@@ -146,13 +157,13 @@ def: include</screen>where <constant>def</constant>: is:<itemizedlist>
       <screen>d: \\directory$ ## Match given directory name</screen>
 
       <para>Rule begins with "<constant>f:</constant>" if it matches for
-      filenames and "<constant>d:</constant>" if it matches for directory
-      names. Filenames are given to filter as is, there are no special
-      characters added. But for directory names there must be
-      "<constant>\\</constant>" in begin of directory name. This is done
-      clearly to separate directory names and filenames.
-      "<constant>##</constant>" is a comment separator, all characters in line
-      after that are ignored by WinMerge.</para>
+      filenames and "<constant>d:</constant>" if it matches for folder names.
+      (d comes from "directory".) Filenames are given to filter as is, there
+      are no special characters added. But for folder names there must be
+      "<constant>\\</constant>" in begin of folder name. This is done clearly
+      to separate folder names and filenames. "<constant>##</constant>" is a
+      comment separator, all characters in line after that are ignored by
+      WinMerge.</para>
 
       <para><note>
           <para>File filter rules are case-insensitive. Rule
@@ -180,7 +191,7 @@ d: \\test$ ## Match 'test' directories</screen>
 
       <note>
         <para>Don't forget "<constant>$</constant>" at end. It marks end of
-        directory- or filename and without it rule may not work like expected.
+        folder- or filename and without it rule may not work like expected.
         While "<literal>\.c$</literal>" matches with only filenames having
         extension <filename class="extension">.c</filename>
         "<literal>\.c</literal>" matches all extensions beginning with

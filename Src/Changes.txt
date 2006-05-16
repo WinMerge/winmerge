@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-15 Kimmo
+ PATCH: [ 1489133 ] Manual: document new filter location(s)
+  Docs/Users/Manual: Filters.xml
+
 2006-05-15 Gal
  PATCH: [ 1488637 ] PHP/ASP Syntax Highlighting Fix (Bug 1441643)
   Src/editlib: asp.cpp php.cpp   
