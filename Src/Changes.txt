@@ -17,6 +17,9 @@ Add new items to top.
   Src/editlib: ccrystaltextview.cpp
  Graphic Design: Alexander Skinner
   Docs/Users: Contributors.txt
+ BUG: [ 1478057 ] Memory leak when cancelling print preview
+  Fix suggested by Mallato
+  Src/editlib: ccrystaltextview.cpp 
 
 2006-05-15 Gal
  PATCH: [ 1488637 ] PHP/ASP Syntax Highlighting Fix (Bug 1441643)

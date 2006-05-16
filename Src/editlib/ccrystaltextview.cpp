@@ -541,6 +541,7 @@ CCrystalTextView::~CCrystalTextView ()
   ASSERT(m_pnActualLineLength);
   delete m_pnActualLineLength;
   m_pnActualLineLength = NULL;
+  delete [] m_pnPages;
 }
 
 BOOL CCrystalTextView::
@@ -2546,6 +2547,8 @@ RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
 
   int nLimit = 32;
   m_nPrintPages = 1;
+  if (m_pnPages != NULL)
+    delete [] m_pnPages;
   m_pnPages = new int[nLimit];
   m_pnPages[0] = 0;
 
