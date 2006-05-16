@@ -7,6 +7,8 @@ Add new items to top.
   Docs/Users/Manual: Filters.xml
  PATCH: [ 1489091 ] Enable Help/Index
   Src: MainFrm.cpp
+ PATCH: [ 1489098 ] Doesn't open Help TOC correctly
+  Src: MainFrm.cpp
 
 2006-05-15 Gal
  PATCH: [ 1488637 ] PHP/ASP Syntax Highlighting Fix (Bug 1441643)

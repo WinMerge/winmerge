@@ -1461,7 +1461,7 @@ void CMainFrame::OnHelpContents()
 {
 	CString sPath = GetModulePath(0) + DocsPath;
 	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
-		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_TOPIC, NULL);
+		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_TOC, NULL);
 	else
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
 }
