@@ -772,6 +772,15 @@ out:
             bFirstChar = FALSE;
         }
 
+      //  User1 start: <?
+      if (I < nLength && pszChars[I] == '<' && I < nLength - 1 && (pszChars[I + 1] == '?' || pszChars[I + 1] == '%'))
+        {
+          DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
+          dwCookie |= COOKIE_EXT_USER1;
+          nIdentBegin = -1;
+          continue;
+        }
+
       if (pBuf == NULL)
         continue;               //  We don't need to extract keywords,
       //  for faster parsing skip the rest of loop
@@ -855,15 +864,6 @@ out:
               nIdentBegin = -1;
 next:
               ;
-            }
-
-          //  User1 start: <?
-          if (I < nLength && pszChars[I] == '<' && I < nLength - 1 && (pszChars[I + 1] == '?' || pszChars[I + 1] == '%'))
-            {
-              DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
-              dwCookie |= COOKIE_EXT_USER1;
-              nIdentBegin = -1;
-              continue;
             }
 
           //  Preprocessor start: < or bracket
@@ -994,45 +994,6 @@ next:
         }
     }
 
-  //  User1 start: <?
-  if (I < nLength && pszChars[I] == '<' && I < nLength - 1 && (pszChars[I + 1] == '?' || pszChars[I + 1] == '%'))
-    {
-      DEFINE_BLOCK (I, COLORINDEX_NORMALTEXT);
-      dwCookie |= COOKIE_EXT_USER1;
-      nIdentBegin = -1;
-      goto end;
-    }
-
-  //  Preprocessor start: < or {
-  if (!(dwCookie & COOKIE_EXT_USER1) && I < nLength && (pszChars[I] == '<' && !(I < nLength - 3 && pszChars[I + 1] == '!' && pszChars[I + 2] == '-' && pszChars[I + 3] == '-')))
-    {
-      DEFINE_BLOCK (I + 1, COLORINDEX_PREPROCESSOR);
-      dwCookie |= COOKIE_PREPROCESSOR;
-      nIdentBegin = -1;
-      goto end;
-    }
-
-  //  User1 end: ?>
-  if (dwCookie & COOKIE_EXT_USER1)
-    {
-      if (I > 0 && pszChars[I] == '>' && (pszChars[nPrevI] == '?' || pszChars[nPrevI] == '%'))
-        {
-          dwCookie &= ~COOKIE_EXT_USER1;
-          nIdentBegin = -1;
-        }
-    }
-
-  //  Preprocessor end: > or }
-  if (dwCookie & COOKIE_PREPROCESSOR)
-    {
-      if (pszChars[I] == '>')
-        {
-          dwCookie &= ~COOKIE_PREPROCESSOR;
-          nIdentBegin = -1;
-        }
-    }
-
-end:
   dwCookie &= (COOKIE_EXT_COMMENT | COOKIE_STRING | COOKIE_PREPROCESSOR | COOKIE_EXT_USER1);
   return dwCookie;
 }
