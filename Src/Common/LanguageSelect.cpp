@@ -26,7 +26,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// Relative path to WinMerge executable for lang files
+/**
+ * @brief Relative path to WinMerge executable for lang files.
+ */
 static const TCHAR szRelativePath[] = _T("Languages\\");
 
 /////////////////////////////////////////////////////////////////////////////
@@ -453,7 +455,7 @@ typedef long GetDllLangProc();
 /**
  * @brief Return path part of fully qualified filename
  */
-CString CLanguageSelect::GetPath( LPCTSTR FileName)
+CString CLanguageSelect::GetPath( LPCTSTR FileName) const
 {
 	TCHAR drive[_MAX_DRIVE];
 	TCHAR dir[_MAX_PATH];
@@ -474,7 +476,7 @@ CString CLanguageSelect::GetPath( LPCTSTR FileName)
 /**
  * @brief Build Language subdirectory from fully qualified exe filename
  */
-CString CLanguageSelect::GetLanguagePath(LPCTSTR FileName)
+CString CLanguageSelect::GetLanguagePath(LPCTSTR FileName) const
 {
 	CString Path = GetPath(FileName);
 	Path += szRelativePath;
@@ -482,29 +484,41 @@ CString CLanguageSelect::GetLanguagePath(LPCTSTR FileName)
 }
 
 /**
- * @brief Return how many languages are available.
+ * @brief Check if there are language files installed.
+ *
+ * This function does as fast as possible check for installed language
+ * files. It needs to be fast since it is used in enabling/disabling
+ * GUI item(s). So the simple check we do is just find one .lang file.
+ * If there is a .lang file we assume we have at least one language
+ * installed.
+ * @return TRUE if at least one lang file is found. FALSE if no lang
+ * files are found.
  */
-UINT CLanguageSelect::GetAvailLangCount() 
+BOOL CLanguageSelect::AreLangsInstalled() const
 {
-	CString strPath;
-	TCHAR filespec[MAX_PATH+1] = {0};
-	WORD wLanguage = 0;
-	UINT nLangCount = 0;
-	
-	if ( GetModuleFileName(m_hModule, filespec, _MAX_PATH ))
+	WIN32_FIND_DATA ffi;
+	CString strFileSpec;
+	BOOL bFound = FALSE;
+	TCHAR fullpath[MAX_PATH] = {0};
+
+	if (GetModuleFileName(m_hModule, fullpath, _MAX_PATH))
 	{
-		strPath = GetLanguagePath(filespec);
-		CStringArray dlls;
-		
-		GetDllsAt(strPath, dlls );
-		
-		for ( int i = 0; i < dlls.GetSize(); i++ )
+		CString strSearchPath = GetLanguagePath(fullpath);
+
+		strFileSpec.Format(_T("%s*.lang"), strSearchPath);
+		HANDLE hff = FindFirstFile(strFileSpec, &ffi);
+
+		if (hff != INVALID_HANDLE_VALUE)
 		{
-			if ( GetLanguage( dlls[i], wLanguage ) )
-				nLangCount++;		
+			// Found a .lang item, check it is a file
+			if (!(ffi.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
+			{
+				bFound = TRUE;
+			}
+			FindClose(hff);
 		}
 	}
-	return nLangCount;
+	return bFound;
 }
 
 void CLanguageSelect::GetAvailLangs( CWordArray& wLanguageAry,

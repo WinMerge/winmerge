@@ -483,14 +483,15 @@ void CMergeApp::OnViewLanguage()
 	}
 }
 
+/**
+ * @brief Updates Language select menu item.
+ * If there are no languages installed we disable menuitem to
+ * open language selection dialog.
+ */
 void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
 {
-	UINT nLangCount = m_pLangDlg->GetAvailLangCount();
-	
-	if (nLangCount == 0)
-		pCmdUI->Enable(FALSE);
-	else
-		pCmdUI->Enable(TRUE);
+	BOOL bLangsInstalled = m_pLangDlg->AreLangsInstalled();
+	pCmdUI->Enable(bLangsInstalled);
 }
 
 int CMergeApp::ExitInstance() 
