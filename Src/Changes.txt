@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-17 Kimmo
  PATCH: [ 1489824 ] Better default folder for user filters
   Src: MainFrm.cpp
+ BUG: [ 1445975 ] BuildDll.bat exit is not good
+  Src/Languages: BuildDll.bat
 
 2006-05-15 Kimmo
  PATCH: [ 1489133 ] Manual: document new filter location(s)

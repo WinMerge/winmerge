@@ -21,6 +21,7 @@ if errorlevel==1 goto _failed
 goto end
 
 :_failed
-exit 1
+rem This causes console to close!
+rem exit 1
 
 :end
