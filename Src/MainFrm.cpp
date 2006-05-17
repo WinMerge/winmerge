@@ -165,8 +165,23 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
+/**
+ * @brief Relative (to WinMerge executable ) path to local help file.
+ */
 static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
+
+/**
+ * @brief URL to help indes in internet.
+ * We use internet help when local help file is not found (not installed).
+ */
 static const TCHAR DocsURL[] = _T("http://winmerge.org/2.4/manual/index.html");
+
+/**
+ * @brief Default relative path to "My Documents" for private filters.
+ * It is better to use subfolder by default than putting files directly
+ * to "My Folders".
+ */
+static const TCHAR DefaultRelativeFilterPath[] = _T("WinMergeFilters");
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
@@ -212,13 +227,32 @@ CMainFrame::CMainFrame()
 	if (m_pSyntaxColors)
 		m_pSyntaxColors->Initialize(&m_options);
 
-	// If filter path is not defined, set it to My Documents -folder
+	// Check if filter folder is set, and create it if not
 	CString pathMyFolders = m_options.GetString(OPT_FILTER_USERPATH);
 	if (pathMyFolders.IsEmpty())
 	{
 		pathMyFolders = paths_GetMyDocuments(GetSafeHwnd());
-		m_options.SaveOption(OPT_FILTER_USERPATH, pathMyFolders);
-		theApp.m_globalFileFilter.SetFileFilterPath(pathMyFolders);
+		CString pathFilters(pathMyFolders);
+		if (pathFilters.Right(1) != _T("\\"))
+			pathFilters += _T("\\");
+		pathFilters += DefaultRelativeFilterPath;
+
+		if (!CreateDirectory(pathFilters, NULL))
+		{
+			// Failed to create a folder, check it didn't already
+			// exist.
+			DWORD errCode = GetLastError();
+			if (errCode != ERROR_ALREADY_EXISTS)
+			{
+				// Failed to create a folder for filters, fallback to
+				// "My Documents"-folder. It is not worth the trouble to
+				// bother user about this or user more clever solutions.
+				pathFilters = pathMyFolders;
+			}
+		}
+
+		m_options.SaveOption(OPT_FILTER_USERPATH, pathFilters);
+		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters);
 	}
 }
 
