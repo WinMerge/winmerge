@@ -7,6 +7,9 @@ Add new items to top.
   Src: MainFrm.cpp
  BUG: [ 1445975 ] BuildDll.bat exit is not good
   Src/Languages: BuildDll.bat
+ PATCH: [ 1488387 ] Russian translation update for 2.4.6
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
 
 2006-05-15 Kimmo
  PATCH: [ 1489133 ] Manual: document new filter location(s)
