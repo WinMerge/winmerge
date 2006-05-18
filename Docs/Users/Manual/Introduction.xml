@@ -95,6 +95,59 @@
       bugs</ulink> you find using these builds, it really helps with WinMerge
       development!</para>
     </sect3>
+
+    <sect3>
+      <title>Version tree</title>
+
+      <para>All this text about different versions may sound confusing if you
+      never have worked with this kind of model. Lets see this with picture
+      below:</para>
+
+      <para><mediaobject>
+          <imageobject>
+            <imagedata fileref="art/WinMerge_versions.gif" format="GIF" />
+          </imageobject>
+
+          <caption><para> WinMerge stable and development
+          versions</para></caption>
+        </mediaobject>This picture presents how our releases and different
+      versions relate to each other. Development always happens with
+      development versions (experimental versions and beta versions). At
+      proper points we create a new branch for stable releases. In above
+      picture arrows for 2.2.x and 2.4.x are two current stable
+      branches.</para>
+
+      <important>
+        <para>Branch always means a separate development. There is no any
+        automation to copy improvements or fixes from development versions to
+        stable versions. Or in opposite direction. Changes are always selected
+        by hand and then merged (with WinMerge, of course..).</para>
+      </important>
+
+      <para>After a branch is created, we try to keep code in it as stable as
+      possible. Usually this means we copy only tested bugfixes from
+      development versions to stable versions. Unfortunately this is not
+      always an easy task and errors can happen. And new bugs appear also in
+      stable versions sometimes. It is just a real-life software development.
+      However, in general quality in branches increases and 2.4.6 is more
+      stable release than 2.4.0.</para>
+
+      <para>What this branching also means is that stable versions don't get
+      many new features after a branch is created. Stable versions 2.4.0 and
+      2.4.6 are pretty much similar feature-wise. Next time the new features
+      appear in stable release is in version 2.6.0 for which we create a new
+      stable branch. Downside here is that it may be over an year between the
+      stable branches.</para>
+
+      <para>Many software vendors always increase their version numbers and
+      say version with biggest version number is what people should use. If
+      WinMerge was developed as closed-source software users would see only
+      versions from stable branches and that would be true for WinMerge too.
+      But as WinMerge is an open source software project we want to keep our
+      development as open as possible. And do a lots of development version
+      releases. The latest development version can have version number 2.5.3.7
+      and the latest stable version can have version number 2.4.6.</para>
+    </sect3>
   </sect2>
 
   <sect2>

@@ -18,6 +18,10 @@ echo Copy screenshots...
 if not exist "%docbook_outputdir%\screenshots" mkdir "%docbook_outputdir%\screenshots"
 copy "..\screenshots\*.*" "%docbook_outputdir%\screenshots\."
 
+echo Copy art...
+if not exist "%docbook_outputdir%\art" mkdir "%docbook_outputdir%\art"
+copy "..\art\*.*" "%docbook_outputdir%\art\."
+
 echo Copy stylesheets...
 if not exist "%docbook_outputdir%\css" mkdir "%docbook_outputdir%\css"
 copy "..\css\help.css" "%docbook_outputdir%\css\help.css"

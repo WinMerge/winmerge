@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-18 Kimmo
+ PATCH: [ 1490540 ] Manual: add picture and explanation about our version tree
+  Docs/Users/Manual: Introduction.xml
+  Docs/Users/Manual/build: build_html.bat build_htmlhelp.bat
+  Docs/Users/Manual/Art new files: WinMerge_versions.gif WinMerge_versions.odg
+
 2006-05-17 Kimmo
  PATCH: [ 1489824 ] Better default folder for user filters
   Src: MainFrm.cpp
