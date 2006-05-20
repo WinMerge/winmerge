@@ -1,3 +1,7 @@
+2006-05-20 Tim
+ RFE: [ 1224436 ] WinMerge as an Eclipse IDE plugin?
+  Web: links.php
+
 2006-03-24 Tim
  PATCH: [ 1457946 ] Add known issue about 64bit windows and shell extension
   Web\2.4: limitations.php
