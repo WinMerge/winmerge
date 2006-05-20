@@ -1,3 +1,7 @@
+2006-05-20 Tim
+ BUG: [ 1489121 ] index.hhk file left behind when creating HTMLHelp manual
+  Manual/build: build_htmlhelp.bat
+
 2006-03-06 Kimmo
  Bump manual version to 1.2.2
   Manual: WinMerge_help.xml

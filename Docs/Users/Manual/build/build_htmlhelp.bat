@@ -40,6 +40,7 @@ echo Cleaning...
 del "%docbook_outputdir%\*.html"
 del "htmlhelp.hhp"
 del "toc.hhc"
+del "index.hhk"
 
 rem if Windows NT/2000/XP...
 if "%OS%" == "Windows_NT" goto cleannt
