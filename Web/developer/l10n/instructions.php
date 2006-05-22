@@ -22,6 +22,8 @@
 
 <p>We have a list with the <a href="status.php">status of current translations</a>, so you can check if your language is already available and/or it needs to be updated.</p>
 
+<p class="important">Please remember WinMerge is an Open Source project. Send translation updates to us as <code>.rc</code> file source patches. We WON't accept modified <code>.lang</code> binary files. We need the sources.</p>
+
 <h3><a name="developer">Instructions for those who know CVS and Visual C++</a></h3>
 <p>Grab a copy of the source from CVS (<a href="../wincvs.php">WinCVS Hints</a>).</p>
 <p>You will need to translate all the strings in <code>Merge.rc</code> to your language. Make a <code>MergeYourLanguage.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">here</a>.
