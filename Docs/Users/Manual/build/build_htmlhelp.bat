@@ -50,6 +50,7 @@ if "%OS%" == "" goto clean9x
 :clean9x
 deltree /Y "%docbook_outputdir%\images"
 deltree /Y "%docbook_outputdir%\screenshots"
+deltree /Y "%docbook_outputdir%\art"
 deltree /Y "%docbook_outputdir%\css"
 if not "%docbook_build_path%" == "." deltree /Y "%docbook_outputdir%"
 echo Finished!
@@ -58,6 +59,7 @@ goto end
 :cleannt
 rd /S /Q "%docbook_outputdir%\images"
 rd /S /Q "%docbook_outputdir%\screenshots"
+rd /S /Q "%docbook_outputdir%\art"
 rd /S /Q "%docbook_outputdir%\css"
 if not "%docbook_build_path%" == "." rd /S /Q "%docbook_outputdir%"
 echo Finished!
