@@ -1,6 +1,8 @@
 2006-05-22 Tim
  PATCH: [ 1493170 ] Manual: Delete 'art' output dir after htmlhelp compile
   Manual/build: build_htmlhelp.bat
+ PATCH: [ 1493171 ] Manual: Use index in htmlhelp
+  Manual/build: build_htmlhelp.xsl
 
 2006-05-20 Tim
  BUG: [ 1489121 ] index.hhk file left behind when creating HTMLHelp manual
