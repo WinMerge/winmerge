@@ -959,9 +959,9 @@ BEGIN
     LTEXT           "&Externí editor:",IDC_STATIC,7,49,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,59,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Procházet...",IDC_EXT_EDITOR_BROWSE,179,59,50,14
-    LTEXT           "&Filter folder:",IDC_STATIC,7,77,166,8
+    LTEXT           "Složka vlastních &filtrù:",IDC_STATIC,7,77,166,8
     EDITTEXT        IDC_FILTER_USER_PATH,7,87,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_FILTER_USER_BROWSE,179,87,50,14
+    PUSHBUTTON      "Pr&ocházet...",IDC_FILTER_USER_BROWSE,179,87,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
@@ -1392,7 +1392,7 @@ BEGIN
                     14,7,229,11
     CONTROL         "Spoleèný filtr (pro všechny uživatele tohoto poèítaèe)",IDC_SHARED,"Button",
                     BS_AUTORADIOBUTTON,20,22,223,10
-    CONTROL         "Soukromý filtr (pouze pro souèasného uživatele)",IDC_PRIVATE,"Button",
+    CONTROL         "Vlastní filtr (pouze pro souèasného uživatele)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,20,37,223,10
     DEFPUSHBUTTON   "OK",IDOK,65,55,50,14
     PUSHBUTTON      "Storno",IDCANCEL,135,55,50,14
