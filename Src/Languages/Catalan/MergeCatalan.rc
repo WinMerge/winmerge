@@ -145,7 +145,7 @@ BEGIN
         MENUITEM "&Obre...\tControl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
+        MENUITEM "Desa el P&rojecte...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Surt",                       ID_APP_EXIT
     END
@@ -363,7 +363,7 @@ BEGIN
         MENUITEM "C&opia\tControl+C",              ID_EDIT_COPY
         MENUITEM "Engan&xa\tControl+V",            ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Selecciona la diferència a la línia\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Selecciona &la diferència a la línia\tF4", ID_SELECTLINEDIFF
         MENUITEM "Selecciona-ho &tot\tControl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Cerca...\tControl+F",           ID_EDIT_FIND
@@ -374,17 +374,17 @@ BEGIN
             MENUITEM "< Buit >",                ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Avançat"
+        POPUP "&Avançat"
         BEGIN
             MENUITEM "&Copia amb els números de línia\tControl+Maj+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        POPUP "&Bookmarks"
+        POPUP "&Punts d'interès"
         BEGIN
-            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
-            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "&Activa/desactiva el punt d'interès\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Següent punt d'interès\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Punt d'interès previ\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Esborra tots els punts d'interès",         ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -398,8 +398,8 @@ BEGIN
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
-        MENUITEM "&Veure les diferències de la línia", ID_VIEW_LINEDIFFS
-        MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
+        MENUITEM "Mostra les &diferències de la línia", ID_VIEW_LINEDIFFS
+        MENUITEM "Mostra els &números de línia", ID_VIEW_LINENUMBERS
         MENUITEM "A&justa les línies",          ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Intercanvia les subfinestres", ID_VIEW_SWAPPANES
@@ -741,7 +741,7 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "&Permet d'executar només una instància",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    LTEXT           "Autocompletar al diàleg d'obrir:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Permet múltiples finestres de comparació per",IDC_STATIC,7,87,
@@ -953,15 +953,15 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
     CONTROL         "Habilita el &menú avançat",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
-    CONTROL         "Ignora diferències en l'hora inferiors a 3 segons",
+    CONTROL         "Ignora diferències en l'&hora inferiors a 3 segons",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,8,39,222,10
     LTEXT           "&Editor extern:",IDC_STATIC,7,49,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,59,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "N&avega...",IDC_EXT_EDITOR_BROWSE,179,59,50,14
-    LTEXT           "&Filter folder:",IDC_STATIC,7,77,166,8
+    PUSHBUTTON      "&Navega...",IDC_EXT_EDITOR_BROWSE,179,59,50,14
+    LTEXT           "&Filtre de carpeta:",IDC_STATIC,7,77,166,8
     EDITTEXT        IDC_FILTER_USER_PATH,7,87,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_FILTER_USER_BROWSE,179,87,50,14
+    PUSHBUTTON      "N&avega...",IDC_FILTER_USER_BROWSE,179,87,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
@@ -1542,22 +1542,22 @@ END
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Paths"
+CAPTION "Camins"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    RTEXT           "&Esquerre:",IDC_STATIC,7,11,40,8
     EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
-    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    PUSHBUTTON      "&Navega...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "&Dret:",IDC_STATIC,7,28,40,8
     EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
-    RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
+    PUSHBUTTON      "N&avega...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    RTEXT           "&Filtre:",IDC_STATIC,7,46,40,8
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
-    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+    PUSHBUTTON      "&Tria...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "&Inclou-hi subcarpetes",IDC_PROJ_INC_SUBFOLDERS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
-    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
-    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+    PUSHBUTTON      "&Obre...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "De&sa...",IDC_PROJ_SAVE,265,76,50,14
 END
 
 #ifndef _MAC
@@ -1756,7 +1756,7 @@ BEGIN
     ID_FILE_OPENPROJECT     "Obre un fitxer de projecte\nFitxer de projecte (Control+J)"
     IDS_UNK_ERROR_READING_PROJECT "S'ha produït un error desconegut en intentar obrir un fitxer de projecte"
     IDS_UNK_ERROR_SAVING_PROJECT "S'ha produït un error desconegut en intentar desar un fitxer de projecte"
-    IDS_PROJFILEDLG_CAPTION "Project File"
+    IDS_PROJFILEDLG_CAPTION "Fitxer de projecte"
     ID_FILE_SAVEPROJECT     "Desa els camins i les opcions actuals a un fitxer de projecte\nDesa fitxer de projecte"
 END
 
@@ -1883,8 +1883,8 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
-    IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
+    IDS_SPLASH_DEVELOPERS   "Desenvolupadors:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
+    IDS_SPLASH_GPLTEXT      "El WinMerge s’entrega sense CAP MENA DE GARANTIA. Això és programari lliure i el podeu redistribuir sota certes condicions. Veieu la Llicència Pública de GNU al menú d’ajuda per a més detalls."
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES
@@ -1989,9 +1989,9 @@ END
 // REPORT FILES
 STRINGTABLE
 BEGIN
-    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+    IDS_TEXT_REPORT_FILES   "Fitxers de text (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "Fitxers HTML (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "Fitxers XML (*.xml)|*.xml|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2250,8 +2250,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Resultat breu"
     IDS_COLHDR_LATTRIBUTES  "Atributs esquerra"
     IDS_COLHDR_RATTRIBUTES  "Atributs dreta"
-    IDS_COLHDR_LEOL_TYPE    "Left EOL"
-    IDS_COLHDR_REOL_TYPE    "Right EOL"
+    IDS_COLHDR_LEOL_TYPE    "Salt de línia esquerra"
+    IDS_COLHDR_REOL_TYPE    "Salt de línia dreta"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2315,8 +2315,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "Resultat breu de la comparació."
     IDS_COLDESC_LATTRIBUTES "Atributs del costat esquerre."
     IDS_COLDESC_RATTRIBUTES "Atributs del costat dret."
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "Tipus de salt de línia del fitxer del costat esquerre"
+    IDS_COLDESC_REOL_TYPE   "Tipus de salt de línia del fitxer del costat dret"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2336,7 +2336,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Llista delimitada per comes"
     IDS_REPORT_TABLIST      "Llista delimitada per tabulacions"
     IDS_REPORT_SIMPLEHTML   "HTML símple"
-    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_SIMPLEXML    "XML símple"
     IDS_REPORT_FILEOVERWRITE
                             "El fitxer d'informe ja existeix. Voleu sobreescriure'l?"
     IDS_REPORT_ERROR        "Hi ha hagut un error creant l'informe:\n%1"
@@ -2743,7 +2743,7 @@ BEGIN
     IDS_EOL_DOS             "Win"
     IDS_EOL_MAC             "Mac"
     IDS_EOL_UNIX            "Unix"
-    IDS_EOL_MIXED           "Mixed"
+    IDS_EOL_MIXED           "Barrejat"
 END
 
 // Folder compare short size suffixes
@@ -2783,10 +2783,10 @@ BEGIN
     ID_REFRESH              "Actualitza la visualització\nActualitza (F5)"
     ID_EDIT_COPY_LINENUMBERS "Copia les línies seleccionades al Porta-retalls afegint-hi els números de línia al inici de línia"
     ID_DIR_RESCAN            "Actualitza els elements seleccionats"
-    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
-    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
-    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
-    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
+    ID_EDIT_TOGGLE_BOOKMARK     "Activa/desactiva el punt d'interès"
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Va al següent punt d'interès"
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Va al punt d'interès anterior"
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Esborra tots els punts d'interès"
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2812,7 +2812,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Selecciona l'idioma de la interfície d'usuari\nIdioma"
     ID_VIEW_LINEDIFFS       "Mostra les diferències dins les línies en un color diferent\nMostra les diferències de línia"
     ID_VIEW_SWAPPANES       "Intercanvia la posició d'ambdues subfinestres"
-    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
+    ID_VIEW_LINENUMBERS     "Mostra els números de línia\nMostra els números de línia"
     ID_VIEW_WORDWRAP        "Permet l'ajustament de paraules\nAjusta les línies"
 END
 
@@ -2907,9 +2907,9 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
-    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU	"From MRU list"
+    IDS_AUTOCOMPLETE_DISABLED   "Inhabilitat"
+    IDS_AUTOCOMPLETE_FILE_SYS   "Des del sistema de fitxers"
+    IDS_AUTOCOMPLETE_MRU	"Des de la llista de recents"
 END
 
 // END STRINGS SYNCHRO

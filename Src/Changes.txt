@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1491212 ] Czech Translation
   Submitted by: Jan Hryz
   Src/Languages/Czech/MergeCzec.rc
+ PATCH: [ 1492025 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
 
 2006-05-18 WinMerge beta release 2.5.4
 
