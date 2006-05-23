@@ -145,7 +145,7 @@ BEGIN
         MENUITEM "Ö&ffnen...\tStrg+O",          ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
+        MENUITEM "Proje&kt speichern...",       ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Beenden",                    ID_APP_EXIT
     END
@@ -194,9 +194,9 @@ BEGIN
     END
     POPUP "&?"
     BEGIN
-        MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Inhalt...\tF1",              ID_HELP_CONTENTS
+        MENUITEM "I&ndex...",                   ID_HELP_INDEX
+        MENUITEM "&Suchen...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
@@ -303,9 +303,9 @@ BEGIN
     END
     POPUP "&?"
     BEGIN
-        MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Inhalt...\tF1",              ID_HELP_CONTENTS
+        MENUITEM "I&ndex...",                   ID_HELP_INDEX
+        MENUITEM "&Suchen...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
@@ -379,12 +379,12 @@ BEGIN
             MENUITEM "&Kopieren mit Zeilennummern\tStrg+Umschalt+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        POPUP "&Bookmarks"
+        POPUP "&Lesezeichen"
         BEGIN
-            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
-            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "&Lesezeichen ein/aus\tStrg+F2", ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Nächstes Lesezeichen\tF2",    ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Vorheriges Lesezeichen\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Alle Lesezeichen löschen",    ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "&Gehe nach...\tStrg+G",       ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -399,7 +399,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
         MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
-        MENUITEM "View Line &Numbers"           ID_VIEW_LINENUMBERS
+        MENUITEM "Zeilennu&mmern anzeigen",     ID_VIEW_LINENUMBERS
         MENUITEM "Zeilen &umbrechen",           ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Ausschnitt v&ertauschen",     ID_VIEW_SWAPPANES
@@ -465,9 +465,9 @@ BEGIN
     END
     POPUP "&?"
     BEGIN
-        MENUITEM "&Inhalt\tF1",                 ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&Inhalt...\tF1",              ID_HELP_CONTENTS
+        MENUITEM "I&ndex...",                   ID_HELP_INDEX
+        MENUITEM "&Suchen...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "&Archiv-Unterstützung deaktiviert...", ID_HELP_MERGE7ZMISMATCH
