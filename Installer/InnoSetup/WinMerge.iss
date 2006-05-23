@@ -151,7 +151,7 @@ Name: Polish; MessagesFile: Languages\Polish.isl
 Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
-Name: Spanish; MessagesFile: Languages\Spanish.isl
+Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Spanish.txt
 Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: Languages\Turkish.isl
 

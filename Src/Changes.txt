@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-23 Kimmo
+ PATCH: [ 1491436 ] Spanish Readme.txt
+  Submitted by Jesus M. Delgado 'Mack'
+  Docs/Users/Languages new file: ReadMe-Spanish.txt
+  InnoSetup: WinMerge.iss
+
 2006-05-22 Gal
  PATCH: [ 1491993 ] Ability to rename files (RFE 1380228)
   Src: DirActions.cpp DirView.cpp DirView.h Merge.rc resource.h 
