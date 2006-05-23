@@ -1,3 +1,7 @@
+2006-05-23 Tim
+ PATCH: [ 1493059 ] Update czech translator and translation status
+  Web\developer\l10n: status.php status.xml
+
 2006-05-22 Tim
  PATCH: [ 1493090 ] Clarify we won't accept changed .lang files as translations
   Web\developer\l10n: instructions.php

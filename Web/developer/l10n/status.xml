@@ -27,6 +27,7 @@
       <author>
         <name>sld</name>
         <email>sld at mail dot bg</email>
+        <comment>2.1</comment>
       </author>
     </authors>
     <versions>
@@ -88,14 +89,22 @@
   </language>
   <language>
     <name>Czech</name>
-    <status>3</status>
+    <status>1</status>
     <authors>
       <author>
         <name>Jiri Tax</name>
         <email>jt at taxoft dot cz</email>
+        <comment>1.7</comment>
+      </author>
+      <author>
+        <name>Jan Hryz</name>
+        <email>janhryz at sourceforge dot net</email>
+        <comment>2.5 &amp; 2.4</comment>
       </author>
     </authors>
     <versions>
+      <version>2.5</version>
+      <version>2.4</version>
       <version>1.7</version>
     </versions>
   </language>
@@ -179,10 +188,11 @@
       <author>
         <name>Tim Gerundt</name>
         <email>tim at gerundt dot de</email>
-        <comment>2.4, 2.3, 2.2 &amp; 2.1</comment>
+        <comment>2.5 - 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.5</version>
       <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>

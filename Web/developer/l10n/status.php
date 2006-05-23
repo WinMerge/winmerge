@@ -36,7 +36,7 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
   print("    <th class=\"left\">Language</th>\n");
   print("    <th class=\"left\">Status</th>\n");
   print("    <th class=\"left\">Author</th>\n");
-  print("    <th class=\"center\" colspan=\"7\">Versions</th>\n");
+  print("    <th class=\"center\" colspan=\"5\">Versions</th>\n");
   print("  </tr>\n");
   $languages = $status['L10N'][0]['LANGUAGE'];
   $languages = $page->multisortArray($languages, 'NAME', SORT_ASC);
@@ -87,9 +87,7 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
 
     $version_25 = '&nbsp;';
     $version_24 = '&nbsp;';
-    $version_23 = '&nbsp;';
     $version_22 = '&nbsp;';
-    $version_21 = '&nbsp;';
     $version_20 = '&nbsp;';
     $version_17 = '&nbsp;';
     for ($j = 0; $j < count($versions); $j++) { //For all versions...
@@ -102,14 +100,8 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
         case '2.4':
           $version_24 = '<strong title="latest stable version">2.4</strong>';
           break;
-        case '2.3':
-          $version_23 = '<span title="older development version">2.3</span>';
-          break;
         case '2.2':
           $version_22 = '<span title="older stable version">2.2</span>';
-          break;
-        case '2.1':
-          $version_21 = '<span title="older development version">2.1</span>';
           break;
         case '2.0':
           $version_20 = '<span title="older stable version">2.0</span>';
@@ -121,9 +113,7 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
     }
     print("    <td class=\"center\">" . $version_25 . "</td>\n");
     print("    <td class=\"center\">" . $version_24 . "</td>\n");
-    print("    <td class=\"center\">" . $version_23 . "</td>\n");
     print("    <td class=\"center\">" . $version_22 . "</td>\n");
-    print("    <td class=\"center\">" . $version_21 . "</td>\n");
     print("    <td class=\"center\">" . $version_20 . "</td>\n");
     print("    <td class=\"center\">" . $version_17 . "</td>\n");
     print("  </tr>\n");
