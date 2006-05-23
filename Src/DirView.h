@@ -171,6 +171,8 @@ private:
 	void MarkForRescan();
 	void DoFileEncodingDialog();
 	void DoUpdateFileEncodingDialog(CCmdUI* pCmdUI);
+	BOOL DoItemRename(LPCTSTR szNewItemName);
+	BOOL RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName);
 // End DirActions.cpp
 	void ReflectGetdispinfo(NMLVDISPINFO *);
 
@@ -338,6 +340,8 @@ protected:
 	afx_msg void OnCopyBothPathnames();
 	afx_msg void OnCopyFilenames();
 	afx_msg void OnUpdateCopyFilenames(CCmdUI* pCmdUI);
+	afx_msg void OnItemRename();
+	afx_msg void OnUpdateItemRename(CCmdUI* pCmdUI);
 	afx_msg void OnHideFilenames();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnCtxtDirMoveLeftTo();
@@ -357,11 +361,17 @@ protected:
 	afx_msg void OnFileEncoding();
 	afx_msg void OnUpdateFileEncoding(CCmdUI* pCmdUI);
 	afx_msg void OnHelp();
+	afx_msg void OnEditCopy();
+	afx_msg void OnEditCut();
+	afx_msg void OnEditPaste();
+	afx_msg void OnEditUndo();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
 	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);
@@ -398,6 +408,8 @@ private:
 	void ListContextMenu(CPoint point, int i);
 	void ReloadColumns();
 	void ResetColumnWidths();
+	BOOL IsLabelEdit();
+	BOOL IsItemSelectedSpecial();
 };
 
 

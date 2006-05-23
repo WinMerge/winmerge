@@ -83,7 +83,8 @@ CDirView::CDirView()
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
 	// focus is elsewhere (ie, on file edit window)
-	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS;
+	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS;
+
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 }
 
@@ -166,6 +167,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_DIR_COPY_PATHNAMES_BOTH, OnCopyBothPathnames)
 	ON_COMMAND(ID_DIR_COPY_FILENAMES, OnCopyFilenames)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_FILENAMES, OnUpdateCopyFilenames)
+	ON_COMMAND(ID_DIR_ITEM_RENAME, OnItemRename)
+	ON_UPDATE_COMMAND_UI(ID_DIR_ITEM_RENAME, OnUpdateItemRename)
 	ON_COMMAND(ID_DIR_HIDE_FILENAMES, OnHideFilenames)
 	ON_COMMAND(ID_DIR_MOVE_LEFT_TO_BROWSE, OnCtxtDirMoveLeftTo)
 	ON_UPDATE_COMMAND_UI(ID_DIR_MOVE_LEFT_TO_BROWSE, OnUpdateCtxtDirMoveLeftTo)
@@ -185,9 +188,15 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
 	ON_COMMAND(ID_HELP, OnHelp)
- 	//}}AFX_MSG_MAP
+	ON_COMMAND(ID_EDIT_COPY, OnEditCopy)
+	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
+	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
+	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
+	ON_NOTIFY_REFLECT(LVN_BEGINLABELEDIT, OnBeginLabelEdit)
+	ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndLabelEdit)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1962,15 +1971,26 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 	// Handle special shortcuts here
 	if (pMsg->message == WM_KEYDOWN)
 	{
-	// Check if we got 'ESC pressed' -message
+		// Check if we got 'ESC pressed' -message
 		if (pMsg->wParam == VK_ESCAPE)
-	{
-		if (m_bEscCloses)
 		{
-			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-			return FALSE;
+			// ESC doesn't close window when user is renaming an item.
+			if (m_bEscCloses && !IsLabelEdit())
+			{
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+				return FALSE;
+			}
 		}
-	}
+		// Check if we got 'DEL pressed' -message
+		if (pMsg->wParam == VK_DELETE)
+		{
+			// DEL doesn't delete a file when user is renaming an item.
+			if (!IsLabelEdit())
+			{
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_MERGE_DELETE);
+				return FALSE;
+			}
+		}
 		// Check if we got 'Backspace pressed' -message
 		if (pMsg->wParam == VK_BACK)
 		{
@@ -1984,10 +2004,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
 {
 	UINT threadState = GetDocument()->m_diffThread.GetThreadState();
-	if (threadState == THREAD_COMPARING)
-		pCmdUI->Enable(FALSE);
-	else
-		pCmdUI->Enable(TRUE);
+	pCmdUI->Enable(threadState != THREAD_COMPARING);
 }
 
 /**
@@ -2451,14 +2468,23 @@ void CDirView::OnCtxtDirZipBothDiffsOnly()
  */
 void CDirView::OnSelectAll()
 {
-	int selCount = m_pList->GetItemCount();
-
-	for (int i = 0; i < selCount; i++)
+	// While the user is renaming an item, select all the edited text.
+	CEdit *pEdit = m_pList->GetEditControl();
+	if (NULL != pEdit)
 	{
-		// Don't select special items (SPECIAL_ITEM_POS)
-		POSITION diffpos = GetItemKey(i);
-		if (diffpos != (POSITION) SPECIAL_ITEM_POS)
-			m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
+		pEdit->SetSel(pEdit->GetWindowTextLength());
+	}
+	else
+	{
+		int selCount = m_pList->GetItemCount();
+
+		for (int i = 0; i < selCount; i++)
+		{
+			// Don't select special items (SPECIAL_ITEM_POS)
+			POSITION diffpos = GetItemKey(i);
+			if (diffpos != (POSITION) SPECIAL_ITEM_POS)
+				m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
+		}
 	}
 }
 
@@ -2467,10 +2493,8 @@ void CDirView::OnSelectAll()
  */
 void CDirView::OnUpdateSelectAll(CCmdUI* pCmdUI)
 {
-	if (m_pList->GetItemCount() > 0)
-		pCmdUI->Enable(TRUE);
-	else
-		pCmdUI->Enable(FALSE);
+	BOOL bEnable = (!IsLabelEdit()) || (m_pList->GetItemCount() > 0);
+	pCmdUI->Enable(bEnable);
 }
 
 /**
@@ -2637,6 +2661,28 @@ void CDirView::OnUpdateCopyFilenames(CCmdUI* pCmdUI)
 }
 
 /**
+ * @brief Rename a selected item on both sides.
+ *
+ */
+void CDirView::OnItemRename()
+{
+	ASSERT(1 == m_pList->GetSelectedCount());
+	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	ASSERT(-1 != nSelItem);
+	m_pList->EditLabel(nSelItem);
+}
+
+/**
+ * @brief Enable/Disable dirview Rename context menu item.
+ *
+ */
+void CDirView::OnUpdateItemRename(CCmdUI* pCmdUI)
+{
+	BOOL bEnabled = (1 == m_pList->GetSelectedCount());
+	pCmdUI->Enable(bEnabled && !IsItemSelectedSpecial());
+}
+
+/**
  * @brief hide selected item filenames (removes them from the ListView)
  */
 void CDirView::OnHideFilenames()
@@ -2742,6 +2788,34 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 		GetParentFrame()->SetStatus(msg);
 	}
 	*pResult = 0;
+}
+
+/**
+ * @brief Called before user start to item label edit.
+ *
+ * Disable label edit if initiated from a user double-click.
+ */
+afx_msg void CDirView::OnBeginLabelEdit(NMHDR* /*pNMHDR*/, LRESULT* pResult)
+{
+	*pResult = IsItemSelectedSpecial();
+}
+
+/**
+ * @brief Called when user done with item label edit.
+ *
+ */
+afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	ASSERT(NULL != pNMHDR);
+	NMLVDISPINFO* pdi = reinterpret_cast<NMLVDISPINFO*>(pNMHDR);
+	
+	*pResult = FALSE;
+	
+	LPCTSTR szNewItemName = pdi->item.pszText;
+	if (NULL != szNewItemName)
+	{
+		*pResult = DoItemRename(szNewItemName);
+	}
 }
 
 /**
@@ -2852,4 +2926,70 @@ void CDirView::OnUpdateFileEncoding(CCmdUI* pCmdUI)
 void CDirView::OnHelp()
 {
 	GetMainFrame()->ShowHelp(DirViewHelpLocation);
+}
+
+/**
+ * @brief TRUE while user is editing a file name.
+ */
+BOOL CDirView::IsLabelEdit()
+{
+	return (NULL != m_pList->GetEditControl());
+}
+
+/**
+ * @brief TRUE if selected item is a "special item".
+ */
+BOOL CDirView::IsItemSelectedSpecial()
+{
+	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	ASSERT(-1 != nSelItem);
+	return ((POSITION)SPECIAL_ITEM_POS == GetItemKey(nSelItem));
+}
+
+/**
+ * @brief Allow edit "Paste" when renaming an item.
+ */
+void CDirView::OnEditCopy() 
+{
+	CEdit *pEdit = m_pList->GetEditControl();
+	if (NULL != pEdit)
+	{
+		pEdit->Copy();
+	}
+}
+
+/**
+ * @brief Allow edit "Cut" when renaming an item.
+ */
+void CDirView::OnEditCut() 
+{
+	CEdit *pEdit = m_pList->GetEditControl();
+	if (NULL != pEdit)
+	{
+		pEdit->Cut();
+	}
+}
+
+/**
+* @brief Allow edit "Paste" when renaming an item.
+ */
+void CDirView::OnEditPaste() 
+{
+	CEdit *pEdit = m_pList->GetEditControl();
+	if (NULL != pEdit)
+	{
+		pEdit->Paste();
+	}
+}
+
+/**
+ * @brief Allow edit "Undo" when renaming an item.
+ */
+void CDirView::OnEditUndo() 
+{
+	CEdit *pEdit = m_pList->GetEditControl();
+	if (NULL != pEdit)
+	{
+		pEdit->Undo();
+	}
 }

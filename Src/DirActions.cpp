@@ -1106,3 +1106,80 @@ void CDirView::DoUpdateFileEncodingDialog(CCmdUI* pCmdUI)
 	BOOL haveSelectedItems = (m_pList->GetNextItem(-1, LVNI_SELECTED) != -1);
 	pCmdUI->Enable(haveSelectedItems);
 }
+
+/**
+ * @brief Rename a file without moving it to different directory.
+ *
+ * @param szOldFileName [in] Full path of file to rename.
+ * @param szNewFileName [in] New file name (without the path).
+ *
+ * @return TRUE if file was renamed successfully.
+ */
+BOOL CDirView::RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName)
+{
+	ASSERT(NULL != szOldFileName);
+	ASSERT(NULL != szNewFileName);
+
+	BOOL bSuccess = FALSE;
+
+	if (DOES_NOT_EXIST != paths_DoesPathExist(szOldFileName))
+	{
+		CShellFileOp fileOp;
+		CString sFullName;
+
+		SplitFilename(szOldFileName, &sFullName, NULL, NULL);
+		sFullName += _T('\\') + CString(szNewFileName);
+
+		fileOp.SetOperationFlags(FO_RENAME, this, 0);
+		fileOp.AddSourceFile(szOldFileName);
+		fileOp.AddDestFile(sFullName);
+		
+		BOOL bOpStarted = FALSE;
+		bSuccess = fileOp.Go(&bOpStarted);
+	}
+
+	return bSuccess;
+}
+
+/**
+ * @brief Rename selected item on both left and right sides.
+ *
+ * @param szNewItemName [in] New item name.
+ *
+ * @return TRUE if at least one file was renamed successfully.
+ */
+BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
+{
+	ASSERT(NULL != szNewItemName);
+	
+	CString sLeftFile, sRightFile;
+
+	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
+	ASSERT(-1 != nSelItem);
+	GetItemFileNames(nSelItem, sLeftFile, sRightFile);
+
+	BOOL bRenameLeft = RenameOnSameDir(sLeftFile, szNewItemName);
+	BOOL bRenameRight = RenameOnSameDir(sRightFile, szNewItemName);
+
+	POSITION key = GetItemKey(nSelItem);
+	ASSERT(key != (POSITION)SPECIAL_ITEM_POS);
+	DIFFITEM& di = GetDocument()->GetDiffRefByKey(key);
+
+	if ((TRUE == bRenameLeft)  && (TRUE == bRenameRight))
+	{
+		di.sLeftFilename = szNewItemName;
+		di.sRightFilename = szNewItemName;
+	}
+	else if (TRUE == bRenameLeft)
+	{
+		di.sLeftFilename = szNewItemName;
+		di.sRightFilename.Empty();
+	}
+	else if (TRUE == bRenameRight)
+	{
+		di.sLeftFilename.Empty();
+		di.sRightFilename = szNewItemName;
+	}
+
+	return (bRenameLeft || bRenameRight);
+}
