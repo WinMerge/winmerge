@@ -96,18 +96,17 @@ class DiffList
 public:
 	DiffList();
 	void Clear();
-	int GetSize();
+	int GetSize() const;
 	int GetSignificantDiffs() const;
-	void SetSize(UINT nSize);
-	void AddDiff(DIFFRANGE di);
+	void AddDiff(const DIFFRANGE & di);
 	BOOL IsDiffSignificant(int nDiff) const;
-	BOOL GetDiff(int nDiff, DIFFRANGE &di) const;
-	BOOL SetDiff(int nDiff, DIFFRANGE di);
+	BOOL GetDiff(int nDiff, DIFFRANGE & di) const;
+	BOOL SetDiff(int nDiff, const DIFFRANGE & di);
 	int LineRelDiff(UINT nLine, UINT nDiff) const;
 	BOOL LineInDiff(UINT nLine, UINT nDiff) const;
 	int LineToDiff(UINT nLine) const;
-	BOOL GetPrevDiff(int nLine, int &nDiff) const;
-	BOOL GetNextDiff(int nLine, int &nDiff) const;
+	BOOL GetPrevDiff(int nLine, int & nDiff) const;
+	BOOL GetNextDiff(int nLine, int & nDiff) const;
 	BOOL HasSignificantDiffs() const;
 	int PrevSignificantDiffFromLine(UINT nLine) const;
 	int NextSignificantDiffFromLine(UINT nLine) const;

@@ -31,10 +31,10 @@
  * @brief Default constructor, initialises difflist to 64 items.
  */
 DiffList::DiffList()
+: m_firstSignificant(-1)
+, m_lastSignificant(-1)
 {
 	m_diffs.SetSize(64);
-	m_firstSignificant = -1;
-	m_lastSignificant = -1;
 }
 
 /**
@@ -53,7 +53,7 @@ void DiffList::Clear()
  * count includes significant and non-significant diffs.
  * @note Use GetSignificantDiffs() to get count of non-ignored diffs.
  */
-int DiffList::GetSize()
+int DiffList::GetSize() const
 {
 	return m_diffs.GetSize();
 }
@@ -62,6 +62,7 @@ int DiffList::GetSize()
  * @brief Returns count of significant diffs in the list.
  * This function returns total count of significant diffs in list. So returned
  * count doesn't include non-significant diffs.
+ * @return Count of significant differences.
  */
 int DiffList::GetSignificantDiffs() const
 {
@@ -80,17 +81,11 @@ int DiffList::GetSignificantDiffs() const
 }
 
 /**
- * @brief Sets size of diff list.
+ * @brief Adds given diff to end of the list.
+ * Adds given difference to end of the list (append).
+ * @param [in] di Difference to add.
  */
-void DiffList::SetSize(UINT nSize)
-{
-	m_diffs.SetSize(nSize);
-}
-
-/**
- * @brief Adds given diff to end of list.
- */
-void DiffList::AddDiff(DIFFRANGE di)
+void DiffList::AddDiff(const DIFFRANGE & di)
 {
 	DiffRangeInfo dri(di);
 	m_diffs.Add(dri);
@@ -98,8 +93,8 @@ void DiffList::AddDiff(DIFFRANGE di)
 
 /**
  * @brief Checks if diff in given list index is significant or not.
- * @param [in] nDiff Index of DIFFITEM to check.
- * @return TRUE if diff is significant.
+ * @param [in] nDiff Index of DIFFRANGE to check.
+ * @return TRUE if diff is significant, FALSE if not.
  */
 BOOL DiffList::IsDiffSignificant(int nDiff) const
 {
@@ -112,11 +107,11 @@ BOOL DiffList::IsDiffSignificant(int nDiff) const
 
 /**
  * @brief Returns copy of DIFFRANGE from diff-list.
- * @param [in] nDiff Index of DIFFITEM to return.
- * @param [out] di DIFFITEM returned (empty if error)
- * @return TRUE if DIFFITEM found from given index.
+ * @param [in] nDiff Index of DIFFRANGE to return.
+ * @param [out] di DIFFRANGE returned (empty if error)
+ * @return TRUE if DIFFRANGE found from given index.
  */
-BOOL DiffList::GetDiff(int nDiff, DIFFRANGE &di) const
+BOOL DiffList::GetDiff(int nDiff, DIFFRANGE & di) const
 {
 	const DIFFRANGE * dfi = DiffRangeAt(nDiff);
 	if (!dfi)
@@ -130,7 +125,10 @@ BOOL DiffList::GetDiff(int nDiff, DIFFRANGE &di) const
 }
 
 /**
- * @brief Return (const) pointer to DIFFRANGE entry requested
+ * @brief Return constant pointer to requested diff.
+ * This function returns constant pointer to DIFFRANGE at given index.
+ * @param [in] nDiff Index of DIFFRANGE to return.
+ * @return Constant pointer to DIFFRANGE.
  */
 const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 {
@@ -148,11 +146,11 @@ const DIFFRANGE * DiffList::DiffRangeAt(int nDiff) const
 
 /**
  * @brief Replaces diff in list in given index with given diff.
- *
  * @param [in] nDiff Index (0-based) of diff to be replaced
  * @param [in] di Diff to put in list.
+ * @return TRUE if index was valid and diff put to list.
  */
-BOOL DiffList::SetDiff(int nDiff, DIFFRANGE di)
+BOOL DiffList::SetDiff(int nDiff, const DIFFRANGE & di)
 {
 	if (nDiff < m_diffs.GetSize())
 	{
@@ -185,6 +183,7 @@ int DiffList::LineRelDiff(UINT nLine, UINT nDiff) const
  * @brief Checks if line is inside given diff
  * @param [in] nLine Linenumber to text buffer (not "real" number)
  * @param [in] nDiff Index to diff table
+ * @return TRUE if line is inside given difference.
  */
 BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
 {
@@ -247,7 +246,7 @@ int DiffList::LineToDiff(UINT nLine) const
  * @param [out] nDiff Index of diff found.
  * @return TRUE if line is inside diff, FALSE otherwise.
  */
-BOOL DiffList::GetPrevDiff(int nLine, int &nDiff) const
+BOOL DiffList::GetPrevDiff(int nLine, int & nDiff) const
 {
 	BOOL bInDiff = TRUE;
 	int numDiff = LineToDiff(nLine);
@@ -275,7 +274,7 @@ BOOL DiffList::GetPrevDiff(int nLine, int &nDiff) const
  * @param [out] nDiff Index of diff found.
  * @return TRUE if line is inside diff, FALSE otherwise.
  */
-BOOL DiffList::GetNextDiff(int nLine, int &nDiff) const
+BOOL DiffList::GetNextDiff(int nLine, int & nDiff) const
 {
 	BOOL bInDiff = TRUE;
 	int numDiff = LineToDiff(nLine);
@@ -312,7 +311,7 @@ BOOL DiffList::HasSignificantDiffs() const
 /**
  * @brief Return previous diff index from given line.
  * @param [in] nLine First line searched.
- * @return Index for next difference.
+ * @return Index for next difference or -1 if no difference is found.
  */
 int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 {
@@ -333,7 +332,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 /**
  * @brief Return next diff index from given line.
  * @param [in] nLine First line searched.
- * @return Index for previous difference.
+ * @return Index for previous difference or -1 if no difference is found.
  */
 int DiffList::NextSignificantDiffFromLine(UINT nLine) const
 {
@@ -382,7 +381,8 @@ void DiffList::ConstructSignificantChain()
 }
 
 /**
- * @brief Return index to first significant diff.
+ * @brief Return index to first significant difference.
+ * @return Index of first significant difference.
  */
 int DiffList::FirstSignificantDiff() const
 {
@@ -392,6 +392,7 @@ int DiffList::FirstSignificantDiff() const
 /**
  * @brief Return index of next significant diff.
  * @param [in] nDiff Index to start looking for next diff.
+ * @return Index of next significant difference.
  */
 int DiffList::NextSignificantDiff(int nDiff) const
 {
@@ -401,6 +402,7 @@ int DiffList::NextSignificantDiff(int nDiff) const
 /**
  * @brief Return index of previous significant diff.
  * @param [in] nDiff Index to start looking for previous diff.
+ * @return Index of previous significant difference.
  */
 int DiffList::PrevSignificantDiff(int nDiff) const
 {
@@ -409,6 +411,7 @@ int DiffList::PrevSignificantDiff(int nDiff) const
 
 /**
  * @brief Return index to last significant diff.
+ * @return Index of last significant difference.
  */
 int DiffList::LastSignificantDiff() const
 {
@@ -416,7 +419,8 @@ int DiffList::LastSignificantDiff() const
 }
 
 /**
- * @brief Return pointer to first significant diff range
+ * @brief Return pointer to first significant diff.
+ * @return Constant pointer to first significant difference.
  */
 const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
 {
@@ -425,7 +429,8 @@ const DIFFRANGE * DiffList::FirstSignificantDiffRange() const
 }
 
 /**
- * @brief Return pointer to last significant diff range
+ * @brief Return pointer to last significant diff.
+ * @return Constant pointer to last significant difference.
  */
 const DIFFRANGE * DiffList::LastSignificantDiffRange() const
 {

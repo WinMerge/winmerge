@@ -10,6 +10,8 @@ Add new items to top.
  PATCH: [ 1492458 ] Swedish translation update for 2.5.4.0
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ Add some const keywords and fix comments, remove unused function.
+  Src: DiffList.cpp DiffList.h
 
 2006-05-23 Tim
  PATCH: [ 1493713 ] Translate 'Bookmarks' feature to German
