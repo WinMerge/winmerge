@@ -899,10 +899,11 @@ void CMergeEditView::OnNextdiff()
 			if (curDiff < pd->m_diffList.GetSize() - 1)
 			{
 				nextDiff = pd->m_diffList.NextSignificantDiff(curDiff);
-				if (nextDiff == -1)
-					nextDiff = curDiff;
 			}
 		}
+		if (nextDiff == -1)
+			nextDiff = curDiff;
+
 		// nextDiff is the next one if there is one, else it is the one we're on
 		SelectDiff(nextDiff, TRUE, FALSE);
 	}
@@ -982,10 +983,11 @@ void CMergeEditView::OnPrevdiff()
 			if (curDiff > 0)
 			{
 				prevDiff = pd->m_diffList.PrevSignificantDiff(curDiff);
-				if (prevDiff == -1)
-					prevDiff = curDiff;
 			}
 		}
+		if (prevDiff == -1)
+			prevDiff = curDiff;
+
 		// prevDiff is the preceding one if there is one, else it is the one we're on
 		SelectDiff(prevDiff, TRUE, FALSE);
 	}

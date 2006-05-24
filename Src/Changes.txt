@@ -12,6 +12,9 @@ Add new items to top.
   Src/Languages/Swedish: MergeSwedish.rc
  Add some const keywords and fix comments, remove unused function.
   Src: DiffList.cpp DiffList.h
+ BUG: [ 1488797 ] ASSERT in CMergeEditView::OnPrevdiff
+  Fix from Mallato
+  Src: MergeEditView.cpp
 
 2006-05-23 Tim
  PATCH: [ 1493713 ] Translate 'Bookmarks' feature to German
