@@ -7,6 +7,9 @@ Add new items to top.
   Src/editlib: ccrystaltextview.cpp
  PATCH: [ 1493868 ] Add bookmark by double-clicking selection frame
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h ccrystaltextview2.cpp
+ PATCH: [ 1492458 ] Swedish translation update for 2.5.4.0
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-05-23 Tim
  PATCH: [ 1493713 ] Translate 'Bookmarks' feature to German
