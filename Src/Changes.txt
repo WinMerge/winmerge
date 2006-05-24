@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-24 Kimmo
+ PATCH: [ 1493742 ] Limit vertical scrolling to last line of files
+  Src/editlib: ccrystaltextview.cpp
+
 2006-05-23 Tim
  PATCH: [ 1493713 ] Translate 'Bookmarks' feature to German
   Src/Languages/German: MergeGerman.rc

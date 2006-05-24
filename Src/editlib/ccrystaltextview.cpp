@@ -79,6 +79,14 @@
 //		     (see OnChar())
 ///////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file  ccrystaltextview.cpp
+ *
+ * @brief Implementation of the CCrystalTextView class
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
+
 #include "stdafx.h"
 #include <malloc.h>
 #include <imm.h> /* IME */
@@ -691,7 +699,17 @@ ScrollToChar (int nNewOffsetChar, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrack
     }
 }
 
-//BEGIN SW
+/**
+ * @brief Scroll view to given line.
+ * Scrolls view so that given line is first line in the view. We limit
+ * scrolling so that there is only one empty line visible after the last
+ * line at max. So we don't allow user to scroll last line being at top or
+ * even at middle of the screen. This is how many editors behave and I
+ * (Kimmo) think it is good for us too.
+ * @param [in] nNewTopSubLine New top line for view.
+ * @param [in] bNoSmoothScroll if TRUE don't use smooth scrolling.
+ * @param [in] bTrackScrollBar if TRUE scrollbar is updated after scroll.
+ */
 void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine, 
                   BOOL bNoSmoothScroll /*= FALSE*/, BOOL bTrackScrollBar /*= TRUE*/ )
 {
@@ -699,6 +717,12 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
     {
       if (bNoSmoothScroll || ! m_bSmoothScroll)
         {
+          // Limit scrolling so that we show one empty line at end of file
+          const int nScreenLines = GetScreenLines();
+          const int nLineCount = GetSubLineCount();
+          if (nNewTopSubLine > (nLineCount - nScreenLines))
+             nNewTopSubLine = nLineCount - nScreenLines;
+
           int nScrollLines = m_nTopSubLine - nNewTopSubLine;
           m_nTopSubLine = nNewTopSubLine;
           // OnDraw() uses m_nTopLine to determine topline
@@ -750,13 +774,6 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
       GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
     }
 }
-
-/*void CCrystalTextView::GoToLine( int nLine )
-{
-  SetCursorPos( CPoint( 0, (nLine > 0)? nLine - 1 : 0 ) );
-  EnsureVisible( GetCursorPos() );
-}*/
-//END SW
 
 void CCrystalTextView::
 ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScrollBar /*= TRUE*/ )
