@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-24 Kimmo
  PATCH: [ 1493742 ] Limit vertical scrolling to last line of files
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1493868 ] Add bookmark by double-clicking selection frame
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h ccrystaltextview2.cpp
 
 2006-05-23 Tim
  PATCH: [ 1493713 ] Translate 'Bookmarks' feature to German

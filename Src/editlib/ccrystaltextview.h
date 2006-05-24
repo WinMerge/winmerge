@@ -23,6 +23,13 @@
 //  ... it's being edited very rapidly so sorry for non-commented
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  ccrystaltextview.h
+ *
+ * @brief Declaration file for CCrystalTextView
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #if !defined(AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
 #define AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
@@ -68,13 +75,18 @@ enum
   UPDATE_RESET = 0x1000       //  document was reloaded, update all!
 };
 
+/**
+ * @brief Class for text view.
+ * This class implements class for text viewing. Class implements all
+ * the routines we need for showing, selecting text etc. BUT it does
+ * not implement text editing. There are classes inherited from this
+ * class which implement text editing.
+ */
 class EDITPADC_CLASS CCrystalTextView : public CView
   {
     DECLARE_DYNCREATE (CCrystalTextView)
 
-	//BEGIN SW
-	friend CCrystalParser;
-	//END SW
+    friend CCrystalParser;
 
 protected:
     //  Search parameters
@@ -175,6 +187,7 @@ protected:
     BOOL IsInsideSelBlock (CPoint ptTextPos);
 
     BOOL m_bBookmarkExist;        // More bookmarks
+    void ToggleBookmark(UINT nLine);
 
 public :
     virtual void ResetView ();

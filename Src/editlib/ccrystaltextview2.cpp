@@ -36,6 +36,13 @@
 //  ... it's being edited very rapidly so sorry for non-commented
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  ccrystaltextview2.cpp
+ *
+ * @brief More functions for CCrystalTextView class.
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "editcmd.h"
@@ -599,51 +606,29 @@ OnLButtonDown (UINT nFlags, CPoint point)
       else
         {
           m_ptCursorPos = ClientToText (point);
-			//BEGIN SW
-			// Find char pos that is the beginning of the subline clicked on
-			CPoint	pos;
-			CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, pos );
-			m_ptCursorPos.x = SubLineHomeToCharPos( m_ptCursorPos.y, pos.y );
-			/*ORIGINAL
-			m_ptCursorPos.x = 0;				//	Force beginning of the line
-			*///END SW
+          // Find char pos that is the beginning of the subline clicked on
+          CPoint pos;
+          CharPosToPoint (m_ptCursorPos.y, m_ptCursorPos.x, pos);
+          m_ptCursorPos.x = SubLineHomeToCharPos (m_ptCursorPos.y, pos.y);
 
           if (!bShift)
             m_ptAnchor = m_ptCursorPos;
 
           CPoint ptStart, ptEnd;
-			//BEGIN SW
-			CharPosToPoint( m_ptAnchor.y, m_ptAnchor.x, pos );
-			ptStart.y = m_ptAnchor.y;
-			if( GetSubLineIndex( ptStart.y ) + pos.y == GetSubLineCount() - 1 )
-			{
-				// select to end of subline
-				ptStart = SubLineEndToCharPos( ptStart.y, pos.y );
-			}
-			else
-			{
-				int	nLine, nSubLine;
-				GetLineBySubLine( GetSubLineIndex( ptStart.y ) + pos.y + 1, nLine, nSubLine );
-				ptStart.y = nLine;
-				ptStart.x = SubLineHomeToCharPos( nLine, nSubLine );
-			}
-			/*ORIGINAL
-			ptStart = m_ptAnchor;
-			if (ptStart.y == GetLineCount() - 1)
-				ptStart.x = GetLineLength(ptStart.y);
-			else
-			{
-				ptStart.y ++;
-				ptStart.x = 0;
-			}
-			*///END SW
-
-			//BEGIN SW
-			ptEnd = m_ptCursorPos;
-			/*ORIGINAL
-			ptEnd = m_ptCursorPos;
-			ptEnd.x = 0;
-			*///END SW
+          CharPosToPoint (m_ptAnchor.y, m_ptAnchor.x, pos);
+          ptStart.y = m_ptAnchor.y;
+          if (GetSubLineIndex (ptStart.y) + pos.y == GetSubLineCount() - 1)
+            {
+              // select to end of subline
+              ptStart = SubLineEndToCharPos (ptStart.y, pos.y);
+            }
+          else
+            {
+              int nLine, nSubLine;
+              GetLineBySubLine (GetSubLineIndex (ptStart.y) + pos.y + 1, nLine, nSubLine);
+              ptStart.y = nLine;
+              ptStart.x = SubLineHomeToCharPos (nLine, nSubLine);
+            }
 
           m_ptCursorPos = ptEnd;
           UpdateCaret ();
@@ -665,7 +650,6 @@ OnLButtonDown (UINT nFlags, CPoint point)
       //  [JRT]:  Support For Disabling Drag and Drop...
       if ((IsInsideSelBlock (ptText)) &&    // If Inside Selection Area
             (!m_bDisableDragAndDrop))    // And D&D Not Disabled
-
         {
           m_bPreparingToDrag = TRUE;
         }
@@ -712,10 +696,8 @@ OnLButtonDown (UINT nFlags, CPoint point)
     }
 
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);
-	//BEGIN SW
-	// we must set the ideal character position here!
-	m_nIdealCharPos = CalculateActualOffset( m_ptCursorPos.y, m_ptCursorPos.x );
-	//END SW
+  // we must set the ideal character position here!
+  m_nIdealCharPos = CalculateActualOffset( m_ptCursorPos.y, m_ptCursorPos.x );
 }
 
 void CCrystalTextView::
@@ -1083,10 +1065,27 @@ OnTimer (UINT nIDEvent)
     }
 }
 
+/** 
+ * @brief Called when mouse is double-clicked in editor.
+ * This function handles mouse double-click in editor. There are many things
+ * we can do, depending on where mouse is double-clicked etc:
+ * - in selection area toggles bookmark
+ * - in editor selects word below cursor
+ * @param [in] nFlags Flags indicating if virtual keys are pressed.
+ * @param [in] point Point where mouse is double-clicked.
+ */
 void CCrystalTextView::
 OnLButtonDblClk (UINT nFlags, CPoint point)
 {
   CView::OnLButtonDblClk (nFlags, point);
+
+  if (point.x < GetMarginWidth ())
+    {
+      AdjustTextPoint (point);
+      CPoint ptCursorPos = ClientToText (point);
+      ToggleBookmark(ptCursorPos.y);
+      return;
+    }
 
   if (!m_bDragSelection)
     {

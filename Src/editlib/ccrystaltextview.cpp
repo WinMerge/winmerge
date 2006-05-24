@@ -2116,7 +2116,7 @@ BOOL CCrystalTextView::IsEmptySubLineIndex( int nSubLineIndex )
 int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &charPoint )
 {
   // if we do not wrap lines, y is allways 0 and x is equl to nCharPos
-  if( !m_bWordWrap )
+  if (!m_bWordWrap)
     {
       charPoint.x = nCharPos;
       charPoint.y = 0;
@@ -2134,13 +2134,13 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
   */
 
   // line is wrapped
-  int *anBreaks = new int[GetLineLength( nLineIndex )];
-  int	nBreaks = 0;
+  int *anBreaks = new int[GetLineLength (nLineIndex)];
+  int nBreaks = 0;
 
-  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached (nLineIndex, GetScreenChars(), anBreaks, nBreaks);
 
-  int i=0;
-  for( i = nBreaks - 1; i >= 0 && nCharPos < anBreaks[i]; i-- );
+  int i = 0;
+  for (i = nBreaks - 1; i >= 0 && nCharPos < anBreaks[i]; i--)
 
   charPoint.x = (i >= 0)? nCharPos - anBreaks[i] : nCharPos;
   charPoint.y = i + 1;
@@ -4944,20 +4944,33 @@ OnFilePageSetup ()
     }
 }
 
-void CCrystalTextView::
-OnToggleBookmark ()
+/** 
+ * @brief Adds/removes bookmark on given line.
+ * This functions adds bookmark or removes bookmark on given line.
+ * @param [in] Index (0-based) of line to add/remove bookmark.
+ */
+void CCrystalTextView::ToggleBookmark(UINT nLine)
 {
+  ASSERT(nLine < GetSubLineCount());
   if (m_pTextBuffer != NULL)
     {
-      DWORD dwFlags = GetLineFlags (m_ptCursorPos.y);
+      DWORD dwFlags = GetLineFlags (nLine);
       DWORD dwMask = LF_BOOKMARKS;
-      m_pTextBuffer->SetLineFlag (m_ptCursorPos.y, dwMask, (dwFlags & dwMask) == 0, FALSE);
+      m_pTextBuffer->SetLineFlag (nLine, dwMask, (dwFlags & dwMask) == 0, FALSE);
     }
-  int nLine = m_pTextBuffer->GetLineWithFlag (LF_BOOKMARKS);
-  if (nLine >= 0)
+  const int nBookmarkLine = m_pTextBuffer->GetLineWithFlag (LF_BOOKMARKS);
+  if (nBookmarkLine >= 0)
     m_bBookmarkExist = TRUE;
   else
     m_bBookmarkExist = FALSE;
+}
+/** 
+ * @brief Called when Toggle Bookmark is selected from the GUI.
+ */
+void CCrystalTextView::
+OnToggleBookmark ()
+{
+  ToggleBookmark(m_ptCursorPos.y);
 }
 
 void CCrystalTextView::
