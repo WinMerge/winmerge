@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-25 Kimmo
  PATCH: [ 1494627 ] Skip processing empty paths in Open dialog
   Src: OpenDlg.cpp
+ Doxygen comments and trivial cleanups for paths.cpp & paths.h
+  Src: paths.cpp paths.h
 
 2006-05-24 Kimmo
  PATCH: [ 1493742 ] Limit vertical scrolling to last line of files

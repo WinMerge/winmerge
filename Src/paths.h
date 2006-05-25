@@ -19,8 +19,6 @@ typedef enum
 	IS_EXISTING_DIR, /**< It is existing folder */
 } PATH_EXISTENCE;
 
-typedef enum { DIRSLASH, NODIRSLASH } DIRSLASH_TYPE;
-
 bool paths_EndsWithSlash(const CString & s);
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(CString & sPath);
@@ -33,9 +31,8 @@ CString ExpandShortcut(const CString &inFile);
 CString paths_ConcatPath(const CString & path, const CString & subpath);
 CString paths_GetParentPath(CString path);
 CString paths_GetLastSubdir(CString path);
-bool IsSlash(LPCTSTR pszStart, int nPos);
 BOOL paths_IsPathAbsolute(const CString &path);
-CString paths_EnsurePathExist(CString sPath);
+CString paths_EnsurePathExist(const CString & sPath);
 CString paths_GetWindowsDirectory();
 CString paths_GetMyDocuments(HWND hWindow);
 

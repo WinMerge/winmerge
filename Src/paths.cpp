@@ -12,7 +12,16 @@
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
 #include <shlobj.h>
 
-bool IsSlash(LPCTSTR pszStart, int nPos)
+static bool IsSlash(LPCTSTR pszStart, int nPos);
+static bool GetDirName(const CString & sDir, CString& sName);
+
+/** 
+ * @brief Checks if char in string is slash.
+ * @param [in] pszStart String to check.
+ * @param [in] Position of char in string to check (0-based index).
+ * @return true if char is slash.
+ */
+static bool IsSlash(LPCTSTR pszStart, int nPos)
 {
 	return pszStart[nPos]=='/' || 
 #ifdef _UNICODE
@@ -23,14 +32,32 @@ bool IsSlash(LPCTSTR pszStart, int nPos)
 #endif
 }
 
+/** 
+ * @brief Checks if string ends with slash.
+ * This function checks if given string ends with slash. In many places,
+ * especially in GUI, we assume folder paths end with slash.
+ * @param [in] s String to check.
+ * @return true if last char in string is slash.
+ */
 bool paths_EndsWithSlash(const CString & s)
 {
 	return !s.IsEmpty() && IsSlash(s, s.GetLength()-1);
 }
 
+/** 
+ * @brief Checks if path exists and if it points to folder or file.
+ * This function first checks if path exists. If path exists
+ * then function checks if path points to folder or file.
+ * @param [in] szPath Path to check.
+ * @return One of:
+ * - DOES_NOT_EXIST : path does not exists
+ * - IS_EXISTING_DIR : path points to existing folder
+ * - IS_EXISTING_FILE : path points to existing file
+ */
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
 {
-	if (!szPath || !szPath[0]) return DOES_NOT_EXIST;
+	if (!szPath || !szPath[0])
+		return DOES_NOT_EXIST;
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
@@ -55,11 +82,17 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
 		return IS_EXISTING_FILE;
 }
 
-// strip trailing slashes (except from root paths)
+/** 
+ * @brief Strip trailing slas.
+ * This function strips trailing slas from given path. Root paths are special
+ * case and they are left intact. Since C:\ is a valid path but C: is not.
+ * @param [in,out] sPath Path to strip.
+ */
 void paths_normalize(CString & sPath)
 {
 	int len = sPath.GetLength();
-	if (!len) return;
+	if (!len)
+		return;
 
 	// prefix root with current drive
 	sPath = paths_GetLongPath(sPath);
@@ -74,7 +107,11 @@ void paths_normalize(CString & sPath)
 }
 
 /**
- * @brief Get canonical name of directory & return true, if it exists
+ * @brief Get canonical name of folder.
+ * @param [in] sDir Folder to handle.
+ * @param [out] sName Canonicalized folder name.
+ * @return true if canonical name exists.
+ * @todo Should we return empty string as sName when returning false?
  */
 static bool GetDirName(const CString & sDir, CString& sName)
 {
@@ -104,15 +141,20 @@ static bool GetDirName(const CString & sDir, CString& sName)
 }
 
 /**
- * Convert path to canonical long path (ie, with ~ short names expanded)
- * Expand any environment strings
- * If path does not exist, make canonical the part that does exist, and leave the rest as is
- * Result, if a directory, usually does not have a trailing backslash
+ * Convert path to canonical long path.
+ * This function converts given path to canonical long form. For example
+ * foldenames with ~ short names are expanded. Also environment strings are
+ * expanded. If path does not exist, make canonical the part that does exist,
+ * and leave the rest as is. Result, if a directory, usually does not have a
+ * trailing backslash.
+ * @param [in] sPath Path to convert.
+ * @return Converted path.
  */
 CString paths_GetLongPath(const CString & sPath)
 {
 	int len = sPath.GetLength();
-	if (len < 1) return sPath;
+	if (len < 1)
+		return sPath;
 
 	TCHAR fullPath[_MAX_PATH] = {0};
 	TCHAR *lpPart;
@@ -163,7 +205,8 @@ CString paths_GetLongPath(const CString & sPath)
 	if (end && !_tcsnicmp(fullPath, _T("\\\\"),2))
 		end = _tcschr(end+1, _T('\\'));
 
-	if (!end) return fullPath;
+	if (!end)
+		return fullPath;
 
 	*end = 0;
 	sLong += ptr;
@@ -205,9 +248,13 @@ CString paths_GetLongPath(const CString & sPath)
 }
 
 /**
- * @brief Return true if path exists or if we successfully create it
- * Expand any environment strings
- * Create missing parts (as far as possible)
+ * @brief Check if the path exist and create the folder if needed.
+ * This function checks if path exists. If path does not yet exist
+ * function created needed folder structure. So this function is the
+ * easy way to create a needed folder structure. Environment strings are
+ * expanded when handling paths.
+ * @param [in] sPath Path to check/create.
+ * @return true if path exists or if we successfully created it.
  */
 bool paths_CreateIfNeeded(const CString & sPath)
 {
@@ -276,12 +323,17 @@ bool paths_CreateIfNeeded(const CString & sPath)
 	return true;
 }
 
-
-/** 
- * @brief Return folder for temporary files.
- */
+// Static string used by paths_GetTempPath() for storing temp path.
 static CString strTempPath;
 
+/** 
+ * @brief Get folder for temporary files.
+ * This function returns system temp folder.
+ * @param [out] pnerr Error code if erorr happened.
+ * @return Temp path, or empty string if error happened.
+ * @note Temp path is cached after first call.
+ * @todo Should we return NULL for error case?
+ */
 LPCTSTR paths_GetTempPath(int * pnerr)
 {
 	if (strTempPath.IsEmpty())
@@ -292,7 +344,9 @@ LPCTSTR paths_GetTempPath(int * pnerr)
 			int err = GetLastError();
 			if (pnerr)
 				*pnerr = err;
+#ifdef _DEBUG
 			CString sysErr = GetSysError(err); // for debugging
+#endif
 			return strTempPath; // empty
 		}
 		strTempPath = paths_GetLongPath(strTempPath);
@@ -300,9 +354,17 @@ LPCTSTR paths_GetTempPath(int * pnerr)
 	return strTempPath;
 }
 
-// return IS_EXISTING_DIR if both are directories & exist
-// return IS_EXISTING_FILE if both are files & exist
-// return DOES_NOT_EXIST in all other cases
+/** 
+ * @brief Check if paths are both folders or files.
+ * This function checks if paths are "compatible" as in many places we need
+ * to have two folders or two files.
+ * @param [in] pszLeft Left path.
+ * @param [in] pszRight Right path.
+ * @return One of:
+ *  - IS_EXISTING_DIR : both are directories & exist
+ *  - IS_EXISTING_FILE : both are files & exist
+ *  - DOES_NOT_EXIST : in all other cases
+*/
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
 {
 	// fail if not both specified
@@ -324,6 +386,12 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
 //	1996 by Rob Warner
 //	rhwarner@southeast.net
 //	http://users.southeast.net/~rhwarner
+
+/** 
+ * @brief Expand given shortcut to full path.
+ * @param [in] inFile Shortcut to expand.
+ * @return Full path or empty string if error happened.
+ */
 CString ExpandShortcut(const CString &inFile)
 {
 	CString outFile;
@@ -368,9 +436,15 @@ CString ExpandShortcut(const CString &inFile)
     return outFile;
 }
 
-// Append subpath to path
-// Skip empty arguments
-// Ensure exactly one backslash between them in result
+/** 
+ * @brief Append subpath to path.
+ * This function appends subpath to given path. Function ensures there
+ * is only one backslash between path parts.
+ * @param [in] path "Base" path where other part is appended.
+ * @param [in] subPath Path part to append to base part.
+ * @return Formatted path. If one of arguments is empty then returns
+ * non-empty argument. If both argumets are empty empty string is returned.
+ */
 CString paths_ConcatPath(const CString & path, const CString & subpath)
 {
 	if (path.IsEmpty()) return subpath;
@@ -400,7 +474,11 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
 }
 
 /** 
- * @brief Get parent path
+ * @brief Get parent path.
+ * This function returns parent path for given path. For example for
+ * path "c:\folder\subfolder" we return "c:\folder.
+ * @param [in] path Path to get parent path for.
+ * @return Parent path.
  */
 CString paths_GetParentPath(CString path)
 {
@@ -461,7 +539,9 @@ CString paths_GetLastSubdir(CString path)
 }
 
 /** 
- * @brief Checks if path is absolute path
+ * @brief Checks if path is an absolute path.
+ * @param [in] path Path to check.
+ * @return TRUE if given path is absolute path.
  */
 BOOL paths_IsPathAbsolute(const CString &path)
 {
@@ -487,11 +567,15 @@ BOOL paths_IsPathAbsolute(const CString &path)
 }
 
 /**
- * @brief CString wrapper for GetTempFileName
+ * @brief Get filename for temporary file.
+ * @param [in] lpPathName Temporary file folder.
+ * @param [in] lpPrefixString Prefix to use for filename.
+ * @param [out] pnerr Error code if error happened.
+ * @return Full path for temporary file or empty string if error happened.
  */
 CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr)
 {
-	TCHAR buffer[MAX_PATH];
+	TCHAR buffer[MAX_PATH] = {0};
 	if (_tcslen(lpPathName) > MAX_PATH-14) return _T(""); // failure
 	int rtn = GetTempFileName(lpPathName, lpPrefixString, 0, buffer);
 	if (!rtn)
@@ -499,16 +583,23 @@ CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * 
 		int err = GetLastError();
 		if (pnerr)
 			*pnerr = err;
+#ifdef _DEBUG
 		CString sysErr = GetSysError(err); // for debugging
+#endif
 		return _T("");
 	}
 	return buffer;
 }
 
 /**
- * @brief Return specified path if it exists or we can create it, else return empty
+ * @brief Checks if folder exists and creates it if needed.
+ * This function checks if folder exists and creates it if not.
+ * @param [in] sPath
+ * @return Path if it exists or were created successfully. If
+ * path points to file or folder failed to create returns empty
+ * string.
  */
-CString paths_EnsurePathExist(CString sPath)
+CString paths_EnsurePathExist(const CString & sPath)
 {
 	int rtn = paths_DoesPathExist(sPath);
 	if (rtn == IS_EXISTING_DIR)
@@ -517,13 +608,17 @@ CString paths_EnsurePathExist(CString sPath)
 		return _T("");
 	if (!paths_CreateIfNeeded(sPath))
 		return _T("");
+	// Check creating folder succeeded
 	if (paths_DoesPathExist(sPath) == IS_EXISTING_DIR)
 		return sPath;
 	else
 		return _T("");
 }
 
-/** @brief Return Windows directory as CString */
+/**
+ * @brief Get Windows directory.
+ * @return Windows directory.
+ */
 CString paths_GetWindowsDirectory()
 {
 	CString str;
@@ -543,7 +638,7 @@ CString paths_GetMyDocuments(HWND hWindow)
 	LPITEMIDLIST pidl;
 	LPMALLOC pMalloc;
 	CString path;
-	TCHAR szPath[MAX_PATH];
+	TCHAR szPath[MAX_PATH] = {0};
 
 	HRESULT rv = SHGetSpecialFolderLocation(hWindow, CSIDL_PERSONAL, &pidl);
 	if (rv == S_OK)
