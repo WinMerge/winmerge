@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-25 Kimmo
+ BUG: [ 1494610 ] Wrong selection in ccrystalview2.cpp
+  Analyzed by Mallato
+  Src/editlib: ccrystaltextview2.cpp
+
 2006-05-25 Tim
  PATCH: [ 1495017 ] Translate 'Textcolors' options to German
   Src/Languages/German: MergeGerman.rc

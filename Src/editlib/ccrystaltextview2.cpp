@@ -588,6 +588,12 @@ SelectAll ()
   UpdateCaret ();
 }
 
+/** 
+ * @brief Called when left mousebutton pressed down in editor.
+ * This function handles left mousebutton down in editor.
+ * @param [in] nFlags Flags indicating if virtual keys are pressed.
+ * @param [in] point Point where mousebutton is pressed.
+ */
 void CCrystalTextView::
 OnLButtonDown (UINT nFlags, CPoint point)
 {
@@ -620,14 +626,14 @@ OnLButtonDown (UINT nFlags, CPoint point)
           if (GetSubLineIndex (ptStart.y) + pos.y == GetSubLineCount() - 1)
             {
               // select to end of subline
-              ptStart = SubLineEndToCharPos (ptStart.y, pos.y);
+              ptEnd.x = SubLineEndToCharPos (ptStart.y, pos.y);
             }
           else
             {
               int nLine, nSubLine;
               GetLineBySubLine (GetSubLineIndex (ptStart.y) + pos.y + 1, nLine, nSubLine);
-              ptStart.y = nLine;
-              ptStart.x = SubLineHomeToCharPos (nLine, nSubLine);
+              ptEnd.y = nLine;
+              ptEnd.x = SubLineHomeToCharPos (nLine, nSubLine);
             }
 
           m_ptCursorPos = ptEnd;
