@@ -1512,15 +1512,15 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Default system colors for normal text",
+    CONTROL         "Standard-Systemfarben für normalen Text",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,14,148,10
-    GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
+    GROUPBOX        "Benutzerdefinierte Textfarben",IDC_CUSTOM_COLORS_GROUP,27,33,159,
                     111
-    LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
-    LTEXT           "Regular text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
-    LTEXT           "Selection:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
-    CTEXT           "Background",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
+    LTEXT           "Leerzeichen:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10
+    LTEXT           "Normaler Text:",IDC_TEXT_COLOR_LABEL,31,87,61,8
+    LTEXT           "Auswahl:",IDC_SELECTION_COLOR_LABEL,31,116,61,8
+    CTEXT           "Hintergrund",IDC_BACKGROUND_COLUMN_LABEL,96,44,50,8
     CTEXT           "Text",IDC_TEXT_COLUMN_LABEL,145,44,29,8
     CONTROL         "Btn",IDC_WHITESPACE_BKGD_COLOR,"Button",BS_OWNERDRAW | 
                     WS_TABSTOP,113,58,17,14,WS_EX_TRANSPARENT |
@@ -1542,22 +1542,22 @@ END
 IDD_PROJFILES_PATHS DIALOGEX 0, 0, 322, 97
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Paths"
+CAPTION "Pfade"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    RTEXT           "&Left:",IDC_STATIC,7,11,40,8
+    RTEXT           "&Links:",IDC_STATIC,7,11,40,8
     EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
-    RTEXT           "&Right:",IDC_STATIC,7,28,40,8
+    PUSHBUTTON      "Suchen...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
+    RTEXT           "&Rechts:",IDC_STATIC,7,28,40,8
     EDITTEXT        IDC_PROJ_RFILE_EDIT,50,26,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
+    PUSHBUTTON      "Suchen...",IDC_PROJ_RFILE_BROWSE,265,26,50,14
     RTEXT           "&Filter:",IDC_STATIC,7,46,40,8
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,43,210,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Select...",IDC_PROJ_FILTER_SELECT,265,43,50,14
-    CONTROL         "&Include Subfolders",IDC_PROJ_INC_SUBFOLDERS,"Button",
+    PUSHBUTTON      "Auswählen...",IDC_PROJ_FILTER_SELECT,265,43,50,14
+    CONTROL         "&Unterordner einbeziehen",IDC_PROJ_INC_SUBFOLDERS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,50,61,130,10
-    PUSHBUTTON      "Open...",IDC_PROJ_OPEN,211,76,50,14
-    PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,76,50,14
+    PUSHBUTTON      "Öffnen...",IDC_PROJ_OPEN,211,76,50,14
+    PUSHBUTTON      "Speichern...",IDC_PROJ_SAVE,265,76,50,14
 END
 
 #ifndef _MAC
@@ -1738,7 +1738,7 @@ BEGIN
     ID_FILE_OPENPROJECT     "Öffnet eine Projektdatei.\nProjektdatei (Strg+J)"
     IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
     IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
-    IDS_PROJFILEDLG_CAPTION "Project File"
+    IDS_PROJFILEDLG_CAPTION "Projekt-Datei"
     ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
 END
 
@@ -1865,7 +1865,7 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
+    IDS_SPLASH_DEVELOPERS   "Entwickler:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
     IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
 END
 
@@ -1903,7 +1903,7 @@ BEGIN
     IDS_OPTIONSPG_EDITOR    "Editor"
     IDS_OPTIONSPG_COLORS    "Farben"
     IDS_OPTIONSPG_SYNTAXCOLORS "Syntaxfarben"
-    IDS_OPTIONSPG_TEXTCOLORS "Text Colors"
+    IDS_OPTIONSPG_TEXTCOLORS "Textfarben"
     IDS_OPTIONSPG_SYSTEM    "System"
     IDS_OPTIONSPG_VERSIONCONTROL "Versionskontrolle"
     IDS_OPTIONSPG_CODEPAGE  "Zeichensatz"
@@ -1971,9 +1971,9 @@ END
 // REPORT FILES
 STRINGTABLE
 BEGIN
-    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+    IDS_TEXT_REPORT_FILES   "Textdateien (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Alle Dateien (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML-Dateien (*.htm,*.html)|*.htm;*.html|Alle Dateien (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML-Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -2318,7 +2318,7 @@ BEGIN
     IDS_REPORT_COMMALIST    "Komma-getrennte Liste"
     IDS_REPORT_TABLIST      "Tab-getrennte Liste"
     IDS_REPORT_SIMPLEHTML   "Einfaches HTML"
-    IDS_REPORT_SIMPLEXML    "Simple XML"
+    IDS_REPORT_SIMPLEXML    "Einfaches XML"
     IDS_REPORT_FILEOVERWRITE
                             "Der Bericht existiert bereits. Überschreiben?"
     IDS_REPORT_ERROR        "Fehler beim Erzeugen des Berichtes:\n%1"
@@ -2765,10 +2765,10 @@ BEGIN
     ID_REFRESH              "Aktualisiert die Anzeige\nAktualisieren (F5)"
     ID_EDIT_COPY_LINENUMBERS "Kopiert die ausgewählten Zeilen in die Zwischenablage und fügt Zeilennummern vor den Zeilenanfang."
     ID_DIR_RESCAN            "Aktualisiert die ausgewählten Objekte."
-    ID_EDIT_TOGGLE_BOOKMARK     "Toggle bookmark"
-    ID_EDIT_GOTO_NEXT_BOOKMARK  "Go to next bookmark"
-    ID_EDIT_GOTO_PREV_BOOKMARK  "Go to previous bookmark"
-    ID_EDIT_CLEAR_ALL_BOOKMARKS "Clear all bookmarks"
+    ID_EDIT_TOGGLE_BOOKMARK     "Lesezeichen setzen oder löschen."
+    ID_EDIT_GOTO_NEXT_BOOKMARK  "Zum nächsten Lesezeichen gehen."
+    ID_EDIT_GOTO_PREV_BOOKMARK  "Zum vorherigen Lesezeichen gehen."
+    ID_EDIT_CLEAR_ALL_BOOKMARKS "Alle Lesezeichen löschen."
 END
 
 // VIEW MENU (ITEM TYPE)
@@ -2794,7 +2794,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
     ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
     ID_VIEW_SWAPPANES       "Vertauscht die Position der beiden Ausschnitte."
-    ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
+    ID_VIEW_LINENUMBERS     "Zeigt Zeilennummern an.\nZeilennummern anzeigen"
     ID_VIEW_WORDWRAP        "Aktiviert das Umbrechen der Zeilen.\nZeilen umbrechen"
 END
 
@@ -2851,8 +2851,8 @@ BEGIN
     ID_HELP_GETCONFIG       "Ausgeben der aktuellen WinMerge Versionsinformationen und Konfiguration in eine Textdatei."
     ID_HELP_GNULICENSE      "Zeigt die ""GNU public license"" an."
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
-    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
+    ID_HELP_INDEX           "Öffnet den Index der WinMerge Hilfe.\nHilfe-Index"
+    ID_HELP_SEARCH          "Öffnet die Suche der WinMerge Hilfe.\nHilfe-Suche"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS
@@ -2891,7 +2891,7 @@ STRINGTABLE
 BEGIN
     IDS_AUTOCOMPLETE_DISABLED   "Disabled"
     IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU	"From MRU list"
+    IDS_AUTOCOMPLETE_MRU        "From MRU list"
 END
 
 // END STRINGS SYNCHRO
