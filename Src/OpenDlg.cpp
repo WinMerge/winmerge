@@ -68,13 +68,10 @@ static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/OpenPaths.html");
 
 COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(COpenDlg::IDD, pParent)
+	, m_pathsType(DOES_NOT_EXIST)
+	, m_bOverwriteRecursive(FALSE)
+	, m_bRecurse(FALSE)
 {
-	//{{AFX_DATA_INIT(COpenDlg)
-	m_bRecurse = FALSE;
-	//}}AFX_DATA_INIT
-
-	m_pathsType = DOES_NOT_EXIST;
-	m_bOverwriteRecursive = FALSE;
 }
 
 void COpenDlg::DoDataExchange(CDataExchange* pDX)
@@ -209,15 +206,25 @@ void COpenDlg::OnLeftButton()
 {
 	CString s;
 	CString sfolder, sext;
-	CString dirSelTag;
 	UpdateData(TRUE); 
 
-
-	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-	if (paths_DoesPathExist(m_strLeft) == IS_EXISTING_DIR)
+	PATH_EXISTENCE existence = paths_DoesPathExist(m_strLeft);
+	switch (existence)
+	{
+	case IS_EXISTING_DIR:
 		sfolder = m_strLeft;
-	else
+		break;
+	case IS_EXISTING_FILE:
 		sfolder = GetPathOnly(m_strLeft);
+		break;
+	case DOES_NOT_EXIST:
+		// Do nothing, empty foldername will be passed to dialog
+		break;
+	default:
+		_RPTF0(_CRT_ERROR, "Invalid return value from paths_DoesPathExist()");
+		break;
+	}
+
 	if (SelectFile(s, sfolder))
 	{
 		SplitFilename(s, NULL, NULL, &sext);
@@ -237,14 +244,25 @@ void COpenDlg::OnRightButton()
 {
 	CString s;
 	CString sfolder, sext;
-	CString dirSelTag;
 	UpdateData(TRUE);
 
-	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-	if (paths_DoesPathExist(m_strRight) == IS_EXISTING_DIR)
+	PATH_EXISTENCE existence = paths_DoesPathExist(m_strRight);
+	switch (existence)
+	{
+	case IS_EXISTING_DIR:
 		sfolder = m_strRight;
-	else 
+		break;
+	case IS_EXISTING_FILE:
 		sfolder = GetPathOnly(m_strRight);
+		break;
+	case DOES_NOT_EXIST:
+		// Do nothing, empty foldername will be passed to dialog
+		break;
+	default:
+		_RPTF0(_CRT_ERROR, "Invalid return value from paths_DoesPathExist()");
+		break;
+	}
+
 	if (SelectFile(s, sfolder))
 	{
 		SplitFilename(s, NULL, NULL, &sext);
@@ -401,9 +419,7 @@ void COpenDlg::UpdateButtonStates()
  * @param [in] pszFolder Initial folder shown
  * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
  */
-BOOL COpenDlg::SelectFile(
-	CString& path, 
-	LPCTSTR initialPath) 
+BOOL COpenDlg::SelectFile(CString& path, LPCTSTR initialPath) 
 {
 	BOOL is_open = TRUE; // this method is only for common file open dialog
 
