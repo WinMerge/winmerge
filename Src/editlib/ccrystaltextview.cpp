@@ -3358,6 +3358,12 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
   return CView::OnSetCursor (pWnd, nHitTest, message);
 }
 
+/** 
+ * @brief Converts client area point to text position.
+ * @param [in] point Client area point.
+ * @return Text position (line index, char index in line).
+ * @note For gray selection area char index is 0.
+ */
 CPoint CCrystalTextView::
 ClientToText (const CPoint & point)
 {
@@ -3381,9 +3387,9 @@ ClientToText (const CPoint & point)
   pt.y = nLine;
 
   LPCTSTR pszLine = NULL;
-  int	nLength = 0;
+  int nLength = 0;
   int *anBreaks = NULL;
-  int	nBreaks = 0;
+  int nBreaks = 0;
 
   if (pt.y >= 0 && pt.y < nLineCount)
     {
@@ -3392,34 +3398,35 @@ ClientToText (const CPoint & point)
       pszLine = GetLineChars(pt.y);
       WrapLineCached( pt.y, GetScreenChars(), anBreaks, nBreaks );
 
-      if( nSubLineOffset > 0 )
+      if (nSubLineOffset > 0)
         nOffsetChar = anBreaks[nSubLineOffset - 1];
-      if( nBreaks > nSubLineOffset )
+      if (nBreaks > nSubLineOffset)
         nLength = anBreaks[nSubLineOffset] - 1;
     }
 
-  int nPos = nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
+  int nPos = 0;
+  // Char index for margin area is 0
+  if (point.x > GetMarginWidth())
+    nPos = nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
   if (nPos < 0)
     nPos = 0;
 
-  int nIndex = 0, nCurPos = 0, n = 0, i = 0;
+  int nIndex = 0;
+  int nCurPos = 0;
+  int n = 0;
+  int i = 0;
   const int nTabSize = GetTabSize();
-
-  /*
-  if( m_bWordWrap )
-    nCurPos = nIndex = nOffsetChar;
-  */
 
   BOOL bDBCSLeadPrev = FALSE;  //DBCS support (yuyunyi)
   while (nIndex < nLength)
     {
-      if( nBreaks && nIndex == anBreaks[i] )
+      if (nBreaks && nIndex == anBreaks[i])
         {
           n = nIndex;
           i++;
         }
 
-      if (pszLine[nIndex] == _T('\t'))
+      if (pszLine[nIndex] == '\t')
         {
           const int nOffset = nTabSize - nCurPos % nTabSize;
           n += nOffset;
@@ -3438,8 +3445,8 @@ ClientToText (const CPoint & point)
         break;
         }
 
-      if(bDBCSLeadPrev)
-        bDBCSLeadPrev=FALSE;
+      if (bDBCSLeadPrev)
+        bDBCSLeadPrev = FALSE;
       else
         bDBCSLeadPrev = IsLeadByte(pszLine[nIndex]);
 
@@ -3448,53 +3455,12 @@ ClientToText (const CPoint & point)
 
   delete[] anBreaks;
 
-  if (pszLine && m_pTextBuffer->IsMBSTrail(pt.y, nIndex)) nIndex--;
+  if (pszLine && m_pTextBuffer->IsMBSTrail(pt.y, nIndex))
+    nIndex--;
 
   ASSERT(nIndex >= 0 && nIndex <= nLength);
   pt.x = nIndex;
   return pt;
-
-  /*ORIGINAL
-  int nLineCount = GetLineCount();
-
-  CPoint pt;
-  pt.y = m_nTopLine + point.y / GetLineHeight();
-  if (pt.y >= nLineCount)
-    pt.y = nLineCount - 1;
-  if (pt.y < 0)
-    pt.y = 0;
-
-  int nLength = 0;
-  LPCTSTR pszLine = NULL;
-  if (pt.y >= 0 && pt.y < nLineCount)
-  {
-    nLength = GetLineLength(pt.y);
-    pszLine = GetLineChars(pt.y);
-  }
-
-  int nPos = m_nOffsetChar + (point.x - GetMarginWidth()) / GetCharWidth();
-  if (nPos < 0)
-    nPos = 0;
-
-  int nIndex = 0, nCurPos = 0;
-  int nTabSize = GetTabSize();
-  while (nIndex < nLength)
-  {
-    if (pszLine[nIndex] == _T('\t'))
-      nCurPos += (nTabSize - nCurPos % nTabSize);
-    else
-      nCurPos ++;
-
-    if (nCurPos > nPos)
-      break;
-
-    nIndex ++;
-  }
-
-  ASSERT(nIndex >= 0 && nIndex <= nLength);
-  pt.x = nIndex;
-  return pt;
-  *///END SW
 }
 
 #ifdef _DEBUG

@@ -7,6 +7,8 @@ Add new items to top.
   Src/editlib: ccrystaltextview.cpp
  PATCH: [ 1497068 ] Initialize cursorpositions in GhostTextView
   Src: GhostTextView.h
+ PATCH: [ 1497147 ] Cleanup CCrystalTextView::ClientToText
+  Src/editlib: ccrystaltextview.cpp
 
 2006-05-25 Kimmo
  BUG: [ 1494610 ] Wrong selection in ccrystalview2.cpp
