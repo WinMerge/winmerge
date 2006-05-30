@@ -2240,57 +2240,74 @@ void CCrystalTextView::SubLineCursorPosToTextPos( const CPoint &subLineCurPos, C
   textPos.y = nLine;
 }
 
-int CCrystalTextView::SubLineEndToCharPos( int nLineIndex, int nSubLineOffset )
+/**
+ * @brief Calculate last character position in (sub)line.
+ * @param [in] nLineIndex Linenumber to check.
+ * @param [in] nSublineOffset Subline index in wrapped line.
+ * @return Position of the last character.
+ */
+int CCrystalTextView::SubLineEndToCharPos(int nLineIndex, int nSubLineOffset)
 {
-  const int nLength = GetLineLength( nLineIndex );
+  const int nLength = GetLineLength(nLineIndex);
 
   // if word wrapping is disabled, the end is equal to the length of the line -1
-  if( !m_bWordWrap /*|| nLength <= GetScreenChars()*/ )
+  if (!m_bWordWrap)
     return nLength;
 
   // wrap line
   int *anBreaks = new int[nLength];
-  int	nBreaks = 0;
+  int nBreaks = 0;
 
-  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached(nLineIndex, GetScreenChars(), anBreaks, nBreaks);
 
   // if there is no break inside the line or the given subline is the last
   // one in this line...
-  if( !nBreaks || nSubLineOffset == nBreaks )
-    return nLength;
+  if (nBreaks == 0 || nSubLineOffset == nBreaks)
+    {
+      delete [] anBreaks;
+      return nLength;
+    }
 
   // compute character position for end of subline
-  ASSERT( nSubLineOffset >= 0 && nSubLineOffset <= nBreaks );
+  ASSERT(nSubLineOffset >= 0 && nSubLineOffset <= nBreaks);
 
   int nReturnVal = anBreaks[nSubLineOffset] - 1;
-  delete[] anBreaks;
+  delete [] anBreaks;
 
   return nReturnVal;
 }
 
-int CCrystalTextView::SubLineHomeToCharPos( int nLineIndex, int nSubLineOffset )
+/** 
+ * @brief Calculate first character position in (sub)line.
+ * @param [in] nLineIndex Linenumber to check.
+ * @param [in] nSublineOffset Subline index in wrapped line.
+ * @return Position of the first character.
+ */
+int CCrystalTextView::SubLineHomeToCharPos(int nLineIndex, int nSubLineOffset)
 {
-  int		nLength = GetLineLength( nLineIndex );
-
   // if word wrapping is disabled, the start is 0
-  if( !m_bWordWrap /*|| nLength <= GetScreenChars() */|| nSubLineOffset == 0 )
+  if (!m_bWordWrap || nSubLineOffset == 0)
     return 0;
 
   // wrap line
+  int nLength = GetLineLength(nLineIndex);
   int *anBreaks = new int[nLength];
-  int	nBreaks = 0;
+  int nBreaks = 0;
 
-  WrapLineCached( nLineIndex, GetScreenChars(), anBreaks, nBreaks );
+  WrapLineCached(nLineIndex, GetScreenChars(), anBreaks, nBreaks);
 
   // if there is no break inside the line...
-  if( !nBreaks )
-    return 0;
+  if (nBreaks == 0)
+    {
+      delete [] anBreaks;
+      return 0;
+    }
 
   // compute character position for end of subline
-  ASSERT( nSubLineOffset > 0 && nSubLineOffset <= nBreaks );
+  ASSERT(nSubLineOffset > 0 && nSubLineOffset <= nBreaks);
 
   int nReturnVal = anBreaks[nSubLineOffset - 1];
-  delete[] anBreaks;
+  delete [] anBreaks;
 
   return nReturnVal;
 }

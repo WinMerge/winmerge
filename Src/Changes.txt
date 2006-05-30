@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-30 Kimmo
+ PATCH: [ 1497154 ] Fix memory leak in wordwrap code
+  Src/editlib: ccrystaltextview.cpp
+
 2006-05-25 Kimmo
  BUG: [ 1494610 ] Wrong selection in ccrystalview2.cpp
   Analyzed by Mallato
