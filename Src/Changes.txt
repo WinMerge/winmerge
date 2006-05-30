@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-30 Kimmo
  PATCH: [ 1497154 ] Fix memory leak in wordwrap code
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1497068 ] Initialize cursorpositions in GhostTextView
+  Src: GhostTextView.h
 
 2006-05-25 Kimmo
  BUG: [ 1494610 ] Wrong selection in ccrystalview2.cpp

@@ -46,11 +46,14 @@ private:
 	 */
 	struct SCursorPushed
 	{
+		/// char pos
 		int x;
-		// real line number of itself (is the line is real)/the first real line after this line (else)
+		/// real line number of itself (is the line is real)/the first real line after this line (else)
 		int y;
-		// 0 (is the line is real)/ distance to the first real line after this one 
+		/// 0 (is the line is real)/ distance to the first real line after this one 
 		int nToFirstReal;
+
+		SCursorPushed() : x(0), y(0), nToFirstReal(0) { }
 	};
 	
 	/** 
