@@ -475,6 +475,8 @@ SaveSettings ()
 }
 
 CCrystalTextView::CCrystalTextView ()
+: m_nScreenChars(-1)
+, m_nMaxLineLength(-1)
 {
   AFX_ZERO_INIT_OBJECT (CView);
   m_rxnode = NULL;
@@ -500,7 +502,6 @@ CCrystalTextView::CCrystalTextView ()
   SetTextType (SRC_PLAIN);
   m_bSingle = false; // needed to be set in descendat classes
   m_bRememberLastPos = false;
-  m_nMaxLineLength = -1;
 
   m_pColors = NULL;
 }
@@ -2808,36 +2809,37 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
   return nSubLineCount;
 }
 
-void CCrystalTextView::GetLineBySubLine( int nSubLineIndex, int &nLine, int &nSubLine )
+// See comment in the header file
+void CCrystalTextView::GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine)
 {
   ASSERT( nSubLineIndex < GetSubLineCount() );
 
   // if we do not wrap words, nLine is equal to nSubLineIndex and nSubLine is allways 0
-  if( !m_bWordWrap )
+  if (!m_bWordWrap)
     {
       nLine = nSubLineIndex;
       nSubLine = 0;
+      return;
     }
 
   // compute result
-  int	nSubLineCount = 0;
+  int nSubLineCount = 0;
   int nLastSubLines = 0;
   const int nLineCount = GetLineCount();
 
-  int i=0;
-  for( i = 0; i < nLineCount; i++ )
+  int i = 0;
+  for (i = 0; i < nLineCount; i++)
     {
-      nLastSubLines = GetSubLines( i );
+      nLastSubLines = GetSubLines(i);
       nSubLineCount += nLastSubLines;
-      if( !(nSubLineCount <= nSubLineIndex) )
+      if (nSubLineCount > nSubLineIndex)
         break;
     }
 
-  ASSERT( i < nLineCount );
+  ASSERT(i < nLineCount);
   nLine = i;
-  nSubLine = nSubLineIndex - (nSubLineCount - nLastSubLines);
+  nSubLine = nSubLineIndex - nSubLineCount + nLastSubLines;
 }
-//END SW
 
 int CCrystalTextView::
 GetLineLength (int nLineIndex) const

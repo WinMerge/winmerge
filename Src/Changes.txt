@@ -5,6 +5,8 @@ Add new items to top.
 2006-05-31 Kimmo
  BUG: [ 1494610 ] Wrong selection in ccrystalview2.cpp
   Src/editlib: ccrystaltextview2.cpp
+ PATCH: [ 1497817 ] Cleanup CCrystalTextView::GetLineBySubLine
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
 
 2006-05-30 Kimmo
  PATCH: [ 1497154 ] Fix memory leak in wordwrap code

@@ -418,15 +418,13 @@ protected :
 	*/
 	virtual int GetSubLineIndex( int nLineIndex );
 
-	/**
-	Splits the given subline index into line and sub line of this line.
-
-	@param nSubLineIndex The zero based index of the subline to get info about
-	@param nLine Gets the line number the give subline is included in
-	@param nSubLine Get the subline of the given subline relative to nLine
-	*/
-	virtual void GetLineBySubLine( int nSubLineIndex, int &nLine, int &nSubLine );
-	//END SW
+    /**
+     * @brief Splits the given subline index into line and sub line of this line.
+     * @param [in] nSubLineIndex The zero based index of the subline to get info about
+     * @param [out] nLine Gets the line number the give subline is included in
+     * @param [out] nSubLine Get the subline of the given subline relative to nLine
+     */
+    virtual void GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine);
 
 public:
     virtual int GetLineLength (int nLineIndex) const;
