@@ -612,6 +612,8 @@ OnLButtonDown (UINT nFlags, CPoint point)
       else
         {
           m_ptCursorPos = ClientToText (point);
+          const int nSubLines = GetSubLineCount();
+
           // Find char pos that is the beginning of the subline clicked on
           CPoint pos;
           CharPosToPoint (m_ptCursorPos.y, m_ptCursorPos.x, pos);
@@ -623,15 +625,17 @@ OnLButtonDown (UINT nFlags, CPoint point)
           CPoint ptStart, ptEnd;
           CharPosToPoint (m_ptAnchor.y, m_ptAnchor.x, pos);
           ptStart.y = m_ptAnchor.y;
-          if (GetSubLineIndex (ptStart.y) + pos.y == GetSubLineCount() - 1)
+          const int nSublineIndex = GetSubLineIndex (ptStart.y);
+          if (nSublineIndex + pos.y >= nSubLines - 1)
             {
-              // select to end of subline
+              // Select last line to end of subline
+              ptEnd.y = GetLineCount() - 1;
               ptEnd.x = SubLineEndToCharPos (ptStart.y, pos.y);
             }
           else
             {
               int nLine, nSubLine;
-              GetLineBySubLine (GetSubLineIndex (ptStart.y) + pos.y + 1, nLine, nSubLine);
+              GetLineBySubLine (nSublineIndex + pos.y + 1, nLine, nSubLine);
               ptEnd.y = nLine;
               ptEnd.x = SubLineHomeToCharPos (nLine, nSubLine);
             }
