@@ -499,6 +499,7 @@ BEGIN
             MENUITEM "à &droite",                     ID_DIR_DEL_RIGHT
             MENUITEM "des deu&x côtés",               ID_DIR_DEL_BOTH
         END
+        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
         MENUITEM "D&issimuler l'élément(s)",          ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Ouvrir à &gauche"
@@ -579,8 +580,7 @@ IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL,
-                                                    NOINVERT
+    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
@@ -601,6 +601,7 @@ BEGIN
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -619,7 +620,6 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1127,7 +1127,7 @@ BEGIN
     CONTROL         "&Qualifier la détection des blocs déplacés",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "&Methode de comparaison:",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,114,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Arrêter à la première différence",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
@@ -1900,6 +1900,7 @@ BEGIN
     IDS_OPTIONSPG_CODEPAGE        "Page de code"
     IDS_OPTIONSPG_SYNTAXCOLORS    "Couleurs de la syntaxe"
     IDS_OPTIONSPG_ARCHIVE         "Support des archives"
+    IDS_OPTIONSPG_TEXTCOLORS "Text Colors"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1974,6 +1975,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS  "Contenu complet"
     IDS_COMPMETHOD_QUICK_CONTENTS "Contenu rapide"
     IDS_COMPMETHOD_MODDATE        "Date de modification"
+    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
 END
 
 // FILTER OPTIONS
@@ -2125,6 +2127,7 @@ BEGIN
     ID_DIR_DEL_RIGHT            "Supprimer l'élément sélectionné à droite"
     ID_DIR_DEL_BOTH             "Supprimer l'élément sélectionné de chaque côté"
     ID_DIR_HIDE_FILENAMES       "Dissimuler l'élément sélectionné (filtre instantané)"
+    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
     IDS_COPY_TO_LEFT            "De droite à gauche (%1)"
     IDS_COPY_TO_RIGHT           "De gauche à droite (%1)"
     IDS_COPY_TO_LEFT2           "De droite à gauche (%1 de %2)"
@@ -2151,6 +2154,8 @@ BEGIN
     IDS_MOVE_RIGHT_TO2      "De droite vers... (%1 de %2)"
     IDS_SELECT_DEST_LEFT    "Côté gauche - choisir répertoire de destination:"
     IDS_SELECT_DEST_RIGHT   "Côté droit - choisir répertoire de destination:"
+    IDS_FILES_AFFECTED_FMT  "(%1 Files Affected)"
+    IDS_FILES_AFFECTED_FMT2 "(%1 of %2 Files Affected)"
 END
 
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
@@ -2743,6 +2748,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Convertir la fin de ligne en mode UNIX"
     ID_EOL_TO_MAC           "Convertir la fin de ligne en mode MAC"
     ID_FILE_MERGINGMODE     "Basculer entre les modes d'édition et de fusion"
+    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
 END
 
 // EDIT MENU

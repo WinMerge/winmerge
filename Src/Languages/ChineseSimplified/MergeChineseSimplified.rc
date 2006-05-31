@@ -503,6 +503,7 @@ BEGIN
             MENUITEM "右侧(&R)",                    ID_DIR_DEL_RIGHT
             MENUITEM "两侧(&B)",                    ID_DIR_DEL_BOTH
         END
+        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "打开左侧(&O)"
@@ -583,8 +584,7 @@ IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL,
-                                                    NOINVERT
+    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
@@ -605,6 +605,7 @@ BEGIN
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -623,7 +624,6 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1130,7 +1130,7 @@ BEGIN
     CONTROL         "允许检测移动区块(&N)",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "文件对比方法(&F)",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,114,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "遇到首处不同后停止(&T)",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
@@ -1983,6 +1983,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "全部内容"
     IDS_COMPMETHOD_QUICK_CONTENTS "快速内容"
     IDS_COMPMETHOD_MODDATE  "修改日期"
+    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
 END
 
 // FILTER OPTIONS
@@ -2134,6 +2135,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "删除右侧选中的项目"
     ID_DIR_DEL_BOTH         "删除两侧选中的项目"
     ID_DIR_HIDE_FILENAMES   "隐藏选中的项目(即时过滤)"
+    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
     IDS_COPY_TO_LEFT        "右侧到左侧 (%1)"
     IDS_COPY_TO_RIGHT       "左侧到右侧 (%1)"
     IDS_COPY_TO_LEFT2       "右侧到左侧 (%1 of %2)"

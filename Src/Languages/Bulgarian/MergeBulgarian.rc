@@ -501,6 +501,7 @@ BEGIN
             MENUITEM "&От дясно",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Двете",                       ID_DIR_DEL_BOTH
         END
+        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Отвори в ляво"
@@ -603,6 +604,7 @@ BEGIN
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -621,7 +623,6 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1129,7 +1130,7 @@ BEGIN
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "Метод за сравнение:",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,114,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
@@ -2000,6 +2001,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Full Contents"
     IDS_COMPMETHOD_QUICK_CONTENTS "Quick Contents"
     IDS_COMPMETHOD_MODDATE  "Променена дата"
+    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
 END
 
 // FILTER OPTIONS
@@ -2151,6 +2153,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Изтриване на избрания обект от дясно"
     ID_DIR_DEL_BOTH         "Изтриване на избрания обект(и) от двете страни"
     ID_DIR_HIDE_FILENAMES   "Hide selected item(s) (on the fly filter)"
+    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
     IDS_COPY_TO_LEFT        "От дясно към ляво (%1)"
     IDS_COPY_TO_RIGHT       "От ляво към дясно (%1)"
     IDS_COPY_TO_LEFT2       "Десен към ляв (%1 oт %2)"

@@ -399,6 +399,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Mostrar &espacios",            ID_VIEW_WHITESPACE
         MENUITEM "Mostrar diferencias de &línea",      ID_VIEW_LINEDIFFS
+        MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
         MENUITEM "&Ajuste de línea",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Intercambiar paneles",                 ID_VIEW_SWAPPANES
@@ -500,6 +501,7 @@ BEGIN
             MENUITEM "&Izquierda",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Ambos",                       ID_DIR_DEL_BOTH
         END
+        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Ocultar ficheros",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Abrir fichero &izquierdo"
@@ -580,8 +582,7 @@ IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL,
-                                                    NOINVERT
+    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
@@ -602,6 +603,7 @@ BEGIN
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -620,7 +622,6 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1128,7 +1129,7 @@ BEGIN
     CONTROL         "&Habilitar detección de bloques movidos",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "Com&parar:",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,114,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Parar después de la primera diferencia",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
@@ -1981,6 +1982,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Todo el contenido"
     IDS_COMPMETHOD_QUICK_CONTENTS "Contenido rápido"
     IDS_COMPMETHOD_MODDATE  "Fecha de modificación"
+    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
 END
 
 // FILTER OPTIONS
@@ -2132,6 +2134,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Eliminar elemento selecionado del lado derecho"
     ID_DIR_DEL_BOTH         "Eliminar elementos seleccionados de ambos lados"
     ID_DIR_HIDE_FILENAMES   "Ocultar elementos seleccionados (filtro al vuelo)"
+    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
     IDS_COPY_TO_LEFT        "Lado derecho a lado izquierdo (%1)"
     IDS_COPY_TO_RIGHT       "Lado izquierdo a lado derecho (%1)"
     IDS_COPY_TO_LEFT2       "Lado derecho a lado izquierdo (%1 de %2)"

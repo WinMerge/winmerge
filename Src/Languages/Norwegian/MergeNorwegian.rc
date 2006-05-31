@@ -501,6 +501,7 @@ BEGIN
             MENUITEM "&Høyre",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Begge",                       ID_DIR_DEL_BOTH
         END
+        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Hide Items",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Åpne venstre"
@@ -581,8 +582,7 @@ IDR_MAINFRAME ACCELERATORS
 BEGIN
     "A",            ID_EDIT_SELECT_ALL,     VIRTKEY, CONTROL, NOINVERT
     "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
-    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL,
-                                                    NOINVERT
+    "C",            ID_EDIT_COPY_LINENUMBERS, VIRTKEY, SHIFT, CONTROL, NOINVERT
     "F",            ID_EDIT_FIND,           VIRTKEY, CONTROL, NOINVERT
     "G",            ID_EDIT_WMGOTO,         VIRTKEY, CONTROL, NOINVERT
     "H",            ID_EDIT_REPLACE,        VIRTKEY, CONTROL, NOINVERT
@@ -603,6 +603,7 @@ BEGIN
     VK_F8,          ID_NEXTDIFF,            VIRTKEY, NOINVERT
     VK_F7,          ID_PREVDIFF,            VIRTKEY, NOINVERT
     VK_END,         ID_LASTDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_F2,          ID_DIR_ITEM_RENAME,     VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, NOINVERT
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, SHIFT, CONTROL, NOINVERT
@@ -621,7 +622,6 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
-    VK_DELETE,      ID_MERGE_DELETE,        VIRTKEY, NOINVERT
 END
 
 
@@ -1982,6 +1982,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Fullt innhold"
     IDS_COMPMETHOD_QUICK_CONTENTS "Raskt innhold"
     IDS_COMPMETHOD_MODDATE  "Endringsdato"
+    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
 END
 
 // FILTER OPTIONS
@@ -2133,6 +2134,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Slett valgte elementer til høyre"
     ID_DIR_DEL_BOTH         "Slett de valgte element(er) på begge sider"
     ID_DIR_HIDE_FILENAMES   "Skjul valgte element(er) (i farta filter)"
+    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
     IDS_COPY_TO_LEFT        "Høyre til venstre (%1)"
     IDS_COPY_TO_RIGHT       "Venstre til høyre (%1)"
     IDS_COPY_TO_LEFT2       "Høyre til venstre (%1 av %2)"
