@@ -382,7 +382,8 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			// We must compare unique files to itself to detect encoding
 			if (di.isSideLeft() || di.isSideRight())
 			{
-				if (pCtxt->m_nCompMethod != CMP_DATE)
+				if (pCtxt->m_nCompMethod != CMP_DATE &&
+					pCtxt->m_nCompMethod != CMP_DATE_SIZE)
 				{
 					DiffFileData diffdata;
 					int diffCode = diffdata.prepAndCompareTwoFiles(pCtxt, di);
@@ -398,7 +399,8 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 				}
 			}
 			// 3. Compare two files
-			else if (pCtxt->m_nCompMethod == CMP_DATE)
+			else if (pCtxt->m_nCompMethod == CMP_DATE ||
+				pCtxt->m_nCompMethod == CMP_DATE_SIZE)
 			{
 				// Compare by modified date
 				__int64 nTimeDiff = di.left.mtime - di.right.mtime;
@@ -414,6 +416,18 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
 				else
 					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
+				
+				// This is actual CMP_DATE_SIZE method..
+				// If file sizes differ mark them different
+				if ( pCtxt->m_nCompMethod == CMP_DATE_SIZE && di.isResultSame())
+				{
+					if (di.left.size != di.right.size)
+					{
+						di.diffcode &= ~DIFFCODE::SAME;
+						di.diffcode |= DIFFCODE::DIFF;
+					}
+				}
+
 				// report result back to caller
 				StoreDiffData(di, pCtxt, NULL);
 			}

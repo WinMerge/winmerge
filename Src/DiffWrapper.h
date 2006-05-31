@@ -40,38 +40,84 @@ class DiffList;
 struct DiffFileData;
 struct file_data;
 
-/**
- * @brief Different compare methods
+/** @enum COMPARE_TYPE
+ * @brief Different foldercompare methods.
+ * These values are the foldercompare methods WinMerge supports.
  */
-enum
+
+/** @var CMP_CONTENT
+ * @brief Normal by content compare.
+ * This compare type is first, default and all-seeing compare type.
+ * diffutils is used for producing compare results. So all limitations
+ * of diffutils (like buffering) apply to this compare method. But this
+ * is also currently only compare method that produces difference lists
+ * we can use in file compare.
+ */
+
+/** @var CMP_QUICK_CONTENT
+ * @brief Faster byte per byte -compare.
+ * This type of compare was a response for needing faster compare results
+ * in folder compare. It independent from diffutils, and fully customised
+ * for WinMerge. It basically does byte-per-byte compare, still implementing
+ * different whitespace ignore options.
+ *
+ * Optionally this compare type can be stopped when first difference is found.
+ * Which gets compare as fast as possible. But misses sometimes binary files
+ * if zero bytes aren't found before first difference. Also difference counts
+ * are not useful with that option.
+ */
+
+/** @var CMP_DATE
+ * @brief Compare by modified date.
+ * This compare type was added after requests and realization that in some
+ * situations difference in file's timestamps is enough to judge them
+ * different. E.g. when modifying files in local machine, file timestamps
+ * are certainly different after modifying them. This method doesn't even
+ * open files for reading them. It only reads file's infos for timestamps
+ * and compares them.
+ *
+ * This is no doubt fastest way to compare files.
+ */
+
+/** @var CMP_DATE_SIZE
+ * @brief Compare by date and then by size.
+ * This method is basically same than CMP_DATE, but it adds check for file
+ * sizes if timestamps are identical. This is because there are situations
+ * timestamps can't be trusted alone, especially with network shares. Adding
+ * checking for file sizes adds some more reliability for results with
+ * minimal increase in compare time.
+ */
+enum COMPARE_TYPE
 {
-	CMP_CONTENT = 0, /**< Normal by content compare */
-	CMP_QUICK_CONTENT, /**< Custom content compare */
-	CMP_DATE, /**< Compare by modified date */
+	CMP_CONTENT = 0,
+	CMP_QUICK_CONTENT,
+	CMP_DATE,
+	CMP_DATE_SIZE,
 };
 
 /**
  * @brief Patch styles
  *
  * Diffutils can output patch in these formats.
+ * @note We really use only first three types (normal + context formats).
  */
-enum
+enum DIFF_OUTPUT_TYPE
 {
-	/* Default output style.  */
+	/**< Default output style.  */
 	DIFF_OUTPUT_NORMAL,
-	/* Output the differences with lines of context before and after (-c).  */
+	/**< Output the differences with lines of context before and after (-c).  */
 	DIFF_OUTPUT_CONTEXT,
-	/* Output the differences in a unified context diff format (-u). */
+	/**< Output the differences in a unified context diff format (-u). */
 	DIFF_OUTPUT_UNIFIED,
-	/* Output the differences as commands suitable for `ed' (-e).  */
+	/**< Output the differences as commands suitable for `ed' (-e).  */
 	DIFF_OUTPUT_ED,
-	/* Output the diff as a forward ed script (-f).  */
+	/**< Output the diff as a forward ed script (-f).  */
 	DIFF_OUTPUT_FORWARD_ED,
-	/* Like -f, but output a count of changed lines in each "command" (-n). */
+	/**< Like -f, but output a count of changed lines in each "command" (-n). */
 	DIFF_OUTPUT_RCS,
-	/* Output merged #ifdef'd file (-D).  */
+	/**< Output merged #ifdef'd file (-D).  */
 	DIFF_OUTPUT_IFDEF,
-	/* Output sdiff style (-y).  */
+	/**< Output sdiff style (-y).  */
 	DIFF_OUTPUT_SDIFF
 };
 
@@ -79,6 +125,7 @@ typedef enum {
 	YESTEMPFILES // arguments are temp files
 	, NOTEMPFILES // arguments not temp files
 } ARETEMPFILES;
+
 /**
  * @brief Diffutils options users of this class must use
  */
@@ -115,23 +162,23 @@ struct DIFFSTATUS
 };
 
 /**
- * @brief Internally used diffutils options
+ * @brief Internally used diffutils options.
  */
 struct DIFFSETTINGS
 {
-	enum output_style outputStyle;
-	int context;
+	enum output_style outputStyle; /**< Output style (for patch files) */
+	int context; /**< Number of context lines (for patch files) */
 	int alwaysText;
 	int horizLines;
 	int ignoreSpaceChange;
 	int ignoreAllSpace;
-	int ignoreBlankLines;
-	int ignoreCase;
-	int ignoreEOLDiff;
+	int ignoreBlankLines; /**< Ignore blank lines (both sides) */
+	int ignoreCase; /**< Ignore case differences? */
+	int ignoreEOLDiff; /**< Ignore EOL style differences? */
 	int ignoreSomeChanges;
 	int lengthVaries;
 	int heuristic;
-	int recursive;
+	int recursive; /**< Recurse to subfolders? (not used) */
 };
 
 /**

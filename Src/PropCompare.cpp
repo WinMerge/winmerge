@@ -22,7 +22,8 @@ static char THIS_FILE[] = __FILE__;
 // CPropCompare property page
 
 /** 
- * @brief Constructor
+ * @brief Constructor.
+ * @param [in] optionsMgr Pointer to COptionsMgr.
  */
 CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare::IDD)
  , m_pOptionsMgr(optionsMgr)
@@ -60,7 +61,8 @@ END_MESSAGE_MAP()
 
 /** 
  * @brief Reads options values from storage to UI.
- * (Property sheet calls this before displaying all property pages)
+ * Property sheet calls this before displaying GUI to load values
+ * into members.
  */
 void CPropCompare::ReadOptions()
 {
@@ -75,7 +77,8 @@ void CPropCompare::ReadOptions()
 
 /** 
  * @brief Writes options values from UI to storage.
- * (Property sheet calls this after displaying all property pages)
+ * Property sheet calls this after dialog is closed with OK button to
+ * store values in member variables.
  */
 void CPropCompare::WriteOptions()
 {
@@ -105,6 +108,8 @@ BOOL CPropCompare::OnInitDialog()
 	VERIFY(item.LoadString(IDS_COMPMETHOD_QUICK_CONTENTS));
 	combo->AddString(item);
 	VERIFY(item.LoadString(IDS_COMPMETHOD_MODDATE));
+	combo->AddString(item);
+	VERIFY(item.LoadString(IDS_COMPMETHOD_DATESIZE));
 	combo->AddString(item);
 	combo->SetCurSel(m_compareMethod);
 
@@ -141,6 +146,11 @@ void CPropCompare::OnDefaults()
 	UpdateData(FALSE);
 }
 
+/** 
+ * @brief Called when compare method dropdown selection is changed.
+ * Enables / disables "Stop compare after first difference" checkbox.
+ * That checkbox is valid only for quick contents compare method.
+ */
 void CPropCompare::OnCbnSelchangeComparemethodcombo()
 {
 	CComboBox * pCombo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);

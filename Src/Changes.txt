@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-31
+ PATCH: [ 1483544 ] New compare method: by date and size
+  Src: DiffWrapper.h DirScan.cpp Merge.rc PropCompare.cpp resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-05-31 Takashi
  BUG: [ 1496066 ] WinMerge crashed with those files
   Src: GhostTextView.cpp GhostTextView.h
