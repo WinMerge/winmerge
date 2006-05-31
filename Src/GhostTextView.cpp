@@ -38,7 +38,13 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNCREATE (CGhostTextView, CCrystalEditViewEx)
 
-
+/** 
+ * @brief Constructor, initializes members.
+ */
+CGhostTextView::CGhostTextView()
+: m_pGhostTextBuffer(NULL)
+{
+}
 
 void CGhostTextView::
 ReAttachToBuffer (CCrystalTextBuffer * pBuf /*= NULL*/ )
@@ -179,6 +185,8 @@ void CGhostTextView::PushCursors ()
 
 int CGhostTextView::ComputeRealLine (int nApparentLine) const
 {
+	if (!m_pGhostTextBuffer)
+		return 0;
 	return m_pGhostTextBuffer->ComputeRealLine(nApparentLine);
 }
 

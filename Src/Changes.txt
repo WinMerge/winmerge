@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-05-31 Takashi
+ BUG: [ 1496066 ] WinMerge crashed with those files
+  Src: GhostTextView.cpp GhostTextView.h
+
 2006-05-31 Kimmo
  BUG: [ 1494610 ] Wrong selection in ccrystalview2.cpp
   Src/editlib: ccrystaltextview2.cpp

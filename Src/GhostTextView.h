@@ -33,6 +33,8 @@ GetLineColors (in MergeEditView).
 class EDITPADC_CLASS CGhostTextView : public CCrystalEditViewEx
 {
 	DECLARE_DYNCREATE (CGhostTextView)
+protected:
+	CGhostTextView();           // protected constructor used by dynamic creation
 
 private:
 	CGhostTextBuffer * m_pGhostTextBuffer;
