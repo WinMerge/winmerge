@@ -2567,8 +2567,9 @@ void CDirView::OnCopyLeftPathnames()
 		{
 			strPaths += di.getLeftFilepath(GetDocument()->GetLeftBasePath());
 			strPaths += _T("\\");
-			if (!di.isDirectory())
-				strPaths += di.sLeftFilename;
+			// If item is a folder then subfolder (relative to base folder)
+			// is in filename member.
+			strPaths += di.sLeftFilename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2591,8 +2592,9 @@ void CDirView::OnCopyRightPathnames()
 		{
 			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
-			if (!di.isDirectory())
-				strPaths += di.sRightFilename;
+			// If item is a folder then subfolder (relative to base folder)
+			// is in filename member.
+			strPaths += di.sRightFilename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2615,8 +2617,9 @@ void CDirView::OnCopyBothPathnames()
 		{
 			strPaths += di.getLeftFilepath(pDoc->GetLeftBasePath());
 			strPaths += _T("\\");
-			if (!di.isDirectory())
-				strPaths += di.sLeftFilename;
+			// If item is a folder then subfolder (relative to base folder)
+			// is in filename member.
+			strPaths += di.sLeftFilename;
 			strPaths += _T("\r\n");
 		}
 
@@ -2624,8 +2627,9 @@ void CDirView::OnCopyBothPathnames()
 		{
 			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
-			if (!di.isDirectory())
-				strPaths += di.sRightFilename;
+			// If item is a folder then subfolder (relative to base folder)
+			// is in filename member.
+			strPaths += di.sRightFilename;
 			strPaths += _T("\r\n");
 		}
 	}
