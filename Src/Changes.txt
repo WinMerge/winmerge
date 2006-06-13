@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-06-13 Gal
+ BUG: [ 1494776 ] Can't rename files if '|' seperator exists
+  Src: DirView.h DirView.cpp DirActions.cpp
+
 2006-06-12 Kimmo
  PATCH: [ 1486434 ] Copy Pathnames for right-only dir copies parent dir only
   Src: DirView.cpp

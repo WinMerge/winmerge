@@ -1975,7 +1975,11 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 		if (pMsg->wParam == VK_ESCAPE)
 		{
 			// ESC doesn't close window when user is renaming an item.
-			if (m_bEscCloses && !IsLabelEdit())
+			if (TRUE == IsLabelEdit())
+			{
+				m_bUserCancelEdit = TRUE;
+			}
+			else if (m_bEscCloses)
 			{
 				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 				return FALSE;
@@ -2802,6 +2806,28 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 afx_msg void CDirView::OnBeginLabelEdit(NMHDR* /*pNMHDR*/, LRESULT* pResult)
 {
 	*pResult = IsItemSelectedSpecial();
+
+	// If label edit is allowed.
+	if (FALSE == *pResult)
+	{
+		CEdit *pEdit = m_pList->GetEditControl();
+		ASSERT(NULL != pEdit);
+
+		CString sText;
+		pEdit->GetWindowText(sText);
+		ASSERT(!sText.IsEmpty());
+
+		// Keep only left file name (separated by '|'). This form occurs
+		// when two files exists with same name but not in same case.
+		int nPos = sText.Find('|');
+		if (-1 != nPos)
+		{
+			sText = sText.Left(nPos);
+			pEdit->SetWindowText(sText);
+		}
+
+		m_bUserCancelEdit = FALSE;
+	}
 }
 
 /**
@@ -2810,15 +2836,25 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* /*pNMHDR*/, LRESULT* pResult)
  */
 afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
-	ASSERT(NULL != pNMHDR);
-	NMLVDISPINFO* pdi = reinterpret_cast<NMLVDISPINFO*>(pNMHDR);
-	
 	*pResult = FALSE;
-	
-	LPCTSTR szNewItemName = pdi->item.pszText;
-	if (NULL != szNewItemName)
+
+	// We can't use the normal condition of pszText==NULL to know if the
+	// user cancels editing when file names had different case (e.g.
+	// "file.txt|FILE.txt"). The edit text was changed to "file.txt" and
+	// if the user accept it as the new file name, pszText is NULL.
+
+	if (TRUE != m_bUserCancelEdit)
 	{
-		*pResult = DoItemRename(szNewItemName);
+		CEdit *pEdit = m_pList->GetEditControl();
+		ASSERT(NULL != pEdit);
+
+		CString sText;
+		pEdit->GetWindowText(sText);
+
+		if (!sText.IsEmpty())
+		{
+			*pResult = DoItemRename(sText);
+		}
 	}
 }
 

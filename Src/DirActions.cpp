@@ -1124,18 +1124,28 @@ BOOL CDirView::RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName)
 
 	if (DOES_NOT_EXIST != paths_DoesPathExist(szOldFileName))
 	{
-		CShellFileOp fileOp;
 		CString sFullName;
 
 		SplitFilename(szOldFileName, &sFullName, NULL, NULL);
 		sFullName += _T('\\') + CString(szNewFileName);
 
-		fileOp.SetOperationFlags(FO_RENAME, this, 0);
-		fileOp.AddSourceFile(szOldFileName);
-		fileOp.AddDestFile(sFullName);
-		
-		BOOL bOpStarted = FALSE;
-		bSuccess = fileOp.Go(&bOpStarted);
+		// No need to rename if new file already exist.
+		if ((sFullName.Compare(szOldFileName)) ||
+			(DOES_NOT_EXIST == paths_DoesPathExist(sFullName)))
+		{
+			CShellFileOp fileOp;
+
+			fileOp.SetOperationFlags(FO_RENAME, this, 0);
+			fileOp.AddSourceFile(szOldFileName);
+			fileOp.AddDestFile(sFullName);
+			
+			BOOL bOpStarted = FALSE;
+			bSuccess = fileOp.Go(&bOpStarted);
+		}
+		else
+		{
+			bSuccess = TRUE;
+		}
 	}
 
 	return bSuccess;

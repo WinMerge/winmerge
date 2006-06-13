@@ -261,7 +261,8 @@ protected:
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
 	DirCompProgressDlg * m_pCmpProgressDlg;
-	clock_t m_compareStart; /**< Starting processtime of the compare */
+	clock_t m_compareStart; /**< Starting process time of the compare */
+	BOOL m_bUserCancelEdit; /**< TRUE if the user cancels rename */
 
 	// Generated message map functions
 	afx_msg void OnColumnClick(NMHDR* pNMHDR, LRESULT* pResult);
