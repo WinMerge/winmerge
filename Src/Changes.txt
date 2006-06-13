@@ -7,7 +7,7 @@ Add new items to top.
   Src: DirView.h DirView.cpp DirActions.cpp
 
 2006-06-12 Kimmo
- PATCH: [ 1486434 ] Copy Pathnames for right-only dir copies parent dir only
+ BUG: [ 1486434 ] Copy Pathnames for right-only dir copies parent dir only
   Src: DirView.cpp
 
 2006-05-31
