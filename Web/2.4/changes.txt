@@ -1,3 +1,132 @@
+2006-06-13 2.4.8 Stable Release
+
+2006-06-13 Kimmo
+ BUG: [ 1486434 ] Copy Pathnames for right-only dir copies parent dir only
+  Src: DirView.cpp
+
+2006-05-31 Takashi
+ BUG: [ 1496066 ] WinMerge crashed with those files
+  Src: GhostTextView.cpp GhostTextView.h
+
+2006-05-26 Kimmo
+ PATCH: [ 1494627 ] Skip processing empty paths in Open dialog
+  Src: OpenDlg.cpp
+
+2006-05-25 Kimmo
+ BUG: [ 1493015 ] Mouse wheel don't scroll after use of location pane
+  Fix by merging patch for bug [ 1400829 ] Crash trying to open location pane context menu
+  Src: LocationView.cpp
+
+2006-05-24 Gal
+ PATCH: [ 1488637 ] PHP/ASP Syntax Highlighting Fix (Bug 1441643)
+  Src/editlib: asp.cpp php.cpp   
+
+2006-05-24 Kimmo
+ PATCH: [ 1491424 ] Spanish translation for v2.5.3.7
+  Submitted by Jesus M. Delgado 'Mack'
+  Languages/Spanish: MergeSpanish.rc
+ PATCH: [ 1491436 ] Spanish Readme.txt
+  Submitted by Jesus M. Delgado 'Mack'
+  Docs/Users/Languages new file: ReadMe-Spanish.txt
+  InnoSetup: WinMerge.iss
+
+2006-05-14 Kimmo
+ PATCH: [ 1449868 ] Fix difference counts
+  Src: DiffWrapper.cpp
+ PATCH: [ 1488387 ] Russian translation update for 2.4.6
+  Submitted by Dmitriy Aleshkowskiy
+  Src/Languages/Russian: MergeRussian.rc
+ PATCH: [ 1483344 ] Fix creating private file filters
+  Src: FileFiltersDlg.cpp
+
+2006-05-07 Kimmo
+ PATCH: [ 1481391 ] Make LocationView update from MergeView more safe
+  Src: LocationView.cpp MergeEditView.cpp MergeEditView.h
+
+2006-05-06 Kimmo
+ PATCH: [ 1482688 ] sgml.cpp contains "lt" twice
+  Src/editlib: sgml.cpp
+ PATCH: [ 1480652 ] Small fix for XML syntax highlight
+  Src/editlib: xml.cpp
+ PATCH: [ 1482694 ] xml.cpp contains "lt" twice
+  Src/editlib: xml.cpp
+ PATCH: [ 1445426 ] Clear PrivateBuild flag in SetResourceVersions.wsf
+  Submitted by Perry
+  Src: SetResourceVersions.wsf
+
+2006-05-05 Kimmo
+ BUG: [ 1456356 ] Scrollbars sometimes not initially active
+  Another possible fix..
+  Src/editlib: ccrystaltextview.cpp
+ BUG: [ 1474782 ] Crash when comparing SQL with with binary data
+  Fix suggested by anonymous submitter
+  Src/editlib: asp.cpp basic.cpp batch.cpp cplusplus.cpp csharp.cpp dcl.cpp
+   fortran.cpp html.cpp ini.cpp innosetup.cpp is.cpp java.cpp lisp.cpp nsis.cpp
+   pascal.cpp perl.cpp php.cpp python.cpp rexx.cpp rsrc.cpp sgml.cpp sh.cpp
+   siod.cpp sql.cpp tcl.cpp tex.cpp xml.cpp
+ BUG: [ 1449947 ] Looks like diffutils bug for mac-style
+ BUG: [ 1449949 ] crash comparing two simple test mac files
+  Submitted by Perry
+  diffutils\src: IO.C
+
+2006-05-02 Kimmo
+ PATCH: [ 1471835 ] Fix setting filename in folder-compare report dialog
+  Src: DirCmpReportDlg.cpp
+
+2006-04-18 Takashi
+ PATCH: [ 1445996 ] Fix wrong PgDown scrolling after mousescroll(2)
+  Src/editlib: ccrystaltextview2.cpp
+
+2006-04-09 Tim
+ BUG: [ 1461375 ] Forgot old patch #981526 for sgml.cpp, sh.cpp and tcl.cpp?
+  Src\editlib: sgml.cpp sh.cpp tcl.cpp
+
+2006-04-06 Takashi
+ BUG: [ 1458714 ] [Replace All] doesn't work
+  Src/editlib: ceditreplacedlg.cpp
+
+2006-04-05 Tim
+ PATCH: [ 1461896 ] Syntax highlighting of HTML for ASP not complete
+  Src\editlib: asp.cpp
+
+2006-03-28 Tim
+ PATCH: [ 1457306 ] Revamped Visual Basic syntax highlighter
+  Src\editlib: basic.cpp
+
+2006-03-24 Kimmo
+ BUG: [ 1455656 ] GPL text still contains 'How to Apply These Terms...'
+  Docs/Users: GPL.rtf
+ PATCH: [ 1452288 ] Add ASP.NET filefilter
+  By Jon Galloway and Josh Blair
+  Filters new file: ASPNET.flt
+
+2006-03-20 Kimmo
+ PATCH: [ 1453252 ] Fix closing filecompare after error
+  Src: MainFrm.cpp MergeDoc.cpp
+
+2006-03-22 Tim
+ PATCH: [ 1455663 ] Add new keywords to Visual Basic highlighter
+  Src\editlib: basic.cpp
+
+2006-03-17 Tim
+ PATCH: [ 1449571 ] Add '*.pm' and '*.plx' to Perl highlighter
+  Src/editlib: ccrystaleditview.cpp
+
+2006-03-11 Takashi
+ BUG:  [ 1441389 ] Comparing root directory - mysterious
+  Src: DiffWrapper.cpp
+
+2006-03-10 Kimmo
+ PATCH: [ 1445996 ] Fix wrong PgDown scrolling after mousescroll
+  Src/editlib: ccrystaltextview2.cpp
+
+2006-03-06 Tim
+ PATCH: [ 1437770 ] Icons for 'Generate Patch' and 'Generate Report'
+  Src: MainFrm.cpp Merge.rc resource.h
+  Src/res new file: patch.bmp report.bmp
+  Src/Languages: *.rc resource.h
+  Src/Languages/res new file: patch.bmp report.bmp
+
 2006-02-28 2.4.6 Stable Release
 
 2006-02-27 Kimmo

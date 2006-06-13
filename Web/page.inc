@@ -219,7 +219,7 @@
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
           $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=397466\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=397466\" title=\"Release Notes\">Notes</a>)</li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=424403\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=424403\" title=\"Release Notes\">Notes</a>)</li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=397471\">Documentation</a></li>\n";
           $temp .= "    </ul>\n";
