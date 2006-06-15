@@ -501,7 +501,7 @@ BEGIN
             MENUITEM "P&ravé",                      ID_DIR_DEL_RIGHT
             MENUITEM "O&boje",                       ID_DIR_DEL_BOTH
         END
-        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
+        MENUITEM "Pøej&menovat",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Skrýt položky",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Otevøít &levé"
@@ -1982,7 +1982,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Plný obsah"
     IDS_COMPMETHOD_QUICK_CONTENTS "Rychlý obsah"
     IDS_COMPMETHOD_MODDATE  "Datum zmìny"
-    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
+    IDS_COMPMETHOD_DATESIZE "Datum zmìny a velikost"
 END
 
 // FILTER OPTIONS
@@ -2134,7 +2134,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Odstraní vybrané položky vpravo"
     ID_DIR_DEL_BOTH         "Odstraní vybrané položky na obou stranách"
     ID_DIR_HIDE_FILENAMES   "Doèasnì skryje vybrané položky"
-    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
+    ID_DIR_ITEM_RENAME      "Pøejmenuje vybrané položky na obou stranách"
     IDS_COPY_TO_LEFT        "P&ravé doleva (%1)"
     IDS_COPY_TO_RIGHT       "&Levé doprava (%1)"
     IDS_COPY_TO_LEFT2       "P&ravé doleva (%1 z %2)"
