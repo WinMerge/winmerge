@@ -1913,6 +1913,10 @@ SOURCE=.\editlib\rsrc.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\editlib\ruby.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\editlib\sgml.cpp
 # End Source File
 # Begin Source File

@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-06-19 Gal
+ RFE: [ 1499245 ] Ruby Syntax Highlighting
+  Src: Merge.dsp
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h ruby.cpp
+
 2006-06-13 Gal
  BUG: [ 1494776 ] Can't rename files if '|' seperator exists
   Src: DirView.h DirView.cpp DirActions.cpp
