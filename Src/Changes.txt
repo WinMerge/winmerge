@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-06-20 Kimmo
+ BUG: [ 1505763 ] Crash after closing file compare window
+  Src: MergeEditView.cpp
+
 2006-06-19 Gal
  RFE: [ 1499245 ] Ruby Syntax Highlighting
   Src: Merge.dsp
@@ -15,7 +19,7 @@ Add new items to top.
  BUG: [ 1486434 ] Copy Pathnames for right-only dir copies parent dir only
   Src: DirView.cpp
 
-2006-05-31
+2006-05-31 Kimmo
  PATCH: [ 1483544 ] New compare method: by date and size
   Src: DiffWrapper.h DirScan.cpp Merge.rc PropCompare.cpp resource.h
   Src/Languages/*: Merge*.rc

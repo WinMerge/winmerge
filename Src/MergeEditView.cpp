@@ -2521,25 +2521,14 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 }
 
 /**
- * @brief Called when user selects Window/Close, allows user to save files.
+ * @brief Called when user selects Window/Close.
+ * Route closing to CMainFrame::OnClose().
+ * @todo We probably should just remove this OnClose() handling for
+ *  CMergeEditView and handle it in CMainFrame.
  */
 void CMergeEditView::OnWindowClose()
 {
- 	CMergeDoc *pDoc = GetDocument();
-
-	// Allow user to cancel closing
-	if (!pDoc->PromptAndSaveIfNeeded(TRUE))
-	{
-		return;
-	}
-	else
-	{
-		// Set modified to false so we don't ask again about saving
-		pDoc->m_ptBuf[0]->SetModified(FALSE);
-		pDoc->m_ptBuf[1]->SetModified(FALSE);
-		GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
-	}
-	m_pLocationView = NULL;
+	GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 }
 
 /**
@@ -2964,6 +2953,9 @@ void CMergeEditView::SetLocationView(HWND hView,
 void CMergeEditView::UpdateLocationViewPosition(int nTopLine /*=-1*/,
 		int nBottomLine /*= -1*/)
 {
+	if (m_pDocument == NULL)
+		return;
+
 	if (m_hLocationview != NULL && IsWindow(m_hLocationview))
 	{
 		m_pLocationView->UpdateVisiblePos(nTopLine, nBottomLine);
