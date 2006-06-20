@@ -2747,6 +2747,7 @@ BEGIN
     IDS_EOL_MAC             "Mac"
     IDS_EOL_UNIX            "Unix"
     IDS_EOL_MIXED           "Mixed"
+    IDS_EOL_BIN             "Binary"
 END
 
 // Folder compare short size suffixes
