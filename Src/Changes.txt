@@ -14,6 +14,9 @@ Add new items to top.
  PATCH: [ 1506184 ] Polish translation update for WM 2.5.4.0
   Submitted by dr_prozac
    Src/Languages/Polish: MergePolish.rc
+ PATCH:[ 1509495 ] Polish translation for ShellExtension
+  Submitted by dr_prozac
+  ShellExtension/Languages: ShellExtensionPolish.rc
 
 2006-06-19 Gal
  RFE: [ 1499245 ] Ruby Syntax Highlighting

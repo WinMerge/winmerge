@@ -32,14 +32,14 @@ STRINGTABLE
 BEGIN
     IDS_PROJNAME            "ShellExtension"
     IDS_CONTEXT_MENU        "WinMerge"
-    IDS_CONTEXT_HELP        "Open with WinMerge"
-    IDS_CONTEXT_HELP_MANYITEMS "Please select no more than 2 items"
-    IDS_COMPARE             "Compare"
-    IDS_COMPARE_ELLIPSIS    "Compare..."
-    IDS_COMPARE_TO          "Compare To"
-    IDS_HELP_SAVETHIS       "Save this path. Select another path to compare with this path."
-    IDS_HELP_COMPARESAVED   "Compare to saved path (%1)"
-    IDS_RESELECT_FIRST      "Re-select First"
+    IDS_CONTEXT_HELP        "Otwórz w WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Proszê wybraæ nie wiêcej ni¿ 2 pliki"
+    IDS_COMPARE             "Porównaj"
+    IDS_COMPARE_ELLIPSIS    "Porównaj..."
+    IDS_COMPARE_TO          "Porównaj z"
+    IDS_HELP_SAVETHIS       "Zapisz œcie¿kê. Wybierz kolejn¹ œcie¿kê do porównania z obecn¹."
+    IDS_HELP_COMPARESAVED   "Porównaj z zapisan¹ œcie¿k¹ (%1)"
+    IDS_RESELECT_FIRST      "Wybierz pwtórnie"
 END
 
 #endif    // Polish resources
