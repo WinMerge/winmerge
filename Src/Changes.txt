@@ -11,6 +11,9 @@ Add new items to top.
  PATCH: [ 1508898 ] Show binary as one of EOL types
   Src: DirViewColItems.cpp Merge.rc resource.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1506184 ] Polish translation update for WM 2.5.4.0
+  Submitted by dr_prozac
+   Src/Languages/Polish: MergePolish.rc
 
 2006-06-19 Gal
  RFE: [ 1499245 ] Ruby Syntax Highlighting
