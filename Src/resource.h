@@ -923,6 +923,7 @@
 #define IDS_EOL_MAC                     30401
 #define IDS_EOL_UNIX                    30402
 #define IDS_EOL_MIXED                   30403
+#define IDS_EOL_BIN                     30404
 #define IDS_SUFFIX_BYTE                 30416
 #define IDS_SUFFIX_KILO                 30417
 #define IDS_SUFFIX_MEGA                 30418

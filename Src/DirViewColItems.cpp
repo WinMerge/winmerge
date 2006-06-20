@@ -418,13 +418,20 @@ static CString ColEncodingGet(const CDiffContext *, const void *p)
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	return r.encoding.GetName();
 }
-static CString ColEOLTypeGet(const CDiffContext *, const void *p)
+static CString GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
 {
-	const FileTextStats &stats = *static_cast<const FileTextStats *>(p);
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	const DiffFileInfo & dfi = bLeft ? di.left : di.right;
+	const FileTextStats &stats = dfi.m_textStats;
 
 	if (stats.ncrlfs == 0 && stats.ncrs == 0 && stats.nlfs == 0)
 	{
 		return _T("");
+	}
+	if (di.isBin())
+	{
+		int id = IDS_EOL_BIN;
+		return LoadResString(id);
 	}
 
 	int id = 0;
@@ -450,6 +457,16 @@ static CString ColEOLTypeGet(const CDiffContext *, const void *p)
 	}
 	
 	return LoadResString(id);
+}
+static CString ColLEOLTypeGet(const CDiffContext * pCtxt, const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	return GetEOLType(pCtxt, &di, TRUE);
+}
+static CString ColREOLTypeGet(const CDiffContext * pCtxt, const void *p)
+{
+	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
+	return GetEOLType(pCtxt, &di, FALSE);
 }
 
 /**
@@ -587,8 +604,8 @@ static DirColInfo f_cols[] =
 	{ _T("Rencoding"), IDS_COLHDR_RENCODING, IDS_COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, right), -1, true, LVCFMT_LEFT },
 	{ _T("Sndiffs"), IDS_COLHDR_NDIFFS, IDS_COLDESC_NDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, ndiffs), -1, false, LVCFMT_RIGHT },
 	{ _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, IDS_COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColEOLTypeGet, &ColAttrSort, FIELD_OFFSET(DIFFITEM, left.m_textStats), -1, true, LVCFMT_LEFT },
-	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColEOLTypeGet, &ColEOLTypeSort, FIELD_OFFSET(DIFFITEM, right.m_textStats), -1, true, LVCFMT_LEFT },
+	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColEOLTypeSort, 0, -1, true, LVCFMT_LEFT },
 };
 
 /**
