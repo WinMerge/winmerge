@@ -36,6 +36,16 @@ struct FileFilterElement;
 typedef CList<FileFilterElement, FileFilterElement&> FileFilterList;
 
 /**
+ * @brief Return values for many filter functions.
+ */
+enum FILTER_RETVALUE
+{
+	FILTER_OK = 0,  /**< Success */
+	FILTER_ERROR_FILEACCESS,  /**< File could not be opened etc. */
+	FILTER_NOTFOUND, /**< Filter not found */
+};
+
+/**
  * @brief FileFilter rule.
  *
  * Contains one filtering element definition (rule). In addition to
@@ -68,11 +78,11 @@ public:
 	// Reload filter array from specified directory (passed to CFileFind)
 	void LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt);
 	// Reload an edited filter
-	void ReloadFilterFromDisk(FileFilter * pfilter);
-	void ReloadFilterFromDisk(LPCTSTR szFullPath);
+	int ReloadFilterFromDisk(FileFilter * pfilter);
+	int ReloadFilterFromDisk(LPCTSTR szFullPath);
 	// Load a filter from a string
 	void LoadFilterString(LPCTSTR szFilterString);
-	void AddFilter(LPCTSTR szFilterFile);
+	int AddFilter(LPCTSTR szFilterFile);
 	void RemoveFilter(LPCTSTR szFilterFile);
 
 	// access to array of filters
@@ -95,7 +105,7 @@ public:
 protected:
 	// Clear the list of known filters
 	// Load a filter from a file (if syntax is valid)
-	FileFilter * LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename);
+	FileFilter * LoadFilterFile(LPCTSTR szFilepath, int & errorcode);
 
 // Implementation data
 private:

@@ -328,32 +328,6 @@ void FileFiltersDlg::OnMouseMove(UINT nFlags, CPoint point)
 	CDialog::OnMouseMove(nFlags, point);
 }
 
-/// Reload selected filter from disk (in case its been modified etc)
-void FileFiltersDlg::OnBnClickedReload()
-{
-	FileFilterMgr *pMgr = NULL;
-	FileFilter *pFilter = NULL;
-	CString path;
-	int sel =- 1;
-
-	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
-
-	// Can't edit first "None"
-	if (sel > 0)
-	{
-		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
-		path.ReleaseBuffer();
-
-		pMgr = theApp.m_globalFileFilter.GetManager();
-		pFilter = pMgr->GetFilterByPath(path);
-
-		if (pFilter)
-		{
-			pMgr->ReloadFilterFromDisk(pFilter);
-		}
-	}
-}
-
 /**
  * @brief Called when user presses "Test" button.
  *
@@ -450,15 +424,17 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		CopyFile(templatePath, s, TRUE);
 		theApp.m_globalFileFilter.EditFileFilter(s);
 		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
-		pMgr->AddFilter(s);
+		int retval = pMgr->AddFilter(s);
+		if (retval == FILTER_OK)
+		{
+			// Remove all from filterslist and re-add so we can update UI
+			CString selected;
+			m_Filters->RemoveAll();
+			theApp.m_globalFileFilter.LoadAllFileFilters();
+			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
 
-		// Remove all from filterslist and re-add so we can update UI
-		CString selected;
-		m_Filters->RemoveAll();
-		theApp.m_globalFileFilter.LoadAllFileFilters();
-		theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
-
-		UpdateFiltersList();
+			UpdateFiltersList();
+		}
 	}
 }
 

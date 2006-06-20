@@ -75,22 +75,17 @@ FileFilterMgr::~FileFilterMgr()
 }
 
 /**
- * @brief Loads filterfile and adds filters.
- *
- * @param [in] szFilterFile
- * @bug Silently fails loading
+ * @brief Loads filterfile from disk and adds it to filters.
+ * @param [in] szFilterFile to load.
+ * @return FILTER_OK if succeeded or one of FILTER_RETVALUE values on error.
  */
-void FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
+int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
 {
-	CString filterFile;
-	CString ext;
-
-	SplitFilename(szFilterFile, NULL, &filterFile, &ext);
-	filterFile += ext;
-
-	FileFilter * pFilter = LoadFilterFile(szFilterFile, filterFile);
+	int errorcode = FILTER_OK;
+	FileFilter * pFilter = LoadFilterFile(szFilterFile, errorcode);
 	if (pFilter)
 		m_filters.Add(pFilter);
+	return errorcode;
 }
 
 /**
@@ -118,8 +113,7 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 			if (sFilename.Right(extlen).CompareNoCase(szExt))
 				return;
 		}
-		FileFilter * pfilter = LoadFilterFile(finder.GetFilePath(), sFilename);
-		m_filters.Add(pfilter);
+		AddFilter(finder.GetFilePath());
 	}
 }
 
@@ -202,22 +196,28 @@ static void AddFilterPattern(FileFilterList & filterList, CString & str)
  * @brief Parse a filter file, and add it to array if valid.
  *
  * @param [in] szFilePath Path (w/ filename) to file to load.
- * @param [in] szFilename Name of file to load.
- * @todo Remove redundancy from parameters (both having filename)
+ * @param [out] error Error-code if loading failed (returned NULL).
+ * @return Pointer to new filter, or NULL if error (check error code too).
  */
-FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, LPCTSTR szFilename)
+FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 {
 	UniMemFile file;
 	if (!file.OpenReadOnly(szFilepath))
+	{
+		error = FILTER_ERROR_FILEACCESS;
 		return NULL;
+	}
 
 	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
 
+	CString fileName;
+	SplitFilename(szFilepath, NULL, &fileName, NULL);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
-	pfilter->name = szFilename; // default if no name
+	pfilter->name = fileName; // Filename is the default name
+
 	CString sLine;
-	bool lossy=false;
+	bool lossy = false;
 	while (file.ReadString(sLine, &lossy))
 	{
 		sLine.TrimLeft();
@@ -408,11 +408,21 @@ CString FileFilterMgr::GetFullpath(FileFilter * pfilter) const
  * Reloads filter from disk. This is done by creating a new one
  * to substitute for old one.
  * @param [in] pFilter Pointer to filter to reload.
+ * @return FILTER_OK when succeeds, one of FILTER_RETVALUE values on error.
+ * @note Given filter (pfilter) is freed and must not be used anymore.
+ * @todo Should return new filter.
  */
-void FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
+int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 {
-	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, pfilter->name);
-	for (int i=0; i<m_filters.GetSize(); ++i)
+	int errorcode = FILTER_OK;
+	FileFilter * newfilter = LoadFilterFile(pfilter->fullpath, errorcode);
+
+	if (newfilter == NULL)
+	{
+		return errorcode;
+	}
+
+	for (int i = 0; i < m_filters.GetSize(); ++i)
 	{
 		if (pfilter == m_filters[i])
 		{
@@ -422,17 +432,24 @@ void FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 		}
 	}
 	m_filters.Add(newfilter);
+	return errorcode;
 }
 
 /**
- * @brief Reload filter from disk
+ * @brief Reload filter from disk.
  *
  * Reloads filter from disk. This is done by creating a new one
  * to substitute for old one.
  * @param [in] szFullPath Full path to filter file to reload.
+ * @return FILTER_OK when succeeds or one of FILTER_RETVALUE values when fails.
  */
-void FileFilterMgr::ReloadFilterFromDisk(LPCTSTR szFullPath)
+int FileFilterMgr::ReloadFilterFromDisk(LPCTSTR szFullPath)
 {
+	int errorcode = FILTER_OK;
 	FileFilter * filter = GetFilterByPath(szFullPath);
-	ReloadFilterFromDisk(filter);
+	if (filter)
+		errorcode = ReloadFilterFromDisk(filter);
+	else
+		errorcode = FILTER_NOTFOUND;
+	return errorcode;
 }

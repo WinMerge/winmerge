@@ -5,6 +5,9 @@ Add new items to top.
 2006-06-20 Kimmo
  BUG: [ 1505763 ] Crash after closing file compare window
   Src: MergeEditView.cpp
+ PATCH: [ 1508865 ] Improve error handling for loading file filters
+  Src: FileFilterHelper.cpp FileFilterMgr.cpp FileFilterMgr.h FileFiltersDlg.cpp
+   FileFiltersDlg.h
 
 2006-06-19 Gal
  RFE: [ 1499245 ] Ruby Syntax Highlighting

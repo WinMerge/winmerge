@@ -401,6 +401,7 @@ BOOL FileFilterHelper::SetFilter(CString filter)
  *
  * Checks if filter file has been modified since it was last time
  * loaded/reloaded. If file has been modified we reload it.
+ * @todo How to handle an error in reloading filter?
  */
 void FileFilterHelper::ReloadUpdatedFilters()
 {
@@ -422,11 +423,14 @@ void FileFilterHelper::ReloadUpdatedFilters()
 			fileInfo.size != fileInfoStored->size)
 		{
 			// Reload filter after changing it
-			m_fileFilterMgr->ReloadFilterFromDisk(path);
-
-			// If it was active filter we have to re-set it
-			if (path == selected)
-				SetFileFilterPath(path);
+			int retval = m_fileFilterMgr->ReloadFilterFromDisk(path);
+			
+			if (retval == FILTER_OK)
+			{
+				// If it was active filter we have to re-set it
+				if (path == selected)
+					SetFileFilterPath(path);
+			}
 		}
 	}
 }
