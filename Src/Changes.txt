@@ -5,6 +5,8 @@ Add new items to top.
 2006-06-21 Kimmo
  PATCH: [ 1509505 ] Manual: new compare method and options export/import
   Docs/Users/Manual: Configuration.xml
+ Bump manual revision to 1.2.4
+  Docs/Users/Manual: WinMerge_help.xml
 
 2006-06-20 Kimmo
  BUG: [ 1505763 ] Crash after closing file compare window
