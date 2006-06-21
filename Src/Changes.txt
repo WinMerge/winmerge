@@ -7,6 +7,8 @@ Add new items to top.
   Docs/Users/Manual: Configuration.xml
  Bump manual revision to 1.2.4
   Docs/Users/Manual: WinMerge_help.xml
+ Bump ShellExtension version to 1.7.2
+  ShellExtension: ShellExtension.rc
 
 2006-06-20 Kimmo
  BUG: [ 1505763 ] Crash after closing file compare window
