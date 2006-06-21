@@ -278,6 +278,12 @@
           the contents methods, but obviously is only as accurate as the
           modification dates.</para>
         </listitem>
+
+        <listitem>
+          <para><guilabel>Modified Date and Size</guilabel> - like above
+          <guilabel>Modified Date</guilabel> -comparison. But also checks file
+          sizes when dates are identical.</para>
+        </listitem>
       </itemizedlist>
     </sect3>
 
@@ -633,5 +639,15 @@ EOL differences.</screen>
         selection).</para>
       </caution>
     </sect3>
+  </sect2>
+
+  <sect2>
+    <title>Import and Export of options</title>
+
+    <para>Options can be exported to and imported from file. Currently
+    WinMerge supports Windows ini-file formatted text files. Exporting is done
+    by selecting the <guibutton>Export...</guibutton> button. WinMerge asks
+    for location and filename and then saves the file. Importing is done by
+    selecting the <guibutton>Import...</guibutton> -button.</para>
   </sect2>
 </sect1>

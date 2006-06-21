@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-06-21 Kimmo
+ PATCH: [ 1509505 ] Manual: new compare method and options export/import
+  Docs/Users/Manual: Configuration.xml
+
 2006-06-20 Kimmo
  BUG: [ 1505763 ] Crash after closing file compare window
   Src: MergeEditView.cpp
