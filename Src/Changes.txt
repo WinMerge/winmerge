@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1510596 ] Updated Readme-Swedish.txt
   Submitted by Hans Eriksson
   Docs/Users/Languages: ReadMe-Swedish.txt
+ PATCH: [ 1510600 ] Updated MergeSwedish.rc file for 2.5.5.1+
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-06-21 WinMerge experimental release 2.5.5.1 (cvs)
 

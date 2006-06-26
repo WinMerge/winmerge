@@ -501,7 +501,7 @@ BEGIN
             MENUITEM "&Höger",                      ID_DIR_DEL_RIGHT
             MENUITEM "&Båda",                       ID_DIR_DEL_BOTH
         END
-        MENUITEM "Re&name",                         ID_DIR_ITEM_RENAME
+        MENUITEM "Byt &namn",                         ID_DIR_ITEM_RENAME
         MENUITEM "&Dölj filnamn",                     ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "&Öppna vänster"
@@ -641,7 +641,7 @@ BEGIN
     LTEXT           "Version 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Med ensamrätt",IDC_STATIC,7,60,170,8
-    LTEXT           "Besök WinMerges hemsida!",IDC_WWW,7,79,209,8
+    LTEXT           "Besök WinMerges hemsida !",IDC_WWW,7,79,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,95,209,1
     LTEXT           "[VERSION COPYRIGHT FINNS HÄR]",IDC_COMPANY,7,49,209,8
     DEFPUSHBUTTON   "OK",IDOK,166,103,50,14
@@ -1982,7 +1982,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Total jämförelse"
     IDS_COMPMETHOD_QUICK_CONTENTS "Snabb jämförelse"
     IDS_COMPMETHOD_MODDATE  "Datum för förändring"
-    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
+    IDS_COMPMETHOD_DATESIZE "Ändrat Datum och Storlek"
 END
 
 // FILTER OPTIONS
@@ -2134,7 +2134,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Ta bort valda objekt på höger sida"
     ID_DIR_DEL_BOTH         "Ta bort valda objekt på båda sidor"
     ID_DIR_HIDE_FILENAMES   "Dölj valda objekt (realtidsfilter)"
-    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
+    ID_DIR_ITEM_RENAME      "Byt namn på valt objekt på båda sidor"
     IDS_COPY_TO_LEFT        "Höger till vänster (%1)"
     IDS_COPY_TO_RIGHT       "Vänster till höger (%1)"
     IDS_COPY_TO_LEFT2       "Höger till vänster (%1 av %2)"
@@ -2728,7 +2728,7 @@ BEGIN
     IDS_EOL_MAC             "MAC"
     IDS_EOL_UNIX            "UNIX"
     IDS_EOL_MIXED           "Blandad"
-    IDS_EOL_BIN             "Binary"
+    IDS_EOL_BIN             "Binär"
 END
 
 // Folder compare short size suffixes
@@ -2865,7 +2865,7 @@ BEGIN
     ID_PREDIFF_MANUAL       "Ingen prediffer"
     ID_PREDIFF_AUTO         "Prediffer om möjligt"
     ID_NO_EDIT_SCRIPTS      "< Tom >"
-    ID_NO_SCT_SCRIPTS       "Windows Scripting Host hittades inte - .sct script är avstängda"
+    ID_NO_SCT_SCRIPTS       "Windows Script Host ('wscript.exe') hittades inte - .sct script är avstängda"
     IDS_USERCHOICE_NONE     "<Ingen>"
     IDS_USERCHOICE_AUTOMATIC "<Automatisk>"
 END
