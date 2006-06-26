@@ -12,6 +12,9 @@ Add new items to top.
  BUG: [ 1483242 ] Needless resource file 'MergeSwedish_LastTranslation.rc'?
   Remove unneeded file
   Removed: Src/Languages/Swedish: MergeSwedish_LastTranslation.rc
+ BUG: [ 1489034 ] Src/Common/LanguageSelect.rc unused?
+  Remove unneeded file
+  Removed: Src/Common/LanguageSelect.rc
 
 2006-06-21 WinMerge experimental release 2.5.5.1 (cvs)
 
