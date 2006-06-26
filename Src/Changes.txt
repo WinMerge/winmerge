@@ -15,6 +15,8 @@ Add new items to top.
  BUG: [ 1489034 ] Src/Common/LanguageSelect.rc unused?
   Remove unneeded file
   Removed: Src/Common/LanguageSelect.rc
+ Remove unused files (language.h & language.c)
+  Removed: Src: language.c language.h
 
 2006-06-21 WinMerge experimental release 2.5.5.1 (cvs)
 
