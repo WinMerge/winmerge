@@ -9,6 +9,9 @@ Add new items to top.
  PATCH: [ 1510600 ] Updated MergeSwedish.rc file for 2.5.5.1+
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ BUG: [ 1483242 ] Needless resource file 'MergeSwedish_LastTranslation.rc'?
+  Remove unneeded file
+  Removed: Src/Languages/Swedish: MergeSwedish_LastTranslation.rc
 
 2006-06-21 WinMerge experimental release 2.5.5.1 (cvs)
 
