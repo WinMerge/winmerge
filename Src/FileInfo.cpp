@@ -53,9 +53,9 @@ void FileInfo::Update(CString sFilePath)
 		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
 		flags.attributes = wfd.dwFileAttributes;
 
-		// No size for directory (remains as -1)
+		// No size for directory ( size remains as -1)$
 		if ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-			size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
+			size = FileInfo::GetSizeFromFindData(wfd);
 		FindClose(h);
 	}
 	mtime = mtime64;
@@ -71,4 +71,29 @@ void FileInfo::Clear()
 	size = -1;
 	version.Empty();
 	flags.reset();
+}
+
+/**
+ * @brief Returns 64-bit filesize from Windows Find Data.
+ * This function calculates 64-bit filesize from given find-data where
+ * filesize is in two variables.
+ * @param [in] findData Find-data to get filesize.
+ * @return 64-bit filesize.
+ */
+__int64 FileInfo::GetSizeFromFindData(const WIN32_FIND_DATA & findData)
+{
+	__int64 tmpSize = 0;
+	// Get file's size. If more than 31 bits is needed then we need to
+	// calculate full 64 bits. Since size is signed variable.
+	if (findData.nFileSizeHigh > 0 || findData.nFileSizeLow > INT_MAX)
+	{
+		tmpSize = findData.nFileSizeHigh;
+		tmpSize = tmpSize << 32;
+		tmpSize += findData.nFileSizeLow;
+	}
+	else
+	{
+		tmpSize = findData.nFileSizeLow;
+	}
+	return tmpSize;
 }

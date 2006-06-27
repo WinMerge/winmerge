@@ -55,9 +55,10 @@ BOOL DiffFileInfo::Update(LPCTSTR sFilePath)
 	{
 		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
 		flags.attributes = wfd.dwFileAttributes;
-		// No size for directory (remains as -1)
+
+		// Folders don't have a size (size remains as -1)
 		if ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-			size = (wfd.nFileSizeHigh << 32) + wfd.nFileSizeLow;
+			size = FileInfo::GetSizeFromFindData(wfd);
 		FindClose(h);
 		Update = TRUE;
 	}

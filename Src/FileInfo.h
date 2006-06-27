@@ -51,6 +51,8 @@ struct FileInfo
 
 	void Update(CString sFilePath);
 	void Clear();
+
+	static __int64 GetSizeFromFindData(const WIN32_FIND_DATA & findData);
 };
 
 #endif // _FILE_INFO_H_INCLUDED

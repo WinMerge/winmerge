@@ -481,7 +481,7 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 			ent.ctime = CTime(ff.ftCreationTime).GetTime();
 			ent.mtime = CTime(ff.ftLastWriteTime).GetTime();
 			if (!dwIsDirectory)
-				ent.size = ff.nFileSizeLow + (ff.nFileSizeHigh << 32);
+				ent.size = FileInfo::GetSizeFromFindData(ff);
 			else
 				ent.size = -1;  // No size for directories
 			ent.name = ff.cFileName;
