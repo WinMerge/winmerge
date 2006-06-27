@@ -5086,24 +5086,34 @@ GetViewLineNumbers () const
   return m_bViewLineNumbers;
 }
 
-int CCrystalTextView::
+/**
+ * @brief Calculate margin area width.
+ * This function calculates needed margin width. Needed width is (approx.)
+ * one char-width for bookmark etc markers and rest to linenumbers (if
+ * visible). If we have linenumbers visible we need to adjust width so that
+ * biggest number fits.
+ * @return Margin area width in pixels.
+ */
+UINT CCrystalTextView::
 GetMarginWidth ()
 {
   int nMarginWidth = 0;
 
   if (m_bSelMargin)
     {
-      nMarginWidth += 12;
+      nMarginWidth += 16;  // Width for markers and some space
       if (m_bViewLineNumbers)
         {
-          int nLines = GetLineCount();
-          for (int n = 0; nLines; n++)
-            nLines /= 10;
-        nMarginWidth += GetCharWidth() * n + 4;
-      }
+          const int nLines = GetLineCount();
+          int nNumbers = 0;
+          int n = 1;
+          for (n = 1; n <= nLines; n *= 10)
+            ++nNumbers;
+          nMarginWidth += GetCharWidth() * nNumbers;
+        }
     }
   else
-    nMarginWidth ++;
+    ++nMarginWidth; // Do we really want one pixel wide margin?
 
   return nMarginWidth;
 }

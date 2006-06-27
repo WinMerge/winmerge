@@ -212,7 +212,7 @@ protected :
     CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
     void SetAnchor (const CPoint & ptNewAnchor);
-    int GetMarginWidth ();
+    UINT GetMarginWidth ();
     bool IsValidTextPos (const CPoint &point);
     bool IsValidTextPosX (const CPoint &point);
     bool IsValidTextPosY (const CPoint &point);
