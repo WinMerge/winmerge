@@ -63,10 +63,14 @@ CString FileTextEncoding::GetName() const
 		return _T("UCS-2BE");
 	if (m_unicoding == ucr::UTF8)
 		return _T("UTF-8");
+
 	CString str;
-	LPTSTR s = str.GetBuffer(32);
-	_sntprintf(s, 32, _T("%d"), m_codepage);
-	str.ReleaseBuffer();
+	if (m_codepage > -1)
+	{
+		LPTSTR s = str.GetBuffer(32);
+		_sntprintf(s, 32, _T("%d"), m_codepage);
+		str.ReleaseBuffer();
+	}
 	return str;
 }
 

@@ -14,7 +14,7 @@
  */
 struct FileTextEncoding
 {
-	int m_codepage; /**< 8bit codepage, if applicable, 0 is unknown or N/A */
+	int m_codepage; /**< 8bit codepage, if applicable, -1 is unknown or N/A */
 	int m_unicoding; /**< Unicode encoding (assumes 0 is none, use values from ucr::CODESET) */
 	bool m_bom; /**< Unicode byte marker */
 	bool m_guessed; /**< Whether encoding was guessed from content */

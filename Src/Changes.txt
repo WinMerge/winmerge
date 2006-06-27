@@ -8,6 +8,8 @@ Add new items to top.
   Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
  PATCH: [ 1512726 ] Fix combining filesize from two values
   Src: DiffFileInfo.cpp DirScan.cpp FileInfo.cpp FileInfo.h
+ PATCH: [ 1512775 ] Fix encoding columns showing -1
+  Src: FileTextEncoding.cpp FileTextEncoding.h
 
 2006-06-26 Kimmo
  PATCH: [ 1510596 ] Updated Readme-Swedish.txt
