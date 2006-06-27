@@ -232,7 +232,7 @@
           $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge/\">Project Home</a></li>\n";
           $temp .= "  <li>CVS\n";
           $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://cvs.sourceforge.net/viewcvs.py/winmerge/\">Go to CVSWeb</a></li>\n";
+          $temp .= "      <li><a href=\"http://winmerge.cvs.sourceforge.net/winmerge/\">Go to CVSWeb</a></li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/cvs/?group_id=13216\">CVS Client Access</a></li>\n";
           $temp .= "      <li><a href=\"/developer/wincvs.php\">WinCVS Hints</a></li>\n";
           $temp .= "    </ul>\n";

@@ -23,7 +23,7 @@ anonymous CVS server, do the following (note that this does not require SSH).</p
     module name and path on the server" field. Note that 
     capitalization is important. 
   <li>Select the General tab.</li>
-  <li>Enter "<code>:pserver:anonymous@cvs.sourceforge.net:/cvsroot/winmerge</code>" 
+  <li>Enter "<code>:pserver:anonymous@winmerge.cvs.sourceforge.net:/cvsroot/winmerge</code>" 
     in the "Enter the CVSROOT" field (again, no quotes).</li>
   <li>Select "passwd file on the CVS server" in the 
     Authentication section.</li>
