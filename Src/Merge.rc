@@ -1581,7 +1581,7 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "040904b0"
+        BLOCK "040904e4"
         BEGIN
             VALUE "Comments", "English translation by developers"
             VALUE "FileDescription", "WinMerge Application\0"
