@@ -741,7 +741,7 @@ BEGIN
                     WS_TABSTOP,7,47,206,10
     CONTROL         "&Nur eine Programm-Instanz zulassen",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
+    LTEXT           "Öffnen-Dialog Auto&vervollständigung:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "Aktivieren mehrfacher Vergleichsfenster für",IDC_STATIC,7,87,
@@ -750,7 +750,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,98,206,10
     CONTROL         "D&ateivergleich",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,108,206,10
-    LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
+    LTEXT           "WinMerge erlaubt das Verstecken von einigen häufigen Meldungen.\nDrücken Sie die Zurücksetzen-Schaltfläche um alle Meldungen wieder sichtbar zumachen.",
                     IDC_STATIC,7,140,168,31
     PUSHBUTTON      "Zurücksetzen",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
                     WS_TABSTOP
@@ -1162,9 +1162,9 @@ BEGIN
                     221,61
     CONTROL         "Zeilenunterschied anzeigen",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
-    CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
+    CONTROL         "&Zeichen-Ebene",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
-    CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
+    CONTROL         "&Wort-Ebene:",IDC_EDITOR_WORDLEVEL,"Button",
                     BS_AUTORADIOBUTTON,14,128,122,10
     COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
@@ -1490,21 +1490,21 @@ END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Test Filter"
+CAPTION "Filter testen"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Testing filter ...",IDC_HEADER,7,7,82,8
+    LTEXT           "Teste Filter ...",IDC_HEADER,7,7,82,8
     LTEXT           "(filter name)",IDC_HEADER_FILTER_NAME,90,6,152,8
-    LTEXT           "&Enter text to test:",IDC_PROMPT_LABEL,7,21,80,8
+    LTEXT           "&Text zum Testen:",IDC_PROMPT_LABEL,7,21,80,8
     EDITTEXT        IDC_TEST_TEXT,90,19,152,12,ES_AUTOHSCROLL
-    CONTROL         "&Folder Name",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Ordnername",IDC_IS_DIRECTORY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,36,92,8
-    LTEXT           "Result:",IDC_STATIC,7,49,34,8
+    LTEXT           "Ergebnis:",IDC_STATIC,7,49,34,8
     EDITTEXT        IDC_RESULTS,7,59,235,57,ES_MULTILINE | ES_AUTOVSCROLL | 
                     ES_AUTOHSCROLL | ES_READONLY | WS_VSCROLL | WS_HSCROLL | 
                     NOT WS_TABSTOP
-    DEFPUSHBUTTON   "&Test",IDC_TEST_BTN,133,121,50,14
-    PUSHBUTTON      "&Close",IDCANCEL,192,121,50,14
+    DEFPUSHBUTTON   "&Testen",IDC_TEST_BTN,133,121,50,14
+    PUSHBUTTON      "&Schließen",IDCANCEL,192,121,50,14
 END
 
 IDD_PROPPAGE_COLORS_TEXT DIALOGEX 0, 0, 197, 157
@@ -1736,10 +1736,10 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_OPENPROJECT     "Öffnet eine Projektdatei.\nProjektdatei (Strg+J)"
-    IDS_UNK_ERROR_READING_PROJECT "Unknown error attempting to open project file"
-    IDS_UNK_ERROR_SAVING_PROJECT "Unknown error attempting to save project file"
+    IDS_UNK_ERROR_READING_PROJECT "Unbekannter Fehler beim Versuch die Projektdatei zu öffnen."
+    IDS_UNK_ERROR_SAVING_PROJECT "Unbekannter Fehler beim Versuch die Projektdatei zu speichern."
     IDS_PROJFILEDLG_CAPTION "Projekt-Datei"
-    ID_FILE_SAVEPROJECT     "Save current paths and options to project file\nSave Project File"
+    ID_FILE_SAVEPROJECT     "Speichert die aktuellen Pfade und Einstellungen in eine Projektdatei.\nProjektdatei speichern"
 END
 
 STRINGTABLE
@@ -1982,7 +1982,7 @@ BEGIN
     IDS_COMPMETHOD_FULL_CONTENTS "Voller Inhalt"
     IDS_COMPMETHOD_QUICK_CONTENTS "Schneller Inhalt"
     IDS_COMPMETHOD_MODDATE  "Änderungsdatum"
-    IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
+    IDS_COMPMETHOD_DATESIZE "Änderungsdatum und Größe"
 END
 
 // FILTER OPTIONS
@@ -2134,7 +2134,7 @@ BEGIN
     ID_DIR_DEL_RIGHT        "Löscht ausgewähltes Objekt auf der rechten Seite."
     ID_DIR_DEL_BOTH         "Löscht ausgewählte Objekte auf beiden Seiten."
     ID_DIR_HIDE_FILENAMES   "Versteckt ausgewählte Objekte (dynamischer Filter)"
-    ID_DIR_ITEM_RENAME      "Rename selected item on both sides"
+    ID_DIR_ITEM_RENAME      "Nennt ausgewähltes Objekt auf beiden Seiten um."
     IDS_COPY_TO_LEFT        "Rechts nach Links (%1)"
     IDS_COPY_TO_RIGHT       "Links nach Rechts (%1)"
     IDS_COPY_TO_LEFT2       "Rechts nach Links (%1 von %2)"
@@ -2727,8 +2727,8 @@ BEGIN
     IDS_EOL_DOS             "Win"
     IDS_EOL_MAC             "Mac"
     IDS_EOL_UNIX            "Unix"
-    IDS_EOL_MIXED           "Mixed"
-    IDS_EOL_BIN             "Binary"
+    IDS_EOL_MIXED           "Gemischt"
+    IDS_EOL_BIN             "Binär"
 END
 
 // Folder compare short size suffixes
@@ -2892,9 +2892,9 @@ END
 // AUTOCOMPLETE COMBOBOX OPTIONS
 STRINGTABLE
 BEGIN
-    IDS_AUTOCOMPLETE_DISABLED   "Disabled"
-    IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
-    IDS_AUTOCOMPLETE_MRU        "From MRU list"
+    IDS_AUTOCOMPLETE_DISABLED   "Deaktiviert"
+    IDS_AUTOCOMPLETE_FILE_SYS   "Von Dateisystem"
+    IDS_AUTOCOMPLETE_MRU        "Von MRU-Liste"
 END
 
 // END STRINGS SYNCHRO

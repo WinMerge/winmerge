@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-06-30 Tim
+ PATCH: [ 1514645 ] Various Updates in German Translation for WinMerge 2.5
+  Src/Languages/German: MergeGerman.rc
+
 2006-06-29 Kimmo
  PATCH: [ 1513618 ] Fix Merge.rc translation id
   Src: Merge.rc
