@@ -1,3 +1,7 @@
+2006-06-30 Tim
+ Add 'Gal Hammer' to developers.
+  Web\developer: developers.xml
+
 2006-06-27 Tim
  PATCH: [ 1512744 ] Developer-page download links don't work
   Web: page.inc
