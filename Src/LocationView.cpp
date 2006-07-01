@@ -185,6 +185,12 @@ void CLocationView::OnDraw(CDC* pDC)
 	// Adjust line coloring if ignoring trivials
 	DWORD ignoreFlags = (m_bIgnoreTrivials ? LF_TRIVIAL : 0);
 
+	// Draw bar outlines
+	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
+	pDC->Rectangle(m_nLeftBarLeft, Y_OFFSET - 1, m_nLeftBarRight, LineInPix * nbLines + Y_OFFSET);
+	pDC->Rectangle(m_nRightBarLeft, Y_OFFSET - 1, m_nRightBarRight, LineInPix * nbLines + Y_OFFSET);
+	pDC->SelectObject(oldObj);
+
 	while (true)
 	{
 		// here nstart0 = last line before block
@@ -366,30 +372,13 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
  */
 void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 {
-	if (cr == CLR_NONE || cr == GetSysColor(COLOR_WINDOW))
-	{
-		CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-		pDC->Rectangle(r);
-		pDC->SelectObject(oldObj);
-	}
-	// colored rectangle
-	else
+	// Draw only colored blocks
+	if (cr != CLR_NONE && cr != GetSysColor(COLOR_WINDOW))
 	{
 		CBrush brush(cr);
-		pDC->FillSolidRect(r, cr);
-		if (border)
-		{
-			// outter rectangle
-			CRect outter = r;
-			outter.InflateRect(2,2);
-			// dont erase inside rect
-			CBrush* oldBrush = (CBrush*)pDC->SelectStockObject(NULL_BRUSH);
-			CPen pen(PS_SOLID, 2, RGB(0, 0, 0));
-			CPen* oldPen = pDC->SelectObject(&pen);
-			pDC->Rectangle(outter);
-			pDC->SelectObject(oldPen);
-			pDC->SelectObject(oldBrush);
-		}
+		CRect drawRect(r);
+		drawRect.DeflateRect(1, 0);
+		pDC->FillSolidRect(drawRect, cr);
 	}
 }
 
