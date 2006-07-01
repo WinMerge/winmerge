@@ -66,8 +66,8 @@ protected:
 	void DrawConnectLines();
 
 private:
-	CMergeEditView* m_view[2];
-	int m_displayMovedBlocks;
+	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
+	int m_displayMovedBlocks; //*< Setting for displaying moved blocks */
 	double m_pixInLines; //*< How many pixels is one line in bars */
 	UINT m_nLeftBarLeft; //*< Left edge of left-side bar */
 	UINT m_nLeftBarRight; //*< Right edge of left-side bar */

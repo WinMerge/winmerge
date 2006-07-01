@@ -48,6 +48,18 @@ const UINT MSG_STAT_UPDATE = WM_USER + 2;
 const UINT MSG_STORE_PANESIZES = WM_USER + 3;
 /* @} */
 
+/**
+ * @brief Indexes to Merge views (file compare).
+ * We currently have two views, left and right, but in future there
+ * can be more views.
+ */
+enum MERGE_VIEW_ID
+{
+	MERGE_VIEW_LEFT, /**< Left view */
+	MERGE_VIEW_RIGHT, /**< Right view */
+	MERGE_VIEW_COUNT, /**< Count of views */
+};
+
 /// Seconds ignored in filetime differences if option enabled
 static const UINT SmallTimeDiff = 2;
 

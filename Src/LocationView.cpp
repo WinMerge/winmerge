@@ -119,12 +119,12 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 	UNREFERENCED_PARAMETER(pSender);
 	UNREFERENCED_PARAMETER(lHint);
 	CMergeDoc* pDoc = GetDocument();
-	m_view[0] = pDoc->GetLeftView();
-	m_view[1] = pDoc->GetRightView();
+	m_view[MERGE_VIEW_LEFT] = pDoc->GetLeftView();
+	m_view[MERGE_VIEW_RIGHT] = pDoc->GetRightView();
 
 	// Give pointer to MergeEditView
-	m_view[0]->SetLocationView(GetSafeHwnd(), this);
-	m_view[1]->SetLocationView(GetSafeHwnd(), this);
+	m_view[MERGE_VIEW_LEFT]->SetLocationView(GetSafeHwnd(), this);
+	m_view[MERGE_VIEW_RIGHT]->SetLocationView(GetSafeHwnd(), this);
 
 	Invalidate();
 }
@@ -143,12 +143,12 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
  */
 void CLocationView::OnDraw(CDC* pDC)
 {
-	if (!m_view[0]->IsInitialized()) return;
+	if (!m_view[MERGE_VIEW_LEFT]->IsInitialized()) return;
 
 	CRect rc;
 	GetClientRect(rc);
 
-	if (m_view[0] == NULL || m_view[1] == NULL)
+	if (m_view[MERGE_VIEW_LEFT] == NULL || m_view[MERGE_VIEW_RIGHT] == NULL)
 		return;
 
 	CMergeDoc *pDoc = GetDocument();
@@ -158,7 +158,8 @@ void CLocationView::OnDraw(CDC* pDC)
 	m_nRightBarLeft = 2 * m_nLeftBarLeft + w;
 	m_nRightBarRight = m_nRightBarLeft + w;
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
-	const int nbLines = min(m_view[0]->GetLineCount(), m_view[1]->GetLineCount());
+	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetLineCount(),
+			m_view[MERGE_VIEW_RIGHT]->GetLineCount());
 	double LineInPix = hTotal / nbLines;
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
@@ -198,15 +199,15 @@ void CLocationView::OnDraw(CDC* pDC)
 		// here nstart0 = first line of block
 		int nBeginY = (int) (nstart0 * LineInPix + Y_OFFSET);
 		int nEndY = (int) ((blockHeight + nstart0) * LineInPix + Y_OFFSET);
-		BOOL bInsideDiff = m_view[0]->IsLineInCurrentDiff(nstart0);
+		BOOL bInsideDiff = m_view[MERGE_VIEW_LEFT]->IsLineInCurrentDiff(nstart0);
 
 		// Draw left side block
-		m_view[0]->GetLineColors2(nstart0, ignoreFlags, cr0, crt, bwh);
+		m_view[MERGE_VIEW_LEFT]->GetLineColors2(nstart0, ignoreFlags, cr0, crt, bwh);
 		CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
 		DrawRect(pDC, r0, cr0, bInsideDiff);
 		
 		// Draw right side block
-		m_view[1]->GetLineColors2(nstart0, ignoreFlags, cr1, crt, bwh);
+		m_view[MERGE_VIEW_RIGHT]->GetLineColors2(nstart0, ignoreFlags, cr1, crt, bwh);
 		CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
 		DrawRect(pDC, r1, cr1, bInsideDiff);
 
@@ -303,19 +304,26 @@ void CLocationView::OnDraw(CDC* pDC)
 BOOL CLocationView::GetNextRect(int &nLineIndex)
 {
 	CMergeDoc *pDoc = GetDocument();
-	const int nbLines = min(m_view[0]->GetLineCount(), m_view[1]->GetLineCount());
+	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetLineCount(),
+				m_view[MERGE_VIEW_RIGHT]->GetLineCount());
 
 	while(1)
 	{
-
 		++nLineIndex;
 		if (nLineIndex >= nbLines)
 			return FALSE;
 
+		// If no diffs, return last line of file.
+		if (!pDoc->m_diffList.HasSignificantDiffs())
+		{
+			nLineIndex = nbLines - 1;
+			return TRUE;
+		}
+
 		int nextDiff = -1;
 		BOOL bInDiff = pDoc->m_diffList.GetNextDiff(nLineIndex, nextDiff);
 		
-		// No diffs left, return last line of file.
+		// No diffs after line, return last line of file.
 		if (nextDiff == -1)
 		{
 			nLineIndex = nbLines - 1;
@@ -324,19 +332,26 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
 
 		const DIFFRANGE * dfi = pDoc->m_diffList.DiffRangeAt(nextDiff);
 		if (!dfi)
+		{
+			_RPTF1(_CRT_ERROR, "DiffList error, GetNextDiff() returned "
+					"%d but DiffRangeAt() failed to get that diff!",
+					nextDiff);
 			return FALSE;
+		}
 
 		bool ignoreDiff = (m_bIgnoreTrivials && dfi->op == OP_TRIVIAL);
 
 		if (!ignoreDiff && !bInDiff)
 		{
-			// Line not in diff. Return last non-diff line.
+			// Next diff to line was found and line is not inside it.
+			// Return previous line to diff. This is safe since line has
+			// next diff so there must be lines before the diff.
 			nLineIndex = dfi->dbegin0 - 1;
 			return TRUE;
 		}
 
-		// find end of diff
-		int nLineEndDiff = (dfi->blank0 == -1) ? dfi->dend1 : dfi->dend0;
+		// Find end of diff. If first side has blank lines use other side.
+		int nLineEndDiff = (dfi->blank0 > 0) ? dfi->dend1 : dfi->dend0;
 
 		nLineIndex = nLineEndDiff;
 
@@ -445,7 +460,7 @@ BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
 	CRect rc;
 	GetClientRect(rc);
 
-	if (m_view[0] == NULL || m_view[1] == NULL)
+	if (m_view[MERGE_VIEW_LEFT] == NULL || m_view[MERGE_VIEW_RIGHT] == NULL)
 		return FALSE;
 
 	int line = -1;
@@ -464,7 +479,7 @@ BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
 	else
 		return FALSE;
 
-	m_view[0]->GotoLine(line, bRealLine, bar);
+	m_view[MERGE_VIEW_LEFT]->GotoLine(line, bRealLine, bar);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 		m_view[bar]->SetFocus();
 
@@ -545,12 +560,12 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	switch (command)
 	{
 	case ID_LOCBAR_GOTODIFF:
-		m_view[0]->GotoLine(nLine, TRUE, bar);
+		m_view[MERGE_VIEW_LEFT]->GotoLine(nLine, TRUE, bar);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 		m_view[bar]->SetFocus();
 		break;
 	case ID_EDIT_WMGOTO:
-		m_view[0]->WMGoto();
+		m_view[MERGE_VIEW_LEFT]->WMGoto();
 		break;
 	case ID_DISPLAY_MOVED_NONE:
 		SetConnectMovedBlocks(DISPLAY_MOVED_NONE);
@@ -579,7 +594,8 @@ int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar,
 	BOOL bRealLine)
 {
 	CMergeDoc* pDoc = GetDocument();
-	const int nbLines = min(m_view[0]->GetLineCount(), m_view[1]->GetLineCount());
+	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetLineCount(),
+			m_view[MERGE_VIEW_RIGHT]->GetLineCount());
 	int line = (int) (m_pixInLines * (nYCoord - Y_OFFSET));
 	int nRealLine = -1;
 
@@ -612,7 +628,8 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 	BOOL bYarea = FALSE;
 	const int w = rc.Width() / 4;
 	const int x = (rc.Width() - 2 * w) / 3;
-	const int nbLines = min(m_view[0]->GetLineCount(), m_view[1]->GetLineCount());
+	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetLineCount(),
+			m_view[MERGE_VIEW_RIGHT]->GetLineCount());
 	// We need '1 / m_pixInLines' to get line in pixels and
 	// that multiplied by linecount gives us bottom coord for bars.
 	double xbarBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
@@ -656,7 +673,8 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	CRect rc;
 	GetClientRect(rc);
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
-	const int nbLines = min(m_view[0]->GetLineCount(), m_view[1]->GetLineCount());
+	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetLineCount(),
+			m_view[MERGE_VIEW_RIGHT]->GetLineCount());
 	double LineInPix = hTotal / nbLines;
 	if (LineInPix > MAX_LINEPIX)
 		LineInPix = MAX_LINEPIX;
@@ -724,8 +742,8 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
  */
 void CLocationView::OnClose()
 {
-	m_view[0]->SetLocationView(NULL, NULL);
-	m_view[1]->SetLocationView(NULL, NULL);
+	m_view[MERGE_VIEW_LEFT]->SetLocationView(NULL, NULL);
+	m_view[MERGE_VIEW_RIGHT]->SetLocationView(NULL, NULL);
 
 	CView::OnClose();
 }
