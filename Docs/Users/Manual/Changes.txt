@@ -1,3 +1,7 @@
+2006-06-02 Tim
+ PATCH: [ 1515455 ] Manual: Suppress navigation in htmlhelp
+  Manual/build: build_htmlhelp.xsl
+
 2006-05-22 Tim
  PATCH: [ 1493170 ] Manual: Delete 'art' output dir after htmlhelp compile
   Manual/build: build_htmlhelp.bat
