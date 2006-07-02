@@ -1,6 +1,8 @@
 2006-06-02 Tim
  PATCH: [ 1515455 ] Manual: Suppress navigation in htmlhelp
   Manual/build: build_htmlhelp.xsl
+ PATCH: [ 1515510 ] Manual: Use 'listitem' in About_Doc.xml
+  Manual: About_Doc.xml
 
 2006-05-22 Tim
  PATCH: [ 1493170 ] Manual: Delete 'art' output dir after htmlhelp compile
