@@ -3,6 +3,8 @@
   Manual/build: build_htmlhelp.xsl
  PATCH: [ 1515510 ] Manual: Use 'listitem' in About_Doc.xml
   Manual: About_Doc.xml
+ PATCH: [ 1515529 ] Manual: Use 'Verdana' font in htmlhelp
+  Manual/css: help.css
 
 2006-05-22 Tim
  PATCH: [ 1493170 ] Manual: Delete 'art' output dir after htmlhelp compile
