@@ -5,6 +5,8 @@
   Manual: About_Doc.xml
  PATCH: [ 1515529 ] Manual: Use 'Verdana' font in htmlhelp
   Manual/css: help.css
+ PATCH: [ 1515940 ] Manual: Use 'Verdana' font in html too (XSL)
+  Manual/css: all.css print.css
 
 2006-05-22 Tim
  PATCH: [ 1493170 ] Manual: Delete 'art' output dir after htmlhelp compile

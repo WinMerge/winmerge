@@ -1,3 +1,13 @@
+body,th,td {
+  font-family: Verdana,Helvetica,Arial,sans-serif;
+  font-size: 80%;
+}
+
+pre,code,tt {
+  font-family: "Courier New",Courier,monospace;
+  font-size: 100%;
+}
+
 .navheader {
   display: none;
 }
