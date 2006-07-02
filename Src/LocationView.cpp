@@ -24,20 +24,23 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/** 
- * @brief Size of empty frame above and below bars (in pixels)
- */
+/** @brief Size of empty frame above and below bars (in pixels). */
 static const DWORD Y_OFFSET = 5;
 
-/** 
- * @brief Size of y-margin for visible area indicator (in pixels)
- */
+/** @brief Size of y-margin for visible area indicator (in pixels). */
 static const long INDICATOR_MARGIN = 2;
 
-/** 
- * @brief Max pixels in view per line in file
- */
+/** @brief Max pixels in view per line in file. */
 static const double MAX_LINEPIX = 4.0;
+
+/** @brief Top of difference marker, relative to difference start. */
+static const int DIFFMARKER_TOP = 3;
+
+/** @brief Bottom of difference marker, relative to difference start. */
+static const int DIFFMARKER_BOTTOM = 3;
+
+/** @brief Width of difference marker. */
+static const int DIFFMARKER_WIDTH = 6;
 
 /** 
  * @brief Bars in location pane
@@ -63,6 +66,7 @@ CLocationView::CLocationView()
 	, m_bIgnoreTrivials(true)
 	, m_hwndFrame(NULL)
 	, m_nPrevPaneWidth(0)
+	, m_DiffMarkerCoord(-1)
 {
 	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
 	// There is no GUI to do this
@@ -206,6 +210,10 @@ void CLocationView::OnDraw(CDC* pDC)
 		int nBeginY = (int) (nstart0 * LineInPix + Y_OFFSET);
 		int nEndY = (int) ((blockHeight + nstart0) * LineInPix + Y_OFFSET);
 		BOOL bInsideDiff = m_view[MERGE_VIEW_LEFT]->IsLineInCurrentDiff(nstart0);
+
+		// If no selected diff, remove diff marker
+		if (pDoc->GetCurrentDiff() == -1)
+			DrawDiffMarker(pDC, -1);
 
 		// Draw left side block
 		m_view[MERGE_VIEW_LEFT]->GetLineColors2(nstart0, ignoreFlags, cr0, crt, bwh);
@@ -369,8 +377,12 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
 
 /** 
  * @brief Draw one block of map.
+ * @param [in] pDC Draw context.
+ * @param [in] r Rectangle to draw.
+ * @param [in] cr Color for rectange.
+ * @param [in] bSelected Is rectangle for selected difference?
  */
-void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
+void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected)
 {
 	// Draw only colored blocks
 	if (cr != CLR_NONE && cr != GetSysColor(COLOR_WINDOW))
@@ -379,6 +391,11 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border)
 		CRect drawRect(r);
 		drawRect.DeflateRect(1, 0);
 		pDC->FillSolidRect(drawRect, cr);
+
+		if (bSelected)
+		{
+			DrawDiffMarker(pDC, r.top);
+		}
 	}
 }
 
@@ -689,6 +706,13 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 		rcVisibleArea.left = m_nRightBarRight + 2;
 		rcVisibleArea.right = rc.Width() - 2;
 		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		if (((m_DiffMarkerCoord - DIFFMARKER_TOP >= m_visibleTop) &&
+			(m_DiffMarkerCoord - DIFFMARKER_TOP <= m_visibleBottom)) ||
+			((m_DiffMarkerCoord + DIFFMARKER_BOTTOM >= m_visibleTop) &&
+			(m_DiffMarkerCoord + DIFFMARKER_BOTTOM <= m_visibleBottom)))
+		{
+			DrawDiffMarker(pClientDC, m_DiffMarkerCoord);
+		}
 		ReleaseDC(pClientDC);
 	}
 
@@ -710,6 +734,14 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	rcVisibleArea.left = m_nRightBarRight + 2;
 	rcVisibleArea.right = rc.Width() - 2;
 	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+
+	if (((m_DiffMarkerCoord - DIFFMARKER_TOP >= m_visibleTop) &&
+		(m_DiffMarkerCoord - DIFFMARKER_TOP <= m_visibleBottom)) ||
+		((m_DiffMarkerCoord + DIFFMARKER_BOTTOM >= m_visibleTop) &&
+		(m_DiffMarkerCoord + DIFFMARKER_BOTTOM <= m_visibleBottom)))
+	{
+		DrawDiffMarker(pClientDC, m_DiffMarkerCoord);
+	}
 	ReleaseDC(pClientDC);
 }
 
@@ -779,5 +811,68 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
 		m_nPrevPaneWidth = cx;
 		if (m_hwndFrame != NULL)
 			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
+	}
+}
+
+/** 
+ * @brief Draw marker for top of currently selected difference.
+ * This function draws marker for top of currently selected difference.
+ * This marker makes it a lot easier to see where currently selected
+ * difference is in location bar. Especially when selected diffence is
+ * small and it is not easy to find it otherwise.
+ * @param [in] pDC Pointer to draw context.
+ * @param [in] yCoord Y-coord of top of difference, -1 if no difference.
+ */
+void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
+{
+	// First erase marker from current position
+	if (m_DiffMarkerCoord != -1)
+	{
+		// If in visible area, use its background color
+		COLORREF cr;
+		if (m_DiffMarkerCoord > m_visibleTop && m_DiffMarkerCoord < m_visibleBottom)
+			cr = GetSysColor(COLOR_SCROLLBAR);
+		else
+			cr = GetSysColor(COLOR_WINDOW);
+
+		CRect rect;
+		rect.left = m_nLeftBarLeft - DIFFMARKER_WIDTH - 1;
+		rect.top = m_DiffMarkerCoord - DIFFMARKER_TOP;
+		rect.right = m_nLeftBarLeft;
+		rect.bottom = m_DiffMarkerCoord + DIFFMARKER_BOTTOM + 1;
+		pDC->FillSolidRect(rect, cr);
+
+		rect.left = m_nRightBarRight;
+		rect.right = m_nRightBarRight + 2 + DIFFMARKER_WIDTH;
+		pDC->FillSolidRect(rect, cr);
+	}
+
+	m_DiffMarkerCoord = yCoord;
+
+	// Then draw marker to new position
+	if (yCoord != -1)
+	{
+		CPoint points[3];
+		points[0].x = m_nLeftBarLeft - DIFFMARKER_WIDTH - 1;
+		points[0].y = yCoord - DIFFMARKER_TOP;
+		points[1].x = m_nLeftBarLeft - 1;
+		points[1].y = yCoord;
+		points[2].x = m_nLeftBarLeft - DIFFMARKER_WIDTH - 1;
+		points[2].y = yCoord + DIFFMARKER_BOTTOM;
+
+		CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
+		CBrush brushBlack(RGB(0, 0, 0));
+		CBrush* pOldBrush = pDC->SelectObject(&brushBlack);
+
+		pDC->SetPolyFillMode(WINDING);
+		pDC->Polygon(points, 3);
+
+		points[0].x = m_nRightBarRight + 1 + DIFFMARKER_WIDTH;
+		points[1].x = m_nRightBarRight + 1;
+		points[2].x = m_nRightBarRight + 1 + DIFFMARKER_WIDTH;
+		pDC->Polygon(points, 3);
+
+		pDC->SelectObject(pOldBrush);
+		pDC->SelectObject(oldObj);
 	}
 }

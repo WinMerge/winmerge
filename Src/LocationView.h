@@ -58,12 +58,13 @@ protected:
 protected:
 	// Return end of block (diff/non-diff)
 	BOOL GetNextRect(int &nLineIndex);
-	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL border = FALSE);
+	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected = FALSE);
 	BOOL GotoLocation(CPoint point, BOOL bRealLine = TRUE);
 	int GetLineFromYPos(int nYCoord, CRect rc, int bar, BOOL bRealLine = TRUE);
 	int IsInsideBar(CRect rc, POINT pt);
 	void DrawVisibleAreaRect(int nTopLine = -1, int nBottomLine = -1);
 	void DrawConnectLines();
+	void DrawDiffMarker(CDC* pDC, int yCoord);
 
 private:
 	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
@@ -79,6 +80,7 @@ private:
 	bool m_bIgnoreTrivials; //*< Whether to paint trivial blocks */
 	HWND m_hwndFrame; //*< Frame window handle */
 	UINT m_nPrevPaneWidth; //*< Previous pane width, used to track width changes */
+	int m_DiffMarkerCoord; //*< Y-Coord for active diff marker, -1 if no marker */
 
 	// Generated message map functions
 protected:
