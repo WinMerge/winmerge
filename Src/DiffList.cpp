@@ -269,7 +269,10 @@ BOOL DiffList::GetPrevDiff(int nLine, int & nDiff) const
 }
 
 /**
- * @brief Return next diff from given line.
+ * @brief Return next difference from given line.
+ * This function finds next difference from given line. If line is inside
+ * difference, that difference is returned. If next difference is not found
+ * param @p nDiff is set to -1.
  * @param [in] nLine First line searched.
  * @param [out] nDiff Index of diff found.
  * @return TRUE if line is inside diff, FALSE otherwise.

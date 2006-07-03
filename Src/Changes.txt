@@ -11,6 +11,8 @@ Add new items to top.
  PATCH: [ 1516016 ] Fix poor handling of invalid tab size in Options-dialog
   Src: Merge.rc PropEditor.cpp PropEditor.h resource.h
   Src/Languages/*: Merge*.rc
+ Fix comment in DiffList.cpp
+  Src: DiffList.cpp
 
 2006-07-02 Kimmo
  PATCH: [ 1515669 ] Add selected difference marker for locationview
