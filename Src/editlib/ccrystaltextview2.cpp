@@ -368,49 +368,32 @@ MoveEnd (BOOL bSelect)
 void CCrystalTextView::
 MovePgUp (BOOL bSelect)
 {
-	//BEGIN SW
-	// scrolling windows
-	int nNewTopSubLine = m_nTopSubLine - GetScreenLines() + 1;
-	if (nNewTopSubLine < 0)
-		nNewTopSubLine = 0;
-	if (m_nTopSubLine != nNewTopSubLine)
-	{
-		int nDummy;
-		int nNewTopLine;
-		GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
-		m_ptCursorPos.y = nNewTopLine;
-		ScrollToSubLine(nNewTopSubLine);
-		UpdateSiblingScrollPos(FALSE);
-	}
+  // scrolling windows
+  int nNewTopSubLine = m_nTopSubLine - GetScreenLines() + 1;
+  if (nNewTopSubLine < 0)
+    nNewTopSubLine = 0;
+  if (m_nTopSubLine != nNewTopSubLine)
+    {
+      int nDummy;
+      int nNewTopLine;
+      GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
+      m_ptCursorPos.y = nNewTopLine;
+      ScrollToSubLine(nNewTopSubLine);
+      UpdateSiblingScrollPos(FALSE);
+    }
 
-	// setting cursor
-	CPoint	subLinePos;
-	CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
+  // setting cursor
+  CPoint subLinePos;
+  CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
 
-	int			nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y - GetScreenLines() + 1;
+  int nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y;
 
-	if( nSubLine < 0 )
-		nSubLine = 0;
+  if ( nSubLine < 0 )
+    nSubLine = 0;
 
-	SubLineCursorPosToTextPos( 
-		CPoint( m_nIdealCharPos, nSubLine ), m_ptCursorPos );
+  SubLineCursorPosToTextPos( CPoint( m_nIdealCharPos, nSubLine ),
+    m_ptCursorPos );
 
-	/*ORIGINAL
-	int nNewTopLine = m_nTopLine - GetScreenLines() + 1;
-	if (nNewTopLine < 0)
-		nNewTopLine = 0;
-	if (m_nTopLine != nNewTopLine)
-	{
-		ScrollToLine(nNewTopLine);
-		UpdateSiblingScrollPos(TRUE);
-	}
-
-	m_ptCursorPos.y -= GetScreenLines() - 1;
-	if (m_ptCursorPos.y < 0)
-		m_ptCursorPos.y = 0;
-	if (m_ptCursorPos.x > GetLineLength(m_ptCursorPos.y))
-		m_ptCursorPos.x = GetLineLength(m_ptCursorPos.y);
-	*///END SW
   m_nIdealCharPos = CalculateActualOffset (m_ptCursorPos.y, m_ptCursorPos.x);
   EnsureVisible (m_ptCursorPos);    //todo: no vertical scroll
 

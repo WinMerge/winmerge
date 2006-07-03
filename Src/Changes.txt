@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-03 Kimmo
+ PATCH: [ 1515380 ] Page Up/Down Anomaly
+  Submitted by Ed_K
+  Src/editlib: ccrystaltextview2.cpp
+
 2006-07-02 Kimmo
  PATCH: [ 1515669 ] Add selected difference marker for locationview
   Src: LocationView.cpp LocationView.h
