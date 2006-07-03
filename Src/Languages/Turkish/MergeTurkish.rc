@@ -1955,6 +1955,8 @@ BEGIN
     IDS_MESSAGE_BOX_ARE_RESET "All message boxes are now displayed again."
     IDS_DIFF_OPEN_NO_SET_PROPS "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
     IDS_FONT_CHANGE         "The selected font change will not be applied to any currently visible difference windows."
+    IDS_OPTIONS_INVALID_TABSIZE 
+                            "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
 END
 
 // BROWSE FILE

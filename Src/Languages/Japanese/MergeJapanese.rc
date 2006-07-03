@@ -1955,6 +1955,8 @@ BEGIN
     IDS_MESSAGE_BOX_ARE_RESET "すべてのメッセージボックスが、再び表示されます。"
     IDS_DIFF_OPEN_NO_SET_PROPS "現在開いているファイルは変更されています。いくつかの設定は、現在のファイルを比較しなおすまで反映されないかもしれません。"
     IDS_FONT_CHANGE         "選択されたフォントは現在表示されている差異ウインドウには適用されません。"
+    IDS_OPTIONS_INVALID_TABSIZE 
+                            "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
 END
 
 // BROWSE FILE

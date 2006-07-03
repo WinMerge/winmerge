@@ -1955,6 +1955,8 @@ BEGIN
     IDS_MESSAGE_BOX_ARE_RESET "Todas las cajas de mensaje se mostrarán de nuevo."
     IDS_DIFF_OPEN_NO_SET_PROPS "Se han realizado modificaciones en los ficheros de la sesion de comparación actual. Algunos ajustes pueden no surtir efecto hasta que la comparación de ficheros se ejecute de nuevo."
     IDS_FONT_CHANGE         "La fuente seleccionada no se aplicará a ninguna de las ventanas de diferencias abiertas actualmente."
+    IDS_OPTIONS_INVALID_TABSIZE 
+                            "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
 END
 
 // BROWSE FILE
