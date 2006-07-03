@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1515380 ] Page Up/Down Anomaly
   Submitted by Ed_K
   Src/editlib: ccrystaltextview2.cpp
+ PATCH: [ 1515966 ] Use View-IDs in MergeDoc.cpp
+  Src: MergeDoc.cpp MergeDoc.h
 
 2006-07-02 Kimmo
  PATCH: [ 1515669 ] Add selected difference marker for locationview

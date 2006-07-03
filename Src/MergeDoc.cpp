@@ -111,18 +111,18 @@ END_MESSAGE_MAP()
  */
 CMergeDoc::CMergeDoc()
 : m_pTempFiles(NULL)
+, m_bEnableRescan(TRUE)
+, m_nCurDiff(-1)
+, m_pDirDoc(NULL)
 {
 	DIFFOPTIONS options = {0};
 
-	m_nCurDiff=-1;
-	m_bEnableRescan = TRUE;
 	// COleDateTime m_LastRescan
 	curUndo = undoTgt.begin();
-	m_pView[0]=NULL;
-	m_pView[1]=NULL;
-	m_pDetailView[0]=NULL;
-	m_pDetailView[1]=NULL;
-	m_pDirDoc=NULL;
+	m_pView[MERGE_VIEW_LEFT] = NULL;
+	m_pView[MERGE_VIEW_RIGHT] = NULL;
+	m_pDetailView[0] = NULL;
+	m_pDetailView[1] = NULL;
 	m_pInfoUnpacker = new PackingInfo;
 	m_nBufferType[0] = BUFFER_NORMAL;
 	m_nBufferType[1] = BUFFER_NORMAL;
@@ -468,8 +468,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		// BTW, this solves the problem of double asserts
 		// (during the display of an assert message box, a second assert in one of the 
 		//  display functions happens, and hides the first assert)
-		m_pView[0]->DetachFromBuffer();
-		m_pView[1]->DetachFromBuffer();
+		m_pView[MERGE_VIEW_LEFT]->DetachFromBuffer();
+		m_pView[MERGE_VIEW_RIGHT]->DetachFromBuffer();
 		m_pDetailView[0]->DetachFromBuffer();
 		m_pDetailView[1]->DetachFromBuffer();
 
@@ -494,14 +494,14 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 			bIdentical = TRUE;
 
 		// just apply some options to the views
-		m_pView[0]->PrimeListWithFile();
-		m_pView[1]->PrimeListWithFile();
+		m_pView[MERGE_VIEW_LEFT]->PrimeListWithFile();
+		m_pView[MERGE_VIEW_RIGHT]->PrimeListWithFile();
 		m_pDetailView[0]->PrimeListWithFile();
 		m_pDetailView[1]->PrimeListWithFile();
 
 		// Now buffers data are valid
-		m_pView[0]->ReAttachToBuffer();
-		m_pView[1]->ReAttachToBuffer();
+		m_pView[MERGE_VIEW_LEFT]->ReAttachToBuffer();
+		m_pView[MERGE_VIEW_RIGHT]->ReAttachToBuffer();
 		m_pDetailView[0]->ReAttachToBuffer();
 		m_pDetailView[1]->ReAttachToBuffer();
 
@@ -1892,8 +1892,8 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 
 	// store cursors and hide caret
-	m_pView[0]->PushCursors();
-	m_pView[1]->PushCursors();
+	m_pView[MERGE_VIEW_LEFT]->PushCursors();
+	m_pView[MERGE_VIEW_RIGHT]->PushCursors();
 	m_pDetailView[0]->PushCursors();
 	m_pDetailView[1]->PushCursors();
 	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
@@ -1904,8 +1904,8 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	int nRescanResult = Rescan(bBinary, bIdentical, bForced);
 
 	// restore cursors and caret
-	m_pView[0]->PopCursors();
-	m_pView[1]->PopCursors();
+	m_pView[MERGE_VIEW_LEFT]->PopCursors();
+	m_pView[MERGE_VIEW_RIGHT]->PopCursors();
 	m_pDetailView[0]->PopCursors();
 	m_pDetailView[1]->PopCursors();
 	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
@@ -1913,7 +1913,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 
 	// because of ghostlines, m_nTopLine may differ just after Rescan
 	// scroll both views to the same top line
-	CMergeEditView * fixedView = m_pView[0];
+	CMergeEditView * fixedView = m_pView[MERGE_VIEW_LEFT];
 	if (nActiveViewIndexType == MERGEVIEW_LEFT || nActiveViewIndexType == MERGEVIEW_RIGHT)
 		// only one view needs to scroll so do not scroll the active view
 		fixedView = m_pView[nActiveViewIndexType];
@@ -2443,10 +2443,10 @@ void CMergeDoc::RescanIfNeeded(float timeOutInSecond)
  */
 void CMergeDoc::SetMergeViews(CMergeEditView * pLeft, CMergeEditView * pRight)
 {
-	ASSERT(pLeft && !m_pView[0]);
-	m_pView[0] = pLeft;
-	ASSERT(pRight && !m_pView[1]);
-	m_pView[1] = pRight;
+	ASSERT(pLeft && !m_pView[MERGE_VIEW_LEFT]);
+	m_pView[MERGE_VIEW_LEFT] = pLeft;
+	ASSERT(pRight && !m_pView[MERGE_VIEW_RIGHT]);
+	m_pView[MERGE_VIEW_RIGHT] = pRight;
 }
 
 /**
@@ -2474,7 +2474,7 @@ void CMergeDoc::SetDirDoc(CDirDoc * pDirDoc)
  */
 CChildFrame * CMergeDoc::GetParentFrame() 
 {
-	return dynamic_cast<CChildFrame *>(m_pView[0]->GetParentFrame()); 
+	return dynamic_cast<CChildFrame *>(m_pView[MERGE_VIEW_LEFT]->GetParentFrame()); 
 }
 
 /**
@@ -2617,8 +2617,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 	// Prevent displaying views during LoadFile
 	// Note : attach buffer again only if both loads succeed
-	m_pView[0]->DetachFromBuffer();
-	m_pView[1]->DetachFromBuffer();
+	m_pView[MERGE_VIEW_LEFT]->DetachFromBuffer();
+	m_pView[MERGE_VIEW_RIGHT]->DetachFromBuffer();
 	m_pDetailView[0]->DetachFromBuffer();
 	m_pDetailView[1]->DetachFromBuffer();
 
@@ -2735,14 +2735,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	}
 
 	// Now buffers data are valid
-	m_pView[0]->AttachToBuffer();
-	m_pView[1]->AttachToBuffer();
+	m_pView[MERGE_VIEW_LEFT]->AttachToBuffer();
+	m_pView[MERGE_VIEW_RIGHT]->AttachToBuffer();
 	m_pDetailView[0]->AttachToBuffer();
 	m_pDetailView[1]->AttachToBuffer();
 
 	// Currently there is only one set of syntax colors, which all documents & views share
-	m_pView[0]->SetColorContext(GetMainSyntaxColors());
-	m_pView[1]->SetColorContext(GetMainSyntaxColors());
+	m_pView[MERGE_VIEW_LEFT]->SetColorContext(GetMainSyntaxColors());
+	m_pView[MERGE_VIEW_RIGHT]->SetColorContext(GetMainSyntaxColors());
 	m_pDetailView[0]->SetColorContext(GetMainSyntaxColors());
 	m_pDetailView[1]->SetColorContext(GetMainSyntaxColors());
 
@@ -2860,8 +2860,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 	// Force repaint of location pane to update it in case we had some warning
 	// dialog visible and it got painted before files were loaded
-	if (m_pView[0])
-		m_pView[0]->RepaintLocationPane();
+	if (m_pView[MERGE_VIEW_LEFT])
+		m_pView[MERGE_VIEW_LEFT]->RepaintLocationPane();
 
 	return OPENRESULTS_SUCCESS;
 }
@@ -2942,8 +2942,8 @@ void CMergeDoc::RefreshOptions()
 	m_diffWrapper.SetOptions(&options);
 
 	// Refresh view options
-	m_pView[0]->RefreshOptions();
-	m_pView[1]->RefreshOptions();
+	m_pView[MERGE_VIEW_LEFT]->RefreshOptions();
+	m_pView[MERGE_VIEW_RIGHT]->RefreshOptions();
 }
 
 /**
@@ -3139,8 +3139,8 @@ void CMergeDoc::SwapFiles()
 	m_diffList.Swap();
 
 	// Reattach text buffers
-	m_pView[0]->ReAttachToBuffer(m_ptBuf[0]);
-	m_pView[1]->ReAttachToBuffer(m_ptBuf[1]);
+	m_pView[MERGE_VIEW_LEFT]->ReAttachToBuffer(m_ptBuf[0]);
+	m_pView[MERGE_VIEW_RIGHT]->ReAttachToBuffer(m_ptBuf[1]);
 	m_pDetailView[0]->ReAttachToBuffer(m_ptBuf[0]);
 	m_pDetailView[1]->ReAttachToBuffer(m_ptBuf[1]);
 

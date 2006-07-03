@@ -255,8 +255,8 @@ public:
 	BOOL CloseNow();
 	void SwapFiles();
 
-	CMergeEditView * GetLeftView() const { return m_pView[0]; }
-	CMergeEditView * GetRightView() const { return m_pView[1]; }
+	CMergeEditView * GetLeftView() const { return m_pView[MERGE_VIEW_LEFT]; }
+	CMergeEditView * GetRightView() const { return m_pView[MERGE_VIEW_RIGHT]; }
 	CMergeEditView * GetView(int pane) const { return m_pView[pane]; }
 	CMergeDiffDetailView * GetLeftDetailView() const { return m_pDetailView[0]; }
 	CMergeDiffDetailView * GetRightDetailView() const { return m_pDetailView[1]; }
@@ -317,7 +317,7 @@ private:
 // Implementation data
 protected:
 	int m_nCurDiff; /**< Selected diff, 0-based index, -1 if no diff selected */
-	CMergeEditView * m_pView[2]; /**< Pointer to left/right view */
+	CMergeEditView * m_pView[MERGE_VIEW_COUNT]; /**< Pointer to left/right view */
 	CMergeDiffDetailView * m_pDetailView[2];
 	CDirDoc * m_pDirDoc;
 	BOOL m_bEnableRescan; /**< Automatic rescan enabled/disabled */
