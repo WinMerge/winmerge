@@ -72,6 +72,8 @@ protected:
 
 private:
 	COptionsMgr * m_pOptionsMgr;
+public:
+	afx_msg void OnEnKillfocusTabEdit();
 };
 
 //{{AFX_INSERT_LOCATION}}

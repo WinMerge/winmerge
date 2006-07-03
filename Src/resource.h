@@ -428,6 +428,7 @@
 #define IDS_MESSAGE_BOX_ARE_RESET       16401
 #define IDS_DIFF_OPEN_NO_SET_PROPS      16402
 #define IDS_FONT_CHANGE                 16403
+#define IDS_OPTIONS_INVALID_TABSIZE     16404
 #define IDS_OPEN_TITLE                  16416
 #define IDS_PROGRAMFILES                16417
 #define IDS_ALLFILES                    16418

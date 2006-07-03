@@ -11,6 +11,7 @@
 #include "PropEditor.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+#include ".\propeditor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -18,6 +19,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/** @brief Maximum size for tabs in spaces. */
 static const int MAX_TABSIZE = 64;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -44,7 +46,6 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_HILITE_CHECK, m_bHiliteSyntax);
 	DDX_Radio(pDX, IDC_PROP_INSERT_TABS, m_nTabType);
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
-	DDV_MinMaxInt(pDX, m_nTabSize, 1, MAX_TABSIZE);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
 	DDX_Check(pDX, IDC_UNREC_APPLYSYNTAX, m_bApplySyntax);
@@ -62,6 +63,7 @@ BEGIN_MESSAGE_MAP(CPropEditor, CDialog)
 	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_WORDLEVEL, OnLineDiffControlClicked)
+	ON_EN_KILLFOCUS(IDC_TAB_EDIT, OnEnKillfocusTabEdit)
 END_MESSAGE_MAP()
 
 /** 
@@ -85,6 +87,11 @@ void CPropEditor::ReadOptions()
  */
 void CPropEditor::WriteOptions()
 {
+	// Sanity check tabsize
+	if (m_nTabSize < 1)
+		m_nTabSize = 1;
+	if (m_nTabSize > MAX_TABSIZE)
+		m_nTabSize = MAX_TABSIZE;
 	m_pOptionsMgr->SaveOption(OPT_TAB_SIZE, (int)m_nTabSize);
 	m_pOptionsMgr->SaveOption(OPT_TAB_TYPE, (int)m_nTabType);
 	m_pOptionsMgr->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan == TRUE);
@@ -167,6 +174,8 @@ void CPropEditor::OnLineDiffControlClicked()
 
 /**
  * @brief Shortcut to enable or disable a control
+ * @param [in] item ID of dialog control to enable/disable.
+ * @paran [in] enable if true control is enabled, else disabled.
  */
 void CPropEditor::EnableDlgItem(int item, bool enable)
 {
@@ -175,7 +184,6 @@ void CPropEditor::EnableDlgItem(int item, bool enable)
 
 /** 
  * @brief Update availability of line difference controls
- *
  */
 void CPropEditor::UpdateLineDiffControls()
 {
@@ -187,3 +195,22 @@ void CPropEditor::UpdateLineDiffControls()
 	EnableDlgItem(IDC_BREAK_TYPE, !!m_bViewLineDifferences);
 }
 
+/** 
+ * @brief Check tabsize value when control loses focus.
+ */
+void CPropEditor::OnEnKillfocusTabEdit()
+{
+	CEdit * pEdit = (CEdit *)GetDlgItem(IDC_TAB_EDIT);
+	CString valueAsText;
+	pEdit->GetWindowText(valueAsText);
+	int value = _ttoi(valueAsText);
+	
+	if (value < 1 || value > MAX_TABSIZE)
+	{
+		CString msg;
+		CString num;
+		num.Format(_T("%d"), MAX_TABSIZE);
+		AfxFormatString1(msg, IDS_OPTIONS_INVALID_TABSIZE, num);
+		AfxMessageBox(msg, MB_ICONWARNING);
+	}
+}

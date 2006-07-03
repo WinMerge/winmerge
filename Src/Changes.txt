@@ -8,6 +8,9 @@ Add new items to top.
   Src/editlib: ccrystaltextview2.cpp
  PATCH: [ 1515966 ] Use View-IDs in MergeDoc.cpp
   Src: MergeDoc.cpp MergeDoc.h
+ PATCH: [ 1516016 ] Fix poor handling of invalid tab size in Options-dialog
+  Src: Merge.rc PropEditor.cpp PropEditor.h resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-07-02 Kimmo
  PATCH: [ 1515669 ] Add selected difference marker for locationview
