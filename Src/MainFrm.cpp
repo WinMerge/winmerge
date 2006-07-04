@@ -2819,6 +2819,7 @@ void CMainFrame::OnWindowCloseAll()
 		}
 		else
 		{
+			// When comparing files from Open-Dialog, pDirDoc has no View.
 			pDirDoc->CloseMergeDocs();
 			// pDirDoc has no View and has already been deleted by CloseMergeDocs. So no need to call OnCloseDocument.
 			//pDirDoc->OnCloseDocument();
