@@ -12,6 +12,7 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "DirColsDlg.h"
+#include ".\dircolsdlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -52,6 +53,8 @@ BEGIN_MESSAGE_MAP(CDirColsDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_LBN_SELCHANGE(IDC_LIST_SHOW, OnLbnSelchangeListShow)
 	ON_LBN_SELCHANGE(IDC_LIST_HIDE, OnLbnSelchangeListHide)
+	ON_LBN_DBLCLK(IDC_LIST_SHOW, OnLbnDblclkListShow)
+	ON_LBN_DBLCLK(IDC_LIST_HIDE, OnLbnDblclkListHide)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -320,6 +323,9 @@ void CDirColsDlg::OnLbnSelchangeListHide()
 	}
 }
 
+/**
+ * @brief Handle keyboard events.
+ */
 BOOL CDirColsDlg::PreTranslateMessage(MSG* pMsg)
 {
 	if (pMsg->message == WM_KEYDOWN && pMsg->wParam != VK_CONTROL)
@@ -361,4 +367,20 @@ BOOL CDirColsDlg::PreTranslateMessage(MSG* pMsg)
 	}
 
 	return CDialog::PreTranslateMessage(pMsg);
+}
+
+/**
+ * @brief Called when mouse is double-clicked over shown columns list.
+ */
+void CDirColsDlg::OnLbnDblclkListShow()
+{
+	OnRemove();
+}
+
+/**
+ * @brief Called when mouse is double-clicked over hidden columns list.
+ */
+void CDirColsDlg::OnLbnDblclkListHide()
+{
+	OnAdd();
 }

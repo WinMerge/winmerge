@@ -25,11 +25,13 @@ class CDirColsDlg : public CDialog
 {
 // Public types
 public:
-	struct column {
-		CString name;
-		CString desc;
-		int log_col;
-		int phy_col;
+	/** @brief One column's information. */
+	struct column
+	{
+		CString name; /**< Column name */
+		CString desc; /**< Description for column */
+		int log_col; /**< Logical (shown) order number */
+		int phy_col; /**< Physical (in memory) order number */
 		column() : log_col(-1), phy_col(-1) { } /**< default constructor for use in CArray */
 		column(LPCTSTR sz, LPCTSTR dsc, int log, int phy) : name(sz), desc(dsc), log_col(log), phy_col(phy) { } 
 	};
@@ -89,6 +91,9 @@ private:
 	afx_msg void OnLbnSelchangeListHide();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLbnDblclkListShow();
+	afx_msg void OnLbnDblclkListHide();
 };
 
 //{{AFX_INSERT_LOCATION}}
