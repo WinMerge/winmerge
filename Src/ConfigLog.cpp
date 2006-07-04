@@ -210,7 +210,7 @@ static void WriteVersionOf1(CStdioFile &file, int indent, LPTSTR path)
 	if (file.m_hFile == CFile::hFileNull) return;
 
 	LPTSTR name = PathFindFileName(path);
-	CVersionInfo vi = path;
+	CVersionInfo vi(path, TRUE);
 	CString text;
 	text.Format
 	(

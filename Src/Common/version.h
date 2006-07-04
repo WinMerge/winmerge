@@ -12,14 +12,22 @@
 #include <shlwapi.h>
 
 /**
- * @brief Class providing access to version information of a file
+ * @brief Class providing access to version information of a file.
+ * This class reads version information block from a file. Version information
+ * consists of version numbers, copyright, descriptions etc. Since that is
+ * many strings to read, there is constructor taking BOOL parameter and
+ * only reading version numbers. That constructor is suggested to be used
+ * if string information is not needed.
  */
 class CVersionInfo
 {
-	LPTSTR   m_lpstrVffInfo;
-	BOOL m_bQueryDone;
-	VS_FIXEDFILEINFO m_FixedFileInfo;
+private:
+	VS_FIXEDFILEINFO m_FixedFileInfo; /**< Fixed file information */
 	DWORD m_dwVerInfoSize; /**< Size of version information block (0 if missing) */
+	BYTE * m_pVffInfo; /**< Pointer to version information block */
+	BOOL m_bVersionOnly; /**< Ask version numbers only */
+	BOOL m_bDllVersion;
+	WORD m_wLanguage; /**< Language-ID to use (if given) */
 
 	CString m_strFileName;
 	CString m_strLanguage;
@@ -35,28 +43,36 @@ class CVersionInfo
 	CString m_strComments;
 	CString m_strSpecialBuild;
 	CString m_strPrivateBuild;
+
 public:
-	CVersionInfo(LPCTSTR szFileToVersion = NULL, 
+	CVersionInfo(BOOL bVersionOnly);
+	CVersionInfo(WORD wLanguage);
+	CVersionInfo(LPCTSTR szFileToVersion,
+				   BOOL bDllVersion);
+	CVersionInfo(LPCTSTR szFileToVersion = NULL,
 				   LPCTSTR szLanguage = NULL,
 				   LPCTSTR szCodepage = NULL);
 	CVersionInfo(HINSTANCE hModule);
-	CString GetFileVersion();
-	CString GetCompanyName();
-	CString GetFileDescription();
-	CString GetInternalName();
-	CString GetLegalCopyright();
-	CString GetOriginalFilename();
-	CString GetProductVersion();
-	CString GetComments();
-	CString GetSpecialBuild();
-	CString GetPrivateBuild();
+	CString GetFileVersion() const;
+	CString GetCompanyName() const;
+	CString GetFileDescription() const;
+	CString GetInternalName() const;
+	CString GetLegalCopyright() const;
+	CString GetOriginalFilename() const;
+	CString GetProductVersion() const;
+	CString GetComments() const;
+	CString GetSpecialBuild() const;
+	CString GetPrivateBuild() const;
 	CString GetFixedProductVersion();
 	CString GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
+
 protected:
 	void GetVersionInfo();
 	void GetFixedVersionInfo();
+	void QueryStrings();
 	void QueryValue(LPCTSTR szId, CString& s);
+	BOOL GetCodepageForLanguage(WORD wLanguage, WORD & wCodePage);
 };
 
 

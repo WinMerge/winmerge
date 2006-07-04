@@ -207,7 +207,7 @@ void CSplashWnd::OnPaint()
 	CPaintDC dc(this);
 	m_pPicture->Render(&dc);
 
-	CVersionInfo version;
+	CVersionInfo version(TRUE);
 	CString s;
 	CFont versionFont;
 	CFont textFont;

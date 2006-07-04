@@ -24,6 +24,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "AboutDlg.h"
 #include "version.h"
 #include "paths.h"
@@ -62,8 +63,11 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 BOOL CAboutDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
+
+	CMergeApp *pApp = dynamic_cast<CMergeApp *> (AfxGetApp());
+	WORD langId = pApp->GetLangId();
 	
-	CVersionInfo version;
+	CVersionInfo version(langId);
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
 

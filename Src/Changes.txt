@@ -5,6 +5,9 @@ Add new items to top.
 2006-07-04 Kimmo
  PATCH: [ 1516626 ] Enable double-click in column customization dialog
   Src: DirColsDlg.cpp DirColsDlg.h
+ PATCH: [ 1514435 ] Optimize versioninfo reading
+  Src: AboutDlg.cpp ConfigLog.cpp Splash.cpp
+  Src/Common: version.cpp version.h
 
 2006-07-04 Takashi
  BUG: [ 1303166 ] crash or freeze on closing all window
