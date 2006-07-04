@@ -2812,8 +2812,17 @@ void CMainFrame::OnWindowCloseAll()
 	while (!dirdocs.IsEmpty())
 	{
 		CDirDoc * pDirDoc = dirdocs.RemoveHead();
-		pDirDoc->CloseMergeDocs();
-		pDirDoc->OnCloseDocument();
+		if (pDirDoc->HasDirView())
+		{
+			pDirDoc->CloseMergeDocs();
+			pDirDoc->OnCloseDocument();
+		}
+		else
+		{
+			pDirDoc->CloseMergeDocs();
+			// pDirDoc has no View and has already been deleted by CloseMergeDocs. So no need to call OnCloseDocument.
+			//pDirDoc->OnCloseDocument();
+		}
 	}
 }
 
