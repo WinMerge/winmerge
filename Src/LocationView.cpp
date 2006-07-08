@@ -390,7 +390,11 @@ void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelect
 		CBrush brush(cr);
 		CRect drawRect(r);
 		drawRect.DeflateRect(1, 0);
-		pDC->FillSolidRect(drawRect, cr);
+
+		// With long files and small difference areas rect may become 0-height.
+		// Make sure all diffs are drawn at least one pixel height.
+		if (drawRect.Height() < 1)
+			++drawRect.bottom;pDC->FillSolidRect(drawRect, cr);
 
 		if (bSelected)
 		{
