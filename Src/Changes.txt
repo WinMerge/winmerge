@@ -5,6 +5,8 @@ Add new items to top.
 2006-07-08 Kimmo
  PATCH: [ 1517362 ] Ensure diff is visible in location view
   Src: LocationView.cpp
+ Fix codinstyle in LocationView.cpp (messed up by patch #1517362)
+  Src: LocationView.cpp
 
 2006-07-04 Kimmo
  PATCH: [ 1516626 ] Enable double-click in column customization dialog
