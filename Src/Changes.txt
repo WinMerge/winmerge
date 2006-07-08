@@ -7,6 +7,8 @@ Add new items to top.
   Src: LocationView.cpp
  Fix codinstyle in LocationView.cpp (messed up by patch #1517362)
   Src: LocationView.cpp
+ Make VS2005 build less noisy by defining _CRT_SECURE_NO_DEPRECATE for it
+  Src: StdAfx.h
 
 2006-07-04 Kimmo
  PATCH: [ 1516626 ] Enable double-click in column customization dialog
