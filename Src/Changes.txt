@@ -9,6 +9,8 @@ Add new items to top.
    OptionsDef.h OptionsInit.cpp PatchTool.cpp PropCompare.cpp Propcompare.h
    resource.h
   Src/Languages/*: Merge*.rc
+ Add Ed_K and David Maisonave to Contributors
+  Docs/Users: Contributors.txt
 
 2006-07-09 Kimmo
  Quiet warning about deprecated function for VS2003 and later

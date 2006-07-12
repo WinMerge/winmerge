@@ -103,8 +103,10 @@ Other Contributors (code, ideas, testing..):
 * Jim Fougeron
 * Marvin Gouw
 * Jan Hryz
+* Ed_K
 * Ferenc Kubatovics
 * Vladimir Lukianov
+* David Maisonave
 * Harry Mckame
 * Oliver Mellet
 * Andreas Morsing
