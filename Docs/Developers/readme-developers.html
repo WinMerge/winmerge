@@ -59,9 +59,15 @@ with Visual Studio 2003. HTML Help Workshop can be also downloaded from:
 <a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
 HTMLHelp download</a>.</p>
 
-<p>Visual Studio project file comes with WinMerge sources. After opening the
-project file you need to add HTML Help Workshop path as additional include- and
-library-path.</p>
+<p>Visual Studio project file for MSVC6 comes with WinMerge sources. Newer versions of
+Visual Studio can open that file too, they just ask if one wants to convert to new version.
+Reason we don't ship project files for all Visual Studio versions is we have no resources
+to keep all versions up to date. People can't test all versions themselves and easily forgot
+to update at least one file. So we easily end up in situation when there is no properly
+working project file at all...</p>
+
+<p>After opening the project file you need to add HTML Help Workshop path as additional include-
+and library-path.</p>
 
 <p>NOTE: There might be problems compiling/debugging with Visual Studio 2003 when using
 HTML Help WorkShop from Platform SDK in Visual Studio directory. Download and
@@ -126,11 +132,16 @@ as patches.</p>
     major patches.</p>
   </li>
   <li>
-    <p>Add a note in <code>changes.txt</code> telling what files you committed,
+    <p>Add a note in <code>Src/Changes.txt</code> telling what files you committed,
     and what bug/RFE/patch you solved. This is very important so everybody else
     has a change to figure out who did what and when.</p>
   </li>
 </ol>
+
+<p>Note that <code>Src/Changes.txt</code> was split from <code>Src/readme.txt</code> after
+2.4.0 release. So <code>Src/readme.txt</code> contains older changelog entries. Also, many
+subfolders have therir own <code>Changes.txt</code> -file. If the file exists in the folder, it must be
+used instead of "global" <code>Src/Changes.txt</code>.
 
 <h3><a name="MakePatchDirs">MakePatchDirs</a></h3>
 
@@ -321,7 +332,7 @@ executable version numbers before uploading and releasing them.</p>
 
 <h3><a name="Tagging_CVS_when_releasing_files">Tagging CVS when releasing files</a></h3>
 
-<p>When we make a release we always put a note in <code>readme.txt</code> in CVS.</p>
+<p>When we make a release we always put a note in <code>Src/Changes.txt</code> in CVS.</p>
 
 <p>It is recommended to put a tag in CVS when you make a file release, because that makes it easier
 to pull a release version when there were code updates before and after it on the same day
@@ -408,7 +419,7 @@ which can now be used to compile language files:</p>
   <dd>copies compiled lang files to build directories</dd>
 </dl>
 
-<p>Compiled language files (<code>*.lang</code>) are placed in <code>/WinMerge/Src/Languages/Dll</code> .</p>
+<p>Compiled language files (<code>*.lang</code>) are placed in <code>/WinMerge/Build/Languages/</code> .</p>
 
 <h5>Forcing compiler version with MakeResDll</h5>
 <p>If MakeResDll does not work, and you wish to force it to use the compiler (resource compiler and linker)
