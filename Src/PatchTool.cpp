@@ -105,6 +105,7 @@ int CPatchTool::CreatePatch()
 			m_diffWrapper.SetPrediffer(NULL);
 			m_diffWrapper.SetPaths(files.lfile, files.rfile);
 			m_diffWrapper.SetAlternativePaths(files.pathLeft, files.pathRight);
+			m_diffWrapper.SetCompareFiles(files.lfile, files.rfile);
 			bDiffSuccess = m_diffWrapper.RunFileDiff(NOTEMPFILES);
 			m_diffWrapper.GetDiffStatus(&status);
 

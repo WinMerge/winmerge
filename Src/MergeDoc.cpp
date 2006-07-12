@@ -139,6 +139,7 @@ CMergeDoc::CMergeDoc()
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCommentLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_COMMENTLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
@@ -431,6 +432,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 	// Set paths for diffing and run diff
 	m_diffWrapper.SetPaths(m_pTempFiles->GetLeft(), m_pTempFiles->GetRight());
+	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
 	diffSuccess = m_diffWrapper.RunFileDiff(YESTEMPFILES);
 
 	// Read diff-status
@@ -2936,6 +2938,7 @@ void CMergeDoc::RefreshOptions()
 	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bIgnoreCommentLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_COMMENTLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 

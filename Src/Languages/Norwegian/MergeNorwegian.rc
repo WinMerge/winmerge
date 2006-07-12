@@ -1133,7 +1133,10 @@ BEGIN
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&top after first difference",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
-    PUSHBUTTON      "Standardverdier",IDC_COMPARE_DEFAULTS,7,139,70,14
+    GROUPBOX        "Comments",IDC_STATIC,7,134,221,32
+    CONTROL         "Ignore Comments",IDC_IGNCOMMENTS_CHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,147,205,10
+    PUSHBUTTON      "Standardverdier",IDC_COMPARE_DEFAULTS,7,179,70,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186

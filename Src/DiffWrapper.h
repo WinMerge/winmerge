@@ -135,6 +135,7 @@ struct DIFFOPTIONS
 	BOOL bIgnoreCase; /**< Ignore case -option. */
 	BOOL bIgnoreBlankLines; /**< Ignore blank lines -option. */
 	BOOL bIgnoreEol; /**< Ignore EOL differences -option. */
+	BOOL bIgnoreCommentLines; /**< Ignore Multiline comments differences -option. */
 };
 
 /**
@@ -173,6 +174,7 @@ struct DIFFSETTINGS
 	int ignoreSpaceChange;
 	int ignoreAllSpace;
 	int ignoreBlankLines; /**< Ignore blank lines (both sides) */
+	int ignoreCommentLines;/**< Ignore Multiline comments differences.*/	
 	int ignoreCase; /**< Ignore case differences? */
 	int ignoreEOLDiff; /**< Ignore EOL style differences? */
 	int ignoreSomeChanges;
@@ -180,6 +182,8 @@ struct DIFFSETTINGS
 	int heuristic;
 	int recursive; /**< Recurse to subfolders? (not used) */
 };
+
+class IgnoreCommentManager;
 
 /**
  * @brief Wrapper class for GNU/diffutils
@@ -219,6 +223,7 @@ public:
 	int RightLineInMovedBlock(int leftLine);
 	int LeftLineInMovedBlock(int rightLine);
 	void ClearMovedLists();
+	void SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2);
 
 protected:
 	void InternalGetOptions(DIFFOPTIONS *options) const;
@@ -239,6 +244,8 @@ private:
 	CString m_s2File; /**< Full path to second diff'ed file. */
 	CString m_s1AlternativePath; /**< First file's alternative path (may be relative). */
 	CString m_s2AlternativePath; /**< Second file's alternative path (may be relative). */
+	CString m_sOriginalFile1; /**< First file's original (NON-TEMP) path. */
+	CString m_sOriginalFile2; /**< Second file's original (NON-TEMP) path. */
 	CString m_sPatchFile; /**< Full path to created patch file. */
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;
@@ -253,6 +260,7 @@ private:
 	DiffList *m_pDiffList;
 	CMap<int, int, int, int> m_moved0;
 	CMap<int, int, int, int> m_moved1;
+	IgnoreCommentManager * m_IgnoreCommentManager;
 };
 
 // forward declarations needed by DiffFileData
