@@ -11,6 +11,8 @@ Add new items to top.
   Src/Languages/*: Merge*.rc
  Add Ed_K and David Maisonave to Contributors
   Docs/Users: Contributors.txt
+ Document UniMemFile::ReadString() function parameters and return values
+  Src/Common: UniFile.cpp
 
 2006-07-09 Kimmo
  Quiet warning about deprecated function for VS2003 and later

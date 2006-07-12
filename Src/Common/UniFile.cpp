@@ -353,6 +353,9 @@ bool UniMemFile::ReadBom()
 
 /**
  * @brief Read one (DOS or UNIX or Mac) line. Do not include eol chars.
+ * @param [out] line Line read.
+ * @param [out] lossy TRUE if there were lossy encoding.
+ * @return TRUE if there is more lines to read, TRUE when last line is read.
  */
 BOOL UniMemFile::ReadString(CString & line, bool * lossy)
 {
@@ -390,7 +393,11 @@ static void RecordZero(UniFile::txtstats & txstats, int offset)
 }
 
 /**
- * @brief Read one (DOS or UNIX or Mac) line
+ * @brief Read one (DOS or UNIX or Mac) line.
+ * @param [out] line Line read.
+ * @param [out] eol EOL bytes read (if any).
+ * @param [out] lossy TRUE if there were lossy encoding.
+ * @return TRUE if there is more lines to read, TRUE when last line is read.
  */
 BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 {
