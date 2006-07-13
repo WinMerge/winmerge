@@ -218,8 +218,11 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 
 	CString sLine;
 	bool lossy = false;
-	while (file.ReadString(sLine, &lossy))
+	BOOL done = FALSE;
+	do
 	{
+		// Returns false when last line is read
+		done = file.ReadString(sLine, &lossy);
 		sLine.TrimLeft();
 		sLine.TrimRight();
 
@@ -261,7 +264,8 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 			CString str = sLine.Mid(2);
 			AddFilterPattern(pfilter->dirfilters, str);
 		}
-	}
+	} while (done == FALSE);
+
 	return pfilter;
 }
 

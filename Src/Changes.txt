@@ -5,6 +5,8 @@ Add new items to top.
 2006-07-13 Kimmo
  PATCH: [ 1521352 ] Cleanup char constants for CRegExep
   Src/Common: RegExp.cpp
+ PATCH: [ 1521392 ] Fix reading last line in linefilter file
+  Src: FileFilterMgr.cpp
 
 2006-07-12 Kimmo
  PATCH: [ 1517057 ] Option to Ignore Multiline Comments
