@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-13 Kimmo
+ PATCH: [ 1521352 ] Cleanup char constants for CRegExep
+  Src/Common: RegExp.cpp
+
 2006-07-12 Kimmo
  PATCH: [ 1517057 ] Option to Ignore Multiline Comments
   Submitted by David Maisonave

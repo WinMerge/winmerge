@@ -36,7 +36,7 @@ static void donothing() { }
 // Utility definitions.
  
 #define	FAIL(m)		{ regerror(m); return(NULL); }
-#define	ISREPN(c)	((c) == _T('*') || (c) == _T('+') || (c) == _T('?'))
+#define	ISREPN(c)	((c) == '*' || (c) == '+' || (c) == '?')
 #define	META		_T("^$.[()|?+*\\")
 
 // Flags to be passed up and down.
@@ -105,7 +105,7 @@ CRegExp* CRegExp::RegComp(const TCHAR *exp)
 		return NULL;
 
 	// Dig out information for optimizations. 
-	regstart = _T('\0');		// Worst-case defaults. 
+	regstart = '\0';		// Worst-case defaults. 
 	reganch = 0;
 	regmust = NULL;
 	regmlen = 0;
@@ -190,7 +190,7 @@ TCHAR *CRegExp::reg(int paren, int *flagp)
 		ret = br;
 	*flagp &= ~(~flags&HASWIDTH);	// Clear bit if bit 0. 
 	*flagp |= flags&SPSTART;
-	while (*regparse == _T('|')) {
+	while (*regparse == '|') {
 		regparse++;
 		br = regbranch(&flags);
 		if (br == NULL)
@@ -209,14 +209,14 @@ TCHAR *CRegExp::reg(int paren, int *flagp)
 		regoptail(br, ender);
 
 	// Check for proper termination. 
-	if (paren && *regparse++ != _T(')')) 
+	if (paren && *regparse++ != ')') 
 	{
 		TRACE0("unterminated ()\n");
 		return NULL;
 	} 
-	else if (!paren && *regparse != _T('\0')) 
+	else if (!paren && *regparse != '\0') 
 	{
-		if (*regparse == _T(')')) 
+		if (*regparse == ')') 
 		{
 			TRACE0("unmatched ()\n");
 			return NULL;
@@ -252,7 +252,7 @@ TCHAR *CRegExp::regbranch(int *flagp)
 
 	ret = regnode(BRANCH);
 	chain = NULL;
-	while ((c = *regparse) != _T('\0') && c != _T('|') && c != _T(')')) {
+	while ((c = *regparse) != '\0' && c != '|' && c != ')') {
 		latest = regpiece(&flags);
 		if (latest == NULL)
 			return(NULL);
@@ -295,37 +295,37 @@ TCHAR *CRegExp::regpiece(int *flagp)
 		return(ret);
 	}
 
-	if (!(flags&HASWIDTH) && op != _T('?'))
+	if (!(flags&HASWIDTH) && op != '?')
 	{
 		TRACE0("*+ operand could be empty\n");
 		return NULL;
 	}
 
 	switch (op) {
-	case _T('*'):	*flagp = WORST|SPSTART;			break;
-	case _T('+'):	*flagp = WORST|SPSTART|HASWIDTH;	break;
-	case _T('?'):	*flagp = WORST;				break;
+	case '*':	*flagp = WORST|SPSTART;			break;
+	case '+':	*flagp = WORST|SPSTART|HASWIDTH;	break;
+	case '?':	*flagp = WORST;				break;
 	}
 
-	if (op == _T('*') && (flags&SIMPLE))
+	if (op == '*' && (flags&SIMPLE))
 		reginsert(STAR, ret);
-	else if (op == _T('*')) {
+	else if (op == '*') {
 		// Emit x* as (x&|), where & means "self". 
 		reginsert(BRANCH, ret);		// Either x 
 		regoptail(ret, regnode(BACK));	// and loop 
 		regoptail(ret, ret);		// back 
 		regtail(ret, regnode(BRANCH));	// or 
 		regtail(ret, regnode(NOTHING));	// null. 
-	} else if (op == _T('+') && (flags&SIMPLE))
+	} else if (op == '+' && (flags&SIMPLE))
 		reginsert(PLUS, ret);
-	else if (op == _T('+')) {
+	else if (op == '+') {
 		// Emit x+ as x(&|), where & means "self". 
 		next = regnode(BRANCH);		// Either 
 		regtail(ret, next);
 		regtail(regnode(BACK), ret);	// loop back 
 		regtail(next, regnode(BRANCH));	// or 
 		regtail(ret, regnode(NOTHING));	// null. 
-	} else if (op == _T('?')) {
+	} else if (op == '?') {
 		// Emit x? as (x|) 
 		reginsert(BRANCH, ret);		// Either x 
 		regtail(ret, regnode(BRANCH));	// or 
@@ -359,34 +359,34 @@ TCHAR *CRegExp::regatom(int *flagp)
 	*flagp = WORST;		// Tentatively. 
 
 	switch (*regparse++) {
-	case _T('^'):
+	case '^':
 		ret = regnode(BOL);
 		break;
-	case _T('$'):
+	case '$':
 		ret = regnode(EOL);
 		break;
-	case _T('.'):
+	case '.':
 		ret = regnode(ANY);
 		*flagp |= HASWIDTH|SIMPLE;
 		break;
-	case _T('['): {
+	case '[': {
 		int range;
 		int rangeend;
 		int c;
 
-		if (*regparse == _T('^')) {	// Complement of range. 
+		if (*regparse == '^') {	// Complement of range. 
 			ret = regnode(ANYBUT);
 			regparse++;
 		} else
 			ret = regnode(ANYOF);
-		if ((c = *regparse) == _T(']') || c == _T('-')) {
+		if ((c = *regparse) == ']' || c == '-') {
 			regc((TCHAR)c);
 			regparse++;
 		}
-		while ((c = *regparse++) != _T('\0') && c != _T(']')) {
+		while ((c = *regparse++) != '\0' && c != ']') {
 			if (c != _T('-'))
 				regc((TCHAR)c);
-			else if ((c = *regparse) == _T(']') || c == _T('\0'))
+			else if ((c = *regparse) == ']' || c == '\0')
 				regc(_T('-'));
 			else 
 			{
@@ -402,8 +402,8 @@ TCHAR *CRegExp::regatom(int *flagp)
 				regparse++;
 			}
 		}
-		regc(_T('\0'));
-		if (c != _T(']'))
+		regc('\0');
+		if (c != ']')
 		{
 			TRACE0("unmatched []\n");
 			return NULL;
@@ -411,34 +411,34 @@ TCHAR *CRegExp::regatom(int *flagp)
 		*flagp |= HASWIDTH|SIMPLE;
 		break;
 		}
-	case _T('('):
+	case '(':
 		ret = reg(1, &flags);
 		if (ret == NULL)
 			return(NULL);
 		*flagp |= flags&(HASWIDTH|SPSTART);
 		break;
-	case _T('\0'):
-	case _T('|'):
-	case _T(')'):
+	case '\0':
+	case '|':
+	case ')':
 		// supposed to be caught earlier 
 		TRACE0("internal error: \\0|) unexpected\n");
 		return NULL;
 		break;
-	case _T('?'):
-	case _T('+'):
-	case _T('*'):
+	case '?':
+	case '+':
+	case '*':
 		TRACE0("?+* follows nothing\n");
 		return NULL;
 		break;
-	case _T('\\'):
-		if (*regparse == _T('\0'))
+	case '\\':
+		if (*regparse == '\0')
 		{
 			TRACE0("trailing \\\n");
 			return NULL;
 		}
 		ret = regnode(EXACTLY);
 		regc(*regparse++);
-		regc(_T('\0'));
+		regc('\0');
 		*flagp |= HASWIDTH|SIMPLE;
 		break;
 	default: {
@@ -461,7 +461,7 @@ TCHAR *CRegExp::regatom(int *flagp)
 		ret = regnode(EXACTLY);
 		for (; len > 0; len--)
 			regc(*regparse++);
-		regc(_T('\0'));
+		regc('\0');
 		break;
 		}
 	}
@@ -490,9 +490,9 @@ void CRegExp::reginsert(TCHAR op, TCHAR *opnd)
 
 	place = opnd;		// Op node, where operand used to be. 
 	*place++ = op;
-	*place++ = _T('\0');
+	*place++ = '\0';
 #ifndef _UNICODE
-	*place++ = _T('\0');
+	*place++ = '\0';
 #endif // _UNICODE
 }
 
@@ -569,7 +569,7 @@ int CRegExp::RegFind(const TCHAR *str)
 		{
 			// Save the found substring in case we need it
 			sFoundText = new TCHAR[GetFindLen()+1];
-			sFoundText[GetFindLen()] = _T('\0');
+			sFoundText[GetFindLen()] = '\0';
 			_tcsncpy(sFoundText, string, GetFindLen() );
 
 			return 0;
@@ -579,7 +579,7 @@ int CRegExp::RegFind(const TCHAR *str)
 	}
 
 	// Messy cases:  unanchored match. 
-	if (regstart != _T('\0')) 
+	if (regstart != '\0') 
 	{
 		// We know what TCHAR it must start with. 
 		for (s = string; s != NULL; s = _tcschr(s+1, regstart))
@@ -589,7 +589,7 @@ int CRegExp::RegFind(const TCHAR *str)
 
 				// Save the found substring in case we need it later
 				sFoundText = new TCHAR[GetFindLen()+1];
-				sFoundText[GetFindLen()] = _T('\0');
+				sFoundText[GetFindLen()] = '\0';
 				_tcsncpy(sFoundText, s, GetFindLen() );
 
 				return nPos;
@@ -600,14 +600,14 @@ int CRegExp::RegFind(const TCHAR *str)
 	{
 		// We don't -- general case
 		for (s = string; !regtry(s); s++)
-			if (*s == _T('\0'))
+			if (*s == '\0')
 				return(-1);
 
 		int nPos = s-str;
 
 		// Save the found substring in case we need it later
 		sFoundText = new TCHAR[GetFindLen()+1];
-		sFoundText[GetFindLen()] = _T('\0');
+		sFoundText[GetFindLen()] = '\0';
 		_tcsncpy(sFoundText, s, GetFindLen() );
 
 		return nPos;
@@ -666,11 +666,11 @@ int	CRegExp::regmatch(TCHAR *prog)
 				return(0);
 			break;
 		case EOL:
-			if (*reginput != _T('\0'))
+			if (*reginput != '\0')
 				return(0);
 			break;
 		case ANY:
-			if (*reginput == _T('\0'))
+			if (*reginput == '\0')
 				return(0);
 			reginput++;
 			break;
@@ -688,13 +688,13 @@ int	CRegExp::regmatch(TCHAR *prog)
 			break;
 			}
 		case ANYOF:
-			if (*reginput == _T('\0') ||
+			if (*reginput == '\0' ||
 					_tcschr(OPERAND(scan), *reginput) == NULL)
 				return(0);
 			reginput++;
 			break;
 		case ANYBUT:
-			if (*reginput == _T('\0') ||
+			if (*reginput == '\0' ||
 					_tcschr(OPERAND(scan), *reginput) != NULL)
 				return(0);
 			reginput++;
@@ -759,7 +759,7 @@ int	CRegExp::regmatch(TCHAR *prog)
 		case STAR: 
 		case PLUS: {
 			const TCHAR nextch =
-				(OP(next) == EXACTLY) ? *OPERAND(next) : _T('\0');
+				(OP(next) == EXACTLY) ? *OPERAND(next) : '\0';
 			size_t no;
 			TCHAR *const save = reginput;
 			const size_t min = (OP(scan) == STAR) ? 0 : 1;
@@ -767,7 +767,7 @@ int	CRegExp::regmatch(TCHAR *prog)
 			for (no = regrepeat(OPERAND(scan)) + 1; no > min; no--) {
 				reginput = save + no - 1;
 				// If it could work, try it. 
-				if (nextch == _T('\0') || *reginput == nextch)
+				if (nextch == '\0' || *reginput == nextch)
 					if (regmatch(next))
 						return(1);
 			}
@@ -855,19 +855,19 @@ TCHAR* CRegExp::GetReplaceString( const TCHAR* sReplaceExp )
 
 	// First compute the length of the string
 	int replacelen = 0;
-	while ((c = *src++) != _T('\0')) 
+	while ((c = *src++) != '\0') 
 	{
-		if (c == _T('&'))
+		if (c == '&')
 			no = 0;
-		else if (c == _T('\\') && _istdigit(*src))
-			no = *src++ - _T('0');
+		else if (c == '\\' && _istdigit(*src))
+			no = *src++ - '0';
 		else
 			no = -1;
 
 		if (no < 0) 
 		{	
 			// Ordinary character. 
-			if (c == _T('\\') && (*src == _T('\\') || *src == _T('&')))
+			if (c == '\\' && (*src == '\\' || *src == '&'))
 				c = *src++;
 			replacelen++;
 		} 
@@ -888,23 +888,23 @@ TCHAR* CRegExp::GetReplaceString( const TCHAR* sReplaceExp )
 	TCHAR* sReplaceStr = buf;
 
 	// Add null termination
-	buf[replacelen] = _T('\0');
+	buf[replacelen] = '\0';
 	
 	// Now we can create the string
 	src = (TCHAR *)sReplaceExp;
-	while ((c = *src++) != _T('\0')) 
+	while ((c = *src++) != '\0') 
 	{
-		if (c == _T('&'))
+		if (c == '&')
 			no = 0;
-		else if (c == _T('\\') && _istdigit(*src))
-			no = *src++ - _T('0');
+		else if (c == '\\' && _istdigit(*src))
+			no = *src++ - '0';
 		else
 			no = -1;
 
 		if (no < 0) 
 		{	
 			// Ordinary character. 
-			if (c == _T('\\') && (*src == _T('\\') || *src == _T('&')))
+			if (c == '\\' && (*src == '\\' || *src == '&'))
 				c = *src++;
 			*buf++ = c;
 		} 
