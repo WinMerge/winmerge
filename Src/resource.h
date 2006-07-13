@@ -377,7 +377,7 @@
 #define IDC_PROJ_LFILE_EDIT             1302
 #define IDC_FILTER_USER_BROWSE          1303
 #define IDC_FILTER_USER_PATH            1304
-#define IDC_IGNCOMMENTS_CHECK           1305
+#define IDC_FILTERCOMMENTS_CHECK        1306
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

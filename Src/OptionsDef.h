@@ -103,7 +103,7 @@ const TCHAR OPT_CLR_DEFAULT_TEXT_COLORING[] = _T("Settings/DefaultTextColoring")
 // Compare options
 const TCHAR OPT_CMP_IGNORE_WHITESPACE[] = _T("Settings/IgnoreSpace");
 const TCHAR OPT_CMP_IGNORE_BLANKLINES[] = _T("Settings/IgnoreBlankLines");
-const TCHAR OPT_CMP_IGNORE_COMMENTLINES[] = _T("Settings/IgnoreCommentLines");
+const TCHAR OPT_CMP_FILTER_COMMENTLINES[] = _T("Settings/FilterCommentsLines");
 const TCHAR OPT_CMP_IGNORE_CASE[] = _T("Settings/IgnoreCase");
 const TCHAR OPT_CMP_IGNORE_EOL[] = _T("Settings/IgnoreEol");
 const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod");

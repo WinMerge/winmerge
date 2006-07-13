@@ -63,11 +63,11 @@ static const int WMCMPBUFF = 32 * KILO;
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
 static void FreeDiffUtilsScript(struct change * & script);
 
-//Should move IgnoreComment classes and global functions to it's own *.cpp & *.h file
+//Should move FilterComments classes and global functions to it's own *.cpp & *.h file
 //IngnoreComment logic developed by David Maisonave AKA (Axter)
 /**
-@struct IgnoreCommentSet
-@brief IgnoreCommentSet holds search strings used to find comments in compared files.
+@struct FilterCommentsSet
+@brief FilterCommentsSet holds search strings used to find comments in compared files.
 		This data is used to find blocks that can be ignored when comparing to files.
 @note
 		The ignore-comment logic can only use ANSI strings, because the search buffer is
@@ -75,7 +75,7 @@ static void FreeDiffUtilsScript(struct change * & script);
 		Therefore, the data members should not be replaced with CString type, and should
 		remain std::string, or other non-unicode type string.
 */
-struct IgnoreCommentSet
+struct FilterCommentsSet
 {
 	std::string StartMarker;
 	std::string EndMarker;
@@ -84,29 +84,29 @@ struct IgnoreCommentSet
 
 
 /**
-@class IgnoreCommentManager
-@brief IgnoreCommentManager reads language comment start and end marker strings from
-		an INI file, and stores it in the map member variable m_IgnoreCommentSetByFileType.
+@class FilterCommentsManager
+@brief FilterCommentsManager reads language comment start and end marker strings from
+		an INI file, and stores it in the map member variable m_FilterCommentsSetByFileType.
 		Each set of comment markers have a list of file types that can be used with
 		the file markers.
 @note
 The ignore-comment logic can only use ANSI strings, because the search buffer is
 char* type.
-IgnoreCommentManager uses _T logic, only so-as to allow UNICODE file names to be 
+FilterCommentsManager uses _T logic, only so-as to allow UNICODE file names to be 
 used for the INI file, or INI file base directory.
 After retrieving data from INI file, the data is converted to ANSI.
 If no INI file exist, or the INI file is empty, then a default INI file is 
 created with default values that are assoicated with most commen languages.
 */
-class IgnoreCommentManager
+class FilterCommentsManager
 {
 public:
 	/**
-	@brief IgnoreCommentManager constructor, which reads the INI file data
-			and populates the mapped member variable m_IgnoreCommentSetByFileType.
+	@brief FilterCommentsManager constructor, which reads the INI file data
+			and populates the mapped member variable m_FilterCommentsSetByFileType.
 	@param[in]  Optional full INI file name, to include path.
 	*/
-	IgnoreCommentManager(const TCHAR* IniFileName = _T("")) : m_IniFileName(IniFileName)
+	FilterCommentsManager(const TCHAR* IniFileName = _T("")) : m_IniFileName(IniFileName)
 	{
 		USES_CONVERSION;
 
@@ -119,17 +119,17 @@ public:
 		}
 		for(SectionNo = 0;;++SectionNo) 
 		{//Get each set of markers
-			IgnoreCommentSet ignorecommentset;
+			FilterCommentsSet filtercommentsset;
 			_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
 			GetPrivateProfileString(SectionName, _T("StartMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
-			ignorecommentset.StartMarker = T2CA(buffer);
+			filtercommentsset.StartMarker = T2CA(buffer);
 			GetPrivateProfileString(SectionName, _T("EndMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
-			ignorecommentset.EndMarker = T2CA(buffer);
+			filtercommentsset.EndMarker = T2CA(buffer);
 			GetPrivateProfileString(SectionName, _T("InlineMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
-			ignorecommentset.InlineMarker = T2CA(buffer);
-			if (ignorecommentset.StartMarker.empty() && 
-				ignorecommentset.EndMarker.empty() &&
-				ignorecommentset.InlineMarker.empty())
+			filtercommentsset.InlineMarker = T2CA(buffer);
+			if (filtercommentsset.StartMarker.empty() && 
+				filtercommentsset.EndMarker.empty() &&
+				filtercommentsset.InlineMarker.empty())
 			{
 				break;
 			}
@@ -142,7 +142,7 @@ public:
 				CString FileTypeExtensionName = buffer;
 				if (FileTypeExtensionName.IsEmpty())
 					break;
-				m_IgnoreCommentSetByFileType[FileTypeExtensionName] = ignorecommentset;
+				m_FilterCommentsSetByFileType[FileTypeExtensionName] = filtercommentsset;
 			}
 		} 
 
@@ -159,17 +159,17 @@ public:
 		@param[in]  The file name extension. Example:("cpp", "java", "c", "h")
 					Must be lower case.
 	*/
-	IgnoreCommentSet GetSetForFileType(const CString& FileTypeName) const
+	FilterCommentsSet GetSetForFileType(const CString& FileTypeName) const
 	{
-		std::map <CString, IgnoreCommentSet> :: const_iterator pSet =
-			m_IgnoreCommentSetByFileType.find(FileTypeName);
-		if (pSet == m_IgnoreCommentSetByFileType.end())
-			return IgnoreCommentSet();
+		std::map <CString, FilterCommentsSet> :: const_iterator pSet =
+			m_FilterCommentsSetByFileType.find(FileTypeName);
+		if (pSet == m_FilterCommentsSetByFileType.end())
+			return FilterCommentsSet();
 		return pSet->second;
 	}
 private:
-	IgnoreCommentManager(const IgnoreCommentManager&); //Don't allow copy
-	IgnoreCommentManager& operator=(const IgnoreCommentManager&);//Don't allow assignment
+	FilterCommentsManager(const FilterCommentsManager&); //Don't allow copy
+	FilterCommentsManager& operator=(const FilterCommentsManager&);//Don't allow assignment
 	/**
 		@brief Create default comment marker strings
 		@note
@@ -180,20 +180,20 @@ private:
 		USES_CONVERSION;
 		int SectionNo = 0;
 		TCHAR SectionName[99];
-		IgnoreCommentSet ignorecommentset;
-		ignorecommentset.StartMarker = "/*";
-		ignorecommentset.EndMarker = "*/";
-		ignorecommentset.InlineMarker = "//";
+		FilterCommentsSet filtercommentsset;
+		filtercommentsset.StartMarker = "/*";
+		filtercommentsset.EndMarker = "*/";
+		filtercommentsset.InlineMarker = "//";
 		TCHAR CommonFileTypes1[][9] = {_T("java"), _T("cs"), _T("cpp"), _T("c"), _T("h"), _T("cxx"), _T("cc"), _T("js"), _T("jsl"), _T("tli"), _T("tlh"), _T("rc")};
 		_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
 		++SectionNo;
-		WritePrivateProfileString(SectionName, _T("StartMarker"), A2CT(ignorecommentset.StartMarker.c_str()), m_IniFileName);
-		WritePrivateProfileString(SectionName, _T("EndMarker"), A2CT(ignorecommentset.EndMarker.c_str()), m_IniFileName);
-		WritePrivateProfileString(SectionName, _T("InlineMarker"), A2CT(ignorecommentset.InlineMarker.c_str()), m_IniFileName);
+		WritePrivateProfileString(SectionName, _T("StartMarker"), A2CT(filtercommentsset.StartMarker.c_str()), m_IniFileName);
+		WritePrivateProfileString(SectionName, _T("EndMarker"), A2CT(filtercommentsset.EndMarker.c_str()), m_IniFileName);
+		WritePrivateProfileString(SectionName, _T("InlineMarker"), A2CT(filtercommentsset.InlineMarker.c_str()), m_IniFileName);
 		int FileTypeNo = 0;
 		for(int i = 0;i < sizeof(CommonFileTypes1)/sizeof(CommonFileTypes1[0]);++i)
 		{
-			m_IgnoreCommentSetByFileType[CommonFileTypes1[i]] = ignorecommentset;
+			m_FilterCommentsSetByFileType[CommonFileTypes1[i]] = filtercommentsset;
 			TCHAR FileTypeFieldName[99];
 			_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
 			++FileTypeNo;
@@ -202,14 +202,14 @@ private:
 	}
 
 	//Use CString instead of std::string, so as to allow UNICODE file extensions
-	std::map<CString, IgnoreCommentSet> m_IgnoreCommentSetByFileType;
+	std::map<CString, FilterCommentsSet> m_FilterCommentsSetByFileType;
 	CString m_IniFileName;
 };
 
 /**
  * @brief Default constructor
  */
-CDiffWrapper::CDiffWrapper():m_IgnoreCommentManager(new IgnoreCommentManager)
+CDiffWrapper::CDiffWrapper():m_FilterCommentsManager(new FilterCommentsManager)
 {
 	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
@@ -237,7 +237,7 @@ CDiffWrapper::CDiffWrapper():m_IgnoreCommentManager(new IgnoreCommentManager)
 CDiffWrapper::~CDiffWrapper()
 {
 	delete m_infoPrediffer;
-	delete m_IgnoreCommentManager;
+	delete m_FilterCommentsManager;
 }
 
 /**
@@ -389,11 +389,11 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 	@param[in]  Direction			- This should be 1 or -1, to indicate which direction to read (backward or forward)
 	@param[in/out]  Op				- This variable is set to trivial if block should be ignored.
 	@param[in]  FileNo				- Should be 0 or 1, to indicate left or right file.
-	@param[in]  ignorecommentset	- Comment marker set used to indicate comment blocks.
+	@param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 	@return		Always returns true in reverse direction.
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
-bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, int &Op, int FileNo, const IgnoreCommentSet& ignorecommentset)
+bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, int &Op, int FileNo, const FilterCommentsSet& filtercommentsset)
 {
 	const char* EolIndicators = "\r\n"; //List of characters used as EOL
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
@@ -409,9 +409,9 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 		}
 
 		int Len = LineData.size();
-		const char * StartOfComment		= strstr(LineData.c_str(), ignorecommentset.StartMarker.c_str());
-		const char * EndOfComment		= strstr(LineData.c_str(), ignorecommentset.EndMarker.c_str());
-		const char * InLineComment		= strstr(LineData.c_str(), ignorecommentset.InlineMarker.c_str());
+		const char * StartOfComment		= strstr(LineData.c_str(), filtercommentsset.StartMarker.c_str());
+		const char * EndOfComment		= strstr(LineData.c_str(), filtercommentsset.EndMarker.c_str());
+		const char * InLineComment		= strstr(LineData.c_str(), filtercommentsset.InlineMarker.c_str());
 		//The following logic determines if the entire block is a comment block, and only marks it as trivial
 		//if all the changes are within a comment block.
 		if (Direction == -1)
@@ -457,15 +457,15 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 @brief Performs post-filtering on single line comments, by setting comment blocks to trivial
 @param[in]  LineStr				- Line of string to check that must be NULL terminated.
 @param[in/out]  Op				- This variable is set to trivial if block should be ignored.
-@param[in]  ignorecommentset	- Comment marker set used to indicate comment blocks.
+@param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param[in]  PartOfMultiLineCheck- Set to true, if this block is a multiple line block
 */
-void PostFilterSingleLine(const char* LineStr, int &Op, const IgnoreCommentSet& ignorecommentset, bool PartOfMultiLineCheck)
+void PostFilterSingleLine(const char* LineStr, int &Op, const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck)
 {
 	if (Op == OP_TRIVIAL)
 		return;
-	if (ignorecommentset.InlineMarker.empty())
-	{//If ignorecommentset.InlineMarker is empty, then no support for single line comment
+	if (filtercommentsset.InlineMarker.empty())
+	{//If filtercommentsset.InlineMarker is empty, then no support for single line comment
 		return;
 	}
 	const char *	EndLine = strchr(LineStr, '\0');
@@ -478,7 +478,7 @@ void PostFilterSingleLine(const char* LineStr, int &Op, const IgnoreCommentSet& 
 			return;
 		}
 
-		size_t CommentStr = LineData.find(ignorecommentset.InlineMarker);
+		size_t CommentStr = LineData.find(filtercommentsset.InlineMarker);
 		if (CommentStr == std::string::npos)
 			return;
 		if (!CommentStr)
@@ -498,37 +498,37 @@ void PostFilterSingleLine(const char* LineStr, int &Op, const IgnoreCommentSet& 
 @param[in]  LineNumberRight		- First line number to read from right file
 @param[in]  QtyLinesRight		- Number of lines in the block for right file
 @param[in/out]  Op				- This variable is set to trivial if block should be ignored.
-@param[in]  ignorecommentset	- Comment marker set used to indicate comment blocks.
+@param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param[in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
-void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int QtyLinesRight, int &Op, const IgnoreCommentManager &ignorecommentmanager, const TCHAR *FileNameExt)
+void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager, const TCHAR *FileNameExt)
 {
 	if (Op == OP_TRIVIAL)
 		return;
 	
 	//First we need to get lowercase file name extension
-	IgnoreCommentSet ignorecommentset = ignorecommentmanager.GetSetForFileType(FileNameExt);
-	if (ignorecommentset.StartMarker.empty() && 
-		ignorecommentset.EndMarker.empty() &&
-		ignorecommentset.InlineMarker.empty())
+	FilterCommentsSet filtercommentsset = filtercommentsmanager.GetSetForFileType(FileNameExt);
+	if (filtercommentsset.StartMarker.empty() && 
+		filtercommentsset.EndMarker.empty() &&
+		filtercommentsset.InlineMarker.empty())
 	{
 		return;
 	}
 
 	if (Op == OP_LEFTONLY)
 	{//Only check left side
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, Op, 0, ignorecommentset))
+		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, Op, 0, filtercommentsset))
 		{
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, Op, 0, ignorecommentset);
+			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, Op, 0, filtercommentsset);
 		}
 		
-		if (Op != OP_TRIVIAL && !ignorecommentset.InlineMarker.empty())
+		if (Op != OP_TRIVIAL && !filtercommentsset.InlineMarker.empty())
 		{
 			bool AllLinesAreComments = true;
 			for(int i = LineNumberLeft;i < LineNumberLeft + QtyLinesLeft;++i)
 			{
 				int TestOp = 0;
-				PostFilterSingleLine(files[0].linbuf[i], TestOp, ignorecommentset, QtyLinesLeft > 1);
+				PostFilterSingleLine(files[0].linbuf[i], TestOp, filtercommentsset, QtyLinesLeft > 1);
 				if (TestOp != OP_TRIVIAL)
 				{
 					AllLinesAreComments = false;
@@ -542,18 +542,18 @@ void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int Q
 	}
 	else if (Op == OP_RIGHTONLY)
 	{//Only check right side
-		if (PostFilter(LineNumberRight, -1, -1, QtyLinesRight, Op, 1, ignorecommentset))
+		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, Op, 1, filtercommentsset))
 		{
-			PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, Op, 1, ignorecommentset);
+			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, Op, 1, filtercommentsset);
 		}
 
-		if (Op != OP_TRIVIAL && !ignorecommentset.InlineMarker.empty())
+		if (Op != OP_TRIVIAL && !filtercommentsset.InlineMarker.empty())
 		{
 			bool AllLinesAreComments = true;
 			for(int i = LineNumberRight;i < LineNumberRight + QtyLinesRight;++i)
 			{
 				int TestOp = 0;
-				PostFilterSingleLine(files[1].linbuf[i], TestOp, ignorecommentset, QtyLinesRight > 1);
+				PostFilterSingleLine(files[1].linbuf[i], TestOp, filtercommentsset, QtyLinesRight > 1);
 				if (TestOp != OP_TRIVIAL)
 				{
 					AllLinesAreComments = false;
@@ -568,16 +568,16 @@ void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int Q
 	else
 	{
 		int LeftOp = 0;
-		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, ignorecommentset))
-			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, ignorecommentset);
+		if (PostFilter(LineNumberLeft, files[0].valid_lines, 1, QtyLinesLeft, LeftOp, 0, filtercommentsset))
+			PostFilter(LineNumberLeft, -1, -1, QtyLinesLeft, LeftOp, 0, filtercommentsset);
 
 		int RightOp = 0;
-		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, ignorecommentset))
-			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, ignorecommentset);
+		if (PostFilter(LineNumberRight, files[1].valid_lines, 1, QtyLinesRight, RightOp, 1, filtercommentsset))
+			PostFilter(LineNumberRight, -1, -1, QtyLinesRight, RightOp, 1, filtercommentsset);
 
 		if (LeftOp == OP_TRIVIAL && RightOp == OP_TRIVIAL)
 			Op = OP_TRIVIAL;
-		else if (!ignorecommentset.InlineMarker.empty() && QtyLinesLeft == 1 && QtyLinesRight == 1)
+		else if (!filtercommentsset.InlineMarker.empty() && QtyLinesLeft == 1 && QtyLinesRight == 1)
 		{
 			//Lets test if only a post line comment is different.
 			const char *	LineStrLeft = files[0].linbuf[LineNumberLeft];
@@ -588,8 +588,8 @@ void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int Q
 			{
 				std::string LineDataLeft(LineStrLeft, EndLineLeft);
 				std::string LineDataRight(LineStrRight, EndLineRight);
-				size_t CommentStrLeft = LineDataLeft.find(ignorecommentset.InlineMarker);
-				size_t CommentStrRight = LineDataRight.find(ignorecommentset.InlineMarker);
+				size_t CommentStrLeft = LineDataLeft.find(filtercommentsset.InlineMarker);
+				size_t CommentStrRight = LineDataRight.find(filtercommentsset.InlineMarker);
 				//If neither side has comment string, then lets assume significant difference, and return
 				if (CommentStrLeft == std::string::npos && CommentStrRight == std::string::npos)
 				{
@@ -830,7 +830,7 @@ void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options) const
 
 	options->nIgnoreWhitespace = nIgnoreWhitespace;
 	options->bIgnoreBlankLines = m_settings.ignoreBlankLines;
-	options->bIgnoreCommentLines = m_settings.ignoreCommentLines;
+	options->bFilterCommentsLines = m_settings.filterCommentsLines;
 	options->bIgnoreCase = m_settings.ignoreCase;
 	options->bIgnoreEol = m_settings.ignoreEOLDiff;
 
@@ -844,7 +844,7 @@ void CDiffWrapper::InternalSetOptions(const DIFFOPTIONS *options)
 	m_settings.ignoreAllSpace = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_ALL);
 	m_settings.ignoreSpaceChange = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_CHANGE);
 	m_settings.ignoreBlankLines = options->bIgnoreBlankLines;
-	m_settings.ignoreCommentLines = options->bIgnoreCommentLines;
+	m_settings.filterCommentsLines = options->bFilterCommentsLines;
 	m_settings.ignoreEOLDiff = options->bIgnoreEol;
 	m_settings.ignoreCase = options->bIgnoreCase;
 	m_settings.ignoreSomeChanges = (options->nIgnoreWhitespace != WHITESPACE_COMPARE_ALL) ||
@@ -2252,7 +2252,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	DIFFOPTIONS options;
 	GetOptions(&options);
 	CString asLwrCaseExt;
-	if (options.bIgnoreCommentLines)
+	if (options.bFilterCommentsLines)
 	{
 		CString LowerCaseExt = m_sOriginalFile1;
 		int PosOfDot = LowerCaseExt.ReverseFind('.');
@@ -2326,11 +2326,11 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					}
 				}
 
-				if (options.bIgnoreCommentLines)
+				if (options.bFilterCommentsLines)
 				{
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_IgnoreCommentManager, asLwrCaseExt);
+					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt);
 				}
 
 				AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);

@@ -135,7 +135,7 @@ struct DIFFOPTIONS
 	BOOL bIgnoreCase; /**< Ignore case -option. */
 	BOOL bIgnoreBlankLines; /**< Ignore blank lines -option. */
 	BOOL bIgnoreEol; /**< Ignore EOL differences -option. */
-	BOOL bIgnoreCommentLines; /**< Ignore Multiline comments differences -option. */
+	BOOL bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
 };
 
 /**
@@ -174,7 +174,7 @@ struct DIFFSETTINGS
 	int ignoreSpaceChange;
 	int ignoreAllSpace;
 	int ignoreBlankLines; /**< Ignore blank lines (both sides) */
-	int ignoreCommentLines;/**< Ignore Multiline comments differences.*/	
+	int filterCommentsLines;/**< Ignore Multiline comments differences.*/	
 	int ignoreCase; /**< Ignore case differences? */
 	int ignoreEOLDiff; /**< Ignore EOL style differences? */
 	int ignoreSomeChanges;
@@ -183,7 +183,7 @@ struct DIFFSETTINGS
 	int recursive; /**< Recurse to subfolders? (not used) */
 };
 
-class IgnoreCommentManager;
+class FilterCommentsManager;
 
 /**
  * @brief Wrapper class for GNU/diffutils
@@ -260,7 +260,7 @@ private:
 	DiffList *m_pDiffList;
 	CMap<int, int, int, int> m_moved0;
 	CMap<int, int, int, int> m_moved1;
-	IgnoreCommentManager * m_IgnoreCommentManager;
+	FilterCommentsManager * m_FilterCommentsManager;
 };
 
 // forward declarations needed by DiffFileData

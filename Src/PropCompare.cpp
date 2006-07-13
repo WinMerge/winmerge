@@ -34,7 +34,7 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
  , m_nIgnoreWhite(-1)
  , m_bMovedBlocks(FALSE)
  , m_bStopAfterFirst(FALSE)
- , m_bIgnoreCommentLines(FALSE)
+ , m_bFilterCommentsLines(FALSE)
 {
 }
 
@@ -45,7 +45,7 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_CBIndex(pDX, IDC_COMPAREMETHODCOMBO, m_compareMethod);
 	DDX_Check(pDX, IDC_IGNCASE_CHECK, m_bIgnoreCase);
 	DDX_Check(pDX, IDC_IGNBLANKS_CHECK, m_bIgnoreBlankLines);
-	DDX_Check(pDX, IDC_IGNCOMMENTS_CHECK, m_bIgnoreCommentLines);
+	DDX_Check(pDX, IDC_FILTERCOMMENTS_CHECK, m_bFilterCommentsLines);
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
@@ -70,7 +70,7 @@ void CPropCompare::ReadOptions()
 {
 	m_nIgnoreWhite = m_pOptionsMgr->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	m_bIgnoreBlankLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	m_bIgnoreCommentLines = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_COMMENTLINES);
+	m_bFilterCommentsLines = m_pOptionsMgr->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	m_bIgnoreCase = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
 	m_bIgnoreEol = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOL) ? true : false;
 	m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
@@ -87,7 +87,7 @@ void CPropCompare::WriteOptions()
 {
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_WHITESPACE, m_nIgnoreWhite);
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_BLANKLINES, m_bIgnoreBlankLines == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_COMMENTLINES, m_bIgnoreCommentLines == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CMP_FILTER_COMMENTLINES, m_bFilterCommentsLines == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_EOL, m_bIgnoreEol == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
@@ -141,8 +141,8 @@ void CPropCompare::OnDefaults()
 	m_bIgnoreEol = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_BLANKLINES, tmp);
 	m_bIgnoreBlankLines = tmp;
-	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_COMMENTLINES, tmp);
-	m_bIgnoreCommentLines = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_FILTER_COMMENTLINES, tmp);
+	m_bFilterCommentsLines = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_IGNORE_CASE, tmp);
 	m_bIgnoreCase = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);

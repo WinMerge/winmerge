@@ -10,6 +10,11 @@ Add new items to top.
  BUG: [ 1498511 ] Conflict accelerator key in IDR_DIRVIEWMENU
   Src: Merge.rc
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1517057 ] Option to Ignore Multiline Comments (bugfix + rename to filtering)
+  Submitted by David Maisonave
+  Src: DiffWrapper.cpp DiffWrapper.h DirDoc.cpp MainFrm.cpp Merge.rc MergeDoc.cpp
+   OptionsDef.h OptionsInit.cpp PropCompare.cpp Propcompare.h resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-07-12 Kimmo
  PATCH: [ 1517057 ] Option to Ignore Multiline Comments
