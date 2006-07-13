@@ -221,7 +221,7 @@ BEGIN
         MENUITEM "×ó²àÖ»¶Á(&E)",                ID_FILE_LEFT_READONLY
         MENUITEM "ÓÒ²àÖ»¶Á(&G)",                ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "File En&coding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "ÍË³ö(&X)",                    ID_APP_EXIT
     END

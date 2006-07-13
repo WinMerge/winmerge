@@ -217,7 +217,7 @@ BEGIN
         MENUITEM "Côté gauc&he lecture seulement",  ID_FILE_LEFT_READONLY
         MENUITEM "Côté droi&t  lecture seulement",  ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "File Enc&oding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Quitter",                     ID_APP_EXIT
     END

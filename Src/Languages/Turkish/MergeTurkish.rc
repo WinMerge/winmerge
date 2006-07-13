@@ -219,7 +219,7 @@ BEGIN
         MENUITEM "Salt Okunur S&ol",            ID_FILE_LEFT_READONLY
         MENUITEM "Salt Okunu&r Sað",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "File En&coding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "Çýký&þ",                      ID_APP_EXIT
     END

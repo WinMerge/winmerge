@@ -219,7 +219,7 @@ BEGIN
         MENUITEM "Bal oldal csak &olvasható",             ID_FILE_LEFT_READONLY
         MENUITEM "Jobb oldal csak o&lvasható",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "File En&coding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Kilépés",                       ID_APP_EXIT
     END

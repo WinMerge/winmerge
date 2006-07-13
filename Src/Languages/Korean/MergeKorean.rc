@@ -219,7 +219,7 @@ BEGIN
         MENUITEM "왼쪽을 읽기전용으로(E&)",     ID_FILE_LEFT_READONLY
         MENUITEM "오른쪽을 읽기전용으로(&G)",   ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File &Encoding",              ID_FILE_ENCODING
+        MENUITEM "File En&coding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "끝내기(&X)",                  ID_APP_EXIT
     END

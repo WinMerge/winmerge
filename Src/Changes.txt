@@ -7,6 +7,9 @@ Add new items to top.
   Src/Common: RegExp.cpp
  PATCH: [ 1521392 ] Fix reading last line in linefilter file
   Src: FileFilterMgr.cpp
+ BUG: [ 1498511 ] Conflict accelerator key in IDR_DIRVIEWMENU
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2006-07-12 Kimmo
  PATCH: [ 1517057 ] Option to Ignore Multiline Comments
