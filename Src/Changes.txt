@@ -15,6 +15,9 @@ Add new items to top.
   Src: DiffWrapper.cpp DiffWrapper.h DirDoc.cpp MainFrm.cpp Merge.rc MergeDoc.cpp
    OptionsDef.h OptionsInit.cpp PropCompare.cpp Propcompare.h resource.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1517057 ] Option to Ignore Multiline Comments (bugfix)
+  Submitted by David Maisonave
+  Src: DiffWrapper.cpp
 
 2006-07-12 Kimmo
  PATCH: [ 1517057 ] Option to Ignore Multiline Comments
