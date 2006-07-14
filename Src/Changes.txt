@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-14 WinMerge experimental release 2.5.5.3 (cvs)
+
 2006-07-14 Kimmo
  BUG: [ 1521555 ] Location Pane - can't see current location because of color
   Use 3d-color instead of scrollbar color in location pane
