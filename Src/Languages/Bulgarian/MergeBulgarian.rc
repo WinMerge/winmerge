@@ -1516,9 +1516,9 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Default system colors for normal text",
+    CONTROL         "&Use customized text colors",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,25,14,148,10
+                    WS_TABSTOP,25,14,161,10
     GROUPBOX        "Custom text colors",IDC_CUSTOM_COLORS_GROUP,27,33,159,
                     111
     LTEXT           "Whitespace:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10

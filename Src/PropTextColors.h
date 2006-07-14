@@ -49,7 +49,7 @@ private:
 	CColorButton    m_btnRegularText;
 	CColorButton    m_btnSelectionBackground;
 	CColorButton    m_btnSelectionText;
-	BOOL            m_bDefaultColors;
+	BOOL            m_bCustomColors;
 	//}}AFX_DATA
 
 	COLORREF	m_clrWhitespaceBackground;
@@ -70,12 +70,13 @@ protected:
 
 	typedef enum { SET_DEFAULTS, READ_OPTIONS, LOAD_COLORS } OPERATION;
 
+	virtual BOOL OnInitDialog();
 	void LoadCustomColors();
 	void SaveCustomColors();
 	void BrowseColorAndSave(CColorButton & colorButton, int colorIndex);
 	void SerializeColorsToFromScreen(OPERATION op);
 	void SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex);
-
+	void EnableColorButtons(BOOL bEnable);
 
 	// Generated message map functions
 	//{{AFX_MSG(CPropTextColors)

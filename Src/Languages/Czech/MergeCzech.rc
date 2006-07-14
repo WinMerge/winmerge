@@ -1515,9 +1515,9 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Barvy textu"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Výchozí systémové barvy normálního textu",
+    CONTROL         "&Use customized text colors",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,25,14,148,10
+                    WS_TABSTOP,25,14,161,10
     GROUPBOX        "Vlastní barvy textu",IDC_CUSTOM_COLORS_GROUP,25,33,159,
                     111
     LTEXT           "Okolí textu:",IDC_WHITESPACE_COLOR_LABEL,31,58,46,10

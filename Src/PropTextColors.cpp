@@ -19,6 +19,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/** @brief Section name for settings in registry. */
 static const TCHAR Section[] = _T("Custom Colors");
 
 /////////////////////////////////////////////////////////////////////////////
@@ -30,8 +31,9 @@ static const TCHAR Section[] = _T("Custom Colors");
 CPropTextColors::CPropTextColors(COptionsMgr *optionsMgr, SyntaxColors *pColors)
  : CPropertyPage(CPropTextColors::IDD)
 , m_pOptionsMgr(optionsMgr)
+, m_bCustomColors(FALSE)
+, m_pTempColors(pColors)
 {
-	m_pTempColors = pColors;
 }
 
 CPropTextColors::~CPropTextColors()
@@ -43,7 +45,7 @@ void CPropTextColors::DoDataExchange(CDataExchange* pDX)
 	CDialog::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPropTextColors)
 	DDX_Control(pDX, IDC_DEFAULT_STANDARD_COLORS, m_btnDefaultStandardColors);
-	DDX_Check(pDX, IDC_DEFAULT_STANDARD_COLORS, m_bDefaultColors);
+	DDX_Check(pDX, IDC_DEFAULT_STANDARD_COLORS, m_bCustomColors);
 	DDX_Control(pDX, IDC_WHITESPACE_BKGD_COLOR, m_btnWhitespaceBackground);
 	DDX_Control(pDX, IDC_REGULAR_BKGD_COLOR, m_btnRegularBackground);
 	DDX_Control(pDX, IDC_REGULAR_TEXT_COLOR, m_btnRegularText);
@@ -65,12 +67,27 @@ BEGIN_MESSAGE_MAP(CPropTextColors, CDialog)
 END_MESSAGE_MAP()
 
 /** 
+ * @brief Enable/Disable controls when dialog is shown.
+ */
+BOOL CPropTextColors::OnInitDialog()
+{
+	CPropertyPage::OnInitDialog();
+
+	if (m_bCustomColors)
+		EnableColorButtons(TRUE);
+	else
+		EnableColorButtons(FALSE);
+    
+	return TRUE;  // return TRUE  unless you set the focus to a control
+}
+
+/** 
  * @brief Reads options values from storage to UI.
  * (Property sheet calls this before displaying all property pages)
  */
 void CPropTextColors::ReadOptions()
 {
-	m_bDefaultColors = GetOptionsMgr()->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING);
+	m_bCustomColors = GetOptionsMgr()->GetBool(OPT_CLR_DEFAULT_TEXT_COLORING) ? FALSE : TRUE;
 	SerializeColorsToFromScreen(LOAD_COLORS);
 }
 
@@ -80,7 +97,7 @@ void CPropTextColors::ReadOptions()
  */
 void CPropTextColors::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bDefaultColors == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CLR_DEFAULT_TEXT_COLORING, m_bCustomColors == FALSE);
 	// User can only change colors via BrowseColorAndSave,
 	// which writes to m_pTempColors
 	// so user's latest choices are in m_pTempColors
@@ -92,11 +109,13 @@ void CPropTextColors::WriteOptions()
 
 /** 
  * @brief Let user browse common color dialog, and select a color
+ * @param [in] colorButton Button for which to change color.
+ * @param [in] colorIndex Index to color table.
  */
 void CPropTextColors::BrowseColorAndSave(CColorButton & colorButton, int colorIndex)
 {
 	// Ignore user if colors are slaved to system
-	if (m_btnDefaultStandardColors.GetCheck() == BST_CHECKED)
+	if (m_btnDefaultStandardColors.GetCheck() == BST_UNCHECKED)
 		return;
 
 	COLORREF currentColor = m_pTempColors->GetColor(colorIndex);
@@ -155,9 +174,9 @@ void CPropTextColors::OnSelectionTextColor()
 
 /**
  * @brief Load all colors, Save all colors, or set all colors to default
- *  op is one of
- *    SET_DEFAULTS
- *    LOAD_COLORS
+ * @param [in] op Operation to do, one of
+ *  - SET_DEFAULTS : Sets colors to defaults
+ *  - LOAD_COLORS : Loads colors from registry
  * (No save operation because BrowseColorAndSave saves immediately when user chooses)
  */
 void CPropTextColors::SerializeColorsToFromScreen(OPERATION op)
@@ -176,9 +195,9 @@ void CPropTextColors::SerializeColorsToFromScreen(OPERATION op)
 
 /**
  * @brief Load color to button, Save color from button, or set button color to default
- *  op is one of
- *    SET_DEFAULTS
- *    LOAD_COLORS
+ * @param [in] op Operation to do, one of
+ *  - SET_DEFAULTS : Sets colors to defaults
+ *  - LOAD_COLORS : Loads colors from registry
  * (No save operation because BrowseColorAndSave saves immediately when user chooses)
  */
 void CPropTextColors::SerializeColorToFromScreen(OPERATION op, CColorButton & btn, int colorIndex)
@@ -210,6 +229,16 @@ void CPropTextColors::OnDefaultsStandardColors()
 {
 	// Reset all text colors to default every time user checks defaults button
 	SerializeColorsToFromScreen(SET_DEFAULTS);
+
+	CButton * btn = (CButton *)GetDlgItem(IDC_DEFAULT_STANDARD_COLORS);
+	if (btn->GetCheck() == BST_UNCHECKED)
+	{
+		EnableColorButtons(FALSE);
+	}
+	else
+	{
+		EnableColorButtons(TRUE);
+	}
 }
 
 /** 
@@ -226,4 +255,24 @@ void CPropTextColors::LoadCustomColors()
 void CPropTextColors::SaveCustomColors()
 {
 	SyntaxColors_Save(m_cCustColors, sizeof(m_cCustColors)/sizeof(m_cCustColors[0]));
+}
+
+/** 
+ * @brief Enable / disable color controls on dialog.
+ * @param [in] bEnable If TRUE color controls are enabled.
+ */
+void CPropTextColors::EnableColorButtons(BOOL bEnable)
+{
+	CStatic * stc = (CStatic *) GetDlgItem(IDC_CUSTOM_COLORS_GROUP);
+	stc->EnableWindow(bEnable);
+	stc = (CStatic *) GetDlgItem(IDC_WHITESPACE_COLOR_LABEL);
+	stc->EnableWindow(bEnable);
+	stc = (CStatic *) GetDlgItem(IDC_TEXT_COLOR_LABEL);
+	stc->EnableWindow(bEnable);
+	stc = (CStatic *) GetDlgItem(IDC_SELECTION_COLOR_LABEL);
+	stc->EnableWindow(bEnable);
+	stc = (CStatic *) GetDlgItem(IDC_BACKGROUND_COLUMN_LABEL);
+	stc->EnableWindow(bEnable);
+	stc = (CStatic *) GetDlgItem(IDC_TEXT_COLUMN_LABEL);
+	stc->EnableWindow(bEnable);
 }

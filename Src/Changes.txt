@@ -6,6 +6,9 @@ Add new items to top.
  BUG: [ 1521555 ] Location Pane - can't see current location because of color
   Use 3d-color instead of scrollbar color in location pane
   Src: LocationView.cpp
+ PATCH: [ 1521696 ] Improve Text color option dialog
+  Src: Merge.rc PropTextColors.cpp PropTextColors.h
+  Src/Languages/*: Merge*.rc
 
 2006-07-13 Kimmo
  PATCH: [ 1521352 ] Cleanup char constants for CRegExep
