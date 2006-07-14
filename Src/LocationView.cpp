@@ -674,6 +674,8 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
+	const DWORD areaColor = GetSysColor(COLOR_3DFACE);
+	const DWORD bkColor = GetSysColor(COLOR_WINDOW);
 	const int nScreenLines = pDoc->GetRightView()->GetScreenLines();
 	if (nTopLine == -1)
 		nTopLine = pDoc->GetRightView()->GetTopLine();
@@ -704,13 +706,13 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	{
 		CDC *pClientDC = GetDC();
 		CRect rcVisibleArea(2, m_visibleTop, m_nLeftBarLeft - 2, m_visibleBottom);
-		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		pClientDC->FillSolidRect(rcVisibleArea, bkColor);
 		rcVisibleArea.left = m_nLeftBarRight + 2;
 		rcVisibleArea.right = m_nRightBarLeft - 2;
-		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		pClientDC->FillSolidRect(rcVisibleArea, bkColor);
 		rcVisibleArea.left = m_nRightBarRight + 2;
 		rcVisibleArea.right = rc.Width() - 2;
-		pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_WINDOW));
+		pClientDC->FillSolidRect(rcVisibleArea, bkColor);
 		if (((m_DiffMarkerCoord - DIFFMARKER_TOP >= m_visibleTop) &&
 			(m_DiffMarkerCoord - DIFFMARKER_TOP <= m_visibleBottom)) ||
 			((m_DiffMarkerCoord + DIFFMARKER_BOTTOM >= m_visibleTop) &&
@@ -732,13 +734,13 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 
 	CDC *pClientDC = GetDC();
 	CRect rcVisibleArea(2, m_visibleTop, m_nLeftBarLeft - 2, m_visibleBottom);
-	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+	pClientDC->FillSolidRect(rcVisibleArea, areaColor);
 	rcVisibleArea.left = m_nLeftBarRight + 2;
 	rcVisibleArea.right = m_nRightBarLeft - 2;
-	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+	pClientDC->FillSolidRect(rcVisibleArea, areaColor);
 	rcVisibleArea.left = m_nRightBarRight + 2;
 	rcVisibleArea.right = rc.Width() - 2;
-	pClientDC->FillSolidRect(rcVisibleArea, GetSysColor(COLOR_SCROLLBAR));
+	pClientDC->FillSolidRect(rcVisibleArea, areaColor);
 
 	if (((m_DiffMarkerCoord - DIFFMARKER_TOP >= m_visibleTop) &&
 		(m_DiffMarkerCoord - DIFFMARKER_TOP <= m_visibleBottom)) ||
@@ -836,7 +838,7 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 		// If in visible area, use its background color
 		COLORREF cr;
 		if (m_DiffMarkerCoord > m_visibleTop && m_DiffMarkerCoord < m_visibleBottom)
-			cr = GetSysColor(COLOR_SCROLLBAR);
+			cr = GetSysColor(COLOR_3DFACE);
 		else
 			cr = GetSysColor(COLOR_WINDOW);
 
