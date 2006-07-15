@@ -110,6 +110,15 @@ void CSuperComboBox::LoadState(LPCTSTR szRegSubKey, UINT nMaxItems)
 	}
 }
 
+/** 
+ * @brief Saves strings in combobox.
+ * This function saves strings in combobox, in editbox and in dropdown.
+ * Whitespace characters are stripped from begin and end of the strings
+ * before saving. Empty strings are not saved. So strings which have only
+ * whitespace characters aren't save either.
+ * @param [in] szRegSubKey Registry subkey where to save strings.
+ * @param [in] nMaxItems Max number of strings to save.
+ */
 void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
 {
 	CString strItem,s,s2;
@@ -126,8 +135,9 @@ void CSuperComboBox::SaveState(LPCTSTR szRegSubKey, UINT nMaxItems)
 	for (i=0; i < cnt && idx < (int)nMaxItems; i++)
 	{
 		GetLBText(i, s);
-		if (s != strItem
-			&& !s.IsEmpty())
+		s.TrimLeft();
+		s.TrimRight();
+		if (s != strItem && !s.IsEmpty())
 		{
 			s2.Format(_T("Item_%d"), idx);
 			AfxGetApp()->WriteProfileString(szRegSubKey, s2, s);
