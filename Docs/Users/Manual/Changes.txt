@@ -2,7 +2,9 @@
  PATCH: [ 1523184 ] Manual: Chunk first sections in html (XSL)
   Manual: Manual.xsl
   Manual/build: build_html.xsl
-  
+ PATCH: [ 1523188 ] Manual: Use 'simpara' instead 'para' for language name list
+  Manual: Locales.xml
+
 2006-07-03 Kimmo
  Bump revision to 1.2.5
   Manual: WinMerge_help.xml
