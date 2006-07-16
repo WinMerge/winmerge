@@ -383,16 +383,65 @@ BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
 
 /**
  * @brief Test for trivial only characters in string
- * @param [in] Start Start position in string
- * @param [in] End One character pass the end position of the string
+ * @param [in] Start				- Start position in string
+ * @param [in] End					- One character pass the end position of the string
+ * @param [in] filtercommentsset	- For future use to determine trivial bytes
  * @return Returns true if all characters are trivial
  */
-bool IsTrivialBytes(const char* Start, const char* End)
+bool IsTrivialBytes(const char* Start, const char* End, const FilterCommentsSet& filtercommentsset)
 {
 	std::string testdata(Start, End);
 	//@TODO: Need to replace the following trivial string with a user specified string
 	size_t pos = testdata.find_first_not_of(" \t\r\n");
 	return (pos == std::string::npos);
+}
+
+/**
+ * @brief Test for a line of trivial data
+ * @param [in] Line					- String to test for
+ * @param [in] StartOfComment		- 
+ * @param [in] EndOfComment			- 
+ * @param [in] InLineComment		- 
+ * @param [in] filtercommentsset	- Comment marker set used to indicate comment blocks.
+ * @return Returns true if entire line is trivial
+ */
+bool IsTrivialLine(const std::string &Line, 
+				   const char * StartOfComment,	
+				   const char * EndOfComment,	
+				   const char * InLineComment,	
+				   const FilterCommentsSet& filtercommentsset)
+{
+	//Do easy test first
+	if ((!StartOfComment || !EndOfComment) && !InLineComment)
+		return false;//In no Start and End pair, and no single in-line set, then it's not trivial
+
+	if (StartOfComment == Line.c_str() &&
+		((EndOfComment + filtercommentsset.EndMarker.size()) - StartOfComment) == Line.size())
+	{//If entire line is blocked by End and Start markers, then entire line is trivial
+		return true;
+	}
+
+	if (InLineComment && InLineComment < StartOfComment)
+	{
+		if (InLineComment == Line.c_str())
+			return true;//If line starts with InLineComment marker, then entire line is trivial
+
+		//Other wise, check if data before InLineComment marker is trivial
+		return IsTrivialBytes(Line.c_str(), InLineComment, filtercommentsset);
+	}
+
+	//Done with easy test, so now do more complex test
+	if (StartOfComment && 
+		EndOfComment && 
+		StartOfComment < EndOfComment &&
+		IsTrivialBytes(Line.c_str(), StartOfComment, filtercommentsset) &&
+		IsTrivialBytes(EndOfComment + filtercommentsset.EndMarker.size(),
+			Line.c_str()+Line.size(), filtercommentsset))
+	{
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -416,6 +465,12 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 	int QtyTrivialLines = 0;
 	for(int i = StartPos + ((Direction == -1)?-1:0); i != EndPos;i += Direction)
 	{
+		if ((i - StartPos) == QtyLinesInBlock && 
+			QtyLinesInBlock == QtyTrivialLines)
+		{
+			OpShouldBeTrivial = true;
+			break;
+		}
 		std::string LineData(files[FileNo].linbuf[i]);
 		size_t EolPos = LineData.find_first_of(EolIndicators);
 		if (EolPos != std::string::npos)
@@ -442,7 +497,8 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 		}
 		else if (Direction == 1)
 		{
-			if (IsTrivialBytes(LineData.c_str(), LineData.c_str()+LineData.size()))
+			if (IsTrivialBytes(LineData.c_str(), LineData.c_str()+LineData.size(), filtercommentsset) || 
+				IsTrivialLine(LineData, StartOfComment,	EndOfComment, InLineComment, filtercommentsset))
 			{
 				++QtyTrivialLines;
 			}
@@ -455,7 +511,7 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 					{//If this is at the beginning of the first line, then lets continue
 						continue;
 					}
-					if (IsTrivialBytes(LineData.c_str(), StartOfComment))
+					if (IsTrivialBytes(LineData.c_str(), StartOfComment, filtercommentsset))
 					{//If only trivial bytes before comment marker, then continue
 						continue;
 					}
@@ -470,7 +526,7 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 				(!StartOfComment || StartOfComment > EndOfComment) && 
 				(!InLineComment || InLineComment > EndOfComment) )
 			{
-				if (!IsTrivialBytes(EndOfComment+filtercommentsset.EndMarker.size(), LineData.c_str()+LineData.size()))
+				if (!IsTrivialBytes(EndOfComment+filtercommentsset.EndMarker.size(), LineData.c_str()+LineData.size(), filtercommentsset))
 				{
 					return false;
 				}
@@ -493,7 +549,7 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 						LineDataTrvCk.erase(EolPos);
 					}
 					if (LineDataTrvCk.size() &&
-						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size()))
+						!IsTrivialBytes(LineDataTrvCk.c_str(), LineDataTrvCk.c_str() + LineDataTrvCk.size(), filtercommentsset))
 					{
 						AllRemainingLinesContainTrivialData = false;
 						break;

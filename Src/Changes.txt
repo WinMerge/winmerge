@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-16 Kimmo
+ PATCH: [ 1517057 ] Option to Ignore Multiline Comments (bugfix for single-line comments)
+  Submitted by David Maisonave
+  Src: DiffWrapper.cpp
+
 2006-07-15 Kimmo
  Strip SuperComboBox strings before saving
   Src/Common: SuperComboBox.cpp
