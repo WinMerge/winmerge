@@ -568,16 +568,22 @@ static int ColEOLTypeSort(const CDiffContext *, const void *p, const void *q)
 	const CString &s = *static_cast<const CString*>(q);
 	return r.CompareNoCase(s);
 }
-
 /* @} */
 
 /**
- * @brief All existing columns
+ * @brief All existing folder compare columns.
  *
- * Column internal name, followed by resource ID for localized name
- *  then resource ID for localized description (all -1 currently)
- *  then custom get & custom sort functions (NULL for generic properties)
- *  then default order (or -1 if not shown by default), then whether to start ascending
+ * This table has information for all folder compare columns. Fields are
+ * (in this order):
+ *  - internal name
+ *  - name resource ID: column's name shown in header
+ *  - description resource ID: columns description text
+ *  - custom function for getting column data
+ *  - custom function for sorting column data
+ *  - parameter for custom functions: DIFFITEM (if NULL) or one of its fields
+ *  - default column order number, -1 if not shown by default
+ *  - ascending (TRUE) or descending (FALSE) default sort order
+ *  - alignment of column contents: numbers are usually right-aligned
  */
 static DirColInfo f_cols[] =
 {
