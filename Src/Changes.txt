@@ -5,6 +5,9 @@ Add new items to top.
 2006-07-18 Kimmo
  Fix and improve comment for folder compare columns table
   DirViewColItems.cpp
+ BUG: [ 1524251 ] File filter does not work on 2.5.5.3
+  Original fix from Takashi, modified by Kimmo
+  Src: FileFilterMgr.cpp
 
 2006-07-16 Kimmo
  PATCH: [ 1517057 ] Option to Ignore Multiline Comments (bugfix for single-line comments)
