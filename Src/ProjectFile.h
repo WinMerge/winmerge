@@ -28,7 +28,9 @@ const TCHAR PROJECTFILE_EXT[] = _T("WinMerge");
 /**
  * @brief Class for handling project files.
  *
- * @todo open/save unicode paths - use UTF-8 for xml?
+ * This class handles project files, reading and saving projectdata from
+ * XML files. Jochen's Markdown -parser (@s markdown.h) is used. We use UTF-8
+ * encoding so Unicode paths are supported.
  */
 class ProjectFile
 {
@@ -42,15 +44,17 @@ public:
 	BOOL HasFilter() const;
 	BOOL HasSubfolders() const;
 
-	CString GetLeft() const;
-	CString GetRight() const;
+	CString GetLeft(BOOL * pReadOnly = NULL) const;
+	BOOL GetLeftReadOnly() const;
+	CString GetRight(BOOL * pReadOnly = NULL) const;
+	BOOL GetRightReadOnly() const;
 	CString GetFilter() const;
 	int GetSubfolders() const;
 
-	CString SetLeft(const CString& sLeft);
-	CString SetRight(const CString& sRight);
+	CString SetLeft(const CString& sLeft, const BOOL * pReadOnly = NULL);
+	CString SetRight(const CString& sRight, const BOOL * pReadOnly = NULL);
 	CString SetFilter(const CString& sFilter);
-	int SetSubfolders(const int iSubfolder);
+	int SetSubfolders(int iSubfolder);
 
 	void GetPaths(CString & sLeft, CString & sRight, BOOL & bSubFolders) const;
 
@@ -60,8 +64,10 @@ protected:
 		TCHAR *ptag1, TCHAR *ptag2, TCHAR *pbuf);
 
 private:
-	CString m_leftFile;
-	CString m_rightFile;
-	CString m_filter;
-	int m_subfolders;
+	CString m_leftFile; /**< Left path */
+	CString m_rightFile; /**< Right path */
+	CString m_filter; /**< Filter name or mask */
+	int m_subfolders; /**< Are subfolders included (recursive scan) */
+	BOOL m_bLeftReadOnly; /**< Is left path opened as read-only */
+	BOOL m_bRightReadOnly; /**< Is right path opened as read-only */
 };

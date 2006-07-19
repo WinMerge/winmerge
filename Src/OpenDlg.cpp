@@ -31,6 +31,7 @@
 #include <sys/stat.h>
 
 #include "Merge.h"
+#include "ProjectFile.h"
 #include "OpenDlg.h"
 #include "coretools.h"
 #include "paths.h"
@@ -38,7 +39,6 @@
 #include "OptionsDef.h"
 #include "MainFrm.h"
 #include "OptionsMgr.h"
-#include "ProjectFile.h"
 #include "dlgutil.h"
 
 #ifdef COMPILE_MULTIMON_STUBS
@@ -57,21 +57,30 @@ const UINT IDT_CHECKFILES = 1;
 const UINT CHECKFILES_TIMEOUT = 1000; // milliseconds
 static const TCHAR EMPTY_EXTENSION[] = _T(".*");
 
-/**
- * @brief Location for file compare specific help to open.
- */
+/** @brief Location for Open-dialog specific help to open. */
 static TCHAR OpenDlgHelpLocation[] = _T("::/htmlhelp/OpenPaths.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
 
-
+/**
+ * @brief Standard constructor.
+ */
 COpenDlg::COpenDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(COpenDlg::IDD, pParent)
 	, m_pathsType(DOES_NOT_EXIST)
 	, m_bOverwriteRecursive(FALSE)
 	, m_bRecurse(FALSE)
+	, m_pProjectFile(NULL)
 {
+}
+
+/**
+ * @brief Standard destructor.
+ */
+COpenDlg::~COpenDlg()
+{
+	delete m_pProjectFile;
 }
 
 void COpenDlg::DoDataExchange(CDataExchange* pDX)
@@ -606,10 +615,13 @@ BOOL COpenDlg::LoadProjectFile(CString path)
 {
 	CString filterPrefix;
 	CString err;
-	ProjectFile pfile;
+
+	m_pProjectFile = new ProjectFile;
+	if (m_pProjectFile == NULL)
+		return FALSE;
 
 	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
-	if (!pfile.Read(path, &err))
+	if (!m_pProjectFile->Read(path, &err))
 	{
 		if (!err.IsEmpty())
 		{
@@ -621,10 +633,10 @@ BOOL COpenDlg::LoadProjectFile(CString path)
 	}
 	else
 	{
-		pfile.GetPaths(m_strLeft, m_strRight, m_bRecurse);
-		if (pfile.HasFilter())
+		m_pProjectFile->GetPaths(m_strLeft, m_strRight, m_bRecurse);
+		if (m_pProjectFile->HasFilter())
 		{
-			m_strExt = pfile.GetFilter();
+			m_strExt = m_pProjectFile->GetFilter();
 			m_strExt.TrimLeft();
 			m_strExt.TrimRight();
 			if (m_strExt[0] != '*')

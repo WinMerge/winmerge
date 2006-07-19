@@ -27,6 +27,8 @@ IMPLEMENT_DYNCREATE(ProjectFilePathsDlg, CPropertyPage)
  * @brief Standard constructor.
  */
 ProjectFilePathsDlg::ProjectFilePathsDlg() : CPropertyPage(ProjectFilePathsDlg::IDD)
+, m_bLeftPathReadOnly(FALSE)
+, m_bRightPathReadOnly(FALSE)
 {
 	//{{AFX_DATA_INIT(ProjectFilePathsDlg)
 	//}}AFX_DATA_INIT
@@ -41,6 +43,8 @@ void ProjectFilePathsDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_PROJ_FILTER_EDIT, m_sFilter);
 	DDX_Check(pDX, IDC_PROJ_INC_SUBFOLDERS, m_bIncludeSubfolders);
 	//}}AFX_DATA_MAP
+	DDX_Check(pDX, IDC_PROJFILE_LREADONLY, m_bLeftPathReadOnly);
+	DDX_Check(pDX, IDC_PROJFILE_RREADONLY, m_bRightPathReadOnly);
 }
 
 BEGIN_MESSAGE_MAP(ProjectFilePathsDlg, CDialog)
@@ -137,8 +141,8 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 	}
 	else
 	{
-		m_sLeftFile = project.GetLeft();
-		m_sRightFile = project.GetRight();
+		m_sLeftFile = project.GetLeft(&m_bLeftPathReadOnly);
+		m_sRightFile = project.GetRight(&m_bRightPathReadOnly);
 		m_sFilter = project.GetFilter();
 		m_bIncludeSubfolders = project.GetSubfolders();
 	}
@@ -159,9 +163,9 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	ProjectFile project;
 
 	if (!m_sLeftFile.IsEmpty())
-		project.SetLeft(m_sLeftFile);
+		project.SetLeft(m_sLeftFile, &m_bLeftPathReadOnly);
 	if (!m_sRightFile.IsEmpty())
-		project.SetRight(m_sRightFile);
+		project.SetRight(m_sRightFile, &m_bRightPathReadOnly);
 	if (!m_sFilter.IsEmpty())
 		project.SetFilter(m_sFilter);
     project.SetSubfolders(m_bIncludeSubfolders);

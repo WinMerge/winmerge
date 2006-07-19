@@ -38,14 +38,17 @@
 #endif
 #include "FileTransform.h"
 
+class ProjectFile;
+
 /** @brief File open dialog displayed for user to choose directories or files */
 class COpenDlg : public CDialog
 {
 // Construction
 public:
 
-	void UpdateButtonStates();
 	COpenDlg(CWnd* pParent = NULL);   // standard constructor
+	~COpenDlg();
+	void UpdateButtonStates();
 	BOOL SelectFile(CString& path, LPCTSTR pszFolder);
 
 // Dialog Data
@@ -70,11 +73,11 @@ public:
 	/// unpacker info
 	PackingInfo m_infoHandler;
 	BOOL m_bOverwriteRecursive;  /**< If TRUE overwrite last used value of recursive */
+	ProjectFile * m_pProjectFile; /**< Project file (if loaded) */
 
 // Implementation data
 private:
-	prdlg::CMoveConstraint m_constraint; 
-
+	prdlg::CMoveConstraint m_constraint;
 
 // Overrides
 	// ClassWizard generated virtual function overrides

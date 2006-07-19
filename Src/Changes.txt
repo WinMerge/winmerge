@@ -5,6 +5,10 @@ Add new items to top.
 2006-07-19 Kimmo
  BUG: [ 1524832 ] Bogus include's
   Src: DirColsDlg.cpp PropEditor.cpp
+ PATCH: [ 1522037 ] Add read-only option for paths in Project file
+  Src: MainFrm.cpp Merge.cpp Merge.rc OpenDlg.cpp OpenDlg.h ProjectFile.cpp
+   ProjectFile.h ProjectFilePathsDlg.cpp ProjectFilePathsDlg.h resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-07-18 Kimmo
  Fix and improve comment for folder compare columns table

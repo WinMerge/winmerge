@@ -26,9 +26,15 @@
 #include "ProjectFile.h"
 #include "XmlDoc.h"
 
-ProjectFile::ProjectFile()
+
+/** 
+ * @brief Standard constructor.
+ */
+ ProjectFile::ProjectFile()
+: m_subfolders(-1)
+, m_bLeftReadOnly(FALSE)
+, m_bRightReadOnly(FALSE)
 {
-	m_subfolders = -1;
 }
 
 /** 
@@ -50,6 +56,9 @@ static BOOL NTAPI False(CException *e, CString *sError)
 
 /** 
  * @brief Open given path-file and read data from it to member variables.
+ * @param [in] path Path to project file.
+ * @param [out] sError Error string if error happened.
+ * @return TRUE if reading succeeded, FALSE if error happened.
  */
 BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 {
@@ -58,6 +67,9 @@ BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 
 /** 
  * @brief Save data from member variables to path-file.
+ * @param [in] path Path to project file.
+ * @param [out] sError Error string if error happened.
+ * @return TRUE if saving succeeded, FALSE if error happened.
  * @note paths are converted to UTF-8
  */
 BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
@@ -68,9 +80,16 @@ BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 	
 /** 
  * @brief Read or write project file
+ * @param [in] writing TRUE if project file is saved, FALSE if it is loaded.
+ * @param [in] path Path to project file.
+ * @param [out] sError Error string if error happened.
+ * @return TRUE if operation succeeded, FALSE if error happened.
  */
 BOOL ProjectFile::Serialize(bool writing, LPCTSTR path, CString *sError)
 {
+	int leftReadOnly = m_bLeftReadOnly ? 1 : 0;
+	int rightReadOnly = m_bRightReadOnly ? 1 : 0;
+
 	try
 	{
 		XmlDoc::XML_LOADSAVE loadSave = (writing ? XmlDoc::XML_SAVE : XmlDoc::XML_LOAD);
@@ -84,7 +103,11 @@ BOOL ProjectFile::Serialize(bool writing, LPCTSTR path, CString *sError)
 				{
 					XmlElement(doc, _T("left"), m_leftFile);
 				} {
+					XmlElement(doc, _T("left-readonly"), leftReadOnly);
+				} {
 					XmlElement(doc, _T("right"), m_rightFile);
+				} {
+					XmlElement(doc, _T("right-readonly"), rightReadOnly);
 				} {
 					XmlElement(doc, _T("filter"), m_filter);
 				} {
@@ -98,6 +121,12 @@ BOOL ProjectFile::Serialize(bool writing, LPCTSTR path, CString *sError)
 	catch (CException *e)
 	{
 		return False(e, sError);
+	}
+
+	if (!writing)
+	{
+		m_bLeftReadOnly = (leftReadOnly == 1);
+		m_bRightReadOnly = (rightReadOnly == 1);
 	}
 	return TRUE;
 }
@@ -136,38 +165,68 @@ BOOL ProjectFile::HasSubfolders() const
 
 /** 
  * @brief Returns left path.
+ * @param [out] pReadOnly TRUE if readonly was specified for path.
  */
-CString ProjectFile::GetLeft() const
+CString ProjectFile::GetLeft(BOOL * pReadOnly /*=NULL*/) const
 {
+	if (pReadOnly)
+		*pReadOnly = m_bLeftReadOnly;
 	return m_leftFile;
 }
 
 /** 
- * @brief Set left path, returns old left path.
+ * @brief Returns if left path is specified read-only.
  */
-CString ProjectFile::SetLeft(const CString& sLeft)
+BOOL ProjectFile::GetLeftReadOnly() const
+{
+	return m_bLeftReadOnly;
+}
+
+/** 
+ * @brief Set left path, returns old left path.
+ * @param [in] sLeft Left path.
+ * @param [in] bReadOnly Will path be recorded read-only?
+ */
+CString ProjectFile::SetLeft(const CString& sLeft, const BOOL * pReadOnly /*=NULL*/)
 {
 	CString sLeftOld = GetLeft();
 	m_leftFile = sLeft;
+	if (pReadOnly)
+		m_bLeftReadOnly = *pReadOnly;
 
 	return sLeftOld;
 }
 
 /** 
  * @brief Returns right path.
+ * @param [out] pReadOnly TRUE if readonly was specified for path.
  */
-CString ProjectFile::GetRight() const
+CString ProjectFile::GetRight(BOOL * pReadOnly /*=NULL*/) const
 {
+	if (pReadOnly)
+		*pReadOnly = m_bRightReadOnly;
 	return m_rightFile;
 }
 
 /** 
- * @brief Set right path, returns old right path.
+ * @brief Returns if right path is specified read-only.
  */
-CString ProjectFile::SetRight(const CString& sRight)
+BOOL ProjectFile::GetRightReadOnly() const
+{
+	return m_bRightReadOnly;
+}
+
+/** 
+ * @brief Set right path, returns old right path.
+ * @param [in] sRight Right path.
+ * @param [in] bReadOnly Will path be recorded read-only?
+ */
+CString ProjectFile::SetRight(const CString& sRight, const BOOL * pReadOnly /*=NULL*/)
 {
 	CString sRightOld = GetRight();
 	m_rightFile = sRight;
+	if (pReadOnly)
+		m_bRightReadOnly = *pReadOnly;
 
 	return sRightOld;
 }

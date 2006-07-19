@@ -1017,6 +1017,14 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		strRight = dlg.m_strRight;
 		bRecurse = dlg.m_bRecurse;
 		infoUnpacker = dlg.m_infoHandler;
+		if (dlg.m_pProjectFile != NULL)
+		{
+			// User loaded a project file, set additional information
+			if (dlg.m_pProjectFile->GetLeftReadOnly())
+				bROLeft = TRUE;
+			if (dlg.m_pProjectFile->GetRightReadOnly())
+				bRORight = TRUE;
+		}
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
 	}

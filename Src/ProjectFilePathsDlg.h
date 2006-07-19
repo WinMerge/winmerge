@@ -27,6 +27,8 @@ public:
 	CString m_sRightFile;
 	CString m_sFilter;
 	BOOL m_bIncludeSubfolders;
+	BOOL m_bLeftPathReadOnly;
+	BOOL m_bRightPathReadOnly;
 	//}}AFX_DATA
 
 protected:

@@ -648,8 +648,11 @@ bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 		return false;
 	}
 	CString sLeft, sRight;
-	BOOL bRecursive=FALSE;
-	project.GetPaths(sLeft, sRight, bRecursive);
+	BOOL bLeftReadOnly = FALSE;
+	BOOL bRightReadOnly = FALSE;
+	BOOL bRecursive = FALSE;
+	sLeft = project.GetLeft(&bLeftReadOnly);
+	sRight = project.GetRight(&bRightReadOnly);
 	if (project.HasFilter())
 	{
 		CString filter = project.GetFilter();
@@ -658,11 +661,24 @@ bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 		m_globalFileFilter.SetFilter(filter);
 	}
 
-	DWORD dwLeftFlags = (sLeft.IsEmpty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT);
-	DWORD dwRightFlags = (sRight.IsEmpty() ? FFILEOPEN_NONE : FFILEOPEN_PROJECT);
+	DWORD dwLeftFlags = FFILEOPEN_NONE;
+	DWORD dwRightFlags = FFILEOPEN_NONE;
+	if (!sLeft.IsEmpty())
+	{	
+		dwLeftFlags = FFILEOPEN_PROJECT;
+		if (bLeftReadOnly)
+			dwLeftFlags |= FFILEOPEN_READONLY;
+	}
+	if (!sRight.IsEmpty())
+	{	
+		dwRightFlags = FFILEOPEN_PROJECT;
+		if (bRightReadOnly)
+			dwRightFlags |= FFILEOPEN_READONLY;
+	}
+
 
 	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
-	
+
 	BOOL rtn = GetMainFrame()->DoFileOpen(sLeft, sRight, dwLeftFlags, dwRightFlags, bRecursive);
 	return !!rtn;
 }
