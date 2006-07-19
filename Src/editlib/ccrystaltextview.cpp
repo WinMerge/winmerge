@@ -723,7 +723,11 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
           const int nScreenLines = GetScreenLines();
           const int nLineCount = GetSubLineCount();
           if (nNewTopSubLine > (nLineCount - nScreenLines))
-             nNewTopSubLine = nLineCount - nScreenLines;
+            {
+              nNewTopSubLine = nLineCount - nScreenLines;
+              if (nNewTopSubLine < 0)
+                nNewTopSubLine = 0;
+            }
 
           int nScrollLines = m_nTopSubLine - nNewTopSubLine;
           m_nTopSubLine = nNewTopSubLine;
