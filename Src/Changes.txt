@@ -11,6 +11,8 @@ Add new items to top.
   Src/Languages/*: Merge*.rc
  PATCH: [ 1525025 ] Copy/paste error in MainFrm.cpp
   Src: MainFrm.cpp
+ PATCH: [ 1525198 ] Version info misses copyright (c) char
+  Src: Merge.rc
 
 2006-07-18 Kimmo
  Fix and improve comment for folder compare columns table
