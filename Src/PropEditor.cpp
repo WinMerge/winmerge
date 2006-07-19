@@ -11,7 +11,6 @@
 #include "PropEditor.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
-#include ".\propeditor.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

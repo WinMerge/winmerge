@@ -12,7 +12,6 @@
 #include "stdafx.h"
 #include "merge.h"
 #include "DirColsDlg.h"
-#include ".\dircolsdlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

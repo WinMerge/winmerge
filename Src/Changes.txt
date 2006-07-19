@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-19 Kimmo
+ BUG: [ 1524832 ] Bogus include's
+  Src: DirColsDlg.cpp PropEditor.cpp
+
 2006-07-18 Kimmo
  Fix and improve comment for folder compare columns table
   DirViewColItems.cpp
