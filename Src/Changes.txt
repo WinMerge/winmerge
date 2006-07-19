@@ -5,6 +5,8 @@ Add new items to top.
 2006-07-19 Takashi
  BUG: [ 1525451 ] ASSERT in CCrystalTextView::DrawSingleLine()
   Src/editlib: ccrystaltextview.cpp
+ BUG: [ 1525466 ] ASSERT in CCrystalTextView::AssertValidTextPos()
+  Src/editlib: ccrystaltextview2.cpp
 
 2006-07-19 Kimmo
  BUG: [ 1524832 ] Bogus include's

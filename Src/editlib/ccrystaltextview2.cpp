@@ -607,6 +607,7 @@ OnLButtonDown (UINT nFlags, CPoint point)
 
           CPoint ptStart, ptEnd;
           CharPosToPoint (m_ptAnchor.y, m_ptAnchor.x, pos);
+          ptStart.x = 0;
           ptStart.y = m_ptAnchor.y;
           const int nSublineIndex = GetSubLineIndex (ptStart.y);
           if (nSublineIndex + pos.y >= nSubLines - 1)
