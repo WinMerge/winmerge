@@ -1005,9 +1005,9 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 		dlg.m_strRight = strRight;
 		dlg.m_bRecurse = bRecurse;
 
-		if (dwLeftFlags & FFILEOPEN_PROJECT || dwLeftFlags & FFILEOPEN_PROJECT)
+		if (dwLeftFlags & FFILEOPEN_PROJECT || dwRightFlags & FFILEOPEN_PROJECT)
 			dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
-		if (dwLeftFlags & FFILEOPEN_CMDLINE || dwLeftFlags & FFILEOPEN_CMDLINE)
+		if (dwLeftFlags & FFILEOPEN_CMDLINE || dwRightFlags & FFILEOPEN_CMDLINE)
 			dlg.m_bOverwriteRecursive = TRUE; // Use given value, not previously used value
 
 		if (dlg.DoModal() != IDOK)

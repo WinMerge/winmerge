@@ -9,6 +9,8 @@ Add new items to top.
   Src: MainFrm.cpp Merge.cpp Merge.rc OpenDlg.cpp OpenDlg.h ProjectFile.cpp
    ProjectFile.h ProjectFilePathsDlg.cpp ProjectFilePathsDlg.h resource.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1525025 ] Copy/paste error in MainFrm.cpp
+  Src: MainFrm.cpp
 
 2006-07-18 Kimmo
  Fix and improve comment for folder compare columns table
