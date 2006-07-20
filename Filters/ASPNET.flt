@@ -1,6 +1,7 @@
 ## This is a directory/file filter for WinMerge 
 ## This filter lets through only files ASP.NET developers care about 
 name: ASP.NET Devel 
+desc: Lets through only files ASP.NET developer cares about
 
 ## This is an exclusive filter 
 ## (it lets through only matching files) 
