@@ -8,6 +8,8 @@ Add new items to top.
  PATCH: [ 1525417 ] Move MovedBlock code to own file
   Src: DiffWrapper.cpp Merge.dsp
   Src new file: MovedBlocks.cpp
+ PATCH: [ 1525531 ] Allow comparing project files from Open-dialog
+  Src: OpenDlg.cpp
 
 2006-07-19 Kimmo
  BUG: [ 1198248 ] version copyright symbol needs review

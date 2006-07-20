@@ -128,7 +128,6 @@ END_MESSAGE_MAP()
  * @brief Handler for WM_INITDIALOG; conventional location to initialize controls
  * At this point dialog and control windows exist
  */
-
 BOOL COpenDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
@@ -236,11 +235,7 @@ void COpenDlg::OnLeftButton()
 
 	if (SelectFile(s, sfolder))
 	{
-		SplitFilename(s, NULL, NULL, &sext);
-		if (sext.CompareNoCase(PROJECTFILE_EXT) == 0)
-			LoadProjectFile(s);
-		else
-			m_strLeft = s;
+		m_strLeft = s;
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
@@ -274,11 +269,7 @@ void COpenDlg::OnRightButton()
 
 	if (SelectFile(s, sfolder))
 	{
-		SplitFilename(s, NULL, NULL, &sext);
-		if (sext.CompareNoCase(PROJECTFILE_EXT) == 0)
-			LoadProjectFile(s);
-		else
-			m_strRight = s;
+		m_strRight = s;
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
@@ -296,6 +287,12 @@ void COpenDlg::OnOK()
 
 	UpdateData(TRUE);
 	TrimPaths();
+
+	// If left path is a project-file, load it
+	CString sExt;
+	SplitFilename(m_strLeft, NULL, NULL, &sExt);
+	if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+		LoadProjectFile(m_strLeft);
 
 	m_pathsType = GetPairComparability(m_strLeft, m_strRight);
 
@@ -384,20 +381,39 @@ void COpenDlg::UpdateButtonStates()
 	UpdateData(TRUE); // load member variables from screen
 	KillTimer(IDT_CHECKFILES);
 	TrimPaths();
-	
+
+	// Check if we have project file as left side path
+	CString sExt;
+	BOOL bProject = FALSE;
+	SplitFilename(m_strLeft, NULL, NULL, &sExt);
+    if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+		bProject = TRUE;
+
 	// Enable buttons as appropriate
 	PATH_EXISTENCE pathsType = GetPairComparability(m_strLeft, m_strRight);
 	if (GetOptionsMgr()->GetBool(OPT_VERIFY_OPEN_PATHS))
 	{
-		m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
-		m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
-		m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+		if (bProject)
+		{
+			m_ctlOk.EnableWindow(TRUE);
+			m_ctlUnpacker.EnableWindow(TRUE);
+			m_ctlSelectUnpacker.EnableWindow(TRUE);
+		}
+		else
+		{
+			m_ctlOk.EnableWindow(pathsType != DOES_NOT_EXIST);
+			m_ctlUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+			m_ctlSelectUnpacker.EnableWindow(pathsType == IS_EXISTING_FILE);
+		}
 	}
 
-	if (paths_DoesPathExist(m_strLeft) == DOES_NOT_EXIST)
-		bLeftInvalid = TRUE;
-	if (paths_DoesPathExist(m_strRight) == DOES_NOT_EXIST)
-		bRightInvalid = TRUE;
+	if (!bProject)
+	{
+		if (paths_DoesPathExist(m_strLeft) == DOES_NOT_EXIST)
+			bLeftInvalid = TRUE;
+		if (paths_DoesPathExist(m_strRight) == DOES_NOT_EXIST)
+			bRightInvalid = TRUE;
+	}
 
 	if (bLeftInvalid && bRightInvalid)
 		SetStatus(IDS_OPEN_BOTHINVALID);
@@ -410,7 +426,7 @@ void COpenDlg::UpdateButtonStates()
 	else
 		SetStatus(IDS_OPEN_FILESDIRS);
 
-	if (pathsType == IS_EXISTING_FILE)
+	if (pathsType == IS_EXISTING_FILE || bProject)
 		SetUnpackerStatus(0);	//Empty field
 	else
 		SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
