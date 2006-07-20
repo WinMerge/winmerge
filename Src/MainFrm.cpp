@@ -2746,7 +2746,8 @@ void CMainFrame::ShowFontChangeMessage()
  */
 void CMainFrame::OnToolsLoadConfig()
 {
-	CFileDialog dlg(true, _T(".log"),0,0, _T("Log files (*.log)|*.log|All files (*.*)|*.*||"));
+	const TCHAR filetypes[] = _T("WinMerge Config files (*.txt)|*.txt|All files (*.*)|*.*||");
+	CFileDialog dlg(true, _T(".log"),0,0, filetypes);
 	if (dlg.DoModal() != IDOK)
 		return;
 

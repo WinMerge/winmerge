@@ -10,6 +10,8 @@ Add new items to top.
   Src new file: MovedBlocks.cpp
  PATCH: [ 1525531 ] Allow comparing project files from Open-dialog
   Src: OpenDlg.cpp
+ Config log files are .txt files (not .log)
+  Src: MainFrm.cpp
 
 2006-07-19 Kimmo
  BUG: [ 1198248 ] version copyright symbol needs review
