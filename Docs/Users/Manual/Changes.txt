@@ -1,3 +1,7 @@
+2006-07-20 Kimmo
+ PATCH: [ 1525572 ] [Manual] Update project file documentation
+  Manual: Open_paths.xml
+
 2006-07-16 Tim
  PATCH: [ 1523184 ] Manual: Chunk first sections in html (XSL)
   Manual: Manual.xsl

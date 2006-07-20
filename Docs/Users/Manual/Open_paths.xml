@@ -195,17 +195,54 @@
     given or one of paths is invalid <guilabel>Open</guilabel>-dialog is shown
     for user to select second path or valid paths.</para>
 
+    <para>Project files can be edited and saved using <guilabel>Project
+    File</guilabel> -dialog that can be opened from <menuchoice>
+        <guimenu>File</guimenu>
+
+        <guimenuitem>Save Project...</guimenuitem>
+      </menuchoice> When opened, the dialog is initialized with values from
+    current compare. Values can be edited and saved to project file with
+    <guilabel>Save...</guilabel> button. One can also load existing project
+    file with <guilabel>Open...</guilabel> button.</para>
+
+    <para>Project file can be selected also in <guilabel>Open</guilabel>
+    dialog. There are couple of things to remember:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>If two project files are selected, project files themselves are
+        compared.</para>
+      </listitem>
+
+      <listitem>
+        <para>If project file is selected as left-side file, and right-side
+        file is empty, project file is opened like using <menuchoice>
+            <guimenu>File</guimenu>
+
+            <guimenuitem>Open Project...</guimenuitem>
+          </menuchoice> dialog.</para>
+      </listitem>
+
+      <listitem>
+        <para>If project file is selected as left-side file and any other file
+        as right-side file, contents of project file and another file are
+        compared.</para>
+      </listitem>
+    </itemizedlist>
+
     <para>Project files are simple XML files with <filename
     class="extension">.WinMerge</filename> extension.</para>
 
     <sect3>
       <title>Format</title>
 
-      <screen>&lt;?xml version="1.0"?&gt;
+      <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;project&gt;
 	&lt;paths&gt;
 		&lt;left&gt;<replaceable>c:\work\project1</replaceable>&lt;/left&gt;
+		&lt;left-readonly&gt;<replaceable>1</replaceable>&lt;/left-readonly&gt;
 		&lt;right&gt;<replaceable>c:\work\project2</replaceable>&lt;/right&gt;
+		&lt;right-readonly&gt;<replaceable>0</replaceable>&lt;/right-readonly&gt;
 		&lt;filter&gt;<replaceable>Visual C++ loose</replaceable>&lt;/filter&gt;
 		&lt;subfolders&gt;<replaceable>0&lt;</replaceable>/subfolders&gt;
 	&lt;/paths&gt;
@@ -220,8 +257,20 @@
         </listitem>
 
         <listitem>
+          <para><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
+          : 1 if left side path is opened as readonly, 0 to open
+          normally</para>
+        </listitem>
+
+        <listitem>
           <para><literal>&lt;right&gt;<replaceable>...</replaceable>&lt;/right&gt;</literal>
           : Right side path to open</para>
+        </listitem>
+
+        <listitem>
+          <para><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
+          : 1 if right side path is opened as readonly, 0 to open
+          normally.</para>
         </listitem>
 
         <listitem>
