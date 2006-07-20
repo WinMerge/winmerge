@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-20 WinMerge experimental release 2.5.5.4 (cvs)
+
 2006-07-20 Kimmo
  PATCH: [ 1525013 ] Add description for ASP.NET filter
   Filters: ASPNET.flt
