@@ -2128,17 +2128,6 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
       charPoint.y = 0;
     }
 
-  // calculate point out of char pos
-  /*
-  if( GetLineLength( nLineIndex ) <= GetScreenChars() )
-  {
-    // line is not wrapped
-    charPoint.x = nCharPos;
-    charPoint.y = 0;
-    return 0;
-  }
-  */
-
   // line is wrapped
   int *anBreaks = new int[GetLineLength (nLineIndex)];
   int nBreaks = 0;
@@ -2147,6 +2136,7 @@ int CCrystalTextView::CharPosToPoint( int nLineIndex, int nCharPos, CPoint &char
 
   int i = 0;
   for (i = nBreaks - 1; i >= 0 && nCharPos < anBreaks[i]; i--)
+    ; // Empty loop!
 
   charPoint.x = (i >= 0)? nCharPos - anBreaks[i] : nCharPos;
   charPoint.y = i + 1;

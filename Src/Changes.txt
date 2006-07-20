@@ -12,6 +12,9 @@ Add new items to top.
   Src: OpenDlg.cpp
  Config log files are .txt files (not .log)
   Src: MainFrm.cpp
+ BUG: [ 1495212 ] Wrong cursor position after selecting wordwrapped line
+  Fix from Takashi
+  Src/editlib: ccrystaltextview.cpp
 
 2006-07-19 Kimmo
  BUG: [ 1198248 ] version copyright symbol needs review
