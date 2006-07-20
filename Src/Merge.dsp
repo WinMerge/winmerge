@@ -574,6 +574,10 @@ SOURCE=.\Common\MessageBoxDialog.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\MovedBlocks.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\multiformatText.cpp
 # End Source File
 # Begin Source File

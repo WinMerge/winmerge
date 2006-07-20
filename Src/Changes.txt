@@ -5,6 +5,9 @@ Add new items to top.
 2006-07-20 Kimmo
  PATCH: [ 1525013 ] Add description for ASP.NET filter
   Filters: ASPNET.flt
+ PATCH: [ 1525417 ] Move MovedBlock code to own file
+  Src: DiffWrapper.cpp Merge.dsp
+  Src new file: MovedBlocks.cpp
 
 2006-07-19 Kimmo
  BUG: [ 1198248 ] version copyright symbol needs review
