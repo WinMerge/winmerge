@@ -18,6 +18,10 @@ Add new items to top.
   Fix from Takashi
   Src/editlib: ccrystaltextview.cpp
 
+2006-07-19 Jan Hryz
+ Czech translation - update
+  Src/Languages/Czech/MergeCzech.rc
+
 2006-07-19 Kimmo
  BUG: [ 1198248 ] version copyright symbol needs review
   Src/Languages/*: MergeChineseSimplified.rc MergeChineseTraditional.rc MergeJapanese.rc
