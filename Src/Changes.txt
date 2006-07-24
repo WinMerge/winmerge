@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-24 Kimmo
+ PATCH: [ 1526918 ] Detect which side file is binary file
+  Src: DiffItem.h DiffWrapper.cpp DiffWrapper.h
+  Src/diffutils/src: DIFF.H IO.c analyze.c
+
 2006-07-20 WinMerge experimental release 2.5.5.4 (cvs)
 
 2006-07-20 Kimmo

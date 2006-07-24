@@ -837,7 +837,10 @@ briefly_report (changes, filevec)
 
 //  Report the differences of two files.  DEPTH is the current directory
 // depth. 
-struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status, int moved_blocks_flag)
+// WinMerge: add moved_blocks_flag for detecting moved blocks and
+// bin_file for getting info which file is binary file (can be NULL)
+struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_status,
+	int moved_blocks_flag, int * bin_file)
 {
 	int diags;
 	int i;
@@ -851,7 +854,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 	// Also, --brief without any --ignore-* options means
 	// we can speed things up by treating the files as binary.  
 	
-	if (read_files (filevec, no_details_flag & ~ignore_some_changes))
+	if (read_files (filevec, no_details_flag & ~ignore_some_changes, bin_file))
 	{
 		//  Files with different lengths must be different.  
 		if (filevec[0].stat.st_size != filevec[1].stat.st_size

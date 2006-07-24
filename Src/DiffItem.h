@@ -14,6 +14,19 @@
 #endif
 
 /**
+ * @brief Bitfield values for binary file sides.
+ * These values are used as bitfield values when determining which file(s)
+ * are binary files. There is no "both" -value since in bitfield "both" is
+ * when side1- and side2- bits are set (BINFILE_SIDE1 | BINFILE_SIDE2).
+ */
+enum BINFILE_SIDE
+{
+	BINFILE_NONE = 0, /**< No binary files detected. */
+	BINFILE_SIDE1, /**< First file was detected as binary file. */
+	BINFILE_SIDE2, /**< Second file was detected as binart file. */
+};
+
+/**
  * @brief Status of one item comparison, stored as bitfields
  *
  * Bitmask can be seen as a 4 dimensional space; that is, there are four
@@ -41,7 +54,7 @@ struct DIFFCODE
 		// and each set of flags is in a different hex digit
 		// to make debugging easier
 		// These can always be packed down in the future
-		TEXTFLAGS=0x3, TEXT=0x1, BIN=0x2,
+		TEXTFLAGS=0x7, TEXT=0x1, BINSIDE1=0x2, BINSIDE2=0x3, BIN=0x4,
 		DIRFLAGS=0x30, FILE=0x10, DIR=0x20,
 		SIDEFLAGS=0x300, LEFT=0x100, RIGHT=0x200, BOTH=0x300,
 		COMPAREFLAGS=0x7000, NOCMP=0x0000, SAME=0x1000, DIFF=0x2000, CMPERR=0x3000, CMPABORT=0x4000,
@@ -53,7 +66,7 @@ struct DIFFCODE
 
 	DIFFCODE(int diffcode = 0) : diffcode(diffcode) { }
 
-private:
+protected:
 	static bool Check(int code, int mask, int result) { return ((code & mask) == result); }
 	static bool CheckCompare(int code, int result) { return Check(code, DIFFCODE::COMPAREFLAGS, result); }
 	static bool CheckFilter(int code, int result) { return Check(code, DIFFCODE::FILTERFLAGS, result); }
@@ -86,7 +99,9 @@ public:
 	// filter status
 	bool isResultFiltered() const { return CheckFilter(diffcode, DIFFCODE::SKIPPED); }
 	// type
-	bool isBin() const { return Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BIN); }
+	bool isBin() const { return Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BIN) ||
+			Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BINSIDE1) ||
+			Check(diffcode, DIFFCODE::TEXTFLAGS, DIFFCODE::BINSIDE2); }
 	void setBin() { Set(DIFFCODE::TEXTFLAGS, DIFFCODE::BIN); }
 	// rescan
 	bool isScanNeeded() const { return ((diffcode & DIFFCODE::SCANFLAGS) == DIFFCODE::NEEDSCAN); }

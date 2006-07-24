@@ -846,10 +846,12 @@ BOOL CDiffWrapper::RunFileDiff(ARETEMPFILES areTempFiles)
 		return FALSE;
 	}
 
-	/* Compare the files, if no error was found.  */
+	// Compare the files, if no error was found.
+	// Last param (bin_file) is NULL since we don't
+	// (yet) need info about binary sides.
 	int bin_flag = 0;
 	struct change *script = NULL;
-	bRet = Diff2Files(&script, &diffdata, &bin_flag);
+	bRet = Diff2Files(&script, &diffdata, &bin_flag, NULL);
 
 	// We don't anymore create diff-files for every rescan.
 	// User can create patch-file whenever one wants to.
@@ -1403,16 +1405,17 @@ void DiffFileData::GuessEncoding_from_FileLocation(FileLocation & fpenc)
 /**
  * @brief Compare two specified files.
  *
- * @param [in] Current directory depth.
+ * @param [in] depth Current directory depth.
  * @return Compare result as DIFFCODE.
  */
 int DiffFileData::diffutils_compare_files(int depth)
 {
 	int bin_flag = 0;
+	int bin_file = 0; // bitmap for binary files
 
 	// Do the actual comparison (generating a change script)
 	struct change *script = NULL;
-	BOOL success = Diff2Files(&script, depth, &bin_flag, FALSE);
+	BOOL success = Diff2Files(&script, depth, &bin_flag, FALSE, &bin_file);
 	if (!success)
 	{
 		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
@@ -1447,7 +1450,19 @@ int DiffFileData::diffutils_compare_files(int depth)
 	{
 		// Clear text-flag, set binary flag
 		// We don't know diff counts for binary files
-		code = code & ~DIFFCODE::TEXT | DIFFCODE::BIN;
+		code = code & ~DIFFCODE::TEXT;
+		switch (bin_file)
+		{
+		case BINFILE_SIDE1: code |= DIFFCODE::BINSIDE1;
+			break;
+		case BINFILE_SIDE2: code |= DIFFCODE::BINSIDE2;
+			break;
+		case BINFILE_SIDE1 | BINFILE_SIDE2: code |= DIFFCODE::BIN;
+			break;
+		default:
+			_RPTF1(_CRT_ERROR, "Invalid bin_file value: %d", bin_file);
+			break;
+		}
 		m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
 	}
 
@@ -1807,16 +1822,21 @@ static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData)
  * @param [out] diffs Pointer to list of change structs where diffdata is stored.
  * @param [in] diffData files to compare.
  * @param [out] bin_status used to return binary status from compare.
+ * @param [out] bin_file Returns which file was binary file as bitmap.
+    So if first file is binary, first bit is set etc. Can be NULL if binary file
+    info is not needed (faster compare since diffutils don't bother checking
+    second file if first is binary).
  * @return TRUE when compare succeeds, FALSE if error happened during compare.
  */
 BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
-	int * bin_status)
+	int * bin_status, int * bin_file)
 {
 	BOOL bRet = TRUE;
 	__try
 	{
 		// Diff files. depth is zero because we are not comparing dirs
-		*diffs = diff_2_files (diffData->m_inf, 0, bin_status, m_bDetectMovedBlocks);
+		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
+				m_bDetectMovedBlocks, bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
@@ -1827,13 +1847,29 @@ BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	return bRet;
 }
 
+/**
+ * @brief Compare two files using diffutils.
+ *
+ * Compare two files (in DiffFileData param) using diffutils. Run diffutils
+ * inside SEH so we can trap possible error and exceptions. If error or
+ * execption is trapped, return compare failure.
+ * @param [out] diffs Pointer to list of change structs where diffdata is stored.
+ * @param [in] depth Depth in folder compare (we use 0).
+ * @param [out] bin_status used to return binary status from compare.
+ * @param [in] bMovedBlocks If TRUE moved blocks are analyzed.
+ * @param [out] bin_file Returns which file was binary file as bitmap.
+    So if first file is binary, first bit is set etc. Can be NULL if binary file
+    info is not needed (faster compare since diffutils don't bother checking
+    second file if first is binary).
+ * @return TRUE when compare succeeds, FALSE if error happened during compare.
+ */
 BOOL DiffFileData::Diff2Files(struct change ** diffs, int depth,
-	int * bin_status, BOOL bMovedBlocks)
+	int * bin_status, BOOL bMovedBlocks, int * bin_file)
 {
 	BOOL bRet = TRUE;
 	__try
 	{
-		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks);
+		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks, bin_file);
 		CopyDiffutilTextStats(m_inf, this);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
@@ -1973,10 +2009,13 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 
 			BOOL bBin0 = (m_textStats0.nzeros>0);
 			BOOL bBin1 = (m_textStats1.nzeros>0);
-			if (bBin0 || bBin1)
-			{
+
+			if (bBin0 && bBin1)
 				diffcode |= DIFFCODE::BIN;
-			}
+			else if (bBin0)
+				diffcode |= DIFFCODE::BINSIDE1;
+			else if (bBin1)
+				diffcode |= DIFFCODE::BINSIDE2;
 
 			// If either unfinished, they differ
 			if (ptr0 != end0 || ptr1 != end1)

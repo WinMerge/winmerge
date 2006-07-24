@@ -798,25 +798,45 @@ static int const primes[] =
    with each one, and build the table of equivalence classes.
    Return 1 if either file appears to be a binary file.
    If PRETEND_BINARY is nonzero, pretend they are binary regardless.  */
-
+/* WinMerge: Add int * bin_file param for getting actual binary file
+   If bin_file is given, then check both files for binary files,
+   otherwise check second file only if first wasn't binary */
 int
-read_files (filevec, pretend_binary)
+read_files (filevec, pretend_binary, bin_file)
      struct file_data filevec[];
      int pretend_binary;
+	 int * bin_file;
 {
   int i;
   int skip_test = always_text_flag | pretend_binary;
-  int appears_binary = pretend_binary | sip (&filevec[0], skip_test);
+  int appears_binary = 0;
+
+  if (bin_file)
+    *bin_file = 0;
+  appears_binary = pretend_binary | sip (&filevec[0], skip_test);
+  if (bin_file && appears_binary)
+    {
+      *bin_file = 1;
+    }
 
   if (filevec[0].desc != filevec[1].desc)
-    appears_binary |= sip (&filevec[1], skip_test | appears_binary);
+    {
+      if (bin_file)
+        {
+          appears_binary = pretend_binary | sip (&filevec[1], skip_test);
+          if (appears_binary)
+            *bin_file |= 0x2; // set second bit for second file
+        }
+      else
+        appears_binary |= sip (&filevec[1], skip_test | appears_binary);
+    }
   else
     {
       filevec[1].buffer = filevec[0].buffer;
       filevec[1].bufsize = filevec[0].bufsize;
       filevec[1].buffered_chars = filevec[0].buffered_chars;
     }
-  if (appears_binary)
+  if (appears_binary || (bin_file && *bin_file > 0))
     return 1;
 
   find_identical_ends (filevec);

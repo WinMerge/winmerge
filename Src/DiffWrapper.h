@@ -232,7 +232,7 @@ protected:
 	void SwapToGlobalSettings();
 	CString FormatSwitchString();
 	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,
-		int * bin_status);
+		int * bin_status, int * bin_file);
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
 	void WritePatchFile(struct change * script, file_data * inf);
 
@@ -295,7 +295,7 @@ struct DiffFileData
 	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 	BOOL Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, BOOL bMovedBlocks);
+		int * bin_status, BOOL bMovedBlocks, int * bin_file);
 	bool Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
 		const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
 	void GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt);
