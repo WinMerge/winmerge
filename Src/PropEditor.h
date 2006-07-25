@@ -19,6 +19,9 @@ class COptionsMgr;
 
 /**
  * @brief Property page for editor options.
+ *
+ * Editor options affect to editor behavior. For example syntax highlighting
+ * and tabs.
  */
 class CPropEditor : public CPropertyPage, public IOptionsPanel
 {
@@ -38,7 +41,6 @@ public:
 	UINT    m_nTabSize;
 	BOOL    m_bAutomaticRescan;
 	BOOL    m_bAllowMixedEol;
-	BOOL    m_bApplySyntax;
 	BOOL    m_bViewLineDifferences;
 	BOOL    m_bBreakOnWords;
 	int     m_nBreakType;
@@ -65,15 +67,13 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(CPropEditor)
 	afx_msg BOOL OnInitDialog();
-	afx_msg void OnSyntaxHighlight();
-	//}}AFX_MSG
 	afx_msg void OnLineDiffControlClicked();
+	afx_msg void OnEnKillfocusTabEdit();
+	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 private:
-	COptionsMgr * m_pOptionsMgr;
-public:
-	afx_msg void OnEnKillfocusTabEdit();
+	COptionsMgr * m_pOptionsMgr; /**< Options manager used for loading/saving values. */
 };
 
 //{{AFX_INSERT_LOCATION}}

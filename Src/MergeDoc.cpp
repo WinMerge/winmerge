@@ -2805,8 +2805,10 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		BOOL bRightTyped = pRight->SetTextType(sextR);
 		pRightDetail->SetTextType(sextR);
 
-		if (bLeftTyped != bRightTyped &&
-			GetOptionsMgr()->GetBool(OPT_UNREC_APPLYSYNTAX))
+		// If other side didn't have recognized texttype, apply recognized
+		// type to unrecognized one. (comparing file.cpp and file.bak applies
+		// cpp file type to .bak file.
+		if (bLeftTyped != bRightTyped)
 		{
 			CCrystalTextView::TextDefinition *enuType;
 

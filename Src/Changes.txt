@@ -2,7 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2006-06-24 Tim
+2006-07-25 Kimmo
+ PATCH: [ 1527771 ] Remove Apply syntax highlight to other side option
+  Src: Merge.rc MergeDoc.cpp OptionsDef.h OptionsInit.cpp PropEditor.cpp
+   PropEditor.h resource.h
+  Src/Languages/*: Merge*.rc
+
+2006-07-24 Tim
  PATCH: [ 1527947 ] Various Updates in German Translation for WinMerge 2.5
   Src/Languages/German: MergeGerman.rc
 

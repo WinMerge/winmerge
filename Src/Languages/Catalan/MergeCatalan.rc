@@ -1146,30 +1146,27 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Ressalta la sintaxi",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
-    CONTROL         "Aplica al costat &no reconegut",
-                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,18,18,204,10
     CONTROL         "Re-explora &automàticament",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,215,10
     CONTROL         "&Preserva els caracters de salt de línia originals",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Tabulacions",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "&Mida de les tabulacions:",IDC_STATIC,14,68,88,8
-    EDITTEXT        IDC_TAB_EDIT,103,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,215,10
+    GROUPBOX        "Tabulacions",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "&Mida de les tabulacions:",IDC_STATIC,14,58,88,8
+    EDITTEXT        IDC_TAB_EDIT,103,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Insereix tabulacions",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,128,63,94,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,128,53,94,10
     CONTROL         "In&sereix espais",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,128,72,94,10
-    GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,97,
+                    BS_AUTORADIOBUTTON,128,62,94,10
+    GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,87,
                     221,61
     CONTROL         "Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,128,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,98,128,8
     CONTROL         "Nivell de &caràcter",IDC_EDITOR_CHARLEVEL,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,108,138,10
     CONTROL         "Nivell de &paraula:",IDC_EDITOR_WORDLEVEL,"Button",
-                    BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST | 
+                    BS_AUTORADIOBUTTON,14,118,122,10
+    COMBOBOX        IDC_BREAK_TYPE,24,130,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 

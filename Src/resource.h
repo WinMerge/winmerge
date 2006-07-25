@@ -229,7 +229,6 @@
 #define IDC_RESET_ALL_MESSAGE_BOXES     1124
 #define IDC_COUNT_FOLDER                1125
 #define IDC_COLDLG_DEFAULTS             1126
-#define IDC_UNREC_APPLYSYNTAX           1127
 #define IDC_OPEN_STATUS                 1128
 #define IDC_FILTERFILE_EDITBTN          1129
 #define IDC_FILTERFILE_LIST             1130

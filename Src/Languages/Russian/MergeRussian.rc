@@ -1146,30 +1146,27 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Подсвечивать синтаксис",IDC_HILITE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,7,215,10
-    CONTROL         "Применять к &неопределенной стороне",
-                    IDC_UNREC_APPLYSYNTAX,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,18,18,204,10
     CONTROL         "Авто&пересканирование",IDC_AUTOMRESCAN_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,28,215,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,215,10
     CONTROL         "Оригинальные символы EOL",IDC_MIXED_EOL,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,38,215,10
-    GROUPBOX        "Отступы",IDC_STATIC,7,54,221,33,WS_GROUP
-    LTEXT           "Размер &отступа:",IDC_STATIC,14,68,50,8
-    EDITTEXT        IDC_TAB_EDIT,70,66,18,12,ES_AUTOHSCROLL | ES_NUMBER,
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,215,10
+    GROUPBOX        "Отступы",IDC_STATIC,7,44,221,33,WS_GROUP
+    LTEXT           "Размер &отступа:",IDC_STATIC,14,58,50,8
+    EDITTEXT        IDC_TAB_EDIT,70,56,18,12,ES_AUTOHSCROLL | ES_NUMBER,
                     WS_EX_RIGHT
     CONTROL         "&Табуляции",IDC_PROP_INSERT_TABS,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,95,63,127,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,95,53,127,10
     CONTROL         "&Пробелы",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,95,72,127,10
-    GROUPBOX        "Подкрашивание отличий в строке",IDC_LINE_COLORING_GROUP,7,97,
+                    BS_AUTORADIOBUTTON,95,62,127,10
+    GROUPBOX        "Подкрашивание отличий в строке",IDC_LINE_COLORING_GROUP,7,87,
                     221,61
     CONTROL         "Показывать отличия в строке",IDC_VIEW_LINE_DIFFERENCES,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,14,108,100,8
+                    BS_AUTOCHECKBOX | WS_TABSTOP,14,98,100,8
     CONTROL         "&Character level",IDC_EDITOR_CHARLEVEL,"Button",
-                    BS_AUTORADIOBUTTON | WS_GROUP,14,118,138,10
+                    BS_AUTORADIOBUTTON | WS_GROUP,14,108,138,10
     CONTROL         "&Word-level:",IDC_EDITOR_WORDLEVEL,"Button",
-                    BS_AUTORADIOBUTTON,14,128,122,10
-    COMBOBOX        IDC_BREAK_TYPE,24,140,143,34,CBS_DROPDOWNLIST |
+                    BS_AUTORADIOBUTTON,14,118,122,10
+    COMBOBOX        IDC_BREAK_TYPE,24,130,143,34,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_GROUP | WS_TABSTOP
 END
 

@@ -59,7 +59,6 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_USE_RECYCLE_BIN, true);
 	m_options.InitOption(OPT_SINGLE_INSTANCE, false);
 	m_options.InitOption(OPT_MERGE_MODE, false);
-	m_options.InitOption(OPT_UNREC_APPLYSYNTAX, false);
 	// OPT_WORDDIFF_HIGHLIGHT is initialized above
 	m_options.InitOption(OPT_BREAK_ON_WORDS, true);
 	m_options.InitOption(OPT_BREAK_TYPE, 0);

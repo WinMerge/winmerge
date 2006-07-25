@@ -24,6 +24,10 @@ static const int MAX_TABSIZE = 64;
 /////////////////////////////////////////////////////////////////////////////
 // CPropEditor dialog
 
+/** 
+ * @brief Constructor.
+ * @param [in] optionsMgr Pointer to options manager for handling options.
+ */
 CPropEditor::CPropEditor(COptionsMgr *optionsMgr) : CPropertyPage(CPropEditor::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_bHiliteSyntax(FALSE)
@@ -31,13 +35,15 @@ CPropEditor::CPropEditor(COptionsMgr *optionsMgr) : CPropertyPage(CPropEditor::I
 , m_nTabSize(0)
 , m_bAutomaticRescan(FALSE)
 , m_bAllowMixedEol(FALSE)
-, m_bApplySyntax(FALSE)
 , m_bViewLineDifferences(FALSE)
 , m_bBreakOnWords(FALSE)
 , m_nBreakType(0)
 {
 }
 
+/** 
+ * @brief Function handling dialog data exchange between GUI and variables.
+ */
 void CPropEditor::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -47,7 +53,6 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_TAB_EDIT, m_nTabSize);
 	DDX_Check(pDX, IDC_AUTOMRESCAN_CHECK, m_bAutomaticRescan);
 	DDX_Check(pDX, IDC_MIXED_EOL, m_bAllowMixedEol);
-	DDX_Check(pDX, IDC_UNREC_APPLYSYNTAX, m_bApplySyntax);
 	DDX_Check(pDX, IDC_VIEW_LINE_DIFFERENCES, m_bViewLineDifferences);
 	DDX_Radio(pDX, IDC_EDITOR_CHARLEVEL, m_bBreakOnWords);
 	DDX_CBIndex(pDX, IDC_BREAK_TYPE, m_nBreakType);
@@ -57,12 +62,11 @@ void CPropEditor::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropEditor, CDialog)
 	//{{AFX_MSG_MAP(CPropEditor)
-	ON_BN_CLICKED(IDC_HILITE_CHECK, OnSyntaxHighlight)
-	//}}AFX_MSG_MAP
 	ON_BN_CLICKED(IDC_VIEW_LINE_DIFFERENCES, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_CHARLEVEL, OnLineDiffControlClicked)
 	ON_BN_CLICKED(IDC_EDITOR_WORDLEVEL, OnLineDiffControlClicked)
 	ON_EN_KILLFOCUS(IDC_TAB_EDIT, OnEnKillfocusTabEdit)
+	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /** 
@@ -75,7 +79,6 @@ void CPropEditor::ReadOptions()
 	m_bAutomaticRescan = m_pOptionsMgr->GetBool(OPT_AUTOMATIC_RESCAN);
 	m_bHiliteSyntax = m_pOptionsMgr->GetBool(OPT_SYNTAX_HIGHLIGHT);
 	m_bAllowMixedEol = m_pOptionsMgr->GetBool(OPT_ALLOW_MIXED_EOL);
-	m_bApplySyntax = m_pOptionsMgr->GetBool(OPT_UNREC_APPLYSYNTAX);
 	m_bViewLineDifferences = m_pOptionsMgr->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_bBreakOnWords = m_pOptionsMgr->GetBool(OPT_BREAK_ON_WORDS);
 	m_nBreakType = m_pOptionsMgr->GetInt(OPT_BREAK_TYPE);
@@ -96,7 +99,6 @@ void CPropEditor::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_AUTOMATIC_RESCAN, m_bAutomaticRescan == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_ALLOW_MIXED_EOL, m_bAllowMixedEol == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_SYNTAX_HIGHLIGHT, m_bHiliteSyntax == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_UNREC_APPLYSYNTAX, m_bApplySyntax == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !!m_bViewLineDifferences);
 	m_pOptionsMgr->SaveOption(OPT_BREAK_ON_WORDS, !!m_bBreakOnWords);
 	m_pOptionsMgr->SaveOption(OPT_BREAK_TYPE, m_nBreakType);
@@ -119,14 +121,6 @@ BOOL CPropEditor::OnInitDialog()
 	if (pEdit != NULL)
 		pEdit->SetLimitText(2);
 
-	// Enable/disable "Apply to unrecognized side" checkbox
-	if (IsDlgButtonChecked(IDC_HILITE_CHECK))
-		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(TRUE);
-	else
-	{
-		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(FALSE);
-	}
-
 	LoadBreakTypeStrings();
 	UpdateDataToWindow();
 	UpdateLineDiffControls();
@@ -143,24 +137,6 @@ void CPropEditor::LoadBreakTypeStrings()
 	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
 	cbo->AddString(LoadResString(IDS_BREAK_ON_WHITESPACE));
 	cbo->AddString(LoadResString(IDS_BREAK_ON_PUNCTUATION));
-}
-
-/** 
- * @brief Enable/Disable "Apply to other side" checkbox.
- *
- * "Apply to other side" checkbox is enabled only when syntax
- * highlight is enabled.
- */
-void CPropEditor::OnSyntaxHighlight()
-{
-	if (IsDlgButtonChecked(IDC_HILITE_CHECK))
-		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(TRUE);
-	else
-	{
-		GetDlgItem(IDC_UNREC_APPLYSYNTAX)->EnableWindow(FALSE);
-		CheckDlgButton(IDC_UNREC_APPLYSYNTAX, FALSE);
-		m_bApplySyntax = FALSE;
-	}
 }
 
 /**
