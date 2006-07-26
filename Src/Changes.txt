@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-26 Kimmo
+ PATCH: [ 1528444 ] Cleanup for AppSerialize
+  Src: AppSerialize.cpp AppSerialize.h 
+
 2006-07-25 Kimmo
  PATCH: [ 1527771 ] Remove Apply syntax highlight to other side option
   Src: Merge.rc MergeDoc.cpp OptionsDef.h OptionsInit.cpp PropEditor.cpp
