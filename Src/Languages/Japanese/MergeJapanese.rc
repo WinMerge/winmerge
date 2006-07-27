@@ -1741,6 +1741,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "未知のエラー:プロジェクトファイルが開けません"
     IDS_UNK_ERROR_SAVING_PROJECT "未知のエラー:プロジェクトファイルが保存できません"
     IDS_PROJFILEDLG_CAPTION "プロジェクトファイル"
+    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
+    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
     ID_FILE_SAVEPROJECT     "現在のパスとオプション設定をプロジェクトファイルに保存します\nプロジェクトファイルの保存"
 END
 

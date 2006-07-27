@@ -1759,6 +1759,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "S'ha produït un error desconegut en intentar obrir un fitxer de projecte"
     IDS_UNK_ERROR_SAVING_PROJECT "S'ha produït un error desconegut en intentar desar un fitxer de projecte"
     IDS_PROJFILEDLG_CAPTION "Fitxer de projecte"
+    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
+    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
     ID_FILE_SAVEPROJECT     "Desa els camins i les opcions actuals a un fitxer de projecte\nDesa fitxer de projecte"
 END
 

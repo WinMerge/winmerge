@@ -1741,6 +1741,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "Neznámá chyba pøi pokusu o otevøení souboru projektu"
     IDS_UNK_ERROR_SAVING_PROJECT "Neznámá chyba pøi pokusu o uložení souboru projektu"
     IDS_PROJFILEDLG_CAPTION "Projekt"
+    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
+    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
     ID_FILE_SAVEPROJECT     "Uloží aktuální cesty a volby do souboru projektu\nUložit projekt"
 END
 

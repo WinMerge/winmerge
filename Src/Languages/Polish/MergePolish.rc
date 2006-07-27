@@ -1741,6 +1741,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "Nieznany b³¹d podczas otwierania projektu"
     IDS_UNK_ERROR_SAVING_PROJECT "Nieznany b³¹d podczas zapisu projektu"
     IDS_PROJFILEDLG_CAPTION "Plik projektu"
+    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
+    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
     ID_FILE_SAVEPROJECT     "Zapisz aktualne œcie¿ki i opcje do pliku projektu\nZapisz plik projektu"
 END
 

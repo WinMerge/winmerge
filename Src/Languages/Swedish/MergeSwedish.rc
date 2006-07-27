@@ -1741,6 +1741,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "Okänt fel vid försök att öppna projektfil"
     IDS_UNK_ERROR_SAVING_PROJECT "Okänt fel vid försök att spara projektfil"
     IDS_PROJFILEDLG_CAPTION "Projektfil"
+    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
+    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
     ID_FILE_SAVEPROJECT     "Sparar aktuella sökvägar och inställningar till Projektfil\nSpara Projektfil"
 END
 

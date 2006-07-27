@@ -1741,6 +1741,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "Error desconocido al intentar abrir el proyecto"
     IDS_UNK_ERROR_SAVING_PROJECT "Error desconocido al intentar guardar el proyecto"
     IDS_PROJFILEDLG_CAPTION "Fichero de Proyecto"
+    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
+    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
     ID_FILE_SAVEPROJECT     "Guardar las rutas y opciones actuales al fchero de proyecto\nGuardar Fichero de Proyecto"
 END
 
