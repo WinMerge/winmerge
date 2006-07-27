@@ -724,25 +724,23 @@ void
 CMoveConstraint::Persist(bool saving, bool position)
 {
 	LPCTSTR szSection = m_sRegistrySubkey;
-	WINDOWPLACEMENT wp;
-	wp.length=sizeof(wp);
 	if (saving)
 	{
 		CString str;
-		GetWindowPlacement(m_hwndDlg, &wp);
-		RECT & rc = wp.rcNormalPosition;
+		RECT rc;
+		GetWindowRect(m_hwndDlg, &rc);
 		str.Format(_T("%d,%d,%d,%d"), rc.left, rc.top, rc.right, rc.bottom);
 		AfxGetApp()->WriteProfileString(szSection, m_sRegistryValueName, str);
 	}
 	else
 	{
+		RECT wprc;
 		CString str = AfxGetApp()->GetProfileString(szSection, m_sRegistryValueName);
-		GetWindowPlacement(m_hwndDlg, &wp);
+		GetWindowRect(m_hwndDlg, &wprc);
 		CRect rc;
 		int ct=_stscanf(str, _T("%d,%d,%d,%d"), &rc.left, &rc.top, &rc.right, &rc.bottom);
 		if (ct==4)
 		{
-			RECT & wprc = wp.rcNormalPosition;
 			if (position)
 			{
 				wprc.left = rc.left;
@@ -750,7 +748,9 @@ CMoveConstraint::Persist(bool saving, bool position)
 			}
 			wprc.right = wprc.left + rc.Width();
 			wprc.bottom = wprc.top + rc.Height();
-			SetWindowPlacement(m_hwndDlg, &wp);
+			SetWindowPos(m_hwndDlg, NULL, 
+				wprc.left, wprc.top, wprc.right - wprc.left, wprc.bottom - wprc.top,
+				SWP_NOZORDER | SWP_NOACTIVATE);
 		}
 	}
 }

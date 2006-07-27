@@ -11,6 +11,7 @@
 #include "DirCompProgressDlg.h"
 #include "DiffContext.h"
 #include "DirDoc.h"
+#include "MainFrm.h"
 #include "DirFrame.h"
 #include "CompareStats.h"
 
@@ -91,6 +92,8 @@ END_MESSAGE_MAP()
 BOOL DirCompProgressDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
+
+	GetMainFrame()->CenterToMainFrame(this);
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE

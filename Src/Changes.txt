@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-27 Takashi
+ PATCH: [ 1527843 ] prevent dialog from flickering
+  Src: DirCompProgressDlg.cpp DirView.cpp
+  Src/Common: CMoveConstraint.cpp
+
 2006-07-27 Kimmo
  PATCH: [ 1528841 ] Cleanup ByteComparator
   Src: ByteComparator.cpp ByteComparator.h FileTextStats.h
