@@ -145,8 +145,10 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 		m_sRightFile = project.GetRight(&m_bRightPathReadOnly);
 		m_sFilter = project.GetFilter();
 		m_bIncludeSubfolders = project.GetSubfolders();
+
+		UpdateData(FALSE);
+		AfxMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
 	}
-	UpdateData(FALSE);
 }
 
 /** 
@@ -168,7 +170,7 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 		project.SetRight(m_sRightFile, &m_bRightPathReadOnly);
 	if (!m_sFilter.IsEmpty())
 		project.SetFilter(m_sFilter);
-    project.SetSubfolders(m_bIncludeSubfolders);
+	project.SetSubfolders(m_bIncludeSubfolders);
 
 	CString sErr;
 	if (!project.Save(fileName, &sErr))
@@ -178,6 +180,10 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 		CString msg;
 		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr);
 		AfxMessageBox(msg, MB_ICONSTOP);
+	}
+	else
+	{
+		AfxMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 	}
 }
 
