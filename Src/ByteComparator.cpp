@@ -1,7 +1,7 @@
 /** 
  * @file  ByteComparator.cpp
  *
- * @brief QuickCompare code; code to compare two buffers, byte-by-byte, respecting compare options
+ * @brief Implements ByteComparator class.
  */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
@@ -17,20 +17,40 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
+/**
+ * @brief Returns if given char is EOL byte.
+ * @param [in] ch Char to test.
+ * @return true if char is EOL byte, false otherwise.
+ */
 static inline bool iseolch(TCHAR ch)
 {
-    return ch=='\n' || ch=='\r';
+	return ch=='\n' || ch=='\r';
 }
 
+/**
+ * @brief Returns if given char is whitespace char.
+ * @param [in] ch Char to test.
+ * @return true if char is whitespace char, false otherwise.
+ * @todo What about nbsp or various Unicode spacing codes?
+ */
 static inline bool iswsch(TCHAR ch)
 {
-	// What about nbsp?
-	// What about various Unicode spacing codes?
-    return ch==' ' || ch=='\t';
+	return ch==' ' || ch=='\t';
 }
 
-static void
-TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof, bool crflag, int offset)
+/**
+ * @brief Calculates statistics from given buffer.
+ * This function calculates EOL byte and zero-byte statistics from given
+ * buffer.
+ * @param [in,out] stats Structure holding statistics.
+ * @param [in] ptr Pointer to begin of the buffer.
+ * @param [in] end Pointer to end of buffer.
+ * @param [in] eof Is buffer end also end of file?
+ * @param [in] crflag Did previous scan end to CR?
+ * @param [in] offset Byte offset in whole file (among several buffers).
+ */
+static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
+	bool crflag, int offset)
 {
 	LPCSTR start = ptr; // remember for recording zero-byte offsets
 
@@ -91,17 +111,57 @@ TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof, bool crflag, i
 }
 
 /**
- * Compare buffers pointed to by ptr0 and ptr1, advancing them
- * End of buffers given by end0 and end1 (these point past last valid byte)
- * eof0 is true if this is the last buffer for side0 (and similarly eof1 for side 1)
- * offset0 is how far this buffer is into the file (ie, 0 the first time called)
- * Return true if equal, false if different
- * Take into account global diffutils flags such as ignore_space_change_flag
+ * @brief Constructor taking compare options as parameters.
+ * @param [in] ignore_case Ignore character case.
+ * @param [in] ignore_space_change Ignore change in whitespace.
+ * @param [in] ignore_all_space Ignore all whitespace chars.
+ * @param [in] ignore_eol_diff Ignore EOL byte differences.
+ * @param [in] ignore_blank_lines Ignore blank lines.
+ * @note Parameters are same than diffutils options.
  */
-ByteComparator::COMP_RESULT
-ByteComparator::CompareBuffers(FileTextStats & stats0, FileTextStats & stats1,
-	LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1,
-	int offset0, int offset1)
+ByteComparator::ByteComparator(int ignore_case, int ignore_space_change,
+	int ignore_all_space, int ignore_eol_diff, int ignore_blank_lines)
+// settings
+: m_ignore_case(!!ignore_case)
+, m_ignore_space_change(!!ignore_space_change)
+, m_ignore_all_space(!!ignore_all_space)
+, m_ignore_eol_diff(!!ignore_eol_diff)
+, m_ignore_blank_lines(!!ignore_blank_lines)
+// state
+, m_wsflag(false)
+, m_eol0(false)
+, m_eol1(false)
+, m_cr0(false)
+, m_cr1(false)
+, m_bol0(true)
+, m_bol1(true)
+{
+}
+
+/**
+ * @brief Compare two buffers byte per byte.
+ *
+ * This function compares two buffers pointed to by @p ptr0 and @p ptr1.
+ * Comparing takes account diffutils options flags given to constructor.
+ * Buffer pointers are advanced while comparing so they point to current
+ * compare position. End of buffers are given by @p end0 and @p end1, which
+ * may point past last valid byte in file. Offset-params tell is how far this
+ * buffer is into the file (ie, 0 the first time called).
+ * @param [in,out] stats0 Statistics for first side.
+ * @param [in,out] stats1 Statistics for second side.
+ * @param [in,out] ptr0 Pointer to begin of the first buffer.
+ * @param [in,out] ptr1 Pointer to begin of the second buffer.
+ * @param [in] end0 Pointer to end of the first buffer.
+ * @param [in] end1 Pointer to end of the second buffer.
+ * @param [in] eof0 Is first buffers end also end of the file?
+ * @param [in] eof1 Is second buffers end also end of the file?
+ * @param [in] offset0 Offset of the buffer begin in the first file.
+ * @param [in] offset1 Offset of the buffer begin in the second file.
+ * @return COMP_RESULT telling result of the compare.
+ */
+ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
+	FileTextStats & stats0, FileTextStats & stats1, LPCSTR &ptr0, LPCSTR &ptr1,
+	LPCSTR end0, LPCSTR end1, bool eof0, bool eof1, int offset0, int offset1)
 {
 	// First, update file text statistics by doing a full scan
 	// for 0s and all types of line delimiters
@@ -440,17 +500,4 @@ need_more:
 	{
 		return RESULT_SAME;
 	}
-}
-
-/**
- * @brief Reset all ignore settings for compare.
- * Causes compare to be done byte-per-byte which we want for binary files.
- */
-void ByteComparator::ResetIgnore()
-{
-	m_ignore_case = false;
-	m_ignore_space_change = false;
-	m_ignore_all_space = false;
-	m_ignore_eol_diff = false;
-	m_ignore_blank_lines = false;
 }
