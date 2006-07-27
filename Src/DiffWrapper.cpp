@@ -1920,8 +1920,8 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 	}
 
 	// area of buffer currently holding data
-	int bfstart[2]; // offset into buff[i] where current data resides
-	int bfend[2]; // past-the-end pointer into buff[i], giving end of current data
+	__int64 bfstart[2]; // offset into buff[i] where current data resides
+	__int64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
 	// buff[0] has bytes to process from buff[0][bfstart[0]] to buff[0][bfend[0]-1]
 
 	bool eof[2]; // if we've finished file
@@ -1955,8 +1955,9 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 			}
 			if (!eof[i] && bfend[i]<countof(buff[i])-1)
 			{
-				int space = countof(buff[i]) - bfend[i];
-				int rtn = fread(&buff[i][bfend[i]], 1, space, fp[i]);
+				// Assume our blocks are in range of unsigned int
+				unsigned int space = countof(buff[i]) - bfend[i];
+				size_t rtn = fread(&buff[i][bfend[i]], 1, space, fp[i]);
 				if (ferror(fp[i]))
 					return DIFFCODE::CMPERR;
 				if (feof(fp[i]))
@@ -1976,8 +1977,8 @@ int DiffFileData::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable 
 		LPCSTR end0 = &buff[0][bfend[0]];
 		LPCSTR end1 = &buff[1][bfend[1]];
 
-		int offset0 = (ptr0 - &buff[0][0]);
-		int offset1 = (ptr1 - &buff[1][0]);
+		__int64 offset0 = (ptr0 - &buff[0][0]);
+		__int64 offset1 = (ptr1 - &buff[1][0]);
 
 		// are these two buffers the same?
 		if (!comparator.CompareBuffers(m_textStats0, m_textStats1, 

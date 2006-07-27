@@ -40,7 +40,7 @@ public:
 
 	COMP_RESULT CompareBuffers(FileTextStats & stats0, FileTextStats & stats1,
 		LPCSTR &ptr0, LPCSTR &ptr1, LPCSTR end0, LPCSTR end1, bool eof0, bool eof1,
-		int offset0, int offset1);
+		__int64 offset0, __int64 offset1);
 
 private:
 	// settings

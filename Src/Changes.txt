@@ -5,6 +5,8 @@ Add new items to top.
 2006-07-27 Kimmo
  PATCH: [ 1528841 ] Cleanup ByteComparator
   Src: ByteComparator.cpp ByteComparator.h FileTextStats.h
+ PATCH: [ 1528987 ] Use 64-bit variable as file position in Bytecompare
+  Src: ByteComparator.cpp ByteComparator.h DiffWrapper.cpp FileTextStats.h
 
 2006-07-26 Kimmo
  PATCH: [ 1528444 ] Cleanup for AppSerialize

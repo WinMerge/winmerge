@@ -17,13 +17,13 @@
  */
 struct FileTextStats
 {
-	int ncrs; /**< Count of MAC (CR-byte) EOLs. */
-	int nlfs; /**< Count of Unix (LF-byte) EOLs. */
-	int ncrlfs; /**< Count of DOS (CR+LF-bytes) EOLs. */
-	int nzeros; /**< Count of zero-bytes. */
-	int first_zero; /**< Byte offset to first zero-byte, initially -1 */
-	int last_zero; /**< Byte offset to last zero-byte, initially -1 */
-	int nlosses;
+	unsigned int ncrs; /**< Count of MAC (CR-byte) EOLs. */
+	unsigned int nlfs; /**< Count of Unix (LF-byte) EOLs. */
+	unsigned int ncrlfs; /**< Count of DOS (CR+LF-bytes) EOLs. */
+	unsigned int nzeros; /**< Count of zero-bytes. */
+	__int64 first_zero; /**< Byte offset to first zero-byte, initially -1 */
+	__int64 last_zero; /**< Byte offset to last zero-byte, initially -1 */
+	unsigned int nlosses;
 	FileTextStats() { clear(); }
 	void clear() { ncrs = nlfs = ncrlfs = nzeros = nlosses = 0; first_zero = -1; last_zero = -1; }
 };

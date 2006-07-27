@@ -50,7 +50,7 @@ static inline bool iswsch(TCHAR ch)
  * @param [in] offset Byte offset in whole file (among several buffers).
  */
 static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
-	bool crflag, int offset)
+	bool crflag, __int64 offset)
 {
 	LPCSTR start = ptr; // remember for recording zero-byte offsets
 
@@ -73,7 +73,7 @@ static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
 		if (ch == 0)
 		{
 			++stats.nzeros;
-			int index = offset + (ptr - start);
+			__int64 index = offset + (ptr - start);
 			if (stats.first_zero == -1)
 				stats.first_zero = index;
 			stats.last_zero = index;
@@ -161,7 +161,7 @@ ByteComparator::ByteComparator(int ignore_case, int ignore_space_change,
  */
 ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 	FileTextStats & stats0, FileTextStats & stats1, LPCSTR &ptr0, LPCSTR &ptr1,
-	LPCSTR end0, LPCSTR end1, bool eof0, bool eof1, int offset0, int offset1)
+	LPCSTR end0, LPCSTR end1, bool eof0, bool eof1, __int64 offset0, __int64 offset1)
 {
 	// First, update file text statistics by doing a full scan
 	// for 0s and all types of line delimiters
