@@ -207,22 +207,24 @@ private:
 };
 
 /**
- * @brief Default constructor
+ * @brief Default constructor.
+ * Initializes members and creates new FilterCommentsManager.
  */
-CDiffWrapper::CDiffWrapper():m_FilterCommentsManager(new FilterCommentsManager)
+CDiffWrapper::CDiffWrapper()
+: m_FilterCommentsManager(new FilterCommentsManager)
+, m_bCreatePatchFile(FALSE)
+, m_bUseDiffList(FALSE)
+, m_bDetectMovedBlocks(FALSE)
+, m_bAddCmdLine(TRUE)
+, m_bAppendFiles(FALSE)
+, m_nDiffs(0)
+, m_infoPrediffer(NULL)
+, m_pDiffList(NULL)
+, m_bPathsAreTemp(FALSE)
 {
 	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_status, sizeof(DIFFSTATUS));
-	m_bCreatePatchFile = FALSE;
-	m_bUseDiffList = FALSE;
-	m_bDetectMovedBlocks = FALSE;
-	m_bAddCmdLine = TRUE;
-	m_bAppendFiles = FALSE;
-	m_nDiffs = 0;
-	m_infoPrediffer = NULL;
-	m_pDiffList = NULL;
-
 	m_settings.heuristic = 1;
 	m_settings.outputStyle = OUTPUT_NORMAL;
 	m_settings.context = -1;
@@ -241,25 +243,45 @@ CDiffWrapper::~CDiffWrapper()
 }
 
 /**
- * @brief Sets filename of produced patch-file.
- * @param [in] file Filename of patch file.
+ * @brief Enables/disables patch-file creation and sets filename.
+ * This function enables or disables patch file creation. When
+ * @p filename is empty, patch files are disabled.
+ * @param [in] filename Filename for patch file, or empty string.
  */
-void CDiffWrapper::SetPatchFile(const CString &file)
+void CDiffWrapper::SetCreatePatchFile(const CString &filename)
 {
-	m_sPatchFile = file;
-	m_sPatchFile.Replace('/', '\\');
+	if (filename.IsEmpty())
+	{
+		m_bCreatePatchFile = FALSE;
+		m_sPatchFile.Empty();
+	}
+	else
+	{
+		m_bCreatePatchFile = TRUE;
+		m_sPatchFile = filename;
+		m_sPatchFile.Replace('/', '\\');
+	}
 }
 
 /**
- * @brief Sets pointer to DiffList getting compare results.
- * CDiffWrapper adds compare results to DiffList. This function
- * sets external DiffList which gets compare results.
+ * @brief Enables/disabled DiffList creation ands sets DiffList.
+ * This function enables or disables DiffList creation. When
+ * @p diffList is NULL difflist is not created. When valid DiffList
+ * pointer is given, compare results are stored into it.
  * @param [in] difflist Pointer to DiffList getting compare results.
  */
-void CDiffWrapper::SetDiffList(DiffList *diffList)
+void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
 {
-	ASSERT(diffList);
-	m_pDiffList = diffList;
+	if (diffList == NULL)
+	{
+		m_bUseDiffList = FALSE;
+		m_pDiffList = NULL;
+	}
+	else
+	{
+		m_bUseDiffList = TRUE;
+		m_pDiffList = diffList;
+	}
 }
 
 /**
@@ -332,53 +354,6 @@ void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 	m_settings.context = options->nContext;
 	m_settings.outputStyle = options->outputStyle;
 	m_bAddCmdLine = options->bAddCommandline;
-}
-
-/**
- * @brief Determines if external results-list is used.
- * When diff'ing files results are stored to external DiffList,
- * set by SetDiffList(). This function determines if we are currently
- * using that external list.
- * @return TRUE if results are added to external DiffList.
- */
-BOOL CDiffWrapper::GetUseDiffList() const
-{
-	return m_bUseDiffList;
-}
-
-/**
- * @brief Enables/disables external result-list.
- * CDiffWrapper uses external DiffList to return compare results.
- * This function enables/disables usage of that external DiffList.
- * @param [in] bUseDifList TRUE if external DiffList is used.
- * @return Old value of the setting.
- */
-BOOL CDiffWrapper::SetUseDiffList(BOOL bUseDiffList)
-{
-	BOOL temp = m_bUseDiffList;
-	m_bUseDiffList = bUseDiffList;
-	return temp;
-}
-
-/**
- * @brief Determines if patch-file is created.
- * @return TRUE if patch file will be created.
- */
-BOOL CDiffWrapper::GetCreatePatchFile() const 
-{
-	return m_bCreatePatchFile;
-}
-
-/**
- * @brief Enables/disables creation of patch-file.
- * @param [in] bCreatePatchFile If TRUE patch file will be created.
- * @return Previous value for setting.
- */
-BOOL CDiffWrapper::SetCreatePatchFile(BOOL bCreatePatchFile)
-{
-	BOOL temp = m_bCreatePatchFile;
-	m_bCreatePatchFile = bCreatePatchFile;
-	return temp;
 }
 
 /**
@@ -740,14 +715,19 @@ void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int Q
 
 /**
  * @brief Set source paths for diffing two files.
- * Sets full paths to two files we are diffing.
+ * Sets full paths to two files we are diffing. Paths can be actual user files
+ * or temporary copies of user files. Parameter @p tempPaths tells if paths
+ * are temporary paths that can be deleted.
  * @param [in] filepath1 First file to compare "original file".
  * @param [in] filepath2 Second file to compare "changed file".
+ * @param [in] tempPaths Are given paths temporary (can be deleted)?.
  */
-void CDiffWrapper::SetPaths(const CString &filepath1, const CString &filepath2)
+void CDiffWrapper::SetPaths(const CString &filepath1, const CString &filepath2,
+		BOOL tempPaths)
 {
 	m_s1File = filepath1;
 	m_s2File = filepath2;
+	m_bPathsAreTemp = tempPaths;
 }
 
 /**
@@ -779,7 +759,7 @@ void CDiffWrapper::SetAlternativePaths(const CString &altPath1, const CString &a
 /**
  * @brief Runs diff-engine.
  */
-BOOL CDiffWrapper::RunFileDiff(ARETEMPFILES areTempFiles)
+BOOL CDiffWrapper::RunFileDiff()
 {
 	CString filepath1(m_s1File);
 	CString filepath2(m_s2File);
@@ -795,48 +775,51 @@ BOOL CDiffWrapper::RunFileDiff(ARETEMPFILES areTempFiles)
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
 
-	// Are our working files overwritable (temp)?
-	BOOL bMayOverwrite = (areTempFiles == YESTEMPFILES);
-
 	// Do the preprocessing now, overwrite the temp files
 	// NOTE: FileTransform_UCS2ToUTF8() may create new temp
 	// files and return new names, those created temp files
 	// are deleted in end of function.
 	if (m_infoPrediffer->bToBeScanned)
 	{
-		// this can only fail if the data can not be saved back (no more place on disk ???)
-		// what to do then ??
-		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer, m_infoPrediffer, bMayOverwrite);
+		// this can only fail if the data can not be saved back (no more
+		// place on disk ???) What to do then ??
+		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer, m_infoPrediffer,
+			m_bPathsAreTemp);
 	}
 	else
 	{
-		// this can failed if the prediffer has a problem
-		if (FileTransform_Prediffing(strFile1Temp, *m_infoPrediffer, bMayOverwrite) == FALSE)
+		// This can fail if the prediffer has a problem
+		if (FileTransform_Prediffing(strFile1Temp, *m_infoPrediffer,
+			m_bPathsAreTemp) == FALSE)
 		{
 			// display a message box
 			CString sError;
-			AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile1Temp, m_infoPrediffer->pluginName);
+			AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile1Temp,
+				m_infoPrediffer->pluginName);
 			AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 			// don't use any more this prediffer
 			m_infoPrediffer->bToBeScanned = FALSE;
-			m_infoPrediffer->pluginName = _T("");
+			m_infoPrediffer->pluginName.Empty();
 		}
 	}
 
-	FileTransform_UCS2ToUTF8(strFile1Temp, bMayOverwrite);
-	// we use the same plugin for both files, so it must be defined before second file
+	FileTransform_UCS2ToUTF8(strFile1Temp, m_bPathsAreTemp);
+	// We use the same plugin for both files, so it must be defined before
+	// second file
 	ASSERT(m_infoPrediffer->bToBeScanned == FALSE);
-	if (FileTransform_Prediffing(strFile2Temp, *m_infoPrediffer, bMayOverwrite) == FALSE)
+	if (FileTransform_Prediffing(strFile2Temp, *m_infoPrediffer,
+		m_bPathsAreTemp) == FALSE)
 	{
 		// display a message box
 		CString sError;
-		AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile2Temp, m_infoPrediffer->pluginName);
+		AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile2Temp,
+			m_infoPrediffer->pluginName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 		// don't use any more this prediffer
 		m_infoPrediffer->bToBeScanned = FALSE;
 		m_infoPrediffer->pluginName = _T("");
 	}
-	FileTransform_UCS2ToUTF8(strFile2Temp, bMayOverwrite);
+	FileTransform_UCS2ToUTF8(strFile2Temp, m_bPathsAreTemp);
 
 	DiffFileData diffdata;
 	diffdata.SetDisplayFilepaths(filepath1, filepath2); // store true names for diff utils patch file
@@ -910,7 +893,6 @@ BOOL CDiffWrapper::RunFileDiff(ARETEMPFILES areTempFiles)
 	}			
 
 	FreeDiffUtilsScript(script);
-
 
 	// Done with diffutils filedata
 	diffdata.Close();
@@ -2162,7 +2144,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
  * delimiters from \ to / since we want to keep compatibility with patch-tools.
  * @param [in] script list of changes.
  * @param [in] inf file_data table containing filenames
- * @todo filepath1 and filepath2 aren't really needed, paths are already in inf.
  */
 void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 {

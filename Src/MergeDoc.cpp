@@ -420,8 +420,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	}
 
 	// Set up DiffWrapper
-	m_diffWrapper.SetDiffList(&m_diffList);
-	m_diffWrapper.SetUseDiffList(TRUE);		// Add diffs to list
+	m_diffWrapper.SetCreateDiffList(&m_diffList);
 	m_diffWrapper.GetOptions(&diffOptions);
 	
 	// Clear diff list
@@ -431,9 +430,9 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_diffWrapper.ClearMovedLists();
 
 	// Set paths for diffing and run diff
-	m_diffWrapper.SetPaths(m_pTempFiles->GetLeft(), m_pTempFiles->GetRight());
+	m_diffWrapper.SetPaths(m_pTempFiles->GetLeft(), m_pTempFiles->GetRight(), TRUE);
 	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
-	diffSuccess = m_diffWrapper.RunFileDiff(YESTEMPFILES);
+	diffSuccess = m_diffWrapper.RunFileDiff();
 
 	// Read diff-status
 	DIFFSTATUS status;

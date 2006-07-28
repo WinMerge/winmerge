@@ -17,7 +17,7 @@
 /** 
  * @file  DiffWrapper.h
  *
- * @brief Declaration file for CDiffWrapper
+ * @brief Declaration file for CDiffWrapper.
  *
  * @date  Created: 2003-08-22
  */
@@ -121,11 +121,6 @@ enum DIFF_OUTPUT_TYPE
 	DIFF_OUTPUT_SDIFF
 };
 
-typedef enum {
-	YESTEMPFILES // arguments are temp files
-	, NOTEMPFILES // arguments not temp files
-} ARETEMPFILES;
-
 /**
  * @brief Diffutils options users of this class must use
  */
@@ -186,14 +181,20 @@ struct DIFFSETTINGS
 class FilterCommentsManager;
 
 /**
- * @brief Wrapper class for GNU/diffutils
+ * @brief Wrapper class for diffengine (diffutils and ByteComparator).
+ * Diffwappre class is used to run selected diffengine. For folder compare
+ * there are several methods (COMPARE_TYPE), but for file compare diffutils
+ * is used always. For file compare diffutils can output results to external
+ * DiffList or to patch file. Output type must be selected with member
+ * functions SetCreatePatchFile() and SetCreateDiffList().
  */
 class CDiffWrapper
 {
 public:
 	CDiffWrapper();
 	~CDiffWrapper();
-	void SetPatchFile(const CString &file);
+	void SetCreatePatchFile(const CString &filename);
+	void SetCreateDiffList(DiffList *diffList);
 	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options) const;
 	void SetOptions(const DIFFOPTIONS *options);
@@ -202,17 +203,13 @@ public:
 	void GetPrediffer(PrediffingInfo * prediffer);
 	void GetPatchOptions(PATCHOPTIONS *options) const;
 	void SetPatchOptions(const PATCHOPTIONS *options);
-	BOOL GetUseDiffList() const;
-	BOOL SetUseDiffList(BOOL bUseDiffList);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks) { m_bDetectMovedBlocks = bDetectMovedBlocks; }
 	BOOL GetDetectMovedBlocks() { return m_bDetectMovedBlocks; }
 	BOOL GetAppendFiles() const;
 	BOOL SetAppendFiles(BOOL bAppendFiles);
-	BOOL GetCreatePatchFile() const;
-	BOOL SetCreatePatchFile(BOOL bCreatePatchFile);
-	void SetPaths(const CString &filepath1, const CString &filepath2);
+	void SetPaths(const CString &filepath1, const CString &filepath2, BOOL tempPaths);
 	void SetAlternativePaths(const CString &altPath1, const CString &altPath2);
-	BOOL RunFileDiff(ARETEMPFILES areTempFiles);
+	BOOL RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
@@ -237,9 +234,9 @@ protected:
 	void WritePatchFile(struct change * script, file_data * inf);
 
 private:
-	DIFFSETTINGS m_settings; 
-	DIFFSETTINGS m_globalSettings;	// Temp for storing globals
-	DIFFSTATUS m_status;
+	DIFFSETTINGS m_settings; /**< Compare settings for current compare */
+	DIFFSETTINGS m_globalSettings; /**< Global compare settings */
+	DIFFSTATUS m_status; /**< Status of last compare */
 	CString m_s1File; /**< Full path to first diff'ed file. */
 	CString m_s2File; /**< Full path to second diff'ed file. */
 	CString m_s1AlternativePath; /**< First file's alternative path (may be relative). */
@@ -247,6 +244,7 @@ private:
 	CString m_sOriginalFile1; /**< First file's original (NON-TEMP) path. */
 	CString m_sOriginalFile2; /**< Second file's original (NON-TEMP) path. */
 	CString m_sPatchFile; /**< Full path to created patch file. */
+	BOOL m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;
 	/// prediffer info are stored only for MergeDoc
@@ -256,11 +254,11 @@ private:
 	BOOL m_bCreatePatchFile; /**< Do we create a patch file? */
 	BOOL m_bAddCmdLine; /**< Do we add commandline to patch file? */
 	BOOL m_bAppendFiles; /**< Do we append to existing patch file? */
-	int m_nDiffs;
-	DiffList *m_pDiffList;
-	CMap<int, int, int, int> m_moved0;
-	CMap<int, int, int, int> m_moved1;
-	FilterCommentsManager * m_FilterCommentsManager;
+	int m_nDiffs; /**< Difference count */
+	DiffList *m_pDiffList; /**< Pointer to external DiffList */
+	CMap<int, int, int, int> m_moved0; /**< Moved lines map for first side */
+	CMap<int, int, int, int> m_moved1; /**< Moved lines map for second side */
+	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
 };
 
 // forward declarations needed by DiffFileData

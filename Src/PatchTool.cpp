@@ -88,9 +88,9 @@ int CPatchTool::CreatePatch()
 		}
 
 		// Select patch create -mode
-		m_diffWrapper.SetUseDiffList(FALSE);
-		m_diffWrapper.SetCreatePatchFile(TRUE);
+		m_diffWrapper.SetCreatePatchFile(m_dlgPatch.m_fileResult);
 		m_diffWrapper.SetAppendFiles(m_dlgPatch.m_appendFile);
+		m_diffWrapper.SetPrediffer(NULL);
 
 		int fileCount = m_dlgPatch.GetItemCount();
 		POSITION pos = m_dlgPatch.GetFirstItem();
@@ -98,15 +98,12 @@ int CPatchTool::CreatePatch()
 		for (int i = 0; i < fileCount; i++)
 		{
 			PATCHFILES files = m_dlgPatch.GetNextItem(pos);
-			CString filename1 = files.lfile;
-			CString filename2 = files.rfile;
 			
 			// Set up DiffWrapper
-			m_diffWrapper.SetPrediffer(NULL);
-			m_diffWrapper.SetPaths(files.lfile, files.rfile);
+			m_diffWrapper.SetPaths(files.lfile, files.rfile, FALSE);
 			m_diffWrapper.SetAlternativePaths(files.pathLeft, files.pathRight);
 			m_diffWrapper.SetCompareFiles(files.lfile, files.rfile);
-			bDiffSuccess = m_diffWrapper.RunFileDiff(NOTEMPFILES);
+			bDiffSuccess = m_diffWrapper.RunFileDiff();
 			m_diffWrapper.GetDiffStatus(&status);
 
 			if (!bDiffSuccess)
@@ -163,8 +160,6 @@ BOOL CPatchTool::ShowDialog()
 		// There must be one filepair
 		if (m_dlgPatch.GetItemCount() < 1)
 			bRetVal = FALSE;
-
-		m_diffWrapper.SetPatchFile(m_dlgPatch.m_fileResult);
 
 		// These two are from dropdown list - can't be wrong
 		patchOptions.outputStyle = m_dlgPatch.m_outputStyle;
