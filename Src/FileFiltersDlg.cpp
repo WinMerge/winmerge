@@ -45,9 +45,9 @@ static char THIS_FILE[] = __FILE__;
 static const TCHAR FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
 
 /**
- * @brief Location for file compare specific help to open.
+ * @brief Location for filters specific help to open.
  */
-static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
+static const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
 // CFiltersDlg dialog
@@ -59,7 +59,6 @@ FileFiltersDlg::FileFiltersDlg() : CPropertyPage(FileFiltersDlg::IDD)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
 }
-
 
 void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
@@ -89,6 +88,7 @@ END_MESSAGE_MAP()
 
 /**
  * @brief Set array of filters.
+ * @param [in] fileFilters Array of filters to show in the dialog.
  * @note Call this before actually showing the dialog.
  */
 void FileFiltersDlg::SetFilterArray(FILEFILTER_INFOLIST * fileFilters)
@@ -98,6 +98,7 @@ void FileFiltersDlg::SetFilterArray(FILEFILTER_INFOLIST * fileFilters)
 
 /**
  * @brief Returns path (cont. filename) of selected filter
+ * @return Full path to selected filter file.
  */
 CString FileFiltersDlg::GetSelected()
 {
@@ -106,9 +107,10 @@ CString FileFiltersDlg::GetSelected()
 
 /**
  * @brief Set path of selected filter.
+ * @param [in] Path for selected filter.
  * @note Call this before actually showing the dialog.
  */
-void FileFiltersDlg::SetSelected(CString selected)
+void FileFiltersDlg::SetSelected(const CString & selected)
 {
 	m_sFileFilterPath = selected;
 }
@@ -149,7 +151,8 @@ void FileFiltersDlg::InitList()
 }
 
 /**
- * @brief Select filter by index in the listview
+ * @brief Select filter by index in the listview.
+ * @param [in] index Index of filter to select.
  */
 void FileFiltersDlg::SelectFilterByIndex(int index)
 {
@@ -188,12 +191,13 @@ BOOL FileFiltersDlg::OnInitDialog()
 }
 
 /**
- * @brief Add filter from filter-list index to dialog
+ * @brief Add filter from filter-list index to dialog.
+ * @param [in] filterIndex Index of filter to add.
  */
 void FileFiltersDlg::AddToGrid(int filterIndex)
 {
 	const FileFilterInfo & filterinfo = m_Filters->GetAt(filterIndex);
-	int item = filterIndex + 1;
+	const int item = filterIndex + 1;
 
 	m_listFilters.InsertItem(item, filterinfo.name);
 	m_listFilters.SetItemText(item, 1, filterinfo.description);
@@ -233,7 +237,6 @@ void FileFiltersDlg::OnFiltersEditbtn()
 	if (sel > 0)
 	{
 		CString path = m_listFilters.GetItemText(sel, 2);
-
 		theApp.m_globalFileFilter.EditFileFilter(path);
 	}
 }
@@ -250,14 +253,21 @@ void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 }
 
 /**
- * @brief Shortcut to enable or disable a control
+ * @brief Shortcut to enable or disable a control.
+ * @param [in] parent Pointer to dialog.
+ * @param [in] item Control's resourceID in dialog.
+ * @param [in] enable TRUE if item is enabled, FALSE if disabled.
  */
 static void EnableDlgItem(CWnd * parent, int item, bool enable)
 {
 	parent->GetDlgItem(item)->EnableWindow(!!enable);
 }
 
-/** @brief Is item "item" in list the <None> item? */
+/**
+ * @brief Is item in list the <None> item?
+ * @param [in] item Item to test.
+ * @return true if item is <None> item.
+ */
 bool FileFiltersDlg::IsFilterItemNone(int item) const
 {
 	CString txtNone;
@@ -366,9 +376,7 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  * name. Opens new filterfile for editing.
  * @todo (At least) Warn if user puts filter to outside
  * filter directories?
- * @todo Warn user instead of silently failing when there
- * are no defined filter folders.
- * @bug Doesn't fail or inform if copying template file fails.
+ * @todo Can global filter path be empty (I think not - Kimmo).
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
@@ -381,6 +389,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (globalPath.IsEmpty() && userPath.IsEmpty())
 	{
+		AfxMessageBox(IDS_FILEFILTER_NO_USERFOLDER, MB_ICONSTOP);
 		return;
 	}
 
@@ -388,6 +397,12 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	if (templatePath[templatePath.GetLength()-1] != '\\')
 		templatePath += "\\";
 	templatePath += FILE_FILTER_TEMPLATE;
+
+	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
+	{
+		ResMsgBox1(IDS_FILEFILTER_TMPL_MISSING, templatePath, MB_ICONERROR);
+		return;
+	}
 
 	CString path = (globalPath.IsEmpty() ? userPath : globalPath);
 
@@ -421,7 +436,13 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 			s += FileFilterExt;
 		}
 
-		CopyFile(templatePath, s, TRUE);
+		// Open-dialog asks about overwriting, so we can overwrite filter file
+		// user has already allowed it.
+		if (!CopyFile(templatePath, s, FALSE))
+		{
+			ResMsgBox1(IDS_FILEFILTER_TMPL_COPY, templatePath, MB_ICONERROR);
+			return;
+		}
 		theApp.m_globalFileFilter.EditFileFilter(s);
 		FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
 		int retval = pMgr->AddFilter(s);
@@ -440,7 +461,6 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 /**
  * @brief Delete selected filter.
- * @todo Error message for failed file delete?
  */
 void FileFiltersDlg::OnBnClickedFilterfileDelete()
 {
@@ -449,7 +469,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 
 	sel = m_listFilters.GetNextItem(sel, LVNI_SELECTED);
 
-	// Can't edit first "None"
+	// Can't delete first "None"
 	if (sel > 0)
 	{
 		m_listFilters.GetItemText(sel, 2, path.GetBuffer(MAX_PATH),	MAX_PATH);
@@ -472,6 +492,11 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 
 				UpdateFiltersList();
 			}
+			else
+			{
+				ResMsgBox1(IDS_FILEFILTER_DELETE_FAIL, path, MB_ICONSTOP);
+			}
+			
 		}
 	}
 }
@@ -498,7 +523,9 @@ void FileFiltersDlg::UpdateFiltersList()
 	}
 }
 
-/** @brief Open help from mainframe when user presses F1*/
+/**
+ * @brief Open help from mainframe when user presses F1
+ */
 void FileFiltersDlg::OnHelp()
 {
 	GetMainFrame()->ShowHelp(FilterHelpLocation);

@@ -2001,6 +2001,14 @@ BEGIN
     IDS_FILTERFILE_DESCTITLE "Beskrivning"
     IDS_FILEFILTER_SAVENEW  "Välj filnamn för nytt filter"
     IDS_FILEFILTER_FILEMASK "Filfilter (*.flt)|*.flt|Alla Filer (*.*)|*.*||"
+    IDS_FILEFILTER_TMPL_MISSING 
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder."
+    IDS_FILEFILTER_TMPL_COPY 
+                            "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
+    IDS_FILEFILTER_NO_USERFOLDER 
+                            "User's filter file folder is not defined!\n\nPlease select filter folder in options/System."
+    IDS_FILEFILTER_DELETE_FAIL 
+                            "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
 END
 
 // VERSION CONTROL OPTIONS

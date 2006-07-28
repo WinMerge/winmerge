@@ -42,9 +42,7 @@ public:
 	FileFiltersDlg();   // standard constructor
 	void SetFilterArray(FILEFILTER_INFOLIST * fileFilters);
 	CString GetSelected();
-	void SetSelected(CString selected);
-
-
+	void SetSelected(const CString & selected);
 
 // Implementation data
 private:
@@ -55,9 +53,8 @@ private:
 // Dialog Data
 	//{{AFX_DATA(FileFiltersDlg)
 	enum { IDD = IDD_FILEFILTERS };
-	CListCtrl	m_listFilters;
+	CListCtrl m_listFilters;
 	//}}AFX_DATA
-
 
 // Implementation methods
 private:
@@ -73,7 +70,6 @@ private:
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
-
 
 	// Generated message map functions
 	//{{AFX_MSG(FileFiltersDlg)

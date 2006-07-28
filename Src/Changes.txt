@@ -5,6 +5,9 @@ Add new items to top.
 2006-07-28 Kimmo
  PATCH: [ 1529599 ] Cleanup DiffWrapper
   Src: DiffWrapper.cpp DiffWrapper.h MergeDoc.cpp PatchTool.cpp
+ PATCH: [ 1529965 ] Add error messages for managing file filters
+  Src: FileFiltersDlg.cpp FileFiltersDlg.h Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-07-27 Takashi
  PATCH: [ 1527843 ] prevent dialog from flickering
