@@ -149,6 +149,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_WINDOW_CLOSEALL, OnWindowCloseAll)
 	ON_UPDATE_COMMAND_UI(ID_WINDOW_CLOSEALL, OnUpdateWindowCloseAll)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
+	ON_WM_TIMER()
+	ON_WM_ACTIVATE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -165,9 +167,7 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
-/**
- * @brief Relative (to WinMerge executable ) path to local help file.
- */
+/** @brief Relative (to WinMerge executable ) path to local help file. */
 static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
 
 /**
@@ -183,6 +183,12 @@ static const TCHAR DocsURL[] = _T("http://winmerge.org/2.4/manual/index.html");
  */
 static const TCHAR DefaultRelativeFilterPath[] = _T("WinMergeFilters");
 
+/** @brief Timer ID for window flashing timer. */
+static const UINT ID_TIMER_FLASH = 1;
+
+/** @brief Timeout for window flashing timer, in milliseconds. */
+static const UINT WINDOW_FLASH_TIMEOUT = 500;
+
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
 
@@ -191,18 +197,18 @@ static const TCHAR DefaultRelativeFilterPath[] = _T("WinMergeFilters");
  * @todo Preference for logging?
  */
 CMainFrame::CMainFrame()
+: m_bFlashing(FALSE)
+, m_bFirstTime(TRUE)
+, m_bEscShutdown(FALSE)
+, m_bClearCaseTool(FALSE)
+, m_bShowErrors(TRUE)
+, m_CheckOutMulti(FALSE)
+, m_bVCProjSync(FALSE)
+, m_bVssSuppressPathCheck(FALSE)
 {
-	m_bFirstTime = TRUE;
-	m_bEscShutdown = FALSE;
-	m_bClearCaseTool = FALSE;
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 	OptionsInit(); // Implementation in OptionsInit.cpp
 	UpdateCodepageModule();
-
-	m_bShowErrors = TRUE;
-	m_CheckOutMulti = FALSE;
-	m_bVCProjSync = FALSE;
-	m_bVssSuppressPathCheck = FALSE;
 
 	InitializeSourceControlMembers();
 	g_bUnpackerMode = theApp.GetProfileInt(_T("Settings"), _T("UnpackerMode"), PLUGIN_MANUAL);
@@ -2768,22 +2774,33 @@ void CMainFrame::OnToolsLoadConfig()
 /**
  * @brief Send current option settings into codepage module
  */
-void
-CMainFrame::UpdateCodepageModule()
+void CMainFrame::UpdateCodepageModule()
 {
 	// Get current codepage settings from the options module
 	// and push them into the codepage module
 	updateDefaultCodepage(m_options.GetInt(OPT_CP_DEFAULT_MODE), m_options.GetInt(OPT_CP_DEFAULT_CUSTOM));
 }
 
-void
-CMainFrame::OnTimer(UINT nIDEvent)
+/**
+ * @brief Handle timer events.
+ * @param [in] nIDEvent Timer that timed out.
+ */
+void CMainFrame::OnTimer(UINT nIDEvent)
 {
-	if (nIDEvent == WM_NONINTERACTIVE)
+	switch (nIDEvent)
 	{
-		KillTimer(nIDEvent);
+	case WM_NONINTERACTIVE:
+		KillTimer(WM_NONINTERACTIVE);
 		PostMessage(WM_CLOSE);
+		break;
+	
+	case ID_TIMER_FLASH:
+		// This timer keeps running until window is activated
+		// See OnActivate()
+		FlashWindow(TRUE);
+		break;
 	}
+	CMDIFrameWnd::OnTimer(nIDEvent);
 }
 
 /**
@@ -3031,4 +3048,42 @@ void CMainFrame::OnSaveProject()
 	CString filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	pathsDlg.m_sFilter = filterNameOrMask;
 	sht.DoModal();
+}
+
+/** 
+ * @brief Start flashing window if window is inactive.
+ */
+void CMainFrame::StartFlashing()
+{
+	CWnd * activeWindow = GetActiveWindow();
+	if (activeWindow != this)
+	{
+		FlashWindow(TRUE);
+		m_bFlashing = TRUE;
+		SetTimer(ID_TIMER_FLASH, WINDOW_FLASH_TIMEOUT, NULL);
+	}
+}
+
+/** 
+ * @brief Stop flashing window when window is activated.
+ *
+ * If WinMerge is inactive when compare finishes, we start flashing window
+ * to alert user. When user activates WinMerge window we stop flashing.
+ * @param [in] nState Tells if window is being activated or deactivated.
+ * @param [in] pWndOther Pointer to window whose status is changing.
+ * @param [in] Is window minimized?
+ */
+void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CMDIFrameWnd::OnActivate(nState, pWndOther, bMinimized);
+
+	if (nState == WA_ACTIVE || nState == WA_CLICKACTIVE)
+	{
+		if (m_bFlashing)
+		{
+			m_bFlashing = FALSE;
+			FlashWindow(FALSE);
+			KillTimer(ID_TIMER_FLASH);
+		}
+	}
 }

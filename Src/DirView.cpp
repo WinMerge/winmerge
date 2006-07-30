@@ -2040,6 +2040,7 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	clock_t compareEnd = clock();
 	if (compareEnd - m_compareStart > TimeToSignalCompare * CLOCKS_PER_SEC)
 		MessageBeep(IDOK);
+	GetMainFrame()->StartFlashing();
 
 	return 0; // return value unused
 }

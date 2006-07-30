@@ -129,6 +129,7 @@ public:
 	void ResetOptions() { OptionsInit(); }
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
+	void StartFlashing();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
@@ -155,6 +156,7 @@ public:
 	VSSHelper m_vssHelper; /**< Helper class for VSS integration */
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors; }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
+	BOOL m_bFlashing; /**< Window is flashing. */
 
 	/**
 	 * @name Version Control System (VCS) integration.
@@ -264,6 +266,7 @@ protected:
 	afx_msg void OnWindowCloseAll();
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
+	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
