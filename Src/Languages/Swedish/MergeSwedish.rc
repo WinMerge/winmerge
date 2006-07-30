@@ -1131,10 +1131,10 @@ BEGIN
     LTEXT           "&Filjämförelsemetod:",IDC_STATIC,7,105,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,84,52,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "S&toppa efter första skillnad",IDC_COMPARE_STOPFIRST,
+    CONTROL         "S&toppa efter första skillnaden",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
-    GROUPBOX        "Comments",IDC_STATIC,7,134,221,32
-    CONTROL         "Filter Comments",IDC_FILTERCOMMENTS_CHECK,"Button",
+    GROUPBOX        "Kommentarer",IDC_STATIC,7,134,221,32
+    CONTROL         "Filterkommentarer",IDC_FILTERCOMMENTS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,15,147,205,10
     PUSHBUTTON      "Standard",IDC_COMPARE_DEFAULTS,7,179,50,14
 END
@@ -1512,7 +1512,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Dialog"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Use customized text colors",
+    CONTROL         "&Använd anpassade textkulörer",
                     IDC_DEFAULT_STANDARD_COLORS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,25,14,161,10
     GROUPBOX        "Anpassade textkulörer",IDC_CUSTOM_COLORS_GROUP,27,33,159,
@@ -1548,11 +1548,11 @@ BEGIN
     RTEXT           "&Vänster:",IDC_STATIC,7,11,40,8
     EDITTEXT        IDC_PROJ_LFILE_EDIT,50,8,210,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Bläddra...",IDC_PROJ_LFILE_BROWSE,265,8,50,14
-    CONTROL         "R&ead-only",IDC_PROJFILE_LREADONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,50,25,208,10
+    CONTROL         "Bara& läsbar",IDC_PROJFILE_LREADONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,50,25,208,10
     RTEXT           "&Höger:",IDC_STATIC,7,42,40,8
     EDITTEXT        IDC_PROJ_RFILE_EDIT,50,40,210,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Bläddra...",IDC_PROJ_RFILE_BROWSE,265,40,50,14
-    CONTROL         "Re&ad-only",IDC_PROJFILE_RREADONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,50,57,208,10
+    CONTROL         "Bara& läsbar",IDC_PROJFILE_RREADONLY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,50,57,208,10
     RTEXT           "&Filter:",IDC_STATIC,7,74,40,8
     EDITTEXT        IDC_PROJ_FILTER_EDIT,50,72,210,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Välj...",IDC_PROJ_FILTER_SELECT,265,72,50,14
@@ -1738,11 +1738,11 @@ END
 STRINGTABLE
 BEGIN
     ID_FILE_OPENPROJECT     "Öppna Projektfil\nProjektfil(Ctrl+J)"
-    IDS_UNK_ERROR_READING_PROJECT "Okänt fel vid försök att öppna projektfil"
-    IDS_UNK_ERROR_SAVING_PROJECT "Okänt fel vid försök att spara projektfil"
+    IDS_UNK_ERROR_READING_PROJECT "Okänt fel vid försök att öppna Projektfil"
+    IDS_UNK_ERROR_SAVING_PROJECT "Okänt fel vid försök att spara Projektfil"
     IDS_PROJFILEDLG_CAPTION "Projektfil"
-    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
-    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
+    IDS_PROJFILE_LOAD_SUCCESS "Projektfilen är framgångsrikt öppnad."
+    IDS_PROJFILE_SAVE_SUCCESS "Projektfilen är framgångsrikt sparad."
     ID_FILE_SAVEPROJECT     "Sparar aktuella sökvägar och inställningar till Projektfil\nSpara Projektfil"
 END
 
@@ -1960,7 +1960,7 @@ BEGIN
     IDS_DIFF_OPEN_NO_SET_PROPS "Ändringar har gjorts i den aktuella filjämförelsesessionen. Vissa inställningar kanske inte syns förrän den aktuella filjämförelsen startas om."
     IDS_FONT_CHANGE         "Ändringen av teckensnitt kommer inte att synas i redan öppna fönster."
     IDS_OPTIONS_INVALID_TABSIZE 
-                            "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
+                            "Värdet i Tabbstorleks-fältet är inte inom vad WinMerge accepterar.\n\nVar god och använd värden från 1 - %1."
 END
 
 // BROWSE FILE

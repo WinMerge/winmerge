@@ -5,6 +5,9 @@ Add new items to top.
 2006-07-30 Kimmo
  PATCH: [ 1530352 ] Start flashing WinMerge window when folder compare is ready
   Src: DirView.cpp MainFrm.cpp MainFrm.h
+ PATCH: [ 1529995 ] Swedish translation update for 2.5.5.4+
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-07-29 Takashi
  PATCH: [ 1529915 ] Refresh menu on DirView does not work correctly
