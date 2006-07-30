@@ -2181,6 +2181,8 @@ void CMergeEditView::OnChangePane()
 	pSplitterWnd->ActivateNext();
 	pWnd = static_cast<CMergeEditView*>(pSplitterWnd->GetActivePane());
 	ptCursor.x = 0;
+	if (ptCursor.y >= pWnd->GetLineCount())
+		ptCursor.y = pWnd->GetLineCount() - 1;
 	pWnd->SetCursorPos(ptCursor);
 }
 
