@@ -8,6 +8,9 @@ Add new items to top.
  PATCH: [ 1529995 ] Swedish translation update for 2.5.5.4+
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1530655 ] Catalan translation update
+  Submitted by Jordi Vilar
+  Src/Languages/Catalan: MergeCatalan.rc
 
 2006-07-29 Takashi
  PATCH: [ 1529915 ] Refresh menu on DirView does not work correctly
