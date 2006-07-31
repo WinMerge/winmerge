@@ -800,9 +800,10 @@ public :
     BOOL FindText (LPCTSTR pszText, const CPoint & ptStartPos, DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);
     BOOL FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPos, const CPoint & ptBlockBegin, const CPoint & ptBlockEnd,
                           DWORD dwFlags, BOOL bWrapSearch, CPoint * pptFoundPos);
-    BOOL HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse = FALSE);
+    BOOL HighlightText (const CPoint & ptStartPos, int nLength,
+      BOOL bCursorToLeft = FALSE);
 
-	// IME (input method editor)
+    // IME (input method editor)
     void UpdateCompositionWindowPos();
     void UpdateCompositionWindowFont();
 

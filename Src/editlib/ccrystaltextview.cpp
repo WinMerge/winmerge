@@ -4345,8 +4345,16 @@ FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int 
   return -1;
 }
 
+/** 
+ * @brief Select text in editor.
+ * @param [in] ptStartPos Star position for highlight.
+ * @param [in] nLength Count of characters to highlight.
+ * @param [in] bCursorToLeft If TRUE cursor is positioned to Left-end of text
+ *  selection, if FALSE cursor is positioned to right-end.
+ */
 BOOL CCrystalTextView::
-HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse /*= FALSE*/)
+HighlightText (const CPoint & ptStartPos, int nLength,
+    BOOL bCursorToLeft /*= FALSE*/)
 {
   ASSERT_VALIDTEXTPOS (ptStartPos);
   CPoint ptEndPos = ptStartPos;
@@ -4366,7 +4374,7 @@ HighlightText (const CPoint & ptStartPos, int nLength, BOOL bReverse /*= FALSE*/
     }
   ASSERT_VALIDTEXTPOS (m_ptCursorPos);  //  Probably 'nLength' is bigger than expected...
 
-  m_ptCursorPos = bReverse ? ptStartPos : ptEndPos;
+  m_ptCursorPos = bCursorToLeft ? ptStartPos : ptEndPos;
   m_ptAnchor = m_ptCursorPos;
   SetSelection (ptStartPos, ptEndPos);
   UpdateCaret ();

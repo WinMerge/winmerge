@@ -38,16 +38,17 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CFindTextDlg dialog
 
-CFindTextDlg::CFindTextDlg (CCrystalTextView * pBuddy):CDialog (CFindTextDlg::IDD, NULL)
+CFindTextDlg::CFindTextDlg (CCrystalTextView * pBuddy)
+: CDialog (CFindTextDlg::IDD, NULL)
+, m_pBuddy(pBuddy)
+, m_nDirection(1)
+, m_bMatchCase(FALSE)
+, m_bWholeWord(FALSE)
+, m_bRegExp(FALSE)
+, m_ptCurrentPos(CPoint (0, 0))
 {
-  m_pBuddy = pBuddy;
   //{{AFX_DATA_INIT(CFindTextDlg)
-  m_nDirection = 1;
-  m_bMatchCase = FALSE;
-  m_bWholeWord = FALSE;
-  m_bRegExp = FALSE;
   //}}AFX_DATA_INIT
-  m_ptCurrentPos = CPoint (0, 0);
 }
 
 void CFindTextDlg::
@@ -97,6 +98,7 @@ void CFindTextDlg::OnOK ()
       UpdateLastSearch ();
 
       ASSERT (m_pBuddy != NULL);
+      BOOL bCursorToLeft = FALSE;
       DWORD dwSearchFlags = 0;
       if (m_bMatchCase)
         dwSearchFlags |= FIND_MATCH_CASE;
@@ -105,12 +107,17 @@ void CFindTextDlg::OnOK ()
       if (m_bRegExp)
         dwSearchFlags |= FIND_REGEXP;
       if (m_nDirection == 0)
-        dwSearchFlags |= FIND_DIRECTION_UP;
+        {
+          dwSearchFlags |= FIND_DIRECTION_UP;
+          // When finding upwards put cursor to begin of selection
+          bCursorToLeft = TRUE;
+         }
 
       m_ctlFindText.SaveState(_T("Files\\FindInFile"));
 
       CPoint ptTextPos;
-      if (!m_pBuddy->FindText (m_sText, m_ptCurrentPos, dwSearchFlags, TRUE, &ptTextPos))
+      if (!m_pBuddy->FindText (m_sText, m_ptCurrentPos, dwSearchFlags, TRUE,
+          &ptTextPos))
         {
           CString prompt;
           prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, m_sText);
@@ -119,12 +126,8 @@ void CFindTextDlg::OnOK ()
           return;
         }
 
-      // Goto begin of selection if scrolling happens to left
-      BOOL bReverse = FALSE;
-      if (ptTextPos.x < m_ptCurrentPos.x)
-        bReverse = TRUE;
-        
-      m_pBuddy->HighlightText (ptTextPos, m_pBuddy->m_nLastFindWhatLen, bReverse);
+      m_pBuddy->HighlightText (ptTextPos, m_pBuddy->m_nLastFindWhatLen,
+          bCursorToLeft);
 
       CDialog::OnOK ();
     }

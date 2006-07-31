@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-07-31 Kimmo
+ PATCH: [ 1531293 ] Fix wrong cursor position after find
+  Src: ccrystaltextview.cpp ccrystaltextview.h cfindtextdlg.cpp
+
 2006-07-30 Takashi
  BUG: [ 1528322 ] Crash when using F6 / Bugg for file differences
   Src: MergeEditView.cpp
