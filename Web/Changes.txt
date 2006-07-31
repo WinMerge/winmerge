@@ -1,3 +1,7 @@
+2006-07-31 Tim
+ PATCH: [ 1531259 ] Web: Known limitation: In linefilters $ does not match EOL
+  Web\2.4: limitations.php
+
 2006-06-30 Tim
  Add 'Gal Hammer' to developers.
   Web\developer: developers.xml
