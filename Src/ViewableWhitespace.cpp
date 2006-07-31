@@ -9,21 +9,30 @@
 #include "StdAfx.h" 
 #include "ViewableWhitespace.h"
 
-static bool f_initialized=false;
+/** @brief Is structure initialized? */
+static bool f_initialized = false;
 
 #ifdef UNICODE
 // For UNICODE build, there is just one set which is always used
 // tab, space, cr, lf, eol
-struct ViewableWhitespaceChars
+
+/** @brief Structure for whitespace characters.
+ *  Char order is tab, space, cr, lf, eol.
+ */
+static struct ViewableWhitespaceChars
 // Do not use L literals, as they involve runtime mbcs expansion, apparently
  f_specialChars = {
-	0
-	, L" " // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
-	, L" " // U+B7: MIDDLE DOT
-	, L" " // U+A7: SECTION SIGN
-	, L" " // U+B6: PILCROW SIGN
-	, L" " // U+A4: CURRENCY SIGN
+	0,
+	L" ", // U+BB: RIGHT POINTING DOUBLE ANGLE QUOTATION MARK
+	L" ", // U+B7: MIDDLE DOT
+	L" ", // U+A7: SECTION SIGN
+	L" ", // U+B6: PILCROW SIGN
+	L" " // U+A4: CURRENCY SIGN
 };
+
+/**
+ * @brief Initialize whitespace chars structure.
+ */
 static void initialize()
 {
 	f_specialChars.c_tab[0] = 0xBB;
@@ -40,6 +49,9 @@ static void initialize()
 static CMap<int, int, int, int> f_offset; // map codepage to offset
 
 // tab, space, cr, lf, eol
+/** @brief Structure for whitespace characters.
+ *  Char order is tab, space, cr, lf, eol.
+ */
 static struct ViewableWhitespaceChars
  f_specialChars[] = {
 	 { 0, ">", ".", "$", "!", "&" } // default all-ASCII for unhandled codepages
@@ -75,6 +87,9 @@ static struct ViewableWhitespaceChars
 	, { 1257, "\xBB", "\xB7", "\xA7", "\xB6", "\xA4" } // CP-1257 Windows Baltic Rim
 };
 
+/**
+ * @brief Initialize whitespace chars structure.
+ */
 static void initialize()
 {
 	for (int i=0; i<sizeof(f_specialChars)/sizeof(f_specialChars[0]); ++i)
@@ -88,7 +103,11 @@ static void initialize()
 
 #endif
 
-
+/**
+ * @brief Return viewable whitespace chars.
+ * @param [in] codepage Used codepage (only efective in ANSI builds).
+ * @return Pointer to structure having viewable chars.
+ */
 const ViewableWhitespaceChars * GetViewableWhitespaceChars(int codepage)
 {
 	if (!f_initialized)

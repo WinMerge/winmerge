@@ -8,6 +8,8 @@ Add new items to top.
  PATCH: [ 1406051 ] code cleanup for ScriptFileActions
   Submitted by Perry
   Src: DirActions.cpp FileActionScript.cpp FileActionScript.h
+ PATCH: [ 1530459 ] Add some doxygen comments for ViewableWhitespace
+  Src: ViewableWhitespace.cpp ViewableWhitespace.h
 
 2006-07-30 Takashi
  BUG: [ 1528322 ] Crash when using F6 / Bugg for file differences
