@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\Build\MergeDebug/DisplayXMLFiles.dll" /pdbtype:sept /libpath:"..\..\..\Build\MergeDebugStatic"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\Build\MergeDebug\MergePlugins/DisplayXMLFiles.dll" /pdbtype:sept /libpath:"..\..\..\Build\MergeDebugStatic"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Unicode Debug"
 
@@ -79,7 +79,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\Build\MergeUnicodeDebug/DisplayXMLFiles.dll" /pdbtype:sept /libpath:"..\..\..\Build\MergeDebugStatic"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\..\..\Build\MergeUnicodeDebug\MergePlugins/DisplayXMLFiles.dll" /pdbtype:sept /libpath:"..\..\..\Build\MergeDebugStatic"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Release MinSize"
 
@@ -103,7 +103,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeReleaseMinSize/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeReleaseMinSize\MergePlugins/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Release MinDependency"
 
@@ -127,7 +127,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeRelease/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeRelease\MergePlugins/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Unicode Release MinSize"
 
@@ -151,7 +151,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeUnicodeReleaseMinSize/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeUnicodeReleaseMinSize\MergePlugins/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
 
 !ELSEIF  "$(CFG)" == "DisplayXMLFiles - Win32 Unicode Release MinDependency"
 
@@ -175,7 +175,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeUnicodeRelease/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
+# ADD LINK32 libexpatMapsMT.lib libexpatMT.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\..\..\Build\MergeUnicodeRelease\MergePlugins/DisplayXMLFiles.dll" /libpath:"..\..\..\Build\MergeReleaseStatic"
 
 !ENDIF 
 
