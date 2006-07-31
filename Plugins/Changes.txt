@@ -5,6 +5,10 @@ Add new items to top
 2006-07-31 Kimmo
  BUG: [ 1423769 ] Wrong link path in DisplayXMLFiles in Merge Min Release
   Plugins\src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
+ BUG: [ 1373233 ] Copy&paste bug in DisplayBinaryFiles
+  Plugins\src_VCPP\DisplayBinaryFiles:
+   DisplayBinaryFiles.idl DisplayBinaryFiles.rc
+  Plugins\dlls: DisplayBinaryFiles.dll (1.0.4.0)
 
 2006-03-06 Perry
  PATCH: [ 1441050 ] Fix RCLocalizationHelper

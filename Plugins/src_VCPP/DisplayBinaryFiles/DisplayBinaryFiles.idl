@@ -30,7 +30,7 @@ import "ocidl.idl";
 	version(1.0),
 	helpstring("DisplayBinaryFiles 1.0 Type Library")
 ]
-library HIDEFIRSTLETTERLib
+library DisplayBinaryFilesLib
 {
 	importlib("stdole32.tlb");
 	importlib("stdole2.tlb");
