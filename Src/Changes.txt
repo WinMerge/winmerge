@@ -5,6 +5,9 @@ Add new items to top.
 2006-07-31 Kimmo
  PATCH: [ 1531293 ] Fix wrong cursor position after find
   Src: ccrystaltextview.cpp ccrystaltextview.h cfindtextdlg.cpp
+ PATCH: [ 1406051 ] code cleanup for ScriptFileActions
+  Submitted by Perry
+  Src: DirActions.cpp FileActionScript.cpp FileActionScript.h
 
 2006-07-30 Takashi
  BUG: [ 1528322 ] Crash when using F6 / Bugg for file differences

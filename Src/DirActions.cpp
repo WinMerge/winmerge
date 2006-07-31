@@ -102,7 +102,7 @@ void CDirView::DoCopyRightToLeft()
 			act.dirflag = di.isDirectory();
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_SYNC;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 		}
 		++selCount;
 	}
@@ -134,7 +134,7 @@ void CDirView::DoCopyLeftToRight()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_SYNC;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 		}
 		++selCount;
 	}
@@ -166,7 +166,7 @@ void CDirView::DoDelLeft()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DEL_LEFT;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 		}
 		++selCount;
 	}
@@ -198,7 +198,7 @@ void CDirView::DoDelRight()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DEL_RIGHT;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 		}
 		++selCount;
 	}
@@ -234,7 +234,7 @@ void CDirView::DoDelBoth()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DEL_BOTH;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 		}
 		++selCount;
 	}
@@ -281,7 +281,7 @@ void CDirView::DoDelAll()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DEL_BOTH;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 		}
 		++selCount;
 	}
@@ -443,7 +443,7 @@ void CDirView::DoMoveLeftTo()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DEL_LEFT;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 			++selCount;
 		}
 	}
@@ -498,7 +498,7 @@ void CDirView::DoMoveRightTo()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DEL_RIGHT;
-			actionScript.actions.AddTail(act);
+			actionScript.AddActionItem(act);
 			++selCount;
 		}
 	}
@@ -512,7 +512,7 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList, int selCo
 	if (selCount == 0) // Not sure it is possible to get right-click menu without
 		return;    // any selected items, but may as well be safe
 
-	ASSERT(actionList.GetCount()>0); // Or else the update handler got it wrong
+	ASSERT(actionList.GetActionItemCount()>0); // Or else the update handler got it wrong
 
 	if (!ConfirmActionList(actionList, selCount))
 		return;
@@ -528,21 +528,21 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 {
 	// TODO: We need better confirmation for file actions.
 	// Maybe we should show a list of files with actions done..
-	const FileActionItem & item = actionList.actions.GetHead();
+	FileActionItem item = actionList.GetHeadActionItem();
 
 	// special handling for the single item case, because it is probably the most common,
 	// and we can give the user exact details easily for it
 	switch(item.atype)
 	{
 	case FileAction::ACT_COPY:
-		if (actionList.GetCount() == 1)
+		if (actionList.GetActionItemCount() == 1)
 		{
 			if (!ConfirmSingleCopy(item.src, item.dest))
 				return FALSE;
 		}
 		else
 		{
-			if (!ConfirmMultipleCopy(actionList.GetCount(), selCount))
+			if (!ConfirmMultipleCopy(actionList.GetActionItemCount(), selCount))
 				return FALSE;
 		}
 		break;
@@ -598,12 +598,11 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 	BOOL bItemsRemoved = FALSE;
 	int curSel = GetFirstSelectedInd();
 	CDirDoc *pDoc = GetDocument();
-
-	while (actionList.GetCount()>0)
+	while (actionList.GetActionItemCount()>0)
 	{
 		// Start handling from tail of list, so removing items
 		// doesn't invalidate our item indexes.
-		FileActionItem act = actionList.actions.RemoveTail();
+		FileActionItem act = actionList.RemoveTailActionItem();
 		POSITION diffpos = GetItemKey(act.context);
 		const DIFFITEM & di = pDoc->GetDiffByKey(diffpos);
 		BOOL bUpdateLeft = FALSE;

@@ -28,26 +28,33 @@
 #include "FileActionScript.h"
 #include "CShellFileOp.h"
 
+/**
+ * @brief Standard constructor.
+ */
 FileActionScript::FileActionScript()
 : m_bUseRecycleBin(TRUE)
+, m_bHasCopyOperations(FALSE)
+, m_bHasMoveOperations(FALSE)
+, m_bHasDelOperations(FALSE)
 {
-	m_bHasOperations[0] = FALSE;
-	m_bHasOperations[1] = FALSE;
-	m_bHasOperations[2] = FALSE;
-	m_pOperations[0] = new CShellFileOp();
-	m_pOperations[1] = new CShellFileOp();
-	m_pOperations[2] = new CShellFileOp();
+	m_pCopyOperations = new CShellFileOp();
+	m_pMoveOperations = new CShellFileOp();
+	m_pDelOperations = new CShellFileOp();
 }
 
+/**
+ * @brief Standard destructor.
+ */
 FileActionScript::~FileActionScript()
 {
-	delete m_pOperations[0];
-	delete m_pOperations[1];
-	delete m_pOperations[2];
+	delete m_pCopyOperations;
+	delete m_pMoveOperations;
+	delete m_pDelOperations;
 }
 
 /**
  * @brief Set parent window used for showing MessageBoxes.
+ * @param [in] pWnd Pointer to parent window.
  */
 void FileActionScript::SetParentWindow(CWnd * pWnd)
 {
@@ -56,6 +63,7 @@ void FileActionScript::SetParentWindow(CWnd * pWnd)
 
 /**
  * @brief Does user want to move deleted files to Recycle Bin?
+ * @param [in] bUseRecycleBin If TRUE deleted files are moved to Recycle Bin.
  */
 void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
 {
@@ -64,14 +72,18 @@ void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
 
 /**
  * @brief Return amount of actions (copy, move, etc)  in script.
+ * @return Amount of actions.
  */
-int FileActionScript::GetCount() const
+int FileActionScript::GetActionItemCount() const
 {
-	return actions.GetCount();
+	return m_actions.GetCount();
 }
 
 /**
  * @brief Checkout file from VSS before synching (copying) it.
+ * @param [in] path Full path to a file.
+ * @param [in,out] bApplyToAll Apply user selection to all (selected)files?
+ * @return One of CreateScriptReturn values.
  */
 int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
 {
@@ -108,6 +120,7 @@ int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
  * CShellFileOp can do only one type of operation (copy, move, delete)
  * with one instance at a time, so we use own instance for every
  * type of action.
+ * @return One of CreateScriptReturn values.
  */
 int FileActionScript::CreateOperationsScripts()
 {
@@ -122,12 +135,12 @@ int FileActionScript::CreateOperationsScripts()
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
-	POSITION pos = actions.GetHeadPosition();
+	POSITION pos = m_actions.GetHeadPosition();
 	while (pos != NULL && bContinue == TRUE)
 	{
 		// Handle VCS checkout first
 		BOOL bSkip = FALSE;
-		const FileActionItem act = actions.GetNext(pos);
+		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_COPY && !act.dirflag)
 		{
 			int retVal = VCSCheckOut(act.src, bApplyToAll);
@@ -142,21 +155,20 @@ int FileActionScript::CreateOperationsScripts()
 		if (act.atype == FileAction::ACT_COPY &&
 			bSkip == FALSE && bContinue == TRUE)
 		{
-			m_pOperations[0]->AddSourceFile(act.src);
-			m_pOperations[0]->AddDestFile(act.dest);
-			if (m_bHasOperations[0] == FALSE)
-				m_bHasOperations[0] = TRUE;
+			m_pCopyOperations->AddSourceFile(act.src);
+			m_pCopyOperations->AddDestFile(act.dest);
+			m_bHasCopyOperations = TRUE;
 		}
 	}
 	if (bContinue == FALSE)
 	{
-		m_bHasOperations[0] = FALSE;
-		m_pOperations[0]->Reset();
+		m_bHasCopyOperations = FALSE;
+		m_pCopyOperations->Reset();
 		return SCRIPT_USERCANCEL;
 	}
 	
-	if (m_bHasOperations[0] == TRUE)
-		m_pOperations[0]->SetOperationFlags(operation, m_pParentWindow, operFlags);
+	if (m_bHasCopyOperations)
+		m_pCopyOperations->SetOperationFlags(operation, m_pParentWindow, operFlags);
 
 	// Move operations next
 	operation = FO_MOVE;
@@ -164,20 +176,19 @@ int FileActionScript::CreateOperationsScripts()
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
-	pos = actions.GetHeadPosition();
+	pos = m_actions.GetHeadPosition();
 	while (pos != NULL)
 	{
-		const FileActionItem act = actions.GetNext(pos);
+		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_MOVE)
 		{
-			m_pOperations[1]->AddSourceFile(act.src);
-			m_pOperations[1]->AddDestFile(act.dest);
-			if (m_bHasOperations[1] == FALSE)
-				m_bHasOperations[1] = TRUE;
+			m_pMoveOperations->AddSourceFile(act.src);
+			m_pMoveOperations->AddDestFile(act.dest);
+			m_bHasMoveOperations = TRUE;
 		}
 	}
-	if (m_bHasOperations[1] == TRUE)
-		m_pOperations[1]->SetOperationFlags(operation, m_pParentWindow, operFlags);
+	if (m_bHasMoveOperations)
+		m_pMoveOperations->SetOperationFlags(operation, m_pParentWindow, operFlags);
 
 	// Delete operations last
 	operation = FO_DELETE;
@@ -185,26 +196,26 @@ int FileActionScript::CreateOperationsScripts()
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
-	pos = actions.GetHeadPosition();
+	pos = m_actions.GetHeadPosition();
 	while (pos != NULL)
 	{
-		const FileActionItem act = actions.GetNext(pos);
+		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_DEL)
 		{
-			m_pOperations[2]->AddSourceFile(act.src);
+			m_pDelOperations->AddSourceFile(act.src);
 			if (!act.dest.IsEmpty())
-				m_pOperations[2]->AddSourceFile(act.dest);
-			if (m_bHasOperations[2] == FALSE)
-				m_bHasOperations[2] = TRUE;
+				m_pDelOperations->AddSourceFile(act.dest);
+			m_bHasDelOperations = TRUE;
 		}
 	}
-	if (m_bHasOperations[2] == TRUE)
-		m_pOperations[2]->SetOperationFlags(operation, m_pParentWindow, operFlags);
+	if (m_bHasDelOperations)
+		m_pDelOperations->SetOperationFlags(operation, m_pParentWindow, operFlags);
 	return SCRIPT_SUCCESS;
 }
 
 /**
  * @brief Execute fileoperations.
+ * @return TRUE if all actions were done successfully, FALSE otherwise.
  */
 BOOL FileActionScript::Run()
 {
@@ -219,22 +230,23 @@ BOOL FileActionScript::Run()
 
 	__try
 	{
-		if (m_bHasOperations[0] == TRUE)
-			bFileOpSucceed = m_pOperations[0]->Go(&bOpStarted,
+		if (m_bHasCopyOperations)
+			bFileOpSucceed = m_pCopyOperations->Go(&bOpStarted,
 					&apiRetVal, &bUserCancelled);
 
-		if (m_bHasOperations[1] == TRUE)
+		if (m_bHasMoveOperations)
 		{
 			if (bFileOpSucceed && !bUserCancelled)
-				bFileOpSucceed = m_pOperations[1]->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
+				bFileOpSucceed = m_pMoveOperations->Go(&bOpStarted, &apiRetVal,
+						 &bUserCancelled);
 			else
 				bRetVal = FALSE;
 		}
 
-		if (m_bHasOperations[2] == TRUE)
+		if (m_bHasDelOperations)
 		{
 			if (bFileOpSucceed && !bUserCancelled)
-				bFileOpSucceed = m_pOperations[2]->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
+				bFileOpSucceed = m_pDelOperations->Go(&bOpStarted, &apiRetVal, &bUserCancelled);
 			else
 				bRetVal = FALSE;
 		}

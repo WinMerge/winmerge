@@ -27,6 +27,9 @@
 
 class CShellFileOp;
 
+/** 
+ * @brief Return values for FileActionScript functions.
+ */
 enum CreateScriptReturn
 {
 	SCRIPT_FAIL = 0,
@@ -82,20 +85,28 @@ public:
 	FileActionScript();
 	~FileActionScript();
 
-	FileActionList actions;
-
 	void SetParentWindow(CWnd * pWnd);
 	void UseRecycleBin(BOOL bUseRecycleBin);
-	int GetCount() const;
 	BOOL Run();
+
+	// Manipulate the FileActionList
+	int GetActionItemCount() const;
+	void AddActionItem(FileActionItem & item) { m_actions.AddTail(item); }
+	FileActionItem RemoveTailActionItem() { return m_actions.RemoveTail(); }
+	FileActionItem GetHeadActionItem() const { return m_actions.GetHead(); }
 
 protected:
 	int VCSCheckOut(const CString &path, BOOL &bApplyToAll);
 	int CreateOperationsScripts();
 
 private:
-	CShellFileOp * m_pOperations[3]; /**< One container for every action type */
-	BOOL m_bHasOperations[3]; /**< Does container have operations? */
+	FileActionList m_actions; /**< List of all actions for this script. */
+	CShellFileOp * m_pCopyOperations; /**< Copy operations. */
+	BOOL m_bHasCopyOperations; /**< flag if we've put anything into m_pCopyOperations */
+	CShellFileOp * m_pMoveOperations; /**< Move operations. */
+	BOOL m_bHasMoveOperations; /**< flag if we've put anything into m_pMoveOperations */
+	CShellFileOp * m_pDelOperations; /**< Delete operations. */
+	BOOL m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */
 	CWnd * m_pParentWindow; /**< Parent window for showing messages */
 };
