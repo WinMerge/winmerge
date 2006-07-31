@@ -7,7 +7,7 @@ Add new items to top
   Plugins\src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
  BUG: [ 1373233 ] Copy&paste bug in DisplayBinaryFiles
   Plugins\src_VCPP\DisplayBinaryFiles:
-   DisplayBinaryFiles.idl DisplayBinaryFiles.rc
+   DisplayBinaryFiles.idl DisplayBinaryFiles.rc DisplayBinaryFiles.cpp WinMergeScript.h
   Plugins\dlls: DisplayBinaryFiles.dll (1.0.4.0)
 
 2006-03-06 Perry
