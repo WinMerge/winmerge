@@ -11,6 +11,9 @@ Add new items to top.
   Submitted by Perry, modified by me
   Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1531319 ] Tidy Folder compare progress dialog
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2006-07-31 Kimmo
  PATCH: [ 1531293 ] Fix wrong cursor position after find
