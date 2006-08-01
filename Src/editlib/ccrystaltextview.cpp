@@ -552,6 +552,7 @@ CCrystalTextView::~CCrystalTextView ()
   delete m_pnActualLineLength;
   m_pnActualLineLength = NULL;
   delete [] m_pnPages;
+  delete m_pIcons;
 }
 
 BOOL CCrystalTextView::
