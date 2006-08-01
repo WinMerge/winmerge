@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Opravný soubor...",          ID_TOOLS_GENERATEPATCH
-        POPUP "&Rozšíøené"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Pluginy"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "&Upravit pomocí pøevadìèe",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "Znovu &naèíst",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Okno"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Opravný soubor...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "&Protokol porovnání...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Rozšíøené"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Pluginy"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "&Upravit pomocí pøevadìèe",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "Znovu &naèíst",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Okno"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Opravný soubor...",          ID_TOOLS_GENERATEPATCH
-        POPUP "&Rozšíøené"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Pluginy"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Znovu &naèíst",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Okno"
     BEGIN

@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
-        POPUP "&Avançat"
-        BEGIN
-            MENUITEM "&Carrega la configuració...", ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Connectors"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "&Edita amb el desempaquetador",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
         MENUITEM "Gene&ra un informe...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Avançat"
-        BEGIN
-            MENUITEM "&Carrega la configuració...", ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Connectors"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "&Edita amb el desempaquetador",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
-        POPUP "&Avançat"
-        BEGIN
-            MENUITEM "&Carrega la configuració...", ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Connectors"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fi&nestra"
     BEGIN

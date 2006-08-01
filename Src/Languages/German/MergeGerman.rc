@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
-        POPUP "&Erweitert"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Fenster"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
         MENUITEM "&Bericht generieren...",      ID_TOOLS_GENERATEREPORT
-        POPUP "&Erweitert"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "Mit Entpacker &bearbeiten",   ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Fenster"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Patch generieren...",        ID_TOOLS_GENERATEPATCH
-        POPUP "&Erweitert"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Plugins &neu laden",          ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Fenster"
     BEGIN

@@ -169,10 +169,6 @@ BEGIN
     BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "插件(&P)"
     BEGIN
@@ -182,6 +178,10 @@ BEGIN
         MENUITEM "用解包程序打开(&E)",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "重新装入插件(&R)",            ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "窗口(&W)"
     BEGIN
@@ -278,10 +278,6 @@ BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
         MENUITEM "生成报告(&R)...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "插件(&P)"
     BEGIN
@@ -291,6 +287,10 @@ BEGIN
         MENUITEM "用解包程序打开(&E)",          ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "重新装入插件(&R)",            ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "窗口(&W)"
     BEGIN
@@ -435,10 +435,6 @@ BEGIN
     BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "插件(&P)"
     BEGIN
@@ -453,6 +449,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "重新装入插件(&R)",            ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "窗口(&W)"
     BEGIN

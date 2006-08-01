@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "플러그인(&P)"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "Unpacker 사용 편집(&E)",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "창(&W)"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "플러그인(&P)"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "Unpacker 사용 편집(&E)",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "창(&W)"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "플러그인(&P)"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "창(&W)"
     BEGIN

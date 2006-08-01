@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
-        POPUP "高度な設定(&A)"
-        BEGIN
-            MENUITEM "設定情報ファイルの読込み(&L)...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "展開プラグインで開く",        ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "ウィンドウ(&W)"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
         MENUITEM "レポートの生成(&R)...",       ID_TOOLS_GENERATEREPORT
-        POPUP "高度な設定(&A)"
-        BEGIN
-            MENUITEM "設定情報ファイルの読込み(&L)...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "展開プラグインで開く",        ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "ウィンドウ(&W)"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
-        POPUP "高度な設定(&A)"
-        BEGIN
-            MENUITEM "設定情報ファイル読込み(&L)...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "ウィンドウ(&W)"
     BEGIN

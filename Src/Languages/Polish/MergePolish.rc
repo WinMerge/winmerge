@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generuj patch...",          ID_TOOLS_GENERATEPATCH
-        POPUP "Z&aawansowane"
-        BEGIN
-            MENUITEM "Za&³aduj Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Wtyczki"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "&Edytuj w programie rozpakowuj¹cym", ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Prze³aduj wtyczki",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Okno"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generuj patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Utwórz &raport...",         ID_TOOLS_GENERATEREPORT
-        POPUP "Z&aawansowane"
-        BEGIN
-            MENUITEM "Za&³aduj Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Wtyczki"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "&Edytuj w programie rozpakowuj¹cym",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Prze³aduj wtyczki",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Okno"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generuj patch...",          ID_TOOLS_GENERATEPATCH
-        POPUP "Z&aawansowane"
-        BEGIN
-            MENUITEM "Za&³aduj Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Wtyczki"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Prze³aduj wtyczki",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Okno"
     BEGIN

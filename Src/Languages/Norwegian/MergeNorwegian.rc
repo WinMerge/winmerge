@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Programtillegg"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "&Rediger med utpakker",       ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Vindu"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Programtillegg"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "&Rediger med utpakker",       ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Vindu"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Programtillegg"
     BEGIN
@@ -452,7 +448,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS
     END
-    POPUP "&Vindu"
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+    END
+     POPUP "&Vindu"
     BEGIN
         MENUITEM "&Lukk",                        ID_FILE_CLOSE
         MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL

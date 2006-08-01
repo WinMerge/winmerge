@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
-        POPUP "&Avancerat"
-        BEGIN
-            MENUITEM "&Öppna Konfiguration...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "&Ändra med Uppackare",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "F&önster"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
         MENUITEM "Generera &Rapport...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Avancerat"
-        BEGIN
-            MENUITEM "&Öppna Konfiguration...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "&Ändra med Uppackare",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
        MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "F&önster"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
-        POPUP "&Avancerat"
-        BEGIN
-            MENUITEM "&Öppna Konfiguration...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugins"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "F&önster"
     BEGIN

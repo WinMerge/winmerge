@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Фильтры...",                 ID_TOOLS_FILTERS
         MENUITEM "&Создать патч...",            ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Плагины"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "Редактировать с распаковщиком", ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Окно"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Фильтры...",                 ID_TOOLS_FILTERS
         MENUITEM "&Создать патч...",            ID_TOOLS_GENERATEPATCH
         MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Плагины"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "Редактировать с распаковщиком", ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Окно"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Фильтры...",                 ID_TOOLS_FILTERS
         MENUITEM "&Создать патч...",            ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Плагины"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "&Окно"
     BEGIN

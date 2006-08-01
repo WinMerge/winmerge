@@ -165,10 +165,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -178,6 +174,10 @@ BEGIN
         MENUITEM "&Éditer avec décompression",  ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fe&nêtre"
     BEGIN
@@ -274,10 +274,6 @@ BEGIN
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
         MENUITEM "Générer un &rapport...",      ID_TOOLS_GENERATEREPORT
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -287,6 +283,10 @@ BEGIN
         MENUITEM "&Éditer avec décompression",  ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fe&nêtre"
     BEGIN
@@ -431,10 +431,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtrer...",                 ID_TOOLS_FILTERS
         MENUITEM "&Générer des retouches...",   ID_TOOLS_GENERATEPATCH
-        POPUP "&Advanced"
-        BEGIN
-            MENUITEM "&Load Config...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "&Plugiciels"
     BEGIN
@@ -449,6 +445,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fe&nêtre"
     BEGIN

@@ -167,10 +167,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtros...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generar fichero patch...",          ID_TOOLS_GENERATEPATCH
-        POPUP "&Avanzado"
-        BEGIN
-            MENUITEM "&Cargar Configuración...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "C&omplementos"
     BEGIN
@@ -180,6 +176,10 @@ BEGIN
         MENUITEM "&Editar con desempaquetador",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Recargar complementos",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Ve&ntana"
     BEGIN
@@ -276,10 +276,6 @@ BEGIN
         MENUITEM "&Filtros...",                 ID_TOOLS_FILTERS
         MENUITEM "Generar fichero &patch...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Generar &informe...",         ID_TOOLS_GENERATEREPORT
-        POPUP "&Avanzado"
-        BEGIN
-            MENUITEM "&Cargar Configuración...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "C&omplementos"
     BEGIN
@@ -289,6 +285,10 @@ BEGIN
         MENUITEM "&Editar con desempaquetador",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
         MENUITEM "&Recargar complementos",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Ve&ntana"
     BEGIN
@@ -433,10 +433,6 @@ BEGIN
     BEGIN
         MENUITEM "&Filtros...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generar fichero patch...",          ID_TOOLS_GENERATEPATCH
-        POPUP "&Avanzado"
-        BEGIN
-            MENUITEM "&Cargar Configuración...",         ID_TOOLS_LOADCONFIG
-        END
     END
     POPUP "C&omplementos"
     BEGIN
@@ -451,6 +447,10 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recargar complementos",             ID_RELOAD_PLUGINS
+    END
+    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    BEGIN
+        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Ve&ntana"
     BEGIN
