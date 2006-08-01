@@ -138,7 +138,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_GETCONFIG, OnSaveConfigData)
 	ON_COMMAND(ID_FILE_NEW, OnFileNew)
 	ON_COMMAND(ID_TOOLS_FILTERS, OnToolsFilters)
-	ON_COMMAND(ID_TOOLS_LOADCONFIG, OnToolsLoadConfig)
+	ON_COMMAND(ID_DEBUG_LOADCONFIG, OnDebugLoadConfig)
 	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
@@ -396,6 +396,34 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 }
 
 /**
+ * @brief Remove debug menu if this is not a debug build
+ * @param [in] menu Pointer to main menu.
+ */
+static void FixupDebugMenu(BCMenu * menu)
+{
+	bool DebugMenu = false;
+#ifdef _DEBUG
+	DebugMenu = true;
+#endif
+
+	if (DebugMenu)
+		return;
+
+	// Remove debug menu
+	// Finds debug menu by looking for a submenu which
+	//  starts with item ID_DEBUG_LOADCONFIG
+
+	for (int i=0; i< menu->GetMenuItemCount(); ++i)
+	{
+		if (menu->GetSubMenu(i)->GetMenuItemID(0) == ID_DEBUG_LOADCONFIG)
+		{
+			menu->RemoveMenu(i, MF_BYPOSITION);
+			return;
+		}
+	}
+}
+
+/**
  * @brief Create new default (CMainFrame) menu
  */
 HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
@@ -440,6 +468,8 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
 	HMENU scriptsSubmenu = GetScriptsSubmenu(m_pMenus[MENU_DEFAULT]->GetSafeHmenu());
 	if (scriptsSubmenu != NULL)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
+
+	FixupDebugMenu(m_pMenus[MENU_DEFAULT]);
 
 	return(m_pMenus[MENU_DEFAULT]->Detach());
 }
@@ -487,6 +517,8 @@ HMENU CMainFrame::NewMergeViewMenu()
 	if (scriptsSubmenu != NULL)
 		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 
+	FixupDebugMenu(m_pMenus[MENU_MERGEVIEW]);
+
 	return(m_pMenus[MENU_MERGEVIEW]->Detach());
 }
 
@@ -525,6 +557,9 @@ HMENU CMainFrame::NewDirViewMenu()
 	m_pMenus[MENU_DIRVIEW]->ModifyODMenu(NULL, ID_TOOLS_GENERATEREPORT, IDB_TOOLS_GENERATEREPORT);
 
 	m_pMenus[MENU_DIRVIEW]->LoadToolbar(IDR_MAINFRAME);
+
+	FixupDebugMenu(m_pMenus[MENU_DIRVIEW]);
+
 	return(m_pMenus[MENU_DIRVIEW]->Detach());
 }
 
@@ -2750,7 +2785,7 @@ void CMainFrame::ShowFontChangeMessage()
 /**
  * @brief Prompt user to select configuration file, and then load settings from it
  */
-void CMainFrame::OnToolsLoadConfig()
+void CMainFrame::OnDebugLoadConfig()
 {
 	const TCHAR filetypes[] = _T("WinMerge Config files (*.txt)|*.txt|All files (*.*)|*.*||");
 	CFileDialog dlg(true, _T(".log"),0,0, filetypes);

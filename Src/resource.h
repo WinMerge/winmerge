@@ -986,7 +986,7 @@
 #define ID_TOOLS_CUSTOMIZECOLUMNS       32864
 #define ID_TOOLS_GENERATEPATCH          32865
 #define ID_TOOLS_FILTERS                32866
-#define ID_TOOLS_LOADCONFIG             32867
+#define ID_DEBUG_LOADCONFIG             32867
 #define ID_TOOLS_GENERATEREPORT         32868
 #define ID_MERGE_COMPARE                32869
 #define ID_UNPACK_MANUAL                32880

@@ -7,6 +7,10 @@ Add new items to top.
   Src/editlib: ccrystaltextview.cpp
  PATCH: [ 1531957 ] Fix imagelist memory leak in editor
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1430331 ] New Debug menu
+  Submitted by Perry, modified by me
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-07-31 Kimmo
  PATCH: [ 1531293 ] Fix wrong cursor position after find
