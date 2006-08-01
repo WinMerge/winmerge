@@ -525,7 +525,7 @@ CCrystalTextView::~CCrystalTextView ()
     }
   if (m_pszMatched)
     {
-      delete[] m_pszMatched;
+      free(m_pszMatched); // Allocated by _tcsdup()
       m_pszMatched = NULL;
     }
   //BEGIN SW
@@ -4677,6 +4677,8 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
               if (nPos >= 0)
                 {
+                  if (m_pszMatched)
+                    free(m_pszMatched);
                   m_pszMatched = _tcsdup (line);
                   if (nEolns)
                     {
@@ -4711,7 +4713,11 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   return TRUE;
                 }
               else
-                m_pszMatched = NULL;
+                {
+                  if (m_pszMatched)
+                    free(m_pszMatched);
+                  m_pszMatched = NULL;
+                }
 
               //  Go further, text was not found
               ptCurrentPos.x = 0;
