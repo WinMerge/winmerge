@@ -265,8 +265,7 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
  * It is directoryname + filemask, for example, for a filter for all users:
  * "C:\Program Files\WinMerge\Filters\*.flt"
  * Examples of user-specific filters:
- * "C:\\Documents And Settings\\username\\Local Settings\\Application Data\\WinMerge\\Filters\\*.flt"
- * "C:\\Documents And Settings\\username\\Application Data\\WinMerge\\Filters\\*.flt"
+ * "C:\Documents and Settings\User\My Documents\WinMergeFilters\*.flt"
  */
 void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
 		const CString & sPattern)
@@ -465,27 +464,7 @@ void FileFilterHelper::LoadAllFileFilters()
 	// Program application directory
 	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
 	LoadFileFilterDirPattern(patternsLoaded, m_sGlobalFilterPath + _T("\\*") + FileFilterExt);
-
 	LoadFileFilterDirPattern(patternsLoaded, m_sUserSelFilterPath + _T("\\*") + FileFilterExt);
-
-	// User application data path
-	m_sUserProfilePath.Empty();
-	CString sAppPath;
-	if (GetAppDataPath(sAppPath))
-	{
-		m_sUserProfilePath = sAppPath + _T("\\WinMerge\\Filters");
-		LoadFileFilterDirPattern(patternsLoaded, m_sUserProfilePath + _T("\\*") + FileFilterExt);
-	}
-	else
-	{
-		// User profile local & roaming settings
-		CString sProfile;
-		if (GetUserProfilePath(sProfile))
-		{
-			m_sUserProfilePath = sProfile + _T("\\Application Data\\WinMerge\\Filters");
-			LoadFileFilterDirPattern(patternsLoaded, m_sUserProfilePath + _T("\\*") + FileFilterExt);
-		}
-	}
 }
 
 /**

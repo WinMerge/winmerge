@@ -7,6 +7,8 @@ Add new items to top.
   Src: DiffItem.h DiffItemList.cpp DirScan.cpp DirVierwColItems.cpp
    Merge.rc resource.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1529864 ] Stop using Application Data folders as filefilter folders
+  Src: FileFilterHelper.cpp FileFilterHelper.h
 
 2006-08-01 Kimmo
  PATCH: [ 1531845 ] Fix memory leak after find
