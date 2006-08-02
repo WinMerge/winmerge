@@ -2257,8 +2257,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Кодирование файла слева"
     IDS_COLHDR_RENCODING    "Кодирование файла справа"
-    IDS_COLHDR_NDIFFS       "#отличий"
-    IDS_COLHDR_NSDIFFS      "#sig. отличий"
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "Двоичный"
 END
 
@@ -2322,8 +2322,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Кодирование файла слева"
     IDS_COLDESC_RENCODING   "Кодирование файла справа"
-    IDS_COLDESC_NDIFFS      "Общее число отличий"
-    IDS_COLDESC_NSDIFFS     "Количество отличий, не считая проигнорированные"
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Показать звездочку (*) если файл бинарный."
 END
 

@@ -2275,8 +2275,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Codificació esquerra"
     IDS_COLHDR_RENCODING    "Codificació dreta"
-    IDS_COLHDR_NDIFFS       "N. de diferències"
-    IDS_COLHDR_NSDIFFS      "N. de diferències sig."
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "Binari"
 END
 
@@ -2340,8 +2340,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Codificació del costat esquerre."
     IDS_COLDESC_RENCODING   "Codificació del costat dret."
-    IDS_COLDESC_NDIFFS      "Nombre de diferències total."
-    IDS_COLDESC_NSDIFFS     "Nombre de diferències sense comptar les ignorades."
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Mostra un asterisc (*) si el fitxer és binari."
 END
 

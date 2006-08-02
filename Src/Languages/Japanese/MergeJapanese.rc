@@ -2257,8 +2257,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "左エンコーディング"
     IDS_COLHDR_RENCODING    "右エンコーディング"
-    IDS_COLHDR_NDIFFS       "#差異数"
-    IDS_COLHDR_NSDIFFS      "#重要な差異数"
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "バイナリ"
 END
 
@@ -2322,8 +2322,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "左側エンコーディング"
     IDS_COLDESC_RENCODING   "右側エンコーディング"
-    IDS_COLDESC_NDIFFS      "差異の合計"
-    IDS_COLDESC_NSDIFFS     "差異の合計数から無視できる差異数を差し引いた数です。"
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "もし、バイナリファイルならアスタリスク(*)を表示します。"
 END
 

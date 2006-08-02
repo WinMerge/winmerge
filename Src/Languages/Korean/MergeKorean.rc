@@ -2257,8 +2257,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "왼쪽 인코딩"
     IDS_COLHDR_RENCODING    "오른쪽 인코딩"
-    IDS_COLHDR_NDIFFS       "다른 부분"
-    IDS_COLHDR_NSDIFFS      "다른 부분(필터링된 부분 제외)"
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "바이너리"
 END
 
@@ -2322,8 +2322,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "왼쪽 인코딩."
     IDS_COLDESC_RENCODING   "오른쪽 인코딩."
-    IDS_COLDESC_NDIFFS      "다른 부분의 개수."
-    IDS_COLDESC_NSDIFFS     "다른 부분의 개수(무시된 부분은 표시하지 않음)."
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "바이너리 파일이면 * 표시."
 END
 

@@ -2258,8 +2258,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "左侧文件编码"
     IDS_COLHDR_RENCODING    "右侧文件编码"
-    IDS_COLHDR_NDIFFS       "不同处总数"
-    IDS_COLHDR_NSDIFFS      "标出的不同个数"
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "二进制"
 END
 
@@ -2323,8 +2323,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "左侧文件的字符编码。"
     IDS_COLDESC_RENCODING   "右侧文件的字符编码。"
-    IDS_COLDESC_NDIFFS      "不同之处的总数。"
-    IDS_COLDESC_NSDIFFS     "不包含忽略的不同之处的个数。"
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "在二进制文件处显示星号(*)。"
 END
 

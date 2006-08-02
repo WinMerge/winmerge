@@ -2257,8 +2257,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Kódování vlevo"
     IDS_COLHDR_RENCODING    "Kódování vpravo"
-    IDS_COLHDR_NDIFFS       "# rozdílù"
-    IDS_COLHDR_NSDIFFS      "# ozn. rozdílù"
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "Binární"
 END
 
@@ -2322,8 +2322,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Kódování souboru na levé stranì"
     IDS_COLDESC_RENCODING   "Kódování souboru na pravé stranì"
-    IDS_COLDESC_NDIFFS      "Celkový poèet rozdílù"
-    IDS_COLDESC_NSDIFFS     "Poèet rozdílù nepoèítaje ignorované"
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Ukáže hvìzdièku (*), pokud je soubor binární"
 END
 

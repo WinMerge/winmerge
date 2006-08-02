@@ -2257,8 +2257,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Left Encoding"
     IDS_COLHDR_RENCODING    "Right Encoding"
-    IDS_COLHDR_NDIFFS       "#differences"
-    IDS_COLHDR_NSDIFFS      "#sig. differences"
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "Binary"
 END
 
@@ -2290,8 +2290,8 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Filename or directory name."
-    IDS_COLDESC_DIR         "Subdirectory name when subdirectories are included."
+    IDS_COLDESC_FILENAME    "Filename or folder name."
+    IDS_COLDESC_DIR         "Subfolder name when subfolders are included."
     IDS_COLDESC_RESULT      "Comparison result, long form."
     IDS_COLDESC_LTIMEM      "Left side modification date."
     IDS_COLDESC_RTIMEM      "Right side modification date."
@@ -2322,9 +2322,9 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Left side encoding."
     IDS_COLDESC_RENCODING   "Right side encoding."
-    IDS_COLDESC_NDIFFS      "Number of total differences."
-    IDS_COLDESC_NSDIFFS     "Number of differences not counting ignored ones."
-    IDS_COLDESC_BINARY      "Shows asterisk (*) if file is binary."
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
+    IDS_COLDESC_BINARY      "Shows an asterisk (*) if the file is binary."
 END
 
 // DIRECTORY DIFFING : GENERATE REPORT

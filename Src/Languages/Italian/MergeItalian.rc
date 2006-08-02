@@ -2257,8 +2257,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Codifica di sinistra"
     IDS_COLHDR_RENCODING    "Codifica di destra"
-    IDS_COLHDR_NDIFFS       "N. differenze"
-    IDS_COLHDR_NSDIFFS      "N. differenze sign."
+    IDS_COLHDR_NIDIFFS      "#Ignored diff."
+    IDS_COLHDR_NSDIFFS      "#differences"
     IDS_COLHDR_BINARY       "Binario"
 END
 
@@ -2322,8 +2322,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Codifica del file di sinistra."
     IDS_COLDESC_RENCODING   "Codifica del file di destra."
-    IDS_COLDESC_NDIFFS      "Numero totale di differenze."
-    IDS_COLDESC_NSDIFFS     "Numero di differenze escludendo quelle ignorate."
+    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
     IDS_COLDESC_BINARY      "Mostra un asterisco (*) se il file è binario."
 END
 
