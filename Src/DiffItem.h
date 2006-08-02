@@ -127,14 +127,14 @@ struct DIFFITEM : DIFFCODE
 	CString sLeftSubdir; /**< Left subdirectory from root of comparison */
 	CString sRightSubdir; /**< Right subdirectory from root of comparison */
 	int	nsdiffs; /**< Amount of non-ignored differences */
-	int ndiffs; /**< Total amount of differences */
+	int nidiffs; /**< Amount of ignored differences */
 	CString errorDesc; /**< technical note about error */
 	UINT customFlags1; /**< Custom flags set 1 */
 	bool empty; /**< flag to mark diffitem that doesn't have any data */
 
 	static DIFFITEM MakeEmptyDiffItem();
 
-	DIFFITEM() : ndiffs(-1), nsdiffs(-1), customFlags1(0), empty(false) { }
+	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0), empty(false) { }
 
 	CString getLeftFilepath(const CString &sLeftRoot) const;
 	CString getRightFilepath(const CString &sRightRoot) const;

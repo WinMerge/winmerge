@@ -604,7 +604,7 @@
 #define IDS_COLHDR_RATTRIBUTES          17713
 #define IDS_COLHDR_LENCODING            17714
 #define IDS_COLHDR_RENCODING            17715
-#define IDS_COLHDR_NDIFFS               17716
+#define IDS_COLHDR_NIDIFFS              17716
 #define IDS_COLHDR_NSDIFFS              17717
 #define IDS_COLHDR_BINARY               17718
 #define IDS_COLHDR_LEOL_TYPE            17719
@@ -644,7 +644,7 @@
 #define IDS_COLDESC_RATTRIBUTES         17777
 #define IDS_COLDESC_LENCODING           17778
 #define IDS_COLDESC_RENCODING           17779
-#define IDS_COLDESC_NDIFFS              17780
+#define IDS_COLDESC_NIDIFFS             17780
 #define IDS_COLDESC_NSDIFFS             17781
 #define IDS_COLDESC_BINARY              17782
 #define IDS_COLDESC_LEOL_TYPE           17783

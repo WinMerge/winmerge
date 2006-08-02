@@ -115,7 +115,7 @@ void DiffItemList::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
 {
 	ASSERT(diffpos);
 	DIFFITEM & di = m_dirlist.GetAt(diffpos);
-	di.ndiffs = diffs + ignored; // see StoreDiffResult() in DirScan.cpp
+	di.nidiffs = ignored; // see StoreDiffResult() in DirScan.cpp
 	di.nsdiffs = diffs;
 }
 
