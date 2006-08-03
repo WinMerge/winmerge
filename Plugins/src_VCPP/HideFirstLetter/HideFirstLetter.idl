@@ -26,17 +26,17 @@ import "ocidl.idl";
 	};
 
 [
-	uuid(73CA3032-1401-40BB-A73D-F719CD135EB2),
+	uuid(FAE8B142-B504-41A9-818F-8F666B7C917A),
 	version(1.0),
 	helpstring("HideFirstLetter 1.0 Type Library")
 ]
-library HIDEFIRSTLETTERLib
+library HideFirstLetterLib
 {
 	importlib("stdole32.tlb");
 	importlib("stdole2.tlb");
 
 	[
-		uuid(E408AD39-EC2E-4615-B474-F98FDDF2ED93),
+		uuid(5E0CF5FF-993F-463A-8552-A75645D3E405),
 		helpstring("WinMergeScript Class")
 	]
 	coclass WinMergeScript

@@ -19,15 +19,6 @@
 //  Michael Elfial, newObjects 2001
 //  http://www.newobjects.com
 
-inline BOOL InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
-{
-   return (
-	  ((PLONG) &rguid1)[0] == ((PLONG) &rguid2)[0] &&
-	  ((PLONG) &rguid1)[1] == ((PLONG) &rguid2)[1] &&
-	  ((PLONG) &rguid1)[2] == ((PLONG) &rguid2)[2] &&
-	  ((PLONG) &rguid1)[3] == ((PLONG) &rguid2)[3]);
-}
-
 template <int nObtainMethod = 1>
 class CComTypeInfoHolderModule {
 public:

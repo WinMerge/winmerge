@@ -1,4 +1,4 @@
-// HideFirstLetter.idl : IDL source for HideFirstLetter.dll
+// WatchBeginningOfLog.idl : IDL source for WatchBeginningOfLog.dll
 //
 
 // This file will be processed by the MIDL tool to
@@ -26,17 +26,17 @@ import "ocidl.idl";
 	};
 
 [
-	uuid(73CA3032-1401-40BB-A73D-F719CD135EB2),
+	uuid(7BD43737-8B47-4DEB-A488-72182CE62851),
 	version(1.0),
 	helpstring("WatchBeginningOfLog 1.0 Type Library")
 ]
-library HIDEFIRSTLETTERLib
+library WatchBeginningOfLogLib
 {
 	importlib("stdole32.tlb");
 	importlib("stdole2.tlb");
 
 	[
-		uuid(E408AD39-EC2E-4615-B474-F98FDDF2ED93),
+		uuid(4F92A7EC-EDD8-42DF-8BAC-C9450A3E34FA),
 		helpstring("WinMergeScript Class")
 	]
 	coclass WinMergeScript

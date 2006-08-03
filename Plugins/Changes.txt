@@ -2,6 +2,20 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2006-08-03 Gal
+ PATCH: [ 1533020 ] Assign new and unique plug-ins UUIDs
+  Plugins\src_VCPP\HideFirstLetter:
+    HideFirstLetter.cpp HideFirstLetter.idl WinMergeScript.h
+  Plugins\src_VCPP\WatchBeginningOfLog:
+    WatchBeginningOfLog.cpp WatchBeginningOfLog.idl WinMergeScript.h
+  Plugins\src_VCPP\WatchEndOfLog:
+    WatchEndOfLog.cpp WatchEndOfLog.idl WinMergeScript.h
+ 
+ PATCH: Fixed compilation error on debug builds.
+  Plugins\src_VCPP\DisplayBinaryFiles: typeinfoex.h
+  Plugins\src_VCPP\DisplayXMLFiles: typeinfoex.h
+  Plugins\src_VCPP\EditBinaryFiles: typeinfoex.h
+
 2006-07-31 Kimmo
  BUG: [ 1423769 ] Wrong link path in DisplayXMLFiles in Merge Min Release
   Plugins\src_VCPP\DisplayXMLFiles: DisplayXMLFiles.dsp
