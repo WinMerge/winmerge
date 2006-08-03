@@ -12,6 +12,8 @@ Add new items to top
  Fix WatchEndOfLog plugin compile with VS2003.Net. Bump version number to 1.0.1.
   Plugins\src_VCPP\WatchEndOfLog:
    WatchEndOfLog.rc WinMergeScript.cpp
+ New versions of plugin dlls
+  dlls: WatchBeginningOfLog.dll (1.0.1), WatchEndOfLog.dll (1.0.1)
 
 2006-08-03 Gal
  PATCH: [ 1533020 ] Assign new and unique plug-ins UUIDs
