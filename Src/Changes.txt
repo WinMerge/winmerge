@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-03 Kimmo
+ PATCH: [ 1533457 ] Add Refresh Selected -item to Folder compare main menu
+  Src: DirActions.cpp DirView.cpp DirView.h Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-08-02 Kimmo
  PATCH: [ 1532743 ] Improve difference count columns in folder compare
   Src: DiffItem.h DiffItemList.cpp DirScan.cpp DirVierwColItems.cpp

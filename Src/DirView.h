@@ -168,7 +168,7 @@ private:
 	BOOL ConfirmActionList(const FileActionScript & actions, int selCount);
 	void PerformActionList(FileActionScript & actions);
 	void UpdateAfterFileScript(FileActionScript & actionList);
-	void MarkForRescan();
+	UINT MarkSelectedForRescan();
 	void DoFileEncodingDialog();
 	void DoUpdateFileEncodingDialog(CCmdUI* pCmdUI);
 	BOOL DoItemRename(LPCTSTR szNewItemName);

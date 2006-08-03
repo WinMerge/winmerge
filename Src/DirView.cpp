@@ -2860,12 +2860,13 @@ afx_msg void CDirView::OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 
 /**
  * @brief Called when item is marked for rescan.
+ * This function marks selected items for rescan and rescans them.
  */
 void CDirView::OnMarkedRescan()
 {
-	GetDocument()->SetMarkedRescan();
-	MarkForRescan();
-	GetDocument()->Rescan();
+	UINT items = MarkSelectedForRescan();
+	if (items > 0)
+		GetDocument()->Rescan();
 }
 
 /**

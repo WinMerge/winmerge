@@ -975,18 +975,27 @@ void CDirView::ApplyPluginPrediffSetting(int newsetting)
 
 /**
  * @brief Mark selected items as needing for rescan.
+ * @return Count of items to rescan.
  */
-void CDirView::MarkForRescan()
+UINT CDirView::MarkSelectedForRescan()
 {
 	int sel = -1;
 	CString slFile, srFile;
+	int items = 0;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
+		// Don't try to rescan special items
+		if (GetItemKey(sel) == (POSITION)SPECIAL_ITEM_POS)
+			continue;
+
 		DIFFITEM di = GetDiffItem(sel);
 		GetDocument()->SetDiffStatus(0, DIFFCODE::TEXTFLAGS | DIFFCODE::SIDEFLAGS | DIFFCODE::COMPAREFLAGS, sel);		
 		GetDocument()->SetDiffStatus(DIFFCODE::NEEDSCAN, DIFFCODE::SCANFLAGS, sel);
+		++items;
 	}
-	GetDocument()->SetMarkedRescan();
+	if (items > 0)
+		GetDocument()->SetMarkedRescan();
+	return items;
 }
 
 /**
