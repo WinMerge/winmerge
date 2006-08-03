@@ -2,7 +2,9 @@
 #include "stdafx.h"
 #include "WatchEndOfLog.h"
 #include "WinMergeScript.h"
-#include <fstream.h>
+#include <fstream>
+
+using namespace std;
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeScript
