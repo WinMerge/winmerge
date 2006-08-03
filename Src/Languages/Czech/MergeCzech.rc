@@ -230,7 +230,7 @@ BEGIN
         MENUITEM "Možnost&i...",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Obnovit\tF5",                ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
+        MENUITEM "Obnovit &vybrané\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Zobrazit"
     BEGIN
@@ -1136,7 +1136,7 @@ BEGIN
     CONTROL         "Zastavit po prvním &rozdílu",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
     GROUPBOX        "Komentáøe",IDC_STATIC,7,134,221,32
-    CONTROL         "Filtrovat komentáøe",IDC_FILTERCOMMENTS_CHECK,"Button",
+    CONTROL         "Filtrovat kom&entáøe",IDC_FILTERCOMMENTS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,15,147,205,10
     PUSHBUTTON      "&Pùvodní",IDC_COMPARE_DEFAULTS,7,179,50,14
 END
@@ -1743,8 +1743,8 @@ BEGIN
     IDS_UNK_ERROR_READING_PROJECT "Neznámá chyba pøi pokusu o otevøení souboru projektu"
     IDS_UNK_ERROR_SAVING_PROJECT "Neznámá chyba pøi pokusu o uložení souboru projektu"
     IDS_PROJFILEDLG_CAPTION "Projekt"
-    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
-    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
+    IDS_PROJFILE_LOAD_SUCCESS "Soubor s projektem byl úspìšnì naèten."
+    IDS_PROJFILE_SAVE_SUCCESS "Soubor s projektem byl úspìšnì uložen."
     ID_FILE_SAVEPROJECT     "Uloží aktuální cesty a volby do souboru projektu\nUložit projekt"
 END
 
@@ -2004,13 +2004,13 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Zvolte název souboru pro nový filtr"
     IDS_FILEFILTER_FILEMASK "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder."
+                            "Nelze nalézt soubor se šablonou pro filtrování souborù!\n\nZkopírujte prosím soubor %1 do složky WinMerge/Filters."
     IDS_FILEFILTER_TMPL_COPY 
-                            "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
+                            "Nelze zkopírovat soubor se šablonou pro filtrování souborù do složky filtrù:\n%1\n\nUjistìte se prosím, že složka existuje a je možné do ní zapisovat."
     IDS_FILEFILTER_NO_USERFOLDER 
-                            "User's filter file folder is not defined!\n\nPlease select filter folder in options/System."
+                            "Vlastní složka filtrù nebyla zadána!\n\nZvolte prosím složku v dialogovém oknì Možnosti, v kategorii Systém."
     IDS_FILEFILTER_DELETE_FAIL 
-                            "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
+                            "Chyba pøi odstranìní souboru se šablonou pro filtrování souborù:\n%1\n\nMožná je soubor oznaèen pouze pro ètení?"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2259,8 +2259,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Kódování vlevo"
     IDS_COLHDR_RENCODING    "Kódování vpravo"
-    IDS_COLHDR_NIDIFFS      "#Ignored diff."
-    IDS_COLHDR_NSDIFFS      "#differences"
+    IDS_COLHDR_NIDIFFS      "# ignor. rozdílù"
+    IDS_COLHDR_NSDIFFS      "# rozdílù"
     IDS_COLHDR_BINARY       "Binární"
 END
 
@@ -2324,8 +2324,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Kódování souboru na levé stranì"
     IDS_COLDESC_RENCODING   "Kódování souboru na pravé stranì"
-    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
+    IDS_COLDESC_NIDIFFS     "Poèet ignorovaných rozdílù v souboru. Tyto rozdíly nelze slouèit."
+    IDS_COLDESC_NSDIFFS     "Poèet rozdílù v souboru. Neobsahuje ignorované rozdíly."
     IDS_COLDESC_BINARY      "Ukáže hvìzdièku (*), pokud je soubor binární"
 END
 
