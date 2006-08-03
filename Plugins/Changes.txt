@@ -2,6 +2,17 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2006-08-03 Kimmo
+ Fix HideFirstLetter plugin compile with VS2003.Net. Bump version number to 1.0.1.
+  Plugins\src_VCPP\HideFirstLetter:
+   HideFirstLetter.rc WinMergeScript.cpp
+ Fix WatchBeginningOfLog plugin compile with VS2003.Net. Bump version number to 1.0.1.
+  Plugins\src_VCPP\WatchBeginningOfLog:
+   WatchBeginningOfLog.rc WinMergeScript.cpp
+ Fix WatchEndOfLog plugin compile with VS2003.Net. Bump version number to 1.0.1.
+  Plugins\src_VCPP\WatchEndOfLog:
+   WatchEndOfLog.rc WinMergeScript.cpp
+
 2006-08-03 Gal
  PATCH: [ 1533020 ] Assign new and unique plug-ins UUIDs
   Plugins\src_VCPP\HideFirstLetter:
