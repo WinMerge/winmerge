@@ -230,6 +230,7 @@ BEGIN
         MENUITEM "Možnost&i...",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Obnovit\tF5",                ID_REFRESH
+        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Zobrazit"
     BEGIN
@@ -610,6 +611,7 @@ BEGIN
     VK_F3,          ID_EDIT_REPEAT,         VIRTKEY, CONTROL, NOINVERT
     VK_F4,          ID_SELECTLINEDIFF,      VIRTKEY, NOINVERT
     VK_F5,          ID_REFRESH,             VIRTKEY, NOINVERT
+    VK_F5,          ID_DIR_RESCAN,          VIRTKEY, CONTROL, NOINVERT
     VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
     VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
     VK_F9,          ID_FILE_MERGINGMODE,    VIRTKEY, NOINVERT
