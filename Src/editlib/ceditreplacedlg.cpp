@@ -24,6 +24,13 @@
 //  ... it's being edited very rapidly so sorry for non-commented
 //        and maybe "ugly" code ...
 ////////////////////////////////////////////////////////////////////////////
+/**
+ *  @file ceditreplacedlg.cpp
+ *
+ *  @brief Implementation of Replace-dialog.
+ */
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "resource.h"
@@ -40,20 +47,17 @@ static char THIS_FILE[] = __FILE__;
 // CEditReplaceDlg dialog
 
 
-CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy):CDialog (CEditReplaceDlg::IDD, NULL)
+CEditReplaceDlg::CEditReplaceDlg (CCrystalEditView * pBuddy)
+: CDialog (CEditReplaceDlg::IDD, NULL)
+, m_pBuddy(pBuddy)
+, m_bMatchCase(FALSE)
+, m_bWholeWord(FALSE)
+, m_bRegExp(FALSE)
+, m_nScope(-1)
+, m_bDontWrap(FALSE)
+, m_bEnableScopeSelection(TRUE)
 {
   ASSERT (pBuddy != NULL);
-  m_pBuddy = pBuddy;
-  //{{AFX_DATA_INIT(CEditReplaceDlg)
-  m_bMatchCase = FALSE;
-  m_bWholeWord = FALSE;
-  m_bRegExp = FALSE;
-  m_sText = _T ("");
-  m_sNewText = _T ("");
-  m_nScope = -1;
-  m_bDontWrap = FALSE;
-  //}}AFX_DATA_INIT
-  m_bEnableScopeSelection = TRUE;
 }
 
 void CEditReplaceDlg::
@@ -165,7 +169,6 @@ GetLastSearchInfos()
 {
   return &lastSearch;
 }
-
 
 BOOL CEditReplaceDlg::
 DoHighlightText ( BOOL bNotifyIfNotFound )
@@ -524,7 +527,7 @@ SetLastSearch (LPCTSTR sText, BOOL bMatchCase, BOOL bWholeWord, BOOL bRegExp, in
   lastSearch.m_bWholeWord = bWholeWord;
   lastSearch.m_bRegExp = bRegExp;
   lastSearch.m_sText = sText;
-  lastSearch.m_bReplaceNoWrap = m_bDontWrap;
+  lastSearch.m_bNoWrap = m_bDontWrap;
 }
 
 
@@ -541,7 +544,7 @@ UseLastSearch ()
   m_bWholeWord = lastSearch.m_bWholeWord;
   m_bRegExp = lastSearch.m_bRegExp;
   m_sText = lastSearch.m_sText;
-  m_bDontWrap = lastSearch.m_bReplaceNoWrap;
+  m_bDontWrap = lastSearch.m_bNoWrap;
 }
 
 void CEditReplaceDlg::

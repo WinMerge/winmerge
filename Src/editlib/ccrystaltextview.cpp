@@ -4756,6 +4756,7 @@ OnEditFind ()
       lastSearch->m_bWholeWord = (m_dwLastSearchFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (m_dwLastSearchFlags & FIND_REGEXP) != 0;
       lastSearch->m_nDirection = (m_dwLastSearchFlags & FIND_DIRECTION_UP) != 0 ? 0 : 1;
+      lastSearch->m_bNoWrap = (m_dwLastSearchFlags & FIND_NO_WRAP) != 0;
       if (m_pszLastFindWhat != NULL)
         lastSearch->m_sText = m_pszLastFindWhat;
     }
@@ -4768,7 +4769,7 @@ OnEditFind ()
       lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
       lastSearch->m_nDirection = (dwFlags & FIND_DIRECTION_UP) == 0;
-      // lastSearch->m_sText = pApp->GetProfileString (REG_FIND_SUBKEY, REG_FIND_WHAT, _T (""));
+      lastSearch->m_bNoWrap = (dwFlags & FIND_NO_WRAP) != 0;
     }
   dlg.UseLastSearch ();
 
@@ -4816,10 +4817,11 @@ OnEditFind ()
     m_dwLastSearchFlags |= FIND_REGEXP;
   if (lastSearch->m_nDirection == 0)
     m_dwLastSearchFlags |= FIND_DIRECTION_UP;
+  if (lastSearch->m_bNoWrap)
+    m_dwLastSearchFlags |= FIND_NO_WRAP;
 
   //  Save search parameters to registry
   VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("FindFlags"), m_dwLastSearchFlags));
-  // pApp->WriteProfileString (REG_FIND_SUBKEY, REG_FIND_WHAT, lastSearch->m_sText);
 }
 
 void CCrystalTextView::
@@ -4867,14 +4869,12 @@ OnEditRepeat ()
       CPoint ptSearchPos = m_ptCursorPos;
       if( m_dwLastSearchFlags & FIND_DIRECTION_UP && IsSelection() )
         {
-          CPoint	ptDummy;
+          CPoint ptDummy;
           GetSelection( ptSearchPos, ptDummy );
         }
 
-      if (! FindText(sText, ptSearchPos, m_dwLastSearchFlags, TRUE, &ptFoundPos))
-      /*ORIGINAL
-      if (! FindText(sText, m_ptCursorPos, m_dwLastSearchFlags, TRUE, &ptFoundPos))
-      *///END SW
+      if (! FindText(sText, ptSearchPos, m_dwLastSearchFlags,
+            (m_dwLastSearchFlags & FIND_NO_WRAP) == 0, &ptFoundPos))
         {
           CString prompt;
           prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, sText);

@@ -1274,7 +1274,7 @@ OnEditReplace ()
       lastSearch->m_bMatchCase = (m_dwLastReplaceFlags & FIND_MATCH_CASE) != 0;
       lastSearch->m_bWholeWord = (m_dwLastReplaceFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (m_dwLastReplaceFlags & FIND_REGEXP) != 0;
-      lastSearch->m_bReplaceNoWrap = (m_dwLastReplaceFlags & REPLACE_NO_WRAP) != 0;
+      lastSearch->m_bNoWrap = (m_dwLastReplaceFlags & FIND_NO_WRAP) != 0;
       if (m_pszLastFindWhat != NULL)
         lastSearch->m_sText = m_pszLastFindWhat;
     }
@@ -1286,9 +1286,7 @@ OnEditReplace ()
       lastSearch->m_bMatchCase = (dwFlags & FIND_MATCH_CASE) != 0;
       lastSearch->m_bWholeWord = (dwFlags & FIND_WHOLE_WORD) != 0;
       lastSearch->m_bRegExp = (dwFlags & FIND_REGEXP) != 0;
-      lastSearch->m_bReplaceNoWrap = (dwFlags & REPLACE_NO_WRAP) != 0;
-      // lastSearch->m_sText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, _T (""));
-      // lastSearch->m_sNewText = pApp->GetProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, _T (""));
+      lastSearch->m_bNoWrap = (dwFlags & FIND_NO_WRAP) != 0;
     }
   dlg.UseLastSearch ();
 
@@ -1335,8 +1333,8 @@ OnEditReplace ()
     m_dwLastReplaceFlags |= FIND_WHOLE_WORD;
   if (lastSearch->m_bRegExp)
     m_dwLastReplaceFlags |= FIND_REGEXP;
-  if (lastSearch->m_bReplaceNoWrap)
-    m_dwLastReplaceFlags |= REPLACE_NO_WRAP;
+  if (lastSearch->m_bNoWrap)
+    m_dwLastReplaceFlags |= FIND_NO_WRAP;
 
   //  Restore selection
   if (m_bSelectionPushed)

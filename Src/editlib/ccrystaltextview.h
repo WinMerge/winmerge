@@ -61,7 +61,7 @@ enum
   FIND_REGEXP = 0x0004,
   FIND_DIRECTION_UP = 0x0010,
   REPLACE_SELECTION = 0x0100, 
-  REPLACE_NO_WRAP = 0x200
+  FIND_NO_WRAP = 0x200
 };
 
 //  CCrystalTextView::UpdateView() flags

@@ -379,6 +379,7 @@
 #define IDC_FILTERCOMMENTS_CHECK        1305
 #define IDC_PROJFILE_LREADONLY          1306
 #define IDC_PROJFILE_RREADONLY          1307
+#define IDC_FINDDLG_DONTWRAP            1308
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1065,7 +1066,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        232
 #define _APS_NEXT_COMMAND_VALUE         33119
-#define _APS_NEXT_CONTROL_VALUE         1308
+#define _APS_NEXT_CONTROL_VALUE         1309
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif
