@@ -771,7 +771,7 @@ BEGIN
     LTEXT           "Idiomas disponibles:",IDC_STATIC,7,7,140,8
 END
 
-IDD_EDIT_FIND DIALOGEX 30, 73, 283, 66
+IDD_EDIT_FIND DIALOGEX 30, 73, 283, 74
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Buscar"
@@ -786,6 +786,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "E&xpresión regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
+    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,57,135,10
     GROUPBOX        "Dirección",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "&Arriba",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
                     WS_GROUP,154,34,57,10
