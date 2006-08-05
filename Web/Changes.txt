@@ -2,6 +2,9 @@
  PATCH: [ 1534820 ] Web: Pimp my tabs ;)
   Web: page.inc
   Web\css: all.css
+ BUG: [ 1534996 ] Web: WinCVS hints -page has outdated information
+  Web: .htaccess page.inc
+  Web\developer: removed wincvs.php
 
 2006-07-31 Tim
  PATCH: [ 1531259 ] Web: Known limitation: In linefilters $ does not match EOL
