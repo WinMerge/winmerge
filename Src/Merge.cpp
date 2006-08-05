@@ -614,6 +614,8 @@ void CMergeApp::OnHelp()
 
 /**
  * @brief Is specified file a project file?
+ * @param [in] filepath Full path to file to check.
+ * @return true if file is a projectfile.
  */
 bool CMergeApp::IsProjectFile(const CString & filepath) const
 {
@@ -627,9 +629,8 @@ bool CMergeApp::IsProjectFile(const CString & filepath) const
 
 /** 
  * @brief Read project and perform comparison specified
- *
- * Tries to find project file in files[0] and files[1] by extension
- * If cannot find one, returns FALSE
+ * @param [in] sProject Full path to project file.
+ * @return TRUE if loading project file and starting compare succeeded.
  */
 bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 {
@@ -660,6 +661,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 		filter.TrimRight();
 		m_globalFileFilter.SetFilter(filter);
 	}
+	if (project.HasSubfolders())
+		bRecursive = project.GetSubfolders() > 0;
 
 	DWORD dwLeftFlags = FFILEOPEN_NONE;
 	DWORD dwRightFlags = FFILEOPEN_NONE;
@@ -675,7 +678,6 @@ bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 		if (bRightReadOnly)
 			dwRightFlags |= FFILEOPEN_READONLY;
 	}
-
 
 	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
 

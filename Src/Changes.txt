@@ -8,6 +8,8 @@ Add new items to top.
   Src/editlib: ccrystaleditview.cpp ccrystaltextview.cpp ccrystaltextview.h
    ceditreplacedlg.cpp cfindtextdlg.cpp cfindtextdlg.h
   Src/Languages/*: Merge*.rc
+ BUG: [ 1534461 ] WinMerge 2.5.5.5 ingoring subfolders option in project files
+  Src: MainFrm.cpp Merge.cpp
 
 2006-08-03 Jan Hryz
  Czech translation - update

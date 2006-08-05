@@ -1065,6 +1065,13 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				bROLeft = TRUE;
 			if (dlg.m_pProjectFile->GetRightReadOnly())
 				bRORight = TRUE;
+			// Set value in both cases because we want to override Open-dialog
+			// value.
+			int projRecurse = dlg.m_pProjectFile->GetSubfolders();
+			if (projRecurse == 0)
+				bRecurse = FALSE;
+			else if (projRecurse > 0)
+				bRecurse = TRUE;
 		}
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
