@@ -176,7 +176,7 @@ Name: Runtimes; Description: {cm:ApplicationRuntimes}; Types: full custom typica
 
 Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Types: full typical
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
-Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full typical
+Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
 
 ;Language components
 Name: Languages; Description: {cm:Languages}; Flags: disablenouninstallwarning
