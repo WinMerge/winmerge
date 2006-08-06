@@ -2,7 +2,7 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2006-07-30 Takashi
+2006-08-06 Takashi
  BUG: [ 1533292 ] crash when specifying nonexistent project file.
   Src: XmlDoc.cpp
 
