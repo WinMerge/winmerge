@@ -86,11 +86,11 @@ XmlDoc::Begin()
 	{
 		ASSERT(!m_load);
 		m_load = new XmlLoadDocData(m_path);
-		m_load->entities.Load();
 		if (m_load->xmlfile.pImage == NULL)
 		{
 			CFileException::ThrowOsError(GetLastError(), m_path);
 		}
+		m_load->entities.Load();
 		// If encoding is other than UTF-8, assume CP_ACP
 		CMarkdown::String encoding = CMarkdown(m_load->xmlfile).Move("?xml").GetAttribute("encoding");
 		m_codepage = lstrcmpiA(encoding.A, "UTF-8") == 0 ? CP_UTF8 : CP_ACP;
