@@ -206,7 +206,7 @@ protected:
 /**
  * @brief Recommended version of 7-Zip.
  */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(23,4);
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(42,4);
 
 /**
  * @brief Registry key for C7ZipMismatchException's ReportError() popup.
