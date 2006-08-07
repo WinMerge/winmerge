@@ -78,13 +78,15 @@ to local variables when needed and store when they are changed.</p>
 <p>OptionsDialog (<code>CPreferencesDlg</code>) receives pointer to <code>COptionsMgr</code> when
 initialised for access to options.</p>
 
-<p><code>CPreferencesDlg::ReadOptions()</code> is place to read option values and update
-values to UI. <code>CPreferencesDlg::SaveOptions()</code> is place to save option values
-to <code>COptionsMgr</code> when dialog is closed with OK.</p>
+<p><b>Note:</b>All propertypages in OptionsDialog may not have GUI initialized, so remember
+check window existence before trying to access it (get values/update it).</p>
 
-<p>If options page (dialog consists of several sub-pages) has 'Defaults' button
-it needs pointer to <code>COptionsMgr</code>. Usually its easiest to give it in
-constructor. Then page can call <code>COptionsMgr::GetDefault()</code> for options it
+<p>Options-propertypages implement <code>IOptionsPanel</code> interface. <code>ReadOptions()</code>
+and <code>WriteOptions()</code> must be implemented by all options-propertypages. Their functionality
+should be clear... <code>CPreferencesDlg</code> calls those functions when loading and saving options.</p>
+
+<p>If propertypage has 'Defaults' button it needs pointer to <code>COptionsMgr</code>. Usually it is
+easiest to give it in constructor. Then page can call <code>COptionsMgr::GetDefault()</code> for options it
 wants to reset to defaults when button is selected.</p>
 </body>
 </html>

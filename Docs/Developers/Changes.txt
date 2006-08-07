@@ -1,3 +1,7 @@
+2006-08-07 Kimmo
+ Update info about options reading and saving in Options-dialog.
+  Developers: Options.html
+
 2006-07-12 Kimmo
  readme-developers had wrong build path for languages and still referred to readme.txt
   Developers: readme-developers.html
