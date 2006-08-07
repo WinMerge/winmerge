@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-07 Kimmo
+ PATCH: [ 1535175 ] Shell ext: Add flag for subfolder inclusion
+  ShellExtension: WinMergeShell.cpp WinMergeShell.h
+
 2006-08-06 Takashi
  BUG: [ 1533292 ] crash when specifying nonexistent project file.
   Src: XmlDoc.cpp

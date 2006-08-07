@@ -47,9 +47,15 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
-/// Flags for enabling and mode of extension
-#define EXT_ENABLED 0x01
-#define EXT_ADVANCED 0x02
+/** 
+ * @brief Flags for enabling and other settings of context menu.
+ */
+enum ExtensionFlags
+{
+	EXT_ENABLED = 0x01, /**< ShellExtension enabled/disabled. */
+	EXT_ADVANCED = 0x02, /**< Advanced menuitems enabled/disabled. */
+	EXT_SUBFOLDERS = 0x04, /**< Subfolders included by default? */
+};
 
 /// Max. filecount to select
 static const int MaxFileCount = 2;
@@ -234,7 +240,7 @@ HRESULT CWinMergeShell::GetCommandString(UINT idCmd, UINT uFlags,
 	USES_WINMERGELOCALE;
 
 	// Check idCmd, it must be 0 in simple mode and 0 or 1 in advanced mode.
-	if (m_dwMenuState & EXT_ADVANCED == 0)
+	if ((m_dwMenuState & EXT_ADVANCED) == 0)
 	{
 		if (idCmd > 0)
 			return E_INVALIDARG;
@@ -273,6 +279,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	CRegKeyEx reg;
 	CString strWinMergePath;
 	BOOL bCompare = FALSE;
+	BOOL bAlterSubFolders = FALSE;
 	USES_WINMERGELOCALE;
 
 	// If lpVerb really points to a string, ignore this function call and bail out.
@@ -341,8 +348,11 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if (bCompare == FALSE)
 		return S_FALSE;
 
+	if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0)
+		bAlterSubFolders = TRUE;
+
 	CString strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
-		m_strPaths[1]);
+		m_strPaths[1], bAlterSubFolders);
 
 	// Finally start a new WinMerge process
 	BOOL retVal = FALSE;
@@ -539,7 +549,7 @@ CString CWinMergeShell::GetHelpText(int idCmd)
 
 /// Format commandline used to start WinMerge
 CString CWinMergeShell::FormatCmdLine(const CString &winmergePath,
-	const CString &path1, const CString &path2)
+	const CString &path1, const CString &path2, BOOL bAlterSubFolders)
 {
 	CString strCommandline = winmergePath;
 	BOOL bOnlyFiles = FALSE;
@@ -560,8 +570,17 @@ CString CWinMergeShell::FormatCmdLine(const CString &winmergePath,
 		}
 	}
 
-	strCommandline += _T(" \"") +
-		path1 + _T("\"");
+	// Check if user wants to use context menu
+	BOOL bSubfoldersByDefault = FALSE;
+	if (m_dwContextMenuEnabled & EXT_SUBFOLDERS) // User wants subfolders by def
+		bSubfoldersByDefault = TRUE;
+
+	if (bAlterSubFolders && !bSubfoldersByDefault)
+		strCommandline += _T(" /r");
+	else if (!bAlterSubFolders && bSubfoldersByDefault)
+		strCommandline += _T(" /r");
+	
+	strCommandline += _T(" \"") + path1 + _T("\"");
 	
 	if (!m_strPaths[1].IsEmpty())
 		strCommandline += _T(" \"") + path2 + _T("\"");

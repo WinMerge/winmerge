@@ -71,7 +71,7 @@ protected:
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	CString GetHelpText(int idCmd);
 	CString FormatCmdLine(const CString &winmergePath,
-		const CString &path1, const CString &path2);
+		const CString &path1, const CString &path2, BOOL bAlterSubFolders);
 
 public:
     // IShellExtInit
