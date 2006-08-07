@@ -2,6 +2,16 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-07 Jochen
+ PATCH: [ 1514487 ] Merge7z DllBuild 0018
+  Merge7z: Merge7z311.cpp Merge7z409.cpp Merge7zCommon.cpp Merge7zCommon.h
+   revision.txt Merge7z*.dsp
+  Merge7z new files: Merge7z433.dsp Merge7z434.dsp Merge7z435.dsp Merge7z436.dsp
+   Merge7z437.dsp Merge7z438.dsp Merge7z439.dsp Merge7z440.dsp Merge7z442.dsp
+  Merge7zInstaller: Installer.cpp Installer.rc Files.rc2
+ Change recommended version of 7-Zip to 4.42
+  Src: 7zCommon.cpp
+
 2006-08-07 Kimmo
  PATCH: [ 1535175 ] Shell ext: Add flag for subfolder inclusion
   ShellExtension: WinMergeShell.cpp WinMergeShell.h
