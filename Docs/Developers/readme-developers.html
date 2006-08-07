@@ -80,6 +80,10 @@ things.</p>
 <p>Please follow these guidelines when submitting changes to WinMerge sources
 as patches.</p>
 
+<p class="note">Do not waste yours and ours time by submitting large feature patches
+before you have made sure the feature is wanted to WinMerge. Communicate with developers,
+either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
+
 <ol>
   <li><p>Post development intentions:</p>
     <ul>
@@ -100,6 +104,11 @@ as patches.</p>
     <p>Before you start developing, make sure to capture
     a snapshot of your starting sources (presumably a pristine copy of cvs
     sources, or of a source zip from a distribution).</p>
+
+    <p><b>DO NOT</b> submit a patch against year-old version. Latest experimental/beta version
+    is at max few weeks old. Stable releases should only get bug fixes. And even then bugfix
+    is usually first applied to development versions. So there should be no reason to submit
+    a patch against old version.</p>
   </li>
   <li>
     <p>Review the sections on <a href="#Coding_conventions">Coding conventions</a>
@@ -114,6 +123,9 @@ as patches.</p>
     files rather than traditional diffs, because obviously all developers
     have access to WinMerge to compare original and modified files, and this
     may be viewed as an infinite line context diff :)</p>
+    <p><b>HINT:</b> If you have archive support installed in WinMerge you can do a folder
+    compare of your original and changed source trees. And then select <code>Zip - Differences</code>
+    from context menu and WinMerge creates a zip-file for you. Ready to be posted!</p>
   </li>
   <li>
     <p>Wait for reactions from other developers (and sometimes active users).
@@ -156,7 +168,7 @@ directly in the text in bug postings, or patch postings. For example, see
 <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216&amp;func=detail&amp;aid=824987">PATCH [ 824987 ] "Change binary-file detection (look only for zeros)"</a>,
 which gives the change directly in the text.</p>
 
-<p>Note, however, that sourceforge trackers currently ignore tabs, so if
+<p>Note, however, that sourceforge trackers currently ignore tabs, so if you
 can convert tabs to spaces in your posting, it helps greatly.</p>
 
 <p>Bugfixes may be treated less formally, especially for simple ones, or for
@@ -266,13 +278,15 @@ so they should not expect everything to work perfectly.
 For beta builds we paste in all the changes since the last beta release, so that people can see exactly what changed.
 For major releases, we paste in the list of changes since the last major release, and this list can become very long.</p>
 
-<p>We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make an installer with WinMerge.
-This installer is only used for major releases, for other releases we just zip up these files:</p>
+<p>We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make an installer for WinMerge.
+See <a href="readme-developers-InnoSetup.html">readme-developers-InnoSetup.html</a> for more information.
+Also zip-packages for releases are provided, zip up these files:</p>
 
 <ul>
   <li><code>WinMerge.exe</code> and <code>WinMergeU.exe</code></li>
-  <li><code>ShellExtension.dll</code> and <code>register.bat</code> to register it</li>
-  <li>All filters from the <code>filters/</code> directory</li>
+  <li><code>ShellExtension.dll</code>, <code>ShellExtensionU.dll</code> and <code>register.bat</code>
+  to register it</li>
+  <li>All filters from the <code>filters/</code> directory (remember template file!)</li>
   <li>All plugins from the <code>plugins/dlls/</code> directory. Create a <code>MergePlugins/</code> directory and copy the plugins to it</li>
   <li>All <code>*.lang</code> files (currently we have 21 languages, counting both Chinese versions)</li>
 </ul>
