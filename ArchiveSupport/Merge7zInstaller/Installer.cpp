@@ -35,6 +35,9 @@ DATE:		BY:					DESCRIPTION:
 								Batch options: /standalone, /select, /commit
 2005/05/30	Jochen Tucht		Standalone option now based on 7z420
 2005/06/28	Jochen Tucht		Standalone option now based on 7z423
+2005/12/04	Jochen Tucht		Standalone option now based on 7z431
+2005/12/09	Jochen Tucht		Standalone option now based on 7z432
+2006/06/28	Jochen Neubeck		Standalone option now based on 7z442
 */
 
 #include <windows.h>
@@ -351,8 +354,8 @@ BOOL CALLBACK DlgMain_EnableStandalone(HWND hWnd)
 {
 	if (IsDlgButtonChecked(hWnd, 205))
 	{
-		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z423.dll");
-		int upper = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z423U.dll");
+		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z442.dll");
+		int upper = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z442U.dll");
 		SendDlgItemMessage(hWnd, 100, LB_SELITEMRANGEEX, lower, upper);
 		if (GetFocus() == GetDlgItem(hWnd, 205))
 		{

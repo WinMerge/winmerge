@@ -36,6 +36,8 @@ DATE:		BY:					DESCRIPTION:
 								somewhat changed so I can no longer use it.
 2005/10/02	Jochen Tucht		Add CHM format
 2005/11/19	Jochen Tucht		Minor changes to build against 7z430 beta
+2006/06/28	Jochen Neubeck		Add ISO format (introduced with 7z436 beta)
+								Add NSIS format (introduced with 7z440 beta)
 */
 
 #include "stdafx.h"
@@ -636,6 +638,8 @@ DEFINE_FORMAT(CTarHandler,		"TAR.DLL",		"tar", "");
 DEFINE_FORMAT(CZHandler,		"Z.DLL",		"z", "@\x1F\x9D");
 DEFINE_FORMAT(CZipHandler,		"ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");
 DEFINE_FORMAT(CChmHandler,		"CHM.DLL",		"chm chi chq chw hxs hxi hxr hxq hxw lit", "@ITSF");
+DEFINE_FORMAT(CIsoHandler,		"ISO.DLL",		"iso", "");
+DEFINE_FORMAT(CNsisHandler,		"NSIS.DLL",		"exe", "@@@@@\xEF\xBE\xAD\xDENullsoftInst");
 
 /**
  * @brief Construct Merge7z interface.
@@ -882,6 +886,34 @@ void SaveRegLang(const UString &langFile)
 {
 }
 #endif
+
+/**
+ * @brief 7-Zip 4.15+: IsArchiveItemFolder(), needed by CArchiveExtractCallback,
+ * used to reside in OpenArchive.cpp, which has been removed from Merge7z in an
+ * attempt to reduce dependencies (actually got rid of four cpp files).
+ */
+static HRESULT IsArchiveItemProp(IInArchive *archive, UINT32 index, PROPID propID, bool &result)
+{
+	NCOM::CPropVariant prop;
+	RINOK(archive->GetProperty(index, propID, &prop));
+	if(prop.vt == VT_BOOL)
+		result = VARIANT_BOOLToBool(prop.boolVal);
+	else if (prop.vt == VT_EMPTY)
+		result = false;
+	else
+		return E_FAIL;
+	return S_OK;
+}
+
+HRESULT IsArchiveItemFolder(IInArchive *archive, UINT32 index, bool &result)
+{
+	return IsArchiveItemProp(archive, index, kpidIsFolder, result);
+}
+
+HRESULT IsArchiveItemAnti(IInArchive *archive, UINT32 index, bool &result)
+{
+	return IsArchiveItemProp(archive, index, kpidIsAnti, result);
+}
 
 /**
  * @brief Export instance of Merge7z interface.

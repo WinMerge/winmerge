@@ -45,3 +45,6 @@ VERSION(2,2)
 "*"//2005/10/02 Jochen Tucht	Add CHM format
 "*"//2005/10/04 Jochen Tucht	Don't rely on 7-Zip's format CLSIDs
 "*"//2005/11/19 Jochen Tucht	Minor changes to build against 7z430 beta
+"*"//2006/06/28	Jochen Neubeck	Add ISO format (introduced with 7z436 beta)
+//								Add NSIS format (introduced with 7z440 beta)
+//								Avoid to occasionally prompt for password twice

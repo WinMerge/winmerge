@@ -32,6 +32,7 @@ DATE:		BY:					DESCRIPTION:
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 2005/03/19	Jochen Tucht		Don't show error message on intentional abort
+2006/06/28	Jochen Neubeck		Avoid to occasionally prompt for password twice
 */
 
 #include "stdafx.h"
@@ -102,6 +103,7 @@ public:
  */
 Format7zDLL::Interface::Inspector::Inspector(Format7zDLL::Interface *format, LPCTSTR path)
 : format(format), archive(0), file(0), callback(0), path(path), ustrDefaultName(GetUnicodeString(path))
+, passwordIsDefined(false)
 {
 }
 
@@ -117,8 +119,6 @@ void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 	(callback = callbackImpl) -> AddRef();
 	callbackImpl->_passwordIsDefined = false;
 	callbackImpl->_parentWindow = hwndParent;
-	/*CMyComBSTR password;
-	callback->CryptoGetTextPassword(&password);*/
 	if COMPLAIN(!NFile::NFind::FindFile(path, fileInfo))
 	{
 		Complain(ERROR_FILE_NOT_FOUND, path);
@@ -131,6 +131,8 @@ void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 	{
 		Complain(ERROR_CANT_ACCESS_FILE, path);
 	}
+	passwordIsDefined = callbackImpl->_passwordIsDefined;
+	password = callbackImpl->_password;
 }
 
 /**
@@ -156,8 +158,8 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 		extractCallbackSpec2->Init
 		(
 			NExtractionMode::NOverwrite::kWithoutPrompt,	// overwriteMode
-			false,											// passwordIsDefined
-			UString()										// password
+			passwordIsDefined,								// passwordIsDefined
+			password										// password
 		);
 
 		extractCallbackSpec2->_parentWindow = hwndParent;

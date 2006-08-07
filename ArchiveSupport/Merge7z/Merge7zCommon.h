@@ -10,7 +10,7 @@
 #include "7zip/Common/FileStreams.h"
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 17
+#define DllBuild_Merge7z 18
 #define DLLPSTUB /##/
 #include "Merge7z.h"
 
@@ -91,6 +91,8 @@ interface Format7zDLL::Interface : Merge7z::Format
 		IArchiveOpenCallback *callback;
 		CSysString const path;
 		UString ustrDefaultName;
+		bool passwordIsDefined;
+		UString password;
 		NFile::NFind::CFileInfo fileInfo;
 		Inspector(Format7zDLL::Interface *, LPCTSTR);
 		void Init(HWND);

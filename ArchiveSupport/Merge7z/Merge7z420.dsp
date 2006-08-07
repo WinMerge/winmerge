@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeRelease/Merge7z420.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeRelease/Merge7z420.dll"
 
 !ELSEIF  "$(CFG)" == "Merge7z420 - Win32 Debug"
 
@@ -81,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../Build/MergeDebug/Merge7z420.pdb" /debug /machine:I386 /out:"../Build/MergeDebug/Merge7z420.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../Build/MergeDebug/Merge7z420.pdb" /debug /machine:I386 /out:"../Build/MergeDebug/Merge7z420.dll"
 # SUBTRACT LINK32 /pdb:none /map
 
 !ELSEIF  "$(CFG)" == "Merge7z420 - Win32 UnicodeDebug"
@@ -109,7 +109,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /map /debug /machine:I386 /out:"../Build/MergeDebug/Merge7z420.dll"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../Build/MergeUnicodeDebug/Merge7z420U.pdb" /debug /machine:I386 /out:"../Build/MergeUnicodeDebug/Merge7z420U.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../Build/MergeUnicodeDebug/Merge7z420U.pdb" /debug /machine:I386 /out:"../Build/MergeUnicodeDebug/Merge7z420U.dll"
 # SUBTRACT LINK32 /pdb:none /map
 
 !ELSEIF  "$(CFG)" == "Merge7z420 - Win32 UnicodeRelease"
@@ -137,7 +137,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeRelease/Merge7z420.dll"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeUnicodeRelease/Merge7z420U.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeUnicodeRelease/Merge7z420U.dll"
 
 !ENDIF 
 
@@ -349,14 +349,6 @@ SOURCE=..\..\..\7z420\7zip\UI\Common\ArchiveOpenCallback.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z420\7zip\UI\Common\ArchiverInfo.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z420\7zip\UI\Common\ArchiverInfo.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\..\7z420\7zip\UI\Common\DefaultName.cpp
 # End Source File
 # Begin Source File
@@ -409,14 +401,6 @@ SOURCE=..\..\..\7z420\7zip\FileManager\Resource\MessagesDialog\MessagesDialog.cp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z420\7zip\UI\Common\OpenArchive.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z420\7zip\UI\Common\OpenArchive.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\..\7z420\7zip\FileManager\OpenCallback.cpp
 # End Source File
 # Begin Source File
@@ -450,23 +434,6 @@ SOURCE=..\..\..\7z420\7zip\FileManager\Resource\ProgressDialog2\ProgressDialog.c
 # Begin Source File
 
 SOURCE=..\..\..\7z420\7zip\FileManager\Resource\ProgressDialog2\ProgressDialog.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z420\Windows\Registry.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z420\Windows\Registry.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z420\7zip\FileManager\RegistryUtils.cpp
-# PROP Exclude_From_Build 1
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\..\7z420\7zip\FileManager\RegistryUtils.h
 # End Source File
 # Begin Source File
 

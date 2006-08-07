@@ -33,6 +33,7 @@ DATE:		BY:					DESCRIPTION:
 2005/01/15	Jochen Tucht		Changed as explained in revision.txt
 2005/02/26	Jochen Tucht		Changed as explained in revision.txt
 2005/03/19	Jochen Tucht		Don't show error message on intentional abort
+2006/06/28	Jochen Neubeck		Avoid to occasionally prompt for password twice
 */
 
 #include "stdafx.h"
@@ -132,6 +133,8 @@ void Format7zDLL::Interface::Inspector::Init(HWND hwndParent)
 	{
 		Complain(ERROR_CANT_ACCESS_FILE, path);
 	}
+	passwordIsDefined = callbackImpl->PasswordIsDefined;
+	password = callbackImpl->Password;
 }
 
 /**
@@ -158,6 +161,8 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 
 		extractCallbackSpec2->ParentWindow = hwndParent;
 		extractCallbackSpec2->OverwriteMode = NExtract::NOverwriteMode::kWithoutPrompt;
+		extractCallbackSpec2->PasswordIsDefined = passwordIsDefined;
+		extractCallbackSpec2->Password = password;
 
 		extractCallbackSpec2->ProgressDialog.MainWindow = 0;
 		(extractCallbackSpec = new CArchiveExtractCallback) -> AddRef();
