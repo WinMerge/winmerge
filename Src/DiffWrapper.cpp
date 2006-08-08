@@ -1415,14 +1415,15 @@ int DiffFileData::diffutils_compare_files(int depth)
 		struct change *p,*e;
 		for (e = script; e; e = p)
 		{
-			++m_ndiffs;
 			if (!e->trivial)
-				code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
+				++m_ndiffs;
 			else
 				++m_ntrivialdiffs;
 			p = e->link;
 			free (e);
 		}
+		if (m_ndiffs > 0)
+			code = code & ~DIFFCODE::SAME | DIFFCODE::DIFF;
 	}
 
 	// diff_2_files set bin_flag to -1 if different binary

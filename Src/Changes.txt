@@ -5,6 +5,9 @@ Add new items to top.
 2006-08-08 Kimmo
  BUG: [ 1535835 ] Import settings from the file
   Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+ PATCH: [ 1536240 ] Fix diff count numbers for real
+  Src: DiffWrapper.cpp DirScan.cpp
+  Src/diffutils/src: analyze.c UTIL.c
 
 2006-08-07 Jochen
  PATCH: [ 1514487 ] Merge7z DllBuild 0018

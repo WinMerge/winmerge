@@ -548,8 +548,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		if (di.isSideRightOrBoth())
 			di.right.m_textStats = pDiffFileData->m_textStats1;
 
-		if (pDiffFileData->m_ntrivialdiffs > -1)
-			di.nsdiffs = pDiffFileData->m_ndiffs - pDiffFileData->m_ntrivialdiffs;
+		di.nsdiffs = pDiffFileData->m_ndiffs;
 		di.nidiffs = pDiffFileData->m_ntrivialdiffs;
 
 		if (!di.isSideLeft())

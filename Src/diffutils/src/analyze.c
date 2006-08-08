@@ -984,7 +984,7 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 			struct change *next = script;
 			changes = 0;
 			
-			while (next && changes == 0)
+			while (next)
 			{
 				struct change *thisob, *end;
 				int first0, last0, first1, last1, deletes, inserts;
@@ -1009,8 +1009,6 @@ struct change * diff_2_files (struct file_data filevec[], int depth, int * bin_s
 					changes = 1;
 
 			}
-			if (script)
-				script->trivial = !changes;
 		}
 		else
 		{

@@ -806,36 +806,38 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
       show_to += next->inserted;
 
       for (i = next->line0; i <= l0 && trivial; i++)
-	if (!ignore_blank_lines_flag || (!iseolch(files[0].linbuf[i][0]) && files[0].linbuf[i][0] != 0))
-	  {
-	    struct regexp_list *r;
-	    char const HUGE *line = files[0].linbuf[i];
-	    int len = files[0].linbuf[i + 1] - line;
+        if (!ignore_blank_lines_flag || (!iseolch(files[0].linbuf[i][0]) &&
+            files[0].linbuf[i][0] != 0))
+          {
+            struct regexp_list *r;
+            char const HUGE *line = files[0].linbuf[i];
+            int len = files[0].linbuf[i + 1] - line;
 
-	    for (r = ignore_regexp_list; r; r = r->next)
-	      if (0 <= re_search (&r->buf, line, len, 0, len, 0))
-		break;	/* Found a match.  Ignore this line.  */
-	    /* If we got all the way through the regexp list without
-	       finding a match, then it's nontrivial.  */
-	    if (!r)
-	      trivial = 0;
-	  }
+            for (r = ignore_regexp_list; r; r = r->next)
+              if (0 <= re_search (&r->buf, line, len, 0, len, 0))
+                break;  /* Found a match.  Ignore this line.  */
+            /* If we got all the way through the regexp list without
+               finding a match, then it's nontrivial.  */
+            if (!r)
+              trivial = 0;
+          }
 
       for (i = next->line1; i <= l1 && trivial; i++)
-	if (!ignore_blank_lines_flag || (!iseolch(files[1].linbuf[i][0]) && files[1].linbuf[i][0] != 0))
-	  {
-	    struct regexp_list *r;
-	    char const HUGE *line = files[1].linbuf[i];
-	    int len = files[1].linbuf[i + 1] - line;
+        if (!ignore_blank_lines_flag || (!iseolch(files[1].linbuf[i][0]) &&
+            files[1].linbuf[i][0] != 0))
+          {
+            struct regexp_list *r;
+            char const HUGE *line = files[1].linbuf[i];
+            int len = files[1].linbuf[i + 1] - line;
 
-	    for (r = ignore_regexp_list; r; r = r->next)
-	      if (0 <= re_search (&r->buf, line, len, 0, len, 0))
-		break;	/* Found a match.  Ignore this line.  */
-	    /* If we got all the way through the regexp list without
-	       finding a match, then it's nontrivial.  */
-	    if (!r)
-	      trivial = 0;
-	  }
+            for (r = ignore_regexp_list; r; r = r->next)
+              if (0 <= re_search (&r->buf, line, len, 0, len, 0))
+                break;  /* Found a match.  Ignore this line.  */
+            /* If we got all the way through the regexp list without
+               finding a match, then it's nontrivial.  */
+            if (!r)
+              trivial = 0;
+          }
     }
   while ((next = next->link) != 0);
 
@@ -848,8 +850,11 @@ analyze_hunk (hunk, first0, last0, first1, last1, deletes, inserts)
     show_from = show_to = 0;
 
   /* WinMerge editor needs to know if there were trivial changes though,
-  so stash that off in the trivial field */
-  hunk->trivial = trivial;
+     so stash that off in the trivial field */
+  if (trivial)
+    hunk->trivial = 1;
+  else
+    hunk->trivial = 0;
 
   *deletes = show_from;
   *inserts = show_to;
