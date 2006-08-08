@@ -1,3 +1,7 @@
+2006-08-08 Tim
+ BUG: [ 1379278 ] Docs fix: Generate new GUIDs for new plugins
+  Developers: Plugins.html
+
 2006-08-07 Kimmo
  Update info about options reading and saving in Options-dialog.
   Developers: Options.html
