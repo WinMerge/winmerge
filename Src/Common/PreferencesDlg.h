@@ -99,6 +99,7 @@ protected:
 	CString GetItemPath(HTREEITEM hti);
 	void ReadOptions(BOOL bUpdate = FALSE);
 	void SaveOptions();
+	void SafeUpdatePage(CPropertyPage* pPage, BOOL bSaveAndValidate);
 
 private:
 	COptionsMgr *m_pOptionsMgr;

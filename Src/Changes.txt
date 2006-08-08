@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-08 Kimmo
+ BUG: [ 1535835 ] Import settings from the file
+  Src/Common: PreferencesDlg.cpp PreferencesDlg.h
+
 2006-08-07 Jochen
  PATCH: [ 1514487 ] Merge7z DllBuild 0018
   Merge7z: Merge7z311.cpp Merge7z409.cpp Merge7zCommon.cpp Merge7zCommon.h

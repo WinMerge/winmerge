@@ -17,6 +17,7 @@
 #include "SyntaxColors.h"
 #include "PreferencesDlg.h"
 #include "MainFrm.h"
+#include "coretools.h" //SplitFilename()
 #include "Merge.h" // SelectFile()
 
 #include "winclasses.h"
@@ -252,16 +253,16 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 
 	if (bUpdate)
 	{
-		m_pageGeneral.UpdateData(FALSE);
-		m_pageMergeColors.UpdateData(FALSE);
-		m_pageTextColors.UpdateData(FALSE);
-		m_pageSyntaxColors.UpdateData(FALSE);
-		m_pageSystem.UpdateData(FALSE);
-		m_pageCompare.UpdateData(FALSE);
-		m_pageEditor.UpdateData(FALSE);
-		m_pageCodepage.UpdateData(FALSE);
-		m_pageVss.UpdateData(FALSE);
-		m_pageArchive.UpdateData(FALSE);
+		SafeUpdatePage(&m_pageMergeColors, FALSE);
+		SafeUpdatePage(&m_pageMergeColors, FALSE);
+		SafeUpdatePage(&m_pageTextColors, FALSE);
+		SafeUpdatePage(&m_pageSyntaxColors, FALSE);
+		SafeUpdatePage(&m_pageSystem, FALSE);
+		SafeUpdatePage(&m_pageCompare, FALSE);
+		SafeUpdatePage(&m_pageEditor, FALSE);
+		SafeUpdatePage(&m_pageCodepage, FALSE);
+		SafeUpdatePage(&m_pageVss, FALSE);
+		SafeUpdatePage(&m_pageArchive, FALSE);
 	}
 }
 
@@ -312,14 +313,40 @@ void CPreferencesDlg::OnImportButton()
  */
 void CPreferencesDlg::OnExportButton()
 {
-	CString s;
+	CString settingsFile;
 	CString caption;
 	VERIFY(caption.LoadString(IDS_OPT_EXPORT_CAPTION));
-	if (SelectFile(s, NULL, caption, IDS_INIFILES, FALSE))
+	if (SelectFile(settingsFile, NULL, caption, IDS_INIFILES, FALSE))
 	{
-		if (m_pOptionsMgr->ExportOptions(s) == OPT_OK)
+		// Add settings file extension if it is missing
+		// So we allow 'filename.otherext' but add extension for 'filename'
+		CString filename;
+		CString extension;
+		SplitFilename(settingsFile, NULL, &filename, &extension);
+		if (extension.IsEmpty())
+		{
+			CString settingsFileExt(_T("ini"));
+			settingsFile += _T(".");
+			settingsFile += settingsFileExt;
+		}
+
+		if (m_pOptionsMgr->ExportOptions(settingsFile) == OPT_OK)
 			AfxMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
 		else
 			AfxMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
 	}
+}
+
+/**
+ * @brief Do a safe UpdateData call for propertypage.
+ * This function does safe UpdateData call for given propertypage. As it is,
+ * all propertypages may not have been yet initialized properly, so we must
+ * have some care when calling updateData for them.
+ * @param [in] pPage Propertypage to update.
+ * @param bSaveAndValidate UpdateData direction parameter.
+ */
+void CPreferencesDlg::SafeUpdatePage(CPropertyPage* pPage, BOOL bSaveAndValidate)
+{
+	if (pPage->GetSafeHwnd() != NULL)
+		pPage->UpdateData(bSaveAndValidate);
 }
