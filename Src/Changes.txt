@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-08 Jan Hryz
+ Czech translation - update
+  Src/Languages/Czech/MergeCzech.rc
+
 2006-08-08 WinMerge experimental release 2.5.5.6 (cvs)
 
 2006-08-08 Kimmo
@@ -32,7 +36,7 @@ Add new items to top.
   Src: XmlDoc.cpp
 
 2006-08-05 Kimmo
- PATCH: [ 1534770 ] Add "don't wrap end of line" option for Find
+ PATCH: [ 1534770 ] Add "don't wrap end of file" option for Find
   Src: Merge.rc resource.h
   Src/editlib: ccrystaleditview.cpp ccrystaltextview.cpp ccrystaltextview.h
    ceditreplacedlg.cpp cfindtextdlg.cpp cfindtextdlg.h
