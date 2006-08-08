@@ -786,7 +786,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "R&egulérní výraz",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
-    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
+    CONTROL         "Zastavit na &konci souboru",IDC_FINDDLG_DONTWRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,57,135,10
     GROUPBOX        "Smìr",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "Nahor&u",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
