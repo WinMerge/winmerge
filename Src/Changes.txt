@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-08 WinMerge experimental release 2.5.5.6 (cvs)
+
 2006-08-08 Kimmo
  BUG: [ 1535835 ] Import settings from the file
   Src/Common: PreferencesDlg.cpp PreferencesDlg.h
