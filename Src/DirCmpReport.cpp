@@ -16,8 +16,9 @@
 #include "coretools.h"
 #include "WaitStatusCursor.h"
 #include "paths.h"
-#include "UniFile.h"
-#include "DirReportTypes.h"
+#include <afxadv.h>
+
+UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
 
 /**
  * @brief Return current time as string.
@@ -25,7 +26,7 @@
  */
 static CString GetCurrentTimeString()
 {
-	time_t nTime=0;
+	time_t nTime = 0;
 	time(&nTime);
 	_int64 nTime64 = nTime;
 	CString str = TimeString(&nTime64);
@@ -61,6 +62,7 @@ static CString EndEl(LPCTSTR elName)
  */
 DirCmpReport::DirCmpReport(const CStringArray & colRegKeys)
 : m_pList(NULL)
+, m_pFile(NULL)
 , m_nColumns(0)
 , m_colRegKeys(colRegKeys)
 , m_sSeparator(_T(","))
@@ -82,6 +84,8 @@ void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
 	m_rootPaths.SetLeft(paths.GetLeft());
 	m_rootPaths.SetRight(paths.GetRight());
+	AfxFormatString2(m_sTitle, IDS_DIRECTORY_REPORT_TITLE,
+			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
 }
 
 /**
@@ -92,6 +96,13 @@ void DirCmpReport::SetColumns(int columns)
 	m_nColumns = columns;
 }
 
+static ULONG GetLength32(CFile const &f)
+{
+	ULONGLONG length = f.GetLength();
+	if (length > ULONG_MAX)
+		length = ULONG_MAX;
+	return static_cast<ULONG>(length);
+}
 /**
  * @brief Generate report and save it to file.
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
@@ -100,52 +111,131 @@ void DirCmpReport::SetColumns(int columns)
 BOOL DirCmpReport::GenerateReport(CString &errStr)
 {
 	ASSERT(m_pList != NULL);
+	ASSERT(m_pFile == NULL);
 	BOOL bRet = FALSE;
 
 	DirCmpReportDlg dlg;
-	if (dlg.DoModal() == IDOK)
+	if (dlg.DoModal() == IDOK) try
 	{
 		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_CREATEREPORT));
-		m_sReportFile = dlg.m_sReportFile;
-		CString path;
-		SplitFilename(m_sReportFile, &path, NULL, NULL);
-		if (!paths_CreateIfNeeded(path))
+		if (dlg.m_bCopyToClipboard)
 		{
-			VERIFY(errStr.LoadString(IDS_FOLDER_NOTEXIST));
-			return FALSE;
+			if (!CWnd::GetSafeOwner()->OpenClipboard())
+				return FALSE;
+			if (!EmptyClipboard())
+				return FALSE;
+			CSharedFile file(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
+			m_pFile = &file;
+			GenerateReport(dlg.m_nReportType);
+			SetClipboardData(CF_TEXT, file.Detach());
+			// If report type is HTML, render CF_HTML format as well
+			if (dlg.m_nReportType == REPORT_TYPE_SIMPLEHTML)
+			{
+				// Reconstruct the CSharedFile object
+				file.~CSharedFile();
+				file.CSharedFile::CSharedFile(GMEM_DDESHARE|GMEM_MOVEABLE|GMEM_ZEROINIT);
+				// Write preliminary CF_HTML header with all offsets zero
+				static const char header[] =
+					"Version:0.9\n"
+					"StartHTML:%09d\n"
+					"EndHTML:%09d\n"
+					"StartFragment:%09d\n"
+					"EndFragment:%09d\n";
+				static const char start[] = "<html><body>\n<!--StartFragment -->";
+				static const char end[] = "\n<!--EndFragment -->\n</body>\n</html>\n";
+				char buffer[256];
+				int cbHeader = wsprintfA(buffer, header, 0, 0, 0, 0);
+				file.Write(buffer, cbHeader);
+				file.Write(start, sizeof start - 1);
+				GenerateHTMLHeaderBodyPortion();
+				GenerateXmlHtmlContent(false);
+				file.Write(end, sizeof end); // include terminating zero
+				DWORD size = GetLength32(file);
+				// Rewrite CF_HTML header with valid offsets
+				file.SeekToBegin();
+				wsprintfA(buffer, header, cbHeader, size - 1,
+					cbHeader + sizeof start - 1, size - sizeof end + 1);
+				file.Write(buffer, cbHeader);
+				SetClipboardData(CF_HTML, GlobalReAlloc(file.Detach(), size, 0));
+			}
+			CloseClipboard();
 		}
-
-		// Preallocate large CString buffer to speed up building the string
-		// (because CString::Append is not smart enough to preallocate exponentially)
-		m_sReport.GetBufferSetLength(m_pList->GetItemCount() * 512);
-
-		if (dlg.m_nReportType == REPORT_TYPE_SIMPLEHTML)
+		if (!dlg.m_sReportFile.IsEmpty())
 		{
-			bool xml = false;
-			GenerateHTMLHeader();
-			GenerateXmlHtmlContent(xml);
-			GenerateHTMLFooter();
+			CString path;
+			SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
+			if (!paths_CreateIfNeeded(path))
+			{
+				VERIFY(errStr.LoadString(IDS_FOLDER_NOTEXIST));
+				return FALSE;
+			}
+			CFile file(dlg.m_sReportFile,
+				CFile::modeWrite|CFile::modeCreate|CFile::shareDenyWrite);
+			m_pFile = &file;
+			GenerateReport(dlg.m_nReportType);
 		}
-		else if (dlg.m_nReportType == REPORT_TYPE_SIMPLEXML)
-		{
-			bool xml = true;
-			GenerateXmlHeader();
-			GenerateXmlHtmlContent(xml);
-			GenerateXmlFooter();
-		}
-		else
-		{
-			if (dlg.m_nReportType == REPORT_TYPE_COMMALIST)
-				m_sSeparator = _T(",");
-			else if (dlg.m_nReportType == REPORT_TYPE_TABLIST)
-				m_sSeparator = _T("\t");
-				
-			GenerateHeader();
-			GenerateContent();
-		}
-		bRet = SaveToFile(errStr);
+		bRet = TRUE;
 	}
+	catch (CException *e)
+	{
+		e->ReportError(MB_ICONSTOP);
+		e->Delete();
+	}
+	m_pFile = NULL;
 	return bRet;
+}
+
+/**
+ * @brief Generate report of given type.
+ * @param [in] nReportType Type of report.
+ */
+void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
+{
+	switch (nReportType)
+	{
+	case REPORT_TYPE_SIMPLEHTML:
+		GenerateHTMLHeader();
+		GenerateXmlHtmlContent(false);
+		GenerateHTMLFooter();
+		break;
+	case REPORT_TYPE_SIMPLEXML:
+		GenerateXmlHeader();
+		GenerateXmlHtmlContent(true);
+		GenerateXmlFooter();
+		break;
+	case REPORT_TYPE_COMMALIST:
+		m_sSeparator = _T(",");
+		GenerateHeader();
+		GenerateContent();
+		break;
+	case REPORT_TYPE_TABLIST:
+		m_sSeparator = _T("\t");
+		GenerateHeader();
+		GenerateContent();
+		break;
+	}
+}
+
+/**
+ * @brief Write text to report file.
+ * @param [in] pszText Text to write to report file.
+ */
+void DirCmpReport::WriteString(LPCTSTR pszText)
+{
+	USES_CONVERSION;
+	LPCSTR pchOctets = T2A((LPTSTR)pszText);
+	size_t cchAhead = strlen(pchOctets);
+	while (LPCSTR pchAhead = (LPCSTR)memchr(pchOctets, '\n', cchAhead))
+	{
+		int cchLine = pchAhead - pchOctets;
+		m_pFile->Write(pchOctets, cchLine);
+		static const char eol[] = { '\r', '\n' };
+		m_pFile->Write(eol, sizeof eol);
+		++cchLine;
+		pchOctets += cchLine;
+		cchAhead -= cchLine;
+	}
+	m_pFile->Write(pchOctets, cchAhead);
 }
 
 /**
@@ -153,16 +243,10 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
  */
 void DirCmpReport::GenerateHeader()
 {
-	time_t nTime=0;
-	time(&nTime);
-	_int64 nTime64 = nTime;
-	CString sCurTime = TimeString(&nTime64);
-
-	AfxFormatString2(m_sReport, IDS_DIRECTORY_REPORT_TITLE,
-			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
-	m_sReport += _T("\n");
-	m_sReport += sCurTime + _T("\n");
-
+	WriteString(m_sTitle);
+	WriteString(_T("\n"));
+	WriteString(GetCurrentTimeString());
+	WriteString(_T("\n"));
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
 		TCHAR columnName[160]; // Assuming max col header will never be > 160
@@ -171,10 +255,10 @@ void DirCmpReport::GenerateHeader()
 		lvc.pszText = &columnName[0];
 		lvc.cchTextMax = countof(columnName);
 		if (m_pList->GetColumn(currCol, &lvc))
-			m_sReport += lvc.pszText;
+			WriteString(lvc.pszText);
 		// Add col-separator, but not after last column
 		if (currCol < m_nColumns - 1)
-			m_sReport += m_sSeparator;
+			WriteString(m_sSeparator);
 	}
 }
 
@@ -188,16 +272,17 @@ void DirCmpReport::GenerateContent()
 	// Report:Detail. All currently displayed columns will be added
 	for (int currRow = 0; currRow < nRows; currRow++)
 	{
-		m_sReport += _T("\n");
+		WriteString(_T("\n"));
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
-			m_sReport += m_pList->GetItemText(currRow, currCol);
+			WriteString(m_pList->GetItemText(currRow, currCol));
 
 			// Add col-separator, but not after last column
 			if (currCol < m_nColumns - 1)
-				m_sReport += m_sSeparator;
+				WriteString(m_sSeparator);
 		}
 	}
+
 }
 
 /**
@@ -205,18 +290,25 @@ void DirCmpReport::GenerateContent()
  */
 void DirCmpReport::GenerateHTMLHeader()
 {
-	m_sReport = _T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n");
-	m_sReport += _T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n");
-	m_sReport += _T("<html>\n<head>\n\t<title>");
-	CString title;
-	AfxFormatString2(title, IDS_DIRECTORY_REPORT_TITLE,
-			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
-	m_sReport += title;
-	m_sReport += _T("</title>\n</head>\n<body>\n<h2>");
-	m_sReport += title;
-	m_sReport += _T("</h2>\n<p>");
-	m_sReport += GetCurrentTimeString() + _T("</p>\n");
-	m_sReport += _T("<table border=\"1\">\n<tr>\n");
+	WriteString(_T("<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n")
+		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
+		_T("<html>\n<head>\n\t<title>"));
+	WriteString(m_sTitle);
+	WriteString(_T("</title>\n</head>\n<body>\n"));
+	GenerateHTMLHeaderBodyPortion();
+}
+
+/**
+ * @brief Generate body portion of simple html report header (w/o body tag).
+ */
+void DirCmpReport::GenerateHTMLHeaderBodyPortion()
+{
+	WriteString(_T("<h2>"));
+	WriteString(m_sTitle);
+	WriteString(_T("</h2>\n<p>"));
+	WriteString(GetCurrentTimeString());
+	WriteString(_T("</p>\n"));
+	WriteString(_T("<table border=\"1\">\n<tr>\n"));
 
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
@@ -227,12 +319,12 @@ void DirCmpReport::GenerateHTMLHeader()
 		lvc.cchTextMax = countof(columnName);
 		if (m_pList->GetColumn(currCol, &lvc))
 		{
-			m_sReport += _T("<th>");
-			m_sReport += lvc.pszText;
-			m_sReport += _T("</th>");
+			WriteString(_T("<th>"));
+			WriteString(lvc.pszText);
+			WriteString(_T("</th>"));
 		}
 	}
-	m_sReport += _T("</tr>\n");
+	WriteString(_T("</tr>\n"));
 }
 
 /**
@@ -240,15 +332,15 @@ void DirCmpReport::GenerateHTMLHeader()
  */
 void DirCmpReport::GenerateXmlHeader()
 {
-	m_sReport = _T(""); // @todo xml declaration
-	m_sReport += _T("<WinMergeDiffReport version=\"1\">\n");
-	m_sReport += Fmt(_T("<left>%s</left>\n"), m_rootPaths.GetLeft());
-	m_sReport += Fmt(_T("<right>%s</right>\n"), m_rootPaths.GetRight());
-	m_sReport += Fmt(_T("<time>%s</time>\n"), GetCurrentTimeString());
+	WriteString(_T("")); // @todo xml declaration
+	WriteString(_T("<WinMergeDiffReport version=\"1\">\n"));
+	WriteString(Fmt(_T("<left>%s</left>\n"), m_rootPaths.GetLeft()));
+	WriteString(Fmt(_T("<right>%s</right>\n"), m_rootPaths.GetRight()));
+	WriteString(Fmt(_T("<time>%s</time>\n"), GetCurrentTimeString()));
 
 	// Add column headers
 	const CString rowEl = _T("column_name");
-	m_sReport += BeginEl(rowEl);
+	WriteString(BeginEl(rowEl));
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
 		TCHAR columnName[160]; // Assuming max col header will never be > 160
@@ -260,12 +352,12 @@ void DirCmpReport::GenerateXmlHeader()
 		const CString colEl = m_colRegKeys[currCol];
 		if (m_pList->GetColumn(currCol, &lvc))
 		{
-			m_sReport += BeginEl(colEl);
-			m_sReport += lvc.pszText;
-			m_sReport += EndEl(colEl);
+			WriteString(BeginEl(colEl));
+			WriteString(lvc.pszText);
+			WriteString(EndEl(colEl));
 		}
 	}
-	m_sReport += EndEl(rowEl) + _T("\n");
+	WriteString(EndEl(rowEl) + _T("\n"));
 }
 
 /**
@@ -281,20 +373,20 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
 		CString rowEl = _T("tr");
 		if (xml)
 			rowEl = _T("filediff");
-		m_sReport += BeginEl(rowEl);
+		WriteString(BeginEl(rowEl));
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
 			CString colEl = _T("td");
 			if (xml)
 				colEl = m_colRegKeys[currCol];
-			m_sReport += BeginEl(colEl);
-			m_sReport += m_pList->GetItemText(currRow, currCol);
-			m_sReport += EndEl(colEl);
+			WriteString(BeginEl(colEl));
+			WriteString(m_pList->GetItemText(currRow, currCol));
+			WriteString(EndEl(colEl));
 		}
-		m_sReport += EndEl(rowEl) + _T("\n");
+		WriteString(EndEl(rowEl) + _T("\n"));
 	}
 	if (!xml)
-		m_sReport += _T("</table>\n");
+		WriteString(_T("</table>\n"));
 }
 
 /**
@@ -302,7 +394,7 @@ void DirCmpReport::GenerateXmlHtmlContent(bool xml)
  */
 void DirCmpReport::GenerateHTMLFooter()
 {
-	m_sReport += _T("</body>\n</html>\n");
+	WriteString(_T("</body>\n</html>\n"));
 }
 
 /**
@@ -310,35 +402,6 @@ void DirCmpReport::GenerateHTMLFooter()
  */
 void DirCmpReport::GenerateXmlFooter()
 {
-	m_sReport += _T("</WinMergeDiffReport>\n");
+	WriteString(_T("</WinMergeDiffReport>\n"));
 }
 
-/**
- * @brief Save generated report to file.
- * @param [out] sError Possible error message.
- */
-BOOL DirCmpReport::SaveToFile(CString &sError)
-{
-	UniStdioFile file;
-
-	// @todo
-	// We could support Windows or Unix or Mac style here of course
-	// Right now we're always doing Windows style lines
-
-	m_sReport.Replace(_T("\n"), _T("\r\n"));
-	
-	if (!file.OpenCreate(m_sReportFile))
-	{
-		sError = GetSysError(GetLastError());		
-		return FALSE;
-	}
-
-	// @todo
-	// Should support Unicode output here
-
-	file.SetCodepage(GetACP());
-	file.WriteString(m_sReport);	
-	file.Close();
-
-	return TRUE;
-}

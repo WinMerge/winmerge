@@ -14,6 +14,8 @@
 #include "PathContext.h"
 #endif
 
+#include "DirReportTypes.h"
+
 /**
  * @brief This class creates directory compare reports.
  *
@@ -37,22 +39,24 @@ public:
 	BOOL GenerateReport(CString &errStr);
 
 protected:
+	void GenerateReport(REPORT_TYPE nReportType);
+	void WriteString(LPCTSTR);
 	void GenerateHeader();
 	void GenerateContent();
 	void GenerateHTMLHeader();
+	void GenerateHTMLHeaderBodyPortion();
 	void GenerateXmlHeader();
 	void GenerateXmlHtmlContent(bool xml);
 	void GenerateHTMLFooter();
 	void GenerateXmlFooter();
-	BOOL SaveToFile(CString &sError);
 
 private:
 	CListCtrl * m_pList; /**< Pointer to UI-list */
 	PathContext m_rootPaths; /**< Root paths, printed to report */
+	CString m_sTitle; /**< Report title, built from root paths */
 	int m_nColumns; /**< Columns in UI */
 	CString m_sSeparator; /**< Column separator for report */
-	CString m_sReport; /**< Report as string */
-	CString m_sReportFile; /**< Filename for report */
+	CFile *m_pFile; /**< File to write report to */
 	const CStringArray & m_colRegKeys; /**< Key names for currently displayed columns */
 };
 

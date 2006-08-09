@@ -38,6 +38,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBtnClickReportBrowse();
+	afx_msg void OnBtnDblclickCopyClipboard();
 	virtual BOOL OnInitDialog();
 	virtual void OnOK();
 
@@ -45,6 +46,7 @@ public:
 	CString m_sReportFile; /**< Report filename string */
 	CComboBox m_ctlStyle; /**< Report type control */
 	REPORT_TYPE m_nReportType; /**< Report type integer */
+	BOOL m_bCopyToClipboard; /**< Do we copy report to clipboard? */
 };
 
 #endif // _DIRCMPREPORTDLG_H_

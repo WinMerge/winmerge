@@ -380,6 +380,7 @@
 #define IDC_PROJFILE_LREADONLY          1306
 #define IDC_PROJFILE_RREADONLY          1307
 #define IDC_FINDDLG_DONTWRAP            1308
+#define IDC_REPORT_COPYCLIPBOARD        1309
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

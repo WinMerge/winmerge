@@ -22,6 +22,7 @@ IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
  */
 DirCmpReportDlg::DirCmpReportDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(DirCmpReportDlg::IDD, pParent)
+	, m_bCopyToClipboard(FALSE)
 {
 }
 
@@ -37,10 +38,12 @@ void DirCmpReportDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_REPORT_FILE, m_ctlReportFile);
 	DDX_Control(pDX, IDC_REPORT_STYLECOMBO, m_ctlStyle);
 	DDX_Text(pDX, IDC_REPORT_FILE, m_sReportFile);
+	DDX_Check(pDX, IDC_REPORT_COPYCLIPBOARD, m_bCopyToClipboard);
 }
 
 BEGIN_MESSAGE_MAP(DirCmpReportDlg, CDialog)
 	ON_BN_CLICKED(IDC_REPORT_BROWSEFILE, OnBtnClickReportBrowse)
+	ON_BN_DOUBLECLICKED(IDC_REPORT_COPYCLIPBOARD, OnBtnDblclickCopyClipboard)
 END_MESSAGE_MAP()
 
 /**
@@ -125,7 +128,15 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 }
 
 /**
- * @brief Close dialog and create a report.
+ * @brief Erase report file name.
+ */
+void DirCmpReportDlg::OnBtnDblclickCopyClipboard()
+{
+	m_ctlReportFile.SetWindowText(_T(""));
+}
+
+/**
+ * @brief Close dialog.
  */
 void DirCmpReportDlg::OnOK()
 {
@@ -134,20 +145,23 @@ void DirCmpReportDlg::OnOK()
 	int sel = m_ctlStyle.GetCurSel();
 	m_nReportType = (REPORT_TYPE)m_ctlStyle.GetItemData(sel);
 
-	if (m_sReportFile.IsEmpty())
+	if (m_sReportFile.IsEmpty() && !m_bCopyToClipboard)
 	{
 		AfxMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
 		m_ctlReportFile.SetFocus();
 		return;
 	}
 
-	if (paths_DoesPathExist(m_sReportFile) == IS_EXISTING_FILE)
+	if (!m_sReportFile.IsEmpty())
 	{
-		int overWrite = AfxMessageBox(IDS_REPORT_FILEOVERWRITE,
-				MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
-				IDS_DIFF_FILEOVERWRITE);
-		if (overWrite == IDNO)
-			return;
+		if (paths_DoesPathExist(m_sReportFile) == IS_EXISTING_FILE)
+		{
+			int overWrite = AfxMessageBox(IDS_REPORT_FILEOVERWRITE,
+					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
+					IDS_DIFF_FILEOVERWRITE);
+			if (overWrite == IDNO)
+				return;
+		}
 	}
 
 	m_ctlReportFile.SaveState(_T("ReportFiles"));
