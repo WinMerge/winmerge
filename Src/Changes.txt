@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-09 Jan Hryz
+ Czech translation - update
+  Src/Languages/Czech/MergeCzech.rc
+
 2006-08-09 Jochen
  PATCH: [ 1310951 ] Option to copy DirCmpReport to clipboard
   Src: DirCmpReport.cpp DirCmpReport.h DirCmpReportDlg.cpp DirCmpReportDlg.h
