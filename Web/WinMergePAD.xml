@@ -34,9 +34,9 @@
 	</Company_Info>
 	<Program_Info>
 		<Program_Name>WinMerge</Program_Name>
-		<Program_Version>2.4.8</Program_Version>
-		<Program_Release_Month>06</Program_Release_Month>
-		<Program_Release_Day>13</Program_Release_Day>
+		<Program_Version>2.4.10</Program_Version>
+		<Program_Release_Month>08</Program_Release_Month>
+		<Program_Release_Day>10</Program_Release_Day>
 		<Program_Release_Year>2006</Program_Release_Year>
 		<Program_Cost_Dollars>0</Program_Cost_Dollars>
 		<Program_Cost_Other_Code />
@@ -55,11 +55,11 @@
 		<Includes_VB_Runtime>N</Includes_VB_Runtime>
 		<Includes_DirectX>N</Includes_DirectX>
 		<File_Info>
-			<Filename_Versioned>WinMerge-2.4.8-Setup.exe</Filename_Versioned>
-			<Filename_Previous>WinMerge-2.4.6-Setup.exe</Filename_Previous>
+			<Filename_Versioned>WinMerge-2.4.10-Setup.exe</Filename_Versioned>
+			<Filename_Previous>WinMerge-2.4.8-Setup.exe</Filename_Previous>
 			<Filename_Generic>WinMergeSetup.exe</Filename_Generic>
 			<Filename_Long>WinMergeSetup.exe</Filename_Long>
-			<File_Size_Bytes>2582556</File_Size_Bytes>
+			<File_Size_Bytes>2582165</File_Size_Bytes>
 			<File_Size_K>2522</File_Size_K>
 			<File_Size_MB>2.46</File_Size_MB>
 		</File_Info>
@@ -92,7 +92,7 @@
 			<Application_XML_File_URL>http://winmerge.org/WinMergePAD.xml</Application_XML_File_URL>
 		</Application_URLs>
 		<Download_URLs>
-			<Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.8-Setup.exe</Primary_Download_URL>
+			<Primary_Download_URL>http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe</Primary_Download_URL>
 			<Secondary_Download_URL />
 			<Additional_Download_URL_1 />
 			<Additional_Download_URL_2 />

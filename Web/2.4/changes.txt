@@ -1,3 +1,61 @@
+2006-08-10 2.4.10 Stable Release
+
+2006-08-10 Kimmo
+ Bump ShellExtension version to 1.6.5
+  ShellExtension: ShellExtension.rc
+
+2006-08-06 Kimmo
+ PATCH: [ 1531293 ] Fix wrong cursor position after find
+  Src: cfindtextdlg.cpp
+ PATCH: [ 1533457 ] Add Refresh Selected -item to Folder compare main menu
+  Only crash fix merged to 2.4 branch
+  Src: DirActions.cpp DirView.cpp DirView.h
+
+2006-08-01 Kimmo
+ PATCH: [ 1531845 ] Fix memory leak after find
+  Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1531957 ] Fix imagelist memory leak in editor
+  Src/editlib: ccrystaltextview.cpp
+
+2006-07-30 Takashi
+ BUG: [ 1528322 ] Crash when using F6 / Bugg for file differences
+  Src: MergeEditView.cpp
+
+2006-07-30 Kimmo
+ PATCH: [ 1528987 ] Use 64-bit variable as file position in Bytecompare
+  DiffWrapper.cpp
+
+2006-07-29 Takashi
+ PATCH: [ 1529915 ] Refresh menu on DirView does not work correctly
+  Src: DirActions.cpp
+
+2006-07-20 Kimmo
+ PATCH: [ 1525013 ] Add description for ASP.NET filter
+  Filters: ASPNET.flt
+
+2006-07-19 Kimmo
+ BUG: [ 1524251 ] File filter does not work on 2.5.5.3
+  Original fix from Takashi, modified by Kimmo
+  Src: FileFilterMgr.cpp
+ PATCH: [ 1525025 ] Copy/paste error in MainFrm.cpp
+  Src: MainFrm.cpp
+ BUG: [ 1505763 ] Crash after closing file compare window
+  Src: MergeEditView.cpp
+
+2007-07-14 Kimmo
+ PATCH: [ 1521392 ] Fix reading last line in linefilter file
+  Src: FileFilterMgr.cpp
+
+2007-07-13 Kimmo
+ PATCH: [ 1515380 ] Page Up/Down Anomaly
+  Submitted by Ed_K
+  Src/editlib: ccrystaltextview2.cpp
+
+2006-06-20 Kimmo
+ PATCH: [ 1509495 ] Polish translation for ShellExtension
+  Submitted by dr_prozac
+  ShellExtension/Languages: ShellExtensionPolish.rc
+
 2006-06-13 2.4.8 Stable Release
 
 2006-06-13 Kimmo
@@ -113,7 +171,7 @@
   Src/editlib: ccrystaleditview.cpp
 
 2006-03-11 Takashi
- BUG:  [ 1441389 ] Comparing root directory - mysterious
+ BUG: [ 1441389 ] Comparing root directory - mysterious
   Src: DiffWrapper.cpp
 
 2006-03-10 Kimmo
@@ -379,7 +437,7 @@
   Src/Languages/Catalan: MergeCatalan.rc
 
 2005-12-09 Kimmo
- PATCH: [1374728 ] Fix filter dialog delete
+ PATCH: [ 1374728 ] Fix filter dialog delete
   Submitted by Perry
   Src: FileFilterMgr.cpp
  fix two-line-end-markers bug that was reported in:
