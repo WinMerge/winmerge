@@ -146,7 +146,7 @@
      */
     function printFoot() {
       $temp = "  </div>\n";
-      $temp = "</div>\n";
+      $temp .= "</div>\n";
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
       print($temp);

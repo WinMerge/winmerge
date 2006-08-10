@@ -4,6 +4,8 @@
   Web\2.4: changes.txt index.php
  PATCH: [ 1536348 ] Known issue: some plugins need VB runtime
   Web\2.4: limitations.php
+ Fix missing </div> for new tab layout.
+  Web: page.inc
 
 2006-08-05 Tim
  PATCH: [ 1534820 ] Web: Pimp my tabs ;)
