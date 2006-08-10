@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-10 Kimmo
+ Fix doxygen comment for ImportOptions()
+  Src/Common: OptionsMgr.cpp
+
 2006-08-10 Gal
  PATCH: Code cleanup. Removed commented out code.
   Src/Common: SuperComboBox.cpp

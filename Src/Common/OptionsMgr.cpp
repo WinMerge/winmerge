@@ -512,7 +512,7 @@ int COptionsMgr::ExportOptions(CString filename)
 }
 
 /**
- * @brief Export options to file.
+ * @brief Import options from file.
  *
  * This function reads options values and names from given file and
  * updates values to our options storage. If valuename does not exist
