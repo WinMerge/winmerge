@@ -29,6 +29,12 @@
     <p><strong>$ does not match end of line in linefilter regular expressions</strong></p>
     <p><i>Workaround</i>: Construct your regular expression so that you don't need to use $.</p>
   </li>
+  <li>
+    <p><strong>Some plugins shipped with WinMerge require Visual Basic runtime library to work</strong></p>
+    <p><i>Workaround</i>: You can download the required file <code><a href="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</a></code>
+       or use the <a href="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time Redistribution Pack</a> from Microsoft.</p>
+    <p><i>Workaround 2</i>: If you don't need the plugin, you can safely remove it.</p>
+  </li>
 </ul>
 <?php
   $page->printFoot();

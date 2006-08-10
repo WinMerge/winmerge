@@ -2,6 +2,8 @@
  PATCH: [ 1538297 ] Website changes for new stable release 2.4.10
   Web: downloads.php index.php page.inc WinMergePAD.xml
   Web\2.4: changes.txt index.php
+ PATCH: [ 1536348 ] Known issue: some plugins need VB runtime
+  Web\2.4: limitations.php
 
 2006-08-05 Tim
  PATCH: [ 1534820 ] Web: Pimp my tabs ;)
