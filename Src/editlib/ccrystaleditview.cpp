@@ -1354,9 +1354,9 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
 {
   if (!pszNewText)
     pszNewText = _T ("");
-  /*ASSERT (pszNewText != NULL);
-  if (!IsSelection ())
-    return FALSE;*/
+
+  if (!lstrlen(pszNewText))
+    return DeleteCurrentSelection();
 
   m_pTextBuffer->BeginUndoGroup();
 

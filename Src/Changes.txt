@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: Code cleanup. Removed commented out code.
   Src/Common: SuperComboBox.cpp
 
+ BUG: [ 1531965 ] Crash undoing empty (?) event
+  Src/editlib: ccrystaleditview.cpp
+
 2006-08-09 Jan Hryz
  Czech translation - update
   Src/Languages/Czech/MergeCzech.rc
