@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1538264 ] Split DiffFileData class to own files
   Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirViewColItems.cpp Merge.dsp
   Src new files: DiffFileData.cpp DiffFileData.h
+ PATCH: [ 1537261 ] Swedish 2.5.5.6+ translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-08-10 Kimmo
  Fix doxygen comment for ImportOptions()

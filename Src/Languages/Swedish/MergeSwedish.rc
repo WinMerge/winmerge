@@ -177,9 +177,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    POPUP "&Felsökning"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Öppna Konfiguration...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "F&önster"
     BEGIN
@@ -230,7 +230,7 @@ BEGIN
         MENUITEM "E&genskaper...",              ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Uppdatera\tF5",              ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
+        MENUITEM "&Uppdatera valda\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Visa"
     BEGIN
@@ -287,9 +287,9 @@ BEGIN
         MENUITEM SEPARATOR
        MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    POPUP "&Felsökning"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Öppna Konfiguration...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "F&önster"
     BEGIN
@@ -449,9 +449,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    POPUP "&Felsökning"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Öppna Konfiguration...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "F&önster"
     BEGIN
@@ -786,7 +786,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "&Reguljärt uttryck",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
-    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
+    CONTROL         "V&änd inte vid slutet av filen",IDC_FINDDLG_DONTWRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,57,135,10
     GROUPBOX        "Riktning",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "&Upp",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
@@ -1383,7 +1383,7 @@ BEGIN
     LTEXT           "&Stil:",IDC_STATIC,7,37,35,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&Copy to Clipboard",IDC_REPORT_COPYCLIPBOARD,"Button",
+    CONTROL         "&Kopiera till klippbordet",IDC_REPORT_COPYCLIPBOARD,"Button",
                     BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,53,133,10
     DEFPUSHBUTTON   "OK",IDOK,157,60,50,14
     PUSHBUTTON      "Avbryt",IDCANCEL,211,60,50,14
@@ -2008,13 +2008,13 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Välj filnamn för nytt filter"
     IDS_FILEFILTER_FILEMASK "Filfilter (*.flt)|*.flt|Alla Filer (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder."
+                            "Kan inte hitta filfilterfilen!\n\nVar god och kopiera filen %1 till WinMerges filterkatalog."
     IDS_FILEFILTER_TMPL_COPY 
-                            "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
+                            "Kan inte kopiera filterfilen till filterkatalogen:\n%1\n\nVar god och verifiera att katalogen finns och att den är skrivbar."
     IDS_FILEFILTER_NO_USERFOLDER 
-                            "User's filter file folder is not defined!\n\nPlease select filter folder in options/System."
+                            "Användarens filterfilkatalog är inte definierad!\n\nVar god och välj filterkatalog i Egenskaper/System."
     IDS_FILEFILTER_DELETE_FAIL 
-                            "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
+                            "Kan inte ta bort filterfilen:\n%1\n\nKanske är filen bara läsbar?"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2263,8 +2263,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Vänster kodning"
     IDS_COLHDR_RENCODING    "Höger kodning"
-    IDS_COLHDR_NIDIFFS      "#Ignored diff."
-    IDS_COLHDR_NSDIFFS      "#differences"
+    IDS_COLHDR_NIDIFFS      "#Ignorerade skillnader"
+    IDS_COLHDR_NSDIFFS      "#Skillnader"
     IDS_COLHDR_BINARY       "Binär"
 END
 
@@ -2328,8 +2328,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Vänster sidas kodning."
     IDS_COLDESC_RENCODING   "Höger sidas kodning."
-    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
+    IDS_COLDESC_NIDIFFS     "Antal ignorerade skillnader på raden. Dessa skillnader är ignorerade av WinMerge och kan inte läggas samman."
+    IDS_COLDESC_NSDIFFS     "Antal skillnader på raden. Detta antal inkluderar inte ignorerade skillnader."
     IDS_COLDESC_BINARY      "Visar stjärna (*) om filen är binär."
 END
 
