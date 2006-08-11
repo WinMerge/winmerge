@@ -20,6 +20,7 @@
 #include "locality.h"
 #include "unicoder.h"
 #include "coretools.h"
+#include "DiffFileData.h"
 
 // shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
 #ifdef UNICODE

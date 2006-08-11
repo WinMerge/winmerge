@@ -253,6 +253,10 @@ SOURCE=.\DiffContext.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffFileData.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DiffFileInfo.cpp
 # End Source File
 # Begin Source File
@@ -1014,6 +1018,10 @@ SOURCE=.\Common\CSubclass.h
 # Begin Source File
 
 SOURCE=.\DiffContext.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffFileData.h
 # End Source File
 # Begin Source File
 
@@ -2404,10 +2412,10 @@ SOURCE=.\ReadMe.txt
 # End Group
 # End Target
 # End Project
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
+# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
-# End Section
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

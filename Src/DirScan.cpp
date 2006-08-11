@@ -21,6 +21,7 @@
 #include "DiffItemList.h"
 #include "PathContext.h"
 #include "IAbortable.h"
+#include "DiffFileData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
