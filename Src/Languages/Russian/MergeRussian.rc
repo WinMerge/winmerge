@@ -2263,8 +2263,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Кодирование файла слева"
     IDS_COLHDR_RENCODING    "Кодирование файла справа"
-    IDS_COLHDR_NIDIFFS      "#Ignored diff."
-    IDS_COLHDR_NSDIFFS      "#differences"
+    IDS_COLHDR_NIDIFFS      "Ignored Diff."
+    IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       "Двоичный"
 END
 

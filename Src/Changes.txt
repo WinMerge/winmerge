@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-13 Tim
+ PATCH: [ 1539204 ] Remove '#' from '#differences' column
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-08-11 Kimmo
  PATCH: [ 1538264 ] Split DiffFileData class to own files
   Src: DiffWrapper.cpp DiffWrapper.h DirScan.cpp DirViewColItems.cpp Merge.dsp

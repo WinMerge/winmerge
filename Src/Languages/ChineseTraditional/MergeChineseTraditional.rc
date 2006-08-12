@@ -2263,8 +2263,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "左邊編碼"
     IDS_COLHDR_RENCODING    "右邊編碼"
-    IDS_COLHDR_NIDIFFS      "#Ignored diff."
-    IDS_COLHDR_NSDIFFS      "#differences"
+    IDS_COLHDR_NIDIFFS      "Ignored Diff."
+    IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       "二進位"
 END
 

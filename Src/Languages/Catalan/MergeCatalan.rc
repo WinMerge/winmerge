@@ -2281,8 +2281,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Codificació esquerra"
     IDS_COLHDR_RENCODING    "Codificació dreta"
-    IDS_COLHDR_NIDIFFS      "#Ignored diff."
-    IDS_COLHDR_NSDIFFS      "#differences"
+    IDS_COLHDR_NIDIFFS      "Ignored Diff."
+    IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       "Binari"
 END
 

@@ -2261,8 +2261,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Bal oldali kódolás"
     IDS_COLHDR_RENCODING    "Jobb oldali kódolás"
-    IDS_COLHDR_NIDIFFS      "#Ignored diff."
-    IDS_COLHDR_NSDIFFS      "#differences"
+    IDS_COLHDR_NIDIFFS      "Ignored Diff."
+    IDS_COLHDR_NSDIFFS      "Differences"
     IDS_COLHDR_BINARY       "Bináris"
 END
 

@@ -2263,8 +2263,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Kódování vlevo"
     IDS_COLHDR_RENCODING    "Kódování vpravo"
-    IDS_COLHDR_NIDIFFS      "# ignor. rozdílù"
-    IDS_COLHDR_NSDIFFS      "# rozdílù"
+    IDS_COLHDR_NIDIFFS      "Ignor. rozdílù"
+    IDS_COLHDR_NSDIFFS      "Rozdílù"
     IDS_COLHDR_BINARY       "Binární"
 END
 

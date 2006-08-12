@@ -2263,8 +2263,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Vänster kodning"
     IDS_COLHDR_RENCODING    "Höger kodning"
-    IDS_COLHDR_NIDIFFS      "#Ignorerade skillnader"
-    IDS_COLHDR_NSDIFFS      "#Skillnader"
+    IDS_COLHDR_NIDIFFS      "Ignorerade skillnader"
+    IDS_COLHDR_NSDIFFS      "Skillnader"
     IDS_COLHDR_BINARY       "Binär"
 END
 
