@@ -366,6 +366,7 @@ protected:
 	afx_msg void OnEditCut();
 	afx_msg void OnEditPaste();
 	afx_msg void OnEditUndo();
+	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);

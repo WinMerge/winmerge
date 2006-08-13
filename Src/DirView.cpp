@@ -192,6 +192,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_COMMAND(ID_EDIT_CUT, OnEditCut)
 	ON_COMMAND(ID_EDIT_PASTE, OnEditPaste)
 	ON_COMMAND(ID_EDIT_UNDO, OnEditUndo)
+	ON_UPDATE_COMMAND_UI(ID_EDIT_UNDO, OnUpdateEditUndo)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY_REFLECT(LVN_COLUMNCLICK, OnColumnClick)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
@@ -3032,5 +3033,22 @@ void CDirView::OnEditUndo()
 	if (NULL != pEdit)
 	{
 		pEdit->Undo();
+	}
+}
+
+/**
+ * @brief Update the tool bar's "Undo" icon. It should be enabled when
+ * renaming an item and undo is possible.
+ */
+void CDirView::OnUpdateEditUndo(CCmdUI* pCmdUI)
+{
+	CEdit *pEdit = m_pList->GetEditControl();
+	if (NULL != pEdit)
+	{
+		pCmdUI->Enable(pEdit->CanUndo());
+	}
+	else
+	{
+		pCmdUI->Enable(FALSE);
 	}
 }
