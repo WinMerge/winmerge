@@ -57,6 +57,7 @@ public:
 	BOOL	m_bUseRecycleBin;
 	BOOL	m_bContextAdvanced;
 	BOOL	m_bIgnoreSmallTimeDiff;
+	BOOL	m_bContextSubfolders;
 	CString m_strUserFilterPath;
 	//}}AFX_DATA
 
@@ -81,6 +82,7 @@ protected:
 	void GetContextRegValues();
 	void SaveMergePath();
 	void AdvancedContextMenuCheck();
+	void SubfolderOptionCheck();
 
 // Implementation data
 private:

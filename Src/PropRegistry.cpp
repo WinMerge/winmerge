@@ -41,6 +41,7 @@ static char THIS_FILE[] = __FILE__;
 /// Flags for enabling and mode of extension
 #define CONTEXT_F_ENABLED 0x01
 #define CONTEXT_F_ADVANCED 0x02
+#define CONTEXT_F_SUBFOLDERS 0x04
 
 // registry dir to WinMerge
 static LPCTSTR f_RegDir = _T("Software\\Thingamahoochie\\WinMerge");
@@ -60,6 +61,7 @@ CPropRegistry::CPropRegistry(COptionsMgr *optionsMgr)
 , m_bUseRecycleBin(TRUE)
 , m_bContextAdvanced(FALSE)
 , m_bIgnoreSmallTimeDiff(FALSE)
+, m_bContextSubfolders(FALSE)
 {
 }
 
@@ -152,7 +154,7 @@ void CPropRegistry::GetContextRegValues()
 		return;
 	}
 
-	// This will be bit mask, although now there is only one bit defined
+	// Read bitmask for shell extension settings
 	DWORD dwContextEnabled = reg.ReadDword(f_RegValueEnabled, 0);
 
 	if (dwContextEnabled & CONTEXT_F_ENABLED)
@@ -160,12 +162,16 @@ void CPropRegistry::GetContextRegValues()
 
 	if (dwContextEnabled & CONTEXT_F_ADVANCED)
 		m_bContextAdvanced = TRUE;
+
+	if (dwContextEnabled & CONTEXT_F_SUBFOLDERS)
+		m_bContextSubfolders = TRUE;
 }
 
 /// Set registry values for ShellExtension
 void CPropRegistry::OnAddToExplorer()
 {
 	AdvancedContextMenuCheck();
+	SubfolderOptionCheck();
 }
 
 /// Saves given path to registry for ShellExtension, and Context Menu settings
@@ -242,6 +248,19 @@ void CPropRegistry::AdvancedContextMenuCheck()
 		GetDlgItem(IDC_EXPLORER_ADVANCED)->EnableWindow(FALSE);
 		CheckDlgButton(IDC_EXPLORER_ADVANCED, FALSE);
 		m_bContextAdvanced = FALSE;
+	}
+}
+
+/// Enable/Disable "Include subfolders by default" checkbox.
+void CPropRegistry::SubfolderOptionCheck()
+{
+	if (IsDlgButtonChecked(IDC_EXPLORER_CONTEXT))
+		GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(TRUE);
+	else
+	{
+		GetDlgItem(IDC_EXPLORER_SUBFOLDERS)->EnableWindow(FALSE);
+		CheckDlgButton(IDC_EXPLORER_SUBFOLDERS, FALSE);
+		m_bContextSubfolders = FALSE;
 	}
 }
 
