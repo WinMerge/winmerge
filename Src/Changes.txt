@@ -5,6 +5,9 @@ Add new items to top.
 2006-08-15 Kimmo
  PATCH: [ 1540129 ] Fix indentation of diffutils io.c
   Src/diffutils/src: IO.C
+ PATCH: [ 1540054 ] Remove Copy All -items from folder compare menu
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2006-08-13 Gal
  BUG: [ 1538340 ] Undo enabled for folder compare.
