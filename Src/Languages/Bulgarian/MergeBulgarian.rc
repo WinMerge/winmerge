@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Копирай в &дясно\tAlt+Right",   ID_L2R
         MENUITEM "Копирай в л&яво\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Копирай &всичко в дясно",          ID_ALL_RIGHT
-        MENUITEM "Копира&Й всичко в ляво",           ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Инструменти"

@@ -268,9 +268,6 @@ BEGIN
         MENUITEM "复制到右侧(&R)\tAlt+Right",   ID_L2R
         MENUITEM "复制到左侧(&L)\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "全部复制到右侧(&A)",          ID_ALL_RIGHT
-        MENUITEM "全部复制到左侧(&E)",          ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "删除(&D)\tDel",               ID_MERGE_DELETE
     END
     POPUP "工具(&T)"

@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "S&aða Kopyala\tAlt+Right",    ID_L2R
         MENUITEM "So&la Kopyala\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Tümünü Saða Kopyala",        ID_ALL_RIGHT
-        MENUITEM "T&ümünü Sola Kopyala",        ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Araçlar"

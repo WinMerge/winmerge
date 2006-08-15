@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "오른쪽으로 복사(&G)\tAlt+Right", ID_L2R
         MENUITEM "왼쪽으로 복사(&L)\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "모두 오른쪽으로 복사(&A)",    ID_ALL_RIGHT
-        MENUITEM "모두 왼쪽으로 복사(&E)",      ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "도구(&T)"

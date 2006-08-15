@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Copia a la &dreta\tAlt+Dreta", ID_L2R
         MENUITEM "Copia a l'&esquerra\tAlt+Esquerra", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copia-ho &tot a la dreta",     ID_ALL_RIGHT
-        MENUITEM "Copia-ho t&ot a l'esquerra",   ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "S&uprimeix\tSupr",                ID_MERGE_DELETE
     END
     POPUP "&Eines"

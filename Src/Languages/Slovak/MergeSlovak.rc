@@ -263,9 +263,6 @@ BEGIN
         MENUITEM "&Aktu·ny rozdiel\tAlt+Enter", ID_CURDIFF
         MENUITEM "Posledn˝ &rozdiel\tAlt+End",  ID_LASTDIFF
         MENUITEM SEPARATOR
-        MENUITEM "KopÌrovaù vpravo\t<-",        ID_L2R
-        MENUITEM "KopÌrovaù væavo\t->",         ID_R2L
-        MENUITEM SEPARATOR
         MENUITEM "KopÌrovaù vöetko vpravo",     ID_ALL_RIGHT
         MENUITEM "KopÌrovaù vöetko væavo",      ID_ALL_LEFT
         MENUITEM SEPARATOR

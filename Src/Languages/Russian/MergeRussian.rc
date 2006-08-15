@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Скопировать на &правую панель\tAlt+Right", ID_L2R
         MENUITEM "Скопировать на &левую панель\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Ск&опировать все на правую панель", ID_ALL_RIGHT
-        MENUITEM "Скоп&ировать все на левую панель", ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Инструменты"

@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Nach &rechts kopieren\tAlt+Rechts", ID_L2R
         MENUITEM "Nach l&inks kopieren\tAlt+Links", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Alles nach rec&hts kopieren", ID_ALL_RIGHT
-        MENUITEM "Alles nach lin&ks kopieren",  ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "Lös&chen\tEntf",              ID_MERGE_DELETE
     END
     POPUP "&Tools"

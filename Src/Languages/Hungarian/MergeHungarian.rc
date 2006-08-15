@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Másolás &Jobbra\tAlt+Right",   ID_L2R
         MENUITEM "Másolás &Balra\tAlt+Left",     ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "M&inden Jobbra másolása",          ID_ALL_RIGHT
-        MENUITEM "Mi&nden Balra másolása",           ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Törlés\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Eszközök"

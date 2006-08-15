@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Kopírovat dop&rava\tAlt+Right", ID_L2R
         MENUITEM "Kopírovat do&leva\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Kopírovat vše doprava",        ID_ALL_RIGHT
-        MENUITEM "K&opírovat vše doleva",         ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "Odstran&it\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Nástroje"

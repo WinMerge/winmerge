@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "右にコピー(&R)\tAlt+Right",   ID_L2R
         MENUITEM "左にコピー(&E)\tAlt+Left",    ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "全てを右にコピー(&A)",        ID_ALL_RIGHT
-        MENUITEM "全てを左にコピー(&Y)",        ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "削除(&D)\tDel",               ID_MERGE_DELETE
     END
     POPUP "ツール(&T)"

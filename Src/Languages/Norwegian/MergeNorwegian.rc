@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Kopier til &høyre\tAlt+Høyre", ID_L2R
         MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Kopier alt &til høyre",       ID_ALL_RIGHT
-        MENUITEM "Kopier alt til ve&nstre",     ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Verktøy"

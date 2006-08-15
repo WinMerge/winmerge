@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "C&opia a destra\tFreccia destra", ID_L2R
         MENUITEM "Co&pia a sinistra\tFreccia sinistra", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copia tutto a destra",        ID_ALL_RIGHT
-        MENUITEM "Copia tutto a sinistra",      ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Elimina\tCanc",                ID_MERGE_DELETE
     END
     POPUP "&Strumenti"

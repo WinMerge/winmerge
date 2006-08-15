@@ -266,9 +266,6 @@ BEGIN
         MENUITEM "Copiar para a &Direita\tAlt+Right", ID_L2R
         MENUITEM "Copiar para a &Esquerda\tAlt+Left", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Copiar tudo para a Direita",  ID_ALL_RIGHT
-        MENUITEM "Copiar tudo para a Esquerda", ID_ALL_LEFT
-        MENUITEM SEPARATOR
         MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
     END
     POPUP "&Tools"
