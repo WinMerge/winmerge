@@ -99,38 +99,38 @@ sip (current, skip_test)
   else
     {
       current->bufsize = current->buffered_chars
-	= STAT_BLOCKSIZE (current->stat);
+        = STAT_BLOCKSIZE (current->stat);
 
       if (S_ISREG (current->stat.st_mode))
-	/* Get the size out of the stat block.
-	   Allocate enough room for appended newline and sentinel.
-	   Allocate at least one block, to prevent overrunning the buffer
-	   when comparing growing binary files.  */
-	current->bufsize = max (current->bufsize,
-				current->stat.st_size + sizeof (word) + 1);
+      /* Get the size out of the stat block.
+         Allocate enough room for appended newline and sentinel.
+         Allocate at least one block, to prevent overrunning the buffer
+         when comparing growing binary files.  */
+      current->bufsize = max (current->bufsize,
+        current->stat.st_size + sizeof (word) + 1);
 
 #ifdef __MSDOS__
       if ((current->buffer = (char HUGE *) farmalloc (current->bufsize)) == NULL)
-	fatal ("far memory exhausted");
+         fatal ("far memory exhausted");
 #else
       current->buffer = xmalloc (current->bufsize);
 #endif /*__MSDOS__*/
 
       if (skip_test)
-	current->buffered_chars = 0;
+        current->buffered_chars = 0;
       else
-	{
-	  /* Check first part of file to see if it's a binary file.  */
-	  current->buffered_chars = read (current->desc,
-					  current->buffer,
+        {
+          /* Check first part of file to see if it's a binary file.  */
+          current->buffered_chars = read (current->desc,
+            current->buffer,
 #ifdef __MSDOS__
-			(unsigned int)
+            (unsigned int)
 #endif /*__MSDOS__*/
-					  current->buffered_chars);
-	  if (current->buffered_chars == -1)
-	    pfatal_with_name (current->name);
-	  return binary_file_p (current->buffer, current->buffered_chars);
-	}
+            current->buffered_chars);
+          if (current->buffered_chars == -1)
+            pfatal_with_name (current->name);
+          return binary_file_p (current->buffer, current->buffered_chars);
+        }
     }
   
   return 0;
@@ -171,40 +171,40 @@ slurp (current)
 #else
       cc = current->stat.st_size - current->buffered_chars;
       if (cc)
-	{
-	  cc = read (current->desc,
-		     current->buffer + current->buffered_chars,
-		     cc);
-	  if (cc == -1)
-	    pfatal_with_name (current->name);
-	  current->buffered_chars += cc;
-	}
+        {
+          cc = read (current->desc,
+             current->buffer + current->buffered_chars,
+             cc);
+          if (cc == -1)
+            pfatal_with_name (current->name);
+          current->buffered_chars += cc;
+        }
 #endif /*__MSDOS__*/
     }
-  /* It's not a regular file; read it, growing the buffer as needed.  */
+      /* It's not a regular file; read it, growing the buffer as needed.  */
   else if (always_text_flag || current->buffered_chars != 0)
     {
       for (;;)
-	{
-	  if (current->buffered_chars == current->bufsize)
-	    {
+        {
+          if (current->buffered_chars == current->bufsize)
+            {
 #ifdef __MSDOS__
-	      current->bufsize += 4096;
-	      current->buffer = (char HUGE *) farrealloc (current->buffer, current->bufsize);
+              current->bufsize += 4096;
+              current->buffer = (char HUGE *) farrealloc (current->buffer, current->bufsize);
 #else
-	      current->bufsize = current->bufsize * 2;
-	      current->buffer = xrealloc (current->buffer, current->bufsize);
+              current->bufsize = current->bufsize * 2;
+              current->buffer = xrealloc (current->buffer, current->bufsize);
 #endif /*__MSDOS__*/
-	    }
-	  cc = read (current->desc,
-		     current->buffer + current->buffered_chars,
-		     current->bufsize - current->buffered_chars);
-	  if (cc == 0)
-	    break;
-	  if (cc == -1)
-	    pfatal_with_name (current->name);
-	  current->buffered_chars += cc;
-	}
+            }
+          cc = read (current->desc,
+          current->buffer + current->buffered_chars,
+          current->bufsize - current->buffered_chars);
+          if (cc == 0)
+            break;
+          if (cc == -1)
+            pfatal_with_name (current->name);
+          current->buffered_chars += cc;
+        }
 #ifndef __MSDOS__
       /* Allocate just enough room for appended newline and sentinel.  */
       current->bufsize = current->buffered_chars + sizeof (word) + 1;
@@ -216,7 +216,7 @@ slurp (current)
 static int
 ISWSPACE (char ch)
 {
-	return ch==' ' || ch=='\t';
+  return ch==' ' || ch=='\t';
 }
 
 /* Split the file into lines, simultaneously computing the equivalence class for
@@ -260,198 +260,198 @@ find_and_hash_each_line (current)
 
 
       /*
-	 loops advance pointer to eol (end of line)
-	 respecting UNIX (\r), MS-DOS/Windows (\r\n), and MAC (\r) eols
-	 Normally eol characters are hashed
-	 If ignore_eol_diff option is set, eol characters are not hashed
-	 and the eol characters are removed from line as well, in code
-	 further down (after hashing_done label)
+     loops advance pointer to eol (end of line)
+     respecting UNIX (\r), MS-DOS/Windows (\r\n), and MAC (\r) eols
+     Normally eol characters are hashed
+     If ignore_eol_diff option is set, eol characters are not hashed
+     and the eol characters are removed from line as well, in code
+     further down (after hashing_done label)
       */
 
       /* Hash this line until we find a newline. */
       if (ignore_case_flag)
-	{
-	  if (ignore_all_space_flag)
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
-	      {
-		if (ignore_eol_diff && (c=='\r' || c=='\n'))
-		  continue;
-		if (! ISWSPACE (c))
-		  h = HASH (h, isupper (c) ? tolower (c) : c);
-	      }
-	  else if (ignore_space_change_flag)
-	    /* Note that \r must be hashed (if !ignore_eol_diff) */
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
-	      {
-		if (ignore_eol_diff && (c=='\r' || c=='\n'))
-		  continue;
-		if (ISWSPACE (c))
-		  {
-		    /* skip whitespace after whitespace */
-		    while (ISWSPACE (c = *p++))
-		      ;
-		    if (c=='\n')
-		      {
-			goto hashing_done; /* never hash trailing \n */
-		      }
-		    else if (c == '\r')
-		      {
-			/*
-			    \r must be hashed if !ignore_eol_diff
-			    Also, we must always advance to end of line
-			    which means we can only stop on \r if not
-			    followed by \n
-			*/
-			if (ignore_eol_diff)
-			  {
-			    if (*p == '\n') /* continue to LF after CR */
-			      continue;
-			    else
-			      goto hashing_done;
-			  }
-		      }
-		    else
-		      {
-			/* runs of whitespace not ending line hashed as one space */
-		        h = HASH (h, ' ');
-		      }
-		  }
-		/* c is now the first non-space.  */
-		/* c can be a \r (CR) if !ignore_eol_diff */
-		h = HASH (h, isupper (c) ? tolower (c) : c);
-		if (c == '\r' && *p != '\n')
-		  goto hashing_done;
-	      }
-	  else
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
-	      {
-		if (ignore_eol_diff && (c=='\r' || c=='\n'))
-		  continue;
-		h = HASH (h, isupper (c) ? tolower (c) : c);
-	      }
-	}
+        {
+          if (ignore_all_space_flag)
+            while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+              {
+                if (ignore_eol_diff && (c=='\r' || c=='\n'))
+                  continue;
+                if (! ISWSPACE (c))
+                  h = HASH (h, isupper (c) ? tolower (c) : c);
+              }
+          else if (ignore_space_change_flag)
+            /* Note that \r must be hashed (if !ignore_eol_diff) */
+            while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+              {
+                if (ignore_eol_diff && (c=='\r' || c=='\n'))
+                  continue;
+                if (ISWSPACE (c))
+                  {
+                    /* skip whitespace after whitespace */
+                    while (ISWSPACE (c = *p++))
+                      ;
+                    if (c=='\n')
+                      {
+                        goto hashing_done; /* never hash trailing \n */
+                      }
+                    else if (c == '\r')
+                      {
+                        /*
+                            \r must be hashed if !ignore_eol_diff
+                            Also, we must always advance to end of line
+                            which means we can only stop on \r if not
+                            followed by \n
+                        */
+                        if (ignore_eol_diff)
+                          {
+                            if (*p == '\n') /* continue to LF after CR */
+                              continue;
+                            else
+                              goto hashing_done;
+                          }
+                      }
+                    else
+                      {
+                  /* runs of whitespace not ending line hashed as one space */
+                        h = HASH (h, ' ');
+                      }
+                  }
+                /* c is now the first non-space.  */
+                /* c can be a \r (CR) if !ignore_eol_diff */
+                h = HASH (h, isupper (c) ? tolower (c) : c);
+                if (c == '\r' && *p != '\n')
+                  goto hashing_done;
+              }
+          else
+            while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+              {
+                if (ignore_eol_diff && (c=='\r' || c=='\n'))
+                  continue;
+                h = HASH (h, isupper (c) ? tolower (c) : c);
+              }
+        }
       else
-	{
-	  if (ignore_all_space_flag)
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
-	      {
-		if (ignore_eol_diff && (c=='\r' || c=='\n'))
-		  continue;
-		if (! ISWSPACE (c))
-		  h = HASH (h, c);
-	      }
-	  else if (ignore_space_change_flag)
-	    /* Note that \r must be hashed (if !ignore_eol_diff) */
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
-	      {
-		if (ignore_eol_diff && (c=='\r' || c=='\n'))
-		  continue;
-		if (ISWSPACE (c))
-		  {
-		    /* skip whitespace after whitespace */
-		    while (ISWSPACE (c = *p++))
-		      ;
-		    if (c=='\n')
-		      {
-			goto hashing_done; /* never hash trailing \n */
-		      }
-		    else if (c == '\r')
-		      {
-			/*
-			    \r must be hashed if !ignore_eol_diff
-			    Also, we must always advance to end of line
-			    which means we can only stop on \r if not
-			    followed by \n
-			*/
-			if (ignore_eol_diff)
-			  {
-			    if (*p == '\n') /* continue to LF after CR */
-			      continue;
-			    else
-			      goto hashing_done;
-			  }
-		      }
-		    else
-		      {
-			/* runs of whitespace not ending line hashed as one space */
-		        h = HASH (h, ' ');
-		      }
-		  }
-		/* c is now the first non-space.  */
-		/* c can be a \r (CR) if !ignore_eol_diff */
-		h = HASH (h, c);
-		if (c == '\r' && *p != '\n')
-		  goto hashing_done;
-	      }
-	  else
-	    while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
-	      {
-		if (ignore_eol_diff && (c=='\r' || c=='\n'))
-		  continue;
-	      h = HASH (h, c);
-	      }
-	}
-   hashing_done:;
+        {
+          if (ignore_all_space_flag)
+            while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+              {
+                if (ignore_eol_diff && (c=='\r' || c=='\n'))
+                  continue;
+                if (! ISWSPACE (c))
+                  h = HASH (h, c);
+              }
+          else if (ignore_space_change_flag)
+            /* Note that \r must be hashed (if !ignore_eol_diff) */
+            while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+              {
+                if (ignore_eol_diff && (c=='\r' || c=='\n'))
+                  continue;
+                if (ISWSPACE (c))
+                  {
+                    /* skip whitespace after whitespace */
+                    while (ISWSPACE (c = *p++))
+                      ;
+                    if (c=='\n')
+                      {
+                        goto hashing_done; /* never hash trailing \n */
+                      }
+                    else if (c == '\r')
+                      {
+                        /*
+                            \r must be hashed if !ignore_eol_diff
+                            Also, we must always advance to end of line
+                            which means we can only stop on \r if not
+                            followed by \n
+                        */
+                        if (ignore_eol_diff)
+                          {
+                            if (*p == '\n') /* continue to LF after CR */
+                              continue;
+                            else
+                              goto hashing_done;
+                          }
+                      }
+                    else
+                      {
+                  /* runs of whitespace not ending line hashed as one space */
+                        h = HASH (h, ' ');
+                      }
+                  }
+                /* c is now the first non-space.  */
+                /* c can be a \r (CR) if !ignore_eol_diff */
+                h = HASH (h, c);
+                if (c == '\r' && *p != '\n')
+                  goto hashing_done;
+              }
+          else
+            while ((c = *p++) != '\n' && (c != '\r' || *p == '\n'))
+              {
+                if (ignore_eol_diff && (c=='\r' || c=='\n'))
+                  continue;
+                h = HASH (h, c);
+              }
+        }
+hashing_done:;
 
       bucket = &buckets[h % nbuckets];
       length = (char const HUGE *) p - ip - ((char const HUGE *) p == incomplete_tail);
       if (ignore_eol_diff)
-	{
-	  /* Remove all eols characters and adjust line length */
-	  if (length>1 && p[-2]=='\r' && p[-1]=='\n')
-	  {
-	    ++current->count_crlfs;
-	    ((char HUGE *)p)[-2] = 0;
-	    length -= 2;
-	  }
-	  else if (p[-1] == '\n' || p[-1] == '\r')
-	  {
-	    if (p[-1] == '\n')
-	      ++current->count_lfs;
-	    else
-	      ++current->count_crs;
-	    ((char HUGE *)p)[-1] = 0;
-	    --length;
-	  }
-	}
+        {
+          /* Remove all eols characters and adjust line length */
+          if (length>1 && p[-2]=='\r' && p[-1]=='\n')
+            {
+              ++current->count_crlfs;
+              ((char HUGE *)p)[-2] = 0;
+              length -= 2;
+            }
+          else if (p[-1] == '\n' || p[-1] == '\r')
+            {
+              if (p[-1] == '\n')
+                ++current->count_lfs;
+              else
+                ++current->count_crs;
+              ((char HUGE *)p)[-1] = 0;
+              --length;
+            }
+        }
       for (i = *bucket;  ;  i = eqs[i].next)
-	if (!i)
-	  {
-	    /* Create a new equivalence class in this bucket. */
-	    i = eqs_index++;
-	    if (i == eqs_alloc)
+        if (!i)
+          {
+            /* Create a new equivalence class in this bucket. */
+            i = eqs_index++;
+            if (i == eqs_alloc)
 #ifdef __MSDOS__
-          if ((eqs = (struct equivclass HUGE *) farrealloc (eqs, (long) (eqs_alloc*=2) * sizeof(*eqs))) == NULL)
-            fatal ("far memory exhausted");
+              if ((eqs = (struct equivclass HUGE *) farrealloc (eqs, (long) (eqs_alloc*=2) * sizeof(*eqs))) == NULL)
+                fatal ("far memory exhausted");
 #else
-	      eqs = (struct equivclass *)
-		      xrealloc (eqs, (eqs_alloc*=2) * sizeof(*eqs));
+              eqs = (struct equivclass *)
+                xrealloc (eqs, (eqs_alloc*=2) * sizeof(*eqs));
 #endif /*__MSDOS__*/
-	    eqs[i].next = *bucket;
-	    eqs[i].hash = h;
-	    eqs[i].line = ip;
-	    eqs[i].length = length;
-	    *bucket = i;
-	    break;
-	  }
-	/* "line_cmp" changed to "lines_differ" by diffutils 2.8.1 */
-	else if (eqs[i].hash == h
-		 && (eqs[i].length == length || varies)
-		 && ! line_cmp (eqs[i].line, eqs[i].length, ip, length))
-	  /* Reuse existing equivalence class.  */
-	    break;
+            eqs[i].next = *bucket;
+            eqs[i].hash = h;
+            eqs[i].line = ip;
+            eqs[i].length = length;
+            *bucket = i;
+            break;
+          }
+        /* "line_cmp" changed to "lines_differ" by diffutils 2.8.1 */
+        else if (eqs[i].hash == h
+           && (eqs[i].length == length || varies)
+           && ! line_cmp (eqs[i].line, eqs[i].length, ip, length))
+          /* Reuse existing equivalence class.  */
+            break;
 
       /* Maybe increase the size of the line table. */
       if (line == alloc_lines)
-	{
-	  /* Double (alloc_lines - linbuf_base) by adding to alloc_lines.  */
-	  alloc_lines = 2 * alloc_lines - linbuf_base;
-	  cureqs = (int *) xrealloc (cureqs, alloc_lines * sizeof (*cureqs));
-	  linbuf = (char const HUGE **) xrealloc ((void *)(linbuf + linbuf_base),
-					     (alloc_lines - linbuf_base)
-					     * sizeof (*linbuf))
-		   - linbuf_base;
-	}
+        {
+          /* Double (alloc_lines - linbuf_base) by adding to alloc_lines.  */
+          alloc_lines = 2 * alloc_lines - linbuf_base;
+          cureqs = (int *) xrealloc (cureqs, alloc_lines * sizeof (*cureqs));
+          linbuf = (char const HUGE **) xrealloc ((void *)(linbuf + linbuf_base),
+                     (alloc_lines - linbuf_base)
+                     * sizeof (*linbuf))
+             - linbuf_base;
+        }
       linbuf[line] = ip;
       cureqs[line] = i;
       ++line;
@@ -463,31 +463,31 @@ find_and_hash_each_line (current)
     {
       /* Record the line start for lines in the suffix that we care about.
          Record one more line start than lines,
-	 so that we can compute the length of any buffered line.  */
+         so that we can compute the length of any buffered line.  */
       if (line == alloc_lines)
-	{
-	  /* Double (alloc_lines - linbuf_base) by adding to alloc_lines.  */
-	  alloc_lines = 2 * alloc_lines - linbuf_base;
-	  linbuf = (char const HUGE **) xrealloc ((void *)(linbuf + linbuf_base),
-					     (alloc_lines - linbuf_base)
-					     * sizeof (*linbuf))
-		   - linbuf_base;
-	}
+        {
+          /* Double (alloc_lines - linbuf_base) by adding to alloc_lines.  */
+          alloc_lines = 2 * alloc_lines - linbuf_base;
+          linbuf = (char const HUGE **) xrealloc ((void *)(linbuf + linbuf_base),
+                     (alloc_lines - linbuf_base)
+                     * sizeof (*linbuf))
+             - linbuf_base;
+        }
       linbuf[line] = (char const HUGE *) p;
     
-      if ((char const HUGE *) p == bufend)
-	{
-	  linbuf[line]  -=  (char const HUGE *) p == incomplete_tail;
-	  break;
-	}
+     if ((char const HUGE *) p == bufend)
+        {
+          linbuf[line]  -=  (char const HUGE *) p == incomplete_tail;
+          break;
+        }
 
       if (context <= i && no_diff_means_no_output)
-	break;
+        break;
 
       line++;
 
       while (p[0] != '\n' && (p[0] != '\r' || p[1] == '\n'))
-	p++;
+         p++;
       p++;
     }
 
@@ -570,12 +570,12 @@ find_identical_ends (filevec)
   else
     {
       /* Insert end sentinels, in this case characters that are guaranteed
-	 to make the equality test false, and thus terminate the loop.  */
+         to make the equality test false, and thus terminate the loop.  */
 
       if (n0 < n1)
-	p0[n0] = (char)(~p1[n0]);
+        p0[n0] = (char)(~p1[n0]);
       else
-	p1[n1] = (char)(~p0[n1]);
+        p1[n1] = (char)(~p0[n1]);
 
       /* Loop until first mismatch, or to the sentinel characters.  */
 
@@ -583,22 +583,22 @@ find_identical_ends (filevec)
       w0 = (word *) p0;
       w1 = (word *) p1;
       while (*w0++ == *w1++)
-	;
+        ;
       --w0, --w1;
 
       /* Do the last few bytes of comparison a byte at a time.  */
       p0 = (char *) w0;
       p1 = (char *) w1;
       while (*p0++ == *p1++)
-	;
+        ;
       --p0, --p1;
 
       /* Don't mistakenly count missing newline as part of prefix. */
       if (ROBUST_OUTPUT_STYLE (output_style)
-	  && (buffer0 + n0 - filevec[0].missing_newline < p0)
-	     !=
-	     (buffer1 + n1 - filevec[1].missing_newline < p1))
-	--p0, --p1;
+        && (buffer0 + n0 - filevec[0].missing_newline < p0)
+        !=
+        (buffer1 + n1 - filevec[1].missing_newline < p1))
+        --p0, --p1;
     }
 
   /* Now P0 and P1 point at the first nonmatching characters.  */
@@ -612,12 +612,12 @@ find_identical_ends (filevec)
       /* we know p0[-1] == p1[-1], but maybe p0[0] != p1[0] */
       int linestart=0;
       if (p0[-1] == '\n')
-	linestart=1;
+        linestart=1;
       /* only count \r if not followed by a \n on either side */
       if (p0[-1] == '\r' && p0[0] != '\n' && p1[0] != '\n')
-	linestart=1;
+        linestart=1;
       if (linestart && !(i--))
-	break;
+        break;
     --p0, --p1;
     }
 
@@ -634,33 +634,33 @@ find_identical_ends (filevec)
   if (! ROBUST_OUTPUT_STYLE (output_style)
       || filevec[0].missing_newline == filevec[1].missing_newline)
     {
-      end0 = p0;	/* Addr of last char in file 0.  */
+      end0 = p0;  /* Addr of last char in file 0.  */
 
       /* Get value of P0 at which we should stop scanning backward:
-	 this is when either P0 or P1 points just past the last char
-	 of the identical prefix.  */
+         this is when either P0 or P1 points just past the last char
+         of the identical prefix.  */
       beg0 = filevec[0].prefix_end + (n0 < n1 ? 0 : n0 - n1);
 
       /* Scan back until chars don't match or we reach that point.  */
       while (p0 != beg0)
-	if (*--p0 != *--p1)
-	  {
-	    /* Point at the first char of the matching suffix.  */
-	    ++p0, ++p1;
-	    beg0 = p0;
-	    break;
-	  }
+        if (*--p0 != *--p1)
+          {
+            /* Point at the first char of the matching suffix.  */
+            ++p0, ++p1;
+            beg0 = p0;
+            break;
+          }
 
       /* Are we at a line-beginning in both files?  If not, add the rest of
-	 this line to the main body.  Discard up to HORIZON_LINES lines from
-	 the identical suffix.  Also, discard one extra line,
-	 because shift_boundaries may need it.  */
+         this line to the main body.  Discard up to HORIZON_LINES lines from
+         the identical suffix.  Also, discard one extra line,
+         because shift_boundaries may need it.  */
       i = horizon_lines + !((buffer0 == p0 || p0[-1] == '\n' || (p0[-1] == '\r' && p0[0] != '\n'))
-			    &&
-			    (buffer1 == p1 || p1[-1] == '\n' || (p1[-1] == '\r' && p1[0] != '\n')));
+          &&
+          (buffer1 == p1 || p1[-1] == '\n' || (p1[-1] == '\r' && p1[0] != '\n')));
       while (i-- && p0 != end0)
-	while (*p0++ != '\n' && (p0[-1] != '\r' || p0[0] == '\n'))
-	  ;
+        while (*p0++ != '\n' && (p0[-1] != '\r' || p0[0] == '\n'))
+          ;
 
       p1 += p0 - (char HUGE *)beg0;
     }
@@ -685,13 +685,13 @@ find_identical_ends (filevec)
   if (no_diff_means_no_output && ! function_regexp_list)
     {
       for (prefix_count = 1;  prefix_count < context + 1;  prefix_count *= 2)
-	;
+        ;
       prefix_mask = prefix_count - 1;
       ttt = p0 - (char HUGE *)filevec[0].prefix_end;
       alloc_lines0
-	= prefix_count
-	  + GUESS_LINES (0, 0, ttt)
-	  + context;
+        = prefix_count
+        + GUESS_LINES (0, 0, ttt)
+        + context;
     }
   else
     {
@@ -705,27 +705,27 @@ find_identical_ends (filevec)
 
   /* If the prefix is needed, find the prefix lines.  */
   if (! (no_diff_means_no_output
-	 && filevec[0].prefix_end == p0
-	 && filevec[1].prefix_end == p1))
+   && filevec[0].prefix_end == p0
+   && filevec[1].prefix_end == p1))
     {
       p0 = buffer0;
       end0 = filevec[0].prefix_end;
       while (p0 != end0)
-	{
-	  int l = lines++ & prefix_mask;
-	  if ((FSIZE)l == alloc_lines0)
-	    linbuf0 = (char const HUGE **) xrealloc ((void *)linbuf0, (alloc_lines0 *= 2)
-							 * sizeof(*linbuf0));
-	  linbuf0[l] = p0;
-	  /* Perry/WinMerge (2004-01-05) altered original diffutils loop "while (*p0++ != '\n') ;" for other EOLs */
-	  while (1)
-	    {
-	      char ch = *p0++;
-	      /* stop at any eol, \n or \r or \r\n */
-	      if (ch == '\n') break;
-	      if (ch == '\r' && (p0==end0 || *p0!='\n')) break;
-	    }
-	}
+        {
+          int l = lines++ & prefix_mask;
+          if ((FSIZE)l == alloc_lines0)
+            linbuf0 = (char const HUGE **) xrealloc ((void *)linbuf0, (alloc_lines0 *= 2)
+               * sizeof(*linbuf0));
+          linbuf0[l] = p0;
+          /* Perry/WinMerge (2004-01-05) altered original diffutils loop "while (*p0++ != '\n') ;" for other EOLs */
+          while (1)
+            {
+              char ch = *p0++;
+              /* stop at any eol, \n or \r or \r\n */
+              if (ch == '\n') break;
+              if (ch == '\r' && (p0==end0 || *p0!='\n')) break;
+            }
+        }
     }
   buffered_prefix = prefix_count && context < lines ? context : lines;
 
@@ -742,9 +742,9 @@ find_identical_ends (filevec)
     {
       /* Rotate prefix lines to proper location.  */
       for (i = 0;  i < buffered_prefix;  i++)
-	linbuf1[i] = linbuf0[(lines - context + i) & prefix_mask];
+        linbuf1[i] = linbuf0[(lines - context + i) & prefix_mask];
       for (i = 0;  i < buffered_prefix;  i++)
-	linbuf0[i] = linbuf1[i];
+        linbuf0[i] = linbuf1[i];
     }
 
   /* Initialize line buffer 1 from line buffer 0.  */
@@ -784,7 +784,7 @@ static int const primes[] =
   8388593,
   16777213,
   33554393,
-  67108859,			/* Preposterously large . . . */
+  67108859,     /* Preposterously large . . . */
   134217689,
   268435399,
   536870909,
@@ -805,7 +805,7 @@ int
 read_files (filevec, pretend_binary, bin_file)
      struct file_data filevec[];
      int pretend_binary;
-	 int * bin_file;
+     int * bin_file;
 {
   int i;
   int skip_test = always_text_flag | pretend_binary;
