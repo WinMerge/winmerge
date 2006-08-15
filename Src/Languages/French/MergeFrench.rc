@@ -941,26 +941,29 @@ BEGIN
                     WS_VSCROLL
 END
 
-IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_REGISTRY DIALOGEX 0, 0, 235, 220
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Système"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Envoyer les fichiers supprimés à la corbeille",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "&Intégrer à l'explorateur Windows",IDC_EXPLORER_CONTEXT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,17,222,10
-    CONTROL         "&Qualifier le menu avancé",IDC_EXPLORER_ADVANCED,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,18,28,211,10
     CONTROL         "I&gnorer les differences de temps de moins de 3 secondes",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,8,39,222,10
-    LTEXT           "E&diteur externe:",IDC_STATIC,7,49,222,8
-    EDITTEXT        IDC_EXT_EDITOR_PATH,7,59,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "&Parcourir...",IDC_EXT_EDITOR_BROWSE,179,59,50,14
-    LTEXT           "&Filter folder:",IDC_STATIC,7,77,166,8
-    EDITTEXT        IDC_FILTER_USER_PATH,7,87,167,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_FILTER_USER_BROWSE,179,87,50,14
+                    WS_TABSTOP,7,17,222,10
+    GROUPBOX        "Integration",IDC_STATIC,7,30,218,46
+    CONTROL         "&Intégrer à l'explorateur Windows",IDC_EXPLORER_CONTEXT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
+    CONTROL         "&Qualifier le menu avancé",IDC_EXPLORER_ADVANCED,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
+    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
+    LTEXT           "E&diteur externe:",IDC_STATIC,7,83,222,8
+    EDITTEXT        IDC_EXT_EDITOR_PATH,7,93,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "&Parcourir...",IDC_EXT_EDITOR_BROWSE,179,93,50,14
+    LTEXT           "&Filter folder:",IDC_STATIC,7,111,166,8
+    EDITTEXT        IDC_FILTER_USER_PATH,7,121,167,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_FILTER_USER_BROWSE,179,121,50,14
 END
 
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
