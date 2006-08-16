@@ -1,0 +1,2 @@
+2006-08-16 Takashi
+ Initial version.
