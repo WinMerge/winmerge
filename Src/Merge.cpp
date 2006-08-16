@@ -280,12 +280,14 @@ BOOL CMergeApp::InitInstance()
 	//Track it so any other instances can find it.
 	instanceChecker.TrackFirstInstanceRunning();
 
-	ParseArgsAndDoOpen(__argc, __targv, pMainFrame);
-
 	// The main window has been initialized, so show and update it.
 	//pMainFrame->ShowWindow(m_nCmdShow);
 	pMainFrame->ActivateFrame(m_nCmdShow);
 	pMainFrame->UpdateWindow();
+
+	// Since this function actually opens paths for compare it must be
+	// called after initializing CMainFrame!
+	ParseArgsAndDoOpen(__argc, __targv, pMainFrame);
 
 	if (m_bShowUsage)
 	{
