@@ -189,6 +189,8 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_ptLastChange.x = m_ptLastChange.y = -1;
   //END SW
   m_nSourceEncoding = m_nDefaultEncoding;
+  m_dwCurrentRevisionNumber = 0;
+  m_dwRevisionNumberOnSave = 0;
 }
 
 CCrystalTextBuffer:: ~ CCrystalTextBuffer ()
@@ -436,7 +438,7 @@ void CCrystalTextBuffer::SetReadOnly (BOOL bReadOnly /*= TRUE*/ )
 
 
 // WinMerge has own routine for loading
-#if 0
+#ifdef CRYSTALEDIT_ENABLELOADER
 
 static LPCTSTR crlfs[] =
   {
@@ -597,7 +599,7 @@ LoadFromFile (LPCTSTR pszFileName, int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/ )
 #endif // #if 0 loadfromfile
 
 // WinMerge has own routine for saving
-#if 0
+#ifdef CRYSTALEDIT_ENABLESAVER
 BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
                   int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
                   BOOL bClearModifiedFlag /*= TRUE*/)
@@ -705,6 +707,12 @@ BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
           m_nSyncPosition = m_nUndoPosition;
         }
     bSuccess = TRUE;
+    
+    // remember revision number on save
+    m_dwRevisionNumberOnSave = m_dwCurrentRevisionNumber;
+    
+    // redraw line revision marks
+    UpdateViews (NULL, NULL, UPDATE_FLAGSONLY);	
   }
   __finally
   {
@@ -841,6 +849,20 @@ GetLineFlags (int nLine) const
   //  You must call InitNew() or LoadFromFile() first!
 
   return m_aLines[nLine].m_dwFlags;
+}
+
+/** 
+ * @brief Get line revision number.
+ *
+ * @param nLine Index of the line to get the revision number.
+ */
+DWORD CCrystalTextBuffer::
+GetLineRevisionNumber (int nLine) const
+{
+  ASSERT (m_bInit);             //  Text buffer not yet initialized.
+  //  You must call InitNew() or LoadFromFile() first!
+
+  return m_aLines[nLine].m_dwRevisionNumber;
 }
 
 static int
@@ -1481,6 +1503,11 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 
         }
 
+      // restore line revision numbers
+      int i, naSavedRevisonNumbersSize = ur.m_paSavedRevisonNumbers->GetSize();
+      for (i = 0; i < naSavedRevisonNumbersSize; i++)
+        m_aLines[ur.m_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
+
       if (ur.m_dwFlags & UNDO_BEGINGROUP)
         break;
     }
@@ -1552,7 +1579,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 //  [JRT] Support For Descriptions On Undo/Redo Actions
 // the CPoint parameters are apparent (on screen) line numbers
 void CCrystalTextBuffer::
-AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nActionType)
+AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nActionType, CDWordArray *paSavedRevisonNumbers)
 {
   //  Forgot to call BeginUndoGroup()?
   ASSERT (m_bUndoGroup);
@@ -1616,6 +1643,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
   ur.m_ptStartPos = ptStartPos;
   ur.m_ptEndPos = ptEndPos;
   ur.SetText (pszText);
+  ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
 
   m_aUndoBuf.Add (ur);
   m_nUndoPosition = m_aUndoBuf.GetSize ();
@@ -1654,11 +1682,30 @@ BOOL CCrystalTextBuffer::
 InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
             int &nEndLine, int &nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
 {
+  // save line revision numbers for undo
+  CDWordArray *paSavedRevisonNumbers = new CDWordArray;
+  paSavedRevisonNumbers->SetSize(1);
+  (*paSavedRevisonNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
+
   if (!InternalInsertText (pSource, nLine, nPos, pszText, nEndLine, nEndChar))
+  {
+    delete paSavedRevisonNumbers;
     return FALSE;
+  }
+
+  // update line revision numbers of modified lines
+  m_dwCurrentRevisionNumber++;
+  int i;
+  for (i = nLine ; i < nEndLine; i++)
+    m_aLines[i].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
+  if (nPos != 0 || nEndChar != 0)
+    m_aLines[nEndLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (bHistory == false)
+  {
+    delete paSavedRevisonNumbers;
     return TRUE;
+  }
 
   BOOL bGroupFlag = FALSE;
   if (!m_bUndoGroup)
@@ -1668,7 +1715,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
     }
 
   AddUndoRecord (TRUE, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine),
-                 pszText, nAction);
+                 pszText, nAction, paSavedRevisonNumbers);
 
   if (bGroupFlag)
     FlushUndoGroup (pSource);
@@ -1683,11 +1730,29 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   CString sTextToDelete;
   GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 
+  // save line revision numbers for undo
+  CDWordArray *paSavedRevisonNumbers = new CDWordArray;
+  paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
+  int i;
+  for (i = 0; i < nEndLine - nStartLine + 1; i++)
+    (*paSavedRevisonNumbers)[i] = m_aLines[i].m_dwRevisionNumber;
+
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
+  {
+    delete paSavedRevisonNumbers;
     return FALSE;
+  }
+
+  // update line revision numbers of modified lines
+  m_dwCurrentRevisionNumber++;
+  if (nStartChar != 0 || nEndChar != 0)
+    m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
   if (bHistory == false)
+  {
+    delete paSavedRevisonNumbers;
     return TRUE;
+  }
 
   BOOL bGroupFlag = FALSE;
   if (!m_bUndoGroup)
@@ -1697,7 +1762,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
     }
 
   AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (0, -1),
-                 sTextToDelete, nAction);
+                 sTextToDelete, nAction, paSavedRevisonNumbers);
 
   if (bGroupFlag)
     FlushUndoGroup (pSource);

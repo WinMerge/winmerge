@@ -56,6 +56,7 @@ protected :
 		int m_nLength, m_nMax;
 		int m_nEolChars; // # of eolchars
 		DWORD m_dwFlags;
+		DWORD m_dwRevisionNumber;
 
 		int FullLength() const { return m_nLength+m_nEolChars; }
 		int Length() const { return m_nLength; }
@@ -110,6 +111,7 @@ protected :
 		                                 // (<> total of real lines after - total before  
 		                                 //  as first/end line may be just truncated, not removed)
 		int m_nAction;                   //  For information only: action type
+		CDWordArray *m_paSavedRevisonNumbers;
 
 private :
 		// TCHAR   *m_pcText;
@@ -154,11 +156,19 @@ public :
 			m_nRealLinesCreated = src.m_nRealLinesCreated;
 			m_nRealLinesInDeletedBlock = src.m_nRealLinesInDeletedBlock;
 			SetText(src.GetText());
+			int size = src.m_paSavedRevisonNumbers->GetSize();
+			m_paSavedRevisonNumbers = new CDWordArray();
+			m_paSavedRevisonNumbers->SetSize(size);
+			int i;
+			for (i = 0; i < size; i++)
+				(*m_paSavedRevisonNumbers)[i] = (*src.m_paSavedRevisonNumbers)[i];
 			return *this;
 		}
 		~SUndoRecord () // destructor
 		{
 			FreeText();
+			if (m_paSavedRevisonNumbers)
+				delete m_paSavedRevisonNumbers;
 		}
 
 		void SetText (LPCTSTR pszText);
@@ -192,7 +202,7 @@ protected:
 
 	// [JRT] Support For Descriptions On Undo/Redo Actions
 	virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                              LPCTSTR pszText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN);
+                              LPCTSTR pszText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 
 private:
 	// A RealityBlock is a block of lines with no ghost lines

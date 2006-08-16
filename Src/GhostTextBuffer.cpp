@@ -419,6 +419,10 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 			ur.m_redo_ptEndPos.y = ComputeRealLineAndGhostAdjustment (m_ptLastChange.y, ur.m_redo_ptEndPos_nGhost);
 		}
 
+		// restore line revision numbers
+		int i, naSavedRevisonNumbersSize = ur.m_paSavedRevisonNumbers->GetSize();
+		for (i = 0; i < naSavedRevisonNumbersSize; i++)
+			m_aLines[apparent_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
 
 		m_aUndoBuf[tmpPos] = ur;
 
@@ -543,7 +547,7 @@ FlushUndoGroup (CCrystalTextView * pSource)
 
 /** The CPoint received parameters are apparent (on screen) line numbers */
 void CGhostTextBuffer::
-AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nRealLinesChanged, int nActionType)
+AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nRealLinesChanged, int nActionType, CDWordArray *paSavedRevisonNumbers)
 {
 	//  Forgot to call BeginUndoGroup()?
 	ASSERT (m_bUndoGroup);
@@ -613,6 +617,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	else
 		ur.m_nRealLinesInDeletedBlock = nRealLinesChanged;
 	ur.SetText (pszText);
+	ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
 
 	m_aUndoBuf.Add (ur);
 	m_nUndoPosition = m_aUndoBuf.GetSize ();
@@ -647,8 +652,16 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 		} 
 	}
 
+	// save line revision numbers for undo
+	CDWordArray *paSavedRevisonNumbers = new CDWordArray;
+	paSavedRevisonNumbers->SetSize(1);
+	(*paSavedRevisonNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
+
 	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText, nEndLine, nEndChar, nAction, bHistory))
+	{
+		delete paSavedRevisonNumbers;
 		return FALSE;
+	}
 
 	// set WinMerge flags
 	int bFirstLineGhost = ((GetLineFlags(nLine) & LF_GHOST) != 0);
@@ -669,9 +682,16 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
 	int i;
 	for (i = nLine ; i < nEndLine ; i++)
+	{
+		// update line revision numbers of modified lines
+		m_aLines[i].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 		OnNotifyLineHasBeenEdited(i);
+	}
 	if (bDiscrepancyInInsertedLines == 0)
+	{
+		m_aLines[i].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 		OnNotifyLineHasBeenEdited(i);
+	}
 
 	// when inserting into a ghost line block, we want to replace ghost lines
 	// with our text, so delete some ghost lines below the inserted text
@@ -710,14 +730,17 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 
 
 	if (bHistory == false)
+	{
+		delete paSavedRevisonNumbers;
 		return TRUE;
+	}
 
 
 	// little trick as we share the m_nUndoPosition with the base class
 	ASSERT (  m_nUndoPosition > 0);
 	m_nUndoPosition --;
 	AddUndoRecord (TRUE, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine),
-                 pszText, nRealLinesCreated, nAction);
+                 pszText, nRealLinesCreated, nAction, paSavedRevisonNumbers);
 
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);
@@ -742,6 +765,17 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 		} 
 	}
 
+	// save line revision numbers for undo
+	CDWordArray *paSavedRevisonNumbers = new CDWordArray;
+	paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
+	int i, j;
+	for (i = 0, j = 0; i < nEndLine - nStartLine + 1; i++)
+	{
+		DWORD dwLineFlag = GetLineFlags(nStartLine + i);
+		if (!(dwLineFlag & LF_GHOST))
+			(*paSavedRevisonNumbers)[j++] = m_aLines[nStartLine + i].m_dwRevisionNumber;
+	}
+	paSavedRevisonNumbers->SetSize(j);
 
 	// flags are going to be deleted so we store them now
 	int bLastLineGhost = ((GetLineFlags(nEndLine) & LF_GHOST) != 0);
@@ -754,9 +788,15 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	CString sTextToDelete;
 	GetTextWithoutEmptys (nStartLine, nStartChar, nEndLine, nEndChar, sTextToDelete);
 	if (!CCrystalTextBuffer::DeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar, nAction, bHistory))
+	{
+		delete paSavedRevisonNumbers;
 		return FALSE;
+	}
 
 	OnNotifyLineHasBeenEdited(nStartLine);
+	// update line revision numbers of modified lines
+	if (nStartChar != 0 || nEndChar != 0)
+		m_aLines[nStartLine].m_dwRevisionNumber = m_dwCurrentRevisionNumber;
 
 	// the first line inherits the status of the last one 
 	// but exception... if the last line is a ghost, we preserve the status of the first line
@@ -783,13 +823,16 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 
 
 	if (bHistory == false)
+	{
+		delete paSavedRevisonNumbers;
 		return TRUE;
+	}
 
 	// little trick as we share the m_nUndoPosition with the base class
 	ASSERT (  m_nUndoPosition > 0);
 	m_nUndoPosition --;
 	AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (0, -1),
-                 sTextToDelete, nRealLinesInDeletedBlock, nAction);
+                 sTextToDelete, nRealLinesInDeletedBlock, nAction, paSavedRevisonNumbers);
 
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);

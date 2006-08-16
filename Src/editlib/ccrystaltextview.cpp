@@ -1693,7 +1693,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       CFont *pOldFont = pdc->SelectObject(GetFont());
       COLORREF clrOldColor = pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
       UINT uiOldAlign = pdc->SetTextAlign(TA_RIGHT);
-      pdc->TextOut(rect.right - 2, rect.top, szNumbers, lstrlen(szNumbers));
+      pdc->TextOut(rect.right - 4, rect.top, szNumbers, lstrlen(szNumbers));
       pdc->SetTextAlign(uiOldAlign);
       pdc->SelectObject(pOldFont);
       pdc->SetTextColor(clrOldColor);
@@ -1729,6 +1729,21 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
               break;
             }
         }
+
+      // draw line revision marks
+      COLORREF clrRevisionMark;
+      DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
+      if (dwRevisionNumber > 0)
+        {
+          if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
+            clrRevisionMark = RGB(0xD7, 0xD7, 0x00); // dark yellow
+          else
+            clrRevisionMark = RGB(0x00, 0xFF, 0x00); // green
+        }
+      else
+        clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
+      CRect rc(rect.right - 3, rect.top, rect.right, rect.bottom);
+      pdc->FillSolidRect (rc, clrRevisionMark);
     }
 
   if (m_pIcons == NULL)
@@ -5110,7 +5125,7 @@ GetMarginWidth ()
 
   if (m_bSelMargin)
     {
-      nMarginWidth += 16;  // Width for markers and some space
+      nMarginWidth += 18;  // Width for markers and some space
       if (m_bViewLineNumbers)
         {
           const int nLines = GetLineCount();
