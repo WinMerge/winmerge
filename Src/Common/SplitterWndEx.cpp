@@ -77,8 +77,7 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 			continue;
 
 		CScrollBar* curBar = GetPane(0, col)->GetScrollBarCtrl(SB_HORZ);
-		double temp = ((double) pScrollBar->GetScrollPos()) * curBar->GetScrollLimit() + oldLimit/2;
-		int newPos = (int) (temp/oldLimit);
+		int newPos = min(pScrollBar->GetScrollPos(), curBar->GetScrollLimit());
 
 		// Set the scrollbar info using SetScrollInfo(), limited to 2.000.000.000 characters,
 		// better than the 32.768 characters (signed short) of SendMessage(WM_HSCROLL,...) 
