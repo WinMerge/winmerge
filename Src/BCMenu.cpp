@@ -775,8 +775,12 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 							DitherBlt(lpDIS->hDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
 							(HBITMAP)(bitmapstandard),0,0,transparentcol);
 						else
-							DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
-							bitmapstandard,0,0,transparentcol);
+							if(hicolor_bitmaps)
+								DitherBlt3(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+								bitmapstandard,transparentcol);
+							else
+								DitherBlt2(pDC,rect.left+dx,rect.top+dy,m_iconX,m_iconY,
+								bitmapstandard,0,0,transparentcol);
 						if(state&ODS_SELECTED)pDC->Draw3dRect (rect,crSelect,crSelect);
 						bitmapstandard.DeleteObject();
 					}
@@ -2193,7 +2197,7 @@ void BCMenu::GetTransparentBitmap(CBitmap &bmp)
 	CBitmap bmp2;
 	ddc2.CreateCompatibleDC(NULL);
 	bmp2.CreateCompatibleBitmap(&ddc,BitMap.bmWidth,BitMap.bmHeight);
-	col=RGB(192,192,192);
+	col=RGB(255,0,255); // Original was RGB(192,192,192)
 	brush.CreateSolidBrush(col);
 	CBitmap * pddcOldBmp2 = ddc2.SelectObject(&bmp2);
 	CRect rect(0,0,BitMap.bmWidth,BitMap.bmHeight);

@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-17 Gal
+ PATCH: [ 1541158 ] New high-color toolbar icons
+  Src: BCMenu.cpp MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/res: ToolbarDisabled.bmp ToolbarEnabled.bmp
+
 2006-08-16 Takashi
  PATCH: [ 1539568 ] draw icon at modified line (it was changed to line revision marks)
   Src: GhostTextBuffer.cpp GhostTextBuffer.h MergeDoc.cpp MergeDoc.h

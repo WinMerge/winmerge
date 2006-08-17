@@ -198,6 +198,15 @@ protected:
 
 	enum
 	{
+		TOOLBAR_IMAGES_ENABLED,
+		TOOLBAR_IMAGES_DISABLED,
+		TOOLBAR_IMAGES_COUNT
+	};
+
+	CImageList m_ToolbarImages[TOOLBAR_IMAGES_COUNT];
+
+	enum
+	{
 		MENU_DEFAULT,
 		MENU_MERGEVIEW,
 		MENU_DIRVIEW,
@@ -288,6 +297,7 @@ private:
 	void ShowFontChangeMessage();
 	void OptionsInit();
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
+	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();
 };
 

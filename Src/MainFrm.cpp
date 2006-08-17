@@ -89,6 +89,9 @@ static char THIS_FILE[] = __FILE__;
 extern CLogFile gLog;
 
 static BOOL add_regexp PARAMS((struct regexp_list **, char const*, BOOL bShowError));
+
+static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList);
+
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 
@@ -304,14 +307,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	RebuildRegExpList(FALSE);
 	GetFontProperties();
 	
-	m_wndToolBar.SetBorders(1, 1, 1, 1);
-	if (!m_wndToolBar.Create(this, WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
-		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
+	if (!CreateToobar())
 	{
 		TRACE0("Failed to create toolbar\n");
 		return -1;      // fail to create
 	}
-	VERIFY(m_wndToolBar.ModifyStyle(0, TBSTYLE_FLAT));
 	
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
@@ -324,18 +324,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
 	if (m_options.GetBool(OPT_SHOW_STATUSBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
-
-	// TODO: Remove this if you don't want tool tips or a resizeable toolbar
-	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
-		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
-
-	// TODO: Delete these three lines if you don't want the toolbar to
-	//  be dockable
-	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
-	EnableDocking(CBRS_ALIGN_ANY);
-	DockControlBar(&m_wndToolBar);
-	if (m_options.GetBool(OPT_SHOW_TOOLBAR) == false)
-		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
 
 	// CG: The following line was added by the Splash Screen component.
 	CSplashWnd::ShowSplashScreen(this);
@@ -3128,4 +3116,64 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 			KillTimer(ID_TIMER_FLASH);
 		}
 	}
+}
+
+BOOL CMainFrame::CreateToobar()
+{
+	if (!m_wndToolBar.Create(this, WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
+		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
+	{
+		return FALSE;
+	}
+
+	m_wndToolBar.SetBorders(1, 1, 1, 1);
+	VERIFY(m_wndToolBar.ModifyStyle(0, TBSTYLE_FLAT));
+
+	// Remove this if you don't want tool tips or a resizable toolbar
+	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
+		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
+
+	// Delete these three lines if you don't want the toolbar to
+	// be dockable
+	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
+	EnableDocking(CBRS_ALIGN_ANY);
+	DockControlBar(&m_wndToolBar);
+
+	LoadToolbarImageList(IDB_TOOLBAR_ENABLED, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+	LoadToolbarImageList(IDB_TOOLBAR_DISABLED, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+
+	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
+	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+
+	if (m_options.GetBool(OPT_SHOW_TOOLBAR) == false)
+	{
+		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
+	}
+
+	return TRUE;
+}
+
+/**
+ * @brief Load a transparent 24-bit color image list.
+ */
+static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nCount, CImageList& ImgList, COLORREF crMask = RGB(255,0,255))
+{
+	CBitmap bm;
+	VERIFY(bm.LoadBitmap(nIDResource));
+	VERIFY(ImgList.Create(nWidth, nHeight, ILC_COLORDDB|ILC_MASK, nCount, 0));
+	int nIndex = ImgList.Add(&bm, crMask);
+	ASSERT(-1 != nIndex);
+}
+
+/**
+ * @brief Load toolbar image list.
+ */
+static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList)
+{
+	static const int ImageWidth = 16;
+	static const int ImageHeight = 15;
+	static const int ImageCount	= 19;
+
+	LoadHiColImageList(nIDResource, ImageWidth, ImageHeight, ImageHeight, ImgList);
 }
