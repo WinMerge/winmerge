@@ -181,10 +181,10 @@ static const TCHAR DocsURL[] = _T("http://winmerge.org/2.4/manual/index.html");
 
 /**
  * @brief Default relative path to "My Documents" for private filters.
- * It is better to use subfolder by default than putting files directly
- * to "My Folders".
+ * We want to use WinMerge folder as general user-file folder in future.
+ * So it makes sense to have own subfolder for filters.
  */
-static const TCHAR DefaultRelativeFilterPath[] = _T("WinMergeFilters");
+static const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge\\Filters");
 
 /** @brief Timer ID for window flashing timer. */
 static const UINT ID_TIMER_FLASH = 1;
@@ -246,7 +246,7 @@ CMainFrame::CMainFrame()
 			pathFilters += _T("\\");
 		pathFilters += DefaultRelativeFilterPath;
 
-		if (!CreateDirectory(pathFilters, NULL))
+		if (!paths_CreateIfNeeded(pathFilters))
 		{
 			// Failed to create a folder, check it didn't already
 			// exist.
