@@ -341,14 +341,14 @@ BEGIN
         MENUITEM "О&т ляво само за четене",             ID_FILE_LEFT_READONLY
         MENUITEM "От дяс&но само за четене",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Формат за"
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "&Merge Mode\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "И&зход",                      ID_APP_EXIT
     END

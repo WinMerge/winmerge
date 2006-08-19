@@ -341,7 +341,7 @@ BEGIN
         MENUITEM "左邊唯讀(&E)",                ID_FILE_LEFT_READONLY
         MENUITEM "右邊唯讀(&G)",                ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "格式於(&F)"
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",             ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",              ID_EOL_TO_UNIX

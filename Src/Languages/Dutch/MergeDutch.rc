@@ -341,14 +341,14 @@ BEGIN
         MENUITEM "Links all&een lezen",         ID_FILE_LEFT_READONLY
         MENUITEM "Re&chts alleen lezen",        ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Indeling voor"
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",             ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",              ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",               ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Samenvoegmodus\tF9",          ID_FILE_MERGINGMODE
+        MENUITEM "Sa&menvoegmodus\tF9",          ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "&Afsluiten",                  ID_APP_EXIT
     END

@@ -341,7 +341,7 @@ BEGIN
         MENUITEM "왼쪽을 읽기전용으로(E&)",     ID_FILE_LEFT_READONLY
         MENUITEM "오른쪽을 읽기전용으로(&G)",   ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "EOL 포맷(&F)"
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX

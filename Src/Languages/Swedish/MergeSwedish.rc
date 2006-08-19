@@ -341,14 +341,14 @@ BEGIN
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY
         MENUITEM "Hö&ger fil skrivskyddad",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Radslut (DOS, UNIX, MAC)"
+        POPUP "&Radslut (DOS, UNIX, MAC)"
         BEGIN
             MENUITEM "&DOS  (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX  (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC  (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Mergemod\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "&Mergemod\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "&Avsluta",                    ID_APP_EXIT
     END

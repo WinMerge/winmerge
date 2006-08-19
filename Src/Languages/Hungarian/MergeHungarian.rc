@@ -341,14 +341,14 @@ BEGIN
         MENUITEM "Bal oldal csak &olvasható",             ID_FILE_LEFT_READONLY
         MENUITEM "Jobb oldal csak o&lvasható",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Formátum"
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "Olvasztási mód\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "&Olvasztási mód\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "&Kilépés",                       ID_APP_EXIT
     END

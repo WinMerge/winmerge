@@ -339,7 +339,7 @@ BEGIN
         MENUITEM "Côté gauc&he lecture seulement",  ID_FILE_LEFT_READONLY
         MENUITEM "Côté droi&t  lecture seulement",  ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Rendre au format"
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",              ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",               ID_EOL_TO_UNIX

@@ -341,7 +341,7 @@ BEGIN
         MENUITEM "Файл с&лева только для чтения", ID_FILE_LEFT_READONLY
         MENUITEM "Файл с&лева только для чтения", ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "Вид каретки..."
+        POPUP "&Convert Line Endings to"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX

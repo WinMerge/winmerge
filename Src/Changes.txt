@@ -5,6 +5,9 @@ Add new items to top.
 2006-08-19 Kimmo
  PATCH: [ 1542201 ] Change default user filter folder to WinMerge/Filters
   Src: MainFrm.cpp
+ PATCH: [ 1542829 ] Rename Format-item in File-menu to Convert
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2006-08-17 Kimmo
  PATCH: [ 1540090 ] Change horizontal scroll synch from relative to absolute
