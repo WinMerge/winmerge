@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-20 Kimmo
+ PATCH: [ 1424673 ] Widen labels on OpenDialog
+  Submitted by Perry
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2006-08-19 Kimmo
  PATCH: [ 1542201 ] Change default user filter folder to WinMerge/Filters
   Src: MainFrm.cpp
