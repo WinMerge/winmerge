@@ -155,5 +155,16 @@ But before you can use it at the shell server, you must give execute rights to t
   <dt><code>./build.sh</code></dt>
   <dd>Is the same like <code>./build.sh html</code>.</dd>
 </dl>
+
+<h4>Postprocessing HTML</h4>
+<p>Unfortunately DocBook tools generate quite a messy HTML. Not worth trying to read it... It is strongly
+recommended to run some tidying tool before releasing/uploading HTML manual.</p>
+
+<p>One good and free tool for tidying HTML is <a href="http://tidy.sourceforge.net/">HTML tidy</a>.</p>
+
+<p>To use HTML Tidy, open command prompt, go to folder where generated HTML files are and give a command:<br>
+<code>tidy -m file.html</code>.<br>
+Repeat for all HTML files. Or create a batch file to tidy them all. This of course assumes that HTML tidy is
+added to $PATH so it can be found when running from commandline.</p>
 </body>
 </html>
