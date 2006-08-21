@@ -1,6 +1,8 @@
-2006-08-08 Kimmo
+2006-08-21 Kimmo
  Add recommendation about running tidy tool for generated HTML files
   Developers: readme-manual.html
+ Add info about targets used to build releases
+  Developers: readme-developers.html
 
 2006-08-08 Tim
  BUG: [ 1379278 ] Docs fix: Generate new GUIDs for new plugins
