@@ -1699,6 +1699,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       pdc->SetTextColor(clrOldColor);
     }
 
+  COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
   int nImageIndex = -1;
   if (nLineIndex >= 0)
     {
@@ -1730,8 +1731,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
             }
         }
 
-      // draw line revision marks
-      COLORREF clrRevisionMark;
+	  // get line revision marks color
       DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
       if (dwRevisionNumber > 0)
         {
@@ -1740,11 +1740,11 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
           else
             clrRevisionMark = RGB(0x00, 0xFF, 0x00); // green
         }
-      else
-        clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
-      CRect rc(rect.right - 3, rect.top, rect.right, rect.bottom);
-      pdc->FillSolidRect (rc, clrRevisionMark);
     }
+  
+  // draw line revision marks
+  CRect rc(rect.right - 3, rect.top, rect.right, rect.bottom);
+  pdc->FillSolidRect (rc, clrRevisionMark);
 
   if (m_pIcons == NULL)
     {

@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-22 Gal
+ BUG: [ 1543783 ] Misbehave margin draw
+  Src/editlib: ccrystaltextview.cpp
+
 2006-08-22 Kimmo
  PATCH: [ 1544147 ] Add Install-feature for file filters
   Src: FileFiltersDlg.cpp FileFiltersDlg.h Merge.rc resource.h
