@@ -563,11 +563,11 @@ void CMergeDoc::FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDif
 void CMergeDoc::ShowRescanError(int nRescanResult,
 	BOOL bBinary, BOOL bIdentical)
 {
-	CString s;
-
 	// Rescan was suppressed, there is no sensible status
 	if (nRescanResult == RESCAN_SUPPRESSED)
 		return;
+
+	CString s;
 
 	if (nRescanResult == RESCAN_FILE_ERR)
 	{
@@ -606,8 +606,23 @@ void CMergeDoc::ShowRescanError(int nRescanResult,
 		}
 		else
 		{
-			VERIFY(s.LoadString(IDS_FILESSAME));
-			AfxMessageBox(s, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FILESSAME);
+			UINT nFlags = MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN;
+
+			// Show the "files are identical" error message even if the user
+			// requested not to show it again. It is better than to close
+			// the application without a warning.
+			if (GetMainFrame()->m_bExitIfNoDiff)
+			{
+				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
+			}
+
+			AfxMessageBox(IDS_FILESSAME, nFlags);
+
+			// Exit application if files are identical.
+			if (GetMainFrame()->m_bExitIfNoDiff)
+			{
+				GetMainFrame()->PostMessage(WM_COMMAND, ID_APP_EXIT);
+			}
 		}
 	}
 }

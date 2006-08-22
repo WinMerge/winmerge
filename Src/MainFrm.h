@@ -157,6 +157,7 @@ public:
 	SyntaxColors * GetMainSyntaxColors() { return m_pSyntaxColors; }
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	BOOL m_bFlashing; /**< Window is flashing. */
+	BOOL m_bExitIfNoDiff; /**< If command line switch -x given close application if files are identical. */
 
 	/**
 	 * @name Version Control System (VCS) integration.

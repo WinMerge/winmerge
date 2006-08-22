@@ -158,6 +158,10 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 	if (cmdArgs.HasEmptySwitch(_T("e")))
 		pMainFrame->m_bEscShutdown = TRUE;
 
+	// -x to close application if files are identical.
+	if (cmdArgs.HasEmptySwitch(_T("x")))
+		pMainFrame->m_bExitIfNoDiff = TRUE;
+
 	// -wl to open left path as read-only
 	if (cmdArgs.HasEmptySwitch(_T("wl")))
 		dwLeftFlags |= FFILEOPEN_READONLY;
