@@ -91,7 +91,7 @@ CMergeApp::ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame)
 	// "regular" parameters. More information can be found in
 	// C:\Program Files\Rational\ClearCase\lib\mgrs\mgr_info.h file.
 
-	if (lstrcmpi(argv[0], _T("xcompare")))
+	if (lstrcmpi(argv[0], _T("xcompare")) && lstrcmpi(argv[0], _T("xmerge")))
 	{
 		ParseArgs(argc, argv, pMainFrame, files, nFiles, recurse, dwLeftFlags, dwRightFlags, prediffer);
 		if (m_bShowUsage)
@@ -208,8 +208,7 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 
 	// Handle all switches in the f_ArgSettings table
 	// this are arguments mapped to WinMerge options
-	int i=0;
-	for (i=0; i<sizeof(f_ArgSettings)/sizeof(f_ArgSettings[0]); ++i)
+	for (int i = 0; i < countof(f_ArgSettings); ++i)
 	{
 		const ArgSetting & argSetting = f_ArgSettings[i];
 		LPCTSTR cmdargName = argSetting.CmdArgName;
@@ -306,14 +305,22 @@ void
 CMergeApp::ParseCCaseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles,
 		DWORD & dwLeftFlags, DWORD & dwRightFlags)
 {
+	CString *pDesc = NULL;
+	CString sOutFile;
+
 	pMainFrame->m_bClearCaseTool = TRUE;
 	pMainFrame->m_bEscShutdown = TRUE;
 
 	dwLeftFlags |= FFILEOPEN_READONLY | FFILEOPEN_NOMRU;
-	dwRightFlags |= FFILEOPEN_READONLY | FFILEOPEN_NOMRU;
+	dwRightFlags |= FFILEOPEN_NOMRU;
 
-	// First description belong to the left file.
-	CString *pDesc = &(pMainFrame->m_strLeftDesc);
+	if (lstrcmpi(argv[0], _T("xmerge")))
+	{
+		dwRightFlags |= FFILEOPEN_READONLY;
+
+		// First description belong to the left file.
+		pDesc = &(pMainFrame->m_strLeftDesc);
+	}
 
 	for (int i = 1; i < argc; i++)
 	{
@@ -323,18 +330,43 @@ CMergeApp::ParseCCaseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStri
 			// remove flag specifier
 			++pszParam;
 
+			if (!_tcsicmp(pszParam, _T("base")))
+			{
+				i++; // a 2-way merge doesn't need the common ancestor.
+			}
+
+			if (!_tcsicmp(pszParam, _T("out")))
+			{
+				if (i < (argc - 1))
+				{
+					sOutFile = argv[i+1];
+					i++;
+				}
+			}
+
 			// -fname "desc" - description for a file
 			// Shown instead of filename
 			if (!_tcsicmp(pszParam, _T("fname")))
 			{
 				if (i < (argc - 1))
 				{
-					LPCTSTR pszDesc = argv[i+1];
-					*pDesc = pszDesc;
-					i++; // Just read next parameter
+					if (NULL == pDesc)
+					{
+						// First description belong to the left file.
+						pDesc = &(pMainFrame->m_strLeftDesc);
+						
+						i++; // Skip the common ancestor description.
+					}
+					else
+					{
+						LPCTSTR pszDesc = argv[i+1];
+						*pDesc = pszDesc;
+						i++; // Just read next parameter
 
-					// Next description belong to the right file.
-					pDesc = &(pMainFrame->m_strRightDesc);
+						// Next description belong to the right file.
+						pDesc = &(pMainFrame->m_strRightDesc);
+					}
+					
 				}
 			}
 		}
@@ -344,6 +376,12 @@ CMergeApp::ParseCCaseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStri
 			files.SetAtGrow(nFiles, sFile);
 			nFiles++;
 		}
+	}
+
+	if (FALSE == sOutFile.IsEmpty())
+	{
+		files.SetAtGrow(nFiles, sOutFile);
+		nFiles++;
 	}
 }
 

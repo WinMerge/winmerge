@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2006-08-22 Gal
+ PATCH: [ 1544784 ] Use as ClearCase external merge tool
+  Src: MergeArgs.cpp
+
+2006-08-22 Gal
  BUG: [ 1543783 ] Misbehave margin draw
   Src/editlib: ccrystaltextview.cpp
 
