@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1544147 ] Add Install-feature for file filters
   Src: FileFiltersDlg.cpp FileFiltersDlg.h Merge.rc resource.h
   Src/Languages/*: Merge*.rc
+ BUG: [ 1534429 ] Message IDS_SUGGEST_IGNOREEOL incorrect
+  Src: MergeDoc.cpp
 
 2006-08-20 Kimmo
  PATCH: [ 1424673 ] Widen labels on OpenDialog

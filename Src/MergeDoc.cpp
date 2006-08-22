@@ -2772,7 +2772,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		{
 			diffOptions.bIgnoreEol = TRUE;
 			m_diffWrapper.SetOptions(&diffOptions);
-			GetOptionsMgr()->SaveOption(OPT_CMP_IGNORE_EOL, true);
 		}
 	}
 
