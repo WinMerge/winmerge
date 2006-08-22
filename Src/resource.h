@@ -384,6 +384,7 @@
 #define IDC_FINDDLG_DONTWRAP            1308
 #define IDC_REPORT_COPYCLIPBOARD        1309
 #define IDC_EXPLORER_SUBFOLDERS         1310
+#define IDC_FILTERFILE_INSTALL          1311
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -457,6 +458,9 @@
 #define IDS_FILEFILTER_TMPL_COPY        16456
 #define IDS_FILEFILTER_NO_USERFOLDER    16457
 #define IDS_FILEFILTER_DELETE_FAIL      16458
+#define IDS_FILEFILTER_INSTALL          16459
+#define IDS_FILEFILTER_INSTALLFAIL      16460
+#define IDS_FILEFILTER_OVERWRITE        16461
 #define IDS_CC_CMD                      16464
 #define IDS_VSS_CMD                     16465
 #define IDS_CMDLINE_SYNTAX              16510

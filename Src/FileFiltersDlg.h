@@ -67,7 +67,7 @@ private:
 // Overrides
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(FileFiltersDlg)
-	protected:
+protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
 
@@ -84,6 +84,7 @@ private:
 	afx_msg void OnBnClickedFilterfileNewbutton();
 	afx_msg void OnBnClickedFilterfileDelete();
 	afx_msg void OnHelp();
+	afx_msg void OnBnClickedFilterfileInstall();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

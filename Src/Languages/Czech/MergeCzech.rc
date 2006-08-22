@@ -1189,9 +1189,10 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Z&kouška",IDC_FILTERFILE_TEST_BTN,120,114,50,14
-    PUSHBUTTON      "&Nový...",IDC_FILTERFILE_NEWBTN,180,114,50,14
-    PUSHBUTTON      "&Upravit...",IDC_FILTERFILE_EDITBTN,240,114,50,14
+    PUSHBUTTON      "Z&kouška",IDC_FILTERFILE_TEST_BTN,7,114,50,14
+    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
+    PUSHBUTTON      "&Nový...",IDC_FILTERFILE_NEWBTN,192,114,50,14
+    PUSHBUTTON      "&Upravit...",IDC_FILTERFILE_EDITBTN,246,114,50,14
     PUSHBUTTON      "O&dstranit...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
@@ -2015,6 +2016,11 @@ BEGIN
                             "Vlastní složka filtrù nebyla zadána!\n\nZvolte prosím složku v dialogovém oknì Možnosti, v kategorii Systém."
     IDS_FILEFILTER_DELETE_FAIL 
                             "Chyba pøi odstranìní souboru se šablonou pro filtrování souborù:\n%1\n\nMožná je soubor oznaèen pouze pro ètení?"
+    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+    IDS_FILEFILTER_INSTALLFAIL 
+                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+    IDS_FILEFILTER_OVERWRITE 
+                            "Filter file already exists. Overwrite existing filter?"
 END
 
 // VERSION CONTROL OPTIONS

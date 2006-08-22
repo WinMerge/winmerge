@@ -1187,10 +1187,11 @@ BEGIN
     CONTROL         "List1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "&Test",IDC_FILTERFILE_TEST_BTN,120,114,50,14
-    PUSHBUTTON      "&Nouveau...",IDC_FILTERFILE_NEWBTN,188,114,50,14
-    PUSHBUTTON      "É&diter...",IDC_FILTERFILE_EDITBTN,244,114,50,14
-    PUSHBUTTON      "&Supprimer...",IDC_FILTERFILE_DELETEBTN,299,114,50,14
+    PUSHBUTTON      "Test",IDC_FILTERFILE_TEST_BTN,7,114,50,14
+    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
+    PUSHBUTTON      "&Nouveau...",IDC_FILTERFILE_NEWBTN,192,114,50,14
+    PUSHBUTTON      "É&diter...",IDC_FILTERFILE_EDITBTN,246,114,50,14
+    PUSHBUTTON      "&Supprimer...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
 
 IDD_SAVECLOSING DIALOGEX 0, 0, 262, 154
@@ -2008,6 +2009,11 @@ BEGIN
                             "User's filter file folder is not defined!\n\nPlease select filter folder in options/System."
     IDS_FILEFILTER_DELETE_FAIL 
                             "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
+    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+    IDS_FILEFILTER_INSTALLFAIL 
+                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+    IDS_FILEFILTER_OVERWRITE 
+                            "Filter file already exists. Overwrite existing filter?"
 END
 
 // VERSION CONTROL OPTIONS

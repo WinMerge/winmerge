@@ -39,14 +39,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief Template file used when creating new filefilter.
- */
+/** @brief Template file used when creating new filefilter. */
 static const TCHAR FILE_FILTER_TEMPLATE[] = _T("FileFilter.tmpl");
 
-/**
- * @brief Location for filters specific help to open.
- */
+/** @brief Location for filters specific help to open. */
 static const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 
 /////////////////////////////////////////////////////////////////////////////
@@ -81,6 +77,7 @@ BEGIN_MESSAGE_MAP(FileFiltersDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_NOTIFY(LVN_ITEMCHANGED, IDC_FILTERFILE_LIST, OnLvnItemchangedFilterfileList)
 	ON_NOTIFY(LVN_GETINFOTIP, IDC_FILTERFILE_LIST, OnInfoTip)
+	ON_BN_CLICKED(IDC_FILTERFILE_INSTALL, OnBnClickedFilterfileInstall)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -120,7 +117,6 @@ void FileFiltersDlg::SetSelected(const CString & selected)
  */
 void FileFiltersDlg::InitList()
 {
-	CString title;
 	// Show selection across entire row.
 	DWORD newstyle = LVS_EX_FULLROWSELECT;
 	// Also enable infotips if they have new enough version for our
@@ -130,14 +126,14 @@ void FileFiltersDlg::InitList()
 		newstyle |= LVS_EX_INFOTIP;
 	m_listFilters.SetExtendedStyle(m_listFilters.GetExtendedStyle() | newstyle);
 
-	VERIFY(title.LoadString(IDS_FILTERFILE_NAMETITLE));
+	CString title = LoadResString(IDS_FILTERFILE_NAMETITLE);
 	m_listFilters.InsertColumn(0, title,LVCFMT_LEFT, 150);
-	VERIFY(title.LoadString(IDS_FILTERFILE_DESCTITLE));
+	title = LoadResString(IDS_FILTERFILE_DESCTITLE);
 	m_listFilters.InsertColumn(1, title, LVCFMT_LEFT, 350);
-	VERIFY(title.LoadString(IDS_FILTERFILE_PATHTITLE));
+	title = LoadResString(IDS_FILTERFILE_PATHTITLE);
 	m_listFilters.InsertColumn(2, title,LVCFMT_LEFT, 350);
 
-	VERIFY(title.LoadString(IDS_USERCHOICE_NONE));
+	title = LoadResString(IDS_USERCHOICE_NONE);
 	m_listFilters.InsertItem(1, title);
 	m_listFilters.SetItemText(0, 1, title);
 	m_listFilters.SetItemText(0, 2, title);
@@ -270,8 +266,7 @@ static void EnableDlgItem(CWnd * parent, int item, bool enable)
  */
 bool FileFiltersDlg::IsFilterItemNone(int item) const
 {
-	CString txtNone;
-	VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
+	CString txtNone = LoadResString(IDS_USERCHOICE_NONE);
 	CString txt = m_listFilters.GetItemText(item, 0);
 
 	return (txt.CompareNoCase(txtNone) == 0);
@@ -380,10 +375,7 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
-	CString title;
-
-	VERIFY(title.LoadString(IDS_FILEFILTER_SAVENEW));
-
+	CString title = LoadResString(IDS_FILEFILTER_SAVENEW);
 	CString globalPath = theApp.m_globalFileFilter.GetGlobalFilterPathWithCreate();
 	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 
@@ -529,4 +521,62 @@ void FileFiltersDlg::UpdateFiltersList()
 void FileFiltersDlg::OnHelp()
 {
 	GetMainFrame()->ShowHelp(FilterHelpLocation);
+}
+
+/**
+ * @brief Install new filter.
+ * This function is called when user selects "Install" button from GUI.
+ * Function allows easy installation of new filters for user. For example
+ * when user has downloaded filter file from net. First we ask user to
+ * select filter to install. Then we copy selected filter to private
+ * filters folder.
+ */
+void FileFiltersDlg::OnBnClickedFilterfileInstall()
+{
+	CString s;
+	CString path;
+	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
+	CString title = LoadResString(IDS_FILEFILTER_INSTALL);
+
+	if (SelectFile(s, path, title, IDS_FILEFILTER_FILEMASK, TRUE))
+	{
+		CString filename, ext;
+		SplitFilename(s, NULL, &filename, &ext);
+		filename += _T(".");
+		filename += ext;
+		userPath = paths_ConcatPath(userPath, filename);
+		if (!CopyFile(s, userPath, TRUE))
+		{
+			// If file already exists, ask from user
+			// If user wants to, overwrite existing filter
+			if (paths_DoesPathExist(userPath) == IS_EXISTING_FILE)
+			{
+				int res = AfxMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
+					MB_ICONWARNING);
+				if (res == IDYES)
+				{
+					if (!CopyFile(s, userPath, FALSE))
+					{
+						AfxMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+					}
+				}
+			}
+			else
+			{
+				AfxMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+			}
+		}
+		else
+		{
+			FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
+			pMgr->AddFilter(userPath);
+
+			// Remove all from filterslist and re-add so we can update UI
+			CString selected;
+			m_Filters->RemoveAll();
+			theApp.m_globalFileFilter.GetFileFilters(m_Filters, selected);
+
+			UpdateFiltersList();
+		}
+	}
 }
