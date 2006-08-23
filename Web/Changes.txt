@@ -2,6 +2,11 @@
  PATCH: [ 1543687 ] Google AdSense setup
   Web: page.inc new file sitemap.txt
   Web\css: all.css
+ PATCH: [ 1545436 ] Web: Move Firefox Ad
+  Web: page.inc
+  Web\css: print.css
+  Web\images: removed valid-css.gif valid-html401.gif
+
 
 2006-08-10 Tim
  PATCH: [ 1538297 ] Website changes for new stable release 2.4.10

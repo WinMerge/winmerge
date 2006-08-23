@@ -220,16 +220,6 @@
       $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
       $temp .= "</script>\n";
       $temp .= "</td></tr><tr><td>\n";
-      $temp .= "<script type=\"text/javascript\"><!--\n";
-      $temp .= "google_ad_client = \"pub-3779523531306529\";\n";
-      $temp .= "google_ad_width = 125;\n";
-      $temp .= "google_ad_height = 125;\n";
-      $temp .= "google_ad_format = \"125x125_as_rimg\";\n";
-      $temp .= "google_cpa_choice = \"CAAQo-aZzgEaCM3CU97Siy5UKK2293M\";\n";
-      $temp .= "google_ad_channel = \"9515761622\";\n";
-      $temp .= "//--></script>\n";
-      $temp .= "<script type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
-      $temp .= "</script>\n";
       $temp .= "</td></tr></table>\n";
       return $temp;
     }
@@ -403,14 +393,18 @@
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
       $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://validator.w3.org/check/referer\">\n";
-      $temp .= "    <img src=\"/images/valid-html401.gif\" alt=\"Valid HTML 4.01!\" width=\"88\" height=\"31\" border=\"0\">\n";
-      $temp .= "  </a>\n";
-      $temp .= "</p>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://jigsaw.w3.org/css-validator\">\n";
-      $temp .= "    <img src=\"/images/valid-css.gif\" alt=\"Valid CSS!\" width=\"88\" height=\"31\" border=\"0\">\n";
-      $temp .= "  </a>\n";
+      $temp .= "<script type=\"text/javascript\">\n";
+      $temp .= "<!--\n";
+      $temp .= "google_ad_client = \"pub-3779523531306529\";\n";
+      $temp .= "google_ad_width = 125;\n";
+      $temp .= "google_ad_height = 125;\n";
+      $temp .= "google_ad_format = \"125x125_as_rimg\";\n";
+      $temp .= "google_cpa_choice = \"CAAQo-aZzgEaCM3CU97Siy5UKK2293M\";\n";
+      $temp .= "google_ad_channel = \"9515761622\";\n";
+      $temp .= "//-->\n";
+      $temp .= "</script>\n";
+      $temp .= "<script type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
+      $temp .= "</script>\n";
       $temp .= "</p>\n";
       return $temp;
     }
