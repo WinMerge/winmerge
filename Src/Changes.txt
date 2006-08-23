@@ -5,6 +5,9 @@ Add new items to top.
 2006-08-23 Kimmo
  PATCH: [ 1544905 ] Use stat() to check if file is read-only
   Src: files.cpp files.h
+ PATCH: [ 1544777 ] Compare by size
+  Src: DiffWrapper.h DirScan.cpp Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-08-22 Gal
  PATCH: [ 1541427 ] Using as an external diff tool (RFE 1454623)

@@ -1996,6 +1996,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Skrócona zawartoœæ"
     IDS_COMPMETHOD_MODDATE  "Data modyfikacji"
     IDS_COMPMETHOD_DATESIZE "Data modyfikacji i wielkoœæ"
+    IDS_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS

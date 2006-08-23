@@ -87,12 +87,22 @@ struct file_data;
  * checking for file sizes adds some more reliability for results with
  * minimal increase in compare time.
  */
+
+/** @var CMP_SIZE
+ * @brief Compare by file size.
+ * This compare method compares file sizes. This isn't quite accurate method,
+ * other than it can detect files that certainly differ. But it can show lot of
+ * different files as identical too. Advantage is in some use cases where different
+ * size always means files are different. E.g. automatically created logs - when
+ * more data is added size increases.
+ */
 enum COMPARE_TYPE
 {
 	CMP_CONTENT = 0,
 	CMP_QUICK_CONTENT,
 	CMP_DATE,
 	CMP_DATE_SIZE,
+	CMP_SIZE,
 };
 
 /**

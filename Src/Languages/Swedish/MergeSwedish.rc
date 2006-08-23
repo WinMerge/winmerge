@@ -1996,6 +1996,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Snabb jämförelse"
     IDS_COMPMETHOD_MODDATE  "Datum för förändring"
     IDS_COMPMETHOD_DATESIZE "Ändrat Datum och Storlek"
+    IDS_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS

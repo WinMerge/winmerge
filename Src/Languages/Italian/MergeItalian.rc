@@ -1996,6 +1996,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Contenuti rapidi"
     IDS_COMPMETHOD_MODDATE  "Data ultima modifica"
     IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
+    IDS_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS

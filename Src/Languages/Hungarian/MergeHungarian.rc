@@ -1994,6 +1994,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Átfutott tartalmak"
     IDS_COMPMETHOD_MODDATE  "Módosítási dátum"
     IDS_COMPMETHOD_DATESIZE "Modified Date and Size"
+    IDS_COMPMETHOD_SIZE     "Size"
 END
 
 // FILTER OPTIONS

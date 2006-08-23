@@ -384,7 +384,8 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			if (di.isSideLeft() || di.isSideRight())
 			{
 				if (pCtxt->m_nCompMethod != CMP_DATE &&
-					pCtxt->m_nCompMethod != CMP_DATE_SIZE)
+					pCtxt->m_nCompMethod != CMP_DATE_SIZE &&
+					pCtxt->m_nCompMethod != CMP_SIZE)
 				{
 					DiffFileData diffdata;
 					int diffCode = diffdata.prepAndCompareTwoFiles(pCtxt, di);
@@ -428,6 +429,17 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 						di.diffcode |= DIFFCODE::DIFF;
 					}
 				}
+
+				// report result back to caller
+				StoreDiffData(di, pCtxt, NULL);
+			}
+			else if (pCtxt->m_nCompMethod == CMP_SIZE)
+			{
+				// Compare by size
+				if (di.left.size == di.right.size)
+					di.diffcode |= DIFFCODE::SAME;
+				else
+					di.diffcode |= DIFFCODE::DIFF;
 
 				// report result back to caller
 				StoreDiffData(di, pCtxt, NULL);
