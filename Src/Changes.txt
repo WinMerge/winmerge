@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-08-23 Kimmo
+ PATCH: [ 1544905 ] Use stat() to check if file is read-only
+  Src: files.cpp files.h
+
 2006-08-22 Gal
  PATCH: [ 1541427 ] Using as an external diff tool (RFE 1454623)
   Src: MainFrm.cpp MainFrm.h MergeArgs.cpp MergeDoc.cpp

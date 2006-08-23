@@ -111,6 +111,6 @@ struct ParsedTextFile
 
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData);
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush);
-BOOL files_isFileReadOnly(CString file, BOOL *fileExists = NULL);
+BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists = NULL);
 
 #endif // _FILES_H
