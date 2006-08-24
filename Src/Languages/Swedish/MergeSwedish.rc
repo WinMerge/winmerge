@@ -958,7 +958,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
     CONTROL         "A&nvänd avancerad meny",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
-    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
+    CONTROL         "In&kludera underkataloger som standard",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
     LTEXT           "Extern Editor:",IDC_STATIC,7,83,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,93,167,14,ES_AUTOHSCROLL
@@ -1189,9 +1189,9 @@ BEGIN
     CONTROL         "Lista 1",IDC_FILTERFILE_LIST,"SysListView32",LVS_REPORT |
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
-    PUSHBUTTON      "Test",IDC_FILTERFILE_TEST_BTN,7,114,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
-    PUSHBUTTON      "Nytt...",IDC_FILTERFILE_NEWBTN,192,114,50,14
+    PUSHBUTTON      "Testa",IDC_FILTERFILE_TEST_BTN,7,114,50,14
+    PUSHBUTTON      "Installera...",IDC_FILTERFILE_INSTALL,137,114,50,14
+    PUSHBUTTON      "Ny...",IDC_FILTERFILE_NEWBTN,192,114,50,14
     PUSHBUTTON      "Editera...",IDC_FILTERFILE_EDITBTN,246,114,50,14
     PUSHBUTTON      "Ta bort...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
 END
@@ -1996,7 +1996,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Snabb jämförelse"
     IDS_COMPMETHOD_MODDATE  "Datum för förändring"
     IDS_COMPMETHOD_DATESIZE "Ändrat Datum och Storlek"
-    IDS_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_SIZE     "Filstorlek"
 END
 
 // FILTER OPTIONS
@@ -2017,11 +2017,11 @@ BEGIN
                             "Användarens filterfilkatalog är inte definierad!\n\nVar god och välj filterkatalog i Egenskaper/System."
     IDS_FILEFILTER_DELETE_FAIL 
                             "Kan inte ta bort filterfilen:\n%1\n\nKanske är filen bara läsbar?"
-    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+    IDS_FILEFILTER_INSTALL  "Ange sökväg för filterfil att installera"
     IDS_FILEFILTER_INSTALLFAIL 
-                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+                            "Installation av filterfilen misslyckades.\n\nKunde inte kopiera ny filterfil till filterkatalogen."
     IDS_FILEFILTER_OVERWRITE 
-                            "Filter file already exists. Overwrite existing filter?"
+                            "Filterfilen är redan installerad. Vill du skriva över existerande filterfil?"
 END
 
 // VERSION CONTROL OPTIONS

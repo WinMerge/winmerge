@@ -13,6 +13,9 @@ Add new items to top.
   InnoSetup: WinMerge.iss
   ShellExtension: ShellExtension.rc
   ShellExtension/Languages: ShellExtensionBulgarian.rc
+ PATCH: [ 1545890 ] Swedish translation for update for WinMerge 2.5.5.7+
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2006-08-23 Kimmo
  PATCH: [ 1544905 ] Use stat() to check if file is read-only
