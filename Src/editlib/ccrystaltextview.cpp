@@ -1731,15 +1731,18 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
             }
         }
 
-	  // get line revision marks color
-      DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
-      if (dwRevisionNumber > 0)
-        {
-          if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
-            clrRevisionMark = RGB(0xD7, 0xD7, 0x00); // dark yellow
-          else
-            clrRevisionMark = RGB(0x00, 0xFF, 0x00); // green
-        }
+     if (m_pTextBuffer)
+       {
+         // get line revision marks color
+         DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
+         if (dwRevisionNumber > 0)
+           {
+             if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
+               clrRevisionMark = RGB(0xD7, 0xD7, 0x00); // dark yellow
+             else
+               clrRevisionMark = RGB(0x00, 0xFF, 0x00); // green
+           }
+       }
     }
   
   // draw line revision marks
