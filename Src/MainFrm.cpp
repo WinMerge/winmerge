@@ -2386,8 +2386,8 @@ LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr & options, const CString & name
 /**
  * @brief Pass options settings from options manager object to config log, or vice-versa
  */
-static void
-LoadConfigLog(CConfigLog & configLog, COptionsMgr & options, LOGFONT & lfDiff, ConfigLogDirection cfgdir)
+static void LoadConfigLog(CConfigLog & configLog, COptionsMgr & options,
+	LOGFONT & lfDiff, ConfigLogDirection cfgdir)
 {
 	LoadConfigIntSetting(&configLog.m_diffOptions.nIgnoreWhitespace, options, OPT_CMP_IGNORE_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);
@@ -2410,6 +2410,9 @@ LoadConfigLog(CConfigLog & configLog, COptionsMgr & options, LOGFONT & lfDiff, C
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bBackup, options, OPT_CREATE_BACKUPS, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bViewWhitespace, options, OPT_VIEW_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bMovedBlocks, options, OPT_CMP_MOVED_BLOCKS, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bShowLinenumbers, options, OPT_VIEW_LINENUMBERS, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bWrapLines, options, OPT_WORDWRAP, cfgdir);
+	LoadConfigBoolSetting(&configLog.m_miscSettings.bMergeMode, options, OPT_MERGE_MODE, cfgdir);
 
 	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultMode, options, OPT_CP_DEFAULT_MODE, cfgdir);
 	LoadConfigIntSetting(&configLog.m_cpSettings.nDefaultCustomValue, options, OPT_CP_DEFAULT_CUSTOM, cfgdir);

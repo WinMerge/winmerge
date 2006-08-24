@@ -421,8 +421,6 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WriteVersionOf1(m_file, 1, _T("ShellExtension.dll"));
 	WriteVersionOf1(m_file, 1, _T("ShellExtensionU.dll"));
 
-	FileWriteString(_T("\n"));
-	WriteArchiveSupport(m_file);
 // WinMerge settings
 	FileWriteString(_T("\nWinMerge configuration:\n"));
 	FileWriteString(_T(" Compare settings:\n"));
@@ -451,8 +449,11 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Binary files"), &m_viewSettings.bShowBinaries);
 	WriteItemYesNo(2, _T("Skipped files"), &m_viewSettings.bShowSkipped);
 
-	FileWriteString(_T("\n"));
-	WriteItemYesNo(1, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
+	FileWriteString(_T("\n Editor settings:\n"));
+	WriteItemYesNo(2, _T("View Whitespace"), &m_miscSettings.bViewWhitespace);
+	WriteItemYesNo(2, _T("Merge Mode enabled"), &m_miscSettings.bMergeMode);
+	WriteItemYesNo(2, _T("Show linenumbers"), &m_miscSettings.bShowLinenumbers);
+	WriteItemYesNo(2, _T("Wrap lines"), &m_miscSettings.bWrapLines);
 	
 // Font settings
 	FileWriteString(_T("\n Font:\n"));
@@ -488,6 +489,9 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WritePluginsInLogFile(L"EDITOR_SCRIPT", m_file);
 	if (IsWindowsScriptThere() == FALSE)
 		FileWriteString(_T("\n .sct scripts disabled (Windows Script Host not found)\n"));
+
+	FileWriteString(_T("\n\n"));
+	WriteArchiveSupport(m_file);
 
 	CloseFile();
 

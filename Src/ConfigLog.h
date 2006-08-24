@@ -61,6 +61,9 @@ struct MISCSETTINGS
 	BOOL bViewWhitespace;
 	BOOL bMovedBlocks;
 	BOOL bDetectCodepage;
+	BOOL bShowLinenumbers;
+	BOOL bWrapLines;
+	BOOL bMergeMode;
 };
 
 /** 
