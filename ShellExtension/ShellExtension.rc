@@ -224,8 +224,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,8,0,0
- PRODUCTVERSION 1,8,0,0
+ FILEVERSION 1,8,1,0
+ PRODUCTVERSION 1,8,1,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -243,7 +243,7 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", "\0"
             VALUE "FileDescription", "ShellExtension Module\0"
-            VALUE "FileVersion", "1.8.0.0\0"
+            VALUE "FileVersion", "1.8.1.0\0"
             VALUE "InternalName", "ShellExtension\0"
             VALUE "LegalCopyright", "Copyright 2003-2006\0"
             VALUE "LegalTrademarks", "\0"
@@ -251,7 +251,7 @@ BEGIN
             VALUE "OriginalFilename", "ShellExtension.DLL\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "ShellExtension Module\0"
-            VALUE "ProductVersion", "1.8.0.0\0"
+            VALUE "ProductVersion", "1.8.1.0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

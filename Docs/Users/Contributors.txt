@@ -26,6 +26,7 @@ Graphic Design:
 Localization:
 * Bulgarian:	
   Sld
+  tigertron
 
 * Catalan:	
   Jordi Vilar
