@@ -3,7 +3,7 @@
 // We include dllpstub.h for Merge7z.h
 // Merge7z::Proxy embeds a DLLPSTUB
 #include "dllpstub.h"
-#include "../Merge7z/Merge7z.h"
+#include "../ArchiveSupport/Merge7z/Merge7z.h"
 
 #include "DirView.h"
 
