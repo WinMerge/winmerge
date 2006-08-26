@@ -101,18 +101,6 @@ body {
 	padding-left: 0.5em;
 }
 
-#rightsideads {
-	float: right;
-	margin: 5px;
-	margin-top: 45px;
-	padding: 5px;
-}
-
-#bottomads {
-	margin: 5px;
-	padding: 5px;
-}
-
 #content {
 	margin: 5px 0 0 12.5em;
 	padding: 5px;

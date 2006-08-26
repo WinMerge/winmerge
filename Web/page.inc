@@ -137,9 +137,6 @@
       $temp .= "  <div id=\"nav\">\n";
       $temp .= $this->getMenu();
       $temp .= "  </div>\n";
-      $temp .= "  <div id=\"rightsideads\">\n";
-      $temp .= $this->getRightSideAds();
-      $temp .= "  </div>\n";
       $temp .= "  <div id=\"content\">\n";
       print($temp);
     }
@@ -148,104 +145,11 @@
      * print the foot from the page
      */
     function printFoot() {
-      $temp = "  <div id=\"bottomads\">\n";
-      $temp .= $this->getBottomAds();
-      $temp .= "  </div>\n";
-      $temp .= "  </div>\n";
+      $temp = "  </div>\n";
       $temp .= "</div>\n";
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
       print($temp);
-    }
-
-    /**
-     * get the right side ads to display on the page
-     *
-     */
-    function getRightSideAds() {
-      $temp = "<table><tr><td>\n";
-
-      $temp .= "<!-- SiteSearch Google -->\n";
-      $temp .= "<form method=\"get\" action=\"http://www.google.com/custom\" target=\"_top\">\n";
-      $temp .= "<table border=\"0\" bgcolor=\"#FFFFCC\">\n";
-      $temp .= "<tr>\n";
-      $temp .= "<td nowrap=\"nowrap\">\n";
-      $temp .= "<input type=\"hidden\" name=\"domains\" value=\"winmerge.org\"></input>\n";
-      $temp .= "<input type=\"text\" name=\"q\" size=\"15\" maxlength=\"255\" value=\"\"></input>\n";
-      $temp .= "</td></tr>\n";
-      $temp .= "<tr>\n";
-      $temp .= "<td nowrap=\"nowrap\">\n";
-      $temp .= "<input type=\"submit\" name=\"sa\" value=\"Google Search\"></input>\n";
-      $temp .= "<table>\n";
-      $temp .= "<tr>\n";
-      $temp .= "<td>\n";
-      $temp .= "<input type=\"radio\" name=\"sitesearch\" value=\"winmerge.org\" checked=\"checked\"></input>\n";
-      $temp .= "<font size=\"-1\" color=\"#000000\">winmerge.org</font>\n";
-      $temp .= "</td>\n";
-      $temp .= "</tr>\n";
-      $temp .= "<tr>\n";
-      $temp .= "<td>\n";
-      $temp .= "<input type=\"radio\" name=\"sitesearch\" value=\"\"></input>\n";
-      $temp .= "<font size=\"-1\" color=\"#000000\">Web</font>\n";
-      $temp .= "</td>\n";
-      $temp .= "</tr>\n";
-      $temp .= "</table>\n";
-      $temp .= "<input type=\"hidden\" name=\"client\" value=\"pub-3779523531306529\"></input>\n";
-      $temp .= "<input type=\"hidden\" name=\"forid\" value=\"1\"></input>\n";
-      $temp .= "<input type=\"hidden\" name=\"channel\" value=\"9885282933\"></input>\n";
-      $temp .= "<input type=\"hidden\" name=\"ie\" value=\"ISO-8859-1\"></input>\n";
-      $temp .= "<input type=\"hidden\" name=\"oe\" value=\"ISO-8859-1\"></input>\n";
-      $temp .= "<input type=\"hidden\" name=\"cof\" value=\"GALT:#008000;GL:1;DIV:#336699;VLC:663399;AH:center;BGC:FFFFCC;LBGC:FFCC00;ALC:0000FF;LC:0000FF;T:000000;GFNT:0000FF;GIMP:0000FF;LH:50;LW:218;L:http://winmerge.org/images/logo.gif;S:http://winmerge.org;FORID:1\"></input>\n";
-      $temp .= "<input type=\"hidden\" name=\"hl\" value=\"en\"></input>\n";
-      $temp .= "</td></tr></table>\n";
-      $temp .= "</form>\n";
-      $temp .= "<!-- SiteSearch Google -->\n";
-
-      $temp .= "</td></tr><tr><td>\n";
-
-      $temp .= "<script type=\"text/javascript\"><!--\n";
-      $temp .= "google_ad_client = \"pub-3779523531306529\";\n";
-      $temp .= "google_ad_width = 120;\n";
-      $temp .= "google_ad_height = 600;\n";
-      $temp .= "google_ad_format = \"120x600_as\";\n";
-      $temp .= "google_ad_type = \"text\";\n";
-      $temp .= "google_ad_channel =\"1940228029\";\n";
-      $temp .= "google_color_border = \"FFCC00\";\n";
-      $temp .= "google_color_bg = \"FFFFCC\";\n";
-      $temp .= "google_color_link = \"0000FF\";\n";
-      $temp .= "google_color_text = \"000000\";\n";
-      $temp .= "google_color_url = \"008000\";\n";
-      $temp .= "//--></script>\n";
-      $temp .= "<script type=\"text/javascript\"\n";
-      $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
-      $temp .= "</script>\n";
-      $temp .= "</td></tr><tr><td>\n";
-      $temp .= "</td></tr></table>\n";
-      return $temp;
-    }
-
-    /**
-     * get the bottom ads to display on the page
-     *
-     */
-    function getBottomAds() {
-      $temp = "<script type=\"text/javascript\"><!--\n";
-      $temp .= "google_ad_client = \"pub-3779523531306529\";\n";
-      $temp .= "google_ad_width = 728;\n";
-      $temp .= "google_ad_height = 90;\n";
-      $temp .= "google_ad_format = \"728x90_as\";\n";
-      $temp .= "google_ad_type = \"text\";\n";
-      $temp .= "google_ad_channel =\"0025044588\";\n";
-      $temp .= "google_color_border = \"FFCC00\";\n";
-      $temp .= "google_color_bg = \"FFFFCC\";\n";
-      $temp .= "google_color_link = \"0000FF\";\n";
-      $temp .= "google_color_text = \"000000\";\n";
-      $temp .= "google_color_url = \"008000\";\n";
-      $temp .= "//--></script>\n";
-      $temp .= "<script type=\"text/javascript\"\n";
-      $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
-      $temp .= "</script>\n";
-      return $temp;
     }
 
     /**
@@ -391,20 +295,6 @@
       $temp .= "  <a href=\"http://sourceforge.net/projects/winmerge\">\n";
       $temp .= "    <img src=\"/images/sourceforge.png\" alt=\"SourceForge Logo\" border=\"0\">\n";
       $temp .= "  </a>\n";
-      $temp .= "</p>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "<script type=\"text/javascript\">\n";
-      $temp .= "<!--\n";
-      $temp .= "google_ad_client = \"pub-3779523531306529\";\n";
-      $temp .= "google_ad_width = 125;\n";
-      $temp .= "google_ad_height = 125;\n";
-      $temp .= "google_ad_format = \"125x125_as_rimg\";\n";
-      $temp .= "google_cpa_choice = \"CAAQo-aZzgEaCM3CU97Siy5UKK2293M\";\n";
-      $temp .= "google_ad_channel = \"9515761622\";\n";
-      $temp .= "//-->\n";
-      $temp .= "</script>\n";
-      $temp .= "<script type=\"text/javascript\" src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
-      $temp .= "</script>\n";
       $temp .= "</p>\n";
       return $temp;
     }
