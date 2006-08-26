@@ -1663,7 +1663,8 @@ IDR_SPLASH              IMAGE                   "..\\..\\res\\splash.jpg"
 // Bitmap
 //
 
-IDR_MAINFRAME           BITMAP                  "..\\..\\res\\Toolbar.bmp"
+IDB_TOOLBAR_ENABLED     BITMAP                  "..\\..\\res\\ToolbarEnabled.bmp"
+IDB_TOOLBAR_DISABLED    BITMAP                  "..\\..\\res\\ToolbarDisabled.bmp"
 IDB_EDIT_COPY           BITMAP                  "..\\..\\res\\copy.bmp"
 IDB_EDIT_CUT            BITMAP                  "..\\..\\res\\cut.bmp"
 IDB_EDIT_PASTE          BITMAP                  "..\\..\\res\\paste.bmp"
