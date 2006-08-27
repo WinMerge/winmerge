@@ -212,7 +212,8 @@ CMergeApp::ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArr
 
 	// Handle all switches in the f_ArgSettings table
 	// this are arguments mapped to WinMerge options
-	for (int i = 0; i < countof(f_ArgSettings); ++i)
+	int i;
+	for (i = 0; i < countof(f_ArgSettings); ++i)
 	{
 		const ArgSetting & argSetting = f_ArgSettings[i];
 		LPCTSTR cmdargName = argSetting.CmdArgName;
