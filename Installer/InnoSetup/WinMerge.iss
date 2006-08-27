@@ -65,8 +65,8 @@
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
-#define AppVersion GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe")
-#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
+#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeRelease\WinMerge.exe")
+#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
 
 
 [Setup]
@@ -90,8 +90,8 @@ DefaultDirName={pf}\WinMerge
 DefaultGroupName=WinMerge
 DisableStartupPrompt=true
 AllowNoIcons=true
-InfoBeforeFile=..\Docs\users\GPL.rtf
-InfoAfterFile=..\Docs\users\ReadMe.txt
+InfoBeforeFile=..\..\Docs\users\GPL.rtf
+InfoAfterFile=..\..\Docs\users\ReadMe.txt
 
 OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
@@ -108,7 +108,7 @@ WizardImageFile=Art\Large Logo.bmp
 WizardSmallImageFile=Art\Small Logo.bmp
 WizardImageStretch=false
 
-SetupIconFile=..\src\res\Merge.ico
+SetupIconFile=..\..\src\res\Merge.ico
 
 ;The uninstall icon shouldn't match the WinMerge icon, because it would look confusing in the start menu.
 ;  So I've remmed this until someone (probably me [Seier Blackburn]) creates a decent WinMerge specific uninstall icon
@@ -124,7 +124,7 @@ SolidCompression=true
 
 ; Update file associations for shell (project files)
 ChangesAssociations=true
-OutputDir=..\Build
+OutputDir=..\..\Build
 AlwaysShowComponentsList=true
 
 
@@ -133,8 +133,8 @@ AlwaysShowComponentsList=true
 Name: English; MessagesFile: Languages\English.isl
 
 ;Localizations:
-Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl; InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Bulgarian.txt
-Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Catalan.txt
+Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt
+Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt
 Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl
 Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
 Name: Czech; MessagesFile: Languages\Czech.isl
@@ -151,8 +151,8 @@ Name: Polish; MessagesFile: Languages\Polish.isl
 Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
-Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Spanish.txt
-Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\Docs\Users\Languages\ReadMe-Swedish.txt
+Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
+Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: Languages\Turkish.isl
 
 
@@ -324,8 +324,8 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: ..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-Source: ..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
+Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
@@ -335,7 +335,7 @@ Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components:
 Source: MergeProject.ico; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; List of installed files
-Source: ..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; We still need APPHelp.dll!
 
@@ -346,45 +346,45 @@ Source: Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneverun
 Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
 ; end VC system files
 
-Source: ..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
-Source: ..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
+Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4
 
-Source: ..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeChineseSimplified.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeChineseTraditional.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeCzech.lang; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeDanish.lang; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeDutch.lang; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeFrench.lang; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeGerman.lang; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeHungarian.lang; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeItalian.lang; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeJapanese.lang; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeKorean.lang; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeNorwegian.lang; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergePolish.lang; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeRussian.lang; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeSlovak.lang; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeSpanish.lang; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeSwedish.lang; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
-Source: ..\Build\Languages\MergeTurkish.lang; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeChineseSimplified.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeChineseTraditional.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeCzech.lang; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeDanish.lang; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeDutch.lang; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeFrench.lang; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeGerman.lang; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeHungarian.lang; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeItalian.lang; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeJapanese.lang; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeKorean.lang; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeNorwegian.lang; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergePolish.lang; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeRussian.lang; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeSlovak.lang; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeSpanish.lang; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeSwedish.lang; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergeTurkish.lang; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
 
-Source: ..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
-Source: ..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
+Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 
 ;Documentation
-Source: ..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: docs
+Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
+Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: docs
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
-Source: ..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\Plugins\dlls\Plugins.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText; Components: ; Tasks: ; Languages: 
-Source: ..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
+Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
+Source: ..\..\Plugins\dlls\Plugins.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText; Components: ; Tasks: ; Languages: 
+Source: ..\..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 [INI]
 Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/; Check: GroupCreated
