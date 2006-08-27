@@ -1,6 +1,10 @@
 MakeResDll/Changes.txt
 Add new items to top
 
+2006-08-27 Kimmo
+ PATCH: [ 1547212 ] Fix MakeResDll project
+  MakeResDll: MakeResDll.dsp
+
 2006-05-07 Kimmo
  PATCH: [ 1446649 ] Fix MakeResDll ui
   Submitted by Perry
