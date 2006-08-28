@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1544777 ] Compare by size
   Forgot to commit Options-dialog changes last time so option for this wasn't visible
   Src: PropCompare.cpp
+ BUG: [ 1547262 ] Suspicious bit shift warning
+  Fix from Gal
+  Src/Common: UniFile.cpp
 
 2006-08-27 Kimmo
  PATCH: [ 1547190 ] Fix VS2005 compile

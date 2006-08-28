@@ -139,7 +139,9 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 		return false;
 	}
 
-	m_filesize = sizelo + (sizehi << 32);
+	m_filesize = sizehi;
+	m_filesize <<= 32;
+	m_filesize += sizelo;
 	m_statusFetched = 1;
 
 	return true;
