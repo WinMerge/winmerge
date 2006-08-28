@@ -1,3 +1,7 @@
+2006-08-28 Kimmo
+ PATCH: [ 1547482 ] Plugins.txt shortcut is installed even if plugins are not
+  InnoSetup: WinMerge.iss
+
 2006-08-27 Kimmo
  PATCH: [ 1547258 ] Fix installer paths
   InnoSetup: WinMerge.iss
