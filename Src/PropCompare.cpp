@@ -106,14 +106,15 @@ BOOL CPropCompare::OnInitDialog()
 	CPropertyPage::OnInitDialog();
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 
-	CString item;
-	VERIFY(item.LoadString(IDS_COMPMETHOD_FULL_CONTENTS));
+	CString item = LoadResString(IDS_COMPMETHOD_FULL_CONTENTS);
 	combo->AddString(item);
-	VERIFY(item.LoadString(IDS_COMPMETHOD_QUICK_CONTENTS));
+	item = LoadResString(IDS_COMPMETHOD_QUICK_CONTENTS);
 	combo->AddString(item);
-	VERIFY(item.LoadString(IDS_COMPMETHOD_MODDATE));
+	item = LoadResString(IDS_COMPMETHOD_MODDATE);
 	combo->AddString(item);
-	VERIFY(item.LoadString(IDS_COMPMETHOD_DATESIZE));
+	item = LoadResString(IDS_COMPMETHOD_DATESIZE);
+	combo->AddString(item);
+	item = LoadResString(IDS_COMPMETHOD_SIZE);
 	combo->AddString(item);
 	combo->SetCurSel(m_compareMethod);
 
