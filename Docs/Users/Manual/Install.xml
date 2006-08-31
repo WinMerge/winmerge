@@ -15,16 +15,15 @@
 
     <para>WinMerge can be installed using installer or by unzipping files from
     archive.</para>
-
   </sect2>
 
   <sect2>
     <title>Using installer (recommended)</title>
 
     <note>
-      <para>Installer requires Admin-user rights in Windows NT4/2000/XP. If
-      you don't have Admin-user rights you can install WinMerge by unzipping
-      from archive file (see that section).</para>
+      <para>Installer requires Admin-user priviledges in Windows NT4/2000/XP.
+      If you don't have Admin-user priviledges you can install WinMerge by
+      unzipping from an archive file (see that section).</para>
     </note>
 
     <para>This is recommended for most users. Installer asks location where
@@ -34,109 +33,107 @@
 
     <orderedlist>
       <listitem>
-        <para>Start installer executable (usually named
-        <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>)</para>
+        <simpara>Start installer executable (usually named
+        <filename>WinMerge-<replaceable>version</replaceable>-setup.exe</filename>)</simpara>
       </listitem>
 
       <listitem>
-        <para>Select <guibutton>Next</guibutton>-button in welcome
-        screen</para>
+        <simpara>Select <guibutton>Next</guibutton>-button in welcome
+        screen</simpara>
       </listitem>
 
       <listitem>
-        <para>Select <guibutton>Next</guibutton>-button in licence
-        screen</para>
+        <simpara>Select <guibutton>Next</guibutton>-button in licence
+        screen</simpara>
       </listitem>
 
       <listitem>
-        <para>Select location for WinMerge and select
+        <simpara>Select location for WinMerge and select
         <guibutton>Next</guibutton>-button. It is recommended to install
-        WinMerge in own directory.</para>
+        WinMerge in own directory.</simpara>
       </listitem>
 
       <listitem>
-        <para>Select components installed or one of preconfigured
+        <simpara>Select components installed or one of preconfigured
         combinations. <guilabel>Typical</guilabel> configuration is
         recommended for most users. In addition to components already selected
         by <guilabel>Typical</guilabel>, language file(s) could be chosen.
-        Components are:</para>
+        Components are:</simpara>
 
         <itemizedlist>
           <listitem>
-            <para><guilabel>WinMerge core files</guilabel> - cannot be
-            unselected - WinMerge executable files</para>
+            <simpara><guilabel>WinMerge core files</guilabel> - cannot be
+            unselected - WinMerge executable and other runtime fies</simpara>
           </listitem>
 
           <listitem>
-            <para><guilabel>Application Runtimes</guilabel> - cannot be
-            unselected - needed DLL files</para>
+            <simpara><guilabel>User's Guide</guilabel> - User guide as
+            HTMLHelp - if it is not installed WinMerge opens online manual
+            from <ulink
+            url="http://www.winmerge.org/">WinMerge.org</ulink></simpara>
           </listitem>
 
           <listitem>
-            <para><guilabel>User's Guide</guilabel> - HTML user guide/manual -
-            if it is not installed WinMerge opens manual from <ulink
-            url="http://www.winmerge.org/">WinMerge.org</ulink></para>
+            <simpara><guilabel>Filters</guilabel> - file filter
+            files</simpara>
           </listitem>
 
           <listitem>
-            <para><guilabel>Filters</guilabel> - file filter files</para>
+            <simpara><guilabel>Plugins</guilabel> - plugins and
+            scripts</simpara>
           </listitem>
 
           <listitem>
-            <para><guilabel>Plugins</guilabel> - plugins and scripts</para>
-          </listitem>
-
-          <listitem>
-            <para><guilabel>Languages</guilabel> - WinMerge translation files.
-            After installing translation file user interface language can be
-            selected from menu <menuchoice>
+            <simpara><guilabel>Languages</guilabel> - WinMerge translation
+            files. After installing translation file user interface language
+            can be selected from menu <menuchoice>
                 <guimenu>View</guimenu>
 
                 <guimenuitem>Language</guimenuitem>
-              </menuchoice>.</para>
+              </menuchoice>.</simpara>
           </listitem>
         </itemizedlist>
       </listitem>
 
       <listitem>
-        <para>Select <guimenu>Start</guimenu>-menu folder or disable creating
-        it.</para>
+        <simpara>Select <guimenu>Start</guimenu>-menu folder or disable
+        creating it.</simpara>
       </listitem>
 
       <listitem>
         <para>Select additional tasks:<itemizedlist>
             <listitem>
-              <para><guilabel>Enable Explorer context menu
+              <simpara><guilabel>Enable Explorer context menu
               integration</guilabel> - Enables basic WinMerge shell
-              integration (can be later enabled from options).</para>
+              integration (can be later enabled from options).</simpara>
             </listitem>
 
             <listitem>
-              <para><guilabel>Integrate with TortoiseCVS</guilabel> - sets
-              WinMerge to TortoiseCVS diff application.</para>
+              <simpara><guilabel>Integrate with TortoiseCVS</guilabel> - sets
+              WinMerge to TortoiseCVS diff application.</simpara>
             </listitem>
 
             <listitem>
-              <para><guilabel>Create a Desktop Icon</guilabel> - adds WinMerge
-              icon to Desktop</para>
+              <simpara><guilabel>Create a Desktop Icon</guilabel> - adds
+              WinMerge icon to Desktop</simpara>
             </listitem>
 
             <listitem>
-              <para><guilabel>Create a Quick Launch Icon</guilabel> - adds
-              WinMerge icon to Quick Launch bar</para>
+              <simpara><guilabel>Create a Quick Launch Icon</guilabel> - adds
+              WinMerge icon to Quick Launch bar</simpara>
             </listitem>
           </itemizedlist></para>
       </listitem>
 
       <listitem>
-        <para>Verify install selections and select
-        <guibutton>Install</guibutton> button to continue.</para>
+        <simpara>Verify install selections and select
+        <guibutton>Install</guibutton> button to continue.</simpara>
       </listitem>
 
       <listitem>
-        <para>After installer has copied files final screen appears with two
-        checkboxes asking if created WinMerge Start-menu folder should be
-        opened and if WinMerge application should be started.</para>
+        <simpara>After installer has copied files final screen appears with
+        two checkboxes asking if created WinMerge Start-menu folder should be
+        opened and if WinMerge application should be started.</simpara>
       </listitem>
     </orderedlist>
   </sect2>
@@ -147,17 +144,18 @@
     <para>WinMerge is pretty much independent from other system components. It
     doesn't integrate tightly to Windows or use lots of dlls.
     <filename>WinMerge[U].exe</filename> itself is dependent of
-    <filename>MFC42[U].dll</filename> (and <filename>MSVCRT.dll</filename>) in
-    addition to some system DLLs. So if mentioned DLLs already are installed
-    to system, only <filename>WinMerge[U].exe</filename> is needed to run
-    WinMerge.</para>
+    <filename>MFC71[U].dll</filename> , <filename>MSVCR71.dll and
+    MSVCP71.dll</filename> in addition to some system DLLs. So if mentioned
+    DLLs already are installed to system, only
+    <filename>WinMerge[U].exe</filename> is needed to run WinMerge. Mentioned
+    DLL files are available also as Runtimes-package to download.</para>
 
     <para>Archive files have correct folder structure. WinMerge should be
     unzipped preserving folder structure to destination folder, for example
     <filename class="directory">C:\Program Files\</filename>. Root folder
     created has name <filename
     class="directory">/WinMerge-<replaceable>version</replaceable></filename>,
-    for example <filename class="directory">/WinMerge-2.4.0</filename>. This
+    for example <filename class="directory">/WinMerge-2.6.0</filename>. This
     folder can be renamed or files copied to other folder (preserving folder
     structure!).</para>
 
@@ -208,13 +206,13 @@
 
     <para>7-zip integration needs compatible <filename>Merge7z*.dll</filename>
     file in WinMerge program directory. <filename>*</filename> comes from
-    7-Zip version installed. For example 7-Zip version 4.23 needs
-    <filename>Merge7z423.dll</filename>. And if
+    7-Zip version installed. For example 7-Zip version 4.42 needs
+    <filename>Merge7z442.dll</filename>. And if
     <filename>WinMergeU.exe</filename> (unicode version) is used, then
     "<filename>U</filename>" is also added to filename:
-    <filename>Merge7z423U.dll</filename>. If needed dll file is for some
+    <filename>Merge7z442U.dll</filename>. If needed dll file is for some
     reason missing it can be copied to WinMerge directory, for example from
-    7z-archive downloadable in WinMerge download page.</para>
+    7z-Plugin archive downloadable in WinMerge download page.</para>
 
     <para>If <filename>Merge7z*.dll</filename> file is missing, WinMerge
     informs user with message showing filename of needed file and recommended
@@ -255,25 +253,26 @@
 
       <para><orderedlist>
           <listitem>
-            <para>Start installer executable</para>
+            <simpara>Start installer executable</simpara>
           </listitem>
 
           <listitem>
-            <para>Select installation type and dll files (supported 7-zip
-            versions) to install</para>
+            <simpara>Select installation type and dll files (supported 7-zip
+            versions) to install</simpara>
 
             <itemizedlist>
               <listitem>
-                <para><guilabel>Shared installation</guilabel> copies 7-Zip
+                <simpara><guilabel>Shared installation</guilabel> copies 7-Zip
                 plugin files to system directory so they can be shared between
                 multiple WinMerge installations and other programs using 7-zip
-                plugin. This is recommended installation.</para>
+                plugin. This is recommended installation.</simpara>
               </listitem>
 
               <listitem>
-                <para><guilabel>Application specific installation</guilabel>
-                copies 7-zip plugin files to program directory. Files are then
-                usable only by that program.</para>
+                <simpara><guilabel>Application specific
+                installation</guilabel> copies 7-zip plugin files to program
+                directory. Files are then usable only by that
+                program.</simpara>
 
                 <para>This selection requires user to select executable in
                 directory where plugin files are installed. Select WinMerge
@@ -281,11 +280,11 @@
               </listitem>
 
               <listitem>
-                <para><guilabel>Enable standalone operation</guilabel>
+                <simpara><guilabel>Enable standalone operation</guilabel>
                 installs also required 7-Zip files to program's (application
                 specific installation) directory. This allows minimal usable
                 installation of 7-Zip for archive support. This can be used
-                when 7-Zip application is not wanted or needed.</para>
+                when 7-Zip application is not wanted or needed.</simpara>
 
                 <para>This installation type does contain only needed files
                 for WinMerge (or other application) to enable archive support.

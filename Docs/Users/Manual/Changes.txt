@@ -4,6 +4,8 @@
   Manual/screenshots: OpenDlg1.gif
  PATCH: [ 1548909 ] Manual: What's new in 2.5 additions
   Manual: Whatsnew_2_1.xml
+ PATCH: [ 1548922 ] Manual: Updates to installing
+  Manual: Install.xml
 
 2006-07-20 Kimmo
  PATCH: [ 1525572 ] [Manual] Update project file documentation
