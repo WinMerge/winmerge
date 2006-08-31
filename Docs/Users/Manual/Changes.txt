@@ -1,3 +1,8 @@
+2006-08-31 Kimmo
+ PATCH: [ 1548888 ] Manual: Partial update for Quick start
+  Manual: Quick_start.xml
+  Manual/screenshots: OpenDlg1.gif
+
 2006-07-20 Kimmo
  PATCH: [ 1525572 ] [Manual] Update project file documentation
   Manual: Open_paths.xml
