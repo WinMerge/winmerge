@@ -172,7 +172,6 @@ Name: custom; Description: {cm:CustomInstallation}; Flags: iscustom
 
 [Components]
 Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; Flags: fixed
-Name: Runtimes; Description: {cm:ApplicationRuntimes}; Types: full custom typical compact; Flags: fixed
 
 Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Types: full typical
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
@@ -340,10 +339,10 @@ Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Compon
 ; We still need APPHelp.dll!
 
 ; begin VC system files
-Source: Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
-Source: Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Runtimes
-Source: Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
-Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Runtimes
+Source: Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
+Source: Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 ; end VC system files
 
 Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
