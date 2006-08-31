@@ -2,6 +2,8 @@
  PATCH: [ 1548888 ] Manual: Partial update for Quick start
   Manual: Quick_start.xml
   Manual/screenshots: OpenDlg1.gif
+ PATCH: [ 1548909 ] Manual: What's new in 2.5 additions
+  Manual: Whatsnew_2_1.xml
 
 2006-07-20 Kimmo
  PATCH: [ 1525572 ] [Manual] Update project file documentation

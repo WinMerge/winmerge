@@ -11,46 +11,60 @@
 
     <itemizedlist>
       <listitem>
-        <para>Simpler and auto-closing folder compare progress bar</para>
+        <simpara>New icons and splash screen</simpara>
       </listitem>
 
       <listitem>
-        <para>Line numbers in file compare</para>
+        <simpara>Simpler and auto-closing folder compare progress
+        bar</simpara>
       </listitem>
 
       <listitem>
-        <para>Word-wrap in file compare</para>
+        <simpara>Line numbers in file compare</simpara>
       </listitem>
 
       <listitem>
-        <para>GUI for bookmarks in file compare</para>
+        <simpara>Word-wrap in file compare</simpara>
       </listitem>
 
       <listitem>
-        <para>Better character-level difference indication in file
-        compare</para>
+        <simpara>GUI for bookmarks in file compare</simpara>
       </listitem>
 
       <listitem>
-        <para>New Short size- and EOL type- columns in folder compare</para>
+        <simpara>Better character-level difference indication in file
+        compare</simpara>
       </listitem>
 
       <listitem>
-        <para>Merge difference which has cursor inside it (no need to select
-        difference first)</para>
+        <simpara>New Short size- columns in folder compare</simpara>
       </listitem>
 
       <listitem>
-        <para>Improved Project file saving and editing</para>
+        <simpara>Merge difference which has cursor inside it (no need to
+        select difference first)</simpara>
       </listitem>
 
       <listitem>
-        <para>Creating patch file from multiple files (selected in folder
-        compare)</para>
+        <simpara>Improved Project file saving and editing</simpara>
       </listitem>
 
       <listitem>
-        <para>User-defined folder for file filters</para>
+        <simpara>Creating patch file from multiple files (selected in folder
+        compare)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>User-defined folder for file filters</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>New folder compare types to compare by sizes or modify
+        times</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Renaming items in folder compare</simpara>
       </listitem>
     </itemizedlist>
   </sect2>
