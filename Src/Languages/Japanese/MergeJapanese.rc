@@ -341,7 +341,7 @@ BEGIN
         MENUITEM "左を読み取り専用(&E)",        ID_FILE_LEFT_READONLY
         MENUITEM "右を読み取り専用(&I)",        ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Convert Line Endings to"
+        POPUP "改行コードの変換(&F)"
         BEGIN
             MENUITEM "&DOS (CRLF)",             ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",              ID_EOL_TO_UNIX
@@ -657,28 +657,28 @@ BEGIN
     COMBOBOX        IDC_LEFT_COMBO,81,22,167,94,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "参照(&B)...",IDC_LEFT_BUTTON,242,22,50,14
+    PUSHBUTTON      "参照(&B)...",IDC_LEFT_BUTTON,252,22,50,14
     RTEXT           "右(&R):",IDC_STATIC,13,40,65,8
     COMBOBOX        IDC_RIGHT_COMBO,81,38,167,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP,
                     WS_EX_ACCEPTFILES
-    PUSHBUTTON      "参照(&W)...",IDC_RIGHT_BUTTON,242,38,50,14
+    PUSHBUTTON      "参照(&W)...",IDC_RIGHT_BUTTON,252,38,50,14
     RTEXT           "フィルタ(&F):",IDC_STATIC,13,56,65,8
     COMBOBOX        IDC_EXT_COMBO,81,54,167,95,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
-    PUSHBUTTON      "選択...",IDC_SELECT_FILTER,242,54,50,14
+    PUSHBUTTON      "選択...",IDC_SELECT_FILTER,252,54,50,14
     RTEXT           "展開プラグイン(&U):",IDC_STATIC,13,72,65,8
     EDITTEXT        IDC_UNPACKER_EDIT,81,70,167,12,ES_AUTOHSCROLL |
                     ES_READONLY
-    PUSHBUTTON      "選択(&S)...",IDC_SELECT_UNPACKER,242,70,50,14
+    PUSHBUTTON      "選択(&S)...",IDC_SELECT_UNPACKER,252,70,50,14
     CONTROL         "サブフォルダを含む(&I)",IDC_RECURS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,81,86,181,10
-    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,182,8
-    DEFPUSHBUTTON   "OK",IDOK,306,11,60,14
-    PUSHBUTTON      "キャンセル",IDCANCEL,306,28,60,14
-    PUSHBUTTON      "ヘルプ",ID_HELP,306,45,60,14
+                    BS_AUTOCHECKBOX | WS_TABSTOP,81,86,167,10
+    LTEXT           "Status:",IDC_OPEN_STATUS,15,102,192,8
+    DEFPUSHBUTTON   "OK",IDOK,316,11,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,316,28,50,14
+    PUSHBUTTON      "ヘルプ",ID_HELP,316,45,50,14
     GROUPBOX        "比較するファイルまたはフォルダ",IDC_FILES_DIRS_GROUP,7,
-                     7,292,111
+                     7,302,111
 END
 
 IDD_VSS DIALOGEX 0, 0, 257, 166
@@ -741,7 +741,7 @@ BEGIN
     CONTROL         "複数のインスタンスを起動しない(&O)",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     LTEXT           "開くダイアログのオートコンプリート(&O):",IDC_STATIC,19,72,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,61,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     GROUPBOX        "複数の比較ウインドウを有効",IDC_STATIC,7,87,
                     221,37
@@ -953,12 +953,12 @@ BEGIN
     CONTROL         "3秒以下の時間差を無視する",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,222,10
-    GROUPBOX        "Integration",IDC_STATIC,7,30,218,46
+    GROUPBOX        "シェル統合",IDC_STATIC,7,30,218,46
     CONTROL         "エクスプローラーのコンテキストメニューに追加(&A)",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
     CONTROL         "拡張メニューを有効にする(&N)",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
-    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
+    CONTROL         "「サブフォルダを含む」をデフォルトとする(&C)",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
     LTEXT           "外部エディタ(&E):",IDC_STATIC,7,83,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,93,167,14,ES_AUTOHSCROLL
@@ -1985,9 +1985,9 @@ END
 // REPORT FILES
 STRINGTABLE
 BEGIN
-    IDS_TEXT_REPORT_FILES   "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-    IDS_HTML_REPORT_FILES   "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-    IDS_XML_REPORT_FILES    "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+    IDS_TEXT_REPORT_FILES   "テキストファイル (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+    IDS_HTML_REPORT_FILES   "HTML ファイル (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+    IDS_XML_REPORT_FILES    "XML ファイル (*.xml)|*.xml|All Files (*.*)|*.*||"
 END
 
 // COMPARE OPTIONS
@@ -1997,7 +1997,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "クイックコンテンツ"
     IDS_COMPMETHOD_MODDATE  "更新日時"
     IDS_COMPMETHOD_DATESIZE "更新日時とサイズ"
-    IDS_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_SIZE     "サイズ"
 END
 
 // FILTER OPTIONS
@@ -2018,11 +2018,11 @@ BEGIN
                             "ユーザーフィルタファイルフォルダが定義されていません。\n\n[オプション/システム]でフィルタフォルダを指定してください。"
     IDS_FILEFILTER_DELETE_FAIL 
                             "フィルタファイル %1 の削除に失敗しました。\n\nそのファイルは読み取り専用ではありませんか?"
-    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+    IDS_FILEFILTER_INSTALL  "インストールするフィルタファイルの位置"
     IDS_FILEFILTER_INSTALLFAIL 
-                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+                            "フィルタファイルのインストールに失敗しました。\n\n新しいフィルタファイルをフィルタフォルダにコピーできませんでした。"
     IDS_FILEFILTER_OVERWRITE 
-                            "Filter file already exists. Overwrite existing filter?"
+                            "フィルタファイルは既に存在します。存在しているファイルを上書きしますか?"
 END
 
 // VERSION CONTROL OPTIONS
