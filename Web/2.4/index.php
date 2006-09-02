@@ -13,13 +13,13 @@
   <li>Unicode support</li>
   <li>Difference pane shows current difference in two vertical panes</li>
   <li>Location pane shows map of files compared</li>
-  <li>Highlights differences inside lines</li>
-  <li>File filters in directory diff</li>
-  <li>Moved lines detection in file compare</li>
+  <li>Highlights differences inside the lines</li>
+  <li>File filters in directory pane</li>
+  <li>Moved lines detection in file compare pane</li>
   <li>Shell Integration</li>
   <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
   <li>Archive file support using 7-zip</li>
-  <li>Plugins</li>
+  <li>Plugin support</li>
   <li>Localizable interface via resource DLL</li>
   <li>HTML-based <a href="manual/index.html">Manual</a></li>
 </ul>
@@ -32,11 +32,11 @@
 <p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">installer</a> and double-click it.</p>
 <p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
-<p>For more details please look at the <a href="manual/installing.html">Installation section</a> from the <a href="manual/index.html">Manual</a>.</p>
+<p>For more information, please see the <a href="manual/installing.html">Installation section</a> of the <a href="manual/index.html">Manual</a>.</p>
 
 <h2>Using WinMerge</h2>
-<p>You can use the <a href="manual/index.html">online Manual</a>, or you can
-<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=438564">download</a> a copy.</p>
+<p>For information on using WinMerge, see our <a href="manual/index.html">online Manual</a>, or you can
+<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=438564">download</a> a copy of the documentation for offline use.</p>
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered
