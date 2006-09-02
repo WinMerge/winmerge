@@ -54,7 +54,7 @@
 
 <h2>Using WinMerge</h2>
 <p>For information on using WinMerge, see our <a href="2.4/manual/index.html">online Manual</a>, or you can
-<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=331358">download</a> a copy of the documentation for offline use.</p>
+<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=438564">download</a> a copy of the documentation for offline use.</p>
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered
