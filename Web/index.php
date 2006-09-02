@@ -13,13 +13,13 @@
   <li>Unicode support</li>
   <li>Difference pane shows current difference in two vertical panes</li>
   <li>Location pane shows map of files compared</li>
-  <li>Highlights differences inside lines</li>
-  <li>File filters in directory diff</li>
-  <li>Moved lines detection in file compare</li>
+  <li>Highlights differences inside the lines</li>
+  <li>File filters in directory pane</li>
+  <li>Moved lines detection in file compare pane</li>
   <li>Shell Integration</li>
   <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
   <li>Archive file support using 7-zip</li>
-  <li>Plugins</li>
+  <li>Plugin support</li>
   <li>Localizable interface via resource DLL</li>
   <li>HTML-based <a href="2.4/manual/index.html">Manual</a></li>
 </ul>
@@ -29,7 +29,7 @@
 <p>See the <a href="2.4/screenshots.php">screenshots page</a> for more screenshots.</p>
 
 <h2>WinMerge 2.4.10 - latest stable version</h2>
-<p><a href="2.4/index.php">WinMerge 2.4.10</a> is the latest stable version, and it is recommended for most users.</p>
+<p><a href="2.4/index.php">WinMerge 2.4.10</a> is the latest stable version, and is recommended for most users.</p>
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">Download WinMerge 2.4.10 Installer</a></p>
 
 <h2>WinMerge 2.2.4 - older stable version</h2>
@@ -50,11 +50,11 @@
 <p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">installer</a> and double-click it.</p>
 <p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
-<p>For more details please look at the <a href="2.4/manual/installing.html">Installation section</a> from the <a href="2.4/manual/index.html">Manual</a>.</p>
+<p>For more information, please see the <a href="2.4/manual/installing.html">Installation section</a> of the <a href="2.4/manual/index.html">Manual</a>.</p>
 
 <h2>Using WinMerge</h2>
-<p>You can use the <a href="2.4/manual/index.html">online Manual</a>, or you can
-<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=331358">download</a> a copy.</p>
+<p>For information on using WinMerge, see our <a href="2.4/manual/index.html">online Manual</a>, or you can
+<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=331358">download</a> a copy of the documentation for offline use.</p>
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered
@@ -79,12 +79,11 @@ But please consider making a <a href="http://sourceforge.net/project/project_don
 to support the continued development of WinMerge.</p>
 
 <h2>Developers</h2>
-<p>On the <a href="developer/index.php">developer page</a>
-you get more information about the development for WinMerge.</p>
-<p>You get a list from the current developers, how to
-<a href="developer/needed.php">develop</a> and
-<a href="developer/translate.php">translate WinMerge</a>
-and some hints for <a href="developer/wincvs.php">WinCVS</a>.</p>
+<p>As we said, WinMerge is an open source project, which means that the program is maintained and developed by
+volunteers. If you''re interested in contributing work to the project, see our <a href="developer/needed.php">developer page</a>
+for forther information on how you may contribute.</p>
+<p>In addition, WinMerge is translated into a number of different languages. <a href="developer/translate.php">Click here for more information on translating WinMerge</a> into your own language.</p>
+<p><a href="developer/index.php">The WinMerge Development Team</a></p>
 <?php
   $page->printFoot();
 ?>

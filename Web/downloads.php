@@ -19,7 +19,7 @@
     <p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?group_id=13216&amp;release_id=428331">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
   </dd>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-manual.zip">Manual</a></dt>
-  <dd><p>This is the offline version from our Manual in archive files (<a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-manual.zip">.zip</a> and <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-manual.7z">.7z</a>).</p></dd>
+  <dd><p>This is the offline version of the manual in archived format (<a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-manual.zip">.zip</a> and <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-manual.7z">.7z</a>).</p></dd>
 </dl>
 <?php
   $page->printFoot();

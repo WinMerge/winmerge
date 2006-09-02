@@ -5,7 +5,7 @@
   $page->printHead('WinMerge: Developers', WINMERGE_DEV);
 ?>
 <h2>WinMerge developers</h2>
-<p>This is a list of some of the current developers on WinMerge</p>
+<p>Following is a list of the current developers on the WinMerge project:</p>
 <?php
   $xmlarray = $page->convertXml2Array('developers.xml');
   
@@ -36,9 +36,9 @@
   }
   print("</ul>\n");
 ?>
-<p>Look how to <a href="needed.php">develop</a> and 
-<a href="l10n/index.php">translate WinMerge</a>
-and get some hints for <a href="wincvs.php">WinCVS</a>.</p>
+<p>Look here for more information on how to <a href="needed.php">develop</a> and/or 
+<a href="l10n/index.php">translate</a> WinMerge, 
+and read how to use <a href="wincvs.php">WinCVS</a> with our project.</p>
 <?php
   $page->printFoot();
 ?>
