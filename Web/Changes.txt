@@ -1,3 +1,18 @@
+2006-09-03 Tim
+ PATCH: [ 1551217 ] Web: Tracker shortcuts
+  Web: .htaccess
+
+2006-09-02 Tim
+ Fix the download link of the HTML manual.
+  Web: index.php
+ Use Dean's text changes for 2.4 subdirectory too.
+  Web\2.4: index.php
+
+2006-09-02 Dean
+ Edited text
+  Web: downloads.php index.php
+  Web\developer: index.php
+
 2006-08-26 Tim
  PATCH: [ 1547117 ] Web: Remove Ads
   Web: page.inc
