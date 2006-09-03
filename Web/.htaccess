@@ -17,8 +17,10 @@ Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gi
 Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif
 
 #Tracker shortcuts...
-RedirectMatch permanent /bug/([0-9]+) http://sourceforge.net/tracker/index.php?func=detail\&aid=$1\&group_id=13216\&atid=113216
-RedirectMatch permanent /patch/([0-9]+) http://sourceforge.net/tracker/index.php?func=detail\&aid=$1\&group_id=13216\&atid=313216
-RedirectMatch permanent /support/([0-9]+) http://sourceforge.net/tracker/index.php?func=detail\&aid=$1\&group_id=13216\&atid=213216
-RedirectMatch permanent /rfe/([0-9]+) http://sourceforge.net/tracker/index.php?func=detail\&aid=$1\&group_id=13216\&atid=363216
-RedirectMatch permanent /todo/([0-9]+) http://sourceforge.net/tracker/index.php?func=detail\&aid=$1\&group_id=13216\&atid=759426
+RewriteEngine On
+RewriteBase   /
+RewriteRule   ^bug/([0-9]+)$ http://sourceforge.net/tracker/index.php?func=detail&aid=$1&group_id=13216&atid=113216 [R]
+RewriteRule   ^patch/([0-9]+)$ http://sourceforge.net/tracker/index.php?func=detail&aid=$1&group_id=13216&atid=313216 [R]
+RewriteRule   ^support/([0-9]+)$ http://sourceforge.net/tracker/index.php?func=detail&aid=$1&group_id=13216&atid=213216 [R]
+RewriteRule   ^rfe/([0-9]+)$ http://sourceforge.net/tracker/index.php?func=detail&aid=$1&group_id=13216&atid=363216 [R]
+RewriteRule   ^todo/([0-9]+)$ http://sourceforge.net/tracker/index.php?func=detail&aid=$1&group_id=13216&atid=759426 [R]
