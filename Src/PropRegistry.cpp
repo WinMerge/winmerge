@@ -75,6 +75,7 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
 	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	DDX_Text(pDX, IDC_FILTER_USER_PATH, m_strUserFilterPath);
+	DDX_Check(pDX, IDC_EXPLORER_SUBFOLDERS, m_bContextSubfolders);
 	//}}AFX_DATA_MAP
 }
 
@@ -213,6 +214,11 @@ void CPropRegistry::SaveMergePath()
 		dwContextEnabled |= CONTEXT_F_ADVANCED;
 	else
 		dwContextEnabled &= ~CONTEXT_F_ADVANCED;
+
+	if (m_bContextSubfolders)
+		dwContextEnabled |= CONTEXT_F_SUBFOLDERS;
+	else
+		dwContextEnabled &= ~CONTEXT_F_SUBFOLDERS;
 
 	retVal = reg.WriteDword(f_RegValueEnabled, dwContextEnabled);
 	if (retVal != ERROR_SUCCESS)
