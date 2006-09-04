@@ -32,20 +32,6 @@
 <p><a href="2.4/index.php">WinMerge 2.4.10</a> is the latest stable version, and is recommended for most users.</p>
 <p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">Download WinMerge 2.4.10 Installer</a></p>
 
-<h2>WinMerge 2.2.4 - older stable version</h2>
-<p><a href="2.2/index.php">WinMerge 2.2.4</a> is an older version.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.4-Setup.exe">Download WinMerge 2.2.4 Installer</a></p>
-
-<h2>WinMerge 2.0.2 - much older stable version</h2>
-<p><a href="2.0/index.php">WinMerge 2.0.2</a> is an much older version.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe">Download WinMerge 2.0.2 Installer</a></p>
-
-<!--
-<h2>WinMerge 1.7 - much older stable version</h2>
-<p><a href="1.7/index.php">WinMerge 1.7</a> is an much older and simpler version, from before the integrated editor was introduced.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup.exe">Download WinMerge 1.7 Installer</a></p>
--->
-
 <h2>Installation</h2>
 <p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">installer</a> and double-click it.</p>
 <p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">binary zip package</a> into the desired location, and run
