@@ -439,7 +439,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Pré-comparer"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS

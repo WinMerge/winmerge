@@ -441,7 +441,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Elõvizsgáló"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Bõvítmények betöltése",             ID_RELOAD_PLUGINS

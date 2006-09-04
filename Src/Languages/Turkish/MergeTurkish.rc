@@ -441,7 +441,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Öncelikli Fark"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "Eklentileri &Tekrar Yükle",   ID_RELOAD_PLUGINS

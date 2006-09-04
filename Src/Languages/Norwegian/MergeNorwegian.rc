@@ -441,7 +441,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Forhåndsforskjell"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS

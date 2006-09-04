@@ -443,7 +443,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "预对比(&P)"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "重新装入插件(&R)",            ID_RELOAD_PLUGINS

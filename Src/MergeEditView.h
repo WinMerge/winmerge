@@ -262,6 +262,7 @@ protected:
 	afx_msg void OnUpdateWMGoto(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateScripts(CCmdUI* pCmdUI);
 	afx_msg void OnScripts(UINT nID );
+	afx_msg void OnUpdateNoPrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnUpdatePrediffer(CCmdUI* pCmdUI);
 	afx_msg void OnNoPrediffer();
 	afx_msg void OnPrediffer(UINT nID );
@@ -283,6 +284,7 @@ protected:
 	afx_msg void OnOpenFileWithEditor();
 	afx_msg void OnViewSwapPanes();
 	afx_msg void OnUpdateViewSwapPanes(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateNoEditScripts(CCmdUI* pCmdUI);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 	afx_msg void OnHelp();
 	//}}AFX_MSG

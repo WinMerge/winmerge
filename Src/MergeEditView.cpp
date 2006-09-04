@@ -172,7 +172,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnScripts)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_SCRIPT_FIRST, ID_SCRIPT_LAST, OnUpdateScripts)
 	ON_COMMAND(ID_NO_PREDIFFER, OnNoPrediffer)
-	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdatePrediffer)
+	ON_UPDATE_COMMAND_UI(ID_NO_PREDIFFER, OnUpdateNoPrediffer)
 	ON_COMMAND_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnPrediffer)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_PREDIFFERS_FIRST, ID_PREDIFFERS_LAST, OnUpdatePrediffer)
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
@@ -193,6 +193,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_OPEN_WITH, OnOpenFileWith)
 	ON_COMMAND(ID_VIEW_SWAPPANES, OnViewSwapPanes)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LINEDIFFS, OnUpdateViewSwapPanes)
+	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
@@ -324,7 +325,6 @@ void CMergeEditView::OnActivateView(BOOL bActivate, CView* pActivateView, CView*
 
 	CMergeDoc* pDoc = GetDocument();
 	pDoc->UpdateHeaderActivity(m_nThisPane, bActivate);
-	GetMainFrame()->UpdatePrediffersMenu();
 }
 
 int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
@@ -2318,6 +2318,19 @@ void CMergeEditView::OnScripts(UINT nID )
 /**
  * @brief Called when an editor script item is updated
  */
+void CMergeEditView::OnUpdateNoEditScripts(CCmdUI* pCmdUI)
+{
+	// append the scripts submenu
+	HMENU scriptsSubmenu = dynamic_cast<CMainFrame*>(AfxGetMainWnd())->GetScriptsSubmenu(AfxGetMainWnd()->GetMenu()->m_hMenu);
+	if (scriptsSubmenu != NULL)
+		createScriptsSubmenu(scriptsSubmenu);
+
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Called when an editor script item is updated
+ */
 void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
@@ -2338,6 +2351,16 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
 	pCmdUI->SetRadio(pCmdUI->m_nID == m_CurrentPredifferID);
+}
+
+/**
+ * @brief Update "Prediffer" menuitem
+ */
+void CMergeEditView::OnUpdateNoPrediffer(CCmdUI* pCmdUI)
+{
+	// recreate the sub menu (to fill the "selected prediffers")
+	GetMainFrame()->UpdatePrediffersMenu();
+	OnUpdatePrediffer(pCmdUI);
 }
 
 void CMergeEditView::OnNoPrediffer()

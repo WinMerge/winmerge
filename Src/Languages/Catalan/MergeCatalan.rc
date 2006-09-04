@@ -441,7 +441,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediferenciació"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS

@@ -441,7 +441,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Предсравнение"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS

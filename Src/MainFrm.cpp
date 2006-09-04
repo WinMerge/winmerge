@@ -453,11 +453,6 @@ HMENU CMainFrame::NewDefaultMenu(int ID /*=0*/)
 	m_pMenus[MENU_DEFAULT]->ModifyODMenu(NULL, ID_TOOLS_GENERATEPATCH, IDB_TOOLS_GENERATEPATCH);
 	m_pMenus[MENU_DEFAULT]->LoadToolbar(IDR_MAINFRAME);
 
-	// append the scripts submenu
-	HMENU scriptsSubmenu = GetScriptsSubmenu(m_pMenus[MENU_DEFAULT]->GetSafeHmenu());
-	if (scriptsSubmenu != NULL)
-		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
-
 	FixupDebugMenu(m_pMenus[MENU_DEFAULT]);
 
 	return(m_pMenus[MENU_DEFAULT]->Detach());
@@ -500,11 +495,6 @@ HMENU CMainFrame::NewMergeViewMenu()
 	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_GOTO_PREV_BOOKMARK, IDB_EDIT_GOTO_PREV_BOOKMARK);
 	m_pMenus[MENU_MERGEVIEW]->ModifyODMenu(NULL, ID_EDIT_CLEAR_ALL_BOOKMARKS, IDB_EDIT_CLEAR_ALL_BOOKMARKS);
 	m_pMenus[MENU_MERGEVIEW]->LoadToolbar(IDR_MAINFRAME);
-
-	// append the scripts submenu
-	HMENU scriptsSubmenu = GetScriptsSubmenu(m_pMenus[MENU_MERGEVIEW]->GetSafeHmenu());
-	if (scriptsSubmenu != NULL)
-		CMergeEditView::createScriptsSubmenu(scriptsSubmenu);
 
 	FixupDebugMenu(m_pMenus[MENU_MERGEVIEW]);
 

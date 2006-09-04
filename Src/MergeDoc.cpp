@@ -2799,10 +2799,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	
 	nRescanResult = Rescan(bBinary, bIdentical);
 
-	// recreate the sub menu (to fill the "selected prediffers")
-	// keep after Rescan (in automatic mode, prediffer is set during the first Rescan)
-	GetMainFrame()->UpdatePrediffersMenu();
-
 	// Open filed if rescan succeed and files are not binaries
 	if (nRescanResult == RESCAN_OK && bBinary == FALSE)
 	{

@@ -441,7 +441,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "比較前処理プラグイン(&P)"
         BEGIN
-            MENUITEM SEPARATOR
+            MENUITEM "",                        ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS
