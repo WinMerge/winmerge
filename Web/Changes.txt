@@ -1,3 +1,7 @@
+2006-09-04 Tim
+ PATCH: [ 1552144 ] Web: Fixes to developers-needed -page
+  Web\developer: needed.php
+
 2006-09-03 Tim
  PATCH: [ 1551217 ] Web: Tracker shortcuts
   Web: .htaccess
