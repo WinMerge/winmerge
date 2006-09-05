@@ -4,14 +4,14 @@ if "%1" == "html" goto html
 if "%1" == "htmlhelp" goto htmlhelp
 if "%1" == "" goto default
 
-echo Syntax: build [html OR htmlhelp]
+echo Syntax: build [html OR htmlhelp] [withads]
 goto end
 
 :html
 rem if Windows NT/2000/XP...
-if "%OS%" == "Windows_NT" call build_html.bat
+if "%OS%" == "Windows_NT" call build_html.bat %2
 rem if Windows 9x...
-if "%OS%" == "" command /E:32768 /C build_html.bat
+if "%OS%" == "" command /E:32768 /C build_html.bat %2
 goto end
 
 :htmlhelp

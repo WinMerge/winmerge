@@ -8,6 +8,10 @@ pre,code,tt {
   font-size: 100%;
 }
 
+#ads {
+  text-align: center;
+}
+
 .mediaobject {
   margin-top: 10px;
 }

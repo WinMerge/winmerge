@@ -1,3 +1,8 @@
+2006-09-05 Tim
+ PATCH: [ 1552153 ] Manual: Build with ads (XSL)
+  Manual/build: build.bat build_html.bat new file: build_html_withads.xsl
+  Manual/css: all.css print.css
+
 2006-09-05 Kimmo
  PATCH: [ 1552127 ] Manual: Add info about shellextension and subfolders
   Manual: Open_paths.xml

@@ -4,6 +4,7 @@ call configuration.bat
 
 set docbook_inputfile=..\WinMerge_help.xml
 set docbook_use_stylesheet=build_html.xsl
+if "%1" == "withads" set docbook_use_stylesheet=build_html_withads.xsl
 set docbook_outputdir=%docbook_build_path%\html
 
 if not exist "%docbook_outputdir%" mkdir "%docbook_outputdir%"

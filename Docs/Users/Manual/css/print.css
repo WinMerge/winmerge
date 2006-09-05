@@ -15,6 +15,10 @@ pre,code,tt {
   display: none;
 }
 
+#ads {
+  display: none;
+}
+
 .mediaobject {
   margin-top: 10px;
 }
