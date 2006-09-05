@@ -1,6 +1,11 @@
 2006-09-05 Kimmo
  PATCH: [ 1552127 ] Manual: Add info about shellextension and subfolders
   Manual: Open_paths.xml
+ PATCH: [ 1552180 ] Manual: folder compare update
+  Manual: Compare_dirs.xml
+  Manual/screenshots new files: aborted.png foldercmp_progress.png
+  Manual/screenhots removed files: Dircomp_status1.gif Dircomp_status2.gif
+  Manual/build: build_html.bat build_htmlhelp.bat
 
 2006-08-31 Kimmo
  PATCH: [ 1548888 ] Manual: Partial update for Quick start

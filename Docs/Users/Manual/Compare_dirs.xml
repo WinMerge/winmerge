@@ -52,64 +52,16 @@
   information in folder compare UI. For most cases this should not matter
   since so big files usually are binary files.</para>
 
-  <para>For advanced users: If that limit does not feel good (you have lots
-  of big text files) it can be changed via registry value:
-  HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit.
+  <para>For advanced users: If that limit does not feel good (you have lots of
+  big text files) it can be changed via registry value:
+  <code>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</code>.
   As usual be careful when changing values directly to registry!</para>
-
-  <sect2>
-    <title>Folder Compare Statepane</title>
-
-    <para>During folder compare proceeds, following statepane is shown:</para>
-
-    <para><mediaobject>
-        <imageobject>
-          <imagedata fileref="screenshots/Dircomp_status1.gif" format="GIF" />
-        </imageobject>
-      </mediaobject></para>
-
-    <para>Statepane shows several kinds of status and progress information. At
-    the top there are numbers of already compared items per category. So this
-    compare has found 107 similar text files so far. Bottom of pane is
-    progressbar. And left to progressbar are numbers of items compared and
-    total items found to compare. So this compare has compared 203 items from
-    total of 312 items.</para>
-
-    <important>
-      <para>Progressbar is for item counts. As there usually are different
-      sized files in compare it does not directly map to time used/remaining.
-      So 50/100 items does not strictly mean compare is in half by time
-      used.</para>
-    </important>
-
-    <para>Folder compare can be stopped by selecting
-    "<guibutton>Stop</guibutton>"-button and results for files and folders
-    compared so far are shown. After folder compare finishes,
-    "<guibutton>Stop</guibutton>" button text is changed to "<guibutton>Press
-    any key</guibutton>". Now statepane can be closed by selecting that button
-    or pressing any key from keyboard.</para>
-
-    <para>Statepane can be opened from <guimenu>View</guimenu>-menu again if
-    needed. Statepane always shows current status of compare so it can be used
-    to verify there are no different files left to handle.</para>
-
-    <tip>
-      <para>Enable option <guilabel>Close Compare statepane automatically</guilabel>
-      and statepane closes automatically after compare is ready.</para>
-    </tip>
-
-    <para><mediaobject>
-        <imageobject>
-          <imagedata fileref="screenshots/Dircomp_status2.gif" format="GIF" />
-        </imageobject>
-      </mediaobject></para>
-  </sect2>
 
   <sect2>
     <title>Compare Results</title>
 
-    <para>Files and folders are compared and divided into several
-    categories:<simplelist>
+    <para>Files and folders are compared and divided into several categories.
+    Categories are easy to recognize from these icons:<simplelist>
         <member><inlinemediaobject>
             <imageobject>
               <imagedata fileref="screenshots/equal.gif" format="GIF" />
@@ -176,44 +128,101 @@
             </imageobject>
           </inlinemediaobject> Items that couldn't be compared. This usually
         happens when other program has locked the file.</member>
+
+        <member><inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="screenshots/aborted.png" />
+            </imageobject>
+          </inlinemediaobject> Aborted item. WinMerge did not finish comparing
+        this item when compare was stopped. Result is unknown.</member>
       </simplelist></para>
+  </sect2>
+
+  <sect2>
+    <title>Folder Compare Status</title>
+
+    <para>During the folder comparison WinMerge shows status panel:</para>
+
+    <para><mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/foldercmp_progress.png" format="PNG" />
+        </imageobject>
+      </mediaobject></para>
+
+    <para>The panel shows approximate status and progress of the compare.
+    Status is shown as a number of items and a progressbar. Numbers show how
+    many items (files and folders) WinMerge has found to compare. Progressbar
+    shows same info graphically.</para>
+
+    <important>
+      <para>Progressbar is for item counts. As there usually are different
+      sized files in compare it does not directly map to time used/remaining.
+      So 50/100 items does not strictly mean compare is in half by time
+      used.</para>
+    </important>
+
+    <para>Folder compare can be stopped by selecting
+    <guibutton>Stop</guibutton>-button and results for files and folders
+    compared so far are shown. When compare is stopped before it finishes,
+    some files may be in middle of comparison. Those files are marked as
+    <guilabel>Aborted</guilabel> in comparison results. It means result is not
+    available for them.</para>
+
+    <para>When folder compare is ready status panel is closed and results are
+    shown.</para>
+
+    <note>
+      <para>This is one of most visible changes in WinMerge version 2.6. New
+      status panel may feel "just too simple" after using previous WinMerge
+      versions. The fact is most of the details in previous versions were
+      useless during the compare. So simplicity was choosen for new design.
+      Automatic closing may also feel weird at starters. But there is no
+      information visible that would be needed after the compare.</para>
+    </note>
+
+    <para>Compare statistics are visible in separate dialog which can be
+    opened after compare from menu: <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>Compare Statistics</guimenuitem>
+      </menuchoice>.</para>
   </sect2>
 
   <sect2>
     <title>Selecting Items to Show</title>
 
     <para>In "<guimenu>View</guimenu>" menu there are several choices for
-    selecting which categories listed above to show/hide.</para>
+    selecting which categories to show / hide.</para>
 
     <itemizedlist>
       <listitem>
-        <para><guimenuitem>Show identical files</guimenuitem> : shows and
-        hides files detected as identical</para>
+        <simpara><guimenuitem>Show identical files</guimenuitem> : shows and
+        hides files detected as identical</simpara>
       </listitem>
 
       <listitem>
-        <para><guimenuitem>Show different files</guimenuitem> : shows and
-        hides files detected as different</para>
+        <simpara><guimenuitem>Show different files</guimenuitem> : shows and
+        hides files detected as different</simpara>
       </listitem>
 
       <listitem>
-        <para><guimenuitem>Show left unique files</guimenuitem> : shows and
-        hides files and directories present only in left side</para>
+        <simpara><guimenuitem>Show left unique files</guimenuitem> : shows and
+        hides files and directories present only in left side</simpara>
       </listitem>
 
       <listitem>
-        <para><guimenuitem>Show right unique files</guimenuitem> : shows and
-        hides files and directories present only in right side</para>
+        <simpara><guimenuitem>Show right unique files</guimenuitem> : shows
+        and hides files and directories present only in right side</simpara>
       </listitem>
 
       <listitem>
-        <para><guimenuitem>Show binary files</guimenuitem> : shows and hides
-        files detected as binaries</para>
+        <simpara><guimenuitem>Show binary files</guimenuitem> : shows and
+        hides files detected as binaries</simpara>
       </listitem>
 
       <listitem>
-        <para><guimenuitem>Show skipped files</guimenuitem> : shows and hides
-        files and directories filtered out by file filters</para>
+        <simpara><guimenuitem>Show skipped files</guimenuitem> : shows and
+        hides files and directories filtered out by file filters</simpara>
       </listitem>
     </itemizedlist>
   </sect2>
@@ -225,28 +234,28 @@
 
     <itemizedlist>
       <listitem>
-        <para><guilabel>Filename</guilabel></para>
+        <simpara><guilabel>Filename</guilabel></simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Directory</guilabel> : Relative folder name for
-        compare path. If subfolders are not included this is empty.</para>
+        <simpara><guilabel>Directory</guilabel> : Relative folder name for
+        compare path. If subfolders are not included this is empty.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Comparison result</guilabel> : Verbose comparison
-        result (see also <guilabel>Short Result</guilabel>)</para>
+        <simpara><guilabel>Comparison result</guilabel> : Verbose comparison
+        result (see also <guilabel>Short Result</guilabel>)</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Left Date</guilabel> &amp; <guilabel>Right
+        <simpara><guilabel>Left Date</guilabel> &amp; <guilabel>Right
         Date</guilabel>: Modification date of item. Note that newer date is
-        prefixed with asterisk "<guilabel>*</guilabel>".</para>
+        prefixed with asterisk "<guilabel>*</guilabel>".</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Extension</guilabel> : File's extension, handy for
-        sorting</para>
+        <simpara><guilabel>Extension</guilabel> : File's extension, handy for
+        sorting</simpara>
       </listitem>
     </itemizedlist>
 
@@ -255,50 +264,56 @@
 
     <itemizedlist>
       <listitem>
-        <para><guilabel>Binary</guilabel> : Column contains asterisk
+        <simpara><guilabel>Binary</guilabel> : Column contains asterisk
         "<guilabel>*</guilabel>" when file is binary. Handy for sorting and to
-        use with "<guilabel>Short Result</guilabel>"-column.</para>
+        use with "<guilabel>Short Result</guilabel>"-column.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Left Attributes</guilabel> &amp; <guilabel>Right
-        Attributes</guilabel> : Shows file attributes.</para>
+        <simpara><guilabel>Left Attributes</guilabel> &amp; <guilabel>Right
+        Attributes</guilabel> : Shows file attributes.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Left Creation Time</guilabel> &amp; <guilabel>Right
-        Creation Time</guilabel> : Item creation time.</para>
+        <simpara><guilabel>Left Creation Time</guilabel> &amp; <guilabel>Right
+        Creation Time</guilabel> : Item creation time.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Left Encoding</guilabel> &amp; <guilabel>Right
-        Encoding</guilabel> : File encoding.</para>
+        <simpara><guilabel>Left Encoding</guilabel> &amp; <guilabel>Right
+        Encoding</guilabel> : File encoding.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Left File Version</guilabel> &amp; <guilabel>Right
+        <simpara><guilabel>Left File Version</guilabel> &amp; <guilabel>Right
         File Version</guilabel> : Version number from file if present. Note
-        that this is read for only some binary files.</para>
+        that this is read for only some binary files.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Left Size</guilabel> &amp; <guilabel>Right
-        Size</guilabel> : File size in bytes.</para>
+        <simpara><guilabel>Left Size</guilabel> &amp; <guilabel>Right
+        Size</guilabel> : File size in bytes.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>Newer File</guilabel> : Shows which side is
-        newer.</para>
+        <simpara><guilabel>Newer File</guilabel> : Shows which side is
+        newer.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>#differences</guilabel> : Amount of total differences
-        found from files.</para>
+        <simpara><guilabel>Differences</guilabel> : Amount of differences
+        found between files, not including possibly ignored
+        differences.</simpara>
       </listitem>
 
       <listitem>
-        <para><guilabel>#sig. differences</guilabel> : Amount of significant
-        differences, total differences - ignored differences.</para>
+        <simpara><guilabel>Ignored diff.</guilabel> : Amount of ignored
+        differences in files.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara><guilabel>Left EOL &amp; Righ EOL</guilabel> : Show EOL style
+        (linefeed style) of files.</simpara>
       </listitem>
     </itemizedlist>
   </sect2>
@@ -394,27 +409,38 @@
     </sect3>
 
     <sect3>
+      <title>Renaming</title>
+
+      <para>Renaming files and folders is available through context menu item
+      <guimenuitem>Rename</guimenuitem> or using <keycap>F2</keycap> -shortcut
+      key. Edit-box appears and allows editing of the name. Renaming can be
+      cancelled by pressing <keycap>Esc</keycap> -key. Note that items in both
+      sides are renamed. Renaming just other side is not currently
+      possible.</para>
+    </sect3>
+
+    <sect3>
       <title>Opening files</title>
 
       <para>There are three items in <guimenu>Open</guimenu>-menus:</para>
 
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>With Registered Application</guimenuitem> : Opens
-          file with application registered handling filetype for Windows, if
-          there is one.</para>
+          <simpara><guimenuitem>With Registered Application</guimenuitem> :
+          Opens file with application registered for editing filetype for
+          Windows, if there is one.</simpara>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>With External Editor</guimenuitem> : Open with
+          <simpara><guimenuitem>With External Editor</guimenuitem> : Open with
           external editor. Default editor can be selected from options,
-          Notepad is used by default.</para>
+          Notepad is used by default.</simpara>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>With ...</guimenuitem> : Opens "<guilabel>Open
+          <simpara><guimenuitem>With ...</guimenuitem> : Opens "<guilabel>Open
           With...</guilabel>" dialog asking from user with which application
-          files should be opened.</para>
+          files should be opened.</simpara>
         </listitem>
       </itemizedlist>
 
@@ -440,28 +466,29 @@
 
       <itemizedlist>
         <listitem>
-          <para><guimenuitem>Left...</guimenuitem> : Adds left-side files and
-          folders (recursively) to the archive file</para>
+          <simpara><guimenuitem>Left...</guimenuitem> : Adds left-side files
+          and folders (recursively) to the archive file</simpara>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Right...</guimenuitem> : Adds right-side files
-          and folders (recursively) to the archive file</para>
+          <simpara><guimenuitem>Right...</guimenuitem> : Adds right-side files
+          and folders (recursively) to the archive file</simpara>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Both...</guimenuitem> : Adds files and folders
+          <simpara><guimenuitem>Both...</guimenuitem> : Adds files and folders
           (recursively) from both sides to the archive file. Because filenames
           are same, files must be put to subfolders inside archive. Left-side
           files are put to subfolder <filename
           class="directory">Original/</filename> and right-side files are put
-          to subfolder <filename class="directory">Altered/</filename>.</para>
+          to subfolder <filename
+          class="directory">Altered/</filename>.</simpara>
         </listitem>
 
         <listitem>
-          <para><guimenuitem>Differences...</guimenuitem> : This is like above
-          <guimenuitem>Both</guimenuitem>, but this item adds only different
-          files (including unique files) from both sides.</para>
+          <simpara><guimenuitem>Differences...</guimenuitem> : This is like
+          above <guimenuitem>Both</guimenuitem>, but this item adds only
+          different files (including unique files) from both sides.</simpara>
         </listitem>
       </itemizedlist>
 
@@ -495,14 +522,14 @@
 
     <itemizedlist>
       <listitem>
-        <para><guimenuitem>Copy Pathnames</guimenuitem> has three subchoices
-        like other file handling functions. It copies full pathnames of
-        selected items to clipboard, one per line.</para>
+        <simpara><guimenuitem>Copy Pathnames</guimenuitem> has three
+        subchoices like other file handling functions. It copies full
+        pathnames of selected items to clipboard, one per line.</simpara>
       </listitem>
 
       <listitem>
-        <para><guimenuitem>Copy Filenames</guimenuitem> copies only filenames
-        without paths.</para>
+        <simpara><guimenuitem>Copy Filenames</guimenuitem> copies only
+        filenames without paths.</simpara>
       </listitem>
     </itemizedlist>
   </sect2>
@@ -512,23 +539,23 @@
 
     <para>There are many ways to customize folder compare:<itemizedlist>
         <listitem>
-          <para>Sorting by column : Sorted by column can be selected by
+          <simpara>Sorting by column : Sorted by column can be selected by
           clicking column name with mouse. Little arrow appears next to column
           name indicating that results are sorted by this column and sort
-          order.</para>
+          order.</simpara>
         </listitem>
 
         <listitem>
-          <para>Selecting visible columns : "<guilabel>Display
+          <simpara>Selecting visible columns : "<guilabel>Display
           Columns</guilabel>" dialog can be opened from
           <guimenu>Tools</guimenu>-menu or by right-clicking column header
-          with mouse.</para>
+          with mouse.</simpara>
         </listitem>
 
         <listitem>
-          <para>Changing order of columns : Order can be changed in
+          <simpara>Changing order of columns : Order can be changed in
           "<guilabel>Display Columns</guilabel>" dialog or by drag &amp;
-          dropping column names with mouse.</para>
+          dropping column names with mouse.</simpara>
         </listitem>
       </itemizedlist></para>
   </sect2>
