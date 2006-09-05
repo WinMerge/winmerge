@@ -1133,7 +1133,7 @@ BEGIN
     CONTROL         "&Habilita detecció de blocs desplaçats",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
     LTEXT           "Mètode de comparació de &fitxers:",IDC_STATIC,7,105,113,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,120,103,110,52,CBS_DROPDOWNLIST |
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,120,103,110,70,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Atura després de la primera diferència",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
