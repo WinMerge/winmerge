@@ -137,17 +137,17 @@
 
       <orderedlist>
         <listitem>
-          <para>Select first item you want to compare, open context menu and
-          select first "<guimenuitem>Compare To</guimenuitem>" item. Path is
-          now in memory.</para>
+          <simpara>Select first item you want to compare, open context menu
+          and select first "<guimenuitem>Compare To</guimenuitem>" item. Path
+          is now in memory.</simpara>
         </listitem>
 
         <listitem>
-          <para>Browse to location of second item you want to compare and
+          <simpara>Browse to location of second item you want to compare and
           select it. Open context menu and move menuselection over first
           "<guimenuitem>Compare</guimenuitem>" item. Now Explorer's statusbar
           shows memorized path to which you are comparing newly selected
-          path.</para>
+          path.</simpara>
         </listitem>
       </orderedlist>
 
@@ -164,6 +164,16 @@
         when you need to compare one file/folder against several
         files/folders.</para>
       </tip>
+    </sect3>
+
+    <sect3>
+      <title>Including subfolders</title>
+
+      <para>Shell Extension by default does not include subfolders into
+      comparison. This default behavior can be changed using <guilabel>Include
+      Subfolders by Default</guilabel> option in System options. Default
+      behavior can be also changed by holding down Control -key while
+      selecting Compare-item from the Explorer context menu.</para>
     </sect3>
   </sect2>
 
@@ -210,23 +220,23 @@
 
     <itemizedlist>
       <listitem>
-        <para>If two project files are selected, project files themselves are
-        compared.</para>
+        <simpara>If two project files are selected, project files themselves
+        are compared.</simpara>
       </listitem>
 
       <listitem>
-        <para>If project file is selected as left-side file, and right-side
+        <simpara>If project file is selected as left-side file, and right-side
         file is empty, project file is opened like using <menuchoice>
             <guimenu>File</guimenu>
 
             <guimenuitem>Open Project...</guimenuitem>
-          </menuchoice> dialog.</para>
+          </menuchoice> dialog.</simpara>
       </listitem>
 
       <listitem>
-        <para>If project file is selected as left-side file and any other file
-        as right-side file, contents of project file and another file are
-        compared.</para>
+        <simpara>If project file is selected as left-side file and any other
+        file as right-side file, contents of project file and another file are
+        compared.</simpara>
       </listitem>
     </itemizedlist>
 
@@ -252,35 +262,36 @@
 
       <itemizedlist>
         <listitem>
-          <para><literal>&lt;left&gt;<replaceable>...</replaceable>&lt;/left&gt;</literal>
-          : Left side path to open</para>
+          <simpara><literal>&lt;left&gt;<replaceable>...</replaceable>&lt;/left&gt;</literal>
+          : Left side path to open</simpara>
         </listitem>
 
         <listitem>
-          <para><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
+          <simpara><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
           : 1 if left side path is opened as readonly, 0 to open
-          normally</para>
+          normally</simpara>
         </listitem>
 
         <listitem>
-          <para><literal>&lt;right&gt;<replaceable>...</replaceable>&lt;/right&gt;</literal>
-          : Right side path to open</para>
+          <simpara><literal>&lt;right&gt;<replaceable>...</replaceable>&lt;/right&gt;</literal>
+          : Right side path to open</simpara>
         </listitem>
 
         <listitem>
-          <para><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
+          <simpara><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
           : 1 if right side path is opened as readonly, 0 to open
-          normally.</para>
+          normally.</simpara>
         </listitem>
 
         <listitem>
-          <para><literal>&lt;filter&gt;<replaceable>...</replaceable>&lt;/filter&gt;</literal>
-          : file filter name or list of extensions</para>
+          <simpara><literal>&lt;filter&gt;<replaceable>...</replaceable>&lt;/filter&gt;</literal>
+          : file filter name or list of extensions</simpara>
         </listitem>
 
         <listitem>
-          <para><literal>&lt;subfolders&gt;<replaceable>...</replaceable>&lt;/subfolders&gt;</literal>
-          : 0 if subfolders are not included and 1 if they are included</para>
+          <simpara><literal>&lt;subfolders&gt;<replaceable>...</replaceable>&lt;/subfolders&gt;</literal>
+          : 0 if subfolders are not included and 1 if they are
+          included</simpara>
         </listitem>
       </itemizedlist>
 

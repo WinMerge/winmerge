@@ -1,3 +1,7 @@
+2006-09-05 Kimmo
+ PATCH: [ 1552127 ] Manual: Add info about shellextension and subfolders
+  Manual: Open_paths.xml
+
 2006-08-31 Kimmo
  PATCH: [ 1548888 ] Manual: Partial update for Quick start
   Manual: Quick_start.xml
