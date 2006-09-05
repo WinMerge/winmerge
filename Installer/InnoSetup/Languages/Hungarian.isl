@@ -374,6 +374,7 @@ TurkishLanguage=török menük és párbeszédablakok
 ;Tasks
 ExplorerContextMenu=Integrálás az Intézõ &context-menüjéhez
 IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
+IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateDelphi4=Borland® Delphi &4 bináris fájl támogatás
 UpdatingCommonControls=Updating the System's Common Controls
 

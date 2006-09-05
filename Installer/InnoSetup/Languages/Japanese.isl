@@ -350,6 +350,7 @@ TurkishLanguage=Turkish menus and dialogs
 ;Tasks
 ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
+IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateDelphi4=Borland Delphi 4 バイナリファイルサポート(&4)
 UpdatingCommonControls=システムのコモンコントロールをアップデートします
 

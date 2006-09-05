@@ -358,6 +358,7 @@ TurkishLanguage=Türkçe menyer og dialoger
 ;Tasks
 ExplorerContextMenu=&Aktiver integrasjon i Windows utforsker sin kontekstmeny
 IntegrateTortoiseCVS=Integrer med &TortoiseCVS
+IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateDelphi4=Støtte for Borland® Delphi &4 binære file
 UpdatingCommonControls=Oppdater systemets felles kontrollelement
 

@@ -366,6 +366,7 @@ TurkishLanguage=Menu e finestre di dialogo in turco
 ;Tasks
 ExplorerContextMenu=&Attiva l'integrazione con il menu contestuale di Explorer
 IntegrateTortoiseCVS=Integrazione con &TortoiseCVS
+IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateDelphi4=Supporto per i file binari di Borland® Delphi &4
 UpdatingCommonControls=Aggiornamento dei controlli comuni del sistema in corso...
 
