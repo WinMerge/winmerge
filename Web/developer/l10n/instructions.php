@@ -8,7 +8,7 @@
 <h2>Translations instructions</h2>
 <ul>
   <li><a href="#translate">I want to translate into my own language</a></li>
-  <li><a href="#developer">Instructions for those who know CVS and Visual C++</a></li>
+  <li><a href="#developer">Instructions for those who know Subversion and Visual C++</a></li>
   <li><a href="#everybody">Instructions for everybody else</a></li>
   <li><a href="#shellextension">ShellExtension</a></li>
   <li><a href="#installer">Translating Installer</a></li>
@@ -24,10 +24,10 @@
 
 <p class="important">Please remember WinMerge is an Open Source project. Send translation updates to us as <code>.rc</code> file source patches. We WON't accept modified <code>.lang</code> binary files. We need the sources.</p>
 
-<h3><a name="developer">Instructions for those who know CVS and Visual C++</a></h3>
-<p>Grab a copy of the source from CVS (<a href="../wincvs.php">WinCVS Hints</a>).</p>
+<h3><a name="developer">Instructions for those who know Subversion and Visual C++</a></h3>
+<p>Grab a copy of the source from <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a>.</p>
 <p>You will need to translate all the strings in <code>Merge.rc</code> to your language. Make a <code>MergeYourLanguage.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">here</a>.
-<p>Then one of the developers will commit it to CVS and it will be released with the next release.</p>
+<p>Then one of the developers will commit it to Subversion and it will be released with the next release.</p>
 <p class="note">Please try to avoid changing dialog layout when translating.
 The layout should be shared by all translations as much as possible, to make merging (and future translation changes) easier.
 You can of course make controls wider to fit longer texts, but you should not move buttons and other controls if not really necessary.<br /><br />
@@ -83,11 +83,11 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
 
 <h3><a name="shellextension">ShellExtension</a></h3>
 <p>ShellExtension can be translated by translating <code>.rc</code> resource file similarly to WinMerge executable.
-ShellExtension resource files are in <code><a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/ShellExtension/Languages/">WinMerge\ShellExtension\Languages\</a></code> folder.
+ShellExtension resource files are in <code><a href="http://svn.sourceforge.net/winmerge/trunk/ShellExtension/Languages/">WinMerge\ShellExtension\Languages\</a></code> folder.
 There are only few strings to translate so it should be fast to do.</p>
 
 <h3><a name="installer">Translating Installer</a></h3>
-<p>Installer translation files are in <code><a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/InnoSetup/Languages/">WinMerge\InnoSetup\Languages\</a></code> folder.
+<p>Installer translation files are in <code><a href="http://svn.sourceforge.net/winmerge/trunk/Installer/InnoSetup/Languages/">WinMerge\Installer\InnoSetup\Languages\</a></code> folder.
 Look for a file named by your language. If one does not yet exist, you should look for InnoSetup translations in <a href="http://www.jrsoftware.org/files/istrans/">http://www.jrsoftware.org/files/istrans/</a>.</p>
 
 <p>After you open the file, scroll to end of it, there are few custom strings you
@@ -101,8 +101,8 @@ from your improvements. We'll pick those updates then also.</p>
 <h3><a name="readme">Translating ReadMe.txt</a></h3>
 <p>Please consider translating also <code>ReadMe.txt</code> file - it is shown in end of installer
 and is added to Start-menu. Translated versions of <code>ReadMe.txt</code> are
-in <code><a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/Docs/Users/Languages/">WinMerge\Docs\Users\Languages\</a></code> folder. And master <code>ReadMe.txt</code> is
-in <code><a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/Docs/Users/ReadMe.txt">WinMerge\Docs\Users\ReadMe.txt</a></code>.</p>
+in <code><a href="http://svn.sourceforge.net/winmerge/trunk/Docs/Users/Languages/">WinMerge\Docs\Users\Languages\</a></code> folder. And master <code>ReadMe.txt</code> is
+in <code><a href="http://svn.sourceforge.net/winmerge/trunk/Docs/Users/ReadMe.txt">WinMerge\Docs\Users\ReadMe.txt</a></code>.</p>
 
 <?php
   $page->printFoot();

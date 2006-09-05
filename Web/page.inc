@@ -232,10 +232,10 @@
           $temp .= "<h2><a href=\"/developer/index.php\">Developers</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge/\">Project Home</a></li>\n";
-          $temp .= "  <li>CVS\n";
+          $temp .= "  <li>Subversion\n";
           $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://winmerge.cvs.sourceforge.net/winmerge/\">Browse CVS Tree</a></li>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/cvs/?group_id=13216\">CVS Client Access</a></li>\n";
+          $temp .= "      <li><a href=\"http://svn.sourceforge.net/winmerge\">Browse Subversion Tree</a></li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/svn/?group_id=13216\">Subversion Access</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
           $temp .= "  <li><a href=\"/developer/l10n/index.php\">Translations</a>\n";

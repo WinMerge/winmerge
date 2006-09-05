@@ -37,8 +37,7 @@
   print("</ul>\n");
 ?>
 <p>Look here for more information on how to <a href="needed.php">develop</a> and/or 
-<a href="l10n/index.php">translate</a> WinMerge, 
-and read how to use <a href="wincvs.php">WinCVS</a> with our project.</p>
+<a href="l10n/index.php">translate</a> WinMerge.</p>
 <?php
   $page->printFoot();
 ?>
