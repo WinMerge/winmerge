@@ -5,6 +5,9 @@ Add new items to top.
 2006-09-06 Kimmo
  PATCH: [ 1552901 ] Update VC loose filefilter
   Filters: Merge_VC_loose.flt
+ PATCH: [ 1552917 ] Fix GUI for autocompletion option
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2006-09-05 Kimmo
  PATCH: [ 1552095 ] Fix last compare method not visible in GUI list

@@ -743,15 +743,15 @@ BEGIN
     LTEXT           "Automatické &dokonèování:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,70,80,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Povolit více oken pro porovnání",IDC_STATIC,7,87,
+    GROUPBOX        "Povolit více oken pro porovnání",IDC_STATIC,7,100,
                     221,37
     CONTROL         "s&ložek",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,98,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
     CONTROL         "&souborù",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,108,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,121,206,10
     LTEXT           "Nìkterá obecná okna se zprávami je možno skrýt.\nPo stisknutí tlaèítka Vrátit se všechna tato okna opìt budou objevovat.",
-                    IDC_STATIC,7,140,168,31
-    PUSHBUTTON      "V&rátit",IDC_RESET_ALL_MESSAGE_BOXES,178,146,50,14,NOT
+                    IDC_STATIC,7,153,168,31
+    PUSHBUTTON      "V&rátit",IDC_RESET_ALL_MESSAGE_BOXES,178,159,50,14,NOT
                     WS_TABSTOP
 END
 
