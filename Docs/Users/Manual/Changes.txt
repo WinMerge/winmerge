@@ -1,3 +1,7 @@
+2006-09-06 Kimmo
+ PATCH: [ 1553037 ] Manual: add new commandline switches
+  Manual: Command_line.xml
+
 2006-09-05 Tim
  PATCH: [ 1552153 ] Manual: Build with ads (XSL)
   Manual/build: build.bat build_html.bat new file: build_html_withads.xsl

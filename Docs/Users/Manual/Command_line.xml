@@ -1,69 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="CommandLine">
   <title>Commandline</title>
-  <para>WinMerge can be also used from commandline. There are several commandline switches to ease using WinMerge as external merge/diff application.</para>
-  <para> Syntax for commandline is: </para>
+
+  <para>WinMerge can be also used from commandline. There are several
+  commandline switches to ease using WinMerge as external merge/diff
+  application.</para>
+
+  <para>Syntax for commandline is:</para>
+
   <para><screen><cmdsynopsis sepchar=" ">
         <command moreinfo="none">WinMerge</command>
+
         <arg choice="opt" rep="norepeat"><option>/r</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/e</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/f</option> <replaceable>filter</replaceable></arg>
+
+        <arg><option>/x</option></arg>
+
+        <arg><option>/s</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/dl</option> <replaceable>leftdesc</replaceable></arg>
+
         <arg choice="opt" rep="norepeat"><option>/dr</option> <replaceable>rightdesc</replaceable></arg>
+
         <arg choice="plain" rep="norepeat"><replaceable>leftpath</replaceable></arg>
+
         <arg choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
+
         <arg choice="opt" rep="norepeat"><replaceable>outputpath</replaceable></arg>
       </cmdsynopsis></screen></para>
+
   <itemizedlist>
     <listitem>
-      <para><option>/?</option> or <option>-?</option> displays help message</para>
+      <simpara><option>/?</option> or <option>-?</option> displays help
+      message</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/r</option> or <option>-r</option> tells winmerge to compare directories recursively</para>
+      <simpara><option>/r</option> or <option>-r</option> tells winmerge to
+      compare directories recursively</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/e</option> or <option>-e</option> allows WinMerge to be closed with a single esc keypress</para>
+      <simpara><option>/e</option> or <option>-e</option> allows WinMerge to
+      be closed with a single esc keypress</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/f</option> or <option>-f</option> allows selecting filter used. Filter can be filemask like "<filename>*.h *.cpp</filename>" or name of filefilter like "<literal>XML/HTML Devel</literal>". Quotation marks must be used if filter mask or name contains spaces</para>
+      <simpara><option>/f</option> or <option>-f</option> allows selecting
+      filter used. Filter can be filemask like "<filename>*.h
+      *.cpp</filename>" or name of filefilter like "<literal>XML/HTML
+      Devel</literal>". Quotation marks must be used if filter mask or name
+      contains spaces</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/ul</option> or <option>-ul</option> tells winmerge to not add left path to MRU</para>
+      <simpara><option>/x</option> or <option>-x</option> closes WinMerge
+      after information dialog when files are identical</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/ur</option> or <option>-ur</option> tells winmerge to not add right path to MRU</para>
+      <para><option>/s</option> or <option>-s</option> enables single-instance
+      behavior. If there is already WinMerge running new compare is opened to
+      that same instance.</para>
     </listitem>
+
     <listitem>
-      <para><option>/ub</option> or <option>-ub</option> tells winmerge to not add both paths to MRU</para>
+      <simpara><option>/ul</option> or <option>-ul</option> tells winmerge to
+      not add left path to MRU</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/wl</option> or <option>-wl</option> initially opens left side as read-only</para>
+      <simpara><option>/ur</option> or <option>-ur</option> tells winmerge to
+      not add right path to MRU</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/wr</option> or <option>-wr</option> initially opens right side as read-only</para>
+      <simpara><option>/ub</option> or <option>-ub</option> tells winmerge to
+      not add both paths to MRU</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/dl</option> or <option>-dl</option> adds a description for left side shown instead of directory/filename</para>
+      <simpara><option>/wl</option> or <option>-wl</option> initially opens
+      left side as read-only</simpara>
     </listitem>
+
     <listitem>
-      <para><option>/dr</option> or <option>-dr</option> adds a description for right side shown instead of directory/filename</para>
+      <simpara><option>/wr</option> or <option>-wr</option> initially opens
+      right side as read-only</simpara>
     </listitem>
+
     <listitem>
-      <para><replaceable>leftpath</replaceable> is the directory or filename to open on the left side</para>
+      <simpara><option>/dl</option> or <option>-dl</option> adds a description
+      for left side shown instead of directory/filename</simpara>
     </listitem>
+
     <listitem>
-      <para><replaceable>rightpath</replaceable> is the directory or filename to open on the right side</para>
+      <simpara><option>/dr</option> or <option>-dr</option> adds a description
+      for right side shown instead of directory/filename</simpara>
     </listitem>
+
     <listitem>
-      <para><replaceable>outputpath</replaceable> is an optional output directory where you want merged files to be saved</para>
+      <simpara><replaceable>leftpath</replaceable> is the directory or
+      filename to open on the left side</simpara>
+    </listitem>
+
+    <listitem>
+      <simpara><replaceable>rightpath</replaceable> is the directory or
+      filename to open on the right side</simpara>
+    </listitem>
+
+    <listitem>
+      <simpara><replaceable>outputpath</replaceable> is an optional output
+      directory where you want merged files to be saved</simpara>
     </listitem>
   </itemizedlist>
+
   <note>
-    <para><replaceable>leftpath</replaceable> and <replaceable>rightpath</replaceable> have to both be files or both be directories</para>
+    <para><replaceable>leftpath</replaceable> and
+    <replaceable>rightpath</replaceable> have to both be files or both be
+    directories</para>
   </note>
-  <para>If both paths are not files or directories or one of paths is non-existent WinMerge shows Open-dialog for user to choose proper paths to open.</para>
+
+  <para>If both paths are not files or directories or one of paths is
+  non-existent WinMerge shows Open-dialog for user to choose proper paths to
+  open.</para>
 </sect1>
