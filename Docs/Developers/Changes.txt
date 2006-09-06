@@ -1,3 +1,7 @@
+2006-09-06 Kimmo
+ PATCH: [ 1552845 ] Small improvements to readme-manual
+  Developers: readme-manual.html
+
 2006-08-21 Kimmo
  Add recommendation about running tidy tool for generated HTML files
   Developers: readme-manual.html

@@ -28,7 +28,7 @@
 </head>
 <body>
 <h2>User Manual in DocBook/XML</h2>
-<p>Our Manual is written in DocBook and can convert to other formats like HTML or CHM.</p>
+<p>Our Manual is written in DocBook and we generate HTML and CHM manuals for distributing.</p>
 
 <h3>Useful DocBook resources:</h3>
 <ul>
@@ -69,17 +69,17 @@ patches.</p>
     </ul>
   </li>
   <li>
-    <p><a href="http://www.cygwin.com/">Cygwin</a> contains needed tools too!</p>
+    <p><a href="http://www.cygwin.com/">Cygwin</a> contains needed tools:</p>
     <ul>
       <li><a href="http://ourworld.compuserve.com/homepages/hoenicka_markus/cygbook1.html">Long manual for cygwin and XML</a></li>
       <li><a href="http://www.coin-or.org/Clp/userguide/howto/docbook4clp.html">Shorter and easier manual for cygwin and docbook</a></li>
     </ul>
   </li>
-  <li><p><a href="#ownbuildsystem">Own build system</a> which based on Java and Saxon.</p></li>
+  <li><p><a href="#ownbuildsystem">Our preferred build system</a> based on Java and Saxon.</p></li>
 </ul>
 
-<h3><a name="ownbuildsystem">Own build system which based on Java and Saxon</a></h3>
-<p>Our own build system uses the following tools:</p>
+<h3><a name="ownbuildsystem">Our preferred build system is based on Java and Saxon</a></h3>
+<p>Our preferred build system uses the following tools:</p>
 <ul>
   <li><a href="http://java.sun.com/j2se/">Java Runtime Environment</a></li>
   <li><a href="http://saxon.sourceforge.net/">Saxon</a></li>
@@ -93,9 +93,11 @@ because it install all required tools (except of Java).</p>
 <p>The batch files are located at the <code>build</code> subdirectory at the <code>Manual</code> directory.
 The main file ist <code>build.bat</code>. Paths to the installed tools are written in the <code>configuration.bat</code> file.</p>
 <dl>
-  <dt><code>build.bat html</code></dt>
+  <dt><code>build.bat html</code> or <code>build_html.bat</code></dt>
   <dd>Creates the HTML files under the <code>html</code> subdirectory at the <code>build</code> directory.</dd>
-  <dt><code>build.bat htmlhelp</code></dt>
+  <dt><code>build.bat html withads</code> or <br> <code>build_html.bat withads</code></dt>
+  <dd>Creates the HTML files with adds under the <code>html</code> subdirectory at the <code>build</code> directory.</dd>
+  <dt><code>build.bat htmlhelp</code> or <br> <code>build_htmlhelp.bat</code></dt>
   <dd>Creates the CHM file under the <code>htmlhelp</code> subdirectory at the <code>build</code> directory.</dd>
   <dt><code>build.bat</code></dt>
   <dd>Is the same like <code>build.bat html</code>.</dd>
@@ -138,10 +140,12 @@ local path. Replace url in second line <code>"http://www.oasis-open.org/docbook/
 <pre>"/usr/share/sgml/docbook/sgml-dtd-4.2-1.0-24/docbook.dtd"</pre>
 
 <h4>Own build script</h4>
-<p>We have an own build script, which replace the <code>docbook.dtd</code> url automatically and do some other works too.</p>
+<p>We have an own build script, which replaces the <code>docbook.dtd</code> url automatically making it
+easier to build manual.</p>
 
-<p>The <code>build.sh</code> script file is located at the <code>build</code> subdirectory at the <code>Manual</code> directory.
-But before you can use it at the shell server, you must give execute rights to the file:</p>
+<p>The <code>build.sh</code> script file is located at the <code>build</code> subdirectory at
+the <code>Manual</code> directory. But before you can use it at the shell server, you must give
+execute rights for it:</p>
 <pre>chmod +x build.sh</pre>
 
 <p>Now you can call the script file (from the <code>build</code> directory):</p>
@@ -156,9 +160,10 @@ But before you can use it at the shell server, you must give execute rights to t
   <dd>Is the same like <code>./build.sh html</code>.</dd>
 </dl>
 
-<h4>Postprocessing HTML</h4>
-<p>Unfortunately DocBook tools generate quite a messy HTML. Not worth trying to read it... It is strongly
-recommended to run some tidying tool before releasing/uploading HTML manual.</p>
+<h3>Postprocessing HTML</h3>
+<p>Unfortunately some DocBook tools generate quite a messy HTML. This is especially true for DSSSL-stylesheet
+based tools. When using such tools it is strongly recommended to run some tidying tool before
+releasing/uploading HTML manual.</p>
 
 <p>One good and free tool for tidying HTML is <a href="http://tidy.sourceforge.net/">HTML tidy</a>.</p>
 
