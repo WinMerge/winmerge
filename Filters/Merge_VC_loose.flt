@@ -26,7 +26,11 @@ f: \.pch$ ## VC precompiled header file
 f: \.pdb$ ## VC program database file (debugging symbolic information)
 f: \.sbr$ ## VC source browser file (used to create bsc file)
 f: \.res$ ## VC compiled resources file (output of RC [resource compiler])
+f: \.suo$ ## VC options file (binary)
+f: \.ncb$ ## VC Intellisense file
+f: \.opt$ ## VC project options file
 f: \.bak$ ## backup
 
 d: \\cvs$ ## CVS control directory
+d: \\.svn$ ## Subversion control directory
 

@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-06 Kimmo
+ PATCH: [ 1552901 ] Update VC loose filefilter
+  Filters: Merge_VC_loose.flt
+
 2006-09-05 Kimmo
  PATCH: [ 1552095 ] Fix last compare method not visible in GUI list
   Src: Merge.rc
