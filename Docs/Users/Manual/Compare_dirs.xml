@@ -53,8 +53,7 @@
   since so big files usually are binary files.</para>
 
   <para>For advanced users: If that limit does not feel good (you have lots of
-  big text files) it can be changed via registry value:
-  <code>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</code>.
+  big text files) it can be changed via registry value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>.
   As usual be careful when changing values directly to registry!</para>
 
   <sect2>
