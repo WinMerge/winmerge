@@ -90,6 +90,41 @@ extern CLogFile gLog;
 
 static void AddEnglishResourceHook();
 
+class CMergeCmdLineInfo : public CCommandLineInfo
+{
+	public:
+
+		CMergeCmdLineInfo();
+
+		~CMergeCmdLineInfo() { }
+
+		virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
+
+	public:
+
+		BOOL m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */
+};
+
+CMergeCmdLineInfo::CMergeCmdLineInfo() : CCommandLineInfo(),
+	m_bSingleInstance(FALSE)
+{
+
+}
+
+void CMergeCmdLineInfo::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast)
+{
+	// Give our base class a chance to figure out what is the parameter.
+	CCommandLineInfo::ParseParam(pszParam, bFlag, bLast);
+
+	if (TRUE == bFlag)
+	{
+		if (pszParam[0] == _T('s'))
+		{
+			m_bSingleInstance = TRUE;
+		}
+	}
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
 
@@ -159,6 +194,10 @@ BOOL CMergeApp::InitInstance()
 #endif
 #endif
 
+	// Parse command-line arguments.
+	CMergeCmdLineInfo cmdInfo;
+	ParseCommandLine(cmdInfo);
+
 	// Set default codepage
 	DirScan_InitializeDefaultCodepage();
 
@@ -166,7 +205,8 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	BOOL bSingleInstance = GetProfileInt(_T("Settings"), _T("SingleInstance"), FALSE);
+	BOOL bSingleInstance = GetProfileInt(_T("Settings"), _T("SingleInstance"), FALSE) ||
+		(TRUE == cmdInfo.m_bSingleInstance);
 	
 	HANDLE hMutex = NULL;
 	if (bSingleInstance)
@@ -213,12 +253,7 @@ BOOL CMergeApp::InitInstance()
 	InitializeFileFilters();
 	m_globalFileFilter.SetFilter(_T("*.*"));
 
-	// CG: The following block was added by the Splash Screen component.
-	{
-		CCommandLineInfo cmdInfo;
-		ParseCommandLine(cmdInfo);
-		CSplashWnd::EnableSplashScreen(bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
-	}
+	CSplashWnd::EnableSplashScreen(bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
 
 	// Initialize i18n (multiple language) support
 
