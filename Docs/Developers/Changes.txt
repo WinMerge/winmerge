@@ -1,3 +1,7 @@
+2006-09-09 Kimmo
+ Add few words about registry subkeys. Clarify  situation when winAPI functions could be used.
+  Developers: Options.html
+
 2006-09-06 Kimmo
  PATCH: [ 1552845 ] Small improvements to readme-manual
   Developers: readme-manual.html

@@ -19,6 +19,12 @@
 
 <p>WinMerge stores options into registry:</p>
 <pre>HKCU/Software/Thingamahoochie/WinMerge</pre>
+<p>Several subkeys exists for different kind of options. <code>Settings</code> subkey is
+good place for most options. There are several subkeys for different sets of options,
+e.g. custom colors have their own subkey. If you need one single new option, put it
+top <code>Settings</code> subkey. If you need a new set of options for e.g. font setting,
+create a new subkey for them.</p>
+
 
 <h3>Accessing options</h3>
 <p>Two ways to read and save options:</p>
@@ -31,7 +37,8 @@
 </ol>
 
 <h3>Direct access with WinAPI</h3>
-<p>This is handy for settings needed in few events or cases (star, exit).</p>
+<p>This is handy for settings needed in few events or cases. Especially when
+<code>COptionsMgr</code> is not available, e.g. early in startup of WinMerge.</p>
 
 <h3>COptionsMgr</h3>
 <p>Using <code>COptionsMgr</code> is recommended for all new options. Also all options
@@ -79,7 +86,7 @@ to local variables when needed and store when they are changed.</p>
 initialised for access to options.</p>
 
 <p><b>Note:</b>All propertypages in OptionsDialog may not have GUI initialized, so remember
-check window existence before trying to access it (get values/update it).</p>
+to check window existence before trying to access it (get values/update it).</p>
 
 <p>Options-propertypages implement <code>IOptionsPanel</code> interface. <code>ReadOptions()</code>
 and <code>WriteOptions()</code> must be implemented by all options-propertypages. Their functionality
