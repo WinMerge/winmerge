@@ -23,23 +23,22 @@ Subdirectories include:
  - Filters
     WinMerge file filters which are shipped with the distribution
 
- - Merge7z
+ - ArchiveSupport
     source code for the Merge7z dlls, which connect WinMerge with 7-Zip
-    Also this directory is required to compile WinMerge(U).exe
+    Also this directory is required to compile WinMerge(U).exe. There
+    is also standalone installer for Merge7z dlls.
 
- - Merge7zInstaller
-    Source code for a custom, standalone installer for Merge7z dlls
+ - Installer
+    Installer for WinMerge
 
- - InnoSetup
-    source code for main WinMerge setup program
-
- - diff2winmerge
- - MakePatchDirs
- - MakeResDll
- - ShellExtension
+ - Tools
     Various utilities used by WinMerge developers; see readme files in each
 
- - selftests
+ - ShellExtension
+   Windows shell (Explorer) integration. Adds menuitems to Explorer context
+   menu for comparing files and folders.
+
+ - Testing
     A suite of test diff files and a script to run them and report the results
 
  - Build
@@ -49,6 +48,3 @@ Subdirectories include:
  - BuildTmp
     This (non-cvs) directory is for obj and such-like temporary compiler files
     used in compiling binaries.
-
-
-
