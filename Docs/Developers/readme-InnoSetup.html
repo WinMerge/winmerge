@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Building WinMerge Installer</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+  -->
+  </style>
+</head>
+<body>
+
+<h2>Building WinMerge Installer</h2>
+
+<h3>Needed programs:</h3>
+<ul>
+  <li>
+    <a href="http://www.jrsoftware.org/">Inno Setup</a> version 5.1.7.
+  </li>
+  <li>
+    <a href="http://www.istool.org/">ISTool</a> <strong>recommended</strong>
+    - great help managing Inno Setup installer scripts
+  </li>
+</ul>
+
+<p>There is download package called "QuickStart Pack" available in Inno Setup
+downloads. It contains all needed components in one installer.</p>
+
+<h3>Installer script:</h3>
+Installer script is in <code>Installer/InnoSetup</code> folder: <code>WinMerge.iss</code>
+
+<h3>Checklist:</h3>
+<ul>
+  <li>
+    Installer reads version number from <code>WinMerge.exe</code>. So make
+    sure you have version resource correctly set.<br>
+    You can use script to set version info into Merge.rc and all language.rc files:
+    just run <code>Src/SetResourceVersions.bat</code> - it asks version number to set.
+    Note that it needs four numbers, so if you are releasing 2.5.6 version, you need to
+    set last number as zero: 2.5.6.0.
+  </li>
+  <li>
+    Installer checks that files listed are present. But some files are
+    included as folder (like <code>/Plugins/Dlls</code>) or as filemask (like
+    <code>*.flt</code>) so take extra care to make sure all needed files
+    are present in locations shown below.
+  </li>
+</ul>
+
+<h3>Folder structure and files needed:</h3>
+
+<p>These files are produced by compiling WinMerge, documentation etc, but
+that's not subject of this document, refer to <a href="readme-developers.html">readme-developers.html</a>.</p>
+
+<p>Copy or move the files into the following layout:</p>
+
+<ul>
+ <li>
+  <code>Build/</code>
+  <ul>
+    <li>
+     <code>Languages</code>
+     <ul>
+      <li><code>*.lang</code></li>
+     </ul>
+    </li>
+    <li>
+     <code>Manual/htmlhelp</code>
+     <ul>
+      <li><code>WinMerge.chm</code></li>
+     </ul>
+    </li>
+   <li>
+    <code>MergeRelease/</code>
+    <ul>
+     <li><code>ShellExtension.dll</code></li>
+     <li><code>WinMerge.exe</code></li>
+    </ul>
+   </li>
+   <li>
+    <code>MergeUnicodeRelease/</code>
+    <ul>
+     <li><code>ShellExtensionU.dll</code></li>
+     <li><code>WinMergeU.exe</code></li>
+     <li><code>WinMergeU.exe.Manifest</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li>
+  <code>Docs/</code>
+  <ul>
+   <li>
+    <code>Users</code>
+    <ul>
+     <li><em>Copy the entire <code>Docs/Users</code> folder to here</em></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li>
+  <code>Filters/</code>
+  <ul>
+   <li><code>FileFilter.tmpl</code></li>
+   <li><code>*.flt</code></li>
+  </ul>
+ </li>
+ <li>
+  <code>Installer/InnoSetup/</code>
+  <ul>
+   <li><em>Copy the entire InnoSetup source folder to here</em></li>
+  </ul>
+ </li>
+</ul>
+
+<h3>Running Inno Setup to create installer</h3>
+
+<p><code>WinMerge.iss</code> (in <code>InnoSetup</code> folder)
+is script used to create WinMerge installer.</p>
+
+<p>Rest of this section assumes ISTool is used. If not, then refer to
+InnoSetup manual for creating installer from script.</p>
+
+<ol>
+  <li>
+    Start ISTool and load <code>WinMerge.iss</code>
+  </li>
+  <li>
+    Select "Project-&gt;Verify Files..." from ISTool menu to verify
+    all needed files are present and in correct directories. Copy missing
+    files to correct directories before continuing.
+  </li>
+  <li>
+    Select "Project-&gt;Compile Setup" from ISTool menu to create
+    installer. This takes a while...
+  </li>
+</ol>
+
+<p>If compile succeeds you have <code>WinMerge-[version]-Setup.exe</code> in
+folder <code>/Build</code>. You probably want to remove unnecessary zeros
+from the filename before uploading: if filename is <code>WinMerge-2.6.0.0-Setup.exe</code>,
+you may want to rename it to <code>WinMerge-2.6-Setup.exe</code>. Not a rule, but a
+recommendation.</p>
+
+<p><strong>Test installer!</strong></p>
+
+</body>
+</html>
