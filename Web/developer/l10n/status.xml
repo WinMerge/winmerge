@@ -29,9 +29,15 @@
         <email>sld at mail dot bg</email>
         <comment>2.1</comment>
       </author>
+      <author>
+        <name>tigertron</name>
+        <email>tigertron@dir.bg</email>
+        <comment>2.5</comment>
+      </author>
     </authors>
     <versions>
       <version>2.1</version>
+      <version>2.5</version>
     </versions>
   </language>
   <language>

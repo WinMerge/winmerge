@@ -1,3 +1,7 @@
+2006-09-10 Tim
+ PATCH: [ 1555810 ] Bulgarian translation status/translator update
+  Web\developer\l10n: status.xml
+
 2006-09-05 Tim
  BUG: [ 1552149 ] Web: CVS link in sidebar
   Web: links.php page.inc
