@@ -1933,7 +1933,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
@@ -1948,16 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f eller -f anger filmask eller filternamn för jämförelse"
-    IDS_CMDLINE_FORGETLEFT  "/ul eller -ul får WinMerge att inte lägga till vänster sökväg till de senast använda filerna"
-    IDS_CMDLINE_FORGETRIGHT  "/ur eller -ur får WinMerge att inte lägga till höger sökväg till de senast använda filerna"
-    IDS_CMDLINE_FORGETBOTH  "/ub eller -ub får WinMerge att inte lägga till båda sökvägarna till de senast använda filerna"
-    IDS_CMDLINE_LEFT_RO  "/wl eller -wl öppnar vänster fil som skrivskyddad i början"
-    IDS_CMDLINE_RIGHT_RO  "/wr eller -wr öppnar höger fil som skrivskyddad i början"
-    IDS_CMDLINE_LEFT_DESC  "/dl eller -dl lägger till en visad beskrivning av vänster sida istället för katalog/filnamn"
-    IDS_CMDLINE_RIGHT_DESC "/dr eller -dr lägger till en visad beskrivning av höger sida istället för katalog/filnamn"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "leftpath är katalogen eller filnamnet att öppna på vänster sida"
     IDS_CMDLINE_RIGHTPATH  "rightpath är katalogen eller filnamnet att öppna på höger sida"
     IDS_CMDLINE_OUTPUTPATH "outputpath är en optionell outputkatalog där du vill att ändrade filer ska sparas"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

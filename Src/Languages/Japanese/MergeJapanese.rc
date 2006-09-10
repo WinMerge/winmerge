@@ -1933,7 +1933,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "シンタックス : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
@@ -1948,16 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f or -f  ファイルマスクまたはフィルタ名を設定します"
-    IDS_CMDLINE_FORGETLEFT  "/ul or -ul 左パスをMRUに追加しません"
-    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur 右パスをMRUに追加しません"
-    IDS_CMDLINE_FORGETBOTH  "/ub or -ub 両側のパスをMRUに追加しません"
-    IDS_CMDLINE_LEFT_RO  "/wl or -wl 左側を読み取り専用で開きます"
-    IDS_CMDLINE_RIGHT_RO  "/wr or -wr 右側を読み取り専用で開きます"
-    IDS_CMDLINE_LEFT_DESC  "/dl or -dl フォルダ/ファイル名の代わりに説明文を左側に表示します"
-    IDS_CMDLINE_RIGHT_DESC "/dr or -dr フォルダ/ファイル名の代わりに説明文を右側に表示します"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "leftpath は、左側で開くフォルダまたはファイル名です"
     IDS_CMDLINE_RIGHTPATH  "rightpath は、右側で開くフォルダまたはファイル名です"
     IDS_CMDLINE_OUTPUTPATH "outputpath は、省略可能なマージされたファイルの保存先フォルダです"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

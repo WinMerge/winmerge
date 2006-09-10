@@ -5,6 +5,9 @@ Add new items to top.
 2006-09-10 Kimmo
  Czech translation update from Jan Hryz
   Src/Languages/Czech/MergeCzech.rc
+ PATCH: [ 1553714 ] Add new commandine switches to help dialog
+  Src: Merge.rc MergeArgs.cpp resource.h
+  Src/Languages/*: Merge*.rc
 
 2006-09-08 Gal
  RFE: [ 1533506 ] Need commandline switch for single-instance

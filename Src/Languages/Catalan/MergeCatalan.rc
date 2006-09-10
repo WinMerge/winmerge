@@ -1951,7 +1951,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Sintaxi : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "camiesq camidreta [camisortida]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "màscara/nom"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "descesq"
@@ -1966,16 +1966,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f o -f especifica la màscara de fitxers o el nom del filtre per a comparar"
-    IDS_CMDLINE_FORGETLEFT  "/ul o -ul diu al WinMerge que no afegeixi el camí de l'esquerra a la llista de recents (MRU)"
-    IDS_CMDLINE_FORGETRIGHT  "/ur o -ur diu al WinMerge que no afegeixi el camí de la dreta a la llista de recents (MRU)"
-    IDS_CMDLINE_FORGETBOTH  "/ub o -ub diu al WinMerge que no afegeixi cap dels dos camins a la llista de recents (MRU)"
-    IDS_CMDLINE_LEFT_RO  "/wl o -wl obre el fitxer de l'esquerra inicialment com a només de lectura"
-    IDS_CMDLINE_RIGHT_RO  "/wr o -wr obre el fitxer de la dreta inicialment com a només de lectura"
-    IDS_CMDLINE_LEFT_DESC  "/dl o -dl afegeix una descripció per a mostrar a la banda esquerra enlloc del nom del directori/fitxer"
-    IDS_CMDLINE_RIGHT_DESC "/dr o -dr afegeix una descripció per a mostrar a la banda dreta enlloc del nom del directori/fitxer"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "camiesq és el directori o nom de fitxer per a ésser obert a la banda esquerra"
     IDS_CMDLINE_RIGHTPATH  "camidreta és el directori o nom de fitxer per a ésser obert a la banda dreta"
     IDS_CMDLINE_OUTPUTPATH "camisortida és un directori de sortida opcional on voleu que siguin desats els fitxers fusionats"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

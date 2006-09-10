@@ -1933,7 +1933,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Sk³adnia: WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "lewaœcie¿ka prawaœcie¿ka[œcie¿kawyjœciowa]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "maska/nazwa"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "lewypanel"
@@ -1948,16 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f lub -f ustawia maskê pliku lub nazwê filtra dla porównania"
-    IDS_CMDLINE_FORGETLEFT  "/ul lub -ul mówi winmerge, ¿e nie nale¿y dodawaæ lewej œcie¿ki do listy ostatnio u¿ywanych"
-    IDS_CMDLINE_FORGETRIGHT  "/ur lub -ur mówi winmerge, ¿e nie nale¿y dodawaæ prawej œcie¿ki do listy ostatnio u¿ywanych"
-    IDS_CMDLINE_FORGETBOTH  "/ub lub -ub mówi winmerge, ¿e nie nale¿y dodawaæ obu œcie¿ek do listy ostatnio u¿ywanych"
-    IDS_CMDLINE_LEFT_RO  "/wl lub -wl otwiera lewy panel tylko do odczytu"
-    IDS_CMDLINE_RIGHT_RO  "/wr lub -wr otwiera prawy panel tylko do odczytu"
-    IDS_CMDLINE_LEFT_DESC  "/dl lub -dl dodaje opis dla lewej strony zamiast katalogu/pliku"
-    IDS_CMDLINE_RIGHT_DESC "/dr lub -dr dodaje opis dla prawej strony zamiast katalogu/pliku"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "lewaœcie¿ka to katalog lub plik, który ma byæ otwarty w lewym panelu"
     IDS_CMDLINE_RIGHTPATH  "prawaœcie¿ka to katalog lub plik, który ma byæ otwarty w prawym panelu"
     IDS_CMDLINE_OUTPUTPATH "œcie¿kawyjœciowa to opcjonalny ktalaog wyjœciowy, gdzie maj¹ byæ zachowane scalone pliki"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

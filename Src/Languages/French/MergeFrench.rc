@@ -1920,12 +1920,13 @@ END
 STRINGTABLE
 BEGIN
     IDS_VERSION_FMT         "Version %1 - Français"
+    IDS_UNICODE             "Unicode"
 END
 
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntaxe : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "CheminGauche CheminDroit [CheminSortie]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "masque/filtre"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "description"
@@ -1940,17 +1941,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f or -f défini un masque ou un filtre, de fichier pour comparer"
-    IDS_CMDLINE_FORGETLEFT  "/ul or -ul indique de ne pas ajouter le chemin de gauche à mes documents récents"
-    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur indique de ne pas ajouter le chemin de droite à mes documents récents"
-    IDS_CMDLINE_FORGETBOTH  "/ub or -ub indique de ne pas ajouter les deux chemins à mes documents récents"
-    IDS_CMDLINE_LEFT_RO  "/wl or -wl ouvre initialement le côté gauche en leture seulement"
-    IDS_CMDLINE_RIGHT_RO  "/wr or -wr ouvre initialement le côté droit  en leture seulement"
-    IDS_CMDLINE_LEFT_DESC  "/dl or -dl indique une description plutot que le chemin complet pour le côté gauche"
-    IDS_CMDLINE_RIGHT_DESC "/dr or -dr indique une description plutot que le chemin complet pour le côté droit"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "CheminGauche est le répertoire ou le fichier à ouvrir du côté gauche"
     IDS_CMDLINE_RIGHTPATH  "CheminDroit  est le répertoire ou le fichier à ouvrir du côté droit"
     IDS_CMDLINE_OUTPUTPATH "CheminSortie est un répertoire optionel où enregistrer les fichiers fusionnés"
-    IDS_UNICODE             "Unicode"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

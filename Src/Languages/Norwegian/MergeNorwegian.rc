@@ -1933,7 +1933,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntaks : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "vsti hsti [utsti]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "vbeskr"
@@ -1948,16 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f eller -f sett filmaske eller filternavn for sammenligning"
-    IDS_CMDLINE_FORGETLEFT  "/ul eller -ul forteller WinMerge å ikke legge til venstre sti til MRU"
-    IDS_CMDLINE_FORGETRIGHT  "/ur eller -ur forteller WinMerge å ikke legge til høyre sti til MRU"
-    IDS_CMDLINE_FORGETBOTH  "/ub eller -ub forteller WinMerge å ikke legge til noen av stiene til MRU"
-    IDS_CMDLINE_LEFT_RO  "/wl eller -wl åpner venstre side skrivebskyttet initielt"
-    IDS_CMDLINE_RIGHT_RO  "/wr eller -wr åpner høyre side skrivebskyttet initielt"
-    IDS_CMDLINE_LEFT_DESC  "/dl eller -dl legger til en beskrivelse for venstre side i steden for mappe/filnavn"
-    IDS_CMDLINE_RIGHT_DESC "/dr eller -dr legger til en beskrivelse for høyre side i steden for mappe/filnavn"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "vsti er mappen eller filen som skal åpnes på venstre side"
     IDS_CMDLINE_RIGHTPATH  "hsti er mappen eller filen som skal åpnes på høyre side"
     IDS_CMDLINE_OUTPUTPATH "utsti er en valgfri mappe hvor flettede filer blir lagret"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

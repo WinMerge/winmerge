@@ -1933,7 +1933,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Sintassi : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "percsx percdx [percoutput]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "maschera/nome"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "descsx"
@@ -1948,16 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f o -f imposta la maschera di file o il nome del filtro per il confronto"
-    IDS_CMDLINE_FORGETLEFT  "/ul o -ul indica a  winmerge di non aggiungere il percorso sinistro ai file usati di recente"
-    IDS_CMDLINE_FORGETRIGHT  "/ur o -ur indica a  winmerge di non aggiungere il percorso destro ai file usati di recente"
-    IDS_CMDLINE_FORGETBOTH  "/ub o -ub indica a  winmerge di non aggiungere entrambi i percorsi ai file usati di recente"
-    IDS_CMDLINE_LEFT_RO  "/wl o -wl apre inizialmente il file sinistro in sola lettura"
-    IDS_CMDLINE_RIGHT_RO  "/wr o -wr apre inizialmente il file destro in sola lettura"
-    IDS_CMDLINE_LEFT_DESC  "/dl o -dl aggiunge una descrizione al lato sinistro mostrata al posto del nome della cartella/file"
-    IDS_CMDLINE_RIGHT_DESC "/dr o -dr aggiunge una descrizione al lato destro mostrata al posto del nome della cartella/file"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "percsx è la cartella o il nome del file da aprire sul lato sinistro"
     IDS_CMDLINE_RIGHTPATH  "percdx è la cartella o il nome del file da aprire sul lato destro"
     IDS_CMDLINE_OUTPUTPATH "percoutput è una cartella di output opzionale in cui desideri siano salvati i file riuniti"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS

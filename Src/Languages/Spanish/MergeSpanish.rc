@@ -1933,7 +1933,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Sintaxis: : WinMerge [/r] [/e] [/ul] [/ur] [/ub] [/wl] [/wr]"
+    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "rutaizq rutadcha [rutasalida]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "mascara/nombre"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "descizq"
@@ -1948,16 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f or -f establece la mascara de ficheros o mascara de líneas para la comparación"
-    IDS_CMDLINE_FORGETLEFT  "/ul or -ul no añadir la ruta izquierda a MRU"
-    IDS_CMDLINE_FORGETRIGHT  "/ur or -ur no añadir la ruta derecha a MRU"
-    IDS_CMDLINE_FORGETBOTH  "/ub or -ub no añadir ninguna ruta a MRU"
-    IDS_CMDLINE_LEFT_RO  "/wl or -wl abrir inicialmente el lado izquierdo como sólo lectura"
-    IDS_CMDLINE_RIGHT_RO  "/wr or -wr abrir inicialmente el lado derecho como sólo lectura"
-    IDS_CMDLINE_LEFT_DESC  "/dl or -dl añade una descripción al lado izquierdo en vez de la ruta directorio/nombre de fichero"
-    IDS_CMDLINE_RIGHT_DESC "/dr or -dr añade una descripción al lado derecho en vez de la ruta directorio/nombre de fichero      "
+    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
     IDS_CMDLINE_LEFTPATH  "rutaizq es el directorio o nombre de fichero a ser abierto en el lado izquierdo"
     IDS_CMDLINE_RIGHTPATH  "rutadcha es el directorio o nombre de fichero a ser abierto en el lado derecho"
     IDS_CMDLINE_OUTPUTPATH "rutasalida es un directorio opcional donde se guardaran los ficheros combinados"
+    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
 END
 
 // VARIOUS OPTIONS
