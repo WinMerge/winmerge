@@ -20,6 +20,8 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2005/02/26	Jochen Tucht		Created
+2006/09/10	Kimmo Varis			Don't use 'export' as variable name
+								Visual Studio 2005 warns about it.
 */
 
 #include "stdafx.h"
@@ -107,19 +109,19 @@ HMODULE DLLPSTUB::Load()
 						Throw(0, handle, CO_S_NOTALLINTERFACES, TRUE);
 					}
 				}
-				LPCSTR *export = proxy;
+				LPCSTR *pszExport = proxy;
 				*proxy = NULL;
-				while ((name = *++export) != NULL)
+				while ((name = *++pszExport) != NULL)
 				{
-					*export = (LPCSTR)GetProcAddress(handle, name);
-					if (*export == NULL)
+					*pszExport = (LPCSTR)GetProcAddress(handle, name);
+					if (*pszExport == NULL)
 					{
 						*proxy = proxy[1] = name;
-						export = proxy + 2;
+						pszExport = proxy + 2;
 						break;
 					}
 				}
-				*export = (LPCSTR)handle;
+				*pszExport = (LPCSTR)handle;
 			}
 		}
 		if ((name = *proxy) != NULL)
