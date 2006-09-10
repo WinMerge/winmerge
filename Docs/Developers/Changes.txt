@@ -2,6 +2,8 @@
  PATCH: [ 1555237 ] Update installer doc after switch to SVN
   Developers: rename readme-developers-InnoSetup.html to readme-InnoSetup.html
   Developers: readme-InnoSetup.html
+ PATCH: [ 1555340 ] New Subversion-doc for devels
+  Developers new file: readme-Subversion.html
 
 2006-09-09 Kimmo
  Add few words about registry subkeys. Clarify  situation when winAPI functions could be used.

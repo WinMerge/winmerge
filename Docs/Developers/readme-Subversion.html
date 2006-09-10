@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Subversion version control</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+  -->
+  </style>
+</head>
+<body>
+
+<h2>Accessing WinMerge Subversion repository</h2>
+
+<h3>Why Subversion?</h3>
+<p>We used <a href="http://www.sourceforge.net/">SourceForge.net</a>'s CVS service for years.
+It served us pretty well. In 2006 SourceForge made Subversion also available as
+service. And after short discussion WinMerge developers agreed to switch to Subversion.
+It fits better to our needs than CVS. So we switched from CVS to subversio in August 2006.
+</p>
+<h4>But CVS is better! I Want to use CVS!</h4>
+<p>We decided subversion is better for us. We keep using Subversion for now on.</p>
+<h4>What happened to code in CVS?</h4>
+<p>Nothing. It is still there. We don't just checkin anymore to CVS. And CVS page is not
+visible in our project page.</p>
+
+<h3>Web access</h3>
+<p>Easiest way to browse our sourcecode is through web. SourceForge.net utilizes
+<a href="http://viewvc.tigris.org/">ViewVC</a> to access CVS/Subversion repositories via Web.
+WinMerge Subversion repository is available at: <a href="http://svn.sourceforge.net/viewvc/winmerge/">
+http://svn.sourceforge.net/viewvc/winmerge/</a>.
+</p>
+
+<h3>Subversion client programs</h3>
+<ul>
+  <li>
+    <a href="http://tortoisesvn.tigris.org/">TortoiseSVN</a> <strong>Recommended</strong> TortoiseSVN
+    is a great Subversion client program for Windows. It does not need Subversion to be installed.
+  </li>
+  <li>
+    <a href="http://subversion.tigris.org/">Subversion</a> The Thing. If you want to use commandline
+    or if you want your own local Subversion repository, you need it. Not needed for TortoiseSVN.
+  </li>
+</ul>
+
+<h3>Subversion documentation</h3>
+<p><a href="http://svnbook.red-bean.com/">The Subversion Book</a> is the definite guide to Subversion.
+Please try to find some time to look at it. There are also many Subversion and SVN resources available
+in the net. Just listing couple of them here:
+<ul>
+  <li>
+    <a href="http://http://en.wikipedia.org/wiki/Subversion_(software)/">Wikipedia article</a> about
+    Subversion.
+  </li>
+  <li>
+    <a href="http://www.codeproject.com/useritems/XTortoiseSVN.asp">CodeProject article</a>Version
+    Control for the Standalone Programmer - Part 1.
+  </li>
+</ul>
+
+</p>
+
+<h3>Repository URLs</h3>
+<p>WinMerge Subversion repository URL is:<br>
+<code>https://svn.sourceforge.net/svnroot/winmerge</code>
+</p>
+<p>Using above URL will checkout all branches and tags also. WinMerge development happens in
+<i>trunk</i> and URL is:<br>
+<code>https://svn.sourceforge.net/svnroot/winmerge/trunk</code>
+</p>
+<p>Branches are in separate folder:<br>
+<code>https://svn.sourceforge.net/svnroot/winmerge/branches</code><br>
+As of writing this (2006-09-09) there are no branches in our Subversion repository. Old branches are in
+CVS repository.
+</p>
+
+<h3>Quick intro to using TortoiseSVN</h3>
+<h4>Checkout</h4>
+<ol>
+  <li> Create top-level folder for your development version (e.g. <code>c:\devel\WinMerge\</code>)</li>
+  <li> In Windows explorer, go to that folder, and right-click with mouse in it</li>
+  <li> Select <i>SVN Checkout...</i> -item</li>
+  <li> Give trunk URL (see above) as a repository URL to get out development trunk</li>
+</ol>
+
+<p> SVN should now checkout WinMerge trunk to given folder. Note that there is NO modules in SVN like there
+is with CVS, so all files in <code>/trunk</code> in SVN repository are added to folder you just created.
+Don't checkout to some common folder expecting there will be WinMerge subfolder anyway!</p>
+
+<h4>Checkin</h4>
+<ol>
+  <li> Update <strong>ALL</strong> needed files before checking in. With SVN it is just one checkin
+    for one revision, so you can't do like with CVS to checkin one file or directory at a time.</li>
+  <li> Right-click over WinMerge root folder which you created for WinMerge trunk</li>
+  <li> Select <i>SVN Commit</i> from context menu</li>
+  <li> Type message (preferably same than in <code>changes.txt</code>) to commit dialog</li>
+  <li> Double-check that all files are in list of files</li>
+  <li> Click OK-button</li>
+  <li> Give your SourceFOrge.net login and password when TortoiseSVN asks them (it remembers them for
+    the next time if you check the checkbox)</li>
+</ol>
+
+<p>Please copy/paste revision number to patch tracker item when you apply a patch to version control.
+It makes it easier to track changes afterwards. That information is of course available through logs
+and ViewVC, but it saves some time when revision number is visible in patch item.</p>
+
+<h4>Update</h4>
+<ol>
+  <li> Right-click over WinMerge root folder which you created for WinMerge trunk</li>
+  <li> Select <i>SVN Update</i> from context menu</li>
+</ol>
+
+
+</body>
+</html>
