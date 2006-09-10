@@ -341,14 +341,14 @@ BEGIN
         MENUITEM "L&evý pouze pro ètení",             ID_FILE_LEFT_READONLY
         MENUITEM "Pr&avý pouze pro ètení",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Convert Line Endings to"
+        POPUP "Pøevést konce øá&dkù"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Režim sl&uèování\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "Režim sl&uèování\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "&Konec",                      ID_APP_EXIT
     END
@@ -950,15 +950,15 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Odeslat odstranìné soubory do &koše",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "Ignorovat èasové rozdíly menší než 3 &sekundy",
+    CONTROL         "&Ignorovat èasové rozdíly menší než 3 sekundy",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,222,10
-    GROUPBOX        "Integration",IDC_STATIC,7,30,218,46
+    GROUPBOX        "Integrace",IDC_STATIC,7,30,218,46
     CONTROL         "Pøidat do &místní nabídky v prùzkumníku",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
     CONTROL         "Povolit &rozšíøenou nabídku",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
-    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
+    CONTROL         "Výchozí porovnání vèetnì pod&složek",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
     LTEXT           "&Externí editor:",IDC_STATIC,7,83,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,93,167,14,ES_AUTOHSCROLL
@@ -1190,7 +1190,7 @@ BEGIN
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Z&kouška",IDC_FILTERFILE_TEST_BTN,7,114,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
+    PUSHBUTTON      "&Instalovat...",IDC_FILTERFILE_INSTALL,137,114,50,14
     PUSHBUTTON      "&Nový...",IDC_FILTERFILE_NEWBTN,192,114,50,14
     PUSHBUTTON      "&Upravit...",IDC_FILTERFILE_EDITBTN,246,114,50,14
     PUSHBUTTON      "O&dstranit...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
@@ -1997,7 +1997,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Rychlý obsah"
     IDS_COMPMETHOD_MODDATE  "Datum zmìny"
     IDS_COMPMETHOD_DATESIZE "Datum zmìny a velikost"
-    IDS_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_SIZE     "Velikost"
 END
 
 // FILTER OPTIONS
@@ -2011,18 +2011,18 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Zvolte název souboru pro nový filtr"
     IDS_FILEFILTER_FILEMASK "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Nelze nalézt soubor se šablonou pro filtrování souborù!\n\nZkopírujte prosím soubor %1 do složky WinMerge/Filters."
+                            "Nelze nalézt soubor s filtrem!\n\nZkopírujte prosím soubor %1 do složky WinMerge/Filters."
     IDS_FILEFILTER_TMPL_COPY 
-                            "Nelze zkopírovat soubor se šablonou pro filtrování souborù do složky filtrù:\n%1\n\nUjistìte se prosím, že složka existuje a je možné do ní zapisovat."
+                            "Nelze zkopírovat soubor s filtrem do složky filtrù:\n%1\n\nUjistìte se prosím, že složka existuje a je možné do ní zapisovat."
     IDS_FILEFILTER_NO_USERFOLDER 
                             "Vlastní složka filtrù nebyla zadána!\n\nZvolte prosím složku v dialogovém oknì Možnosti, v kategorii Systém."
     IDS_FILEFILTER_DELETE_FAIL 
-                            "Chyba pøi odstranìní souboru se šablonou pro filtrování souborù:\n%1\n\nMožná je soubor oznaèen pouze pro ètení?"
-    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+                            "Chyba pøi odstranìní souboru s filtrem:\n%1\n\nMožná je soubor oznaèen pouze pro ètení?"
+    IDS_FILEFILTER_INSTALL  "Vyhledat soubor s filtrem k instalaci"
     IDS_FILEFILTER_INSTALLFAIL 
-                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+                            "Chyba pøi instalaci souboru s filtrem.\n\nNový soubor nelze zkopírovat do složky filtrù."
     IDS_FILEFILTER_OVERWRITE 
-                            "Filter file already exists. Overwrite existing filter?"
+                            "Soubor s filtrem již existuje. Chcete nahradit stávající filtr?"
 END
 
 // VERSION CONTROL OPTIONS

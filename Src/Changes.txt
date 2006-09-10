@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-10 Kimmo
+ Czech translation update from Jan Hryz
+  Src/Languages/Czech/MergeCzech.rc
+
 2006-09-08 Gal
  RFE: [ 1533506 ] Need commandline switch for single-instance
   Src: Merge.cpp 
