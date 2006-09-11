@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-11 Takashi
+ BUG: [ 1555664 ] fail to copy all to right when enabling moved block detect
+  Src: MergeDoc.cpp
+
 2006-09-10 Kimmo
  Czech translation update from Jan Hryz
   Src/Languages/Czech/MergeCzech.rc
