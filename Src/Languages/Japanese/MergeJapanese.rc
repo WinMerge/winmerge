@@ -1948,12 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f or -f  ファイルマスクまたはフィルタ名を設定します"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x もし比較結果が同一であるならば WinMergeを閉じます"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s 実行中のWinMergeで指定したパスを開きます"
     IDS_CMDLINE_LEFTPATH  "leftpath は、左側で開くフォルダまたはファイル名です"
     IDS_CMDLINE_RIGHTPATH  "rightpath は、右側で開くフォルダまたはファイル名です"
     IDS_CMDLINE_OUTPUTPATH "outputpath は、省略可能なマージされたファイルの保存先フォルダです"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
+    IDS_CMDLINE_SEEMANUAL  "上記が全てではありません。完全なコマンドライン書式についてはマニュアルを参照してください"
 END
 
 // VARIOUS OPTIONS

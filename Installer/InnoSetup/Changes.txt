@@ -1,3 +1,7 @@
+2006-09-11 Takashi
+ Japanese translation update
+  InnoSetup/Languages: Japanese.isl
+
 2006-09-05 Kimmo
  PATCH: [ 1552248 ] Install as a TortoiseSVN diff tool
   InnoSetup: WinMerge.iss

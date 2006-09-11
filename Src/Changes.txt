@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2006-09-11 Takashi
+ Japanese translation - update
+  Src/Languages/Japanese: MergeJapanese.rc
+
+2006-09-11 Takashi
  PATCH: [ 1555764 ] prevent from shaking in view when pressing F5 down
   Src: GhostTextView.cpp GhostTextView.h MergeDiffDetailView.cpp MergeDiffDetailView.h
 
