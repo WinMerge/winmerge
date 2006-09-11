@@ -86,7 +86,7 @@ private:
 	/// memorize selected text during OnEditReplace : if (m_bSelectionPushed == TRUE)
 	SCursorPushed m_ptSavedSelStartPushed, m_ptSavedSelEndPushed;
 	/// memorize top line positions
-	SCursorPushed m_nTopLinePushed;
+	int m_nTopSubLinePushed;
 	/** last change position, in the buffer ; used in insertText
 	 * initialized with (-1,-1), so don't assert for this invalid value
 	 */

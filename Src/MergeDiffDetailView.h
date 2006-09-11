@@ -54,7 +54,7 @@ protected:
 	/// memorize cursor position
 	CPoint m_ptCursorPosPushed;
 	/// memorize top line positions
-	int m_nTopLinePushed;
+	int m_nTopSubLinePushed;
 
 private:
 	HWND m_hwndFrame; //*< Frame window handle */

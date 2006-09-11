@@ -616,7 +616,7 @@ void CMergeDiffDetailView::PushCursors()
 	m_lineBeginPushed = m_lineBegin;
 	m_ptCursorPosPushed = m_ptCursorPos;
 	// and top line positions
-	m_nTopLinePushed = m_nTopLine;
+	m_nTopSubLinePushed = m_nTopSubLine;
 }
 
 void CMergeDiffDetailView::PopCursors()
@@ -643,9 +643,11 @@ void CMergeDiffDetailView::PopCursors()
 	}
 
 		// restore the scrolling position
-	if (m_nTopLinePushed >= GetLineCount())
-		m_nTopLinePushed = GetLineCount()-1;
-	ScrollToLine(m_nTopLinePushed);
+	m_nTopSubLine = m_nTopSubLinePushed;
+	if (m_nTopSubLine >= GetSubLineCount())
+		m_nTopSubLine = GetSubLineCount() - 1;
+	int nDummy;
+	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
 
 	// other positions are set to (0,0) during ResetView
 }

@@ -147,10 +147,11 @@ void CGhostTextView::PopCursors ()
 	m_pGhostTextBuffer->RestoreLastChangePos(ptLastChange);
 
 	// restore the scrolling position
-	CPoint temp;
-	popPosition(m_nTopLinePushed, temp);
-	ASSERT_VALIDTEXTPOS(temp);
-	ScrollToLine(temp.y);
+	m_nTopSubLine = m_nTopSubLinePushed;
+	if (m_nTopSubLine >= GetSubLineCount())
+		m_nTopSubLine = GetSubLineCount() - 1;
+	int nDummy;
+	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
 }
 
 void CGhostTextView::PushCursors ()
@@ -177,7 +178,7 @@ void CGhostTextView::PushCursors ()
 	pushPosition(m_ptLastChangePushed, m_pGhostTextBuffer->GetLastChangePos());
 
 	// and top line positions
-	pushPosition(m_nTopLinePushed, CPoint(0, m_nTopLine));
+	m_nTopSubLinePushed = m_nTopSubLine;
 }
 
 
