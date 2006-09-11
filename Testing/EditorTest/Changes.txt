@@ -1,2 +1,6 @@
+2006-09-11 Takashi
+ Fix compiling EditTest after moving folders
+  SampleStatic.dsp
+
 2006-08-16 Takashi
  Initial version.

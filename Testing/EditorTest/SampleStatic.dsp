@@ -45,7 +45,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\Src\editlib" /I "Common" /I "..\Src\Common" /I "..\Src" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x419 /d "NDEBUG" /d "_AFXDLL"
@@ -71,7 +71,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I ".\Src" /I "." /I "..\Src\editlib" /I "Common" /I "..\Src\Common" /I "..\Src" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "_DEBUG" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x419 /d "_DEBUG" /d "_AFXDLL"
@@ -98,7 +98,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\Src\editlib" /I "Common" /I "..\Src\Common" /I "..\Src" /D "NDEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O2 /I ".\Src" /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "NDEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x419 /d "NDEBUG" /d "_AFXDLL"
@@ -125,7 +125,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "..\Src\editlib" /I "Common" /I "..\Src\Common" /I "..\Src" /D "_DEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "..\..\Src\editlib" /I "..\..\Src\Common" /I "..\..\Src" /D "_DEBUG" /D "_UNICODE" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /D EDITPADC_CLASS= /D "CRYSTALEDIT_ENABLELOADER" /D "CRYSTALEDIT_ENABLESAVER" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
@@ -239,303 +239,303 @@ SOURCE=.\res\Toolbar.bmp
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\Src\editlib\asp.cpp
+SOURCE=..\..\Src\editlib\asp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\basic.cpp
+SOURCE=..\..\Src\editlib\basic.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\batch.cpp
+SOURCE=..\..\Src\editlib\batch.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaleditview.cpp
+SOURCE=..\..\Src\editlib\ccrystaleditview.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaleditview.h
+SOURCE=..\..\Src\editlib\ccrystaleditview.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaleditview.inl
+SOURCE=..\..\Src\editlib\ccrystaleditview.inl
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextbuffer.cpp
+SOURCE=..\..\Src\editlib\ccrystaltextbuffer.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextbuffer.h
+SOURCE=..\..\Src\editlib\ccrystaltextbuffer.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextbuffer.inl
+SOURCE=..\..\Src\editlib\ccrystaltextbuffer.inl
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextview.cpp
+SOURCE=..\..\Src\editlib\ccrystaltextview.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextview.h
+SOURCE=..\..\Src\editlib\ccrystaltextview.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextview.inl
+SOURCE=..\..\Src\editlib\ccrystaltextview.inl
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ccrystaltextview2.cpp
+SOURCE=..\..\Src\editlib\ccrystaltextview2.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ceditreplacedlg.cpp
+SOURCE=..\..\Src\editlib\ceditreplacedlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ceditreplacedlg.h
+SOURCE=..\..\Src\editlib\ceditreplacedlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cfindtextdlg.cpp
+SOURCE=..\..\Src\editlib\cfindtextdlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cfindtextdlg.h
+SOURCE=..\..\Src\editlib\cfindtextdlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\chcondlg.cpp
+SOURCE=..\..\Src\editlib\chcondlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\chcondlg.h
+SOURCE=..\..\Src\editlib\chcondlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cplusplus.cpp
+SOURCE=..\..\Src\editlib\cplusplus.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cregexp.cpp
+SOURCE=..\..\Src\editlib\cregexp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cregexp.h
+SOURCE=..\..\Src\editlib\cregexp.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\crystaleditviewex.cpp
+SOURCE=..\..\Src\editlib\crystaleditviewex.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\crystaleditviewex.h
+SOURCE=..\..\Src\editlib\crystaleditviewex.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\crystalparser.cpp
+SOURCE=..\..\Src\editlib\crystalparser.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\crystalparser.h
+SOURCE=..\..\Src\editlib\crystalparser.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\crystaltextblock.cpp
+SOURCE=..\..\Src\editlib\crystaltextblock.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\crystaltextblock.h
+SOURCE=..\..\Src\editlib\crystaltextblock.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cs2cs.cpp
+SOURCE=..\..\Src\editlib\cs2cs.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\cs2cs.h
+SOURCE=..\..\Src\editlib\cs2cs.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\csharp.cpp
+SOURCE=..\..\Src\editlib\csharp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\dcl.cpp
+SOURCE=..\..\Src\editlib\dcl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\editcmd.h
+SOURCE=..\..\Src\editlib\editcmd.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\editreg.h
+SOURCE=..\..\Src\editlib\editreg.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\edtlib.cpp
+SOURCE=..\..\Src\editlib\edtlib.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\edtlib.h
+SOURCE=..\..\Src\editlib\edtlib.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\filesup.cpp
+SOURCE=..\..\Src\editlib\filesup.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\filesup.h
+SOURCE=..\..\Src\editlib\filesup.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\filesup.inl
+SOURCE=..\..\Src\editlib\filesup.inl
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\fortran.cpp
+SOURCE=..\..\Src\editlib\fortran.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\fpattern.cpp
+SOURCE=..\..\Src\editlib\fpattern.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\fpattern.h
+SOURCE=..\..\Src\editlib\fpattern.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\gotodlg.cpp
+SOURCE=..\..\Src\editlib\gotodlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\gotodlg.h
+SOURCE=..\..\Src\editlib\gotodlg.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\html.cpp
+SOURCE=..\..\Src\editlib\html.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ini.cpp
+SOURCE=..\..\Src\editlib\ini.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\innosetup.cpp
+SOURCE=..\..\Src\editlib\innosetup.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\is.cpp
+SOURCE=..\..\Src\editlib\is.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\java.cpp
+SOURCE=..\..\Src\editlib\java.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\lisp.cpp
+SOURCE=..\..\Src\editlib\lisp.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\memcombo.cpp
+SOURCE=..\..\Src\editlib\memcombo.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\memcombo.h
+SOURCE=..\..\Src\editlib\memcombo.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\memcombo.inl
+SOURCE=..\..\Src\editlib\memcombo.inl
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\nsis.cpp
+SOURCE=..\..\Src\editlib\nsis.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\pascal.cpp
+SOURCE=..\..\Src\editlib\pascal.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\perl.cpp
+SOURCE=..\..\Src\editlib\perl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\php.cpp
+SOURCE=..\..\Src\editlib\php.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\python.cpp
+SOURCE=..\..\Src\editlib\python.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\registry.cpp
+SOURCE=..\..\Src\editlib\registry.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\registry.h
+SOURCE=..\..\Src\editlib\registry.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\rexx.cpp
+SOURCE=..\..\Src\editlib\rexx.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\rsrc.cpp
+SOURCE=..\..\Src\editlib\rsrc.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\ruby.cpp
+SOURCE=..\..\Src\editlib\ruby.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\sgml.cpp
+SOURCE=..\..\Src\editlib\sgml.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\sh.cpp
+SOURCE=..\..\Src\editlib\sh.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\siod.cpp
+SOURCE=..\..\Src\editlib\siod.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\splash.cpp
+SOURCE=..\..\Src\editlib\splash.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\splash.h
+SOURCE=..\..\Src\editlib\splash.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\sql.cpp
+SOURCE=..\..\Src\editlib\sql.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\statbar.cpp
+SOURCE=..\..\Src\editlib\statbar.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\statbar.h
+SOURCE=..\..\Src\editlib\statbar.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\tcl.cpp
+SOURCE=..\..\Src\editlib\tcl.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\tex.cpp
+SOURCE=..\..\Src\editlib\tex.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\wispelld.h
+SOURCE=..\..\Src\editlib\wispelld.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\editlib\xml.cpp
+SOURCE=..\..\Src\editlib\xml.cpp
 # End Source File
 # End Group
 # Begin Group "common"
@@ -551,43 +551,43 @@ SOURCE=.\isx.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\Common\OptionsMgr.cpp
+SOURCE=..\..\Src\Common\OptionsMgr.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\Common\OptionsMgr.h
+SOURCE=..\..\Src\Common\OptionsMgr.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\Common\SuperComboBox.cpp
+SOURCE=..\..\Src\Common\SuperComboBox.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\Common\SuperComboBox.h
+SOURCE=..\..\Src\Common\SuperComboBox.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\SyntaxColors.cpp
+SOURCE=..\..\Src\SyntaxColors.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\SyntaxColors.h
+SOURCE=..\..\Src\SyntaxColors.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\Common\varprop.cpp
+SOURCE=..\..\Src\Common\varprop.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\Common\varprop.h
+SOURCE=..\..\Src\Common\varprop.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\ViewableWhitespace.cpp
+SOURCE=..\..\Src\ViewableWhitespace.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\Src\ViewableWhitespace.h
+SOURCE=..\..\Src\ViewableWhitespace.h
 # End Source File
 # End Group
 # End Target
