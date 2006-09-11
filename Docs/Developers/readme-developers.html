@@ -40,7 +40,7 @@
   <li><a href="#RCS_Ids">RCS Ids</a></li>
   <li><a href="#File_release_numbers">File release numbers</a></li>
   <li><a href="#Packaging_file_releases">Packaging file releases</a></li>
-  <li><a href="#Tagging_CVS_when_releasing_files">Tagging CVS when releasing files</a></li>
+  <li><a href="#Tagging_SVN_when_releasing_files">Tagging Subversion when releasing files</a></li>
   <li><a href="#Localization_resources_files">Localization : resources files</a></li>
   <li><a href="#Localization_merging_and_scheduling">Localization : merging and scheduling</a></li>
   <li><a href="#Logging">Logging</a></li>
@@ -52,12 +52,32 @@
 <p>Compiling sources is usually the first thing you want to do. Source packages for
 different versions are available from SourceForge.net.</p>
 
-<p>WinMerge releases are compiled with Microsoft Visual Studio 6 + Service
-Pack 6. Also Visual Studio 2003 is supported. The only additional package you
-need is a <b>HTML Help Workshop</b>. It is a part of Platform SDK which comes
-with Visual Studio 2003. HTML Help Workshop can be also downloaded from:
-<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
-HTMLHelp download</a>.</p>
+<h3>Environment</h3>
+<h4>Supported Compilers</h4>
+<ul>
+  <li>Visual Studio 2003.Net + Service Pack 1 (used for releases)</li>
+  <li>Visual Studio 6 + Service Pack 6</li>
+  <li>Visual Studio 2005 (occasional checks for compiling)</li>
+</ul>
+<p>Note that WinMerge uses MFC heavily. So free editions of Visual Studio cannot
+compile WinMerge, unless you have MFC installed separately.</p>
+
+<h4>Additional requirements</h4>
+<ul>
+  <li>HTML Help Workshop (either stand-alone or from Platform SDK)<br>
+    Download it from :<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
+    HTMLHelp download</a>.</li>
+  <li>Platform SDK <strong>recommended</strong><br> You can either download it from net:
+    <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=A55B6B43-E24F-4EA3-A93E-40C0EC4F68E5&displaylang=en">
+    Platform SDK download</a> or use version installed with Visual Studio 2003.Net and later.</li>
+  <li>Installer needs own tools, documented in <a href="readme-InnoSetup.html">readme-InnoSetup.html</a></li>
+  <li>Manual needs Docbook tools, documented in <a href="readme-manual.html">readme-manual.html</a></li>
+</ul>
+
+<h4>Project files</h4>
+<p>Project file for WinMerge executable (in <code>/Src</code>) and other projects like
+ShellExtension (in <code>/ShellExtension</code>) have their own project files. There is no one
+single project/workspace file to compile all projects.<p>
 
 <p>Visual Studio project file for MSVC6 comes with WinMerge sources. Newer versions of
 Visual Studio can open that file too, they just ask if one wants to convert to new version.
@@ -75,8 +95,10 @@ install HTML Workhop as stand-alone and include headers and libraries from stand
 directory. Propable cause is that including files from Platform SDK directories breaks
 things.</p>
 
+
 <h4>Compiling targets</h4>
-<p>There are several targets available for compiling different projects. Targets used for compiling releases are:<br>
+<p>There are several targets available for compiling different projects. Targets used
+for compiling releases are:<br>
 <ul>
   <li><code>WinMerge.exe</code> : Release</li>
   <li><code>WinMergeU.exe</code> : UnicodeRelease</li>
@@ -113,8 +135,8 @@ either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
   </li>
   <li>
     <p>Before you start developing, make sure to capture
-    a snapshot of your starting sources (presumably a pristine copy of cvs
-    sources, or of a source zip from a distribution).</p>
+    a snapshot of your starting sources (presumably a pristine copy of sources from
+    subversion, or of a source zip from a distribution).</p>
 
     <p><b>DO NOT</b> submit a patch against year-old version. Latest experimental/beta version
     is at max few weeks old. Stable releases should only get bug fixes. And even then bugfix
@@ -130,6 +152,9 @@ either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
     <p>Post your changes as a patch, to the SourceForge patch list. Try to give an
     informative patch title of course. Post to any relevant SourceForge bugs
     or RFEs, giving the patch number and title.</p>
+    <p>If the bug/rfe item is already assigned to you (or you submitted it), you can
+    also attach patch into that item. Remember to add a comment so others notice the
+    new attachment.</p>
     <p>The active developers have often been posting entire original and modified
     files rather than traditional diffs, because obviously all developers
     have access to WinMerge to compare original and modified files, and this
@@ -139,15 +164,13 @@ either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
     from context menu and WinMerge creates a zip-file for you. Ready to be posted!</p>
   </li>
   <li>
-    <p>Wait for reactions from other developers (and sometimes active users).
-    If you feel impatient, you may solicit review of your patch via the
-    developer's mailing list.</p>
+    <p>Wait for reactions from other developers (and sometimes active users).<br>
+    Usually this means one of active developers approves your patch before commit.</p>
   </li>
   <li>
-    <p>After a reasonable amount of time has passed, and no negative reviews
-    have been posted (or after you have responded to and dealt reasonably
-    with any that have been posted), apply the patch to CVS. (Or ask a
-    project member to do so, if you have not yourself developer access to
+    <p>After a reasonable amount of time has passed, and one of active developers
+    has approved the patch, apply the patch to Subversion. (Or ask a
+    project member to do so, if you don't have yourself developer access to
     the project.)</p>
     <p>What is a reasonable amount of time? That is somewhat subjective, and
     we need to rely on your expertise as the patch developer, but let us
@@ -163,7 +186,7 @@ either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
 
 <p>Note that <code>Src/Changes.txt</code> was split from <code>Src/readme.txt</code> after
 2.4.0 release. So <code>Src/readme.txt</code> contains older changelog entries. Also, many
-subfolders have therir own <code>Changes.txt</code> -file. If the file exists in the folder, it must be
+subfolders have their own <code>Changes.txt</code> -file. If the file exists in the folder, it must be
 used instead of "global" <code>Src/Changes.txt</code>.
 
 <h3><a name="MakePatchDirs">MakePatchDirs</a></h3>
@@ -252,6 +275,10 @@ appending file version and date information at every checkin:</p>
 // &#36;Id&#36;
 </pre>
 
+<p>Although we are now using Subversion, those lines are still useful. TortoiseSVN
+understands them and adds correct version number and author, as if it was checked out
+from CVS.</p>
+
 <h3><a name="File_release_numbers">File release numbers</a></h3>
 
 <p>We are trying to keep a consistent numbering scheme on our file releases,
@@ -295,8 +322,8 @@ Also zip-packages for releases are provided, zip up these files:</p>
 
 <ul>
   <li><code>WinMerge.exe</code> and <code>WinMergeU.exe</code></li>
-  <li><code>ShellExtension.dll</code>, <code>ShellExtensionU.dll</code> and <code>register.bat</code>
-  to register it</li>
+  <li><code>ShellExtension.dll</code>, <code>ShellExtensionU.dll</code>, <code>register.bat</code>
+  and <code>unregister.bat</code> to register/unregister it.</li>
   <li>All filters from the <code>filters/</code> directory (remember template file!)</li>
   <li>All plugins from the <code>plugins/dlls/</code> directory. Create a <code>MergePlugins/</code> directory and copy the plugins to it</li>
   <li>All <code>*.lang</code> files (currently we have 21 languages, counting both Chinese versions)</li>
@@ -355,11 +382,11 @@ executable version numbers before uploading and releasing them.</p>
 
 <p>That is, dots are used only inside the version number and before the final extension.</p>
 
-<h3><a name="Tagging_CVS_when_releasing_files">Tagging CVS when releasing files</a></h3>
+<h3><a name="Tagging_SVN_when_releasing_files">Tagging Subversion when releasing files</a></h3>
 
-<p>When we make a release we always put a note in <code>Src/Changes.txt</code> in CVS.</p>
+<p>When we make a release we always put a note in <code>Src/Changes.txt</code> in SVN.</p>
 
-<p>It is recommended to put a tag in CVS when you make a file release, because that makes it easier
+<p>It is recommended to put a tag in SVN when you make a file release, because that makes it easier
 to pull a release version when there were code updates before and after it on the same day
 (because SourceForge doesn't record time of day correctly, and anyway, it it easier to just ask for a tag).</p>
 
@@ -370,15 +397,16 @@ the next beta would be named <code>R2_1_4</code>, and the next major release wou
 <h3><a name="Localization_resources_files">Localization : resources files</a></h3>
 
 <p><code>WinMerge.exe</code> and <code>WinMergeU.exe</code> are always compiled with the english resources.
-Custom languages are in separate dll files with extension <code>.lang</code>, to be placed in WinMerge directory.
-Language may be changed dynamically through the menu.</p>
+Custom languages are in separate dll files with extension <code>.lang</code>, to be placed in
+<code>Languages</code> subfolder in WinMerge folder. Language may be changed dynamically through the menu.</p>
 
 <p>WinMerge localization is achieved through localization of resources (files with extension <code>.rc</code>).
 Actually there is only one rc file in the project, <code>Merge.rc</code>. Localized versions for this file are
 to be stored in the <code>Languages/</code> directory, in the subdirectory created for that language.</p>
 
-<p class="note">Besides the resources files you could also translate things like the <a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/InnoSetup/Languages/">installer</a>
-(the ISL files are just INI files) and the <a href="http://cvs.sourceforge.net/viewcvs.py/winmerge/WinMerge/Docs/Users/Languages/">readme files</a> (at the moment RTF files).</p>
+<p class="note">Besides the resources files you could also translate things like the
+<a href="http://svn.sourceforge.net/viewvc/winmerge/trunk/WinMerge/InnoSetup/Languages/">installer</a>
+(the ISL files are just INI files) and the <a href="http://svn.sourceforge.net/viewvc/winmerge/trunk/WinMerge/Docs/Users/Languages/">readme files</a>.</p>
 
 <h4>Tips for developers :</h4>
 <ul>
@@ -393,7 +421,7 @@ to be stored in the <code>Languages/</code> directory, in the subdirectory creat
     because merging rc files with WinMerge is then a lot easier. Strings are grouped in block according to their ID masked by <code>0xFFF0</code>.
     So there are at most 16 strings in a block, but maybe less. MSVC reorders strings between and inside blocks, but never reorder blocks
     (when a new blocks is created, MSVC always put it at the last position).</p>
-    <p>Typical method to merge strings in a <code>Merge.rc</code> from a patch with a <code>Merge.rc</code> in CVS :</p>
+    <p>Typical method to merge strings in a <code>Merge.rc</code> from a patch with a <code>Merge.rc</code> in SVN :</p>
     <ol>
       <li>Add your new strings with WinMerge : <code>resource.h</code> for ID, and <code>Merge.rc</code>.</li>
       <li>If no overlapping ID, you are finished.</li>
@@ -415,10 +443,6 @@ to be stored in the <code>Languages/</code> directory, in the subdirectory creat
 <h4>Tips for translators :</h4>
 <ul>
   <li>Do not move around things in resource files (MSVC or WinMerge are OK, but maybe you'll use other tools).</li>
-  <li>
-    <strong>First translation</strong>: the order of blocks is different in 2.0 and 2.1 (bug).
-    You have to reorder the blocks if you build your 2.1 localization from your 2.0 one.
-  </li>
   <li>You may localize the layout. Avoid to localize the alignment flag, rather change coordinates.</li>
 </ul>
 <p class="note">Please try to avoid changing dialog layout when translating.
@@ -427,7 +451,7 @@ You can of course make controls wider to fit longer texts, but you should not mo
 If you want to improve dialog layout (we welcome UI improvements) you should submit it as src/Merge.rc patch so it will be merged to all translations.</p>
 
 <h4>Compiling</h4>
-<p>We have a customised tool for compiling language files. Project for it is in CVS:</p>
+<p>We have a customised tool for compiling language files. Project for it is in SVN:</p>
 
 <pre>/WinMerge/MakeResDll</pre>
 
@@ -468,7 +492,7 @@ Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set</p>
   </li>
   <li>
     <p><strong>Delays in localization</strong>: translators generally need some weeks to translate, so their version is already outdated when
-    the localization is complete, and merging with CVS must be done again.</p>
+    the localization is complete, and merging with SVN must be done again.</p>
   </li>
 </ul>
 
@@ -496,27 +520,6 @@ Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set</p>
     Only localization/layout changes may be applied.</p>
   </li>
 </ul>
-
-<h4>Typical steps for a new beta/release :</h4>
-<ol>
-  <li>
-    Layout of dialogs. Visual check. Probably a developer work (for speed, and maybe
-    the language has no more translator). Update the CVS after this step.
-  </li>
-  <li>Branch the localized resource for the beta/release. Build the dll.</li>
-  <li>Beginning of localization. The translators gets the localized resource.</li>
-  <li>...</li>
-  <li>Translator applies his localization to the branch. Rebuild the dll.</li>
-  <li>
-    CVS localization. Developers merge the changes from 4 to the current CVS.
-    The layout may be merged only partially, as anyway it will be checked for the next beta/release.
-  </li>
-</ol>
-
-<p>Steps 3, 4, 5, 6 may be reproduced. As long as the impacted beta/release is the last one, step 6 is
-necessary (or the changes will be lost in the next beta/release). But step 6 is done by developers
-only once (per language and per beta/release), after it is the translator's job. Please localize once
-and well rather than in small chunks!</p>
 
 <h4>Merging tools for resources :</h4>
 <p>WinMerge of course, plus the plugin <code>RCLocalizationHelper.dll</code>.</p>

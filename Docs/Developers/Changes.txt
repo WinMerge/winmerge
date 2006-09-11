@@ -1,3 +1,7 @@
+2006-09-11 Kimmo
+ PATCH: [ 1555893 ] Update readme-developers.html
+  Developers: readme-developers.html
+
 2006-09-10 Kimmo
  PATCH: [ 1555237 ] Update installer doc after switch to SVN
   Developers: rename readme-developers-InnoSetup.html to readme-InnoSetup.html
