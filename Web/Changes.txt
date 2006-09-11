@@ -1,3 +1,7 @@
+2006-09-11 Tim
+ RFE: [ 1552813 ] Web: Mark developers active/inactive
+  Web\developer: developers.xml index.php
+
 2006-09-10 Tim
  PATCH: [ 1555810 ] Bulgarian translation status/translator update
   Web\developer\l10n: status.xml

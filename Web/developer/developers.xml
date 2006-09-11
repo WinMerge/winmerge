@@ -13,13 +13,13 @@
     <role>1</role>
     <email>list1974 at hotmail dot com</email>
   </developer>
-  <developer>
+  <developer inactive="1">
     <name>Chris Mumford</name>
     <username>cmumford</username>
     <role>2</role>
     <email>cmumford at users.sourceforge.net</email>
   </developer>
-  <developer>
+  <developer inactive="1">
     <name>Dennis Lim</name>
     <username>dlkj</username>
     <role>2</role>
@@ -55,13 +55,13 @@
     <role>2</role>
     <email>kimmov at users.sourceforge.net</email>
   </developer>
-  <developer>
+  <developer inactive="1">
     <name>Laurent Ganier</name>
     <username>laoran</username>
     <role>2</role>
     <email>ccganier at club-internet dot fr</email>
   </developer>
-  <developer>
+  <developer inactive="1">
     <name>Perry Rapp</name>
     <username>elsapo</username>
     <role>2</role>
@@ -73,7 +73,7 @@
     <role>2</role>
     <email>sdottaka at users.sourceforge.net</email>
   </developer>
-  <developer>
+  <developer inactive="1">
     <name>Christian Blackburn</name>
     <username>seier</username>
     <role>3</role>
