@@ -1,3 +1,7 @@
+2006-09-11 Kimmo
+ Bump revision to 1.2.7 for beta release
+  Manual: WinMerge_help.xml
+
 2006-09-07 Kimmo
  PATCH: [ 1553651 ] Manual: fix inproper docbook markup in Compar_dirs.xml
   Manual: Compare_dirs.xml
