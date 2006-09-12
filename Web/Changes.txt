@@ -1,3 +1,7 @@
+2006-09-12 Tim
+ PATCH: [ 1557373 ] Japanese and Swedish translations are ready for 2.6
+  Web\developer\l10n: status.php status.xml
+
 2006-09-11 Tim
  RFE: [ 1552813 ] Web: Mark developers active/inactive
   Web\developer: developers.xml index.php
