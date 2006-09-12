@@ -152,6 +152,7 @@ void CGhostTextView::PopCursors ()
 		m_nTopSubLine = GetSubLineCount() - 1;
 	int nDummy;
 	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
+    RecalcVertScrollBar(TRUE);
 }
 
 void CGhostTextView::PushCursors ()

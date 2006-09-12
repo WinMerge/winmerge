@@ -648,6 +648,7 @@ void CMergeDiffDetailView::PopCursors()
 		m_nTopSubLine = GetSubLineCount() - 1;
 	int nDummy;
 	GetLineBySubLine( m_nTopSubLine, m_nTopLine, nDummy );
+    RecalcVertScrollBar(TRUE);
 
 	// other positions are set to (0,0) during ResetView
 }
