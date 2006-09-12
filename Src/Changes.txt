@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-12 Kimmo
+ PATCH: [ 1556851 ] An Swedish translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2006-09-11 WinMerge beta release 2.5.6 (revision 3552)
 
 2006-09-11 Takashi

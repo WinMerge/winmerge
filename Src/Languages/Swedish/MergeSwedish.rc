@@ -1948,12 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f eller -f anger filmask eller filternamn för jämförelse"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
+    IDS_CMDLINE_FASTCLOSE  "/x eller -x avslutar WinMerge om resultatet är identiskt"
+    IDS_CMDLINE_SINGLE_INST  "/s eller -s öppnar sökvägar till existerande WinMerge version"
     IDS_CMDLINE_LEFTPATH  "leftpath är katalogen eller filnamnet att öppna på vänster sida"
     IDS_CMDLINE_RIGHTPATH  "rightpath är katalogen eller filnamnet att öppna på höger sida"
-    IDS_CMDLINE_OUTPUTPATH "outputpath är en optionell outputkatalog där du vill att ändrade filer ska sparas"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
+    IDS_CMDLINE_OUTPUTPATH "outputpath är en optionell utdatakatalog där du vill att ändrade filer ska sparas"
+    IDS_CMDLINE_SEEMANUAL  "Se manualen för komplett kommandoradsreferens."
 END
 
 // VARIOUS OPTIONS
