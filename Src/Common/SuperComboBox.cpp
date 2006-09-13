@@ -420,8 +420,7 @@ CString CSuperComboBox::ExpandShortcut(CString &inFile)
         hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
         if (SUCCEEDED(hres))
         {
-            // Make sure it's ANSI
-            WORD wsz[MAX_PATH];
+            WCHAR wsz[MAX_PATH];
 #ifdef _UNICODE
 	     wcsncpy((wchar_t *)wsz, lpsz, sizeof(wsz)/sizeof(WCHAR));
 #else
