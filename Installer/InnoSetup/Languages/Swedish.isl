@@ -353,7 +353,7 @@ TurkishLanguage=Turkiska menyer och dialoger
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
 IntegrateDelphi4=Stöd Borland® Delphi4 Binära filer
 UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 
