@@ -35,7 +35,7 @@
 <h2>Installation</h2>
 <p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">installer</a> and double-click it.</p>
 <p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">binary zip package</a> into the desired location, and run
-<code>WinMerge.exe</code> or <code>WinMergeU.exe</code> (the latter is the Unicode version, only for use on NT/2000/XP).</p>
+<code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
 <p>For more information, please see the <a href="2.4/manual/installing.html">Installation section</a> of the <a href="2.4/manual/index.html">Manual</a>.</p>
 
 <h2>Using WinMerge</h2>
@@ -49,7 +49,7 @@ As such, your main form of support for WinMerge will be through
 subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support">WinMerge-support mailing list</a>.
 In addition, SourceForge has bug tracking capabilities, so please report any
 bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>. Wish list items on the
-<a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">RFE list</a> will also be considered, but we make
+<a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">feature request list</a> will also be considered, but we make
 absolutely no promises.</p>
 <p>We prefer that you <a href="http://sourceforge.net/account/newuser_emailverify.php">register</a>
 with <a href="http://sourceforge.net/">SourceForge</a> before posting a bug report (registration is
@@ -65,7 +65,7 @@ But please consider making a <a href="http://sourceforge.net/project/project_don
 to support the continued development of WinMerge.</p>
 
 <h2>Developers</h2>
-<p>As we said, WinMerge is an open source project, which means that the program is maintained and developed by
+<p>WinMerge is an open source project, which means that the program is maintained and developed by
 volunteers. If you''re interested in contributing work to the project, see our <a href="developer/needed.php">developer page</a>
 for forther information on how you may contribute.</p>
 <p>In addition, WinMerge is translated into a number of different languages. <a href="developer/translate.php">Click here for more information on translating WinMerge</a> into your own language.</p>
