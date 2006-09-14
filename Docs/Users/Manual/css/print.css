@@ -24,11 +24,9 @@ pre,code,tt {
 }
 
 .screen {
-  margin-left: 25px;
-  margin-right: 25px;
-  padding: 5px;
-  background-color: #FFFFFF;
-  border: 1px solid black;
+  padding: 0;
+  background-color: white;
+  border: 0;
 }
 
 .caution {
