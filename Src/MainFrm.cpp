@@ -2809,7 +2809,7 @@ void CMainFrame::UpdateCodepageModule()
  * @brief Handle timer events.
  * @param [in] nIDEvent Timer that timed out.
  */
-void CMainFrame::OnTimer(UINT nIDEvent)
+void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 {
 	switch (nIDEvent)
 	{

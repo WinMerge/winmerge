@@ -129,7 +129,7 @@ void DirCompProgressDlg::SetCompareStat(CompareStats * pCompareStats)
 /**
  * @brief Timer message received.
  */
-void DirCompProgressDlg::OnTimer(UINT nIDEvent)
+void DirCompProgressDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == IDT_UPDATE)
 	{

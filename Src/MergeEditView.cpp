@@ -1501,7 +1501,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 }
 
 
-void CMergeEditView::OnTimer(UINT nIDEvent)
+void CMergeEditView::OnTimer(UINT_PTR nIDEvent)
 {
 	// Maybe we want theApp::OnIdle to proceed before processing a timer message
 	// ...but for this the queue must be empty

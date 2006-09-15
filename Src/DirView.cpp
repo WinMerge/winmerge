@@ -2189,7 +2189,7 @@ void CDirView::InitiateSort()
 	PostMessage(WM_TIMER, COLUMN_REORDER);
 }
 
-void CDirView::OnTimer(UINT nIDEvent) 
+void CDirView::OnTimer(UINT_PTR nIDEvent) 
 {
 	if (nIDEvent == COLUMN_REORDER)
 	{

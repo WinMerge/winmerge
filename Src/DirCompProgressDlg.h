@@ -67,7 +67,7 @@ protected:
 	// Generated message map functions
 	//{{AFX_MSG(DirCompProgressDlg)
 	afx_msg BOOL OnInitDialog();
-	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnBnClickedComparisonStop();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

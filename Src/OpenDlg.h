@@ -104,7 +104,7 @@ protected:
 	afx_msg void OnSelchangeLeftCombo();
 	afx_msg void OnSelchangeRightCombo();
 	afx_msg void OnEditEvent();
-	afx_msg void OnTimer(UINT nIDEvent);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSelectUnpacker();
 	afx_msg void OnSelectFilter();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);

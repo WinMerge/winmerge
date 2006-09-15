@@ -7,6 +7,12 @@ Add new items to top.
   ShellExtension: WinMergeShell.cpp WinMergeShell.h
  PATCH: [ 1558893 ] Fix incompatible prototype in MessageBoxDialog
   Src/Common: MessageBoxDialog.cpp MessageBoxDialog.h
+ PATCH: [ 1558913 ] Fix OnTimer prototypes (64-bit compatibility)
+  Src: ChildFrm.cpp ChildFrm.h DircompProgressDlg.cpp DirCompProgressDlg.h DirView.cpp
+   Dirview.h MainFrm.cpp MainFrm.h MergeEditview.cpp MergeEditView.h OpenDlg.cpp
+   Opendlg.h Splash.cpp Splash.h
+  Src/Common: MessageBoxDialog.cpp MessageBoxDialog.h
+  Src/editlib: ccrystaltextview2.cpp ccrystaltextview.h 
 
 2006-09-13 Kimmo
  BUG: [ 1547247 ] WinMerge ANSI target does not compile with VS2005

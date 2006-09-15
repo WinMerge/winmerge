@@ -557,7 +557,7 @@ IHeaderBar * CChildFrame::GetHeaderInterface()
 	return &m_wndFilePathBar;
 }
 
-void CChildFrame::OnTimer(UINT nIDEvent) 
+void CChildFrame::OnTimer(UINT_PTR nIDEvent) 
 {
 	if (IsWindowVisible())
 	{

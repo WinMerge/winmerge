@@ -701,7 +701,7 @@ BOOL CMessageBoxDialog::PreTranslateMessage ( MSG* pMsg )
  *	When a timeout for the message box is set, this method will perform the
  *	update of the dialog controls every second.
  */
-void CMessageBoxDialog::OnTimer ( UINT nIDEvent )
+void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 {
 	// Check whether the event is interesting for us.
 	if ( nIDEvent == MESSAGE_BOX_TIMER )

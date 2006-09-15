@@ -175,7 +175,7 @@ public:
 	virtual BOOL PreTranslateMessage ( MSG* pMsg );
 
 	// Method for handling a timer event.
-	afx_msg void OnTimer ( UINT nIDEvent );
+	afx_msg void OnTimer ( UINT_PTR nIDEvent );
 
 protected:
 

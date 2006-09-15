@@ -544,7 +544,7 @@ void COpenDlg::OnEditEvent()
 		UpdateButtonStates();
 }
 
-void COpenDlg::OnTimer(UINT nIDEvent) 
+void COpenDlg::OnTimer(UINT_PTR nIDEvent) 
 {
 	if (nIDEvent == IDT_CHECKFILES)
 		UpdateButtonStates();

@@ -980,7 +980,7 @@ OnLButtonUp (UINT nFlags, CPoint point)
 }
 
 void CCrystalTextView::
-OnTimer (UINT nIDEvent)
+OnTimer (UINT_PTR nIDEvent)
 {
   CView::OnTimer (nIDEvent);
 
