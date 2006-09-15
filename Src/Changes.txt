@@ -5,6 +5,8 @@ Add new items to top.
 2006-09-15 Kimmo
  BUG: [ 1558839 ] ShellExtension does not compile as 64-bit
   ShellExtension: WinMergeShell.cpp WinMergeShell.h
+ PATCH: [ 1558893 ] Fix incompatible prototype in MessageBoxDialog
+  Src/Common: MessageBoxDialog.cpp MessageBoxDialog.h
 
 2006-09-13 Kimmo
  BUG: [ 1547247 ] WinMerge ANSI target does not compile with VS2005

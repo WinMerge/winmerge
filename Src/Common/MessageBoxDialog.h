@@ -159,7 +159,7 @@ public:
 	// Methods for handling common window functions.
 
 	// Method for displaying the dialog.
-	virtual int DoModal ( );
+	virtual INT_PTR DoModal ( );
 
 	// Method for closing the dialog.
 	void EndDialog ( int nResult );
