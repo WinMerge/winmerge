@@ -69,7 +69,7 @@ protected:
 	BOOL CheckExecutable(CString path);
 	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
-	CString GetHelpText(int idCmd);
+	CString GetHelpText(UINT_PTR idCmd);
 	CString FormatCmdLine(const CString &winmergePath,
 		const CString &path1, const CString &path2, BOOL bAlterSubFolders);
 
@@ -78,7 +78,7 @@ public:
     STDMETHOD(Initialize)(LPCITEMIDLIST, LPDATAOBJECT, HKEY);
 
     // IContextMenu
-    STDMETHOD(GetCommandString)(UINT, UINT, UINT*, LPSTR, UINT);
+    STDMETHOD(GetCommandString)(UINT_PTR, UINT, UINT*, LPSTR, UINT);
     STDMETHOD(InvokeCommand)(LPCMINVOKECOMMANDINFO);
     STDMETHOD(QueryContextMenu)(HMENU, UINT, UINT, UINT, UINT);
 };

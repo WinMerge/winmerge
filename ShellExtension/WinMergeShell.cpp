@@ -232,7 +232,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 }
 
 /// Gets string shown explorer's status bar when menuitem selected
-HRESULT CWinMergeShell::GetCommandString(UINT idCmd, UINT uFlags,
+HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 		UINT* pwReserved, LPSTR pszName, UINT  cchMax)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
@@ -500,7 +500,7 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 }
 
 /// Determine help text shown in explorer's statusbar
-CString CWinMergeShell::GetHelpText(int idCmd)
+CString CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 {
 	CString strHelp;
 
