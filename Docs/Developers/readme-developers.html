@@ -566,5 +566,46 @@ WinMerge executable:</p>
 path of <code>WinMerge.exe</code> you mainly use as its value. If this value exists
 ShellExtension does not care about another path value.</p>
 
+<h4>Compiling for 64-bit Windows</h4>
+<p>This is a bit tricky, and needs some patience to setup.</p>
+
+<p><strong>Needed tools</strong>
+<ul>
+  <li>Visual Studio 2003 or later (Might work for earlier, but I haven't tried it)</li>
+  <li>Platform SDK (for Windows 2003 SP1) with at least following components installed:
+    <ul>
+      <li>Configuration Options</li>
+      <li>Microsoft Windows Core SDK <strong>with tools and build environments</strong></li>
+      <li>Microsoft Web Workshop (IE) SDK</li>
+      <li>Microsoft Data Access Services (MDAC) SDK <i>not sure about this</i></li>
+    </ul>
+  </li>
+</ul>
+</p>
+
+<p><strong>Starting Visual Studio and opening the project</strong><br>
+We need to start Visual Studio from Platform SDK's 64-bit environment so that we get all
+needed environment variables and paths correctly set. So:
+<ol>
+  <li>Start 64-bit Platform SDK environment:<br>
+    From Start menu: Platform SDK --> Open Build Environment Window --> Windows XP/2003 64-bit
+    environment --> Release/Debug environment</li>
+  <li>CD to Visual Studio install folder/Common7/IDE</li>
+  <li>Start Visual Studio with command:<br>
+    <code>devenv /USEENV (uses open environment)</code></li>
+  <li>Open <code>ShellExtensionX64.vcproj</code> from <code>ShellExtension</code> project
+    folder.</li>
+</ol></p>
+
+<p>Make sure you have 64-bit target selected in Project Settings. Then check that paths are OK.
+You <strong>MUST</strong> build to separate directory than 32-bit targets so that files don't
+mix up.</p>
+
+<p>Compiling should now succeed. If not, check that all needed PSDK components are installed
+and that paths are OK. If you are compiling in 32-bit Windows you get error about registering
+but that is expected to happen.</p>
+
+<p>64-bit ShellExtension is registered to 64-bit Windows just like counterparts in 32-bit world:<br>
+<code>regsvr ShellExtensionX64.dll</code></p>
 </body>
 </html>

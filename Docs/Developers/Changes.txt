@@ -1,3 +1,7 @@
+2006-09-16 Kimmo
+ PATCH: [ 1559614 ] Readme: building 64-bit shellextension
+  Developers: readme-developers.html
+
 2006-09-11 Kimmo
  PATCH: [ 1555893 ] Update readme-developers.html
   Developers: readme-developers.html
