@@ -63,11 +63,30 @@ static UINT GetLocaleGrouping(int defval)
  *
  * NB: We are not converting digits from ASCII via LOCALE_SNATIVEDIGITS
  *   So we always use ASCII digits, instead of, eg, the Chinese digits
+ *
+ * @param [in] n Number to convert.
+ * @return Converted string.
  */
-CString NumToLocaleStr(UINT n)
+CString NumToLocaleStr(int n)
 {
 	TCHAR numbuff[34];
 	_ltot(n, numbuff, 10);
+	return GetLocaleStr(numbuff);
+}
+
+/**
+ * @brief Print an integer into a CString, in appropriate fashion for locale & user preferences
+ *
+ * NB: We are not converting digits from ASCII via LOCALE_SNATIVEDIGITS
+ *   So we always use ASCII digits, instead of, eg, the Chinese digits
+ *
+ * @param [in] n Number to convert.
+ * @return Converted string.
+ */
+CString NumToLocaleStr(__int64 n)
+{
+	TCHAR numbuff[34];
+	_i64tot(n, numbuff, 10);
 	return GetLocaleStr(numbuff);
 }
 

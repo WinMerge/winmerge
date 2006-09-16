@@ -71,17 +71,19 @@ static char THIS_FILE[] = __FILE__;
 
 extern CLogFile gLog;
 
+/** @brief Max len of path in caption. */
 static const UINT CAPTION_PATH_MAX = 50;
 
-/**
- * @brief EOL types
- */
+/** @brief EOL types */
 static LPCTSTR crlfs[] =
 {
 	_T ("\x0d\x0a"), //  DOS/Windows style
 	_T ("\x0a"),     //  UNIX style
 	_T ("\x0d")      //  Macintosh style
 };
+
+static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
+	const COleDateTime & start);
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
@@ -1422,11 +1424,15 @@ int IsTextFileStylePure(const UniMemFile::txtstats & stats)
 
 /**
  * @brief Return a string giving #lines and #bytes and how much time elapsed.
+ * @param [in] lines Count of lines.
+ * @param [in] bytes Count of bytes.
+ * @param [in] start Time used.
+ * @return Formatted string.
  */
-static CString
-GetLineByteTimeReport(UINT lines, UINT bytes, const COleDateTime & start)
+static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
+	const COleDateTime & start)
 {
-	CString sLines = locality::NumToLocaleStr(lines);
+	CString sLines = locality::NumToLocaleStr((int)lines);
 	CString sBytes = locality::NumToLocaleStr(bytes);
 	COleDateTimeSpan duration = COleDateTime::GetCurrentTime() - start;
 	CString sMinutes = locality::NumToLocaleStr((int)duration.GetTotalMinutes());
@@ -1525,12 +1531,12 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		CString eol, preveol;
 		CString sline;
 		bool done = false;
-		int next_line_report = 100; // for trace messages
-		int next_line_multiple = 5; // for trace messages
+		UINT next_line_report = 100; // for trace messages
+		UINT next_line_multiple = 5; // for trace messages
 		COleDateTime start = COleDateTime::GetCurrentTime(); // for trace messages
 
 		// Manually grow line array exponentially
-		int arraysize = 500;
+		UINT arraysize = 500;
 		m_aLines.SetSize(arraysize);
 		
 		// preveol must be initialized for empty files
