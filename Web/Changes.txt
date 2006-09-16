@@ -1,3 +1,9 @@
+2006-09-16 Christian
+ PATCH: [ 1543687 ] Google AdSense setup
+  Re-inserted the ads, after change to our own site
+  Web: page.inc
+  Web\css: all.css
+
 2006-09-14 Tim
  PATCH: [ 1558862 ] Web: Tidying web-pages (Part 1)
   Web: index.php

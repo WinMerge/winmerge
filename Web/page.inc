@@ -137,6 +137,9 @@
       $temp .= "  <div id=\"nav\">\n";
       $temp .= $this->getMenu();
       $temp .= "  </div>\n";
+      $temp .= "  <div id=\"ads\">\n";
+      $temp .= $this->getAds();
+      $temp .= "  </div>\n";
       $temp .= "  <div id=\"content\">\n";
       print($temp);
     }
@@ -150,6 +153,30 @@
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
       print($temp);
+    }
+
+    /**
+     * get the right side ads to display on the page
+     *
+     */
+    function getAds() {
+      $temp = "<script type=\"text/javascript\"><!--\n";
+      $temp .= "google_ad_client = \"pub-1411904495533584\";\n";
+      $temp .= "google_ad_width = 728;\n";
+      $temp .= "google_ad_height = 90;\n";
+      $temp .= "google_ad_format = \"728x90_as\";\n";
+      $temp .= "google_ad_type = \"text\";\n";
+      $temp .= "google_ad_channel =\"\";\n";
+      $temp .= "google_color_border = \"FFCC00\";\n";
+      $temp .= "google_color_bg = \"FFFFCC\";\n";
+      $temp .= "google_color_link = \"0000FF\";\n";
+      $temp .= "google_color_text = \"000000\";\n";
+      $temp .= "google_color_url = \"008000\";\n";
+      $temp .= "//--></script>\n";
+      $temp .= "<script type=\"text/javascript\"\n";
+      $temp .= "  src=\"http://pagead2.googlesyndication.com/pagead/show_ads.js\">\n";
+      $temp .= "</script>\n";
+      return $temp;
     }
 
     /**
@@ -292,8 +319,13 @@
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
       $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://sourceforge.net/projects/winmerge\">\n";
-      $temp .= "    <img src=\"/images/sourceforge.png\" alt=\"SourceForge Logo\" border=\"0\">\n";
+      $temp .= "  <a href=\"http://validator.w3.org/check/referer\">\n";
+      $temp .= "    <img src=\"/images/valid-html401.gif\" alt=\"Valid HTML 4.01!\" width=\"88\" height=\"31\" border=\"0\">\n";
+      $temp .= "  </a>\n";
+      $temp .= "</p>\n";
+      $temp .= "<p align=\"center\">\n";
+      $temp .= "  <a href=\"http://jigsaw.w3.org/css-validator\">\n";
+      $temp .= "    <img src=\"/images/valid-css.gif\" alt=\"Valid CSS!\" width=\"88\" height=\"31\" border=\"0\">\n";
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
       return $temp;
