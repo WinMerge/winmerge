@@ -11,6 +11,8 @@ Add new items to top.
   Src: OpenDlg.cpp
  Fix typecasting warnings
   Src: locality.cpp locality.h MergeDoc.cpp
+ Remove unused variable
+  Src: FileActionScript.cpp
 
 2006-09-15 Kimmo
  BUG: [ 1558839 ] ShellExtension does not compile as 64-bit

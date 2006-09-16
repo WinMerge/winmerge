@@ -87,7 +87,6 @@ int FileActionScript::GetActionItemCount() const
  */
 int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
 {
-	CMainFrame *pMf = dynamic_cast<CMainFrame*>(AfxGetMainWnd());
 	CString strErr;
 	int retVal = SCRIPT_SUCCESS;
 
