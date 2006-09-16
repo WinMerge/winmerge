@@ -44,7 +44,7 @@
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered
-under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU Public License</a>.
+under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>.
 As such, your main form of support for WinMerge will be through
 subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support">WinMerge-support mailing list</a>.
 In addition, SourceForge has bug tracking capabilities, so please report any
@@ -67,8 +67,8 @@ to support the continued development of WinMerge.</p>
 <h2>Developers</h2>
 <p>WinMerge is an open source project, which means that the program is maintained and developed by
 volunteers. If you''re interested in contributing work to the project, see our <a href="developer/needed.php">developer page</a>
-for forther information on how you may contribute.</p>
-<p>In addition, WinMerge is translated into a number of different languages. <a href="developer/translate.php">Click here for more information on translating WinMerge</a> into your own language.</p>
+for further information on how you may contribute.</p>
+<p>In addition, WinMerge is translated into a number of different languages. See our <a href="developer/translate.php">information on translating WinMerge</a> into your own language.</p>
 <p><a href="developer/index.php">The WinMerge Development Team</a></p>
 <?php
   $page->printFoot();

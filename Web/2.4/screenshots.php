@@ -12,7 +12,7 @@
 <p><img src="images/dir-compare-status.gif" alt="Compare Statepane"></p>
 <p>Statuspane always shows current status of compare so it can be used to verify there are no different files left to handle.</p>
 <p><img src="images/dir-compare.gif" alt="Directory Comparison Results"></p>
-<p>Directory compare shows all files and subdirectries found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files and subdirectories. Directory compare view can be versatile customised.</p>
+<p>Directory compare shows all files and subdirectories found from compared directories as list. Directory compare allows synchronising directories by copying and deleting files and subdirectories. Directory compare view can be versatile customised.</p>
 <p><img src="images/line-diff.gif" alt="Highlight Line Diff"></p>
 <p>Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines.</p>
 <?php

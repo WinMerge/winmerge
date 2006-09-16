@@ -5,6 +5,7 @@
   $page->printHead('WinMerge: Links', WINMERGE_USR);
 ?>
 <h2>Links</h2>
+<p>Here is a collection of links to tools and reference material that we find is generally useful when you work with WinMerge.</p>
 <h3>Tools</h3>
 <dl>
   <dt><a href="http://www.7-zip.org/">7-Zip</a></dt>
