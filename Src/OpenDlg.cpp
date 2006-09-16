@@ -446,8 +446,6 @@ void COpenDlg::UpdateButtonStates()
  */
 BOOL COpenDlg::SelectFile(CString& path, LPCTSTR initialPath) 
 {
-	BOOL is_open = TRUE; // this method is only for common file open dialog
-
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 
