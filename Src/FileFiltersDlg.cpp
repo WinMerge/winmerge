@@ -499,7 +499,6 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 void FileFiltersDlg::UpdateFiltersList()
 {
 	int count = m_Filters->GetSize();
-	int listItems = m_listFilters.GetItemCount();
 
 	m_listFilters.DeleteAllItems();
 
