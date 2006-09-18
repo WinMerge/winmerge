@@ -1,3 +1,7 @@
+2006-09-18 Tim
+ PATCH: [ 1559508 ] Change kimmov's email address
+  Web\developer: developers.xml
+
 2006-09-16 Christian
  PATCH: [ 1543687 ] Google AdSense setup
   Re-inserted the ads, after change to our own site
