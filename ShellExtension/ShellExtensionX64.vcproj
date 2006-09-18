@@ -13,29 +13,33 @@
 	</Platforms>
 	<Configurations>
 		<Configuration
-			Name="Unicode Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeDebug"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeDebug"
+			Name="Debug X64|Win32"
+			OutputDirectory=".\..\BuildTmp\ShellExtensionX64Debug"
+			IntermediateDirectory=".\..\BuildTmp\ShellExtensionX64Debug"
 			ConfigurationType="2"
 			UseOfMFC="2"
+			UseOfATL="1"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="1">
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../src/common"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
-				BasicRuntimeChecks="3"
+				PreprocessorDefinitions="WIN64;_DEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
+				BasicRuntimeChecks="0"
+				SmallerTypeCheck="FALSE"
 				RuntimeLibrary="3"
+				BufferSecurityCheck="TRUE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeDebug/"
+				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtension.pch"
+				AssemblerListingLocation=".\..\BuildTmp\ShellExtensionX64Debug/"
+				ObjectFile=".\..\BuildTmp\ShellExtensionX64Debug/"
+				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtensionX64Debug/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
+				Detect64BitPortabilityProblems="TRUE"
+				DebugInformationFormat="3"
 				CompileAs="0"/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -52,14 +56,17 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Outputs="$(OutDir)\regsvr32.trg"/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeDebug\ShellExtensionU.dll"
+				AdditionalOptions="/machine:AMD64"
+				AdditionalDependencies="bufferoverflowU.lib"
+				OutputFile="..\Build\ShellExtensionX64Debug\ShellExtensionX64.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
-				ModuleDefinitionFile=".\ShellExtensionU.def"
+				ModuleDefinitionFile=".\ShellExtensionX64.def"
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.pdb"
+				ProgramDatabaseFile=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtensionU.pdb"
 				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeDebug/ShellExtensionU.lib"
+				OptimizeForWindows98="1"
+				ImportLibrary=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtensionU.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -87,365 +94,9 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
 		</Configuration>
 		<Configuration
-			Name="Unicode Release MinSize|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
-			ConfigurationType="2"
-			UseOfMFC="2"
-			UseOfATL="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="1">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="1"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../src/common"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
-				StringPooling="TRUE"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"
-				Description="Performing registration"
-				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT
-if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT
-regsvr32 /s /c &quot;$(TargetPath)&quot;
-echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
-goto end
-:NOTNT
-echo Warning : Cannot register Unicode DLL on Windows 95
-:end
-"
-				Outputs="$(OutDir)\regsvr32.trg"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				ModuleDefinitionFile=".\ShellExtensionU.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.pdb"
-				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtensionU.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize/ShellExtension.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1033"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Unicode Release MinDependency|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
-			ConfigurationType="2"
-			UseOfMFC="2"
-			UseOfATL="1"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="1">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="1"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../src/common"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
-				StringPooling="TRUE"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"
-				Description="Performing registration"
-				CommandLine="if &quot;%OS%&quot;==&quot;&quot; goto NOTNT
-if not &quot;%OS%&quot;==&quot;Windows_NT&quot; goto NOTNT
-regsvr32 /s /c &quot;$(TargetPath)&quot;
-echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
-goto end
-:NOTNT
-echo Warning : Cannot register Unicode DLL on Windows 95
-:end
-"
-				Outputs="$(OutDir)\regsvr32.trg"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				ModuleDefinitionFile=".\ShellExtensionU.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.pdb"
-				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtensionU.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency/ShellExtension.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1033"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release MinDependency|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinDependency"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinDependency"
-			ConfigurationType="2"
-			UseOfMFC="2"
-			UseOfATL="1"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="1"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../src/common"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
-				StringPooling="TRUE"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"
-				Description="Performing registration"
-				CommandLine="regsvr32 /s /c &quot;$(TargetPath)&quot;
-echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
-"
-				Outputs="$(OutDir)\regsvr32.trg"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				ModuleDefinitionFile=".\ShellExtension.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.pdb"
-				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__ReleaseMinDependency/ShellExtension.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1033"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Release MinSize|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinSize"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__ReleaseMinSize"
-			ConfigurationType="2"
-			UseOfMFC="2"
-			UseOfATL="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="1"
-				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../src/common"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
-				StringPooling="TRUE"
-				RuntimeLibrary="2"
-				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"
-				Description="Performing registration"
-				CommandLine="regsvr32 /s /c &quot;$(TargetPath)&quot;
-echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
-"
-				Outputs="$(OutDir)\regsvr32.trg"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeRelease\ShellExtension.dll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				ModuleDefinitionFile=".\ShellExtension.def"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.pdb"
-				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__ReleaseMinSize/ShellExtension.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="NDEBUG"
-				Culture="1033"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
-			Name="Debug|Win32"
-			OutputDirectory=".\..\BuildTmp\ShellExtension__Debug"
-			IntermediateDirectory=".\..\BuildTmp\ShellExtension__Debug"
-			ConfigurationType="2"
-			UseOfMFC="2"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
-			<Tool
-				Name="VCCLCompilerTool"
-				Optimization="0"
-				AdditionalIncludeDirectories="../src/common"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
-				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
-				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pch"
-				AssemblerListingLocation=".\..\BuildTmp\ShellExtension__Debug/"
-				ObjectFile=".\..\BuildTmp\ShellExtension__Debug/"
-				ProgramDataBaseFileName=".\..\BuildTmp\ShellExtension__Debug/"
-				WarningLevel="3"
-				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="4"
-				CompileAs="0"/>
-			<Tool
-				Name="VCCustomBuildTool"
-				Description="Performing registration"
-				CommandLine="regsvr32 /s /c &quot;$(TargetPath)&quot;
-echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
-"
-				Outputs="$(OutDir)\regsvr32.trg"/>
-			<Tool
-				Name="VCLinkerTool"
-				OutputFile="..\Build\MergeDebug\ShellExtension.dll"
-				LinkIncremental="1"
-				SuppressStartupBanner="TRUE"
-				ModuleDefinitionFile=".\ShellExtension.def"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.pdb"
-				SubSystem="2"
-				ImportLibrary=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.lib"
-				TargetMachine="1"/>
-			<Tool
-				Name="VCMIDLTool"
-				TypeLibraryName=".\..\BuildTmp\ShellExtension__Debug/ShellExtension.tlb"
-				HeaderFileName=""/>
-			<Tool
-				Name="VCPostBuildEventTool"/>
-			<Tool
-				Name="VCPreBuildEventTool"/>
-			<Tool
-				Name="VCPreLinkEventTool"/>
-			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="_DEBUG"
-				Culture="1033"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
-		</Configuration>
-		<Configuration
 			Name="Release X64|Win32"
-			OutputDirectory="$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory=".\..\BuildTmp\ShellExtensionX64/"
+			IntermediateDirectory=".\..\BuildTmp\ShellExtensionX64/"
 			ConfigurationType="2"
 			UseOfMFC="2"
 			UseOfATL="1"
@@ -458,7 +109,7 @@ echo regsvr32 exec. time &gt; &quot;$(OutDir)\regsvr32.trg&quot;
 				AdditionalIncludeDirectories="../src/common"
 				PreprocessorDefinitions="WIN64;NDEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
 				StringPooling="TRUE"
-				ExceptionHandling="FALSE"
+				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="FALSE"
 				EnableFunctionLevelLinking="TRUE"
@@ -533,53 +184,12 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="..\src\common\coretools.cpp">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -594,53 +204,12 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="..\src\common\RegKey.cpp">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -655,53 +224,12 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="ShellExtension.cpp">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -716,19 +244,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="ShellExtension.def">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCustomBuildTool"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCustomBuildTool"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCCustomBuildTool"/>
@@ -743,52 +259,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="ShellExtension.idl">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
-					<Tool
-						Name="VCMIDLTool"
-						GenerateStublessProxies="TRUE"
-						TypeLibraryName=".\ShellExtension.tlb"
-						HeaderFileName="ShellExtension.h"
-						InterfaceIdentifierFileName="ShellExtension_i.c"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCMIDLTool"
-						GenerateStublessProxies="TRUE"
-						TypeLibraryName=".\ShellExtension.tlb"
-						HeaderFileName="ShellExtension.h"
-						InterfaceIdentifierFileName="ShellExtension_i.c"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCMIDLTool"
-						GenerateStublessProxies="TRUE"
-						TypeLibraryName=".\ShellExtension.tlb"
-						HeaderFileName="ShellExtension.h"
-						InterfaceIdentifierFileName="ShellExtension_i.c"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCMIDLTool"
-						GenerateStublessProxies="TRUE"
-						TypeLibraryName=".\ShellExtension.tlb"
-						HeaderFileName="ShellExtension.h"
-						InterfaceIdentifierFileName="ShellExtension_i.c"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCMIDLTool"
-						GenerateStublessProxies="TRUE"
-						TypeLibraryName=".\ShellExtension.tlb"
-						HeaderFileName="ShellExtension.h"
-						InterfaceIdentifierFileName="ShellExtension_i.c"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCMIDLTool"
 						GenerateStublessProxies="TRUE"
@@ -808,80 +279,16 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			</File>
 			<File
 				RelativePath="ShellExtensionU.def">
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCustomBuildTool"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCustomBuildTool"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCCustomBuildTool"/>
-				</FileConfiguration>
 			</File>
 			<File
 				RelativePath="StdAfx.cpp">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
-						BasicRuntimeChecks="3"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						UsePrecompiledHeader="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
@@ -898,53 +305,12 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="WinMergeShell.cpp">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
-						BasicRuntimeChecks="3"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_DLL;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -982,45 +348,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="ShellExtension.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32">
+					Name="Debug X64|Win32">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1034,51 +365,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionBrazilian.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1093,51 +384,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionBulgarian.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1152,51 +403,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionCatalan.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1211,51 +422,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionChineseSimplified.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1270,51 +441,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionChineseTraditional.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1329,51 +460,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionCzech.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1388,51 +479,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionDanish.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1447,51 +498,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionDutch.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1506,51 +517,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionFrench.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1565,51 +536,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionGerman.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1624,51 +555,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionHungarian.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1683,51 +574,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionItalian.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1742,51 +593,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionJapanese.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1801,51 +612,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionKorean.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1860,51 +631,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionNorwegian.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1919,51 +650,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionPolish.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -1978,51 +669,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionRussian.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2037,51 +688,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionSlovak.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2096,51 +707,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionSpanish.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2155,51 +726,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionSwedish.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2214,51 +745,11 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			<File
 				RelativePath="Languages\ShellExtensionTurkish.rc">
 				<FileConfiguration
-					Name="Unicode Debug|Win32"
+					Name="Debug X64|Win32"
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
 						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Unicode Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinDependency|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release MinSize|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
-						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32"
-					ExcludedFromBuild="TRUE">
-					<Tool
-						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions=""
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration

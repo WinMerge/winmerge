@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-18 Kimmo
+ Cleanup 64-bit ShellExtension projectfile, add a debug target
+  ShellExtension: ShellExtensionX64.vcproj
+
 2006-09-16 Kimmo
  PATCH: [ 1559619 ] 64-bit shellextension project file
   ShellExtension new files: ShellExtensionX64.def ShellExtensionX64.vcproj
