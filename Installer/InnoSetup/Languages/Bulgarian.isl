@@ -303,8 +303,9 @@ SharedFileLocationLabel=Местоположение:
 WizardUninstalling=Ход на деинсталирането
 StatusUninstalling=%1 се деинсталира...
 
-; The custom messages below aren't used by Setup itself, but if you make
-; use of them in your scripts, you'll want to translate them.
+; Потребителските съобщения по-долу не се ползват от самия инсталатор, но
+; ако ползвате такива във ваши скриптове, вероятно бихте искали да ги
+; преведете.
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages

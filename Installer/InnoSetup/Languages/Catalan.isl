@@ -1,8 +1,8 @@
 ; *** Inno Setup 5.1.0+ Catalan messages ***
 ;
-; Translated by Carles Millan (inno@carlesmillan.com)
+; Translated by Carles Millan (email: carles at carlesmillan.cat)
 ;
-; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.10 2005/03/24 10:34:27 carles Exp $
+; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.12 2006/09/11 19:13:58 carles Exp $
 
 [LangOptions]
 
@@ -16,7 +16,7 @@ LanguageCodePage=1252
 SetupAppTitle=Instal·lació
 SetupWindowTitle=Instal·lació - %1
 UninstallAppTitle=Desinstal·lació
-UninstallAppFullTitle=Desinstal·lar %1
+UninstallAppFullTitle=Desinstal·la %1
 
 ; *** Misc. common
 InformationTitle=Informació
@@ -41,48 +41,48 @@ WinVersionTooLowError=Aquest programa requereix %1 versió %2 o posterior.
 WinVersionTooHighError=Aquest programa no pot ser instal·lat sota %1 versió %2 o posterior.
 AdminPrivilegesRequired=Cal que tingueu privilegis d'administrador per poder instal·lar aquest programa.
 PowerUserPrivilegesRequired=Cal que accediu com a administrador o com a membre del grup Power Users en instal·lar aquest programa.
-SetupAppRunningError=El programa d'instal·lació ha detectat que %1 s'està executant actualment.%n%nSi us plau, tanqueu el programa i premeu Acceptar per a continuar o Cancel·lar per a sortir.
-UninstallAppRunningError=El programa de desinstal·lació ha detectat que %1 s'està executant en aquest moment.%n%nSi us plau, tanqueu el programa i premeu Acceptar per a continuar o Cancel·lar per a sortir.
+SetupAppRunningError=El programa d'instal·lació ha detectat que %1 s'està executant actualment.%n%nSi us plau, tanqueu el programa i premeu Accepta per a continuar o Cancel·la per a sortir.
+UninstallAppRunningError=El programa de desinstal·lació ha detectat que %1 s'està executant en aquest moment.%n%nSi us plau, tanqueu el programa i premeu Accepta per a continuar o Cancel·la per a sortir.
 
 ; *** Misc. errors
 ErrorCreatingDir=El programa d'instal·lació no ha pogut crear la carpeta "%1"
 ErrorTooManyFilesInDir=No s'ha pogut crear un fitxer a la carpeta "%1" perquè conté massa fitxers
 
 ; *** Setup common messages
-ExitSetupTitle=Sortir
+ExitSetupTitle=Surt
 ExitSetupMessage=La instal·lació no s'ha completat. Si sortiu ara, el programa no serà instal·lat.%n%nPer a completar-la podreu tornar a executar el programa d'instal·lació quan vulgueu.%n%nVoleu sortir-ne?
 AboutSetupMenuItem=&Sobre la instal·lació...
 AboutSetupTitle=Sobre la instal·lació
 AboutSetupMessage=%1 versió %2%n%3%n%nPàgina web de %1:%n%4
 AboutSetupNote=
-TranslatorNote=Catalan translation by Carles Millan (inno@carlesmillan.com)
+TranslatorNote=Catalan translation by Carles Millan (carles at carlesmillan.cat)
 
 ; *** Buttons
 ButtonBack=< &Enrera
 ButtonNext=&Següent >
-ButtonInstall=&Instal·lar
-ButtonOK=Acceptar
-ButtonCancel=Cancel·lar
+ButtonInstall=&Instal·la
+ButtonOK=Accepta
+ButtonCancel=Cancel·la
 ButtonYes=&Sí
 ButtonYesToAll=Sí a &tot
 ButtonNo=&No
 ButtonNoToAll=N&o a tot
-ButtonFinish=&Finalitzar
-ButtonBrowse=&Explorar...
-ButtonWizardBrowse=&Cercar...
-ButtonNewFolder=Crear &nova carpeta
+ButtonFinish=&Finalitza
+ButtonBrowse=&Explora...
+ButtonWizardBrowse=&Cerca...
+ButtonNewFolder=Crea &nova carpeta
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Trieu idioma
 SelectLanguageLabel=Trieu idioma a emprar durant la instal·lació:
 
 ; *** Common wizard text
-ClickNext=Premeu Següent per a continuar o Cancel·lar per a abandonar la instal·lació.
+ClickNext=Premeu Següent per a continuar o Cancel·la per a abandonar la instal·lació.
 BeveledLabel=
 
 ; *** "Welcome" wizard page
 BrowseDialogTitle=Trieu una carpeta
-BrowseDialogLabel=Trieu la carpeta de destinació i premeu Acceptar.
+BrowseDialogLabel=Trieu la carpeta de destinació i premeu Accepta.
 NewFolderName=Nova carpeta
 WelcomeLabel1=Benvingut a l'assistent d'instal·lació de [name]
 WelcomeLabel2=Aquest programa instal·larà [name/ver] al vostre ordinador.%n%nÉs molt recomanable que abans de continuar tanqueu tots els altres programes oberts, per tal d'evitar conflictes durant el procés d'instal·lació.
@@ -121,7 +121,7 @@ UserInfoNameRequired=Cal que hi entreu un nom
 WizardSelectDir=Trieu Carpeta de Destinació
 SelectDirDesc=On s'ha d'instal·lar [name]?
 SelectDirLabel3=El programa d'instal·lació instal·larà [name] a la carpeta següent.
-SelectDirBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra capeta, premeu Cercar.
+SelectDirBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra capeta, premeu Cerca.
 DiskSpaceMBLabel=Aquest programa necessita un mínim de [mb] MB d'espai a disc.
 ToUNCPathname=La instal·lació no pot instal·lar el programa en una carpeta UNC. Si esteu  provant d'instal·lar-lo en xarxa, haureu d'assignar una lletra (D:, E:, etc...) al disc de destinació.
 InvalidPath=Cal donar una ruta completa amb lletra d'unitat, per exemple:%n%nC:\Aplicació%n%no bé una ruta UNC en la forma:%n%n\\servidor\compartit
@@ -159,18 +159,18 @@ SelectTasksLabel2=Trieu les tasques addicionals que voleu que siguin executades 
 WizardSelectProgramGroup=Trieu la carpeta del Menú Inici
 SelectStartMenuFolderDesc=On cal situar els enllaços del programa?
 SelectStartMenuFolderLabel3=El programa d'instal·lació crearà l'accés directe al programa a la següent carpeta del menú d'Inici.
-SelectStartMenuFolderBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra carpeta, premeu Cercar.
+SelectStartMenuFolderBrowseLabel=Per a continuar, premeu Següent. Si desitgeu triar una altra carpeta, premeu Cerca.
 MustEnterGroupName=Cal que hi entreu un nom de carpeta.
 GroupNameTooLong=El nom de la carpeta o de la ruta és massa llarg.
 InvalidGroupName=El nom de la carpeta no és vàlid.
 BadGroupName=El nom del grup no pot contenir cap dels caràcters següents:%n%n%1
-NoProgramGroupCheck2=&No crear una carpeta al Menú Inici
+NoProgramGroupCheck2=&No creïs una carpeta al Menú Inici
 
 ; *** "Ready to Install" wizard page
 WizardReady=Preparat per a instal·lar
 ReadyLabel1=El programa d'instal·lació està preparat per a iniciar la instal·lació de [name] al vostre ordinador.
-ReadyLabel2a=Premeu Instal·lar per a continuar amb la instal·lació, o Enrera si voleu revisar o modificar les opcions d'instal·lació.
-ReadyLabel2b=Premeu Instal·lar per a continuar amb la instal·lació.
+ReadyLabel2a=Premeu Instal·la per a continuar amb la instal·lació, o Enrera si voleu revisar o modificar les opcions d'instal·lació.
+ReadyLabel2b=Premeu Instal·la per a continuar amb la instal·lació.
 ReadyMemoUserInfo=Informació de l'usuari:
 ReadyMemoDir=Carpeta de destinació:
 ReadyMemoType=Tipus d'instal·lació:
@@ -182,7 +182,7 @@ ReadyMemoTasks=Tasques addicionals:
 WizardPreparing=Preparant la instal·lació
 PreparingDesc=Preparant la instal·lació de [name] al vostre ordinador.
 PreviousInstallNotCompleted=La instal·lació o desinstal·lació anterior no s'ha dut a terme. Caldrà que reinicieu l'ordinador per a finalitzar aquesta instal·lació.%n%nDesprés de reiniciar l'ordinador, executeu aquest programa de nou per completar la instal·lació de [name].
-CannotContinue=La instal·lació no pot continuar. Si us plau, premeu Cancel·lar per a sortir.
+CannotContinue=La instal·lació no pot continuar. Si us plau, premeu Cancel·la per a sortir.
 
 ; *** "Installing" wizard page
 WizardInstalling=Instal·lant
@@ -192,20 +192,20 @@ InstallingLabel=Si us plau, espereu mentre s'instal·la [name] al vostre ordinado
 FinishedHeadingLabel=Completant l'assistent d'instal·lació de [name]
 FinishedLabelNoIcons=El programa ha finalitzat la instal·lació de [name] al vostre ordinador.
 FinishedLabel=El programa ha finalitzat la instal·lació de [name] al vostre ordinador. L'aplicació pot ser iniciada seleccionant les icones instal·lades.
-ClickFinish=Premeu Finalitzar per a sortir de la instal·lació.
+ClickFinish=Premeu Finalitza per a sortir de la instal·lació.
 FinishedRestartLabel=Per a completar la instal·lació de [name] cal reiniciar l'ordinador. Voleu fer-ho ara?
 FinishedRestartMessage=Per a completar la instal·lació de [name] cal reiniciar l'ordinador. Voleu fer-ho ara?
 ShowReadmeCheck=Sí, vull visualitzar el fitxer LLEGIUME.TXT
 YesRadio=&Sí, reiniciar l'ordinador ara
 NoRadio=&No, reiniciaré l'ordinador més tard
 ; used for example as 'Run MyProg.exe'
-RunEntryExec=Executar %1
+RunEntryExec=Executa %1
 ; used for example as 'View Readme.txt'
-RunEntryShellExec=Visualitzar %1
+RunEntryShellExec=Visualitza %1
 
 ; *** "Setup Needs the Next Disk" stuff
 ChangeDiskTitle=El programa d'instal·lació necessita el disc següent
-SelectDiskLabel2=Si us plau, introduiu el disc %1 i premeu Continuar.%n%nSi els fitxers d'aquest disc es poden trobar en una carpeta diferent de la indicada tot seguit, entreu-ne la ruta correcta o bé premeu Explorar.
+SelectDiskLabel2=Si us plau, introduiu el disc %1 i premeu Continua.%n%nSi els fitxers d'aquest disc es poden trobar en una carpeta diferent de la indicada tot seguit, entreu-ne la ruta correcta o bé premeu Explora.
 PathLabel=&Ruta:
 FileNotInDir2=El fitxer "%1" no s'ha pogut trobar a "%2". Si us plau, introduïu el disc correcte o trieu una altra carpeta.
 SelectDirectoryLabel=Si us plau, indiqueu on es troba el disc següent.
@@ -254,7 +254,7 @@ ErrorCreatingTemp=Hi ha hagut un error en crear un fitxer a la carpeta de destin
 ErrorReadingSource=Hi ha hagut un error en llegir el fitxer d'origen:
 ErrorCopying=Hi ha hagut un error en copiar un fitxer:
 ErrorReplacingExistingFile=Hi ha hagut un error en reemplaçar el fitxer existent:
-ErrorRestartReplace=Ha fallar reemplaçar:
+ErrorRestartReplace=Ha fallat reemplaçar:
 ErrorRenamingTemp=Hi ha hagut un error en reanomenar un fitxer a la carpeta de destinació:
 ErrorRegisterServer=No s'ha pogut registrar el DLL/OCX: %1
 ErrorRegisterServerMissingExport=No s'ha trobat l'exportador DllRegisterServer
@@ -297,9 +297,9 @@ OptionalFeatures=Característiques opcionals:
 CreateDesktopIcon=Crear una icona a l'&Escriptori
 CreateQuickLaunchIcon=Crear una icona a la &Barra de tasques
 ProgramOnTheWeb=%1 a Internet
-UninstallProgram=Desinstal·lar %1
-LaunchProgram=Obrir %1
-AssocFileExtension=&Associar %1 amb l'extensió de fitxer %2
+UninstallProgram=Desinstal·la %1
+LaunchProgram=Obre %1
+AssocFileExtension=&Associa %1 amb l'extensió de fitxer %2
 AssocingFileExtension=Associant %1 amb l'extensió de fitxer %2...
 
 ;Things we can also localize

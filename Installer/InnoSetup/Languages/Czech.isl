@@ -1,18 +1,25 @@
-; ******************************************************
-; ***                                                ***
-; *** Inno Setup version 5.1.0+ Czech messages       ***
-; ***                                                ***
-; *** Original Author:                               ***
-; ***                                                ***
-; ***   Ing. Ivo Bauer (bauer@ozm.cz)                ***
-; ***                                                ***
-; *** Contributors:                                  ***
-; ***                                                ***
-; ***   Lubos Stanek (lubek@users.sourceforge.net)   ***
-; ***                                                ***
-; ******************************************************
+; *******************************************************
+; ***                                                 ***
+; *** Inno Setup version 5.1.0+ Czech messages        ***
+; ***                                                 ***
+; *** Original Author:                                ***
+; ***                                                 ***
+; ***   Ivo Bauer (bauer@ozm.cz)                      ***
+; ***                                                 ***
+; *** Contributors:                                   ***
+; ***                                                 ***
+; ***   Lubos Stanek (lubek@users.sourceforge.net)    ***
+; ***   Vitezslav Svejdar (vitezslav.svejdar@cuni.cz) ***
+; ***                                                 ***
+; *******************************************************
 ;
-; $jrsoftware: issrc/Files/Languages/Czech.isl,v 1.16 2005/02/28 14:18:39 ibauer Exp $
+; Copyright (C) 1997-2005 Jordan Russell. All rights reserved.
+; Translations (C) 2002-2006 Original Author and Contributors. All rights reserved.
+;
+; The contents of this file are subject to the Inno Setup License (the "License").
+; You may obtain a copy of the License at http://www.jrsoftware.org/files/is/license.txt
+;
+; $jrsoftware: issrc/Files/Languages/Czech.isl,v 1.17 2006/05/04 09:50:07 mlaan Exp $
 
 [LangOptions]
 LanguageName=<010C>e<0161>tina
@@ -39,9 +46,9 @@ LdrCannotExecTemp=Nelze spustit soubor v doèasné složce. Prùvodce instalací bude
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nChyba %2: %3
-SetupFileMissing=Instalaèní složka neobsahuje soubor %1. Opravte prosím tuto chybu nebo si poøiïte novou kopii tohoto produktu.
-SetupFileCorrupt=Soubory prùvodce instalací jsou poškozeny. Poøiïte si prosím novou kopii tohoto produktu.
-SetupFileCorruptOrWrongVer=Soubory prùvodce instalací jsou poškozeny nebo se nesluèují s touto verzí prùvodce instalací. Opravte prosím tuto chybu nebo si poøiïte novou kopii tohoto produktu.
+SetupFileMissing=Instalaèní složka neobsahuje soubor %1. Opravte prosím tuto chybu nebo si opatøete novou kopii tohoto produktu.
+SetupFileCorrupt=Soubory prùvodce instalací jsou poškozeny. Opatøete si prosím novou kopii tohoto produktu.
+SetupFileCorruptOrWrongVer=Soubory prùvodce instalací jsou poškozeny nebo se nesluèují s touto verzí prùvodce instalací. Opravte prosím tuto chybu nebo si opatøete novou kopii tohoto produktu.
 NotOnThisPlatform=Tento produkt nelze spustit ve %1.
 OnlyOnThisPlatform=Tento produkt musí být spuštìn ve %1.
 OnlyOnTheseArchitectures=Tento produkt lze nainstalovat pouze ve verzích MS Windows s podporou architektury procesorù:%n%n%1
@@ -59,12 +66,12 @@ ErrorTooManyFilesInDir=Nelze vytvoøit soubor ve složce "%1", protože tato složka
 
 ; *** Setup common messages
 ExitSetupTitle=Ukonèit prùvodce instalací
-ExitSetupMessage=Instalace nebyla zcela dokonèena. Jestliže nyní ukonèíte prùvodce instalací, produkt nebude nainstalován.%n%nPrùvodce instalací mùžete znovu spustit kdykoliv jindy a dokonèit instalaci.%n%nChcete ukonèit prùvodce instalací?
+ExitSetupMessage=Instalace nebyla zcela dokonèena. Jestliže nyní prùvodce instalací ukonèíte, produkt nebude nainstalován.%n%nPrùvodce instalací mùžete znovu spustit kdykoliv jindy a instalaci dokonèit.%n%nChcete prùvodce instalací ukonèit?
 AboutSetupMenuItem=&O prùvodci instalací...
 AboutSetupTitle=O prùvodci instalací
 AboutSetupMessage=%1 verze %2%n%3%n%n%1 domovská stránka:%n%4
 AboutSetupNote=
-TranslatorNote=Czech translation maintained by Ing. Ivo Bauer (bauer@ozm.cz) and Lubos Stanek (lubek@users.sourceforge.net)
+TranslatorNote=Czech translation maintained by Ivo Bauer (bauer@ozm.cz), Lubos Stanek (lubek@users.sourceforge.net) and Vitezslav Svejdar (vitezslav.svejdar@cuni.cz)
 
 ; *** Buttons
 ButtonBack=< &Zpìt
@@ -162,7 +169,7 @@ ComponentsDiskSpaceMBLabel=Vybrané souèásti vyžadují nejménì [mb] MB místa na di
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Zvolte další úlohy
 SelectTasksDesc=Které další úlohy mají být provedeny?
-SelectTasksLabel2=Zvolte další úlohy, které mají být provedeny v prùbìhu instalace produktu [name] a pokraèujte klepnutím na tlaèítko Další.
+SelectTasksLabel2=Zvolte další úlohy, které mají být provedeny v prùbìhu instalace produktu [name], a pak pokraèujte klepnutím na tlaèítko Další.
 
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Vyberte složku v nabídce Start
@@ -190,7 +197,7 @@ ReadyMemoTasks=Další úlohy:
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Pøíprava k instalaci
 PreparingDesc=Prùvodce instalací pøipravuje instalaci produktu [name] na Váš poèítaè.
-PreviousInstallNotCompleted=Instalace/odinstalace pøedchozího produktu nebyla zcela dokonèena. Dokonèení tohoto procesu vyžaduje restart tohoto poèítaèe.%n%nPo restartování poèítaèe spuste znovu tohoto prùvodce instalací, aby bylo možné dokonèit instalaci produktu [name].
+PreviousInstallNotCompleted=Instalace/odinstalace pøedchozího produktu nebyla zcela dokonèena. Aby mohla být dokonèena, musíte restartovat Váš poèítaè.%n%nPo restartování Vašeho poèítaèe spuste znovu prùvodce instalací, aby bylo možné dokonèit instalaci produktu [name].
 CannotContinue=Prùvodce instalací nemùže pokraèovat. Ukonèete prosím prùvodce instalací klepnutím na tlaèítko Storno.
 
 ; *** "Installing" wizard page
@@ -214,14 +221,14 @@ RunEntryShellExec=Zobrazit %1
 
 ; *** "Setup Needs the Next Disk" stuff
 ChangeDiskTitle=Prùvodce instalací vyžaduje další disk
-SelectDiskLabel2=Vložte prosím disk %1 a klepnìte na OK.%n%nPokud se soubory na tomto disku nacházejí v jiné složce, než v té, která je zobrazena níže, pak zadejte správnou cestu nebo ji zvolte klepnutím na tlaèítko Procházet.
+SelectDiskLabel2=Vložte prosím disk %1 a klepnìte na OK.%n%nPokud se soubory na tomto disku nacházejí v jiné složce než v té, která je zobrazena níže, pak zadejte správnou cestu nebo ji zvolte klepnutím na tlaèítko Procházet.
 PathLabel=&Cesta:
 FileNotInDir2=Soubor "%1" nelze najít v "%2". Vložte prosím správný disk nebo zvolte jinou složku.
 SelectDirectoryLabel=Specifikujte prosím umístìní dalšího disku.
 
 ; *** Installation phase messages
 SetupAborted=Instalace nebyla zcela dokonèena.%n%nOpravte prosím chybu a spuste prùvodce instalací znovu.
-EntryAbortRetryIgnore=Akci zopakujete klepnutím na tlaèítko Opakovat. Akci vynecháte klepnutím na tlaèítko Pøeskoèit. Instalaci stornujete klepnutím na tlaèítko Pøerušit.
+EntryAbortRetryIgnore=Akci zopakujete klepnutím na tlaèítko Opakovat. Tento krok vynecháte klepnutím na tlaèítko Pøeskoèit. Instalaci stornujete klepnutím na tlaèítko Pøerušit.
 
 ; *** Installation status messages
 StatusCreateDirs=Vytváøejí se složky...
@@ -276,14 +283,14 @@ ErrorRestartingComputer=Prùvodci instalace se nepodaøilo restartovat Váš poèítaè
 ; *** Uninstaller messages
 UninstallNotFound=Soubor "%1" neexistuje. Produkt nelze odinstalovat.
 UninstallOpenError=Soubor "%1" nelze otevøít. Produkt nelze odinstalovat.
-UninstallUnsupportedVer=Prùvodci odinstalací se nepodaøilo rozpoznat formát souboru obsahujícího informace k odinstalaci produktu "%1". Produkt nelze odinstalovat
+UninstallUnsupportedVer=Formát souboru se záznamy k odinstalaci produktu "%1" nebyl touto verzí prùvodce odinstalací rozpoznán. Produkt nelze odinstalovat
 UninstallUnknownEntry=V souboru obsahujícím informace k odinstalaci produktu byla zjištìna neznámá položka (%1)
-ConfirmUninstall=Jste si opravdu jisti, že chcete odinstalovat produkt %1 a všechny jeho souèásti?
+ConfirmUninstall=Jste si opravdu jisti, že chcete produkt %1 a všechny jeho souèásti odinstalovat?
 UninstallOnlyOnWin64=Tento produkt lze odinstalovat pouze v 64-bitových verzích MS Windows.
 OnlyAdminCanUninstall=K odinstalaci tohoto produktu musíte být pøihlášeni s právy administrátora.
 UninstallStatusLabel=Èekejte prosím dokud produkt %1 nebude odinstalován z Vašeho poèítaèe.
-UninstalledAll=Produkt %1 byl úspìšnì odinstalován z Vašeho poèítaèe.
-UninstalledMost=Produkt %1 byl odinstalován z Vašeho poèítaèe.%n%nNìkteré jeho souèásti se však nepodaøilo odinstalovat. Ty lze odstranit ruènì.
+UninstalledAll=Produkt %1 byl z Vašeho poèítaèe úspìšnì odinstalován.
+UninstalledMost=Produkt %1 byl odinstalován.%n%nNìkteré jeho souèásti se odinstalovat nepodaøilo. Mùžete je však odstranit ruènì.
 UninstalledAndNeedsRestart=K dokonèení odinstalace produktu %1 je nezbytné, aby prùvodce odinstalací restartoval Váš poèítaè.%n%nChcete jej nyní restartovat?
 UninstallDataCorrupted=Soubor "%1" je poškozen. Produkt nelze odinstalovat
 
