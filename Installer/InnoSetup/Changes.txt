@@ -1,3 +1,8 @@
+2006-09-18 Kimmo
+ Synchronize language files from upstream (http://www.jrsoftware.org/files/istrans/)
+  InnoSetup/Languages: Bulgarian.isl Catalan.isl Czech.isl Italian.isl Japanese.isl
+   Slovak.isl Spanish.isl Turkish.isl
+
 2006-09-13 Kimmo
  PATCH: [ 1557892 ] Updated Swedish.isl InnoSetup translation
   Submitted by Hans Eriksson
