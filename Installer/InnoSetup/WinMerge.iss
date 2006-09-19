@@ -3,41 +3,28 @@
 ;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
-; Tools Needed To Compile:  Inno Setup 5.1.4+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.4+(http://www.jrsoftware.org/isdl.php)
+; Tools Needed To Compile:  Inno Setup 5.1.7+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.7+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
 ;Directly Dependant Files:  Because this is an installer. It would be difficult to list and maintain each of the files referenced
-;                           throughout the script in the header.  If you search this plain text script for a particular file in our CVS and it
+;                           throughout the script in the header.  If you search this plain text script for a particular file in our Subversio repository and it
 ;                           doesn't appear then this script is not directly dependant on that file.
 ;Compilation Instructions:  1.  Open this file in Inno Setup or ISTool
 ;                           2.  Make sure Compression=LZMA/Ultra, InternalCompressLevel=Ultra, and SolidCompression=True these values are lowered during
 ;                               development to speed up compilation, however at release we want the intaller to be as strong as possible.
-;                           3.  Compile the script:
+;                           3. Check all files are present:
+;                                   -From ISTool Click
+;                           4.  Compile the script: "Project" --> "Verify Files..."
 ;                                   -From Inno Setup "Click "Build" --> "Compile"
 ;                                   -From ISTool Click "Project" --> "Compile Setup"
-;                           4.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
+;                           5.  The compiled installer will appear in the \InnoSetup\Output\ directory at currently should be around 1.5MBs in size.
 ;
 ; Installer To Do List:
-; Localization
-; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
-; #  Seier will need to apply this {#AppVersion} directive to all localizations:
-;        English.SetupAppTitle=Setup - WinMerge {#AppVersion}
-;
-; Bugs & Other Priority Items:
-; #  Add the Windows Scripting Host if the user chooses the plugins (*.SCT)
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
 ; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
 
 ; #  Display integration options in gray rather than hiding them if the user doesn't have the application in question installed
-; #  Distribute AppHelp.dll since it's required by WinMerge.exe, ShellExtension.dll, Merge7zU311.zip
-; #  Only display TortoiseCVS option if the user has it installed
 ; #  We need to ask those that have the RCLLocalization.dll in their plugins folder if they actually want it, their answer will need to be stored in the registry
 ; #  Write code to detect "\Programs\WinMerge\WinMerge" type start menu installs
-;
-; #  Application Integration:
-; #  We need to backup the previously integrated viewer in TortoiseCVS, at uninstallation ([UninstallRun] Regedit -S Tortoise.reg)
-;    or when the user deselects it this will need to be uninstalled
-; #  We need to add support for Tortoises' SubVersion program mimicking our support settings for TortoiseCVS if possible
-; #  We need to determine if our application can cooperate with WinCVS and if so how
 ;
 ; Things that make the user's life easier:
 ; #  Create instructions and a sample language file using the Inno Setup Translator Tool (http://www2.arnes.si/~sopjsimo/translator.html)
@@ -325,11 +312,11 @@ Name: {app}; Flags: uninsalwaysuninstall
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core
+Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core; Check: not IsWin64
 
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
-Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01
+Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01; Check: not IsWin64
 
 ; Icon for projectfiles
 Source: MergeProject.ico; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -346,8 +333,10 @@ Source: Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneverun
 Source: Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 ; end VC system files
 
-Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0
-Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4
+Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
+Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
+; 64-bit version of ShellExtension
+Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 Source: ..\..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
