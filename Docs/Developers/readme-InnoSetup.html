@@ -91,6 +91,12 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
      <li><code>WinMergeU.exe.Manifest</code></li>
     </ul>
    </li>
+   <li>
+    <code>ShellExtensionX64/</code>
+    <ul>
+      <li><code>ShellExtensionX64.dll</code></li>
+    </ul>
+   </li>
   </ul>
  </li>
  <li>
@@ -118,6 +124,14 @@ that's not subject of this document, refer to <a href="readme-developers.html">r
   </ul>
  </li>
 </ul>
+
+<p><strong>NOTE</strong><br>
+If you don't need or can't compile <code>ShellExtensionX64.dll</code> component,
+comment or remove line:<pre>
+; 64-bit version of ShellExtension
+Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; [...]
+</pre>
+from <code>WinMerge.iss</code></p>
 
 <h3>Running Inno Setup to create installer</h3>
 

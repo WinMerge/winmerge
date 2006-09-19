@@ -1,3 +1,7 @@
+2006-09-19 Kimmo
+ Add ShellExtensionX64.dll to installer doc
+  Developers: readme-InnoSetup.html
+
 2006-09-16 Kimmo
  PATCH: [ 1559614 ] Readme: building 64-bit shellextension
   Developers: readme-developers.html
