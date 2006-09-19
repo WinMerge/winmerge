@@ -7,6 +7,9 @@ Add new items to top.
   Src: FileActionScript.cpp
  PATCH: [ 1561008 ] Warning fix for FileActionScript
   Src: DirDoc.cpp
+ PATCH: [ 1561080 ] Cleanup for loglevel definition
+  Src: DirDoc.cpp DirScan.cpp MainFrm.cpp Plugins.cpp StdAfx.cpp
+  Src/Common: LogFile.cpp LogFile.h
 
 2006-09-18 Kimmo
  Cleanup 64-bit ShellExtension projectfile, add a debug target

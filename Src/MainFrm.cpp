@@ -228,9 +228,9 @@ CMainFrame::CMainFrame()
 		gLog.SetFile(_T("WinMerge.log"));
 
 		if (logging == 1)
-			gLog.SetMaskLevel(LOGLEVEL::LALL);
+			gLog.SetMaskLevel(CLogFile::LALL);
 		else if (logging == 2)
-			gLog.SetMaskLevel(LOGLEVEL::LERROR | LOGLEVEL::LWARNING);
+			gLog.SetMaskLevel(CLogFile::LERROR | CLogFile::LWARNING);
 	}
 
 	m_pSyntaxColors = new SyntaxColors();
@@ -1188,7 +1188,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(paths, bRecurse, pTempPathContext);
-			gLog.Write(LOGLEVEL::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
+			gLog.Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
 				strLeft, strRight);
 
 			pDirDoc->SetReadOnly(TRUE, bROLeft);
@@ -1203,7 +1203,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
-		gLog.Write(LOGLEVEL::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
+		gLog.Write(CLogFile::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
 			strLeft, strRight);
 		
 		FileLocation filelocLeft(strLeft);
@@ -2172,7 +2172,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		files[1] = files[0];
 	}
 
-	gLog.Write(LOGLEVEL::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
+	gLog.Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
 		files[0], files[1]);
 
 	// Check if they dropped a project file

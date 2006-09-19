@@ -577,7 +577,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 
 	gLog.Write
 	(
-		LOGLEVEL::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
+		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
 		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
 	);
 	pCtxt->AddDiff(di);
@@ -633,7 +633,7 @@ static void AddToList(const CString & sLeftDir, const CString & sRightDir, const
 
 	gLog.Write
 	(
-		LOGLEVEL::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
+		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
 		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
 	);
 	pCtxt->m_pCompareStats->IncreaseTotalItems();

@@ -558,7 +558,7 @@ static CStringArray & LoadTheScriptletList()
 		if (IsWindowsScriptThere())
 			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
 		else
-			gLog.Write(LOGLEVEL::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
+			gLog.Write(CLogFile::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
 		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
 		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;

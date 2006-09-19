@@ -11,28 +11,6 @@
 #define AFX_LOGFILE_H__803A3641_FE03_11D0_95CD_444553540000__INCLUDED_
 
 /**
- * @brief Messagelevels for log writing.
- */
-struct LOGLEVEL
-{
-	enum 
-	{
-		LALL = -1, /**< All messages written */
-		LERROR = 0x1, /**< Error messages */
-		LWARNING = 0x2, /**< Warning messages */ 
-		LNOTICE = 0x4, /**< Important messages */
-		LMSG = 0x8, /**< Normal messages */
-		LCODEFLOW = 0x10, /**< Code flow messages */
-		LCOMPAREDATA = 0x20, /**< Compare data (dump) */
-
-		/* These flags are not loglevels, but have special meaning */
-		LOSERROR = 0x1000, /**< Append description of last error */
-		LSILENTVERIFY = 0x2000, /**< No VERIFY popup, please */
-		LDEBUG = 0x4000,  /**< Append message to debug window as well */
-	};
-};
-
-/**
  * @brief Class for writing log files.
  *
  * Allows setting masks and levels for messages. They are used for
@@ -54,6 +32,23 @@ struct LOGLEVEL
 class CLogFile  
 {
 public:
+	/** @brief Messagelevels for log writing. */
+	enum 
+	{
+		LALL = -1, /**< All messages written */
+		LERROR = 0x1, /**< Error messages */
+		LWARNING = 0x2, /**< Warning messages */ 
+		LNOTICE = 0x4, /**< Important messages */
+		LMSG = 0x8, /**< Normal messages */
+		LCODEFLOW = 0x10, /**< Code flow messages */
+		LCOMPAREDATA = 0x20, /**< Compare data (dump) */
+
+		/* These flags are not loglevels, but have special meaning */
+		LOSERROR = 0x1000, /**< Append description of last error */
+		LSILENTVERIFY = 0x2000, /**< No VERIFY popup, please */
+		LDEBUG = 0x4000,  /**< Append message to debug window as well */
+	};
+
 	CLogFile(LPCTSTR szLogName = NULL, LPCTSTR szLogPath = NULL,
 		BOOL bDeleteExisting = FALSE);
 	virtual ~CLogFile();

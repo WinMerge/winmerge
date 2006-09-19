@@ -34,7 +34,7 @@ CLogFile gLog;
 /** @brief Report DeleteFile() failure to gLog */
 UINT gLog::DeleteFileFailed(LPCTSTR path)
 {
-	return::gLog.Write(LOGLEVEL::LERROR|LOGLEVEL::LOSERROR|LOGLEVEL::LDEBUG, _T("DeleteFile(%s) failed: "), path);
+	return::gLog.Write(CLogFile::LERROR|CLogFile::LOSERROR|CLogFile::LDEBUG, _T("DeleteFile(%s) failed: "), path);
 }
 
 // Convert any negative inputs to negative char equivalents
@@ -133,7 +133,7 @@ void LogErrorString(LPCTSTR sz)
 	TRACE(_T("%s: %s\n"), (LPCTSTR)now, sz);
 
 #if defined (_DEBUG) || defined (ENABLE_LOG)
-	gLog.Write(LOGLEVEL::LERROR, sz);
+	gLog.Write(CLogFile::LERROR, sz);
 #endif
 }
 

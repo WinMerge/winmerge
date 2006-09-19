@@ -37,8 +37,8 @@ CLogFile::CLogFile(LPCTSTR szLogName /*= NULL*/,
 	 LPCTSTR szLogPath /*= NULL*/, BOOL bDeleteExisting /*=FALSE*/)
 	: m_nMaxSize(MEGA)
 	, m_bEnabled(FALSE)
-	, m_nDefaultLevel(LOGLEVEL::LMSG)
-	, m_nMaskLevel(LOGLEVEL::LALL)
+	, m_nDefaultLevel(LMSG)
+	, m_nMaskLevel(LALL)
 {
 	SetFile(szLogName, szLogPath, bDeleteExisting);
 	m_hLogMutex = CreateMutex(NULL, FALSE, MutexName);
@@ -162,7 +162,7 @@ UINT CLogFile::Write(LPCTSTR pszFormat, ...)
 		WriteV(m_nDefaultLevel, pszFormat, arglist);
 		va_end(arglist);
 	}
-	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
+	return m_nMaskLevel & LSILENTVERIFY;
 }
 
 /**
@@ -183,7 +183,7 @@ UINT CLogFile::Write(DWORD idFormatString, ...)
 		WriteV(m_nDefaultLevel, strFormat, arglist);
 		va_end(arglist);
 	}
-	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
+	return m_nMaskLevel & LSILENTVERIFY;
 }
 
 /**
@@ -201,7 +201,7 @@ UINT CLogFile::Write(UINT level, LPCTSTR pszFormat, ...)
 		WriteV(level, pszFormat, arglist);
 		va_end(arglist);
 	}
-	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
+	return m_nMaskLevel & LSILENTVERIFY;
 }
 
 /**
@@ -221,7 +221,7 @@ UINT CLogFile::Write(UINT level, DWORD idFormatString, ...)
 		WriteV(level, strFormat, arglist);
 		va_end(arglist);
 	}
-	return m_nMaskLevel & LOGLEVEL::LSILENTVERIFY;
+	return m_nMaskLevel & LSILENTVERIFY;
 }
 
 /**
@@ -235,7 +235,7 @@ void CLogFile::WriteV(UINT level, LPCTSTR pszFormat, va_list arglist)
 	CString msg;
 	msg.FormatV(pszFormat, arglist);
 	msg.Insert(0, GetPrefix(level));
-	if (level & LOGLEVEL::LOSERROR)
+	if (level & LOSERROR)
 	{
 		TCHAR cause[5120];
 		CInternetException(GetLastError()).GetErrorMessage(cause, countof(cause));
@@ -244,7 +244,7 @@ void CLogFile::WriteV(UINT level, LPCTSTR pszFormat, va_list arglist)
 	msg.TrimRight(_T("\r\n"));
 	msg += _T("\n");
 	WriteRaw(msg);
-	if (level & LOGLEVEL::LDEBUG)
+	if (level & LDEBUG)
 	{
 		OutputDebugString(msg);
 	}
@@ -312,21 +312,21 @@ LPCTSTR CLogFile::GetPrefix(UINT level) const
 	LPCTSTR str = _T("");
 	switch (level & 0x0FFF)
 	{
-		case LOGLEVEL::LERROR:
+		case LERROR:
 			str = _T("ERROR: ");
 			break;
-		case LOGLEVEL::LWARNING:
+		case LWARNING:
 			str = _T("WARNING: ");
 			break;
-		case LOGLEVEL::LNOTICE:
+		case LNOTICE:
 			str = _T("NOTICE: ");
 			break;
-		case LOGLEVEL::LMSG:
+		case LMSG:
 			break;
-		case LOGLEVEL::LCODEFLOW:
+		case LCODEFLOW:
 			str = _T("FLOW: ");
 			break;
-		case LOGLEVEL::LCOMPAREDATA:
+		case LCOMPAREDATA:
 			str = _T("COMPARE: ");
 			break;
 		default:
