@@ -4,7 +4,9 @@ Add new items to top.
 
 2006-09-19 Kimmo
  PATCH: [ 1561001 ] Fix FileActionScript type in running actions
- Src: FileActionScript.cpp
+  Src: FileActionScript.cpp
+ PATCH: [ 1561008 ] Warning fix for FileActionScript
+  Src: DirDoc.cpp
 
 2006-09-18 Kimmo
  Cleanup 64-bit ShellExtension projectfile, add a debug target

@@ -927,7 +927,7 @@ void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
 	// Use FileActionItem types for simplicity for now.
 	// Better would be to use FileAction contained, since it is not
 	// UI dependent.
-	switch (act.atype)
+	switch (act.UIResult)
 	{
 	case FileActionItem::UI_SYNC:
 		SetDiffSide(DIFFCODE::BOTH, act.context);
