@@ -124,7 +124,7 @@ int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
 int FileActionScript::CreateOperationsScripts()
 {
 	UINT operation = 0;
-	UINT operFlags = 0;
+	FILEOP_FLAGS operFlags = 0;
 	BOOL bApplyToAll = FALSE;
 	BOOL bContinue = TRUE;
 
