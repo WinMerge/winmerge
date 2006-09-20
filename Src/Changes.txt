@@ -13,6 +13,8 @@ Add new items to top.
  PATCH: [ 1561650 ] Separate FilterCommentsManager code from DiffWrapper
   Src: DiffWrapper.cpp DiffWrapper.h Merge.dsp
   Src new files: FilterCommentsManager.cpp FilterCommentsManager.h
+ Fix 64-bit compile warning by casting last SendMessage() param to LPARAM
+  Src: Merge.cpp
 
 2006-09-19 Kimmo
  PATCH: [ 1561001 ] Fix FileActionScript type in running actions

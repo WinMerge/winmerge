@@ -237,7 +237,7 @@ BOOL CMergeApp::InitInstance()
 			data.cbData = (DWORD)(p - pszArgs) * sizeof(WCHAR);
 			data.lpData = pszArgs;
 			data.dwData = __argc;
-			SendMessage(hWnd, WM_COPYDATA, NULL, (LONG)&data);
+			SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data);
 			delete[] pszArgs;
 
 			ReleaseMutex(hMutex);
