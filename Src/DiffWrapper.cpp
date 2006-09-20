@@ -39,6 +39,7 @@
 #include "CompareOptions.h"
 #include "FileTextStats.h"
 #include "DiffFileData.h"
+#include "FilterCommentsManager.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -53,148 +54,21 @@ static void FreeDiffUtilsScript(struct change * & script);
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);
 static void CopyDiffutilTextStats(file_data *inf, DiffFileData * diffData);
 
-//Should move FilterComments classes and global functions to it's own *.cpp & *.h file
-//IngnoreComment logic developed by David Maisonave AKA (Axter)
-/**
-@struct FilterCommentsSet
-@brief FilterCommentsSet holds search strings used to find comments in compared files.
-		This data is used to find blocks that can be ignored when comparing to files.
-@note
-		The ignore-comment logic can only use ANSI strings, because the search buffer is
-		char* type.
-		Therefore, the data members should not be replaced with CString type, and should
-		remain std::string, or other non-unicode type string.
-*/
-struct FilterCommentsSet
-{
-	std::string StartMarker;
-	std::string EndMarker;
-	std::string InlineMarker;
-};
+// Postfiltering
+static bool IsTrivialBytes(const char* Start, const char* End,
+	const FilterCommentsSet& filtercommentsset);
+static bool IsTrivialLine(const std::string &Line, const char * StartOfComment,
+   const char * EndOfComment, const char * InLineComment,
+   const FilterCommentsSet& filtercommentsset);
+static bool PostFilter(int StartPos, int EndPos, int Direction,
+	int QtyLinesInBlock, int &Op, int FileNo,
+	const FilterCommentsSet& filtercommentsset);
+static void PostFilterSingleLine(const char* LineStr, int &Op,
+	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck);
+static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
+	const TCHAR *FileNameExt);
 
-
-/**
-@class FilterCommentsManager
-@brief FilterCommentsManager reads language comment start and end marker strings from
-		an INI file, and stores it in the map member variable m_FilterCommentsSetByFileType.
-		Each set of comment markers have a list of file types that can be used with
-		the file markers.
-@note
-The ignore-comment logic can only use ANSI strings, because the search buffer is
-char* type.
-FilterCommentsManager uses _T logic, only so-as to allow UNICODE file names to be 
-used for the INI file, or INI file base directory.
-After retrieving data from INI file, the data is converted to ANSI.
-If no INI file exist, or the INI file is empty, then a default INI file is 
-created with default values that are assoicated with most commen languages.
-*/
-class FilterCommentsManager
-{
-public:
-	/**
-	@brief FilterCommentsManager constructor, which reads the INI file data
-			and populates the mapped member variable m_FilterCommentsSetByFileType.
-	@param[in]  Optional full INI file name, to include path.
-	*/
-	FilterCommentsManager(const TCHAR* IniFileName = _T("")) : m_IniFileName(IniFileName)
-	{
-		USES_CONVERSION;
-
-		int SectionNo = 0;
-		TCHAR SectionName[99];
-		TCHAR buffer[1024];
-		if (m_IniFileName.IsEmpty())
-		{
-			m_IniFileName = GetModulePath() + _T("\\IgnoreSectionMarkers.ini");
-		}
-		for(SectionNo = 0;;++SectionNo) 
-		{//Get each set of markers
-			FilterCommentsSet filtercommentsset;
-			_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
-			GetPrivateProfileString(SectionName, _T("StartMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
-			filtercommentsset.StartMarker = T2CA(buffer);
-			GetPrivateProfileString(SectionName, _T("EndMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
-			filtercommentsset.EndMarker = T2CA(buffer);
-			GetPrivateProfileString(SectionName, _T("InlineMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
-			filtercommentsset.InlineMarker = T2CA(buffer);
-			if (filtercommentsset.StartMarker.empty() && 
-				filtercommentsset.EndMarker.empty() &&
-				filtercommentsset.InlineMarker.empty())
-			{
-				break;
-			}
-			int FileTypeNo = 0;
-			TCHAR FileTypeFieldName[99];
-			for(FileTypeNo = 0;;++FileTypeNo) 
-			{//Get each file type associated with current set of markers
-				_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
-				GetPrivateProfileString(SectionName, FileTypeFieldName, _T(""), buffer,sizeof(buffer), m_IniFileName);
-				CString FileTypeExtensionName = buffer;
-				if (FileTypeExtensionName.IsEmpty())
-					break;
-				m_FilterCommentsSetByFileType[FileTypeExtensionName] = filtercommentsset;
-			}
-		} 
-
-		if (!SectionNo)
-		{//If no markers were found, then initialize default markers
-			CreateDefaultMarkers();
-		}
-	}
-
-	/**
-		@brief Get comment markers that are associated with this file type.
-			If there are no comment markers associated with this file type,
-			then return an empty set.
-		@param[in]  The file name extension. Example:("cpp", "java", "c", "h")
-					Must be lower case.
-	*/
-	FilterCommentsSet GetSetForFileType(const CString& FileTypeName) const
-	{
-		std::map <CString, FilterCommentsSet> :: const_iterator pSet =
-			m_FilterCommentsSetByFileType.find(FileTypeName);
-		if (pSet == m_FilterCommentsSetByFileType.end())
-			return FilterCommentsSet();
-		return pSet->second;
-	}
-private:
-	FilterCommentsManager(const FilterCommentsManager&); //Don't allow copy
-	FilterCommentsManager& operator=(const FilterCommentsManager&);//Don't allow assignment
-	/**
-		@brief Create default comment marker strings
-		@note
-			Currently, only have C/C++/Java type markers.
-	*/
-	void CreateDefaultMarkers()
-	{
-		USES_CONVERSION;
-		int SectionNo = 0;
-		TCHAR SectionName[99];
-		FilterCommentsSet filtercommentsset;
-		filtercommentsset.StartMarker = "/*";
-		filtercommentsset.EndMarker = "*/";
-		filtercommentsset.InlineMarker = "//";
-		TCHAR CommonFileTypes1[][9] = {_T("java"), _T("cs"), _T("cpp"), _T("c"), _T("h"), _T("cxx"), _T("cc"), _T("js"), _T("jsl"), _T("tli"), _T("tlh"), _T("rc")};
-		_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
-		++SectionNo;
-		WritePrivateProfileString(SectionName, _T("StartMarker"), A2CT(filtercommentsset.StartMarker.c_str()), m_IniFileName);
-		WritePrivateProfileString(SectionName, _T("EndMarker"), A2CT(filtercommentsset.EndMarker.c_str()), m_IniFileName);
-		WritePrivateProfileString(SectionName, _T("InlineMarker"), A2CT(filtercommentsset.InlineMarker.c_str()), m_IniFileName);
-		int FileTypeNo = 0;
-		for(int i = 0;i < sizeof(CommonFileTypes1)/sizeof(CommonFileTypes1[0]);++i)
-		{
-			m_FilterCommentsSetByFileType[CommonFileTypes1[i]] = filtercommentsset;
-			TCHAR FileTypeFieldName[99];
-			_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
-			++FileTypeNo;
-			WritePrivateProfileString(SectionName, FileTypeFieldName, CommonFileTypes1[i], m_IniFileName);
-		}
-	}
-
-	//Use CString instead of std::string, so as to allow UNICODE file extensions
-	std::map<CString, FilterCommentsSet> m_FilterCommentsSetByFileType;
-	CString m_IniFileName;
-};
 
 /**
  * @brief Default constructor.
@@ -353,7 +227,8 @@ void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
  * @param [in] filtercommentsset	- For future use to determine trivial bytes
  * @return Returns true if all characters are trivial
  */
-bool IsTrivialBytes(const char* Start, const char* End, const FilterCommentsSet& filtercommentsset)
+static bool IsTrivialBytes(const char* Start, const char* End,
+	const FilterCommentsSet& filtercommentsset)
 {
 	std::string testdata(Start, End);
 	//@TODO: Need to replace the following trivial string with a user specified string
@@ -370,7 +245,7 @@ bool IsTrivialBytes(const char* Start, const char* End, const FilterCommentsSet&
  * @param [in] filtercommentsset	- Comment marker set used to indicate comment blocks.
  * @return Returns true if entire line is trivial
  */
-bool IsTrivialLine(const std::string &Line, 
+static bool IsTrivialLine(const std::string &Line, 
 				   const char * StartOfComment,	
 				   const char * EndOfComment,	
 				   const char * InLineComment,	
@@ -421,7 +296,9 @@ bool IsTrivialLine(const std::string &Line,
 	@return		Always returns true in reverse direction.
 				In forward direction, returns false if none trivial data is found within QtyLinesInBlock
 */
-bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, int &Op, int FileNo, const FilterCommentsSet& filtercommentsset)
+static bool PostFilter(int StartPos, int EndPos, int Direction,
+	int QtyLinesInBlock, int &Op, int FileNo,
+	const FilterCommentsSet& filtercommentsset)
 {
 	const char* EolIndicators = "\r\n"; //List of characters used as EOL
 	if (Op == OP_TRIVIAL) //If already set to trivial, then exit.
@@ -546,7 +423,8 @@ bool PostFilter(int StartPos, int EndPos, int Direction, int QtyLinesInBlock, in
 @param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param[in]  PartOfMultiLineCheck- Set to true, if this block is a multiple line block
 */
-void PostFilterSingleLine(const char* LineStr, int &Op, const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck)
+static void PostFilterSingleLine(const char* LineStr, int &Op,
+	const FilterCommentsSet& filtercommentsset, bool PartOfMultiLineCheck)
 {
 	if (Op == OP_TRIVIAL)
 		return;
@@ -587,7 +465,9 @@ void PostFilterSingleLine(const char* LineStr, int &Op, const FilterCommentsSet&
 @param[in]  filtercommentsset	- Comment marker set used to indicate comment blocks.
 @param[in]  FileNameExt			- The file name extension.  Needs to be lower case string ("cpp", "java", "c")
 */
-void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight, int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager, const TCHAR *FileNameExt)
+static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight,
+	int QtyLinesRight, int &Op, const FilterCommentsManager &filtercommentsmanager,
+	const TCHAR *FileNameExt)
 {
 	if (Op == OP_TRIVIAL)
 		return;

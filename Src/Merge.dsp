@@ -437,6 +437,10 @@ SOURCE=.\FileTransform.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FilterCommentsManager.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\GhostTextBuffer.cpp
 # End Source File
 # Begin Source File
@@ -1158,6 +1162,10 @@ SOURCE=.\FileTextStats.h
 # Begin Source File
 
 SOURCE=.\FileTransform.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FilterCommentsManager.h
 # End Source File
 # Begin Source File
 
@@ -2412,10 +2420,10 @@ SOURCE=.\ReadMe.txt
 # End Group
 # End Target
 # End Project
-# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
-# 	1:19:IDR_POPUP_ABOUT_DLG:104
-# End Section
 # Section Merge : {6F747475-446E-6C62-436C-6B0000003100}
 # 	1:10:IDB_SPLASH:103
 # 	2:21:SplashScreenInsertKey:4.0
+# End Section
+# Section Merge : {00312E6C-0754-0055-90BD-550078075500}
+# 	1:19:IDR_POPUP_ABOUT_DLG:104
 # End Section

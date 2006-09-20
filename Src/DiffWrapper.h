@@ -39,6 +39,8 @@ struct DIFFRANGE;
 class DiffList;
 struct DiffFileData;
 struct file_data;
+class FilterCommentsManager;
+struct FilterCommentsSet;
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
