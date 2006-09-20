@@ -2,7 +2,7 @@
   \file    CSubclass.cpp
   \author  Perry Rapp, Creator, 1998-2003
   \date    Created: 1998
-  \date    Edited:  2001/12/12 PR
+  \date    Edited:  2006/09/20 Kimmo Varis: use Get/SetWindowLongPtr().
 
   \brief   Implementation of CSubclass
 
@@ -83,7 +83,7 @@ bool Subclass(WNDPROC wndproc, HWND hwnd, void * data
 	SubclassRec sdata;
 	sdata.m_data = data;
 	sdata.m_newproc = wndproc;
-	sdata.m_oldproc = (WNDPROC) GetWindowLong(hwnd, GWL_WNDPROC);
+	sdata.m_oldproc = (WNDPROC) GetWindowLongPtr(hwnd, GWLP_WNDPROC);
 	sdata.m_suppressing = false;
 	if (unsubclassSucceeded)
 		sdata.m_succeededMsg = *unsubclassSucceeded;
@@ -93,7 +93,7 @@ bool Subclass(WNDPROC wndproc, HWND hwnd, void * data
 		sdata.m_failedMsg = *unsubclassFailed;
 	else
 		sdata.m_failedMsg.msg = 0;
-	SetWindowLong(hwnd, GWL_WNDPROC, (LPARAM)(WNDPROC)wndproc);
+	SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LPARAM)(WNDPROC)wndproc);
 	pList->AddHead(sdata);
 	return true;
 }
@@ -114,12 +114,12 @@ bool UnSubclass(WNDPROC id, HWND hwnd)
 	SubclassRec srec = pList->GetNext(pos);
 	if (srec.m_newproc == id)
 	{ // we're the latest subclass
-			WNDPROC curproc = (WNDPROC) GetWindowLong(hwnd, GWL_WNDPROC);
+			WNDPROC curproc = (WNDPROC) GetWindowLongPtr(hwnd, GWLP_WNDPROC);
 			if (id != curproc)
 				// We're not the current wndproc, so we can't safely unhook
 				return false;
 			ASSERT(srec.m_oldproc); // internal error
-		SetWindowLong(hwnd, GWL_WNDPROC, (LPARAM)(WNDPROC)srec.m_oldproc);
+		SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LPARAM)(WNDPROC)srec.m_oldproc);
 		pList->RemoveHead();
 		// fall thru to garbage collect list
 	}

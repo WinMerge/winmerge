@@ -483,7 +483,7 @@ BOOL CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wPara
 			if (hCursor)
 			{
 				SetCursor(hCursor);
-				SetWindowLong(hWnd, DWL_MSGRESULT, 1);
+				SetWindowLongPtr(hWnd, DWLP_MSGRESULT, 1);
 				return TRUE;
 			}
 		} return FALSE;
