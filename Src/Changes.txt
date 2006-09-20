@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-20 Kimmo
+ PATCH: [ 1561788 ] Fix 64-bit CFile constructor usage
+  Src/Common: UniFile.cpp
+
 2006-09-19 Kimmo
  PATCH: [ 1561001 ] Fix FileActionScript type in running actions
   Src: FileActionScript.cpp

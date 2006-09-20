@@ -118,8 +118,12 @@ bool UniLocalFile::DoGetFileStatus(HANDLE handle)
 		// MSVC6
 	CFile file((HFILE)handle);
 #else
-		// MSVC7 (VC.NET)
+#ifdef _WIN64
+	CFile file((HFILE)handle);
+#else // _WIN64
+	// MSVC7 (VC.NET)
 	CFile file(handle);
+#endif // _WIN64
 #endif
 	
 	CFileStatus status;
