@@ -352,7 +352,8 @@ TurkishLanguage=turecki interfejs
 ;Tasks
 ExplorerContextMenu=&Wlacz integracje z menu Eksploratora
 IntegrateTortoiseCVS=Integracja z &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
+IntegrateClearCase=Integracja z Rational &ClearCase
 IntegrateDelphi4=Obsluga plików binarnych Borland® Delphi &4
 UpdatingCommonControls=Aktualizacja wspólnych kontrolek systemowych SCC
 

@@ -347,6 +347,7 @@ TurkishLanguage=Menús i diàlegs en Turc
 ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
 IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
 IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+IntegrateClearCase=Integrate with Rational &ClearCase
 IntegrateDelphi4=Suport per a fitxers binaris del Borland® Delphi &4
 UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 

@@ -1,3 +1,8 @@
+2006-09-20 Gal
+  PATCH: [ 1552248 ] Install as a ClearCase diff tool
+   InnoSetup: WinMerge.iss
+   InnoSetup/Languages: *.isl
+
 2006-09-20 Kimmo
  PATCH: [ 1560904 ] Install 64-bit ShellExtension
   InnoSetup: WinMerge.iss

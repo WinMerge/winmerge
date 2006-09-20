@@ -233,6 +233,7 @@ Name: Languages\Turkish; Description: {cm:TurkishLanguage}; Flags: disablenounin
 Name: ShellExtension; Description: {cm:ExplorerContextMenu}; GroupDescription: {cm:OptionalFeatures}
 Name: TortoiseCVS; Description: {cm:IntegrateTortoiseCVS}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseCVSInstalled
 Name: TortoiseSVN; Description: {cm:IntegrateTortoiseSVN}; GroupDescription: {cm:OptionalFeatures}; Check: TortoiseSVNInstalled; MinVersion: 0,5.0.2195sp3
+Name: ClearCase; Description: {cm:IntegrateClearCase}; GroupDescription: {cm:OptionalFeatures}; Check: ClearCaseInstalled
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 Name: quicklaunchicon; Description: {cm:CreateQuickLaunchIcon}; GroupDescription: {cm:AdditionalIcons}
 
@@ -927,3 +928,61 @@ Begin
   Else
     result := False;
 End;
+
+{Returns ClearCase external tools configuration file name}
+Function ClearCaseMapFile(): string;
+Begin
+    if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Rational Software\', 'RSINSTALLDIR', Result) then
+    begin
+        Result := 'C:\Program Files\Rational\';
+    end;
+    Result := Result + 'ClearCase\lib\mgrs\map';
+End;
+
+{Determines whether or not Rational ClearCase is installed}
+Function ClearCaseInstalled(): boolean;
+Begin
+    Result := FileExists(ClearCaseMapFile());
+End;
+
+{Intergrate WinMerge as ClearCase external diff tool}
+Procedure IntegrateClearCase();
+Var
+    MapFile: TStringList;
+    Unused: String;
+    I: Integer;
+
+Begin
+    MapFile := TStringList.Create();
+    {Read the entire map file to a string list}
+    MapFile.LoadFromFile(ClearCaseMapFile());
+    if MapFile.Count > 0 then
+    begin
+        for I := 0 to MapFile.Count do
+        begin
+            {Search for the 'text_file_delta xcompare ...' line}
+			if (MapFile.Strings[I][1] <> ';') and (Pos('text_file_delta', MapFile.Strings[I]) > 0) and (Pos('xcompare', MapFile.Strings[I]) > 0) then
+			begin
+			    {Comment-out the current line}
+			    MapFile.Strings[I] := ';' + MapFile.Strings[I];
+			    {Insert a line below with WinMerge as the diff tool}
+			    MapFile.Insert(I + 1, 'text_file_delta xcompare '+ ExpandConstant('{app}\') + ExeName(Unused));
+			    break;
+			end;
+		end;
+		{ Save the modified file. }
+		MapFile.SaveToFile('C:\Program Files\Rational\ClearCase\lib\mgrs\map');
+	end;
+End;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+Begin
+    if CurStep = ssPostInstall then
+    begin
+        if IsTaskSelected('ClearCase') then
+        begin
+            IntegrateClearCase();
+        end;        
+    end;
+End;
+

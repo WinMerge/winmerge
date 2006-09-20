@@ -354,6 +354,7 @@ TurkishLanguage=Turkiska menyer och dialoger
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
 IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
+IntegrateClearCase=Integrera med Rational &ClearCase
 IntegrateDelphi4=Stöd Borland® Delphi4 Binära filer
 UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 

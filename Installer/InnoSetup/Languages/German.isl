@@ -354,6 +354,7 @@ TurkishLanguage=Türkische Menüs und Dialoge
 ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
 IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
 IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
+IntegrateClearCase=Integrate with Rational &ClearCase
 IntegrateDelphi4=Borland® Delphi &4 Binärdatei-Unterstützung
 UpdatingCommonControls=Aktualisieren der System-Komponenten
 

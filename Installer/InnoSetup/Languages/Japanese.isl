@@ -356,6 +356,7 @@ TurkishLanguage=Turkish menus and dialogs
 ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
+IntegrateClearCase=Rational ClearCaseとの連携(&C)
 IntegrateDelphi4=Borland Delphi 4 バイナリファイルサポート(&4)
 UpdatingCommonControls=システムのコモンコントロールをアップデートします
 
