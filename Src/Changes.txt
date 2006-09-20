@@ -15,6 +15,8 @@ Add new items to top.
   Src new files: FilterCommentsManager.cpp FilterCommentsManager.h
  Fix 64-bit compile warning by casting last SendMessage() param to LPARAM
   Src: Merge.cpp
+ Fix hex number used instead of INVALID_HANDLE_VALUE
+  Src/Common: sinstance.cpp
 
 2006-09-19 Kimmo
  PATCH: [ 1561001 ] Fix FileActionScript type in running actions

@@ -161,7 +161,7 @@ BOOL CInstanceChecker::TrackFirstInstanceRunning()
 
   //First create the MMF
   int nMMFSize = sizeof(CWindowInstance);
-  instanceData.hInstanceData = ::CreateFileMapping((HANDLE)0xFFFFFFFF, NULL, PAGE_READWRITE, 0, nMMFSize, GetMMFFilename());
+  instanceData.hInstanceData = ::CreateFileMapping(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, nMMFSize, GetMMFFilename());
   if (instanceData.hInstanceData == NULL)
   {
     TRACE(_T("Failed to create the MMF even though this is the first instance, you might want to consider overriding GetMMFFilename()\n"));
