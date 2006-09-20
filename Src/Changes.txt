@@ -8,6 +8,8 @@ Add new items to top.
  PATCH: [ 1561796 ] Get/SetWindowLong not supported in 64-bit Windows
   Src: 7zCommon.cpp ChildFrm.cpp
   Src/Common: CSubclass.cpp sizecbar.cpp
+ BUG: [ 1561781 ] 64-bit compile errors from 7zCommon.cpp
+  Src: 7zCommon.cpp
 
 2006-09-19 Kimmo
  PATCH: [ 1561001 ] Fix FileActionScript type in running actions
