@@ -1,3 +1,7 @@
+2006-09-21 Kimmo
+ PATCH: [ 1561668 ] Install translated readme texts
+   InnoSetup: WinMerge.iss
+
 2006-09-20 Gal
   PATCH: [ 1552248 ] Install as a ClearCase diff tool
    InnoSetup: WinMerge.iss
