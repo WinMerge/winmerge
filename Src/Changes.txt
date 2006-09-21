@@ -11,6 +11,8 @@ Add new items to top.
   Src: GhostTextBuffer.h
  Fix 64-bit pointer truncation in SetWindowLongPtr call (the last I hope)
   Src: ChildFrm.cpp
+ Minor tweaks to 64-bit ShellExtension project file
+  ShellExtension: ShellExtensionX64.vcproj
 
 2006-09-20 Kimmo
  PATCH: [ 1561788 ] Fix 64-bit CFile constructor usage

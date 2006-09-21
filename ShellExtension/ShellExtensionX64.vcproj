@@ -29,7 +29,7 @@
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="FALSE"
 				RuntimeLibrary="3"
-				BufferSecurityCheck="TRUE"
+				BufferSecurityCheck="FALSE"
 				UsePrecompiledHeader="3"
 				PrecompiledHeaderThrough="stdafx.h"
 				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtension.pch"
@@ -66,7 +66,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				ProgramDatabaseFile=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtensionU.pdb"
 				SubSystem="2"
 				OptimizeForWindows98="1"
-				ImportLibrary=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtensionU.lib"
+				ImportLibrary=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtensionX64.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -147,7 +147,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				ProgramDatabaseFile=".\..\BuildTmp\ShellExtensionX64/ShellExtensionU.pdb"
 				SubSystem="2"
 				OptimizeForWindows98="1"
-				ImportLibrary=".\..\BuildTmp\ShellExtensionX64/ShellExtensionU.lib"
+				ImportLibrary=".\..\BuildTmp\ShellExtensionX64/ShellExtensionX64.lib"
 				TargetMachine="1"/>
 			<Tool
 				Name="VCMIDLTool"
@@ -278,7 +278,10 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="ShellExtensionU.def">
+				RelativePath=".\ShellExtensionU.def">
+			</File>
+			<File
+				RelativePath=".\ShellExtensionX64.def">
 			</File>
 			<File
 				RelativePath="StdAfx.cpp">
