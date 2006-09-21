@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-21 WinMerge experimental release 2.5.7.1 (SVN revision 3600)
+
 2006-09-21 Kimmo
  PATCH: [ 1558213 ] Tweak text positions in splash screen
   Src: Splash.cpp
