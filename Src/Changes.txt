@@ -5,6 +5,8 @@ Add new items to top.
 2006-09-21 Kimmo
  PATCH: [ 1558213 ] Tweak text positions in splash screen
   Src: Splash.cpp
+ Bump ShellExtension version to 1.9.0 (first 64-bit Windows version)
+  ShellExtension: ShellExtension.rc
 
 2006-09-20 Kimmo
  PATCH: [ 1561788 ] Fix 64-bit CFile constructor usage
