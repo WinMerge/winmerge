@@ -47,15 +47,11 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
  */
 static const CRect VersionTextArea(255, 5, 469, 20);
 
-/** 
- * @brief Area for developers list.
- */
-static const CRect DevelopersArea(20, 93, 190, 210);
+/** @brief Area for developers list. */
+static const CRect DevelopersArea(20, 88, 190, 210);
 
-/** 
- * @brief Area for copyright text.
- */
-static const CRect CopyrightArea(20, 215, 190, 330);
+/** @brief Area for copyright text. */
+static const CRect CopyrightArea(20, 210, 190, 330);
 
 /////////////////////////////////////////////////////////////////////////////
 //   Splash Screen class
