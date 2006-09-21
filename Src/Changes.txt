@@ -9,6 +9,8 @@ Add new items to top.
   ShellExtension: ShellExtension.rc
  Fix 64-bit typecast warning
   Src: GhostTextBuffer.h
+ Fix 64-bit pointer truncation in SetWindowLongPtr call (the last I hope)
+  Src: ChildFrm.cpp
 
 2006-09-20 Kimmo
  PATCH: [ 1561788 ] Fix 64-bit CFile constructor usage

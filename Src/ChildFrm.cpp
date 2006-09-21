@@ -361,7 +361,7 @@ static BOOL MyLockWindowUpdate(HWND hwnd)
 
 	EnumChildWindows(hwnd, EnumChildProc, FALSE);
 
-	pfnOldWndProc = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG)WndProc);
+	pfnOldWndProc = (WNDPROC)SetWindowLongPtr(hwnd, GWLP_WNDPROC, (LONG_PTR)WndProc);
 	SetProp(hwnd, _T("OldWndProc"), (HANDLE)pfnOldWndProc);
 	return TRUE;
 }
