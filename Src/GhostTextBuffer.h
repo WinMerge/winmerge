@@ -156,10 +156,10 @@ public :
 			m_nRealLinesCreated = src.m_nRealLinesCreated;
 			m_nRealLinesInDeletedBlock = src.m_nRealLinesInDeletedBlock;
 			SetText(src.GetText());
-			int size = src.m_paSavedRevisonNumbers->GetSize();
+			INT_PTR size = src.m_paSavedRevisonNumbers->GetSize();
 			m_paSavedRevisonNumbers = new CDWordArray();
 			m_paSavedRevisonNumbers->SetSize(size);
-			int i;
+			INT_PTR i;
 			for (i = 0; i < size; i++)
 				(*m_paSavedRevisonNumbers)[i] = (*src.m_paSavedRevisonNumbers)[i];
 			return *this;
