@@ -55,7 +55,7 @@ void DiffList::Clear()
  */
 int DiffList::GetSize() const
 {
-	return m_diffs.GetSize();
+	return (int) m_diffs.GetSize();
 }
 
 /**
@@ -67,7 +67,7 @@ int DiffList::GetSize() const
 int DiffList::GetSignificantDiffs() const
 {
 	int nSignificants = 0;
-	const int nDiffCount = m_diffs.GetSize();
+	const int nDiffCount = (int) m_diffs.GetSize();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{
@@ -201,7 +201,7 @@ BOOL DiffList::LineInDiff(UINT nLine, UINT nDiff) const
  */
 int DiffList::LineToDiff(UINT nLine) const
 {
-	const int nDiffCount = m_diffs.GetSize();
+	const int nDiffCount = (int) m_diffs.GetSize();
 	if (nDiffCount == 0)
 		return -1;
 
@@ -255,7 +255,7 @@ BOOL DiffList::GetPrevDiff(int nLine, int & nDiff) const
 	if (nDiff == -1)
 	{
 		bInDiff = FALSE;
-		for (int i = m_diffs.GetSize() - 1; i >= 0 ; i--)
+		for (int i = (int) m_diffs.GetSize() - 1; i >= 0 ; i--)
 		{
 			if ((int)DiffRangeAt(i)->dend0 <= nLine)
 			{
@@ -286,7 +286,7 @@ BOOL DiffList::GetNextDiff(int nLine, int & nDiff) const
 	if (numDiff == -1)
 	{
 		bInDiff = FALSE;
-		const int nDiffCount = m_diffs.GetSize();
+		const int nDiffCount = (int) m_diffs.GetSize();
 		for (int i = 0; i < nDiffCount; i++)
 		{
 			if ((int)DiffRangeAt(i)->dbegin0 >= nLine)
@@ -320,7 +320,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
 
-	for (int i = m_diffs.GetSize() - 1; i >= 0 ; i--)
+	for (int i = (int) m_diffs.GetSize() - 1; i >= 0 ; i--)
 	{
 		const DIFFRANGE * dfi = DiffRangeAt(i);
 		if (dfi->op != OP_TRIVIAL && dfi->dend0 <= nLine)
@@ -340,7 +340,7 @@ int DiffList::PrevSignificantDiffFromLine(UINT nLine) const
 int DiffList::NextSignificantDiffFromLine(UINT nLine) const
 {
 	int nDiff = -1;
-	const int nDiffCount = m_diffs.GetSize();
+	const int nDiffCount = (int) m_diffs.GetSize();
 
 	for (int i = 0; i < nDiffCount; i++)
 	{

@@ -12,7 +12,9 @@ Add new items to top.
    Src/Languages/Catalan: MergeCatalan.rc
  PATCH: [ 1563386 ] Spanish translation update
   Submitted by Jesus M. Delgado 'Mack'
-   Src/Languages/Spanish: MergeSpanish.rc 
+   Src/Languages/Spanish: MergeSpanish.rc
+ Quiet warnings from DiffList.cpp
+  Src: DiffList.cpp
 
 2006-09-21 WinMerge experimental release 2.5.7.1 (SVN revision 3600)
 
