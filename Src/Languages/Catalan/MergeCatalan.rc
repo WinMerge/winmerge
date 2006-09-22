@@ -177,9 +177,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -230,7 +230,7 @@ BEGIN
         MENUITEM "&Opcions...",                 ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "Actualit&za\tF5",             ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
+        MENUITEM "Actualitza &seleccionats\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Visualització"
     BEGIN
@@ -284,9 +284,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -341,7 +341,7 @@ BEGIN
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
         MENUITEM "Fes la dre&ta només de lectura", ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Convert Line Endings to"
+        POPUP "&Converteix retorns de línia a"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
@@ -446,9 +446,9 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS
     END
-    POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
+    POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -783,7 +783,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,140,10
     CONTROL         "&Expressió regular",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
-    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
+    CONTROL         "No facis la &volta al final del fitxer",IDC_FINDDLG_DONTWRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,57,135,10
     GROUPBOX        "Direcció",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "A&munt",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
@@ -953,12 +953,12 @@ BEGIN
     CONTROL         "Ignora diferències en l'&hora inferiors a 3 segons",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,222,10
-    GROUPBOX        "Integration",IDC_STATIC,7,30,218,46
+    GROUPBOX        "Integració",IDC_STATIC,7,30,218,46
     CONTROL         "&Afegeix un menú contextual a l'explorador del Windows",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
     CONTROL         "Habilita el &menú avançat",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
-    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
+    CONTROL         "In&clou subcarpetes de forma predeterminada",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
     LTEXT           "&Editor extern:",IDC_STATIC,7,83,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,93,167,14,ES_AUTOHSCROLL
@@ -1080,7 +1080,7 @@ CAPTION "Progrés de la comparació de carpeta"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "&Atura",IDC_COMPARISON_STOP,167,15,83,14
-    CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,8,
+    CONTROL         "",IDC_PROGRESSCOMPARE,"msctls_progress32",WS_BORDER,9,
                     44,241,9
     RTEXT           "0",IDC_ITEMSCOMPARED,95,29,30,8
     RTEXT           "0",IDC_ITEMSTOTAL,95,19,30,8
@@ -1190,7 +1190,7 @@ BEGIN
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "&Prova",IDC_FILTERFILE_TEST_BTN,7,114,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
+    PUSHBUTTON      "&Instal·la...",IDC_FILTERFILE_INSTALL,137,114,50,14
     PUSHBUTTON      "&Nou...",IDC_FILTERFILE_NEWBTN,192,114,50,14
     PUSHBUTTON      "&Edita...",IDC_FILTERFILE_EDITBTN,246,114,50,14
     PUSHBUTTON      "&Suprimeix...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
@@ -1384,7 +1384,7 @@ BEGIN
     LTEXT           "&Estil:",IDC_STATIC,7,37,35,8
     COMBOBOX        IDC_REPORT_STYLECOMBO,46,35,158,70,CBS_DROPDOWNLIST |
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "&Copy to Clipboard",IDC_REPORT_COPYCLIPBOARD,"Button",
+    CONTROL         "&Copia al Porta-retalls",IDC_REPORT_COPYCLIPBOARD,"Button",
                     BS_AUTOCHECKBOX | BS_NOTIFY | WS_TABSTOP,7,53,133,10
     DEFPUSHBUTTON   "D'acord",IDOK,157,60,50,14
     PUSHBUTTON      "Cancel·la",IDCANCEL,211,60,50,14
@@ -1426,7 +1426,7 @@ BEGIN
 END
 
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
-STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Estadístiques de comparació"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1951,7 +1951,7 @@ END
 // WINMERGE COMMAND LINE HELP#1
 STRINGTABLE
 BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
+    IDS_CMDLINE_SYNTAX      "Sintaxi : WinMerge [/r] [/e] [/x] [/s]"
     IDS_CMDLINE_SYNTAX_ARGS "camiesq camidreta [camisortida]"
     IDS_CMDLINE_SYNTAX_ARG_FILTER  "màscara/nom"
     IDS_CMDLINE_SYNTAX_LEFTDESC    "descesq"
@@ -1966,12 +1966,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f o -f especifica la màscara de fitxers o el nom del filtre per a comparar"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
+    IDS_CMDLINE_FASTCLOSE  "/x or -x tanca el WinMerge si el resultat és idèntic"
+    IDS_CMDLINE_SINGLE_INST  "/s or -s obre els camins a una instància existent del WinMerge"
     IDS_CMDLINE_LEFTPATH  "camiesq és el directori o nom de fitxer per a ésser obert a la banda esquerra"
     IDS_CMDLINE_RIGHTPATH  "camidreta és el directori o nom de fitxer per a ésser obert a la banda dreta"
     IDS_CMDLINE_OUTPUTPATH "camisortida és un directori de sortida opcional on voleu que siguin desats els fitxers fusionats"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
+    IDS_CMDLINE_SEEMANUAL  "Veieu el manual per a una referència completa de la línia de comandes."
 END
 
 // VARIOUS OPTIONS
@@ -2011,7 +2011,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Contingut en un cop d'ull"
     IDS_COMPMETHOD_MODDATE  "Data de modificació"
     IDS_COMPMETHOD_DATESIZE "Data de modificació i mida"
-    IDS_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_SIZE     "Mida
 END
 
 // FILTER OPTIONS
@@ -2029,14 +2029,14 @@ BEGIN
     IDS_FILEFILTER_TMPL_COPY 
                             "No es pot copiar el fitxer de plantilla de filtre a la carpeta de filtres:\n%1\n\nVerifiqueu que la carpeta existeix i s'hi pot escriure."
     IDS_FILEFILTER_NO_USERFOLDER 
-                            "User's filter file folder is not defined!\n\nPlease select filter folder in options/System."
+                            "La carpeta de fitxers de filtre d'usuari no està definida!\n\nSeleccioneu la carpeta de filtres a opcions/sistema."
     IDS_FILEFILTER_DELETE_FAIL 
-                            "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
-    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+                            "No s'ha pogut esborrar el fitxer de filtre:\n%1\n\nPotser el fitxer és només de lectura?"
+    IDS_FILEFILTER_INSTALL  "Localitza el fitxer de filtre a instal·lar"
     IDS_FILEFILTER_INSTALLFAIL 
-                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+                            "No es pot instal·lar el fitxer de filtre.\n\nNo s'ha pogut copiar el nou fitxer de filtre a la carpeta de filtres."
     IDS_FILEFILTER_OVERWRITE 
-                            "Filter file already exists. Overwrite existing filter?"
+                            "El fitxer de filtre ja existeix. Voleu sobreescriure el filtre existent?"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2285,8 +2285,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Codificació esquerra"
     IDS_COLHDR_RENCODING    "Codificació dreta"
-    IDS_COLHDR_NIDIFFS      "Ignored Diff."
-    IDS_COLHDR_NSDIFFS      "Differences"
+    IDS_COLHDR_NIDIFFS      "Diferències ignorades"
+    IDS_COLHDR_NSDIFFS      "Diferències"
     IDS_COLHDR_BINARY       "Binari"
 END
 
@@ -2350,8 +2350,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Codificació del costat esquerre."
     IDS_COLDESC_RENCODING   "Codificació del costat dret."
-    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
+    IDS_COLDESC_NIDIFFS     "Nombre de diferències ignorades al fitxer. Aquestes diferències són ignorades pel WinMerge i no es poden combinar."
+    IDS_COLDESC_NSDIFFS     "Nombre de diferències al fitxer. Aquest nombre no inclou les diferències ignorades.."
     IDS_COLDESC_BINARY      "Mostra un asterisc (*) si el fitxer és binari."
 END
 

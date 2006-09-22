@@ -7,6 +7,9 @@ Add new items to top.
   Src/Common: coretools.cpp coretools.h
  Fix type in ccrystaltextbuffer.h
   Src/editlib: ccrystaltextbuffer.h
+ PATCH: [ 1563171 ] Catalan translation update
+  Submitted by Jordi Vilar
+   Src/Languages/Catalan: MergeCatalan.rc
 
 2006-09-21 WinMerge experimental release 2.5.7.1 (SVN revision 3600)
 
