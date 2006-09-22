@@ -10,6 +10,9 @@ Add new items to top.
  PATCH: [ 1563171 ] Catalan translation update
   Submitted by Jordi Vilar
    Src/Languages/Catalan: MergeCatalan.rc
+ PATCH: [ 1563386 ] Spanish translation update
+  Submitted by Jesus M. Delgado 'Mack'
+   Src/Languages/Spanish: MergeSpanish.rc 
 
 2006-09-21 WinMerge experimental release 2.5.7.1 (SVN revision 3600)
 
