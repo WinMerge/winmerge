@@ -211,8 +211,10 @@ public :
 
         LPCTSTR GetText () const
         {
-          // see the m_szText/m_pszText definition about the use of HIWORD
-          if (HIWORD ((DWORD) m_pszText) != 0)
+          // See the m_szText/m_pszText definition
+          // Check if m_pszText is a pointer by removing bits having
+          // possible char value
+          if (((INT_PTR)m_pszText >> 16) != 0)
             return m_pszText;
           return m_szText;
         };

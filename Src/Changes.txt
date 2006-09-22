@@ -17,6 +17,9 @@ Add new items to top.
   Src: DiffList.cpp
  Some SPECIAL_ITEM_POS cleanups
   Src: DirActions.cpp DirDoc.cpp DirView.cpp DirView.h
+ Fix check for pointer/value by using bit-shift instead of a cast
+  Src: GhostTextBuffer.h
+  Src/editlib: ccrystaltextbuffer.h
 
 2006-09-21 WinMerge experimental release 2.5.7.1 (SVN revision 3600)
 
