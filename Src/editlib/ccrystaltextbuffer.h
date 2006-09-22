@@ -191,10 +191,10 @@ public :
           m_ptEndPos = src.m_ptEndPos;
           m_nAction = src.m_nAction;
           SetText(src.GetText());
-          int size = src.m_paSavedRevisonNumbers->GetSize();
+          INT_PTR size = src.m_paSavedRevisonNumbers->GetSize();
           m_paSavedRevisonNumbers = new CDWordArray();
           m_paSavedRevisonNumbers->SetSize(size);
-          int i;
+          INT_PTR i;
           for (i = 0; i < size; i++)
             (*m_paSavedRevisonNumbers)[i] = (*src.m_paSavedRevisonNumbers)[i];
           return *this;
