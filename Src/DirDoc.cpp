@@ -657,7 +657,7 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
 	// so there really is not status to update.
 	if (pos > 0)
 	{
-		int ind = m_pDirView->GetItemIndex((DWORD)pos);
+		int ind = m_pDirView->GetItemIndex(pos);
 
 		// Figure out new status code
 		UINT diffcode = (bIdentical ? DIFFCODE::SAME : DIFFCODE::DIFF);

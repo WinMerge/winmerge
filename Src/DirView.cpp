@@ -930,7 +930,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 	// Now handle the various cases of what was selected
 
-	if (pos1 == (POSITION) SPECIAL_ITEM_POS)
+	if (pos1 == SPECIAL_ITEM_POS)
 	{
 		if (!pos2)
 		{
@@ -1372,7 +1372,7 @@ DIFFITEM & CDirView::GetDiffItemRef(int sel)
 	POSITION diffpos = GetItemKey(sel);
 	
 	// If it is special item, return empty DIFFITEM
-	if (diffpos == (POSITION) SPECIAL_ITEM_POS)
+	if (diffpos == SPECIAL_ITEM_POS)
 	{
 		// TODO: It would be better if there were individual items
 		// for whatever these special items are
@@ -1405,12 +1405,12 @@ void CDirView::DeleteAllDisplayItems()
  * @brief Given key, get index of item which has it stored.
  * This function searches from list in UI.
  */
-int CDirView::GetItemIndex(DWORD key)
+int CDirView::GetItemIndex(POSITION key)
 {
 	LVFINDINFO findInfo;
 
 	findInfo.flags = LVFI_PARAM;  // Search for itemdata
-	findInfo.lParam = key;
+	findInfo.lParam = (LPARAM)key;
 	return m_pList->FindItem(&findInfo);
 }
 
@@ -2387,7 +2387,7 @@ int CDirView::AddSpecialItems()
  */
 void CDirView::AddParentFolderItem(BOOL bEnable)
 {
-	AddNewItem(0, (POSITION) SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
+	AddNewItem(0, SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
 }
 
 /**
@@ -2487,7 +2487,7 @@ void CDirView::OnSelectAll()
 		{
 			// Don't select special items (SPECIAL_ITEM_POS)
 			POSITION diffpos = GetItemKey(i);
-			if (diffpos != (POSITION) SPECIAL_ITEM_POS)
+			if (diffpos != SPECIAL_ITEM_POS)
 				m_pList->SetItemState(i, LVIS_SELECTED, LVIS_SELECTED);
 		}
 	}
@@ -2894,7 +2894,7 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 		CString sIdx, sCnt;
 		// Don't show number to special items
 		POSITION pos = GetItemKey(focusItem);
-		if (pos != (POSITION) SPECIAL_ITEM_POS)
+		if (pos != SPECIAL_ITEM_POS)
 		{
 			// If compare is non-recursive reduce special items count
 			BOOL bRecursive = GetDocument()->GetRecursive();
@@ -2985,7 +2985,7 @@ BOOL CDirView::IsItemSelectedSpecial()
 {
 	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	ASSERT(-1 != nSelItem);
-	return ((POSITION)SPECIAL_ITEM_POS == GetItemKey(nSelItem));
+	return (SPECIAL_ITEM_POS == GetItemKey(nSelItem));
 }
 
 /**

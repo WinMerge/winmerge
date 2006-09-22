@@ -69,7 +69,7 @@ namespace varprop { struct VariantValue; }
 /**
  * @brief Position value for special items (..) in directory compare view.
  */
-const int SPECIAL_ITEM_POS = -1;
+const POSITION SPECIAL_ITEM_POS = (POSITION)-1L;
 
 /** Default column width in directory compare */
 const UINT DefColumnWidth = 150;
@@ -109,7 +109,7 @@ public:
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	POSITION GetItemKey(int idx) const;
-	int GetItemIndex(DWORD key);
+	int GetItemIndex(POSITION key);
 	// for populating list
 	void DeleteAllDisplayItems();
 	void SetColumnWidths();

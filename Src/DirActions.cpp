@@ -985,7 +985,7 @@ UINT CDirView::MarkSelectedForRescan()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		// Don't try to rescan special items
-		if (GetItemKey(sel) == (POSITION)SPECIAL_ITEM_POS)
+		if (GetItemKey(sel) == SPECIAL_ITEM_POS)
 			continue;
 
 		DIFFITEM di = GetDiffItem(sel);
@@ -1181,7 +1181,7 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 	BOOL bRenameRight = RenameOnSameDir(sRightFile, szNewItemName);
 
 	POSITION key = GetItemKey(nSelItem);
-	ASSERT(key != (POSITION)SPECIAL_ITEM_POS);
+	ASSERT(key != SPECIAL_ITEM_POS);
 	DIFFITEM& di = GetDocument()->GetDiffRefByKey(key);
 
 	if ((TRUE == bRenameLeft)  && (TRUE == bRenameRight))
