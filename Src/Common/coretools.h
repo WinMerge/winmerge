@@ -91,7 +91,7 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 				  LPSYSTEMTIME pMod,
 				  LPSYSTEMTIME pCreate =NULL,
 				  LPSYSTEMTIME pAccess =NULL);
-long GetFileModTime(LPCTSTR szPath);
+time_t GetFileModTime(LPCTSTR szPath);
 DWORD GetFileSizeEx(LPCTSTR szFilename);
 CString GetCDPath();
 BOOL HaveAdminAccess();

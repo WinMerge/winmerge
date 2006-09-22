@@ -61,7 +61,7 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 	return FALSE;
 }
 
-long GetFileModTime(LPCTSTR szPath)
+time_t GetFileModTime(LPCTSTR szPath)
 {
 	if (!szPath || !szPath[0]) return 0;
 	struct _stat mystats;
@@ -490,13 +490,13 @@ aswap(LPTSTR a,LPTSTR b)
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name)
 {
 #ifndef _UNICODE
-   struct _finddata_t c_file;
+   struct __finddata64_t c_file;
 #else
-   struct _wfinddata_t c_file;
+   struct __wfinddata64_t c_file;
 #endif
-   long hFile;
+   intptr_t hFile;
 
-   if( (hFile = _tfindfirst( filespec, &c_file )) == -1L )
+   if( (hFile = _tfindfirst64( filespec, &c_file )) == -1L )
        return FALSE;
 
     _tcscpy(name, c_file.name);
