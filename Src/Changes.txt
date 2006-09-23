@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-23 Kimmo
+ Couple of type fixes to CMoveConstraint
+  Src/Common: CMoveConstraint.cpp CMoveConstraint.h
+
 2006-09-22 Kimmo
  PATCH: [ 1563157 ] Fix coretools.cpp for 64-bit
   Src/Common: coretools.cpp coretools.h

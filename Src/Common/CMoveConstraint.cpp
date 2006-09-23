@@ -2,7 +2,7 @@
   \file    CMoveConstraint.cpp
   \author  Perry Rapp, Creator, 1998-2004
   \date    Created: 1998
-  \date    Edited:  2005-07-26 (Perry Rapp)
+  \date    Edited:  2006-09-23 (Kimmo Varis)
 
   \brief   Implementation of CMoveConstraint
 
@@ -346,7 +346,7 @@ ConstrainItem(int nId, double fLeftX, double fExpandX, double fAboveY, double fE
 /**
  * Chain to further CSubclass processing if appropriate
  */
-UINT
+LRESULT
 CMoveConstraint::CallOriginalProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
 #ifndef NOSUBCLASS
@@ -357,7 +357,7 @@ CMoveConstraint::CallOriginalProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lPa
 		;
 #endif // NOSUBCLASS
 	else
-		return 0;
+		return (LRESULT)0;
 }
 
 #ifndef NOSUBCLASS
@@ -554,7 +554,7 @@ CMoveConstraint::OnNcHitTest(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT * p
 		return false;
 	if (m_nMinY == m_nMaxY)
 	{
-		int nRet = CallOriginalProc(m_hwndDlg, msg, wParam, lParam);
+		LRESULT nRet = CallOriginalProc(m_hwndDlg, msg, wParam, lParam);
 		switch(nRet)
 		{
 		case HTBOTTOMLEFT:
@@ -574,7 +574,7 @@ CMoveConstraint::OnNcHitTest(UINT msg, WPARAM wParam, LPARAM lParam, LRESULT * p
 	}
 	if (m_nMinX == m_nMaxX)
 	{
-		int nRet = CallOriginalProc(m_hwndDlg, msg, wParam, lParam);
+		LRESULT nRet = CallOriginalProc(m_hwndDlg, msg, wParam, lParam);
 		switch(nRet)
 		{
 		case HTBOTTOMLEFT:
@@ -631,7 +631,7 @@ CMoveConstraint::OnDestroy()
 bool
 CMoveConstraint::OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult)
 {
-	int id = pTTT->hdr.idFrom;
+	UINT id = pTTT->hdr.idFrom;
 	UINT uflags = pTTT->uFlags;
 	if (uflags & TTF_IDISHWND)
 		id = GetDlgCtrlID((HWND)id);

@@ -2,7 +2,7 @@
   \file    CMoveConstraint.h
   \author  Perry Rapp, Creator, 1998-2004
   \date    Created: 1998
-  \date    Edited:  2005-07-26 (Perry Rapp)
+  \date    Edited:  2006-09-23 (Kimmo Varis)
 
   \brief   Declaration of CMoveConstraint
 
@@ -188,7 +188,7 @@ protected:
 	// handle WM_NOTIFY/TTN_NEEDTEXT combination
 	bool OnTtnNeedText(TOOLTIPTEXT * pTTT, LRESULT * plresult);
 	// forwarder
-	UINT CallOriginalProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+	LRESULT CallOriginalProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
 	bool PaintGrip();
 	void ClearMostData();
 	void DeleteAllConstraints();
