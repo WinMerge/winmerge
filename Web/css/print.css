@@ -25,6 +25,10 @@ body {
 	display: none;
 }
 
+#ads {
+	display: none;
+}
+
 #content {
 	margin: 0;
 	padding: 5px;

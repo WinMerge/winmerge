@@ -1,3 +1,7 @@
+2006-09-23 Tim
+ PATCH: [ 1561419 ] Web: Don't print ads
+  Web\css: print.css
+
 2006-09-18 Tim
  PATCH: [ 1559508 ] Change kimmov's email address
   Web\developer: developers.xml
