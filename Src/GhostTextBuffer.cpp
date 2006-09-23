@@ -156,7 +156,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
                  int nEndLine, int nEndChar, 
                  CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
-	int lines = m_aLines.GetSize();
+	int lines = (int) m_aLines.GetSize();
 	ASSERT(nStartLine >= 0 && nStartLine < lines);
 	ASSERT(nStartChar >= 0 && nStartChar <= GetLineLength(nStartLine));
 	ASSERT(nEndLine >= 0 && nEndLine < lines);
@@ -244,7 +244,7 @@ SetText (LPCTSTR pszText)
 	FreeText();
 	if (pszText != NULL && pszText[0] != _T ('\0'))
 	{
-		int nLength = _tcslen (pszText);
+		int nLength = (int) _tcslen (pszText);
 		if (nLength > 1)
 		{
 			m_pszText = new TCHAR[(nLength + 1) * sizeof (TCHAR)];
@@ -260,8 +260,10 @@ SetText (LPCTSTR pszText)
 void CGhostTextBuffer::SUndoRecord::
 FreeText ()
 {
-	// see the m_szText/m_pszText definition about the use of HIWORD
-	if (HIWORD ((DWORD) m_pszText) != 0)
+	// See the m_szText/m_pszText definition
+	// Check if m_pszText is a pointer by removing bits having
+	// possible char value
+	if (((INT_PTR)m_pszText >> 16) != 0)
 		delete[] m_pszText;
 	m_pszText = NULL;
 }
@@ -420,7 +422,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		}
 
 		// restore line revision numbers
-		int i, naSavedRevisonNumbersSize = ur.m_paSavedRevisonNumbers->GetSize();
+		int i, naSavedRevisonNumbersSize = (int) ur.m_paSavedRevisonNumbers->GetSize();
 		for (i = 0; i < naSavedRevisonNumbersSize; i++)
 			m_aLines[apparent_ptStartPos.y + i].m_dwRevisionNumber = (*ur.m_paSavedRevisonNumbers)[i];
 
@@ -554,7 +556,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	ASSERT (m_aUndoBuf.GetSize () == 0 || (m_aUndoBuf[0].m_dwFlags & UNDO_BEGINGROUP) != 0);
 
 	//  Strip unnecessary undo records (edit after undo wipes all potential redo records)
-	int nBufSize = m_aUndoBuf.GetSize ();
+	int nBufSize = (int) m_aUndoBuf.GetSize ();
 	if (m_nUndoPosition < nBufSize)
 	{
 		m_aUndoBuf.SetSize (m_nUndoPosition);
@@ -562,7 +564,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 
 	//  If undo buffer size is close to critical, remove the oldest records
 	ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
-	nBufSize = m_aUndoBuf.GetSize ();
+	nBufSize = (int) m_aUndoBuf.GetSize ();
 	if (nBufSize >= m_nUndoBufSize)
 	{
 		int nIndex = 0;
@@ -620,7 +622,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 	ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
 
 	m_aUndoBuf.Add (ur);
-	m_nUndoPosition = m_aUndoBuf.GetSize ();
+	m_nUndoPosition = (int) m_aUndoBuf.GetSize ();
 
 	ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
 }
@@ -893,7 +895,7 @@ Return -1 if no lines.
 */
 int CGhostTextBuffer::ApparentLastRealLine() const
 {
-	int bmax = m_RealityBlocks.GetUpperBound();
+	int bmax = (int) m_RealityBlocks.GetUpperBound();
 	if (bmax<0) return -1;
 	const RealityBlock & block = m_RealityBlocks[bmax];
 	return block.nStartApparent + block.nCount - 1;
@@ -911,7 +913,7 @@ for argument of 3, return 2
 */
 int CGhostTextBuffer::ComputeRealLine(int nApparentLine) const
 {
-	int bmax = m_RealityBlocks.GetUpperBound();
+	int bmax = (int) m_RealityBlocks.GetUpperBound();
 	// first get the degenerate cases out of the way
 	// empty file ?
 	if (bmax<0)
@@ -949,7 +951,7 @@ If real line is out of bounds, return last valid apparent line + 1
 */
 int CGhostTextBuffer::ComputeApparentLine(int nRealLine) const
 {
-	int bmax = m_RealityBlocks.GetUpperBound();
+	int bmax = (int) m_RealityBlocks.GetUpperBound();
 	// first get the degenerate cases out of the way
 	// empty file ?
 	if (bmax<0)
@@ -990,7 +992,7 @@ for argument of 3, return 2, and decToReal = 1
 */
 int CGhostTextBuffer::ComputeRealLineAndGhostAdjustment(int nApparentLine, int& decToReal) const
 {
-	int bmax = m_RealityBlocks.GetUpperBound();
+	int bmax = (int) m_RealityBlocks.GetUpperBound();
 	// first get the degenerate cases out of the way
 	// empty file ?
 	if (bmax<0) 
@@ -1044,7 +1046,7 @@ int CGhostTextBuffer::ComputeApparentLine(int nRealLine, int decToReal) const
 	int blo, bhi;
 	int nPreviousBlock;
 	int nApparent;
-	int bmax = m_RealityBlocks.GetUpperBound();
+	int bmax = (int) m_RealityBlocks.GetUpperBound();
 	// first get the degenerate cases out of the way
 	// empty file ?
 	if (bmax<0)
@@ -1194,7 +1196,7 @@ void CGhostTextBuffer::RecomputeEOL(CCrystalTextView * pSource, int nStartLine, 
 				if (m_aLines[i].m_nEolChars == 0) 
 				{
 					// if a real line (not the last) has no EOL, add one
-					AppendLine (i, GetDefaultEol(), _tcslen(GetDefaultEol()));
+					AppendLine (i, GetDefaultEol(), (int) _tcslen(GetDefaultEol()));
 					if (pSource!=NULL)
 						UpdateViews (pSource, NULL, UPDATE_HORZRANGE | UPDATE_SINGLELINE, i);
 				}
@@ -1220,7 +1222,7 @@ This means that this only has effect in DEBUG build
 */
 void CGhostTextBuffer::checkFlagsFromReality(BOOL bFlag) const
 {
-	int bmax = m_RealityBlocks.GetUpperBound();
+	int bmax = (int) m_RealityBlocks.GetUpperBound();
 	int b;
 	int i = 0;
 	for (b = 0 ; b <= bmax ; b ++)
