@@ -817,14 +817,14 @@ CString CLanguageSelect::GetNativeLanguageNameString( int idx )
 static WORD
 GetLangFromLocale(LCID lcid)
 {
-		TCHAR buff[8];
-		if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, countof(buff)))
-		{
-			LANGID langid = 0;
-			if (1 == _stscanf(buff, _T("%x"), &langid) && langid)
-				return langid;
-		}
-		return -1;
+	TCHAR buff[8] = {0};
+	if (GetLocaleInfo(lcid, LOCALE_IDEFAULTLANGUAGE, buff, countof(buff)))
+	{
+		int langID = 0;
+		if ((1 == _stscanf(buff, _T("%4x"), &langID)) && langID)
+			return (WORD)langID;
+	}
+	return (WORD)-1;
 }
 
 void
