@@ -1,3 +1,7 @@
+2006-09-24 Kimmo
+ Add 2.6 branch URL
+  Developers: readme-Subversion.html
+
 2006-09-19 Kimmo
  Add ShellExtensionX64.dll to installer doc
   Developers: readme-InnoSetup.html
