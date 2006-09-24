@@ -2869,6 +2869,10 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		{
 			ShowRescanError(nRescanResult, bBinary, bIdentical);
 		}
+
+		// Exit if files are identical should only work for the first
+		// comparison and must be disabled afterward.
+		GetMainFrame()->m_bExitIfNoDiff = FALSE;
 	}
 	else
 	{
