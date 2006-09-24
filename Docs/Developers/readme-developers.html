@@ -386,9 +386,11 @@ executable version numbers before uploading and releasing them.</p>
 
 <p>When we make a release we always put a note in <code>Src/Changes.txt</code> in SVN.</p>
 
-<p>It is recommended to put a tag in SVN when you make a file release, because that makes it easier
-to pull a release version when there were code updates before and after it on the same day
-(because SourceForge doesn't record time of day correctly, and anyway, it it easier to just ask for a tag).</p>
+<p>It is recommended to create a tag to repository when making a stable- or beta- releases.
+Although with subversion we have kind of tags for every commit (revision numbers) it is still a lot
+easier to handle and remeber them with human-readable names (R2_6_0) than with revision numbers
+(revision 3637 (not a real revision number!)). Experimental or other testing releases don't need
+tags since they are not intended for wide use and are usually just one-time snapshots.</p>
 
 <p>The tag should follow the same numbering scheme as used above, with the dots replaced by underscores
 and prefixed with an <code>R</code>, so the example experimental above would have a tag named <code>R2_1_3_0</code>,

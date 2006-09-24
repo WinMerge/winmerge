@@ -1,6 +1,8 @@
 2006-09-24 Kimmo
  Add 2.6 branch URL
   Developers: readme-Subversion.html
+ Clarify tagging releases to Subversion repository (no tagging for experimentals)
+  Developers: readme-developers.html
 
 2006-09-19 Kimmo
  Add ShellExtensionX64.dll to installer doc
