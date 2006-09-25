@@ -1,3 +1,9 @@
+2006-09-25 Kimmo
+ PATCH: [ 1564535 ] Manual: New folder compare screenshot
+  Manual: Compare_dirs.xml Quick_start.xml
+  Manual/screenshots new file: foldercomp1.png
+  Manual/screenshots deleted file: dircomp1.gif
+
 2006-09-14 Tim
  PATCH: [ 1558909 ] Manual: New <screen> layout (XSL)
   Manual/css: all.css help.css print.css

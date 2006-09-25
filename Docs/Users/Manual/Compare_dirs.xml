@@ -9,7 +9,7 @@
 
   <mediaobject>
     <imageobject>
-      <imagedata fileref="screenshots/dircomp1.gif" format="GIF" />
+      <imagedata fileref="screenshots/foldercomp1.png" format="PNG" />
     </imageobject>
   </mediaobject>
 
@@ -42,15 +42,15 @@
       </listitem>
     </itemizedlist></para>
 
-  <para>WinMerge 2.4 is finally capable to compare large binary files. There
-  is new <guilabel>Compare by Quick Contents</guilabel> -compare method which
-  makes it possible. For more information about different compare methods see
+  <para>In WinMerge version 2.4 and later there is a <guilabel>Compare by
+  Quick Contents</guilabel> -compare method which makes possible to compare
+  big binary files. For more information about different compare methods see
   <link linkend="Configuration">Options &amp; configuration</link> -chapter.
-  In WinMerge 2.4 all files bigger than 4 MB (megabytes) are automatically
-  compared with Compare by Quick Contents -method. Downsides for this method
-  are that linefilters do not work and there is no difference counts
-  information in folder compare UI. For most cases this should not matter
-  since so big files usually are binary files.</para>
+  In WinMerge version 2.4 and later all files bigger than 4 MB (megabytes) are
+  automatically compared with Compare by Quick Contents -method. Downsides for
+  this method are that linefilters do not work and there is no difference
+  counts information in folder compare UI. For most cases this should not
+  matter since so big files usually are binary files.</para>
 
   <para>For advanced users: If that limit does not feel good (you have lots of
   big text files) it can be changed via registry value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>.
@@ -58,6 +58,10 @@
 
   <sect2>
     <title>Compare Results</title>
+
+    <indexterm>
+      <primary>Folder compare result</primary>
+    </indexterm>
 
     <para>Files and folders are compared and divided into several categories.
     Categories are easy to recognize from these icons:<simplelist>
@@ -228,6 +232,10 @@
 
   <sect2>
     <title>Columns in Folder Compare</title>
+
+    <indexterm>
+      <primary>Folder compare columns</primary>
+    </indexterm>
 
     <para>By default these columns are visible:</para>
 
@@ -581,6 +589,10 @@
 
   <sect2>
     <title>Hiding Items</title>
+
+    <indexterm>
+      <primary>Hiding files and folders</primary>
+    </indexterm>
 
     <para>Selected items can be hidden from view using context menu item
     <guimenuitem>Hide Items</guimenuitem>. Hidden items are not shown until
