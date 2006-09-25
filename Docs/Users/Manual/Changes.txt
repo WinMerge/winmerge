@@ -3,6 +3,14 @@
   Manual: Compare_dirs.xml Quick_start.xml
   Manual/screenshots new file: foldercomp1.png
   Manual/screenshots deleted file: dircomp1.gif
+ PATCH: [ 1564623 ] Manual: New screenshots for file compare
+  Manual: Compare_files.xml Quick_start.xml
+  Manual/screenshots new files: file_headerbar1.png filecomp1.png
+   filecomp_context1.png filecomp_inlinediff1.png linediff.png
+   merge_menu.png
+  Manual/screenshots deleted files: File_headerbar1.gif filecomp1.gif
+   filecomp_context1.gif filecomp_inlinediff.gif linediff.gif
+   Merge_menu.gif
 
 2006-09-14 Tim
  PATCH: [ 1558909 ] Manual: New <screen> layout (XSL)
