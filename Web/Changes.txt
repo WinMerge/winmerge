@@ -1,3 +1,7 @@
+2006-09-25 Tim
+ PATCH: [ 1564395 ] Update Spanish translation status
+  Web\developer\l10n: status.xml
+
 2006-09-23 Tim
  PATCH: [ 1561419 ] Web: Don't print ads
   Web\css: print.css

@@ -352,10 +352,12 @@
       <author>
         <name>Jesús M. Delgado 'MacK'</name>
         <email>mack_ at users dot sourceforge dot net</email>
-        <comment>2.3 &amp; 2.2</comment>
+        <comment>2.6 - 2.2</comment>
       </author>
     </authors>
     <versions>
+      <version>2.6</version>
+      <version>2.4</version>
       <version>2.3</version>
       <version>2.2</version>
       <version>1.7</version>
