@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-25 Kimmo
+ PATCH: [ 1563171 ] Catalan translation update (Open-dialog)
+  Submitted by Jordi Vilar
+   Src/Languages/Catalan: MergeCatalan.rc
+
 2006-09-24 Gal
  BUG: [ 1564283 ] Parameter -x causes files to be closed after merging
   Src: MergeDoc.cpp
