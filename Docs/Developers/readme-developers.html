@@ -67,12 +67,32 @@ compile WinMerge, unless you have MFC installed separately.</p>
   <li>HTML Help Workshop (either stand-alone or from Platform SDK)<br>
     Download it from :<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
     HTMLHelp download</a>.</li>
-  <li>Platform SDK <strong>recommended</strong><br> You can either download it from net:
-    <a href="http://www.microsoft.com/downloads/details.aspx?FamilyId=A55B6B43-E24F-4EA3-A93E-40C0EC4F68E5&displaylang=en">
-    Platform SDK download</a> or use version installed with Visual Studio 2003.Net and later.</li>
+  <li>Platform SDK - be sure to use version that works with your version of Visual Studio:
+    <ul>
+      <li><strong>VC6</strong>: Platform SDK February 2003 - <a href="http://www.microsoft.com/msdownload/platformsdk/sdkupdate/psdk-full.htm">
+        Download and install</a></li>
+      <li><strong>VS2003.Net and later</strong>: Platform SDK Windows 2003 SP1 -
+       <a href="http://www.microsoft.com/downloads/details.aspx?familyid=0BAF2B35-C656-4969-ACE8-E4C0C0716ADB">
+       Download and install</a></li>
+    </ul>
+    Visual Studio 2003.Net and later come with Platform SDK but you may still want more recent version...</li>
   <li>Installer needs own tools, documented in <a href="readme-InnoSetup.html">readme-InnoSetup.html</a></li>
   <li>Manual needs Docbook tools, documented in <a href="readme-manual.html">readme-manual.html</a></li>
 </ul>
+
+<p>Platform SDK components<br>
+With Feb 2003 Platform SDK (and VC6) following components are needed:
+<ul>
+  <li>Core SDK - obviously..</li>
+  <li>MDAC SDK - for some ODBC etc headers needed by other PSDK headers..</li>
+  <li>Internet Devlopment SDK - for IE/Shell headers</li>
+</ul>
+Basically same components are needed for Windows 2003 SP1 PSDK, but with a different name:
+<ul>
+  <li>Microsoft Windows Core SDK - obviously..</li>
+  <li>Microsoft Data Access Services (MDAC) SDK - for some ODBC etc headers needed by other PSDK headers..</li>
+  <li>Microsoft Web Workshop (IE) SDK - for IE/Shell headers</li>
+</ul></p>
 
 <h4>Project files</h4>
 <p>Project file for WinMerge executable (in <code>/Src</code>) and other projects like

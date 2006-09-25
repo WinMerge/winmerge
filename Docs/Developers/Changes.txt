@@ -1,3 +1,7 @@
+2006-09-25 Kimmo
+ Add info about different PSDK versions and components needed
+  Developers: readme-developers.html
+
 2006-09-24 Kimmo
  Add 2.6 branch URL
   Developers: readme-Subversion.html
