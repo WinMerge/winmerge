@@ -489,17 +489,22 @@ aswap(LPTSTR a,LPTSTR b)
 
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name)
 {
-#ifndef _UNICODE
-   struct __finddata64_t c_file;
+// Use 64-bit versions with VS2003.Net and later
+#if _MSC_VER >= 1300
+	_tfinddata64_t c_file;
+	intptr_t hFile;
+	hFile = _tfindfirst64( filespec, &c_file );
 #else
-   struct __wfinddata64_t c_file;
-#endif
-   intptr_t hFile;
+// Use 32-bit versions with VC6
+	_tfinddata_t c_file;	
+	long hFile;
+	hFile = _tfindfirst( filespec, &c_file );
+#endif // _MSC_VER >= 1300
 
-   if( (hFile = _tfindfirst64( filespec, &c_file )) == -1L )
-       return FALSE;
+	if (hFile == -1L)
+		return FALSE;
 
-    _tcscpy(name, c_file.name);
+	_tcscpy(name, c_file.name);
 	_findclose( hFile );
 	return TRUE;
 }
