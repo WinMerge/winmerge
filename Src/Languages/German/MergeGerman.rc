@@ -219,7 +219,7 @@ BEGIN
         MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
         MENUITEM "R&echts schreibgeschützt",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File En&coding",              ID_FILE_ENCODING
+        MENUITEM "Dateik&odierung",             ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Beenden",                    ID_APP_EXIT
     END
@@ -774,7 +774,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Suchen"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "S&uchen nach:",IDC_STATIC,7,9,50,8
+    LTEXT           "&Suchen nach:",IDC_STATIC,7,9,50,8
     COMBOBOX        IDC_EDIT_FINDTEXT,59,7,160,65,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | WS_VSCROLL | WS_TABSTOP
     CONTROL         "&Nur ganze Wörter",IDC_EDIT_WHOLE_WORD,"Button",
@@ -783,7 +783,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,37,135,10
     CONTROL         "&Reguläre Ausdrücke",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,47,135,10
-    CONTROL         "D&on't wrap end of file",IDC_FINDDLG_DONTWRAP,"Button",
+    CONTROL         "Nicht am Dateiende um&brechen",IDC_FINDDLG_DONTWRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,57,135,10
     GROUPBOX        "Richtung",IDC_STATIC,148,23,70,36,WS_GROUP
     CONTROL         "nach &oben",IDC_EDIT_DIRECTION_UP,"Button",BS_AUTORADIOBUTTON |
@@ -800,7 +800,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "Ersetzen"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "S&uchen nach:",IDC_STATIC,7,9,65,8
+    LTEXT           "&Suchen nach:",IDC_STATIC,7,9,65,8
     COMBOBOX        IDC_EDIT_FINDTEXT,75,7,165,66,CBS_DROPDOWN |
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     LTEXT           "Erse&tzen durch:",IDC_STATIC,7,24,65,8
@@ -812,7 +812,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "&Reguläre Ausdrücke",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
-    CONTROL         "Nicht das Dateiende umbrechen",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+    CONTROL         "Nicht am Dateiende um&brechen",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "Ersetze in",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "&Auswahl",IDC_EDIT_SCOPE_SELECTION,"Button",
@@ -1471,28 +1471,28 @@ END
 IDD_LOAD_SAVE_CODEPAGE DIALOGEX 0, 0, 178, 138
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Codepage"
+CAPTION "Zeichensatz"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    GROUPBOX        "Affects",IDC_AFFECTS_GROUP,5,7,166,36
-    CONTROL         "&Left",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
+    GROUPBOX        "Betrifft",IDC_AFFECTS_GROUP,5,7,166,36
+    CONTROL         "&Links",IDC_AFFECTS_LEFT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,18,54,8
     LTEXT           "(Affects)",IDC_LEFT_FILES_LABEL,70,18,93,8
-    CONTROL         "&Right",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
+    CONTROL         "&Rechts",IDC_AFFECTS_RIGHT_BTN,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,29,54,8
     LTEXT           "(Affects)",IDC_RIGHT_FILES_LABEL,70,29,93,8
-    GROUPBOX        "Select Codepage for",IDC_LOADING_GROUP,5,48,166,63
-    LTEXT           "&File Loading:",IDC_LOAD_FILES_LABEL,12,64,72,10
+    GROUPBOX        "Zeichensatz auswählen für",IDC_LOADING_GROUP,5,48,166,63
+    LTEXT           "&Datei laden:",IDC_LOAD_FILES_LABEL,12,64,72,10
     EDITTEXT        IDC_LOAD_CODEPAGE_TEXTBOX,86,63,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_LOAD_CODEPAGE_BROWSE,139,64,23,10
-    LTEXT           "File &Saving:",IDC_SAVE_FILES_LABEL,12,79,67,10
+    LTEXT           "Datei &speichern:",IDC_SAVE_FILES_LABEL,12,79,67,10
     EDITTEXT        IDC_SAVE_CODEPAGE_TEXTBOX,86,79,45,12,ES_AUTOHSCROLL
     PUSHBUTTON      "...",IDC_SAVE_CODEPAGE_BROWSE,139,80,23,10
-    CONTROL         "&Use same codepage for both",
+    CONTROL         "&Gleichen Zeichensatz für Beide verwenden",
                     IDC_LOAD_SAVE_SAME_CODEPAGE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,12,96,150,10
-    DEFPUSHBUTTON   "&Apply",IDOK,65,117,50,14
-    PUSHBUTTON      "&Cancel",IDCANCEL,121,117,50,14
+    DEFPUSHBUTTON   "An&wenden",IDOK,65,117,50,14
+    PUSHBUTTON      "&Abbruch",IDCANCEL,121,117,50,14
 END
 
 IDD_TEST_FILTER DIALOGEX 0, 0, 249, 142
@@ -1748,9 +1748,9 @@ BEGIN
     ID_FILE_OPENPROJECT     "Öffnet eine Projektdatei.\nProjektdatei (Strg+J)"
     IDS_UNK_ERROR_READING_PROJECT "Unbekannter Fehler beim Versuch die Projektdatei zu öffnen."
     IDS_UNK_ERROR_SAVING_PROJECT "Unbekannter Fehler beim Versuch die Projektdatei zu speichern."
-    IDS_PROJFILEDLG_CAPTION "Projekt-Datei"
-    IDS_PROJFILE_LOAD_SUCCESS "Project file successfully loaded."
-    IDS_PROJFILE_SAVE_SUCCESS "Project file successfully saved."
+    IDS_PROJFILEDLG_CAPTION "Projektdatei"
+    IDS_PROJFILE_LOAD_SUCCESS "Projektdatei erfolgreich geladen."
+    IDS_PROJFILE_SAVE_SUCCESS "Projektdatei erfolgreich gespeichert."
     ID_FILE_SAVEPROJECT     "Speichert die aktuellen Pfade und Einstellungen in eine Projektdatei.\nProjektdatei speichern"
 END
 
@@ -1948,12 +1948,12 @@ END
 STRINGTABLE
 BEGIN
     IDS_CMDLINE_FILEMASK  "/f oder -f setzt die Dateimaske oder den Filtername für den Vergleich"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
+    IDS_CMDLINE_FASTCLOSE  "/x oder -x schließt WinMerge, wenn das Ergebnis identisch ist"
+    IDS_CMDLINE_SINGLE_INST  "/s oder -s öffnet Pfade zur bestehenden WinMerge-Instanz"
     IDS_CMDLINE_LEFTPATH  "LinkerPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der linken Seite"
     IDS_CMDLINE_RIGHTPATH  "RechterPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der rechten Seite"
     IDS_CMDLINE_OUTPUTPATH "AusgabePfad ist ein optionales Ausgabeverzeichnis, in dem Sie die vermischten Dateien speichern möchten"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
+    IDS_CMDLINE_SEEMANUAL  "Sehen Sie ins Handbuch für eine komplette Befehlszeilen-Referenz."
 END
 
 // VARIOUS OPTIONS
@@ -1993,7 +1993,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Schneller Inhalt"
     IDS_COMPMETHOD_MODDATE  "Änderungsdatum"
     IDS_COMPMETHOD_DATESIZE "Änderungsdatum und Größe"
-    IDS_COMPMETHOD_SIZE     "Size"
+    IDS_COMPMETHOD_SIZE     "Größe"
 END
 
 // FILTER OPTIONS
@@ -2267,8 +2267,8 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_LENCODING    "Linke Kodierung"
     IDS_COLHDR_RENCODING    "Rechte Kodierung"
-    IDS_COLHDR_NIDIFFS      "Ignored Diff."
-    IDS_COLHDR_NSDIFFS      "Differences"
+    IDS_COLHDR_NIDIFFS      "Ignorierte Unter."
+    IDS_COLHDR_NSDIFFS      "Unterschiede"
     IDS_COLHDR_BINARY       "Binär"
 END
 
@@ -2332,8 +2332,8 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_LENCODING   "Linke Zeichensatz-Kodierung."
     IDS_COLDESC_RENCODING   "Rechte Zeichensatz-Kodierung."
-    IDS_COLDESC_NIDIFFS     "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-    IDS_COLDESC_NSDIFFS     "Number of differences in file. This number does not include ignored differences."
+    IDS_COLDESC_NIDIFFS     "Anzahl der ignorierten Unterschiede in der Datei. Diese Unterschiede werden von WinMerge ignoriert und können nicht vermischt werden."
+    IDS_COLDESC_NSDIFFS     "Anzahl der Unterschiede in der Datei. Die Zahl enthält nicht die ignorierten Unterschiede."
     IDS_COLDESC_BINARY      "Zeigt ein Asterisk (*), wenn die Datei binär ist."
 END
 
@@ -2376,7 +2376,7 @@ END
 // Encoding issues
 STRINGTABLE
 BEGIN
-    IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nWould you like to treat both files as being in the default windows codepage (recommended)?"
+    IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nWollen Sie like to treat both files as being in the default windows codepage (recommended)?"
     IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
     IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
     IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
@@ -2780,7 +2780,7 @@ BEGIN
     ID_EOL_TO_UNIX          "Konvertiert Zeilenumbrüche ins UNIX Format."
     ID_EOL_TO_MAC           "Konvertiert Zeilenumbrüche ins MAC Format."
     ID_FILE_MERGINGMODE     "Wechselt zwischen Bearbeitungs- und Merging-Modus."
-    ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
+    ID_FILE_ENCODING        "Zeigt und passt die Dateikodierungs-Eigenschaften an.\nDateikodierungs-Eigenschaften"
 END
 
 // EDIT MENU
