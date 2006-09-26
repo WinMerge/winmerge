@@ -346,8 +346,8 @@ TurkishLanguage=Menús i diàlegs en Turc
 ;Tasks
 ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
 IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
+IntegrateTortoiseSVN=Integra amb el T&ortoiseSVN
+IntegrateClearCase=Integra amb el Rational &ClearCase
 IntegrateDelphi4=Suport per a fitxers binaris del Borland® Delphi &4
 UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 
@@ -356,7 +356,7 @@ ReadMe=Llegiu-me
 UsersGuide=Guia de l'usuari
 UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 ViewStartMenuFolder=&Veure la carpera del menú Inicia del WinMerge
-PluginsText=Plugins
+PluginsText=Connectors
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'instal·lador ha detectat que heu canviat la ubicació del vostre menú d'inici de "%s" a "%s". Voleu esborrar la carpeta del menú d'inici anterior?

@@ -1,3 +1,8 @@
+2006-09-26 Kimmo
+ PATCH: [ 1563171 ] Catalan translation update
+  Submitted by Jordi Vilar
+  InnoSetup/Languages: Catalan.isl
+
 2006-09-21 Kimmo
  PATCH: [ 1561668 ] Install translated readme texts
    InnoSetup: WinMerge.iss
