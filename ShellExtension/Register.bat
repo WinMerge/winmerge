@@ -14,15 +14,23 @@ IF "%1" == "/u" Goto Uninstall
 IF "%1" == "/U" Goto Uninstall
 
 Echo Registering ShellExtension.dll...
-if "%OS%" == "" RegSvr32 ShellExtension.dll
-if "%OS%" == "Windows_NT" RegSvr32 ShellExtensionU.dll
+IF "%OS%" == "" RegSvr32 ShellExtension.dll
+IF "%OS%" == "Windows_NT" (
+  IF "%PROCESSOR_ARCHITECTURE%" == "x86"   RegSvr32 ShellExtensionU.dll
+  IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" RegSvr32 ShellExtensionX64.dll
+  IF "%PROCESSOR_ARCHITECTURE%" == "IA64"  RegSvr32 ShellExtensionX64.dll
+)
 
 Goto End
 
 :Uninstall
 Echo UnRegistering ShellExtension.dll...
-if "%OS%" == "" RegSvr32 /u ShellExtension.dll
-if "%OS%" == "Windows_NT" RegSvr32 /u ShellExtensionU.dll
+IF "%OS%" == "" RegSvr32 /u ShellExtension.dll
+IF "%OS%" == "Windows_NT" (
+  IF "%PROCESSOR_ARCHITECTURE%" == "x86"   RegSvr32 /u ShellExtensionU.dll
+  IF "%PROCESSOR_ARCHITECTURE%" == "AMD64" RegSvr32 /u ShellExtensionX64.dll
+  IF "%PROCESSOR_ARCHITECTURE%" == "IA64"  RegSvr32 /u ShellExtensionX64.dll
+)
 
 :End
 CLS

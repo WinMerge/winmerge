@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-27 Kimmo
+ PATCH: [ 1565917 ] Register.bat to register ShellExt for 64-bit Windows
+  ShellExtension: Register.bat
+
 2006-09-26 Tim
  PATCH: [ 1565359 ] Various Updates in German Translation for WinMerge 2.6
   Src/Languages/German: MergeGerman.rc
