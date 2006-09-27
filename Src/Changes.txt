@@ -5,6 +5,8 @@ Add new items to top.
 2006-09-27 Kimmo
  PATCH: [ 1565917 ] Register.bat to register ShellExt for 64-bit Windows
   ShellExtension: Register.bat
+ BUG: [ 1563187 ] Can't close a file compare with -e switch
+  Src: MergeDoc.cpp
 
 2006-09-26 Tim
  PATCH: [ 1565359 ] Various Updates in German Translation for WinMerge 2.6

@@ -1253,7 +1253,7 @@ int CMergeDoc::LeftLineInMovedBlock(int apparentRightLine)
 BOOL CMergeDoc::CanCloseFrame(CFrameWnd* /*pFrame*/) 
 {
 	// Allow user to cancel closing
-	if (!GetMainFrame()->m_bEscShutdown && PromptAndSaveIfNeeded(TRUE))
+	if (PromptAndSaveIfNeeded(TRUE))
 	{
 		// Set modified status to false so that we are not asking
 		// about saving again in OnCloseDocument()
