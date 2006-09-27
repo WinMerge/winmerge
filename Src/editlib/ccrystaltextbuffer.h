@@ -192,7 +192,8 @@ public :
           m_nAction = src.m_nAction;
           SetText(src.GetText());
           INT_PTR size = src.m_paSavedRevisonNumbers->GetSize();
-          m_paSavedRevisonNumbers = new CDWordArray();
+          if (!m_paSavedRevisonNumbers)
+            m_paSavedRevisonNumbers = new CDWordArray();
           m_paSavedRevisonNumbers->SetSize(size);
           INT_PTR i;
           for (i = 0; i < size; i++)
@@ -203,7 +204,7 @@ public :
         {
           FreeText();
           if (m_paSavedRevisonNumbers)
-          	delete m_paSavedRevisonNumbers;
+            delete m_paSavedRevisonNumbers;
         }
 
         void SetText (LPCTSTR pszText);

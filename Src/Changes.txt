@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-09-27 Takashi
+ BUG: [ 1564572 ] Leak memory on undoing
+  Src: GhostTextBuffer.h
+  Src/editlib: ccrystaltextbuffer.h
+
 2006-09-27 Kimmo
  PATCH: [ 1565917 ] Register.bat to register ShellExt for 64-bit Windows
   ShellExtension: Register.bat
