@@ -3,6 +3,9 @@
   Manual: Install.xml
  PATCH: [ 1567323 ] Manual: OpenPaths talks about ShellExtension
   Manual: Open_paths.xml
+ PATCH: [ 1567345 ] Manual: Add documentation for location pane
+  Manual: Compare_files.xml
+  Manual/screenshots new file: filecomp_locpane.png
 
 2006-09-25 Kimmo
  PATCH: [ 1564535 ] Manual: New folder compare screenshot

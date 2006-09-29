@@ -424,6 +424,47 @@
   </sect2>
 
   <sect2>
+    <title>Location Pane</title>
+
+    <para>Location pane is a handy side-pane showing a overall (difference)
+    map of files compared.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/filecomp_locpane.png" format="PNG" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Location Pane shows differences as they are located in the files. So
+    it gives a good overall view for files compared. Location Pane shows
+    differences with same colors than editor panes. There are different
+    indicators in Location Pane:</para>
+
+    <itemizedlist>
+      <listitem>
+        <simpara>small triangles point to begin of the selected
+        difference</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>selected difference is shown with different color</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>area visible in editor panes is shown with different
+        background color</simpara>
+      </listitem>
+    </itemizedlist>
+
+    <para>Clicking with mouse in Location Pane moves cursor to place clicked
+    in file. Right-clicking with mouse opens the context menu with items to
+    select line to go to. And the visible area locator (area with different
+    background color) can be used like a scrollbar thumb - after pressing down
+    the left mouse butto over it it can be dragged upwards and downwards to
+    scroll the files.</para>
+  </sect2>
+
+  <sect2>
     <title>Context Menu</title>
 
     <para>File compare context menu contains items for frequently used
