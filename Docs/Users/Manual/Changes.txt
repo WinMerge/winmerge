@@ -1,6 +1,8 @@
 2006-09-29 Kimmo
  PATCH: [ 1567301 ] Manual: 64-bit ShellExtension installing
   Manual: Install.xml
+ PATCH: [ 1567323 ] Manual: OpenPaths talks about ShellExtension
+  Manual: Open_paths.xml
 
 2006-09-25 Kimmo
  PATCH: [ 1564535 ] Manual: New folder compare screenshot

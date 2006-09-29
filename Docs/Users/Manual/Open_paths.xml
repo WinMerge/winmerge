@@ -99,27 +99,32 @@
   </sect2>
 
   <sect2>
-    <title>Shell Extension</title>
+    <title>Shell Integration</title>
 
-    <para>Shell extension is convenient way to select paths using Windows
-    Explorer. Shell Extension must be first enabled from
-    <guilabel>Options</guilabel>/<guilabel>System</guilabel> before use. When
-    Shell Extension is enabled item <guimenuitem>WinMerge</guimenuitem> is
-    added to context menu (click right mouse button over file or folder in
-    Explorer).</para>
+    <indexterm>
+      <primary>Shell Integration</primary>
+    </indexterm>
+
+    <para>The Shell Integration is a convenient way to select the paths using
+    Windows Explorer. Installer enables Shell Integration if choosen so. Shell
+    Integration can be enabled or disabled from
+    <guilabel>Options</guilabel>/<guilabel>System</guilabel>. When the Shell
+    Integration is enabled item <guimenuitem>WinMerge</guimenuitem> is added
+    to the Explorer context menu (click right mouse button over file or folder
+    in Explorer).</para>
 
     <para>WinMerge accepts one or two paths. When one path is selected through
-    Shell Extension WinMerge places it as "<guilabel>Left</guilabel>" path and
-    open Open-dialog for user to select "<guilabel>Right</guilabel>" path.
+    Shell Integration WinMerge places it as "<guilabel>Left</guilabel>" path
+    and open Open-dialog for user to select "<guilabel>Right</guilabel>" path.
     Also if two paths are selected but another path couldn't be opened for
     reason or another WinMerge shows Open-dialog for selecting valid
     paths.</para>
 
     <sect3>
-      <title>Advanced Shell Extension</title>
+      <title>Advanced Shell Integration</title>
 
-      <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for shell
-      extension from options adds more choices for path selection. Now
+      <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for Shell
+      Integration from options adds more choices for path selection. Now
       WinMerge adds two menuitems to Explorer context menu:
       "<guimenuitem>Compare To</guimenuitem>" and
       "<guimenuitem>Compare...</guimenuitem>". <guimenuitem>Compare
@@ -167,9 +172,9 @@
     </sect3>
 
     <sect3>
-      <title>Including subfolders</title>
+      <title>Including Subfolders</title>
 
-      <para>Shell Extension by default does not include subfolders into
+      <para>Shell Integration by default does not include subfolders into
       comparison. This default behavior can be changed using <guilabel>Include
       Subfolders by Default</guilabel> option in System options. Default
       behavior can be also changed by holding down Control -key while
