@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sect1 id="Installing">
-  <title>Getting and installing WinMerge</title>
+  <title>Getting and Installing WinMerge</title>
+
+  <para>WinMerge can be installed using installer or by unzipping files from
+  archive. Using the installer is the recommended method.</para>
+
+  <para>Currently WinMerge installer works for natively for 32-bit Windows.
+  There is no separate version for 64-bit Windows (WinXP/2003/Vista) but those
+  can run installer and WinMerge as 32-bit application. However there is
+  64-bit version of Shell Integration included in 32-bit installer. So Shell
+  Integration works in 64-bit Windows.</para>
 
   <sect2>
-    <title>Getting files</title>
+    <title>Getting Files</title>
 
     <para>Latest releases can be always downloaded from WinMerge homepage:
     <ulink url="http://www.winmerge.org/">WinMerge.org</ulink>. Note that
-    there may be some delay updating homepages for releases, but project
-    statuspage at <ulink
+    there may be some delay updating homepages for the latest releases, but
+    project statuspage at <ulink
     url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
-    shows latest files. There is also mailing-list for release announcements.
-    Stable releases are also available in several file download sites.</para>
-
-    <para>WinMerge can be installed using installer or by unzipping files from
-    archive.</para>
+    shows the latest files. There is also a mailing-list for release
+    announcements. Stable releases are also available in several file download
+    sites.</para>
   </sect2>
 
   <sect2>
-    <title>Using installer (recommended)</title>
+    <title>Using the Installer (recommended)</title>
 
     <note>
       <para>Installer requires Admin-user priviledges in Windows NT4/2000/XP.
       If you don't have Admin-user priviledges you can install WinMerge by
-      unzipping from an archive file (see that section).</para>
+      unzipping from an archive file (see <link
+      linkend="InstallingFromArchive">Installing from an
+      Archive</link>).</para>
     </note>
 
     <para>This is recommended for most users. Installer asks location where
@@ -50,7 +59,7 @@
       <listitem>
         <simpara>Select location for WinMerge and select
         <guibutton>Next</guibutton>-button. It is recommended to install
-        WinMerge in own directory.</simpara>
+        WinMerge in own folder.</simpara>
       </listitem>
 
       <listitem>
@@ -114,13 +123,23 @@
             </listitem>
 
             <listitem>
+              <simpara><guilabel>Integrate with TortoiseSVN</guilabel> - sets
+              WinMerge to TortoiseSVN diff application.</simpara>
+            </listitem>
+
+            <listitem>
+              <simpara><guilabel>Integrate with ClearCase</guilabel> - sets
+              WinMerge to ClearCase diff and merge application.</simpara>
+            </listitem>
+
+            <listitem>
               <simpara><guilabel>Create a Desktop Icon</guilabel> - adds
-              WinMerge icon to Desktop</simpara>
+              WinMerge icon to Desktop.</simpara>
             </listitem>
 
             <listitem>
               <simpara><guilabel>Create a Quick Launch Icon</guilabel> - adds
-              WinMerge icon to Quick Launch bar</simpara>
+              WinMerge icon to Quick Launch bar.</simpara>
             </listitem>
           </itemizedlist></para>
       </listitem>
@@ -139,7 +158,7 @@
   </sect2>
 
   <sect2>
-    <title>Installing from archive</title>
+    <title id="InstallFromArchive">Installing from an Archive</title>
 
     <para>WinMerge is pretty much independent from other system components. It
     doesn't integrate tightly to Windows or use lots of dlls.
@@ -159,37 +178,53 @@
     folder can be renamed or files copied to other folder (preserving folder
     structure!).</para>
 
-    <para>After unzipping files WinMerge is ready to run! ShellExtension and
-    Archive Integration may need additional steps (see below).</para>
+    <para>After unzipping files WinMerge is ready to run! Shell Integration
+    and Archive Integration may need additional steps (see below).</para>
   </sect2>
 
   <sect2>
-    <title>Shell integration</title>
+    <title>Shell Integration</title>
 
     <para>Choose "<guilabel>Enable Explorer context menu
     integration</guilabel>" from installer's additional features to install
-    shell integration.</para>
+    Shell Integration.</para>
 
-    <para>If install program is not used, shell integration dll
-    (<filename>ShellExtension[U].dll</filename>) must be registered
-    separately. This is done by running <filename>register.bat</filename> from
-    WinMerge directory. Reboot is recommended after installing so Windows
-    updates all its references.</para>
+    <para>If install program is not used, Shell Integration dll
+    (<filename>ShellExtension*.dll</filename>) must be registered separately.
+    This is done by running <filename>register.bat</filename> from WinMerge
+    directory. Restarting the computer is recommended after installing Shell
+    Integration so that Windows updates all its references.</para>
 
     <note>
-      <para>Installing shell integration requires administrative user
+      <para>Installing shell Integration requires administrative user
       priviledges.</para>
     </note>
 
-    <para>Updating shell integration outside installer requires first
-    uninstalling current version. Uninstalling can be done by running
-    <filename>uninstall.bat</filename> from WinMerge directory. After that
-    computer should be restarted so Windows completes uninstallation. Then new
-    version can be installed like described above.</para>
+    <para>Updating the Shell Integration outside the installer requires first
+    uninstalling current Shell Intregration version. Uninstalling can be done
+    by running <filename>unregister.bat</filename> from WinMerge directory.
+    After that the computer should be restarted so Windows completes
+    uninstallation. Then the new version can be installed like described
+    above.</para>
+
+    <sect3>
+      <title>64-Bit Shell Integration</title>
+
+      <para>WinMerge version 2.6 includes a partial support for 64-bit Windows
+      versions by including 64-bit Shell Integration. WinMerge installer
+      recognizes 64-bit versions of Windows and can install correct version of
+      Shell Integration.</para>
+
+      <para>When installing Shell Integration by hand from an archive file,
+      Shell Integration dll is named as
+      <filename>ShellExtensionX64.dll</filename>. Registering/unregistering
+      can be done with <filename>register.bat</filename> and
+      <filename>unregister.bat</filename> like with 32-bit versions.</para>
+    </sect3>
   </sect2>
 
   <sect2>
-    <title>7-Zip and archive support</title>
+    <title>7-Zip and Archive Support</title>
 
     <para>WinMerge uses <ulink url="http://www.7-zip.org/">7-Zip</ulink> for
     archive support, but WinMerge installer does not install 7-Zip or archive
