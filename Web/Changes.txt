@@ -1,6 +1,9 @@
 2006-10-01 Tim
- PATCH [ 1566474 ] Web: Improve translations index page
+ PATCH: [ 1566474 ] Web: Improve translations index page
   Web\developer\l10n: index.php
+ PATCH: [ 1566613 ] Web: Improve Developers Needed -page
+  Web: page.inc
+  Web\developer: needed.php
 
 2006-09-26 Tim
  PATCH [ 1565841 ] Web: Catalan translation is updated

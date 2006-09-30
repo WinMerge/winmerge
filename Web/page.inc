@@ -278,6 +278,7 @@
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental builds</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
+          $temp .= "  <li><a href=\"/developer/needed.php\">Help Needed!</a></li>\n";
           $temp .= "</ul>\n";
           break;
       }
