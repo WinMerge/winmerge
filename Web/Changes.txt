@@ -4,6 +4,8 @@
  PATCH: [ 1566613 ] Web: Improve Developers Needed -page
   Web: page.inc
   Web\developer: needed.php
+ BUG: [ 1566593 ] Download .exe file for 7-Zip Plugin
+  Web: downloads.php
 
 2006-09-26 Tim
  PATCH [ 1565841 ] Web: Catalan translation is updated

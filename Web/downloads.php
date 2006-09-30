@@ -13,7 +13,7 @@
   <dd><p>WinMerge binaries are also available in archive files (<a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">.zip</a> and <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.7z">.7z</a>).</p></dd>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-src.zip">Source code</a></dt>
   <dd><p>Source code is available in archive files (<a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-src.zip">.zip</a> and <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-src.7z">.7z</a>).</p></dd>
-  <dt><a href="http://prdownloads.sourceforge.net/winmerge/Merge7z0018-311-442.7z">7-Zip Plugin</a> (DllBuild 0018)</dt>
+  <dt><a href="http://prdownloads.sourceforge.net/winmerge/Merge7zInstaller0018-311-442.exe ">7-Zip Plugin</a> (DllBuild 0018)</dt>
   <dd>
     <p>This is the 7-Zip plugin for WinMerge.</p>
     <p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?group_id=13216&amp;release_id=428331">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
