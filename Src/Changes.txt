@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-01 Kimmo
+ PATCH: [ 1567874 ] Change manual URL to point to 2.6 manual
+  Src: MainFrm.cpp
+
 2006-09-27 Takashi
  BUG: [ 1564572 ] Leak memory on undoing
   Src: GhostTextBuffer.h
