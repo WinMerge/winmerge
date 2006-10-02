@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-02 Gal
+ BUG: [ 1566783 ] Crash on Save Project when no file is selected
+  Src: MainFrm.cpp
+
 2006-10-01 Kimmo
  PATCH: [ 1567874 ] Change manual URL to point to 2.6 manual
   Src: MainFrm.cpp

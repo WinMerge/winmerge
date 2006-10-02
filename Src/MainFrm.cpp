@@ -3060,7 +3060,8 @@ void CMainFrame::OnSaveProject()
 	{
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
 		CDirView *pView = pDoc->GetMainView();
-		int ind = pView->GetFirstSelectedInd();
+		// Use first item if no item is selected.
+		int ind = max(pView->GetFirstSelectedInd(), 0);
 		const DIFFITEM item = pView->GetItemAt(ind);
 		left = item.getLeftFilepath(pDoc->GetLeftBasePath());
 		left += "\\";
