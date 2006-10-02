@@ -1,6 +1,9 @@
 2006-10-02 Tim
  PATCH: [ 1568943 ] Manual: Shows error for wrong "withads" argument
   Manual/build: build_html.bat
+ PATCH: [ 1568945 ] Manual: Use <simpara> for all list items in Whatsnew
+  Manual: WinMerge_help.xml
+  Manual renamed file: Whatsnew_2_1.xml to Whatsnew.xml
 
 2006-09-29 Kimmo
  PATCH: [ 1567301 ] Manual: 64-bit ShellExtension installing

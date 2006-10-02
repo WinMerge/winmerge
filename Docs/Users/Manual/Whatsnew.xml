@@ -109,18 +109,18 @@
 
       <itemizedlist>
         <listitem>
-          <para>Archive files can be opened from folder compare</para>
+          <simpara>Archive files can be opened from folder compare</simpara>
         </listitem>
 
         <listitem>
-          <para>WinMerge can (optionally) detect archive files from file
+          <simpara>WinMerge can (optionally) detect archive files from file
           signature. This allows for example Open Office files to be detected
-          as archive files and opened.</para>
+          as archive files and opened.</simpara>
         </listitem>
 
         <listitem>
-          <para>Path to archive file and path inside archive is shown instead
-          of path to temporary folder</para>
+          <simpara>Path to archive file and path inside archive is shown instead
+          of path to temporary folder</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -132,31 +132,31 @@
 
       <itemizedlist>
         <listitem>
-          <para>New <guilabel>Quick Contents</guilabel> -compare methdod
-          allows faster compares</para>
+          <simpara>New <guilabel>Quick Contents</guilabel> -compare methdod
+          allows faster compares</simpara>
         </listitem>
 
         <listitem>
-          <para>Available memory does not anymore restrict maximun
-          filesize</para>
+          <simpara>Available memory does not anymore restrict maximun
+          filesize</simpara>
         </listitem>
 
         <listitem>
-          <para>Compare statepane shows progressbar and compared/total amount
-          of items</para>
+          <simpara>Compare statepane shows progressbar and compared/total amount
+          of items</simpara>
         </listitem>
 
         <listitem>
-          <para>Possible to re-compare only selected items (from context
-          menu)</para>
+          <simpara>Possible to re-compare only selected items (from context
+          menu)</simpara>
         </listitem>
 
         <listitem>
-          <para>Items can be hidden from view</para>
+          <simpara>Items can be hidden from view</simpara>
         </listitem>
 
         <listitem>
-          <para>Simple reports</para>
+          <simpara>Simple reports</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -169,27 +169,27 @@
 
       <itemizedlist>
         <listitem>
-          <para>Character difference highlighting (more fine-grained
-          differences)</para>
+          <simpara>Character difference highlighting (more fine-grained
+          differences)</simpara>
         </listitem>
 
         <listitem>
-          <para>Selecting syntax highligh colors</para>
+          <simpara>Selecting syntax highligh colors</simpara>
         </listitem>
 
         <listitem>
-          <para>Merge all selected differences with normal merge commands
-          (separate commands removed)</para>
+          <simpara>Merge all selected differences with normal merge commands
+          (separate commands removed)</simpara>
         </listitem>
 
         <listitem>
-          <para>Opening files to external editor from file compare</para>
+          <simpara>Opening files to external editor from file compare</simpara>
         </listitem>
 
         <listitem>
-          <para>Punctuation characters can break diffs in line differences (so
+          <simpara>Punctuation characters can break diffs in line differences (so
           numbers separated by commas get properly highlighted as
-          diffs)</para>
+          diffs)</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -281,34 +281,34 @@
 
       <itemizedlist>
         <listitem>
-          <para>More columns have been added (e.g. file sizes and attributes),
-          and columns may be reordered, hidden, and displayed.</para>
+          <simpara>More columns have been added (e.g. file sizes and attributes),
+          and columns may be reordered, hidden, and displayed.</simpara>
         </listitem>
 
         <listitem>
-          <para>Filtered items now have a distinct category
+          <simpara>Filtered items now have a distinct category
           (<guilabel>Skipped</guilabel>) and icons. Filtered items can be set
-          to hidden/visible from <guimenu>View</guimenu>-menu.</para>
+          to hidden/visible from <guimenu>View</guimenu>-menu.</simpara>
         </listitem>
 
         <listitem>
-          <para>There is a new floating statusbar during the compare process,
+          <simpara>There is a new floating statusbar during the compare process,
           and comparison may be aborted, and the the files/dirs compared so
-          far are shown.</para>
+          far are shown.</simpara>
         </listitem>
 
         <listitem>
-          <para>Newer file/directory is indicated with asterisk
-          (<guilabel>*</guilabel>) in date field.</para>
+          <simpara>Newer file/directory is indicated with asterisk
+          (<guilabel>*</guilabel>) in date field.</simpara>
         </listitem>
 
         <listitem>
-          <para>One or both directories can be set read-only, preventing
-          accidental overwriting.</para>
+          <simpara>One or both directories can be set read-only, preventing
+          accidental overwriting.</simpara>
         </listitem>
 
         <listitem>
-          <para>The number of selected items is shown in the statusbar.</para>
+          <simpara>The number of selected items is shown in the statusbar.</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -320,66 +320,66 @@
 
       <itemizedlist>
         <listitem>
-          <para>Rewritten undo/redo code.</para>
+          <simpara>Rewritten undo/redo code.</simpara>
         </listitem>
 
         <listitem>
-          <para>Fixed "<guilabel>Ignore blank lines</guilabel>"
-          feature.</para>
+          <simpara>Fixed "<guilabel>Ignore blank lines</guilabel>"
+          feature.</simpara>
         </listitem>
 
         <listitem>
-          <para>Enhanced EOL handling (files can contain different EOL styles
-          in one file).</para>
+          <simpara>Enhanced EOL handling (files can contain different EOL styles
+          in one file).</simpara>
         </listitem>
 
         <listitem>
-          <para>Linenumber, current column and char, line length and char
-          count shown in statusbar.</para>
+          <simpara>Linenumber, current column and char, line length and char
+          count shown in statusbar.</simpara>
         </listitem>
 
         <listitem>
-          <para>One ot both files can be set read-only to prevent accidental
-          edits.</para>
+          <simpara>One ot both files can be set read-only to prevent accidental
+          edits.</simpara>
         </listitem>
 
         <listitem>
-          <para>Copy difference to left/right and advance to next makes
-          merging faster.</para>
+          <simpara>Copy difference to left/right and advance to next makes
+          merging faster.</simpara>
         </listitem>
 
         <listitem>
-          <para>Diff pane to show current difference in two vertical
-          panes.</para>
+          <simpara>Diff pane to show current difference in two vertical
+          panes.</simpara>
         </listitem>
 
         <listitem>
-          <para>Highlight word differences in lines.</para>
+          <simpara>Highlight word differences in lines.</simpara>
         </listitem>
 
         <listitem>
-          <para>Merge-mode (or 1.7 mode) to navigate and merge differences
-          easier and faster.</para>
+          <simpara>Merge-mode (or 1.7 mode) to navigate and merge differences
+          easier and faster.</simpara>
         </listitem>
 
         <listitem>
-          <para>Goto -dialog for moving fast to certain line or
-          difference.</para>
+          <simpara>Goto -dialog for moving fast to certain line or
+          difference.</simpara>
         </listitem>
 
         <listitem>
-          <para>Location pane showing overall picture from files and allowing
-          moving to location by double-clicking.</para>
+          <simpara>Location pane showing overall picture from files and allowing
+          moving to location by double-clicking.</simpara>
         </listitem>
 
         <listitem>
-          <para>Moved lines detection. Moved lines can be shown with different
-          color in file area and location pane.</para>
+          <simpara>Moved lines detection. Moved lines can be shown with different
+          color in file area and location pane.</simpara>
         </listitem>
 
         <listitem>
-          <para>More color options. Text color, missing line colors and moved
-          line colors can be configured.</para>
+          <simpara>More color options. Text color, missing line colors and moved
+          line colors can be configured.</simpara>
         </listitem>
       </itemizedlist>
     </sect3>

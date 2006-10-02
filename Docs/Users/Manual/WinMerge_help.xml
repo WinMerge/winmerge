@@ -4,7 +4,7 @@
 <!ENTITY AboutDoc SYSTEM "About_Doc.xml">
 <!ENTITY QuickStart SYSTEM "Quick_start.xml">
 <!ENTITY Introduction SYSTEM "Introduction.xml">
-<!ENTITY WhatsNew21 SYSTEM "Whatsnew_2_1.xml">
+<!ENTITY WhatsNew SYSTEM "Whatsnew.xml">
 <!ENTITY Install SYSTEM "Install.xml">
 <!ENTITY IntroductDiffing SYSTEM "Intro_diffs.xml">
 <!ENTITY OpenPaths SYSTEM "Open_paths.xml">
@@ -84,7 +84,7 @@
 
   &Introduction;
 
-  &WhatsNew21;
+  &WhatsNew;
 
   &Install;
 
