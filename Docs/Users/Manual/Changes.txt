@@ -4,6 +4,8 @@
  PATCH: [ 1568945 ] Manual: Use <simpara> for all list items in Whatsnew
   Manual: WinMerge_help.xml
   Manual renamed file: Whatsnew_2_1.xml to Whatsnew.xml
+ BUG: [ 1568946 ] Manual: Wrong link in "Install.xml"
+  Manual: Install.xml
 
 2006-09-29 Kimmo
  PATCH: [ 1567301 ] Manual: 64-bit ShellExtension installing

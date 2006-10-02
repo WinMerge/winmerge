@@ -31,7 +31,7 @@
       <para>Installer requires Admin-user priviledges in Windows NT4/2000/XP.
       If you don't have Admin-user priviledges you can install WinMerge by
       unzipping from an archive file (see <link
-      linkend="InstallingFromArchive">Installing from an
+      linkend="InstallFromArchive">Installing from an
       Archive</link>).</para>
     </note>
 
