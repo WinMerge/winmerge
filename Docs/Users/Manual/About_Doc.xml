@@ -2,38 +2,39 @@
 <sect1 id="AboutDoc">
   <title>About This Document</title>
 
-  <para>This is a manual for WinMerge 2.5.</para>
+  <para>This is a manual for WinMerge 2.6.</para>
 
-  <para>This manual is important reading for experienced and new users of
-  WinMerge 2.5. There are lot of new features and improvements in version 2.5.
-  Reading this manual will help ensure the user knows about the various
-  functions available in WinMerge, and various limitations.</para>
+  <para>This manual is recommended reading for experienced and new users of
+  WinMerge 2.6. Reading this manual will help ensure the user knows about the
+  various functions available in WinMerge, and various limitations.</para>
 
   <para>Please read at least the following chapters:</para>
 
   <itemizedlist>
     <listitem>
-      <para>The <link linkend="QuickStart">Quick start</link> chapter will get you
-      quickly started with WinMerge. After reading this chapter you will know the
-      basic usage of WinMerge.</para>
+      <simpara>The <link linkend="QuickStart">Quick start</link> chapter will
+      get you quickly started with WinMerge. After reading this chapter you
+      will know the basic usage of WinMerge.</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="CompareDirs">Comparing Folders</link> chapter
-      explains folder comparison, ways to change the results display, and
-      operations available in the folder comparison window.</para>
+      <simpara>The <link linkend="CompareDirs">Comparing Folders</link>
+      chapter explains folder comparison, ways to change the results display,
+      and operations available in the folder comparison window.</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="CompareFiles">Comparing Files</link> chapter
-      explains the file comparison/merge window, its various panes, and methods of
-      navigation, modes, and operations available in this window.</para>
+      <simpara>The <link linkend="CompareFiles">Comparing Files</link> chapter
+      explains the file comparison/merge window, its various panes, and
+      methods of navigation, modes, and operations available in this
+      window.</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="Configuration">Options and Configuration</link>
-      chapter helps to customize WinMerge to your needs, including things such as
-      whitespace handling, colors, and handling text encoding.</para>
+      <simpara>The <link linkend="Configuration">Options and
+      Configuration</link> chapter helps to customize WinMerge to your needs,
+      including things such as whitespace handling, colors, and handling text
+      encoding.</simpara>
     </listitem>
   </itemizedlist>
 
@@ -42,33 +43,33 @@
 
   <itemizedlist>
     <listitem>
-      <para>The <link linkend="OpenPaths">Opening Files and Folders</link> chapter
-      introduces several ways (there are many!) to open files and folders to
-      WinMerge. For example, do you know how to use the Shell Extension context
-      menu in advanced mode?</para>
+      <simpara>The <link linkend="OpenPaths">Opening Files and Folders</link>
+      chapter introduces several ways (there are many!) to open files and
+      folders to WinMerge. For example, do you know how to use the Shell
+      Extension context menu in advanced mode?</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="Plugins">Plugins</link> chapter introduces
-      plugins.</para>
+      <simpara>The <link linkend="Plugins">Plugins</link> chapter introduces
+      plugins.</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="Filters">Filters</link> chapter explains the use of
-      both file filters and line filters.</para>
+      <simpara>The <link linkend="Filters">Filters</link> chapter explains the
+      use of both file filters and line filters.</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="CommandLine">Commandline</link> chapter lists
-      commandline parameters for WinMerge (for using with other tools, or from a
-      script).</para>
+      <simpara>The <link linkend="CommandLine">Commandline</link> chapter
+      lists commandline parameters for WinMerge (for using with other tools,
+      or from a script).</simpara>
     </listitem>
 
     <listitem>
-      <para>The <link linkend="Faq">FAQ chapter</link> contains answers to many
-      common questions asked of developers. Please check first if your question is
-      answered there before submitting questions to <ulink
-      url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>.</para>
+      <simpara>The <link linkend="Faq">FAQ chapter</link> contains answers to
+      many common questions asked of developers. Please check first if your
+      question is answered there before submitting questions to <ulink
+      url="http://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>.</simpara>
     </listitem>
   </itemizedlist>
 </sect1>

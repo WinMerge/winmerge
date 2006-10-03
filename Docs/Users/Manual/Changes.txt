@@ -1,6 +1,8 @@
 2006-10-03 Kimmo
  PATCH: [ 1569389 ] Manual: fix translations part
   Manual: Locales.xml
+ PATCH: [ 1569400 ] Manual: Update About Doc chapter
+  Manual: About_Doc.xml
 
 2006-10-02 Tim
  PATCH: [ 1568943 ] Manual: Shows error for wrong "withads" argument
