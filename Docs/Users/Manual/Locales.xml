@@ -3,10 +3,8 @@
   <title>Locale support</title>
 
   <para>WinMerge allows translating the user interface to other languages than
-  English. Several translations have been contributed. At the time of this
-  writing, translations are available from <ulink
-  url="http://www.winmerge.org/">WinMerge.org</ulink> for the following
-  languages:</para>
+  English. Several translations have been contributed. Translations are
+  available for the following languages:</para>
 
   <itemizedlist>
     <listitem>
@@ -91,14 +89,14 @@
   </itemizedlist>
 
   <note>
-    <para>The translations cover interface content, including menus,
-      dialogs, tooltips, and messages -- essentially the translation of
-      of all strings displayed. However, they do not provide areas
-      outside of string translation; they do not handle how numbers 
-      are divided, or how words are alphabetized. (These issues should
-      be addressed in the conventional Windows manner, which is
-      via the Regional settings in the Control Panel.)
-  </para></note>
+    <para>The translations cover interface content, including menus, dialogs,
+    tooltips, and messages -- essentially the translation of of all strings
+    displayed. However, they do not provide areas outside of string
+    translation; they do not handle how numbers are divided, or how words are
+    alphabetized. (These issues should be addressed in the conventional
+    Windows manner, which is via the Regional settings in the Control
+    Panel.)</para>
+  </note>
 
   <sect2>
     <title>Selecting language</title>
@@ -108,16 +106,17 @@
 
     <orderedlist>
       <listitem>
-        <para>Run WinMerge</para>
+        <simpara>Run WinMerge</simpara>
       </listitem>
 
       <listitem>
-        <para>Select <guimenuitem>Language</guimenuitem> from the
-        <guimenu>View</guimenu> menu</para>
+        <simpara>Select <guimenuitem>Language</guimenuitem> from the
+        <guimenu>View</guimenu> menu</simpara>
       </listitem>
 
       <listitem>
-        <para>Select your language and click <guibutton>OK</guibutton></para>
+        <simpara>Select your language and click
+        <guibutton>OK</guibutton></simpara>
       </listitem>
     </orderedlist>
 
@@ -128,46 +127,39 @@
   <sect2>
     <title>Installing translation</title>
 
-    <para>The easiest way to install translations is to select them in the installer.
-    Translations are selected in the 4th installer dialog (<guilabel>Select
-    components</guilabel>). The default install (<guilabel>Typical
-    Installation</guilabel>) does not install translations, but they can be
-    individually selected from the list.</para>
+    <para>The easiest way to install translations is to select them in the
+    installer. Translations are selected in the 4th installer dialog
+    (<guilabel>Select components</guilabel>). The default install
+    (<guilabel>Typical Installation</guilabel>) does not install translations,
+    but they can be individually selected from the list.</para>
 
     <para>If you don't want to re-run installer, or didn't install WinMerge
     with the installer in the first place, then WinMerge translation files are
-    available in zipped versions and translation updates. To install new
-    translation file:</para>
+    available in zipped versions. To install new translation file:</para>
 
     <para><orderedlist>
         <listitem>
-          <para>Download the zipped release from <ulink
+          <simpara>Download the zipped release from <ulink
           url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717">WinMerge
-          download</ulink> site or updated translation file from <ulink
-          url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717">Languages
-          download</ulink>.</para>
+          download</ulink> site.</simpara>
         </listitem>
 
         <listitem>
-          <para>If the <filename class="directory">Languages</filename>
+          <simpara>If the <filename class="directory">Languages</filename>
           subdirectory does not exist under the WinMerge directory (where
           <filename>WinMerge.exe</filename> and/or
-          <filename>WinMergeU.exe</filename> is located) create it.</para>
+          <filename>WinMergeU.exe</filename> is located) create it.</simpara>
         </listitem>
 
         <listitem>
-          <para>a) If you downloaded just the language files, unzip them into the
-          <filename class="directory">Languages</filename> directory.</para>
-
-          <para>b) If you downloaded an entire WinMerge release, then search for
-          <filename>Merge*.lang</filename> files, where * is a language name
-          (<filename>MergeSwedish.lang</filename> for Swedish translation).
-          Unzip that file to the <filename>Languages</filename>
-          directory.</para>
+          <simpara>Search for <filename>Merge*.lang</filename> files, where *
+          is a language name (<filename>MergeSwedish.lang</filename> for
+          Swedish translation) in archive file. Extract that file to the
+          <filename>Languages</filename> directory.</simpara>
         </listitem>
 
         <listitem>
-          <para>Run WinMerge</para>
+          <simpara>Run WinMerge</simpara>
         </listitem>
 
         <listitem>
@@ -176,8 +168,8 @@
         </listitem>
 
         <listitem>
-          <para>Select your language and click
-          <guibutton>OK</guibutton></para>
+          <simpara>Select your language and click
+          <guibutton>OK</guibutton></simpara>
         </listitem>
       </orderedlist></para>
   </sect2>
@@ -187,8 +179,8 @@
 
     <para>Please submit errors you find in translations as bugs to our <ulink
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-list</ulink>.
-    It would be great if you can provide a corrected version of the translated text
-    also.</para>
+    It would be great if you can provide a corrected version of the translated
+    text also.</para>
   </sect2>
 
   <sect2>
@@ -197,7 +189,7 @@
     <para>If you would like to add your language to the list, look at the
     <ulink url="http://www.winmerge.org/developer/l10n/index.php">on-line
     documentation</ulink> for the details on how to do it. All translations
-    are not complete so it would be nice if you can help improving them too.
+    are not complete so it would be nice if you can help improving them.
     Translating (or improving translation) does not require you to have all
     compile tools or knowledge of WinMerge internals. Just read instructions
     from above link. And if you have problems ask help from us in one of
