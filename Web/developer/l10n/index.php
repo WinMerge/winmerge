@@ -19,12 +19,12 @@
   }
   print("</ul>\n");
 ?>
-<p>To change languages, select the desired language from the View-&gt;Languages
+<p>To change a language, select the desired language from the View-&gt;Languages
 menu choice; language names are shown in both languages (native language and
 current WinMerge language).</p>
 <p>If the desired language is not present, then you are missing a language file.
-Language files are names as <code>Merge</code> + <code><var>language name</var></code>
-+ <code>.lang</code> as filename extension. For example, for Catalan, you need
+Language files are named as <code>Merge</code> + <code><var>language name</var></code>
++ <code>.lang</code>, <code><em>.lang</em></code> as filename extension. For example, for Catalan, you need
 to have the file <code>MergeCatalan.lang</code> in the <code>Languages</code>
 subfolder of WinMerge folder. These would normally be installed for you by
 installer, if you did a <em>Full Installation</em>. Installer also allows to
@@ -32,7 +32,7 @@ select individual translations to install. If you did not install translation(s)
 with installer you can copy the desired language file into the correct folder,
 and restart WinMerge.</p>
 <p>If you would like to update any of these translations or add another translation,
-then please follow <a href="instructions.php">these instructions</a>.</p>
+please follow <a href="instructions.php">these instructions</a>.</p>
 <p>You can also take a look at the <a href="status.php">status of the translations</a>.</p>
 <?php
   $page->printFoot();

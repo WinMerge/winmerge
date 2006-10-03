@@ -1,3 +1,7 @@
+2006-10-03 Tim
+ PATCH: [ 1569431 ] Couple of typos in Translations -page
+  Web\developer\l10n: index.php
+
 2006-10-01 Tim
  PATCH: [ 1566474 ] Web: Improve translations index page
   Web\developer\l10n: index.php
