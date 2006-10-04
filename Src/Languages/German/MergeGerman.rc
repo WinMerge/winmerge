@@ -230,7 +230,7 @@ BEGIN
         MENUITEM "&Einstellungen...",           ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "&Aktualisieren\tF5",          ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
+        MENUITEM "Ausge&wählte aktualisieren\tStrg+F5",  ID_DIR_RESCAN
     END
     POPUP "&Ansicht"
     BEGIN
@@ -341,7 +341,7 @@ BEGIN
         MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
         MENUITEM "R&echts schreibgeschützt",     ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Convert Line Endings to"
+        POPUP "&Zeilenenden konvertieren nach"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
@@ -650,7 +650,7 @@ END
 IDD_OPEN DIALOGEX 0, 0, 374, 126
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Dateien oder Verzeichnisse auswählen..."
+CAPTION "Dateien oder Ordner auswählen..."
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "&Links:",IDC_STATIC,13,24,65,8
@@ -671,13 +671,13 @@ BEGIN
     EDITTEXT        IDC_UNPACKER_EDIT,81,70,167,12,ES_AUTOHSCROLL |
                     ES_READONLY
     PUSHBUTTON      "Auswählen...",IDC_SELECT_UNPACKER,252,70,50,14
-    CONTROL         "&Unterverzeichnisse einbeziehen",IDC_RECURS_CHECK,"Button",
+    CONTROL         "&Unterordner einbeziehen",IDC_RECURS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,81,86,167,10
     LTEXT           "Status:",IDC_OPEN_STATUS,15,102,192,8
     DEFPUSHBUTTON   "OK",IDOK,316,11,50,14
     PUSHBUTTON      "Abbrechen",IDCANCEL,316,28,50,14
     PUSHBUTTON      "Hilfe",ID_HELP,316,45,50,14
-    GROUPBOX        "Zu vergleichende Dateien oder Verzeichnisse",IDC_FILES_DIRS_GROUP,7,
+    GROUPBOX        "Zu vergleichende Dateien oder Ordner",IDC_FILES_DIRS_GROUP,7,
                     7,302,111
 END
 
@@ -1190,7 +1190,7 @@ BEGIN
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER |
                     WS_BORDER | WS_TABSTOP,7,7,342,100
     PUSHBUTTON      "Testen",IDC_FILTERFILE_TEST_BTN,7,114,50,14
-    PUSHBUTTON      "Install...",IDC_FILTERFILE_INSTALL,137,114,50,14
+    PUSHBUTTON      "Installieren...",IDC_FILTERFILE_INSTALL,137,114,50,14
     PUSHBUTTON      "Neu...",IDC_FILTERFILE_NEWBTN,192,114,50,14
     PUSHBUTTON      "Bearbeiten...",IDC_FILTERFILE_EDITBTN,246,114,50,14
     PUSHBUTTON      "Löschen...",IDC_FILTERFILE_DELETEBTN,300,114,50,14
@@ -1596,7 +1596,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Anwendung\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2006 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
@@ -2018,7 +2018,7 @@ BEGIN
     IDS_FILEFILTER_INSTALLFAIL 
                             "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
     IDS_FILEFILTER_OVERWRITE 
-                            "Filter file already exists. Overwrite existing filter?"
+                            "Filterdatei existiert bereits. Existierenden Filter überschreiben?"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2075,14 +2075,14 @@ END
 // OPEN DIALOG
 STRINGTABLE
 BEGIN
-    IDS_ERROR_INCOMPARABLE  "Wählen Sie zwei Dateien oder Verzeichnisse zum Vergleichen aus"
-    IDS_DIRSEL_TAG          "Verzeichnis-Auswahl"
-    IDS_OPEN_FILESDIRS      "Zwei Verzeichnisse oder zwei Dateien zum Vergleichen auswählen."
+    IDS_ERROR_INCOMPARABLE  "Wählen Sie zwei Dateien oder Ordner zum Vergleichen aus"
+    IDS_DIRSEL_TAG          "Ordnerauswahl"
+    IDS_OPEN_FILESDIRS      "Zwei Ordner oder zwei Dateien zum Vergleichen auswählen."
     IDS_OPEN_LEFTINVALID    "Der linke Pfad ist ungültig!"
     IDS_OPEN_RIGHTINVALID   "Der rechte Pfad ist ungültig!"
     IDS_OPEN_BOTHINVALID    "Beide Pfade sind ungültig!"
     IDS_OPEN_UNPACKERDISABLED "Zwei Dateien zum Aktivieren der Entpacker-Auswahl auswählen."
-    IDS_OPEN_MISMATCH       "Datei und Verzeichnis können nicht verglichen werden!"
+    IDS_OPEN_MISMATCH       "Datei und Ordner können nicht verglichen werden!"
 END
 
 // LOADING FILE
@@ -2127,13 +2127,13 @@ STRINGTABLE
 BEGIN
     IDS_NOPROJECT           "Sie müssen einen SourceSafe-Projektpfad angeben um fortzufahren (z.B.: $/MeinProjekt)"
     IDS_VSS_CHECKOUT_STATUS "Dateien auschecken vom VSS..."
-    IDS_VSSERROR            "SourceSafe hat beim Versuch die Datei auszuchecken einen Fehler gemeldet. Der Vorgang kann nicht fortgesetzt werden..."
-    IDS_VSS_RUN_ERROR       "Fehler beim Versionieren."
+    IDS_VSSERROR            "Das Versionierungssystem meldete einen Fehler beim Versuch die Datei auszuchecken. Der Vorgang kann nicht fortgesetzt werden..."
+    IDS_VSS_RUN_ERROR       "Fehler beim Ausführen eines Befehles des Versionierungssystems."
     IDS_VSSFOLDER_AND_FILE_NOMATCH "Der VSS-Arbeitsordner und die Position der aktuellen Datei stimmen nicht überein. Fortsetzen?"
     IDS_VSS_NODATABASES     "Keine VSS Datenbank(en) gefunden!"
     IDS_VSS_ERRORFROM       "Fehler vom VSS:"
-    IDS_VSS_CHECKINERROR     "Versioning System returned an error while attempting to check in the file.\n Please, check config spec of used view.\n Undo checkout operation?"
-    IDS_VSS_UNCOERROR        "Versioning System returned an error while attempting to undo checkout the file.\n Please, check config spec of used view. "
+    IDS_VSS_CHECKINERROR     "Das Versionierungssystem meldete einen Fehler beim Versuch die Datei einzuchecken.\n Bitte überprüfen Sie die Konfiguration der verwendeten Ansicht.\n Auschecken rückgängig machen?"
+    IDS_VSS_UNCOERROR        "Das Versionierungssystem meldete einen Fehler beim Versuch das Auschecken der Datei rückgängig zu machen.\n Bitte überprüfen Sie die Konfiguration der verwendeten Ansicht."
 END
 
 // VSS system
@@ -2178,7 +2178,7 @@ BEGIN
     IDS_DEL_LEFT_FMT2       "Links (%1 von %2)"
     IDS_DEL_RIGHT_FMT2      "Rechts (%1 von %2)"
     IDS_DEL_BOTH_FMT2       "Beide (%1 von %2)"
-    IDS_SELECT_DESTFOLDER   "Zielverzeichnis auswählen."
+    IDS_SELECT_DESTFOLDER   "Zielordner auswählen."
     IDS_MOVE_LEFT_TO        "Links nach... (%1)"
     IDS_MOVE_RIGHT_TO       "Rechts nach... (%1)"
     IDS_MOVE_LEFT_TO2       "Links nach... (%1 von %2)"
@@ -2236,7 +2236,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Dateiname"
-    IDS_COLHDR_DIR          "Verzeichnis"
+    IDS_COLHDR_DIR          "Ordner"
     IDS_COLHDR_RESULT       "Vergleichs-Ergebnis"
     IDS_COLHDR_LTIMEM       "Linkes Datum"
     IDS_COLHDR_RTIMEM       "Rechtes Datum"
@@ -2258,8 +2258,8 @@ BEGIN
     IDS_COLHDR_RESULT_ABBR  "Kurz-Ergebnis"
     IDS_COLHDR_LATTRIBUTES  "Linke Attribute"
     IDS_COLHDR_RATTRIBUTES  "Rechte Attribute"
-    IDS_COLHDR_LEOL_TYPE    "Left EOL"
-    IDS_COLHDR_REOL_TYPE    "Right EOL"
+    IDS_COLHDR_LEOL_TYPE    "Linkes Zeilenende"
+    IDS_COLHDR_REOL_TYPE    "Rechtes Zeilenende"
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #3
@@ -2278,7 +2278,7 @@ BEGIN
     IDS_CANT_COMPARE_FILES  "Dateien können nicht verglichen werden"
     IDS_ABORTED_ITEM        "Objekt abgebrochen"
     IDS_FILE_SKIPPED        "Datei übersprungen"
-    IDS_DIR_SKIPPED         "Verzeichnis übersprungen"
+    IDS_DIR_SKIPPED         "Ordner übersprungen"
     IDS_ONLY_IN_FMT         "Nur in %1"
     IDS_BIN_FILES_SAME      "Binärdateien sind identisch"
     IDS_IDENTICAL           "Identisch"
@@ -2300,8 +2300,8 @@ END
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS#1
 STRINGTABLE
 BEGIN
-    IDS_COLDESC_FILENAME    "Dateiname oder Verzeichnisname."
-    IDS_COLDESC_DIR         "Unterverzeichnisname, wenn Unterverzeichnisse vorhanden sind."
+    IDS_COLDESC_FILENAME    "Dateiname oder Ordnername."
+    IDS_COLDESC_DIR         "Unterordnername, wenn Unterordner vorhanden sind."
     IDS_COLDESC_RESULT      "Vergleichs-Ergebnis, langes Format."
     IDS_COLDESC_LTIMEM      "Linkes Änderungsdatum."
     IDS_COLDESC_RTIMEM      "Rechtes Änderungsdatum."
@@ -2323,8 +2323,8 @@ BEGIN
     IDS_COLDESC_RESULT_ABBR "Vergleichs-Ergebnis, kurzes Format."
     IDS_COLDESC_LATTRIBUTES "Linke Attribute."
     IDS_COLDESC_RATTRIBUTES "Rechte Attribute."
-    IDS_COLDESC_LEOL_TYPE   "Left side file EOL type"
-    IDS_COLDESC_REOL_TYPE   "Right side file EOL type"
+    IDS_COLDESC_LEOL_TYPE   "Linker Zeilenenden-Typ"
+    IDS_COLDESC_REOL_TYPE   "Rechter Zeilenenden-Typ"
 END
 
 // DIRECTORY DIFFING : COLUMN DESCRIPTIONS (2)
@@ -2376,11 +2376,11 @@ END
 // Encoding issues
 STRINGTABLE
 BEGIN
-    IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nWollen Sie like to treat both files as being in the default windows codepage (recommended)?"
-    IDS_DIFFERENT_UNICODINGS   "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
-    IDS_LOSSY_TRANSCODING_BOTH  "Information lost due to encoding errors: both files"
-    IDS_LOSSY_TRANSCODING_RIGHT "Information lost due to encoding errors: right file"
-    IDS_LOSSY_TRANSCODING_LEFT  "Information lost due to encoding errors: left file"
+    IDS_SUGGEST_IGNORECODEPAGE "Die linke (cp%d) und rechte (cp%d) Datei haben nicht den gleichen Zeichensatz.\nDas Anzeigen jeder Datei im eigenen Zeichensatz erlaubt eine bessere Darstellung, aber das Mischen/Kopieren ist gefährlich.\nWollen Sie beide Dateien behandeln, als wären sie im gleichen Zeichensatz (empfohlen)?"
+    IDS_DIFFERENT_UNICODINGS   "Warnung: Die Dateien haben unterschiedliche Kodierungen, links=%s und rechts=%s, und das Vermischen führt möglicherweise zu Informationsverlusten."
+    IDS_LOSSY_TRANSCODING_BOTH  "Informationsverlust wegen Kodierungsfehlern: Beide Dateien"
+    IDS_LOSSY_TRANSCODING_RIGHT "Informationsverlust wegen Kodierungsfehlern: Rechte Datei"
+    IDS_LOSSY_TRANSCODING_LEFT  "Informationsverlust wegen Kodierungsfehlern: Linke Datei"
 END
 
 // EDITOR : SHOW LINE DIFF
@@ -2437,8 +2437,8 @@ BEGIN
     IDS_NO_ZIP_SUPPORT      "Die Archiv-Unterstützung ist nicht aktiviert.\n
                             Alle erforderlichen Komponenten (7-zip und/oder Merge7z*.dll) für die Archiv-Unterstützung können nicht gefunden werden.
                             Entnehmen Sie dem Handbuch mehr Informationen über die Archiv-Unterstützung und wie sie aktiviert wird."
-    IDS_MERGE7Z_ENABLE_0    "\nNote: 7-Zip integration is disabled in WinMerge settings."
-    IDS_MERGE7Z_ENABLE_2    "\nNote: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+    IDS_MERGE7Z_ENABLE_0    "\nHinweis: Die 7-Zip Integration ist in den WinMerge-Einstellungen deaktiviert."
+    IDS_MERGE7Z_ENABLE_2    "\nHinweis: Die 7-Zip Integration ist in den WinMerge-Einstellungen auf eigenständige Arbeitsweise beschränkt."
     IDS_OPT_EXPORT_CAPTION  "Datei zum Exportieren auswählen"
     IDS_OPT_IMPORT_CAPTION  "Datei zum Importieren auswählen"
     IDS_OPT_IMPORT_DONE     "Einstellungen aus der Datei importiert."
