@@ -1,6 +1,8 @@
 2006-10-07 Tim
  BUG: [ 1572388 ] Wrong link to regex.pdf
   Web: links.php
+ Cool, Perry is back! :)
+  Web\developer: developers.xml
 
 2006-10-03 Tim
  PATCH: [ 1569431 ] Couple of typos in Translations -page
