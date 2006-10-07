@@ -1,3 +1,7 @@
+2006-10-07 Tim
+ BUG: [ 1572388 ] Wrong link to regex.pdf
+  Manual: Filters.xml
+
 2006-10-03 Kimmo
  PATCH: [ 1569389 ] Manual: fix translations part
   Manual: Locales.xml
