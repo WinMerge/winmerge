@@ -248,7 +248,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Symbolleiste",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "V&ergleichsstatistik",        ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
     END
@@ -922,7 +922,7 @@ BEGIN
     CONTROL         "Dif",IDC_WORDDIFFERENCE_TEXT_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,199,129,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "Wortunterschied (Selektiert):",IDC_STATIC,7,149,90,8
+    RTEXT           "Wortunterschied (Selektiert):",IDC_STATIC,2,149,95,8
     CONTROL         "Dif",IDC_SEL_WORDDIFFERENCE_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,149,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -950,7 +950,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Gelöschte Dateien in den &Papierkorb verschieben",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "Ignoriere Zeitunterschiede kleiner als 3 Sekunden",
+    CONTROL         "Ignoriere &Zeitunterschiede kleiner als 3 Sekunden",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,17,222,10
     GROUPBOX        "Integration",IDC_STATIC,7,30,218,46
@@ -958,7 +958,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
     CONTROL         "Er&weitertes Menü verwenden",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
-    CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
+    CONTROL         "Standardmäßig &Unterordner einbeziehen",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
     LTEXT           "&Externer Editor:",IDC_STATIC,7,83,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,93,167,14,ES_AUTOHSCROLL
@@ -1076,7 +1076,7 @@ IDD_DIRCOMP_PROGRESS DIALOGEX 0, 0, 256, 60
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_VISIBLE |
     WS_CAPTION
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION " Folder Compare Progress"
+CAPTION " Ordnervergleichsfortschritt"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "Stop",IDC_COMPARISON_STOP,167,15,83,14
@@ -1428,7 +1428,7 @@ END
 IDD_COMPARE_STATISTICS DIALOGEX 0, 0, 257, 161
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Compare Statistics"
+CAPTION "Vergleichsstatistik"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Ordner:",IDC_STATIC,72,7,38,8
@@ -1878,7 +1878,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_SPLASH_DEVELOPERS   "Entwickler:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
-    IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
+    IDS_SPLASH_GPLTEXT      "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Sie können sie unter bestimmten Bedingungen weiter vertreiben; für Details sehen Sie sich die GNU Public Lizenz unter dem Hilfe-Menü an."
 END
 
 // "DO NOT SHOW AGAIN" MESSAGEBOXES
@@ -1964,7 +1964,7 @@ BEGIN
     IDS_DIFF_OPEN_NO_SET_PROPS "Datei(en) dieses Vergleichs wurden geändert. Einige Einstellungen werden erste wirksam, wenn der aktuelle Dateivergleich neu gestartet wurde."
     IDS_FONT_CHANGE         "Die Änderung der Schriftart wird auf keines der offenen Diff-Fenster angewendet werden."
     IDS_OPTIONS_INVALID_TABSIZE 
-                            "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
+                            "Der Wert im Feld der Tabulator-Größe ist nicht im Bereich den WinMerge akzeptiert.\n\nBitte benutzen Sie Werte von 1 - %1."
 END
 
 // BROWSE FILE
@@ -2007,16 +2007,16 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Dateinamen für neuen Filter auswählen"
     IDS_FILEFILTER_FILEMASK "Dateifilter (*.flt)|*.flt|Alle Dateien (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder."
+                            "Die Filtervorlage konnte nicht gefunden werden!\n\nBitte kopieren Sie die Datei %1 in den WinMerge/Filters-Ordner."
     IDS_FILEFILTER_TMPL_COPY 
-                            "Cannot copy filter template file to filter folder:\n%1\n\nPlease make sure the folder exists and is writable."
+                            "Die Filtervorlage konnte nicht Filterordner kopiert werden:\n%1\n\nBitte stellen Sie sicher, dass der Ordner existiert und beschreibbar ist."
     IDS_FILEFILTER_NO_USERFOLDER 
-                            "User's filter file folder is not defined!\n\nPlease select filter folder in options/System."
+                            "Der Benutzer-Filterordner ist nicht definiert!\n\nBitte wählen Sie den Filterordner unter Einstellungen/System aus."
     IDS_FILEFILTER_DELETE_FAIL 
-                            "Failed to delete the filter file:\n%1\n\nMaybe the file is read-only?"
-    IDS_FILEFILTER_INSTALL  "Locate filter file to install"
+                            "Fehler beim Löschen der Filterdatei:\n%1\n\nIst die Datei möglicherweise schreibgeschützt?"
+    IDS_FILEFILTER_INSTALL  "Zu installierenden Filter auswählen"
     IDS_FILEFILTER_INSTALLFAIL 
-                            "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
+                            "Installieren der Filterdatei fehlgeschlagen.\n\nDie Filterdatei konnte nicht in den Filterordner kopiert werden."
     IDS_FILEFILTER_OVERWRITE 
                             "Filterdatei existiert bereits. Existierenden Filter überschreiben?"
 END
@@ -2649,11 +2649,11 @@ END
 // CODEPAGE GEOGRAPHIC GROUPS
 STRINGTABLE
 BEGIN
-	IDS_CPG_WESTERN_EUROPEAN        "Western European"
-	IDS_CPG_EASTERN_EUROPEAN        "Eastern European"
-	IDS_CPG_EAST_ASIAN              "East Asian"
-	IDS_CPG_SOUTH_ASIAN             "SE & SW Asian"
-	IDS_CPG_MIDDLE_EASTERN          "Middle Eastern"
+	IDS_CPG_WESTERN_EUROPEAN        "Westeuropäisch"
+	IDS_CPG_EASTERN_EUROPEAN        "Osteuropäisch"
+	IDS_CPG_EAST_ASIAN              "Ostasiatisch"
+	IDS_CPG_SOUTH_ASIAN             "SO & SW-Asiatisch"
+	IDS_CPG_MIDDLE_EASTERN          "Mitteleuropäisch"
 	IDS_CPG_NA                      "Nicht anwendbar"
 END
 
@@ -2817,7 +2817,7 @@ BEGIN
     ID_VIEW_WHITESPACE      "Zeigt Leerzeichen an."
     ID_VIEW_DETAIL_BAR      "Blendet die Unterschiedsleiste ein oder aus."
     ID_VIEW_LOCATION_BAR    "Die Positionsleiste zeigt gesamte Abbildungen von den Dateien."
-    ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
+    ID_VIEW_DIR_STATISTICS  "Zeigt die Vergleichsstatistik an."
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
     ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
     ID_VIEW_SWAPPANES       "Vertauscht die Position der beiden Ausschnitte."
