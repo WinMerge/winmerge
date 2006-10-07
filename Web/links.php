@@ -27,7 +27,7 @@
   <dd>Good HOWTO document for regular expressions</dd>
   <dt><a href="http://www.zvon.org/other/PerlTutorial/Output/index.html">Tutorial</a></dt>
   <dd>Regular expressions tutorial</dd>
-  <dt><a href="http://gmckinney.info/resources/regex.pdf">regex.pdf</a></dt>
+  <dt><a href="http://www.night-ray.com/regex.pdf">regex.pdf</a></dt>
   <dd>PDF quick reference</dd>
 </dl>
 <?php
