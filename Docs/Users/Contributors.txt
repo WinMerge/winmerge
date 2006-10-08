@@ -8,17 +8,19 @@ Original developer, project admin:
 Project lead:
 * Christian List
 
-Other developers:
-* Laurent Ganier
+Developers:
 * Tim Gerundt
 * Gal Hammer
-* Dennis Limm
-* Chris Mumford
 * Perry Rapp
 * Takashi Sawanaka
+* Kimmo Varis
+
+Inactive/past developers:
+* Laurent Ganier
+* Dennis Limm
+* Chris Mumford
 * Christian "Seier" Blackburn (Installer)
 * Jochen Tucht
-* Kimmo Varis
 
 Graphic Design:
 * Alexander Skinner
