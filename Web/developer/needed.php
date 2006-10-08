@@ -54,7 +54,9 @@ of the source tree, do your changes, and then upload the changes
 them into the subversion repository.</p>
 
 <p>You find more informations about programming WinMerge in the Subversion directory
-<a href="http://svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Developers/">Docs/Developers/</a>.</p>
+<a href="http://svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Developers/">Docs/Developers/</a>.
+We have also started a <a href="http://wiki.winmerge.org">developer-wiki</a> for WinMerge.
+Our plan is to use the wiki for planning and documenting WinMerge internals.</p>
 
 <p>The general plan is to start people with anonymous Subversion access and let the regular developers commit
 their changes to the Subversion repository. Those developers that
