@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-08 Takashi
+ BUG: [ 1570173 ] Crash when merging all differences
+  Src: MergeDoc.cpp
+
 2006-10-08 Kimmo
  PATCH: [ 1555344 ] Separate active/inactive developers in Contributors.txt
   Docs/Users: Contributors.txt

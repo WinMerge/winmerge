@@ -910,7 +910,9 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 			}
 			else
 			{
-				dbuf.DeleteText(dstView, cd_blank, 0, cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_MERGE);
+				// To removing EOL chars of last line, deletes from the end of the line (cd_blank - 1).
+				ASSERT(cd_blank > 0);
+				dbuf.DeleteText(dstView, cd_blank-1, dbuf.GetLineLength(cd_blank-1), cd_dend, dbuf.GetLineLength(cd_dend), CE_ACTION_MERGE);
 			}
 
 			limit=cd_blank-1;
