@@ -487,6 +487,7 @@ CCrystalTextView::CCrystalTextView ()
   m_bWordWrap = FALSE;
   m_bDragSelection = FALSE;
   m_bLastSearch = FALSE;
+  m_bBookmarkExist = FALSE;
   //BEGIN SW
   m_panSubLines = new CArray<int, int>();
   ASSERT( m_panSubLines );
@@ -1967,8 +1968,6 @@ ResetView ()
   m_bShowInactiveSelection = TRUE; // FP: reverted because I like it
   m_bPrintHeader = FALSE;
   m_bPrintFooter = TRUE;
-
-  m_bBookmarkExist = FALSE;     // More bookmarks
 
   m_bMultipleSearch = FALSE;    // More search
 
