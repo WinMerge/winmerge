@@ -1,6 +1,8 @@
 2006-10-10 Kimmo
  PATCH: [ 1573933 ] Manual: Update introduction chapter
   Manual: Introduction.xml
+ PATCH: [ 1573938 ] Manual: Update whatsnew for 2.6 release
+  Manual: Whatsnew.xml
 
 2006-10-07 Tim
  BUG: [ 1572388 ] Wrong link to regex.pdf

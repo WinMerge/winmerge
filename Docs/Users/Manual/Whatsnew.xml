@@ -3,11 +3,10 @@
   <title>What's new in release</title>
 
   <sect2>
-    <title>What's new in 2.5</title>
+    <title>What's new in 2.6</title>
 
-    <para>WinMerge 2.5 is our development version. It contains lots of fixes
-    and improvements done after 2.4 releases. This list contains few most
-    important ones:</para>
+    <para>WinMerge 2.6 release has some long-waited new features plus
+    important usability and stability fixes.</para>
 
     <itemizedlist>
       <listitem>
@@ -119,8 +118,8 @@
         </listitem>
 
         <listitem>
-          <simpara>Path to archive file and path inside archive is shown instead
-          of path to temporary folder</simpara>
+          <simpara>Path to archive file and path inside archive is shown
+          instead of path to temporary folder</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -142,8 +141,8 @@
         </listitem>
 
         <listitem>
-          <simpara>Compare statepane shows progressbar and compared/total amount
-          of items</simpara>
+          <simpara>Compare statepane shows progressbar and compared/total
+          amount of items</simpara>
         </listitem>
 
         <listitem>
@@ -183,12 +182,13 @@
         </listitem>
 
         <listitem>
-          <simpara>Opening files to external editor from file compare</simpara>
+          <simpara>Opening files to external editor from file
+          compare</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Punctuation characters can break diffs in line differences (so
-          numbers separated by commas get properly highlighted as
+          <simpara>Punctuation characters can break diffs in line differences
+          (so numbers separated by commas get properly highlighted as
           diffs)</simpara>
         </listitem>
       </itemizedlist>
@@ -281,8 +281,9 @@
 
       <itemizedlist>
         <listitem>
-          <simpara>More columns have been added (e.g. file sizes and attributes),
-          and columns may be reordered, hidden, and displayed.</simpara>
+          <simpara>More columns have been added (e.g. file sizes and
+          attributes), and columns may be reordered, hidden, and
+          displayed.</simpara>
         </listitem>
 
         <listitem>
@@ -292,9 +293,9 @@
         </listitem>
 
         <listitem>
-          <simpara>There is a new floating statusbar during the compare process,
-          and comparison may be aborted, and the the files/dirs compared so
-          far are shown.</simpara>
+          <simpara>There is a new floating statusbar during the compare
+          process, and comparison may be aborted, and the the files/dirs
+          compared so far are shown.</simpara>
         </listitem>
 
         <listitem>
@@ -308,7 +309,8 @@
         </listitem>
 
         <listitem>
-          <simpara>The number of selected items is shown in the statusbar.</simpara>
+          <simpara>The number of selected items is shown in the
+          statusbar.</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -329,8 +331,8 @@
         </listitem>
 
         <listitem>
-          <simpara>Enhanced EOL handling (files can contain different EOL styles
-          in one file).</simpara>
+          <simpara>Enhanced EOL handling (files can contain different EOL
+          styles in one file).</simpara>
         </listitem>
 
         <listitem>
@@ -339,8 +341,8 @@
         </listitem>
 
         <listitem>
-          <simpara>One ot both files can be set read-only to prevent accidental
-          edits.</simpara>
+          <simpara>One ot both files can be set read-only to prevent
+          accidental edits.</simpara>
         </listitem>
 
         <listitem>
@@ -368,18 +370,18 @@
         </listitem>
 
         <listitem>
-          <simpara>Location pane showing overall picture from files and allowing
-          moving to location by double-clicking.</simpara>
+          <simpara>Location pane showing overall picture from files and
+          allowing moving to location by double-clicking.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Moved lines detection. Moved lines can be shown with different
-          color in file area and location pane.</simpara>
+          <simpara>Moved lines detection. Moved lines can be shown with
+          different color in file area and location pane.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>More color options. Text color, missing line colors and moved
-          line colors can be configured.</simpara>
+          <simpara>More color options. Text color, missing line colors and
+          moved line colors can be configured.</simpara>
         </listitem>
       </itemizedlist>
     </sect3>
