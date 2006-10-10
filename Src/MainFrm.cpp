@@ -241,26 +241,7 @@ CMainFrame::CMainFrame()
 	CString pathMyFolders = m_options.GetString(OPT_FILTER_USERPATH);
 	if (pathMyFolders.IsEmpty())
 	{
-		pathMyFolders = paths_GetMyDocuments(GetSafeHwnd());
-		CString pathFilters(pathMyFolders);
-		if (pathFilters.Right(1) != _T("\\"))
-			pathFilters += _T("\\");
-		pathFilters += DefaultRelativeFilterPath;
-
-		if (!paths_CreateIfNeeded(pathFilters))
-		{
-			// Failed to create a folder, check it didn't already
-			// exist.
-			DWORD errCode = GetLastError();
-			if (errCode != ERROR_ALREADY_EXISTS)
-			{
-				// Failed to create a folder for filters, fallback to
-				// "My Documents"-folder. It is not worth the trouble to
-				// bother user about this or user more clever solutions.
-				pathFilters = pathMyFolders;
-			}
-		}
-
+		CString pathFilters = GetDefaultFilterUserPath();
 		m_options.SaveOption(OPT_FILTER_USERPATH, pathFilters);
 		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters);
 	}
@@ -2337,6 +2318,33 @@ CString CMainFrame::GetDefaultEditor()
 {
 	CString path = paths_GetWindowsDirectory() + _T("\\NOTEPAD.EXE");
 	return path;
+}
+
+/**
+ * @brief Get default user filter folder path
+ */
+CString CMainFrame::GetDefaultFilterUserPath()
+{
+	CString pathMyFolders = paths_GetMyDocuments(GetSafeHwnd());
+	CString pathFilters(pathMyFolders);
+	if (pathFilters.Right(1) != _T("\\"))
+		pathFilters += _T("\\");
+	pathFilters += DefaultRelativeFilterPath;
+
+	if (!paths_CreateIfNeeded(pathFilters))
+	{
+		// Failed to create a folder, check it didn't already
+		// exist.
+		DWORD errCode = GetLastError();
+		if (errCode != ERROR_ALREADY_EXISTS)
+		{
+			// Failed to create a folder for filters, fallback to
+			// "My Documents"-folder. It is not worth the trouble to
+			// bother user about this or user more clever solutions.
+			pathFilters = pathMyFolders;
+		}
+	}
+	return pathFilters;
 }
 
 typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;

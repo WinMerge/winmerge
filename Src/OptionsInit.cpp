@@ -112,7 +112,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_LINEFILTER_ENABLED, false);
 	m_options.InitOption(OPT_LINEFILTER_REGEXP, _T(""));
 	m_options.InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
-	m_options.InitOption(OPT_FILTER_USERPATH, _T(""));
+	m_options.InitOption(OPT_FILTER_USERPATH, GetDefaultFilterUserPath());
 
 	m_options.InitOption(OPT_CP_DEFAULT_MODE, (int)0);
 	m_options.InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());
