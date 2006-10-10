@@ -4,8 +4,8 @@
 
   <para>WinMerge is an <ulink url="http://www.opensource.org/">Open
   Source</ulink> visual text file differencing and merging tool for Win32
-  platforms. WinMerge can compare directories and files and present
-  differences in easy to understand and handle format.</para>
+  platforms. WinMerge can compare folders and files and present differences in
+  easy to understand and handle format.</para>
 
   <para>WinMerge is highly useful for determining what has changed between
   project versions, and then merging changes between versions. WinMerge can be
@@ -23,10 +23,8 @@
 
   <para>Goal of WinMerge development is to make comparing and synch/merge of
   directories and files easy and fast. While maintaining maximum reliability.
-  Easiness reduces user errors. Latest 2.4 version was already good and
-  popular version. In-development version 2.5 still improves in many areas.
-  Note that 2.5 releases (beta or experimental) are not yet considered
-  production-level releases.</para>
+  Easy of use reduces errors. Latest 2.6 version is considered a stable and
+  reliable program to use.</para>
 
   <para>Please note that WinMerge is not a freeware, but it is <ulink
   url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licenced. We have
@@ -114,8 +112,8 @@
       versions relate to each other. Development always happens with
       development versions (experimental versions and beta versions). At
       proper points we create a new branch for stable releases. In above
-      picture arrows for 2.2.x and 2.4.x are two current stable
-      branches.</para>
+      picture arrows for 2.2.x and 2.4.x are two current stable branches.
+      Picture does not show 2.6 which is the latest stable branch.</para>
 
       <important>
         <para>Branch always means a separate development. There is no any
@@ -134,10 +132,9 @@
 
       <para>What this branching also means is that stable versions don't get
       many new features after a branch is created. Stable versions 2.4.0 and
-      2.4.6 are pretty much similar feature-wise. Next time the new features
-      appear in stable release is in version 2.6.0 for which we create a new
-      stable branch. Downside here is that it may be over an year between the
-      stable branches.</para>
+      2.4.6 are pretty much similar feature-wise. After 2.4 stable branch we
+      have already a created new stable branch 2.6. It has many imrovements
+      and fixes done after 2.4 branch was created.</para>
 
       <para>Many software vendors always increase their version numbers and
       say version with biggest version number is what people should use. If
@@ -205,7 +202,7 @@
     <para>WinMerge source codes are available in <ulink
     url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
     page and from <ulink
-    url="https://sourceforge.net/cvs/?group_id=13216">public CVS
+    url="https://sourceforge.net/cvs/?group_id=13216">public Subversion
     server</ulink>. We welcome everybody to download the sources, study them
     and alter them. If you find (and fix) bugs, improve something etc, please
     submit your changes back to us as <ulink
@@ -231,14 +228,16 @@
 
       <para><ulink
       url="http://winmerge.sourceforge.net/developer/index.php">Developer
-      pages</ulink> are good start if you want to help with
-      development.</para>
+      pages</ulink> are good start if you want to help with development. We
+      have also created a <link linkend="???"><ulink
+      url="http://wiki.winmerge.org/">Developers-Wiki</ulink></link> for
+      developer documentation.</para>
 
-      <para><ulink
-      url="http://sourceforge.net/forum/forum.php?forum_id=41639">Developers-forum</ulink>
-      is best place to discuss about development. If you are interested in
-      helping with WinMerge development, let us know. If you want to fix one
-      of our <ulink
+      <para><ulink url="???">Development-mailing</ulink> list is the preferred
+      place for development discussions. Another place is in <ulink
+      url="http://sourceforge.net/forum/forum.php?forum_id=41639">Developers-forum</ulink>.
+      If you are interested in helping with WinMerge development, let us know.
+      If you want to fix one of our <ulink
       url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216"
       userlevel="">bugs</ulink> or implement a <ulink
       url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">new
