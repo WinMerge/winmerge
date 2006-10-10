@@ -229,12 +229,13 @@
       <para><ulink
       url="http://winmerge.sourceforge.net/developer/index.php">Developer
       pages</ulink> are good start if you want to help with development. We
-      have also created a <link linkend="???"><ulink
-      url="http://wiki.winmerge.org/">Developers-Wiki</ulink></link> for
-      developer documentation.</para>
+      have also created a <ulink
+      url="http://wiki.winmerge.org/">Developers-Wiki</ulink> for developer
+      documentation.</para>
 
-      <para><ulink url="???">Development-mailing</ulink> list is the preferred
-      place for development discussions. Another place is in <ulink
+      <para><ulink url="https://sourceforge.net/mail/?group_id=13216">
+      Development-mailing</ulink> list is the preferred place for development
+      discussions. Another place is in <ulink
       url="http://sourceforge.net/forum/forum.php?forum_id=41639">Developers-forum</ulink>.
       If you are interested in helping with WinMerge development, let us know.
       If you want to fix one of our <ulink

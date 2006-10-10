@@ -3,6 +3,8 @@
   Manual: Introduction.xml
  PATCH: [ 1573938 ] Manual: Update whatsnew for 2.6 release
   Manual: Whatsnew.xml
+ Fix invalid links in Introduction, added in patch #1573933
+  Manual: Introduction.xml
 
 2006-10-07 Tim
  BUG: [ 1572388 ] Wrong link to regex.pdf
