@@ -110,7 +110,7 @@
           <para>User-defined folder. Selected in Options (<menuchoice>
               <guimenu>Edit</guimenu>
 
-              <guimenuitem>Options </guimenuitem>
+              <guimenuitem>Options</guimenuitem>
             </menuchoice><guilabel>&gt; System &gt;
           </guilabel><guilabel>Filter Folder)</guilabel>. By default it is
           <filename class="directory">My Documents</filename> -folder.</para>
@@ -292,9 +292,10 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
     <example>
       <title>Line filter rule matching CVS "Id:" -lines:</title>
 
-      <para>Id-lines are like this:</para>
+      <para>Id-lines are like this (dollar-char not written so that version
+      control does not mess up that line):</para>
 
-      <screen>// $Id$</screen>
+      <screen>// [dollar-char]Id: Filters.xml,v 1.14.2.2 2005/10/29 17:21:16 kimmov Exp [dollar-char]</screen>
 
       <para>And they can be filtered with rule:</para>
 

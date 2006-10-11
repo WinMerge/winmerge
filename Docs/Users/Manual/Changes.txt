@@ -1,3 +1,7 @@
+2006-10-11 Kimmo
+ PATCH: [ 1574644 ] Manual: Fix cvs id-line in filters-doc
+  Manual: Filters.xml
+
 2006-10-10 Kimmo
  PATCH: [ 1573933 ] Manual: Update introduction chapter
   Manual: Introduction.xml
