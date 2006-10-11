@@ -158,6 +158,13 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 {
 	UpdateData(TRUE);
 
+	m_sLeftFile.TrimLeft();
+	m_sLeftFile.TrimRight();
+	m_sLeftFile.TrimLeft();
+	m_sLeftFile.TrimRight();
+	m_sFilter.TrimLeft();
+	m_sFilter.TrimRight();
+
 	CString fileName = AskProjectFileName(FALSE);
 	if (fileName.IsEmpty())
 		return;
@@ -169,7 +176,17 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	if (!m_sRightFile.IsEmpty())
 		project.SetRight(m_sRightFile, &m_bRightPathReadOnly);
 	if (!m_sFilter.IsEmpty())
+	{
+		// Remove possbile prefix from the filter name
+		CString prefix = LoadResString(IDS_FILTER_PREFIX);
+		int ind = m_sFilter.Find(prefix, 0);
+		if (ind == 0)
+		{
+			m_sFilter.Delete(0, prefix.GetLength());
+		}
+		m_sFilter.TrimLeft();
 		project.SetFilter(m_sFilter);
+	}
 	project.SetSubfolders(m_bIncludeSubfolders);
 
 	CString sErr;

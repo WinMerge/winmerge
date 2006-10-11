@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-11 Kimmo
+ PATCH: [ 1574696 ] Fix problem in saving filefilter to project file
+  Src: ProjectFilePathsDlg.cpp
+
 2006-10-10 Takashi
  BUG: [ 1573240 ] Crash in subversion trunk
   Src: MainFrm.cpp MainFrm.h OptionsInit.cpp
