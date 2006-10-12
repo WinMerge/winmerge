@@ -1,3 +1,7 @@
+2006-10-12 Tim
+ PATCH: [ 1575541 ] Web: Generator for Tracker Shortcuts
+  Web\developer: new file tracker-shortcuts.php
+
 2006-10-08 Tim
  PATCH: [ 1573243 ] Web: Add info and link for developers-wiki
   Web\developer: needed.php
