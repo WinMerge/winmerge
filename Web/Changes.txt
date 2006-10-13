@@ -5,6 +5,8 @@
   Web\2.4: index.php new file downloads.php
   Web\2.6: new file *.php *.txt
   Web\2.6\images: new file *.gif *.png
+ Remove "development version" link from Known Limitations (EditBinaryFiles.dll).
+  Web\2.6: limitations.php
 
 2006-10-12 Tim
  PATCH: [ 1575541 ] Web: Generator for Tracker Shortcuts
