@@ -7,6 +7,8 @@
   Web\2.6\images: new file *.gif *.png
  Remove "development version" link from Known Limitations (EditBinaryFiles.dll).
   Web\2.6: limitations.php
+ German translation is updated to 2.6.
+  Web\developer\l10n: status.xml
 
 2006-10-12 Tim
  PATCH: [ 1575541 ] Web: Generator for Tracker Shortcuts

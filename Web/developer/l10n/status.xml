@@ -195,10 +195,11 @@
       <author>
         <name>Tim Gerundt</name>
         <email>tim at gerundt dot de</email>
-        <comment>2.5 - 2.1</comment>
+        <comment>2.6 - 2.1</comment>
       </author>
     </authors>
     <versions>
+      <version>2.6</version>
       <version>2.5</version>
       <version>2.4</version>
       <version>2.3</version>
