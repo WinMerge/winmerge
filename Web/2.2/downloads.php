@@ -5,6 +5,7 @@
   $page->printHead('WinMerge: Downloads', WINMERGE_USR);
 ?>
 <h2>Downloads</h2>
+<p class="important">This is an old version of WinMerge, for the latest version go to the <a href="../index.php">main site</a>.</p>
 <h3><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=331334">WinMerge 2.2.4</a></h3>
 <dl>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.2.4-Setup.exe">Installer</a></dt>

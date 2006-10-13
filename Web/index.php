@@ -8,7 +8,7 @@
 <h2>Features</h2>
 <ul>
   <li>Visual differencing and merging of text files</li>
-  <li>Flexible editor with syntax highlighting</li>
+  <li>Flexible editor with syntax highlighting, line numbers and word-wrap</li>
   <li>Handles DOS, UNIX and MAC text file formats</li>
   <li>Unicode support</li>
   <li>Difference pane shows current difference in two vertical panes</li>
@@ -21,26 +21,26 @@
   <li>Archive file support using 7-zip</li>
   <li>Plugin support</li>
   <li>Localizable interface via resource DLL</li>
-  <li>HTML-based <a href="2.4/manual/index.html">Manual</a></li>
+  <li>HTML-based <a href="2.6/manual/index.html">Manual</a></li>
 </ul>
 
 <h2>Screenshot</h2>
-<p><img src="2.4/images/screenshot.gif" alt="Screenshot of WinMerge"></p>
-<p>See the <a href="2.4/screenshots.php">screenshots page</a> for more screenshots.</p>
+<p><img src="2.6/images/screenshot.png" alt="Screenshot of WinMerge"></p>
+<p>See the <a href="2.6/screenshots.php">screenshots page</a> for more screenshots.</p>
 
-<h2>WinMerge 2.4.10 - latest stable version</h2>
-<p><a href="2.4/index.php">WinMerge 2.4.10</a> is the latest stable version, and is recommended for most users.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">Download WinMerge 2.4.10 Installer</a></p>
+<h2>WinMerge 2.6.0 - latest stable version</h2>
+<p><a href="2.6/index.php">WinMerge 2.6.0</a> is the latest stable version, and is recommended for most users.</p>
+<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.0-Setup.exe">Download WinMerge 2.6.0 Installer</a></p>
 
 <h2>Installation</h2>
-<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.0-Setup.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.0-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
-<p>For more information, please see the <a href="2.4/manual/installing.html">Installation section</a> of the <a href="2.4/manual/index.html">Manual</a>.</p>
+<p>For more information, please see the <a href="2.6/manual/Installing.html">Installation section</a> of the <a href="2.6/manual/index.html">Manual</a>.</p>
 
 <h2>Using WinMerge</h2>
-<p>For information on using WinMerge, see our <a href="2.4/manual/index.html">online Manual</a>, or you can
-<a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=438564">download</a> a copy of the documentation for offline use.</p>
+<p>For information on using WinMerge, see our <a href="2.6/manual/index.html">online Manual</a>,
+or you can use the local help file (just press <code>F1</code> inside WinMerge) for offline use.</p>
 
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered
@@ -58,7 +58,7 @@ It is not at this time required that you register to post a bug report (although
 give less priority to unregistered bug reports, because it has been our experience that unregistered
 posters often do not remember to return and check to answer follow-on questions).</p>
 
-<p>Here is the current <a href="2.4/changes.php">change history</a>.</p>
+<p>Here is the current <a href="2.6/changes.php">change history</a>.</p>
 
 <p>Since WinMerge is an Open Source project, you may use it free of charge.
 But please consider making a <a href="http://sourceforge.net/project/project_donations.php?group_id=13216">donation</a>

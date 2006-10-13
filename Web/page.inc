@@ -14,6 +14,7 @@
   define ('WINMERGE_2_0', '2.0');
   define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
+  define ('WINMERGE_2_6', '2.6');
   define ('WINMERGE_DEV', 'dev');
 
   /**
@@ -28,11 +29,11 @@
      * Constructor
      */
     function Page() {
-      $this->_title = 'WinMerge 2.4';
+      $this->_title = 'WinMerge 2.6';
       $this->_charset = 'ISO-8859-1';
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
-      $this->_version = WINMERGE_2_4;
+      $this->_version = WINMERGE_2_6;
     }
 
     /**
@@ -94,7 +95,7 @@
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
-      $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"32\" width=\"32\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a> <img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
+      $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"48\" width=\"48\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a> <img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
       $temp .= "  <div id=\"tabs\">\n";
       $temp .= "<ul>\n";
       if ($this->_version == WINMERGE_USR) { //if "Users" ...
@@ -103,23 +104,23 @@
       else { //if NOT "Users" ...
         $temp .= "  <li><a href=\"/index.php\">Users</a></li>\n";
       }
+      if ($this->_version == WINMERGE_2_6) { //if WinMerge 2.6 ...
+        $temp .= "  <li class=\"selected\"><a href=\"/2.6/index.php\">2.6</a></li>\n";
+      }
+      else { //if NOT WinMerge 2.6 ...
+        $temp .= "  <li><a href=\"/2.6/index.php\">2.6</a></li>\n";
+      }
       if ($this->_version == WINMERGE_2_4) { //if WinMerge 2.4 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.4/index.php\">2.4</a></li>\n";
       }
-      else { //if WinMerge 2.4 ...
+      else { //if NOT WinMerge 2.4 ...
         $temp .= "  <li><a href=\"/2.4/index.php\">2.4</a></li>\n";
       }
       if ($this->_version == WINMERGE_2_2) { //if WinMerge 2.2 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.2/index.php\">2.2</a></li>\n";
       }
-      else { //if WinMerge 2.2 ...
-        $temp .= "  <li><a href=\"/2.2/index.php\">2.2</a></li>\n";
-      }
       if ($this->_version == WINMERGE_2_0) { //if WinMerge 2.0 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.0/index.php\">2.0</a></li>\n";
-      }
-      else { //if NOT WinMerge 2.0 ...
-        $temp .= "  <li><a href=\"/2.0/index.php\">2.0</a></li>\n";
       }
       if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
         $temp .= "  <li class=\"selected\"><a href=\"/1.7/index.php\">1.7</a></li>\n";
@@ -237,7 +238,6 @@
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_4: //if WinMerge 2.4 ...
-        case WINMERGE_USR: //OR if "Users" ...
           $temp .= "<h2><a href=\"/2.4/index.php\">WinMerge 2.4</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.4/manual/index.html\">Manual</a></li>\n";
@@ -246,11 +246,29 @@
           $temp .= "  <li><a href=\"/2.4/limitations.php\">Known Limitations</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
+          $temp .= "  <li><a href=\"/2.4/downloads.php\">Downloads</a>\n";
           $temp .= "    <ul>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=438554\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=438554\" title=\"Release Notes\">Notes</a>)</li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=438564\">Documentation</a></li>\n";
+          $temp .= "    </ul>\n";
+          $temp .= "  </li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case WINMERGE_2_6: //if WinMerge 2.6 ...
+        case WINMERGE_USR: //OR if "Users" ...
+          $temp .= "<h2><a href=\"/2.6/index.php\">WinMerge 2.6</a></h2>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"/2.6/manual/index.html\">Manual</a></li>\n";
+          $temp .= "  <li><a href=\"/2.6/screenshots.php\">Screenshots</a></li>\n";
+          $temp .= "  <li><a href=\"/2.6/changes.php\">Change History</a></li>\n";
+          $temp .= "  <li><a href=\"/2.6/limitations.php\">Known Limitations</a></li>\n";
+          $temp .= "</ul>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
+          $temp .= "    <ul>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=454955\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=454955\" title=\"Release Notes\">Notes</a>)</li>\n";
+          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
           $temp .= "</ul>\n";
@@ -302,9 +320,12 @@
           $temp .= "  <li><a href=\"/2.2/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           break;
         case WINMERGE_2_4: //if WinMerge 2.4 ...
+          $temp .= "  <li><a href=\"/2.4/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
+          break;
+        case WINMERGE_2_6: //if WinMerge 2.6 ...
         case WINMERGE_USR: //OR if "Users" ...
         case WINMERGE_DEV: //OR if "Developers" ...
-          $temp .= "  <li><a href=\"/2.4/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
+          $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           break;
       }
       $temp .= "</ul>\n";
@@ -460,9 +481,10 @@
           $line = $lines[$i];
           
           $line = preg_replace('#^([0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9])#si', '<b>' . '\\1' . '</b>', $line);
-          $line = preg_replace('#PATCH: \[ ([0-9]*) \]#si', 'PATCH: [ <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=\\1&group_id=13216&atid=313216" target="_blank">\\1</a> ]', $line);
-          $line = preg_replace('#BUG: \[ ([0-9]*) \]#si', 'BUG: [ <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=\\1&group_id=13216&atid=113216" target="_blank">\\1</a> ]', $line);
-          $line = preg_replace('#RFE: \[ ([0-9]*) \]#si', 'RFE: [ <a href="http://sourceforge.net/tracker/index.php?func=detail&aid=\\1&group_id=13216&atid=363216" target="_blank">\\1</a> ]', $line);
+          $line = preg_replace('#PATCH: \[ ([0-9]*) \]#si', 'PATCH: [ <a href="http://winmerge.org/patch/\\1" target="_blank">\\1</a> ]', $line);
+          $line = preg_replace('#BUG: \[ ([0-9]*) \]#si', 'BUG: [ <a href="http://winmerge.org/bug/\\1" target="_blank">\\1</a> ]', $line);
+          $line = preg_replace('#RFE: \[ ([0-9]*) \]#si', 'RFE: [ <a href="http://winmerge.org/rfe/\\1" target="_blank">\\1</a> ]', $line);
+          $line = preg_replace('#TODO: \[ ([0-9]*) \]#si', 'TODO: [ <a href="http://winmerge.org/todo/\\1" target="_blank">\\1</a> ]', $line);
         
           $html .= $line;
         }

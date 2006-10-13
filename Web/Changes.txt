@@ -1,3 +1,11 @@
+2006-10-13 Tim
+ PATCH: [ 1576903 ] Web: Changes for new stable release 2.6.0
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.2: downloads.php
+  Web\2.4: index.php new file downloads.php
+  Web\2.6: new file *.php *.txt
+  Web\2.6\images: new file *.gif *.png
+
 2006-10-12 Tim
  PATCH: [ 1575541 ] Web: Generator for Tracker Shortcuts
   Web\developer: new file tracker-shortcuts.php
