@@ -241,7 +241,8 @@ CMainFrame::CMainFrame()
 	CString pathMyFolders = m_options.GetString(OPT_FILTER_USERPATH);
 	if (pathMyFolders.IsEmpty())
 	{
-		CString pathFilters = GetDefaultFilterUserPath();
+		// No filter path, set it to default and make sure it exists.
+		CString pathFilters = GetDefaultFilterUserPath(TRUE);
 		m_options.SaveOption(OPT_FILTER_USERPATH, pathFilters);
 		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters);
 	}
@@ -2321,9 +2322,16 @@ CString CMainFrame::GetDefaultEditor()
 }
 
 /**
- * @brief Get default user filter folder path
+ * @brief Get default user filter folder path.
+ * This function returns the default filter path for user filters.
+ * If wanted so (@p bCreate) path can be created if it does not
+ * exist yet. But you really want to create the patch only when
+ * there is no user path defined.
+ * @param [in] bCreate If TRUE filter path is created if it does
+ *  not exist.
+ * @return Default folder for user filters.
  */
-CString CMainFrame::GetDefaultFilterUserPath()
+CString CMainFrame::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 {
 	CString pathMyFolders = paths_GetMyDocuments(GetSafeHwnd());
 	CString pathFilters(pathMyFolders);
@@ -2331,7 +2339,7 @@ CString CMainFrame::GetDefaultFilterUserPath()
 		pathFilters += _T("\\");
 	pathFilters += DefaultRelativeFilterPath;
 
-	if (!paths_CreateIfNeeded(pathFilters))
+	if (bCreate && !paths_CreateIfNeeded(pathFilters))
 	{
 		// Failed to create a folder, check it didn't already
 		// exist.

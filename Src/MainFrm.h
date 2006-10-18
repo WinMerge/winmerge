@@ -117,7 +117,7 @@ public:
 	void ApplyViewWhitespace();
 	BOOL OpenFileToExternalEditor(CString file);
 	CString GetDefaultEditor();
-	CString GetDefaultFilterUserPath();
+	CString GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void ShowVSSError(CException *e, CString strItem);

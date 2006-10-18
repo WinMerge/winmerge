@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-19 Kimmo
+ PATCH: [ 1578419 ] Fix creating WinMerge folder to MyFolders always
+  Src: MainFrm.cpp MainFrm.h
+
 2006-10-11 Kimmo
  PATCH: [ 1574696 ] Fix problem in saving filefilter to project file
   Src: ProjectFilePathsDlg.cpp
