@@ -87,7 +87,7 @@
 		<Application_URLs>
 			<Application_Info_URL>http://winmerge.org/2.6/</Application_Info_URL>
 			<Application_Order_URL>http://winmerge.org/2.6/</Application_Order_URL>
-			<Application_Screenshot_URL>http://winmerge.org/2.6/images/screenshot.gif</Application_Screenshot_URL>
+			<Application_Screenshot_URL>http://winmerge.org/2.6/images/screenshot.png</Application_Screenshot_URL>
 			<Application_Icon_URL>http://winmerge.org/2.6/images/icon.gif</Application_Icon_URL>
 			<Application_XML_File_URL>http://winmerge.org/WinMergePAD.xml</Application_XML_File_URL>
 		</Application_URLs>
