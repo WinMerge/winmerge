@@ -382,8 +382,9 @@ void CDirView::Redisplay()
 	DeleteAllDisplayItems();
 
 	// If non-recursive compare, add special item(s)
+	CString leftParent, rightParent;
 	if (!pDoc->GetRecursive() ||
-		pDoc->AllowUpwardDirectory(CString(), CString()) == CDirDoc::AllowUpwardDirectory::ParentIsTempPath)
+		pDoc->AllowUpwardDirectory(leftParent, rightParent) == CDirDoc::AllowUpwardDirectory::ParentIsTempPath)
 	{
 		cnt += AddSpecialItems();
 	}
