@@ -5,11 +5,13 @@
   <para>WinMerge can be installed using installer or by unzipping files from
   archive. Using the installer is the recommended method.</para>
 
-  <para>Currently WinMerge installer works for natively for 32-bit Windows.
-  There is no separate version for 64-bit Windows (WinXP/2003/Vista) but those
-  can run installer and WinMerge as 32-bit application. However there is
-  64-bit version of Shell Integration included in 32-bit installer. So Shell
-  Integration works in 64-bit Windows.</para>
+  <note>
+    <para>Currently WinMerge installer works natively only for 32-bit Windows.
+    There is no separate version of WinMerge for 64-bit Windows
+    (WinXP/2003/Vista). 64-bit Windows versions can run the installer and
+    WinMerge as 32-bit application. For the Shell Integration there is 64-bit
+    version of included in the installer.</para>
+  </note>
 
   <sect2>
     <title>Getting Files</title>
@@ -31,8 +33,7 @@
       <para>Installer requires Admin-user priviledges in Windows NT4/2000/XP.
       If you don't have Admin-user priviledges you can install WinMerge by
       unzipping from an archive file (see <link
-      linkend="InstallFromArchive">Installing from an
-      Archive</link>).</para>
+      linkend="InstallFromArchive">Installing from an Archive</link>).</para>
     </note>
 
     <para>This is recommended for most users. Installer asks location where
@@ -169,14 +170,20 @@
     <filename>WinMerge[U].exe</filename> is needed to run WinMerge. Mentioned
     DLL files are available also as Runtimes-package to download.</para>
 
+    <note>
+      <para>WinMerge 2.6.0 and later versions require a new version of runtime
+      libraries. When updating from older WinMerge versions using archive
+      files, new runtime files form Runtime-package are needed.</para>
+    </note>
+
     <para>Archive files have correct folder structure. WinMerge should be
     unzipped preserving folder structure to destination folder, for example
     <filename class="directory">C:\Program Files\</filename>. Root folder
     created has name <filename
     class="directory">/WinMerge-<replaceable>version</replaceable></filename>,
     for example <filename class="directory">/WinMerge-2.6.0</filename>. This
-    folder can be renamed or files copied to other folder (preserving folder
-    structure!).</para>
+    folder can be renamed or files copied to other folder (preserving the
+    folder structure!).</para>
 
     <para>After unzipping files WinMerge is ready to run! Shell Integration
     and Archive Integration may need additional steps (see below).</para>

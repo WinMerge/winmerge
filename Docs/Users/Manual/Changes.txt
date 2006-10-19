@@ -1,3 +1,7 @@
+2006-10-19 Kimmo
+ PATCH: [ 1578456 ] Manual: Small tweaks for installing doc
+  Manual: Install.xml
+
 2006-10-11 Kimmo
  PATCH: [ 1574644 ] Manual: Fix cvs id-line in filters-doc
   Manual: Filters.xml
