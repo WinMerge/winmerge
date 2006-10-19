@@ -70,10 +70,10 @@ static const UINT SmallTimeDiff = 2;
 
 // Miscellaneous functions defined in StdAfx.cpp
 
-int xisspecial (int c);
-int xisalpha (int c);
-int xisalnum (int c);
-int xisspace (int c);
+int xisspecial (wint_t c);
+int xisalpha (wint_t c);
+int xisalnum (wint_t c);
+int xisspace (wint_t c);
 
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
 CString LoadResString(int id);

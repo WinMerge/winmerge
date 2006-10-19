@@ -43,7 +43,7 @@ UINT gLog::DeleteFileFailed(LPCTSTR path)
 // This is ok for the UNICODE build because UCS-2LE code bytes
 // do not extend as high as 2Gig (actually even full Unicode
 // codepoints don't extend that high).
-int normch(int c)
+static wint_t normch(wint_t c)
 {
 #ifdef _UNICODE
 	return (unsigned short)(short)c;
@@ -52,38 +52,44 @@ int normch(int c)
 #endif
 }
 
-// Returns nonzero if input is outside ASCII or is underline
-int
-xisspecial (int c)
+/** @brief Return nonzero if input is outside ASCII or is underline. */
+int xisspecial (wint_t c)
 {
   return normch(c) > (unsigned) _T ('\x7f') || c == _T ('_');
 }
 
-// Returns non-zero if input is alphabetic or "special" (see xisspecial)
-// Also converts any negative inputs to negative char equivalents (see normch)
-int
-xisalpha (int c)
+/**
+ * @brief Return non-zero if input is alphabetic or "special" (see xisspecial).
+ * Also converts any negative inputs to negative char equivalents (see normch).
+ */
+int xisalpha (wint_t c)
 {
   return _istalpha (normch(c)) || xisspecial (normch(c));
 }
 
-// Returns non-zero if input is alphanumeric or "special" (see xisspecial)
-// Also converts any negative inputs to negative char equivalents (see normch)
-int
-xisalnum (int c)
+/**
+ * @brief Return non-zero if input is alphanumeric or "special" (see xisspecial).
+ * Also converts any negative inputs to negative char equivalents (see normch).
+ */
+int xisalnum (wint_t c)
 {
   return _istalnum (normch(c)) || xisspecial (normch(c));
 }
 
-// Returns non-zero if input character is a space
-// Also converts any negative inputs to negative char equivalents (see normch)
-int
-xisspace (int c)
+/**
+ * @brief Return non-zero if input character is a space.
+ * Also converts any negative inputs to negative char equivalents (see normch).
+ */
+int xisspace (wint_t c)
 {
   return _istspace (normch(c));
 }
 
-// Load string resource and return as CString
+/**
+ * @brief Load string resource and return as CString.
+ * @param [in] id Resource string ID.
+ * @return Resource string as CString.
+ */
 CString LoadResString(int id)
 {
 	CString s;
@@ -91,13 +97,20 @@ CString LoadResString(int id)
 	return s;
 }
 
-// Combines AfxFormatString1 with AfxMessageBox
-int
-ResMsgBox1(int msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
+/**
+ * @brief Show messagebox with resource string having parameter.
+ * @param [in] msgid Resource string ID.
+ * @param [in] arg Argument string.
+ * @param [in] nType Messagebox type flags (e.g. MB_OK).
+ * @param [in] nIDHelp Help string ID.
+ * @return User choice from the messagebox (see MessageBox()).
+ */
+int ResMsgBox1(int msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
 {
 	CString msg;
 	AfxFormatString1(msg, msgid, arg);
-	if (!nIDHelp) nIDHelp = msgid;
+	if (!nIDHelp)
+		nIDHelp = msgid;
 	return AfxMessageBox(msg, nType, nIDHelp);
 }
 

@@ -5,6 +5,8 @@ Add new items to top.
 2006-10-19 Kimmo
  PATCH: [ 1578419 ] Fix creating WinMerge folder to MyFolders always
   Src: MainFrm.cpp MainFrm.h
+ Trivial type fixes, coding style fixes and converting comments to doxygen
+  Src: StdAfx.cpp StdAfx.h
 
 2006-10-11 Kimmo
  PATCH: [ 1574696 ] Fix problem in saving filefilter to project file
