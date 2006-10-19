@@ -1,5 +1,9 @@
 selftest\Changes.txt
 
+2006-10-19 Kimmo
+ BUG: [ 1570348 ] self-tests seem to be broken
+  selftests: testdiff.pl  
+
 2006-02-08 Perry
  PATCH: [ 1426552 ] Add selftests between platform versions
   Adds some cross-platform comparisons (using existing test files).

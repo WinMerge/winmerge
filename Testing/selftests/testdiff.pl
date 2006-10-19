@@ -345,11 +345,11 @@ sub checkRequiredPrograms {
 # Request diff2merge path
 # Takes argument from 0-3 for build to test
 sub getDiff2merge {
-  "..\\Build\\$testprogs[$_[0]][0]\\$testprogs[$_[0]][1]";
+  "..\\..\\Tools\\Build\\$testprogs[$_[0]][0]\\$testprogs[$_[0]][1]";
 }
 
 # Request WinMerge path
 # Takes argument from 0-3 for build to test
 sub getWinMerge {
-  "..\\Build\\$testprogs[$_[0]][0]\\$testprogs[$_[0]][2]";
+  "..\\..\\Build\\$testprogs[$_[0]][0]\\$testprogs[$_[0]][2]";
 }
