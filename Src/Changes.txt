@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-20 Kimmo
+ Fix compile warnings (some of them 64-bit), remove unused variables and code, fix types
+  Src: MainFrm.cpp
+
 2006-10-19 Kimmo
  PATCH: [ 1578419 ] Fix creating WinMerge folder to MyFolders always
   Src: MainFrm.cpp MainFrm.h

@@ -609,7 +609,6 @@ CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, 
 	PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
-	BOOL bOpenSuccess = FALSE;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
 
 	// Make local copies, so we can change encoding if we guess it below
@@ -949,8 +948,6 @@ void CMainFrame::OnOptions()
 		while (!docs.IsEmpty())
 		{
 			CMergeDoc * pMergeDoc = docs.RemoveHead();
-			CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-			CMergeEditView * pRight = pMergeDoc->GetRightView();
 
 			// Re-read MergeDoc settings (also updates view settings)
 			// and rescan using new options
@@ -1237,15 +1234,6 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 }
 
 /**
- * @brief Trim trailing line returns.
- */
-static void RemoveLineReturns(CString & str)
-{
-	str.Remove('\n');
-	str.Remove('\r');
-}
-
-/**
  * @brief Sync file to Version Control System
  * @param pszSrc [in] File to copy
  * @param pszDest [in] Where to copy (incl. filename)
@@ -1254,6 +1242,7 @@ static void RemoveLineReturns(CString & str)
  * @return User selection or -1 if error happened
  * @sa CMainFrame::HandleReadonlySave()
  * @sa CDirView::PerformActionList()
+ * @todo Parameter @p pszSrc is ununsed.
  */
 int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
 	BOOL &bApplyToAll, CString *psError)
@@ -1299,7 +1288,6 @@ void CMainFrame::OnViewSelectfont()
 	CString sFontPath = fileFontPath; // Default to change file compare font
 
 	CFrameWnd * pFrame = GetActiveFrame();
-	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bDirFrame)
@@ -1566,7 +1554,7 @@ void CMainFrame::OnHelpSearch()
 		q.pszWindow = NULL;
 		q.cbStruct = sizeof(q);
 
-		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_SEARCH, (DWORD)&q);
+		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_SEARCH, (DWORD_PTR)&q);
 	}
 	else
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
@@ -1711,7 +1699,6 @@ void CMainFrame::RebuildRegExpList(BOOL bShowError)
 	USES_CONVERSION;
 
 	TCHAR tmp[_MAX_PATH] = {0};
-	TCHAR tokenStr[_MAX_PATH] = {0};
 	TCHAR* token;
 	TCHAR sep[] = _T("\r\n");
 	BOOL valid = TRUE;
