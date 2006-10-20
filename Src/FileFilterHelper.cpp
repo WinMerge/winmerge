@@ -407,15 +407,15 @@ void FileFilterHelper::ReloadUpdatedFilters()
 	FILEFILTER_INFOLIST filters;
 	FileInfo fileInfo;
 	FileInfo *fileInfoStored = NULL;
-	FileFilterInfo * filter = NULL;
+	FileFilterInfo filter;
 	CString selected;
 
 	GetFileFilters(&filters, selected);
 	for (int i = 0; i < filters.GetSize(); i++)
 	{
-		filter = &filters.GetAt(i);
-		CString path = filter->fullpath;
-		fileInfoStored = &filter->fileinfo;
+		filter = filters.GetAt(i);
+		CString path = filter.fullpath;
+		fileInfoStored = &filter.fileinfo;
 
 		fileInfo.Update(path);
 		if (fileInfo.mtime != fileInfoStored->mtime ||
@@ -432,21 +432,6 @@ void FileFilterHelper::ReloadUpdatedFilters()
 			}
 		}
 	}
-}
-
-/**
- * @ brief Returns true if directory exists or successfully created
- * Tries to create multiple directories if needed
- */
-static bool
-EnsureDirectoryExists(const CString & sPath)
-{
-	// paths_CanUse will 
-	if (paths_CreateIfNeeded(sPath))
-		return true;
-	else
-		return false;
-
 }
 
 /**

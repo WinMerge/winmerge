@@ -5,6 +5,8 @@ Add new items to top.
 2006-10-20 Kimmo
  Fix compile warnings (some of them 64-bit), remove unused variables and code, fix types
   Src: MainFrm.cpp
+ Remove unused function, fix inproper pointer usage
+  Src: FileFilterHelper.cpp
 
 2006-10-19 Kimmo
  PATCH: [ 1578419 ] Fix creating WinMerge folder to MyFolders always
