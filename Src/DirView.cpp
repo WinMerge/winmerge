@@ -633,8 +633,11 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 		AfxGetMainWnd());
 }	
 
-/** @brief Convert number to string, with commas
-between digits in locale-appropriate manner */
+/**
+ * @brief Convert number to string.
+ * Converts number to string, with commas between digits in
+ * locale-appropriate manner.
+*/
 CString NumToStr(int n)
 {
 	CString s = locality::NumToLocaleStr(n);
@@ -815,7 +818,7 @@ void CDirView::SortColumnsAppropriately()
 	m_ctlSortHeader.SetSortImage(ColLogToPhys(sortCol), bSortAscending);
 	//sort using static CompareFunc comparison function
 	CompareState cs(this, sortCol, bSortAscending);
-	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD>(&cs));
+	GetListCtrl().SortItems(cs.CompareFunc, reinterpret_cast<DWORD_PTR>(&cs));
 }
 
 /// Do any last minute work as view closes
@@ -1340,8 +1343,9 @@ void CDirView::OnUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Get keydata associated with item in given index
- * @param idx Item's index to list in UI
+ * @brief Get keydata associated with item in given index.
+ * @param [in] idx Item's index to list in UI.
+ * @return Key for item in given index.
  */
 POSITION CDirView::GetItemKey(int idx) const
 {
@@ -1350,13 +1354,23 @@ POSITION CDirView::GetItemKey(int idx) const
 
 // SetItemKey & GetItemKey encapsulate how the display list items
 // are mapped to DiffItems, which in turn are DiffContext keys to the actual DIFFITEM data
-POSITION CDirView::GetItemKeyFromData(DWORD dw) const
+
+/**
+ * @brief Convert item's data to item's key.
+ * Use this function to get item's key when item's data is known.
+ * @param [in] dw Item's data.
+ * @return Item's key.
+ */
+POSITION CDirView::GetItemKeyFromData(DWORD_PTR dw) const
 {
 	return (POSITION)dw;
 }
 
 /**
- * Given index in list control, get its associated DIFFITEM data
+ * @brief Get DIFFITEM data for item.
+ * This function returns DIFFITEM data for item in given index in GUI.
+ * @param [in] sel Item's index in folder compare GUI list.
+ * @return DIFFITEM for item.
  */
 DIFFITEM CDirView::GetDiffItem(int sel) const
 {

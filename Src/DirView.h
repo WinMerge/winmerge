@@ -396,7 +396,7 @@ private:
 	void DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI);
 	void DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI);
-	POSITION GetItemKeyFromData(DWORD dw) const;
+	POSITION GetItemKeyFromData(DWORD_PTR dw) const;
 	DIFFITEM GetDiffItem(int sel) const;
 	DIFFITEM & GetDiffItemRef(int sel);
 	const DIFFITEM & GetDiffItemConstRef(int sel) const;
