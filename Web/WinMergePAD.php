@@ -6,7 +6,7 @@
 ?>
 <h2>PAD file</h2>
 <p>The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="http://www.asp-shareware.org/pad/">Portable Application Description</a> file, which you find here:</p>
-<pre class="code"><a href="http://www.winmerge.org/WinMergePAD.xml">http://www.winmerge.org/WinMergePAD.xml</a></pre>
+<pre class="code"><a href="http://winmerge.org/WinMergePAD.xml">http://winmerge.org/WinMergePAD.xml</a></pre>
 <p>If you can't work with the <a href="WinMergePAD.xml">PAD file</a>, you can use the following informations:</p>
 <?php
   $padfile = $page->convertXml2Array('WinMergePAD.xml');
