@@ -1665,10 +1665,6 @@ SOURCE=.\Splsh16.bmp
 # End Source File
 # Begin Source File
 
-SOURCE=.\res\Toolbar.bmp
-# End Source File
-# Begin Source File
-
 SOURCE=.\res\unknown.bmp
 # End Source File
 # Begin Source File
