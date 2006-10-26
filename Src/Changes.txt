@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-26 Gal
+ BUG: [ 1418805 ] Menu colors incorrect with non-standard color scheme
+  Src/: BCMenu.cpp
+
 2006-10-24 Tim
  PATCH: [ 1584004 ] Delete "Toolbar.bmp"
   Src/res deleted file: Toolbar.bmp

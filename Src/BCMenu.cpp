@@ -659,7 +659,7 @@ void BCMenu::DrawItem_WinXP (LPDRAWITEMSTRUCT lpDIS)
 	else{
 		BOOL standardflag=FALSE,selectedflag=FALSE,disableflag=FALSE;
 		BOOL checkflag=FALSE;
-		COLORREF crText = GetSysColor(COLOR_MENUTEXT);
+		COLORREF crText = RGB(0, 0, 0); // Original was	GetSysColor(COLOR_MENUTEXT);
 		COLORREF crSelect = GetSysColor(COLOR_HIGHLIGHT);
 		COLORREF crSelectFill;
 		if(!IsWinXPLuna())crSelectFill=LightenColor(crSelect,0.85);
