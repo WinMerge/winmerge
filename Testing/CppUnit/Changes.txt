@@ -1,0 +1,8 @@
+Testing\selftest\Changes.txt
+
+2006-10-27 Kimmo
+ PATCH: [ 1585418 ] CppUnit tests for StringDiff
+  Add folder Testing/CppUnit for unit tests
+  Add folder CppUnit/StringDifferencing and its contents
+
+

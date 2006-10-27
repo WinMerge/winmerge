@@ -1,0 +1,31 @@
+#ifndef _TESTCASE1_H_
+#define _TESTCASE1_H_
+
+#include <cppunit/extensions/HelperMacros.h>
+
+class TestCase1 : public CPPUNIT_NS::TestFixture
+{
+  CPPUNIT_TEST_SUITE( TestCase1 );
+  CPPUNIT_TEST( Identical1 );
+  CPPUNIT_TEST( Identical2 );
+  CPPUNIT_TEST( Difference1 );
+  CPPUNIT_TEST( Difference2 );
+  CPPUNIT_TEST_SUITE_END();
+
+protected:
+	
+
+public:
+  void setUp();
+  void tearDown();
+
+protected:
+	void Identical1();
+	void Identical2();
+
+	void Difference1();
+	void Difference2();
+};
+
+
+#endif
