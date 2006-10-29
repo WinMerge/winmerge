@@ -2,6 +2,10 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2006-10-29 Kimmo
+ PATCH: [ 1583386 ] Drop Delphi plugin binary
+  Remove file Plugins\dlls: UnpackDFM.dll
+
 2006-08-03 Kimmo
  Fix HideFirstLetter plugin compile with VS2003.Net. Bump version number to 1.0.1.
   Plugins\src_VCPP\HideFirstLetter:
