@@ -26,7 +26,7 @@ Believe or not.</screen></para>
     <para>In example 1 there are 3 different lines in file1 and 1 different line in file2. In WinMerge differences must always have same amount of lines in both files. So WinMerge must add 2 empty lines to file2 so that both files have 3 different lines. We call these added empty lines as "missing lines" since they really don't exist in file2. Screenshot shows it:</para>
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/example1.gif" format="GIF"/>
+          <imagedata fileref="screenshots/missing_lines.png" format="PNG"/>
         </imageobject>
       </inlinemediaobject></para>
     <para>If text is typed or copy-pasted to missing lines they become real lines.</para>

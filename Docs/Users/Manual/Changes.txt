@@ -1,3 +1,8 @@
+2006-10-30 Tim
+ PATCH: [ 1586867 ] Manual: Replace "example1.gif" with new PNG version
+  Manual/screenshots new file: missing_lines.png
+  Manual/screenshots deleted file: example1.gif
+
 2006-10-19 Kimmo
  PATCH: [ 1578456 ] Manual: Small tweaks for installing doc
   Manual: Install.xml
