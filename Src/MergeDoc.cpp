@@ -978,6 +978,8 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	CString title;
 	BOOL result = TRUE;
 	int answer = IDOK; // Set default we use for scratchpads
+	int nActiveViewIndexType = GetActiveMergeViewIndexType();
+	HWND parent = m_pView[nActiveViewIndexType]->GetSafeHwnd();
 
 	// We shouldn't get here if saving is succeed before
 	ASSERT(nSaveResult != SAVE_DONE);
@@ -1008,7 +1010,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 		else
 			VERIFY(title.LoadString(IDS_SAVE_RIGHT_AS));
 
-		if (SelectFile(s, strPath, title, NULL, FALSE))
+		if (SelectFile(parent, s, strPath, title, NULL, FALSE))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer];
 			strSavePath = s;

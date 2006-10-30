@@ -118,7 +118,8 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 	int filterid = f_types[m_ctlStyle.GetCurSel()].browseFilter;
 
 	CString chosenFilepath;
-	if (SelectFile(chosenFilepath, folder, title, filterid, FALSE))
+	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, title,
+			filterid, FALSE))
 	{
 		CString name;
 		SplitFilename(chosenFilepath, &folder, &name, NULL);

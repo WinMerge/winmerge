@@ -73,7 +73,8 @@ BOOL ProjectFilePathsDlg::OnInitDialog()
 void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 {
 	UpdateData(TRUE);
-	if (::SelectFile(m_sLeftFile, m_sLeftFile, NULL, NULL, TRUE))
+	if (::SelectFile(GetSafeHwnd(), m_sLeftFile, m_sLeftFile, NULL, NULL,
+			TRUE))
 		UpdateData(FALSE);
 }
 
@@ -83,7 +84,8 @@ void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
 {
 	UpdateData(TRUE);
-	if (::SelectFile(m_sRightFile, m_sRightFile, NULL, NULL, TRUE))
+	if (::SelectFile(GetSafeHwnd(), m_sRightFile, m_sRightFile, NULL, NULL,
+			TRUE))
 		UpdateData(FALSE);
 }
 
@@ -227,7 +229,8 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 	CString strProjectFileName;
 	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 
-	if (!::SelectFile(strProjectFileName, strProjectPath, NULL, IDS_PROJECTFILES, bOpen))
+	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath, NULL,
+			IDS_PROJECTFILES, bOpen))
 		return _T("");
 
 	if (strProjectFileName.IsEmpty())

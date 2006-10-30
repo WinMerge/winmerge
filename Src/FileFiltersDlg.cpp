@@ -408,7 +408,8 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		path += '\\';
 	
 	CString s;
-	if (SelectFile(s, path, title, IDS_FILEFILTER_FILEMASK, FALSE))
+	if (SelectFile(GetSafeHwnd(), s, path, title, IDS_FILEFILTER_FILEMASK,
+		FALSE))
 	{
 		// Fix file extension
 		TCHAR file[_MAX_FNAME] = {0};
@@ -537,7 +538,8 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 	CString title = LoadResString(IDS_FILEFILTER_INSTALL);
 
-	if (SelectFile(s, path, title, IDS_FILEFILTER_FILEMASK, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, path, title, IDS_FILEFILTER_FILEMASK,
+		TRUE))
 	{
 		CString filename, ext;
 		SplitFilename(s, NULL, &filename, &ext);

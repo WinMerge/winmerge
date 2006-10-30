@@ -91,7 +91,7 @@ void CPropVss::WriteOptions()
 void CPropVss::OnBrowseButton() 
 {
 	CString s;
-	if (SelectFile(s))
+	if (SelectFile(GetSafeHwnd(), s))
 	{
 		m_strPath = s;
 		m_ctlPath.SetWindowText(s);

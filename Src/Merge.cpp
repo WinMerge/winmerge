@@ -364,18 +364,18 @@ void CMergeApp::OnAppAbout()
 
 /**
  * @brief Helper function for selecting dir/file
+ * @param [in] parent Handle to parent window. Can be a NULL, but then
+ *     CMainFrame is used which can cause modality problems.
  * @param [out] path Selected path is returned in this string
  * @param [in] initialPath Initial path (and file) shown when dialog is opened
  * @param [in] title Title for path selection dialog
- * @param [in] filterid 0 or STRING ID for filter string - 0 means "All files (*.*)"
+ * @param [in] filterid 0 or STRING ID for filter string
+ *     - 0 means "All files (*.*)"
  * @param [in] is_open Selects Open/Save -dialog
  */
-BOOL SelectFile(
-	CString& path,
-	LPCTSTR initialPath /*=NULL*/,
-			 LPCTSTR title /*= _T("Open")*/, 
-			 UINT filterid /*=0*/,
-			 BOOL is_open /*=TRUE*/) 
+BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
+		LPCTSTR title /*= _T("Open")*/, UINT filterid /*=0*/,
+		BOOL is_open /*=TRUE*/)
 {
 	path.Empty(); // Clear output param
 
@@ -394,20 +394,24 @@ BOOL SelectFile(
 			SplitFilename(initialPath, 0, &sSelectedFile, 0);
 		}
 	}
+
+	if (parent == NULL)
+		parent = AfxGetMainWnd()->GetSafeHwnd();
 	
 	if (!filterid)
 		filterid = IDS_ALLFILES;
-	CString filters;
-		VERIFY(filters.LoadString(filterid));
+	CString filters = LoadResString(filterid);
+
 	// Convert extension mask from MFC style separators ('|')
 	//  to Win32 style separators ('\0')
 	LPTSTR filtersStr = filters.GetBuffer(0);
 	ConvertFilter(filtersStr);
+	filters.ReleaseBuffer();
 
 	OPENFILENAME ofn;
 	memset(&ofn, 0, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = AfxGetMainWnd()->GetSafeHwnd();
+	ofn.hwndOwner = parent;
 	ofn.lpstrFilter = filtersStr;
 	ofn.lpstrCustomFilter = NULL;
 	ofn.nFilterIndex = 1;

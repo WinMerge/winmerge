@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-10-30 Kimmo
+ PATCH: [ 1586869 ] Fix File Select -dialog modality
+  Src: DirCmpReportDlg.cpp FileFiltersDlg.cpp MainFrm.cpp Merge.cpp Merge.h
+   MergeDoc.cpp PatchDlg.cpp ProjectFilePathsDlg.cpp PropRegistry.cpp PropVss.cpp
+
 2006-10-26 Gal
  BUG: [ 1418805 ] Menu colors incorrect with non-standard color scheme
   Src/: BCMenu.cpp

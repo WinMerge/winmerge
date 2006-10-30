@@ -257,7 +257,7 @@ void CPatchDlg::OnDiffBrowseFile1()
 
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	folder = m_file1;
-	if (SelectFile(s, folder, title, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, TRUE))
 	{
 		ChangeFile(s, TRUE);
 		m_ctlFile1.SetWindowText(s);
@@ -276,7 +276,7 @@ void CPatchDlg::OnDiffBrowseFile2()
 
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	folder = m_file2;
-	if (SelectFile(s, folder, title, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, TRUE))
 	{
 		ChangeFile(s, FALSE);
 		m_ctlFile2.SetWindowText(s);
@@ -334,7 +334,7 @@ void CPatchDlg::OnDiffBrowseResult()
 
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	folder = m_fileResult;
-	if (SelectFile(s, folder, title, NULL, FALSE))
+	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, FALSE))
 	{
 		SplitFilename(s, &folder, &name, NULL);
 		m_fileResult = s;

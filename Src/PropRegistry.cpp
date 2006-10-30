@@ -237,7 +237,7 @@ void CPropRegistry::OnBrowseEditor()
 	CString title;
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 
-	if (SelectFile(path, NULL, title, IDS_PROGRAMFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), path, NULL, title, IDS_PROGRAMFILES, TRUE))
 	{
 		m_strEditorPath = path;
 		UpdateData(FALSE);
