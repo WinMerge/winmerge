@@ -96,13 +96,13 @@ stable release (for example 2.2.x releases do not have changes after 2.2.0).</p>
       
       switch ($version) {
         case '2.6':
-          $version_26 = '<span title="upcoming stable version">2.6</span>';
+          $version_26 = '<strong title="latest stable version">2.6</strong>';
           break;
         case '2.5':
-          $version_25 = '<span title="latest development version">2.5</span>';
+          $version_25 = '<span title="older development version">2.5</span>';
           break;
         case '2.4':
-          $version_24 = '<strong title="latest stable version">2.4</strong>';
+          $version_24 = '<span title="older stable version">2.4</span>';
           break;
         case '2.2':
           $version_22 = '<span title="older stable version">2.2</span>';
