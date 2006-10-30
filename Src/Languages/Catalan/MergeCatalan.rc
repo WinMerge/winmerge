@@ -80,7 +80,6 @@ IDI_RFOLDER             ICON                    "..\\..\\res\\rfolder.ico"
 IDI_FOLDERSKIP          ICON                    "..\\..\\res\\folderskip.ico"
 IDI_EQUALFILE           ICON                    "..\\..\\res\\equalfile.ico"
 IDI_NOTEQUALFILE        ICON                    "..\\..\\res\\notequalfile.ico"
-IDI_UNKNOWN             ICON                    "..\\..\\res\\unknown.ico"
 IDI_EQUALBINARY         ICON                    "..\\..\\res\\equalbinary.ico"
 IDI_LFILE               ICON                    "..\\..\\res\\lfile.ico"
 IDI_RFILE               ICON                    "..\\..\\res\\rfile.ico"
@@ -2011,7 +2010,7 @@ BEGIN
     IDS_COMPMETHOD_QUICK_CONTENTS "Contingut en un cop d'ull"
     IDS_COMPMETHOD_MODDATE  "Data de modificació"
     IDS_COMPMETHOD_DATESIZE "Data de modificació i mida"
-    IDS_COMPMETHOD_SIZE     "Mida
+    IDS_COMPMETHOD_SIZE     "Mida"
 END
 
 // FILTER OPTIONS

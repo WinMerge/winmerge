@@ -6,6 +6,10 @@ Add new items to top.
  PATCH: [ 1586869 ] Fix File Select -dialog modality
   Src: DirCmpReportDlg.cpp FileFiltersDlg.cpp MainFrm.cpp Merge.cpp Merge.h
    MergeDoc.cpp PatchDlg.cpp ProjectFilePathsDlg.cpp PropRegistry.cpp PropVss.cpp
+ PATCH: [ 1586892 ] Remove unused unknown.ico and code loading it
+  Src: DirView.cpp Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
+  Remove file: Src/Res: unknown.ico
 
 2006-10-26 Gal
  BUG: [ 1418805 ] Menu colors incorrect with non-standard color scheme

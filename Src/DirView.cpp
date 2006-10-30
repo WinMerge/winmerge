@@ -65,6 +65,32 @@ static TCHAR DirViewHelpLocation[] = _T("::/htmlhelp/CompareDirs.html");
  */
 const int TimeToSignalCompare = 3;
 
+/**
+ * @brief Folder compare icon indexes.
+ * This enum defines indexes for imagelist used for folder compare icons.
+ * Note that this enum must be in synch with code in OnInitialUpdate() and
+ * GetColImage(). Also remember that icons are in resource file...
+ */
+static enum
+{
+	DIFFIMG_LUNIQUE,
+	DIFFIMG_RUNIQUE,
+	DIFFIMG_DIFF,
+	DIFFIMG_SAME,
+	DIFFIMG_BINSAME,
+	DIFFIMG_BINDIFF,
+	DIFFIMG_LDIRUNIQUE,
+	DIFFIMG_RDIRUNIQUE,
+	DIFFIMG_SKIP,
+	DIFFIMG_DIRSKIP,
+	DIFFIMG_DIR,
+	DIFFIMG_ERROR,
+	DIFFIMG_DIRUP,
+	DIFFIMG_DIRUP_DISABLE,
+	DIFFIMG_ABORT,
+};
+
+
 /////////////////////////////////////////////////////////////////////////////
 // CDirView
 
@@ -240,7 +266,6 @@ void CDirView::OnInitialUpdate()
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_RFILE)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALFILE)));
-	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_UNKNOWN)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_EQUALBINARY)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_BINARYDIFF)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_LFOLDER)));
@@ -271,24 +296,6 @@ void CDirView::OnInitialUpdate()
 		exstyle |= LVS_EX_INFOTIP;
 	m_pList->SetExtendedStyle(exstyle);
 }
-
-// These are the offsets into the image list created in OnInitDialog
-#define DIFFIMG_LUNIQUE     0
-#define DIFFIMG_RUNIQUE     1
-#define DIFFIMG_DIFF        2
-#define DIFFIMG_SAME        3
-#define DIFFIMG_UNKNOWN     4
-#define DIFFIMG_BINSAME     5
-#define DIFFIMG_BINDIFF     6
-#define DIFFIMG_LDIRUNIQUE  7
-#define DIFFIMG_RDIRUNIQUE  8
-#define DIFFIMG_SKIP        9
-#define DIFFIMG_DIRSKIP    10
-#define DIFFIMG_DIR        11
-#define DIFFIMG_ERROR      12
-#define DIFFIMG_DIRUP      13
-#define DIFFIMG_DIRUP_DISABLE 14
-#define DIFFIMG_ABORT      15
 
 /**
  * @brief Return image index appropriate for this row
