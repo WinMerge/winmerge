@@ -296,7 +296,7 @@ void CPreferencesDlg::OnImportButton()
 	CString s;
 	CString caption;
 	VERIFY(caption.LoadString(IDS_OPT_IMPORT_CAPTION));
-	if (SelectFile(s, NULL, caption, IDS_INIFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, NULL, caption, IDS_INIFILES, TRUE))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == OPT_OK)
 		{
@@ -316,7 +316,8 @@ void CPreferencesDlg::OnExportButton()
 	CString settingsFile;
 	CString caption;
 	VERIFY(caption.LoadString(IDS_OPT_EXPORT_CAPTION));
-	if (SelectFile(settingsFile, NULL, caption, IDS_INIFILES, FALSE))
+	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, caption, IDS_INIFILES,
+		FALSE))
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
