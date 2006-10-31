@@ -1,5 +1,11 @@
 Testing\selftest\Changes.txt
 
+2006-10-31 Kimmo
+ Cleanup example test, add more simple string compare tests
+  StringDifferencing: StringDifferencing.dsp TestCase1.cpp TestCase1.h
+  StringDifferencing: add files DifferentStrings1.cpp DifferentStrings1.h
+   IdenticalStrings1.cpp IdenticalStrings1.h
+
 2006-10-27 Kimmo
  PATCH: [ 1585418 ] CppUnit tests for StringDiff
   Add folder Testing/CppUnit for unit tests

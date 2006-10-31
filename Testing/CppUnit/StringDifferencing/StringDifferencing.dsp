@@ -64,8 +64,8 @@ LINK32=link.exe
 # PROP Intermediate_Dir "Debug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ    /c
-# ADD CPP /nologo /MDd /W3 /Gm- /GR /GX /ZI /Od /I "..\..\..\Externals\cppunit\include" /I "..\..\..\Src" /I "..\..\..\Src\Common" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /FD /GZ    /c
+# ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /GR /GX /ZI /Od /I "..\..\..\Externals\cppunit\include" /I "..\..\..\Src" /I "..\..\..\Src\Common" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE RSC /l 0x40b /d "_DEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x40b /d "_DEBUG" /d "_AFXDLL"
@@ -123,6 +123,22 @@ SOURCE=.\StringDifferencing.h
 # Begin Group "Test Cases"
 
 # PROP Default_Filter ""
+# Begin Source File
+
+SOURCE=.\DifferentStrings1.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DifferentStrings1.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\IdenticalStrings1.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\IdenticalStrings1.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\TestCase1.cpp

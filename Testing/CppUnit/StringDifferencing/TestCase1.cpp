@@ -1,3 +1,8 @@
+/** 
+ * @file  TestCase1.h
+ *
+ * @brief Implementatino for first simple test case.
+ */
 
 #include <cppunit/config/SourcePrefix.h>
 #include "stdafx.h"
@@ -9,16 +14,23 @@
 
 CPPUNIT_TEST_SUITE_REGISTRATION( TestCase1 );
 
+/** @brief Testcase initialization code. */
 void TestCase1::setUp()
 {
 	// Add possible initializations here
 }
 
+/** @brief Testcase cleanup code. */
 void TestCase1::tearDown()
 {
 	// Add possible cleanups here
 }
 
+/**
+ * @brief Test identical words are detected as such.
+ * This function tests that two identical words are detected
+ * as identical with different word-compare settings.
+ */
 void TestCase1::Identical1()
 {
 	wdiffarray diffs;
@@ -26,93 +38,40 @@ void TestCase1::Identical1()
 	CString string2(_T("Test"));
 	int count = 0;
 
-	// Break type is whitespace or punctuation
-
-	// Check strings with different settings
+	// Compare case, all whitespaces, whitespace break
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 0);
 
+	// Ignore case, all whitespaces, whitespace break
 	sd_ComputeWordDiffs(string1, string2,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 0);
 
+	// Compare case, whitespaces change, whitespace break
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_CHANGE, 0, false,
 		&diffs);
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 0);
 
+	// Compare case, whitespaces ignore, whitespace break
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_COMPARE_ALL, 1, false,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_COMPARE_ALL, 0, true,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
 }
 
-void TestCase1::Identical2()
-{
-	wdiffarray diffs;
-	CString string1(_T("Test words"));
-	CString string2(_T("Test words"));
-	int count = 0;
-
-	// Break type is whitespace or punctuation
-
-	// Check strings with different settings
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_COMPARE_ALL, 0, false,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		false, WHITESPACE_COMPARE_ALL, 0, false,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_IGNORE_CHANGE, 0, false,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_IGNORE_ALL, 0, false,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_COMPARE_ALL, 1, false,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-
-	sd_ComputeWordDiffs(string1, string2,
-		true, WHITESPACE_COMPARE_ALL, 0, true,
-		&diffs);
-	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 0);
-}
-
+/**
+ * @brief Test different words are detected as such.
+ * This function tests that two different words are detected
+ * as different with different word-compare settings.
+ */
 void TestCase1::Difference1()
 {
 	wdiffarray diffs;
@@ -149,6 +108,11 @@ void TestCase1::Difference1()
 	diffs.RemoveAll();
 }
 
+/**
+ * @brief Test different two-words are detected as such.
+ * This function tests that two different two-words are detected
+ * as different with different word-compare settings.
+ */
 void TestCase1::Difference2()
 {
 	wdiffarray diffs;
