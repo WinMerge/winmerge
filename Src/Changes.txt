@@ -7,6 +7,9 @@ Add new items to top.
   New folder: /Externals/Expat
  Add SCEW version 0.4.0 to /Externals/scew (revision: 3750)
   New folder: /Externals/scew
+ PATCH: [ 1587574 ] Convert project files code to use expat+SCEW
+  Src: Merge.dsp ProjectFile.cpp ProjectFile.h
+  Remove folder: Src/ExpatLib/*
 
 2006-10-31 Kimmo
  PATCH: [ 1586869 ] Fix File Select -dialog modality (commit the file I missed in previous commit)

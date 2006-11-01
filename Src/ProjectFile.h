@@ -22,6 +22,8 @@
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
+#include <scew/scew.h>
+
 /** @brief File extension for path files */
 const TCHAR PROJECTFILE_EXT[] = _T("WinMerge");
 
@@ -59,9 +61,11 @@ public:
 	void GetPaths(CString & sLeft, CString & sRight, BOOL & bSubFolders) const;
 
 protected:
-	BOOL Serialize(bool writing, LPCTSTR path, CString *sError);
-	BOOL GetVal(TCHAR *pPaths, TCHAR *pVal, CString * sval,
-		TCHAR *ptag1, TCHAR *ptag2, TCHAR *pbuf);
+	scew_element* GetRootElement(scew_tree * tree);
+	void GetPathsData(scew_element * parent);
+
+	scew_element* AddPathsElement(scew_element * parent);
+	BOOL AddPathsContent(scew_element * parent);
 
 private:
 	CString m_leftFile; /**< Left path */

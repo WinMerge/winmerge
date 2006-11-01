@@ -17,15 +17,23 @@
 /** 
  * @file  ProjectFile.cpp
  *
- * @brief Implementation file for ProjectFile class
+ * @brief Implementation file for ProjectFile class.
  */
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
-#include "ProjectFile.h"
-#include "XmlDoc.h"
+#include <scew/scew.h>
 
+#include "ProjectFile.h"
+
+// Constants for xml element names
+const TCHAR Root_element_name[] = _T("project");
+const TCHAR Paths_element_name[] = _T("paths");
+const TCHAR Left_element_name[] = _T("left");
+const TCHAR Right_element_name[] = _T("right");
+const TCHAR Filter_element_name[] = _T("filter");
+const TCHAR Subfolders_element_name[] = _T("subfolders");
 
 /** 
  * @brief Standard constructor.
@@ -38,31 +46,125 @@
 }
 
 /** 
- * @brief Get message from exception into sError, or else throw it.
- *
- * If this successfully extracts the error description into the string, it simply returns FALSE
- * If it fails to extract the error description, it rethrows the exception
- */
-static BOOL NTAPI False(CException *e, CString *sError)
-{
-	if (sError == NULL)
-		throw e;
-	TCHAR szError[1024];
-	e->GetErrorMessage(szError, 1024);
-	*sError = szError;
-	e->Delete();
-	return FALSE;
-}
-
-/** 
  * @brief Open given path-file and read data from it to member variables.
  * @param [in] path Path to project file.
  * @param [out] sError Error string if error happened.
  * @return TRUE if reading succeeded, FALSE if error happened.
+ * @bug This doesn't handle unicode paths!
  */
 BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 {
-	return Serialize(false, path, sError);
+	BOOL loaded = FALSE;
+	LPCSTR pathAnsi;
+
+#ifdef UNICODE
+	USES_CONVERSION;
+	pathAnsi = T2A(path);
+#else
+	pathAnsi = path;
+#endif
+
+    scew_tree* tree = NULL;
+    scew_parser* parser = NULL;
+
+    parser = scew_parser_create();
+    scew_parser_ignore_whitespaces(parser, 1);
+
+	if (scew_parser_load_file(parser, pathAnsi))
+	{
+		tree = scew_parser_tree(parser);
+
+		scew_element * root = GetRootElement(tree);
+		if (root)
+		{
+			loaded = TRUE;
+			GetPathsData(root);
+		};
+	}
+    scew_tree_free(tree);
+
+    /* Frees the SCEW parser */
+    scew_parser_free(parser);
+
+	return loaded;
+}
+
+/** 
+ * @brief Return project file XML's root element.
+ * @param [in] tree XML tree we got from the parser.
+ * @return Root element pointer.
+ */
+scew_element* ProjectFile::GetRootElement(scew_tree * tree)
+{
+	scew_element * root = NULL;
+
+	if (tree != NULL)
+	{
+		root = scew_tree_root(tree);
+	}
+
+	if (root != NULL)
+	{
+		// Make sure we have correct root element
+		if (_tcscmp(Root_element_name, scew_element_name(root)) != 0)
+		{
+			root = NULL;
+		}
+	}
+	return root;
+}
+
+/** 
+ * @brief Reads the paths data from the XML data.
+ * This function reads the paths data inside given element in XML data.
+ * @param [in] parent Parent element for the paths data.
+ */
+void ProjectFile::GetPathsData(scew_element * parent)
+{
+	scew_element *paths = NULL;
+
+	if (parent != NULL)
+	{
+		paths = scew_element_by_name(parent, Paths_element_name);
+	}
+
+	if (paths != NULL)
+	{
+		scew_element *left = NULL;
+		scew_element *right = NULL;
+		scew_element *filter = NULL;
+		scew_element *subfolders = NULL;
+
+		left = scew_element_by_name(paths, Left_element_name);
+		right = scew_element_by_name(paths, Right_element_name);
+		filter = scew_element_by_name(paths, Filter_element_name);
+		subfolders = scew_element_by_name(paths, Subfolders_element_name);
+
+		if (left)
+		{
+			LPCTSTR path = NULL;
+			path = scew_element_contents(right);
+			m_leftFile = path;
+		}
+		if (right)
+		{
+			LPCTSTR path = NULL;
+			path = scew_element_contents(right);
+			m_rightFile = path;
+		}
+		if (filter)
+		{
+			LPCTSTR filtername = NULL;
+			filtername = scew_element_contents(filter);
+			m_filter = filtername;
+		}
+		if (subfolders)
+		{
+			LPCTSTR folders = NULL;
+			folders = scew_element_contents(subfolders);
+			m_subfolders = _ttoi(folders);
+		}
+	}
 }
 
 /** 
@@ -70,63 +172,112 @@ BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
  * @param [in] path Path to project file.
  * @param [out] sError Error string if error happened.
  * @return TRUE if saving succeeded, FALSE if error happened.
- * @note paths are converted to UTF-8
  */
 BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 {
-	return Serialize(true, path, sError);
+	BOOL success = TRUE;
+	LPCSTR pathAnsi;
+
+#ifdef UNICODE
+	USES_CONVERSION;
+	pathAnsi = T2A(path);
+#else
+	pathAnsi = path;
+#endif
+	
+	scew_tree* tree = NULL;
+	scew_element* root = NULL;
+	scew_element* paths = NULL;
+
+	tree = scew_tree_create();
+	root = scew_tree_add_root(tree, Root_element_name);
+	if (root != NULL)
+	{
+		paths = AddPathsElement(root);
+	}
+	else
+		success = FALSE;
+
+	if (paths != NULL)
+	{
+		AddPathsContent(paths);
+	}
+	else
+		success = FALSE;
+	
+	scew_tree_set_xml_encoding(tree, _T("UTF-8"));
+
+	// Set the XML file standalone
+	scew_tree_set_xml_standalone(tree, 1);
+
+	if (!scew_writer_tree_file(tree, pathAnsi))
+		success = FALSE;
+	
+	/* Frees the SCEW tree */
+	scew_tree_free(tree);
+
+	return success;
+	//	return Serialize(true, path, sError);
 }
 
-	
-/** 
- * @brief Read or write project file
- * @param [in] writing TRUE if project file is saved, FALSE if it is loaded.
- * @param [in] path Path to project file.
- * @param [out] sError Error string if error happened.
- * @return TRUE if operation succeeded, FALSE if error happened.
+/**
+ * @brief Add paths element into XML tree.
+ * @param [in] parent Parent element for the paths element.
+ * @return pointer to added paths element.
  */
-BOOL ProjectFile::Serialize(bool writing, LPCTSTR path, CString *sError)
+scew_element* ProjectFile::AddPathsElement(scew_element * parent)
 {
-	int leftReadOnly = m_bLeftReadOnly ? 1 : 0;
-	int rightReadOnly = m_bRightReadOnly ? 1 : 0;
+	scew_element* element = NULL;
+	element = scew_element_add(parent, Paths_element_name);
+	return element;
+}
 
-	try
+/**
+ * @brief Add paths data to the XML tree.
+ * This function adds our paths data to the XML tree.
+ * @param [in] parent Parent element for paths data.
+ * @return TRUE if we succeeded, FALSE otherwise.
+ */
+BOOL ProjectFile::AddPathsContent(scew_element * parent)
+{
+	scew_element* element = NULL;
+
+	if (!m_leftFile.IsEmpty())
 	{
-		XmlDoc::XML_LOADSAVE loadSave = (writing ? XmlDoc::XML_SAVE : XmlDoc::XML_LOAD);
-
-		XmlDoc doc(path, loadSave, _T("UTF-8"));
-		doc.Begin();
-		{
-			XmlElement project(doc, _T("project"));
-			{
-				XmlElement paths(doc, _T("paths"));
-				{
-					XmlElement(doc, _T("left"), m_leftFile);
-				} {
-					XmlElement(doc, _T("left-readonly"), leftReadOnly);
-				} {
-					XmlElement(doc, _T("right"), m_rightFile);
-				} {
-					XmlElement(doc, _T("right-readonly"), rightReadOnly);
-				} {
-					XmlElement(doc, _T("filter"), m_filter);
-				} {
-					XmlElement(doc, _T("subfolders"), m_subfolders);
-				}
-			}
-		}
-		doc.End();
-
-	}
-	catch (CException *e)
-	{
-		return False(e, sError);
+		LPCTSTR path;
+		element = scew_element_add(parent, Left_element_name);
+		path = m_leftFile.GetBuffer(MAX_PATH);
+		scew_element_set_contents(element, path);
+		m_leftFile.ReleaseBuffer();
 	}
 
-	if (!writing)
+	if (!m_rightFile.IsEmpty())
 	{
-		m_bLeftReadOnly = (leftReadOnly == 1);
-		m_bRightReadOnly = (rightReadOnly == 1);
+		LPCTSTR path;
+		element = scew_element_add(parent, Right_element_name);
+		path = m_rightFile.GetBuffer(MAX_PATH);
+		scew_element_set_contents(element, path);
+		m_rightFile.ReleaseBuffer();
+	}
+
+	if (!m_filter.IsEmpty())
+	{
+		LPCTSTR filter;
+		element = scew_element_add(parent, Filter_element_name);
+		filter = m_filter.GetBuffer(MAX_PATH);
+		scew_element_set_contents(element, filter);
+		m_filter.ReleaseBuffer();
+	}
+
+	LPCTSTR path;
+	element = scew_element_add(parent, Subfolders_element_name);
+	if (m_subfolders != 0)
+	{
+		scew_element_set_contents(element, _T("1"));
+	}
+	else
+	{
+		scew_element_set_contents(element, _T("0"));
 	}
 	return TRUE;
 }
@@ -267,27 +418,6 @@ int ProjectFile::SetSubfolders(const int iSubfolder)
 	m_subfolders = iSubfolder ? 1 : 0;
 
 	return iSubfoldersOld;
-}
-
-/** 
- * @brief Reads one value from XML data.
- */
-BOOL ProjectFile::GetVal(TCHAR *pPaths, TCHAR *pVal, CString * sval,
-		TCHAR *ptag1, TCHAR *ptag2, TCHAR *pbuf)
-{
-	if (pPaths && pVal && pVal > pPaths)
-	{
-		TCHAR tmpPath[MAX_PATH] = {0};
-		TCHAR *pTagEnd = _tcsstr(pbuf, ptag2);
-		if ((pTagEnd - pVal) < (MAX_PATH * sizeof(TCHAR)))
-		{
-			pVal += _tcslen(ptag1);
-			_tcsncpy(tmpPath, pVal, pTagEnd - pVal);
-			*sval = tmpPath;
-			return TRUE;
-		}
-	}
-	return FALSE;
 }
 
 /** 
