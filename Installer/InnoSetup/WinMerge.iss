@@ -248,9 +248,9 @@ Type: files; Name: {app}\Diff.txt
 Name: {app}\WinMerge.exe; Type: files; MinVersion: 4, 0
 Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 
-;The other manifest file is legitimate, but is only valid on windows XP or higher, so if the operating system isn't at least windows XP the
-;Manifest file is indeed removed.
-Name: {app}\WinMergeU.exe.manifest; Type: files; OnlyBelowVersion: 0, 5.01
+;Remove manifest files as we don't need them in 2.6.2 / 2.7.1.1 or later
+Name: {app}\WinMerge.exe.manifest; Type: files
+Name: {app}\WinMergeU.exe.manifest; Type: files
 
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
@@ -314,10 +314,6 @@ Name: {app}; Flags: uninsalwaysuninstall
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
 Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core; Check: not IsWin64
-
-;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
-Source: WinMergeU.exe.manifest; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 5.01; Components: Core
-Source: WinMerge.exe.manifest; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0,5.01; Check: not IsWin64
 
 ; Icon for projectfiles
 Source: MergeProject.ico; DestDir: {app}; Flags: promptifolder; Components: Core
