@@ -1,30 +1,30 @@
 # Microsoft Developer Studio Project File - Name="scew" - Package Owner=<4>
 # Microsoft Developer Studio Generated Build File, Format Version 6.00
-# ** 編集しないでください **
+# ** DO NOT EDIT **
 
 # TARGTYPE "Win32 (x86) Static Library" 0x0104
 
 CFG=scew - Win32 XMLStatic Debug Unicode
-!MESSAGE これは有効なﾒｲｸﾌｧｲﾙではありません。 このﾌﾟﾛｼﾞｪｸﾄをﾋﾞﾙﾄﾞするためには NMAKE を使用してください。
-!MESSAGE [ﾒｲｸﾌｧｲﾙのｴｸｽﾎﾟｰﾄ] ｺﾏﾝﾄﾞを使用して実行してください
+!MESSAGE This is not a valid makefile. To build this project using NMAKE,
+!MESSAGE use the Export Makefile command and run
 !MESSAGE 
 !MESSAGE NMAKE /f "scew.mak".
 !MESSAGE 
-!MESSAGE NMAKE の実行時に構成を指定できます
-!MESSAGE ｺﾏﾝﾄﾞ ﾗｲﾝ上でﾏｸﾛの設定を定義します。例:
+!MESSAGE You can specify a configuration when running NMAKE
+!MESSAGE by defining the macro CFG on the command line. For example:
 !MESSAGE 
 !MESSAGE NMAKE /f "scew.mak" CFG="scew - Win32 XMLStatic Debug Unicode"
 !MESSAGE 
-!MESSAGE 選択可能なﾋﾞﾙﾄﾞ ﾓｰﾄﾞ:
+!MESSAGE Possible choices for configuration are:
 !MESSAGE 
-!MESSAGE "scew - Win32 Release" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 Debug" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 Debug Unicode" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 Release Unicode" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 XMLStatic Debug" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 XMLStatic Release" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 XMLStatic Debug Unicode" ("Win32 (x86) Static Library" 用)
-!MESSAGE "scew - Win32 XMLStatic Release Unicode" ("Win32 (x86) Static Library" 用)
+!MESSAGE "scew - Win32 Release" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 Debug Unicode" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 Release Unicode" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 XMLStatic Debug" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 XMLStatic Release" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 XMLStatic Debug Unicode" (based on "Win32 (x86) Static Library")
+!MESSAGE "scew - Win32 XMLStatic Release Unicode" (based on "Win32 (x86) Static Library")
 !MESSAGE 
 
 # Begin Project
@@ -47,7 +47,7 @@ RSC=rc.exe
 # PROP Intermediate_Dir "obj\Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
-# ADD CPP /nologo /MD /W4 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
+# ADD CPP /nologo /MD /W4 /GX /O2 /I "../../expat/lib" /I "../../expat/xmlwf" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0x411 /d "NDEBUG"
 # ADD RSC /l 0x411 /d "NDEBUG"
@@ -71,7 +71,7 @@ LIB32=link.exe -lib
 # PROP Intermediate_Dir "obj\Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
-# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
+# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /I "../../expat/lib" /I "../../expat/xmlwf" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0x411 /d "_DEBUG"
 # ADD RSC /l 0x411 /d "_DEBUG"
@@ -96,7 +96,7 @@ LIB32=link.exe -lib
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
 # SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /GZ /c
+# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /I "../../expat/lib" /I "../../expat/xmlwf" /D "_DEBUG" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /GZ /c
 # SUBTRACT CPP /WX /YX
 # ADD BASE RSC /l 0x411 /d "_DEBUG"
 # ADD RSC /l 0x411 /d "_DEBUG"
@@ -146,7 +146,7 @@ LIB32=link.exe -lib
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
 # SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "_MBCS" /D "WIN32" /D "_LIB" /D "XML_STATIC" /FD /GZ /c
+# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /I "../../expat/lib" /I "../../expat/xmlwf" /D "_DEBUG" /D "_MBCS" /D "WIN32" /D "_LIB" /D "XML_STATIC" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0x411 /d "_DEBUG"
 # ADD RSC /l 0x411 /d "_DEBUG"
@@ -171,7 +171,7 @@ LIB32=link.exe -lib
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
 # SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /MD /W4 /GX /O2 /D "NDEBUG" /D "_MBCS" /D "WIN32" /D "_LIB" /D "XML_STATIC" /FD /c
+# ADD CPP /nologo /MD /W4 /GX /O2 /I "../../expat/lib" /I "../../expat/xmlwf" /D "NDEBUG" /D "_MBCS" /D "WIN32" /D "_LIB" /D "XML_STATIC" /FD /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0x411 /d "NDEBUG"
 # ADD RSC /l 0x411 /d "NDEBUG"
@@ -196,7 +196,7 @@ LIB32=link.exe -lib
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "_UNICODE" /D "WIN32" /D "_LIB" /FD /GZ /c
 # SUBTRACT BASE CPP /WX /YX
-# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "XML_STATIC" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /GZ /c
+# ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /I "../../expat/lib" /I "../../expat/xmlwf" /D "_DEBUG" /D "XML_STATIC" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /GZ /c
 # SUBTRACT CPP /WX /YX
 # ADD BASE RSC /l 0x411 /d "_DEBUG"
 # ADD RSC /l 0x411 /d "_DEBUG"
@@ -221,7 +221,7 @@ LIB32=link.exe -lib
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GX /O2 /D "NDEBUG" /D "_UNICODE" /D "WIN32" /D "_LIB" /FD /c
 # SUBTRACT BASE CPP /WX /YX
-# ADD CPP /nologo /MD /W4 /GX /O2 /D "NDEBUG" /D "XML_STATIC" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /c
+# ADD CPP /nologo /MD /W4 /GX /O2 /I "../../expat/lib" /I "../../expat/xmlwf" /D "NDEBUG" /D "XML_STATIC" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /c
 # SUBTRACT CPP /WX /YX
 # ADD BASE RSC /l 0x411 /d "NDEBUG"
 # ADD RSC /l 0x411 /d "NDEBUG"
@@ -366,4 +366,3 @@ SOURCE=..\scew\xtree.h
 # End Group
 # End Target
 # End Project
-

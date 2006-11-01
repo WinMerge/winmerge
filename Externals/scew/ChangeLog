@@ -1,3 +1,8 @@
+Changes for WinMerge compile:
+2006-11-01 Kimmo Varis <kimmov@winmerge.org>
+
+	* scew/win32/scew.dsp: added library paths to WinMerge /Build/expat
+
 **** Changes in version 0.3.2 ****
 
 2004-05-23  Aleix Conchillo Flaque  <aleix@member.fsf.org>
