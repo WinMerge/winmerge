@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-01 Kimmo
+ Add Expat version 2.0.0 to /Externals/expat (revision: 3749)
+  New folder: /Externals/Expat
+ Add SCEW version 0.4.0 to /Externals/scew (revision: 3750)
+  New folder: /Externals/scew
+
 2006-10-31 Kimmo
  PATCH: [ 1586869 ] Fix File Select -dialog modality (commit the file I missed in previous commit)
   Src/Common: PreferencesDlg.cpp
