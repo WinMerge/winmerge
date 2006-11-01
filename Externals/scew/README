@@ -1,0 +1,26 @@
+Welcome to SCEW (Simple C Expat Wrapper)
+
+  The aim of  SCEW is to provide an easy interface  around the XML Expat
+parser. It  provides functions to  load and access XML  elements without
+the need to create the Expat  event handling routines each time you want
+to  load a  different  XML document.  It  also lets  you  access to  the
+internal  Expat  parser,   that  means  you  can  still   have  all  the
+functionality that Expat library gives you.
+
+  Since version 0.2.0, SCEW  incorporates functions to create and handle
+XML trees.  That is,  add and delete  nodes, change attribute  names and
+values...
+
+Project homepage: http://www.nongnu.org/scew/
+
+SCEW is free software [0]. Please see the file COPYING for details.
+
+For installation instructions please see the INSTALL files.
+
+--
+
+[0] To learn more about GNU, the FSF and its goals, please visit
+    http://www.gnu.org.
+
+---
+$Id: README,v 1.4 2004/01/29 22:52:15 aleix Exp $

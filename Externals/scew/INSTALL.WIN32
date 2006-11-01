@@ -1,0 +1,49 @@
+Windows Installation
+====================
+
+Extract the SCEW distribution library to it's installation location. For
+example, the scew-0.3.2 distribution may be extracted to the directory
+
+  c:\lib\scew-0.3.2
+
+Open the scew.dsp file from win32 directory in Visual Studio 6 or Visual
+Studio  .NET  2002/2003.  Go  to  the  'Build'  menu and  select  'Batch
+Build...'.   Select all  of the  configurations  to be  built and  click
+'Rebuild  All'.   This will  build  versions  of  the SCEW  library  for
+Debug/Release, MBCS/Unicode and not/XML_STATIC.
+
+Note that  SCEW is always  linked statically with your  application. The
+XML_STATIC compile option determines whether  libexpat will be used as a
+static linked library or a DLL.
+
+Add the  following directories to  the DevStudio Project paths.  This is
+available via the 'Tools', 'Options' menu. 'Directories' in DevStudio 6,
+'Projects' in DevStudio .NET.
+
+  Include Directories
+    SCEW top level, e.g. "c:\lib\scew-0.3.2"
+
+  Library Directories
+    SCEW win32 lib, e.g. "c:\lib\scew-0.3.2\win32\lib"
+
+You will also  have to include your Expat  library directory to Includes
+and Library:
+
+  Include and Library Directories
+    <expat_install>\source\lib e.g. "c:\lib\expat\source\lib"
+
+To use SCEW in your application, you simply include the SCEW header file
+like:
+
+  #include <scew/scew.h>
+
+Including this header will  automatically cause the correct SCEW library
+to  be  linked  in  with   your  application  for  the  current  compile
+settings.  You  do not  need  to  add the  SCEW  library  to the  linker
+settings.
+
+Note: you  do need to add  the appropriate Expat library  to your linker
+settings.
+
+===
+$Id: INSTALL.WIN32,v 1.5 2004/01/30 12:12:53 aleix Exp $

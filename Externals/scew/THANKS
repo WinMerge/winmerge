@@ -1,0 +1,32 @@
+Acknowledgements
+****************
+
+  It has been written originally by Aleix Conchillo Flaque.  Many people
+have contributed to SCEW by reporting problems, suggesting improvements,
+or submitting actual code.  Here is a list of these people. Help me keep
+it complete and exempt of errors.
+
+* Jose A.  Ortega suggested some important C  implementation details. As
+  usual, he has helped me in many other ways. Thanks jao!
+
+* Brodie Thiesfield  has submit lots  of fixes and improvements.  He has
+  also improved  builds on Windows, and many more.
+
+* Sanzo Miyazawa has  submit code to improve performance  in element and
+  attribute iteration.
+
+* Gord Shier has implemented the load stream functionality.
+
+* Neil Harvey has contributed the pkg-config file.
+
+* Carlos  Carrasco  has  helped  a  lot in  the  debugging  and  testing
+  phases. Those nigths at IRC are really great. Thanks!
+
+* Lluis Gesa has also helped in testing the package.
+
+* Bug reporting (in alphabetical order):
+  Anonymous reporters, Stuart R.  Anderson, Paul Bohme, Eric Fronheiser,
+  Jussi Mäki, Sanzo Miyazawa, Brodie Thiesfield, Kalle Vallo.
+
+---
+$Id: THANKS,v 1.13 2004/05/25 20:28:43 aleix Exp $

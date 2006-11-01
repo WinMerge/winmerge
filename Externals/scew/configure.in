@@ -1,0 +1,84 @@
+#
+# $Id: configure.in,v 1.18 2004/05/25 21:10:21 aleix Exp $
+#
+# Author: Aleix Conchillo Flaque <aleix@member.fsf.org>
+# Date:   Mon Oct 07, 2002 01:56
+#
+# Copyright (C) 2002, 2003, 2004 Aleix Conchillo Flaque
+#
+
+#### boilerplate and flags
+
+AC_INIT(scew/scew.h)
+AM_INIT_AUTOMAKE(scew, 0.4.0)
+AM_CONFIG_HEADER(config.h)
+
+AC_ISC_POSIX
+AC_PROG_CC
+AC_PROG_CC_STDC
+AC_HEADER_STDC
+AC_PROG_RANLIB
+
+#### options
+
+AC_ARG_ENABLE(debug,
+        AC_HELP_STRING([--enable-debug], [enable debug info compilation (no)]),
+        deb=$enableval, deb=no)
+
+CFLAGS="-Wall -pipe"
+
+if test "x$deb" = xyes; then
+   CFLAGS="$CFLAGS -g";
+else
+   CFLAGS="$CFLAGS -O2";
+fi
+
+AC_SUBST(CFLAGS)
+
+# doxygen
+SCEW_DOXYGEN
+
+#### libraries
+
+AC_CHECK_LIB(expat, XML_Parse, , AC_MSG_ERROR(Unable to find Expat library.
+                  Download lastest version at http://www.libexpat.org))
+
+AC_CHECK_LIB(pthread, pthread_key_create, ,
+             AC_MSG_ERROR(Unable to find pthread libray.))
+
+AC_OUTPUT(
+Makefile \
+doc/Doxyfile \
+doc/Makefile \
+etc/Makefile \
+etc/autoconf/Makefile \
+etc/pkg-config/scew.pc \
+etc/pkg-config/Makefile \
+win32/Makefile \
+scew/Makefile \
+examples/Makefile \
+examples/scew_print/Makefile \
+examples/scew_stream/Makefile \
+examples/scew_write/Makefile
+)
+
+if test x$deb = xyes; then
+   mode=debug
+else
+   mode=release
+fi
+
+echo
+echo "*** $PACKAGE $VERSION has been successfully configured ***"
+echo
+echo "Type 'make' to complete the compilation ($mode mode) and then"
+echo "'make install' as root to install."
+echo
+echo "You can also try the examples in the 'examples' directory before"
+echo "installing the library. See 'examples/README' to see a list of them."
+echo
+echo "If you have doxygen installed, type 'make doc' to generate the"
+echo "documentation."
+echo
+echo "Run './configure --help' to see all available options."
+echo
