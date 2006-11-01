@@ -62,7 +62,11 @@ different versions are available from SourceForge.net.</p>
 <p>Note that WinMerge uses MFC heavily. So free editions of Visual Studio cannot
 compile WinMerge, unless you have MFC installed separately.</p>
 
-<h4>Additional requirements</h4>
+<h4>Libraries</h4>
+<p>WinMerge executable depends on Expat XML parser and SCEW wrapper libraries. Both are in
+source tree, but need to be compiled before compiling WinMerge executable.</p>
+
+<h4>Additional requirements (out of source tree)</h4>
 <ul>
   <li>HTML Help Workshop (either stand-alone or from Platform SDK)<br>
     Download it from :<a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">
@@ -115,8 +119,52 @@ install HTML Workhop as stand-alone and include headers and libraries from stand
 directory. Propable cause is that including files from Platform SDK directories breaks
 things.</p>
 
+<h4>Compiling expat</h4>
+<p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:<br>
+<ul>
+  <li>Open Visual Studio workspace <code>/Externals/expat/expat.dsw</code>. If you are
+    using Visual Studio 2003.Net or later you need to convert the file to new format when
+    Visual Studio opens the file.</li>
+  <li>Select from Visual Studio menu Build / Batch Build</li>
+  <li>Make sure all targets are selected</li>
+  <li>Select Rebuild All</li>
+  <li><i>Wait until build finishes...</i></li>
+  <li>Build files are in folder <code>Externals/expat/lib</code> subfolders.</li>
+  <li>Create folder <code>/Build/expat</code>
+  <li>Select the target to use - we want to use dll version (no _static in folder name):
+    <ul>
+      <li><code>Debug</code> - debug ansi</li>
+      <li><code>Debug-w</code> - debug unicode</li>
+      <li><code>Release</code> - release ansi</li>
+      <li><code>Release-w</code> - release unicode</li>
+    </ul>
+    I'd choose release version, as we aren't interested in debugging expat itself.
+  </li>
+  <li>Copy expat import library (<code>.lib</code>) and <code>dll</code> file to
+    <code>/Build/expat</code> from selected expat build folder (e.g. Release-w)</li>
+ </ul></p>
 
-<h4>Compiling targets</h4>
+<p class="note">I (kimmov) know this is not very convenient as when switching WinMerge target
+you have to copy the correct files to /Build/expat. I figure out better solution for this.</p>
+
+<h4>Compiling scew</h4>
+<p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:<br>
+<ul>
+  <li>Open Visual Studio project file <code>/Externals/scew/win32/scew.dsp</code> If you are
+    using Visual Studio 2003.Net or later you need to convert the file to new format when
+    Visual Studio opens the file.</li>
+  <li>Select from Visual Studio menu Build / Batch Build</li>
+  <li>Make sure all targets are selected</li>
+  <li>Select Rebuild All</li>
+  <li><i>Wait until build finishes...</i></li>
+  <li>Copy all <code>.lib</code> files from folder <code>/Externals/scew/win32/lib</code> to
+    <code>/Build/expat</code></li>
+</ul></p>
+
+<p>scew is a static library and it automatically selects the correct .lib file to use.
+See <code>/Externals/scew/scew/scew.h</code> about more info how it is done.</p>
+
+<h4>Compiling WinMerge executable targets</h4>
 <p>There are several targets available for compiling different projects. Targets used
 for compiling releases are:<br>
 <ul>
