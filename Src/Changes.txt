@@ -10,6 +10,11 @@ Add new items to top.
  PATCH: [ 1587574 ] Convert project files code to use expat+SCEW
   Src: Merge.dsp ProjectFile.cpp ProjectFile.h
   Remove folder: Src/ExpatLib/*
+ PATCH: [ 1588212 ] Add manifest file to resource file
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+  Move files from Installer/InnoSetup: WinMerge.exe.manifest WinMergeU.exe.manifest
+   to Src/res
 
 2006-10-31 Kimmo
  PATCH: [ 1586869 ] Fix File Select -dialog modality (commit the file I missed in previous commit)
