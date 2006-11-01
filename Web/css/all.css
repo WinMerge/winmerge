@@ -3,7 +3,13 @@ body {
 	padding: 0;
 	color: black;
 	background: white;
-	font-family: sans-serif;
+	font-family: Verdana,Helvetica,Arial,sans-serif;
+	font-size: small;
+}
+
+code,pre {
+	font-family: "Courier New",Courier,monospace;
+	font-size: 1em;
 }
 
 #head {
@@ -82,7 +88,7 @@ body {
 	margin: 5px;
 	margin-top: 10px;
 	padding: 5px;
-	width: 11.2em;
+	width: 12em;
 	background: #C0C0C0;
 	border: 1px solid #808080;
 }
@@ -90,7 +96,6 @@ body {
 #nav h2 {
 	margin: 0;
 	padding: 0 0 5px 0;
-	font-family: sans-serif;
 	font-size: medium;
 }
 
@@ -102,22 +107,17 @@ body {
 }
 
 #ads {
-	margin: 5px;
+	margin: 5px 0 0 14em;
 	padding: 5px;
 }
 
 #content {
-	margin: 5px 0 0 12.5em;
+	margin: 5px 0 0 14em;
 	padding: 5px;
 }
 
 #content h2, p {
 	margin-top: 0;
-}
-
-h1, h2, h3, h4 {
-	font-family: serif;
-	font-weight: bold;
 }
 
 p.important {
