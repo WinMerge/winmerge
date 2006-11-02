@@ -1,3 +1,7 @@
+2006-11-02 Kimmo
+ Update installer doc for expat dlls
+  Developers: readme-InnoSetup.html
+
 2006-11-01 Kimmo
  Update building instructions after expat and scew addition
   Developers: readme-developers.html
