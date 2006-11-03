@@ -28,45 +28,6 @@
 #include "unicoder.h"
 
 /**
- * @brief Convert a FILETIME to a long (standard time)
- */
-static __int64 FileTimeToInt64(FILETIME & ft)
-{
-	return CTime(ft).GetTime();
-}
-
-/**
- * @brief Update fileinfo from given file
- * @param [in] sFilePath Full path to file/directory to update
- * @return TRUE if file exists
- */
-BOOL DiffFileInfo::Update(LPCTSTR sFilePath)
-{
-	// CFileFind doesn't expose the attributes
-	// CFileStatus doesn't expose 64 bit size
-	BOOL Update = FALSE;
-	WIN32_FIND_DATA wfd;
-	HANDLE h = FindFirstFile(sFilePath, &wfd);
-	__int64 mtime64 = 0;
-	size = -1;
-	flags.reset();
-	mtime = 0;
-	if (h != INVALID_HANDLE_VALUE)
-	{
-		mtime64 = FileTimeToInt64(wfd.ftLastWriteTime);
-		flags.attributes = wfd.dwFileAttributes;
-
-		// Folders don't have a size (size remains as -1)
-		if ((flags.attributes & FILE_ATTRIBUTE_DIRECTORY) == 0)
-			size = FileInfo::GetSizeFromFindData(wfd);
-		FindClose(h);
-		Update = TRUE;
-	}
-	mtime = mtime64;
-	return Update;
-}
-
-/**
  * @brief Clears FileInfo data.
  */
 void DiffFileInfo::Clear()
@@ -76,7 +37,6 @@ void DiffFileInfo::Clear()
 	encoding.Clear();
 	m_textStats.clear();
 }
-
 
 /**
  * @brief Return true if file is in any Unicode encoding

@@ -199,7 +199,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	int nIdx = pParam->item.iItem;
 	int i = ColPhysToLog(pParam->item.iSubItem);
 	POSITION key = GetItemKey(nIdx);
-	if (key == (POSITION) SPECIAL_ITEM_POS)
+	if (key == SPECIAL_ITEM_POS)
 	{
 		if (IsColName(i))
 		{
@@ -215,13 +215,13 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	{
 		CString s = ColGetTextToDisplay(&ctxt, i, di);
 		// Add '*' to newer time field
-		if
-		(
-			(IsColLmTime(i) && di.left.mtime > di.right.mtime) // Left modification time
-		||	(IsColRmTime(i) && di.left.mtime < di.right.mtime) // Right modification time
-		)
+		if (di.left.mtime != 0 || di.right.mtime != 0)
 		{
-			s.Insert(0, _T("* "));
+			if ((IsColLmTime(i) && di.left.mtime > di.right.mtime) ||
+				(IsColRmTime(i) && di.left.mtime < di.right.mtime))
+			{
+				s.Insert(0, _T("* "));
+			}
 		}
 		// Don't show result for folderitems appearing both sides
 		if ((IsColStatus(i) || IsColStatusAbbr(i)) &&

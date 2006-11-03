@@ -66,10 +66,10 @@ static int sign64(__int64 val)
 }
 /**
  * @brief Function to compare two diffcodes for a sort
+ * @todo How shall we order diff statuses?
  */
 static int cmpdiffcode(int diffcode1, int diffcode2)
 {
-	// TODO: How shall we order these ?
 	return diffcode1-diffcode2;	
 }
 /**

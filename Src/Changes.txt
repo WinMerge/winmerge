@@ -7,6 +7,9 @@ Add new items to top.
   Src: ProjectFile.cpp
  PATCH: [ 1589438 ] Add read-only info to ProjectFile dialog
   Src: MainFrm.cpp
+ PATCH: [ 1589563 ] Fix crash with weird filetimes (and cleanup the code)
+  Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirViewColHandler.cpp
+   DirViewColItems.cpp FileInfo.cpp FileInfo.h
 
 2006-11-03 Tim
  PATCH: [ 1589601 ] Add "ReDim" keyword to Visual Basic highlighter

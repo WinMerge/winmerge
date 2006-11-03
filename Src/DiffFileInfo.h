@@ -84,7 +84,9 @@ struct DiffFileFlags : public FileFlags
 
 
 /**
- * @brief Information for file
+ * @brief Information for file.
+ * This class expands FileInfo class with encoding information and
+ * text stats information.
  */
 struct DiffFileInfo : public FileInfo
 {
@@ -100,7 +102,6 @@ struct DiffFileInfo : public FileInfo
 // methods
 
 	DiffFileInfo() { Clear(); }
-	BOOL Update(LPCTSTR sFilePath);
 	void Clear();
 	bool IsEditableEncoding() const;
 };

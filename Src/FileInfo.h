@@ -36,12 +36,13 @@ struct FileFlags
 };
 
 /**
- * @brief Information for file
+ * @brief Information for file.
+ * This class stores basic information from a file or folder.
+ * Information consists of file times, size and attributes.
+ * Also version info can be get for files supporting it.
  */
 struct FileInfo
 {
-	// storing __time_t if MSVC6 (__MSC_VER<1300)
-	// storing __time64_t if MSVC7 (VC.NET)
 	__int64 ctime; /**< time of creation */
 	__int64 mtime; /**< time of last modify */
 	__int64 size; /**< file size in bytes, -1 means file does not exist*/
@@ -49,10 +50,8 @@ struct FileInfo
 	FileFlags flags; /**< file attributes */
 	FileInfo() { Clear(); }
 
-	void Update(CString sFilePath);
+	BOOL Update(CString sFilePath);
 	void Clear();
-
-	static __int64 GetSizeFromFindData(const WIN32_FIND_DATA & findData);
 };
 
 #endif // _FILE_INFO_H_INCLUDED

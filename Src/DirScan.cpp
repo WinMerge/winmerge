@@ -8,6 +8,8 @@
 
 #include "stdafx.h"
 #include <shlwapi.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include "DirScan.h"
 #include "CompareStats.h"
 #include "common/unicoder.h"
@@ -36,13 +38,11 @@ static char THIS_FILE[] = __FILE__;
  */
 struct fentry
 {
-	CString name;
-	// storing __time_t if MSVC6 (__MSC_VER<1300)
-	// storing __time64_t if MSVC7 (VC.NET)
+	CString name; /**< Item name */
 	__int64 mtime; /**< Last modify time */
 	__int64 ctime; /**< Creation modify time */
-	__int64 size;
-	int attrs;
+	__int64 size; /**< File size */
+	int attrs; /**< Item attributes */
 };
 typedef CArray<fentry, fentry&> fentryArray;
 
@@ -356,6 +356,8 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
  *
  * @param [in] di DiffItem to compare
  * @param [in,out] pCtxt Compare context: contains difflist, encoding info etc.
+ * @todo For date compare, maybe we should use creation date if modification
+ * date is missing?
  */
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 {
@@ -405,19 +407,33 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 				pCtxt->m_nCompMethod == CMP_DATE_SIZE)
 			{
 				// Compare by modified date
-				__int64 nTimeDiff = di.left.mtime - di.right.mtime;
-				// Remove sign
-				nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
-				if (pCtxt->m_bIgnoreSmallTimeDiff)
+				// Check that we have both filetimes
+				if (di.left.mtime != 0 && di.right.mtime != 0)
 				{
-					// If option to ignore small timediffs (couple of seconds)
-					// is set, decrease absolute difference by allowed diff
-					nTimeDiff -= SmallTimeDiff;
+					__int64 nTimeDiff = di.left.mtime - di.right.mtime;
+					// Remove sign
+					nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
+					if (pCtxt->m_bIgnoreSmallTimeDiff)
+					{
+						// If option to ignore small timediffs (couple of seconds)
+						// is set, decrease absolute difference by allowed diff
+						nTimeDiff -= SmallTimeDiff;
+					}
+					if (nTimeDiff <= 0)
+						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
+					else
+						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
 				}
-				if (nTimeDiff <= 0)
-					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
 				else
-					di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
+				{
+					// Filetimes for item(s) could not be read. So we have to
+					// set error status, unless we have DATE_SIZE -compare
+					// when we have still hope for size compare..
+					if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
+					else
+						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::CMPERR;
+				}
 				
 				// This is actual CMP_DATE_SIZE method..
 				// If file sizes differ mark them different
@@ -472,7 +488,16 @@ void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 }
 
 /**
- * @brief Load arrays with all directories & files in specified dir
+ * @brief Find files and subfolders from given folder.
+ * This function saves all files and subfolders in given folder to arrays.
+ * We use 64-bit version of stat() to get times since find doesn't return
+ * valid times for very old files (around year 1970). Even stat() seems to
+ * give negative time values but we can live with that. Those around 1970
+ * times can happen when file is created so that it  doesn't get valid
+ * creation or modificatio dates.
+ * @param [in] sDir Base folder for files and subfolders.
+ * @param [in, out] dirs Array where subfolders are stored.
+ * @param [in, out] files Array where files are stored.
  */
 void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 {
@@ -489,14 +514,28 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 			DWORD dwIsDirectory = ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
 			if (dwIsDirectory && StrStr(_T(".."), ff.cFileName))
 				continue;
+
 			fentry ent;
-			// Save filetimes as seconds since January 1, 1970
-			ent.ctime = CTime(ff.ftCreationTime).GetTime();
-			ent.mtime = CTime(ff.ftLastWriteTime).GetTime();
-			if (!dwIsDirectory)
-				ent.size = FileInfo::GetSizeFromFindData(ff);
-			else
-				ent.size = -1;  // No size for directories
+			CString fullpath = paths_ConcatPath(sDir, ff.cFileName);
+			struct _stati64 fstats;
+			if (_tstati64(fullpath, &fstats) == 0)
+			{
+				// Save filetimes as seconds since January 1, 1970
+				// Note that times can be < 0 if they are around that 1970..
+				// Anyway that is not sensible case for normal files so we can
+				// just use zero for their time.
+				ent.ctime = fstats.st_ctime;
+				if (ent.ctime < 0)
+					ent.ctime = 0;
+				ent.mtime = fstats.st_mtime;
+				if (ent.mtime < 0)
+					ent.mtime = 0;
+
+				if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+					ent.size = -1;  // No size for directories
+				else
+					ent.size = fstats.st_size;
+			}
 			ent.name = ff.cFileName;
 			ent.attrs = ff.dwFileAttributes;
 			(dwIsDirectory ? dirs : files) -> Add(ent);
