@@ -1,3 +1,7 @@
+2006-11-03 Tim
+ PATCH: [ 1589578 ] Add <h4> style to readme-developers.html
+  Developers: readme-developers.html
+
 2006-11-02 Kimmo
  Update installer doc for expat dlls
   Developers: readme-InnoSetup.html
