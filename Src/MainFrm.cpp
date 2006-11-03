@@ -3059,6 +3059,8 @@ void CMainFrame::OnSaveProject()
 		left = pMergeDoc->m_filePaths.GetLeft();
 		right = pMergeDoc->m_filePaths.GetRight();
 		pathsDlg.SetPaths(left, right);
+		pathsDlg.m_bLeftPathReadOnly = pMergeDoc->m_ptBuf[0]->GetReadOnly();
+		pathsDlg.m_bRightPathReadOnly = pMergeDoc->m_ptBuf[1]->GetReadOnly();
 	}
 	else if (bDirFrame)
 	{
@@ -3072,6 +3074,9 @@ void CMainFrame::OnSaveProject()
 		right = item.getRightFilepath(pDoc->GetRightBasePath());
 		right += "\\";
 		pathsDlg.SetPaths(left, right);
+		pathsDlg.m_bIncludeSubfolders = pDoc->GetRecursive();
+		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(TRUE);
+		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(FALSE);
 	}
 
 	CString filterNameOrMask = theApp.m_globalFileFilter.GetFilterNameOrMask();

@@ -5,6 +5,8 @@ Add new items to top.
 2006-11-03 Kimmo
  PATCH: [ 1589427 ] Add back read-only handling for project files
   Src: ProjectFile.cpp
+ PATCH: [ 1589438 ] Add read-only info to ProjectFile dialog
+  Src: MainFrm.cpp
 
 2006-11-03 Tim
  PATCH: [ 1589601 ] Add "ReDim" keyword to Visual Basic highlighter
