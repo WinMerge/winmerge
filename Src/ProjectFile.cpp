@@ -34,6 +34,8 @@ const TCHAR Left_element_name[] = _T("left");
 const TCHAR Right_element_name[] = _T("right");
 const TCHAR Filter_element_name[] = _T("filter");
 const TCHAR Subfolders_element_name[] = _T("subfolders");
+const TCHAR Left_ro_element_name[] = _T("left-readonly");
+const TCHAR Right_ro_element_name[] = _T("right-readonly");
 
 /** 
  * @brief Standard constructor.
@@ -134,11 +136,15 @@ void ProjectFile::GetPathsData(scew_element * parent)
 		scew_element *right = NULL;
 		scew_element *filter = NULL;
 		scew_element *subfolders = NULL;
+		scew_element *left_ro = NULL;
+		scew_element *right_ro = NULL;
 
 		left = scew_element_by_name(paths, Left_element_name);
 		right = scew_element_by_name(paths, Right_element_name);
 		filter = scew_element_by_name(paths, Filter_element_name);
 		subfolders = scew_element_by_name(paths, Subfolders_element_name);
+		left_ro = scew_element_by_name(paths, Left_ro_element_name);
+		right_ro = scew_element_by_name(paths, Right_ro_element_name);
 
 		if (left)
 		{
@@ -163,6 +169,18 @@ void ProjectFile::GetPathsData(scew_element * parent)
 			LPCTSTR folders = NULL;
 			folders = scew_element_contents(subfolders);
 			m_subfolders = _ttoi(folders);
+		}
+		if (left_ro)
+		{
+			LPCTSTR readonly = NULL;
+			readonly = scew_element_contents(left_ro);
+			m_bLeftReadOnly = (_ttoi(readonly) != 0);
+		}
+		if (right_ro)
+		{
+			LPCTSTR readonly = NULL;
+			readonly = scew_element_contents(right_ro);
+			m_bRightReadOnly = (_ttoi(readonly) != 0);
 		}
 	}
 }
@@ -269,16 +287,24 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 		m_filter.ReleaseBuffer();
 	}
 
-	LPCTSTR path;
 	element = scew_element_add(parent, Subfolders_element_name);
 	if (m_subfolders != 0)
-	{
 		scew_element_set_contents(element, _T("1"));
-	}
 	else
-	{
 		scew_element_set_contents(element, _T("0"));
-	}
+
+	element = scew_element_add(parent, Left_ro_element_name);
+	if (m_bLeftReadOnly)
+		scew_element_set_contents(element, _T("1"));
+	else
+		scew_element_set_contents(element, _T("0"));
+
+	element = scew_element_add(parent, Right_ro_element_name);
+	if (m_bRightReadOnly)
+		scew_element_set_contents(element, _T("1"));
+	else
+		scew_element_set_contents(element, _T("0"));
+
 	return TRUE;
 }
 
