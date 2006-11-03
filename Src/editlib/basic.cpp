@@ -173,6 +173,7 @@ static LPTSTR s_apszBasicKeywordList[] =
     _T ("Public"),
     _T ("Private"),
     _T ("Property"),
+    _T ("ReDim"),
     _T ("Rem"),
     _T ("Resume"),
     _T ("Right"),

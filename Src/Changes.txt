@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-03 Tim
+ PATCH: [ 1589601 ] Add "ReDim" keyword to Visual Basic highlighter
+  Src\editlib: basic.cpp
+
 2006-11-01 Kimmo
  Add Expat version 2.0.0 to /Externals/expat (revision: 3749)
   New folder: /Externals/Expat
