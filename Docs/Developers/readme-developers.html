@@ -131,26 +131,12 @@ things.</p>
     using Visual Studio 2003.Net or later you need to convert the file to new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
-  <li>Make sure all targets are selected</li>
+  <li>Select either debug or release targets.</li>
   <li>Select Rebuild All</li>
-  <li><i>Wait until build finishes...</i></li>
-  <li>Build files are in folder <code>Externals/expat/lib</code> subfolders.</li>
-  <li>Create folder <code>/Build/expat</code>
-  <li>Select the target to use - we want to use dll version (no _static in folder name):
-    <ul>
-      <li><code>Debug</code> - debug ansi</li>
-      <li><code>Debug-w</code> - debug unicode</li>
-      <li><code>Release</code> - release ansi</li>
-      <li><code>Release-w</code> - release unicode</li>
-    </ul>
-    I'd choose release version, as we aren't interested in debugging expat itself.
-  </li>
-  <li>Copy expat import library (<code>.lib</code>) and <code>dll</code> file to
-    <code>/Build/expat</code> from selected expat build folder (e.g. Release-w)</li>
  </ul></p>
 
-<p class="note">I (kimmov) know this is not very convenient as when switching WinMerge target
-you have to copy the correct files to /Build/expat. I figure out better solution for this.</p>
+<p>After build finishes, selected (debug or release) lib and dll files are in
+<code>/Build/expat</code>. WinMerge executable's project file picks them from there.</p>
 
 <h4>Compiling scew</h4>
 <p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:<br>
@@ -161,13 +147,12 @@ you have to copy the correct files to /Build/expat. I figure out better solution
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Make sure all targets are selected</li>
   <li>Select Rebuild All</li>
-  <li><i>Wait until build finishes...</i></li>
-  <li>Copy all <code>.lib</code> files from folder <code>/Externals/scew/win32/lib</code> to
-    <code>/Build/expat</code></li>
 </ul></p>
 
-<p>scew is a static library and it automatically selects the correct .lib file to use.
-See <code>/Externals/scew/scew/scew.h</code> about more info how it is done.</p>
+<p>After build finishes, lib and dll files are in <code>/Build/expat</code>. WinMerge
+executable's project file picks them from there. scew is a static library and it
+automatically selects the correct .lib file to use. See <code>/Externals/scew/scew/scew.h</code>
+for more info how it is done.</p>
 
 <h4>Compiling WinMerge executable targets</h4>
 <p>There are several targets available for compiling different projects. Targets used

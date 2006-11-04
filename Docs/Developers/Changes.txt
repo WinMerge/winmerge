@@ -1,3 +1,7 @@
+2006-11-05 Kimmo
+ Update building instructions for expat and scew (a lot simpler now)
+  Developers: readme-developers.html
+
 2006-11-03 Tim
  PATCH: [ 1589578 ] Add <h4> style to readme-developers.html
   Developers: readme-developers.html
