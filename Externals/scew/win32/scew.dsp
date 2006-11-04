@@ -57,6 +57,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\scew.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 Debug"
 
@@ -81,6 +85,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\scew_d.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_d.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 Debug Unicode"
 
@@ -106,6 +114,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\scew_ud.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_ud.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 Release Unicode"
 
@@ -121,7 +133,7 @@ LIB32=link.exe -lib
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
 # SUBTRACT BASE CPP /YX
-# ADD CPP /nologo /MD /W4 /GX /O2 /D "NDEBUG" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /c
+# ADD CPP /nologo /MD /W4 /GX /O2 /I "../../expat/lib" /I "../../expat/xmlwf" /D "NDEBUG" /D "WIN32" /D "_LIB" /D "_UNICODE" /D "XML_UNICODE_WCHAR_T" /FD /c
 # SUBTRACT CPP /WX /YX
 # ADD BASE RSC /l 0x411 /d "NDEBUG"
 # ADD RSC /l 0x411 /d "NDEBUG"
@@ -131,6 +143,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"lib\scew_u.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_u.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Debug"
 
@@ -156,6 +172,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew_d.lib"
 # ADD LIB32 /nologo /out:"lib\scew_sd.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_sd.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Release"
 
@@ -181,6 +201,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew.lib"
 # ADD LIB32 /nologo /out:"lib\scew_s.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_s.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Debug Unicode"
 
@@ -206,6 +230,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew_ud.lib"
 # ADD LIB32 /nologo /out:"lib\scew_usd.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_usd.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Release Unicode"
 
@@ -231,6 +259,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew_u.lib"
 # ADD LIB32 /nologo /out:"lib\scew_us.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=copy  lib\scew_us.lib  ..\..\..\Build\expat\ 
+# End Special Build Tool
 
 !ENDIF 
 

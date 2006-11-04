@@ -1,4 +1,11 @@
 Changes for WinMerge compile:
+
+2006-11-05 Kimmo Varis <kimmov@winmerge.org>
+	* scew/win32/scew.dsp: Added post-build commands to copy
+	lib files to /Build/expat
+	* scew/win32/scew.dsp: Added include path to expat for one
+	target (missed in previous commit)
+
 2006-11-01 Kimmo Varis <kimmov@winmerge.org>
 
 	* scew/win32/scew.dsp: added library paths to WinMerge /Build/expat
