@@ -1,3 +1,7 @@
+For WinMerge (kimmov): Nov 5 2006
+        - Add post-build steps to VC6 project files to copy .lib and .dll
+          files to /Build/expat
+
 Release 2.0.0 Wed Jan 11 2006
         - We no longer use the "check" library for C unit testing; we
           always use the (partial) internal implementation of the API.

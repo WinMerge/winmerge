@@ -51,6 +51,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"Release_static\libexpatMT.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy Release_static\libexpatMT.lib ..\..\..\Build\expat
+# End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "expat_static - Win32 Debug"
 
@@ -75,6 +79,10 @@ BSC32=bscmake.exe
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
 # ADD LIB32 /nologo /out:"Debug_static\libexpatMT.lib"
+# Begin Special Build Tool
+SOURCE="$(InputPath)"
+PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy Debug_static\libexpatMT.lib ..\..\..\Build\expat
+# End Special Build Tool
 
 !ENDIF 
 
