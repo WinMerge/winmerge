@@ -52,42 +52,36 @@ const TCHAR Right_ro_element_name[] = _T("right-readonly");
  * @param [in] path Path to project file.
  * @param [out] sError Error string if error happened.
  * @return TRUE if reading succeeded, FALSE if error happened.
- * @bug This doesn't handle unicode paths!
  */
 BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 {
 	BOOL loaded = FALSE;
-	LPCSTR pathAnsi;
-
-#ifdef UNICODE
-	USES_CONVERSION;
-	pathAnsi = T2A(path);
-#else
-	pathAnsi = path;
-#endif
-
     scew_tree* tree = NULL;
     scew_parser* parser = NULL;
 
     parser = scew_parser_create();
     scew_parser_ignore_whitespaces(parser, 1);
 
-	if (scew_parser_load_file(parser, pathAnsi))
+	FILE * fp = _tfopen(path, _T("r"));
+	if (fp)
 	{
-		tree = scew_parser_tree(parser);
-
-		scew_element * root = GetRootElement(tree);
-		if (root)
+		if (scew_parser_load_file_fp(parser, fp))
 		{
-			loaded = TRUE;
-			GetPathsData(root);
-		};
+			tree = scew_parser_tree(parser);
+
+			scew_element * root = GetRootElement(tree);
+			if (root)
+			{
+				loaded = TRUE;
+				GetPathsData(root);
+			};
+		}
+		scew_tree_free(tree);
+
+		/* Frees the SCEW parser */
+		scew_parser_free(parser);
+		fclose(fp);
 	}
-    scew_tree_free(tree);
-
-    /* Frees the SCEW parser */
-    scew_parser_free(parser);
-
 	return loaded;
 }
 
@@ -194,15 +188,6 @@ void ProjectFile::GetPathsData(scew_element * parent)
 BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 {
 	BOOL success = TRUE;
-	LPCSTR pathAnsi;
-
-#ifdef UNICODE
-	USES_CONVERSION;
-	pathAnsi = T2A(path);
-#else
-	pathAnsi = path;
-#endif
-	
 	scew_tree* tree = NULL;
 	scew_element* root = NULL;
 	scew_element* paths = NULL;
@@ -228,14 +213,29 @@ BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 	// Set the XML file standalone
 	scew_tree_set_xml_standalone(tree, 1);
 
-	if (!scew_writer_tree_file(tree, pathAnsi))
+	FILE * fp = _tfopen(path, _T("w"));
+	if (fp)
+	{
+		if (!scew_writer_tree_fp(tree, fp))
+		{
+			success = FALSE;
+			*sError = LoadResString(IDS_FILEWRITE_ERROR);
+		}
+		fclose(fp);
+	}
+	else
+	{
 		success = FALSE;
+	}
 	
 	/* Frees the SCEW tree */
 	scew_tree_free(tree);
 
+	if (success == FALSE)
+	{
+		*sError = LoadResString(IDS_FILEWRITE_ERROR);
+	}
 	return success;
-	//	return Serialize(true, path, sError);
 }
 
 /**
