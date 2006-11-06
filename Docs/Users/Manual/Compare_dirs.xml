@@ -134,7 +134,7 @@
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/aborted.png" />
+              <imagedata fileref="screenshots/aborted.gif" format="GIF" />
             </imageobject>
           </inlinemediaobject> Aborted item. WinMerge did not finish comparing
         this item when compare was stopped. Result is unknown.</member>
