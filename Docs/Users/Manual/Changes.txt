@@ -2,6 +2,8 @@
  PATCH: [ 1586878 ] Manual: Replace "aborted.png" with transpatent GIF version
   Manual: Compare_dirs.xml
   Manual/screenshots: binary.gif folderup.gif folderup_disable.gif
+  Manual/screenshots new file: aborted.gif
+  Manual/screenshots deleted file: aborted.png
 
 2006-11-06 Takashi
  PATCH: [ 1586705 ] DirView icons (Tim made [not]equalfile.ico)
