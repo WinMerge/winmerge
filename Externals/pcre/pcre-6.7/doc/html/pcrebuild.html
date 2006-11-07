@@ -1,0 +1,225 @@
+<html>
+<head>
+<title>pcrebuild specification</title>
+</head>
+<body bgcolor="#FFFFFF" text="#00005A" link="#0066FF" alink="#3399FF" vlink="#2222BB">
+<h1>pcrebuild man page</h1>
+<p>
+Return to the <a href="index.html">PCRE index page</a>.
+</p>
+<p>
+This page is part of the PCRE HTML documentation. It was generated automatically
+from the original man page. If there is any nonsense in it, please consult the
+man page, in case the conversion went wrong.
+<br>
+<ul>
+<li><a name="TOC1" href="#SEC1">PCRE BUILD-TIME OPTIONS</a>
+<li><a name="TOC2" href="#SEC2">C++ SUPPORT</a>
+<li><a name="TOC3" href="#SEC3">UTF-8 SUPPORT</a>
+<li><a name="TOC4" href="#SEC4">UNICODE CHARACTER PROPERTY SUPPORT</a>
+<li><a name="TOC5" href="#SEC5">CODE VALUE OF NEWLINE</a>
+<li><a name="TOC6" href="#SEC6">BUILDING SHARED AND STATIC LIBRARIES</a>
+<li><a name="TOC7" href="#SEC7">POSIX MALLOC USAGE</a>
+<li><a name="TOC8" href="#SEC8">HANDLING VERY LARGE PATTERNS</a>
+<li><a name="TOC9" href="#SEC9">AVOIDING EXCESSIVE STACK USAGE</a>
+<li><a name="TOC10" href="#SEC10">LIMITING PCRE RESOURCE USAGE</a>
+<li><a name="TOC11" href="#SEC11">USING EBCDIC CODE</a>
+</ul>
+<br><a name="SEC1" href="#TOC1">PCRE BUILD-TIME OPTIONS</a><br>
+<P>
+This document describes the optional features of PCRE that can be selected when
+the library is compiled. They are all selected, or deselected, by providing
+options to the <b>configure</b> script that is run before the <b>make</b>
+command. The complete list of options for <b>configure</b> (which includes the
+standard ones such as the selection of the installation directory) can be
+obtained by running
+<pre>
+  ./configure --help
+</pre>
+The following sections describe certain options whose names begin with --enable
+or --disable. These settings specify changes to the defaults for the
+<b>configure</b> command. Because of the way that <b>configure</b> works,
+--enable and --disable always come in pairs, so the complementary option always
+exists as well, but as it specifies the default, it is not described.
+</P>
+<br><a name="SEC2" href="#TOC1">C++ SUPPORT</a><br>
+<P>
+By default, the <b>configure</b> script will search for a C++ compiler and C++
+header files. If it finds them, it automatically builds the C++ wrapper library
+for PCRE. You can disable this by adding
+<pre>
+  --disable-cpp
+</pre>
+to the <b>configure</b> command.
+</P>
+<br><a name="SEC3" href="#TOC1">UTF-8 SUPPORT</a><br>
+<P>
+To build PCRE with support for UTF-8 character strings, add
+<pre>
+  --enable-utf8
+</pre>
+to the <b>configure</b> command. Of itself, this does not make PCRE treat
+strings as UTF-8. As well as compiling PCRE with this option, you also have
+have to set the PCRE_UTF8 option when you call the <b>pcre_compile()</b>
+function.
+</P>
+<br><a name="SEC4" href="#TOC1">UNICODE CHARACTER PROPERTY SUPPORT</a><br>
+<P>
+UTF-8 support allows PCRE to process character values greater than 255 in the
+strings that it handles. On its own, however, it does not provide any
+facilities for accessing the properties of such characters. If you want to be
+able to use the pattern escapes \P, \p, and \X, which refer to Unicode
+character properties, you must add
+<pre>
+  --enable-unicode-properties
+</pre>
+to the <b>configure</b> command. This implies UTF-8 support, even if you have
+not explicitly requested it.
+</P>
+<P>
+Including Unicode property support adds around 90K of tables to the PCRE
+library, approximately doubling its size. Only the general category properties
+such as <i>Lu</i> and <i>Nd</i> are supported. Details are given in the
+<a href="pcrepattern.html"><b>pcrepattern</b></a>
+documentation.
+</P>
+<br><a name="SEC5" href="#TOC1">CODE VALUE OF NEWLINE</a><br>
+<P>
+By default, PCRE interprets character 10 (linefeed, LF) as indicating the end
+of a line. This is the normal newline character on Unix-like systems. You can
+compile PCRE to use character 13 (carriage return, CR) instead, by adding
+<pre>
+  --enable-newline-is-cr
+</pre>
+to the <b>configure</b> command. There is also a --enable-newline-is-lf option,
+which explicitly specifies linefeed as the newline character.
+<br>
+<br>
+Alternatively, you can specify that line endings are to be indicated by the two
+character sequence CRLF. If you want this, add
+<pre>
+  --enable-newline-is-crlf
+</pre>
+to the <b>configure</b> command. Whatever line ending convention is selected
+when PCRE is built can be overridden when the library functions are called. At
+build time it is conventional to use the standard for your operating system.
+</P>
+<br><a name="SEC6" href="#TOC1">BUILDING SHARED AND STATIC LIBRARIES</a><br>
+<P>
+The PCRE building process uses <b>libtool</b> to build both shared and static
+Unix libraries by default. You can suppress one of these by adding one of
+<pre>
+  --disable-shared
+  --disable-static
+</pre>
+to the <b>configure</b> command, as required.
+</P>
+<br><a name="SEC7" href="#TOC1">POSIX MALLOC USAGE</a><br>
+<P>
+When PCRE is called through the POSIX interface (see the
+<a href="pcreposix.html"><b>pcreposix</b></a>
+documentation), additional working storage is required for holding the pointers
+to capturing substrings, because PCRE requires three integers per substring,
+whereas the POSIX interface provides only two. If the number of expected
+substrings is small, the wrapper function uses space on the stack, because this
+is faster than using <b>malloc()</b> for each call. The default threshold above
+which the stack is no longer used is 10; it can be changed by adding a setting
+such as
+<pre>
+  --with-posix-malloc-threshold=20
+</pre>
+to the <b>configure</b> command.
+</P>
+<br><a name="SEC8" href="#TOC1">HANDLING VERY LARGE PATTERNS</a><br>
+<P>
+Within a compiled pattern, offset values are used to point from one part to
+another (for example, from an opening parenthesis to an alternation
+metacharacter). By default, two-byte values are used for these offsets, leading
+to a maximum size for a compiled pattern of around 64K. This is sufficient to
+handle all but the most gigantic patterns. Nevertheless, some people do want to
+process enormous patterns, so it is possible to compile PCRE to use three-byte
+or four-byte offsets by adding a setting such as
+<pre>
+  --with-link-size=3
+</pre>
+to the <b>configure</b> command. The value given must be 2, 3, or 4. Using
+longer offsets slows down the operation of PCRE because it has to load
+additional bytes when handling them.
+</P>
+<P>
+If you build PCRE with an increased link size, test 2 (and test 5 if you are
+using UTF-8) will fail. Part of the output of these tests is a representation
+of the compiled pattern, and this changes with the link size.
+</P>
+<br><a name="SEC9" href="#TOC1">AVOIDING EXCESSIVE STACK USAGE</a><br>
+<P>
+When matching with the <b>pcre_exec()</b> function, PCRE implements backtracking
+by making recursive calls to an internal function called <b>match()</b>. In
+environments where the size of the stack is limited, this can severely limit
+PCRE's operation. (The Unix environment does not usually suffer from this
+problem, but it may sometimes be necessary to increase the maximum stack size.
+There is a discussion in the
+<a href="pcrestack.html"><b>pcrestack</b></a>
+documentation.) An alternative approach to recursion that uses memory from the
+heap to remember data, instead of using recursive function calls, has been
+implemented to work round the problem of limited stack size. If you want to
+build a version of PCRE that works this way, add
+<pre>
+  --disable-stack-for-recursion
+</pre>
+to the <b>configure</b> command. With this configuration, PCRE will use the
+<b>pcre_stack_malloc</b> and <b>pcre_stack_free</b> variables to call memory
+management functions. Separate functions are provided because the usage is very
+predictable: the block sizes requested are always the same, and the blocks are
+always freed in reverse order. A calling program might be able to implement
+optimized functions that perform better than the standard <b>malloc()</b> and
+<b>free()</b> functions. PCRE runs noticeably more slowly when built in this
+way. This option affects only the <b>pcre_exec()</b> function; it is not
+relevant for the the <b>pcre_dfa_exec()</b> function.
+</P>
+<br><a name="SEC10" href="#TOC1">LIMITING PCRE RESOURCE USAGE</a><br>
+<P>
+Internally, PCRE has a function called <b>match()</b>, which it calls repeatedly
+(sometimes recursively) when matching a pattern with the <b>pcre_exec()</b>
+function. By controlling the maximum number of times this function may be
+called during a single matching operation, a limit can be placed on the
+resources used by a single call to <b>pcre_exec()</b>. The limit can be changed
+at run time, as described in the
+<a href="pcreapi.html"><b>pcreapi</b></a>
+documentation. The default is 10 million, but this can be changed by adding a
+setting such as
+<pre>
+  --with-match-limit=500000
+</pre>
+to the <b>configure</b> command. This setting has no effect on the
+<b>pcre_dfa_exec()</b> matching function.
+</P>
+<P>
+In some environments it is desirable to limit the depth of recursive calls of
+<b>match()</b> more strictly than the total number of calls, in order to
+restrict the maximum amount of stack (or heap, if --disable-stack-for-recursion
+is specified) that is used. A second limit controls this; it defaults to the
+value that is set for --with-match-limit, which imposes no additional
+constraints. However, you can set a lower limit by adding, for example,
+<pre>
+  --with-match-limit-recursion=10000
+</pre>
+to the <b>configure</b> command. This value can also be overridden at run time.
+</P>
+<br><a name="SEC11" href="#TOC1">USING EBCDIC CODE</a><br>
+<P>
+PCRE assumes by default that it will run in an environment where the character
+code is ASCII (or Unicode, which is a superset of ASCII). PCRE can, however, be
+compiled to run in an EBCDIC environment by adding
+<pre>
+  --enable-ebcdic
+</pre>
+to the <b>configure</b> command.
+</P>
+<P>
+Last updated: 06 June 2006
+<br>
+Copyright &copy; 1997-2006 University of Cambridge.
+<p>
+Return to the <a href="index.html">PCRE index page</a>.
+</p>

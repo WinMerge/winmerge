@@ -1,0 +1,92 @@
+Microsoft Developer Studio Workspace File, Format Version 6.00
+# WARNING: DO NOT EDIT OR DELETE THIS WORKSPACE FILE!
+
+###############################################################################
+
+Project: "config_pcre"=.\config_pcre\config_pcre.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "lib_pcre"=.\lib_pcre\lib_pcre.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config_pcre
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "lib_pcreposix"=.\lib_pcreposix\lib_pcreposix.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config_pcre
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pcre"=.\dll_pcre\pcre.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name config_pcre
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Project: "pcretest"=.\pcretest\pcretest.dsp - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+    Begin Project Dependency
+    Project_Dep_Name lib_pcre
+    End Project Dependency
+    Begin Project Dependency
+    Project_Dep_Name lib_pcreposix
+    End Project Dependency
+}}}
+
+###############################################################################
+
+Global:
+
+Package=<5>
+{{{
+}}}
+
+Package=<3>
+{{{
+}}}
+
+###############################################################################
+

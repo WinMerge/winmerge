@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>pcreperform specification</title>
+</head>
+<body bgcolor="#FFFFFF" text="#00005A" link="#0066FF" alink="#3399FF" vlink="#2222BB">
+<h1>pcreperform man page</h1>
+<p>
+Return to the <a href="index.html">PCRE index page</a>.
+</p>
+<p>
+This page is part of the PCRE HTML documentation. It was generated automatically
+from the original man page. If there is any nonsense in it, please consult the
+man page, in case the conversion went wrong.
+<br>
+<br><b>
+PCRE PERFORMANCE
+</b><br>
+<P>
+Certain items that may appear in regular expression patterns are more efficient
+than others. It is more efficient to use a character class like [aeiou] than a
+set of alternatives such as (a|e|i|o|u). In general, the simplest construction
+that provides the required behaviour is usually the most efficient. Jeffrey
+Friedl's book contains a lot of useful general discussion about optimizing
+regular expressions for efficient performance. This document contains a few
+observations about PCRE.
+</P>
+<P>
+Using Unicode character properties (the \p, \P, and \X escapes) is slow,
+because PCRE has to scan a structure that contains data for over fifteen
+thousand characters whenever it needs a character's property. If you can find
+an alternative pattern that does not use character properties, it will probably
+be faster.
+</P>
+<P>
+When a pattern begins with .* not in parentheses, or in parentheses that are
+not the subject of a backreference, and the PCRE_DOTALL option is set, the
+pattern is implicitly anchored by PCRE, since it can match only at the start of
+a subject string. However, if PCRE_DOTALL is not set, PCRE cannot make this
+optimization, because the . metacharacter does not then match a newline, and if
+the subject string contains newlines, the pattern may match from the character
+immediately following one of them instead of from the very start. For example,
+the pattern
+<pre>
+  .*second
+</pre>
+matches the subject "first\nand second" (where \n stands for a newline
+character), with the match starting at the seventh character. In order to do
+this, PCRE has to retry the match starting after every newline in the subject.
+</P>
+<P>
+If you are using such a pattern with subject strings that do not contain
+newlines, the best performance is obtained by setting PCRE_DOTALL, or starting
+the pattern with ^.* or ^.*? to indicate explicit anchoring. That saves PCRE
+from having to scan along the subject looking for a newline to restart at.
+</P>
+<P>
+Beware of patterns that contain nested indefinite repeats. These can take a
+long time to run when applied to a string that does not match. Consider the
+pattern fragment
+<pre>
+  (a+)*
+</pre>
+This can match "aaaa" in 33 different ways, and this number increases very
+rapidly as the string gets longer. (The * repeat can match 0, 1, 2, 3, or 4
+times, and for each of those cases other than 0, the + repeats can match
+different numbers of times.) When the remainder of the pattern is such that the
+entire match is going to fail, PCRE has in principle to try every possible
+variation, and this can take an extremely long time.
+</P>
+<P>
+An optimization catches some of the more simple cases such as
+<pre>
+  (a+)*b
+</pre>
+where a literal character follows. Before embarking on the standard matching
+procedure, PCRE checks that there is a "b" later in the subject string, and if
+there is not, it fails the match immediately. However, when there is no
+following literal this optimization cannot be used. You can see the difference
+by comparing the behaviour of
+<pre>
+  (a+)*\d
+</pre>
+with the pattern above. The former gives a failure almost instantly when
+applied to a whole line of "a" characters, whereas the latter takes an
+appreciable time with strings longer than about 20 characters.
+</P>
+<P>
+In many cases, the solution to this kind of performance issue is to use an
+atomic group or a possessive quantifier.
+</P>
+<P>
+Last updated: 28 February 2005
+<br>
+Copyright &copy; 1997-2005 University of Cambridge.
+<p>
+Return to the <a href="index.html">PCRE index page</a>.
+</p>
