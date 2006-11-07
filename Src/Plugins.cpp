@@ -31,12 +31,14 @@
 #include <afxmt.h>
 #endif
 
+#include "pcre.h"
+#include "Ucs2Utf8.h"
 #include "FileTransform.h"
 #include "FileFilterMgr.h"
 #include "Plugins.h"
 #include "lwdisp.h"
 #include "coretools.h"
-#include "RegExp.h"
+//#include "RegExp.h"
 #include "resource.h"
 #include "Exceptions.h"
 #include "RegKey.h"
@@ -280,16 +282,38 @@ void PluginInfo::LoadFilterString()
 		sPiece.TrimLeft();
 		sPiece.MakeUpper();
 
-		CRegExp * regexp = new CRegExp;
+//		CRegExp * regexp = new CRegExp;
 		FileFilterElement element;
 		
-		if (regexp->RegComp(sPiece))
+/*		if (regexp->RegComp(sPiece))
 		{
 			element.pRegExp = regexp;
 			filters->AddTail(element);
 		}
 		else
 			delete regexp;
+*/
+		const char * errormsg = NULL;
+		//char errormsg[200] = {0};
+		int erroroffset = 0;
+		char regexString[200] = {0};
+		int regexLen = 0;
+#ifdef UNICODE
+		regexLen = TransformUcs2ToUtf8((LPCTSTR)sPiece, _tcslen(sPiece),
+			regexString, sizeof(regexString));
+#else
+		strcpy(regexString, (LPCTSTR)sPiece);
+		regexLen = strlen(regexString);
+#endif
+
+		pcre *regexp = pcre_compile(regexString, 0, &errormsg, &erroroffset, NULL);
+		if (regexp)
+		{
+			FileFilterElement elem;
+			elem.pRegExp = regexp;
+			filters->AddTail(elem);
+		}
+
 	};
 }
 

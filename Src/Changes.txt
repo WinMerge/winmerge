@@ -5,6 +5,9 @@ Add new items to top.
 2006-11-07 Kimmo
  Add PCRE 6.7 (with windows build files from ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/Contrib/)
   New folder: /Externals/pcre
+ PATCH: [ 1591605 ] Add PCRE regexps and convert file filtering to PCRE
+  Src: FileFilterMgr.cpp FileFilterMgr.h Merge.dsp Plugins.cpp
+  Src new files: Ucs2Utf8.cpp Ucs2Utf8.h
 
 2006-11-06 Takashi
  PATCH: [ 1586705 ] DirView icons (Tim made [not]equalfile.ico)

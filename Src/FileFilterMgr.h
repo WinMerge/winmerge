@@ -1,14 +1,16 @@
 /////////////////////////////////////////////////////////////////////////////
-// FileFilterMgr.h : declaration file
-//
-// The FileFilterMgr loads a collection of named file filters from disk,
-// and provides lookup access by name, or array access by index, to these
-// named filters. It also provides test functions for actually using the filters.
-/////////////////////////////////////////////////////////////////////////////
 //    License (GPLv2+):
-//    This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
-//    This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-//    You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//    This program is distributed in the hope that it will be useful, but
+//    WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+//    General Public License for more details.
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /**
  *  @file FileFilterMgr.h
@@ -25,8 +27,8 @@
 #ifndef __AFXTEMPL_H__
 #include <afxtempl.h>
 #endif
+#include "pcre.h"
 
-class CRegExp;
 struct FileFilterElement;
 /**
  * @brief List of file filtering rules.
@@ -52,12 +54,16 @@ enum FILTER_RETVALUE
  * regular expression there is boolean value for defining if rule
  * is inclusive or exclusive. File filters have global inclusive/exclusive
  * selection but this per-rule setting overwrites it.
+ *
+ * We are using PCRE for regular expressions and pRegExp points to compiled
+ * regular expression. pRegExpExtra contains additional information about
+ * the expression used to optimize matching.
  */
 struct FileFilterElement
 {
-	CRegExp *pRegExp;			/**< Pointer to regexp */
-	CString sRule;				/**< Uncompiled rule text */
-	FileFilterElement() : pRegExp(NULL) { };
+	pcre *pRegExp; /**< Compiled regular expression */
+	pcre_extra *pRegExpExtra; /**< Additional information got from regex study */
+	FileFilterElement() : pRegExp(NULL), pRegExpExtra(NULL) { };
 };
 
 struct FileFilter;
@@ -67,7 +73,12 @@ struct FileFilter;
  *
  * The FileFilterMgr loads a collection of named file filters from disk,
  * and provides lookup access by name, or array access by index, to these
- * named filters. It also provides test functions for actually using the filters.
+ * named filters. It also provides test functions for actually using the
+ * filters.
+ *
+ * We are using PCRE for regular expressions. Nice thing in PCRE is it supports
+ * UTF-8 unicode, unlike many other libs. For ANSI builds we use just ansi
+ * strings, and for unicode we must first convert strings to UTF-8.
  */
 class FileFilterMgr
 {
