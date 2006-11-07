@@ -149,10 +149,21 @@ things.</p>
   <li>Select Rebuild All</li>
 </ul></p>
 
-<p>After build finishes, lib and dll files are in <code>/Build/expat</code>. WinMerge
-executable's project file picks them from there. scew is a static library and it
-automatically selects the correct .lib file to use. See <code>/Externals/scew/scew/scew.h</code>
-for more info how it is done.</p>
+<h4>Compiling PCRE</h4>
+<p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:<br>
+<ul>
+  <li>Open Visual Studio workspace file <code>/Externals/pcre/pcre.dsp</code> If you are
+    using Visual Studio 2003.Net or later you need to convert the file to new format when
+    Visual Studio opens the file.</li>
+  <li>Select from Visual Studio menu Build / Batch Build</li>
+  <li>Select <code>config_pcre</code> and <code>pcre</code> projects and build them</li>
+  <li>Select Rebuild All</li>
+  <li><i>Or</i> you can also compile those two projects individually, first
+    <code>config_pcre</code> and then <code>pcre</code> project.
+</ul></p>
+
+<p>After build finishes, lib and dll files are in <code>/Build/pcre</code>. WinMerge
+executable's project file picks them from there.</p>
 
 <h4>Compiling WinMerge executable targets</h4>
 <p>There are several targets available for compiling different projects. Targets used

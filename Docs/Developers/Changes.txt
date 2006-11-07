@@ -1,3 +1,7 @@
+2006-11-07 Kimmo
+ Add building instructions for PCRE
+  Developers: readme-developers.html
+
 2006-11-05 Kimmo
  Update building instructions for expat and scew (a lot simpler now)
   Developers: readme-developers.html
