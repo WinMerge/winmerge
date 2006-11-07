@@ -1,0 +1,5 @@
+2006-11-07 Kimmo
+ Add PCRE to /Externals/pcre
+  New folder: /Externals/pcre
+ Fix dll target project file to actually produce a valid dll file
+  pcre/dll_pcre: pcre.dsp
