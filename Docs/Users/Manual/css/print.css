@@ -49,3 +49,23 @@ pre,code,tt {
   background-color: white;
   border: 1px solid black;
 }
+
+/* tables */
+.table table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.table th {
+  padding: 2px;
+  text-align: left;
+  color: black;
+  background: white;
+  border: 1px solid black;
+  border-bottom: 2px solid black;
+}
+
+.table td {
+  padding: 2px;
+  border: 1px solid black;
+}

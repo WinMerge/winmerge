@@ -627,6 +627,14 @@
     <title>Find and Replace</title>
 
     <tgroup cols="2">
+      <thead>
+        <row>
+          <entry>Key</entry>
+
+          <entry>Function</entry>
+        </row>
+      </thead>
+
       <tbody>
         <row>
           <entry><keycombo>

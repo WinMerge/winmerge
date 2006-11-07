@@ -38,3 +38,22 @@ pre,code,tt {
   background-color: #FFDDDD;
   border: 1px solid red;
 }
+
+/* tables */
+.table table {
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.table th {
+  padding: 2px;
+  text-align: left;
+  color: white;
+  background: black;
+  border: 1px solid black;
+}
+
+.table td {
+  padding: 2px;
+  border: 1px solid black;
+}

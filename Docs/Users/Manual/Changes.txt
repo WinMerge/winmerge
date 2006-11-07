@@ -1,3 +1,8 @@
+2006-11-07 Tim
+ PATCH: [ 1592234 ] Manual: Nicer Shortcut keys tables
+  Manual: Shortcut_keys.xml
+  Manual/css: all.css help.css print.css
+
 2006-11-06 Tim
  PATCH: [ 1586878 ] Manual: Replace "aborted.png" with transpatent GIF version
   Manual: Compare_dirs.xml
