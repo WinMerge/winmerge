@@ -3,3 +3,5 @@
   New folder: /Externals/pcre
  Fix dll target project file to actually produce a valid dll file
   pcre/dll_pcre: pcre.dsp
+ Copy lib and dll files to /Build/pcre
+  pcre/dll_pcre: pcre.dsp
