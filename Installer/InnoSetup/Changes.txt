@@ -1,3 +1,9 @@
+2006-11-08 Tim
+ PATCH: [ 1592609 ] Remove outdated files from installer
+  InnoSetup deleted files: Setup Helper.au3, Setup Helper.exe
+  InnoSetup/Art deleted files: Gold Watch.ico
+  InnoSetup/Runtimes deleted files: psapi.dll
+
 2006-11-03 Kimmo
  PATCH: [ 1589585 ] Install expat dlls
   InnoSetup: WinMerge.iss
