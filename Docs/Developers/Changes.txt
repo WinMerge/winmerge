@@ -1,3 +1,7 @@
+2006-11-09 Tim
+ PATCH: [ 1593009 ] Updated Organisation.txt
+  Developers: Organisation.txt
+
 2006-11-08 Tim
  Remove outdated "Docs\Developers\WinMerge files*"
   Developers deleted files: WinMerge files.pdf, WinMerge files.ppt

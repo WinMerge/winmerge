@@ -2,37 +2,65 @@
 WinMerge CVS organisation
 =========================
 
-WinMerge/ 
- - Docs/
-   - Developers/
-     - WinMerge files (Web format)/
-   - Users/
+WinMerge
+ - ArchiveSupport
+   - Merge7z
+   - Merge7zInstaller
+ - Docs
+   - Developers
+   - Logos
+   - Users
+     - Languages
      - Manual
+ - Externals
+   - cppunit
+   - expat
+   - pcre
+   - scew
  - Filters
- - InnoSetup
-   - Art
-   - Languages
-   - Runtimes
- - MakePatchDirs
- - MakeResDll
- - Merge7z
+ - Installer
+   - InnoSetup
+     - Art
+     - Languages
+     - Runtimes
  - Plugins
-   - Src_Delphi/
-   - Src_VB/
-   - Src_VCPP/
+   - dlls
+   - Src_Delphi
+   - Src_VB
+   - Src_VCPP
  - ShellExtension
+   - Languages
  - Src
    - Common
-   - Languages
    - diffutils
    - editlib
+   - ExpatMapLib
+   - Languages
    - res
+ - Testing
+   - CppUnit
+   - EditorTest
+   - selftests
+ - Tools
+   - diff2winmerge
+   - MakePatchDirs
+   - MakeResDll
  - Web
- 
 
-WinMerge/ 
+
+WinMerge/
  - Module root, no files to here please.
- 
+
+WinMerge/ArchiveSupport/
+ - Archive file support system. Currently includes 7-Zip based archive support.
+
+WinMerge/ArchiveSupport/Merge7z/
+ - 7-Zip based archive file support. Integrates to WinMerge executable.
+
+WinMerge/ArchiveSupport/Merge7zInstaller/
+ - Installer for archive file support using 7-Zip. Creates an executable
+   which installs needed files.
+
 WinMerge/Docs/
  - Directory containing documentation
 
@@ -42,47 +70,56 @@ WinMerge/Docs/Developers/
    it contains a lot of useful information about practices of
    WinMerge developers.
 
-WinMerge/Docs/Developers/WinMerge files (Web format)/
- - ???
+WinMerge/Docs/Logos/
+ - WinMerge logos from Alexander Skinner.
 
 WinMerge/Docs/Users/
  - Documentation files mostly for users interests
 
+WinMerge/Docs/Users/Languages/
+ - Readme.txt translations
+
 WinMerge/Docs/Users/Manual/
  - New 2.2.x userguide. Using Docbook/XML.
- - readme.txt is changelog file
+
+WinMerge/Externals/
+ - External code modules WinMerge uses
+
+WinMerge/Externals/cppunit/
+ - CppUnit unit-testing suite for C++ <http://cppunit.sourceforge.net/>
+
+WinMerge/Externals/expat/
+ - Expat XML parser <http://expat.sourceforge.net/>
+
+WinMerge/Externals/pcre/
+ - PCRE - Perl Compatible Regular Expression <http://www.pcre.org/>
+
+WinMerge/Externals/scew/
+ - SCEW - Simple C Expat Wrapper <http://www.nongnu.org/scew/>
 
 WinMerge/Filters/
  - File filters are here
 
-WinMerge/InnoSetup/
- -Source files used to create windows installer (with InnoSetup program)
- - readme.txt is changelog file
+WinMerge/Installer/
+ - WinMerge installers. Currently we have only Innosetup-based installer.
 
-WinMerge/InnoSetup/Art
+WinMerge/Installer/InnoSetup/
+ - Source files used to create windows installer (with InnoSetup program)
+
+WinMerge/Installer/InnoSetup/Art/
  - Graphics files installer needs
 
-WinMerge/InnoSetup/Languages
+WinMerge/Installer/InnoSetup/Languages/
  - Installer translations
 
-WinMerge/InnoSetup/Runtimes
+WinMerge/Installer/InnoSetup/Runtimes/
  - Libraries for WinMerge added to install package
-
-WinMerge/MakePatchDirs/
- - Source files for MakePatchDirs, a program to generate original &
-   altered directories
- - Used to create patches to WinMerge source tree, for upload to
-   sourceforge patch board
-
-WinMerge/MakeResDll/
- - Source files for MakeResDll, a command line program used to
-   compile the WinMerge language dlls
-
-WinMerge/Merge7z/
- - 7Zip integration files. Needed to compile WinMerge executable.
 
 WinMerge/Plugins/
  - Plugins files. Also plugins documentation at the moment.
+
+WinMerge/Plugins/dlls/
+ - Compiled plugins files
 
 WinMerge/Plugins/Src_Delphi/
  - Sources for plugins made with Delphi
@@ -96,25 +133,55 @@ WinMerge/Plugins/Src_VCPP/
 WinMerge/ShellExtension/
  - Files for ShellExtension for WinMerge. Needs also /Src/Common.
 
+WinMerge/ShellExtension/Languages/
+ - ShellExtension translations
+
 WinMerge/Src/
  - WinMerge executable sources.
- - readme.txt is changelog file
 
-WinMerge/Src/Common
+WinMerge/Src/Common/
  - Some common components shared by tools etc.
 
-WinMerge/Src/Languages
- - WinMerge translations sources.
-
-WinMerge/Src/diffutils
+WinMerge/Src/diffutils/
  - GNU/diffutils sources
 
-WinMerge/Src/editlib
+WinMerge/Src/editlib/
  - CrystalEditor editor component sources.
 
-WinMerge/Src/res
+WinMerge/Src/ExpatMapLib/
+ - Plugin to Expat XML parser for handling character encodings
+
+WinMerge/Src/Languages/
+ - WinMerge translations sources.
+
+WinMerge/Src/res/
  - Bitmaps, icons etc.
+
+WinMerge/Testing/
+ - WinMerge testing programs and files
+
+WinMerge/Testing/EditorTest/
+ - Some tests for CrystalEditor
+
+WinMerge/Testing/selftests/
+ - Tests using Perl run WinMerge executable to test compare functionality.
+
+WinMerge/Tools/
+ - Tools needed/used with WinMerge development (e.g. language file compiler).
+
+WinMerge/Tools/diff2winmerge/
+ - Commandline wrapper for WinMerge executable, offers
+   diffutils -style commandline switches (needed by Perl selftests).
+
+WinMerge/Tools/MakePatchDirs/
+ - Source files for MakePatchDirs, a program to generate original &
+   altered directories
+ - Used to create patches to WinMerge source tree, for upload to
+   sourceforge patch board
+
+WinMerge/Tools/MakeResDll/
+ - Source files for MakeResDll, a command line program used to
+   compile the WinMerge language dlls
 
 WinMerge/Web/
  - Homepages.
- - readme.txt is changelog file
