@@ -1,6 +1,8 @@
 2006-11-09 Tim
  PATCH: [ 1593009 ] Updated Organisation.txt
   Developers: Organisation.txt
+ BUG: [ 1593013 ] Two "InnoSetup" readme's in DevDocs
+  Developers deleted files: readme-developers-InnoSetup.html
 
 2006-11-08 Tim
  Remove outdated "Docs\Developers\WinMerge files*"
