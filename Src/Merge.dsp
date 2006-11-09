@@ -935,10 +935,6 @@ SOURCE=.\Common\WindowStyle.cpp
 
 SOURCE=.\WMGotoDlg.cpp
 # End Source File
-# Begin Source File
-
-SOURCE=.\XmlDoc.cpp
-# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -1518,10 +1514,6 @@ SOURCE=.\Common\WindowStyle.h
 # Begin Source File
 
 SOURCE=.\WMGotoDlg.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\XmlDoc.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
