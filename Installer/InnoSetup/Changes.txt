@@ -1,3 +1,7 @@
+2006-11-09 Kimmo
+ PATCH: [ 1591689 ] WinMerge (ANSI) shortcut installed to 64-bit Windows
+  InnoSetup: WinMerge.iss
+
 2006-11-08 Tim
  PATCH: [ 1592609 ] Remove outdated files from installer
   InnoSetup deleted files: Setup Helper.au3, Setup Helper.exe

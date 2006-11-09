@@ -388,7 +388,7 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 ;WinMerge (ANSI) for WinMerge.exe in NT-windows
-Name: {group}\WinMerge (ANSI); Filename: {app}\WinMerge.exe; IconIndex: 0; MinVersion: 0,4; Components: core
+Name: {group}\WinMerge (ANSI); Filename: {app}\WinMerge.exe; IconIndex: 0; MinVersion: 0,4; Components: core; Check: not IsWin64
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:PluginsText}; Filename: {app}\Docs\Plugins.txt; IconFileName: {win}\NOTEPAD.EXE Check: InstallPluginsText; Components: Plugins
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm; Components: docs
