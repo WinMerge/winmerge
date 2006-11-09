@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-09 Gal
+ PATCH: [ 1590737 ] BCMenu update to v3.036
+  Src: BCMenu.cpp BCMenu.h
+
 2006-11-09 Kimmo
  PATCH: [ 1591532 ] Remove unused XmlDoc class
   Src: Merge.dsp

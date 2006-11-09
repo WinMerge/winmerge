@@ -1,7 +1,7 @@
 //*************************************************************************
 // BCMenu.h : header file
-// Version : 3.034
-// Date : May 2002
+// Version : 3.036
+// Date : June 2005
 // Author : Brent Corkum
 // Email :  corkum@rocscience.com
 // Latest Version : http://www.rocscience.com/~corkum/BCMenu.html
@@ -77,6 +77,7 @@ typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 #define AppendODMenu AppendODMenuA
 #define AppendODPopupMenu AppendODPopupMenuA
 #define ModifyODMenu ModifyODMenuA
+#define SetImageForPopupFromToolbar SetImageForPopupFromToolbarA
 #else
 #define AppendMenu AppendMenuW
 #define InsertMenu InsertMenuW
@@ -84,6 +85,7 @@ typedef enum {BCMENU_NONE, BCMENU_HEAD, BCMENU_TAIL, BCMENU_BOTH} BC_Seperator;
 #define AppendODMenu AppendODMenuW
 #define ModifyODMenu ModifyODMenuW
 #define AppendODPopupMenu AppendODPopupMenuW
+#define SetImageForPopupFromToolbar SetImageForPopupFromToolbarW
 #endif
 
 
@@ -109,17 +111,18 @@ public:
 	BOOL AppendMenuA(UINT nFlags,UINT nIDNewItem=0,const char *lpszNewItem=NULL,int nIconNormal=-1);
 	BOOL AppendMenuA(UINT nFlags,UINT nIDNewItem,const char *lpszNewItem,CImageList *il,int xoffset);
 	BOOL AppendMenuA(UINT nFlags,UINT nIDNewItem,const char *lpszNewItem,CBitmap *bmp);
-	BOOL AppendMenuW(UINT nFlags,UINT nIDNewItem=0,wchar_t *lpszNewItem=NULL,int nIconNormal=-1);
-	BOOL AppendMenuW(UINT nFlags,UINT nIDNewItem,wchar_t *lpszNewItem,CImageList *il,int xoffset);
-	BOOL AppendMenuW(UINT nFlags,UINT nIDNewItem,wchar_t *lpszNewItem,CBitmap *bmp);
+	BOOL AppendMenuW(UINT nFlags,UINT nIDNewItem=0,const wchar_t *lpszNewItem=NULL,int nIconNormal=-1);
+	BOOL AppendMenuW(UINT nFlags,UINT nIDNewItem,const wchar_t *lpszNewItem,CImageList *il,int xoffset);
+	BOOL AppendMenuW(UINT nFlags,UINT nIDNewItem,const wchar_t *lpszNewItem,CBitmap *bmp);
 	BOOL AppendODMenuA(LPCSTR lpstrText,UINT nFlags = MF_OWNERDRAW,UINT nID = 0,int nIconNormal = -1);  
-	BOOL AppendODMenuW(wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT nID = 0,int nIconNormal = -1);  
+	BOOL AppendODMenuW(const wchar_t *lpstrText,UINT nFlags = MF_OWNERDRAW,UINT nID = 0,int nIconNormal = -1);  
 	BOOL AppendODMenuA(LPCSTR lpstrText,UINT nFlags,UINT nID,CImageList *il,int xoffset);
-	BOOL AppendODMenuW(wchar_t *lpstrText,UINT nFlags,UINT nID,CImageList *il,int xoffset);
+	BOOL AppendODMenuW(const wchar_t *lpstrText,UINT nFlags,UINT nID,CImageList *il,int xoffset);
+	bool AppendMenu (BCMenu* pMenuToAdd, bool add_separator = true, int num_items_to_remove_at_end = 0);
 	
 	// for appending a popup menu (see example application)
 	BCMenu* AppendODPopupMenuA(LPCSTR lpstrText);
-	BCMenu* AppendODPopupMenuW(wchar_t *lpstrText);
+	BCMenu* AppendODPopupMenuW(const wchar_t *lpstrText);
 
 	// functions for inserting a menu option, use the InsertMenu call (see above define)
 	BOOL InsertMenuA(UINT nPosition,UINT nFlags,UINT nIDNewItem=0,const char *lpszNewItem=NULL,int nIconNormal=-1);
@@ -142,6 +145,10 @@ public:
 	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT nID,CImageList *il,int xoffset);
 	BOOL ModifyODMenuW(wchar_t *lpstrText,UINT nID,CBitmap *bmp);
 	BOOL ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,int nIconNormal);
+
+	BOOL SetImageForPopupFromToolbarA (const char *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
+	BOOL SetImageForPopupFromToolbarW (wchar_t *strPopUpText, UINT toolbarID, UINT command_id_to_extract_icon_from);
+
 	// use this method for adding a solid/hatched colored square beside a menu option
 	// courtesy of Warren Stevens
 	BOOL ModifyODMenuA(const char *lpstrText,UINT nID,COLORREF fill,COLORREF border,int hatchstyle=-1,CSize *pSize=NULL);
@@ -221,9 +228,10 @@ public:
 	static COLORREF LightenColor(COLORREF col,double factor);
 	static COLORREF DarkenColor(COLORREF col,double factor);
 
-// Miscellaneous Protected Member functions
-protected:
+public:
 	static BOOL IsNewShell(void);
+	// Miscellaneous Protected Member functions
+protected:
 	static BOOL IsWinXPLuna(void);
 	static BOOL IsLunaMenuStyle(void);
 	static BOOL IsWindowsClassicTheme(void);
