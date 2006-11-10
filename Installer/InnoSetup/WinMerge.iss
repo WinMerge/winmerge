@@ -339,6 +339,9 @@ Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Fla
 Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core; Check: not IsWin64
 Source: ..\..\Build\expat\libexpatw.dll; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0, 4
 
+; PCRE dll
+Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
+
 Source: ..\..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
 Source: ..\..\Build\Languages\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
