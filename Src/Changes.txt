@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-11 Takashi
+ PATCH: [ 1586689 ] True color bookmark icon
+  Src/editlib: ccrystaltextview.cpp
+  Src/res: mg_icons.bmp
+
 2006-11-09 Gal
  PATCH: [ 1590737 ] BCMenu update to v3.036
   Src: BCMenu.cpp BCMenu.h

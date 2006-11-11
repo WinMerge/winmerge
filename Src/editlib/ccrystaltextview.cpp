@@ -1753,7 +1753,10 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
   if (m_pIcons == NULL)
     {
       m_pIcons = new CImageList;
-      VERIFY (m_pIcons->Create (IDR_MARGIN_ICONS, 12, 12, RGB (255, 255, 255)));
+      VERIFY (m_pIcons->Create(12, 12, ILC_COLOR32 | ILC_MASK, 0, 1));
+      CBitmap bmp;
+      bmp.LoadBitmap(IDR_MARGIN_ICONS);
+      m_pIcons->Add(&bmp, RGB(255, 255, 255));
     }
   if (nImageIndex >= 0)
     {
