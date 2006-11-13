@@ -2371,13 +2371,13 @@ BOOL CMergeDoc::IsFileChangedOnDisk(LPCTSTR szPath, DiffFileInfo &dfi,
 
 	dfi.Update(szPath);
 
-	int timeDiff = dfi.mtime - fileInfo->mtime;
-	timeDiff = abs(timeDiff);
-	if (timeDiff > tolerance ||
-		dfi.size != fileInfo->size)
+	__int64 timeDiff = dfi.mtime - fileInfo->mtime;
+	timeDiff = _abs64(timeDiff);
+	if ((timeDiff > tolerance) || (dfi.size != fileInfo->size))
 	{
 		bFileChanged = TRUE;
 	}
+
 	return bFileChanged;
 }
 
@@ -2868,8 +2868,11 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 		// Inform user that files are identical
 		// Don't show message if new buffers created
-		if (bIdentical && (m_nBufferType[0] == BUFFER_NORMAL ||
-			m_nBufferType[1] == BUFFER_NORMAL))
+		if ((TRUE == bIdentical) &&
+			((m_nBufferType[0] == BUFFER_NORMAL) ||
+			 (m_nBufferType[0] == BUFFER_NORMAL_NAMED) ||
+			 (m_nBufferType[1] == BUFFER_NORMAL) ||
+			 (m_nBufferType[1] == BUFFER_NORMAL_NAMED)))
 		{
 			ShowRescanError(nRescanResult, bBinary, bIdentical);
 		}

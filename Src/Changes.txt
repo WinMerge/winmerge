@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-13 Gal
+ BUG: [ 1594188 ] /x option does not work
+  Src: MergeDoc.cpp
+
 2006-11-11 Takashi
  PATCH: [ 1586689 ] True color bookmark icon
   Src/editlib: ccrystaltextview.cpp
