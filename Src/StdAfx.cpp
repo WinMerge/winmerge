@@ -182,3 +182,13 @@ bool IsUnicodeBuild()
 	return false;
 #endif
 }
+
+#if _MSC_VER == 1310
+/**
+* @brief Calculates a number absolute value.
+*/
+__int64 _abs64_patch(__int64 n)
+{
+	return ((n >= 0) ? n : -n);
+}
+#endif

@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-14 Gal
+ BUG: [ 1596285 ] Unresolved external symbol __abs64 with VC7.1
+  Src: StdAfx.cpp StdAfx.h
+
 2006-11-13 Gal
  BUG: [ 1594188 ] /x option does not work
   Src: MergeDoc.cpp
