@@ -1,3 +1,8 @@
+2006-11-14 Tim
+ Correct "Shell Extension in 64-bit Windows" in Known Limitations.
+  Web\2.6: limitations.php
+  Web\2.4: limitations.php
+
 2006-11-01 Tim
  PATCH: [ 1586854 ] Web: Change font to Verdana
   Web\css: all.css print.css
