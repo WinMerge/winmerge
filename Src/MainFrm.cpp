@@ -252,6 +252,8 @@ CMainFrame::~CMainFrame()
 {
 	gLog.EnableLogging(FALSE);
 
+	// destroy the reg expression list
+	FreeRegExpList();
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
 
@@ -284,6 +286,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
+	// build the initial reg expression list
+	RebuildRegExpList(FALSE);
 	GetFontProperties();
 	
 	if (!CreateToobar())
