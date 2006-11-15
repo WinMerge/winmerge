@@ -252,8 +252,6 @@ CMainFrame::~CMainFrame()
 {
 	gLog.EnableLogging(FALSE);
 
-	// destroy the reg expression list
-	FreeRegExpList();
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
 
@@ -286,8 +284,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// build the initial reg expression list
-	RebuildRegExpList(FALSE);
 	GetFontProperties();
 	
 	if (!CreateToobar())
@@ -1615,30 +1611,6 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 
 void CMainFrame::OnClose() 
 {
-	// save any dirty edit views
-	MergeDocList mergedocs;
-	GetAllMergeDocs(&mergedocs);
-	for (POSITION pos = mergedocs.GetHeadPosition(); pos; mergedocs.GetNext(pos))
-	{
-		CMergeDoc * pMergeDoc = mergedocs.GetAt(pos);
-		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-		CMergeEditView * pRight = pMergeDoc->GetRightView();
-		if ((pLeft && pLeft->IsModified())
-			|| (pRight && pRight->IsModified()))
-		{
-			// Allow user to cancel closing
-			if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
-				return;
-			else
-			{
-				// Set modified status to false so that we are not asking
-				// about saving again. 
-				pMergeDoc->m_ptBuf[0]->SetModified(FALSE);
-				pMergeDoc->m_ptBuf[1]->SetModified(FALSE);
-			}
-		}
-	}
-
 	// Save last selected filter
 	CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	m_options.SaveOption(OPT_FILEFILTER_CURRENT, filter);
@@ -2005,7 +1977,7 @@ void CMainFrame::OnToolsGeneratePatch()
 	{
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		// If there are changes in files, tell user to save them first
-		if (pMergeDoc->m_ptBuf[0]->IsModified() || pMergeDoc->m_ptBuf[0]->IsModified())
+		if (pMergeDoc->m_ptBuf[0]->IsModified() || pMergeDoc->m_ptBuf[1]->IsModified())
 		{
 			bOpenDialog = FALSE;
 			AfxMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
@@ -2579,7 +2551,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	{
 		if (m_bEscShutdown)
 		{
-			AfxGetMainWnd()->SendMessage(WM_COMMAND, ID_APP_EXIT);
+			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_APP_EXIT);
 			return TRUE;
 		}
 		else
@@ -2844,22 +2816,9 @@ void CMainFrame::OnWindowCloseAll()
 	for (POSITION pos = mergedocs.GetHeadPosition(); pos; mergedocs.GetNext(pos))
 	{
 		CMergeDoc * pMergeDoc = mergedocs.GetAt(pos);
-		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
-		CMergeEditView * pRight = pMergeDoc->GetRightView();
-		if ((pLeft && pLeft->IsModified())
-			|| (pRight && pRight->IsModified()))
-		{
-			// Allow user to cancel closing
-			if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
-				return;
-			else
-			{
-				// Set modified status to false so that we are not asking
-				// about saving again. 
-				pMergeDoc->m_ptBuf[0]->SetModified(FALSE);
-				pMergeDoc->m_ptBuf[1]->SetModified(FALSE);
-			}
-		}
+		// Allow user to cancel closing
+		if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
+			return;
 	}
 
 	DirDocList dirdocs;

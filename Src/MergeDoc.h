@@ -269,7 +269,6 @@ public:
 	public:
 	virtual BOOL OnNewDocument();
 	virtual void Serialize(CArchive& ar);
-	virtual BOOL CanCloseFrame(CFrameWnd* pFrame);
 	virtual BOOL SaveModified();
 	virtual void DeleteContents ();
 	virtual void SetTitle(LPCTSTR lpszTitle);

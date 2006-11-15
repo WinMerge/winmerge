@@ -573,10 +573,6 @@ BOOL CMergeDiffDetailView::PreTranslateMessage(MSG* pMsg)
 		CMergeDoc *pd = GetDocument();
 		if (pd->PromptAndSaveIfNeeded(TRUE))
 		{
-			// Set modified status to false so that we are not asking
-			// about saving again
-			pd->m_ptBuf[0]->SetModified(FALSE);
-			pd->m_ptBuf[1]->SetModified(FALSE);
 			AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
 			return FALSE;
 		}

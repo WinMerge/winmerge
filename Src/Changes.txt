@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-15 Kimmo
+ PATCH: [ 1596692 ] Change the way modified docs are saved to fix several issues
+  Src: MainFrm.cpp MergeDiffDetailView.cpp MergeDoc.cpp MergeDoc.h
+
 2006-11-14 Gal
  BUG: [ 1596285 ] Unresolved external symbol __abs64 with VC7.1
   Src: StdAfx.cpp StdAfx.h
