@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-17 Gal
+ PATCH: Moved white-space trimming to FileFilterHelper class
+  Src: FileFilterHelper.cpp
+
 2006-11-16 WinMerge experimental release 2.7.1.1 (SVN revision 3810)
 
 2006-11-15 Kimmo

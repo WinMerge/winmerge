@@ -368,6 +368,10 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 		return FALSE;
 	}
 
+	// Remove leading and trailing whitespace characters from the string.
+	filter.TrimLeft();
+	filter.TrimRight();
+
 	// Star means we have a file extension mask
 	if (filter[0] == '*')
 	{
