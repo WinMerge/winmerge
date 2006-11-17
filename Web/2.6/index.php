@@ -24,8 +24,9 @@
   <li>HTML-based <a href="manual/index.html">Manual</a></li>
 </ul>
 
-<h2>Screenshot</h2>
-<p><img src="images/screenshot.png" alt="Screenshot of WinMerge"></p>
+<h2>Screenshots</h2>
+<p><a href="images/screenshot.png" target="_blank"><img class="thumbnail" src="images/screenshot_small.png" alt="File Comparison" border="0"></a>
+<a href="images/foldercmp.png" target="_blank"><img class="thumbnail" src="images/foldercmp_small.png" alt="Folder Comparison Results" border="0"></a></p>
 <p>See the <a href="screenshots.php">screenshots page</a> for more screenshots.</p>
 
 <h2>Installation</h2>

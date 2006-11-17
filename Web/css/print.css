@@ -65,6 +65,11 @@ pre.code {
 	border: 1px solid black;
 }
 
+img.thumbnail {
+	padding-top: 2px;
+	padding-bottom: 3px;
+}
+
 acronym {
 	cursor: help;
 	border-bottom: 1px dotted black;

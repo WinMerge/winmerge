@@ -1,3 +1,10 @@
+2006-11-17 Tim
+ PATCH: [ 1597996 ] Web: Add screenshot thumbnails to index pages
+  Web: index.php
+  Web\2.6: index.php screenshots.php
+  Web\2.6\images: new file foldercmp_small.png screenshot_small.png
+  Web\css: all.css print.css
+
 2006-11-14 Tim
  Correct "Shell Extension in 64-bit Windows" in Known Limitations.
   Web\2.6: limitations.php

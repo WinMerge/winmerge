@@ -13,6 +13,8 @@
 <p>Folder compare shows all files and subfolders found from compared folders as list. Folder compare allows synchronising folders by copying and deleting files and subfolders. Folder compare view can be versatile customised.</p>
 <p><img src="images/filecmp_inlinediff.png" alt="Highlight Line Diff"></p>
 <p>Many times it is useful to see exact differences inside lines. WinMerge can highlight different area between lines.</p>
+<p><img src="images/screenshot.png" alt="Location Pane"></p>
+<p>Location pane is a handy side-pane showing a overall (difference) map of files compared.</p>
 <?php
   $page->printFoot();
 ?>
