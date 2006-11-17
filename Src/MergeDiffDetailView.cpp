@@ -316,16 +316,21 @@ void CMergeDiffDetailView::OnDisplayDiff(int nDiff /*=0*/)
 	ScrollToLine(m_lineBegin);
 
 	// tell the others views about this diff (no need to call UpdateSiblingScrollPos)
-	CSplitterWnd *pSplitterWnd = GetParentSplitter (this, FALSE);
-	int nRows = pSplitterWnd->GetRowCount ();
-	int nCols = pSplitterWnd->GetColumnCount ();
-	for (int nRow = 0; nRow < nRows; nRow++)
+	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+
+	// pSplitterWnd is NULL if WinMerge started minimized.
+	if (pSplitterWnd != NULL)
 	{
-		for (int nCol = 0; nCol < nCols; nCol++)
+		int nRows = pSplitterWnd->GetRowCount ();
+		int nCols = pSplitterWnd->GetColumnCount ();
+		for (int nRow = 0; nRow < nRows; nRow++)
 		{
-			CMergeDiffDetailView *pSiblingView = static_cast<CMergeDiffDetailView*>(GetSiblingView (nRow, nCol));
-			if (pSiblingView != NULL)
-				pSiblingView->OnDisplayDiff(nDiff);
+			for (int nCol = 0; nCol < nCols; nCol++)
+			{
+				CMergeDiffDetailView *pSiblingView = static_cast<CMergeDiffDetailView*>(GetSiblingView (nRow, nCol));
+				if (pSiblingView != NULL)
+					pSiblingView->OnDisplayDiff(nDiff);
+			}
 		}
 	}
 

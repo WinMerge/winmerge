@@ -3,6 +3,11 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2006-11-17 Gal
+ PATCH: [ 1590831 ] Handle minimize argument (Bug 1570351)
+  Src: MergeDiffDetailView.cpp
+  Src/Common: SplitterWndEx.cpp
+
+2006-11-17 Gal
  PATCH: [ 1598194 ] New command line parser
   Src: MainFrm.cpp Merge.cpp Merge.dsp Merge.h
   Src added files: ClearCaseCmdLineParser.cpp ClearCaseCmdLineParser.h

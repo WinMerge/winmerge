@@ -179,21 +179,27 @@ void CSplitterWndEx::EqualizeCols()
 	int i;
 	int sum = 0;
 	int hmin;
+
 	for (i = 0 ; i < m_nCols ; i++)
 	{
 		int v;
 		GetColumnInfo(i, v, hmin);
 		sum += v;
 	}
-	int vEqual = sum/m_nCols;
-	for (i = 0 ; i < m_nCols-1 ; i++)
-	{
-		SetColumnInfo(i, vEqual, hmin);
-		sum -= vEqual;
-	}
-	SetColumnInfo(i, sum, hmin);
 
-	RecalcLayout();
+	// Sum is negative if WinMerge started minimized.
+	if (sum > 0)
+	{
+		int vEqual = sum/m_nCols;
+		for (i = 0 ; i < m_nCols-1 ; i++)
+		{
+			SetColumnInfo(i, vEqual, hmin);
+			sum -= vEqual;
+		}
+		SetColumnInfo(i, sum, hmin);
+
+		RecalcLayout();
+	}
 }
 
 
