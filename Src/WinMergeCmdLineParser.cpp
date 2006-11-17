@@ -27,7 +27,7 @@
 */
 
 // RCS ID line follows -- this is updated by CVS
-// $Id: WinMergeCmdLineParser.cpp $
+// $Id$
 
 #include "StdAfx.h"
 
