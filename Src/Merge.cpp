@@ -48,6 +48,8 @@
 #include "ProjectFile.h"
 #include "MergeEditView.h"
 #include "LanguageSelect.h"
+#include "OptionsDef.h"
+#include "MergeCmdLineInfo.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -90,40 +92,21 @@ extern CLogFile gLog;
 
 static void AddEnglishResourceHook();
 
-class CMergeCmdLineInfo : public CCommandLineInfo
+/**
+* @brief Mapping from command line argument name (eg, ignorews) to WinMerge
+* option name (eg, Settings/IgnoreSpace).
+*
+* These arguments take an optional colon and number, like so:
+*
+*  "/ignoreblanklines"  (makes WinMerge ignore blank lines)
+*  "/ignoreblanklines:1"  (makes WinMerge ignore blank lines)
+*  "/ignoreblanklines:0"  (makes WinMerge not ignore blank lines)
+*/
+struct ArgSetting
 {
-	public:
-
-		CMergeCmdLineInfo();
-
-		~CMergeCmdLineInfo() { }
-
-		virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
-
-	public:
-
-		BOOL m_bSingleInstance; /**< Allow only one instance of WinMerge executable. */
+	LPCTSTR CmdArgName;
+	LPCTSTR WinMergeOptionName;
 };
-
-CMergeCmdLineInfo::CMergeCmdLineInfo() : CCommandLineInfo(),
-	m_bSingleInstance(FALSE)
-{
-
-}
-
-void CMergeCmdLineInfo::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast)
-{
-	// Give our base class a chance to figure out what is the parameter.
-	CCommandLineInfo::ParseParam(pszParam, bFlag, bLast);
-
-	if (TRUE == bFlag)
-	{
-		if (pszParam[0] == _T('s'))
-		{
-			m_bSingleInstance = TRUE;
-		}
-	}
-}
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
@@ -132,11 +115,9 @@ CMergeApp::CMergeApp() :
   m_bNeedIdleTimer(FALSE)
 , m_pDiffTemplate(0)
 , m_pDirTemplate(0)
-// FileFilterHelper m_globalFileFilter
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
-, m_bNoninteractive(false)
-, m_bShowUsage(false)
+, m_bNonInteractive(false)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -195,7 +176,7 @@ BOOL CMergeApp::InitInstance()
 #endif
 
 	// Parse command-line arguments.
-	CMergeCmdLineInfo cmdInfo;
+	MergeCmdLineInfo cmdInfo(*__targv);
 	ParseCommandLine(cmdInfo);
 
 	// Set default codepage
@@ -206,7 +187,7 @@ BOOL CMergeApp::InitInstance()
 	SetRegistryKey(_T("Thingamahoochie"));
 
 	BOOL bSingleInstance = GetProfileInt(_T("Settings"), _T("SingleInstance"), FALSE) ||
-		(TRUE == cmdInfo.m_bSingleInstance);
+		(true == cmdInfo.m_bSingleInstance);
 	
 	HANDLE hMutex = NULL;
 	if (bSingleInstance)
@@ -309,27 +290,16 @@ BOOL CMergeApp::InitInstance()
 	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
 	pMainFrame->MDISetMenu(pNewMenu, NULL);
 
-	// Command line parsing is handled not by MFC wizard's CComandLineInfo
-	// but rather by ParseArgsAndDoOpen below
-
 	//Track it so any other instances can find it.
 	instanceChecker.TrackFirstInstanceRunning();
 
-	// The main window has been initialized, so show and update it.
-	//pMainFrame->ShowWindow(m_nCmdShow);
-	pMainFrame->ActivateFrame(m_nCmdShow);
+	// The main window has been initialized, so activate and update it.
+	pMainFrame->ActivateFrame(cmdInfo.m_nCmdShow);
 	pMainFrame->UpdateWindow();
 
 	// Since this function actually opens paths for compare it must be
 	// called after initializing CMainFrame!
-	ParseArgsAndDoOpen(__argc, __targv, pMainFrame);
-
-	if (m_bShowUsage)
-	{
-		CString s = GetUsageDescription();
-		AfxMessageBox(s, MB_ICONINFORMATION);
-		m_bNoninteractive = false;
-	}
+	ParseArgsAndDoOpen(cmdInfo, pMainFrame);
 
 	if (hMutex)
 	{
@@ -337,13 +307,13 @@ BOOL CMergeApp::InitInstance()
 		CloseHandle(hMutex);
 	}
 
-	if (m_bNoninteractive)
+	if (m_bNonInteractive)
 	{
 		DirViewList DirViews;
 		pMainFrame->GetDirViews(&DirViews);
 		if (DirViews.GetCount() == 1)
 		{
-			CDirView * pDirView = DirViews.RemoveHead();
+			CDirView *pDirView = DirViews.RemoveHead();
 			CDirFrame *pf = pDirView->GetParentFrame();
 		}
 		pMainFrame->PostMessage(WM_CLOSE, 0, 0);
@@ -595,7 +565,7 @@ int CMergeApp::DoMessageBox( LPCTSTR lpszPrompt, UINT nType, UINT nIDPrompt )
 	// do not show again checkbox, and implements it on subsequent calls
 	// (if caller set the style)
 
-	if (m_bNoninteractive)
+	if (m_bNonInteractive)
 		return IDCANCEL;
 
 	// Create the message box dialog.
@@ -644,6 +614,109 @@ void CMergeApp::InitializeFileFilters()
 		m_globalFileFilter.SetUserFilterPath(filterPath);
 	}
 	m_globalFileFilter.LoadAllFileFilters();
+}
+
+/** @brief Read command line arguments and open files for comparison.
+ *
+ * The name of the function is a legacy code from the time that this function
+ * actually parsed the command line. Today the parsing is done using the
+ * MergeCmdLineInfo class.
+ *
+ */
+void CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
+{
+	m_bNonInteractive = cmdInfo.m_bNonInteractive;
+
+	SetOptionsFromCmdLine(cmdInfo);
+
+	// Do not load or remember options (preferences).
+	if (cmdInfo.m_bNoPrefs)
+	{
+		// Turn off serializing to registry.
+		GetOptionsMgr()->SetSerializing(false);
+		// Load all default settings.
+		pMainFrame->ResetOptions();
+	}
+
+	// Set the global file filter.
+	if (!cmdInfo.m_sFileFilter.IsEmpty())
+	{
+		m_globalFileFilter.SetFilter(cmdInfo.m_sFileFilter);
+	}
+
+	// Unless the user has requested to see WinMerge's usage open files for
+	// comparison.
+	if (cmdInfo.m_bShowUsage)
+	{
+		CString s = GetUsageDescription();
+		AfxMessageBox(s, MB_ICONINFORMATION);
+	}
+	else
+	{
+		// Set the required information we need from the command line:
+
+		pMainFrame->m_bClearCaseTool = cmdInfo.m_bClearCaseTool;
+		pMainFrame->m_bExitIfNoDiff = cmdInfo.m_bExitIfNoDiff;
+		pMainFrame->m_bEscShutdown = cmdInfo.m_bEscShutdown;
+
+		pMainFrame->m_strSaveAsPath = _T("");
+
+		pMainFrame->m_strLeftDesc = cmdInfo.m_sLeftDesc;
+		pMainFrame->m_strRightDesc = cmdInfo.m_sRightDesc;
+
+		if (cmdInfo.m_nFiles > 2)
+		{
+			pMainFrame->m_strSaveAsPath = cmdInfo.m_Files[2];
+			pMainFrame->DoFileOpen(cmdInfo.m_Files[0], cmdInfo.m_Files[1],
+				cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+		}
+		else if (cmdInfo.m_nFiles > 1)
+		{
+			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
+			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
+			pMainFrame->DoFileOpen(cmdInfo.m_Files[0], cmdInfo.m_Files[1],
+				cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+		}
+		else if (cmdInfo.m_nFiles == 1)
+		{
+			CString sFilepath = cmdInfo.m_Files[0];
+			if (IsProjectFile(sFilepath))
+			{
+				LoadAndOpenProjectFile(sFilepath);
+			}
+			else
+			{
+				cmdInfo.m_dwRightFlags = FFILEOPEN_NONE;
+				pMainFrame->DoFileOpen(sFilepath, _T(""),
+					cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+			}
+		}
+	}
+}
+
+/** @brief Handle all command line arguments which are mapped to WinMerge options. */
+void CMergeApp::SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo)
+{
+	static const ArgSetting f_ArgSettings[] = 
+	{
+		{ _T("ignorews"), OPT_CMP_IGNORE_WHITESPACE },
+		{ _T("ignoreblanklines"), OPT_CMP_IGNORE_BLANKLINES },
+		{ _T("ignorecase"), OPT_CMP_IGNORE_CASE },
+		{ _T("ignoreeol"), OPT_CMP_IGNORE_EOL }
+	};
+
+	for (int i = 0; i < countof(f_ArgSettings); ++i)
+	{
+		const ArgSetting& argSetting = f_ArgSettings[i];
+		LPCTSTR szCmdArgName = argSetting.CmdArgName;
+		LPCTSTR szOptionName = argSetting.WinMergeOptionName;
+		CString	sValue;
+
+		if (cmdInfo.m_Settings.Lookup(szCmdArgName, sValue))
+		{
+			GetOptionsMgr()->CoerceAndSaveOption(szOptionName, sValue);
+		}
+	}
 }
 
 /** @brief Open help from mainframe when user presses F1*/
@@ -740,4 +813,33 @@ WORD CMergeApp::GetLangId() const
 void CMergeApp::ReloadMenu()
 {
 	m_pLangDlg->ReloadMenu();
+}
+
+/** @brief Wrap one line of cmdline help in appropriate whitespace */
+static CString CmdlineOption(int idres)
+{
+	CString str = LoadResString(idres) + _T(" \n");
+	return str;
+}
+
+/** @brief Put together string of all cmdline arguments */
+CString CMergeApp::GetUsageDescription()
+{
+	CString str;
+	str += LoadResString(IDS_CMDLINE_SYNTAX);
+	str += _T(" [/f ") + LoadResString(IDS_CMDLINE_SYNTAX_ARG_FILTER) + _T("]");
+	str += _T(" ");
+	str += LoadResString(IDS_CMDLINE_SYNTAX_ARGS);
+	str += _T("\n\n") + LoadResString(IDS_CMDLINE_WHERE) + _T(" \n");
+	str += CmdlineOption(IDS_CMDLINE_HELP);
+	str += CmdlineOption(IDS_CMDLINE_RECURSIVE);
+	str += CmdlineOption(IDS_CMDLINE_ESCKEY);
+	str += CmdlineOption(IDS_CMDLINE_FILEMASK);
+	str += CmdlineOption(IDS_CMDLINE_FASTCLOSE);
+	str += CmdlineOption(IDS_CMDLINE_SINGLE_INST);
+	str += CmdlineOption(IDS_CMDLINE_LEFTPATH);
+	str += CmdlineOption(IDS_CMDLINE_RIGHTPATH);
+	str += CmdlineOption(IDS_CMDLINE_OUTPUTPATH);
+	str += _T("\n\n") + LoadResString(IDS_CMDLINE_SEEMANUAL);
+	return str;
 }

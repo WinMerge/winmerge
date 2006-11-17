@@ -205,7 +205,7 @@ SOURCE=.\ChildFrm.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\CmdArgs.cpp
+SOURCE=.\ClearCaseCmdLineParser.cpp
 # End Source File
 # Begin Source File
 
@@ -537,7 +537,7 @@ SOURCE=.\Merge.rc
 # End Source File
 # Begin Source File
 
-SOURCE=.\MergeArgs.cpp
+SOURCE=.\MergeCmdLineInfo.cpp
 # End Source File
 # Begin Source File
 
@@ -933,6 +933,10 @@ SOURCE=.\Common\WindowStyle.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\WinMergeCmdLineParser.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\WMGotoDlg.cpp
 # End Source File
 # End Group
@@ -973,7 +977,11 @@ SOURCE=.\ChildFrm.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\CmdArgs.h
+SOURCE=.\ClearCaseCmdLineParser.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CmdLineParser.h
 # End Source File
 # Begin Source File
 
@@ -1234,6 +1242,10 @@ SOURCE=.\markdown.h
 # Begin Source File
 
 SOURCE=.\Merge.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MergeCmdLineInfo.h
 # End Source File
 # Begin Source File
 
@@ -1510,6 +1522,10 @@ SOURCE=.\Common\WinClasses.h
 # Begin Source File
 
 SOURCE=.\Common\WindowStyle.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\WinMergeCmdLineParser.h
 # End Source File
 # Begin Source File
 

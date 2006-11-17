@@ -42,6 +42,7 @@ struct FileFilter;
 class CAssureScriptsForThread;
 class CMainFrame;
 class CLanguageSelect;
+class MergeCmdLineInfo;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -86,13 +87,8 @@ protected:
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
-
-	// In MergeArgs.cpp
-	void ParseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles, BOOL & recurse,
-		DWORD & dwLeftFlags, DWORD & dwRightFlags, CString & prediffer);
- 	void ParseCCaseArgs(int argc, TCHAR *argv[], CMainFrame* pMainFrame, CStringArray & files, UINT & nFiles,
- 		DWORD & dwLeftFlags, DWORD & dwRightFlags);
-	void ParseArgsAndDoOpen(int argc, TCHAR *argv[], CMainFrame* pMainFrame);
+	void ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
+	void SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo);
 	CString GetUsageDescription();
 	// End MergeArgs.cpp
 
@@ -111,8 +107,7 @@ protected:
 private:
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
-	bool m_bNoninteractive;
-	bool m_bShowUsage;
+	bool m_bNonInteractive;
 };
 
 extern CMergeApp theApp;

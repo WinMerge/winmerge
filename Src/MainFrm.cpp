@@ -69,6 +69,7 @@
 #include "PreferencesDlg.h"
 #include "AppSerialize.h"
 #include "ProjectFilePathsDlg.h"
+#include "MergeCmdLineInfo.h"
 
 /*
  One source file must compile the stubs for multimonitor
@@ -384,7 +385,7 @@ static void FixupDebugMenu(BCMenu * menu)
 	// Finds debug menu by looking for a submenu which
 	//  starts with item ID_DEBUG_LOADCONFIG
 
-	for (int i=0; i< menu->GetMenuItemCount(); ++i)
+	for (UINT i = 0; i < menu->GetMenuItemCount(); ++i)
 	{
 		if (menu->GetSubMenu(i)->GetMenuItemID(0) == ID_DEBUG_LOADCONFIG)
 		{
@@ -2697,10 +2698,10 @@ void CMainFrame::OnFileOpenproject()
 }
 
 /**
- * @brief Receive commandline from another instance.
+ * @brief Receive command line from another instance.
  *
- * This function receives commandline when only single-instance
- * is allowed. New instance tried to start sends its commandline
+ * This function receives command line when only single-instance
+ * is allowed. New instance tried to start sends its command line
  * to here so we can open paths it was meant to.
  */
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
@@ -2710,7 +2711,7 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 	int argc = pCopyData->dwData;
 	TCHAR **argv = new (TCHAR *[argc]);
 	USES_CONVERSION;
-	
+
 	for (int i = 0; i < argc; i++)
 	{
 		argv[i] = new TCHAR[lstrlenW(p) * (sizeof(WCHAR)/sizeof(TCHAR)) + 1];
@@ -2726,14 +2727,30 @@ LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 
 LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
 {
-	int argc = (int)wParam;
-	TCHAR **argv = (TCHAR **)lParam;
+	// MFC's ParseCommandLine method is working with __argc and __targv
+	// variables. We need to send MergeCmdLineInfo object rather than
+	// passing the command line as string. Until we do, we temporary
+	// change these variable values and restore then after parsing.
 
-	theApp.ParseArgsAndDoOpen(argc, argv, this);
-	
-	for (int i = 0; i < argc; i++)
-		delete[] argv[i];
-	delete [] argv;
+	int argc = __argc;
+	TCHAR **argv = __targv;
+
+	__argc = wParam;
+	__targv = reinterpret_cast<TCHAR **>(lParam);
+
+	MergeCmdLineInfo cmdInfo(*__targv);
+	theApp.ParseCommandLine(cmdInfo);
+	theApp.ParseArgsAndDoOpen(cmdInfo, this);
+
+	// Delete memrory allocated in OnCopyData method.
+	for (int i = 0; i < argc; ++i)
+	{
+		delete[] __targv[i];
+	}
+	delete __targv;
+
+	__argc = argc;
+	__targv = argv;
 
 	return TRUE;
 }

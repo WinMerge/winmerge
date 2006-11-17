@@ -3,6 +3,14 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2006-11-17 Gal
+ PATCH: [ 1598194 ] New command line parser
+  Src: MainFrm.cpp Merge.cpp Merge.dsp Merge.h
+  Src added files: ClearCaseCmdLineParser.cpp ClearCaseCmdLineParser.h
+   CmdLineParser.h MergeCmdLineInfo.cpp MergeCmdLineInfo.h
+   WinMergeCmdLineParser.cpp WinMergeCmdLineParser.h
+  Src removed files: CmdArgs.cpp CmdArgs.h MergeArgs.cpp
+
+2006-11-17 Gal
  PATCH: Moved white-space trimming to FileFilterHelper class
   Src: FileFilterHelper.cpp
 
