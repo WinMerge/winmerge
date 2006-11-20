@@ -1,3 +1,7 @@
+2006-11-20 Tim
+ PATCH: [ 1599401 ] Manual: Use bold text for questions (FAQ)
+  Manual/css: all.css help.css print.css
+
 2006-11-07 Tim
  PATCH: [ 1592234 ] Manual: Nicer Shortcut keys tables
   Manual: Shortcut_keys.xml
