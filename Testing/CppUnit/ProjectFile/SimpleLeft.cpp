@@ -22,6 +22,9 @@ void SimpleLeft::setUp()
 {
 	// Add possible initializations here
 	m_pProjectFile = new ProjectFile;
+
+	CString sError;
+	BOOL success = m_pProjectFile->Read(FileName, &sError);
 }
 
 /** @brief Testcase cleanup code. */
@@ -38,6 +41,13 @@ void SimpleLeft::Load()
 {
 	CString sError;
 	
+	// setUp already created the project file for us, but this
+	// test is for testing creation and loading..
+	if (m_pProjectFile)
+		delete m_pProjectFile;
+	m_pProjectFile = new ProjectFile;
+	CPPUNIT_ASSERT(m_pProjectFile);
+
 	BOOL success = m_pProjectFile->Read(FileName, &sError);
 
 	// Must succeed
@@ -94,8 +104,9 @@ void SimpleLeft::GetSubfolders()
 	BOOL bHasSubfolders = m_pProjectFile->HasSubfolders();
 	CPPUNIT_ASSERT(bHasSubfolders == FALSE);
 
+	// Returns -1 if not set
 	int subfolders = m_pProjectFile->GetSubfolders();
-	CPPUNIT_ASSERT(subfolders == 0);
+	CPPUNIT_ASSERT(subfolders == -1);
 }
 
 /**

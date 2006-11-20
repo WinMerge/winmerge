@@ -65,7 +65,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "..\..\..\Externals\cppunit\include" /I "..\..\..\Externals\expat\lib" /I "..\..\..\Externals\scew" /I "..\..\..\Src" /I "..\..\..\Src\Common" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm- /GR /GX /ZI /Od /I "..\..\..\Externals\cppunit\include" /I "..\..\..\Externals\expat\lib" /I "..\..\..\Externals\scew" /I "..\..\..\Src" /I "..\..\..\Src\Common" /D "WIN32" /D "_DEBUG" /D "_CONSOLE" /D "_MBCS" /D "_AFXDLL" /FR /FD /GZ /c
 # SUBTRACT CPP /YX /Yc /Yu
 # ADD BASE RSC /l 0x40b /d "_DEBUG" /d "_AFXDLL"
 # ADD RSC /l 0x40b /d "_DEBUG" /d "_AFXDLL"

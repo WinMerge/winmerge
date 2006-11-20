@@ -3,6 +3,12 @@ Testing\selftest\Changes.txt
 2006-11-20 Kimmo
  Add unit tests for projectfiles
   Add folder: CppUnit/ProjectFile and its contents
+ Few fixes to the tests (need to create the project file for every test)
+  CppUnit/ProjectFile: LeftAndRight.cpp LeftAndRightNonRecursive.cpp LeftAndRightRecursive.cpp
+   PathsAndFilter.cpp ProjectFile.dsp ProjectFileTesting.cpp SimpleLeft.cpp SimpleRight.cpp
+   StdAfx.h
+  CppUnit/ProjectFile/TestData: LeftAndRightNonRecursive.WinMerge
+   LeftAndRightRecursive.WinMerge
 
 2006-10-31 Kimmo
  Cleanup example test, add more simple string compare tests

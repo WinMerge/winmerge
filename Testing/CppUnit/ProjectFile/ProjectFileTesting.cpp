@@ -63,6 +63,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 		outputter.write();
 	}
 
+	// Wait for user...
+	getc(stdin);
+
 	return nRetCode;
 }
 
