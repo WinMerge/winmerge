@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-20 Kimmo
+ BUG: [ 1599631 ] WinMerge 2.7.1.1 ignores left dir in project file
+  Src: ProjectFile.cpp
+
 2006-11-17 Gal
  PATCH: [ 1590831 ] Handle minimize argument (Bug 1570351)
   Src: MergeDiffDetailView.cpp

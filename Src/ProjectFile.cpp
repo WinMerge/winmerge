@@ -143,7 +143,7 @@ void ProjectFile::GetPathsData(scew_element * parent)
 		if (left)
 		{
 			LPCTSTR path = NULL;
-			path = scew_element_contents(right);
+			path = scew_element_contents(left);
 			m_leftFile = path;
 		}
 		if (right)
