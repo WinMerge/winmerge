@@ -1,5 +1,9 @@
 Testing\selftest\Changes.txt
 
+2006-11-20 Kimmo
+ Add unit tests for projectfiles
+  Add folder: CppUnit/ProjectFile and its contents
+
 2006-10-31 Kimmo
  Cleanup example test, add more simple string compare tests
   StringDifferencing: StringDifferencing.dsp TestCase1.cpp TestCase1.h
