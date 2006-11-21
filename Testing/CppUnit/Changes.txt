@@ -1,5 +1,10 @@
 Testing\selftest\Changes.txt
 
+2006-11-21 Kimmo
+ Fix string differencing cases, add few new cases
+  StringDifferencing: DifferentStrings1.cpp DifferentStrings1.h StringDifferencing.cpp
+   TestCase1.cpp
+
 2006-11-20 Kimmo
  Add unit tests for projectfiles
   Add folder: CppUnit/ProjectFile and its contents
