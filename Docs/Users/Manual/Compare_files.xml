@@ -7,6 +7,12 @@
   WinMerge without needing to open files to external editor program or
   devepment environment.</para>
 
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="screenshots/filecomp1.png" format="PNG" />
+    </imageobject>
+  </mediaobject>
+
   <para>WinMerge editor is not comparable to specialized editor programs, but
   it has basic features like
   <guilabel>Undo</guilabel>/<guilabel>Redo</guilabel>,
@@ -20,12 +26,6 @@
     <para>If <guilabel>Automatic rescan</guilabel> is not enabled manual
     refresh is recommended after editing.</para>
   </tip>
-
-  <mediaobject>
-    <imageobject>
-      <imagedata fileref="screenshots/filecomp1.png" format="PNG" />
-    </imageobject>
-  </mediaobject>
 
   <sect2>
     <title>Showing the Differences</title>

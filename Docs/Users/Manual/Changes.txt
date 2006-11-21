@@ -1,6 +1,8 @@
 2006-11-21 Tim
  PATCH: [ 1398013 ] Add availability of binary viewing/merging to FAQ
   Manual: Faq.xml
+ Move "filecomp1.png" screenshot after the first paragraph. This looks better and more consistent.
+  Manual: Compare_files.xml
 
 2006-11-20 Tim
  PATCH: [ 1599401 ] Manual: Use bold text for questions (FAQ)
