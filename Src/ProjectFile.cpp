@@ -41,7 +41,11 @@ const TCHAR Right_ro_element_name[] = _T("right-readonly");
  * @brief Standard constructor.
  */
  ProjectFile::ProjectFile()
-: m_subfolders(-1)
+: m_bHasLeft(FALSE)
+, m_bHasRight(FALSE)
+, m_bHasFilter(FALSE)
+, m_bHasSubfolders(FALSE)
+, m_subfolders(-1)
 , m_bLeftReadOnly(FALSE)
 , m_bRightReadOnly(FALSE)
 {
@@ -72,8 +76,10 @@ BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
 			scew_element * root = GetRootElement(tree);
 			if (root)
 			{
-				loaded = TRUE;
-				GetPathsData(root);
+				// Currently our content is paths, so expect
+				// having paths in valid project file!
+				if (GetPathsData(root))
+					loaded = TRUE;
 			};
 		}
 		scew_tree_free(tree);
@@ -114,9 +120,11 @@ scew_element* ProjectFile::GetRootElement(scew_tree * tree)
  * @brief Reads the paths data from the XML data.
  * This function reads the paths data inside given element in XML data.
  * @param [in] parent Parent element for the paths data.
+ * @return TRUE if pathdata was found from the file.
  */
-void ProjectFile::GetPathsData(scew_element * parent)
+BOOL ProjectFile::GetPathsData(scew_element * parent)
 {
+	BOOL bFoundPaths = FALSE;
 	scew_element *paths = NULL;
 
 	if (parent != NULL)
@@ -126,6 +134,7 @@ void ProjectFile::GetPathsData(scew_element * parent)
 
 	if (paths != NULL)
 	{
+		bFoundPaths = TRUE;
 		scew_element *left = NULL;
 		scew_element *right = NULL;
 		scew_element *filter = NULL;
@@ -145,24 +154,28 @@ void ProjectFile::GetPathsData(scew_element * parent)
 			LPCTSTR path = NULL;
 			path = scew_element_contents(left);
 			m_leftFile = path;
+			m_bHasLeft = TRUE;
 		}
 		if (right)
 		{
 			LPCTSTR path = NULL;
 			path = scew_element_contents(right);
 			m_rightFile = path;
+			m_bHasRight = TRUE;
 		}
 		if (filter)
 		{
 			LPCTSTR filtername = NULL;
 			filtername = scew_element_contents(filter);
 			m_filter = filtername;
+			m_bHasFilter = TRUE;
 		}
 		if (subfolders)
 		{
 			LPCTSTR folders = NULL;
 			folders = scew_element_contents(subfolders);
 			m_subfolders = _ttoi(folders);
+			m_bHasSubfolders = TRUE;
 		}
 		if (left_ro)
 		{
@@ -177,6 +190,7 @@ void ProjectFile::GetPathsData(scew_element * parent)
 			m_bRightReadOnly = (_ttoi(readonly) != 0);
 		}
 	}
+	return bFoundPaths;
 }
 
 /** 
@@ -309,35 +323,39 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 }
 
 /** 
- * @brief Returns if left path is defined.
+ * @brief Returns if left path is defined in project file.
+ * @return TRUE if project file has left path.
  */
 BOOL ProjectFile::HasLeft() const
 {
-	return !m_leftFile.IsEmpty();
+	return m_bHasLeft;
 }
 
 /** 
- * @brief Returns if right path is defined.
+ * @brief Returns if right path is defined in project file.
+ * @return TRUE if project file has right path.
  */
 BOOL ProjectFile::HasRight() const
 {
-	return !m_rightFile.IsEmpty();
+	return m_bHasRight;
 }
 
 /** 
- * @brief Returns if filter is defined.
+ * @brief Returns if filter is defined in project file.
+ * @return TRUE if project file has filter.
  */
 BOOL ProjectFile::HasFilter() const
 {
-	return !m_filter.IsEmpty();
+	return m_bHasFilter;
 }
 
 /** 
- * @brief Returns if subfolder is included.
+ * @brief Returns if subfolder is defined in projectfile.
+ * @return TRUE if project file has subfolder definition.
  */
 BOOL ProjectFile::HasSubfolders() const
 {
-	return (m_subfolders != -1);
+	return m_bHasSubfolders;
 }
 
 /** 

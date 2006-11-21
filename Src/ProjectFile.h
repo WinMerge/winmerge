@@ -30,9 +30,9 @@ const TCHAR PROJECTFILE_EXT[] = _T("WinMerge");
 /**
  * @brief Class for handling project files.
  *
- * This class handles project files, reading and saving projectdata from
- * XML files. Jochen's Markdown -parser (@s markdown.h) is used. We use UTF-8
- * encoding so Unicode paths are supported.
+ * This class loads and saves project files. Expat parser and SCEW wrapper for
+ * expat are used for XML parsing. We use UTF-8 encoding so Unicode paths are
+ * supported.
  */
 class ProjectFile
 {
@@ -62,15 +62,19 @@ public:
 
 protected:
 	scew_element* GetRootElement(scew_tree * tree);
-	void GetPathsData(scew_element * parent);
+	BOOL GetPathsData(scew_element * parent);
 
 	scew_element* AddPathsElement(scew_element * parent);
 	BOOL AddPathsContent(scew_element * parent);
 
 private:
+	BOOL m_bHasLeft; /**< Has left path? */
 	CString m_leftFile; /**< Left path */
+	BOOL m_bHasRight; /**< Has right path? */
 	CString m_rightFile; /**< Right path */
+	BOOL m_bHasFilter; /**< Has filter? */
 	CString m_filter; /**< Filter name or mask */
+	BOOL m_bHasSubfolders; /**< Has subfolders? */
 	int m_subfolders; /**< Are subfolders included (recursive scan) */
 	BOOL m_bLeftReadOnly; /**< Is left path opened as read-only */
 	BOOL m_bRightReadOnly; /**< Is right path opened as read-only */

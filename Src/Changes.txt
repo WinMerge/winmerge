@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-21 Kimmo
+ PATCH: [ 1600000 ] Fix project file Has*() functions
+  Src: ProjectFile.cpp ProjectFile.h
+
 2006-11-20 Kimmo
  BUG: [ 1599631 ] WinMerge 2.7.1.1 ignores left dir in project file
   Src: ProjectFile.cpp
