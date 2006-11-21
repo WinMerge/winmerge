@@ -196,7 +196,8 @@
         <answer>
           <para>Windows registry files
           (<filename><replaceable>*</replaceable>.reg</filename>) are Unicode
-          files (UTF-16 or UCS-2) -- see previous answer.</para>
+          files (UTF-16 or UCS-2) -- see the question "<link linkend="qmergebinaryfiles">I
+          cannot merge binary files?</link>" for a workaround.</para>
         </answer>
       </qandaentry>
 
@@ -212,23 +213,23 @@
           files. You can try to remove those zero-bytes from files.
           Alternatively, you may open the files with the DisplayBinaryFiles
           plugin. This plugin allows viewing binary files, but not editing
-          them. If you have a very recent version of WinMerge (2.5.0.4+), you
-          may use the new EditBinaryFiles plugin, which does allow editing
+          them. If you have a very recent version of WinMerge (2.6.0 and newer),
+          you may use the new EditBinaryFiles plugin, which does allow editing
           binary files (using an escape scheme for representing non-printable
           characters).</para>
         </answer>
       </qandaentry>
 
       <qandaentry>
-        <question>
+        <question id="qmergebinaryfiles">
           <para>I cannot merge binary files?</para>
         </question>
 
         <answer>
-          <para>A plugin to merge binary files has only recently been added to
-          WinMerge, and is not in any release before 2.5.0.4. Therefore,
-          WinMerge can only show if binary files are identical or
-          different.</para>
+          <para>WinMerge 2.4.0 (and newer) includes a binary file
+          viewer (plugin <filename>DisplayBinaryFiles.dll</filename>).
+          WinMerge 2.6.0 (and newer) includes a binary file
+          editor (plugin <filename>EditBinaryFiles.dll</filename>).</para>
         </answer>
       </qandaentry>
     </qandaset>
