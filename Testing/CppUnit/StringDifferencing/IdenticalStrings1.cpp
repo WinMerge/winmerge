@@ -50,6 +50,7 @@ void IdenticalStrings1::IdenticalWord1()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Ignore case, all whitespaces, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
@@ -57,6 +58,7 @@ void IdenticalStrings1::IdenticalWord1()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces change, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_CHANGE, 0, false,
 		&diffs);
@@ -64,6 +66,7 @@ void IdenticalStrings1::IdenticalWord1()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces ignore, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_ALL, 0, false,
 		&diffs);
@@ -92,6 +95,7 @@ void IdenticalStrings1::IdenticalWord2()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Ignore case, all whitespaces, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		false, WHITESPACE_COMPARE_ALL, 1, false,
 		&diffs);
@@ -99,6 +103,7 @@ void IdenticalStrings1::IdenticalWord2()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces change, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_CHANGE, 1, false,
 		&diffs);
@@ -106,6 +111,7 @@ void IdenticalStrings1::IdenticalWord2()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces ignore, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_ALL, 1, false,
 		&diffs);
@@ -134,6 +140,7 @@ void IdenticalStrings1::IdenticalWord3()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Ignore case, all whitespaces, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		false, WHITESPACE_COMPARE_ALL, 0, true,
 		&diffs);
@@ -141,6 +148,7 @@ void IdenticalStrings1::IdenticalWord3()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces change, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_CHANGE, 0, true,
 		&diffs);
@@ -148,6 +156,7 @@ void IdenticalStrings1::IdenticalWord3()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces ignore, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_ALL, 0, true,
 		&diffs);
@@ -176,6 +185,7 @@ void IdenticalStrings1::IdenticalWord4()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Ignore case, all whitespaces, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		false, WHITESPACE_COMPARE_ALL, 1, true,
 		&diffs);
@@ -183,6 +193,7 @@ void IdenticalStrings1::IdenticalWord4()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces change, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_CHANGE, 1, true,
 		&diffs);
@@ -190,6 +201,7 @@ void IdenticalStrings1::IdenticalWord4()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces ignore, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_ALL, 1, true,
 		&diffs);

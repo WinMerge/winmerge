@@ -46,6 +46,7 @@ void TestCase1::Identical1()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Ignore case, all whitespaces, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		false, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
@@ -53,6 +54,7 @@ void TestCase1::Identical1()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces change, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_CHANGE, 0, false,
 		&diffs);
@@ -60,6 +62,7 @@ void TestCase1::Identical1()
 	CPPUNIT_ASSERT(count == 0);
 
 	// Compare case, whitespaces ignore, whitespace break
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_IGNORE_ALL, 0, false,
 		&diffs);
@@ -90,6 +93,7 @@ void TestCase1::Difference1()
 	diffs.RemoveAll();
 
 	// Check strings with different settings
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
@@ -97,9 +101,10 @@ void TestCase1::Difference1()
 	CPPUNIT_ASSERT(count == 1);
 	diffs.RemoveAll();
 
+	// Check strings with different settings
 	string1 = _T("tesT");
 	string2 = _T("test");
-	// Check strings with different settings
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
@@ -128,10 +133,10 @@ void TestCase1::Difference2()
 		&diffs);
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 0);
-	diffs.RemoveAll();
 
 	// This fails? Why?
 	// Shouldn't it it find two differences? But it founds only one?
+	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
