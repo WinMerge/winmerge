@@ -1,3 +1,7 @@
+2006-11-21 Kimmo
+ PATCH: [ 1591266 ] Remove unused reg files from installer folder
+  InnoSetup removed files: TortoiseSVN.reg Visual SourceSafe Support.reg
+
 2006-11-10 Kimmo
  PATCH: [ 1593753 ] Add PCRE dll to installer
   InnoSetup: WinMerge.iss
