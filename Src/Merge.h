@@ -87,7 +87,7 @@ protected:
 
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	void InitializeFileFilters();
-	void ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
+	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	void SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo);
 	CString GetUsageDescription();
 	// End MergeArgs.cpp

@@ -179,6 +179,12 @@ BOOL CMergeApp::InitInstance()
 	MergeCmdLineInfo cmdInfo(*__targv);
 	ParseCommandLine(cmdInfo);
 
+	// If paths were given to commandline we consider this being an invoke from
+	// commandline (from other application, shellextension etc).
+	BOOL bCommandLineInvoke = FALSE;
+	if (cmdInfo.m_nFiles > 0)
+		bCommandLineInvoke = TRUE;
+
 	// Set default codepage
 	DirScan_InitializeDefaultCodepage();
 
@@ -299,7 +305,9 @@ BOOL CMergeApp::InitInstance()
 
 	// Since this function actually opens paths for compare it must be
 	// called after initializing CMainFrame!
-	ParseArgsAndDoOpen(cmdInfo, pMainFrame);
+	BOOL bContinue = TRUE;
+	if (ParseArgsAndDoOpen(cmdInfo, pMainFrame) == FALSE && bCommandLineInvoke)
+		bContinue = FALSE;
 
 	if (hMutex)
 	{
@@ -316,10 +324,16 @@ BOOL CMergeApp::InitInstance()
 			CDirView *pDirView = DirViews.RemoveHead();
 			CDirFrame *pf = pDirView->GetParentFrame();
 		}
+		bContinue = FALSE;
+	}
+
+	// If user wants to cancel the compare, close WinMerge
+	if (bContinue == FALSE)
+	{
 		pMainFrame->PostMessage(WM_CLOSE, 0, 0);
 	}
 
-	return TRUE;
+	return bContinue;
 }
 
 // App command to run the dialog
@@ -621,10 +635,13 @@ void CMergeApp::InitializeFileFilters()
  * The name of the function is a legacy code from the time that this function
  * actually parsed the command line. Today the parsing is done using the
  * MergeCmdLineInfo class.
- *
+ * @param [in] cmdInfo Commandline parameters info.
+ * @param [in] pMainFrame Pointer to application main frame.
+ * @return TRUE if we opened the compare, FALSE if the compare was canceled.
  */
-void CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
+BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame)
 {
+	BOOL bCompared = FALSE;
 	m_bNonInteractive = cmdInfo.m_bNonInteractive;
 
 	SetOptionsFromCmdLine(cmdInfo);
@@ -667,15 +684,19 @@ void CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		if (cmdInfo.m_nFiles > 2)
 		{
 			pMainFrame->m_strSaveAsPath = cmdInfo.m_Files[2];
-			pMainFrame->DoFileOpen(cmdInfo.m_Files[0], cmdInfo.m_Files[1],
-				cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0],
+				cmdInfo.m_Files[1],	cmdInfo.m_dwLeftFlags,
+				cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL,
+				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_nFiles > 1)
 		{
 			cmdInfo.m_dwLeftFlags |= FFILEOPEN_CMDLINE;
 			cmdInfo.m_dwRightFlags |= FFILEOPEN_CMDLINE;
-			pMainFrame->DoFileOpen(cmdInfo.m_Files[0], cmdInfo.m_Files[1],
-				cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+			bCompared = pMainFrame->DoFileOpen(cmdInfo.m_Files[0],
+				cmdInfo.m_Files[1],	cmdInfo.m_dwLeftFlags,
+				cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL,
+				cmdInfo.m_sPreDiffer);
 		}
 		else if (cmdInfo.m_nFiles == 1)
 		{
@@ -687,11 +708,13 @@ void CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			else
 			{
 				cmdInfo.m_dwRightFlags = FFILEOPEN_NONE;
-				pMainFrame->DoFileOpen(sFilepath, _T(""),
-					cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags, cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
+				bCompared = pMainFrame->DoFileOpen(sFilepath, _T(""),
+					cmdInfo.m_dwLeftFlags, cmdInfo.m_dwRightFlags,
+					cmdInfo.m_bRecurse, NULL, cmdInfo.m_sPreDiffer);
 			}
 		}
 	}
+	return bCompared;
 }
 
 /** @brief Handle all command line arguments which are mapped to WinMerge options. */

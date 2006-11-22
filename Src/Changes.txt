@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-22 Kimmo
+ PATCH: [ 1600714 ] Allow canceling when started from commandline
+  Src: Merge.cpp Merge.h
+
 2006-11-21 Kimmo
  PATCH: [ 1600000 ] Fix project file Has*() functions
   Src: ProjectFile.cpp ProjectFile.h
