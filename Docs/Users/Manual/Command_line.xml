@@ -31,6 +31,10 @@
 
         <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
+        <arg><option>/minimize</option></arg>
+
+        <arg><option>/maximize</option></arg>
+
         <arg choice="opt" rep="norepeat"><option>/dl</option> <replaceable>leftdesc</replaceable></arg>
 
         <arg choice="opt" rep="norepeat"><option>/dr</option> <replaceable>rightdesc</replaceable></arg>
@@ -100,6 +104,16 @@
     <listitem>
       <simpara><option>/wr</option> or <option>-wr</option> initially opens
       right side as read-only</simpara>
+    </listitem>
+
+    <listitem>
+      <simpara><option>/minimize</option> or <option>-minimize</option> starts
+      WinMerge as minimized</simpara>
+    </listitem>
+
+    <listitem>
+      <simpara><option>/maximize</option> or <option>-maximize</option> starts
+      WinMerge as maximized</simpara>
     </listitem>
 
     <listitem>
