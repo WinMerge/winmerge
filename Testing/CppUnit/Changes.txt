@@ -1,5 +1,10 @@
 Testing\selftest\Changes.txt
 
+2006-11-22 Kimmo
+ Add more case difference tests to stringdiffs
+  StringDifferencing: StringDifferencing.dsp
+  StringDifferencing new files: CasesDiffByte.cpp CasesDiffByte.h
+
 2006-11-21 Kimmo
  Fix string differencing cases, add few new cases
   StringDifferencing: DifferentStrings1.cpp DifferentStrings1.h StringDifferencing.cpp

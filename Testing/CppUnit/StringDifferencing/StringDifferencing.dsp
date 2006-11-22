@@ -125,6 +125,14 @@ SOURCE=.\StringDifferencing.h
 # PROP Default_Filter ""
 # Begin Source File
 
+SOURCE=.\CasesDifferByte.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CasesDifferByte.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DifferentStrings1.cpp
 # End Source File
 # Begin Source File
