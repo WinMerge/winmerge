@@ -1,3 +1,7 @@
+2006-11-22 Kimmo
+ PATCH: [ 1600651 ] Manual: clarify folder filter rules about starting mark
+  Manual: Filters.xml
+
 2006-11-21 Tim
  PATCH: [ 1398013 ] Add availability of binary viewing/merging to FAQ
   Manual: Faq.xml

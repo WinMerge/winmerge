@@ -145,7 +145,7 @@ def: include</screen>where <constant>def</constant>: is:<itemizedlist>
       filter must contain rule to include all wanted subfolders. Usually its
       wise to use this rule to include all subfolders:</para>
 
-      <screen>d: \\*$ ## Subdirectories</screen>
+      <screen>d: \\*$ ## Subfolders</screen>
 
       <para>There can be one filter rule in one line. And rule cannot be split
       to several lines. Common format for one filter line is like this:</para>
@@ -154,15 +154,16 @@ def: include</screen>where <constant>def</constant>: is:<itemizedlist>
 
       <para>or</para>
 
-      <screen>d: \\directory$ ## Match given directory name</screen>
+      <screen>d: \\folder$ ## Match given folder name</screen>
 
       <para>Rule begins with "<constant>f:</constant>" if it matches for
       filenames and "<constant>d:</constant>" if it matches for folder names.
-      (d comes from "directory".) Filenames are given to filter as is, there
-      are no special characters added. But for folder names there must be
-      "<constant>\\</constant>" in begin of folder name. This is done clearly
-      to separate folder names and filenames. "<constant>##</constant>" is a
-      comment separator, all characters in line after that are ignored by
+      (d comes from "folder".) Filenames are given to filter as is, there are
+      no special characters added. But for folder names there must be
+      "<constant>\\</constant>" in begin of folder name. The resulting "\"
+      char is a part of the folder name. This is done clearly to separate
+      folder names and filenames. "<constant>##</constant>" is a comment
+      separator, all characters in line after that are ignored by
       WinMerge.</para>
 
       <para><note>
@@ -181,7 +182,8 @@ def: include</screen>where <constant>def</constant>: is:<itemizedlist>
 f: \.h$ ## Match *.h files
 f: ^My ## Match My*.* files
 f: Dlg\. ## Match *Dlg.* files
-d: \\test$ ## Match 'test' directories</screen>
+d: \\test$ ## Match 'test' folders
+d: ^\\Build$ ## Match 'Build' folders</screen>
       </example>
 
       <para>Line begin or -end marker (<constant>"^"</constant> or
