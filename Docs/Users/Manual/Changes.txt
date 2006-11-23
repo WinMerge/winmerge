@@ -1,3 +1,7 @@
+2006-11-23 Kimmo
+ PATCH: [ 1601440 ] Manual: improve command line options chapter
+  Manual: Command_line.xml
+
 2006-11-22 Kimmo
  PATCH: [ 1600651 ] Manual: clarify folder filter rules about starting mark
   Manual: Filters.xml
