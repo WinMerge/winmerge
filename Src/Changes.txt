@@ -2,9 +2,9 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2006-11-22 Kimmo
- PATCH: [ 1600714 ] Allow canceling when started from commandline
-  Src: Merge.cpp Merge.h
+2006-11-23 WinMerge experimental release 2.7.1.2 (SVN revision 3844)
+
+2006-11-23 Kimmo
  PATCH: [ 1512881 ] Fix memleak from charsets.c
   Src: charsets.cp charsets.h Merge.cpp
  PATCH: [ 1596285 ] Unresolved external symbol __abs64 with VC7.1
@@ -13,6 +13,10 @@ Add new items to top.
  BUG: [ 1584068 ] location pane is inaccurate when word wrap is on
   Fix submitted by Gal
   Src: LocationView.cpp
+
+2006-11-22 Kimmo
+ PATCH: [ 1600714 ] Allow canceling when started from commandline
+  Src: Merge.cpp Merge.h
 
 2006-11-21 Kimmo
  PATCH: [ 1600000 ] Fix project file Has*() functions
