@@ -183,7 +183,7 @@ bool IsUnicodeBuild()
 #endif
 }
 
-#if _MSC_VER == 1310
+#if _MSC_VER <= 1310
 /**
 * @brief Calculates a number absolute value.
 */

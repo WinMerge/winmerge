@@ -7,6 +7,9 @@ Add new items to top.
   Src: Merge.cpp Merge.h
  PATCH: [ 1512881 ] Fix memleak from charsets.c
   Src: charsets.cp charsets.h Merge.cpp
+ PATCH: [ 1596285 ] Unresolved external symbol __abs64 with VC7.1
+  Submitted by Gal, minor edit by Kimmo
+  Src: StdAfx.cpp StdAfx.h
 
 2006-11-21 Kimmo
  PATCH: [ 1600000 ] Fix project file Has*() functions

@@ -16,9 +16,20 @@
 #define WINVER 0x400
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
+// Disable VC6's "identifier was truncated..." warning. It is meaningless.
+#if _MSC_VER == 1200
+	#pragma warning(disable: 4786)
+#endif
+ 
+// Declare this function for VC6 and VS2002
+// We dont' know if the function exists in VS2002 so we'd better be safe here!
+#if _MSC_VER <= 1300
+	__int64 _abs64_patch(__int64 n);
+#endif
+
 // A patch to solve a VC 7.1 bug. It seems that it doesn't export _abs64
 // function.
-#if _MSC_VER == 1310
+#if _MSC_VER <= 1310
 #define _abs64	_abs64_patch
 #endif
 
