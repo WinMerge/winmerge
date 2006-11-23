@@ -51,6 +51,9 @@
 #include "OptionsDef.h"
 #include "MergeCmdLineInfo.h"
 
+// For shutdown cleanup
+#include "charsets.h"
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -150,6 +153,7 @@ BOOL CMergeApp::InitInstance()
 		// Keep freed memory blocks in the heap's linked list and mark them as freed
 		tmpFlag |= _CRTDBG_DELAY_FREE_MEM_DF;
 		// Call _CrtCheckMemory at every allocation and deallocation request.
+		// WARNING: This slows down WinMerge *A LOT*
 		tmpFlag |= _CRTDBG_CHECK_ALWAYS_DF;
 		// Set the new state for the flag
 		_CrtSetDbgFlag( tmpFlag );
@@ -522,13 +526,19 @@ void CMergeApp::OnUpdateViewLanguage(CCmdUI* pCmdUI)
 	pCmdUI->Enable(bLangsInstalled);
 }
 
+/**
+ * @brief Called when application is about to exit.
+ * This functions is called when application is exiting, so this is
+ * good place to do cleanups.
+ * @return Application's exit value (returned from WinMain()).
+ */
 int CMergeApp::ExitInstance() 
 {
+	charsets_cleanup();
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
 	return m_nLastCompareResult;
 }
-
 
 static void AddEnglishResourceHook()
 {

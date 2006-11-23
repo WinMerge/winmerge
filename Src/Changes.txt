@@ -5,6 +5,8 @@ Add new items to top.
 2006-11-22 Kimmo
  PATCH: [ 1600714 ] Allow canceling when started from commandline
   Src: Merge.cpp Merge.h
+ PATCH: [ 1512881 ] Fix memleak from charsets.c
+  Src: charsets.cp charsets.h Merge.cpp
 
 2006-11-21 Kimmo
  PATCH: [ 1600000 ] Fix project file Has*() functions

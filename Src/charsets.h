@@ -12,6 +12,9 @@
   Runtime-allocated index arrays have been added to improve lookup speed.
 */
 
+#ifndef _CHARSETS_H_
+#define _CHARSETS_H_
+
 #ifdef __cplusplus
 #define extern extern "C"
 #endif
@@ -23,4 +26,8 @@ extern unsigned GetEncodingCodePageFromId(unsigned id);
 extern const char *GetEncodingNameFromId(unsigned id);
 extern const char *GetEncodingNameFromCodePage(unsigned cp);
 
+extern void charsets_cleanup(void);
+
 #undef extern
+
+#endif // _CHARSETS_H_
