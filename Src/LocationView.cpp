@@ -760,7 +760,7 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
  */
 void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 {
-	DrawVisibleAreaRect(nTopLine, nBottomLine);
+	DrawVisibleAreaRect();
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
 		DrawConnectLines();
 }
