@@ -1,6 +1,8 @@
 2006-11-23 Kimmo
  PATCH: [ 1601440 ] Manual: improve command line options chapter
   Manual: Command_line.xml
+ Update WinMerge version number and manual revision number (1.3.0) for trunk
+  Manual: WinMerge_help.xml
 
 2006-11-22 Kimmo
  PATCH: [ 1600651 ] Manual: clarify folder filter rules about starting mark
