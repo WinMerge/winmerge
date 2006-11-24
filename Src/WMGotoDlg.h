@@ -15,7 +15,7 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /**
- * @file  WMGotodDlg.h
+ * @file  WMGotoDlg.h
  *
  * @brief Declaration file for CWMGotoDlg
  *

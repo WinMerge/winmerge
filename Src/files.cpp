@@ -155,8 +155,8 @@ BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 /**
  * @brief Checks if file is read-only on disk.
  * Optionally returns also if file exists.
- * @param [in] Full path to file to check.
- * @param [in, out] If non-NULL, returns if file exists.
+ * @param [in] file Full path to file to check.
+ * @param [in, out] fileExists If non-NULL, function returns if file exists.
  * @return TRUE if file is read-only, FALSE otherwise.
  */
 BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists /*=NULL*/)

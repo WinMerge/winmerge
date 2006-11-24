@@ -53,8 +53,8 @@ END_MESSAGE_MAP()
  * slash chars.
  *
  * @param [in] pDC Pointer to draw context.
- * @param [in] nMaxWidth Maximum width of string.
- * @param [in,out] sFilePath:
+ * @param [in] maxWidth Maximum width of string.
+ * @param [in,out] sFilepath:
  * - in: string to format
  * - out: formatted string
  * @return Number of lines path is splitted to.

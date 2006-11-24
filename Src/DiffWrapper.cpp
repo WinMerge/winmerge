@@ -132,7 +132,7 @@ void CDiffWrapper::SetCreatePatchFile(const CString &filename)
  * This function enables or disables DiffList creation. When
  * @p diffList is NULL difflist is not created. When valid DiffList
  * pointer is given, compare results are stored into it.
- * @param [in] difflist Pointer to DiffList getting compare results.
+ * @param [in] diffList Pointer to DiffList getting compare results.
  */
 void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
 {
@@ -603,8 +603,8 @@ void CDiffWrapper::SetPaths(const CString &filepath1, const CString &filepath2,
 /**
  * @brief Set source paths for original (NON-TEMP) diffing two files.
  * Sets full paths to two (NON-TEMP) files we are diffing.
- * @param [in] filepath1 First file to compare "(NON-TEMP) file".
- * @param [in] filepath2 Second file to compare "(NON-TEMP) file".
+ * @param [in] OriginalFile1 First file to compare "(NON-TEMP) file".
+ * @param [in] OriginalFile2 Second file to compare "(NON-TEMP) file".
  */
 void CDiffWrapper::SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2)
 {

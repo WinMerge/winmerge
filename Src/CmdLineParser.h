@@ -68,11 +68,10 @@ public:
 	 * actual parsing.
 	 *
 	 * @param [in] pszParam The parameter or flag.
-	 * @bFlag [in] bFlag Indicates whether pszParam is a parameter or a
+	 * @param [in] bFlag Indicates whether pszParam is a parameter or a
 	 *	flag.
-	 * @bLast [in] bLast Indicates if this is the last parameter or flag
+	 * @param [in] bLast Indicates if this is the last parameter or flag
 	 *	on the command line.
-	 *
 	 */
 	virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast) = 0;
 

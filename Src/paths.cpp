@@ -18,7 +18,7 @@ static bool GetDirName(const CString & sDir, CString& sName);
 /** 
  * @brief Checks if char in string is slash.
  * @param [in] pszStart String to check.
- * @param [in] Position of char in string to check (0-based index).
+ * @param [in] nPos of char in string to check (0-based index).
  * @return true if char is slash.
  */
 static bool IsSlash(LPCTSTR pszStart, int nPos)
@@ -441,7 +441,7 @@ CString ExpandShortcut(const CString &inFile)
  * This function appends subpath to given path. Function ensures there
  * is only one backslash between path parts.
  * @param [in] path "Base" path where other part is appended.
- * @param [in] subPath Path part to append to base part.
+ * @param [in] subpath Path part to append to base part.
  * @return Formatted path. If one of arguments is empty then returns
  * non-empty argument. If both argumets are empty empty string is returned.
  */
@@ -476,7 +476,7 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
 /** 
  * @brief Get parent path.
  * This function returns parent path for given path. For example for
- * path "c:\folder\subfolder" we return "c:\folder.
+ * path "c:\folder\subfolder" we return "c:\folder".
  * @param [in] path Path to get parent path for.
  * @return Parent path.
  */

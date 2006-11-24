@@ -335,12 +335,9 @@ void CDirDoc::Rescan()
 }
 
 /**
- * @brief Determines if user wants to see this item
- * @param [in] pCtxt CDiffContext containing filedata
- * @param [in] di Item tested
- * @param [in] llen Lenght of normalised left path
- * @param [in] rlen Lenght of normalised right path
- * @return File- or subfolder name of item, NULL if user does not want to see it
+ * @brief Determines if the user wants to see given item.
+ * @param [in] di Item to check.
+ * @return TRUE if item should be shown, FALSE if not.
  * @sa CDirDoc::Redisplay()
  */
 BOOL CDirDoc::IsShowable(const DIFFITEM & di)

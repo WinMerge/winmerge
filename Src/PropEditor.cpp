@@ -150,7 +150,7 @@ void CPropEditor::OnLineDiffControlClicked()
 /**
  * @brief Shortcut to enable or disable a control
  * @param [in] item ID of dialog control to enable/disable.
- * @paran [in] enable if true control is enabled, else disabled.
+ * @param [in] enable if true control is enabled, else disabled.
  */
 void CPropEditor::EnableDlgItem(int item, bool enable)
 {

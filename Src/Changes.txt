@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-24 Kimmo
+ Fix bunch of doxygen warnings (wrong parameter names etc)
+  Src: CmdLineParser.h DiffWrapper.cpp DirDoc.cpp FilepathEdit.cpp files.cpp
+   paths.cpp PropEditor.cpp WMGotoDlg.h
+
 2006-11-23 WinMerge experimental release 2.7.1.2 (SVN revision 3844)
 
 2006-11-23 Kimmo
