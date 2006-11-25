@@ -1,3 +1,7 @@
+2006-11-26 Tim
+ PATCH: [ 1602517 ] Manual: Remove "10.3.2. Apply to unrecognized side"
+  Manual: Configuration.xml
+
 2006-11-23 Kimmo
  PATCH: [ 1601440 ] Manual: improve command line options chapter
   Manual: Command_line.xml

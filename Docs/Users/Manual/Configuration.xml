@@ -320,17 +320,6 @@
     </sect3>
 
     <sect3>
-      <title>Apply to unrecognized side</title>
-
-      <para>When this options is enabled WinMerge applies known file format's
-      syntax highlight to another file even if that file's extension is not
-      known. For example, if you compare files, <filename>file.cpp</filename>
-      and <filename>file.cpp.bak</filename>, WinMerge detects
-      <filename>file.cpp</filename> needs C++ syntax highlight. And then uses
-      same rules for <filename>file.cpp.bak</filename> too.</para>
-    </sect3>
-
-    <sect3>
       <title>Automatic rescan</title>
 
       <indexterm>
