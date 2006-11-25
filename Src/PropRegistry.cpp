@@ -27,7 +27,7 @@
 #include "PropRegistry.h"
 #include "RegKey.h"
 #include "coretools.h"
-#include "Merge.h" // SelectFile()
+#include "FileOrFolderSelect.h"
 #include "MainFrm.h" // GetDefaultEditor()
 #include "OptionsDef.h"
 #include "OptionsMgr.h"

@@ -14,6 +14,7 @@
 #include "ProjectFile.h"
 #include "coretools.h"
 #include "ProjectFilePathsDlg.h"
+#include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

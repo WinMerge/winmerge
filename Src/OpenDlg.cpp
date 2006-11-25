@@ -40,6 +40,7 @@
 #include "MainFrm.h"
 #include "OptionsMgr.h"
 #include "dlgutil.h"
+#include "FileOrFolderSelect.h"
 
 #ifdef COMPILE_MULTIMON_STUBS
 #undef COMPILE_MULTIMON_STUBS

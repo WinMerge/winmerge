@@ -22,7 +22,7 @@
 //
 
 #include "stdafx.h"
-#include "merge.h"
+#include "FileOrFolderSelect.h"
 #include "MainFrm.h" // VCS_* constants
 #include "PropVss.h"
 #include "OptionsDef.h"

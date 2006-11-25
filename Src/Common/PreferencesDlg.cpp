@@ -18,7 +18,7 @@
 #include "PreferencesDlg.h"
 #include "MainFrm.h"
 #include "coretools.h" //SplitFilename()
-#include "Merge.h" // SelectFile()
+#include "FileOrFolderSelect.h"
 
 #include "winclasses.h"
 #include "wclassdefines.h"

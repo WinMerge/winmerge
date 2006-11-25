@@ -421,6 +421,10 @@ SOURCE=.\FileInfo.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileOrFolderSelect.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FilepathEdit.cpp
 # End Source File
 # Begin Source File
@@ -1150,6 +1154,10 @@ SOURCE=.\FileInfo.h
 # Begin Source File
 
 SOURCE=.\FileLocation.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FileOrFolderSelect.h
 # End Source File
 # Begin Source File
 

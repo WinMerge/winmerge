@@ -62,6 +62,7 @@
 #include "OptionsMgr.h"
 #include "ProjectFile.h"
 #include "MergeLineFlags.h"
+#include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

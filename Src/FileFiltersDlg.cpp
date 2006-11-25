@@ -32,6 +32,7 @@
 #include "paths.h"
 #include "SharedFilterDlg.h"
 #include "TestFilterDlg.h"
+#include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

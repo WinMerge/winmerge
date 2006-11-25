@@ -114,15 +114,6 @@ extern CMergeApp theApp;
 
 /////////////////////////////////////////////////////////////////////////////
 CMergeDoc *GetDoc();
-BOOL SelectFile(HWND parent, CString& path, LPCTSTR root_path = NULL, 
-			 LPCTSTR title = _T("Open"), UINT filterid = 0,
-			 BOOL is_open =TRUE);
-
-BOOL SelectFolder(CString& path, LPCTSTR root_path = NULL, 
-			 LPCTSTR title = NULL, 
-			 HWND hwndOwner = NULL);
-
-void ConvertFilter(LPTSTR filterStr);
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.

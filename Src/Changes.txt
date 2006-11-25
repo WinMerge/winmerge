@@ -2,6 +2,14 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-25 Kimmo
+ PATCH: [ 1602365 ] Move SelectFile and SelectFolder routines to separate file
+  Src: DirActions.cpp DirCmpReportDlg.cpp FileFiltersDlg.cpp MainFrm.cpp Merge.cpp
+   Merge.dsp Merge.h MergeDoc.cpp OpenDlg.cpp PatchDlg.cpp ProjectFilePathsDlg.cpp
+   PropRegistry.cpp PropVss.cpp
+  Src/Common: PreferencesDlg.cpp
+  Src new files: FileOrFolderSelect.cpp FileOrFolderSelect.h
+
 2006-11-24 Kimmo
  Fix bunch of doxygen warnings (wrong parameter names etc)
   Src: CmdLineParser.h DiffWrapper.cpp DirDoc.cpp FilepathEdit.cpp files.cpp

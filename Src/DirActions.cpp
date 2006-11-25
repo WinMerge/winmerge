@@ -32,6 +32,7 @@
 #include "FileActionScript.h"
 #include "LoadSaveCodepageDlg.h"
 #include "IntToIntMap.h"
+#include "FileOrFolderSelect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
