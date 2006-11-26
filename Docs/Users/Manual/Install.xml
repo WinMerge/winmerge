@@ -9,8 +9,8 @@
     <para>Currently WinMerge installer works natively only for 32-bit Windows.
     There is no separate version of WinMerge for 64-bit Windows
     (WinXP/2003/Vista). 64-bit Windows versions can run the installer and
-    WinMerge as 32-bit application. For the Shell Integration there is 64-bit
-    version of included in the installer.</para>
+    WinMerge as 32-bit application. For the Shell Integration there is the
+    64-bit version of extension included in the installer.</para>
   </note>
 
   <sect2>
@@ -231,13 +231,22 @@
   </sect2>
 
   <sect2>
-    <title>7-Zip and Archive Support</title>
+    <title><indexterm>
+        <primary>Installing Archive Support</primary>
+      </indexterm>7-Zip and Archive Support</title>
 
     <para>WinMerge uses <ulink url="http://www.7-zip.org/">7-Zip</ulink> for
     archive support, but WinMerge installer does not install 7-Zip or archive
     support. Installing 7-Zip application is recommended but not required for
     archive support. 7-Zip installer can be downloaded from <ulink
     url="http://www.7-zip.org/">7-Zip.org</ulink>.</para>
+
+    <important>
+      <para>There are 7-Zip MSI installers that do not install all the
+      files WinMerge needs (namely <filename>7zip_pad.xml</filename> in 7-Zip
+      program folder). If there are problems with archive support enabling,
+      try running the EXE version of the 7-Zip installer.</para>
+    </important>
 
     <para>To install archive support, download and install 7-Zip plugin
     (Merge7zInstaller, see below) from <ulink
