@@ -11,7 +11,6 @@ Project lead:
 Developers:
 * Tim Gerundt
 * Gal Hammer
-* Perry Rapp
 * Takashi Sawanaka
 * Kimmo Varis
 
@@ -19,6 +18,7 @@ Inactive/past developers:
 * Laurent Ganier
 * Dennis Limm
 * Chris Mumford
+* Perry Rapp
 * Christian "Seier" Blackburn (Installer)
 * Jochen Tucht
 
