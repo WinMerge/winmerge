@@ -149,6 +149,99 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path /*=NULL*/,
 }
 
 /** 
+ * @brief Shows file/folder selection dialog.
+ *
+ * We need this custom function so we can select files and folders with the
+ * same dialog.
+ * - If existing filename is selected return it
+ * - If filename in (CFileDialog) editbox and current folder doesn't form
+ * a valid path to file, return current folder.
+ * @param [in] parent Handle to parent window. Can be a NULL, but then
+ *     CMainFrame is used which can cause modality problems.
+ * @param [out] path Selected folder/filename
+ * @param [in] initialPath Initial file or folder shown/selected.
+ * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
+ */
+BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/)
+{
+	CString title;
+	VERIFY(title.LoadString(IDS_OPEN_TITLE));
+
+	CString dirSelTag;
+
+	// This will tell common file dialog what to show
+	// and also this will hold its return value
+	CString sSelectedFile;
+
+	// check if specified path is a file
+	if (initialPath && initialPath[0])
+	{
+		// If initial path info includes a file
+		// we put the bare filename into sSelectedFile
+		// so the common file dialog will start up with that file selected
+		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
+		{
+			SplitFilename(initialPath, 0, &sSelectedFile, 0);
+		}
+	}
+
+	if (parent == NULL)
+		parent = AfxGetMainWnd()->GetSafeHwnd();
+
+	int filterid = IDS_ALLFILES;
+
+	if (!filterid)
+		filterid = IDS_ALLFILES;
+	CString filters;
+	VERIFY(filters.LoadString(filterid));
+	// Convert extension mask from MFC style separators ('|')
+	//  to Win32 style separators ('\0')
+	LPTSTR filtersStr = filters.GetBuffer(0);
+	ConvertFilter(filtersStr);
+
+	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
+
+	// Set initial filename to folder selection tag
+	dirSelTag += _T("."); // Treat it as filename
+	sSelectedFile = dirSelTag;
+
+	OPENFILENAME ofn;
+	memset(&ofn, 0, sizeof(ofn));
+	ofn.lStructSize = sizeof(ofn);
+	ofn.hwndOwner = parent;
+	ofn.lpstrFilter = filtersStr;
+	ofn.lpstrCustomFilter = NULL;
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFile = sSelectedFile.GetBuffer(MAX_PATH);
+	ofn.nMaxFile = MAX_PATH;
+	ofn.lpstrInitialDir = initialPath;
+	ofn.lpstrTitle = title;
+	ofn.lpstrFileTitle = NULL;
+	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
+
+	BOOL bRetVal = GetOpenFileName(&ofn);
+	// common file dialog populated sSelectedFile variable's buffer
+	sSelectedFile.ReleaseBuffer();
+	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName
+
+	if (bRetVal)
+	{
+		path = sSelectedFile;
+		struct _stati64 statBuffer;
+		int nRetVal = _tstati64(path, &statBuffer);
+		if (nRetVal == -1)
+		{
+			// We have a valid folder name, but propably garbage as a filename.
+			// Return folder name
+			CString folder = GetPathOnly(sSelectedFile);
+			path = folder + '\\';
+		}
+	}
+	return bRetVal;
+}
+
+
+/** 
  * @brief Helper function for converting filter format.
  *
  * MFC functions separate filter strings with | char which is also

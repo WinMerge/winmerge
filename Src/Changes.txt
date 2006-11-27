@@ -5,6 +5,8 @@ Add new items to top.
 2006-11-27 Kimmo
  BUG: [ 1602214 ] Incorrect work with associated files in WinMerge 2.7.1.2
   Src: Merge.cpp
+ PATCH: [ 1603196 ] Allow Open-dialog kind of folder selection for project files
+  Src: FileOrFolderSelect.cpp FileOrFolderSelect.h OpenDlg.cpp OpenDlg.h
 
 2006-11-27 Gal
  BUG: [ 1603562 ] Location pane's bar outlines

@@ -49,7 +49,6 @@ public:
 	COpenDlg(CWnd* pParent = NULL);   // standard constructor
 	~COpenDlg();
 	void UpdateButtonStates();
-	BOOL SelectFile(CString& path, LPCTSTR pszFolder);
 
 // Dialog Data
 	//{{AFX_DATA(COpenDlg)

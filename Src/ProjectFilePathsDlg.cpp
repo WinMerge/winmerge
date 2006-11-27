@@ -74,8 +74,7 @@ BOOL ProjectFilePathsDlg::OnInitDialog()
 void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 {
 	UpdateData(TRUE);
-	if (::SelectFile(GetSafeHwnd(), m_sLeftFile, m_sLeftFile, NULL, NULL,
-			TRUE))
+	if (::SelectFileOrFolder(GetSafeHwnd(), m_sLeftFile, m_sLeftFile))
 		UpdateData(FALSE);
 }
 
@@ -85,8 +84,7 @@ void ProjectFilePathsDlg::OnBnClickedProjLfileBrowse()
 void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
 {
 	UpdateData(TRUE);
-	if (::SelectFile(GetSafeHwnd(), m_sRightFile, m_sRightFile, NULL, NULL,
-			TRUE))
+	if (::SelectFileOrFolder(GetSafeHwnd(), m_sRightFile, m_sRightFile))
 		UpdateData(FALSE);
 }
 

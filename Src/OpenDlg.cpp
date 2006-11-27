@@ -234,7 +234,7 @@ void COpenDlg::OnLeftButton()
 		break;
 	}
 
-	if (SelectFile(s, sfolder))
+	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder))
 	{
 		m_strLeft = s;
 		UpdateData(FALSE);
@@ -268,7 +268,7 @@ void COpenDlg::OnRightButton()
 		break;
 	}
 
-	if (SelectFile(s, sfolder))
+	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder))
 	{
 		m_strRight = s;
 		UpdateData(FALSE);
@@ -431,81 +431,6 @@ void COpenDlg::UpdateButtonStates()
 		SetUnpackerStatus(0);	//Empty field
 	else
 		SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
-}
-
-/** 
- * @brief Shows file/folder selection dialog.
- *
- * We need this custom function so we can select files and folders with the
- * same dialog.
- * - If existing filename is selected return it
- * - If filename in (CFileDialog) editbox and current folder doesn't form
- * a valid path to file, return current folder.
- * @param [out] path Selected folder/filename
- * @param [in] pszFolder Initial folder shown
- * @return TRUE if user choosed a file/folder, FALSE if user canceled dialog.
- */
-BOOL COpenDlg::SelectFile(CString& path, LPCTSTR initialPath) 
-{
-	CString title;
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-
-	CString dirSelTag;
-
-	// This will tell common file dialog what to show
-	// and also this will hold its return value
-	CString sSelectedFile;
-
-	int filterid = IDS_ALLFILES;
-
-	if (!filterid)
-		filterid = IDS_ALLFILES;
-	CString filters;
-	VERIFY(filters.LoadString(filterid));
-	// Convert extension mask from MFC style separators ('|')
-	//  to Win32 style separators ('\0')
-	LPTSTR filtersStr = filters.GetBuffer(0);
-	ConvertFilter(filtersStr);
-
-	VERIFY(dirSelTag.LoadString(IDS_DIRSEL_TAG));
-
-	// Set initial filename to folder selection tag
-	dirSelTag += _T("."); // Treat it as filename
-	sSelectedFile = dirSelTag;
-
-	OPENFILENAME ofn;
-	memset(&ofn, 0, sizeof(ofn));
-	ofn.lStructSize = sizeof(ofn);
-	ofn.hwndOwner = GetSafeHwnd();
-	ofn.lpstrFilter = filtersStr;
-	ofn.lpstrCustomFilter = NULL;
-	ofn.nFilterIndex = 1;
-	ofn.lpstrFile = sSelectedFile.GetBuffer(MAX_PATH);
-	ofn.nMaxFile = MAX_PATH;
-	ofn.lpstrInitialDir = initialPath;
-	ofn.lpstrTitle = title;
-	ofn.lpstrFileTitle = NULL;
-	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
-
-	BOOL bRetVal = GetOpenFileName(&ofn);
-	// common file dialog populated sSelectedFile variable's buffer
-	sSelectedFile.ReleaseBuffer();
-	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName
-
-	if (bRetVal)
-	{
-		path = sSelectedFile;
-		struct _stati64 statBuffer;
-		int nRetVal = _tstati64(path, &statBuffer);
-		if (nRetVal == -1)
-		{
-			// We have a valid folder name, but propably garbage as a filename.
-			// Return folder name
-			CString folder = GetPathOnly(sSelectedFile);
-			path = folder + '\\';
-		}
-	}
-	return bRetVal;
 }
 
 void COpenDlg::OnSelchangeLeftCombo() 

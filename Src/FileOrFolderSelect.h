@@ -27,13 +27,15 @@
 #ifndef _FILE_OR_FOLDER_SELECTION_H_
 #define _FILE_OR_FOLDER_SELECTION_H_
 
-BOOL SelectFile(HWND parent, CString& path, LPCTSTR root_path = NULL, 
+BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath = NULL, 
 			 LPCTSTR title = _T("Open"), UINT filterid = 0,
 			 BOOL is_open =TRUE);
 
 BOOL SelectFolder(CString& path, LPCTSTR root_path = NULL, 
 			 LPCTSTR title = NULL, 
 			 HWND hwndOwner = NULL);
+
+BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR root_path = NULL);
 
 void ConvertFilter(LPTSTR filterStr);
 
