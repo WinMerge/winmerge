@@ -3,6 +3,9 @@
   Manual: Faq.xml
  PATCH: [ 1603385 ] Manual: fix filter file path, clarify template file usage
   Manual: Filters.xml
+ PATCH: [ 1603393 ] Improve project file documentation
+  Manual: Open_paths.xml
+  Manual/screenshots new file: projfile_save.png
 
 2006-11-26 Kimmo
  PATCH: [ 1602658 ] Manual: note about some 7-zip MSI installers missing file

@@ -46,7 +46,7 @@
       subfolders <filename class="directory">Original/</filename> and
       <filename class="directory">Altered/</filename> it must be opened by
       selecting same filename to both sides in
-      <guilabel>Open</guilabel>-dialog or commandline. Then
+      <guilabel>Open</guilabel>-dialog or command line. Then
       <productname>WinMerge</productname> can compare contents of those two
       subfolders.</para>
 
@@ -86,7 +86,7 @@
 
       <para>Field can also contain file filter name. Easiest way to select
       file filter is using <guilabel>Filters</guilabel>-dialog which can be
-      opended with "<guibutton>Select...</guibutton>" button next to field.
+      opened with "<guibutton>Select...</guibutton>" button next to field.
       That dialog allows also creating, editing and deleting of filter
       files.</para>
 
@@ -99,14 +99,12 @@
   </sect2>
 
   <sect2>
-    <title>Shell Integration</title>
-
-    <indexterm>
-      <primary>Shell Integration</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Shell Integration</primary>
+      </indexterm>Shell Integration</title>
 
     <para>The Shell Integration is a convenient way to select the paths using
-    Windows Explorer. Installer enables Shell Integration if choosen so. Shell
+    Windows Explorer. Installer enables Shell Integration if chosen so. Shell
     Integration can be enabled or disabled from
     <guilabel>Options</guilabel>/<guilabel>System</guilabel>. When the Shell
     Integration is enabled item <guimenuitem>WinMerge</guimenuitem> is added
@@ -125,7 +123,7 @@
 
       <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for Shell
       Integration from options adds more choices for path selection. Now
-      WinMerge adds two menuitems to Explorer context menu:
+      WinMerge adds two menu items to Explorer context menu:
       "<guimenuitem>Compare To</guimenuitem>" and
       "<guimenuitem>Compare...</guimenuitem>". <guimenuitem>Compare
       To</guimenuitem> selects path as first ("<guilabel>Left</guilabel>")
@@ -149,8 +147,8 @@
 
         <listitem>
           <simpara>Browse to location of second item you want to compare and
-          select it. Open context menu and move menuselection over first
-          "<guimenuitem>Compare</guimenuitem>" item. Now Explorer's statusbar
+          select it. Open context menu and move menu selection over first
+          "<guimenuitem>Compare</guimenuitem>" item. Now Explorer's status bar
           shows memorized path to which you are comparing newly selected
           path.</simpara>
         </listitem>
@@ -197,59 +195,79 @@
   </sect2>
 
   <sect2>
-    <title>Project file</title>
+    <title><indexterm>
+        <primary>Project Files</primary>
+      </indexterm>Project Files</title>
 
-    <para>Simple project files can be used to select commonly used paths with
-    filter. Project file can be given to commandline like normal file or
-    opened from <menuchoice>
-        <guimenu>File</guimenu>
+    <para>Project files allow fast and easy opening of commonly used paths
+    (and filter). The user can easily save currently open paths as project
+    file for later use.</para>
 
-        <guimenuitem>Open Project...</guimenuitem>
-      </menuchoice> <productname>WinMerge</productname> reads paths project
-    file contains and if two paths are given opens them. If only one path is
-    given or one of paths is invalid <guilabel>Open</guilabel>-dialog is shown
-    for user to select second path or valid paths.</para>
+    <sect3>
+      <title>Opening Project File</title>
 
-    <para>Project files can be edited and saved using <guilabel>Project
-    File</guilabel> -dialog that can be opened from <menuchoice>
-        <guimenu>File</guimenu>
+      <para>Project file can be given to command line like normal file or
+      opened from <menuchoice>
+          <guimenu>File</guimenu>
 
-        <guimenuitem>Save Project...</guimenuitem>
-      </menuchoice> When opened, the dialog is initialized with values from
-    current compare. Values can be edited and saved to project file with
-    <guilabel>Save...</guilabel> button. One can also load existing project
-    file with <guilabel>Open...</guilabel> button.</para>
+          <guimenuitem>Open Project...</guimenuitem>
+        </menuchoice> WinMerge reads paths from project file and if two paths
+      are given opens them. If only one path is given or one of paths is
+      invalid, the <guilabel>Open</guilabel>-dialog is shown for user to
+      select the second path or valid paths.</para>
 
-    <para>Project file can be selected also in <guilabel>Open</guilabel>
-    dialog. There are couple of things to remember:</para>
+      <para>Project file can be selected also in <guilabel>Open</guilabel>
+      dialog. There are couple of things to remember:</para>
 
-    <itemizedlist>
-      <listitem>
-        <simpara>If two project files are selected, project files themselves
-        are compared.</simpara>
-      </listitem>
+      <itemizedlist>
+        <listitem>
+          <simpara>If two project files are selected, project files themselves
+          are compared.</simpara>
+        </listitem>
 
-      <listitem>
-        <simpara>If project file is selected as left-side file, and right-side
-        file is empty, project file is opened like using <menuchoice>
-            <guimenu>File</guimenu>
+        <listitem>
+          <simpara>If project file is selected as left-side file, and
+          right-side file is empty, project file is opened like using
+          <menuchoice>
+              <guimenu>File</guimenu>
 
-            <guimenuitem>Open Project...</guimenuitem>
-          </menuchoice> dialog.</simpara>
-      </listitem>
+              <guimenuitem>Open Project...</guimenuitem>
+            </menuchoice> dialog.</simpara>
+        </listitem>
 
-      <listitem>
-        <simpara>If project file is selected as left-side file and any other
-        file as right-side file, contents of project file and another file are
-        compared.</simpara>
-      </listitem>
-    </itemizedlist>
+        <listitem>
+          <simpara>If project file is selected as left-side file and any other
+          file as right-side file, contents of project file and another file
+          are compared.</simpara>
+        </listitem>
+      </itemizedlist>
+    </sect3>
 
-    <para>Project files are simple XML files with <filename
-    class="extension">.WinMerge</filename> extension.</para>
+    <sect3>
+      <title>Editing and Saving Project File</title>
+
+      <para>Project files can be edited and saved using <guilabel>Project
+      File</guilabel> -dialog that can be opened from <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Save Project...</guimenuitem>
+        </menuchoice> When opened, the dialog is initialized with values from
+      the current compare. Values can be edited and saved to the project file
+      with <guilabel>Save...</guilabel> button. One can also load existing
+      project file with <guilabel>Open...</guilabel> button.</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/projfile_save.png" format="PNG" />
+        </imageobject>
+      </mediaobject>
+    </sect3>
 
     <sect3>
       <title>Format</title>
+
+      <para>Project files are simple XML files with <filename
+      class="extension">.WinMerge</filename> extension.</para>
 
       <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;project&gt;
@@ -263,7 +281,7 @@
 	&lt;/paths&gt;
 &lt;/project&gt;</screen>
 
-      <para>The project file has four fields:</para>
+      <para>The project file has six fields:</para>
 
       <itemizedlist>
         <listitem>
@@ -300,7 +318,7 @@
         </listitem>
       </itemizedlist>
 
-      <para>None of fields are required and they can be empty
+      <para>None of the fields are required and they can be empty
       (<literal>&lt;left&gt;&lt;/left&gt;</literal>).</para>
     </sect3>
   </sect2>
