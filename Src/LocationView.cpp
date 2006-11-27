@@ -73,8 +73,8 @@ CLocationView::CLocationView()
 
 	SetConnectMovedBlocks(GetOptionsMgr()->GetInt(OPT_CONNECT_MOVED_BLOCKS));
 
-	m_view[0] = NULL;
-	m_view[1] = NULL;
+	m_view[MERGE_VIEW_LEFT] = NULL;
+	m_view[MERGE_VIEW_RIGHT] = NULL;
 }
 
 BEGIN_MESSAGE_MAP(CLocationView, CView)
@@ -147,13 +147,16 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
  */
 void CLocationView::OnDraw(CDC* pDC)
 {
+	ASSERT(m_view[MERGE_VIEW_LEFT] != NULL);
+	ASSERT(m_view[MERGE_VIEW_RIGHT] != NULL);
+
+	if (m_view[MERGE_VIEW_LEFT] == NULL || m_view[MERGE_VIEW_RIGHT] == NULL)
+		return;
+
 	if (!m_view[MERGE_VIEW_LEFT]->IsInitialized()) return;
 
 	CRect rc;
 	GetClientRect(rc);
-
-	if (m_view[MERGE_VIEW_LEFT] == NULL || m_view[MERGE_VIEW_RIGHT] == NULL)
-		return;
 
 	CMergeDoc *pDoc = GetDocument();
 	const int w = rc.Width() / 4;
@@ -191,8 +194,8 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	// Draw bar outlines
 	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-	pDC->Rectangle(m_nLeftBarLeft, Y_OFFSET - 1, m_nLeftBarRight, LineInPix * nbLines + Y_OFFSET);
-	pDC->Rectangle(m_nRightBarLeft, Y_OFFSET - 1, m_nRightBarRight, LineInPix * nbLines + Y_OFFSET);
+	pDC->Rectangle(m_nLeftBarLeft, Y_OFFSET - 1, m_nLeftBarRight, LineInPix * nbLines + Y_OFFSET + 1);
+	pDC->Rectangle(m_nRightBarLeft, Y_OFFSET - 1, m_nRightBarRight, LineInPix * nbLines + Y_OFFSET + 1);
 	pDC->SelectObject(oldObj);
 
 	while (true)
@@ -694,7 +697,7 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 
 	int nTopCoord = (int) (Y_OFFSET + ((double)nTopLine * LineInPix));
 	int nLeftCoord = INDICATOR_MARGIN;
-	int nBottomCoord = (int) (Y_OFFSET + ((double)(nTopLine + nScreenLines) * LineInPix));
+	int nBottomCoord = (int) (Y_OFFSET + ((double)nBottomLine * LineInPix));
 	int nRightCoord = rc.Width() - INDICATOR_MARGIN;
 	
 	// Visible area was not changed

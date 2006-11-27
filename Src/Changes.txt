@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-11-27 Gal
+ BUG: [ 1603562 ] Location pane's bar outlines
+  Src: LocationView.cpp
+
 2006-11-26 Kimmo
  Perry is not active developer
   Docs/Users: Contributors.txt
