@@ -568,7 +568,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			CString sFilepath = cmdInfo.m_Files[0];
 			if (IsProjectFile(sFilepath))
 			{
-				LoadAndOpenProjectFile(sFilepath);
+				bCompared = LoadAndOpenProjectFile(sFilepath);
 			}
 			else
 			{
