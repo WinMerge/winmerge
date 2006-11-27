@@ -1,6 +1,8 @@
 2006-11-27 Kimmo
  PATCH: [ 1603359 ] Manual: FAQ updates
   Manual: Faq.xml
+ PATCH: [ 1603385 ] Manual: fix filter file path, clarify template file usage
+  Manual: Filters.xml
 
 2006-11-26 Kimmo
  PATCH: [ 1602658 ] Manual: note about some 7-zip MSI installers missing file

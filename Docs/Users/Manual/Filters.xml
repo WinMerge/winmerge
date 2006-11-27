@@ -94,7 +94,10 @@
       explained later in this chapter. Filters-dialog allows creating new
       filter files based on template file. Filter files can be created from
       the scrach but using template file is the recommended way to create a
-      new filter.</para>
+      new filter. The template file is named
+      <filename>FileFilter.tmpl</filename> and can be modified if needed. The
+      template file is located in <filename
+      class="directory">WinMerge/Filters</filename> -folder.</para>
 
       <para>Filter files have two possible locations:</para>
 
@@ -113,16 +116,16 @@
               <guimenuitem>Options</guimenuitem>
             </menuchoice><guilabel>&gt; System &gt;
           </guilabel><guilabel>Filter Folder)</guilabel>. By default it is
-          <filename class="directory">My Documents</filename> -folder.</para>
+          <filename class="directory">My Documents\WinMerge\Filters</filename>
+          -folder.</para>
         </listitem>
       </itemizedlist>
 
       <important>
-        <para>With WinMerge 2.5.4 and later filter files should not be anymore
-        placed to profile folder like with earlier versions. Using
+        <para>With WinMerge 2.6.0 and later filter files are not anymore
+        loaded from profile folder like with earlier versions. Using
         user-defined folder for filter files provices more flexibility and
-        easier access to filter files. WinMerge still reads filters from
-        profile folder for backwards compatibility.</para>
+        easier access to filter files.</para>
       </important>
 
       <para>First part of filter file defines name and basic functionality of
