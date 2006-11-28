@@ -1,6 +1,6 @@
-2006-11-21 Kimmo
- PATCH: [ 1591266 ] Remove unused reg files from installer folder
-  InnoSetup removed files: TortoiseSVN.reg Visual SourceSafe Support.reg
+2006-11-28 Takashi
+ BUG: [ 1603032 ] Doubled item in language selection
+  InnoSetup: WinMerge.iss
 
 2006-11-10 Kimmo
  PATCH: [ 1593753 ] Add PCRE dll to installer
