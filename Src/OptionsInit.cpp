@@ -30,7 +30,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_SHOW_DIFFERENT, true);
 	m_options.InitOption(OPT_SHOW_IDENTICAL, true);
 	m_options.InitOption(OPT_SHOW_BINARIES, true);
-	m_options.InitOption(OPT_SHOW_SKIPPED, true);
+	m_options.InitOption(OPT_SHOW_SKIPPED, false);
 
 	m_options.InitOption(OPT_SHOW_TOOLBAR, true);
 	m_options.InitOption(OPT_SHOW_STATUSBAR, true);
