@@ -2708,50 +2708,33 @@ void CMainFrame::OnFileOpenproject()
 LRESULT CMainFrame::OnCopyData(WPARAM wParam, LPARAM lParam)
 {
 	COPYDATASTRUCT *pCopyData = (COPYDATASTRUCT*)lParam;
-	LPWSTR p = (LPWSTR)(pCopyData->lpData);
-	int argc = pCopyData->dwData;
-	TCHAR **argv = new (TCHAR *[argc]);
-	USES_CONVERSION;
 
-	for (int i = 0; i < argc; i++)
-	{
-		argv[i] = new TCHAR[lstrlenW(p) * (sizeof(WCHAR)/sizeof(TCHAR)) + 1];
-		lstrcpy(argv[i], W2T(p));
-		while (*p) p++;
-		p++;
-	}
+	BYTE* pBuf = new BYTE[pCopyData->cbData];
+	::CopyMemory(pBuf, pCopyData->lpData, pCopyData->cbData);
 
-	PostMessage(WM_USER, (WPARAM)argc, (LPARAM)argv);
+	PostMessage(WM_USER, pCopyData->cbData, reinterpret_cast<LPARAM>(pBuf));
 
 	return TRUE;
 }
 
 LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
 {
-	// MFC's ParseCommandLine method is working with __argc and __targv
-	// variables. We need to send MergeCmdLineInfo object rather than
-	// passing the command line as string. Until we do, we temporary
-	// change these variable values and restore then after parsing.
+	BYTE* pBuf = reinterpret_cast<BYTE*>(lParam);
 
-	int argc = __argc;
-	TCHAR **argv = __targv;
+	CMemFile file;
+	file.Attach(pBuf, wParam);
 
-	__argc = wParam;
-	__targv = reinterpret_cast<TCHAR **>(lParam);
+	CArchive ar(&file, CArchive::load);
+	
+	MergeCmdLineInfo cmdInfo;
+	cmdInfo.Serialize(ar);	
 
-	MergeCmdLineInfo cmdInfo(*__targv);
-	theApp.ParseCommandLine(cmdInfo);
+	ar.Close();
+	file.Close();
+
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
 
-	// Delete memrory allocated in OnCopyData method.
-	for (int i = 0; i < argc; ++i)
-	{
-		delete[] __targv[i];
-	}
-	delete __targv;
-
-	__argc = argc;
-	__targv = argv;
+	delete pBuf;
 
 	return TRUE;
 }

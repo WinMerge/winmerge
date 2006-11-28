@@ -40,6 +40,8 @@ class CmdLineParser;
  */
 class MergeCmdLineInfo : public CCommandLineInfo
 {
+	DECLARE_SERIAL(MergeCmdLineInfo)
+
 public:
 
 	/** @brief ClearCaseCmdLineParser's constructor.
@@ -50,10 +52,15 @@ public:
 	 */
 	MergeCmdLineInfo(const TCHAR *szExeName);
 
+	// Default constructor is required for CArchive's serialization.
+	MergeCmdLineInfo() : m_pCmdLineParser(NULL) { }
+
 	~MergeCmdLineInfo();
 
 	/** @brief Override CCommandLineInfo's method. */
 	virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
+
+	void Serialize(CArchive& ar);
 
 public:
 
@@ -85,6 +92,10 @@ public:
 	int m_nFiles; /**< Number of files (or directories) in m_Files. */
 
 private:
+
+	void Store(CArchive& ar);
+
+	void Load(CArchive& ar);
 
 	/**< operator= is not implemented. */
 	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs);

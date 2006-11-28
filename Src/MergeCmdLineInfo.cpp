@@ -40,6 +40,8 @@
 
 // MergeCmdLineInfo
 
+IMPLEMENT_SERIAL(MergeCmdLineInfo, CCommandLineInfo, 1)
+
 MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *szExeName) : CCommandLineInfo(),
 	m_nCmdShow(SW_SHOWNORMAL),
 	m_bClearCaseTool(false),
@@ -90,4 +92,106 @@ void MergeCmdLineInfo::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast)
 	CCommandLineInfo::ParseParam(pszParam, bFlag, bLast);
 
 	m_pCmdLineParser->ParseParam(pszParam, bFlag, bLast);
+}
+
+void MergeCmdLineInfo::Serialize(CArchive& ar)
+{
+	CCommandLineInfo::Serialize(ar);
+
+	if (ar.IsStoring())
+	{
+		Store(ar);
+	}
+	else
+	{
+		Load(ar);
+	}
+}
+
+void MergeCmdLineInfo::Store(CArchive& ar)
+{
+	ASSERT(ar.IsStoring());
+
+	ar << m_nCmdShow;
+	ar << m_bClearCaseTool;
+	ar << m_bEscShutdown;
+	ar << m_bExitIfNoDiff;
+	ar << m_bRecurse;
+	ar << m_bNonInteractive;
+	ar << m_bNoPrefs;
+	ar << m_bSingleInstance;
+	ar << m_bShowUsage;
+	ar << m_dwLeftFlags;
+	ar << m_dwRightFlags;
+	ar << m_sLeftDesc;
+	ar << m_sRightDesc;
+	ar << m_sFileFilter;
+	ar << m_sPreDiffer;
+
+	ar << m_Settings.GetCount();
+
+	if (m_Settings.GetCount() > 0)
+	{
+		CMapStringToString::CPair* pIter = m_Settings.PGetFirstAssoc();
+		while (pIter != NULL)
+		{
+			ar << pIter->key;
+			ar << pIter->value;
+
+			pIter = m_Settings.PGetNextAssoc(pIter);
+		}
+	}
+
+	ar << m_nFiles;
+	for (INT_PTR i = 0; i < m_nFiles; ++i)
+	{
+		ar << m_Files[i];
+	}
+}
+
+void MergeCmdLineInfo::Load(CArchive& ar)
+{
+	ASSERT(ar.IsLoading());
+
+	INT_PTR i;
+
+	ar >> m_nCmdShow;
+	ar >> m_bClearCaseTool;
+	ar >> m_bEscShutdown;
+	ar >> m_bExitIfNoDiff;
+	ar >> m_bRecurse;
+	ar >> m_bNonInteractive;
+	ar >> m_bNoPrefs;
+	ar >> m_bSingleInstance;
+	ar >> m_bShowUsage;
+	ar >> m_dwLeftFlags;
+	ar >> m_dwRightFlags;
+	ar >> m_sLeftDesc;
+	ar >> m_sRightDesc;
+	ar >> m_sFileFilter;
+	ar >> m_sPreDiffer;
+
+	INT_PTR nSettings;
+	ar >> nSettings;
+
+	for (i = 0; i < nSettings; ++i)
+	{
+		CString sParam;
+		CString sValue;
+		ar >> sParam;
+		ar >> sValue;
+
+		m_Settings[sParam] = sValue;
+	}
+
+	ar >> m_nFiles;
+	m_Files.SetSize(m_nFiles);
+
+	for (i = 0; i < m_nFiles; ++i)
+	{
+		CString sFile;
+		ar >> sFile;
+
+		m_Files.SetAtGrow(i, sFile);
+	}
 }
