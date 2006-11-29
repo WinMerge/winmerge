@@ -1,3 +1,7 @@
+2006-11-29 Tim
+ PATCH: [ 1604059 ] Manual: Add missing options to Configuration.xml
+  Manual: Configuration.xml
+
 2006-11-27 Kimmo
  PATCH: [ 1603359 ] Manual: FAQ updates
   Manual: Faq.xml

@@ -25,13 +25,19 @@
     <sect3>
       <title>Automatically scroll to first difference</title>
 
-      <para>When this option is enabled:<simplelist>
-          <member>after directory compare selection is moved to first
-          different files or directories</member>
+      <para>When this option is enabled:</para>
 
-          <member>after opening files for compare first difference in files is
-          scrolled visible and selected</member>
-        </simplelist></para>
+      <itemizedlist>
+        <listitem>
+          <simpara>After folder compare selection is moved to first
+          different files or folders.</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>After opening files for compare first difference in files is
+          scrolled visible and selected.</simpara>
+        </listitem>
+      </itemizedlist>
     </sect3>
 
     <sect3>
@@ -97,13 +103,13 @@
 
       <itemizedlist>
         <listitem>
-          <para>From file system - checks paths from filesystem. I.e. It
+          <para><guilabel>From file system</guilabel> - checks paths from filesystem. I.e. It
           locates paths matching letters already typed and if matching path is
           found, completes the path.</para>
         </listitem>
 
         <listitem>
-          <para>From MRU list - checks paths only from MRU list. This is handy
+          <para><guilabel>From MRU list</guilabel> - checks paths only from MRU list. This is handy
           when you have pretty limited set of paths (usually in MRU lists) to
           compare.</para>
         </listitem>
@@ -247,7 +253,7 @@
     <sect3>
       <title>File compare method</title>
 
-      <para>File compare method has three choices:</para>
+      <para>File compare method has five choices:</para>
 
       <itemizedlist>
         <listitem>
@@ -283,6 +289,12 @@
           <para><guilabel>Modified Date and Size</guilabel> - like above
           <guilabel>Modified Date</guilabel> -comparison. But also checks file
           sizes when dates are identical.</para>
+        </listitem>
+
+        <listitem>
+          <para><guilabel>Size</guilabel> - comparison of the sizes of the files.
+          This method only examines the file sizes, so it is fast, but
+          not so accurate like the contents methods.</para>
         </listitem>
       </itemizedlist>
     </sect3>
@@ -474,6 +486,24 @@ EOL differences.</screen>
     </sect3>
 
     <sect3>
+      <title>Ignore time differences less than 3 seconds</title>
+
+      <para><emphasis>Only for "<guilabel>Modified Date</guilabel>"
+      and "<guilabel>Modified Date and Size</guilabel>" compare
+      methods.</emphasis></para>
+
+      <para>It is possible that timestamps vary by one or two seconds in certain
+      situations. This usually happens with network shares. Normally WinMerge
+      determines such items as different. So this option allows WinMerge to
+      ignore time differences smaller than three seconds to help getting more
+      reliable results.</para>
+      
+      <warning><para>This option should be enabled only when the
+      time difference is detected. Otherwise it can cause wrong compare
+      results.</para></warning>
+    </sect3>
+
+    <sect3>
       <title>Add to explorer context menu</title>
 
       <para>This option enables/disables shell integration. When enabled, new
@@ -494,6 +524,15 @@ EOL differences.</screen>
 
       <para>Second item (<guimenuitem>Compare...</guimenuitem>) in menu always
       opens WinMerge with selected path(s).</para>
+    </sect3>
+
+    <sect3>
+      <title>Include subfolders by default</title>
+
+      <para>Shell Integration by default does not include subfolders into comparison.
+      This behavior can be changed with this option. The default behavior can be also
+      changed by holding down the <keycap>Control</keycap> key while selecting the
+      <guimenuitem>Compare...</guimenuitem> item from the Explorer context menu.</para>
     </sect3>
 
     <sect3>
@@ -613,7 +652,7 @@ EOL differences.</screen>
       <para>Actually, WinMerge detects the codepage for these extensions :
       <filename class="extension">.html</filename>, <filename
       class="extension">.rc</filename> (resource files for VC++) and
-      .<filename>xml</filename>.</para>
+      <filename class="extension">.xml</filename>.</para>
 
       <para>WinMerge also detects a codepage difference between the left/right
       files. To avoid lossy conversions during merge/copy/paste, WinMerge
