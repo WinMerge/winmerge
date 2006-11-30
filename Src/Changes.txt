@@ -5,6 +5,12 @@ Add new items to top.
 2006-11-30 Kimmo
  PATCH: [ 1605682 ] Add Syntax Highlight option to config log
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+ PATCH: [ 1556685 ] Avoid infinite loop in character loop in crystal c++ parser
+  Submitted by Perry
+  Src/editlib: asp.cpp basic.cpp batch.cpp cplusplus.cpp csharp.cpp dcl.cpp fortran.cpp
+   html.cpp innosetup.cpp is.cpp java.cpp lisp.cpp nsis.cpp. pascal.cpp perl.cpp php.cpp
+   python.cpp rexx.cpp rsrc.cpp ruby.cpp sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp
+   xml.cpp
 
 2006-11-30 Takashi
  BUG: [ 1603230 ] DirView icons isn't shown correctly on NT4.0
