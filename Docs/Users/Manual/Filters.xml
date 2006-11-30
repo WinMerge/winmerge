@@ -27,8 +27,8 @@
           <term>Good site devoted for regexps:</term>
 
           <listitem>
-            <para><ulink
-            url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></para>
+            <simpara><ulink
+            url="http://www.regular-expressions.info/">http://www.regular-expressions.info/</ulink></simpara>
           </listitem>
         </varlistentry>
 
@@ -36,8 +36,8 @@
           <term>Good HOWTO document for regexps:</term>
 
           <listitem>
-            <para><ulink
-            url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></para>
+            <simpara><ulink
+            url="http://www.amk.ca/python/howto/regex/">http://www.amk.ca/python/howto/regex/</ulink></simpara>
           </listitem>
         </varlistentry>
 
@@ -45,8 +45,8 @@
           <term>Tutorial:</term>
 
           <listitem>
-            <para><ulink
-            url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></para>
+            <simpara><ulink
+            url="http://www.zvon.org/other/PerlTutorial/Output/index.html">http://www.zvon.org/other/PerlTutorial/Output/index.html</ulink></simpara>
           </listitem>
         </varlistentry>
 
@@ -54,8 +54,8 @@
           <term>PDF quick reference:</term>
 
           <listitem>
-            <para><ulink
-            url="http://www.night-ray.com/regex.pdf">http://www.night-ray.com/regex.pdf</ulink></para>
+            <simpara><ulink
+            url="http://www.night-ray.com/regex.pdf">http://www.night-ray.com/regex.pdf</ulink></simpara>
           </listitem>
         </varlistentry>
       </variablelist>
@@ -111,13 +111,10 @@
 
         <listitem>
           <para>User-defined folder. Selected in Options (<menuchoice>
-              <guimenu>Edit</guimenu>
-
-              <guimenuitem>Options</guimenuitem>
-            </menuchoice><guilabel>&gt; System &gt;
-          </guilabel><guilabel>Filter Folder)</guilabel>. By default it is
-          <filename class="directory">My Documents\WinMerge\Filters</filename>
-          -folder.</para>
+          <guimenu>Edit</guimenu><guimenuitem>Options</guimenuitem>
+          <guimenuitem>System</guimenuitem><guilabel>Filter Folder</guilabel>
+          </menuchoice>). By default it is <filename class="directory">
+          My Documents\WinMerge\Filters</filename> folder.</para>
         </listitem>
       </itemizedlist>
 
@@ -297,10 +294,9 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
     <example>
       <title>Line filter rule matching CVS "Id:" -lines:</title>
 
-      <para>Id-lines are like this (dollar-char not written so that version
-      control does not mess up that line):</para>
+      <para>Id-lines are like this:</para>
 
-      <screen>// [dollar-char]Id: Filters.xml,v 1.14.2.2 2005/10/29 17:21:16 kimmov Exp [dollar-char]</screen>
+      <screen>// &dollar;Id: Filters.xml,v 1.14.2.2 2005/10/29 17:21:16 kimmov Exp &dollar;</screen>
 
       <para>And they can be filtered with rule:</para>
 

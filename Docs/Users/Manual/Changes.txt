@@ -1,3 +1,7 @@
+2006-11-30 Tim
+ PATCH: [ 1605673 ] Manual: Minimal changes in Filters.xml
+  Manual: Filters.xml
+
 2006-11-29 Tim
  PATCH: [ 1604059 ] Manual: Add missing options to Configuration.xml
   Manual: Configuration.xml
