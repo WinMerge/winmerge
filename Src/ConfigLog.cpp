@@ -454,6 +454,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Merge Mode enabled"), &m_miscSettings.bMergeMode);
 	WriteItemYesNo(2, _T("Show linenumbers"), &m_miscSettings.bShowLinenumbers);
 	WriteItemYesNo(2, _T("Wrap lines"), &m_miscSettings.bWrapLines);
+	WriteItemYesNo(2, _T("Syntax Highlight"), &m_miscSettings.bSyntaxHighlight);
 	
 // Font settings
 	FileWriteString(_T("\n Font:\n"));

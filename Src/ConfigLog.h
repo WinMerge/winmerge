@@ -64,6 +64,7 @@ struct MISCSETTINGS
 	BOOL bShowLinenumbers;
 	BOOL bWrapLines;
 	BOOL bMergeMode;
+	BOOL bSyntaxHighlight;
 };
 
 /** 
