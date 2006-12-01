@@ -1467,19 +1467,25 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 
 		if (bScroll)
 		{
+			int nDiffStart = GetSubLineIndex(curDiff.dbegin0);
+			int nDiffEnd = GetSubLineIndex(curDiff.dend0);
+
 			// If diff first line outside current view - context OR
 			// if diff last line outside current view - context OR
 			// if diff is bigger than screen
-			if ((ptStart.y < m_nTopLine + CONTEXT_LINES_ABOVE) ||
-				(ptEnd.y >= m_nTopLine + GetScreenLines() - CONTEXT_LINES_BELOW) ||
-				(ptEnd.y - ptStart.y) >= GetScreenLines())
+			// if diff is bigger than screen when word wrap enabled
+			if ((nDiffStart < m_nTopSubLine + CONTEXT_LINES_ABOVE) ||
+				(nDiffEnd >= m_nTopSubLine + GetScreenLines() - CONTEXT_LINES_BELOW) ||
+				(nDiffEnd - nDiffStart) >= GetScreenLines() ||
+				(nDiffStart + GetSubLines(ptStart.y)) >= GetScreenLines())
 			{
-				int line = ptStart.y - CONTEXT_LINES_ABOVE;
-				if (line < 0)
-					line = 0;
-
-				pCurrentView->ScrollToLine(line);
-				pOtherView->ScrollToLine(line);
+				int nLine = nDiffStart;
+				if (nLine > CONTEXT_LINES_ABOVE)
+				{
+					nLine -= CONTEXT_LINES_ABOVE;
+				}
+				pCurrentView->ScrollToSubLine(nLine);
+				pOtherView->ScrollToSubLine(nLine);
 			}
 			pCurrentView->SetCursorPos(ptStart);
 			pOtherView->SetCursorPos(ptStart);
@@ -2559,7 +2565,7 @@ void CMergeEditView::OnWindowClose()
 /**
  * @brief When view is scrolled using scrollbars update location pane.
  */
-void CMergeEditView::OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar)
+void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
 	CCrystalTextView::OnVScroll (nSBCode, nPos, pScrollBar);
  
@@ -2893,18 +2899,17 @@ BOOL CMergeEditView::IsCursorInDiff() const
 BOOL CMergeEditView::IsDiffVisible(int nDiff)
 {
 	CMergeDoc *pd = GetDocument();
-	CPoint ptStart, ptEnd;
 
 	DIFFRANGE diff;
 	pd->m_diffList.GetDiff(nDiff, diff);
-	ptStart.x = 0;
-	ptStart.y = diff.dbegin0;
-	ptEnd.x = 0;
-	ptEnd.y = diff.dend0;
+	
+	int nDiffStart = GetSubLineIndex(diff.dbegin0);
+	int nDiffEnd = GetSubLineIndex(diff.dend0);
 
-	if (ptStart.y < m_nTopLine ||
-		(ptEnd.y >= m_nTopLine + GetScreenLines()) ||
-		(ptEnd.y - ptStart.y) >= GetScreenLines())
+	if ((nDiffStart < m_nTopSubLine) ||
+		(nDiffEnd >= m_nTopSubLine + GetScreenLines()) ||
+		(nDiffEnd - nDiffStart) >= GetScreenLines() ||
+		(nDiffStart + GetSubLines(diff.dbegin0)) >= GetScreenLines())
 	{
 		return FALSE;
 	}

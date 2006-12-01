@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-01 Gal
+ PATCH: [ 1597814 ] 'Wrap Lines' + 'Next Diff' Bug
+  Src: MergeEditView.cpp
+
 2006-11-30 Kimmo
  PATCH: [ 1605682 ] Add Syntax Highlight option to config log
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
