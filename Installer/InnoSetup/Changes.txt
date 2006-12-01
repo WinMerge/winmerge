@@ -1,3 +1,8 @@
+2006-12-01 Kimmo
+ PATCH: [ 1606496 ] Slovak translation
+  Submitted by Ivan Masár
+  Languages: Slovak.isl
+
 2006-11-28 Takashi
  BUG: [ 1603032 ] Doubled item in language selection
   InnoSetup: WinMerge.iss

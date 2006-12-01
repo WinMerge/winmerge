@@ -239,29 +239,29 @@ StatusUninstalling=Odinötalujem %1...
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 verzia %2
-AdditionalIcons=œalöÌ z·stupcovia:
+AdditionalIcons=DalöÌ z·stupcovia:
 OptionalFeatures=Optional Features:
-CreateDesktopIcon=Vytvoriù z·stupcu na &ploche
-CreateQuickLaunchIcon=Vytvoriù z·stupcu na paneli &R˝chle spustenie
+CreateDesktopIcon=Vytvorit z·stupcu na &ploche
+CreateQuickLaunchIcon=Vytvorit z·stupcu na paneli &R˝chle spustenie
 ProgramOnTheWeb=Aplik·cia %1 na internete
-UninstallProgram=Odinötalovaù aplik·ciu %1 
-LaunchProgram=Spustiù aplik·ciu %1
-AssocFileExtension=Vytvoriù &asoci·ciu medzi s˙bormi typu %2 a aplik·ciou %1
+UninstallProgram=Odinötalovat aplik·ciu %1 
+LaunchProgram=Spustit aplik·ciu %1
+AssocFileExtension=Vytvorit &asoci·ciu medzi s˙bormi typu %2 a aplik·ciou %1
 AssocingFileExtension=Vytv·ra sa asoci·cia medzi s˙bormi typu %2 a aplik·ciou %1...;Things we can also localize
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Typick· inötal·cia
+FullInstallation=Pln· inötal·cia
+CompactInstallation=kompaktn· inötal·cia
+CustomInstallation=Vlastn· inötal·cia
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-UsersGuide=User's Guide
-Filters=Filters
-Plugins=Plugins
+AppCoreFiles=Z·kladnÈ s˙bory WinMerge
+ApplicationRuntimes=S˙bory aplik·cie vyûadovanÈ pocas behu
+UsersGuide=PrÌrucka pouûÌvatela
+Filters=Filtre
+Plugins=Z·suvnÈ modly
 
 ;Localization Components
 Languages=Languages
@@ -289,21 +289,21 @@ TurkishLanguage=Turkish menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-IntegrateDelphi4=BorlandÆ Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+IntegrateTortoiseCVS=Integr·cia s &TortoiseCVS
+IntegrateTortoiseSVN=Integr·cia s T&ortoiseSVN
+IntegrateClearCase=Integr·cia s Rational &ClearCase
+IntegrateDelphi4=Podpora bin·rnych s˙borov BorlandÆ Delphi &4
+UpdatingCommonControls=Aktualizujem ovl·dacie prvky systÈmu
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
-PluginsText=Plugins
+ReadMe=s˙bor CÌtaj ma!
+UsersGuide=PrÌrucka pouûÌvatela
+UpdatingCommonControls=Aktualizujem ovl·dacie prvky systÈmu
+ViewStartMenuFolder=&Zobrazit adres·r WinMerge z ponuky ätart
+PluginsText=Z·suvnÈ moduly
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=Inötal·tor zistil, ûe ste zmenili umiestnenie v·öej ponuky ätart z "%s" na "%s". éel·te si zmazat predch·dzaj˙ci adres·r ponuky ätart?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=s˙bor projektu WinMerge
