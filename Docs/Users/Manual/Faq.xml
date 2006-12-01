@@ -148,8 +148,8 @@
 
       <qandaentry>
         <question>
-          <para>Why do large files sometimes show as different in the
-          folder view, but come up as identical in the merge editor?</para>
+          <para>Why do large files sometimes show as different in the folder
+          view, but come up as identical in the merge editor?</para>
         </question>
 
         <answer>
@@ -436,6 +436,27 @@
     <title>Archive support</title>
 
     <qandaset>
+      <qandaentry>
+        <question>
+          <para>I installed 7-Zip but archive support does not work?</para>
+        </question>
+
+        <answer>
+          <para>Do you have plugin installed and or the plugin version matches
+          7-Zip version? If not, see Installing chapter for instructions for
+          installing.</para>
+        </answer>
+
+        <answer>
+          <para>If the error is something like: "<emphasis>7-zip x.xx missing
+          / Plugin present</emphasis>", then you probably have installed 7-Zip
+          using MSI-installer. There are 7-Zip MSI installers that do not
+          install all the files WinMerge needs (namely
+          <filename>7zip_pad.xml</filename> in 7-Zip program folder). Download
+          and run the EXE version of the 7-Zip installer.</para>
+        </answer>
+      </qandaentry>
+
       <qandaentry>
         <question>
           <para>How can I open "Perry-style" patch files WinMerge developers

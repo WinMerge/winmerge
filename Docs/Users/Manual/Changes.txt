@@ -1,3 +1,7 @@
+2006-12-01 Kimmo
+ PATCH: [ 1605562 ] Manual: Add FAQ items about archive support installation
+  Manual: Faq.xml
+
 2006-11-30 Tim
  PATCH: [ 1605673 ] Manual: Minimal changes in Filters.xml
   Manual: Filters.xml
