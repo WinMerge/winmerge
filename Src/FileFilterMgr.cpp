@@ -169,7 +169,6 @@ void FileFilterMgr::DeleteAllFilters()
 static void AddFilterPattern(FileFilterList & filterList, CString & str)
 {
 	LPCTSTR commentLeader = _T("##"); // Starts comment
-	str.MakeUpper();
 	str.TrimLeft();
 
 	// Ignore lines beginning with '##'
@@ -204,6 +203,7 @@ static void AddFilterPattern(FileFilterList & filterList, CString & str)
 	strcpy(regexString, (LPCTSTR)str);
 	regexLen = strlen(regexString);
 #endif
+	pcre_opts |= PCRE_CASELESS;
 	
 	pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
 		&erroroffset, NULL);
