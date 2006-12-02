@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2006-12-02 Takashi
+ BUG: [ 1603077 ] Doesn't filter the file vc60.idb using "Merge_VC_loose.flt"
+  Filters: Merge_VC_loose.flt
+
+2006-12-02 Takashi
  BUG: [ 1603061 ] "Copy Left/Right To .." doesn't work correctly
   Src: DirActions.cpp
 

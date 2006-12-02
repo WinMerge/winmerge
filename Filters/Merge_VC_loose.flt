@@ -17,7 +17,7 @@ f: \.clw$ ## VC class-wizard status file
 f: \.dll$ ## Windows DLL
 f: \.exe$ ## Windows/DOS executable
 f: \.exp$ ## VC library export file
-f: \\vc60.idb$ ## VC ?
+f: ^vc[4-9]0\.idb$ ## VC Minimal rebuild dependency file
 f: \.ilk$ ## VC incremental linker memory file
 f: \.lib$ ## compiled libraries
 f: \.ncb$ ## VC parser information file (class view & component gallery stuff)
