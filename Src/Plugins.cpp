@@ -38,7 +38,6 @@
 #include "Plugins.h"
 #include "lwdisp.h"
 #include "coretools.h"
-//#include "RegExp.h"
 #include "resource.h"
 #include "Exceptions.h"
 #include "RegKey.h"
@@ -282,19 +281,8 @@ void PluginInfo::LoadFilterString()
 		sPiece.TrimLeft();
 		sPiece.MakeUpper();
 
-//		CRegExp * regexp = new CRegExp;
 		FileFilterElement element;
-		
-/*		if (regexp->RegComp(sPiece))
-		{
-			element.pRegExp = regexp;
-			filters->AddTail(element);
-		}
-		else
-			delete regexp;
-*/
 		const char * errormsg = NULL;
-		//char errormsg[200] = {0};
 		int erroroffset = 0;
 		char regexString[200] = {0};
 		int regexLen = 0;
