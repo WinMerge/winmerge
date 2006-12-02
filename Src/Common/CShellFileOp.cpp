@@ -527,8 +527,9 @@ int    nAPIRet;
         }
 
                                         // drum roll please....
+    ((CFrameWnd *)AfxGetMainWnd())->BeginModalState();
     nAPIRet = SHFileOperation ( &m_rFOS );  // tah-dah!
-
+    ((CFrameWnd *)AfxGetMainWnd())->EndModalState();
                                         // Save the return value from the API.
     if ( NULL != lpnAPIReturn )
         {

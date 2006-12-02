@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2006-12-02 Takashi
+ BUG: [ 1589324 ] WinMegee crashes on copy
+  Src: FileFilterMgr.cpp
+
+2006-12-02 Takashi
  Fix filefilter regexp uppercasing for trunk
   Src: FileFilterMgr.cpp
 
