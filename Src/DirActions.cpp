@@ -329,7 +329,10 @@ void CDirView::DoCopyLeftTo()
 				sFullDest += _T("\\");
 				if (!di.sLeftSubdir.IsEmpty())
 					sFullDest += di.sLeftSubdir + _T("\\");
-				sFullDest += di.sLeftFilename;
+				if (di.isDirectory())
+					paths_CreateIfNeeded(sFullDest);
+				else
+					sFullDest += di.sLeftFilename;
 				fileOp.AddDestFile(sFullDest);
 			}
 			GetItemFileNames(sel, slFile, srFile);
@@ -382,7 +385,10 @@ void CDirView::DoCopyRightTo()
 				sFullDest += _T("\\");
 				if (!di.sRightSubdir.IsEmpty())
 					sFullDest += di.sRightSubdir + _T("\\");
-				sFullDest += di.sRightFilename;
+				if (di.isDirectory())
+					paths_CreateIfNeeded(sFullDest);
+				else
+					sFullDest += di.sRightFilename;
 				fileOp.AddDestFile(sFullDest);
 			}
 			GetItemFileNames(sel, slFile, srFile);
@@ -435,7 +441,10 @@ void CDirView::DoMoveLeftTo()
 				if (!di.sLeftSubdir.IsEmpty())
 					sFullDest += di.sLeftSubdir + _T("\\");
 			}
-			sFullDest += di.sLeftFilename;
+			if (di.isDirectory())
+				paths_CreateIfNeeded(sFullDest);
+			else
+				sFullDest += di.sLeftFilename;
 			act.dest = sFullDest;
 
 			GetItemFileNames(sel, slFile, srFile);
@@ -490,7 +499,10 @@ void CDirView::DoMoveRightTo()
 				if (!di.sRightSubdir.IsEmpty())
 					sFullDest += di.sRightSubdir + _T("\\");
 			}
-			sFullDest += di.sRightFilename;
+			if (di.isDirectory())
+				paths_CreateIfNeeded(sFullDest);
+			else
+				sFullDest += di.sRightFilename;
 			act.dest = sFullDest;
 
 			GetItemFileNames(sel, slFile, srFile);
