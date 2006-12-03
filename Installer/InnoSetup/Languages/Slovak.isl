@@ -12,7 +12,9 @@
 ; ***                                                ***
 ; ***   Tomas Falb (tomasf@pobox.sk)                 ***
 ; ***                                                ***
-; *** Update: 13.10.2005                              ***
+; ***   Ivan Masár (helix84@centrum.sk)              ***
+; ***                                                ***
+; *** Update: 30.11.2006                             ***
 ; ***                                                ***
 ; ******************************************************
 ;
@@ -239,56 +241,56 @@ StatusUninstalling=Odinštalujem %1...
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 verzia %2
-AdditionalIcons=Další zástupcovia:
-OptionalFeatures=Optional Features:
-CreateDesktopIcon=Vytvorit zástupcu na &ploche
-CreateQuickLaunchIcon=Vytvorit zástupcu na paneli &Rıchle spustenie
+AdditionalIcons=Ïalší zástupcovia:
+OptionalFeatures=Volite¾né monosti:
+CreateDesktopIcon=Vytvori zástupcu na &ploche
+CreateQuickLaunchIcon=Vytvori zástupcu na paneli &Rıchle spustenie
 ProgramOnTheWeb=Aplikácia %1 na internete
-UninstallProgram=Odinštalovat aplikáciu %1 
-LaunchProgram=Spustit aplikáciu %1
-AssocFileExtension=Vytvorit &asociáciu medzi súbormi typu %2 a aplikáciou %1
+UninstallProgram=Odinštalova aplikáciu %1 
+LaunchProgram=Spusti aplikáciu %1
+AssocFileExtension=Vytvori &asociáciu medzi súbormi typu %2 a aplikáciou %1
 AssocingFileExtension=Vytvára sa asociácia medzi súbormi typu %2 a aplikáciou %1...;Things we can also localize
 CompanyName=Thingamahoochie Software
 
 ;Types
 TypicalInstallation=Typická inštalácia
 FullInstallation=Plná inštalácia
-CompactInstallation=kompaktná inštalácia
+CompactInstallation=Kompaktná inštalácia
 CustomInstallation=Vlastná inštalácia
 
 ;Components
 AppCoreFiles=Základné súbory WinMerge
-ApplicationRuntimes=Súbory aplikácie vyadované pocas behu
-UsersGuide=Prírucka pouívatela
+ApplicationRuntimes=Súbory aplikácie vyadované poèas behu
+UsersGuide=Príruèka pouívate¾a
 Filters=Filtre
-Plugins=Zásuvné modly
+Plugins=Zásuvné moduly
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseLanguage=Portuguese (Brazilian) menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
+Languages=Jazyky
+BulgarianLanguage=Bulharské ponuky a dialógy
+CatalanLanguage=Katalánske ponuky a dialógy
+ChineseSimplifiedLanguage=Èínske (zjednodušená) ponuky a dialógy
+ChineseTraditionalLanguage=Èínske (tradièná) ponuky a dialógy
+CzechLanguage=Èeské ponuky a dialógy
+DanishLanguage=Dánske ponuky a dialógy
+DutchLanguage=Holandské ponuky a dialógy
+FrenchLanguage=Francúzske ponuky a dialógy
+GermanLanguage=Nemecké ponuky a dialógy
+HungarianLanguage=Maïarské ponuky a dialógy
+ItalianLanguage=Talianske ponuky a dialógy
+JapaneseLanguage=Japonské ponuky a dialógy
+KoreanLanguage=Kórejské ponuky a dialógy
+NorwegianLanguage=Nórske ponuky a dialógy
+PolishLanguage=Po¾ské ponuky a dialógy
+PortugueseLanguage=Portugalské (Brazilian) ponuky a dialógy
+RussianLanguage=Ruské ponuky a dialógy
+SlovakLanguage=Slovenské ponuky a dialógy
+SpanishLanguage=Španielske ponuky a dialógy
+SwedishLanguage=Švédske ponuky a dialógy
+TurkishLanguage=Turecké ponuky a dialógy
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
+ExplorerContextMenu=&Zapni integráciu do kontextovej ponuky Prieskumníka
 IntegrateTortoiseCVS=Integrácia s &TortoiseCVS
 IntegrateTortoiseSVN=Integrácia s T&ortoiseSVN
 IntegrateClearCase=Integrácia s Rational &ClearCase
@@ -296,14 +298,15 @@ IntegrateDelphi4=Podpora binárnych súborov Borland® Delphi &4
 UpdatingCommonControls=Aktualizujem ovládacie prvky systému
 
 ;Icon Labels
-ReadMe=súbor Cítaj ma!
-UsersGuide=Prírucka pouívatela
+ReadMe=súbor Èítaj ma!
+UsersGuide=Príruèka pouívate¾a
 UpdatingCommonControls=Aktualizujem ovládacie prvky systému
-ViewStartMenuFolder=&Zobrazit adresár WinMerge z ponuky Štart
+ViewStartMenuFolder=&Zobrazi adresár WinMerge z ponuky Štart
 PluginsText=Zásuvné moduly
 
 ;Code Dialogs
-DeletePreviousStartMenu=Inštalátor zistil, e ste zmenili umiestnenie vášej ponuky Štart z "%s" na "%s". eláte si zmazat predchádzajúci adresár ponuky Štart?
+DeletePreviousStartMenu=Inštalátor zistil, e ste zmenili umiestnenie vášej ponuky Štart z "%s" na "%s". eláte si zmaza predchádzajúci adresár ponuky Štart?
 
 ; Project file description
 ProjectFileDesc=súbor projektu WinMerge
+

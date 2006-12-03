@@ -5,6 +5,9 @@ Add new items to top.
 2006-12-03 Kimmo
  PATCH: [ 1556688 ] Fix maketstring to check for zero-term by MultiByteToWideCha
   Src: Common/unicoder.cpp
+ PATCH: [ 1606496 ] Slovak translation (update)
+  Submitted by Ivan Masár
+  Src/Languages/Slovak: MergeSlovak.rc
 
 2006-12-02 Kimmo
  Remove commented out code
