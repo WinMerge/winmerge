@@ -3,11 +3,9 @@
   <title>Quick Start</title>
 
   <sect2>
-    <title>Opening Files and Folders</title>
-
-    <indexterm>
-      <primary>Open Dialog</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Open Dialog</primary>
+      </indexterm>Opening Files and Folders</title>
 
     <para>Start WinMerge and either select <guimenuitem>Open</guimenuitem>
     from the <guimenu>File</guimenu>-menu, or click the yellow folder icon on
