@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-04 Gal
+ PATCH: [ 1597814 ] 'Wrap Lines' + 'Next Diff' Bug (2)
+  Src: MergeEditView.cpp
+
 2006-12-03 Kimmo
  PATCH: [ 1556688 ] Fix maketstring to check for zero-term by MultiByteToWideCha
   Src: Common/unicoder.cpp

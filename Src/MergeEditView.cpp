@@ -1474,7 +1474,7 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 			// if diff last line outside current view - context OR
 			// if diff is bigger than screen
 			// if diff is bigger than screen when word wrap enabled
-			if ((nDiffStart < m_nTopSubLine + CONTEXT_LINES_ABOVE) ||
+			if ((nDiffStart < m_nTopSubLine) ||
 				(nDiffEnd >= m_nTopSubLine + GetScreenLines() - CONTEXT_LINES_BELOW) ||
 				(nDiffEnd - nDiffStart) >= GetScreenLines() ||
 				(nDiffStart + GetSubLines(ptStart.y)) >= GetScreenLines())
