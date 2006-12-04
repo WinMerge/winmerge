@@ -5,6 +5,8 @@ Add new items to top.
 2006-12-04 Tim
  PATCH: [ 1607193 ] INI Syntax Improvements
   Src/editlib: ini.cpp
+ PATCH: [ 1608541 ] Use INI highlighter for VB6 project files
+  Src/editlib: ccrystaltextview.cpp
 
 2006-12-04 Kimmo
  PATCH: [ 1607823 ] Remove manifest loading from lang dlls
