@@ -1,3 +1,7 @@
+2006-12-04 Kimmo
+ Update SVN URLs
+  Developers: readme-Subversion.html
+
 2006-11-09 Tim
  PATCH: [ 1593009 ] Updated Organisation.txt
   Developers: Organisation.txt
