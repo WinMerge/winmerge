@@ -1,3 +1,7 @@
+2006-12-04 Kimmo
+ PATCH: [ 1608003 ] Manual: Fix indexterm position in Quick Start
+  Manual: Introduction.xml
+
 2006-12-03 Kimmo
  PATCH: [ 1607084 ] Manual: Add new FAQ about missing runtime files
   Manual: Faq.xml

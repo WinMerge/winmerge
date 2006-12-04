@@ -33,32 +33,28 @@
   further. It is advantage for all WinMerge users.</para>
 
   <sect2>
-    <title>WinMerge versions</title>
+    <title>WinMerge Versions</title>
 
     <para>There are three kind of versions available in <ulink
     url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
     page.</para>
 
     <sect3>
-      <title>Stable versions</title>
-
-      <indexterm>
-        <primary>Stable versions</primary>
-      </indexterm>
+      <title><indexterm>
+          <primary>Stable Versions</primary>
+        </indexterm>Stable Versions</title>
 
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable
       versions</ulink> are recommended for most users. If you are unsure about
       what version to use - use latest stable version. Stable versions have
-      even second number, for example 2.2, 2.4</para>
+      even second number, for example 2.2, 2.4 and 2.6.</para>
     </sect3>
 
     <sect3>
-      <title>Beta versions</title>
-
-      <indexterm>
-        <primary>Beta versions</primary>
-      </indexterm>
+      <title><indexterm>
+          <primary>Beta Versions</primary>
+        </indexterm>Beta Versions</title>
 
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta
@@ -74,28 +70,26 @@
     </sect3>
 
     <sect3>
-      <title>Experimental versions</title>
-
-      <indexterm>
-        <primary>Experimental versions</primary>
-      </indexterm>
+      <title><indexterm>
+          <primary>Experimental Versions</primary>
+        </indexterm>Experimental Versions</title>
 
       <para><ulink
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental
-      versions</ulink> are snapshot releases from version control (CVS). They
-      have all the latest features and improvements. Some features may still
-      be buggy and/or incomplete. These releases are made available to allow
-      users to try out the current code without needing to compile, and
-      participate in development discussions concerning new and changing
-      features. We also appreciate any help testing the current code. Use with
-      care and enable backups! And please <ulink
+      versions</ulink> are snapshot releases from version control
+      (Subversion). They have all the latest features and improvements. Some
+      features may still be buggy and/or incomplete. These releases are made
+      available to allow users to try out the current code without needing to
+      compile, and participate in development discussions concerning new and
+      changing features. We also appreciate any help testing the current code.
+      Use with care and enable backups! And please <ulink
       url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">report
       bugs</ulink> you find using these builds, it really helps with WinMerge
       development!</para>
     </sect3>
 
     <sect3>
-      <title>Version tree</title>
+      <title>Version Tree</title>
 
       <para>All this text about different versions may sound confusing if you
       never have worked with this kind of model. Lets see this with picture
@@ -148,13 +142,11 @@
   </sect2>
 
   <sect2>
-    <title>Getting support and reporting bugs</title>
+    <title><indexterm>
+        <primary>Support</primary>
 
-    <indexterm>
-      <primary>Support</primary>
-
-      <secondary>Reporting bugs</secondary>
-    </indexterm>
+        <secondary>Reporting Bugs</secondary>
+      </indexterm>Getting Support and Reporting Bugs</title>
 
     <para><ulink
     url="http://sourceforge.net/forum/forum.php?forum_id=41637">Open
@@ -193,11 +185,9 @@
   </sect2>
 
   <sect2>
-    <title>WinMerge source codes and development</title>
-
-    <indexterm>
-      <primary>WinMerge development</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>WinMerge Development</primary>
+      </indexterm>WinMerge Source Codes and Development</title>
 
     <para>WinMerge source codes are available in <ulink
     url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
@@ -220,7 +210,7 @@
     be it testing, documenting, translating or coding.</para>
 
     <sect3>
-      <title>Participating to WinMerge development</title>
+      <title>Participating to WinMerge Development</title>
 
       <para>As mentioned above, we look for help in many areas, not just
       coding. Translations, documentation and testing are important
