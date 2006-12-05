@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1608846 ] Create a class for moved blocks
   Src: DiffWrapper.cpp DiffWrapper.h Merge.dsp MergeDoc.cpp MergeDoc.h
   Src new files: MovedLines.cpp MovedLines.h
+ PATCH: [ 1557295 ] Exclude Source Control files and directories filter
+  Submitted by Paul Welter
+   Filters new file: SourceControl.flt
 
 2006-12-04 Tim
  PATCH: [ 1607193 ] INI Syntax Improvements

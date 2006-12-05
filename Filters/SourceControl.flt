@@ -1,0 +1,20 @@
+## This is a directory/file filter for WinMerge 
+## This filter lets through only files ASP.NET developers care about 
+name: Exclude Source Control
+desc: Exclude Source Control files and directories
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
+def: include
+
+
+## Filters for filenames begin with f: 
+## Filters for directories begin with d: 
+## (Inline comments begin with " ##" and extend to the end of the line) 
+
+f: *\.*scc$  ## Visual SourceSafe files
+d: \\\.svn$ ## Subversion working copy
+d: \\_svn$  ## Subversion working copy ASP.NET Hack
+d: \\cvs$   ## CVS control directory
+
+ 	  	 
