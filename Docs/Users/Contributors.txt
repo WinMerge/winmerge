@@ -86,6 +86,7 @@ Localization:
               
 * Slovak:	
   Majvan
+  Ivan Masár
              
 * Spanish:	
   Jesús M. Delgado 'MacK'
@@ -120,7 +121,7 @@ Other Contributors (code, ideas, testing..):
 * Philippe Verdy
 * Vikrant
 * Gilbert Wellisch
-
+* Paul Welter
 
 
 WinMerge includes code from:

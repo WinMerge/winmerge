@@ -9,6 +9,8 @@ Add new items to top.
  PATCH: [ 1557295 ] Exclude Source Control files and directories filter
   Submitted by Paul Welter
    Filters new file: SourceControl.flt
+ Add Peter Welter and Ivan Masár to contributors
+  Docs/Users: Contributors.txt
 
 2006-12-04 Tim
  PATCH: [ 1607193 ] INI Syntax Improvements
