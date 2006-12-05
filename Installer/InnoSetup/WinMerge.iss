@@ -941,7 +941,7 @@ Function ClearCaseMapFile(): string;
 Begin
     if not RegQueryStringValue(HKEY_LOCAL_MACHINE, 'SOFTWARE\Rational Software\', 'RSINSTALLDIR', Result) then
     begin
-        Result := 'C:\Program Files\Rational\';
+        Result := {pf} + '\Rational\';
     end;
     Result := Result + 'ClearCase\lib\mgrs\map';
 End;
@@ -956,13 +956,15 @@ End;
 Procedure IntegrateClearCase();
 Var
     MapFile: TStringList;
+    FileName: String;
     Unused: String;
     I: Integer;
 
 Begin
+    FileName := ClearCaseMapFile();
     MapFile := TStringList.Create();
     {Read the entire map file to a string list}
-    MapFile.LoadFromFile(ClearCaseMapFile());
+    MapFile.LoadFromFile(FileName);
     if MapFile.Count > 0 then
     begin
         for I := 0 to MapFile.Count do
@@ -978,7 +980,7 @@ Begin
 			end;
 		end;
 		{ Save the modified file. }
-		MapFile.SaveToFile('C:\Program Files\Rational\ClearCase\lib\mgrs\map');
+		MapFile.SaveToFile(FileName);
 	end;
 End;
 

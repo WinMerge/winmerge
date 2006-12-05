@@ -1,3 +1,8 @@
+
+2006-11-28 Gal
+ BUG: [ 1608510 ] ClearCase Support
+  InnoSetup: WinMerge.iss
+
 2006-12-03 Kimmo
  PATCH: [ 1606496 ] Slovak translation (update)
   Submitted by Ivan Masár
