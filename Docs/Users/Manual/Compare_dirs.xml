@@ -231,11 +231,9 @@
   </sect2>
 
   <sect2>
-    <title>Columns in Folder Compare</title>
-
-    <indexterm>
-      <primary>Folder compare columns</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Folder Compare Columns</primary>
+      </indexterm>Columns in Folder Compare</title>
 
     <para>By default these columns are visible:</para>
 
@@ -588,11 +586,9 @@
   </sect2>
 
   <sect2>
-    <title>Hiding Items</title>
-
-    <indexterm>
-      <primary>Hiding files and folders</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Hiding Files and Folders</primary>
+      </indexterm>Hiding Items</title>
 
     <para>Selected items can be hidden from view using context menu item
     <guimenuitem>Hide Items</guimenuitem>. Hidden items are not shown until
@@ -614,7 +610,8 @@
 
     <para>Full refresh of large folders can take a long time. In 2.2 and
     earlier versions of WinMerge user always had to do full refresh after
-    editing files outside WinMerge. WinMerge 2.4 can refresh just selected
-    items. Select <guimenuitem>Refresh</guimenuitem> from context menu.</para>
+    editing files outside WinMerge. WinMerge 2.4 and later can refresh just
+    selected items. Select <guimenuitem>Refresh</guimenuitem> from the context
+    menu.</para>
   </sect2>
 </sect1>

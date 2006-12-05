@@ -1,3 +1,7 @@
+2006-12-05 Kimmo
+ PATCH: [ 1608705 ] Manual: Fix indexterms in Folder Compare
+  Manual: Compare_dirs.xml
+
 2006-12-04 Kimmo
  PATCH: [ 1608003 ] Manual: Fix indexterm position in Quick Start
   Manual: Introduction.xml
