@@ -145,11 +145,11 @@
   </sect2>
 
   <sect2>
-    <title>Difference Navigation</title>
+    <title><indexterm>
+        <primary>Difference Navigation</primary>
 
-    <indexterm>
-      <primary>Difference navigation (File compare)</primary>
-    </indexterm>
+        <secondary>File Compare</secondary>
+      </indexterm>Difference Navigation</title>
 
     <para>Difference navigation commands are in <guimenu>Merge</guimenu>
     menu:</para>
@@ -231,11 +231,9 @@
   </sect2>
 
   <sect2>
-    <title>Merging Differences</title>
-
-    <indexterm>
-      <primary>Merging differences</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Merging Differences</primary>
+      </indexterm>Merging Differences</title>
 
     <para>Merging commands are located in <guimenu>Merge</guimenu>-menu after
     navigation commands. Basically there are only two types of merging
@@ -294,11 +292,9 @@
   </sect2>
 
   <sect2>
-    <title>Merge Mode</title>
-
-    <indexterm>
-      <primary>Merge mode</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Merge Mode</primary>
+      </indexterm>Merge Mode</title>
 
     <para>Merge mode can be enabled from the <guimenu>File</guimenu>-menu. It
     restores the WinMerge 1.7.1 single keys for difference merging and
