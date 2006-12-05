@@ -348,7 +348,8 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	void PrimeTextBuffers();
-	void FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDiffTextBuffer * pBuffer);
+	void FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
+		CDiffTextBuffer * pBuffer2);
 	CString GetFileExt(const CString& sFileName, const CString& sDescription);
 };
 

@@ -590,6 +590,10 @@ SOURCE=.\MovedBlocks.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\MovedLines.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\multiformatText.cpp
 # End Source File
 # Begin Source File
@@ -1278,6 +1282,10 @@ SOURCE=.\MergeLineFlags.h
 # Begin Source File
 
 SOURCE=.\Common\MessageBoxDialog.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MovedLines.h
 # End Source File
 # Begin Source File
 

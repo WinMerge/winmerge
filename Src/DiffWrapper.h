@@ -41,6 +41,7 @@ struct DiffFileData;
 struct file_data;
 class FilterCommentsManager;
 struct FilterCommentsSet;
+class MovedLines;
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -213,11 +214,9 @@ public:
 	void SetTextForAutomaticPrediff(const CString &text);
 	void SetPrediffer(PrediffingInfo * prediffer =NULL);
 	void GetPrediffer(PrediffingInfo * prediffer);
-	void GetPatchOptions(PATCHOPTIONS *options) const;
 	void SetPatchOptions(const PATCHOPTIONS *options);
-	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks) { m_bDetectMovedBlocks = bDetectMovedBlocks; }
-	BOOL GetDetectMovedBlocks() { return m_bDetectMovedBlocks; }
-	BOOL GetAppendFiles() const;
+	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
+	BOOL GetDetectMovedBlocks() { return (m_pMovedLines != NULL); }
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	void SetPaths(const CString &filepath1, const CString &filepath2, BOOL tempPaths);
 	void SetAlternativePaths(const CString &altPath1, const CString &altPath2);
@@ -227,11 +226,7 @@ public:
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
 	void StartDirectoryDiff();
 	void EndDirectoryDiff();
-	const CMap<int, int, int, int> * GetMoved0() { return &m_moved0; }
-	const CMap<int, int, int, int> * GetMoved1() { return &m_moved1; }
-	int RightLineInMovedBlock(int leftLine);
-	int LeftLineInMovedBlock(int rightLine);
-	void ClearMovedLists();
+	MovedLines * GetMovedLines() { return m_pMovedLines; }
 	void SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2);
 
 protected:
@@ -262,14 +257,12 @@ private:
 	/// prediffer info are stored only for MergeDoc
 	CString m_sToFindPrediffer;
 	BOOL m_bUseDiffList; /**< Are results returned in difflist? */
-	BOOL m_bDetectMovedBlocks; /**< Are moved blocks detected? */
 	BOOL m_bCreatePatchFile; /**< Do we create a patch file? */
 	BOOL m_bAddCmdLine; /**< Do we add commandline to patch file? */
 	BOOL m_bAppendFiles; /**< Do we append to existing patch file? */
 	int m_nDiffs; /**< Difference count */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
-	CMap<int, int, int, int> m_moved0; /**< Moved lines map for first side */
-	CMap<int, int, int, int> m_moved1; /**< Moved lines map for second side */
+	MovedLines * m_pMovedLines;
 	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
 };
 

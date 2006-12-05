@@ -31,6 +31,7 @@
 #include "coretools.h"
 #include "diffcontext.h"
 #include "DiffList.h"
+#include "MovedLines.h"
 #include "diffwrapper.h"
 #include "diff.h"
 #include "FileTransform.h"
@@ -78,13 +79,13 @@ CDiffWrapper::CDiffWrapper()
 : m_FilterCommentsManager(new FilterCommentsManager)
 , m_bCreatePatchFile(FALSE)
 , m_bUseDiffList(FALSE)
-, m_bDetectMovedBlocks(FALSE)
 , m_bAddCmdLine(TRUE)
 , m_bAppendFiles(FALSE)
 , m_nDiffs(0)
 , m_infoPrediffer(NULL)
 , m_pDiffList(NULL)
 , m_bPathsAreTemp(FALSE)
+, m_pMovedLines(NULL)
 {
 	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
@@ -104,6 +105,7 @@ CDiffWrapper::~CDiffWrapper()
 {
 	delete m_infoPrediffer;
 	delete m_FilterCommentsManager;
+	delete m_pMovedLines;
 }
 
 /**
@@ -197,18 +199,6 @@ void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer)
 }
 
 /**
- * @brief Returns current set of options used for patch-file creation.
- * @param [in, out] options Pointer to structure where options are stored.
- */
-void CDiffWrapper::GetPatchOptions(PATCHOPTIONS *options) const
-{
-	ASSERT(options);
-	options->nContext = m_settings.context;
-	options->outputStyle = m_settings.outputStyle;
-	options->bAddCommandline = m_bAddCmdLine;
-}
-
-/**
  * @brief Set options used for patch-file creation.
  * @param [in] options Pointer to structure having new options.
  */
@@ -218,6 +208,24 @@ void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 	m_settings.context = options->nContext;
 	m_settings.outputStyle = options->outputStyle;
 	m_bAddCmdLine = options->bAddCommandline;
+}
+
+/**
+ * @brief Enables/disables moved block detection.
+ * @param [in] bDetectMovedBlocks If TRUE moved blocks are detected.
+ */
+void CDiffWrapper::SetDetectMovedBlocks(BOOL bDetectMovedBlocks)
+{
+	if (bDetectMovedBlocks)
+	{
+		if (m_pMovedLines == NULL)
+			m_pMovedLines = new MovedLines;
+	}
+	else
+	{
+		delete m_pMovedLines;
+		m_pMovedLines = NULL;
+	}
 }
 
 /**
@@ -1034,14 +1042,6 @@ CString CDiffWrapper::FormatSwitchString()
 }
 
 /**
- * @brief Determines if patch-files are appended (not overwritten)
- */
-BOOL CDiffWrapper::GetAppendFiles() const
-{
-	return m_bAppendFiles;
-}
-
-/**
  * @brief Enables/disables patch-file appending (files with same filename are appended)
  */
 BOOL CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
@@ -1065,39 +1065,6 @@ void CDiffWrapper::StartDirectoryDiff()
 void CDiffWrapper::EndDirectoryDiff()
 {
 	SwapToGlobalSettings();
-}
-
-/**
- * @brief clear the lists (left & right) of moved blocks before RunFileDiff
- */
-void CDiffWrapper::ClearMovedLists() 
-{ 
-	m_moved0.RemoveAll(); 
-	m_moved1.RemoveAll(); 
-}
-
-/**
- * @brief Get left->right info for a moved line (real line number)
- */
-int CDiffWrapper::RightLineInMovedBlock(int leftLine)
-{
-	int rightLine;
-	if (m_moved0.Lookup(leftLine, rightLine))
-		return rightLine;
-	else
-		return -1;
-}
-
-/**
- * @brief Get right->left info for a moved line (real line number)
- */
-int CDiffWrapper::LeftLineInMovedBlock(int rightLine)
-{
-	int leftLine;
-	if (m_moved1.Lookup(rightLine, leftLine))
-		return leftLine;
-	else
-		return -1;
 }
 
 /**
@@ -1125,7 +1092,7 @@ BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	{
 		// Diff files. depth is zero because we are not comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
-				m_bDetectMovedBlocks, bin_file);
+				(m_pMovedLines != NULL), bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
@@ -1216,24 +1183,27 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				translate_range(&inf[1], first1, last1, &trans_a1, &trans_b1);
 
 				// Store information about these blocks in moved line info
-				if (thisob->match0>=0)
+				if (GetDetectMovedBlocks())
 				{
-					ASSERT(thisob->inserted);
-					for (int i=0; i<thisob->inserted; ++i)
+					if (thisob->match0>=0)
 					{
-						int line0 = i+thisob->match0 + (trans_a0-first0-1);
-						int line1 = i+thisob->line1 + (trans_a1-first1-1);
-						m_moved1[line1]=line0;
+						ASSERT(thisob->inserted);
+						for (int i=0; i<thisob->inserted; ++i)
+						{
+							int line0 = i+thisob->match0 + (trans_a0-first0-1);
+							int line1 = i+thisob->line1 + (trans_a1-first1-1);
+							GetMovedLines()->Add(MovedLines::SIDE_RIGHT, line1, line0);
+						}
 					}
-				}
-				if (thisob->match1>=0)
-				{
-					ASSERT(thisob->deleted);
-					for (int i=0; i<thisob->deleted; ++i)
+					if (thisob->match1>=0)
 					{
-						int line0 = i+thisob->line0 + (trans_a0-first0-1);
-						int line1 = i+thisob->match1 + (trans_a1-first1-1);
-						m_moved0[line0]=line1;
+						ASSERT(thisob->deleted);
+						for (int i=0; i<thisob->deleted; ++i)
+						{
+							int line0 = i+thisob->line0 + (trans_a0-first0-1);
+							int line1 = i+thisob->match1 + (trans_a1-first1-1);
+							GetMovedLines()->Add(MovedLines::SIDE_LEFT, line0, line1);
+						}
 					}
 				}
 

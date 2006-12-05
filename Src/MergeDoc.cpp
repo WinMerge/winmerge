@@ -36,6 +36,7 @@
 
 #include "diff.h"
 #include "diffcontext.h"	// FILE_SAME
+#include "MovedLines.h"
 #include "getopt.h"
 #include "fnmatch.h"
 #include "coretools.h"
@@ -430,7 +431,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	m_diffList.Clear();
 	m_nCurDiff = -1;
 	// Clear moved lines lists
-	m_diffWrapper.ClearMovedLists();
+	if (m_diffWrapper.GetDetectMovedBlocks())
+		m_diffWrapper.GetMovedLines()->Clear();
 
 	// Set paths for diffing and run diff
 	m_diffWrapper.SetPaths(m_pTempFiles->GetLeft(), m_pTempFiles->GetRight(), TRUE);
@@ -487,8 +489,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		PrimeTextBuffers();
 
 		// Apply flags to lines that moved, to differentiate from appeared/disappeared lines
-		FlagMovedLines(m_diffWrapper.GetMoved0(), m_ptBuf[0]);
-		FlagMovedLines(m_diffWrapper.GetMoved1(), m_ptBuf[1]);
+		if (m_diffWrapper.GetDetectMovedBlocks())
+			FlagMovedLines(m_diffWrapper.GetMovedLines(), m_ptBuf[0], m_ptBuf[1]);
 		
 		// After PrimeTextBuffers() we know amount of real diffs
 		// (m_nDiffs) and trivial diffs (m_nTrivialDiffs)
@@ -534,24 +536,42 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 }
 
 /** @brief Adjust all different lines that were detected as actually matching moved lines */
-void CMergeDoc::FlagMovedLines(const CMap<int, int, int, int> * movedLines, CDiffTextBuffer * pBuffer)
+void CMergeDoc::FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
+		CDiffTextBuffer * pBuffer2)
 {
 	int i;
-	for (i=0; i<pBuffer->GetLineCount(); ++i)
+	for (i = 0; i < pBuffer1->GetLineCount(); ++i)
 	{
-		int j=-1;
-		if (movedLines->Lookup(i, j))
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_LEFT);
+		if (j != -1)
 		{
 			TRACE(_T("%d->%d\n"), i, j);
 			ASSERT(j>=0);
 			// We only flag lines that are already marked as being different
-			int apparent = pBuffer->ComputeApparentLine(i);
-			if (pBuffer->FlagIsSet(apparent, LF_DIFF))
+			int apparent = pBuffer1->ComputeApparentLine(i);
+			if (pBuffer1->FlagIsSet(apparent, LF_DIFF))
 			{
-				pBuffer->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+				pBuffer1->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
 			}
 		}
 	}
+
+	for (i=0; i<pBuffer2->GetLineCount(); ++i)
+	{
+		int j = pMovedLines->LineInBlock(i, MovedLines::SIDE_RIGHT);
+		if (j != -1)
+		{
+			TRACE(_T("%d->%d\n"), i, j);
+			ASSERT(j>=0);
+			// We only flag lines that are already marked as being different
+			int apparent = pBuffer2->ComputeApparentLine(i);
+			if (pBuffer2->FlagIsSet(apparent, LF_DIFF))
+			{
+				pBuffer2->SetLineFlag(apparent, LF_MOVED, TRUE, FALSE, FALSE);
+			}
+		}
+	}
+
 	// todo: Need to record actual moved information
 }
 
@@ -1233,7 +1253,12 @@ int CMergeDoc::RightLineInMovedBlock(int apparentLeftLine)
 		return -1;
 
 	int realLeftLine = m_ptBuf[0]->ComputeRealLine(apparentLeftLine);
-	int realRightLine = m_diffWrapper.RightLineInMovedBlock(realLeftLine);
+	int realRightLine = -1;
+	if (m_diffWrapper.GetDetectMovedBlocks())
+	{
+		realRightLine = m_diffWrapper.GetMovedLines()->LineInBlock(realLeftLine,
+				MovedLines::SIDE_LEFT);
+	}
 	if (realRightLine != -1)
 		return m_ptBuf[1]->ComputeApparentLine(realRightLine);
 	else
@@ -1249,7 +1274,12 @@ int CMergeDoc::LeftLineInMovedBlock(int apparentRightLine)
 		return -1;
 
 	int realRightLine = m_ptBuf[1]->ComputeRealLine(apparentRightLine);
-	int realLeftLine = m_diffWrapper.LeftLineInMovedBlock(realRightLine);
+	int realLeftLine = -1;
+	if (m_diffWrapper.GetDetectMovedBlocks())
+	{
+		realLeftLine = m_diffWrapper.GetMovedLines()->LineInBlock(realRightLine,
+				MovedLines::SIDE_RIGHT);
+	}
 	if (realLeftLine != -1)
 		return m_ptBuf[0]->ComputeApparentLine(realLeftLine);
 	else
