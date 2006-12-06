@@ -25,6 +25,8 @@
  */
 
 #include "stdafx.h"
+#include <sys/stat.h>
+
 #include "FileOrFolderSelect.h"
 #include "coretools.h"
 #include "paths.h"
