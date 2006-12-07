@@ -58,6 +58,8 @@ static void AddToList(const CString & sLeftDir, const CString & sRightDir, const
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
+static __int64 FiletimeToTimeT(FILETIME time);
+
 /** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 /** @brief CALL_MEMBER_FN calls a method through a pointer to a method */
@@ -488,6 +490,22 @@ void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 }
 
 /**
+ * @brief Convert time in type FILETIME to type int (time_t compatible).
+ * @param [in] time Time in FILETIME type.
+ * @return Time in time_t compiliant integer.
+ */
+static __int64 FiletimeToTimeT(FILETIME time)
+{
+	const __int64 SecsTo100ns = 10000000;
+	const __int64 SecsBetweenEpochs = 11644473600;
+	__int64 converted_time;
+	converted_time = ((__int64)time.dwHighDateTime << 32) + time.dwLowDateTime;
+	converted_time -= (SecsBetweenEpochs * SecsTo100ns);
+	converted_time /= SecsTo100ns;
+	return converted_time;
+}
+
+/**
  * @brief Find files and subfolders from given folder.
  * This function saves all files and subfolders in given folder to arrays.
  * We use 64-bit version of stat() to get times since find doesn't return
@@ -516,26 +534,25 @@ void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
 				continue;
 
 			fentry ent;
-			CString fullpath = paths_ConcatPath(sDir, ff.cFileName);
-			struct _stati64 fstats;
-			if (_tstati64(fullpath, &fstats) == 0)
-			{
-				// Save filetimes as seconds since January 1, 1970
-				// Note that times can be < 0 if they are around that 1970..
-				// Anyway that is not sensible case for normal files so we can
-				// just use zero for their time.
-				ent.ctime = fstats.st_ctime;
-				if (ent.ctime < 0)
-					ent.ctime = 0;
-				ent.mtime = fstats.st_mtime;
-				if (ent.mtime < 0)
-					ent.mtime = 0;
 
-				if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-					ent.size = -1;  // No size for directories
-				else
-					ent.size = fstats.st_size;
+			// Save filetimes as seconds since January 1, 1970
+			// Note that times can be < 0 if they are around that 1970..
+			// Anyway that is not sensible case for normal files so we can
+			// just use zero for their time.
+			ent.ctime = FiletimeToTimeT(ff.ftCreationTime);
+			if (ent.ctime < 0)
+				ent.ctime = 0;
+			ent.mtime = FiletimeToTimeT(ff.ftLastWriteTime);
+			if (ent.mtime < 0)
+				ent.mtime = 0;
+
+			if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
+				ent.size = -1;  // No size for directories
+			else
+			{
+				ent.size = ((__int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
 			}
+
 			ent.name = ff.cFileName;
 			ent.attrs = ff.dwFileAttributes;
 			(dwIsDirectory ? dirs : files) -> Add(ent);
