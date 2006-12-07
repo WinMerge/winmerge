@@ -101,7 +101,6 @@ public:
 
 protected:
 	virtual bool DoGetFileStatus();
-	virtual bool DoGetFileStatus(HANDLE handle);
 	virtual void LastError(LPCTSTR apiname, int syserrnum);
 	virtual void LastErrorCustom(LPCTSTR desc);
 

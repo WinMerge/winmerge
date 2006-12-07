@@ -1,9 +1,9 @@
 /**
  *  @file   UniFile.cpp
  *  @author Perry Rapp, Creator, 2003-2006
- *  @author Kimmo Varis, 2004-2005
+ *  @author Kimmo Varis, 2004-2006
  *  @date   Created: 2003-10
- *  @date   Edited:  2006-02-20 (Perry Rapp)
+ *  @date   Edited:  2006-12-07 (Kimmo Varis)
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
@@ -59,11 +59,7 @@ void UniLocalFile::Clear()
 /**
  * @brief Get file status into member variables
  *
- * Reads filestatus (size and full path) of non-open file.
- * This version of function (See also one with HANDLE parameter)
- * reads filestatus using CRT function, so file cannot be open
- * at the same time.
- * 
+ * Reads filestatus (size and full path) of a file.
  * @return true on success, false on failure.
  * @note Function sets filesize member to zero, and status as read
  * also when failing. That is needed so caller doesn't need to waste
@@ -91,64 +87,6 @@ bool UniLocalFile::DoGetFileStatus()
 		LastError(_T("_tstati64"), 0);
 		return false;
 	}
-}
-
-/**
- * @brief Get file status into member variables
- * 
- * Reads filestatus (size and full path) of already open file.
- * Using already open handle and CFile is more efficient than
- * requiring caller first to close file so we can use CRT
- * functions or CFile static function for reading status for
- * non-open file.
- * 
- * @param [in] handle Handle to open file
- * @return true on success, false on failure.
- */
-bool UniLocalFile::DoGetFileStatus(HANDLE handle)
-{
-	m_lastError.ClearError();
-	m_statusFetched = -1;
-
-	if (handle == INVALID_HANDLE_VALUE)
-		return false;
-
-	// Attach CFile to already open filehandle
-#if _MSC_VER < 1300
-		// MSVC6
-	CFile file((HFILE)handle);
-#else
-#ifdef _WIN64
-	CFile file((HFILE)handle);
-#else // _WIN64
-	// MSVC7 (VC.NET)
-	CFile file(handle);
-#endif // _WIN64
-#endif
-	
-	CFileStatus status;
-	if (!file.GetStatus(status))
-	{
-		LastError(_T("CFile::GetStatus"), 0);
-		return false;
-	}
-	m_filepath = status.m_szFullName;
-
-	DWORD sizehi = 0;
-	DWORD sizelo = GetFileSize(handle, &sizehi);
-	if (sizelo == INVALID_FILE_SIZE)
-	{  // MSDN says errnum will not be NO_ERROR
-		int errnum = GetLastError();
-		LastError(_T("GetFileSize"), errnum);
-		return false;
-	}
-
-	m_filesize = sizehi;
-	m_filesize <<= 32;
-	m_filesize += sizelo;
-	m_statusFetched = 1;
-
-	return true;
 }
 
 /** @brief Record an API call failure */
@@ -217,7 +155,7 @@ bool UniMemFile::IsOpen() const
 bool UniMemFile::GetFileStatus()
 {
 	if (!IsOpen()) return false;
-	return DoGetFileStatus(m_handle);
+	return DoGetFileStatus();
 }
 
 /** @brief Open file for generic read-only access */
