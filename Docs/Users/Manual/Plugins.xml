@@ -1,29 +1,28 @@
 <sect1 id="Plugins">
   <title>Plugins</title>
-  <para>Plugins are extra-features for WinMerge. They are not included in the basic version because they interest few users, or because they do not fit in WinMerge architecture. </para>
-  <para>Each plugin :</para>
+  <para>Plugins are extra-features for WinMerge. They are not included in the basic version because they interest few users, or because they do not fit in WinMerge architecture.</para>
+  <para>Each plugin:</para>
   <itemizedlist>
     <listitem>
-      <para>is a single file, either a dll or a scriptlet (extension <filename class="extension">.sct</filename>)</para>
+      <simpara>is a single file, either a dll or a scriptlet (extension <filename class="extension">.sct</filename>)</simpara>
     </listitem>
     <listitem>
-      <para>is installed in the subdirectory "<filename class="directory">MergePlugins</filename>".</para>
+      <simpara>is installed in the subfolder <filename class="directory">MergePlugins</filename></simpara>
     </listitem>
     <listitem>
-      <para>is easy to install : copy the plugin file in "<filename class="directory">MergePlugins</filename>", close WinMerge if it is running, and launch it again</para>
+      <simpara>is easy to install: copy the plugin file in <filename class="directory">MergePlugins</filename>, close WinMerge if it is running, and launch it again</simpara>
     </listitem>
   </itemizedlist>
-  <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature dll or scriptlets. Plugins features are spread over three categories : file editor complement, unpacker, prediffer.</para>
-  <para></para>
   <sect2>
     <title>Three categories of plugins</title>
+    <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature dll or scriptlets. Plugins features are spread over three categories:</para>
     <sect3>
       <title>Editor complement</title>
       <para>Operate custom operations on the currently selected text from the active pane.</para>
       <para>Example plugin : turn the selection to uppercase or lowercase.</para>
     </sect3>
     <sect3>
-      <title>Unpack (transform) a file to a text format</title>
+      <title>Unpacker - Transform a file to a text format</title>
       <para>The original file is not changed. A temporary transformed file is created and loaded in WinMerge. </para>
       <para>Sometimes the transformed file can be packed back. Then you may merge and save the transformed file. Packing is done automatically in this case. See the plugin details to know if it supports packing back. </para>
       <para>Example plugin : decompress Delphi4 binary files (extension .dfm).</para>
@@ -32,7 +31,7 @@
       </note>
     </sect3>
     <sect3>
-      <title>Prediff - Process files to hide some differences</title>
+      <title>Prediffer - Process files to hide some differences</title>
       <para>The files are loaded normally. No change is applied to the displayed file. Copies are made and processed by the plugin, and the diffing algorithm operates on these copies.</para>
       <para>Example plugin : ignore the differences inside given columns, while displaying the characters in these columns.</para>
     </sect3>
@@ -86,10 +85,20 @@
     <para>Developers may find information and code of examples in the source package, under the directory "<filename class="directory">Plugins</filename>".</para>
   </sect2>
   <sect2>
-    <title>Windows Script Host</title>
-    <para>Some editor complements need this optional component from Microsoft. </para>
-    <para>If the list of editor complements does not present all editor plugins, this component is probably missing.</para>
-    <para>You can check easily. WinMerge informs you with a comment at the bottom of the list.</para>
-    <para>You may install WSH on any version of Windows (need IE 4.0). Download it from <ulink url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN Library</ulink>.</para>
+    <title>Requirements</title>
+    <sect3>
+      <title>Windows Script Host</title>
+      <para>Some editor complements need this optional component from Microsoft.</para>
+      <para>If the list of editor complements does not present all editor plugins, this component is probably missing.
+      You can check easily. WinMerge informs you with a comment at the bottom of the list. You may install WSH on any
+      version of Windows (need IE 4.0). Download it from <ulink url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN Library</ulink>.</para>
+    </sect3>
+    <sect3>
+      <title>Visual Basic runtime library</title>
+      <para>Some plugins require Visual Basic runtime library to work.</para>
+      <para>You can download the required file <filename><ulink url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>
+      or use the <ulink url="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time Redistribution Pack</ulink>
+      from Microsoft. If you don't need the plugin, you can safely remove it.</para>
+    </sect3>
   </sect2>
 </sect1>
