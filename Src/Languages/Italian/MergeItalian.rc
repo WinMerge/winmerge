@@ -2826,8 +2826,8 @@ END
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "Visualizza la differenza precedente\nDifferenza precedente (Maiusc+Tab)"
-    ID_NEXTDIFF             "Visualizza la differenza successiva\nDifferenza successiva (Tab)"
+    ID_PREVDIFF             "Visualizza la differenza precedente\nDifferenza precedente (Alt+Giù)"
+    ID_NEXTDIFF             "Visualizza la differenza successiva\nDifferenza successiva (Alt+Su)"
     ID_FIRSTDIFF            "Scorre fino alla prima differenza\nPrima differenza (Alt+Home)"
     ID_CURDIFF              "Scorre fino alla differenza corrente\nDifferenza corrente (Alt+Invio)"
     ID_LASTDIFF             "Scorre fino all'ultima differenza\nUltima differenza (Alt+Fine)"
