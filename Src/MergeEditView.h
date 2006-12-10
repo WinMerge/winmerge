@@ -160,8 +160,15 @@ public:
 		, COLORREF & crBkgnd, COLORREF & crText, BOOL & bDrawWhitespace);
 	void WMGoto() { OnWMGoto(); };
 	void GotoLine(UINT nLine, BOOL bRealLine, int pane);
-	int GetTopLine() { return m_nTopLine; };
-	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); };
+	int GetTopLine() { return m_nTopLine; }
+	int GetScreenLines() { return CCrystalTextView::GetScreenLines(); }
+	int GetTopSubLine() { return m_nTopSubLine; }
+	int GetSubLines(int nLineIndex) { return CCrystalTextView::GetSubLines(nLineIndex); }
+	virtual int GetSubLineCount() { return CCrystalTextView::GetSubLineCount(); }
+	virtual int GetSubLineIndex(int nLineIndex) { return CCrystalTextView::GetSubLineIndex(nLineIndex); }
+	virtual void GetLineBySubLine(int nSubLineIndex, int &nLine, int &nSubLine) {
+		CCrystalTextView::GetLineBySubLine(nSubLineIndex, nLine, nSubLine);
+	}
 	virtual int GetEmptySubLines( int nLineIndex );
 	void RepaintLocationPane();
 	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);

@@ -1790,7 +1790,7 @@ OnUpdateCaret()
 		else
 			m_bCurrentLineIsDiff = FALSE;
 
-		UpdateLocationViewPosition(m_nTopLine, m_nTopLine + GetScreenLines());
+		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
 	}
 }
 /**
@@ -2582,37 +2582,32 @@ void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 	// Get the current position of scroll	box.
 	int nCurPos =	si.nPos;
 
-	BOOL bDisableSmooth =	TRUE;
 	switch (nSBCode)
 	{
 	case SB_TOP:			// Scroll to top.
 		nCurPos = nMinPos;
-		bDisableSmooth = FALSE;
 		break;
 
 	case SB_BOTTOM:			// Scroll to bottom.
-		nCurPos =	nMaxPos;
-		bDisableSmooth = FALSE;
+		nCurPos = nMaxPos;
 		break;
 
 	case SB_LINEUP:			// Scroll one line up.
-		if (nCurPos >	nMinPos)
+		if (nCurPos > nMinPos)
 			nCurPos--;
 		break;
 
 	case SB_LINEDOWN:		// Scroll one line down.
-		if (nCurPos <	nMaxPos)
+		if (nCurPos < nMaxPos)
 			nCurPos++;
 		break;
 
 	case SB_PAGEUP:			// Scroll one page up.
-		nCurPos =	max(nMinPos, nCurPos - (int) si.nPage +	1);
-		bDisableSmooth = FALSE;
+		nCurPos = max(nMinPos, nCurPos - (int) si.nPage + 1);
 		break;
 
 	case SB_PAGEDOWN:		// Scroll one page down.
-		nCurPos =	min(nMaxPos, nCurPos + (int) si.nPage -	1);
-		bDisableSmooth = FALSE;
+		nCurPos = min(nMaxPos, nCurPos + (int) si.nPage - 1);
 		break;
 
 	case SB_THUMBPOSITION:		// Scroll to absolute position.	nPos is	the	position
@@ -2623,8 +2618,8 @@ void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		nCurPos =	si.nTrackPos;	// position	that the scroll	box	has	been dragged to.
 		break;
 	}
-
-	UpdateLocationViewPosition(nCurPos);
+	
+	UpdateLocationViewPosition(nCurPos, nCurPos + GetScreenLines());
 }
 
 /**
@@ -2787,6 +2782,9 @@ void CMergeEditView::OnViewWordWrap()
 	// Call CMergeDoc RefreshOptions() to refresh *both* views
 	CMergeDoc *pDoc = GetDocument();
 	pDoc->RefreshOptions();
+	pDoc->UpdateAllViews(this);
+
+	UpdateCaret();
 }
 
 void CMergeEditView::OnUpdateViewWordWrap(CCmdUI* pCmdUI)

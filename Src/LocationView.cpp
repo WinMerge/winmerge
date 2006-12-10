@@ -1,12 +1,33 @@
-//////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+//
+//    WinMerge: An interactive diff/merge utility
+//    Copyright (C) 1997 Dean P. Grimm
+//
+//    This program is free software; you can redistribute it and/or modify
+//    it under the terms of the GNU General Public License as published by
+//    the Free Software Foundation; either version 2 of the License, or
+//    (at your option) any later version.
+//
+//    This program is distributed in the hope that it will be useful,
+//    but WITHOUT ANY WARRANTY; without even the implied warranty of
+//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//    GNU General Public License for more details.
+//
+//    You should have received a copy of the GNU General Public License
+//    along with this program; if not, write to the Free Software
+//    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+//
+/////////////////////////////////////////////////////////////////////////////
+
 /** 
  * @file  LocationView.cpp
  *
  * @brief Implementation file for CLocationView
  *
  */
-//
-//////////////////////////////////////////////////////////////////////
+
+// RCS ID line follows -- this is updated by CVS
+// $Id$
 
 #include "stdafx.h"
 #include "merge.h"
@@ -382,7 +403,7 @@ BOOL CLocationView::GetNextRect(int &nLineIndex)
  * @brief Draw one block of map.
  * @param [in] pDC Draw context.
  * @param [in] r Rectangle to draw.
- * @param [in] cr Color for rectange.
+ * @param [in] cr Color for rectangle.
  * @param [in] bSelected Is rectangle for selected difference?
  */
 void CLocationView::DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected)
@@ -469,26 +490,26 @@ void CLocationView::OnLButtonDblClk(UINT nFlags, CPoint point)
  * FALSE if view linenumbers are OK.
  * @return TRUE if succeeds, FALSE if point not inside bars.
  */
-BOOL CLocationView::GotoLocation(CPoint point, BOOL bRealLine)
+BOOL CLocationView::GotoLocation(const CPoint& point, BOOL bRealLine)
 {
-	CRect rc;
-	GetClientRect(rc);
-
 	if (m_view[MERGE_VIEW_LEFT] == NULL || m_view[MERGE_VIEW_RIGHT] == NULL)
 		return FALSE;
+
+	CRect rc;
+	GetClientRect(rc);
 
 	int line = -1;
 	int lineOther = -1;
 	int bar = IsInsideBar(rc, point);
 	if (bar == BAR_LEFT || bar == BAR_RIGHT)
 	{
-		line = GetLineFromYPos(point.y, rc, bar, bRealLine);
+		line = GetLineFromYPos(point.y, bar, bRealLine);
 	}
 	else if (bar == BAR_YAREA)
 	{
 		// Outside bars, use left bar
 		bar = BAR_LEFT;
-		line = GetLineFromYPos(point.y, rc, bar, FALSE);
+		line = GetLineFromYPos(point.y, bar, FALSE);
 	}
 	else
 		return FALSE;
@@ -557,7 +578,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 		// If outside bar area use left bar
 		if (bar == BAR_YAREA)
 			bar = BAR_LEFT;
-		nLine = GetLineFromYPos(pt.y, rc, bar);
+		nLine = GetLineFromYPos(pt.y, bar);
 		strNum.Format(_T("%d"), nLine + 1); // Show linenumber not lineindex
 	}
 	else
@@ -599,13 +620,11 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 /** 
  * @brief Calculates view/real line in file from given YCoord in bar.
  * @param [in] nYCoord ycoord in pane
- * @param [in] rc size of locationpane
  * @param [in] bar bar/file
  * @param [in] bRealLine TRUE if real line is returned, FALSE for view line
  * @return 0-based index of view/real line in file [0...lines-1]
  */
-int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar,
-	BOOL bRealLine)
+int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
 {
 	CMergeDoc* pDoc = GetDocument();
 	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetLineCount(),
@@ -634,7 +653,7 @@ int CLocationView::GetLineFromYPos(int nYCoord, CRect rc, int bar,
  * @param pt [in] point we want to check, in client coordinates.
  * @return LOCBAR_TYPE area where point is.
  */
-int CLocationView::IsInsideBar(CRect rc, POINT pt)
+int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 {
 	int retVal = BAR_NONE;
 	BOOL bLeftSide = FALSE;
@@ -659,7 +678,7 @@ int CLocationView::IsInsideBar(CRect rc, POINT pt)
 	
 	if (bLeftSide)
 		retVal = BAR_LEFT;
-	else if(bRightSide)
+	else if (bRightSide)
 		retVal = BAR_RIGHT;
 	else if (bYarea)
 		retVal = BAR_YAREA;
@@ -679,12 +698,15 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	CMergeDoc* pDoc = GetDocument();
 	const DWORD areaColor = GetSysColor(COLOR_3DFACE);
 	const DWORD bkColor = GetSysColor(COLOR_WINDOW);
-	const int nScreenLines = pDoc->GetRightView()->GetScreenLines();
+	
 	if (nTopLine == -1)
 		nTopLine = pDoc->GetRightView()->GetTopLine();
 	
 	if (nBottomLine == -1)
+	{
+		const int nScreenLines = pDoc->GetRightView()->GetScreenLines();
 		nBottomLine = nTopLine + nScreenLines;
+	}
 
 	CRect rc;
 	GetClientRect(rc);
@@ -763,7 +785,7 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
  */
 void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 {
-	DrawVisibleAreaRect();
+	DrawVisibleAreaRect(nTopLine, nBottomLine);
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
 		DrawConnectLines();
 }

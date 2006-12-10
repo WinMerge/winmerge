@@ -49,7 +49,7 @@ protected:
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CMergeDiffDetailView)
 	public:
-	virtual void OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint);
+	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 	virtual void OnDraw(CDC* pDC);
 	//}}AFX_VIRTUAL
 
@@ -59,9 +59,9 @@ protected:
 	// Return end of block (diff/non-diff)
 	BOOL GetNextRect(int &nLineIndex);
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected = FALSE);
-	BOOL GotoLocation(CPoint point, BOOL bRealLine = TRUE);
-	int GetLineFromYPos(int nYCoord, CRect rc, int bar, BOOL bRealLine = TRUE);
-	int IsInsideBar(CRect rc, POINT pt);
+	BOOL GotoLocation(const CPoint& point, BOOL bRealLine = TRUE);
+	int GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine = TRUE);
+	int IsInsideBar(const CRect& rc, const POINT& pt);
 	void DrawVisibleAreaRect(int nTopLine = -1, int nBottomLine = -1);
 	void DrawConnectLines();
 	void DrawDiffMarker(CDC* pDC, int yCoord);
