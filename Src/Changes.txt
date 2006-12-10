@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-10 Takashi
+ BUG: [ 1604115 ] No copyright info in aboutbox for translations
+  Src: AboutDlg.cpp
+
 2006-12-09 Tim
  BUG: [ 1610877 ] wrong shortcut (localizazion IT, italian)
   Src/Languages/Italian: MergeItalian.rc

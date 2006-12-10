@@ -64,10 +64,7 @@ BOOL CAboutDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	CMergeApp *pApp = dynamic_cast<CMergeApp *> (AfxGetApp());
-	WORD langId = pApp->GetLangId();
-	
-	CVersionInfo version(langId);
+	CVersionInfo version(AfxGetResourceHandle());
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
 
