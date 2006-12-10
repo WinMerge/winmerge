@@ -70,6 +70,7 @@ BEGIN_MESSAGE_MAP(CMergeDiffDetailView, CCrystalTextView)
 	ON_UPDATE_COMMAND_UI(ID_L2R, OnUpdateL2r)
 	ON_COMMAND(ID_R2L, OnR2l)
 	ON_UPDATE_COMMAND_UI(ID_R2L, OnUpdateR2l)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_WORDWRAP, OnUpdateViewWordWrap)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -800,4 +801,10 @@ void CMergeDiffDetailView::DocumentsLoaded()
 	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
 			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 	SetWordWrapping(FALSE);
+}
+
+void CMergeDiffDetailView::OnUpdateViewWordWrap(CCmdUI *pCmdUI)
+{
+	pCmdUI->Enable(FALSE);
+	pCmdUI->SetCheck(m_bWordWrap);
 }

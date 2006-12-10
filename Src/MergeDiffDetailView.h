@@ -136,6 +136,7 @@ protected:
 	afx_msg void OnUpdateL2r(CCmdUI* pCmdUI);
 	afx_msg void OnR2l();
 	afx_msg void OnUpdateR2l(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewWordWrap(CCmdUI *pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

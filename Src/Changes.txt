@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-10 Gal
+ BUG: [ 1611542 ] "Wrap lines" does not work for diff pane
+  Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
+
 2006-12-10 Takashi
  PATCH: [ 1447744 ] Match lines inside diff blocks (based on Perry's patch)
   Src new files: MergeDocDiffSync.cpp
