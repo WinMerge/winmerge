@@ -570,6 +570,10 @@ SOURCE=.\MergeDoc.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\MergeDocDiffSync.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\MergeDocEncoding.cpp
 # End Source File
 # Begin Source File

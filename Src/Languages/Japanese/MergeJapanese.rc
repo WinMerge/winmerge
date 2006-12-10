@@ -1130,15 +1130,17 @@ BEGIN
                     7,80,221,10
     CONTROL         "移動ブロック検出を有効にする(&N)",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    LTEXT           "ファイル比較方法(&F):",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,114,70,CBS_DROPDOWNLIST |
+    CONTROL         "類似行をマッチさせる(&M)",IDC_MATCH_SIMILAR_LINES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
+    LTEXT           "ファイル比較方法(&F):",IDC_STATIC,7,115,100,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,113,114,70,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "最初の差異で比較を終了する(&T)",IDC_COMPARE_STOPFIRST,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
-    GROUPBOX        "コメント",IDC_STATIC,7,134,221,32
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,202,10
+    GROUPBOX        "コメント",IDC_STATIC,7,144,221,32
     CONTROL         "コメントの差異を無視する",IDC_FILTERCOMMENTS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,147,205,10
-    PUSHBUTTON      "デフォルト",IDC_COMPARE_DEFAULTS,7,179,50,14
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,157,205,10
+    PUSHBUTTON      "デフォルト",IDC_COMPARE_DEFAULTS,7,189,50,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 235, 186
@@ -2423,11 +2425,11 @@ BEGIN
     IDS_DIFF_UNIFIED        "ユニファイド"
     IDS_FILEWRITE_ERROR     "ファイル %1に書き込めません。"
     IDS_PATH_NOT_ABSOLUTE   "指定した出力パスは、絶対パスではありません: %1"
-	IDS_MUST_SPECIFY_OUTPUT "出力パスを指定してください"
+    IDS_MUST_SPECIFY_OUTPUT "出力パスを指定してください"
     IDS_CANNOT_CREATE_BINARYPATCH "バイナリファイルからパッチファイルは生成できません。"
     IDS_CANNOT_CREATE_DIRPATCH "フォルダからパッチファイルは生成できません。"
     IDS_SAVEFILES_FORPATCH  "まず先に全てのファイルを保存してください。\n\nパッチ生成には、変更が全て保存されている必要があります。"
-	IDS_FOLDER_NOTEXIST     "フォルダは存在しません。"
+    IDS_FOLDER_NOTEXIST     "フォルダは存在しません。"
 END
 
 STRINGTABLE

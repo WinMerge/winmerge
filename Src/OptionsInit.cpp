@@ -74,6 +74,7 @@ void CMainFrame::OptionsInit()
 	m_options.InitOption(OPT_CMP_IGNORE_EOL, false);
 	m_options.InitOption(OPT_CMP_METHOD, (int)CMP_CONTENT);
 	m_options.InitOption(OPT_CMP_MOVED_BLOCKS, false);
+	m_options.InitOption(OPT_CMP_MATCH_SIMILAR_LINES, false);
 	m_options.InitOption(OPT_CMP_STOP_AFTER_FIRST, false);
 	m_options.InitOption(OPT_CMP_QUICK_LIMIT, 4 * 1024 * 1024); // 4 Megs
 

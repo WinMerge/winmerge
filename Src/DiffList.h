@@ -53,6 +53,40 @@ struct DIFFRANGE
 };
 
 /**
+ * @brief Relation from left side (0) to right side (1) of a DIFFRANGE
+ *
+ * Map lines from file1 to file2
+ */
+struct DiffMap : public CArray<int, int>
+{
+	enum { BAD_MAP_ENTRY = -999999999, GHOST_MAP_ENTRY = 888888888 };
+
+	// boilerplate ctr, copy ctr
+	DiffMap() { }
+	DiffMap(const DiffMap & src) { *this = src; }
+	// Simple copy assignment
+	DiffMap & operator=(const DiffMap & src)
+	{
+		this->SetSize(src.GetSize());
+		for (int i=0; i<this->GetSize(); ++i)
+			this->SetAt(i, src.GetAt(i));
+		return *this;
+	}
+	/**
+	 * @brief Put DiffMap into known. starting, unfilled state
+	 */
+	void InitDiffMap(int nlines)
+	{
+		SetSize(nlines);
+		for (int i=0; i<nlines; ++i)
+		{
+			// sentry value so we can check later that we set them all
+			SetAt(i, BAD_MAP_ENTRY);
+		}
+	}
+};
+
+/**
  * @brief DIFFRANGE with links for chain of non-trivial entries
  *
  * Next and prev are array indices used by the owner (DiffList)

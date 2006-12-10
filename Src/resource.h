@@ -384,6 +384,7 @@
 #define IDC_REPORT_COPYCLIPBOARD        1309
 #define IDC_EXPLORER_SUBFOLDERS         1310
 #define IDC_FILTERFILE_INSTALL          1311
+#define IDC_MATCH_SIMILAR_LINES         1312
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605

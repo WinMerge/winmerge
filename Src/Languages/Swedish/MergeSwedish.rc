@@ -1130,15 +1130,17 @@ BEGIN
                     7,80,221,10
     CONTROL         "M&öjliggör detektion av flyttade textblock",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    LTEXT           "&Filjämförelsemetod:",IDC_STATIC,7,105,100,9
-    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,103,114,70,CBS_DROPDOWNLIST |
+    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
+    LTEXT           "&Filjämförelsemetod:",IDC_STATIC,7,115,100,9
+    COMBOBOX        IDC_COMPAREMETHODCOMBO,110,113,114,70,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
     CONTROL         "S&toppa efter första skillnaden",IDC_COMPARE_STOPFIRST,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,120,202,10
-    GROUPBOX        "Kommentarer",IDC_STATIC,7,134,221,32
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,202,10
+    GROUPBOX        "Kommentarer",IDC_STATIC,7,144,221,32
     CONTROL         "Filterkommentarer",IDC_FILTERCOMMENTS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,15,147,205,10
-    PUSHBUTTON      "Standard",IDC_COMPARE_DEFAULTS,7,179,50,14
+                    BS_AUTOCHECKBOX | WS_TABSTOP,15,157,205,10
+    PUSHBUTTON      "Standard",IDC_COMPARE_DEFAULTS,7,189,50,14
 END
 
 IDD_PROPPAGE_EDITOR DIALOGEX 0, 0, 259, 186

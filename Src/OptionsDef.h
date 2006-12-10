@@ -107,6 +107,7 @@ const TCHAR OPT_CMP_IGNORE_CASE[] = _T("Settings/IgnoreCase");
 const TCHAR OPT_CMP_IGNORE_EOL[] = _T("Settings/IgnoreEol");
 const TCHAR OPT_CMP_METHOD[] = _T("Settings/CompMethod");
 const TCHAR OPT_CMP_MOVED_BLOCKS[] = _T("Settings/MovedBlocks");
+const TCHAR OPT_CMP_MATCH_SIMILAR_LINES[] = _T("Settings/MatchSimilarLines");
 const TCHAR OPT_CMP_STOP_AFTER_FIRST[] = _T("Settings/StopAfterFirst");
 const TCHAR OPT_CMP_QUICK_LIMIT[] = _T("Settings/QuickMethodLimit");
 

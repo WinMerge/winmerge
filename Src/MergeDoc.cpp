@@ -484,6 +484,10 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_ptBuf[0]->prepareForRescan();
 		m_ptBuf[1]->prepareForRescan();
 
+		// Divide diff blocks to match lines.
+		if (GetOptionsMgr()->GetBool(OPT_CMP_MATCH_SIMILAR_LINES))
+			AdjustDiffBlocks();
+
 		// Analyse diff-list (updating real line-numbers)
 		// this operation does not change the modified flag
 		PrimeTextBuffers();

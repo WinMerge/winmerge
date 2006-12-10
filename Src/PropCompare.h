@@ -52,6 +52,7 @@ public:
 	BOOL    m_bIgnoreBlankLines;
 	int     m_nIgnoreWhite;
 	BOOL    m_bMovedBlocks;
+	BOOL    m_bMatchSimilarLines;
 	BOOL    m_bStopAfterFirst;
 	BOOL	m_bFilterCommentsLines;
 	//}}AFX_DATA

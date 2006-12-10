@@ -2,6 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-10 Takashi
+ PATCH: [ 1447744 ] Match lines inside diff blocks (based on Perry's patch)
+  Src new files: MergeDocDiffSync.cpp
+  Src: DiffList.h Merge.dsp Merge.rc MergeDoc.cpp MergeDoc.h OptionsDef.h OptionsInit.cpp 
+   PropCompare.cpp PropCompare.h resource.h
+  Src/Languages/*: Merge*.rc
+
 2006-12-10 Gal
  BUG: [ 1584068 ] location pane is inaccurate when word wrap is on
   Src: LocationView.cpp LocationView.h MergeEditView.cpp MergeEditView.h

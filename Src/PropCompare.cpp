@@ -33,6 +33,7 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
  , m_bIgnoreEol(TRUE)
  , m_nIgnoreWhite(-1)
  , m_bMovedBlocks(FALSE)
+ , m_bMatchSimilarLines(FALSE)
  , m_bStopAfterFirst(FALSE)
  , m_bFilterCommentsLines(FALSE)
 {
@@ -49,6 +50,7 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EOL_SENSITIVE, m_bIgnoreEol);
 	DDX_Radio(pDX, IDC_WHITESPACE, m_nIgnoreWhite);
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
+	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
 	//}}AFX_DATA_MAP
 }
@@ -74,6 +76,7 @@ void CPropCompare::ReadOptions()
 	m_bIgnoreCase = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_CASE);
 	m_bIgnoreEol = m_pOptionsMgr->GetBool(OPT_CMP_IGNORE_EOL) ? true : false;
 	m_bMovedBlocks = m_pOptionsMgr->GetBool(OPT_CMP_MOVED_BLOCKS);
+	m_bMatchSimilarLines = m_pOptionsMgr->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
 	m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 }
@@ -92,6 +95,7 @@ void CPropCompare::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_CMP_IGNORE_CASE, m_bIgnoreCase == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_METHOD, (int)m_compareMethod);
 	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
 }
 
@@ -148,6 +152,8 @@ void CPropCompare::OnDefaults()
 	m_bIgnoreCase = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_MOVED_BLOCKS, tmp);
 	m_bMovedBlocks = tmp;
+	m_pOptionsMgr->GetDefault(OPT_CMP_MATCH_SIMILAR_LINES, tmp);
+	m_bMatchSimilarLines = tmp;
 	m_pOptionsMgr->GetDefault(OPT_CMP_STOP_AFTER_FIRST, tmp);
 	m_bStopAfterFirst = tmp;
 	UpdateData(FALSE);
