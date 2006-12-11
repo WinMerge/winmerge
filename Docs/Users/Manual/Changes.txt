@@ -1,6 +1,8 @@
 2006-12-11 Tim
  PATCH: [ 1611595 ] Manual: Merge Plugins.xml with readme_users.txt
   Manual: Plugins.xml
+ PATCH: [ 1612824 ] Manual: Use italic text for GUI elements
+  Manual/css: all.css help.css print.css
 
 2006-12-08 Tim
  PATCH: [ 1610448 ] Manual: Requirements section and layout changes for Plugins

@@ -50,6 +50,11 @@ pre,code,tt {
   border: 1px solid black;
 }
 
+/* GUI elements */
+.guimenu,.guisubmenu,.guimenuitem,.guilabel {
+  font-style: italic;
+}
+
 /* FAQ */
 .question {
   font-weight: bold;
