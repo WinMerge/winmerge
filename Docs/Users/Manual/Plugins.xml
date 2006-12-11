@@ -18,71 +18,102 @@
     <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature dll or scriptlets. Plugins features are spread over three categories:</para>
     <sect3>
       <title>Editor complement</title>
-      <para>Operate custom operations on the currently selected text from the active pane.</para>
-      <para>Example plugin : turn the selection to uppercase or lowercase.</para>
+      <para>Operate custom operations on the currently selected text from the active editor pane.</para>
+      <para>Example plugin: <filename>editor addin.sct</filename> (Turn the selection to UPPERCASE or lowercase.)</para>
     </sect3>
     <sect3>
       <title>Unpacker - Transform a file to a text format</title>
-      <para>The original file is not changed. A temporary transformed file is created and loaded in WinMerge. </para>
-      <para>Sometimes the transformed file can be packed back. Then you may merge and save the transformed file. Packing is done automatically in this case. See the plugin details to know if it supports packing back. </para>
-      <para>Example plugin : decompress Delphi4 binary files (extension .dfm).</para>
+      <para>The plugin transform a file in a viewable format (for example, decompress a file).
+      The original file is not changed. A temporary transformed file is created and loaded in WinMerge.</para>
+      <para>Sometimes the transformed file can be packed back. (See the plugin details to know if it supports packing back.)
+      Then you may merge and save the transformed file. The packing is done automatically in this case. To avoid problems,
+      you are proposed to change the filename when saving a changed file.</para>
       <note>
-        <para>When you compare directories, WinMerge doesn't need to display the files, but the diffing process can give a different result when you compare compressed and not compressed files (for example, uncompressed files may be identical, but the compressed files may differ if they include the date of creation). WinMerge applies the unpacker in all situations, and you are sure to have the same result when you compare directories, or when you merge two versions of a file.</para>
+        <para>When you compare folders, WinMerge doesn't need to display the files, but the diffing process can give a different result
+        when you compare compressed and not compressed files (for example, uncompressed files may be identical, but the compressed files
+        may differ if they include the date of creation). WinMerge applies the unpacker in all situations, and you are sure to have the
+        same result when you compare folder, or when you merge two versions of a file.</para>
       </note>
+      <para>Example plugin: <filename>DisplayXMLFiles.dll</filename> (Display XML files nicely, by consistently inserting tabs and linebreaks.)</para>
     </sect3>
     <sect3>
-      <title>Prediffer - Process files to hide some differences</title>
-      <para>The files are loaded normally. No change is applied to the displayed file. Copies are made and processed by the plugin, and the diffing algorithm operates on these copies.</para>
-      <para>Example plugin : ignore the differences inside given columns, while displaying the characters in these columns.</para>
+      <title>Prediffer - Preprocess files to hide some differences</title>
+      <para>The plugin is not apply to the files displayed in the editor. It is applied only to temporary copies of the files, and this copies are then scanned to create the difference list.</para>
+      <para>Example plugin: <filename>IgnoreColumns.dll</filename> (Ignore the differences inside given columns, while displaying the characters in these columns.)</para>
     </sect3>
   </sect2>
   <sect2>
     <title>Select and apply a plugin</title>
     <sect3>
       <title>"<guilabel>Suggested plugin</guilabel>" and "<guilabel>Automatic mode</guilabel>"</title>
-      <para>Each plugin specifies a list of file extensions (see plugins details for more info). When the file extension, either from the left or from the right file, matches the plugin list, the plugin is called "<guilabel>a suggested plugin</guilabel>".</para>
-      <para>When "<guilabel>Automatic mode</guilabel>" is on, WinMerge searches for a suggested plugin and applies it if it is avaialble. When two suggested plugins are available for a file, WinMerge applies the first one only (alphabetical order).</para>
+      <para>Each plugin specifies a list of file extensions (see plugins details for more info). When the file extension, either from
+      the left or from the right file, matches the plugin list, the plugin is called "<guilabel>a suggested plugin</guilabel>".</para>
+      <para>When "<guilabel>Automatic mode</guilabel>" is on, WinMerge searches for a suggested plugin and applies it if it is avaialble.
+      When two suggested plugins are available for a file, WinMerge applies the first one only (alphabetical order).</para>
       <note>
         <para>"<guimenuitem>Automatic Unpacking</guimenuitem>" and "<guimenuitem>Auto prediffer</guimenuitem>" are two separate options. There is no option for editor complements.</para>
       </note>
     </sect3>
     <sect3>
-      <title>Editor complement in directory view</title>
-      <para>Not available </para>
+      <title>Editor complement in folder view</title>
+      <para><emphasis>Not available</emphasis></para>
     </sect3>
     <sect3>
       <title>Editor complement in editor view</title>
-      <para>Access list with main menu, <menuchoice><guimenu>Edit</guimenu><guisubmenu>Scripts</guisubmenu><guimenuitem>...</guimenuitem></menuchoice></para>
+      <para>Access list from <menuchoice><guimenu>Edit</guimenu><guisubmenu>Scripts</guisubmenu><guimenuitem>...</guimenuitem></menuchoice> in the main menu.</para>
     </sect3>
     <sect3>
-      <title>Unpacker in directory view</title>
-      <para>Check <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Automatic Unpacking</guimenuitem></menuchoice> in the main menu. Update the results (<keycap>F5</keycap>). Each file is loaded again with its suggested unpacker and compared. </para>
+      <title>Unpacker in folder view</title>
+      <para>Check <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Automatic Unpacking</guimenuitem></menuchoice> in the main menu.
+      You need to update the results (<keycap>F5</keycap>). Each file is loaded again with its suggested unpacker and compared.</para>
     </sect3>
     <sect3>
       <title>Unpacker in editor view</title>
-      <para>Three possibilities</para>
-      <para>Open dialog : select the two files first. Then press the button "<guibutton>Select</guibutton>" right from the filed "<guilabel>Unpacker</guilabel>". WinMerge displays the standard dialog for unpacker selection. Use the top combobox to select the plugin. Two generic choices are available also : "<guilabel>None</guilabel>" and "<guilabel>Automatic</guilabel>".</para>
-      <para>From the directory view when <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Automatic Unpacking</guimenuitem></menuchoice> is checked : just double click to open the file. The suggested plugin used during the directory comparison is used to load the file in the editor. </para>
-      <para>From the directory view, always : select one file, then main menu <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Edit with Unpacker</guimenuitem></menuchoice>. WinMerge displays the dialog for unpacker selection. Select an unpacker and press "<guibutton>OK</guibutton>", WinMerge opens the editor view and applies this unpacker to load the file. This plugin is forgotten when you close the editor view.</para>
+      <orderedlist>
+        <listitem>
+          <para>Open dialog: Select the two files first and then press the <guibutton>Select</guibutton> button right from the field "<guilabel>Unpacker</guilabel>".
+          WinMerge displays the standard dialog for unpacker selection. Use the top combobox to select the plugin. Two generic choices "<guilabel>None</guilabel>"
+          and "<guilabel>Automatic</guilabel>" are  also available.</para>
+        </listitem>
+        <listitem>
+          <para>From the folder view when <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Automatic Unpacking</guimenuitem></menuchoice> is checked:
+          Just double click to open the file. The suggested plugin used during the folder comparison is used to load the file in the editor.</para>
+        </listitem>
+        <listitem>
+          <para>From the folder view, always: Select one file, then main menu <menuchoice><guimenu>Plugins</guimenu><guimenuitem>Edit with Unpacker</guimenuitem></menuchoice>.
+          WinMerge displays the dialog for unpacker selection. Select an unpacker and press <guibutton>OK</guibutton>, WinMerge opens the editor view and applies this unpacker
+          to load the file. This plugin is forgotten when you close the editor view.</para>
+        </listitem>
+      </orderedlist>
     </sect3>
     <sect3>
-      <title>Prediffer in directory view</title>
-      <para>When the files are selected, right-click to open the context menu. Follow <menuchoice><guimenuitem>Plugin Settings</guimenuitem><guisubmenu>Prediffer Settings</guisubmenu></menuchoice> and select "<guimenuitem>Auto prediffer</guimenuitem>" or "<guimenuitem>No prediffer</guimenuitem>". Refresh the view (<keycap>F5</keycap>) to update the results.</para>
+      <title>Prediffer in folder view</title>
+      <para>When the files are selected, right-click to open the context menu. Follow <menuchoice><guimenu>Plugin Settings</guimenu><guisubmenu>Prediffer Settings</guisubmenu></menuchoice>
+      and select "<guimenuitem>Auto prediffer</guimenuitem>" or "<guimenuitem>No prediffer</guimenuitem>". Refresh the view (<keycap>F5</keycap>) to update the results.</para>
       <note>
-        <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file option. Some files in the same directory can be in mode "<guimenuitem>No prediffer</guimenuitem>" and some in mode "<guimenuitem>Auto prediffer</guimenuitem>". When you change directory during a non-recursive compare, the mode is always reset to "<guimenuitem>No prediffer</guimenuitem>".</para>
+        <para>"<guimenuitem>Auto prediffer</guimenuitem>" is a per-file option. Some files in the same folder can be in mode "<guimenuitem>No prediffer</guimenuitem>" and
+        some in mode "<guimenuitem>Auto prediffer</guimenuitem>". When you change folder during a non-recursive compare, the mode is always reset to "<guimenuitem>No prediffer</guimenuitem>".</para>
       </note>
     </sect3>
     <sect3>
       <title>Prediffer in editor view</title>
-      <para>Two possibilities</para>
-      <para>From the directory view when "<guimenuitem>Auto prediffer</guimenuitem>" is checked for a file : just double click to open the file. The plugin used during the directory comparison is used in the editor before the diff algorithm.</para>
-      <para>During an editor session, access prediffer lists with menu <menuchoice><guimenu>Plugins</guimenu><guisubmenu>Prediffer</guisubmenu><guimenuitem>...</guimenuitem></menuchoice> The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
+      <orderedlist>
+        <listitem>
+          <para>From the folder view when "<guimenuitem>Auto prediffer</guimenuitem>" is checked for a file: Just double click to open the file.
+          The plugin used during the folder comparison is used in the editor before the diff algorithm.</para>
+        </listitem>
+        <listitem>
+          <para>During an editor session, access prediffer lists with menu <menuchoice><guimenu>Plugins</guimenu><guisubmenu>Prediffer</guisubmenu><guimenuitem>...</guimenuitem></menuchoice>:
+          The active prediffer is checked. Suggested plugins are indicated first above the not-suggested ones. The files are compared again after the selection, you don't need to rescan.</para>
+        </listitem>
+      </orderedlist>
     </sect3>
   </sect2>
   <sect2>
     <title>Plugin details</title>
-    <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin with the name and a quick description. If you don't use installer <filename>Plugins.txt</filename> is found from <filename class="directory">MergePlugins</filename> subfolder.</para>
-    <para>Developers may find information and code of examples in the source package, under the directory "<filename class="directory">Plugins</filename>".</para>
+    <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin with the name and a quick description.
+    If you don't use installer <filename>Plugins.txt</filename> is found from <filename class="directory">MergePlugins</filename> subfolder.</para>
+    <para>Developers may find information and code of examples in the source package, under the folder "<filename class="directory">Plugins</filename>".</para>
   </sect2>
   <sect2>
     <title>Requirements</title>
