@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-11 Kimmo
+ Fix error in logical condition for checking if item is directory
+  Src: FileInfo.cpp
+
 2006-12-10 Gal
  BUG: [ 1611542 ] "Wrap lines" does not work for diff pane
   Src: MergeDiffDetailView.cpp MergeDiffDetailView.h

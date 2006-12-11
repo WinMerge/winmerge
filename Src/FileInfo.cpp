@@ -53,7 +53,7 @@ BOOL FileInfo::Update(CString sFilePath)
 			mtime64 = fstats.st_mtime;
 
 		// No size for directory ( size remains as -1)
-		if ((fstats.st_mode | _S_IFDIR) != 0)
+		if ((fstats.st_mode & _S_IFDIR) == 0)
 			size = fstats.st_size;
 
 		flags.attributes = GetFileAttributes(sFilePath);
