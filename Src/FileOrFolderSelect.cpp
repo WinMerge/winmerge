@@ -31,6 +31,19 @@
 #include "coretools.h"
 #include "paths.h"
 
+// VC 6 headers don't define these constants for folder browse dialog
+// so define them here. Copied from shlobj.h
+#ifndef BIF_EDITBOX
+#define BIF_EDITBOX            0x0010   // Add an editbox to the dialog
+#endif
+#ifndef BIF_NEWDIALOGSTYLE
+#define BIF_NEWDIALOGSTYLE     0x0040   // Use the new dialog layout with the ability to resize
+                                        // Caller needs to call OleInitialize() before using this API
+#endif
+#ifndef BIF_USENEWUI
+#define BIF_USENEWUI           (BIF_NEWDIALOGSTYLE | BIF_EDITBOX)
+#endif
+
 /**
  * @brief Helper function for selecting dir/file
  * @param [in] parent Handle to parent window. Can be a NULL, but then
