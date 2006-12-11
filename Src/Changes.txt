@@ -5,6 +5,8 @@ Add new items to top.
 2006-12-11 Kimmo
  Fix error in logical condition for checking if item is directory
   Src: FileInfo.cpp
+ PATCH: [ 1610998 ] Splash screen does not stop timer
+  Src: Splash.cpp
 
 2006-12-10 Gal
  BUG: [ 1611542 ] "Wrap lines" does not work for diff pane

@@ -53,6 +53,9 @@ static const CRect DevelopersArea(20, 88, 190, 210);
 /** @brief Area for copyright text. */
 static const CRect CopyrightArea(20, 210, 190, 330);
 
+/** @brief ID for the timer closing splash screen. */
+static const UINT_PTR SplashTimerID = 1;
+
 /////////////////////////////////////////////////////////////////////////////
 //   Splash Screen class
 
@@ -161,6 +164,7 @@ BOOL CSplashWnd::Create(CWnd* pParentWnd /*= NULL*/)
  */
 void CSplashWnd::HideSplashScreen()
 {
+	KillTimer(SplashTimerID);
 	m_pPicture->Free();
 	delete m_pPicture;
 	m_pPicture = NULL;
@@ -188,7 +192,7 @@ int CSplashWnd::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	CenterWindow();
 
 	// Set a timer to destroy the splash screen.
-	SetTimer(1, 5000, NULL);
+	SetTimer(SplashTimerID, 5000, NULL);
 
 	return 0;
 }
