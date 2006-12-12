@@ -2,6 +2,10 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2006-12-12 Tim
+ The file "readme_users.txt" is unnecessary after patch #1611595
+  Remove file Plugins\dlls: readme_users.txt
+
 2006-10-29 Kimmo
  PATCH: [ 1583386 ] Drop Delphi plugin binary
   Remove file Plugins\dlls: UnpackDFM.dll
