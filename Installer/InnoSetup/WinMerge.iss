@@ -300,6 +300,7 @@ Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: not IsComponentSel
 Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\Merge_VB_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\XML_html.flt; Type: Files; Check: not IsComponentSelected('Filters')
+Name: {app}\Filters\SourceControl.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\FileFilter.tmpl; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters; Type: DirIfEmpty; Check: not IsComponentSelected('Filters')
 
