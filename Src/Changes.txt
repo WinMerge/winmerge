@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-13 Kimmo
+ PATCH: [ 1614442 ] Swedish translation update for WinMerge 2.6.2
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2006-12-13 Gal
  BUG: [ 1584068 ] location pane is inaccurate when word wrap is on (2)
   Src: LocationView.cpp LocationView.h MergeEditView.cpp
