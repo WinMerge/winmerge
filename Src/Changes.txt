@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-13 Gal
+ BUG: [ 1584068 ] location pane is inaccurate when word wrap is on (2)
+  Src: LocationView.cpp LocationView.h MergeEditView.cpp
+
 2006-12-11 Kimmo
  Fix error in logical condition for checking if item is directory
   Src: FileInfo.cpp

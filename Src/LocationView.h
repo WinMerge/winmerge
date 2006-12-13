@@ -56,8 +56,6 @@ protected:
 	CMergeDoc* GetDocument();
 
 protected:
-	// Return end of block (diff/non-diff)
-	BOOL GetNextRect(int &nLineIndex);
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected = FALSE);
 	BOOL GotoLocation(const CPoint& point, BOOL bRealLine = TRUE);
 	int GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine = TRUE);

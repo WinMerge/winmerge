@@ -2523,7 +2523,6 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 	CMergeEditView *pRightView = pDoc->GetRightView();
 	int nRealLine = nLine;
 	int nApparentLine = nLine;
-	int nLineCount = 0;
 
 	// Compute apparent (shown linenumber) line
 	if (bRealLine)
