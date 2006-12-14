@@ -1,3 +1,8 @@
+2006-12-15 Tim
+ PATCH: [ 1616076 ] Web: Changes for new stable release 2.6.2
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.6: changes.txt index.php
+
 2006-12-14 Tim
  PATCH: [ 1615375 ] Web: Minimize banner problems
   Web: page.inc

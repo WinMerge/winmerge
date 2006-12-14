@@ -1,3 +1,162 @@
+2006-12-14 2.6.2 Stable Release (R3963)
+
+2006-12-12 Kimmo
+ PATCH: [ 1606496 ] Slovak translation
+  Submitted by Ivan Masár
+  ShellExtension/Languages: ShellExtensionSlovak.rc
+  Src/Languages/Slovak: MergeSlovak.rc
+ PATCH: [ 1557295 ] Exclude Source Control files and directories filter
+  Submitted by Paul Welter
+   Filters new file: SourceControl.flt
+ Add Peter Welter and Ivan Masár to contributors
+  Docs/Users: Contributors.txt
+ Update shellextension version number to 1.9.1
+  ShellExtension: ShellExtension.rc
+ PATCH: [ 1610998 ] Splash screen does not stop timer
+  Src: Splash.cpp
+ PATCH: [ 1611060 ] Move constants from Merge.cpp to FileOrFolderSelect.cpp
+  Src: FileOrFolderSelect.cpp Merge.cpp
+
+2006-12-11 Kimmo
+ PATCH: [ 1610442 ] Make time getting faster for files
+  Src: DirScan.cpp FileInfo.cpp
+ PATCH: [ 1610477 ] Fix UniFile for weird filetimes
+  Src/Common: UniFile.cpp UniFile.h
+
+2006-12-10 Gal
+ BUG: [ 1611542 ] "Wrap lines" does not work for diff pane
+  Src: MergeDiffDetailView.cpp MergeDiffDetailView.h
+
+2006-12-10 Takashi
+ BUG: [ 1604115 ] No copyright info in aboutbox for translations
+  Src: AboutDlg.cpp
+
+2006-12-09 Tim
+ BUG: [ 1610877 ] wrong shortcut (localizazion IT, italian)
+  Src/Languages/Italian: MergeItalian.rc
+
+2006-12-07 Kimmo
+ PATCH: [ 1556685 ] Avoid infinite loop in character loop in crystal c++ parser
+  Submitted by Perry
+  Src/editlib: asp.cpp basic.cpp batch.cpp cplusplus.cpp csharp.cpp dcl.cpp fortran.cpp
+   html.cpp innosetup.cpp is.cpp java.cpp lisp.cpp nsis.cpp. pascal.cpp perl.cpp php.cpp
+   python.cpp rexx.cpp rsrc.cpp ruby.cpp sgml.cpp sh.cpp siod.cpp sql.cpp tcl.cpp tex.cpp
+   xml.cpp
+ PATCH: [ 1556688 ] Fix maketstring to check for zero-term by MultiByteToWideCha
+  Src: Common/unicoder.cpp
+ PATCH: [ 1512881 ] Fix memleak from charsets.c (add missing include to Merge.cpp)
+  Src: Merge.cpp
+
+2006-12-04 Tim
+ PATCH: [ 1607193 ] INI Syntax Improvements
+  Src/editlib: ini.cpp
+ PATCH: [ 1608541 ] Use INI highlighter for VB6 project files
+  Src/editlib: ccrystaltextview.cpp
+
+2006-12-06 Kimmo
+ Add missing include to fix ANSI build target
+  Src: FileOrFolderSelect.cpp
+
+2006-12-04 Kimmo
+ PATCH: [ 1512881 ] Fix memleak from charsets.c
+  Src: charsets.cp charsets.h Merge.cpp
+ PATCH: [ 1607823 ] Remove manifest loading from lang dlls
+  Src/Languages/*: Merge*.rc
+
+2006-12-03 Kimmo
+ PATCH: [ 1607343 ] Fix filefilter regexp uppercasing for 2.6 branch
+  Src: FileFilterMgr.cpp
+
+2006-12-02 Takashi
+ BUG: [ 1589324 ] WinMegee crashes on copy
+  Src: Common/CShellFileOp.cpp
+
+2006-12-02 Takashi
+ BUG: [ 1603077 ] Doesn't filter the file vc60.idb using "Merge_VC_loose.flt"
+  Filters: Merge_VC_loose.flt
+
+2006-12-02 Takashi
+ BUG: [ 1603061 ] "Copy Left/Right To .." doesn't work correctly
+  Src: DirActions.cpp
+
+2006-11-30 Kimmo
+ PATCH: [ 1605682 ] Add Syntax Highlight option to config log
+  Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp
+
+2006-11-30 Takashi
+ BUG: [ 1603230 ] DirView icons isn't shown correctly on NT4.0
+  Src/res: equalfile.ico fileskip.ico lfile.ico notequalfile.ico rfile.ico
+
+2006-11-28 Kimmo
+ PATCH: [ 1603196 ] Allow Open-dialog kind of folder selection for project files
+  Src: FileOrFolderSelect.cpp FileOrFolderSelect.h OpenDlg.cpp OpenDlg.h
+ PATCH: [ 1604078 ] Hide skipped items by default
+  Src: OptionsInit.cpp
+
+2006-11-27 Gal
+ BUG: [ 1603562 ] Location pane's bar outlines
+  Src: LocationView.cpp
+
+2006-11-26 Kimmo
+ PATCH: [ 1602365 ] Move SelectFile and SelectFolder routines to separate file
+  Src: DirActions.cpp DirCmpReportDlg.cpp FileFiltersDlg.cpp MainFrm.cpp Merge.cpp
+   Merge.dsp Merge.h MergeDoc.cpp OpenDlg.cpp PatchDlg.cpp ProjectFilePathsDlg.cpp
+   PropRegistry.cpp PropVss.cpp
+  Src/Common: PreferencesDlg.cpp
+  Src new files: FileOrFolderSelect.cpp FileOrFolderSelect.h
+
+2006-11-25 Kimmo
+ PATCH: [ 1596692 ] Change the way modified docs are saved to fix several issues
+  Src: MainFrm.cpp MergeDiffDetailView.cpp MergeDoc.cpp MergeDoc.h
+
+2006-11-21 Kimmo
+ PATCH: [ 1589563 ] Fix crash with weird filetimes (and cleanup the code)
+  Src: DiffFileInfo.cpp DiffFileInfo.h DirScan.cpp DirViewColHandler.cpp
+   FileInfo.cpp FileInfo.h
+
+2006-11-19 Gal
+ PATCH: [ 1590831 ] Handle minimize argument (Bug 1570351)
+  Src/Common: SplitterWndEx.cpp
+  Src: Merge.cpp MergeArgs.cpp MergeDiffDetailView.cpp
+
+2006-11-13 Gal
+ BUG: [ 1594188 ] /x option does not work
+  Src: MergeDoc.cpp
+
+2006-11-06 Takashi
+ PATCH: [ 1586705 ] DirView icons (Tim made [not]equalfile.ico)
+  Src/res: equalfile.ico fileskip.ico lfile.ico notequalfile.ico rfile.ico
+
+2006-11-03 Kimmo
+ PATCH: [ 1589438 ] Add read-only info to ProjectFile dialog
+  Src: MainFrm.cpp
+2006-11-03 Tim
+ PATCH: [ 1589601 ] Add "ReDim" keyword to Visual Basic highlighter
+  Src\editlib: basic.cpp
+
+2006-11-02 Kimmo
+ PATCH: [ 1588212 ] Add manifest file to resource file
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+  Move files from Installer/InnoSetup: WinMerge.exe.manifest WinMergeU.exe.manifest
+   to Src/res
+
+2006-10-31 Kimmo
+ PATCH: [ 1586869 ] Fix File Select -dialog modality
+  Src: DirCmpReportDlg.cpp FileFiltersDlg.cpp MainFrm.cpp Merge.cpp Merge.h
+   MergeDoc.cpp PatchDlg.cpp ProjectFilePathsDlg.cpp PropRegistry.cpp PropVss.cpp
+  Src/Common: PreferencesDlg.cpp
+ PATCH: [ 1578494 ] 26Branch: Optimize binary files compare
+  Src: DiffFileData.cpp DiffItem.h
+
+2006-10-29 Kimmo
+ PATCH: [ 1578419 ] Fix creating WinMerge folder to MyFolders always
+  Src: MainFrm.cpp MainFrm.h
+
+2006-10-24 Tim
+ PATCH: [ 1584004 ] Delete "Toolbar.bmp"
+  Src/res deleted file: Toolbar.bmp
+
 2006-10-12 2.6.0 Stable Release (R3712)
 
 2006-10-12 Kimmo

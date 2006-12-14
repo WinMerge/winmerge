@@ -29,13 +29,13 @@
 <a href="2.6/images/foldercmp.png" target="_blank"><img class="thumbnail" src="2.6/images/foldercmp_small.png" alt="Folder Comparison Results" border="0"></a></p>
 <p>See the <a href="2.6/screenshots.php">screenshots page</a> for more screenshots.</p>
 
-<h2>WinMerge 2.6.0 - latest stable version</h2>
-<p><a href="2.6/index.php">WinMerge 2.6.0</a> is the latest stable version, and is recommended for most users.</p>
-<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.0-Setup.exe">Download WinMerge 2.6.0 Installer</a></p>
+<h2>WinMerge 2.6.2 - latest stable version</h2>
+<p><a href="2.6/index.php">WinMerge 2.6.2</a> is the latest stable version, and is recommended for most users.</p>
+<p><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.2-Setup.exe">Download WinMerge 2.6.2 Installer</a></p>
 
 <h2>Installation</h2>
-<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.0-Setup.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.0-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.2-Setup.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.2-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
 <p>For more information, please see the <a href="2.6/manual/Installing.html">Installation section</a> of the <a href="2.6/manual/index.html">Manual</a>.</p>
 
