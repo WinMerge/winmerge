@@ -207,16 +207,30 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 
 /** 
  * @brief Set paths for dialog.
- * This function is used to set paths from outside the dialog.
+ * This function is used to set paths from outside the dialog. The dialog
+ * only accepts existing paths, as we expect paths coming from existing
+ * compare windows.
  * @param [in] left Left path.
  * @param [in] right Right path.
  */
 void ProjectFilePathsDlg::SetPaths(LPCTSTR left, LPCTSTR right)
 {
 	if (left != NULL)
-		m_sLeftFile = left;
+	{
+		PATH_EXISTENCE pe = paths_DoesPathExist(left);
+		if (pe != DOES_NOT_EXIST)
+		{
+			m_sLeftFile = left;
+		}
+	}
 	if (right != NULL)
-		m_sRightFile = right;
+	{
+		PATH_EXISTENCE pe = paths_DoesPathExist(right);
+		if (pe != DOES_NOT_EXIST)
+		{
+			m_sRightFile = right;
+		}
+	}
 }
 
 /** 

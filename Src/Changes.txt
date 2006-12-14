@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-14 Kimmo
+ BUG: [ 1602219 ] Crappy save of project files
+  Src: MainFrm.cpp ProjectFilePathsDlg.cpp
+
 2006-12-13 Kimmo
  PATCH: [ 1614442 ] Swedish translation update for WinMerge 2.6.2
   Submitted by Hans Eriksson

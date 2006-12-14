@@ -3004,6 +3004,8 @@ void CMainFrame::SetMainIcon(CDialog * dlg)
 
 /** 
  * @brief Opens dialog for user to Load, edit and save project files.
+ * This dialog gets current compare paths and filter (+other properties
+ * possible in project files) and initializes the dialog with them.
  */
 void CMainFrame::OnSaveProject()
 {
@@ -3029,15 +3031,16 @@ void CMainFrame::OnSaveProject()
 	}
 	else if (bDirFrame)
 	{
+		// Get paths currently in compare
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
-		CDirView *pView = pDoc->GetMainView();
-		// Use first item if no item is selected.
-		int ind = max(pView->GetFirstSelectedInd(), 0);
-		const DIFFITEM item = pView->GetItemAt(ind);
-		left = item.getLeftFilepath(pDoc->GetLeftBasePath());
-		left += "\\";
-		right = item.getRightFilepath(pDoc->GetRightBasePath());
-		right += "\\";
+		left = pDoc->GetLeftBasePath();
+		right = pDoc->GetRightBasePath();
+		if (!paths_EndsWithSlash(left))
+			left += _T("\\");
+		if (!paths_EndsWithSlash(right))
+			right += _T("\\");
+		
+		// Set-up the dialog
 		pathsDlg.SetPaths(left, right);
 		pathsDlg.m_bIncludeSubfolders = pDoc->GetRecursive();
 		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(TRUE);
