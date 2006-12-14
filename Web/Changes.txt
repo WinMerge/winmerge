@@ -1,3 +1,8 @@
+2006-12-14 Tim
+ PATCH: [ 1615375 ] Web: Minimize banner problems
+  Web: page.inc
+  Web\css: all.css print.css
+
 2006-11-17 Tim
  PATCH: [ 1597996 ] Web: Add screenshot thumbnails to index pages
   Web: index.php

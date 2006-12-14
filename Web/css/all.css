@@ -83,10 +83,16 @@ code,pre {
 	background: white;
 }
 
+#ads {
+	margin: 0;
+	padding: 10px 5px 10px 5px;
+	text-align: center;
+}
+
 #nav {
 	float: left;
-	margin: 5px;
-	margin-top: 10px;
+	margin: 0;
+	margin-left: 5px;
 	padding: 5px;
 	width: 12em;
 	background: #C0C0C0;
@@ -106,13 +112,9 @@ code,pre {
 	padding-left: 0.5em;
 }
 
-#ads {
-	margin: 5px 0 0 14em;
-	padding: 5px;
-}
-
 #content {
-	margin: 5px 0 0 14em;
+	margin: 0;
+	margin-left: 14em;
 	padding: 5px;
 }
 

@@ -135,11 +135,11 @@
       $temp .= "  </div>\n";
       $temp .= "</div>\n";
       $temp .= "<div id=\"main\">\n";
-      $temp .= "  <div id=\"nav\">\n";
-      $temp .= $this->getMenu();
-      $temp .= "  </div>\n";
       $temp .= "  <div id=\"ads\">\n";
       $temp .= $this->getAds();
+      $temp .= "  </div>\n";
+      $temp .= "  <div id=\"nav\">\n";
+      $temp .= $this->getMenu();
       $temp .= "  </div>\n";
       $temp .= "  <div id=\"content\">\n";
       print($temp);
