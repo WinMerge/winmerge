@@ -2537,7 +2537,7 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 	ptPos.y = nApparentLine;
 
 	// Scroll line to center of view
-	int nScrollLine = nApparentLine;
+	int nScrollLine = GetSubLineIndex(nApparentLine);
 	nScrollLine -= GetScreenLines() / 2;
 	if (nScrollLine < 0)
 		nScrollLine = 0;
