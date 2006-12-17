@@ -1,6 +1,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	min-width: 40em;
 	color: black;
 	background: white;
 	font-family: Verdana,Helvetica,Arial,sans-serif;
