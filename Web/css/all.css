@@ -16,6 +16,7 @@ code,pre {
 	margin: 0;
 	padding: 5px 5px 0 15px;
 	background: #FFCC00;
+	border-bottom: 1px solid black;
 }
 
 #head h1 {
@@ -75,12 +76,6 @@ code,pre {
 	padding-bottom: 5px;
 	background: white;
 	border-color: black;
-}
-
-#main {
-	clear: both;
-	border-top: 1px solid black;
-	background: white;
 }
 
 #ads {
