@@ -97,7 +97,34 @@
       $temp .= "<div id=\"head\">\n";
       $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"48\" width=\"48\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a> <img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
       $temp .= "  <div id=\"tabs\">\n";
-      $temp .= "<ul>\n";
+      $temp .= $this->getTabs();
+      $temp .= "  </div>\n";
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"ads\">\n";
+      $temp .= $this->getAds();
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"nav\">\n";
+      $temp .= $this->getMenu();
+      $temp .= "</div>\n";
+      $temp .= "<div id=\"content\">\n";
+      print($temp);
+    }
+
+    /**
+     * print the foot from the page
+     */
+    function printFoot() {
+      $temp = "</div>\n";
+      $temp .= "</body>\n\n";
+      $temp .= "</html>\n";
+      print($temp);
+    }
+
+    /**
+     * get the tabs menu from the page
+     */
+    function getTabs() {
+      $temp = "<ul>\n";
       if ($this->_version == WINMERGE_USR) { //if "Users" ...
         $temp .= "  <li class=\"selected\"><a href=\"/index.php\">Users</a></li>\n";
       }
@@ -132,31 +159,11 @@
         $temp .= "  <li><a href=\"/developer/index.php\">Developers</a></li>\n";
       }
       $temp .= "</ul>\n";
-      $temp .= "  </div>\n";
-      $temp .= "</div>\n";
-      $temp .= "<div id=\"ads\">\n";
-      $temp .= $this->getAds();
-      $temp .= "</div>\n";
-      $temp .= "<div id=\"nav\">\n";
-      $temp .= $this->getMenu();
-      $temp .= "</div>\n";
-      $temp .= "<div id=\"content\">\n";
-      print($temp);
+      return $temp;
     }
 
     /**
-     * print the foot from the page
-     */
-    function printFoot() {
-      $temp = "</div>\n";
-      $temp .= "</body>\n\n";
-      $temp .= "</html>\n";
-      print($temp);
-    }
-
-    /**
-     * get the right side ads to display on the page
-     *
+     * get the ads to display on the page
      */
     function getAds() {
       $temp = "<script type=\"text/javascript\"><!--\n";
