@@ -6,6 +6,9 @@
   Web\css: all.css
  PATCH: [ 1617578 ] Web: Move tabs code to own function
   Web: page.inc
+ PATCH: [ 1617585 ] Web: Rename all.css to screen.css
+  Web: page.inc
+  Web\css: rename all.css to screen.css
 
 2006-12-15 Tim
  PATCH: [ 1616076 ] Web: Changes for new stable release 2.6.2

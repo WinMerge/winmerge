@@ -89,7 +89,7 @@
       $temp .= "  <meta http-equiv=\"content-type\" content=\"text/html; charset=" . $this->_charset . "\">\n";
       $temp .= "  <meta name=\"description\" content=\"" . $this->_description . "\">\n";
       $temp .= "  <meta name=\"keywords\" content=\"" . $this->_keywords . "\">\n";
-      $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/css/all.css\";</style>\n";
+      $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/css/screen.css\";</style>\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/css/print.css\">\n";
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
       $temp .= "</head>\n\n";
