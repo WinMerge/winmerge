@@ -1,8 +1,15 @@
 Changes for WinMerge compile:
 
+2006-12-18 Kimmo Varis <kimmov@winmerge.org>
+	* WinMerge patch [ 1616302 ] Small BUILD bug, in scew.h, for WIN32
+	submitted by geoffmc <geoffmc@users.sourceforge.net> to fix ansi
+	release target filename.
+
 2006-11-05 Kimmo Varis <kimmov@winmerge.org>
+
 	* scew/win32/scew.dsp: Added post-build commands to copy
 	lib files to /Build/expat
+
 	* scew/win32/scew.dsp: Added include path to expat for one
 	target (missed in previous commit)
 

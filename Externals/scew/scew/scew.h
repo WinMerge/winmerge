@@ -43,6 +43,8 @@
 /* automatically include the correct library on windows */
 #ifdef _WIN32
 
+#if  defined(XML_UNICODE_WCHAR_T) || defined(XML_STATIC) || defined(_DEBUG)
+
 # ifdef XML_UNICODE_WCHAR_T
 #  define SCEW_LIB_U    "u"
 # else
@@ -61,9 +63,8 @@
 #  define SCEW_LIB_D
 # endif /* _DEBUG */
 
-# if defined(SCEW_LIB_U) || defined(SCEW_LIB_S) || defined(SCEW_LIB_D)
 # pragma comment( lib, "scew_" SCEW_LIB_U SCEW_LIB_S SCEW_LIB_D ".lib" )
-# else
+#else /* none defined, use Release library name */
 # pragma comment( lib, "scew.lib" )
 # endif
 
