@@ -1,3 +1,7 @@
+2006-12-18 Tim
+ PATCH [ 1618320 ] Update Slovak translation status and add new translator
+  Web\developer\l10n: status.xml
+
 2006-12-17 Tim
  PATCH: [ 1617518 ] Web: Remove "main" <div>
   Web: page.inc

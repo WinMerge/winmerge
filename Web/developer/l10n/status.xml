@@ -331,14 +331,21 @@
   </language>
   <language>
     <name>Slovak</name>
-    <status>3</status>
+    <status>2</status>
     <authors>
       <author>
         <name>majvan</name>
         <email>vancojur at decef dot elf dot stuba dot sk</email>
+        <comment>2.0</comment>
+      </author>
+      <author>
+        <name>Ivan Masár</name>
+        <email>helix84 at users dot sourceforge dot net</email>
+        <comment>2.6</comment>
       </author>
     </authors>
     <versions>
+      <version>2.6</version>
       <version>2.0</version>
     </versions>
   </language>
