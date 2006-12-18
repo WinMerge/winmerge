@@ -25,7 +25,7 @@ void MovedLines::Clear()
 void MovedLines::Add(ML_SIDE side1, unsigned int line1,	unsigned int line2)
 {
 	MovedLineMap * list = NULL;
-	if (side1 == ML_SIDE::SIDE_LEFT)
+	if (side1 == SIDE_LEFT)
 		list = &m_moved0;
 	else
 		list = &m_moved1;
@@ -40,7 +40,7 @@ void MovedLines::Add(ML_SIDE side1, unsigned int line1,	unsigned int line2)
  */
 int MovedLines::LineInBlock(unsigned int line, ML_SIDE side)
 {
-	if (side == ML_SIDE::SIDE_LEFT)
+	if (side == SIDE_LEFT)
 		return SecondSideInMovedBlock(line);
 	else
 		return FirstSideInMovedBlock(line);

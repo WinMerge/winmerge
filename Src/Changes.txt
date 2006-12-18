@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-18 Kimmo
+ PATCH: [ 1617502 ] Cleanup use of enum in MovedLines
+  Src: MovedLines.cpp
+
 2006-12-17 Gal
  BUG: [ 1614558 ] Goto line doesn't work when word wrap is enabled
   Src: MergeEditView.cpp
