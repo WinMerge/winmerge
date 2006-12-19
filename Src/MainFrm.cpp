@@ -887,7 +887,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 		case IDYES:
 			CFile::GetStatus(strSavePath, status);
 			status.m_mtime = 0;		// Avoid unwanted changes
-			status.m_attribute &= ~CFile::Attribute::readOnly;
+			status.m_attribute &= ~CFile::readOnly;
 			CFile::SetStatus(strSavePath, status);
 			nRetVal = IDYES;
 			break;

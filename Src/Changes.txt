@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2006-12-19 Kimmo
+ PATCH: [ 1618358 ] Fix warning about non-standard extension with enum
+  Src: MainFrm.cpp
+
 2006-12-18 Kimmo
  PATCH: [ 1617502 ] Cleanup use of enum in MovedLines
   Src: MovedLines.cpp
