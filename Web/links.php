@@ -30,6 +30,15 @@
   <dt><a href="http://www.night-ray.com/regex.pdf">regex.pdf</a></dt>
   <dd>PDF quick reference</dd>
 </dl>
+<h3>Miscellaneous</h3>
+<dl>
+  <dt><a href="http://ohloh.net/">ohloh.net</a></dt>
+  <dd>Map the open source world by collecting objective information on open source projects. [<a href="http://www.ohloh.net/projects/225">WinMerge Report</a>]</dd>
+  <dt><a href="http://www.diffutils.com/">diffutils.com</a></dt>
+  <dd>Reviews of popular comparison software. [<a href="http://www.diffutils.com/project-revision-control/winmerge.html">WinMerge Review</a>]</dd>
+  <dt><a href="http://www.betanews.com/">BetaNews.com</a></dt>
+  <dd>Inside informations, unreleased products and articles on various soon-to-be-released software titles.</dd>
+</dl>
 <?php
   $page->printFoot();
 ?>
