@@ -27,6 +27,7 @@
 #include "MainFrm.h"
 #include "FileActionScript.h"
 #include "CShellFileOp.h"
+#include "paths.h"
 
 /**
  * @brief Standard constructor.
@@ -171,7 +172,7 @@ int FileActionScript::CreateOperationsScripts()
 
 	// Move operations next
 	operation = FO_MOVE;
-	operFlags = 0;
+	operFlags = FOF_MULTIDESTFILES;
 	if (m_bUseRecycleBin)
 		operFlags |= FOF_ALLOWUNDO;
 
@@ -230,8 +231,18 @@ BOOL FileActionScript::Run()
 	__try
 	{
 		if (m_bHasCopyOperations)
+		{
+			POSITION pos = m_actions.GetHeadPosition();
+			while (pos != NULL)
+			{
+				const FileActionItem &act = m_actions.GetNext(pos);
+				if (act.dirflag)
+					paths_CreateIfNeeded(act.dest);
+			}
+
 			bFileOpSucceed = m_pCopyOperations->Go(&bOpStarted,
 					&apiRetVal, &bUserCancelled);
+		}
 
 		if (m_bHasMoveOperations)
 		{

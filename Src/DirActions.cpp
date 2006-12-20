@@ -300,7 +300,6 @@ void CDirView::DoDelAll()
  */
 void CDirView::DoCopyLeftTo()
 {
-	CShellFileOp fileOp;
 	CString destPath;
 	CString startPath;
 	CString msg;
@@ -311,10 +310,9 @@ void CDirView::DoCopyLeftTo()
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
 
-	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
-	if (!GetDocument()->GetRecursive())
-		fileOp.AddDestFile(destPath);
-
+	FileActionScript actionScript;
+	const FileAction::ACT_TYPE actType = FileAction::ACT_COPY;
+	int selCount = 0;
 	int sel = -1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -323,28 +321,29 @@ void CDirView::DoCopyLeftTo()
 
 		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di))
 		{
+			FileActionItem act;
+			CString sFullDest(destPath);
+			sFullDest += _T("\\");
 			if (GetDocument()->GetRecursive())
 			{
-				CString sFullDest(destPath);
-				sFullDest += _T("\\");
 				if (!di.sLeftSubdir.IsEmpty())
 					sFullDest += di.sLeftSubdir + _T("\\");
-				if (di.isDirectory())
-					paths_CreateIfNeeded(sFullDest);
-				else
-					sFullDest += di.sLeftFilename;
-				fileOp.AddDestFile(sFullDest);
 			}
+			sFullDest += di.sLeftFilename;
+			act.dest = sFullDest;
+
 			GetItemFileNames(sel, slFile, srFile);
-			fileOp.AddSourceFile(slFile);
+			act.src = slFile;
+			act.dirflag = di.isDirectory();
+			act.context = sel;
+			act.atype = actType;
+			act.UIResult = FileActionItem::UI_DESYNC;
+			actionScript.AddActionItem(act);
+			++selCount;
 		}
 	}
-
-	BOOL bSuccess = FALSE;
-	BOOL bAPICalled = FALSE;
-	BOOL bAborted = FALSE;
-	int  nAPIReturn = 0;
-	bSuccess = fileOp.Go(&bAPICalled, &nAPIReturn, &bAborted);
+	// Now we prompt, and execute actions
+	ConfirmAndPerformActions(actionScript, selCount);
 }
 
 /**
@@ -356,7 +355,6 @@ void CDirView::DoCopyLeftTo()
  */
 void CDirView::DoCopyRightTo()
 {
-	CShellFileOp fileOp;
 	CString destPath;
 	CString startPath;
 	CString msg;
@@ -367,10 +365,9 @@ void CDirView::DoCopyRightTo()
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
 
-	fileOp.SetOperationFlags(FO_COPY, this, FOF_NOCONFIRMMKDIR);
-	if (!GetDocument()->GetRecursive())
-		fileOp.AddDestFile(destPath);
-
+	FileActionScript actionScript;
+	const FileAction::ACT_TYPE actType = FileAction::ACT_COPY;
+	int selCount = 0;
 	int sel = -1;
 	CString slFile, srFile;
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -379,28 +376,29 @@ void CDirView::DoCopyRightTo()
 
 		if (di.diffcode != 0 && IsItemCopyableToOnRight(di))
 		{
+			FileActionItem act;
+			CString sFullDest(destPath);
+			sFullDest += _T("\\");
 			if (GetDocument()->GetRecursive())
 			{
-				CString sFullDest(destPath);
-				sFullDest += _T("\\");
 				if (!di.sRightSubdir.IsEmpty())
 					sFullDest += di.sRightSubdir + _T("\\");
-				if (di.isDirectory())
-					paths_CreateIfNeeded(sFullDest);
-				else
-					sFullDest += di.sRightFilename;
-				fileOp.AddDestFile(sFullDest);
 			}
+			sFullDest += di.sRightFilename;
+			act.dest = sFullDest;
+
 			GetItemFileNames(sel, slFile, srFile);
-			fileOp.AddSourceFile(srFile);
+			act.src = srFile;
+			act.dirflag = di.isDirectory();
+			act.context = sel;
+			act.atype = actType;
+			act.UIResult = FileActionItem::UI_DESYNC;
+			actionScript.AddActionItem(act);
+			++selCount;
 		}
 	}
-
-	BOOL bSuccess = FALSE;
-	BOOL bAPICalled = FALSE;
-	BOOL bAborted = FALSE;
-	int  nAPIReturn = 0;
-	bSuccess = fileOp.Go( &bAPICalled, &nAPIReturn, &bAborted );
+	// Now we prompt, and execute actions
+	ConfirmAndPerformActions(actionScript, selCount);
 }
 
 /**
@@ -441,10 +439,7 @@ void CDirView::DoMoveLeftTo()
 				if (!di.sLeftSubdir.IsEmpty())
 					sFullDest += di.sLeftSubdir + _T("\\");
 			}
-			if (di.isDirectory())
-				paths_CreateIfNeeded(sFullDest);
-			else
-				sFullDest += di.sLeftFilename;
+			sFullDest += di.sLeftFilename;
 			act.dest = sFullDest;
 
 			GetItemFileNames(sel, slFile, srFile);
@@ -499,10 +494,7 @@ void CDirView::DoMoveRightTo()
 				if (!di.sRightSubdir.IsEmpty())
 					sFullDest += di.sRightSubdir + _T("\\");
 			}
-			if (di.isDirectory())
-				paths_CreateIfNeeded(sFullDest);
-			else
-				sFullDest += di.sRightFilename;
+			sFullDest += di.sRightFilename;
 			act.dest = sFullDest;
 
 			GetItemFileNames(sel, slFile, srFile);
