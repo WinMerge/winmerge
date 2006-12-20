@@ -209,14 +209,38 @@
     <qandaset>
       <qandaentry>
         <question>
-          <para>WinMerge does not start and complains about missing DLL
-          files (mfc71.dll, mfc71u.dll, msvcr71.dll, msvcp71.dll)</para>
+          <para>WinMerge does not start and complains about missing DLL files
+          (mfc71.dll, mfc71u.dll, msvcr71.dll, msvcp71.dll)</para>
         </question>
 
         <answer>
           <para>When installing from archive (zip, 7z) file you need also
           Runtimes-package, which contains those files. See the <link
           linkend="InstallFromArchive">Install instructions</link>.</para>
+        </answer>
+      </qandaentry>
+    </qandaset>
+  </sect2>
+
+  <sect2>
+    <title>File Comparing</title>
+
+    <qandaset>
+      <qandaentry>
+        <question>
+          <para>Why my files have all lines marked different (colored) even if
+          I know all lines are not different?</para>
+        </question>
+
+        <answer>
+          <para>Maybe your files have different line-ending styles (e.g. DOS
+          and UNIX?). WinMerge by default compares also line-ending styles,
+          but you can disable it from <menuchoice>
+              <guimenu>Edit</guimenu>
+
+              <guimenuitem>Options</guimenuitem>
+            </menuchoice> / Compare / Ignore carriage return
+          differences.</para>
         </answer>
       </qandaentry>
     </qandaset>
