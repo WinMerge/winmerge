@@ -145,6 +145,34 @@
   </sect2>
 
   <sect2>
+    <title>Editor Margin</title>
+
+    <para>The editor panes (file panes) have gray margin area reserved for
+    line numbers and some symbols. If line numbers are not shown then margin
+    is shown like screenshot below.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/filecomp_margin1.png" format="PNG" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Blue circle is a Bookmark. And arrow marks word-wrapped line. Next
+    screenshot shows same lines without word-wrap and with linenumbers.</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/filecomp_margin2.png" format="PNG" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>The editor margin cannot be hidden, it is always visible. If
+    linenubmers are not visible it takes pretty minimal width. Note that with
+    linenumbers the margin width is set so that the longest line number fits
+    into it. So with long files it needs space for several numbers.</para>
+  </sect2>
+
+  <sect2>
     <title><indexterm>
         <primary>Difference Navigation</primary>
 

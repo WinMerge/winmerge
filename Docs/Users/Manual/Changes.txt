@@ -1,6 +1,9 @@
 2006-12-20 Kimmo
  PATCH: [ 1618452 ] Manual: Add new FAQ item about all lines marked different
   Manual: Faq.xml
+ PATCH: [ 1618935 ] Manual: Add screenshots and description for editor margin
+  Manual: Compare_files.xml
+  Manual/screenshots new files: filecomp_margin1.png filecomp_margin2.png
 
 2006-12-11 Tim
  PATCH: [ 1611595 ] Manual: Merge Plugins.xml with readme_users.txt
