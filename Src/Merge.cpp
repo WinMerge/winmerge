@@ -199,22 +199,23 @@ BOOL CMergeApp::InitInstance()
 		{
 			USES_CONVERSION;
 
-			// Activate previous instance and send command line to it
+			// Activate previous instance and send commandline to it
 			HWND hWnd = instanceChecker.ActivatePreviousInstance();
-
-			CMemFile file;
-			CArchive ar(&file, CArchive::store);
 			
-			cmdInfo.Serialize(ar);
-			ar.Close();
-			
-			COPYDATASTRUCT data;
-			data.cbData = static_cast<DWORD>(file.GetLength());
-			data.lpData = file.Detach();
-			data.dwData = 0;
-			::SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data);
-
-			file.Close();
+			WCHAR *pszArgs = new WCHAR[_tcslen(__targv[0]) + _tcslen(m_lpCmdLine) + 3];
+			WCHAR *p = pszArgs;
+			for (int i = 0; i < __argc; i++)
+			{
+				wcscpy(p, T2W(__targv[i]));
+				p += lstrlenW(p) + 1;
+			}
+			*p++ = _T('\0');
+			COPYDATASTRUCT data = {0};
+			data.cbData = (DWORD)(p - pszArgs) * sizeof(WCHAR);
+			data.lpData = pszArgs;
+			data.dwData = __argc;
+			SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data);
+			delete[] pszArgs;
 
 			ReleaseMutex(hMutex);
 			CloseHandle(hMutex);
