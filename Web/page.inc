@@ -95,7 +95,7 @@
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
-      $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"48\" width=\"48\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a> <img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
+      $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"48\" width=\"48\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a><img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
       $temp .= "  <div id=\"tabs\">\n";
       $temp .= $this->getTabs();
       $temp .= "  </div>\n";
