@@ -9,7 +9,7 @@
 <h3><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=438554">WinMerge 2.4.10</a></h3>
 <dl>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">Installer</a></dt>
-  <dd><p>The easiest way to install WinMerge is to download and run this installer. Read the <a href="2.4/manual/installing.html">online manual</a> for help using it.</p></dd>
+  <dd><p>The easiest way to install WinMerge is to download and run this installer. Read the <a href="manual/installing.html">online manual</a> for help using it.</p></dd>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">Binaries</a></dt>
   <dd><p>WinMerge binaries are also available in archive files (<a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">.zip</a> and <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.7z">.7z</a>).</p></dd>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.4.10-src.zip">Source code</a></dt>
