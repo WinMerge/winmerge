@@ -50,6 +50,18 @@ pre,code,tt {
   border: 1px solid black;
 }
 
+/* Command synopsis */
+.cmdsynopsis p {
+  padding: 0;
+  color: black;
+  background-color: white;
+  border: 0;
+}
+
+.command,.option,.replaceable {
+  color: black;
+}
+
 /* GUI elements */
 .guimenu,.guisubmenu,.guimenuitem,.guilabel {
   font-style: italic;

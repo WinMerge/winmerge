@@ -39,6 +39,18 @@ pre,code,tt {
   border: 1px solid red;
 }
 
+/* Command synopsis */
+.cmdsynopsis p {
+  padding: 5px;
+  color: gray;
+  background-color: #EEEEEE;
+  border-left: 10px solid #CCCCCC;
+}
+
+.command,.option,.replaceable {
+  color: black;
+}
+
 /* GUI elements */
 .guimenu,.guisubmenu,.guimenuitem,.guilabel {
   font-style: italic;

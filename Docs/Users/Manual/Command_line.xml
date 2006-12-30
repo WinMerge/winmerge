@@ -11,7 +11,7 @@
 
   <para>Syntax for the command line is:</para>
 
-  <para><screen><cmdsynopsis sepchar=" ">
+  <para><cmdsynopsis sepchar=" ">
         <command moreinfo="none">WinMerge</command>
 
         <arg choice="opt" rep="norepeat"><option>/r</option></arg>
@@ -47,7 +47,7 @@
         <arg choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
 
         <arg choice="opt" rep="norepeat"><replaceable>outputpath</replaceable></arg>
-      </cmdsynopsis></screen></para>
+      </cmdsynopsis></para>
 
   <para>All parameters start with "/" or with "-" prefix character. Pathnames
   don't have any prefix character.</para>
