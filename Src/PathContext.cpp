@@ -40,7 +40,7 @@ CString PathInfo::GetPath(BOOL bNormalized /*= TRUE*/) const
  * @brief Set path.
  * @param [in] sPath New path for item.
  */
-void PathInfo::SetPath(CString sPath)
+void PathInfo::SetPath(LPCTSTR sPath)
 {
 	m_sPath = sPath;
 }
@@ -58,7 +58,7 @@ PathContext::PathContext()
 
 }
 
-PathContext::PathContext(CString sLeft, CString sRight)
+PathContext::PathContext(LPCTSTR sLeft, LPCTSTR sRight)
 {
 	m_pathLeft.SetPath(sLeft);
 	m_pathRight.SetPath(sRight);
@@ -214,7 +214,7 @@ BOOL TempFileContext::CreateFiles(const PathContext &paths)
  * @brief Check if temp files exist.
  * @return TRUE if one of temp files exist.
  */
-BOOL TempFileContext::FilesExist()
+BOOL TempFileContext::FilesExist() const
 {
 	BOOL bLeftExists = FALSE;
 	BOOL bRightExists = FALSE;

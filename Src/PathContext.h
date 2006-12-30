@@ -22,7 +22,7 @@ public:
 	PathInfo(const PathInfo &pi);
 
 	CString GetPath(BOOL bNormalized = TRUE) const;
-	void SetPath(CString path);
+	void SetPath(LPCTSTR path);
 	void NormalizePath();
 
 private:
@@ -36,7 +36,7 @@ class PathContext
 {
 public:
 	PathContext();
-	PathContext(CString sLeft, CString sRight);
+	PathContext(LPCTSTR sLeft, LPCTSTR sRight);
 	CString GetLeft(BOOL bNormalized = TRUE) const;
 	CString GetRight(BOOL bNormalized = TRUE) const;
 	CString GetPath(int index, BOOL bNormalized = TRUE) const;
@@ -57,7 +57,7 @@ class TempFileContext : public PathContext
 public:
 	~TempFileContext();
 	BOOL CreateFiles(const PathContext &paths);
-	BOOL FilesExist();
+	BOOL FilesExist() const;
 	void DeleteFiles();
 	const CString & GetTempPath() const { return m_sTempPath; }
 
