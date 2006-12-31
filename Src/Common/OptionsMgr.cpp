@@ -34,17 +34,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 /**
  * @brief Set name, value and default value for option
- * @param [in] optName Name of option ("Settings/AutomaticRescan")
+ * @param [in] name Name of option with full path ("Settings/AutomaticRescan")
  * @param [in] defaultValue Default value for option. This value
  * is restored for otion when Reset() is run.
  * @sa COption::Reset()
  */
-int COption::Init(CString optName, varprop::VariantValue defaultValue)
+int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 {
 	int retVal = OPT_OK;
 
 	// Dont' check type here since we are initing it!
-	m_strName = optName;
+	m_strName = name;
 	varprop::VT_TYPE inType = defaultValue.getType();
 
 	switch (inType)
@@ -75,7 +75,7 @@ int COption::Init(CString optName, varprop::VariantValue defaultValue)
 	default:
 		retVal = OPT_UNKNOWN_TYPE;
 	}
-	return retVal;		
+	return retVal;
 }
 
 /**
@@ -97,14 +97,18 @@ varprop::VariantValue COption::GetDefault() const
 /**
  * @brief Convert string to integer, or return false if not an integer number
  */
-static bool
-getInt(const CString & str, int & val)
+static bool getInt(LPCTSTR str, int & val)
 {
-	if (str.IsEmpty()) return false;
-	for (int i=0; i<str.GetLength(); ++i)
+	if (str == NULL)
+		return false;
+	int len = _tcslen(str);
+	if (len == 0)
+		return false;
+
+	for (int i = 0; i < len; ++i)
 	{
-		TCHAR ch = str[i];
-		if (!_istascii(ch) || !_istdigit(ch)) return false;
+		if (!_istascii(str[i]) || !_istdigit(str[i]))
+			return false;
 	}
 	val = _ttoi(str);
 	return true;
@@ -124,7 +128,8 @@ bool COption::CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType)
 			// Convert string to integer
 			{
 				int val=0;
-				if (!getInt(svalue, val)) return false;
+				if (!getInt(svalue, val))
+					return false;
 				value.SetInt(val);
 				return true;
 			}
@@ -269,7 +274,7 @@ void COption::Reset()
 /**
  * @brief Add new option to list.
  */
-int COptionsMgr::AddOption(CString name, varprop::VariantValue defaultValue)
+int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
 {
 	int retVal = OPT_OK;
 	COption tmpOption;
@@ -284,7 +289,7 @@ int COptionsMgr::AddOption(CString name, varprop::VariantValue defaultValue)
 /**
  * @brief Get option value from list by name
  */
-varprop::VariantValue COptionsMgr::Get(CString name) const
+varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 {
 	COption tmpOption;
 	varprop::VariantValue value;
@@ -301,7 +306,7 @@ varprop::VariantValue COptionsMgr::Get(CString name) const
 /**
  * @brief Return string option value
  */
-CString COptionsMgr::GetString(CString name) const
+CString COptionsMgr::GetString(LPCTSTR name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);
@@ -311,7 +316,7 @@ CString COptionsMgr::GetString(CString name) const
 /**
  * @brief Return integer option value
  */
-int COptionsMgr::GetInt(const CString & name) const
+int COptionsMgr::GetInt(LPCTSTR name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);
@@ -321,7 +326,7 @@ int COptionsMgr::GetInt(const CString & name) const
 /**
  * @brief Return boolean option value
  */
-bool COptionsMgr::GetBool(CString name) const
+bool COptionsMgr::GetBool(LPCTSTR name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);
@@ -331,7 +336,7 @@ bool COptionsMgr::GetBool(CString name) const
 /**
  * @brief Set new value for option
  */
-int COptionsMgr::Set(CString name, varprop::VariantValue value, COption::coercion_type coercion)
+int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value, COption::coercion_type coercion)
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -354,7 +359,7 @@ int COptionsMgr::Set(CString name, varprop::VariantValue value, COption::coercio
 /*
  * @brief Type-convert and forward to SaveOption(CString, int)
  */
-int COptionsMgr::SaveOption(CString name, UINT value)
+int COptionsMgr::SaveOption(LPCTSTR name, UINT value)
 {
 	int xvalue = value;
 	return SaveOption(name, xvalue);
@@ -363,7 +368,7 @@ int COptionsMgr::SaveOption(CString name, UINT value)
 /*
  * @brief Type-convert and forward to SaveOption(CString, int)
  */
-int COptionsMgr::SaveOption(CString name, COLORREF value)
+int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
 {
 	int xvalue = value;
 	return SaveOption(name, xvalue);
@@ -372,7 +377,7 @@ int COptionsMgr::SaveOption(CString name, COLORREF value)
 /**
  * @brief Reset option value to default
  */
-int COptionsMgr::Reset(CString name)
+int COptionsMgr::Reset(LPCTSTR name)
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -394,7 +399,7 @@ int COptionsMgr::Reset(CString name)
 /**
  * @brief Return default string value
  */
-int COptionsMgr::GetDefault(CString name, CString & value) const
+int COptionsMgr::GetDefault(LPCTSTR name, CString & value) const
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -419,7 +424,7 @@ int COptionsMgr::GetDefault(CString name, CString & value) const
 /**
  * @brief Return default number value
  */
-int COptionsMgr::GetDefault(CString name, DWORD & value) const
+int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -444,7 +449,7 @@ int COptionsMgr::GetDefault(CString name, DWORD & value) const
 /**
  * @brief Return default boolean value
  */
-int COptionsMgr::GetDefault(CString name, bool & value) const
+int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -610,7 +615,7 @@ void CRegOptionsMgr::SplitName(CString strName, CString &strPath,
  * @note This function must handle ANSI and UNICODE data!
  * @todo Handles only string and integer types
  */
-int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, CString strName,
+int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	varprop::VariantValue &value)
 {
 	CString strPath;
@@ -634,6 +639,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, CString strName,
 		pData = new BYTE[size];
 		if (pData == NULL)
 			return OPT_ERR;
+		ZeroMemory(pData, size);
 
 		// Get data
 		retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName,
@@ -691,7 +697,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, CString strName,
  * @param [in] value value to write to registry value
  * @todo Handles only string and integer types
  */
-int CRegOptionsMgr::SaveValueToReg(HKEY hKey, CString strValueName,
+int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
 	varprop::VariantValue value)
 {
 	LONG retValReg = 0;
@@ -735,7 +741,7 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, CString strValueName,
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(CString name, varprop::VariantValue defaultValue)
+int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 {
 	// Check type & bail if null
 	int valType = defaultValue.getType();
@@ -797,7 +803,7 @@ int CRegOptionsMgr::InitOption(CString name, varprop::VariantValue defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(CString name, LPCTSTR defaultValue)
+int CRegOptionsMgr::InitOption(LPCTSTR name, LPCTSTR defaultValue)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -813,7 +819,7 @@ int CRegOptionsMgr::InitOption(CString name, LPCTSTR defaultValue)
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(CString name, int defaultValue, bool serializable)
+int CRegOptionsMgr::InitOption(LPCTSTR name, int defaultValue, bool serializable)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -832,7 +838,7 @@ int CRegOptionsMgr::InitOption(CString name, int defaultValue, bool serializable
  * Adds new option to list of options. Sets value to default value.
  * If option does not exist in registry, saves with default value.
  */
-int CRegOptionsMgr::InitOption(CString name, bool defaultValue)
+int CRegOptionsMgr::InitOption(LPCTSTR name, bool defaultValue)
 {
 	varprop::VariantValue defValue;
 	int retVal = OPT_OK;
@@ -846,7 +852,7 @@ int CRegOptionsMgr::InitOption(CString name, bool defaultValue)
  * @brief Load option from registry.
  * @note Currently handles only integer and string options!
  */
-int CRegOptionsMgr::LoadOption(CString name)
+int CRegOptionsMgr::LoadOption(LPCTSTR name)
 {
 	varprop::VariantValue value;
 	CString strPath;
@@ -885,7 +891,7 @@ int CRegOptionsMgr::LoadOption(CString name)
  * @brief Save option to registry
  * @note Currently handles only integer and string options!
  */
-int CRegOptionsMgr::SaveOption(CString name)
+int CRegOptionsMgr::SaveOption(LPCTSTR name)
 {
 	if (!m_serializing) return OPT_OK;
 
@@ -925,7 +931,7 @@ int CRegOptionsMgr::SaveOption(CString name)
 /**
  * @brief Set new value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(CString name, varprop::VariantValue value)
+int CRegOptionsMgr::SaveOption(LPCTSTR name, varprop::VariantValue value)
 {
 	int retVal = OPT_OK;
 	retVal = Set(name, value);
@@ -937,7 +943,7 @@ int CRegOptionsMgr::SaveOption(CString name, varprop::VariantValue value)
 /**
  * @brief Set new string value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(CString name, CString value)
+int CRegOptionsMgr::SaveOption(LPCTSTR name, LPCTSTR value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
@@ -952,7 +958,7 @@ int CRegOptionsMgr::SaveOption(CString name, CString value)
 /**
  * @brief Set new string value for option, with coercion, and save option to registry
  */
-int CRegOptionsMgr::CoerceAndSaveOption(CString name, CString value)
+int CRegOptionsMgr::CoerceAndSaveOption(LPCTSTR name, LPCTSTR value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
@@ -967,7 +973,7 @@ int CRegOptionsMgr::CoerceAndSaveOption(CString name, CString value)
 /**
  * @brief Set new integer value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(CString name, int value)
+int CRegOptionsMgr::SaveOption(LPCTSTR name, int value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
@@ -982,7 +988,7 @@ int CRegOptionsMgr::SaveOption(CString name, int value)
 /**
  * @brief Set new boolean value for option and save option to registry
  */
-int CRegOptionsMgr::SaveOption(CString name, bool value)
+int CRegOptionsMgr::SaveOption(LPCTSTR name, bool value)
 {
 	varprop::VariantValue val;
 	int retVal = OPT_OK;
