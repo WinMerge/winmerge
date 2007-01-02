@@ -38,7 +38,7 @@
       <para>Opening two archive files is similar to normal files: select two
       archive files to Open-dialog's "<guilabel>Left</guilabel>" and
       "<guilabel>Right</guilabel>" fields. If
-      <productname>WinMerge</productname> recognizes the archive format, it
+      WinMerge recognizes the archive format, it
       opens the contents of the archive files to folder compare.</para>
 
       <para><link linkend="CompareDirs">Folder Compare</link> chapter
@@ -47,14 +47,14 @@
       <filename class="directory">Altered/</filename> it must be opened by
       selecting same filename to both sides in
       <guilabel>Open</guilabel>-dialog or command line. Then
-      <productname>WinMerge</productname> can compare contents of those two
+      WinMerge can compare contents of those two
       subfolders.</para>
 
       <tip>
         <para>When dragging an archive file to
-        <productname>WinMerge</productname> window, press
+        WinMerge window, press
         <keycap>Shift</keycap> when dropping the file and
-        <productname>WinMerge</productname> will automatically copy the same
+        WinMerge will automatically copy the same
         filename to both sides and open the archive file.</para>
       </tip>
     </sect3>

@@ -660,7 +660,7 @@
         <answer>
           <para>No. It may be added in later versions but until then Win32
           port of diffutils can be used. The Win32 port of diffutils (and
-          patch) can be downloaded from <productname>GnuWin32</productname>
+          patch) can be downloaded from <application>GnuWin32</application>
           project from SourceForge: <ulink
           url="http://sourceforge.net/projects/gnuwin32/">
           http://sourceforge.net/projects/gnuwin32</ulink></para>
