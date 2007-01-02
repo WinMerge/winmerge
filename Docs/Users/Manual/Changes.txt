@@ -1,6 +1,8 @@
 2007-01-02 Tim
  PATCH: [ 1624905 ] Manual: Remove <productname>
   Manual: Faq.xml Open_paths.xml
+ PATCH: [ 1624906 ] Manual: Add registered trademark for Microsoft
+  Manual: Faq.xml Plugins.xml
 
 2006-12-30 Tim
  PATCH: [ 1623604 ] Manual: Remove <screen> from Command_line.xml

@@ -119,7 +119,7 @@
     <title>Requirements</title>
     <sect3>
       <title>Windows Script Host</title>
-      <para>Some editor complements need this optional component from Microsoft.</para>
+      <para>Some editor complements need this optional component from <trademark class="registered">Microsoft</trademark>.</para>
       <para>If the list of editor complements does not present all editor plugins, this component is probably missing.
       You can check easily. WinMerge informs you with a comment at the bottom of the list. You may install WSH on any
       version of Windows (need IE 4.0). Download it from <ulink url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN Library</ulink>.</para>
@@ -129,7 +129,7 @@
       <para>Some plugins require Visual Basic runtime library to work.</para>
       <para>You can download the required file <filename><ulink url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>
       or use the <ulink url="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time Redistribution Pack</ulink>
-      from Microsoft. If you don't need the plugin, you can safely remove it.</para>
+      from <trademark class="registered">Microsoft</trademark>. If you don't need the plugin, you can safely remove it.</para>
     </sect3>
   </sect2>
 </sect1>
