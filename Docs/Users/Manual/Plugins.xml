@@ -19,7 +19,7 @@
     <sect3>
       <title>Editor complement</title>
       <para>Operate custom operations on the currently selected text from the active editor pane.</para>
-      <para>Example plugin: <filename>editor addin.sct</filename> (Turn the selection to UPPERCASE or lowercase.)</para>
+      <para>Example plugin: <link linkend="EditorAddin"><filename>editor addin.sct</filename></link> (Turn the selection to UPPER CASE or lower case.)</para>
     </sect3>
     <sect3>
       <title>Unpacker - Transform a file to a text format</title>
@@ -34,12 +34,12 @@
         may differ if they include the date of creation). WinMerge applies the unpacker in all situations, and you are sure to have the
         same result when you compare folder, or when you merge two versions of a file.</para>
       </note>
-      <para>Example plugin: <filename>DisplayXMLFiles.dll</filename> (Display XML files nicely, by consistently inserting tabs and linebreaks.)</para>
+      <para>Example plugin: <link linkend="DisplayXMLFiles"><filename>DisplayXMLFiles.dll</filename></link> (Display XML files nicely, by consistently inserting tabs and linebreaks.)</para>
     </sect3>
     <sect3>
       <title>Prediffer - Preprocess files to hide some differences</title>
       <para>The plugin is not apply to the files displayed in the editor. It is applied only to temporary copies of the files, and this copies are then scanned to create the difference list.</para>
-      <para>Example plugin: <filename>IgnoreColumns.dll</filename> (Ignore the differences inside given columns, while displaying the characters in these columns.)</para>
+      <para>Example plugin: <link linkend="IgnoreColumns"><filename>IgnoreColumns.dll</filename></link> (Ignore the differences inside given columns, while displaying the characters in these columns.)</para>
     </sect3>
   </sect2>
   <sect2>
@@ -110,9 +110,342 @@
     </sect3>
   </sect2>
   <sect2>
-    <title>Plugin details</title>
-    <para>A file <filename>Plugins.txt</filename> is created during the setup process. It documents each installed plugin with the name and a quick description.
-    If you don't use installer <filename>Plugins.txt</filename> is found from <filename class="directory">MergePlugins</filename> subfolder.</para>
+    <title>Available plugins</title>
+    <sect3>
+      <title><filename>CompareMSExcelFiles.dll</filename></title>
+      <para>Displays the text content of a <trademark class="registered">Microsoft</trademark>
+      <application>Excel</application> file, stripping away all formatting and embedded objects.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <segtitle>Packing</segtitle>
+          <segtitle>Requirement</segtitle>
+          <seglistitem>
+            <seg>Unpacker</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.xls</filename></member>
+              </simplelist>
+            </seg>
+            <seg>No</seg>
+            <seg><trademark class="registered">Microsoft</trademark> <application>Excel</application></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>CompareMSWordFiles.dll</filename></title>
+      <para>Displays the text content of a <trademark class="registered">Microsoft</trademark>
+      <application>Word</application> file, stripping away all formatting and embedded objects.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <segtitle>Packing</segtitle>
+          <segtitle>Requirement</segtitle>
+          <seglistitem>
+            <seg>Unpacker</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.doc</filename></member>
+              </simplelist>
+            </seg>
+            <seg>No</seg>
+            <seg><trademark class="registered">Microsoft</trademark> <application>Word</application></seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>DisplayBinaryFiles.dll</filename></title>
+      <para>Use this plugin to display the differences between two binary files.</para>
+      <para>This is not a hex editor, but simply a way to display files which have
+      reasonable lines (carriage returns), per WinMerge's textual display style.
+      This can help for detecting changed strings in binaries.</para>
+      <note>
+        <para>Replaces all 0 with <keycode>0x20</keycode> (spaces).</para>
+        <para>This is a lossy operation, which means that the files can only be
+        displayed; they cannot be saved, so there is no point in trying to merge.
+        If you really want to save the files, you should look at the plugin
+        <link linkend="EditBinaryFiles"><filename>EditBinaryFiles.dll</filename></link>.</para>
+      </note>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <segtitle>Packing</segtitle>
+          <seglistitem>
+            <seg>Unpacker</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.exe</filename></member>
+                <member><filename class="extension">*.dll</filename></member>
+                <member><filename class="extension">*.ocx</filename></member>
+                <member><filename class="extension">*.doc</filename></member>
+                <member><filename class="extension">*.xls</filename></member>
+              </simplelist>
+            </seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3 id="DisplayXMLFiles">
+      <title><filename>DisplayXMLFiles.dll</filename></title>
+      <para>This plugin display XML files nicely, by consistently inserting tabs
+      and linebreaks. This is to fix XML files which do not have line returns in
+      convenient locations.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <segtitle>Packing</segtitle>
+          <seglistitem>
+            <seg>Unpacker</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.xml</filename></member>
+              </simplelist>
+            </seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3 id="EditBinaryFiles">
+      <title><filename>EditBinaryFiles.dll</filename></title>
+      <para>Allow editing of binary files (if line based), using escape scheme
+      for bytes under <keycode>0x20</keycode>.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <segtitle>Packing</segtitle>
+          <seglistitem>
+            <seg>Unpacker</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.exe</filename></member>
+                <member><filename class="extension">*.dll</filename></member>
+                <member><filename class="extension">*.ocx</filename></member>
+                <member><filename class="extension">*.doc</filename></member>
+                <member><filename class="extension">*.xls</filename></member>
+              </simplelist>
+            </seg>
+            <seg>Yes</seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3 id="EditorAddin">
+      <title><filename>editor addin.sct</filename></title>
+      <para>Add two functions to the <menuchoice><guimenu>Edit</guimenu><guisubmenu>Scripts</guisubmenu></menuchoice> menu:</para>
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>MakeUpper</guimenuitem> convert the selection to UPPER CASE.</simpara>
+        </listitem>
+        <listitem>
+          <simpara><guimenuitem>MakeLower</guimenuitem> convert the selection to lower case.</simpara>
+        </listitem>
+      </itemizedlist>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <seglistitem>
+            <seg>Editor complement</seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3 id="IgnoreColumns">
+      <title><filename>IgnoreColumns.dll</filename></title>
+      <para>The plugin ignore the characters at specified columns.
+      It does not support files with tabulations (no crash, but all tabs will be
+      treated as a normal character). The first column has number 1.</para>
+      <para>For the parameters, you just need to rename the dll with the following syntax:</para>
+      <itemizedlist>
+        <listitem>
+          <simpara>Delimiters between ranges: _ or ,</simpara>
+        </listitem>
+        <listitem>
+          <simpara>Delimiters between min and max: <emphasis>anything else</emphasis></simpara>
+        </listitem>
+        <listitem>
+          <simpara>Min and max are included.</simpara>
+        </listitem>
+        <listitem>
+          <simpara>When max = min, max may be omitted.</simpara>
+        </listitem>
+      </itemizedlist>
+      <example>
+        <title><filename>IgnoreColumns.dll</filename> syntax</title>
+        <variablelist>
+           <varlistentry>
+              <term><filename>IgnoreColumns _ 3 _ 10 - 20 _ 32 - 33.dll</filename></term>
+              <listitem>
+                 <simpara>Ignore all characters at column 3, and in columns 10 to 20, and 32 to 33.</simpara>
+              </listitem>
+           </varlistentry>
+           <varlistentry>
+              <term><filename>IgnoreColumns_1,30 to 40.dll</filename></term>
+              <listitem>
+                 <simpara>Ignore all the characters in column 1, and in columns 30 to 40.</simpara>
+              </listitem>
+           </varlistentry>
+        </variablelist>
+      </example>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <seglistitem>
+            <seg>Prediffer</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.txt</filename></member>
+              </simplelist>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>IgnoreCommentsC.dll</filename></title>
+      <para>The plugin ignores comments (<constant>//</constant>... and <constant>/*</constant> ... <constant>*/</constant>) in C, C++, PHP and JavaScript files.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <seglistitem>
+            <seg>Prediffer</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.cpp</filename></member>
+                <member><filename class="extension">*.cxx</filename></member>
+                <member><filename class="extension">*.h</filename></member>
+                <member><filename class="extension">*.hxx</filename></member>
+                <member><filename class="extension">*.c</filename></member>
+                <member><filename class="extension">*.php</filename></member>
+                <member><filename class="extension">*.js</filename></member>
+              </simplelist>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>IgnoreFieldsComma.dll</filename></title>
+      <para>The plugin is for files with fields and <emphasis>comma</emphasis> as delimiters
+      (CSV files for example). It ignore the characters in the specified fields. First field has number 1.</para>
+      <para>Modify the filename to specify the fields. See <link linkend="IgnoreColumns">IgnoreColumns.dll</link>
+      for the syntax.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <seglistitem>
+            <seg>Prediffer</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.csv</filename></member>
+              </simplelist>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>IgnoreFieldsTab.dll</filename></title>
+      <para>The plugin is for files with fields and <emphasis>tabulations</emphasis> as delimiters
+      (<application>Excel</application> files saved in format <filename class="extension">*.txt</filename> for example).
+      It ignore the characters in the specified fields. First field has number 1.</para>
+      <para>Modify the filename to specify the fields. See <link linkend="IgnoreColumns">IgnoreColumns.dll</link>
+      for the syntax.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <seglistitem>
+            <seg>Prediffer</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.txt</filename></member>
+              </simplelist>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>insert datetime.sct</filename></title>
+      <para>Add two functions to the <menuchoice><guimenu>Edit</guimenu><guisubmenu>Scripts</guisubmenu></menuchoice> menu:</para>
+      <itemizedlist>
+        <listitem>
+          <simpara><guimenuitem>InsertDate</guimenuitem> insert date in the current locale format.</simpara>
+        </listitem>
+        <listitem>
+          <simpara><guimenuitem>InsertTime</guimenuitem> insert time in the current locale format.</simpara>
+        </listitem>
+      </itemizedlist>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <seglistitem>
+            <seg>Editor complement</seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>RCLocalizationHelper.dll</filename>, <filename>RCLocalizationHelperU.dll</filename></title>
+      <para>The plugin preprocesses RC files by stripping out localized strings,
+      to enable comparing differnt language versions of the same RC file
+      and ignoring the translations.</para>
+      <para><filename>RCLocalizationHelperU.dll</filename> is the Unicode version.</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <seglistitem>
+            <seg>Prediffer</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.rc</filename></member>
+              </simplelist>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
+      <title><filename>WatchBeginningOfLog.dll</filename>, <filename>WatchEndOfLog.dll</filename></title>
+      <para>For long LOG files, the user is often interested only in the first lines or in the last lines.</para>
+      <itemizedlist>
+        <listitem>
+          <simpara><filename>WatchBeginningOfLog.dll</filename> truncates the files to the first 1/10th.</simpara>
+        </listitem>
+        <listitem>
+          <simpara><filename>WatchEndOfLog.dll</filename> truncates the files to the first 1/10th.</simpara>
+        </listitem>
+      </itemizedlist>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <segtitle>Packing</segtitle>
+          <seglistitem>
+            <seg>Unpacker</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.log</filename></member>
+              </simplelist>
+            </seg>
+            <seg>No</seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
     <para>Developers may find information and code of examples in the source package, under the folder "<filename class="directory">Plugins</filename>".</para>
   </sect2>
   <sect2>

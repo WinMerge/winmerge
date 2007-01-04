@@ -1,6 +1,8 @@
 2007-01-04 Tim
  PATCH: [ 1626464 ] Manual: Highlight examples with CSS
   Manual/css: all.css help.css print.css
+ PATCH: [ 1627363 ] Manual: Merge with Plugins.txt and list_of_sources.txt
+  Manual: Plugins.xml
 
 2007-01-02 Tim
  PATCH: [ 1624905 ] Manual: Remove <productname>
