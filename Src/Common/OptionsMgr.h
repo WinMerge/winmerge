@@ -148,6 +148,5 @@ private:
 	bool m_serializing;
 
 };
-COptionsMgr * GetOptionsMgr();
 
 #endif // _OPTIONS_MGR_

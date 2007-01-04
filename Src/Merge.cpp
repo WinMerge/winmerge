@@ -28,8 +28,9 @@
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"
 
+#include "OptionsMgr.h"
+#include "Merge.h"
 #include "AboutDlg.h"
 #include "MainFrm.h"
 #include "ChildFrm.h"
@@ -97,6 +98,12 @@ struct ArgSetting
 	LPCTSTR WinMergeOptionName;
 };
 
+COptionsMgr * GetOptionsMgr()
+{
+	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
+	return pApp->GetMergeOptionsMgr();
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
 
@@ -107,6 +114,7 @@ CMergeApp::CMergeApp() :
 , m_mainThreadScripts(NULL)
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
+, m_pOptions(NULL)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -115,7 +123,8 @@ CMergeApp::CMergeApp() :
 
 CMergeApp::~CMergeApp()
 {
-	delete m_pLangDlg; m_pLangDlg = NULL;
+	delete m_pOptions;
+	delete m_pLangDlg;
 }
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
@@ -125,6 +134,13 @@ CMergeApp theApp;
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp initialization
 
+/**
+ * @brief Initialize WinMerge application instance.
+ * @return TRUE if application initialization succeeds (and we'll run it),
+ *   FALSE if something failed and we exit the instance.
+ * @todo We could handle these failure situations more gratefully, i.e. show
+ *  at least some error message to the user..
+ */
 BOOL CMergeApp::InitInstance()
 {
 	InitCommonControls();    // initialize common control library
@@ -165,6 +181,9 @@ BOOL CMergeApp::InitInstance()
 #endif
 #endif
 
+	m_pOptions = new CRegOptionsMgr;
+	OptionsInit(); // Implementation in OptionsInit.cpp
+
 	// Parse command-line arguments.
 	MergeCmdLineInfo cmdInfo(*__targv);
 	ParseCommandLine(cmdInfo);
@@ -182,7 +201,7 @@ BOOL CMergeApp::InitInstance()
 	// This is the name of the company of the original author (Dean Grimm)
 	SetRegistryKey(_T("Thingamahoochie"));
 
-	BOOL bSingleInstance = GetProfileInt(_T("Settings"), _T("SingleInstance"), FALSE) ||
+	BOOL bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
 		(true == cmdInfo.m_bSingleInstance);
 	
 	HANDLE hMutex = NULL;
@@ -225,7 +244,7 @@ BOOL CMergeApp::InitInstance()
 	}
 
 	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
-	BOOL bDisableSplash	= GetProfileInt(_T("Settings"), _T("DisableSplash"), FALSE);
+	BOOL bDisableSplash	= GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
 
 	InitializeFileFilters();
 	m_globalFileFilter.SetFilter(_T("*.*"));
@@ -503,7 +522,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 		// Turn off serializing to registry.
 		GetOptionsMgr()->SetSerializing(false);
 		// Load all default settings.
-		pMainFrame->ResetOptions();
+		ResetOptions();
 	}
 
 	// Set the global file filter.
@@ -716,4 +735,14 @@ CString CMergeApp::GetUsageDescription()
 	str += CmdlineOption(IDS_CMDLINE_OUTPUTPATH);
 	str += _T("\n\n") + LoadResString(IDS_CMDLINE_SEEMANUAL);
 	return str;
+}
+
+/**
+ * @brief Get default editor path.
+ * @return full path to the editor program executable.
+ */
+CString CMergeApp::GetDefaultEditor()
+{
+	CString path = paths_GetWindowsDirectory() + _T("\\NOTEPAD.EXE");
+	return path;
 }

@@ -116,7 +116,6 @@ public:
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();
 	BOOL OpenFileToExternalEditor(CString file);
-	CString GetDefaultEditor();
 	CString GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
@@ -126,8 +125,6 @@ public:
 	void GetDirViews(DirViewList * pDirViews);
 	void GetMergeEditViews(MergeEditViewList * pMergeViews);
 	void CheckinToClearCase(CString strDestinationPath);
-	COptionsMgr * GetTheOptionsMgr() { return &m_options; }
-	void ResetOptions() { OptionsInit(); }
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
 	void StartFlashing();
@@ -215,8 +212,6 @@ protected:
 		MENU_COUNT, // Add new items before this item
 	};
 	BCMenu * m_pMenus[MENU_COUNT]; /**< Menus for different views */
-
-	CRegOptionsMgr m_options; /**< Options manager */
 	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
 
 // Generated message map functions
@@ -297,7 +292,6 @@ private:
 	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);
 	CDirDoc * GetDirDocToShow(BOOL * pNew);
 	void ShowFontChangeMessage();
-	void OptionsInit();
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();

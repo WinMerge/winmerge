@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
+#include "Merge.h"
 #include "SyntaxColors.h"
 #include "PropTextColors.h"
 #include "OptionsDef.h"

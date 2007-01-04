@@ -28,7 +28,7 @@
 #include "RegKey.h"
 #include "coretools.h"
 #include "FileOrFolderSelect.h"
-#include "MainFrm.h" // GetDefaultEditor()
+#include "Merge.h" // GetDefaultEditor()
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
@@ -104,7 +104,8 @@ void CPropRegistry::ReadOptions()
  */
 void CPropRegistry::WriteOptions()
 {
-	CString sDefaultEditor = GetMainFrame()->GetDefaultEditor();
+	CMergeApp *app = static_cast<CMergeApp*>(AfxGetApp());
+	CString sDefaultEditor = app->GetDefaultEditor();
 
 	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);

@@ -22,7 +22,7 @@ CMainFrame::InitializeSourceControlMembers()
 	m_strCCComment = _T("");
 	m_bCheckinVCS = FALSE;
 
-	CString vssPath = m_options.GetString(OPT_VSS_PATH);
+	CString vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 	if (vssPath.IsEmpty())
 	{
 		CRegKeyEx reg;
@@ -32,7 +32,7 @@ CMainFrame::InitializeSourceControlMembers()
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
 			CString spath = GetPathOnly(temp);
 			vssPath = spath + _T("\\Ss.exe");
-			m_options.SaveOption(OPT_VSS_PATH, vssPath);
+			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath);
 		}
 	}
 }
@@ -50,7 +50,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 	UINT userChoice = 0;
 	int nVerSys = 0;
 
-	nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
+	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
 
 	switch(nVerSys)
 	{
@@ -92,7 +92,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			}
 			CString args;
 			args.Format(_T("checkout \"%s/%s\""), m_vssHelper.GetProjectBase(), sname);
-			CString vssPath = m_options.GetString(OPT_VSS_PATH);
+			CString vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 			HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
 			if (hVss != INVALID_HANDLE_VALUE)
 			{
@@ -333,7 +333,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			// checkout operation
 			m_strCCComment.Replace(_T("\""), _T("\\\""));
 			args.Format(_T("checkout -c \"%s\" \"%s\""), m_strCCComment, sname);
-			CString vssPath = m_options.GetString(OPT_VSS_PATH);
+			CString vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 			HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
 			if (hVss!=INVALID_HANDLE_VALUE)
 			{

@@ -35,7 +35,7 @@
 
 #include "resource.h"       // main symbols
 #include "MergeDoc.h"
-
+#include "OptionsMgr.h"
 #include "FileFilterHelper.h"
 
 struct FileFilter;
@@ -71,6 +71,11 @@ public:
 public:
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
+	CString GetDefaultEditor();
+
+	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions); }
+	void OptionsInit();
+	void ResetOptions() { OptionsInit(); }
 
 // Implementation
 protected:
@@ -105,12 +110,15 @@ protected:
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:
+	CRegOptionsMgr *m_pOptions;
 	CAssureScriptsForThread * m_mainThreadScripts;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 };
 
 extern CMergeApp theApp;
+
+COptionsMgr * GetOptionsMgr();
 
 /////////////////////////////////////////////////////////////////////////////
 CMergeDoc *GetDoc();

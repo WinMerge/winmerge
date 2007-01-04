@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "OptionsDef.h"
 #include "MainFrm.h"
 #include "FileActionScript.h"

@@ -213,7 +213,6 @@ CMainFrame::CMainFrame()
 , m_bVssSuppressPathCheck(FALSE)
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
-	OptionsInit(); // Implementation in OptionsInit.cpp
 	UpdateCodepageModule();
 
 	InitializeSourceControlMembers();
@@ -223,7 +222,7 @@ CMainFrame::CMainFrame()
 
 	// TODO: read preference for logging
 
-	int logging = m_options.GetInt(OPT_LOGGING);
+	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
 	if (logging > 0)
 	{
 		gLog.EnableLogging(TRUE);
@@ -237,15 +236,15 @@ CMainFrame::CMainFrame()
 
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
-		m_pSyntaxColors->Initialize(&m_options);
+		m_pSyntaxColors->Initialize(GetOptionsMgr());
 
 	// Check if filter folder is set, and create it if not
-	CString pathMyFolders = m_options.GetString(OPT_FILTER_USERPATH);
+	CString pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 	if (pathMyFolders.IsEmpty())
 	{
 		// No filter path, set it to default and make sure it exists.
 		CString pathFilters = GetDefaultFilterUserPath(TRUE);
-		m_options.SaveOption(OPT_FILTER_USERPATH, pathFilters);
+		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathFilters);
 		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters);
 	}
 }
@@ -307,7 +306,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	}
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
-	if (m_options.GetBool(OPT_SHOW_STATUSBAR) == false)
+	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, false, 0);
 
 	// CG: The following line was added by the Splash Screen component.
@@ -717,8 +716,8 @@ void CMainFrame::RedisplayAllDirDocs()
  */
 void CMainFrame::OnOptionsShowDifferent() 
 {
-	bool val = m_options.GetBool(OPT_SHOW_DIFFERENT);
-	m_options.SaveOption(OPT_SHOW_DIFFERENT, !val); // reverse
+	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_DIFFERENT, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -727,8 +726,8 @@ void CMainFrame::OnOptionsShowDifferent()
  */
 void CMainFrame::OnOptionsShowIdentical() 
 {
-	bool val = m_options.GetBool(OPT_SHOW_IDENTICAL);
-	m_options.SaveOption(OPT_SHOW_IDENTICAL, !val); // reverse
+	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_IDENTICAL, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -737,8 +736,8 @@ void CMainFrame::OnOptionsShowIdentical()
  */
 void CMainFrame::OnOptionsShowUniqueLeft() 
 {
-	bool val = m_options.GetBool(OPT_SHOW_UNIQUE_LEFT);
-	m_options.SaveOption(OPT_SHOW_UNIQUE_LEFT, !val); // reverse
+	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_LEFT, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -747,8 +746,8 @@ void CMainFrame::OnOptionsShowUniqueLeft()
  */
 void CMainFrame::OnOptionsShowUniqueRight() 
 {
-	bool val = m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT);
-	m_options.SaveOption(OPT_SHOW_UNIQUE_RIGHT, !val); // reverse
+	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_UNIQUE_RIGHT, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -757,8 +756,8 @@ void CMainFrame::OnOptionsShowUniqueRight()
  */
 void CMainFrame::OnOptionsShowBinaries()
 {
-	bool val = m_options.GetBool(OPT_SHOW_BINARIES);
-	m_options.SaveOption(OPT_SHOW_BINARIES, !val); // reverse
+	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_BINARIES, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
@@ -767,39 +766,39 @@ void CMainFrame::OnOptionsShowBinaries()
  */
 void CMainFrame::OnOptionsShowSkipped()
 {
-	bool val = m_options.GetBool(OPT_SHOW_SKIPPED);
-	m_options.SaveOption(OPT_SHOW_SKIPPED, !val); // reverse
+	bool val = GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_SKIPPED, !val); // reverse
 	RedisplayAllDirDocs();
 }
 
 void CMainFrame::OnUpdateOptionsShowdifferent(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_DIFFERENT));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT));
 }
 
 void CMainFrame::OnUpdateOptionsShowidentical(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_IDENTICAL));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL));
 }
 
 void CMainFrame::OnUpdateOptionsShowuniqueleft(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_UNIQUE_LEFT));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT));
 }
 
 void CMainFrame::OnUpdateOptionsShowuniqueright(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_UNIQUE_RIGHT));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT));
 }
 
 void CMainFrame::OnUpdateOptionsShowBinaries(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_BINARIES));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES));
 }
 
 void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_SHOW_SKIPPED));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_SKIPPED));
 }
 
 /**
@@ -840,7 +839,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 	int nVerSys = 0;
 
 	bFileRO = files_isFileReadOnly(strSavePath, &bFileExists);
-	nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
+	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
 	
 	if (bFileExists && bFileRO)
 	{
@@ -921,7 +920,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 /// Wrapper to set the global option 'm_bAllowMixedEol'
 void CMainFrame::SetEOLMixed(BOOL bAllow)
 {
-	m_options.SaveOption(OPT_ALLOW_MIXED_EOL, bAllow == TRUE);
+	GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, bAllow == TRUE);
 	ApplyViewWhitespace();
 }
 
@@ -931,18 +930,18 @@ void CMainFrame::SetEOLMixed(BOOL bAllow)
 void CMainFrame::OnOptions() 
 {
 	// Using singleton shared syntax colors
-	CPreferencesDlg dlg(&m_options, m_pSyntaxColors);
+	CPreferencesDlg dlg(GetOptionsMgr(), m_pSyntaxColors);
 	int rv = dlg.DoModal();
 
 	if (rv == IDOK)
 	{
 		// Set new filterpath
-		CString filterPath = m_options.GetString(OPT_FILTER_USERPATH);
+		CString filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 		theApp.m_globalFileFilter.SetUserFilterPath(filterPath);
 
 		UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
-		SetEOLMixed(m_options.GetBool(OPT_ALLOW_MIXED_EOL));
+		SetEOLMixed(GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 
 		// make an attempt at rescanning any open diff sessions
 		MergeDocList docs;
@@ -1207,7 +1206,7 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 {
 	// first, make a backup copy of the original
 	// create backup copy of file if destination file exists
-	if (m_options.GetBool(OPT_CREATE_BACKUPS) 
+	if (GetOptionsMgr()->GetBool(OPT_CREATE_BACKUPS) 
 		&& paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
 	{
 		// Add backup extension if pathlength allows it
@@ -1253,7 +1252,7 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
 	CString strSavePath(pszDest);
 	int nVerSys = 0;
 
-	nVerSys = m_options.GetInt(OPT_VCS_SYSTEM);
+	nVerSys = GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM);
 	
 	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
 	if (nRetVal == IDCANCEL || nRetVal == IDNO)
@@ -1315,9 +1314,9 @@ void CMainFrame::OnViewSelectfont()
 	if (ChooseFont(&cf))
 	{
 		if (bDirFrame)
-			m_options.SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
 		else
-			m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
 
 		AppSerialize appser(AppSerialize::Save, sFontPath);
 		appser.SerializeFont(_T(""), *lf); // unnamed font
@@ -1393,7 +1392,7 @@ void CMainFrame::GetFontProperties()
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
 
 	// Get MergeView font
-	if (m_options.GetBool(OPT_FONT_FILECMP_USECUSTOM))
+	if (GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_USECUSTOM))
 	{
 		AppSerialize appser(AppSerialize::Load, _T("Font"));
 		appser.SerializeFont(_T(""), lfnew); // unnamed font 
@@ -1405,7 +1404,7 @@ void CMainFrame::GetFontProperties()
 
 	// Get DirView font
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
-	if (m_options.GetBool(OPT_FONT_DIRCMP_USECUSTOM))
+	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_USECUSTOM))
 	{
 		AppSerialize appser(AppSerialize::Load, _T("FontDirCompare"));
 		appser.SerializeFont(_T(""), lfnew); // unnamed font 
@@ -1428,9 +1427,9 @@ void CMainFrame::OnViewUsedefaultfont()
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bDirFrame)
-		m_options.SaveOption(OPT_FONT_DIRCMP_USECUSTOM, false);
+		GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, false);
 	else
-		m_options.SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
+		GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
 
 	GetFontProperties();
 	ShowFontChangeMessage();
@@ -1619,7 +1618,7 @@ void CMainFrame::OnClose()
 {
 	// Save last selected filter
 	CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-	m_options.SaveOption(OPT_FILEFILTER_CURRENT, filter);
+	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
 
 	// save main window position
 	WINDOWPLACEMENT wp;
@@ -1686,10 +1685,10 @@ void CMainFrame::RebuildRegExpList(BOOL bShowError)
 
 	// build the new list if the user choose to
 	// ignore lines matching the reg expression patterns
-	if (m_options.GetBool(OPT_LINEFILTER_ENABLED))
+	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
 	{
 		// find each regular expression and add to list
-		_tcsncpy(tmp, m_options.GetString(OPT_LINEFILTER_REGEXP), _MAX_PATH);
+		_tcsncpy(tmp, GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP), _MAX_PATH);
 
 		token = _tcstok(tmp, sep);
 		while (token && valid)
@@ -1820,15 +1819,15 @@ void CMainFrame::ApplyViewWhitespace()
 
 void CMainFrame::OnViewWhitespace() 
 {
-	bool bViewWhitespace = m_options.GetBool(OPT_VIEW_WHITESPACE);
-	m_options.SaveOption(OPT_VIEW_WHITESPACE, !bViewWhitespace);
+	bool bViewWhitespace = GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE);
+	GetOptionsMgr()->SaveOption(OPT_VIEW_WHITESPACE, !bViewWhitespace);
 	ApplyViewWhitespace();
 }
 
 /// Enables View/View Whitespace menuitem when merge view is active
 void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI) 
 {
-	pCmdUI->SetCheck(m_options.GetBool(OPT_VIEW_WHITESPACE));
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
@@ -1935,7 +1934,7 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 CDirDoc * CMainFrame::GetDirDocToShow(BOOL * pNew)
 {
 	CDirDoc * pDirDoc = 0;
-	if (!m_options.GetBool(OPT_MULTIDOC_DIRDOCS))
+	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS))
 	{
 		POSITION pos = theApp.m_pDirTemplate->GetFirstDocPosition();
 		while (pos)
@@ -2241,7 +2240,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	CString sExecutable;
 	CString sCmd;
 	
-	sExtEditor = m_options.GetString(OPT_EXT_EDITOR_CMD);
+	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
 
 	SplitFilename(sExecutable, NULL, NULL, &ext);
@@ -2275,15 +2274,6 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		ResMsgBox1(IDS_UNKNOWN_EXECUTE_FILE, sExtEditor, MB_ICONSTOP);
 	}
 	return TRUE;
-}
-
-/**
- * @brief Get default editor path
- */
-CString CMainFrame::GetDefaultEditor()
-{
-	CString path = paths_GetWindowsDirectory() + _T("\\NOTEPAD.EXE");
-	return path;
 }
 
 /**
@@ -2326,15 +2316,18 @@ typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;
  * @brief Copy one piece of data from options object to config log, or vice-versa
  */
 static void
-LoadConfigIntSetting(int * cfgval, COptionsMgr & options, const CString & name, ConfigLogDirection cfgdir)
+LoadConfigIntSetting(int * cfgval, COptionsMgr * options, const CString & name, ConfigLogDirection cfgdir)
 {
+	if (options == NULL)
+		return;
+
 	if (cfgdir == ToConfigLog)
 	{
-			*cfgval = options.GetInt(name);
+			*cfgval = options->GetInt(name);
 	}
 	else
 	{
-		options.SetInt(name, *cfgval);
+		options->SetInt(name, *cfgval);
 	}
 }
 
@@ -2342,24 +2335,30 @@ LoadConfigIntSetting(int * cfgval, COptionsMgr & options, const CString & name, 
  * @brief Copy one piece of data from options object to config log, or vice-versa
  */
 static void
-LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr & options, const CString & name, ConfigLogDirection cfgdir)
+LoadConfigBoolSetting(BOOL * cfgval, COptionsMgr * options, const CString & name, ConfigLogDirection cfgdir)
 {
+	if (options == NULL)
+		return;
+
 	if (cfgdir == ToConfigLog)
 	{
-			*cfgval = options.GetBool(name);
+			*cfgval = options->GetBool(name);
 	}
 	else
 	{
-		options.SetBool(name, !!(*cfgval));
+		options->SetBool(name, !!(*cfgval));
 	}
 }
 
 /**
  * @brief Pass options settings from options manager object to config log, or vice-versa
  */
-static void LoadConfigLog(CConfigLog & configLog, COptionsMgr & options,
+static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LOGFONT & lfDiff, ConfigLogDirection cfgdir)
 {
+	if (options == NULL)
+		return;
+
 	LoadConfigIntSetting(&configLog.m_diffOptions.nIgnoreWhitespace, options, OPT_CMP_IGNORE_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bIgnoreBlankLines, options, OPT_CMP_IGNORE_BLANKLINES, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_diffOptions.bFilterCommentsLines, options, OPT_CMP_FILTER_COMMENTLINES, cfgdir);
@@ -2411,7 +2410,7 @@ void CMainFrame::OnSaveConfigData()
 	CConfigLog configLog;
 	CString sError;
 
-	LoadConfigLog(configLog, m_options, m_lfDiff, ToConfigLog);
+	LoadConfigLog(configLog, GetOptionsMgr(), m_lfDiff, ToConfigLog);
 
 	if (configLog.WriteLogFile(sError))
 	{
@@ -2446,7 +2445,7 @@ void CMainFrame::OnFileNew()
 	if (IsComparing())
 		return;
 
-	if (!m_options.GetBool(OPT_MULTIDOC_DIRDOCS))
+	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_DIRDOCS))
 	{
 		pDirDoc = GetDirDocToShow(&docNull);
 		if (!docNull)
@@ -2503,8 +2502,8 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	filter.m_bIgnoreRegExp = m_options.GetBool(OPT_LINEFILTER_ENABLED);
-	filter.m_sPattern = m_options.GetString(OPT_LINEFILTER_REGEXP);
+	filter.m_bIgnoreRegExp = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	filter.m_sPattern = GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP);
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -2518,7 +2517,7 @@ void CMainFrame::OnToolsFilters()
 			{
 				CString sFilter = _T("*.*");
 				theApp.m_globalFileFilter.SetFilter(sFilter);
-				m_options.SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+				GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 			}
 		}
 		else
@@ -2526,10 +2525,10 @@ void CMainFrame::OnToolsFilters()
 			theApp.m_globalFileFilter.SetFileFilterPath(path);
 			theApp.m_globalFileFilter.UseMask(FALSE);
 			CString sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-			m_options.SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
+			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
-		m_options.SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);
-		m_options.SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
+		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);
+		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
 
 		RebuildRegExpList(TRUE);
 	}
@@ -2563,7 +2562,7 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		}
 		else
 		{
-			if (m_options.GetBool(OPT_CLOSE_WITH_ESC))
+			if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
 			{
 				MergeDocList docs;
 				GetAllMergeDocs(&docs);
@@ -2660,8 +2659,8 @@ void CMainFrame::OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnViewStatusBar()
 {
-	bool bShow = !m_options.GetBool(OPT_SHOW_STATUSBAR);
-	m_options.SaveOption(OPT_SHOW_STATUSBAR, bShow);
+	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_STATUSBAR, bShow);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndStatusBar, bShow, 0);
 }
@@ -2671,8 +2670,8 @@ void CMainFrame::OnViewStatusBar()
  */
 void CMainFrame::OnViewToolbar()
 {
-	bool bShow = !m_options.GetBool(OPT_SHOW_TOOLBAR);
-	m_options.SaveOption(OPT_SHOW_TOOLBAR, bShow);
+	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, bShow);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, bShow, 0);
 }
@@ -2687,14 +2686,14 @@ void CMainFrame::OnFileOpenproject()
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	
 	// get the default projects path
-	CString strProjectPath = m_options.GetString(OPT_PROJECTS_PATH);
+	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath, title, IDS_PROJECTFILES,
 			TRUE))
 		return;
 	
 	strProjectPath = paths_GetParentPath(sFilepath);
 	// store this as the new project path
-	m_options.SaveOption(OPT_PROJECTS_PATH,strProjectPath);
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH,strProjectPath);
 
 	theApp.LoadAndOpenProjectFile(sFilepath);
 }
@@ -2785,13 +2784,13 @@ void CMainFrame::OnDebugLoadConfig()
 	CConfigLog configLog;
 
 	// set configLog settings to current
-	LoadConfigLog(configLog, m_options, m_lfDiff, ToConfigLog);
+	LoadConfigLog(configLog, GetOptionsMgr(), m_lfDiff, ToConfigLog);
 
 	// update any settings found in actual config file
 	configLog.ReadLogFile(filepath);
 
 	// set our current settings from configLog settings
-	LoadConfigLog(configLog, m_options, m_lfDiff, FromConfigLog);
+	LoadConfigLog(configLog,GetOptionsMgr(), m_lfDiff, FromConfigLog);
 }
 
 /**
@@ -2801,7 +2800,7 @@ void CMainFrame::UpdateCodepageModule()
 {
 	// Get current codepage settings from the options module
 	// and push them into the codepage module
-	updateDefaultCodepage(m_options.GetInt(OPT_CP_DEFAULT_MODE), m_options.GetInt(OPT_CP_DEFAULT_CUSTOM));
+	updateDefaultCodepage(GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_MODE), GetOptionsMgr()->GetInt(OPT_CP_DEFAULT_CUSTOM));
 }
 
 /**
@@ -2897,7 +2896,7 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 	
 	// checkin operation
 	args.Format(_T("checkin -nc \"%s\""), sname);
-	CString vssPath = m_options.GetString(OPT_VSS_PATH);
+	CString vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 	HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
 	if (hVss!=INVALID_HANDLE_VALUE)
 	{
@@ -2938,15 +2937,6 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 		AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 		return;
 	}
-}
-
-/**
- * @brief Access to the singleton options manager
- */
-COptionsMgr *
-GetOptionsMgr() 
-{
-	return GetMainFrame()->GetTheOptionsMgr();
 }
 
 /**
@@ -3135,7 +3125,7 @@ BOOL CMainFrame::CreateToobar()
 	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
 	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
 
-	if (m_options.GetBool(OPT_SHOW_TOOLBAR) == false)
+	if (GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR) == false)
 	{
 		CMDIFrameWnd::ShowControlBar(&m_wndToolBar, false, 0);
 	}
