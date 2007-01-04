@@ -39,6 +39,12 @@ pre,code,tt {
   border: 1px solid red;
 }
 
+/* Examples */
+.example,.informalexample {
+  padding-left: 7px;
+  border-left: 3px solid black;
+}
+
 /* Command synopsis */
 .cmdsynopsis p {
   padding: 5px;

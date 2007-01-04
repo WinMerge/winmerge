@@ -1,3 +1,7 @@
+2007-01-04 Tim
+ PATCH: [ 1626464 ] Manual: Highlight examples with CSS
+  Manual/css: all.css help.css print.css
+
 2007-01-02 Tim
  PATCH: [ 1624905 ] Manual: Remove <productname>
   Manual: Faq.xml Open_paths.xml
