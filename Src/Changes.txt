@@ -7,6 +7,8 @@ Add new items to top.
   Src: FileActionScript.cpp MainFrm.cpp MainFrm.h Merge.cpp Merge.h
    OptionsInit.cpp PropRegistry.cpp PropTextColors.cpp SourceControl.cpp
   Src/Common: OptionsMgr.h
+ Use Empty() method for CString instead of assigning empty string into it
+  Src/Common: varprop.h
 
 2006-12-31 Kimmo
  PATCH: [ 1625022 ] Constify OptionsManager parameters

@@ -33,7 +33,7 @@ public:
 	void SetTime(const COleDateTime & v) { Clear(); vtype = VT_TIME; tvalue = v; }
 
 	void Clear() { vtype = VT_NULL; bvalue = false; ivalue = 0; fvalue = 0;
-		svalue = _T(""); tvalue.m_status = COleDateTime::null;}
+		svalue.Empty(); tvalue.m_status = COleDateTime::null;}
 
 	bool getBool() const { ASSERT(vtype == VT_BOOL); return bvalue; }
 	int getInt() const { ASSERT(vtype == VT_INT); return ivalue; }
