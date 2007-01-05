@@ -85,13 +85,15 @@ DATE:		BY:					DESCRIPTION:
 2005/08/20	Jochen Tucht		Option to guess archive format by signature
 								Map extensions through ExternalArchiveFormat.ini
 2005/08/23	Jochen Tucht		Option to entirely disable 7-Zip integration
+2007/01/04	Kimmo Varis			Convert using COptionsMgr for options.
 */
 
 // RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
-#include "Merge.h"		// DirDocFilter theApp
+#include "OptionsDef.h"
+#include "Merge.h"		// DirDocFilter theApp GetOptionsMgr()
 #include "resource.h"
 #include "DirDoc.h"
 #include "MainFrm.h"
@@ -115,7 +117,7 @@ static char THIS_FILE[] = __FILE__;
  */
 Merge7z::Format *ArchiveGuessFormat(LPCTSTR path)
 {
-	if (theApp.GetProfileInt(_T("Merge7z"), _T("Enable"), 1) == 0)
+	if (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE) == 0)
 		return NULL;
 	if (PathIsDirectory(path))
 		return NULL;
@@ -386,7 +388,7 @@ INT_PTR CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wP
 			else
 			{
 				GetDlgItemText(hWnd, 107, cText.Data, cText.Size);
-				switch (theApp.GetProfileInt(_T("Merge7z"), _T("Enable"), 1))
+				switch (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
 				{
 				case 0:
 					lstrcat(cText.Data, CString(MAKEINTRESOURCE(IDS_MERGE7Z_ENABLE_0)));
@@ -688,7 +690,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 		char name[MAX_PATH];
 		DWORD flags = ~0;
 		CException *pCause = NULL;
-		switch (theApp.GetProfileInt(_T("Merge7z"), _T("Enable"), 1))
+		switch (GetOptionsMgr()->GetInt(OPT_ARCHIVE_ENABLE))
 		{
 		case 1: //Use installed 7-Zip if present. Otherwise, use local 7-Zip.
 			if (DWORD ver = VersionOf7z(FALSE))
@@ -741,7 +743,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 				flags |= wLangID << 16;
 			}
 		}
-		if (theApp.GetProfileInt(_T("Merge7z"), _T("ProbeSignature"), 0))
+		if (GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE))
 		{
 			flags |= Initialize::GuessFormatBySignature | Initialize::GuessFormatByExtension;
 		}
