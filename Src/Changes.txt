@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-05 Kimmo
+ PATCH: [ 1628203 ] Reduce options caching in MergeEditView
+  Src: MergeEditView.cpp MergeEditView.h
+
 2007-01-04 Kimmo
  PATCH: [ 1625344 ] Move OptionsMgr from MainFrame to MergeApp
   Src: FileActionScript.cpp MainFrm.cpp MainFrm.h Merge.cpp Merge.h

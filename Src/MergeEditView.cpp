@@ -79,10 +79,7 @@ CMergeEditView::CMergeEditView()
 , fTimerWaitingForIdle(0)
 {
 	SetParser(&m_xParser);
-	m_bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 
-	m_bSyntaxHighlight = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bWordDiffHighlight = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
 	m_cachedColors.clrSelDiff = GetOptionsMgr()->GetInt(OPT_CLR_SELECTED_DIFF);
 	m_cachedColors.clrDiffDeleted = GetOptionsMgr()->GetInt(OPT_CLR_DIFF_DELETED);
@@ -333,7 +330,7 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 	if ((dwLineFlags & LF_DIFF) != LF_DIFF || (dwLineFlags & LF_MOVED) == LF_MOVED)
 		return 0;
 
-	if (!m_bWordDiffHighlight)
+	if (!GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT))
 		return 0;
 
 	int nLineLength = GetLineLength(nLineIndex);
@@ -481,7 +478,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 	else
 	{
 		// Line not inside diff,
-		if (!m_bSyntaxHighlight)
+		if (!GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT))
 		{
 			// If no syntax hilighting, get windows default colors
 			crBkgnd = GetSysColor (COLOR_WINDOW);
@@ -1666,7 +1663,8 @@ BOOL CMergeEditView::PreTranslateMessage(MSG* pMsg)
 		}
 
 		// Close window if user has allowed it from options
-		if (pMsg->wParam == VK_ESCAPE && m_bCloseWithEsc)
+		BOOL bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
+		if (pMsg->wParam == VK_ESCAPE && bCloseWithEsc)
 		{
 			GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 			return FALSE;
@@ -2264,11 +2262,10 @@ void CMergeEditView::OnUpdateWMGoto(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Reload cached options.
+ * @brief Reload options.
  */
 void CMergeEditView::RefreshOptions()
 { 
-	m_bCloseWithEsc = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 	m_bAutomaticRescan = GetOptionsMgr()->GetBool(OPT_AUTOMATIC_RESCAN);
 
 	if (GetOptionsMgr()->GetInt(OPT_TAB_TYPE) == 0)
@@ -2276,8 +2273,6 @@ void CMergeEditView::RefreshOptions()
 	else
 		SetInsertTabs(FALSE);
 
-	m_bSyntaxHighlight = GetOptionsMgr()->GetBool(OPT_SYNTAX_HIGHLIGHT);
-	m_bWordDiffHighlight = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
@@ -2739,7 +2734,8 @@ void CMergeEditView::RepaintLocationPane()
  */
 void CMergeEditView::OnViewLineDiffs()
 {
-	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !m_bWordDiffHighlight);
+	BOOL bWordDiffHighlight = GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT);
+	GetOptionsMgr()->SaveOption(OPT_WORDDIFF_HIGHLIGHT, !bWordDiffHighlight);
 
 	// Call CMergeDoc RefreshOptions() to refresh *both* views
 	CMergeDoc *pDoc = GetDocument();
@@ -2750,7 +2746,7 @@ void CMergeEditView::OnViewLineDiffs()
 void CMergeEditView::OnUpdateViewLineDiffs(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
-	pCmdUI->SetCheck(m_bWordDiffHighlight);
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_WORDDIFF_HIGHLIGHT));
 }
 
 /**
