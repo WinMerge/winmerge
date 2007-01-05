@@ -178,6 +178,7 @@ BEGIN
     POPUP "デバッグ(&D)"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "設定情報ファイルの読込み(&L)..", ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "ウィンドウ(&W)"
     BEGIN
@@ -285,6 +286,7 @@ BEGIN
     POPUP "デバッグ(&D)"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "設定情報ファイルの読込み(&L)..", ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "ウィンドウ(&W)"
     BEGIN
@@ -447,6 +449,7 @@ BEGIN
     POPUP "デバッグ(&D)"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "設定情報ファイルの読込み(&L)..", ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "ウィンドウ(&W)"
     BEGIN
@@ -1596,7 +1599,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(C) 1996-2006 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "(C) 1996-2007 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
@@ -1965,6 +1968,8 @@ BEGIN
     IDS_FONT_CHANGE         "選択されたフォントは現在表示されている差異ウインドウには適用されません。"
     IDS_OPTIONS_INVALID_TABSIZE 
                             "タブサイズが範囲外です。\n\n1から%1までの値を指定してください。"
+    IDS_RESET_OPTIONS_WARNING 
+                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE

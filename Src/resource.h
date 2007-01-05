@@ -437,6 +437,7 @@
 #define IDS_DIFF_OPEN_NO_SET_PROPS      16402
 #define IDS_FONT_CHANGE                 16403
 #define IDS_OPTIONS_INVALID_TABSIZE     16404
+#define IDS_RESET_OPTIONS_WARNING       16405
 #define IDS_OPEN_TITLE                  16416
 #define IDS_PROGRAMFILES                16417
 #define IDS_ALLFILES                    16418
@@ -1064,6 +1065,7 @@
 #define ID_EDIT_GOTO_NEXT_BOOKMARK      33116
 #define ID_EDIT_GOTO_PREV_BOOKMARK      33117
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33118
+#define ID_DEBUG_RESETOPTIONS           33119
 
 // Next default values for new objects
 // 
@@ -1071,7 +1073,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        232
-#define _APS_NEXT_COMMAND_VALUE         33119
+#define _APS_NEXT_COMMAND_VALUE         33120
 #define _APS_NEXT_CONTROL_VALUE         1309
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

@@ -7,6 +7,9 @@ Add new items to top.
   Src: MergeEditView.cpp MergeEditView.h
  PATCH: [ 1628299 ] Use OptionsMgr for archive options
   Src: 7zCommon.cpp
+ PATCH: [ 1628263 ] Add debug-menuitem for resetting options
+  Src: MainFrm.cpp MainFrm.h Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
 
 2007-01-04 Kimmo
  PATCH: [ 1625344 ] Move OptionsMgr from MainFrame to MergeApp

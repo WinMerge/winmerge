@@ -180,6 +180,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "窗口(&W)"
     BEGIN
@@ -287,6 +288,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "窗口(&W)"
     BEGIN
@@ -449,6 +451,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "窗口(&W)"
     BEGIN
@@ -1966,6 +1969,8 @@ BEGIN
     IDS_FONT_CHANGE         "选择的字体更改不会应用到已经打开的对比窗口。"
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
+    IDS_RESET_OPTIONS_WARNING 
+                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE

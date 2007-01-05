@@ -156,6 +156,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_FILE_SAVEPROJECT, OnSaveProject)
 	ON_WM_TIMER()
 	ON_WM_ACTIVATE()
+	ON_COMMAND(ID_DEBUG_RESETOPTIONS, OnDebugResetOptions)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3155,4 +3156,18 @@ static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList)
 	static const int ImageCount	= 19;
 
 	LoadHiColImageList(nIDResource, ImageWidth, ImageHeight, ImageHeight, ImgList);
+}
+
+/**
+ * @brief Reset all WinMerge options to default values.
+ */
+void CMainFrame::OnDebugResetOptions()
+{
+	CString msg(LoadResString(IDS_RESET_OPTIONS_WARNING));
+	int res = AfxMessageBox(msg, MB_YESNO | MB_DEFBUTTON2 | MB_ICONWARNING);
+	if (res == IDYES)
+	{
+		CMergeApp *app = dynamic_cast<CMergeApp *>(AfxGetApp());
+		app->ResetOptions();
+	}
 }

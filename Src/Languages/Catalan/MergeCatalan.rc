@@ -178,6 +178,7 @@ BEGIN
     POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -285,6 +286,7 @@ BEGIN
     POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -447,6 +449,7 @@ BEGIN
     POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -1597,7 +1600,7 @@ BEGIN
             VALUE "FileDescription", "Recursos en català del WinMerge\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "MergeCatalan\0"
-            VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2007 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MergeCatalan.lang\0"
             VALUE "PrivateBuild", ""
@@ -1612,7 +1615,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Catalan resources\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "MergeCatalan\0"
-            VALUE "LegalCopyright", "© 1996-2005 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2007 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "MergeCatalan.lang\0"
             VALUE "PrivateBuild", "\0"
@@ -1983,6 +1986,8 @@ BEGIN
     IDS_FONT_CHANGE         "El canvi triat de tipus de lletra no serà aplicat a totes les finestres de diferències visibles actualment."
     IDS_OPTIONS_INVALID_TABSIZE 
                             "El valor del camp de la mida de les tabulacions no és dins el rang que accepta el WinMerge.\n\nUseu valors entre 1 i %1."
+    IDS_RESET_OPTIONS_WARNING 
+                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE

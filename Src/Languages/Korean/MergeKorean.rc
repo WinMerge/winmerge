@@ -178,6 +178,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "창(&W)"
     BEGIN
@@ -285,6 +286,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "창(&W)"
     BEGIN
@@ -447,6 +449,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "창(&W)"
     BEGIN
@@ -1596,7 +1599,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(C) 1996-2006 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "(C) 1996-2007 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
@@ -1965,6 +1968,8 @@ BEGIN
     IDS_FONT_CHANGE         "바뀐 폰트는 현재 비교창에는 적용되지 않습니다."
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
+    IDS_RESET_OPTIONS_WARNING 
+                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE

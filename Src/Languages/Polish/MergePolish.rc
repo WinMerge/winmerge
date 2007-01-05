@@ -178,6 +178,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -285,6 +286,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -447,6 +449,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Load Config...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -1965,6 +1968,8 @@ BEGIN
     IDS_FONT_CHANGE         "Wybrana czcionka nie zostanie zastosowana do widocznych okien z ró¿nicami."
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Value in Tab size -field is not in range WinMerge accepts.\n\nPlease use values 1 - %1."
+    IDS_RESET_OPTIONS_WARNING 
+                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE

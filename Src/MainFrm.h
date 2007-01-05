@@ -273,6 +273,7 @@ protected:
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+	afx_msg void OnDebugResetOptions();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

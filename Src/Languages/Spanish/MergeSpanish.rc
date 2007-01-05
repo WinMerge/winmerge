@@ -178,6 +178,7 @@ BEGIN
     POPUP "&Depurar"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Cargar Configuración...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Ve&ntana"
     BEGIN
@@ -285,6 +286,7 @@ BEGIN
     POPUP "&Depurar"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Cargar Configuración...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Ve&ntana"
     BEGIN
@@ -447,6 +449,7 @@ BEGIN
     POPUP "&Depurar"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Cargar Configuración...",             ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Ve&ntana"
     BEGIN
@@ -1596,7 +1599,7 @@ BEGIN
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "© 1996-2006 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "© 1996-2007 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
@@ -1965,6 +1968,8 @@ BEGIN
     IDS_FONT_CHANGE         "La fuente seleccionada no se aplicará a ninguna de las ventanas de diferencias abiertas actualmente."
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Valor en Tamaño de Tab - el valor no esta en el rango aceptado por WinMerge.\n\nPor favor, urilice valores 1 - %1."
+    IDS_RESET_OPTIONS_WARNING 
+                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
 END
 
 // BROWSE FILE
