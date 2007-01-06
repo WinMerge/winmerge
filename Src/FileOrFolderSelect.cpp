@@ -44,6 +44,8 @@
 #define BIF_USENEWUI           (BIF_NEWDIALOGSTYLE | BIF_EDITBOX)
 #endif
 
+static void ConvertFilter(LPTSTR filterStr);
+
 /**
  * @brief Helper function for selecting dir/file
  * @param [in] parent Handle to parent window. Can be a NULL, but then

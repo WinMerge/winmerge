@@ -12,6 +12,8 @@ Add new items to top.
  PATCH: [ 1567773 ] Change "Only in xxxxxxxxxx" to "Right Only: xxxxxxxxxx"
   Src: DirViewColItems.cpp Merge.rc resource.h
   Src/Languages/*: Merge*.rc
+ ConvertFilter() function in FileOrFolderSelect can be a static function
+  Src: FileOrFolderSelect.cpp FileOrFolderSelect.h
 
 2007-01-05 Kimmo
  PATCH: [ 1628203 ] Reduce options caching in MergeEditView

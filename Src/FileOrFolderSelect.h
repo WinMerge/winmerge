@@ -37,6 +37,4 @@ BOOL SelectFolder(CString& path, LPCTSTR root_path = NULL,
 
 BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR root_path = NULL);
 
-void ConvertFilter(LPTSTR filterStr);
-
 #endif
