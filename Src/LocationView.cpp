@@ -47,21 +47,18 @@ static char THIS_FILE[] = __FILE__;
 
 /** @brief Size of empty frame above and below bars (in pixels). */
 static const int Y_OFFSET = 5;
-
 /** @brief Size of y-margin for visible area indicator (in pixels). */
 static const long INDICATOR_MARGIN = 2;
-
 /** @brief Max pixels in view per line in file. */
 static const double MAX_LINEPIX = 4.0;
-
 /** @brief Top of difference marker, relative to difference start. */
 static const int DIFFMARKER_TOP = 3;
-
 /** @brief Bottom of difference marker, relative to difference start. */
 static const int DIFFMARKER_BOTTOM = 3;
-
 /** @brief Width of difference marker. */
 static const int DIFFMARKER_WIDTH = 6;
+/** @brief Minimum height of the visible area indicator */
+static const int INDICATOR_MIN_HEIGHT = 5;
 
 /** 
  * @brief Bars in location pane
@@ -689,9 +686,11 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	if (LineInPix > MAX_LINEPIX)
 		LineInPix = MAX_LINEPIX;
 
-	int nTopCoord = (int) (Y_OFFSET + ((double)nTopLine * LineInPix));
+	int nTopCoord = static_cast<int>(Y_OFFSET +
+			(static_cast<double>(nTopLine * LineInPix)));
 	int nLeftCoord = INDICATOR_MARGIN;
-	int nBottomCoord = (int) (Y_OFFSET + ((double)nBottomLine * LineInPix));
+	int nBottomCoord = static_cast<int>(Y_OFFSET +
+			(static_cast<double>(nBottomLine * LineInPix)));
 	int nRightCoord = rc.Width() - INDICATOR_MARGIN;
 	
 	// Visible area was not changed
@@ -724,6 +723,17 @@ void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 	int barBottom = (int)xbarBottom;
 	// Make sure bottom coord is in bar range
 	nBottomCoord = min(nBottomCoord, barBottom);
+
+	// Ensure visible area is at least minimum height
+	if (nBottomCoord - nTopCoord < INDICATOR_MIN_HEIGHT)
+	{
+		// If area is near top of file, add additional area to bottom
+		// of the bar and vice versa.
+		if (nTopCoord < Y_OFFSET + 20)
+			nBottomCoord += INDICATOR_MIN_HEIGHT - (nBottomCoord - nTopCoord);
+		else
+			nTopCoord -= INDICATOR_MIN_HEIGHT - (nBottomCoord - nTopCoord);
+	}
 
 	// Store current values for later use (to check if area changes)
 	m_visibleTop = nTopCoord;
