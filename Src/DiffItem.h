@@ -79,11 +79,11 @@ public:
 	// file/directory
 	bool isDirectory() const { return Check(diffcode, DIFFCODE::DIRFLAGS, DIFFCODE::DIR); }
 	// left/right
-	bool isSideLeft() const { return CheckSide(diffcode, DIFFCODE::LEFT); }
-	bool isSideLeftOrBoth() const { return isSideLeft() || isSideBoth(); }
+	bool isSideLeftOnly() const { return CheckSide(diffcode, DIFFCODE::LEFT); }
+	bool isSideLeftOrBoth() const { return isSideLeftOnly() || isSideBoth(); }
 	void setSideLeft() { SetSide(DIFFCODE::LEFT); }
-	bool isSideRight() const { return CheckSide(diffcode, DIFFCODE::RIGHT); }
-	bool isSideRightOrBoth() const { return isSideRight() || isSideBoth(); }
+	bool isSideRightOnly() const { return CheckSide(diffcode, DIFFCODE::RIGHT); }
+	bool isSideRightOrBoth() const { return isSideRightOnly() || isSideBoth(); }
 	void setSideRight() { SetSide(DIFFCODE::RIGHT); }
 	bool isSideBoth() const { return CheckSide(diffcode, DIFFCODE::BOTH); }
 	void setSideBoth() { SetSide(DIFFCODE::BOTH); }
@@ -91,7 +91,7 @@ public:
 	// compare result
 	bool isResultSame() const { return CheckCompare(diffcode, DIFFCODE::SAME); }
 	bool isResultDiff() const { return (!isResultSame() && !isResultFiltered() && !isResultError() &&
-			!isSideLeft() && !isSideRight()); }
+			!isSideLeftOnly() && !isSideRightOnly()); }
 	static bool isResultError(int code) { return CheckCompare(code, DIFFCODE::CMPERR); }
 	bool isResultError() const { return isResultError(diffcode); }
 	static bool isResultAbort(int code) { return CheckCompare(code, DIFFCODE::CMPABORT); }

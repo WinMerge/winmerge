@@ -239,11 +239,11 @@ static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 		else
 			VERIFY(s.LoadString(IDS_FILE_SKIPPED));
 	}
-	else if (di.isSideLeft())
+	else if (di.isSideLeftOnly())
 	{
 		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath(pCtxt->GetNormalizedLeft()));
 	}
-	else if (di.isSideRight())
+	else if (di.isSideRightOnly())
 	{
 		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath(pCtxt->GetNormalizedRight()));
 	}
@@ -314,11 +314,11 @@ static CString ColDiffsGet(const CDiffContext *, const void *p)
 static CString ColNewerGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	if (di.isSideLeft())
+	if (di.isSideLeftOnly())
 	{
 		return _T("<*<");
 	}
-	if (di.isSideRight())
+	if (di.isSideRightOnly())
 	{
 		return _T(">*>");
 	}
@@ -379,11 +379,11 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 		else
 			id = IDS_FILE_SKIPPED;
 	}
-	else if (di.isSideLeft())
+	else if (di.isSideLeftOnly())
 	{
 		id = IDS_LEFTONLY;
 	}
-	else if (di.isSideRight())
+	else if (di.isSideRightOnly())
 	{
 		id = IDS_RIGHTONLY;
 	}

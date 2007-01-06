@@ -636,7 +636,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_LEFT:
-			if (di.isSideLeft())
+			if (di.isSideLeftOnly())
 			{
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
@@ -648,7 +648,7 @@ void CDirView::UpdateAfterFileScript(FileActionScript & actionList)
 			break;
 
 		case FileActionItem::UI_DEL_RIGHT:
-			if (di.isSideRight())
+			if (di.isSideRightOnly())
 			{
 				m_pList->DeleteItem(act.context);
 				bItemsRemoved = TRUE;
@@ -707,7 +707,7 @@ BOOL CDirView::IsItemCopyableToLeft(const DIFFITEM & di) const
 	// can't copy same items
 	if (di.isResultSame()) return FALSE;
 	// impossible if only on left
-	if (di.isSideLeft()) return FALSE;
+	if (di.isSideLeftOnly()) return FALSE;
 
 	// everything else can be copied to left
 	return TRUE;
@@ -720,7 +720,7 @@ BOOL CDirView::IsItemCopyableToRight(const DIFFITEM & di) const
 	// can't copy same items
 	if (di.isResultSame()) return FALSE;
 	// impossible if only on right
-	if (di.isSideRight()) return FALSE;
+	if (di.isSideRightOnly()) return FALSE;
 
 	// everything else can be copied to right
 	return TRUE;
@@ -731,7 +731,7 @@ BOOL CDirView::IsItemDeletableOnLeft(const DIFFITEM & di) const
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
 	// impossible if only on right
-	if (di.isSideRight()) return FALSE;
+	if (di.isSideRightOnly()) return FALSE;
 	// everything else can be deleted on left
 	return TRUE;
 }
@@ -741,7 +741,7 @@ BOOL CDirView::IsItemDeletableOnRight(const DIFFITEM & di) const
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
 	// impossible if only on right
-	if (di.isSideLeft()) return FALSE;
+	if (di.isSideLeftOnly()) return FALSE;
 
 	// everything else can be deleted on right
 	return TRUE;
@@ -752,7 +752,7 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
 	// don't let them mess with error items
 	if (di.isResultError()) return FALSE;
 	// impossible if only on right or left
-	if (di.isSideLeft() || di.isSideRight()) return FALSE;
+	if (di.isSideLeftOnly() || di.isSideRightOnly()) return FALSE;
 
 	// everything else can be deleted on both
 	return TRUE;
@@ -762,7 +762,7 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
 BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 {
 	// impossible if unique or binary
-	if (di.isSideRight() || di.isSideLeft() || di.isBin()) return FALSE;
+	if (di.isSideRightOnly() || di.isSideLeftOnly() || di.isBin()) return FALSE;
 
 	// everything else can be opened
 	return TRUE;
@@ -796,11 +796,11 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 	if (di1.isDirectory() != di2.isDirectory()) return FALSE;
 
 	// Must be on different sides, or one on one side & one on both
-	if (di1.isSideLeft() && (di2.isSideRight() || di2.isSideBoth()))
+	if (di1.isSideLeftOnly() && (di2.isSideRightOnly() || di2.isSideBoth()))
 		return TRUE;
-	if (di1.isSideRight() && (di2.isSideLeft() || di2.isSideBoth()))
+	if (di1.isSideRightOnly() && (di2.isSideLeftOnly() || di2.isSideBoth()))
 		return TRUE;
-	if (di1.isSideBoth() && (di2.isSideLeft() || di2.isSideRight()))
+	if (di1.isSideBoth() && (di2.isSideLeftOnly() || di2.isSideRightOnly()))
 		return TRUE;
 
 	// Allow to compare items if left & right path refer to same directory
@@ -815,7 +815,7 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di) const
 {
 	// impossible if only on right
-	if (di.isSideRight()) return FALSE;
+	if (di.isSideRightOnly()) return FALSE;
 
 	// everything else can be opened on right
 	return TRUE;
@@ -824,7 +824,7 @@ BOOL CDirView::IsItemOpenableOnLeft(const DIFFITEM & di) const
 BOOL CDirView::IsItemOpenableOnRight(const DIFFITEM & di) const
 {
 	// impossible if only on left
-	if (di.isSideLeft()) return FALSE;
+	if (di.isSideLeftOnly()) return FALSE;
 
 	// everything else can be opened on left
 	return TRUE;
@@ -843,7 +843,7 @@ BOOL CDirView::IsItemOpenableOnRightWith(const DIFFITEM & di) const
 BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di) const
 {
 	// impossible if only on right
-	if (di.isSideRight()) return FALSE;
+	if (di.isSideRightOnly()) return FALSE;
 
 	// everything else can be copied to from left
 	return TRUE;
@@ -852,7 +852,7 @@ BOOL CDirView::IsItemCopyableToOnLeft(const DIFFITEM & di) const
 BOOL CDirView::IsItemCopyableToOnRight(const DIFFITEM & di) const
 {
 	// impossible if only on left
-	if (di.isSideLeft()) return FALSE;
+	if (di.isSideLeftOnly()) return FALSE;
 
 	// everything else can be copied to from right
 	return TRUE;
@@ -969,7 +969,7 @@ void CDirView::ApplyPluginPrediffSetting(int newsetting)
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
+		if (!di.isDirectory() && !di.isSideLeftOnly() && !di.isSideRightOnly())
 		{
 			GetItemFileNames(sel, slFile, srFile);
 			CString filteredFilenames = slFile + (CString)_T("|") + srFile;

@@ -5,6 +5,10 @@ Add new items to top.
 2007-01-06 Kimmo
  TODO: [ 1489875 ] Mimimum height for location pane visible area indicator
   Src: LocationView.cpp
+ TODO: [ 1485038 ] Rename DIFFITEM::IsSideLeft() and IsSideRight()
+  Src: CompareStats.cpp DiffContext.cpp DiffFileData.cpp DiffItem.cpp DiffItem.h
+   DirActions.cpp DirDoc.cpp DirScan.cpp DirView.cpp DirViewColHandler.cpp
+   DirViewColItems.cpp
 
 2007-01-05 Kimmo
  PATCH: [ 1628203 ] Reduce options caching in MergeEditView

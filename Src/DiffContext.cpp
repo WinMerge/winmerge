@@ -126,13 +126,13 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
 	if (bLeft)
 	{
 		di.left.Clear();
-		if (!di.isSideRight())
+		if (!di.isSideRightOnly())
 			UpdateInfoFromDiskHalf(di, TRUE);
 	}
 	if (bRight)
 	{
 		di.right.Clear();
-		if (!di.isSideLeft())
+		if (!di.isSideLeftOnly())
 			UpdateInfoFromDiskHalf(di, FALSE);
 	}
 }
@@ -198,7 +198,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	CString spath;
 	if (bLeft)
 	{
-		if (di.isSideRight())
+		if (di.isSideRightOnly())
 			return;
 		LPCTSTR ext = PathFindExtension(di.sLeftFilename);
 		if (!CheckFileForVersion(ext))
@@ -208,7 +208,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	}
 	else
 	{
-		if (di.isSideLeft())
+		if (di.isSideLeftOnly())
 			return;
 		LPCTSTR ext = PathFindExtension(di.sRightFilename);
 		if (!CheckFileForVersion(ext))

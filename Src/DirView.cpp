@@ -307,9 +307,9 @@ int CDirView::GetColImage(const DIFFITEM & di) const
 	if (di.isResultAbort()) return DIFFIMG_ABORT;
 	if (di.isResultFiltered())
 		return (di.isDirectory() ? DIFFIMG_DIRSKIP : DIFFIMG_SKIP);
-	if (di.isSideLeft())
+	if (di.isSideLeftOnly())
 		return (di.isDirectory() ? DIFFIMG_LDIRUNIQUE : DIFFIMG_LUNIQUE);
-	if (di.isSideRight())
+	if (di.isSideRightOnly())
 		return (di.isDirectory() ? DIFFIMG_RDIRUNIQUE : DIFFIMG_RUNIQUE);
 	if (di.isResultSame())
 		return (di.isBin() ? DIFFIMG_BINSAME : DIFFIMG_SAME);
@@ -582,7 +582,8 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 		++nTotal;
 
 		// note the prediffer flag for 'files present on both sides and not skipped'
-		if (!di.isDirectory() && !di.isBin() && !di.isSideLeft() && !di.isSideRight() && !di.isResultFiltered())
+		if (!di.isDirectory() && !di.isBin() && !di.isSideLeftOnly() &&
+			!di.isSideRightOnly() && !di.isResultFiltered())
 		{
 			CString leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
 					_T("\\") + di.sLeftFilename;
@@ -977,7 +978,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 			return;
 		}
 		// Ensure that di1 is on left (swap if needed)
-		if (di1->isSideRight() || (di1->isSideBoth() && di2->isSideLeft()))
+		if (di1->isSideRightOnly() || (di1->isSideBoth() && di2->isSideLeftOnly()))
 		{
 			DIFFITEM * temp = di1;
 			di1 = di2;
@@ -1013,7 +1014,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		if (di1->isDirectory())
 			isdir = true;
 
-		if (di1->isDirectory() && (di1->isSideLeft() == di1->isSideRight()))
+		if (di1->isDirectory() && (di1->isSideLeftOnly() == di1->isSideRightOnly()))
 		{
 			if (pDoc->GetRecursive())
 			{
@@ -1032,7 +1033,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 				// Fall through and compare directories
 			}
 		}
-		else if (di1->isSideLeft())
+		else if (di1->isSideLeftOnly())
 		{
 			// Open left-only item to editor if its not a folder or binary
 			if (isdir)
@@ -1043,7 +1044,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 				DoOpenWithEditor(SIDE_LEFT);
 			return;
 		}
-		else if (di1->isSideRight())
+		else if (di1->isSideRightOnly())
 		{
 			// Open right-only item to editor if its not a folder or binary
 			if (isdir)
@@ -1941,7 +1942,7 @@ bool CDirView::IsItemNavigableDiff(const DIFFITEM & di) const
 	if (di.isResultFiltered() || di.isResultError())
 		return false;
 	// Skip identical directories
-	if (di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
+	if (di.isDirectory() && !di.isSideLeftOnly() && !di.isSideRightOnly())
 		return false;
 	if (di.isResultSame())
 		return false;
@@ -2590,7 +2591,7 @@ void CDirView::OnCopyLeftPathnames()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!di.isSideRight())
+		if (!di.isSideRightOnly())
 		{
 			strPaths += di.getLeftFilepath(GetDocument()->GetLeftBasePath());
 			strPaths += _T("\\");
@@ -2615,7 +2616,7 @@ void CDirView::OnCopyRightPathnames()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!di.isSideLeft())
+		if (!di.isSideLeftOnly())
 		{
 			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");
@@ -2640,7 +2641,7 @@ void CDirView::OnCopyBothPathnames()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		const DIFFITEM& di = GetDiffItem(sel);
-		if (!di.isSideRight())
+		if (!di.isSideRightOnly())
 		{
 			strPaths += di.getLeftFilepath(pDoc->GetLeftBasePath());
 			strPaths += _T("\\");
@@ -2650,7 +2651,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\r\n");
 		}
 
-		if (!di.isSideLeft())
+		if (!di.isSideLeftOnly())
 		{
 			strPaths += di. getRightFilepath(pDoc->GetRightBasePath());
 			strPaths += _T("\\");

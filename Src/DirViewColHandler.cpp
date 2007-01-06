@@ -225,7 +225,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 		}
 		// Don't show result for folderitems appearing both sides
 		if ((IsColStatus(i) || IsColStatusAbbr(i)) &&
-			di.isDirectory() && !di.isSideLeft() && !di.isSideRight())
+			di.isDirectory() && !di.isSideLeftOnly() && !di.isSideRightOnly())
 		{
 			s.Empty();
 		}

@@ -144,7 +144,7 @@ CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode)
 			return RESULT_SKIP;
 		}
 	}
-	else if (di.isSideLeft())
+	else if (di.isSideLeftOnly())
 	{
 		// left-only
 		if (di.isDirectory())
@@ -156,7 +156,7 @@ CompareStats::RESULT CompareStats::GetResultFromCode(UINT diffcode)
 			return RESULT_LUNIQUE;
 		}
 	}
-	else if (di.isSideRight())
+	else if (di.isSideRightOnly())
 	{
 		// right-only
 		if (di.isDirectory())

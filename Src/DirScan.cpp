@@ -385,7 +385,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			di.diffcode |= DIFFCODE::INCLUDED;
 			// 2. Add unique files
 			// We must compare unique files to itself to detect encoding
-			if (di.isSideLeft() || di.isSideRight())
+			if (di.isSideLeftOnly() || di.isSideRightOnly())
 			{
 				if (pCtxt->m_nCompMethod != CMP_DATE &&
 					pCtxt->m_nCompMethod != CMP_DATE_SIZE &&
@@ -620,12 +620,12 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		di.nsdiffs = pDiffFileData->m_ndiffs;
 		di.nidiffs = pDiffFileData->m_ntrivialdiffs;
 
-		if (!di.isSideLeft())
+		if (!di.isSideLeftOnly())
 		{
 			di.right.encoding = pDiffFileData->m_FileLocation[1].encoding;
 		}
 		
-		if (!di.isSideRight())
+		if (!di.isSideRightOnly())
 		{
 			di.left.encoding = pDiffFileData->m_FileLocation[0].encoding;
 		}

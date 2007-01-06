@@ -487,7 +487,7 @@ int DiffFileData::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		code = diffutils_compare_files(0);
 		// If unique item, it was being compared to itself to determine encoding
 		// and the #diffs is invalid
-		if (di.isSideRight() || di.isSideLeft())
+		if (di.isSideRightOnly() || di.isSideLeftOnly())
 		{
 			m_ndiffs = DiffFileData::DIFFS_UNKNOWN;
 			m_ntrivialdiffs = DiffFileData::DIFFS_UNKNOWN;
@@ -732,7 +732,7 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 {
 	static const TCHAR backslash[] = _T("\\");
 
-	if (!di.isSideRight())
+	if (!di.isSideRightOnly())
 	{
 		// Compare file to itself to detect encoding
 		left = pCtxt->GetNormalizedLeft();
@@ -741,10 +741,10 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 		if (!di.sLeftSubdir.IsEmpty())
 			left += di.sLeftSubdir + backslash;
 		left += di.sLeftFilename;
-		if (di.isSideLeft())
+		if (di.isSideLeftOnly())
 			right = left;
 	}
-	if (!di.isSideLeft())
+	if (!di.isSideLeftOnly())
 	{
 		// Compare file to itself to detect encoding
 		right = pCtxt->GetNormalizedRight();
@@ -753,7 +753,7 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 		if (!di.sRightSubdir.IsEmpty())
 			right += di.sRightSubdir + backslash;
 		right += di.sRightFilename;
-		if (di.isSideRight())
+		if (di.isSideRightOnly())
 			left = right;
 	}
 }

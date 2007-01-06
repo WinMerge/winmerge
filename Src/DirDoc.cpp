@@ -357,9 +357,9 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeft() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+		if (di.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRight() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+		if (di.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	else
@@ -377,9 +377,9 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeft() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+		if (di.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRight() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+		if (di.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	return 1;
@@ -936,7 +936,7 @@ void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
 		break;
 
 	case FileActionItem::UI_DEL_LEFT:
-		if (di.isSideLeft())
+		if (di.isSideLeftOnly())
 		{
 			RemoveDiffByKey(pos);
 		}
@@ -948,7 +948,7 @@ void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
 		break;
 
 	case FileActionItem::UI_DEL_RIGHT:
-		if (di.isSideRight())
+		if (di.isSideRightOnly())
 		{
 			RemoveDiffByKey(pos);
 		}
