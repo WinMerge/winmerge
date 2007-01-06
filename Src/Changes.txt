@@ -9,6 +9,9 @@ Add new items to top.
   Src: CompareStats.cpp DiffContext.cpp DiffFileData.cpp DiffItem.cpp DiffItem.h
    DirActions.cpp DirDoc.cpp DirScan.cpp DirView.cpp DirViewColHandler.cpp
    DirViewColItems.cpp
+ PATCH: [ 1567773 ] Change "Only in xxxxxxxxxx" to "Right Only: xxxxxxxxxx"
+  Src: DirViewColItems.cpp Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
 
 2007-01-05 Kimmo
  PATCH: [ 1628203 ] Reduce options caching in MergeEditView

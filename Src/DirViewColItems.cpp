@@ -241,11 +241,11 @@ static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	}
 	else if (di.isSideLeftOnly())
 	{
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getLeftFilepath(pCtxt->GetNormalizedLeft()));
+		AfxFormatString1(s, IDS_LEFT_ONLY_IN_FMT, di.getLeftFilepath(pCtxt->GetNormalizedLeft()));
 	}
 	else if (di.isSideRightOnly())
 	{
-		AfxFormatString1(s, IDS_ONLY_IN_FMT, di.getRightFilepath(pCtxt->GetNormalizedRight()));
+		AfxFormatString1(s, IDS_RIGHT_ONLY_IN_FMT, di.getRightFilepath(pCtxt->GetNormalizedRight()));
 	}
 	else if (di.isResultSame())
 	{
