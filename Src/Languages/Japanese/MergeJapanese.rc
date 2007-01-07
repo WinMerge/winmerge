@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "ç∂ÇÃÇ›"
     IDS_RIGHTONLY           "âEÇÃÇ›"
     IDS_DIFFERENT           "àŸÇ»ÇÈ"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

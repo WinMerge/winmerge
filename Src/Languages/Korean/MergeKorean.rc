@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "왼쪽만 존재"
     IDS_RIGHTONLY           "오른쪽만 존재"
     IDS_DIFFERENT           "다른 파일"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

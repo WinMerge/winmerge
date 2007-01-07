@@ -366,7 +366,7 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 	// skipped unique items are labeled as skipped, not unique.
 	if (di.isResultError())
 	{
-		id = IDS_CANT_COMPARE_FILES;
+		id = IDS_CMPRES_ERROR;
 	}
 	else if (di.isResultAbort())
 	{

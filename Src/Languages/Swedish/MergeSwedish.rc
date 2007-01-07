@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "Endast vänster"
     IDS_RIGHTONLY           "Endast höger"
     IDS_DIFFERENT           "Olika"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

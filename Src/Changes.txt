@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-07 Kimmo
+ BUG: [ 1567749 ] "Unable to compare files" needs short result
+  Src: DirViewColItems.cpp Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
+
 2007-01-06 Kimmo
  TODO: [ 1489875 ] Mimimum height for location pane visible area indicator
   Src: LocationView.cpp

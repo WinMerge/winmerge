@@ -2312,6 +2312,7 @@ BEGIN
     IDS_LEFTONLY            "Само левият"
     IDS_RIGHTONLY           "Само десният"
     IDS_DIFFERENT           "Различни"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

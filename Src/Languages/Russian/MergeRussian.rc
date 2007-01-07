@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "Только слева"
     IDS_RIGHTONLY           "Только справа"
     IDS_DIFFERENT           "Отличаются"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "Kun venstre"
     IDS_RIGHTONLY           "Kun højre"
     IDS_DIFFERENT           "Forskellige"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

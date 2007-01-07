@@ -2311,6 +2311,7 @@ BEGIN
     IDS_LEFTONLY            "Només l'esquerre"
     IDS_RIGHTONLY           "Només el dret"
     IDS_DIFFERENT           "Diferents"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

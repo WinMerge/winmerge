@@ -2291,6 +2291,7 @@ BEGIN
     IDS_LEFTONLY            "Csak bal oldal"
     IDS_RIGHTONLY           "Csak jobb oldal"
     IDS_DIFFERENT           "Különbözõ"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

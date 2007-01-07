@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "Iba v¾avo"
     IDS_RIGHTONLY           "Iba vpravo"
     IDS_DIFFERENT           "Rozdielne"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

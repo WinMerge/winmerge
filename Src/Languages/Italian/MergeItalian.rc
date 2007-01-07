@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "Solo a sinistra"
     IDS_RIGHTONLY           "Solo a destra"
     IDS_DIFFERENT           "Diverse"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

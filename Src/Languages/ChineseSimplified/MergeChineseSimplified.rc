@@ -2294,6 +2294,7 @@ BEGIN
     IDS_LEFTONLY            "只存在左侧"
     IDS_RIGHTONLY           "只存在右侧"
     IDS_DIFFERENT           "不同"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR

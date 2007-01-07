@@ -2293,6 +2293,7 @@ BEGIN
     IDS_LEFTONLY            "Pouze vlevo"
     IDS_RIGHTONLY           "Pouze vpravo"
     IDS_DIFFERENT           "Rozdílné"
+    IDS_CMPRES_ERROR        "Error"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
