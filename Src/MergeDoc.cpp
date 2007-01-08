@@ -34,6 +34,7 @@
 #include "direct.h"
 #include "MainFrm.h"
 
+#include "Ucs2Utf8.h"
 #include "diff.h"
 #include "diffcontext.h"	// FILE_SAME
 #include "MovedLines.h"
@@ -394,6 +395,16 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	{
 		if (!m_bEnableRescan)
 			return RESCAN_SUPPRESSED;
+	}
+
+	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
+	{
+		CString regexp = GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP);
+		m_diffWrapper.SetFilterList(regexp);
+	}
+	else
+	{
+		m_diffWrapper.SetFilterList(_T(""));
 	}
 
 	bLeftFileChanged = IsFileChangedOnDisk(m_filePaths.GetLeft(), fileInfo,

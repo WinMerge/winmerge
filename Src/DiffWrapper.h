@@ -42,6 +42,7 @@ struct file_data;
 class FilterCommentsManager;
 struct FilterCommentsSet;
 class MovedLines;
+class FilterList;
 
 /** @enum COMPARE_TYPE
  * @brief Different foldercompare methods.
@@ -228,6 +229,7 @@ public:
 	void EndDirectoryDiff();
 	MovedLines * GetMovedLines() { return m_pMovedLines; }
 	void SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2);
+	void SetFilterList(const CString &filterStr);
 
 protected:
 	void InternalGetOptions(DIFFOPTIONS *options) const;
@@ -239,11 +241,13 @@ protected:
 		int * bin_status, int * bin_file);
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
 	void WritePatchFile(struct change * script, file_data * inf);
+	bool RegExpFilter(int StartPos, int EndPos, int FileNo);
 
 private:
 	DIFFSETTINGS m_settings; /**< Compare settings for current compare */
 	DIFFSETTINGS m_globalSettings; /**< Global compare settings */
 	DIFFSTATUS m_status; /**< Status of last compare */
+	FilterList * m_pFilterList; /**< List of linefilters. */
 	CString m_s1File; /**< Full path to first diff'ed file. */
 	CString m_s2File; /**< Full path to second diff'ed file. */
 	CString m_s1AlternativePath; /**< First file's alternative path (may be relative). */

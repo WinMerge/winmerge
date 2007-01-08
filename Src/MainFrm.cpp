@@ -254,8 +254,6 @@ CMainFrame::~CMainFrame()
 {
 	gLog.EnableLogging(FALSE);
 
-	// destroy the reg expression list
-	FreeRegExpList();
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
 
@@ -288,8 +286,6 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
 
-	// build the initial reg expression list
-	RebuildRegExpList(FALSE);
 	GetFontProperties();
 	
 	if (!CreateToobar())
@@ -1650,107 +1646,6 @@ void CMainFrame::OnClose()
 	CMDIFrameWnd::OnClose();
 }
 
-/// Empty regexp list used internally
-void CMainFrame::FreeRegExpList()
-{
-	struct regexp_list *r;
-	r = ignore_regexp_list;
-	// iterate through the list, free the reg expression
-	// list item
-	while (ignore_regexp_list)
-	{
-		r = r->next;
-		free((ignore_regexp_list->buf).fastmap);
-		free((ignore_regexp_list->buf).buffer);
-		free(ignore_regexp_list);
-		ignore_regexp_list = r;
-	}
-}
-
-/**
- * @brief Add regexps from options to internal list
- * @param [in] bShowError When TRUE error messages are shown to user,
- * otherwise just written to log.
- */
-void CMainFrame::RebuildRegExpList(BOOL bShowError)
-{
-	USES_CONVERSION;
-
-	TCHAR tmp[_MAX_PATH] = {0};
-	TCHAR* token;
-	TCHAR sep[] = _T("\r\n");
-	BOOL valid = TRUE;
-	
-	// destroy the old list if the it is not NULL
-	FreeRegExpList();
-
-	// build the new list if the user choose to
-	// ignore lines matching the reg expression patterns
-	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
-	{
-		// find each regular expression and add to list
-		_tcsncpy(tmp, GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP), _MAX_PATH);
-
-		token = _tcstok(tmp, sep);
-		while (token && valid)
-		{
-			valid = add_regexp(&ignore_regexp_list, T2A(token), bShowError);
-			token = _tcstok(NULL, sep);
-		}
-	}
-
-	if (ignore_regexp_list)
-	{
-		ignore_some_changes = 1;
-	}
-}
-
-/// Add the compiled form of regexp pattern to reglist
-static BOOL add_regexp(struct regexp_list **reglist, char const* pattern, BOOL bShowError)
-{
-	struct regexp_list *r;
-	int m;
-	BOOL ret = FALSE;
-
-	r = (struct regexp_list *) malloc (sizeof (*r));
-	if (r)
-	{
-		bzero (r, sizeof (*r));
-		r->buf.fastmap = (char*) malloc (256);
-		if (r->buf.fastmap)
-		{
-			m = re_compile_pattern (pattern, strlen (pattern), &r->buf);
-
-			if (m > 0)
-			{
-				CString msg;
-				CString errMsg;
-				VERIFY(errMsg.LoadString(IDS_REGEXP_ERROR));
-				errMsg += _T(":\n\n");
-				errMsg += pattern;
-				errMsg += _T("\n\n");
-				int errID = IDS_REGEXP_ERROR + m;
-				VERIFY(msg.LoadString(errID));
-				errMsg += msg;
-				LogErrorString(errMsg);
-				if (bShowError)
-					AfxMessageBox(errMsg, MB_ICONWARNING);
-			}
-
-			/* Add to the start of the list, since it's easier than the end.  */
-			r->next = *reglist;
-			*reglist = r;
-			ret = TRUE;
-		}
-		else
-		{
-			free(r->buf.fastmap);
-			r->buf.fastmap = NULL;
-		}
-	}
-	return ret;
-}
-
 /**
  * @brief Utility function to update CSuperComboBox format MRU
  */
@@ -2530,8 +2425,6 @@ void CMainFrame::OnToolsFilters()
 		}
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
-
-		RebuildRegExpList(TRUE);
 	}
 }
 

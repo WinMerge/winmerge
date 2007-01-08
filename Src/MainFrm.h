@@ -279,12 +279,6 @@ protected:
 
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	// builds the regular expression list if the
-	// user choose to ignore Ignore changes affecting only lines 
-	// that match the specified regexp. 
-	void RebuildRegExpList(BOOL bShowError);
-	// destroy the regular expression list and free up the memory
-	void FreeRegExpList();
 	void GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews);
 	void GetAllMergeDocs(MergeDocList * pMergeDocs);
 	void GetAllDirDocs(DirDocList * pDirDocs);

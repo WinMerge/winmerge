@@ -28,10 +28,12 @@
 #include <string>
 #include <map>
 #include <shlwapi.h>
+#include "Ucs2Utf8.h"
 #include "coretools.h"
 #include "diffcontext.h"
 #include "DiffList.h"
 #include "MovedLines.h"
+#include "FilterList.h"
 #include "diffwrapper.h"
 #include "diff.h"
 #include "FileTransform.h"
@@ -86,6 +88,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pDiffList(NULL)
 , m_bPathsAreTemp(FALSE)
 , m_pMovedLines(NULL)
+, m_pFilterList(NULL)
 {
 	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
@@ -103,6 +106,7 @@ CDiffWrapper::CDiffWrapper()
  */
 CDiffWrapper::~CDiffWrapper()
 {
+	delete m_pFilterList;
 	delete m_infoPrediffer;
 	delete m_FilterCommentsManager;
 	delete m_pMovedLines;
@@ -1121,6 +1125,48 @@ FreeDiffUtilsScript(struct change * & script)
 }
 
 /**
+ * @brief Match regular expression list against given difference.
+ * This function matches the regular expression list against the difference
+ * (given as start line and end line). Matching the diff requires that all
+ * lines in difference match.
+ * @param [in] StartPos First line of the difference.
+ * @param [in] endPos Last line of the difference.
+ * @param [in] FileNo File to match.
+ * return true if any of the expressions matches.
+ */
+bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
+{
+	if (m_pFilterList == NULL)
+	{	
+		_RPTF0(_CRT_ERROR, "CDiffWrapper::RegExpFilter() called when "
+			"filterlist doesn't exist (=NULL)");
+		return false;
+	}
+
+	const char EolIndicators[] = "\r\n"; //List of characters used as EOL
+	bool linesMatch = true; // set to false when non-matching line is found.
+	int line = StartPos;
+
+	while (line <= EndPos && linesMatch == true)
+	// for (int i = StartPos; i <= EndPos; i++)
+	{
+		std::string LineData(files[FileNo].linbuf[line]);
+		size_t EolPos = LineData.find_first_of(EolIndicators);
+		if (EolPos != std::string::npos)
+		{
+			LineData.erase(EolPos);
+		}
+
+		if (!m_pFilterList->Match(LineData.c_str()))
+		{
+			linesMatch = false;
+		}
+		++line;
+	}
+	return linesMatch;
+}
+
+/**
  * @brief Walk the diff utils change script, building the WinMerge list of diff blocks
  */
 void
@@ -1212,6 +1258,23 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
 					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt);
+				}
+
+				if (m_pFilterList && m_pFilterList->HasRegExps())
+				{
+					 //Determine quantity of lines in this block for both sides
+					int QtyLinesLeft = (trans_b0 - trans_a0);
+					int QtyLinesRight = (trans_b1 - trans_a1);
+					
+					// Match lines against regular expression filters
+					// Our strategy is that every line in both sides must
+					// match regexp before we mark difference as ignored.
+					bool match2 = false;
+					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, 0);
+					if (match1)
+						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, 1);
+					if (match1 && match2)
+						op = OP_TRIVIAL;
 				}
 
 				AddDiffRange(trans_a0-1, trans_b0-1, trans_a1-1, trans_b1-1, (BYTE)op);
@@ -1307,6 +1370,54 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 
 	free((void *)inf_patch[0].name);
 	free((void *)inf_patch[1].name);
+}
+
+/**
+ * @brief Set line filters, given as one string.
+ * @param [in] filterStr Filters.
+ */
+void CDiffWrapper::SetFilterList(const CString &filterStr)
+{
+	// Remove filterlist if new filter is empty
+	if (filterStr.IsEmpty())
+	{
+		delete m_pFilterList;
+		m_pFilterList = NULL;
+		return;
+	}
+
+	// Adding new filter without previous filter
+	if (!filterStr.IsEmpty() && m_pFilterList == NULL)
+	{
+		m_pFilterList = new FilterList;
+	}
+
+	m_pFilterList->RemoveAllFilters();
+	if (!filterStr.IsEmpty())
+	{
+#ifdef UNICODE
+		// Get the size of UTF-8 string
+		int reg_len = TransformUcs2ToUtf8(filterStr, _tcslen(filterStr), NULL, 0);
+		++reg_len; // Space for zero at end
+
+		char * regexp_utf = new char[reg_len];
+		ZeroMemory(regexp_utf, reg_len);
+		reg_len = TransformUcs2ToUtf8(filterStr, _tcslen(filterStr), regexp_utf, reg_len);
+#else
+		char *regexp_utf = strdup(filterStr);
+#endif
+
+		// Add every "line" of regexps to regexp list
+		char * token;
+		const char sep[] = "\r\n";
+		token = strtok(regexp_utf, sep);
+		while (token)
+		{
+			m_pFilterList->AddRegExp(token);
+			token = strtok(NULL, sep);
+		}
+		delete [] regexp_utf;
+	}
 }
 
 /**

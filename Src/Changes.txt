@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-08 Kimmo
+ PATCH: [ 1593810 ] Line-filtering post compare
+  Src: DiffWrapper.cpp DiffWrapper.h MainFrm.cpp MainFrm.h Merge.dsp MergeDoc.cpp
+  Src new files: FilterList.cpp FilterList.h
+
 2007-01-08 Gal
  BUG: [ 1597939 ] Rename Edits Wrong Field in Folder Compare List
   Src: DirView.cpp
