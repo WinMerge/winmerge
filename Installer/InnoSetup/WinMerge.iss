@@ -291,7 +291,6 @@ Name: {app}\Docs; Type: filesandordirs
 
 Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: not IsComponentSelected('Plugins')
 Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: not IsComponentSelected('Plugins')
-Name: {app}\Docs\Plugins.txt; Type: Files; Check: DontInstallPluginsText
 Name: {app}\MergePlugins; Type: DirIfEmpty; Check: not IsComponentSelected('Plugins')
 
 Name: {app}\Filters\ADAMulti.flt; Type: Files; Check: not IsComponentSelected('Filters')
@@ -381,7 +380,6 @@ Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: o
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
 Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
-Source: ..\..\Plugins\dlls\Plugins.txt; DestDir: {app}\Docs; DestName: Plugins.txt; Flags: IgnoreVersion CompareTimeStamp; Check: InstallPluginsText; Components: ; Tasks: ; Languages: 
 Source: ..\..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
 [INI]
@@ -394,7 +392,6 @@ Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 ;WinMerge (ANSI) for WinMerge.exe in NT-windows
 Name: {group}\WinMerge (ANSI); Filename: {app}\WinMerge.exe; IconIndex: 0; MinVersion: 0,4; Components: core; Check: not IsWin64
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
-Name: {group}\{cm:PluginsText}; Filename: {app}\Docs\Plugins.txt; IconFileName: {win}\NOTEPAD.EXE Check: InstallPluginsText; Components: Plugins
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm; Components: docs
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 
@@ -792,32 +789,6 @@ Begin
 	 Msgbox('The version of ' + strFile_path + ' required is "' + IntToStr(intMajor) + '.' + IntToStr(intMinor) + '.' + IntToStr(intRevision) + '.' + IntToStr(intBuild) + '". The version found was "' + strVersion + '.  The version detected did not meet the required value.', mbInformation, MB_OK);
     }
 end;
-
-{Install Plugins.txt if plugins are installed}
-Function InstallPluginsText(): Boolean;
-Begin
-    {If Plugins are to be installed then...}
-    If (IsComponentSelected('Plugins') = True) Then
-        {We should install the Plugins.txt File}
-        Result := True
-    Else
-        {The Plugins.txt file should not be installed}
-        Result := False;
-End;
-
-{This function is needed as a check parameter in the [InstallDelete] section unfortunately there's not yet a way to get the Check: parameter to check
-for a false value and respond accordingly}
-Function DontInstallPluginsText(): Boolean;
-Begin
-    {If the Plugins.txt file shouldn't be installed then...}
-    If InstallPluginsText() = False Then
-
-        {This function returns True}
-        Result := True
-    Else
-        {This function returns False}
-        Result := False;
-End;
 
 {Determines whether or not TortoiseCVS is installed}
 Function TortoiseCVSInstalled(): boolean;
