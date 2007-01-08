@@ -2827,18 +2827,22 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
  *
  * Disable label edit if initiated from a user double-click.
  */
-afx_msg void CDirView::OnBeginLabelEdit(NMHDR* /*pNMHDR*/, LRESULT* pResult)
+afx_msg void CDirView::OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult)
 {
 	*pResult = IsItemSelectedSpecial();
 
 	// If label edit is allowed.
 	if (FALSE == *pResult)
 	{
-		CEdit *pEdit = m_pList->GetEditControl();
-		ASSERT(NULL != pEdit);
+		const NMLVDISPINFO *pdi = (NMLVDISPINFO*)pNMHDR;
+		ASSERT(pdi != NULL);
 
-		CString sText;
-		pEdit->GetWindowText(sText);
+		// Locate the edit box on the right column in case the user changed the
+		// column order.
+		const int nColPos = ColLogToPhys(0);
+
+		// Get text from the "File Name" column.
+		CString sText = m_pList->GetItemText(pdi->item.iItem, nColPos);
 		ASSERT(!sText.IsEmpty());
 
 		// Keep only left file name (separated by '|'). This form occurs
@@ -2847,8 +2851,12 @@ afx_msg void CDirView::OnBeginLabelEdit(NMHDR* /*pNMHDR*/, LRESULT* pResult)
 		if (-1 != nPos)
 		{
 			sText = sText.Left(nPos);
-			pEdit->SetWindowText(sText);
 		}
+
+		// Set the edit control with the updated text.
+		CEdit *pEdit = m_pList->GetEditControl();
+		ASSERT(NULL != pEdit);
+		pEdit->SetWindowText(sText);
 
 		m_bUserCancelEdit = FALSE;
 	}

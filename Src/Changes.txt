@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-08 Gal
+ BUG: [ 1597939 ] Rename Edits Wrong Field in Folder Compare List
+  Src: DirView.cpp
+
 2007-01-07 Kimmo
  BUG: [ 1567749 ] "Unable to compare files" needs short result
   Src: DirViewColItems.cpp Merge.rc resource.h
