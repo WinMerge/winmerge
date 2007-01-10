@@ -26,11 +26,8 @@
 #define _FILEFILTERHELPER_H_
 
 class FileFilterMgr;
+class FilterList;
 struct FileFilter;
-
-#ifndef REGEXP_H
-#include "RegExp.h"
-#endif
 
 /**
  * @brief File extension of file filter files.
@@ -135,6 +132,7 @@ protected:
 
 
 private:
+	FilterList * m_pMaskFilter;       /*< Filter for filemasks (*.cpp) */
 	FileFilter * m_currentFilter;     /*< Currently selected filefilter */
 	FileFilterMgr * m_fileFilterMgr;  /*< Associated FileFilterMgr */
 	CString m_sFileFilterPath;        /*< Path to current filter */
@@ -142,8 +140,6 @@ private:
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
 	CString m_sGlobalFilterPath;    /*< Path for shared filters */
 	CString m_sUserSelFilterPath;     /*< Path for user's private filters */
-
-	CRegExp m_rgx;     /*< Compiled file mask regular expression */
 };
 
 #endif // _FILEFILTERHELPER_H_

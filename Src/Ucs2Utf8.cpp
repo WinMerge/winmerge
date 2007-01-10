@@ -91,3 +91,37 @@ UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUcs)
 	// return number of written wchars
 	return (nUtf - nremains);
 }
+
+/**
+ * @brief Convert string to UTF-8.
+ * This function converts the given string to UTF-8, and returns pointer
+ * to converted string. Given string must be deallocated by calling
+ * UCS2UTF8_Dealloc() after use.
+ * @param [in] strOrigin String to convert.
+ * @return Pointer to UTF-8 string.
+ */
+char * UCS2UTF8_ConvertToUtf8(LPCTSTR strOrigin)
+{
+#ifdef UNICODE
+	// Get the size of UTF-8 string
+	int str_len = TransformUcs2ToUtf8(strOrigin, _tcslen(strOrigin), NULL, 0);
+	++str_len; // Space for zero at end
+
+	char * str_utf = (char *) malloc(str_len);
+	ZeroMemory(str_utf, str_len);
+	str_len = TransformUcs2ToUtf8(strOrigin, _tcslen(strOrigin), str_utf, str_len);
+#else
+	char *str_utf = strdup(strOrigin);
+#endif
+	
+	return str_utf;
+}
+
+/**
+ * @brief Free string allocated by UCS2UTF8_ConvertToUtf8().
+ * @param [in] Utf8Str String to deallocate.
+ */
+void UCS2UTF8_Dealloc(char * Utf8Str)
+{
+	free(Utf8Str);
+}

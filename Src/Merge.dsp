@@ -757,10 +757,6 @@ SOURCE=.\PropVss.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\RegExp.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\RegKey.cpp
 # End Source File
 # Begin Source File
@@ -1402,10 +1398,6 @@ SOURCE=.\PropTextColors.h
 # Begin Source File
 
 SOURCE=.\PropVss.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\RegExp.h
 # End Source File
 # Begin Source File
 

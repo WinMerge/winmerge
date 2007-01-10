@@ -1395,17 +1395,7 @@ void CDiffWrapper::SetFilterList(const CString &filterStr)
 	m_pFilterList->RemoveAllFilters();
 	if (!filterStr.IsEmpty())
 	{
-#ifdef UNICODE
-		// Get the size of UTF-8 string
-		int reg_len = TransformUcs2ToUtf8(filterStr, _tcslen(filterStr), NULL, 0);
-		++reg_len; // Space for zero at end
-
-		char * regexp_utf = new char[reg_len];
-		ZeroMemory(regexp_utf, reg_len);
-		reg_len = TransformUcs2ToUtf8(filterStr, _tcslen(filterStr), regexp_utf, reg_len);
-#else
-		char *regexp_utf = strdup(filterStr);
-#endif
+		char * regexp_utf = UCS2UTF8_ConvertToUtf8(filterStr);
 
 		// Add every "line" of regexps to regexp list
 		char * token;
@@ -1416,7 +1406,7 @@ void CDiffWrapper::SetFilterList(const CString &filterStr)
 			m_pFilterList->AddRegExp(token);
 			token = strtok(NULL, sep);
 		}
-		delete [] regexp_utf;
+		UCS2UTF8_Dealloc(regexp_utf);
 	}
 }
 

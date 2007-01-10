@@ -247,7 +247,6 @@ BOOL CMergeApp::InitInstance()
 	BOOL bDisableSplash	= GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
 
 	InitializeFileFilters();
-	m_globalFileFilter.SetFilter(_T("*.*"));
 
 	CSplashWnd::EnableSplashScreen(bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
 

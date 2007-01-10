@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-10 Kimmo
+ PATCH: [ 1631796 ] Use PCRE for filemask filtering
+  Src: DiffWrapper.cpp DirDoc.h FileFilterHelper.cpp FileFilterHelper.h Merge.cpp
+   Merge.dsp Ucs2Utf8.cpp Ucs2Utf8.h
+  Src/Common removed files: Regexp.cpp RegExp.h
+
 2007-01-10 Takashi
  BUG: [ 1631613 ] WinMerge crashes when editing code files
   Src/editlib: ccrystaleditview.cpp

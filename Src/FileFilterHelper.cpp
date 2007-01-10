@@ -23,10 +23,11 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Ucs2Utf8.h"
+#include "FilterList.h"
 #include "FileInfo.h"
 #include "FileFilterMgr.h"
 #include "FileFilterHelper.h"
-#include "RegExp.h"
 #include "Coretools.h"
 #include "paths.h"
 
@@ -40,9 +41,10 @@ static char THIS_FILE[] = __FILE__;
  * @brief Constructor, creates new filtermanager.
  */
 FileFilterHelper::FileFilterHelper()
+: m_pMaskFilter(NULL)
+, m_bUseMask(TRUE)
 {
 	m_fileFilterMgr = new FileFilterMgr;
-	m_bUseMask = TRUE;
 }
 
 /** 
@@ -51,6 +53,7 @@ FileFilterHelper::FileFilterHelper()
 FileFilterHelper::~FileFilterHelper()
 {
 	delete m_fileFilterMgr;
+	delete m_pMaskFilter;
 }
 
 /** 
@@ -171,20 +174,42 @@ void FileFilterHelper::SetUserFilterPath(const CString & filterPath)
 
 /** 
  * @brief Select between mask and filterfile.
+ * @param [in] bUseMask If TRUE we use mask instead of filter files.
  */
 void FileFilterHelper::UseMask(BOOL bUseMask)
 {
 	m_bUseMask = bUseMask;
+	if (m_bUseMask)
+	{
+		if (m_pMaskFilter == NULL)
+		{
+			m_pMaskFilter = new FilterList;
+		}
+	}
+	else
+	{
+		delete m_pMaskFilter;
+		m_pMaskFilter = NULL;
+	}
 }
 
 /** 
- * @brief Set filemask ("*.h *.cpp")
+ * @brief Set filemask for filtering.
+ * @param [in] strMask Mask to set (e.g. *.cpp;*.h).
  */
 void FileFilterHelper::SetMask(LPCTSTR strMask)
 {
+	if (!m_bUseMask)
+	{
+		_RPTF0(_CRT_ERROR, "Filter mask tried to set when masks disabled!");
+		return;
+	}
 	m_sMask = strMask;
 	CString regExp = ParseExtensions(strMask);
-	m_rgx.RegComp(regExp);
+
+	char * regexp_utf = UCS2UTF8_ConvertToUtf8(regExp);
+	m_pMaskFilter->AddRegExp(regexp_utf);
+	UCS2UTF8_Dealloc(regexp_utf);
 }
 
 /**
@@ -197,6 +222,12 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 {
 	if (m_bUseMask)
 	{
+		if (m_pMaskFilter == NULL)
+		{
+			_RPTF0(_CRT_ERROR, "Use mask set, but no filter rules for mask!");
+			return TRUE;
+		}
+
 		// preprend a backslash if there is none
 		CString strFileName = szFileName;
 		strFileName.MakeLower();
@@ -205,7 +236,11 @@ BOOL FileFilterHelper::includeFile(LPCTSTR szFileName)
 		// append a point if there is no extension
 		if (strFileName.Find(_T('.')) == -1)
 			strFileName = strFileName + _T('.');
-		return (! m_rgx.RegFind(strFileName));
+
+		char * name_utf = UCS2UTF8_ConvertToUtf8(strFileName);
+		bool match = m_pMaskFilter->Match(name_utf);
+		UCS2UTF8_Dealloc(name_utf);
+		return match;
 	}
 	else
 	{
@@ -318,7 +353,7 @@ CString FileFilterHelper::ParseExtensions(CString extensions)
 	{
 		strParsed = _T("^");
 		strPattern.MakeLower();
-		strParsed += strPattern + _T("$");
+		strParsed = strPattern; //+ _T("$");
 	}
 	return strParsed;
 }
@@ -362,8 +397,8 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 	// If filter is empty string set default filter
 	if (filter.IsEmpty())
 	{
-		SetMask(_T("*.*"));
 		UseMask(TRUE);
+		SetMask(_T("*.*"));
 		SetFileFilterPath(_T(""));
 		return FALSE;
 	}
@@ -375,8 +410,8 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 	// Star means we have a file extension mask
 	if (filter[0] == '*')
 	{
-		SetMask(filter);
 		UseMask(TRUE);
+		SetMask(filter);
 		SetFileFilterPath(_T(""));
 	}
 	else
@@ -384,14 +419,14 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 		CString path = GetFileFilterPath(filter);
 		if (!path.IsEmpty())
 		{
-			SetFileFilterPath(path);
 			UseMask(FALSE);
+			SetFileFilterPath(path);
 		}
 		// If filter not found with given name, use default filter
 		else
 		{
-			SetMask(_T("*.*"));
 			UseMask(TRUE);
+			SetMask(_T("*.*"));
 			SetFileFilterPath(_T(""));
 			return FALSE;
 		}

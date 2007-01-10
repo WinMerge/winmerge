@@ -37,10 +37,6 @@
 #include "PluginManager.h"
 #endif
 
-#ifndef REGEXP_H
-#include "RegExp.h"
-#endif
-
 class CDirView;
 class CMergeDoc;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocPtrList;
