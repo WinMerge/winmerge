@@ -2183,6 +2183,8 @@ void CMergeEditView::OnChangePane()
 	if (ptCursor.y >= pWnd->GetLineCount())
 		ptCursor.y = pWnd->GetLineCount() - 1;
 	pWnd->SetCursorPos(ptCursor);
+	pWnd->SetAnchor(ptCursor);
+	pWnd->SetSelection(ptCursor, ptCursor);
 }
 
 /**
