@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2007-01-10 Takashi
+ BUG: [ 1631613 ] WinMerge crashes when editing code files
+  Src/editlib: ccrystaleditview.cpp
+
+2007-01-10 Takashi
  BUG: [ 1630630 ] Unexpected selection of text after changing pane
   Src: MergeEditView.cpp
 

@@ -1641,7 +1641,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
                     {
                       int nTabSize = GetTabSize ();
                       int nChars = nTabSize - nPos % nTabSize;
-                      pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + nChars));
+                      pszInsertStr = (TCHAR *) _alloca (sizeof (TCHAR) * (nPos + nChars + 1));
                       _tcsncpy (pszInsertStr, pszLineChars, nPos);
                       while (nChars--)
                         {
