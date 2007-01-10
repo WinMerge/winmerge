@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2007-01-10 Gal
+ PATCH: [ 1597814 ] 'Wrap Lines' + 'Next Diff' Bug (3)
+  Src: MergeEditView.cpp MergeEditView.h
+
+2007-01-10 Gal
  PATCH: [ 1631215 ] Remove used files
   Src: Merge.dsp
   Src/Common deleted: listvwex.cpp listvwex.h

@@ -202,7 +202,7 @@ protected:
 	virtual void OnUpdateCaret();
 	BOOL MergeModeKeyDown(MSG* pMsg);
 	int FindPrediffer(const CString & prediffer) const;
-
+	BOOL IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
 
 	// Generated message map functions
 protected:

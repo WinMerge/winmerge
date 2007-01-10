@@ -1464,19 +1464,14 @@ void CMergeEditView::ShowDiff(BOOL bScroll, BOOL bSelectText)
 
 		if (bScroll)
 		{
-			int nDiffStart = GetSubLineIndex(curDiff.dbegin0);
-			int nDiffEnd = GetSubLineIndex(curDiff.dend0);
-
-			// If diff first line outside current view - context OR
-			// if diff last line outside current view - context OR
-			// if diff is bigger than screen
-			// if diff is bigger than screen when word wrap enabled
-			if ((nDiffStart < m_nTopSubLine) ||
-				(nDiffEnd >= m_nTopSubLine + GetScreenLines() - CONTEXT_LINES_BELOW) ||
-				(nDiffEnd - nDiffStart) >= GetScreenLines() ||
-				(nDiffStart + GetSubLines(ptStart.y)) >= GetScreenLines())
+			if (IsDiffVisible(curDiff, CONTEXT_LINES_BELOW) == FALSE)
 			{
-				int nLine = nDiffStart;
+				// Difference is not visible, scroll it so that max amount of
+				// scrolling is done while keeping the diff in screen. So if
+				// scrolling is downwards, scroll the diff to as up in screen
+				// as possible. This usually brings next diff to the screen
+				// and we don't need to scroll into it.
+				int nLine = GetSubLineIndex(ptStart.y);
 				if (nLine > CONTEXT_LINES_ABOVE)
 				{
 					nLine -= CONTEXT_LINES_ABOVE;
@@ -2885,24 +2880,38 @@ BOOL CMergeEditView::IsCursorInDiff() const
 }
 
 /**
- * @brief Determine if difference is visible on screen.
- * @param [in] nDiff Number of diff to check.
- * @return TRUE if difference is visible.
- */
+* @brief Determine if difference is visible on screen.
+* @param [in] nDiff Number of diff to check.
+* @return TRUE if difference is visible.
+*/
 BOOL CMergeEditView::IsDiffVisible(int nDiff)
 {
 	CMergeDoc *pd = GetDocument();
 
 	DIFFRANGE diff;
 	pd->m_diffList.GetDiff(nDiff, diff);
-	
-	int nDiffStart = GetSubLineIndex(diff.dbegin0);
-	int nDiffEnd = GetSubLineIndex(diff.dend0);
 
+	return IsDiffVisible(diff);
+}
+
+/**
+ * @brief Determine if difference is visible on screen.
+ * @param [in] diff diff to check.
+ * @param [in] nLinesBelow Allow "minimizing" the number of visible lines.
+ * @return TRUE if difference is visible.
+ */
+BOOL CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/)
+{
+	const int nDiffStart = GetSubLineIndex(diff.dbegin0);
+	const int nDiffEnd = GetSubLineIndex(diff.dend0);
+	const int nDiffHeight = nDiffEnd - nDiffStart + GetSubLines(diff.dend0);
+
+	// If diff first line outside current view - context OR
+	// if diff last line outside current view - context OR
+	// if diff is bigger than screen
 	if ((nDiffStart < m_nTopSubLine) ||
-		(nDiffEnd >= m_nTopSubLine + GetScreenLines()) ||
-		(nDiffEnd - nDiffStart) >= GetScreenLines() ||
-		(nDiffStart + GetSubLines(diff.dbegin0)) >= GetScreenLines())
+		(nDiffEnd >= m_nTopSubLine + GetScreenLines() - nLinesBelow) ||
+		(nDiffHeight >= GetScreenLines()))
 	{
 		return FALSE;
 	}
