@@ -465,10 +465,6 @@ SOURCE=.\Common\LanguageSelect.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\listvwex.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\LoadSaveCodepageDlg.cpp
 # End Source File
 # Begin Source File
@@ -1226,10 +1222,6 @@ SOURCE=.\IOptionsPanel.h
 # Begin Source File
 
 SOURCE=.\Common\LanguageSelect.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\listvwex.h
 # End Source File
 # Begin Source File
 
