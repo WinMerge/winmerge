@@ -182,13 +182,6 @@ static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
  */
 static const TCHAR DocsURL[] = _T("http://winmerge.org/2.6/manual/index.html");
 
-/**
- * @brief Default relative path to "My Documents" for private filters.
- * We want to use WinMerge folder as general user-file folder in future.
- * So it makes sense to have own subfolder for filters.
- */
-static const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge\\Filters");
-
 /** @brief Timer ID for window flashing timer. */
 static const UINT ID_TIMER_FLASH = 1;
 
@@ -244,7 +237,7 @@ CMainFrame::CMainFrame()
 	if (pathMyFolders.IsEmpty())
 	{
 		// No filter path, set it to default and make sure it exists.
-		CString pathFilters = GetDefaultFilterUserPath(TRUE);
+		CString pathFilters = theApp.GetDefaultFilterUserPath(TRUE);
 		GetOptionsMgr()->SaveOption(OPT_FILTER_USERPATH, pathFilters);
 		theApp.m_globalFileFilter.SetFileFilterPath(pathFilters);
 	}
@@ -2170,40 +2163,6 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		ResMsgBox1(IDS_UNKNOWN_EXECUTE_FILE, sExtEditor, MB_ICONSTOP);
 	}
 	return TRUE;
-}
-
-/**
- * @brief Get default user filter folder path.
- * This function returns the default filter path for user filters.
- * If wanted so (@p bCreate) path can be created if it does not
- * exist yet. But you really want to create the patch only when
- * there is no user path defined.
- * @param [in] bCreate If TRUE filter path is created if it does
- *  not exist.
- * @return Default folder for user filters.
- */
-CString CMainFrame::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
-{
-	CString pathMyFolders = paths_GetMyDocuments(GetSafeHwnd());
-	CString pathFilters(pathMyFolders);
-	if (pathFilters.Right(1) != _T("\\"))
-		pathFilters += _T("\\");
-	pathFilters += DefaultRelativeFilterPath;
-
-	if (bCreate && !paths_CreateIfNeeded(pathFilters))
-	{
-		// Failed to create a folder, check it didn't already
-		// exist.
-		DWORD errCode = GetLastError();
-		if (errCode != ERROR_ALREADY_EXISTS)
-		{
-			// Failed to create a folder for filters, fallback to
-			// "My Documents"-folder. It is not worth the trouble to
-			// bother user about this or user more clever solutions.
-			pathFilters = pathMyFolders;
-		}
-	}
-	return pathFilters;
 }
 
 typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;

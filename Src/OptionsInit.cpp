@@ -114,7 +114,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_LINEFILTER_REGEXP, _T(""));
 	m_pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
-	m_pOptions->InitOption(OPT_FILTER_USERPATH, _T(""));
+	m_pOptions->InitOption(OPT_FILTER_USERPATH, GetDefaultFilterUserPath());
 
 	m_pOptions->InitOption(OPT_CP_DEFAULT_MODE, (int)0);
 	m_pOptions->InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());

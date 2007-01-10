@@ -7,6 +7,8 @@ Add new items to top.
   Src: DiffWrapper.cpp DirDoc.h FileFilterHelper.cpp FileFilterHelper.h Merge.cpp
    Merge.dsp Ucs2Utf8.cpp Ucs2Utf8.h
   Src/Common removed files: Regexp.cpp RegExp.h
+ PATCH: [ 1631806 ] Fix Filterspath initialization
+  Src: MainFrm.cpp MainFrm.h Merge.cpp Merge.h OptionsInit.cpp
 
 2007-01-10 Takashi
  BUG: [ 1631613 ] WinMerge crashes when editing code files

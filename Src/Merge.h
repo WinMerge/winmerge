@@ -72,6 +72,7 @@ public:
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 	CString GetDefaultEditor();
+	CString GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions); }
 	void OptionsInit();

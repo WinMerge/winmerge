@@ -116,7 +116,6 @@ public:
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();
 	BOOL OpenFileToExternalEditor(CString file);
-	CString GetDefaultFilterUserPath(BOOL bCreate = FALSE);
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void ShowVSSError(CException *e, CString strItem);
