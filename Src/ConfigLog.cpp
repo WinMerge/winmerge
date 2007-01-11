@@ -455,6 +455,8 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WriteItemYesNo(2, _T("Show linenumbers"), &m_miscSettings.bShowLinenumbers);
 	WriteItemYesNo(2, _T("Wrap lines"), &m_miscSettings.bWrapLines);
 	WriteItemYesNo(2, _T("Syntax Highlight"), &m_miscSettings.bSyntaxHighlight);
+	WriteItem(m_file, 2, _T("Tab size"), m_miscSettings.nTabSize);
+	WriteItemYesNoInverted(2, _T("Insert tabs"), &m_miscSettings.bInsertTabs);
 	
 // Font settings
 	FileWriteString(_T("\n Font:\n"));

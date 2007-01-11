@@ -65,6 +65,8 @@ struct MISCSETTINGS
 	BOOL bWrapLines;
 	BOOL bMergeMode;
 	BOOL bSyntaxHighlight;
+	BOOL bInsertTabs;
+	INT  nTabSize;
 };
 
 /** 
