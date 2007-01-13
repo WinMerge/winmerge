@@ -2,6 +2,10 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2007-01-13 Tim
+ The file "Plugins.txt" is unnecessary after patch #1627363 and #1630397
+  Remove file Plugins\dlls: Plugins.txt
+
 2006-12-12 Tim
  The file "readme_users.txt" is unnecessary after patch #1611595
   Remove file Plugins\dlls: readme_users.txt
