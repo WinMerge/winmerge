@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-14 Kimmo
+ Update manual URL point to 2.6 version manual in readme.txt
+  Docs/Users/ReadMe.txt
+  Docs/Users/Languages/ReadMe-*.txt
+
 2007-01-11 Gal
  PATCH: [ 1633194 ] Add editor tab setting to configuration log
   Src: ConfigLog.cpp ConfigLog.h MainFrm.cpp

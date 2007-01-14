@@ -9,11 +9,11 @@ http://winmerge.org
 
 Quick start to WinMerge:
 Read online-manual Quick-start chapter to get started with WinMerge:
-http://www.winmerge.org/2.4/manual/quickstart.html
+http://www.winmerge.org/2.6/manual/quickstart.html
 
 HTML Manual:
 Manual is available online at
-http://www.winmerge.org/2.4/manual/
+http://www.winmerge.org/2.6/manual/
 it is also possibly installed (if choosed so) locally and downloadable
 separately from http://www.winmerge.org/ (see documentation)
 

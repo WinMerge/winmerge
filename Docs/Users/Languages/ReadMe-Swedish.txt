@@ -9,11 +9,11 @@ http://www.winmerge.org
 
 Snabbstart för WinMerge (Quick start to WinMerge):
 Läs online-manualens Quick start-kapitel för att starta med WinMerge:
-http://www.winmerge.org/2.4/manual/quickstart.html
+http://www.winmerge.org/2.6/manual/quickstart.html
 
 HTML Manual:
 Manual finns tillgängling online på
-http://www.winmerge.org/2.4/manual/
+http://www.winmerge.org/2.6/manual/
 det är också möjligtvis installerat (om detta är valt) lokalt och 
 nerladdningsbart separat från http://www.winmerge.org/ (se dokumentation).
 
