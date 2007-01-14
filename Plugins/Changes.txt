@@ -6,6 +6,11 @@ Add new items to top
  PATCH: [ 1633944 ] Fix VB example plugin "IgnoreTwoFirstCharsOrder"
   Plugins\src_VB\IgnoreTwoFirstCharsOrder:
    WinMergeScript.cls
+ PATCH: [ 1633632 ] Plugin to ignore leading line numbers in text files
+  New file Plugins\dlls:
+   IgnoreLeadingLineNumbers.dll
+  New file Plugins\src_VB\IgnoreLeadingLineNumbers:
+   IgnoreLeadingLineNumbers.vbp WinMergeScript.cls
 
 2007-01-13 Tim
  The file "Plugins.txt" is unnecessary after patch #1627363 and #1630397

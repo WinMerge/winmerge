@@ -378,6 +378,24 @@
       </para>
     </sect3>
     <sect3>
+      <title><filename>IgnoreLeadingLineNumbers.dll</filename></title>
+      <para>This plugin ignores the leading line numbers in text files (for example NC and BASIC files).</para>
+      <para>
+        <segmentedlist>
+          <segtitle>Categorie</segtitle>
+          <segtitle>File filter</segtitle>
+          <seglistitem>
+            <seg>Prediffer</seg>
+            <seg>
+              <simplelist type="inline">
+                <member><filename class="extension">*.nc</filename></member>
+              </simplelist>
+            </seg>
+          </seglistitem>
+        </segmentedlist>
+      </para>
+    </sect3>
+    <sect3>
       <title><filename>insert datetime.sct</filename></title>
       <para>Add two functions to the <menuchoice><guimenu>Edit</guimenu><guisubmenu>Scripts</guisubmenu></menuchoice> menu:</para>
       <itemizedlist>
