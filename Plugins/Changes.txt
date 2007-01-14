@@ -2,6 +2,11 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2007-01-14 Tim
+ PATCH: [ 1633944 ] Fix VB example plugin "IgnoreTwoFirstCharsOrder"
+  Plugins\src_VB\IgnoreTwoFirstCharsOrder:
+   WinMergeScript.cls
+
 2007-01-13 Tim
  The file "Plugins.txt" is unnecessary after patch #1627363 and #1630397
   Remove file Plugins\dlls: Plugins.txt
