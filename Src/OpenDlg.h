@@ -77,6 +77,8 @@ public:
 // Implementation data
 private:
 	prdlg::CMoveConstraint m_constraint;
+	CString m_strLeftBrowsePath; /**< Left path from browse dialog. */
+	CString m_strRightBrowsePath; /**< Right path from browse dialog. */
 
 // Overrides
 	// ClassWizard generated virtual function overrides

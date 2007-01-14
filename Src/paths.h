@@ -22,7 +22,7 @@ typedef enum
 bool paths_EndsWithSlash(const CString & s);
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(CString & sPath);
-CString paths_GetLongPath(const CString & sPath);
+CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs = TRUE);
 bool paths_CreateIfNeeded(const CString & sPath);
 LPCTSTR paths_GetTempPath(int * pnerr=NULL);
 CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr=NULL);

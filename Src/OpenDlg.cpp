@@ -237,6 +237,7 @@ void COpenDlg::OnLeftButton()
 	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder))
 	{
 		m_strLeft = s;
+		m_strLeftBrowsePath = s;
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
@@ -271,6 +272,7 @@ void COpenDlg::OnRightButton()
 	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder))
 	{
 		m_strRight = s;
+		m_strRightBrowsePath = s;
 		UpdateData(FALSE);
 		UpdateButtonStates();
 	}	
@@ -303,8 +305,16 @@ void COpenDlg::OnOK()
 		return;
 	}
 
-	m_strRight = paths_GetLongPath(m_strRight);
-	m_strLeft = paths_GetLongPath(m_strLeft);
+	// If user has edited path by hand, expand environment variables
+	BOOL bExpandLeft = FALSE;
+	BOOL bExpandRight = FALSE;
+	if (m_strLeftBrowsePath.CompareNoCase(m_strLeft) != 0)
+		bExpandLeft = TRUE;
+	if (m_strRightBrowsePath.CompareNoCase(m_strRight) != 0)
+		bExpandRight = TRUE;
+
+	m_strRight = paths_GetLongPath(m_strRight, bExpandRight);
+	m_strLeft = paths_GetLongPath(m_strLeft, bExpandLeft);
 
 	// Add trailing '\' for directories if its missing
 	if (m_pathsType == IS_EXISTING_DIR)

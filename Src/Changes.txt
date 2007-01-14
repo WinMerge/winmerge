@@ -6,6 +6,8 @@ Add new items to top.
  Update manual URL point to 2.6 version manual in readme.txt
   Docs/Users/ReadMe.txt
   Docs/Users/Languages/ReadMe-*.txt
+ PATCH: [ 1633581 ] Restrict expanding env variables in open dialog
+  Src: OpenDlg.cpp OpenDlg.h paths.cpp paths.h
 
 2007-01-11 Gal
  PATCH: [ 1633194 ] Add editor tab setting to configuration log

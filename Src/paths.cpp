@@ -144,13 +144,14 @@ static bool GetDirName(const CString & sDir, CString& sName)
  * Convert path to canonical long path.
  * This function converts given path to canonical long form. For example
  * foldenames with ~ short names are expanded. Also environment strings are
- * expanded. If path does not exist, make canonical the part that does exist,
- * and leave the rest as is. Result, if a directory, usually does not have a
- * trailing backslash.
+ * expanded if @p bExpandEnvs is TRUE. If path does not exist, make canonical
+ * the part that does exist, and leave the rest as is. Result, if a directory,
+ * usually does not have a trailing backslash.
  * @param [in] sPath Path to convert.
+ * @param [in] bExpandEnvs If TRUE environment variables are expanded.
  * @return Converted path.
  */
-CString paths_GetLongPath(const CString & sPath)
+CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
 {
 	int len = sPath.GetLength();
 	if (len < 1)
@@ -172,12 +173,14 @@ CString paths_GetLongPath(const CString & sPath)
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR expandedPath[_MAX_PATH] = {0};
-	LPCTSTR lpcszPath;
+	LPCTSTR lpcszPath = NULL;
 
-	if (_tcschr(sPath, '%') &&
-		ExpandEnvironmentStrings(sPath, expandedPath, _MAX_PATH))
+	if (bExpandEnvs && _tcschr(sPath, '%'))
 	{
-		lpcszPath = expandedPath;
+		if (ExpandEnvironmentStrings(sPath, expandedPath, _MAX_PATH))
+		{
+			lpcszPath = expandedPath;
+		}
 	}
 	else
 		lpcszPath = sPath;
