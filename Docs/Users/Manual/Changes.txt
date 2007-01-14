@@ -1,3 +1,7 @@
+2007-01-14 Kimmo
+ PATCH: [ 1633560 ] Manual: WinMerge minimizes time needed for ignored files
+  Manual: Filters.xml
+
 2007-01-14 Tim
  PATCH: [ 1633632 ] Plugin to ignore leading line numbers in text files
   Manual: Plugins.xml

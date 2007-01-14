@@ -86,6 +86,13 @@
       </menuchoice>. Also empty filter can be selected when no folders or
     files are ignored.</para>
 
+    <para>Filtered out files get only minimal needed attention by the folder
+    compare. This means that WinMerge misses a lot of information it gets for
+    non-ignored files. For example there is no way to know if filtered file is
+    a text file or a binary file. The reason is simple: as user tolds WinMerge
+    one does not care about the file, WinMerge tries to minimize the effort
+    and time for the file.</para>
+
     <sect3>
       <title>Filter files</title>
 
@@ -111,10 +118,15 @@
 
         <listitem>
           <para>User-defined folder. Selected in Options (<menuchoice>
-          <guimenu>Edit</guimenu><guimenuitem>Options</guimenuitem>
-          <guimenuitem>System</guimenuitem><guilabel>Filter Folder</guilabel>
-          </menuchoice>). By default it is <filename class="directory">
-          My Documents\WinMerge\Filters</filename> folder.</para>
+              <guimenu>Edit</guimenu>
+
+              <guimenuitem>Options</guimenuitem>
+
+              <guimenuitem>System</guimenuitem>
+
+              <guilabel>Filter Folder</guilabel>
+            </menuchoice>). By default it is <filename class="directory"> My
+          Documents\WinMerge\Filters</filename> folder.</para>
         </listitem>
       </itemizedlist>
 
@@ -296,7 +308,7 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
 
       <para>Id-lines are like this:</para>
 
-      <screen>// &dollar;Id: Filters.xml,v 1.14.2.2 2005/10/29 17:21:16 kimmov Exp &dollar;</screen>
+      <screen>// $Id$</screen>
 
       <para>And they can be filtered with rule:</para>
 
