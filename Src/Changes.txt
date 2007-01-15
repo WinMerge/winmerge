@@ -8,6 +8,9 @@ Add new items to top.
   Filters: SourceControl.flt
  Add René Leonhardt to Contributors.txt
   Docs/Users: Contributors.txt
+ PATCH: [ 1634968 ] Swedish translation update for 2.7.1.5+
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2007-01-14 Kimmo
  Update manual URL point to 2.6 version manual in readme.txt
