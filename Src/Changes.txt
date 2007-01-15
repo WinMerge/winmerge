@@ -2,10 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-3007-01-15 Kimmo
+2007-01-15 Kimmo
  PATCH: [ 1620076 ] Add Bazaar and Mercurial to SourceControl.flt
   Submitted by René Leonhardt
   Filters: SourceControl.flt
+ Add René Leonhardt to Contributors.txt
+  Docs/Users: Contributors.txt
 
 2007-01-14 Kimmo
  Update manual URL point to 2.6 version manual in readme.txt
