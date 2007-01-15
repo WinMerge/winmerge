@@ -1,4 +1,8 @@
 2007-01-14 Kimmo
+ Fix CVS "Id:" line filter.
+  Manual: Filters.xml
+
+2007-01-14 Kimmo
  PATCH: [ 1633560 ] Manual: WinMerge minimizes time needed for ignored files
   Manual: Filters.xml
 

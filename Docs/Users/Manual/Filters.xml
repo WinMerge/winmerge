@@ -308,7 +308,7 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
 
       <para>Id-lines are like this:</para>
 
-      <screen>// $Id$</screen>
+      <screen>// &dollar;Id: Filters.xml,v 1.14.2.2 2005/10/29 17:21:16 kimmov Exp &dollar;</screen>
 
       <para>And they can be filtered with rule:</para>
 
