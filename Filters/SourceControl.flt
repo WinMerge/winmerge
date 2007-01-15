@@ -12,9 +12,15 @@ def: include
 ## Filters for directories begin with d: 
 ## (Inline comments begin with " ##" and extend to the end of the line) 
 
+## f: *\.bzrignore$ ## Bazaar ignore file
+## f: *\.cvsignore$ ## CVS ignore file
+## f: *\.hgignore$ ## Mercurial ignore file
+## f: *\.svnignore$ ## Subversion ignore file
+
 f: *\.*scc$  ## Visual SourceSafe files
+
 d: \\\.svn$ ## Subversion working copy
 d: \\_svn$  ## Subversion working copy ASP.NET Hack
 d: \\cvs$   ## CVS control directory
-
- 	  	 
+d: \\\.bzr$ ## Bazaar branch
+d: \\\.hg$ ## Mercurial repository
