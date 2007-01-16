@@ -613,12 +613,14 @@ BOOL CDirDoc::ReusingDirDoc()
  * @brief Obtain a merge doc to display a difference in files.
  * @param [out] pNew Set to TRUE if a new doc is created,
  * and FALSE if an existing one reused.
+ * @return Pointer to CMergeDoc to use (new or existing). 
  */
 CMergeDoc * CDirDoc::GetMergeDocForDiff(BOOL * pNew)
 {
 	CMergeDoc * pMergeDoc = 0;
 	// policy -- use an existing merge doc if available
-	if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS) && !m_MergeDocs.IsEmpty())
+	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
+	if (!bMultiDocs && !m_MergeDocs.IsEmpty())
 	{
 		*pNew = FALSE;
 		pMergeDoc = m_MergeDocs.GetHead();
