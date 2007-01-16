@@ -1,3 +1,8 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 body,th,td {
   font-family: Verdana,Helvetica,Arial,sans-serif;
   font-size: 80%;
@@ -8,7 +13,22 @@ pre,code,tt {
   font-size: 100%;
 }
 
+div.navheader,
+div.navfooter {
+  background: #FFCC00;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+
+div.article,
+div.sect1,
+div.appendix,
+div.index {
+  padding: 5px;
+}
+
 #ads {
+  padding-top: 10px;
   text-align: center;
 }
 

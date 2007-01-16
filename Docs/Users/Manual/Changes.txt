@@ -1,4 +1,9 @@
-2007-01-14 Kimmo
+2007-01-16 Tim
+ PATCH: [ 1636315 ] Manual: Nicer navigation layout for HTML version
+  Manual/build: build_html.xsl
+  Manual/css: all.css
+
+2007-01-14 Tim
  Fix CVS "Id:" line filter.
   Manual: Filters.xml
 

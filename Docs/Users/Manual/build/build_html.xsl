@@ -2,6 +2,8 @@
   version="1.0">
   <xsl:import href="file:/C:/docbook/xsl/html/chunk.xsl"/>
   <xsl:param name="suppress.navigation" select="0"/>
+  <xsl:param name="header.rule" select="0"/>
+  <xsl:param name="footer.rule" select="0"/>
   <xsl:param name="use.extensions" select="0"/>
   <xsl:param name="tablecolumns.extensions" select="0"/>
   <xsl:param name="admon.graphics" select="1"/>
