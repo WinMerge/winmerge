@@ -593,11 +593,11 @@ FileLocationGuessEncodings(FileLocation & fileloc, BOOL bGuessEncoding)
  *
  * @param cpleft, cpright : left and right codepages
  * = -1 when the file must be parsed
+ * @return OPENRESULTS_TYPE for success/failure code.
  */
-int /* really an OPENRESULTS_TYPE, but MainFrm.h doesn't know that type */
-CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,  const FileLocation & ifilelocLeft, const FileLocation & ifilelocRight,
-	BOOL bROLeft, BOOL bRORight,
-	PackingInfo * infoUnpacker /*= NULL*/)
+int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
+	const FileLocation & ifilelocLeft, const FileLocation & ifilelocRight,
+	BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
@@ -1812,9 +1812,30 @@ void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList
 	}
 }
 
-/// Obtain a merge doc to display a difference in files
+/**
+ * @brief Obtain a merge doc to display a difference in files.
+ * This function (usually) uses DirDoc to determine if new or existing
+ * MergeDoc is used. However there is exceptional case when DirDoc does
+ * not contain diffs. Then we have only file compare, and if we also have
+ * limited file compare windows, we always reuse existing MergeDoc.
+ * @param [in] pDirDoc Dir compare document.
+ * @param [out] pNew Did we create a new document?
+ * @return Pointer to merge doucument.
+ */
 CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 {
+	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
+	MergeDocList docs;
+	GetAllMergeDocs(&docs);
+
+	if (!pDirDoc->HasDiffs() && !bMultiDocs && !docs.IsEmpty())
+	{
+		*pNew = FALSE;
+
+		POSITION pos = docs.GetHeadPosition();
+		CMergeDoc * pMergeDoc = docs.GetAt(pos);
+		return pMergeDoc;
+	}
 	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(pNew);
 	return pMergeDoc;
 }

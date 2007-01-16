@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-16 Kimmo
+ PATCH: [ 1636314 ] Fix limiting to single file compare window
+  Src: MainFrm.cpp
+
 2007-01-15 Kimmo
  PATCH: [ 1620076 ] Add Bazaar and Mercurial to SourceControl.flt
   Submitted by René Leonhardt
