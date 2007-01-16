@@ -129,7 +129,12 @@
               </simplelist>
             </seg>
             <seg>No</seg>
-            <seg><trademark class="registered">Microsoft</trademark> <application>Excel</application></seg>
+            <seg>
+              <simplelist type="inline">
+                <member><trademark class="registered">Microsoft</trademark> <application>Excel</application></member>
+                <member><link linkend="MSVBVM60"><application>Visual Basic</application> runtime library</link></member>
+              </simplelist>
+            </seg>
           </seglistitem>
         </segmentedlist>
       </para>
@@ -152,7 +157,12 @@
               </simplelist>
             </seg>
             <seg>No</seg>
-            <seg><trademark class="registered">Microsoft</trademark> <application>Word</application></seg>
+            <seg>
+              <simplelist type="inline">
+                <member><trademark class="registered">Microsoft</trademark> <application>Word</application></member>
+                <member><link linkend="MSVBVM60"><application>Visual Basic</application> runtime library</link></member>
+              </simplelist>
+            </seg>
           </seglistitem>
         </segmentedlist>
       </para>
@@ -384,6 +394,7 @@
         <segmentedlist>
           <segtitle>Categorie</segtitle>
           <segtitle>File filter</segtitle>
+          <segtitle>Requirement</segtitle>
           <seglistitem>
             <seg>Prediffer</seg>
             <seg>
@@ -391,6 +402,7 @@
                 <member><filename class="extension">*.nc</filename></member>
               </simplelist>
             </seg>
+            <seg><link linkend="MSVBVM60"><application>Visual Basic</application> runtime library</link></seg>
           </seglistitem>
         </segmentedlist>
       </para>
@@ -475,9 +487,9 @@
       You can check easily. WinMerge informs you with a comment at the bottom of the list. You may install WSH on any
       version of Windows (need IE 4.0). Download it from <ulink url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN Library</ulink>.</para>
     </sect3>
-    <sect3>
-      <title>Visual Basic runtime library</title>
-      <para>Some plugins require Visual Basic runtime library to work.</para>
+    <sect3 id="MSVBVM60">
+      <title><application>Visual Basic</application> runtime library</title>
+      <para>Some plugins require <application>Visual Basic</application> runtime library to work.</para>
       <para>You can download the required file <filename><ulink url="http://www.dll-files.com/dllindex/dll-files.shtml?msvbvm60">msvbvm60.dll</ulink></filename>
       or use the <ulink url="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time Redistribution Pack</ulink>
       from <trademark class="registered">Microsoft</trademark>. If you don't need the plugin, you can safely remove it.</para>

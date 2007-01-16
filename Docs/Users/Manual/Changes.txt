@@ -2,6 +2,8 @@
  PATCH: [ 1636315 ] Manual: Nicer navigation layout for HTML version
   Manual/build: build_html.xsl
   Manual/css: all.css
+ PATCH: [ 1637088 ] Manual: Add VB requirements to available plugins
+  Manual: Plugins.xml
 
 2007-01-14 Tim
  Fix CVS "Id:" line filter.
