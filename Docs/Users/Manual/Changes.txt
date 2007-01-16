@@ -4,6 +4,8 @@
   Manual/css: all.css
  PATCH: [ 1637088 ] Manual: Add VB requirements to available plugins
   Manual: Plugins.xml
+ With a "min-width" scales the HTML version much better on modern browser with large font sizes.
+  Manual/css: all.css
 
 2007-01-14 Tim
  Fix CVS "Id:" line filter.
