@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-17 Kimmo
+ BUG: [ 1637433 ] Forget selected filter after close
+  Src: Merge.cpp OptionsInit.cpp
+
 2007-01-16 Kimmo
  PATCH: [ 1636314 ] Fix limiting to single file compare window
   Src: MainFrm.cpp

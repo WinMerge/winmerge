@@ -128,13 +128,4 @@ void CMergeApp::OptionsInit()
 
 	m_pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
-
-	// Read last used filter from registry
-	// If filter fails to set, reset to default
-	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(m_pOptions->GetString(OPT_FILEFILTER_CURRENT));
-	if (!bFilterSet)
-	{
-		CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
-	}
 }

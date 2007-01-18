@@ -256,6 +256,16 @@ BOOL CMergeApp::InitInstance()
 
 	InitializeFileFilters();
 
+	// Read last used filter from registry
+	// If filter fails to set, reset to default
+	const CString filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
+	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filterString);
+	if (!bFilterSet)
+	{
+		CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+		m_pOptions->SaveOption(OPT_FILEFILTER_CURRENT, filter);
+	}
+
 	CSplashWnd::EnableSplashScreen(bDisableSplash==FALSE && cmdInfo.m_nShellCommand == CCommandLineInfo::FileNew);
 
 	// Initialize i18n (multiple language) support
