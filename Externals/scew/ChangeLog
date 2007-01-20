@@ -1,5 +1,8 @@
 Changes for WinMerge compile:
 
+2007-01-20 Kimmo Varis <kimmov@winmerge.org>
+	* scew/error.c: Fix compile with VS2005
+
 2006-12-18 Kimmo Varis <kimmov@winmerge.org>
 	* WinMerge patch [ 1616302 ] Small BUILD bug, in scew.h, for WIN32
 	submitted by geoffmc <geoffmc@users.sourceforge.net> to fix ansi

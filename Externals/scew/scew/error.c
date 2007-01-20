@@ -62,7 +62,7 @@ scew_error_string(scew_error code)
         // This is not thread safe. Even though, no one should get in
         // here.
         static XML_Char unk_message[35];
-        scew_sprintf(unk_message, _XT("Unknown error code (%d)"), code);
+        scew_sprintf(unk_message, _XT("Unknown error code (%d)"), (int) code);
         return unk_message;
     }
     else
