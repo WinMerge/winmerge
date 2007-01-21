@@ -107,6 +107,14 @@
       $temp .= $this->getMenu();
       $temp .= "</div>\n";
       $temp .= "<div id=\"content\">\n";
+      switch ($this->_version) {
+        case WINMERGE_1_7: //if WinMerge 1.7 ...
+        case WINMERGE_2_0: //if WinMerge 2.0 ...
+        case WINMERGE_2_2: //if WinMerge 2.2 ...
+        case WINMERGE_2_4: //if WinMerge 2.4 ...
+          $temp .= "<p class=\"important\">This is an old version of WinMerge, for the latest version go to the <a href=\"/index.php\">main site</a>.</p>\n";
+          break;
+      }
       print($temp);
     }
 
