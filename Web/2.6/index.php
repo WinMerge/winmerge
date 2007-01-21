@@ -13,15 +13,16 @@
   <li>Unicode support</li>
   <li>Difference pane shows current difference in two vertical panes</li>
   <li>Location pane shows map of files compared</li>
-  <li>Highlights differences inside the lines</li>
-  <li>File filters in directory pane</li>
-  <li>Moved lines detection in file compare pane</li>
-  <li>Shell Integration</li>
+  <li>Highlights differences inside lines in file compare</li>
+  <li>Regular Expression based file filters in directory compare allow excluding and including items</li>
+  <li>Moved lines detection in file compare</li>
+  <li>Creates patch files</li>
+  <li>Shell Integration (supports 64-bit Windows versions)</li>
   <li>Rudimentary Visual SourceSafe and Rational ClearCase integration</li>
-  <li>Archive file support using 7-zip</li>
+  <li>Archive file support using 7-Zip</li>
   <li>Plugin support</li>
   <li>Localizable interface via resource DLL</li>
-  <li>HTML-based <a href="manual/index.html">Manual</a></li>
+  <li><a href="manual/index.html">Online manual</a> and installed HTML Help manual</li>
 </ul>
 
 <h2>Screenshots</h2>

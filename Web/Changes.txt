@@ -5,6 +5,9 @@
   Web\2.0: index.php
   Web\2.2: index.php
   Web\2.4: index.php
+ PATCH: [ 1630335 ] Web: Update features list in main page
+  Web: index.php
+  Web\2.6: index.php
 
 2007-01-18 Tim
  PATCH: [ 1638998 ] Web: Changes for new stable release 2.6.4
