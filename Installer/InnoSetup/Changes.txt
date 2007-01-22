@@ -1,3 +1,8 @@
+2007-01-22 Kimmo
+ PATCH: [ 1607375 ] Move runtime files to separate folder in trunk
+  Move InnoSetup/Runtimes folder to Installer/Runtimes
+  Delete Installer/Runtimes/Download URLs folder
+
 2007-01-15 Kimmo
  PATCH: [ 1414233 ] Template ExternalArchiveFormat.ini
   Submitted by Perry
