@@ -15,6 +15,7 @@
   define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
+  define ('WINMERGE_SUP', 'sup');
   define ('WINMERGE_DEV', 'dev');
 
   /**
@@ -160,6 +161,12 @@
       if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
         $temp .= "  <li class=\"selected\"><a href=\"/1.7/index.php\">1.7</a></li>\n";
       }
+      if ($this->_version == WINMERGE_SUP) { //if "Support" ...
+        $temp .= "  <li class=\"selected\"><a href=\"/support/index.php\">Support</a></li>\n";
+      }
+      else { //if NOT "Support" ...
+        $temp .= "  <li><a href=\"/support/index.php\">Support</a></li>\n";
+      }
       if ($this->_version == WINMERGE_DEV) { //if "Developers" ...
         $temp .= "  <li class=\"selected\"><a href=\"/developer/index.php\">Developers</a></li>\n";
       }
@@ -221,6 +228,7 @@
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.0/docs/index.html\">User's Guide</a></li>\n";
           $temp .= "  <li><a href=\"/2.0/changes.php\">Change History</a></li>\n";
+          $temp .= "  <li><a href=\"/2.0/docs/faq.htm\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li>Downloads\n";
@@ -238,6 +246,7 @@
           $temp .= "  <li><a href=\"/2.2/manual/index.html\">Manual</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/changes.php\">Change History</a></li>\n";
+          $temp .= "  <li><a href=\"/2.2/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.2/downloads.php\">Downloads</a>\n";
@@ -257,6 +266,7 @@
           $temp .= "  <li><a href=\"/2.4/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.4/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.4/limitations.php\">Known Limitations</a></li>\n";
+          $temp .= "  <li><a href=\"/2.4/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.4/downloads.php\">Downloads</a>\n";
@@ -276,6 +286,7 @@
           $temp .= "  <li><a href=\"/2.6/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.6/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.6/limitations.php\">Known Limitations</a></li>\n";
+          $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
@@ -284,6 +295,19 @@
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case WINMERGE_SUP: //if "Support" ...
+          $temp .= "<h2><a href=\"/support/index.php\">Support</a></h2>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/forum/?group_id=13216\">Discussion Forums</a></li>\n";
+          $temp .= "</ul>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\">Submit a Bug Report</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\">Submit a Feature Request</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\">Submit a Support Request</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\">Submit a Patch</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_DEV: //if "Developers" ...
@@ -321,33 +345,6 @@
       $temp .= "    <img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\">\n";
       $temp .= "  </a>\n";
       $temp .= "</p>\n";
-      $temp .= "<h2>Support</h2>\n";
-      $temp .= "<ul>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/forum/?group_id=13216\">Discussion Forums</a></li>\n";
-      switch ($this->_version) {
-        case WINMERGE_2_0: //if WinMerge 2.0 ...
-          $temp .= "  <li><a href=\"/2.0/docs/faq.htm\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          break;
-        case WINMERGE_2_2: //if WinMerge 2.2 ...
-          $temp .= "  <li><a href=\"/2.2/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          break;
-        case WINMERGE_2_4: //if WinMerge 2.4 ...
-          $temp .= "  <li><a href=\"/2.4/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          break;
-        case WINMERGE_2_6: //if WinMerge 2.6 ...
-        case WINMERGE_USR: //OR if "Users" ...
-        case WINMERGE_DEV: //OR if "Developers" ...
-          $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          break;
-      }
-      $temp .= "</ul>\n";
-      $temp .= "<ul>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216\">Submit a Bug Report</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\">Submit a Feature Request</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\">Submit a Support Request</a></li>\n";
-      $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\">Submit a Patch</a></li>\n";
-      $temp .= "</ul>\n";
       $temp .= "<p align=\"center\">\n";
       $temp .= "  <a href=\"/WinMergePAD.php\">\n";
       $temp .= "    <img src=\"/images/padbutton.gif\" alt=\"PAD Enabled\" border=\"0\">\n";

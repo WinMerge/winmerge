@@ -27,14 +27,6 @@ synchronizing tool only (ie: Briefcase), WinMerge is probably not the right tool
 <h2>Using WinMerge</h2>
 <p>You can use the <a href="docs/index.html">online User's Guide</a>, or you can
 <a href="http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip">download</a> a copy.</p>
-<h2>Support</h2>
-<p>WinMerge is now an Open Source project, that is covered
-under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU Public License</a>.&nbsp;
-As such, your main form of support for WinMerge will be through
-subscription to the <a href="http://sourceforge.net/mail/?group_id=13216">WinMerge-dev mailing list</a>.
-In addition, SourceForge has bug tracking capabilities, so please report any
-bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>.&nbsp; Wish list items will also be considered, but I make
-absolutely no promises.</p>
 <p>Here is the current <a href="changes.php">change history</a>.</p>
 <?php
   $page->printFoot();

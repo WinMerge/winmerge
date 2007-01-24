@@ -31,7 +31,7 @@ code,pre {
 	position: relative;
 	width: 100%;
 	height: 3em;
-	width: 45em; /* a width is required for Opera, older Mozilla browsers, and Konqueror browsers */
+	width: 50em; /* a width is required for Opera, older Mozilla browsers, and Konqueror browsers */
 }
 
 #tabs ul {
@@ -39,7 +39,7 @@ code,pre {
 	padding: 0;
 	position: absolute;
 	bottom: -1px;
-	width: 45em; /* a width is required for Opera, older Mozilla browsers, and Konqueror browsers */
+	width: 50em; /* a width is required for Opera, older Mozilla browsers, and Konqueror browsers */
 }
 
 #tabs ul li {

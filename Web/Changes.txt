@@ -1,3 +1,11 @@
+2007-01-24 Tim
+ PATCH: [ 1637155 ] Web: Move "Support" to own tab
+  Web: index.php page.inc sitemap.txt
+  Web\1.7: index.php
+  Web\2.*: index.php
+  Web\css: all.css
+  Web\support: new file index.php
+
 2007-01-21 Tim
  PATCH: [ 1640934 ] Web: Centralize "This is an old version" info
   Web: page.inc
