@@ -20,7 +20,7 @@
 #include "locality.h"
 #include "unicoder.h"
 #include "coretools.h"
-#include "DiffFileData.h"
+#include "FolderCmp.h"
 
 // shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
 #ifdef UNICODE
@@ -296,11 +296,11 @@ static CString ColDiffsGet(const CDiffContext *, const void *p)
 {
 	const int &r = *static_cast<const int*>(p);
 	CString s;
-	if (r == DiffFileData::DIFFS_UNKNOWN_QUICKCOMPARE)
+	if (r == FolderCmp::DIFFS_UNKNOWN_QUICKCOMPARE)
 	{ // QuickCompare, unknown
 		s = _T("*");
 	}
-	else if (r == DiffFileData::DIFFS_UNKNOWN)
+	else if (r == FolderCmp::DIFFS_UNKNOWN)
 	{ // Unique item
 		s = _T("");
 	}

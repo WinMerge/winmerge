@@ -41,7 +41,8 @@
 #include "paths.h"
 #include "CompareOptions.h"
 #include "FileTextStats.h"
-#include "DiffFileData.h"
+//#include "DiffFileData.h"
+#include "FolderCmp.h"
 #include "FilterCommentsManager.h"
 
 #ifdef _DEBUG

@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-24 Kimmo
+ PATCH: [ 1642809 ] Move compare code out from DiffFileData
+  Src: DiffFileData.cpp DiffFileData.h DiffWrapper.cpp DirScan.cpp
+   DirViewColItems.cpp Merge.dsp
+  Src new files: FolderCmp.cpp FolderCmp.h
+
 2007-01-17 Kimmo
  BUG: [ 1637433 ] Forget selected filter after close
   Src: Merge.cpp OptionsInit.cpp

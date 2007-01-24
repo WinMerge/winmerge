@@ -15,6 +15,7 @@
 #include "common/unicoder.h"
 #include "DiffContext.h"
 #include "DiffWrapper.h"
+#include "FolderCmp.h"
 #include "FileFilterHelper.h"
 #include "logfile.h"
 #include "paths.h"
@@ -23,7 +24,8 @@
 #include "DiffItemList.h"
 #include "PathContext.h"
 #include "IAbortable.h"
-#include "DiffFileData.h"
+#include "FolderCmp.h"
+//#include "DiffFileData.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -53,7 +55,7 @@ void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * fi
 static void Sort(fentryArray * dirs, bool casesensitive);;
 static int collstr(const CString & s1, const CString & s2, bool casesensitive);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
-		const DiffFileData * pDiffFileData);
+		const FolderCmp * pCmpData);
 static void AddToList(const CString & sLeftDir, const CString & sRightDir, const fentry * lent, const fentry * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
@@ -391,13 +393,15 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					pCtxt->m_nCompMethod != CMP_DATE_SIZE &&
 					pCtxt->m_nCompMethod != CMP_SIZE)
 				{
-					DiffFileData diffdata;
-					int diffCode = diffdata.prepAndCompareTwoFiles(pCtxt, di);
+					FolderCmp folderCmp;
+					//DiffFileData diffdata;
+					//int diffCode = diffdata.prepAndCompareTwoFiles(pCtxt, di);
+					int diffCode = folderCmp.prepAndCompareTwoFiles(pCtxt, di);
 					
 					// Add possible binary flag for unique items
 					if (diffCode & DIFFCODE::BIN)
 						di.diffcode |= DIFFCODE::BIN;
-					StoreDiffData(di, pCtxt, &diffdata);
+					StoreDiffData(di, pCtxt, &folderCmp);
 				}
 				else
 				{
@@ -465,10 +469,12 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			else
 			{
 				// Really compare
-				DiffFileData diffdata;
-				di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
+				//DiffFileData diffdata;
+				FolderCmp folderCmp;
+				//di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
+				di.diffcode |= folderCmp.prepAndCompareTwoFiles(pCtxt, di);
 				// report result back to caller
-				StoreDiffData(di, pCtxt, &diffdata);
+				StoreDiffData(di, pCtxt, &folderCmp);
 			}
 		}
 		else
@@ -607,27 +613,27 @@ static int collstr(const CString & s1, const CString & s2, bool casesensitive)
  * @brief Send one file or directory result back through the diff context
  */
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
-		const DiffFileData * pDiffFileData)
+		const FolderCmp * pCmpData)
 {
-	if (pDiffFileData)
+	if (pCmpData)
 	{
 		// Set text statistics
 		if (di.isSideLeftOrBoth())
-			di.left.m_textStats = pDiffFileData->m_textStats0;
+			di.left.m_textStats = pCmpData->m_diffFileData.m_textStats0;
 		if (di.isSideRightOrBoth())
-			di.right.m_textStats = pDiffFileData->m_textStats1;
+			di.right.m_textStats = pCmpData->m_diffFileData.m_textStats1;
 
-		di.nsdiffs = pDiffFileData->m_ndiffs;
-		di.nidiffs = pDiffFileData->m_ntrivialdiffs;
+		di.nsdiffs = pCmpData->m_ndiffs;
+		di.nidiffs = pCmpData->m_ntrivialdiffs;
 
 		if (!di.isSideLeftOnly())
 		{
-			di.right.encoding = pDiffFileData->m_FileLocation[1].encoding;
+			di.right.encoding = pCmpData->m_diffFileData.m_FileLocation[1].encoding;
 		}
 		
 		if (!di.isSideRightOnly())
 		{
-			di.left.encoding = pDiffFileData->m_FileLocation[0].encoding;
+			di.left.encoding = pCmpData->m_diffFileData.m_FileLocation[0].encoding;
 		}
 	}
 

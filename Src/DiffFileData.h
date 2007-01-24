@@ -14,9 +14,16 @@
 // forward declarations needed by DiffFileData
 struct file_data;
 class PrediffingInfo;
-struct DIFFITEM;
-class IAbortable;
 class CDiffContext;
+
+struct FileHandle
+{
+	FileHandle() : m_fp(0) { }
+	void Assign(FILE * fp) { Close(); m_fp = fp; }
+	void Close() { if (m_fp) { fclose(m_fp); m_fp = 0; } }
+	~FileHandle() { Close(); }
+	FILE * m_fp;
+};
 
 /**
  * @brief C++ container for the structure (file_data) used by diffutils' diff_2_files(...)
@@ -27,8 +34,6 @@ struct DiffFileData
 
 	static void SetDefaultCodepage(int defcp); // set codepage to assume for all unknown files
 
-// enums
-	enum { DIFFS_UNKNOWN=-1, DIFFS_UNKNOWN_QUICKCOMPARE=-9 };
 
 // instance interface
 
@@ -40,11 +45,6 @@ struct DiffFileData
 	void Close() { Reset(); }
 	void SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2);
 
-	int diffutils_compare_files(int depth);
-	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
-	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
-	BOOL Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, BOOL bMovedBlocks, int * bin_file);
 	bool Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
 		const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
 	void GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt);
@@ -58,8 +58,6 @@ struct DiffFileData
 	FileTextStats m_textStats0, m_textStats1;
 
 	CString m_sDisplayFilepath[2];
-	int m_ndiffs;
-	int m_ntrivialdiffs;
 	struct UniFileBom // detect unicode file and quess encoding
 	{
 		UniFileBom(int); // initialize from file descriptor

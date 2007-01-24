@@ -449,6 +449,10 @@ SOURCE=.\FilterList.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FolderCmp.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\GhostTextBuffer.cpp
 # End Source File
 # Begin Source File
@@ -1190,6 +1194,10 @@ SOURCE=.\FilterCommentsManager.h
 # Begin Source File
 
 SOURCE=.\FilterList.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FolderCmp.h
 # End Source File
 # Begin Source File
 
