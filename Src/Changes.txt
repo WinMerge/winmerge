@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1644785 ] 24bit icons for "Window" menu
   Based on icons by Alexander Skinner
   Src/res: cascade.bmp change_pane.bmp close.bmp horizontally.bmp vertically.bmp
+ PATCH: [ 1644800 ] 24bit "Goto" icon
+  Based on icons by Alexander Skinner
+  Src/res: go_to.bmp
 
 2007-01-24 Kimmo
  PATCH: [ 1642809 ] Move compare code out from DiffFileData
