@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-25 Tim
+ PATCH: [ 1644785 ] 24bit icons for "Window" menu
+  Based on icons by Alexander Skinner
+  Src/res: cascade.bmp change_pane.bmp close.bmp horizontally.bmp vertically.bmp
+
 2007-01-24 Kimmo
  PATCH: [ 1642809 ] Move compare code out from DiffFileData
   Src: DiffFileData.cpp DiffFileData.h DiffWrapper.cpp DirScan.cpp
