@@ -32,6 +32,8 @@
 #include <Shlwapi.h>		// PathFindFileName()
 #include "Merge.h"
 #include "CompareStats.h"
+#include "FilterList.h"
+#include "Ucs2Utf8.h"
 #include "DirDoc.h"
 #include "DirFrame.h"
 #include "diff.h"
@@ -267,6 +269,43 @@ CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory(CString 
 	return AllowUpwardDirectory::No;
 }
 
+void CDirDoc::LoadLineFilterList()
+{
+	ASSERT(m_pCtxt);
+	
+	BOOL bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	if (!bFilters)
+	{
+		delete m_pCtxt->m_pFilterList;
+		m_pCtxt->m_pFilterList = NULL;
+		return;
+	}
+
+	if (m_pCtxt->m_pFilterList)
+		m_pCtxt->m_pFilterList->RemoveAllFilters();
+	else
+		m_pCtxt->m_pFilterList = new FilterList();
+
+	CString filters = GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP);
+	char * regexp_str;
+	FilterList::EncodingType type;
+
+#ifdef UNICODE
+	regexp_str = UCS2UTF8_ConvertToUtf8(filters);
+	type = FilterList::ENC_UTF8;
+#else
+	regexp_str = filters.GetBuffer();
+#endif
+
+	m_pCtxt->m_pFilterList->AddRegExp(regexp_str, type);
+
+#ifdef UNICODE
+	UCS2UTF8_Dealloc(regexp_str);
+#else
+	filters.ReleaseBuffer();
+#endif
+}
+
 /**
  * @brief Perform directory comparison again from scratch
  */
@@ -294,6 +333,8 @@ void CDirDoc::Rescan()
 		m_pDirView->DeleteAllDisplayItems();
 		m_pCtxt->RemoveAll();
 	}
+
+	LoadLineFilterList();
 
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_bGuessEncoding = GetOptionsMgr()->GetBool(OPT_CP_DETECT);

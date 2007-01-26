@@ -30,11 +30,13 @@ public:
 	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
 	BOOL Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, BOOL bMovedBlocks, int * bin_file);
+	bool FolderCmp::RegExpFilter(int StartPos, int EndPos, int FileNo);
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
 
 	DiffFileData m_diffFileData;
+	CDiffContext * m_pCtx;
 };
 
 

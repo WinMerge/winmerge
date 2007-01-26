@@ -149,6 +149,8 @@ public:
 	const CompareStats * GetCompareStats() const { return m_pCompareStats; };
 
 protected:
+	void LoadLineFilterList();
+
 	CDiffWrapper m_diffWrapper;
 
 	// Generated message map functions

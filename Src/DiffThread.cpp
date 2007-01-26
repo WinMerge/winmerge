@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include "diffcontext.h"
+#include "FilterList.h"
 #include "diffthread.h"
 #include "diff.h"
 #include "DirScan.h"
@@ -82,37 +83,35 @@ public:
  * @brief Default constructor
  */
 CDiffThread::CDiffThread()
+: m_pDiffContext(NULL)
+, m_thread(NULL)
+, m_msgUpdateUI(0)
+, m_hWnd(0)
+, m_bAborting(FALSE)
 {
-	m_pDiffContext = NULL;
-	m_thread = NULL;
 	m_pDiffParm = new DiffFuncStruct;
 	m_pAbortgate = new DiffThreadAbortable(this);
-	m_msgUpdateUI = 0;
-	m_hWnd = 0;
-	m_bAborting = FALSE;
 }
 
 CDiffThread::~CDiffThread()
 {
 	delete m_pDiffParm;
 	delete m_pAbortgate;
-
 }
 
 /**
  * @brief Sets context pointer forwarded to thread
  */
-CDiffContext * CDiffThread::SetContext(CDiffContext * pCtx)
+void CDiffThread::SetContext(CDiffContext * pCtx)
 {
-	CDiffContext *pTempContext = m_pDiffContext;
 	m_pDiffContext = pCtx;
-	return pTempContext;
 }
 
 /**
  * @brief Start directory compare thread
  */
-UINT CDiffThread::CompareDirectories(CString dir1, CString dir2, BOOL bRecursive)
+UINT CDiffThread::CompareDirectories(const CString & dir1,
+		const CString & dir2, BOOL bRecursive)
 {
 	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 

@@ -28,6 +28,7 @@ class IDiffFilter;
 struct DIFFITEM;
 class CompareStats;
 class IAbortable;
+class FilterList;
 
 // Interface for reporting current file, as diff traverses file tree
 class IDiffStatus
@@ -56,6 +57,7 @@ class CDiffContext : public DiffItemList
 public:
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
+	~CDiffContext();
 
 	// add & remove differences
 	virtual void AddDiff(const DIFFITEM & di);
@@ -96,6 +98,7 @@ public:
 	CompareStats *m_pCompareStats; /**< Pointer to compare statistics */
 	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 	int m_nQuickCompareLimit; /**< Bigger files are always compared with quick compare */
+	FilterList * m_pFilterList; /**< Filter list for line filters */
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */

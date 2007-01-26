@@ -5,6 +5,9 @@ Add new items to top.
 2007-01-25 Kimmo
  PATCH: [ 1644668 ] Fix ANSI regexps
   Src: DiffWrapper.cpp FileFilterHelper.cpp FilterList.cpp FilterList.h
+ PATCH: [ 1644820 ] Implement post-compare linefilters for folder compare
+  Src: DiffContext.cpp DiffContext.h DiffThread.cpp DiffThread.h DirDoc.cpp
+   DirDoc.h FolderCmp.cpp FolderCmp.h
 
 2007-01-25 Tim
  PATCH: [ 1644785 ] 24bit icons for "Window" menu

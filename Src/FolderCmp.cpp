@@ -6,6 +6,7 @@
 
 #include "stdafx.h"
 #include "paths.h"
+#include "FilterList.h"
 #include "DiffContext.h"
 #include "DiffWrapper.h"
 #include "FileTransform.h"
@@ -46,6 +47,7 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	CString filepath1;
 	CString filepath2;
 	GetComparePaths(pCtxt, di, filepath1, filepath2);
+	m_pCtx = pCtxt;
 
 	// Reset text stats
 	m_diffFileData.m_textStats0.clear();
@@ -235,6 +237,69 @@ int FolderCmp::diffutils_compare_files(int depth)
 	// (usually it is -1 at this point, for unknown)
 	m_ndiffs = 0;
 	m_ntrivialdiffs = 0;
+
+	if (script && m_pCtx->m_pFilterList && m_pCtx->m_pFilterList->HasRegExps())
+	{
+		struct change *next = script;
+		struct change *thisob=0, *end=0;
+		
+		while (next)
+		{
+			/* Find a set of changes that belong together.  */
+			thisob = next;
+			end = find_change(next);
+			
+			/* Disconnect them from the rest of the changes,
+			making them a hunk, and remember the rest for next iteration.  */
+			next = end->link;
+			end->link = 0;
+#ifdef DEBUG
+			debug_script(thisob);
+#endif
+
+			{					
+				/* Determine range of line numbers involved in each file.  */
+				int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
+				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
+//				int op=0;
+				if (deletes || inserts || thisob->trivial)
+				{
+/*					if (deletes && inserts)
+						op = OP_DIFF;
+					else if (deletes)
+						op = OP_LEFTONLY;
+					else if (inserts)
+						op = OP_RIGHTONLY;
+					else
+						op = OP_TRIVIAL;
+*/					
+					/* Print the lines that the first file has.  */
+					int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
+					translate_range(&m_diffFileData.m_inf[0], first0, last0, &trans_a0, &trans_b0);
+					translate_range(&m_diffFileData.m_inf[1], first1, last1, &trans_a1, &trans_b1);
+
+					//Determine quantity of lines in this block for both sides
+					int QtyLinesLeft = (trans_b0 - trans_a0);
+					int QtyLinesRight = (trans_b1 - trans_a1);
+					
+					// Match lines against regular expression filters
+					// Our strategy is that every line in both sides must
+					// match regexp before we mark difference as ignored.
+					bool match2 = false;
+					bool match1 = RegExpFilter(thisob->line0, thisob->line0 + QtyLinesLeft, 0);
+					if (match1)
+						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, 1);
+					if (match1 && match2)
+						//op = OP_TRIVIAL;
+						thisob->trivial = 1;
+
+				}
+				/* Reconnect the script so it will all be freed properly.  */
+				end->link = next;
+			}
+		}
+	}
+
 
 	// Free change script (which we don't want)
 	if (script != NULL)
@@ -464,6 +529,47 @@ BOOL FolderCmp::Diff2Files(struct change ** diffs, int depth,
 		bRet = FALSE;
 	}
 	return bRet;
+}
+
+/**
+ * @brief Match regular expression list against given difference.
+ * This function matches the regular expression list against the difference
+ * (given as start line and end line). Matching the diff requires that all
+ * lines in difference match.
+ * @param [in] StartPos First line of the difference.
+ * @param [in] endPos Last line of the difference.
+ * @param [in] FileNo File to match.
+ * return true if any of the expressions matches.
+ */
+bool FolderCmp::RegExpFilter(int StartPos, int EndPos, int FileNo)
+{
+	if (m_pCtx->m_pFilterList == NULL)
+	{	
+		_RPTF0(_CRT_ERROR, "FolderCmp::RegExpFilter() called when "
+			"filterlist doesn't exist (=NULL)");
+		return false;
+	}
+
+	const char EolIndicators[] = "\r\n"; //List of characters used as EOL
+	bool linesMatch = true; // set to false when non-matching line is found.
+	int line = StartPos;
+
+	while (line <= EndPos && linesMatch == true)
+	{
+		std::string LineData(files[FileNo].linbuf[line]);
+		size_t EolPos = LineData.find_first_of(EolIndicators);
+		if (EolPos != std::string::npos)
+		{
+			LineData.erase(EolPos);
+		}
+
+		if (!m_pCtx->m_pFilterList->Match(LineData.c_str()))
+		{
+			linesMatch = false;
+		}
+		++line;
+	}
+	return linesMatch;
 }
 
 /**

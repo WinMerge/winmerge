@@ -51,8 +51,8 @@ public:
 // creation and use, called on main thread
 	CDiffThread();
 	~CDiffThread();
-	CDiffContext * SetContext(CDiffContext * pCtx);
-	UINT CompareDirectories(CString dir1, CString dir2,	BOOL bRecursive);
+	void SetContext(CDiffContext * pCtx);
+	UINT CompareDirectories(const CString & dir1, const CString & dir2, BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg, UINT statusMsg);
 	void SetCompareSelected(bool bSelected = false);
