@@ -34,10 +34,16 @@ struct filter_item
 class FilterList
 {
 public:
+	enum EncodingType
+	{
+		ENC_ANSI,
+		ENC_UTF8,
+	};
+	
 	FilterList();
 	~FilterList();
 	
-	void AddRegExp(const char *regularExpression);
+	void AddRegExp(const char *regularExpression, EncodingType encoding);
 	void RemoveAllFilters();
 	bool HasRegExps();
 	bool Match(const char *string);

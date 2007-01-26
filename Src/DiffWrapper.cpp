@@ -1149,7 +1149,6 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 	int line = StartPos;
 
 	while (line <= EndPos && linesMatch == true)
-	// for (int i = StartPos; i <= EndPos; i++)
 	{
 		std::string LineData(files[FileNo].linbuf[line]);
 		size_t EolPos = LineData.find_first_of(EolIndicators);
@@ -1396,18 +1395,32 @@ void CDiffWrapper::SetFilterList(const CString &filterStr)
 	m_pFilterList->RemoveAllFilters();
 	if (!filterStr.IsEmpty())
 	{
-		char * regexp_utf = UCS2UTF8_ConvertToUtf8(filterStr);
+		char * regexp_str;
+		FilterList::EncodingType type;
+		
+#ifdef UNICODE
+		regexp_str = UCS2UTF8_ConvertToUtf8(filterStr);
+		type = FilterList::ENC_UTF8;
+#else
+		CString tmp_str(filterStr);
+		regexp_str = tmp_str.GetBuffer();
+		type = FilterList::ENC_ANSI;
+#endif
 
 		// Add every "line" of regexps to regexp list
 		char * token;
 		const char sep[] = "\r\n";
-		token = strtok(regexp_utf, sep);
+		token = strtok(regexp_str, sep);
 		while (token)
 		{
-			m_pFilterList->AddRegExp(token);
+			m_pFilterList->AddRegExp(token, type);
 			token = strtok(NULL, sep);
 		}
-		UCS2UTF8_Dealloc(regexp_utf);
+#ifdef UNICODE
+		UCS2UTF8_Dealloc(regexp_str);
+#else
+		tmp_str.ReleaseBuffer();
+#endif
 	}
 }
 

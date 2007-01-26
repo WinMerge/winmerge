@@ -32,16 +32,24 @@ FilterList::~FilterList()
  * @brief Add new regular expression to the list.
  * This function adds new regular expression to the list of expressions.
  * The regular expression is compiled and studied for better performance.
- * @param [in] regularExpression Regular expression as UTF-8 string.
+ * @param [in] regularExpression Regular expression string.
+ * @param [in] encoding Expression encoding.
  */
-void FilterList::AddRegExp(const char * regularExpression)
+void FilterList::AddRegExp(const char * regularExpression, EncodingType encoding)
 {
 	filter_item item;
 	item.filterAsString = strdup(regularExpression);
 
 	const char * errormsg = NULL;
 	int erroroffset = 0;
-	pcre *regexp = pcre_compile(regularExpression, PCRE_UTF8, &errormsg,
+	int pcre_flags = 0;
+
+	if (encoding == ENC_UTF8)
+		pcre_flags |= PCRE_UTF8;
+	else if (encoding != ENC_ANSI)
+		_RPTF0(_CRT_ERROR, "Unregognized regexp encoding!");
+
+	pcre *regexp = pcre_compile(regularExpression, pcre_flags, &errormsg,
 		&erroroffset, NULL);
 	if (regexp)
 	{

@@ -207,9 +207,23 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 	m_sMask = strMask;
 	CString regExp = ParseExtensions(strMask);
 
-	char * regexp_utf = UCS2UTF8_ConvertToUtf8(regExp);
-	m_pMaskFilter->AddRegExp(regexp_utf);
-	UCS2UTF8_Dealloc(regexp_utf);
+	char * regexp_str;
+	FilterList::EncodingType type;
+
+#ifdef UNICODE
+	regexp_str = UCS2UTF8_ConvertToUtf8(regExp);
+	type = FilterList::ENC_UTF8;
+#else
+	regexp_str = regExp.GetBuffer();
+#endif
+
+	m_pMaskFilter->AddRegExp(regexp_str, type);
+
+#ifdef UNICODE
+	UCS2UTF8_Dealloc(regexp_str);
+#else
+	regExp.ReleaseBuffer();
+#endif
 }
 
 /**
