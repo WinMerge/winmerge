@@ -1403,7 +1403,7 @@ void CDiffWrapper::SetFilterList(const CString &filterStr)
 		type = FilterList::ENC_UTF8;
 #else
 		CString tmp_str(filterStr);
-		regexp_str = tmp_str.GetBuffer();
+		regexp_str = tmp_str.LockBuffer();
 		type = FilterList::ENC_ANSI;
 #endif
 
@@ -1419,7 +1419,7 @@ void CDiffWrapper::SetFilterList(const CString &filterStr)
 #ifdef UNICODE
 		UCS2UTF8_Dealloc(regexp_str);
 #else
-		tmp_str.ReleaseBuffer();
+		tmp_str.UnlockBuffer();
 #endif
 	}
 }

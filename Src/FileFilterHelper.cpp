@@ -214,7 +214,8 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 	regexp_str = UCS2UTF8_ConvertToUtf8(regExp);
 	type = FilterList::ENC_UTF8;
 #else
-	regexp_str = regExp.GetBuffer();
+	regexp_str = regExp.LockBuffer();
+	type = FilterList::ENC_ANSI;
 #endif
 
 	m_pMaskFilter->AddRegExp(regexp_str, type);
@@ -222,7 +223,7 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 #ifdef UNICODE
 	UCS2UTF8_Dealloc(regexp_str);
 #else
-	regExp.ReleaseBuffer();
+	regExp.UnlockBuffer();
 #endif
 }
 
