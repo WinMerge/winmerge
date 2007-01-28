@@ -2,6 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-28 Jochen
+ Merge7z DllBuild 0019 - Unassociate .exe filename extension from NSIS format
+  ArchiveSupport/Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt
+ Support 7-Zip versions 4.43 & 4.44
+  ArchiveSupport/Merge7z new files: Merge7z443.dsp Merge7z444.dsp
+  ArchiveSupport/Merge7zInstaller: Files.rc2
+
 2007-01-28 Takashi
  PATCH: [ 1640741 ] patch for BUG:[ 1635100 ] Inefficient word-wrap code
   Src: MergeEditView.cpp MergeEditView.h
