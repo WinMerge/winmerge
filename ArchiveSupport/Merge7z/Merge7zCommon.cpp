@@ -38,6 +38,8 @@ DATE:		BY:					DESCRIPTION:
 2005/11/19	Jochen Tucht		Minor changes to build against 7z430 beta
 2006/06/28	Jochen Neubeck		Add ISO format (introduced with 7z436 beta)
 								Add NSIS format (introduced with 7z440 beta)
+2007/01/27	Jochen Neubeck		Unassociate .exe filename extension from NSIS
+								format due to undesired side effect on WinMerge
 */
 
 #include "stdafx.h"
@@ -639,7 +641,7 @@ DEFINE_FORMAT(CZHandler,		"Z.DLL",		"z", "@\x1F\x9D");
 DEFINE_FORMAT(CZipHandler,		"ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");
 DEFINE_FORMAT(CChmHandler,		"CHM.DLL",		"chm chi chq chw hxs hxi hxr hxq hxw lit", "@ITSF");
 DEFINE_FORMAT(CIsoHandler,		"ISO.DLL",		"iso", "");
-DEFINE_FORMAT(CNsisHandler,		"NSIS.DLL",		"exe", "@@@@@\xEF\xBE\xAD\xDENullsoftInst");
+DEFINE_FORMAT(CNsisHandler,		"NSIS.DLL",		"", "@@@@@\xEF\xBE\xAD\xDENullsoftInst");
 
 /**
  * @brief Construct Merge7z interface.

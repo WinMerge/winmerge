@@ -48,3 +48,5 @@ VERSION(2,2)
 "*"//2006/06/28	Jochen Neubeck	Add ISO format (introduced with 7z436 beta)
 //								Add NSIS format (introduced with 7z440 beta)
 //								Avoid to occasionally prompt for password twice
+"*"//2007/01/27	Jochen Neubeck	Unassociate .exe filename extension from NSIS
+//								format due to undesired side effect on WinMerge

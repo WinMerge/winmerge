@@ -10,7 +10,7 @@
 #include "7zip/Common/FileStreams.h"
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 18
+#define DllBuild_Merge7z 19
 #define DLLPSTUB /##/
 #include "Merge7z.h"
 
