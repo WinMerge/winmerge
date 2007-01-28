@@ -167,6 +167,7 @@ public:
 		CCrystalTextView::GetLineBySubLine(nSubLineIndex, nLine, nSubLine);
 	}
 	virtual int GetEmptySubLines( int nLineIndex );
+	virtual void InvalidateSubLineIndexCache( int nLineIndex );
 	void RepaintLocationPane();
 	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);
 	bool SetPredifferByName(const CString & prediffer);

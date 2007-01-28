@@ -2860,6 +2860,24 @@ int CMergeEditView::GetEmptySubLines( int nLineIndex )
 }
 
 /**
+ * @brief Invalidate sub line index cache from the specified index to the end of file.
+ * @param [in] nLineIndex Index of the first line to invalidate 
+ */
+void CMergeEditView::InvalidateSubLineIndexCache( int nLineIndex )
+{
+	CMergeDoc * pDoc = GetDocument();
+	ASSERT(pDoc != NULL);
+
+    // We have to invalidate sub line index cache on both panes.
+	for (int nPane = 0; nPane < 2; nPane++) 
+	{
+		CMergeEditView *pView = pDoc->GetView(nPane);
+		if (pView)
+			pView->CCrystalTextView::InvalidateSubLineIndexCache( nLineIndex );
+	}
+}
+
+/**
  * @brief Swap the positions of the two panes
  */
 void CMergeEditView::OnViewSwapPanes()

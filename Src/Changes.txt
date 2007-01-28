@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-28 Takashi
+ PATCH: [ 1640741 ] patch for BUG:[ 1635100 ] Inefficient word-wrap code
+  Src: MergeEditView.cpp MergeEditView.h
+  Src/edtlib: ccrystaltextview.cpp ccrystaltextview.h
+
 2007-01-27 Takashi
  PATCH: [ 1644668 ] Fix ANSI regexps(2)
   Src: DiffWrapper.cpp FileFilterHelper.cpp FilterList.cpp

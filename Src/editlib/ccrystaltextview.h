@@ -128,6 +128,8 @@ private :
     initialize the member objects. This would destroy a CArray object.
     */
     CArray<int, int> *m_panSubLines;
+    CArray<int, int> *m_panSubLineIndexCache;
+    int m_nLastLineIndexCalculatedSubLineIndex;
     //END SW
 
     int m_nMaxLineLength;
@@ -539,6 +541,7 @@ protected:
 	-1 (default) all lines from nLineIndex1 to the end are invalidated.
 	*/
 	virtual void InvalidateLineCache( int nLineIndex1, int nLineIndex2 );
+	virtual void InvalidateSubLineIndexCache( int nLineIndex1 );
 	void InvalidateScreenRect();
 	//END SW
 

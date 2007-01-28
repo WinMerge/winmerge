@@ -490,8 +490,11 @@ CCrystalTextView::CCrystalTextView ()
   m_bBookmarkExist = FALSE;
   //BEGIN SW
   m_panSubLines = new CArray<int, int>();
+  m_panSubLineIndexCache = new CArray<int, int>();
   ASSERT( m_panSubLines );
+  ASSERT( m_panSubLineIndexCache );
   m_panSubLines->SetSize( 0, 4096 );
+  m_panSubLineIndexCache->SetSize( 0, 4096 );
 
   m_pstrIncrementalSearchString = new CString;
   ASSERT( m_pstrIncrementalSearchString );
@@ -506,6 +509,8 @@ CCrystalTextView::CCrystalTextView ()
   m_bRememberLastPos = false;
 
   m_pColors = NULL;
+
+  m_nLastLineIndexCalculatedSubLineIndex = -1;
 }
 
 CCrystalTextView::~CCrystalTextView ()
@@ -534,6 +539,11 @@ CCrystalTextView::~CCrystalTextView ()
     {
       delete m_panSubLines;
       m_panSubLines = NULL;
+    }
+  if( m_panSubLineIndexCache )
+    {
+      delete m_panSubLineIndexCache;
+      m_panSubLineIndexCache = NULL;
     }
   if( m_pstrIncrementalSearchString )
     {
@@ -1279,6 +1289,9 @@ void CCrystalTextView::WrapLineCached(
 
 void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*= -1*/ )
 {
+  // invalidate cached sub line index
+  InvalidateSubLineIndexCache( nLineIndex1 );
+
   // invalidate cached sub line count
 
   if( nLineIndex2 == -1 && nLineIndex1 < m_panSubLines->GetSize() )
@@ -1303,6 +1316,16 @@ void CCrystalTextView::InvalidateLineCache( int nLineIndex1, int nLineIndex2 /*=
       if( i >= 0 && i < m_panSubLines->GetSize() )
         (*m_panSubLines)[i] = -1;
   }
+}
+
+/**
+ * @brief Invalidate sub line index cache from the specified index to the end of file.
+ * @param [in] nLineIndex Index of the first line to invalidate 
+ */
+void CCrystalTextView::InvalidateSubLineIndexCache( int nLineIndex )
+{
+  if (m_nLastLineIndexCalculatedSubLineIndex > nLineIndex)
+    m_nLastLineIndexCalculatedSubLineIndex = nLineIndex - 1;
 }
 
 /**
@@ -2798,12 +2821,9 @@ int CCrystalTextView::GetSubLineCount()
     return nLineCount;
 
   // calculate number of sub lines
-  int nSubLineCount = 0;
-
-  for( int i = 0; i < nLineCount; i++ )
-    nSubLineCount+= GetSubLines( i );
-
-  return nSubLineCount;
+  if (nLineCount <= 0)
+      return 0;
+  return CCrystalTextView::GetSubLineIndex( nLineCount - 1 ) + GetSubLines( nLineCount - 1 );
 }
 
 int CCrystalTextView::GetSubLineIndex( int nLineIndex )
@@ -2819,8 +2839,26 @@ int CCrystalTextView::GetSubLineIndex( int nLineIndex )
   if( nLineIndex >= nLineCount )
     nLineIndex = nLineCount - 1;
 
-  for( int i = 0; i < nLineIndex; i++ )
-    nSubLineCount+= GetSubLines( i );
+  // return cached subline index of the line if it is already cached.
+  if (nLineIndex <= m_nLastLineIndexCalculatedSubLineIndex)
+    return (*m_panSubLineIndexCache)[nLineIndex];
+
+  // calculate subline index of the line and cache it.
+  if (m_nLastLineIndexCalculatedSubLineIndex >= 0)
+    nSubLineCount = (*m_panSubLineIndexCache)[m_nLastLineIndexCalculatedSubLineIndex];
+  else
+    {
+      m_nLastLineIndexCalculatedSubLineIndex = 0;
+      m_panSubLineIndexCache->SetAtGrow( 0, 0 );
+    }
+
+  for( int i = m_nLastLineIndexCalculatedSubLineIndex; i < nLineIndex; i++ )
+    {
+      m_panSubLineIndexCache->SetAtGrow( i, nSubLineCount);
+      nSubLineCount+= GetSubLines( i );
+    }
+  m_panSubLineIndexCache->SetAtGrow( nLineIndex, nSubLineCount);
+  m_nLastLineIndexCalculatedSubLineIndex = nLineIndex;
 
   return nSubLineCount;
 }
