@@ -79,14 +79,13 @@ CDirDoc::CDirDoc()
 {
 	DIFFOPTIONS options = {0};
 
-	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
-	m_diffWrapper.SetOptions(&options);
+	m_diffOptions.SetFromDiffOptions(options);
 }
 
 /**
@@ -344,6 +343,7 @@ void CDirDoc::Rescan()
 	m_pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 	m_pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
 	m_pCtxt->m_pCompareStats = m_pCompareStats;
+	m_diffOptions.SetToDiffUtils();
 
 	// Set total items count since we don't collect items
 	if (m_bMarkedRescan)
@@ -365,8 +365,6 @@ void CDirDoc::Rescan()
 	// Empty display before new compare
 	m_pDirView->DeleteAllDisplayItems();
 
-	m_diffWrapper.StartDirectoryDiff();
-	
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
@@ -723,7 +721,6 @@ void CDirDoc::CompareReady()
 	delete m_statusCursor;
 	m_statusCursor = NULL;
 
-	m_diffWrapper.EndDirectoryDiff();
 }
 
 /**
@@ -735,16 +732,15 @@ void CDirDoc::CompareReady()
  */
 void CDirDoc::RefreshOptions()
 {
-	DIFFOPTIONS options;
+	DIFFOPTIONS options = {0};
 
-	m_diffWrapper.SetDetectMovedBlocks(GetOptionsMgr()->GetBool(OPT_CMP_MOVED_BLOCKS));
 	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
 	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
 	options.bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
 	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
 	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
 
-	m_diffWrapper.SetOptions(&options);
+	m_diffOptions.SetFromDiffOptions(options);
 	if (m_pDirView)
 		m_pDirView->RefreshOptions();
 }

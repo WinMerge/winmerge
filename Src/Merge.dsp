@@ -225,6 +225,10 @@ SOURCE=.\ColorButton.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\CompareOptions.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CompareStatisticsDlg.cpp
 # End Source File
 # Begin Source File

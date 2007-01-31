@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-01-31 Kimmo
+ PATCH: [ 1648182 ] Separate Compare options from DiffWrapper
+  Src: CompareOptions.h DiffWrapper.h DirDoc.cpp DirDoc.h Merge.dsp
+  Src new file: CompareOptions.cpp
+
 2007-01-28 Jochen
  Merge7z DllBuild 0019 - Unassociate .exe filename extension from NSIS format
   ArchiveSupport/Merge7z: Merge7zCommon.cpp Merge7zCommon.h revision.txt

@@ -33,6 +33,10 @@
 #include "FileTextStats.h"
 #endif
 
+#ifndef CompareOptions_h_included
+#include "CompareOptions.h"
+#endif
+
 class CDiffContext;
 class PrediffingInfo;
 struct DIFFRANGE;
@@ -107,44 +111,6 @@ enum COMPARE_TYPE
 	CMP_DATE,
 	CMP_DATE_SIZE,
 	CMP_SIZE,
-};
-
-/**
- * @brief Patch styles
- *
- * Diffutils can output patch in these formats.
- * @note We really use only first three types (normal + context formats).
- */
-enum DIFF_OUTPUT_TYPE
-{
-	/**< Default output style.  */
-	DIFF_OUTPUT_NORMAL,
-	/**< Output the differences with lines of context before and after (-c).  */
-	DIFF_OUTPUT_CONTEXT,
-	/**< Output the differences in a unified context diff format (-u). */
-	DIFF_OUTPUT_UNIFIED,
-	/**< Output the differences as commands suitable for `ed' (-e).  */
-	DIFF_OUTPUT_ED,
-	/**< Output the diff as a forward ed script (-f).  */
-	DIFF_OUTPUT_FORWARD_ED,
-	/**< Like -f, but output a count of changed lines in each "command" (-n). */
-	DIFF_OUTPUT_RCS,
-	/**< Output merged #ifdef'd file (-D).  */
-	DIFF_OUTPUT_IFDEF,
-	/**< Output sdiff style (-y).  */
-	DIFF_OUTPUT_SDIFF
-};
-
-/**
- * @brief Diffutils options users of this class must use
- */
-struct DIFFOPTIONS
-{
-	int nIgnoreWhitespace; /**< Ignore whitespace -option. */
-	BOOL bIgnoreCase; /**< Ignore case -option. */
-	BOOL bIgnoreBlankLines; /**< Ignore blank lines -option. */
-	BOOL bIgnoreEol; /**< Ignore EOL differences -option. */
-	BOOL bFilterCommentsLines; /**< Ignore Multiline comments differences -option. */
 };
 
 /**

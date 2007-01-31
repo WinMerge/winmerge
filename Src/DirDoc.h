@@ -31,7 +31,6 @@
 #pragma once
 
 #include "diffThread.h"
-#include "DiffWrapper.h"
 
 #ifndef PluginManager_h_included
 #include "PluginManager.h"
@@ -151,8 +150,6 @@ public:
 protected:
 	void LoadLineFilterList();
 
-	CDiffWrapper m_diffWrapper;
-
 	// Generated message map functions
 	//{{AFX_MSG(CDirDoc)
 		// NOTE - the ClassWizard will add and remove member functions here.
@@ -174,6 +171,7 @@ private:
 	PluginManager m_pluginman;
 	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
 	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
+	DiffutilsOptions m_diffOptions; /**< Compare options for folder compare */
 };
 
 //{{AFX_INSERT_LOCATION}}
