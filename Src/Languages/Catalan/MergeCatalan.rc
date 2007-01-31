@@ -178,7 +178,7 @@ BEGIN
     POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Reinicialitza les opcions",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -286,7 +286,7 @@ BEGIN
     POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Reinicialitza les opcions",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -449,7 +449,7 @@ BEGIN
     POPUP "&Depuració"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Carrega la configuració...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Reinicialitza les opcions",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
@@ -1133,7 +1133,7 @@ BEGIN
                     7,80,221,10
     CONTROL         "&Habilita detecció de blocs desplaçats",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
+    CONTROL         "Em&parella les línies similars",IDC_MATCH_SIMILAR_LINES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
     LTEXT           "Mètode de comparació de &fitxers:",IDC_STATIC,7,115,113,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,120,113,110,70,CBS_DROPDOWNLIST |
@@ -1141,7 +1141,7 @@ BEGIN
     CONTROL         "&Atura després de la primera diferència",IDC_COMPARE_STOPFIRST,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,130,202,10
     GROUPBOX        "Comentaris",IDC_STATIC,7,144,221,32
-    CONTROL         "Filtra els comentaris",IDC_FILTERCOMMENTS_CHECK,"Button",
+    CONTROL         "&Filtra els comentaris",IDC_FILTERCOMMENTS_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,15,157,205,10
     PUSHBUTTON      "Predeterminats",IDC_COMPARE_DEFAULTS,7,189,63,14
 END
@@ -1167,7 +1167,7 @@ BEGIN
                     BS_AUTORADIOBUTTON,128,62,94,10
     GROUPBOX        "Acoloriment de diferència de línia",IDC_LINE_COLORING_GROUP,7,87,
                     221,61
-    CONTROL         "Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
+    CONTROL         "&Veure les diferències de la línia",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,98,128,8
     CONTROL         "Nivell de &caràcter",IDC_EDITOR_CHARLEVEL,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,14,108,138,10
@@ -1210,14 +1210,14 @@ BEGIN
                     ES_READONLY
     CONTROL         "&Desa-hi els canvis",IDC_SAVECLOSING_SAVELEFT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,36,230,10
-    CONTROL         "D&escarta els canvis",IDC_SAVECLOSING_DISCARDLEFT,"Button",
+    CONTROL         "D&escarta'n els canvis",IDC_SAVECLOSING_DISCARDLEFT,"Button",
                     BS_AUTORADIOBUTTON,16,46,230,10
     GROUPBOX        "Fitxer del costat dret",IDC_SAVECLOSING_RIGHTFRAME,7,70,248,55
     EDITTEXT        IDC_SAVECLOSING_RIGHTFILE,16,82,230,14,ES_AUTOHSCROLL |
                     ES_READONLY
     CONTROL         "De&sa-hi els canvis",IDC_SAVECLOSING_SAVERIGHT,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,16,99,230,10
-    CONTROL         "Des&carta els canvis",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
+    CONTROL         "Des&carta'n els canvis",IDC_SAVECLOSING_DISCARDRIGHT,"Button",
                     BS_AUTORADIOBUTTON,16,109,230,10
     PUSHBUTTON      "Descarta-ho tot",IDC_SAVECLOSING_DISCARDALL,7,133,65,14
     DEFPUSHBUTTON   "D'acord",IDOK,149,133,50,14
@@ -1987,7 +1987,7 @@ BEGIN
     IDS_OPTIONS_INVALID_TABSIZE 
                             "El valor del camp de la mida de les tabulacions no és dins el rang que accepta el WinMerge.\n\nUseu valors entre 1 i %1."
     IDS_RESET_OPTIONS_WARNING 
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
+                            "Esteu segure que voleu reinicialitzar totes les opcions del WinMerge als valors predeterminats?\n\nReinicieu el WinMerge després de la reinicialització."
 END
 
 // BROWSE FILE
@@ -2302,8 +2302,8 @@ BEGIN
     IDS_ABORTED_ITEM        "Element avortat"
     IDS_FILE_SKIPPED        "Fitxer omès"
     IDS_DIR_SKIPPED         "Directori omès"
-    IDS_LEFT_ONLY_IN_FMT    "Left only: %1"
-    IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
+    IDS_LEFT_ONLY_IN_FMT    "Només esquerra: %1"
+    IDS_RIGHT_ONLY_IN_FMT   "Només dreta: %1"
     IDS_BIN_FILES_SAME      "Els fitxers binaris són idèntics"
     IDS_IDENTICAL           "Idèntics"
     IDS_BIN_FILES_DIFF      "Els fitxers binaris són diferents"

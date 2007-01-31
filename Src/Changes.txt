@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1648182 ] Separate Compare options from DiffWrapper
   Src: CompareOptions.h DiffWrapper.h DirDoc.cpp DirDoc.h Merge.dsp
   Src new file: CompareOptions.cpp
+ PATCH: [ 1646638 ] Catalan translation update
+  Submitted by Jordi Vilar
+   Src/Languages/Catalan: MergeCatalan.rc
 
 2007-01-28 Jochen
  Merge7z DllBuild 0019 - Unassociate .exe filename extension from NSIS format
