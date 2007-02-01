@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-01 WinMerge experimental release 2.7.1.6 (SVN revision 4094)
+
 2007-02-01 Kimmo
  PATCH: [ 1636314 ] Fix limiting to single file compare window (2)
   Fix from Takashi
