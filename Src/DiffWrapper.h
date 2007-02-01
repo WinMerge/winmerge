@@ -137,27 +137,6 @@ struct DIFFSTATUS
 	DIFFSTATUS() { memset(this, 0, sizeof(*this)); } // start out with all flags clear
 };
 
-/**
- * @brief Internally used diffutils options.
- */
-struct DIFFSETTINGS
-{
-	enum output_style outputStyle; /**< Output style (for patch files) */
-	int context; /**< Number of context lines (for patch files) */
-	int alwaysText;
-	int horizLines;
-	int ignoreSpaceChange;
-	int ignoreAllSpace;
-	int ignoreBlankLines; /**< Ignore blank lines (both sides) */
-	int filterCommentsLines;/**< Ignore Multiline comments differences.*/	
-	int ignoreCase; /**< Ignore case differences? */
-	int ignoreEOLDiff; /**< Ignore EOL style differences? */
-	int ignoreSomeChanges;
-	int lengthVaries;
-	int heuristic;
-	int recursive; /**< Recurse to subfolders? (not used) */
-};
-
 class FilterCommentsManager;
 
 /**
@@ -176,7 +155,7 @@ public:
 	void SetCreatePatchFile(const CString &filename);
 	void SetCreateDiffList(DiffList *diffList);
 	void SetDiffList(DiffList *diffList);
-	void GetOptions(DIFFOPTIONS *options) const;
+	void GetOptions(DIFFOPTIONS *options);
 	void SetOptions(const DIFFOPTIONS *options);
 	void SetTextForAutomaticPrediff(const CString &text);
 	void SetPrediffer(PrediffingInfo * prediffer =NULL);
@@ -191,17 +170,11 @@ public:
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
-	void StartDirectoryDiff();
-	void EndDirectoryDiff();
 	MovedLines * GetMovedLines() { return m_pMovedLines; }
 	void SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2);
 	void SetFilterList(const CString &filterStr);
 
 protected:
-	void InternalGetOptions(DIFFOPTIONS *options) const;
-	void InternalSetOptions(const DIFFOPTIONS *options);
-	void SwapToInternalSettings();
-	void SwapToGlobalSettings();
 	CString FormatSwitchString();
 	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file);
@@ -210,8 +183,7 @@ protected:
 	bool RegExpFilter(int StartPos, int EndPos, int FileNo);
 
 private:
-	DIFFSETTINGS m_settings; /**< Compare settings for current compare */
-	DIFFSETTINGS m_globalSettings; /**< Global compare settings */
+	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	FilterList * m_pFilterList; /**< List of linefilters. */
 	CString m_s1File; /**< Full path to first diff'ed file. */

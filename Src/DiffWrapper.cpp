@@ -41,7 +41,6 @@
 #include "paths.h"
 #include "CompareOptions.h"
 #include "FileTextStats.h"
-//#include "DiffFileData.h"
 #include "FolderCmp.h"
 #include "FilterCommentsManager.h"
 
@@ -91,13 +90,7 @@ CDiffWrapper::CDiffWrapper()
 , m_pMovedLines(NULL)
 , m_pFilterList(NULL)
 {
-	ZeroMemory(&m_settings, sizeof(DIFFSETTINGS));
-	ZeroMemory(&m_globalSettings, sizeof(DIFFSETTINGS));
 	ZeroMemory(&m_status, sizeof(DIFFSTATUS));
-	m_settings.heuristic = 1;
-	m_settings.outputStyle = OUTPUT_NORMAL;
-	m_settings.context = -1;
-
 	// character that ends a line.  Currently this is always `\n'
 	line_end_char = '\n';
 }
@@ -161,10 +154,13 @@ void CDiffWrapper::SetCreateDiffList(DiffList *diffList)
  * format used outside CDiffWrapper and returns them.
  * @param [in,out] options Pointer to structure getting used options.
  */
-void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
+void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
 {
 	ASSERT(options);
-	InternalGetOptions(options);
+	DIFFOPTIONS tmpOptions = {0};
+	m_options.GetAsDiffOptions(tmpOptions);
+	*options = tmpOptions;
+//	InternalGetOptions(options);
 }
 
 /**
@@ -176,7 +172,8 @@ void CDiffWrapper::GetOptions(DIFFOPTIONS *options) const
 void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
 	ASSERT(options);
-	InternalSetOptions(options);
+	m_options.SetFromDiffOptions(*options);
+//	InternalSetOptions(options);
 }
 
 /**
@@ -210,8 +207,24 @@ void CDiffWrapper::GetPrediffer(PrediffingInfo * prediffer)
 void CDiffWrapper::SetPatchOptions(const PATCHOPTIONS *options)
 {
 	ASSERT(options);
-	m_settings.context = options->nContext;
-	m_settings.outputStyle = options->outputStyle;
+	m_options.m_contextLines = options->nContext;
+
+	switch (options->outputStyle)
+	{
+	case OUTPUT_NORMAL:
+		m_options.m_outputStyle = DIFF_OUTPUT_NORMAL;
+		break;
+	case OUTPUT_CONTEXT:
+		m_options.m_outputStyle = DIFF_OUTPUT_CONTEXT;
+		break;
+	case OUTPUT_UNIFIED:
+		m_options.m_outputStyle = DIFF_OUTPUT_UNIFIED;
+		break;
+	default:
+		_RPTF0(_CRT_ERROR, "Unknown output style!");
+		break;
+	}
+
 	m_bAddCmdLine = options->bAddCommandline;
 }
 
@@ -653,7 +666,9 @@ BOOL CDiffWrapper::RunFileDiff()
 	USES_CONVERSION;
 	CString strFile1Temp = filepath1;
 	CString strFile2Temp = filepath2;
-	SwapToInternalSettings();
+	
+	m_options.SetToDiffUtils();
+	//SwapToInternalSettings();
 
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
@@ -800,112 +815,8 @@ BOOL CDiffWrapper::RunFileDiff()
 		strFile2Temp.Empty();
 	}
 
-	SwapToGlobalSettings();
+//	SwapToGlobalSettings();
 	return bRet;
-}
-
-/**
- * @brief Return current diffutils options
- */
-void CDiffWrapper::InternalGetOptions(DIFFOPTIONS *options) const
-{
-	int nIgnoreWhitespace = 0;
-
-	if (m_settings.ignoreAllSpace)
-		nIgnoreWhitespace = WHITESPACE_IGNORE_ALL;
-	else if (m_settings.ignoreSpaceChange)
-		nIgnoreWhitespace = WHITESPACE_IGNORE_CHANGE;
-
-	options->nIgnoreWhitespace = nIgnoreWhitespace;
-	options->bIgnoreBlankLines = m_settings.ignoreBlankLines;
-	options->bFilterCommentsLines = m_settings.filterCommentsLines;
-	options->bIgnoreCase = m_settings.ignoreCase;
-	options->bIgnoreEol = m_settings.ignoreEOLDiff;
-
-}
-
-/**
- * @brief Set diffutils options
- */
-void CDiffWrapper::InternalSetOptions(const DIFFOPTIONS *options)
-{
-	m_settings.ignoreAllSpace = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_ALL);
-	m_settings.ignoreSpaceChange = (options->nIgnoreWhitespace == WHITESPACE_IGNORE_CHANGE);
-	m_settings.ignoreBlankLines = options->bIgnoreBlankLines;
-	m_settings.filterCommentsLines = options->bFilterCommentsLines;
-	m_settings.ignoreEOLDiff = options->bIgnoreEol;
-	m_settings.ignoreCase = options->bIgnoreCase;
-	m_settings.ignoreSomeChanges = (options->nIgnoreWhitespace != WHITESPACE_COMPARE_ALL) ||
-		options->bIgnoreCase || options->bIgnoreBlankLines ||
-		options->bIgnoreEol;
-	m_settings.lengthVaries = (options->nIgnoreWhitespace != WHITESPACE_COMPARE_ALL);
-}
-
-/**
- * @brief Replaces global options used by diff-engine with options in diff-wrapper
- */
-void CDiffWrapper::SwapToInternalSettings()
-{
-	// Save current settings to temp variables
-	m_globalSettings.outputStyle = output_style;
-	output_style = m_settings.outputStyle;
-	
-	m_globalSettings.context = context;
-	context = m_settings.context;
-	
-	m_globalSettings.alwaysText = always_text_flag;
-	always_text_flag = m_settings.alwaysText;
-
-	m_globalSettings.horizLines = horizon_lines;
-	horizon_lines = m_settings.horizLines;
-
-	m_globalSettings.ignoreSpaceChange = ignore_space_change_flag;
-	ignore_space_change_flag = m_settings.ignoreSpaceChange;
-
-	m_globalSettings.ignoreAllSpace = ignore_all_space_flag;
-	ignore_all_space_flag = m_settings.ignoreAllSpace;
-
-	m_globalSettings.ignoreBlankLines = ignore_blank_lines_flag;
-	ignore_blank_lines_flag = m_settings.ignoreBlankLines;
-
-	m_globalSettings.ignoreCase = ignore_case_flag;
-	ignore_case_flag = m_settings.ignoreCase;
-
-	m_globalSettings.ignoreEOLDiff = ignore_eol_diff;
-	ignore_eol_diff = m_settings.ignoreEOLDiff;
-
-	m_globalSettings.ignoreSomeChanges = ignore_some_changes;
-	ignore_some_changes = m_settings.ignoreSomeChanges;
-
-	m_globalSettings.lengthVaries = length_varies;
-	length_varies = m_settings.lengthVaries;
-
-	m_globalSettings.heuristic = heuristic;
-	heuristic = m_settings.heuristic;
-
-	m_globalSettings.recursive = recursive;
-	recursive = m_settings.recursive;
-}
-
-/**
- * @brief Resumes global options as they were before calling SwapToInternalOptions()
- */
-void CDiffWrapper::SwapToGlobalSettings()
-{
-	// Resume values
-	output_style = m_globalSettings.outputStyle;
-	context = m_globalSettings.context;
-	always_text_flag = m_globalSettings.alwaysText;
-	horizon_lines = m_globalSettings.horizLines;
-	ignore_space_change_flag = m_globalSettings.ignoreSpaceChange;
-	ignore_all_space_flag = m_globalSettings.ignoreAllSpace;
-	ignore_blank_lines_flag = m_globalSettings.ignoreBlankLines;
-	ignore_case_flag = m_globalSettings.ignoreCase;
-	ignore_eol_diff = m_globalSettings.ignoreEOLDiff;
-	ignore_some_changes = m_globalSettings.ignoreSomeChanges;
-	length_varies = m_globalSettings.lengthVaries;
-	heuristic = m_globalSettings.heuristic;
-	recursive = m_globalSettings.recursive;
 }
 
 /**
@@ -997,7 +908,7 @@ CString CDiffWrapper::FormatSwitchString()
 	CString switches;
 	TCHAR tmpNum[5] = {0};
 	
-	switch (m_settings.outputStyle)
+	switch (m_options.m_outputStyle)
 	{
 	case OUTPUT_CONTEXT:
 		switches = _T(" C");
@@ -1025,22 +936,22 @@ CString CDiffWrapper::FormatSwitchString()
 		break;
 	}
 
-	if (m_settings.context > 0)
+	if (m_options.m_contextLines > 0)
 	{
-		_itot(m_settings.context, tmpNum, 10);
+		_itot(m_options.m_contextLines, tmpNum, 10);
 		switches += tmpNum;
 	}
 
-	if (m_settings.ignoreAllSpace > 0)
+	if (ignore_all_space_flag > 0)
 		switches += _T("w");
 
-	if (m_settings.ignoreBlankLines > 0)
+	if (ignore_blank_lines_flag > 0)
 		switches += _T("B");
 
-	if (m_settings.ignoreCase > 0)
+	if (ignore_case_flag > 0)
 		switches += _T("i");
 
-	if (m_settings.ignoreSpaceChange > 0)
+	if (ignore_space_change_flag > 0)
 		switches += _T("b");
 
 	return switches;
@@ -1054,22 +965,6 @@ BOOL CDiffWrapper::SetAppendFiles(BOOL bAppendFiles)
 	BOOL temp = m_bAppendFiles;
 	m_bAppendFiles = bAppendFiles;
 	return temp;
-}
-
-/**
- * @brief Sets options for directory compare
- */
-void CDiffWrapper::StartDirectoryDiff()
-{
-	SwapToInternalSettings();
-}
-
-/**
- * @brief resumes options after directory compare
- */
-void CDiffWrapper::EndDirectoryDiff()
-{
-	SwapToGlobalSettings();
 }
 
 /**

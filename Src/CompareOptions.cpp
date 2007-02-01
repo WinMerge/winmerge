@@ -128,3 +128,31 @@ void DiffutilsOptions::SetToDiffUtils()
 	heuristic = 1;
 	recursive = 0;
 }
+
+/**
+ * @brief Gets options to DIFFOPTIONS structure.
+ * @param [out] options Diffutils options.
+ */
+void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options)
+{
+	options.bFilterCommentsLines = m_filterCommentsLines;
+	options.bIgnoreBlankLines = m_bIgnoreBlankLines;
+	options.bIgnoreCase = m_bIgnoreCase;
+	options.bIgnoreEol = m_bIgnoreEOLDifference;
+	
+	switch (m_ignoreWhitespace)
+	{
+	case WHITESPACE_COMPARE_ALL:
+		options.nIgnoreWhitespace = 0;
+		break;
+	case WHITESPACE_IGNORE_CHANGE:
+		options.nIgnoreWhitespace = 1;
+		break;
+	case WHITESPACE_IGNORE_ALL:
+		options.nIgnoreWhitespace = 2;
+		break;
+	default:
+		_RPTF0(_CRT_ERROR, "Unknown whitespace ignore value!");
+		break;
+	}
+}

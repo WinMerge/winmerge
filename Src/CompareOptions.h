@@ -101,6 +101,7 @@ public:
 	DiffutilsOptions();
 	void SetFromDiffOptions(const DIFFOPTIONS & options);
 	void SetToDiffUtils();
+	void GetAsDiffOptions(DIFFOPTIONS &options);
 
 	enum DiffOutputType m_outputStyle; /**< Output style (for patch files) */
 	int m_contextLines; /**< Number of context lines (for patch files) */
