@@ -90,8 +90,6 @@ static char THIS_FILE[] = __FILE__;
 
 extern CLogFile gLog;
 
-static BOOL add_regexp PARAMS((struct regexp_list **, char const*, BOOL bShowError));
-
 static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList);
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1830,11 +1828,9 @@ CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 
 	if (!pDirDoc->HasDiffs() && !bMultiDocs && !docs.IsEmpty())
 	{
-		*pNew = FALSE;
-
 		POSITION pos = docs.GetHeadPosition();
 		CMergeDoc * pMergeDoc = docs.GetAt(pos);
-		return pMergeDoc;
+		pMergeDoc->CloseNow();
 	}
 	CMergeDoc * pMergeDoc = pDirDoc->GetMergeDocForDiff(pNew);
 	return pMergeDoc;
