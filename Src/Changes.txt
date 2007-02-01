@@ -6,6 +6,10 @@ Add new items to top.
  PATCH: [ 1636314 ] Fix limiting to single file compare window (2)
   Fix from Takashi
   Src: MainFrm.cpp
+ PATCH: [ 1639493 ] Updated Bulgarian language files
+  Submitted by tigertron
+  Src/Languages/Bulgarian: MergeBulgarian.rc
+  Docs/Users/Languages: Readme-Bulgarian.txt
 
 2007-01-31 Kimmo
  PATCH: [ 1648182 ] Separate Compare options from DiffWrapper
