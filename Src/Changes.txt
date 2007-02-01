@@ -12,6 +12,8 @@ Add new items to top.
   Docs/Users/Languages: Readme-Bulgarian.txt
  PATCH: [ 1650043 ] Convert CDiffWrapper to use CompareOptions
   Src: CompareOptions.cpp CompareOptions.h DiffWrapper.cpp DiffWrapper.h
+ Remove commented out include line
+  Src: DirScan.cpp
 
 2007-01-31 Kimmo
  PATCH: [ 1648182 ] Separate Compare options from DiffWrapper
