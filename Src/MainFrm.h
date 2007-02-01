@@ -104,8 +104,7 @@ public:
 	HMENU GetPrediffersSubmenu(HMENU mainMenu);
 	void UpdatePrediffersMenu();
 
-	BOOL SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,	BOOL &bApplyToAll,
-		CString *psError);
+	BOOL SyncFileToVCS(LPCTSTR pszDest,	BOOL &bApplyToAll, CString *psError);
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""));
 	int ShowMergeDoc(CDirDoc * pDirDoc, const FileLocation & filelocLeft,

@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-01 Kimmo
+ Remove unused parameter from CMainFrame::SyncFileToVCS()
+  Src: FileActionScript.cpp MainFrm.cpp MainFrm.h
+
 2007-02-01 WinMerge experimental release 2.7.1.6 (SVN revision 4094)
 
 2007-02-01 Kimmo

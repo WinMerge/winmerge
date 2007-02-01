@@ -1224,17 +1224,15 @@ BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
 
 /**
  * @brief Sync file to Version Control System
- * @param pszSrc [in] File to copy
  * @param pszDest [in] Where to copy (incl. filename)
  * @param bApplyToAll [in,out] Apply user selection to all items
  * @param psError [out] Error string that can be shown to user in caller func
  * @return User selection or -1 if error happened
  * @sa CMainFrame::HandleReadonlySave()
  * @sa CDirView::PerformActionList()
- * @todo Parameter @p pszSrc is ununsed.
  */
-int CMainFrame::SyncFileToVCS(LPCTSTR pszSrc, LPCTSTR pszDest,
-	BOOL &bApplyToAll, CString *psError)
+int CMainFrame::SyncFileToVCS(LPCTSTR pszDest, BOOL &bApplyToAll,
+	CString *psError)
 {
 	CString sActionError;
 	CString strSavePath(pszDest);
