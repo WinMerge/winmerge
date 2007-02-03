@@ -1,9 +1,9 @@
 /** 
- * @file  PropColors.cpp
+ * @file  PropCompare.cpp
  *
  * @brief Implementation of CPropCompare propertysheet
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
