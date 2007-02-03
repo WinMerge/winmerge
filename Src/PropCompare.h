@@ -35,7 +35,7 @@ class CPropCompare : public CPropertyPage, public IOptionsPanel
 {
 // Construction
 public:
-    enum CompareMethod { BY_CONTENTS, BY_DATE};
+//    enum CompareMethod { BY_CONTENTS, BY_DATE};
 
 	CPropCompare(COptionsMgr *optionsMgr);
 
