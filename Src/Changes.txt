@@ -5,6 +5,8 @@ Add new items to top.
 2007-02-03 Kimmo
  Remove unused enum definition
   Src: PropCompare.h
+ Fix Doxygen comments
+  Src: PropCompare.h
 
 2007-02-01 Kimmo
  Remove unused parameter from CMainFrame::SyncFileToVCS()
