@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-07 Tim
+ PATCH: [ 1582537 ] CSS syntax highlighter
+  Src: Merge.dsp
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+  editlib new file: css.cpp
+
 2007-02-07 Kimmo
  PATCH: [ 1652696 ] Add more options for backup files
   Src: FileActionScript.cpp MainFrm.cpp MainFrm.h Merge.dsp Merge.rc MergeDoc.cpp
