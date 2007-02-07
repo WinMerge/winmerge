@@ -40,12 +40,18 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_WORDWRAP, false);
 	m_pOptions->InitOption(OPT_VIEW_LINENUMBERS, false);
 	m_pOptions->InitOption(OPT_DISABLE_SPLASH, false);
-	m_pOptions->InitOption(OPT_CREATE_BACKUPS, true);
 	m_pOptions->InitOption(OPT_VIEW_WHITESPACE, false);
 	m_pOptions->InitOption(OPT_CONNECT_MOVED_BLOCKS, 0);
 	m_pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
 	m_pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
 	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)0);
+
+	m_pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
+	m_pOptions->InitOption(OPT_BACKUP_FILECMP, true);
+	m_pOptions->InitOption(OPT_BACKUP_LOCATION, (int)0);
+	m_pOptions->InitOption(OPT_BACKUP_GLOBALFOLDER, _T(""));
+	m_pOptions->InitOption(OPT_BACKUP_ADD_BAK, true);
+	m_pOptions->InitOption(OPT_BACKUP_ADD_TIME, false);
 
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_COLUMN, (int)-1);
 	m_pOptions->InitOption(OPT_DIRVIEW_SORT_ASCENDING, true);

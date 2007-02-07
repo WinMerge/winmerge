@@ -24,10 +24,17 @@ const TCHAR OPT_SHOW_STATUSBAR[] = _T("Settings/ShowStatusbar");
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
 const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");
 const TCHAR OPT_DISABLE_SPLASH[] = _T("Settings/DisableSplash");
-const TCHAR OPT_CREATE_BACKUPS[] = _T("Settings/BackupFile");
 const TCHAR OPT_VIEW_WHITESPACE[] =  _T("Settings/ViewWhitespace");
 const TCHAR OPT_CONNECT_MOVED_BLOCKS[] = _T("Settings/ConnectMovedBlocks");
 const TCHAR OPT_SCROLL_TO_FIRST[] =  _T("Settings/ScrollToFirst");
+
+// Backup options
+const TCHAR OPT_BACKUP_FOLDERCMP[] = _T("Backup/EnableFolder");
+const TCHAR OPT_BACKUP_FILECMP[] = _T("Backup/EnableFile");
+const TCHAR OPT_BACKUP_LOCATION[] = _T("Backup/Location");
+const TCHAR OPT_BACKUP_GLOBALFOLDER[] = _T("Backup/GlobalFolder");
+const TCHAR OPT_BACKUP_ADD_BAK[] = _T("Backup/NameAddBak");
+const TCHAR OPT_BACKUP_ADD_TIME[] = _T("Backup/NameAddTime");
 
 const TCHAR OPT_DIRVIEW_SORT_COLUMN[] =  _T("Settings/DirViewSortCol");
 const TCHAR OPT_DIRVIEW_SORT_ASCENDING[] =  _T("Settings/DirViewSortAscending");

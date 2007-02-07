@@ -1,5 +1,5 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Developer Studio generated include file.
+// Microsoft Visual C++ generated include file.
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
@@ -50,6 +50,7 @@
 #define IDD_TEST_FILTER                 231
 #define IDD_PROPPAGE_COLORS_TEXT        232
 #define IDD_PROJFILES_PATHS             233
+#define IDD_PROPPAGE_BACKUPS            234
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -385,6 +386,14 @@
 #define IDC_EXPLORER_SUBFOLDERS         1310
 #define IDC_FILTERFILE_INSTALL          1311
 #define IDC_MATCH_SIMILAR_LINES         1312
+#define IDC_BACKUP_FILECMP              1313
+#define IDC_BACKUP_FOLDERCMP            1314
+#define IDC_BACKUP_ORIGFOLD             1315
+#define IDC_BACKUP_GLOBALFOLD           1316
+#define IDC_BACKUP_BROWSE               1317
+#define IDC_BACKUP_FOLDER               1318
+#define IDC_BACKUP_APPEND_BAK           1319
+#define IDC_BACKUP_APPEND_TIME          1320
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -430,6 +439,7 @@
 #define IDS_OPTIONSPG_VERSIONCONTROL    9048
 #define IDS_OPTIONSPG_CODEPAGE          9049
 #define IDS_OPTIONSPG_ARCHIVE           9050
+#define IDS_OPTIONSPG_BACKUPS           9051
 #define IDS_VERSION_FMT                 16385
 #define IDS_UNICODE                     16387
 #define IDS_OPTIONS_TITLE               16400
@@ -1074,9 +1084,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        232
+#define _APS_NEXT_RESOURCE_VALUE        235
 #define _APS_NEXT_COMMAND_VALUE         33120
-#define _APS_NEXT_CONTROL_VALUE         1309
+#define _APS_NEXT_CONTROL_VALUE         1328
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

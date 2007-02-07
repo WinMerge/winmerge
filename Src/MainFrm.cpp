@@ -71,6 +71,7 @@
 #include "ProjectFilePathsDlg.h"
 #include "MergeCmdLineInfo.h"
 #include "FileOrFolderSelect.h"
+#include "PropBackups.h"
 
 /*
  One source file must compile the stubs for multimonitor
@@ -1189,24 +1190,89 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	return TRUE;
 }
 
-/// Creates backup before file is saved over
-BOOL CMainFrame::CreateBackup(LPCTSTR pszPath)
+/**
+ * @brief Creates backup before file is saved or copied over.
+ * This function handles formatting correct path and filename for
+ * backup file. Formatting is done based on several options available
+ * for users in Options/Backups dialog. After path is formatted, file
+ * is simply just copied. Not much error checking, just if copying
+ * succeeded or failed.
+ * @param [in] bFolder Are we creating backup in folder compare?
+ * @param [in] pszPath Full path to file to backup.
+ * @return TRUE if backup succeeds, or isn't just done.
+ */
+BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 {
-	// first, make a backup copy of the original
+	// If user doesn't want to backups in folder compare, return
+	// success so operations don't abort.
+	if (bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FOLDERCMP)))
+		return TRUE;
+	// Likewise if user doesn't want backups in file compare
+	else if (!bFolder && !(GetOptionsMgr()->GetBool(OPT_BACKUP_FILECMP)))
+		return TRUE;
+
 	// create backup copy of file if destination file exists
-	if (GetOptionsMgr()->GetBool(OPT_CREATE_BACKUPS) 
-		&& paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
+	if (paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
 	{
-		// Add backup extension if pathlength allows it
-		BOOL success = TRUE;
-		CString s = pszPath;
-		if (s.GetLength() >= (MAX_PATH - _tcslen(BACKUP_FILE_EXT)))
-			success = FALSE;
+		CString bakPath;
+		CString path;
+		CString filename;
+		CString ext;
+	
+		SplitFilename(pszPath, &path, &filename, &ext);
+
+		// Determine backup folder
+		if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
+			CPropBackups::FOLDER_ORIGINAL)
+		{
+			// Put backups to same folder than original file
+			bakPath = path;
+		}
+		else if (GetOptionsMgr()->GetInt(OPT_BACKUP_LOCATION) ==
+			CPropBackups::FOLDER_GLOBAL)
+		{
+			// Put backups to global folder defined in options
+			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
+			if (bakPath.IsEmpty())
+				bakPath = path;
+		}
 		else
-			s += BACKUP_FILE_EXT;
+		{
+			_RPTF0(_CRT_ERROR, "Unknown backup location!");
+		}
+
+		if (bakPath[bakPath.GetLength() - 1] != '\\')
+			bakPath.AppendChar('\\');
+
+		BOOL success = FALSE;
+		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
+			ext += BACKUP_FILE_EXT;
+
+		// Append time to filename if wanted so
+		// NOTE just adds timestamp at the moment as I couldn't figure out
+		// nice way to add a real time (invalid chars etc).
+		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_TIME))
+		{
+			time_t curtime = 0;
+			time(&curtime);
+			CString timestr;
+			timestr.Format(_T("%d"), curtime);
+			filename.AppendChar('-');
+			filename.Append(timestr);
+		}
+
+		// Append filename and extension (+ optional .bak) to path
+		if ((bakPath.GetLength() + filename.GetLength() + ext.GetLength())
+			< MAX_PATH)
+		{
+			success = TRUE;
+			bakPath.Append(filename);
+			bakPath.AppendChar('.');
+			bakPath.Append(ext);
+		}
 
 		if (success)
-			success = CopyFile(pszPath, s, FALSE);
+			success = CopyFile(pszPath, bakPath, FALSE);
 		
 		if (!success)
 		{
@@ -1243,12 +1309,6 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszDest, BOOL &bApplyToAll,
 	int nRetVal = HandleReadonlySave(strSavePath, TRUE, bApplyToAll);
 	if (nRetVal == IDCANCEL || nRetVal == IDNO)
 		return nRetVal;
-	
-	if (!CreateBackup(strSavePath))
-	{
-		psError->LoadString(IDS_ERROR_BACKUP);
-		return -1;
-	}
 	
 	// If VC project opened from VSS sync and version control used
 	if ((nVerSys == VCS_VSS4 || nVerSys == VCS_VSS5) && m_bVCProjSync)
@@ -2247,7 +2307,7 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAutomaticRescan, options, OPT_AUTOMATIC_RESCAN, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAllowMixedEol, options, OPT_ALLOW_MIXED_EOL, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bScrollToFirst, options, OPT_SCROLL_TO_FIRST, cfgdir);
-	LoadConfigBoolSetting(&configLog.m_miscSettings.bBackup, options, OPT_CREATE_BACKUPS, cfgdir);
+//	LoadConfigBoolSetting(&configLog.m_miscSettings.bBackup, options, OPT_CREATE_BACKUPS, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bViewWhitespace, options, OPT_VIEW_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bMovedBlocks, options, OPT_CMP_MOVED_BLOCKS, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bShowLinenumbers, options, OPT_VIEW_LINENUMBERS, cfgdir);

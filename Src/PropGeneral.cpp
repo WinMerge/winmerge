@@ -47,7 +47,6 @@ static char THIS_FILE[] = __FILE__;
  */
 CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral::IDD)
 , m_pOptionsMgr(optionsMgr)
-, m_bBackup(FALSE)
 , m_bScroll(FALSE)
 , m_bDisableSplash(FALSE)
 , m_bSingleInstance(FALSE)
@@ -87,7 +86,6 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
 	//{{AFX_DATA_MAP(CPropGeneral)
-	DDX_Check(pDX, IDC_BACKUP_CHECK, m_bBackup);
 	DDX_Check(pDX, IDC_SCROLL_CHECK, m_bScroll);
 	DDX_Check(pDX, IDC_DISABLE_SPLASH, m_bDisableSplash);
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
@@ -111,7 +109,6 @@ END_MESSAGE_MAP()
  */
 void CPropGeneral::ReadOptions()
 {
-	m_bBackup = m_pOptionsMgr->GetBool(OPT_CREATE_BACKUPS);
 	m_bScroll = m_pOptionsMgr->GetBool(OPT_SCROLL_TO_FIRST);
 	m_bDisableSplash = m_pOptionsMgr->GetBool(OPT_DISABLE_SPLASH);
 	m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
@@ -127,7 +124,6 @@ void CPropGeneral::ReadOptions()
  */
 void CPropGeneral::WriteOptions()
 {
-	m_pOptionsMgr->SaveOption(OPT_CREATE_BACKUPS, m_bBackup == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_SCROLL_TO_FIRST, m_bScroll == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_DISABLE_SPLASH, m_bDisableSplash == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);

@@ -7,7 +7,7 @@
  * (http://www.abstractspoon.com/) but is modified to use in
  * WinMerge.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -53,6 +53,7 @@ CPreferencesDlg::CPreferencesDlg(COptionsMgr *regOptions, SyntaxColors *colors,
 , m_pageCodepage(regOptions)
 , m_pageEditor(regOptions)
 , m_pageSystem(regOptions)
+, m_pageBackups(regOptions)
 , m_pageVss(regOptions)
 {
 	UNREFERENCED_PARAMETER(nMenuID);
@@ -102,6 +103,7 @@ BOOL CPreferencesDlg::OnInitDialog()
 	AddPage(&m_pageSyntaxColors, IDS_OPTIONSPG_SYNTAXCOLORS);
 	AddPage(&m_pageArchive, IDS_OPTIONSPG_ARCHIVE);
 	AddPage(&m_pageSystem, IDS_OPTIONSPG_SYSTEM);
+	AddPage(&m_pageBackups, IDS_OPTIONSPG_BACKUPS);
 	AddPage(&m_pageVss, IDS_OPTIONSPG_VERSIONCONTROL);
 	AddPage(&m_pageCodepage, IDS_OPTIONSPG_CODEPAGE);
 
@@ -250,6 +252,7 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 	m_pageCodepage.ReadOptions();
 	m_pageVss.ReadOptions();
 	m_pageArchive.ReadOptions();
+	m_pageBackups.ReadOptions();
 
 	if (bUpdate)
 	{
@@ -263,6 +266,7 @@ void CPreferencesDlg::ReadOptions(BOOL bUpdate)
 		SafeUpdatePage(&m_pageCodepage, FALSE);
 		SafeUpdatePage(&m_pageVss, FALSE);
 		SafeUpdatePage(&m_pageArchive, FALSE);
+		SafeUpdatePage(&m_pageBackups, FALSE);
 	}
 }
 
@@ -281,6 +285,7 @@ void CPreferencesDlg::SaveOptions()
 	m_pageCodepage.WriteOptions();
 	m_pageVss.WriteOptions();	
 	m_pageArchive.WriteOptions();
+	m_pageBackups.WriteOptions();
 }
 
 void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)

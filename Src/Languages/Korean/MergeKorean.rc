@@ -727,32 +727,30 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "일반"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "원본 파일 백업(&B)",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "처음 다른 부분으로 자동 스크롤(&S)",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,206,10
+                    7,206,10
     CONTROL         "스플래쉬 화면 사용 안함(&D)",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,206,10
     CONTROL         "ESC로 창 닫기(&O)",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "열기 대화상자에서 자동으로 올바른 경로인지 검사",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,7,47,206,10
+                    WS_TABSTOP,7,37,206,10
     CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,62,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,71,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,100,
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,90,
                     221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,101,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,121,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,153,168,31
-    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,159,50,14,NOT
+                    IDC_STATIC,7,143,168,31
+    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,149,50,14,NOT
                     WS_TABSTOP
 END
 
@@ -1572,6 +1570,31 @@ BEGIN
     PUSHBUTTON      "Save...",IDC_PROJ_SAVE,265,103,50,14
 END
 
+IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 236, 222
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
+CAPTION "Backup Files"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
+    CONTROL         "Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
+    CONTROL         "File compare",IDC_BACKUP_FILECMP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
+    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
+    CONTROL         "Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
+    CONTROL         "Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+                    BS_AUTORADIOBUTTON,17,59,212,10
+    EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
+    CONTROL         "Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
+    CONTROL         "Append timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
+END
+
+
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1923,6 +1946,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
     IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_BACKUPS   "Backup Files"
 END
 
 // WINMERGE CUSTOM STRINGS

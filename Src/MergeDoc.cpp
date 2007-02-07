@@ -1149,7 +1149,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	if (nRetVal == IDCANCEL)
 		return FALSE;
 
-	if (!GetMainFrame()->CreateBackup(strSavePath))
+	if (!GetMainFrame()->CreateBackup(FALSE, strSavePath))
 		return FALSE;
 
 	// FALSE as long as the user is not satisfied

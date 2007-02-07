@@ -144,13 +144,26 @@ int FileActionScript::CreateOperationsScripts()
 		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_COPY && !act.dirflag)
 		{
-			int retVal = VCSCheckOut(act.src, bApplyToAll);
-			if (retVal == SCRIPT_USERCANCEL)
-				bContinue = FALSE;
-			else if (retVal == SCRIPT_USERSKIP)
-				bSkip = TRUE;
-			else if (retVal == SCRIPT_FAIL)
-				bContinue = FALSE;
+			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != VCS_NONE)
+			{
+				int retVal = VCSCheckOut(act.src, bApplyToAll);
+				if (retVal == SCRIPT_USERCANCEL)
+					bContinue = FALSE;
+				else if (retVal == SCRIPT_USERSKIP)
+					bSkip = TRUE;
+				else if (retVal == SCRIPT_FAIL)
+					bContinue = FALSE;
+			}
+
+			if (bContinue)
+			{
+				if (!GetMainFrame()->CreateBackup(TRUE, act.src))
+				{
+					CString strErr = LoadResString(IDS_ERROR_BACKUP);
+					AfxMessageBox(strErr, MB_OK | MB_ICONERROR);
+					bContinue = FALSE;
+				}
+			}
 		}
 
 		if (act.atype == FileAction::ACT_COPY &&

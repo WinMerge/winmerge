@@ -110,7 +110,7 @@ public:
 	int ShowMergeDoc(CDirDoc * pDirDoc, const FileLocation & filelocLeft,
 		const FileLocation & filelocRight, BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
-	BOOL CreateBackup(LPCTSTR pszPath);
+	BOOL CreateBackup(BOOL bFolder, LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();

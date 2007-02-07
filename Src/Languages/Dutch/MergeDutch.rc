@@ -727,32 +727,30 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Algemeen"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "&Reservekopie orginele bestand",IDC_BACKUP_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,206,10
     CONTROL         "&Automatisch naar eerste verschil gaan",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
-                    17,206,10
+                    7,206,10
     CONTROL         "Splash Screen uitscha&kelen",IDC_DISABLE_SPLASH,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,17,206,10
     CONTROL         "Vensters met ESC sl&uiten",IDC_ESC_CLOSES_WINDOW,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,37,206,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "Paden automatisch controleren in het venster Openen",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
-                    WS_TABSTOP,7,47,206,10
+                    WS_TABSTOP,7,37,206,10
     CONTROL         "&Allow only one instance to run",IDC_SINGLE_INSTANCE,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,62,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,71,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,100,
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,90,
                     221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,101,206,10
     CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,121,206,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,153,168,31
-    PUSHBUTTON      "Herstellen",IDC_RESET_ALL_MESSAGE_BOXES,178,159,50,14,NOT
+                    IDC_STATIC,7,143,168,31
+    PUSHBUTTON      "Herstellen",IDC_RESET_ALL_MESSAGE_BOXES,178,149,50,14,NOT
                     WS_TABSTOP
 END
 
@@ -1923,6 +1921,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Version Control"
     IDS_OPTIONSPG_CODEPAGE  "Codepage"
     IDS_OPTIONSPG_ARCHIVE   "Archive Support"
+    IDS_OPTIONSPG_BACKUPS   "Backup Files"
 END
 
 // WINMERGE CUSTOM STRINGS

@@ -687,6 +687,10 @@ SOURCE=.\PropArchive.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PropBackups.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\PropCodepage.cpp
 # End Source File
 # Begin Source File
@@ -1366,6 +1370,10 @@ SOURCE=.\ProjectFilePathsDlg.h
 # Begin Source File
 
 SOURCE=.\PropArchive.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\PropBackups.h
 # End Source File
 # Begin Source File
 

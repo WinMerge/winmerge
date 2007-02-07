@@ -7,7 +7,7 @@
  * (http://www.abstractspoon.com/) but is modified to use in
  * WinMerge.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -28,6 +28,7 @@
 #include "PropSyntaxColors.h"
 #include "PropCodepage.h"
 #include "PropArchive.h"
+#include "PropBackups.h"
 
 #include "propertypagehost.h"
 
@@ -66,6 +67,7 @@ protected:
 	CPropTextColors m_pageTextColors;
 	CPropSyntaxColors m_pageSyntaxColors;
 	CPropArchive m_pageArchive;
+	CPropBackups m_pageBackups;
 
 	SyntaxColors *m_pSyntaxColors;
 

@@ -33,7 +33,6 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CPropGeneral)
 	enum { IDD = IDD_PROPPAGE_LARGE };
-	BOOL  m_bBackup;
 	BOOL  m_bScroll;
 	BOOL  m_bDisableSplash;
 	BOOL  m_bSingleInstance;
