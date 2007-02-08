@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-08 Kimmo
+ Add accelerator keys to new Backup options dialog
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2007-02-07 Tim
  PATCH: [ 1582537 ] CSS syntax highlighter
   Src: Merge.dsp

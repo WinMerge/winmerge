@@ -1574,21 +1574,21 @@ CAPTION "Backup Files"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "File compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
     LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
     LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "Append timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
