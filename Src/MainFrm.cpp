@@ -1242,7 +1242,7 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 		}
 
 		if (bakPath[bakPath.GetLength() - 1] != '\\')
-			bakPath.AppendChar('\\');
+			bakPath += "\\";
 
 		BOOL success = FALSE;
 		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
@@ -1257,8 +1257,8 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			time(&curtime);
 			CString timestr;
 			timestr.Format(_T("%d"), curtime);
-			filename.AppendChar('-');
-			filename.Append(timestr);
+			filename += "-";
+			filename += timestr;
 		}
 
 		// Append filename and extension (+ optional .bak) to path
@@ -1266,9 +1266,9 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			< MAX_PATH)
 		{
 			success = TRUE;
-			bakPath.Append(filename);
-			bakPath.AppendChar('.');
-			bakPath.Append(ext);
+			bakPath += filename;
+			bakPath += ".";
+			bakPath += ext;
 		}
 
 		if (success)
