@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-12 Kimmo
+ PATCH: [ 1657664 ] Swedish translation update for Backup options
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2007-02-11 Kimmo
  Fix compile with VC6 (doesn't have CString::Append() or CString::AppendChar())
   Src: MainFrm.cpp PropBackups.cpp
