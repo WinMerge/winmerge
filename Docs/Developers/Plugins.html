@@ -6,6 +6,14 @@
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
   <style type="text/css">
   <!--
+    body {
+      font-family: Verdana,Helvetica,Arial,sans-serif;
+      font-size: small;
+    }
+    code,pre {
+      font-family: "Courier New",Courier,monospace;
+      font-size: 1em;
+    }
     h3 {
       padding: 2px;
       border-left: 4px solid #FFCC00;
@@ -322,22 +330,20 @@ This parameter is mandatory for the function's syntax. But you don't have to set
     <th>Functions parameters</th>
   </tr>
   <tr>
-    <th>VC++</th>
+    <th rowspan="2">VC++</th>
     <td><code>STDMETHOD(UnpackFile)</code></td>
     <td><code>([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
   </tr>
   <tr>
-    <th></th>
     <td><code>STDMETHOD(PackFile)</code></td>
     <td><code>([in] BSTR fileSrc, [in] BSTR fileDst, VARIANT_BOOL * pbChanged, INT pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
   </tr>
   <tr>
-    <th>VB</th>
+    <th rowspan="2">VB</th>
     <td><code>Public Function UnpackFile</code></td>
     <td><code>(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean</code></td>
   </tr>
   <tr>
-    <th></th>
     <td><code>Public Function PackFile</code></td>
     <td><code>(BSTR fileSrc, BSTR fileDst, ByRef bChanged As Boolean, subcode As Long) As Boolean</code></td>
   </tr>
@@ -351,22 +357,20 @@ This parameter is mandatory for the function's syntax. But you don't have to set
     <th>Functions parameters</th>
   </tr>
   <tr>
-    <th>VC++</th>
+    <th rowspan="2">VC++</th>
     <td><code>STDMETHOD(UnpackBufferA)</code></td>
     <td><code>([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT * pSubcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
   </tr>
   <tr>
-    <th></th>
     <td><code>STDMETHOD(PackBufferA)</code></td>
     <td><code>([in] SAFEARRAY ** pBuffer, [in] INT * pSize, [in] VARIANT_BOOL * pbChanged, [in] INT subcode, [out, retval] VARIANT_BOOL * pbSuccess)</code></td>
   </tr>
   <tr>
-    <th>VB</th>
+    <th rowspan="2">VB</th>
     <td><code>Public Function UnpackBufferA</code></td>
     <td><code>(ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean</code></td>
   </tr>
   <tr>
-    <th></th>
     <td><code>Public Function PackBufferA</code></td>
     <td><code>(ByRef buffer() As Byte, ByRef size As Long, ByRef bChanged As Boolean, subcode As Long) As Boolean</code></td>
   </tr>

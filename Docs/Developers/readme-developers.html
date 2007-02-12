@@ -6,6 +6,14 @@
   <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
   <style type="text/css">
   <!--
+    body {
+      font-family: Verdana,Helvetica,Arial,sans-serif;
+      font-size: small;
+    }
+    code,pre {
+      font-family: "Courier New",Courier,monospace;
+      font-size: 1em;
+    }
     h3 {
       padding: 2px;
       border-left: 4px solid #FFCC00;
@@ -15,6 +23,9 @@
       padding: 2px;
       border-left: 8px solid #FF9933;
       border-bottom: 1px solid #FF9933;
+    }
+    h5 {
+      font-size: small;
     }
     pre {
       margin-left: 25px;
@@ -89,19 +100,19 @@ source tree, but need to be compiled before compiling WinMerge executable.</p>
   <li>Manual needs Docbook tools, documented in <a href="readme-manual.html">readme-manual.html</a></li>
 </ul>
 
-<p>Platform SDK components<br>
-With Feb 2003 Platform SDK (and VC6) following components are needed:
+<h5>Platform SDK components</h5>
+<p>With Feb 2003 Platform SDK (and VC6) following components are needed:</p>
 <ul>
   <li>Core SDK - obviously..</li>
   <li>MDAC SDK - for some ODBC etc headers needed by other PSDK headers..</li>
   <li>Internet Devlopment SDK - for IE/Shell headers</li>
 </ul>
-Basically same components are needed for Windows 2003 SP1 PSDK, but with a different name:
+<p>Basically same components are needed for Windows 2003 SP1 PSDK, but with a different name:</p>
 <ul>
   <li>Microsoft Windows Core SDK - obviously..</li>
   <li>Microsoft Data Access Services (MDAC) SDK - for some ODBC etc headers needed by other PSDK headers..</li>
   <li>Microsoft Web Workshop (IE) SDK - for IE/Shell headers</li>
-</ul></p>
+</ul>
 <p class="note">If you installed PSDK separately, don't forget to add the PSDK paths to Visual
 Studio's <em>Include</em> and <em>Library</em> directories. The easiest way is to use the
 "<em>Visual Studio Registration\Register PSDK directories with Visual Studio</em>" item from
@@ -129,7 +140,7 @@ directory. Propable cause is that including files from Platform SDK directories 
 things.</p>
 
 <h4>Compiling expat</h4>
-<p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:<br>
+<p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:</p>
 <ul>
   <li>Open Visual Studio workspace <code>/Externals/expat/expat.dsw</code>. If you are
     using Visual Studio 2003.Net or later you need to convert the file to new format when
@@ -137,13 +148,13 @@ things.</p>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Select either debug or release targets.</li>
   <li>Select Rebuild All</li>
- </ul></p>
+ </ul>
 
 <p>After build finishes, selected (debug or release) lib and dll files are in
 <code>/Build/expat</code>. WinMerge executable's project file picks them from there.</p>
 
 <h4>Compiling scew</h4>
-<p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:<br>
+<p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:</p>
 <ul>
   <li>Open Visual Studio project file <code>/Externals/scew/win32/scew.dsp</code> If you are
     using Visual Studio 2003.Net or later you need to convert the file to new format when
@@ -151,10 +162,10 @@ things.</p>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Make sure all targets are selected</li>
   <li>Select Rebuild All</li>
-</ul></p>
+</ul>
 
 <h4>Compiling PCRE</h4>
-<p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:<br>
+<p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:</p>
 <ul>
   <li>Open Visual Studio workspace file <code>/Externals/pcre/pcre.dsp</code> If you are
     using Visual Studio 2003.Net or later you need to convert the file to new format when
@@ -164,7 +175,7 @@ things.</p>
   <li>Select Rebuild All</li>
   <li><i>Or</i> you can also compile those two projects individually, first
     <code>config_pcre</code> and then <code>pcre</code> project.
-</ul></p>
+</ul>
 
 <p>After build finishes, lib and dll files are in <code>/Build/pcre</code>. WinMerge
 executable's project file picks them from there.</p>
@@ -403,7 +414,7 @@ Also zip-packages for releases are provided, zip up these files:</p>
 </ul>
 
 <p>Please remember to put the version number into both executables. You may use
-any of the following three methods at least.
+any of the following three methods at least.</p>
 <ol>
  <li>
  You may run Src/SetResourceVersions.bat, which will prompt for the new
@@ -419,7 +430,7 @@ any of the following three methods at least.
  manual, low-tech fashion).
  </li>
 </ol>
-Whatever method you use, please double-check the
+<p>Whatever method you use, please double-check the
 executable version numbers before uploading and releasing them.</p>
 
 <p>
@@ -644,7 +655,7 @@ ShellExtension does not care about another path value.</p>
 <h4>Compiling for 64-bit Windows</h4>
 <p>This is a bit tricky, and needs some patience to setup.</p>
 
-<p><strong>Needed tools</strong>
+<h5>Needed tools</h5>
 <ul>
   <li>Visual Studio 2003 or later (Might work for earlier, but I haven't tried it)</li>
   <li>Platform SDK (for Windows 2003 SP1) with at least following components installed:
@@ -656,11 +667,10 @@ ShellExtension does not care about another path value.</p>
     </ul>
   </li>
 </ul>
-</p>
 
-<p><strong>Starting Visual Studio and opening the project</strong><br>
-We need to start Visual Studio from Platform SDK's 64-bit environment so that we get all
-needed environment variables and paths correctly set. So:
+<h5>Starting Visual Studio and opening the project</h5>
+<p>We need to start Visual Studio from Platform SDK's 64-bit environment so that we get all
+needed environment variables and paths correctly set. So:</p>
 <ol>
   <li>Start 64-bit Platform SDK environment:<br>
     From Start menu: Platform SDK --> Open Build Environment Window --> Windows XP/2003 64-bit
@@ -670,7 +680,7 @@ needed environment variables and paths correctly set. So:
     <code>devenv /USEENV (uses open environment)</code></li>
   <li>Open <code>ShellExtensionX64.vcproj</code> from <code>ShellExtension</code> project
     folder.</li>
-</ol></p>
+</ol>
 
 <p>Make sure you have 64-bit target selected in Project Settings. Then check that paths are OK.
 You <strong>MUST</strong> build to separate directory than 32-bit targets so that files don't
