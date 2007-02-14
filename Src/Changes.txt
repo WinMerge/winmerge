@@ -2,6 +2,14 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-14 Tim
+ PATCH: [ 1640274 ] Icons for folder compare popup menu
+  Src: MainFrm.cpp Merge.dsp Merge.rc resource.h
+  Src/res new files: both.bmp left.bmp left_to_browse.bmp left_to_right.bmp
+   move_left_to_browse.bmp move_right_to_browse.bmp right.bmp
+   right_to_browse.bmp right_to_left.bmp
+  Src/Languages/*: Merge*.rc
+
 2007-02-14 Kimmo
  PATCH: [ 1659183 ] Add Vista security attributes to manifest files
   Src/res: WinMerge.exe.manifest WinMergeU.exe.manifest

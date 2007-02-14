@@ -84,6 +84,15 @@
 #define IDB_EDIT_CLEAR_ALL_BOOKMARKS    345
 #define IDB_TOOLBAR_ENABLED             100  // = IDR_MAINFRAME
 #define IDB_TOOLBAR_DISABLED            346
+#define IDB_LEFT                        347
+#define IDB_RIGHT                       348
+#define IDB_BOTH                        349
+#define IDB_LEFT_TO_RIGHT               350
+#define IDB_RIGHT_TO_LEFT               351
+#define IDB_LEFT_TO_BROWSE              352
+#define IDB_RIGHT_TO_BROWSE             353
+#define IDB_MOVE_LEFT_TO_BROWSE         354
+#define IDB_MOVE_RIGHT_TO_BROWSE        355
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502

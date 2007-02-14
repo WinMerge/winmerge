@@ -1581,6 +1581,10 @@ SOURCE=.\res\binarydiff.ico
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\both.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\equal.bmp
 # End Source File
 # Begin Source File
@@ -1637,6 +1641,18 @@ SOURCE=.\res\hand.cur
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\left.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\left_to_browse.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\left_to_right.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\lfile.bmp
 # End Source File
 # Begin Source File
@@ -1673,6 +1689,14 @@ SOURCE=.\res\mg_cur.cur
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\move_left_to_browse.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\move_right_to_browse.bmp
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\notequal.bmp
 # End Source File
 # Begin Source File
@@ -1694,6 +1718,18 @@ SOURCE=.\res\rfolder.bmp
 # Begin Source File
 
 SOURCE=.\res\rfolder.ico
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\right.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\right_to_browse.bmp
+# End Source File
+# Begin Source File
+
+SOURCE=.\res\right_to_left.bmp
 # End Source File
 # Begin Source File
 
