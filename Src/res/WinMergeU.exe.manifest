@@ -7,7 +7,19 @@
 	   type="win32"
 	/>
 	<description>WinMerge Application</description>
-	<dependency>
+
+	<!-- Identify the application security requirements. -->
+	<trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+	   <security>
+	       <requestedPrivileges>
+	          <requestedExecutionLevel
+	             level="asInvoker"
+	             uiAccess="false"/>
+	       </requestedPrivileges>
+	   </security>
+	</trustInfo>
+
+  	<dependency>
 	   <dependentAssembly>
 	     <assemblyIdentity
 	       type="win32"
@@ -19,4 +31,5 @@
 	     />
 	   </dependentAssembly>
 	</dependency>
+	<requestedExecutionLevel level="asInvoker" uiAccess="false"/>
 </assembly>
