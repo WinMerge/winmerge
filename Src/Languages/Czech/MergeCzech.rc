@@ -1131,7 +1131,7 @@ BEGIN
                     7,80,221,10
     CONTROL         "Povolit zjiöùov·nÌ p¯esunut˝ch &blok˘",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
+    CONTROL         "Za&rovnat podobnÈ ¯·dky",IDC_MATCH_SIMILAR_LINES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
     LTEXT           "Zp˘sob porovn·nÌ &soubor˘:",IDC_STATIC,7,115,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,113,114,70,CBS_DROPDOWNLIST |
@@ -1572,25 +1572,25 @@ END
 
 IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 236, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Backup Files"
+CAPTION "Z·lohov·nÌ soubor˘"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Vytv·¯et z·loûnÌ soubory pro:",IDC_STATIC,7,7,222,8
+    CONTROL         "Porovn·nÌ s&loûek",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "Porovn·nÌ &soubor˘",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "UmÌstÏnÌ z·loûnÌch soubor˘:",IDC_STATIC,7,40,222,8
+    CONTROL         "&P˘vodnÌ sloûka soubor˘",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "&Jednotn· z·loûnÌ sloûka:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "P&roch·zet...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "N·zev z·loûnÌho souboru:",IDC_STATIC,7,89,222,8
+    CONTROL         "P¯ipojit p¯Ìponu .&bak",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "P¯ipojit Ë&asovÈ razÌtko",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
@@ -1954,7 +1954,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Kontrola verzÌ"
     IDS_OPTIONSPG_CODEPAGE  "KÛdov·nÌ"
     IDS_OPTIONSPG_ARCHIVE   "Podpora archiv˘"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_BACKUPS   "Z·lohov·nÌ soubor˘"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -2001,7 +2001,7 @@ BEGIN
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Hodnota v poli Tabel·tor je mimo povolen˝ rozsah.\n\nPouûijte prosÌm hodnoty mezi 1 - %1."
     IDS_RESET_OPTIONS_WARNING 
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
+                            "Opravdu chcete vr·tit vöechna nastavenÌ WinMerge na v˝chozÌ hodnoty?\n\nPo zmÏnÏ nastavenÌ prosÌm znovu spusùte aplikaci WinMerge."
 END
 
 // BROWSE FILE
@@ -2316,8 +2316,8 @@ BEGIN
     IDS_ABORTED_ITEM        "P¯eruöeno"
     IDS_FILE_SKIPPED        "Soubor p¯eskoËen"
     IDS_DIR_SKIPPED         "Sloûka p¯eskoËena"
-    IDS_LEFT_ONLY_IN_FMT    "Left only: %1"
-    IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
+    IDS_LEFT_ONLY_IN_FMT    "Pouze vlevo: %1"
+    IDS_RIGHT_ONLY_IN_FMT   "Pouze vpravo: %1"
     IDS_BIN_FILES_SAME      "Bin·rnÌ soubory jsou shodnÈ"
     IDS_IDENTICAL           "ShodnÈ"
     IDS_BIN_FILES_DIFF      "Bin·rnÌ soubory jsou rozdÌlnÈ"
@@ -2325,7 +2325,7 @@ BEGIN
     IDS_LEFTONLY            "Pouze vlevo"
     IDS_RIGHTONLY           "Pouze vpravo"
     IDS_DIFFERENT           "RozdÌlnÈ"
-    IDS_CMPRES_ERROR        "Error"
+    IDS_CMPRES_ERROR        "Chyba"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
