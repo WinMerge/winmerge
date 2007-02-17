@@ -24,9 +24,7 @@
 
 #include "stdafx.h"
 #include "diffcontext.h"
-#include "FilterList.h"
 #include "diffthread.h"
-#include "diff.h"
 #include "DirScan.h"
 #include "Plugins.h"
 #include "DiffItemList.h"
@@ -39,9 +37,10 @@
 // Either edit this line, or breakpoint & change it in CompareDirectories() below
 static bool bSinglethreaded=false;
 
-
 /**
- * @brief Data sent to diff thread
+ * @brief Structure used in sending data to the threads.
+ * As thread functions have only one parameter we must pack all
+ * the data we need inside structure.
  */
 struct DiffFuncStruct
 {
@@ -54,14 +53,17 @@ struct DiffFuncStruct
 	BOOL bRecursive;
 	DiffThreadAbortable * m_pAbortgate;
 	bool bOnlyRequested;
+	DiffItemList *pItemList;
+
 	DiffFuncStruct()
-		: context(0)
+		: context(NULL)
 		, msgUIUpdate(0)
 		, hWindow(0)
 		, nThreadState(THREAD_NOTSTARTED)
 		, bRecursive(FALSE)
-		, m_pAbortgate(0)
+		, m_pAbortgate(NULL)
 		, bOnlyRequested(false)
+		, pItemList(NULL)
 		{}
 };
 
@@ -84,11 +86,11 @@ public:
  */
 CDiffThread::CDiffThread()
 : m_pDiffContext(NULL)
-, m_thread(NULL)
 , m_msgUpdateUI(0)
 , m_hWnd(0)
 , m_bAborting(FALSE)
 {
+	ZeroMemory(&m_threads[0], sizeof(m_threads));
 	m_pDiffParm = new DiffFuncStruct;
 	m_pAbortgate = new DiffThreadAbortable(this);
 }
@@ -123,17 +125,20 @@ UINT CDiffThread::CompareDirectories(const CString & dir1,
 	m_pDiffParm->hWindow = m_hWnd;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate;
 	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
+	m_pDiffParm->pItemList = &m_diffList;
 	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
 
 	if (bSinglethreaded)
 	{
-		DiffThread(m_pDiffParm);
+		DiffThreadCollect(m_pDiffParm);
+		DiffThreadCompare(m_pDiffParm);
 	}
 	else
 	{
-		m_thread = AfxBeginThread(DiffThread, m_pDiffParm);
+		m_threads[0] = AfxBeginThread(DiffThreadCollect, m_pDiffParm);
+		m_threads[1] = AfxBeginThread(DiffThreadCompare, m_pDiffParm);
 	}
 
 	return 1;
@@ -173,19 +178,21 @@ UINT CDiffThread::GetThreadState() const
 }
 
 /**
- * @brief Directory compare thread function
+ * @brief Item collection thread function.
  *
- * Calls diffutils's compare_files() and after compare is ready
- * sends message to UI so UI can update itself.
+ * This thread is responsible for finding and collecting all items to compare
+ * to the item list.
+ * @param [in] lParam Pointer to parameter structure.
+ * @return Thread's return value.
  */
-UINT DiffThread(LPVOID lpParam)
+UINT DiffThreadCollect(LPVOID lpParam)
 {
-	DiffItemList itemList;
 	PathContext paths;
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
 	HWND hWnd = myStruct->hWindow;
 	UINT msgID = myStruct->msgUIUpdate;
 	bool bOnlyRequested = myStruct->bOnlyRequested;
+	myStruct->context->m_bCollectReady = FALSE;
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
@@ -217,20 +224,61 @@ UINT DiffThread(LPVOID lpParam)
 #endif
 
 		// Build results list (except delaying file comparisons until below)
-		DirScan_GetItems(paths, subdir, subdir, &itemList, casesensitive, depth,  myStruct->context);
+		DirScan_GetItems(paths, subdir, subdir, myStruct->pItemList, casesensitive, depth,  myStruct->context);
 
 #ifdef _DEBUG
 		_CrtMemCheckpoint(&memStateAfter);
 		_CrtMemDifference(&memStateDiff, &memStateBefore, &memStateAfter);
 		_CrtMemDumpStatistics(&memStateDiff);
 #endif
+	}
+
+	// Signal that collect phase is ready
+	myStruct->context->m_bCollectReady = TRUE;
+	return 1;
+}
+
+
+/**
+ * @brief Folder compare thread function.
+ *
+ * Compares items in item list. After compare is ready
+ * sends message to UI so UI can update itself.
+ * @param [in] lParam Pointer to parameter structure.
+ * @return Thread's return value.
+ */
+UINT DiffThreadCompare(LPVOID lpParam)
+{
+	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
+	HWND hWnd = myStruct->hWindow;
+	UINT msgID = myStruct->msgUIUpdate;
+	bool bOnlyRequested = myStruct->bOnlyRequested;
+
+	// Stash abortable interface into context
+	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
+
+	// keep the scripts alive during the Rescan
+	// when we exit the thread, we delete this and release the scripts
+	CAssureScriptsForThread scriptsForRescan;
+
+	if (bOnlyRequested)
+	{
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
+		DirScan_CompareItems(myStruct->context);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
+	}
+	else
+	{
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 
 		// Now do all pending file comparisons
-		DirScan_CompareItems(itemList, myStruct->context);
+		DirScan_CompareItems(myStruct->pItemList, myStruct->context);
 
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
+
+	// Clear the list - its job is now done
+	myStruct->pItemList->RemoveAll();
 
 	// Send message to UI to update
 	myStruct->nThreadState = THREAD_COMPLETED;

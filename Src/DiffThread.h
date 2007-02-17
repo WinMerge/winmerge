@@ -31,19 +31,22 @@ struct DiffFuncStruct;
 class DiffThreadAbortable;
 
 /**
- * @brief Thread's statuses
+ * @brief Thread's statuses.
  */
 enum
 {
 	THREAD_NOTSTARTED = 0,
 	THREAD_COMPARING,
-	THREAD_COMPLETED
+	THREAD_COMPLETED,
 };
 
 
 /**
- * @brief Class for threaded directory compare
- * This class takes care of starting directory compare thread
+ * @brief Class for threaded folder compare.
+ * This class implements folder compare in two phases and in two threads:
+ * - first thread collects items to compare to compare-time list
+ *   (m_diffList).
+ * - second threads compares items in the list.
  */
 class CDiffThread
 {
@@ -65,18 +68,20 @@ public:
 // runtime interface for child thread, called on child thread
 	bool ShouldAbort() const { return m_bAborting; }
 
-
 private:
-	CDiffContext * m_pDiffContext;
-	CWinThread * m_thread;
-	DiffFuncStruct * m_pDiffParm;
+	CDiffContext * m_pDiffContext; /**< Compare context storing results. */
+	CWinThread * m_threads[2]; /**< Compare threads. */
+	DiffFuncStruct * m_pDiffParm; /**< Structure for sending data to threads. */
 	DiffThreadAbortable * m_pAbortgate;
-	UINT m_msgUpdateUI;
-	HWND m_hWnd;
-	bool m_bAborting;
-	bool m_bOnlyRequested;
+	DiffItemList m_diffList; /**< Compare-time list for compared items. */
+	UINT m_msgUpdateUI; /**< UI-update message number */
+	HWND m_hWnd; /**< Handle to folder compare GUI window */
+	bool m_bAborting; /**< Is compare aborting? */
+	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
 };
 
-UINT DiffThread(LPVOID lpParam);
+// Thread functions
+UINT DiffThreadCollect(LPVOID lpParam);
+UINT DiffThreadCompare(LPVOID lpParam);
 
 #endif /* _DIFFTHREAD_H */

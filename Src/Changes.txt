@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-17 Kimmo
+ PATCH: [ 1662002 ] Use two threads for folder compare
+  Src: Diffcontext.cpp Diffcontext.h DiffThread.cpp DiffThread.h DirScan.cpp
+   DirScan.h
+
 2007-02-14 Tim
  PATCH: [ 1640274 ] Icons for folder compare popup menu
   Src: MainFrm.cpp Merge.dsp Merge.rc resource.h

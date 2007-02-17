@@ -253,14 +253,30 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
  *
  * @param list [in] List of items to compare
  * @param pCtxt [in,out] Compare context: contains list where results are added.
- * @param piAbortable [in] Interface allowing to abort compare
  * @return 1 if compare finished, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt)
+int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt)
 {
 	int res = 1;
-	POSITION pos = list.GetFirstDiffPosition();
+	POSITION pos = NULL;
+	POSITION prevPos = NULL;
+		
+	EnterCriticalSection(&pCtxt->m_criticalSect);
+	pos = list->GetFirstDiffPosition();
+	LeaveCriticalSection(&pCtxt->m_criticalSect);
 	
+	// Wait until we have items in list
+	while (pos == NULL)
+	{
+		Sleep(100);
+		EnterCriticalSection(&pCtxt->m_criticalSect);
+		pos = list->GetFirstDiffPosition();
+		LeaveCriticalSection(&pCtxt->m_criticalSect);
+		if (pCtxt->m_bCollectReady == TRUE)
+			break;
+	}
+	
+	// Compare whole list
 	while (pos != NULL)
 	{
 		if (pCtxt->ShouldAbort())
@@ -269,9 +285,58 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt)
 			break;
 		}
 
-		DIFFITEM di = list.GetNextDiffPosition(pos);
+		prevPos = pos;
+		EnterCriticalSection(&pCtxt->m_criticalSect);
+		DIFFITEM di = list->GetNextDiffPosition(pos);
+		LeaveCriticalSection(&pCtxt->m_criticalSect);
 		CompareDiffItem(di, pCtxt);
+
+		// Some compare methdods can be faster than collecting,
+		// so we can reach the end of list while collect is running.
+		// In this case we must wait for a while for new items to be
+		// added to the list.
+		if (pos == NULL && pCtxt->m_bCollectReady == FALSE)
+		{
+			do
+			{
+				pos = prevPos;
+				Sleep(200);
+				EnterCriticalSection(&pCtxt->m_criticalSect);
+				list->GetNextDiffPosition(pos);
+				LeaveCriticalSection(&pCtxt->m_criticalSect);
+			} while (pos == NULL);
+		}
 	}
+
+	// Loop above may not catch all items yet, consider this case:
+	// - we get latest item at the moment (pos is returned as NULL)
+	// - compare takes a while (big file / slow media) and new item
+	//   is added to the list while comparing
+	// - m_bCollectReady is set to TRUE
+	// Now we would end the loop, while there are still items in the list.
+	// So to be sure, lets try again with "last" item, if there are more
+	// items!
+	EnterCriticalSection(&pCtxt->m_criticalSect);
+	list->GetNextDiffPosition(prevPos);
+	LeaveCriticalSection(&pCtxt->m_criticalSect);
+
+	if (prevPos != NULL)
+	{
+		pos = prevPos;
+		while (pos != NULL)
+		{
+			if (pCtxt->ShouldAbort())
+			{
+				res = -1;
+				break;
+			}
+			EnterCriticalSection(&pCtxt->m_criticalSect);
+			DIFFITEM di = list->GetNextDiffPosition(pos);
+			LeaveCriticalSection(&pCtxt->m_criticalSect);
+			CompareDiffItem(di, pCtxt);
+		}
+	}
+
 	return res;
 }
 
@@ -279,7 +344,6 @@ int DirScan_CompareItems(DiffItemList & list, CDiffContext * pCtxt)
  * @brief Compare DiffItems in context marked for rescan.
  *
  * @param pCtxt [in,out] Compare context: contains list of items.
- * @param piAbortable [in] Interface allowing to abort compare
  * @return 1 if compare finished, -1 if compare was aborted
  */
 int DirScan_CompareItems(CDiffContext * pCtxt)
@@ -641,6 +705,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
 		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
 	);
+	
 	pCtxt->AddDiff(di);
 }
 
@@ -698,7 +763,10 @@ static void AddToList(const CString & sLeftDir, const CString & sRightDir, const
 		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
 	);
 	pCtxt->m_pCompareStats->IncreaseTotalItems();
+
+	EnterCriticalSection(&pCtxt->m_criticalSect);
 	pList->AddDiff(di);
+	LeaveCriticalSection(&pCtxt->m_criticalSect);
 }
 
 void // static
