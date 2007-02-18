@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-17 Jan Hryz
+ Czech translation - update
+  Src/Languages/Czech/MergeCzech.rc
+
 2007-02-17 Kimmo
  PATCH: [ 1662002 ] Use two threads for folder compare
   Src: Diffcontext.cpp Diffcontext.h DiffThread.cpp DiffThread.h DirScan.cpp
