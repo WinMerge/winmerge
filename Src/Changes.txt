@@ -5,6 +5,8 @@ Add new items to top.
 2007-02-19 Kimmo
  PATCH: [ 1663012 ] Fix total count for compare progress dialog
   Src: DirCompProgressDlg.cpp DirCompProgressDlg.h
+ Bug: [ 1663197 ] s/inproper/improper [in Changes.txt]
+  Src: Changes.txt
 
 2007-02-17 Jan Hryz
  Czech translation - update
@@ -572,7 +574,7 @@ Add new items to top.
 2006-10-20 Kimmo
  Fix compile warnings (some of them 64-bit), remove unused variables and code, fix types
   Src: MainFrm.cpp
- Remove unused function, fix inproper pointer usage
+ Remove unused function, fix improper pointer usage
   Src: FileFilterHelper.cpp
  Fix casting a pointer type to DWORD (not 64-bit compatible)
   Src: DirView.cpp DirView.h
