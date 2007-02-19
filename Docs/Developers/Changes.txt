@@ -1,6 +1,8 @@
 2007-02-19 Kimmo
  Bugs 1663767-1663770, 1663776, 1663778: typo/grammar fixes.
   Developers: readme-developers.html
+ Add short instructions for Visual Studio 2005
+  Developers: readme-developers.html
 
 2007-02-12 Tim
  PATCH: [ 1658347 ] Add note about PSDK paths and VC into dev-readme

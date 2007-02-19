@@ -191,6 +191,18 @@ for compiling releases are:<br>
   <li>Plugin dlls : Unicode Release MinDependency</li>
 </ul>
 
+<h4>Visual Studio 2005</h4>
+<p>When VC6 project file (.dsp) is converted to Visual Studio 2005 project, it does not
+compile correctly as is. The problem is Visual Studio 2005 automatically generates and
+embeds manifest file for the executable. And as WinMerge resource file includes manifest
+file there are conflicts.</p>
+
+<p>The easiest way to fix the compile is to disable VS2005 from creating and embedding
+the manifest file. From project properties:
+<ul>
+  <li>disable Linker / Manifest File / Generate Manifest (set to "No")</li>
+  <li>disable Manifest Tool / Input and Output/ Embed Manifest (set to "No")
+</ul></p>
 
 <h3><a name="Code_changes">Code changes</a></h3>
 
