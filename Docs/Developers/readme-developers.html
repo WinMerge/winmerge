@@ -80,7 +80,7 @@ compile WinMerge, unless you have MFC installed separately.</p>
 
 <h4>Libraries</h4>
 <p>WinMerge executable depends on Expat XML parser and SCEW wrapper libraries. Both are in
-source tree, but need to be compiled before compiling WinMerge executable.</p>
+the source tree, but need to be compiled before compiling WinMerge executable.</p>
 
 <h4>Additional requirements (out of source tree)</h4>
 <ul>
@@ -126,7 +126,7 @@ single project/workspace file to compile all projects.<p>
 <p>Visual Studio project file for MSVC6 comes with WinMerge sources. Newer versions of
 Visual Studio can open that file too, they just ask if one wants to convert to new version.
 Reason we don't ship project files for all Visual Studio versions is we have no resources
-to keep all versions up to date. People can't test all versions themselves and easily forgot
+to keep all versions up to date. People can't test all versions themselves and easily forget
 to update at least one file. So we easily end up in situation when there is no properly
 working project file at all...</p>
 
@@ -135,8 +135,8 @@ and library-path.</p>
 
 <p>NOTE: There might be problems compiling/debugging with Visual Studio 2003 when using
 HTML Help WorkShop from Platform SDK in Visual Studio directory. Download and
-install HTML Workhop as stand-alone and include headers and libraries from standalone
-directory. Propable cause is that including files from Platform SDK directories breaks
+install HTML Workshop as stand-alone and include headers and libraries from standalone
+directory. Probable cause is that including files from Platform SDK directories breaks
 things.</p>
 
 <h4>Compiling expat</h4>
@@ -223,7 +223,7 @@ either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
     subversion, or of a source zip from a distribution).</p>
 
     <p><b>DO NOT</b> submit a patch against year-old version. Latest experimental/beta version
-    is at max few weeks old. Stable releases should only get bug fixes. And even then bugfix
+    is at most a few weeks old. Stable releases should only get bug fixes. And even then bugfix
     is usually first applied to development versions. So there should be no reason to submit
     a patch against old version.</p>
   </li>
@@ -435,7 +435,7 @@ executable version numbers before uploading and releasing them.</p>
 
 <p>
   Now that 2.4 release has translations for Shell Extension we must also carefully
-  version it. If we don't update version number installer won't install updated version.
+  version it. If we don't update version number, installer won't install updated version.
   There are no scripts or other tools to update version number, it must be done by hand
   to <code>ShellExtension.rc</code> file (make sure you update all four numbers!). Version numbers
   follow the rule:
