@@ -1959,32 +1959,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "CheminGauche CheminDroit [CheminSortie]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "masque/filtre"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "description"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "description"
-    IDS_CMDLINE_WHERE       "où:"
-    IDS_CMDLINE_HELP        "/? or -? affiche cet aide"
-    IDS_CMDLINE_RECURSIVE   "/r or -r indique de comparer recursivement les répertoires"
-    IDS_CMDLINE_ESCKEY      "/e or -e permet la fermeture avec la touche esc"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f or -f défini un masque ou un filtre, de fichier pour comparer"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
-    IDS_CMDLINE_LEFTPATH  "CheminGauche est le répertoire ou le fichier à ouvrir du côté gauche"
-    IDS_CMDLINE_RIGHTPATH  "CheminDroit  est le répertoire ou le fichier à ouvrir du côté droit"
-    IDS_CMDLINE_OUTPUTPATH "CheminSortie est un répertoire optionel où enregistrer les fichiers fusionnés"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

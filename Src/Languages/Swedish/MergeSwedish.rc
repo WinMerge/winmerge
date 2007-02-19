@@ -1965,32 +1965,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
-    IDS_CMDLINE_WHERE       "där:"
-    IDS_CMDLINE_HELP        "/? eller -? visar denna hjälp"
-    IDS_CMDLINE_RECURSIVE   "/r eller -r får WinMerge att jämföra kataloger rekursivt"
-    IDS_CMDLINE_ESCKEY      "/e eller -e låter WinMerge stängas med en enkel ESC-tryckning"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f eller -f anger filmask eller filternamn för jämförelse"
-    IDS_CMDLINE_FASTCLOSE  "/x eller -x avslutar WinMerge om resultatet är identiskt"
-    IDS_CMDLINE_SINGLE_INST  "/s eller -s öppnar sökvägar till existerande WinMerge version"
-    IDS_CMDLINE_LEFTPATH  "leftpath är katalogen eller filnamnet att öppna på vänster sida"
-    IDS_CMDLINE_RIGHTPATH  "rightpath är katalogen eller filnamnet att öppna på höger sida"
-    IDS_CMDLINE_OUTPUTPATH "outputpath är en optionell utdatakatalog där du vill att ändrade filer ska sparas"
-    IDS_CMDLINE_SEEMANUAL  "Se manualen för komplett kommandoradsreferens."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

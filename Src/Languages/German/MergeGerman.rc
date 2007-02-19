@@ -1966,32 +1966,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "LinkerPfad RechterPfad [AusgabePfad]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "Maske/Name"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "LinkeBeschreibung"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "RechteBeschreibung"
-    IDS_CMDLINE_WHERE       "Wo:"
-    IDS_CMDLINE_HELP        "/? oder -? zeigt diese Hilfe"
-    IDS_CMDLINE_RECURSIVE   "/r oder -r befiehlt WinMerge, Verzeichnisse rekursiv zu vergleichen"
-    IDS_CMDLINE_ESCKEY      "/e oder -e erlaubt, dass WinMerge mit einem einzelnen ESC-Tastendruck geschlossen wird"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f oder -f setzt die Dateimaske oder den Filtername für den Vergleich"
-    IDS_CMDLINE_FASTCLOSE  "/x oder -x schließt WinMerge, wenn das Ergebnis identisch ist"
-    IDS_CMDLINE_SINGLE_INST  "/s oder -s öffnet Pfade zur bestehenden WinMerge-Instanz"
-    IDS_CMDLINE_LEFTPATH  "LinkerPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der linken Seite"
-    IDS_CMDLINE_RIGHTPATH  "RechterPfad ist das Verzeichnis oder der Dateiname zum Öffnen auf der rechten Seite"
-    IDS_CMDLINE_OUTPUTPATH "AusgabePfad ist ein optionales Ausgabeverzeichnis, in dem Sie die vermischten Dateien speichern möchten"
-    IDS_CMDLINE_SEEMANUAL  "Sehen Sie ins Handbuch für eine komplette Befehlszeilen-Referenz."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

@@ -95,7 +95,6 @@ protected:
 	void InitializeFileFilters();
 	BOOL ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainFrame);
 	void SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo);
-	CString GetUsageDescription();
 	// End MergeArgs.cpp
 
 	bool LoadAndOpenProjectFile(const CString & sFilepath);

@@ -1965,32 +1965,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Sintaxis : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "rutaizq rutadcha [rutasalida]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mascara/nombre"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "descizq"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "descdcha"
-    IDS_CMDLINE_WHERE       "donde:"
-    IDS_CMDLINE_HELP        "/? or -? muestra esta ayuda"
-    IDS_CMDLINE_RECURSIVE   "/r or -r compara los directorios de forma recursiva (incluir subdirectorios)"
-    IDS_CMDLINE_ESCKEY      "/e or -e permite que WinMergw se cierre con la tecla ESC"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f or -f establece la mascara de ficheros o mascara de líneas para la comparación"
-    IDS_CMDLINE_FASTCLOSE  "/x o -x cierra WinMerge si el resultado es identico."
-    IDS_CMDLINE_SINGLE_INST  "/s o -s abre la comparación en una instancia de WinMerge existente."
-    IDS_CMDLINE_LEFTPATH  "rutaizq es el directorio o nombre de fichero a ser abierto en el lado izquierdo"
-    IDS_CMDLINE_RIGHTPATH  "rutadcha es el directorio o nombre de fichero a ser abierto en el lado derecho"
-    IDS_CMDLINE_OUTPUTPATH "rutasalida es un directorio opcional donde se guardaran los ficheros combinados"
-    IDS_CMDLINE_SEEMANUAL  "Lea el manual para una referencia completa de la linea de comandos."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

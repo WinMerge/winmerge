@@ -1964,32 +1964,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
-    IDS_CMDLINE_WHERE       "where:"
-    IDS_CMDLINE_HELP        "/? or -? displays this help"
-    IDS_CMDLINE_RECURSIVE   "/r or -r tells winmerge to compare directories recursively"
-    IDS_CMDLINE_ESCKEY      "/e or -e allows WinMerge to be closed with a single esc keypress"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f or -f sets filemask or filtername for compare"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
-    IDS_CMDLINE_LEFTPATH  "leftpath is the directory or filename to open on the left side"
-    IDS_CMDLINE_RIGHTPATH  "rightpath is the directory or filename to open on the right side"
-    IDS_CMDLINE_OUTPUTPATH "outputpath is an optional output directory where you want merged files to be saved"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

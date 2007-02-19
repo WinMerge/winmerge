@@ -69,6 +69,9 @@ static char THIS_FILE[] = __FILE__;
 static const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge\\Filters");
 
 
+/** @brief Location for command line help to open. */
+static TCHAR CommandLineHelpLocation[] = _T("::/htmlhelp/CommandLine.html");
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp
 
@@ -552,8 +555,7 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 	// comparison.
 	if (cmdInfo.m_bShowUsage)
 	{
-		CString s = GetUsageDescription();
-		AfxMessageBox(s, MB_ICONINFORMATION);
+		pMainFrame->ShowHelp(CommandLineHelpLocation);
 	}
 	else
 	{
@@ -729,28 +731,6 @@ void CMergeApp::ReloadMenu()
 static CString CmdlineOption(int idres)
 {
 	CString str = LoadResString(idres) + _T(" \n");
-	return str;
-}
-
-/** @brief Put together string of all cmdline arguments */
-CString CMergeApp::GetUsageDescription()
-{
-	CString str;
-	str += LoadResString(IDS_CMDLINE_SYNTAX);
-	str += _T(" [/f ") + LoadResString(IDS_CMDLINE_SYNTAX_ARG_FILTER) + _T("]");
-	str += _T(" ");
-	str += LoadResString(IDS_CMDLINE_SYNTAX_ARGS);
-	str += _T("\n\n") + LoadResString(IDS_CMDLINE_WHERE) + _T(" \n");
-	str += CmdlineOption(IDS_CMDLINE_HELP);
-	str += CmdlineOption(IDS_CMDLINE_RECURSIVE);
-	str += CmdlineOption(IDS_CMDLINE_ESCKEY);
-	str += CmdlineOption(IDS_CMDLINE_FILEMASK);
-	str += CmdlineOption(IDS_CMDLINE_FASTCLOSE);
-	str += CmdlineOption(IDS_CMDLINE_SINGLE_INST);
-	str += CmdlineOption(IDS_CMDLINE_LEFTPATH);
-	str += CmdlineOption(IDS_CMDLINE_RIGHTPATH);
-	str += CmdlineOption(IDS_CMDLINE_OUTPUTPATH);
-	str += _T("\n\n") + LoadResString(IDS_CMDLINE_SEEMANUAL);
 	return str;
 }
 

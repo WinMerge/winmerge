@@ -1965,32 +1965,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Sintassi : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "percsx percdx [percoutput]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "maschera/nome"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "descsx"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "descdx"
-    IDS_CMDLINE_WHERE       "dove:"
-    IDS_CMDLINE_HELP        "/? o -? visualizza questo aiuto"
-    IDS_CMDLINE_RECURSIVE   "/r o -r indica a winmerge di confrontare le cartelle ricorsivamente"
-    IDS_CMDLINE_ESCKEY      "/e o -e permette la chiusura di WinMerge con la semplice pressione di Esc"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f o -f imposta la maschera di file o il nome del filtro per il confronto"
-    IDS_CMDLINE_FASTCLOSE  "/x o -x chiude WinMerge se gli elementi confrontati sono identici"
-    IDS_CMDLINE_SINGLE_INST  "/s o -s apre i percorsi nell'istanza corrente di WinMerge"
-    IDS_CMDLINE_LEFTPATH  "percsx è la cartella o il nome del file da aprire sul lato sinistro"
-    IDS_CMDLINE_RIGHTPATH  "percdx è la cartella o il nome del file da aprire sul lato destro"
-    IDS_CMDLINE_OUTPUTPATH "percoutput è una cartella di output opzionale in cui desideri siano salvati i file riuniti"
-    IDS_CMDLINE_SEEMANUAL  "Guarda il manuale per una guida completa sulla linea di comando."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

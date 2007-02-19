@@ -1984,32 +1984,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Sintaxi : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "camiesq camidreta [camisortida]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "màscara/nom"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "descesq"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "descdreta"
-    IDS_CMDLINE_WHERE       "on:"
-    IDS_CMDLINE_HELP        "/? o -? mostra aquesta ajuda"
-    IDS_CMDLINE_RECURSIVE   "/r o -r diu al WinMerge que compari directoris recursivament"
-    IDS_CMDLINE_ESCKEY      "/e o -e permet tancar el WinMerge amb una única polsació d'Esc"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f o -f especifica la màscara de fitxers o el nom del filtre per a comparar"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x tanca el WinMerge si el resultat és idèntic"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s obre els camins a una instància existent del WinMerge"
-    IDS_CMDLINE_LEFTPATH  "camiesq és el directori o nom de fitxer per a ésser obert a la banda esquerra"
-    IDS_CMDLINE_RIGHTPATH  "camidreta és el directori o nom de fitxer per a ésser obert a la banda dreta"
-    IDS_CMDLINE_OUTPUTPATH "camisortida és un directori de sortida opcional on voleu que siguin desats els fitxers fusionats"
-    IDS_CMDLINE_SEEMANUAL  "Veieu el manual per a una referència completa de la línia de comandes."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

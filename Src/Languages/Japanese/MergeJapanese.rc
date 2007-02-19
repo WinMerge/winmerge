@@ -1966,32 +1966,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
-    IDS_CMDLINE_WHERE       "where:"
-    IDS_CMDLINE_HELP        "/? or -? このヘルプを表示します"
-    IDS_CMDLINE_RECURSIVE   "/r or -r 再帰的にフォルダを比較します"
-    IDS_CMDLINE_ESCKEY      "/e or -e Escキーの押下でWinMergeを終了します"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f or -f  ファイルマスクまたはフィルタ名を設定します"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x もし比較結果が同一であるならば WinMergeを閉じます"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s 実行中のWinMergeで指定したパスを開きます"
-    IDS_CMDLINE_LEFTPATH  "leftpath は、左側で開くフォルダまたはファイル名です"
-    IDS_CMDLINE_RIGHTPATH  "rightpath は、右側で開くフォルダまたはファイル名です"
-    IDS_CMDLINE_OUTPUTPATH "outputpath は、省略可能なマージされたファイルの保存先フォルダです"
-    IDS_CMDLINE_SEEMANUAL  "上記が全てではありません。完全なコマンドライン書式についてはマニュアルを参照してください"
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

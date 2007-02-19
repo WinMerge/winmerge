@@ -1966,32 +1966,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "vsti hsti [utsti]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "vbeskr"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "hbeskr"
-    IDS_CMDLINE_WHERE       "hvor:"
-    IDS_CMDLINE_HELP        "/? eller -? viser denne hjelpen"
-    IDS_CMDLINE_RECURSIVE   "/r eller -r ber WinMerge om å sammenligne mapper rekursivt"
-    IDS_CMDLINE_ESCKEY      "/e eller -e tillater lukking WinMerge ved kun å trykke ESC"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f eller -f sett filmaske eller filternavn for sammenligning"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x closes WinMerge if result is identical"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s opens paths to existing WinMerge instance"
-    IDS_CMDLINE_LEFTPATH  "vsti er mappen eller filen som skal åpnes på venstre side"
-    IDS_CMDLINE_RIGHTPATH  "hsti er mappen eller filen som skal åpnes på høyre side"
-    IDS_CMDLINE_OUTPUTPATH "utsti er en valgfri mappe hvor flettede filer blir lagret"
-    IDS_CMDLINE_SEEMANUAL  "See manual for complete commandline reference."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

@@ -1965,32 +1965,6 @@ BEGIN
     IDS_UNICODE             "Unicode"
 END
 
-// WINMERGE COMMAND LINE HELP#1
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_SYNTAX      "Syntax : WinMerge [/r] [/e] [/x] [/s]"
-    IDS_CMDLINE_SYNTAX_ARGS "leftpath rightpath [outputpath]"
-    IDS_CMDLINE_SYNTAX_ARG_FILTER  "mask/name"
-    IDS_CMDLINE_SYNTAX_LEFTDESC    "leftdesc"
-    IDS_CMDLINE_SYNTAX_RIGHTDESC   "rightdesc"
-    IDS_CMDLINE_WHERE       "where:"
-    IDS_CMDLINE_HELP        "/? or -? zobrazÌ tohto pomocnÌka"
-    IDS_CMDLINE_RECURSIVE   "/r or -r porovn·vaù adres·re rekurzÌvne"
-    IDS_CMDLINE_ESCKEY      "/e or -e umoûÚuje zatvoriù WinMerge stlaËenÌm ESC"
-END
-
-// WINMERGE COMMAND LINE HELP#2
-STRINGTABLE
-BEGIN
-    IDS_CMDLINE_FILEMASK  "/f or -f nastavuje masku s˙boru alebo filter pre porovnanie"
-    IDS_CMDLINE_FASTCLOSE  "/x or -x zatvorÌ WinMerge ak je v˝sledkom zhoda"
-    IDS_CMDLINE_SINGLE_INST  "/s or -s otvorÌ cesty k existuj˙cej inötancii WinMerge"
-    IDS_CMDLINE_LEFTPATH  "leftpath je adres·r Ëi n·zov s˙boru na æavej strane"
-    IDS_CMDLINE_RIGHTPATH  "rightpath je adres·r Ëi n·zov s˙boru na pravej strane"
-    IDS_CMDLINE_OUTPUTPATH "outputpath je nepovinn˝ adres·r, kde chcete uloûiù zl˙ËenÈ s˙bory"
-    IDS_CMDLINE_SEEMANUAL  "Pozri ˙pln˝ zoznam parametrov prÌkazovÈho riadka v PomocnÌkovi."
-END
-
 // VARIOUS OPTIONS
 STRINGTABLE
 BEGIN

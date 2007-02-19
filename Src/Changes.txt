@@ -7,6 +7,9 @@ Add new items to top.
   Src: DirCompProgressDlg.cpp DirCompProgressDlg.h
  Bug: [ 1663197 ] s/inproper/improper [in Changes.txt]
   Src: Changes.txt
+ PATCH: [ 1642876 ] Open manual for command line help
+  Src: Merge.cpp Merge.h Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
 
 2007-02-17 Jan Hryz
  Czech translation - update
