@@ -3,7 +3,7 @@
  *
  * @brief Declaration file for Directory compare statusdialog class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_DIRCOMPPROGRESSDLG_H__8F66C090_C232_429F_A4A2_18D43CCC6C38__INCLUDED_)
@@ -32,6 +32,10 @@ class CDirDoc;
  * datastructure with compare code. Compare code updates status information
  * to datastructure during compare. When timer event fires, dialog reads
  * that datastructure and updates the GUI.
+ * 
+ * @todo Now we update total count of items with same timer than we update
+ * compared items count. Maybe we should use different timer and bigger
+ * interval for total count updates?
  */
 class DirCompProgressDlg : public CDialog
 {
@@ -40,7 +44,6 @@ class DirCompProgressDlg : public CDialog
 // Construction
 public:
 	DirCompProgressDlg(CWnd* pParent = NULL);   // standard constructor
-	BOOL Create(UINT nIDTemplate, CWnd* pParentWnd);
 	void SetCompareStat(CompareStats * pCompareStats);
 	void StartUpdating();
 	void EndUpdating();
