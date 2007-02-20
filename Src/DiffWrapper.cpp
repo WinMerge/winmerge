@@ -21,7 +21,7 @@
  *
  * @date  Created: 2003-08-22
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -160,7 +160,6 @@ void CDiffWrapper::GetOptions(DIFFOPTIONS *options)
 	DIFFOPTIONS tmpOptions = {0};
 	m_options.GetAsDiffOptions(tmpOptions);
 	*options = tmpOptions;
-//	InternalGetOptions(options);
 }
 
 /**
@@ -173,7 +172,6 @@ void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
 {
 	ASSERT(options);
 	m_options.SetFromDiffOptions(*options);
-//	InternalSetOptions(options);
 }
 
 /**
@@ -815,7 +813,6 @@ BOOL CDiffWrapper::RunFileDiff()
 		strFile2Temp.Empty();
 	}
 
-//	SwapToGlobalSettings();
 	return bRet;
 }
 

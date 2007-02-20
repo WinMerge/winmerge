@@ -8,6 +8,8 @@ Add new items to top.
    resource.h
   Src/editlib: ccrystaltextview.cpp
   Src/Languages/*: Merge*.rc
+ Remove commented out lines
+  Src: DiffWrapper.cpp
 
 2007-02-19 Kimmo
  PATCH: [ 1663012 ] Fix total count for compare progress dialog
