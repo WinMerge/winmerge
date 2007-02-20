@@ -398,6 +398,7 @@ BEGIN
         MENUITEM "Zobrazit netisknutelné &znaky", ID_VIEW_WHITESPACE
         MENUITEM "Zobrazit rozdíly v øá&dcích", ID_VIEW_LINEDIFFS
         MENUITEM "Zobrazit èísla øád&kù",       ID_VIEW_LINENUMBERS
+        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
         MENUITEM "Za&lamovat øádky",            ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Za&mìnit panely",             ID_VIEW_SWAPPANES
@@ -2829,6 +2830,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Zamìní umístìní panelù s porovnáním souborù"
     ID_VIEW_LINENUMBERS     "Zobrazí nebo skryje èísla øádkù\nZobrazit èísla øádkù"
     ID_VIEW_WORDWRAP        "Pøepíná zalamování øádkù\nZalamovat øádky"
+    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
 END
 
 // MERGE MENU

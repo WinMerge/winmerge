@@ -1070,6 +1070,7 @@
 #define ID_EDIT_GOTO_PREV_BOOKMARK      33117
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33118
 #define ID_DEBUG_RESETOPTIONS           33119
+#define ID_VIEW_FILEMARGIN              33120
 
 // Next default values for new objects
 // 
@@ -1077,7 +1078,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        235
-#define _APS_NEXT_COMMAND_VALUE         33120
+#define _APS_NEXT_COMMAND_VALUE         33121
 #define _APS_NEXT_CONTROL_VALUE         1328
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

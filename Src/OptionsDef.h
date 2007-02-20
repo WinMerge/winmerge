@@ -47,6 +47,7 @@ const TCHAR OPT_BREAK_ON_WORDS[] = _T("Settings/BreakOnWords");
 const TCHAR OPT_BREAK_TYPE[] = _T("Settings/BreakType");
 const TCHAR OPT_WORDWRAP[] = _T("Settings/WordWrap");
 const TCHAR OPT_VIEW_LINENUMBERS[] = _T("Settings/ViewLineNumbers");
+const TCHAR OPT_VIEW_FILEMARGIN[] = _T("Settings/ViewFileMargin");
 
 const TCHAR OPT_EXT_EDITOR_CMD[] = _T("Settings/ExternalEditor");
 const TCHAR OPT_USE_RECYCLE_BIN[] = _T("Settings/UseRecycleBin");

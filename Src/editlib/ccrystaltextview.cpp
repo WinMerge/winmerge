@@ -121,7 +121,16 @@ static char THIS_FILE[] = __FILE__;
 
 #define DEFAULT_PRINT_MARGIN        1000    //  10 millimeters
 
-const UINT	MAX_TAB_LEN	= 64; 
+/** @brief Maximum tab-char width. */
+const UINT MAX_TAB_LEN = 64;
+/** @brief Width of revision marks. */
+const UINT MARGIN_REV_WIDTH = 3;
+
+/** @brief Color of unsaved line revision mark (dark yellow). */
+const COLORREF UNSAVED_REVMARK_CLR = RGB(0xD7, 0xD7, 0x00);
+/** @brief Color of saved line revision mark (green). */
+const COLORREF SAVED_REVMARK_CLR = RGB(0x00, 0xFF, 0x00);
+
 #define SMOOTH_SCROLL_FACTOR        6
 
 #define ICON_INDEX_WRAPLINE         15
@@ -1704,12 +1713,31 @@ void CCrystalTextView::
 DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
 {
   if (!m_bSelMargin)
+    pdc->FillSolidRect (rect, GetColor (COLORINDEX_BKGND));
+  else
+    pdc->FillSolidRect (rect, GetColor (COLORINDEX_SELMARGIN));
+
+  // We'll always want revision marks so draw them first
+  COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
+  if (m_pTextBuffer)
     {
-      pdc->FillSolidRect (rect, GetColor (COLORINDEX_BKGND));
-      return;
+      // get line revision marks color
+      DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
+      if (dwRevisionNumber > 0)
+        {
+          if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
+            clrRevisionMark = UNSAVED_REVMARK_CLR;
+          else
+            clrRevisionMark = SAVED_REVMARK_CLR;
+        }
     }
 
-  pdc->FillSolidRect (rect, GetColor (COLORINDEX_SELMARGIN));
+  // draw line revision marks
+  CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
+  pdc->FillSolidRect (rc, clrRevisionMark);
+
+  if (!m_bSelMargin)
+    return;
 
   if (m_bViewLineNumbers && nLineNumber > 0)
     {
@@ -1724,7 +1752,6 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       pdc->SetTextColor(clrOldColor);
     }
 
-  COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
   int nImageIndex = -1;
   if (nLineIndex >= 0)
     {
@@ -1755,25 +1782,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
               break;
             }
         }
-
-     if (m_pTextBuffer)
-       {
-         // get line revision marks color
-         DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
-         if (dwRevisionNumber > 0)
-           {
-             if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
-               clrRevisionMark = RGB(0xD7, 0xD7, 0x00); // dark yellow
-             else
-               clrRevisionMark = RGB(0x00, 0xFF, 0x00); // green
-           }
-       }
     }
-  
-  // draw line revision marks
-  CRect rc(rect.right - 3, rect.top, rect.right, rect.bottom);
-  pdc->FillSolidRect (rc, clrRevisionMark);
-
   if (m_pIcons == NULL)
     {
       m_pIcons = new CImageList;
@@ -5181,7 +5190,7 @@ GetMarginWidth ()
         }
     }
   else
-    ++nMarginWidth; // Do we really want one pixel wide margin?
+    nMarginWidth = MARGIN_REV_WIDTH; // Space for revision marks
 
   return nMarginWidth;
 }

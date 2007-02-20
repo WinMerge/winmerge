@@ -193,6 +193,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_NO_EDIT_SCRIPTS, OnUpdateNoEditScripts)
 	ON_WM_SIZE()
 	ON_COMMAND(ID_HELP, OnHelp)
+	ON_COMMAND(ID_VIEW_FILEMARGIN, OnViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_FILEMARGIN, OnUpdateViewMargin)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2270,6 +2272,8 @@ void CMergeEditView::RefreshOptions()
 	else
 		SetInsertTabs(FALSE);
 
+	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
+
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	m_cachedColors.clrDiff = GetOptionsMgr()->GetInt(OPT_CLR_DIFF);
@@ -2885,6 +2889,9 @@ void CMergeEditView::OnViewSwapPanes()
 	GetDocument()->SwapFiles();
 }
 
+/**
+ * @brief Enable Swap Panes -gui.
+ */
 void CMergeEditView::OnUpdateViewSwapPanes(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(TRUE);
@@ -2964,6 +2971,7 @@ void CMergeEditView::DocumentsLoaded()
 			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
+	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
 
 	// Enable Backspace at beginning of line
 	SetDisableBSAtSOL(FALSE);
@@ -3012,4 +3020,32 @@ void CMergeEditView::UpdateLocationViewPosition(int nTopLine /*=-1*/,
 	{
 		m_pLocationView->UpdateVisiblePos(nTopLine, nBottomLine);
 	}
+}
+
+/**
+ * @brief Enable/Disable view's selection margins.
+ * Selection margins show bookmarks and word-wrap symbols, so they are pretty
+ * useful. But it appears many users don't use/need those features and for them
+ * selection margins are just wasted screen estate.
+ */
+void CMergeEditView::OnViewMargin()
+{
+	BOOL bViewMargin = GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN);
+	GetOptionsMgr()->SaveOption(OPT_VIEW_FILEMARGIN, !bViewMargin);
+
+	SetSelectionMargin(!bViewMargin);
+	CMergeDoc *pDoc = GetDocument();
+	pDoc->RefreshOptions();
+	pDoc->UpdateAllViews(this);
+}
+
+/**
+ * @brief Update GUI for Enable/Disable view's selection margin.
+ * @param [in] pCmdUI Pointer to UI item to update.
+ */
+void CMergeEditView::OnUpdateViewMargin(CCmdUI* pCmdUI)
+{
+	BOOL bViewMargin = GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN);
+	pCmdUI->Enable(TRUE);
+	pCmdUI->SetCheck(bViewMargin);
 }

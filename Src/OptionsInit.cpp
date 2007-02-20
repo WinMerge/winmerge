@@ -45,6 +45,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_SCROLL_TO_FIRST, false);
 	m_pOptions->InitOption(OPT_VERIFY_OPEN_PATHS, true);
 	m_pOptions->InitOption(OPT_AUTO_COMPLETE_SOURCE, (int)0);
+	m_pOptions->InitOption(OPT_VIEW_FILEMARGIN, false);
 
 	m_pOptions->InitOption(OPT_BACKUP_FOLDERCMP, false);
 	m_pOptions->InitOption(OPT_BACKUP_FILECMP, true);

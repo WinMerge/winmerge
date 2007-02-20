@@ -398,6 +398,7 @@ BEGIN
         MENUITEM "&Zobraz pr·zdne miesto",      ID_VIEW_WHITESPACE
         MENUITEM "Zobraz&iù rozdiely riadkov",  ID_VIEW_LINEDIFFS
         MENUITEM "Zobraziù ËÌsla &riadkov",     ID_VIEW_LINENUMBERS
+        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
         MENUITEM "&Zalamovaù riadky",           ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Vymeniù panely",             ID_VIEW_SWAPPANES
@@ -2836,6 +2837,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "VymenÌ polohu dvoch panelov"
     ID_VIEW_LINENUMBERS     "ZobrazÌ ËÌsla riadkov\nZobraziù ËÌsla riadkov"
     ID_VIEW_WORDWRAP        "Zapne zalamovanie riadkov na hranici slov\nZalamovaù riadky"
+    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
 END
 
 // MERGE MENU

@@ -398,6 +398,7 @@ BEGIN
         MENUITEM "Wit&ruimte tonen",            ID_VIEW_WHITESPACE
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
+        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
         MENUITEM "W&rap Lines",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
@@ -2837,6 +2838,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
     ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
     ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
+    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
 END
 
 // MERGE MENU
