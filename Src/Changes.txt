@@ -2,6 +2,9 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-21 Kimmo
+ BUG: [ 1664727 ] Empty file compare looks broken
+  Src/editlib: ccrystaltextview.cpp
 
 2007-02-20 WinMerge experimental release 2.7.1.7 (SVN revision 4120)
 

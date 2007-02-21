@@ -1717,28 +1717,6 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
   else
     pdc->FillSolidRect (rect, GetColor (COLORINDEX_SELMARGIN));
 
-  // We'll always want revision marks so draw them first
-  COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
-  if (m_pTextBuffer)
-    {
-      // get line revision marks color
-      DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
-      if (dwRevisionNumber > 0)
-        {
-          if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
-            clrRevisionMark = UNSAVED_REVMARK_CLR;
-          else
-            clrRevisionMark = SAVED_REVMARK_CLR;
-        }
-    }
-
-  // draw line revision marks
-  CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
-  pdc->FillSolidRect (rc, clrRevisionMark);
-
-  if (!m_bSelMargin)
-    return;
-
   if (m_bViewLineNumbers && nLineNumber > 0)
     {
       TCHAR szNumbers[32];
@@ -1751,6 +1729,31 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       pdc->SelectObject(pOldFont);
       pdc->SetTextColor(clrOldColor);
     }
+
+  if (nLineIndex >= 0)
+  {
+    // Draw line revision mark (or background) whenever we have valid lineindex
+    COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
+    if (m_pTextBuffer)
+      {
+        // get line revision marks color
+        DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
+        if (dwRevisionNumber > 0)
+          {
+            if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
+              clrRevisionMark = UNSAVED_REVMARK_CLR;
+            else
+              clrRevisionMark = SAVED_REVMARK_CLR;
+          }
+      }
+
+    // draw line revision marks
+    CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
+    pdc->FillSolidRect (rc, clrRevisionMark);
+  }
+
+  if (!m_bSelMargin)
+    return;
 
   int nImageIndex = -1;
   if (nLineIndex >= 0)
