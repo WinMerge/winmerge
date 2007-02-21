@@ -1,3 +1,7 @@
+2007-02-21 Kimmo
+ Add pcre.dll and InnoSetup/Runtimes to installer doc
+  Developers: readme-InnoSetup.html
+
 2007-02-19 Kimmo
  Bugs 1663767-1663770, 1663776, 1663778: typo/grammar fixes.
   Developers: readme-developers.html
