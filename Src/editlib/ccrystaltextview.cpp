@@ -1730,27 +1730,24 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       pdc->SetTextColor(clrOldColor);
     }
 
-  if (nLineIndex >= 0)
-  {
-    // Draw line revision mark (or background) whenever we have valid lineindex
-    COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
-    if (m_pTextBuffer)
-      {
-        // get line revision marks color
-        DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
-        if (dwRevisionNumber > 0)
-          {
-            if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
-              clrRevisionMark = UNSAVED_REVMARK_CLR;
-            else
-              clrRevisionMark = SAVED_REVMARK_CLR;
-          }
-      }
+  // Draw line revision mark (or background) whenever we have valid lineindex
+  COLORREF clrRevisionMark = GetColor(COLORINDEX_WHITESPACE);
+  if (nLineIndex >= 0 && m_pTextBuffer)
+    {
+      // get line revision marks color
+      DWORD dwRevisionNumber = m_pTextBuffer->GetLineRevisionNumber(nLineIndex);
+      if (dwRevisionNumber > 0)
+        {
+          if (m_pTextBuffer->m_dwRevisionNumberOnSave < dwRevisionNumber)
+            clrRevisionMark = UNSAVED_REVMARK_CLR;
+          else
+            clrRevisionMark = SAVED_REVMARK_CLR;
+        }
+    }
 
-    // draw line revision marks
-    CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
-    pdc->FillSolidRect (rc, clrRevisionMark);
-  }
+  // draw line revision marks
+  CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
+  pdc->FillSolidRect (rc, clrRevisionMark);
 
   if (!m_bSelMargin)
     return;
