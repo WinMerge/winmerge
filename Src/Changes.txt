@@ -10,6 +10,8 @@ Add new items to top.
   Src/editlib: ccrystaltextview.cpp
  BUG: [ 1664832 ] Typo Error in the Registry
   ShellExtension: WinMergeShell.rgs
+ BUG: [ 1666559 ] Error on save option (WinMerge 2.7.1.7)
+  Src: PropBackups.cpp
 
 2007-02-21 Kimmo
  BUG: [ 1664727 ] Empty file compare looks broken

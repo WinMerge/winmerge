@@ -81,8 +81,11 @@ void CPropBackups::WriteOptions()
 {
 	m_sGlobalFolder.TrimLeft();
 	m_sGlobalFolder.TrimRight();
-	if (m_sGlobalFolder[m_sGlobalFolder.GetLength() - 1] != '\\')
+	if (m_sGlobalFolder.GetLength() > 3&&
+		m_sGlobalFolder[m_sGlobalFolder.GetLength() - 1] != '\\')
+	{
 		m_sGlobalFolder += "\\";
+	}
 
 	m_pOptionsMgr->SaveOption(OPT_BACKUP_FOLDERCMP, m_bCreateForFolderCmp == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_BACKUP_FILECMP, m_bCreateForFileCmp == TRUE);
