@@ -20,7 +20,7 @@ HKCR
 			{
 				val ThreadingModel = s 'Apartment'
 			}
-			'TypeLib' = s '06029E17-28B5-456A-B866-4E79D98612FD}'
+			'TypeLib' = s '{06029E17-28B5-456A-B866-4E79D98612FD}'
 		}
 	}
 	NoRemove *
