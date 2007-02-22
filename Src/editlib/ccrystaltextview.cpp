@@ -1712,7 +1712,7 @@ GetLineFlags (int nLineIndex) const
 void CCrystalTextView::
 DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
 {
-  if (!m_bSelMargin)
+  if (!m_bSelMargin && !m_bViewLineNumbers)
     pdc->FillSolidRect (rect, GetColor (COLORINDEX_BKGND));
   else
     pdc->FillSolidRect (rect, GetColor (COLORINDEX_SELMARGIN));
@@ -5179,21 +5179,22 @@ GetMarginWidth ()
 {
   int nMarginWidth = 0;
 
+  if (m_bViewLineNumbers)
+    {
+      const int nLines = GetLineCount();
+      int nNumbers = 0;
+      int n = 1;
+      for (n = 1; n <= nLines; n *= 10)
+        ++nNumbers;
+       nMarginWidth += GetCharWidth() * nNumbers;
+    }
+
   if (m_bSelMargin)
     {
       nMarginWidth += 18;  // Width for markers and some space
-      if (m_bViewLineNumbers)
-        {
-          const int nLines = GetLineCount();
-          int nNumbers = 0;
-          int n = 1;
-          for (n = 1; n <= nLines; n *= 10)
-            ++nNumbers;
-          nMarginWidth += GetCharWidth() * nNumbers;
-        }
     }
   else
-    nMarginWidth = MARGIN_REV_WIDTH; // Space for revision marks
+    nMarginWidth += MARGIN_REV_WIDTH; // Space for revision marks
 
   return nMarginWidth;
 }
