@@ -23,7 +23,7 @@
  *
  * @brief Code for CVssPrompt class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -40,18 +40,16 @@ static char THIS_FILE[] = __FILE__;
 // CVssPrompt dialog
 
 
+/**
+ * @brief Default constructor.
+ * @param [in] pParent Pointer to parent component.
+ */
 CVssPrompt::CVssPrompt(CWnd* pParent /*=NULL*/)
 	: CDialog(CVssPrompt::IDD, pParent)
 	, m_strSelectedDatabase(_T(""))
 	, m_bMultiCheckouts(FALSE)
 	, m_bVCProjSync(FALSE)
 {
-	//{{AFX_DATA_INIT(CVssPrompt)
-	m_strProject = _T("");
-	m_strUser = _T("");
-	m_strPassword = _T("");
-	m_strMessage = _T("");
-	//}}AFX_DATA_INIT
 }
 
 
@@ -82,7 +80,11 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CVssPrompt message handlers
 
-BOOL CVssPrompt::OnInitDialog() 
+/**
+ * @brief Initialize the dialog.
+ * @return TRUE, unless focus is modified.
+ */
+BOOL CVssPrompt::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
@@ -123,7 +125,10 @@ BOOL CVssPrompt::OnInitDialog()
 	return TRUE;
 }
 
-void CVssPrompt::OnOK() 
+/**
+ * @brief Close dialog with OK-button.
+ */
+void CVssPrompt::OnOK()
 {
 	UpdateData(TRUE);
 	if (m_strProject.IsEmpty())
@@ -137,7 +142,10 @@ void CVssPrompt::OnOK()
 	CDialog::OnOK();
 }
 
-void CVssPrompt::OnSaveas() 
+/**
+ * @brief Close dialog with Save As -button.
+ */
+void CVssPrompt::OnSaveas()
 {
 	EndDialog(IDC_SAVE_AS);
 }
