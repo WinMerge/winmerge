@@ -19,7 +19,7 @@
  *
  * @brief Implementation of the CWMGotoDlg class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -38,12 +38,9 @@ static char THIS_FILE[] = __FILE__;
 
 CWMGotoDlg::CWMGotoDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CWMGotoDlg::IDD, pParent)
+	, m_nFile(-1)
+	, m_nGotoWhat(-1)
 {
-	//{{AFX_DATA_INIT(CWMGotoDlg)
-	m_strParam = _T("");
-	m_nFile = -1;
-	m_nGotoWhat = -1;
-	//}}AFX_DATA_INIT
 }
 
 
