@@ -398,8 +398,8 @@ BEGIN
         MENUITEM "Zobrazit netisknutelné &znaky", ID_VIEW_WHITESPACE
         MENUITEM "Zobrazit rozdíly v øá&dcích", ID_VIEW_LINEDIFFS
         MENUITEM "Zobrazit èísla øád&kù",       ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
-        MENUITEM "Za&lamovat øádky",            ID_VIEW_WORDWRAP
+        MENUITEM "Zobrazit &levé okraje",               ID_VIEW_FILEMARGIN
+        MENUITEM "Zala&movat øádky",            ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Za&mìnit panely",             ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
