@@ -396,9 +396,9 @@ BEGIN
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Leer&zeichen anzeigen",       ID_VIEW_WHITESPACE
-        MENUITEM "Zeilenuntersc&hied anzeigen", ID_VIEW_LINEDIFFS
+        MENUITEM "Zeilenuntersc&hiede anzeigen", ID_VIEW_LINEDIFFS
         MENUITEM "Zeilennu&mmern anzeigen",     ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
+        MENUITEM "&Ränder anzeigen",            ID_VIEW_FILEMARGIN
         MENUITEM "Zeilen &umbrechen",           ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Ausschnitt v&ertauschen",     ID_VIEW_SWAPPANES
@@ -1376,7 +1376,7 @@ END
 IDD_DIRCMP_REPORT DIALOGEX 0, 0, 268, 81
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Verzeichnis-Vergleichs-Bericht"
+CAPTION "Ordnervergleichs-Bericht"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "&Berichtsdatei:",IDC_STATIC,7,7,100,8
@@ -1573,25 +1573,25 @@ END
 
 IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 236, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Backup Files"
+CAPTION "Sicherungsdateien"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Sicherungsdateien erzeugen beim:",IDC_STATIC,7,7,222,8
+    CONTROL         "&Ordnervergleich",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "&Dateivergleich",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "Sicherungsdateien erzeugen im:",IDC_STATIC,7,40,222,8
+    CONTROL         "Ordner der &ursprünglichen Datei",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "&Globalen Sicherungsordner:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "Suchen...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "Sicherungsdateiname:",IDC_STATIC,7,89,222,8
+    CONTROL         ".bak-&Erweiterung anhängen",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "&Zeitstempel anhängen",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
@@ -1956,7 +1956,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Versionskontrolle"
     IDS_OPTIONSPG_CODEPAGE  "Zeichensatz"
     IDS_OPTIONSPG_ARCHIVE   "Archiv-Unterstützung"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_BACKUPS   "Sicherungsdateien"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -2044,8 +2044,8 @@ END
 // WINDOWS TITLES
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_WINDOW_TITLE "Verzeichnis-Vergleichs Ergebnisse"
-    IDS_FILE_COMPARISON_TITLE "Datei-Vergleich"
+    IDS_DIRECTORY_WINDOW_TITLE "Ordnervergleichs-Ergebnisse"
+    IDS_FILE_COMPARISON_TITLE "Dateivergleich"
     IDS_EMPTY_LEFT_FILE     "Unbenannt links"
     IDS_EMPTY_RIGHT_FILE    "Unbenannt rechts"
 END
@@ -2124,7 +2124,7 @@ BEGIN
     IDS_FILEPACK_FAILED_RIGHT "Plugin '%2' kann Ihre Änderungen der rechten Datei nicht zurück in '%1' packen.\n\nDie ursprüngliche Datei wird nicht geändert.\n\nMöchten Sie die ungepackte Version in einer anderen Datei speichern?"
     IDS_FILECHANGED_ONDISK  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie geladen hat.\n\nGeänderte Datei überschreiben?"
     IDS_SAVEREADONLY_MULTI  "%1\nist als schreibgeschützt markiert. Möchten Sie das schreibgeschützte Objekt überschreiben?"
-    IDS_FILECHANGED_RESCAN  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie das letzte mal gescannt hat.\n\nWenn Sie die Dateien aktualisieren wollen, müssen Sie den aktuellen Datei-Vergleich schliessen und neu aufrufen."
+    IDS_FILECHANGED_RESCAN  "Eine andere Anwendung hat die Datei\n%1\naktualisiert, seit WinMerge sie das letzte mal gescannt hat.\n\nWenn Sie die Dateien aktualisieren wollen, müssen Sie den aktuellen Dateivergleich schliessen und neu aufrufen."
     IDS_SAVE_LEFT_AS        "Speichere linke Datei unter"
     IDS_SAVE_RIGHT_AS       "Speichere rechte Datei unter"
 END
@@ -2250,7 +2250,7 @@ STRINGTABLE
 BEGIN
     IDS_COLHDR_FILENAME     "Dateiname"
     IDS_COLHDR_DIR          "Ordner"
-    IDS_COLHDR_RESULT       "Vergleichs-Ergebnis"
+    IDS_COLHDR_RESULT       "Vergleichsergebnis"
     IDS_COLHDR_LTIMEM       "Linkes Datum"
     IDS_COLHDR_RTIMEM       "Rechtes Datum"
     IDS_COLHDR_EXTENSION    "Erweiterung"
@@ -2292,8 +2292,8 @@ BEGIN
     IDS_ABORTED_ITEM        "Objekt abgebrochen"
     IDS_FILE_SKIPPED        "Datei übersprungen"
     IDS_DIR_SKIPPED         "Ordner übersprungen"
-    IDS_LEFT_ONLY_IN_FMT    "Left only: %1"
-    IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
+    IDS_LEFT_ONLY_IN_FMT    "Nur Links: %1"
+    IDS_RIGHT_ONLY_IN_FMT   "Nur Rechts: %1"
     IDS_BIN_FILES_SAME      "Binärdateien sind identisch"
     IDS_IDENTICAL           "Identisch"
     IDS_BIN_FILES_DIFF      "Binärdateien sind unterschiedlich"
@@ -2301,7 +2301,7 @@ BEGIN
     IDS_LEFTONLY            "Nur Links"
     IDS_RIGHTONLY           "Nur Rechts"
     IDS_DIFFERENT           "Unterschiedlich"
-    IDS_CMPRES_ERROR        "Error"
+    IDS_CMPRES_ERROR        "Fehler"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -2317,7 +2317,7 @@ STRINGTABLE
 BEGIN
     IDS_COLDESC_FILENAME    "Dateiname oder Ordnername."
     IDS_COLDESC_DIR         "Unterordnername, wenn Unterordner vorhanden sind."
-    IDS_COLDESC_RESULT      "Vergleichs-Ergebnis, langes Format."
+    IDS_COLDESC_RESULT      "Vergleichsergebnis, langes Format."
     IDS_COLDESC_LTIMEM      "Linkes Änderungsdatum."
     IDS_COLDESC_RTIMEM      "Rechtes Änderungsdatum."
     IDS_COLDESC_EXTENSION   "Dateierweiterung."
@@ -2335,7 +2335,7 @@ BEGIN
     IDS_COLDESC_NEWER       "Zeigt, welche Seite ein neueres Änderungsdatum hat."
     IDS_COLDESC_LVERSION    "Linke Dateiversion, nur für einige Dateitypen."
     IDS_COLDESC_RVERSION    "Rechte Dateiversion, nur für einige Dateitypen."
-    IDS_COLDESC_RESULT_ABBR "Vergleichs-Ergebnis, kurzes Format."
+    IDS_COLDESC_RESULT_ABBR "Vergleichsergebnis, kurzes Format."
     IDS_COLDESC_LATTRIBUTES "Linke Attribute."
     IDS_COLDESC_RATTRIBUTES "Rechte Attribute."
     IDS_COLDESC_LEOL_TYPE   "Linker Zeilenenden-Typ"
@@ -2448,7 +2448,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_DIR_RESULTS_EMPTIED "Die aktuellen Resultate des Verzeichnis-Vergleichs werden gelöscht."
+    IDS_DIR_RESULTS_EMPTIED "Die aktuellen Resultate des Ordnervergleichs werden gelöscht."
     IDS_NO_ZIP_SUPPORT      "Die Archiv-Unterstützung ist nicht aktiviert.\n
                             Alle erforderlichen Komponenten (7-zip und/oder Merge7z*.dll) für die Archiv-Unterstützung können nicht gefunden werden.
                             Entnehmen Sie dem Handbuch mehr Informationen über die Archiv-Unterstützung und wie sie aktiviert wird."
@@ -2838,7 +2838,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Vertauscht die Position der beiden Ausschnitte."
     ID_VIEW_LINENUMBERS     "Zeigt Zeilennummern an.\nZeilennummern anzeigen"
     ID_VIEW_WORDWRAP        "Aktiviert das Umbrechen der Zeilen.\nZeilen umbrechen"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "Zeigt Markierungsränder für beide Ausschnitte an.\nMarkierungsränder anzeigen"
 END
 
 // MERGE MENU
@@ -2862,16 +2862,16 @@ END
 // TOOLS MENU
 STRINGTABLE
 BEGIN
-    ID_TOOLS_CUSTOMIZECOLUMNS "Auswählen und wieder ordnen der Spalten vom Verzeichnis-Vergleich."
+    ID_TOOLS_CUSTOMIZECOLUMNS "Auswählen und wieder ordnen der Spalten vom Ordnervergleich."
     ID_TOOLS_GENERATEPATCH  "Erzeugt eine Patchdatei."
     ID_TOOLS_FILTERS        "Auswählen und modifizieren von Filtern."
-    ID_TOOLS_GENERATEREPORT "Erzeugt einen Bericht von den Vergleichs-Ergebnissen."
+    ID_TOOLS_GENERATEREPORT "Erzeugt einen Bericht von den Vergleichsergebnissen."
 END
 
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
-    ID_UNPACK_MANUAL        "Der Benutzer wählt den Entpacker (kein Entpacken beim Verzeichnis-Vergleich)."
+    ID_UNPACK_MANUAL        "Der Benutzer wählt den Entpacker (kein Entpacken beim Ordnervergleich)."
     ID_UNPACK_AUTO          "Der passende Entpacker wird auf beide Dateien angewendet (nur eine Datei benötigt die Erweiterung)."
     ID_POPUP_OPEN_WITH_UNPACKER "Auswählen eines Entpackers zum Bearbeiten dieser Datei."
     ID_NO_PREDIFFER         "Kein Prediffer (Normal)"
