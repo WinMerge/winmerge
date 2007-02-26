@@ -3,7 +3,7 @@
  *
  * @brief Code to compile & link a language satellite resource DLL, using Visual Studio
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -12,7 +12,6 @@
 #include "coretools.h"
 #include "RegKey.h"
 // Local files
-#include "VsVersionDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -22,6 +21,15 @@ static char THIS_FILE[] = __FILE__;
 
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
+
+static LPCTSTR myregvals[] =
+{ // These must be laid out in the same order as VS5, VS6, VS2002, ...
+	_T("5"),
+	_T("6"),
+	_T("Net"),
+	_T("Net2003"),
+	_T("Net2005")
+};
 
 struct VcPaths
 {
@@ -69,10 +77,25 @@ static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
 static bool DoesFileExist(LPCTSTR filepath);
 static void TrimPath(CString & sPath);
-static void DisplayUi(const CStringArray & VsBaseDirs);
+//static void DisplayUi(const CStringArray & VsBaseDirs);
 static void LoadVsBaseDirs(CStringArray & VsBaseDirs);
 
 using namespace std;
+
+/**
+ * @brief Map registry value to enum value, eg, "Net2003" => VS2003
+ */
+VS_VERSION MapRegistryValue(const CString & val) // static
+{
+	for (int i=0; i<VS_COUNT; ++i)
+	{
+		if (val == myregvals[i])
+		{
+			return (VS_VERSION)i;
+		}
+	}
+	return VS_NONE;
+}
 
 /**
  * @brief Main entry point of (console mode) application
@@ -109,8 +132,10 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 		if (gbUi)
 		{
-			DisplayUi(VsBaseDirs);
-			return 0;
+			// TODO: Add console GUI - after all this is console app!
+			
+			//DisplayUi(VsBaseDirs);
+            return 0;
 		}
 
 		CString spath, sname, sext;
@@ -551,7 +576,7 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
 	// Check if user's choice is valid and installed
 	if (!sVcVersion.IsEmpty())
 	{
-		VS_VERSION vstemp = CVsVersionDlg::MapRegistryValue(sVcVersion);
+		VS_VERSION vstemp = MapRegistryValue(sVcVersion);
 		if (vstemp != VS_NONE)
 		{
 			if (!VsBaseDirs[vstemp].IsEmpty())
@@ -866,18 +891,6 @@ static void TrimPath(CString & sPath)
 {
 	if (sPath.GetLength() && IsSlash(sPath[sPath.GetLength()-1]))
 		sPath = sPath.Left(sPath.GetLength()-1);
-}
-
-/**
- * @brief Display dialog to let user choose preferences (Visual Studio version)
- */
-static void DisplayUi(const CStringArray & VsBaseDirs)
-{
-	CVsVersionDlg dlg(VsBaseDirs);
-
-	if (dlg.DoModal() == IDOK)
-	{
-	}
 }
 
 /**

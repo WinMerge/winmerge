@@ -1,6 +1,11 @@
 MakeResDll/Changes.txt
 Add new items to top
 
+2007-02-26 Kimmo
+ PATCH: [ 1669286 ] Remove dialog from MakeResDll
+  MakeResDll: MakeResDll.cpp MakeResDll.dsp
+  MakeResDll removed files: VsVersionDlg.cpp VsVersionDlg.h
+
 2006-08-27 Kimmo
  PATCH: [ 1547212 ] Fix MakeResDll project
   MakeResDll: MakeResDll.dsp

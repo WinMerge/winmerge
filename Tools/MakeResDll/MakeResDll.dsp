@@ -87,15 +87,7 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
-SOURCE=..\..\Src\Common\CMoveConstraint.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\Src\Common\coretools.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=..\..\Src\Common\CSubclass.cpp
 # End Source File
 # Begin Source File
 
@@ -114,25 +106,13 @@ SOURCE=..\..\Src\Common\RegKey.cpp
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
-# Begin Source File
-
-SOURCE=.\VsVersionDlg.cpp
-# End Source File
 # End Group
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
 # Begin Source File
 
-SOURCE=..\..\Src\Common\CMoveConstraint.h
-# End Source File
-# Begin Source File
-
 SOURCE=..\..\Src\Common\coretools.h
-# End Source File
-# Begin Source File
-
-SOURCE=..\Src\Common\CSubclass.h
 # End Source File
 # Begin Source File
 
@@ -149,10 +129,6 @@ SOURCE=.\Resource.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\VsVersionDlg.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"
