@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-26 Kimmo
+ PATCH: [ 1664689 ] French translation
+  Submitted by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+
 2007-02-25 Jan Hryz
  Czech translation - update
   Src/Languages/Czech/MergeCzech.rc
