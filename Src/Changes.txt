@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-25 Jan Hryz
+ Czech translation - update
+  Src/Languages/Czech/MergeCzech.rc
+
 2007-02-24 Tim
  PATCH: [ 1667564 ] Various Updates in German Translation
   Src/Languages/German: MergeGerman.rc
