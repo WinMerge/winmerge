@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-27 Kimmo
+ Bump ShellExtension version to 1.11
+  ShellExtension: ShellExtension.rc
+
 2007-02-26 Kimmo
  PATCH: [ 1664689 ] French translation
   Submitted by Jean-F Jolin
