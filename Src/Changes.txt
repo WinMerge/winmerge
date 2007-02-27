@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-02-27 WinMerge beta release 2.7.2 (revision 4137)
+
 2007-02-27 Kimmo
  Bump ShellExtension version to 1.11
   ShellExtension: ShellExtension.rc
