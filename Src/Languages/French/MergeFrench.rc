@@ -176,7 +176,7 @@ BEGIN
     POPUP "&Déboguer"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Charger la configuration...", ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Initialiser les préférences", ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fe&nêtre"
     BEGIN
@@ -284,7 +284,7 @@ BEGIN
     POPUP "&Déboguer"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Charger la configuration...", ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Initialiser les préférences", ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fe&nêtre"
     BEGIN
@@ -377,7 +377,7 @@ BEGIN
         END
         POPUP "&Signets"
         BEGIN
-            MENUITEM "&Activer les signets\tCtrl+F2",  ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Placer/retirer un signet\tCtrl+F2",  ID_EDIT_TOGGLE_BOOKMARK
             MENUITEM "Signet &suivant\tF2",            ID_EDIT_GOTO_NEXT_BOOKMARK
             MENUITEM "Signet &précédent\tShift+F2",    ID_EDIT_GOTO_PREV_BOOKMARK
             MENUITEM "&Effacer tous les signets",      ID_EDIT_CLEAR_ALL_BOOKMARKS
@@ -393,11 +393,11 @@ BEGIN
         MENUITEM "Choisir une &police...",            ID_VIEW_SELECTFONT
         MENUITEM "&Utiliser la police par défaut",    ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Afficher les espaces",             ID_VIEW_WHITESPACE
-        MENUITEM "Afficher la granularité des lignes", ID_VIEW_LINEDIFFS
-        MENUITEM "Afficher la numérotation des lignes", ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",                     ID_VIEW_FILEMARGIN
-        MENUITEM "&Retour à la ligne automatique",    ID_VIEW_WORDWRAP
+        MENUITEM "Afficher les &espaces",                ID_VIEW_WHITESPACE
+        MENUITEM "Afficher la &granularité des lignes",  ID_VIEW_LINEDIFFS
+        MENUITEM "Afficher la &numérotation des lignes", ID_VIEW_LINENUMBERS
+        MENUITEM "Afficher les &marges",                 ID_VIEW_FILEMARGIN
+        MENUITEM "&Retour à la ligne automatique",       ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Intervertir les fenêtres",         ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
@@ -448,7 +448,7 @@ BEGIN
     POPUP "&Déboguer"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Charger la configuration...", ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Initialiser les préférences", ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fe&nêtre"
     BEGIN
@@ -855,7 +855,7 @@ BEGIN
                     ES_AUTOHSCROLL | ES_WANTRETURN
 END
 
-IDD_PROPPAGE_COLORS DIALOGEX 0, 0, 235, 196
+IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 235, 196
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Couleurs"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1130,7 +1130,7 @@ BEGIN
                     7,80,221,10
     CONTROL         "&Qualifier la détection des blocs déplacés",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
+    CONTROL         "Assortir les &lignes similaires",IDC_MATCH_SIMILAR_LINES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
     LTEXT           "&Methode de comparaison:",IDC_STATIC,7,115,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,113,114,70,CBS_DROPDOWNLIST |
@@ -1288,7 +1288,7 @@ BEGIN
                     WS_HSCROLL | WS_GROUP | WS_TABSTOP
 END
 
-IDD_PREFERENCES DIALOGEX 0, 0, 367, 260
+IDD_PREFERENCES DIALOGEX 0, 0, 352, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
 CAPTION "Préférences"
@@ -1308,7 +1308,7 @@ BEGIN
     PUSHBUTTON      "Exporter...",IDC_TREEOPT_EXPORT,62,237,50,14
 END
 
-IDD_PROP_COLORSYNTAX DIALOGEX 0, 0, 235, 214
+IDD_PROPPAGE_COLORS_SYNTAX DIALOGEX 0, 0, 235, 214
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Couleurs de la syntaxe"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -1571,25 +1571,25 @@ END
 
 IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 236, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Backup Files"
+CAPTION "Fichiers d'archive"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Créer les fichiers d'archive sous:",IDC_STATIC,7,7,222,8
+    CONTROL         "Répertoire de &comparaison",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "&Fichier de comparaison",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "Créer les fichiers d'archive dans:",IDC_STATIC,7,40,222,8
+    CONTROL         "&Répertoire d'&origine du fichier",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "Répertoire d'archive &global:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "&Parcourir...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "&Nom du fichier d'archive:",IDC_STATIC,7,89,222,8
+    CONTROL         "Apposer une &extension .bak",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "Apposer une estampille &temporelle",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
@@ -1949,7 +1949,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL  "Controle de version"
     IDS_OPTIONSPG_CODEPAGE        "Page de code"
     IDS_OPTIONSPG_ARCHIVE         "Support des archives"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_BACKUPS         "Fichiers d'archive"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1970,7 +1970,7 @@ BEGIN
     IDS_OPTIONS_INVALID_TABSIZE
                                "Taille d'une tabulation -cette étendue n'est pas acceptée par WinMerge.\n\nVeuillez utiliser ces valeurs 1 - %1."
     IDS_RESET_OPTIONS_WARNING
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
+                               "Confirmer l'initialisation des valeurs par défaut des préférences WinMerge ?\n\nVeuillez redémarrer WinMerge après l'initialisation."
 END
 
 // BROWSE FILE
@@ -2282,8 +2282,8 @@ BEGIN
     IDS_ABORTED_ITEM        "Élément abandonné"
     IDS_FILE_SKIPPED        "Fichier ignoré"
     IDS_DIR_SKIPPED         "Répertoire ignoré"
-    IDS_LEFT_ONLY_IN_FMT    "Left only: %1"
-    IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
+    IDS_LEFT_ONLY_IN_FMT    "Juste à gauche: %1"
+    IDS_RIGHT_ONLY_IN_FMT   "Juste à droite: %1"
     IDS_BIN_FILES_SAME      "Les fichiers binaires sont identiques"
     IDS_IDENTICAL           "Identiques"
     IDS_BIN_FILES_DIFF      "Les fichiers binaires sont différents"
@@ -2291,7 +2291,7 @@ BEGIN
     IDS_LEFTONLY            "Juste à gauche"
     IDS_RIGHTONLY           "Juste à droite"
     IDS_DIFFERENT           "Différent"
-    IDS_CMPRES_ERROR        "Error"
+    IDS_CMPRES_ERROR        "Erreur"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -2797,7 +2797,7 @@ BEGIN
     ID_REFRESH                  "Actualiser l'affichage\nActualiser (F5)"
     ID_EDIT_COPY_LINENUMBERS    "Copier les lignes sélectionnés vers le presse-papiers en les précédants d'un numéro de ligne"
     ID_DIR_RESCAN               "Actualiser les éléments sélectionnés"
-    ID_EDIT_TOGGLE_BOOKMARK     "Afficher ou masquer les signets"
+    ID_EDIT_TOGGLE_BOOKMARK     "Placer ou retirer un signet"
     ID_EDIT_GOTO_NEXT_BOOKMARK  "Atteindre le signet suivant"
     ID_EDIT_GOTO_PREV_BOOKMARK  "Atteindre le signet précédent"
     ID_EDIT_CLEAR_ALL_BOOKMARKS "Effacer tous les signets"
@@ -2828,7 +2828,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Intervertir la position de deux fenêtres"
     ID_VIEW_LINENUMBERS^    "Afficher la numérotation des lignes\nAfficher la numérotation des lignes"
     ID_VIEW_WORDWRAP        "Afficher ou masquer le retour à la ligne automatique\nRetour à la ligne automatique"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "Afficher les marges des deux fenêtres\nAfficher les marges"
 END
 
 // MERGE MENU
