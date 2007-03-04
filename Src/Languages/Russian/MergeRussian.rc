@@ -2843,7 +2843,7 @@ BEGIN
     ID_CURDIFF              "Перейти на текущее отличие\nCurrent Diff (Alt+Enter)"
     ID_LASTDIFF             "Перейти на последнее отличие\nLast Diff (Alt+End)"
     ID_L2R                  "Скопировать выбранный текст в файл справа\nCopy Right (Alt Right)"
-    ID_R2L                  "Скопировать выбранный текст в файл слева\nCopy Right (Alt Right)"
+    ID_R2L                  "Скопировать выбранный текст в файл слева\nCopy Left (Alt Left)"
     ID_L2RNEXT              "Скопировать отличие на левую панель и перейти к следующему\nCopy Right and advance (Ctrl Alt Right)"
     ID_R2LNEXT              "Скопировать отличие на правую панель и перейти к следующему\nCopy Left and advance (Ctrl Alt Left)"
     ID_ALL_RIGHT            "Скопировать все отличия в файл справа\nAll Right"
