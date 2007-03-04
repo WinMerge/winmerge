@@ -102,7 +102,7 @@ BEGIN
         MENUITEM "Kopiuj na praw¹",              ID_L2R
         MENUITEM "Kopiuj na lew¹",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "Zaznacz ró¿nicê w &linii",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Cofnij",                       ID_EDIT_UNDO
         MENUITEM "&Powtórz",                       ID_EDIT_REDO
@@ -149,7 +149,7 @@ BEGIN
     END
     POPUP "&Edycja"
     BEGIN
-        MENUITEM "W³&aœciwoœci...",             ID_OPTIONS
+        MENUITEM "&Opcje...",             ID_OPTIONS
     END
     POPUP "&Widok"
     BEGIN
@@ -178,7 +178,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "Za³a&duj ustawienia...",         ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "Ze&ruj opcje",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -226,7 +226,7 @@ BEGIN
     BEGIN
         MENUITEM "Wybierz &wszystkie\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "W³&aœciwoœci...",             ID_OPTIONS
+        MENUITEM "&Opcje...",             ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
         MENUITEM "&Odœwie¿ zaznaczone\tCtrl+F5",  ID_DIR_RESCAN
@@ -286,7 +286,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "Za³a&duj ustawienia...",      ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "Ze&ruj opcje",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -386,7 +386,7 @@ BEGIN
         END
         MENUITEM "&IdŸ do...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "W³&aœciwoœci...",             ID_OPTIONS
+        MENUITEM "&Opcje...",             ID_OPTIONS
         MENUITEM SEPARATOR
         MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
     END
@@ -398,7 +398,7 @@ BEGIN
         MENUITEM "&Poka¿ bia³e znaki",          ID_VIEW_WHITESPACE
         MENUITEM "Poka¿ ró¿nice &linii",      ID_VIEW_LINEDIFFS
         MENUITEM "Poka¿ &numery linii",          ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
+        MENUITEM "Poka¿ &marginesy",               ID_VIEW_FILEMARGIN
         MENUITEM "Za&wijaj linie",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Za&mieñ panele",                 ID_VIEW_SWAPPANES
@@ -450,7 +450,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "Za³a&duj ustawienia...",      ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "Ze&ruj opcje",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -1576,22 +1576,22 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Backup Files"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Twórz kopie plików w:",IDC_STATIC,7,7,222,8
+    CONTROL         "Porównanie &folderów",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "Porównani&e plików",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "Twórz pliki kopii w:",IDC_STATIC,7,40,222,8
+    CONTROL         "Folder oryginalnego pliku",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "&Globalny folder dla kopii:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "Przegl¹daj...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "Nazwa pliku kopii:",IDC_STATIC,7,89,222,8
+    CONTROL         "Dod&aj rozszerzenie .bak",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "Dodaj znacznik czasu",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
@@ -1626,7 +1626,7 @@ BEGIN
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
-            VALUE "ProductVersion", "2.6.4\0"
+            VALUE "ProductVersion", "2.7.2\0"
         END
     END
     BLOCK "VarFileInfo"
@@ -1938,7 +1938,7 @@ BEGIN
     IDS_MESSAGEBOX_SKIP     "Pom&iñ"
     IDS_MESSAGEBOX_SKIPALL  "Pomiñ ws&zystkie"
     IDS_MESSAGEBOX_HELP     "&Pomoc"
-    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Nie wyœwietlaj komunikatu ponownie."
+    IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN "Nie wyœwietlaj ponownie tego komunikatu."
     IDS_MESSAGEBOX_DONT_ASK_AGAIN "Nie &pytaj ponownie."
 END
 
@@ -1955,7 +1955,7 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Kontrola wersji"
     IDS_OPTIONSPG_CODEPAGE  "Strona kodowa"
     IDS_OPTIONSPG_ARCHIVE   "Wsparcie dla archiwów"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_BACKUPS   "Pliki kopii"
 END
 
 // WINMERGE CUSTOM STRINGS
@@ -1976,7 +1976,7 @@ BEGIN
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Wartoœæ w zak³adce wielkoœci nie mo¿e byæ zaakceptowana przez WinMerge.\n\nProszê u¿yæ wartoœci 1 - %1."
     IDS_RESET_OPTIONS_WARNING 
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
+                            "Czy jesteœ pewien, ¿e chcesz wyzerowaæ wszystkie opcje WinMerge i przywrócic wartoœci domyœlne ?\n\nPo wyzerowaniu konieczne bêdzie ponowne uruchomienie programu."
 END
 
 // BROWSE FILE
@@ -2750,13 +2750,13 @@ BEGIN
 	IDS_CP_WINDOWS_JAPANESE_EXTRA   ""
 	IDS_CP_WINDOWS_CHINESE_SIMP_EXTRA ""
 	IDS_CP_WINDOWS_KOREAN_EXTRA     ""
-	IDS_CP_WINDOWS_LATIN2_EXTRA     "Przybli¿enie ISO-8859-2"
+	IDS_CP_WINDOWS_LATIN2_EXTRA     "Kodowanie ISO-8859-2"
 	IDS_CP_WINDOWS_CHINESE_TRAD_EXTRA ""
 	IDS_CP_WINDOWS_CYRILLIC_EXTRA   ""
-	IDS_CP_WINDOWS_LATIN1_EXTRA     "Przybli¿enie ISO-8859-1"
-	IDS_CP_WINDOWS_GREEK_EXTRA      "Przybli¿enie ISO-8859-7"
-	IDS_CP_WINDOWS_TURKISH_EXTRA    "Przybli¿enie ISO-8859-9"
-	IDS_CP_WINDOWS_HEBREW_EXTRA     "Przybli¿enie ISO-8859-8"
+	IDS_CP_WINDOWS_LATIN1_EXTRA     "Kodowanie ISO-8859-1"
+	IDS_CP_WINDOWS_GREEK_EXTRA      "Kodowanie ISO-8859-7"
+	IDS_CP_WINDOWS_TURKISH_EXTRA    "Kodowanie ISO-8859-9"
+	IDS_CP_WINDOWS_HEBREW_EXTRA     "Kodowanie ISO-8859-8"
 END
 
 // EOL types shown in folder compare EOL type column
@@ -2837,7 +2837,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Zamieñ pozycje dwóch okien"
     ID_VIEW_LINENUMBERS     "Poka¿ numery linii\nPoka¿ numery linii"
     ID_VIEW_WORDWRAP        "W³¹cz zawijanie s³ów\nZawijaj linie"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "Pokazuje marginesy zaznaczenie dla obu paneli\nPoka¿ marginesy zaznaczenia"
 END
 
 // MERGE MENU

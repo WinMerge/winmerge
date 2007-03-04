@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-04 Kimmo
+ PATCH: [ 1673082 ] Polish translation for WM CVS
+  Submitted by dr_prozac
+   Src/Languages/Polish: MergePolish.rc
+
 2007-03-04 Tim
  BUG: [ 1668996 ] Two "Copy Right" buttons in Russian GUI.
   Src/Languages/Russian: MergeRussian.rc
