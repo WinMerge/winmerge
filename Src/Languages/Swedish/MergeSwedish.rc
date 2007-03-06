@@ -398,7 +398,7 @@ BEGIN
         MENUITEM "Visa &mellanslag",            ID_VIEW_WHITESPACE
         MENUITEM "Visa &radskillnader",         ID_VIEW_LINEDIFFS
         MENUITEM "Visa rad&nummer",             ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
+        MENUITEM "Visa &marginaler",               ID_VIEW_FILEMARGIN
         MENUITEM "R&adbryt rader",                 ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "Vä&xla placering",                 ID_VIEW_SWAPPANES
@@ -2837,7 +2837,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Växlar placering på de två filerna"
     ID_VIEW_LINENUMBERS     "Visar radnummer\nVisa radnummer"
     ID_VIEW_WORDWRAP        "Startar radbrytning\nRadbrytning"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "Visar marginaler för båda filerna\nVisa filmarginaler"
 END
 
 // MERGE MENU

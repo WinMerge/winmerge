@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-06 Kimmo
+ PATCH: [ 1673908 ] Update of Swedish translation for "View margins"
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2007-03-04 Kimmo
  PATCH: [ 1673082 ] Polish translation for WM CVS
   Submitted by dr_prozac
