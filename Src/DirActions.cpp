@@ -7,7 +7,7 @@
  *
  *  @brief Implementation of methods of CDirView that copy/move/delete files
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 // It would be nice to make this independent of the UI (CDirView)
@@ -21,7 +21,6 @@
 #include "DirDoc.h"
 #include "MainFrm.h"
 #include "coretools.h"
-#include "OutputDlg.h"
 #include "paths.h"
 #include "7zCommon.h"
 #include "CShellFileOp.h"
@@ -33,6 +32,7 @@
 #include "LoadSaveCodepageDlg.h"
 #include "IntToIntMap.h"
 #include "FileOrFolderSelect.h"
+#include "ConfirmFolderCopyDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,22 +42,41 @@ static char THIS_FILE[] = __FILE__;
 
 extern CLogFile gLog;
 
-// Prompt user to confirm a multiple item copy
-static BOOL ConfirmMultipleCopy(int count, int total)
-{
-	CString s;
-	ASSERT(count>1);
-	AfxFormatString2(s, IDS_CONFIRM_COPY2DIR, NumToStr(count), NumToStr(total));
-	int rtn = AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY2DIR);
-	return (rtn==IDYES);
-}
-
 // Prompt user to confirm a single item copy
-static BOOL ConfirmSingleCopy(LPCTSTR src, LPCTSTR dest)
+static BOOL ConfirmCopy(int origin, int destination, int count, LPCTSTR src, LPCTSTR dest)
 {
-	CString s;
-	AfxFormatString2(s, IDS_CONFIRM_COPY_SINGLE, src, dest);
-	int rtn = AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CONFIRM_COPY_SINGLE);
+	ConfirmFolderCopyDlg dlg;
+	CString strQuestion;
+	CString sOrig;
+	CString sDest;
+
+	if (count == 1)
+	{
+		strQuestion = LoadResString(IDS_CONFIRM_SINGLE_COPY);
+	}
+	else
+	{
+		strQuestion = LoadResString(IDS_CONFIRM_MULTIPLE_COPY);
+		strQuestion.Format(strQuestion, count);
+	}
+	
+	if (origin == FileActionItem::UI_LEFT)
+		sOrig = LoadResString(IDS_FROM_LEFT);
+	else
+		sOrig = LoadResString(IDS_FROM_RIGHT);
+
+	if (destination == FileActionItem::UI_LEFT)
+		sDest = LoadResString(IDS_TO_LEFT);
+	else
+		sDest = LoadResString(IDS_TO_RIGHT);
+
+	dlg.m_question = strQuestion;
+	dlg.m_fromText = sOrig;
+	dlg.m_toText = sDest;
+	dlg.m_fromPath = src;
+	dlg.m_toPath = dest;
+
+	int rtn = dlg.DoModal();
 	return (rtn==IDYES);
 }
 
@@ -103,6 +122,8 @@ void CDirView::DoCopyRightToLeft()
 			act.dirflag = di.isDirectory();
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_SYNC;
+			act.UIOrigin = FileActionItem::UI_RIGHT;
+			act.UIDestination = FileActionItem::UI_LEFT;
 			actionScript.AddActionItem(act);
 		}
 		++selCount;
@@ -135,6 +156,8 @@ void CDirView::DoCopyLeftToRight()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_SYNC;
+			act.UIOrigin = FileActionItem::UI_LEFT;
+			act.UIDestination = FileActionItem::UI_RIGHT;
 			actionScript.AddActionItem(act);
 		}
 		++selCount;
@@ -542,13 +565,30 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 	case FileAction::ACT_COPY:
 		if (actionList.GetActionItemCount() == 1)
 		{
-			if (!ConfirmSingleCopy(item.src, item.dest))
+			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
+                actionList.GetActionItemCount(), item.src, item.dest))
+			{
 				return FALSE;
+			}
 		}
 		else
 		{
-			if (!ConfirmMultipleCopy(actionList.GetActionItemCount(), selCount))
+			CString src;
+			CString dst;
+
+			if (item.UIOrigin == FileActionItem::UI_LEFT)
+				src = GetDocument()->GetLeftBasePath();
+			else
+				src = GetDocument()->GetRightBasePath();
+			if (item.UIDestination == FileActionItem::UI_LEFT)
+				dst = GetDocument()->GetLeftBasePath();
+			else
+				dst = GetDocument()->GetRightBasePath();
+			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
+				actionList.GetActionItemCount(), src, dst))
+			{
 				return FALSE;
+			}
 		}
 		break;
 		

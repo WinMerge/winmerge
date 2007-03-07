@@ -1593,6 +1593,25 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
+IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
+CAPTION "Confirm Copy"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
+    LTEXT           "Are you sure you want to copy XXX items?",
+                    IDC_FLDCONFIRM_QUERY,45,7,233,8
+    LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
+    EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
+    EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Yes",IDYES,174,79,50,14
+    DEFPUSHBUTTON   "No",IDNO,228,79,50,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -1953,6 +1972,15 @@ BEGIN
 END
 
 // WINMERGE CUSTOM STRINGS
+
+STRINGTABLE
+BEGIN
+    IDS_FROM_LEFT           "From left:"
+    IDS_TO_LEFT             "To left:"
+    IDS_FROM_RIGHT          "From right:"
+    IDS_TO_RIGHT            "To right:"
+END
+
 // WINMERGE INFORMATION
 STRINGTABLE
 BEGIN
@@ -2204,6 +2232,8 @@ BEGIN
     IDS_CONFIRM_DELETE_ITEMS  "Voulez-vous vraiment supprimer %1 élément(s) sélectionné(s) parmi %2 ?"
     IDS_CONFIRM_DELETE_DIR    "Voulez-vous vraiment supprimer le répertoire\n\n%1 ?"
     IDS_CONFIRM_DELETE_SINGLE "Voulez-vous vraiment supprimer le fichier\n\n%1 ?"
+    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
+    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

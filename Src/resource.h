@@ -51,6 +51,7 @@
 #define IDD_PROPPAGE_COLORS_TEXT        232
 #define IDD_PROJFILES_PATHS             233
 #define IDD_PROPPAGE_BACKUPS            234
+#define IDD_CONFIRM_COPY                235
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -403,6 +404,12 @@
 #define IDC_BACKUP_FOLDER               1318
 #define IDC_BACKUP_APPEND_BAK           1319
 #define IDC_BACKUP_APPEND_TIME          1320
+#define IDC_FLDCONFIRM_TO_PATH          1321
+#define IDC_FLDCONFIRM_QUERY            1322
+#define IDC_FLDCONFIRM_FROM_TEXT        1323
+#define IDC_FLDCONFIRM_TO_TEXT          1324
+#define IDC_FLDCONFIRM_FROM_PATH        1325
+#define IDC_FLDCONFIRM_ICON             1326
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -449,6 +456,10 @@
 #define IDS_OPTIONSPG_CODEPAGE          9049
 #define IDS_OPTIONSPG_ARCHIVE           9050
 #define IDS_OPTIONSPG_BACKUPS           9051
+#define IDS_FROM_LEFT                   16000
+#define IDS_TO_LEFT                     16001
+#define IDS_FROM_RIGHT                  16002
+#define IDS_TO_RIGHT                    16003
 #define IDS_VERSION_FMT                 16385
 #define IDS_UNICODE                     16387
 #define IDS_OPTIONS_TITLE               16400
@@ -581,6 +592,8 @@
 #define IDS_CONFIRM_DELETE_ITEMS        17636
 #define IDS_CONFIRM_DELETE_DIR          17637
 #define IDS_CONFIRM_DELETE_SINGLE       17638
+#define IDS_CONFIRM_SINGLE_COPY         17639
+#define IDS_CONFIRM_MULTIPLE_COPY       17640
 #define ID_DIR_OPEN_LEFT                17648
 #define ID_DIR_OPEN_LEFT_WITHEDITOR     17649
 #define ID_DIR_OPEN_LEFT_WITH           17650

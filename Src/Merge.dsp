@@ -241,6 +241,10 @@ SOURCE=.\ConfigLog.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ConfirmFolderCopyDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\coretools.cpp
 # End Source File
 # Begin Source File
@@ -1034,6 +1038,10 @@ SOURCE=.\CompareStats.h
 # Begin Source File
 
 SOURCE=.\ConfigLog.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ConfirmFolderCopyDlg.h
 # End Source File
 # Begin Source File
 

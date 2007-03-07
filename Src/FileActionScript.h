@@ -19,7 +19,7 @@
  *
  * @brief Declaration file for FileActionScript and related classes
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _FILEACTIONSCRIPT_H_
@@ -65,9 +65,12 @@ struct FileAction
 struct FileActionItem : public FileAction
 {
 	typedef enum { UI_SYNC = 1, UI_DESYNC, UI_DEL_LEFT, UI_DEL_RIGHT, UI_DEL_BOTH,} UI_RESULT;
+	typedef enum { UI_LEFT, UI_RIGHT } UI_SIDE;
 
 	int context; /**< UI context */
 	UI_RESULT UIResult; /**< Resulting UI action */
+	UI_SIDE UIOrigin; /**< Original UI-side */
+	UI_SIDE UIDestination; /**< Destination UI-side */
 };
 
 typedef CList<FileActionItem, FileActionItem&> FileActionList;
