@@ -2725,6 +2725,8 @@ void CDirView::OnHideFilenames()
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
 	{
 		POSITION pos = GetItemKey(sel);
+		if (pos == (POSITION) SPECIAL_ITEM_POS)
+			continue;
 		pDoc->SetItemViewFlag(pos, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
 		m_pList->DeleteItem(sel--);
 		m_nHiddenItems++;

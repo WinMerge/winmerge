@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-07 Takashi
+ PATCH: [ 1675211 ] Fix crash when hiding parent folder item on folder view
+  Src/DirView.cpp
+
 2007-03-06 Kimmo
  PATCH: [ 1673908 ] Update of Swedish translation for "View margins"
   Submitted by Hans Eriksson
