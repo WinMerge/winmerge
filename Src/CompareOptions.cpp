@@ -3,6 +3,8 @@
  *
  * @brief Compare options implementation.
  */
+// ID line follows -- this is updated by SVN
+// $Id: ByteComparator.h 3397 2006-07-27 10:41:24Z kimmov $
 
 #include "stdafx.h"
 #include "Diff.h"
@@ -23,20 +25,10 @@ CompareOptions::CompareOptions()
 }
 
 /**
- * @brief Default constructor.
- */
-DiffutilsOptions::DiffutilsOptions()
-: m_outputStyle(DIFF_OUTPUT_NORMAL)
-, m_contextLines(0)
-, m_filterCommentsLines(0)
-{
-}
-
-/**
  * @brief Sets options from DIFFOPTIONS structure.
  * @param [in] options Diffutils options.
  */
-void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
+void CompareOptions::SetFromDiffOptions(const DIFFOPTIONS &options)
 {
 	switch (options.nIgnoreWhitespace)
 	{
@@ -53,9 +45,37 @@ void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
 		_RPTF0(_CRT_ERROR, "Unknown whitespace ignore value!");
 		break;
 	}
-	m_bIgnoreBlankLines = options.bIgnoreBlankLines;
-	m_bIgnoreCase = options.bIgnoreCase;
-	m_bIgnoreEOLDifference = options.bIgnoreEol;
+	m_bIgnoreBlankLines = !!options.bIgnoreBlankLines;
+	m_bIgnoreCase = !!options.bIgnoreCase;
+	m_bIgnoreEOLDifference = !!options.bIgnoreEol;
+}
+
+/**
+ * @brief Default constructor.
+ */
+QuickCompareOptions::QuickCompareOptions()
+: m_bStopAfterFirstDiff(FALSE)
+{
+
+}
+
+/**
+ * @brief Default constructor.
+ */
+DiffutilsOptions::DiffutilsOptions()
+: m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_contextLines(0)
+, m_filterCommentsLines(0)
+{
+}
+
+/**
+ * @brief Sets options from DIFFOPTIONS structure.
+ * @param [in] options Diffutils options.
+ */
+void DiffutilsOptions::SetFromDiffOptions(const DIFFOPTIONS & options)
+{
+	CompareOptions::SetFromDiffOptions(options);
 	m_filterCommentsLines = options.bFilterCommentsLines;
 }
 

@@ -3,7 +3,7 @@
  *
  *  @brief Declarations of CDiffContext and diff structures
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
@@ -29,6 +29,8 @@ struct DIFFITEM;
 class CompareStats;
 class IAbortable;
 class FilterList;
+class CompareOptions;
+struct DIFFOPTIONS;
 
 // Interface for reporting current file, as diff traverses file tree
 /*class IDiffStatus
@@ -83,8 +85,11 @@ public:
 	BOOL UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft);
 	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight);
 
+	BOOL CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
+
 	// retrieve or manufacture plugin info for specified file comparison
-	void FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
+	void FetchPluginInfos(const CString& filteredFilenames,
+		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 
 	bool ShouldAbort() const;
 	void SetAbortable(IAbortable * piAbortable) { m_piAbortable = piAbortable; }
@@ -102,6 +107,7 @@ public:
 	FilterList * m_pFilterList; /**< Filter list for line filters */
 	CRITICAL_SECTION m_criticalSect; /**< Critical section protecting list access. */
 	BOOL m_bCollectReady; /**< Tells collection phase is done. */
+	CompareOptions *m_pCompareOptions; /**< Compare options for folder compare */
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */

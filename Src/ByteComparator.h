@@ -3,12 +3,13 @@
  *
  * @brief Declaration file for ByteComparator class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef ByteComparator_h_included
 #define ByteComparator_h_included
 
+class QuickCompareOptions;
 struct FileTextStats;
 
 
@@ -24,8 +25,7 @@ struct FileTextStats;
 class ByteComparator
 {
 public:
-	ByteComparator(int ignore_case, int ignore_space_change, int ignore_all_space,
-		int ignore_eol_diff, int ignore_blank_lines);
+	ByteComparator(const QuickCompareOptions * options);
 
 public:
 	/** @brief Return values for CompareBuffers method. */

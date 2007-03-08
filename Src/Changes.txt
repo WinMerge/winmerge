@@ -12,6 +12,9 @@ Add new items to top.
   Src: DirActions.cpp
  Fix comment about contributors file
   Src: AboutDlg.cpp
+ PATCH: [ 1676802 ] Move compare options to DiffContext
+  Src: ByteComparator.cpp ByteComparator.h CompareOptions.cpp CompareOptions.h
+   DiffContext.cpp DiffContext.h DirDoc.cpp DirDoc.h FolderCmp.cpp
 
 2007-03-07 Kimmo
  PATCH: [ 1675087 ] New copy confirmation dialog

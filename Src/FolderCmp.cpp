@@ -3,6 +3,9 @@
  *
  * @brief Implementation file for FolderCmp
  */
+// ID line follows -- this is updated by SVN
+// $Id: files.cpp 3845 2006-11-24 22:32:35Z kimmov $
+
 
 #include "stdafx.h"
 #include "paths.h"
@@ -224,6 +227,10 @@ int FolderCmp::diffutils_compare_files(int depth)
 	int bin_flag = 0;
 	int bin_file = 0; // bitmap for binary files
 
+	DiffutilsOptions *pOptions = 
+		dynamic_cast<DiffutilsOptions *>(m_pCtx->m_pCompareOptions);
+	pOptions->SetToDiffUtils();
+
 	// Do the actual comparison (generating a change script)
 	struct change *script = NULL;
 	BOOL success = Diff2Files(&script, depth, &bin_flag, FALSE, &bin_file);
@@ -358,6 +365,9 @@ int FolderCmp::diffutils_compare_files(int depth)
  */
 int FolderCmp::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable)
 {
+	QuickCompareOptions *pOptions = 
+		dynamic_cast<QuickCompareOptions*>(m_pCtx->m_pCompareOptions);
+
 	// Close any descriptors open for diffutils
 	m_diffFileData.Reset();
 
@@ -394,8 +404,7 @@ int FolderCmp::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * p
 		eof[i] = false;
 	}
 
-	ByteComparator comparator(ignore_case_flag, ignore_space_change_flag
-		, ignore_all_space_flag, ignore_eol_diff, ignore_blank_lines_flag);
+	ByteComparator comparator(pOptions);
 
 	// Begin loop
 	// we handle the files in WMCMPBUFF sized buffers (variable buff[][])

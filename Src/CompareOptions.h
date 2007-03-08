@@ -3,6 +3,8 @@
  *
  * @brief Compare options classes and types.
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #ifndef CompareOptions_h_included
 #define CompareOptions_h_included
@@ -82,6 +84,7 @@ class CompareOptions
 {
 public:
 	CompareOptions();
+	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);
 
 	enum WhitespaceIgnoreChoices m_ignoreWhitespace; /**< Ignore whitespace characters */
 	bool m_bIgnoreBlankLines; /**< Ignore blank lines (both sides) */
@@ -99,13 +102,26 @@ class DiffutilsOptions : public CompareOptions
 {
 public:
 	DiffutilsOptions();
-	void SetFromDiffOptions(const DIFFOPTIONS & options);
 	void SetToDiffUtils();
 	void GetAsDiffOptions(DIFFOPTIONS &options);
+	virtual void SetFromDiffOptions(const DIFFOPTIONS & options);
 
 	enum DiffOutputType m_outputStyle; /**< Output style (for patch files) */
 	int m_contextLines; /**< Number of context lines (for patch files) */
 	int m_filterCommentsLines;/**< Ignore Multiline comments differences.*/
+};
+
+/**
+ * @brief Compare options used with Quick compare -method.
+ * This class has some Quick Compare specifics in addition to general compare
+ * options.
+ */
+class QuickCompareOptions : public CompareOptions
+{
+public:
+	QuickCompareOptions();
+
+	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 };
 
 #endif // CompareOptions_h_included

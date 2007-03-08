@@ -24,7 +24,7 @@
  * @brief Implementation file for CDirDoc
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //
 
@@ -77,15 +77,6 @@ CDirDoc::CDirDoc()
 , m_bMarkedRescan(FALSE)
 , m_pTempPathContext(NULL)
 {
-	DIFFOPTIONS options = {0};
-
-	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	options.bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
-	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
-
-	m_diffOptions.SetFromDiffOptions(options);
 }
 
 /**
@@ -336,14 +327,21 @@ void CDirDoc::Rescan()
 
 	LoadLineFilterList();
 
+	DIFFOPTIONS options = {0};
+	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
+	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
+	options.bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
+	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
+	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
+
+	m_pCtxt->CreateCompareOptions(GetOptionsMgr()->GetInt(OPT_CMP_METHOD), options);
+
 	m_pCtxt->m_hDirFrame = pf->GetSafeHwnd();
 	m_pCtxt->m_bGuessEncoding = GetOptionsMgr()->GetBool(OPT_CP_DETECT);
-	m_pCtxt->m_nCompMethod = GetOptionsMgr()->GetInt(OPT_CMP_METHOD);
 	m_pCtxt->m_bIgnoreSmallTimeDiff = GetOptionsMgr()->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_pCtxt->m_bStopAfterFirstDiff = GetOptionsMgr()->GetBool(OPT_CMP_STOP_AFTER_FIRST);
 	m_pCtxt->m_nQuickCompareLimit = GetOptionsMgr()->GetInt(OPT_CMP_QUICK_LIMIT);
 	m_pCtxt->m_pCompareStats = m_pCompareStats;
-	m_diffOptions.SetToDiffUtils();
 
 	// Set total items count since we don't collect items
 	if (m_bMarkedRescan)
@@ -732,15 +730,6 @@ void CDirDoc::CompareReady()
  */
 void CDirDoc::RefreshOptions()
 {
-	DIFFOPTIONS options = {0};
-
-	options.nIgnoreWhitespace = GetOptionsMgr()->GetInt(OPT_CMP_IGNORE_WHITESPACE);
-	options.bIgnoreBlankLines = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_BLANKLINES);
-	options.bFilterCommentsLines = GetOptionsMgr()->GetBool(OPT_CMP_FILTER_COMMENTLINES);
-	options.bIgnoreCase = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_CASE);
-	options.bIgnoreEol = GetOptionsMgr()->GetBool(OPT_CMP_IGNORE_EOL);
-
-	m_diffOptions.SetFromDiffOptions(options);
 	if (m_pDirView)
 		m_pDirView->RefreshOptions();
 }

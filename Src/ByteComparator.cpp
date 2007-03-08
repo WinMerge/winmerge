@@ -3,12 +3,13 @@
  *
  * @brief Implements ByteComparator class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "ByteComparator.h"
 #include "FileTextStats.h"
+#include "CompareOptions.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -112,21 +113,13 @@ static void TextScan(FileTextStats & stats, LPCSTR ptr, LPCSTR end, bool eof,
 
 /**
  * @brief Constructor taking compare options as parameters.
- * @param [in] ignore_case Ignore character case.
- * @param [in] ignore_space_change Ignore change in whitespace.
- * @param [in] ignore_all_space Ignore all whitespace chars.
- * @param [in] ignore_eol_diff Ignore EOL byte differences.
- * @param [in] ignore_blank_lines Ignore blank lines.
- * @note Parameters are same than diffutils options.
+ * @param [in] options Compare options.
  */
-ByteComparator::ByteComparator(int ignore_case, int ignore_space_change,
-	int ignore_all_space, int ignore_eol_diff, int ignore_blank_lines)
+ByteComparator::ByteComparator(const QuickCompareOptions * options)
 // settings
-: m_ignore_case(!!ignore_case)
-, m_ignore_space_change(!!ignore_space_change)
-, m_ignore_all_space(!!ignore_all_space)
-, m_ignore_eol_diff(!!ignore_eol_diff)
-, m_ignore_blank_lines(!!ignore_blank_lines)
+: m_ignore_case(options->m_bIgnoreCase)
+, m_ignore_eol_diff(options->m_bIgnoreEOLDifference)
+, m_ignore_blank_lines(options->m_bIgnoreBlankLines)
 // state
 , m_wsflag(false)
 , m_eol0(false)
@@ -136,6 +129,15 @@ ByteComparator::ByteComparator(int ignore_case, int ignore_space_change,
 , m_bol0(true)
 , m_bol1(true)
 {
+	if (options->m_ignoreWhitespace == WHITESPACE_IGNORE_CHANGE)
+		m_ignore_space_change = true;
+	else
+		m_ignore_space_change = false;
+
+	if (options->m_ignoreWhitespace == WHITESPACE_IGNORE_ALL)
+		m_ignore_all_space = true;
+	else
+		m_ignore_all_space = false;
 }
 
 /**

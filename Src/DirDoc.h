@@ -23,7 +23,7 @@
  * @brief Declaration file for CDirDoc
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_)
@@ -171,7 +171,6 @@ private:
 	PluginManager m_pluginman;
 	BOOL m_bReuseCloses; /**< Are we closing because of reuse? */
 	BOOL m_bMarkedRescan; /**< If TRUE next rescan scans only marked items */
-	DiffutilsOptions m_diffOptions; /**< Compare options for folder compare */
 };
 
 //{{AFX_INSERT_LOCATION}}

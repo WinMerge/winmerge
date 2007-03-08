@@ -23,13 +23,14 @@
  *
  *  @brief Implementation of CDiffContext
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //////////////////////////////////////////////////////////////////////
 
 #include "stdafx.h"
 #include <shlwapi.h>
 #include "Merge.h"
+#include "CompareOptions.h"
 #include "CompareStats.h"
 #include "version.h"
 #include "FilterList.h"
@@ -69,6 +70,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_bStopAfterFirstDiff(FALSE)
 , m_pFilterList(NULL)
 , m_bCollectReady(FALSE)
+, m_pCompareOptions(NULL)
 {
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);
@@ -109,6 +111,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 
 CDiffContext::~CDiffContext()
 {
+	delete m_pCompareOptions;
 	delete m_pFilterList;
 	DeleteCriticalSection(&m_criticalSect);
 }
@@ -236,8 +239,47 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	dfi.version = GetFixedFileVersion(spath);
 }
 
+/**
+ * @brief Create compare-method specific compare options class.
+ * This function creates a compare options class that is specific for
+ * selectec compare method. Compare options class is initialized from
+ * given set of options.
+ * @param [in] compareMethod Selectec compare method.
+ * @param [in] options Initial set of compare options.
+ * @return TRUE if creation succeeds.
+ */
+BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
+{
+	if (m_pCompareOptions)
+		delete m_pCompareOptions;
+
+	switch (compareMethod)
+	{
+	case CMP_CONTENT:
+		m_pCompareOptions = new DiffutilsOptions();
+		break;
+
+	case CMP_QUICK_CONTENT:
+		m_pCompareOptions = new QuickCompareOptions();
+		break;
+
+	default:
+		// No really options to set..
+		break;
+	}
+
+	if (m_pCompareOptions == NULL)
+		return FALSE;
+
+	m_nCompMethod = compareMethod;
+	m_pCompareOptions->SetFromDiffOptions(options);
+
+	return TRUE;
+}
+
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */
-void CDiffContext::FetchPluginInfos(const CString& filteredFilenames, PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
+void CDiffContext::FetchPluginInfos(const CString& filteredFilenames,
+		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
 	ASSERT(m_piPluginInfos);
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
