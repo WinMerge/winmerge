@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1664689 ] French translation (update2)
   Submitted by Jean-F Jolin
   Src/Languages/French: MergeFrench.rc
+ Remove two unused functions, improve comments
+  Src: DirActions.cpp
 
 2007-03-07 Kimmo
  PATCH: [ 1675087 ] New copy confirmation dialog

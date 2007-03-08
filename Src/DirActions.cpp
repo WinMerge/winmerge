@@ -42,8 +42,20 @@ static char THIS_FILE[] = __FILE__;
 
 extern CLogFile gLog;
 
-// Prompt user to confirm a single item copy
-static BOOL ConfirmCopy(int origin, int destination, int count, LPCTSTR src, LPCTSTR dest)
+/**
+ * @brief Ask user a confirmation for copying item(s).
+ * Shows a confirmatino dialog for copy operation. Depending ont item count
+ * dialog shows full paths to items (single item) or base paths of compare
+ * (multiple items).
+ * @param [in] origin Origin side of the item(s).
+ * @param [in] destination Destination side of the item(s).
+ * @param [in] count Number of items.
+ * @param [in] src Source path.
+ * @param [in] dest Destination path.
+ * @return IDYES if copy should proceed, IDNO if aborted.
+ */
+static BOOL ConfirmCopy(int origin, int destination, int count,
+		LPCTSTR src, LPCTSTR dest)
 {
 	ConfirmFolderCopyDlg dlg;
 	CString strQuestion;
@@ -80,25 +92,7 @@ static BOOL ConfirmCopy(int origin, int destination, int count, LPCTSTR src, LPC
 	return (rtn==IDYES);
 }
 
-// Prompt user to confirm a multiple item delete
-static BOOL ConfirmMultipleDelete(int count, int total)
-{
-	CString s;
-	AfxFormatString2(s, IDS_CONFIRM_DELETE_ITEMS, NumToStr(count), NumToStr(total));
-	int rtn = AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CONFIRM_DELETE_ITEMS);
-	return (rtn==IDYES);
-}
-
-// Prompt user to confirm a single item delete
-static BOOL ConfirmSingleDelete(LPCTSTR filepath)
-{
-	CString s;
-	AfxFormatString1(s, IDS_CONFIRM_DELETE_SINGLE, filepath);
-	int rtn = AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_CONFIRM_DELETE_SINGLE);
-	return (rtn==IDYES);
-}
-
-// Prompt & copy item from right to left, if legal
+/// Prompt & copy item from right to left, if legal
 void CDirView::DoCopyRightToLeft()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
@@ -132,7 +126,7 @@ void CDirView::DoCopyRightToLeft()
 	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionScript, selCount);
 }
-// Prompt & copy item from left to right, if legal
+/// Prompt & copy item from left to right, if legal
 void CDirView::DoCopyLeftToRight()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
@@ -167,7 +161,7 @@ void CDirView::DoCopyLeftToRight()
 	ConfirmAndPerformActions(actionScript, selCount);
 }
 
-// Prompt & delete left, if legal
+/// Prompt & delete left, if legal
 void CDirView::DoDelLeft()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
@@ -198,7 +192,7 @@ void CDirView::DoDelLeft()
 	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionScript, selCount);
 }
-// Prompt & delete right, if legal
+/// Prompt & delete right, if legal
 void CDirView::DoDelRight()
 {
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
