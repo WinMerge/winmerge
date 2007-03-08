@@ -1035,8 +1035,8 @@ BEGIN
     GROUPBOX        "Montrer les colonnes",IDC_GROUP_SHOW,7,7,145,102
     LISTBOX         IDC_LIST_SHOW,52,18,92,83,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
-    PUSHBUTTON      "&Monter",IDC_UP,15,45,30,14
-    PUSHBUTTON      "&Descendre",IDC_DOWN,15,63,30,14
+    PUSHBUTTON      "&Monter",IDC_UP,10,45,40,14
+    PUSHBUTTON      "&Descendre",IDC_DOWN,10,63,40,14
     GROUPBOX        "Cacher les colonnes",IDC_GROUP_HIDE,193,7,108,102
     LISTBOX         IDC_LIST_HIDE,201,18,92,83,LBS_NOINTEGRALHEIGHT |
                     LBS_EXTENDEDSEL | WS_VSCROLL | WS_HSCROLL | WS_TABSTOP
@@ -1163,7 +1163,7 @@ BEGIN
     CONTROL         "Insérer &espace",IDC_PROP_INSERT_SPACES,"Button",
                     BS_AUTORADIOBUTTON,120,62,97,10
     GROUPBOX        "Colorer les différences de ligne",IDC_LINE_COLORING_GROUP,7,87,
-                    221,41
+                    221,61
     CONTROL         "A&fficher les différences",IDC_VIEW_LINE_DIFFERENCES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,14,98,100,8
     CONTROL         "Précision au &caractère",IDC_EDITOR_CHARLEVEL,"Button",
