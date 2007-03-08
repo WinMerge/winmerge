@@ -536,6 +536,10 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList, int selCo
 
 	ASSERT(actionList.GetActionItemCount()>0); // Or else the update handler got it wrong
 
+	// Set parent window so modality is correct and correct window gets focus
+	// after dialogs.
+	actionList.SetParentWindow(this);
+	
 	if (!ConfirmActionList(actionList, selCount))
 		return;
 
