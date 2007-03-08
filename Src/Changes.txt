@@ -10,6 +10,8 @@ Add new items to top.
   Src: DirActions.cpp
  BUG: [ 1670991 ] File panes lost focus after delete confirmation dialog
   Src: DirActions.cpp
+ Fix comment about contributors file
+  Src: AboutDlg.cpp
 
 2007-03-07 Kimmo
  PATCH: [ 1675087 ] New copy confirmation dialog

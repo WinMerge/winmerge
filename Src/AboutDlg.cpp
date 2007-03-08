@@ -91,7 +91,10 @@ BOOL CAboutDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-/** @brief Open Contributors.rtf */
+/**
+ * @brief Show contributors list.
+ * Opens Contributors.txt into notepad.
+ */
 void CAboutDlg::OnBnClickedOpenContributors()
 {
 	CString defPath = GetModulePath();
