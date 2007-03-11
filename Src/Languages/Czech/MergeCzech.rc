@@ -1598,20 +1598,20 @@ END
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
     WS_SYSMENU
-CAPTION "Confirm Copy"
+CAPTION "Potvrdit kopírování"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
-    LTEXT           "Are you sure you want to copy XXX items?",
+    LTEXT           "Opravdu chcete zkopírovat XXX položek?",
                     IDC_FLDCONFIRM_QUERY,45,7,233,8
-    LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
+    LTEXT           "Zleva",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
+    LTEXT           "Doprava",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Yes",IDYES,174,79,50,14
-    DEFPUSHBUTTON   "No",IDNO,228,79,50,14
+    PUSHBUTTON      "Ano",IDYES,174,79,50,14
+    DEFPUSHBUTTON   "Ne",IDNO,228,79,50,14
 END
 
 
@@ -1982,10 +1982,10 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_FROM_LEFT           "From left:"
-    IDS_TO_LEFT             "To left:"
-    IDS_FROM_RIGHT          "From right:"
-    IDS_TO_RIGHT            "To right:"
+    IDS_FROM_LEFT           "Zleva:"
+    IDS_TO_LEFT             "Doleva:"
+    IDS_FROM_RIGHT          "Zprava:"
+    IDS_TO_RIGHT            "Doprava:"
 END
 
 // WINMERGE INFORMATION
@@ -2240,8 +2240,8 @@ BEGIN
     IDS_CONFIRM_DELETE_ITEMS "Opravdu chcete odstranit %1 z %2 vybraných položek?"
     IDS_CONFIRM_DELETE_DIR  "Odstranit složku\n\n%1 ?"
     IDS_CONFIRM_DELETE_SINGLE "Opravdu chcete odstranit\n\n%1 ?"
-    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
-    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
+    IDS_CONFIRM_SINGLE_COPY "Opravdu chcete zkopírovat:"
+    IDS_CONFIRM_MULTIPLE_COPY "Opravdu chcete zkopírovat %d položek:"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
