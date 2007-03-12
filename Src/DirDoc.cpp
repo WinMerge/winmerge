@@ -36,9 +36,6 @@
 #include "Ucs2Utf8.h"
 #include "DirDoc.h"
 #include "DirFrame.h"
-#include "diff.h"
-#include "getopt.h"
-#include "fnmatch.h"
 #include "MainFrm.h"
 #include "coretools.h"
 #include "logfile.h"
@@ -46,7 +43,6 @@
 #include "WaitStatusCursor.h"
 #include "7zCommon.h"
 #include "OptionsDef.h"
-#include "dllver.h"
 #include "FileActionScript.h"
 
 #ifdef _DEBUG
