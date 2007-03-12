@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-11 Jan Hryz
+ Czech translation - translation of "confirm copy" dialog
+  Src/Languages/Czech/MergeCzech.rc
+
 2007-03-08 Kimmo
  PATCH: [ 1664689 ] French translation (update2)
   Submitted by Jean-F Jolin
