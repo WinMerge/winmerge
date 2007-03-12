@@ -7,6 +7,9 @@ Add new items to top.
   Src: DirDoc.cpp
  Remove unneeded initialization
   Src: CCPrompt.cpp
+ PATCH: [ 1678676 ] Swedish translation of New Copy Confirmation dialog
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2007-03-11 Jan Hryz
  Czech translation - translation of "confirm copy" dialog
