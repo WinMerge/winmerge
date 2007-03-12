@@ -5,6 +5,8 @@ Add new items to top.
 2007-03-12 Kimmo
  Remove unneeded include lines
   Src: DirDoc.cpp
+ Remove unneeded initialization
+  Src: CCPrompt.cpp
 
 2007-03-11 Jan Hryz
  Czech translation - translation of "confirm copy" dialog

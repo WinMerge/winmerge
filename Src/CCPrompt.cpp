@@ -20,9 +20,6 @@ CCCPrompt::CCCPrompt(CWnd* pParent /*=NULL*/)
 	, m_bMultiCheckouts(FALSE)
 	, m_bCheckin(FALSE)
 {
-	//{{AFX_DATA_INIT(CCCPrompt)
-	m_comments = _T("");
-	//}}AFX_DATA_INIT
 }
 
 
