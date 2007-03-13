@@ -149,9 +149,6 @@
       if ($this->_version == WINMERGE_2_4) { //if WinMerge 2.4 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.4/index.php\">2.4</a></li>\n";
       }
-      else { //if NOT WinMerge 2.4 ...
-        $temp .= "  <li><a href=\"/2.4/index.php\">2.4</a></li>\n";
-      }
       if ($this->_version == WINMERGE_2_2) { //if WinMerge 2.2 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.2/index.php\">2.2</a></li>\n";
       }
@@ -173,6 +170,7 @@
       else { //if NOT "Developers" ...
         $temp .= "  <li><a href=\"/developer/index.php\">Developers</a></li>\n";
       }
+      $temp .= "  <li><a href=\"/Wiki/\">Wiki</a></li>\n";
       $temp .= "</ul>\n";
       return $temp;
     }

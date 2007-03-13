@@ -1,3 +1,7 @@
+2007-03-13 Tim
+ PATCH: [ 1679324 ] Web: Add "Wiki" tab
+  Web: page.inc
+
 2007-01-24 Tim
  PATCH: [ 1637155 ] Web: Move "Support" to own tab
   Web: index.php page.inc sitemap.txt
