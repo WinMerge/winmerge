@@ -23,7 +23,7 @@
  *
  * @brief Implementation of the CMainFrame class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -44,7 +44,6 @@
 #include "LocationView.h"
 #include "SyntaxColors.h"
 
-#include "diff.h"
 #include "coretools.h"
 #include "Splash.h"
 #include "PropLineFilter.h"
@@ -52,7 +51,6 @@
 #include "paths.h"
 #include "WaitStatusCursor.h"
 #include "PatchTool.h"
-#include "FileTransform.h"
 #include "Plugins.h"
 #include "SelectUnpackerDlg.h"
 #include "files.h"
@@ -88,8 +86,6 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
-
-extern CLogFile gLog;
 
 static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList);
 
@@ -213,20 +209,6 @@ CMainFrame::CMainFrame()
 	// uncomment this when the GUI allows to toggle the mode
 //	g_bPredifferMode = theApp.GetProfileInt(_T("Settings"), _T("PredifferMode"), PLUGIN_MANUAL);
 
-	// TODO: read preference for logging
-
-	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
-	if (logging > 0)
-	{
-		gLog.EnableLogging(TRUE);
-		gLog.SetFile(_T("WinMerge.log"));
-
-		if (logging == 1)
-			gLog.SetMaskLevel(CLogFile::LALL);
-		else if (logging == 2)
-			gLog.SetMaskLevel(CLogFile::LERROR | CLogFile::LWARNING);
-	}
-
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
 		m_pSyntaxColors->Initialize(GetOptionsMgr());
@@ -244,7 +226,7 @@ CMainFrame::CMainFrame()
 
 CMainFrame::~CMainFrame()
 {
-	gLog.EnableLogging(FALSE);
+	GetLog()->EnableLogging(FALSE);
 
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
@@ -1060,7 +1042,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 	if (1)
 	{
-		gLog.Write(_T("### Begin Comparison Parameters #############################\r\n")
+		GetLog()->Write(_T("### Begin Comparison Parameters #############################\r\n")
 				  _T("\tLeft: %s\r\n")
 				  _T("\tRight: %s\r\n")
 				  _T("\tRecurse: %d\r\n")
@@ -1091,7 +1073,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 					break;
 				if (strLeft.Find(path) == 0)
 				{
-					VERIFY(::DeleteFile(strLeft) || gLog::DeleteFileFailed(strLeft));
+					VERIFY(::DeleteFile(strLeft) || GetLog()->DeleteFileFailed(strLeft));
 				}
 				SysFreeString(Assign(strLeft, piHandler->GetDefaultName(m_hWnd, strLeft)));
 				strLeft.Insert(0, '\\');
@@ -1107,7 +1089,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 						break;;
 					if (strRight.Find(path) == 0)
 					{
-						VERIFY(::DeleteFile(strRight) || gLog::DeleteFileFailed(strRight));
+						VERIFY(::DeleteFile(strRight) || GetLog()->DeleteFileFailed(strRight));
 					}
 					SysFreeString(Assign(strRight, piHandler->GetDefaultName(m_hWnd, strRight)));
 					strRight.Insert(0, '\\');
@@ -1172,7 +1154,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			// Anything that can go wrong inside InitCompare() will yield an
 			// exception. There is no point in checking return value.
 			pDirDoc->InitCompare(paths, bRecurse, pTempPathContext);
-			gLog.Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
+			GetLog()->Write(CLogFile::LNOTICE, _T("Open dirs: Left: %s\n\tRight: %s."),
 				strLeft, strRight);
 
 			pDirDoc->SetReadOnly(TRUE, bROLeft);
@@ -1187,7 +1169,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 	}
 	else
 	{
-		gLog.Write(CLogFile::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
+		GetLog()->Write(CLogFile::LNOTICE, _T("Open files: Left: %s\n\tRight: %s."),
 			strLeft, strRight);
 		
 		FileLocation filelocLeft(strLeft);
@@ -1657,7 +1639,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
 	if (nCmdShow != SW_MINIMIZE && theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
 	{
-		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);	
+		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);
 	}
 	else if (rc.Width() != 0 && rc.Height() != 0)
 	{
@@ -2097,7 +2079,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		files[1] = files[0];
 	}
 
-	gLog.Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
+	GetLog()->Write(CLogFile::LNOTICE, _T("D&D open: Left: %s\n\tRight: %s."),
 		files[0], files[1]);
 
 	// Check if they dropped a project file
@@ -2322,7 +2304,6 @@ static void LoadConfigLog(CConfigLog & configLog, COptionsMgr * options,
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAutomaticRescan, options, OPT_AUTOMATIC_RESCAN, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bAllowMixedEol, options, OPT_ALLOW_MIXED_EOL, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bScrollToFirst, options, OPT_SCROLL_TO_FIRST, cfgdir);
-//	LoadConfigBoolSetting(&configLog.m_miscSettings.bBackup, options, OPT_CREATE_BACKUPS, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bViewWhitespace, options, OPT_VIEW_WHITESPACE, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bMovedBlocks, options, OPT_CMP_MOVED_BLOCKS, cfgdir);
 	LoadConfigBoolSetting(&configLog.m_miscSettings.bShowLinenumbers, options, OPT_VIEW_LINENUMBERS, cfgdir);

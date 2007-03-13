@@ -8,6 +8,8 @@
 
 
 #include "stdafx.h"
+#include "LogFile.h"
+#include "Merge.h"
 #include "paths.h"
 #include "FilterList.h"
 #include "DiffContext.h"
@@ -205,13 +207,13 @@ exitPrepAndCompare:
 	m_diffFileData.Reset();
 	// delete the temp files after comparison
 	if (filepathTransformed1 != filepathUnpacked1)
-		VERIFY(::DeleteFile(filepathTransformed1) || gLog::DeleteFileFailed(filepathTransformed1));
+		VERIFY(::DeleteFile(filepathTransformed1) || GetLog()->DeleteFileFailed(filepathTransformed1));
 	if (filepathTransformed2 != filepathUnpacked2)
-		VERIFY(::DeleteFile(filepathTransformed2) || gLog::DeleteFileFailed(filepathTransformed2));
+		VERIFY(::DeleteFile(filepathTransformed2) || GetLog()->DeleteFileFailed(filepathTransformed2));
 	if (filepathUnpacked1 != filepath1)
-		VERIFY(::DeleteFile(filepathUnpacked1) || gLog::DeleteFileFailed(filepathUnpacked1));
+		VERIFY(::DeleteFile(filepathUnpacked1) || GetLog()->DeleteFileFailed(filepathUnpacked1));
 	if (filepathUnpacked2 != filepath2)
-		VERIFY(::DeleteFile(filepathUnpacked2) || gLog::DeleteFileFailed(filepathUnpacked2));
+		VERIFY(::DeleteFile(filepathUnpacked2) || GetLog()->DeleteFileFailed(filepathUnpacked2));
 	return code;
 }
 

@@ -27,15 +27,7 @@
 
 #include "stdafx.h"
 #include "LogFile.h"
-
-// Logging
-CLogFile gLog;
-
-/** @brief Report DeleteFile() failure to gLog */
-UINT gLog::DeleteFileFailed(LPCTSTR path)
-{
-	return::gLog.Write(CLogFile::LERROR|CLogFile::LOSERROR|CLogFile::LDEBUG, _T("DeleteFile(%s) failed: "), path);
-}
+#include "Merge.h"
 
 // Convert any negative inputs to negative char equivalents
 // This is aimed at correcting any chars mistakenly 
@@ -146,7 +138,7 @@ void LogErrorString(LPCTSTR sz)
 	TRACE(_T("%s: %s\n"), (LPCTSTR)now, sz);
 
 #if defined (_DEBUG) || defined (ENABLE_LOG)
-	gLog.Write(CLogFile::LERROR, sz);
+	GetLog()->Write(CLogFile::LERROR, sz);
 #endif
 }
 

@@ -23,7 +23,7 @@
  *
  *  @brief Support for VBS Scriptlets, VB ActiveX DLL, VC++ COM DLL
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -32,6 +32,8 @@
 #endif
 
 #include "pcre.h"
+#include "LogFile.h"
+#include "Merge.h"
 #include "Ucs2Utf8.h"
 #include "FileTransform.h"
 #include "FileFilterMgr.h"
@@ -42,8 +44,6 @@
 #include "Exceptions.h"
 #include "RegKey.h"
 #include "paths.h"
-#include "logfile.h"
-extern CLogFile gLog;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -570,7 +570,7 @@ static CStringArray & LoadTheScriptletList()
 		if (IsWindowsScriptThere())
 			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
 		else
-			gLog.Write(CLogFile::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
+			GetLog()->Write(CLogFile::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
 		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
 		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;

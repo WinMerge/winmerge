@@ -72,8 +72,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern CLogFile gLog;
-
 /** @brief Max len of path in caption. */
 static const UINT CAPTION_PATH_MAX = 50;
 

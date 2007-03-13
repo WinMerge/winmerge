@@ -51,7 +51,6 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 extern int recursive;
-extern CLogFile gLog;
 
 static void FreeDiffUtilsScript(struct change * & script);
 static void CopyTextStats(const file_data * inf, FileTextStats * myTextStats);

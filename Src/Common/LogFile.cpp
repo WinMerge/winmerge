@@ -4,7 +4,7 @@
  * @brief Implementation file for CLogFile
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -17,14 +17,10 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-/**
- * @brief Global name for mutes protecting log file access.
- */
+/** @brief Global name for mutes protecting log file access. */
 static const TCHAR MutexName[] = _T("WINMERGE_LOG_MUTEX");
 
-/**
- * @brief Constant for Megabyte.
- */
+/** @brief Constant for Megabyte. */
 static const int MEGA = 1024 * 1024;
 
 /**
@@ -333,4 +329,10 @@ LPCTSTR CLogFile::GetPrefix(UINT level) const
 			break;
 	}
 	return str;
+}
+
+/** @brief Report DeleteFile() failure to Log */
+UINT CLogFile::DeleteFileFailed(LPCTSTR path)
+{
+	return Write(CLogFile::LERROR|CLogFile::LOSERROR|CLogFile::LDEBUG, _T("DeleteFile(%s) failed: "), path);
 }

@@ -24,7 +24,7 @@
  * @brief Defines the class behaviors for the application.
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -89,8 +89,6 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_FILE_PRINT_SETUP, CWinApp::OnFilePrintSetup)
 END_MESSAGE_MAP()
 
-extern CLogFile gLog;
-
 static void AddEnglishResourceHook();
 
 /**
@@ -109,11 +107,26 @@ struct ArgSetting
 	LPCTSTR WinMergeOptionName;
 };
 
+/**
+ * @brief Get Options Manager.
+ * @return Pointer to OptionsMgr.
+ */
 COptionsMgr * GetOptionsMgr()
 {
 	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
 	return pApp->GetMergeOptionsMgr();
 }
+
+/**
+ * @brief Get Log.
+ * @return Pointer to Log.
+ */
+CLogFile * GetLog()
+{
+	CMergeApp *pApp = static_cast<CMergeApp *>(AfxGetApp());
+	return pApp->GetMergeLog();
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp construction
@@ -126,6 +139,7 @@ CMergeApp::CMergeApp() :
 , m_nLastCompareResult(0)
 , m_bNonInteractive(false)
 , m_pOptions(NULL)
+, m_pLog(NULL)
 {
 	// add construction code here,
 	// Place all significant initialization in InitInstance
@@ -136,6 +150,7 @@ CMergeApp::~CMergeApp()
 {
 	delete m_pOptions;
 	delete m_pLangDlg;
+	delete m_pLog;
 }
 /////////////////////////////////////////////////////////////////////////////
 // The one and only CMergeApp object
@@ -194,6 +209,20 @@ BOOL CMergeApp::InitInstance()
 
 	m_pOptions = new CRegOptionsMgr;
 	OptionsInit(); // Implementation in OptionsInit.cpp
+
+	m_pLog = new CLogFile();
+
+	int logging = GetOptionsMgr()->GetInt(OPT_LOGGING);
+	if (logging > 0)
+	{
+		m_pLog->EnableLogging(TRUE);
+		m_pLog->SetFile(_T("WinMerge.log"));
+
+		if (logging == 1)
+			m_pLog->SetMaskLevel(CLogFile::LALL);
+		else if (logging == 2)
+			m_pLog->SetMaskLevel(CLogFile::LERROR | CLogFile::LWARNING);
+	}
 
 	// Parse command-line arguments.
 	MergeCmdLineInfo cmdInfo(*__targv);
@@ -273,7 +302,7 @@ BOOL CMergeApp::InitInstance()
 
 	// Initialize i18n (multiple language) support
 
-	m_pLangDlg->SetLogFile(&gLog);
+	m_pLangDlg->SetLogFile(GetLog());
 	m_pLangDlg->InitializeLanguage();
 
 	AddEnglishResourceHook(); // Use English string when l10n (foreign) string missing

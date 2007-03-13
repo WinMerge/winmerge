@@ -40,8 +40,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern CLogFile gLog;
-
 /**
  * @brief Ask user a confirmation for copying item(s).
  * Shows a confirmatino dialog for copy operation. Depending ont item count

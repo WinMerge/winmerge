@@ -51,8 +51,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-extern CLogFile gLog;
-
 /////////////////////////////////////////////////////////////////////////////
 // CDirDoc
 
@@ -309,7 +307,7 @@ void CDirDoc::Rescan()
 
 	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, LoadResString(IDS_STATUS_RESCANNING));
 
-	gLog.Write(CLogFile::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
+	GetLog()->Write(CLogFile::LNOTICE, _T("Starting directory scan:\n\tLeft: %s\n\tRight: %s\n"),
 			m_pCtxt->GetLeftPath(), m_pCtxt->GetRightPath());
 	m_pCompareStats->Reset();
 	m_pDirView->StartCompare(m_pCompareStats);
@@ -709,7 +707,7 @@ void CDirDoc::UpdateChangedItem(PathContext &paths,
  */
 void CDirDoc::CompareReady()
 {
-	gLog.Write(CLogFile::LNOTICE, _T("Directory scan complete\n"));
+	GetLog()->Write(CLogFile::LNOTICE, _T("Directory scan complete\n"));
 
 	// finish the cursor (the hourglass/pointer combo) we had open during display
 	delete m_statusCursor;
@@ -851,7 +849,7 @@ BOOL CDirDoc::SaveModified()
  */
 void CDirDoc::AbortCurrentScan()
 {
-	gLog.Write(CLogFile::LNOTICE, _T("Dircompare aborted!"));
+	GetLog()->Write(CLogFile::LNOTICE, _T("Dircompare aborted!"));
 	m_diffThread.Abort();
 }
 

@@ -23,7 +23,7 @@
  * @brief main header file for the MERGE application
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_MERGE_H__BBCD4F88_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
@@ -43,6 +43,7 @@ class CAssureScriptsForThread;
 class CMainFrame;
 class CLanguageSelect;
 class MergeCmdLineInfo;
+class CLogFile;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeApp:
@@ -78,6 +79,8 @@ public:
 	void OptionsInit();
 	void ResetOptions() { OptionsInit(); }
 
+	CLogFile * GetMergeLog() { return m_pLog; }
+
 // Implementation
 protected:
 
@@ -112,6 +115,7 @@ protected:
 private:
 	CRegOptionsMgr *m_pOptions;
 	CAssureScriptsForThread * m_mainThreadScripts;
+	CLogFile * m_pLog;
 	int m_nLastCompareResult;
 	bool m_bNonInteractive;
 };
@@ -119,6 +123,7 @@ private:
 extern CMergeApp theApp;
 
 COptionsMgr * GetOptionsMgr();
+CLogFile * GetLog();
 
 /////////////////////////////////////////////////////////////////////////////
 CMergeDoc *GetDoc();

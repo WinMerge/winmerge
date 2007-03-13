@@ -110,15 +110,6 @@ CString Fmt(LPCTSTR fmt, ...);
 	/** @brief Get appropriate clipboard format for TCHAR text, ie, CF_TEXT or CF_UNICODETEXT */
 int GetClipTcharTextFormat();
 
-class CLogFile;
-extern CLogFile gLog;
-
-	/** @brief Shortcuts for common gLog messages */
-struct gLog
-{
-	static UINT DeleteFileFailed(LPCTSTR path);
-};
-
 bool IsUnicodeBuild();
 
 	/** @brief include for the custom dialog boxes, with do not ask/display again */

@@ -3,13 +3,15 @@
  *
  *  @brief Implementation of DirScan (q.v.) and helper functions
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include <shlwapi.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "Merge.h"
+#include "LogFile.h"
 #include "DirScan.h"
 #include "CompareStats.h"
 #include "common/unicoder.h"
@@ -17,7 +19,6 @@
 #include "DiffWrapper.h"
 #include "FolderCmp.h"
 #include "FileFilterHelper.h"
-#include "logfile.h"
 #include "paths.h"
 #include "FileTransform.h"
 #include "codepage.h"
@@ -700,7 +701,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		}
 	}
 
-	gLog.Write
+	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
 		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
@@ -757,7 +758,7 @@ static void AddToList(const CString & sLeftDir, const CString & sRightDir, const
 
 	di.diffcode = code;
 
-	gLog.Write
+	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
 		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
