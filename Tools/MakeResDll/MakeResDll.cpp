@@ -9,7 +9,6 @@
 #include "stdafx.h"
 #include "MakeResDll.h"
 // Following files included from WinMerge/Src/Common
-#include "coretools.h"
 #include "RegKey.h"
 // Local files
 
@@ -22,9 +21,9 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
 
-static LPCTSTR myregvals[] =
-{ // These must be laid out in the same order as VS5, VS6, VS2002, ...
-	_T("5"),
+static LPCTSTR VSRegVersionStrings[] =
+{	// These must be laid out in the same order as VS_VERSION:
+	// VS6, VS2002, ...
 	_T("6"),
 	_T("Net"),
 	_T("Net2003"),
@@ -61,6 +60,10 @@ static LPCTSTR gVs6VcBaseDir = _T("SOFTWARE\\Microsoft\\DevStudio\\6.0\\Products
 static LPCTSTR gVs5VcBaseDir = _T("Software\\Microsoft\\DevStudio\\5.0\\Directories");
 
 // Static functions
+static VS_VERSION MapRegistryValue(LPCTSTR value);
+static BOOL MkDirEx(LPCTSTR filename);
+static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName);
+static HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL bNewConsole /*= FALSE*/);
 static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile);
 static BOOL CheckCompiler();
 static void Status(LPCTSTR szText);
@@ -71,7 +74,6 @@ static void LoadVs2005Settings(CString & sProductDir);
 static void LoadVs2003Settings(CString & sProductDir);
 static void LoadVs2002Settings(CString & sProductDir);
 static void LoadVs6Settings(CString & sProductDir);
-static void LoadVs5Settings(CString & sProductDir);
 static void Usage();
 static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
@@ -79,17 +81,18 @@ static bool DoesFileExist(LPCTSTR filepath);
 static void TrimPath(CString & sPath);
 //static void DisplayUi(const CStringArray & VsBaseDirs);
 static void LoadVsBaseDirs(CStringArray & VsBaseDirs);
+static void SplitFilename(LPCTSTR path, TCHAR * folder, TCHAR * filename, TCHAR * ext);
 
 using namespace std;
 
 /**
  * @brief Map registry value to enum value, eg, "Net2003" => VS2003
  */
-VS_VERSION MapRegistryValue(const CString & val) // static
+static VS_VERSION MapRegistryValue(LPCTSTR value)
 {
-	for (int i=0; i<VS_COUNT; ++i)
+	for (int i = 0; i < VS_COUNT; ++i)
 	{
-		if (val == myregvals[i])
+		if (_tcscmp(value, VSRegVersionStrings[i]) == 0)
 		{
 			return (VS_VERSION)i;
 		}
@@ -138,8 +141,10 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
             return 0;
 		}
 
-		CString spath, sname, sext;
-		SplitFilename(gsRCScript, &spath, &sname, &sext);
+		TCHAR spath[MAX_PATH] = {0};
+		TCHAR sname[MAX_PATH] = {0};
+		SplitFilename(gsRCScript, spath, sname, NULL);
+
 		if (gsOutPath.IsEmpty())
 			gsOutPath = spath;
 
@@ -177,15 +182,15 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 static void FixPath()
 {
 	CString strPath(getenv(_T("PATH")));
-	CString spath;
+	TCHAR spath[MAX_PATH] = {0};
 	if (gbVerbose)
 		_tprintf(_T("Initial path: %s\r\n"), strPath);
 
 	strPath = _T("PATH=") + strPath;
-	SplitFilename(gVcPaths.sRCExe, &spath, NULL, NULL);
+	SplitFilename(gVcPaths.sRCExe, spath, NULL, NULL);
 	strPath += _T(";");
 	strPath += spath;
-	SplitFilename(gVcPaths.sLinkExe, &spath, NULL, NULL);
+	SplitFilename(gVcPaths.sLinkExe, spath, NULL, NULL);
 	strPath += _T(";");
 	strPath += spath;
 	strPath += _T(";");
@@ -391,9 +396,6 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 		return FALSE;
 	}
 
-	CString sScriptDir;
-	SplitFilename(pszRCPath, &sScriptDir, NULL, NULL);
-
 	Status(IDS_CREATE_OUTDIR);
 	if (!MkDirEx(strOutFolder))
 	{
@@ -418,9 +420,9 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	if (hRC)
 	{
 		DWORD dwReturn;
-		while (!HasExited(hRC, &dwReturn))
-		{
-		}
+		WaitForSingleObject(hRC, INFINITE);
+		GetExitCodeProcess(hRC, &dwReturn);
+
 		if (dwReturn != 0)
 		{
 			Status(_T("Error\r\n"));
@@ -460,9 +462,9 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	if (hLink)
 	{
 		DWORD dwReturn;
-		while (!HasExited(hLink, &dwReturn))
-		{
-		}
+		WaitForSingleObject(hLink, INFINITE);
+		GetExitCodeProcess(hLink, &dwReturn);
+
 		if (dwReturn != 0)
 		{
 			Status(_T("Error\r\n"));
@@ -623,8 +625,6 @@ static bool FindAndLoadVsVersion(const CStringArray & VsBaseDirs, VS_VERSION vsn
 					LoadVs2002Settings(sProductDir);
 				else if (vi == VS_6)
 					LoadVs6Settings(sProductDir);
-				else if (vi == VS_5)
-					LoadVs5Settings(sProductDir);
 				return true;
 			}
 		}
@@ -846,37 +846,6 @@ static void LoadVs6Settings(CString & sProductDir)
 }
 
 /**
- * @brief Load Visual Studio 5 settings into global gVcPaths
- * Version 5.0
- */
-static void LoadVs5Settings(CString & sProductDir)
-{
-	// Access to registry
-	CRegKeyEx reg;
-
-	// Get root directory of Visual C
-	if (gVcPaths.sVcBaseFolder.IsEmpty())
-		gVcPaths.sVcBaseFolder = sProductDir;
-
-	// Found MSVC5, so grab resource compiler & linker
-	if (gVcPaths.sRCExe.IsEmpty())
-		gVcPaths.sRCExe.Format(_T("%s\\SharedIDE\\bin\\rc.exe"), gVcPaths.sVcBaseFolder);
-	if (gVcPaths.sLinkExe.IsEmpty())
-		gVcPaths.sLinkExe.Format(_T("%s\\vc\\bin\\link.exe"), gVcPaths.sVcBaseFolder);
-
-	// Now also grab includes & libs
-	LPCTSTR bd = _T("Software\\Microsoft\\DevStudio\\5.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
-	if (RegOpenUser(reg, bd))
-	{
-		if (gVcPaths.sIncludes.IsEmpty())
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
-		if (gVcPaths.sLibs.IsEmpty())
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
-		reg.Close();
-	}
-}
-
-/**
  * @brief Return true if character is a directory separator slash
  */
 static bool IsSlash(TCHAR ch)
@@ -924,10 +893,110 @@ static void LoadVsBaseDirs(CStringArray & VsBaseDirs)
 		VsBaseDirs[VS_6] = reg.ReadString(_T("ProductDir"), _T(""));
 		reg.Close();
 	}
-	if (RegOpenMachine(reg, gVs5VcBaseDir))
-	{
-		VsBaseDirs[VS_5] = reg.ReadString(_T("ProductDir"), _T(""));
-		reg.Close();
-	}
 }
 
+static BOOL MkDirEx(LPCTSTR filename)
+{
+	TCHAR tempPath[_MAX_PATH] = {0};
+	LPTSTR p;
+
+	_tcscpy(tempPath, filename);
+	if (*_tcsinc(filename)==_T(':'))
+		p=_tcschr(_tcsninc(tempPath,3),_T('\\'));
+	else if (*filename==_T('\\'))
+		p=_tcschr(_tcsinc(tempPath),_T('\\'));
+	else
+		p=tempPath;
+	if (p!=NULL)
+		for (; *p != _T('\0'); p = _tcsinc(p))
+		{
+			if (*p == _T('\\'))
+			{
+				_tccpy(p, _T("\0"));
+				if (0 && _tcscmp(tempPath, _T(".")) == 0)
+				{
+					// Don't call CreateDirectory(".")
+				}
+				else
+				{
+					if (!MyCreateDirectoryIfNeeded(tempPath)
+						&& !MyCreateDirectoryIfNeeded(tempPath))
+						TRACE(_T("Failed to create folder %s\n"), tempPath);
+					_tccpy(p, _T("\\"));
+				}
+			}
+
+		}
+
+		if (!MyCreateDirectoryIfNeeded(filename)
+			&& !MyCreateDirectoryIfNeeded(filename))
+			TRACE(_T("Failed to create folder %s\n"), filename);
+
+	CFileStatus status;
+	return (CFile::GetStatus(filename, status));
+}
+
+// Create directory (via Win32 API)
+// if success, or already exists, return TRUE
+// if failure, return FALSE
+// (NB: Win32 CreateDirectory reports failure if already exists)
+static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName)
+{
+	LPSECURITY_ATTRIBUTES lpSecurityAttributes = NULL;
+	int rtn = CreateDirectory(lpPathName, lpSecurityAttributes);
+	if (!rtn)
+	{
+		int errnum = GetLastError();
+		// Consider it success if directory already exists
+		if (errnum == ERROR_ALREADY_EXISTS)
+			return TRUE;
+	}
+	return rtn;
+}
+
+static HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL bNewConsole /*= FALSE*/)
+{
+    STARTUPINFO si;
+	PROCESS_INFORMATION procInfo;
+
+    si.cb = sizeof(STARTUPINFO);
+    si.lpReserved=NULL;
+    si.lpDesktop = _T("");
+    si.lpTitle = NULL;
+    si.dwFlags = STARTF_USESHOWWINDOW;
+    si.wShowWindow = (WORD)(SW_HIDE);
+    si.cbReserved2 = 0;
+    si.lpReserved2 = NULL;
+
+	TCHAR args[4096];
+	_stprintf(args,_T("\"%s\" %s"), szExeFile, szArgs);
+    if (CreateProcess(szExeFile, args, NULL, NULL,
+		FALSE, NORMAL_PRIORITY_CLASS|(bNewConsole? CREATE_NEW_CONSOLE:0),
+                         NULL, _T(".\\"), &si, &procInfo))
+	{
+		CloseHandle(procInfo.hThread);
+		return procInfo.hProcess;
+	}
+
+	return INVALID_HANDLE_VALUE;
+}
+
+static void SplitFilename(LPCTSTR path, TCHAR * folder, TCHAR * filename, TCHAR * ext)
+{
+	TCHAR spath[MAX_PATH] = {0};
+	TCHAR sname[MAX_PATH] = {0};
+	TCHAR sdrive[_MAX_DRIVE] = {0};
+	TCHAR sdir[_MAX_PATH] = {0};
+	TCHAR sext[MAX_PATH] = {0};
+
+	_tsplitpath(path, sdrive, sdir, sname, sext);
+	_tcscat(spath, sdrive);
+	_tcscat(spath, sdir);
+
+	if (folder != NULL)
+		_tcscpy(folder, spath);
+	if (filename != NULL)
+		_tcscpy(filename, sname);
+	if (ext != NULL)
+		_tcscpy(ext, sext);
+}

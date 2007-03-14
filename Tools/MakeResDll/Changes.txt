@@ -1,6 +1,10 @@
 MakeResDll/Changes.txt
 Add new items to top
 
+2007-03-14 Kimmo
+ Remove dependency to coretools.cpp, replace some CStrings with TCHARs, drop VC5 support
+  MakeResDll: MakeResDll.cpp MakeResDll.dsp StdAfx.h
+
 2007-02-26 Kimmo
  PATCH: [ 1669286 ] Remove dialog from MakeResDll
   MakeResDll: MakeResDll.cpp MakeResDll.dsp

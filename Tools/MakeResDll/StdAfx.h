@@ -26,7 +26,7 @@ class CRegKeyEx;
 bool RegOpenMachine(CRegKeyEx & reg, LPCTSTR key);
 bool RegOpenUser(CRegKeyEx & reg, LPCTSTR key);
 
-enum VS_VERSION { VS_NONE=-1, VS_5=0, VS_6, VS_2002, VS_2003, VS_2005, VS_COUNT };
+enum VS_VERSION { VS_NONE=-1, VS_6, VS_2002, VS_2003, VS_2005, VS_COUNT };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Visual C++ will insert additional declarations immediately before the previous line.
