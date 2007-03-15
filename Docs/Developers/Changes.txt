@@ -1,3 +1,7 @@
+2007-03-15 Tim
+ PATCH: [ 1681099 ] Add "Plugins" folder to installer doc
+  Developers: readme-InnoSetup.html
+
 2007-02-21 Kimmo
  Add pcre.dll and InnoSetup/Runtimes to installer doc
   Developers: readme-InnoSetup.html
