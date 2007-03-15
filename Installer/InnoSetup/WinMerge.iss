@@ -34,9 +34,6 @@
 ;    once the ShellExtension.dll file has been added or removed.
 ;
 ; Non-Essential Features:
-; #  Add a Desktop.ini file to our \Program Files\WinMerge folder
-;    Warn users about the reprocussions for enhancing their folder icon.  Or figure out how to keep these folders visible at a command-prompt.
-; #  Make an uninstall icon and use it: UninstallIconFile=..\src\res\Merge.ico
 ; #  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated 7-Zip Support (3.11, 3.12) or the Language files
 ;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
 ; #  See about getting a higher resolution copy of the Users's Guide.ico source art from somebody (A 32x32, and or 48x48 would be nice)
@@ -95,11 +92,8 @@ WizardImageFile=Art\Large Logo.bmp
 WizardSmallImageFile=Art\Small Logo.bmp
 WizardImageStretch=false
 
-SetupIconFile=..\..\src\res\Merge.ico
-
-;The uninstall icon shouldn't match the WinMerge icon, because it would look confusing in the start menu.
-;  So I've remmed this until someone (probably me [Seier Blackburn]) creates a decent WinMerge specific uninstall icon
-;UninstallIconFile=..\src\res\Merge.ico
+;It is confusing, if Setup/Uninstall use the same icon like WinMerge!
+;SetupIconFile=..\..\src\res\Merge.ico
 
 ;Compression Parameters
 ;Please note while Compression=lzma/ultra and InternalCompressLevel=Ultra are better than max
