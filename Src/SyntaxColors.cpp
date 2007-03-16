@@ -186,12 +186,11 @@ void SyntaxColors::SetBold(UINT index, BOOL bold)
 void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 {
 	ASSERT(pOptionsMgr);
-	CString valuename;
+	CString valuename(DefColorsPath);
 
 	m_pOptionsMgr = pOptionsMgr;
 
 	int count = COLORINDEX_COUNT;
-	valuename = DefColorsPath;
 	valuename += _T("/Values");
 	m_pOptionsMgr->InitOption(valuename, count);
 
@@ -238,11 +237,10 @@ void SyntaxColors::Initialize(COptionsMgr *pOptionsMgr)
 void SyntaxColors::SaveToRegistry()
 {
 	ASSERT(m_pOptionsMgr);
-	CString valuename;
+	CString valuename(DefColorsPath);
 
 	int count = COLORINDEX_COUNT;
-	valuename = DefColorsPath + '/';
-	valuename += _T("Values");
+	valuename += _T("/Values");
 	m_pOptionsMgr->SetInt(valuename, count);
 
 	for (unsigned int i = COLORINDEX_NONE; i < COLORINDEX_LAST; i++)
