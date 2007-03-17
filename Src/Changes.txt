@@ -7,6 +7,9 @@ Add new items to top.
   Src: DirDoc.cpp MainFrm.cpp MainFrm.h Merge.rc Merge.rc MergeDoc.cpp OptionsDef.h
    OptionsInit.cpp PropLineFilter.cpp PropLineFilter.h
   Src/Languages/*: Merge*.rc
+ BUG: [ 1682500 ] Crash when comparing empty folders
+  Reported and analyzed by Takashi
+  Src: DirScan.cpp
 
 2007-03-15 Kimmo
  Trivial string initialization fix

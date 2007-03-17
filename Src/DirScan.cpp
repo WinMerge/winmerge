@@ -317,9 +317,14 @@ int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt)
 	// Now we would end the loop, while there are still items in the list.
 	// So to be sure, lets try again with "last" item, if there are more
 	// items!
-	EnterCriticalSection(&pCtxt->m_criticalSect);
-	list->GetNextDiffPosition(prevPos);
-	LeaveCriticalSection(&pCtxt->m_criticalSect);
+
+	// Check that we have items in the list (maybe it was empty folder?)
+	if (list->GetFirstDiffPosition())
+	{
+		EnterCriticalSection(&pCtxt->m_criticalSect);
+		list->GetNextDiffPosition(prevPos);
+		LeaveCriticalSection(&pCtxt->m_criticalSect);
+	}
 
 	if (prevPos != NULL)
 	{
