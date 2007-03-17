@@ -125,8 +125,6 @@ const TCHAR OPT_MULTIDOC_MERGEDOCS[] = _T("Settings/MultiMergeDocs");
 
 /// Are regular expression linefilters enabled?
 const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
-///Regular expression linefilters
-const TCHAR OPT_LINEFILTER_REGEXP[] = _T("Settings/RegExps");
 /// Currently selected filefilter
 const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
 const TCHAR OPT_FILTER_USERPATH[] = _T("Settings/UserFilterPath");

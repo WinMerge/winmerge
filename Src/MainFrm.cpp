@@ -43,6 +43,7 @@
 #include "MergeDiffDetailView.h"
 #include "LocationView.h"
 #include "SyntaxColors.h"
+#include "LineFiltersList.h"
 
 #include "coretools.h"
 #include "Splash.h"
@@ -200,6 +201,7 @@ CMainFrame::CMainFrame()
 , m_CheckOutMulti(FALSE)
 , m_bVCProjSync(FALSE)
 , m_bVssSuppressPathCheck(FALSE)
+, m_pLineFilters(NULL)
 {
 	ZeroMemory(&m_pMenus[0], sizeof(m_pMenus));
 	UpdateCodepageModule();
@@ -212,6 +214,10 @@ CMainFrame::CMainFrame()
 	m_pSyntaxColors = new SyntaxColors();
 	if (m_pSyntaxColors)
 		m_pSyntaxColors->Initialize(GetOptionsMgr());
+
+	m_pLineFilters = new LineFiltersList();
+	if (m_pLineFilters)
+		m_pLineFilters->Initialize(GetOptionsMgr());
 
 	// Check if filter folder is set, and create it if not
 	CString pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
@@ -231,6 +237,7 @@ CMainFrame::~CMainFrame()
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
 
+	delete m_pLineFilters;
 	delete m_pMenus[MENU_DEFAULT];
 	delete m_pMenus[MENU_MERGEVIEW];
 	delete m_pMenus[MENU_DIRVIEW];
@@ -2419,6 +2426,7 @@ void CMainFrame::OnToolsFilters()
 	CPropLineFilter filter;
 	FileFiltersDlg fileFiltersDlg;
 	FILEFILTER_INFOLIST fileFilters;
+	LineFiltersList * lineFilters = new LineFiltersList();
 	CString selectedFilter;
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&filter);
@@ -2431,7 +2439,9 @@ void CMainFrame::OnToolsFilters()
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
 	filter.m_bIgnoreRegExp = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
-	filter.m_sPattern = GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP);
+
+	lineFilters->CloneFrom(m_pLineFilters);
+	filter.SetList(lineFilters);
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -2456,8 +2466,11 @@ void CMainFrame::OnToolsFilters()
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
 		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);
-		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_REGEXP, filter.m_sPattern);
+
+		m_pLineFilters->CloneFrom(lineFilters);
+		m_pLineFilters->SaveFilters();
 	}
+	delete lineFilters;
 }
 
 /**

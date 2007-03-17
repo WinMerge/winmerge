@@ -118,7 +118,6 @@ void CMergeApp::OptionsInit()
 		m_pOptions->SaveOption(OPT_CLR_SELECTED_DIFF, (int)RGB(239,119,116));
 
 	m_pOptions->InitOption(OPT_LINEFILTER_ENABLED, false);
-	m_pOptions->InitOption(OPT_LINEFILTER_REGEXP, _T(""));
 	m_pOptions->InitOption(OPT_FILEFILTER_CURRENT, _T("*.*"));
 	// CMainFrame initializes this when it is empty.
 	m_pOptions->InitOption(OPT_FILTER_USERPATH, GetDefaultFilterUserPath());

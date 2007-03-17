@@ -410,6 +410,13 @@
 #define IDC_FLDCONFIRM_TO_TEXT          1324
 #define IDC_FLDCONFIRM_FROM_PATH        1325
 #define IDC_FLDCONFIRM_ICON             1326
+#define IDC_LFILTER_LIST                1327
+#define IDC_LFILTER_ADDBTN              1328
+#define IDC_LFILTER_EDITBTN             1329
+#define IDC_LFILTER_EDITBOX             1330
+#define IDC_LFILTER_REMOVEBTN           1331
+#define IDC_BUTTON2                     1332
+#define IDC_LFILTER_EDITSAVE            1333
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -493,8 +500,9 @@
 #define IDS_FILEFILTER_INSTALL          16459
 #define IDS_FILEFILTER_INSTALLFAIL      16460
 #define IDS_FILEFILTER_OVERWRITE        16461
-#define IDS_CC_CMD                      16464
-#define IDS_VSS_CMD                     16465
+#define IDS_FILTERLINE_REGEXP           16480
+#define IDS_CC_CMD                      16720
+#define IDS_VSS_CMD                     16721
 #define IDS_DIRECTORY_WINDOW_TITLE      16800
 #define IDS_FILE_COMPARISON_TITLE       16801
 #define IDS_EMPTY_LEFT_FILE             16802
@@ -1092,7 +1100,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        235
 #define _APS_NEXT_COMMAND_VALUE         33121
-#define _APS_NEXT_CONTROL_VALUE         1328
+#define _APS_NEXT_CONTROL_VALUE         1334
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

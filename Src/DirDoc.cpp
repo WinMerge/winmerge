@@ -44,6 +44,7 @@
 #include "7zCommon.h"
 #include "OptionsDef.h"
 #include "FileActionScript.h"
+#include "LineFiltersList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -253,12 +254,17 @@ CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory(CString 
 	return AllowUpwardDirectory::No;
 }
 
+/**
+ * @brief Load line filters to the compare context.
+ * Loads linefilters, converts them to UTF-8 and sets them for compare context.
+ */
 void CDirDoc::LoadLineFilterList()
 {
 	ASSERT(m_pCtxt);
 	
 	BOOL bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
-	if (!bFilters)
+	CString filters = GetMainFrame()->m_pLineFilters->GetAsString();
+	if (!bFilters || filters.IsEmpty())
 	{
 		delete m_pCtxt->m_pFilterList;
 		m_pCtxt->m_pFilterList = NULL;
@@ -270,7 +276,6 @@ void CDirDoc::LoadLineFilterList()
 	else
 		m_pCtxt->m_pFilterList = new FilterList();
 
-	CString filters = GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP);
 	char * regexp_str;
 	FilterList::EncodingType type;
 

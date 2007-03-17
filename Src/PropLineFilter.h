@@ -1,6 +1,8 @@
 // PropLineFilter.h : header file
 //
 
+#include "afxcmn.h"
+#include "afxwin.h"
 #if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
 #define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
 
@@ -10,8 +12,10 @@
  * @brief Declaration file for Line Filter dialog
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
+
+class LineFiltersList;
 
 /// Class for Line filter propertypage
 class CPropLineFilter : public CPropertyPage
@@ -23,12 +27,12 @@ public:
 	CPropLineFilter();
 	~CPropLineFilter();
 
+	void SetList(LineFiltersList * list);
+
 // Dialog Data
 	//{{AFX_DATA(CPropLineFilter)
 	enum { IDD = IDD_PROPPAGE_FILTER };
-	CEdit	m_cPattern;
 	BOOL	m_bIgnoreRegExp;
-	CString	m_sPattern;
 	//}}AFX_DATA
 
 // Implementation
@@ -48,9 +52,27 @@ protected:
 	virtual BOOL OnInitDialog();
 	afx_msg void OnIgnoreregexp();
 	afx_msg void OnHelp();
+	virtual void OnOK();
+	afx_msg void OnBnClickedLfilterAddBtn();
+	afx_msg void OnBnClickedLfilterEditbtn();
+	afx_msg void OnBnClickedLfilterRemovebtn();
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	afx_msg void OnBnClickedLfilterEditsave();
+	afx_msg void OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
+	void InitList();
+	int AddRow(LPCTSTR filter = NULL, BOOL enabled = FALSE);
+	void EditSelectedFilter();
+
+private:
+	CListCtrl m_filtersList; /**< List control having filter strings */
+	CEdit m_editRegexp; /**< Editbox for editing filter */
+	CButton m_saveRegexp; /**< Button for saving edited filter */
+
+	LineFiltersList * m_pList; /**< Helper list for getting/setting filters. */
+	BOOL m_bEditing; /**< Are we editing a filter string? */
 };
 
 //{{AFX_INSERT_LOCATION}}

@@ -24,24 +24,21 @@
  * @brief Implementation file for CMergeDoc
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include <Shlwapi.h>		// PathCompactPathEx()
 
 #include "Merge.h"
-#include "direct.h"
 #include "MainFrm.h"
 
 #include "Ucs2Utf8.h"
-#include "diff.h"
 #include "diffcontext.h"	// FILE_SAME
 #include "MovedLines.h"
 #include "getopt.h"
 #include "fnmatch.h"
 #include "coretools.h"
-#include "VssPrompt.h"
 #include "MergeEditView.h"
 #include "MergeDiffDetailView.h"
 #include "cs2cs.h"
@@ -57,7 +54,6 @@
 #include "DiffFileInfo.h"
 #include "SaveClosingDlg.h"
 #include "DiffList.h"
-#include "sbuffer.h"
 #include "dllver.h"
 #include "codepage.h"
 #include "paths.h"
@@ -65,6 +61,7 @@
 #include "ProjectFile.h"
 #include "MergeLineFlags.h"
 #include "FileOrFolderSelect.h"
+#include "LineFiltersList.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -397,7 +394,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
 	{
-		CString regexp = GetOptionsMgr()->GetString(OPT_LINEFILTER_REGEXP);
+		CString regexp = GetMainFrame()->m_pLineFilters->GetAsString();
 		m_diffWrapper.SetFilterList(regexp);
 	}
 	else

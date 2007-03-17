@@ -23,7 +23,7 @@
  * @brief Declaration file for CMainFrame
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
@@ -69,6 +69,7 @@ class CMergeDoc;
 class CMergeEditView;
 class CMergeDiffDetailView;
 class SyntaxColors;
+class LineFiltersList;
 
 
 // typed lists (homogenous pointer lists)
@@ -154,6 +155,7 @@ public:
 	BOOL m_bClearCaseTool; /**< WinMerge is executed as an external Rational ClearCase compare/merge tool. */
 	BOOL m_bFlashing; /**< Window is flashing. */
 	BOOL m_bExitIfNoDiff; /**< If command line switch -x given close application if files are identical. */
+	LineFiltersList *m_pLineFilters; /**< List of linefilters */
 
 	/**
 	 * @name Version Control System (VCS) integration.

@@ -844,7 +844,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,93,235,8
 END
 
-IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 235, 156
+IDD_PROPPAGE_FILTER DIALOGEX 0, 0, 365, 188
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "行过滤器"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
@@ -854,8 +854,15 @@ BEGIN
                     7,221,15
     LTEXT           "正则表达式 (每行一个):",IDC_STATIC,7,28,
                     221,8
-    EDITTEXT        IDC_EDITPATTERN,7,39,221,72,ES_MULTILINE |
-                    ES_AUTOHSCROLL | ES_WANTRETURN
+    CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | 
+                    LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,105
+    EDITTEXT        IDC_LFILTER_EDITBOX,7,149,296,14,ES_AUTOHSCROLL | 
+                    ES_READONLY
+    PUSHBUTTON      "Save",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
+    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
+    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
+    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
 END
 
 IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 235, 196
@@ -2061,6 +2068,12 @@ BEGIN
                             "Installing filter file failed.\n\nCould not copy new filter file to filter folder."
     IDS_FILEFILTER_OVERWRITE 
                             "Filter file already exists. Overwrite existing filter?"
+END
+
+// LINEFILTER STRINGS
+STRINGTABLE 
+BEGIN
+    IDS_FILTERLINE_REGEXP   "Regular expression"
 END
 
 // VERSION CONTROL OPTIONS
