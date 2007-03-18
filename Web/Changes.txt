@@ -1,3 +1,7 @@
+2007-03-18 Tim
+ Redirect translations status page to Wiki.
+  Web: .htaccess
+
 2007-03-13 Tim
  PATCH: [ 1679324 ] Web: Add "Wiki" tab
   Web: page.inc
