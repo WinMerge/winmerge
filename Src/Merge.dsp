@@ -477,6 +477,10 @@ SOURCE=.\Common\LanguageSelect.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LineFiltersList.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\LoadSaveCodepageDlg.cpp
 # End Source File
 # Begin Source File
@@ -1242,6 +1246,10 @@ SOURCE=.\IOptionsPanel.h
 # Begin Source File
 
 SOURCE=.\Common\LanguageSelect.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LineFiltersList.h
 # End Source File
 # Begin Source File
 

@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-18 Kimmo
+ PATCH: [ 1682475 ] Improve Line filters dialog (add new files I forgot to add)
+  Src: Merge.dsp
+  Src new files: LineFiltersList.cpp LineFiltersList.h
+
 2007-03-17 Kimmo
  PATCH: [ 1682475 ] Improve Line filters dialog
   Src: DirDoc.cpp MainFrm.cpp MainFrm.h Merge.rc Merge.rc MergeDoc.cpp OptionsDef.h
