@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-19 Kimmo
+ Remove extra line from manifest file
+  Src/res: WinMergeU.exe.manifest
+
 2007-03-18 Kimmo
  PATCH: [ 1682475 ] Improve Line filters dialog (add new files I forgot to add)
   Src: Merge.dsp

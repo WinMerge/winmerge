@@ -19,7 +19,7 @@
 	   </security>
 	</trustInfo>
 
-  	<dependency>
+	<dependency>
 	   <dependentAssembly>
 	     <assemblyIdentity
 	       type="win32"
@@ -31,5 +31,4 @@
 	     />
 	   </dependentAssembly>
 	</dependency>
-	<requestedExecutionLevel level="asInvoker" uiAccess="false"/>
 </assembly>
