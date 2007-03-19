@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1680209 ] New icons from Alexander Skinner (Part 1)
   Based on icons by Alexander Skinner
   Src/res: copy.bmp cut.bmp language.bmp paste.bmp print.bmp select_all.bmp select_font.bmp
+ PATCH: [ 1683289 ] Swedish translation update for Improve Line filters dialog
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2007-03-19 Kimmo
  Remove extra line from manifest file
