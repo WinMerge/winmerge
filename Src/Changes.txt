@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-19 Tim
+ PATCH: [ 1680209 ] New icons from Alexander Skinner (Part 1)
+  Based on icons by Alexander Skinner
+  Src/res: copy.bmp cut.bmp language.bmp paste.bmp print.bmp select_all.bmp select_font.bmp
+
 2007-03-19 Kimmo
  Remove extra line from manifest file
   Src/res: WinMergeU.exe.manifest
