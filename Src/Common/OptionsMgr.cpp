@@ -4,7 +4,7 @@
  * @brief Implementation of Options management classes
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -372,6 +372,24 @@ int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
 {
 	int xvalue = value;
 	return SaveOption(name, xvalue);
+}
+
+int COptionsMgr::RemoveOption(LPCTSTR name)
+{
+	COption tmpOption;
+	int retVal = OPT_OK;
+
+	BOOL optionFound = m_optionsMap.Lookup(name, tmpOption);
+	if (optionFound)
+	{
+		BOOL succeeded = m_optionsMap.RemoveKey(name);
+		if (!succeeded)
+			retVal = OPT_NOTFOUND;
+	}
+	else
+		retVal = OPT_NOTFOUND;
+
+	return retVal;
 }
 
 /**
@@ -898,7 +916,7 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 	varprop::VariantValue value;
 	CString strPath;
 	CString strValueName;
-	CString strRegPath = m_registryRoot;
+	CString strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
@@ -998,6 +1016,35 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name, bool value)
 	if (retVal == OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;
+}
+
+int CRegOptionsMgr::RemoveOption(LPCTSTR name)
+{
+	HKEY hKey = NULL;
+	LONG retValReg = 0;
+	int retVal = OPT_OK;
+	CString strRegPath(m_registryRoot);
+	CString strPath;
+	CString strValueName;
+
+	SplitName(name, strPath, strValueName);
+	strRegPath += strPath;
+
+	retValReg = RegOpenKey(HKEY_CURRENT_USER, (LPCTSTR)strRegPath, &hKey);
+	if (retValReg == ERROR_SUCCESS)
+	{
+		retValReg = RegDeleteValue(hKey, strValueName);
+		if (retValReg != ERROR_SUCCESS)
+		{
+			retVal = OPT_ERR;
+		}
+		RegCloseKey(hKey);
+	}
+	else
+		retVal = OPT_ERR;
+
+	return retVal;
+
 }
 
 /**

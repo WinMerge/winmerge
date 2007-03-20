@@ -183,4 +183,19 @@ void LineFiltersList::SaveFilters()
 		m_pOptionsMgr->InitOption(valuename, 0);
 		m_pOptionsMgr->SaveOption(valuename, (int)item.enabled);
 	}
+
+	// Remove options we don't need anymore
+	// We could have earlier 10 pcs but now we only need 5
+	valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, count);
+	int retval1 = m_pOptionsMgr->RemoveOption(valuename);
+	valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, count);
+	int retval2 = m_pOptionsMgr->RemoveOption(valuename);
+	while (retval1 == OPT_OK || retval2 == OPT_OK)
+	{
+		++count;
+		valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, count);
+		retval1 = m_pOptionsMgr->RemoveOption(valuename);
+		valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, count);
+		retval2 = m_pOptionsMgr->RemoveOption(valuename);
+	}
 }

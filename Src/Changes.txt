@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-20 Kimmo
+ PATCH: [ 1683805 ] Remove unneeded linefilter registry values
+  Src: LineFiltersList.cpp
+  Src/Common: OptionsMgr.cpp OptionsMgr.h
+
 2007-03-19 Tim
  PATCH: [ 1680209 ] New icons from Alexander Skinner (Part 1)
   Based on icons by Alexander Skinner

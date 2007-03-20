@@ -4,7 +4,7 @@
  * @brief Interface for Options management classes
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 /* The MIT License
@@ -102,6 +102,8 @@ public:
 	virtual int SaveOption(LPCTSTR name, UINT value);
 	virtual int SaveOption(LPCTSTR name, COLORREF value);
 
+	virtual int RemoveOption(LPCTSTR name);
+
 	virtual int ExportOptions(CString filename);
 	virtual int ImportOptions(CString filename);
 	
@@ -133,6 +135,8 @@ public:
 	virtual int SaveOption(LPCTSTR name, LPCTSTR value);
 	virtual int SaveOption(LPCTSTR name, int value);
 	virtual int SaveOption(LPCTSTR name, bool value);
+
+	virtual int RemoveOption(LPCTSTR name);
 
 	virtual void SetSerializing(bool serializing=true) { m_serializing = serializing; }
 
