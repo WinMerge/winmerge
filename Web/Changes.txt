@@ -2,6 +2,10 @@
  Redirect translations status page to Wiki.
   Web: .htaccess
 
+2007-03-20 Tim
+ PATCH: [ 1680165 ] Known issue: unset WinMerge integration from ClearCase
+  Web\2.6: limitations.php
+
 2007-03-13 Tim
  PATCH: [ 1679324 ] Web: Add "Wiki" tab
   Web: page.inc

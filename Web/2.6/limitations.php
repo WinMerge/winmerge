@@ -25,6 +25,18 @@
        or use the <a href="http://www.microsoft.com/downloads/details.aspx?familyid=7b9ba261-7a9c-43e7-9117-f673077ffb3c">Run-Time Redistribution Pack</a> from Microsoft.</p>
     <p><i>Workaround 2</i>: If you don't need the plugin, you can safely remove it.</p>
   </li>
+  <li>
+    <p><strong>Unset WinMerge integration from ClearCase</strong></p>
+    <p>To remove WinMerge integration, you'll need to edit one file by hand:</p>
+    <ol>
+      <li>Find ClearCase installation folder<br />
+          Usually it is something like <code>C:\Program Files\Rational\ClearCase</code></li>
+      <li>Go to subfolder <code>lib\mgrs\</code></li>
+      <li>Open file <code>map</code> in there to editor program</li>
+      <li>Comment-out the line starting with "<code>text_file_delta xcompare</code>", containing "<code>WinMergeU.exe</code>"</li>
+      <li>Uncomment the line starting with "<code>text_file_delta xcompare</code>", containing "<code>cleardiffmrg.exe</code>"</li>
+    </ol>
+  </li>
 </ul>
 <?php
   $page->printFoot();
