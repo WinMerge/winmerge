@@ -22,6 +22,11 @@
 // ID line follows -- this is updated by SVN
 // $Id: $
 
+#ifndef CMoveConstraint_h
+#include "CMoveConstraint.h"
+#endif
+
+
 /**
  * @brief Dialog for item copy confirmation.
  */
@@ -50,4 +55,7 @@ public:
 	CString m_toPath;
 	afx_msg void OnBnClickedNo();
 	afx_msg void OnBnClickedYes();
+
+private:
+	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
 };

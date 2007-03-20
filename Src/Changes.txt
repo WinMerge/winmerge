@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1683805 ] Remove unneeded linefilter registry values
   Src: LineFiltersList.cpp
   Src/Common: OptionsMgr.cpp OptionsMgr.h
+ PATCH: [ 1683842 ] Allow resizing copy confirmation dialog
+  Src: ConfirmFolderCopyDlg.cpp ConfirmFolderCopyDlg.h Merge.rc
+  Src/Languages/*: Merge*.rc
 
 2007-03-19 Tim
  PATCH: [ 1680209 ] New icons from Alexander Skinner (Part 1)
