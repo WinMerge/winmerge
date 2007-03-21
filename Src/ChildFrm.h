@@ -53,6 +53,7 @@ public:
 	IHeaderBar * GetHeaderInterface();
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
+	void SetLastCompareResult(int nResult);
 
 // Attributes
 protected:
@@ -114,6 +115,8 @@ private:
 	void UpdateHeaderSizes();
 	BOOL m_bActivated;
 	CMergeDoc * m_pMergeDoc;
+	HICON m_hIdentical;
+	HICON m_hDifferent;
 
 	//{{AFX_MSG(CChildFrame)
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);

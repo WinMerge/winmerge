@@ -100,6 +100,8 @@ CChildFrame::CChildFrame()
 #pragma warning(disable:4355) // 'this' : used in base member initializer list
 : m_leftStatus(this, PANE_LEFT_INFO)
 , m_rightStatus(this, PANE_RIGHT_INFO)
+, m_hIdentical(NULL)
+, m_hDifferent(NULL)
 #pragma warning(default:4355)
 {
 	m_bActivated = FALSE;
@@ -294,6 +296,9 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText, TRUE); 
 	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText, TRUE);
 
+	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFILE);
+	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE);
+
 	SetTimer(0, 250, NULL); // used to update the title headers
 	return 0;
 }
@@ -459,6 +464,19 @@ BOOL CChildFrame::DestroyWindow()
 		GetWindowPlacement(&wp);
 		theApp.WriteProfileInt(_T("Settings"), _T("ActiveFrameMax"), (wp.showCmd == SW_MAXIMIZE));
 	}
+
+	if (m_hIdentical != NULL)
+	{
+		DestroyIcon(m_hIdentical);
+		m_hIdentical = NULL;
+	}
+
+	if (m_hDifferent != NULL)
+	{
+		DestroyIcon(m_hDifferent);
+		m_hDifferent = NULL;
+	}
+
 	return CMDIChildWnd::DestroyWindow();
 }
 
@@ -555,6 +573,33 @@ void CChildFrame::UpdateHeaderSizes()
 IHeaderBar * CChildFrame::GetHeaderInterface()
 {
 	return &m_wndFilePathBar;
+}
+
+/**
+* @brief Reflect comparison result in window's icon.
+* @param nResult [in] Last comparison result which the application returns.
+*/
+void CChildFrame::SetLastCompareResult(int nResult)
+{
+	HICON hCurrent = GetIcon(FALSE);
+	HICON hReplace = (nResult == 0) ? m_hIdentical : m_hDifferent;
+
+	if (hCurrent != hReplace)
+	{
+		SetIcon(hReplace, FALSE);
+
+		BOOL bMaximized;
+		GetMDIFrame()->MDIGetActive(&bMaximized);
+
+		// When MDI maximized the window icon is drawn on the menu bar, so we
+		// need to notify it that our icon has changed.
+		if (bMaximized)
+		{
+			GetMDIFrame()->DrawMenuBar();
+		}
+	}
+
+	theApp.SetLastCompareResult(nResult);
 }
 
 void CChildFrame::OnTimer(UINT_PTR nIDEvent) 
