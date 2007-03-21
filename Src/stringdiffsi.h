@@ -21,7 +21,6 @@ public:
 		wdiffarray * pDiffs);
 
 	void BuildWordDiffList();
-	void PopulateDiffs();
 
 // Implementation types
 private:
@@ -38,11 +37,9 @@ private:
 // Implementation methods
 private:
 
+	void AddDiff(int s1, int e1, int s2, int e2);
+	void AddWordDiff(int w1, int w2);
 	void BuildWordsArray(const CString & str, wordarray * words);
-	bool findSync(int *w1, int *w2) const;
-	int FindNextMatchInWords2(const word & needword1, int bw2) const;
-	int FindNextMatchInWords1(const word & needword2, int bw1) const;
-
 	int hash(const CString & str, int begin, int end) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
 	bool caseMatch(TCHAR ch1, TCHAR ch2) const;
@@ -57,7 +54,6 @@ private:
 	wdiffarray * m_pDiffs;
 	wordarray m_words1;
 	wordarray m_words2;
-	wdiffarray m_wdiffs;
 };
 
 

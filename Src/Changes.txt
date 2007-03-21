@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-21 Gal
+ BUG: [ 1491334 ] thinly highlighted position is wrong
+  Src: stringdiffs.cpp stringdiffsi.h
+
 2007-03-20 WinMerge experimental release 2.7.3.1 (SVN revision 4179)
 
 2007-03-20 Kimmo
