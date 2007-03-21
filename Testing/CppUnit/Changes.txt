@@ -1,5 +1,13 @@
 Testing\selftest\Changes.txt
 
+2007-03-21 Gal
+ Fix TestCase1::Difference2 test.
+  StringDifferencing: TestCase1.cpp
+
+ Add more test case to stringdiff (line coloring feature).
+  StringDifferencing: StringDifferencing.dsp
+  StringDifferencing new files: DiffColoring.cpp DiffColoring.h
+
 2006-11-22 Kimmo
  Add more case difference tests to stringdiffs
   StringDifferencing: StringDifferencing.dsp

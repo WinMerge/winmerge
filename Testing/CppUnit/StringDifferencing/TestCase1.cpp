@@ -134,13 +134,14 @@ void TestCase1::Difference2()
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 0);
 
-	// This fails? Why?
-	// Shouldn't it it find two differences? But it founds only one?
+	// Expect to find one differences since difference starts from the first
+	// non-matching word and ends in the predecessor of the first matching
+	// word.
 	diffs.RemoveAll();
 	sd_ComputeWordDiffs(string1, string2,
 		true, WHITESPACE_COMPARE_ALL, 0, false,
 		&diffs);
 	count = diffs.GetSize();
-	CPPUNIT_ASSERT(count == 2);
+	CPPUNIT_ASSERT(count == 1);
 	diffs.RemoveAll();
 }

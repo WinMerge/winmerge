@@ -133,6 +133,14 @@ SOURCE=.\CasesDifferByte.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DiffColoring.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\DiffColoring.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DifferentStrings1.cpp
 # End Source File
 # Begin Source File
