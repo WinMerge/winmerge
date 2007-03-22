@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-22 Gal
+ RFE: [ 1683061 ] Bug in highlighting
+  Src: stringdiffs.cpp
+
 2007-03-21 Gal
  RFE: [ 1646407 ] Use "equal" or "not equal" as file compare icon
   Src: ChildFrm.cpp ChildFrm.h MergeDoc.cpp
