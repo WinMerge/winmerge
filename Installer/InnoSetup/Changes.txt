@@ -1,3 +1,8 @@
+2007-03-24 Tim
+ PATCH: [ 1684865 ] WinMerge Icon Set Revision 4
+  (Initially without the 256*256 version)
+  InnoSetup: MergeProject.ico
+
 2007-03-15 Tim
  BUG: [ 1677923 ] Uninstaller icon must be changed
   InnoSetup: WinMerge.iss
