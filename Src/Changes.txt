@@ -5,6 +5,10 @@ Add new items to top.
 2007-03-25 Tim
  PATCH: [ 1687661 ] Remove ICONS and BITMAPS from lang files
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1687983 ] Remove IMAGES and CURSORS from lang files
+  Src/Common: Picture.cpp
+  Src/editlib: ccrystaltextview.cpp
+  Src/Languages/*: Merge*.rc
 
 2007-03-25 Gal
  BUG: [ 1687754 ] Editor regression in trunk

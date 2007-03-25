@@ -33,7 +33,7 @@ CPicture::~CPicture()
 BOOL CPicture::Load(UINT nIDRes)
 {
 	// find resource in resource file
-	HINSTANCE hInst = AfxGetResourceHandle();
+	HINSTANCE hInst = AfxGetInstanceHandle();
 	HRSRC hRsrc = ::FindResource(hInst,
 		MAKEINTRESOURCE(nIDRes),
 		TEXT("IMAGE")); // type

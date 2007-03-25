@@ -3363,7 +3363,7 @@ OnSetCursor (CWnd * pWnd, UINT nHitTest, UINT message)
       ScreenToClient (&pt);
       if (pt.x < GetMarginWidth ())
         {
-          ::SetCursor (::LoadCursor (GetResourceHandle (), MAKEINTRESOURCE (IDR_MARGIN_CURSOR)));
+          ::SetCursor (::LoadCursor (AfxGetInstanceHandle (), MAKEINTRESOURCE (IDR_MARGIN_CURSOR)));
         }
       else
         {
