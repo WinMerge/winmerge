@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-25 Gal
+ BUG: [ 1687754 ] Editor regression in trunk
+  Src: stringdiffs.cpp stringdiffsi.h
+
 2007-03-25 Takashi
  Japanese translation - update
   Src/Languages/Japanese/MergeJapanese.rc
@@ -28,7 +32,7 @@ Add new items to top.
   Src/res: MergeDoc.ico
 
 2007-03-22 Gal
- RFE: [ 1683061 ] Bug in highlighting
+ BUG: [ 1683061 ] Bug in highlighting
   Src: stringdiffs.cpp
 
 2007-03-21 Gal

@@ -98,29 +98,20 @@ void stringdiffs::BuildWordDiffList()
 	// word or reaching end of line without finding matching word.
 	if (bInWordDiff)
 	{
-		INT_PTR nDiffEndAtWord = nWord - 1;
+		const INT_PTR nDiffEndAtWord = nWord - 1;
 		AddWordDiff(nDiffStartAtWord, nWord - 1);
 	}
 
-	// Handle the case where word lists are not in the same size.
-	if (nWordsCount < m_words1.GetSize())
-	{
-		// Left side has more words.
-		AddDiff(m_words1[nWordsCount].start,
-			m_words1[m_words1.GetUpperBound()].end,
-			m_str2.GetLength(),	-1);
-	}
-	else if (nWordsCount < m_words2.GetSize())
-	{
-		// Right side has more words.
-		AddDiff(m_str1.GetLength(), -1,
-			m_words2[nWordsCount].start,
-			m_words2[m_words2.GetUpperBound()].end);
-	}
+	HandleLeftOvers(nWordsCount);
 }
 
 /**
 * @brief Add a difference using offsets.
+*
+* @param s1 [in] Left difference start offset.
+* @param e1 [in] Left difference end offset.
+* @param s2 [in] Right difference start offset.
+* @param e2 [in] Right difference end offset.
 */
 void stringdiffs::AddDiff(int s1, int e1, int s2, int e2)
 {
@@ -130,11 +121,67 @@ void stringdiffs::AddDiff(int s1, int e1, int s2, int e2)
 
 /**
 * @brief Add a difference using words range.
+*
+* @param start [in] Start difference at word index.
+* @param end [in] End difference at word index.
 */
 void stringdiffs::AddWordDiff(int start, int end)
 {
 	AddDiff(m_words1[start].start, m_words1[end].end,
 		m_words2[start].start, m_words2[end].end);
+}
+
+/**
+* @brief Extend the last difference to a new end.
+*
+* @param bLeftSide [in] true if to extend left side, false to right side.
+* @param nEnd [in] New end offset.
+*
+* @return true if difference was extended, false if no difference exist.
+*/
+bool stringdiffs::ExtendLastDiff(bool bLeftSide, int nEnd)
+{
+	const INT_PTR nLastDiff = m_pDiffs->GetUpperBound();
+	if (nLastDiff != -1)
+	{
+		wdiff& wdf = m_pDiffs->GetAt(nLastDiff);
+		wdf.end[bLeftSide] = nEnd;
+	}
+
+	return (nLastDiff != -1);
+}
+
+/**
+* @brief Handle the case where word lists are not in the same size.
+*
+* @param nLastWord [in] Word index where processing has stopped.
+*/
+void stringdiffs::HandleLeftOvers(int nLastWord)
+{
+	if (nLastWord < m_words1.GetSize())
+	{
+		// Left side has more words.
+		const int nLeftEnd = m_words1[m_words1.GetUpperBound()].end;
+
+		if (!ExtendLastDiff(false, nLeftEnd))
+		{
+			AddDiff(m_words1[nLastWord].start,
+				nLeftEnd,
+				m_str2.GetLength(),	-1);
+		}
+	}
+	else if (nLastWord < m_words2.GetSize())
+	{
+		// Right side has more words.
+		const int nRightEnd = m_words2[m_words2.GetUpperBound()].end;
+
+		if (!ExtendLastDiff(true, nRightEnd))
+		{
+			AddDiff(m_str1.GetLength(), -1,
+				m_words2[nLastWord].start,
+				nRightEnd);
+		}
+	}
 }
 
 /**
