@@ -336,6 +336,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Imprimir...",                   ID_FILE_PRINT
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
         MENUITEM "&Vista preliminar",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Lado i&zquierdo sólo lectura",             ID_FILE_LEFT_READONLY

@@ -336,7 +336,8 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Print Previe&w",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Salt Okunur S&ol",            ID_FILE_LEFT_READONLY
         MENUITEM "Salt Okunu&r Sað",            ID_FILE_RIGHT_READONLY

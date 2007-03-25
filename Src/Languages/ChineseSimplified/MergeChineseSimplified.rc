@@ -338,7 +338,8 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Print...",                   ID_FILE_PRINT
-        MENUITEM "Print P&review",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Print Previe&w",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "◊Û≤‡÷ª∂¡(&E)",                ID_FILE_LEFT_READONLY
         MENUITEM "”“≤‡÷ª∂¡(&G)",                ID_FILE_RIGHT_READONLY

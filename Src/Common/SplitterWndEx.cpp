@@ -12,7 +12,6 @@
 
 #include "stdafx.h"
 #include "SplitterWndEx.h"
-#include "MergeEditView.h"  // For printing - MasterPrint()
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -217,23 +216,4 @@ void CSplitterWndEx::OnSize(UINT nType, int cx, int cy)
 		EqualizeRows();
 	}
 
-}
-
-void CSplitterWndEx::MasterPrint(CDC* pDC, CPrintInfo* pInfo)
-{
-	CRect rDraw = pInfo->m_rectDraw;
-	CSize sz = rDraw.Size();
-	int midX = sz.cx / 2;
-	
-	// print left pane	
-	pInfo->m_rectDraw.right	= midX;
-	CMergeEditView* pLeftPane = (CMergeEditView*)GetPane(0,0);
-	pLeftPane->SlavePrint(pDC,pInfo);
-
-	// print right pane
-	pInfo->m_rectDraw = rDraw;
-	pInfo->m_rectDraw.left = midX;
-
-	CMergeEditView* pRightPane = (CMergeEditView*)GetPane(0,1);
-	pRightPane->SlavePrint(pDC,pInfo);
 }

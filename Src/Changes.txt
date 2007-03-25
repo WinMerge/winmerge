@@ -2,6 +2,13 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-25 Takashi
+ PATCH: [ 1687430 ] printing patch
+  Src: Merge.rc MergeEditView.cpp MergeEditView.h
+  Src/Common: SplitterWndEx.cpp SplitterWndEx.h
+  Src/editlib: ccrystaltextview.cpp ccrystaltextview.h
+  Src/Languages/*: Merge*.rc
+
 2007-03-25 Kimmo
  BUG: [ 1680920 ] Line filters are not preserved across sessions
   Src/Common: OptionsMgr.cpp
@@ -328,9 +335,9 @@ Add new items to top.
 
 2007-01-15 Kimmo
  PATCH: [ 1620076 ] Add Bazaar and Mercurial to SourceControl.flt
-  Submitted by RenÈ Leonhardt
+  Submitted by RenÅELeonhardt
   Filters: SourceControl.flt
- Add RenÈ Leonhardt to Contributors.txt
+ Add RenÅELeonhardt to Contributors.txt
   Docs/Users: Contributors.txt
  PATCH: [ 1634968 ] Swedish translation update for 2.7.1.5+
   Submitted by Hans Eriksson

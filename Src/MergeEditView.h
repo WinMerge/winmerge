@@ -169,12 +169,15 @@ public:
 	virtual int GetEmptySubLines( int nLineIndex );
 	virtual void InvalidateSubLineIndexCache( int nLineIndex );
 	void RepaintLocationPane();
-	void SlavePrint(CDC* pDC, CPrintInfo* pInfo);
 	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
 	void SetLocationView(HWND hView, const CLocationView * pView = NULL);
 	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
+	virtual void RecalcPageLayouts(CDC * pdc, CPrintInfo * pInfo);
+	virtual void GetPrintHeaderText(int nPageNum, CString & text);
+	virtual void PrintHeader(CDC * pdc, int nPageNum);
+	virtual void PrintFooter(CDC * pdc, int nPageNum);
 
 	// to customize the mergeview menu
 	static HMENU createScriptsSubmenu(HMENU hMenu);
@@ -193,6 +196,8 @@ public:
 	virtual void OnActivateView(BOOL bActivate, CView* pActivateView, CView* pDeactiveView);
 	virtual void OnUpdate(CView* pSender, LPARAM lHint, CObject* pHint);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	virtual void OnBeginPrinting (CDC * pDC, CPrintInfo * pInfo);
+	virtual void OnEndPrinting (CDC * pDC, CPrintInfo * pInfo);
 	virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
 	//}}AFX_VIRTUAL
 

@@ -336,6 +336,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&TlaËiù...",                  ID_FILE_PRINT
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
         MENUITEM "N·hæad p&red tlaËou",         ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "º&av˝ len na ËÌtanie",        ID_FILE_LEFT_READONLY

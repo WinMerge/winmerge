@@ -336,6 +336,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Tisk...",                   ID_FILE_PRINT
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
         MENUITEM "Ná&hled...",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "L&evý pouze pro ètení",             ID_FILE_LEFT_READONLY

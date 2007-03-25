@@ -336,6 +336,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Принтиране...",                   ID_FILE_PRINT
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
         MENUITEM "П&реглед",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "О&т ляво само за четене",             ID_FILE_LEFT_READONLY

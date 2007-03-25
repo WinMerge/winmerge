@@ -43,7 +43,6 @@
 #include "WMGotoDlg.h"
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
-#include "SplitterWndEx.h" // For printing (OnPrint, SlavePrint)
 #include "MergeLineFlags.h"
 
 #ifdef _DEBUG
@@ -2818,16 +2817,105 @@ void CMergeEditView::OnSize(UINT nType, int cx, int cy)
 	RecalcHorzScrollBar();
 }
 
+/**
+* @brief allocates GDI resources for printing
+* @param pDC [in] points to the printer device context
+* @param pInfo [in] points to a CPrintInfo structure that describes the current print job
+*/
+void CMergeEditView::OnBeginPrinting(CDC * pDC, CPrintInfo * pInfo)
+{
+	for (int pane = 0; pane < 2; pane++)
+	{
+		CMergeEditView *pView = GetDocument()->GetView(pane);
+		pView->m_bPrintHeader = TRUE;
+		pView->m_bPrintFooter = TRUE;
+		pView->CGhostTextView::OnBeginPrinting(pDC, pInfo);
+	}
+}
+
+/**
+* @brief frees GDI resources for printing
+* @param pDC [in] points to the printer device context
+* @param pInfo [in] points to a CPrintInfo structure that describes the current print job
+*/
+void CMergeEditView::OnEndPrinting(CDC * pDC, CPrintInfo * pInfo)
+{
+	for (int pane = 0; pane < 2; pane++)
+		GetDocument()->GetView(pane)->CGhostTextView::OnEndPrinting(pDC, pInfo);
+}
+
+/**
+* @brief Gets the header text
+* @param [in]  nPageNum the page number to print
+* @param [out] header text to print
+*/
+void CMergeEditView::GetPrintHeaderText(int nPageNum, CString & text)
+{
+	text = GetDocument()->GetTitle();
+}
+
+/**
+* @brief Prints header
+* @param [in] nPageNum the page number to print
+*/
+void CMergeEditView::PrintHeader(CDC * pdc, int nPageNum)
+{
+	if (m_nThisPane > 0)
+		return;
+	int oldRight = m_rcPrintArea.right;
+	m_rcPrintArea.right += m_rcPrintArea.Width();
+	CGhostTextView::PrintHeader(pdc, nPageNum);
+	m_rcPrintArea.right = oldRight;
+}
+
+/**
+* @brief Prints footer
+* @param [in] nPageNum the page number to print
+*/
+void CMergeEditView::PrintFooter(CDC * pdc, int nPageNum)
+{
+	if (m_nThisPane > 0)
+		return;
+	int oldRight = m_rcPrintArea.right;
+	m_rcPrintArea.right += m_rcPrintArea.Width();
+	CGhostTextView::PrintFooter(pdc, nPageNum);
+	m_rcPrintArea.right = oldRight;
+}
+
+void CMergeEditView::RecalcPageLayouts (CDC * pDC, CPrintInfo * pInfo)
+{
+	for (int pane = 0; pane < 2; pane++)
+		GetDocument()->GetView(pane)->CGhostTextView::RecalcPageLayouts(pDC, pInfo);
+}
+
+/**
+* @brief Prints or previews both panes.
+* @param pDC [in] points to the printer device context
+* @param pInfo [in] points to a CPrintInfo structure that describes the current print job
+*/
 void CMergeEditView::OnPrint(CDC* pDC, CPrintInfo* pInfo) 
 {
-	((CSplitterWndEx*)GetParentSplitter(this, FALSE))->MasterPrint(pDC, pInfo);
-}
+	CRect rDraw = pInfo->m_rectDraw;
+	CSize sz = rDraw.Size();
+	int midX = sz.cx / 2;
+	CMergeDoc *pDoc = GetDocument();
 
-void CMergeEditView::SlavePrint(CDC* pDC, CPrintInfo* pInfo)
-{
-	CGhostTextView::OnPrint(pDC,pInfo);
-}
+	SIZE szLeftTop, szRightBottom;
+	GetPrintMargins(szLeftTop.cx, szLeftTop.cy, szRightBottom.cx, szRightBottom.cy);
+	pDC->HIMETRICtoLP(&szLeftTop);
+	pDC->HIMETRICtoLP(&szRightBottom);
+	
+	// print left pane
+	pInfo->m_rectDraw.right	= midX + szRightBottom.cx;
+	CMergeEditView* pLeftPane = pDoc->GetView(0);
+	pLeftPane->CGhostTextView::OnPrint(pDC,pInfo);
 
+	// print right pane
+	pInfo->m_rectDraw = rDraw;
+	pInfo->m_rectDraw.left = midX - szLeftTop.cx;
+	CMergeEditView* pRightPane = pDoc->GetView(1);
+	pRightPane->CGhostTextView::OnPrint(pDC,pInfo);
+}
 
 bool CMergeEditView::IsInitialized() const
 {

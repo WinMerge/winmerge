@@ -336,6 +336,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Imprimeix...",                   ID_FILE_PRINT
+        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
         MENUITEM "&Visualització prèvia de la impressió",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY

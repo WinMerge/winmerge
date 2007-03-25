@@ -572,7 +572,6 @@ CCrystalTextView::~CCrystalTextView ()
   ASSERT(m_pnActualLineLength);
   delete m_pnActualLineLength;
   m_pnActualLineLength = NULL;
-  delete [] m_pnPages;
   delete m_pIcons;
 }
 
@@ -1724,7 +1723,7 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       CFont *pOldFont = pdc->SelectObject(GetFont());
       COLORREF clrOldColor = pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
       UINT uiOldAlign = pdc->SetTextAlign(TA_RIGHT);
-      pdc->TextOut(rect.right - 4, rect.top, szNumbers, lstrlen(szNumbers));
+      pdc->TextOut(rect.right - (pdc->IsPrinting() ? 0 : 4), rect.top, szNumbers, lstrlen(szNumbers));
       pdc->SetTextAlign(uiOldAlign);
       pdc->SelectObject(pOldFont);
       pdc->SetTextColor(clrOldColor);
@@ -1746,10 +1745,10 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
     }
 
   // draw line revision marks
-  CRect rc(rect.right - MARGIN_REV_WIDTH, rect.top, rect.right, rect.bottom);
+  CRect rc(rect.right - (pdc->IsPrinting () ? 0 : MARGIN_REV_WIDTH), rect.top, rect.right, rect.bottom);
   pdc->FillSolidRect (rc, clrRevisionMark);
 
-  if (!m_bSelMargin)
+  if (!m_bSelMargin || pdc->IsPrinting ())
     return;
 
   int nImageIndex = -1;
@@ -1869,6 +1868,11 @@ PrepareSelBounds ()
 void CCrystalTextView::
 OnDraw (CDC * pdc)
 {
+  // We use the same GDI objects for both drawing and printing.
+  // So when printing is in progress, we do nothing in this function.
+  if (m_bPrinting)
+    return;
+
   CRect rcClient;
   GetClientRect (rcClient);
 
@@ -2517,7 +2521,7 @@ OnPrepareDC (CDC * pDC, CPrintInfo * pInfo)
   if (pInfo != NULL)
     {
       pInfo->m_bContinuePrinting = TRUE;
-      if (m_pnPages != NULL && (int) pInfo->m_nCurPage > m_nPrintPages)
+      if (m_nPrintPages != 0 && (int) pInfo->m_nCurPage > m_nPrintPages)
         pInfo->m_bContinuePrinting = FALSE;
     }
 }
@@ -2526,27 +2530,6 @@ BOOL CCrystalTextView::
 OnPreparePrinting (CPrintInfo * pInfo)
 {
   return DoPreparePrinting (pInfo);
-}
-
-int CCrystalTextView::
-PrintLineHeight (CDC * pdc, int nLine)
-{
-  ASSERT (nLine >= 0 && nLine < GetLineCount ());
-  ASSERT (m_nPrintLineHeight > 0);
-  int nLength = GetLineLength (nLine);
-  CString line;
-  if (nLength == 0)
-  {
-    line = "X";
-  } else
-  {
-    LPCTSTR pszChars = GetLineChars (nLine);
-    ExpandChars (pszChars, 0, nLength, line, 0);
-  }
-  
-  CRect rcPrintArea = m_rcPrintArea;
-  pdc->DrawText (line, &rcPrintArea, DT_LEFT | DT_NOPREFIX | DT_TOP |  DT_CALCRECT);
-  return rcPrintArea.Height ();
 }
 
 void CCrystalTextView::
@@ -2589,6 +2572,35 @@ PrintFooter (CDC * pdc, int nPageNum)
     pdc->DrawText (text, &rcFooter, DT_CENTER | DT_NOPREFIX | DT_BOTTOM | DT_SINGLELINE);
 }
 
+/**
+* @brief Retrieves the print margins
+* @param nLeft   [out] Left margin
+* @param nTop    [out] Top margin
+* @param nRight  [out] right margin
+* @param nBottom [out] Bottom margin
+*/
+void CCrystalTextView::
+GetPrintMargins (long & nLeft, long & nTop, long & nRight, long & nBottom)
+{
+  nLeft = DEFAULT_PRINT_MARGIN;
+  nTop = DEFAULT_PRINT_MARGIN;
+  nRight = DEFAULT_PRINT_MARGIN;
+  nBottom = DEFAULT_PRINT_MARGIN;
+  CReg reg;
+  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
+    {
+      DWORD dwTemp;
+      if (reg.LoadNumber (_T ("PageLeft"), &dwTemp))
+        nLeft = dwTemp;
+      if (reg.LoadNumber (_T ("PageRight"), &dwTemp))
+        nRight = dwTemp;
+      if (reg.LoadNumber (_T ("PageTop"), &dwTemp))
+        nTop = dwTemp;
+      if (reg.LoadNumber (_T ("PageBottom"), &dwTemp))
+        nBottom = dwTemp;
+    }
+}
+
 void CCrystalTextView::
 RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
 {
@@ -2601,23 +2613,7 @@ RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
   CSize szTopLeft, szBottomRight;
   CWinApp *pApp = AfxGetApp ();
   ASSERT (pApp != NULL);
-  szTopLeft.cx = DEFAULT_PRINT_MARGIN;
-  szBottomRight.cx = DEFAULT_PRINT_MARGIN;
-  szTopLeft.cy = DEFAULT_PRINT_MARGIN;
-  szBottomRight.cy = DEFAULT_PRINT_MARGIN;
-  CReg reg;
-  if (reg.Open (HKEY_CURRENT_USER, REG_EDITPAD, KEY_READ))
-    {
-      DWORD dwTemp;
-      if (reg.LoadNumber (_T ("PageLeft"), &dwTemp))
-        szTopLeft.cx = dwTemp;
-      if (reg.LoadNumber (_T ("PageRight"), &dwTemp))
-        szBottomRight.cx = dwTemp;
-      if (reg.LoadNumber (_T ("PageTop"), &dwTemp))
-        szTopLeft.cy = dwTemp;
-      if (reg.LoadNumber (_T ("PageBottom"), &dwTemp))
-        szBottomRight.cy = dwTemp;
-    }
+  GetPrintMargins (szTopLeft.cx, szTopLeft.cy, szBottomRight.cx, szBottomRight.cy);
   pdc->HIMETRICtoLP (&szTopLeft);
   pdc->HIMETRICtoLP (&szBottomRight);
   m_rcPrintArea.left += szTopLeft.cx;
@@ -2627,63 +2623,25 @@ RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo)
   if (m_bPrintHeader)
     m_rcPrintArea.top += m_nPrintLineHeight + m_nPrintLineHeight / 2;
   if (m_bPrintFooter)
-    m_rcPrintArea.bottom += m_nPrintLineHeight + m_nPrintLineHeight / 2;
+    m_rcPrintArea.bottom -= m_nPrintLineHeight + m_nPrintLineHeight / 2;
 
-  int nLimit = 32;
-  m_nPrintPages = 1;
-  if (m_pnPages != NULL)
-    delete [] m_pnPages;
-  m_pnPages = new int[nLimit];
-  m_pnPages[0] = 0;
+  InvalidateLineCache (0, -1);
 
-  int nLineCount = GetLineCount ();
-  int nLine = 1;
-  int y = m_rcPrintArea.top + PrintLineHeight (pdc, 0);
-  while (nLine < nLineCount)
-    {
-      int nHeight = PrintLineHeight (pdc, nLine);
-      if (y + nHeight <= m_rcPrintArea.bottom)
-        {
-          y += nHeight;
-        }
-      else
-        {
-          ASSERT (nLimit >= m_nPrintPages);
-          if (nLimit <= m_nPrintPages)
-            {
-              nLimit += 32;
-              int *pnNewPages = new int[nLimit];
-              memcpy (pnNewPages, m_pnPages, sizeof (int) * m_nPrintPages);
-              delete[] m_pnPages;
-              m_pnPages = pnNewPages;
-            }
-          ASSERT (nLimit > m_nPrintPages);
-          m_pnPages[m_nPrintPages++] = nLine;
-          y = m_rcPrintArea.top + nHeight;
-        }
-      nLine++;
-    }
+  m_nScreenChars = (m_rcPrintArea.Width () - GetMarginWidth (pdc)) / GetCharWidth ();
+  m_nScreenLines = m_rcPrintArea.Height () / GetLineHeight ();
 }
 
 void CCrystalTextView::
 OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
 {
-  if (m_pnPages != NULL)
-    {
-      delete[] m_pnPages;
-      m_pnPages = NULL;
-    }
-
-  ASSERT (m_pnPages == NULL);
   ASSERT (m_pPrintFont == NULL);
   CFont *pDisplayFont = GetFont ();
 
   LOGFONT lf;
-  pDisplayFont->GetLogFont (&lf);
-
   CDC *pDisplayDC = GetDC ();
-  lf.lfHeight = MulDiv (lf.lfHeight, pdc->GetDeviceCaps (LOGPIXELSY), pDisplayDC->GetDeviceCaps (LOGPIXELSY) * 2);
-  lf.lfWidth = MulDiv (lf.lfWidth, pdc->GetDeviceCaps (LOGPIXELSX), pDisplayDC->GetDeviceCaps (LOGPIXELSX) * 2);
+  pDisplayFont->GetLogFont (&lf);
+  lf.lfHeight = MulDiv (lf.lfHeight, pdc->GetDeviceCaps (LOGPIXELSY), pDisplayDC->GetDeviceCaps (LOGPIXELSY));
+  lf.lfWidth = MulDiv (lf.lfWidth, pdc->GetDeviceCaps (LOGPIXELSX), pDisplayDC->GetDeviceCaps (LOGPIXELSX));
   ReleaseDC (pDisplayDC);
 
   m_pPrintFont = new CFont;
@@ -2694,7 +2652,12 @@ OnBeginPrinting (CDC * pdc, CPrintInfo * pInfo)
       return;
     }
 
-  pdc->SelectObject (m_pPrintFont);
+  GetFont (m_lfSavedBaseFont);
+  m_pPrintFont->GetLogFont (&lf);
+  SetFont(lf);
+
+  m_nPrintPages = 0;
+  m_bPrinting = TRUE;
 }
 
 void CCrystalTextView::
@@ -2705,58 +2668,37 @@ OnEndPrinting (CDC * pdc, CPrintInfo * pInfo)
       delete m_pPrintFont;
       m_pPrintFont = NULL;
     }
-  if (m_pnPages != NULL)
-    {
-      delete[] m_pnPages;
-      m_pnPages = NULL;
-    }
   m_nPrintPages = 0;
   m_nPrintLineHeight = 0;
+  SetFont(m_lfSavedBaseFont);
+  m_bPrinting = FALSE;
 }
 
 void CCrystalTextView::
 OnPrint (CDC * pdc, CPrintInfo * pInfo)
 {
-  LOGFONT lf;
-  memset (&lf, 0, sizeof (lf));
-  _tcscpy (m_lfBaseFont.lfFaceName, _T ("FixedSys"));
-  lf.lfHeight = -MulDiv (11, pdc->GetDeviceCaps (LOGPIXELSY), 72);
-  lf.lfWeight = FW_NORMAL;
-  lf.lfItalic = FALSE;
-  lf.lfCharSet = DEFAULT_CHARSET;
-  lf.lfOutPrecision = OUT_DEFAULT_PRECIS;
-  lf.lfClipPrecision = CLIP_DEFAULT_PRECIS;
-  lf.lfQuality = DEFAULT_QUALITY;
-  lf.lfPitchAndFamily = DEFAULT_PITCH;
-
-  CFont font;
-  font.CreateFontIndirect(&lf);
-  CFont* prevFont = pdc->SelectObject(&font);
+  pdc->SelectObject (m_pPrintFont);
 
   const COLORREF defaultLineColor = RGB(0,0,0);
   const COLORREF defaultBgColor = RGB(255,255,255);
 
-  // TODO: calc maximum chars on a line; 
-  // GetScreenChars() doesn't work right while printing
-  const int maxLineChars = 100;
+  RecalcPageLayouts (pdc, pInfo);
 
-  if (m_pnPages == NULL)
-    {
-      RecalcPageLayouts (pdc, pInfo);
-      ASSERT (m_pnPages != NULL);
-    }
+  m_nPrintPages = (GetSubLineCount () + GetScreenLines () - 1) / GetScreenLines ();
 
   ASSERT (pInfo->m_nCurPage >= 1 && (int) pInfo->m_nCurPage <= m_nPrintPages);
-  int nLine    = m_pnPages[pInfo->m_nCurPage - 1];
-  int nEndLine = GetLineCount ();
 
-  if ((int) pInfo->m_nCurPage < m_nPrintPages)
-    {
-      nEndLine = m_pnPages[pInfo->m_nCurPage];
-    }
+  int nTopSubLine = (pInfo->m_nCurPage - 1) * GetScreenLines ();
+  int nEndSubLine = nTopSubLine + GetScreenLines () - 1;
+  if (nEndSubLine >= GetSubLineCount ())
+    nEndSubLine = GetSubLineCount () - 1;
+  int nSubLines;
+  int nTopLine, nEndLine;
+  GetLineBySubLine (nTopSubLine, nTopLine, nSubLines);
+  GetLineBySubLine (nEndSubLine, nEndLine, nSubLines);
 
   TRACE (_T ("Printing page %d of %d, lines %d - %d\n"), 
-        pInfo->m_nCurPage, m_nPrintPages,nLine, nEndLine - 1);
+        pInfo->m_nCurPage, m_nPrintPages, nTopLine, nEndLine);
 
   pdc->SetTextColor(defaultLineColor);
   pdc->SetBkColor(defaultBgColor);
@@ -2771,38 +2713,57 @@ OnPrint (CDC * pdc, CPrintInfo * pInfo)
       PrintFooter (pdc, pInfo->m_nCurPage);
     }
 
-  int y = m_rcPrintArea.top;
-  for (; nLine < nEndLine; nLine++)
+  // set clipping region
+  // see http://support.microsoft.com/kb/128334
+  CRect rectClip = m_rcPrintArea;
+  rectClip.right = rectClip.left + GetMarginWidth (pdc) + GetScreenChars () * GetCharWidth ();
+  rectClip.bottom = rectClip.top + GetScreenLines () * GetLineHeight ();
+  if (pdc->IsKindOf (RUNTIME_CLASS (CPreviewDC)))
     {
-      CRect rcPrintRect = m_rcPrintArea;
-      rcPrintRect.top = y;
+      CPreviewDC *pPrevDC = (CPreviewDC *)pdc;
 
-      int nLineLength = GetLineLength (nLine);
-      CString line;
+      pPrevDC->PrinterDPtoScreenDP (&rectClip.TopLeft ());
+      pPrevDC->PrinterDPtoScreenDP (&rectClip.BottomRight ());
 
-      if (nLineLength > 0)
-        {
-          LPCTSTR pszChars = GetLineChars (nLine);
-          ExpandChars (pszChars, 0, nLineLength, line, 0);
-        }
+      CPoint ptOrg;
+      ::GetViewportOrgEx (pdc->m_hDC,&ptOrg);
+      rectClip += ptOrg;
+    }
+  CRgn rgn;
+  rgn.CreateRectRgnIndirect (&rectClip);
+  pdc->SelectClipRgn (&rgn);
 
-      // Append whitespace chars to end of line
-      int nAppendedChars = maxLineChars - line.GetLength();
-      if (nAppendedChars > 0)
-        line += CString(' ', nAppendedChars);
+  // print lines
+  CRect rcMargin;
+  CRect rcLine = m_rcPrintArea;
+  int nLineHeight = GetLineHeight ();
+  rcLine.bottom = rcLine.top + nLineHeight;
+  rcMargin = rcLine;
+  rcMargin.right = rcMargin.left + GetMarginWidth (pdc);
+  rcLine.left = rcMargin.right;
 
-      BOOL bDrawWhitespace = FALSE;
-      COLORREF crBkgnd, crText;
-      GetLineColors (nLine, crBkgnd, crText, bDrawWhitespace);
+  int nSubLineOffset = GetSubLineIndex (nTopLine) - nTopSubLine;
+  if( nSubLineOffset < 0 )
+  {
+    rcLine.OffsetRect( 0, nSubLineOffset * nLineHeight );
+  }
 
-      pdc->SetTextColor((crText == CLR_NONE) ? defaultLineColor : crText);
-      pdc->SetBkColor((crBkgnd == CLR_NONE) ? defaultBgColor : crBkgnd);
+  int nCurrentLine;
+  for (nCurrentLine = nTopLine; nCurrentLine <= nEndLine; nCurrentLine++)
+    {
+      int nSubLines = GetSubLines (nCurrentLine);
 
-      CString str;
-      y += pdc->DrawText (line, &rcPrintRect, DT_LEFT | DT_NOPREFIX | DT_TOP );
+      rcLine.bottom = rcLine.top + GetSubLines (nCurrentLine) * nLineHeight;
+      rcMargin.bottom = rcLine.bottom;
+
+      DrawMargin (pdc, rcMargin, nCurrentLine, nCurrentLine + 1);
+      DrawSingleLine (pdc, rcLine, nCurrentLine);
+
+      rcLine.top = rcLine.bottom;
+      rcMargin.top = rcLine.bottom;
     }
 
-  pdc->SelectObject(prevFont);
+  pdc->SelectClipRgn (NULL);
 }
 
 
@@ -4969,8 +4930,11 @@ OnFilePageSetup ()
   ASSERT (pApp != NULL);
 
   CPageSetupDialog dlg;
-  //dlg.m_psd.Flags &= ~PSD_INTHOUSANDTHSOFINCHES;
-  dlg.m_psd.Flags = PSD_INHUNDREDTHSOFMILLIMETERS|PSD_MARGINS;
+  PRINTDLG pd;
+  pApp->GetPrinterDeviceDefaults (&pd);
+  dlg.m_psd.hDevMode = pd.hDevMode;
+  dlg.m_psd.hDevNames = pd.hDevNames;
+  dlg.m_psd.Flags |= PSD_INHUNDREDTHSOFMILLIMETERS|PSD_MARGINS;
   dlg.m_psd.rtMargin.left = DEFAULT_PRINT_MARGIN;
   dlg.m_psd.rtMargin.right = DEFAULT_PRINT_MARGIN;
   dlg.m_psd.rtMargin.top = DEFAULT_PRINT_MARGIN;
@@ -5004,6 +4968,7 @@ OnFilePageSetup ()
           VERIFY (reg.SaveNumber (_T ("PageTop"), dlg.m_psd.rtMargin.top));
           VERIFY (reg.SaveNumber (_T ("PageBottom"), dlg.m_psd.rtMargin.bottom));
         }
+      pApp->SelectPrinter (dlg.m_psd.hDevNames, dlg.m_psd.hDevMode, FALSE);
     }
 }
 
@@ -5172,7 +5137,7 @@ GetViewLineNumbers () const
  * @return Margin area width in pixels.
  */
 UINT CCrystalTextView::
-GetMarginWidth ()
+GetMarginWidth (CDC *pdc)
 {
   int nMarginWidth = 0;
 
@@ -5183,15 +5148,19 @@ GetMarginWidth ()
       int n = 1;
       for (n = 1; n <= nLines; n *= 10)
         ++nNumbers;
-       nMarginWidth += GetCharWidth() * nNumbers;
+      nMarginWidth += GetCharWidth () * nNumbers;
     }
 
   if (m_bSelMargin)
     {
-      nMarginWidth += 18;  // Width for markers and some space
+      if (pdc == NULL || !pdc->IsPrinting ())
+        nMarginWidth += 18;  // Width for markers and some space
     }
   else
-    nMarginWidth += MARGIN_REV_WIDTH; // Space for revision marks
+    {
+      if (pdc == NULL || !pdc->IsPrinting ())
+        nMarginWidth += MARGIN_REV_WIDTH; // Space for revision marks
+    }
 
   return nMarginWidth;
 }

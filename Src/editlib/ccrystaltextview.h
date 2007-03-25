@@ -140,6 +140,7 @@ protected:
     CPoint m_ptAnchor;
 private:
     LOGFONT m_lfBaseFont;
+	LOGFONT m_lfSavedBaseFont;
     CFont *m_apFonts[4];
 
     //  Parsing stuff
@@ -214,7 +215,7 @@ protected :
     CPoint m_ptDraggedTextBegin, m_ptDraggedTextEnd;
     void UpdateCaret ();
     void SetAnchor (const CPoint & ptNewAnchor);
-    UINT GetMarginWidth ();
+    UINT GetMarginWidth (CDC *pdc = NULL);
     bool IsValidTextPos (const CPoint &point);
     bool IsValidTextPosX (const CPoint &point);
     bool IsValidTextPosY (const CPoint &point);
@@ -235,13 +236,13 @@ protected :
 
     //  Printing
     int m_nPrintPages;
-    int *m_pnPages;
     CFont *m_pPrintFont;
     int m_nPrintLineHeight;
     BOOL m_bPrintHeader, m_bPrintFooter;
     CRect m_ptPageArea, m_rcPrintArea;
-    int PrintLineHeight (CDC * pdc, int nLine);
-    void RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo);
+    BOOL m_bPrinting;
+    void GetPrintMargins (long & nLeft, long & nTop, long & nRight, long & nBottom);
+    virtual void RecalcPageLayouts (CDC * pdc, CPrintInfo * pInfo);
     virtual void PrintHeader (CDC * pdc, int nPageNum);
     virtual void PrintFooter (CDC * pdc, int nPageNum);
     virtual void GetPrintHeaderText (int nPageNum, CString & text);
