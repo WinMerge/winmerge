@@ -786,6 +786,8 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 		return OPT_ERR;
 
 	// Check previous value
+	// This just checks if the value exists, LoadValueFromReg() below actually
+	// loads the value.
 	DWORD type = 0;
 	BYTE dataBuf[MAX_PATH] = {0};
 	DWORD size = MAX_PATH;
@@ -804,7 +806,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 			retVal = SaveValueToReg(hKey, strValueName,	defaultValue);
 		}
 		// Value already exists so read it.
-		else if (retValReg == ERROR_SUCCESS)
+		else if (retValReg == ERROR_SUCCESS || ERROR_MORE_DATA)
 		{
 			retVal = LoadValueFromReg(hKey, name, defaultValue);
 			if (retVal == OPT_OK)
