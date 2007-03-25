@@ -71,24 +71,6 @@ END
 // (in Src\res)
 
 IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
-IDR_MERGEDOCTYPE        ICON                    "..\\..\\res\\MergeDoc.ico"
-IDR_DIRDOCTYPE          ICON                    "..\\..\\res\\MergeDir.ico"
-IDI_FOLDER              ICON                    "..\\..\\res\\folder.ico"
-IDI_LFOLDER             ICON                    "..\\..\\res\\lfolder.ico"
-IDI_RFOLDER             ICON                    "..\\..\\res\\rfolder.ico"
-IDI_FOLDERSKIP          ICON                    "..\\..\\res\\folderskip.ico"
-IDI_EQUALFILE           ICON                    "..\\..\\res\\equalfile.ico"
-IDI_NOTEQUALFILE        ICON                    "..\\..\\res\\notequalfile.ico"
-IDI_EQUALBINARY         ICON                    "..\\..\\res\\equalbinary.ico"
-IDI_LFILE               ICON                    "..\\..\\res\\lfile.ico"
-IDI_RFILE               ICON                    "..\\..\\res\\rfile.ico"
-IDI_BINARYDIFF          ICON                    "..\\..\\res\\binarydiff.ico"
-IDI_FILESKIP            ICON                    "..\\..\\res\\fileskip.ico"
-IDI_COMPARE_ERROR       ICON                    "..\\..\\res\\error.ico"
-IDI_FOLDERUP            ICON                    "..\\..\\res\\folderup.ico"
-IDI_FOLDERUP_DISABLE    ICON                    "..\\..\\res\\folderup_disable.ico"
-IDI_SIGMA               ICON                    "..\\..\\res\\sigma.ico"
-IDI_COMPARE_ABORTED     ICON                    "..\\..\\res\\aborted.ico"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -1709,51 +1691,6 @@ END
 // Image
 //
 IDR_SPLASH              IMAGE                   "..\\..\\res\\splash.jpg"
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
-// Bitmap
-//
-
-IDB_TOOLBAR_ENABLED     BITMAP                  "..\\..\\res\\ToolbarEnabled.bmp"
-IDB_TOOLBAR_DISABLED    BITMAP                  "..\\..\\res\\ToolbarDisabled.bmp"
-IDB_EDIT_COPY           BITMAP                  "..\\..\\res\\copy.bmp"
-IDB_EDIT_CUT            BITMAP                  "..\\..\\res\\cut.bmp"
-IDB_EDIT_PASTE          BITMAP                  "..\\..\\res\\paste.bmp"
-IDB_EDIT_SEARCH         BITMAP                  "..\\..\\res\\search.bmp"
-IDB_WINDOW_CASCADE      BITMAP                  "..\\..\\res\\cascade.bmp"
-IDB_WINDOW_HORIZONTAL   BITMAP                  "..\\..\\res\\horizontally.bmp"
-IDB_WINDOW_VERTICAL     BITMAP                  "..\\..\\res\\vertically.bmp"
-IDB_WINDOW_CLOSE        BITMAP                  "..\\..\\res\\close.bmp"
-IDB_WINDOW_CHANGEPANE   BITMAP                  "..\\..\\res\\change_pane.bmp"
-IDB_EDIT_GOTO           BITMAP                  "..\\..\\res\\go_to.bmp"
-IDB_EDIT_REPLACE        BITMAP                  "..\\..\\res\\replace.bmp"
-IDB_VIEW_LANGUAGE       BITMAP                  "..\\..\\res\\language.bmp"
-IDB_VIEW_SELECTFONT     BITMAP                  "..\\..\\res\\select_font.bmp"
-IDB_FILE_EXIT           BITMAP                  "..\\..\\res\\exit.bmp"
-IDB_HELP_CONTENTS       BITMAP                  "..\\..\\res\\help_contents.bmp"
-IDB_EDIT_SELECTALL      BITMAP                  "..\\..\\res\\select_all.bmp"
-IDB_TOOLS_FILTERS       BITMAP                  "..\\..\\res\\filters.bmp"
-IDB_TOOLS_COLUMNS       BITMAP                  "..\\..\\res\\customize_columns.bmp"
-IDB_MERGE_DELETE        BITMAP                  "..\\..\\res\\delete.bmp"
-IDB_FILE_PRINT          BITMAP                  "..\\..\\res\\print.bmp"
-IDB_TOOLS_GENERATEPATCH BITMAP                  "..\\..\\res\\patch.bmp"
-IDB_TOOLS_GENERATEREPORT BITMAP                 "..\\..\\res\\report.bmp"
-IDR_MARGIN_ICONS        BITMAP                  "..\\..\\res\\mg_icons.bmp"
-IDB_EDIT_TOGGLE_BOOKMARK BITMAP                 "..\\..\\res\\toggle_bookmark.bmp"
-IDB_EDIT_GOTO_NEXT_BOOKMARK BITMAP              "..\\..\\res\\next_bookmark.bmp"
-IDB_EDIT_GOTO_PREV_BOOKMARK BITMAP              "..\\..\\res\\prev_bookmark.bmp"
-IDB_EDIT_CLEAR_ALL_BOOKMARKS BITMAP             "..\\..\\res\\clear_bookmarks.bmp"
-IDB_LEFT                BITMAP                  "..\\..\\res\\left.bmp"
-IDB_RIGHT               BITMAP                  "..\\..\\res\\right.bmp"
-IDB_BOTH                BITMAP                  "..\\..\\res\\both.bmp"
-IDB_LEFT_TO_RIGHT       BITMAP                  "..\\..\\res\\left_to_right.bmp"
-IDB_RIGHT_TO_LEFT       BITMAP                  "..\\..\\res\\right_to_left.bmp"
-IDB_LEFT_TO_BROWSE      BITMAP                  "..\\..\\res\\left_to_browse.bmp"
-IDB_RIGHT_TO_BROWSE     BITMAP                  "..\\..\\res\\right_to_browse.bmp"
-IDB_MOVE_LEFT_TO_BROWSE BITMAP                  "..\\..\\res\\move_left_to_browse.bmp"
-IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "..\\..\\res\\move_right_to_browse.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////
