@@ -335,9 +335,9 @@ Add new items to top.
 
 2007-01-15 Kimmo
  PATCH: [ 1620076 ] Add Bazaar and Mercurial to SourceControl.flt
-  Submitted by RenÅELeonhardt
+  Submitted by RenÈ Leonhardt
   Filters: SourceControl.flt
- Add RenÅELeonhardt to Contributors.txt
+ Add RenÈ Leonhardt to Contributors.txt
   Docs/Users: Contributors.txt
  PATCH: [ 1634968 ] Swedish translation update for 2.7.1.5+
   Submitted by Hans Eriksson
