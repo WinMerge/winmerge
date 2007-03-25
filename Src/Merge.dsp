@@ -1689,6 +1689,10 @@ SOURCE=.\res\Merge.ico
 # End Source File
 # Begin Source File
 
+SOURCE=.\res\MergeProject.ico
+# End Source File
+# Begin Source File
+
 SOURCE=.\res\Merge.rc2
 # End Source File
 # Begin Source File

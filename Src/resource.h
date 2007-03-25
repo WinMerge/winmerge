@@ -3,6 +3,7 @@
 // Used by Merge.rc
 //
 #define IDR_MAINFRAME                   100
+#define IDR_MERGEPROJECT                101
 #define IDR_POPUP_EDITOR_HEADERBAR      102
 #define IDR_POPUP_PLUGINS_SETTINGS      103
 #define IDR_POPUP_MERGEVIEW             104

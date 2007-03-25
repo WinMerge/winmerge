@@ -81,6 +81,7 @@ END
 // (in Src\res)
 
 IDR_MAINFRAME           ICON                    "res\\Merge.ico"
+IDR_MERGEPROJECT        ICON                    "res\\MergeProject.ico"
 IDR_MERGEDOCTYPE        ICON                    "res\\MergeDoc.ico"
 IDR_DIRDOCTYPE          ICON                    "res\\MergeDir.ico"
 IDI_FOLDER              ICON                    "res\\folder.ico"
