@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2007-03-25 Takashi
+ Japanese translation - update
+  Src/Languages/Japanese/MergeJapanese.rc
+
+2007-03-25 Takashi
  PATCH: [ 1687430 ] printing patch
   Src: Merge.rc MergeEditView.cpp MergeEditView.h
   Src/Common: SplitterWndEx.cpp SplitterWndEx.h
