@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1688012 ] Remove IDR_MAINFRAME icon from lang files
   Src: AboutDlg.cpp Merge.rc resource.h
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1684865 ] WinMerge Icon Set Revision 4
+  (Now with the 256*256 versions)
+  Src/res: MergeDoc.ico MergeProject.ico
 
 2007-03-26 Kimmo
  PATCH: [ 1687966 ] Fix crash when changing compare method
