@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-26 Tim
+ PATCH: [ 1688012 ] Remove IDR_MAINFRAME icon from lang files
+  Src: AboutDlg.cpp Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
+
 2007-03-26 Kimmo
  PATCH: [ 1687966 ] Fix crash when changing compare method
   Src: DiffContext.cpp DiffContext.h FolderCmp.cpp

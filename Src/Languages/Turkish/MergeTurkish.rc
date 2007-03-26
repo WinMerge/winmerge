@@ -61,19 +61,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Icon
-//
-
-// Icon with lowest ID value placed first to ensure application icon
-// remains consistent on all systems.
-
-// Normally translations share these icons from the English versions
-// (in Src\res)
-
-IDR_MAINFRAME           ICON                    "..\\..\\res\\Merge.ico"
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // Menu
 //
 
@@ -620,7 +607,7 @@ STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
 CAPTION "About WinMerge"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,24,14,21,20
+    ICON            IDR_MAINFRAME,IDC_ABOUTBOX_ICON,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     LTEXT           "Version 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
     LTEXT           "(Private Build)",IDC_PRIVATEBUILD,63,33,153,8

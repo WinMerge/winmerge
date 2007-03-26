@@ -64,6 +64,13 @@ BOOL CAboutDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
+	// Load application icon
+	HICON icon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	if (icon != NULL) {
+		CStatic * pIcon = (CStatic *) GetDlgItem(IDC_ABOUTBOX_ICON);
+		pIcon->SetIcon(icon);
+	}
+
 	CVersionInfo version(AfxGetResourceHandle());
 	CString sVersion = version.GetFixedProductVersion();
 	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
