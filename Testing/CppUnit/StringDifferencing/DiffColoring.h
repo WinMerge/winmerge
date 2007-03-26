@@ -22,8 +22,11 @@ class DiffColoring : public CPPUNIT_NS::TestFixture
 	CPPUNIT_TEST_SUITE( DiffColoring );
 	CPPUNIT_TEST( OneWord );
 	CPPUNIT_TEST( OneDiff );
+	CPPUNIT_TEST( OneWordDiff );
 	CPPUNIT_TEST( DifferentLength );
 	CPPUNIT_TEST( DiffWithEmpty );
+	CPPUNIT_TEST( PunctuationChar );
+	CPPUNIT_TEST( PunctuationWord );
 	CPPUNIT_TEST( Bug1491334 );
 	CPPUNIT_TEST( Bug1639453 );
 	CPPUNIT_TEST( Bug1683061 );
@@ -36,8 +39,11 @@ public:
 protected:
 	void OneWord();
 	void OneDiff();
+	void OneWordDiff();
 	void DifferentLength();
 	void DiffWithEmpty();
+	void PunctuationChar();
+	void PunctuationWord();
 	void Bug1491334();
 	void Bug1639453();
 	void Bug1683061();

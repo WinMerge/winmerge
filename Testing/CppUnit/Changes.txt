@@ -1,5 +1,9 @@
 Testing\selftest\Changes.txt
 
+2007-03-26 Gal
+ Fix and addition to line coloring tests
+  StringDifferencing: DiffColoring.cpp DiffColoring.h
+
 2007-03-21 Gal
  Fix TestCase1::Difference2 test.
   StringDifferencing: TestCase1.cpp
