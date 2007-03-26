@@ -196,7 +196,7 @@ stringdiffs::BuildWordsArray(const CString & str, wordarray * words)
 inspace:
 	if (i==str.GetLength())
 		return;
-	if (isSafeWhitespace(str[i])) 
+	if (isSafeWhitespace(str[i]) || isWordBreak(m_breakType, str[i]))
 	{
 		++i;
 		goto inspace;
@@ -207,7 +207,7 @@ inspace:
 	// state when we are inside a word
 inword:
 	bool atspace=false;
-	if (i==str.GetLength() || (atspace=isSafeWhitespace(str[i])) || isWordBreak(m_breakType, str[i]))
+	if (i==str.GetLength() || (atspace=isSafeWhitespace(str[i])) || (atspace=isWordBreak(m_breakType, str[i])))
 	{
 		if (begin<i)
 		{

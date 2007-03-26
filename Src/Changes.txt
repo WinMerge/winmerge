@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-26 Gal
+ BUG: [ 1639453 ] Imaginary difference highlighted in character level mode
+  Src: stringdiffs.cpp
+
 2007-03-25 Tim
  PATCH: [ 1687661 ] Remove ICONS and BITMAPS from lang files
   Src/Languages/*: Merge*.rc
