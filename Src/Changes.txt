@@ -2,7 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2007-03-25 Gal
+2007-03-26 Kimmo
+ PATCH: [ 1687966 ] Fix crash when changing compare method
+  Src: DiffContext.cpp DiffContext.h FolderCmp.cpp
+
+2007-03-26 Gal
  BUG: [ 1687754 ] Editor regression in trunk (2)
   Src: stringdiffs.cpp stringdiffsi.h
 

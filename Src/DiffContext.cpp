@@ -71,6 +71,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_pFilterList(NULL)
 , m_bCollectReady(FALSE)
 , m_pCompareOptions(NULL)
+, m_pOptions(NULL)
 {
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);
@@ -111,6 +112,7 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 
 CDiffContext::~CDiffContext()
 {
+	delete m_pOptions;
 	delete m_pCompareOptions;
 	delete m_pFilterList;
 	DeleteCriticalSection(&m_criticalSect);
@@ -250,6 +252,33 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
  */
 BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options)
 {
+	if (m_pOptions != NULL)
+		delete m_pOptions;
+	m_pOptions = new DIFFOPTIONS;
+	if (m_pOptions != NULL)
+		CopyMemory(m_pOptions, &options, sizeof(DIFFOPTIONS));
+	else
+		return FALSE;
+
+	m_pCompareOptions = GetCompareOptions(compareMethod);
+	if (m_pCompareOptions == NULL)
+		return FALSE;
+
+	return TRUE;
+}
+
+/**
+ * @brief Return compare-method specific compare options.
+ * @param [in] compareMethod Compare method used.
+ * @return Compare options class.
+ */
+CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
+{
+	// If compare method is same than in previous time, return cached value
+	if (compareMethod == m_nCompMethod && m_pCompareOptions != NULL)
+		return m_pCompareOptions;
+
+	// Otherwise we have to create new options
 	if (m_pCompareOptions)
 		delete m_pCompareOptions;
 
@@ -269,12 +298,12 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 	}
 
 	if (m_pCompareOptions == NULL)
-		return FALSE;
+		return NULL;
 
 	m_nCompMethod = compareMethod;
-	m_pCompareOptions->SetFromDiffOptions(options);
+	m_pCompareOptions->SetFromDiffOptions(*m_pOptions);
 
-	return TRUE;
+	return m_pCompareOptions;
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */

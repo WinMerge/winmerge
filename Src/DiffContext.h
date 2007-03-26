@@ -86,6 +86,7 @@ public:
 	void UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight);
 
 	BOOL CreateCompareOptions(int compareMethod, const DIFFOPTIONS & options);
+	CompareOptions * GetCompareOptions(int compareMethod);
 
 	// retrieve or manufacture plugin info for specified file comparison
 	void FetchPluginInfos(const CString& filteredFilenames,
@@ -107,10 +108,11 @@ public:
 	FilterList * m_pFilterList; /**< Filter list for line filters */
 	CRITICAL_SECTION m_criticalSect; /**< Critical section protecting list access. */
 	BOOL m_bCollectReady; /**< Tells collection phase is done. */
-	CompareOptions *m_pCompareOptions; /**< Compare options for folder compare */
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */
+	DIFFOPTIONS *m_pOptions; /**< Generalized compare options. */
+	CompareOptions *m_pCompareOptions; /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */
 	IAbortable *m_piAbortable;
 };

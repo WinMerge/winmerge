@@ -230,7 +230,10 @@ int FolderCmp::diffutils_compare_files(int depth)
 	int bin_file = 0; // bitmap for binary files
 
 	DiffutilsOptions *pOptions = 
-		dynamic_cast<DiffutilsOptions *>(m_pCtx->m_pCompareOptions);
+		dynamic_cast<DiffutilsOptions *>(m_pCtx->GetCompareOptions(CMP_CONTENT));
+	if (pOptions == NULL)
+		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
+	
 	pOptions->SetToDiffUtils();
 
 	// Do the actual comparison (generating a change script)
@@ -368,7 +371,9 @@ int FolderCmp::diffutils_compare_files(int depth)
 int FolderCmp::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable)
 {
 	QuickCompareOptions *pOptions = 
-		dynamic_cast<QuickCompareOptions*>(m_pCtx->m_pCompareOptions);
+		dynamic_cast<QuickCompareOptions*>(m_pCtx->GetCompareOptions(CMP_QUICK_CONTENT));
+	if (pOptions == NULL)
+		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
 
 	// Close any descriptors open for diffutils
 	m_diffFileData.Reset();
