@@ -86,7 +86,6 @@ void stringdiffs::BuildWordDiffList()
 		{
 			if (AreWordsSame(m_words1[nWord], m_words2[nWord]))
 			{
-				INT_PTR nDiffEndAtWord = nWord - 1;
 				AddWordDiff(nDiffStartAtWord, nWord - 1);
 				bInWordDiff = false;
 			}
@@ -98,11 +97,10 @@ void stringdiffs::BuildWordDiffList()
 	// word or reaching end of line without finding matching word.
 	if (bInWordDiff)
 	{
-		const INT_PTR nDiffEndAtWord = nWord - 1;
 		AddWordDiff(nDiffStartAtWord, nWord - 1);
 	}
 
-	HandleLeftOvers(nWordsCount);
+	HandleLeftOvers(nWordsCount, bInWordDiff);
 }
 
 /**
@@ -154,16 +152,22 @@ bool stringdiffs::ExtendLastDiff(bool bLeftSide, int nEnd)
 /**
 * @brief Handle the case where word lists are not in the same size.
 *
+* This method highlight the remaining words, in other words, each word that
+* don't have a counter word. All the extra words are mark as a single
+* difference. If the last compared words are not equal, the last difference
+* is extend to include all additional words.
+*
 * @param nLastWord [in] Word index where processing has stopped.
+* @param bInWordDiff [in] true if last compared words are different.
 */
-void stringdiffs::HandleLeftOvers(int nLastWord)
+void stringdiffs::HandleLeftOvers(int nLastWord, bool bInWordDiff)
 {
 	if (nLastWord < m_words1.GetSize())
 	{
 		// Left side has more words.
 		const int nLeftEnd = m_words1[m_words1.GetUpperBound()].end;
 
-		if (!ExtendLastDiff(false, nLeftEnd))
+		if (!bInWordDiff || !ExtendLastDiff(false, nLeftEnd))
 		{
 			AddDiff(m_words1[nLastWord].start,
 				nLeftEnd,
@@ -175,7 +179,7 @@ void stringdiffs::HandleLeftOvers(int nLastWord)
 		// Right side has more words.
 		const int nRightEnd = m_words2[m_words2.GetUpperBound()].end;
 
-		if (!ExtendLastDiff(true, nRightEnd))
+		if (!bInWordDiff || !ExtendLastDiff(true, nRightEnd))
 		{
 			AddDiff(m_str1.GetLength(), -1,
 				m_words2[nLastWord].start,

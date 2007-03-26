@@ -40,7 +40,7 @@ private:
 	void AddDiff(int s1, int e1, int s2, int e2);
 	void AddWordDiff(int w1, int w2);
 	bool ExtendLastDiff(bool bLeftSide, int nEnd);
-	void HandleLeftOvers(int nLastWord);
+	void HandleLeftOvers(int nLastWord, bool bInWordDiff);
 	void BuildWordsArray(const CString & str, wordarray * words);
 	int hash(const CString & str, int begin, int end) const;
 	bool AreWordsSame(const word & word1, const word & word2) const;
