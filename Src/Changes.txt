@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-27 Tim
+ RFE: [ 1646407 ] Use "equal" or "not equal" as file compare icon
+  (Fixed the blurred icons and minimize the flicking effect)
+  Src: ChildFrm.cpp
+  Src/res: MergeDoc.ico
+
 2007-03-27 WinMerge experimental release 2.7.3.2 (SVN revision 4201)
 
 2007-03-26 Tim

@@ -586,7 +586,7 @@ void CChildFrame::SetLastCompareResult(int nResult)
 
 	if (hCurrent != hReplace)
 	{
-		SetIcon(hReplace, FALSE);
+		SetIcon(hReplace, TRUE);
 
 		BOOL bMaximized;
 		GetMDIFrame()->MDIGetActive(&bMaximized);
