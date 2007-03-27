@@ -2,6 +2,8 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-27 WinMerge experimental release 2.7.3.2 (SVN revision 4201)
+
 2007-03-26 Tim
  PATCH: [ 1688012 ] Remove IDR_MAINFRAME icon from lang files
   Src: AboutDlg.cpp Merge.rc resource.h
