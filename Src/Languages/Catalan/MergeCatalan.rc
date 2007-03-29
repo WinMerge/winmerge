@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Selecciona-ho &tot\tControl+A",  ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Opcions...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "Actualit&za\tF5",             ID_REFRESH
-        MENUITEM "Actualitza &seleccionats\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Visualització"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Estadístiques de &comparació",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Actualit&za\tF5",             ID_REFRESH
+        MENUITEM "Actualitza &seleccionats\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "Co&mbinació"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&Vés a...\tControl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Opcions...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "Actualit&za\tF5",             ID_REFRESH
     END
     POPUP "&Visualització"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "Subfinestra d'&ubicació",     ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Actualit&za\tF5",             ID_REFRESH
     END
     POPUP "Co&mbinació"
     BEGIN

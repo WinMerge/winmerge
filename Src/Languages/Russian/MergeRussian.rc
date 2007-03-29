@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "В&ыбрать Все\tCtrl+A",        ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Настройки...",               ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Обновить\tF5",               ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Вид"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Язык...",                    ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Обновить\tF5",               ID_REFRESH
+        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Объединение"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "Перейти к строке...\tCtrl+G", ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Настройки...",               ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Обновить\tF5",               ID_REFRESH
     END
     POPUP "&Вид"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "Панель лока&ций",             ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Язык...",                    ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Обновить\tF5",               ID_REFRESH
     END
     POPUP "&Объединение"
     BEGIN

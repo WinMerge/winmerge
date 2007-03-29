@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Sélectionner &tout\tCtrl+A",   ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Préférences...",              ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "Actual&iser\tF5",              ID_REFRESH
-        MENUITEM "Actualiser la &sélection\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Affichage"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Comparer les &statistiques",        ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Langage...",                       ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Actual&iser\tF5",              ID_REFRESH
+        MENUITEM "Actualiser la &sélection\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "Fu&sionner"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&Atteindre...\tCtrl+G",        ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Préférences...",              ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "Actual&iser\tF5",              ID_REFRESH
     END
     POPUP "&Affichage"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "Barre de lo&calisation",            ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Langage...",                       ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "Actual&iser\tF5",              ID_REFRESH
     END
     POPUP "Fu&sionner"
     BEGIN

@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Wybierz &wszystkie\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Opcje...",             ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
-        MENUITEM "&Odœwie¿ zaznaczone\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Widok"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Statystyki po&równania",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Jêzyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
+        MENUITEM "&Odœwie¿ zaznaczone\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Scal"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&IdŸ do...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Opcje...",             ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
     END
     POPUP "&Widok"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "Panel &lokalizacji",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jêzyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "O&dœwie¿\tF5",                ID_REFRESH
     END
     POPUP "&Scal"
     BEGIN

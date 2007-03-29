@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Vybr&at vše\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "Možnost&i...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Obnovit\tF5",                ID_REFRESH
-        MENUITEM "Obnovit &vybrané\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Zobrazit"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "St&atistika porovnání",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Obnovit\tF5",                ID_REFRESH
+        MENUITEM "Obnovit &vybrané\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "Slo&uèit"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "Pø&ejít na...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Možnost&i...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Obnovit\tF5",                ID_REFRESH
     END
     POPUP "&Zobrazit"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "&Polohový panel",             ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Obnovit\tF5",                ID_REFRESH
     END
     POPUP "Slo&uèit"
     BEGIN

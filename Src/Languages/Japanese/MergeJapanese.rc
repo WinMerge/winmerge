@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "すべて選択(&A)\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "最新の情報に更新(S)\tF5",     ID_REFRESH
-        MENUITEM "選択項目を最新に更新(&R)\tCtrl+F5", ID_DIR_RESCAN
     END
     POPUP "表示(&V)"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "比較統計(&R)",                ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "最新の情報に更新(S)\tF5",     ID_REFRESH
+        MENUITEM "選択項目を最新に更新(&R)\tCtrl+F5", ID_DIR_RESCAN
     END
     POPUP "マージ(&M)"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "ジャンプ(&G)...\tCtrl+G",     ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "設定(&O)...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "最新の情報に更新(S)\tF5",     ID_REFRESH
     END
     POPUP "表示(&V)"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "ロケーションペイン(&C)",      ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "言語(&L)...",                 ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "最新の情報に更新(S)\tF5",     ID_REFRESH
     END
     POPUP "マージ(&M)"
     BEGIN

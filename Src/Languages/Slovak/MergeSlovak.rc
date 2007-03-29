@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Vybr&aù vöetko\tCtrl+A",      ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Vlastnosti",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Obnoviù\tF5",                ID_REFRESH
-        MENUITEM "O&bnoviù vybranÈ\tCtrl+F5",   ID_DIR_RESCAN
     END
     POPUP "&Pohæad"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "ätatistika po&rovnania",      ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Obnoviù\tF5",                ID_REFRESH
+        MENUITEM "O&bnoviù vybranÈ\tCtrl+F5",   ID_DIR_RESCAN
     END
     POPUP "&Zl˙Ëiù"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&ChoÔ na...\tCtrl+G",         ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Vlastnosti",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Obnoviù\tF5",                ID_REFRESH
     END
     POPUP "&Pohæad"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "&LokaËn˝ panel",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Obnoviù\tF5",                ID_REFRESH
     END
     POPUP "&Zl˙Ëiù"
     BEGIN

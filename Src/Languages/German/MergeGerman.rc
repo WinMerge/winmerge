@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Alles &markieren\tStrg+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Einstellungen...",           ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Aktualisieren\tF5",          ID_REFRESH
-        MENUITEM "Ausge&wählte aktualisieren\tStrg+F5",  ID_DIR_RESCAN
     END
     POPUP "&Ansicht"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "V&ergleichsstatistik",        ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Aktualisieren\tF5",          ID_REFRESH
+        MENUITEM "Ausge&wählte aktualisieren\tStrg+F5",  ID_DIR_RESCAN
     END
     POPUP "&Merge"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&Gehe nach...\tStrg+G",       ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Einstellungen...",           ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Aktualisieren\tF5",          ID_REFRESH
     END
     POPUP "&Ansicht"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "P&ositionsleiste",            ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Aktualisieren\tF5",          ID_REFRESH
     END
     POPUP "&Merge"
     BEGIN

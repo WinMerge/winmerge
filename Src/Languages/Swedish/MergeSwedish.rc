@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Välj &allt\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "E&genskaper...",              ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Uppdatera\tF5",              ID_REFRESH
-        MENUITEM "&Uppdatera valda\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Visa"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Jämfö&rstatistik",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Uppdatera\tF5",              ID_REFRESH
+        MENUITEM "&Uppdatera valda\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Jämför"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&Gå till...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "E&genskaper...",              ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Uppdatera\tF5",              ID_REFRESH
     END
     POPUP "&Visa"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "Skillnadsbild",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Uppdatera\tF5",              ID_REFRESH
     END
     POPUP "&Jämför"
     BEGIN

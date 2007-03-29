@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Velg &alt\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Innstillinger...",              ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Oppdater\tF5",               ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Vis"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Oppdater\tF5",               ID_REFRESH
+        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Flette"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "&Gå til...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "&Innstillinger...",              ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Oppdater\tF5",               ID_REFRESH
     END
     POPUP "&Vis"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "&Lokasjonsvindu",             ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Oppdater\tF5",               ID_REFRESH
     END
     POPUP "&Flette"
     BEGIN

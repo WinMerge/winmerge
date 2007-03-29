@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "Select &All\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "選項(&O)...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "更新(&S)\tF5",                ID_REFRESH
-        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "檢視(&V)"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "更新(&S)\tF5",                ID_REFRESH
+        MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Merge"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "移至(&G)...\tCtrl+G",         ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "選項(&O)...",                 ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "更新(&S)\tF5",                ID_REFRESH
     END
     POPUP "檢視(&V)"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "位置窗框(&P)",                ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "語言(&L)...",                 ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "更新(&S)\tF5",                ID_REFRESH
     END
     POPUP "合併(&M)"
     BEGIN

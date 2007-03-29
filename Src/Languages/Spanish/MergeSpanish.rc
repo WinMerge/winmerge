@@ -196,9 +196,6 @@ BEGIN
         MENUITEM "&Seleccionar todo\tCtrl+A",         ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "Conf&iguración...",             ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Refrescar\tF5",              ID_REFRESH
-        MENUITEM "&Refrescar seleccionados\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Ver"
     BEGIN
@@ -219,6 +216,9 @@ BEGIN
         MENUITEM "Estadísticas de &comparación",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Idi&oma...",                  ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Refrescar\tF5",              ID_REFRESH
+        MENUITEM "&Refrescar seleccionados\tCtrl+F5",  ID_DIR_RESCAN
     END
     POPUP "&Combinar"
     BEGIN
@@ -357,8 +357,6 @@ BEGIN
         MENUITEM "Ir &a...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
         MENUITEM "Conf&iguración...",             ID_OPTIONS
-        MENUITEM SEPARATOR
-        MENUITEM "&Refrescar\tF5",              ID_REFRESH
     END
     POPUP "&Ver"
     BEGIN
@@ -379,6 +377,8 @@ BEGIN
         MENUITEM "Panel de &posición",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "Idi&oma...",                  ID_VIEW_LANGUAGE
+        MENUITEM SEPARATOR
+        MENUITEM "&Refrescar\tF5",              ID_REFRESH
     END
     POPUP "&Combinar"
     BEGIN
