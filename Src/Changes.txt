@@ -5,6 +5,8 @@ Add new items to top.
 2007-03-29 Tim
  PATCH: [ 1646210 ] Use CSS for HTML report
   Src: DirCmpReport.cpp
+ PATCH: [ 1686279 ] New icons for Copy and Advance
+  Src/res: ToolbarDisabled.bmp ToolbarEnabled.bmp
 
 2007-03-29 Kimmo
  PATCH: [ 1689854 ] C# development file filter
