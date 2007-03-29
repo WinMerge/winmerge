@@ -305,7 +305,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Skriv ut...",                   ID_FILE_PRINT
-        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Utskrifts&format",                 ID_FILE_PAGE_SETUP
         MENUITEM "Förhandsgranska u&tskrift",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "V&änster fil skrivskyddad",   ID_FILE_LEFT_READONLY

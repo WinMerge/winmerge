@@ -9,6 +9,9 @@ Add new items to top.
   Patch from Dan Pidcock
   Src: Merge.rc
   Src/Languages/*: Merge*.rc
+ PATCH: [ 1689515 ] Swedish translation of "Page Se&tup"
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
 
 2007-03-27 Tim
  RFE: [ 1646407 ] Use "equal" or "not equal" as file compare icon
