@@ -60,7 +60,7 @@ Public Function PrediffBufferW(ByRef text As String, ByRef size As Long, ByRef b
     Select Case sChar
       Case "N", "n", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" 'N or number...
         If (bLineHasStarted = True) Then 'If line has started...
-          sChar = " "
+          sChar = ""
           bChanged = True
         End If
       Case vbCr, vbLf 'EOL...
@@ -73,6 +73,7 @@ Public Function PrediffBufferW(ByRef text As String, ByRef size As Long, ByRef b
   
   If (bChanged = True) Then 'If text has changed...
     text = sTemp
+    size = Len(sTemp)
   End If
   PrediffBufferW = True
 End Function
