@@ -24,6 +24,7 @@ Inactive/past developers:
 
 Graphic Design:
 * Alexander Skinner
+* Ryan Mott
 
 Localization:
 * Bulgarian:	
