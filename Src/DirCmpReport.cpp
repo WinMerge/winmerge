@@ -294,7 +294,28 @@ void DirCmpReport::GenerateHTMLHeader()
 		_T("\t\"http://www.w3.org/TR/html4/loose.dtd\">\n")
 		_T("<html>\n<head>\n\t<title>"));
 	WriteString(m_sTitle);
-	WriteString(_T("</title>\n</head>\n<body>\n"));
+	WriteString(_T("</title>\n"));
+	WriteString(_T("\t<style type=\"text/css\">\n\t<!--\n"));
+	WriteString(_T("\t\tbody {\n"));
+	WriteString(_T("\t\t\tfont-family: sans-serif;\n"));
+	WriteString(_T("\t\t\tfont-size: smaller;\n"));
+	WriteString(_T("\t\t}\n"));
+	WriteString(_T("\t\ttable {\n"));
+	WriteString(_T("\t\t\tborder-collapse: collapse;\n"));
+	WriteString(_T("\t\t\tborder: 1px solid gray;\n"));
+	WriteString(_T("\t\t}\n"));
+	WriteString(_T("\t\tth,td {\n"));
+	WriteString(_T("\t\t\tpadding: 3px;\n"));
+	WriteString(_T("\t\t\ttext-align: left;\n"));
+	WriteString(_T("\t\t\tvertical-align: top;\n"));
+	WriteString(_T("\t\t\tborder: 1px solid gray;\n"));
+	WriteString(_T("\t\t}\n"));
+	WriteString(_T("\t\tth {\n"));
+	WriteString(_T("\t\t\tcolor: black;\n"));
+	WriteString(_T("\t\t\tbackground: silver;\n"));
+	WriteString(_T("\t\t}\n"));
+	WriteString(_T("\t-->\n\t</style>\n"));
+	WriteString(_T("</head>\n<body>\n"));
 	GenerateHTMLHeaderBodyPortion();
 }
 
