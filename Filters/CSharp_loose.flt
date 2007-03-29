@@ -1,0 +1,29 @@
+## This is a directory/file filter for WinMerge
+## This filter suppresses various binaries found in Visual C# source trees
+name: Visual C# loose
+desc: Suppresses various binaries found in Visual C# source trees
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
+def: include
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+f: \.aps$ ## VC Binary version of resource file, for quick loading
+f: \.bsc$ ## VC Browser database
+f: \.dll$ ## Windows DLL
+f: \.exe$ ## Windows executable
+f: \.obj$ ## VC object module file
+f: \.pdb$ ## VC program database file (debugging symbolic information)
+f: \.res$ ## VC compiled resources file (output of RC [resource compiler])
+f: \.suo$ ## VC options file (binary)
+f: \.cache$ ## ??
+f: \.resource$ ## Compiled resource file.
+f: \.xfrm ## ??
+f: \.bak$ ## backup
+
+d: \\cvs$ ## CVS control directory
+d: \\.svn$ ## Subversion control directory
+

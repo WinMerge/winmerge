@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-29 Kimmo
+ PATCH: [ 1689854 ] C# development file filter
+  Filters new file: CSharp_loose.flt
+
 2007-03-27 Tim
  RFE: [ 1646407 ] Use "equal" or "not equal" as file compare icon
   (Fixed the blurred icons and minimize the flicking effect)
