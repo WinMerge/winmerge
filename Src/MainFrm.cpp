@@ -1636,7 +1636,10 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	wp.rcNormalPosition.top=theApp.GetProfileInt(_T("Settings"), _T("MainTop"),0);
 	wp.rcNormalPosition.right=theApp.GetProfileInt(_T("Settings"), _T("MainRight"),0);
 	wp.rcNormalPosition.bottom=theApp.GetProfileInt(_T("Settings"), _T("MainBottom"),0);
-	wp.showCmd = nCmdShow;
+	if (nCmdShow != SW_MINIMIZE && theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
+		wp.showCmd = SW_MAXIMIZE;
+	else
+		wp.showCmd = nCmdShow;
 
 	CRect dsk_rc,rc(wp.rcNormalPosition);
 
@@ -1644,11 +1647,7 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 	dsk_rc.top = ::GetSystemMetrics(SM_YVIRTUALSCREEN);
 	dsk_rc.right = dsk_rc.left + ::GetSystemMetrics(SM_CXVIRTUALSCREEN);
 	dsk_rc.bottom = dsk_rc.top + ::GetSystemMetrics(SM_CYVIRTUALSCREEN);
-	if (nCmdShow != SW_MINIMIZE && theApp.GetProfileInt(_T("Settings"), _T("MainMax"), FALSE))
-	{
-		CMDIFrameWnd::ActivateFrame(SW_MAXIMIZE);
-	}
-	else if (rc.Width() != 0 && rc.Height() != 0)
+	if (rc.Width() != 0 && rc.Height() != 0)
 	{
 		// Ensure top-left corner is on visible area,
 		// 20 points margin is added to prevent "lost" window
