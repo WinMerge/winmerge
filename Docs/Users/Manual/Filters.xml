@@ -17,6 +17,10 @@
     needs are for file extensions. File filters installed with WinMerge have
     many useful examples.</para>
 
+    <para>WinMerge uses popular PCRE (Perl Compatible Regular Expressions)
+    regular expression engine. There are lots of resources for help with Perl
+    regular expression.</para>
+
     <sect3>
       <title>Help with regexps</title>
 
@@ -245,11 +249,13 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
 
     <important>
       <para>Line filter rule ignores single line it matches. It is not
-      possible to ignore partial lines or several lines with file filter
-      rule.</para>
+      possible to ignore partial lines or several lines with file filter rule.
+      Also, all lines in difference must match the filter so that difference
+      is ignored. If only one line of several matches, the difference is not
+      ignored.</para>
     </important>
 
-    <para>In file compare ignored lines are shown with own colors to
+    <para>In file compare ignored differences are shown with own colors to
     differentiate them from other differences. User can see these differences
     but cannot select or merge them.</para>
 
@@ -259,25 +265,19 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
     marker to rule. Or both markers if exact line is wanted to
     filtered.</para>
 
-    <tip>
-      <para>There are some troubles with "$" and end-of-line. One way to
-      work-around these troubles is to use "\W$" when possible.</para>
-    </tip>
-
     <para>Rules can be added and edited in Filters-dialog (Menu: <menuchoice>
         <guimenu>Tools</guimenu>
 
         <guimenuitem>Filters</guimenuitem>
-      </menuchoice>). In editbox, give one rule per line. Compare results are
-    not updated automatically after changing line filter rules. User can
-    update compare results by selecting <menuchoice>
+      </menuchoice>). Type one rule per row to the list. At the beginning of
+    the row is a checkbox for enabling / disabling single rules.</para>
+
+    <para>Compare results are not updated automatically after changing line
+    filter rules. User can update compare results by selecting <menuchoice>
         <guimenu>Edit</guimenu>
 
         <guimenuitem>Refresh</guimenuitem>
       </menuchoice> or <keycap>F5</keycap>.</para>
-
-    <para>Maximum length for linefilter (all lines in dialog) is 255
-    characters.</para>
 
     <example>
       <title>Some example line filters</title>
@@ -308,7 +308,7 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
 
       <para>Id-lines are like this:</para>
 
-      <screen>// &dollar;Id: Filters.xml,v 1.14.2.2 2005/10/29 17:21:16 kimmov Exp &dollar;</screen>
+      <screen>// $Id$</screen>
 
       <para>And they can be filtered with rule:</para>
 
