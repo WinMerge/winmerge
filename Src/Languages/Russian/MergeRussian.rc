@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "Выбрать &Шрифт...",           ID_VIEW_SELECTFONT
         MENUITEM "Использовать шрифт по &умолчанию", ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Предсравнение"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Перегрузить все плагины",    ID_RELOAD_PLUGINS

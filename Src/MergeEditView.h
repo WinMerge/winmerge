@@ -299,6 +299,9 @@ protected:
 	afx_msg void OnHelp();
 	afx_msg void OnViewMargin();
 	afx_msg void OnUpdateViewMargin(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateViewChangeScheme(CCmdUI *pCmdUI);
+	afx_msg void OnChangeScheme(UINT nID);
+	afx_msg void OnUpdateChangeScheme(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

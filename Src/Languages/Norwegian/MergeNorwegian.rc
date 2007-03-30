@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "Velg &skrifttype...",         ID_VIEW_SELECTFONT
         MENUITEM "Bruk standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Verktøylinje",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Forhåndsforskjell"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Oppdater programtillegg",    ID_RELOAD_PLUGINS

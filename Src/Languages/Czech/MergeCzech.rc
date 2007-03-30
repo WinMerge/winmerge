@@ -123,7 +123,11 @@ BEGIN
     POPUP "&Zobrazit"
     BEGIN
         MENUITEM "&Vybrat písmo...",            ID_VIEW_SELECTFONT
-        MENUITEM "P&oužít výchozí písmo",      ID_VIEW_USEDEFAULTFONT
+        MENUITEM "P&oužít výchozí písmo",       ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Panel &nástrojù",             ID_VIEW_TOOLBAR
         MENUITEM "&Stavový øádek",              ID_VIEW_STATUS_BAR
@@ -412,7 +416,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "Znovu &naèíst",             ID_RELOAD_PLUGINS

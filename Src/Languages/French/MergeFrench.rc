@@ -124,6 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Choisir une &police...",            ID_VIEW_SELECTFONT
         MENUITEM "&Utiliser la police par défaut",    ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",                 ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Barre d'&outils",                   ID_VIEW_TOOLBAR
         MENUITEM "Barre d'&état",                     ID_VIEW_STATUS_BAR
@@ -412,7 +416,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Pré-comparer"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recharger les plugiciels",   ID_RELOAD_PLUGINS
@@ -2781,7 +2785,7 @@ BEGIN
     ID_VIEW_LANGUAGE        "Sélectionner le langage de l'interface\nLangage"
     ID_VIEW_LINEDIFFS       "Afficher les différences des lignes avec différentes couleurs\nAfficher différences des lignes"
     ID_VIEW_SWAPPANES       "Intervertir la position de deux fenêtres"
-    ID_VIEW_LINENUMBERS^    "Afficher la numérotation des lignes\nAfficher la numérotation des lignes"
+    ID_VIEW_LINENUMBERS     "Afficher la numérotation des lignes\nAfficher la numérotation des lignes"
     ID_VIEW_WORDWRAP        "Afficher ou masquer le retour à la ligne automatique\nRetour à la ligne automatique"
     ID_VIEW_FILEMARGIN      "Afficher les marges des deux fenêtres\nAfficher les marges"
 END

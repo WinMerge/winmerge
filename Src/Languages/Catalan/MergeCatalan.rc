@@ -124,6 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
@@ -412,7 +416,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediferenciació"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Recarrega els connectors",   ID_RELOAD_PLUGINS

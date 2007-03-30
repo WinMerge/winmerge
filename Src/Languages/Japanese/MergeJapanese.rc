@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "比較前処理プラグイン(&P)"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "プラグインの再読込み(&R)",    ID_RELOAD_PLUGINS

@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS

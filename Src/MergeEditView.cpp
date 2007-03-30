@@ -194,6 +194,9 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_HELP, OnHelp)
 	ON_COMMAND(ID_VIEW_FILEMARGIN, OnViewMargin)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_FILEMARGIN, OnUpdateViewMargin)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
+	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
+	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3136,4 +3139,61 @@ void CMergeEditView::OnUpdateViewMargin(CCmdUI* pCmdUI)
 	BOOL bViewMargin = GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN);
 	pCmdUI->Enable(TRUE);
 	pCmdUI->SetCheck(bViewMargin);
+}
+
+/**
+* @brief Create the "Change Scheme" sub menu.
+* @param [in] pCmdUI Pointer to UI item to update.
+*/
+void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
+{
+	// Delete the place holder menu.
+	pCmdUI->m_pSubMenu->DeleteMenu(0, MF_BYPOSITION);
+
+	const HMENU hSubMenu = pCmdUI->m_pSubMenu->m_hMenu;
+
+	for (int i = CCrystalTextView::SRC_PLAIN; i <= CCrystalTextView::SRC_XML; ++i)
+	{
+		DoAppendMenu(hSubMenu,
+			MF_STRING,
+			ID_COLORSCHEME_FIRST + i,
+			CCrystalTextView::m_SourceDefs[i].name);
+	}
+
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+* @brief Change the editor's syntax highlighting scheme.
+* @param [in] nID Selected color scheme sub menu id.
+*/
+void CMergeEditView::OnChangeScheme(UINT nID)
+{
+	CMergeDoc *pDoc = GetDocument();
+	ASSERT(pDoc != NULL);
+
+	for (int nPane = 0; nPane < 2; nPane++) 
+	{
+		CMergeEditView *pView = pDoc->GetView(nPane);
+		ASSERT(pView != NULL);
+
+		if (pView != NULL)
+		{
+			pView->SetTextType(CCrystalTextView::TextType(nID - ID_COLORSCHEME_FIRST));
+		}
+	}
+
+	pDoc->UpdateAllViews(NULL);
+}
+
+/**
+* @brief Enable all color schemes sub menu items.
+* @param [in] pCmdUI Pointer to UI item to update.
+*/
+void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
+{
+	const bool bIsCurrentScheme = (m_CurSourceDef->type == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
+	pCmdUI->SetCheck(bIsCurrentScheme);
+
+	pCmdUI->Enable(TRUE);
 }

@@ -124,6 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Escolher &Fonte...",          ID_VIEW_SELECTFONT
         MENUITEM "Usar F&onte Padrão",          ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Barra de &Ferramentas",       ID_VIEW_TOOLBAR
         MENUITEM "Barra de &Status",            ID_VIEW_STATUS_BAR
@@ -412,7 +416,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS

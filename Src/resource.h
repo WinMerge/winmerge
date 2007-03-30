@@ -1094,6 +1094,9 @@
 #define ID_EDIT_CLEAR_ALL_BOOKMARKS     33118
 #define ID_DEBUG_RESETOPTIONS           33119
 #define ID_VIEW_FILEMARGIN              33120
+#define ID_VIEW_CHANGESCHEME            33121
+#define ID_COLORSCHEME_FIRST            33122
+#define ID_COLORSCHEME_LAST             33162
 
 // Next default values for new objects
 // 
@@ -1101,7 +1104,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        235
-#define _APS_NEXT_COMMAND_VALUE         33121
+#define _APS_NEXT_COMMAND_VALUE         33163
 #define _APS_NEXT_CONTROL_VALUE         1334
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

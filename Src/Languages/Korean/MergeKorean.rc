@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "플러그인 다시 로드(&R)",             ID_RELOAD_PLUGINS

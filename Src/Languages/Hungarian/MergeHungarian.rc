@@ -124,9 +124,12 @@ BEGIN
     BEGIN
         MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
         MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
-        MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
-        MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
+        MENUITEM "&Eszköztár",               ID_VIEW_TOOLBAR
+        MENUITEM "&Álapotsor",               ID_VIEW_STATUS_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Nyelv...",                ID_VIEW_LANGUAGE
     END
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Elõvizsgáló"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Bõvítmények betöltése",             ID_RELOAD_PLUGINS

@@ -124,6 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "選取字型(&F)...",             ID_VIEW_SELECTFONT
         MENUITEM "使用預設的字型(&O)",          ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "工具列(&T)",                  ID_VIEW_TOOLBAR
         MENUITEM "狀態列(&S)",                  ID_VIEW_STATUS_BAR
@@ -412,7 +416,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "前置不同(&P)"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "重新載入外掛(&R)",            ID_RELOAD_PLUGINS

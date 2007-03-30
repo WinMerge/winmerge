@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "Fo&nt Seç",                   ID_VIEW_SELECTFONT
         MENUITEM "&Varsayýlan Fontu Kullan",    ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Araç Çubuðu",                 ID_VIEW_TOOLBAR
         MENUITEM "Durum Çubuðu",                ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Öncelikli Fark"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "Eklentileri &Tekrar Yükle",   ID_RELOAD_PLUGINS

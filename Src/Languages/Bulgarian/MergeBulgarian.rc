@@ -124,6 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Избери &шрифт...",             ID_VIEW_SELECTFONT
         MENUITEM "Използвай ш&рифт по подразбиране",           ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",                ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Инструменти",                    ID_VIEW_TOOLBAR
         MENUITEM "&Лента на състоянието",                 ID_VIEW_STATUS_BAR
@@ -412,7 +416,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Налични"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Презареди добавките",             ID_RELOAD_PLUGINS

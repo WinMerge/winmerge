@@ -124,6 +124,9 @@ BEGIN
     BEGIN
         MENUITEM "&Zvoliù pÌsmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Pouûiù z·kladnÈ pÌsm&o",      ID_VIEW_USEDEFAULTFONT
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "&Panel n·strojov",            ID_VIEW_TOOLBAR
         MENUITEM "&Stavov˝ riadok",             ID_VIEW_STATUS_BAR
@@ -412,7 +415,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Predspracovanie"
         BEGIN
-            MENUITEM "",                        ID_NO_PREDIFFER
+            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Znovu naËÌtaù z·suvnÈ moduly", ID_RELOAD_PLUGINS
