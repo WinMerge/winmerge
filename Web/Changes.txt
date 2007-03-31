@@ -1,3 +1,8 @@
+2007-03-31 Tim
+ PATCH: [ 1691700 ] Web: Changes for new stable release 2.6.6
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.6: changes.txt index.php
+
 2007-03-18 Tim
  Redirect translations status page to Wiki.
   Web: .htaccess

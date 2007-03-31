@@ -1,3 +1,50 @@
+2007-03-29 2.6.6 Stable Release (R4204)
+
+2007-03-19 Kimmo
+ PATCH: [ 1659183 ] Add Vista security attributes to manifest files
+  Src/res: WinMerge.exe.manifest WinMergeU.exe.manifest
+
+2007-03-11 Tim
+ PATCH: [ 1582537 ] CSS syntax highlighter
+  Src: Merge.dsp
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+  editlib new file: css.cpp
+
+2007-03-07 Takashi
+ PATCH: [ 1675211 ] Fix crash when hiding parent folder item on folder view
+  Src/DirView.cpp
+
+2007-03-04 Kimmo
+ BUG: [ 1664832 ] Typo Error in the Registry
+  ShellExtension: WinMergeShell.rgs
+ Bump ShellExtension version to 1.9.2
+  ShellExtension: ShellExtension.rc
+
+2007-03-04 Tim
+ BUG: [ 1668996 ] Two "Copy Right" buttons in Russian GUI.
+  Src/Languages/Russian: MergeRussian.rc
+
+2007-03-01 Kimmo
+ PATCH: [ 1664689 ] French translation (Update)
+  Submitted by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+
+2007-02-27 Kimmo
+ PATCH: [ 1664689 ] French translation
+  Submitted by Jean-F Jolin
+  Src/Languages/French: MergeFrench.rc
+
+2007-02-10 Kimmo
+ PATCH: [ 1650831 ] Polish translation update for WinMerge 2.6.4
+  Submitted by dr_prozac
+   Src/Languages/Polish: MergePolish.rc
+
+2007-01-30 Kimmo
+ PATCH: [ 1639493 ] Updated Bulgarian language files
+  Submitted by tigertron
+  Src/Languages/Bulgarian: MergeBulgarian.rc
+  Docs/Users/Languages: Readme-Bulgarian.txt
+
 2007-01-17 2.6.4 Stable Release (R4067)
 
 2007-01-15 Kimmo
