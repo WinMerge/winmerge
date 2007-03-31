@@ -2,6 +2,15 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-31 Takashi
+ PATCH: [ 1603292 ] Add tab interface for MDI child windows
+  Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc OptionsDef.h OptionsInit.cpp
+   resource.h
+  Src/Common: MDITabBar.cpp MDITabBar.h
+  Src/Languages/*: Merge*.rc
+ Fix broken resources
+  Src/Languages/*: Merge*.rc
+
 2007-03-31 Kimmo
  PATCH: [ 1689293 ] Batch file for building WinMerge files
   : buildall.bat
@@ -11,7 +20,6 @@ Add new items to top.
   Submitted by from Dan Pidcock
   Src: MainFrm.cpp
 
->>>>>>> .r4215
 2007-03-30 Gal
  RFE: [ 1690346 ] Manual selection of syntax highlighting scheme
   Src/Languages/*: Merge*.rc

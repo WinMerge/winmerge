@@ -124,12 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Seleccionar &tipo de letra...",        ID_VIEW_SELECTFONT
         MENUITEM "Usar tipo de letra del Siste&ma",      ID_VIEW_USEDEFAULTFONT
-        BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
-        END
         MENUITEM SEPARATOR
         MENUITEM "Barra de &herramientas",      ID_VIEW_TOOLBAR
         MENUITEM "Barra de &estado",            ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "Idi&oma...",                  ID_VIEW_LANGUAGE
     END
@@ -215,6 +213,7 @@ BEGIN
         MENUITEM "Usar tipo de letra del Siste&ma",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         MENUITEM "Barra de &herramientas",      ID_VIEW_TOOLBAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Barra de &estado",            ID_VIEW_STATUS_BAR
         MENUITEM "Estadísticas de &comparación",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
@@ -365,6 +364,10 @@ BEGIN
     BEGIN
         MENUITEM "Seleccionar &tipo de letra...",        ID_VIEW_SELECTFONT
         MENUITEM "Usar tipo de letra del Siste&ma",      ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Mostrar &espacios",            ID_VIEW_WHITESPACE
         MENUITEM "Mostrar diferencias de &línea",      ID_VIEW_LINEDIFFS
@@ -376,6 +379,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra de &herramientas",      ID_VIEW_TOOLBAR
         MENUITEM "Barra de &estado",            ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Panel de di&ferencias",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Panel de &posición",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -1794,6 +1798,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Muestra la barra de herramientas\nBarra de Herramientas"
     ID_VIEW_STATUS_BAR      "Muestra la Barra de Estado\nBarra de Estado"
+    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
 END
 
 // Windows System menu

@@ -532,6 +532,10 @@ SOURCE=.\markdown.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\MDITabBar.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Merge.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -1282,6 +1286,10 @@ SOURCE=.\MainFrm.h
 # Begin Source File
 
 SOURCE=.\markdown.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\MDITabBar.h
 # End Source File
 # Begin Source File
 

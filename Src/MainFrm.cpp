@@ -144,6 +144,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_COMMAND(ID_VIEW_TOOLBAR, OnViewToolbar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
+	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER, OnUser)
@@ -275,6 +277,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		return -1;      // fail to create
 	}
 	
+	if (!m_wndTabBar.Create(this))
+	{
+		TRACE0("Failed to create tab bar\n");
+		return -1;      // fail to create
+	}
+	if (GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR) == false)
+		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
+
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
 		  sizeof(indicators)/sizeof(UINT)))
@@ -2615,6 +2625,25 @@ void CMainFrame::OnViewToolbar()
 }
 
 /**
+ * @brief Updates "Show Tabbar" menuitem.
+ */
+void CMainFrame::OnUpdateViewTabBar(CCmdUI* pCmdUI) 
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR));
+}
+
+/**
+ * @brief Show/hide tabbar.
+ */
+void CMainFrame::OnViewTabBar()
+{
+	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR);
+	GetOptionsMgr()->SaveOption(OPT_SHOW_TABBAR, bShow);
+
+	CMDIFrameWnd::ShowControlBar(&m_wndTabBar, bShow, 0);
+}
+
+/**
  * @brief Open project-file.
  */
 void CMainFrame::OnFileOpenproject()
@@ -3107,4 +3136,14 @@ void CMainFrame::OnDebugResetOptions()
 		CMergeApp *app = dynamic_cast<CMergeApp *>(AfxGetApp());
 		app->ResetOptions();
 	}
+}
+
+/**
+ * @brief Called when the document title is modified.
+ */
+void CMainFrame::OnUpdateFrameTitle(BOOL bAddToTitle)
+{
+	CFrameWnd::OnUpdateFrameTitle(bAddToTitle);
+	
+	m_wndTabBar.UpdateTabs();
 }

@@ -17,9 +17,10 @@ const TCHAR OPT_SHOW_IDENTICAL[] = _T("Settings/ShowIdentical");
 const TCHAR OPT_SHOW_BINARIES[] = _T("Settings/ShowBinaries");
 const TCHAR OPT_SHOW_SKIPPED[] = _T("Settings/ShowSkipped");
 
-// Show/hide toolbar/statusbar
+// Show/hide toolbar/statusbar/tabbar
 const TCHAR OPT_SHOW_TOOLBAR[] = _T("Settings/ShowToolbar");
 const TCHAR OPT_SHOW_STATUSBAR[] = _T("Settings/ShowStatusbar");
+const TCHAR OPT_SHOW_TABBAR[] = _T("Settings/ShowTabbar");
 
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
 const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");

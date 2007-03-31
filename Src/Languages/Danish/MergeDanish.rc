@@ -124,13 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Vælg &skrifttype...",         ID_VIEW_SELECTFONT
         MENUITEM "Brug standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
-        POPUP "Change Scheme"
-        BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
-        END
         MENUITEM SEPARATOR
         MENUITEM "V&ærktøjslinje",              ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&prog...",                   ID_VIEW_LANGUAGE
     END
@@ -217,6 +214,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "V&ærktøjslinje",              ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&prog...",                   ID_VIEW_LANGUAGE
@@ -366,6 +364,10 @@ BEGIN
     BEGIN
         MENUITEM "Vælg &skrifttype...",         ID_VIEW_SELECTFONT
         MENUITEM "Brug standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Vis &mellemrum",              ID_VIEW_WHITESPACE
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
@@ -377,6 +379,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "V&ærktøjslinje",              ID_VIEW_TOOLBAR
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "H&orisontalt panel",                  ID_VIEW_DETAIL_BAR
         MENUITEM "V&ertikalt panel",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -1795,6 +1798,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Vis eller gem værktøjslinjen\nVis værktøjslinjen"
     ID_VIEW_STATUS_BAR      "Vis eller gem statuslinjen\nVis statuslinjen"
+    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
 END
 
 // Windows System menu

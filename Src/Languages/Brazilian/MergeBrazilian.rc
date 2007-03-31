@@ -124,13 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Escolher &Fonte...",          ID_VIEW_SELECTFONT
         MENUITEM "Usar F&onte Padrão",          ID_VIEW_USEDEFAULTFONT
-        POPUP "Change Scheme"
-        BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
-        END
         MENUITEM SEPARATOR
         MENUITEM "Barra de &Ferramentas",       ID_VIEW_TOOLBAR
         MENUITEM "Barra de &Status",            ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Idioma...",                  ID_VIEW_LANGUAGE
     END
@@ -217,6 +214,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra de &Ferramentas",       ID_VIEW_TOOLBAR
         MENUITEM "Barra de &Status",            ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Idioma...",                  ID_VIEW_LANGUAGE
@@ -366,6 +364,10 @@ BEGIN
     BEGIN
         MENUITEM "Escolher &Fonte...",          ID_VIEW_SELECTFONT
         MENUITEM "Usar F&onte Padrão",          ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "E&xibir Espaços",             ID_VIEW_WHITESPACE
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
@@ -377,6 +379,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra de &Ferramentas",       ID_VIEW_TOOLBAR
         MENUITEM "Barra de &Status",            ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
         MENUITEM "Location &Pane",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -1795,6 +1798,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Exibe ou esconde a barra de ferramentas\nChavea Barra de Ferramentas"
     ID_VIEW_STATUS_BAR      "Exibe ou esconde a barra de status\nChavea Barra de Status"
+    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
 END
 
 // Windows System menu

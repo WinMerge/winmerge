@@ -30,6 +30,7 @@
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
 #include "ToolBarXPThemes.h"
+#include "MDITabBar.h"
 #include "OptionsMgr.h"
 #include "VSSHelper.h"
 struct FileLocation;
@@ -134,6 +135,7 @@ public:
 	public:
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
+	virtual void OnUpdateFrameTitle(BOOL bAddToTitle);
 	//}}AFX_VIRTUAL
 
 // Implementation methods
@@ -194,6 +196,7 @@ protected:
 	// control bar embedded members
 	CStatusBar  m_wndStatusBar;
 	ToolBarXPThemes m_wndToolBar;
+	CMDITabBar m_wndTabBar;
 
 	enum
 	{
@@ -265,6 +268,8 @@ protected:
 	afx_msg void OnUpdateHelpMerge7zmismatch(CCmdUI* pCmdUI);
 	afx_msg void OnViewStatusBar();
 	afx_msg void OnViewToolbar();
+	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
+	afx_msg void OnViewTabBar();
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser(WPARAM wParam, LPARAM lParam);

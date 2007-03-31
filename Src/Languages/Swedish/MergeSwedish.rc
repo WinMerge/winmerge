@@ -124,9 +124,6 @@ BEGIN
     BEGIN
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
-        BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
-        END
         MENUITEM SEPARATOR
         MENUITEM "V&erktygsfält",               ID_VIEW_TOOLBAR
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
@@ -365,6 +362,10 @@ BEGIN
     BEGIN
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Visa &mellanslag",            ID_VIEW_WHITESPACE
         MENUITEM "Visa &radskillnader",         ID_VIEW_LINEDIFFS
@@ -1794,6 +1795,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Visar eller gömmer verktygsfältet\nVäxla verktygsfält"
     ID_VIEW_STATUS_BAR      "Visar eller gömmer statusfältet\nVäxla statusfältet"
+    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
 END
 
 // Windows System menu

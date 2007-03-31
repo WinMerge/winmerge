@@ -124,12 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "Выбрать &Шрифт...",           ID_VIEW_SELECTFONT
         MENUITEM "Использовать шрифт по &умолчанию", ID_VIEW_USEDEFAULTFONT
-        BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
-        END
         MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Язык...",                    ID_VIEW_LANGUAGE
     END
@@ -216,6 +214,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Язык...",                    ID_VIEW_LANGUAGE
@@ -365,6 +364,10 @@ BEGIN
     BEGIN
         MENUITEM "Выбрать &Шрифт...",           ID_VIEW_SELECTFONT
         MENUITEM "Использовать шрифт по &умолчанию", ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Показы&вать невидимые",       ID_VIEW_WHITESPACE
         MENUITEM "Показывать отличия в строках", ID_VIEW_LINEDIFFS
@@ -376,6 +379,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Па&нель инструментов",        ID_VIEW_TOOLBAR
         MENUITEM "&Строка состояния",           ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Пане&ль сравнения",           ID_VIEW_DETAIL_BAR
         MENUITEM "Панель лока&ций",             ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -1794,6 +1798,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Показать или спрятать панель инструментов\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Показать или спрятать строку состояний\nToggle StatusBar"
+    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
 END
 
 // Windows System menu

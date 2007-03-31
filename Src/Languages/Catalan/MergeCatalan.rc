@@ -124,13 +124,10 @@ BEGIN
     BEGIN
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
-        POPUP "Change Scheme"
-        BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
-        END
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
     END
@@ -217,6 +214,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Estadístiques de &comparació",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
@@ -366,6 +364,10 @@ BEGIN
     BEGIN
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
+        POPUP "Change Scheme"
+        BEGIN
+            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+        END
         MENUITEM SEPARATOR
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
         MENUITEM "Mostra les &diferències de la línia", ID_VIEW_LINEDIFFS
@@ -377,6 +379,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Barra d'ei&nes",              ID_VIEW_TOOLBAR
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Subfinest&ra de diferències", ID_VIEW_DETAIL_BAR
         MENUITEM "Subfinestra d'&ubicació",     ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -1813,6 +1816,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Mostra o amaga la barra d'eines\nBarra d'eines"
     ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat\nBarra d'estat"
+    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
 END
 
 // Windows System menu
