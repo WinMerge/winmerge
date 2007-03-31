@@ -2,11 +2,16 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-03-31 Kimmo
+ PATCH: [ 1689293 ] Batch file for building WinMerge files
+  : buildall.bat
+
 2007-03-30 Kimmo
  PATCH: [ 1690503 ] fix for bug 1659281 "WinMerge forgets monitor to use when th
   Submitted by from Dan Pidcock
   Src: MainFrm.cpp
 
+>>>>>>> .r4215
 2007-03-30 Gal
  RFE: [ 1690346 ] Manual selection of syntax highlighting scheme
   Src/Languages/*: Merge*.rc
