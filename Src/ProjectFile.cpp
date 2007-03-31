@@ -27,15 +27,36 @@
 
 #include "ProjectFile.h"
 
+// ATL conversion macro hack for UTF-8 conversion
+#define UTF82W(lpa) (\
+	((_lpa = lpa) == NULL) ? NULL : (\
+		_convert = (lstrlenA(_lpa)+1),\
+		AtlA2WHelper((LPWSTR) alloca(_convert*2), _lpa, _convert, CP_UTF8)))
+
+#define W2UTF8(lpw) (\
+	((_lpw = lpw) == NULL) ? NULL : (\
+		_convert = (lstrlenW(_lpw)+1)*6,\
+		AtlW2AHelper((LPSTR) alloca(_convert), _lpw, _convert, CP_UTF8)))
+
+#define UTF82A(lpu) W2A(UTF82W(lpu))
+#define A2UTF8(lpa) W2UTF8(A2W(lpa))
+#ifdef _UNICODE
+#  define UTF82T(lpu) UTF82W(lpu)
+#  define T2UTF8(lpw) W2UTF8(lpw)
+#else
+#  define UTF82T(lpu) UTF82A(lpu)
+#  define T2UTF8(lpw) A2UTF8(lpw)
+#endif
+
 // Constants for xml element names
-const TCHAR Root_element_name[] = _T("project");
-const TCHAR Paths_element_name[] = _T("paths");
-const TCHAR Left_element_name[] = _T("left");
-const TCHAR Right_element_name[] = _T("right");
-const TCHAR Filter_element_name[] = _T("filter");
-const TCHAR Subfolders_element_name[] = _T("subfolders");
-const TCHAR Left_ro_element_name[] = _T("left-readonly");
-const TCHAR Right_ro_element_name[] = _T("right-readonly");
+const char Root_element_name[] = "project";
+const char Paths_element_name[] = "paths";
+const char Left_element_name[] = "left";
+const char Right_element_name[] = "right";
+const char Filter_element_name[] = "filter";
+const char Subfolders_element_name[] = "subfolders";
+const char Left_ro_element_name[] = "left-readonly";
+const char Right_ro_element_name[] = "right-readonly";
 
 /** 
  * @brief Standard constructor.
@@ -108,7 +129,7 @@ scew_element* ProjectFile::GetRootElement(scew_tree * tree)
 	if (root != NULL)
 	{
 		// Make sure we have correct root element
-		if (_tcscmp(Root_element_name, scew_element_name(root)) != 0)
+		if (strcmp(Root_element_name, scew_element_name(root)) != 0)
 		{
 			root = NULL;
 		}
@@ -124,6 +145,7 @@ scew_element* ProjectFile::GetRootElement(scew_tree * tree)
  */
 BOOL ProjectFile::GetPathsData(scew_element * parent)
 {
+	USES_CONVERSION;
 	BOOL bFoundPaths = FALSE;
 	scew_element *paths = NULL;
 
@@ -151,43 +173,43 @@ BOOL ProjectFile::GetPathsData(scew_element * parent)
 
 		if (left)
 		{
-			LPCTSTR path = NULL;
+			LPCSTR path = NULL;
 			path = scew_element_contents(left);
-			m_leftFile = path;
+			m_leftFile = UTF82T(path);
 			m_bHasLeft = TRUE;
 		}
 		if (right)
 		{
-			LPCTSTR path = NULL;
+			LPCSTR path = NULL;
 			path = scew_element_contents(right);
-			m_rightFile = path;
+			m_rightFile = UTF82T(path);
 			m_bHasRight = TRUE;
 		}
 		if (filter)
 		{
-			LPCTSTR filtername = NULL;
+			LPCSTR filtername = NULL;
 			filtername = scew_element_contents(filter);
-			m_filter = filtername;
+			m_filter = UTF82T(filtername);
 			m_bHasFilter = TRUE;
 		}
 		if (subfolders)
 		{
-			LPCTSTR folders = NULL;
+			LPCSTR folders = NULL;
 			folders = scew_element_contents(subfolders);
-			m_subfolders = _ttoi(folders);
+			m_subfolders = atoi(folders);
 			m_bHasSubfolders = TRUE;
 		}
 		if (left_ro)
 		{
-			LPCTSTR readonly = NULL;
+			LPCSTR readonly = NULL;
 			readonly = scew_element_contents(left_ro);
-			m_bLeftReadOnly = (_ttoi(readonly) != 0);
+			m_bLeftReadOnly = (atoi(readonly) != 0);
 		}
 		if (right_ro)
 		{
-			LPCTSTR readonly = NULL;
+			LPCSTR readonly = NULL;
 			readonly = scew_element_contents(right_ro);
-			m_bRightReadOnly = (_ttoi(readonly) != 0);
+			m_bRightReadOnly = (atoi(readonly) != 0);
 		}
 	}
 	return bFoundPaths;
@@ -222,7 +244,7 @@ BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 	else
 		success = FALSE;
 	
-	scew_tree_set_xml_encoding(tree, _T("UTF-8"));
+	scew_tree_set_xml_encoding(tree, "UTF-8");
 
 	// Set the XML file standalone
 	scew_tree_set_xml_standalone(tree, 1);
@@ -272,6 +294,7 @@ scew_element* ProjectFile::AddPathsElement(scew_element * parent)
  */
 BOOL ProjectFile::AddPathsContent(scew_element * parent)
 {
+	USES_CONVERSION;
 	scew_element* element = NULL;
 
 	if (!m_leftFile.IsEmpty())
@@ -279,7 +302,7 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 		LPCTSTR path;
 		element = scew_element_add(parent, Left_element_name);
 		path = m_leftFile.GetBuffer(MAX_PATH);
-		scew_element_set_contents(element, path);
+		scew_element_set_contents(element, T2UTF8(path));
 		m_leftFile.ReleaseBuffer();
 	}
 
@@ -288,7 +311,7 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 		LPCTSTR path;
 		element = scew_element_add(parent, Right_element_name);
 		path = m_rightFile.GetBuffer(MAX_PATH);
-		scew_element_set_contents(element, path);
+		scew_element_set_contents(element, T2UTF8(path));
 		m_rightFile.ReleaseBuffer();
 	}
 
@@ -297,27 +320,27 @@ BOOL ProjectFile::AddPathsContent(scew_element * parent)
 		LPCTSTR filter;
 		element = scew_element_add(parent, Filter_element_name);
 		filter = m_filter.GetBuffer(MAX_PATH);
-		scew_element_set_contents(element, filter);
+		scew_element_set_contents(element, T2UTF8(filter));
 		m_filter.ReleaseBuffer();
 	}
 
 	element = scew_element_add(parent, Subfolders_element_name);
 	if (m_subfolders != 0)
-		scew_element_set_contents(element, _T("1"));
+		scew_element_set_contents(element, "1");
 	else
-		scew_element_set_contents(element, _T("0"));
+		scew_element_set_contents(element, "0");
 
 	element = scew_element_add(parent, Left_ro_element_name);
 	if (m_bLeftReadOnly)
-		scew_element_set_contents(element, _T("1"));
+		scew_element_set_contents(element, "1");
 	else
-		scew_element_set_contents(element, _T("0"));
+		scew_element_set_contents(element, "0");
 
 	element = scew_element_add(parent, Right_ro_element_name);
 	if (m_bRightReadOnly)
-		scew_element_set_contents(element, _T("1"));
+		scew_element_set_contents(element, "1");
 	else
-		scew_element_set_contents(element, _T("0"));
+		scew_element_set_contents(element, "0");
 
 	return TRUE;
 }

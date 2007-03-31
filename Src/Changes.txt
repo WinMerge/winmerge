@@ -3,6 +3,10 @@ Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
 2007-03-31 Takashi
+ BUG: [ 1630762 ] Cannot save project file if including non-ascii chars
+  Src: Merge.dsp ProjectFile.cpp
+
+2007-03-31 Takashi
  PATCH: [ 1603292 ] Add tab interface for MDI child windows
   Src: MainFrm.cpp MainFrm.h Merge.dsp Merge.rc OptionsDef.h OptionsInit.cpp
    resource.h
