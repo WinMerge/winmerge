@@ -53,7 +53,7 @@ function Main()
   }
   else
   {
-    var Message = "Enter new version number (eg, 1.2.3.4)";
+    var Message = "Enter new version number (eg, 1.2.3.4 or 1.2.3)";
     var Title = "Version Number";
     var defval = "";
     var result = PromptBox(Message, Title, defval);
@@ -116,11 +116,12 @@ function ProcessFiles(filelist, params)
  ***************************************************/
 function DecodeVersion(version, params)
 {
-  var regex = /^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;
+  //BUG: "1.2.3." is accepted as valid!
+  var regex = /^(\d+)\.(\d+)\.(\d+)\.?(\d*)$/;
   var results= regex.exec(version)
   if (results == null || results.length!=5)
   {
-    WScript.Echo("Bad version string (must be format 1.2.3.4): Aborting.");
+    WScript.Echo("Bad version string (must be format 1.2.3.4 or 1.2.3): Aborting.");
     return false;
   }
   params.v1 = results[1];
@@ -207,7 +208,7 @@ function ProcessFile(filepath, filename, params)
 
   params.found1=0; // PRODUCTVERSION
   params.found2=0; // ProductVersion
-  params.found3=0; // FILEVERSIOn
+  params.found3=0; // FILEVERSION
   params.found4=0; // FileVersion
   params.found5=0; // PrivateBuild 0x8L
   
@@ -260,19 +261,27 @@ function ProcessLine(MainRc, line, params)
       return line;
     }
     var start = line.search(/\d+/);
-    line = line.substring(0, start) 
-      + params.v1 + "," + params.v2 + "," + params.v3 + "," + params.v4;
+    if (params.v4 != '')
+      line = line.substring(0, start) 
+        + params.v1 + "," + params.v2 + "," + params.v3 + "," + params.v4;
+    else
+      line = line.substring(0, start) 
+        + params.v1 + "," + params.v2 + "," + params.v3 + ",0";
     return line;
   }
 
-  var regexString = /^ *VALUE "ProductVersion", "(\d+).(\d+).(\d+).(\d+)(\\0|)" *$/;
+  var regexString = /^ *VALUE "ProductVersion", "(\d+).(\d+).(\d+).?(\d*)(\\0|)" *$/;
   if (regexString.test(line))
   {
     ++params.found2;
     // Allow multiple hits on this, as MergeCatalan.rc has more than one
     var start = line.search(/\d+/);
-    line = line.substring(0, start) 
-      + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
+    if (params.v4 != '')
+      line = line.substring(0, start) 
+        + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
+    else
+      line = line.substring(0, start) 
+        + params.v1 + "." + params.v2 + "." + params.v3 + "\"";
     return line;
   }
 
@@ -289,19 +298,27 @@ function ProcessLine(MainRc, line, params)
       return line;
     }
     var start = line.search(/\d+/);
-    line = line.substring(0, start) 
-      + params.v1 + "," + params.v2 + "," + params.v3 + "," + params.v4;
+    if (params.v4 != '')
+      line = line.substring(0, start) 
+        + params.v1 + "," + params.v2 + "," + params.v3 + "," + params.v4;
+    else
+      line = line.substring(0, start) 
+        + params.v1 + "," + params.v2 + "," + params.v3 + ",0";
     return line;
   }
 
-  var regexString = /^ *VALUE "FileVersion", "(\d+).(\d+).(\d+).(\d+)(\\0|)" *$/;
+  var regexString = /^ *VALUE "FileVersion", "(\d+).(\d+).(\d+).?(\d*)(\\0|)" *$/;
   if (regexString.test(line))
   {
     ++params.found4;
     // Allow multiple hits on this, as MergeCatalan.rc has more than one
     var start = line.search(/\d+/);
-    line = line.substring(0, start) 
-      + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
+    if (params.v4 != '')
+      line = line.substring(0, start) 
+        + params.v1 + "." + params.v2 + "." + params.v3 + "." + params.v4 + "\"";
+    else
+      line = line.substring(0, start) 
+        + params.v1 + "." + params.v2 + "." + params.v3 + "\"";
     return line;
   }
 
@@ -328,7 +345,7 @@ function ProcessLine(MainRc, line, params)
  ***************************************************/
 function ShowUsage()
 {
-  WScript.Echo("SetLanguageVersions [x.y.z.w]");
+  WScript.Echo("SetLanguageVersions [x.y.z(.w)]");
 }
 
 /***************************************************
