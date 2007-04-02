@@ -5,6 +5,9 @@ Add new items to top.
 2007-04-02 Kimmo
  RFE: [ 1685190 ] Add 1 pixel margin to line numbers area
   Src/editlib: ccrystaltextview.cpp
+ PATCH: [ 1693041 ] Fix couple of editor bugs
+  Submitted by Jeremy Dewey
+  editlib: ccrystaleditview.cpp ccrystaltextbuffer.cpp
 
 2007-04-01 Tim
  PATCH: [ 1692033 ] Use SetResourceVersions.wsf with 3 version numbers

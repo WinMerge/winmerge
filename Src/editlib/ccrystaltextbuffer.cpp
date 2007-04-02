@@ -1737,7 +1737,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
   paSavedRevisonNumbers->SetSize(nEndLine - nStartLine + 1);
   int i;
   for (i = 0; i < nEndLine - nStartLine + 1; i++)
-    (*paSavedRevisonNumbers)[i] = m_aLines[i].m_dwRevisionNumber;
+    (*paSavedRevisonNumbers)[i] = m_aLines[nStartLine + i].m_dwRevisionNumber;
 
   if (!InternalDeleteText (pSource, nStartLine, nStartChar, nEndLine, nEndChar))
   {
@@ -1763,7 +1763,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
       bGroupFlag = TRUE;
     }
 
-  AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (0, -1),
+  AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (nEndChar, nEndLine),
                  sTextToDelete, nAction, paSavedRevisonNumbers);
 
   if (bGroupFlag)

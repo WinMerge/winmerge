@@ -121,6 +121,7 @@ CCrystalEditView::CCrystalEditView ()
   m_bAutoIndent = TRUE;
   m_mapExpand = new CMap<CString, LPCTSTR, CString, LPCTSTR> (10);
   m_bMergeUndo = false;
+  m_bDisableBSAtSOL = FALSE;
 }
 
 CCrystalEditView:: ~CCrystalEditView ()
