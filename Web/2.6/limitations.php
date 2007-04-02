@@ -26,6 +26,10 @@
     <p><i>Workaround 2</i>: If you don't need the plugin, you can safely remove it.</p>
   </li>
   <li>
+    <p><strong>VSS integration cannot add new files to VSS</strong></p>
+    <p>If you need to add a new file, you must add it via VSS client program.</p>
+  </li>
+  <li>
     <p><strong>Unset WinMerge integration from ClearCase</strong></p>
     <p>To remove WinMerge integration, you'll need to edit one file by hand:</p>
     <ol>
