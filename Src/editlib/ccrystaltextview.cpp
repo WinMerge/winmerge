@@ -5149,6 +5149,8 @@ GetMarginWidth (CDC *pdc)
       for (n = 1; n <= nLines; n *= 10)
         ++nNumbers;
       nMarginWidth += GetCharWidth () * nNumbers;
+      if (!m_bSelMargin)
+        nMarginWidth += 2; // Small gap when symbol part disabled
     }
 
   if (m_bSelMargin)
