@@ -326,9 +326,8 @@ Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Fla
 ; 64-bit version of ShellExtension
 Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
-; Expat dlls
-Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core; Check: not IsWin64
-Source: ..\..\Build\expat\libexpatw.dll; DestDir: {app}; Flags: promptifolder; Components: Core; MinVersion: 0, 4
+; Expat dll
+Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core;
 
 ; PCRE dll
 Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core

@@ -1,3 +1,7 @@
+2007-04-03 Kimmo
+ PATCH: [ 1693012 ] Remove libexpatw.dll from installer
+  InnoSetup: WinMerge.iss
+
 2007-03-25 Tim
  RFE: [ 1687367 ] Move "MergeProject.ico" to WinMerge EXE
   InnoSetup: MergeProject.ico WinMerge.iss
