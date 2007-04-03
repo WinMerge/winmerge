@@ -128,62 +128,82 @@ CWinMergeShell::CWinMergeShell()
 HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 		LPDATAOBJECT pDataObj, HKEY hProgID)
 {
-	FORMATETC fmt = {CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL};
-	STGMEDIUM stg = {TYMED_HGLOBAL};
-	HDROP hDropInfo;
 	USES_WINMERGELOCALE;
+	HRESULT hr = E_INVALIDARG;
 
-	// Look for CF_HDROP data in the data object.
-	if (FAILED(pDataObj->GetData(&fmt, &stg)))
-		// Nope! Return an "invalid argument" error back to Explorer.
-		return E_INVALIDARG;
-
-	// Get a pointer to the actual data.
-	hDropInfo = (HDROP) GlobalLock(stg.hGlobal);
-
-	// Make sure it worked.
-	if (NULL == hDropInfo)
-		return E_INVALIDARG;
-
-	// Sanity check & make sure there is at least one filename.
-	UINT uNumFilesDropped = DragQueryFile (hDropInfo, 0xFFFFFFFF, NULL, 0);
-	m_nSelectedItems = uNumFilesDropped;
-
-	if (uNumFilesDropped == 0)
+	// Files/folders selected normally from the explorer
+	if (pDataObj)
 	{
+		FORMATETC fmt = {CF_HDROP, NULL, DVASPECT_CONTENT, -1, TYMED_HGLOBAL};
+		STGMEDIUM stg = {TYMED_HGLOBAL};
+		HDROP hDropInfo;
+
+		// Look for CF_HDROP data in the data object.
+		if (FAILED(pDataObj->GetData(&fmt, &stg)))
+			// Nope! Return an "invalid argument" error back to Explorer.
+			return E_INVALIDARG;
+
+		// Get a pointer to the actual data.
+		hDropInfo = (HDROP) GlobalLock(stg.hGlobal);
+
+		// Make sure it worked.
+		if (NULL == hDropInfo)
+			return E_INVALIDARG;
+
+		// Sanity check & make sure there is at least one filename.
+		UINT uNumFilesDropped = DragQueryFile (hDropInfo, 0xFFFFFFFF, NULL, 0);
+		m_nSelectedItems = uNumFilesDropped;
+
+		if (uNumFilesDropped == 0)
+		{
+			GlobalUnlock(stg.hGlobal);
+			ReleaseStgMedium(&stg);
+			return E_INVALIDARG;
+		}
+
+		hr = S_OK;
+
+		// Get all file names.
+		for (WORD x = 0 ; x < uNumFilesDropped; x++)
+		{
+			// Get the number of bytes required by the file's full pathname
+			UINT wPathnameSize = DragQueryFile(hDropInfo, x, NULL, 0);
+
+			// Allocate memory to contain full pathname & zero byte
+			wPathnameSize += 1;
+			LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
+
+			// If not enough memory, skip this one
+			if (npszFile == NULL)
+				continue;
+
+			// Copy the pathname into the buffer
+			DragQueryFile(hDropInfo, x, npszFile, wPathnameSize);
+
+			if (x < MaxFileCount)
+				m_strPaths[x] = npszFile;
+
+			delete[] npszFile;
+		}
 		GlobalUnlock(stg.hGlobal);
 		ReleaseStgMedium(&stg);
-		return E_INVALIDARG;
 	}
 
-	HRESULT hr = S_OK;
-
-	// Get all file names.
-	for (WORD x = 0 ; x < uNumFilesDropped; x++)
+	// No item selected - selection is the folder background
+	if (pidlFolder)
 	{
-		// Get the number of bytes required by the file's full pathname
-		UINT wPathnameSize = DragQueryFile(hDropInfo, x, NULL, 0);
+		TCHAR szPath[MAX_PATH] = {0};
 
-		// Allocate memory to contain full pathname & zero byte
-		wPathnameSize += 1;
-		LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
-
-		// If not enough memory, skip this one
-		if (npszFile == NULL)
-			continue;
-
-		// Copy the pathname into the buffer
-		DragQueryFile(hDropInfo, x, npszFile, wPathnameSize);
-
-		if (x < MaxFileCount)
-			m_strPaths[x] = npszFile;
-
-		delete[] npszFile;
+		if (SHGetPathFromIDList(pidlFolder, szPath))
+		{
+			m_strPaths[0] = szPath;
+			m_nSelectedItems = 1;
+			hr = S_OK;
+		}
+		else
+			hr = E_INVALIDARG;
 	}
-	GlobalUnlock(stg.hGlobal);
-	ReleaseStgMedium(&stg);
-
-    return hr;
+	return hr;
 }
 
 /// Adds context menu item

@@ -44,4 +44,18 @@ HKCR
 			}
 		}
 	}
+
+	NoRemove Directory
+	{
+		NoRemove Background
+		{
+			NoRemove ShellEx
+			{
+				NoRemove ContextMenuHandlers
+				{
+					ForceRemove WinMerge = s '{4E716236-AA30-4C65-B225-D68BBA81E9C2}'
+				}
+			}
+		}
+	}
 }
