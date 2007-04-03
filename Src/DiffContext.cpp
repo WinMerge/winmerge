@@ -262,7 +262,17 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 
 	m_pCompareOptions = GetCompareOptions(compareMethod);
 	if (m_pCompareOptions == NULL)
-		return FALSE;
+	{
+		// For Date and Date+Size compare NULL is ok since they don't have actual
+		// compare options.
+		if (compareMethod == CMP_DATE || compareMethod == CMP_DATE_SIZE ||
+			compareMethod == CMP_SIZE)
+		{
+			return TRUE;
+		}
+		else
+			return FALSE;
+	}
 
 	return TRUE;
 }
@@ -297,10 +307,11 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 		break;
 	}
 
+	m_nCompMethod = compareMethod;
+
 	if (m_pCompareOptions == NULL)
 		return NULL;
 
-	m_nCompMethod = compareMethod;
 	m_pCompareOptions->SetFromDiffOptions(*m_pOptions);
 
 	return m_pCompareOptions;

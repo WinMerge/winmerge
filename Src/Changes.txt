@@ -5,6 +5,8 @@ Add new items to top.
 2007-04-03 Kimmo
  PATCH: [ 1693113 ] Enable ShellExtension for folder backgrounds
   ShellExtension: WinMergeShell.cpp WinMergeShell.rgs
+ BUG: [ 1693441 ] Compare by date (and size) broken in 2.7.3.2
+  Src: DiffContext.cpp
 
 2007-04-03 Takashi
  BUG: [ 1693275 ] File extension filter does not work correctly
