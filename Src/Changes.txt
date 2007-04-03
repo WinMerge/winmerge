@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-03 Takashi
+ BUG: [ 1693275 ] File extension filter does not work correctly
+  Src: FileFilterHelper.cpp
+
 2007-04-02 Kimmo
  RFE: [ 1685190 ] Add 1 pixel margin to line numbers area
   Src/editlib: ccrystaltextview.cpp

@@ -218,6 +218,7 @@ void FileFilterHelper::SetMask(LPCTSTR strMask)
 	type = FilterList::ENC_ANSI;
 #endif
 
+	m_pMaskFilter->RemoveAllFilters();
 	m_pMaskFilter->AddRegExp(regexp_str, type);
 
 #ifdef UNICODE
