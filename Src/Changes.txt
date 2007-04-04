@@ -5,6 +5,9 @@ Add new items to top.
 2007-04-04 Kimmo
  Remove expat and SCEW unicode targets from build batch
   : buildall.bat
+ BUG: [ 1576168 ] Cannot find file filter path message is wrong
+  Src: FileFiltersDlg.cpp
+  Src/Languages/*: Merge*.rc
 
 2007-04-03 Kimmo
  PATCH: [ 1693113 ] Enable ShellExtension for folder backgrounds

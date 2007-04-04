@@ -1991,7 +1991,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Selecciona un nom de fitxer per al nou filtre"
     IDS_FILEFILTER_FILEMASK "Filtres de fitxer (*.flt)|*.flt|Tots els fitxers (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "No s'ha trobat el fitxer de plantilla de filtre de fitxer!\n\nCopieu el fitxer %1 a la carpeta WinMerge/Filters."
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "No es pot copiar el fitxer de plantilla de filtre a la carpeta de filtres:\n%1\n\nVerifiqueu que la carpeta existeix i s'hi pot escriure."
     IDS_FILEFILTER_NO_USERFOLDER 

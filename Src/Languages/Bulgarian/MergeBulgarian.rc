@@ -1991,7 +1991,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Изберете име за новия филтър"
     IDS_FILEFILTER_FILEMASK "Файлови Филтри (*.flt)|*.flt|Всички файлове (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Не може да се намери шаблонът за файлов филтър!\n\nМоля копирайте файла %1 в папката WinMerge/Filters."
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Не може да се копира шаблона в папката за филтри:\n%1\n\nМоля, уверете се че папката съществува и може да се записва в нея."
     IDS_FILEFILTER_NO_USERFOLDER 

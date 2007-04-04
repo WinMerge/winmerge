@@ -389,11 +389,13 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	CString templatePath(globalPath);
 	if (templatePath[templatePath.GetLength()-1] != '\\')
 		templatePath += "\\";
-	templatePath += FILE_FILTER_TEMPLATE;
 
 	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
 	{
-		ResMsgBox1(IDS_FILEFILTER_TMPL_MISSING, templatePath, MB_ICONERROR);
+		CString msg;
+		AfxFormatString2(msg, IDS_FILEFILTER_TMPL_MISSING,
+			FILE_FILTER_TEMPLATE, templatePath);
+		AfxMessageBox(msg, MB_ICONERROR);
 		return;
 	}
 

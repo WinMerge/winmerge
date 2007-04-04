@@ -1973,7 +1973,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "新しいフィルタのファイル名を指定してください"
     IDS_FILEFILTER_FILEMASK "ファイルフィルタ (*.flt)|*.flt|All Files (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "ファイルフィルタテンプレートファイルがみつかりません。\n\nファイル %1 を WinMerge/Filters フォルダにコピーしてください。"
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "フィルタテンプレートファイルをフォルダ %1 にコピーできません。\n\nフォルダの存在または書き込み可能であるか確認してください。"
     IDS_FILEFILTER_NO_USERFOLDER 

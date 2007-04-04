@@ -1973,7 +1973,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Wybierz nazwê dla nowego filtra"
     IDS_FILEFILTER_FILEMASK "Filtry plików(*.flt)|*.flt|Wszystkie filtry (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Nie mo¿na odnaleŸæ pliku szablonu filtra!\n\nProszê skopiowaæ plik %1 do folderu WinMerge/Filters."
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Nie mo¿na skopiowaæ pliku szablonu filtra do folderu:\n%1\n\nUpewnij siê, ¿e folder taki istnieje i jest zapisywalny."
     IDS_FILEFILTER_NO_USERFOLDER 

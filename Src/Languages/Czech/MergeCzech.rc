@@ -1973,7 +1973,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Zvolte název souboru pro nový filtr"
     IDS_FILEFILTER_FILEMASK "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Nelze nalézt soubor s filtrem!\n\nZkopírujte prosím soubor %1 do složky WinMerge/Filters."
+                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Nelze zkopírovat soubor s filtrem do složky filtrù:\n%1\n\nUjistìte se prosím, že složka existuje a je možné do ní zapisovat."
     IDS_FILEFILTER_NO_USERFOLDER 
