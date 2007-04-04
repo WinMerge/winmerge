@@ -12,7 +12,6 @@
 : done when the project file is first time opened in Visual Studio.
 : So you'll need to open these project files once to get them converted:
 : Externals\expat\lib\expat.dsp
-: Externals\expat\lib\expatw.dsp
 : Externals\scew\win32\scew.dsp
 : Externals\pcre\dll_pcre\pcre.dsp
 : Src\Merge.dsp
@@ -30,11 +29,9 @@
 
 : Build expat
 devenv Externals\expat\lib\expat.dsp /rebuild Release
-devenv Externals\expat\lib\expatw.dsp /rebuild Release
 
 : Build SCEW
 devenv Externals\scew\win32\scew.dsp /rebuild Release
-devenv Externals\scew\win32\scew.dsp /rebuild "Release Unicode"
 
 : Build PCRE
 devenv Externals\pcre\dll_pcre\pcre.dsp /rebuild Release
