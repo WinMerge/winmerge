@@ -1,3 +1,7 @@
+2007-04-05 Kimmo
+ Document buildall.bat in readme-developers
+  Developers: readme-developers.html
+
 2007-03-15 Tim
  PATCH: [ 1681099 ] Add "Plugins" folder to installer doc
   Developers: readme-InnoSetup.html

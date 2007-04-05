@@ -118,6 +118,23 @@ Studio's <em>Include</em> and <em>Library</em> directories. The easiest way is t
 "<em>Visual Studio Registration\Register PSDK directories with Visual Studio</em>" item from
 the "<em>Platform SDK</em>" start menu folder.</p>
 
+<h4>buildall.bat</h4>
+<p>There is a <code>buildall.bat</code> in root folder of source tree. This batch file invokes
+<code>devenv.exe</code> to build (almost) all projects in WinMerge tree. However, it has couple
+of restrictions:
+<ul>
+  <li>It cannot convert project files from VC6 format to newer formats. This must be done first
+      by opening every project to Visual Studio.</li>
+  <li>It cannot build 64-bit shell extension</li>
+</ul></p>
+
+<p>To use <code>buildall.bat</code>:
+<ul>
+  <li>Open Visual Studio Command Prompt (or run <code>vcvars32.bat</code> from Command Prompt).</li>
+  <li>Go to root folder of WinMerge folder structure.</li>
+  <li>Run the batch file.</li>
+</ul></p>
+
 <h4>Project files</h4>
 <p>Project file for WinMerge executable (in <code>/Src</code>) and other projects like
 ShellExtension (in <code>/ShellExtension</code>) have their own project files. There is no one
