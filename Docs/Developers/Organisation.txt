@@ -1,8 +1,7 @@
 
-WinMerge CVS organisation
+WinMerge Folder Structure
 =========================
 
-WinMerge
  - ArchiveSupport
    - Merge7z
    - Merge7zInstaller
@@ -22,7 +21,7 @@ WinMerge
    - InnoSetup
      - Art
      - Languages
-     - Runtimes
+   - Runtimes
  - Plugins
    - dlls
    - Src_Delphi
@@ -47,9 +46,6 @@ WinMerge
    - MakeResDll
  - Web
 
-
-WinMerge/
- - Module root, no files to here please.
 
 WinMerge/ArchiveSupport/
  - Archive file support system. Currently includes 7-Zip based archive support.
@@ -80,7 +76,7 @@ WinMerge/Docs/Users/Languages/
  - Readme.txt translations
 
 WinMerge/Docs/Users/Manual/
- - New 2.2.x userguide. Using Docbook/XML.
+ - Userguide, using Docbook/XML.
 
 WinMerge/Externals/
  - External code modules WinMerge uses
@@ -112,7 +108,7 @@ WinMerge/Installer/InnoSetup/Art/
 WinMerge/Installer/InnoSetup/Languages/
  - Installer translations
 
-WinMerge/Installer/InnoSetup/Runtimes/
+WinMerge/Installer/Runtimes/
  - Libraries for WinMerge added to install package
 
 WinMerge/Plugins/

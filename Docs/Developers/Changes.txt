@@ -1,3 +1,7 @@
+2007-04-06 Kimmo
+ Update Organization.txt to match reality
+  Developers: Organisation.txt
+
 2007-04-05 Kimmo
  Document buildall.bat in readme-developers
   Developers: readme-developers.html
