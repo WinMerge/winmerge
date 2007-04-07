@@ -41,4 +41,7 @@ devenv Src\Merge.dsp /rebuild Release
 devenv Src\Merge.dsp /rebuild UnicodeRelease
 
 : Build language files
-call Src\Languages\BuildAll.bat
+cd Src\Languages
+call BuildAll.bat
+cd ..\..
+
