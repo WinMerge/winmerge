@@ -1,3 +1,7 @@
+2007-04-08 Kimmo
+ Update Options documentation for latest changes
+  Developers: Options.html
+
 2007-04-06 Kimmo
  Update Organization.txt to match reality
   Developers: Organisation.txt

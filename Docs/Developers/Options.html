@@ -53,25 +53,28 @@ create a new subkey for them.</p>
 
 <h3>Direct access with WinAPI</h3>
 <p>This is handy for settings needed in few events or cases. Especially when
-<code>COptionsMgr</code> is not available, e.g. early in startup of WinMerge.</p>
+<code>COptionsMgr</code> is not available, e.g. early in startup of WinMerge.
+However this method misses all advantages of COptionsMgr, like import/export and
+caching. So it should be used only when really necessary.</p>
 
 <h3>COptionsMgr</h3>
 <p>Using <code>COptionsMgr</code> is recommended for all new options. Also all options
 visible in Options-dialog must use <code>COptionsMgr</code>. Currently there is one
-<code>COptionsMgr</code> (or actually <code>CRegOptionsMgr</code>) instance in <code>CMainFrame</code>.
-But that can change in future.</p>
+<code>COptionsMgr</code> (or actually <code>CRegOptionsMgr</code>) instance in <code>CMergeApp</code>.
+</p>
 
 <p>Using <code>COptionsMgr</code> is pretty simple and straightforward:</p>
 <ul>
   <li>All options are accessed by constant names, listed in <code>OptionsDef.h</code>.</li>
   <li>
-    Options are initialized in <code>CMainFrame::OptionsInit()</code>, located in <code>OptionsInit.cpp</code>.
+    Options are initialized in <code>CMergeApp::OptionsInit()</code>, located in <code>OptionsInit.cpp</code>.
     When initialised, type is determined and default value given. If option with that name
     does not yet exist, new one is created.
   </li>
   <li>Option value is read using <code>COptionsMgr::GetBool()</code>, <code>GetInt()</code> or <code>GetString()</code>.</li>
   <li>Option value is stored using <code>COptionsMgr::SaveOption()</code>. Note that value is saved to registry immediately.</li>
   <li>Option value can be reset to default value using <code>COptionsMgr::GetDefault()</code></li>
+  <li>Option value can be removed using <code>COptionsMgr::RemoveOption()</code></li>
 </ul>
 
 <h3>Adding a new option</h3>
@@ -82,7 +85,7 @@ But that can change in future.</p>
     And use meaningful names for options.
   </li>
   <li>
-    Add option initialiser to <code>CMainFrame::OptionsInit()</code>, with sensible
+    Add option initialiser to <code>CMergeApp::OptionsInit()</code>, with sensible
     default value. Remember default value is what most users see when first
     time using WinMerge or new feature using it. So it really must be good
     for normal use.
