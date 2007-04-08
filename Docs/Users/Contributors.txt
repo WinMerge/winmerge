@@ -105,6 +105,7 @@ Other Contributors (code, ideas, testing..):
 * Andre Arpin
 * Steve Beaudoin
 * Hern Chen
+* Jeremy Dewey
 * Jim Fougeron
 * Marvin Gouw
 * Jan Hryz
@@ -117,6 +118,7 @@ Other Contributors (code, ideas, testing..):
 * Oliver Mellet
 * Andreas Morsing
 * Tim Musschoot
+* Dan Pidcock
 * Vincent Osele
 * Michael Richter
 * Markus Rollmann
