@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-08 Takashi
+ BUG: [ 1694581 ] Need to limit window tab width
+  Src/Common: MDITabBar.cpp
+
 2007-04-07 Kimmo
  Fix building language files (buildall.bat)
   : buildall.bat

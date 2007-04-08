@@ -15,6 +15,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+#define MDITABBAR_MAXTITLELENGTH 64
+
 /////////////////////////////////////////////////////////////////////////////
 // CMDITabBar
 
@@ -153,6 +155,9 @@ void CMDITabBar::UpdateTabs()
 			strTitle = pDoc->GetTitle();
 		else
 			FromHandle(hFrameWnd)->GetWindowText(strTitle);
+
+		if (strTitle.GetLength() > MDITABBAR_MAXTITLELENGTH)
+			strTitle = strTitle.Left(MDITABBAR_MAXTITLELENGTH - 3) + _T("...");
 
 		if (item == -1)
 		{
