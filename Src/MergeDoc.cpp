@@ -3191,31 +3191,19 @@ void CMergeDoc::UpdateResources()
 	GetRightView()->UpdateResources();
 }
 
-// Lookup named property and return as int
-BOOL CMergeDoc::GetOptionInt(LPCTSTR name) const
-{
-	// Currently options are held by the main frame, in a subobject called m_options
-	return GetOptionsMgr()->GetInt(name);
-}
-
-// Lookup named property and return as BOOL
-BOOL CMergeDoc::GetOptionBool(LPCTSTR name) const
-{
-	// Currently options are held by the main frame, in a subobject called m_options
-	return GetOptionsMgr()->GetBool(name);
-}
-
 // Return current word breaking break type setting (whitespace only or include punctuation)
 bool CMergeDoc::GetBreakType() const
 {
-	return !!GetOptionInt(OPT_BREAK_TYPE);
+	BOOL breakType = GetOptionsMgr()->GetBool(OPT_BREAK_TYPE);
+	return !!breakType;
 }
 
 // Return true to do line diff colors at the byte level (false to do them at word level)
 bool CMergeDoc::GetByteColoringOption() const
 {
 	// color at byte level if 'break_on_words' option not set
-	return !GetOptionBool(OPT_BREAK_ON_WORDS);
+	BOOL breakWords = GetOptionsMgr()->GetBool(OPT_BREAK_ON_WORDS);
+	return !breakWords;
 }
 
 /// Swap files and update views

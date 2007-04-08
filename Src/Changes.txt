@@ -5,6 +5,8 @@ Add new items to top.
 2007-04-08 Kimmo
  Add Jeremy Dewey and Dan Pidcock to contributors.txt
   Docs/Users: Contributors.txt
+ Remove couple of useless wrapper functions
+  Src: MergeDoc.cpp MergeDoc.h
 
 2007-04-08 Takashi
  BUG: [ 1694581 ] Need to limit window tab width

@@ -307,8 +307,6 @@ public:
 
 // implementation methods
 private:
-	BOOL GetOptionInt(LPCTSTR name) const;
-	BOOL GetOptionBool(LPCTSTR name) const;
 	bool GetBreakType() const;
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
