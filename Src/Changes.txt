@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-10 Kimmo
+ PATCH: [ 1694048 ] File filter for Symbian developers
+  Filters new file: Symbian.flt
+
 2007-04-10 Gal
  BUG: [ 1694102 ] Compare with comments bug
   Src: stringdiffs.cpp

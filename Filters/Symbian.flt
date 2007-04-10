@@ -1,0 +1,37 @@
+## This is a directory/file filter for WinMerge
+## This filter suppresses various binaries found in Symbian development source trees.
+name: Symbian C++
+desc: Suppresses various binaries found in Visual C++ source trees compiling Symbian
+
+## This is an inclusive (loose) filter
+## (it lets through everything not specified)
+def: include
+
+## Filters for filenames begin with f:
+## Filters for directories begin with d:
+## (Inline comments begin with " ##" and extend to the end of the line)
+
+f: \.bsc$ ## VC Browser database
+f: \.aps$ ## VC Binary version of resource file, for quick loading
+f: \.bsc$ ## VC Browser database
+f: \.clw$ ## VC class-wizard status file
+f: \.dll$ ## Windows DLL
+f: \.exe$ ## Windows executable
+f: \.exp$ ## VC library export file
+f: \\vc60.idb$ ## VC ?
+f: \.ilk$ ## VC incremental linker memory file
+f: \.lib$ ## compiled libraries
+f: \.ncb$ ## VC parser information file (class view & component gallery stuff)
+f: \.obj$ ## VC object module file
+f: \.pch$ ## VC precompiled header file
+f: \.pdb$ ## VC program database file (debugging symbolic information)
+f: \.sbr$ ## VC source browser file (used to create bsc file)
+f: \.res$ ## VC compiled resources file (output of RC [resource compiler])
+f: \.rsc ## Compiled resources
+f: \.app ## Application
+f: \.aif
+f: \.bak$ ## backup
+f: \ABLD.bat$ ## Bat file
+
+d: \\cvs$ ## CVS control directory
+d: \\.svn$ ## Subversion control directory
