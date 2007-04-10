@@ -668,6 +668,7 @@ static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const
 		{
 			// no visible diff on side1
 			pDiff->start[0] = str1.GetLength();
+			pDiff->end[0] = pDiff->start[0] - 1;
 		}
 		else
 		{
@@ -678,6 +679,7 @@ static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const
 		{
 			// no visible diff on side2
 			pDiff->start[1] = str2.GetLength();
+			pDiff->end[1] = pDiff->start[1] - 1;
 		}
 		else
 		{
