@@ -1,3 +1,9 @@
+2007-04-11 Tim
+ PATCH: [ 1697984 ] Web: Move tracker shortcuts creator to support
+  Web: .htaccess sitemap.txt
+  Web\developer: deleted tracker-shortcuts.php
+  Web\support: new file tracker-shortcuts.php
+
 2007-04-02 Tim
  PATCH: [ 1692305 ] Known limitation: VSS integration cannot add new files
   Web\2.6: limitations.php

@@ -17,6 +17,7 @@ Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gi
 Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif
 
 #Move developer pages to Wiki...
+Redirect permanent /developer/tracker-shortcuts.php http://winmerge.org/support/tracker-shortcuts.php
 Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/index.php?title=Translations
 
 #Tracker shortcuts...

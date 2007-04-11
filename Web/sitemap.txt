@@ -58,8 +58,8 @@ http://winmerge.org/2.6/manual/VersionControl.html
 http://winmerge.org/2.6/manual/Whatsnew.html
 http://winmerge.org/developer/index.php
 http://winmerge.org/developer/needed.php
-http://winmerge.org/developer/tracker-shortcuts.php
 http://winmerge.org/developer/l10n/index.php
 http://winmerge.org/developer/l10n/instructions.php
 http://winmerge.org/developer/l10n/status.php
 http://winmerge.org/support/index.php
+http://winmerge.org/support/tracker-shortcuts.php
