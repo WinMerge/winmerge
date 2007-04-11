@@ -3194,8 +3194,8 @@ void CMergeDoc::UpdateResources()
 // Return current word breaking break type setting (whitespace only or include punctuation)
 bool CMergeDoc::GetBreakType() const
 {
-	BOOL breakType = GetOptionsMgr()->GetBool(OPT_BREAK_TYPE);
-	return !!breakType;
+	BOOL breakType = GetOptionsMgr()->GetInt(OPT_BREAK_TYPE);
+	return breakType > 0;
 }
 
 // Return true to do line diff colors at the byte level (false to do them at word level)
