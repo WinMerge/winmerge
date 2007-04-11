@@ -406,7 +406,7 @@ BEGIN
     BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
-        POPUP "Change Scheme"
+        POPUP "Syntax Highlight"
         BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
         END
@@ -2998,6 +2998,41 @@ BEGIN
     IDS_AUTOCOMPLETE_DISABLED   "Disabled"
     IDS_AUTOCOMPLETE_FILE_SYS   "From file system"
     IDS_AUTOCOMPLETE_MRU        "From MRU list"
+END
+
+// COLOR SCHEMES
+STRINGTABLE
+BEGIN
+    IDS_COLORSCHEME_PLAIN           "None"
+    IDS_COLORSCHEME_ASP             "ASP"
+    IDS_COLORSCHEME_BASIC           "Basic"
+    IDS_COLORSCHEME_BATCH           "Batch"
+    IDS_COLORSCHEME_C               "C/C++"
+    IDS_COLORSCHEME_CSHARP          "C#"
+    IDS_COLORSCHEME_CSS             "CSS"
+    IDS_COLORSCHEME_DCL             "DCL"
+    IDS_COLORSCHEME_FORTRAN         "Fortran"
+    IDS_COLORSCHEME_HTML            "HTML"
+    IDS_COLORSCHEME_INI             "INI"
+    IDS_COLORSCHEME_INNOSETUP       "InnoSetup"
+    IDS_COLORSCHEME_INSTALLSHIELD   "InstallShield"
+    IDS_COLORSCHEME_JAVA            "Java"
+    IDS_COLORSCHEME_LISP            "AutoLISP"
+    IDS_COLORSCHEME_NSIS            "NSIS"
+    IDS_COLORSCHEME_PASCAL          "Pascal"
+    IDS_COLORSCHEME_PERL            "Perl"
+    IDS_COLORSCHEME_PHP             "PHP"
+    IDS_COLORSCHEME_PYTHON          "Python"
+    IDS_COLORSCHEME_REXX            "REXX"
+    IDS_COLORSCHEME_RSRC            "Resources"
+    IDS_COLORSCHEME_RUBY            "Ruby"
+    IDS_COLORSCHEME_SGML            "SGML"
+    IDS_COLORSCHEME_SH              "Shell"
+    IDS_COLORSCHEME_SIOD            "SIOD"
+    IDS_COLORSCHEME_SQL             "SQL"
+    IDS_COLORSCHEME_TCL             "TCL"
+    IDS_COLORSCHEME_TEX             "TEX"
+    IDS_COLORSCHEME_XML             "XML"
 END
 
 // END STRINGS SYNCHRO

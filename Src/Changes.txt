@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-11 Gal
+ PATCH: [ 1697691 ] Syntax highlighting scheme as resource strings
+  Src/Languages/*: Merge*.rc
+  Src: Merge.rc MergeEditView.cpp resource.h
+
 2007-04-10 Kimmo
  PATCH: [ 1694048 ] File filter for Symbian developers
   Filters new file: Symbian.flt

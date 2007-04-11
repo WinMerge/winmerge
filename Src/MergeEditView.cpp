@@ -3152,12 +3152,12 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	const HMENU hSubMenu = pCmdUI->m_pSubMenu->m_hMenu;
 
-	for (int i = CCrystalTextView::SRC_PLAIN; i <= CCrystalTextView::SRC_XML; ++i)
+	for (int i = ID_COLORSCHEME_FIRST; i <= ID_COLORSCHEME_LAST; ++i)
 	{
-		DoAppendMenu(hSubMenu,
-			MF_STRING,
-			ID_COLORSCHEME_FIRST + i,
-			CCrystalTextView::m_SourceDefs[i].name);
+		CString name;
+		VERIFY(name.LoadString(i));
+
+		DoAppendMenu(hSubMenu, MF_STRING, i, name);
 	}
 
 	pCmdUI->Enable(TRUE);

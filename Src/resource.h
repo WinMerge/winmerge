@@ -1097,7 +1097,37 @@
 #define ID_VIEW_FILEMARGIN              33120
 #define ID_VIEW_CHANGESCHEME            33121
 #define ID_COLORSCHEME_FIRST            33122
-#define ID_COLORSCHEME_LAST             33162
+#define IDS_COLORSCHEME_PLAIN           33122 // = ID_COLORSCHEME_FIRST
+#define IDS_COLORSCHEME_ASP             33123
+#define IDS_COLORSCHEME_BASIC           33124
+#define IDS_COLORSCHEME_BATCH           33125
+#define IDS_COLORSCHEME_C               33126
+#define IDS_COLORSCHEME_CSHARP          33127
+#define IDS_COLORSCHEME_CSS             33128
+#define IDS_COLORSCHEME_DCL             33129
+#define IDS_COLORSCHEME_FORTRAN         33130
+#define IDS_COLORSCHEME_HTML            33131
+#define IDS_COLORSCHEME_INI             33132
+#define IDS_COLORSCHEME_INNOSETUP       33133
+#define IDS_COLORSCHEME_INSTALLSHIELD   33134
+#define IDS_COLORSCHEME_JAVA            33135
+#define IDS_COLORSCHEME_LISP            33136
+#define IDS_COLORSCHEME_NSIS            33137
+#define IDS_COLORSCHEME_PASCAL          33138
+#define IDS_COLORSCHEME_PERL            33139
+#define IDS_COLORSCHEME_PHP             33140
+#define IDS_COLORSCHEME_PYTHON          33141
+#define IDS_COLORSCHEME_REXX            33142
+#define IDS_COLORSCHEME_RSRC            33143
+#define IDS_COLORSCHEME_RUBY            33144
+#define IDS_COLORSCHEME_SGML            33145
+#define IDS_COLORSCHEME_SH              33146
+#define IDS_COLORSCHEME_SIOD            33147
+#define IDS_COLORSCHEME_SQL             33148
+#define IDS_COLORSCHEME_TCL             33149
+#define IDS_COLORSCHEME_TEX             33150
+#define IDS_COLORSCHEME_XML             33151
+#define ID_COLORSCHEME_LAST             33151 // = IDS_COLORSCHEME_XML
 
 // Next default values for new objects
 // 
@@ -1105,7 +1135,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        235
-#define _APS_NEXT_COMMAND_VALUE         33163
+#define _APS_NEXT_COMMAND_VALUE         33152
 #define _APS_NEXT_CONTROL_VALUE         1334
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
