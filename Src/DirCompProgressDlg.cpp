@@ -143,20 +143,20 @@ void DirCompProgressDlg::OnTimer(UINT_PTR nIDEvent)
 		
 		// New compare started
 		if (m_prevState == CompareStats::STATE_IDLE &&
-			state == CompareStats::STATE_COLLECT)
+			state == CompareStats::STATE_START)
 		{
-			m_prevState = CompareStats::STATE_COLLECT;
+			m_prevState = CompareStats::STATE_START;
 		}
 		// Collecting items to compare
-		else if (m_prevState == CompareStats::STATE_COLLECT &&
-			state == CompareStats::STATE_COLLECT)
+		else if (m_prevState == CompareStats::STATE_START &&
+			state == CompareStats::STATE_START)
 		{
 			TCHAR num[15] = {0};
 			_itot(m_pCompareStats->GetTotalItems(), num, 10);
 			pTotal->SetWindowText(num);
 		}
 		// Started comparing items
-		else if ((m_prevState == CompareStats::STATE_COLLECT ||
+		else if ((m_prevState == CompareStats::STATE_START ||
 				m_prevState == CompareStats::STATE_IDLE) &&
 				state == CompareStats::STATE_COMPARE)
 		{

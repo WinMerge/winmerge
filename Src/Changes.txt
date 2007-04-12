@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-12 Kimmo
+ BUG: [ 1698159 ] Invalid state change assertion
+  Src: CompareStats.cpp CompareStats.h DiffThread.cpp DirCompProgressDlg.cpp
+
 2007-04-11 Kimmo
  Fix assert caused by my checkin 2007-04-08 Remove couple of useless wrapper functions
   Src: MergeDoc.cpp

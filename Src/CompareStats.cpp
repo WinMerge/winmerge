@@ -100,12 +100,12 @@ void CompareStats::Reset()
 void CompareStats::SetCompareState(CompareStats::CMP_STATE state)
 {
 #ifdef _DEBUG
-	if (state == STATE_COLLECT && m_state != STATE_IDLE)
+	if (state == STATE_START && m_state != STATE_IDLE)
 		_RPTF2(_CRT_ERROR, "Invalid state change from %d to %d", m_state, state);
 #endif //_DEBUG
 
 	// New compare starting so reset ready status
-	if (state == STATE_COLLECT)
+	if (state == STATE_START)
 		m_bCompareDone = FALSE;
 	// Compare ready
 	if (state == STATE_IDLE && m_state == STATE_COMPARE)

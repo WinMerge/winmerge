@@ -54,6 +54,7 @@ struct DiffFuncStruct
 	DiffThreadAbortable * m_pAbortgate;
 	bool bOnlyRequested;
 	DiffItemList *pItemList;
+	HANDLE hEvent;
 
 	DiffFuncStruct()
 		: context(NULL)
@@ -64,6 +65,7 @@ struct DiffFuncStruct
 		, m_pAbortgate(NULL)
 		, bOnlyRequested(false)
 		, pItemList(NULL)
+		, hEvent(NULL)
 		{}
 };
 
@@ -97,6 +99,7 @@ CDiffThread::CDiffThread()
 
 CDiffThread::~CDiffThread()
 {
+	CloseHandle(m_pDiffParm->hEvent);
 	delete m_pDiffParm;
 	delete m_pAbortgate;
 }
@@ -129,6 +132,8 @@ UINT CDiffThread::CompareDirectories(const CString & dir1,
 	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
+
+	m_pDiffParm->hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
 
 	if (bSinglethreaded)
 	{
@@ -206,15 +211,19 @@ UINT DiffThreadCollect(LPVOID lpParam)
 
 	paths.SetLeft(myStruct->context->GetNormalizedLeft());
 	paths.SetRight(myStruct->context->GetNormalizedRight());
+
 	if (bOnlyRequested)
 	{
+		// Tell compare thread it can start comparing.
+		SetEvent(myStruct->hEvent);
+
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 		DirScan_CompareItems(myStruct->context);
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
 	else
 	{
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COLLECT);
+		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 		CString subdir; // blank to start at roots specified in diff context
 #ifdef _DEBUG
 		_CrtMemState memStateBefore;
@@ -222,6 +231,9 @@ UINT DiffThreadCollect(LPVOID lpParam)
 		_CrtMemState memStateDiff;
 		_CrtMemCheckpoint(&memStateBefore);
 #endif
+
+		// Tell compare thread it can start comparing.
+		SetEvent(myStruct->hEvent);
 
 		// Build results list (except delaying file comparisons until below)
 		DirScan_GetItems(paths, subdir, subdir, myStruct->pItemList, casesensitive, depth,  myStruct->context);
@@ -261,6 +273,9 @@ UINT DiffThreadCompare(LPVOID lpParam)
 	// when we exit the thread, we delete this and release the scripts
 	CAssureScriptsForThread scriptsForRescan;
 
+	// Give another thread at max one second head start for initialization.
+	WaitForSingleObject(myStruct->hEvent, 1000);
+
 	if (bOnlyRequested)
 	{
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
@@ -269,6 +284,7 @@ UINT DiffThreadCompare(LPVOID lpParam)
 	}
 	else
 	{
+
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 
 		// Now do all pending file comparisons
