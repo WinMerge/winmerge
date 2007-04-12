@@ -125,9 +125,14 @@ BEGIN
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
-		MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
     END
@@ -212,9 +217,14 @@ BEGIN
         MENUITEM "폰트 선택(&F)...",            ID_VIEW_SELECTFONT
         MENUITEM "기본 폰트 사용(&O)",          ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
-		MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "언어(&L)...",                 ID_VIEW_LANGUAGE
@@ -377,9 +387,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        MENUITEM "툴바(&T)",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "상태 표시줄(&S)",             ID_VIEW_STATUS_BAR
-		MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "선택 비교창 보기(&P)",        ID_VIEW_DETAIL_BAR
         MENUITEM "위치 표시창(&C)",             ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -2929,6 +2944,13 @@ BEGIN
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_XML             "XML"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBAR_NONE         "Hide the toolbar"
+    ID_TOOLBAR_SMALL        "Show small toolbar"
+    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 // END STRINGS SYNCHRO

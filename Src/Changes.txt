@@ -5,6 +5,10 @@ Add new items to top.
 2007-04-12 Kimmo
  BUG: [ 1698159 ] Invalid state change assertion
   Src: CompareStats.cpp CompareStats.h DiffThread.cpp DirCompProgressDlg.cpp
+ PATCH: [ 1698641 ] Add 32x32 toolbar
+  Src: MainFrm.cpp MainFrm.h Merge.rc OptionsDef.h OptionsInit.cpp resource.h
+  Src/Languages/*: Merge*.rc
+  Src/res new files: ToolbarDisabled32.bmp ToolbarEnabled32.bmp
 
 2007-04-11 Kimmo
  Fix assert caused by my checkin 2007-04-08 Remove couple of useless wrapper functions

@@ -189,6 +189,13 @@ public:
 	CString m_strRightDesc;
 	/*@}*/
 
+	/** @brief Possible toolbar image sizes. */
+	enum TOOLBAR_SIZE
+	{
+		TOOLBAR_SIZE_16x16,
+		TOOLBAR_SIZE_32x32,
+	};
+
 // Implementation data
 protected:
 
@@ -198,14 +205,15 @@ protected:
 	ToolBarXPThemes m_wndToolBar;
 	CMDITabBar m_wndTabBar;
 
-	enum
+	/** @brief Toolbar image table indexes. */
+	enum TOOLBAR_IMAGES
 	{
 		TOOLBAR_IMAGES_ENABLED,
 		TOOLBAR_IMAGES_DISABLED,
 		TOOLBAR_IMAGES_COUNT
 	};
 
-	CImageList m_ToolbarImages[TOOLBAR_IMAGES_COUNT];
+	CImageList m_ToolbarImages[TOOLBAR_IMAGES_COUNT]; /**< Images for toolbar */
 
 	enum
 	{
@@ -279,6 +287,12 @@ protected:
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnDebugResetOptions();
+	afx_msg void OnToolbarNone();
+	afx_msg void OnUpdateToolbarNone(CCmdUI* pCmdUI);
+	afx_msg void OnToolbarSmall();
+	afx_msg void OnUpdateToolbarSmall(CCmdUI* pCmdUI);
+	afx_msg void OnToolbarBig();
+	afx_msg void OnUpdateToolbarBig(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -295,6 +309,7 @@ private:
 	void OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl);
 	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();
+	void LoadToolbarImages();
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object

@@ -125,7 +125,12 @@ BEGIN
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "タブバー(&B)",                ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
@@ -212,7 +217,12 @@ BEGIN
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "タブバー(&B)",                ID_VIEW_TAB_BAR
         MENUITEM "比較統計(&R)",                ID_VIEW_DIR_STATISTICS
@@ -377,7 +387,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "ペインの交換(&A)",            ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        MENUITEM "ツールバー(&T)",              ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "タブバー(&B)",                ID_VIEW_TAB_BAR
         MENUITEM "Diffペイン(&P)",              ID_VIEW_DETAIL_BAR
@@ -2931,6 +2946,13 @@ BEGIN
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_XML             "XML"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBAR_NONE         "Hide the toolbar"
+    ID_TOOLBAR_SMALL        "Show small toolbar"
+    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 // END STRINGS SYNCHRO

@@ -125,7 +125,12 @@ BEGIN
         MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
         MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Eszköztár",               ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "&Álapotsor",               ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
@@ -212,7 +217,12 @@ BEGIN
         MENUITEM "Betûtípus...",             ID_VIEW_SELECTFONT
         MENUITEM "Alapértelmezett betûtípus használata",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
@@ -377,7 +387,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        MENUITEM "&Eszköztár",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "&Álapotsor",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Eltérés &panel",                  ID_VIEW_DETAIL_BAR
@@ -2929,6 +2944,13 @@ BEGIN
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_XML             "XML"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBAR_NONE         "Hide the toolbar"
+    ID_TOOLBAR_SMALL        "Show small toolbar"
+    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 // END STRINGS SYNCHRO

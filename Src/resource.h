@@ -95,6 +95,8 @@
 #define IDB_RIGHT_TO_BROWSE             353
 #define IDB_MOVE_LEFT_TO_BROWSE         354
 #define IDB_MOVE_RIGHT_TO_BROWSE        355
+#define IDB_TOOLBAR_DISABLED32          356
+#define IDB_TOOLBAR_ENABLED32           357
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502
@@ -1128,14 +1130,17 @@
 #define IDS_COLORSCHEME_TEX             33150
 #define IDS_COLORSCHEME_XML             33151
 #define ID_COLORSCHEME_LAST             33151 // = IDS_COLORSCHEME_XML
+#define ID_TOOLBAR_NONE                 33164
+#define ID_TOOLBAR_SMALL                33165
+#define ID_TOOLBAR_BIG                  33166
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        235
-#define _APS_NEXT_COMMAND_VALUE         33152
+#define _APS_NEXT_RESOURCE_VALUE        237
+#define _APS_NEXT_COMMAND_VALUE         33167
 #define _APS_NEXT_CONTROL_VALUE         1334
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

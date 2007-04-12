@@ -88,7 +88,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList);
+static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
@@ -143,7 +143,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_HELP_MERGE7ZMISMATCH, OnHelpMerge7zmismatch)
 	ON_UPDATE_COMMAND_UI(ID_HELP_MERGE7ZMISMATCH, OnUpdateHelpMerge7zmismatch)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
-	ON_COMMAND(ID_VIEW_TOOLBAR, OnViewToolbar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
@@ -155,6 +154,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_TIMER()
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_DEBUG_RESETOPTIONS, OnDebugResetOptions)
+	ON_COMMAND(ID_TOOLBAR_NONE, OnToolbarNone)
+	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_NONE, OnUpdateToolbarNone)
+	ON_COMMAND(ID_TOOLBAR_SMALL, OnToolbarSmall)
+	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_SMALL, OnUpdateToolbarSmall)
+	ON_COMMAND(ID_TOOLBAR_BIG, OnToolbarBig)
+	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_BIG, OnUpdateToolbarBig)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -2614,17 +2619,6 @@ void CMainFrame::OnViewStatusBar()
 }
 
 /**
- * @brief Show/hide toolbar.
- */
-void CMainFrame::OnViewToolbar()
-{
-	bool bShow = !GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
-	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, bShow);
-
-	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, bShow, 0);
-}
-
-/**
  * @brief Updates "Show Tabbar" menuitem.
  */
 void CMainFrame::OnUpdateViewTabBar(CCmdUI* pCmdUI) 
@@ -3085,12 +3079,7 @@ BOOL CMainFrame::CreateToobar()
 	EnableDocking(CBRS_ALIGN_ANY);
 	DockControlBar(&m_wndToolBar);
 
-	LoadToolbarImageList(IDB_TOOLBAR_ENABLED, m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-	LoadToolbarImageList(IDB_TOOLBAR_DISABLED, m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-
-	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
-	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
-	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+	LoadToolbarImages();
 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR) == false)
 	{
@@ -3099,6 +3088,37 @@ BOOL CMainFrame::CreateToobar()
 
 	return TRUE;
 }
+
+/** @brief Load toolbar images from the resource. */
+void CMainFrame::LoadToolbarImages()
+{
+	int toolbarSize = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	CToolBarCtrl& BarCtrl = m_wndToolBar.GetToolBarCtrl();
+
+	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].DeleteImageList();
+	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].DeleteImageList();
+
+	if (toolbarSize == 0)
+	{
+		LoadToolbarImageList(TOOLBAR_SIZE_16x16, IDB_TOOLBAR_ENABLED,
+			m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+		LoadToolbarImageList(TOOLBAR_SIZE_16x16, IDB_TOOLBAR_DISABLED,
+			m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+		BarCtrl.SetButtonSize(CSize(23,22));
+	}
+	else if (toolbarSize == 1)
+	{
+		LoadToolbarImageList(TOOLBAR_SIZE_32x32, IDB_TOOLBAR_ENABLED32,
+			m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+		LoadToolbarImageList(TOOLBAR_SIZE_32x32, IDB_TOOLBAR_DISABLED32,
+			m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+		BarCtrl.SetButtonSize(CSize(39,39));
+	}
+
+	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
+	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+}
+
 
 /**
  * @brief Load a transparent 24-bit color image list.
@@ -3115,13 +3135,26 @@ static void LoadHiColImageList(UINT nIDResource, int nWidth, int nHeight, int nC
 /**
  * @brief Load toolbar image list.
  */
-static void LoadToolbarImageList(UINT nIDResource, CImageList& ImgList)
+static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource,
+		CImageList& ImgList)
 {
-	static const int ImageWidth = 16;
-	static const int ImageHeight = 15;
-	static const int ImageCount	= 19;
+	const int ImageCount = 19;
+	int imageWidth = 0;
+	int imageHeight = 0;
 
-	LoadHiColImageList(nIDResource, ImageWidth, ImageHeight, ImageHeight, ImgList);
+	switch (size)
+	{
+		case CMainFrame::TOOLBAR_SIZE_16x16:
+			imageWidth = 16;
+			imageHeight = 15;
+			break;
+		case CMainFrame::TOOLBAR_SIZE_32x32:
+			imageWidth = 32;
+			imageHeight = 32;
+			break;
+	}
+
+	LoadHiColImageList(nIDResource, imageWidth, imageHeight, ImageCount, ImgList);
 }
 
 /**
@@ -3146,4 +3179,56 @@ void CMainFrame::OnUpdateFrameTitle(BOOL bAddToTitle)
 	CFrameWnd::OnUpdateFrameTitle(bAddToTitle);
 	
 	m_wndTabBar.UpdateTabs();
+}
+
+/** @brief Hide the toolbar. */
+void CMainFrame::OnToolbarNone()
+{
+	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, false);
+	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, FALSE, 0);
+}
+
+/** @brief Update menuitem for hidden toolbar. */
+void CMainFrame::OnUpdateToolbarNone(CCmdUI* pCmdUI)
+{
+	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
+	pCmdUI->SetRadio(!enabled);
+}
+
+/** @brief Show small toolbar. */
+void CMainFrame::OnToolbarSmall()
+{
+	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, true);
+	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 0);
+
+	LoadToolbarImages();
+
+	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
+}
+
+/** @brief Update menuitem for small toolbar. */
+void CMainFrame::OnUpdateToolbarSmall(CCmdUI* pCmdUI)
+{
+	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
+	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	pCmdUI->SetRadio(enabled && toolbar == 0);
+}
+
+/** @brief Show big toolbar. */
+void CMainFrame::OnToolbarBig()
+{
+	GetOptionsMgr()->SaveOption(OPT_SHOW_TOOLBAR, true);
+	GetOptionsMgr()->SaveOption(OPT_TOOLBAR_SIZE, 1);
+
+	LoadToolbarImages();
+
+	CMDIFrameWnd::ShowControlBar(&m_wndToolBar, TRUE, 0);
+}
+
+/** @brief Update menuitem for big toolbar. */
+void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
+{
+	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
+	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
+	pCmdUI->SetRadio(enabled && toolbar == 1);
 }

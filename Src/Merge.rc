@@ -167,7 +167,12 @@ BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
@@ -254,7 +259,12 @@ BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
@@ -419,7 +429,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Sw&ap Panes",                 ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        MENUITEM "&Toolbar",                    ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "&Status Bar",                 ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Diff &Pane",                  ID_VIEW_DETAIL_BAR
@@ -1772,7 +1787,8 @@ IDB_LEFT_TO_BROWSE      BITMAP                  "res\\left_to_browse.bmp"
 IDB_RIGHT_TO_BROWSE     BITMAP                  "res\\right_to_browse.bmp"
 IDB_MOVE_LEFT_TO_BROWSE BITMAP                  "res\\move_left_to_browse.bmp"
 IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "res\\move_right_to_browse.bmp"
-
+IDB_TOOLBAR_DISABLED32  BITMAP                  "res\\ToolbarDisabled32.bmp"
+IDB_TOOLBAR_ENABLED32   BITMAP                  "res\\ToolbarEnabled32.bmp"
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -3033,6 +3049,13 @@ BEGIN
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_XML             "XML"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBAR_NONE         "Hide the toolbar"
+    ID_TOOLBAR_SMALL        "Show small toolbar"
+    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 // END STRINGS SYNCHRO

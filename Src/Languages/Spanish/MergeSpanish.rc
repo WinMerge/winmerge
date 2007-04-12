@@ -125,7 +125,12 @@ BEGIN
         MENUITEM "Seleccionar &tipo de letra...",        ID_VIEW_SELECTFONT
         MENUITEM "Usar tipo de letra del Siste&ma",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Barra de &herramientas",      ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "Barra de &estado",            ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
@@ -212,9 +217,14 @@ BEGIN
         MENUITEM "Seleccionar &tipo de letra...",        ID_VIEW_SELECTFONT
         MENUITEM "Usar tipo de letra del Siste&ma",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Barra de &herramientas",      ID_VIEW_TOOLBAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "Barra de &estado",            ID_VIEW_STATUS_BAR
+        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Estadísticas de &comparación",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Idi&oma...",                  ID_VIEW_LANGUAGE
@@ -2931,6 +2941,13 @@ BEGIN
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_XML             "XML"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBAR_NONE         "Hide the toolbar"
+    ID_TOOLBAR_SMALL        "Show small toolbar"
+    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 // END STRINGS SYNCHRO

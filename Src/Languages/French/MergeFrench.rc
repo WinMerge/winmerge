@@ -125,7 +125,12 @@ BEGIN
         MENUITEM "Choisir une &police...",            ID_VIEW_SELECTFONT
         MENUITEM "&Utiliser la police par défaut",    ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Barre d'&outils",                   ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "Barre d'&état",                     ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
@@ -212,7 +217,12 @@ BEGIN
         MENUITEM "Choisir une &police...",            ID_VIEW_SELECTFONT
         MENUITEM "&Utiliser la police par défaut",    ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        MENUITEM "Barre d'&outils",                   ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "Barre d'&état",                     ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Comparer les &statistiques",        ID_VIEW_DIR_STATISTICS
@@ -377,7 +387,12 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Intervertir les fenêtres",         ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        MENUITEM "Barre d'&outils",                   ID_VIEW_TOOLBAR
+        POPUP "&Toolbar"
+        BEGIN
+            MENUITEM "&None",                       ID_TOOLBAR_NONE
+            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+        END
         MENUITEM "Barre d'&état",                     ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
         MENUITEM "Dé&tail des différences",           ID_VIEW_DETAIL_BAR
@@ -2923,6 +2938,13 @@ BEGIN
     IDS_COLORSCHEME_TCL             "TCL"
     IDS_COLORSCHEME_TEX             "TEX"
     IDS_COLORSCHEME_XML             "XML"
+END
+
+STRINGTABLE 
+BEGIN
+    ID_TOOLBAR_NONE         "Hide the toolbar"
+    ID_TOOLBAR_SMALL        "Show small toolbar"
+    ID_TOOLBAR_BIG          "Show big toolbar"
 END
 
 // END STRINGS SYNCHRO
