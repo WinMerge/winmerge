@@ -1,3 +1,7 @@
+2007-04-12 Tim
+ PATCH: [ 1699528 ] Translations instructions for dev docs
+  Developers new file: Translations.html
+
 2007-04-08 Kimmo
  Update Options documentation for latest changes
   Developers: Options.html
