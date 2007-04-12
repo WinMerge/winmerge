@@ -153,19 +153,20 @@
         </question>
 
         <answer>
-          <para>This is because large files use the "<guilabel>Quick
-          Compare</guilabel>" method, even when the [<menuchoice>
-              <guimenu>Edit</guimenu>
-
-              <guimenuitem>Options /</guimenuitem>
-            </menuchoice> <guilabel>Compare</guilabel> / <guilabel>File
-          Compare Method</guilabel>] setting is set to "<guilabel>Full
-          Compare</guilabel>". This is a speed optimization. To test if this
-          is causing the behavior you're seeing, you could raise the limit for
+          <para>This is because WinMerge uses the "<guilabel>Quick
+          Compare</guilabel>" method for large files always. It allows
+          WinMerge to compare large files more efficiently. To test if this is
+          causing the behavior you're seeing, you could raise the limit for
           the <guilabel>Quick Compare</guilabel> threshold for large files. It
           is stored in the registry as:</para>
 
           <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>
+
+          <para>You may consider raising this limit if you constantly compare
+          large text files. Be careful to not raise it too much "for just to
+          be sure". 100 MB is too much.</para>
+
+          <para>The default value for the limit is 4MB (0x400000).</para>
         </answer>
       </qandaentry>
 
@@ -306,10 +307,8 @@
         </question>
 
         <answer>
-          <para>WinMerge 2.4.0 (and newer) includes a binary file viewer
-          (plugin <filename>DisplayBinaryFiles.dll</filename>). WinMerge 2.6.0
-          (and newer) includes a binary file editor (plugin
-          <filename>EditBinaryFiles.dll</filename>).</para>
+          <para>WinMerge 2.6.0 (and newer) includes a binary file editor
+          (plugin <filename>EditBinaryFiles.dll</filename>).</para>
         </answer>
       </qandaentry>
     </qandaset>
