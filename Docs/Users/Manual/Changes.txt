@@ -1,6 +1,8 @@
 2007-04-12 Kimmo
  PATCH: [ 1698798 ] Manual: Clarify quick compare limit FAQ
   Manual: Faq.xml
+ PATCH: [ 1698811 ] Manual: Whats new for 2.8
+  Manual: Whatsnew.xml
 
 2007-04-04 Kimmo
  Bump manual revision to 1.3.5.

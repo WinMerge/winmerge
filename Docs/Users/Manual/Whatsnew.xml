@@ -3,6 +3,41 @@
   <title>What's new in release</title>
 
   <sect2>
+    <title>What's new in 2.8</title>
+
+    <para>WinMerge 2.8 release is more headed into improving backend of
+    WinMerge - the code doing all the work. There are no many user visible
+    changes this time.</para>
+
+    <itemizedlist>
+      <listitem>
+        <simpara>Optional bigger toolbar</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Optional tabbed interface</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Improved interface for line filters</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>New regular expression implementation (uses PCRE
+        library)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Printing improvements</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Optimized folder compare</simpara>
+      </listitem>
+    </itemizedlist>
+  </sect2>
+
+  <sect2>
     <title>What's new in 2.6</title>
 
     <para>WinMerge 2.6 release has some long-waited new features plus
