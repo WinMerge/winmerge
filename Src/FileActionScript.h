@@ -64,7 +64,16 @@ struct FileAction
  */
 struct FileActionItem : public FileAction
 {
-	typedef enum { UI_SYNC = 1, UI_DESYNC, UI_DEL_LEFT, UI_DEL_RIGHT, UI_DEL_BOTH,} UI_RESULT;
+	typedef enum
+	{
+		UI_SYNC = 1,
+		UI_DESYNC,
+		UI_DEL_LEFT,
+		UI_DEL_RIGHT,
+		UI_DEL_BOTH,
+		UI_DONT_CARE,
+	} UI_RESULT;
+
 	typedef enum { UI_LEFT, UI_RIGHT } UI_SIDE;
 
 	int context; /**< UI context */

@@ -74,7 +74,7 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 {
 	CDialog::OnInitDialog();
 
-	GetDlgItem(IDC_FLDCONFIRM_TO_PATH)->SetFocus();
+	GetDlgItem(IDNO)->SetFocus();
 
 	// Load warning icon
 	// TODO: we can have per-action icons?

@@ -2025,6 +2025,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_TO                  "To:"
     IDS_FROM_LEFT           "From left:"
     IDS_TO_LEFT             "To left:"
     IDS_FROM_RIGHT          "From right:"

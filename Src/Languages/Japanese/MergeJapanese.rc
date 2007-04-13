@@ -1922,6 +1922,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_TO                  "To:"
     IDS_FROM_LEFT           "ç∂Ç©ÇÁ:"
     IDS_TO_LEFT             "ç∂Ç÷:"
     IDS_FROM_RIGHT          "âEÇ©ÇÁ:"

@@ -42,7 +42,7 @@ static char THIS_FILE[] = __FILE__;
 
 /**
  * @brief Ask user a confirmation for copying item(s).
- * Shows a confirmatino dialog for copy operation. Depending ont item count
+ * Shows a confirmation dialog for copy operation. Depending ont item count
  * dialog shows full paths to items (single item) or base paths of compare
  * (multiple items).
  * @param [in] origin Origin side of the item(s).
@@ -50,10 +50,11 @@ static char THIS_FILE[] = __FILE__;
  * @param [in] count Number of items.
  * @param [in] src Source path.
  * @param [in] dest Destination path.
+ * @param [in] destIsSide Is destination path either of compare sides?
  * @return IDYES if copy should proceed, IDNO if aborted.
  */
 static BOOL ConfirmCopy(int origin, int destination, int count,
-		LPCTSTR src, LPCTSTR dest)
+		LPCTSTR src, LPCTSTR dest, BOOL destIsSide)
 {
 	ConfirmFolderCopyDlg dlg;
 	CString strQuestion;
@@ -75,10 +76,20 @@ static BOOL ConfirmCopy(int origin, int destination, int count,
 	else
 		sOrig = LoadResString(IDS_FROM_RIGHT);
 
-	if (destination == FileActionItem::UI_LEFT)
-		sDest = LoadResString(IDS_TO_LEFT);
+	if (destIsSide)
+	{
+		// Copy to left / right
+		if (destination == FileActionItem::UI_LEFT)
+			sDest = LoadResString(IDS_TO_LEFT);
+		else
+			sDest = LoadResString(IDS_TO_RIGHT);
+	}
 	else
-		sDest = LoadResString(IDS_TO_RIGHT);
+	{
+		// Copy left/right to..
+		sDest = LoadResString(IDS_TO);
+	}
+
 
 	dlg.m_question = strQuestion;
 	dlg.m_fromText = sOrig;
@@ -352,7 +363,7 @@ void CDirView::DoCopyLeftTo()
 			act.dirflag = di.isDirectory();
 			act.context = sel;
 			act.atype = actType;
-			act.UIResult = FileActionItem::UI_DESYNC;
+			act.UIResult = FileActionItem::UI_DONT_CARE;
 			actionScript.AddActionItem(act);
 			++selCount;
 		}
@@ -407,7 +418,7 @@ void CDirView::DoCopyRightTo()
 			act.dirflag = di.isDirectory();
 			act.context = sel;
 			act.atype = actType;
-			act.UIResult = FileActionItem::UI_DESYNC;
+			act.UIResult = FileActionItem::UI_DONT_CARE;
 			actionScript.AddActionItem(act);
 			++selCount;
 		}
@@ -554,15 +565,21 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 	// Maybe we should show a list of files with actions done..
 	FileActionItem item = actionList.GetHeadActionItem();
 
+	BOOL bDestIsSide = TRUE;
+
 	// special handling for the single item case, because it is probably the most common,
 	// and we can give the user exact details easily for it
 	switch(item.atype)
 	{
 	case FileAction::ACT_COPY:
+		if (item.UIResult == FileActionItem::UI_DONT_CARE)
+			bDestIsSide = FALSE;
+
 		if (actionList.GetActionItemCount() == 1)
 		{
 			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
-                actionList.GetActionItemCount(), item.src, item.dest))
+                actionList.GetActionItemCount(), item.src, item.dest,
+				bDestIsSide))
 			{
 				return FALSE;
 			}
@@ -581,7 +598,7 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 			else
 				dst = GetDocument()->GetRightBasePath();
 			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
-				actionList.GetActionItemCount(), src, dst))
+				actionList.GetActionItemCount(), src, dst, bDestIsSide))
 			{
 				return FALSE;
 			}

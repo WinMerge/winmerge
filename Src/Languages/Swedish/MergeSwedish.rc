@@ -1916,6 +1916,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_TO                  "To:"
     IDS_FROM_LEFT           "Från vänster:"
     IDS_TO_LEFT             "Till vänster:"
     IDS_FROM_RIGHT          "Från höger:"

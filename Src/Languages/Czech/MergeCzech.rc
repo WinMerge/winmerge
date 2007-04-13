@@ -1922,6 +1922,7 @@ END
 
 STRINGTABLE
 BEGIN
+    IDS_TO                  "To:"
     IDS_FROM_LEFT           "Zleva:"
     IDS_TO_LEFT             "Doleva:"
     IDS_FROM_RIGHT          "Zprava:"

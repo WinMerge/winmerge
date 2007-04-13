@@ -467,10 +467,11 @@
 #define IDS_OPTIONSPG_CODEPAGE          9049
 #define IDS_OPTIONSPG_ARCHIVE           9050
 #define IDS_OPTIONSPG_BACKUPS           9051
-#define IDS_FROM_LEFT                   16000
-#define IDS_TO_LEFT                     16001
-#define IDS_FROM_RIGHT                  16002
-#define IDS_TO_RIGHT                    16003
+#define IDS_TO                          16000
+#define IDS_FROM_LEFT                   16001
+#define IDS_TO_LEFT                     16002
+#define IDS_FROM_RIGHT                  16003
+#define IDS_TO_RIGHT                    16004
 #define IDS_VERSION_FMT                 16385
 #define IDS_UNICODE                     16387
 #define IDS_OPTIONS_TITLE               16400
@@ -1135,7 +1136,7 @@
 #define ID_TOOLBAR_BIG                  33166
 
 // Next default values for new objects
-// 
+//
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
