@@ -24,7 +24,6 @@ Inactive/past developers:
 
 Graphic Design:
 * Alexander Skinner
-* Ryan Mott
 
 Localization:
 * Bulgarian:	
@@ -117,6 +116,7 @@ Other Contributors (code, ideas, testing..):
 * Harry Mckame
 * Oliver Mellet
 * Andreas Morsing
+* Ryan Mott
 * Tim Musschoot
 * Dan Pidcock
 * Vincent Osele
