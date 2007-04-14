@@ -90,12 +90,24 @@ static BOOL ConfirmCopy(int origin, int destination, int count,
 		sDest = LoadResString(IDS_TO);
 	}
 
+	CString strSrc(src);
+	if (paths_DoesPathExist(src) == IS_EXISTING_DIR)
+	{
+		if (!paths_EndsWithSlash(src))
+			strSrc += _T("\\");
+	}
+	CString strDest(dest);
+	if (paths_DoesPathExist(dest) == IS_EXISTING_DIR)
+	{
+		if (!paths_EndsWithSlash(dest))
+			strDest += _T("\\");
+	}
 
 	dlg.m_question = strQuestion;
 	dlg.m_fromText = sOrig;
 	dlg.m_toText = sDest;
-	dlg.m_fromPath = src;
-	dlg.m_toPath = dest;
+	dlg.m_fromPath = strSrc;
+	dlg.m_toPath = strDest;
 
 	int rtn = dlg.DoModal();
 	return (rtn==IDYES);

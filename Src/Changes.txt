@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-14 Kimmo
+ PATCH: [ 1700241 ] Add trailing slash for foldernames in Copy Confirm dialog
+  Src: DirActions.cpp
+
 2007-04-13 Kimmo
  PATCH: [ 1699585 ] Fix copy confirmation dialog for CopyTo
   Src: ConfirmFolderCopyDlg.cpp DirActions.cpp FileActionScript.h Merge.rc resource.h
