@@ -12,50 +12,55 @@
   <para>Syntax for the command line is:</para>
 
   <para><cmdsynopsis sepchar=" ">
-        <command moreinfo="none">WinMerge</command>
+      <command moreinfo="none">WinMerge</command>
 
-        <arg choice="opt" rep="norepeat"><option>/r</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/r</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/e</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/e</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/f</option> <replaceable>filter</replaceable></arg>
+      <arg choice="opt" rep="norepeat"><option>/f</option>
+      <replaceable>filter</replaceable></arg>
 
-        <arg><option>/x</option></arg>
+      <arg><option>/x</option></arg>
 
-        <arg><option>/s</option></arg>
+      <arg><option>/s</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/ul</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/ur</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/ub</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/wl</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
+      <arg choice="opt" rep="norepeat"><option>/wr</option></arg>
 
-        <arg><option>/minimize</option></arg>
+      <arg><option>/minimize</option></arg>
 
-        <arg><option>/maximize</option></arg>
+      <arg><option>/maximize</option></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/dl</option> <replaceable>leftdesc</replaceable></arg>
+      <arg choice="opt" rep="norepeat"><option>/dl</option>
+      <replaceable>leftdesc</replaceable></arg>
 
-        <arg choice="opt" rep="norepeat"><option>/dr</option> <replaceable>rightdesc</replaceable></arg>
+      <arg choice="opt" rep="norepeat"><option>/dr</option>
+      <replaceable>rightdesc</replaceable></arg>
 
-        <arg choice="plain" rep="norepeat"><replaceable>leftpath</replaceable></arg>
+      <arg choice="plain"
+      rep="norepeat"><replaceable>leftpath</replaceable></arg>
 
-        <arg choice="plain" rep="norepeat"><replaceable>rightpath</replaceable></arg>
+      <arg choice="plain"
+      rep="norepeat"><replaceable>rightpath</replaceable></arg>
 
-        <arg choice="opt" rep="norepeat"><replaceable>outputpath</replaceable></arg>
-      </cmdsynopsis></para>
+      <arg choice="opt"
+      rep="norepeat"><replaceable>outputpath</replaceable></arg>
+    </cmdsynopsis></para>
 
   <para>All parameters start with "/" or with "-" prefix character. Pathnames
   don't have any prefix character.</para>
 
   <itemizedlist>
     <listitem>
-      <simpara><option>/?</option> displays the most commonly used parameters
-      as help dialog.</simpara>
+      <simpara><option>/?</option> opens this help.</simpara>
     </listitem>
 
     <listitem>
@@ -165,13 +170,20 @@
     </listitem>
   </itemizedlist>
 
-  <note>
-    <para><replaceable>leftpath</replaceable> and
-    <replaceable>rightpath</replaceable> have to both be files or both be
-    folders.</para>
-  </note>
+  <para><tip>
+      <para>WinMerge accepts filename and foldername as path parameters, as
+      long as the given folder contains file with same name than in first
+      parameter.</para>
 
-  <para>If both paths are not files or folders or one of paths is non-existent
-  WinMerge shows the Open-dialog for user to choose proper paths to
-  open.</para>
+      <para>For example, one can give a command: WinMerge
+      <filename>C:\Folder\File.txt</filename> <filename
+      class="directory">C:\Folder2</filename>. If <filename
+      class="directory">C:\Folder2</filename> contains file named
+      <filename>File.txt</filename> WinMerge now compares files
+      <filename>C:\Folder\File.txt</filename> and C:\Folder2\File.txt</para>
+    </tip>Usually WinMerge requires that both path parameters
+  (<replaceable>leftpath</replaceable> and
+  <replaceable>rightpath</replaceable>) point to folders or files. It is not
+  possible to compare folder to file (except in case described in above note).
+  If WinMerge cannot find any of given paths, it opens Open-dialog.</para>
 </sect1>
