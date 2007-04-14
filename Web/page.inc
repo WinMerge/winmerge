@@ -16,7 +16,6 @@
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
   define ('WINMERGE_SUP', 'sup');
-  define ('WINMERGE_DEV', 'dev');
 
   /**
    * ...
@@ -164,12 +163,6 @@
       else { //if NOT "Support" ...
         $temp .= "  <li><a href=\"/support/index.php\">Support</a></li>\n";
       }
-      if ($this->_version == WINMERGE_DEV) { //if "Developers" ...
-        $temp .= "  <li class=\"selected\"><a href=\"/developer/index.php\">Developers</a></li>\n";
-      }
-      else { //if NOT "Developers" ...
-        $temp .= "  <li><a href=\"/developer/index.php\">Developers</a></li>\n";
-      }
       $temp .= "  <li><a href=\"/Wiki/\">Wiki</a></li>\n";
       $temp .= "</ul>\n";
       return $temp;
@@ -306,32 +299,6 @@
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\">Submit a Feature Request</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\">Submit a Support Request</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\">Submit a Patch</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
-        case WINMERGE_DEV: //if "Developers" ...
-          $temp .= "<h2><a href=\"/developer/index.php\">Developers</a></h2>\n";
-          $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/projects/winmerge/\">Project Home</a></li>\n";
-          $temp .= "  <li>Subversion\n";
-          $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://svn.sourceforge.net/winmerge\">Browse Subversion Tree</a></li>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/svn/?group_id=13216\">Subversion Access</a></li>\n";
-          $temp .= "    </ul>\n";
-          $temp .= "  </li>\n";
-          $temp .= "  <li><a href=\"/developer/l10n/index.php\">Translations</a>\n";
-          $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"/developer/l10n/instructions.php\">Instructions</a></li>\n";
-          $temp .= "      <li><a href=\"/developer/l10n/status.php\">Status</a></li>\n";
-          $temp .= "    </ul>\n";
-          $temp .= "  </li>\n";
-          $temp .= "  <li>Downloads\n";
-          $temp .= "    <ul>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">Stable versions</a></li>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">Beta versions</a></li>\n";
-          $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental builds</a></li>\n";
-          $temp .= "    </ul>\n";
-          $temp .= "  </li>\n";
-          $temp .= "  <li><a href=\"/developer/needed.php\">Help Needed!</a></li>\n";
           $temp .= "</ul>\n";
           break;
       }

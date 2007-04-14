@@ -1,3 +1,8 @@
+2007-04-14 Tim
+ PATCH: [ 1700349 ] Web: Move developers area to Wiki
+  Web: .htaccess index.php page.inc sitemap.txt
+  Web\developer: deleted *.*
+
 2007-04-11 Tim
  PATCH: [ 1697984 ] Web: Move tracker shortcuts creator to support
   Web: .htaccess sitemap.txt

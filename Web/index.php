@@ -51,10 +51,10 @@ or you can use the local help file (just press <code>F1</code> inside WinMerge) 
 
 <h2>Developers</h2>
 <p>WinMerge is an open source project, which means that the program is maintained and developed by
-volunteers. If you''re interested in contributing work to the project, see our <a href="developer/needed.php">developer page</a>
+volunteers. If you''re interested in contributing work to the project, see our <a href="http://winmerge.org/Wiki/index.php?title=Help_Needed">developer page</a>
 for further information on how you may contribute.</p>
-<p>In addition, WinMerge is translated into a number of different languages. See our <a href="developer/translate.php">information on translating WinMerge</a> into your own language.</p>
-<p><a href="developer/index.php">The WinMerge Development Team</a></p>
+<p>In addition, WinMerge is translated into a number of different languages. See our <a href="http://winmerge.org/Wiki/index.php?title=Translations">information on translating WinMerge</a> into your own language.</p>
+<p><a href="http://winmerge.org/Wiki/index.php?title=Developers">The WinMerge Development Team</a></p>
 <?php
   $page->printFoot();
 ?>

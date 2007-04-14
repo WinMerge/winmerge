@@ -4,7 +4,7 @@
 </FilesMatch>
 
 Redirect permanent /developer/wincvs.php http://sourceforge.net/cvs/?group_id=13216
-Redirect permanent /developer/translate.php http://winmerge.org/developer/l10n/index.php
+Redirect permanent /developer/translate.php http://winmerge.org/Wiki/index.php?title=Translations
 Redirect permanent /WinMerge17/index.html http://winmerge.org/1.7/index.php
 Redirect permanent /WinMerge17/WinMergeChanges.html http://winmerge.org/1.7/changes.php
 Redirect permanent /WinMerge17/docs http://winmerge.org/1.7/docs
@@ -17,7 +17,11 @@ Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gi
 Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif
 
 #Move developer pages to Wiki...
+Redirect permanent /developer/index.php http://winmerge.org/Wiki/index.php?title=Developers
+Redirect permanent /developer/needed.php http://winmerge.org/Wiki/index.php?title=Help_Needed
 Redirect permanent /developer/tracker-shortcuts.php http://winmerge.org/support/tracker-shortcuts.php
+Redirect permanent /developer/l10n/index.php http://winmerge.org/Wiki/index.php?title=Translations
+Redirect permanent /developer/l10n/instructions.php http://svn.sourceforge.net/viewvc/*checkout*/winmerge/trunk/Docs/Developers/Translations.html
 Redirect permanent /developer/l10n/status.php http://winmerge.org/Wiki/index.php?title=Translations
 
 #Tracker shortcuts...
