@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-16 Tim
+ PATCH: [ 1701151 ] Various Updates in German Translation
+  Src/Languages/German: MergeGerman.rc
+
 2007-04-14 Kimmo
  PATCH: [ 1700241 ] Add trailing slash for foldernames in Copy Confirm dialog
   Src: DirActions.cpp

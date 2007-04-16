@@ -125,14 +125,14 @@ BEGIN
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Symbolleiste"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Keine",                      ID_TOOLBAR_NONE
+            MENUITEM "K&lein",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Groß",                       ID_TOOLBAR_BIG
         END
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Ta&b-Leiste",                 ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
     END
@@ -217,14 +217,14 @@ BEGIN
         MENUITEM "Schrift &auswählen...",       ID_VIEW_SELECTFONT
         MENUITEM "Standard-Schrift &verwenden", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Symbolleiste"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Keine",                      ID_TOOLBAR_NONE
+            MENUITEM "K&lein",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Groß",                       ID_TOOLBAR_BIG
         END
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Ta&b-Leiste",                 ID_VIEW_TAB_BAR
         MENUITEM "V&ergleichsstatistik",        ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Spra&che...",                 ID_VIEW_LANGUAGE
@@ -317,7 +317,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Drucken...",                 ID_FILE_PRINT
-        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Sei&te einrichten",           ID_FILE_PAGE_SETUP
         MENUITEM "Druck&vorschau",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "L&inks schreibgeschützt",      ID_FILE_LEFT_READONLY
@@ -387,14 +387,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Ausschnitt v&ertauschen",     ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Symbolleiste"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Keine",                      ID_TOOLBAR_NONE
+            MENUITEM "K&lein",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Groß",                       ID_TOOLBAR_BIG
         END
         MENUITEM "S&tatusleiste",               ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Ta&b-Leiste",                 ID_VIEW_TAB_BAR
         MENUITEM "U&nterschiedsleiste",         ID_VIEW_DETAIL_BAR
         MENUITEM "P&ositionsleiste",            ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -850,10 +850,10 @@ BEGIN
                     LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,105
     EDITTEXT        IDC_LFILTER_EDITBOX,7,149,296,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Save",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
-    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
-    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
-    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
+    PUSHBUTTON      "Speichern",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
+    PUSHBUTTON      "Neu",IDC_LFILTER_ADDBTN,7,167,50,14
+    PUSHBUTTON      "Bearbeiten",IDC_LFILTER_EDITBTN,62,167,50,14
+    PUSHBUTTON      "Entfernen",IDC_LFILTER_REMOVEBTN,116,167,50,14
 END
 
 IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 235, 196
@@ -1597,20 +1597,20 @@ END
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Confirm Copy"
+CAPTION "Kopieren bestätigen"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
-    LTEXT           "Are you sure you want to copy XXX items?",
+    LTEXT           "Wollen Sie wirklich XXX Objekte kopieren?",
                     IDC_FLDCONFIRM_QUERY,45,7,233,8
-    LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
+    LTEXT           "Von links",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
+    LTEXT           "Nach rechts",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Yes",IDYES,174,79,50,14
-    DEFPUSHBUTTON   "No",IDNO,228,79,50,14
+    PUSHBUTTON      "Ja",IDYES,174,79,50,14
+    DEFPUSHBUTTON   "Nein",IDNO,228,79,50,14
 END
 
 
@@ -1813,7 +1813,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Blendet die Symbolleiste ein oder aus.\nSymbolleiste ein-/ausschalten"
     ID_VIEW_STATUS_BAR      "Blendet die Statusleiste ein oder aus.\nStatusleiste ein-/ausschalten"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_TAB_BAR         "Blendet die Tab-Leiste ein oder aus.\nTab-Leiste ein-/ausschalten"
 END
 
 // Windows System menu
@@ -1922,11 +1922,11 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_TO                  "To:"
-    IDS_FROM_LEFT           "From left:"
-    IDS_TO_LEFT             "To left:"
-    IDS_FROM_RIGHT          "From right:"
-    IDS_TO_RIGHT            "To right:"
+    IDS_TO                  "Nach:"
+    IDS_FROM_LEFT           "Von links:"
+    IDS_TO_LEFT             "Nach links:"
+    IDS_FROM_RIGHT          "Von rechts:"
+    IDS_TO_RIGHT            "Nach rechts:"
 END
 
 // WINMERGE INFORMATION
@@ -2006,7 +2006,7 @@ END
 // LINEFILTER STRINGS
 STRINGTABLE 
 BEGIN
-    IDS_FILTERLINE_REGEXP   "Regular expression"
+    IDS_FILTERLINE_REGEXP   "Regulärer Ausdruck"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2180,15 +2180,15 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE CONFIRMATION
 STRINGTABLE
 BEGIN
-    IDS_CONFIRM_ALL_LEFT    "Sind Sie sicher, dass sie alle Unterschiede in die linke Datei kopieren wollen?"
-    IDS_CONFIRM_ALL_RIGHT   "Sind Sie sicher, dass sie alle Unterschiede in die rechte Datei kopieren wollen?"
+    IDS_CONFIRM_ALL_LEFT    "Wollen Sie wirklich alle Unterschiede in die linke Datei kopieren?"
+    IDS_CONFIRM_ALL_RIGHT   "Wollen Sie wirklich alle Unterschiede in die rechte Datei kopieren?"
     IDS_CONFIRM_COPY_SINGLE "Wollen Sie wirklich\n\n%1\nnach\n%2\nkopieren?"
     IDS_CONFIRM_COPY2DIR    "Wollen Sie wirklich %1 von %2 ausgewählte Objekte kopieren?"
     IDS_CONFIRM_DELETE_ITEMS "Wollen Sie wirklich %1 von %2 ausgewählte Objekte löschen?"
     IDS_CONFIRM_DELETE_DIR  "Verzeichnis\n\n%1\nlöschen?"
     IDS_CONFIRM_DELETE_SINGLE "Wollen Sie wirklich\n\n%1\nlöschen?"
-    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
-    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
+    IDS_CONFIRM_SINGLE_COPY "Wollen Sie wirklich kopieren:"
+    IDS_CONFIRM_MULTIPLE_COPY "Wollen Sie wirklich %d Objekte kopieren:"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
@@ -2811,7 +2811,7 @@ BEGIN
     ID_VIEW_LOCATION_BAR    "Die Positionsleiste zeigt gesamte Abbildungen von den Dateien."
     ID_VIEW_DIR_STATISTICS  "Zeigt die Vergleichsstatistik an."
     ID_VIEW_LANGUAGE        "Wählt die Sprache der Benutzeroberfläche.\nSprache"
-    ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe.\nZeilenunterschied anzeigen"
+    ID_VIEW_LINEDIFFS       "Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe an.\nZeilenunterschied anzeigen"
     ID_VIEW_SWAPPANES       "Vertauscht die Position der beiden Ausschnitte."
     ID_VIEW_LINENUMBERS     "Zeigt Zeilennummern an.\nZeilennummern anzeigen"
     ID_VIEW_WORDWRAP        "Aktiviert das Umbrechen der Zeilen.\nZeilen umbrechen"
@@ -2951,9 +2951,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "Versteckt die Symbolleiste."
+    ID_TOOLBAR_SMALL        "Zeigt kleine Symbolleiste an."
+    ID_TOOLBAR_BIG          "Zeigt große Symbolleiste an."
 END
 
 // END STRINGS SYNCHRO
