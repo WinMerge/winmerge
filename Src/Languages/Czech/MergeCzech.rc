@@ -122,17 +122,17 @@ BEGIN
     END
     POPUP "&Zobrazit"
     BEGIN
-        MENUITEM "&Vybrat písmo...",            ID_VIEW_SELECTFONT
-        MENUITEM "P&oužít výchozí písmo",       ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Vybrat písmo...",            ID_VIEW_SELECTFONT
+        MENUITEM "Použít výchozí písmo",       ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Panel &nástrojù"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Skrýt",                       ID_TOOLBAR_NONE
+            MENUITEM "&Malý",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Velký",                        ID_TOOLBAR_BIG
         END
         MENUITEM "&Stavový øádek",              ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Panel &záložek",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
     END
@@ -206,25 +206,25 @@ BEGIN
     POPUP "&Zobrazit"
     BEGIN
         MENUITEM "Ukázat s&hodné položky",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Ukázat ro&zdílné položky",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Ukázat roz&dílné položky",       ID_OPTIONS_SHOWDIFFERENT
         MENUITEM "Ukázat &levé jedineèné položky",     ID_OPTIONS_SHOWUNIQUELEFT
         MENUITEM "Ukázat p&ravé jedineèné položky",    ID_OPTIONS_SHOWUNIQUERIGHT
         MENUITEM "Ukázat pø&eskoèené položky",         ID_OPTIONS_SHOWSKIPPED
         MENUITEM "Ukázat &binární soubory",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
-        MENUITEM "Ukázat &skryté položky",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM "Ukázat s&kryté položky",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
-        MENUITEM "&Vybrat písmo...",            ID_VIEW_SELECTFONT
-        MENUITEM "P&oužít výchozí písmo",      ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Vybrat písmo...",            ID_VIEW_SELECTFONT
+        MENUITEM "Použít výchozí písmo",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Panel &nástrojù"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Skrýt",                       ID_TOOLBAR_NONE
+            MENUITEM "&Malý",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Velký",                        ID_TOOLBAR_BIG
         END
-        MENUITEM "S&tavový øádek",              ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "&Stavový øádek",              ID_VIEW_STATUS_BAR
+        MENUITEM "Panel &záložek",                    ID_VIEW_TAB_BAR
         MENUITEM "St&atistika porovnání",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
@@ -372,29 +372,29 @@ BEGIN
     END
     POPUP "&Zobrazit"
     BEGIN
-        MENUITEM "&Vybrat písmo...",            ID_VIEW_SELECTFONT
-        MENUITEM "P&oužít výchozí písmo",       ID_VIEW_USEDEFAULTFONT
-        POPUP "Syntax Highlight"
+        MENUITEM "Vybrat písmo...",            ID_VIEW_SELECTFONT
+        MENUITEM "Použít výchozí písmo",       ID_VIEW_USEDEFAULTFONT
+        POPUP "Zvýraznìní syntaxe"
         BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
-        MENUITEM "Zobrazit netisknutelné &znaky", ID_VIEW_WHITESPACE
+        MENUITEM "Zobrazit ne&tisknutelné znaky", ID_VIEW_WHITESPACE
         MENUITEM "Zobrazit rozdíly v øá&dcích", ID_VIEW_LINEDIFFS
         MENUITEM "Zobrazit èísla øád&kù",       ID_VIEW_LINENUMBERS
         MENUITEM "Zobrazit &levé okraje",               ID_VIEW_FILEMARGIN
         MENUITEM "Zala&movat øádky",            ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
-        MENUITEM "Za&mìnit panely",             ID_VIEW_SWAPPANES
+        MENUITEM "Z&amìnit panely",             ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Panel &nástrojù"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Skrýt",                       ID_TOOLBAR_NONE
+            MENUITEM "&Malý",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Velký",                        ID_TOOLBAR_BIG
         END
         MENUITEM "&Stavový øádek",              ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Panel &záložek",                    ID_VIEW_TAB_BAR
         MENUITEM "&Rozdílový panel",            ID_VIEW_DETAIL_BAR
         MENUITEM "&Polohový panel",             ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -1813,7 +1813,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Zobrazí nebo skryje panel nástrojù\nPanel nástrojù"
     ID_VIEW_STATUS_BAR      "Zobrazí nebo skryje stavový øádek\nStavový øádek"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_TAB_BAR         "Zobrazí nebo skryje panel záložek\nPanel záložek"
 END
 
 // Windows System menu
@@ -1909,7 +1909,7 @@ BEGIN
     IDS_OPTIONSPG_COMPARE   "Porovnávání"
     IDS_OPTIONSPG_EDITOR    "Editor"
     IDS_OPTIONSPG_COLORS    "Barvy"
-    IDS_OPTIONSPG_SYNTAXCOLORS "Barvy syntaxe"
+    IDS_OPTIONSPG_SYNTAXCOLORS "Zvýraznìní syntaxe"
     IDS_OPTIONSPG_TEXTCOLORS "Barvy textu"
     IDS_OPTIONSPG_SYSTEM    "Systém"
     IDS_OPTIONSPG_VERSIONCONTROL "Kontrola verzí"
@@ -1922,7 +1922,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_TO                  "To:"
+    IDS_TO                  "Do:"
     IDS_FROM_LEFT           "Zleva:"
     IDS_TO_LEFT             "Doleva:"
     IDS_FROM_RIGHT          "Zprava:"
@@ -1989,7 +1989,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Zvolte název souboru pro nový filtr"
     IDS_FILEFILTER_FILEMASK "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "Nelze nalézt soubor s filtrem!\n\nZkopírujte prosím soubor %1 do složky s filtry pro aplikaci WinMerge:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Nelze zkopírovat soubor s filtrem do složky filtrù:\n%1\n\nUjistìte se prosím, že složka existuje a je možné do ní zapisovat."
     IDS_FILEFILTER_NO_USERFOLDER 
@@ -2910,7 +2910,7 @@ END
 // COLOR SCHEMES
 STRINGTABLE
 BEGIN
-    IDS_COLORSCHEME_PLAIN           "None"
+    IDS_COLORSCHEME_PLAIN           "žádné"
     IDS_COLORSCHEME_ASP             "ASP"
     IDS_COLORSCHEME_BASIC           "Basic"
     IDS_COLORSCHEME_BATCH           "Batch"
@@ -2944,9 +2944,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "Skryje panel nástrojù"
+    ID_TOOLBAR_SMALL        "Zobrazí malý panel nástrojù"
+    ID_TOOLBAR_BIG          "Zobrazí velký panel nástrojù"
 END
 
 // END STRINGS SYNCHRO
