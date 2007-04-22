@@ -62,21 +62,24 @@
 
 <h3><a name="developer">Instructions for those who know Subversion and Visual C++</a></h3>
 <p>Grab a copy of the source from <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a>.</p>
-<p>You will need to translate all the strings in <code>Merge.rc</code> to your language. Make a <code>MergeYourLanguage.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">here</a>.
+<p>You will need to translate all the strings in <code>Src\Merge.rc</code> to your language. Make a <code>Merge<em>YourLanguage</em>.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">here</a>.
+If we have already a translation from your language, you will find the file under the <code>Src\Languages\<em>YourLanguage</em>\</code> folder.</p>
 <p>Then one of the developers will commit it to Subversion and it will be released with the next release.</p>
 <p class="note">Please try to avoid changing dialog layout when translating.
 The layout should be shared by all translations as much as possible, to make merging (and future translation changes) easier.
 You can of course make controls wider to fit longer texts, but you should not move buttons and other controls if not really necessary.<br /><br />
-If you want to improve dialog layout (we welcome UI improvements) you should submit it as src/Merge.rc patch so it will be merged to all translations.</p>
+If you want to improve dialog layout (we welcome UI improvements) you should submit it as <code>Src\Merge.rc</code> patch so it will be merged to all translations.</p>
 
 <h3><a name="everybody">Instructions for everybody else</a></h3>
 
 <p>You must translate all the strings inside a file called <code>Merge.rc</code> into your language.</p>
 <p>The easiest way to get a copy of <code>Merge.rc</code> is to go to <a href="http://sourceforge.net/project/showfiles.php?group_id=13216">our download site</a> and download the latest .zip with sources. If you can't find it, then please <a href="mailto:winmerge-support@lists.sourceforge.net">ask us</a> and we will send the file to you.</p>
+<p>The file <code>Merge.rc</code> is located under the <code>Src\</code> folder in the source code. Just copy the file to <code>Merge<em>YourLanguage</em>.rc</code> and translate it.
+If you only want to improve a current translation, you find the file under the <code>Src\Languages\<em>YourLanguage</em>\</code> folder.</p>
 
 <p>If you have Visual Studio, then we suggest you use that to do the translation. If you do not have Visual Studio, then here are some instructions for you.</p>
 
-<p>You only have to translate the strings between the quotes in <code>Merge.rc</code>. Here is an example. The English version looks like this:</p>
+<p>You only have to translate the strings between the quotes in <code>Merge<em>YourLanguage</em>.rc</code>. Here is an example. The English version looks like this:</p>
 
 <pre>
     CONTROL         "Insert &amp;Spaces",IDC_PROP_INSERT_SPACES,"Button",
@@ -100,7 +103,7 @@ If you want to improve dialog layout (we welcome UI improvements) you should sub
   <li>Don't translate the following strings, as they have special meaning in Visual C++: <code>"Button"</code>, <code>"MS Sans Serif"</code> and <code>"MS Shell Dlg"</code>.</li>
 </ul>
 
-<p>Please find this line in <code>Merge.rc</code></p>
+<p>Please find this line in <code>Merge<em>YourLanguage</em>.rc</code></p>
 <pre>
             VALUE "FileDescription", "WinMerge Application\0"
 </pre>
