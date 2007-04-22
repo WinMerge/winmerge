@@ -1,6 +1,8 @@
 2007-04-22 Tim
  PATCH: [ 1703303 ] Improve translations instructions
   Developers: Translations.html
+ Fix SVN links in translations instructions.
+  Developers: Translations.html
 
 2007-04-12 Tim
  PATCH: [ 1699528 ] Translations instructions for dev docs
