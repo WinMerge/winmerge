@@ -1,3 +1,7 @@
+2007-04-25 Tim
+ Switch to own mailing lists page.
+  Manual: Introduction.xml
+
 2007-04-14 Kimmo
  PATCH: [ 1700309 ] [Manual] Command line accepts folder- and filename
   Manual: Command_line.xml
