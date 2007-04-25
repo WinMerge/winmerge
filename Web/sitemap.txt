@@ -57,4 +57,5 @@ http://winmerge.org/2.6/manual/TextEncoding.html
 http://winmerge.org/2.6/manual/VersionControl.html
 http://winmerge.org/2.6/manual/Whatsnew.html
 http://winmerge.org/support/index.php
+http://winmerge.org/support/mailing-lists.php
 http://winmerge.org/support/tracker-shortcuts.php

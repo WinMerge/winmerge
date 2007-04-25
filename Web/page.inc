@@ -197,6 +197,7 @@
      * @todo the menu items should swap out to a own file (*.xml for example)
      */
     function getMenu() {
+      $temp = '';
       switch ($this->_version) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
           $temp .= "<h2><a href=\"/1.7/index.php\">WinMerge 1.7</a></h2>\n";
@@ -291,7 +292,7 @@
         case WINMERGE_SUP: //if "Support" ...
           $temp .= "<h2><a href=\"/support/index.php\">Support</a></h2>\n";
           $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/mail/?group_id=13216\">Mailing Lists</a></li>\n";
+          $temp .= "  <li><a href=\"/support/mailing-lists.php\">Mailing Lists</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/forum/?group_id=13216\">Discussion Forums</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
