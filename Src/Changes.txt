@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-26 Gal
+ BUG: [ 1706476 ] (2.6.6.0) wrap lines looses horizontal scroll bar
+  Src/editlib: ccrystaltextview.cpp
+
 2007-04-16 Tim
  PATCH: [ 1701151 ] Various Updates in German Translation
   Src/Languages/German: MergeGerman.rc

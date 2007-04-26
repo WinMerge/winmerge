@@ -3253,15 +3253,22 @@ RecalcHorzScrollBar (BOOL bPositionOnly /*= FALSE*/ )
   SCROLLINFO si = {0};
   si.cbSize = sizeof (si);
 
+  const int nScreenChars = GetScreenChars();
+  
   if (m_bWordWrap)
     {
+       if (m_nOffsetChar > nScreenChars)
+         {
+           m_nOffsetChar = 0;
+           UpdateCaret ();
+         }
+
       // Disable horizontal scroll bar
       si.fMask = SIF_DISABLENOSCROLL | SIF_PAGE | SIF_POS | SIF_RANGE;
       SetScrollInfo (SB_HORZ, &si);
       return;
     }
 
-  const int nScreenChars = GetScreenChars();
   const int nMaxLineLen = GetMaxLineLength ();
 
   if (bPositionOnly)
