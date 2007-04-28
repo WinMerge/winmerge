@@ -125,14 +125,14 @@ BEGIN
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Verktygsrad"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Ingen",                       ID_TOOLBAR_NONE
+            MENUITEM "&Liten",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Stor",                        ID_TOOLBAR_BIG
         END
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Fi&lrad",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
     END
@@ -217,14 +217,14 @@ BEGIN
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Verktygsrad"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Ingen",                       ID_TOOLBAR_NONE
+            MENUITEM "&Liten",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Stor",                        ID_TOOLBAR_BIG
         END
         MENUITEM "S&tatusfält",                 ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Fi&lrad",                    ID_VIEW_TAB_BAR
         MENUITEM "Jämfö&rstatistik",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&pråk...",                   ID_VIEW_LANGUAGE
@@ -374,9 +374,9 @@ BEGIN
     BEGIN
         MENUITEM "Välj tecken&snitt...",        ID_VIEW_SELECTFONT
         MENUITEM "Använd standardtec&kensnitt", ID_VIEW_USEDEFAULTFONT
-        POPUP "Syntax Highlight"
+        POPUP "Syntaxmarkering"
         BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+            MENUITEM "<PlatsHållare>",           ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
         MENUITEM "Visa &mellanslag",            ID_VIEW_WHITESPACE
@@ -428,7 +428,7 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
+            MENUITEM "<PlatsHållare>",           ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Öppna plugins igen",         ID_RELOAD_PLUGINS
@@ -1807,7 +1807,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Visar eller gömmer verktygsfältet\nVäxla verktygsfält"
     ID_VIEW_STATUS_BAR      "Visar eller gömmer statusfältet\nVäxla statusfältet"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_TAB_BAR         "Visar eller gömmer filraden\nVäxla filraden"
 END
 
 // Windows System menu
@@ -1916,7 +1916,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_TO                  "To:"
+    IDS_TO                  "Till:"
     IDS_FROM_LEFT           "Från vänster:"
     IDS_TO_LEFT             "Till vänster:"
     IDS_FROM_RIGHT          "Från höger:"
@@ -1983,7 +1983,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Välj filnamn för nytt filter"
     IDS_FILEFILTER_FILEMASK "Filfilter (*.flt)|*.flt|Alla Filer (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "Kan inte hitta filfilterfilen!\n\nVar god och kopiera filen %1 till WinMerges Filterkatalog:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Kan inte kopiera filterfilen till filterkatalogen:\n%1\n\nVar god och verifiera att katalogen finns och att den är skrivbar."
     IDS_FILEFILTER_NO_USERFOLDER 
@@ -2912,7 +2912,7 @@ END
 // COLOR SCHEMES
 STRINGTABLE
 BEGIN
-    IDS_COLORSCHEME_PLAIN           "None"
+    IDS_COLORSCHEME_PLAIN           "Ingen"
     IDS_COLORSCHEME_ASP             "ASP"
     IDS_COLORSCHEME_BASIC           "Basic"
     IDS_COLORSCHEME_BATCH           "Batch"
@@ -2946,9 +2946,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "Dölj verktygsraden"
+    ID_TOOLBAR_SMALL        "Visa liten verktygsrad"
+    ID_TOOLBAR_BIG          "Visa stor verktygsrad"
 END
 
 // END STRINGS SYNCHRO
