@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-04-30 Kimmo
+ PATCH: [ 1704904 ] Korean Translation 2.6.X
+  Submitted by Sukjoon, Hwang
+  Src/Languages/Korean: MergeKorean.rc
+
 2007-04-28 Kimmo
  PATCH: [ 1703350 ] Update of Swedish MergeSwedish.rc
   Submitted by Hans Eriksson
