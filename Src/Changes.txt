@@ -2,6 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-06 Tim
+ RFE: [ 1711548 ] Move common things to own resource file
+  Src: Merge.rc
+  Src new file: Merge2.rc
+  Src/res: Merge.rc2
+
 2007-04-30 Kimmo
  PATCH: [ 1704904 ] Korean Translation 2.6.X
   Submitted by Sukjoon, Hwang
