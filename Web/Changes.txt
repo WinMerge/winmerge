@@ -1,6 +1,8 @@
 2007-05-07 Tim
  Rename function setVersion() to setTab().
   Web: page.inc
+ Fix wrong tab from WinMerge 2.2 download page.
+  Web\2.2: downloads.php
 
 2007-04-25 Tim
  RFE: [ 1700099 ] Web: Mailing list page?

@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Downloads', WINMERGE_USR);
+  $page->printHead('WinMerge: Downloads', WINMERGE_2_2);
 ?>
 <h2>Downloads</h2>
 <p class="important">This is an old version of WinMerge, for the latest version go to the <a href="../index.php">main site</a>.</p>
