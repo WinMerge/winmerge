@@ -1,3 +1,7 @@
+2007-05-07 Tim
+ Rename function setVersion() to setTab().
+  Web: page.inc
+
 2007-04-25 Tim
  RFE: [ 1700099 ] Web: Mailing list page?
   Web: page.inc sitemap.txt

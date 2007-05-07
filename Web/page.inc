@@ -23,7 +23,7 @@
   class Page {
     var $_title, $_charset;
     var $_description, $_keywords;
-    var $_version;
+    var $_tab;
 
     /**
      * Constructor
@@ -33,7 +33,7 @@
       $this->_charset = 'ISO-8859-1';
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
-      $this->_version = WINMERGE_2_6;
+      $this->_tab = WINMERGE_2_6;
     }
 
     /**
@@ -65,21 +65,21 @@
     }
 
     /**
-     * set the WinMerge version from the page
+     * set the tab from the page
      */
-    function setVersion($version) {
-      $this->_version = $version;
+    function setTab($tab) {
+      $this->_tab = $tab;
     }
 
     /**
      * print the head from the page
      */
-    function printHead($title = '', $version = '') {
+    function printHead($title = '', $tab = '') {
       if ($title != '') {
         $this->_title = $title;
       }
-      if ($version != '') {
-        $this->_version = $version;
+      if ($tab != '') {
+        $this->_tab = $tab;
       }
       $temp = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"\n";
       $temp .= "  \"http://www.w3.org/TR/html4/loose.dtd\">\n";
@@ -107,7 +107,7 @@
       $temp .= $this->getMenu();
       $temp .= "</div>\n";
       $temp .= "<div id=\"content\">\n";
-      switch ($this->_version) {
+      switch ($this->_tab) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
         case WINMERGE_2_0: //if WinMerge 2.0 ...
         case WINMERGE_2_2: //if WinMerge 2.2 ...
@@ -133,31 +133,31 @@
      */
     function getTabs() {
       $temp = "<ul>\n";
-      if ($this->_version == WINMERGE_USR) { //if "Users" ...
+      if ($this->_tab == WINMERGE_USR) { //if "Users" ...
         $temp .= "  <li class=\"selected\"><a href=\"/index.php\">Users</a></li>\n";
       }
       else { //if NOT "Users" ...
         $temp .= "  <li><a href=\"/index.php\">Users</a></li>\n";
       }
-      if ($this->_version == WINMERGE_2_6) { //if WinMerge 2.6 ...
+      if ($this->_tab == WINMERGE_2_6) { //if WinMerge 2.6 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.6/index.php\">2.6</a></li>\n";
       }
       else { //if NOT WinMerge 2.6 ...
         $temp .= "  <li><a href=\"/2.6/index.php\">2.6</a></li>\n";
       }
-      if ($this->_version == WINMERGE_2_4) { //if WinMerge 2.4 ...
+      if ($this->_tab == WINMERGE_2_4) { //if WinMerge 2.4 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.4/index.php\">2.4</a></li>\n";
       }
-      if ($this->_version == WINMERGE_2_2) { //if WinMerge 2.2 ...
+      if ($this->_tab == WINMERGE_2_2) { //if WinMerge 2.2 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.2/index.php\">2.2</a></li>\n";
       }
-      if ($this->_version == WINMERGE_2_0) { //if WinMerge 2.0 ...
+      if ($this->_tab == WINMERGE_2_0) { //if WinMerge 2.0 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.0/index.php\">2.0</a></li>\n";
       }
-      if ($this->_version == WINMERGE_1_7) { //if WinMerge 1.7 ...
+      if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
         $temp .= "  <li class=\"selected\"><a href=\"/1.7/index.php\">1.7</a></li>\n";
       }
-      if ($this->_version == WINMERGE_SUP) { //if "Support" ...
+      if ($this->_tab == WINMERGE_SUP) { //if "Support" ...
         $temp .= "  <li class=\"selected\"><a href=\"/support/index.php\">Support</a></li>\n";
       }
       else { //if NOT "Support" ...
@@ -198,7 +198,7 @@
      */
     function getMenu() {
       $temp = '';
-      switch ($this->_version) {
+      switch ($this->_tab) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
           $temp .= "<h2><a href=\"/1.7/index.php\">WinMerge 1.7</a></h2>\n";
           $temp .= "<ul>\n";
