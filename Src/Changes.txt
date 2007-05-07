@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-07 Tim
+ RFE: [ 1711549 ] Simplify IDC_IGNOREREGEXP text
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2007-05-06 Tim
  RFE: [ 1711548 ] Move common things to own resource file
   Src: Merge.rc

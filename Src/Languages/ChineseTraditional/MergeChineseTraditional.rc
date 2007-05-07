@@ -840,7 +840,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "列濾鏡"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "忽略列符合下列的樣式",
+    CONTROL         "Enable Line Filters",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "一般運算式 (每列一個):",IDC_STATIC,7,28,

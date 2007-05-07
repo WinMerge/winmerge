@@ -840,7 +840,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Филтри за ред"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Игнорирай редовете съдържащи следното",
+    CONTROL         "Enable Line Filters",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "Правилни изрази (по един на ред):",IDC_STATIC,7,28,

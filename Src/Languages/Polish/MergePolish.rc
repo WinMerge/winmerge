@@ -840,7 +840,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Filtry wierszy"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Pomiñ wiersze pasuj¹ce do wzorców",
+    CONTROL         "Enable Line Filters",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "Wyra¿enia regularne (jedno/wiersz):",IDC_STATIC,7,28,
