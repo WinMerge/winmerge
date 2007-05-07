@@ -3,6 +3,9 @@
   Web: page.inc
  Fix wrong tab from WinMerge 2.2 download page.
   Web\2.2: downloads.php
+ Fix the double "This is an old version" info for WinMerge 2.2 amd 2.4.
+  Web\2.2: downloads.php
+  Web\2.4: downloads.php
 
 2007-04-25 Tim
  RFE: [ 1700099 ] Web: Mailing list page?
