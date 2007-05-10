@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Support', WINMERGE_SUP);
+  $page->printHead('WinMerge: Support', TAB_SUPPORT);
 ?>
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered

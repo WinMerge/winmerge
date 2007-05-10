@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Mailing lists', WINMERGE_SUP);
+  $page->printHead('WinMerge: Mailing lists', TAB_SUPPORT);
 ?>
 <h2>Mailing lists</h2>
 <ul>

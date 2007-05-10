@@ -15,7 +15,7 @@
   define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
-  define ('WINMERGE_SUP', 'sup');
+  define ('TAB_SUPPORT', 'support');
 
   /**
    * ...
@@ -157,7 +157,7 @@
       if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
         $temp .= "  <li class=\"selected\"><a href=\"/1.7/index.php\">1.7</a></li>\n";
       }
-      if ($this->_tab == WINMERGE_SUP) { //if "Support" ...
+      if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
         $temp .= "  <li class=\"selected\"><a href=\"/support/index.php\">Support</a></li>\n";
       }
       else { //if NOT "Support" ...
@@ -289,7 +289,7 @@
           $temp .= "  </li>\n";
           $temp .= "</ul>\n";
           break;
-        case WINMERGE_SUP: //if "Support" ...
+        case TAB_SUPPORT: //if "Support" ...
           $temp .= "<h2><a href=\"/support/index.php\">Support</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/support/mailing-lists.php\">Mailing Lists</a></li>\n";

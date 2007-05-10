@@ -2,7 +2,7 @@
   include('../page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Tracker Shortcuts', WINMERGE_SUP);
+  $page->printHead('WinMerge: Tracker Shortcuts', TAB_SUPPORT);
 ?>
 <h2>Tracker Shortcuts</h2>
 <p><em>Tracker Shortcuts</em> are shorter and nicer URLs to <a href="http://sourceforge.net/tracker/?group_id=13216">Tracker</a>
