@@ -1,3 +1,7 @@
+2007-05-10 Tim
+ PATCH: [ 1714596 ] Web: Rename "Users" tab to "Home"
+  Web: downloads.php index.php links.php page.inc WinMergePAD.php
+
 2007-05-07 Tim
  Rename function setVersion() to setTab().
   Web: page.inc

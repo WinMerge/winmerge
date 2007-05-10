@@ -9,7 +9,7 @@
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU General Public License for more details.
 
-  define ('WINMERGE_USR', 'usr');
+  define ('TAB_HOME', 'home');
   define ('WINMERGE_1_7', '1.7');
   define ('WINMERGE_2_0', '2.0');
   define ('WINMERGE_2_2', '2.2');
@@ -133,11 +133,11 @@
      */
     function getTabs() {
       $temp = "<ul>\n";
-      if ($this->_tab == WINMERGE_USR) { //if "Users" ...
-        $temp .= "  <li class=\"selected\"><a href=\"/index.php\">Users</a></li>\n";
+      if ($this->_tab == TAB_HOME) { //if "Home" ...
+        $temp .= "  <li class=\"selected\"><a href=\"/index.php\">Home</a></li>\n";
       }
-      else { //if NOT "Users" ...
-        $temp .= "  <li><a href=\"/index.php\">Users</a></li>\n";
+      else { //if NOT "Home" ...
+        $temp .= "  <li><a href=\"/index.php\">Home</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_6) { //if WinMerge 2.6 ...
         $temp .= "  <li class=\"selected\"><a href=\"/2.6/index.php\">2.6</a></li>\n";
@@ -271,7 +271,7 @@
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_6: //if WinMerge 2.6 ...
-        case WINMERGE_USR: //OR if "Users" ...
+        case TAB_HOME: //OR if "Home" ...
           $temp .= "<h2><a href=\"/2.6/index.php\">WinMerge 2.6</a></h2>\n";
           $temp .= "<ul>\n";
           $temp .= "  <li><a href=\"/2.6/manual/index.html\">Manual</a></li>\n";

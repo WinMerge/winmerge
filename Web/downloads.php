@@ -2,7 +2,7 @@
   include('page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Downloads', WINMERGE_USR);
+  $page->printHead('WinMerge: Downloads', TAB_HOME);
 ?>
 <h2>Downloads</h2>
 <h3><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=497312">WinMerge 2.6.6</a></h3>

@@ -2,7 +2,7 @@
   include('page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: Links', WINMERGE_USR);
+  $page->printHead('WinMerge: Links', TAB_HOME);
 ?>
 <h2>Links</h2>
 <p>Here is a collection of links to tools and reference material that we find is generally useful when you work with WinMerge.</p>

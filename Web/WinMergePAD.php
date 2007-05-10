@@ -2,7 +2,7 @@
   include('page.inc');
 
   $page = new Page;
-  $page->printHead('WinMerge: PAD file', WINMERGE_USR);
+  $page->printHead('WinMerge: PAD file', TAB_HOME);
 ?>
 <h2>PAD file</h2>
 <p>The easiest way to get informations about the latest stable version from WinMerge for your web site is the <a href="http://www.asp-shareware.org/pad/">Portable Application Description</a> file, which you find here:</p>
