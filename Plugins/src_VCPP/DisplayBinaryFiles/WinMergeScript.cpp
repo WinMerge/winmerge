@@ -78,17 +78,35 @@ STDMETHODIMP CWinMergeScript::UnpackFile(BSTR fileSrc, BSTR fileDst, VARIANT_BOO
 		if (beginning)
 		{
 			if (CheckForBom(buffer, curlen, &uninfo))
-			i += uninfo.bom_width;
+				i += uninfo.bom_width;
 			beginning = false;
 		}
+		char * p1 = (char *)buffer;
+		short * p2 = (short *)buffer;
+		int * p4 = (int *)buffer;
 		for ( ; i < curlen ; i += uninfo.char_width)
 		{
-			int index = i+uninfo.low_byte;
-			if (i+index < curlen && buffer[index] == 0)
+			if (i + (uninfo.char_width-1) < curlen)
 			{
-				buffer[index] = 0x20;
+				int index = i/uninfo.char_width;
+				if (uninfo.char_width == 1)
+				{
+					if (p1[index] == 0)
+						p1[index] = 0x20;
+				}
+				else if (uninfo.char_width == 2)
+				{
+					if (p2[index] == 0)
+						p2[index] = 0x20;
+				}
+				else // uninfo.char_width == 4
+				{
+					if (p4[index] == 0)
+						p4[index] = 0x20;
+				}
 			}
 		}
+
 		output.write(buffer, curlen);
 		len -= curlen;
 	}

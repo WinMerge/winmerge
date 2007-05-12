@@ -89,7 +89,8 @@ public:
 			for (int i=0; i<(int)cNames; i++)
 			{
 				int n = ocslen(rgszNames[i]);
-				for (int j=m_nCount-1; j>=0; j--)
+				int j=0;
+				for (j=m_nCount-1; j>=0; j--)
 				{
 					if ((n == m_pMap[j].nLen) &&
 						(memcmp(m_pMap[j].bstr, rgszNames[i], m_pMap[j].nLen * sizeof(OLECHAR)) == 0))
@@ -153,7 +154,7 @@ inline HRESULT CComTypeInfoHolderModule<nObtainMethod>::GetTI(LCID lcid)
     USES_CONVERSION;
 	//If this assert occurs then most likely didn't initialize properly
 	ATLASSERT(m_plibid != NULL && m_pguid != NULL);
-	ATLASSERT(!::InlineIsEqualGUID(*m_plibid, GUID_NULL) && "Did you forget to pass the LIBID to CComModule::Init?");
+	ATLASSERT(!InlineIsEqualGUID(*m_plibid, GUID_NULL) && "Did you forget to pass the LIBID to CComModule::Init?");
 
 	if (m_pInfo != NULL)
 		return S_OK;

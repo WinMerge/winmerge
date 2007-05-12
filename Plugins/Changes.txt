@@ -2,6 +2,13 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2007-05-12 Tim
+ PATCH: [ 1717461 ] Use DisplayBinaryFiles plugin from WinMergeX
+  Plugins\dlls:
+   DisplayBinaryFiles.dll
+  Plugins\src_VCPP\DisplayBinaryFiles:
+   DisplayBinaryFiles.dsp DisplayBinaryFiles.rc typeinfoex. hWinMergeScript.cpp
+
 2007-03-29 Tim
  PATCH: [ 1690588 ] IgnoreLeadingLineNumbers plugin v1.1
   Plugins\dlls:
