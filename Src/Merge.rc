@@ -1670,44 +1670,6 @@ END
 
 /////////////////////////////////////////////////////////////////////////////
 //
-// Toolbar
-//
-
-IDR_MAINFRAME TOOLBAR  16, 15
-BEGIN
-    BUTTON      ID_FILE_NEW
-    BUTTON      ID_FILE_OPEN
-    BUTTON      ID_FILE_SAVE
-    SEPARATOR
-    BUTTON      ID_EDIT_UNDO
-    BUTTON      ID_EDIT_REDO
-    SEPARATOR
-    BUTTON      ID_SELECTLINEDIFF
-    SEPARATOR
-    BUTTON      ID_NEXTDIFF
-    BUTTON      ID_PREVDIFF
-    SEPARATOR
-    BUTTON      ID_FIRSTDIFF
-    BUTTON      ID_CURDIFF
-    BUTTON      ID_LASTDIFF
-    SEPARATOR
-    BUTTON      ID_L2R
-    BUTTON      ID_R2L
-    SEPARATOR
-    BUTTON      ID_L2RNEXT
-    BUTTON      ID_R2LNEXT
-    SEPARATOR
-    BUTTON      ID_OPTIONS
-    SEPARATOR
-    BUTTON      ID_ALL_RIGHT
-    BUTTON      ID_ALL_LEFT
-    SEPARATOR
-    BUTTON      ID_REFRESH
-END
-
-
-/////////////////////////////////////////////////////////////////////////////
-//
 // String Table
 //
 
