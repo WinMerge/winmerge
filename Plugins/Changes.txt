@@ -7,7 +7,7 @@ Add new items to top
   Plugins\dlls:
    DisplayBinaryFiles.dll
   Plugins\src_VCPP\DisplayBinaryFiles:
-   DisplayBinaryFiles.dsp DisplayBinaryFiles.rc typeinfoex. hWinMergeScript.cpp
+   DisplayBinaryFiles.dsp DisplayBinaryFiles.rc typeinfoex.h WinMergeScript.cpp
 
 2007-03-29 Tim
  PATCH: [ 1690588 ] IgnoreLeadingLineNumbers plugin v1.1
