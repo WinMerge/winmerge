@@ -122,6 +122,7 @@ void CMDITabBar::UpdateTabs()
 			MDIFrameList[pFrame->m_hWnd] = -1;
 	}
 
+	// Associate MDIFrameList with the index of the tab
 	TC_ITEM tci;
 	int item;
 	for (item = GetItemCount() - 1; item >= 0 ; item--)
@@ -129,13 +130,7 @@ void CMDITabBar::UpdateTabs()
 		int dummy;
 		tci.mask = TCIF_PARAM;
 		GetItem(item, &tci);
-		if (MDIFrameList.Lookup((HWND)tci.lParam, dummy) == FALSE)
-		{
-			DeleteItem(item);
-			if (GetItemCount() == 0)
-				m_pMainFrame->RecalcLayout();
-		}
-		else
+		if (MDIFrameList.Lookup((HWND)tci.lParam, dummy))
 		{
 			MDIFrameList[(HWND)tci.lParam] = item;
 			if (!m_bInSelchange && hWndMDIActive == (HWND)tci.lParam)
@@ -143,6 +138,7 @@ void CMDITabBar::UpdateTabs()
 		}
 	}
 
+	// Update or insert tabs
 	for (POSITION pos = MDIFrameList.GetStartPosition(); pos; )
 	{
 		HWND hFrameWnd;
@@ -182,6 +178,20 @@ void CMDITabBar::UpdateTabs()
 				tci.pszText = strTitle.LockBuffer();
 				SetItem(item, &tci);
 			}
+		}
+	}
+
+	// Delete tabs
+	for (item = GetItemCount() - 1; item >= 0 ; item--)
+	{
+		int dummy;
+		tci.mask = TCIF_PARAM;
+		GetItem(item, &tci);
+		if (MDIFrameList.Lookup((HWND)tci.lParam, dummy) == FALSE)
+		{
+			DeleteItem(item);
+			if (GetItemCount() == 0)
+				m_pMainFrame->RecalcLayout();
 		}
 	}
 }
