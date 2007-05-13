@@ -9,6 +9,12 @@
 
 #include "stdafx.h"
 #include "SortHeaderCtrl.h"
+#include "dllver.h"
+
+#ifndef HDF_SORTUP
+#define HDF_SORTUP              0x0400
+#define HDF_SORTDOWN            0x0200
+#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CSortHeaderCtrl
@@ -37,12 +43,34 @@ int CSortHeaderCtrl::SetSortImage(int nCol, BOOL bAsc)
 	m_nSortCol = nCol;
 	m_bSortAsc = bAsc;
 
-	// Change the item to ownder drawn
 	HD_ITEM hditem;
 
 	hditem.mask = HDI_FORMAT;
+
+	// Clear HDF_SORTDOWN and HDF_SORTUP flag in all columns.
+	int i;
+	for (i = 0; i < this->GetItemCount(); i++)
+	{
+		GetItem( i, &hditem );
+		if (hditem.fmt & (HDF_SORTDOWN | HDF_SORTUP))
+		{
+			hditem.fmt &= ~(HDF_SORTUP | HDF_SORTDOWN);
+			SetItem( i, &hditem );
+		}
+	}
+
 	GetItem( nCol, &hditem );
-	hditem.fmt |= HDF_OWNERDRAW;
+	if (GetDllVersion(_T("comctl32.dll")) >= PACKVERSION(6,00))
+	{
+		// We can use HDF_SORTUP and HDF_SORTDOWN flag to draw a sort arrow on the header.
+		hditem.fmt &= ~(HDF_SORTUP | HDF_SORTDOWN);
+		hditem.fmt |= bAsc ? HDF_SORTUP : HDF_SORTDOWN;
+	}
+	else
+	{
+		// Change the item to owner drawn
+		hditem.fmt |= HDF_OWNERDRAW;
+	}
 	SetItem( nCol, &hditem );
 
 	// Invalidate header control so that it gets redrawn
