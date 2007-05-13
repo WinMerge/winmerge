@@ -125,11 +125,11 @@ BEGIN
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "ツールバー(&T)"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "なし(&N)",                ID_TOOLBAR_NONE
+            MENUITEM "小(&S)",                  ID_TOOLBAR_SMALL
+            MENUITEM "大(&B)",                  ID_TOOLBAR_BIG
         END
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "タブバー(&B)",                ID_VIEW_TAB_BAR
@@ -217,11 +217,11 @@ BEGIN
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "ツールバー(&T)"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "なし(&N)",                ID_TOOLBAR_NONE
+            MENUITEM "小(&S)",                  ID_TOOLBAR_SMALL
+            MENUITEM "大(&B)",                  ID_TOOLBAR_BIG
         END
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "タブバー(&B)",                ID_VIEW_TAB_BAR
@@ -374,7 +374,7 @@ BEGIN
     BEGIN
         MENUITEM "フォント選択(&F)...",         ID_VIEW_SELECTFONT
         MENUITEM "デフォルトフォントを使用(&O)", ID_VIEW_USEDEFAULTFONT
-        POPUP "Syntax Highlight"
+        POPUP "シンタックスハイライト"
         BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
         END
@@ -387,11 +387,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "ペインの交換(&A)",            ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "ツールバー(&T)"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "なし(&N)",                ID_TOOLBAR_NONE
+            MENUITEM "小(&S)",                  ID_TOOLBAR_SMALL
+            MENUITEM "大(&B)",                  ID_TOOLBAR_BIG
         END
         MENUITEM "ステータスバー(&S)",          ID_VIEW_STATUS_BAR
         MENUITEM "タブバー(&B)",                ID_VIEW_TAB_BAR
@@ -2149,8 +2149,8 @@ BEGIN
     IDS_CONFIRM_DELETE_ITEMS "本当に選択された%2個の項目の内 %1個を削除しますか?"
     IDS_CONFIRM_DELETE_DIR  "フォルダ\n\n%1\nを削除しますか?"
     IDS_CONFIRM_DELETE_SINGLE "本当に\n\n%1\nを削除しますか?"
-    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
-    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
+    IDS_CONFIRM_SINGLE_COPY "本当にコピーしますか?:"
+    IDS_CONFIRM_MULTIPLE_COPY "本当に%d項目をコピーしますか?:"
 END
 
 // DIRECTORY DIFFING : OPEN FILE
@@ -2913,9 +2913,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "ツールバーを非表示にします"
+    ID_TOOLBAR_SMALL        "小さいアイコンのツールバーを表示します"
+    ID_TOOLBAR_BIG          "大きいアイコンのツールバーを表示します"
 END
 
 // END STRINGS SYNCHRO
