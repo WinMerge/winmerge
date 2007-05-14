@@ -221,7 +221,7 @@ void DiffColoring::Bug1639453()
 		&diffs);
 	count = diffs.GetSize();
 	CPPUNIT_ASSERT(count == 1);
-	CPPUNIT_ASSERT(diffs[0] == wdiff(7, 6, 7, 10));
+	CPPUNIT_ASSERT(diffs[0] == wdiff(8, 7, 7, 10));
 
 	// A more complex strings.
 	string1 = _T("[overlay_oid_origin, overlay_oid_target], [nil, nil]");
@@ -265,3 +265,22 @@ void DiffColoring::Bug1683061()
 	CPPUNIT_ASSERT(diffs[0] == wdiff(3, 2, 3, 3));
 }
 
+/**
+* @brief Bug #1683061: Displays not existing content.
+*/
+void DiffColoring::Bug1714088()
+{
+	wdiffarray diffs;
+	CString string1(_T("arg_separator.output = \";\""));
+	CString string2(_T(";arg_separator.output = \"&amp;\""));
+	int count = 0;
+
+	// Compare case, all white spaces, whitespace break, char level
+	sd_ComputeWordDiffs(string1, string2,
+		true, WHITESPACE_COMPARE_ALL, 0, true,
+		&diffs);
+	count = diffs.GetSize();
+	CPPUNIT_ASSERT(count == 2);
+	CPPUNIT_ASSERT(diffs[0] == wdiff(26, 25, 0, 0));
+	CPPUNIT_ASSERT(diffs[1] == wdiff(26, 25, 25, 28));
+}

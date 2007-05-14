@@ -1,5 +1,10 @@
 Testing\selftest\Changes.txt
 
+2007-05-14 Gal
+ Fixed test case for bug 1639453.
+ Added test case for bug 1714088.
+  StringDifferencing: DiffColoring.cpp DiffColoring.h
+
 2007-03-26 Gal
  Fix and addition to line coloring tests
   StringDifferencing: DiffColoring.cpp DiffColoring.h

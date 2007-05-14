@@ -30,6 +30,7 @@ class DiffColoring : public CPPUNIT_NS::TestFixture
 	CPPUNIT_TEST( Bug1491334 );
 	CPPUNIT_TEST( Bug1639453 );
 	CPPUNIT_TEST( Bug1683061 );
+	CPPUNIT_TEST( Bug1714088 );
 	CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -47,6 +48,7 @@ protected:
 	void Bug1491334();
 	void Bug1639453();
 	void Bug1683061();
+	void Bug1714088();
 };
 
 #endif // _DIFF_COLORING_H_INCLUDED_
