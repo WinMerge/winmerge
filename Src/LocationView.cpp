@@ -665,7 +665,7 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 void CLocationView::DrawVisibleAreaRect(int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
-	const DWORD areaColor = GetSysColor(COLOR_3DFACE);
+	const DWORD areaColor = GetSysColor(COLOR_3DSHADOW);
 	const DWORD bkColor = GetSysColor(COLOR_WINDOW);
 	
 	if (nTopLine == -1)
@@ -845,7 +845,7 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 		// If in visible area, use its background color
 		COLORREF cr;
 		if (m_DiffMarkerCoord > m_visibleTop && m_DiffMarkerCoord < m_visibleBottom)
-			cr = GetSysColor(COLOR_3DFACE);
+			cr = GetSysColor(COLOR_3DSHADOW);
 		else
 			cr = GetSysColor(COLOR_WINDOW);
 
