@@ -645,6 +645,8 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 		else
 			end2 = pz2 - pbeg2;
 		
+		if (end1 < begin1) begin1 = -1;
+		if (end2 < begin2) begin2 = -1;
 	}
 }
 
