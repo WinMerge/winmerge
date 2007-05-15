@@ -1,3 +1,7 @@
+2007-05-15 Kimmo
+ Bump manual revision to 1.3.6.
+  Manual: WinMerge_help.xml
+
 2007-04-25 Tim
  Switch to own mailing lists page.
   Manual: Introduction.xml
