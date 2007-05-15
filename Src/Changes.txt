@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-15 Tim
+ BUG: [ 1719427 ] SetResourceVersions.bat shows error message
+  Src: SetResourceVersions.wsf
+
 2007-05-15 WinMerge experimental release 2.7.3.4 (SVN revision 4287)
 
 2007-05-14 Gal

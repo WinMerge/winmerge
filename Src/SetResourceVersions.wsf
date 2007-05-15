@@ -75,7 +75,7 @@ function Main()
 
   // Parameters for call to GetFileList
   var filespec = "^Merge.*\.rc$";
-  var filespecExclude = "(Translation)|(bak)";
+  var filespecExclude = "(Translation)|(bak)|(Merge2)";
   var recurse = true;
   
   
