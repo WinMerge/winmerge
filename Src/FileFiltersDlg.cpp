@@ -386,9 +386,11 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		return;
 	}
 
+	// Format path to template file
 	CString templatePath(globalPath);
 	if (templatePath[templatePath.GetLength()-1] != '\\')
 		templatePath += "\\";
+	templatePath += FILE_FILTER_TEMPLATE;
 
 	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
 	{
