@@ -636,7 +636,7 @@ ParseLineAsp (DWORD dwCookie, int nLineIndex, TEXTBLOCK * pBuf, int &nActualItem
           break;
         }
 
-		if (bRedefineBlock)
+      if (bRedefineBlock)
         {
           int nPos = I;
           if (bDecIndex)

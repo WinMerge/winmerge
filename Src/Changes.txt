@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-19 Tim
+ Fix white space indenting in ASP and C# highlighter (included with PATCH #1556685).
+  Src/editlib: asp.cpp csharp.cpp
+
 2007-05-17 Kimmo
  BUG: [ 1719892 ] New file filter cannot find template file
   Src: FileFiltersDlg.cpp
