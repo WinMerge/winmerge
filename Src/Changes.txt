@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-20 Takashi
+ PATCH: [ 1717774 ] Gradient toolbar
+  Src: MainFrm.cpp MainFrm.h
+
 2007-05-19 Tim
  Fix white space indenting in ASP and C# highlighter (included with PATCH #1556685).
   Src/editlib: asp.cpp csharp.cpp

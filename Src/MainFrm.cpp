@@ -3060,24 +3060,24 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 
 BOOL CMainFrame::CreateToobar()
 {
-	if (!m_wndToolBar.Create(this, WS_CHILD|WS_VISIBLE|CBRS_GRIPPER|CBRS_TOP|CBRS_TOOLTIPS|CBRS_FLYBY|CBRS_SIZE_DYNAMIC) ||
+	if (!m_wndToolBar.CreateEx(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
 		return FALSE;
 	}
 
-	m_wndToolBar.SetBorders(1, 1, 1, 1);
-	VERIFY(m_wndToolBar.ModifyStyle(0, TBSTYLE_FLAT));
+	if (!m_wndReBar.Create(this))
+	{
+		return FALSE;
+	}
+
+	VERIFY(m_wndToolBar.ModifyStyle(0, TBSTYLE_FLAT|TBSTYLE_TRANSPARENT));
 
 	// Remove this if you don't want tool tips or a resizable toolbar
 	m_wndToolBar.SetBarStyle(m_wndToolBar.GetBarStyle() |
 		CBRS_TOOLTIPS | CBRS_FLYBY | CBRS_SIZE_DYNAMIC);
 
-	// Delete these three lines if you don't want the toolbar to
-	// be dockable
-	m_wndToolBar.EnableDocking(CBRS_ALIGN_ANY);
-	EnableDocking(CBRS_ALIGN_ANY);
-	DockControlBar(&m_wndToolBar);
+	m_wndReBar.AddBar(&m_wndToolBar);
 
 	LoadToolbarImages();
 
@@ -3097,6 +3097,7 @@ void CMainFrame::LoadToolbarImages()
 
 	m_ToolbarImages[TOOLBAR_IMAGES_ENABLED].DeleteImageList();
 	m_ToolbarImages[TOOLBAR_IMAGES_DISABLED].DeleteImageList();
+	CSize sizeButton(0, 0);
 
 	if (toolbarSize == 0)
 	{
@@ -3104,7 +3105,7 @@ void CMainFrame::LoadToolbarImages()
 			m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
 		LoadToolbarImageList(TOOLBAR_SIZE_16x16, IDB_TOOLBAR_DISABLED,
 			m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-		BarCtrl.SetButtonSize(CSize(23,22));
+		sizeButton = CSize(24, 24);
 	}
 	else if (toolbarSize == 1)
 	{
@@ -3112,11 +3113,19 @@ void CMainFrame::LoadToolbarImages()
 			m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
 		LoadToolbarImageList(TOOLBAR_SIZE_32x32, IDB_TOOLBAR_DISABLED32,
 			m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
-		BarCtrl.SetButtonSize(CSize(39,39));
+		sizeButton = CSize(40, 40);
 	}
 
+	BarCtrl.SetButtonSize(sizeButton);
 	BarCtrl.SetImageList(&m_ToolbarImages[TOOLBAR_IMAGES_ENABLED]);
 	BarCtrl.SetDisabledImageList(&m_ToolbarImages[TOOLBAR_IMAGES_DISABLED]);
+
+	// resize the rebar.
+	REBARBANDINFO rbbi;
+	rbbi.cbSize = sizeof(rbbi);
+	rbbi.fMask = RBBIM_CHILDSIZE;
+	rbbi.cyMinChild = sizeButton.cy;
+	m_wndReBar.GetReBarCtrl().SetBandInfo(0, &rbbi);
 }
 
 
