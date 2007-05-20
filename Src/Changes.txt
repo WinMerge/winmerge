@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-20 Tim
+ PATCH: [ 1722213 ] Fix wrong </endtag> syntax color in HTML highlighters
+  Src/editlib: asp.cpp html.cpp php.cpp
+
 2007-05-20 Takashi
  PATCH: [ 1717774 ] Gradient toolbar
   Src: MainFrm.cpp MainFrm.h
