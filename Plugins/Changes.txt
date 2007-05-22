@@ -3,7 +3,7 @@ Add new items to top
 (This summarizes all changes to all plugins.)
 
 2007-05-22 Tim
- BUG: [ 1620721 ] [Plugins] Bug in IgnoreCommentsC.dll?
+ BUG: [ 1620727 ] [Plugins] Wrong plugin description for IgnoreCommentsC.dll
   Plugins\dlls:
    IgnoreCommentsC.dll
   Plugins\src_VCPP\IgnoreCommentsC:
