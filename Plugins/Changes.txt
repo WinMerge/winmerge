@@ -2,6 +2,13 @@ Plugins\Changes.txt
 Add new items to top
 (This summarizes all changes to all plugins.)
 
+2007-05-22 Tim
+ BUG: [ 1620721 ] [Plugins] Bug in IgnoreCommentsC.dll?
+  Plugins\dlls:
+   IgnoreCommentsC.dll
+  Plugins\src_VCPP\IgnoreCommentsC:
+   WinMergeScript.cpp
+
 2007-05-12 Tim
  PATCH: [ 1717461 ] Use DisplayBinaryFiles plugin from WinMergeX
   Plugins\dlls:
