@@ -246,6 +246,7 @@ protected:
 	int GetDefaultColImage() const;
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(CStringArray & colKeys);
+	void WarnContentsChanged(const CString & failedPath);
 
 // Implementation data
 protected:

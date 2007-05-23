@@ -2151,6 +2151,7 @@ BEGIN
     IDS_CONFIRM_DELETE_SINGLE "Wollen Sie wirklich\n\n%1\nlöschen?"
     IDS_CONFIRM_SINGLE_COPY "Wollen Sie wirklich kopieren:"
     IDS_CONFIRM_MULTIPLE_COPY "Wollen Sie wirklich %d Objekte kopieren:"
+    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
 END
 
 // DIRECTORY DIFFING : OPEN FILE

@@ -2151,6 +2151,7 @@ BEGIN
     IDS_CONFIRM_DELETE_SINGLE "本当に\n\n%1\nを削除しますか?"
     IDS_CONFIRM_SINGLE_COPY "本当にコピーしますか?:"
     IDS_CONFIRM_MULTIPLE_COPY "本当に%d項目をコピーしますか?:"
+    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
 END
 
 // DIRECTORY DIFFING : OPEN FILE

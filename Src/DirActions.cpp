@@ -40,6 +40,14 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+// Flags for checking compare items
+#define ALLOW_FOLDER 1
+#define ALLOW_FILE 2
+
+static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
+		int allowDest, CString & failedPath);
+
+
 /**
  * @brief Ask user a confirmation for copying item(s).
  * Shows a confirmation dialog for copy operation. Depending ont item count
@@ -113,6 +121,69 @@ static BOOL ConfirmCopy(int origin, int destination, int count,
 	return (rtn==IDYES);
 }
 
+/**
+ * @brief Checks if paths (to be operated) exists.
+ * This function checks if one or two given paths exists and are files and
+ * or folders as specified by parameters.
+ * @param [in] orig Orig side path.
+ * @param [in] dest Dest side path.
+ * @param [in] allowOrig What kind of paths allowed for orig side.
+ * @param [in] allowDest What kind of paths allowed for dest side.
+ * @param [out] failedPath If path failed, return it here.
+ * @return TRUE if path exists and is of allowed type.
+ */
+static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
+		int allowDest, CString & failedPath)
+{
+	// Either of the paths must be checked!
+	ASSERT(allowOrig != 0 || allowDest != 0);
+	BOOL origSuccess = FALSE;
+	BOOL destSuccess = FALSE;
+
+	if (allowOrig != 0)
+	{
+		// Check that source exists
+		PATH_EXISTENCE exists = paths_DoesPathExist(orig);
+		if (((allowOrig & ALLOW_FOLDER) != 0) && exists == IS_EXISTING_DIR)
+			origSuccess = TRUE;
+		if (((allowOrig & ALLOW_FILE) != 0) && exists == IS_EXISTING_FILE)
+			origSuccess = TRUE;
+
+		// Original item failed, don't bother checking dest item
+		if (origSuccess == FALSE)
+		{
+			failedPath = orig;
+			return FALSE;
+		}
+	}
+
+	if (allowDest != 0)
+	{
+		// Check that destination exists
+		PATH_EXISTENCE exists = paths_DoesPathExist(dest);
+		if (((allowDest & ALLOW_FOLDER) != 0) && exists == IS_EXISTING_DIR)
+			destSuccess = TRUE;
+		if (((allowDest & ALLOW_FILE) != 0) && exists == IS_EXISTING_FILE)
+			destSuccess = TRUE;
+
+		if (destSuccess == FALSE)
+		{
+			failedPath = dest;
+			return FALSE;
+		}
+	}
+	return TRUE;
+}
+
+/**
+ * @brief Format warning message about invalid folder compare contents.
+ * @param [in] failedPath Path that failed (didn't exist).
+ */
+void CDirView::WarnContentsChanged(const CString & failedPath)
+{
+	ResMsgBox1(IDS_DIRCMP_NOTSYNC, failedPath, MB_ICONWARNING);
+}
+
 /// Prompt & copy item from right to left, if legal
 void CDirView::DoCopyRightToLeft()
 {
@@ -130,6 +201,17 @@ void CDirView::DoCopyRightToLeft()
 		if (di.diffcode != 0 && IsItemCopyableToLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
+			
+			// We must check that paths still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			act.src = srFile;
 			act.dest = slFile;
@@ -147,6 +229,7 @@ void CDirView::DoCopyRightToLeft()
 	// Now we prompt, and execute actions
 	ConfirmAndPerformActions(actionScript, selCount);
 }
+
 /// Prompt & copy item from left to right, if legal
 void CDirView::DoCopyLeftToRight()
 {
@@ -164,6 +247,17 @@ void CDirView::DoCopyLeftToRight()
 		if (di.diffcode != 0 && IsItemCopyableToRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
+
+			// We must first check that paths still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			act.src = slFile;
 			act.dest = srFile;
@@ -199,6 +293,17 @@ void CDirView::DoDelLeft()
 		if (di.diffcode != 0 && IsItemDeletableOnLeft(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
+
+			// We must check that path still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				0, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			act.src = slFile;
 			act.dirflag = di.isDirectory();
@@ -231,6 +336,17 @@ void CDirView::DoDelRight()
 		if (di.diffcode != 0 && IsItemDeletableOnRight(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
+
+			// We must first check that path still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, 0,
+				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			act.src = srFile;
 			act.dirflag = di.isDirectory();
@@ -266,6 +382,17 @@ void CDirView::DoDelBoth()
 		if (di.diffcode != 0 && IsItemDeletableOnBoth(di))
 		{
 			GetItemFileNames(sel, slFile, srFile);
+
+			// We must first check that paths still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			act.src = srFile;
 			act.dest = slFile;
@@ -302,6 +429,17 @@ void CDirView::DoDelAll()
 		if (di.diffcode != 0)
 		{
 			GetItemFileNames(sel, slFile, srFile);
+
+			// We must first check that paths still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			if (IsItemDeletableOnBoth(di))
 			{
@@ -359,6 +497,18 @@ void CDirView::DoCopyLeftTo()
 
 		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di))
 		{
+			GetItemFileNames(sel, slFile, srFile);
+
+			// We must check that path still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_FILE | ALLOW_FOLDER,
+				0, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
@@ -370,7 +520,6 @@ void CDirView::DoCopyLeftTo()
 			sFullDest += di.sLeftFilename;
 			act.dest = sFullDest;
 
-			GetItemFileNames(sel, slFile, srFile);
 			act.src = slFile;
 			act.dirflag = di.isDirectory();
 			act.context = sel;
@@ -414,6 +563,18 @@ void CDirView::DoCopyRightTo()
 
 		if (di.diffcode != 0 && IsItemCopyableToOnRight(di))
 		{
+			GetItemFileNames(sel, slFile, srFile);
+
+			// We must check that path still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				0, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
@@ -425,7 +586,6 @@ void CDirView::DoCopyRightTo()
 			sFullDest += di.sRightFilename;
 			act.dest = sFullDest;
 
-			GetItemFileNames(sel, slFile, srFile);
 			act.src = srFile;
 			act.dirflag = di.isDirectory();
 			act.context = sel;
@@ -469,6 +629,18 @@ void CDirView::DoMoveLeftTo()
 
 		if (di.diffcode != 0 && IsItemCopyableToOnLeft(di) && IsItemDeletableOnLeft(di))
 		{
+			GetItemFileNames(sel, slFile, srFile);
+
+			// We must check that path still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_FILE | ALLOW_FOLDER,
+				0, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
@@ -480,7 +652,6 @@ void CDirView::DoMoveLeftTo()
 			sFullDest += di.sLeftFilename;
 			act.dest = sFullDest;
 
-			GetItemFileNames(sel, slFile, srFile);
 			act.src = slFile;
 			act.dirflag = di.isDirectory();
 			act.context = sel;
@@ -524,6 +695,18 @@ void CDirView::DoMoveRightTo()
 
 		if (di.diffcode != 0 && IsItemCopyableToOnRight(di) && IsItemDeletableOnRight(di))
 		{
+			GetItemFileNames(sel, slFile, srFile);
+
+			// We must check that path still exists
+			CString failpath;
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
+				0, failpath);
+			if (succeed == FALSE)
+			{
+				WarnContentsChanged(failpath);
+				return;
+			}
+
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
@@ -535,7 +718,6 @@ void CDirView::DoMoveRightTo()
 			sFullDest += di.sRightFilename;
 			act.dest = sFullDest;
 
-			GetItemFileNames(sel, slFile, srFile);
 			act.src = srFile;
 			act.dirflag = di.isDirectory();
 			act.context = sel;
@@ -1246,6 +1428,16 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 	int nSelItem = m_pList->GetNextItem(-1, LVNI_SELECTED);
 	ASSERT(-1 != nSelItem);
 	GetItemFileNames(nSelItem, sLeftFile, sRightFile);
+
+	// We must check that paths still exists
+	CString failpath;
+	BOOL succeed = CheckPathsExist(sLeftFile, sRightFile, ALLOW_FILE | ALLOW_FOLDER,
+		ALLOW_FILE | ALLOW_FOLDER, failpath);
+	if (succeed == FALSE)
+	{
+		WarnContentsChanged(failpath);
+		return FALSE;
+	}
 
 	BOOL bRenameLeft = RenameOnSameDir(sLeftFile, szNewItemName);
 	BOOL bRenameRight = RenameOnSameDir(sRightFile, szNewItemName);

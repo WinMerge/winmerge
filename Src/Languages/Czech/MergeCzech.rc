@@ -2197,6 +2197,7 @@ BEGIN
     IDS_COLHDR_RSIZE        "Velikost vpravo"
     IDS_COLHDR_RSIZE_SHORT  "Velikost vpravo (krátce)"
     IDS_COLHDR_LSIZE_SHORT  "Velikost vlevo (krátce)"
+    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2

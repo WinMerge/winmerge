@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-23 Kimmo
+ PATCH: [ 1723778 ] Warn user when folder compare contents have changed at disk
+  Src: DirActions.cpp DirView.h Merge.rc resource.h
+  Src/Languages/*: Merge*.rc
+
 2007-05-20 Tim
  PATCH: [ 1722213 ] Fix wrong </endtag> syntax color in HTML highlighters
   Src/editlib: asp.cpp html.cpp php.cpp
