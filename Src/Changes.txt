@@ -5,6 +5,8 @@ Add new items to top.
 2007-05-26 Kimmo
  PATCH: [ 1725778 ] Cleanup CDirView::OpenSelection()
   Src: DirView.cpp DirView.h
+ Coding style cleanup (returns in own lines)
+  Src: paths.cpp
 
 2007-05-23 Kimmo
  PATCH: [ 1723778 ] Warn user when folder compare contents have changed at disk

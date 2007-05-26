@@ -261,12 +261,15 @@ CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
  */
 bool paths_CreateIfNeeded(const CString & sPath)
 {
-	if (sPath.IsEmpty()) return false;
+	if (sPath.IsEmpty())
+		return false;
 
 	CString sTemp;
-	if (GetDirName(sPath, sTemp)) return true;
+	if (GetDirName(sPath, sTemp))
+		return true;
 
-	if (sPath.GetLength() >= _MAX_PATH) return false;
+	if (sPath.GetLength() >= _MAX_PATH)
+		return false;
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
@@ -313,8 +316,8 @@ bool paths_CreateIfNeeded(const CString & sPath)
 		if (!GetDirName(fullPath, sNextName))
 		{
 			// try to create directory, and then double-check its existence
-			if (!CreateDirectory(fullPath, 0)
-				|| !GetDirName(fullPath, sNextName))
+			if (!CreateDirectory(fullPath, 0) ||
+				!GetDirName(fullPath, sNextName))
 			{
 				return false;
 			}
@@ -375,9 +378,11 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
 		return DOES_NOT_EXIST;
 	PATH_EXISTENCE p1 = paths_DoesPathExist(pszLeft);
 	// short circuit testing right if left doesn't exist
-	if (p1 == DOES_NOT_EXIST) return DOES_NOT_EXIST;
+	if (p1 == DOES_NOT_EXIST)
+		return DOES_NOT_EXIST;
 	PATH_EXISTENCE p2 = paths_DoesPathExist(pszRight);
-	if (p1 != p2) return DOES_NOT_EXIST;
+	if (p1 != p2)
+		return DOES_NOT_EXIST;
 	return p1;
 }
 
@@ -450,8 +455,10 @@ CString ExpandShortcut(const CString &inFile)
  */
 CString paths_ConcatPath(const CString & path, const CString & subpath)
 {
-	if (path.IsEmpty()) return subpath;
-	if (subpath.IsEmpty()) return path;
+	if (path.IsEmpty())
+		return subpath;
+	if (subpath.IsEmpty())
+		return path;
 	if (paths_EndsWithSlash(path))
 	{
 		if (IsSlash(subpath, 0))
@@ -579,7 +586,8 @@ BOOL paths_IsPathAbsolute(const CString &path)
 CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr)
 {
 	TCHAR buffer[MAX_PATH] = {0};
-	if (_tcslen(lpPathName) > MAX_PATH-14) return _T(""); // failure
+	if (_tcslen(lpPathName) > MAX_PATH-14)
+		return _T(""); // failure
 	int rtn = GetTempFileName(lpPathName, lpPrefixString, 0, buffer);
 	if (!rtn)
 	{
