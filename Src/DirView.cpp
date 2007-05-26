@@ -910,6 +910,151 @@ IsBinaryUnpacker(PackingInfo * infoUnpacker)
 }
 
 /**
+ * @brief Open special items (parent folders etc).
+ * @param [in] pos1 First item position.
+ * @param [in] pos2 Second item position.
+ */
+void CDirView::OpenSpecialItems(POSITION pos1, POSITION pos2)
+{
+	if (!pos2)
+	{
+		// Browse to parent folder(s) selected
+		// SPECIAL_ITEM_POS is position for
+		// special items, but there is currenly 
+		// only one (parent folder)
+		OpenParentDirectory();
+	}
+	else
+	{
+		// Parent directory & something else selected
+		// Not valid action
+	}
+}
+
+/**
+ * @brief Open one selected item.
+ * @param [in] pos1 Item position.
+ * @param [in,out] di1 Pointer to first diffitem.
+ * @param [in,out] di2 Pointer to second diffitem.
+ * @param [out] path1 First path.
+ * @param [out] path2 Second path.
+ * @param [out] sel1 Item's selection index in listview.
+ * @param [in,out] isDir Is item folder?
+ * return false if there was error or item was completely processed.
+ */
+bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
+		CString &path1, CString &path2, int & sel1, bool & isDir)
+{
+	CDirDoc * pDoc = GetDocument();
+	*di1 = &pDoc->GetDiffRefByKey(pos1);
+	*di2 = *di1;
+
+	GetItemFileNames(sel1, path1, path2);
+
+	if ((*di1)->isDirectory())
+		isDir = true;
+
+	if ((*di1)->isDirectory() && ((*di1)->isSideLeftOnly() == (*di1)->isSideRightOnly()))
+	{
+		if (pDoc->GetRecursive())
+		{
+			AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+			return false;
+		}
+		else
+		{
+			// Open subfolders if non-recursive compare
+			// Don't add folders to MRU
+			if (GetPairComparability(path1, path2) != IS_EXISTING_DIR)
+			{
+				AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+				return false;
+			}
+			// Fall through and compare directories
+		}
+	}
+	else if ((*di1)->isSideLeftOnly())
+	{
+		// Open left-only item to editor if its not a folder or binary
+		if (isDir)
+			AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
+		else if ((*di1)->isBin())
+			AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
+		else
+			DoOpenWithEditor(SIDE_LEFT);
+		return false;
+	}
+	else if ((*di1)->isSideRightOnly())
+	{
+		// Open right-only item to editor if its not a folder or binary
+		if (isDir)
+			AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
+		else if ((*di1)->isBin())
+			AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
+		else
+			DoOpenWithEditor(SIDE_RIGHT);
+		return false;
+	}
+	// Fall through and compare files (which may be archives)
+
+	return true;
+}
+
+/**
+ * @brief Open two selected items.
+ * @param [in] pos1 First item position.
+ * @param [in] pos2 Second item position.
+ * @param [in,out] di1 Pointer to first diffitem.
+ * @param [in,out] di2 Pointer to second diffitem.
+ * @param [out] path1 First path.
+ * @param [out] path2 Second path.
+ * @param [out] sel1 First item's selection index in listview.
+ * @param [out] sel2 Second item's selection index in listview.
+ * @param [in,out] isDir Is item folder?
+ * return false if there was error or item was completely processed.
+ */
+bool CDirView::OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFITEM **di2,
+		CString &path1, CString &path2, int & sel1, int & sel2, bool & isDir)
+{
+	CDirDoc * pDoc = GetDocument();
+
+	// Two items selected, get their info
+	*di1 = &pDoc->GetDiffRefByKey(pos1);
+	*di2 = &pDoc->GetDiffRefByKey(pos2);
+
+	// Check for binary & side compatibility & file/dir compatibility
+	if (!AreItemsOpenable(**di1, **di2))
+	{
+		return false;
+	}
+	// Ensure that di1 is on left (swap if needed)
+	if ((*di1)->isSideRightOnly() || ((*di1)->isSideBoth() && (*di2)->isSideLeftOnly()))
+	{
+		DIFFITEM * temp = *di1;
+		*di1 = *di2;
+		*di2 = temp;
+		int num = sel1;
+		sel1 = sel2;
+		sel2 = num;
+	}
+	// Fill in pathLeft & pathRight
+	CString temp;
+	GetItemFileNames(sel1, path1, temp);
+	GetItemFileNames(sel2, temp, path2);
+
+	if ((*di1)->isDirectory())
+	{
+		isDir = true;
+		if (GetPairComparability(path1, path2) != IS_EXISTING_DIR)
+		{
+			AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+			return false;
+		} 
+	}
+	return true;
+}
+
+/**
  * @brief Open selected files or directories.
  *
  * Opens selected files to file compare. If comparing
@@ -923,9 +1068,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 {
 	CDirDoc * pDoc = GetDocument();
 
-
 	// First, figure out what was selected (store into pos1 & pos2)
-
 	POSITION pos1 = NULL, pos2 = NULL;
 	int sel1=-1, sel2=-1;
 	if (!GetSelectedItems(&sel1, &sel2))
@@ -944,118 +1087,29 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 
 	if (pos1 == SPECIAL_ITEM_POS)
 	{
-		if (!pos2)
-		{
-			// Browse to parent folder(s) selected
-			// SPECIAL_ITEM_POS is position for
-			// special items, but there is currenly 
-			// only one (parent folder)
-			OpenParentDirectory();
-			return;
-		}
-		else
-		{
-			// Parent directory & something else selected
-			// Not valid action
-			return;
-		}
+		OpenSpecialItems(pos1, pos2);
+		return;
 	}
 
 	// Common variables which both code paths below are responsible for setting
 	CString pathLeft, pathRight;
-	DIFFITEM *di1=NULL, *di2=NULL; // left & right items (di1==di2 if single selection)
-	bool isdir=false; // set if we're comparing directories
+	DIFFITEM *di1 = NULL, *di2 = NULL; // left & right items (di1==di2 if single selection)
+	bool isdir = false; // set if we're comparing directories
 
 	if (pos2)
 	{
-		// Two items selected, get their info
-		di1 = &pDoc->GetDiffRefByKey(pos1);
-		di2 = &pDoc->GetDiffRefByKey(pos2);
-
-		// Check for binary & side compatibility & file/dir compatibility
-		if (!AreItemsOpenable(*di1, *di2))
-		{
+		bool success = OpenTwoItems(pos1, pos2, &di1, &di2,
+				pathLeft, pathRight, sel1, sel2, isdir);
+		if (!success)
 			return;
-		}
-		// Ensure that di1 is on left (swap if needed)
-		if (di1->isSideRightOnly() || (di1->isSideBoth() && di2->isSideLeftOnly()))
-		{
-			DIFFITEM * temp = di1;
-			di1 = di2;
-			di2 = temp;
-			int num = sel1;
-			sel1 = sel2;
-			sel2 = num;
-		}
-		// Fill in pathLeft & pathRight
-		CString temp;
-		GetItemFileNames(sel1, pathLeft, temp);
-		GetItemFileNames(sel2, temp, pathRight);
-
-		if (di1->isDirectory())
-		{
-			isdir=true;
-			if (GetPairComparability(pathLeft, pathRight) != IS_EXISTING_DIR)
-			{
-				AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
-				return;
-			} 
-		}
 	}
 	else
 	{
 		// Only one item selected, so perform diff on its sides
-
-		di1 = &pDoc->GetDiffRefByKey(pos1);
-		di2 = di1;
-
-		GetItemFileNames(sel1, pathLeft, pathRight);
-
-		if (di1->isDirectory())
-			isdir = true;
-
-		if (di1->isDirectory() && (di1->isSideLeftOnly() == di1->isSideRightOnly()))
-		{
-			if (pDoc->GetRecursive())
-			{
-				AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
-				return;
-			}
-			else
-			{
-				// Open subfolders if non-recursive compare
-				// Don't add folders to MRU
-				if (GetPairComparability(pathLeft, pathRight) != IS_EXISTING_DIR)
-				{
-					AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
-					return;
-				}
-				// Fall through and compare directories
-			}
-		}
-		else if (di1->isSideLeftOnly())
-		{
-			// Open left-only item to editor if its not a folder or binary
-			if (isdir)
-				AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
-			else if (di1->isBin())
-				AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
-			else
-				DoOpenWithEditor(SIDE_LEFT);
+		bool success = OpenOneItem(pos1, &di1, &di2,
+				pathLeft, pathRight, sel1, isdir);
+		if (!success)
 			return;
-		}
-		else if (di1->isSideRightOnly())
-		{
-			// Open right-only item to editor if its not a folder or binary
-			if (isdir)
-				AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
-			else if (di1->isBin())
-				AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
-			else
-				DoOpenWithEditor(SIDE_RIGHT);
-			return;
-		}
-		// Fall through and compare files (which may be archives)
 	}
 
 	// Now pathLeft, pathRight, di1, di2, and isdir are all set

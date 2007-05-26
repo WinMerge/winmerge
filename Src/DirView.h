@@ -247,6 +247,11 @@ protected:
 	int AddSpecialItems();
 	void GetCurrentColRegKeys(CStringArray & colKeys);
 	void WarnContentsChanged(const CString & failedPath);
+	void OpenSpecialItems(POSITION pos1, POSITION pos2);
+	bool OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
+		CString &path1, CString &path2, int & sel1, bool & isDir);
+	bool OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFITEM **di2,
+		CString &path1, CString &path2, int & sel1, int & sel2, bool & isDir);
 
 // Implementation data
 protected:
