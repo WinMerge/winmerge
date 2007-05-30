@@ -29,7 +29,6 @@
 #include "stdafx.h"
 
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
-#include <mlang.h>
 #include <shlwapi.h>
 #include "Merge.h"
 #include "BCMenu.h"
@@ -66,7 +65,6 @@
 #include "codepage.h"
 #include "ProjectFile.h"
 #include "PreferencesDlg.h"
-#include "AppSerialize.h"
 #include "ProjectFilePathsDlg.h"
 #include "MergeCmdLineInfo.h"
 #include "FileOrFolderSelect.h"
@@ -1349,15 +1347,8 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszDest, BOOL &bApplyToAll,
  */
 void CMainFrame::OnViewSelectfont() 
 {
-	const TCHAR fileFontPath[] = _T("Font");
-	const TCHAR dirFontPath[] = _T("FontDirCompare");
-	CString sFontPath = fileFontPath; // Default to change file compare font
-
 	CFrameWnd * pFrame = GetActiveFrame();
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
-
-	if (bDirFrame)
-		sFontPath = dirFontPath;
 
 	CHOOSEFONT cf;
 	LOGFONT *lf = NULL;
@@ -1379,12 +1370,42 @@ void CMainFrame::OnViewSelectfont()
 	if (ChooseFont(&cf))
 	{
 		if (bDirFrame)
+		{
 			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_HEIGHT, lf->lfHeight);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_WIDTH, lf->lfWidth);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_ESCAPEMENT, lf->lfEscapement);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_ORIENTATION, lf->lfOrientation);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_WEIGHT, lf->lfWeight);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_ITALIC, lf->lfItalic);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_UNDERLINE, lf->lfUnderline);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_STRIKEOUT, lf->lfStrikeOut);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_CHARSET, lf->lfCharSet);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_OUTPRECISION, lf->lfOutPrecision);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_CLIPPRECISION, lf->lfClipPrecision);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_QUALITY, lf->lfQuality);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_PITCHANDFAMILY, lf->lfPitchAndFamily);
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_FACENAME, lf->lfFaceName);
+		}
 		else
+		{
 			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
-
-		AppSerialize appser(AppSerialize::Save, sFontPath);
-		appser.SerializeFont(_T(""), *lf); // unnamed font
+			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_HEIGHT, lf->lfHeight);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_WIDTH, lf->lfWidth);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ESCAPEMENT, lf->lfEscapement);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ORIENTATION, lf->lfOrientation);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_WEIGHT, lf->lfWeight);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ITALIC, lf->lfItalic);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_UNDERLINE, lf->lfUnderline);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_STRIKEOUT, lf->lfStrikeOut);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_CHARSET, lf->lfCharSet);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_OUTPRECISION, lf->lfOutPrecision);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_CLIPPRECISION, lf->lfClipPrecision);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_QUALITY, lf->lfQuality);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_PITCHANDFAMILY, lf->lfPitchAndFamily);
+			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_FACENAME, lf->lfFaceName);
+		}
 
 		if (bDirFrame)
 			m_lfDir = *lf;
@@ -1421,63 +1442,45 @@ void CMainFrame::OnUpdateViewSelectfont(CCmdUI* pCmdUI)
  */
 void CMainFrame::GetFontProperties()
 {
-	USES_CONVERSION;
-
-	LOGFONT lfDefault;
-	ZeroMemory(&lfDefault, sizeof(LOGFONT));
-
-	MIMECPINFO cpi = {0};
-	cpi.bGDICharset = ANSI_CHARSET;
-	wcscpy(cpi.wszFixedWidthFont, L"Courier New");
-	IMultiLanguage *pMLang = NULL;
-
-	HRESULT hr = CoCreateInstance(CLSID_CMultiLanguage, NULL,
-		CLSCTX_INPROC_SERVER, IID_IMultiLanguage, (void **)&pMLang);
-	if (SUCCEEDED(hr))
-	{
-		hr = pMLang->GetCodePageInfo(GetACP(), &cpi);
-		pMLang->Release();
-	}
-
-	lfDefault.lfHeight = -16;
-	lfDefault.lfWidth = 0;
-	lfDefault.lfEscapement = 0;
-	lfDefault.lfOrientation = 0;
-	lfDefault.lfWeight = FW_NORMAL;
-	lfDefault.lfItalic = FALSE;
-	lfDefault.lfUnderline = FALSE;
-	lfDefault.lfStrikeOut = FALSE;
-	lfDefault.lfCharSet = cpi.bGDICharset;
-	lfDefault.lfOutPrecision = OUT_STRING_PRECIS;
-	lfDefault.lfClipPrecision = CLIP_STROKE_PRECIS;
-	lfDefault.lfQuality = DRAFT_QUALITY;
-	lfDefault.lfPitchAndFamily = FF_MODERN | FIXED_PITCH;
-	_tcscpy(lfDefault.lfFaceName, W2T(cpi.wszFixedWidthFont));
 	LOGFONT lfnew;
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
 
-	// Get MergeView font
-	if (GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_USECUSTOM))
-	{
-		AppSerialize appser(AppSerialize::Load, _T("Font"));
-		appser.SerializeFont(_T(""), lfnew); // unnamed font 
+	lfnew.lfHeight = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_HEIGHT);
+	lfnew.lfWidth = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_WIDTH);
+	lfnew.lfEscapement = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_ESCAPEMENT);
+	lfnew.lfOrientation = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_ORIENTATION);
+	lfnew.lfWeight = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_WEIGHT);
+	lfnew.lfItalic = GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_ITALIC);
+	lfnew.lfUnderline = GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_UNDERLINE);
+	lfnew.lfStrikeOut = GetOptionsMgr()->GetBool(OPT_FONT_FILECMP_STRIKEOUT);
+	lfnew.lfCharSet = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_CHARSET);
+	lfnew.lfOutPrecision = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_OUTPRECISION);
+	lfnew.lfClipPrecision = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_CLIPPRECISION);
+	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_QUALITY);
+	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_PITCHANDFAMILY);
 
-		m_lfDiff = lfnew;
-	}
-	else
-		m_lfDiff = lfDefault;
+	_tcscpy(lfnew.lfFaceName,
+		GetOptionsMgr()->GetString(OPT_FONT_FILECMP_FACENAME));
+	m_lfDiff = lfnew;
 
 	// Get DirView font
 	ZeroMemory(&lfnew, sizeof(LOGFONT));
-	if (GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_USECUSTOM))
-	{
-		AppSerialize appser(AppSerialize::Load, _T("FontDirCompare"));
-		appser.SerializeFont(_T(""), lfnew); // unnamed font 
 
-		m_lfDir = lfnew;
-	}
-	else
-		m_lfDir = lfDefault;
+	lfnew.lfHeight = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_HEIGHT);
+	lfnew.lfWidth = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_WIDTH);
+	lfnew.lfEscapement = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_ESCAPEMENT);
+	lfnew.lfOrientation = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_ORIENTATION);
+	lfnew.lfWeight = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_WEIGHT);
+	lfnew.lfItalic = GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_ITALIC);
+	lfnew.lfUnderline = GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_UNDERLINE);
+	lfnew.lfStrikeOut = GetOptionsMgr()->GetBool(OPT_FONT_DIRCMP_STRIKEOUT);
+	lfnew.lfCharSet = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_CHARSET);
+	lfnew.lfOutPrecision = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_OUTPRECISION);
+	lfnew.lfClipPrecision = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_CLIPPRECISION);
+	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_QUALITY);
+	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_PITCHANDFAMILY);
+
+    m_lfDir = lfnew;
 }
 
 /**
@@ -1492,9 +1495,43 @@ void CMainFrame::OnViewUsedefaultfont()
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
 
 	if (bDirFrame)
+	{
 		GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, false);
+
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_HEIGHT);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_WIDTH);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_ESCAPEMENT);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_ORIENTATION);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_WEIGHT);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_ITALIC);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_UNDERLINE);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_STRIKEOUT);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_OUTPRECISION);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_CLIPPRECISION);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_QUALITY);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_PITCHANDFAMILY);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_CHARSET);
+		GetOptionsMgr()->Reset(OPT_FONT_DIRCMP_FACENAME);
+	}
 	else
+	{
 		GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, false);
+
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_HEIGHT);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_WIDTH);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_ESCAPEMENT);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_ORIENTATION);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_WEIGHT);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_ITALIC);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_UNDERLINE);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_STRIKEOUT);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_OUTPRECISION);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_CLIPPRECISION);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_QUALITY);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_PITCHANDFAMILY);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_CHARSET);
+		GetOptionsMgr()->Reset(OPT_FONT_FILECMP_FACENAME);
+	}
 
 	GetFontProperties();
 	ShowFontChangeMessage();

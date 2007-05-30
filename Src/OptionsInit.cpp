@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <mlang.h>
 #include "Merge.h"
 #include "MainFrm.h"
 #include "OptionsDef.h"
@@ -128,12 +129,66 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CP_DEFAULT_CUSTOM, (int)GetACP());
 	m_pOptions->InitOption(OPT_CP_DETECT, false);
 
-	m_pOptions->InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
-	m_pOptions->InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
-
 	m_pOptions->InitOption(OPT_VCS_SYSTEM, VCS_NONE);
 	m_pOptions->InitOption(OPT_VSS_PATH, _T(""));
 
 	m_pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
+
+	m_pOptions->InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
+
+	m_pOptions->InitOption(OPT_FONT_FILECMP_HEIGHT, -16);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_WIDTH, 0);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_ESCAPEMENT, 0);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_ORIENTATION, 0);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_WEIGHT, FW_NORMAL);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_ITALIC, false);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_UNDERLINE, false);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_STRIKEOUT, false);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_OUTPRECISION, OUT_STRING_PRECIS);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_CLIPPRECISION, CLIP_STROKE_PRECIS);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_QUALITY, DRAFT_QUALITY);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_PITCHANDFAMILY, FF_MODERN | FIXED_PITCH);
+
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_HEIGHT, -16);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_WIDTH, 0);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_ESCAPEMENT, 0);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_ORIENTATION, 0);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_WEIGHT, FW_NORMAL);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_ITALIC, false);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_UNDERLINE, false);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_STRIKEOUT, false);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_OUTPRECISION, OUT_STRING_PRECIS);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_CLIPPRECISION, CLIP_STROKE_PRECIS);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_QUALITY, DRAFT_QUALITY);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_PITCHANDFAMILY, FF_MODERN | FIXED_PITCH);
+
+	SetFontDefaults();
+}
+
+void CMergeApp::SetFontDefaults()
+{
+	USES_CONVERSION;
+
+	LOGFONT lfDefault;
+	ZeroMemory(&lfDefault, sizeof(LOGFONT));
+
+	MIMECPINFO cpi = {0};
+	cpi.bGDICharset = ANSI_CHARSET;
+	wcscpy(cpi.wszFixedWidthFont, L"Courier New");
+	IMultiLanguage *pMLang = NULL;
+
+	HRESULT hr = CoCreateInstance(CLSID_CMultiLanguage, NULL,
+		CLSCTX_INPROC_SERVER, IID_IMultiLanguage, (void **)&pMLang);
+	if (SUCCEEDED(hr))
+	{
+		hr = pMLang->GetCodePageInfo(GetACP(), &cpi);
+		pMLang->Release();
+	}
+	m_pOptions->InitOption(OPT_FONT_FILECMP_CHARSET, (int) cpi.bGDICharset);
+	m_pOptions->InitOption(OPT_FONT_FILECMP_FACENAME, W2T(cpi.wszFixedWidthFont));
+
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_CHARSET, (int) cpi.bGDICharset);
+	m_pOptions->InitOption(OPT_FONT_DIRCMP_FACENAME, W2T(cpi.wszFixedWidthFont));
 }

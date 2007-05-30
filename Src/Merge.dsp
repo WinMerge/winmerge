@@ -163,10 +163,6 @@ SOURCE=.\AboutDlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\AppSerialize.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\BCMenu.cpp
 # End Source File
 # Begin Source File
@@ -982,10 +978,6 @@ SOURCE=.\7zCommon.h
 # Begin Source File
 
 SOURCE=.\AboutDlg.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\AppSerialize.h
 # End Source File
 # Begin Source File
 

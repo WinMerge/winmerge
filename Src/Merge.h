@@ -78,6 +78,7 @@ public:
 	COptionsMgr * GetMergeOptionsMgr() { return static_cast<COptionsMgr *> (m_pOptions); }
 	void OptionsInit();
 	void ResetOptions() { OptionsInit(); }
+	void SetFontDefaults();
 
 	CLogFile * GetMergeLog() { return m_pLog; }
 
