@@ -195,21 +195,33 @@ void CDirDoc::InitCompare(const PathContext & paths, BOOL bRecursive, CTempPathC
 }
 
 /**
- * @brief Tell if user may use ".." and move to parents directory
- *
- * @return No : upward RESTRICTED
- * ParentIsRegularPath : upward ENABLED
- * ParentIsTempPath : upward ENABLED
+ * @brief Tell if user may use ".." and move to parents directory.
+ * This function checks if current compare's parent folders should
+ * be allowed to open. I.e. if current compare folders are:
+ * - C:\Work\Project1 and
+ * - C:\Work\Project2
+ * we check if C:\Work and C:\Work should be allowed to opened.
+ * For regular folders we allow opening if both folders exist.
+ * @param [out] leftParent Left parent folder to open.
+ * @param [out] rightParent Right parent folder to open.
+ * @return Info if opening parent folders should be enabled:
+ * - No : upward RESTRICTED
+ * - ParentIsRegularPath : upward ENABLED
+ * - ParentIsTempPath : upward ENABLED
  */
-CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory(CString &leftParent, CString &rightParent)
+CDirDoc::AllowUpwardDirectory::ReturnCode
+CDirDoc::AllowUpwardDirectory(CString &leftParent, CString &rightParent)
 {
 	const CString & left = GetLeftBasePath();
 	const CString & right = GetRightBasePath();
-	LPCTSTR lname = PathFindFileName(left);
-	LPCTSTR rname = PathFindFileName(right);
+
+	// If we have temp context it means we are comparing archives
 	if (m_pTempPathContext)
 	{
+		LPCTSTR lname = PathFindFileName(left);
+		LPCTSTR rname = PathFindFileName(right);
 		int cchLeftRoot = m_pTempPathContext->m_strLeftRoot.GetLength();
+
 		if (left.GetLength() <= cchLeftRoot)
 		{
 			if (m_pTempPathContext->m_pParent)
@@ -243,15 +255,13 @@ CDirDoc::AllowUpwardDirectory::ReturnCode CDirDoc::AllowUpwardDirectory(CString 
 		}
 		rname = lname;
 	}
-	if (lstrcmpi(lname, rname) == 0)
-	{
-		leftParent = paths_GetParentPath(left);
-		rightParent = paths_GetParentPath(right);
-		if (GetPairComparability(leftParent, rightParent) != IS_EXISTING_DIR)
-			return AllowUpwardDirectory::Never;
-		return AllowUpwardDirectory::ParentIsRegularPath;
-	}
-	return AllowUpwardDirectory::No;
+
+	// If regular parent folders exist, allow opening them
+	leftParent = paths_GetParentPath(left);
+	rightParent = paths_GetParentPath(right);
+	if (GetPairComparability(leftParent, rightParent) != IS_EXISTING_DIR)
+		return AllowUpwardDirectory::Never;
+	return AllowUpwardDirectory::ParentIsRegularPath;
 }
 
 /**

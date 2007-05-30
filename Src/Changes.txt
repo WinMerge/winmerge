@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1727722 ] Remove AppSerialize (only used for fonts)
   Src: MainFrm.cpp Merge.dsp Merge.h OptionsDef.h OptionsInit.cpp
   Src removed files: AppSerialize.cpp AppSerialize.h
+ PATCH: [ 1727829 ] Relax parent folder opening restrictions
+  Src: DirDoc.cpp
 
 2007-05-26 Kimmo
  PATCH: [ 1725778 ] Cleanup CDirView::OpenSelection()
