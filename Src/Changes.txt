@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-05-31 Tim
+ PATCH: [ 1729179 ] Change "Rational Clearcase" to "Rational ClearCase"
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
 2007-05-31 WinMerge experimental release 2.7.3.5 (SVN revision 4304)
 
 2007-05-31 Kimmo
