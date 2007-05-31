@@ -8,6 +8,8 @@ Add new items to top.
   Src/Languages/*: Merge*.rc
  PATCH: [ 1727951 ] Use patch icon from TortoiseSVN
   Src/res: patch.bmp
+ PATCH: [ 1727954 ] New help icon from Alexander Skinner
+  Src/res: help_contents.bmp
 
 2007-05-31 WinMerge experimental release 2.7.3.5 (SVN revision 4304)
 
