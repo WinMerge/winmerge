@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1699783 ] Filter addon x borland delphi
   Submitted by Alberto Kalb
   Filters new file: Delphi.flt
+ Add Alberto Kalb to contributors
+  Docs/Users: Contributors.txt
 
 2007-05-30 Kimmo
  PATCH: [ 1727722 ] Remove AppSerialize (only used for fonts)
