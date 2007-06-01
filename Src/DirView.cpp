@@ -2055,6 +2055,14 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 			if (TRUE == IsLabelEdit())
 			{
 				m_bUserCancelEdit = TRUE;
+
+				// The edit control send LVN_ENDLABELEDIT when it loses focus,
+				// so we use it to cancel the rename action.
+				m_pList->SetFocus();
+
+				// Stop the ESC before it reach the main frame which might
+				// cause a program termination.
+				return TRUE;
 			}
 			else if (m_bEscCloses)
 			{

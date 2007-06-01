@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-06-01 Gal
+ BUG: [ 1705874 ] Hitting escape during listitem rename also exited winmerge
+  Src: DirView.cpp
+
 2007-05-31 Tim
  PATCH: [ 1729179 ] Change "Rational Clearcase" to "Rational ClearCase"
   Src: Merge.rc
