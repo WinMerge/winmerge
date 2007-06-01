@@ -1,3 +1,7 @@
+2007-06-02 Tim
+ Use more flexible SF.net URL for tracker shortcuts.
+  Web: .htaccess
+
 2007-05-12 Tim
  Remove unneeded CSS rule from tabs code.
   Web\css: screen.css
