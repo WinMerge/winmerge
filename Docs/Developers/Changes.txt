@@ -1,3 +1,7 @@
+2007-06-02 Kimmo
+ In build instructions, use pcre.dsw instead of pcre.dsp
+  Developers: readme-developers.html
+
 2007-04-22 Tim
  PATCH: [ 1703303 ] Improve translations instructions
   Developers: Translations.html
