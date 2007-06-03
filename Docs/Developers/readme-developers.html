@@ -53,7 +53,7 @@
   <li><a href="#Minor_code_changes_and_bug_fixes">Minor code changes and bug fixes</a></li>
   <li><a href="#Coding_conventions">Coding conventions</a></li>
   <li><a href="#Doxygen_comments">Doxygen comments</a></li>
-  <li><a href="#RCS_Ids">RCS Ids</a></li>
+  <li><a href="#Revision_Ids">Revision Ids</a></li>
   <li><a href="#File_release_numbers">File release numbers</a></li>
   <li><a href="#Packaging_file_releases">Packaging file releases</a></li>
   <li><a href="#Tagging_SVN_when_releasing_files">Tagging Subversion when releasing files</a></li>
@@ -228,7 +228,8 @@ as patches.</p>
 
 <p class="note">Do not waste yours and ours time by submitting large feature patches
 before you have made sure the feature is wanted to WinMerge. Communicate with developers,
-either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
+either in bug/feature request(rfe) items or preferably in Developers-forum or Developers-
+mailing list.</p>
 
 <ol>
   <li><p>Post development intentions:</p>
@@ -238,11 +239,11 @@ either in bug/feature request(rfe) items or preferably in Developers-forum.</p>
         fixing it. If there is no SourceForge bug report, create one.
       </li>
       <li>
-        If you are implementing a new feature, put a note in the SourceForge RFE
-        (request for enhancement) that you're implementing it. If there is no
-        SourceForge RFE, create one. Alternatively you can discuss about new
-        features in Developers-forum. Please use this! It is a lot less work
-        wasted when we agree about design first.
+        If you are implementing a new feature, put a note in the SourceForge Feature
+        Request item that you're implementing it. If there is no SourceForge Feature
+		Request item, create one. Alternatively you can discuss	about new features
+		in Developers-forum or Developers-mailing list. Please use this! It is a lot
+		less work wasted when we agree about design first.
       </li>
     </ul>
   </li>
@@ -376,21 +377,17 @@ commenting style for functions, classes, files, and so forth, in WinMerge code
   <li>There is ready to use doxygen config file in <code>docs/developers/doxygen.cfg</code></li>
 </ul>
 
-<h3><a name="RCS_Ids">RCS Ids</a></h3>
+<h3><a name="Revision_Ids">Revision IDs</a></h3>
 
-<p>We have adopted the convention of using RCS id lines near the top of our source
+<p>We have adopted the convention of using Revision ID lines near the top of our source
 files (following the doxygen file header comments). Merely add these two lines
-to any new file you add to the repository, and cvs will modify the Id line by
-appending file version and date information at every checkin:</p>
+to any new file you add to the repository, and SVN will modify the Id line by
+appending revision and date information at checkout:</p>
 
 <pre>
-// RCS ID line follows -- this is updated by CVS
+// Revision ID line follows -- this is updated by SVN
 // &#36;Id&#36;
 </pre>
-
-<p>Although we are now using Subversion, those lines are still useful. TortoiseSVN
-understands them and adds correct version number and author, as if it was checked out
-from CVS.</p>
 
 <h3><a name="File_release_numbers">File release numbers</a></h3>
 

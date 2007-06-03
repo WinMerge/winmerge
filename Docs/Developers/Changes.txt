@@ -1,3 +1,7 @@
+2007-06-03 Kimmo
+ SourceForge has Feature Requests -list. Update revision ID info.
+  Developers: readme-developers.html
+
 2007-06-02 Kimmo
  In build instructions, use pcre.dsw instead of pcre.dsp
   Developers: readme-developers.html
