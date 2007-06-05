@@ -81,6 +81,7 @@ BEGIN_MESSAGE_MAP(CMergeApp, CWinApp)
 	ON_COMMAND(ID_VIEW_LANGUAGE, OnViewLanguage)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LANGUAGE, OnUpdateViewLanguage)
 	ON_COMMAND(ID_HELP, OnHelp)
+	ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, OnOpenRecentFile)
 	//}}AFX_MSG_MAP
 	// Standard file based document commands
 	//ON_COMMAND(ID_FILE_NEW, CWinApp::OnFileNew)
@@ -283,7 +284,7 @@ BOOL CMergeApp::InitInstance()
 		}
 	}
 
-	LoadStdProfileSettings(0);  // Load standard INI file options (including MRU)
+	LoadStdProfileSettings(8);  // Load standard INI file options (including MRU)
 	BOOL bDisableSplash	= GetOptionsMgr()->GetBool(OPT_DISABLE_SPLASH);
 
 	InitializeFileFilters();
@@ -737,6 +738,8 @@ bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
 	WriteProfileInt(_T("Settings"), _T("Recurse"), bRecursive);
 
 	BOOL rtn = GetMainFrame()->DoFileOpen(sLeft, sRight, dwLeftFlags, dwRightFlags, bRecursive);
+
+	AddToRecentProjectsMRU(sProject);
 	return !!rtn;
 }
 
@@ -805,4 +808,62 @@ CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 		}
 	}
 	return pathFilters;
+}
+
+
+/**
+ * @brief Adds specified file to the recent projects list.
+ * @param [in] sPathName Path to project file
+ */
+void CMergeApp::AddToRecentProjectsMRU(const CString& sPathName)
+{
+	// sPathName will be added to the top of the MRU list. 
+	// If sPathName already exists in the MRU list, it will be moved to the top
+	if (m_pRecentFileList != NULL)    {
+		m_pRecentFileList->Add(sPathName);
+		m_pRecentFileList->WriteList();
+	}
+}
+
+
+/**
+ * @brief Updates menu with recent file entries
+ * @param [in] sPathName Path to project file
+ */
+void CMergeApp::UpdateRecentProjectsMRUMenu(CMenu* pMenu, CCmdTarget* pTarget)
+{
+	CCmdUI cmdUI;
+	
+	if (NULL != pMenu)
+	{
+		for (UINT n = 0; n < pMenu->GetMenuItemCount(); ++n)
+		{
+			CMenu* pSubMenu = pMenu->GetSubMenu(n);
+			
+			if (NULL != pSubMenu)
+			{
+				UpdateRecentProjectsMRUMenu(pSubMenu, pTarget);		// recursive call
+			}
+			else
+			{
+				cmdUI.m_nIndex = n;
+				cmdUI.m_nID = pMenu->GetMenuItemID(n);
+				cmdUI.m_pMenu = pMenu;
+				// Need to set this value otherwise you will assert when
+				// you have an empty recent file list.
+				cmdUI.m_nIndexMax = pMenu->GetMenuItemCount();
+				cmdUI.DoUpdate(pTarget, FALSE);
+			}
+		}	
+	}
+}
+
+
+/**
+ * @brief Handles menu selection from recent projects list
+ * @param [in] nID Menu ID of the selected item
+ */
+BOOL CMergeApp::OnOpenRecentFile(UINT nID)
+{
+	return LoadAndOpenProjectFile(m_pRecentFileList->m_arrNames[nID-ID_FILE_MRU_FILE1]);
 }

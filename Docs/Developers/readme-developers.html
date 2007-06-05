@@ -119,8 +119,9 @@ Studio's <em>Include</em> and <em>Library</em> directories. The easiest way is t
 the "<em>Platform SDK</em>" start menu folder.</p>
 
 <h4>buildall.bat</h4>
-<p>There is a <code>buildall.bat</code> in root folder of source tree. This batch file invokes
-<code>devenv.exe</code> to build (almost) all projects in WinMerge tree. However, it has couple
+<p>There is a <code>buildall.bat</code> in the root folder of source tree. This batch file invokes
+<code>devenv.exe</code> to build (almost) all projects in WinMerge tree. However, it has 
+a couple
 of restrictions:
 <ul>
   <li>It cannot convert project files from VC6 format to newer formats. This must be done first
@@ -140,27 +141,28 @@ of restrictions:
 ShellExtension (in <code>/ShellExtension</code>) have their own project files. There is no one
 single project/workspace file to compile all projects.<p>
 
-<p>Visual Studio project file for MSVC6 comes with WinMerge sources. Newer versions of
-Visual Studio can open that file too, they just ask if one wants to convert to new version.
-Reason we don't ship project files for all Visual Studio versions is we have no resources
-to keep all versions up to date. People can't test all versions themselves and easily forget
-to update at least one file. So we easily end up in situation when there is no properly
+<p>The Visual Studio project file for MSVC6 comes with the WinMerge sources. Newer versions of
+Visual Studio can open that file too, they just ask if one wants to convert to 
+the new version.
+The reason we don't ship project files for all Visual Studio versions is we have no resources
+to keep all versions up to date. People can't test all versions themselves, and easily forget
+to update at least one file. So we easily end up in a situation where there is no properly
 working project file at all...</p>
 
-<p>After opening the project file you need to add HTML Help Workshop path as additional include-
+<p>After opening the project file you need to add the HTML Help Workshop path as additional include-
 and library-path.</p>
 
 <p>NOTE: There might be problems compiling/debugging with Visual Studio 2003 when using
-HTML Help WorkShop from Platform SDK in Visual Studio directory. Download and
+HTML Help WorkShop from the Platform SDK in Visual Studio directory. Download and
 install HTML Workshop as stand-alone and include headers and libraries from standalone
-directory. Probable cause is that including files from Platform SDK directories breaks
+directory. The probable cause is that including files from Platform SDK directories breaks
 things.</p>
 
 <h4>Compiling expat</h4>
 <p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:</p>
 <ul>
   <li>Open Visual Studio workspace <code>/Externals/expat/expat.dsw</code>. If you are
-    using Visual Studio 2003.Net or later you need to convert the file to new format when
+    using Visual Studio 2003.Net or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Select either debug or release targets.</li>
@@ -174,7 +176,7 @@ things.</p>
 <p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:</p>
 <ul>
   <li>Open Visual Studio project file <code>/Externals/scew/win32/scew.dsp</code> If you are
-    using Visual Studio 2003.Net or later you need to convert the file to new format when
+    using Visual Studio 2003.Net or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Make sure all targets are selected</li>
@@ -185,7 +187,7 @@ things.</p>
 <p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:</p>
 <ul>
   <li>Open Visual Studio workspace file <code>/Externals/pcre/pcre.dsw</code> If you are
-    using Visual Studio 2003.Net or later you need to convert the file to new format when
+    using Visual Studio 2003.Net or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Select <code>config_pcre</code> and <code>pcre</code> projects and build them</li>
@@ -209,9 +211,10 @@ for compiling releases are:<br>
 </ul>
 
 <h4>Visual Studio 2005</h4>
-<p>When VC6 project file (.dsp) is converted to Visual Studio 2005 project, it does not
+<p>When the VC6 project file (.dsp) is converted to a Visual Studio 2005 project, it does not
 compile correctly as is. The problem is Visual Studio 2005 automatically generates and
-embeds manifest file for the executable. And as WinMerge resource file includes manifest
+embeds a manifest file for the executable. And as the WinMerge resource file includes 
+a manifest
 file there are conflicts.</p>
 
 <p>The easiest way to fix the compile is to disable VS2005 from creating and embedding
@@ -226,9 +229,10 @@ the manifest file. From project properties:
 <p>Please follow these guidelines when submitting changes to WinMerge sources
 as patches.</p>
 
-<p class="note">Do not waste yours and ours time by submitting large feature patches
-before you have made sure the feature is wanted to WinMerge. Communicate with developers,
-either in bug/feature request(rfe) items or preferably in Developers-forum or Developers-
+<p class="note">Do not waste yours and our time by submitting large feature 
+patches before you have made sure the feature is a desired addition to WinMerge. Communicate with 
+our developers,
+either in bug/feature request(rfe) items or preferably in the Developers-forum or Developers-
 mailing list.</p>
 
 <ol>
@@ -241,8 +245,8 @@ mailing list.</p>
       <li>
         If you are implementing a new feature, put a note in the SourceForge Feature
         Request item that you're implementing it. If there is no SourceForge Feature
-		Request item, create one. Alternatively you can discuss	about new features
-		in Developers-forum or Developers-mailing list. Please use this! It is a lot
+		Request item, create one. Alternatively you can discuss	new features
+		in the Developers-forum or Developers-mailing list. Please use this! It is a lot
 		less work wasted when we agree about design first.
       </li>
     </ul>
@@ -252,10 +256,11 @@ mailing list.</p>
     a snapshot of your starting sources (presumably a pristine copy of sources from
     subversion, or of a source zip from a distribution).</p>
 
-    <p><b>DO NOT</b> submit a patch against year-old version. Latest experimental/beta version
-    is at most a few weeks old. Stable releases should only get bug fixes. And even then bugfix
+    <p><b>DO NOT</b> submit a patch against a year-old version. The latest experimental/beta version
+    is at most a few weeks old. Stable releases should only get bug fixes. And even then 
+    the bugfix
     is usually first applied to development versions. So there should be no reason to submit
-    a patch against old version.</p>
+    a patch against an old version.</p>
   </li>
   <li>
     <p>Review the sections on <a href="#Coding_conventions">Coding conventions</a>
@@ -279,12 +284,13 @@ mailing list.</p>
   </li>
   <li>
     <p>Wait for reactions from other developers (and sometimes active users).<br>
-    Usually this means one of active developers approves your patch before commit.</p>
+    Usually this means one of the active developers approves your patch before 
+    you commit.</p>
   </li>
   <li>
     <p>After a reasonable amount of time has passed, and one of active developers
     has approved the patch, apply the patch to Subversion. (Or ask a
-    project member to do so, if you don't have yourself developer access to
+    project member to do so, if you don't have developer access to
     the project.)</p>
     <p>What is a reasonable amount of time? That is somewhat subjective, and
     we need to rely on your expertise as the patch developer, but let us
@@ -294,7 +300,7 @@ mailing list.</p>
   <li>
     <p>Add a note in <code>Src/Changes.txt</code> telling what files you committed,
     and what bug/RFE/patch you solved. This is very important so everybody else
-    has a change to figure out who did what and when.</p>
+    has a chance to figure out who did what and when.</p>
   </li>
 </ol>
 
@@ -420,13 +426,14 @@ However, some of our older releases do not follow this scheme.</p>
 
 <h3><a name="Packaging_file_releases">Packaging file releases</a></h3>
 
-<p>On SourceForge there is some space to put in Release Notes and Change Notes.
+<p>On SourceForge there is some space to enter Release Notes and Change Notes.
 For experimental releases make sure to put in a note telling people that this is indeed experimental,
 so they should not expect everything to work perfectly.
 For beta builds we paste in all the changes since the last beta release, so that people can see exactly what changed.
 For major releases, we paste in the list of changes since the last major release, and this list can become very long.</p>
 
-<p>We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make an installer for WinMerge.
+<p>We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make 
+the installer for WinMerge.
 See <a href="readme-developers-InnoSetup.html">readme-developers-InnoSetup.html</a> for more information.
 Also zip-packages for releases are provided, zip up these files:</p>
 
@@ -496,9 +503,9 @@ executable version numbers before uploading and releasing them.</p>
 
 <p>When we make a release we always put a note in <code>Src/Changes.txt</code> in SVN.</p>
 
-<p>It is recommended to create a tag to repository when making a stable- or beta- releases.
+<p>It is recommended to create a tag to the repository when making a stable- or beta- releases.
 Although with subversion we have kind of tags for every commit (revision numbers) it is still a lot
-easier to handle and remeber them with human-readable names (R2_6_0) than with revision numbers
+easier to handle and remember them with human-readable names (R2_6_0) than with revision numbers
 (revision 3637 (not a real revision number!)). Experimental or other testing releases don't need
 tags since they are not intended for wide use and are usually just one-time snapshots.</p>
 

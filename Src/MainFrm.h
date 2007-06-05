@@ -232,6 +232,7 @@ protected:
 	//{{AFX_MSG(CMainFrame)
 	afx_msg void OnMeasureItem(int nIDCtl, LPMEASUREITEMSTRUCT lpMeasureItemStruct);
 	afx_msg LRESULT OnMenuChar(UINT nChar, UINT nFlags, CMenu* pMenu) ;
+	afx_msg void OnInitMenu(CMenu* pMenu);
 	afx_msg void OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu);
 	afx_msg void OnOptionsShowDifferent();
 	afx_msg void OnOptionsShowIdentical();

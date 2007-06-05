@@ -70,6 +70,8 @@ public:
 	~CMergeApp();
 
 public:
+	void UpdateRecentProjectsMRUMenu(CMenu* pMenu, CCmdTarget* pTarget);
+	void AddToRecentProjectsMRU(const CString& sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 	CString GetDefaultEditor();
@@ -107,6 +109,7 @@ protected:
 	void ReloadMenu();
 
 	//{{AFX_MSG(CMergeApp)
+	afx_msg BOOL OnOpenRecentFile(UINT nID);
 	afx_msg void OnAppAbout();
 	afx_msg void OnViewLanguage();
 	afx_msg void OnUpdateViewLanguage(CCmdUI* pCmdUI);

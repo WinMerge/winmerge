@@ -98,6 +98,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_WM_MENUCHAR()
 	ON_WM_MEASUREITEM()
 	ON_WM_INITMENUPOPUP()
+	ON_WM_INITMENU()
 	ON_COMMAND(ID_OPTIONS_SHOWDIFFERENT, OnOptionsShowDifferent)
 	ON_COMMAND(ID_OPTIONS_SHOWIDENTICAL, OnOptionsShowIdentical)
 	ON_COMMAND(ID_OPTIONS_SHOWUNIQUELEFT, OnOptionsShowUniqueLeft)
@@ -581,7 +582,10 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 	if (!bSysMenu)
 	{
 		if (BCMenu::IsMenu(pPopupMenu))
+		{
 			BCMenu::UpdateMenu(pPopupMenu);
+			theApp.UpdateRecentProjectsMRUMenu(pPopupMenu, this);
+		}
 	}
 }
 
@@ -1037,6 +1041,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 				bRecurse = FALSE;
 			else if (projRecurse > 0)
 				bRecurse = TRUE;
+
 		}
 		pathsType = static_cast<PATH_EXISTENCE>(dlg.m_pathsType);
 		// TODO: add codepage options to open dialog ?
@@ -3277,4 +3282,10 @@ void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
 	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
 	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
 	pCmdUI->SetRadio(enabled && toolbar == 1);
+}
+
+void CMainFrame::OnInitMenu(CMenu *pMenu)
+{
+		CMergeApp* pApp = (CMergeApp*)AfxGetApp();
+		//pApp->UpdateMRUMenu(pMenu);
 }

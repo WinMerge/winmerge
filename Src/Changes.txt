@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-06-05 Dean
+ PATCH: [ 1731551 ] Recent Projects MRU
+  Src: Merge.cpp Merge.h Mainfrm.cpp Mainfrm.h Merge.rc
+
 2007-06-01 Gal
  BUG: [ 1705874 ] Hitting escape during listitem rename also exited winmerge
   Src: DirView.cpp
