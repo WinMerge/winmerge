@@ -40,9 +40,18 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// Flags for checking compare items
+// Flags for checking compare items:
+// Don't check for existence
+#define ALLOW_DONT_CARE 0
+// Allow it being folder
 #define ALLOW_FOLDER 1
+// Allow it being file
 #define ALLOW_FILE 2
+// Allow all types (currently file and folder)
+#define ALLOW_ALL (ALLOW_FOLDER | ALLOW_FILE)
+
+static BOOL ConfirmCopy(int origin, int destination, int count,
+		LPCTSTR src, LPCTSTR dest, BOOL destIsSide);
 
 static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
 		int allowDest, CString & failedPath);
@@ -136,11 +145,11 @@ static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
 		int allowDest, CString & failedPath)
 {
 	// Either of the paths must be checked!
-	ASSERT(allowOrig != 0 || allowDest != 0);
+	ASSERT(allowOrig != ALLOW_DONT_CARE || allowDest != ALLOW_DONT_CARE);
 	BOOL origSuccess = FALSE;
 	BOOL destSuccess = FALSE;
 
-	if (allowOrig != 0)
+	if (allowOrig != ALLOW_DONT_CARE)
 	{
 		// Check that source exists
 		PATH_EXISTENCE exists = paths_DoesPathExist(orig);
@@ -157,7 +166,7 @@ static BOOL CheckPathsExist(LPCTSTR orig, LPCTSTR dest, int allowOrig,
 		}
 	}
 
-	if (allowDest != 0)
+	if (allowDest != ALLOW_DONT_CARE)
 	{
 		// Check that destination exists
 		PATH_EXISTENCE exists = paths_DoesPathExist(dest);
@@ -204,8 +213,8 @@ void CDirView::DoCopyRightToLeft()
 			
 			// We must check that paths still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -250,8 +259,8 @@ void CDirView::DoCopyLeftToRight()
 
 			// We must first check that paths still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -296,8 +305,8 @@ void CDirView::DoDelLeft()
 
 			// We must check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				0, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -339,8 +348,8 @@ void CDirView::DoDelRight()
 
 			// We must first check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, 0,
-				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_DONT_CARE,
+					ALLOW_ALL, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -385,8 +394,8 @@ void CDirView::DoDelBoth()
 
 			// We must first check that paths still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_ALL, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -432,8 +441,8 @@ void CDirView::DoDelAll()
 
 			// We must first check that paths still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				ALLOW_FILE | ALLOW_FOLDER, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_ALL, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -501,8 +510,8 @@ void CDirView::DoCopyLeftTo()
 
 			// We must check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_FILE | ALLOW_FOLDER,
-				0, failpath);
+			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -567,8 +576,8 @@ void CDirView::DoCopyRightTo()
 
 			// We must check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				0, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -633,8 +642,8 @@ void CDirView::DoMoveLeftTo()
 
 			// We must check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_FILE | ALLOW_FOLDER,
-				0, failpath);
+			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -699,8 +708,8 @@ void CDirView::DoMoveRightTo()
 
 			// We must check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_FILE | ALLOW_FOLDER,
-				0, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
