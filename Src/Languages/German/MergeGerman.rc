@@ -114,6 +114,8 @@ BEGIN
         MENUITEM "Projekt öffnen...\tStrg+J",   ID_FILE_OPENPROJECT
         MENUITEM "Proje&kt speichern...",       ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
         MENUITEM "&Beenden",                    ID_APP_EXIT
     END
     POPUP "&Bearbeiten"

@@ -114,6 +114,8 @@ BEGIN
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
         MENUITEM "Desa el P&rojecte...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
         MENUITEM "&Surt",                       ID_APP_EXIT
     END
     POPUP "E&dita"

@@ -114,6 +114,8 @@ BEGIN
         MENUITEM "Projekt megnyitása...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
+        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM SEPARATOR
         MENUITEM "&Kilépés",                       ID_APP_EXIT
     END
     POPUP "S&zerkesztés"
