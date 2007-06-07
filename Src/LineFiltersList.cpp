@@ -199,3 +199,29 @@ void LineFiltersList::SaveFilters()
 		retval2 = m_pOptionsMgr->RemoveOption(valuename);
 	}
 }
+
+/**
+ * @brief Import old-style filter string into new system.
+ * This function imports old-style (2.6.x and earlier) line filters
+ * to new linefilter system. Earlier linefilters were saved as one
+ * string to registry.
+ * @param [in] filters String containing line filters in old-style.
+ */
+void LineFiltersList::Import(LPCTSTR filters)
+{
+	const TCHAR sep[] = _T("\r\n");
+	TCHAR *p_filters = (TCHAR *)&filters[0];
+	TCHAR *token;
+	
+	if (filters != NULL && _tcslen(filters) > 0)
+	{
+		// find each regular expression and add to list
+		token = _tcstok(p_filters, sep);
+		while (token)
+		{
+			AddFilter(token, TRUE);
+			token = _tcstok(NULL, sep);
+		}
+		SaveFilters();
+	}
+}

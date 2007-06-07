@@ -5,6 +5,8 @@ Add new items to top.
 2007-06-07 Kimmo
  BUG: [ 1730534 ] Cannot copy unique items in 2.7.3.5 - additional fix for deleting
   Src: DirActions.cpp
+ TODO: [ 1718040 ] Import existing linefilter to new dialog
+  Src: LineFiltersList.cpp LineFiltersList.h MainFrm.cpp
 
 2007-06-06 Kimmo
  Apply Recent projects (patch #1731551) menuitem to languages

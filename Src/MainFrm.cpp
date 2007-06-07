@@ -225,6 +225,15 @@ CMainFrame::CMainFrame()
 	if (m_pLineFilters)
 		m_pLineFilters->Initialize(GetOptionsMgr());
 
+	// If there are no filters loaded, and there is filter string in previous
+	// option string, import old filters to new place.
+	if (m_pLineFilters->GetCount() == 0)
+	{
+		CString oldFilter = theApp.GetProfileString(_T("Settings"), _T("RegExps"));
+		if (!oldFilter.IsEmpty())
+			m_pLineFilters->Import(oldFilter);
+	}
+
 	// Check if filter folder is set, and create it if not
 	CString pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
 	if (pathMyFolders.IsEmpty())
