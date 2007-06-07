@@ -305,7 +305,7 @@ void CDirView::DoDelLeft()
 
 			// We must check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_ALL,
 					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
@@ -348,8 +348,8 @@ void CDirView::DoDelRight()
 
 			// We must first check that path still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_DONT_CARE,
-					ALLOW_ALL, failpath);
+			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
@@ -439,30 +439,37 @@ void CDirView::DoDelAll()
 		{
 			GetItemFileNames(sel, slFile, srFile);
 
+			int leftFlags = ALLOW_DONT_CARE;
+			int rightFlags = ALLOW_DONT_CARE;
+			FileActionItem act;
+			if (IsItemDeletableOnBoth(di))
+			{
+				leftFlags = ALLOW_ALL;
+				rightFlags = ALLOW_ALL;
+				act.src = srFile;
+				act.dest = slFile;
+			}
+			else if (IsItemDeletableOnLeft(di))
+			{
+				leftFlags = ALLOW_ALL;
+				act.src = slFile;
+			}
+			else if (IsItemDeletableOnRight(di))
+			{
+				rightFlags = ALLOW_ALL;
+				act.src = srFile;
+			}
+
 			// We must first check that paths still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
-					ALLOW_ALL, failpath);
+			BOOL succeed = CheckPathsExist(slFile, srFile, leftFlags,
+					rightFlags, failpath);
 			if (succeed == FALSE)
 			{
 				WarnContentsChanged(failpath);
 				return;
 			}
 
-			FileActionItem act;
-			if (IsItemDeletableOnBoth(di))
-			{
-				act.src = srFile;
-				act.dest = slFile;
-			}
-			else if (IsItemDeletableOnLeft(di))
-			{
-				act.src = slFile;
-			}
-			else if (IsItemDeletableOnRight(di))
-			{
-				act.src = srFile;
-			}
 			act.dirflag = di.isDirectory();
 			act.context = sel;
 			act.atype = actType;
