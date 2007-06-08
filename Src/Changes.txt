@@ -5,6 +5,8 @@ Add new items to top.
 2007-06-08 Takashi
  BUG: [ 1730534 ] Cannot copy unique items in 2.7.3.5 - additional fix for deleting(2)
   Src: DirActions.cpp
+ PATCH: [ 1727722 ] Remove AppSerialize (only used for fonts)(2)
+  Src: MainFrm.cpp
 
 2007-06-07 WinMerge experimental release 2.7.3.6 (SVN revision 4321)
 

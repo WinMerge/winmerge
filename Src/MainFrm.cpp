@@ -1494,6 +1494,8 @@ void CMainFrame::GetFontProperties()
 	lfnew.lfQuality = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_QUALITY);
 	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_PITCHANDFAMILY);
 
+	_tcscpy(lfnew.lfFaceName,
+		GetOptionsMgr()->GetString(OPT_FONT_DIRCMP_FACENAME));
     m_lfDir = lfnew;
 }
 
