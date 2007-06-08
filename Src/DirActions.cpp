@@ -259,7 +259,7 @@ void CDirView::DoCopyLeftToRight()
 
 			// We must first check that paths still exists
 			CString failpath;
-			BOOL succeed = CheckPathsExist(srFile, slFile, ALLOW_ALL,
+			BOOL succeed = CheckPathsExist(slFile, srFile, ALLOW_ALL,
 					ALLOW_DONT_CARE, failpath);
 			if (succeed == FALSE)
 			{

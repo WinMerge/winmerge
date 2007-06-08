@@ -2,6 +2,10 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-06-08 Takashi
+ BUG: [ 1730534 ] Cannot copy unique items in 2.7.3.5 - additional fix for deleting(2)
+  Src: DirActions.cpp
+
 2007-06-07 WinMerge experimental release 2.7.3.6 (SVN revision 4321)
 
 2007-06-07 Kimmo
