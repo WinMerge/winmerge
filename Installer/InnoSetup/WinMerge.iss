@@ -288,12 +288,16 @@ Name: {app}\MergePlugins\insert datetime.sct; Type: Files; Check: not IsComponen
 Name: {app}\MergePlugins; Type: DirIfEmpty; Check: not IsComponentSelected('Plugins')
 
 Name: {app}\Filters\ADAMulti.flt; Type: Files; Check: not IsComponentSelected('Filters')
+Name: {app}\Filters\ASPNET.flt; Type: Files; Check: not IsComponentSelected('Filters')
+Name: {app}\Filters\CSharp_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
+Name: {app}\Filters\Delphi.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\MASM.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\Merge_GnuC_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\Merge_VC_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\Merge_VB_loose.flt; Type: Files; Check: not IsComponentSelected('Filters')
-Name: {app}\Filters\XML_html.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\SourceControl.flt; Type: Files; Check: not IsComponentSelected('Filters')
+Name: {app}\Filters\Symbian.flt; Type: Files; Check: not IsComponentSelected('Filters')
+Name: {app}\Filters\XML_html.flt; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters\FileFilter.tmpl; Type: Files; Check: not IsComponentSelected('Filters')
 Name: {app}\Filters; Type: DirIfEmpty; Check: not IsComponentSelected('Filters')
 

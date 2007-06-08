@@ -1,3 +1,7 @@
+2007-06-08 Kimmo
+ PATCH: [ 1733032 ] Installer: need to uninstall filter files
+  InnoSetup: WinMerge.iss
+
 2007-04-03 Kimmo
  PATCH: [ 1693012 ] Remove libexpatw.dll from installer
   InnoSetup: WinMerge.iss
