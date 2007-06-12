@@ -1447,8 +1447,11 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 
 	// We must check that paths still exists
 	CString failpath;
-	BOOL succeed = CheckPathsExist(sLeftFile, sRightFile, ALLOW_FILE | ALLOW_FOLDER,
-		ALLOW_FILE | ALLOW_FOLDER, failpath);
+	DIFFITEM &di = GetDiffItemRef(nSelItem);
+	BOOL succeed = CheckPathsExist(sLeftFile, sRightFile,
+		di.isSideLeftOrBoth()  ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
+		di.isSideRightOrBoth() ? ALLOW_FILE | ALLOW_FOLDER : ALLOW_DONT_CARE,
+		failpath);
 	if (succeed == FALSE)
 	{
 		WarnContentsChanged(failpath);
@@ -1460,7 +1463,7 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 
 	POSITION key = GetItemKey(nSelItem);
 	ASSERT(key != SPECIAL_ITEM_POS);
-	DIFFITEM& di = GetDocument()->GetDiffRefByKey(key);
+	di = GetDocument()->GetDiffRefByKey(key);
 
 	if ((TRUE == bRenameLeft)  && (TRUE == bRenameRight))
 	{
