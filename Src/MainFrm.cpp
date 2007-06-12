@@ -1404,7 +1404,6 @@ void CMainFrame::OnViewSelectfont()
 		else
 		{
 			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_USECUSTOM, true);
-			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
 			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_HEIGHT, lf->lfHeight);
 			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_WIDTH, lf->lfWidth);
 			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_ESCAPEMENT, lf->lfEscapement);
