@@ -2,7 +2,12 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
-2007-06-07 WinMerge experimental release 2.7.3.7 (SVN revision 4330)
+2007-06-13 Kimmo
+ PATCH: [ 1736520 ] WinMerge Large Toolbar Icons - small update
+  Submitted by Alexander Skinner
+  Src/res: ToolbarDisabled32.bmp ToolbarEnabled32.bmp
+
+2007-06-13 WinMerge experimental release 2.7.3.7 (SVN revision 4330)
 
 2007-06-13 Kimmo
  PATCH: [ 1735635 ] Swedish WinMerge 2.7.3.6 translation update
