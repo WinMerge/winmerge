@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "Öppna Projekt...\tCtrl+J",   ID_FILE_OPENPROJECT
         MENUITEM "Sp&ara Projekt...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM "Tidigare Projekt",             ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "&Avsluta",                    ID_APP_EXIT
     END
@@ -836,7 +836,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Radfilter"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Enable Line Filters",
+    CONTROL         "Använd Radfilter",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "Reguljära uttryck (ett per rad):",IDC_STATIC,7,28,
@@ -2148,7 +2148,7 @@ BEGIN
     IDS_CONFIRM_DELETE_SINGLE "Är du säker på du att vill ta bort\n\n%1 ?"
     IDS_CONFIRM_SINGLE_COPY "Är du säker på att du vill kopiera:"
     IDS_CONFIRM_MULTIPLE_COPY "Är du säker på att du vill kopiera %d objekt:"
-    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_DIRCMP_NOTSYNC      "Operation avbruten!\n\nKataloginnehållet på diskar har ändrats, sökvägen\n%1\nhittades inte.\n\nVar god och uppdatera jämförelsen."
 END
 
 // DIRECTORY DIFFING : OPEN FILE

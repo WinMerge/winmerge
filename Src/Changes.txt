@@ -2,6 +2,11 @@ Src\Changes.txt
 Add new items to top.
 (This summarizes all changes to all files under Src, including Src\Languages.)
 
+2007-06-13 Kimmo
+ PATCH: [ 1735635 ] Swedish WinMerge 2.7.3.6 translation update
+  Submitted by Hans Eriksson
+  Src/Languages/Swedish: MergeSwedish.rc
+
 2007-06-12 Takashi
  BUG: [ 1730534 ] Cannot copy unique items in 2.7.3.5 (3)
   Src: DirActions.cpp
