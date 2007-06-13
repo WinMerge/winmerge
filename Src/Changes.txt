@@ -6,6 +6,10 @@ Add new items to top.
  PATCH: [ 1735635 ] Swedish WinMerge 2.7.3.6 translation update
   Submitted by Hans Eriksson
   Src/Languages/Swedish: MergeSwedish.rc
+ PATCH: [ 1736520 ] WinMerge Large Toolbar Icons
+  Submitted by Alexander Skinner
+  Src: MainFrm.cpp
+  Src/res: ToolbarDisabled32.bmp ToolbarEnabled32.bmp
 
 2007-06-12 Takashi
  BUG: [ 1730534 ] Cannot copy unique items in 2.7.3.5 (3)

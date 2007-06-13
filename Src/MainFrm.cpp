@@ -3211,7 +3211,7 @@ static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource
 			break;
 		case CMainFrame::TOOLBAR_SIZE_32x32:
 			imageWidth = 32;
-			imageHeight = 32;
+			imageHeight = 31;
 			break;
 	}
 
