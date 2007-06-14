@@ -1,3 +1,7 @@
+2007-06-13
+ PATCH: [ 1734072 ] Upgrade website to PHP 5
+  Web: .htaccess
+
 2007-06-02 Tim
  Use more flexible SF.net URL for tracker shortcuts.
   Web: .htaccess
