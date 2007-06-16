@@ -660,7 +660,7 @@ DWORD NTAPI VersionOf7z(BOOL bLocal)
 /**
  * @brief Callback to pass to EnumResourceLanguages.
  */
-BOOL CALLBACK FindNextResLang(HANDLE hModule, LPCTSTR lpType, LPCTSTR lpName,  WORD wLanguage,  LONG_PTR lParam)
+BOOL CALLBACK FindNextResLang(HMODULE hModule, LPCTSTR lpType, LPCTSTR lpName, WORD wLanguage, LONG_PTR lParam)
 {
 	LPWORD pwLanguage = (LPWORD)lParam;
 	WORD wPrevious = *pwLanguage;
@@ -738,7 +738,7 @@ interface Merge7z *Merge7z::Proxy::operator->()
 		if (HINSTANCE hinstLang = AfxGetResourceHandle())
 		{
 			WORD wLangID = 0;
-			if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), (ENUMRESLANGPROC)FindNextResLang, (LPARAM)&wLangID) == 0)
+			if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)
 			{
 				flags |= wLangID << 16;
 			}
@@ -930,6 +930,8 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		di.getRightFilepath(pDoc->GetRightBasePath()) :
 		di.getLeftFilepath(pDoc->GetLeftBasePath()));
 
+	UINT32 Recurse = item.Mask.Recurse;
+
 	if (m_nFlags & BalanceFolders)
 	{
 		if (m_bRight)
@@ -947,6 +949,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					envelope->FullPath = di.getLeftFilepath(pDoc->GetLeftBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideLeft = false;
+					Recurse = 0;
 				}
 			}
 		}
@@ -965,6 +968,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 					envelope->FullPath = di.getRightFilepath(pDoc->GetRightBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideRight = false;
+					Recurse = 0;
 				}
 			}
 		}
@@ -977,11 +981,12 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 
 	if (m_strFolderPrefix.GetLength())
 	{
-		envelope->Name.Insert(0, '\\');
+		if (envelope->Name.GetLength())
+			envelope->Name.Insert(0, '\\');
 		envelope->Name.Insert(0, m_strFolderPrefix);
 	}
 
-	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent|item.Mask.Recurse;
+	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent|Recurse;
 	item.Name = envelope->Name;
 	item.FullPath = envelope->FullPath;
 	return envelope;
