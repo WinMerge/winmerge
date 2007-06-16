@@ -86,6 +86,7 @@ DATE:		BY:					DESCRIPTION:
 								Map extensions through ExternalArchiveFormat.ini
 2005/08/23	Jochen Tucht		Option to entirely disable 7-Zip integration
 2007/01/04	Kimmo Varis			Convert using COptionsMgr for options.
+2007/06/16	Jochen Neubeck		FIX [1723263] "Zip --> Both" operation...
 */
 
 // RCS ID line follows -- this is updated by CVS
