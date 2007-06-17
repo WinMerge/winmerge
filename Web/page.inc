@@ -96,10 +96,8 @@
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
       $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"48\" width=\"48\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a><img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
-      $temp .= "  <div id=\"tabs\">\n";
-      $temp .= $this->getTabs();
-      $temp .= "  </div>\n";
       $temp .= "</div>\n";
+      $temp .= $this->getTabs();
       $temp .= "<div id=\"ads\">\n";
       $temp .= $this->getAds();
       $temp .= "</div>\n";
@@ -132,38 +130,38 @@
      * get the tabs menu from the page
      */
     function getTabs() {
-      $temp = "<ul>\n";
+      $temp = "<ul id=\"tabs\">\n";
       if ($this->_tab == TAB_HOME) { //if "Home" ...
-        $temp .= "  <li class=\"selected\"><a href=\"/index.php\">Home</a></li>\n";
+        $temp .= "  <li><a href=\"/index.php\" id=\"current\">Home</a></li>\n";
       }
       else { //if NOT "Home" ...
         $temp .= "  <li><a href=\"/index.php\">Home</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_6) { //if WinMerge 2.6 ...
-        $temp .= "  <li class=\"selected\"><a href=\"/2.6/index.php\">2.6</a></li>\n";
+        $temp .= "  <li><a href=\"/2.6/index.php\" id=\"current\">WinMerge&nbsp;2.6</a></li>\n";
       }
       else { //if NOT WinMerge 2.6 ...
-        $temp .= "  <li><a href=\"/2.6/index.php\">2.6</a></li>\n";
+        $temp .= "  <li><a href=\"/2.6/index.php\">WinMerge&nbsp;2.6</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_4) { //if WinMerge 2.4 ...
-        $temp .= "  <li class=\"selected\"><a href=\"/2.4/index.php\">2.4</a></li>\n";
+        $temp .= "  <li><a href=\"/2.4/index.php\" id=\"current\">WinMerge&nbsp;2.4</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_2) { //if WinMerge 2.2 ...
-        $temp .= "  <li class=\"selected\"><a href=\"/2.2/index.php\">2.2</a></li>\n";
+        $temp .= "  <li><a href=\"/2.2/index.php\" id=\"current\">WinMerge&nbsp;2.2</a></li>\n";
       }
       if ($this->_tab == WINMERGE_2_0) { //if WinMerge 2.0 ...
-        $temp .= "  <li class=\"selected\"><a href=\"/2.0/index.php\">2.0</a></li>\n";
+        $temp .= "  <li><a href=\"/2.0/index.php\" id=\"current\">WinMerge&nbsp;2.0</a></li>\n";
       }
       if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
-        $temp .= "  <li class=\"selected\"><a href=\"/1.7/index.php\">1.7</a></li>\n";
+        $temp .= "  <li><a href=\"/1.7/index.php\" id=\"current\">WinMerge&nbsp;1.7</a></li>\n";
       }
       if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
-        $temp .= "  <li class=\"selected\"><a href=\"/support/index.php\">Support</a></li>\n";
+        $temp .= "  <li><a href=\"/support/index.php\" id=\"current\">Support</a></li>\n";
       }
       else { //if NOT "Support" ...
         $temp .= "  <li><a href=\"/support/index.php\">Support</a></li>\n";
       }
-      $temp .= "  <li><a href=\"/Wiki/\">Wiki</a></li>\n";
+      $temp .= "  <li><a href=\"/Wiki/\">Developer&nbsp;Wiki</a></li>\n";
       $temp .= "</ul>\n";
       return $temp;
     }
