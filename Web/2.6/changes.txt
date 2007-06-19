@@ -1,3 +1,51 @@
+2007-06-19 2.6.8 Stable Release (R4343)
+
+2007-06-17 Tim
+ PATCH: [ 1722213 ] Fix wrong </endtag> syntax color in HTML highlighters
+  Src/editlib: asp.cpp html.cpp php.cpp
+
+2007-06-17 Gal
+ BUG: [ 1705874 ] Hitting escape during listitem rename also exited winmerge
+  Src: DirView.cpp
+
+2007-06-16 Jochen
+ PATCH: [ 1734439 ] Fix Bug #1723263 "Zip --> Both" operation give unwanted content in output
+  Src: 7zCommon.cpp
+
+2007-06-14 Kimmo
+ Bump ShellExtension version to 1.9.3
+  ShellExtension: ShellExtension.rc
+ PATCH: [ 1735240 ] Copy new Delphi- and Symbian -file filters to 2.6 branch
+  Filters new files: Delphi.flt Symbian.flt
+ PATCH: [ 1727878 ] 26Branch: Disable hiding folder compare confirmation dialogs
+  Src: DirActions.cpp
+
+2007-06-07 Kimmo
+ PATCH: [ 1721815 ] Add CSharp file filter for 2.6.x
+  Filters new file: CSharp_loose.flt
+
+2007-05-31 Tim
+ PATCH: [ 1729179 ] Change "Rational Clearcase" to "Rational ClearCase"
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
+2007-05-29 Takashi
+ BUG [ 1722197 ] Downgrading from 2.7.3.4 to 2.6.6 causes Explorer crash
+  ShellExtension: WinMergeShell.cpp
+
+2007-05-19 Tim
+ Fix white space indenting in C# highlighter (included with PATCH #1556685).
+  Src/editlib: csharp.cpp
+
+2007-05-13 Takashi
+ BUG: [ 1717814 ] Fix header drawing issue on WinXP with Luna Theme
+  Src/Common/SortHeaderCtrl.cpp
+
+2007-04-29 Kimmo
+ PATCH: [ 1704904 ] Korean Translation 2.6.X
+  Submitted by Sukjoon, Hwang
+  Src/Languages/Korean: MergeKorean.rc
+
 2007-03-29 2.6.6 Stable Release (R4204)
 
 2007-03-19 Kimmo

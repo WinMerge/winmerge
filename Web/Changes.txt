@@ -3,6 +3,9 @@
   Web: page.inc
   Web\css: print.css screen.css
   Web\developer: deleted sourceforge.png valid-css.gif valid-html401.gif
+ PATCH: [ 1739980 ] Web: Changes for new stable release 2.6.8
+  Web: downloads.php index.php page.inc WinMergePAD.xml
+  Web\2.6: changes.txt index.php
 
 2007-06-17 Tim
  PATCH: [ 1738750 ] Web: Use Eric Meyer's tabbed navbar

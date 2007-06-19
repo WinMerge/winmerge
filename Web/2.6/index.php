@@ -31,8 +31,8 @@
 <p>See the <a href="screenshots.php">screenshots page</a> for more screenshots.</p>
 
 <h2>Installation</h2>
-<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.6-Setup.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.6-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-Setup.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
 <p>For more information, please see the <a href="manual/Installing.html">Installation section</a> of the <a href="manual/index.html">Manual</a>.</p>
 
