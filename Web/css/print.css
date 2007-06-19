@@ -23,6 +23,10 @@ code,pre {
 	padding: 0;
 }
 
+#rightcorner {
+	display: none;
+}
+
 #tabs {
 	display: none;
 }

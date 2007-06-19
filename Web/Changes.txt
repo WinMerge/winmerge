@@ -1,3 +1,9 @@
+2007-06-19 Tim
+ PATCH: [ 1739404 ] Web: Move buttons to right corner
+  Web: page.inc
+  Web\css: print.css screen.css
+  Web\developer: deleted sourceforge.png valid-css.gif valid-html401.gif
+
 2007-06-17 Tim
  PATCH: [ 1738750 ] Web: Use Eric Meyer's tabbed navbar
   Web: page.inc

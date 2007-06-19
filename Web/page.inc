@@ -96,6 +96,11 @@
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
       $temp .= "<h1><a href=\"/index.php\"><img src=\"/images/icon.gif\" height=\"48\" width=\"48\" align=\"top\" alt=\"WinMerge logo\" border=\"0\"></a><img src=\"/images/logo.gif\" height=\"50\" width=\"218\" align=\"top\" alt=\"WinMerge\" border=\"0\"></h1>\n";
+      $temp .= "<p id=\"rightcorner\">\n";
+      $temp .= "  <a href=\"http://sourceforge.net/\"><img src=\"http://sourceforge.net/sflogo.php?group_id=13216\" width=\"88\" height=\"31\" border=\"0\" alt=\"SourceForge\" title=\"SourceForge.net\"></a>\n";
+      $temp .= "  <a href=\"/WinMergePAD.php\"><img src=\"/images/padbutton.gif\" width=\"80\" height=\"31\" border=\"0\" alt=\"PAD Enabled\" title=\"PAD Enabled\"></a>\n";
+      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\"><img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate\" title=\"Donate money to WinMerge\"></a>\n";
+      $temp .= "</p>\n";
       $temp .= "</div>\n";
       $temp .= $this->getTabs();
       $temp .= "<div id=\"ads\">\n";
@@ -304,26 +309,6 @@
       $temp .= "<ul>\n";
       $temp .= "  <li><a href=\"/links.php\">Links</a></li>\n";
       $temp .= "</ul>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://sourceforge.net/donate/index.php?group_id=13216\">\n";
-      $temp .= "    <img src=\"/images/project-support.jpg\" width=\"88\" height=\"32\" border=\"0\" alt=\"Donate money to WinMerge\">\n";
-      $temp .= "  </a>\n";
-      $temp .= "</p>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"/WinMergePAD.php\">\n";
-      $temp .= "    <img src=\"/images/padbutton.gif\" alt=\"PAD Enabled\" border=\"0\">\n";
-      $temp .= "  </a>\n";
-      $temp .= "</p>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://validator.w3.org/check/referer\">\n";
-      $temp .= "    <img src=\"/images/valid-html401.gif\" alt=\"Valid HTML 4.01!\" width=\"88\" height=\"31\" border=\"0\">\n";
-      $temp .= "  </a>\n";
-      $temp .= "</p>\n";
-      $temp .= "<p align=\"center\">\n";
-      $temp .= "  <a href=\"http://jigsaw.w3.org/css-validator\">\n";
-      $temp .= "    <img src=\"/images/valid-css.gif\" alt=\"Valid CSS!\" width=\"88\" height=\"31\" border=\"0\">\n";
-      $temp .= "  </a>\n";
-      $temp .= "</p>\n";
       return $temp;
     }
 

@@ -21,8 +21,13 @@ code,pre {
 }
 
 #head h1 {
+	float: left;
 	margin: 0;
 	padding: 0;
+}
+
+#rightcorner {
+	text-align: right;
 }
 
 /* Based on "Eric Meyer's tabbed navbar" from Eric Meyer:
