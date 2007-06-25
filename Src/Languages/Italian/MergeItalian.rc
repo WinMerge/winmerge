@@ -71,7 +71,7 @@ BEGIN
         MENUITEM "&Copia a destra",             ID_L2R
         MENUITEM "Co&pia a sinistra",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Seleziona differenze nella riga",           ID_SELECTLINEDIFF
+        MENUITEM "&Seleziona differenze nella riga", ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "Annul&la",                    ID_EDIT_UNDO
         MENUITEM "&Ripristina",                 ID_EDIT_REDO
@@ -86,7 +86,7 @@ BEGIN
         BEGIN
             MENUITEM "con l'applicazione &registrata", ID_FILE_OPEN_REGISTERED
             MENUITEM "con l'editor &esterno",       ID_FILE_OPEN_WITHEDITOR
-            MENUITEM "&con...",                    ID_FILE_OPEN_WITH
+            MENUITEM "&con...",                     ID_FILE_OPEN_WITH
         END
     END
 END
@@ -95,12 +95,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opia a destra",              ID_L2R
-        MENUITEM "Cop&ia a sinistra",               ID_R2L
+        MENUITEM "C&opia a destra",             ID_L2R
+        MENUITEM "Cop&ia a sinistra",           ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Taglia",                        ID_EDIT_CUT
-        MENUITEM "&Copia",                       ID_EDIT_COPY
-        MENUITEM "I&ncolla",                      ID_EDIT_PASTE
+        MENUITEM "&Taglia",                     ID_EDIT_CUT
+        MENUITEM "&Copia",                      ID_EDIT_COPY
+        MENUITEM "I&ncolla",                    ID_EDIT_PASTE
     END
 END
 
@@ -111,8 +111,8 @@ BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sal&va progetto...",            ID_FILE_SAVEPROJECT
+        MENUITEM "Apri pro&getto...\tCtrl+J",   ID_FILE_OPENPROJECT
+        MENUITEM "Sal&va progetto...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
@@ -125,7 +125,7 @@ BEGIN
     POPUP "&Visualizza"
     BEGIN
         MENUITEM "&Carattere...",               ID_VIEW_SELECTFONT
-        MENUITEM "&Utilizza carattere predefinito",  ID_VIEW_USEDEFAULTFONT
+        MENUITEM "&Utilizza carattere predefinito", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
         POPUP "&Toolbar"
         BEGIN
@@ -154,13 +154,13 @@ BEGIN
     END
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Carica configurazione...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Carica configurazione...",   ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reimposta opzioni",          ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
-        MENUITEM "&Chiudi",                      ID_FILE_CLOSE
-        MENUITEM "Chiudi &tutto",                  ID_WINDOW_CLOSEALL
+        MENUITEM "&Chiudi",                     ID_FILE_CLOSE
+        MENUITEM "Chiudi &tutto",               ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Cambia &pannello\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -171,10 +171,10 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
-        MENUITEM "&Indice...",                   ID_HELP_INDEX
-        MENUITEM "Ce&rca...",                  ID_HELP_SEARCH
+        MENUITEM "&Indice...",                  ID_HELP_INDEX
+        MENUITEM "Ce&rca...",                   ID_HELP_SEARCH
         MENUITEM SEPARATOR
-        MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
+        MENUITEM "C&onfigurazione...",          ID_HELP_GETCONFIG
         MENUITEM "&Supporto per gli archivi inattivo...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
@@ -189,13 +189,13 @@ BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sal&va progetto...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Apri pro&getto...\tCtrl+J",   ID_FILE_OPENPROJECT
+        MENUITEM "Sal&va progetto...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Fil&e di sinistra di Sola lettura", ID_FILE_LEFT_READONLY
         MENUITEM "F&ile di destra di Sola lettura", ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "&Codifica dei file",              ID_FILE_ENCODING
+        MENUITEM "&Codifica dei file",          ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Esci",                       ID_APP_EXIT
     END
@@ -207,48 +207,48 @@ BEGIN
     END
     POPUP "&Visualizza"
     BEGIN
-        MENUITEM "Mostra elementi &identici",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Mostra elementi di&fferenti",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Mostra elementi unici di &sinistra",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Mostra elementi unici di &destra",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Mostra elementi sa&ltati",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "Mostra i file binari",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Mostra elementi &identici",   ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Mostra elementi di&fferenti", ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Mostra elementi unici di &sinistra", ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Mostra elementi unici di &destra", ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Mostra elementi sa&ltati",    ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Mostra i file binari",        ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
-        MENUITEM "M&ostra elementi nascosti",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM "M&ostra elementi nascosti",   ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "&Carattere...",               ID_VIEW_SELECTFONT
-        MENUITEM "&Utilizza carattere predefinito",  ID_VIEW_USEDEFAULTFONT
+        MENUITEM "&Utilizza carattere predefinito", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Barra degli s&trumenti"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Nessuna",                ID_TOOLBAR_NONE
+            MENUITEM "&Piccola",                ID_TOOLBAR_SMALL
+            MENUITEM "&Grande",                 ID_TOOLBAR_BIG
         END
         MENUITEM "Ba&rra di stato",             ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
-        MENUITEM "Statistic&he del confronto",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "&Barra delle schede",         ID_VIEW_TAB_BAR
+        MENUITEM "Statistic&he del confronto",  ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Ling&ua...",                  ID_VIEW_LANGUAGE
         MENUITEM SEPARATOR
-        MENUITEM "A&ggiorna\tF5",                ID_REFRESH
-        MENUITEM "Aggio&rna selezionati\tCtrl+F5",  ID_DIR_RESCAN
+        MENUITEM "A&ggiorna\tF5",               ID_REFRESH
+        MENUITEM "Aggio&rna selezionati\tCtrl+F5", ID_DIR_RESCAN
     END
     POPUP "&Unisci"
     BEGIN
-        MENUITEM "Co&nfronta\tInvio",             ID_MERGE_COMPARE
+        MENUITEM "Co&nfronta\tInvio",           ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         MENUITEM "&Differenza successiva\tAlt+Su", ID_NEXTDIFF
         MENUITEM "Di&fferenza precedente\tAlt+Giù", ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "Prima differen&za\tAlt+Home", ID_FIRSTDIFF
         MENUITEM "Differenza &corrente\tAlt+Invio", ID_CURDIFF
-        MENUITEM "&Ultima differenza\tAlt+Fine",   ID_LASTDIFF
+        MENUITEM "&Ultima differenza\tAlt+Fine", ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "C&opia a destra\tFreccia destra", ID_L2R
         MENUITEM "Co&pia a sinistra\tFreccia sinistra", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Elimina\tCanc",                ID_MERGE_DELETE
+        MENUITEM "&Elimina\tCanc",              ID_MERGE_DELETE
     END
     POPUP "&Strumenti"
     BEGIN
@@ -268,13 +268,13 @@ BEGIN
     END
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Carica configurazione...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Carica configurazione...",   ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reimposta opzioni",          ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
-        MENUITEM "&Chiudi",                      ID_FILE_CLOSE
-        MENUITEM "Chiudi &tutto",                  ID_WINDOW_CLOSEALL
+        MENUITEM "&Chiudi",                     ID_FILE_CLOSE
+        MENUITEM "Chiudi &tutto",               ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Cambia &pannello\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -285,10 +285,10 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
-        MENUITEM "&Indice...",                   ID_HELP_INDEX
-        MENUITEM "Ce&rca...",                  ID_HELP_SEARCH
+        MENUITEM "&Indice...",                  ID_HELP_INDEX
+        MENUITEM "Ce&rca...",                   ID_HELP_SEARCH
         MENUITEM SEPARATOR
-        MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
+        MENUITEM "C&onfigurazione...",          ID_HELP_GETCONFIG
         MENUITEM "&Supporto per gli archivi inattivo...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
@@ -303,8 +303,8 @@ BEGIN
         MENUITEM "&Nuovo\tCtrl+N",              ID_FILE_NEW
         MENUITEM "&Apri...\tCtrl+A",            ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Apri pro&getto...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sal&va progetto...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Apri pro&getto...\tCtrl+J",   ID_FILE_OPENPROJECT
+        MENUITEM "Sal&va progetto...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Salva\tCtrl+S",              ID_FILE_SAVE
         POPUP "Sa&lva sinistro"
@@ -318,9 +318,9 @@ BEGIN
             MENUITEM "S&alva con nome...",      ID_FILE_SAVEAS_RIGHT
         END
         MENUITEM SEPARATOR
-        MENUITEM "Stam&pa...",                   ID_FILE_PRINT
-        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
-        MENUITEM "Anteprima &di stampa",              ID_FILE_PRINT_PREVIEW
+        MENUITEM "Stam&pa...",                  ID_FILE_PRINT
+        MENUITEM "Impos&ta pagina...",          ID_FILE_PAGE_SETUP
+        MENUITEM "Anteprima &di stampa",        ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Fil&e di sinistra di Sola lettura", ID_FILE_LEFT_READONLY
         MENUITEM "F&ile di destra di Sola lettura", ID_FILE_RIGHT_READONLY
@@ -348,8 +348,8 @@ BEGIN
         MENUITEM "Seleziona &differenze nella riga\tF4", ID_SELECTLINEDIFF
         MENUITEM "Se&leziona tutto\tCtrl+A",    ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
-        MENUITEM "Tro&va...\tCtrl+F",            ID_EDIT_FIND
-        MENUITEM "Sostit&uisci...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM "Tro&va...\tCtrl+F",           ID_EDIT_FIND
+        MENUITEM "Sostit&uisci...\tCtrl+H",     ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         POPUP "&Script"
         BEGIN
@@ -363,10 +363,10 @@ BEGIN
         END
         POPUP "Segnali&bri"
         BEGIN
-            MENUITEM "&Imposta segnalibro\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "Segnalibro successi&vo\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Imposta segnalibro\tCtrl+F2", ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "Segnalibro successi&vo\tF2",  ID_EDIT_GOTO_NEXT_BOOKMARK
             MENUITEM "&Segnalibro precedente\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Cancella tutti i segnalibri",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "&Cancella tutti i segnalibri", ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "Va&i a...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
@@ -375,34 +375,34 @@ BEGIN
     POPUP "&Visualizza"
     BEGIN
         MENUITEM "&Carattere...",               ID_VIEW_SELECTFONT
-        MENUITEM "&Utilizza carattere predefinito",  ID_VIEW_USEDEFAULTFONT
-        POPUP "Syntax Highlight"
+        MENUITEM "&Utilizza carattere predefinito", ID_VIEW_USEDEFAULTFONT
+        POPUP "Evidenziazione sintassi"
         BEGIN
-            MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
+            MENUITEM "<Segnaposto>",            ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
         MENUITEM "&Visualizza spazi bianchi",   ID_VIEW_WHITESPACE
-        MENUITEM "Visualizza &differenze nelle linee",      ID_VIEW_LINEDIFFS
-        MENUITEM "Mostra i &numeri delle righe",           ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
-        MENUITEM "A capo a&utomatico",                 ID_VIEW_WORDWRAP
+        MENUITEM "Visualizza &differenze nelle linee", ID_VIEW_LINEDIFFS
+        MENUITEM "Mostra i &numeri delle righe", ID_VIEW_LINENUMBERS
+        MENUITEM "Visualizza &margini",         ID_VIEW_FILEMARGIN
+        MENUITEM "A capo a&utomatico",          ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
-        MENUITEM "Sc&ambia pannelli",                 ID_VIEW_SWAPPANES
+        MENUITEM "Sc&ambia pannelli",           ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Barra degli s&trumenti"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Nessuna",                    ID_TOOLBAR_NONE
+            MENUITEM "&Piccola",                    ID_TOOLBAR_SMALL
+            MENUITEM "&Grande",                     ID_TOOLBAR_BIG
         END
         MENUITEM "&Barra di stato",             ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "&Barra delle schede",         ID_VIEW_TAB_BAR
         MENUITEM "&Pannello delle differenze",  ID_VIEW_DETAIL_BAR
         MENUITEM "Pannello della loca&zione",   ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Lingua...",                  ID_VIEW_LANGUAGE
         MENUITEM SEPARATOR
-        MENUITEM "A&ggiorna\tF5",                ID_REFRESH
+        MENUITEM "A&ggiorna\tF5",               ID_REFRESH
     END
     POPUP "&Unisci"
     BEGIN
@@ -411,7 +411,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Prima differen&za\tAlt+Home", ID_FIRSTDIFF
         MENUITEM "Differenza &corrente\tAlt+Invio", ID_CURDIFF
-        MENUITEM "&Ultima differenza\tAlt+Fine",   ID_LASTDIFF
+        MENUITEM "&Ultima differenza\tAlt+Fine", ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "C&opia a destra\tFreccia destra", ID_L2R
         MENUITEM "Co&pia a sinistra\tFreccia sinistra", ID_R2L
@@ -436,20 +436,20 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Prediffer"
         BEGIN
-            MENUITEM "<PlaceHolder>",           ID_NO_PREDIFFER
+            MENUITEM "<Segnaposto>",                ID_NO_PREDIFFER
         END
         MENUITEM SEPARATOR
         MENUITEM "&Ricarica plugin",            ID_RELOAD_PLUGINS
     END
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&Carica configurazione...",             ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Carica configurazione...",   ID_DEBUG_LOADCONFIG
+        MENUITEM "&Reimposta opzioni",          ID_DEBUG_RESETOPTIONS
     END
     POPUP "Fi&nestra"
     BEGIN
-        MENUITEM "&Chiudi",                      ID_FILE_CLOSE
-        MENUITEM "C&hiudi tutto",                  ID_WINDOW_CLOSEALL
+        MENUITEM "&Chiudi",                     ID_FILE_CLOSE
+        MENUITEM "C&hiudi tutto",               ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "Cambia &pannello\tF6",        ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -460,10 +460,10 @@ BEGIN
     POPUP "&?"
     BEGIN
         MENUITEM "&Contenuti...\tF1",           ID_HELP_CONTENTS
-        MENUITEM "&Indice...",                   ID_HELP_INDEX
-        MENUITEM "Ce&rca...",                  ID_HELP_SEARCH
+        MENUITEM "&Indice...",                  ID_HELP_INDEX
+        MENUITEM "Ce&rca...",                   ID_HELP_SEARCH
         MENUITEM SEPARATOR
-        MENUITEM "C&onfigurazione...",           ID_HELP_GETCONFIG
+        MENUITEM "C&onfigurazione...",          ID_HELP_GETCONFIG
         MENUITEM "&Supporto per gli archivi inattivo...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "Licenza pubblica GNU...",     ID_HELP_GNULICENSE
@@ -475,40 +475,40 @@ IDR_POPUP_DIRVIEW MENU
 BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
-        MENUITEM "&Confronta",                    ID_MERGE_COMPARE
+        MENUITEM "&Confronta",                  ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         POPUP "C&opia"
         BEGIN
-            MENUITEM "Da &Sinistra a Destra",   ID_DIR_COPY_LEFT_TO_RIGHT
-            MENUITEM "Si&nistra in...",         ID_DIR_COPY_LEFT_TO_BROWSE
-            MENUITEM "Da &Destra a Sinistra",   ID_DIR_COPY_RIGHT_TO_LEFT
-            MENUITEM "Destra &in...",           ID_DIR_COPY_RIGHT_TO_BROWSE
+            MENUITEM "Da &Sinistra a Destra",       ID_DIR_COPY_LEFT_TO_RIGHT
+            MENUITEM "Si&nistra in...",             ID_DIR_COPY_LEFT_TO_BROWSE
+            MENUITEM "Da &Destra a Sinistra",       ID_DIR_COPY_RIGHT_TO_LEFT
+            MENUITEM "Destra &in...",               ID_DIR_COPY_RIGHT_TO_BROWSE
         END
         POPUP "&Sposta"
         BEGIN
-            MENUITEM "Si&nistra in...",                 ID_DIR_MOVE_LEFT_TO_BROWSE
-            MENUITEM "Destra &in...",                ID_DIR_MOVE_RIGHT_TO_BROWSE
+            MENUITEM "Si&nistra in...",             ID_DIR_MOVE_LEFT_TO_BROWSE
+            MENUITEM "Destra &in...",               ID_DIR_MOVE_RIGHT_TO_BROWSE
         END
          POPUP "&Elimina"
         BEGIN
-            MENUITEM "&Sinistra",               ID_DIR_DEL_LEFT
-            MENUITEM "&Destra",                 ID_DIR_DEL_RIGHT
-            MENUITEM "&Entrambi",               ID_DIR_DEL_BOTH
+            MENUITEM "&Sinistra",                   ID_DIR_DEL_LEFT
+            MENUITEM "&Destra",                     ID_DIR_DEL_RIGHT
+            MENUITEM "&Entrambi",                   ID_DIR_DEL_BOTH
         END
-        MENUITEM "&Rinomina",                         ID_DIR_ITEM_RENAME
-        MENUITEM "&Nascondi elementi",                     ID_DIR_HIDE_FILENAMES
+        MENUITEM "&Rinomina",                   ID_DIR_ITEM_RENAME
+        MENUITEM "&Nascondi elementi",          ID_DIR_HIDE_FILENAMES
         MENUITEM SEPARATOR
         POPUP "Apri &file di sinistra"
         BEGIN
             MENUITEM "con l'applicazione &registrata", ID_DIR_OPEN_LEFT
             MENUITEM "con l'&editor esterno",       ID_DIR_OPEN_LEFT_WITHEDITOR
-            MENUITEM "&con...",                    ID_DIR_OPEN_LEFT_WITH
+            MENUITEM "&con...",                     ID_DIR_OPEN_LEFT_WITH
         END
         POPUP "A&pri file di destra"
         BEGIN
             MENUITEM "con l'applicazione &registrata", ID_DIR_OPEN_RIGHT
             MENUITEM "con l'&editor esterno",       ID_DIR_OPEN_RIGHT_WITHEDITOR
-            MENUITEM "&con...",                    ID_DIR_OPEN_RIGHT_WITH
+            MENUITEM "&con...",                     ID_DIR_OPEN_RIGHT_WITH
         END
         MENUITEM SEPARATOR
         POPUP "Cop&ia percorsi"
@@ -521,13 +521,13 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Zippa"
         BEGIN
-            MENUITEM "&Sinistra... (%1 su %2)",         ID_DIR_ZIP_LEFT
-            MENUITEM "&Destra... (%1 su %2)",        ID_DIR_ZIP_RIGHT
-            MENUITEM "&Entrambi... (%1 su %2)",         ID_DIR_ZIP_BOTH
-            MENUITEM "Di&fferenze... (%1 su %2)",  ID_DIR_ZIP_BOTH_DIFFS_ONLY
+            MENUITEM "&Sinistra... (%1 su %2)",     ID_DIR_ZIP_LEFT
+            MENUITEM "&Destra... (%1 su %2)",       ID_DIR_ZIP_RIGHT
+            MENUITEM "&Entrambi... (%1 su %2)",     ID_DIR_ZIP_BOTH
+            MENUITEM "Di&fferenze... (%1 su %2)",   ID_DIR_ZIP_BOTH_DIFFS_ONLY
         END
         MENUITEM SEPARATOR
-        MENUITEM "A&ggiorna",                        ID_DIR_RESCAN
+        MENUITEM "A&ggiorna",                   ID_DIR_RESCAN
     END
     POPUP "_HDR_POPUP_"
     BEGIN
@@ -699,8 +699,8 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,115,235,8
     CONTROL         "Applica a tutte le voci",IDC_MULTI_CHECKOUT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,125,235,8
-    DEFPUSHBUTTON   "Estrai",IDOK,91,145,50,14
-    PUSHBUTTON      "Salva con nome...",IDC_SAVE_AS,145,145,50,14
+    DEFPUSHBUTTON   "Estrai",IDOK,70,145,50,14
+    PUSHBUTTON      "Salva con nome...",IDC_SAVE_AS,124,145,71,14
     PUSHBUTTON      "Annulla",IDCANCEL,200,145,50,14
 END
 
@@ -842,20 +842,20 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Filtri di linee"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Enable Line Filters",
+    CONTROL         "Attiva i filtri di linee",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
-    LTEXT           "Espressioni regolari (una per linea):",IDC_STATIC,7,28,
+    LTEXT           "Espressioni regolari (una per riga):",IDC_STATIC,7,28,
                     221,8
     CONTROL         "",IDC_LFILTER_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | 
                     LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,105
     EDITTEXT        IDC_LFILTER_EDITBOX,7,149,296,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Save",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
-    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
-    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
-    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
+    PUSHBUTTON      "Salva",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
+    PUSHBUTTON      "Nuovo",IDC_LFILTER_ADDBTN,7,167,50,14
+    PUSHBUTTON      "Modifica",IDC_LFILTER_EDITBTN,62,167,50,14
+    PUSHBUTTON      "Rimuovi",IDC_LFILTER_REMOVEBTN,116,167,50,14
 END
 
 IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 235, 196
@@ -1133,7 +1133,7 @@ BEGIN
                     7,80,221,10
     CONTROL         "Attiva il rilevamento di blocc&hi spostati",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
+    CONTROL         "&Metti in corrispondenza linee simili",IDC_MATCH_SIMILAR_LINES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
     LTEXT           "&Metodo confronto file:",IDC_STATIC,7,115,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,113,114,70,CBS_DROPDOWNLIST |
@@ -1574,44 +1574,44 @@ END
 
 IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 236, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Backup Files"
+CAPTION "File di backup"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Crea copie dei file per:",IDC_STATIC,7,7,222,8
+    CONTROL         "&Confronto tra cartelle",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "Confronto tra &file",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "Crea le copie dei file in:",IDC_STATIC,7,40,222,8
+    CONTROL         "Cartella &originaria del file",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "Cartella &globale di backup:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "Sfoglia...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "Nome della copia:",IDC_STATIC,7,89,222,8
+    CONTROL         "&Aggiungi l'estensione .bak",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "Aggiungi il &timestamp",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Confirm Copy"
+CAPTION "Conferma la copia"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
-    LTEXT           "Are you sure you want to copy XXX items?",
+    LTEXT           "Sei sicuro di voler copiare XXX elementi?",
                     IDC_FLDCONFIRM_QUERY,45,7,233,8
-    LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
+    LTEXT           "Da sinistra",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
+    LTEXT           "A destra",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Yes",IDYES,174,79,50,14
+    PUSHBUTTON      "Sì",IDYES,174,79,50,14
     DEFPUSHBUTTON   "No",IDNO,228,79,50,14
 END
 
@@ -1777,7 +1777,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Mostra o nasconde la barra degli strumenti\nMostra/nascondi barra degli strumenti"
     ID_VIEW_STATUS_BAR      "Mostra o nasconde la barra di stato\nMostra/nascondi barra di stato"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_TAB_BAR         "Mostra o nasconde la barra delle schede\nMostra/nascondi barra delle schede"
 END
 
 // Windows System menu
@@ -1879,18 +1879,18 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Controllo versioni"
     IDS_OPTIONSPG_CODEPAGE     "Codice di pagina"
     IDS_OPTIONSPG_ARCHIVE   "Supporto per gli archivi"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_BACKUPS   "File di backup"
 END
 
 // WINMERGE CUSTOM STRINGS
 
 STRINGTABLE
 BEGIN
-    IDS_TO                  "To:"
-    IDS_FROM_LEFT           "From left:"
-    IDS_TO_LEFT             "To left:"
-    IDS_FROM_RIGHT          "From right:"
-    IDS_TO_RIGHT            "To right:"
+    IDS_TO                  "A:"
+    IDS_FROM_LEFT           "Da sinistra:"
+    IDS_TO_LEFT             "A sinistra:"
+    IDS_FROM_RIGHT          "Da destra:"
+    IDS_TO_RIGHT            "A destra:"
 END
 
 // WINMERGE INFORMATION
@@ -1910,7 +1910,7 @@ BEGIN
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Il valore delle tabulazione inserito non è una dimensione valida per WinMerge.\n\nUtilizza per favore un valore compreso tra 1 e %1."
     IDS_RESET_OPTIONS_WARNING 
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
+                            "Sei sicuro di voler ripristinare tutti i valori predefiniti delle opzioni di WinMerge?\n\nRiavvia per favore WinMerge al termine di questa operazione."
 END
 
 // BROWSE FILE
@@ -1953,7 +1953,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Inserisci il nome del file per il nuovo filtro"
     IDS_FILEFILTER_FILEMASK "Filtri di file (*.flt)|*.flt|Tutti i file (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "Impossibile trovare il modello per il filtro di file!\n\nCopia per favore il file %1 nella cartella WinMerge/Filters :\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "Impossibile copiare il file di modello per i filtri di file nella cartella apposita Filters:\n%1\n\nAssicurati che questa cartella esista e si abbiano i permessi di scrittura."
     IDS_FILEFILTER_NO_USERFOLDER 
@@ -1970,7 +1970,7 @@ END
 // LINEFILTER STRINGS
 STRINGTABLE 
 BEGIN
-    IDS_FILTERLINE_REGEXP   "Regular expression"
+    IDS_FILTERLINE_REGEXP   "Espressione regolare"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2151,9 +2151,9 @@ BEGIN
     IDS_CONFIRM_DELETE_ITEMS "Sei sicuro di voler eliminare %1 elemento(i) selezionato(i) su %2 ?"
     IDS_CONFIRM_DELETE_DIR  "Eliminare la cartella\n\n%1 ?"
     IDS_CONFIRM_DELETE_SINGLE "Sei sicuro di voler eliminare\n\n%1 ?"
-    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
-    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
-    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_CONFIRM_SINGLE_COPY "Sei sicuro di voler copiare:"
+    IDS_CONFIRM_MULTIPLE_COPY "Sei sicuro di voler copiare %d elementi:"
+    IDS_DIRCMP_NOTSYNC      "Operazione annullata!\n\nIl contenuto della cartella sul disco è cambiato, il percorso\n%1\nnon è stato trovato.\n\nAggiorna per favore il confronto."
 END
 
 // DIRECTORY DIFFING : OPEN FILE
@@ -2234,8 +2234,8 @@ BEGIN
     IDS_ABORTED_ITEM        "Elemento annullato"
     IDS_FILE_SKIPPED        "File saltato"
     IDS_DIR_SKIPPED         "Cartella saltata"
-    IDS_LEFT_ONLY_IN_FMT    "Left only: %1"
-    IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
+    IDS_LEFT_ONLY_IN_FMT    "Solo sinistra: %1"
+    IDS_RIGHT_ONLY_IN_FMT   "Solo destra: %1"
     IDS_BIN_FILES_SAME      "I file binari sono identici"
     IDS_IDENTICAL           "Identici"
     IDS_BIN_FILES_DIFF      "I file non di testo contengono delle differenze"
@@ -2243,7 +2243,7 @@ BEGIN
     IDS_LEFTONLY            "Solo a sinistra"
     IDS_RIGHTONLY           "Solo a destra"
     IDS_DIFFERENT           "Diverse"
-    IDS_CMPRES_ERROR        "Error"
+    IDS_CMPRES_ERROR        "Errore"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -2780,7 +2780,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Scambia le posizioni dei due pannelli"
     ID_VIEW_LINENUMBERS     "Mostra i numeri delle righe\nMostra numeri delle righe"
     ID_VIEW_WORDWRAP        "Vai a capo automaticamente\nVa a capo automaticamente (word wrap)"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "Mostra i margini di selezione per entrambi i pannelli\nMostra margini di selezione"
 END
 
 // MERGE MENU
@@ -2882,7 +2882,7 @@ END
 // COLOR SCHEMES
 STRINGTABLE
 BEGIN
-    IDS_COLORSCHEME_PLAIN           "None"
+    IDS_COLORSCHEME_PLAIN           "Nessuno"
     IDS_COLORSCHEME_ASP             "ASP"
     IDS_COLORSCHEME_BASIC           "Basic"
     IDS_COLORSCHEME_BATCH           "Batch"
@@ -2916,9 +2916,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "Nascondi la barra degli strumenti"
+    ID_TOOLBAR_SMALL        "Mostra barra degli strumenti piccola"
+    ID_TOOLBAR_BIG          "Mostra barra degli strumenti grande"
 END
 
 // END STRINGS SYNCHRO
