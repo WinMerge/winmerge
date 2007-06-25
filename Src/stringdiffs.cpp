@@ -118,6 +118,24 @@ void stringdiffs::AddDiff(int s1, int e1, int s2, int e2)
 }
 
 /**
+* @brief Add a word to a words array.
+*
+* @param str [in] A string which contains the word to add.
+* @param words [in] A words arrays.
+* @param s [in] Start of word offset.
+* @param e [in] End of word offset.
+* @param ws [in] True if the word is a whitespace word.
+*/
+void stringdiffs::AddWord(const CString & str, wordarray * words, int s, int e, bool ws)
+{
+	if (!ws || (m_whitespace == WHITESPACE_COMPARE_ALL))
+	{
+		word wd(s, e, hash(str, s, e));
+		words->Add(wd);
+	}
+}
+
+/**
 * @brief Add a difference using words range.
 *
 * @param start [in] Start difference at word index.
@@ -189,59 +207,53 @@ void stringdiffs::HandleLeftOvers(int nLastWord, bool bInWordDiff)
 }
 
 /**
- * @brief Break line into constituent words
+ * @brief Break a line into constituent words.
+ *
+ * @param str [in] A string to break.
+ * @param words [in] A words arrays.
  */
-void
-stringdiffs::BuildWordsArray(const CString & str, wordarray * words)
+void stringdiffs::BuildWordsArray(const CString & str, wordarray * words)
 {
-	int i=0, begin=0;
+	int nWordStartAt = 0;
+	bool bInSpace;
+	TCHAR ch;
+	int i;
 
-	// state when we are looking for next word
-inspace:
-	if (i==str.GetLength())
-		return;
-	if (isSafeWhitespace(str[i]) || isWordBreak(m_breakType, str[i]))
+	// Determine if the first word a "normal" or a whitespace word.
+	if (!str.IsEmpty())
 	{
-		++i;
-		goto inspace;
+		ch = str[0];
+		bInSpace = isSafeWhitespace(ch) || isWordBreak(m_breakType, ch);
 	}
-	begin = i;
-	goto inword;
 
-	// state when we are inside a word
-inword:
-	bool atspace=false;
-	if (i==str.GetLength() || (atspace=isSafeWhitespace(str[i])) || (atspace=isWordBreak(m_breakType, str[i])))
+	// Go over the string and add a word each time the character is changed
+	// from whitespace to non-whitespace (and vice versa).
+	for (i = 0; i < str.GetLength(); ++i)
 	{
-		if (begin<i)
+		ch = str[i];
+
+		bool bBreakWord = isSafeWhitespace(ch) || isWordBreak(m_breakType, ch);
+		
+		// If this is a whitespace word, then it breaks when a non-whitespace
+		// character is found, so we need to inverted.
+		if (bInSpace == true)
 		{
-			// just finished a word
-			// e is first non-word character (space or at end)
-			int e = i-1;
-			word wd(begin, e, hash(str, begin, e));
-			words->Add(wd);
+			bBreakWord = !bBreakWord;
 		}
-		if (i == str.GetLength())
+
+		if (bBreakWord == true)
 		{
-			return;
-		}
-		else if (atspace)
-		{
-			goto inspace;
-		}
-		else
-		{
-			// start a new word because we hit a non-whitespace word break (eg, a comma)
-			// but, we have to put each word break character into its own word
-			word wd(i, i, hash(str, i, i));
-			words->Add(wd);
-			++i;
-			begin = i;
-			goto inword;
+			AddWord(str, words, nWordStartAt, i - 1, bInSpace);
+			nWordStartAt = i;
+			bInSpace = !bInSpace;
 		}
 	}
-	++i;
-	goto inword; // safe even if we're at the end or no longer in a word
+
+	// Add the last word in the string.
+	if (nWordStartAt < i)
+	{
+		AddWord(str, words, nWordStartAt, str.GetLength() - 1, bInSpace);
+	}
 }
 
 // diffutils hash

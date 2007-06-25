@@ -6,6 +6,9 @@ Add new items to top.
  PATCH: [ 1737491 ] Italian resource file for 2.7.3.7
   Submitted by Andrea Decorte
   Src/Languages/Italian: MergeItalian.rc
+ BUG: [ 1698781 ] [LineDiff] Whitespace differences not highlighted
+  Fix from Gal
+  Src: stringdiffs.cpp stringdiffsi.h
 
 2007-06-16 Jochen
  PATCH: [ 1734439 ] Fix Bug #1723263 "Zip --> Both" operation give unwanted content in output
