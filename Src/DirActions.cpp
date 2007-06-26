@@ -528,6 +528,9 @@ void CDirView::DoCopyLeftTo()
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
+
+			actionScript.m_destBase = sFullDest;
+
 			if (GetDocument()->GetRecursive())
 			{
 				if (!di.sLeftSubdir.IsEmpty())
@@ -594,6 +597,9 @@ void CDirView::DoCopyRightTo()
 			FileActionItem act;
 			CString sFullDest(destPath);
 			sFullDest += _T("\\");
+
+			actionScript.m_destBase = sFullDest;
+
 			if (GetDocument()->GetRecursive())
 			{
 				if (!di.sRightSubdir.IsEmpty())
@@ -803,10 +809,23 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 				src = GetDocument()->GetLeftBasePath();
 			else
 				src = GetDocument()->GetRightBasePath();
-			if (item.UIDestination == FileActionItem::UI_LEFT)
-				dst = GetDocument()->GetLeftBasePath();
+
+			if (bDestIsSide)
+			{
+				if (item.UIDestination == FileActionItem::UI_LEFT)
+					dst = GetDocument()->GetLeftBasePath();
+				else
+					dst = GetDocument()->GetRightBasePath();
+			}
 			else
-				dst = GetDocument()->GetRightBasePath();
+			{
+				if (!actionList.m_destBase.IsEmpty())
+					dst = actionList.m_destBase;
+				else
+					item.dest;
+
+			}
+
 			if (!ConfirmCopy(item.UIOrigin, item.UIDestination,
 				actionList.GetActionItemCount(), src, dst, bDestIsSide))
 			{

@@ -6,6 +6,8 @@ Add new items to top.
  PATCH: [ 1743504 ] new keywords (cleaned up)
   Submitted by Andre Arpin
   editlib: batch.cpp
+ BUG: [ 1740024 ] "Copy/Move to" confirmation dialog shows wrong "To" path
+  Src: DirActions.cpp FileActionScript.h
 
 2007-06-25 Kimmo
  PATCH: [ 1737491 ] Italian resource file for 2.7.3.7
