@@ -825,40 +825,6 @@ void CMergeApp::AddToRecentProjectsMRU(const CString& sPathName)
 	}
 }
 
-
-/**
- * @brief Updates menu with recent file entries
- * @param [in] sPathName Path to project file
- */
-void CMergeApp::UpdateRecentProjectsMRUMenu(CMenu* pMenu, CCmdTarget* pTarget)
-{
-	CCmdUI cmdUI;
-	
-	if (NULL != pMenu)
-	{
-		for (UINT n = 0; n < pMenu->GetMenuItemCount(); ++n)
-		{
-			CMenu* pSubMenu = pMenu->GetSubMenu(n);
-			
-			if (NULL != pSubMenu)
-			{
-				UpdateRecentProjectsMRUMenu(pSubMenu, pTarget);		// recursive call
-			}
-			else
-			{
-				cmdUI.m_nIndex = n;
-				cmdUI.m_nID = pMenu->GetMenuItemID(n);
-				cmdUI.m_pMenu = pMenu;
-				// Need to set this value otherwise you will assert when
-				// you have an empty recent file list.
-				cmdUI.m_nIndexMax = pMenu->GetMenuItemCount();
-				cmdUI.DoUpdate(pTarget, FALSE);
-			}
-		}	
-	}
-}
-
-
 /**
  * @brief Handles menu selection from recent projects list
  * @param [in] nID Menu ID of the selected item

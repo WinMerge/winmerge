@@ -593,7 +593,6 @@ void CMainFrame::OnInitMenuPopup(CMenu* pPopupMenu, UINT nIndex, BOOL bSysMenu)
 		if (BCMenu::IsMenu(pPopupMenu))
 		{
 			BCMenu::UpdateMenu(pPopupMenu);
-			theApp.UpdateRecentProjectsMRUMenu(pPopupMenu, this);
 		}
 	}
 }

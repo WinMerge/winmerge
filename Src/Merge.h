@@ -70,7 +70,6 @@ public:
 	~CMergeApp();
 
 public:
-	void UpdateRecentProjectsMRUMenu(CMenu* pMenu, CCmdTarget* pTarget);
 	void AddToRecentProjectsMRU(const CString& sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }

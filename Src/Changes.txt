@@ -8,6 +8,8 @@ Add new items to top.
   editlib: batch.cpp
  BUG: [ 1740024 ] "Copy/Move to" confirmation dialog shows wrong "To" path
   Src: DirActions.cpp FileActionScript.h
+ BUG: [ 1739998 ] No copy/move/delete icons in compare popup menu
+  Src: MainFrm.cpp Merge.cpp Merge.h
 
 2007-06-25 Kimmo
  PATCH: [ 1737491 ] Italian resource file for 2.7.3.7
