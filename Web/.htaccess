@@ -35,3 +35,10 @@ RewriteRule   ^patch/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1
 RewriteRule   ^support/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
 RewriteRule   ^rfe/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
 RewriteRule   ^todo/([0-9]+)$ http://sourceforge.net/support/tracker.php?aid=$1 [R]
+
+#Nicer Wiki URLs...
+RewriteEngine On
+RewriteBase   /
+RewriteCond   %{REQUEST_FILENAME} !-f
+RewriteCond   %{REQUEST_FILENAME} !-d
+RewriteRule   ^Wiki/(.*)$ /Wiki/index.php?title=$1 [PT,L,QSA]

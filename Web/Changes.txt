@@ -1,3 +1,7 @@
+2007-06-27 Tim
+ Use nicer Wiki URLs.
+  Web: .htaccess
+
 2007-06-19 Tim
  PATCH: [ 1739404 ] Web: Move buttons to right corner
   Web: page.inc
