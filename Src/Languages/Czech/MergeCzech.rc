@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "Otevøít pro&jekt...\tCtrl+J", ID_FILE_OPENPROJECT
         MENUITEM "Uložit &projekt...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM "Naposledy použité",             ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "&Konec",                      ID_APP_EXIT
     END
@@ -2199,7 +2199,7 @@ BEGIN
     IDS_COLHDR_RSIZE        "Velikost vpravo"
     IDS_COLHDR_RSIZE_SHORT  "Velikost vpravo (krátce)"
     IDS_COLHDR_LSIZE_SHORT  "Velikost vlevo (krátce)"
-    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_DIRCMP_NOTSYNC      "Operace pøerušena!\n\nObsah složek na disku se zmìnil, cesta\n%1\nnebyla nalezena.\n\nObnovte prosím porovnání."
 END
 
 // DIRECTORY DIFFING : COLUMN TITLES #2
