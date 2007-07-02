@@ -1,4 +1,3 @@
-http://winmerge.org/downloads.php
 http://winmerge.org/index.php
 http://winmerge.org/links.php
 http://winmerge.org/WinMergePAD.php
@@ -56,6 +55,7 @@ http://winmerge.org/2.6/manual/Shortcuts.html
 http://winmerge.org/2.6/manual/TextEncoding.html
 http://winmerge.org/2.6/manual/VersionControl.html
 http://winmerge.org/2.6/manual/Whatsnew.html
+http://winmerge.org/downloads/index.php
 http://winmerge.org/support/index.php
 http://winmerge.org/support/mailing-lists.php
 http://winmerge.org/support/tracker-shortcuts.php

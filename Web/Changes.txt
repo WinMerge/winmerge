@@ -1,3 +1,8 @@
+2007-07-02 Tim
+ PATCH: [ 1746188 ] Web: Move "Downloads" page to own tab
+  Web: .htaccess page.inc sitemap.txt deleted downloads.php
+  Web\downloads: new file index.php
+
 2007-06-27 Tim
  Use nicer Wiki URLs.
   Web: .htaccess

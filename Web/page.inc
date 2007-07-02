@@ -15,6 +15,7 @@
   define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
+  define ('TAB_DOWNLOADS', 'downloads');
   define ('TAB_SUPPORT', 'support');
 
   /**
@@ -160,6 +161,12 @@
       if ($this->_tab == WINMERGE_1_7) { //if WinMerge 1.7 ...
         $temp .= "  <li><a href=\"/1.7/index.php\" id=\"current\">WinMerge&nbsp;1.7</a></li>\n";
       }
+      if ($this->_tab == TAB_DOWNLOADS) { //if "Downloads" ...
+        $temp .= "  <li><a href=\"/downloads/index.php\" id=\"current\">Downloads</a></li>\n";
+      }
+      else { //if NOT "Downloads" ...
+        $temp .= "  <li><a href=\"/downloads/index.php\">Downloads</a></li>\n";
+      }
       if ($this->_tab == TAB_SUPPORT) { //if "Support" ...
         $temp .= "  <li><a href=\"/support/index.php\" id=\"current\">Support</a></li>\n";
       }
@@ -284,12 +291,24 @@
           $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           $temp .= "<ul>\n";
-          $temp .= "  <li><a href=\"/downloads.php\">Downloads</a>\n";
+          $temp .= "  <li><a href=\"/downloads/index.php\">Downloads</a>\n";
           $temp .= "    <ul>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=517309\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=517309\" title=\"Release Notes\">Notes</a>)</li>\n";
           $temp .= "      <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
           $temp .= "    </ul>\n";
           $temp .= "  </li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case TAB_DOWNLOADS: //if "Downloads" ...
+          $temp .= "<h2><a href=\"/downloads/index.php\">Downloads</a></h2>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=517309\">WinMerge</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=517309\" title=\"Release Notes\">Notes</a>)</li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
+          $temp .= "</ul>\n";
+          $temp .= "<ul>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">Stable Versions</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">Beta Versions</a></li>\n";
+          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental Builds</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...

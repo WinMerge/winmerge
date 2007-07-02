@@ -6,7 +6,6 @@
 #Use PHP5 instead of PHP4
 AddType x-mapp-php5 .php
 
-Redirect permanent /developer/wincvs.php http://sourceforge.net/cvs/?group_id=13216
 Redirect permanent /developer/translate.php http://winmerge.org/Wiki/index.php?title=Translations
 Redirect permanent /WinMerge17/index.html http://winmerge.org/1.7/index.php
 Redirect permanent /WinMerge17/WinMergeChanges.html http://winmerge.org/1.7/changes.php
@@ -18,6 +17,7 @@ Redirect permanent /images/screenshot.png http://winmerge.org/2.0/images/screens
 Redirect permanent /images/winmerge.gif http://winmerge.org/2.0/images/icon.gif
 Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gif
 Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif
+Redirect permanent /downloads.php http://winmerge.org/downloads/index.php
 
 #Move developer pages to Wiki...
 Redirect permanent /developer/index.php http://winmerge.org/Wiki/index.php?title=Developers
