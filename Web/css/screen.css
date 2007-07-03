@@ -69,39 +69,32 @@ code,pre {
 	border-bottom: 1px solid white;
 }
 
+#subtabs {
+	margin: 0;
+	padding: 5px;
+	background: white;
+}
+
+#subtabs li {
+	margin: 0;
+	padding: 0 .5em 0 .5em;
+	display: inline;
+	list-style: none;
+	border: none;
+	border-right: 1px dotted #AAAAAA;
+}
+
+#subtabs li:last-child { border: none; }
+
 #ads {
 	margin: 0;
 	padding: 10px 5px 10px 5px;
 	text-align: center;
 }
 
-#nav {
-	float: left;
-	margin: 0;
-	margin-left: 5px;
-	padding: 5px;
-	width: 12em;
-	background: #C0C0C0;
-	border: 1px solid #808080;
-}
-
-#nav h2 {
-	margin: 0;
-	padding: 0 0 5px 0;
-	font-size: medium;
-}
-
-#nav ul {
-	margin-top: 0;
-	padding-top: 0;
-	margin-left: 0.5em;
-	padding-left: 0.5em;
-}
-
 #content {
 	margin: 0;
-	margin-left: 14em;
-	padding: 5px;
+	padding: 1em;
 }
 
 #content h2, p {

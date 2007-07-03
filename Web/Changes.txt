@@ -1,3 +1,8 @@
+2007-07-03 Tim
+ PATCH: [ 1746777 ] Web: Horizontal Navigation
+  Web: page.inc
+  Web\css: screen.css print.css
+
 2007-07-02 Tim
  PATCH: [ 1746188 ] Web: Move "Downloads" page to own tab
   Web: .htaccess page.inc sitemap.txt deleted downloads.php
