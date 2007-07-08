@@ -47,15 +47,21 @@
 static void ConvertFilter(LPTSTR filterStr);
 
 /**
- * @brief Helper function for selecting dir/file
+ * @brief Helper function for selecting folder or file.
+ * This function shows standard Windows file selection dialog for selecting
+ * file or folder to open or file to save. The last parameter @p is_open selects
+ * between open or save modes. Biggest difference is that in save-mode Windows
+ * asks if user wants to override existing file.
  * @param [in] parent Handle to parent window. Can be a NULL, but then
  *     CMainFrame is used which can cause modality problems.
  * @param [out] path Selected path is returned in this string
  * @param [in] initialPath Initial path (and file) shown when dialog is opened
  * @param [in] title Title for path selection dialog
  * @param [in] filterid 0 or STRING ID for filter string
- *     - 0 means "All files (*.*)"
- * @param [in] is_open Selects Open/Save -dialog
+ *     - 0 means "All files (*.*)". Note the string formatting!
+ * @param [in] is_open Selects Open/Save -dialog (mode).
+ * @note Be careful when setting @p parent to NULL as there are potential
+ * modality problems with this. Dialog can be lost behind other windows!
  */
 BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 		LPCTSTR title /*= _T("Open")*/, UINT filterid /*=0*/,
