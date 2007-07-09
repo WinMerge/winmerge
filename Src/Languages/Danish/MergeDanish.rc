@@ -71,7 +71,7 @@ BEGIN
         MENUITEM "Kopier til &højre",            ID_L2R
         MENUITEM "Kopier til &venstre",          ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "&Vælg linjeforskellen",           ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Fortryd",                     ID_EDIT_UNDO
         MENUITEM "&Gendan",                        ID_EDIT_REDO
@@ -80,13 +80,13 @@ BEGIN
         MENUITEM "Ko&pier",                     ID_EDIT_COPY
         MENUITEM "&Indsæt",                     ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "&Gå til...",                     ID_EDIT_WMGOTO
+        MENUITEM "Gå &til...",                     ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        POPUP "Op&en"
+        POPUP "Åb&en"
         BEGIN
-            MENUITEM "with &Registered Application", ID_FILE_OPEN_REGISTERED
-            MENUITEM "with &External Editor",       ID_FILE_OPEN_WITHEDITOR
-            MENUITEM "&with...",                    ID_FILE_OPEN_WITH
+            MENUITEM "med det &registrerede program", ID_FILE_OPEN_REGISTERED
+            MENUITEM "med en &ekstern editor",       ID_FILE_OPEN_WITHEDITOR
+            MENUITEM "&med...",                    ID_FILE_OPEN_WITH
         END
     END
 END
@@ -95,12 +95,12 @@ IDR_POPUP_MERGEDETAILVIEW MENU
 BEGIN
     POPUP "_POPUP_"
     BEGIN
-        MENUITEM "C&opy to Right",              ID_L2R
-        MENUITEM "Cop&y to Left",               ID_R2L
+        MENUITEM "Kopier til &højre",              ID_L2R
+        MENUITEM "Kopier til &venstre",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "Cu&t",                        ID_EDIT_CUT
-        MENUITEM "&Copy",                       ID_EDIT_COPY
-        MENUITEM "&Paste",                      ID_EDIT_PASTE
+        MENUITEM "&Klip",                        ID_EDIT_CUT
+        MENUITEM "Ko&pier",                       ID_EDIT_COPY
+        MENUITEM "&Indsæt",                      ID_EDIT_PASTE
     END
 END
 
@@ -111,8 +111,8 @@ BEGIN
         MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Åben...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
+        MENUITEM "Åben pro&jekt...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Gem &projekt...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
@@ -145,12 +145,12 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
-        MENUITEM "&Manuel Unpacking",           ID_UNPACK_MANUAL
-        MENUITEM "&Automatisk Unpacking",        ID_UNPACK_AUTO
+        MENUITEM "&Manuel Udpakning",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatisk Udpakning",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "R&ediger med Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "R&ediger med Udpakker",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+        MENUITEM "&Genindlæs plugins",             ID_RELOAD_PLUGINS
     END
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
@@ -160,7 +160,7 @@ BEGIN
     POPUP "Vind&ue"
     BEGIN
         MENUITEM "&Luk",                         ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Luk &alle",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Skift panel\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -170,12 +170,12 @@ BEGIN
     END
     POPUP "&Hjælp"
     BEGIN
-        MENUITEM "&Indhold...\tF1",             ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "Ind&hold...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Indeks...",                   ID_HELP_INDEX
+        MENUITEM "&Søg...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "&Understøttelse for arkivering afbrudt...", ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Understøttelse for arkivering er afbrudt...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -189,13 +189,13 @@ BEGIN
         MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Åben...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Åben pro&jekt...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Gem &projekt...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "V&enstre skrivebeskyttet",             ID_FILE_LEFT_READONLY
         MENUITEM "&Højre skrivebeskyttet",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        MENUITEM "File En&coding",              ID_FILE_ENCODING
+        MENUITEM "Fil En&coding",              ID_FILE_ENCODING
         MENUITEM SEPARATOR
         MENUITEM "&Afslut",                        ID_APP_EXIT
     END
@@ -207,14 +207,14 @@ BEGIN
     END
     POPUP "&Vis"
     BEGIN
-        MENUITEM "Show &Identical Items",       ID_OPTIONS_SHOWIDENTICAL
-        MENUITEM "Show &Different Items",       ID_OPTIONS_SHOWDIFFERENT
-        MENUITEM "Show L&eft Unique Items",     ID_OPTIONS_SHOWUNIQUELEFT
-        MENUITEM "Show Ri&ght Unique Items",    ID_OPTIONS_SHOWUNIQUERIGHT
-        MENUITEM "Show S&kipped Items",         ID_OPTIONS_SHOWSKIPPED
-        MENUITEM "S&how Binary Files",          ID_OPTIONS_SHOWBINARIES
+        MENUITEM "Vis &identiske",       ID_OPTIONS_SHOWIDENTICAL
+        MENUITEM "Vis &forskellige",       ID_OPTIONS_SHOWDIFFERENT
+        MENUITEM "Vis &venstre unikke",     ID_OPTIONS_SHOWUNIQUELEFT
+        MENUITEM "Vis &højre unikke",    ID_OPTIONS_SHOWUNIQUERIGHT
+        MENUITEM "Vis &oversprungne",         ID_OPTIONS_SHOWSKIPPED
+        MENUITEM "Vis &binære filer",          ID_OPTIONS_SHOWBINARIES
         MENUITEM SEPARATOR
-        MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
+        MENUITEM "V&is skjulte",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
         MENUITEM "Vælg &skrifttype...",         ID_VIEW_SELECTFONT
         MENUITEM "Brug standard s&krifttype",   ID_VIEW_USEDEFAULTFONT
@@ -227,16 +227,16 @@ BEGIN
         END
         MENUITEM "S&tatuslinje",                ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
-        MENUITEM "Compa&re Statistics",         ID_VIEW_DIR_STATISTICS
+        MENUITEM "Sammen&ligningsstatistikker",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "S&prog...",                   ID_VIEW_LANGUAGE
         MENUITEM SEPARATOR
         MENUITEM "&Opdater\tF5",                ID_REFRESH
         MENUITEM "&Refresh Selected\tCtrl+F5",  ID_DIR_RESCAN
     END
-    POPUP "&Merge"
+    POPUP "&Flet"
     BEGIN
-        MENUITEM "Co&mpare\tEnter",             ID_MERGE_COMPARE
+        MENUITEM "Sammen&lign\tEnter",             ID_MERGE_COMPARE
         MENUITEM SEPARATOR
         MENUITEM "&Næste forskel\tAlt+Ned",     ID_NEXTDIFF
         MENUITEM "&Forrige forskel\tAlt+Op",    ID_PREVDIFF
@@ -248,23 +248,23 @@ BEGIN
         MENUITEM "Kopier til &højre\tAlt+Højre", ID_L2R
         MENUITEM "Kopier til &venstre\tAlt+Venstre", ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Delete\tDel",                ID_MERGE_DELETE
+        MENUITEM "Sl&et\tDel",                ID_MERGE_DELETE
     END
     POPUP "Værk&tøjer"
     BEGIN
         MENUITEM "&Tilpas søjler...",       ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filtre...",                 ID_TOOLS_FILTERS
-        MENUITEM "&Generer en Patch...",          ID_TOOLS_GENERATEPATCH
-        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
+        MENUITEM "&Generer en patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generer en &raport...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN
-        MENUITEM "&Manuel Unpacking",           ID_UNPACK_MANUAL
-        MENUITEM "&Automatisk Unpacking",        ID_UNPACK_AUTO
+        MENUITEM "&Manuel udpakning",           ID_UNPACK_MANUAL
+        MENUITEM "&Automatisk udpakning",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
-        MENUITEM "R&ediger med Unpacker",         ID_POPUP_OPEN_WITH_UNPACKER
+        MENUITEM "R&ediger med udpakker",         ID_POPUP_OPEN_WITH_UNPACKER
         MENUITEM SEPARATOR
-        MENUITEM "&Reload plugins",             ID_RELOAD_PLUGINS
+        MENUITEM "&Genindlæs plugins",             ID_RELOAD_PLUGINS
     END
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
@@ -274,7 +274,7 @@ BEGIN
     POPUP "Vind&ue"
     BEGIN
         MENUITEM "&Luk",                         ID_FILE_CLOSE
-        MENUITEM "Clo&se All",                  ID_WINDOW_CLOSEALL
+        MENUITEM "Luk &alle",                  ID_WINDOW_CLOSEALL
         MENUITEM SEPARATOR
         MENUITEM "&Skift panel\tF6",            ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
@@ -284,12 +284,12 @@ BEGIN
     END
     POPUP "&Hjælp"
     BEGIN
-        MENUITEM "&Indhold...\tF1",             ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "Ind&hold...\tF1",             ID_HELP_CONTENTS
+        MENUITEM "&Indeks...",                   ID_HELP_INDEX
+        MENUITEM "&Søg...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "&Konfiguration...",           ID_HELP_GETCONFIG
-        MENUITEM "&Understøttelse for arkivering afbrudt...", ID_HELP_MERGE7ZMISMATCH
+        MENUITEM "&Understøttelse for arkivering er afbrudt...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
         MENUITEM "&GNU Public License...",      ID_HELP_GNULICENSE
         MENUITEM "&Om WinMerge...",             ID_APP_ABOUT
@@ -303,8 +303,8 @@ BEGIN
         MENUITEM "&Ny\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Åben...\tCtrl+O",            ID_FILE_OPEN
         MENUITEM SEPARATOR
-        MENUITEM "Open Pro&ject...\tCtrl+J",     ID_FILE_OPENPROJECT
-        MENUITEM "Sa&ve Project...",             ID_FILE_SAVEPROJECT
+        MENUITEM "Åben pro&jekt...\tCtrl+J",     ID_FILE_OPENPROJECT
+        MENUITEM "Gem &projekt...",             ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
         MENUITEM "&Gem\tCtrl+S",                ID_FILE_SAVE
         POPUP "Gem &venstre"
@@ -325,14 +325,14 @@ BEGIN
         MENUITEM "V&enstre skrivebeskyttet",             ID_FILE_LEFT_READONLY
         MENUITEM "&Højre skrivebeskyttet",            ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Convert Line Endings to"
+        POPUP "&Konverter linjeendelserne til"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
             MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Merge Mode\tF9",              ID_FILE_MERGINGMODE
+        MENUITEM "&Flette modus\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
         MENUITEM "&Afslut",                        ID_APP_EXIT
     END
@@ -345,7 +345,7 @@ BEGIN
         MENUITEM "Ko&pier\tCtrl+C",             ID_EDIT_COPY
         MENUITEM "&Indsæt\tCtrl+V",             ID_EDIT_PASTE
         MENUITEM SEPARATOR
-        MENUITEM "Select Line &Difference\tF4", ID_SELECTLINEDIFF
+        MENUITEM "Vælg &linjeforskel\tF4", ID_SELECTLINEDIFF
         MENUITEM "Vælg &alt\tCtrl+A",           ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "S&øg...\tCtrl+F",             ID_EDIT_FIND
@@ -356,17 +356,17 @@ BEGIN
             MENUITEM "< Tom >",               ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
-        POPUP "Advanced"
+        POPUP "Avanceret"
         BEGIN
-            MENUITEM "&Copy With Line Numbers\tCtrl+Shift+C",
+            MENUITEM "&Kopier med linjenumre\tCtrl+Shift+C",
                                                     ID_EDIT_COPY_LINENUMBERS
         END
-        POPUP "&Bookmarks"
+        POPUP "&Bogmærker"
         BEGIN
-            MENUITEM "&Toggle Bookmark\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
-            MENUITEM "&Next Bookmark\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
-            MENUITEM "&Previous bookmark\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
-            MENUITEM "&Clear All Bookmarks",         ID_EDIT_CLEAR_ALL_BOOKMARKS
+            MENUITEM "&Toggle bogmærke\tCtrl+F2",    ID_EDIT_TOGGLE_BOOKMARK
+            MENUITEM "&Næste bogmærke\tF2",           ID_EDIT_GOTO_NEXT_BOOKMARK
+            MENUITEM "&Forrige bogmærke\tShift+F2", ID_EDIT_GOTO_PREV_BOOKMARK
+            MENUITEM "&Slet alle bogmærker",         ID_EDIT_CLEAR_ALL_BOOKMARKS
         END
         MENUITEM "&Gå til...\tCtrl+G",           ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
