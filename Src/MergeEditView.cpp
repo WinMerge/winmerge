@@ -2643,6 +2643,9 @@ void CMergeEditView::OnEditCopyLineNumbers()
 	
 	for (int i = ptStart.y; i <= ptEnd.y; i++)
 	{
+		if (GetLineFlags(i) & LF_GHOST)
+			continue;
+
 		// We need to convert to real linenumbers
 		line = pDoc->m_ptBuf[m_nThisPane]->ComputeRealLine(i);
 
