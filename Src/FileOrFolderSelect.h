@@ -29,7 +29,7 @@
 
 BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath = NULL, 
 			 LPCTSTR title = _T("Open"), UINT filterid = 0,
-			 BOOL is_open =TRUE);
+			 BOOL is_open =TRUE, LPCTSTR defaultExtension = NULL);
 
 BOOL SelectFolder(CString& path, LPCTSTR root_path = NULL, 
 			 LPCTSTR title = NULL, 

@@ -62,10 +62,11 @@ static void ConvertFilter(LPTSTR filterStr);
  * @param [in] is_open Selects Open/Save -dialog (mode).
  * @note Be careful when setting @p parent to NULL as there are potential
  * modality problems with this. Dialog can be lost behind other windows!
+ * @param [in] defaultExtension Extension to append if user doesn't provide one
  */
 BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 		LPCTSTR title /*= _T("Open")*/, UINT filterid /*=0*/,
-		BOOL is_open /*=TRUE*/)
+		BOOL is_open /*=TRUE*/, LPCTSTR defaultExtension /*=NULL*/)
 {
 	path.Empty(); // Clear output param
 
@@ -110,6 +111,8 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 	ofn.lpstrInitialDir = initialPath;
 	ofn.lpstrTitle = title;
 	ofn.lpstrFileTitle = NULL;
+	if (defaultExtension)
+		ofn.lpstrDefExt = defaultExtension;
 	ofn.Flags = OFN_OVERWRITEPROMPT | OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
 
 	BOOL bRetVal = FALSE;
