@@ -1,0 +1,7 @@
+This file summarizes changes in WinMerge releases.
+
+WinMerge 2.7.5.1
+
+
+WinMerge 2.7.4 and earlier (also 2.6.x stable releases)
+ See Changes.txt files in /Src and other folders.
