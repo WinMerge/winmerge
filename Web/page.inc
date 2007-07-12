@@ -18,6 +18,8 @@
   define ('TAB_DOWNLOADS', 'downloads');
   define ('TAB_SUPPORT', 'support');
 
+  include 'release.inc';
+
   /**
    * ...
    */
@@ -25,6 +27,7 @@
     var $_title, $_charset;
     var $_description, $_keywords;
     var $_tab;
+    var $_stablerelease;
 
     /**
      * Constructor
@@ -35,6 +38,11 @@
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
       $this->_tab = WINMERGE_2_6;
+      /* _Stable Release */
+      $this->_stablerelease = new Release;
+      $this->_stablerelease->setVersionNumber('2.6.8');
+      $this->_stablerelease->setSetupDownload('http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-Setup.exe');
+      $this->_stablerelease->setSetupSize(3023263);
     }
 
     /**
@@ -124,6 +132,17 @@
       $temp = "</div>\n";
       $temp .= "</body>\n\n";
       $temp .= "</html>\n";
+      print($temp);
+    }
+
+    /**
+     * print the "Download Now!" link
+     */
+    function printDownloadNow() {
+      $temp = "<p><a class=\"downloadnow\" href=\"" . $this->_stablerelease->getSetupDownload() . "\">";
+      $temp .= "<strong>Download Now!</strong> ";
+      $temp .= "<em>Version " . $this->_stablerelease->getVersionNumber() . "; " . $this->_stablerelease->getSetupSizeFormatted('mb') . " MB</em>";
+      $temp .= "</a></p>\n";
       print($temp);
     }
 
@@ -270,6 +289,13 @@
       $temp .= "</script>\n";
       $temp .= "</div>\n";
       return $temp;
+    }
+
+    /**
+     * get the stable release
+     */
+    function getStableRelease() {
+      return $this->_stablerelease;
     }
 
     /**

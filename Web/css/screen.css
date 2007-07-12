@@ -101,6 +101,38 @@ code,pre {
 	margin-top: 0;
 }
 
+/* "Download Now!" link */
+a.downloadnow {
+	display: block;
+	width: 12em;
+	margin: 0;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	background: #00B300;
+	border: 1px solid black;
+	-moz-border-radius: 0.5em;
+}
+
+a.downloadnow:hover {
+	color: black;
+	background: #00CC00;
+}
+
+a.downloadnow strong {
+	display: block;
+	text-decoration: underline;
+	font-size: larger;
+	font-weight: bold;
+}
+
+a.downloadnow em {
+	display: block;
+	font-size: smaller;
+	font-style: normal;
+}
+
 p.important {
 	padding: 5px;
 	background-color: #FFDDDD;

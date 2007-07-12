@@ -5,6 +5,7 @@
   $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS);
 ?>
 <h2>Downloads</h2>
+<?php $page->printDownloadNow(); ?>
 <h3><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=517309">WinMerge 2.6.8</a> (<a href="http://sourceforge.net/project/shownotes.php?release_id=517309">Release Notes</a>)</h3>
 <dl>
   <dt><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-Setup.exe">Installer</a></dt>
