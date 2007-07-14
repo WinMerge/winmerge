@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "プロジェクトを開く(&J)...\tCtrl+J", ID_FILE_OPENPROJECT
         MENUITEM "プロジェクトを保存する(&V)...", ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM "最近使用したプロジェクト",    ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "終了(&X)",                    ID_APP_EXIT
     END
@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "フィルタ(&F)...",             ID_TOOLS_FILTERS
         MENUITEM "パッチの生成(&G)...",         ID_TOOLS_GENERATEPATCH
+        MENUITEM "レポートの生成(&R)...",       ID_TOOLS_GENERATEREPORT
     END
     POPUP "プラグイン(&P)"
     BEGIN
@@ -842,7 +843,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "行フィルタ"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Enable Line Filters",
+    CONTROL         "行フィルタを有効にする",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "正規表現 (行あたり一つ):",IDC_STATIC,7,28,
@@ -2153,7 +2154,7 @@ BEGIN
     IDS_CONFIRM_DELETE_SINGLE "本当に\n\n%1\nを削除しますか?"
     IDS_CONFIRM_SINGLE_COPY "本当にコピーしますか?:"
     IDS_CONFIRM_MULTIPLE_COPY "本当に%d項目をコピーしますか?:"
-    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_DIRCMP_NOTSYNC      "操作を中断しました!\n\nフォルダの内容が変更されています, パス\n%1\nは見つかりません。\n\n再度比較してください。"
 END
 
 // DIRECTORY DIFFING : OPEN FILE

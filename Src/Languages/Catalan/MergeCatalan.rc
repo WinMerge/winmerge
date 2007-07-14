@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filtres...",                 ID_TOOLS_FILTERS
         MENUITEM "&Genera un pedaç...",         ID_TOOLS_GENERATEPATCH
+        MENUITEM "Gene&ra un informe...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Connectors"
     BEGIN

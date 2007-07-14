@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "ÂoÃè(&F)...",                 ID_TOOLS_FILTERS
         MENUITEM "²£¥Í¸É¤B(&G)...",             ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "¥~±¾(&P)"
     BEGIN

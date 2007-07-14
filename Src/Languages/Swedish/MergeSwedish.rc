@@ -420,6 +420,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generera &Rapport...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN

@@ -96,6 +96,7 @@ BEGIN_MESSAGE_MAP(CMergeDoc, CDocument)
 	ON_COMMAND(ID_FILE_SAVEAS_LEFT, OnFileSaveAsLeft)
 	ON_COMMAND(ID_FILE_SAVEAS_RIGHT, OnFileSaveAsRight)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_DIFFNUM, OnUpdateStatusNum)
+	ON_COMMAND(ID_TOOLS_GENERATEREPORT, OnToolsGenerateReport)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -3265,4 +3266,118 @@ CString CMergeDoc::GetFileExt(const CString& sFileName, const CString& sDescript
 		}
 	}
 	return sExt;
+}
+
+/**
+ * @brief Generate report from file compare results.
+ */
+void CMergeDoc::OnToolsGenerateReport()
+{
+	CString s, folder, name, title;
+
+	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
+	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, title, IDS_HTML_REPORT_FILES, FALSE, _T("htm")))
+		return;
+
+	// calculate HTML font size
+	LOGFONT lf;
+	CDC dc;
+	dc.CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
+	m_pView[0]->GetFont(lf);
+	int nFontSize = -MulDiv (lf.lfHeight, 72, dc.GetDeviceCaps (LOGPIXELSY));
+
+	// create HTML report
+	UniStdioFile file;
+	if (!file.Open(s, _T("wt")))
+	{
+		ResMsgBox1(IDS_REPORT_ERROR, GetSysError(GetLastError()), MB_OK | MB_ICONSTOP);
+		return;
+	}
+
+	file.SetCodepage(CP_UTF8);
+
+	file.WriteString(
+		Fmt(
+		_T("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\"\n")
+		_T("\t\"http://www.w3.org/TR/REC-html40/loose.dtd\">\n")
+		_T("<html>\n")
+		_T("<head>\n")
+		_T("<meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n")
+		_T("<title>WinMerge File Compare Report</title>\n")
+		_T("<style type=\"text/css\">\n")
+		_T("<!--\n")
+		_T("td,th {font-size: %dpt;}\n")
+		_T(".ln {text-align: right; background-color: lightgrey;}\n")
+		_T(".title {color: white; background-color: blue; vertical-align: top;}\n")
+		_T("%s")
+		_T("-->\n")
+		_T("</style>\n")
+		_T("</head>\n")
+		_T("<body>\n")
+		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
+		_T("<thead>\n")
+		_T("<tr>\n")
+		, nFontSize, m_pView[0]->GetHTMLStyles()));
+
+	// left and right title
+	int nBuffer;
+	for (nBuffer = 0; nBuffer < 2; nBuffer++)
+	{
+		int nLineNumberColumnWidth = m_pView[nBuffer]->GetViewLineNumbers() ? 1 : 0;
+		file.WriteString(Fmt(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
+			nLineNumberColumnWidth));
+		file.WriteString(Fmt(_T("<th class=\"title\" style=\"width:%f%%\">"),
+			(double)(100 - nLineNumberColumnWidth * 2) / 2));
+		if (!m_strDesc[nBuffer].IsEmpty())
+			file.WriteString(m_strDesc[nBuffer]);
+		else
+			file.WriteString(m_filePaths.GetPath(nBuffer));
+		file.WriteString(_T("</th>\n"));
+	}
+	file.WriteString(
+		_T("</tr>\n")
+		_T("</thead>\n")
+		_T("<tbody>\n"));
+
+	// write the body of the report
+	int idx[2] = {0};
+	int nLineCount[2] = {0};
+	for (nBuffer = 0; nBuffer < 2; nBuffer++)
+		nLineCount[nBuffer] = m_ptBuf[nBuffer]->GetLineCount();
+
+	for (;;)
+	{
+		file.WriteString(_T("<tr valign=\"top\">\n"));
+		for (nBuffer = 0; nBuffer < 2; nBuffer++)
+		{
+			if (idx[nBuffer] < nLineCount[nBuffer])
+			{
+				// line number
+				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
+				if (!(dwFlags & LF_GHOST) && m_pView[nBuffer]->GetViewLineNumbers())
+					file.WriteString(Fmt(_T("<td class=\"ln\">%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1));
+				else
+					file.WriteString(_T("<td class=\"ln\"></td>"));
+				// write a line on left/right side
+				file.WriteString(m_pView[nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
+				idx[nBuffer]++;
+			}
+			else
+				file.WriteString("<td class=\"ln\"></td><td></td>");
+			file.WriteString(_T("\n"));
+		}
+		file.WriteString(_T("</tr>\n"));
+
+		if (idx[0] >= nLineCount[0] && idx[1] >= nLineCount[1])
+			break;
+	}
+	file.WriteString(
+		_T("</tbody>\n")
+		_T("</table>\n")
+		_T("</body>\n")
+		_T("</html>\n"));
+
+	file.Close();
+
+	AfxMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }

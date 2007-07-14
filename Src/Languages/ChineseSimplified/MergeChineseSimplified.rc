@@ -428,6 +428,7 @@ BEGIN
     BEGIN
         MENUITEM "过滤器(&F)...",               ID_TOOLS_FILTERS
         MENUITEM "生成 Patch(&G)...",           ID_TOOLS_GENERATEPATCH
+        MENUITEM "生成报告(&R)...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "插件(&P)"
     BEGIN

@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filtri...",                  ID_TOOLS_FILTERS
         MENUITEM "&Crea patch...",              ID_TOOLS_GENERATEPATCH
+        MENUITEM "Genera &rapporto...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugin"
     BEGIN

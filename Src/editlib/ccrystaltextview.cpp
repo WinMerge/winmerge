@@ -1681,6 +1681,269 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     }
 }
 
+/**
+ * @brief Escape special characters
+ * @param [in]      strText The text to escape
+ * @param [in, out] bLastCharSpace Whether last char processed was white space
+ * @param [in, out] nNonBreakChars The number of non-break characters in the text
+ * @param [in]      nScreenChars   The maximum number of characters to display per line
+ * @return The escaped text
+ */
+static CString
+EscapeHTML (const CString & strText, BOOL & bLastCharSpace, int & nNonbreakChars, int nScreenChars)
+{
+  CString strHTML;
+  int len = strText.GetLength ();
+  for (int i = 0; i < len; ++i)
+    {
+      TCHAR ch = strText[i];
+      switch (ch)
+        {
+          case '&':
+            strHTML += _T("&amp;");
+            bLastCharSpace = FALSE;
+            nNonbreakChars++;
+            break;
+          case '<':
+            strHTML += _T("&lt;");
+            bLastCharSpace = FALSE;
+            nNonbreakChars++;
+            break;
+          case '>':
+            strHTML += _T("&gt;");
+            bLastCharSpace = FALSE;
+            nNonbreakChars++;
+            break;
+          case 0xB7:
+          case 0xBB:
+            strHTML += ch;
+            strHTML += _T("<wbr>");
+            bLastCharSpace = FALSE;
+            nNonbreakChars = 0;
+            break;
+          case ' ':
+            if (bLastCharSpace)
+              {
+                strHTML += _T("&nbsp;");
+                bLastCharSpace = FALSE;
+              }
+            else
+              {
+                strHTML += _T(" ");
+                bLastCharSpace = TRUE;
+              }
+            nNonbreakChars = 0;
+            break;
+          default:
+            strHTML += ch;
+            bLastCharSpace = FALSE;
+            nNonbreakChars++;
+        }
+#ifndef _UNICODE
+      if (IsDBCSLeadByte (ch))
+        strHTML += strText[++i];
+#endif
+      if ((nNonbreakChars % nScreenChars) == nScreenChars - 1)
+        {
+          strHTML += _T("<wbr>");
+          nNonbreakChars = 0;
+        }
+    }
+
+  return strHTML;
+}
+
+/**
+ * @brief Return all the styles necessary to render this view as HTML code
+ * @return The HTML styles
+ */
+CString CCrystalTextView::
+GetHTMLStyles ()
+{
+  int arColorIndices[] = {
+    COLORINDEX_NORMALTEXT,
+    COLORINDEX_SELTEXT,
+    COLORINDEX_KEYWORD,
+    COLORINDEX_FUNCNAME,
+    COLORINDEX_COMMENT,
+    COLORINDEX_NUMBER,
+    COLORINDEX_OPERATOR,
+    COLORINDEX_STRING,
+    COLORINDEX_PREPROCESSOR,
+    COLORINDEX_HIGHLIGHTTEXT1,
+    COLORINDEX_HIGHLIGHTTEXT2,
+    COLORINDEX_USER1,
+    COLORINDEX_USER2,
+  };
+  int arBgColorIndices[] = {
+    COLORINDEX_BKGND,
+    COLORINDEX_SELBKGND,
+    COLORINDEX_HIGHLIGHTBKGND1,
+    COLORINDEX_HIGHLIGHTBKGND2,
+  };
+
+  CString strStyles;
+  int nColorIndex, nBgColorIndex;
+  int f, b;
+  for (f = 0; f < sizeof(arColorIndices)/sizeof(int); f++)
+    {
+      nColorIndex = arColorIndices[f];
+      for (b = 0; b < sizeof(arBgColorIndices)/sizeof(int); b++)
+        {
+          nBgColorIndex = arBgColorIndices[b];
+          COLORREF clr;
+
+          strStyles += Fmt (_T(".sf%db%d {"), nColorIndex, nBgColorIndex);
+          clr = GetColor (nColorIndex);
+          strStyles += Fmt (_T("color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
+          clr = GetColor (nBgColorIndex);
+          strStyles += Fmt (_T("background-color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
+          if (GetBold (nColorIndex))
+            strStyles += _T("font-weight: bold; ");
+          if (GetItalic (nColorIndex))
+            strStyles += _T("font-style: italic; ");
+          strStyles += _T("}\n");
+        }
+    }
+  return strStyles;
+}
+
+/**
+ * @brief Return the HTML attribute associated with the specified colors
+ * @param [in] nColorIndex   Index of text color
+ * @param [in] nBgColorIndex Index of background color
+ * @param [in] crText        Base text color
+ * @param [in] crBkgnd       Base background color
+ * @return The HTML attribute
+ */
+CString CCrystalTextView::
+GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd)
+{
+  CString strAttr;
+  COLORREF clr;
+
+  if ((crText == CLR_NONE || (nColorIndex & COLORINDEX_APPLYFORCE)) && 
+      (crBkgnd == CLR_NONE || (nBgColorIndex & COLORINDEX_APPLYFORCE)))
+    return Fmt(_T("class=\"sf%db%d\""), nColorIndex & ~COLORINDEX_APPLYFORCE, nBgColorIndex & ~COLORINDEX_APPLYFORCE);
+
+  if (crText == CLR_NONE || (nColorIndex & COLORINDEX_APPLYFORCE))
+    clr = GetColor (nColorIndex);
+  else
+    clr = crText;
+  strAttr += Fmt (_T("style=\"color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
+
+  if (crBkgnd == CLR_NONE || (nBgColorIndex & COLORINDEX_APPLYFORCE))
+    clr = GetColor (nBgColorIndex);
+  else
+    clr = crBkgnd;
+  strAttr += Fmt (_T("background-color: #%02x%02x%02x; "), GetRValue (clr), GetGValue (clr), GetBValue (clr));
+
+  if (GetBold (nColorIndex))
+    strAttr += _T("font-weight: bold; ");
+  if (GetItalic (nColorIndex))
+    strAttr += _T("font-style: italic; ");
+
+  strAttr += _T("\"");
+
+  return strAttr;
+}
+
+/**
+ * @brief Retrieve the html version of the line
+ * @param [in] nLineIndex  Index of line in view
+ * @param [in] pszTag      The HTML tag to enclose the line
+ * @return The html version of the line
+ */
+CString CCrystalTextView::
+GetHTMLLine (int nLineIndex, LPCTSTR pszTag)
+{
+  ASSERT (nLineIndex >= -1 && nLineIndex < GetLineCount ());
+
+  int nLength = GetViewableLineLength (nLineIndex);
+  LPCTSTR pszChars = GetLineChars (nLineIndex);
+
+  //  Acquire the background color for the current line
+  BOOL bDrawWhitespace = FALSE;
+  COLORREF crBkgnd, crText;
+  GetLineColors (nLineIndex, crBkgnd, crText, bDrawWhitespace);
+
+  //  Parse the line
+  DWORD dwCookie = GetParseCookie (nLineIndex - 1);
+  TEXTBLOCK *pBuf = new TEXTBLOCK[(nLength+1) * 3]; // be aware of nLength == 0
+  int nBlocks = 0;
+  // insert at least one textblock of normal color at the beginning
+  pBuf[0].m_nCharPos = 0;
+  pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
+  pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
+  nBlocks++;
+  m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
+  ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
+
+////////
+  // Allocate table for max possible diff count:
+  // every char might be a diff (empty line has one char) and every diff
+  // needs three blocks plus one block at end (see called function)
+  TEXTBLOCK *pAddedBuf = new TEXTBLOCK[(nLength + 1) * 3 + 1];
+  int nAddedBlocks = GetAdditionalTextBlocks(nLineIndex, pAddedBuf);
+
+  TEXTBLOCK *pMergedBuf;
+  int nMergedBlocks = MergeTextBlocks(pBuf, nBlocks, pAddedBuf, nAddedBlocks, pMergedBuf);
+
+  delete[] pBuf;
+  delete[] pAddedBuf;
+
+  pBuf = pMergedBuf;
+  nBlocks = nMergedBlocks;
+///////
+
+  CString strHTML;
+  CString strExpanded;
+  int i;
+  int nNonbreakChars = 0;
+  BOOL bLastCharSpace = FALSE;
+  const int nScreenChars = GetScreenChars ();
+
+  strHTML += _T("<");
+  strHTML += pszTag;
+  strHTML += _T(" ");
+  strHTML += GetHTMLAttribute (COLORINDEX_NORMALTEXT, COLORINDEX_BKGND, crText, crBkgnd);
+  strHTML += _T("><code>");
+
+  for (i = 0; i < nBlocks - 1; i++)
+    {
+      ExpandChars (pszChars, pBuf[i].m_nCharPos, pBuf[i + 1].m_nCharPos - pBuf[i].m_nCharPos, strExpanded, 0);
+      if (!strExpanded.IsEmpty())
+        {
+          strHTML += _T("<span ");
+          strHTML += GetHTMLAttribute (pBuf[i].m_nColorIndex, pBuf[i].m_nBgColorIndex, crText, crBkgnd);
+          strHTML += _T(">");
+          strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+          strHTML += _T("</span>");
+        }
+    }
+  if (nBlocks > 0)
+  {
+    ExpandChars (pszChars, pBuf[i].m_nCharPos, nLength - pBuf[i].m_nCharPos, strExpanded, 0);
+    if (!strExpanded.IsEmpty())
+      {
+        strHTML += _T("<span ");
+        strHTML += GetHTMLAttribute (pBuf[i].m_nColorIndex, pBuf[i].m_nBgColorIndex, crText, crBkgnd);
+        strHTML += _T(">");
+        strHTML += EscapeHTML (strExpanded, bLastCharSpace, nNonbreakChars, nScreenChars);
+        strHTML += _T("</span>");
+      }
+    if (strExpanded.Compare (CString (' ', strExpanded.GetLength())) == 0)
+      strHTML += _T("&nbsp;");
+  }
+  strHTML += _T("</code></");
+  strHTML += pszTag;
+  strHTML += _T(">");
+
+  delete[] pBuf;
+
+  return strHTML;
+}
+
 COLORREF CCrystalTextView::
 GetColor (int nColorIndex)
 {

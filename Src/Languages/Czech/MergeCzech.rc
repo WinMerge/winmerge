@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filtry...",                 ID_TOOLS_FILTERS
         MENUITEM "&Opravný soubor...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "&Protokol porovnání...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Pluginy"
     BEGIN

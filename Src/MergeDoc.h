@@ -342,6 +342,7 @@ protected:
 	afx_msg void OnFileSaveAsRight();
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnFileEncoding();
+	afx_msg void OnToolsGenerateReport();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 private:

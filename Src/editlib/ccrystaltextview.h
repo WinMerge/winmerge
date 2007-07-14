@@ -569,6 +569,12 @@ protected:
 	int MergeTextBlocks(TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2, int nBlocks2, TEXTBLOCK *&pBufMerged);
 	virtual int GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf);
 
+public:
+    virtual CString GetHTMLLine (int nLineIndex, LPCTSTR pszTag);
+    virtual CString GetHTMLStyles ();
+protected:
+    virtual CString GetHTMLAttribute (int nColorIndex, int nBgColorIndex, COLORREF crText, COLORREF crBkgnd);
+
 	//BEGIN SW
 	// helpers for incremental search
 

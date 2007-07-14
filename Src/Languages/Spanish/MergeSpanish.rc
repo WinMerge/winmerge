@@ -421,6 +421,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filtros...",                 ID_TOOLS_FILTERS
         MENUITEM "&Generar fichero patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generar &informe...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "C&omplementos"
     BEGIN

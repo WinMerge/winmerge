@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "필터(&F)",                    ID_TOOLS_FILTERS
         MENUITEM "패치 생성(&G)",               ID_TOOLS_GENERATEPATCH
+        MENUITEM "리포트 생성(&R)...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "플러그인(&P)"
     BEGIN

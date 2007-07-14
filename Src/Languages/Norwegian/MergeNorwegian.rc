@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                  ID_TOOLS_FILTERS
         MENUITEM "&Generer rettelse...",        ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Programtillegg"
     BEGIN

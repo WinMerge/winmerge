@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Филтри...",                 ID_TOOLS_FILTERS
         MENUITEM "&Създай пач...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "Създай &Отчет...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Добавки"
     BEGIN

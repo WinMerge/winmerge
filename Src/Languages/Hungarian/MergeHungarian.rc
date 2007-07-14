@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Szûrõk...",                 ID_TOOLS_FILTERS
         MENUITEM "&Patch generálása...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "&Jelentés generálása...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Bõvítmények"
     BEGIN

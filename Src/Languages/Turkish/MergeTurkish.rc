@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filtreler",                  ID_TOOLS_FILTERS
         MENUITEM "&Yama Üret...",               ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Eklentiler"
     BEGIN

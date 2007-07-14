@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filtre...",                  ID_TOOLS_FILTERS
         MENUITEM "&Vytvoriù patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "Vystvoriù &spr·vu...",        ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Z·suvnÈ moduly"
     BEGIN
