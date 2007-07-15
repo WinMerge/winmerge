@@ -17,7 +17,11 @@ Redirect permanent /images/screenshot.png http://winmerge.org/2.0/images/screens
 Redirect permanent /images/winmerge.gif http://winmerge.org/2.0/images/icon.gif
 Redirect permanent /images/winmerge22.gif http://winmerge.org/2.2/images/icon.gif
 Redirect permanent /2.2/images/filecomp1.gif http://winmerge.org/2.2/images/screenshot.gif
+
+#Centralize download pages...
 Redirect permanent /downloads.php http://winmerge.org/downloads/index.php
+Redirect permanent /2.4/downloads.php http://winmerge.org/downloads/index.php
+Redirect permanent /2.2/downloads.php http://winmerge.org/downloads/index.php
 
 #Move developer pages to Wiki...
 Redirect permanent /developer/index.php http://winmerge.org/Wiki/index.php?title=Developers

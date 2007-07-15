@@ -203,7 +203,6 @@
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/1.7/docs/index.html\">User's Guide</a></li>\n";
           $temp .= "  <li><a href=\"/1.7/changes.php\">Change History</a></li>\n";
-          $temp .= "  <li>Downloads: <a href=\"http://download.sourceforge.net/winmerge/WinMergeSetup.exe\">WinMerge</a>, <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=14951\">Languages</a>, <a href=\"http://download.sourceforge.net/winmerge/WinMergeDocs1_7.zip\">Documentation</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_0: //if WinMerge 2.0 ...
@@ -211,7 +210,6 @@
           $temp .= "  <li><a href=\"/2.0/docs/index.html\">User's Guide</a></li>\n";
           $temp .= "  <li><a href=\"/2.0/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.0/docs/faq.htm\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          $temp .= "  <li>Downloads: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=202894\">WinMerge</a>, <a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=177570\">Languages</a>, <a href=\"http://prdownloads.sourceforge.net/winmerge/WinMergeDocs2_0.zip\">Documentation</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_2: //if WinMerge 2.2 ...
@@ -220,7 +218,6 @@
           $temp .= "  <li><a href=\"/2.2/screenshots.php\">Screenshots</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.2/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          $temp .= "  <li><a href=\"/2.2/downloads.php\">Downloads</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_4: //if WinMerge 2.4 ...
@@ -230,7 +227,6 @@
           $temp .= "  <li><a href=\"/2.4/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.4/limitations.php\">Known Limitations</a></li>\n";
           $temp .= "  <li><a href=\"/2.4/manual/faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          $temp .= "  <li><a href=\"/2.4/downloads.php\">Downloads</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case WINMERGE_2_6: //if WinMerge 2.6 ...
@@ -240,13 +236,10 @@
           $temp .= "  <li><a href=\"/2.6/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.6/limitations.php\">Known Limitations</a></li>\n";
           $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
-          $temp .= "  <li><a href=\"/downloads/index.php\">Downloads</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_DOWNLOADS: //if "Downloads" ...
           $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248&amp;release_id=517309\">WinMerge 2.6.8</a> (<a href=\"http://sourceforge.net/project/shownotes.php?release_id=517309\" title=\"Release Notes\">Notes</a>)</li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957\">7-Zip Plugin</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">Stable Versions</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">Beta Versions</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental Builds</a></li>\n";
