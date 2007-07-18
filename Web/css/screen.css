@@ -133,6 +133,46 @@ a.downloadnow em {
 	font-style: normal;
 }
 
+/* Download Matrix based on "Tutorial 3" from Listutorial:
+   http://css.maxdesign.com.au/listutorial/sub_master.htm */
+.downloadmatrix {
+	margin-bottom: 1em;
+}
+
+.downloadmatrix ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.downloadmatrix a,
+.downloadmatrix strong {
+	display: block;
+	width: 20em;
+	padding: 3px 12px 3px 8px;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #003366;
+	border-bottom: 1px solid #FFFFFF;
+}
+
+.downloadmatrix a:hover {
+	color: #FFFFFF;
+	background-color: #336699;
+}
+
+.downloadmatrix li li a {
+	display: block;
+	width: 20em;
+	padding: 3px 3px 3px 17px;
+	text-decoration: none;
+	font-weight: normal;
+	color: #FFFFFF;
+	background-color: #6699CC;
+	border-bottom: 1px solid #FFFFFF;
+}
+
 p.important {
 	padding: 5px;
 	background-color: #FFDDDD;
