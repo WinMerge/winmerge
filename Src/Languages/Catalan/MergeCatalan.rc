@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "Obre un &projecte...\tControl+J", ID_FILE_OPENPROJECT
         MENUITEM "Desa el P&rojecte...",            ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM "Projectes re&cents",             ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "&Surt",                       ID_APP_EXIT
     END
@@ -127,14 +127,14 @@ BEGIN
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Barra d'ei&nes"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Cap",                       ID_TOOLBAR_NONE
+            MENUITEM "&Petita",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Gran",                        ID_TOOLBAR_BIG
         END
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Barra de ta&bulacions",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
     END
@@ -219,14 +219,14 @@ BEGIN
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Barra d'ei&nes"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Cap",                       ID_TOOLBAR_NONE
+            MENUITEM "&Petita",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Gran",                        ID_TOOLBAR_BIG
         END
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Barra de ta&bulacions",                    ID_VIEW_TAB_BAR
         MENUITEM "Estadístiques de &comparació",         ID_VIEW_DIR_STATISTICS
         MENUITEM SEPARATOR
         MENUITEM "Idio&ma...",                  ID_VIEW_LANGUAGE
@@ -319,7 +319,7 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&Imprimeix...",                   ID_FILE_PRINT
-        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Configuració de la pàgina",                 ID_FILE_PAGE_SETUP
         MENUITEM "&Visualització prèvia de la impressió",              ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "Fes l'es&querra només de lectura", ID_FILE_LEFT_READONLY
@@ -376,7 +376,7 @@ BEGIN
     BEGIN
         MENUITEM "&Tipus de lletra...",         ID_VIEW_SELECTFONT
         MENUITEM "Empra el tipus de lletra del &sistema", ID_VIEW_USEDEFAULTFONT
-        POPUP "Syntax Highlight"
+        POPUP "Ressaltat de sintaxi"
         BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
         END
@@ -384,19 +384,19 @@ BEGIN
         MENUITEM "Mostra els es&pais",          ID_VIEW_WHITESPACE
         MENUITEM "Mostra les &diferències de la línia", ID_VIEW_LINEDIFFS
         MENUITEM "Mostra els &números de línia", ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
+        MENUITEM "Mostra els &marges",               ID_VIEW_FILEMARGIN
         MENUITEM "A&justa les línies",          ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Intercanvia les subfinestres", ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "Barra d'ei&nes"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "&Cap",                       ID_TOOLBAR_NONE
+            MENUITEM "&Petita",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Gran",                        ID_TOOLBAR_BIG
         END
         MENUITEM "Barra d'est&at",              ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Barra de ta&bulacions",                    ID_VIEW_TAB_BAR
         MENUITEM "Subfinest&ra de diferències", ID_VIEW_DETAIL_BAR
         MENUITEM "Subfinestra d'&ubicació",     ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -635,7 +635,7 @@ BEGIN
     ICON            IDR_MAINFRAME,IDC_ABOUTBOX_ICON,24,14,21,20
     LTEXT           "WinMerge",IDC_STATIC,63,13,63,8,SS_NOPREFIX
     LTEXT           "Versió 1.0",IDC_VERSION,63,23,153,8,SS_NOPREFIX
-    LTEXT           "(Muntatge Privat)",IDC_PRIVATEBUILD,63,33,153,8
+    LTEXT           "(Muntatge privat)",IDC_PRIVATEBUILD,63,33,153,8
     LTEXT           "Tots els drets reservats.",IDC_STATIC,7,60,170,8
     LTEXT           "Visiteu la plana web del WinMerge!",IDC_WWW,7,79,209,8
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,95,209,1
@@ -730,7 +730,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,17,206,10
     CONTROL         "T&anca les finestres amb ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
-    CONTROL         "&Verifica els trajectes automàticament al diàleg d'Obrir",
+    CONTROL         "&Verifica els camí automàticament al diàleg d'Obrir",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
     CONTROL         "&Permet d'executar només una instància",IDC_SINGLE_INSTANCE,
@@ -843,7 +843,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "Filtres de línia"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Enable Line Filters",
+    CONTROL         "Habilita els filtres de línia",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "Expressions &regulars (una per línia):",IDC_STATIC,7,28,
@@ -853,10 +853,10 @@ BEGIN
                     LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,105
     EDITTEXT        IDC_LFILTER_EDITBOX,7,149,296,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Save",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
-    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
-    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
-    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
+    PUSHBUTTON      "Desa",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
+    PUSHBUTTON      "Nova",IDC_LFILTER_ADDBTN,7,167,50,14
+    PUSHBUTTON      "Edita",IDC_LFILTER_EDITBTN,62,167,50,14
+    PUSHBUTTON      "Suprimeix",IDC_LFILTER_REMOVEBTN,116,167,50,14
 END
 
 IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 235, 196
@@ -1575,44 +1575,44 @@ END
 
 IDD_PROPPAGE_BACKUPS DIALOGEX 0, 0, 236, 222
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
-CAPTION "Backup Files"
+CAPTION "Fitxers de còpia de seguretat"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Crea els fitxers de còpia de seguretat en:",IDC_STATIC,7,7,222,8
+    CONTROL         "Comparar &carpetes",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "Comparar &fitxers",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "Crea els fitxers de còpia de seguretat a:",IDC_STATIC,7,40,222,8
+    CONTROL         "Carpeta del fitxer &original",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "Carpeta de còpia de seguretat &global:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "Navega...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "Nom de fitxer de còpia de seguretat:",IDC_STATIC,7,89,222,8
+    CONTROL         "&Afegeix l'extensió .bak",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "A&fegeix una marca horària",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
 IDD_CONFIRM_COPY DIALOGEX 0, 0, 285, 100
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU | WS_THICKFRAME
-CAPTION "Confirm Copy"
+CAPTION "Confirmació de còpia"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
-    LTEXT           "Are you sure you want to copy XXX items?",
+    LTEXT           "Esteu segur que voleu copiar XXX elements?",
                     IDC_FLDCONFIRM_QUERY,45,7,233,8
-    LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
+    LTEXT           "D'esquerra",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
+    LTEXT           "A dreta",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Yes",IDYES,174,79,50,14
+    PUSHBUTTON      "Sí",IDYES,174,79,50,14
     DEFPUSHBUTTON   "No",IDNO,228,79,50,14
 END
 
@@ -1796,7 +1796,7 @@ STRINGTABLE
 BEGIN
     ID_VIEW_TOOLBAR         "Mostra o amaga la barra d'eines\nBarra d'eines"
     ID_VIEW_STATUS_BAR      "Mostra o amaga la barra d'estat\nBarra d'estat"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_TAB_BAR         "Mostra o amaga la barra de tabulacions\nBarra de tabulacions"
 END
 
 // Windows System menu
@@ -1888,28 +1888,28 @@ END
 // Options-dialog page captions
 STRINGTABLE
 BEGIN
-    IDS_OPTIONSPG_GENERAL     "General"
-    IDS_OPTIONSPG_COMPARE     "Comparació"
-    IDS_OPTIONSPG_EDITOR      "Editor"
-    IDS_OPTIONSPG_COLORS      "Colors"
+    IDS_OPTIONSPG_GENERAL   "General"
+    IDS_OPTIONSPG_COMPARE   "Comparació"
+    IDS_OPTIONSPG_EDITOR    "Editor"
+    IDS_OPTIONSPG_COLORS    "Colors"
     IDS_OPTIONSPG_SYNTAXCOLORS "Colors de sintaxi"
-    IDS_OPTIONSPG_TEXTCOLORS  "Colors de text"
-    IDS_OPTIONSPG_SYSTEM      "Sistema"
+    IDS_OPTIONSPG_TEXTCOLORS "Colors de text"
+    IDS_OPTIONSPG_SYSTEM    "Sistema"
     IDS_OPTIONSPG_VERSIONCONTROL "Control de versions"
-    IDS_OPTIONSPG_CODEPAGE    "Pàgina de codis"
-    IDS_OPTIONSPG_ARCHIVE     "Suport d'arxivament"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_CODEPAGE  "Pàgina de codis"
+    IDS_OPTIONSPG_ARCHIVE   "Suport d'arxivament"
+    IDS_OPTIONSPG_BACKUPS   "Fitxers de còpia de seguretat"
 END
 
 // WINMERGE CUSTOM STRINGS
 
 STRINGTABLE
 BEGIN
-    IDS_TO                  "To:"
-    IDS_FROM_LEFT           "From left:"
-    IDS_TO_LEFT             "To left:"
-    IDS_FROM_RIGHT          "From right:"
-    IDS_TO_RIGHT            "To right:"
+    IDS_TO                  "A:"
+    IDS_FROM_LEFT           "D'esquerra:"
+    IDS_TO_LEFT             "A esquerra:"
+    IDS_FROM_RIGHT          "De dreta:"
+    IDS_TO_RIGHT            "A dreta:"
 END
 
 // WINMERGE INFORMATION
@@ -1972,7 +1972,7 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Selecciona un nom de fitxer per al nou filtre"
     IDS_FILEFILTER_FILEMASK "Filtres de fitxer (*.flt)|*.flt|Tots els fitxers (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "No s'ha trobat el fitxer de plantilla de filtre de fitxer!\n\nCopieu el fitxer %1 a la carpeta WinMerge/Filters:\n%2."
     IDS_FILEFILTER_TMPL_COPY 
                             "No es pot copiar el fitxer de plantilla de filtre a la carpeta de filtres:\n%1\n\nVerifiqueu que la carpeta existeix i s'hi pot escriure."
     IDS_FILEFILTER_NO_USERFOLDER 
@@ -1989,7 +1989,7 @@ END
 // LINEFILTER STRINGS
 STRINGTABLE 
 BEGIN
-    IDS_FILTERLINE_REGEXP   "Regular expression"
+    IDS_FILTERLINE_REGEXP   "Expressió regular"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2039,8 +2039,8 @@ END
 // MORE STATUS PANES
 STRINGTABLE
 BEGIN
-	IDS_DIRVIEW_STATUS_FMT_FOCUS "Element %1 de %2"
-	IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Elements: %1"
+    IDS_DIRVIEW_STATUS_FMT_FOCUS "Element %1 de %2"
+    IDS_DIRVIEW_STATUS_FMT_NOFOCUS "Elements: %1"
 END
 
 // OPEN DIALOG
@@ -2170,9 +2170,9 @@ BEGIN
     IDS_CONFIRM_DELETE_ITEMS "Esteu segur que voleu suprimir %1 del(s) %2 element(s) seleccionat(s)?"
     IDS_CONFIRM_DELETE_DIR  "Voleu suprimir el directori\n\n%1 ?"
     IDS_CONFIRM_DELETE_SINGLE "Esteu segur que voleu suprimir\n\n%1 ?"
-    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
-    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
-    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_CONFIRM_SINGLE_COPY "Esteu segur que voleu copiar:"
+    IDS_CONFIRM_MULTIPLE_COPY "Esteu segur que voleu copiar %d elements:"
+    IDS_DIRCMP_NOTSYNC      "Operació avortada!\n\nEls continguts de la carpeta als discs han canviat, el camí\n%1\nno s'ha trobat.\n\nActualitzeu la comparació."
 END
 
 // DIRECTORY DIFFING : OPEN FILE
@@ -2400,7 +2400,7 @@ BEGIN
     IDS_DIFF_UNIFIED        "Unificat"
     IDS_FILEWRITE_ERROR     "No s'ha pogut escriure al fitxer  %1."
     IDS_PATH_NOT_ABSOLUTE   "El camí de sortida especificat no és un camí absolut: %1"
-	IDS_MUST_SPECIFY_OUTPUT "Especifiqueu un fitxer de sortida"
+    IDS_MUST_SPECIFY_OUTPUT "Especifiqueu un fitxer de sortida"
     IDS_CANNOT_CREATE_BINARYPATCH "No es pot crear un pedaç de fitxers binaris."
     IDS_CANNOT_CREATE_DIRPATCH "No es pot crear un pedaç de directoris."
     IDS_SAVEFILES_FORPATCH  "Deseu tots els fitxers primer.\n\nCal que no hi hagi cap fitxer pendent de salvar per tal de crear un pedaç."
@@ -2799,7 +2799,7 @@ BEGIN
     ID_VIEW_SWAPPANES       "Intercanvia la posició d'ambdues subfinestres"
     ID_VIEW_LINENUMBERS     "Mostra els números de línia\nMostra els números de línia"
     ID_VIEW_WORDWRAP        "Permet l'ajustament de paraules\nAjusta les línies"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "Mostra els marges de selecció per a ambdós subfinestres\nMostra els marges de selecció"
 END
 
 // MERGE MENU
@@ -2895,13 +2895,13 @@ STRINGTABLE
 BEGIN
     IDS_AUTOCOMPLETE_DISABLED   "Inhabilitat"
     IDS_AUTOCOMPLETE_FILE_SYS   "Des del sistema de fitxers"
-    IDS_AUTOCOMPLETE_MRU	"Des de la llista de recents"
+    IDS_AUTOCOMPLETE_MRU        "Des de la llista de recents"
 END
 
 // COLOR SCHEMES
 STRINGTABLE
 BEGIN
-    IDS_COLORSCHEME_PLAIN           "None"
+    IDS_COLORSCHEME_PLAIN           "Cap"
     IDS_COLORSCHEME_ASP             "ASP"
     IDS_COLORSCHEME_BASIC           "Basic"
     IDS_COLORSCHEME_BATCH           "Batch"
@@ -2935,9 +2935,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "Amaga la barra d'eines"
+    ID_TOOLBAR_SMALL        "Mostra la barra d'eines petita"
+    ID_TOOLBAR_BIG          "Mostra la barra d'eines gran"
 END
 
 // END STRINGS SYNCHRO
