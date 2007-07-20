@@ -261,6 +261,7 @@ BOOL CMergeDoc::OnNewDocument()
 /**
  * @brief Determines currently active view.
  * @return one of MERGEVIEW_INDEX_TYPE values or -1 in error.
+ * @todo Detect location pane and return != 1 for it.
  */
 int CMergeDoc::GetActiveMergeViewIndexType() const
 {
@@ -279,7 +280,9 @@ int CMergeDoc::GetActiveMergeViewIndexType() const
 	else if (curView == GetRightDetailView())
 		return MERGEVIEW_RIGHT_DETAIL;
 
-	_RPTF0(_CRT_ERROR, "Invalid view pointer!");
+	// This assert fired when location pane caused refresh.
+	// We can't detect location pane activity, so disable the assert.
+	//_RPTF0(_CRT_ERROR, "Invalid view pointer!");
 	return -1;
 }
 
@@ -1011,6 +1014,17 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	BOOL result = TRUE;
 	int answer = IDOK; // Set default we use for scratchpads
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
+
+	if (nActiveViewIndexType == -1)
+	{
+		// We don't have valid view active, but still tried to save.
+		// We don't know which file to save, so just cancel.
+		// Possible origin in location pane?
+		_RPTF0(_CRT_ERROR, "Save request from invalid view!");
+		nSaveResult = SAVE_CANCELLED;
+		return TRUE;
+	}
+
 	HWND parent = m_pView[nActiveViewIndexType]->GetSafeHwnd();
 
 	// We shouldn't get here if saving is succeed before
