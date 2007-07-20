@@ -3293,9 +3293,3 @@ void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
 	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
 	pCmdUI->SetRadio(enabled && toolbar == 1);
 }
-
-void CMainFrame::OnInitMenu(CMenu *pMenu)
-{
-		CMergeApp* pApp = (CMergeApp*)AfxGetApp();
-		//pApp->UpdateMRUMenu(pMenu);
-}
