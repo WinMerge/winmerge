@@ -900,7 +900,7 @@ SOURCE=.\Common\ToolBarXPThemes.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Ucs2Utf8.cpp
+SOURCE=.\Common\Ucs2Utf8.cpp
 # End Source File
 # Begin Source File
 
@@ -1525,7 +1525,7 @@ SOURCE=.\Common\ToolbarXPThemes.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Ucs2Utf8.h
+SOURCE=.\Common\Ucs2Utf8.h
 # End Source File
 # Begin Source File
 
