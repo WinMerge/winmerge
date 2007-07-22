@@ -490,25 +490,24 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
  * @param [in] path Path to get parent path for.
  * @return Parent path.
  */
-CString paths_GetParentPath(CString path)
+CString paths_GetParentPath(const CString & path)
 {
-	CString parentPath;
-	int len = path.GetLength();
+	CString parentPath(path);
+	int len = parentPath.GetLength();
 
 	// Remove last '\' from paths
-	if (path[len - 1] == '\\')
+	if (parentPath[len - 1] == '\\')
 	{
-		path.Delete(len - 1, 1);
+		parentPath.Delete(len - 1, 1);
 		--len;
 	}
 
 	// Remove last part of path
-	int pos = path.ReverseFind('\\');
+	int pos = parentPath.ReverseFind('\\');
 
 	if (pos > -1)
 	{
-		path.Delete(pos, len - pos);
-		parentPath = path;
+		parentPath.Delete(pos, len - pos);
 	}
 	return parentPath;
 }
@@ -522,28 +521,25 @@ CString paths_GetParentPath(CString path)
  * @param [in] path Original path.
  * @return Last subdirectory in path.
  */
-CString paths_GetLastSubdir(CString path)
+CString paths_GetLastSubdir(const CString & path)
 {
-	CString parentPath;
-	int len = path.GetLength();
+	CString parentPath(path);
+	int len = parentPath.GetLength();
 
 	// Remove last '\' from paths
-	if (path[len - 1] == '\\')
+	if (parentPath[len - 1] == '\\')
 	{
-		path.Delete(len - 1, 1);
+		parentPath.Delete(len - 1, 1);
 		--len;
 	}
 
 	// Find last part of path
-	int pos = path.ReverseFind('\\');
+	int pos = parentPath.ReverseFind('\\');
 
 	if (pos > 2)
 	{
-		path.Delete(0, pos);
-		parentPath = path;
+		parentPath.Delete(0, pos);
 	}
-	else
-		return path;
 
 	return parentPath;
 }

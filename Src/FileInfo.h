@@ -50,7 +50,7 @@ struct FileInfo
 	FileFlags flags; /**< file attributes */
 	FileInfo() { Clear(); }
 
-	BOOL Update(CString sFilePath);
+	BOOL Update(const CString &sFilePath);
 	void Clear();
 };
 

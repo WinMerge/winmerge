@@ -32,7 +32,7 @@
  * @param [in] sFilePath Full path to file/directory to update
  * @return TRUE if information was updated (item was found).
  */
-BOOL FileInfo::Update(CString sFilePath)
+BOOL FileInfo::Update(const CString &sFilePath)
 {
 	struct _stati64 fstats;
 	__int64 mtime64 = 0;

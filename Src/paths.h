@@ -29,9 +29,9 @@ CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * 
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
 CString ExpandShortcut(const CString &inFile);
 CString paths_ConcatPath(const CString & path, const CString & subpath);
-CString paths_GetParentPath(CString path);
-CString paths_GetLastSubdir(CString path);
-BOOL paths_IsPathAbsolute(const CString &path);
+CString paths_GetParentPath(const CString & path);
+CString paths_GetLastSubdir(const CString & path);
+BOOL paths_IsPathAbsolute(const CString & path);
 CString paths_EnsurePathExist(const CString & sPath);
 CString paths_GetWindowsDirectory();
 CString paths_GetMyDocuments(HWND hWindow);
