@@ -9,7 +9,7 @@
 
 
 /* The MIT License
-Copyright (c) 2004 Kimmo Varis
+Copyright (c) 2004-2007 Kimmo Varis
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
 (the "Software"), to deal in the Software without restriction, including
@@ -31,6 +31,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #include "stdafx.h"
 #include "varprop.h"
 #include "OptionsMgr.h"
+
+static bool GetInt(LPCTSTR str, int & val);
+
 
 /**
  * @brief Set name, value and default value for option
@@ -106,7 +109,7 @@ varprop::VariantValue COption::GetDefault() const
 /**
  * @brief Convert string to integer, or return false if not an integer number
  */
-static bool getInt(LPCTSTR str, int & val)
+static bool GetInt(LPCTSTR str, int & val)
 {
 	if (str == NULL)
 		return false;
@@ -124,51 +127,88 @@ static bool getInt(LPCTSTR str, int & val)
 }
 
 /**
- * @brief Convert value to desired type (or return false)
+ * @brief Convert integer value to desired type (or return false)
  */
-bool COption::CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType)
+bool COption::ConvertInteger(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
-	if (value.GetType() == varprop::VT_STRING)
-	{
-		CString svalue;
-		TCHAR * tmpVal = value.GetString();
-		if (tmpVal != NULL)
-		{
-			svalue = tmpVal;
-			free(tmpVal);
-			tmpVal = NULL;
-		}
+	int ivalue = value.GetInt();
 
-		switch(nType)
+	switch(nType)
+	{
+	case varprop::VT_BOOL:
+		// Convert integer to boolean
 		{
-		case varprop::VT_INT:
-			// Convert string to integer
+			if (ivalue > 0)
 			{
-				int val=0;
-				if (!getInt(svalue, val))
-					return false;
-				value.SetInt(val);
+				value.SetBool(true);
 				return true;
 			}
-		case varprop::VT_BOOL:
-			// Convert string to boolean
+			else
 			{
-				if (svalue == _T("1") || !svalue.CompareNoCase(_T("Yes"))
-					|| !svalue.CompareNoCase(_T("True")))
-				{
-					value.SetBool(true);
-					return true;
-				}
-				if (svalue == _T("0") || !svalue.CompareNoCase(_T("No"))
-					|| !svalue.CompareNoCase(_T("False")))
-				{
-					value.SetBool(false);
-					return true;
-				}
-				return false;
+				value.SetBool(false);
+				return true;
 			}
+			return false;
 		}
 	}
+	return false;
+}
+
+/**
+ * @brief Convert string value to desired type (or return false)
+ */
+bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nType)
+{
+	CString svalue;
+	TCHAR * tmpVal = value.GetString();
+	if (tmpVal != NULL)
+	{
+		svalue = tmpVal;
+		free(tmpVal);
+		tmpVal = NULL;
+	}
+
+	switch(nType)
+	{
+	case varprop::VT_INT:
+		// Convert string to integer
+		{
+			int val=0;
+			if (!::GetInt(svalue, val))
+				return false;
+			value.SetInt(val);
+			return true;
+		}
+	case varprop::VT_BOOL:
+		// Convert string to boolean
+		{
+			if (svalue == _T("1") || !svalue.CompareNoCase(_T("Yes"))
+				|| !svalue.CompareNoCase(_T("True")))
+			{
+				value.SetBool(true);
+				return true;
+			}
+			if (svalue == _T("0") || !svalue.CompareNoCase(_T("No"))
+				|| !svalue.CompareNoCase(_T("False")))
+			{
+				value.SetBool(false);
+				return true;
+			}
+			return false;
+		}
+	}
+	return false;
+}
+
+/**
+ * @brief Convert value to desired type (or return false)
+ */
+bool COption::ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType)
+{
+	if (value.GetType() == varprop::VT_STRING)
+		return ConvertString(value, nType);
+	if (value.GetType() == varprop::VT_INT)
+		return ConvertInteger(value, nType);
 	return false;
 }
 
@@ -179,7 +219,7 @@ bool COption::CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType)
  * set when option was initialised.
  * @sa COption::Init()
  */
-int COption::Set(varprop::VariantValue value, coercion_type coercion)
+int COption::Set(varprop::VariantValue value, bool allowConversion)
 {
 	int retVal = OPT_OK;
 
@@ -187,10 +227,10 @@ int COption::Set(varprop::VariantValue value, coercion_type coercion)
 	varprop::VT_TYPE inType = value.GetType();
 	if (value.GetType() != m_value.GetType())
 	{
-		if (coercion == coerce)
+		if (allowConversion)
 		{
-			if (CoerceType(value, m_value.GetType()))
-				return Set(value, nocoerce);
+			if (ConvertType(value, m_value.GetType()))
+				return Set(value);
 		}
 		return OPT_WRONG_TYPE;
 	}
@@ -377,7 +417,7 @@ bool COptionsMgr::GetBool(LPCTSTR name) const
 /**
  * @brief Set new value for option
  */
-int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value, COption::coercion_type coercion)
+int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -386,7 +426,8 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value, COption::coercio
 	optionFound = m_optionsMap.Lookup(name, tmpOption);
 	if (optionFound == TRUE)
 	{
-		retVal = tmpOption.Set(value, coercion);
+		// Allow automatic conversion so we don't bother callsites about this!
+		retVal = tmpOption.Set(value, true);
 		if (retVal == OPT_OK)
 			m_optionsMap.SetAt(name, tmpOption);
 	}
@@ -1032,21 +1073,6 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name, LPCTSTR value)
 
 	val.SetString(value);
 	retVal = Set(name, val);
-	if (retVal == OPT_OK)
-		retVal = SaveOption(name);
-	return retVal;
-}
-
-/**
- * @brief Set new string value for option, with coercion, and save option to registry
- */
-int CRegOptionsMgr::CoerceAndSaveOption(LPCTSTR name, LPCTSTR value)
-{
-	varprop::VariantValue val;
-	int retVal = OPT_OK;
-
-	val.SetString(value);
-	retVal = Set(name, val, COption::coerce);
 	if (retVal == OPT_OK)
 		retVal = SaveOption(name);
 	return retVal;

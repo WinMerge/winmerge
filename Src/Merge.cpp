@@ -656,7 +656,7 @@ void CMergeApp::SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo)
 
 		if (cmdInfo.m_Settings.Lookup(szCmdArgName, sValue))
 		{
-			GetOptionsMgr()->CoerceAndSaveOption(szOptionName, sValue);
+			GetOptionsMgr()->SaveOption(szOptionName, sValue);
 		}
 	}
 }

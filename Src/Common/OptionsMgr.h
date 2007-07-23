@@ -8,7 +8,7 @@
 // $Id$
 
 /* The MIT License
-Copyright (c) 2004 Kimmo Varis
+Copyright (c) 2004-2007 Kimmo Varis
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
 (the "Software"), to deal in the Software without restriction, including
@@ -52,15 +52,17 @@ enum
 class COption
 {
 public:
-	typedef enum { nocoerce, coerce } coercion_type;
-public:
 	int Init(LPCTSTR name, varprop::VariantValue defaultVal);
 	varprop::VariantValue Get() const;
 	varprop::VariantValue GetDefault() const;
-	int Set(varprop::VariantValue value, coercion_type coercion=nocoerce);
+	int Set(varprop::VariantValue value, bool allowConversion = true);
 	int SetDefault(varprop::VariantValue defaultValue); 
 	void Reset();
-	bool CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType);
+
+protected:
+	bool ConvertInteger(varprop::VariantValue & value, varprop::VT_TYPE nType);
+	bool ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nType);
+	bool ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType);
 
 private:
 	CString m_strName;
@@ -81,7 +83,7 @@ public:
 	void SetInt(LPCTSTR name, int value) { SaveOption(name, value); }
 	bool GetBool(LPCTSTR name) const;
 	void SetBool(LPCTSTR name, bool value) { SaveOption(name, value); }
-	int Set(LPCTSTR name, varprop::VariantValue value, COption::coercion_type coercion=COption::nocoerce);
+	int Set(LPCTSTR name, varprop::VariantValue value);
 	int Reset(LPCTSTR name);
 	int GetDefault(LPCTSTR name, CString & value) const;
 	int GetDefault(LPCTSTR name, DWORD & value) const;
@@ -90,13 +92,12 @@ public:
 	virtual int InitOption(LPCTSTR name,
 		varprop::VariantValue defaultValue) = 0;
 	virtual int InitOption(LPCTSTR name, LPCTSTR defaultValue) = 0;
-	virtual int InitOption(LPCTSTR name, int defaultValue, bool serializable=true) = 0;
+	virtual int InitOption(LPCTSTR name, int defaultValue, bool serializable = true) = 0;
 	virtual int InitOption(LPCTSTR name, bool defaultValue) = 0;
 
 	virtual int SaveOption(LPCTSTR name) = 0;
 	virtual int SaveOption(LPCTSTR name, varprop::VariantValue value) = 0;
 	virtual int SaveOption(LPCTSTR name, LPCTSTR value) = 0;
-	virtual int CoerceAndSaveOption(LPCTSTR name, LPCTSTR value) = 0;
 	virtual int SaveOption(LPCTSTR name, int value) = 0;
 	virtual int SaveOption(LPCTSTR name, bool value) = 0;
 	virtual int SaveOption(LPCTSTR name, UINT value);
@@ -131,7 +132,6 @@ public:
 
 	virtual int SaveOption(LPCTSTR name);
 	virtual int SaveOption(LPCTSTR name, varprop::VariantValue value);
-	virtual int CoerceAndSaveOption(LPCTSTR name, LPCTSTR value);
 	virtual int SaveOption(LPCTSTR name, LPCTSTR value);
 	virtual int SaveOption(LPCTSTR name, int value);
 	virtual int SaveOption(LPCTSTR name, bool value);
