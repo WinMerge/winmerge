@@ -23,7 +23,7 @@
  *  @brief Declaration of class CDirView
  */ 
 //
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_DirView_H__16E7C721_351C_11D1_95CD_444553540000__INCLUDED_)
@@ -62,9 +62,6 @@ struct ViewCustomFlags
 		VISIBILITY=0x3, VISIBLE=0x1, HIDDEN=0x2,
 	};
 };
-
-
-namespace varprop { struct VariantValue; }
 
 /**
  * @brief Position value for special items (..) in directory compare view.

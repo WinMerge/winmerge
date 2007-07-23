@@ -45,7 +45,8 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 
 	// Dont' check type here since we are initing it!
 	m_strName = name;
-	varprop::VT_TYPE inType = defaultValue.getType();
+	varprop::VT_TYPE inType = defaultValue.GetType();
+	TCHAR *tmp = NULL;
 
 	switch (inType)
 	{
@@ -53,24 +54,30 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 		retVal = OPT_UNKNOWN_TYPE;
 		break;
 	case varprop::VT_BOOL:
-		m_value.SetBool(defaultValue.getBool());
-		m_valueDef.SetBool(defaultValue.getBool());
+		m_value.SetBool(defaultValue.GetBool());
+		m_valueDef.SetBool(defaultValue.GetBool());
 		break;
 	case varprop::VT_INT:
-		m_value.SetInt(defaultValue.getInt());
-		m_valueDef.SetInt(defaultValue.getInt());
+		m_value.SetInt(defaultValue.GetInt());
+		m_valueDef.SetInt(defaultValue.GetInt());
 		break;
 	case varprop::VT_FLOAT:
-		m_value.SetFloat(defaultValue.getFloat());
-		m_valueDef.SetFloat(defaultValue.getFloat());
+		m_value.SetFloat(defaultValue.GetFloat());
+		m_valueDef.SetFloat(defaultValue.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		m_value.SetString(defaultValue.getString());
-		m_valueDef.SetString(defaultValue.getString());
+		tmp = defaultValue.GetString();
+		m_value.SetString(tmp);
+		m_valueDef.SetString(tmp);
+		if (tmp != NULL)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
 		break;
 	case varprop::VT_TIME:
-		m_value.SetTime(defaultValue.getTime());
-		m_valueDef.SetTime(defaultValue.getTime());
+		m_value.SetTime(defaultValue.GetTime());
+		m_valueDef.SetTime(defaultValue.GetTime());
 		break;
 	default:
 		retVal = OPT_UNKNOWN_TYPE;
@@ -83,7 +90,8 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
  */
 varprop::VariantValue COption::Get() const
 {
-	return m_value;
+	varprop::VariantValue retval = m_value;
+	return retval;
 }
 
 /**
@@ -91,7 +99,8 @@ varprop::VariantValue COption::Get() const
  */
 varprop::VariantValue COption::GetDefault() const
 {
-	return m_valueDef;
+	varprop::VariantValue retval = m_value;
+	return retval;
 }
 
 /**
@@ -119,9 +128,17 @@ static bool getInt(LPCTSTR str, int & val)
  */
 bool COption::CoerceType(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
-	if (value.getType() == varprop::VT_STRING)
+	if (value.GetType() == varprop::VT_STRING)
 	{
-		CString svalue = value.getString();
+		CString svalue;
+		TCHAR * tmpVal = value.GetString();
+		if (tmpVal != NULL)
+		{
+			svalue = tmpVal;
+			free(tmpVal);
+			tmpVal = NULL;
+		}
+
 		switch(nType)
 		{
 		case varprop::VT_INT:
@@ -167,36 +184,43 @@ int COption::Set(varprop::VariantValue value, coercion_type coercion)
 	int retVal = OPT_OK;
 
 	// Check that type matches
-	varprop::VT_TYPE inType = value.getType();
-	if (value.getType() != m_value.getType())
+	varprop::VT_TYPE inType = value.GetType();
+	if (value.GetType() != m_value.GetType())
 	{
 		if (coercion == coerce)
 		{
-			if (CoerceType(value, m_value.getType()))
+			if (CoerceType(value, m_value.GetType()))
 				return Set(value, nocoerce);
 		}
 		return OPT_WRONG_TYPE;
 	}
 
+	TCHAR * tmp = NULL;
 	switch (inType)
 	{
 	case varprop::VT_NULL:
 		retVal = OPT_UNKNOWN_TYPE;
 		break;
 	case varprop::VT_BOOL:
-		m_value.SetBool(value.getBool());
+		m_value.SetBool(value.GetBool());
 		break;
 	case varprop::VT_INT:
-		m_value.SetInt(value.getInt());
+		m_value.SetInt(value.GetInt());
 		break;
 	case varprop::VT_FLOAT:
-		m_value.SetFloat(value.getFloat());
+		m_value.SetFloat(value.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		m_value.SetString(value.getString());
+		tmp = value.GetString();
+		m_value.SetString(tmp);
+		if (tmp != NULL)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
 		break;
 	case varprop::VT_TIME:
-		m_value.SetTime(value.getTime());
+		m_value.SetTime(value.GetTime());
 		break;
 	default:
 		retVal = OPT_UNKNOWN_TYPE;
@@ -216,29 +240,36 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 	int retVal = OPT_OK;
 
 	// Check that type matches
-	varprop::VT_TYPE inType = defaultValue.getType();
-	if (inType != m_valueDef.getType())
+	varprop::VT_TYPE inType = defaultValue.GetType();
+	if (inType != m_valueDef.GetType())
 		return OPT_WRONG_TYPE;
 
+	TCHAR * tmp = NULL;
 	switch (inType)
 	{
 	case varprop::VT_NULL:
 		retVal = OPT_UNKNOWN_TYPE;
 		break;
 	case varprop::VT_BOOL:
-		m_valueDef.SetBool(defaultValue.getBool());
+		m_valueDef.SetBool(defaultValue.GetBool());
 		break;
 	case varprop::VT_INT:
-		m_valueDef.SetInt(defaultValue.getInt());
+		m_valueDef.SetInt(defaultValue.GetInt());
 		break;
 	case varprop::VT_FLOAT:
-		m_valueDef.SetFloat(defaultValue.getFloat());
+		m_valueDef.SetFloat(defaultValue.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		m_valueDef.SetString(defaultValue.getString());
+		tmp = defaultValue.GetString();
+		m_valueDef.SetString(tmp);
+		if (tmp != NULL)
+		{
+			free(tmp);
+			tmp = NULL;
+		}
 		break;
 	case varprop::VT_TIME:
-		m_valueDef.SetTime(defaultValue.getTime());
+		m_valueDef.SetTime(defaultValue.GetTime());
 		break;
 	default:
 		retVal = OPT_UNKNOWN_TYPE;
@@ -251,22 +282,25 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
  */
 void COption::Reset()
 {
-	switch (m_value.getType())
+	TCHAR *str = NULL;
+	switch (m_value.GetType())
 	{
 	case varprop::VT_BOOL:
-		m_value.SetBool(m_valueDef.getBool());
+		m_value.SetBool(m_valueDef.GetBool());
 		break;
 	case varprop::VT_INT:
-		m_value.SetInt(m_valueDef.getInt());
+		m_value.SetInt(m_valueDef.GetInt());
 		break;
 	case varprop::VT_FLOAT:
-		m_value.SetFloat(m_valueDef.getFloat());
+		m_value.SetFloat(m_valueDef.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		m_value.SetString(m_valueDef.getString());
+		str = m_valueDef.GetString();
+		m_value.SetString(str);
+		free(str);
 		break;
 	case varprop::VT_TIME:
-		m_value.SetTime(m_valueDef.getTime());
+		m_value.SetTime(m_valueDef.GetTime());
 		break;
 	}
 }
@@ -308,9 +342,16 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
  */
 CString COptionsMgr::GetString(LPCTSTR name) const
 {
-	varprop::VariantValue val;
-	val = Get(name);
-	return val.getString();
+	varprop::VariantValue val = Get(name);
+	TCHAR * tmp = val.GetString();
+	CString retval;
+	if (tmp != NULL)
+	{
+		retval = tmp;
+		free(tmp);
+		tmp = NULL;
+	}
+	return retval;
 }
 
 /**
@@ -320,7 +361,7 @@ int COptionsMgr::GetInt(LPCTSTR name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);
-	return val.getInt();
+	return val.GetInt();
 }
 
 /**
@@ -330,7 +371,7 @@ bool COptionsMgr::GetBool(LPCTSTR name) const
 {
 	varprop::VariantValue val;
 	val = Get(name);
-	return val.getBool();
+	return val.GetBool();
 }
 
 /**
@@ -427,8 +468,18 @@ int COptionsMgr::GetDefault(LPCTSTR name, CString & value) const
 	if (optionFound == TRUE)
 	{
 		varprop::VariantValue val = tmpOption.GetDefault();
-		if (val.isString())
-			value = val.getString();
+		if (val.IsString())
+		{
+			CString tmpval;
+			TCHAR *tmpstr = val.GetString();
+			if (tmpstr != NULL)
+			{
+				tmpval = tmpstr;
+				free(tmpstr);
+				tmpstr = NULL;
+			}
+			value = tmpval;
+		}
 		else
 			retVal = OPT_WRONG_TYPE;
 	}
@@ -452,8 +503,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 	if (optionFound == TRUE)
 	{
 		varprop::VariantValue val = tmpOption.GetDefault();
-		if (val.isInt())
-			value = val.getInt();
+		if (val.IsInt())
+			value = val.GetInt();
 		else
 			retVal = OPT_WRONG_TYPE;
 	}
@@ -477,8 +528,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 	if (optionFound == TRUE)
 	{
 		varprop::VariantValue val = tmpOption.GetDefault();
-		if (val.isBool())
-			value = val.getBool();
+		if (val.IsBool())
+			value = val.GetBool();
 		else
 			retVal = OPT_WRONG_TYPE;
 	}
@@ -511,20 +562,26 @@ int COptionsMgr::ExportOptions(CString filename)
 		CString strVal;
 		m_optionsMap.GetNextAssoc(pos, name, option);
 		varprop::VariantValue value = option.Get();
-		if (value.getType() == varprop::VT_BOOL)
+		if (value.GetType() == varprop::VT_BOOL)
 		{
-			if (value.getBool())
+			if (value.GetBool())
 				strVal = _T("1");
 			else
 				strVal = _T("0");
 		}
-		else if (value.getType() == varprop::VT_INT)
+		else if (value.GetType() == varprop::VT_INT)
 		{
-			strVal.Format(_T("%d"), value.getInt());
+			strVal.Format(_T("%d"), value.GetInt());
 		}
-		else if (value.getType() == varprop::VT_STRING)
+		else if (value.GetType() == varprop::VT_STRING)
 		{
-			strVal = value.getString();
+			TCHAR * tmp = value.GetString();
+			if (tmp != NULL)
+			{
+				strVal = tmp;
+				free(tmp);
+				tmp = NULL;
+			}
 		}
 
 		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name, strVal, filename);
@@ -562,22 +619,21 @@ int COptionsMgr::ImportOptions(CString filename)
 	while (*pKey != NULL)
 	{
 		varprop::VariantValue value = Get(pKey);
-		if (value.getType() == varprop::VT_BOOL)
+		if (value.GetType() == varprop::VT_BOOL)
 		{
 			BOOL boolVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename);
 			value.SetBool(boolVal == 1);
 		}
-		else if (value.getType() == varprop::VT_INT)
+		else if (value.GetType() == varprop::VT_INT)
 		{
 			int intVal = GetPrivateProfileInt(_T("WinMerge"), pKey, 0, filename);
 			value.SetInt(intVal);
 		}
-		else if (value.getType() == varprop::VT_STRING)
+		else if (value.GetType() == varprop::VT_STRING)
 		{
 			TCHAR strVal[MAX_PATH] = {0};
 			GetPrivateProfileString(_T("WinMerge"), pKey, _T(""), strVal, MAX_PATH, filename);
-			CString csVal = strVal;
-			value.SetString(csVal);
+			value.SetString(strVal);
 		}
 		Set(pKey, value);
 
@@ -643,7 +699,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	DWORD type = 0;
 	TCHAR * valueBuf = NULL;
 	DWORD size = 0;
-	int valType = value.getType();
+	int valType = value.GetType();
 	int retVal = OPT_OK;
 
 	SplitName(strName, strPath, strValueName);
@@ -668,11 +724,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	{
 		if (type == REG_SZ && valType == varprop::VT_STRING )
 		{
-			CString strValue;
-			valueBuf = strValue.GetBuffer(size);
-			CopyMemory(valueBuf, pData, size); // Copy NULL also
-			strValue.ReleaseBuffer();
-			value.SetString(strValue);
+			value.SetString((LPCTSTR)pData);
 			retVal = Set(strName, value);
 		}
 		else if (type == REG_DWORD)
@@ -719,25 +771,35 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
 	varprop::VariantValue value)
 {
 	LONG retValReg = 0;
-	int valType = value.getType();
+	int valType = value.GetType();
 	int retVal = OPT_OK;
 
 	if (valType == varprop::VT_STRING)
 	{
-		CString strVal = value.getString();
-		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
-				(LPBYTE)(LPCTSTR)value.getString(),
-				(strVal.GetLength() + 1) * sizeof(TCHAR));
+		TCHAR *strVal = value.GetString();
+		if (strVal != NULL)
+		{
+			retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
+					(LPBYTE)strVal, (_tcslen(strVal) + 1) * sizeof(TCHAR));
+			free(strVal);
+			strVal = NULL;
+		}
+		else
+		{
+			TCHAR str[1] = {0};
+			retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
+					(LPBYTE)&str, 1 * sizeof(TCHAR));
+		}
 	}
 	else if (valType == varprop::VT_INT)
 	{
-		DWORD dwordVal = value.getInt();
+		DWORD dwordVal = value.GetInt();
 		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
 				(LPBYTE)&dwordVal, sizeof(DWORD));
 	}
 	else if (valType == varprop::VT_BOOL)
 	{
-		DWORD dwordVal = value.getBool() ? 1 : 0;
+		DWORD dwordVal = value.GetBool() ? 1 : 0;
 		retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_DWORD,
 				(LPBYTE)&dwordVal, sizeof(DWORD));
 	}
@@ -762,7 +824,7 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
 int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 {
 	// Check type & bail if null
-	int valType = defaultValue.getType();
+	int valType = defaultValue.GetType();
 	if (valType == varprop::VT_NULL)
 		return OPT_ERR;
 
@@ -887,7 +949,7 @@ int CRegOptionsMgr::LoadOption(LPCTSTR name)
 	strRegPath += strPath;
 
 	value = Get(name);
-	valType = value.getType();
+	valType = value.GetType();
 	if (valType == varprop::VT_NULL)
 		retVal = OPT_NOTFOUND;
 	
@@ -928,7 +990,7 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 	strRegPath += strPath;
 
 	value = Get(name);
-	valType = value.getType();
+	valType = value.GetType();
 	if (valType == varprop::VT_NULL)
 		retVal = OPT_NOTFOUND;
 	
