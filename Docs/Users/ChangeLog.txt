@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.1
   HTML reports for file compare (#1739209)
+  Ask confirmation when exiting with multiple windows open (#1757800)
   Translation updates:
   - Catalan (r4370)
   - Simplified Chinese (r4369)
