@@ -60,6 +60,7 @@ const TCHAR OPT_LOGGING[] = _T("Settings/Logging");
 const TCHAR OPT_VERIFY_OPEN_PATHS[] = _T("Settings/VerifyOpenPaths");
 const TCHAR OPT_AUTO_COMPLETE_SOURCE[] = _T("Settings/AutoCompleteSource");
 const TCHAR OPT_IGNORE_SMALL_FILETIME[] = _T("Settings/IgnoreSmallFileTime");
+const TCHAR OPT_ASK_MULTIWINDOW_CLOSE[] = _T("Settings/AskClosingMultipleWindows");
 
 const TCHAR OPT_CP_DEFAULT_MODE[] = _T("Settings/CodepageDefaultMode");
 const TCHAR OPT_CP_DEFAULT_CUSTOM[] = _T("Settings/CodepageDefaultCustomValue");

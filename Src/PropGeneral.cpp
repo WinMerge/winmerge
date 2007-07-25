@@ -52,6 +52,7 @@ CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral
 , m_bSingleInstance(FALSE)
 , m_bVerifyPaths(FALSE)
 , m_bCloseWindowWithEsc(TRUE)
+, m_bAskMultiWindowClose(FALSE)
 , m_bMultipleFileCmp(FALSE)
 , m_bMultipleDirCmp(FALSE)
 , m_nAutoCompleteSource(0)
@@ -91,6 +92,7 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_SINGLE_INSTANCE, m_bSingleInstance);
 	DDX_Check(pDX, IDC_VERIFY_OPEN_PATHS, m_bVerifyPaths);
 	DDX_Check(pDX, IDC_ESC_CLOSES_WINDOW, m_bCloseWindowWithEsc);
+	DDX_Check(pDX, IDC_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose);
 	DDX_Check(pDX, IDC_MULTIDOC_FILECMP, m_bMultipleFileCmp);
 	DDX_Check(pDX, IDC_MULTIDOC_DIRCMP, m_bMultipleDirCmp);
 	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
@@ -114,6 +116,7 @@ void CPropGeneral::ReadOptions()
 	m_bSingleInstance = m_pOptionsMgr->GetBool(OPT_SINGLE_INSTANCE);
 	m_bVerifyPaths = m_pOptionsMgr->GetBool(OPT_VERIFY_OPEN_PATHS);
 	m_bCloseWindowWithEsc = m_pOptionsMgr->GetBool(OPT_CLOSE_WITH_ESC);
+	m_bAskMultiWindowClose = m_pOptionsMgr->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
 	m_bMultipleFileCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_MERGEDOCS);
 	m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
 	m_nAutoCompleteSource = m_pOptionsMgr->GetInt(OPT_AUTO_COMPLETE_SOURCE);
@@ -129,6 +132,7 @@ void CPropGeneral::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_SINGLE_INSTANCE, m_bSingleInstance == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_VERIFY_OPEN_PATHS, m_bVerifyPaths == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CLOSE_WITH_ESC, m_bCloseWindowWithEsc == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_ASK_MULTIWINDOW_CLOSE, m_bAskMultiWindowClose == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_MERGEDOCS, m_bMultipleFileCmp == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);

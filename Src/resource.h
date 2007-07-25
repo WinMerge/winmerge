@@ -421,6 +421,7 @@
 #define IDC_BUTTON2                     1332
 #define IDC_LFILTER_EDITSAVE            1333
 #define IDC_ABOUTBOX_ICON               1334
+#define IDC_ASK_MULTIWINDOW_CLOSE       1335
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -746,6 +747,7 @@
 #define IDS_OPT_EXPORT_DONE             18455
 #define IDS_OPT_IMPORT_ERR              18456
 #define IDS_OPT_EXPORT_ERR              18457
+#define IDS_CLOSEALL_WINDOWS            18458
 #define IDS_REGEXP_ERROR                18480
 #define IDS_REGEXP_NOMATCH              18481
 #define IDS_REGEXP_INVALID              18482
@@ -1143,7 +1145,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
 #define _APS_NEXT_COMMAND_VALUE         33167
-#define _APS_NEXT_CONTROL_VALUE         1334
+#define _APS_NEXT_CONTROL_VALUE         1336
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

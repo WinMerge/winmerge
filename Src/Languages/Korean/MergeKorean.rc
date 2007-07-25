@@ -735,18 +735,20 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "Winmerge 싱글 인스턴스만 허용함(&A)",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    LTEXT           "열기 대화상자 자동완성 기능(&P):",IDC_STATIC,19,62,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,71,147,41,CBS_DROPDOWNLIST | 
+    CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
+    LTEXT           "열기 대화상자 자동완성 기능(&P):",IDC_STATIC,19,72,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "다중 윈도우 기능 적용",IDC_STATIC,7,90,
+    GROUPBOX        "다중 윈도우 기능 적용",IDC_STATIC,7,100,
                     221,37
     CONTROL         "디렉토리 비교(&F)",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,101,206,10
-    CONTROL         "파일 비교(&E)",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
+    CONTROL         "파일 비교(&E)",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,121,206,10
     LTEXT           "몇몇 경고 메세지는 보이지 않게 할 수 있습니다. 초기화 하면 해당 메세지는 다시 나타납니다",
-                    IDC_STATIC,7,143,168,31
-    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,149,50,14,NOT
+                    IDC_STATIC,7,153,168,31
+    PUSHBUTTON      "초기화",IDC_RESET_ALL_MESSAGE_BOXES,178,159,50,14,NOT
                     WS_TABSTOP
 END
 
@@ -2400,6 +2402,7 @@ BEGIN
     IDS_OPT_EXPORT_DONE     "Options exported to the file."
     IDS_OPT_IMPORT_ERR      "Failed to import options from the file."
     IDS_OPT_EXPORT_ERR      "Failed to write options to the file."
+    IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
 END
 
 // Regular expression errors

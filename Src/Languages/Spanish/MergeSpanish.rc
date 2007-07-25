@@ -730,18 +730,20 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "&Permitir solo una instancia en ejecución",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
+    CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     LTEXT           "A&uto-completar en diálogos de apertura:",IDC_STATIC,19,72,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,71,147,41,CBS_DROPDOWNLIST | 
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Habilitar múltiples ventanas de comparación para",IDC_STATIC,7,90,
+    GROUPBOX        "Habilitar múltiples ventanas de comparación para",IDC_STATIC,7,100,
                     221,37
     CONTROL         "Comparación de &directorios",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,101,206,10
-    CONTROL         "Comparación de &ficheros",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
+    CONTROL         "Comparación de &ficheros",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,121,206,10
     LTEXT           "WinMerge permite ocultar algunos mensajes comunes. Pulse Reset para hacer todos los mensajes visibles de nuevo.",
-                    IDC_STATIC,7,143,168,31
-    PUSHBUTTON      "M&ostrar",IDC_RESET_ALL_MESSAGE_BOXES,178,149,50,14,NOT
+                    IDC_STATIC,7,153,168,31
+    PUSHBUTTON      "M&ostrar",IDC_RESET_ALL_MESSAGE_BOXES,178,159,50,14,NOT
                     WS_TABSTOP
 END
 
@@ -2398,6 +2400,7 @@ BEGIN
     IDS_OPT_EXPORT_DONE     "Opciones exportadas al fichero."
     IDS_OPT_IMPORT_ERR      "Fallo al importar las opciones del fichero."
     IDS_OPT_EXPORT_ERR      "Fallo al exportar las opciones al fichero."
+    IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
 END
 
 // Regular expression errors

@@ -1730,8 +1730,22 @@ void CMainFrame::ActivateFrame(int nCmdShow)
 		CMDIFrameWnd::ActivateFrame(nCmdShow);
 }
 
-void CMainFrame::OnClose() 
+/**
+ * @brief Called when mainframe is about to be closed.
+ * This function is called when mainframe is to be closed (not for
+ * file/compare windows.
+ */
+void CMainFrame::OnClose()
 {
+	// Check if there are multiple windows open and ask for closing them
+	BOOL bAskClosing = GetOptionsMgr()->GetBool(OPT_ASK_MULTIWINDOW_CLOSE);
+	if (bAskClosing)
+	{
+		bool quit = AskCloseConfirmation();
+		if (!quit)
+			return;
+	}
+
 	// Save last selected filter
 	CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, filter);
@@ -3292,4 +3306,25 @@ void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
 	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
 	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
 	pCmdUI->SetRadio(enabled && toolbar == 1);
+}
+
+/**
+ * @brief Ask user for close confirmation when closing the mainframe.
+ * This function asks if user wants to close multiple open windows when user
+ * selects (perhaps accidentally) to close WinMerge (application).
+ * @return true if user agreeds to close all windows.
+ */
+bool CMainFrame::AskCloseConfirmation()
+{
+	DirViewList dirViews;
+	MergeEditViewList mergeViews; 
+	GetAllViews(&mergeViews, NULL, &dirViews);
+
+	int ret = IDYES;
+	const int count = dirViews.GetCount() + (mergeViews.GetCount() / 2);
+	if (count > 1)
+	{
+		ret = AfxMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
+	}
+	return (ret == IDYES);
 }

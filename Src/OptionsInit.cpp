@@ -76,6 +76,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_CLOSE_WITH_ESC, true);
 	m_pOptions->InitOption(OPT_LOGGING, 0);
 	m_pOptions->InitOption(OPT_IGNORE_SMALL_FILETIME, false);
+	m_pOptions->InitOption(OPT_ASK_MULTIWINDOW_CLOSE, false);
 
 	m_pOptions->InitOption(OPT_CMP_IGNORE_WHITESPACE, (int)0);
 	m_pOptions->InitOption(OPT_CMP_IGNORE_BLANKLINES, false);

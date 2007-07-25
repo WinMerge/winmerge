@@ -128,6 +128,7 @@ public:
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
 	void StartFlashing();
+	bool AskCloseConfirmation();
 
 // Overrides
 	// ClassWizard generated virtual function overrides
