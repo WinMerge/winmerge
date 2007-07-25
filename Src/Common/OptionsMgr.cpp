@@ -125,7 +125,8 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 }
 
 /**
- * @brief Return option value
+ * @brief Return option value.
+ * @return Value as Variant type.
  */
 varprop::VariantValue COption::Get() const
 {
@@ -134,7 +135,8 @@ varprop::VariantValue COption::Get() const
 }
 
 /**
- * @brief Return option default value
+ * @brief Return option default value.
+ * @return Default value as varian type.
  */
 varprop::VariantValue COption::GetDefault() const
 {
@@ -143,7 +145,10 @@ varprop::VariantValue COption::GetDefault() const
 }
 
 /**
- * @brief Convert string to integer, or return false if not an integer number
+ * @brief Convert string to integer.
+ * @param [in] str String to convert.
+ * @param [out] val Converted integer.
+ * @return true if conversion succeeded, false otherwise.
  */
 static bool GetInt(LPCTSTR str, int & val)
 {
@@ -163,8 +168,13 @@ static bool GetInt(LPCTSTR str, int & val)
 }
 
 /**
- * @brief Convert integer value to desired type (or return false)
- */
+ * @brief Convert integer value to desired type.
+ * @param [in, out] value Value to convert.
+ * @param [in] nType Type to convert to.
+ * @return true if conversion succeeded, false otherwise.
+ * @note Only supports converting to boolean at the moment.
+ * @todo Add other conversions (string?).
+  */
 bool COption::ConvertInteger(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
 	int ivalue = value.GetInt();
@@ -184,15 +194,19 @@ bool COption::ConvertInteger(varprop::VariantValue & value, varprop::VT_TYPE nTy
 				value.SetBool(false);
 				return true;
 			}
-			return false;
 		}
 	}
 	return false;
 }
 
 /**
- * @brief Convert string value to desired type (or return false)
- */
+ * @brief Convert string value to desired type.
+ * @param [in, out] value Value to convert.
+ * @param [in] nType Type to convert to.
+ * @return true if conversion succeeded, false otherwise.
+ * @note Only supports converting to integer and boolean at the moment.
+ * @todo Add other conversions (float?).
+  */
 bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
 	CString svalue;
@@ -237,7 +251,12 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 }
 
 /**
- * @brief Convert value to desired type (or return false)
+ * @brief Convert value to desired type.
+ * @param [in, out] value Value to convert.
+ * @param [in] nType Type to convert to.
+ * @return true if conversion succeeded, false otherwise.
+ * @note Currently converts only strings and integers.
+ * @todo Add other conversions.
  */
 bool COption::ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
@@ -251,8 +270,10 @@ bool COption::ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType)
 /**
  * @brief Set option value.
  * 
- * Set new value for option. Type of value must match to type
- * set when option was initialised.
+ * Set new value for option. If automatic conversion is not allowed,
+ * type of value must match to type set when option was initialised.
+ * @param [in] value New value to set.
+ * @param [in] allowConversion Is automatic type conversion allowed?
  * @sa COption::Init()
  */
 int COption::Set(varprop::VariantValue value, bool allowConversion)
@@ -308,8 +329,9 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 /**
  * @brief Change default value for option.
  *
- * Set new value for option default value. Type of given value
- * must match to type given when option was initialised.
+ * Set new value for option default value.  If automatic conversion is not
+ * allowed, type of value must match to type set when option was initialised.
+ * @param [in] defaultValue New default value.
  * @sa COption::Init()
  */
 int COption::SetDefault(varprop::VariantValue defaultValue)
@@ -358,7 +380,7 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 }
 
 /**
- * @brief Reset options value to default value
+ * @brief Reset option's value to default value.
  */
 void COption::Reset()
 {
@@ -387,6 +409,8 @@ void COption::Reset()
 
 /**
  * @brief Add new option to list.
+ * @param [in] name Option's name.
+ * @param [in] defaultValue Option's initial and default value.
  */
 int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
 {
@@ -409,7 +433,9 @@ int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
 }
 
 /**
- * @brief Get option value from list by name
+ * @brief Get option value from list by name.
+ * @param [in] name Name of the option to get.
+ * @return Option's value as variant type.
  */
 varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 {
@@ -428,7 +454,8 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 }
 
 /**
- * @brief Return string option value
+ * @brief Return string option value.
+ * @param [in] name Option's name.
  */
 CString COptionsMgr::GetString(LPCTSTR name) const
 {
@@ -445,7 +472,8 @@ CString COptionsMgr::GetString(LPCTSTR name) const
 }
 
 /**
- * @brief Return integer option value
+ * @brief Return integer option value.
+ * @param [in] name Option's name.
  */
 int COptionsMgr::GetInt(LPCTSTR name) const
 {
@@ -455,6 +483,7 @@ int COptionsMgr::GetInt(LPCTSTR name) const
 
 /**
  * @brief Return boolean option value
+ * @param [in] name Option's name.
  */
 bool COptionsMgr::GetBool(LPCTSTR name) const
 {
@@ -463,7 +492,9 @@ bool COptionsMgr::GetBool(LPCTSTR name) const
 }
 
 /**
- * @brief Set new value for option
+ * @brief Set new value for option.
+ * @param [in] name Option's name.
+ * @param [in] value Option's new value.
  */
 int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 {
@@ -486,8 +517,10 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 	return retVal;
 }
 
-/*
+/**
  * @brief Type-convert and forward to SaveOption(CString, int)
+ * @param [in] name Option's name.
+ * @param [in] value Option's new value.
  */
 int COptionsMgr::SaveOption(LPCTSTR name, UINT value)
 {
@@ -495,8 +528,10 @@ int COptionsMgr::SaveOption(LPCTSTR name, UINT value)
 	return SaveOption(name, xvalue);
 }
 
-/*
+/**
  * @brief Type-convert and forward to SaveOption(CString, int)
+ * @param [in] name Option's name.
+ * @param [in] value Option's new value.
  */
 int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
 {
@@ -504,6 +539,10 @@ int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
 	return SaveOption(name, xvalue);
 }
 
+/**
+ * @brief Remove option from options list.
+ * @param [in] name Name of the option to remove.
+ */
 int COptionsMgr::RemoveOption(LPCTSTR name)
 {
 	COption tmpOption;
@@ -523,7 +562,8 @@ int COptionsMgr::RemoveOption(LPCTSTR name)
 }
 
 /**
- * @brief Reset option value to default
+ * @brief Reset option value to default.
+ * @param [in] name Name of the option to reset.
  */
 int COptionsMgr::Reset(LPCTSTR name)
 {
@@ -545,7 +585,9 @@ int COptionsMgr::Reset(LPCTSTR name)
 }
 
 /**
- * @brief Return default string value
+ * @brief Return default string value.
+ * @param [in] name Option's name.
+ * @param [out] value Option's default value.
  */
 int COptionsMgr::GetDefault(LPCTSTR name, CString & value) const
 {
@@ -581,6 +623,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, CString & value) const
 
 /**
  * @brief Return default number value
+ * @param [in] name Option's name.
+ * @param [out] value Option's default value.
  */
 int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 {
@@ -606,6 +650,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 
 /**
  * @brief Return default boolean value
+ * @param [in] name Option's name.
+ * @param [out] value Option's default value.
  */
 int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 {

@@ -44,19 +44,19 @@ using namespace std;
 #endif
 
 /**
- * @brief Return values for functions
+ * @brief Return values for functions.
  */
 enum
 {
-	OPT_OK				= 0,
-	OPT_ERR				= 1,
-	OPT_WRONG_TYPE		= 2,
-	OPT_UNKNOWN_TYPE	= 3,
-	OPT_NOTFOUND		= 4,
+	OPT_OK				= 0, /**< All good. */
+	OPT_ERR				= 1, /**< General error. */
+	OPT_WRONG_TYPE		= 2, /**< Option type was wrong. */
+	OPT_UNKNOWN_TYPE	= 3, /**< Given option type is not known. */
+	OPT_NOTFOUND		= 4, /**< Option name not found. */
 };
 
 /**
- * @brief Class to store option name, value and default value
+ * @brief Class to store option name, value and default value.
  */
 class COption
 {
@@ -79,13 +79,18 @@ protected:
 	bool ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType);
 
 private:
-	String m_strName;
-	varprop::VariantValue m_value;
-	varprop::VariantValue m_valueDef;
+	String m_strName; /**< Option's name. */
+	varprop::VariantValue m_value; /**< Option's current value. */
+	varprop::VariantValue m_valueDef; /**< Option's default value. */
 };
 
 /**
- * @brief Class to store list of options, and interface to saving & loading same
+ * @brief Class to store list of options.
+ * This class holds a list of all options (known to application). Options
+ * are accessed by their name.
+ *
+ * Option must be first initialized before it can be read/set. Initialization
+ * is done with InitOption() method.
  */
 class COptionsMgr
 {
@@ -126,11 +131,11 @@ public:
 
 private:
 	typedef map<String, COption> OptionsMap;
-	OptionsMap m_optionsMap;
+	OptionsMap m_optionsMap; /**< Map where options are stored. */
 };
 
 /**
- * @brief Registry-based implementation of OptionsMgr interface (q.v.)
+ * @brief Registry-based implementation of OptionsMgr interface (q.v.).
  */
 class CRegOptionsMgr: public COptionsMgr
 {
@@ -163,7 +168,7 @@ protected:
 		varprop::VariantValue value);
 
 private:
-	String m_registryRoot;
+	String m_registryRoot; /**< Registry path where to store options. */
 	bool m_serializing;
 
 };
