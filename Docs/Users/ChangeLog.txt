@@ -9,6 +9,7 @@ WinMerge 2.7.5.1
   - Catalan (r4370)
   - Simplified Chinese (r4369)
   - Danish (r4360)
+  - French (r4383)
 
 WinMerge 2.7.4 and earlier (also 2.6.x stable releases)
  See Changes.txt files in /Src and other folders.
