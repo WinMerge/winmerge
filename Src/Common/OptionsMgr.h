@@ -31,8 +31,17 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #ifndef _OPTIONS_MGR_
 #define _OPTIONS_MGR_
 
-#include <afxtempl.h>
+#include <map>
+#include <string>
 #include "varprop.h"
+
+using namespace std;
+
+#ifdef _UNICODE
+	typedef wstring String;
+#else
+	typedef string String;
+#endif
 
 /**
  * @brief Return values for functions
@@ -52,10 +61,15 @@ enum
 class COption
 {
 public:
+	COption();
+	COption(const COption& option);
+
+	COption& operator=(const COption& option);
+
 	int Init(LPCTSTR name, varprop::VariantValue defaultVal);
 	varprop::VariantValue Get() const;
 	varprop::VariantValue GetDefault() const;
-	int Set(varprop::VariantValue value, bool allowConversion = true);
+	int Set(varprop::VariantValue value, bool allowConversion = false);
 	int SetDefault(varprop::VariantValue defaultValue); 
 	void Reset();
 
@@ -65,7 +79,7 @@ protected:
 	bool ConvertType(varprop::VariantValue & value, varprop::VT_TYPE nType);
 
 private:
-	CString m_strName;
+	String m_strName;
 	varprop::VariantValue m_value;
 	varprop::VariantValue m_valueDef;
 };
@@ -111,7 +125,8 @@ public:
 	virtual void SetSerializing(bool serializing=true) = 0;
 
 private:
-	CMap<CString, LPCTSTR, COption, COption&> m_optionsMap;
+	typedef map<String, COption> OptionsMap;
+	OptionsMap m_optionsMap;
 };
 
 /**
@@ -141,14 +156,14 @@ public:
 	virtual void SetSerializing(bool serializing=true) { m_serializing = serializing; }
 
 protected:
-	void SplitName(CString strName, CString &strPath, CString &strValue);
+	void SplitName(String strName, String &strPath, String &strValue);
 	int LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 		varprop::VariantValue &value);
 	int SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
 		varprop::VariantValue value);
 
 private:
-	CString m_registryRoot;
+	String m_registryRoot;
 	bool m_serializing;
 
 };

@@ -34,6 +34,39 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 static bool GetInt(LPCTSTR str, int & val);
 
+/**
+ * @brief Default constructor.
+ */
+COption::COption()
+{
+}
+
+/**
+ * @brief Copy constructor.
+ * @param [in] option Object to copy.
+ */
+COption::COption(const COption& option)
+{
+	m_strName = option.m_strName;
+	m_value = option.m_value;
+	m_valueDef = option.m_valueDef;
+}
+
+/**
+ * @brief Assignment operator override.
+ * @param [in] option Object to copy.
+ * @return Copy of given object.
+ */
+COption& COption::operator=(const COption& option)
+{
+	if (this != &option)
+	{
+		m_strName = option.m_strName;
+		m_value = option.m_value;
+		m_valueDef = option.m_valueDef;
+	}
+	return *this;
+}
 
 /**
  * @brief Set name, value and default value for option
@@ -46,8 +79,11 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 {
 	int retVal = OPT_OK;
 
-	// Dont' check type here since we are initing it!
 	m_strName = name;
+	if (m_strName.empty())
+		return OPT_ERR;
+
+	// Dont' check type here since we are initing it!
 	varprop::VT_TYPE inType = defaultValue.GetType();
 	TCHAR *tmp = NULL;
 
@@ -232,6 +268,7 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 			if (ConvertType(value, m_value.GetType()))
 				return Set(value);
 		}
+		_RPTF1(_CRT_ERROR, "Wrong type for option: %s", m_strName);
 		return OPT_WRONG_TYPE;
 	}
 
@@ -282,7 +319,10 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 	// Check that type matches
 	varprop::VT_TYPE inType = defaultValue.GetType();
 	if (inType != m_valueDef.GetType())
+	{
+		_RPTF1(_CRT_ERROR, "Wrong type for option: %s!", m_strName);
 		return OPT_WRONG_TYPE;
+	}
 
 	TCHAR * tmp = NULL;
 	switch (inType)
@@ -352,10 +392,18 @@ int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
 {
 	int retVal = OPT_OK;
 	COption tmpOption;
-	
+
+#ifdef _DEBUG
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
+		_RPTF1(_CRT_WARN, "Re-adding option: %s !", name);
+#endif
+
 	retVal = tmpOption.Init(name, defaultValue);
 	if (retVal == OPT_OK)
-		m_optionsMap.SetAt(name, tmpOption);
+		m_optionsMap[name] = tmpOption;
+	else
+		_RPTF1(_CRT_ERROR, "Could not add option: %s!", name);
 
 	return retVal;
 }
@@ -365,14 +413,16 @@ int COptionsMgr::AddOption(LPCTSTR name, varprop::VariantValue defaultValue)
  */
 varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 {
-	COption tmpOption;
 	varprop::VariantValue value;
-	BOOL optionFound = FALSE;
 
-	optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
-		value = tmpOption.Get();
+		value = found->second.Get();
+	}
+	else
+	{
+		_RPTF1(_CRT_ERROR, "Could not find option: %s!", name);
 	}
 	return value;
 }
@@ -399,8 +449,7 @@ CString COptionsMgr::GetString(LPCTSTR name) const
  */
 int COptionsMgr::GetInt(LPCTSTR name) const
 {
-	varprop::VariantValue val;
-	val = Get(name);
+	varprop::VariantValue val = Get(name);
 	return val.GetInt();
 }
 
@@ -409,8 +458,7 @@ int COptionsMgr::GetInt(LPCTSTR name) const
  */
 bool COptionsMgr::GetBool(LPCTSTR name) const
 {
-	varprop::VariantValue val;
-	val = Get(name);
+	varprop::VariantValue val = Get(name);
 	return val.GetBool();
 }
 
@@ -419,20 +467,20 @@ bool COptionsMgr::GetBool(LPCTSTR name) const
  */
 int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 {
-	COption tmpOption;
-	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
-	optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound == TRUE)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
 		// Allow automatic conversion so we don't bother callsites about this!
+		COption tmpOption = found->second;
 		retVal = tmpOption.Set(value, true);
 		if (retVal == OPT_OK)
-			m_optionsMap.SetAt(name, tmpOption);
+			m_optionsMap[name] = tmpOption;
 	}
 	else
 	{
+		_RPTF1(_CRT_ERROR, "Could not set option: %s", name);
 		retVal = OPT_NOTFOUND;
 	}
 	return retVal;
@@ -461,10 +509,10 @@ int COptionsMgr::RemoveOption(LPCTSTR name)
 	COption tmpOption;
 	int retVal = OPT_OK;
 
-	BOOL optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
-		BOOL succeeded = m_optionsMap.RemoveKey(name);
+		BOOL succeeded = m_optionsMap.erase(name);
 		if (!succeeded)
 			retVal = OPT_NOTFOUND;
 	}
@@ -483,11 +531,11 @@ int COptionsMgr::Reset(LPCTSTR name)
 	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
-	optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound == TRUE)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
 		tmpOption.Reset();
-		m_optionsMap.SetAt(name, tmpOption);
+		m_optionsMap[name] = tmpOption;
 	}
 	else
 	{
@@ -505,8 +553,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, CString & value) const
 	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
-	optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound == TRUE)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
 		varprop::VariantValue val = tmpOption.GetDefault();
 		if (val.IsString())
@@ -540,8 +588,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
-	optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound == TRUE)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
 		varprop::VariantValue val = tmpOption.GetDefault();
 		if (val.IsInt())
@@ -565,8 +613,8 @@ int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
-	optionFound = m_optionsMap.Lookup(name, tmpOption);
-	if (optionFound == TRUE)
+	OptionsMap::const_iterator found = m_optionsMap.find(name);
+	if (found != m_optionsMap.end())
 	{
 		varprop::VariantValue val = tmpOption.GetDefault();
 		if (val.IsBool())
@@ -595,14 +643,12 @@ int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 int COptionsMgr::ExportOptions(CString filename)
 {
 	int retVal = OPT_OK;
-	POSITION pos = m_optionsMap.GetStartPosition();
-	while (pos && retVal == OPT_OK)
+	OptionsMap::iterator optIter = m_optionsMap.begin();
+	while (optIter != m_optionsMap.end() && retVal == OPT_OK)
 	{
-		COption option;
 		CString name;
 		CString strVal;
-		m_optionsMap.GetNextAssoc(pos, name, option);
-		varprop::VariantValue value = option.Get();
+		varprop::VariantValue value = optIter->second.Get();
 		if (value.GetType() == varprop::VT_BOOL)
 		{
 			if (value.GetBool())
@@ -647,7 +693,6 @@ int COptionsMgr::ExportOptions(CString filename)
 int COptionsMgr::ImportOptions(CString filename)
 {
 	int retVal = OPT_OK;
-	CString name;
 	const int BufSize = 10240; // This should be enough for a long time..
 	TCHAR buf[BufSize] = {0};
 
@@ -699,20 +744,20 @@ int COptionsMgr::ImportOptions(CString filename)
  * @param [out] srPath Path (key) in registry
  * @param [out] strValue Value in registry
  */
-void CRegOptionsMgr::SplitName(CString strName, CString &strPath,
-	CString &strValue)
+void CRegOptionsMgr::SplitName(String strName, String &strPath,
+	String &strValue)
 {
-	int pos = strName.ReverseFind('/');
+	int pos = strName.rfind('/');
 	if (pos > 0)
 	{
-		int len = strName.GetLength();
-		strValue = strName.Right(len - pos - 1);
-		strPath = strName.Left(pos);
+		int len = strName.length();
+		strValue = strName.substr(pos + 1, len - pos - 1); //Right(len - pos - 1);
+		strPath = strName.substr(0, pos);  //Left(pos);
 	}
 	else
 	{
 		strValue = strName;
-		strPath.Empty();
+		strPath.clear();
 	}
 }
 
@@ -733,8 +778,8 @@ void CRegOptionsMgr::SplitName(CString strName, CString &strPath,
 int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	varprop::VariantValue &value)
 {
-	CString strPath;
-	CString strValueName;
+	String strPath;
+	String strValueName;
 	LONG retValReg = 0;
 	LPBYTE pData = NULL;
 	DWORD type = 0;
@@ -746,7 +791,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	SplitName(strName, strPath, strValueName);
 
 	// Get type and size of value in registry
-	retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName, 0, &type,
+	retValReg = RegQueryValueEx(hKey, strValueName.c_str(), 0, &type,
 		NULL, &size);
 	
 	if (retValReg == ERROR_SUCCESS)
@@ -757,7 +802,7 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 		ZeroMemory(pData, size);
 
 		// Get data
-		retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName,
+		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 			0, &type, pData, &size);
 	}
 	
@@ -874,16 +919,18 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 		return AddOption(name, defaultValue);
 
 	// Figure out registry path, for saving value
-	CString strPath;
-	CString strValueName;
+	String strPath;
+	String strValueName;
 	SplitName(name, strPath, strValueName);
-	CString strRegPath = m_registryRoot + strPath;
+	String strRegPath(m_registryRoot);
+	strRegPath += strPath;
 
 	// Open key. Create new key if it does not exist.
 	HKEY hKey = NULL;
 	DWORD action = 0;
-	LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath, NULL, _T(""),
-		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
+	LONG retValReg = RegCreateKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
+		NULL, _T(""), REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL,
+		&hKey, &action);
 
 	if (retValReg != ERROR_SUCCESS)
 		return OPT_ERR;
@@ -894,7 +941,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 	DWORD type = 0;
 	BYTE dataBuf[MAX_PATH] = {0};
 	DWORD size = MAX_PATH;
-	retValReg = RegQueryValueEx(hKey, (LPCTSTR)strValueName,
+	retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
 		0, &type, dataBuf, &size);
 
 	// Actually save value into our in-memory options table
@@ -906,7 +953,7 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, varprop::VariantValue defaultValue)
 		// Value didn't exist. Save default value to registry
 		if (retValReg == ERROR_FILE_NOT_FOUND)
 		{
-			retVal = SaveValueToReg(hKey, strValueName,	defaultValue);
+			retVal = SaveValueToReg(hKey, strValueName.c_str(), defaultValue);
 		}
 		// Value already exists so read it.
 		else if (retValReg == ERROR_SUCCESS || ERROR_MORE_DATA)
@@ -978,9 +1025,9 @@ int CRegOptionsMgr::InitOption(LPCTSTR name, bool defaultValue)
 int CRegOptionsMgr::LoadOption(LPCTSTR name)
 {
 	varprop::VariantValue value;
-	CString strPath;
-	CString strValueName;
-	CString strRegPath = m_registryRoot;
+	String strPath;
+	String strValueName;
+	String strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
@@ -996,7 +1043,7 @@ int CRegOptionsMgr::LoadOption(LPCTSTR name)
 	
 	if (retVal == OPT_OK)
 	{
-		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, (LPCTSTR)strRegPath,
+		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
 			NULL, KEY_READ, &hKey);
 
 		if (retValReg == ERROR_SUCCESS)
@@ -1019,9 +1066,9 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 	if (!m_serializing) return OPT_OK;
 
 	varprop::VariantValue value;
-	CString strPath;
-	CString strValueName;
-	CString strRegPath(m_registryRoot);
+	String strPath;
+	String strValueName;
+	String strRegPath(m_registryRoot);
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	int valType = varprop::VT_NULL;
@@ -1037,12 +1084,12 @@ int CRegOptionsMgr::SaveOption(LPCTSTR name)
 	
 	if (retVal == OPT_OK)
 	{
-		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, (LPCTSTR)strRegPath,
+		retValReg = RegOpenKeyEx(HKEY_CURRENT_USER, strRegPath.c_str(),
 			NULL, KEY_WRITE, &hKey);
 
 		if (retValReg == ERROR_SUCCESS)
 		{
-			retVal = SaveValueToReg(hKey, strValueName, value);
+			retVal = SaveValueToReg(hKey, strValueName.c_str(), value);
 			RegCloseKey(hKey);
 		}
 		else
@@ -1113,17 +1160,17 @@ int CRegOptionsMgr::RemoveOption(LPCTSTR name)
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	int retVal = OPT_OK;
-	CString strRegPath(m_registryRoot);
-	CString strPath;
-	CString strValueName;
+	String strRegPath(m_registryRoot);
+	String strPath;
+	String strValueName;
 
 	SplitName(name, strPath, strValueName);
 	strRegPath += strPath;
 
-	retValReg = RegOpenKey(HKEY_CURRENT_USER, (LPCTSTR)strRegPath, &hKey);
+	retValReg = RegOpenKey(HKEY_CURRENT_USER, strRegPath.c_str(), &hKey);
 	if (retValReg == ERROR_SUCCESS)
 	{
-		retValReg = RegDeleteValue(hKey, strValueName);
+		retValReg = RegDeleteValue(hKey, strValueName.c_str());
 		if (retValReg != ERROR_SUCCESS)
 		{
 			retVal = OPT_ERR;
@@ -1175,4 +1222,3 @@ int CRegOptionsMgr::SetRegRootKey(CString key)
 
 	return retVal;
 }
-
