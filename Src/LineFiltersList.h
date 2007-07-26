@@ -4,7 +4,7 @@
  * @brief Declaration file for LineFiltersList class
  */
 // ID line follows -- this is updated by SVN
-// $Id: SyntaxColors.h 3126 2006-03-04 02:36:46Z elsapo $
+// $Id$
 
 #ifndef _LINEFILTERS_LIST_H_
 #define _LINEFILTERS_LIST_H_

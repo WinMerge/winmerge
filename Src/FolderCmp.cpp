@@ -4,7 +4,7 @@
  * @brief Implementation file for FolderCmp
  */
 // ID line follows -- this is updated by SVN
-// $Id: files.cpp 3845 2006-11-24 22:32:35Z kimmov $
+// $Id$
 
 
 #include "stdafx.h"

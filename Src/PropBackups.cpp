@@ -4,7 +4,7 @@
  * @brief Implementation of CPropBackups propertysheet
  */
 // ID line follows -- this is updated by SVN
-// $Id: PropArchive.cpp 3126 2006-03-04 02:36:46Z elsapo $
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"

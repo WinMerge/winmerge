@@ -5,7 +5,7 @@
  *
  */
 // ID line follows -- this is updated by SVN
-// $Id: PropArchive.h 3126 2006-03-04 02:36:46Z elsapo $
+// $Id$
 
 #ifndef _PROPBACKUPS_H_
 #define _PROPBACKUPS_H_

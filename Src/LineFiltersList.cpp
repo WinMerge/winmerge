@@ -4,7 +4,7 @@
  * @brief Implementation for LineFiltersList class.
  */
 // ID line follows -- this is updated by SVN
-// $Id: SyntaxColors.cpp 3154 2006-03-10 18:24:58Z elsapo $
+// $Id$
 
 #include "stdafx.h"
 #include "LineFiltersList.h"
