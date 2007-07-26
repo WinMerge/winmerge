@@ -235,8 +235,8 @@ CMainFrame::CMainFrame()
 	}
 
 	// Check if filter folder is set, and create it if not
-	CString pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-	if (pathMyFolders.IsEmpty())
+	String pathMyFolders = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+	if (pathMyFolders.empty())
 	{
 		// No filter path, set it to default and make sure it exists.
 		CString pathFilters = theApp.GetDefaultFilterUserPath(TRUE);
@@ -955,8 +955,8 @@ void CMainFrame::OnOptions()
 	if (rv == IDOK)
 	{
 		// Set new filterpath
-		CString filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
-		theApp.m_globalFileFilter.SetUserFilterPath(filterPath);
+		String filterPath = GetOptionsMgr()->GetString(OPT_FILTER_USERPATH);
+		theApp.m_globalFileFilter.SetUserFilterPath(filterPath.c_str());
 
 		UpdateCodepageModule();
 		// Call the wrapper to set m_bAllowMixedEol (the wrapper updates the registry)
@@ -1263,7 +1263,7 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			CPropBackups::FOLDER_GLOBAL)
 		{
 			// Put backups to global folder defined in options
-			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
+			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER).c_str();
 			if (bakPath.IsEmpty())
 				bakPath = path;
 		}
@@ -1473,7 +1473,7 @@ void CMainFrame::GetFontProperties()
 	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_PITCHANDFAMILY);
 
 	_tcscpy(lfnew.lfFaceName,
-		GetOptionsMgr()->GetString(OPT_FONT_FILECMP_FACENAME));
+		GetOptionsMgr()->GetString(OPT_FONT_FILECMP_FACENAME).c_str());
 	m_lfDiff = lfnew;
 
 	// Get DirView font
@@ -1494,7 +1494,7 @@ void CMainFrame::GetFontProperties()
 	lfnew.lfPitchAndFamily = GetOptionsMgr()->GetInt(OPT_FONT_DIRCMP_PITCHANDFAMILY);
 
 	_tcscpy(lfnew.lfFaceName,
-		GetOptionsMgr()->GetString(OPT_FONT_DIRCMP_FACENAME));
+		GetOptionsMgr()->GetString(OPT_FONT_DIRCMP_FACENAME).c_str());
     m_lfDir = lfnew;
 }
 
@@ -2288,7 +2288,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	CString sExecutable;
 	CString sCmd;
 	
-	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
+	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD).c_str();
 	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
 
 	SplitFilename(sExecutable, NULL, NULL, &ext);
@@ -2713,14 +2713,14 @@ void CMainFrame::OnFileOpenproject()
 	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	
 	// get the default projects path
-	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
-	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath, title, IDS_PROJECTFILES,
-			TRUE))
+	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
+	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath.c_str(), title,
+			IDS_PROJECTFILES, TRUE))
 		return;
 	
 	strProjectPath = paths_GetParentPath(sFilepath);
 	// store this as the new project path
-	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH,strProjectPath);
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath.c_str());
 
 	theApp.LoadAndOpenProjectFile(sFilepath);
 }
@@ -2923,8 +2923,8 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 	
 	// checkin operation
 	args.Format(_T("checkin -nc \"%s\""), sname);
-	CString vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
-	HANDLE hVss = RunIt(vssPath, args, TRUE, FALSE);
+	String vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
+	HANDLE hVss = RunIt(vssPath.c_str(), args, TRUE, FALSE);
 	if (hVss!=INVALID_HANDLE_VALUE)
 	{
 		WaitForSingleObject(hVss, INFINITE);
@@ -2937,7 +2937,7 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 			{
 				// undo checkout operation
 				args.Format(_T("uncheckout -rm \"%s\""), sname);
-				HANDLE hVss = RunIt(vssPath, args, TRUE, TRUE);
+				HANDLE hVss = RunIt(vssPath.c_str(), args, TRUE, TRUE);
 				if (hVss!=INVALID_HANDLE_VALUE)
 				{
 					WaitForSingleObject(hVss, INFINITE);

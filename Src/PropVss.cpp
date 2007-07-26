@@ -73,7 +73,7 @@ END_MESSAGE_MAP()
 void CPropVss::ReadOptions()
 {
 	m_nVerSys = m_pOptionsMgr->GetInt(OPT_VCS_SYSTEM);
-	m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH);
+	m_strPath = m_pOptionsMgr->GetString(OPT_VSS_PATH).c_str();
 }
 
 /** 

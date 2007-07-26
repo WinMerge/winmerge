@@ -69,7 +69,7 @@ void CPropBackups::ReadOptions()
 	m_bCreateForFolderCmp = m_pOptionsMgr->GetBool(OPT_BACKUP_FOLDERCMP);
 	m_bCreateForFileCmp = m_pOptionsMgr->GetBool(OPT_BACKUP_FILECMP);
 	m_nBackupFolder = m_pOptionsMgr->GetInt(OPT_BACKUP_LOCATION);
-	m_sGlobalFolder = m_pOptionsMgr->GetString(OPT_BACKUP_GLOBALFOLDER);
+	m_sGlobalFolder = m_pOptionsMgr->GetString(OPT_BACKUP_GLOBALFOLDER).c_str();
 	m_bAppendBak = m_pOptionsMgr->GetBool(OPT_BACKUP_ADD_BAK);
 	m_bAppendTime = m_pOptionsMgr->GetBool(OPT_BACKUP_ADD_TIME);
 }

@@ -97,14 +97,14 @@ class COptionsMgr
 public:
 	int AddOption(LPCTSTR name, varprop::VariantValue defaultValue);
 	varprop::VariantValue Get(LPCTSTR name) const;
-	CString GetString(LPCTSTR name) const;
+	String GetString(LPCTSTR name) const;
 	int GetInt(LPCTSTR name) const;
 	void SetInt(LPCTSTR name, int value) { SaveOption(name, value); }
 	bool GetBool(LPCTSTR name) const;
 	void SetBool(LPCTSTR name, bool value) { SaveOption(name, value); }
 	int Set(LPCTSTR name, varprop::VariantValue value);
 	int Reset(LPCTSTR name);
-	int GetDefault(LPCTSTR name, CString & value) const;
+	int GetDefault(LPCTSTR name, String & value) const;
 	int GetDefault(LPCTSTR name, DWORD & value) const;
 	int GetDefault(LPCTSTR name, bool & value) const;
 
@@ -124,8 +124,8 @@ public:
 
 	virtual int RemoveOption(LPCTSTR name);
 
-	virtual int ExportOptions(CString filename);
-	virtual int ImportOptions(CString filename);
+	virtual int ExportOptions(LPCTSTR filename);
+	virtual int ImportOptions(LPCTSTR filename);
 	
 	virtual void SetSerializing(bool serializing=true) = 0;
 
@@ -143,7 +143,7 @@ public:
 	CRegOptionsMgr() : m_serializing(true) { }
 
 	int LoadOption(LPCTSTR name);
-	int SetRegRootKey(CString path);
+	int SetRegRootKey(LPCTSTR path);
 
 	virtual int InitOption(LPCTSTR name, varprop::VariantValue defaultValue);
 	virtual int InitOption(LPCTSTR name, LPCTSTR defaultValue);

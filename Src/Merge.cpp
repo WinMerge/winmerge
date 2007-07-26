@@ -291,8 +291,8 @@ BOOL CMergeApp::InitInstance()
 
 	// Read last used filter from registry
 	// If filter fails to set, reset to default
-	const CString filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
-	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filterString);
+	const String filterString = m_pOptions->GetString(OPT_FILEFILTER_CURRENT);
+	BOOL bFilterSet = theApp.m_globalFileFilter.SetFilter(filterString.c_str());
 	if (!bFilterSet)
 	{
 		CString filter = theApp.m_globalFileFilter.GetFilterNameOrMask();

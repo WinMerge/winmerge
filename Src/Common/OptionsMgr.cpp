@@ -457,11 +457,11 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
  * @brief Return string option value.
  * @param [in] name Option's name.
  */
-CString COptionsMgr::GetString(LPCTSTR name) const
+String COptionsMgr::GetString(LPCTSTR name) const
 {
 	varprop::VariantValue val = Get(name);
 	TCHAR * tmp = val.GetString();
-	CString retval;
+	String retval;
 	if (tmp != NULL)
 	{
 		retval = tmp;
@@ -589,7 +589,7 @@ int COptionsMgr::Reset(LPCTSTR name)
  * @param [in] name Option's name.
  * @param [out] value Option's default value.
  */
-int COptionsMgr::GetDefault(LPCTSTR name, CString & value) const
+int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
 {
 	COption tmpOption;
 	BOOL optionFound = FALSE;
@@ -686,14 +686,14 @@ int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
  * - OPT_OK when succeeds
  * - OPT_ERR when writing to the file fails
  */
-int COptionsMgr::ExportOptions(CString filename)
+int COptionsMgr::ExportOptions(LPCTSTR filename)
 {
 	int retVal = OPT_OK;
 	OptionsMap::iterator optIter = m_optionsMap.begin();
 	while (optIter != m_optionsMap.end() && retVal == OPT_OK)
 	{
-		CString name;
-		CString strVal;
+		const String name(optIter->first);
+		String strVal;
 		varprop::VariantValue value = optIter->second.Get();
 		if (value.GetType() == varprop::VT_BOOL)
 		{
@@ -704,7 +704,9 @@ int COptionsMgr::ExportOptions(CString filename)
 		}
 		else if (value.GetType() == varprop::VT_INT)
 		{
-			strVal.Format(_T("%d"), value.GetInt());
+			TCHAR num[10] = {0};
+			_itot(value.GetInt(), num, 10);
+			strVal = num;
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
@@ -717,7 +719,8 @@ int COptionsMgr::ExportOptions(CString filename)
 			}
 		}
 
-		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name, strVal, filename);
+		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name.c_str(),
+				strVal.c_str(), filename);
 		if (!bRet)
 			retVal = OPT_ERR;
 	}
@@ -736,7 +739,7 @@ int COptionsMgr::ExportOptions(CString filename)
  * - OPT_OK when succeeds
  * - OPT_NOTFOUND if file wasn't found or didn't contain values
  */
-int COptionsMgr::ImportOptions(CString filename)
+int COptionsMgr::ImportOptions(LPCTSTR filename)
 {
 	int retVal = OPT_OK;
 	const int BufSize = 10240; // This should be enough for a long time..
@@ -1236,19 +1239,20 @@ int CRegOptionsMgr::RemoveOption(LPCTSTR name)
  * Sets path used as root path when loading/saving options. Paths
  * given to other functions are relative to this path.
  */
-int CRegOptionsMgr::SetRegRootKey(CString key)
+int CRegOptionsMgr::SetRegRootKey(LPCTSTR key)
 {
+	String keyname(key);
 	HKEY hKey = NULL;
 	LONG retValReg = 0;
 	DWORD action = 0;
 	int retVal = OPT_OK;
 	int ind = 0;
 
-	ind = key.Find(_T("Software"), 0);
+	ind = keyname.find(_T("Software"));
 	if (ind != 0)
-		key.Insert(0, _T("Software\\"));
+		keyname.insert(0, _T("Software\\"));
 	
-	m_registryRoot = key;
+	m_registryRoot = keyname;
 
 	retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, key, NULL, _T(""),
 		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);

@@ -92,11 +92,11 @@ END_MESSAGE_MAP()
  */
 void CPropRegistry::ReadOptions()
 {
-	m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD);
+	m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD).c_str();
 	GetContextRegValues();
 	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
 	m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
-	m_strUserFilterPath = m_pOptionsMgr->GetString(OPT_FILTER_USERPATH);
+	m_strUserFilterPath = m_pOptionsMgr->GetString(OPT_FILTER_USERPATH).c_str();
 }
 
 /** 

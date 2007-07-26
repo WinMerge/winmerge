@@ -149,14 +149,14 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 	{
 		valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(valuename, _T(""));
-		CString filter = m_pOptionsMgr->GetString(valuename);
+		String filter = m_pOptionsMgr->GetString(valuename);
 		
 		valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(valuename, (int)TRUE);
 		int enabled = m_pOptionsMgr->GetInt(valuename);
 		BOOL bEnabled = enabled ? TRUE : FALSE;
 
-		AddFilter(filter, bEnabled);
+		AddFilter(filter.c_str(), bEnabled);
 	}
 }
 

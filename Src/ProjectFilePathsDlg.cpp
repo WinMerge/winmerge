@@ -240,10 +240,10 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 {
 	// get the default projects path
 	CString strProjectFileName;
-	CString strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
+	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
 
-	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath, NULL,
-			IDS_PROJECTFILES, bOpen))
+	if (!::SelectFile(GetSafeHwnd(), strProjectFileName, strProjectPath.c_str(),
+			NULL, IDS_PROJECTFILES, bOpen))
 		return _T("");
 
 	if (strProjectFileName.IsEmpty())
@@ -265,7 +265,7 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 	// get the path part from the filename
 	strProjectPath = paths_GetParentPath(strProjectFileName);
 	// store this as the new project path
-	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath);
+	GetOptionsMgr()->SaveOption(OPT_PROJECTS_PATH, strProjectPath.c_str());
 	return strProjectFileName;
 }
 
