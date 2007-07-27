@@ -29,6 +29,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 #include "stdafx.h"
+#include <algorithm>
 #include "varprop.h"
 #include "OptionsMgr.h"
 
@@ -209,7 +210,7 @@ bool COption::ConvertInteger(varprop::VariantValue & value, varprop::VT_TYPE nTy
   */
 bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
-	CString svalue;
+	String svalue;
 	TCHAR * tmpVal = value.GetString();
 	if (tmpVal != NULL)
 	{
@@ -224,7 +225,7 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 		// Convert string to integer
 		{
 			int val=0;
-			if (!::GetInt(svalue, val))
+			if (!::GetInt(svalue.c_str(), val))
 				return false;
 			value.SetInt(val);
 			return true;
@@ -232,14 +233,15 @@ bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nTyp
 	case varprop::VT_BOOL:
 		// Convert string to boolean
 		{
-			if (svalue == _T("1") || !svalue.CompareNoCase(_T("Yes"))
-				|| !svalue.CompareNoCase(_T("True")))
+			std::transform(svalue.begin(), svalue.end(), svalue.begin(), ::tolower);
+			if (svalue == _T("1") || !svalue.compare(_T("yes"))
+				|| !svalue.compare(_T("true")))
 			{
 				value.SetBool(true);
 				return true;
 			}
-			if (svalue == _T("0") || !svalue.CompareNoCase(_T("No"))
-				|| !svalue.CompareNoCase(_T("False")))
+			if (svalue == _T("0") || !svalue.compare(_T("no"))
+				|| !svalue.compare(_T("false")))
 			{
 				value.SetBool(false);
 				return true;
@@ -518,7 +520,7 @@ int COptionsMgr::Set(LPCTSTR name, varprop::VariantValue value)
 }
 
 /**
- * @brief Type-convert and forward to SaveOption(CString, int)
+ * @brief Type-convert and forward to SaveOption(String, int)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
@@ -529,7 +531,7 @@ int COptionsMgr::SaveOption(LPCTSTR name, UINT value)
 }
 
 /**
- * @brief Type-convert and forward to SaveOption(CString, int)
+ * @brief Type-convert and forward to SaveOption(String, int)
  * @param [in] name Option's name.
  * @param [in] value Option's new value.
  */
@@ -601,7 +603,7 @@ int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
 		varprop::VariantValue val = tmpOption.GetDefault();
 		if (val.IsString())
 		{
-			CString tmpval;
+			String tmpval;
 			TCHAR *tmpstr = val.GetString();
 			if (tmpstr != NULL)
 			{
