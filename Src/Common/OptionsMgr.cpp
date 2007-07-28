@@ -30,6 +30,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #include "stdafx.h"
 #include <algorithm>
+#include "UnicodeString.h"
 #include "varprop.h"
 #include "OptionsMgr.h"
 

@@ -1529,6 +1529,10 @@ SOURCE=.\Common\Ucs2Utf8.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\UnicodeString.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\unicoder.h
 # End Source File
 # Begin Source File

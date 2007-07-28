@@ -32,16 +32,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 #define _OPTIONS_MGR_
 
 #include <map>
-#include <string>
+#include "UnicodeString.h"
 #include "varprop.h"
 
-using namespace std;
-
-#ifdef _UNICODE
-	typedef wstring String;
-#else
-	typedef string String;
-#endif
 
 /**
  * @brief Return values for functions.
@@ -83,6 +76,8 @@ private:
 	varprop::VariantValue m_value; /**< Option's current value. */
 	varprop::VariantValue m_valueDef; /**< Option's default value. */
 };
+
+typedef std::map<String, COption> OptionsMap;
 
 /**
  * @brief Class to store list of options.
@@ -130,7 +125,6 @@ public:
 	virtual void SetSerializing(bool serializing=true) = 0;
 
 private:
-	typedef map<String, COption> OptionsMap;
 	OptionsMap m_optionsMap; /**< Map where options are stored. */
 };
 
