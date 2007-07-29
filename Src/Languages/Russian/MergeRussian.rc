@@ -426,6 +426,7 @@ BEGIN
     BEGIN
         MENUITEM "&Фильтры...",                 ID_TOOLS_FILTERS
         MENUITEM "&Создать патч...",            ID_TOOLS_GENERATEPATCH
+        MENUITEM "Generate &Report...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Плагины"
     BEGIN
