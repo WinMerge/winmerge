@@ -5,7 +5,7 @@
  *
  * @date  Created: 2003-08-19
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -344,7 +344,7 @@ static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, BOOL
 	{
 		pCtxt->UpdateVersion(di, bLeft);
 	}
-	return dfi.version;
+	return dfi.version.c_str();
 }
 static CString ColLversionGet(const CDiffContext * pCtxt, const void *p)
 {
@@ -412,7 +412,7 @@ static CString ColBinGet(const CDiffContext *, const void *p)
 static CString ColAttrGet(const CDiffContext *, const void *p)
 {
 	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
-	return r.toString();
+	return r.toString().c_str();
 }
 static CString ColEncodingGet(const CDiffContext *, const void *p)
 {
@@ -555,7 +555,7 @@ static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
 	const DiffFileFlags &s = *static_cast<const DiffFileFlags *>(q);
-	return r.toString().Compare(s.toString());
+	return r.toString().compare(s.toString().c_str());
 }
 static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 {

@@ -531,8 +531,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 	GetParentFrame()->SetLastCompareResult(m_diffList.GetSignificantDiffs());
 
-	m_pRescanFileInfo[0]->Update(m_filePaths.GetLeft());
-	m_pRescanFileInfo[1]->Update(m_filePaths.GetRight());
+	m_pRescanFileInfo[0]->Update((LPCTSTR)m_filePaths.GetLeft());
+	m_pRescanFileInfo[1]->Update((LPCTSTR)m_filePaths.GetRight());
 
 	if (bLeftFileChanged)
 	{
@@ -1197,8 +1197,8 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	if (nSaveErrorCode == SAVE_DONE)
 	{
 		m_ptBuf[nBuffer]->SetModified(FALSE);
-		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths.GetPath(nBuffer));
+		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths.GetPath(nBuffer));
 		m_filePaths.SetPath(nBuffer, strSavePath);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = TRUE;
@@ -1259,8 +1259,8 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	// Saving succeeded with given/selected filename
 	if (nSaveErrorCode == SAVE_DONE)
 	{
-		m_pSaveFileInfo[nBuffer]->Update(strSavePath);
-		m_pRescanFileInfo[nBuffer]->Update(m_filePaths.GetPath(nBuffer));
+		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
+		m_pRescanFileInfo[nBuffer]->Update((LPCTSTR)m_filePaths.GetPath(nBuffer));
 		m_filePaths.SetPath(nBuffer, strSavePath);
 		UpdateHeaderPath(nBuffer);
 		bSaveSuccess = TRUE;
@@ -2752,8 +2752,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			GetMainFrame()->m_strLeftDesc.Empty();
 		}
 
-		m_pSaveFileInfo[0]->Update(sLeftFile);
-		m_pRescanFileInfo[0]->Update(sLeftFile);
+		m_pSaveFileInfo[0]->Update((LPCTSTR)sLeftFile);
+		m_pRescanFileInfo[0]->Update((LPCTSTR)sLeftFile);
 
 		// Load left side file
 		nLeftSuccess = LoadFile(sLeftFile, 0, bROLeft, filelocLeft.encoding.m_codepage);
@@ -2780,8 +2780,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			GetMainFrame()->m_strRightDesc.Empty();
 		}
 
-		m_pSaveFileInfo[1]->Update(sRightFile);
-		m_pRescanFileInfo[1]->Update(sRightFile);
+		m_pSaveFileInfo[1]->Update((LPCTSTR)sRightFile);
+		m_pRescanFileInfo[1]->Update((LPCTSTR)sRightFile);
 		if (FileLoadResult::IsOk(nLeftSuccess) || FileLoadResult::IsBinary(nLeftSuccess))
 		{
 			nRightSuccess = LoadFile(sRightFile, 1, bRORight, filelocRight.encoding.m_codepage);

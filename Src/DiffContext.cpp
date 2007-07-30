@@ -29,6 +29,7 @@
 
 #include "stdafx.h"
 #include <shlwapi.h>
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "CompareOptions.h"
 #include "CompareStats.h"
@@ -168,14 +169,15 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
  */
 BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
 {
-	CString filepath
-	(
-		bLeft == TRUE
-	?	paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.sLeftFilename)
-	:	paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.sRightFilename)
-	);
+	CString filepath;
+
+	if (bLeft == TRUE)
+		filepath = paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.sLeftFilename);
+	else
+		filepath = paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.sRightFilename);
+
 	DiffFileInfo & dfi = bLeft ? di.left : di.right;
-	if (!dfi.Update(filepath))
+	if (!dfi.Update((LPCTSTR)filepath))
 		return FALSE;
 	UpdateVersion(di, bLeft);
 	GuessCodepageEncoding(filepath, &dfi.encoding, m_bGuessEncoding);

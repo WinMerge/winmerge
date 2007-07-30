@@ -19,11 +19,13 @@
  *
  * @brief Declaration file for FileInfo
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _FILE_INFO_H_INCLUDED
 #define _FILE_INFO_H_INCLUDED
+
+#include "UnicodeString.h"
 
 /**
  * @brief Class for fileflags.
@@ -46,11 +48,11 @@ struct FileInfo
 	__int64 ctime; /**< time of creation */
 	__int64 mtime; /**< time of last modify */
 	__int64 size; /**< file size in bytes, -1 means file does not exist*/
-	CString version; /**< string of fixed file version, eg, 1.2.3.4 */
+	String version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 	FileInfo() { Clear(); }
 
-	BOOL Update(const CString &sFilePath);
+	BOOL Update(const String &sFilePath);
 	void Clear();
 };
 

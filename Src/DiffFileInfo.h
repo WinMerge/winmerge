@@ -19,7 +19,7 @@
  *
  * @brief Declaration file for DiffFileInfo
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
@@ -46,9 +46,9 @@ struct DiffFileFlags : public FileFlags
 	DiffFileFlags() : coding(0) { FileFlags(); }
 	
 	/// Convert flags and coding to string for UI.
-	CString toString() const
+	String toString() const
 		{
-			CString sflags;
+			String sflags;
 			if (attributes & FILE_ATTRIBUTE_READONLY)
 				sflags += _T("R");
 			if (attributes & FILE_ATTRIBUTE_HIDDEN)

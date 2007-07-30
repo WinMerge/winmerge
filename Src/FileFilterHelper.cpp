@@ -19,7 +19,7 @@
  *
  * @brief Implementation file for FileFilterHelper class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -472,7 +472,7 @@ void FileFilterHelper::ReloadUpdatedFilters()
 		CString path = filter.fullpath;
 		fileInfoStored = &filter.fileinfo;
 
-		fileInfo.Update(path);
+		fileInfo.Update((LPCTSTR)path);
 		if (fileInfo.mtime != fileInfoStored->mtime ||
 			fileInfo.size != fileInfoStored->size)
 		{

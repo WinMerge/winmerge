@@ -19,12 +19,13 @@
  *
  * @brief Implementation for FileInfo routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "UnicodeString.h"
 #include "FileInfo.h"
 
 /**
@@ -32,7 +33,7 @@
  * @param [in] sFilePath Full path to file/directory to update
  * @return TRUE if information was updated (item was found).
  */
-BOOL FileInfo::Update(const CString &sFilePath)
+BOOL FileInfo::Update(const String &sFilePath)
 {
 	struct _stati64 fstats;
 	__int64 mtime64 = 0;
@@ -42,7 +43,7 @@ BOOL FileInfo::Update(const CString &sFilePath)
 	flags.reset();
 	mtime = 0;
 
-	if (_tstati64(sFilePath, &fstats) == 0)
+	if (_tstati64(sFilePath.c_str(), &fstats) == 0)
 	{
 		// There can be files without modification date.
 		// Then we must use creation date. Of course we assume
@@ -56,7 +57,7 @@ BOOL FileInfo::Update(const CString &sFilePath)
 		if ((fstats.st_mode & _S_IFDIR) == 0)
 			size = fstats.st_size;
 
-		flags.attributes = GetFileAttributes(sFilePath);
+		flags.attributes = GetFileAttributes(sFilePath.c_str());
 
 		retVal = TRUE;
 	}
@@ -72,6 +73,6 @@ void FileInfo::Clear()
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	version.Empty();
+	version.clear();
 	flags.reset();
 }
