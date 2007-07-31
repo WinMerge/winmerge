@@ -50,6 +50,7 @@
   <li><a href="#shellextension">Translating ShellExtension</a></li>
   <li><a href="#installer">Translating Installer</a></li>
   <li><a href="#readme">Translating ReadMe.txt</a></li>
+  <li><a href="#helper">Helper</a></li>
 </ul>
 
 <h3><a name="translate">I want to translate into my own language</a></h3>
@@ -69,7 +70,7 @@ You can translate:
 <ul>
   <li>WinMerge program (visible strings, dialogs, messageboxes)</li>
   <li>Explorer integration component (ShellExtension)</li>
-  <li>Installer<li>
+  <li>Installer</li>
   <li>Read-me text shown in installer and in Start-menu</li>
 </ul>
 
@@ -166,5 +167,26 @@ from your improvements. We'll pick those updates then also.</p>
 and is added to Start-menu. Translated versions of <code>ReadMe.txt</code> are
 in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/Languages/">WinMerge\Docs\Users\Languages\</a></code> folder. And master <code>ReadMe.txt</code> is
 in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/ReadMe.txt">WinMerge\Docs\Users\ReadMe.txt</a></code>.</p>
+
+<h3><a name="helper">Helper</a></h3>
+<h4><code>CreateReviewPoFiles.vbs</code></h4>
+<p>With this VBScript file under the <code>Src\Languages\</code> folder you can create <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> PO files to review the translations.
+The script tries to collect all strings from the resource files and save the original and translated strings into PO files. For each language you will find the PO file under the language subfolder: <code>Src\Languages\<em>Language</em>\<em>Language</em>.po</code>.
+<strong>The script can take several minutes to finish!</strong></p>
+<p>If you have a PO file from your language, you could use a simple text editor or better <a href="http://www.poedit.net">poEdit</a> to review the file:</p>
+<pre>#: IDD_PROPPAGE_LARGE.IDC_SINGLE_INSTANCE
+msgid "All&amp;ow only one instance to run"
+msgstr "&amp;Nur eine Programm-Instanz zulassen"
+
+#: IDD_PROPPAGE_LARGE.IDC_ASK_MULTIWINDOW_CLOSE
+#, fuzzy
+msgid "As&amp;k when closing multiple windows"
+msgstr "As&amp;k when closing multiple windows"</pre>
+<p>All unsure strings are marked as <em>fuzzy</em> (if you use a text editor search for the <code>fuzzy</code> keyword).
+The <em>reference</em> (the text after <code>#:</code>) is a indication for the position in the resource file.
+Search for the keywords (separated by <code>.</code>) in the file <code>Merge<em>YourLanguage</em>.rc</code> and you should find the untranslated string.</p>
+<p class="important">Do not edit the PO files! PO files are only for translation <em>reviewing/checking</em> and changes done to them are not applied to resource files.</p>
+<p>The script should find most of the translations, but maybe not all.
+So you should better search the <code>.rc</code> file at the end by yourself for untranslated strings.</p>
 </body>
 </html>
