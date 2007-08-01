@@ -38,6 +38,114 @@ FolderCmp::FolderCmp()
 
 }
 
+bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr)
+{
+	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
+	// but how can we receive the infoHandler ? DirScan actually only 
+	// returns info, but can not use file dependent information.
+
+	// Transformation happens here
+	// text used for automatic mode : plugin filter must match it
+	CString filteredFilenames = plugCtxt->origFileName1 + "|" + plugCtxt->origFileName2;
+
+	// Get existing or new plugin infos
+	pCtxt->FetchPluginInfos(filteredFilenames, &plugCtxt->infoUnpacker,
+			&plugCtxt->infoPrediffer);
+
+	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
+	plugCtxt->filepathUnpacked1 = plugCtxt->origFileName1;
+	plugCtxt->filepathUnpacked2 = plugCtxt->origFileName2;
+
+	//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
+	// Invoke unpacking plugins
+	if (!Unpack(plugCtxt->filepathUnpacked1, filteredFilenames, plugCtxt->infoUnpacker))
+	{
+		errStr = _T("Unpack Error Side 1");
+		return false;
+	}
+
+	// we use the same plugins for both files, so they must be defined before second file
+	ASSERT(plugCtxt->infoUnpacker->bToBeScanned == FALSE);
+
+	if (!Unpack(plugCtxt->filepathUnpacked2, filteredFilenames, plugCtxt->infoUnpacker))
+	{
+		errStr = _T("Unpack Error Side 2");
+		return false;
+	}
+
+	// As we keep handles open on unpacked files, Transform() may not delete them.
+	// Unpacked files will be deleted at end of this function.
+	plugCtxt->filepathTransformed1 = plugCtxt->filepathUnpacked1;
+	plugCtxt->filepathTransformed2 = plugCtxt->filepathUnpacked2;
+	m_diffFileData.SetDisplayFilepaths(plugCtxt->origFileName1,
+			plugCtxt->origFileName2); // store true names for diff utils patch file
+	if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1,
+			plugCtxt->filepathTransformed2))
+	{
+		errStr = _T("OpenFiles Error (before tranform)");
+		return false;
+	}
+
+	// Invoke prediff'ing plugins
+	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[0],
+			plugCtxt->filepathUnpacked1, plugCtxt->filepathTransformed1,
+			filteredFilenames, plugCtxt->infoPrediffer,
+			m_diffFileData.m_inf[0].desc))
+	{
+		errStr = _T("Transform Error Side 1");
+		return false;
+	}
+
+	// we use the same plugins for both files, so they must be defined before second file
+	ASSERT(plugCtxt->infoPrediffer->bToBeScanned == FALSE);
+
+	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[1],
+			plugCtxt->filepathUnpacked2, plugCtxt->filepathTransformed2,
+			filteredFilenames, plugCtxt->infoPrediffer,
+			m_diffFileData.m_inf[1].desc))
+	{
+		errStr = _T("Transform Error Side 2");
+		return false;
+	}
+
+	// If options are binary equivalent, we could check for filesize
+	// difference here, and bail out if files are clearly different
+	// But, then we don't know if file is ascii or binary, and this
+	// affects behavior (also, we don't have an icon for unknown type)
+
+	// Actually compare the files
+	// diffutils_compare_files is a fairly thin front-end to diffutils
+	if (plugCtxt->filepathTransformed1 != plugCtxt->filepathUnpacked1 ||
+			plugCtxt->filepathTransformed2 != plugCtxt->filepathUnpacked2)
+	{
+		if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1,
+				plugCtxt->filepathTransformed2))
+		{
+			errStr = _T("OpenFiles Error (after tranform)");
+			return false;
+		}
+	}
+	return true;
+}
+
+void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
+{
+	m_diffFileData.Reset();
+	// delete the temp files after comparison
+	if (plugCtxt->filepathTransformed1 != plugCtxt->filepathUnpacked1)
+		VERIFY(::DeleteFile(plugCtxt->filepathTransformed1) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathTransformed1));
+	if (plugCtxt->filepathTransformed2 != plugCtxt->filepathUnpacked2)
+		VERIFY(::DeleteFile(plugCtxt->filepathTransformed2) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathTransformed2));
+	if (plugCtxt->filepathUnpacked1 != plugCtxt->origFileName1)
+		VERIFY(::DeleteFile(plugCtxt->filepathUnpacked1) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathUnpacked1));
+	if (plugCtxt->filepathUnpacked2 != plugCtxt->origFileName2)
+		VERIFY(::DeleteFile(plugCtxt->filepathUnpacked2) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathUnpacked2));
+}
+
 /**
  * @brief Prepare files (run plugins) & compare them, and return diffcode.
  * This is function to compare two files in folder compare. It is not used in
@@ -48,10 +156,8 @@ FolderCmp::FolderCmp()
  */
 int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
+	PluginsContext plugCtxt;
 	int nCompMethod = pCtxt->m_nCompMethod;
-	CString filepath1;
-	CString filepath2;
-	GetComparePaths(pCtxt, di, filepath1, filepath2);
 	m_pCtx = pCtxt;
 
 	// Reset text stats
@@ -59,90 +165,19 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	m_diffFileData.m_textStats1.clear();
 
 	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
-	// For user chosen plugins, define bAutomaticUnpacker as false and use the chosen infoHandler
-	// but how can we receive the infoHandler ? DirScan actually only 
-	// returns info, but can not use file dependent information.
 
-	// Transformation happens here
-	// text used for automatic mode : plugin filter must match it
-	CString filteredFilenames = filepath1 + "|" + filepath2;
-
-	PackingInfo * infoUnpacker=0;
-	PrediffingInfo * infoPrediffer=0;
-
-	// Get existing or new plugin infos
-	pCtxt->FetchPluginInfos(filteredFilenames, &infoUnpacker, &infoPrediffer);
-
-	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
-	CString filepathUnpacked1 = filepath1;
-	CString filepathUnpacked2 = filepath2;
-
-	CString filepathTransformed1;
-	CString filepathTransformed2;
-
-	//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
-	// Invoke unpacking plugins
-	if (!Unpack(filepathUnpacked1, filteredFilenames, infoUnpacker))
+	// Run plugins
+	if (pCtxt->m_nCompMethod == CMP_CONTENT ||
+		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
 	{
-		di.errorDesc = _T("Unpack Error Side 1");
-		goto exitPrepAndCompare;
-	}
-
-	// we use the same plugins for both files, so they must be defined before second file
-	ASSERT(infoUnpacker->bToBeScanned == FALSE);
-
-	if (!Unpack(filepathUnpacked2, filteredFilenames, infoUnpacker))
-	{
-		di.errorDesc = _T("Unpack Error Side 2");
-		goto exitPrepAndCompare;
-	}
-
-	// As we keep handles open on unpacked files, Transform() may not delete them.
-	// Unpacked files will be deleted at end of this function.
-	filepathTransformed1 = filepathUnpacked1;
-	filepathTransformed2 = filepathUnpacked2;
-	m_diffFileData.SetDisplayFilepaths(filepath1, filepath2); // store true names for diff utils patch file
-	if (!m_diffFileData.OpenFiles(filepathTransformed1, filepathTransformed2))
-	{
-		di.errorDesc = _T("OpenFiles Error (before tranform)");
-		goto exitPrepAndCompare;
-	}
-
-	// Invoke prediff'ing plugins
-	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[0], filepathUnpacked1,
-			filepathTransformed1, filteredFilenames, infoPrediffer,
-			m_diffFileData.m_inf[0].desc))
-	{
-		di.errorDesc = _T("Transform Error Side 1");
-		goto exitPrepAndCompare;
-	}
-
-	// we use the same plugins for both files, so they must be defined before second file
-	ASSERT(infoPrediffer->bToBeScanned == FALSE);
-
-	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[1], filepathUnpacked2,
-			filepathTransformed2, filteredFilenames, infoPrediffer,
-			m_diffFileData.m_inf[1].desc))
-	{
-		di.errorDesc = _T("Transform Error Side 2");
-		goto exitPrepAndCompare;
-	}
-
-	// If options are binary equivalent, we could check for filesize
-	// difference here, and bail out if files are clearly different
-	// But, then we don't know if file is ascii or binary, and this
-	// affects behavior (also, we don't have an icon for unknown type)
-
-	// Actually compare the files
-	// diffutils_compare_files is a fairly thin front-end to diffutils
-	if (filepathTransformed1 != filepathUnpacked1 || filepathTransformed2 != filepathUnpacked2)
-	{
-		//diffdata.m_sFilepath[0] = filepathTransformed1;
-		//diffdata.m_sFilepath[1] = filepathTransformed2;
-		if (!m_diffFileData.OpenFiles(filepathTransformed1, filepathTransformed2))
+		GetComparePaths(pCtxt, di, plugCtxt.origFileName1, plugCtxt.origFileName2);
+		CString errStr;
+		bool pluginsOk = RunPlugins(pCtxt, &plugCtxt, errStr);
+		if (!pluginsOk)
 		{
-			di.errorDesc = _T("OpenFiles Error (after tranform)");
-			goto exitPrepAndCompare;
+			di.errorDesc = errStr;
+			CleanupAfterPlugins(&plugCtxt);
+			return code;
 		}
 	}
 
@@ -194,26 +229,70 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			m_diffFileData.GuessEncoding_from_FileLocation(m_diffFileData.m_FileLocation[1]);
 		}
 	}
+	else if (pCtxt->m_nCompMethod == CMP_DATE ||
+		pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+	{
+		// Compare by modified date
+		// Check that we have both filetimes
+		if (di.left.mtime != 0 && di.right.mtime != 0)
+		{
+			__int64 nTimeDiff = di.left.mtime - di.right.mtime;
+			// Remove sign
+			nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
+			if (pCtxt->m_bIgnoreSmallTimeDiff)
+			{
+				// If option to ignore small timediffs (couple of seconds)
+				// is set, decrease absolute difference by allowed diff
+				nTimeDiff -= SmallTimeDiff;
+			}
+			if (nTimeDiff <= 0)
+				code = DIFFCODE::TEXT | DIFFCODE::SAME;
+			else
+				code = DIFFCODE::TEXT | DIFFCODE::DIFF;
+		}
+		else
+		{
+			// Filetimes for item(s) could not be read. So we have to
+			// set error status, unless we have DATE_SIZE -compare
+			// when we have still hope for size compare..
+			if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
+				code = DIFFCODE::TEXT | DIFFCODE::SAME;
+			else
+				code = DIFFCODE::TEXT | DIFFCODE::CMPERR;
+		}
+		
+		// This is actual CMP_DATE_SIZE method..
+		// If file sizes differ mark them different
+		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE && di.isResultSame())
+		{
+			if (di.left.size != di.right.size)
+			{
+				code &= ~DIFFCODE::SAME;
+				code = DIFFCODE::DIFF;
+			}
+		}
+	}
+	else if (pCtxt->m_nCompMethod == CMP_SIZE)
+	{
+		// Compare by size
+		if (di.left.size == di.right.size)
+			code = DIFFCODE::SAME;
+		else
+			code = DIFFCODE::DIFF;
+	}
 	else
 	{
 		// Print error since we should have handled by date compare earlier
 		_RPTF0(_CRT_ERROR, "Invalid compare type, DiffFileData can't handle it");
 		di.errorDesc = _T("Bad compare type");
-		goto exitPrepAndCompare;
 	}
 
+	if (pCtxt->m_nCompMethod == CMP_CONTENT ||
+		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
+	{
+		CleanupAfterPlugins(&plugCtxt);
+	}
 
-exitPrepAndCompare:
-	m_diffFileData.Reset();
-	// delete the temp files after comparison
-	if (filepathTransformed1 != filepathUnpacked1)
-		VERIFY(::DeleteFile(filepathTransformed1) || GetLog()->DeleteFileFailed(filepathTransformed1));
-	if (filepathTransformed2 != filepathUnpacked2)
-		VERIFY(::DeleteFile(filepathTransformed2) || GetLog()->DeleteFileFailed(filepathTransformed2));
-	if (filepathUnpacked1 != filepath1)
-		VERIFY(::DeleteFile(filepathUnpacked1) || GetLog()->DeleteFileFailed(filepathUnpacked1));
-	if (filepathUnpacked2 != filepath2)
-		VERIFY(::DeleteFile(filepathUnpacked2) || GetLog()->DeleteFileFailed(filepathUnpacked2));
 	return code;
 }
 

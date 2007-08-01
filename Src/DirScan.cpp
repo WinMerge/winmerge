@@ -463,8 +463,6 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					pCtxt->m_nCompMethod != CMP_SIZE)
 				{
 					FolderCmp folderCmp;
-					//DiffFileData diffdata;
-					//int diffCode = diffdata.prepAndCompareTwoFiles(pCtxt, di);
 					int diffCode = folderCmp.prepAndCompareTwoFiles(pCtxt, di);
 					
 					// Add possible binary flag for unique items
@@ -478,71 +476,11 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 				}
 			}
 			// 3. Compare two files
-			else if (pCtxt->m_nCompMethod == CMP_DATE ||
-				pCtxt->m_nCompMethod == CMP_DATE_SIZE)
-			{
-				// Compare by modified date
-				// Check that we have both filetimes
-				if (di.left.mtime != 0 && di.right.mtime != 0)
-				{
-					__int64 nTimeDiff = di.left.mtime - di.right.mtime;
-					// Remove sign
-					nTimeDiff = (nTimeDiff > 0 ? nTimeDiff : -nTimeDiff);
-					if (pCtxt->m_bIgnoreSmallTimeDiff)
-					{
-						// If option to ignore small timediffs (couple of seconds)
-						// is set, decrease absolute difference by allowed diff
-						nTimeDiff -= SmallTimeDiff;
-					}
-					if (nTimeDiff <= 0)
-						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
-					else
-						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::DIFF;
-				}
-				else
-				{
-					// Filetimes for item(s) could not be read. So we have to
-					// set error status, unless we have DATE_SIZE -compare
-					// when we have still hope for size compare..
-					if (pCtxt->m_nCompMethod == CMP_DATE_SIZE)
-						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::SAME;
-					else
-						di.diffcode |= DIFFCODE::TEXT | DIFFCODE::CMPERR;
-				}
-				
-				// This is actual CMP_DATE_SIZE method..
-				// If file sizes differ mark them different
-				if ( pCtxt->m_nCompMethod == CMP_DATE_SIZE && di.isResultSame())
-				{
-					if (di.left.size != di.right.size)
-					{
-						di.diffcode &= ~DIFFCODE::SAME;
-						di.diffcode |= DIFFCODE::DIFF;
-					}
-				}
-
-				// report result back to caller
-				StoreDiffData(di, pCtxt, NULL);
-			}
-			else if (pCtxt->m_nCompMethod == CMP_SIZE)
-			{
-				// Compare by size
-				if (di.left.size == di.right.size)
-					di.diffcode |= DIFFCODE::SAME;
-				else
-					di.diffcode |= DIFFCODE::DIFF;
-
-				// report result back to caller
-				StoreDiffData(di, pCtxt, NULL);
-			}
 			else
 			{
 				// Really compare
-				//DiffFileData diffdata;
 				FolderCmp folderCmp;
-				//di.diffcode |= diffdata.prepAndCompareTwoFiles(pCtxt, di);
 				di.diffcode |= folderCmp.prepAndCompareTwoFiles(pCtxt, di);
-				// report result back to caller
 				StoreDiffData(di, pCtxt, &folderCmp);
 			}
 		}

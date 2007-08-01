@@ -11,6 +11,23 @@
 
 class CDiffContext;
 class IAbortable;
+class PackingInfo;
+class PrediffingInfo;
+
+/**
+ * @brief Holds plugin-related paths and information.
+ */
+struct PluginsContext
+{
+	CString origFileName1;
+	CString origFileName2;
+	CString filepathUnpacked1;
+	CString filepathUnpacked2;
+	CString filepathTransformed1;
+	CString filepathTransformed2;
+	PackingInfo * infoUnpacker;
+	PrediffingInfo * infoPrediffer;
+};
 
 /**
  * @brief Class implementing file compare for folder compare.
@@ -25,6 +42,8 @@ public:
 	enum { DIFFS_UNKNOWN=-1, DIFFS_UNKNOWN_QUICKCOMPARE=-9 };
 
 	FolderCmp();
+	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr);
+	void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 	int diffutils_compare_files(int depth);
 	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
