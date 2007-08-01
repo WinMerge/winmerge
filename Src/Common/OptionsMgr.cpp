@@ -809,7 +809,7 @@ void CRegOptionsMgr::SplitName(String strName, String &strPath,
 	else
 	{
 		strValue = strName;
-		strPath.clear();
+		strPath.erase();
 	}
 }
 
