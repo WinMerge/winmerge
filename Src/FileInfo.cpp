@@ -73,6 +73,6 @@ void FileInfo::Clear()
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	version.clear();
+	version.erase();
 	flags.reset();
 }
