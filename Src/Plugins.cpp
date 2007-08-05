@@ -70,7 +70,7 @@ BOOL IsWindowsScriptThere()
 	if (!keyExtension.QueryRegMachine(_T("SOFTWARE\\Classes\\.sct")))
 		return FALSE;
 
-	CString content = keyExtension.ReadString(_T(""), _T(""));
+	CString content = keyExtension.ReadString(_T(""), _T("")).c_str();
 	keyExtension.Close();
 	if (content.CompareNoCase(_T("scriptletfile")) != 0)
 		return FALSE;
@@ -79,7 +79,7 @@ BOOL IsWindowsScriptThere()
 	if (!keyFile.QueryRegMachine(_T("SOFTWARE\\Classes\\scriptletfile\\AutoRegister")))
 		return FALSE;
 
-	CString filename = keyFile.ReadString(_T(""), _T(""));
+	CString filename = keyFile.ReadString(_T(""), _T("")).c_str();
 	keyFile.Close();
 	if (filename.IsEmpty())
 		return FALSE;
