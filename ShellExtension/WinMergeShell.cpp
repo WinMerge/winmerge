@@ -36,12 +36,13 @@
  *
  * @brief Implementation of the ShellExtension class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "ShellExtension.h"
 #include "WinMergeShell.h"
+#include "UnicodeString.h"
 #include "RegKey.h"
 #include "coretools.h"
 #include <sys/types.h>
@@ -224,7 +225,7 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		return MAKE_HRESULT(SEVERITY_SUCCESS, FACILITY_NULL, 0);
 
 	m_dwContextMenuEnabled = reg.ReadDword(f_RegValueEnabled, 0);
-	m_strPreviousPath = reg.ReadString(f_FirstSelection, _T(""));
+	m_strPreviousPath = reg.ReadString(f_FirstSelection, _T("")).c_str();
 
 	if (m_dwContextMenuEnabled & EXT_ENABLED) // Context menu enabled
 	{
@@ -400,10 +401,10 @@ BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
 		return FALSE;
 	
 	// Try first reading debug/test value
-	strDir = reg.ReadString(f_RegValuePriPath, _T(""));
+	strDir = reg.ReadString(f_RegValuePriPath, _T("")).c_str();
 	if (strDir.IsEmpty())
 	{
-		strDir = reg.ReadString(f_RegValuePath, _T(""));
+		strDir = reg.ReadString(f_RegValuePath, _T("")).c_str();
 		if (strDir.IsEmpty())
 			return FALSE;
 	}	
