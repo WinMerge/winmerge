@@ -735,7 +735,7 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "Povolit pouze jedno &hlavní okno aplikace",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
+    CONTROL         "Dotázat se na &zavøení více oken",IDC_ASK_MULTIWINDOW_CLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     LTEXT           "Automatické &dokonèování:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,148,80,80,41,CBS_DROPDOWNLIST | 
@@ -2398,7 +2398,7 @@ BEGIN
     IDS_OPT_EXPORT_DONE     "Nastavení bylo uloženo do souboru."
     IDS_OPT_IMPORT_ERR      "Naètení nastavení ze souboru se nezdaøilo."
     IDS_OPT_EXPORT_ERR      "Uložení nastavení do souboru se nezdaøilo."
-    IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
+    IDS_CLOSEALL_WINDOWS    "Chystáte se zavøít nìkolik oken.\n\nChcete pokraèovat?"
 END
 
 // Regular expression errors
