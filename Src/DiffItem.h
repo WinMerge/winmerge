@@ -3,7 +3,7 @@
  *
  *  @brief Declaration of DIFFITEM
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _DIFF_ITEM_H_
@@ -135,6 +135,7 @@ struct DIFFITEM : DIFFCODE
 	static DIFFITEM MakeEmptyDiffItem();
 
 	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0), empty(false) { }
+	DIFFITEM& operator=(const DIFFITEM& di);
 
 	CString getLeftFilepath(const CString &sLeftRoot) const;
 	CString getRightFilepath(const CString &sRightRoot) const;

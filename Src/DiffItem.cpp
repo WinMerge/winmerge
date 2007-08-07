@@ -3,7 +3,7 @@
  *
  *  @brief Implementation of DIFFITEM
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -15,6 +15,24 @@
 static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
+
+/**
+ * @brief Assignment operator override.
+ * @param [in] di Object to copy.
+ * @return Copy of given object.
+ */
+DIFFITEM& DIFFITEM::operator=(const DIFFITEM& di)
+{
+	if (this != &di)
+	{
+		sLeftFilename = di.sLeftFilename;
+		sRightFilename = di.sRightFilename;
+		sLeftSubdir = di.sLeftSubdir;
+		sRightSubdir = di.sRightSubdir;
+		errorDesc = di.errorDesc;
+	}
+	return *this;
+}
 
 /** @brief Make and return a diffitem with no data */
 DIFFITEM DIFFITEM::MakeEmptyDiffItem() // static
