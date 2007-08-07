@@ -135,6 +135,7 @@ struct DIFFITEM : DIFFCODE
 	static DIFFITEM MakeEmptyDiffItem();
 
 	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0), empty(false) { }
+	DIFFITEM(const DIFFITEM& di);
 	DIFFITEM& operator=(const DIFFITEM& di);
 
 	CString getLeftFilepath(const CString &sLeftRoot) const;

@@ -17,6 +17,26 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 /**
+ * @brief Copy constructor.
+ * @param [in] di Object to copy.
+ */
+DIFFITEM::DIFFITEM(const DIFFITEM& di)
+{
+	diffcode = di.diffcode;
+	left = di.left;
+	right = di.right;
+	sLeftFilename = di.sLeftFilename;
+	sRightFilename = di.sRightFilename;
+	sLeftSubdir = di.sLeftSubdir;
+	sRightSubdir = di.sRightSubdir;
+	nsdiffs = di.nsdiffs;
+	nidiffs = di.nidiffs;
+	errorDesc = di.errorDesc;
+	customFlags1 = di.customFlags1;
+	empty = di.empty;
+}
+
+/**
  * @brief Assignment operator override.
  * @param [in] di Object to copy.
  * @return Copy of given object.
@@ -25,6 +45,7 @@ DIFFITEM& DIFFITEM::operator=(const DIFFITEM& di)
 {
 	if (this != &di)
 	{
+		diffcode = di.diffcode;
 		left = di.left;
 		right = di.right;
 		sLeftFilename = di.sLeftFilename;
