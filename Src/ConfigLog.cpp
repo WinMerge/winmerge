@@ -412,6 +412,34 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	FileWriteString(_T("\n Build config: "));
 	FileWriteString(text);
 
+	LPCTSTR szCmdLine = ::GetCommandLine();
+	ASSERT(szCmdLine != NULL);
+
+	// Skip the quoted executable file name.
+	if (szCmdLine != NULL)
+	{
+		szCmdLine = _tcschr(szCmdLine, '"');
+		if (szCmdLine != NULL)
+		{
+			szCmdLine += 1; // skip the opening quote.
+			szCmdLine = _tcschr(szCmdLine, '"');
+			if (szCmdLine != NULL)
+			{
+				szCmdLine += 1; // skip the closing quote.
+			}
+		}
+	}
+
+	// The command line include a space after the executable file name,
+	// which mean that empty command line will have length of one.
+	if (lstrlen(szCmdLine) < 2)
+	{
+		szCmdLine = _T(" none");
+	}
+
+	FileWriteString(_T("\n Command Line: "));
+	FileWriteString(szCmdLine);
+
 	FileWriteString(_T("\n Windows: "));
 	text = GetWindowsVer();
 	FileWriteString(text);
