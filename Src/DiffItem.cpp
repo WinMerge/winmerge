@@ -25,11 +25,17 @@ DIFFITEM& DIFFITEM::operator=(const DIFFITEM& di)
 {
 	if (this != &di)
 	{
+		left = di.left;
+		right = di.right;
 		sLeftFilename = di.sLeftFilename;
 		sRightFilename = di.sRightFilename;
 		sLeftSubdir = di.sLeftSubdir;
 		sRightSubdir = di.sRightSubdir;
+		nsdiffs = di.nsdiffs;
+		nidiffs = di.nidiffs;
 		errorDesc = di.errorDesc;
+		customFlags1 = di.customFlags1;
+		empty = di.empty;
 	}
 	return *this;
 }
