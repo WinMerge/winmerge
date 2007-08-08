@@ -3,6 +3,8 @@
  *
  * @brief Declaration file for FilterList.
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #ifndef _FILTERLIST_H_
 #define _FILTERLIST_H_
@@ -23,6 +25,8 @@ struct filter_item
 	char * filterAsString; /** Original regular expression string */
  	pcre *pRegExp; /**< Compiled regular expression */
 	pcre_extra *pRegExpExtra; /**< Additional information got from regex study */
+
+	filter_item() : filterAsString(NULL), pRegExp(NULL), pRegExpExtra(NULL) {}
 };
 
 /**

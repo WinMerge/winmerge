@@ -3,6 +3,8 @@
  *
  * @brief Implementation file for FilterList.
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
 #include <vector>
