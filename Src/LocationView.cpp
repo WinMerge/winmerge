@@ -214,7 +214,12 @@ void CLocationView::OnDraw(CDC* pDC)
 	pDC->SelectObject(oldObj);
 
 	// Iterate the differences list and draw differences as colored blocks.
-	for (int nDiff = 0; nDiff < pDoc->m_diffList.GetSize(); ++nDiff)
+
+	int nPrevEndY = -1;
+	const int nCurDiff = pDoc->GetCurrentDiff();
+	const int nDiffs = pDoc->m_diffList.GetSize();
+
+	for (int nDiff = 0; nDiff < nDiffs; ++nDiff)
 	{
 		DIFFRANGE diff;
 		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
@@ -240,20 +245,24 @@ void CLocationView::OnDraw(CDC* pDC)
 		const int nEndY = (int)((nBlockStart + nBlockHeight) * LineInPix + Y_OFFSET);
 		
 		// If no selected diff, remove diff marker
-		if (pDoc->GetCurrentDiff() == -1)
+		if (nCurDiff == -1)
 			DrawDiffMarker(pDC, -1);
 
-		const BOOL bInsideDiff = pView->IsLineInCurrentDiff(diff.dbegin0);
+		const BOOL bInsideDiff = (nCurDiff == nDiff);
 
-		// Draw left side block
-		m_view[MERGE_VIEW_LEFT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr0, crt, bwh);
-		CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
-		DrawRect(pDC, r0, cr0, bInsideDiff);
+		if (nPrevEndY != nEndY)
+		{
+			// Draw left side block
+			m_view[MERGE_VIEW_LEFT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr0, crt, bwh);
+			CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
+			DrawRect(pDC, r0, cr0, bInsideDiff);
 
-		// Draw right side block
-		m_view[MERGE_VIEW_RIGHT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr1, crt, bwh);
-		CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
-		DrawRect(pDC, r1, cr1, bInsideDiff);
+			// Draw right side block
+			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr1, crt, bwh);
+			CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
+			DrawRect(pDC, r1, cr1, bInsideDiff);
+		}
+		nPrevEndY = nEndY;
 
 		// Test if we draw a connector
 		BOOL bDisplayConnectorFromLeft = FALSE;
