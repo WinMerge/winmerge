@@ -230,12 +230,14 @@ void CLocationView::OnDraw(CDC* pDC)
 
 		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
 
-		// Count how many lines does the diff block have.
-		const int nBlockHeight = nLineEndDiff - diff.dbegin0;
+		// Count how many line does the diff block have.
+		const int nBlockStart = pView->GetSubLineIndex(diff.dbegin0);
+		const int nBlockEnd = pView->GetSubLineIndex(nLineEndDiff);
+		const int nBlockHeight = nBlockEnd - nBlockStart + pView->GetSubLines(nLineEndDiff);
 
 		// Convert diff block size from lines to pixels.
-		const int nBeginY = (int)(diff.dbegin0 * LineInPix + Y_OFFSET);
-		const int nEndY = (int)((diff.dbegin0 + nBlockHeight) * LineInPix + Y_OFFSET);
+		const int nBeginY = (int)(nBlockStart * LineInPix + Y_OFFSET);
+		const int nEndY = (int)((nBlockStart + nBlockHeight) * LineInPix + Y_OFFSET);
 		
 		// If no selected diff, remove diff marker
 		if (pDoc->GetCurrentDiff() == -1)
@@ -285,6 +287,9 @@ void CLocationView::OnDraw(CDC* pDC)
 				CPoint start;
 				CPoint end;
 
+				apparent0 = pView->GetSubLineIndex(apparent0);
+				apparent1 = pView->GetSubLineIndex(apparent1);
+
 				start.x = m_nLeftBarRight;
 				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
 				int leftLower = (int) ((nBlockHeight + apparent0) * LineInPix + Y_OFFSET);
@@ -308,6 +313,9 @@ void CLocationView::OnDraw(CDC* pDC)
 				MovedLine line;
 				CPoint start;
 				CPoint end;
+
+				apparent0 = pView->GetSubLineIndex(apparent0);
+				apparent1 = pView->GetSubLineIndex(apparent1);
 
 				start.x = m_nLeftBarRight;
 				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
