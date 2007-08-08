@@ -101,9 +101,6 @@ BOOL CTestFilterDlg::CheckText(CString text) const
 	{
 		// Convert any forward slashes to canonical Windows-style backslashes
 		text.Replace('/', '\\');
-		// Ensure directory ends in slash
-		if (text.IsEmpty() || text[text.GetLength()-1] != '\\')
-			text += '\\';
 		return m_pFileFilterMgr->TestDirNameAgainstFilter(m_pFileFilter, text);
 	}
 	else
