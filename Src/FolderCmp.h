@@ -3,16 +3,22 @@
  *
  * @brief Declaration file for FolderCmp
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #ifndef _FOLDERCMP_H_
 #define _FOLDERCMP_H_
 
 #include "DiffFileData.h"
+#include "DiffUtils.h"
+
+//using namespace CompareEngines;
 
 class CDiffContext;
 class IAbortable;
 class PackingInfo;
 class PrediffingInfo;
+//class CompareEngines::DiffUtils;
 
 /**
  * @brief Holds plugin-related paths and information.
@@ -38,24 +44,21 @@ struct PluginsContext
 class FolderCmp
 {
 public:
-	
-	enum { DIFFS_UNKNOWN=-1, DIFFS_UNKNOWN_QUICKCOMPARE=-9 };
-
 	FolderCmp();
+	~FolderCmp();
 	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr);
-	void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt);
+	void CleanupAfterPlugins(PluginsContext *plugCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
-	int diffutils_compare_files(int depth);
 	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
-	BOOL Diff2Files(struct change ** diffs, int depth,
-		int * bin_status, BOOL bMovedBlocks, int * bin_file);
-	bool FolderCmp::RegExpFilter(int StartPos, int EndPos, int FileNo);
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
 
 	DiffFileData m_diffFileData;
 	CDiffContext * m_pCtx;
+
+private:
+	CompareEngines::DiffUtils *m_pDiffUtilsEngine;
 };
 
 

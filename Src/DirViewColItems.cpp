@@ -296,11 +296,11 @@ static CString ColDiffsGet(const CDiffContext *, const void *p)
 {
 	const int &r = *static_cast<const int*>(p);
 	CString s;
-	if (r == FolderCmp::DIFFS_UNKNOWN_QUICKCOMPARE)
+	if (r == CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE)
 	{ // QuickCompare, unknown
 		s = _T("*");
 	}
-	else if (r == FolderCmp::DIFFS_UNKNOWN)
+	else if (r == CDiffContext::DIFFS_UNKNOWN)
 	{ // Unique item
 		s = _T("");
 	}

@@ -25,6 +25,17 @@ CompareOptions::CompareOptions()
 }
 
 /**
+ * @brief Copy constructor.
+ */
+CompareOptions::CompareOptions(const CompareOptions & options)
+: m_ignoreWhitespace(options.m_ignoreWhitespace)
+, m_bIgnoreBlankLines(options.m_bIgnoreBlankLines)
+, m_bIgnoreCase(options.m_bIgnoreCase)
+, m_bIgnoreEOLDifference(options.m_bIgnoreEOLDifference)
+{
+}
+
+/**
  * @brief Sets options from DIFFOPTIONS structure.
  * @param [in] options Diffutils options.
  */
@@ -64,6 +75,18 @@ QuickCompareOptions::QuickCompareOptions()
  */
 DiffutilsOptions::DiffutilsOptions()
 : m_outputStyle(DIFF_OUTPUT_NORMAL)
+, m_contextLines(0)
+, m_filterCommentsLines(0)
+{
+}
+
+/**
+ * @brief Constructor cloning CompareOptions.
+ * @param [in] options CompareOptions instance to clone.
+ */
+DiffutilsOptions::DiffutilsOptions(const CompareOptions& options)
+: CompareOptions(options)
+, m_outputStyle(DIFF_OUTPUT_NORMAL)
 , m_contextLines(0)
 , m_filterCommentsLines(0)
 {

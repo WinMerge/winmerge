@@ -58,6 +58,12 @@ public:
 class CDiffContext : public DiffItemList
 {
 public:
+	enum
+	{
+		DIFFS_UNKNOWN = -1,
+		DIFFS_UNKNOWN_QUICKCOMPARE = -9,
+	};
+
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	~CDiffContext();
