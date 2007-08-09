@@ -4,7 +4,7 @@
  * @brief Declaration of DiffUtils class.
  */
 // ID line follows -- this is updated by SVN
-// $Id: FolderCmp.cpp 4398 2007-08-01 19:53:59Z kimmov $
+// $Id$
 
 
 #ifndef _DIFF_UTILS_H_
