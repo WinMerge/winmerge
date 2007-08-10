@@ -255,7 +255,7 @@ BEGIN
         MENUITEM "&Anpassa kolumner...",        ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
-        MENUITEM "Generera &Rapport...",         ID_TOOLS_GENERATEREPORT
+        MENUITEM "Generera &rapport...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN
@@ -420,7 +420,7 @@ BEGIN
     BEGIN
         MENUITEM "&Filter...",                 ID_TOOLS_FILTERS
         MENUITEM "&Skapa patch...",             ID_TOOLS_GENERATEPATCH
-        MENUITEM "Generera &Rapport...",         ID_TOOLS_GENERATEREPORT
+        MENUITEM "Generera &rapport...",         ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN
@@ -729,7 +729,7 @@ BEGIN
                     WS_TABSTOP,7,37,206,10
     CONTROL         "&Tillåt bara en upplaga att köra",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
-    CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
+    CONTROL         "Frå&ga när stänger flera fönster",IDC_ASK_MULTIWINDOW_CLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     LTEXT           "Ö&ppna-dialog Auto-Komplettera:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
@@ -2400,7 +2400,7 @@ BEGIN
     IDS_OPT_EXPORT_DONE     "Inställningar exporterades till filen."
     IDS_OPT_IMPORT_ERR      "Det gick inte att importera inställningar från filen."
     IDS_OPT_EXPORT_ERR      "Det gick inte att spara inställningar till filen."
-    IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
+    IDS_CLOSEALL_WINDOWS    "Du är på väg att stänga flera jämförfönster.\n\nVill du göra detta?"
 END
 
 // Regular expression errors
