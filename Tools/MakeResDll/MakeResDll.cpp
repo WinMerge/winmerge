@@ -9,6 +9,7 @@
 #include "stdafx.h"
 #include "MakeResDll.h"
 // Following files included from WinMerge/Src/Common
+#include "UnicodeString.h"
 #include "RegKey.h"
 // Local files
 
@@ -552,17 +553,17 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
 
 	// Strategy is that we keep looking as long as we need anything (in gVcPaths)
 
-	CString sVcVersion;
+	String sVcVersion;
 
 	// Check for user-configured overrides
 	LPCTSTR settings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
 	if (RegOpenUser(reg, settings))
 	{
-		gVcPaths.sVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T("")).c_str();
 		if (gVcPaths.sRCExe.IsEmpty())
-			gVcPaths.sRCExe = reg.ReadString(_T("RCExe"), _T(""));
+			gVcPaths.sRCExe = reg.ReadString(_T("RCExe"), _T("")).c_str();
 		if (gVcPaths.sLinkExe.IsEmpty())
-			gVcPaths.sLinkExe = reg.ReadString(_T("LinkExe"), _T(""));
+			gVcPaths.sLinkExe = reg.ReadString(_T("LinkExe"), _T("")).c_str();
 		// This is the main way for the user to override these settings
 		// VcVersion values handled:
 		// Net2005 - Use Microsoft Visual Studio .NET 2005
@@ -576,9 +577,9 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
 
 	VS_VERSION vsnum = VS_NONE;
 	// Check if user's choice is valid and installed
-	if (!sVcVersion.IsEmpty())
+	if (!sVcVersion.empty())
 	{
-		VS_VERSION vstemp = MapRegistryValue(sVcVersion);
+		VS_VERSION vstemp = MapRegistryValue(sVcVersion.c_str());
 		if (vstemp != VS_NONE)
 		{
 			if (!VsBaseDirs[vstemp].IsEmpty())
@@ -649,7 +650,7 @@ static void LoadVs2005Settings(CString & sProductDir)
 	
 	// Get root directory of Visual Studio
 	LPCTSTR VsBaseKey = _T("SOFTWARE\\Microsoft\\VisualStudio\\8.0\\Setup\\VS");
-	CString sVsRoot;
+	String sVsRoot;
 	if (RegOpenMachine(reg, VsBaseKey))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio 8\ 
@@ -666,7 +667,7 @@ static void LoadVs2005Settings(CString & sProductDir)
 	if (RegOpenMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\8.0")))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio 8\Common7\IDE\ 
-		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
+		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T("")).c_str();
 		TrimPath(gVcPaths.sAdditionalPath);
 	}
 
@@ -678,18 +679,18 @@ static void LoadVs2005Settings(CString & sProductDir)
 	{
 		if (gVcPaths.sIncludes.IsEmpty())
 		{
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
 			gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
 		}
 		if (gVcPaths.sLibs.IsEmpty())
 		{
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
 			gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-			if (!sVsRoot.IsEmpty())
+			if (!sVsRoot.empty())
 			{
 				// eg C:\Program Files\Microsoft Visual Studio 8\SDK\v1.1"));
-				CString sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
-				gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir);
+				String sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
+				gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir.c_str());
 			}
 		}
 		reg.Close();
@@ -712,7 +713,7 @@ static void LoadVs2003Settings(CString & sProductDir)
 	
 	// Get root directory of Visual Studio
 	LPCTSTR VsBaseKey = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\Setup\\VS");
-	CString sVsRoot;
+	String sVsRoot;
 	if (RegOpenMachine(reg, VsBaseKey))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\ 
@@ -729,7 +730,7 @@ static void LoadVs2003Settings(CString & sProductDir)
 	if (RegOpenMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1")))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\ 
-		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
+		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T("")).c_str();
 		TrimPath(gVcPaths.sAdditionalPath);
 	}
 
@@ -743,18 +744,18 @@ static void LoadVs2003Settings(CString & sProductDir)
 	{
 		if (gVcPaths.sIncludes.IsEmpty())
 		{
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
 			gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
 		}
 		if (gVcPaths.sLibs.IsEmpty())
 		{
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
 			gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-			if (!sVsRoot.IsEmpty())
+			if (!sVsRoot.empty())
 			{
 				// eg C:\Program Files\Microsoft Visual Studio .NET 2003\SDK\v1.1"));
-				CString sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
-				gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir);
+				String sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
+				gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir.c_str());
 			}
 		}
 		reg.Close();
@@ -788,18 +789,18 @@ static void LoadVs2002Settings(CString & sProductDir)
 	LPCTSTR bd70 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.0\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
 	if (RegOpenMachine(reg, bd70))
 	{
-		CString fmwk = gVcPaths.sVcBaseFolder+_T("FrameworkSDK\\");
+		String fmwk = gVcPaths.sVcBaseFolder+_T("FrameworkSDK\\");
 		if (gVcPaths.sIncludes.IsEmpty())
 		{
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
 			gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-			gVcPaths.sIncludes.Replace(_T("$(FrameworkSDKDir)"), fmwk);
+			gVcPaths.sIncludes.Replace(_T("$(FrameworkSDKDir)"), fmwk.c_str());
 		}
 		if (gVcPaths.sLibs.IsEmpty())
 		{
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
 			gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-			gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), fmwk);
+			gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), fmwk.c_str());
 		}
 		reg.Close();
 	}
@@ -823,9 +824,9 @@ static void LoadVs6Settings(CString & sProductDir)
 	if (RegOpenUser(reg, Dev6Dirs))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio\COMMON\MSDev98\Bin
-		CString sVsDevBin = reg.ReadString(_T("Install Dirs"), _T(""));
+		String sVsDevBin = reg.ReadString(_T("Install Dirs"), _T(""));
 		if (gVcPaths.sRCExe.IsEmpty())
-				gVcPaths.sRCExe.Format(_T("%s\\rc.exe"), sVsDevBin);
+			gVcPaths.sRCExe.Format(_T("%s\\rc.exe"), sVsDevBin.c_str());
 	}
 
 	// Get linker
@@ -838,9 +839,9 @@ static void LoadVs6Settings(CString & sProductDir)
 	if (RegOpenUser(reg, bd))
 	{
 		if (gVcPaths.sIncludes.IsEmpty())
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
 		if (gVcPaths.sLibs.IsEmpty())
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
 		reg.Close();
 	}
 }
@@ -875,22 +876,22 @@ static void LoadVsBaseDirs(CStringArray & VsBaseDirs)
 
 	if (RegOpenMachine(reg, gVs80VcBaseDir))
 	{
-		VsBaseDirs[VS_2005] = reg.ReadString(_T("ProductDir"), _T(""));
+		VsBaseDirs[VS_2005] = reg.ReadString(_T("ProductDir"), _T("")).c_str();
 		reg.Close();
 	}
 	if (RegOpenMachine(reg, gVs71VcBaseDir))
 	{
-		VsBaseDirs[VS_2003] = reg.ReadString(_T("ProductDir"), _T(""));
+		VsBaseDirs[VS_2003] = reg.ReadString(_T("ProductDir"), _T("")).c_str();
 		reg.Close();
 	}
 	if (RegOpenMachine(reg, gVs70VcBaseDir))
 	{
-		VsBaseDirs[VS_2002] = reg.ReadString(_T("ProductDir"), _T(""));
+		VsBaseDirs[VS_2002] = reg.ReadString(_T("ProductDir"), _T("")).c_str();
 		reg.Close();
 	}
 	if (RegOpenMachine(reg, gVs6VcBaseDir))
 	{
-		VsBaseDirs[VS_6] = reg.ReadString(_T("ProductDir"), _T(""));
+		VsBaseDirs[VS_6] = reg.ReadString(_T("ProductDir"), _T("")).c_str();
 		reg.Close();
 	}
 }
