@@ -114,7 +114,7 @@ BEGIN
         MENUITEM "Otvoriù projekt...\tCtrl+J",  ID_FILE_OPENPROJECT
         MENUITEM "Uloûiù &projekt...",          ID_FILE_SAVEPROJECT
         MENUITEM SEPARATOR
-        MENUITEM "Recent Projects",             ID_FILE_MRU_FILE1
+        MENUITEM "PoslednÈ projekty",             ID_FILE_MRU_FILE1
         MENUITEM SEPARATOR
         MENUITEM "&Koniec",                     ID_APP_EXIT
     END
@@ -127,21 +127,21 @@ BEGIN
         MENUITEM "&Zvoliù pÌsmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Pouûiù z·kladnÈ pÌsm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Panel n·strojov"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "é&iadny",                       ID_TOOLBAR_NONE
+            MENUITEM "&Mal˝",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Veæk˝",                        ID_TOOLBAR_BIG
         END
         MENUITEM "&Stavov˝ riadok",             ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Panel &z·loûiek",                    ID_VIEW_TAB_BAR
         MENUITEM SEPARATOR
         MENUITEM "&Jazyk...",                   ID_VIEW_LANGUAGE
     END
     POPUP "&N·stroje"
     BEGIN
         MENUITEM "&Filtre...",                  ID_TOOLS_FILTERS
-        MENUITEM "&Vytvor patch...",            ID_TOOLS_GENERATEPATCH
+        MENUITEM "&Vytvoriù z·platu...",            ID_TOOLS_GENERATEPATCH
     END
     POPUP "&Plugins"
     BEGIN
@@ -155,7 +155,7 @@ BEGIN
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&Nahraù konfigur·ciu...",     ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Resetovaù moûnosti",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -165,7 +165,7 @@ BEGIN
         MENUITEM "Zmeniù &panel\tF6",           ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "Dlaûdice &vodorovne",         ID_WINDOW_TILE_HORZ
-        MENUITEM "Dlaûdice &zvislo",            ID_WINDOW_TILE_VERT
+        MENUITEM "Dlaûdice &zvisle",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kask·da",                    ID_WINDOW_CASCADE
     END
     POPUP "Po&moc"
@@ -219,11 +219,11 @@ BEGIN
         MENUITEM "&Zvoliù pÌsmo...",            ID_VIEW_SELECTFONT
         MENUITEM "Pouûiù z·kladnÈ pÌsm&o",      ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Panel n·strojov"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "é&iadny",                       ID_TOOLBAR_NONE
+            MENUITEM "&Mal˝",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Veæk˝",                        ID_TOOLBAR_BIG
         END
         MENUITEM "&Stavov˝ riadok",             ID_VIEW_STATUS_BAR
         MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
@@ -254,12 +254,12 @@ BEGIN
     BEGIN
         MENUITEM "&PrispÙsobiù stÂpce...",      ID_TOOLS_CUSTOMIZECOLUMNS
         MENUITEM "&Filtre...",                  ID_TOOLS_FILTERS
-        MENUITEM "&Vytvoriù patch...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "&Vytvoriù z·platu...",          ID_TOOLS_GENERATEPATCH
         MENUITEM "Vystvoriù &spr·vu...",        ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Plugins"
     BEGIN
-        MENUITEM "&Manual·lne rozbalenie",      ID_UNPACK_MANUAL
+        MENUITEM "&Manu·lne rozbalenie",      ID_UNPACK_MANUAL
         MENUITEM "&AutomatickÈ rozbalenie",     ID_UNPACK_AUTO
         MENUITEM SEPARATOR
         MENUITEM "&Upravovaù rozbaæovacÌm programom", ID_POPUP_OPEN_WITH_UNPACKER
@@ -269,7 +269,7 @@ BEGIN
     POPUP "&Ladiù"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
         MENUITEM "&NaËÌtaù konfigur·ciu...",    ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&Resetovaù moûnosti",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -279,7 +279,7 @@ BEGIN
         MENUITEM "Prepn˙ù &panel\tF6",          ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "Dlaûdice &vodorovne",         ID_WINDOW_TILE_HORZ
-        MENUITEM "Dlaûdice &zvislo",            ID_WINDOW_TILE_VERT
+        MENUITEM "Dlaûdice &zvisle",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kask·da",                    ID_WINDOW_CASCADE
     END
     POPUP "Po&moc"
@@ -300,7 +300,7 @@ IDR_MERGEVIEWMENU MENU
 BEGIN
     POPUP "&S˙bor"
     BEGIN
-        MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
+        MENUITEM "&Nov˝\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Otvoriù...\tCtrl+O",         ID_FILE_OPEN
         MENUITEM SEPARATOR
         MENUITEM "Otvoriù pro&jekt...\tCtrl+J", ID_FILE_OPENPROJECT
@@ -319,13 +319,13 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "&TlaËiù...",                  ID_FILE_PRINT
-        MENUITEM "Page Se&tup",                 ID_FILE_PAGE_SETUP
+        MENUITEM "Nastavenie S&tr·nky",                 ID_FILE_PAGE_SETUP
         MENUITEM "N·hæad p&red tlaËou",         ID_FILE_PRINT_PREVIEW
         MENUITEM SEPARATOR
         MENUITEM "º&av˝ len na ËÌtanie",        ID_FILE_LEFT_READONLY
         MENUITEM "Pra&v˝ len na ËÌtanie",       ID_FILE_RIGHT_READONLY
         MENUITEM SEPARATOR
-        POPUP "&Konverovaù konce riadkov na"
+        POPUP "&Konvertovaù konce riadkov na"
         BEGIN
             MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
             MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
@@ -349,11 +349,11 @@ BEGIN
         MENUITEM "OznaËiù &vöetko\tCtrl+A",     ID_EDIT_SELECT_ALL
         MENUITEM SEPARATOR
         MENUITEM "&Hæadaù...\tCtrl+F",          ID_EDIT_FIND
-        MENUITEM "NahraÔiù...\tCtrl+H",         ID_EDIT_REPLACE
+        MENUITEM "Nahradiù...\tCtrl+H",         ID_EDIT_REPLACE
         MENUITEM SEPARATOR
         POPUP "&Skripty"
         BEGIN
-            MENUITEM "< Pr8zdne >",             ID_NO_EDIT_SCRIPTS
+            MENUITEM "< Pr·zdne >",             ID_NO_EDIT_SCRIPTS
         END
         MENUITEM SEPARATOR
         POPUP "RozöÌrenÈ"
@@ -381,22 +381,22 @@ BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
-        MENUITEM "&Zobraz pr·zdne miesto",      ID_VIEW_WHITESPACE
+        MENUITEM "&Zobraziù pr·zdne miesto",      ID_VIEW_WHITESPACE
         MENUITEM "Zobraz&iù rozdiely riadkov",  ID_VIEW_LINEDIFFS
         MENUITEM "Zobraziù ËÌsla &riadkov",     ID_VIEW_LINENUMBERS
-        MENUITEM "View &Margins",               ID_VIEW_FILEMARGIN
+        MENUITEM "Zobraziù &okraje",               ID_VIEW_FILEMARGIN
         MENUITEM "&Zalamovaù riadky",           ID_VIEW_WORDWRAP
         MENUITEM SEPARATOR
         MENUITEM "&Vymeniù panely",             ID_VIEW_SWAPPANES
         MENUITEM SEPARATOR
-        POPUP "&Toolbar"
+        POPUP "&Panel n·strojov"
         BEGIN
-            MENUITEM "&None",                       ID_TOOLBAR_NONE
-            MENUITEM "&Small",                      ID_TOOLBAR_SMALL
-            MENUITEM "&Big",                        ID_TOOLBAR_BIG
+            MENUITEM "é&iadny",                       ID_TOOLBAR_NONE
+            MENUITEM "&Mal˝",                      ID_TOOLBAR_SMALL
+            MENUITEM "&Veæk˝",                        ID_TOOLBAR_BIG
         END
         MENUITEM "&Stavov˝ riadok",             ID_VIEW_STATUS_BAR
-        MENUITEM "Ta&b Bar",                    ID_VIEW_TAB_BAR
+        MENUITEM "Panel &z·loûiek",                    ID_VIEW_TAB_BAR
         MENUITEM "&Panel s rozdielom",          ID_VIEW_DETAIL_BAR
         MENUITEM "&LokaËn˝ panel",              ID_VIEW_LOCATION_BAR
         MENUITEM SEPARATOR
@@ -406,11 +406,11 @@ BEGIN
     END
     POPUP "&Zl˙Ëiù"
     BEGIN
-        MENUITEM "&N·sleduj˙ci rozdiel\tTAlt+Down", ID_NEXTDIFF
+        MENUITEM "&Nasleduj˙ci rozdiel\tTAlt+Down", ID_NEXTDIFF
         MENUITEM "&Predch·dzaj˙ci rozdiel\tAlt+Up", ID_PREVDIFF
         MENUITEM SEPARATOR
         MENUITEM "Pr&v˝ rozdiel\tAlt+Home",     ID_FIRSTDIFF
-        MENUITEM "&Aktu·ny rozdiel\tAlt+Enter", ID_CURDIFF
+        MENUITEM "&Aktu·lny rozdiel\tAlt+Enter", ID_CURDIFF
         MENUITEM "Posledn˝ &rozdiel\tAlt+End",  ID_LASTDIFF
         MENUITEM SEPARATOR
         MENUITEM "KopÌrovaù vpravo\t<-",        ID_L2R
@@ -425,8 +425,8 @@ BEGIN
     POPUP "&N·stroje"
     BEGIN
         MENUITEM "&Filtre...",                  ID_TOOLS_FILTERS
-        MENUITEM "&Vytvoriù patch...",          ID_TOOLS_GENERATEPATCH
-        MENUITEM "Vystvoriù &spr·vu...",        ID_TOOLS_GENERATEREPORT
+        MENUITEM "&Vytvoriù z·platu...",          ID_TOOLS_GENERATEPATCH
+        MENUITEM "Vytvoriù &spr·vu...",        ID_TOOLS_GENERATEREPORT
     END
     POPUP "&Z·suvnÈ moduly"
     BEGIN
@@ -444,8 +444,8 @@ BEGIN
     END
     POPUP "&Debug"  // NOTE: NOT visible in releases, only in DEBUG builds
     BEGIN
-        MENUITEM "&naËÌtaù konfigur·ciu...",    ID_DEBUG_LOADCONFIG
-        MENUITEM "&Reset Options",              ID_DEBUG_RESETOPTIONS
+        MENUITEM "&NaËÌtaù konfigur·ciu...",    ID_DEBUG_LOADCONFIG
+        MENUITEM "&Resetovaù moûnosti",              ID_DEBUG_RESETOPTIONS
     END
     POPUP "&Okno"
     BEGIN
@@ -455,7 +455,7 @@ BEGIN
         MENUITEM "Prepn˙ù &panel\tF6",          ID_WINDOW_CHANGE_PANE
         MENUITEM SEPARATOR
         MENUITEM "Dlaûdice &vodorovne",         ID_WINDOW_TILE_HORZ
-        MENUITEM "Dlaûdice &zvislo",            ID_WINDOW_TILE_VERT
+        MENUITEM "Dlaûdice &zvisle",            ID_WINDOW_TILE_VERT
         MENUITEM "&Kask·da",                    ID_WINDOW_CASCADE
     END
     POPUP "Po&moc"
@@ -485,7 +485,7 @@ BEGIN
             MENUITEM "&Prav˝ s æav˝m",          ID_DIR_COPY_RIGHT_TO_LEFT
             MENUITEM "P&av˝ s...",              ID_DIR_COPY_RIGHT_TO_BROWSE
         END
-        POPUP "&presun˙ù"
+        POPUP "&Presun˙ù"
         BEGIN
             MENUITEM "º&av˝ do...",             ID_DIR_MOVE_LEFT_TO_BROWSE
             MENUITEM "&prav˝ do...",            ID_DIR_MOVE_RIGHT_TO_BROWSE
@@ -493,7 +493,7 @@ BEGIN
         POPUP "&Zmazaù"
         BEGIN
             MENUITEM "º&av˝",                   ID_DIR_DEL_LEFT
-            MENUITEM "&prav˝",                  ID_DIR_DEL_RIGHT
+            MENUITEM "&Prav˝",                  ID_DIR_DEL_RIGHT
             MENUITEM "&Oba",                    ID_DIR_DEL_BOTH
         END
         MENUITEM "Preme&novaù",                 ID_DIR_ITEM_RENAME
@@ -561,7 +561,7 @@ BEGIN
         MENUITEM "Ch&oÔ na rozdiel",            ID_LOCBAR_GOTODIFF
         MENUITEM "&ChoÔ...",                    ID_EDIT_WMGOTO
         MENUITEM SEPARATOR
-        MENUITEM "&Bez presunt˝ch blokov",      ID_DISPLAY_MOVED_NONE
+        MENUITEM "&Bez presunut˝ch blokov",      ID_DISPLAY_MOVED_NONE
         MENUITEM "&Vöetky presunutÈ bloky",     ID_DISPLAY_MOVED_ALL
         MENUITEM "Presunut˝ blok pre &aktu·lny rozdiel", ID_DISPLAY_MOVED_FOLLOW_DIFF
     END
@@ -726,21 +726,21 @@ BEGIN
     CONTROL         "Automatick˝ &skok na prv˝ rozdiel",
                     IDC_SCROLL_CHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,206,10
-    CONTROL         "&Nezobrazuj sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
+    CONTROL         "&Nezobrazovaù sp˙öùacÌ banner",IDC_DISABLE_SPLASH,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,17,206,10
     CONTROL         "Zat&v·raù okn· kl·vesom ESC",IDC_ESC_CLOSES_WINDOW,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,27,206,10
     CONTROL         "&Automaticky overovaù cestu v dialÛgu Otvoriù",
                     IDC_VERIFY_OPEN_PATHS,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,7,37,206,10
-    CONTROL         "Um&oûni beh iba jednej inötancie",IDC_SINGLE_INSTANCE,
+    CONTROL         "Um&oûniù beh iba jednej inötancie",IDC_SINGLE_INSTANCE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,206,10
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,206,10
     LTEXT           "A&utomatickÈ dopÂÚanie v dialÛgu Otvoriù:",IDC_STATIC,19,72,125,8
     COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Povoæ viacerÈ okn· pre porovnanie",IDC_STATIC,7,100,
+    GROUPBOX        "Povoliù viacerÈ okn· pre porovnanie",IDC_STATIC,7,100,
                     221,37
     CONTROL         "Porovn·vanie &adres·rov",IDC_MULTIDOC_DIRCMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
@@ -805,20 +805,20 @@ BEGIN
                     CBS_AUTOHSCROLL | CBS_SORT | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Iba celÈ slov·",IDC_EDIT_WHOLE_WORD,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,7,44,135,10
-    CONTROL         "Rozliöuj veækÈ/malÈ",IDC_EDIT_MATCH_CASE,"Button",
+    CONTROL         "Rozliöovaù veækÈ/malÈ",IDC_EDIT_MATCH_CASE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,54,135,10
     CONTROL         "Regul·rny v˝raz",IDC_EDIT_REGEXP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,64,135,10
-    CONTROL         "&Don't wrap end of file",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
+    CONTROL         "&Nezalamovaù koniec s˙boru",IDC_EDIT_SCOPE_DONT_WRAP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,74,135,10
     GROUPBOX        "Nahradiù vo",IDC_STATIC,149,40,90,36,WS_GROUP
     CONTROL         "V˝bere",IDC_EDIT_SCOPE_SELECTION,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,154,51,80,10
     CONTROL         "Celom s˙bore",IDC_EDIT_SCOPE_WHOLE_FILE,"Button",
                     BS_AUTORADIOBUTTON,154,61,80,10
-    DEFPUSHBUTTON   "N·jdi ÔalöÌ",IDC_EDIT_SKIP,247,7,52,14,WS_GROUP
-    PUSHBUTTON      "NahraÔ",IDC_EDIT_REPLACE,247,24,52,14
-    PUSHBUTTON      "NahraÔ vöetko",IDC_EDIT_REPLACE_ALL,247,41,52,14
+    DEFPUSHBUTTON   "N·jsù ÔalöÌ",IDC_EDIT_SKIP,247,7,52,14,WS_GROUP
+    PUSHBUTTON      "NahraÔiù",IDC_EDIT_REPLACE,247,24,52,14
+    PUSHBUTTON      "NahraÔiù vöetko",IDC_EDIT_REPLACE_ALL,247,41,52,14
     PUSHBUTTON      "Zruöiù",IDCANCEL,247,58,52,14
 END
 
@@ -845,7 +845,7 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_DISABLED | WS_CAPTION
 CAPTION "RiadkovÈ filtre"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "Enable Line Filters",
+    CONTROL         "Zapn˙ù riadkovÈ filtre",
                     IDC_IGNOREREGEXP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,
                     7,221,15
     LTEXT           "Regul·rne v˝razy (jeden na riadok):",IDC_STATIC,7,28,
@@ -855,10 +855,10 @@ BEGIN
                     LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,8,39,350,105
     EDITTEXT        IDC_LFILTER_EDITBOX,7,149,296,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Save",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
-    PUSHBUTTON      "New",IDC_LFILTER_ADDBTN,7,167,50,14
-    PUSHBUTTON      "Edit",IDC_LFILTER_EDITBTN,62,167,50,14
-    PUSHBUTTON      "Remove",IDC_LFILTER_REMOVEBTN,116,167,50,14
+    PUSHBUTTON      "Uloûiù",IDC_LFILTER_EDITSAVE,308,148,50,14,WS_DISABLED
+    PUSHBUTTON      "Nov˝",IDC_LFILTER_ADDBTN,7,167,50,14
+    PUSHBUTTON      "Upraviù",IDC_LFILTER_EDITBTN,62,167,50,14
+    PUSHBUTTON      "Odstr·niù",IDC_LFILTER_REMOVEBTN,116,167,50,14
 END
 
 IDD_PROPPAGE_COLORS_WINMERGE DIALOGEX 0, 0, 235, 196
@@ -912,7 +912,7 @@ BEGIN
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_COLOR,"Button",BS_OWNERDRAW |
                     WS_TABSTOP,113,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
-    RTEXT           "V˝be presunut˝:",IDC_STATIC,7,109,90,8
+    RTEXT           "V˝ber presunut˝:",IDC_STATIC,7,109,90,8
     CONTROL         "Dif",IDC_SEL_MOVEDBLOCK_DELETED_COLOR,"Button",
                     BS_OWNERDRAW | WS_TABSTOP,156,109,17,14,WS_EX_TRANSPARENT |
                     WS_EX_CLIENTEDGE
@@ -954,13 +954,13 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "&Posielaù zmazanÈ s˙bory do koöa",IDC_USE_RECYCLE_BIN,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,7,222,10
-    CONTROL         "Ign&oruj ËasovÈ rozdiely menöie ako 3 sekundy",
+    CONTROL         "Ign&orovaù ËasovÈ rozdiely menöie ako 3 sekundy",
                     IDC_IGNORE_SMALLTIMEDIFF,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,7,17,222,10
     GROUPBOX        "Integr·cia",IDC_STATIC,7,30,218,46
-    CONTROL         "&Pridaù do kontextovÈho menu PrieskumnÌka",IDC_EXPLORER_CONTEXT,
+    CONTROL         "&Pridaù do kontextovej ponuky PrieskumnÌka",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
-    CONTROL         "Zap&n˙ù rozöÌrenÈ menu",IDC_EXPLORER_ADVANCED,"Button",
+    CONTROL         "Zap&n˙ù rozöÌren˙ ponuku",IDC_EXPLORER_ADVANCED,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
     CONTROL         "Za&h‡Úaù ötandardne aj podadres·re",IDC_EXPLORER_SUBFOLDERS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,61,200,10
@@ -975,7 +975,7 @@ END
 IDD_GENERATE_PATCH DIALOGEX 0, 0, 340, 180
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
     WS_SYSMENU
-CAPTION "Gener·tor patchov"
+CAPTION "Gener·tor z·plat"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     LTEXT           "S˙bor&1:",IDC_STATIC,7,10,36,8
@@ -1009,7 +1009,7 @@ BEGIN
                     BS_AUTORADIOBUTTON | WS_TABSTOP,162,112,110,10
     CONTROL         "Ignor&ovaù pr·zdne riadky",IDC_DIFF_WHITESPACE_IGNOREBLANKS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,134,142,10
-    CONTROL         "&ZohæadnÚovaù veækosù pÌsmen",IDC_DIFF_CASESENSITIVE,"Button",
+    CONTROL         "&ZohæadÚovaù veækosù pÌsmen",IDC_DIFF_CASESENSITIVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,145,142,10
     CONTROL         "Zahrn˙ù prÌkazov˝ ria&dok",IDC_DIFF_INCLCMDLINE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,155,134,170,10
@@ -1065,7 +1065,7 @@ BEGIN
     LTEXT           "RozbaæovacÌ program:",IDC_STATIC,7,9,63,8
     COMBOBOX        IDC_UNPACKER_NAME,72,7,200,54,CBS_DROPDOWNLIST |
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "Zobraz vöetky rozbaæovacie programy, nekontroluj prÌponu",
+    CONTROL         "Zobraziù vöetky rozbaæovacie programy, nekontrolovaù prÌponu",
                     IDC_UNPACKER_ALLOW_ALL,"Button",BS_AUTOCHECKBOX |
                     WS_TABSTOP,72,66,200,10
     LTEXT           "Zoznam prÌpon:",IDC_STATIC,7,26,63,8
@@ -1136,7 +1136,7 @@ BEGIN
                     7,80,221,10
     CONTROL         "Zapn˙ù &detekciu pohyblivÈho bloku",IDC_MOVED_BLOCKS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,90,221,10
-    CONTROL         "&Match similar lines",IDC_MATCH_SIMILAR_LINES,"Button",
+    CONTROL         "&PodobnÈ riadky ako zhodnÈ",IDC_MATCH_SIMILAR_LINES,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,100,221,10
     LTEXT           "Me&tÛda porovn·vania s˙borov:",IDC_STATIC,7,115,100,9
     COMBOBOX        IDC_COMPAREMETHODCOMBO,110,113,114,70,CBS_DROPDOWNLIST |
@@ -1258,7 +1258,7 @@ BEGIN
     CONTROL         "",IDC_STATIC,"Static",SS_GRAYRECT,2,22,296,1
     LTEXT           "Podpora archÌvov vyûaduje, aby bol nainötalovan˝ 7-Zip 3.11 alebo neskoröÌ m inaks\njeho dÙleûitÈ komponenty bud˙ prekopÌrovanÈ do adres·ra pre samostatn˙ (stanalone) prev·dzku.",
                     IDC_STATIC,2,26,296,26
-    LTEXT           "MusÌ byù aj spr·vny z·suvn˝ modul rozhrania (Merge7z*.dll) on the path.",
+    LTEXT           "MusÌ byù aj spr·vny z·suvn˝ modul rozhrania (Merge7z*.dll) v ceste.",
                     IDC_STATIC,2,52,296,18
     LTEXT           "ProsÌm, pouûÌvajte niûöie odpor˙Ëan˙ verziu  7-Zip k˝m nebud˙ dostupnÈ z·suvnÈ moduly rozhrania\npre neskoröie verzie.",
                     IDC_STATIC,2,70,296,26
@@ -1321,7 +1321,7 @@ FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     RTEXT           "Kæ˙ËovÈ slov·:",IDC_STATIC,0,20,70,8
     RTEXT           "N·zvy funkciÌ:",IDC_STATIC,0,40,70,8
-    RTEXT           "koment·re:",IDC_STATIC,0,60,70,8
+    RTEXT           "Koment·re:",IDC_STATIC,0,60,70,8
     RTEXT           "»Ìsla:",IDC_STATIC,0,80,70,8
     RTEXT           "Oper·tory:",IDC_STATIC,0,100,70,8
     RTEXT           "Reùazce:",IDC_STATIC,0,120,70,8
@@ -1405,7 +1405,7 @@ BEGIN
                     14,7,229,11
     CONTROL         "Zdieæan˝ filter (pre vöetk˝ch pouûÌvateæov tohoto poËÌtaËa)",IDC_SHARED,"Button",
                     BS_AUTORADIOBUTTON,20,22,223,10
-    CONTROL         "S˙kromn˝ filter (len pre akut·lneho pouûÌvateæa)",IDC_PRIVATE,"Button",
+    CONTROL         "S˙kromn˝ filter (len pre aktu·lneho pouûÌvateæa)",IDC_PRIVATE,"Button",
                     BS_AUTORADIOBUTTON,20,37,223,10
     DEFPUSHBUTTON   "OK",IDOK,65,55,50,14
     PUSHBUTTON      "Zruöiù",IDCANCEL,135,55,50,14
@@ -1466,7 +1466,7 @@ BEGIN
     ICON            "",IDC_STAT_IEQUALBINFILE,131,115,16,16
     RTEXT           "Static",IDC_STAT_IDENTICBINARY,146,116,38,10,SS_SUNKEN
     CONTROL         "",IDC_STATIC,"Static",SS_ETCHEDHORZ,7,136,186,1
-    RTEXT           "Total:",IDC_STATIC,13,142,56,8
+    RTEXT           "Celkom:",IDC_STATIC,13,142,56,8
     ICON            "",IDC_STAT_ITOTALFOLDERS,72,140,16,16
     RTEXT           "Static",IDC_STAT_TOTALFOLDER,86,141,38,10,SS_SUNKEN
     ICON            "",IDC_STAT_ITOTALFILES,131,140,16,16
@@ -1580,22 +1580,22 @@ STYLE DS_SETFONT | DS_FIXEDSYS | WS_POPUP | WS_CAPTION
 CAPTION "Backup Files"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    LTEXT           "Create backup files in:",IDC_STATIC,7,7,222,8
-    CONTROL         "&Folder compare",IDC_BACKUP_FOLDERCMP,"Button",
+    LTEXT           "Vytv·raù z·loûnÈ s˙bory v:",IDC_STATIC,7,7,222,8
+    CONTROL         "Porovnanie &adres·rov",IDC_BACKUP_FOLDERCMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,17,212,10
-    CONTROL         "Fil&e compare",IDC_BACKUP_FILECMP,"Button",
+    CONTROL         "Porovnanie &s˙borov",IDC_BACKUP_FILECMP,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,27,212,10
-    LTEXT           "Create backup files into:",IDC_STATIC,7,40,222,8
-    CONTROL         "&Original file's folder",IDC_BACKUP_ORIGFOLD,"Button",
+    LTEXT           "Vytv·raù z·loûnÈ s˙bory do:",IDC_STATIC,7,40,222,8
+    CONTROL         "Adres·r &origin·lneho s˙boru",IDC_BACKUP_ORIGFOLD,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,17,50,212,10
-    CONTROL         "&Global backup folder:",IDC_BACKUP_GLOBALFOLD,"Button",
+    CONTROL         "&Glob·lny adres·r pre z·lohy:",IDC_BACKUP_GLOBALFOLD,"Button",
                     BS_AUTORADIOBUTTON,17,59,212,10
     EDITTEXT        IDC_BACKUP_FOLDER,29,70,145,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_BACKUP_BROWSE,179,70,50,14
-    LTEXT           "Backup filename:",IDC_STATIC,7,89,222,8
-    CONTROL         "&Append .bak -extension",IDC_BACKUP_APPEND_BAK,"Button",
+    PUSHBUTTON      "Prehliadaù...",IDC_BACKUP_BROWSE,179,70,50,14
+    LTEXT           "N·zov z·loûnÈho s˙boru:",IDC_STATIC,7,89,222,8
+    CONTROL         "&Pridaù rozöÌrenie .bak",IDC_BACKUP_APPEND_BAK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,99,212,10
-    CONTROL         "A&ppend timestamp",IDC_BACKUP_APPEND_TIME,"Button",
+    CONTROL         "P&ridaù Ëasov˙ zn·mku",IDC_BACKUP_APPEND_TIME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,17,109,212,10
 END
 
@@ -1606,16 +1606,16 @@ CAPTION "Confirm Copy"
 FONT 8, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     ICON            IDI_FOLDER,IDC_FLDCONFIRM_ICON,7,7,20,20
-    LTEXT           "Are you sure you want to copy XXX items?",
+    LTEXT           "Ste si ist˝, ûe chcete skopÌrovaù XXX poloûiek?",
                     IDC_FLDCONFIRM_QUERY,45,7,233,8
-    LTEXT           "From left",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
+    LTEXT           "Zæava",IDC_FLDCONFIRM_FROM_TEXT,46,19,231,8
     EDITTEXT        IDC_FLDCONFIRM_FROM_PATH,45,29,233,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    LTEXT           "To right",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
+    LTEXT           "Doprava",IDC_FLDCONFIRM_TO_TEXT,46,48,230,8
     EDITTEXT        IDC_FLDCONFIRM_TO_PATH,46,58,232,14,ES_AUTOHSCROLL | 
                     ES_READONLY
-    PUSHBUTTON      "Yes",IDYES,174,79,50,14
-    DEFPUSHBUTTON   "No",IDNO,228,79,50,14
+    PUSHBUTTON      "¡no",IDYES,174,79,50,14
+    DEFPUSHBUTTON   "Nie",IDNO,228,79,50,14
 END
 
 
@@ -1755,7 +1755,7 @@ BEGIN
     ID_WINDOW_ARRANGE       "Usporiada ikony na spodnom okraji okna\nUsporiadaj ikony"
     ID_WINDOW_CASCADE       "Usporiada otvorenÈ okn· kask·dovito\nKask·da"
     ID_WINDOW_TILE_HORZ     "Dlaûdice vodorovne\nDlaûdice"
-    ID_WINDOW_TILE_VERT     "Dlaûdice zvislo\nDlaûdice"
+    ID_WINDOW_TILE_VERT     "Dlaûdice zvisle\nDlaûdice"
     ID_WINDOW_SPLIT         "Rozdeliù aktÌvne okno\nRozdeliù"
 END
 
@@ -1778,9 +1778,9 @@ END
 // View bar commands
 STRINGTABLE
 BEGIN
-    ID_VIEW_TOOLBAR         "Zobraziù alebo skryù panel n·strojov\nPanel n·strojov"
-    ID_VIEW_STATUS_BAR      "Zobraziù nebo skryù stavov˝ riadok\nStavov˝ riadok"
-    ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_TOOLBAR         "ZobrazÌ alebo skryje panel n·strojov\nPanel n·strojov"
+    ID_VIEW_STATUS_BAR      "ZobrazÌ alebo skryje stavov˝ riadok\nStavov˝ riadok"
+    ID_VIEW_TAB_BAR         "ZobrazÌ alebo skryje panel z·loûiek\nPanel z·loûiek"
 END
 
 // Windows System menu
@@ -1805,7 +1805,7 @@ END
 // Print Preview
 STRINGTABLE
 BEGIN
-    AFX_IDS_PREVIEW_CLOSE   "Zatvoriù n·hæad tlaËe\nZruö n·hæad"
+    AFX_IDS_PREVIEW_CLOSE   "ZatvorÌ n·hæad tlaËe\nZruö n·hæad"
 END
 
 // WINMERGE INFORMATION
@@ -1819,21 +1819,21 @@ END
 // OPTIONS NAME TO PRESERVE/UNIFY EOL
 STRINGTABLE
 BEGIN
-    IDC_MIXED_EOL           "Zachovaù pÙvodnÈ= zakonËenia riadkov"
+    IDC_MIXED_EOL           "Zachovaù pÙvodnÈ zakonËenia riadkov"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
 STRINGTABLE
 BEGIN
     IDC_COMPARISON_STOP     "Stop"
-    IDC_COMPARISON_CLOSE    "StlaËte æuboboæn˝ kl·ves"
+    IDC_COMPARISON_CLOSE    "StlaËte æubovoæn˝ kl·ves"
 END
 
 // EDITOR : FILENAME BAR
 STRINGTABLE
 BEGIN
-    IDC_STATIC_TITLE_LEFT   "Cestu skopÌrujete po kliknnutÌ prav˝m tlaËidlom"
-    IDC_STATIC_TITLE_RIGHT  "Cestu skopÌrujete po kliknnutÌ prav˝m tlaËidlom"
+    IDC_STATIC_TITLE_LEFT   "Cestu skopÌrujete po kliknutÌ prav˝m tlaËidlom"
+    IDC_STATIC_TITLE_RIGHT  "Cestu skopÌrujete po kliknutÌ prav˝m tlaËidlom"
 END
 
 // SPLASH SCREEN TEXTS
@@ -1882,18 +1882,18 @@ BEGIN
     IDS_OPTIONSPG_VERSIONCONTROL "Kontrola verziÌ"
     IDS_OPTIONSPG_CODEPAGE  "KÛdov· str·nka"
     IDS_OPTIONSPG_ARCHIVE   "Podpora archÌvov"
-    IDS_OPTIONSPG_BACKUPS   "Backup Files"
+    IDS_OPTIONSPG_BACKUPS   "Z·loûnÈ s˙bory"
 END
 
 // WINMERGE CUSTOM STRINGS
 
 STRINGTABLE
 BEGIN
-    IDS_TO                  "To:"
-    IDS_FROM_LEFT           "From left:"
-    IDS_TO_LEFT             "To left:"
-    IDS_FROM_RIGHT          "From right:"
-    IDS_TO_RIGHT            "To right:"
+    IDS_TO                  "Do:"
+    IDS_FROM_LEFT           "Zæava:"
+    IDS_TO_LEFT             "Doæava:"
+    IDS_FROM_RIGHT          "Sprava:"
+    IDS_TO_RIGHT            "Doæava:"
 END
 
 // WINMERGE INFORMATION
@@ -1913,7 +1913,7 @@ BEGIN
     IDS_OPTIONS_INVALID_TABSIZE 
                             "Hodnota v poli Tab size nie je v rozsahu, ktor˝ WinMerge akceptuje.\n\nPouûite hodnoty 1 - %1."
     IDS_RESET_OPTIONS_WARNING 
-                            "Are you sure you want to reset all WinMerge options to default values?\n\nPlease re-start WinMerge after the reset."
+                            "Ste si ist˝, ûe chcete resetovaù vöetky voæby WinMerge na ötandardnÈ hodnoty?\n\nprosÌm, po resetovanÌ reötartujte WinMerge."
 END
 
 // BROWSE FILE
@@ -1956,16 +1956,16 @@ BEGIN
     IDS_FILEFILTER_SAVENEW  "Zvoæte n·zov s˙boru pre nov˝ filter"
     IDS_FILEFILTER_FILEMASK "Filtre s˙borov (*.flt)|*.flt|Vöetky s˙bory (*.*)|*.*||"
     IDS_FILEFILTER_TMPL_MISSING 
-                            "Cannot find file filter template file!\n\nPlease copy file %1 to WinMerge/Filters -folder:\n%2."
+                            "Nebolo moûnÈ n·jsù s˙bor öablÛny filtra s˙borov!\n\nProsÌm, skopÌrujte s˙bor %1 do adres·ra WinMerge/Filters :\n%2."
     IDS_FILEFILTER_TMPL_COPY 
-                            "NemÙûem skopÌrovaù öablÛnu filtrov s˙borov do adres·ra s filtrami:\n%1\n\nProsÌm, uistite sa, ûe adres·r existuje a d· sa doÚho zapisovaù."
+                            "Nebolo moûnÈ skopÌrovaù öablÛnu filtrov s˙borov do adres·ra s filtrami:\n%1\n\nProsÌm, uistite sa, ûe adres·r existuje a d· sa doÚho zapisovaù."
     IDS_FILEFILTER_NO_USERFOLDER 
                             "PouûÌvateæsk˝ adres·r so s˙bormi filtrov nie je definovan˝!\n\nProsÌm, vyberte adres·r pre filtre v dialÛgu Nastavienia/SystÈm."
     IDS_FILEFILTER_DELETE_FAIL 
                             "Nepodarilo sa zmazaù s˙bor filtra:\n%1\n\nMoûno je filter len na ËÌtanie?"
     IDS_FILEFILTER_INSTALL  "N·jsù s˙bor filtra, ktor˝ sa nainötaluje"
     IDS_FILEFILTER_INSTALLFAIL 
-                            "inötal·cia s˙boru filtra sa nepodarila.\n\nnemohol som skopÌtovaù nov˝ s˙bor do adre·ra s filtrami."
+                            "Inötal·cia s˙boru filtra sa nepodarila.\n\nNepodarilo sa skopÌrovaù nov˝ s˙bor do adres·ra s filtrami."
     IDS_FILEFILTER_OVERWRITE 
                             "Filter uû existuje. PrepÌsaù existuj˙ci filter?"
 END
@@ -1973,7 +1973,7 @@ END
 // LINEFILTER STRINGS
 STRINGTABLE 
 BEGIN
-    IDS_FILTERLINE_REGEXP   "Regular expression"
+    IDS_FILTERLINE_REGEXP   "Regul·rny v˝raz"
 END
 
 // VERSION CONTROL OPTIONS
@@ -2127,7 +2127,7 @@ END
 // DIRECTORY DIFFING : FILE COPY/DELETE (WITHOUT/WITH NUMBER MARK)  (2)
 STRINGTABLE
 BEGIN
-    IDS_DEL_LEFT_FMT        "Left (%1)"
+    IDS_DEL_LEFT_FMT        "ºav˝ (%1)"
     IDS_DEL_RIGHT_FMT       "Zmaû %1 z %2 vybran˝ch poloûiek z pravej strany"
     IDS_DEL_BOTH_FMT        "Zmazaù z oboch str·n %1 z %2 vybran˝ch poloûiek"
     IDS_DEL_LEFT_FMT2       "ºav˝ (%1 z %2)"
@@ -2150,24 +2150,24 @@ BEGIN
     IDS_CONFIRM_ALL_LEFT    "Naozaj chcete skopÌrovaù vöetky rozdiely do s˙boru væavo?"
     IDS_CONFIRM_ALL_RIGHT   "Naozaj chcete skopÌrovaù vöetky rozdiely do s˙boru vpravo?"
     IDS_CONFIRM_COPY_SINGLE "Chcete naozaj kopÌrovaù\n\n%1\ndo\n%2 ?"
-    IDS_CONFIRM_COPY2DIR    "Are you sure you want to copy %1 of %2 selected item(s)?"
+    IDS_CONFIRM_COPY2DIR    "Naozaj chcete skopÌrovaù %1 z %2 vybran˝ch poloûiek?"
     IDS_CONFIRM_DELETE_ITEMS "Chcete naozaj zmazaù %1 z %2 vybran˝ch poloûiek?"
     IDS_CONFIRM_DELETE_DIR  "Zmazaù adres·r\n\n%1 ?"
     IDS_CONFIRM_DELETE_SINGLE "Chcete naozaj zmazaù\n\n%1 ?"
-    IDS_CONFIRM_SINGLE_COPY "Are you sure you want to copy:"
-    IDS_CONFIRM_MULTIPLE_COPY "Are you sure you want to copy %d items:"
-    IDS_DIRCMP_NOTSYNC      "Operation aborted!\n\nFolder contents at disks has changed, path\n%1\nwas not found.\n\nPlease refresh the compare."
+    IDS_CONFIRM_SINGLE_COPY "Naozaj chcete skopÌrovaù:"
+    IDS_CONFIRM_MULTIPLE_COPY "Naozaj chcete skopÌrovaù %d poloûiek:"
+    IDS_DIRCMP_NOTSYNC      "oper·cia zruöen·!\n\nObsah adres·ra na disku sa zmenil, cesta\n%1\nnebol n·jden·.\n\nProsÌm, obnovte porovnanie."
 END
 
 // DIRECTORY DIFFING : OPEN FILE
 STRINGTABLE
 BEGIN
-    ID_DIR_OPEN_LEFT        "Otvor æav˝ s˙bor"
+    ID_DIR_OPEN_LEFT        "Otvoriù æav˝ s˙bor"
     ID_DIR_OPEN_LEFT_WITHEDITOR "Open the left file to external editor"
-    ID_DIR_OPEN_LEFT_WITH   "Otvor æav˝ s˙bor s..."
-    ID_DIR_OPEN_RIGHT       "Otvor prav˝ s˙bor"
-    ID_DIR_OPEN_RIGHT_WITHEDITOR "Open the right file to external editor"
-    ID_DIR_OPEN_RIGHT_WITH  "Otvor prav˝ s˙bor s..."
+    ID_DIR_OPEN_LEFT_WITH   "Otvoriù æav˝ s˙bor s..."
+    ID_DIR_OPEN_RIGHT       "Otvoriù prav˝ s˙bor"
+    ID_DIR_OPEN_RIGHT_WITHEDITOR "Otvoriù prav˝ s˙bor v externom editore"
+    ID_DIR_OPEN_RIGHT_WITH  "Otvoriù prav˝ s˙bor s..."
     IDS_ERROR_EXECUTE_FILE   "Nepodarilo sa spustiù extern˝ editor: %1"
     IDS_UNKNOWN_EXECUTE_FILE "Nezn·ma prÌpona (external editor): %1"
     ID_DIR_COPY_FILENAMES   "SkopÌrovaù n·zvy s˙borov do schr·nky"
@@ -2213,7 +2213,7 @@ BEGIN
     IDS_COLHDR_NEWER        "NovöÌ s˙bor"
     IDS_COLHDR_LVERSION     "Verzia s˙boru væavo"
     IDS_COLHDR_RVERSION     "Verzia s˙boru vpravo"
-    IDS_COLHDR_RESULT_ABBR  "Kr·tjy v˝sledok"
+    IDS_COLHDR_RESULT_ABBR  "Kr·tky v˝sledok"
     IDS_COLHDR_LATTRIBUTES  "Atrib˙ty væavo"
     IDS_COLHDR_RATTRIBUTES  "Atrib˙ty vpravo"
     IDS_COLHDR_LEOL_TYPE    "Konce riadkov væavo"
@@ -2237,8 +2237,8 @@ BEGIN
     IDS_ABORTED_ITEM        "Poloûka zruöen·"
     IDS_FILE_SKIPPED        "S˙bor preskoËen˝"
     IDS_DIR_SKIPPED         "Adres·r preskoËen˝"
-    IDS_LEFT_ONLY_IN_FMT    "Left only: %1"
-    IDS_RIGHT_ONLY_IN_FMT   "Right only: %1"
+    IDS_LEFT_ONLY_IN_FMT    "Iba væavo: %1"
+    IDS_RIGHT_ONLY_IN_FMT   "Iba vpravo: %1"
     IDS_BIN_FILES_SAME      "Bin·rne s˙bory s˙ identickÈ"
     IDS_IDENTICAL           "IdentickÈ"
     IDS_BIN_FILES_DIFF      "Bin·rne s˙bory s˙ rozdielne"
@@ -2246,7 +2246,7 @@ BEGIN
     IDS_LEFTONLY            "Iba væavo"
     IDS_RIGHTONLY           "Iba vpravo"
     IDS_DIFFERENT           "Rozdielne"
-    IDS_CMPRES_ERROR        "Error"
+    IDS_CMPRES_ERROR        "Chyba"
 END
 
 // DIRECTORY DIFFING : SUMMARY BAR
@@ -2300,7 +2300,7 @@ END
 // DIRECTORY DIFFING : GENERATE REPORT
 STRINGTABLE
 BEGIN
-    IDS_DIRECTORY_REPORT_TITLE "Porovnaj %1 s %2"
+    IDS_DIRECTORY_REPORT_TITLE "Porovnaù %1 s %2"
     IDS_REPORT_COMMALIST    "Zoznam oddelen˝ Ëiarkami"
     IDS_REPORT_TABLIST      "Zoznam oddelen˝ tabul·tormi"
     IDS_REPORT_SIMPLEHTML   "JednoduchÈ HTML"
@@ -2327,7 +2327,7 @@ BEGIN
                             za ekvivalentnÈ, nastavte voæbu 'Ignorovaù rozdiely zakonËenia \
                             riadkov..' v z·loûke Porovn·vanie dialÛgu Nastavenia \
                             (n·jdete v ⁄pravy/Nastavenia)."
-    IDS_SUGGEST_PRESERVEEOL "Konce riadkov v s˙bore '%1' s˙ rozliËnÈho typu (DOS/UNIX/MAC).\n Pri s˙Ëasnom nastavenÌ bud˙ zjednotenÈ na halvn˝ typ.\n éel·te si zmeniù nastavenia a zachovaù rozdielne zakonËenia riadkov?"
+    IDS_SUGGEST_PRESERVEEOL "Konce riadkov v s˙bore '%1' s˙ rozliËnÈho typu (DOS/UNIX/MAC).\n Pri s˙Ëasnom nastavenÌ bud˙ zjednotenÈ na hlavn˝ typ.\n éel·te si zmeniù nastavenia a zachovaù rozdielne zakonËenia riadkov?"
     IDS_PREDIFFER_ERROR      "PoËas predspracovana s˙boru '%1' z·suvn˝m modulom '%2' sa vyskytla chyba. Predspracovanie sa uû nepouûije."
     IDS_INVALID_DIRECTORY   "Zvolen˝ adres·r je neplatn˝."
     IDS_CANNOT_OPEN_BINARYFILE  "NemÙûem otvoriù bin·rny s˙bor v editore."
@@ -2374,20 +2374,20 @@ END
 // CREATE PATCH
 STRINGTABLE
 BEGIN
-    IDS_DIFF_SUCCEEDED      "Patch s˙bor bol ˙speöne zapÌsan˝."
+    IDS_DIFF_SUCCEEDED      "S˙bor so z·platou bol ˙speöne zapÌsan˝."
     IDS_DIFF_ITEM1NOTFOUND  "1. poloûka nen·jden· alebo je to adres·r!"
     IDS_DIFF_ITEM2NOTFOUND  "2. poloûka nen·jden· alebo je to adres·r!"
-    IDS_DIFF_FILEOVERWRITE  "Patch s˙bor uû existuje. Chcete ho prepÌsaù?"
+    IDS_DIFF_FILEOVERWRITE  "S˙bor so z·platou uû existuje. Chcete ho prepÌsaù?"
     IDS_DIFF_SELECTEDFILES  "[%1 s˙bor zvolen˝]"
-    IDS_DIFF_NORMAL         "Normal·lny"
+    IDS_DIFF_NORMAL         "Norm·lny"
     IDS_DIFF_CONTEXT        "Kontextov˝"
     IDS_DIFF_UNIFIED        "Zjednoten˝"
     IDS_FILEWRITE_ERROR     "Nedalo sa zapisovaù do s˙boru %1."
     IDS_PATH_NOT_ABSOLUTE   "Uveden· v˝stupn· cesta nie je absol˙tna cesta: %1"
 	IDS_MUST_SPECIFY_OUTPUT "uveÔte v˝stupn˝ s˙bor"
-    IDS_CANNOT_CREATE_BINARYPATCH "Nemohol som vytvoriù patch s˙bor z bin·rnych s˙borov."
-    IDS_CANNOT_CREATE_DIRPATCH "Nemohol som vytvoriù patch s˙bor z adres·rov."
-    IDS_SAVEFILES_FORPATCH  "ProsÌm, najprv uloûte vöetky s˙bory.\n\nvytvorenie patchu vyûaduje, aby v s˙boroch neboli neuloûenÈ zmeny."
+    IDS_CANNOT_CREATE_BINARYPATCH "Nemohol som vytvoriù s˙bor so z·platou z bin·rnych s˙borov."
+    IDS_CANNOT_CREATE_DIRPATCH "Nemohol som vytvoriù s˙bor so z·platou z adres·rov."
+    IDS_SAVEFILES_FORPATCH  "ProsÌm, najprv uloûte vöetky s˙bory.\n\nvytvorenie z·platy vyûaduje, aby v s˙boroch neboli neuloûenÈ zmeny."
 	IDS_FOLDER_NOTEXIST     "Adres·r neexistuje."
 END
 
@@ -2405,7 +2405,7 @@ BEGIN
     IDS_OPT_EXPORT_DONE     "Options exportovanÈ do s˙boru."
     IDS_OPT_IMPORT_ERR      "Nepodarilo sa importovaù nastavenia zo s˙boru."
     IDS_OPT_EXPORT_ERR      "Nepodarilo sa zapÌsaù nastavenia do s˙boru."
-    IDS_CLOSEALL_WINDOWS    "You are about to close several compare windows.\n\nDo you want to continue?"
+    IDS_CLOSEALL_WINDOWS    "Chyst·te sa zatvoriù niekoæno okien s porovnanÌm.\n\nChcete pokraËovaù?"
 END
 
 // Regular expression errors
@@ -2439,17 +2439,17 @@ STRINGTABLE
 BEGIN
     IDS_AFRIKAANS           "afrik·nËina"
     IDS_ALBANIAN            "alb·nËna"
-    IDS_ARABIC_SAUDI        "arabËina (Saudi Arabian)"
-    IDS_ARABIC_IRAQ         "arabËina (Iraq)"
-    IDS_ARABIC_EGYPT        "arabËina (Egyptian)"
-    IDS_ARABIC_LIBYA        "arabËina (Libyan)"
-    IDS_ARABIC_ALGERIA      "arabËina (Algerian)"
-    IDS_ARABIC_MOROCCO      "arabËina (Moroccan)"
-    IDS_ARABIC_TUNISIA      "arabËina (Tunisian)"
+    IDS_ARABIC_SAUDI        "arabËina (Saudsk· Ar·bia)"
+    IDS_ARABIC_IRAQ         "arabËina (Irak)"
+    IDS_ARABIC_EGYPT        "arabËina (Egypt)"
+    IDS_ARABIC_LIBYA        "arabËina (L˝bia)"
+    IDS_ARABIC_ALGERIA      "arabËina (AlûÌrsko)"
+    IDS_ARABIC_MOROCCO      "arabËina (Maroko)"
+    IDS_ARABIC_TUNISIA      "arabËina (Tunisko)"
     IDS_ARABIC_OMAN         "arabËina (Oman)"
-    IDS_ARABIC_YEMEN        "arabËina (Yemen)"
-    IDS_ARABIC_SYRIA        "arabËina (Syrian)"
-    IDS_ARABIC_JORDAN       "arabËina (Jordan)"
+    IDS_ARABIC_YEMEN        "arabËina (Jemen)"
+    IDS_ARABIC_SYRIA        "arabËina (S˝ria)"
+    IDS_ARABIC_JORDAN       "arabËina (Jord·nsko)"
 END
 
 // LANGUAGE NAMES #2
@@ -2457,7 +2457,7 @@ STRINGTABLE
 BEGIN
     IDS_ARABIC_LEBANON      "arabËina (Libanon)"
     IDS_ARABIC_KUWAIT       "arabËina (Kuwait)"
-    IDS_ARABIC_UAE          "arabËina (UAE)"
+    IDS_ARABIC_UAE          "arabËina (SpojenÈ arabskÈ emir·ty)"
     IDS_ARABIC_BAHRAIN      "arabËina (Bahrain)"
     IDS_ARABIC_QATAR        "arabËina (Katar)"
     IDS_ARMENIAN            "armÈnËina"
@@ -2484,13 +2484,13 @@ BEGIN
     IDS_DUTCH_BELGIAN       "holandËina (Belgicko)"
     IDS_ENGLISH_US          "angliËtina (SpojenÈ öt·ty)"
     IDS_ENGLISH_UK          "angliËtina (SpojenÈ kr·æovstvo)"
-    IDS_ENGLISH_AUS         "angliËtina (austr·lska)"
-    IDS_ENGLISH_CAN         "angliËtina (kanadsk·)"
+    IDS_ENGLISH_AUS         "angliËtina (Austr·lia)"
+    IDS_ENGLISH_CAN         "angliËtina (Kanada)"
     IDS_ENGLISH_NZ          "angliËtina (Nov˝ ZÈland)"
-    IDS_ENGLISH_EIRE        "angliËtina (Ìrska)"
-    IDS_ENGLISH_SOUTH_AFRICA "angliËtina (juhoafrick·)"
-    IDS_ENGLISH_JAMAICA     "angliËtina (jamajsk·)"
-    IDS_ENGLISH_CARIBBEAN   "angliËtina (karibsk·)"
+    IDS_ENGLISH_EIRE        "angliËtina (Õrsko)"
+    IDS_ENGLISH_SOUTH_AFRICA "angliËtina (Juûn· afrika)"
+    IDS_ENGLISH_JAMAICA     "angliËtina (Jamajka)"
+    IDS_ENGLISH_CARIBBEAN   "angliËtina (Karibik)"
     IDS_ENGLISH_BELIZE      "angliËtina (Belize)"
 END
 
@@ -2505,7 +2505,7 @@ BEGIN
     IDS_FARSI               "perzötina"
     IDS_FINNISH             "fÌnËina"
     IDS_FRENCH              "fanc˙zötina"
-    IDS_FRENCH_BELGIAN      "fanc˙zötina (belgick·)"
+    IDS_FRENCH_BELGIAN      "fanc˙zötina (Belgicko)"
     IDS_FRENCH_CANADIAN     "fanc˙zötina (Kanada)"
     IDS_FRENCH_SWISS        "fanc˙zötina (ävajËiarsko)"
     IDS_FRENCH_LUXEMBOURG   "fanc˙zötina (Luxembursko)"
@@ -2542,7 +2542,7 @@ BEGIN
     IDS_LATVIAN             "lotyötina"
     IDS_LITHUANIAN          "litovËina"
     IDS_MALAY_MALAYSIA      "malajËina (malajsk·)"
-    IDS_MALAY_BRUNEI_DARUSSALAM "MalajËina (Brunei Darussalam)"
+    IDS_MALAY_BRUNEI_DARUSSALAM "malajËina (Brunei Darussalam)"
     IDS_MANIPURI            "manipuri"
     IDS_NORWEGIAN_BOKMAL    "nÛrËina (Bokmal)"
     IDS_NORWEGIAN_NYNORSK   "nÛrËina (Nynorsk)"
@@ -2563,7 +2563,7 @@ BEGIN
     IDS_SLOVAK              "slovenËina"
     IDS_SLOVENIAN           "slovinËina"
     IDS_SPANISH             "öpanielËina"
-    IDS_SPANISH_MEXICAN     "öpanielËina (mexick·)"
+    IDS_SPANISH_MEXICAN     "öpanielËina (Mexiko)"
     IDS_SPANISH_MODERN      "öpanielËina (modern·)"
     IDS_SPANISH_GUATEMALA   "öpanielËina (Guatemala)"
     IDS_SPANISH_COSTA_RICA  "öpanielËina (Kostarika)"
@@ -2581,9 +2581,9 @@ END
 // LANGUAGE NAMES #8
 STRINGTABLE
 BEGIN
-    IDS_SPANISH_PARAGUAY    "öpanielËina (Paraguay)"
+    IDS_SPANISH_PARAGUAY    "öpanielËina (Paraguaj)"
     IDS_SPANISH_BOLIVIA     "öpanielËina (BolÌvia)"
-    IDS_SPANISH_EL_SALVADOR "öpanielËina (El Salvador)"
+    IDS_SPANISH_EL_SALVADOR "öpanielËina (Salv·dor)"
     IDS_SPANISH_HONDURAS    "öpanielËina (Honduras)"
     IDS_SPANISH_NICARAGUA   "öpanielËina (Nikaragua)"
     IDS_SPANISH_PUERTO_RICO "öpanielËina (Portoriko)"
@@ -2784,19 +2784,19 @@ BEGIN
     ID_VIEW_SWAPPANES       "VymenÌ polohu dvoch panelov"
     ID_VIEW_LINENUMBERS     "ZobrazÌ ËÌsla riadkov\nZobraziù ËÌsla riadkov"
     ID_VIEW_WORDWRAP        "Zapne zalamovanie riadkov na hranici slov\nZalamovaù riadky"
-    ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_FILEMARGIN      "ZobrazÌ okraje v˝beru v oboch paneloch\nZobraziù okraje v˝beru"
 END
 
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "SkoËÌ na predch·dzaj˙ci rozdiel\nPrev Diff (Shift+Tab)"
-    ID_NEXTDIFF             "SkoËÌ na ÔalöÌ rozdiel\nNext Diff (Tab)"
-    ID_FIRSTDIFF            "Presunie na prv˝ rozdiel\nFirst Diff (Alt+Home)"
-    ID_CURDIFF              "Presunie na aktu·lny rozdiel\nCurrent Diff (Alt+Enter)"
-    ID_LASTDIFF             "Presunie na posledn˝ rozdiel\nLast Diff (Alt+End)"
-    ID_L2R                  "SkopÌruje vybran˝ text do s˙boru vpravo\nKopÌruj vpravo (->)"
-    ID_R2L                  "SkopÌruje vybran˝ text do s˙boru væavo\nKopÌruj væavo (<-)"
+    ID_PREVDIFF             "SkoËÌ na predch·dzaj˙ci rozdiel\nPredoöl˝ rozdiel (Shift+Tab)"
+    ID_NEXTDIFF             "SkoËÌ na ÔalöÌ rozdiel\nœalöÌ rozdiel (Tab)"
+    ID_FIRSTDIFF            "Presunie na prv˝ rozdiel\nPrv˝ rozdiel (Alt+Home)"
+    ID_CURDIFF              "Presunie na aktu·lny rozdiel\nAktu·lny rozdiel (Alt+Enter)"
+    ID_LASTDIFF             "Presunie na posledn˝ rozdiel\nPosledn˝ rozdiel (Alt+End)"
+    ID_L2R                  "SkopÌruje vybran˝ text do s˙boru vpravo\nKopÌrovaù vpravo (->)"
+    ID_R2L                  "SkopÌruje vybran˝ text do s˙boru væavo\nKopÌrovaù væavo (<-)"
     ID_L2RNEXT              "SkopÌruje rozdiel napravo a prejde na ÔalöÌ\nSkopÌrovaù doprava a na ÔalöÌ (Ctrl+Alt+vpravo)"
     ID_R2LNEXT              "SkopÌruje rozdiel naæavo a prejde na ÔalöÌ\nSkopÌrovaù doæava a na ÔalöÌ (Ctrl+Alt+væavo)"
     ID_ALL_RIGHT            "SkopÌruje vöetky rozdiely do s˙boru vpravo\nVöetko vpravo"
@@ -2809,7 +2809,7 @@ END
 STRINGTABLE
 BEGIN
     ID_TOOLS_CUSTOMIZECOLUMNS "Vyberie a zmenÌ poradie stÂpcov pre porovnanie adres·rov"
-    ID_TOOLS_GENERATEPATCH  "VytvorÌ patch s˙bor"
+    ID_TOOLS_GENERATEPATCH  "VytvorÌ s˙bor so z·platou"
     ID_TOOLS_FILTERS        "Vyberie a modifikuje filtre"
     ID_TOOLS_GENERATEREPORT "VytvorÌ spr·vu z v˝sledkov porovnania"
 END
@@ -2823,7 +2823,7 @@ BEGIN
     ID_NO_PREDIFFER         "Bez predspracovania (beûnÈ)"
     ID_SUGGESTED_PLUGINS    "Odpor˙ËanÈ z·suvnÈ moduly"
     ID_NOT_SUGGESTED_PLUGINS "InÈ z·suvnÈ moduly"
-    ID_RELOAD_PLUGINS       "Odoberie z pam‰ti vöetky z·suvnÈ moduly a znovu ich naËÌta (pre v˝voj·rov)"
+    ID_RELOAD_PLUGINS       "Odoberie z pam‰te vöetky z·suvnÈ moduly a znovu ich naËÌta (pre v˝voj·rov)"
 END
 
 // WINDOW MENU
@@ -2920,9 +2920,9 @@ END
 
 STRINGTABLE 
 BEGIN
-    ID_TOOLBAR_NONE         "Hide the toolbar"
-    ID_TOOLBAR_SMALL        "Show small toolbar"
-    ID_TOOLBAR_BIG          "Show big toolbar"
+    ID_TOOLBAR_NONE         "Skryù panel n·strojov"
+    ID_TOOLBAR_SMALL        "Zobraziù mal˝ panel n·strojov"
+    ID_TOOLBAR_BIG          "Zobraziù veæk˝ panel n·strojov"
 END
 
 // END STRINGS SYNCHRO
