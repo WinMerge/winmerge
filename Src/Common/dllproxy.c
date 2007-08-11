@@ -36,9 +36,12 @@ DATE:		BY:					DESCRIPTION:
 2003/03/16	J.Tucht				DLL proxies may reside in stack frame
 2003/03/29	J.Tucht				ALLOCA_RECOVERY now thread safe; does no longer
 								rely on _alloca(); may also work with GCC
+2007/08/11	Kimmo Varis			Add ifdef removing inline assembly from 64-bit
+								builds. I know it breaks plugins but its more
+								important to be able to build 64-bit now.
 
 */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if defined(_MSC_VER)&&!defined(NO_ALLOCA_RECOVERY)||defined(ALLOCA_RECOVERY)
@@ -97,6 +100,8 @@ static INT NTAPI Unresolved()
 {
 	// declare a variable to produce a stack frame
 	int Unresolved = 0;
+
+#ifndef _WIN64 // 64-bit compiler errors at inline asm
 #ifdef _MSC_VER
 	__asm
 	{
@@ -124,6 +129,7 @@ static INT NTAPI Unresolved()
 	:	"o" (ComplainUnresolved)
 	);
 #endif
+#endif // _WIN64
 	return Unresolved;
 }
 
