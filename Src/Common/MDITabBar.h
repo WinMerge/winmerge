@@ -5,7 +5,7 @@
  *
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id: $
+// $Id$
 
 #ifndef MDITABBAR_H
 #define MDITABBAR_H

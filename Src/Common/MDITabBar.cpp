@@ -4,7 +4,7 @@
  * @brief Implementation of the MDITabBar class
  */
 // RCS ID line follows -- this is updated by CVS
-// $Id: $
+// $Id$
 
 #include "stdafx.h"
 #include "MDITabBar.h"
