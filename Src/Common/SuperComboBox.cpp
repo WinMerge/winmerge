@@ -380,7 +380,7 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 	CString expandedFile = ExpandShortcut(firstFile);
 
 	// if that worked, we should have a real file name
-	if (expandedFile!=_T("")) 
+	if (!expandedFile.IsEmpty()) 
 		firstFile=expandedFile;
 
 	GetParent()->SendMessage(WM_COMMAND, GetDlgCtrlID() +
@@ -401,10 +401,10 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 
 CString CSuperComboBox::ExpandShortcut(CString &inFile)
 {
-	CString outFile = "";
+	CString outFile
 
     // Make sure we have a path
-    ASSERT(inFile != _T(""));
+    ASSERT(!inFile.IsEmpty());
 
     IShellLink* psl;
     HRESULT hres;

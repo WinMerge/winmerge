@@ -3,7 +3,7 @@
  *
  * @brief Implementation of the MDITabBar class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -54,14 +54,14 @@ BOOL CMDITabBar::Create(CMDIFrameWnd* pMainFrame)
 CSize CMDITabBar::CalcFixedLayout(BOOL bStretch, BOOL bHorz)
 {
 	if (GetItemCount() == 0)
-		return CSize(32767, 0);
+		return CSize(SHRT_MAX, 0);
 	
 	TEXTMETRIC tm;
 	CDC *pdc = GetDC();
 	pdc->GetTextMetrics(&tm);
 	ReleaseDC(pdc);
 
-	return CSize(32767, tm.tmHeight + 4);
+	return CSize(SHRT_MAX, tm.tmHeight + 4);
 }
 
 void CMDITabBar::OnPaint() 
@@ -124,8 +124,7 @@ void CMDITabBar::UpdateTabs()
 
 	// Associate MDIFrameList with the index of the tab
 	TC_ITEM tci;
-	int item;
-	for (item = GetItemCount() - 1; item >= 0 ; item--)
+	for (int item = GetItemCount() - 1; item >= 0 ; item--)
 	{
 		int dummy;
 		tci.mask = TCIF_PARAM;
@@ -170,7 +169,7 @@ void CMDITabBar::UpdateTabs()
 		{
 			TCHAR szText[256];
 			tci.pszText = szText;
-			tci.cchTextMax = sizeof(szText)/sizeof(szText[0]);
+			tci.cchTextMax = countof(szText);
 			tci.mask = TCIF_TEXT;
 			GetItem(item, &tci);
 			if (tci.pszText && strTitle.Compare(tci.pszText) != 0)
@@ -182,7 +181,7 @@ void CMDITabBar::UpdateTabs()
 	}
 
 	// Delete tabs
-	for (item = GetItemCount() - 1; item >= 0 ; item--)
+	for (int item = GetItemCount() - 1; item >= 0 ; item--)
 	{
 		int dummy;
 		tci.mask = TCIF_PARAM;

@@ -343,7 +343,7 @@ int CPropertyPageHost::OnCreate(LPCREATESTRUCT lpCreateStruct)
 CString CPropertyPageHost::GetPageTitle(int nIndex)
 {
 	if (nIndex < 0 || nIndex > m_aPages.GetSize())
-		return "";
+		return _T("");
 
 	return m_aPages[nIndex].sTitle;
 }

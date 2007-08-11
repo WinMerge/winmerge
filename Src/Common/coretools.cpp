@@ -4,7 +4,7 @@
  * @brief Common routines
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -272,11 +272,8 @@ CString ConvertPath2PS(LPCTSTR szPath)
 		&& path[1] == _T(':')
 		&& path[2] == _T('/'))
 	{
-#ifdef _UNICODE
-		result.Format(_T("%%%c%%%s"), towupper(path[0]), _tcsninc(path, 2));
-#else
-		result.Format(_T("%%%c%%%s"), toupper(path[0]), _tcsninc(path, 2));
-#endif
+
+	result.Format(_T("%%%c%%%s"), _totupper(path[0]), _tcsninc(path, 2));
 	}
 	else
 		result = path;
@@ -393,7 +390,7 @@ void SplitViewName(LPCTSTR s, CString * path, CString * name, CString * ext)
 		SplitFilename(sViewName, path, name, ext);
 	}
 }
-
+#ifdef _DEBUG
 // Test code for SplitFilename above
 void TestSplitFilename()
 {
@@ -406,7 +403,7 @@ void TestSplitFilename()
 		, _T("c:\\"), _T("c:"), 0, 0
 		, _T("c:\\d:"), _T("c:\\d:"), 0, 0
 	};
-	for (int i=0; i<sizeof(tests)/sizeof(tests[0]); i += 4)
+	for (int i=0; i < countof(tests); i += 4)
 	{
 		LPCTSTR dir = tests[i];
 		CString path, name, ext;
@@ -419,7 +416,7 @@ void TestSplitFilename()
 		ASSERT(ext == szext);
 	}
 }
-
+#endif
 
 void
 AddExtension(LPTSTR name, LPCTSTR ext)
@@ -558,9 +555,9 @@ static CString MyGetSysError(int nerr)
 		))
 	{
 		str = (LPCTSTR)lpMsgBuf;
+		// Free the buffer.
+		LocalFree( lpMsgBuf );
 	}
-	// Free the buffer.
-	LocalFree( lpMsgBuf );
 	return str;
 }
 
@@ -574,36 +571,38 @@ static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, CString * perrstr)
 	int rtn = CreateDirectory(lpPathName, lpSecurityAttributes);
 	if (!rtn)
 	{
-		int errnum = GetLastError();
+		DWORD errnum = GetLastError();
 		// Consider it success if directory already exists
 		if (errnum == ERROR_ALREADY_EXISTS)
 			return TRUE;
-		CString errdesc = MyGetSysError(errnum);
 		if (perrstr)
+		{
+			CString errdesc = MyGetSysError(errnum);
 			perrstr->Format(_T("%d: %s"), errnum, (LPCTSTR)errdesc);
+		}
 	}
 	return rtn;
 }
 
-BOOL MkDirEx(LPCTSTR filename)
+BOOL MkDirEx(LPCTSTR foldername)
 {
 	TCHAR tempPath[_MAX_PATH] = {0};
 	LPTSTR p;
 
-	_tcscpy(tempPath, filename);
-	if (*_tcsinc(filename)==_T(':'))
-		p=_tcschr(_tcsninc(tempPath,3),_T('\\'));
-	else if (*filename==_T('\\'))
-		p=_tcschr(_tcsinc(tempPath),_T('\\'));
+	_tcscpy(tempPath, foldername);
+	if (*_tcsinc(foldername) == _T(':'))
+		p = _tcschr(_tcsninc(tempPath, 3), _T('\\'));
+	else if (*foldername == _T('\\'))
+		p = _tcschr(_tcsinc(tempPath), _T('\\'));
 	else
-		p=tempPath;
+		p = tempPath;
 	CString errstr;
-	if (p!=NULL)
+	if (p != NULL)
 		for (; *p != _T('\0'); p = _tcsinc(p))
 		{
 			if (*p == _T('\\'))
 			{
-				_tccpy(p, _T("\0"));
+				*p = _T('\0');;
 				if (0 && _tcscmp(tempPath, _T(".")) == 0)
 				{
 					// Don't call CreateDirectory(".")
@@ -613,18 +612,18 @@ BOOL MkDirEx(LPCTSTR filename)
 					if (!MyCreateDirectoryIfNeeded(tempPath, &errstr)
 						&& !MyCreateDirectoryIfNeeded(tempPath, &errstr))
 						TRACE(_T("Failed to create folder %s: %s\n"), tempPath, (LPCTSTR)errstr);
-					_tccpy(p, _T("\\"));
+					*p = _T('\\');
 				}
 			}
 
 		}
 
-		if (!MyCreateDirectoryIfNeeded(filename, &errstr)
-			&& !MyCreateDirectoryIfNeeded(filename, &errstr))
-			TRACE(_T("Failed to create folder %s: %s\n"), filename, (LPCTSTR)errstr);
+		if (!MyCreateDirectoryIfNeeded(foldername, &errstr)
+			&& !MyCreateDirectoryIfNeeded(foldername, &errstr))
+			TRACE(_T("Failed to create folder %s: %s\n"), foldername, (LPCTSTR)errstr);
 
 	CFileStatus status;
-	return (CFile::GetStatus(filename, status));
+	return CFile::GetStatus(foldername, status);
 }
 
 float
@@ -650,7 +649,7 @@ RoundMeasure(float measure, float units)
 BOOL HaveAdminAccess()
 {
 	// make sure this is NT first
-	OSVERSIONINFO ver;
+	OSVERSIONINFO ver = { 0 };
 	ver.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
 	// if this fails, we want to default to being enabled
@@ -663,7 +662,7 @@ BOOL HaveAdminAccess()
 	HANDLE hHandleToken;
 
 	if(!::OpenProcessToken(::GetCurrentProcess(), TOKEN_READ, &hHandleToken))
-		return(FALSE);
+		return FALSE;
 
 	UCHAR TokenInformation[1024];
 	DWORD dwTokenInformationSize;
@@ -929,30 +928,27 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 	}
 
 	TCHAR szFract[80];
-	if (1)
+
+	// split into integer & fraction
+	char tszInt[80],tszFract[80];
+	int places = (nPlaces==-1? nDecimals : nPlaces);
+	int  decimal, sign;
+	char *buffer;
+
+	buffer = _fcvt( dVal+1e-10, places, &decimal, &sign );
+	if (decimal > 0)
 	{
-		// split into integer & fraction
-		char tszInt[80],tszFract[80];
-		int places = (nPlaces==-1? nDecimals : nPlaces);
-		int  decimal, sign;
-		char *buffer;
-
-		buffer = _fcvt( dVal+1e-10, places, &decimal, &sign );
-		if (decimal > 0)
-		{
-			strncpy(tszInt, buffer, decimal);
-			tszInt[decimal] = NULL;
-		}
-		strncpy(tszFract, &buffer[decimal], strlen(buffer)-decimal);
-		tszFract[strlen(buffer)-decimal] = NULL;
-		intpart = (DWORD)atoi(tszInt);
-#ifdef _UNICODE
-		mbstowcs(szFract, tszFract, strlen(tszFract));
-#else
-		_tcscpy(szFract, tszFract);
-#endif
+		strncpy(tszInt, buffer, decimal);
+		tszInt[decimal] = NULL;
 	}
-
+	strncpy(tszFract, &buffer[decimal], strlen(buffer)-decimal);
+	tszFract[strlen(buffer)-decimal] = NULL;
+	intpart = (DWORD)atoi(tszInt);
+#ifdef _UNICODE
+	mbstowcs(szFract, tszFract, strlen(tszFract));
+#else
+	_tcscpy(szFract, tszFract);
+#endif
 
 	// take care of leading negative sign
 	if (bIsNeg)
@@ -1059,17 +1055,13 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 
 HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL bNewConsole /*= FALSE*/)
 {
-    STARTUPINFO si;
-	PROCESS_INFORMATION procInfo;
+    STARTUPINFO si = {0};
+	PROCESS_INFORMATION procInfo = {0};
 
     si.cb = sizeof(STARTUPINFO);
-    si.lpReserved=NULL;
     si.lpDesktop = _T("");
-    si.lpTitle = NULL;
     si.dwFlags = STARTF_USESHOWWINDOW;
-    si.wShowWindow = (WORD)(SW_HIDE);
-    si.cbReserved2 = 0;
-    si.lpReserved2 = NULL;
+    si.wShowWindow = (bMinimized) ? SW_MINIMIZE : SW_HIDE;
 
 	TCHAR args[4096];
 	_stprintf(args,_T("\"%s\" %s"), szExeFile, szArgs);
@@ -1262,7 +1254,7 @@ BOOL GetUserProfilePath(CString &sAppDataPath)
  */
 BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle)
 {
-	if (pszText == NULL || _tcslen (pszText) == 0)
+	if (pszText == NULL || _tcslen(pszText) == 0)
 		return FALSE;
 
 	CWaitCursor wc;

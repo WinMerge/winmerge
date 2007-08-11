@@ -3,7 +3,7 @@
  *
  * @brief Declaration file for Coretools.cpp
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef CORETOOLS_H
@@ -116,7 +116,7 @@ void aswap(LPTSTR a,LPTSTR b);
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name);
 long SwapEndian(long val);
 short int SwapEndian(short int val);
-BOOL MkDirEx(LPCTSTR filename);
+BOOL MkDirEx(LPCTSTR foldername);
 CString GetModulePath(HMODULE hModule = NULL);
 CString GetPathOnly(LPCTSTR fullpath);
 float RoundMeasure(float measure, float units);
