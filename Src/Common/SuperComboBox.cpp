@@ -401,7 +401,7 @@ void CSuperComboBox::OnDropFiles(HDROP dropInfo)
 
 CString CSuperComboBox::ExpandShortcut(CString &inFile)
 {
-	CString outFile
+	CString outFile;
 
     // Make sure we have a path
     ASSERT(!inFile.IsEmpty());
