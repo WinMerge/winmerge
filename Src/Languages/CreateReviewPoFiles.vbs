@@ -6,7 +6,7 @@ Option Explicit
 ' Released under the "GNU General Public License"
 '
 ' ID line follows -- this is updated by SVN
-' $Id: $
+' $Id$
 
 Const ForReading = 1
 
@@ -14,10 +14,16 @@ Const NO_BLOCK = 0
 Const MENU_BLOCK = 1
 Const DIALOGEX_BLOCK = 2
 Const STRINGTABLE_BLOCK = 3
+Const VERSIONINFO_BLOCK = 4
 
-Dim oFSO
+Dim oFSO, bRunFromCmd
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
+
+bRunFromCmd = False
+If (LCase(Right(Wscript.FullName, 11))) = "cscript.exe" Then
+  bRunFromCmd = True
+End If
 
 Call Main
 
@@ -26,18 +32,27 @@ Call Main
 Sub Main
   Dim oLanguages, sLanguage
   Dim oOriginalTranslations, oLanguageTranslations
+  Dim StartTime, EndTime, Seconds
   
-  Wscript.Echo "Warning: This step could take some time!"
+  StartTime = Time
+  
+  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take several minutes to finish!"
   
   Set oOriginalTranslations = GetTranslationsFromRcFile("../Merge.rc")
   
   Set oLanguages = GetLanguages
   For Each sLanguage In oLanguages.Keys 'For all languages...
+    If (bRunFromCmd = True) Then 'If run from command line...
+      Wscript.Echo sLanguage
+    End If
     Set oLanguageTranslations = GetTranslationsFromRcFile(oLanguages(sLanguage))
     CreateReviewPoFile sLanguage, oOriginalTranslations, oLanguageTranslations
   Next
   
-  Wscript.Echo "Finished!"
+  EndTime = Time
+  Seconds = DateDiff("s", StartTime, EndTime)
+  
+  Wscript.Echo Wscript.ScriptName & " finished after " & Seconds & " seconds!"
 End Sub
 
 ''
@@ -49,8 +64,8 @@ Function GetLanguages()
   
   For Each oSubFolder In oFSO.GetFolder(".").SubFolders 'For all subfolders in the current folder...
     If (oSubFolder.Name <> ".svn") Then 'If NOT a SVN folder...
-      sRcPath = oFSO.BuildPath (oSubFolder.Path, "Merge" & oSubFolder.Name & ".rc")
-      If (oFSO.FileExists(sRcPath) = True) Then '...
+      sRcPath = oFSO.BuildPath(oSubFolder.Path, "Merge" & oSubFolder.Name & ".rc")
+      If (oFSO.FileExists(sRcPath) = True) Then 'If the RC file exists...
         oLanguages.Add oSubFolder.Name, sRcPath
       End If
     End If
@@ -91,104 +106,93 @@ Function GetTranslationsFromRcFile(ByVal sRcPath)
         iBlockType = STRINGTABLE_BLOCK
         sKey1 = "STRINGTABLE"
         'iPosition = 0
+      ElseIf (FoundRegExpMatch(sLine, "(VS_.*) VERSIONINFO", oMatch) = True) Then 'VERSIONINFO...
+        iBlockType = VERSIONINFO_BLOCK
+        sKey1 = "VERSIONINFO"
+        iPosition = 0
       ElseIf (sLine = "END") Then 'END...
         If (iBlockType = STRINGTABLE_BLOCK) Then 'If inside stringtable...
           iBlockType = NO_BLOCK
           sKey1 = ""
           'iPosition = 0
         End If
-      End If
-      
-      Select Case iBlockType
-        Case NO_BLOCK:
-          If (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch) = True) Then 'code_page...
-            sCodePage = oMatch.SubMatches(0)
-          End If
-          '...
-          '...
-          '...
-          
-        Case MENU_BLOCK:
-          'POPUP...
-          If (FoundRegExpMatch(sLine, "POPUP ""(.*)""", oMatch) = True) Then 'POPUP...
-            If (InStr(oMatch.SubMatches(0), "_POPUP_") = 0) Then
-              sKey2 = iPosition
+      ElseIf (sLine <> "") Then 'If NOT empty line...
+        Select Case iBlockType
+          Case NO_BLOCK:
+            If (FoundRegExpMatch(sLine, "code_page\(([\d]+)\)", oMatch) = True) Then 'code_page...
+              sCodePage = oMatch.SubMatches(0)
+            End If
+            
+          Case MENU_BLOCK:
+            If (FoundRegExpMatch(sLine, "POPUP ""(.*)""", oMatch) = True) Then 'POPUP...
+              If (InStr(oMatch.SubMatches(0), "_POPUP_") = 0) Then
+                sKey2 = iPosition
+                iPosition = iPosition + 1
+                sValue = oMatch.SubMatches(0)
+              End If
+            ElseIf (FoundRegExpMatch(sLine, "MENUITEM.*""(.*)"".*(ID_.*)", oMatch) = True) Then 'MENUITEM...
+              sKey2 = oMatch.SubMatches(1)
+              sValue = oMatch.SubMatches(0)
+            End If
+            
+          Case DIALOGEX_BLOCK:
+            If (FoundRegExpMatch(sLine, "CAPTION.*""(.*)""", oMatch) = True) Then 'CAPTION...
+              sKey2 = "CAPTION"
+              sValue = oMatch.SubMatches(0)
+            ElseIf (FoundRegExpMatch(sLine, "PUSHBUTTON.*""(.*)"",(\w+)", oMatch) = True) Then 'DEFPUSHBUTTON/PUSHBUTTON...
+              sKey2 = oMatch.SubMatches(1)
+              sValue = oMatch.SubMatches(0)
+            ElseIf (FoundRegExpMatch(sLine, "[L|R|C]TEXT.*""(.*)"",(\w+)", oMatch) = True) Then 'LTEXT/RTEXT...
+              If (oMatch.SubMatches(0) <> "") And (oMatch.SubMatches(0) <> "Static") Then
+                If (oMatch.SubMatches(1) <> "IDC_STATIC") Then
+                  sKey2 = oMatch.SubMatches(1)
+                Else
+                  sKey2 = iPosition & "_TEXT"
+                  iPosition = iPosition + 1
+                End If
+                sValue = oMatch.SubMatches(0)
+              End If
+            ElseIf (FoundRegExpMatch(sLine, "[L|R]TEXT.*""(.*)"",", oMatch) = True) Then 'LTEXT/RTEXT (without ID)...
+              sKey2 = iPosition & "_TEXT"
               iPosition = iPosition + 1
               sValue = oMatch.SubMatches(0)
-              'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-            End If
-          ElseIf (FoundRegExpMatch(sLine, "MENUITEM.*""(.*)"".*(ID_.*)", oMatch) = True) Then 'MENUITEM...
-            sKey2 = oMatch.SubMatches(1)
-            sValue = oMatch.SubMatches(0)
-            'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-          End If
-          '...
-          '...
-          '...
-          
-        Case DIALOGEX_BLOCK:
-          If (FoundRegExpMatch(sLine, "CAPTION.*""(\w+)""", oMatch) = True) Then 'CAPTION...
-            sKey2 = "CAPTION"
-            sValue = oMatch.SubMatches(0)
-          ElseIf (FoundRegExpMatch(sLine, "PUSHBUTTON.*""(.*)"",(\w+)", oMatch) = True) Then 'DEFPUSHBUTTON/PUSHBUTTON...
-            sKey2 = oMatch.SubMatches(1)
-            sValue = oMatch.SubMatches(0)
-            'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-          ElseIf (FoundRegExpMatch(sLine, "[L|R]TEXT.*""(.*)"",(\w+)", oMatch) = True) Then 'LTEXT/RTEXT...
-            If (oMatch.SubMatches(0) <> "") And (oMatch.SubMatches(0) <> "Static") Then
+            ElseIf (FoundRegExpMatch(sLine, "CONTROL +""(.*?)"",(\w+)", oMatch) = True) Then 'CONTROL...
+              If (oMatch.SubMatches(0) <> "Dif") And (oMatch.SubMatches(0) <> "Btn") And (oMatch.SubMatches(0) <> "Button1") _
+                And (oMatch.SubMatches(0) <> "List1") And (oMatch.SubMatches(0) <> "Tree1") Then
+                sKey2 = oMatch.SubMatches(1)
+                sValue = oMatch.SubMatches(0)
+              End If
+            ElseIf (FoundRegExpMatch(sLine, "CONTROL +""(.*?)"",", oMatch) = True) Then 'CONTROL (without ID)...
+              sKey2 = iPosition & "_CONTROL"
+              iPosition = iPosition + 1
+              sValue = oMatch.SubMatches(0)
+            ElseIf (FoundRegExpMatch(sLine, "GROUPBOX +""(.*?)"",(\w+)", oMatch) = True) Then 'GROUPBOX...
               If (oMatch.SubMatches(1) <> "IDC_STATIC") Then
                 sKey2 = oMatch.SubMatches(1)
               Else
-                sKey2 = iPosition & "_TEXT"
+                sKey2 = iPosition & "_GROUPBOX"
                 iPosition = iPosition + 1
               End If
               sValue = oMatch.SubMatches(0)
-              'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
             End If
-          ElseIf (FoundRegExpMatch(sLine, "[L|R]TEXT.*""(.*)"",", oMatch) = True) Then 'LTEXT/RTEXT (without ID)...
-            sKey2 = iPosition & "_TEXT"
-            iPosition = iPosition + 1
-            sValue = oMatch.SubMatches(0)
-            'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-          ElseIf (FoundRegExpMatch(sLine, "CONTROL +""(.*?)"",(\w+)", oMatch) = True) Then 'CONTROL...
-            If (oMatch.SubMatches(0) <> "Dif") And (oMatch.SubMatches(0) <> "Btn") And (oMatch.SubMatches(0) <> "Button1") Then
-              sKey2 = oMatch.SubMatches(1)
-              sValue = oMatch.SubMatches(0)
-              'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-            End If
-          ElseIf (FoundRegExpMatch(sLine, "CONTROL +""(.*?)"",", oMatch) = True) Then 'CONTROL (without ID)...
-            sKey2 = iPosition & "_CONTROL"
-            iPosition = iPosition + 1
-            sValue = oMatch.SubMatches(0)
-            'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-          ElseIf (FoundRegExpMatch(sLine, "GROUPBOX +""(.*?)"",(\w+)", oMatch) = True) Then 'GROUPBOX...
-            If (oMatch.SubMatches(1) <> "IDC_STATIC") Then
-              sKey2 = oMatch.SubMatches(1)
-            Else
-              sKey2 = iPosition & "_GROUPBOX"
+            
+          Case STRINGTABLE_BLOCK:
+            If (FoundRegExpMatch(sLine, "(\w+).*""(.*)""", oMatch) = True) Then 'String...
+              sKey2 = oMatch.SubMatches(0)
+              sValue = oMatch.SubMatches(1)
+            ElseIf (FoundRegExpMatch(sLine, """(.*)""", oMatch) = True) Then 'String (without ID)...
+              sKey2 = iPosition
               iPosition = iPosition + 1
+              sValue = oMatch.SubMatches(0)
             End If
-            sValue = oMatch.SubMatches(0)
-            'Wscript.Echo sKey1 & "." & sKey2 & " = " & sValue
-          End If
-          '...
-          '...
-          '...
-          
-        Case STRINGTABLE_BLOCK:
-          If (FoundRegExpMatch(sLine, "(\w+).*""(.*)""", oMatch) = True) Then 'String...
-            sKey2 = oMatch.SubMatches(0)
-            sValue = oMatch.SubMatches(1)
-          ElseIf (FoundRegExpMatch(sLine, """(.*)""", oMatch) = True) Then 'String (without ID)...
-            sKey2 = iPosition
-            iPosition = iPosition + 1
-            sValue = oMatch.SubMatches(0)
-          End If
-          '...
-          '...
-          '...
-        
-      End Select
+            
+          Case VERSIONINFO_BLOCK:
+            '...
+            '...
+            '...
+            
+        End Select
+      End If
       
       If (sValue <> "") Then
         oTranslations.Add sKey1 & "." & sKey2, sValue
@@ -207,7 +211,7 @@ Sub CreateReviewPoFile(ByVal sLanguage, ByVal oOriginalTranslations, ByVal oLang
   Dim oPoFile, sKey
   Dim sOriginalTranslation, sLanguageTranslation
   
-  Set oPoFile = oFSO.CreateTextFile(sLanguage & "\" & sLanguage & ".po", True)
+  Set oPoFile = oFSO.CreateTextFile(sLanguage & "\" & sLanguage & "Review.po", True)
   
   oPoFile.WriteLine "# DO NOT EDIT THIS FILE!"
   oPoFile.WriteLine "# This file is only for easier reviewing of the WinMerge translation..."
@@ -243,7 +247,7 @@ End Sub
 ''
 ' ...
 Function FoundRegExpMatch(ByVal sString, ByVal sPattern, ByRef oMatchReturn)
-  Dim oRegExp, oMatches, oMatch
+  Dim oRegExp, oMatches
   
   Set oRegExp = New RegExp
   oRegExp.Pattern = sPattern
@@ -253,10 +257,7 @@ Function FoundRegExpMatch(ByVal sString, ByVal sPattern, ByRef oMatchReturn)
   FoundRegExpMatch = False
   If (oRegExp.Test(sString) = True) Then
     Set oMatches = oRegExp.Execute(sString)
-    Set oMatch = oMatches(0)
-    If (oMatch.SubMatches(0) <> "") Then
-      Set oMatchReturn = oMatch
-      FoundRegExpMatch = True
-    End If
+    Set oMatchReturn = oMatches(0)
+    FoundRegExpMatch = True
   End If
 End Function
