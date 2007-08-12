@@ -10,6 +10,7 @@ WinMerge 2.7.5.1
   - Simplified Chinese (r4369)
   - Danish (r4360)
   - French (r4383)
+  - Russian (r4421)
   - Slovak (r4413)
   - Swedish (r4412)
 
