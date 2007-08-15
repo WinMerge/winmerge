@@ -902,6 +902,32 @@ Begin
     result := False;
 End;
 
+{Replace one occurrence of OldStr in Str with NewStr}
+Function ReplaceSubString(Src: string; OldStr: string; NewStr: string) : string;
+Var
+    OldStrStartAt: Integer;
+
+Begin
+    OldStrStartAt := Pos(OldStr, Src);
+    if OldStrStartAt > 0 then
+    begin
+        {Remove old string}
+        Delete(Src, OldStrStartAt, Length(OldStr));
+        {Insert new string}
+        Insert(NewStr, Src, OldStrStartAt);
+    end;
+    Result := Src;
+End;
+
+{Returns WinMerge installed exeutable file name}
+Function WinMergeExeName(): string;
+Var
+	Unused: String;
+
+Begin
+    Result := ExpandConstant('{app}\') + ExeName(Unused);
+End;
+
 {Returns ClearCase external tools configuration file name}
 Function ClearCaseMapFile(): string;
 Begin
@@ -919,11 +945,10 @@ Begin
 End;
 
 {Intergrate WinMerge as ClearCase external diff tool}
-Procedure IntegrateClearCase();
+Procedure IntegrateClearCase(OldExe: String; NewExe: String);
 Var
     MapFile: TStringList;
     FileName: String;
-    Unused: String;
     I: Integer;
 
 Begin
@@ -938,10 +963,8 @@ Begin
             {Search for the 'text_file_delta xcompare ...' line}
 			if (MapFile.Strings[I][1] <> ';') and (Pos('text_file_delta', MapFile.Strings[I]) > 0) and (Pos('xcompare', MapFile.Strings[I]) > 0) then
 			begin
-			    {Comment-out the current line}
-			    MapFile.Strings[I] := ';' + MapFile.Strings[I];
-			    {Insert a line below with WinMerge as the diff tool}
-			    MapFile.Insert(I + 1, 'text_file_delta xcompare '+ ExpandConstant('{app}\') + ExeName(Unused));
+				{Replace old executable name with a new executable name}
+				MapFile.Strings[I] := ReplaceSubString(MapFile.Strings[I], OldExe, NewExe);
 			    break;
 			end;
 		end;
@@ -956,7 +979,16 @@ Begin
     begin
         if IsTaskSelected('ClearCase') then
         begin
-            IntegrateClearCase();
+            IntegrateClearCase('..\..\bin\cleardiffmrg.exe', WinMergeExeName());
         end;
     end;
 End;
+
+Procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+Begin
+    if CurUninstallStep = usPostUninstall then
+    begin
+        IntegrateClearCase(WinMergeExeName(), '..\..\bin\cleardiffmrg.exe');
+    end;
+End;
+
