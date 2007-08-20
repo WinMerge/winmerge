@@ -38,6 +38,7 @@ class CLocationView : public CView
 {
 public:
 	CLocationView();
+	~CLocationView();
 	DECLARE_DYNCREATE(CLocationView)
 	void SetConnectMovedBlocks(int displayMovedBlocks);
 	void UpdateVisiblePos(int nTopLine = -1, int nBottomLine = -1);
@@ -60,8 +61,8 @@ protected:
 	BOOL GotoLocation(const CPoint& point, BOOL bRealLine = TRUE);
 	int GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine = TRUE);
 	int IsInsideBar(const CRect& rc, const POINT& pt);
-	void DrawVisibleAreaRect(int nTopLine = -1, int nBottomLine = -1);
-	void DrawConnectLines();
+	void DrawVisibleAreaRect(CDC* pDC, int nTopLine = -1, int nBottomLine = -1);
+	void DrawConnectLines(CDC* pDC);
 	void DrawDiffMarker(CDC* pDC, int yCoord);
 
 private:
@@ -78,7 +79,8 @@ private:
 	bool m_bIgnoreTrivials; //*< Whether to paint trivial blocks */
 	HWND m_hwndFrame; //*< Frame window handle */
 	UINT m_nPrevPaneWidth; //*< Previous pane width, used to track width changes */
-	int m_DiffMarkerCoord; //*< Y-Coord for active diff marker, -1 if no marker */
+	CBitmap *m_pSavedBackgroundBitmap; //*< Saved background */
+	bool m_bDrawn; //*< Is already drawn in location pane? */
 
 	// Generated message map functions
 protected:
@@ -90,6 +92,8 @@ protected:
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
+	afx_msg void OnPaint();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
