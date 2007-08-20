@@ -3,7 +3,7 @@
  *
  * @brief Implementation of the MDITabBar class
  */
-// ID line follows -- this is updated by SVN
+// RCS ID line follows -- this is updated by CVS
 // $Id$
 
 #include "stdafx.h"
@@ -124,7 +124,8 @@ void CMDITabBar::UpdateTabs()
 
 	// Associate MDIFrameList with the index of the tab
 	TC_ITEM tci;
-	for (int item = GetItemCount() - 1; item >= 0 ; item--)
+	int item;
+	for (item = GetItemCount() - 1; item >= 0 ; item--)
 	{
 		int dummy;
 		tci.mask = TCIF_PARAM;
@@ -181,7 +182,7 @@ void CMDITabBar::UpdateTabs()
 	}
 
 	// Delete tabs
-	for (int item = GetItemCount() - 1; item >= 0 ; item--)
+	for (item = GetItemCount() - 1; item >= 0 ; item--)
 	{
 		int dummy;
 		tci.mask = TCIF_PARAM;
