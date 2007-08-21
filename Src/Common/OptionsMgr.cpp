@@ -142,7 +142,7 @@ varprop::VariantValue COption::Get() const
  */
 varprop::VariantValue COption::GetDefault() const
 {
-	varprop::VariantValue retval = m_value;
+	varprop::VariantValue retval = m_valueDef;
 	return retval;
 }
 
@@ -597,7 +597,7 @@ int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		varprop::VariantValue val = found->second.Get();
+		varprop::VariantValue val = found->second.GetDefault();
 		if (val.IsString())
 		{
 			String tmpval;
@@ -632,7 +632,7 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		varprop::VariantValue val = found->second.Get();
+		varprop::VariantValue val = found->second.GetDefault();
 		if (val.IsInt())
 			value = val.GetInt();
 		else
@@ -657,7 +657,7 @@ int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		varprop::VariantValue val = found->second.Get();
+		varprop::VariantValue val = found->second.GetDefault();
 		if (val.IsBool())
 			value = val.GetBool();
 		else
@@ -689,7 +689,7 @@ int COptionsMgr::ExportOptions(LPCTSTR filename)
 	{
 		const String name(optIter->first);
 		String strVal;
-		varprop::VariantValue value = optIter->second.Get();
+		varprop::VariantValue value = optIter->second.GetDefault();
 		if (value.GetType() == varprop::VT_BOOL)
 		{
 			if (value.GetBool())
