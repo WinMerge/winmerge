@@ -16,32 +16,26 @@
 /////////////////////////////////////////////////////////////////////////////
 
 /** 
- * @file UnicodeString.h
+ * @file  UnicodeString.cpp
  *
- * @brief Unicode string based on std::wstring.
- *
+ * @brief String utilities.
  */
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _UNICODE_STRING_
-#define _UNICODE_STRING_
+#include "stdafx.h"
+#include "UnicodeString.h"
 
-#include <string>
-
-#ifdef _UNICODE
-
-typedef std::basic_string<wchar_t, std::char_traits<wchar_t>,
-	std::allocator<wchar_t> > String;
-
-#else
-
-typedef std::basic_string<char, std::char_traits<char>, std::allocator<char> >
-	String;
-
-#endif // _UNICODE
-
-void string_replace(String &target, const String &find, const String &replace);
-
-
-#endif // _UNICODE_STRING_
+void string_replace(String &target, const String &find, const String &replace)
+{
+//	String copy;
+	const int replace_len = find.length();
+	int prevPos = 0;
+	int pos = target.find(find, prevPos);
+	while (pos >= 0)
+	{
+		target.replace(pos, replace_len, replace);
+		prevPos = pos;
+		pos = target.find(find, prevPos);
+	}
+}

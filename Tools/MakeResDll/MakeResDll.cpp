@@ -33,13 +33,14 @@ static LPCTSTR VSRegVersionStrings[] =
 
 struct VcPaths
 {
-	CString sRCExe;
-	CString sLinkExe;
-	CString sVcBaseFolder;
-	CString sIncludes;
-	CString sLibs;
-	CString sAdditionalPath;
-	bool needsInfo() const { return sRCExe.IsEmpty() || sLinkExe.IsEmpty() || sIncludes.IsEmpty() || sLibs.IsEmpty(); }
+	String sRCExe;
+	String sLinkExe;
+	String sVcBaseFolder;
+	String sIncludes;
+	String sLibs;
+	String sAdditionalPath;
+	bool needsInfo() const { return sRCExe.empty() || sLinkExe.empty() ||
+		sIncludes.empty() || sLibs.empty(); }
 };
 
 // File-level globals
@@ -79,7 +80,7 @@ static void Usage();
 static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
 static bool DoesFileExist(LPCTSTR filepath);
-static void TrimPath(CString & sPath);
+static void TrimPath(String & sPath);
 //static void DisplayUi(const CStringArray & VsBaseDirs);
 static void LoadVsBaseDirs(CStringArray & VsBaseDirs);
 static void SplitFilename(LPCTSTR path, TCHAR * folder, TCHAR * filename, TCHAR * ext);
@@ -182,27 +183,27 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
  */
 static void FixPath()
 {
-	CString strPath(getenv(_T("PATH")));
+	String strPath(getenv(_T("PATH")));
 	TCHAR spath[MAX_PATH] = {0};
 	if (gbVerbose)
-		_tprintf(_T("Initial path: %s\r\n"), strPath);
+		_tprintf(_T("Initial path: %s\r\n"), strPath.c_str());
 
 	strPath = _T("PATH=") + strPath;
-	SplitFilename(gVcPaths.sRCExe, spath, NULL, NULL);
+	SplitFilename(gVcPaths.sRCExe.c_str(), spath, NULL, NULL);
 	strPath += _T(";");
 	strPath += spath;
-	SplitFilename(gVcPaths.sLinkExe, spath, NULL, NULL);
+	SplitFilename(gVcPaths.sLinkExe.c_str(), spath, NULL, NULL);
 	strPath += _T(";");
 	strPath += spath;
 	strPath += _T(";");
 
-	if (!gVcPaths.sAdditionalPath.IsEmpty())
+	if (!gVcPaths.sAdditionalPath.empty())
 	{
 		strPath += gVcPaths.sAdditionalPath + _T(";");
 	}
-	putenv(strPath);
+	putenv(strPath.c_str());
 	if (gbVerbose)
-		_tprintf(_T("New path: %s\r\n"), strPath);
+		_tprintf(_T("New path: %s\r\n"), strPath.c_str());
 }
 
 /**
@@ -411,13 +412,13 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 		gsLang,
 		strOutFolder,
 		strStem,
-		gVcPaths.sIncludes,
+		gVcPaths.sIncludes.c_str(),
 		pszRCPath);
 	if (gbVerbose)
-		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sRCExe, strRCArgs);
+		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sRCExe.c_str(), strRCArgs);
 
 	Status(IDS_BUILD_RC);
-	HANDLE hRC = RunIt(gVcPaths.sRCExe, strRCArgs, TRUE, FALSE);
+	HANDLE hRC = RunIt(gVcPaths.sRCExe.c_str(), strRCArgs, TRUE, FALSE);
 	if (hRC)
 	{
 		DWORD dwReturn;
@@ -434,7 +435,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	else
 		Status(_T("Error creating process\r\n"));
 	
-	_tcscpy(temp, gVcPaths.sLibs);
+	_tcscpy(temp, gVcPaths.sLibs.c_str());
 	p = _tcstok(temp, ";\r\n\t");
 	while (p != NULL)
 	{
@@ -459,7 +460,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sLinkExe, strLinkArgs);
 
 	Status(IDS_LINK);
-	hLink = RunIt(gVcPaths.sLinkExe, strLinkArgs, TRUE, FALSE);
+	hLink = RunIt(gVcPaths.sLinkExe.c_str(), strLinkArgs, TRUE, FALSE);
 	if (hLink)
 	{
 		DWORD dwReturn;
@@ -499,17 +500,17 @@ static bool DoesFileExist(LPCTSTR filepath)
 static BOOL CheckCompiler()
 {
 	// look for the compiler
-	if (!DoesFileExist(gVcPaths.sRCExe))
+	if (!DoesFileExist(gVcPaths.sRCExe.c_str()))
 	{
-		Status(IDS_BAD_RC_PATH_FMT, gVcPaths.sRCExe);
+		Status(IDS_BAD_RC_PATH_FMT, gVcPaths.sRCExe.c_str());
 		Usage();
 		return FALSE;
 	}
 
 	// look for the linker
-	if (!DoesFileExist(gVcPaths.sLinkExe))
+	if (!DoesFileExist(gVcPaths.sLinkExe.c_str()))
 	{
-		Status(IDS_BAD_LINK_PATH_FMT, gVcPaths.sLinkExe);
+		Status(IDS_BAD_LINK_PATH_FMT, gVcPaths.sLinkExe.c_str());
 		Usage();
 		return FALSE;
 	}
@@ -559,11 +560,11 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
 	LPCTSTR settings = _T("Software\\Thingamahoochie\\MakeResDll\\Settings");
 	if (RegOpenUser(reg, settings))
 	{
-		gVcPaths.sVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T("")).c_str();
-		if (gVcPaths.sRCExe.IsEmpty())
-			gVcPaths.sRCExe = reg.ReadString(_T("RCExe"), _T("")).c_str();
-		if (gVcPaths.sLinkExe.IsEmpty())
-			gVcPaths.sLinkExe = reg.ReadString(_T("LinkExe"), _T("")).c_str();
+		gVcPaths.sVcBaseFolder = reg.ReadString(_T("VcBaseFolder"), _T(""));
+		if (gVcPaths.sRCExe.empty())
+			gVcPaths.sRCExe = reg.ReadString(_T("RCExe"), _T(""));
+		if (gVcPaths.sLinkExe.empty())
+			gVcPaths.sLinkExe = reg.ReadString(_T("LinkExe"), _T(""));
 		// This is the main way for the user to override these settings
 		// VcVersion values handled:
 		// Net2005 - Use Microsoft Visual Studio .NET 2005
@@ -590,10 +591,10 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
 	FindAndLoadVsVersion(VsBaseDirs, vsnum);
 
 	_tprintf(_T("Build paths:\r\n"));
-	_tprintf(_T("	%s\r\n"), gVcPaths.sRCExe);
-	_tprintf(_T("	%s\r\n"), gVcPaths.sLinkExe);
-	_tprintf(_T("  inc: %s\r\n"), gVcPaths.sIncludes);
-	_tprintf(_T("  lib: %s\r\n"), gVcPaths.sLibs);
+	_tprintf(_T("	%s\r\n"), gVcPaths.sRCExe.c_str());
+	_tprintf(_T("	%s\r\n"), gVcPaths.sLinkExe.c_str());
+	_tprintf(_T("  inc: %s\r\n"), gVcPaths.sIncludes.c_str());
+	_tprintf(_T("  lib: %s\r\n"), gVcPaths.sLibs.c_str());
 }
 
 
@@ -645,7 +646,7 @@ static void LoadVs2005Settings(CString & sProductDir)
 
 	// Root directory of Visual C
 	// eg, C:\Program Files\Microsoft Visual Studio 8\VC\ 
-	if (gVcPaths.sVcBaseFolder.IsEmpty())
+	if (gVcPaths.sVcBaseFolder.empty())
 		gVcPaths.sVcBaseFolder = sProductDir;
 	
 	// Get root directory of Visual Studio
@@ -659,15 +660,15 @@ static void LoadVs2005Settings(CString & sProductDir)
 	}
 
 	// Found MSVC .NET 2005, so grab resource compiler & linker
-	if (gVcPaths.sRCExe.IsEmpty())
-		gVcPaths.sRCExe.Format(_T("%sbin\\rc.exe"), gVcPaths.sVcBaseFolder);
-	if (gVcPaths.sLinkExe.IsEmpty())
-		gVcPaths.sLinkExe.Format(_T("%sbin\\link.exe"), gVcPaths.sVcBaseFolder);
+	if (gVcPaths.sRCExe.empty())
+		gVcPaths.sRCExe = gVcPaths.sVcBaseFolder + _T("bin\\rc.exe");
+	if (gVcPaths.sLinkExe.empty())
+		gVcPaths.sLinkExe = gVcPaths.sVcBaseFolder + _T("bin\\link.exe");
 
 	if (RegOpenMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\8.0")))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio 8\Common7\IDE\ 
-		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T("")).c_str();
+		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
 		TrimPath(gVcPaths.sAdditionalPath);
 	}
 
@@ -677,20 +678,20 @@ static void LoadVs2005Settings(CString & sProductDir)
 	LPCTSTR bd71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
 	if (RegOpenMachine(reg, bd71))
 	{
-		if (gVcPaths.sIncludes.IsEmpty())
+		if (gVcPaths.sIncludes.empty())
 		{
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
-			gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			string_replace(gVcPaths.sIncludes, _T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
 		}
-		if (gVcPaths.sLibs.IsEmpty())
+		if (gVcPaths.sLibs.empty())
 		{
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
-			gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			string_replace(gVcPaths.sLibs, _T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
 			if (!sVsRoot.empty())
 			{
 				// eg C:\Program Files\Microsoft Visual Studio 8\SDK\v1.1"));
 				String sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
-				gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir.c_str());
+				string_replace(gVcPaths.sLibs, _T("$(FrameworkSDKDir)"), sFrameworkSdkDir);
 			}
 		}
 		reg.Close();
@@ -708,7 +709,7 @@ static void LoadVs2003Settings(CString & sProductDir)
 
 	// Root directory of Visual C
 	// eg, C:\Program Files\Microsoft Visual Studio 8\VC\ 
-	if (gVcPaths.sVcBaseFolder.IsEmpty())
+	if (gVcPaths.sVcBaseFolder.empty())
 		gVcPaths.sVcBaseFolder = sProductDir;
 	
 	// Get root directory of Visual Studio
@@ -722,15 +723,15 @@ static void LoadVs2003Settings(CString & sProductDir)
 	}
 
 	// Found MSVC .NET 2003, so grab resource compiler & linker
-	if (gVcPaths.sRCExe.IsEmpty())
-		gVcPaths.sRCExe.Format(_T("%sbin\\rc.exe"), gVcPaths.sVcBaseFolder);
-	if (gVcPaths.sLinkExe.IsEmpty())
-		gVcPaths.sLinkExe.Format(_T("%sbin\\link.exe"), gVcPaths.sVcBaseFolder);
+	if (gVcPaths.sRCExe.empty())
+		gVcPaths.sRCExe = gVcPaths.sVcBaseFolder + _T("bin\\rc.exe");
+	if (gVcPaths.sLinkExe.empty())
+		gVcPaths.sLinkExe = gVcPaths.sVcBaseFolder + _T("bin\\link.exe");
 
 	if (RegOpenMachine(reg, _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1")))
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio .NET 2003\Common7\IDE\ 
-		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T("")).c_str();
+		gVcPaths.sAdditionalPath = reg.ReadString(_T("InstallDir"), _T(""));
 		TrimPath(gVcPaths.sAdditionalPath);
 	}
 
@@ -742,20 +743,20 @@ static void LoadVs2003Settings(CString & sProductDir)
 	LPCTSTR bd71 = _T("SOFTWARE\\Microsoft\\VisualStudio\\7.1\\VC\\VC_OBJECTS_PLATFORM_INFO\\Win32\\Directories");
 	if (RegOpenMachine(reg, bd71))
 	{
-		if (gVcPaths.sIncludes.IsEmpty())
+		if (gVcPaths.sIncludes.empty())
 		{
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
-			gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			string_replace(gVcPaths.sIncludes, _T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
 		}
-		if (gVcPaths.sLibs.IsEmpty())
+		if (gVcPaths.sLibs.empty())
 		{
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
-			gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			string_replace(gVcPaths.sLibs, _T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
 			if (!sVsRoot.empty())
 			{
 				// eg C:\Program Files\Microsoft Visual Studio .NET 2003\SDK\v1.1"));
 				String sFrameworkSdkDir = sVsRoot + _T("SDK\\v1.1");
-				gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), sFrameworkSdkDir.c_str());
+				string_replace(gVcPaths.sLibs, _T("$(FrameworkSDKDir)"), sFrameworkSdkDir);
 			}
 		}
 		reg.Close();
@@ -772,14 +773,14 @@ static void LoadVs2002Settings(CString & sProductDir)
 	CRegKeyEx reg;
 
 	// Get root directory of Visual C
-	if (gVcPaths.sVcBaseFolder.IsEmpty())
+	if (gVcPaths.sVcBaseFolder.empty())
 		gVcPaths.sVcBaseFolder = sProductDir;
 	
 	// Found MSVC .NET, so grab resource compiler & linker
-	if (gVcPaths.sRCExe.IsEmpty())
-		gVcPaths.sRCExe.Format(_T("%sbin\\rc.exe"), gVcPaths.sVcBaseFolder);
-	if (gVcPaths.sLinkExe.IsEmpty())
-		gVcPaths.sLinkExe.Format(_T("%sbin\\link.exe"), gVcPaths.sVcBaseFolder);
+	if (gVcPaths.sRCExe.empty())
+		gVcPaths.sRCExe = gVcPaths.sVcBaseFolder + _T("bin\\rc.exe");
+	if (gVcPaths.sLinkExe.empty())
+		gVcPaths.sLinkExe = gVcPaths.sVcBaseFolder + _T("bin\\link.exe");
 
 	// Now also grab includes & libs
 	// The default installation ones are in HKLM
@@ -790,17 +791,17 @@ static void LoadVs2002Settings(CString & sProductDir)
 	if (RegOpenMachine(reg, bd70))
 	{
 		String fmwk = gVcPaths.sVcBaseFolder+_T("FrameworkSDK\\");
-		if (gVcPaths.sIncludes.IsEmpty())
+		if (gVcPaths.sIncludes.empty())
 		{
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
-			gVcPaths.sIncludes.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-			gVcPaths.sIncludes.Replace(_T("$(FrameworkSDKDir)"), fmwk.c_str());
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+			string_replace(gVcPaths.sIncludes, _T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+			string_replace(gVcPaths.sIncludes, _T("$(FrameworkSDKDir)"), fmwk);
 		}
-		if (gVcPaths.sLibs.IsEmpty())
+		if (gVcPaths.sLibs.empty())
 		{
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
-			gVcPaths.sLibs.Replace(_T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
-			gVcPaths.sLibs.Replace(_T("$(FrameworkSDKDir)"), fmwk.c_str());
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
+			string_replace(gVcPaths.sLibs, _T("$(VCInstallDir)"), gVcPaths.sVcBaseFolder);
+			string_replace(gVcPaths.sLibs, _T("$(FrameworkSDKDir)"), fmwk);
 		}
 		reg.Close();
 	}
@@ -817,7 +818,7 @@ static void LoadVs6Settings(CString & sProductDir)
 
 	// Get root directory of Visual C
 	// eg, C:\Program Files\Microsoft Visual Studio\VC98
-	if (gVcPaths.sVcBaseFolder.IsEmpty())
+	if (gVcPaths.sVcBaseFolder.empty())
 		gVcPaths.sVcBaseFolder = sProductDir;
 
 	LPCTSTR Dev6Dirs = _T("Software\\Microsoft\\DevStudio\\6.0\\Directories");
@@ -825,23 +826,23 @@ static void LoadVs6Settings(CString & sProductDir)
 	{
 		// eg, C:\Program Files\Microsoft Visual Studio\COMMON\MSDev98\Bin
 		String sVsDevBin = reg.ReadString(_T("Install Dirs"), _T(""));
-		if (gVcPaths.sRCExe.IsEmpty())
-			gVcPaths.sRCExe.Format(_T("%s\\rc.exe"), sVsDevBin.c_str());
+		if (gVcPaths.sRCExe.empty())
+			gVcPaths.sRCExe = sVsDevBin + _T("\\rc.exe");
 	}
 
 	// Get linker
 	// eg, C:\Program Files\Microsoft Visual Studio\VC98\bin\link.exe
-	if (gVcPaths.sLinkExe.IsEmpty())
-		gVcPaths.sLinkExe.Format(_T("%s\\bin\\link.exe"), gVcPaths.sVcBaseFolder);
+	if (gVcPaths.sLinkExe.empty())
+		gVcPaths.sLinkExe = gVcPaths.sVcBaseFolder + _T("\\bin\\link.exe");
 
 	// Now also grab includes & libs
 	LPCTSTR bd = _T("Software\\Microsoft\\DevStudio\\6.0\\Build System\\Components\\Platforms\\Win32 (x86)\\Directories");
 	if (RegOpenUser(reg, bd))
 	{
-		if (gVcPaths.sIncludes.IsEmpty())
-			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T("")).c_str();
-		if (gVcPaths.sLibs.IsEmpty())
-			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T("")).c_str();
+		if (gVcPaths.sIncludes.empty())
+			gVcPaths.sIncludes = reg.ReadString(_T("Include Dirs"), _T(""));
+		if (gVcPaths.sLibs.empty())
+			gVcPaths.sLibs = reg.ReadString(_T("Library Dirs"), _T(""));
 		reg.Close();
 	}
 }
@@ -855,12 +856,13 @@ static bool IsSlash(TCHAR ch)
 }
 
 /**
- * @brief Remove any trailing slashes
+ * @brief Remove any trailing slashes.
+ * @param [in, out] sPath String to handle.
  */
-static void TrimPath(CString & sPath)
+static void TrimPath(String & sPath)
 {
-	if (sPath.GetLength() && IsSlash(sPath[sPath.GetLength()-1]))
-		sPath = sPath.Left(sPath.GetLength()-1);
+	if (sPath.length() && IsSlash(sPath[sPath.length() - 1]))
+		sPath = sPath.erase(sPath.length() - 1, 1);
 }
 
 /**
