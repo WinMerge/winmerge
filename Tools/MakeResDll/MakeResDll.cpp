@@ -45,11 +45,10 @@ struct VcPaths
 
 // File-level globals
 static VcPaths gVcPaths;
-static CWinApp theApp;
-static CString gsLang;
-static CString gsVcBin;
-static CString gsRCScript;
-static CString gsOutPath;
+static String gsLang;
+static String gsVcBin;
+static String gsRCScript;
+static String gsOutPath;
 static BOOL gbPause=FALSE;
 BOOL static gbBatch=FALSE;
 static BOOL gbSilent=FALSE;
@@ -66,16 +65,16 @@ static VS_VERSION MapRegistryValue(LPCTSTR value);
 static BOOL MkDirEx(LPCTSTR filename);
 static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName);
 static HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL bNewConsole /*= FALSE*/);
-static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile);
+static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, String& strOutFile);
 static BOOL CheckCompiler();
 static void Status(LPCTSTR szText);
 static void Status(UINT idstrText, LPCTSTR szText1 = NULL, LPCTSTR szText2 = NULL);
 static void InitModulePaths(const CStringArray & VsBaseDirs);
 static bool FindAndLoadVsVersion(const CStringArray & VsBaseDirs, VS_VERSION vsnum);
-static void LoadVs2005Settings(CString & sProductDir);
-static void LoadVs2003Settings(CString & sProductDir);
-static void LoadVs2002Settings(CString & sProductDir);
-static void LoadVs6Settings(CString & sProductDir);
+static void LoadVs2005Settings(const String & sProductDir);
+static void LoadVs2003Settings(const String & sProductDir);
+static void LoadVs2002Settings(const String & sProductDir);
+static void LoadVs6Settings(const String & sProductDir);
 static void Usage();
 static BOOL ProcessArgs(int argc, TCHAR* argv[]);
 static void FixPath();
@@ -145,9 +144,9 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 		TCHAR spath[MAX_PATH] = {0};
 		TCHAR sname[MAX_PATH] = {0};
-		SplitFilename(gsRCScript, spath, sname, NULL);
+		SplitFilename(gsRCScript.c_str(), spath, sname, NULL);
 
-		if (gsOutPath.IsEmpty())
+		if (gsOutPath.empty())
 			gsOutPath = spath;
 
 		Status(IDS_CHECK_COMPILER_FMT);
@@ -157,13 +156,14 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 
 		FixPath();
 
-		CString s, strOutFile;
-		BOOL ok = BuildDll(gsRCScript, gsOutPath, sname, strOutFile);
+		String strOutFile;
+		BOOL ok = BuildDll(gsRCScript.c_str(), gsOutPath.c_str(), sname, strOutFile);
 		if (!ok)
 			nRetCode = 1;
 		if (ok && !gbSilent && !gbBatch)
 		{
-			AfxFormatString1(s, IDS_SUCCESS_FMT, strOutFile);
+			CString s;
+			AfxFormatString1(s, IDS_SUCCESS_FMT, strOutFile.c_str());
 			AfxMessageBox(s, MB_ICONINFORMATION);
 		}
 
@@ -220,8 +220,10 @@ static BOOL MissingArg(LPCTSTR arg)
  */
 static BOOL ProcessArgs(int argc, TCHAR* argv[])
 {
-	gsLang.Format(_T("%04x"), MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
-	gsRCScript = _T("");
+	TCHAR tempStr[10] = {0};
+	_stprintf(tempStr, _T("%04x"), MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US));
+	gsLang = tempStr;
+	gsRCScript.erase();
 
 	for (int i=1; i < argc; i++)
 	{
@@ -293,9 +295,9 @@ static BOOL ProcessArgs(int argc, TCHAR* argv[])
 			if (i < argc-1)
 			{
 				gsOutPath = argv[i];
-				if (!MkDirEx(gsOutPath))
+				if (!MkDirEx(gsOutPath.c_str()))
 				{
-					Status(IDS_ERROR_MKDIR, gsOutPath);
+					Status(IDS_ERROR_MKDIR, gsOutPath.c_str());
 					return FALSE;
 				}
 			}
@@ -340,7 +342,7 @@ static BOOL ProcessArgs(int argc, TCHAR* argv[])
 			gsRCScript = argv[i];
 		}
 	}
-	if (gsRCScript.IsEmpty())
+	if (gsRCScript.empty())
 	{
 		Status(IDS_LAST_ARG_SHOULD_BE_RC, argv[argc-1]);
 		return FALSE;
@@ -382,7 +384,7 @@ static void Usage()
 	displine(0);
 }
 
-static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, CString& strOutFile)
+static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, String& strOutFile)
 {
 	CString strLinkArgs;
 	CString libs;
@@ -401,7 +403,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	Status(IDS_CREATE_OUTDIR);
 	if (!MkDirEx(strOutFolder))
 	{
-		Status(IDS_ERROR_MKDIR, gsOutPath);
+		Status(IDS_ERROR_MKDIR, gsOutPath.c_str());
 		return FALSE;
 	}
 	Status(_T("OK\r\n"));
@@ -409,7 +411,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	CString strRCArgs;
 	strRCArgs.Format(_T("/l 0x%s /fo\"%s\\%s.res\" /i \"%s\" ")
 					 _T("/d \"_AFXDLL\" /d \"CORTRON_BUILD\" \"%s\""),
-		gsLang,
+		gsLang.c_str(),
 		strOutFolder,
 		strStem,
 		gVcPaths.sIncludes.c_str(),
@@ -453,7 +455,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 					   _T("/out:\"%s\" ")
 					   _T("\"%s\\%s.res\" "),
 					   libs,
-					   strOutFile,
+					   strOutFile.c_str(),
 					   strOutFolder,
 					   strStem);						
 	if (gbVerbose)
@@ -482,7 +484,8 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 
 	Status(IDS_SUCCESS);
 	Status(_T("\r\n"));
-	Status(_T("    ")+strOutFile);
+	Status(_T("    "));
+	Status(strOutFile.c_str());
 	Status(_T("\r\n"));
 	return TRUE;
 
@@ -616,8 +619,8 @@ static bool FindAndLoadVsVersion(const CStringArray & VsBaseDirs, VS_VERSION vsn
 	{
 		if (vsnum == VS_NONE || vsnum == vi)
 		{
-			CString sProductDir = VsBaseDirs[vi];
-			if (!sProductDir.IsEmpty())
+			String sProductDir = VsBaseDirs[vi];
+			if (!sProductDir.empty())
 			{
 				if (vi == VS_2005)
 					LoadVs2005Settings(sProductDir);
@@ -639,7 +642,7 @@ static bool FindAndLoadVsVersion(const CStringArray & VsBaseDirs, VS_VERSION vsn
  * @brief Load VS.NET 2005 settings into global gVcPaths
  * Version 8.0
  */
-static void LoadVs2005Settings(CString & sProductDir)
+static void LoadVs2005Settings(const String & sProductDir)
 {
 	// Access to registry
 	CRegKeyEx reg;
@@ -702,7 +705,7 @@ static void LoadVs2005Settings(CString & sProductDir)
  * @brief Load Visual Studio .NET 2003 settings into global gVcPaths
  * Version 7.1
  */
-static void LoadVs2003Settings(CString & sProductDir)
+static void LoadVs2003Settings(const String & sProductDir)
 {
 	// Access to registry
 	CRegKeyEx reg;
@@ -767,7 +770,7 @@ static void LoadVs2003Settings(CString & sProductDir)
  * @brief Load Visual Studio .NET (2002) settings into global gVcPaths
  * Version 7.0
  */
-static void LoadVs2002Settings(CString & sProductDir)
+static void LoadVs2002Settings(const String & sProductDir)
 {
 	// Access to registry
 	CRegKeyEx reg;
@@ -811,7 +814,7 @@ static void LoadVs2002Settings(CString & sProductDir)
  * @brief Load Visual Studio 6 settings into global gVcPaths
  * Version 6.0
  */
-static void LoadVs6Settings(CString & sProductDir)
+static void LoadVs6Settings(const String & sProductDir)
 {
 	// Access to registry
 	CRegKeyEx reg;
