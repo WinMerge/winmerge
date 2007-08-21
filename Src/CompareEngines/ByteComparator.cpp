@@ -17,6 +17,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using namespace CompareEngines;
 
 /**
  * @brief Returns if given char is EOL byte.

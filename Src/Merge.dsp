@@ -167,10 +167,6 @@ SOURCE=.\BCMenu.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\ByteComparator.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\CCPrompt.cpp
 # End Source File
 # Begin Source File
@@ -982,10 +978,6 @@ SOURCE=.\AboutDlg.h
 # Begin Source File
 
 SOURCE=.\BCMenu.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\ByteComparator.h
 # End Source File
 # Begin Source File
 
@@ -2529,6 +2521,22 @@ SOURCE=.\ReadMe.txt
 # Begin Group "Compare Engines"
 
 # PROP Default_Filter "cpp;c;h"
+# Begin Source File
+
+SOURCE=.\CompareEngines\ByteComparator.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CompareEngines\ByteComparator.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\CompareEngines\ByteCompare.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\CompareEngines\ByteCompare.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\CompareEngines\DiffUtils.cpp

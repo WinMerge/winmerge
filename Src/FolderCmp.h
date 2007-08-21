@@ -11,6 +11,7 @@
 
 #include "DiffFileData.h"
 #include "DiffUtils.h"
+#include "ByteCompare.h"
 
 //using namespace CompareEngines;
 
@@ -59,6 +60,7 @@ public:
 
 private:
 	CompareEngines::DiffUtils *m_pDiffUtilsEngine;
+	CompareEngines::ByteCompare *m_pByteCompare;
 };
 
 

@@ -122,6 +122,7 @@ class QuickCompareOptions : public CompareOptions
 {
 public:
 	QuickCompareOptions();
+	QuickCompareOptions(const CompareOptions& options);
 
 	BOOL m_bStopAfterFirstDiff; /**< Optimize compare by stopping after first difference? */
 };

@@ -199,3 +199,9 @@ void DiffutilsOptions::GetAsDiffOptions(DIFFOPTIONS &options)
 		break;
 	}
 }
+
+QuickCompareOptions::QuickCompareOptions(const CompareOptions& options)
+: CompareOptions(options)
+, m_bStopAfterFirstDiff(FALSE)
+{
+}

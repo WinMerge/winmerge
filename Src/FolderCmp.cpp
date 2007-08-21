@@ -8,6 +8,7 @@
 
 #include "stdafx.h"
 #include "DiffUtils.h"
+#include "ByteCompare.h"
 #include "LogFile.h"
 #include "Merge.h"
 #include "paths.h"
@@ -22,17 +23,13 @@
 
 using namespace CompareEngines;
 
-static const int KILO = 1024; // Kilo(byte)
-
-/** @brief Quick contents compare's file buffer size. */
-static const int WMCMPBUFF = 32 * KILO;
-
 static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
 static bool Unpack(CString & filepathTransformed,
 	const CString & filteredFilenames, PackingInfo * infoUnpacker);
 
 FolderCmp::FolderCmp()
 : m_pDiffUtilsEngine(NULL)
+, m_pByteCompare(NULL)
 , m_ndiffs(CDiffContext::DIFFS_UNKNOWN)
 , m_ntrivialdiffs(CDiffContext::DIFFS_UNKNOWN)
 {
@@ -41,6 +38,7 @@ FolderCmp::FolderCmp()
 FolderCmp::~FolderCmp()
 {
 	delete m_pDiffUtilsEngine;
+	delete m_pByteCompare;
 }
 
 bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr)
@@ -236,8 +234,30 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
-		// use our own byte-by-byte compare
-		code = byte_compare_files(pCtxt->m_bStopAfterFirstDiff, pCtxt->GetAbortable());
+		if (m_pByteCompare == NULL)
+			m_pByteCompare = new ByteCompare();
+		bool success = m_pByteCompare->SetCompareOptions(
+			*m_pCtx->GetCompareOptions(CMP_QUICK_CONTENT));
+
+		if (success)
+		{
+			m_pByteCompare->SetAdditionalOptions(pCtxt->m_bStopAfterFirstDiff);
+			m_pByteCompare->SetAbortable(pCtxt->GetAbortable());
+			m_pByteCompare->SetPaths(m_diffFileData.m_FileLocation[0].filepath,
+				m_diffFileData.m_FileLocation[1].filepath);
+			m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
+
+			// Close any descriptors open for diffutils
+			m_diffFileData.Reset();
+			// use our own byte-by-byte compare
+			code = m_pByteCompare->CompareFiles();
+
+			m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats0);
+			m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats1);
+		}
+		else
+			code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
+
 		// Quick contents doesn't know about diff counts
 		// Set to special value to indicate invalid
 		m_ndiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
@@ -318,157 +338,6 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	return code;
 }
 
-/** 
- * @brief Compare two specified files, byte-by-byte
- * @param [in] bStopAfterFirstDiff Stop compare after we find first difference?
- * @param [in] piAbortable Interface allowing to abort compare
- * @return DIFFCODE
- */
-int FolderCmp::byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable)
-{
-	QuickCompareOptions *pOptions = 
-		dynamic_cast<QuickCompareOptions*>(m_pCtx->GetCompareOptions(CMP_QUICK_CONTENT));
-	if (pOptions == NULL)
-		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
-
-	// Close any descriptors open for diffutils
-	m_diffFileData.Reset();
-
-	// TODO
-	// Right now, we assume files are in 8-bit encoding
-	// because transform code converted any UCS-2 files to UTF-8
-	// We could compare directly in UCS-2LE here, as an optimization, in that case
-	char buff[2][WMCMPBUFF]; // buffered access to files
-	FILE * fp[2]; // for files to compare
-	FileHandle fhd[2]; // to ensure file handles fp get closed
-	int i;
-	int diffcode = 0;
-
-	// Open both files
-	for (i=0; i<2; ++i)
-	{
-		fp[i] = _tfopen(m_diffFileData.m_FileLocation[i].filepath, _T("rb"));
-		if (!fp[i])
-			return DIFFCODE::CMPERR;
-		fhd[i].Assign(fp[i]);
-	}
-
-	// area of buffer currently holding data
-	__int64 bfstart[2]; // offset into buff[i] where current data resides
-	__int64 bfend[2]; // past-the-end pointer into buff[i], giving end of current data
-	// buff[0] has bytes to process from buff[0][bfstart[0]] to buff[0][bfend[0]-1]
-
-	bool eof[2]; // if we've finished file
-
-	// initialize our buffer pointers and end of file flags
-	for (i=0; i<2; ++i)
-	{
-		bfstart[i] = bfend[i] = 0;
-		eof[i] = false;
-	}
-
-	ByteComparator comparator(pOptions);
-
-	// Begin loop
-	// we handle the files in WMCMPBUFF sized buffers (variable buff[][])
-	// That is, we do one buffer full at a time
-	// or even less, as we process until one side buffer is empty, then reload that one
-	// and continue
-	while (!eof[0] || !eof[1])
-	{
-		if (piAbortable && piAbortable->ShouldAbort())
-			return DIFFCODE::CMPABORT;
-
-		// load or update buffers as appropriate
-		for (i=0; i<2; ++i)
-		{
-			if (!eof[i] && bfstart[i]==countof(buff[i]))
-			{
-				bfstart[i]=bfend[i] = 0;
-			}
-			if (!eof[i] && bfend[i]<countof(buff[i])-1)
-			{
-				// Assume our blocks are in range of unsigned int
-				unsigned int space = countof(buff[i]) - bfend[i];
-				size_t rtn = fread(&buff[i][bfend[i]], 1, space, fp[i]);
-				if (ferror(fp[i]))
-					return DIFFCODE::CMPERR;
-				if (feof(fp[i]))
-					eof[i] = true;
-				bfend[i] += rtn;
-			}
-		}
-
-		// where to start comparing right now
-		LPCSTR ptr0 = &buff[0][bfstart[0]];
-		LPCSTR ptr1 = &buff[1][bfstart[1]];
-
-		// remember where we started
-		LPCSTR orig0 = ptr0, orig1 = ptr1;
-
-		// how far can we go right now?
-		LPCSTR end0 = &buff[0][bfend[0]];
-		LPCSTR end1 = &buff[1][bfend[1]];
-
-		__int64 offset0 = (ptr0 - &buff[0][0]);
-		__int64 offset1 = (ptr1 - &buff[1][0]);
-
-		// are these two buffers the same?
-		if (!comparator.CompareBuffers(m_diffFileData.m_textStats0, m_diffFileData.m_textStats1, 
-			ptr0, ptr1, end0, end1, eof[0], eof[1], offset0, offset1))
-		{
-			if (bStopAfterFirstDiff)
-			{
-				// By bailing out here
-				// we leave our text statistics incomplete
-				return diffcode | DIFFCODE::DIFF;
-			}
-			else
-			{
-				diffcode |= DIFFCODE::DIFF;
-				ptr0 = end0;
-				ptr1 = end1;
-			}
-		}
-		else
-		{
-			ptr0 = end0;
-			ptr1 = end1;
-		}
-
-
-		// did we finish both files?
-		if (eof[0] && eof[1])
-		{
-
-			BOOL bBin0 = (m_diffFileData.m_textStats0.nzeros>0);
-			BOOL bBin1 = (m_diffFileData.m_textStats1.nzeros>0);
-
-			if (bBin0 && bBin1)
-				diffcode |= DIFFCODE::BIN;
-			else if (bBin0)
-				diffcode |= DIFFCODE::BINSIDE1;
-			else if (bBin1)
-				diffcode |= DIFFCODE::BINSIDE2;
-
-			// If either unfinished, they differ
-			if (ptr0 != end0 || ptr1 != end1)
-				diffcode = (diffcode & DIFFCODE::DIFF);
-			
-			if (diffcode & DIFFCODE::DIFF)
-				return diffcode | DIFFCODE::DIFF;
-			else
-				return diffcode | DIFFCODE::SAME;
-		}
-
-		// move our current pointers over what we just compared
-		ASSERT(ptr0 >= orig0);
-		ASSERT(ptr1 >= orig1);
-		bfstart[0] += ptr0-orig0;
-		bfstart[1] += ptr1-orig1;
-	}
-	return diffcode;
-}
 
 /**
  * @brief Get actual compared paths from DIFFITEM.

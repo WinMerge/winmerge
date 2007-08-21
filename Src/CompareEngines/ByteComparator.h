@@ -12,6 +12,8 @@
 class QuickCompareOptions;
 struct FileTextStats;
 
+namespace CompareEngines
+{
 
 /**
  * @brief Byte per byte compare class implementing Quick Compare.
@@ -58,5 +60,7 @@ private:
 	bool m_bol0; /**< 0-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines) */
 	bool m_bol1; /**< 1-side is at beginning of line (!ignore_eol_differences & ignore_blank_lines) */
 };
+
+} // namespace CompareEngines
 
 #endif // ByteComparator_h_included
