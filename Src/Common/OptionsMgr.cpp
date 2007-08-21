@@ -548,7 +548,6 @@ int COptionsMgr::SaveOption(LPCTSTR name, COLORREF value)
  */
 int COptionsMgr::RemoveOption(LPCTSTR name)
 {
-	COption tmpOption;
 	int retVal = OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
@@ -570,13 +569,12 @@ int COptionsMgr::RemoveOption(LPCTSTR name)
  */
 int COptionsMgr::Reset(LPCTSTR name)
 {
-	COption tmpOption;
-	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
+		COption tmpOption = found->second;
 		tmpOption.Reset();
 		m_optionsMap[name] = tmpOption;
 	}
@@ -594,14 +592,12 @@ int COptionsMgr::Reset(LPCTSTR name)
  */
 int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
 {
-	COption tmpOption;
-	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		varprop::VariantValue val = tmpOption.GetDefault();
+		varprop::VariantValue val = found->second.Get();
 		if (val.IsString())
 		{
 			String tmpval;
@@ -631,14 +627,12 @@ int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
  */
 int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
 {
-	COption tmpOption;
-	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		varprop::VariantValue val = tmpOption.GetDefault();
+		varprop::VariantValue val = found->second.Get();
 		if (val.IsInt())
 			value = val.GetInt();
 		else
@@ -658,14 +652,12 @@ int COptionsMgr::GetDefault(LPCTSTR name, DWORD & value) const
  */
 int COptionsMgr::GetDefault(LPCTSTR name, bool & value) const
 {
-	COption tmpOption;
-	BOOL optionFound = FALSE;
 	int retVal = OPT_OK;
 
 	OptionsMap::const_iterator found = m_optionsMap.find(name);
 	if (found != m_optionsMap.end())
 	{
-		varprop::VariantValue val = tmpOption.GetDefault();
+		varprop::VariantValue val = found->second.Get();
 		if (val.IsBool())
 			value = val.GetBool();
 		else
