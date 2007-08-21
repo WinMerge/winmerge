@@ -689,7 +689,7 @@ int COptionsMgr::ExportOptions(LPCTSTR filename)
 	{
 		const String name(optIter->first);
 		String strVal;
-		varprop::VariantValue value = optIter->second.GetDefault();
+		varprop::VariantValue value = optIter->second.Get();
 		if (value.GetType() == varprop::VT_BOOL)
 		{
 			if (value.GetBool())
@@ -718,6 +718,7 @@ int COptionsMgr::ExportOptions(LPCTSTR filename)
 				strVal.c_str(), filename);
 		if (!bRet)
 			retVal = OPT_ERR;
+		optIter++;
 	}
 	return retVal;
 }
