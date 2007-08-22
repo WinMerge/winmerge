@@ -224,39 +224,39 @@ static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
 	// skipped items before unique items, for example, so that
 	// skipped unique items are labeled as skipped, not unique.
 	CString s;
-	if (di.isResultError())
+	if (di.diffcode.isResultError())
 	{
 		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
 	}
-	else if (di.isResultAbort())
+	else if (di.diffcode.isResultAbort())
 	{
 		VERIFY(s.LoadString(IDS_ABORTED_ITEM));
 	}
-	else if (di.isResultFiltered())
+	else if (di.diffcode.isResultFiltered())
 	{
-		if (di.isDirectory())
+		if (di.diffcode.isDirectory())
 			VERIFY(s.LoadString(IDS_DIR_SKIPPED));
 		else
 			VERIFY(s.LoadString(IDS_FILE_SKIPPED));
 	}
-	else if (di.isSideLeftOnly())
+	else if (di.diffcode.isSideLeftOnly())
 	{
 		AfxFormatString1(s, IDS_LEFT_ONLY_IN_FMT, di.getLeftFilepath(pCtxt->GetNormalizedLeft()));
 	}
-	else if (di.isSideRightOnly())
+	else if (di.diffcode.isSideRightOnly())
 	{
 		AfxFormatString1(s, IDS_RIGHT_ONLY_IN_FMT, di.getRightFilepath(pCtxt->GetNormalizedRight()));
 	}
-	else if (di.isResultSame())
+	else if (di.diffcode.isResultSame())
 	{
-		if (di.isBin())
+		if (di.diffcode.isBin())
 			VERIFY(s.LoadString(IDS_BIN_FILES_SAME));
 		else
 			VERIFY(s.LoadString(IDS_IDENTICAL));
 	}
 	else // diff
 	{
-		if (di.isBin())
+		if (di.diffcode.isBin())
 			VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
 		else
 			VERIFY(s.LoadString(IDS_FILES_ARE_DIFFERENT));
@@ -314,11 +314,11 @@ static CString ColDiffsGet(const CDiffContext *, const void *p)
 static CString ColNewerGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
-	if (di.isSideLeftOnly())
+	if (di.diffcode.isSideLeftOnly())
 	{
 		return _T("<*<");
 	}
-	if (di.isSideRightOnly())
+	if (di.diffcode.isSideRightOnly())
 	{
 		return _T(">*>");
 	}
@@ -364,30 +364,30 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 	// Note that order of items does matter. We must check for
 	// skipped items before unique items, for example, so that
 	// skipped unique items are labeled as skipped, not unique.
-	if (di.isResultError())
+	if (di.diffcode.isResultError())
 	{
 		id = IDS_CMPRES_ERROR;
 	}
-	else if (di.isResultAbort())
+	else if (di.diffcode.isResultAbort())
 	{
 		id = IDS_ABORTED_ITEM;
 	}
-	else if (di.isResultFiltered())
+	else if (di.diffcode.isResultFiltered())
 	{
-		if (di.isDirectory())
+		if (di.diffcode.isDirectory())
 			id = IDS_DIR_SKIPPED;
 		else
 			id = IDS_FILE_SKIPPED;
 	}
-	else if (di.isSideLeftOnly())
+	else if (di.diffcode.isSideLeftOnly())
 	{
 		id = IDS_LEFTONLY;
 	}
-	else if (di.isSideRightOnly())
+	else if (di.diffcode.isSideRightOnly())
 	{
 		id = IDS_RIGHTONLY;
 	}
-	else if (di.isResultSame())
+	else if (di.diffcode.isResultSame())
 	{
 		id = IDS_IDENTICAL;
 	}
@@ -404,7 +404,7 @@ static CString ColBinGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 
-	if (di.isBin())
+	if (di.diffcode.isBin())
 		return _T("*");
 	else
 		return _T("");
@@ -429,7 +429,7 @@ static CString GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
 	{
 		return _T("");
 	}
-	if (di.isBin())
+	if (di.diffcode.isBin())
 	{
 		int id = IDS_EOL_BIN;
 		return LoadResString(id);
@@ -482,9 +482,9 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
-	if (ldi.isDirectory() && !rdi.isDirectory())
+	if (ldi.diffcode.isDirectory() && !rdi.diffcode.isDirectory())
 		return -1;
-	if (!ldi.isDirectory() && rdi.isDirectory())
+	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
 	return ColFileNameGet(pCtxt, p).CompareNoCase(ColFileNameGet(pCtxt, q));
 	//return ldi.sLeftFilename.CompareNoCase(rdi.sLeftFilename);
@@ -510,7 +510,7 @@ static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
-	return cmpdiffcode(rdi.diffcode, ldi.diffcode);
+	return cmpdiffcode(rdi.diffcode.diffcode, ldi.diffcode.diffcode);
 }
 static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
 {
@@ -546,8 +546,8 @@ static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
-	int i = ldi.isBin();
-	int j = rdi.isBin();
+	int i = ldi.diffcode.isBin();
+	int j = rdi.diffcode.isBin();
 
 	return i - j;
 }

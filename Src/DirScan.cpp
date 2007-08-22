@@ -367,7 +367,7 @@ int DirScan_CompareItems(CDiffContext * pCtxt)
 
 		POSITION oldPos = pos;
 		DIFFITEM di = pCtxt->GetNextDiffPosition(pos);
-		if (di.isScanNeeded())
+		if (di.diffcode.isScanNeeded())
 		{
 			BOOL bItemsExist = TRUE;
 			pCtxt->RemoveDiff(oldPos);
@@ -404,16 +404,16 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 	if (bLeftExists)
 	{
 		if (bRightExists)
-			di.setSideBoth();
+			di.diffcode.setSideBoth();
 		else
-			di.setSideLeft();
+			di.diffcode.setSideLeft();
 	}
 	else
 	{
 		if (bRightExists)
-			di.setSideRight();
+			di.diffcode.setSideRight();
 		else
-			di.setSideNone();
+			di.diffcode.setSideNone();
 	}
 }
 
@@ -435,15 +435,15 @@ void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 {
 	// Clear rescan-request flag (not set by all codepaths)
-	di.diffcode &= ~DIFFCODE::NEEDSCAN;
+	di.diffcode.diffcode &= ~DIFFCODE::NEEDSCAN;
 	// Is it a directory?
-	if (di.isDirectory())
+	if (di.diffcode.isDirectory())
 	{
 		// 1. Test against filters
 		if (pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename, di.sRightFilename))
-			di.diffcode |= DIFFCODE::INCLUDED;
+			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 		else
-			di.diffcode |= DIFFCODE::SKIPPED;
+			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
 		// We don't actually 'compare' directories, just add non-ignored
 		// directories to list.
 		StoreDiffData(di, pCtxt, NULL);
@@ -453,10 +453,10 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 		// 1. Test against filters
 		if (pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename, di.sRightFilename))
 		{
-			di.diffcode |= DIFFCODE::INCLUDED;
+			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 			// 2. Add unique files
 			// We must compare unique files to itself to detect encoding
-			if (di.isSideLeftOnly() || di.isSideRightOnly())
+			if (di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly())
 			{
 				if (pCtxt->m_nCompMethod != CMP_DATE &&
 					pCtxt->m_nCompMethod != CMP_DATE_SIZE &&
@@ -467,7 +467,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					
 					// Add possible binary flag for unique items
 					if (diffCode & DIFFCODE::BIN)
-						di.diffcode |= DIFFCODE::BIN;
+						di.diffcode.diffcode |= DIFFCODE::BIN;
 					StoreDiffData(di, pCtxt, &folderCmp);
 				}
 				else
@@ -480,13 +480,13 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 			{
 				// Really compare
 				FolderCmp folderCmp;
-				di.diffcode |= folderCmp.prepAndCompareTwoFiles(pCtxt, di);
+				di.diffcode.diffcode |= folderCmp.prepAndCompareTwoFiles(pCtxt, di);
 				StoreDiffData(di, pCtxt, &folderCmp);
 			}
 		}
 		else
 		{
-			di.diffcode |= DIFFCODE::SKIPPED;
+			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
 			StoreDiffData(di, pCtxt, NULL);
 		}
 	}
@@ -625,20 +625,20 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 	if (pCmpData)
 	{
 		// Set text statistics
-		if (di.isSideLeftOrBoth())
+		if (di.diffcode.isSideLeftOrBoth())
 			di.left.m_textStats = pCmpData->m_diffFileData.m_textStats0;
-		if (di.isSideRightOrBoth())
+		if (di.diffcode.isSideRightOrBoth())
 			di.right.m_textStats = pCmpData->m_diffFileData.m_textStats1;
 
 		di.nsdiffs = pCmpData->m_ndiffs;
 		di.nidiffs = pCmpData->m_ntrivialdiffs;
 
-		if (!di.isSideLeftOnly())
+		if (!di.diffcode.isSideLeftOnly())
 		{
 			di.right.encoding = pCmpData->m_diffFileData.m_FileLocation[1].encoding;
 		}
 		
-		if (!di.isSideRightOnly())
+		if (!di.diffcode.isSideRightOnly())
 		{
 			di.left.encoding = pCmpData->m_diffFileData.m_FileLocation[0].encoding;
 		}

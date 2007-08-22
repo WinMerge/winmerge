@@ -134,7 +134,7 @@ static CString GetFixedFileVersion(const CString & path)
 void CDiffContext::AddDiff(const DIFFITEM & di)
 {
 	DiffItemList::AddDiff(di);
-	m_pCompareStats->AddItem(di.diffcode);
+	m_pCompareStats->AddItem(di.diffcode.diffcode);
 }
 
 /**
@@ -149,13 +149,13 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
 	if (bLeft)
 	{
 		di.left.Clear();
-		if (!di.isSideRightOnly())
+		if (!di.diffcode.isSideRightOnly())
 			UpdateInfoFromDiskHalf(di, TRUE);
 	}
 	if (bRight)
 	{
 		di.right.Clear();
-		if (!di.isSideLeftOnly())
+		if (!di.diffcode.isSideLeftOnly())
 			UpdateInfoFromDiskHalf(di, FALSE);
 	}
 }
@@ -216,13 +216,13 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	dfi.version = _T("");
 	dfi.bVersionChecked = true;
 
-	if (di.isDirectory())
+	if (di.diffcode.isDirectory())
 		return;
 	
 	CString spath;
 	if (bLeft)
 	{
-		if (di.isSideRightOnly())
+		if (di.diffcode.isSideRightOnly())
 			return;
 		LPCTSTR ext = PathFindExtension(di.sLeftFilename);
 		if (!CheckFileForVersion(ext))
@@ -232,7 +232,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	}
 	else
 	{
-		if (di.isSideLeftOnly())
+		if (di.diffcode.isSideLeftOnly())
 			return;
 		LPCTSTR ext = PathFindExtension(di.sRightFilename);
 		if (!CheckFileForVersion(ext))

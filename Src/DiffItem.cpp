@@ -73,7 +73,7 @@ DIFFITEM DIFFITEM::MakeEmptyDiffItem() // static
 CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
 {
 	CString sPath;
-	if (!isSideRightOnly())
+	if (!diffcode.isSideRightOnly())
 	{
 		sPath = paths_ConcatPath(sLeftRoot, sLeftSubdir);
 	}
@@ -84,7 +84,7 @@ CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
 CString DIFFITEM::getRightFilepath(const CString &sRightRoot) const
 {
 	CString sPath;
-	if (!isSideLeftOnly())
+	if (!diffcode.isSideLeftOnly())
 	{
 		sPath = paths_ConcatPath(sRightRoot, sRightSubdir);
 	}

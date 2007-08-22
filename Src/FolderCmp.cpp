@@ -216,7 +216,7 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 		// If unique item, it was being compared to itself to determine encoding
 		// and the #diffs is invalid
-		if (di.isSideRightOnly() || di.isSideLeftOnly())
+		if (di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly())
 		{
 			m_ndiffs = CDiffContext::DIFFS_UNKNOWN;
 			m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN;
@@ -305,7 +305,7 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		
 		// This is actual CMP_DATE_SIZE method..
 		// If file sizes differ mark them different
-		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE && di.isResultSame())
+		if (pCtxt->m_nCompMethod == CMP_DATE_SIZE && di.diffcode.isResultSame())
 		{
 			if (di.left.size != di.right.size)
 			{
@@ -347,7 +347,7 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 {
 	static const TCHAR backslash[] = _T("\\");
 
-	if (!di.isSideRightOnly())
+	if (!di.diffcode.isSideRightOnly())
 	{
 		// Compare file to itself to detect encoding
 		left = pCtxt->GetNormalizedLeft();
@@ -356,10 +356,10 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 		if (!di.sLeftSubdir.IsEmpty())
 			left += di.sLeftSubdir + backslash;
 		left += di.sLeftFilename;
-		if (di.isSideLeftOnly())
+		if (di.diffcode.isSideLeftOnly())
 			right = left;
 	}
-	if (!di.isSideLeftOnly())
+	if (!di.diffcode.isSideLeftOnly())
 	{
 		// Compare file to itself to detect encoding
 		right = pCtxt->GetNormalizedRight();
@@ -368,7 +368,7 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 		if (!di.sRightSubdir.IsEmpty())
 			right += di.sRightSubdir + backslash;
 		right += di.sRightFilename;
-		if (di.isSideRightOnly())
+		if (di.diffcode.isSideRightOnly())
 			left = right;
 	}
 }

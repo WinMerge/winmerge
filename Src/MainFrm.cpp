@@ -2053,13 +2053,13 @@ void CMainFrame::OnToolsGeneratePatch()
 		while (ind != -1 && bValidFiles)
 		{
 			const DIFFITEM item = pView->GetItemAt(ind);
-			if (item.isBin())
+			if (item.diffcode.isBin())
 			{
 				AfxMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
 				bValidFiles = FALSE;
 			}
-			else if (item.isDirectory())
+			else if (item.diffcode.isDirectory())
 			{
 				AfxMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);

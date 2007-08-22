@@ -389,7 +389,7 @@ void CDirDoc::Rescan()
  */
 BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 {
-	if (di.isResultFiltered())
+	if (di.diffcode.isResultFiltered())
 	{
 		// Treat SKIPPED as a 'super'-flag. If item is skipped and user
 		// wants to see skipped items show item regardless of other flags
@@ -397,36 +397,36 @@ BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 	}
 
 	// Subfolders in non-recursive compare can only be skipped or unique
-	if (!m_bRecursive && di.isDirectory())
+	if (!m_bRecursive && di.diffcode.isDirectory())
 	{
 		// result filters
-		if (di.isResultError() && !GetMainFrame()->m_bShowErrors)
+		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+		if (di.diffcode.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+		if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	else
 	{
 		// file type filters
-		if (di.isBin() && !GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES))
+		if (di.diffcode.isBin() && !GetOptionsMgr()->GetBool(OPT_SHOW_BINARIES))
 			return 0;
 
 		// result filters
-		if (di.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
+		if (di.diffcode.isResultSame() && !GetOptionsMgr()->GetBool(OPT_SHOW_IDENTICAL))
 			return 0;
-		if (di.isResultError() && !GetMainFrame()->m_bShowErrors)
+		if (di.diffcode.isResultError() && !GetMainFrame()->m_bShowErrors)
 			return 0;
-		if (di.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
+		if (di.diffcode.isResultDiff() && !GetOptionsMgr()->GetBool(OPT_SHOW_DIFFERENT))
 			return 0;
 
 		// left/right filters
-		if (di.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
+		if (di.diffcode.isSideLeftOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_LEFT))
 			return 0;
-		if (di.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
+		if (di.diffcode.isSideRightOnly() && !GetOptionsMgr()->GetBool(OPT_SHOW_UNIQUE_RIGHT))
 			return 0;
 	}
 	return 1;
@@ -974,7 +974,7 @@ void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
 		break;
 
 	case FileActionItem::UI_DEL_LEFT:
-		if (di.isSideLeftOnly())
+		if (di.diffcode.isSideLeftOnly())
 		{
 			RemoveDiffByKey(pos);
 		}
@@ -986,7 +986,7 @@ void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
 		break;
 
 	case FileActionItem::UI_DEL_RIGHT:
-		if (di.isSideRightOnly())
+		if (di.diffcode.isSideRightOnly())
 		{
 			RemoveDiffByKey(pos);
 		}

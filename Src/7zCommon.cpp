@@ -830,7 +830,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 			if (m_bRight) 
 			{
 				// Enumerating items on right side
-				if (!di.isSideLeftOnly())
+				if (!di.diffcode.isSideLeftOnly())
 				{
 					// Item is present on right side, i.e. folder is implied
 					m_rgImpliedFoldersRight[di.sRightSubdir] = PVOID(1);
@@ -839,7 +839,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 			else
 			{
 				// Enumerating items on left side
-				if (!di.isSideRightOnly())
+				if (!di.diffcode.isSideRightOnly())
 				{
 					// Item is present on left side, i.e. folder is implied
 					m_rgImpliedFoldersLeft[di.sLeftSubdir] = PVOID(1);
@@ -912,8 +912,8 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 		return 0;
 	}
 
-	bool isSideLeft = di.isSideLeftOnly();
-	bool isSideRight = di.isSideRightOnly();
+	bool isSideLeft = di.diffcode.isSideLeftOnly();
+	bool isSideRight = di.diffcode.isSideRightOnly();
 
 	Envelope *envelope = new Envelope;
 

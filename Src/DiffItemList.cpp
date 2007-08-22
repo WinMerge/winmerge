@@ -104,8 +104,8 @@ void DiffItemList::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 	ASSERT(diffpos);
 	DIFFITEM & di = m_dirlist.GetAt(diffpos);
 	ASSERT(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
-	di.diffcode &= (~mask); // remove current data
-	di.diffcode |= diffcode; // add new data
+	di.diffcode.diffcode &= (~mask); // remove current data
+	di.diffcode.diffcode |= diffcode; // add new data
 }
 
 /**

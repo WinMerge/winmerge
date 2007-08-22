@@ -113,12 +113,8 @@ public:
  *
  * @note times in fileinfo's are seconds since January 1, 1970.
  * See Dirscan.cpp/fentry and Dirscan.cpp/LoadFiles()
- *
- * Note: A DIFFITEM has a DIFFCODE, but unfortunately for historical reasons
- *   it still has an inheritance relationship
- *  (That is to say, fixing this would affect a lot of code.)
  */
-struct DIFFITEM : DIFFCODE
+struct DIFFITEM
 {
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
@@ -131,6 +127,7 @@ struct DIFFITEM : DIFFCODE
 	CString errorDesc; /**< technical note about error */
 	UINT customFlags1; /**< Custom flags set 1 */
 	bool empty; /**< flag to mark diffitem that doesn't have any data */
+	DIFFCODE diffcode; /**< Compare result */
 
 	static DIFFITEM MakeEmptyDiffItem();
 
