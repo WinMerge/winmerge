@@ -1302,6 +1302,10 @@ OnEditReplace ()
       dlg.m_bEnableScopeSelection = TRUE;
       dlg.m_ptBlockBegin = m_ptSavedSelStart;
       dlg.m_ptBlockEnd = m_ptSavedSelEnd;
+
+      // If the selection is in one line, copy text to dialog
+      if (m_ptSavedSelStart.y == m_ptSavedSelEnd.y)
+        GetText(m_ptSavedSelStart, m_ptSavedSelEnd, dlg.m_sText);
     }
   else
     {
@@ -1309,7 +1313,9 @@ OnEditReplace ()
       dlg.m_ptCurrentPos = GetCursorPos ();
       dlg.m_bEnableScopeSelection = FALSE;
 
-      CPoint ptCursorPos = GetCursorPos (), ptStart = WordToLeft (ptCursorPos), ptEnd = WordToRight (ptCursorPos);
+      CPoint ptCursorPos = GetCursorPos ();
+      CPoint ptStart = WordToLeft (ptCursorPos);
+      CPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
         GetText (ptStart, ptEnd, dlg.m_sText);
     }
