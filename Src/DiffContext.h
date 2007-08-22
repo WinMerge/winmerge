@@ -104,7 +104,6 @@ public:
 
 	IDiffFilter * m_piFilterGlobal;
 	IPluginInfos * m_piPluginInfos;
-	HWND m_hDirFrame; /**< Handle to a folder compare frame */
 	BOOL m_bGuessEncoding;
 	int m_nCompMethod; /**< Compare method */
 	BOOL m_bIgnoreSmallTimeDiff; /**< Ignore small timedifferences when comparing by date */

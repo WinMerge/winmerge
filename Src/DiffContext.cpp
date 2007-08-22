@@ -62,7 +62,6 @@ static char THIS_FILE[]=__FILE__;
 CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/)
 : m_piFilterGlobal(NULL)
 , m_piPluginInfos(NULL)
-, m_hDirFrame(NULL)
 , m_nCompMethod(-1)
 , m_bIgnoreSmallTimeDiff(FALSE)
 , m_pCompareStats(NULL)
@@ -98,7 +97,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_paths.SetRight(pszRight);
 	m_pList = src.m_pList;
 	m_piFilterGlobal = src.m_piFilterGlobal;
-	m_hDirFrame = src.m_hDirFrame;
 	m_nCompMethod = src.m_nCompMethod;
 	m_bIgnoreSmallTimeDiff = src.m_bIgnoreSmallTimeDiff;
 	m_bStopAfterFirstDiff = src.m_bStopAfterFirstDiff;
