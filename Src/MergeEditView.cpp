@@ -2540,8 +2540,8 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 	if (nScrollLine < 0)
 		nScrollLine = 0;
 	
-	pLeftView->ScrollToLine(nScrollLine);
-	pRightView->ScrollToLine(nScrollLine);
+	pLeftView->ScrollToSubLine(nScrollLine);
+	pRightView->ScrollToSubLine(nScrollLine);
 	pLeftView->SetCursorPos(ptPos);
 	pRightView->SetCursorPos(ptPos);
 	pLeftView->SetAnchor(ptPos);
