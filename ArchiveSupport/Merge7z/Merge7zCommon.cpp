@@ -22,31 +22,35 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-2003/12/09	Jochen Tucht		Created
-2003/12/16	Jochen Tucht		GuessFormat() now checks for directory
-2004/03/18	Jochen Tucht		Experimental DllGetVersion() based on rcsid.
-2004/10/10	Jochen Tucht		DllGetVersion() based on new REVISION.TXT
-2005/01/15	Jochen Tucht		Changed as explained in revision.txt
-2005/02/26	Jochen Tucht		Changed as explained in revision.txt
-2005/03/19	Jochen Tucht		Changed as explained in revision.txt
-2005/06/22	Jochen Tucht		Treat .ear and .war like .zip
-2005/07/05	Jochen Tucht		Add missing .tbz2
-2005/08/20	Jochen Tucht		Option to guess archive format by signature.
+2003-12-09	Jochen Tucht		Created
+2003-12-16	Jochen Tucht		GuessFormat() now checks for directory
+2004-03-18	Jochen Tucht		Experimental DllGetVersion() based on rcsid.
+2004-10-10	Jochen Tucht		DllGetVersion() based on new REVISION.TXT
+2005-01-15	Jochen Tucht		Changed as explained in revision.txt
+2005-02-26	Jochen Tucht		Changed as explained in revision.txt
+2005-03-19	Jochen Tucht		Changed as explained in revision.txt
+2005-06-22	Jochen Tucht		Treat .ear and .war like .zip
+2005-07-05	Jochen Tucht		Add missing .tbz2
+2005-08-20	Jochen Tucht		Option to guess archive format by signature.
 								EnumerateDirectory() in EnumDirItems.cpp has
 								somewhat changed so I can no longer use it.
-2005/10/02	Jochen Tucht		Add CHM format
-2005/11/19	Jochen Tucht		Minor changes to build against 7z430 beta
-2006/06/28	Jochen Neubeck		Add ISO format (introduced with 7z436 beta)
+2005-10-02	Jochen Tucht		Add CHM format
+2005-11-19	Jochen Tucht		Minor changes to build against 7z430 beta
+2006-06-28	Jochen Neubeck		Add ISO format (introduced with 7z436 beta)
 								Add NSIS format (introduced with 7z440 beta)
-2007/01/27	Jochen Neubeck		Unassociate .exe filename extension from NSIS
+2007-01-27	Jochen Neubeck		Unassociate .exe filename extension from NSIS
 								format due to undesired side effect on WinMerge
+2007-04-20	Jochen Neubeck		Cope with 7z445's revised plugin system
+2007-07-13	Jochen Neubeck		Pass MSI files to CAB handler
+2007-08-25	Jochen Neubeck		Add COM format (introduced with 7z452 beta)
+								This format also handles MSI files, which are
+								therefore no longer passed to the CAB handler.
 */
 
 #include "stdafx.h"
 #include "Merge7zCommon.h"
 #include "7zip/FileManager/LangUtils.h"
 
-//#include "7zip/UI/Common/EnumDirItems.cpp" // defines static void EnumerateDirectory()
 using namespace NWindows;
 using namespace NFile;
 using namespace NName;
@@ -170,15 +174,6 @@ static HMODULE DllProxyHelper(LPCSTR *proxy, ...)
 		}
 	}
 	return handle;
-}
-
-/**
- * @brief Access archiver dll functions through proxy.
- */
-struct Format7zDLL *Format7zDLL::Proxy::operator->()
-{
-	DllProxyHelper(Format7zDLL, g_cPath7z);
-	return (struct Format7zDLL *)Format7zDLL;
 }
 
 /**
@@ -608,12 +603,52 @@ int Merge7z::Initialize(DWORD dwFlags)
 	return 0;
 }
 
+Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
+
+/**
+ * @brief Access archiver dll functions through proxy.
+ */
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR < 445
+
+/**
+ * @brief 7-Zip 4.15+: IsArchiveItemFolder(), needed by CArchiveExtractCallback,
+ * used to reside in OpenArchive.cpp, which has been removed from Merge7z in an
+ * attempt to reduce dependencies (actually got rid of four cpp files).
+ * 7-Zip 4.45+: OpenArchive.cpp included again - no more secondary dependencies.
+ */
+static HRESULT IsArchiveItemProp(IInArchive *archive, UINT32 index, PROPID propID, bool &result)
+{
+	NCOM::CPropVariant prop;
+	RINOK(archive->GetProperty(index, propID, &prop));
+	if(prop.vt == VT_BOOL)
+		result = VARIANT_BOOLToBool(prop.boolVal);
+	else if (prop.vt == VT_EMPTY)
+		result = false;
+	else
+		return E_FAIL;
+	return S_OK;
+}
+
+HRESULT IsArchiveItemFolder(IInArchive *archive, UINT32 index, bool &result)
+{
+	return IsArchiveItemProp(archive, index, kpidIsFolder, result);
+}
+
+HRESULT IsArchiveItemAnti(IInArchive *archive, UINT32 index, bool &result)
+{
+	return IsArchiveItemProp(archive, index, kpidIsAnti, result);
+}
+
 static const char aCreateObject[] = "CreateObject";
 static const char aGetHandlerProperty[] = "GetHandlerProperty";
 
-Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
+struct Format7zDLL::Proxy *Format7zDLL::Proxy::operator->()
+{
+	DllProxyHelper(&aModule, g_cPath7z);
+	return this;
+}
 
-#define	DEFINE_FORMAT(name, dll, extension, signature) \
+#define	DEFINE_FORMAT(name, id, dll, extension, signature) \
 		Format7zDLL::Proxy PROXY_##name = \
 		{ \
 			"%1Formats\\" dll, \
@@ -625,23 +660,99 @@ Format7zDLL::Interface *Format7zDLL::Interface::head = NULL;
 		}; \
 		Format7zDLL::Interface name = PROXY_##name;
 
-DEFINE_FORMAT(CFormat7z,		"7Z.DLL",		"7z", "@7z\xBC\xAF\x27\x1C");
-DEFINE_FORMAT(CArjHandler,		"ARJ.DLL",		"arj", "@\x60\xEA");
-DEFINE_FORMAT(CBZip2Handler,	"BZ2.DLL",		"bz2 tbz2", "@BZh");
-DEFINE_FORMAT(CCabHandler,		"CAB.DLL",		"cab", "@MSCF");
-DEFINE_FORMAT(CCpioHandler,		"CPIO.DLL",		"cpio", "");
-DEFINE_FORMAT(CDebHandler,		"DEB.DLL",		"deb", "@!<arch>\n");
-DEFINE_FORMAT(CLzhHandler,		"LZH.DLL",		"lzh lha", "@@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
-DEFINE_FORMAT(CGZipHandler,		"GZ.DLL",		"gz tgz", "@\x1F\x8B");
-DEFINE_FORMAT(CRarHandler,		"RAR.DLL",		"rar", "@Rar!\x1a\x07\x00");
-DEFINE_FORMAT(CRpmHandler,		"RPM.DLL",		"rpm", "");
-DEFINE_FORMAT(CSplitHandler,	"SPLIT.DLL",	"001", "");
-DEFINE_FORMAT(CTarHandler,		"TAR.DLL",		"tar", "");
-DEFINE_FORMAT(CZHandler,		"Z.DLL",		"z", "@\x1F\x9D");
-DEFINE_FORMAT(CZipHandler,		"ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");
-DEFINE_FORMAT(CChmHandler,		"CHM.DLL",		"chm chi chq chw hxs hxi hxr hxq hxw lit", "@ITSF");
-DEFINE_FORMAT(CIsoHandler,		"ISO.DLL",		"iso", "");
-DEFINE_FORMAT(CNsisHandler,		"NSIS.DLL",		"", "@@@@@\xEF\xBE\xAD\xDENullsoftInst");
+#else
+
+#define CLS_ARC_ID_ITEM(cls) ((cls).Data4[5])
+
+Format7zDLL::Proxy::Handle Format7zDLL::Proxy::handle =
+{
+	"%1!s!7z.dll",
+	"CreateObject",
+	"GetHandlerProperty2",
+	"GetNumberOfFormats",
+	(HMODULE)0
+};
+
+struct Format7zDLL::Proxy *Format7zDLL::Proxy::operator->()
+{
+	DllProxyHelper(&handle.aModule, g_cPath7z);
+	if (formatIndex < 0)
+	{
+		GUID clsId =
+		{
+			0x23170F69, 0x40C1, 0x278A,
+			0x10, 0x00, 0x00, 0x01, 0x10, (BYTE)-formatIndex, 0x00, 0x00
+		};
+		UINT32 i = 0;
+		handle.GetNumberOfFormats(&i);
+		while (i)
+		{
+			PROPVARIANT value;
+			::VariantInit((LPVARIANT)&value);
+			if (SUCCEEDED(handle.GetHandlerProperty2(--i, NArchive::kClassID, &value)) &&
+				value.vt == VT_BSTR &&
+				SysStringByteLen(value.bstrVal) == sizeof(GUID) &&
+				IsEqualGUID(clsId, *value.puuid))
+			{
+				formatIndex = i;
+				i = 0;
+			}
+			::VariantClear((LPVARIANT)&value);
+		}
+		if (formatIndex < 0)
+		{
+			TCHAR szArcID[4];
+			wsprintf(szArcID, _T("%02x"), (UINT)CLS_ARC_ID_ITEM(clsId));
+			Complain(RPC_S_INTERFACE_NOT_FOUND, szArcID, handle);
+		}
+	}
+	return this;
+}
+
+STDMETHODIMP Format7zDLL::Proxy::CreateObject(const GUID *clsID, const GUID *interfaceID, void **outObject)
+{
+	return handle.CreateObject(clsID, interfaceID, outObject);
+}
+
+STDMETHODIMP Format7zDLL::Proxy::GetHandlerProperty(PROPID propID, PROPVARIANT *value)
+{
+	return handle.GetHandlerProperty2(formatIndex, propID, value);
+}
+
+#define	DEFINE_FORMAT(name, id, dll, extension, signature) \
+		Format7zDLL::Proxy PROXY_##name = \
+		{ \
+			-0x##id, \
+			signature extension + sizeof signature extension - sizeof extension, \
+			sizeof signature extension - sizeof extension \
+		}; \
+		Format7zDLL::Interface name = PROXY_##name;
+
+#endif
+
+DEFINE_FORMAT(CFormat7z,		07, "7Z.DLL",		"7z", "@7z\xBC\xAF\x27\x1C");
+DEFINE_FORMAT(CArjHandler,		04, "ARJ.DLL",		"arj", "@\x60\xEA");
+DEFINE_FORMAT(CBZip2Handler,	02, "BZ2.DLL",		"bz2 tbz2", "@BZh");
+DEFINE_FORMAT(CCabHandler,		08, "CAB.DLL",		"cab", "@MSCF");
+DEFINE_FORMAT(CCpioHandler,		ED, "CPIO.DLL",		"cpio", "");
+DEFINE_FORMAT(CDebHandler,		EC, "DEB.DLL",		"deb", "@!<arch>\n");
+DEFINE_FORMAT(CLzhHandler,		06, "LZH.DLL",		"lzh lha", "@@@-l@@-");//"@-l" doesn't work because signature starts at offset 2
+DEFINE_FORMAT(CGZipHandler,		EF, "GZ.DLL",		"gz tgz", "@\x1F\x8B");
+DEFINE_FORMAT(CRarHandler,		03, "RAR.DLL",		"rar", "@Rar!\x1a\x07\x00");
+DEFINE_FORMAT(CRpmHandler,		EB, "RPM.DLL",		"rpm", "");
+DEFINE_FORMAT(CSplitHandler,	EA, "SPLIT.DLL",	"001", "");
+DEFINE_FORMAT(CTarHandler,		EE, "TAR.DLL",		"tar", "");
+DEFINE_FORMAT(CZHandler,		05, "Z.DLL",		"z", "@\x1F\x9D");
+DEFINE_FORMAT(CZipHandler,		01, "ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");
+DEFINE_FORMAT(CChmHandler,		E9, "CHM.DLL",		"chm chi chq chw hxs hxi hxr hxq hxw lit", "@ITSF");
+DEFINE_FORMAT(CIsoHandler,		E7, "ISO.DLL",		"iso", "");
+DEFINE_FORMAT(CNsisHandler,		09, "NSIS.DLL",		"", "@@@@@\xEF\xBE\xAD\xDENullsoftInst");
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 449
+DEFINE_FORMAT(CWimHandler,		E6, "WIM.DLL",		"wim swm", "@MSWIM\x00\x00\x00");
+#endif
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR >= 452
+DEFINE_FORMAT(CComHandler,		E5, "COM.DLL",		"", "@\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1");
+#endif
 
 /**
  * @brief Construct Merge7z interface.
@@ -865,20 +976,7 @@ LPCTSTR Merge7z::LoadLang(LPCTSTR langFile)
  * This is global 7-Zip function otherwise defined in RegistryUtils.cpp.
  * Exclude RegistryUtils.cpp from build to avoid link-time collision.
  */
-void ReadRegLang(CSysString &langFile)
-{
-	langFile = g_LangPath;
-}
 
-/**
- * @brief 7-Zip 4.26: ReloadLangSmart() wants this #ifdef _UNICODE.
- * We certainly don't want to write 7-Zip's registry so we make it a NOP.
- */
-void SaveRegLang(const CSysString &langFile)
-{
-}
-
-#ifndef _UNICODE
 void ReadRegLang(UString &langFile)
 {
 	langFile = GetUnicodeString(g_LangPath);
@@ -886,35 +984,6 @@ void ReadRegLang(UString &langFile)
 
 void SaveRegLang(const UString &langFile)
 {
-}
-#endif
-
-/**
- * @brief 7-Zip 4.15+: IsArchiveItemFolder(), needed by CArchiveExtractCallback,
- * used to reside in OpenArchive.cpp, which has been removed from Merge7z in an
- * attempt to reduce dependencies (actually got rid of four cpp files).
- */
-static HRESULT IsArchiveItemProp(IInArchive *archive, UINT32 index, PROPID propID, bool &result)
-{
-	NCOM::CPropVariant prop;
-	RINOK(archive->GetProperty(index, propID, &prop));
-	if(prop.vt == VT_BOOL)
-		result = VARIANT_BOOLToBool(prop.boolVal);
-	else if (prop.vt == VT_EMPTY)
-		result = false;
-	else
-		return E_FAIL;
-	return S_OK;
-}
-
-HRESULT IsArchiveItemFolder(IInArchive *archive, UINT32 index, bool &result)
-{
-	return IsArchiveItemProp(archive, index, kpidIsFolder, result);
-}
-
-HRESULT IsArchiveItemAnti(IInArchive *archive, UINT32 index, bool &result)
-{
-	return IsArchiveItemProp(archive, index, kpidIsAnti, result);
 }
 
 /**

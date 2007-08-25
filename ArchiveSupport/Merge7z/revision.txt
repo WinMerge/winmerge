@@ -1,20 +1,20 @@
 //Merge7z/revision.txt
 
-"*"//2003/12/16	Jochen Tucht	GuessFormat() now checks for directory
-"*"//2004/03/15	Jochen Tucht	Fix Visual Studio 2003 build issue
-"*"//2004/04/13	Jochen Tucht	Experimental DllGetVersion() based on rcsid.
-"*"//2004/08/19	Laurent Ganier	Compression of folders
+"*"//2003-12-16	Jochen Tucht	GuessFormat() now checks for directory
+"*"//2004-03-15	Jochen Tucht	Fix Visual Studio 2003 build issue
+"*"//2004-04-13	Jochen Tucht	Experimental DllGetVersion() based on rcsid.
+"*"//2004-08-19	Laurent Ganier	Compression of folders
 //								Through EnumerateDirectory (from code of 7zip)
 
 VERSION(2,1)
 
-"*"//2004/10/10	Jochen Tucht	Support 7z409 beta. DllGetVersion() no longer
+"*"//2004-10-10	Jochen Tucht	Support 7z409 beta. DllGetVersion() no longer
 //based on rcsid. Revision numbers will be generated from new file REVISION.TXT.
 
-"*"//2004/10/17	Jochen Tucht	Leave decision whether to recurse into folders
+"*"//2004-10-17	Jochen Tucht	Leave decision whether to recurse into folders
 //to enumerator (Mask.Recurse)
 
-"*"//2004/10/18 Jochen Tucht	Change generation of revision numbers to allow
+"*"//2004-10-18 Jochen Tucht	Change generation of revision numbers to allow
 //for arbitrary version numbers at any stage without affecting build number.
 //Merge7z may now follow a WinMerge-like versioning policy, or just use same
 //version numbers as WinMerge, yet provide a build number simply reflecting
@@ -22,11 +22,11 @@ VERSION(2,1)
 
 VERSION(2,2)
 
-"*"//2005/01/15 Jochen Tucht	New interface Merge7z::Format::Inspector
+"*"//2005-01-15 Jochen Tucht	New interface Merge7z::Format::Inspector
 //								New interface Merge7z::Format::Updater
 //								New method Merge7z::LoadLang() to set UI language
 
-"*"//2005/02/26 Jochen Tucht	Fix extensions when unwrapping tgz, rpm, ...
+"*"//2005-02-26 Jochen Tucht	Fix extensions when unwrapping tgz, rpm, ...
 //								Expose some handler properties
 //								Fix crash on failure to open archive
 //								Use canned system messages wherever possible
@@ -34,19 +34,26 @@ VERSION(2,2)
 //								Use DLLPSTUB if DllBuild_Merge7z >= 10
 //								Optimize release builds for size
 
-"*"//2005/03/19 Jochen Tucht	Set UI language during Merge7z::Initialize()
+"*"//2005-03-19 Jochen Tucht	Set UI language during Merge7z::Initialize()
 //								according to LANGID given in HIWORD(dwFlags)
 //								Allow for Merge7z::LoadLang(MAKEINTATOM(LANGID))
 //								Don't show error message on intentional abort
 
-"*"//2005/06/22 Jochen Tucht	Treat .ear and .war like .zip
-"*"//2005/08/20 Jochen Tucht	Option to guess archive format by signature
-"*"//2005/08/25 Jochen Tucht	Fix broken GuessFormatByExtension()
-"*"//2005/10/02 Jochen Tucht	Add CHM format
-"*"//2005/10/04 Jochen Tucht	Don't rely on 7-Zip's format CLSIDs
-"*"//2005/11/19 Jochen Tucht	Minor changes to build against 7z430 beta
-"*"//2006/06/28	Jochen Neubeck	Add ISO format (introduced with 7z436 beta)
+"*"//2005-06-22 Jochen Tucht	Treat .ear and .war like .zip
+"*"//2005-08-20 Jochen Tucht	Option to guess archive format by signature
+"*"//2005-08-25 Jochen Tucht	Fix broken GuessFormatByExtension()
+"*"//2005-10-02 Jochen Tucht	Add CHM format
+"*"//2005-10-04 Jochen Tucht	Don't rely on 7-Zip's format CLSIDs
+"*"//2005-11-19 Jochen Tucht	Minor changes to build against 7z430 beta
+"*"//2006-06-28	Jochen Neubeck	Add ISO format (introduced with 7z436 beta)
 //								Add NSIS format (introduced with 7z440 beta)
 //								Avoid to occasionally prompt for password twice
-"*"//2007/01/27	Jochen Neubeck	Unassociate .exe filename extension from NSIS
+"*"//2007-01-27	Jochen Neubeck	Unassociate .exe filename extension from NSIS
 //								format due to undesired side effect on WinMerge
+"*"//2007-04-20	Jochen Neubeck	Cope with 7z445's revised plugin system
+"*"//2007-07-13	Jochen Neubeck	Pass MSI files to CAB handler
+//								Drop support for 7-Zip versions prior to 4.32
+"*"//2007-07-15	Jochen Neubeck	Add WIM format (introduced with 7z449 beta)
+"*"//2007-07-16	Jochen Neubeck	Cope with revised CThread::Create() in 7z446
+"*"//2007-08-25 Jochen Neubeck	Add COM format (introduced with 7z452 beta)
+//								No longer pass MSI files to CAB handler

@@ -1,16 +1,19 @@
 // includes from 7-Zip sources
+
+#include "7zip/MyVersion.h"
 #include "7zip/Archive/IArchive.h"
 #include "Common/StringConvert.h"
 #include "Windows/PropVariant.h"
 #include "Windows/PropVariantConversions.h"
 #include "Windows/FileDir.h"
 #include "Windows/FileFind.h"
-#include "Windows/Thread.h"
+
 #include "7zip/UI/Common/DirItem.h"
 #include "7zip/Common/FileStreams.h"
+
 // Merge7z includes
 #include "tools.h"
-#define DllBuild_Merge7z 19
+#define DllBuild_Merge7z 24
 #define DLLPSTUB /##/
 #include "Merge7z.h"
 
@@ -23,40 +26,67 @@ extern HINSTANCE g_hInstance;
 extern DWORD g_dwFlags;
 extern CHAR g_cPath7z[MAX_PATH];
 
-typedef UINT32 (WINAPI * CreateObjectFunc)(
-	const GUID *clsID, 
-	const GUID *interfaceID, 
-	void **outObject);
-
-typedef UINT32 (WINAPI * GetHandlerPropertyFunc)(
-	PROPID propID, PROPVARIANT *value);
-
 struct Format7zDLL
 {
-	HMODULE origin;
-	CreateObjectFunc CreateObject;
-	GetHandlerPropertyFunc GetHandlerProperty;
-	HMODULE handle;
-	//CLSID clsid;
-	const char *extension;
-	size_t signature;
 	struct Proxy;
 	interface Interface;
 };
 
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR < 445
+
 struct Format7zDLL::Proxy
 {
-	LPCSTR Format7zDLL
-	[
-		&((struct Format7zDLL *)0)->handle
-	-	&((struct Format7zDLL *)0)->origin
-	];
+	const char *aModule;
+	union
+	{
+		const char *aCreateObject;
+		HRESULT(STDAPICALLTYPE*CreateObject)(const GUID *clsID, const GUID *interfaceID, void **outObject);
+	};
+	union
+	{
+		const char *aGetHandlerProperty;
+		HRESULT(STDAPICALLTYPE*GetHandlerProperty)(PROPID propID, PROPVARIANT *value);
+	};
 	HMODULE handle;
-	//CLSID clsid;
 	const char *extension;
 	size_t signature;
-	struct Format7zDLL *operator->();
+	struct Proxy *operator->();
 };
+
+#else
+
+struct Format7zDLL::Proxy
+{
+	INT32 formatIndex;
+	const char *extension;
+	size_t signature;
+	STDMETHODIMP CreateObject(const GUID *clsID, const GUID *interfaceID, void **outObject);
+	STDMETHODIMP GetHandlerProperty(PROPID propID, PROPVARIANT *value);
+	static struct Handle
+	{
+		const char *aModule;
+		union
+		{
+			const char *aCreateObject;
+			HRESULT(STDAPICALLTYPE*CreateObject)(const GUID *clsID, const GUID *interfaceID, void **outObject);
+		};
+		union
+		{
+			const char *aGetHandlerProperty2;
+			HRESULT(STDAPICALLTYPE*GetHandlerProperty2)(UINT32 formatIndex, PROPID propID, PROPVARIANT *value);
+		};
+		union
+		{
+			const char *aGetNumberOfFormats;
+			HRESULT(STDAPICALLTYPE*GetNumberOfFormats)(UINT32 *numFormats);
+		};
+		HMODULE handle;
+		operator HMODULE() { return handle; }
+	} handle;
+	struct Proxy *operator->();
+};
+
+#endif
 
 interface Format7zDLL::Interface : Merge7z::Format
 {

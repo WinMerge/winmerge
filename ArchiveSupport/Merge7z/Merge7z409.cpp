@@ -24,16 +24,17 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-2003/10/17	Jochen Tucht		Created
-2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
-2004/08/19	Laurent Ganier		Compression of folders
+2003-10-17	Jochen Tucht		Created
+2004-03-15	Jochen Tucht		Fix Visual Studio 2003 build issue
+2004-08-19	Laurent Ganier		Compression of folders
 								Through EnumerateDirectory (from code of 7zip)
-2004/10/17	Jochen Tucht		Leave decision whether to recurse into folders
+2004-10-17	Jochen Tucht		Leave decision whether to recurse into folders
 								to enumerator (Mask.Recurse)
-2005/01/15	Jochen Tucht		Changed as explained in revision.txt
-2005/02/26	Jochen Tucht		Changed as explained in revision.txt
-2005/03/19	Jochen Tucht		Don't show error message on intentional abort
-2006/06/28	Jochen Neubeck		Avoid to occasionally prompt for password twice
+2005-01-15	Jochen Tucht		Changed as explained in revision.txt
+2005-02-26	Jochen Tucht		Changed as explained in revision.txt
+2005-03-19	Jochen Tucht		Don't show error message on intentional abort
+2006-06-28	Jochen Neubeck		Avoid to occasionally prompt for password twice
+2007-07-16	Jochen Neubeck		Cope with revised CThread::Create() in 7z446
 */
 
 #include "stdafx.h"
@@ -49,20 +50,41 @@ DATE:		BY:					DESCRIPTION:
 #include "7zip/UI/Common/ArchiveExtractCallback.h"
 #include "7zip/UI/GUI/UpdateCallbackGUI.h"
 
+#include "Windows/Thread.h"
+
+#if MY_VER_MAJOR * 100 + MY_VER_MINOR < 446
+
+class CThread2 : public CThread
+{
+public:
+	HRESULT Create(LPTHREAD_START_ROUTINE startAddress, LPVOID parameter)
+	{
+		return CThread::Create(startAddress, parameter) ? 0 : GetLastError();
+	}
+};
+
+typedef DWORD THREAD_FUNC_RET_TYPE;
+
+#else
+
+typedef NWindows::CThread CThread2;
+
+#endif
+
 /**
  * @brief Extraction thread
  */
-class CThreadExtracting : CThread
+class CThreadExtracting : CThread2
 {
 protected:
-	DWORD Process()
+	THREAD_FUNC_RET_TYPE Process()
 	{
 		ExtractCallbackSpec->ProgressDialog.WaitCreating();
 		result = Archive->Extract(indices, numItems, false, ArchiveExtractCallback);
 		ExtractCallbackSpec->ProgressDialog.MyClose();
 		return 0;
 	}
-	static DWORD WINAPI Process(void *param)
+	static THREAD_FUNC_RET_TYPE WINAPI Process(void *param)
 	{
 		return ((CThreadExtracting *)param)->Process();
 	}
@@ -90,9 +112,9 @@ public:
 		numItems(numItems)
 	{
 		result = E_FAIL;
-		if COMPLAIN(!Create(Process, this))
+		if (HRESULT hr = Create(Process, this))
 		{
-			Complain(GetLastError(), NULL);
+			Complain(hr, NULL);
 		}
 		ExtractCallbackSpec->StartProgressDialog(GetUnicodeString(title));
 	}
@@ -214,17 +236,17 @@ HRESULT Format7zDLL::Interface::Inspector::Extract(HWND hwndParent, LPCTSTR fold
 /**
  * @brief Compression thread
  */
-class CThreadUpdateCompress : CThread
+class CThreadUpdateCompress : CThread2
 {
 protected:
-	DWORD Process()
+	THREAD_FUNC_RET_TYPE Process()
 	{
 		updateCallbackGUI->ProgressDialog.WaitCreating();
 		result = outArchive->UpdateItems(file, numItems, updateCallbackSpec);
 		updateCallbackGUI->ProgressDialog.MyClose();
 		return 0;
 	}
-	static DWORD WINAPI Process(void *param)
+	static THREAD_FUNC_RET_TYPE WINAPI Process(void *param)
 	{
 		return ((CThreadUpdateCompress *)param)->Process();
 	}
@@ -251,9 +273,9 @@ public:
 		file(file)
 	{
 		result = E_FAIL;
-		if COMPLAIN(!Create(Process, this))
+		if (HRESULT hr = Create(Process, this))
 		{
-			Complain(GetLastError(), NULL);
+			Complain(hr, NULL);
 		}
 		updateCallbackGUI->StartProgressDialog(GetUnicodeString(title));
 	}
