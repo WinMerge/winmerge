@@ -11,6 +11,7 @@ WinMerge 2.7.5.1
   Translation updates:
   - Catalan (r4370)
   - Simplified Chinese (r4369)
+  - Traditional Chinese (r4473)
   - Danish (r4360)
   - French (r4383)
   - Russian (r4421)
