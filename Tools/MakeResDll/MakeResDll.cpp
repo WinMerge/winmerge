@@ -7,6 +7,8 @@
 // $Id$
 
 #include "stdafx.h"
+#include <sys/types.h>
+#include "sys/stat.h"
 #include "MakeResDll.h"
 // Following files included from WinMerge/Src/Common
 #include "UnicodeString.h"
@@ -358,8 +360,9 @@ static void displine(int nId)
 		_tprintf(_T("\n"));
 		return;
 	}
-	CString str = LoadResString(nId);
-	_tprintf(_T("%s\n"), (LPCTSTR)str);
+	TCHAR line[200] = {0};
+	LoadString(::GetModuleHandle(NULL), nId, line, 200);
+	_tprintf(_T("%s\n"), line);
 }
 
 // Display usage information
@@ -386,12 +389,12 @@ static void Usage()
 
 static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutputStem, String& strOutFile)
 {
-	CString strLinkArgs;
-	CString libs;
-	TCHAR temp[2048], *p;
+	const int TempStringLen = 4096;
+	String libs;
+	TCHAR *p = NULL;
 	HANDLE hLink;
-	CString strOutFolder(pszOutputPath);
-	CString strStem(pszOutputStem);
+	String strOutFolder(pszOutputPath);
+	String strStem(pszOutputStem);
 
 	// Check RC file exists
 	if (!DoesFileExist(pszRCPath))
@@ -401,26 +404,31 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	}
 
 	Status(IDS_CREATE_OUTDIR);
-	if (!MkDirEx(strOutFolder))
+	if (!MkDirEx(strOutFolder.c_str()))
 	{
 		Status(IDS_ERROR_MKDIR, gsOutPath.c_str());
 		return FALSE;
 	}
 	Status(_T("OK\r\n"));
 
-	CString strRCArgs;
-	strRCArgs.Format(_T("/l 0x%s /fo\"%s\\%s.res\" /i \"%s\" ")
+	TCHAR *rcArgs = new TCHAR[TempStringLen];
+	_stprintf(rcArgs, _T("/l 0x%s /fo\"%s\\%s.res\" /i \"%s\" ")
 					 _T("/d \"_AFXDLL\" /d \"CORTRON_BUILD\" \"%s\""),
 		gsLang.c_str(),
-		strOutFolder,
-		strStem,
+		strOutFolder.c_str(),
+		strStem.c_str(),
 		gVcPaths.sIncludes.c_str(),
 		pszRCPath);
+
+	String strRCArgs(rcArgs);
+	delete[] rcArgs;
+	String strLinkArgs;
+
 	if (gbVerbose)
-		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sRCExe.c_str(), strRCArgs);
+		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sRCExe.c_str(), strRCArgs.c_str());
 
 	Status(IDS_BUILD_RC);
-	HANDLE hRC = RunIt(gVcPaths.sRCExe.c_str(), strRCArgs, TRUE, FALSE);
+	HANDLE hRC = RunIt(gVcPaths.sRCExe.c_str(), strRCArgs.c_str(), TRUE, FALSE);
 	if (hRC)
 	{
 		DWORD dwReturn;
@@ -437,8 +445,9 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	else
 		Status(_T("Error creating process\r\n"));
 	
-	_tcscpy(temp, gVcPaths.sLibs.c_str());
-	p = _tcstok(temp, ";\r\n\t");
+	TCHAR *libsPath = new TCHAR[TempStringLen];
+	_tcscpy(libsPath, gVcPaths.sLibs.c_str());
+	p = _tcstok(libsPath, ";\r\n\t");
 	while (p != NULL)
 	{
 		libs += _T("/libpath:\"");
@@ -446,23 +455,28 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 		libs += _T("\" ");
 		p = _tcstok(NULL, ";\r\n\t");
 	}
+	delete[] libsPath;
 
 	strOutFile = strOutFolder + _T("\\") + strStem + _T(".lang");
 
-	strLinkArgs.Format(_T("/nologo /subsystem:console /dll ")
+	TCHAR * linkArgs = new TCHAR[TempStringLen];
+	_stprintf(linkArgs, _T("/nologo /subsystem:console /dll ")
 					   _T("/machine:I386 %s ")
 					   _T("/noentry ")
 					   _T("/out:\"%s\" ")
 					   _T("\"%s\\%s.res\" "),
-					   libs,
+					   libs.c_str(),
 					   strOutFile.c_str(),
-					   strOutFolder,
-					   strStem);						
+					   strOutFolder.c_str(),
+					   strStem.c_str());
+	strLinkArgs = linkArgs;
+	delete[] linkArgs;
+
 	if (gbVerbose)
 		_tprintf(_T("%s  %s\r\n\r\n"), gVcPaths.sLinkExe, strLinkArgs);
 
 	Status(IDS_LINK);
-	hLink = RunIt(gVcPaths.sLinkExe.c_str(), strLinkArgs, TRUE, FALSE);
+	hLink = RunIt(gVcPaths.sLinkExe.c_str(), strLinkArgs.c_str(), TRUE, FALSE);
 	if (hLink)
 	{
 		DWORD dwReturn;
@@ -496,8 +510,9 @@ build_failed:
 
 static bool DoesFileExist(LPCTSTR filepath)
 {
-	CFileStatus status;
-	return CFile::GetStatus(filepath, status) != FALSE;
+	struct _stat statbuf = {0};
+	int retval = _tstat(filepath, &statbuf);
+	return retval == 0;
 }
 
 static BOOL CheckCompiler()
