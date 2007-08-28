@@ -548,14 +548,29 @@ static void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /
 		return;
 
 	TRY {
-		CString s;
-		if (szText1!=NULL && szText2!=NULL)
-			AfxFormatString2(s, idstrText, szText1, szText2);
-		else if (szText1!=NULL)
-			AfxFormatString1(s, idstrText, szText1);
+		String s;
+		if (szText1 != NULL && szText2 != NULL)
+		{
+			TCHAR tmpStr[200];
+			LoadString(::GetModuleHandle(NULL), idstrText, tmpStr, 200);
+			s = tmpStr;
+			string_replace(s, _T("%1"), szText1);
+			string_replace(s, _T("%2"), szText2);
+		}
+		else if (szText1 != NULL)
+		{
+			TCHAR tmpStr[200];
+			LoadString(::GetModuleHandle(NULL), idstrText, tmpStr, 200);
+			s = tmpStr;
+			string_replace(s, _T("%1"), szText1);
+		}
 		else
-			s = LoadResString(idstrText);
-		Status(s);
+		{
+			TCHAR tmpStr[200];
+			LoadString(::GetModuleHandle(NULL), idstrText, tmpStr, 200);
+			s = tmpStr;
+		}
+		Status(s.c_str());
 	}
 	CATCH_ALL (e)
 	{
