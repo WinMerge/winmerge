@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include <sys/types.h>
 #include "sys/stat.h"
 #include "MakeResDll.h"
@@ -21,8 +22,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using namespace std;
+
 /////////////////////////////////////////////////////////////////////////////
 // The one and only application object
+
+typedef vector<String> StringArray;
 
 static LPCTSTR VSRegVersionStrings[] =
 {	// These must be laid out in the same order as VS_VERSION:
@@ -71,8 +76,8 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 static BOOL CheckCompiler();
 static void Status(LPCTSTR szText);
 static void Status(UINT idstrText, LPCTSTR szText1 = NULL, LPCTSTR szText2 = NULL);
-static void InitModulePaths(const CStringArray & VsBaseDirs);
-static bool FindAndLoadVsVersion(const CStringArray & VsBaseDirs, VS_VERSION vsnum);
+static void InitModulePaths(const StringArray & VsBaseDirs);
+static bool FindAndLoadVsVersion(const StringArray & VsBaseDirs, VS_VERSION vsnum);
 static void LoadVs2005Settings(const String & sProductDir);
 static void LoadVs2003Settings(const String & sProductDir);
 static void LoadVs2002Settings(const String & sProductDir);
@@ -83,7 +88,7 @@ static void FixPath();
 static bool DoesFileExist(LPCTSTR filepath);
 static void TrimPath(String & sPath);
 //static void DisplayUi(const CStringArray & VsBaseDirs);
-static void LoadVsBaseDirs(CStringArray & VsBaseDirs);
+static void LoadVsBaseDirs(StringArray & VsBaseDirs);
 static void SplitFilename(LPCTSTR path, TCHAR * folder, TCHAR * filename, TCHAR * ext);
 
 using namespace std;
@@ -125,7 +130,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			return 1;
 		}
 
-		CStringArray VsBaseDirs;
+		StringArray VsBaseDirs;
 		LoadVsBaseDirs(VsBaseDirs);
 
 		InitModulePaths(VsBaseDirs);
@@ -580,7 +585,7 @@ static void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /
 
 
 // Find locations of RC compiler and linker
-static void InitModulePaths(const CStringArray & VsBaseDirs)
+static void InitModulePaths(const StringArray & VsBaseDirs)
 {
 	// Access to registry
 	CRegKeyEx reg;
@@ -616,7 +621,7 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
 		VS_VERSION vstemp = MapRegistryValue(sVcVersion.c_str());
 		if (vstemp != VS_NONE)
 		{
-			if (!VsBaseDirs[vstemp].IsEmpty())
+			if (!VsBaseDirs[vstemp].empty())
 				vsnum = vstemp;
 		}
 	}
@@ -639,7 +644,7 @@ static void InitModulePaths(const CStringArray & VsBaseDirs)
  * Return 0 if not found
  * Return -1 if specified version not installed (so caller will retry)
  */
-static bool FindAndLoadVsVersion(const CStringArray & VsBaseDirs, VS_VERSION vsnum)
+static bool FindAndLoadVsVersion(const StringArray & VsBaseDirs, VS_VERSION vsnum)
 {
 	// Access to registry
 	CRegKeyEx reg;
@@ -901,10 +906,10 @@ static void TrimPath(String & sPath)
 /**
  * @brief Load string array of base product directories for all installed Visual Studio versions
  */
-static void LoadVsBaseDirs(CStringArray & VsBaseDirs)
+static void LoadVsBaseDirs(StringArray & VsBaseDirs)
 {
-	VsBaseDirs.RemoveAll();
-	VsBaseDirs.SetSize(VS_COUNT);
+	VsBaseDirs.clear();
+	VsBaseDirs.resize(VS_COUNT);
 
 	// Access to registry
 	CRegKeyEx reg;
