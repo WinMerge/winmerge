@@ -2354,7 +2354,7 @@ END
 STRINGTABLE
 BEGIN
     IDS_NUM_REPLACED        "Zast¹piono %1 sekwencji znaków."
-    IDS_EDIT_TEXT_NOT_FOUND "Nie mo¿na znaleŸæ sekwencji znaków""%s"""
+    IDS_EDIT_TEXT_NOT_FOUND "Nie mo¿na znaleŸæ sekwencji znaków ""%s"""
 END
 
 // EDITOR : FILENAME BAR POPUP
