@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2001-2005 Expat maintainers.
+** Copyright (c) 2001-2007 Expat maintainers.
 **
 ** Permission is hereby granted, free of charge, to any person obtaining
 ** a copy of this software and associated documentation files (the
@@ -28,27 +28,17 @@ struct Library* ExpatBase = 0;
 struct ExpatIFace* IExpat = 0;
 
 
-int amiga_main(int argc, char** argv);
-void cleanup();
+void setup() __attribute__((constructor));
+void cleanup() __attribute__((destructor));
 
 
-int main(int argc, char** argv)
+void setup()
 {
-	int result = -1;
-
-	atexit(cleanup);
-
-	ExpatBase = OpenLibrary("expat.library", 2);
-	if ( ExpatBase != 0 )  {
-		IExpat = (struct ExpatIFace*)GetInterface(ExpatBase, "main", 1, NULL);
-		if ( IExpat != 0 )  {
-			result = amiga_main(argc, argv);
-		}
+	ExpatBase = OpenLibrary("expat.library", 4);
+	IExpat = (struct ExpatIFace*)GetInterface(ExpatBase, "main", 1, NULL);
+	if ( IExpat == 0 )  {
+		DebugPrintF("Can't open expat.library\n");
 	}
-
-	cleanup();
-
-	return result;
 }
 
 

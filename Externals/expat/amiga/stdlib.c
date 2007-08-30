@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2001-2005 Expat maintainers.
+** Copyright (c) 2001-2007 Expat maintainers.
 **
 ** Permission is hereby granted, free of charge, to any person obtaining
 ** a copy of this software and associated documentation files (the
@@ -30,7 +30,7 @@ void * malloc (size_t len)
 {
 	uint32 size = sizeof(uint32) + len;
 
-	uint32 *mem = AllocMem(size, MEMF_ANY);
+	uint32 *mem = AllocMem(size, MEMF_SHARED);
 	if ( mem != 0 )  {
 		*mem = size;
 		++mem;
@@ -67,8 +67,8 @@ void * realloc (void * mem, size_t len2)
 void free (void * mem)
 {
 	if ( mem != 0 )  {
-		uint32 size = *(((uint32*)mem) - 1);
-		FreeMem(mem, size);
+		uint32 * size_ptr = ((uint32*)mem) - 1;
+		FreeMem(size_ptr, *size_ptr);
 	}
 }
 

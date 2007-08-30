@@ -2,6 +2,27 @@ For WinMerge (kimmov): Nov 5 2006
         - Add post-build steps to VC6 project files to copy .lib and .dll
           files to /Build/expat
 
+Release 2.0.1 Tue June 5 2007
+        - Fixed bugs #1515266, 1515600: The character data handler's calling
+          of XML_StopParser() was not handled properly; if the parser was
+          stopped and the handler set to NULL, the parser would segfault.
+        - Fixed bug #1690883: Expat failed on EBCDIC systems as it assumed
+          some character constants to be ASCII encoded.
+        - Minor cleanups of the test harness.
+        - Fixed xmlwf bug #1513566: "out of memory" error on file size zero.
+        - Fixed outline.c bug #1543233: missing a final XML_ParserFree() call.
+        - Fixes and improvements for Windows platform:
+          bugs #1409451, #1476160, 1548182, 1602769, 1717322.
+        - Build fixes for various platforms:
+          HP-UX, Tru64, Solaris 9: patch #1437840, bug #1196180.
+          All Unix: #1554618 (refreshed config.sub/config.guess).
+                    #1490371, #1613457: support both, DESTDIR and INSTALL_ROOT,
+                    without relying on GNU-Make specific features.
+          #1647805: Patched configure.in to work better with Intel compiler.
+        - Fixes to Makefile.in to have make check work correctly:
+          bugs #1408143, #1535603, #1536684.
+        - Added Open Watcom support: patch #1523242.
+
 Release 2.0.0 Wed Jan 11 2006
         - We no longer use the "check" library for C unit testing; we
           always use the (partial) internal implementation of the API.

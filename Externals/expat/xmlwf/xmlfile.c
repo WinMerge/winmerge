@@ -12,8 +12,10 @@
 #include "winconfig.h"
 #elif defined(MACOS_CLASSIC)
 #include "macconfig.h"
-#elif defined(__amigaos4__)
+#elif defined(__amigaos__)
 #include "amigaconfig.h"
+#elif defined(__WATCOMC__)
+#include "watcomconfig.h"
 #elif defined(HAVE_EXPAT_CONFIG_H)
 #include <expat_config.h>
 #endif /* ndef COMPILED_FROM_DSP */
@@ -23,11 +25,11 @@
 #include "xmltchar.h"
 #include "filemap.h"
 
-#ifdef _MSC_VER
+#if (defined(_MSC_VER) || (defined(__WATCOMC__) && !defined(__LINUX__)))
 #include <io.h>
 #endif
 
-#ifdef AMIGA_SHARED_LIB
+#if defined(__amigaos__) && defined(__USE_INLINE__)
 #include <proto/expat.h>
 #endif
 
@@ -69,14 +71,15 @@ reportError(XML_Parser parser, const XML_Char *filename)
   else
     ftprintf(stderr, T("%s: (unknown message %d)\n"), filename, code);
 }
-
+ 
+/* This implementation will give problems on files larger than INT_MAX. */
 static void
 processFile(const void *data, size_t size,
             const XML_Char *filename, void *args)
 {
   XML_Parser parser = ((PROCESS_ARGS *)args)->parser;
   int *retPtr = ((PROCESS_ARGS *)args)->retPtr;
-  if (XML_Parse(parser, (const char *)data, size, 1) == XML_STATUS_ERROR) {
+  if (XML_Parse(parser, (const char *)data, (int)size, 1) == XML_STATUS_ERROR) {
     reportError(parser, filename);
     *retPtr = 0;
   }
@@ -84,7 +87,7 @@ processFile(const void *data, size_t size,
     *retPtr = 1;
 }
 
-#ifdef WIN32
+#if (defined(WIN32) || defined(__WATCOMC__))
 
 static int
 isAsciiLetter(XML_Char c)
@@ -102,7 +105,7 @@ resolveSystemId(const XML_Char *base, const XML_Char *systemId,
   *toFree = 0;
   if (!base
       || *systemId == T('/')
-#ifdef WIN32
+#if (defined(WIN32) || defined(__WATCOMC__))
       || *systemId == T('\\')
       || (isAsciiLetter(systemId[0]) && systemId[1] == T(':'))
 #endif
@@ -116,7 +119,7 @@ resolveSystemId(const XML_Char *base, const XML_Char *systemId,
   s = *toFree;
   if (tcsrchr(s, T('/')))
     s = tcsrchr(s, T('/')) + 1;
-#ifdef WIN32
+#if (defined(WIN32) || defined(__WATCOMC__))
   if (tcsrchr(s, T('\\')))
     s = tcsrchr(s, T('\\')) + 1;
 #endif

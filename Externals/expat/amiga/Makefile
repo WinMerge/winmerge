@@ -14,7 +14,7 @@ vpath %.h ../lib ../tests
 tooldir = SDK:Local/C
 staticlibdir = SDK:Local/clib2/lib
 staticincludedir = SDK:Local/clib2/include
-sharedlibdir = LIBS:
+sharedlibdir = SDK:Local/Libs
 sharedincludedir = SDK:Local/common/include
 
 
@@ -37,15 +37,15 @@ BENCHMARK = $(DESTDIR)/benchmark
 help:
 	@echo "Requires:"
 	@echo " AmigaOS 4.0"
-	@echo " SDK 51.15"
-	@echo " clib2 1.198"
+	@echo " SDK 51.22"
+	@echo " clib2 1.202"
 	@echo ""
 	@echo "Targets:"
 	@echo " all - make expat libraries, xmlwf, examples and run test suite"
 	@echo " install - install expat libraries and tools into SDK"
 
 all:
-	-makedir lib libs
+	-makedir force lib libs
 	$(MAKE) staticlib
 	$(MAKE) sharedlib
 
@@ -63,7 +63,7 @@ clean:
 	-delete libs/#?.o quiet
 
 install:
-	copy lib/xmlwf $(tooldir) quiet
+	copy libs/xmlwf $(tooldir) quiet
 	copy /lib/expat.h /lib/expat_external.h $(staticincludedir) quiet
 	copy lib/libexpat.a $(staticlibdir) quiet
 	copy libs/expat.library $(sharedlibdir) quiet
@@ -82,12 +82,15 @@ STRIPFLAGS = -R.comment
 LAUNCH =
 
 ifeq ($(MAKECMDGOALS), staticlib)
+ CFLAGS += -mcrt=clib2
+ LDFLAGS += -mcrt=clib2
  LIBS += $(STATICLIB)
  INCLUDES = -I../lib
 endif
 
 ifeq ($(MAKECMDGOALS), sharedlib)
- CFLAGS += -DAMIGA_SHARED_LIB -D__USE_INLINE__
+ CFLAGS += -mcrt=newlib -D__USE_INLINE__
+ LDFLAGS += -mcrt=newlib
  INCLUDES = -I. -Iinclude -Iinclude/libraries -I../lib
  LAUNCH = $(DESTDIR)/launch.o
 endif

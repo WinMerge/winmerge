@@ -45,11 +45,11 @@ done
 #
 # First of all, all OS/2 programs have the '.exe' extension.
 # Next, we adjust PATH (or what was given to us as PATH) to
-# be whitespace seperated directories.
+# be whitespace separated directories.
 # Finally, we try to determine the best flag to use for
 # test/[] to look for an executable file. OS/2 just has '-r'
 # but with other OSs, we do some funny stuff to check to see
-# if test/[] knows about -x, which is the prefered flag.
+# if test/[] knows about -x, which is the preferred flag.
 ##
 
 if [ "x$os" = "xOS/2" ]

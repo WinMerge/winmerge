@@ -18,6 +18,13 @@ extern "C" {
 #define CK_NORMAL  1
 #define CK_VERBOSE 2
 
+/* Workaround for Tru64 Unix systems where the C compiler has a working
+   __func__, but the C++ compiler only has a working __FUNCTION__.  This
+   could be fixed in configure.in, but it's not worth it right now. */
+#if defined(__osf__) && defined(__cplusplus)
+#define __func__ __FUNCTION__
+#endif
+
 #define START_TEST(testname) static void testname(void) { \
     _check_set_test_info(__func__, __FILE__, __LINE__);   \
     {
@@ -35,7 +42,6 @@ typedef struct TCase TCase;
 
 struct SRunner {
     Suite *suite;
-    int forking;
     int nchecks;
     int nfailures;
 };
@@ -74,7 +80,6 @@ void tcase_add_checked_fixture(TCase *,
                                tcase_teardown_function);
 void tcase_add_test(TCase *tc, tcase_test_function test);
 SRunner *srunner_create(Suite *suite);
-void srunner_set_fork_status(SRunner *runner, int forking);
 void srunner_run_all(SRunner *runner, int verbosity);
 int srunner_ntests_failed(SRunner *runner);
 void srunner_free(SRunner *runner);

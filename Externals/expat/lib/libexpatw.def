@@ -1,6 +1,6 @@
 ; DEF file for MS VC++
-LIBRARY   LIBEXPATW
-DESCRIPTION "Implements an XML parser."
+
+LIBRARY
 EXPORTS
   XML_DefaultCurrent @1
   XML_ErrorString @2

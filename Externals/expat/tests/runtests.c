@@ -17,7 +17,7 @@
 #include "chardata.h"
 #include "minicheck.h"
 
-#ifdef AMIGA_SHARED_LIB
+#if defined(__amigaos__) && defined(__USE_INLINE__)
 #include <proto/expat.h>
 #endif
 
@@ -53,10 +53,12 @@ static void
 _xml_failure(XML_Parser parser, const char *file, int line)
 {
     char buffer[1024];
+    enum XML_Error err = XML_GetErrorCode(parser);
     sprintf(buffer,
-            "\n    %s (line %" XML_FMT_INT_MOD "u, offset %"\
-                XML_FMT_INT_MOD "u)\n    reported from %s, line %d",
-            XML_ErrorString(XML_GetErrorCode(parser)),
+            "    %d: %s (line %" XML_FMT_INT_MOD "u, offset %"\
+                XML_FMT_INT_MOD "u)\n    reported from %s, line %d\n",
+            err,
+            XML_ErrorString(err),
             XML_GetCurrentLineNumber(parser),
             XML_GetCurrentColumnNumber(parser),
             file, line);
@@ -362,7 +364,7 @@ END_TEST
 
 START_TEST(test_utf16_le_epilog_newline)
 {
-    int first_chunk_bytes = 17;
+    unsigned int first_chunk_bytes = 17;
     char text[] = 
         "\xFF\xFE"                      /* BOM */
         "<\000e\000/\000>\000"          /* document element */
@@ -982,6 +984,82 @@ START_TEST(test_ns_in_attribute_default_without_namespaces)
 }
 END_TEST
 
+static char *long_character_data_text =
+    "<?xml version='1.0' encoding='iso-8859-1'?><s>"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "012345678901234567890123456789012345678901234567890123456789"
+    "</s>";
+
+static XML_Bool resumable = XML_FALSE;
+
+static void
+clearing_aborting_character_handler(void *userData,
+                                    const XML_Char *s, int len)
+{
+    XML_StopParser(parser, resumable);
+    XML_SetCharacterDataHandler(parser, NULL);
+}
+
+/* Regression test for SF bug #1515266: missing check of stopped
+   parser in doContext() 'for' loop. */
+START_TEST(test_stop_parser_between_char_data_calls)
+{
+    /* The sample data must be big enough that there are two calls to
+       the character data handler from within the inner "for" loop of
+       the XML_TOK_DATA_CHARS case in doContent(), and the character
+       handler must stop the parser and clear the character data
+       handler.
+    */
+    char *text = long_character_data_text;
+
+    XML_SetCharacterDataHandler(parser, clearing_aborting_character_handler);
+    resumable = XML_FALSE;
+    if (XML_Parse(parser, text, strlen(text), XML_TRUE) != XML_STATUS_ERROR)
+        xml_failure(parser);
+    if (XML_GetErrorCode(parser) != XML_ERROR_ABORTED)
+        xml_failure(parser);
+}
+END_TEST
+
+/* Regression test for SF bug #1515266: missing check of stopped
+   parser in doContext() 'for' loop. */
+START_TEST(test_suspend_parser_between_char_data_calls)
+{
+    /* The sample data must be big enough that there are two calls to
+       the character data handler from within the inner "for" loop of
+       the XML_TOK_DATA_CHARS case in doContent(), and the character
+       handler must stop the parser and clear the character data
+       handler.
+    */
+    char *text = long_character_data_text;
+
+    XML_SetCharacterDataHandler(parser, clearing_aborting_character_handler);
+    resumable = XML_TRUE;
+    if (XML_Parse(parser, text, strlen(text), XML_TRUE) != XML_STATUS_SUSPENDED)
+        xml_failure(parser);
+    if (XML_GetErrorCode(parser) != XML_ERROR_NONE)
+        xml_failure(parser);
+}
+END_TEST
+
 
 /*
  * Namespaces tests.
@@ -1176,7 +1254,7 @@ external_entity_handler(XML_Parser parser,
                         const XML_Char *systemId,
                         const XML_Char *publicId) 
 {
-    int callno = 1 + (int)XML_GetUserData(parser);
+    long callno = 1 + (long)XML_GetUserData(parser);
     char *text;
     XML_Parser p2;
 
@@ -1380,6 +1458,8 @@ make_suite(void)
     tcase_add_test(tc_basic, test_dtd_default_handling);
     tcase_add_test(tc_basic, test_empty_ns_without_namespaces);
     tcase_add_test(tc_basic, test_ns_in_attribute_default_without_namespaces);
+    tcase_add_test(tc_basic, test_stop_parser_between_char_data_calls);
+    tcase_add_test(tc_basic, test_suspend_parser_between_char_data_calls);
 
     suite_add_tcase(s, tc_namespace);
     tcase_add_checked_fixture(tc_namespace,
@@ -1402,16 +1482,10 @@ make_suite(void)
 }
 
 
-#ifdef AMIGA_SHARED_LIB
-int
-amiga_main(int argc, char *argv[])
-#else
 int
 main(int argc, char *argv[])
-#endif
 {
     int i, nf;
-    int forking = 0, forking_set = 0;
     int verbosity = CK_NORMAL;
     Suite *s = make_suite();
     SRunner *sr = srunner_create(s);
@@ -1425,21 +1499,11 @@ main(int argc, char *argv[])
             verbosity = CK_VERBOSE;
         else if (strcmp(opt, "-q") == 0 || strcmp(opt, "--quiet") == 0)
             verbosity = CK_SILENT;
-        else if (strcmp(opt, "-f") == 0 || strcmp(opt, "--fork") == 0) {
-            forking = 1;
-            forking_set = 1;
-        }
-        else if (strcmp(opt, "-n") == 0 || strcmp(opt, "--no-fork") == 0) {
-            forking = 0;
-            forking_set = 1;
-        }
         else {
             fprintf(stderr, "runtests: unknown option '%s'\n", opt);
             return 2;
         }
     }
-    if (forking_set)
-        srunner_set_fork_status(sr, forking ? CK_FORK : CK_NOFORK);
     if (verbosity != CK_SILENT)
         printf("Expat version: %s\n", XML_ExpatVersion());
     srunner_run_all(sr, verbosity);

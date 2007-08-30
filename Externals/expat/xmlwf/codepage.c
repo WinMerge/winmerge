@@ -4,7 +4,7 @@
 
 #include "codepage.h"
 
-#ifdef WIN32
+#if (defined(WIN32) || (defined(__WATCOMC__) && defined(__NT__)))
 #define STRICT 1
 #define WIN32_LEAN_AND_MEAN 1
 

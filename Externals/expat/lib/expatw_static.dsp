@@ -105,6 +105,14 @@ SOURCE=.\xmlrole.c
 
 SOURCE=.\xmltok.c
 # End Source File
+# Begin Source File
+
+SOURCE=.\xmltok_impl.c
+# End Source File
+# Begin Source File
+
+SOURCE=.\xmltok_ns.c
+# End Source File
 # End Group
 # Begin Group "Header Files"
 

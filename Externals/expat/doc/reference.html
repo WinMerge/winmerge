@@ -19,7 +19,7 @@
       <td class="banner"><h1>The Expat XML Parser</h1></td>
     </tr>
     <tr>
-      <td class="releaseno">Release 2.0.0</td>
+      <td class="releaseno">Release 2.0.1</td>
       <td></td>
     </tr>
   </table>
@@ -384,7 +384,7 @@ needs to link against the Expat library.  On Unix systems, this would
 usually be done with the <code>-lexpat</code> argument.  Otherwise,
 you'll need to tell the compiler where to look for the Expat header
 and the linker where to find the Expat library.  You may also need to
-take steps to tell the operating system where to find this libary at
+take steps to tell the operating system where to find this library at
 run time.</p>
 
 <p>On a Unix-based system, here's what a Makefile might look like when
@@ -1103,8 +1103,10 @@ lost, including
 <ul>
   <li> the end element handler for empty elements when stopped in the
        start element handler,</li>
-  <li> end namespace declaration handler when stopped in the end
+  <li> the end namespace declaration handler when stopped in the end
        element handler,</li>
+  <li> the character data handler when stopped in the character data handler
+       while making multiple call-backs on a contiguous chunk of characters,</li>
 </ul>
 and possibly others.</p>
 
@@ -1288,7 +1290,10 @@ is <em>NOT nul-terminated</em>. You have to use the length argument
 to deal with the end of the string. A single block of contiguous text
 free of markup may still result in a sequence of calls to this handler.
 In other words, if you're searching for a pattern in the text, it may
-be split across calls to this handler.</p>
+be split across calls to this handler. Note: Setting this handler to NULL
+may <em>NOT immediately</em> terminate call-backs if the parser is currently
+processing such a single block of contiguous markup-free text, as the parser
+will continue calling back until the end of the block is reached.</p>
 </div>
 
 <div class="handler">
@@ -2219,7 +2224,9 @@ enum XML_FeatureEnum {
   XML_FEATURE_CONTEXT_BYTES,
   XML_FEATURE_MIN_SIZE,
   XML_FEATURE_SIZEOF_XML_CHAR,
-  XML_FEATURE_SIZEOF_XML_LCHAR
+  XML_FEATURE_SIZEOF_XML_LCHAR,
+  XML_FEATURE_NS,
+  XML_FEATURE_LARGE_SIZE
 };
 
 typedef struct {

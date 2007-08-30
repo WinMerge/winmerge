@@ -16,7 +16,7 @@
 #include <crtdbg.h>
 #endif
 
-#ifdef AMIGA_SHARED_LIB
+#if defined(__amigaos__) && defined(__USE_INLINE__)
 #include <proto/expat.h>
 #endif
 
@@ -129,7 +129,7 @@ startElement(void *userData, const XML_Char *name, const XML_Char **atts)
   p = atts;
   while (*p)
     ++p;
-  nAtts = (p - atts) >> 1;
+  nAtts = (int)((p - atts) >> 1);
   if (nAtts > 1)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, attcmp);
   while (*atts) {
@@ -189,7 +189,7 @@ startElementNS(void *userData, const XML_Char *name, const XML_Char **atts)
   p = atts;
   while (*p)
     ++p;
-  nAtts = (p - atts) >> 1;
+  nAtts = (int)((p - atts) >> 1);
   if (nAtts > 1)
     qsort((void *)atts, nAtts, sizeof(XML_Char *) * 2, nsattcmp);
   while (*atts) {
@@ -350,7 +350,7 @@ metaStartElement(void *userData, const XML_Char *name,
     fputts(T(">\n"), fp);
     do {
       ftprintf(fp, T("<attribute name=\"%s\" value=\""), atts[0]);
-      characterData(fp, atts[1], tcslen(atts[1]));
+      characterData(fp, atts[1], (int)tcslen(atts[1]));
       if (atts >= specifiedAttsEnd)
         fputts(T("\" defaulted=\"yes\"/>\n"), fp);
       else if (atts == idAttPtr)
@@ -381,7 +381,7 @@ metaProcessingInstruction(void *userData, const XML_Char *target,
   XML_Parser parser = (XML_Parser) userData;
   FILE *fp = (FILE *)XML_GetUserData(parser);
   ftprintf(fp, T("<pi target=\"%s\" data=\""), target);
-  characterData(fp, data, tcslen(data));
+  characterData(fp, data, (int)tcslen(data));
   puttc(T('"'), fp);
   metaLocation(parser);
   fputts(T("/>\n"), fp);
@@ -393,7 +393,7 @@ metaComment(void *userData, const XML_Char *data)
   XML_Parser parser = (XML_Parser) userData;
   FILE *fp = (FILE *)XML_GetUserData(parser);
   fputts(T("<comment data=\""), fp);
-  characterData(fp, data, tcslen(data));
+  characterData(fp, data, (int)tcslen(data));
   puttc(T('"'), fp);
   metaLocation(parser);
   fputts(T("/>\n"), fp);
@@ -469,7 +469,7 @@ metaNotationDecl(void *userData,
     ftprintf(fp, T(" public=\"%s\""), publicId);
   if (systemId) {
     fputts(T(" system=\""), fp);
-    characterData(fp, systemId, tcslen(systemId));
+    characterData(fp, systemId, (int)tcslen(systemId));
     puttc(T('"'), fp);
   }
   metaLocation(parser);
@@ -503,7 +503,7 @@ metaEntityDecl(void *userData,
     if (publicId)
       ftprintf(fp, T(" public=\"%s\""), publicId);
     fputts(T(" system=\""), fp);
-    characterData(fp, systemId, tcslen(systemId));
+    characterData(fp, systemId, (int)tcslen(systemId));
     puttc(T('"'), fp);
     ftprintf(fp, T(" notation=\"%s\""), notationName);
     metaLocation(parser);
@@ -514,7 +514,7 @@ metaEntityDecl(void *userData,
     if (publicId)
       ftprintf(fp, T(" public=\"%s\""), publicId);
     fputts(T(" system=\""), fp);
-    characterData(fp, systemId, tcslen(systemId));
+    characterData(fp, systemId, (int)tcslen(systemId));
     puttc(T('"'), fp);
     metaLocation(parser);
     fputts(T("/>\n"), fp);
@@ -533,7 +533,7 @@ metaStartNamespaceDecl(void *userData,
     ftprintf(fp, T(" prefix=\"%s\""), prefix);
   if (uri) {
     fputts(T(" ns=\""), fp);
-    characterData(fp, uri, tcslen(uri));
+    characterData(fp, uri, (int)tcslen(uri));
     fputts(T("\"/>\n"), fp);
   }
   else
@@ -576,7 +576,7 @@ unknownEncoding(void *userData, const XML_Char *name, XML_Encoding *info)
     if (!s)
       return 0;
     cp *= 10;
-    cp += s - digits;
+    cp += (int)(s - digits);
     if (cp >= 0x10000)
       return 0;
   }
@@ -607,7 +607,7 @@ showVersion(XML_Char *prog)
   const XML_Feature *features = XML_GetFeatureList();
   while ((ch = *s) != 0) {
     if (ch == '/'
-#ifdef WIN32
+#if (defined(WIN32) || defined(__WATCOMC__))
         || ch == '\\'
 #endif
         )
@@ -639,13 +639,8 @@ usage(const XML_Char *prog, int rc)
   exit(rc);
 }
 
-#ifdef AMIGA_SHARED_LIB
-int
-amiga_main(int argc, char *argv[])
-#else
 int
 tmain(int argc, XML_Char **argv)
-#endif
 {
   int i, j;
   const XML_Char *outputDir = NULL;
@@ -777,17 +772,28 @@ tmain(int argc, XML_Char **argv)
       XML_SetProcessingInstructionHandler(parser, nopProcessingInstruction);
     }
     else if (outputDir) {
+      const XML_Char * delim = T("/");
       const XML_Char *file = useStdin ? T("STDIN") : argv[i];
-      if (tcsrchr(file, T('/')))
-        file = tcsrchr(file, T('/')) + 1;
-#ifdef WIN32
-      if (tcsrchr(file, T('\\')))
-        file = tcsrchr(file, T('\\')) + 1;
+      if (!useStdin) {
+        /* Jump after last (back)slash */
+        const XML_Char * lastDelim = tcsrchr(file, delim[0]);
+        if (lastDelim)
+          file = lastDelim + 1;
+#if (defined(WIN32) || defined(__WATCOMC__))
+        else {
+          const XML_Char * winDelim = T("\\");
+          lastDelim = tcsrchr(file, winDelim[0]);
+          if (lastDelim) {
+            file = lastDelim + 1;
+            delim = winDelim;
+          }
+        }
 #endif
+      }
       outName = (XML_Char *)malloc((tcslen(outputDir) + tcslen(file) + 2)
                        * sizeof(XML_Char));
       tcscpy(outName, outputDir);
-      tcscat(outName, T("/"));
+      tcscat(outName, delim);
       tcscat(outName, file);
       fp = tfopen(outName, T("wb"));
       if (!fp) {

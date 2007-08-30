@@ -2,7 +2,7 @@
 #define LIBRARIES_EXPAT_H
 
 /*
-** Copyright (c) 2001-2005 Expat maintainers.
+** Copyright (c) 2001-2007 Expat maintainers.
 **
 ** Permission is hereby granted, free of charge, to any person obtaining
 ** a copy of this software and associated documentation files (the
@@ -527,7 +527,9 @@ enum XML_FeatureEnum {
   XML_FEATURE_CONTEXT_BYTES,
   XML_FEATURE_MIN_SIZE,
   XML_FEATURE_SIZEOF_XML_CHAR,
-  XML_FEATURE_SIZEOF_XML_LCHAR
+  XML_FEATURE_SIZEOF_XML_LCHAR,
+  XML_FEATURE_NS,
+  XML_FEATURE_LARGE_SIZE
 };
 
 typedef struct {
@@ -542,7 +544,7 @@ XML_GetFeatureList(void);
 
 #define XML_MAJOR_VERSION 2
 #define XML_MINOR_VERSION 0
-#define XML_MICRO_VERSION 0
+#define XML_MICRO_VERSION 1
 
 
 /****************************************************************************/

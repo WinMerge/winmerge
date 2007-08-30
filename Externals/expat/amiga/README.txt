@@ -14,6 +14,16 @@ and is currently limited to PPC only.
 
 HISTORY
 =======
+4.2  - updated to correspond to Expat 2.0.1 release
+     - bumped copyright banners and versions
+     - simplified amigaconfig.h
+     - updated include/libraries/expat.h file
+     - modified launch.c to use contructor/deconstructor
+     - removed need for amiga_main() from expat utilities
+
+4.1  - fixed memory freeing bug in shared library version
+     - now allocates shared memory
+
 4.0  - updated for corresponding Expat 2.0 release
      - some minor CVS related changes
 

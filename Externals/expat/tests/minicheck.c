@@ -82,12 +82,6 @@ srunner_create(Suite *suite)
     return runner;
 }
 
-void
-srunner_set_fork_status(SRunner *runner, int status)
-{
-    /* We ignore this. */
-}
-
 static jmp_buf env;
 
 static char const *_check_current_function = NULL;
@@ -164,6 +158,12 @@ srunner_run_all(SRunner *runner, int verbosity)
 void
 _fail_unless(int condition, const char *file, int line, char *msg)
 {
+    /* Always print the error message so it isn't lost.  In this case,
+       we have a failure, so there's no reason to be quiet about what
+       it is.
+    */
+    if (msg != NULL)
+        printf("%s", msg);
     longjmp(env, 1);
 }
 

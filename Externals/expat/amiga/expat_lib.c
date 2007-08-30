@@ -1,5 +1,5 @@
 /*
-** Copyright (c) 2001-2005 Expat maintainers.
+** Copyright (c) 2001-2007 Expat maintainers.
 **
 ** Permission is hereby granted, free of charge, to any person obtaining
 ** a copy of this software and associated documentation files (the
@@ -27,8 +27,8 @@
 #define LIBNAME		"expat.library"
 #define LIBPRI		0
 #define VERSION		4
-#define REVISION	0
-#define VSTRING		"expat.library 4.0 (27.12.2005)"  /* dd.mm.yyyy */
+#define REVISION	2
+#define VSTRING		"expat.library 4.2 (2.6.2007)"  /* dd.mm.yyyy */
 
 
 static const char* __attribute__((used)) verstag = "\0$VER: " VSTRING;

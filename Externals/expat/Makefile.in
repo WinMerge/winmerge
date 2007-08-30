@@ -44,9 +44,7 @@ MANFILE = $(srcdir)/doc/xmlwf.1
 APIHEADER = $(srcdir)/lib/expat.h $(srcdir)/lib/expat_external.h
 LIBRARY = libexpat.la
 
-ifndef INSTALL_ROOT
-INSTALL_ROOT=$(DESTDIR)
-endif
+DESTDIR = $(INSTALL_ROOT)
 
 default:  buildlib xmlwf/xmlwf
 
@@ -78,23 +76,23 @@ check: tests/runtests tests/runtestspp
 	tests/runtestspp
 
 install: xmlwf/xmlwf installlib
-	$(mkinstalldirs) $(INSTALL_ROOT)$(bindir) $(INSTALL_ROOT)$(man1dir)
-	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) xmlwf/xmlwf $(INSTALL_ROOT)$(bindir)/xmlwf
-	$(INSTALL_DATA) $(MANFILE) $(INSTALL_ROOT)$(man1dir)
+	$(mkinstalldirs) $(DESTDIR)$(bindir) $(DESTDIR)$(man1dir)
+	$(LIBTOOL) --mode=install $(INSTALL_PROGRAM) xmlwf/xmlwf $(DESTDIR)$(bindir)/xmlwf
+	$(INSTALL_DATA) $(MANFILE) $(DESTDIR)$(man1dir)
 
 installlib: $(LIBRARY) $(APIHEADER)
-	$(mkinstalldirs) $(INSTALL_ROOT)$(libdir) $(INSTALL_ROOT)$(includedir)
-	$(LIBTOOL) --mode=install $(INSTALL) $(LIBRARY) $(INSTALL_ROOT)$(libdir)/$(LIBRARY)
-	for FN in $(APIHEADER) ; do $(INSTALL_DATA) $$FN $(INSTALL_ROOT)$(includedir) ; done
+	$(mkinstalldirs) $(DESTDIR)$(libdir) $(DESTDIR)$(includedir)
+	$(LIBTOOL) --mode=install $(INSTALL) $(LIBRARY) $(DESTDIR)$(libdir)/$(LIBRARY)
+	for FN in $(APIHEADER) ; do $(INSTALL_DATA) $$FN $(DESTDIR)$(includedir) ; done
 
 uninstall: uninstalllib
-	$(LIBTOOL) --mode=uninstall rm -f $(INSTALL_ROOT)$(bindir)/xmlwf
-	rm -f $(INSTALL_ROOT)$(man1dir)/xmlwf.1
+	$(LIBTOOL) --mode=uninstall rm -f $(DESTDIR)$(bindir)/xmlwf
+	rm -f $(DESTDIR)$(man1dir)/xmlwf.1
 
 uninstalllib:
-	$(LIBTOOL) --mode=uninstall rm -f $(INSTALL_ROOT)$(libdir)/$(LIBRARY)
-	rm -f $(INSTALL_ROOT)$(includedir)/expat.h
-	rm -f $(INSTALL_ROOT)$(includedir)/expat_external.h
+	$(LIBTOOL) --mode=uninstall rm -f $(DESTDIR)$(libdir)/$(LIBRARY)
+	rm -f $(DESTDIR)$(includedir)/expat.h
+	rm -f $(DESTDIR)$(includedir)/expat_external.h
 
 # for VPATH builds (invoked by configure)
 mkdir-init:
@@ -103,19 +101,21 @@ mkdir-init:
 	done
 
 CC = @CC@
+CXX = @CXX@
 LIBTOOL = @LIBTOOL@
 
 INCLUDES = -I$(srcdir)/lib -I.
 LDFLAGS = @LDFLAGS@
-CPPFLAGS = @CPPFLAGS@
-CFLAGS = @CFLAGS@ -DHAVE_EXPAT_CONFIG_H
+CPPFLAGS = @CPPFLAGS@ -DHAVE_EXPAT_CONFIG_H
+CFLAGS = @CFLAGS@
+CXXFLAGS = @CXXFLAGS@
 VSNFLAG = -version-info @LIBCURRENT@:@LIBREVISION@:@LIBAGE@
 
 ### autoconf this?
 LTFLAGS = --silent
 
 COMPILE = $(CC) $(INCLUDES) $(CFLAGS) $(DEFS) $(CPPFLAGS)
-CXXCOMPILE = $(CXX) $(INCLUDES) $(CFLAGS) $(DEFS) $(CPPFLAGS)
+CXXCOMPILE = $(CXX) $(INCLUDES) $(CXXFLAGS) $(DEFS) $(CPPFLAGS)
 LTCOMPILE = $(LIBTOOL) $(LTFLAGS) --mode=compile $(COMPILE)
 LINK_LIB = $(LIBTOOL) $(LTFLAGS) --mode=link $(COMPILE) -no-undefined $(VSNFLAG) -rpath $(libdir) $(LDFLAGS) -o $@
 LINK_EXE = $(LIBTOOL) $(LTFLAGS) --mode=link $(COMPILE) $(LDFLAGS) -o $@
@@ -157,10 +157,10 @@ tests/chardata.o: tests/chardata.c tests/chardata.h
 tests/minicheck.o: tests/minicheck.c tests/minicheck.h
 tests/runtests.o: tests/runtests.c tests/chardata.h
 tests/runtests: tests/runtests.o tests/chardata.o tests/minicheck.o $(LIBRARY)
-	$(LINK_EXE) $^
+	$(LINK_EXE) tests/runtests.o tests/chardata.o tests/minicheck.o $(LIBRARY)
 tests/runtestspp.o: tests/runtestspp.cpp tests/runtests.c tests/chardata.h
 tests/runtestspp: tests/runtestspp.o tests/chardata.o tests/minicheck.o $(LIBRARY)
-	$(LINK_CXX_EXE) $^
+	$(LINK_CXX_EXE) tests/runtestspp.o tests/chardata.o tests/minicheck.o $(LIBRARY)
 
 tests/xmlts.zip:
 	wget --output-document=tests/xmlts.zip \
@@ -172,8 +172,10 @@ tests/XML-Test-Suite: tests/xmlts.zip
 run-xmltest: xmlwf/xmlwf tests/XML-Test-Suite
 	tests/xmltest.sh
 
-.SUFFIXES: .c .lo .o
+.SUFFIXES: .c .cpp .lo .o
 
+.cpp.o:
+	$(CXXCOMPILE) -o $@ -c $<
 .c.o:
 	$(COMPILE) -o $@ -c $<
 .c.lo:

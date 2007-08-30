@@ -45,7 +45,7 @@ dnl If the API changes incompatibly set LIBAGE back to 0
 dnl
 
 LIBCURRENT=6
-LIBREVISION=0
+LIBREVISION=2
 LIBAGE=5
 
 AC_CONFIG_HEADER(expat_config.h)
@@ -72,10 +72,11 @@ if test "$GCC" = yes ; then
     dnl
     OLDCFLAGS="$CFLAGS -Wall -Wmissing-prototypes -Wstrict-prototypes"
     CFLAGS="$OLDCFLAGS -fexceptions"
-    AC_MSG_CHECKING(whether gcc accepts -fexceptions)
-    AC_TRY_COMPILE(,(void)1,
+    AC_MSG_CHECKING(whether $CC accepts -fexceptions)
+    AC_TRY_LINK( , ,
                    AC_MSG_RESULT(yes),
                    AC_MSG_RESULT(no); CFLAGS="$OLDCFLAGS")
+    CXXFLAGS=`echo "$CFLAGS" | sed 's/ -Wmissing-prototypes -Wstrict-prototypes//'`
 fi
 
 dnl Checks for header files.
