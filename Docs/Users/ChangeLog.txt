@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.2
   Graphical improvements to location pane (#1770175)
+  Remove MFC dependency from resource compiler (#1783581)
 
 WinMerge 2.7.5.1
   HTML reports for file compare (#1739209)
