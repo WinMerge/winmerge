@@ -7,20 +7,18 @@
 // $Id$
 
 #include "stdafx.h"
+#include <windows.h>
+#include <tchar.h>
+#include "UnicodeString.h"
 #include <vector>
+#include <iostream>
 #include <sys/types.h>
 #include "sys/stat.h"
 #include "MakeResDll.h"
 // Following files included from WinMerge/Src/Common
-#include "UnicodeString.h"
 #include "RegKey.h"
-// Local files
 
-#ifdef _DEBUG
-#define new DEBUG_NEW
-#undef THIS_FILE
-static char THIS_FILE[] = __FILE__;
-#endif
+// Local files
 
 using namespace std;
 
@@ -116,13 +114,14 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 	int nRetCode = 0;
 
 	// initialize MFC and print an error on failure
-	if (!AfxWinInit(::GetModuleHandle(NULL), NULL, ::GetCommandLine(), 0))
+/*	if (!AfxWinInit(::GetModuleHandle(NULL), NULL, ::GetCommandLine(), 0))
 	{
 		// TODO: change error code to suit your needs
 		cerr << _T("Fatal Error: MFC initialization failed") << endl;
 		nRetCode = 1;
 	}
 	else
+*/
 	{
 		if (argc < 2)
 		{
@@ -169,9 +168,11 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
 			nRetCode = 1;
 		if (ok && !gbSilent && !gbBatch)
 		{
-			CString s;
-			AfxFormatString1(s, IDS_SUCCESS_FMT, strOutFile.c_str());
-			AfxMessageBox(s, MB_ICONINFORMATION);
+			TCHAR tmpStr[200];
+			LoadString(::GetModuleHandle(NULL), IDS_SUCCESS_FMT, tmpStr, 200);
+			String s = tmpStr;
+			string_replace(s, _T("%1"), strOutFile);
+			MessageBox(NULL, s.c_str(), _T("MakeResDll"), MB_ICONINFORMATION);
 		}
 
 		if (gbPause && !gbSilent)
@@ -397,6 +398,8 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	const int TempStringLen = 4096;
 	String libs;
 	TCHAR *p = NULL;
+	TCHAR * linkArgs = NULL;
+	TCHAR *libsPath = NULL;
 	HANDLE hLink;
 	String strOutFolder(pszOutputPath);
 	String strStem(pszOutputStem);
@@ -450,7 +453,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	else
 		Status(_T("Error creating process\r\n"));
 	
-	TCHAR *libsPath = new TCHAR[TempStringLen];
+	libsPath = new TCHAR[TempStringLen];
 	_tcscpy(libsPath, gVcPaths.sLibs.c_str());
 	p = _tcstok(libsPath, ";\r\n\t");
 	while (p != NULL)
@@ -464,7 +467,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 
 	strOutFile = strOutFolder + _T("\\") + strStem + _T(".lang");
 
-	TCHAR * linkArgs = new TCHAR[TempStringLen];
+	linkArgs = new TCHAR[TempStringLen];
 	_stprintf(linkArgs, _T("/nologo /subsystem:console /dll ")
 					   _T("/machine:I386 %s ")
 					   _T("/noentry ")
@@ -552,7 +555,7 @@ static void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /
 	if (gbSilent)
 		return;
 
-	TRY {
+	try {
 		String s;
 		if (szText1 != NULL && szText2 != NULL)
 		{
@@ -577,10 +580,9 @@ static void Status(UINT idstrText, LPCTSTR szText1 /*= NULL*/, LPCTSTR szText2 /
 		}
 		Status(s.c_str());
 	}
-	CATCH_ALL (e)
+	catch (exception ex)
 	{
 	}
-	END_CATCH_ALL;
 }
 
 
@@ -962,7 +964,12 @@ static BOOL MkDirEx(LPCTSTR filename)
 				{
 					if (!MyCreateDirectoryIfNeeded(tempPath)
 						&& !MyCreateDirectoryIfNeeded(tempPath))
-						TRACE(_T("Failed to create folder %s\n"), tempPath);
+					{
+						String str(_T("Failed to create folder "));
+						str += tempPath;
+						str += _T("\n");
+						OutputDebugStr(str.c_str());
+					}
 					_tccpy(p, _T("\\"));
 				}
 			}
@@ -971,10 +978,15 @@ static BOOL MkDirEx(LPCTSTR filename)
 
 		if (!MyCreateDirectoryIfNeeded(filename)
 			&& !MyCreateDirectoryIfNeeded(filename))
-			TRACE(_T("Failed to create folder %s\n"), filename);
+		{
+			String str(_T("Failed to create folder "));
+			str += filename;
+			str += _T("\n");
+			OutputDebugStr(str.c_str());
+		}
 
-	CFileStatus status;
-	return (CFile::GetStatus(filename, status));
+	bool fileExists = DoesFileExist(filename);
+	return fileExists;
 }
 
 // Create directory (via Win32 API)

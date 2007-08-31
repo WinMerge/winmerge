@@ -12,16 +12,10 @@
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
-#include <afx.h>
-#include <afxwin.h>         // MFC core and standard components
-#include <afxext.h>         // MFC extensions
-
-#include <iostream>
-#include <afxsock.h>
+#include <windows.h>
 
 // TODO: reference additional headers your program requires here
 
-CString LoadResString(int id);
 class CRegKeyEx;
 bool RegOpenMachine(CRegKeyEx & reg, LPCTSTR key);
 bool RegOpenUser(CRegKeyEx & reg, LPCTSTR key);

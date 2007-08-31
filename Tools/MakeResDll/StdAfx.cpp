@@ -9,14 +9,6 @@
 // TODO: reference any additional headers you need in STDAFX.H
 // and not in this file
 
-// Load string resource and return as CString
-CString LoadResString(int id)
-{
-	CString s;
-	VERIFY(s.LoadString(id));
-	return s;
-}
-
 // Get appropriate clipboard format for TCHAR text
 int GetClipTcharTextFormat()
 {

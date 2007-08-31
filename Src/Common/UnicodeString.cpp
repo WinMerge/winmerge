@@ -23,7 +23,6 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
 #include "UnicodeString.h"
 
 void string_replace(String &target, const String &find, const String &replace)
