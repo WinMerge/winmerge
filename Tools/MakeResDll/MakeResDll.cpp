@@ -421,7 +421,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 
 	TCHAR *rcArgs = new TCHAR[TempStringLen];
 	_stprintf(rcArgs, _T("/l 0x%s /fo\"%s\\%s.res\" /i \"%s\" ")
-					 _T("/d \"_AFXDLL\" /d \"CORTRON_BUILD\" \"%s\""),
+					 _T("/d \"CORTRON_BUILD\" \"%s\""),
 		gsLang.c_str(),
 		strOutFolder.c_str(),
 		strStem.c_str(),
