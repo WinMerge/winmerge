@@ -191,7 +191,7 @@ int _tmain(int argc, TCHAR* argv[], TCHAR* envp[])
  */
 static void FixPath()
 {
-	String strPath(getenv(_T("PATH")));
+	String strPath(_tgetenv(_T("PATH")));
 	TCHAR spath[MAX_PATH] = {0};
 	if (gbVerbose)
 		_tprintf(_T("Initial path: %s\r\n"), strPath.c_str());
@@ -209,7 +209,7 @@ static void FixPath()
 	{
 		strPath += gVcPaths.sAdditionalPath + _T(";");
 	}
-	putenv(strPath.c_str());
+	_tputenv(strPath.c_str());
 	if (gbVerbose)
 		_tprintf(_T("New path: %s\r\n"), strPath.c_str());
 }
@@ -321,13 +321,13 @@ static BOOL ProcessArgs(int argc, TCHAR* argv[])
 				gVcPaths.sLibs = _T("");
 				TCHAR temp[2048], *p;
 				_tcscpy(temp, argv[i]);
-				p = _tcstok(temp, ";\r\n\t");
+				p = _tcstok(temp, _T(";\r\n\t"));
 				while (p != NULL)
 				{
 					gVcPaths.sLibs += _T("/libpath:\"");
 					gVcPaths.sLibs += p;
 					gVcPaths.sLibs += _T("\" ");
-					p = _tcstok(NULL, ";\r\n\t");
+					p = _tcstok(NULL, _T(";\r\n\t"));
 				}
 
 			}
@@ -421,7 +421,7 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 
 	TCHAR *rcArgs = new TCHAR[TempStringLen];
 	_stprintf(rcArgs, _T("/l 0x%s /fo\"%s\\%s.res\" /i \"%s\" ")
-					 _T("/d \"CORTRON_BUILD\" \"%s\""),
+					 _T("/d \"_AFXDLL\" /d \"CORTRON_BUILD\" \"%s\""),
 		gsLang.c_str(),
 		strOutFolder.c_str(),
 		strStem.c_str(),
@@ -455,13 +455,13 @@ static BOOL BuildDll(LPCTSTR pszRCPath, LPCTSTR pszOutputPath, LPCTSTR pszOutput
 	
 	libsPath = new TCHAR[TempStringLen];
 	_tcscpy(libsPath, gVcPaths.sLibs.c_str());
-	p = _tcstok(libsPath, ";\r\n\t");
+	p = _tcstok(libsPath, _T(";\r\n\t"));
 	while (p != NULL)
 	{
 		libs += _T("/libpath:\"");
 		libs += p;
 		libs += _T("\" ");
-		p = _tcstok(NULL, ";\r\n\t");
+		p = _tcstok(NULL, _T(";\r\n\t"));
 	}
 	delete[] libsPath;
 
