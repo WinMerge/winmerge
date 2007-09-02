@@ -23,11 +23,12 @@
  *
  * @brief Main implementation file for CDirView
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
+#include "ClipBoard.h"
 #include "DirView.h"
 #include "DirFrame.h"  // StatePane
 #include "DirDoc.h"

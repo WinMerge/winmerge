@@ -1250,67 +1250,6 @@ BOOL GetUserProfilePath(CString &sAppDataPath)
 }
 
 /**
- * @brief Copies string to clipboard.
- */
-BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle)
-{
-	if (pszText == NULL || _tcslen(pszText) == 0)
-		return FALSE;
-
-	CWaitCursor wc;
-	BOOL bOK = FALSE;
-	if (OpenClipboard(currentWindowHandle))
-	{
-		EmptyClipboard();
-		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, (_tcslen(pszText)+1) * sizeof(TCHAR));
-		if (hData != NULL)
-		{
-			LPTSTR pszData = (LPTSTR)::GlobalLock(hData);
-			_tcscpy(pszData, pszText);
-			GlobalUnlock(hData);
-			UINT fmt = GetClipTcharTextFormat();
-			bOK = SetClipboardData(fmt, hData) != NULL;
-		}
-		CloseClipboard();
-	}
-	return bOK;
-}
-
-/**
- * @brief retrieves the string from clipboard.
- */
-BOOL GetFromClipboard(CString & text, HWND currentWindowHandle)
-{
-	BOOL bSuccess = FALSE;
-	if (OpenClipboard(currentWindowHandle))
-	{
-		UINT fmt = GetClipTcharTextFormat();
-		HGLOBAL hData = GetClipboardData(fmt);
-		if (hData != NULL)
-		{
-			LPTSTR pszData = (LPTSTR) GlobalLock(hData);
-			if (pszData != NULL)
-			{
-				text = pszData;
-				GlobalUnlock(hData);
-				bSuccess = TRUE;
-			}
-		}
-		CloseClipboard();
-	}
-	return bSuccess;
-}
-
-/**
- * @brief Checks if the clipboard allows unicode format.
- */
-BOOL TextInClipboard()
-{
-	UINT fmt = GetClipTcharTextFormat();
-	return IsClipboardFormatAvailable(fmt);
-}
-
-/**
  * @brief Decorates commandline for giving to CreateProcess() or
  * ShellExecute().
  *

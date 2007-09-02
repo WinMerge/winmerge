@@ -201,6 +201,10 @@ SOURCE=.\ClearCaseCmdLineParser.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\ClipBoard.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\CMoveConstraint.cpp
 # End Source File
 # Begin Source File
@@ -994,6 +998,10 @@ SOURCE=.\ChildFrm.h
 # Begin Source File
 
 SOURCE=.\ClearCaseCmdLineParser.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\ClipBoard.cpp
 # End Source File
 # Begin Source File
 
