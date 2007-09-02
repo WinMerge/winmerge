@@ -126,12 +126,6 @@ CString GetLocalizedNumberString(double dVal, int nPlaces =-1, BOOL bSeparate =F
 void DDX_Float( CDataExchange* pDX, int nIDC, float& value );
 void DDX_Double( CDataExchange* pDX, int nIDC, double& value );
 int tcssubptr(LPCTSTR start, LPCTSTR end);
-void ReadWcsToMbs(CFile* cf, LPTSTR szDest, DWORD dwCount);
-void WriteWcsFromMbs(CFile* cf, LPCTSTR szSrc, DWORD dwCount);
-void ReadWcsToMbs(HANDLE hf, LPTSTR szDest, DWORD dwCount);
-void WriteWcsFromMbs(HANDLE hf, LPCTSTR szSrc, DWORD dwCount);
-void ReadWcsToMbs(CArchive* ar, LPTSTR szDest, DWORD dwCount);
-void WriteWcsFromMbs(CArchive* ar, LPCTSTR szSrc, DWORD dwCount);
 
 HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized = TRUE, BOOL bNewConsole = FALSE);
 BOOL HasExited(HANDLE hProcess, DWORD *pCode = NULL);
