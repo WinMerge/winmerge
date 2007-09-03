@@ -6,9 +6,6 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include <windows.h>
-#include <tchar.h>
-#include <winreg.h>
 #include "UnicodeString.h"
 
 /**
