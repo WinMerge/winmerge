@@ -1001,7 +1001,7 @@ SOURCE=.\ClearCaseCmdLineParser.h
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\ClipBoard.cpp
+SOURCE=.\Common\ClipBoard.h
 # End Source File
 # Begin Source File
 
