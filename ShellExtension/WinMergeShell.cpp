@@ -574,23 +574,6 @@ CString CWinMergeShell::FormatCmdLine(const CString &winmergePath,
 	const CString &path1, const CString &path2, BOOL bAlterSubFolders)
 {
 	CString strCommandline = winmergePath;
-	BOOL bOnlyFiles = FALSE;
-	
-	if (!path1.IsEmpty() && !path2.IsEmpty())
-	{
-		CFileStatus status;
-		CFileStatus status2;
-		if (CFile::GetStatus(path1, status) &&
-			CFile::GetStatus(path2, status2))
-		{
-			// Check if both paths are files
-			if ((status.m_attribute & CFile::Attribute::directory) == 0 &&
-				(status2.m_attribute & CFile::Attribute::directory) == 0)
-			{
-				bOnlyFiles = TRUE;
-			}
-		}
-	}
 
 	// Check if user wants to use context menu
 	BOOL bSubfoldersByDefault = FALSE;
