@@ -19,10 +19,11 @@
  *
  * @brief Implementation of FileFilters -dialog
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "merge.h"
 #include "MainFrm.h"
 #include "FileFiltersDlg.h"
@@ -546,8 +547,10 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	if (SelectFile(GetSafeHwnd(), s, path, title, IDS_FILEFILTER_FILEMASK,
 		TRUE))
 	{
-		CString filename, ext;
-		SplitFilename(s, NULL, &filename, &ext);
+		String sfile, sext;
+		SplitFilename(s, NULL, &sfile, &sext);
+		CString filename(sfile.c_str());
+		CString ext(sext.c_str());
 		filename += _T(".");
 		filename += ext;
 		userPath = paths_ConcatPath(userPath, filename);

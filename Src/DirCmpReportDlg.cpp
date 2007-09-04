@@ -4,7 +4,7 @@
  * @brief Implementation file for DirCmpReport dialog
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //
 
@@ -121,8 +121,6 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, title,
 			filterid, FALSE))
 	{
-		CString name;
-		SplitFilename(chosenFilepath, &folder, &name, NULL);
 		m_sReportFile = chosenFilepath;
 		m_ctlReportFile.SetWindowText(chosenFilepath);
 	}

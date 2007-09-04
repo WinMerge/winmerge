@@ -19,7 +19,7 @@
  *
  * @brief Implementation of Patch creation dialog
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -330,14 +330,12 @@ void CPatchDlg::OnDiffBrowseResult()
 {
 	CString s;
 	CString folder;
-	CString name;
 	CString title;
 
 	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	folder = m_fileResult;
 	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, FALSE))
 	{
-		SplitFilename(s, &folder, &name, NULL);
 		m_fileResult = s;
 		m_ctlResult.SetWindowText(s);
 	}

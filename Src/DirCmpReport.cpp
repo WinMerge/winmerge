@@ -4,13 +4,13 @@
  * @brief Implementation file for DirCmpReport
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //
 
 #include "stdafx.h"
 #include <time.h>
-
+#include "UnicodeString.h"
 #include "DirCmpReport.h"
 #include "DirCmpReportDlg.h"
 #include "coretools.h"
@@ -162,9 +162,9 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 		}
 		if (!dlg.m_sReportFile.IsEmpty())
 		{
-			CString path;
+			String path;
 			SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
-			if (!paths_CreateIfNeeded(path))
+			if (!paths_CreateIfNeeded(path.c_str()))
 			{
 				VERIFY(errStr.LoadString(IDS_FOLDER_NOTEXIST));
 				return FALSE;

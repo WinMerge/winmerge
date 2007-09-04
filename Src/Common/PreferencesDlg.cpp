@@ -12,6 +12,7 @@
 
 #include "stdafx.h"
 #include "resource.h"
+#include "UnicodeString.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 #include "SyntaxColors.h"
@@ -326,15 +327,10 @@ void CPreferencesDlg::OnExportButton()
 	{
 		// Add settings file extension if it is missing
 		// So we allow 'filename.otherext' but add extension for 'filename'
-		CString filename;
-		CString extension;
-		SplitFilename(settingsFile, NULL, &filename, &extension);
-		if (extension.IsEmpty())
-		{
-			CString settingsFileExt(_T("ini"));
-			settingsFile += _T(".");
-			settingsFile += settingsFileExt;
-		}
+		String extension;
+		SplitFilename(settingsFile, NULL, NULL, &extension);
+		if (extension.empty())
+			settingsFile += _T(".ini");
 
 		if (m_pOptionsMgr->ExportOptions(settingsFile) == OPT_OK)
 			AfxMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);

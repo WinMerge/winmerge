@@ -29,7 +29,7 @@
 
 #include "stdafx.h"
 #include <Shlwapi.h>		// PathCompactPathEx()
-
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
 
@@ -1144,12 +1144,12 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 		if (paths_DoesPathExist(GetMainFrame()->m_strSaveAsPath) == IS_EXISTING_DIR)
 		{
 			// third arg was a directory, so get append the filename
-			CString sname;
+			String sname;
 			SplitFilename(szPath, 0, &sname, 0);
 			strSavePath = GetMainFrame()->m_strSaveAsPath;
 			if (GetMainFrame()->m_strSaveAsPath.Right(1) != _T('\\'))
 				strSavePath += _T('\\');
-			strSavePath += sname;
+			strSavePath += sname.c_str();
 		}
 		else
 			strSavePath = GetMainFrame()->m_strSaveAsPath;	
@@ -1568,13 +1568,13 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	// we will load the transformed file
 	LPCTSTR pszFileName = sFileName;
 
-	CString sExt;
+	String sExt;
 	DWORD nRetVal = FileLoadResult::FRESULT_OK;
 
 	// Set encoding based on extension, if we know one
 	SplitFilename(pszFileName, NULL, NULL, &sExt);
 	CCrystalTextView::TextDefinition *def = 
-			CCrystalTextView::GetTextType(sExt);
+		CCrystalTextView::GetTextType(sExt.c_str());
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
@@ -3156,14 +3156,14 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 			sTitle += m_strDesc[0];
 		else
 		{
-			CString file;
-			CString ext;
+			String file;
+			String ext;
 			SplitFilename(m_filePaths.GetLeft(), NULL, &file, &ext);
-			sTitle += file;
-			if (!ext.IsEmpty())
+			sTitle += file.c_str();
+			if (!ext.empty())
 			{
 				sTitle += _T(".");
-				sTitle += ext;
+				sTitle += ext.c_str();
 			}
 		}
 
@@ -3173,14 +3173,14 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
 			sTitle += m_strDesc[1];
 		else
 		{
-			CString file;
-			CString ext;
+			String file;
+			String ext;
 			SplitFilename(m_filePaths.GetRight(), NULL, &file, &ext);
-			sTitle += file;
-			if (!ext.IsEmpty())
+			sTitle += file.c_str();
+			if (!ext.empty())
 			{
 				sTitle += _T(".");
-				sTitle += ext;
+				sTitle += ext.c_str();
 			}
 		}
 	}
@@ -3263,23 +3263,23 @@ void CMergeDoc::OnFileEncoding()
 // external Rational ClearCase tool.
 CString CMergeDoc::GetFileExt(const CString& sFileName, const CString& sDescription)
 {
-	CString sExt;
+	String sExt;
 	SplitFilename(sFileName, NULL, NULL, &sExt);
 
 	if (TRUE == GetMainFrame()->m_bClearCaseTool)
 	{
 		// If no extension found in real file name.
-		if (TRUE == sExt.IsEmpty())
+		if (sExt.empty())
 		{
 			SplitViewName(sFileName, NULL, NULL, &sExt);
 		}
 		// If no extension found in repository file name.
-		if (TRUE == sExt.IsEmpty())
+		if (TRUE == sExt.empty())
 		{
 			SplitViewName(sDescription, NULL, NULL, &sExt);
 		}
 	}
-	return sExt;
+	return sExt.c_str();
 }
 
 /**

@@ -20,11 +20,12 @@
  *
  *  @brief Implementation of FileFilterMgr and supporting routines
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include <string.h>
+#include "UnicodeString.h"
 #include "pcre.h"
 #include "FileFilterMgr.h"
 #include "UniFile.h"
@@ -240,11 +241,11 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 
 	file.ReadBom(); // in case it is a Unicode file, let UniMemFile handle BOM
 
-	CString fileName;
+	String fileName;
 	SplitFilename(szFilepath, NULL, &fileName, NULL);
 	FileFilter *pfilter = new FileFilter;
 	pfilter->fullpath = szFilepath;
-	pfilter->name = fileName; // Filename is the default name
+	pfilter->name = fileName.c_str(); // Filename is the default name
 
 	CString sLine;
 	bool lossy = false;

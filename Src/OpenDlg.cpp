@@ -23,13 +23,13 @@
  *
  * @brief Implementation of the COpenDlg class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include <sys/types.h>
 #include <sys/stat.h>
-
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "ProjectFile.h"
 #include "OpenDlg.h"
@@ -292,8 +292,9 @@ void COpenDlg::OnOK()
 	TrimPaths();
 
 	// If left path is a project-file, load it
-	CString sExt;
-	SplitFilename(m_strLeft, NULL, NULL, &sExt);
+	String ext;
+	SplitFilename(m_strLeft, NULL, NULL, &ext);
+	CString sExt(ext.c_str());
 	if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
 		LoadProjectFile(m_strLeft);
 
@@ -394,10 +395,11 @@ void COpenDlg::UpdateButtonStates()
 	TrimPaths();
 
 	// Check if we have project file as left side path
-	CString sExt;
 	BOOL bProject = FALSE;
-	SplitFilename(m_strLeft, NULL, NULL, &sExt);
-    if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
+	String ext;
+	SplitFilename(m_strLeft, NULL, NULL, &ext);
+	CString sExt(ext.c_str());
+	if (m_strRight.IsEmpty() && sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
 		bProject = TRUE;
 
 	// Enable buttons as appropriate

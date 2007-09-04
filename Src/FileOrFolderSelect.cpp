@@ -26,7 +26,7 @@
 
 #include "stdafx.h"
 #include <sys/stat.h>
-
+#include "UnicodeString.h"
 #include "FileOrFolderSelect.h"
 #include "coretools.h"
 #include "paths.h"
@@ -82,7 +82,9 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 		// so the common file dialog will start up with that file selected
 		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
 		{
-			SplitFilename(initialPath, 0, &sSelectedFile, 0);
+			String temp;
+			SplitFilename(initialPath, 0, &temp, 0);
+			sSelectedFile = temp.c_str();
 		}
 	}
 
@@ -207,7 +209,9 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 		// so the common file dialog will start up with that file selected
 		if (paths_DoesPathExist(initialPath) == IS_EXISTING_FILE)
 		{
-			SplitFilename(initialPath, 0, &sSelectedFile, 0);
+			String temp;
+			SplitFilename(initialPath, 0, &temp, 0);
+			sSelectedFile = temp.c_str();
 		}
 	}
 

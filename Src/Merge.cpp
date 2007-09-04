@@ -28,7 +28,7 @@
 // $Id$
 
 #include "stdafx.h"
-
+#include "UnicodeString.h"
 #include "OptionsMgr.h"
 #include "Merge.h"
 #include "AboutDlg.h"
@@ -675,8 +675,9 @@ void CMergeApp::OnHelp()
  */
 bool CMergeApp::IsProjectFile(const CString & filepath) const
 {
-	CString sExt;
-	SplitFilename(filepath, NULL, NULL, &sExt);
+	String ext;
+	SplitFilename(filepath, NULL, NULL, &ext);
+	CString sExt(ext.c_str());
 	if (sExt.CompareNoCase(PROJECTFILE_EXT) == 0)
 		return true;
 	else

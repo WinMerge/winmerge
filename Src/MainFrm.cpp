@@ -31,6 +31,7 @@
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
 #include "Merge.h"
+#include "UnicodeString.h"
 #include "BCMenu.h"
 #include "MainFrm.h"
 #include "DirFrame.h"		// Include type information
@@ -1245,10 +1246,10 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 	// create backup copy of file if destination file exists
 	if (paths_DoesPathExist(pszPath) == IS_EXISTING_FILE)
 	{
-		CString bakPath;
-		CString path;
-		CString filename;
-		CString ext;
+		String bakPath;
+		String path;
+		String filename;
+		String ext;
 	
 		SplitFilename(pszPath, &path, &filename, &ext);
 
@@ -1263,8 +1264,8 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			CPropBackups::FOLDER_GLOBAL)
 		{
 			// Put backups to global folder defined in options
-			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER).c_str();
-			if (bakPath.IsEmpty())
+			bakPath = GetOptionsMgr()->GetString(OPT_BACKUP_GLOBALFOLDER);
+			if (bakPath.empty())
 				bakPath = path;
 		}
 		else
@@ -1272,8 +1273,8 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			_RPTF0(_CRT_ERROR, "Unknown backup location!");
 		}
 
-		if (bakPath[bakPath.GetLength() - 1] != '\\')
-			bakPath += "\\";
+		if (bakPath[bakPath.length() - 1] != '\\')
+			bakPath += _T("\\");
 
 		BOOL success = FALSE;
 		if (GetOptionsMgr()->GetBool(OPT_BACKUP_ADD_BAK))
@@ -1288,22 +1289,22 @@ BOOL CMainFrame::CreateBackup(BOOL bFolder, LPCTSTR pszPath)
 			time(&curtime);
 			CString timestr;
 			timestr.Format(_T("%d"), curtime);
-			filename += "-";
+			filename += _T("-");
 			filename += timestr;
 		}
 
 		// Append filename and extension (+ optional .bak) to path
-		if ((bakPath.GetLength() + filename.GetLength() + ext.GetLength())
+		if ((bakPath.length() + filename.length() + ext.length())
 			< MAX_PATH)
 		{
 			success = TRUE;
 			bakPath += filename;
-			bakPath += ".";
+			bakPath += _T(".");
 			bakPath += ext;
 		}
 
 		if (success)
-			success = CopyFile(pszPath, bakPath, FALSE);
+			success = CopyFile(pszPath, bakPath.c_str(), FALSE);
 		
 		if (!success)
 		{
@@ -2284,14 +2285,15 @@ void CMainFrame::UpdatePrediffersMenu()
 BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 {
 	CString sExtEditor;
-	CString ext;
 	CString sExecutable;
 	CString sCmd;
 	
 	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD).c_str();
 	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
 
-	SplitFilename(sExecutable, NULL, NULL, &ext);
+	String sExt;
+	SplitFilename(sExecutable, NULL, NULL, &sExt);
+	CString ext(sExt.c_str());
 	ext.MakeLower();
 
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
@@ -2916,13 +2918,13 @@ void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
  */ 
 void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 {
-	CString spath, sname;
+	String spath, sname;
 	SplitFilename(strDestinationPath, &spath, &sname, 0);
 	DWORD code;
 	CString args;
 	
 	// checkin operation
-	args.Format(_T("checkin -nc \"%s\""), sname);
+	args.Format(_T("checkin -nc \"%s\""), sname.c_str());
 	String vssPath = GetOptionsMgr()->GetString(OPT_VSS_PATH);
 	HANDLE hVss = RunIt(vssPath.c_str(), args, TRUE, FALSE);
 	if (hVss!=INVALID_HANDLE_VALUE)
@@ -2936,7 +2938,7 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 			if (AfxMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)
 			{
 				// undo checkout operation
-				args.Format(_T("uncheckout -rm \"%s\""), sname);
+				args.Format(_T("uncheckout -rm \"%s\""), sname.c_str());
 				HANDLE hVss = RunIt(vssPath.c_str(), args, TRUE, TRUE);
 				if (hVss!=INVALID_HANDLE_VALUE)
 				{

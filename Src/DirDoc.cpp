@@ -31,6 +31,7 @@
 #include "stdafx.h"
 #include <Shlwapi.h>		// PathFindFileName()
 #include "Merge.h"
+#include "UnicodeString.h"
 #include "CompareStats.h"
 #include "FilterList.h"
 #include "Ucs2Utf8.h"
@@ -522,10 +523,12 @@ POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 	POSITION pos = m_pCtxt->GetFirstDiffPosition();
 	POSITION currentPos;
 
-	CString path1, file1;
-	SplitFilename(pathLeft, &path1, &file1, 0);
-	CString path2, file2;
-	SplitFilename(pathRight, &path2, &file2, 0);
+	String tpath1, tfile1;
+	SplitFilename(pathLeft, &tpath1, &tfile1, NULL);
+	CString path1(tpath1.c_str()), file1(tfile1.c_str());
+	String tpath2, tfile2;
+	SplitFilename(pathRight, &tpath2, &tfile2, NULL);
+	CString path2(tpath2.c_str()), file2(tfile2.c_str());
 
 	// Filenames must be identical
 	if (file1.CompareNoCase(file2) != 0)

@@ -1,6 +1,14 @@
+/** 
+ * @file  SourceControl.cpp
+ *
+ * @brief Implementation file for some source control-related functions.
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
+
 #include "StdAfx.h"
 #include <direct.h>
-
+#include "UnicodeString.h"
 #include "MainFrm.h"
 #include "Merge.h"
 #include "OptionsDef.h"
@@ -83,8 +91,10 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 			WaitStatusCursor waitstatus(s);
 			m_vssHelper.SetProjectBase(dlg.m_strProject);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase());
-			CString spath, sname;
-			SplitFilename(strSavePath, &spath, &sname, NULL);
+			String path, name;
+			SplitFilename(strSavePath, &path, &name, NULL);
+			CString spath(path.c_str());
+			CString sname(path.c_str());
 			if (!spath.IsEmpty())
 			{
 				_chdrive(_totupper(spath[0]) - 'A' + 1);
@@ -208,7 +218,10 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				END_CATCH_ALL
 			}
 
-			SplitFilename(strSavePath, &spath, &sname, 0);
+			String path, name;
+			SplitFilename(strSavePath, &path, &name, 0);
+			spath = path.c_str();
+			sname = name.c_str();
 
 			// BSP - Combine the project entered on the dialog box with the file name...
 			const UINT nBufferSize = 1024;
@@ -320,8 +333,10 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		if (userChoice == IDOK)
 		{
 			WaitStatusCursor waitstatus(_T(""));
-			CString spath, sname;
-			SplitFilename(strSavePath, &spath, &sname, 0);
+			String path, name;
+			SplitFilename(strSavePath, &path, &name, 0);
+			CString spath(path.c_str());
+			CString sname(name.c_str());
 			if (!spath.IsEmpty())
 			{
 				_chdrive(_totupper(spath[0])-'A'+1);

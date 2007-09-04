@@ -19,11 +19,12 @@
  *
  * @brief Implementation file for VSSHelper class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "VSSHelper.h"
 #include "coretools.h"
 #include "paths.h"
@@ -73,8 +74,9 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 		return FALSE;
 	}
 
-	CString strExt;
-	SplitFilename(strSavePath, NULL, NULL, &strExt);
+	String ext;
+	SplitFilename(strSavePath, NULL, NULL, &ext);
+	CString strExt(ext.c_str());
 	if (strExt.CompareNoCase(_T("vcproj")) == 0 || strExt.CompareNoCase(_T("sln")) == 0)
 	{
 		GetFullVSSPath(strSavePath, bVCPROJ);
@@ -181,13 +183,13 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 
 void VSSHelper::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
 {
-	CString strExt;
-	CString spath;
-
-	SplitFilename(strSavePath, NULL, NULL, &strExt);
+	String ext;
+	String path;
+	SplitFilename(strSavePath, &path, NULL, &ext);
+	CString spath(path.c_str());
+	CString strExt(ext.c_str()); 
 	if (strExt.CompareNoCase(_T("vcproj")))
 		bVCProj = TRUE;
-	SplitFilename(strSavePath, &spath, NULL, NULL);
 
 	strSavePath.Replace('/', '\\');
 	m_strVssProjectBase.Replace('/', '\\');
@@ -214,7 +216,8 @@ void VSSHelper::GetFullVSSPath(CString strSavePath, BOOL & bVCProj)
 			m_strVssProjectFull.Delete(0, 2);
 	}
 
-	SplitFilename(m_strVssProjectFull, &spath, NULL, NULL);
+	SplitFilename(m_strVssProjectFull, &path, NULL, NULL);
+	spath = path.c_str();
 	if (m_strVssProjectBase[m_strVssProjectBase.GetLength() - 1] != '\\')
 		m_strVssProjectBase += "\\";
 

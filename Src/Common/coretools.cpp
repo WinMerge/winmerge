@@ -23,6 +23,7 @@
 #include <afxdisp.h>
 #endif
 
+#include "UnicodeString.h"
 #include "coretools.h"
 
 #ifndef countof
@@ -106,11 +107,13 @@ BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
 	TCHAR temp[MAX_PATH] = {0};
 	if (GetModuleFileName(NULL, temp, MAX_PATH))
 	{
-		CString spath;
+		String spath;
 		SplitFilename(temp, &spath, 0, 0);
-		CString stemp = spath + '\\' + szExeFile;
+		CString stemp(spath.c_str());
+		stemp += _T('\\');
+		stemp += szExeFile;
 		if ((int)ShellExecute(pWndParent->GetSafeHwnd(), _T("open"), stemp,
-						 szCmdLine, spath, SW_SHOWNORMAL) > 32)
+			szCmdLine, spath.c_str(), SW_SHOWNORMAL) > 32)
 		{
 			result=TRUE;
 			if (szWindowCaption != NULL)
@@ -315,15 +318,21 @@ bool IsSlashOrColon(LPCTSTR pszChar, LPCTSTR begin)
 #endif
 }
 
-// Parse pathLeft, extract out up to three items
-//   - directory (pPath), with no trailing slash (but including trailing colon)
-//   - filename (pFile), including extension
-//   - extension (pExt), with no leading dot
-void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pExt)
+/**
+ * @brief Extract path name components from given full path.
+ * @param [in] pathLeft Original path.
+ * @param [out] pPath Folder name component of full path, excluding
+   trailing slash.
+ * @param [out] pFile File name part, excluding extension.
+ * @param [out] pExt Filename extension part, excluding leading dot.
+ */
+void SplitFilename(LPCTSTR pathLeft, String* pPath, String* pFile, String* pExt)
 {
 	LPCTSTR pszChar = pathLeft + _tcslen(pathLeft);
-	LPCTSTR pend=pszChar, extptr=0;
-	bool ext=false;
+	LPCTSTR pend = pszChar;
+	LPCTSTR extptr = 0;
+	bool ext = false;
+
 	while (pathLeft < --pszChar)
 	{
 		if (*pszChar == '.')
@@ -347,16 +356,16 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 			{
 				// Grab directory (omit trailing slash)
 				int len = pszChar - pathLeft;
-				if (*pszChar == ':') ++len; // Keep trailing colon ( eg, C:filename.txt)
-				TCHAR* pszDir = pPath->GetBufferSetLength(len+1);
-				_tcsncpy(pszDir, pathLeft, len);
-				pPath->ReleaseBuffer(len);
+				if (*pszChar == ':')
+					++len; // Keep trailing colon ( eg, C:filename.txt)
+				*pPath = pathLeft;
+				pPath->erase(len); // Cut rest of path
 			}
 
 			if (pFile)
 			{
 				// Grab file
-				(*pFile) = pszChar + 1;
+				*pFile = pszChar + 1;
 			}
 
 			goto endSplit;
@@ -366,7 +375,7 @@ void SplitFilename(LPCTSTR pathLeft, CString* pPath, CString* pFile, CString* pE
 	// Never found a delimiter
 	if (pFile)
 	{
-		(*pFile) = pathLeft;
+		*pFile = pathLeft;
 	}
 
 endSplit:
@@ -375,19 +384,19 @@ endSplit:
 	if (pFile && pExt && extptr)
 	{
 		int extlen = pend - extptr;
-		(*pFile) = pFile->Left(pFile->GetLength() - extlen);
+		pFile->erase(pFile->length() - extlen);
 	}
 }
 
 // Split Rational ClearCase view name (file_name@@file_version).
-void SplitViewName(LPCTSTR s, CString * path, CString * name, CString * ext)
+void SplitViewName(LPCTSTR s, String * path, String * name, String * ext)
 {
-	CString sViewName = s;
-	int nOffset = sViewName.Find(_T("@@"));
-	if (-1 != nOffset)
+	String sViewName(s);
+	int nOffset = sViewName.find(_T("@@"));
+	if (nOffset != std::string::npos)
 	{
-		sViewName = sViewName.Left(nOffset);
-		SplitFilename(sViewName, path, name, ext);
+		sViewName.erase(nOffset);
+		SplitFilename(sViewName.c_str(), path, name, ext);
 	}
 }
 #ifdef _DEBUG
@@ -406,7 +415,7 @@ void TestSplitFilename()
 	for (int i=0; i < countof(tests); i += 4)
 	{
 		LPCTSTR dir = tests[i];
-		CString path, name, ext;
+		String path, name, ext;
 		SplitFilename(dir, &path, &name, &ext);
 		LPCTSTR szpath = tests[i+1] ? tests[i+1] : _T("");
 		LPCTSTR szname = tests[i+2] ? tests[i+2] : _T("");
@@ -1195,7 +1204,11 @@ BOOL IsLocalPath(LPCTSTR path)
 }
 #endif
 
-// return module's path component (without filename)
+/**
+ * @brief Return module's path component (without filename).
+ * @param [in] hModule Module's handle.
+ * @return Module's path.
+ */
 CString GetModulePath(HMODULE hModule /* = NULL*/)
 {
 	TCHAR temp[MAX_PATH] = {0};
@@ -1203,13 +1216,17 @@ CString GetModulePath(HMODULE hModule /* = NULL*/)
 	return GetPathOnly(temp);
 }
 
-// return path component (without filename)
+/**
+ * @brief Return path component from full path.
+ * @param [in] fullpath Full path to split.
+ * @return Path without filename.
+ */
 CString GetPathOnly(LPCTSTR fullpath)
 {
 	if (!fullpath || !fullpath[0]) return _T("");
-	CString spath;
+	String spath;
 	SplitFilename(fullpath, &spath, 0, 0);
-	return spath;
+	return spath.c_str();
 }
 
 /**

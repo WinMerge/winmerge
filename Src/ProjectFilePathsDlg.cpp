@@ -3,10 +3,11 @@
  *
  * @brief Implementation file for ProjectFilePaths dialog
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "paths.h"
@@ -251,10 +252,9 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 
 	// Add projectfile extension if it is missing
 	// So we allow 'filename.otherext' but add extension for 'filename'
-	CString filename;
-	CString extension;
-	SplitFilename(strProjectFileName, NULL, &filename, &extension);
-	if (extension.IsEmpty())
+	String extension;
+	SplitFilename(strProjectFileName, NULL, NULL, &extension);
+	if (extension.empty())
 	{
 		CString projectFileExt;
 		projectFileExt.LoadString(IDS_PROJECTFILES_EXT);

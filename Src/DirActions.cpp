@@ -17,6 +17,7 @@
 
 #include "stdafx.h"
 #include "Merge.h"
+#include "UnicodeString.h"
 #include "DirView.h"
 #include "DirDoc.h"
 #include "MainFrm.h"
@@ -1429,20 +1430,21 @@ BOOL CDirView::RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName)
 
 	if (DOES_NOT_EXIST != paths_DoesPathExist(szOldFileName))
 	{
-		CString sFullName;
+		String sFullName;
 
 		SplitFilename(szOldFileName, &sFullName, NULL, NULL);
-		sFullName += _T('\\') + CString(szNewFileName);
+		sFullName += _T('\\');
+		sFullName += szNewFileName;
 
 		// No need to rename if new file already exist.
-		if ((sFullName.Compare(szOldFileName)) ||
-			(DOES_NOT_EXIST == paths_DoesPathExist(sFullName)))
+		if ((sFullName.compare(szOldFileName)) ||
+			(DOES_NOT_EXIST == paths_DoesPathExist(sFullName.c_str())))
 		{
 			CShellFileOp fileOp;
 
 			fileOp.SetOperationFlags(FO_RENAME, this, 0);
 			fileOp.AddSourceFile(szOldFileName);
-			fileOp.AddDestFile(sFullName);
+			fileOp.AddDestFile(sFullName.c_str());
 			
 			BOOL bOpStarted = FALSE;
 			bSuccess = fileOp.Go(&bOpStarted);

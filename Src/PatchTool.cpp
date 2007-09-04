@@ -19,10 +19,11 @@
  *
  * @brief Code file routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "DiffWrapper.h"
 #include "patchDlg.h"
 #include "patchtool.h"
@@ -79,9 +80,9 @@ int CPatchTool::CreatePatch()
 
 	if (ShowDialog())
 	{
-		CString path;
+		String path;
 		SplitFilename(m_dlgPatch.m_fileResult, &path, NULL, NULL);
-		if (!paths_CreateIfNeeded(path))
+		if (!paths_CreateIfNeeded(path.c_str()))
 		{
 			AfxMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
 			return 0;
