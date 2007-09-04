@@ -415,8 +415,9 @@ BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
 /// Checks if given file exists and is executable
 BOOL CWinMergeShell::CheckExecutable(CString path)
 {
-	CString ext;
-	SplitFilename(path, NULL, NULL, &ext);
+	String sExt;
+	SplitFilename(path, NULL, NULL, &sExt);
+	CString ext(sExt.c_str());
 
 	// Check extension
 	ext.MakeLower();
