@@ -27,10 +27,9 @@
 
 void string_replace(String &target, const String &find, const String &replace)
 {
-//	String copy;
-	const int replace_len = find.length();
-	int prevPos = 0;
-	int pos = target.find(find, prevPos);
+	const size_t replace_len = find.length();
+	size_t prevPos = 0;
+	size_t pos = target.find(find, prevPos);
 	while (pos >= 0)
 	{
 		target.replace(pos, replace_len, replace);
