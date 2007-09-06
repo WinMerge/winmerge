@@ -45,11 +45,14 @@ DATE:		BY:					DESCRIPTION:
 2007-08-25	Jochen Neubeck		Add COM format (introduced with 7z452 beta)
 								This format also handles MSI files, which are
 								therefore no longer passed to the CAB handler.
+2007-09-01	Jochen Neubeck		No longer #include "LangUtils.h", which has
+								moved to a different location as of 7z453 beta.
 */
 
 #include "stdafx.h"
 #include "Merge7zCommon.h"
-#include "7zip/FileManager/LangUtils.h"
+
+void ReloadLang(); //Implemented in /*/FileManager/LangUtils.cpp
 
 using namespace NWindows;
 using namespace NFile;
