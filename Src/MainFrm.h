@@ -295,6 +295,7 @@ protected:
 	afx_msg void OnUpdateToolbarSmall(CCmdUI* pCmdUI);
 	afx_msg void OnToolbarBig();
 	afx_msg void OnUpdateToolbarBig(CCmdUI* pCmdUI);
+	afx_msg void OnMove(int, int);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -323,4 +324,5 @@ SyntaxColors * GetMainSyntaxColors(); // access to the singleton set of syntax c
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
+
 

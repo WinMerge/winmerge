@@ -160,6 +160,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_SMALL, OnUpdateToolbarSmall)
 	ON_COMMAND(ID_TOOLBAR_BIG, OnToolbarBig)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_BIG, OnUpdateToolbarBig)
+	ON_WM_MOVE()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3308,6 +3309,14 @@ void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
 	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
 	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
 	pCmdUI->SetRadio(enabled && toolbar == 1);
+}
+
+
+void CMainFrame::OnMove(int, int)
+{
+	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
+	if (pFrame)
+		pFrame->UpdateSplitter();
 }
 
 /**

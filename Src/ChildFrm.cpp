@@ -602,6 +602,11 @@ void CChildFrame::SetLastCompareResult(int nResult)
 	theApp.SetLastCompareResult(nResult);
 }
 
+void CChildFrame::UpdateSplitter()
+{
+   m_wndSplitter.RecalcLayout();
+}
+
 void CChildFrame::OnTimer(UINT_PTR nIDEvent) 
 {
 	if (IsWindowVisible())
