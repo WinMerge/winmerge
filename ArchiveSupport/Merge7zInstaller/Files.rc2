@@ -1,6 +1,6 @@
 #ifndef IMPORT
 #define IMPORT(name) name
-SYSTEMTIME RCDATA {2007,9,0,4,12,0,0,0}
+SYSTEMTIME RCDATA {2007,9,0,7,12,0,0,0}
 #endif
 
 IMPORT(Merge7z432.dll)			Merge7z	"../Build/MergeRelease/Merge7z432.dll"
@@ -47,6 +47,8 @@ IMPORT(Merge7z453.dll)			Merge7z	"../Build/MergeRelease/Merge7z453.dll"
 IMPORT(Merge7z453U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z453U.dll"
 IMPORT(Merge7z454.dll)			Merge7z	"../Build/MergeRelease/Merge7z454.dll"
 IMPORT(Merge7z454U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z454U.dll"
+IMPORT(Merge7z455.dll)			Merge7z	"../Build/MergeRelease/Merge7z455.dll"
+IMPORT(Merge7z455U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z455U.dll"
 
 IMPORT(7zip_pad.xml)			7-ZIP	"../../../7z442bin/7zip_pad.xml"
 
