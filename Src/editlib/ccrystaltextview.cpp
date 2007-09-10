@@ -1270,7 +1270,7 @@ void CCrystalTextView::WrapLine( int nLineIndex, int nMaxLineWidth, int *anBreak
 void CCrystalTextView::WrapLineCached( 
                     int nLineIndex, int nMaxLineWidth, int *anBreaks, int &nBreaks )
 {
-  // if word wrap is not active, there is not any break in the line
+  // If the word wrap is not active, there is no breaks in the line
   if( !m_bWordWrap )
   {
     nBreaks = 0;
@@ -2409,15 +2409,13 @@ GetLineHeight ()
   return m_nLineHeight;
 }
 
-//BEGIN SW
 int CCrystalTextView::GetSubLines( int nLineIndex )
 {
-  /*
-  if( GetLineLength( nLineIndex ) <= GetScreenChars() )
+  if (!m_bWordWrap)
     return 1;
-  */
-  // get number of wrapped lines, this line contains of
-  int	nBreaks = 0;
+
+  // get a number of lines this wrapped lines contains
+  int nBreaks = 0;
   WrapLineCached( nLineIndex, GetScreenChars(), NULL, nBreaks );
 
   return GetEmptySubLines(nLineIndex) + nBreaks + 1;
