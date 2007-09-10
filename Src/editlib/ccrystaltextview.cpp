@@ -750,7 +750,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                 nNewTopSubLine = 0;
             }
 
-          int nScrollLines = m_nTopSubLine - nNewTopSubLine;
+          const int nScrollLines = m_nTopSubLine - nNewTopSubLine;
           m_nTopSubLine = nNewTopSubLine;
           // OnDraw() uses m_nTopLine to determine topline
           int dummy;
@@ -762,7 +762,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
         }
       else
         {
-          //	Do smooth scrolling
+          // Do smooth scrolling
           int nLineHeight = GetLineHeight();
           if (m_nTopSubLine > nNewTopSubLine)
             {
@@ -772,7 +772,7 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                   int nTopSubLine = m_nTopSubLine - nIncrement;
                   if (nTopSubLine < nNewTopSubLine)
                     nTopSubLine = nNewTopSubLine;
-                  int nScrollLines = nTopSubLine - m_nTopSubLine;
+                  const int nScrollLines = nTopSubLine - m_nTopSubLine;
                   m_nTopSubLine = nTopSubLine;
                   ScrollWindow(0, - nLineHeight * nScrollLines);
                   UpdateWindow();
@@ -787,8 +787,8 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
                 {
                   int nTopSubLine = m_nTopSubLine + nIncrement;
                   if (nTopSubLine > nNewTopSubLine)
-                  nTopSubLine = nNewTopSubLine;
-                  int nScrollLines = nTopSubLine - m_nTopSubLine;
+                    nTopSubLine = nNewTopSubLine;
+                  const int nScrollLines = nTopSubLine - m_nTopSubLine;
                   m_nTopSubLine = nTopSubLine;
                   ScrollWindow(0, - nLineHeight * nScrollLines);
                   UpdateWindow();
