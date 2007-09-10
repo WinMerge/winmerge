@@ -24,14 +24,14 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/common"
+				AdditionalIncludeDirectories=".,../src/common"
 				PreprocessorDefinitions="WIN64;_DEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
 				BasicRuntimeChecks="0"
 				SmallerTypeCheck="FALSE"
 				RuntimeLibrary="3"
 				BufferSecurityCheck="FALSE"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough=""
 				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtensionX64Debug/ShellExtension.pch"
 				AssemblerListingLocation=".\..\BuildTmp\ShellExtensionX64Debug/"
 				ObjectFile=".\..\BuildTmp\ShellExtensionX64Debug/"
@@ -106,15 +106,15 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				Name="VCCLCompilerTool"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="../src/common"
+				AdditionalIncludeDirectories=".,../src/common"
 				PreprocessorDefinitions="WIN64;NDEBUG;_WINDOWS;_USRDLL;_ATL_NO_UUIDOF"
 				StringPooling="TRUE"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="FALSE"
 				EnableFunctionLevelLinking="TRUE"
-				UsePrecompiledHeader="3"
-				PrecompiledHeaderThrough="stdafx.h"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough=""
 				PrecompiledHeaderFile=".\..\BuildTmp\ShellExtensionX64/ShellExtension.pch"
 				AssemblerListingLocation=".\..\BuildTmp\ShellExtensionX64/"
 				ObjectFile=".\..\BuildTmp\ShellExtensionX64/"
@@ -189,7 +189,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -198,7 +198,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -209,7 +209,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -218,7 +218,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -229,7 +229,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -238,7 +238,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF"/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -291,7 +291,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF"
 						BasicRuntimeChecks="3"
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
@@ -301,7 +301,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF)"
 						UsePrecompiledHeader="1"/>
 				</FileConfiguration>
 			</File>
@@ -313,7 +313,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="0"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF;$(NoInherit)"
+						PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_NO_UUIDOF"
 						BasicRuntimeChecks="3"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -322,7 +322,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF;$(NoInherit)"/>
+						PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_WINDLL;_AFXDLL;_USRDLL;_UNICODE;_ATL_STATIC_REGISTRY;_ATL_NO_UUIDOF"/>
 				</FileConfiguration>
 			</File>
 		</Filter>
@@ -354,14 +354,14 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					Name="Debug X64|Win32">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Release X64|Win32">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -372,7 +372,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -380,7 +380,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -391,7 +391,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -399,7 +399,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -410,7 +410,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -418,7 +418,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -429,7 +429,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -437,7 +437,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -448,7 +448,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -456,7 +456,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -467,7 +467,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -475,7 +475,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -486,7 +486,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -494,7 +494,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -505,7 +505,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -513,7 +513,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -524,7 +524,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -532,7 +532,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -543,7 +543,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -551,7 +551,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -562,7 +562,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -570,7 +570,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -581,7 +581,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -589,7 +589,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -600,7 +600,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -608,7 +608,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -619,7 +619,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -627,7 +627,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -638,7 +638,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -646,7 +646,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -657,7 +657,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -665,7 +665,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -676,7 +676,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -684,7 +684,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -695,7 +695,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -703,7 +703,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -714,7 +714,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -722,7 +722,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -733,7 +733,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -741,7 +741,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
@@ -752,7 +752,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="_DEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -760,7 +760,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 					ExcludedFromBuild="TRUE">
 					<Tool
 						Name="VCResourceCompilerTool"
-						PreprocessorDefinitions="NDEBUG;_AFXDLL;$(NoInherit)"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
 						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
 				</FileConfiguration>
 			</File>
