@@ -3019,13 +3019,14 @@ BOOL CMergeEditView::IsDiffVisible(int nDiff)
  * @brief Determine if difference is visible on screen.
  * @param [in] diff diff to check.
  * @param [in] nLinesBelow Allow "minimizing" the number of visible lines.
- * @return TRUE if difference is visible.
+ * @return TRUE if difference is visible, FALSE otherwise.
  */
 BOOL CMergeEditView::IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow /*=0*/)
 {
 	const int nDiffStart = GetSubLineIndex(diff.dbegin0);
 	const int nDiffEnd = GetSubLineIndex(diff.dend0);
-	const int nDiffHeight = nDiffEnd - nDiffStart + GetSubLines(diff.dend0);
+	// Diff's height is last line - first line + last line's line count
+	const int nDiffHeight = nDiffEnd - nDiffStart + GetSubLines(diff.dend0) + 1;
 
 	// If diff first line outside current view - context OR
 	// if diff last line outside current view - context OR
