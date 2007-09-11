@@ -2512,13 +2512,17 @@ void CMergeEditView::OnUpdateMergingStatus(CCmdUI *pCmdUI)
  * @param [in] nLine Destination linenumber
  * @param [in] bRealLine if TRUE linenumber is real line, otherwise
  * it is apparent line (including deleted lines)
- * @param [in] bLeft If TRUE linenumber is for left pane
+ * @param [in] pane Pane index of goto target pane (0 = left, 1 = right).
  */
 void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 {
  	CMergeDoc *pDoc = GetDocument();
+	CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
 	CMergeEditView *pLeftView = pDoc->GetLeftView();
 	CMergeEditView *pRightView = pDoc->GetRightView();
+	CMergeEditView *pCurrentView = static_cast<CMergeEditView*>
+			(pSplitterWnd->GetActivePane());
+	bool bLeftIsCurrent = pLeftView == pCurrentView ? true : false;
 	int nRealLine = nLine;
 	int nApparentLine = nLine;
 
@@ -2546,6 +2550,12 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 	pRightView->SetCursorPos(ptPos);
 	pLeftView->SetAnchor(ptPos);
 	pRightView->SetAnchor(ptPos);
+
+	// If goto target is another view - activate another view.
+	// This is done for user convenience as user probably wants to
+	// work with goto target file.
+	if ((bLeftIsCurrent && pane == 1) || (!bLeftIsCurrent && pane == 0))
+		pSplitterWnd->ActivateNext();
 }
 
 /**

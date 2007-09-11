@@ -7,6 +7,7 @@ WinMerge 2.7.5.2
   Remove MFC dependency from resource compiler (#1783581)
   Better multi-monitor support (split file view on monitor boundary) (#1788168)
   BugFix: Renaming unique item (only other side) renamed parent folder (#1787816)
+  BugFix: Goto didn't change the active pane when selecting another pane (#1791351)
   Translation updates:
   - Traditional Chinese (r4473)
 
