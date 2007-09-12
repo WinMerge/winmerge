@@ -37,10 +37,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take several minutes to finish!"
-  
-  'Set oLanguageTranslations = GetTranslationsFromPoFile("German\German.po")
-  'CreateRcFileWithTranslations "../Merge.rc", "German\MergeGermanTest.rc", oLanguageTranslations
+  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take several seconds to finish!"
   
   Set oLanguages = GetLanguages
   For Each sLanguage In oLanguages.Keys 'For all languages...
@@ -49,7 +46,7 @@ Sub Main
     End If
     Set oLanguageTranslations = GetTranslationsFromPoFile(oLanguages(sLanguage))
     If (oLanguageTranslations.Count > 0) Then 'If translations exists...
-      CreateRcFileWithTranslations "../Merge.rc", sLanguage & "\Merge" & sLanguage & "Test.rc", oLanguageTranslations
+      CreateRcFileWithTranslations "../Merge.rc", sLanguage & "\Merge" & sLanguage & ".rc", oLanguageTranslations
     End If
   Next
   
@@ -94,30 +91,37 @@ Function GetTranslationsFromPoFile(ByVal sPoPath)
       sLine = Trim(oTextFile.ReadLine)
       
       If (sLine <> "") Then 'If NOT empty line...
-        If (FoundRegExpMatch(sLine, "^msgid ""(.*)""$", oMatch) = True) Then 'If "msgid"...
-          iMsgStarted = 1
-          sMsgId = oMatch.SubMatches(0)
-        ElseIf (FoundRegExpMatch(sLine, "^msgstr ""(.*)""$", oMatch) = True) Then 'If "msgstr"...
-          iMsgStarted = 2
-          sMsgStr = oMatch.SubMatches(0)
-        ElseIf (FoundRegExpMatch(sLine, "^""(.*)""$", oMatch) = True) Then 'If "msgid" or "msgstr" continued...
-          If (iMsgStarted = 1) Then
-            sMsgId = sMsgId & oMatch.SubMatches(0)
-          ElseIf (iMsgStarted = 2) Then
-            sMsgStr = sMsgStr & oMatch.SubMatches(0)
+        If (Left(sLine, 1) <> "#") Then 'If NOT comment line...
+          '--------------------------------------------------------------------------------
+          ' Note: We must replace \" temporary with FormFeed and convert them later to ""
+          '--------------------------------------------------------------------------------
+          sLine = Replace(sLine, "\""", vbFormFeed)
+          If (Left(sLine, 7) = "msgid """) Then 'If "msgid"...
+            iMsgStarted = 1
+            sMsgId = GetRegExpSubMatch(sLine, "^msgid ""(.*)""$")
+          ElseIf (Left(sLine, 8) = "msgstr """) Then 'If "msgstr"...
+            iMsgStarted = 2
+            sMsgStr = GetRegExpSubMatch(sLine, "^msgstr ""(.*)""$")
+          ElseIf (FoundRegExpMatch(sLine, "^""(.*)""$", oMatch) = True) Then 'If "msgid" or "msgstr" continued...
+            If (iMsgStarted = 1) Then
+              sMsgId = sMsgId & oMatch.SubMatches(0)
+            ElseIf (iMsgStarted = 2) Then
+              sMsgStr = sMsgStr & oMatch.SubMatches(0)
+            End If
           End If
+          sMsgId = Replace(sMsgId, vbFormFeed, """""")
+          sMsgStr = Replace(sMsgStr, vbFormFeed, """""")
         End If
       Else 'If empty line
         iMsgStarted = 0
       End If
       
-      If (iMsgStarted = 0) Then 'If not inside a translation...
+      If (iMsgStarted = 0) Then 'If NOT inside a translation...
         If (sMsgId <> "") And (sMsgStr <> "") And (sMsgId <> sMsgStr) Then 'If translated...
           oTranslations.Add sMsgId, sMsgStr
-          iMsgStarted = 0
-          sMsgId = ""
-          sMsgStr = ""
         End If
+        sMsgId = ""
+        sMsgStr = ""
       End If
     Loop
     oTextFile.Close
@@ -141,20 +145,24 @@ Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByV
       sLanguageLine = sMasterLine
       sMasterLine = Trim(sMasterLine) 'Save Masterline trimmed!
       
-      If (FoundRegExpMatch(sMasterLine, "IDR_.* MENU", oMatch) = True) Then 'MENU...
+      If (InStr(sMasterLine, " MENU") > 0) And (InStr(sMasterLine, "IDR_") > 0) Then 'MENU...
         iBlockType = MENU_BLOCK
-      ElseIf (FoundRegExpMatch(sMasterLine, "IDD_.* DIALOGEX", oMatch) = True) Then 'DIALOGEX...
+      ElseIf (InStr(sMasterLine, " DIALOGEX") > 0) Then 'DIALOGEX...
         iBlockType = DIALOGEX_BLOCK
       ElseIf (sMasterLine = "STRINGTABLE") Then 'STRINGTABLE...
         iBlockType = STRINGTABLE_BLOCK
-      ElseIf (FoundRegExpMatch(sMasterLine, "VS_.* VERSIONINFO", oMatch) = True) Then 'VERSIONINFO...
+      ElseIf (InStr(sMasterLine, " VERSIONINFO") > 0) Then 'VERSIONINFO...
         iBlockType = VERSIONINFO_BLOCK
-      ElseIf (FoundRegExpMatch(sMasterLine, "IDR_.* ACCELERATORS", oMatch) = True) Then 'ACCELERATORS...
+      ElseIf (InStr(sMasterLine, " ACCELERATORS") > 0) Then 'ACCELERATORS...
         iBlockType = ACCELERATORS_BLOCK
+      ElseIf (sMasterLine = "BEGIN") Then 'BEGIN...
+        'IGNORE FOR SPEEDUP!
       ElseIf (sMasterLine = "END") Then 'END...
         If (iBlockType = STRINGTABLE_BLOCK) Then 'If inside stringtable...
           iBlockType = NO_BLOCK
         End If
+      ElseIf (Left(sMasterLine, 2) = "//") Then 'If comment line...
+        'IGNORE FOR SPEEDUP!
       ElseIf (sMasterLine <> "") Then 'If NOT empty line...
         Select Case iBlockType
           Case NO_BLOCK:
@@ -172,17 +180,24 @@ Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByV
               End If
             ElseIf (InStr(sMasterLine, "#include ""resource.h""") > 0) Then '#include "resource.h"...
               sLanguageLine = Replace(sLanguageLine, "#include ""resource.h""", "#include ""..\..\resource.h""")
+            ElseIf (InStr(sMasterLine, "Merge.rc2") > 0) Then 'Merge.rc2...
+              sLanguageLine = ""
             End If
             
           Case MENU_BLOCK, DIALOGEX_BLOCK, STRINGTABLE_BLOCK:
-            If (FoundRegExpMatches(sMasterLine, """(.*?)""", oMatches) = True) Then 'String...
-              For Each oMatch In oMatches 'For all strings...
-                sMsgId = oMatch.SubMatches(0)
-                If (sMsgId <> "") And (oTranslations.Exists(sMsgId) = True) Then 'If translation located...
-                  sMsgStr = oTranslations(sMsgId)
-                  sLanguageLine = Replace(sLanguageLine, """" & sMsgId & """", """" & sMsgStr & """")
-                End If
-              Next
+            If (InStr(sMasterLine, """") > 0) Then 'If quote found (for speedup)...
+              '--------------------------------------------------------------------------------
+              ' Note: We must replace "" temporary with FormFeed...
+              '--------------------------------------------------------------------------------
+              If (FoundRegExpMatches(Replace(sMasterLine, """""", vbFormFeed), """(.*?)""", oMatches) = True) Then 'String...
+                For Each oMatch In oMatches 'For all strings...
+                  sMsgId = Replace(oMatch.SubMatches(0), vbFormFeed, """""")
+                  If (sMsgId <> "") And (oTranslations.Exists(sMsgId) = True) Then 'If translation located...
+                    sMsgStr = oTranslations(sMsgId)
+                    sLanguageLine = Replace(sLanguageLine, """" & sMsgId & """", """" & sMsgStr & """")
+                  End If
+                Next
+              End If
             End If
             
           Case VERSIONINFO_BLOCK:
@@ -248,5 +263,16 @@ Function FoundRegExpMatches(ByVal sString, ByVal sPattern, ByRef oMatchesReturn)
   If (oRegExp.Test(sString) = True) Then
     Set oMatchesReturn = oRegExp.Execute(sString)
     FoundRegExpMatches = True
+  End If
+End Function
+
+''
+' ...
+Function GetRegExpSubMatch(ByVal sString, ByVal sPattern)
+  Dim oMatch
+  
+  GetRegExpSubMatch = ""
+  If (FoundRegExpMatch(sString, sPattern, oMatch)) Then 'If pattern found...
+    GetRegExpSubMatch = oMatch.SubMatches(0)
   End If
 End Function

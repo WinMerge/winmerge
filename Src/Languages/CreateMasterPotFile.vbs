@@ -31,7 +31,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take several seconds to finish!"
+  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take few seconds to finish!"
   
   Set oStrings = GetStringsFromRcFile("../Merge.rc", oComments, sCodePage)
   CreateMasterPotFile "English.pot", oStrings, oComments, sCodePage
@@ -48,25 +48,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
   Dim oBlacklist, oStrings, oRcFile, sLine, iLine
   Dim sRcFileName, iBlockType, sReference, sString, sComment, oMatches, oMatch, sTemp
   
-  '--------------------------------------------------------------------------------
-  ' Blacklist...
-  '--------------------------------------------------------------------------------
-  Set oBlacklist = CreateObject("Scripting.Dictionary")
-  oBlacklist.Add "_HDR_POPUP_", True
-  oBlacklist.Add "_ITEM_POPUP_", True
-  oBlacklist.Add "_POPUP_", True
-  oBlacklist.Add "Btn", True
-  oBlacklist.Add "Button", True
-  oBlacklist.Add "Button1", True
-  oBlacklist.Add "Dif", True
-  oBlacklist.Add "IDS_SAVEVSS_FMT", True
-  oBlacklist.Add "List1", True
-  oBlacklist.Add "msctls_progress32", True
-  oBlacklist.Add "Static", True
-  oBlacklist.Add "SysListView32", True
-  oBlacklist.Add "SysTreeView32", True
-  oBlacklist.Add "Tree1", True
-  '--------------------------------------------------------------------------------
+  Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
   Set oStrings = CreateObject("Scripting.Dictionary")
   Set oComments = CreateObject("Scripting.Dictionary")
@@ -85,20 +67,24 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
       sString = ""
       sComment = ""
       
-      If (FoundRegExpMatch(sLine, "IDR_.* MENU", oMatch) = True) Then 'MENU...
+      If (InStr(sLine, " MENU") > 0) And (InStr(sLine, "IDR_") > 0) Then 'MENU...
         iBlockType = MENU_BLOCK
-      ElseIf (FoundRegExpMatch(sLine, "IDD_.* DIALOGEX", oMatch) = True) Then 'DIALOGEX...
+      ElseIf (InStr(sLine, " DIALOGEX") > 0) Then 'DIALOGEX...
         iBlockType = DIALOGEX_BLOCK
       ElseIf (sLine = "STRINGTABLE") Then 'STRINGTABLE...
         iBlockType = STRINGTABLE_BLOCK
-      ElseIf (FoundRegExpMatch(sLine, "VS_.* VERSIONINFO", oMatch) = True) Then 'VERSIONINFO...
+      ElseIf (InStr(sLine, " VERSIONINFO") > 0) Then 'VERSIONINFO...
         iBlockType = VERSIONINFO_BLOCK
-      ElseIf (FoundRegExpMatch(sLine, "IDR_.* ACCELERATORS", oMatch) = True) Then 'ACCELERATORS...
+      ElseIf (InStr(sLine, " ACCELERATORS") > 0) Then 'ACCELERATORS...
         iBlockType = ACCELERATORS_BLOCK
+      ElseIf (sLine = "BEGIN") Then 'BEGIN...
+        'IGNORE FOR SPEEDUP!
       ElseIf (sLine = "END") Then 'END...
         If (iBlockType = STRINGTABLE_BLOCK) Then 'If inside stringtable...
           iBlockType = NO_BLOCK
         End If
+      ElseIf (Left(sLine, 2) = "//") Then 'If comment line...
+        'IGNORE FOR SPEEDUP!
       ElseIf (sLine <> "") Then 'If NOT empty line...
         Select Case iBlockType
           Case NO_BLOCK:
@@ -112,17 +98,22 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
             End If
             
           Case MENU_BLOCK, DIALOGEX_BLOCK, STRINGTABLE_BLOCK:
-            If (FoundRegExpMatches(sLine, """(.*?)""", oMatches) = True) Then 'String...
-              For Each oMatch In oMatches 'For all strings...
-                sTemp = oMatch.SubMatches(0)
-                If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
-                  If (oStrings.Exists(sTemp) = True) Then 'If the key is already used...
-                    oStrings(sTemp) = oStrings(sTemp) & vbTab & sReference
-                  Else 'If the key is NOT already used...
-                    oStrings.Add sTemp, sReference
+            If (InStr(sLine, """") > 0) Then 'If quote found (for speedup)...
+              '--------------------------------------------------------------------------------
+              ' Note: We must replace "" temporary with FormFeed and convert them later to \"
+              '--------------------------------------------------------------------------------
+              If (FoundRegExpMatches(Replace(sLine, """""", vbFormFeed), """(.*?)""", oMatches) = True) Then 'String...
+                For Each oMatch In oMatches 'For all strings...
+                  sTemp = Replace(oMatch.SubMatches(0), vbFormFeed, "\""")
+                  If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
+                    If (oStrings.Exists(sTemp) = True) Then 'If the key is already used...
+                      oStrings(sTemp) = oStrings(sTemp) & vbTab & sReference
+                    Else 'If the key is NOT already used...
+                      oStrings.Add sTemp, sReference
+                    End If
                   End If
-                End If
-              Next
+                Next
+              End If
             End If
             
           Case VERSIONINFO_BLOCK:
@@ -167,6 +158,29 @@ End Function
 
 ''
 ' ...
+Function GetStringBlacklist(ByVal sTxtFilePath)
+  Dim oBlacklist, oTxtFile, sLine
+  
+  Set oBlacklist = CreateObject("Scripting.Dictionary")
+  
+  If (oFSO.FileExists(sTxtFilePath) = True) Then 'If the blacklist file exists...
+    Set oTxtFile = oFSO.OpenTextFile(sTxtFilePath, ForReading)
+    Do Until oTxtFile.AtEndOfStream = True 'For all lines...
+      sLine = Trim(oTxtFile.ReadLine)
+      
+      If (sLine <> "") Then
+        If (oBlacklist.Exists(sLine) = False) Then 'If the key is NOT already used...
+          oBlacklist.Add sLine, True
+        End If
+      End If
+    Loop
+    oTxtFile.Close
+  End If
+  Set GetStringBlacklist = oBlacklist
+End Function
+
+''
+' ...
 Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal oComments, ByVal sCodePage)
   Dim oPotFile, sMsgId, aComments, aReferences, i
   
@@ -194,10 +208,12 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal oComments, ByVal s
   oPotFile.WriteLine """X-Generator: CreateMasterPotFile.vbs\n"""
   oPotFile.WriteLine
   For Each sMsgId In oStrings.Keys 'For all strings...
-    aComments = SplitByTab(oComments(sMsgId))
-    For i = LBound(aComments) To UBound(aComments) 'For all comments...
-      oPotFile.WriteLine "#. " & aComments(i)
-    Next
+    If (oComments(sMsgId) <> "") Then 'If comments exists...
+      aComments = SplitByTab(oComments(sMsgId))
+      For i = LBound(aComments) To UBound(aComments) 'For all comments...
+        oPotFile.WriteLine "#. " & aComments(i)
+      Next
+    End If
     aReferences = SplitByTab(oStrings(sMsgId))
     For i = LBound(aReferences) To UBound(aReferences) 'For all references...
       oPotFile.WriteLine "#: " & aReferences(i)

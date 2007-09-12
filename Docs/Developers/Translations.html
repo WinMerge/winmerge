@@ -19,6 +19,11 @@
       border-left: 4px solid #FFCC00;
       border-bottom: 1px solid #FFCC00;
     }
+    h4 {
+      padding: 2px;
+      border-left: 8px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
+    }
     pre {
       margin-left: 25px;
       margin-right: 25px;
@@ -37,6 +42,10 @@
       background-color: #DDDDFF;
       border: 1px solid blue;
     }
+    acronym {
+      cursor: help;
+      border-bottom: 1px dotted black;
+    }
   -->
   </style>
 </head>
@@ -45,12 +54,15 @@
 <ul>
   <li><a href="#translate">I want to translate into my own language</a></li>
   <li><a href="#whatToTranslate">What can I translate?</a></li>
-  <li><a href="#developer">Instructions for those who know Subversion and Visual C++</a></li>
-  <li><a href="#everybody">Instructions for everybody else</a></li>
+  <li><a href="#winmerge">Translating WinMerge</a>
+    <ul>
+      <li><a href="#winmerge_new">Add new language to WinMerge</a></li>
+      <li><a href="#winmerge_update">Update existing language</a></li>
+    </ul>
+  </li>
   <li><a href="#shellextension">Translating ShellExtension</a></li>
   <li><a href="#installer">Translating Installer</a></li>
   <li><a href="#readme">Translating ReadMe.txt</a></li>
-  <li><a href="#helper">Helper</a></li>
 </ul>
 
 <h3><a name="translate">I want to translate into my own language</a></h3>
@@ -60,13 +72,11 @@
 
 <p>We have a list with the <a href="http://winmerge.org/Wiki/index.php?title=Translations">status of current translations</a>, so you can check if your language is already available and/or it needs to be updated.</p>
 
-<p class="important">Please remember WinMerge is an Open Source project. Send translation updates to us as <code>.rc</code> file source patches. We WON't accept modified <code>.lang</code> binary files. We need the sources.</p>
-
 <h3><a name="whatToTranslate">What can I translate?</a></h3>
-Listings below show what you can actually translate for WinMerge. And what is
-not useful to translate.
+<p>Listings below show what you can actually translate for WinMerge. And what is
+not useful to translate.</p>
 
-You can translate:
+<p>You can translate:</p>
 <ul>
   <li>WinMerge program (visible strings, dialogs, messageboxes)</li>
   <li>Explorer integration component (ShellExtension)</li>
@@ -74,79 +84,55 @@ You can translate:
   <li>Read-me text shown in installer and in Start-menu</li>
 </ul>
 
-Currently you cannot translate:
+<p>Currently you cannot translate:</p>
 <ul>
   <li>User manual</li>
   <li>Web site</li>
   <li>Various other documentation</li>
 </ul>
 
-Yes, we know, translating user manual would be a good thing. But currently we
+<p>Yes, we know, translating user manual would be a good thing. But currently we
 don't have a way to compile and show translated manual to users. If somebody
-can help us with this, we are of course interested.
+can help us with this, we are of course interested.</p>
 
-<h3><a name="developer">Instructions for those who know Subversion and Visual C++</a></h3>
-<p>Grab a copy of the source from <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a>.</p>
-<p>You will need to translate all the strings in <code>Src\Merge.rc</code> to your language. Make a <code>Merge<em>YourLanguage</em>.rc</code> and upload it to SF.net as a patch <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">here</a>.
-If we have already a translation from your language, you will find the file under the <code>Src\Languages\<em>YourLanguage</em>\</code> folder.</p>
-<p>Then one of the developers will commit it to Subversion and it will be released with the next release.</p>
-<p class="note">Please try to avoid changing dialog layout when translating.
-The layout should be shared by all translations as much as possible, to make merging (and future translation changes) easier.
-You can of course make controls wider to fit longer texts, but you should not move buttons and other controls if not really necessary.<br /><br />
-If you want to improve dialog layout (we welcome UI improvements) you should submit it as <code>Src\Merge.rc</code> patch so it will be merged to all translations.</p>
+<h3><a name="winmerge">Translating WinMerge</a></h3>
+<p>We use <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> PO files for the translation of the WinMerge program.
+<acronym title="Portable Object">PO</acronym> files are plain text, so you can even translate using a normal text editor.
+But we recommend that you use <a href="http://www.poedit.net/">poEdit</a> or other tools that can handle and manipulate PO files.</p>
 
-<h3><a name="everybody">Instructions for everybody else</a></h3>
+<p>Grab a copy of the source code from <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> or
+go to <a href="http://winmerge.org/downloads/">our download site</a> and download the latest archive with sources.
+If you can't find it, then please <a href="mailto:winmerge-support@lists.sourceforge.net">ask us</a> and we will send the file to you.</p>
 
-<p>You must translate all the strings inside a file called <code>Merge.rc</code> into your language.</p>
-<p>The easiest way to get a copy of <code>Merge.rc</code> is to go to <a href="http://sourceforge.net/project/showfiles.php?group_id=13216">our download site</a> and download the latest .zip with sources. If you can't find it, then please <a href="mailto:winmerge-support@lists.sourceforge.net">ask us</a> and we will send the file to you.</p>
-<p>The file <code>Merge.rc</code> is located under the <code>Src\</code> folder in the source code. Just copy the file to <code>Merge<em>YourLanguage</em>.rc</code> and translate it.
-If you only want to improve a current translation, you find the file under the <code>Src\Languages\<em>YourLanguage</em>\</code> folder.</p>
+<p>The PO template <code>English.pot</code> is located under the <code>Src\Languages\</code> folder in the source code
+and the <code><em>LanguageName</em>.po</code> translation files are there under the <code><em>LanguageName</em></code> subfolders.</p>
 
-<p>If you have Visual Studio, then we suggest you use that to do the translation. If you do not have Visual Studio, then here are some instructions for you.</p>
+<h4><a name="winmerge_new">Add new language to WinMerge</a></h4>
+<ol>
+  <li><p>Copy and rename <code>English.pot</code> to <code><em>YourLanguage</em>\<em>YourLanguage</em>.po</code>,
+  where <em>YourLanguage</em> is the english name of your language.</p></li>
+  <li><p>Now translate what you can using <a href="http://www.poedit.net/">poEdit</a>.
+  If you are not sure with one or the other translation, mark it as fuzzy.
+  You can enter a comment in poEdit to give some information about your thoughts to other translators.</p></li>
+  <li><p>Once you have translated all the strings, then you need to upload your PO file to our <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patch section</a>
+  (please leave your contact information in case there are any problems that need to be resolved).
+  In case you have problems uploading the patch, you can also send it to us by <a href="mailto:winmerge-support@lists.sourceforge.net">e-mail</a>.</p></li>
+  <li><p>One of the developers will compile and test your translation; if there are problems, we will contact you to get them resolved.
+  When everything is working your translation will be included in the next release of WinMerge.</p></li>
+  <li><p>When the next major release is imminent, we will notify you again to give you a chance to update the translation with any new/changed strings.</p></li>
+</ol>
 
-<p>You only have to translate the strings between the quotes in <code>Merge<em>YourLanguage</em>.rc</code>. Here is an example. The English version looks like this:</p>
-
-<pre>
-    CONTROL         "Insert &amp;Spaces",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,77,72,59,10
-</pre>
-<p>And here is the translation into Danish:</p>
-<pre>
-    CONTROL         "Indsæt &amp;mellemrum",IDC_PROP_INSERT_SPACES,"Button",
-                    BS_AUTORADIOBUTTON,77,72,59,10
-</pre>
-
-<p>Here are a couple of rules to follow:</p>
-<ul>
-  <li>Do not translate the first 75 lines.</li>
-  <li>Do not translate anything that is all uppercase letters.</li>
-  <li>
-    The <code>&amp;</code> sign is for accelerator buttons, try to make them meaningful in your language.<br />
-    <em>The Chinese translations handle accelerators by including them in parentheses at the end of the string (and using the English accelerators), eg, "状态栏(&amp;S)".<br />
-    This is per the instructions for double-byte languages given in section "Access Key Definition" in Microsoft's Localization guidelines.</em>
-  </li>
-  <li>Don't translate the following strings, as they have special meaning in Visual C++: <code>"Button"</code>, <code>"MS Sans Serif"</code> and <code>"MS Shell Dlg"</code>.</li>
-</ul>
-
-<p>Please find this line in <code>Merge<em>YourLanguage</em>.rc</code></p>
-<pre>
-            VALUE "FileDescription", "WinMerge Application\0"
-</pre>
-<p>Just before that line, we recommend you put a line like this with your own name in it.</p>
-<pre>
-            VALUE "Comments", "Translated by Christian List\0"
-</pre>
-<p>This ensures that you get credit for the translation. We will of course also add your name to the <a href="http://winmerge.org/Wiki/index.php?title=Translations">status table</a>.</p>
-
-<p>Once you have translated all the strings, then you need to upload your translation to our patch section <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">here</a> (please leave your contact information in case there are any problems that need to be resolved). In case you have problems uploading the patch, you can also send it to us by e-mail 
-<a href="mailto:winmerge-support@lists.sourceforge.net">here</a>.</p>
-
-<p>Then one of the developers will compile and test your translation; if there are problems, we will contact you to get them resolved. When everything is working your translation will be included in the next release of WinMerge.</p>
-
-<p>When the next major release is imminent, we will notify you again to give you a chance to update the translation with any new/changed strings.</p>
+<h4><a name="winmerge_update">Update existing language</a></h4>
+<ol>
+  <li>Get the <code>English.pot</code> template and the <code><em>YourLanguage</em>.po</code> file you want to improve.</li>
+  <li>Start <a href="http://www.poedit.net/">poEdit</a> with <code><em>YourLanguage</em>.po</code> and select <em>Update from .pot file</em> from the "Catalog" menu.</li>
+  <li>Select <code>English.pot</code> and wait until poEdit has finished merging the template and the current translation.</li>
+  <li>The <em>untranslated</em> strings (and <em>fuzzy</em> translations) are always at the top of the list.</li>
+  <li>Translate what you can and upload the resulting PO file to SF.net <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a patch</a>.</li>
+</ol>
 
 <h3><a name="shellextension">Translating ShellExtension</a></h3>
-<p>ShellExtension can be translated by translating <code>.rc</code> resource file similarly to WinMerge executable.
+<p>ShellExtension can be translated by translating all the strings <em>between quotes</em> inside a <code>.rc</code> resource file.
 ShellExtension resource files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/ShellExtension/Languages/">WinMerge\ShellExtension\Languages\</a></code> folder.
 There are only few strings to translate so it should be fast to do.</p>
 
@@ -167,26 +153,5 @@ from your improvements. We'll pick those updates then also.</p>
 and is added to Start-menu. Translated versions of <code>ReadMe.txt</code> are
 in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/Languages/">WinMerge\Docs\Users\Languages\</a></code> folder. And master <code>ReadMe.txt</code> is
 in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/ReadMe.txt">WinMerge\Docs\Users\ReadMe.txt</a></code>.</p>
-
-<h3><a name="helper">Helper</a></h3>
-<h4><code>CreateReviewPoFiles.vbs</code></h4>
-<p>With this VBScript file under the <code>Src\Languages\</code> folder you can create <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> PO files to review the translations.
-The script tries to collect all strings from the resource files and save the original and translated strings into PO files. For each language you will find the PO file under the language subfolder: <code>Src\Languages\<em>Language</em>\<em>Language</em>Review.po</code>.
-<strong>The script can take several minutes to finish!</strong></p>
-<p>If you have a PO file from your language, you could use a simple text editor or better <a href="http://www.poedit.net">poEdit</a> to review the file:</p>
-<pre>#: IDD_PROPPAGE_LARGE.IDC_SINGLE_INSTANCE
-msgid "All&amp;ow only one instance to run"
-msgstr "&amp;Nur eine Programm-Instanz zulassen"
-
-#: IDD_PROPPAGE_LARGE.IDC_ASK_MULTIWINDOW_CLOSE
-#, fuzzy
-msgid "As&amp;k when closing multiple windows"
-msgstr "As&amp;k when closing multiple windows"</pre>
-<p>All unsure strings are marked as <em>fuzzy</em> (if you use a text editor search for the <code>fuzzy</code> keyword).
-The <em>reference</em> (the text after <code>#:</code>) is a indication for the position in the resource file.
-Search for the keywords (separated by <code>.</code>) in the file <code>Merge<em>YourLanguage</em>.rc</code> and you should find the untranslated string.</p>
-<p class="important">Do not edit the PO files! PO files are only for translation <em>reviewing/checking</em> and changes done to them are not applied to resource files.</p>
-<p>The script should find most of the translations, but maybe not all.
-So you should better search the <code>.rc</code> file at the end by yourself for untranslated strings.</p>
 </body>
 </html>

@@ -1,0 +1,21 @@
+(filter name)
+[VERSION COPYRIGHT GOES HERE]
+_HDR_POPUP_
+_ITEM_POPUP_
+_POPUP_
+<PlaceHolder>
+0
+0.00
+Btn
+Button
+Button1
+Dif
+IDS_SAVEVSS_FMT
+List1
+MS Shell Dlg
+msctls_progress32
+Static
+SysListView32
+SysTreeView32
+Tree1
+Version 1.0

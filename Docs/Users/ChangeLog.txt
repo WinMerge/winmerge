@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.5.3
+  Use PO files for translations (generate RC-files from PO-files)
+
 WinMerge 2.7.5.2 (r4528)
   Graphical improvements to location pane (#1770175)
   Remove MFC dependency from resource compiler (#1783581)

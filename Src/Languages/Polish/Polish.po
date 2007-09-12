@@ -1,0 +1,6605 @@
+# This file is part from WinMerge <http://winmerge.org/>
+# Released under the "GNU General Public License"
+#
+# ID line follows -- this is updated by SVN
+# $Id$
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WinMerge\n"
+"Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
+"POT-Creation-Date: 2007-08-14 22:11+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Polish <winmerge-translate@lists.sourceforge.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CP1250\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Polish\n"
+"X-Poedit-SourceCharset: CP1250\n"
+"X-Poedit-Basepath: ../../\n"
+
+#. LANGUAGE, SUBLANGUAGE
+#: Merge.rc:22
+#: Merge.rc:51
+#: Merge.rc:2951
+#, c-format
+msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
+msgstr "LANG_POLISH, SUBLANG_DEFAULT"
+
+#. Codepage
+#: Merge.rc:23
+#: Merge.rc:52
+#: Merge.rc:2952
+#, c-format
+msgid "1252"
+msgstr "1250"
+
+#: Merge.rc:82
+#: Merge.rc:109
+#, c-format
+msgid "C&opy to Right"
+msgstr "Kopiuj na praw¹"
+
+#: Merge.rc:83
+#: Merge.rc:110
+#, c-format
+msgid "Cop&y to Left"
+msgstr "Kopiuj na lew¹"
+
+#: Merge.rc:85
+#, c-format
+msgid "&Select Line Difference"
+msgstr "Zaznacz ró¿nicê w &linii"
+
+#: Merge.rc:87
+#, c-format
+msgid "&Undo"
+msgstr "&Cofnij"
+
+#: Merge.rc:88
+#, c-format
+msgid "&Redo"
+msgstr "&Powtórz"
+
+#: Merge.rc:90
+#: Merge.rc:112
+#, c-format
+msgid "Cu&t"
+msgstr "&Wytnij"
+
+#: Merge.rc:91
+#: Merge.rc:113
+#: Merge.rc:492
+#, c-format
+msgid "&Copy"
+msgstr "&Kopiuj"
+
+#: Merge.rc:92
+#: Merge.rc:114
+#, c-format
+msgid "&Paste"
+msgstr "Wk&lej"
+
+#: Merge.rc:94
+#: Merge.rc:573
+#, c-format
+msgid "&Goto..."
+msgstr "&PrzejdŸ do"
+
+#: Merge.rc:96
+#, c-format
+msgid "Op&en"
+msgstr "&Otwórz"
+
+#: Merge.rc:98
+#: Merge.rc:515
+#: Merge.rc:521
+#, c-format
+msgid "with &Registered Application"
+msgstr "w za&rejestrowanej aplikacji"
+
+#: Merge.rc:99
+#: Merge.rc:516
+#: Merge.rc:522
+#, c-format
+msgid "with &External Editor"
+msgstr "w &zewnêtrznym edytorze"
+
+#: Merge.rc:100
+#: Merge.rc:517
+#: Merge.rc:523
+#, c-format
+msgid "&with..."
+msgstr "&w..."
+
+#: Merge.rc:120
+#: Merge.rc:198
+#: Merge.rc:312
+#, c-format
+msgid "&File"
+msgstr "&Plik"
+
+#: Merge.rc:122
+#: Merge.rc:200
+#: Merge.rc:314
+#, c-format
+msgid "&New\tCtrl+N"
+msgstr "&Nowy\tCtrl+N"
+
+#: Merge.rc:123
+#: Merge.rc:201
+#: Merge.rc:315
+#, c-format
+msgid "&Open...\tCtrl+O"
+msgstr "&Porównaj...\tCtrl+O"
+
+#: Merge.rc:125
+#, c-format
+msgid "Open Project...\tCtrl+J"
+msgstr "Otwórz projekt ...\tCtrl+J"
+
+#: Merge.rc:126
+#: Merge.rc:204
+#: Merge.rc:318
+#, c-format
+msgid "Sa&ve Project..."
+msgstr "Zapi&sz projekt..."
+
+#: Merge.rc:128
+#, c-format
+msgid "Recent Projects"
+msgstr ""
+
+#: Merge.rc:130
+#: Merge.rc:211
+#: Merge.rc:348
+#, c-format
+msgid "E&xit"
+msgstr "Zakoñcz"
+
+#: Merge.rc:132
+#: Merge.rc:213
+#: Merge.rc:350
+#, c-format
+msgid "&Edit"
+msgstr "&Edycja"
+
+#: Merge.rc:134
+#: Merge.rc:217
+#: Merge.rc:384
+#, c-format
+msgid "&Options..."
+msgstr "&Opcje..."
+
+#: Merge.rc:136
+#: Merge.rc:219
+#: Merge.rc:386
+#, c-format
+msgid "&View"
+msgstr "&Widok"
+
+#: Merge.rc:138
+#: Merge.rc:230
+#: Merge.rc:388
+#, c-format
+msgid "Select &Font..."
+msgstr "Zmi&eñ czcionkê..."
+
+#: Merge.rc:139
+#: Merge.rc:231
+#: Merge.rc:389
+#, c-format
+msgid "Use Default F&ont"
+msgstr "Czcionka &domyœlna"
+
+#: Merge.rc:141
+#: Merge.rc:233
+#: Merge.rc:403
+#, c-format
+msgid "&Toolbar"
+msgstr ""
+
+#: Merge.rc:143
+#: Merge.rc:235
+#: Merge.rc:405
+#, c-format
+msgid "&None"
+msgstr ""
+
+#: Merge.rc:144
+#: Merge.rc:236
+#: Merge.rc:406
+#, c-format
+msgid "&Small"
+msgstr ""
+
+#: Merge.rc:145
+#: Merge.rc:237
+#: Merge.rc:407
+#, c-format
+msgid "&Big"
+msgstr ""
+
+#: Merge.rc:147
+#: Merge.rc:239
+#: Merge.rc:409
+#, c-format
+msgid "&Status Bar"
+msgstr "Pasek s&tanu"
+
+#: Merge.rc:148
+#: Merge.rc:240
+#: Merge.rc:410
+#, c-format
+msgid "Ta&b Bar"
+msgstr ""
+
+#: Merge.rc:150
+#: Merge.rc:243
+#: Merge.rc:414
+#, c-format
+msgid "&Language..."
+msgstr "&Jêzyk..."
+
+#: Merge.rc:152
+#: Merge.rc:264
+#: Merge.rc:436
+#, c-format
+msgid "&Tools"
+msgstr "&Narzêdzia"
+
+#: Merge.rc:154
+#: Merge.rc:267
+#: Merge.rc:438
+#, c-format
+msgid "&Filters..."
+msgstr "&Filtry..."
+
+#: Merge.rc:155
+#: Merge.rc:268
+#: Merge.rc:439
+#, c-format
+msgid "&Generate Patch..."
+msgstr "&Generuj patch..."
+
+#: Merge.rc:157
+#: Merge.rc:271
+#: Merge.rc:442
+#, c-format
+msgid "&Plugins"
+msgstr "&Wtyczki"
+
+#: Merge.rc:159
+#: Merge.rc:273
+#: Merge.rc:444
+#, c-format
+msgid "&Manual Unpacking"
+msgstr "Rozpakuj &rêcznie"
+
+#: Merge.rc:160
+#: Merge.rc:274
+#: Merge.rc:445
+#, c-format
+msgid "&Automatic Unpacking"
+msgstr "Rozpakuj &automatycznie"
+
+#: Merge.rc:162
+#: Merge.rc:276
+#: Merge.rc:447
+#, c-format
+msgid "&Edit with Unpacker"
+msgstr "&Edytuj w programie rozpakowuj¹cym"
+
+#: Merge.rc:164
+#: Merge.rc:278
+#: Merge.rc:454
+#, c-format
+msgid "&Reload plugins"
+msgstr "&Prze³aduj wtyczki"
+
+#: Merge.rc:166
+#: Merge.rc:280
+#: Merge.rc:456
+#, c-format
+msgid "&Debug"
+msgstr ""
+
+#: Merge.rc:168
+#: Merge.rc:282
+#: Merge.rc:458
+#, c-format
+msgid "&Load Config..."
+msgstr "Za³a&duj ustawienia..."
+
+#: Merge.rc:169
+#: Merge.rc:283
+#: Merge.rc:459
+#, c-format
+msgid "&Reset Options"
+msgstr "Ze&ruj opcje"
+
+#: Merge.rc:171
+#: Merge.rc:285
+#: Merge.rc:461
+#, c-format
+msgid "&Window"
+msgstr "&Okno"
+
+#: Merge.rc:173
+#: Merge.rc:287
+#: Merge.rc:463
+#, c-format
+msgid "Cl&ose"
+msgstr "&Zamknij"
+
+#: Merge.rc:174
+#: Merge.rc:288
+#: Merge.rc:464
+#, c-format
+msgid "Clo&se All"
+msgstr "Zamknij &wszystkie"
+
+#: Merge.rc:176
+#: Merge.rc:290
+#: Merge.rc:466
+#, c-format
+msgid "Change &Pane\tF6"
+msgstr "Prze³¹cz &panel\tF6"
+
+#: Merge.rc:178
+#: Merge.rc:292
+#: Merge.rc:468
+#, c-format
+msgid "Tile &Horizontally"
+msgstr "P&oziomo"
+
+#: Merge.rc:179
+#: Merge.rc:293
+#: Merge.rc:469
+#, c-format
+msgid "Tile &Vertically"
+msgstr "P&ionowo"
+
+#: Merge.rc:180
+#: Merge.rc:294
+#: Merge.rc:470
+#, c-format
+msgid "&Cascade"
+msgstr "&Kaskadowo"
+
+#: Merge.rc:182
+#: Merge.rc:296
+#: Merge.rc:472
+#: Merge.rc:1880
+#, c-format
+msgid "&Help"
+msgstr "&Pomoc"
+
+#: Merge.rc:184
+#: Merge.rc:298
+#: Merge.rc:474
+#, c-format
+msgid "&Contents...\tF1"
+msgstr "&Spis treœci...\tF1"
+
+#: Merge.rc:185
+#: Merge.rc:299
+#: Merge.rc:475
+#, c-format
+msgid "&Index..."
+msgstr "&Indeks..."
+
+#: Merge.rc:186
+#: Merge.rc:300
+#: Merge.rc:476
+#, c-format
+msgid "&Search..."
+msgstr "&Szukaj..."
+
+#: Merge.rc:188
+#: Merge.rc:302
+#: Merge.rc:478
+#, c-format
+msgid "C&onfiguration..."
+msgstr "Ko&nfiguracja..."
+
+#: Merge.rc:189
+#: Merge.rc:303
+#: Merge.rc:479
+#, c-format
+msgid "A&rchive Support disabled..."
+msgstr "Obs³uga ar&chiwów wy³¹czona..."
+
+#: Merge.rc:191
+#: Merge.rc:305
+#: Merge.rc:481
+#, c-format
+msgid "&GNU Public License..."
+msgstr "Licencja GNU..."
+
+#: Merge.rc:192
+#: Merge.rc:306
+#: Merge.rc:482
+#, c-format
+msgid "&About WinMerge..."
+msgstr "&O programie..."
+
+#: Merge.rc:203
+#: Merge.rc:317
+#, c-format
+msgid "Open Pro&ject...\tCtrl+J"
+msgstr "Otwórz projekt ...\tCtrl+J"
+
+#: Merge.rc:206
+#: Merge.rc:336
+#, c-format
+msgid "L&eft Read-only"
+msgstr "Lewa tylko &odczyt"
+
+#: Merge.rc:207
+#: Merge.rc:337
+#, c-format
+msgid "Ri&ght Read-only"
+msgstr "Prawa t&ylko odczyt"
+
+#: Merge.rc:209
+#, c-format
+msgid "File En&coding"
+msgstr "&Kodowanie pliku"
+
+#: Merge.rc:215
+#: Merge.rc:360
+#, c-format
+msgid "Select &All\tCtrl+A"
+msgstr "Wybierz &wszystkie\tCtrl+A"
+
+#: Merge.rc:221
+#, c-format
+msgid "Show &Identical Items"
+msgstr "Poka¿ &identyczne archiwa"
+
+#: Merge.rc:222
+#, c-format
+msgid "Show &Different Items"
+msgstr "Poka¿ &ró¿ne archiwa"
+
+#: Merge.rc:223
+#, c-format
+msgid "Show L&eft Unique Items"
+msgstr "Poka¿ &unikatowe dla lewej"
+
+#: Merge.rc:224
+#, c-format
+msgid "Show Ri&ght Unique Items"
+msgstr "Poka¿ u&nikatowe dla prawej"
+
+#: Merge.rc:225
+#, c-format
+msgid "Show S&kipped Items"
+msgstr "Poka¿ po&miniête"
+
+#: Merge.rc:226
+#, c-format
+msgid "S&how Binary Files"
+msgstr "Poka¿ pliki &binarne"
+
+#: Merge.rc:228
+#, c-format
+msgid "Show Hidd&en Items"
+msgstr "Poka¿ elementy u&kryte"
+
+#: Merge.rc:241
+#, c-format
+msgid "Compa&re Statistics"
+msgstr "Statystyki po&równania"
+
+#: Merge.rc:245
+#: Merge.rc:416
+#, c-format
+msgid "Refre&sh\tF5"
+msgstr "O&dœwie¿\tF5"
+
+#: Merge.rc:246
+#, c-format
+msgid "&Refresh Selected\tCtrl+F5"
+msgstr "&Odœwie¿ zaznaczone\tCtrl+F5"
+
+#: Merge.rc:248
+#: Merge.rc:418
+#, c-format
+msgid "&Merge"
+msgstr "&Scal"
+
+#: Merge.rc:250
+#, c-format
+msgid "Co&mpare\tEnter"
+msgstr "&Porównaj\tEnter"
+
+#: Merge.rc:252
+#: Merge.rc:420
+#, c-format
+msgid "&Next Difference\tAlt+Down"
+msgstr "&Nastêpna ró¿nica\tAlt+Down"
+
+#: Merge.rc:253
+#: Merge.rc:421
+#, c-format
+msgid "&Previous Difference\tAlt+Up"
+msgstr "Pop&rzednia ró¿nica\tAlt+Up"
+
+#: Merge.rc:255
+#: Merge.rc:423
+#, c-format
+msgid "&First Difference\tAlt+Home"
+msgstr "P&ierwsza ró¿nica\tAlt+Home"
+
+#: Merge.rc:256
+#: Merge.rc:424
+#, c-format
+msgid "&Current Difference\tAlt+Enter"
+msgstr "&Bie¿¹ca ró¿nica\tAlt+Enter"
+
+#: Merge.rc:257
+#: Merge.rc:425
+#, c-format
+msgid "&Last Difference\tAlt+End"
+msgstr "Os&tatnia ró¿nica\tAlt+End"
+
+#: Merge.rc:259
+#: Merge.rc:427
+#, c-format
+msgid "Copy to &Right\tAlt+Right"
+msgstr "Kopiuj na praw¹\tAlt+Right"
+
+#: Merge.rc:260
+#: Merge.rc:428
+#, c-format
+msgid "Copy to L&eft\tAlt+Left"
+msgstr "Kopiuj na lew¹\tAlt+Left"
+
+#: Merge.rc:262
+#, c-format
+msgid "&Delete\tDel"
+msgstr "&Usuñ\tDel"
+
+#: Merge.rc:266
+#: Merge.rc:546
+#, c-format
+msgid "&Customize Columns..."
+msgstr "&Dostosuj kolumny..."
+
+#: Merge.rc:269
+#: Merge.rc:440
+#, c-format
+msgid "Generate &Report..."
+msgstr "Utwórz &raport..."
+
+#: Merge.rc:320
+#, c-format
+msgid "&Save\tCtrl+S"
+msgstr "&Zachowaj\tCtrl+S"
+
+#: Merge.rc:321
+#, c-format
+msgid "Save &Left"
+msgstr "Zachowaj &lew¹"
+
+#: Merge.rc:323
+#: Merge.rc:328
+#, c-format
+msgid "&Save"
+msgstr "&Zachowaj"
+
+#: Merge.rc:324
+#: Merge.rc:329
+#, c-format
+msgid "Save &As..."
+msgstr "Zachowaj &jako..."
+
+#: Merge.rc:326
+#, c-format
+msgid "Save &Right"
+msgstr "Zachowaj &praw¹"
+
+#: Merge.rc:332
+#, c-format
+msgid "&Print..."
+msgstr "&Drukuj..."
+
+#: Merge.rc:333
+#, c-format
+msgid "Page Se&tup"
+msgstr ""
+
+#: Merge.rc:334
+#, c-format
+msgid "Print Previe&w"
+msgstr "Drukuj &Podgl¹d"
+
+#: Merge.rc:339
+#, c-format
+msgid "&Convert Line Endings to"
+msgstr "&Konwertuj koñce linii do"
+
+#: Merge.rc:341
+#, c-format
+msgid "&DOS (CRLF)"
+msgstr ""
+
+#: Merge.rc:342
+#, c-format
+msgid "&UNIX (LF)"
+msgstr ""
+
+#: Merge.rc:343
+#, c-format
+msgid "&MAC (CR)"
+msgstr ""
+
+#: Merge.rc:346
+#, c-format
+msgid "&Merge Mode\tF9"
+msgstr "&Tryb scalania\tF9"
+
+#: Merge.rc:352
+#, c-format
+msgid "&Undo\tCtrl+Z"
+msgstr "&Cofnij\tCtrl+Z"
+
+#: Merge.rc:353
+#, c-format
+msgid "&Redo\tCtrl+Y"
+msgstr "&Powtórz\tCtrl+Y"
+
+#: Merge.rc:355
+#, c-format
+msgid "Cu&t\tCtrl+X"
+msgstr "&Wytnij\tCtrl+X"
+
+#: Merge.rc:356
+#, c-format
+msgid "&Copy\tCtrl+C"
+msgstr "&Kopiuj\tCtrl+C"
+
+#: Merge.rc:357
+#, c-format
+msgid "&Paste\tCtrl+V"
+msgstr "Wk&lej\tCtrl+V"
+
+#: Merge.rc:359
+#, c-format
+msgid "Select Line &Difference\tF4"
+msgstr "Zaznacz &ró¿nicê linii\tF4"
+
+#: Merge.rc:362
+#, c-format
+msgid "F&ind...\tCtrl+F"
+msgstr "W&yszukaj...\tCtrl+F"
+
+#: Merge.rc:363
+#, c-format
+msgid "Repla&ce...\tCtrl+H"
+msgstr "&Zast¹p...\tCtrl+H"
+
+#: Merge.rc:365
+#, c-format
+msgid "&Scripts"
+msgstr "&Skrypty"
+
+#: Merge.rc:367
+#: Merge.rc:2859
+#, c-format
+msgid "< Empty >"
+msgstr "< Pusty >"
+
+#: Merge.rc:370
+#, c-format
+msgid "Advanced"
+msgstr "Zaawansowane"
+
+#: Merge.rc:372
+#, c-format
+msgid "&Copy With Line Numbers\tCtrl+Shift+C"
+msgstr "&Kopuj z numerami wierszy\tCtrl+Shift+C"
+
+#: Merge.rc:375
+#, c-format
+msgid "&Bookmarks"
+msgstr "Za&k³adki"
+
+#: Merge.rc:377
+#, c-format
+msgid "&Toggle Bookmark\tCtrl+F2"
+msgstr "&Dodaj zak³adkê\tCtrl+F2"
+
+#: Merge.rc:378
+#, c-format
+msgid "&Next Bookmark\tF2"
+msgstr "&Nastêpna zak³adka\tF2"
+
+#: Merge.rc:379
+#, c-format
+msgid "&Previous bookmark\tShift+F2"
+msgstr "&Poprzednia zak³adka\tShift+F2"
+
+#: Merge.rc:380
+#, c-format
+msgid "&Clear All Bookmarks"
+msgstr "&Wyczyœæ wszystkie zak³adki"
+
+#: Merge.rc:382
+#, c-format
+msgid "&Go To...\tCtrl+G"
+msgstr "&IdŸ do...\tCtrl+G"
+
+#: Merge.rc:390
+#, c-format
+msgid "Syntax Highlight"
+msgstr ""
+
+#: Merge.rc:395
+#, c-format
+msgid "&View Whitespace"
+msgstr "&Poka¿ bia³e znaki"
+
+#: Merge.rc:396
+#, c-format
+msgid "Vie&w Line Differences"
+msgstr "Poka¿ ró¿nice &linii"
+
+#: Merge.rc:397
+#, c-format
+msgid "View Line &Numbers"
+msgstr "Poka¿ &numery linii"
+
+#: Merge.rc:398
+#, c-format
+msgid "View &Margins"
+msgstr "Poka¿ &marginesy"
+
+#: Merge.rc:399
+#, c-format
+msgid "W&rap Lines"
+msgstr "Za&wijaj linie"
+
+#: Merge.rc:401
+#, c-format
+msgid "Sw&ap Panes"
+msgstr "Za&mieñ panele"
+
+#: Merge.rc:411
+#, c-format
+msgid "Diff &Pane"
+msgstr "Panel &ró¿nic"
+
+#: Merge.rc:412
+#, c-format
+msgid "Lo&cation Pane"
+msgstr "Panel &lokalizacji"
+
+#: Merge.rc:430
+#, c-format
+msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
+msgstr "Kopiuj na prawo i przejdŸ dalej\tAlt+Ctrl+Right"
+
+#: Merge.rc:431
+#, c-format
+msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
+msgstr "Kopiuj na lewo i przejdŸ dalej\tAlt+Ctrl+Left"
+
+#: Merge.rc:433
+#, c-format
+msgid "Copy &All to Right"
+msgstr "Kopiuj wszystko na praw¹"
+
+#: Merge.rc:434
+#, c-format
+msgid "Cop&y All to Left"
+msgstr "Kopiuj wszystko na lew¹"
+
+#: Merge.rc:449
+#, c-format
+msgid "&Prediffer"
+msgstr "&Ró¿nicowanie wstêpne"
+
+#: Merge.rc:490
+#, c-format
+msgid "Comp&are"
+msgstr "&Porównaj"
+
+#: Merge.rc:494
+#, c-format
+msgid "&Left to Right"
+msgstr "&Lewa na praw¹"
+
+#: Merge.rc:495
+#, c-format
+msgid "L&eft to..."
+msgstr "L&ewa do..."
+
+#: Merge.rc:496
+#, c-format
+msgid "&Right to Left"
+msgstr "&Prawa na lew¹"
+
+#: Merge.rc:497
+#, c-format
+msgid "R&ight to..."
+msgstr "Pra&wa do..."
+
+#: Merge.rc:499
+#, c-format
+msgid "&Move"
+msgstr "Prze&nieœ"
+
+#: Merge.rc:501
+#, c-format
+msgid "&Left to..."
+msgstr "&Lewa do..."
+
+#: Merge.rc:502
+#, c-format
+msgid "&Right to..."
+msgstr "&Prawa do..."
+
+#: Merge.rc:504
+#, c-format
+msgid "&Delete"
+msgstr "&Usuñ"
+
+#: Merge.rc:506
+#: Merge.rc:1118
+#: Merge.rc:1497
+#, c-format
+msgid "&Left"
+msgstr "&Lewa"
+
+#: Merge.rc:507
+#: Merge.rc:1120
+#: Merge.rc:1500
+#, c-format
+msgid "&Right"
+msgstr "&Prawa"
+
+#: Merge.rc:508
+#, c-format
+msgid "&Both"
+msgstr "&Obie"
+
+#: Merge.rc:510
+#, c-format
+msgid "Re&name"
+msgstr "Zmieñ &nazwê"
+
+#: Merge.rc:511
+#, c-format
+msgid "&Hide Items"
+msgstr "U&kryj elementy"
+
+#: Merge.rc:513
+#, c-format
+msgid "&Open Left"
+msgstr "O&twórz lew¹"
+
+#: Merge.rc:519
+#, c-format
+msgid "O&pen Right"
+msgstr "Otwórz p&raw¹"
+
+#: Merge.rc:526
+#, c-format
+msgid "Cop&y Pathnames"
+msgstr "Kopiuj œ&cie¿ki"
+
+#: Merge.rc:528
+#, c-format
+msgid "&Left (%1 of %2)"
+msgstr "&Lewa (%1 z %2)"
+
+#: Merge.rc:529
+#, c-format
+msgid "&Right (%1 of %2)"
+msgstr "&Prawa (%1 z %2)"
+
+#: Merge.rc:530
+#, c-format
+msgid "&Both (%1 of %2)"
+msgstr "&Obie (%1 z %2)"
+
+#: Merge.rc:532
+#, c-format
+msgid "Copy &Filenames"
+msgstr "Kopiuj &nazwy plików"
+
+#: Merge.rc:534
+#, c-format
+msgid "&Zip"
+msgstr ""
+
+#: Merge.rc:536
+#, c-format
+msgid "&Left... (%1 of %2)"
+msgstr "&Lewa... (%1 z %2)"
+
+#: Merge.rc:537
+#, c-format
+msgid "&Right... (%1 of %2)"
+msgstr "&Prawa... (%1 z %2)"
+
+#: Merge.rc:538
+#, c-format
+msgid "&Both... (%1 of %2)"
+msgstr "&Obie... (%1 z %2)"
+
+#: Merge.rc:539
+#, c-format
+msgid "&Differences... (%1 of %2)"
+msgstr "&Ró¿nice... (%1 z %2)"
+
+#: Merge.rc:542
+#, c-format
+msgid "&Refresh"
+msgstr "O&dœwie¿"
+
+#: Merge.rc:554
+#, c-format
+msgid "&Copy Full Path"
+msgstr "Kopiuj &pe³n¹ œcie¿kê"
+
+#: Merge.rc:555
+#, c-format
+msgid "Copy &Filename"
+msgstr "Kopiuj nazwê p&liku"
+
+#: Merge.rc:561
+#, c-format
+msgid "Prediffer Settings"
+msgstr "Ustawienia wstêpnego ró¿nicowania"
+
+#: Merge.rc:563
+#, c-format
+msgid "&No prediffer"
+msgstr "&Bez ró¿nicowania wstêpnego"
+
+#: Merge.rc:564
+#, c-format
+msgid "Auto prediffer"
+msgstr "Automatyczne ró¿nicowanie wstêpne"
+
+#: Merge.rc:572
+#, c-format
+msgid "G&oto Diff"
+msgstr "IdŸ &do ró¿nicy"
+
+#: Merge.rc:575
+#, c-format
+msgid "&No Moved Blocks"
+msgstr "Bez &przeniesionych bloków"
+
+#: Merge.rc:576
+#, c-format
+msgid "&All Moved Blocks"
+msgstr "W&szystkie przeniesione bloki"
+
+#: Merge.rc:577
+#, c-format
+msgid "Moved Block for &Current Diff"
+msgstr "Przeniesiony blok dla bie¿¹cej ró¿nicy"
+
+#: Merge.rc:643
+#, c-format
+msgid "About WinMerge"
+msgstr "O programie WinMerge"
+
+#. StringFileInfo.InternalName
+#. StringFileInfo.ProductName
+#: Merge.rc:647
+#: Merge.rc:1661
+#: Merge.rc:1665
+#: Merge.rc:1685
+#: Merge.rc:1827
+#: Merge.rc:1939
+#, c-format
+msgid "WinMerge"
+msgstr ""
+
+#: Merge.rc:649
+#, c-format
+msgid "(Private Build)"
+msgstr "(kompilacja prywatna)"
+
+#: Merge.rc:650
+#, c-format
+msgid "All rights reserved."
+msgstr "Wszelkie prawa zastrze¿one."
+
+#: Merge.rc:651
+#, c-format
+msgid "Visit the WinMerge HomePage!"
+msgstr "Zajrzyj na stronê WinMerge!"
+
+#: Merge.rc:654
+#: Merge.rc:685
+#: Merge.rc:772
+#: Merge.rc:958
+#: Merge.rc:1032
+#: Merge.rc:1066
+#: Merge.rc:1076
+#: Merge.rc:1239
+#: Merge.rc:1303
+#: Merge.rc:1316
+#: Merge.rc:1408
+#: Merge.rc:1423
+#, c-format
+msgid "OK"
+msgstr "Porównaj"
+
+#: Merge.rc:655
+#, c-format
+msgid "Contributors"
+msgstr "Wspó³twórcy"
+
+#: Merge.rc:661
+#, c-format
+msgid "Select Files or Folders"
+msgstr "Wybierz pliki lub katalogi..."
+
+#: Merge.rc:664
+#: Merge.rc:1574
+#, c-format
+msgid "&Left:"
+msgstr "&Lewa:"
+
+#: Merge.rc:668
+#: Merge.rc:729
+#: Merge.rc:982
+#: Merge.rc:997
+#, c-format
+msgid "&Browse..."
+msgstr "&Szukaj..."
+
+#: Merge.rc:669
+#: Merge.rc:1578
+#, c-format
+msgid "&Right:"
+msgstr "&Prawa:"
+
+#: Merge.rc:673
+#: Merge.rc:1008
+#, c-format
+msgid "Bro&wse..."
+msgstr "S&zukaj..."
+
+#: Merge.rc:674
+#: Merge.rc:1582
+#, c-format
+msgid "&Filter:"
+msgstr "&Filtr:"
+
+#: Merge.rc:677
+#: Merge.rc:1584
+#, c-format
+msgid "Select..."
+msgstr "Wybierz..."
+
+#: Merge.rc:678
+#, c-format
+msgid "&Unpacker:"
+msgstr "Program &rozpakowuj¹cy:"
+
+#: Merge.rc:681
+#, c-format
+msgid "&Select..."
+msgstr "&Wybierz..."
+
+#: Merge.rc:682
+#: Merge.rc:1585
+#, c-format
+msgid "&Include Subfolders"
+msgstr "&Uwzglêdnij podkatalogi"
+
+#: Merge.rc:684
+#, c-format
+msgid "Status:"
+msgstr ""
+
+#: Merge.rc:686
+#: Merge.rc:716
+#: Merge.rc:773
+#: Merge.rc:803
+#: Merge.rc:835
+#: Merge.rc:845
+#: Merge.rc:1033
+#: Merge.rc:1067
+#: Merge.rc:1077
+#: Merge.rc:1128
+#: Merge.rc:1240
+#: Merge.rc:1317
+#: Merge.rc:1409
+#: Merge.rc:1424
+#, c-format
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: Merge.rc:687
+#: Merge.rc:1318
+#, c-format
+msgid "Help"
+msgstr "Pomoc"
+
+#: Merge.rc:688
+#, c-format
+msgid "Files or Folders to Compare"
+msgstr "Obiekty do porównania"
+
+#: Merge.rc:695
+#, c-format
+msgid "Visual SourceSafe"
+msgstr ""
+
+#: Merge.rc:700
+#, c-format
+msgid "Database:"
+msgstr "Baza danych:"
+
+#: Merge.rc:703
+#, c-format
+msgid "Project:"
+msgstr "Projekt:"
+
+#: Merge.rc:706
+#, c-format
+msgid "User:"
+msgstr "U¿ytkownik:"
+
+#: Merge.rc:708
+#, c-format
+msgid "Password:"
+msgstr "Has³o:"
+
+#: Merge.rc:710
+#, c-format
+msgid "Link to Destination VSS project"
+msgstr "£¹cze do projektu VSS"
+
+#: Merge.rc:712
+#: Merge.rc:850
+#, c-format
+msgid "Apply to all items"
+msgstr "Zastosuj do wszystkich"
+
+#: Merge.rc:714
+#, c-format
+msgid "Check Out"
+msgstr "SprawdŸ"
+
+#: Merge.rc:715
+#: Merge.rc:846
+#, c-format
+msgid "Save As..."
+msgstr "Zapisz jako..."
+
+#: Merge.rc:721
+#, c-format
+msgid "Versioning System"
+msgstr "System œledzenia wersji"
+
+#: Merge.rc:724
+#, c-format
+msgid "&Versioning System:"
+msgstr "Œledzenie &wersji:"
+
+#: Merge.rc:727
+#, c-format
+msgid "&Path to cleartool.exe:"
+msgstr "S&cie¿ka cleartool.exe:"
+
+#: Merge.rc:734
+#: Merge.rc:1888
+#, c-format
+msgid "General"
+msgstr "Ogólne"
+
+#: Merge.rc:737
+#, c-format
+msgid "Automatically &scroll to first difference"
+msgstr "PrzejdŸ automatycznie do pierwszej ró¿nicy"
+
+#: Merge.rc:740
+#, c-format
+msgid "&Disable Splash Screen"
+msgstr "&Wy³¹cz ekran powitalny"
+
+#: Merge.rc:742
+#, c-format
+msgid "Cl&ose windows with ESC"
+msgstr "Zam&knij okna klawiszem ESC"
+
+#: Merge.rc:744
+#, c-format
+msgid "&Automatically verify paths in Open-dialog"
+msgstr "Automatycznie weryfikuj œcie¿ki w oknie Otwórz"
+
+#: Merge.rc:747
+#, c-format
+msgid "All&ow only one instance to run"
+msgstr "Zezwól na uruchomienie tylko &jednej instancji programu"
+
+#: Merge.rc:749
+#, c-format
+msgid "As&k when closing multiple windows"
+msgstr ""
+
+#: Merge.rc:751
+#, c-format
+msgid "O&pen-dialog Auto-Completion:"
+msgstr "Otwórz okno autouzupe³niania:"
+
+#: Merge.rc:754
+#, c-format
+msgid "Enable multiple compare windows for"
+msgstr "W³¹cz wiele okien porównania dla"
+
+#: Merge.rc:756
+#: Merge.rc:1597
+#, c-format
+msgid "&Folder compare"
+msgstr "Porównania &folderów"
+
+#: Merge.rc:758
+#: Merge.rc:1599
+#, c-format
+msgid "Fil&e compare"
+msgstr "Porównania &plików"
+
+#: Merge.rc:760
+#, c-format
+msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
+msgstr "WinMerge pozwala ukryæ niektóre komunikaty. Naciœnij przycisk, aby wyœwietlaæ wszystkie komunikaty."
+
+#: Merge.rc:762
+#, c-format
+msgid "Reset"
+msgstr "Resetuj"
+
+#: Merge.rc:769
+#, c-format
+msgid "Language"
+msgstr "Jêzyk"
+
+#: Merge.rc:776
+#, c-format
+msgid "Available languages:"
+msgstr "Dostêpne jêzyki:"
+
+#: Merge.rc:782
+#, c-format
+msgid "Find"
+msgstr "Wyszukaj"
+
+#: Merge.rc:785
+#: Merge.rc:812
+#, c-format
+msgid "Fi&nd what:"
+msgstr "&Szukaj:"
+
+#: Merge.rc:788
+#: Merge.rc:818
+#, c-format
+msgid "Match &whole word only"
+msgstr "Dopasuj &ca³e s³owa"
+
+#: Merge.rc:790
+#: Merge.rc:820
+#, c-format
+msgid "Match &case"
+msgstr "Wielkoœæ &liter"
+
+#: Merge.rc:792
+#: Merge.rc:822
+#, c-format
+msgid "Regular &expression"
+msgstr "Wyra¿enie &regularne"
+
+#: Merge.rc:794
+#, c-format
+msgid "D&on't wrap end of file"
+msgstr "Nie zawijaj k&oñca linii"
+
+#: Merge.rc:797
+#, c-format
+msgid "Direction"
+msgstr "Kierunek"
+
+#: Merge.rc:798
+#: Merge.rc:1057
+#, c-format
+msgid "&Up"
+msgstr "Do &góry"
+
+#: Merge.rc:800
+#: Merge.rc:1058
+#, c-format
+msgid "&Down"
+msgstr "&W dól"
+
+#: Merge.rc:802
+#: Merge.rc:832
+#, c-format
+msgid "&Find Next"
+msgstr "&Nastêpny"
+
+#: Merge.rc:809
+#, c-format
+msgid "Replace"
+msgstr "Zast¹p"
+
+#: Merge.rc:815
+#, c-format
+msgid "Re&place with:"
+msgstr "Z&ast¹p:"
+
+#: Merge.rc:824
+#, c-format
+msgid "&Don't wrap end of file"
+msgstr "&Nie zawijaj koñca pliku"
+
+#: Merge.rc:827
+#, c-format
+msgid "Replace in"
+msgstr "Zast¹p w"
+
+#: Merge.rc:828
+#, c-format
+msgid "&Selection"
+msgstr "&Selekcja"
+
+#: Merge.rc:830
+#, c-format
+msgid "Wh&ole file"
+msgstr "Ca³y &plik"
+
+#: Merge.rc:833
+#, c-format
+msgid "&Replace"
+msgstr "&Zast¹p"
+
+#: Merge.rc:834
+#, c-format
+msgid "Replace &All"
+msgstr "&Wszystkie"
+
+#: Merge.rc:841
+#: Merge.rc:2113
+#, c-format
+msgid "Rational ClearCase"
+msgstr "Racjonalne dopasowanie wielkoœci"
+
+#: Merge.rc:844
+#, c-format
+msgid "CheckOut"
+msgstr "SprawdŸ"
+
+#: Merge.rc:849
+#: Merge.rc:1159
+#, c-format
+msgid "Comments"
+msgstr "Komentarze"
+
+#: Merge.rc:852
+#, c-format
+msgid "CheckIn after checkout"
+msgstr "CheckIn po CheckOut"
+
+#: Merge.rc:858
+#, c-format
+msgid "Linefilters"
+msgstr "Filtry wierszy"
+
+#: Merge.rc:861
+#, c-format
+msgid "Enable Line Filters"
+msgstr ""
+
+#: Merge.rc:864
+#, c-format
+msgid "Regular Expressions (one per line):"
+msgstr "Wyra¿enia regularne (jedno/wiersz):"
+
+#: Merge.rc:871
+#, c-format
+msgid "Save"
+msgstr ""
+
+#: Merge.rc:872
+#, c-format
+msgid "New"
+msgstr ""
+
+#: Merge.rc:873
+#, c-format
+msgid "Edit"
+msgstr ""
+
+#: Merge.rc:874
+#, c-format
+msgid "Remove"
+msgstr ""
+
+#: Merge.rc:879
+#: Merge.rc:1891
+#, c-format
+msgid "Colors"
+msgstr "Kolory"
+
+#: Merge.rc:882
+#, c-format
+msgid "Difference:"
+msgstr "Ró¿nica:"
+
+#: Merge.rc:886
+#, c-format
+msgid "Selected Difference:"
+msgstr "Wybrana ró¿nica:"
+
+#: Merge.rc:890
+#: Merge.rc:1549
+#, c-format
+msgid "Background"
+msgstr "T³o"
+
+#: Merge.rc:891
+#, c-format
+msgid "Deleted"
+msgstr "Usuniête"
+
+#: Merge.rc:904
+#: Merge.rc:1344
+#: Merge.rc:1550
+#, c-format
+msgid "Text"
+msgstr "Tekst"
+
+#: Merge.rc:908
+#, c-format
+msgid "Ignored Difference:"
+msgstr "Pominiêta ró¿nica:"
+
+#: Merge.rc:918
+#, c-format
+msgid "Moved:"
+msgstr "Przeniesione:"
+
+#: Merge.rc:928
+#, c-format
+msgid "Selected Moved:"
+msgstr "Wybrane przeniesiono:"
+
+#: Merge.rc:935
+#, c-format
+msgid "Word Difference:"
+msgstr "Ró¿nica-s³owo:"
+
+#: Merge.rc:942
+#, c-format
+msgid "Selected Word Diff:"
+msgstr "Wybrana ró¿nica-s³owo:"
+
+#: Merge.rc:949
+#: Merge.rc:1031
+#: Merge.rc:1065
+#: Merge.rc:1162
+#: Merge.rc:1390
+#, c-format
+msgid "Defaults"
+msgstr "Domyœlne"
+
+#: Merge.rc:955
+#: Merge.rc:1332
+#: Merge.rc:1538
+#, c-format
+msgid "Dialog"
+msgstr "Okno dialogowe"
+
+#: Merge.rc:965
+#: Merge.rc:1894
+#, c-format
+msgid "System"
+msgstr ""
+
+#: Merge.rc:968
+#, c-format
+msgid "&Send deleted files to Recycle Bin"
+msgstr "Wyœlij usuniête pliki do &kosza"
+
+#: Merge.rc:970
+#, c-format
+msgid "Ign&ore time differences less than 3 seconds"
+msgstr "Ignoruj ró¿nice czasu mniejsze ni¿ 3 sekundy"
+
+#: Merge.rc:973
+#, c-format
+msgid "Integration"
+msgstr "Integracja"
+
+#: Merge.rc:974
+#, c-format
+msgid "&Add to explorer context menu"
+msgstr "&Dodaj do menu kontekstowego eksploratora"
+
+#: Merge.rc:976
+#, c-format
+msgid "E&nable advanced menu"
+msgstr "W³¹cz menu &zaawansowane"
+
+#: Merge.rc:978
+#, c-format
+msgid "In&clude subfolders by default"
+msgstr "Domyœ&lnie uwzglêdnij podkatalogi"
+
+#: Merge.rc:980
+#, c-format
+msgid "&External editor:"
+msgstr "Zewnêtrzny &edytor:"
+
+#: Merge.rc:983
+#, c-format
+msgid "&Filter folder:"
+msgstr "&Filtruj folder:"
+
+#: Merge.rc:985
+#: Merge.rc:1402
+#: Merge.rc:1576
+#: Merge.rc:1580
+#: Merge.rc:1607
+#, c-format
+msgid "Browse..."
+msgstr "Przegl¹daj..."
+
+#: Merge.rc:991
+#, c-format
+msgid "Patch Generator"
+msgstr "Generuj patch"
+
+#: Merge.rc:994
+#, c-format
+msgid "File&1:"
+msgstr "Plik&1:"
+
+#: Merge.rc:998
+#, c-format
+msgid "File&2:"
+msgstr "Plik&2:"
+
+#: Merge.rc:1001
+#, c-format
+msgid "Br&owse..."
+msgstr "Prz&egl¹daj..."
+
+#: Merge.rc:1002
+#, c-format
+msgid "&Swap"
+msgstr "Za&mieñ"
+
+#: Merge.rc:1003
+#, c-format
+msgid "&Append to existing file"
+msgstr "Dodaj do &istniej¹cego pliku"
+
+#: Merge.rc:1005
+#, c-format
+msgid "&Result:"
+msgstr "&Wynik:"
+
+#: Merge.rc:1009
+#, c-format
+msgid "&Format"
+msgstr ""
+
+#: Merge.rc:1010
+#, c-format
+msgid "St&yle:"
+msgstr "St&yl:"
+
+#: Merge.rc:1013
+#, c-format
+msgid "&Context:"
+msgstr "&Kontekst:"
+
+#: Merge.rc:1016
+#, c-format
+msgid "W&hitespaces"
+msgstr "Bia³e &znaki"
+
+#: Merge.rc:1017
+#, c-format
+msgid "Com&pare"
+msgstr "Porów&naj"
+
+#: Merge.rc:1019
+#, c-format
+msgid "I&gnore changes"
+msgstr "Po&miñ zmiany"
+
+#: Merge.rc:1021
+#, c-format
+msgid "Ig&nore all"
+msgstr "Pomiñ &wszystkie"
+
+#: Merge.rc:1023
+#, c-format
+msgid "Ignor&e blank lines"
+msgstr "Pomiñ &bia³e znaki"
+
+#: Merge.rc:1025
+#, c-format
+msgid "Case sensi&tive"
+msgstr "Uwzglêdnij wielkoœæ &liter"
+
+#: Merge.rc:1027
+#, c-format
+msgid "Inclu&de command line"
+msgstr "Uwzglêdnij wiersz &poleceñ"
+
+#: Merge.rc:1029
+#, c-format
+msgid "Open to e&xternal editor"
+msgstr "Otwórz w &zewnêtrznym edytorze"
+
+#: Merge.rc:1051
+#, c-format
+msgid "Display Columns"
+msgstr "Wyœwietl kolumny"
+
+#: Merge.rc:1054
+#, c-format
+msgid "Show columns"
+msgstr "Wyœwietl kolumny"
+
+#: Merge.rc:1059
+#, c-format
+msgid "Hide columns"
+msgstr "Ukryj kolumny"
+
+#: Merge.rc:1062
+#, c-format
+msgid "<<"
+msgstr ""
+
+#: Merge.rc:1063
+#, c-format
+msgid ">>"
+msgstr ""
+
+#: Merge.rc:1073
+#, c-format
+msgid "Select Unpacker"
+msgstr "Wybierz program rozpakowuj¹cy"
+
+#: Merge.rc:1078
+#, c-format
+msgid "File unpacker:"
+msgstr "Program rozpakowuj¹cy:"
+
+#: Merge.rc:1081
+#, c-format
+msgid "Display all unpackers, don't check the extension"
+msgstr "Poka¿ wszystkie programy, nie sprawdzaj rozszerzenia"
+
+#: Merge.rc:1084
+#, c-format
+msgid "Extensions list:"
+msgstr "Lista rozszerzeñ:"
+
+#: Merge.rc:1085
+#, c-format
+msgid "Description:"
+msgstr "Opis:"
+
+#: Merge.rc:1096
+#, c-format
+msgid " Folder Compare Progress"
+msgstr " Postêp porównania folderów"
+
+#: Merge.rc:1099
+#: Merge.rc:1841
+#, c-format
+msgid "Stop"
+msgstr ""
+
+#: Merge.rc:1104
+#, c-format
+msgid "Comparing items..."
+msgstr "Porównywanie elementów..."
+
+#: Merge.rc:1105
+#, c-format
+msgid "Items compared:"
+msgstr "Elementy porównane:"
+
+#: Merge.rc:1106
+#, c-format
+msgid "Items total:"
+msgstr "Wszystkich:"
+
+#: Merge.rc:1112
+#, c-format
+msgid "Go To"
+msgstr "IdŸ do"
+
+#: Merge.rc:1115
+#, c-format
+msgid "G&oto:"
+msgstr "&IdŸ do:"
+
+#: Merge.rc:1117
+#, c-format
+msgid "File"
+msgstr "Plik"
+
+#: Merge.rc:1122
+#, c-format
+msgid "Goto what"
+msgstr "Element docelowy"
+
+#: Merge.rc:1123
+#, c-format
+msgid "Li&ne"
+msgstr "&Wiersz"
+
+#: Merge.rc:1125
+#, c-format
+msgid "&Difference"
+msgstr "&Ró¿nica"
+
+#: Merge.rc:1127
+#, c-format
+msgid "&Go To"
+msgstr "&IdŸ do"
+
+#: Merge.rc:1133
+#: Merge.rc:1889
+#, c-format
+msgid "Compare"
+msgstr "Porównaj"
+
+#: Merge.rc:1136
+#, c-format
+msgid "Whitespace"
+msgstr "Bia³e znaki"
+
+#: Merge.rc:1137
+#, c-format
+msgid "&Compare"
+msgstr "Porównaj &bia³e znaki"
+
+#: Merge.rc:1139
+#, c-format
+msgid "&Ignore change"
+msgstr "P&omiñ zmiany bia³ych"
+
+#: Merge.rc:1141
+#, c-format
+msgid "I&gnore all"
+msgstr "Pomiñ wszystkie bia³e"
+
+#: Merge.rc:1143
+#, c-format
+msgid "Ignore blan&k lines"
+msgstr "Ignoruj ró¿nice pustych linii"
+
+#: Merge.rc:1145
+#, c-format
+msgid "Ignore &case"
+msgstr "Ignoruj ró¿nice wielkoœci liter"
+
+#: Merge.rc:1147
+#, c-format
+msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
+msgstr "Pomiñ ró¿nice znaku &koñca wiersza (DOS/UNIX/MAC)"
+
+#: Merge.rc:1150
+#, c-format
+msgid "E&nable moved block detection"
+msgstr "W³¹cz &wykrywanie przeniesionych bloków"
+
+#: Merge.rc:1152
+#, c-format
+msgid "&Match similar lines"
+msgstr ""
+
+#: Merge.rc:1154
+#, c-format
+msgid "&File Compare method:"
+msgstr "&Metoda porównania plików:"
+
+#: Merge.rc:1157
+#, c-format
+msgid "S&top after first difference"
+msgstr "&Zatrzymaj po pierwszej ró¿nicy"
+
+#: Merge.rc:1160
+#, c-format
+msgid "Filter Comments"
+msgstr "Komentarze filtra"
+
+#: Merge.rc:1167
+#: Merge.rc:1890
+#, c-format
+msgid "Editor"
+msgstr "Edytor"
+
+#: Merge.rc:1170
+#, c-format
+msgid "&Highlight syntax"
+msgstr "Podœwietlaj sk³adniê"
+
+#: Merge.rc:1172
+#, c-format
+msgid "&Automatic rescan"
+msgstr "Automatyczny &rescan"
+
+#: Merge.rc:1174
+#, c-format
+msgid "&Preserve original EOL chars"
+msgstr "Zachowaj &oryginalne znaki koñca linii"
+
+#: Merge.rc:1176
+#, c-format
+msgid "Tabs"
+msgstr "Tabulatory"
+
+#: Merge.rc:1177
+#, c-format
+msgid "&Tab size:"
+msgstr "&Wielkoœæ:"
+
+#: Merge.rc:1180
+#, c-format
+msgid "&Insert Tabs"
+msgstr "Wstaw tabulatory"
+
+#: Merge.rc:1182
+#, c-format
+msgid "Insert &Spaces"
+msgstr "Wstaw spacje"
+
+#: Merge.rc:1184
+#, c-format
+msgid "Line Difference Coloring"
+msgstr "Kolorowanie ró¿nic linii"
+
+#: Merge.rc:1186
+#, c-format
+msgid "View line differences"
+msgstr "Poka¿ ró¿nice linii"
+
+#: Merge.rc:1188
+#, c-format
+msgid "&Character level"
+msgstr "Poziom &znaków"
+
+#: Merge.rc:1190
+#, c-format
+msgid "&Word-level:"
+msgstr "Poziom &s³ów:"
+
+#: Merge.rc:1205
+#, c-format
+msgid "Filefilters"
+msgstr "Filtry plików"
+
+#: Merge.rc:1211
+#, c-format
+msgid "Test"
+msgstr ""
+
+#: Merge.rc:1212
+#, c-format
+msgid "Install..."
+msgstr "Instaluj..."
+
+#: Merge.rc:1213
+#, c-format
+msgid "New..."
+msgstr "Nowy..."
+
+#: Merge.rc:1214
+#, c-format
+msgid "Edit..."
+msgstr "Edycja..."
+
+#: Merge.rc:1215
+#, c-format
+msgid "Delete..."
+msgstr "Usuñ..."
+
+#: Merge.rc:1221
+#, c-format
+msgid "Save modified files?"
+msgstr "Zachowaj zmodyfikowane pliki?"
+
+#: Merge.rc:1224
+#, c-format
+msgid "Left side file"
+msgstr "Plik z lewej"
+
+#: Merge.rc:1227
+#, c-format
+msgid "&Save changes"
+msgstr "&Zachowaj zmiany"
+
+#: Merge.rc:1229
+#, c-format
+msgid "&Discard changes"
+msgstr "&Odrzuæ zmiany"
+
+#: Merge.rc:1231
+#, c-format
+msgid "Right side file"
+msgstr "Plik z prawej"
+
+#: Merge.rc:1234
+#, c-format
+msgid "S&ave changes"
+msgstr "Zachowa&j zmiany"
+
+#: Merge.rc:1236
+#, c-format
+msgid "Dis&card changes"
+msgstr "Odr&zuæ zmiany"
+
+#: Merge.rc:1238
+#, c-format
+msgid "Discard All"
+msgstr "Odrzuæ wszystkie"
+
+#: Merge.rc:1245
+#: Merge.rc:1493
+#: Merge.rc:1896
+#, c-format
+msgid "Codepage"
+msgstr "Strona kodowa"
+
+#: Merge.rc:1248
+#, c-format
+msgid "Default Codepage"
+msgstr "Kodowanie domyœlne"
+
+#: Merge.rc:1249
+#, c-format
+msgid "Select the default codepage assumed when loading non-Unicode files:"
+msgstr "Wybierz domyœlne kodowanie dla otwieranych plików nie-Unicode:"
+
+#: Merge.rc:1251
+#, c-format
+msgid ""
+"Detect codepage info for these files : .html, .rc, .xml \n"
+"need to restart session"
+msgstr ""
+"Wykrywaj stronê kodow¹ dla tych plików : .html, .rc, .xml \n"
+"wymaga restartu"
+
+#: Merge.rc:1254
+#, c-format
+msgid "System codepage"
+msgstr "Strona kodowa systemu"
+
+#: Merge.rc:1256
+#, c-format
+msgid "According to WinMerge User Interface"
+msgstr "Wed³ug interfejsu WinMerge"
+
+#: Merge.rc:1258
+#, c-format
+msgid "Custom codepage :"
+msgstr "Str. kodowa u¿ytkownika:"
+
+#: Merge.rc:1266
+#, c-format
+msgid "WinMerge - Archive support disabled"
+msgstr "WinMerge – Obs³uga archiwów wy³¹czona"
+
+#: Merge.rc:1269
+#, c-format
+msgid "Unable to detect 7-Zip version (not installed?)"
+msgstr "Nie mo¿na wykryæ wersji 7-Zip (nie jest zainstalowany?)"
+
+#: Merge.rc:1272
+#, c-format
+msgid ""
+"Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
+"essential components to be copied to the program directory for standalone operation."
+msgstr ""
+"Obs³uga archiwów wymaga programu 7-Zip w wersji 3.11 lub póŸniejszej lub skopiowania\n"
+"zasadniczych jego komponentów do katalogu programu."
+
+#: Merge.rc:1274
+#, c-format
+msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
+msgstr "W tym katalogu musi siê znajdowaæ tak¿e odpowiednia wtyczka interfejsu (Merge7z*.dll)."
+
+#: Merge.rc:1276
+#, c-format
+msgid ""
+"Please use the version of 7-Zip recommended below until interface plugins for later\n"
+"versions become available."
+msgstr ""
+"Skorzystaj z zalecanej poni¿ej wersji 7-Zip, póki nie bêd¹ dostêpne wtyczki dla\n"
+"póŸniejszych wersji."
+
+#: Merge.rc:1278
+#, c-format
+msgid "Version"
+msgstr "Wersja"
+
+#: Merge.rc:1280
+#, c-format
+msgid ""
+"Plugin required\n"
+"(dllbuild %04u)"
+msgstr ""
+"Wymagana wtyczka\n"
+"(dllbuild %04u)"
+
+#: Merge.rc:1282
+#, c-format
+msgid "Recommended version of 7-Zip:"
+msgstr "Zalecana wersja 7-Zip:"
+
+#: Merge.rc:1285
+#: Merge.rc:1288
+#, c-format
+msgid "present"
+msgstr "obecna"
+
+#: Merge.rc:1286
+#, c-format
+msgid "Merge7z000U.dll"
+msgstr ""
+
+#: Merge.rc:1289
+#, c-format
+msgid "7-Zip software installed on your computer:"
+msgstr "Program 7-Zip zainstalowany w systemie:"
+
+#: Merge.rc:1291
+#: Merge.rc:1296
+#, c-format
+msgid "none"
+msgstr "brak"
+
+#: Merge.rc:1293
+#, c-format
+msgid "missing"
+msgstr "brak"
+
+#: Merge.rc:1294
+#, c-format
+msgid "7-Zip components for standalone operation:"
+msgstr "Komponenty 7-Zip dla wersji autonomicznej:"
+
+#: Merge.rc:1298
+#, c-format
+msgid "outdated"
+msgstr "przestarza³a"
+
+#: Merge.rc:1299
+#, c-format
+msgid "Plugins on path:"
+msgstr "Wtyczki na œcie¿ce:"
+
+#: Merge.rc:1300
+#, c-format
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from help menu.)"
+msgstr ""
+"Nie wyœwietlaj komunikatu ponownie.\n"
+"(Zawsze mo¿na w³¹czyæ pokazywanie w menu Pomoc.)"
+
+#: Merge.rc:1304
+#, c-format
+msgid "Plugin Download"
+msgstr "Pobieranie wtyczek"
+
+#: Merge.rc:1313
+#, c-format
+msgid "Options"
+msgstr "Opcje"
+
+#: Merge.rc:1324
+#, c-format
+msgid " Categories"
+msgstr " Kategorie"
+
+#: Merge.rc:1326
+#, c-format
+msgid "Import..."
+msgstr ""
+
+#: Merge.rc:1327
+#, c-format
+msgid "Export..."
+msgstr ""
+
+#: Merge.rc:1335
+#, c-format
+msgid "Keywords:"
+msgstr "S³owa kluczowe:"
+
+#: Merge.rc:1336
+#, c-format
+msgid "Function names:"
+msgstr "Nazwy funkcji:"
+
+#: Merge.rc:1337
+#, c-format
+msgid "Comments:"
+msgstr "Komentarze:"
+
+#: Merge.rc:1338
+#, c-format
+msgid "Numbers:"
+msgstr "Liczby:"
+
+#: Merge.rc:1339
+#, c-format
+msgid "Operators:"
+msgstr "Operatory:"
+
+#: Merge.rc:1340
+#, c-format
+msgid "Strings:"
+msgstr "S³owa:"
+
+#: Merge.rc:1341
+#, c-format
+msgid "Preprocessor:"
+msgstr ""
+
+#: Merge.rc:1342
+#, c-format
+msgid "User 1:"
+msgstr "U¿ytkownika 1:"
+
+#: Merge.rc:1343
+#, c-format
+msgid "User 2:"
+msgstr "U¿ytkownika 2:"
+
+#: Merge.rc:1348
+#: Merge.rc:1353
+#: Merge.rc:1358
+#: Merge.rc:1363
+#: Merge.rc:1368
+#: Merge.rc:1373
+#: Merge.rc:1378
+#: Merge.rc:1383
+#: Merge.rc:1388
+#, c-format
+msgid "Bold"
+msgstr "Pogrubienie"
+
+#: Merge.rc:1396
+#, c-format
+msgid "Folder Compare Report"
+msgstr "Raport porównania folderów"
+
+#: Merge.rc:1399
+#, c-format
+msgid "Report &File:"
+msgstr "&Plik raportu:"
+
+#: Merge.rc:1403
+#, c-format
+msgid "&Style:"
+msgstr "&Styl:"
+
+#: Merge.rc:1406
+#, c-format
+msgid "&Copy to Clipboard"
+msgstr "&Kopiuj do schowka"
+
+#: Merge.rc:1414
+#, c-format
+msgid "Shared or Private Filter"
+msgstr "Folder wspó³dzielony lub prywatny"
+
+#: Merge.rc:1417
+#, c-format
+msgid "Which type of filter do you want to create?"
+msgstr "Jaki rodzaj filtra chcesz utworzyæ ?"
+
+#: Merge.rc:1419
+#, c-format
+msgid "Shared Filter (for all users on this machine)"
+msgstr "Filtr wspó³dzielony (dla wszystkich u¿ytkowników)"
+
+#: Merge.rc:1421
+#, c-format
+msgid "Private Filter (only for current user)"
+msgstr "Filtr prywatny (tylko dla bie¿¹cego u¿ytkownika)"
+
+#: Merge.rc:1429
+#: Merge.rc:1897
+#, c-format
+msgid "Archive Support"
+msgstr "Wsparcie dla archiwów"
+
+#: Merge.rc:1432
+#, c-format
+msgid "Archive support requires 7-Zip plugin installed:"
+msgstr "Wsparcie archiwów wymaga zainstalowanej wtyczki 7-Zip:"
+
+#: Merge.rc:1434
+#, c-format
+msgid "Download 7-zip Plugin"
+msgstr "Pobierz wtyczkê 7-zip"
+
+#: Merge.rc:1435
+#, c-format
+msgid "&Enable archive file support"
+msgstr "&W³¹cz wsparcie dla archiwów"
+
+#: Merge.rc:1437
+#, c-format
+msgid "&Use stand-alone 7-Zip if available"
+msgstr "&U¿yj stacjonarnego 7-Zip, jeœli dostêpny"
+
+#: Merge.rc:1440
+#, c-format
+msgid "U&se local 7-Zip from WinMerge folder"
+msgstr "U¿y&j lokalnego 7-Zip z folderu WinMerge"
+
+#: Merge.rc:1442
+#, c-format
+msgid "&Detect archive type from file signature"
+msgstr "Wy&krywaj typ archiwum z sygnatury pliku"
+
+#: Merge.rc:1450
+#, c-format
+msgid "Compare Statistics"
+msgstr "Statystyki porównania"
+
+#: Merge.rc:1453
+#, c-format
+msgid "Folders:"
+msgstr "Foldery:"
+
+#: Merge.rc:1454
+#, c-format
+msgid "Files:"
+msgstr "Pliki:"
+
+#: Merge.rc:1455
+#: Merge.rc:2261
+#, c-format
+msgid "Different"
+msgstr "Ró¿nych"
+
+#: Merge.rc:1456
+#, c-format
+msgid "Text:"
+msgstr "Tekst:"
+
+#: Merge.rc:1459
+#: Merge.rc:1478
+#, c-format
+msgid "Binary:"
+msgstr "Binarne:"
+
+#: Merge.rc:1462
+#, c-format
+msgid "Unique"
+msgstr "Unikalne"
+
+#: Merge.rc:1463
+#, c-format
+msgid "Left:"
+msgstr "Lewa:"
+
+#: Merge.rc:1468
+#, c-format
+msgid "Right:"
+msgstr "Prawa:"
+
+#: Merge.rc:1473
+#: Merge.rc:2256
+#, c-format
+msgid "Identical"
+msgstr "Identyczne"
+
+#: Merge.rc:1482
+#, c-format
+msgid "Total:"
+msgstr "Wszystkich:"
+
+#: Merge.rc:1487
+#, c-format
+msgid "Close"
+msgstr "Zamknij"
+
+#: Merge.rc:1496
+#, c-format
+msgid "Affects"
+msgstr "Dzia³anie"
+
+#: Merge.rc:1499
+#: Merge.rc:1502
+#, c-format
+msgid "(Affects)"
+msgstr "(Dzia³anie)"
+
+#: Merge.rc:1503
+#, c-format
+msgid "Select Codepage for"
+msgstr "Wybierz stronê kodow¹ dla"
+
+#: Merge.rc:1504
+#, c-format
+msgid "&File Loading:"
+msgstr "&£adowanie pliku:"
+
+#: Merge.rc:1506
+#: Merge.rc:1509
+#, c-format
+msgid "..."
+msgstr ""
+
+#: Merge.rc:1507
+#, c-format
+msgid "File &Saving:"
+msgstr "&Zapis pliku:"
+
+#: Merge.rc:1510
+#, c-format
+msgid "&Use same codepage for both"
+msgstr "&U¿yj tej samej strony kodowej dla obu"
+
+#: Merge.rc:1513
+#, c-format
+msgid "&Apply"
+msgstr "Z&astosuj"
+
+#: Merge.rc:1514
+#: Merge.rc:1863
+#, c-format
+msgid "&Cancel"
+msgstr "A&nuluj"
+
+#: Merge.rc:1519
+#, c-format
+msgid "Test Filter"
+msgstr "Test filtra"
+
+#: Merge.rc:1522
+#, c-format
+msgid "Testing filter ..."
+msgstr "Testowanie filtra ..."
+
+#: Merge.rc:1524
+#, c-format
+msgid "&Enter text to test:"
+msgstr "&Podaj tekst do sprawdzenia:"
+
+#: Merge.rc:1526
+#, c-format
+msgid "&Folder Name"
+msgstr "Nazwa &folderu"
+
+#: Merge.rc:1528
+#, c-format
+msgid "Result:"
+msgstr "Wynik:"
+
+#: Merge.rc:1532
+#, c-format
+msgid "&Test"
+msgstr ""
+
+#: Merge.rc:1533
+#, c-format
+msgid "&Close"
+msgstr "&Zamknij"
+
+#: Merge.rc:1541
+#, c-format
+msgid "&Use customized text colors"
+msgstr "&U¿yj w³asnych kolorów tekstu"
+
+#: Merge.rc:1544
+#, c-format
+msgid "Custom text colors"
+msgstr "Kolory tekstu u¿ytkownika"
+
+#: Merge.rc:1546
+#, c-format
+msgid "Whitespace:"
+msgstr "Odstêp:"
+
+#: Merge.rc:1547
+#, c-format
+msgid "Regular text:"
+msgstr "Czcionka regularna:"
+
+#: Merge.rc:1548
+#, c-format
+msgid "Selection:"
+msgstr "Zaznaczenie:"
+
+#: Merge.rc:1571
+#, c-format
+msgid "Paths"
+msgstr "Œcie¿ki"
+
+#: Merge.rc:1577
+#, c-format
+msgid "R&ead-only"
+msgstr "Ty&lko do odczytu"
+
+#: Merge.rc:1581
+#, c-format
+msgid "Re&ad-only"
+msgstr "Ty&lko do odczytu"
+
+#: Merge.rc:1587
+#, c-format
+msgid "Open..."
+msgstr "Otwórz..."
+
+#: Merge.rc:1588
+#, c-format
+msgid "Save..."
+msgstr "Zapisz..."
+
+#: Merge.rc:1593
+#: Merge.rc:1898
+#, c-format
+msgid "Backup Files"
+msgstr "Pliki kopii"
+
+#: Merge.rc:1596
+#, c-format
+msgid "Create backup files in:"
+msgstr "Twórz kopie plików w:"
+
+#: Merge.rc:1601
+#, c-format
+msgid "Create backup files into:"
+msgstr "Twórz pliki kopii w:"
+
+#: Merge.rc:1602
+#, c-format
+msgid "&Original file's folder"
+msgstr "Folder oryginalnego pliku"
+
+#: Merge.rc:1604
+#, c-format
+msgid "&Global backup folder:"
+msgstr "&Globalny folder dla kopii:"
+
+#: Merge.rc:1608
+#, c-format
+msgid "Backup filename:"
+msgstr "Nazwa pliku kopii:"
+
+#: Merge.rc:1609
+#, c-format
+msgid "&Append .bak -extension"
+msgstr "Dod&aj rozszerzenie .bak"
+
+#: Merge.rc:1611
+#, c-format
+msgid "A&ppend timestamp"
+msgstr "Dodaj znacznik czasu"
+
+#: Merge.rc:1618
+#, c-format
+msgid "Confirm Copy"
+msgstr ""
+
+#: Merge.rc:1622
+#, c-format
+msgid "Are you sure you want to copy XXX items?"
+msgstr ""
+
+#: Merge.rc:1624
+#, c-format
+msgid "From left"
+msgstr ""
+
+#: Merge.rc:1627
+#, c-format
+msgid "To right"
+msgstr ""
+
+#: Merge.rc:1630
+#, c-format
+msgid "Yes"
+msgstr ""
+
+#: Merge.rc:1631
+#, c-format
+msgid "No"
+msgstr ""
+
+#. StringFileInfo.Block
+#: Merge.rc:1656
+#, c-format
+msgid "040904e4"
+msgstr "041504e2"
+
+#. StringFileInfo.Comments
+#: Merge.rc:1658
+#, c-format
+msgid "English translation by developers"
+msgstr "T³umaczenie: Mateo Gola"
+
+#. StringFileInfo.FileDescription
+#: Merge.rc:1659
+#, c-format
+msgid "WinMerge Application"
+msgstr "Aplikacja WinMerge"
+
+#. StringFileInfo.LegalCopyright
+#: Merge.rc:1662
+#, c-format
+msgid "(c) 1996-2007 Dean P. Grimm / Thingamahoochie Software"
+msgstr ""
+
+#. StringFileInfo.OriginalFilename
+#: Merge.rc:1663
+#, c-format
+msgid "WinMerge.EXE"
+msgstr ""
+
+#. VarFileInfo.Translation
+#: Merge.rc:1671
+#, c-format
+msgid "0x409, 1252"
+msgstr "0x415, 1250"
+
+#: Merge.rc:1686
+#, c-format
+msgid "Ready"
+msgstr "Gotowe"
+
+#: Merge.rc:1692
+#, c-format
+msgid "EXT"
+msgstr ""
+
+#: Merge.rc:1693
+#, c-format
+msgid "CAP"
+msgstr ""
+
+#: Merge.rc:1694
+#, c-format
+msgid "NUM"
+msgstr ""
+
+#: Merge.rc:1695
+#, c-format
+msgid "SCRL"
+msgstr ""
+
+#: Merge.rc:1696
+#, c-format
+msgid "OVR"
+msgstr ""
+
+#: Merge.rc:1697
+#, c-format
+msgid "REC"
+msgstr ""
+
+#: Merge.rc:1703
+#, c-format
+msgid ""
+"Create empty documents\n"
+"New Documents (Ctrl+N)"
+msgstr ""
+"Utwórz nowy dokument\n"
+"Nowy"
+
+#: Merge.rc:1704
+#, c-format
+msgid ""
+"Open an existing document\n"
+"Open (Ctrl+O)"
+msgstr ""
+"Otwórz istniej¹cy dokument\n"
+"Otwórz (Ctrl+O)"
+
+#: Merge.rc:1705
+#, c-format
+msgid ""
+"Close the active document\n"
+"Close"
+msgstr ""
+"Zamknij aktywny dokument\n"
+"Zamknij"
+
+#: Merge.rc:1706
+#, c-format
+msgid ""
+"Save the active document\n"
+"Save (Ctrl+S)"
+msgstr ""
+"Zachowaj aktywny dokument\n"
+"Zachowaj (Ctrl+S)"
+
+#: Merge.rc:1707
+#, c-format
+msgid ""
+"Save the active document with a new name\n"
+"Save As"
+msgstr ""
+"Zachowaj aktywny dokument pod inn¹ nazw¹\n"
+"Zachowaj jako"
+
+#: Merge.rc:1708
+#, c-format
+msgid ""
+"Change the printing options\n"
+"Page Setup"
+msgstr ""
+"Zmieñ opcje wydruku\n"
+"Ustawienia strony"
+
+#: Merge.rc:1709
+#, c-format
+msgid ""
+"Change the printer and printing options\n"
+"Print Setup"
+msgstr ""
+"Zmieñ opcje drukarki i wydruku\n"
+"Ustawienia wydruku"
+
+#: Merge.rc:1710
+#, c-format
+msgid ""
+"Print the active document\n"
+"Print"
+msgstr ""
+"Wydrukuj bie¿¹cy dokument\n"
+"Drukuj"
+
+#: Merge.rc:1711
+#, c-format
+msgid ""
+"Display full pages\n"
+"Print Preview"
+msgstr ""
+"Wyœwietl cale strony\n"
+"Podgl¹d wydruku"
+
+#: Merge.rc:1716
+#, c-format
+msgid "Make all hidden items visible again"
+msgstr "Poka¿ wszystkie ukryte elementy"
+
+#: Merge.rc:1722
+#, c-format
+msgid ""
+"Open project file\n"
+"Project file (Ctrl+J)"
+msgstr ""
+"Otwórz plik projektu\n"
+"Plik projektu (Ctrl+J)"
+
+#: Merge.rc:1723
+#, c-format
+msgid "Unknown error attempting to open project file"
+msgstr "Nieznany b³¹d podczas otwierania projektu"
+
+#: Merge.rc:1724
+#, c-format
+msgid "Unknown error attempting to save project file"
+msgstr "Nieznany b³¹d podczas zapisu projektu"
+
+#: Merge.rc:1725
+#, c-format
+msgid "Project File"
+msgstr "Plik projektu"
+
+#: Merge.rc:1726
+#, c-format
+msgid "Project file successfully loaded."
+msgstr "Plik projektu za³adowano pomyœlnie."
+
+#: Merge.rc:1727
+#, c-format
+msgid "Project file successfully saved."
+msgstr "Plik projektu zapisano pomyœlnie."
+
+#: Merge.rc:1728
+#, c-format
+msgid ""
+"Save current paths and options to project file\n"
+"Save Project File"
+msgstr ""
+"Zapisz aktualne œcie¿ki i opcje do pliku projektu\n"
+"Zapisz plik projektu"
+
+#: Merge.rc:1733
+#, c-format
+msgid ""
+"Display program information, version number and copyright\n"
+"About"
+msgstr ""
+"Wyœwietl informacje o programie, numer wersji i info o prawach autorskich\n"
+"O programie"
+
+#: Merge.rc:1734
+#, c-format
+msgid ""
+"Quit the application; prompts to save documents\n"
+"Exit"
+msgstr ""
+"WyjdŸ z programu; program pyta, czy zachowaæ dokumenty\n"
+"WyjdŸ"
+
+#: Merge.rc:1740
+#: Merge.rc:1741
+#: Merge.rc:1742
+#: Merge.rc:1743
+#: Merge.rc:1744
+#: Merge.rc:1745
+#: Merge.rc:1746
+#: Merge.rc:1747
+#: Merge.rc:1748
+#: Merge.rc:1749
+#: Merge.rc:1750
+#: Merge.rc:1751
+#: Merge.rc:1752
+#: Merge.rc:1753
+#: Merge.rc:1754
+#: Merge.rc:1755
+#, c-format
+msgid "Open this document"
+msgstr "Otwórz ten dokument"
+
+#: Merge.rc:1760
+#, c-format
+msgid ""
+"Switch to the next window pane\n"
+"Next Pane"
+msgstr ""
+"PrzejdŸ do nastêpnego panelu\n"
+"Nastêpny panel"
+
+#: Merge.rc:1761
+#, c-format
+msgid ""
+"Switch back to the previous window pane\n"
+"Previous Pane"
+msgstr ""
+"Wróæ do poprzedniego panelu\n"
+"Poprzedni panel"
+
+#: Merge.rc:1767
+#, c-format
+msgid ""
+"Open another window for the active document\n"
+"New Window"
+msgstr ""
+"Otwórz aktywny dokument w nowym oknie\n"
+"Nowe okno"
+
+#: Merge.rc:1768
+#, c-format
+msgid ""
+"Arrange icons at the bottom of the window\n"
+"Arrange Icons"
+msgstr ""
+"Ustaw ikony u do³u okna\n"
+"Ustaw ikony"
+
+#: Merge.rc:1769
+#, c-format
+msgid ""
+"Arrange windows so they overlap\n"
+"Cascade Windows"
+msgstr ""
+"Ustaw okna w nak³adaj¹c¹ siê kaskadê\n"
+"Kaskadowo"
+
+#: Merge.rc:1770
+#, fuzzy, c-format
+msgid ""
+"Arrange windows as non-overlapping tiles horizontally\n"
+"Tile Windows Horizontally"
+msgstr ""
+"Ustaw okna obok siebie\n"
+"Obok siebie"
+
+#: Merge.rc:1771
+#, fuzzy, c-format
+msgid ""
+"Arrange windows as non-overlapping tiles vertically\n"
+"Tile Windows Vertically"
+msgstr ""
+"Ustaw okna obok siebie\n"
+"Obok siebie"
+
+#: Merge.rc:1772
+#, c-format
+msgid ""
+"Split the active window into panes\n"
+"Split"
+msgstr ""
+"Podziel aktywne okno na panele\n"
+"Podziel"
+
+#: Merge.rc:1778
+#, c-format
+msgid ""
+"Erase the selection\n"
+"Erase"
+msgstr ""
+"Wyma¿ wybór\n"
+"Wyma¿"
+
+#: Merge.rc:1779
+#, c-format
+msgid ""
+"Erase everything\n"
+"Erase All"
+msgstr ""
+"Wyma¿ wszystko\n"
+"Wyma¿ wszystko"
+
+#: Merge.rc:1780
+#, c-format
+msgid ""
+"Copy the selection and put it on the Clipboard\n"
+"Copy"
+msgstr ""
+"Kopiuj selekcjê i wstaw do schowka\n"
+"Kopiuj"
+
+#: Merge.rc:1781
+#, c-format
+msgid ""
+"Cut the selection and put it on the Clipboard\n"
+"Cut"
+msgstr ""
+"Wytnij selekcjê i wstaw do schowka\n"
+"Wytnij"
+
+#: Merge.rc:1782
+#, c-format
+msgid ""
+"Find the specified text\n"
+"Find"
+msgstr ""
+"ZnajdŸ wskazany tekst\n"
+"Wyszukaj"
+
+#: Merge.rc:1783
+#, c-format
+msgid ""
+"Insert Clipboard contents\n"
+"Paste"
+msgstr ""
+"Wstaw zawartoœæ schowka\n"
+"Wklej"
+
+#: Merge.rc:1784
+#, c-format
+msgid ""
+"Repeat the last action\n"
+"Repeat"
+msgstr ""
+"Powtórz ostatni¹ czynnoœæ\n"
+"Powtórz"
+
+#: Merge.rc:1785
+#, c-format
+msgid ""
+"Replace specific text with different text\n"
+"Replace"
+msgstr ""
+"Zast¹p dany tekst innym\n"
+"Zast¹p"
+
+#: Merge.rc:1786
+#, c-format
+msgid ""
+"Select the entire document\n"
+"Select All"
+msgstr ""
+"Zaznacz ca³y dokument\n"
+"Zaznacz wszystko"
+
+#: Merge.rc:1787
+#, c-format
+msgid ""
+"Undo the last action\n"
+"Undo (Ctrl+Z)"
+msgstr ""
+"Cofnij ostatni¹ czynnoœæ\n"
+"Cofnij"
+
+#: Merge.rc:1788
+#, c-format
+msgid ""
+"Redo the previously undone action\n"
+"Redo (Ctrl+Y)"
+msgstr ""
+"Powtórz cofniêt¹ czynnoœæ\n"
+"Powtórz"
+
+#: Merge.rc:1794
+#, c-format
+msgid ""
+"Show or hide the toolbar\n"
+"Toggle ToolBar"
+msgstr ""
+"Poka¿ lub ukryj pasek narzêdzi\n"
+"Prze³¹cz pasek narzêdzi"
+
+#: Merge.rc:1795
+#, c-format
+msgid ""
+"Show or hide the status bar\n"
+"Toggle StatusBar"
+msgstr ""
+"Poka¿ lub ukryj pasek stanu\n"
+"Prze³¹cz pasek stanu"
+
+#: Merge.rc:1796
+#, c-format
+msgid ""
+"Show or hide the tab bar\n"
+"Toggle TabBar"
+msgstr ""
+
+#: Merge.rc:1802
+#, c-format
+msgid "Change the window size"
+msgstr "Zmieñ rozmiar okna"
+
+#: Merge.rc:1803
+#, c-format
+msgid "Change the window position"
+msgstr "Zmieñ pozycjê okna"
+
+#: Merge.rc:1804
+#, c-format
+msgid "Reduce the window to an icon"
+msgstr "Zredukuj okno do ikony"
+
+#: Merge.rc:1805
+#, c-format
+msgid "Enlarge the window to full size"
+msgstr "Maksymalnie powiêksz okno"
+
+#: Merge.rc:1806
+#, c-format
+msgid "Switch to the next document window"
+msgstr "Prze³¹cz na okno nastêpnego dokumentu"
+
+#: Merge.rc:1807
+#, c-format
+msgid "Switch to the previous document window"
+msgstr "Prze³¹cz na okno poprzedniego dokumentu"
+
+#: Merge.rc:1808
+#, c-format
+msgid "Close the active window and prompts to save the documents"
+msgstr "Zamknij aktywne okno; program pyta, czy zachowaæ dokumenty"
+
+#: Merge.rc:1813
+#, c-format
+msgid "Restore the window to normal size"
+msgstr "Przywróc normalny rozmiar okna"
+
+#: Merge.rc:1814
+#, c-format
+msgid "Activate Task List"
+msgstr "W³¹cz listê zadañ"
+
+#: Merge.rc:1815
+#, c-format
+msgid "Activate this window"
+msgstr "Aktywuj to okno"
+
+#: Merge.rc:1821
+#, c-format
+msgid ""
+"Close print preview mode\n"
+"Cancel Preview"
+msgstr ""
+"Zamknij podgl¹d wydruku\n"
+"Anuluj podgl¹d"
+
+#: Merge.rc:1828
+#, c-format
+msgid ""
+"\n"
+"WinMerge\n"
+"WinMerge\n"
+"\n"
+"\n"
+"WinMerge.Document\n"
+"WinMerge Document"
+msgstr ""
+"\n"
+"WinMerge\n"
+"WinMerge\n"
+"\n"
+"\n"
+"WinMerge.Dokument\n"
+"Dokument WinMerge"
+
+#: Merge.rc:1835
+#, c-format
+msgid "Preserve original EOL chars"
+msgstr "Zachowaj oryginalne znaki EOL"
+
+#: Merge.rc:1842
+#, c-format
+msgid "Press any key"
+msgstr "Naciœnij dowolny klawisz"
+
+#: Merge.rc:1848
+#: Merge.rc:1849
+#, c-format
+msgid "Right click on the path to copy"
+msgstr "Kliknij prawym klawiszem na œcie¿kê do skopiowania"
+
+#: Merge.rc:1855
+#, c-format
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
+msgstr ""
+"Wspó³twórcy:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
+
+#: Merge.rc:1856
+#, c-format
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
+msgstr "Program WinMerge nie oferuje ¿adnej gwarancji u¿ytkowania. Jest to w pe³ni darmowa aplikacja i mo¿e ona byæ rozpowszechniana przy zachowaniu pewnych zasad; zobacz szczegó³y: GNU Public License w meny 'Pomoc'."
+
+#: Merge.rc:1862
+#, c-format
+msgid "&Ok"
+msgstr ""
+
+#: Merge.rc:1864
+#, c-format
+msgid "&Abort"
+msgstr "&Przerwij"
+
+#: Merge.rc:1865
+#, c-format
+msgid "&Retry"
+msgstr "P&onów"
+
+#: Merge.rc:1866
+#, c-format
+msgid "&Ignore"
+msgstr "&Ignoruj"
+
+#: Merge.rc:1867
+#, c-format
+msgid "Ignore &all"
+msgstr "Ignoruj &wszystkie"
+
+#: Merge.rc:1868
+#, c-format
+msgid "&Yes"
+msgstr "&Tak"
+
+#: Merge.rc:1874
+#, c-format
+msgid "Yes to &all"
+msgstr "Tak na &wszystkie"
+
+#: Merge.rc:1875
+#, c-format
+msgid "&No"
+msgstr "&Nie"
+
+#: Merge.rc:1876
+#, c-format
+msgid "No to a&ll"
+msgstr "Nie na w&szystkie"
+
+#: Merge.rc:1877
+#, c-format
+msgid "&Continue"
+msgstr "&Kontynuuj"
+
+#: Merge.rc:1878
+#, c-format
+msgid "&Skip"
+msgstr "Pom&iñ"
+
+#: Merge.rc:1879
+#, c-format
+msgid "Skip &all"
+msgstr "Pomiñ ws&zystkie"
+
+#: Merge.rc:1881
+#, c-format
+msgid "Don't display this &message again."
+msgstr "Nie wyœwietlaj ponownie tego komunikatu."
+
+#: Merge.rc:1882
+#, c-format
+msgid "Don't ask this &question again."
+msgstr "Nie &pytaj ponownie."
+
+#: Merge.rc:1892
+#, c-format
+msgid "Syntax colors"
+msgstr "Kolory sk³adni"
+
+#: Merge.rc:1893
+#, c-format
+msgid "Text Colors"
+msgstr "Kolory tekstu"
+
+#: Merge.rc:1895
+#, c-format
+msgid "Version Control"
+msgstr "Kontrola wersji"
+
+#: Merge.rc:1905
+#, c-format
+msgid "To:"
+msgstr ""
+
+#: Merge.rc:1906
+#, c-format
+msgid "From left:"
+msgstr ""
+
+#: Merge.rc:1907
+#, c-format
+msgid "To left:"
+msgstr ""
+
+#: Merge.rc:1908
+#, c-format
+msgid "From right:"
+msgstr ""
+
+#: Merge.rc:1909
+#, c-format
+msgid "To right:"
+msgstr ""
+
+#: Merge.rc:1915
+#, c-format
+msgid "Version %1"
+msgstr "Wersja %1"
+
+#: Merge.rc:1916
+#, c-format
+msgid "Unicode"
+msgstr ""
+
+#: Merge.rc:1922
+#, c-format
+msgid "Options (%1)"
+msgstr "Opcje (%1)"
+
+#: Merge.rc:1923
+#, c-format
+msgid "All message boxes are now displayed again."
+msgstr "Wszystkie komunikaty zostan¹ ponownie wyœwietlone."
+
+#: Merge.rc:1924
+#, c-format
+msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
+msgstr "Dokonano modyfikacji w pliku bie¿¹cej sesji porównywania.  Niektóre ustawienia nie zostan¹ zastosowane przed ponownym uruchomieniem powrównywania."
+
+#: Merge.rc:1925
+#, c-format
+msgid "The selected font change will not be applied to any currently visible difference windows."
+msgstr "Wybrana czcionka nie zostanie zastosowana do widocznych okien z ró¿nicami."
+
+#: Merge.rc:1927
+#, c-format
+msgid ""
+"Value in Tab size -field is not in range WinMerge accepts.\n"
+"\n"
+"Please use values 1 - %1."
+msgstr ""
+"Wartoœæ w zak³adce wielkoœci nie mo¿e byæ zaakceptowana przez WinMerge.\n"
+"\n"
+"Proszê u¿yæ wartoœci 1 - %1."
+
+#: Merge.rc:1929
+#, c-format
+msgid ""
+"Are you sure you want to reset all WinMerge options to default values?\n"
+"\n"
+"Please re-start WinMerge after the reset."
+msgstr ""
+"Czy jesteœ pewien, ¿e chcesz wyzerowaæ wszystkie opcje WinMerge i przywrócic wartoœci domyœlne ?\n"
+"\n"
+"Po wyzerowaniu konieczne bêdzie ponowne uruchomienie programu."
+
+#: Merge.rc:1935
+#, c-format
+msgid "Open"
+msgstr "Otwórz"
+
+#: Merge.rc:1936
+#, c-format
+msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
+msgstr "Programy|*.exe;*.bat;*.cmd|Wszystkie pliki (*.*)|*.*||"
+
+#: Merge.rc:1937
+#, c-format
+msgid "All Files (*.*)|*.*||"
+msgstr "Wszystkie pliki (*.*)|*.*||"
+
+#: Merge.rc:1938
+#, c-format
+msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
+msgstr "Pliki projektów WinMerge (*.WinMerge)|*.WinMerge||"
+
+#: Merge.rc:1940
+#, c-format
+msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
+msgstr "Pliki ustawieñ (*.ini)|*.ini|All Files (*.*)|*.*||"
+
+#: Merge.rc:1946
+#, c-format
+msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
+msgstr "Pliki Text (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Wszystkie pliki (*.*)|*.*||"
+
+#: Merge.rc:1947
+#, c-format
+msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
+msgstr "Pliki HTML (*.htm,*.html)|*.htm;*.html|Wszystkie pliki (*.*)|*.*||"
+
+#: Merge.rc:1948
+#, c-format
+msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
+msgstr "Pliki XML (*.xml)|*.xml|Wszystkie pliki (*.*)|*.*||"
+
+#: Merge.rc:1954
+#, c-format
+msgid "Full Contents"
+msgstr "Pe³na zawartoœæ"
+
+#: Merge.rc:1955
+#, c-format
+msgid "Quick Contents"
+msgstr "Skrócona zawartoœæ"
+
+#: Merge.rc:1956
+#, c-format
+msgid "Modified Date"
+msgstr "Data modyfikacji"
+
+#: Merge.rc:1957
+#, c-format
+msgid "Modified Date and Size"
+msgstr "Data modyfikacji i wielkoœæ"
+
+#: Merge.rc:1958
+#, c-format
+msgid "Size"
+msgstr "Wielkoœæ"
+
+#: Merge.rc:1964
+#, c-format
+msgid "Name"
+msgstr "Nazwa"
+
+#: Merge.rc:1965
+#, c-format
+msgid "Location"
+msgstr "lokalizacja"
+
+#: Merge.rc:1966
+#, c-format
+msgid "Filters"
+msgstr "Filtry"
+
+#: Merge.rc:1967
+#, c-format
+msgid "[F] "
+msgstr ""
+
+#: Merge.rc:1968
+#, c-format
+msgid "Description"
+msgstr "Opis"
+
+#: Merge.rc:1969
+#, c-format
+msgid "Select filename for new filter"
+msgstr "Wybierz nazwê dla nowego filtra"
+
+#: Merge.rc:1970
+#, c-format
+msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
+msgstr "Filtry plików(*.flt)|*.flt|Wszystkie filtry (*.*)|*.*||"
+
+#: Merge.rc:1972
+#, c-format
+msgid ""
+"Cannot find file filter template file!\n"
+"\n"
+"Please copy file %1 to WinMerge/Filters -folder:\n"
+"%2."
+msgstr ""
+
+#: Merge.rc:1974
+#, c-format
+msgid ""
+"Cannot copy filter template file to filter folder:\n"
+"%1\n"
+"\n"
+"Please make sure the folder exists and is writable."
+msgstr ""
+"Nie mo¿na skopiowaæ pliku szablonu filtra do folderu:\n"
+"%1\n"
+"\n"
+"Upewnij siê, ¿e folder taki istnieje i jest zapisywalny."
+
+#: Merge.rc:1976
+#, c-format
+msgid ""
+"User's filter file folder is not defined!\n"
+"\n"
+"Please select filter folder in Options/System."
+msgstr ""
+"Folder plików filtrów u¿ytkownika nie jest zdefiniowany!\n"
+"\n"
+"Proszê wybraæ folder filtrów w opcje/System."
+
+#: Merge.rc:1978
+#, c-format
+msgid ""
+"Failed to delete the filter file:\n"
+"%1\n"
+"\n"
+"Maybe the file is read-only?"
+msgstr ""
+"Nie mo¿na usun¹æ pliku filtra:\n"
+"%1\n"
+"\n"
+"Byæ mo¿e plik ten jest tylko do odczytu?"
+
+#: Merge.rc:1979
+#, c-format
+msgid "Locate filter file to install"
+msgstr "Lokalizuj plik fitra do instalacji"
+
+#: Merge.rc:1981
+#, c-format
+msgid ""
+"Installing filter file failed.\n"
+"\n"
+"Could not copy new filter file to filter folder."
+msgstr ""
+"Instalowanie pliku filtra nie powiod³o siê.\n"
+"\n"
+"Nie mo¿na skopiowaæ pliku do foldera filtrów."
+
+#: Merge.rc:1983
+#, c-format
+msgid "Filter file already exists. Overwrite existing filter?"
+msgstr "Plik filtra ju¿ istnieje. Czy nadpisaæ istniej¹cy plik?"
+
+#: Merge.rc:1989
+#, c-format
+msgid "Regular expression"
+msgstr ""
+
+#: Merge.rc:1995
+#, c-format
+msgid "&Path to cleartool.exe :"
+msgstr "Œ&cie¿ka do cleartool.exe :"
+
+#: Merge.rc:1996
+#, c-format
+msgid "&Path to SS.EXE :"
+msgstr "Œc&ie¿ka do SS.EXE :"
+
+#: Merge.rc:2002
+#, c-format
+msgid "Folder Comparison Results"
+msgstr "Wyniki porównania katalogów"
+
+#: Merge.rc:2003
+#, c-format
+msgid "File Comparison"
+msgstr "Porównywanie plików"
+
+#: Merge.rc:2004
+#, c-format
+msgid "Untitled left"
+msgstr "Lewy bez tytu³u"
+
+#: Merge.rc:2005
+#, c-format
+msgid "Untitled right"
+msgstr "Prawy bez tytu³u"
+
+#: Merge.rc:2011
+#, c-format
+msgid "Scanning files..."
+msgstr "Skanowanie plików..."
+
+#: Merge.rc:2012
+#, c-format
+msgid "Opening selection"
+msgstr "Otwieranie wybranych"
+
+#: Merge.rc:2013
+#, c-format
+msgid "Copying Left to Right"
+msgstr "Kopiowanie lewej na praw¹"
+
+#: Merge.rc:2014
+#, c-format
+msgid "Copying Right to Left"
+msgstr "Kopiowanie prawej na lew¹"
+
+#: Merge.rc:2015
+#, c-format
+msgid "Copying All to Left"
+msgstr "Kopiowanie wszystkich na lew¹"
+
+#: Merge.rc:2016
+#, c-format
+msgid "Copying All to Right"
+msgstr "Kopiowanie wszystkich na praw¹"
+
+#: Merge.rc:2017
+#, c-format
+msgid "Copying files..."
+msgstr "Kopiowanie plików..."
+
+#: Merge.rc:2018
+#, c-format
+msgid "Deleting files..."
+msgstr "Usuwanie plików..."
+
+#: Merge.rc:2019
+#, c-format
+msgid "Moving files..."
+msgstr "Przenoszenie plików..."
+
+#: Merge.rc:2020
+#, c-format
+msgid "Creating the report..."
+msgstr "Tworzenie raportu..."
+
+#: Merge.rc:2026
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
+msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d  EOL: %s"
+
+#: Merge.rc:2027
+#, c-format
+msgid "Line: %s"
+msgstr "Linia: %s"
+
+#: Merge.rc:2028
+#, c-format
+msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
+msgstr "Lin: %s  Kol: %d/%d  Zn: %d/%d"
+
+#: Merge.rc:2029
+#, c-format
+msgid "Merge"
+msgstr "Scal"
+
+#: Merge.rc:2030
+#, c-format
+msgid "Difference %1 of %2"
+msgstr "Ró¿nica %1 z %2"
+
+#: Merge.rc:2031
+#, c-format
+msgid "%1 Differences Found"
+msgstr "Znaleziono %1 ró¿nic"
+
+#: Merge.rc:2032
+#, c-format
+msgid "1 Difference Found"
+msgstr "Znaleziono 1 ró¿nicê"
+
+#: Merge.rc:2033
+#, c-format
+msgid "RO"
+msgstr ""
+
+#: Merge.rc:2039
+#, c-format
+msgid "Item %1 of %2"
+msgstr "Element %1 z %2"
+
+#: Merge.rc:2040
+#, c-format
+msgid "Items: %1"
+msgstr "Elementy: %1"
+
+#: Merge.rc:2046
+#, c-format
+msgid "Select two existing folders or files to compare"
+msgstr "Wybierz dwa istniej¹ce katalogi lub pliki do porównania"
+
+#: Merge.rc:2047
+#, c-format
+msgid "Folder Selection"
+msgstr "Wybór katalogu"
+
+#: Merge.rc:2048
+#, c-format
+msgid "Select two folders or two files to compare."
+msgstr "Wybierz dwa katalogi lub pliki do porównania."
+
+#: Merge.rc:2049
+#, c-format
+msgid "Left path is invalid!"
+msgstr "Lewa œcie¿ka nieprawid³owa!"
+
+#: Merge.rc:2050
+#, c-format
+msgid "Right path is invalid!"
+msgstr "Prawa œcie¿ka nieprawid³owa!"
+
+#: Merge.rc:2051
+#, c-format
+msgid "Both paths are invalid!"
+msgstr "Obie œcie¿ki nieprawid³owe!"
+
+#: Merge.rc:2052
+#, c-format
+msgid "Choose two files to enable unpacker selection."
+msgstr "Wybierz dwa pliki, aby umo¿liwiæ wybór programu rozpakowuj¹cego."
+
+#: Merge.rc:2053
+#, c-format
+msgid "Cannot compare file and folder!"
+msgstr "Nie mo¿na porównaæ pliku i katalogu!"
+
+#: Merge.rc:2059
+#, c-format
+msgid "File not found: %1"
+msgstr "Nie znaleziono pliku: %1"
+
+#: Merge.rc:2060
+#, c-format
+msgid "File not unpacked: %1"
+msgstr "Plik nie rozpakowany: %1"
+
+#: Merge.rc:2061
+#, c-format
+msgid ""
+"%1\n"
+"%2\n"
+"\n"
+"are identical binary files."
+msgstr ""
+"%1\n"
+"%2\n"
+"\n"
+"to identyczne pliki binarne."
+
+#: Merge.rc:2062
+#, c-format
+msgid ""
+"%1\n"
+"%2\n"
+"\n"
+"are different binary files."
+msgstr ""
+"%1\n"
+"%2\n"
+"\n"
+"to ró¿ne pliki binarne."
+
+#: Merge.rc:2063
+#, c-format
+msgid ""
+"%1\n"
+"\n"
+"is binary file. Cannot compare binary and text files."
+msgstr ""
+"%1\n"
+"\n"
+"to plik binarny. Nie mo¿na porównaæ binarnych i tekstowych."
+
+#: Merge.rc:2064
+#, c-format
+msgid ""
+"Cannot open file\n"
+"%1\n"
+"\n"
+"%2"
+msgstr ""
+"Nie mo¿na otworzyæ pliku\n"
+"%1\n"
+"\n"
+"%2"
+
+#: Merge.rc:2070
+#, c-format
+msgid "Save As"
+msgstr "Zachowaj jako"
+
+#: Merge.rc:2071
+#, c-format
+msgid "Save changes to %1?"
+msgstr "Zachowaæ zmiany w %1?"
+
+#: Merge.rc:2072
+#, c-format
+msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
+msgstr "%1 tylko do odczytu. Czy chcesz zachowaæ plik pod inn¹ nazw¹?"
+
+#: Merge.rc:2073
+#, c-format
+msgid "Error checking destination writeability"
+msgstr "B³¹d sprawdzania mo¿liwoœci zapisu w miejscu docelowym"
+
+#: Merge.rc:2074
+#, c-format
+msgid "Error backing up file"
+msgstr "B³¹d przy tworzeniu kopii zapasowej pliku"
+
+#: Merge.rc:2076
+#, c-format
+msgid ""
+"Unable to backup original file:\n"
+"%1\n"
+"\n"
+"Continue anyway?"
+msgstr ""
+"Nie mo¿na sprorz¹dziæ kopii pliku:\n"
+"%1\n"
+"\n"
+"Kontynuowaæ ?"
+
+#: Merge.rc:2077
+#, c-format
+msgid ""
+"Saving file failed.\n"
+"%1\n"
+"%2\n"
+"Do you want to:\n"
+"\t-use a different filename (Press Ok)\n"
+"\t-abort the current operation (Press Cancel)?"
+msgstr ""
+"Zapis pliku nieudany.\n"
+"%1\n"
+"%2\n"
+"Czy chcesz:\n"
+"\t-u¿yæ innej nazwy pliku (wybierz Ok)\n"
+"\t-anulowaæ operacjê (wybierz Anuluj)?"
+
+#: Merge.rc:2078
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"Wtyczka '%2' nie mo¿e spakowaæ zmian lewego pliku w '%1'.\n"
+"\n"
+"Plik oryginalny nie zostanie zmieniony.\n"
+"\n"
+"Czy zachowaæ rozpakowan¹ wersjê w innym pliku?"
+
+#: Merge.rc:2079
+#, c-format
+msgid ""
+"Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
+"\n"
+"The original file will not be changed.\n"
+"\n"
+"Do you want to save the unpacked version to another file?"
+msgstr ""
+"Wtyczka '%2' nie mo¿e spakowaæ zmian prawego pliku w '%1'.\n"
+"\n"
+"Plik oryginalny nie zostanie zmieniony.\n"
+"\n"
+"Czy zachowaæ rozpakowan¹ wersjê w innym pliku?"
+
+#: Merge.rc:2080
+#, c-format
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge loaded it.\n"
+"\n"
+"Overwrite changed file?"
+msgstr ""
+"Inna aplikacja zmieni³a plik\n"
+"%1\n"
+"po za³adowaniu go przez WinMerge.\n"
+"\n"
+"Nadpisaæ zmieniony plik?"
+
+#: Merge.rc:2081
+#, c-format
+msgid ""
+"%1\n"
+"is marked read-only. Would you like to override the read-only item?"
+msgstr ""
+"%1\n"
+"jest oznaczony jako tylko do odczytu. Czy zignorowaæ status tylko do odczytu?"
+
+#: Merge.rc:2082
+#, c-format
+msgid ""
+"Another application has updated file\n"
+"%1\n"
+"since WinMerge scanned it last time.\n"
+"\n"
+"If you want to refresh files close current file compare and load files again."
+msgstr ""
+"Inna aplikacja zmieni³a plik\n"
+"%1\n"
+"po przeskanowaniu go przez WinMerge.\n"
+"\n"
+"Jeœli chcesz odœwie¿yæ pliki, zamknij bie¿¹c¹ sesjê i za³aduj je ponownie."
+
+#: Merge.rc:2083
+#, c-format
+msgid "Save Left File As"
+msgstr "Zachowaj lewy plik jako"
+
+#: Merge.rc:2084
+#, c-format
+msgid "Save Right File As"
+msgstr "Zachowaj prawy plik jako"
+
+#: Merge.rc:2090
+#, c-format
+msgid ""
+"Cannot merge differences when documents are not in synch.\n"
+"\n"
+"Refresh documents before continuing."
+msgstr ""
+"Nie mo¿na po³¹czyæ ró¿nic, jeœli dokumenty nie s¹ zsynchronizowane.\n"
+"\n"
+"Przed kontynuacj¹ odœwie¿ dokumenty."
+
+#: Merge.rc:2096
+#, c-format
+msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
+msgstr "Musisz wskazaæ scie¿kê projektu SourceSafe aby kontynuowaæ (tj.:  $/MyProject)"
+
+#: Merge.rc:2097
+#, c-format
+msgid "Checkout files from VSS..."
+msgstr "Pobie¿ pliki z VSS..."
+
+#: Merge.rc:2098
+#, c-format
+msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
+msgstr "System œledzenia wersji zwróci³ b³¹d podczas próby pobrania pliku. Nie mo¿na kontynuowaæ..."
+
+#: Merge.rc:2099
+#, c-format
+msgid "Error executing versioning system command."
+msgstr "B³¹d wykonania polecenia systemu wersjonowania."
+
+#: Merge.rc:2100
+#, c-format
+msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
+msgstr "Katalog roboczy VSS oraz lokalizacja bie¿acego pliku nie zgadzaj¹ siê. Kontynuowaæ?"
+
+#: Merge.rc:2101
+#, c-format
+msgid "No VSS database(s) found!"
+msgstr "Nie znaleziono bazy VSS!"
+
+#: Merge.rc:2102
+#, c-format
+msgid "Error from VSS:"
+msgstr "B³¹d VSS:"
+
+#: Merge.rc:2103
+#, c-format
+msgid ""
+"Versioning System returned an error while attempting to check in the file.\n"
+" Please, check config spec of used view.\n"
+" Undo checkout operation?"
+msgstr ""
+"System œledzenia wersji zwróci³ b³¹d podczas operacji checkin.\n"
+" Proszê sprawdziæ config_spec u¿ywanego widoku.\n"
+" Cofn¹æ operacjê checkout?"
+
+#: Merge.rc:2104
+#, c-format
+msgid ""
+"Versioning System returned an error while attempting to undo checkout the file.\n"
+" Please, check config spec of used view. "
+msgstr ""
+"System œledzenia wersji zwróci³ b³¹d podczas operacji uncheckout.\n"
+" Proszê sprawdziæ config_spec u¿ywanego widoku."
+
+#: Merge.rc:2110
+#: Merge.rc:2895
+#, c-format
+msgid "None"
+msgstr "Brak"
+
+#: Merge.rc:2111
+#, c-format
+msgid "Visual SourceSafe (less than 5.0)"
+msgstr "(Visual SourceSafe (poni¿ej 5.0)"
+
+#: Merge.rc:2112
+#, c-format
+msgid "Visual SourceSafe (5.0 and above)"
+msgstr "Visual SourceSafe (5.0 i wy¿ej)"
+
+#: Merge.rc:2114
+#, c-format
+msgid "Break at whitespace"
+msgstr "Zatrzymaj na przerwie"
+
+#: Merge.rc:2115
+#, c-format
+msgid "Break at whitespace or punctuation"
+msgstr "Zatrzymaj na przerwie lub punktorze"
+
+#: Merge.rc:2121
+#: Merge.rc:2123
+#, c-format
+msgid "Copy selected item to named directory"
+msgstr "Kopiuj wybrany plik do wskazanego katalogu"
+
+#: Merge.rc:2122
+#: Merge.rc:2124
+#, c-format
+msgid "Copy selected item to custom directory"
+msgstr "Kopiuj wybrany plik do katalogu"
+
+#: Merge.rc:2125
+#, c-format
+msgid "Delete selected item on left"
+msgstr "Usuñ wybran¹ pozycjê z lewej"
+
+#: Merge.rc:2126
+#, c-format
+msgid "Delete selected item on right"
+msgstr "Usuñ wybran¹ pozycjê z prawej"
+
+#: Merge.rc:2127
+#, c-format
+msgid "Delete selected item(s) on both sides"
+msgstr "Usuñ wybrane pozycje po obu stronach"
+
+#: Merge.rc:2128
+#, c-format
+msgid "Hide selected item(s) (on the fly filter)"
+msgstr "Ukryj wybrane elementy (filtr roboczy)"
+
+#: Merge.rc:2129
+#, c-format
+msgid "Rename selected item on both sides"
+msgstr "Zmieñ nazwê wybranej pozycji na obu stronach"
+
+#: Merge.rc:2130
+#, c-format
+msgid "Right to Left (%1)"
+msgstr "Prawa na lew¹ (%1)"
+
+#: Merge.rc:2131
+#, c-format
+msgid "Left to Right (%1)"
+msgstr "Lewa na praw¹ (%1)"
+
+#: Merge.rc:2132
+#, c-format
+msgid "Right to Left (%1 of %2)"
+msgstr "Prawa na lew¹ (%1 z %2)"
+
+#: Merge.rc:2133
+#, c-format
+msgid "Left to Right (%1 of %2)"
+msgstr "Lewa na praw¹ (%1 z %2)"
+
+#: Merge.rc:2134
+#: Merge.rc:2150
+#, c-format
+msgid "Left to... (%1)"
+msgstr "Lewa na... (%1)"
+
+#: Merge.rc:2135
+#: Merge.rc:2151
+#, c-format
+msgid "Right to... (%1)"
+msgstr "Prawa na... (%1)"
+
+#: Merge.rc:2136
+#: Merge.rc:2152
+#, c-format
+msgid "Left to... (%1 of %2)"
+msgstr "Lewa na... (%1 z %2)"
+
+#: Merge.rc:2137
+#: Merge.rc:2153
+#, c-format
+msgid "Right to... (%1 of %2)"
+msgstr "Prawa na... (%1 z %2)"
+
+#: Merge.rc:2143
+#, c-format
+msgid "Left (%1)"
+msgstr "Lewa (%1)"
+
+#: Merge.rc:2144
+#, c-format
+msgid "Right (%1)"
+msgstr "Prawa (%1)"
+
+#: Merge.rc:2145
+#, c-format
+msgid "Both (%1)"
+msgstr "Obie (%1)"
+
+#: Merge.rc:2146
+#, c-format
+msgid "Left (%1 of %2)"
+msgstr "Lewa (%1 z %2)"
+
+#: Merge.rc:2147
+#, c-format
+msgid "Right (%1 of %2)"
+msgstr "Prawa (%1 z %2)"
+
+#: Merge.rc:2148
+#, c-format
+msgid "Both (%1 of %2)"
+msgstr "Obie (%1 z %2)"
+
+#: Merge.rc:2149
+#, c-format
+msgid "Select destination folder"
+msgstr "Wybierz katalog docelowy"
+
+#: Merge.rc:2154
+#, c-format
+msgid "Left side - select destination folder:"
+msgstr "Lewa strona - wybierz folder docelowy:"
+
+#: Merge.rc:2155
+#, c-format
+msgid "Right side - select destination folder:"
+msgstr "Prawa strona - wybierz folder docelowy:"
+
+#: Merge.rc:2156
+#, c-format
+msgid "(%1 Files Affected)"
+msgstr "(%1 objêtych plików)"
+
+#: Merge.rc:2157
+#, c-format
+msgid "(%1 of %2 Files Affected)"
+msgstr "(%1 z %2 objêtych plików)"
+
+#: Merge.rc:2163
+#, c-format
+msgid "Are you sure you want to copy all differences to the left file?"
+msgstr "Czy rzeczywiœcie chcesz skopiowaæ wszystkie ró¿nice na plik po lewej?"
+
+#: Merge.rc:2164
+#, c-format
+msgid "Are you sure you want to copy all differences to the right file?"
+msgstr "Czy rzeczywiœcie chcesz skopiowaæ wszystkie ró¿nice na plik po prawej?"
+
+#: Merge.rc:2165
+#, c-format
+msgid ""
+"Are you sure you want to copy\n"
+"\n"
+"%1\n"
+"to\n"
+"%2 ?"
+msgstr ""
+"Czy chcesz skopiowaæ\n"
+"\n"
+"%1\n"
+"na \n"
+"%2 ?"
+
+#: Merge.rc:2166
+#, c-format
+msgid "Are you sure you want to copy %1 of %2 selected item(s)?"
+msgstr "Czy chcesz skopiowaæ%1 z %2 wybranych pozycji?"
+
+#: Merge.rc:2167
+#, c-format
+msgid "Are you sure you want to delete %1 of %2 selected item(s)?"
+msgstr "Czy rzeczywiœcie usun¹æ %1 z %2 wybranych pozycji?"
+
+#: Merge.rc:2168
+#, c-format
+msgid ""
+"Delete directory\n"
+"\n"
+"%1 ?"
+msgstr ""
+"Usun¹æ katalog\n"
+"\n"
+"%1 ?"
+
+#: Merge.rc:2169
+#, c-format
+msgid ""
+"Are you sure you want to delete\n"
+"\n"
+"%1 ?"
+msgstr ""
+"Czy rzeczywiœcie usun¹æ\n"
+"\n"
+"%1 ?"
+
+#: Merge.rc:2170
+#, c-format
+msgid "Are you sure you want to copy:"
+msgstr ""
+
+#: Merge.rc:2171
+#, c-format
+msgid "Are you sure you want to copy %d items:"
+msgstr ""
+
+#: Merge.rc:2172
+#, c-format
+msgid ""
+"Operation aborted!\n"
+"\n"
+"Folder contents at disks has changed, path\n"
+"%1\n"
+"was not found.\n"
+"\n"
+"Please refresh the compare."
+msgstr ""
+
+#: Merge.rc:2178
+#, c-format
+msgid "Open left file"
+msgstr "Otwórz lewy plik"
+
+#: Merge.rc:2179
+#, c-format
+msgid "Open the left file to external editor"
+msgstr "Otwórz lewy plik w zewnêtrznym edytorze"
+
+#: Merge.rc:2180
+#, c-format
+msgid "Open left file with ..."
+msgstr "Otwórz lewy plik w..."
+
+#: Merge.rc:2181
+#, c-format
+msgid "Open right file"
+msgstr "Otwórz prawy plik"
+
+#: Merge.rc:2182
+#, c-format
+msgid "Open the right file to external editor"
+msgstr "Otwórz prawy plik w zewnêtrznym edytorze"
+
+#: Merge.rc:2183
+#, c-format
+msgid "Open right file with..."
+msgstr "Otwórz prawy plik w..."
+
+#: Merge.rc:2184
+#, c-format
+msgid "Failed to execute external editor: %1"
+msgstr "Nie mo¿na uruchomiæ zewnêtrznego edytora: %1"
+
+#: Merge.rc:2185
+#, c-format
+msgid "Unknown extension on external editor: %1"
+msgstr "Nieznane rozszerzenie dla zewnêtrznego edytora: %1"
+
+#: Merge.rc:2186
+#, c-format
+msgid "Copy filenames to clipboard"
+msgstr "Kopiuj nazwy plików do schowka"
+
+#: Merge.rc:2187
+#, c-format
+msgid "Copy left side pathnames to clipboard"
+msgstr "Kopiuj œcie¿ki z lewej do schowka"
+
+#: Merge.rc:2188
+#, c-format
+msgid "Copy right side pathnames to clipboard"
+msgstr "Kopiuj œcie¿ki z prawej do schowka"
+
+#: Merge.rc:2189
+#, c-format
+msgid "Copy both sides pathnames to clipboard"
+msgstr "Kopiuj œcie¿ki z obu stron do schowka"
+
+#: Merge.rc:2195
+#, c-format
+msgid "Unknown archive format"
+msgstr "Nieznany format archiwum"
+
+#: Merge.rc:2196
+#, c-format
+msgid "Add items from left side to archive"
+msgstr "Dodaj elementy z lewej do archiwum"
+
+#: Merge.rc:2197
+#, c-format
+msgid "Add items from right side to archive"
+msgstr "Dodaj elementy z prawej do archiwum"
+
+#: Merge.rc:2198
+#, c-format
+msgid "Add items from both sides to archive"
+msgstr "Dodaj elementy z obu stron do archiwum"
+
+#: Merge.rc:2199
+#, c-format
+msgid "Add different items to archive (both sides)"
+msgstr "Dodaj ró¿ne elementy do archiwum (z obu stron)"
+
+#: Merge.rc:2201
+#, c-format
+msgid "Move selected file on left to custom directory"
+msgstr "Kopiuj wybrany plik z lewej do katalogu"
+
+#: Merge.rc:2203
+#, c-format
+msgid "Move selected file on right to custom directory"
+msgstr "Kopiuj wybrany plik z prawej do katalogu"
+
+#: Merge.rc:2209
+#, c-format
+msgid "Filename"
+msgstr "Plik"
+
+#: Merge.rc:2210
+#, c-format
+msgid "Folder"
+msgstr "Katalog"
+
+#: Merge.rc:2211
+#, c-format
+msgid "Comparison result"
+msgstr "Wynik porównania"
+
+#: Merge.rc:2212
+#, c-format
+msgid "Left Date"
+msgstr "Lewa data"
+
+#: Merge.rc:2213
+#, c-format
+msgid "Right Date"
+msgstr "Prawa data"
+
+#: Merge.rc:2214
+#, c-format
+msgid "Extension"
+msgstr "Rozszerzenie"
+
+#: Merge.rc:2215
+#, c-format
+msgid "Left Size"
+msgstr "Lewy rozmiar"
+
+#: Merge.rc:2216
+#, c-format
+msgid "Right Size"
+msgstr "Prawy rozmiar"
+
+#: Merge.rc:2217
+#, c-format
+msgid "Right Size (Short)"
+msgstr "Prawy rozmiar (krótki)"
+
+#: Merge.rc:2218
+#, c-format
+msgid "Left Size (Short)"
+msgstr "Lewy rozmiar (krótki)"
+
+#: Merge.rc:2224
+#, c-format
+msgid "Left Creation Time"
+msgstr "Lewy czas utworzenia"
+
+#: Merge.rc:2225
+#, c-format
+msgid "Right Creation Time"
+msgstr "Prawy czas utworzenia"
+
+#: Merge.rc:2226
+#, c-format
+msgid "Newer File"
+msgstr "Nowszy plik"
+
+#: Merge.rc:2227
+#, c-format
+msgid "Left File Version"
+msgstr "Wersja lewego pliku"
+
+#: Merge.rc:2228
+#, c-format
+msgid "Right File Version"
+msgstr "Wersja prawego pliku"
+
+#: Merge.rc:2229
+#, c-format
+msgid "Short Result"
+msgstr "Skrócony wynik"
+
+#: Merge.rc:2230
+#, c-format
+msgid "Left Attributes"
+msgstr "Lewe atrybuty"
+
+#: Merge.rc:2231
+#, c-format
+msgid "Right Attributes"
+msgstr "Prawe atrybuty"
+
+#: Merge.rc:2232
+#, c-format
+msgid "Left EOL"
+msgstr "Lewe EOL"
+
+#: Merge.rc:2233
+#, c-format
+msgid "Right EOL"
+msgstr "Prawe EOL"
+
+#: Merge.rc:2239
+#, c-format
+msgid "Left Encoding"
+msgstr "Lewe kodowanie"
+
+#: Merge.rc:2240
+#, c-format
+msgid "Right Encoding"
+msgstr "Prawe kodowanie"
+
+#: Merge.rc:2241
+#, c-format
+msgid "Ignored Diff."
+msgstr "Ignorowane ró¿n."
+
+#: Merge.rc:2242
+#, c-format
+msgid "Differences"
+msgstr "Ró¿nice"
+
+#: Merge.rc:2243
+#: Merge.rc:2722
+#, c-format
+msgid "Binary"
+msgstr "Binarne"
+
+#: Merge.rc:2249
+#, c-format
+msgid "Unable to compare files"
+msgstr "Nie mo¿na porównaæ plików"
+
+#: Merge.rc:2250
+#, c-format
+msgid "Item aborted"
+msgstr "Anulowany"
+
+#: Merge.rc:2251
+#, c-format
+msgid "File skipped"
+msgstr "Plik pominiêty"
+
+#: Merge.rc:2252
+#, c-format
+msgid "Folder skipped"
+msgstr "Katalog pominiêty"
+
+#: Merge.rc:2253
+#, c-format
+msgid "Left only: %1"
+msgstr ""
+
+#: Merge.rc:2254
+#, c-format
+msgid "Right only: %1"
+msgstr ""
+
+#: Merge.rc:2255
+#, c-format
+msgid "Binary files are identical"
+msgstr "Pliki binarne s¹ identyczne"
+
+#: Merge.rc:2257
+#, c-format
+msgid "Binary files are different"
+msgstr "Pliki binarne s¹ ró¿ne"
+
+#: Merge.rc:2258
+#, c-format
+msgid "Files are different"
+msgstr "Pliki s¹ ró¿ne"
+
+#: Merge.rc:2259
+#, c-format
+msgid "Left Only"
+msgstr "Tylko lewa"
+
+#: Merge.rc:2260
+#, c-format
+msgid "Right Only"
+msgstr "Tylko prawa"
+
+#: Merge.rc:2262
+#, c-format
+msgid "Error"
+msgstr ""
+
+#: Merge.rc:2268
+#, c-format
+msgid "Elapsed time: %ld ms"
+msgstr "Up³ynê³o: %ld ms"
+
+#: Merge.rc:2269
+#, c-format
+msgid "1 item selected"
+msgstr "wybrano 1 element"
+
+#: Merge.rc:2270
+#, c-format
+msgid "%1 items selected"
+msgstr "wybrano %1 elementów"
+
+#: Merge.rc:2276
+#, c-format
+msgid "Filename or folder name."
+msgstr "Plik lub katalog."
+
+#: Merge.rc:2277
+#, c-format
+msgid "Subfolder name when subfolders are included."
+msgstr "Nazwa podkatalogu, gdy podkatalogi s¹ przetwarzane."
+
+#: Merge.rc:2278
+#, c-format
+msgid "Comparison result, long form."
+msgstr "Wynik porównania – wersja pe³na."
+
+#: Merge.rc:2279
+#, c-format
+msgid "Left side modification date."
+msgstr "Data modyfikacji lewej strony."
+
+#: Merge.rc:2280
+#, c-format
+msgid "Right side modification date."
+msgstr "Data modyfikacji prawej strony."
+
+#: Merge.rc:2281
+#, c-format
+msgid "File's extension."
+msgstr "Rozszerzenie pliku."
+
+#: Merge.rc:2282
+#, c-format
+msgid "Left file size in bytes."
+msgstr "Rozmiar lewego pliku w bajtach."
+
+#: Merge.rc:2283
+#, c-format
+msgid "Right file size in bytes."
+msgstr "Rozmiar prawego pliku w bajtach."
+
+#: Merge.rc:2284
+#, c-format
+msgid "Left file size abbreviated."
+msgstr "Lewa wielkoœæ pliku skrócona."
+
+#: Merge.rc:2285
+#, c-format
+msgid "Right file size abbreviated."
+msgstr "Prawa wielkoœæ pliku skrócona."
+
+#: Merge.rc:2291
+#, c-format
+msgid "Left side creation time."
+msgstr "Czas utworzenia lewej strony."
+
+#: Merge.rc:2292
+#, c-format
+msgid "Right side creation time."
+msgstr "Czas utworzenia prawej strony."
+
+#: Merge.rc:2293
+#, c-format
+msgid "Tells which side has newer modification date."
+msgstr "Pokazuje, która strona zosta³a póŸniej zmodyfikowana."
+
+#: Merge.rc:2294
+#, c-format
+msgid "Left side file version, only for some filetypes."
+msgstr "Wersja pliku z lewej - tylko dla niektórych typów."
+
+#: Merge.rc:2295
+#, c-format
+msgid "Right side file version, only for some filetypes."
+msgstr "Wersja pliku z prawej - tylko dla niektórych typów."
+
+#: Merge.rc:2296
+#, c-format
+msgid "Short comparison result."
+msgstr "Skrócony wynik porównania."
+
+#: Merge.rc:2297
+#, c-format
+msgid "Left side attributes."
+msgstr "Atrybuty lewej strony."
+
+#: Merge.rc:2298
+#, c-format
+msgid "Right side attributes."
+msgstr "Atrybuty prawej strony."
+
+#: Merge.rc:2299
+#, c-format
+msgid "Left side file EOL type"
+msgstr "Lewa strona pliku typu EOL"
+
+#: Merge.rc:2300
+#, c-format
+msgid "Right side file EOL type"
+msgstr "Prawa strona pliku typu EOL"
+
+#: Merge.rc:2306
+#, c-format
+msgid "Left side encoding."
+msgstr "Kodowanie lewej strony."
+
+#: Merge.rc:2307
+#, c-format
+msgid "Right side encoding."
+msgstr "Kodowanie prawej strony."
+
+#: Merge.rc:2308
+#, c-format
+msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
+msgstr "Liczba ró¿nic zignorowanych w pliku. Ró¿nice te zosta³y zignorowane przez WinMerge i nie mog¹ zostaæ po³¹czone."
+
+#: Merge.rc:2309
+#, c-format
+msgid "Number of differences in file. This number does not include ignored differences."
+msgstr "Liczba ró¿nic w pliku. Liczba ta nie zawiera zignorowanych ró¿nic."
+
+#: Merge.rc:2310
+#, c-format
+msgid "Shows an asterisk (*) if the file is binary."
+msgstr "Pokazuje gwiazdkê (*) jeœli plik binarny."
+
+#: Merge.rc:2316
+#, c-format
+msgid "Compare %1 with %2"
+msgstr "Porównaj %1 z %2"
+
+#: Merge.rc:2317
+#, c-format
+msgid "Comma-separated list"
+msgstr "Lista z przecinkami"
+
+#: Merge.rc:2318
+#, c-format
+msgid "Tab-separated list"
+msgstr "Lista z tabulatorami"
+
+#: Merge.rc:2319
+#, c-format
+msgid "Simple HTML"
+msgstr "Prosty HTML"
+
+#: Merge.rc:2320
+#, c-format
+msgid "Simple XML"
+msgstr "Prosty XML"
+
+#: Merge.rc:2322
+#, c-format
+msgid "The report file already exists. Do you want to overwrite existing file?"
+msgstr "Plik raportu ju¿ istnieje. Czy chcesz nadpisaæ istniej¹cy plik ?"
+
+#: Merge.rc:2323
+#, c-format
+msgid ""
+"Error creating the report:\n"
+"%1"
+msgstr ""
+"B³¹d przy tworzeniu raportu:\n"
+"%1"
+
+#: Merge.rc:2324
+#, c-format
+msgid "The report has been created successfully."
+msgstr "Raport zosta³ pomyœlnie utworzony."
+
+#: Merge.rc:2330
+#, c-format
+msgid "The same file is opened in both panels."
+msgstr "Ten sam plik otwierany w obu panelach."
+
+#: Merge.rc:2331
+#, c-format
+msgid "The selected files are identical."
+msgstr "Wybrane pliki s¹ identyczne."
+
+#: Merge.rc:2332
+#, c-format
+msgid "The selected folder exists only in other side and therefore cannot be opened."
+msgstr "Wybrany folder istnieje tylko po przeciwnej stronie i dlatego nie mo¿e zostac otwarty."
+
+#: Merge.rc:2333
+#, c-format
+msgid "An error occurred while comparing the files."
+msgstr "B³¹d podczas porównywania plików."
+
+#: Merge.rc:2334
+#, c-format
+msgid "Binary files cannot be visually compared."
+msgstr "Pliki binarne nie mog¹ byæ porównywane wizualnie."
+
+#: Merge.rc:2335
+#, c-format
+msgid "Temporary files could not be created. Check your temporary path settings."
+msgstr "Nie mo¿na utworzyæ plików tymczasowych. SprawdŸ ustawienie œcie¿ki tymczasowej."
+
+#: Merge.rc:2336
+#, c-format
+msgid "Directory files cannot be visually compared."
+msgstr "Nie mo¿na porównaæ wizualnie katalogów."
+
+#: Merge.rc:2337
+#, c-format
+msgid ""
+"These files use different carriage return types.\n"
+"\n"
+"Do you want to treat all carriage return types as equivalent for this comparison?\n"
+"\n"
+"Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
+msgstr ""
+"W tych plikach u¿ywane s¹ ró¿ne znaki koñca linii.\n"
+"\n"
+"Czy traktowaæ wszystkie typy znaków koñca linii jako równowa¿ne w tym porównaniu?\n"
+"\n"
+"Uwaga: Jeœli odmienne znaki koñca linii maj¹ zawsze byæ traktowane jako równowa¿ne, ustaw opcjê 'Ignoruj ró¿nice koñca linii...' na zak³adce porównania w oknie opcji (dostêpne w Edycja/Opcje)."
+
+#: Merge.rc:2338
+#, c-format
+msgid ""
+"The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
+msgstr ""
+"W pliku '%1' znaki EOL maj¹ ró¿ne typy (DOS/UNIX/MAC).\n"
+" Przy bie¿¹cych ustawieniach zostan¹ zunifikowane do g³ównego typu.\n"
+" Czy zmieniæ opcje i zachowaæ ró¿ne znaki EOL?"
+
+#: Merge.rc:2339
+#, c-format
+msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
+msgstr "B³¹d przy wstêpnym porównaniu pliku '%1' za pomoc¹ wtyczki '%2'. Wstêpne porównanie nie zostanie zastosowane."
+
+#: Merge.rc:2340
+#, c-format
+msgid "The selected folder is invalid."
+msgstr "Wybrany folder jest nieprawid³owy."
+
+#: Merge.rc:2341
+#, c-format
+msgid "Cannot open a binary file to editor."
+msgstr "Nie mo¿na otworzyæ w edytorze pliku binarnego."
+
+#: Merge.rc:2347
+#, c-format
+msgid ""
+"Different codepages found in left (cp%d) and right (cp%d) files. \n"
+"Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
+"Would you like to treat both files as being in the default windows codepage (recommended)?"
+msgstr ""
+"Ró¿ne strony kodowe w plikach po lewej (cp%d) i po prawej (cp%d). \n"
+"Wyœwietlanie ka¿dego pliku w odpowiedniej stronie kodowej da lepsze wyniki, ale scalenie/skopiowanie bêdzie niebezpieczne.\n"
+"Would you like to treat both files as being in the default windows codepage (recommended)?"
+
+#: Merge.rc:2348
+#, c-format
+msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
+msgstr "Ostrze¿enie: Pliki u¿ywaj¹ ró¿nego kodowania, lewy=%s a prawy=%s, a ich po³¹czenie mo¿e spowodowaæ utratê informacji."
+
+#: Merge.rc:2349
+#, c-format
+msgid "Information lost due to encoding errors: both files"
+msgstr "Utrata informacji z powodu b³êdów kodowania: oba pliki"
+
+#: Merge.rc:2350
+#, c-format
+msgid "Information lost due to encoding errors: right file"
+msgstr "Utrata informacji z powodu b³êdów kodowania: prawy plik"
+
+#: Merge.rc:2351
+#, c-format
+msgid "Information lost due to encoding errors: left file"
+msgstr "Utrata informacji z powodu b³êdów kodowania: lewy plik"
+
+#: Merge.rc:2357
+#, c-format
+msgid "No difference"
+msgstr "Brak ró¿nic"
+
+#: Merge.rc:2358
+#, c-format
+msgid "Line difference"
+msgstr "Wiersz ró¿nicy"
+
+#: Merge.rc:2364
+#, c-format
+msgid "Replaced %1 string(s)."
+msgstr "Zast¹piono %1 sekwencji znaków."
+
+#: Merge.rc:2365
+#, c-format
+msgid "Cannot find string \"%s\""
+msgstr "Nie mo¿na znaleŸæ sekwencji znaków \"%s\""
+
+#: Merge.rc:2371
+#, c-format
+msgid "Copy Full Path"
+msgstr "Kopiuj pe³n¹ œcie¿kê"
+
+#: Merge.rc:2372
+#, c-format
+msgid "Copy Filename"
+msgstr "Kopiuj nazwê pliku"
+
+#: Merge.rc:2378
+#, c-format
+msgid "Location Pane"
+msgstr "Okno lokacji"
+
+#: Merge.rc:2379
+#, c-format
+msgid "Diff Pane"
+msgstr "Okno Diff"
+
+#: Merge.rc:2385
+#, c-format
+msgid "Patch file succesfully written."
+msgstr "Utworzono patch."
+
+#: Merge.rc:2386
+#, c-format
+msgid "1. item is not found or is directory!"
+msgstr "1. element nie zosta³ znaleziony albo jest katalogiem!"
+
+#: Merge.rc:2387
+#, c-format
+msgid "2. item is not found or is directory!"
+msgstr "2. element nie zosta³ znaleziony albo jest katalogiem!"
+
+#: Merge.rc:2388
+#, c-format
+msgid "The patch file already exists. Do you want to overwrite it?"
+msgstr "Plik patch ju¿ istnieje. Czy napisaæ plik?"
+
+#: Merge.rc:2389
+#, c-format
+msgid "[%1 files selected]"
+msgstr "[wybrano %1 plików]"
+
+#: Merge.rc:2390
+#, c-format
+msgid "Normal"
+msgstr "Normalny"
+
+#: Merge.rc:2391
+#, c-format
+msgid "Context"
+msgstr "Kontekst"
+
+#: Merge.rc:2392
+#, c-format
+msgid "Unified"
+msgstr "Zunifikowany"
+
+#: Merge.rc:2393
+#, c-format
+msgid "Could not write to file %1."
+msgstr "Nie mo¿na zapisaæ do pliku %1."
+
+#: Merge.rc:2394
+#, c-format
+msgid "The specified output path is not an absolute path: %1"
+msgstr "Wybrana œcie¿ka docelowa nie jest absolutna: %1"
+
+#: Merge.rc:2395
+#, c-format
+msgid "Specify an output file"
+msgstr "Wybierz plik docelowy"
+
+#: Merge.rc:2396
+#, c-format
+msgid "Cannot create a patch file from binary files."
+msgstr "Nie mo¿na utworzyæ patcha z plików binarnych."
+
+#: Merge.rc:2397
+#, c-format
+msgid "Cannot create a patch file from directories."
+msgstr "Nie mo¿na utworzyæ patcha z katalogów."
+
+#: Merge.rc:2398
+#, c-format
+msgid ""
+"Please save all files first.\n"
+"\n"
+"Creating a patch requires that there are no unsaved changes in files."
+msgstr ""
+"Proszê najpierw zapisaæ wszystkie prace.\n"
+"\n"
+"Tworzenie patcha wymaga zapisania wszystkich zmian w plikach."
+
+#: Merge.rc:2399
+#, c-format
+msgid "Folder does not exist."
+msgstr "Folder nie istnieje."
+
+#: Merge.rc:2404
+#, c-format
+msgid "Current directory comparison results will be cleared."
+msgstr "Wyniki bie¿¹cego porównania katalogów zostan¹ usuniête."
+
+#: Merge.rc:2405
+#, c-format
+msgid ""
+"Archive support is not enabled.\n"
+"All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
+"See manual for more info about archive support and how to enable it."
+msgstr ""
+"Nie w³¹czono obs³ugi archiwów.\n"
+"Nie znaleziono komponentów (7-zip i/lub Merge7z*.dll) wymaganych do obs³ugi archiwów.\n"
+"Informacje o obs³udze archiwów zawiera podrêcznik."
+
+#: Merge.rc:2406
+#, c-format
+msgid ""
+"\n"
+"Note: 7-Zip integration is disabled in WinMerge settings."
+msgstr ""
+"\n"
+"Uwaga: Integracja 7-Zip jest wy³¹czona w ustawieniach programu."
+
+#: Merge.rc:2407
+#, c-format
+msgid ""
+"\n"
+"Note: 7-Zip integration is restricted to standalone operation in WinMerge settings."
+msgstr ""
+"\n"
+"Uwaga: Integracja 7-Zip ograniczona jest do podstawowych operacji w ustawieniach programu."
+
+#: Merge.rc:2408
+#, c-format
+msgid "Select file for export"
+msgstr "Wybierz plik do eksportu"
+
+#: Merge.rc:2409
+#, c-format
+msgid "Select file for import"
+msgstr "Wybierz plik do importu"
+
+#: Merge.rc:2410
+#, c-format
+msgid "Options imported from the file."
+msgstr "Zaimportowano opcje z pliku."
+
+#: Merge.rc:2411
+#, c-format
+msgid "Options exported to the file."
+msgstr "Wyeksportowano opcje do pliku."
+
+#: Merge.rc:2412
+#, c-format
+msgid "Failed to import options from the file."
+msgstr "B³¹d podczas importu opcji z pliku."
+
+#: Merge.rc:2413
+#, c-format
+msgid "Failed to write options to the file."
+msgstr "B³¹d podczas eksportu opcji do pliku."
+
+#: Merge.rc:2414
+#, c-format
+msgid ""
+"You are about to close several compare windows.\n"
+"\n"
+"Do you want to continue?"
+msgstr ""
+
+#: Merge.rc:2420
+#, c-format
+msgid "Regular expression error"
+msgstr "B³¹d w wyra¿eniu regularnych"
+
+#: Merge.rc:2421
+#, c-format
+msgid "No match"
+msgstr "Brak trafienia"
+
+#: Merge.rc:2422
+#, c-format
+msgid "Invalid regular expression"
+msgstr "Niepoprawne wyra¿enie regularne"
+
+#: Merge.rc:2423
+#, c-format
+msgid "Invalid collation character"
+msgstr "Niepoprawny znak kolacjonowania"
+
+#: Merge.rc:2424
+#, c-format
+msgid "Invalid character class name"
+msgstr "Niepoprawna nazwa klasy znaków"
+
+#: Merge.rc:2425
+#, c-format
+msgid "Trailing backslash"
+msgstr "Ukoœnik nastêpczy"
+
+#: Merge.rc:2426
+#, c-format
+msgid "Invalid back reference"
+msgstr "Niepoprawne odniesienie wsteczne"
+
+#: Merge.rc:2427
+#, c-format
+msgid "Unmatched [ or [^"
+msgstr "Brakuj¹ce [ lub [^"
+
+#: Merge.rc:2428
+#, c-format
+msgid "Unmatched ( or \\("
+msgstr "Brakuj¹ce ( lub \\("
+
+#: Merge.rc:2429
+#, c-format
+msgid "Unmatched \\{"
+msgstr "Brakuj¹ce \\{"
+
+#: Merge.rc:2430
+#, c-format
+msgid "Invalid content of \\{\\}"
+msgstr "Niepoprawna zawartoœæ \\{\\}"
+
+#: Merge.rc:2431
+#, c-format
+msgid "Invalid range end"
+msgstr "Niepoprawne zakoñczenie zakresu"
+
+#: Merge.rc:2432
+#, c-format
+msgid "Out of memory"
+msgstr "Brak pamiêci"
+
+#: Merge.rc:2433
+#, c-format
+msgid "Invalid preceding regular expression"
+msgstr "Niepoprawne poprzedzaj¹ce wyra¿enie regularne"
+
+#: Merge.rc:2434
+#, c-format
+msgid "Premature end of regular expression"
+msgstr "Przedwczesne zakoñczenie wyra¿enia regularnego"
+
+#: Merge.rc:2435
+#, c-format
+msgid "Regular expression too big"
+msgstr "Wyra¿enie regularne zbyt du¿e"
+
+#: Merge.rc:2440
+#, c-format
+msgid "Unmatched ) or \\)"
+msgstr "Brakuj¹ce ) lub \\)"
+
+#: Merge.rc:2446
+#, c-format
+msgid "Afrikaans"
+msgstr "Afrykanerski"
+
+#: Merge.rc:2447
+#, c-format
+msgid "Albanian"
+msgstr "Albañski"
+
+#: Merge.rc:2448
+#, c-format
+msgid "Arabic (Saudi Arabian)"
+msgstr "Arabski (Arabia Saudyjska)"
+
+#: Merge.rc:2449
+#, c-format
+msgid "Arabic (Iraq)"
+msgstr "Arabski (Irak)"
+
+#: Merge.rc:2450
+#, c-format
+msgid "Arabic (Egyptian)"
+msgstr "Arabski (Egipt)"
+
+#: Merge.rc:2451
+#, c-format
+msgid "Arabic (Libyan)"
+msgstr "Arabski (Libia)"
+
+#: Merge.rc:2452
+#, c-format
+msgid "Arabic (Algerian)"
+msgstr "Arabski (Algieria)"
+
+#: Merge.rc:2453
+#, c-format
+msgid "Arabic (Moroccan)"
+msgstr "Arabski (Maroko)"
+
+#: Merge.rc:2454
+#, c-format
+msgid "Arabic (Tunisian)"
+msgstr "Arabski (Tunezja)"
+
+#: Merge.rc:2455
+#, c-format
+msgid "Arabic (Oman)"
+msgstr "Arabski (Oman)"
+
+#: Merge.rc:2456
+#, c-format
+msgid "Arabic (Yemen)"
+msgstr "Arabski (Jemen)"
+
+#: Merge.rc:2457
+#, c-format
+msgid "Arabic (Syrian)"
+msgstr "Arabski (Syria)"
+
+#: Merge.rc:2458
+#, c-format
+msgid "Arabic (Jordan)"
+msgstr "Arabski (Jordania)"
+
+#: Merge.rc:2464
+#, c-format
+msgid "Arabic (Lebanon)"
+msgstr "Arabski (Liban)"
+
+#: Merge.rc:2465
+#, c-format
+msgid "Arabic (Kuwait)"
+msgstr "Arabski (Kuwejt)"
+
+#: Merge.rc:2466
+#, c-format
+msgid "Arabic (UAE)"
+msgstr "Arabski (ZEA)"
+
+#: Merge.rc:2467
+#, c-format
+msgid "Arabic (Bahrain)"
+msgstr "Arabski (Bahrain)"
+
+#: Merge.rc:2468
+#, c-format
+msgid "Arabic (Qatar)"
+msgstr "Arabski (Katar)"
+
+#: Merge.rc:2469
+#, c-format
+msgid "Armenian"
+msgstr "Ormiañski"
+
+#: Merge.rc:2470
+#, c-format
+msgid "Azeri (Latin)"
+msgstr "Azeski (³aciñski)"
+
+#: Merge.rc:2471
+#, c-format
+msgid "Azeri (Cyrillic)"
+msgstr "Azerski (cyrylica)"
+
+#: Merge.rc:2472
+#, c-format
+msgid "Basque"
+msgstr "Baskijski"
+
+#: Merge.rc:2473
+#, c-format
+msgid "Belarusian"
+msgstr "Bia³oruski"
+
+#: Merge.rc:2474
+#, c-format
+msgid "Bulgarian"
+msgstr "Bu³garski"
+
+#: Merge.rc:2475
+#, c-format
+msgid "Catalan"
+msgstr "Kataloñski"
+
+#: Merge.rc:2476
+#, c-format
+msgid "Chinese (Traditional)"
+msgstr "Chiñski (tradycyjny)"
+
+#: Merge.rc:2477
+#, c-format
+msgid "Chinese (Simplified)"
+msgstr "Chiñski (uproszczony)"
+
+#: Merge.rc:2478
+#, c-format
+msgid "Chinese (Hong Kong)"
+msgstr "Chiñski (Hong Kong)"
+
+#: Merge.rc:2479
+#, c-format
+msgid "Chinese (Singapore)"
+msgstr "Chiñski (Singapur)"
+
+#: Merge.rc:2485
+#, c-format
+msgid "Chinese (Macau SAR)"
+msgstr "Chiñski (Makao)"
+
+#: Merge.rc:2486
+#, c-format
+msgid "Croatian"
+msgstr "Chorwacki"
+
+#: Merge.rc:2487
+#, c-format
+msgid "Czech"
+msgstr "Czeski"
+
+#: Merge.rc:2488
+#, c-format
+msgid "Dansk"
+msgstr "Duñski"
+
+#: Merge.rc:2489
+#, c-format
+msgid "Dutch"
+msgstr "Holenderski"
+
+#: Merge.rc:2490
+#, c-format
+msgid "Dutch (Belgium)"
+msgstr "Holenderski (Belgia)"
+
+#: Merge.rc:2491
+#, c-format
+msgid "English (US)"
+msgstr "Angielski (US)"
+
+#: Merge.rc:2492
+#, c-format
+msgid "English (UK)"
+msgstr "Angielski (UK)"
+
+#: Merge.rc:2493
+#, c-format
+msgid "English (Australian)"
+msgstr "Angielski (Australia)"
+
+#: Merge.rc:2494
+#, c-format
+msgid "English (Canadian)"
+msgstr "Angielski (Kanada)"
+
+#: Merge.rc:2495
+#, c-format
+msgid "English (New Zealand)"
+msgstr "Angielski (Nowa Zelandia)"
+
+#: Merge.rc:2496
+#, c-format
+msgid "English (Irish)"
+msgstr "Angielski (Irlandia)"
+
+#: Merge.rc:2497
+#, c-format
+msgid "English (So. African)"
+msgstr "Angielski (RPA) "
+
+#: Merge.rc:2498
+#, c-format
+msgid "English (Jamaican)"
+msgstr "Angielski (Jamajka)"
+
+#: Merge.rc:2499
+#, c-format
+msgid "English (Caribbean)"
+msgstr "Angielski (Karaiby)"
+
+#: Merge.rc:2500
+#, c-format
+msgid "English (Belize)"
+msgstr "Angielski (Belize)"
+
+#: Merge.rc:2506
+#, c-format
+msgid "English (Trinidad)"
+msgstr "Angielski (Trynidad)"
+
+#: Merge.rc:2507
+#, c-format
+msgid "English (Zimbabwe)"
+msgstr "Angielski (Zimbabwe)"
+
+#: Merge.rc:2508
+#, c-format
+msgid "English (Philippines)"
+msgstr "Angielski (Filipiny)"
+
+#: Merge.rc:2509
+#, c-format
+msgid "Eesti"
+msgstr ""
+
+#: Merge.rc:2510
+#, c-format
+msgid "Faeroese"
+msgstr ""
+
+#: Merge.rc:2511
+#, c-format
+msgid "Farsi"
+msgstr ""
+
+#: Merge.rc:2512
+#, c-format
+msgid "Suomi"
+msgstr ""
+
+#: Merge.rc:2513
+#, c-format
+msgid "French"
+msgstr "Francuski"
+
+#: Merge.rc:2514
+#, c-format
+msgid "French (Belgique)"
+msgstr "Francuski (Belgia)"
+
+#: Merge.rc:2515
+#, c-format
+msgid "French (Canada)"
+msgstr "Francuski (Kanada)"
+
+#: Merge.rc:2516
+#, c-format
+msgid "French (Switzerland)"
+msgstr "Francuski (Szwajcaria)"
+
+#: Merge.rc:2517
+#, c-format
+msgid "French (Luxembourg)"
+msgstr "Francuski (Luksemburg)"
+
+#: Merge.rc:2518
+#, c-format
+msgid "French (Monaco)"
+msgstr "Francuski (Monako)"
+
+#: Merge.rc:2519
+#, c-format
+msgid "Georgian"
+msgstr "Gruziñski"
+
+#: Merge.rc:2520
+#, c-format
+msgid "German (Germany)"
+msgstr "Niemiecki (Niemcy)"
+
+#: Merge.rc:2521
+#, c-format
+msgid "German (Switzerland)"
+msgstr "Niemiecki (Szwajcaria)"
+
+#: Merge.rc:2527
+#, c-format
+msgid "German (Austria)"
+msgstr "Niemiecki (Austria)"
+
+#: Merge.rc:2528
+#, c-format
+msgid "German (Luxembourg)"
+msgstr "Niemiecki (Luxembourg)"
+
+#: Merge.rc:2529
+#, c-format
+msgid "German (Liechtenstein)"
+msgstr "Niemiecki (Liechtenstein)"
+
+#: Merge.rc:2530
+#, c-format
+msgid "Greek"
+msgstr "Grecki"
+
+#: Merge.rc:2531
+#, c-format
+msgid "Hebrew"
+msgstr "Hebrajski"
+
+#: Merge.rc:2532
+#, c-format
+msgid "Hindi"
+msgstr ""
+
+#: Merge.rc:2533
+#, c-format
+msgid "Hungarian"
+msgstr "Wêgierski"
+
+#: Merge.rc:2534
+#, c-format
+msgid "Icelandic"
+msgstr "Islandzki"
+
+#: Merge.rc:2535
+#, c-format
+msgid "Indonesian"
+msgstr "Indonezyjski"
+
+#: Merge.rc:2536
+#, c-format
+msgid "Italian"
+msgstr "W³oski"
+
+#: Merge.rc:2537
+#, c-format
+msgid "Italian (Swiss)"
+msgstr "W³oski (Szwajcaria)"
+
+#: Merge.rc:2538
+#, c-format
+msgid "Japanese"
+msgstr "Japoñski"
+
+#: Merge.rc:2539
+#, c-format
+msgid "Kashmiri (India)"
+msgstr "Kashmiri (Indie)"
+
+#: Merge.rc:2540
+#, c-format
+msgid "Kazakh"
+msgstr "Kazachski"
+
+#: Merge.rc:2541
+#, c-format
+msgid "Korean"
+msgstr "Koreañski"
+
+#: Merge.rc:2542
+#, c-format
+msgid "Korean (Johab)"
+msgstr "Koreañski (Johab)"
+
+#: Merge.rc:2548
+#, c-format
+msgid "Latvian"
+msgstr "£otweski"
+
+#: Merge.rc:2549
+#, c-format
+msgid "Lithuanian"
+msgstr "Litewski"
+
+#: Merge.rc:2550
+#, c-format
+msgid "Malay (Malaysian)"
+msgstr "Malajski (Malezja)"
+
+#: Merge.rc:2551
+#, c-format
+msgid "Malay (Brunei Darussalam)"
+msgstr "Malajski (Brunei)"
+
+#: Merge.rc:2552
+#, c-format
+msgid "Manipuri"
+msgstr ""
+
+#: Merge.rc:2553
+#, c-format
+msgid "Norwegian (Bokml)"
+msgstr "Norweski (Bokmal)"
+
+#: Merge.rc:2554
+#, c-format
+msgid "Norwegian (Nynorsk)"
+msgstr "Norweski (Nynorsk)"
+
+#: Merge.rc:2555
+#, c-format
+msgid "Polski"
+msgstr ""
+
+#: Merge.rc:2556
+#, c-format
+msgid "Portugese"
+msgstr "Portugalski"
+
+#: Merge.rc:2557
+#, c-format
+msgid "Portugese (Brazil)"
+msgstr "Portugalski (Brazylia)"
+
+#: Merge.rc:2558
+#, c-format
+msgid "Romanian"
+msgstr "Rumuñski"
+
+#: Merge.rc:2559
+#, c-format
+msgid "Russian"
+msgstr "Rosyjski"
+
+#: Merge.rc:2560
+#, c-format
+msgid "Sanskrit"
+msgstr "Sanskryt"
+
+#: Merge.rc:2561
+#, c-format
+msgid "Serbian (Latin)"
+msgstr "Serbski (³aciñski)"
+
+#: Merge.rc:2562
+#, c-format
+msgid "Serbian (Cyrillic)"
+msgstr "Serbski (cyrylica)"
+
+#: Merge.rc:2563
+#, c-format
+msgid "Sindhi"
+msgstr ""
+
+#: Merge.rc:2569
+#, c-format
+msgid "Slovak"
+msgstr "S³owacki"
+
+#: Merge.rc:2570
+#, c-format
+msgid "Slovenian"
+msgstr "S³oweñski"
+
+#: Merge.rc:2571
+#, c-format
+msgid "Spanish"
+msgstr "Hiszpañski"
+
+#: Merge.rc:2572
+#, c-format
+msgid "Spanish (Mexican)"
+msgstr "Hiszpañski (Meksyk)"
+
+#: Merge.rc:2573
+#, c-format
+msgid "Spanish (Modern)"
+msgstr "Hiszpañski (wspó³czesny)"
+
+#: Merge.rc:2574
+#, c-format
+msgid "Spanish (Guatemala)"
+msgstr "Hiszpañski (Gwatemala)"
+
+#: Merge.rc:2575
+#, c-format
+msgid "Spanish (Costa Rica)"
+msgstr "Hiszpañski (Kostaryka)"
+
+#: Merge.rc:2576
+#, c-format
+msgid "Spanish (Panama)"
+msgstr "Hiszpañski (Panama)"
+
+#: Merge.rc:2577
+#, c-format
+msgid "Spanish (Dominican)"
+msgstr "Hiszpañski (Dominikana)"
+
+#: Merge.rc:2578
+#, c-format
+msgid "Spanish (Venezuela)"
+msgstr "Hiszpañski (Wenezuela)"
+
+#: Merge.rc:2579
+#, c-format
+msgid "Spanish (Colombia)"
+msgstr "Hiszpañski (Kolumbia)"
+
+#: Merge.rc:2580
+#, c-format
+msgid "Spanish (Peru)"
+msgstr "Hiszpañski (Peru)"
+
+#: Merge.rc:2581
+#, c-format
+msgid "Spanish (Argentina)"
+msgstr "Hiszpañski (Argentyna)"
+
+#: Merge.rc:2582
+#, c-format
+msgid "Spanish (Ecuador)"
+msgstr "Hiszpañski (Ekwador)"
+
+#: Merge.rc:2583
+#, c-format
+msgid "Spanish (Chile)"
+msgstr "Hiszpañski (Chile)"
+
+#: Merge.rc:2584
+#, c-format
+msgid "Spanish (Uruguay)"
+msgstr "Hiszpañski (Urugwaj)"
+
+#: Merge.rc:2590
+#, c-format
+msgid "Spanish (Paraguay)"
+msgstr "Hiszpañski (Paragwaj)"
+
+#: Merge.rc:2591
+#, c-format
+msgid "Spanish (Bolivia)"
+msgstr "Hiszpañski (Boliwia)"
+
+#: Merge.rc:2592
+#, c-format
+msgid "Spanish (El Salvador)"
+msgstr "Hiszpañski (Salwador)"
+
+#: Merge.rc:2593
+#, c-format
+msgid "Spanish (Honduras)"
+msgstr "Hiszpañski (Honduras)"
+
+#: Merge.rc:2594
+#, c-format
+msgid "Spanish (Nicaragua)"
+msgstr "Hiszpañski (Nikaragua)"
+
+#: Merge.rc:2595
+#, c-format
+msgid "Spanish (Puerto Rico)"
+msgstr "Hiszpañski (Puerto Rico)"
+
+#: Merge.rc:2596
+#, c-format
+msgid "Swahili (Kenya)"
+msgstr "Suahili (Kenia)"
+
+#: Merge.rc:2597
+#, c-format
+msgid "Swedish"
+msgstr "Szwedzki"
+
+#: Merge.rc:2598
+#, c-format
+msgid "Swedish (Finland)"
+msgstr "Szwedzki (Finlandia)"
+
+#: Merge.rc:2599
+#, c-format
+msgid "Tamil"
+msgstr "Tamilski"
+
+#: Merge.rc:2600
+#, c-format
+msgid "Tatar (Tatarstan)"
+msgstr "Tatarski"
+
+#: Merge.rc:2601
+#, c-format
+msgid "Thai"
+msgstr "Tajski"
+
+#: Merge.rc:2602
+#, c-format
+msgid "Turkish"
+msgstr "Turecki"
+
+#: Merge.rc:2603
+#, c-format
+msgid "Ukranian"
+msgstr "Ukraiñski"
+
+#: Merge.rc:2604
+#, c-format
+msgid "Urdu (Pakistan)"
+msgstr ""
+
+#: Merge.rc:2605
+#, c-format
+msgid "Urdu (India)"
+msgstr "Urdu (Indie)"
+
+#: Merge.rc:2611
+#, c-format
+msgid "Uzbek (Latin)"
+msgstr "Uzbecki (³aciñski)"
+
+#: Merge.rc:2612
+#, c-format
+msgid "Uzbek (Cyrillic)"
+msgstr "Uzbecki (cyrylica)"
+
+#: Merge.rc:2613
+#, c-format
+msgid "Vietnamese"
+msgstr "Wietnamski"
+
+#: Merge.rc:2619
+#, c-format
+msgid "Western European"
+msgstr "Zachodnia Europa"
+
+#: Merge.rc:2620
+#, c-format
+msgid "Eastern European"
+msgstr "Wschodnia Europa"
+
+#: Merge.rc:2621
+#, c-format
+msgid "East Asian"
+msgstr "Wschodnia Azja"
+
+#: Merge.rc:2622
+#, c-format
+msgid "SE & SW Asian"
+msgstr "Po³udniowa Azja"
+
+#: Merge.rc:2623
+#, c-format
+msgid "Middle Eastern"
+msgstr "Œrodkowy Wschód"
+
+#: Merge.rc:2624
+#: Merge.rc:2634
+#, c-format
+msgid "Not applicable"
+msgstr "Nie stosuje siê"
+
+#: Merge.rc:2630
+#, c-format
+msgid "MS-Windows"
+msgstr ""
+
+#: Merge.rc:2631
+#, c-format
+msgid "MS-DOS"
+msgstr ""
+
+#: Merge.rc:2632
+#, c-format
+msgid "Macintosh"
+msgstr ""
+
+#: Merge.rc:2633
+#, c-format
+msgid "IBM"
+msgstr ""
+
+#: Merge.rc:2640
+#, c-format
+msgid "EBCDIC"
+msgstr ""
+
+#: Merge.rc:2641
+#, c-format
+msgid "IBM EBCDIC Cyrillic"
+msgstr "IBM EBCDIC Cyrylica"
+
+#: Merge.rc:2647
+#, c-format
+msgid "MS-DOS Latin US"
+msgstr "MS-DOS £aciñski US"
+
+#: Merge.rc:2648
+#, c-format
+msgid "MS-DOS Arabic"
+msgstr "MS-DOS Arabski"
+
+#: Merge.rc:2649
+#, c-format
+msgid "MS-DOS Greek"
+msgstr "MS-DOS Grecki"
+
+#: Merge.rc:2650
+#, c-format
+msgid "MS-DOS Baltic Rim"
+msgstr "MS-DOS Kr.Ba³tyckie"
+
+#: Merge.rc:2651
+#, c-format
+msgid "MS-DOS Latin 1"
+msgstr "MS-DOS £aciñski 1"
+
+#: Merge.rc:2652
+#, c-format
+msgid "MS-DOS Greek 1"
+msgstr "MS-DOS Grecki 1"
+
+#: Merge.rc:2653
+#, c-format
+msgid "MS-DOS Latin 2"
+msgstr "MS-DOS £aciñski 2"
+
+#: Merge.rc:2654
+#, c-format
+msgid "MS-DOS Cyrillic"
+msgstr "MS-DOS Cyrylica"
+
+#: Merge.rc:2655
+#, c-format
+msgid "MS-DOS Turkish"
+msgstr "MS-DOS Turecki"
+
+#: Merge.rc:2656
+#, c-format
+msgid "MS-DOS Portuguese"
+msgstr "MS-DOS Portugalski"
+
+#: Merge.rc:2662
+#, c-format
+msgid "MS-DOS Icelandic"
+msgstr "MS-DOS Islandzki"
+
+#: Merge.rc:2663
+#, c-format
+msgid "MS-DOS Hebrew"
+msgstr "MS-DOS Hebrajski"
+
+#: Merge.rc:2664
+#, c-format
+msgid "MS-DOS French Canada"
+msgstr "MS-DOS Francuski (Kanada)"
+
+#: Merge.rc:2665
+#, c-format
+msgid "MS-DOS Nordic"
+msgstr "MS-DOS Skandynawski"
+
+#: Merge.rc:2666
+#, c-format
+msgid "MS-DOS Cyrillic CIS 1"
+msgstr "MS-DOS Cyrylica CIS 1"
+
+#: Merge.rc:2667
+#, c-format
+msgid "MS-DOS Greek 2"
+msgstr "MS-DOS Grecki 2"
+
+#: Merge.rc:2673
+#, c-format
+msgid "Windows Thai"
+msgstr "Windows Tajski"
+
+#: Merge.rc:2674
+#, c-format
+msgid "Windows Japanese"
+msgstr "Windows Japoñski"
+
+#: Merge.rc:2675
+#, c-format
+msgid "Windows Simplified Chinese"
+msgstr "Windows Chiñski (uproszczony)"
+
+#: Merge.rc:2676
+#, c-format
+msgid "Windows Korean"
+msgstr "Windows Koreañski"
+
+#: Merge.rc:2677
+#, c-format
+msgid "Windows Traditional Chinese"
+msgstr "Windows Chiñski (tradycyjny)"
+
+#: Merge.rc:2678
+#, c-format
+msgid "Windows Latin 2"
+msgstr "Windows £aciñski 2"
+
+#: Merge.rc:2679
+#, c-format
+msgid "Windows Cyrillic (Slavic)"
+msgstr "Windows Cyrylica (S³owiañskie)"
+
+#: Merge.rc:2680
+#, c-format
+msgid "Windows Latin 1"
+msgstr "Windows £aciñski 1"
+
+#: Merge.rc:2681
+#, c-format
+msgid "Windows Greek"
+msgstr "Windows Grecki"
+
+#: Merge.rc:2682
+#, c-format
+msgid "Windows Latin 5 (Turkish)"
+msgstr "Windows £aciñski 5 (Turecki)"
+
+#: Merge.rc:2683
+#, c-format
+msgid "Windows Hebrew"
+msgstr "Windows Hebrajski"
+
+#: Merge.rc:2684
+#, c-format
+msgid "Windows Arabic"
+msgstr "Windows Arabski"
+
+#: Merge.rc:2685
+#, c-format
+msgid "Windows Baltic Rim"
+msgstr "Windows Kr.Ba³tyckie"
+
+#: Merge.rc:2686
+#, c-format
+msgid "Windows Vietnamese"
+msgstr "Windows Wietnamski"
+
+#: Merge.rc:2692
+#, c-format
+msgid "Macintosh Roman"
+msgstr "Macintosh Romañski"
+
+#: Merge.rc:2693
+#, c-format
+msgid "Macintosh Greek"
+msgstr "Macintosh Grecki"
+
+#: Merge.rc:2694
+#, c-format
+msgid "Macintosh Cyrillic"
+msgstr "Macintosh Cyrylica"
+
+#: Merge.rc:2695
+#, c-format
+msgid "Macintosh "
+msgstr ""
+
+#: Merge.rc:2696
+#, c-format
+msgid "Macintosh Central Europe"
+msgstr "Macintosh Europa Œrodkowa"
+
+#: Merge.rc:2697
+#, c-format
+msgid "Macintosh Turkish"
+msgstr "Macintosh Turecki"
+
+#: Merge.rc:2706
+#, c-format
+msgid "Approximates ISO-8859-2"
+msgstr "Kodowanie ISO-8859-2"
+
+#: Merge.rc:2709
+#, c-format
+msgid "Approximates ISO-8859-1"
+msgstr "Kodowanie ISO-8859-1"
+
+#: Merge.rc:2710
+#, c-format
+msgid "Approximates ISO-8859-7"
+msgstr "Kodowanie ISO-8859-7"
+
+#: Merge.rc:2711
+#, c-format
+msgid "Approximates ISO-8859-9"
+msgstr "Kodowanie ISO-8859-9"
+
+#: Merge.rc:2712
+#, c-format
+msgid "Approximates ISO-8859-8"
+msgstr "Kodowanie ISO-8859-8"
+
+#: Merge.rc:2718
+#, c-format
+msgid "Win"
+msgstr ""
+
+#: Merge.rc:2719
+#, c-format
+msgid "Mac"
+msgstr ""
+
+#: Merge.rc:2720
+#, c-format
+msgid "Unix"
+msgstr ""
+
+#: Merge.rc:2721
+#, c-format
+msgid "Mixed"
+msgstr ""
+
+#: Merge.rc:2728
+#, c-format
+msgid " B"
+msgstr ""
+
+#: Merge.rc:2729
+#, c-format
+msgid " KB"
+msgstr ""
+
+#: Merge.rc:2730
+#, c-format
+msgid " MB"
+msgstr ""
+
+#: Merge.rc:2731
+#, c-format
+msgid " GB"
+msgstr ""
+
+#: Merge.rc:2732
+#, c-format
+msgid " TB"
+msgstr ""
+
+#: Merge.rc:2733
+#, c-format
+msgid " PB"
+msgstr ""
+
+#: Merge.rc:2740
+#, c-format
+msgid "Save the left file"
+msgstr "Zachowaj lewy plik"
+
+#: Merge.rc:2741
+#, c-format
+msgid "Save the right file"
+msgstr "Zachowaj prawy plik"
+
+#: Merge.rc:2742
+#, c-format
+msgid "Save the left file with name..."
+msgstr "Zachowaj lewy plik pod nazw¹..."
+
+#: Merge.rc:2743
+#, c-format
+msgid "Save the right file with name..."
+msgstr "Zachowaj prawy plik pod nazw¹..."
+
+#: Merge.rc:2744
+#, c-format
+msgid "Change left file/dir read-only status"
+msgstr "Zmieñ status 'tylko odczyt' lewego pliku/katalogu"
+
+#: Merge.rc:2745
+#, c-format
+msgid "Change right file/dir read-only status"
+msgstr "Zmieñ status 'tylko odczyt' prawego pliku/katalogu"
+
+#: Merge.rc:2746
+#, c-format
+msgid "Convert EOL to DOS mode"
+msgstr "Konwertuj znaki EOL do konwencji DOS"
+
+#: Merge.rc:2747
+#, c-format
+msgid "Convert EOL to UNIX mode"
+msgstr "Konwertuj znaki EOL do konwencji UNIX"
+
+#: Merge.rc:2748
+#, c-format
+msgid "Convert EOL to MAC mode"
+msgstr "Konwertuj znaki EOL do konwencji MAC"
+
+#: Merge.rc:2749
+#, c-format
+msgid "Switch between editing and merging modes"
+msgstr "Prze³¹cz miêdzy trybami edycji i scalania"
+
+#: Merge.rc:2750
+#, c-format
+msgid ""
+"View and adjust file encoding properties\n"
+"File encoding properties"
+msgstr ""
+"Poka¿ i dostosuj w³aœciwoœci kodowania pliku\n"
+"W³aœciwoœci kodowania pliku"
+
+#: Merge.rc:2756
+#, c-format
+msgid ""
+"Select difference area in the current line\n"
+"Difference in the Current Line"
+msgstr ""
+"Zaznacz obszar ró¿nicy w bie¿¹cej linii\n"
+"Ró¿nica w bie¿¹cej linii"
+
+#: Merge.rc:2757
+#, c-format
+msgid ""
+"Go to line or difference\n"
+"Go to (Ctrl+G)"
+msgstr ""
+"PrzejdŸ do linii lub ró¿nicy\n"
+"IdŸ do (Ctrl+G)"
+
+#: Merge.rc:2758
+#, c-format
+msgid ""
+"Set program options\n"
+"Options"
+msgstr ""
+"Ustaw opcje programu\n"
+"Opcje"
+
+#: Merge.rc:2759
+#, c-format
+msgid ""
+"Refresh display\n"
+"Refresh (F5)"
+msgstr ""
+"Odœwie¿ podgl¹d\n"
+"Odœwie¿ (F5)"
+
+#: Merge.rc:2760
+#, c-format
+msgid "Copy selected lines to clipboard adding linenumbers to line begin"
+msgstr "Kopiuj wybrane linie do schowka dodaj¹c numeracjê wierszy"
+
+#: Merge.rc:2761
+#, c-format
+msgid "Refresh selected items"
+msgstr "Odœwie¿ zaznaczone elementy"
+
+#: Merge.rc:2762
+#, c-format
+msgid "Toggle bookmark"
+msgstr "Dodaj zak³adkê"
+
+#: Merge.rc:2763
+#, c-format
+msgid "Go to next bookmark"
+msgstr "IdŸ do nastêpnej zak³adki"
+
+#: Merge.rc:2764
+#, c-format
+msgid "Go to previous bookmark"
+msgstr "IdŸ do poprzedniej zak³adki"
+
+#: Merge.rc:2765
+#, c-format
+msgid "Clear all bookmarks"
+msgstr "Wyczyœæ wszystkie zak³adki"
+
+#: Merge.rc:2771
+#, c-format
+msgid ""
+"Displays items that are exactly the same\n"
+"Show Identical Items"
+msgstr "Wyœwietla pliki, które s¹ dok³adnie identyczne"
+
+#: Merge.rc:2772
+#, c-format
+msgid ""
+"Displays items that have differences\n"
+"Show Different Items"
+msgstr "Wyswietla pliki z ró¿nicami"
+
+#: Merge.rc:2773
+#, c-format
+msgid ""
+"Displays items that exist in only on the left side\n"
+"Show Left Unique Items"
+msgstr "Wyswietla pliki istniej¹ce tylko po lewej"
+
+#: Merge.rc:2774
+#, c-format
+msgid ""
+"Displays items that exist in only on the right side\n"
+"Show Right Unique Items"
+msgstr "Wyswietla pliki istniej¹ce tylko po prawej"
+
+#: Merge.rc:2775
+#, c-format
+msgid ""
+"Displays binary files\n"
+"Show Binary Files"
+msgstr "Wyœwietla pliki binarne"
+
+#: Merge.rc:2776
+#, c-format
+msgid ""
+"Displays skipped items\n"
+"Show Skipped Items"
+msgstr "Wyœwietla pominiête pliki"
+
+#: Merge.rc:2782
+#, c-format
+msgid ""
+"Select the font for the view\n"
+"Select View Font"
+msgstr ""
+"Wybierz czcionkê podgl¹du\n"
+"Wybierz czcionkê podgl¹du"
+
+#: Merge.rc:2783
+#, c-format
+msgid ""
+"Revert to using the default system font for view\n"
+"Default Font"
+msgstr ""
+"Przywróæ domyœln¹ czcionkê systemow¹ podgl¹du\n"
+"Czcionka domyœlna"
+
+#: Merge.rc:2784
+#, c-format
+msgid "Shows whitespace characters"
+msgstr "Pokazuje bia³e znaki"
+
+#: Merge.rc:2785
+#, c-format
+msgid "Toggle Diff Pane"
+msgstr "Prze³¹cz panel ró¿nic"
+
+#: Merge.rc:2786
+#, c-format
+msgid "Location pane shows overall picture from files"
+msgstr "Panel pokazuje ogólny obraz z plików"
+
+#: Merge.rc:2787
+#, c-format
+msgid "Show folder compare statistics dialog"
+msgstr "Poka¿ okno statystyk porównania folderu"
+
+#: Merge.rc:2788
+#, c-format
+msgid ""
+"Select the current user interfacce language\n"
+"Language"
+msgstr ""
+"Wybierz jêzyk interfejsu u¿ytkownika\n"
+"Jêzyk"
+
+#: Merge.rc:2789
+#, c-format
+msgid ""
+"Shows differences inside lines with different color\n"
+"Show Line Diff"
+msgstr ""
+"Poka¿ ró¿nice w liniach o ró¿nym kolorze\n"
+"Poka¿ ró¿ne linie"
+
+#: Merge.rc:2790
+#, c-format
+msgid "Swap the positions of the two panes"
+msgstr "Zamieñ pozycje dwóch okien"
+
+#: Merge.rc:2791
+#, c-format
+msgid ""
+"Shows line numbers\n"
+"Show Line Numbers"
+msgstr ""
+"Poka¿ numery linii\n"
+"Poka¿ numery linii"
+
+#: Merge.rc:2792
+#, c-format
+msgid ""
+"Enable word wrap\n"
+"Wrap Lines"
+msgstr ""
+"W³¹cz zawijanie s³ów\n"
+"Zawijaj linie"
+
+#: Merge.rc:2793
+#, c-format
+msgid ""
+"Shows selection margins for both panes\n"
+"Show Selection Margins"
+msgstr ""
+"Pokazuje marginesy zaznaczenie dla obu paneli\n"
+"Poka¿ marginesy zaznaczenia"
+
+#: Merge.rc:2799
+#, c-format
+msgid ""
+"Scroll to the previous difference\n"
+"Prev Diff (Alt+Up)"
+msgstr ""
+"Przewiñ do poprzedniej róznicy\n"
+"Poprz. Ró¿n. ( Alt Up )"
+
+#: Merge.rc:2800
+#, c-format
+msgid ""
+"Scroll to the next difference\n"
+"Next Diff (Alt+Down)"
+msgstr ""
+"Przewiñ do nastêpnej ró¿nicy\n"
+"Nast. ró¿n. (Alt Down)"
+
+#: Merge.rc:2801
+#, c-format
+msgid ""
+"Scroll to the first difference\n"
+"First Diff (Alt+Home)"
+msgstr ""
+"Przewiñ do pierwszej ró¿nicy\n"
+"Pierwsza (Alt+Home)"
+
+#: Merge.rc:2802
+#, c-format
+msgid ""
+"Scroll to the current difference\n"
+"Current Diff (Alt+Enter)"
+msgstr ""
+"Przewiñ do bie¿¹cej ró¿nicy\n"
+"Bie¿¹ca (Alt+Enter)"
+
+#: Merge.rc:2803
+#, c-format
+msgid ""
+"Scroll to the last difference\n"
+"Last Diff (Alt+End)"
+msgstr ""
+"Przewiñ do ostatniej ró¿nicy\n"
+"Ostatnia (Alt+End)"
+
+#: Merge.rc:2804
+#, c-format
+msgid ""
+"Copy the selected text to the right file\n"
+"Copy Right (Alt+Right)"
+msgstr ""
+"Kopiuj wybrany tekst do prawego pliku\n"
+"Kopiuj na prawo (Alt Right)"
+
+#: Merge.rc:2805
+#, c-format
+msgid ""
+"Copy the selected text to the left file\n"
+"Copy Left (Alt+Left)"
+msgstr ""
+"Kopiuj wybrany tekst do lewego pliku\n"
+"Kopiuj na lewo (Alt Left)"
+
+#: Merge.rc:2806
+#, c-format
+msgid ""
+"Copy difference to right and advance to next\n"
+"Copy Right and Advance (Ctrl+Alt+Right)"
+msgstr ""
+"Kopiuj ró¿nicê na prawo i przejdŸ do nastêpnej\n"
+"Kopiuj na prawo i nastêpna (Ctrl+Alt+Right)"
+
+#: Merge.rc:2807
+#, c-format
+msgid ""
+"Copy difference to left and advance to next\n"
+"Copy Left and Advance (Ctrl+Alt+Left)"
+msgstr ""
+"Kopiuj ró¿nicê na lewo i przejdŸ do nastêpnej\n"
+"Kopiuj na lewo i nastêpna (Ctrl+Alt+Left)"
+
+#: Merge.rc:2808
+#, c-format
+msgid ""
+"Copy all differences to the right file\n"
+"All Right"
+msgstr ""
+"Kopiuj wszystkie ró¿nice do prawego pliku\n"
+"Wszystkie na prawo"
+
+#: Merge.rc:2809
+#, c-format
+msgid ""
+"Copy all differences to the left file\n"
+"All Left"
+msgstr ""
+"Kopiuj wszystkie ró¿nice do lewego pliku\n"
+"Wszystkie na lewo"
+
+#: Merge.rc:2810
+#, c-format
+msgid "Delete selected items from both directories"
+msgstr "Usuñ zaznaczone elementy z obu folderów"
+
+#: Merge.rc:2811
+#, c-format
+msgid "Compare selected item (compare first item if multiple items selected)"
+msgstr "Porównaj zaznaczony element Porównaj zaznaczony element (porównaj pierwszy element jeœli zaznaczono wiele elementów)"
+
+#: Merge.rc:2817
+#, c-format
+msgid "Select and reorder directory compare columns"
+msgstr "Wybierz i ponownie uporz¹dkuj kolumny porównania katalogów"
+
+#: Merge.rc:2818
+#, c-format
+msgid "Generate a patch-file"
+msgstr "Generuj plik patch"
+
+#: Merge.rc:2819
+#, c-format
+msgid "Select and modify filters"
+msgstr "Wybierz i modyfikuj filtry"
+
+#: Merge.rc:2820
+#, c-format
+msgid "Generates a report from compare results"
+msgstr "Generuje raport z wyników porównania"
+
+#: Merge.rc:2826
+#, c-format
+msgid "The user selects the unpacker (no unpacking when comparing dir)"
+msgstr "U¿ytkownik wybiera program rozpakowuj¹cy (bez rozpakowywania podczas porównania katalogów)"
+
+#: Merge.rc:2827
+#, c-format
+msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
+msgstr "Program rozpakowuj¹cy zostanie uruchomiony dla obu plików (jeden plik wymaga rozszerzenia)"
+
+#: Merge.rc:2828
+#, c-format
+msgid "Select an unpacker to edit this file"
+msgstr "Wybierz program rozpakowuj¹cy, by edytowaæ plik"
+
+#: Merge.rc:2829
+#, c-format
+msgid "No prediffer (normal)"
+msgstr "Bez ró¿nicowania wstêpnego (normalne)"
+
+#: Merge.rc:2830
+#, c-format
+msgid "Suggested plugins"
+msgstr "Sugerowane wtyczki"
+
+#: Merge.rc:2831
+#, c-format
+msgid "Other plugins"
+msgstr "Inne wtyczki"
+
+#: Merge.rc:2832
+#, c-format
+msgid "Unload all plugins and reload them (for developers)"
+msgstr "Od³¹cz i ponownie pod³¹cz wszystkie wtyczki (dla programistów)"
+
+#: Merge.rc:2838
+#, c-format
+msgid ""
+"Activates next file visible\n"
+"Active next File"
+msgstr ""
+"Aktywuje nastêpny widoczny plik\n"
+"Aktywuj nastêpny plik"
+
+#: Merge.rc:2839
+#, c-format
+msgid "Closes all open windows"
+msgstr "Zamyka wszystkie otwarte okna"
+
+#: Merge.rc:2845
+#, c-format
+msgid ""
+"Displays the WinMerge User's Guide\n"
+"Help"
+msgstr ""
+"Wyœwietla podrêcznik u¿ytkownika WinMerge\n"
+"Pomoc"
+
+#: Merge.rc:2846
+#, c-format
+msgid "Outputs current WinMerge version info and configuration to text file"
+msgstr "Wyœwietla bie¿¹c¹ wersjê WinMerge oraz tekstowy plik konfiguracji"
+
+#: Merge.rc:2847
+#, c-format
+msgid "Display the GNU public license"
+msgstr "Wyswietl licencjê GNU"
+
+#: Merge.rc:2848
+#, c-format
+msgid "Private Build: %1"
+msgstr "Kompilacja prywatna: %1"
+
+#: Merge.rc:2849
+#, c-format
+msgid ""
+"Opens WinMerge Help Index\n"
+"Help Index"
+msgstr ""
+"Otwórz spis tematów Pomocy WinMerge\n"
+"Indeks pomocy"
+
+#: Merge.rc:2850
+#, c-format
+msgid ""
+"Opens WinMerge Help Search\n"
+"Help Search"
+msgstr ""
+"Otwórz wyszukiwanie w Pomocy WinMerge\n"
+"Szukaj w Pomocy"
+
+#: Merge.rc:2856
+#, c-format
+msgid "Plugin Settings"
+msgstr "Ustawienia wtyczki"
+
+#: Merge.rc:2857
+#, c-format
+msgid "No prediffer"
+msgstr "Bez ró¿nicowania wstêpnego"
+
+#: Merge.rc:2858
+#, c-format
+msgid "Prediff if possible"
+msgstr "Ró¿nicuj wstêpnie, jeœli mo¿na"
+
+#: Merge.rc:2860
+#, c-format
+msgid "WSH not found - .sct scripts disabled"
+msgstr "Nie znaleziono WSH – skrypty .sct wy³¹czone"
+
+#: Merge.rc:2861
+#, c-format
+msgid "<None>"
+msgstr "<Brak>"
+
+#: Merge.rc:2862
+#, c-format
+msgid "<Automatic>"
+msgstr "<Automatycznie>"
+
+#: Merge.rc:2868
+#, c-format
+msgid "Open the file with registered application"
+msgstr "Otwórz plik w zarejestrowanej aplikacji"
+
+#: Merge.rc:2869
+#, c-format
+msgid "Open the file with external editor"
+msgstr "Otwórz plik w zewnêtrznym edytorze"
+
+#: Merge.rc:2870
+#, c-format
+msgid "Open the file with a particular program"
+msgstr "Otwórz plik w wybranym programie"
+
+#: Merge.rc:2876
+#, c-format
+msgid "Do not display moved blocks"
+msgstr "Nie wyœwietlaj przenoszonych bloków"
+
+#: Merge.rc:2877
+#, c-format
+msgid "Display all moved blacks"
+msgstr "Wyœwietla wszystkie przeniesione bloki"
+
+#: Merge.rc:2878
+#, c-format
+msgid "Display moved blocks only from current diff"
+msgstr "Wyœwietl przeniesione bloki tylko od bie¿¹cej ró¿nicy"
+
+#: Merge.rc:2879
+#, c-format
+msgid "Go to diff under cursor"
+msgstr "IdŸ do ró¿nicy pod kursorem"
+
+#: Merge.rc:2880
+#, c-format
+msgid "G&oto Diff %1 of %2"
+msgstr "IdŸ &do ró¿nicy %1 z %2"
+
+#: Merge.rc:2881
+#, c-format
+msgid "G&oto Line %1"
+msgstr "&IdŸ do linii %1"
+
+#: Merge.rc:2887
+#, c-format
+msgid "Disabled"
+msgstr "Wy³¹czone"
+
+#: Merge.rc:2888
+#, c-format
+msgid "From file system"
+msgstr "Z systemu plików"
+
+#: Merge.rc:2889
+#, c-format
+msgid "From MRU list"
+msgstr "Z listy MRU"
+
+#: Merge.rc:2896
+#, c-format
+msgid "ASP"
+msgstr ""
+
+#: Merge.rc:2897
+#, c-format
+msgid "Basic"
+msgstr ""
+
+#: Merge.rc:2898
+#, c-format
+msgid "Batch"
+msgstr ""
+
+#: Merge.rc:2899
+#, c-format
+msgid "C/C++"
+msgstr ""
+
+#: Merge.rc:2900
+#, c-format
+msgid "C#"
+msgstr ""
+
+#: Merge.rc:2901
+#, c-format
+msgid "CSS"
+msgstr ""
+
+#: Merge.rc:2902
+#, c-format
+msgid "DCL"
+msgstr ""
+
+#: Merge.rc:2903
+#, c-format
+msgid "Fortran"
+msgstr ""
+
+#: Merge.rc:2904
+#, c-format
+msgid "HTML"
+msgstr ""
+
+#: Merge.rc:2905
+#, c-format
+msgid "INI"
+msgstr ""
+
+#: Merge.rc:2906
+#, c-format
+msgid "InnoSetup"
+msgstr ""
+
+#: Merge.rc:2907
+#, c-format
+msgid "InstallShield"
+msgstr ""
+
+#: Merge.rc:2908
+#, c-format
+msgid "Java"
+msgstr ""
+
+#: Merge.rc:2909
+#, c-format
+msgid "AutoLISP"
+msgstr ""
+
+#: Merge.rc:2910
+#, c-format
+msgid "NSIS"
+msgstr ""
+
+#: Merge.rc:2911
+#, c-format
+msgid "Pascal"
+msgstr ""
+
+#: Merge.rc:2912
+#, c-format
+msgid "Perl"
+msgstr ""
+
+#: Merge.rc:2913
+#, c-format
+msgid "PHP"
+msgstr ""
+
+#: Merge.rc:2914
+#, c-format
+msgid "Python"
+msgstr ""
+
+#: Merge.rc:2915
+#, c-format
+msgid "REXX"
+msgstr ""
+
+#: Merge.rc:2916
+#, c-format
+msgid "Resources"
+msgstr ""
+
+#: Merge.rc:2917
+#, c-format
+msgid "Ruby"
+msgstr ""
+
+#: Merge.rc:2918
+#, c-format
+msgid "SGML"
+msgstr ""
+
+#: Merge.rc:2919
+#, c-format
+msgid "Shell"
+msgstr ""
+
+#: Merge.rc:2920
+#, c-format
+msgid "SIOD"
+msgstr ""
+
+#: Merge.rc:2921
+#, c-format
+msgid "SQL"
+msgstr ""
+
+#: Merge.rc:2922
+#, c-format
+msgid "TCL"
+msgstr ""
+
+#: Merge.rc:2923
+#, c-format
+msgid "TEX"
+msgstr ""
+
+#: Merge.rc:2924
+#, c-format
+msgid "XML"
+msgstr ""
+
+#: Merge.rc:2929
+#, c-format
+msgid "Hide the toolbar"
+msgstr ""
+
+#: Merge.rc:2930
+#, c-format
+msgid "Show small toolbar"
+msgstr ""
+
+#: Merge.rc:2931
+#, c-format
+msgid "Show big toolbar"
+msgstr ""
+

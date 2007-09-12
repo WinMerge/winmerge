@@ -39,6 +39,10 @@
       background-color: #DDDDFF;
       border: 1px solid blue;
     }
+    acronym {
+      cursor: help;
+      border-bottom: 1px dotted black;
+    }
   -->
   </style>
 </head>
@@ -57,8 +61,7 @@
   <li><a href="#File_release_numbers">File release numbers</a></li>
   <li><a href="#Packaging_file_releases">Packaging file releases</a></li>
   <li><a href="#Tagging_SVN_when_releasing_files">Tagging Subversion when releasing files</a></li>
-  <li><a href="#Localization_resources_files">Localization : resources files</a></li>
-  <li><a href="#Localization_merging_and_scheduling">Localization : merging and scheduling</a></li>
+  <li><a href="#Localization">Localization</a></li>
   <li><a href="#Logging">Logging</a></li>
   <li><a href="#ShellExt">Shell Extension</a></li>
 </ol>
@@ -513,15 +516,23 @@ tags since they are not intended for wide use and are usually just one-time snap
 and prefixed with an <code>R</code>, so the example experimental above would have a tag named <code>R2_1_3_0</code>,
 the next beta would be named <code>R2_1_4</code>, and the next major release would be named <code>R2_2</code>.</p>
 
-<h3><a name="Localization_resources_files">Localization : resources files</a></h3>
+<h3><a name="Localization">Localization</a></h3>
 
 <p><code>WinMerge.exe</code> and <code>WinMergeU.exe</code> are always compiled with the english resources.
 Custom languages are in separate dll files with extension <code>.lang</code>, to be placed in
 <code>Languages</code> subfolder in WinMerge folder. Language may be changed dynamically through the menu.</p>
 
 <p>WinMerge localization is achieved through localization of resources (files with extension <code>.rc</code>).
-Actually there is only one rc file in the project, <code>Merge.rc</code>. Localized versions for this file are
-to be stored in the <code>Languages/</code> directory, in the subdirectory created for that language.</p>
+Actually there is only one rc file in the project, <code>Merge.rc</code>. Localized versions of this file are
+generated from <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> <acronym title="Portable Object">PO</acronym> files
+and gets stored in the <code>Languages/</code> directory, in the subdirectory created for that language.</p>
+
+<p>So before you can compile the language files you must call the script <code>CreateRcFilesFromPoFiles.bat</code>
+from the <code>Tools/Scripts/</code> folder.</p>
+
+<p>If you done changes on the <code>Merge.rc</code> file you must call <code>CreateMasterPotFile.bat</code>
+to create the latest version from the file <code>English.pot</code>. This PO template is needed for our translators.
+And for strings, who should not appear in the PO files just add a line in the <code>Languages/StringBlacklist.txt</code> file.</p>
 
 <p class="note">Besides the resources files you could also translate things like the
 <a href="http://svn.sourceforge.net/viewvc/winmerge/trunk/WinMerge/InnoSetup/Languages/">installer</a>
@@ -559,16 +570,6 @@ to be stored in the <code>Languages/</code> directory, in the subdirectory creat
   </li>
 </ul>
 
-<h4>Tips for translators :</h4>
-<ul>
-  <li>Do not move around things in resource files (MSVC or WinMerge are OK, but maybe you'll use other tools).</li>
-  <li>You may localize the layout. Avoid to localize the alignment flag, rather change coordinates.</li>
-</ul>
-<p class="note">Please try to avoid changing dialog layout when translating.
-The layout should be shared by all translations as much as possible, to make merging (and future translation changes) easier.
-You can of course make controls wider to fit longer texts, but you should not move buttons and other controls if not really necessary.<br /><br />
-If you want to improve dialog layout (we welcome UI improvements) you should submit it as src/Merge.rc patch so it will be merged to all translations.</p>
-
 <h4>Compiling</h4>
 <p>We have a customised tool for compiling language files. Project for it is in SVN:</p>
 
@@ -596,58 +597,6 @@ unable to get MakeResDll link successfully using VS.NET 2003, due to it failing 
 Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set</p>
 
 <pre>HKEY_CURRENT_USER\Software\Thingamahoochie\MakeResDll\Settings\VcVersion="6"</pre>
-
-<h3><a name="Localization_merging_and_scheduling">Localization : merging and scheduling</a></h3>
-
-<h4>Issues :</h4>
-<ul>
-  <li>
-    <p>It is slow and tedious to update 21 languages for just one patch. But reducing the frequency of such updates does not help either:
-    5 small updates are tedious and frequent, but easy; 1 big update is more infrequent, but much more tedious and difficult.</p>
-  </li>
-  <li>
-    <p><strong>Merging of layout</strong>: translator may change layout, then when developers insert new controls, moved and new controls may overlap.
-    Visual check of 21 dialogs is definitively too long for a single patch update.</p>
-  </li>
-  <li>
-    <p><strong>Delays in localization</strong>: translators generally need some weeks to translate, so their version is already outdated when
-    the localization is complete, and merging with SVN must be done again.</p>
-  </li>
-</ul>
-
-<h4>Global rules for localized resource files :</h4>
-<ul>
-  <li>
-    <p>Translators localize just betas or releases. They don't localize CVS or experimentals
-    (they don't have to, they may if they will, then they do the merging themselves).</p>
-  </li>
-  <li>
-    <p><strong>Patches</strong>: developers update the files : add new items, remove deleted ones,
-    move moved items (controls going from one dialog to another one). No care of layout or visual check of dialogs.
-    With such updates, languages dll are valid (no crash).</p>
-
-    <p><em>We may reduce this work to the languages used by experimental testers (and, for other languages,
-    for the next beta/release, reapply together all patches since the last beta/release localization).</em></p>
-  </li>
-  <li>
-    <p>Good synchronization is required between developers and translators for the latest beta/release.
-    For older versions, translators are free. The latest beta/release is the latest build which is either
-    a beta or either a release.</p>
-  </li>
-  <li>
-    <p>Developers do not change resources for beta/release after their creation.
-    Only localization/layout changes may be applied.</p>
-  </li>
-</ul>
-
-<h4>Merging tools for resources :</h4>
-<p>WinMerge of course, plus the plugin <code>RCLocalizationHelper.dll</code>.</p>
-
-<p>Most text/layout differences are ignored, so new/deleted/moved items appears clearly.
-Help to merge patches, and to merge a newly localized resource to its CVS version (apply the CVS
-changes to the newly localized resource). Contrary to a lot of (bad) localization tools, this method
-preserves the layout done by the translator. There are good localization tools however,
-and we will welcome with pleasure anyone with such a tool in the project.</p>
 
 <h3><a name="Logging">Logging</a></h3>
 
