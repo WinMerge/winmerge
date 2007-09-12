@@ -3,6 +3,16 @@
 // $Id$
 
 
+// Include the manifest file for VC6 and VS2003.Net
+#if _MSC_VER < 1400
+  #ifdef UNICODE
+    CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "res\\WinMergeU.exe.manifest"
+  #else
+    CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "res\\WinMerge.exe.manifest"
+  #endif
+#endif // MSC_VER
+
+
 /////////////////////////////////////////////////////////////////////////////
 //
 // Icon
