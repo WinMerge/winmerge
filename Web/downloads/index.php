@@ -44,13 +44,23 @@
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental Builds</a></li>
 </ul>
 <h3>Plugins</h3>
-<dl>
-  <dt><a href="http://prdownloads.sourceforge.net/winmerge/Merge7zInstaller0019-311-444.exe">7-Zip Plugin</a> (DllBuild 0019)</dt>
-  <dd>
-    <p>This is the 7-Zip plugin for WinMerge.</p>
-    <p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?group_id=13216&amp;release_id=482019">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
-  </dd>
-</dl>
+<h4>7-Zip Plugin</h4>
+<p>This is the 7-Zip plugin for WinMerge and the current version <strong>DllBuild 0025</strong> was released at <strong>2007-09-07</strong>.</p>
+<div class="downloadmatrix">
+<ul>
+  <li><strong>Installer</strong>
+    <ul>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7zInstaller0025-432-455.exe">Exe-Format (1.04 MB)</a></li>
+    </ul>
+  </li>
+  <li><strong>Binaries</strong>
+    <ul>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7z0025-432-455.7z">7z-Format (0.89 MB)</a></li>
+    </ul>
+  </li>
+</ul>
+</div>
+<p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?release_id=537779&amp;group_id=13216">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
 <?php
   $page->printFoot();
 ?>
