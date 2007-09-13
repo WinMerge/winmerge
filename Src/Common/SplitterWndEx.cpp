@@ -218,6 +218,7 @@ void CSplitterWndEx::RecalcLayout()
 		HMONITOR hLeftMonitor = MonitorFromPoint(vSplitterWndRect.TopLeft(), MONITOR_DEFAULTTONEAREST);
 		HMONITOR hRightMonitor = MonitorFromPoint(CPoint(vSplitterWndRect.right, vSplitterWndRect.top), MONITOR_DEFAULTTONEAREST);
 
+		bool bSplitPanesInHalf = true;
 		if (hLeftMonitor != hRightMonitor)
 		{
 			MONITORINFO info;
@@ -227,10 +228,15 @@ void CSplitterWndEx::RecalcLayout()
 			int iDesiredWidthOfLeftPane = info.rcMonitor.right - vSplitterWndRect.left;
 			int iDesiredWidthOfRightPane = vSplitterWndRect.right - info.rcMonitor.right;
 
-			SetColumnInfo(0, iDesiredWidthOfLeftPane, 0);
-			SetColumnInfo(1, iDesiredWidthOfRightPane, 0);
+			if (iDesiredWidthOfLeftPane > 100 && iDesiredWidthOfRightPane > 100)
+			{
+				bSplitPanesInHalf = false;
+				SetColumnInfo(0, iDesiredWidthOfLeftPane, 0);
+				SetColumnInfo(1, iDesiredWidthOfRightPane, 0);
+			}
 		}
-		else
+		
+		if (bSplitPanesInHalf)
 		{
 			CRect vSplitterWndRect;
 			GetWindowRect(vSplitterWndRect);
