@@ -348,6 +348,10 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=..\Src\Common\UnicodeString.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\WinMergeShell.cpp
 # End Source File
 # End Group
@@ -369,6 +373,10 @@ SOURCE=.\Resource.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=..\Src\Common\UnicodeString.h
 # End Source File
 # Begin Source File
 

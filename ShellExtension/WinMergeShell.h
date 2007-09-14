@@ -21,7 +21,7 @@
  *
  * @brief Declaration file for ShellExtension class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef __WINMERGESHELL_H_
@@ -31,6 +31,7 @@
 #include <comdef.h>
 #include <atlconv.h>	// for ATL string conversion macros
 #include "resource.h"   // main symbols
+#include "UnicodeString.h"
 
 /** 
  * @brief Class for handling shell extension tasks
@@ -58,20 +59,20 @@ END_COM_MAP()
 
 // IWinMergeShell
 protected:
-    CString m_strPaths[2]; /**< Paths for selected items */
-	CString m_strPreviousPath; /**< Previously selected path */
+	String m_strPaths[2]; /**< Paths for selected items */
+	String m_strPreviousPath; /**< Previously selected path */
 	CBitmap m_MergeBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
 	DWORD m_dwMenuState; /**< Shown menuitems */
 
-	BOOL GetWinMergeDir(CString &strDir);
-	BOOL CheckExecutable(CString path);
+	BOOL GetWinMergeDir(String &strDir);
+	BOOL CheckExecutable(String path);
 	int DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
 	int DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex, UINT uidFirstCmd);
-	CString GetHelpText(UINT_PTR idCmd);
-	CString FormatCmdLine(const CString &winmergePath,
-		const CString &path1, const CString &path2, BOOL bAlterSubFolders);
+	String GetHelpText(UINT_PTR idCmd);
+	String FormatCmdLine(const String &winmergePath,
+		const String &path1, const String &path2, BOOL bAlterSubFolders);
 
 public:
     // IShellExtInit

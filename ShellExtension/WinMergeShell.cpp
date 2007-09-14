@@ -237,9 +237,9 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		}
 		else
 		{
-			if (m_nSelectedItems == 1 && m_strPreviousPath.IsEmpty())
+			if (m_nSelectedItems == 1 && m_strPreviousPath.empty())
 				m_dwMenuState = MENU_ONESEL_NOPREV;
-			else if (m_nSelectedItems == 1 && !m_strPreviousPath.IsEmpty())
+			else if (m_nSelectedItems == 1 && !m_strPreviousPath.empty())
 				m_dwMenuState = MENU_ONESEL_PREV;
 			else if (m_nSelectedItems == 2)
 				m_dwMenuState = MENU_TWOSEL;
@@ -276,17 +276,17 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 	// supplied buffer.
 	if (uFlags & GCS_HELPTEXT)
 	{
-		CString strHelp;
+		String strHelp;
 
 		strHelp = GetHelpText(idCmd);
 
 		if (uFlags & GCS_UNICODE)
 			// We need to cast pszName to a Unicode string, and then use the
 			// Unicode string copy API.
-			lstrcpynW((LPWSTR) pszName, T2CW(strHelp), cchMax);
+			lstrcpynW((LPWSTR) pszName, T2CW(strHelp.c_str()), cchMax);
 		else
 			// Use the ANSI string copy API to return the help string.
-			lstrcpynA(pszName, T2CA(strHelp), cchMax);
+			lstrcpynA(pszName, T2CA(strHelp.c_str()), cchMax);
 
 		return S_OK;
 	}
@@ -298,7 +298,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 {
 	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	CRegKeyEx reg;
-	CString strWinMergePath;
+	String strWinMergePath;
 	BOOL bCompare = FALSE;
 	BOOL bAlterSubFolders = FALSE;
 	USES_WINMERGELOCALE;
@@ -326,7 +326,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		case MENU_ONESEL_NOPREV:
 			m_strPreviousPath = m_strPaths[0];
 			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-				reg.WriteString(f_FirstSelection, m_strPreviousPath);
+				reg.WriteString(f_FirstSelection, m_strPreviousPath.c_str());
 			break;
 
 		case MENU_ONESEL_PREV:
@@ -342,7 +342,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		case MENU_TWOSEL:
 			// "Compare" - compare paths
 			bCompare = TRUE;
-			m_strPreviousPath.Empty();
+			m_strPreviousPath.erase();
 			break;
 		}
 	}
@@ -353,12 +353,12 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 		case MENU_ONESEL_PREV:
 			m_strPreviousPath = m_strPaths[0];
 			if (reg.Open(HKEY_CURRENT_USER, f_RegDir) == ERROR_SUCCESS)
-				reg.WriteString(f_FirstSelection, m_strPreviousPath);
+				reg.WriteString(f_FirstSelection, m_strPreviousPath.c_str());
 			bCompare = FALSE;
 			break;
 		default:
 			// "Compare..." - user wants to compare this single item and open WinMerge
-			m_strPaths[1].Empty();
+			m_strPaths[1].erase();
 			bCompare = TRUE;
 			break;
 		}
@@ -372,7 +372,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	if ((GetAsyncKeyState(VK_CONTROL) & 0x8000) != 0)
 		bAlterSubFolders = TRUE;
 
-	CString strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
+	String strCommandLine = FormatCmdLine(strWinMergePath, m_strPaths[0],
 		m_strPaths[1], bAlterSubFolders);
 
 	// Finally start a new WinMerge process
@@ -381,7 +381,7 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 	stInfo.cb = sizeof(STARTUPINFO);
 	PROCESS_INFORMATION processInfo = {0};
 	
-	retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR)strCommandLine,
+	retVal = CreateProcess(NULL, (LPTSTR)strCommandLine.c_str(),
 		NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 		&stInfo, &processInfo);
 
@@ -394,18 +394,18 @@ HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 }
 
 /// Reads WinMerge path from registry
-BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
+BOOL CWinMergeShell::GetWinMergeDir(String &strDir)
 {
 	CRegKeyEx reg;
 	if (!reg.QueryRegUser(f_RegDir))
 		return FALSE;
 	
 	// Try first reading debug/test value
-	strDir = reg.ReadString(f_RegValuePriPath, _T("")).c_str();
-	if (strDir.IsEmpty())
+	strDir = reg.ReadString(f_RegValuePriPath, _T(""));
+	if (strDir.empty())
 	{
-		strDir = reg.ReadString(f_RegValuePath, _T("")).c_str();
-		if (strDir.IsEmpty())
+		strDir = reg.ReadString(f_RegValuePath, _T(""));
+		if (strDir.empty())
 			return FALSE;
 	}	
 
@@ -413,19 +413,19 @@ BOOL CWinMergeShell::GetWinMergeDir(CString &strDir)
 }
 
 /// Checks if given file exists and is executable
-BOOL CWinMergeShell::CheckExecutable(CString path)
+BOOL CWinMergeShell::CheckExecutable(String path)
 {
 	String sExt;
-	SplitFilename(path, NULL, NULL, &sExt);
-	CString ext(sExt.c_str());
+	SplitFilename(path.c_str(), NULL, NULL, &sExt);
 
 	// Check extension
-	ext.MakeLower();
-	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
+	if (_tcsicmp(sExt.c_str(), _T("exe")) == 0 ||
+		_tcsicmp(sExt.c_str(), _T("cmd")) == 0 ||
+		_tcsicmp(sExt.c_str(), _T("bat")) == 0)
 	{
 		// Check if file exists
 		struct _stati64 statBuffer;
-		int nRetVal = _tstati64(path, &statBuffer);
+		int nRetVal = _tstati64(path.c_str(), &statBuffer);
 		if (nRetVal > -1)
 			return TRUE;
 	}
@@ -436,10 +436,13 @@ BOOL CWinMergeShell::CheckExecutable(CString path)
 int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	CString strMenu;
-	VERIFY(strMenu.LoadString(IDS_CONTEXT_MENU));
+	String strMenu;
+	TCHAR tmpStr[200] = {0};
+	LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_MENU,
+		tmpStr, 200);
+	strMenu = tmpStr;
 
-	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu);
+	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
 	
 	// Add bitmap
 	if ((HBITMAP)m_MergeBmp != NULL)
@@ -456,48 +459,64 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	CString strCompare;
-	CString strCompareEllipsis;
-	CString strCompareTo;
-	CString strReselect;
+	String strCompare;
+	String strCompareEllipsis;
+	String strCompareTo;
+	String strReselect;
 	int nItemsAdded = 0;
 
-	VERIFY(strCompare.LoadString(IDS_COMPARE));
-	VERIFY(strCompareEllipsis.LoadString(IDS_COMPARE_ELLIPSIS));
-	VERIFY(strCompareTo.LoadString(IDS_COMPARE_TO));
-	VERIFY(strReselect.LoadString(IDS_RESELECT_FIRST));
-
+	const int tmp_size = 200;
+	TCHAR tmpStr[tmp_size] = {0};
+	LoadString(::GetModuleHandle(NULL), IDS_COMPARE,
+		tmpStr, tmp_size);
+	strCompare = tmpStr;
+	LoadString(::GetModuleHandle(NULL), IDS_COMPARE_ELLIPSIS,
+		tmpStr, tmp_size);
+	strCompareEllipsis = tmpStr;
+	LoadString(::GetModuleHandle(NULL), IDS_COMPARE_TO,
+		tmpStr, tmp_size);
+	strCompareTo = tmpStr;
+	LoadString(::GetModuleHandle(NULL), IDS_RESELECT_FIRST,
+		tmpStr, tmp_size);
+	strReselect = tmpStr;
+	
 	switch (m_dwMenuState)
 	{
 	// No items selected earlier
 	// Select item as first item to compare
 	case MENU_ONESEL_NOPREV:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompareTo);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
+			strCompareTo.c_str());
 		uMenuIndex++;
 		uidFirstCmd++;
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompareEllipsis);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
+			strCompareEllipsis.c_str());
 		nItemsAdded = 2;
 		break;
 
 	// One item selected earlier:
 	// Allow re-selecting first item or selecting second item
 	case MENU_ONESEL_PREV:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompare);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
+			strCompare.c_str());
 		uMenuIndex++;
 		uidFirstCmd++;
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strReselect);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
+			strReselect.c_str());
 		nItemsAdded = 2;
 		break;
 
 	// Two items selected
 	// Select both items for compare
 	case MENU_TWOSEL:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompare);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
+			strCompare.c_str());
 		nItemsAdded = 1;
 		break;
 
 	default:
-		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strCompare);
+		InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd,
+			strCompare.c_str());
 		nItemsAdded = 1;
 		break;
 	}
@@ -522,14 +541,18 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 }
 
 /// Determine help text shown in explorer's statusbar
-CString CWinMergeShell::GetHelpText(UINT_PTR idCmd)
+String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 {
-	CString strHelp;
+	const int tmp_size = 200;
+	String strHelp;
+	TCHAR tmpStr[tmp_size] = {0};
 
 	// More than two items selected, advice user
 	if (m_nSelectedItems > MaxFileCount)
 	{
-		VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP_MANYITEMS));
+		LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP_MANYITEMS,
+			tmpStr, tmp_size);
+		strHelp = tmpStr;
 		return strHelp;
 	}
 
@@ -538,19 +561,28 @@ CString CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		switch (m_dwMenuState)
 		{
 		case MENU_SIMPLE:
-			VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP));
+			LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP,
+				tmpStr, tmp_size);
+			strHelp = tmpStr;
 			break;
 
 		case MENU_ONESEL_NOPREV:
-			VERIFY(strHelp.LoadString(IDS_HELP_SAVETHIS));
+			LoadString(::GetModuleHandle(NULL), IDS_HELP_SAVETHIS,
+				tmpStr, tmp_size);
+			strHelp = tmpStr;
 			break;
 		
 		case MENU_ONESEL_PREV:
-			AfxFormatString1(strHelp, IDS_HELP_COMPARESAVED, m_strPreviousPath);
+			LoadString(::GetModuleHandle(NULL), IDS_HELP_COMPARESAVED,
+				tmpStr, tmp_size);
+			strHelp = tmpStr;
+			string_replace(strHelp, _T("%1"), m_strPreviousPath);
 			break;
 		
 		case MENU_TWOSEL:
-			VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP));
+			LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP,
+				tmpStr, tmp_size);
+			strHelp = tmpStr;
 			break;
 		}
 	}
@@ -559,10 +591,14 @@ CString CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		switch (m_dwMenuState)
 		{
 		case MENU_ONESEL_PREV:
-			VERIFY(strHelp.LoadString(IDS_HELP_SAVETHIS));
+			LoadString(::GetModuleHandle(NULL), IDS_HELP_SAVETHIS,
+				tmpStr, tmp_size);
+			strHelp = tmpStr;
 			break;
 		default:
-			VERIFY(strHelp.LoadString(IDS_CONTEXT_HELP));
+			LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP,
+				tmpStr, tmp_size);
+			strHelp = tmpStr;
 			break;
 		}
 	}
@@ -570,10 +606,10 @@ CString CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 }
 
 /// Format commandline used to start WinMerge
-CString CWinMergeShell::FormatCmdLine(const CString &winmergePath,
-	const CString &path1, const CString &path2, BOOL bAlterSubFolders)
+String CWinMergeShell::FormatCmdLine(const String &winmergePath,
+	const String &path1, const String &path2, BOOL bAlterSubFolders)
 {
-	CString strCommandline = winmergePath;
+	String strCommandline(winmergePath);
 
 	// Check if user wants to use context menu
 	BOOL bSubfoldersByDefault = FALSE;
@@ -587,7 +623,7 @@ CString CWinMergeShell::FormatCmdLine(const CString &winmergePath,
 	
 	strCommandline += _T(" \"") + path1 + _T("\"");
 	
-	if (!m_strPaths[1].IsEmpty())
+	if (!m_strPaths[1].empty())
 		strCommandline += _T(" \"") + path2 + _T("\"");
 
 	return strCommandline;
