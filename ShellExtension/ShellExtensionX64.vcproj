@@ -670,6 +670,25 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="Languages\ShellExtensionPortuguese.rc">
+				<FileConfiguration
+					Name="Debug X64|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="_DEBUG;_AFXDLL"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release X64|Win32"
+					ExcludedFromBuild="TRUE">
+					<Tool
+						Name="VCResourceCompilerTool"
+						PreprocessorDefinitions="NDEBUG;_AFXDLL"
+						AdditionalIncludeDirectories="Languages;$(OUTDIR)"/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Languages\ShellExtensionRussian.rc">
 				<FileConfiguration
 					Name="Debug X64|Win32"

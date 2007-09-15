@@ -1,0 +1,46 @@
+//Microsoft Developer Studio generated resource script.
+//
+// $Id$
+
+#include "../resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Portuguese (Portugal) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE 
+BEGIN
+    IDS_PROJNAME            "ShellExtension"
+    IDS_CONTEXT_MENU        "WinMerge"
+    IDS_CONTEXT_HELP        "Abrr com WinMerge"
+    IDS_CONTEXT_HELP_MANYITEMS "Não seleccione mais de 2 itens"
+    IDS_COMPARE             "Comparar"
+    IDS_COMPARE_ELLIPSIS    "Comparar..."
+    IDS_COMPARE_TO          "Comparar com"
+    IDS_HELP_SAVETHIS       "Guardar esta localização. Seleccione outra localização para comparar com esta."
+    IDS_HELP_COMPARESAVED   "Comparar com localização guardada (%1)"
+    IDS_RESELECT_FIRST      "Seleccione novamente a primeira"
+END
+
+#endif    // Portuguese (Portugal) resources
+/////////////////////////////////////////////////////////////////////////////

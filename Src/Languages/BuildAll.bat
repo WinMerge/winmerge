@@ -14,6 +14,7 @@ Call BuildDll Japanese
 Call BuildDll Korean
 Call BuildDll Norwegian
 Call BuildDll Polish
+Call BuildDll Portuguese
 Call BuildDll Russian
 Call BuildDll Slovak
 Call BuildDll Spanish

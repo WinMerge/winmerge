@@ -81,6 +81,9 @@ Localization:
 * Portuguese (Brazilian):	
   Wender Firmino
 
+* Portuguese (Portugal):
+  Nelson Simão
+
 * Russian:	
   Dmitriy S. Aleshkowskiy
               

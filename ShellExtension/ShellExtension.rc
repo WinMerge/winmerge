@@ -172,6 +172,14 @@ BEGIN
     "#endif //_WIN32\r\n"
     "#endif\r\n"
     "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#include ""Languages\\ShellExtensionPortuguese.rc""\r\n"
+    "#endif //_WIN32\r\n"
+    "#endif\r\n"
+    "\r\n"
     "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_RUS)\r\n"
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT\r\n"
@@ -434,6 +442,14 @@ LANGUAGE LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL
 LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
 #pragma code_page(1250)
 #include "Languages\ShellExtensionPolish.rc"
+#endif //_WIN32
+#endif
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PTG)
+#ifdef _WIN32
+LANGUAGE LANG_PORTUGUESE, SUBLANG_PORTUGUESE
+#pragma code_page(1250)
+#include "Languages\ShellExtensionPortuguese.rc"
 #endif //_WIN32
 #endif
 

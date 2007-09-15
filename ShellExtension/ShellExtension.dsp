@@ -472,6 +472,11 @@ SOURCE=.\Languages\ShellExtensionPolish.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\Languages\ShellExtensionPortuguese.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
 SOURCE=.\Languages\ShellExtensionRussian.rc
 # PROP Exclude_From_Build 1
 # End Source File
