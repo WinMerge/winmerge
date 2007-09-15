@@ -438,7 +438,7 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 {
 	String strMenu;
 	TCHAR tmpStr[200] = {0};
-	LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_MENU,
+	LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_MENU,
 		tmpStr, 200);
 	strMenu = tmpStr;
 
@@ -467,16 +467,16 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 
 	const int tmp_size = 200;
 	TCHAR tmpStr[tmp_size] = {0};
-	LoadString(::GetModuleHandle(NULL), IDS_COMPARE,
+	LoadString(_Module.GetModuleInstance(), IDS_COMPARE,
 		tmpStr, tmp_size);
 	strCompare = tmpStr;
-	LoadString(::GetModuleHandle(NULL), IDS_COMPARE_ELLIPSIS,
+	LoadString(_Module.GetModuleInstance(), IDS_COMPARE_ELLIPSIS,
 		tmpStr, tmp_size);
 	strCompareEllipsis = tmpStr;
-	LoadString(::GetModuleHandle(NULL), IDS_COMPARE_TO,
+	LoadString(_Module.GetModuleInstance(), IDS_COMPARE_TO,
 		tmpStr, tmp_size);
 	strCompareTo = tmpStr;
-	LoadString(::GetModuleHandle(NULL), IDS_RESELECT_FIRST,
+	LoadString(_Module.GetModuleInstance(), IDS_RESELECT_FIRST,
 		tmpStr, tmp_size);
 	strReselect = tmpStr;
 	
@@ -550,7 +550,7 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 	// More than two items selected, advice user
 	if (m_nSelectedItems > MaxFileCount)
 	{
-		LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP_MANYITEMS,
+		LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP_MANYITEMS,
 			tmpStr, tmp_size);
 		strHelp = tmpStr;
 		return strHelp;
@@ -561,26 +561,26 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		switch (m_dwMenuState)
 		{
 		case MENU_SIMPLE:
-			LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP,
+			LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP,
 				tmpStr, tmp_size);
 			strHelp = tmpStr;
 			break;
 
 		case MENU_ONESEL_NOPREV:
-			LoadString(::GetModuleHandle(NULL), IDS_HELP_SAVETHIS,
+			LoadString(_Module.GetModuleInstance(), IDS_HELP_SAVETHIS,
 				tmpStr, tmp_size);
 			strHelp = tmpStr;
 			break;
 		
 		case MENU_ONESEL_PREV:
-			LoadString(::GetModuleHandle(NULL), IDS_HELP_COMPARESAVED,
+			LoadString(_Module.GetModuleInstance(), IDS_HELP_COMPARESAVED,
 				tmpStr, tmp_size);
 			strHelp = tmpStr;
 			string_replace(strHelp, _T("%1"), m_strPreviousPath);
 			break;
 		
 		case MENU_TWOSEL:
-			LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP,
+			LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP,
 				tmpStr, tmp_size);
 			strHelp = tmpStr;
 			break;
@@ -591,12 +591,12 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		switch (m_dwMenuState)
 		{
 		case MENU_ONESEL_PREV:
-			LoadString(::GetModuleHandle(NULL), IDS_HELP_SAVETHIS,
+			LoadString(_Module.GetModuleInstance(), IDS_HELP_SAVETHIS,
 				tmpStr, tmp_size);
 			strHelp = tmpStr;
 			break;
 		default:
-			LoadString(::GetModuleHandle(NULL), IDS_CONTEXT_HELP,
+			LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP,
 				tmpStr, tmp_size);
 			strHelp = tmpStr;
 			break;
