@@ -28,9 +28,9 @@
 void string_replace(String &target, const String &find, const String &replace)
 {
 	const size_t replace_len = find.length();
-	size_t prevPos = 0;
-	size_t pos = target.find(find, prevPos);
-	while (pos >= 0)
+	std::string::size_type prevPos = 0;
+	std::string::size_type pos = target.find(find, prevPos);
+	while (pos != std::string::npos)
 	{
 		target.replace(pos, replace_len, replace);
 		prevPos = pos;
