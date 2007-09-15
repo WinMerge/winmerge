@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.3
   Use PO files for translations (generate RC-files from PO-files)
+  Add Portuguese translation (#1756364)
 
 WinMerge 2.7.5.2 (r4528)
   Graphical improvements to location pane (#1770175)
