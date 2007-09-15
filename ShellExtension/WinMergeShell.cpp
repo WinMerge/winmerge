@@ -92,6 +92,8 @@ enum
 
 #define USES_WINMERGELOCALE CWinMergeTempLocale __wmtl__
 
+static String GetResourceString(UINT resourceID);
+
 class CWinMergeTempLocale
 {
 private:
@@ -112,6 +114,20 @@ public:
 		SetThreadLocale(m_lcidOld);
 	}
 };
+
+/**
+ * @brief Load a string from resource.
+ * @param [in] Resource string ID.
+ * @return String loaded from resource.
+ */
+static String GetResourceString(UINT resourceID)
+{
+	TCHAR resStr[1024] = {0};
+	int res = LoadString(_Module.GetModuleInstance(), resourceID, resStr, 1024);
+	ASSERT(res!= 0);
+	String strResource = resStr;
+	return strResource;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CWinMergeShell
@@ -436,12 +452,7 @@ BOOL CWinMergeShell::CheckExecutable(String path)
 int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	String strMenu;
-	TCHAR tmpStr[200] = {0};
-	LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_MENU,
-		tmpStr, 200);
-	strMenu = tmpStr;
-
+	String strMenu = GetResourceString(IDS_CONTEXT_MENU);
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
 	
 	// Add bitmap
@@ -459,26 +470,11 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
-	String strCompare;
-	String strCompareEllipsis;
-	String strCompareTo;
-	String strReselect;
+	String strCompare = GetResourceString(IDS_COMPARE);
+	String strCompareEllipsis = GetResourceString(IDS_COMPARE_ELLIPSIS);
+	String strCompareTo = GetResourceString(IDS_COMPARE_TO);
+	String strReselect = GetResourceString(IDS_RESELECT_FIRST);
 	int nItemsAdded = 0;
-
-	const int tmp_size = 200;
-	TCHAR tmpStr[tmp_size] = {0};
-	LoadString(_Module.GetModuleInstance(), IDS_COMPARE,
-		tmpStr, tmp_size);
-	strCompare = tmpStr;
-	LoadString(_Module.GetModuleInstance(), IDS_COMPARE_ELLIPSIS,
-		tmpStr, tmp_size);
-	strCompareEllipsis = tmpStr;
-	LoadString(_Module.GetModuleInstance(), IDS_COMPARE_TO,
-		tmpStr, tmp_size);
-	strCompareTo = tmpStr;
-	LoadString(_Module.GetModuleInstance(), IDS_RESELECT_FIRST,
-		tmpStr, tmp_size);
-	strReselect = tmpStr;
 	
 	switch (m_dwMenuState)
 	{
@@ -543,16 +539,12 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 /// Determine help text shown in explorer's statusbar
 String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 {
-	const int tmp_size = 200;
 	String strHelp;
-	TCHAR tmpStr[tmp_size] = {0};
 
 	// More than two items selected, advice user
 	if (m_nSelectedItems > MaxFileCount)
 	{
-		LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP_MANYITEMS,
-			tmpStr, tmp_size);
-		strHelp = tmpStr;
+		strHelp = GetResourceString(IDS_CONTEXT_HELP_MANYITEMS);
 		return strHelp;
 	}
 
@@ -561,28 +553,20 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		switch (m_dwMenuState)
 		{
 		case MENU_SIMPLE:
-			LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP,
-				tmpStr, tmp_size);
-			strHelp = tmpStr;
+			strHelp = GetResourceString(IDS_CONTEXT_HELP);;
 			break;
 
 		case MENU_ONESEL_NOPREV:
-			LoadString(_Module.GetModuleInstance(), IDS_HELP_SAVETHIS,
-				tmpStr, tmp_size);
-			strHelp = tmpStr;
+			strHelp = GetResourceString(IDS_HELP_SAVETHIS);
 			break;
 		
 		case MENU_ONESEL_PREV:
-			LoadString(_Module.GetModuleInstance(), IDS_HELP_COMPARESAVED,
-				tmpStr, tmp_size);
-			strHelp = tmpStr;
+			strHelp = GetResourceString(IDS_HELP_COMPARESAVED);
 			string_replace(strHelp, _T("%1"), m_strPreviousPath);
 			break;
 		
 		case MENU_TWOSEL:
-			LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP,
-				tmpStr, tmp_size);
-			strHelp = tmpStr;
+			strHelp = GetResourceString(IDS_CONTEXT_HELP);
 			break;
 		}
 	}
@@ -591,14 +575,10 @@ String CWinMergeShell::GetHelpText(UINT_PTR idCmd)
 		switch (m_dwMenuState)
 		{
 		case MENU_ONESEL_PREV:
-			LoadString(_Module.GetModuleInstance(), IDS_HELP_SAVETHIS,
-				tmpStr, tmp_size);
-			strHelp = tmpStr;
+			strHelp = GetResourceString(IDS_HELP_SAVETHIS);
 			break;
 		default:
-			LoadString(_Module.GetModuleInstance(), IDS_CONTEXT_HELP,
-				tmpStr, tmp_size);
-			strHelp = tmpStr;
+			strHelp = GetResourceString(IDS_CONTEXT_HELP);
 			break;
 		}
 	}
