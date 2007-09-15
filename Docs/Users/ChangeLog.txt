@@ -7,6 +7,8 @@ WinMerge 2.7.5.3
   Add Portuguese translation (#1756364)
   BugFix: Fix MakeResDll crash (#1795421)
   BugFix: Full screen mode didn't work with multiple monitors (#1788168)
+  Translation updates:
+  - Japanese (r4546)
 
 WinMerge 2.7.5.2 (r4528)
   Graphical improvements to location pane (#1770175)
