@@ -377,10 +377,10 @@ MovePgUp (BOOL bSelect)
       int nDummy;
       int nNewTopLine;
       GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
-      m_ptCursorPos.y = nNewTopLine;
       ScrollToSubLine(nNewTopSubLine);
       UpdateSiblingScrollPos(FALSE);
     }
+  m_ptCursorPos.y = m_nTopSubLine;
 
   // setting cursor
   CPoint subLinePos;
