@@ -27,13 +27,11 @@
 
 void string_replace(String &target, const String &find, const String &replace)
 {
-	const size_t replace_len = find.length();
-	std::string::size_type prevPos = 0;
-	std::string::size_type pos = target.find(find, prevPos);
-	while (pos != std::string::npos)
+	const std::string::size_type replace_len = find.length();
+	std::string::size_type pos = 0;
+	while ((pos = target.find(find, pos)) != String::npos)
 	{
 		target.replace(pos, replace_len, replace);
-		prevPos = pos;
-		pos = target.find(find, prevPos);
+		pos += replace_len;
 	}
 }
