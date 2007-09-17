@@ -2926,14 +2926,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			}
 		}
 
-		// scroll to first diff
-		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
-			m_diffList.HasSignificantDiffs())
-		{
-			int nDiff = m_diffList.FirstSignificantDiff();
-			pLeft->SelectDiff(nDiff, TRUE, FALSE);
-		}
-
 		// set the frame window header
 		UpdateHeaderPath(0);
 		UpdateHeaderPath(1);
@@ -2952,6 +2944,14 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			 (m_nBufferType[1] == BUFFER_NORMAL_NAMED)))
 		{
 			ShowRescanError(nRescanResult, bBinary, bIdentical);
+		}
+
+		// scroll to first diff
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST) &&
+			m_diffList.HasSignificantDiffs())
+		{
+			int nDiff = m_diffList.FirstSignificantDiff();
+			pLeft->SelectDiff(nDiff, TRUE, FALSE);
 		}
 
 		// Exit if files are identical should only work for the first
