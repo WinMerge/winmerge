@@ -3,7 +3,7 @@
  *
  *  @brief Implementation of Line Filter dialog
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -12,7 +12,6 @@
 #include "MainFrm.h"
 #include "PropLineFilter.h"
 #include "dllver.h"
-#include ".\proplinefilter.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
