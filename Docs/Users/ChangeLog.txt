@@ -5,12 +5,14 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.7.5.3
   Use PO files for translations (generate RC-files from PO-files)
   Add Portuguese translation (#1756364)
+  Change Up/Down button names in folder compare columns dialog(#1800064)
   BugFix: Fix MakeResDll crash (#1795421)
   BugFix: Full screen mode didn't work with multiple monitors (#1788168)
   BugFix: PgUp key didn't do anything in beginning of the file (#1795680)
   BugFix: The option 'Automatically scroll to first difference' didn't work
-  properly when word-wrap mode was on (#1795814)
+    properly when word-wrap mode was on (#1795814)
   Translation updates:
+  - French (#1800064)
   - Japanese (r4546)
 
 WinMerge 2.7.5.2 (r4528)
