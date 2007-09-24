@@ -19,3 +19,4 @@ SysListView32
 SysTreeView32
 Tree1
 Version 1.0
+WinMerge

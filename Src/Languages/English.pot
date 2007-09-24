@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2007-09-25 00:24+0000\n"
+"POT-Creation-Date: 2007-09-25 00:36+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -990,14 +990,6 @@ msgstr ""
 #: Merge.rc:633
 #, c-format
 msgid "About WinMerge"
-msgstr ""
-
-#: Merge.rc:637
-#: Merge.rc:1675
-#: Merge.rc:1817
-#: Merge.rc:1929
-#, c-format
-msgid "WinMerge"
 msgstr ""
 
 #: Merge.rc:639
