@@ -44,7 +44,7 @@ Sub Main
     If (bRunFromCmd = True) Then 'If run from command line...
       Wscript.Echo sLanguage
     End If
-    Set oLanguageTranslations = GetTranslationsFromPoFile(oLanguages(sLanguage))
+    Set oLanguageTranslations = GetTranslationsFromPoFile(oLanguages(sLanguage), sLanguage)
     If (oLanguageTranslations.Count > 0) Then 'If translations exists...
       CreateRcFileWithTranslations "../Merge.rc", sLanguage & "\Merge" & sLanguage & ".rc", oLanguageTranslations
     End If
@@ -76,7 +76,7 @@ End Function
 
 ''
 ' ...
-Function GetTranslationsFromPoFile(ByVal sPoPath)
+Function GetTranslationsFromPoFile(ByVal sPoPath, ByVal sLanguage)
   Dim oTranslations, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgId, sMsgStr
   
@@ -125,6 +125,17 @@ Function GetTranslationsFromPoFile(ByVal sPoPath)
       End If
     Loop
     oTextFile.Close
+    
+    '--------------------------------------------------------------------------------
+    ' Add additional translations...
+    '--------------------------------------------------------------------------------
+    If (oTranslations.Exists("WinMerge Application") = False) Then
+      oTranslations.Add "WinMerge Application", sLanguage & " translation for WinMerge"
+    End If
+    If (oTranslations.Exists("WinMerge.EXE") = False) Then
+      oTranslations.Add "WinMerge.EXE", "Merge" & sLanguage & ".lang"
+    End If
+    '--------------------------------------------------------------------------------
   End If
   Set GetTranslationsFromPoFile = oTranslations
 End Function
