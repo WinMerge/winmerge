@@ -996,6 +996,7 @@ Procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
 Begin
     if CurUninstallStep = usPostUninstall then
     begin
+      if ClearCaseInstalled() then
         IntegrateClearCase(WinMergeExeName(), '..\..\bin\cleardiffmrg.exe');
     end;
 End;
