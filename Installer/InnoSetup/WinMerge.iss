@@ -1,4 +1,4 @@
-; RCS ID line follows -- this is updated by CVS
+; ID line follows -- this is updated by SVN
 ; $Id$
 ;
 ;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis
@@ -129,7 +129,8 @@ Name: Japanese; MessagesFile: Languages\Japanese.isl
 Name: Korean; MessagesFile: Languages\Korean.isl
 Name: Norwegian; MessagesFile: Languages\Norwegian.isl
 Name: Polish; MessagesFile: Languages\Polish.isl
-Name: Portuguese; MessagesFile: Languages\Brazilian_Portuguese.isl
+Name: Portuguese; MessagesFile: Languages\Portuguese.isl
+Name: PortugueseBrazilian; MessagesFile: Languages\Brazilian_Portuguese.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
@@ -208,6 +209,9 @@ Name: Languages\Polish; Description: {cm:PolishLanguage}; Flags: disablenouninst
 Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Portuguese
 Name: Languages\Portuguese; Description: {cm:PortugueseLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Portuguese
 
+Name: Languages\PortugueseBrazilian; Description: {cm:PortugueseBrazilLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not PortugueseBrazilian
+Name: Languages\PortugueseBrazilian; Description: {cm:PortugueseBrazilLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: PortugueseBrazilian
+
 Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Russian
 Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Russian
 
@@ -249,8 +253,8 @@ Name: {app}\WinMergeU.exe.manifest; Type: files
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
+Name: {app}\Languages\MergeBrazilian.lang; Type: files; Check: not IsComponentSelected('PortugueseBrazilian')
 Name: {app}\Languages\MergeBulgarian.lang; Type: files; Check: not IsComponentSelected('Bulgarian')
-Name: {app}\Languages\MergeBrazilian.lang; Type: files; Check: not IsComponentSelected('Portuguese')
 Name: {app}\Languages\MergeCatalan.lang; Type: files; Check: not IsComponentSelected('Catalan')
 Name: {app}\Languages\MergeChineseSimplified.lang; Type: files; Check: not IsComponentSelected('Chinese_Simplified')
 Name: {app}\Languages\MergeChineseTraditional.lang; Type: files; Check: not IsComponentSelected('Chinese_Traditional')
@@ -265,6 +269,7 @@ Name: {app}\Languages\MergeJapanese.lang; Type: files; Check: not IsComponentSel
 Name: {app}\Languages\MergeKorean.lang; Type: files; Check: not IsComponentSelected('Korean')
 Name: {app}\Languages\MergeNorwegian.lang; Type: files; Check: not IsComponentSelected('Norwegian')
 Name: {app}\Languages\MergePolish.lang; Type: files; Check: not IsComponentSelected('Polish')
+Name: {app}\Languages\MergePortuguese.lang; Type: files; Check: not IsComponentSelected('Portuguese')
 Name: {app}\Languages\MergeSlovak.lang; Type: files; Check: not IsComponentSelected('Slovak')
 Name: {app}\Languages\MergeSpanish.lang; Type: files; Check: not IsComponentSelected('Spanish')
 Name: {app}\Languages\MergeRussian.lang; Type: files; Check: not IsComponentSelected('Russian')
@@ -331,11 +336,12 @@ Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Fla
 Source: ..\..\Build\ShellExtensionX64\ShellExtensionX64.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder 64bit; MinVersion: 0,5.01.2600; Check: IsWin64
 
 ; Expat dll
-Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core;
+Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
 ; PCRE dll
 Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
+Source: ..\..\Build\Languages\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
 Source: ..\..\Build\Languages\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
@@ -353,7 +359,7 @@ Source: ..\..\Build\Languages\MergeJapanese.lang; DestDir: {app}\Languages; Comp
 Source: ..\..\Build\Languages\MergeKorean.lang; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeNorwegian.lang; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergePolish.lang; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Build\Languages\MergePortuguese.lang; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeRussian.lang; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeSlovak.lang; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeSpanish.lang; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
@@ -467,6 +473,8 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000412; Flags: deletevalue; Languages: Korean
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000414; Flags: deletevalue; Languages: Norwegian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000415; Flags: deletevalue; Languages: Polish
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000816; Flags: deletevalue; Languages: Portuguese
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000416; Flags: deletevalue; Languages: PortugueseBrazilian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000419; Flags: deletevalue; Languages: Russian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041b; Flags: deletevalue; Languages: Slovak
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000c0a; Flags: deletevalue; Languages: Spanish
@@ -991,4 +999,3 @@ Begin
         IntegrateClearCase(WinMergeExeName(), '..\..\bin\cleardiffmrg.exe');
     end;
 End;
-
