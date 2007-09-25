@@ -49,6 +49,8 @@ Sub Main
   
   CreateTranslationsStatusHtmlFile "TranslationsStatus.html", oTranslationsStatus
   
+  CreateTranslationsStatusWikiFile "TranslationsStatus.wiki", oTranslationsStatus
+  
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
   
@@ -229,6 +231,46 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oHtmlFile.WriteLine "</body>"
   oHtmlFile.WriteLine "</html>"
   oHtmlFile.Close
+End Sub
+
+''
+' ...
+Sub CreateTranslationsStatusWikiFile(ByVal sWikiPath, ByVal oTranslationsStatus)
+  Dim oWikiFile, sLanguage, oLanguageStatus
+  
+  Set oWikiFile = oFSO.CreateTextFile(sWikiPath, True)
+  
+  oWikiFile.WriteLine "== Translations Status =="
+  oWikiFile.WriteLine "Status from '''" & GetCreationDate() & "''':"
+  oWikiFile.WriteLine "{| class=""wikitable"" border=""1"""
+  oWikiFile.WriteLine "! Language"
+  oWikiFile.WriteLine "! Total"
+  oWikiFile.WriteLine "! Translated"
+  oWikiFile.WriteLine "! Fuzzy"
+  oWikiFile.WriteLine "! Untranslated"
+  oWikiFile.WriteLine "! Last Update"
+  For Each sLanguage In oTranslationsStatus.Keys 'For all languages...
+    If (sLanguage <> "English") Then 'If NOT English...
+      Set oLanguageStatus = oTranslationsStatus(sLanguage)
+      oWikiFile.WriteLine "|-"
+      oWikiFile.WriteLine "|align=""left""| " & sLanguage
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("count")
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("translated")
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("fuzzy")
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("untranslated")
+      oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus("po-revision-date"), 10)
+    End If
+  Next
+  Set oLanguageStatus = oTranslationsStatus("English")
+  oWikiFile.WriteLine "|-"
+  oWikiFile.WriteLine "|align=""left""| English"
+  oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("count")
+  oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("count")
+  oWikiFile.WriteLine "|align=""right""| 0"
+  oWikiFile.WriteLine "|align=""right""| 0"
+  oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus("pot-creation-date"), 10)
+  oWikiFile.WriteLine "|}"
+  oWikiFile.Close
 End Sub
 
 ''
