@@ -121,7 +121,7 @@ Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
 Name: Czech; MessagesFile: Languages\Czech.isl
 Name: Danish; MessagesFile: Languages\Danish.isl
 Name: Dutch; MessagesFile: Languages\Dutch.isl
-Name: French; MessagesFile: Languages\French.isl
+Name: French; MessagesFile: Languages\French.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-French.txt
 Name: German; MessagesFile: Languages\German.isl
 Name: Hungarian; MessagesFile: Languages\Hungarian.isl
 Name: Italian; MessagesFile: Languages\Italian.isl

@@ -13,7 +13,7 @@ WinMerge 2.7.5.3
   BugFix: The option 'Automatically scroll to first difference' didn't work
     properly when word-wrap mode was on (#1795814)
   Translation updates:
-  - French (#1800064)
+  - French (#1800064, #1802363)
   - Japanese (r4546)
 
 WinMerge 2.7.5.2 (r4528)

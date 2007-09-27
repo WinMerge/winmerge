@@ -316,60 +316,60 @@ AssocingFileExtension=Associe %1 avec l'extension de fichier %2...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Installation Typique
+FullInstallation=Installation Complète
+CompactInstallation=Installation Compacte
+CustomInstallation=Installation Personnaliser
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-UsersGuide=User's Guide
-Filters=Filters
-Plugins=Plugins
+AppCoreFiles=Fichiers Vitaux Winmerge
+ApplicationRuntimes=Exécutables de l'application
+UsersGuide=Guide d'usager
+Filters=Filtres
+Plugins=Plugiciels
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
+Languages=Langages
+BulgarianLanguage=Menus et dialogues Bulgare
+CatalanLanguage=Menus et dialogues Catalan
+ChineseSimplifiedLanguage=Menus et dialogues Chinois (Simplifié)
+ChineseTraditionalLanguage=Menus et dialogues Chinois (Traditionnel)
+CzechLanguage=Menus et dialogues Tchécoslovaque
+DanishLanguage=Menus et dialogues Danois
+DutchLanguage=Menus et dialogues Néerlandais"
+FrenchLanguage=Menus et dialogues Français
+GermanLanguage=Menus et dialogues Allemand
+HungarianLanguage=Menus et dialogues Hongrois
+ItalianLanguage=Menus et dialogues Italien
+JapaneseLanguage=Menus et dialogues Japonais
+KoreanLanguage=Menus et dialogues Coréen
+NorwegianLanguage=Menus et dialogues Norvégien
+PolishLanguage=Menus et dialogues Polonais
+PortugueseBrazilLanguage=Menus et dialogues Portugais (Brésilien)
+PortugueseLanguage=Menus et dialogues Portugais
+RussianLanguage=Menus et dialogues Russe
+SlovakLanguage=Menus et dialogues Slovaque
+SpanishLanguage=Menus et dialogues Espagnol
+SwedishLanguage=Menus et dialogues Suédois
+TurkishLanguage=Menus et dialogues Turque
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-IntegrateDelphi4=Borland® Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+ExplorerContextMenu=&Permetre l'intégration au menu contextuel de l'explorateur
+IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
+IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
+IntegrateClearCase=Integrer avec Rational &ClearCase
+IntegrateDelphi4=Support de fichier binaire Borland® Delphi &4
+UpdatingCommonControls=Mettre à jour les contrôles communs du système
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
-PluginsText=Plugins
+ReadMe=Lisez moi
+UsersGuide=Guide de l'usager
+UpdatingCommonControls=Mise à jour des contrôles communs du système
+ViewStartMenuFolder=&Voir le répertoire du menu démarrer WinMerge
+PluginsText=Plugiciels
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=L'installeur a détecté que vous avez changé l'emplacement du votre menu démarré de "%s" à "%s". Désirez-vous retirer l'ancien répertoire du menu démarrer WinMerge?
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=Fichier de projet WinMerge 
