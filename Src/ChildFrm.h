@@ -55,9 +55,6 @@ public:
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 	void SetLastCompareResult(int nResult);
 
-   void UpdateSplitter();
-
-
 // Attributes
 protected:
 	CSplitterWndEx m_wndSplitter;

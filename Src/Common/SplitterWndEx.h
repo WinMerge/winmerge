@@ -28,8 +28,6 @@ public:
 	void EqualizeRows(); 
 	void EqualizeCols(); 
 
-	virtual void RecalcLayout();    // call after changing sizes
-
 private:
 	BOOL m_bBarLocked;
 	BOOL m_bResizePanes;

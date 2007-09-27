@@ -13,11 +13,6 @@
 #include "stdafx.h"
 #include "SplitterWndEx.h"
 
-#ifdef COMPILE_MULTIMON_STUBS
-#undef COMPILE_MULTIMON_STUBS
-#endif
-#include <multimon.h>
-
 #ifdef _DEBUG
 #undef THIS_FILE
 static char THIS_FILE[]=__FILE__;
@@ -164,18 +159,15 @@ void CSplitterWndEx::EqualizeRows()
 		GetRowInfo(i, h, hmin);
 		sum += h;
 	}
-	if (sum > 0)
+	int hEqual = sum/m_nRows;
+	for (i = 0 ; i < m_nRows-1 ; i++)
 	{
-	   int hEqual = sum/m_nRows;
-	   for (i = 0 ; i < m_nRows-1 ; i++)
-	   {
-		   SetRowInfo(i, hEqual, hmin);
-		   sum -= hEqual;
-	   }
-	   SetRowInfo(i, sum, hmin);
+		SetRowInfo(i, hEqual, hmin);
+		sum -= hEqual;
+	}
+	SetRowInfo(i, sum, hmin);
 
-   	RecalcLayout();
-   }
+	RecalcLayout();
 }
 
 void CSplitterWndEx::EqualizeCols() 
@@ -209,44 +201,9 @@ void CSplitterWndEx::EqualizeCols()
 	}
 }
 
-void CSplitterWndEx::RecalcLayout()
-{
-	if (m_nCols == 2)
-	{
-		CRect vSplitterWndRect;
-		GetWindowRect(vSplitterWndRect);
-		HMONITOR hLeftMonitor = MonitorFromPoint(vSplitterWndRect.TopLeft(), MONITOR_DEFAULTTONEAREST);
-		HMONITOR hRightMonitor = MonitorFromPoint(CPoint(vSplitterWndRect.right, vSplitterWndRect.top), MONITOR_DEFAULTTONEAREST);
 
-		bool bSplitPanesInHalf = true;
-		if (hLeftMonitor != hRightMonitor)
-		{
-			MONITORINFO info;
-			info.cbSize = sizeof(MONITORINFO);
-			GetMonitorInfo(hLeftMonitor, &info);
 
-			int iDesiredWidthOfLeftPane = info.rcMonitor.right - vSplitterWndRect.left;
-			int iDesiredWidthOfRightPane = vSplitterWndRect.right - info.rcMonitor.right;
 
-			if (iDesiredWidthOfLeftPane > 100 && iDesiredWidthOfRightPane > 100)
-			{
-				bSplitPanesInHalf = false;
-				SetColumnInfo(0, iDesiredWidthOfLeftPane, 0);
-				SetColumnInfo(1, iDesiredWidthOfRightPane, 0);
-			}
-		}
-		
-		if (bSplitPanesInHalf)
-		{
-			CRect vSplitterWndRect;
-			GetWindowRect(vSplitterWndRect);
-			SetColumnInfo(0, vSplitterWndRect.Width() / 2, 0);
-			SetColumnInfo(1, vSplitterWndRect.Width() / 2, 0);
-		}
-	}
-
-	CSplitterWnd::RecalcLayout();
-}
 
 void CSplitterWndEx::OnSize(UINT nType, int cx, int cy) 
 {
