@@ -2,7 +2,7 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
-WinMerge 2.7.5.3
+WinMerge 2.7.5.3 - 2007-09-27 (r4572)
   Use PO files for translations (generate RC-files from PO-files)
   Add Portuguese translation (#1756364)
   Change Up/Down button names in folder compare columns dialog(#1800064)
@@ -16,7 +16,7 @@ WinMerge 2.7.5.3
   - French (#1800064, #1802363)
   - Japanese (r4546)
 
-WinMerge 2.7.5.2 (r4528)
+WinMerge 2.7.5.2 - 2007-09-11 (r4528)
   Graphical improvements to location pane (#1770175)
   Remove MFC dependency from resource compiler (#1783581)
   Better multi-monitor support (split file view on monitor boundary) (#1788168)
@@ -25,7 +25,7 @@ WinMerge 2.7.5.2 (r4528)
   Translation updates:
   - Traditional Chinese (r4473)
 
-WinMerge 2.7.5.1
+WinMerge 2.7.5.1 - 2007-08-16
   HTML reports for file compare (#1739209)
   Ask confirmation when exiting with multiple windows open (#1757800)
   Translation updates:
