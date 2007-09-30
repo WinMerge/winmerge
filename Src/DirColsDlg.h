@@ -5,7 +5,7 @@
  *
  * @date  Created: 2003-08-19
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -13,13 +13,20 @@
 #define AFX_DIRCOLSDLG_H__2FCB576C_C609_4623_8C55_F3870F22CA0B__INCLUDED_
 #pragma once
 
-#include "HScrollListBox.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirColsDlg dialog
 
 /**
- * @brief Dialog to choose & order columns to be shown in dirview of differing files
+ * @brief A Dialog for choosing visible folder compare columns.
+ * This class implements a dialog for choosing visible columns in folder
+ * compare. Columns can be also re-ordered. There is one listview component
+ * which lists all available columns. Every column name has a checkbox with
+ * it. If the checkbox is checked, the column is visible.
+ *
+ * @note: Due to how columns handling code is implemented, hidden columns
+ * must be always be last in the list with order number -1.
+ * @todo: Allow hidden columns between visible columns.
  */
 class CDirColsDlg : public CDialog
 {
@@ -49,9 +56,8 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CDirColsDlg)
 	enum { IDD = IDD_DIRCOLS };
-	CHScrollListBox m_list_show;
-	CHScrollListBox m_list_hide;
-	BOOL		m_bReset;
+	CListCtrl m_listColumns;
+	BOOL m_bReset;
 	//}}AFX_DATA
 
 
@@ -60,40 +66,35 @@ public:
 	//{{AFX_VIRTUAL(CDirColsDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	//}}AFX_VIRTUAL
 
 // Implementation methods
 protected:
+	void InitList();
 	void LoadLists();
 	void LoadDefLists();
-	void MoveItems(CHScrollListBox * list1, CHScrollListBox * list2, bool top);
-	void UpdateEnables();
 	void SortArrayToLogicalOrder();
+	void MoveItem(int index, int newIndex);
+	void MoveSelectedItems(BOOL bUp);
+	void SanitizeOrder();
 	static int cmpcols(const void * el1, const void * el2);
 
 // Implementation data
 private:
-	ColumnArray m_cols;
-	ColumnArray m_defCols;
-	BOOL m_bFromKeyboard; /**< Is up/down movement originating from keyboard? */
+	ColumnArray m_cols; /**< Column list. */
+	ColumnArray m_defCols; /**< Default columns. */
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirColsDlg)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnUp();
 	afx_msg void OnDown();
-	afx_msg void OnAdd();
-	afx_msg void OnRemove();
 	virtual void OnOK();
 	afx_msg void OnDefaults();
-	afx_msg void OnLbnSelchangeListShow();
-	afx_msg void OnLbnSelchangeListHide();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnLbnDblclkListShow();
-	afx_msg void OnLbnDblclkListHide();
+	afx_msg void OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult);
 };
 
 //{{AFX_INSERT_LOCATION}}

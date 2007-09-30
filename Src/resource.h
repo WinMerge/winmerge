@@ -422,6 +422,7 @@
 #define IDC_LFILTER_EDITSAVE            1333
 #define IDC_ABOUTBOX_ICON               1334
 #define IDC_ASK_MULTIWINDOW_CLOSE       1335
+#define IDC_COLDLG_LIST                 1336
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
