@@ -352,6 +352,7 @@ Source: ..\..\Build\Languages\MergeCzech.lang; DestDir: {app}\Languages; Compone
 Source: ..\..\Build\Languages\MergeDanish.lang; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeDutch.lang; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeFrench.lang; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: ..\..\Docs\Users\Languages\ReadMe-French.txt; DestDir: {app}\Docs; Components: Languages\French
 Source: ..\..\Build\Languages\MergeGerman.lang; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeHungarian.lang; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeItalian.lang; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
