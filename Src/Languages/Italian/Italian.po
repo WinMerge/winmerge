@@ -1,19 +1,21 @@
+# translation of Italian.po
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # ID line follows -- this is updated by SVN
 # $Id$
 #
+# Andrea Decorte <deco1985@hotmail.com>, 2007.
 msgid ""
 msgstr ""
-"Project-Id-Version: WinMerge\n"
+"Project-Id-Version: Italian\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: 2007-08-14 22:11+0000\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: Italian <winmerge-translate@lists.sourceforge.net>\n"
+"PO-Revision-Date: 2007-09-30 10:57+0100\n"
+"Last-Translator: Andrea Decorte <deco1985@hotmail.com>\n"
+"Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CP1252\n"
+"Content-Type: text/plain; charset=windows-1252\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-SourceCharset: CP1252\n"
@@ -118,7 +120,7 @@ msgstr "&con..."
 #: Merge.rc:312
 #, c-format
 msgid "&File"
-msgstr ""
+msgstr "&File"
 
 #: Merge.rc:122
 #: Merge.rc:200
@@ -149,7 +151,7 @@ msgstr "Sal&va progetto..."
 #: Merge.rc:128
 #, c-format
 msgid "Recent Projects"
-msgstr ""
+msgstr "Progetti recenti"
 
 #: Merge.rc:130
 #: Merge.rc:211
@@ -303,7 +305,7 @@ msgstr "&Ricarica plugin"
 #: Merge.rc:456
 #, c-format
 msgid "&Debug"
-msgstr ""
+msgstr "&Debug"
 
 #: Merge.rc:168
 #: Merge.rc:282
@@ -416,7 +418,7 @@ msgstr "&Supporto per gli archivi inattivo..."
 #: Merge.rc:481
 #, c-format
 msgid "&GNU Public License..."
-msgstr "Licenza pubblica GNU..."
+msgstr "Licenza pubblica &GNU..."
 
 #: Merge.rc:192
 #: Merge.rc:306
@@ -482,7 +484,7 @@ msgstr "Mostra elementi sa&ltati"
 #: Merge.rc:226
 #, c-format
 msgid "S&how Binary Files"
-msgstr "Mostra i file binari"
+msgstr "Mostra i file &binari"
 
 #: Merge.rc:228
 #, c-format
@@ -550,13 +552,13 @@ msgstr "&Ultima differenza\tAlt+Fine"
 #: Merge.rc:427
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "C&opia a destra\tFreccia destra"
+msgstr "C&opia a destra\tAlt+Destra"
 
 #: Merge.rc:260
 #: Merge.rc:428
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "Co&pia a sinistra\tFreccia sinistra"
+msgstr "Co&pia a sinistra\tAlt+Sinistra"
 
 #: Merge.rc:262
 #, c-format
@@ -625,17 +627,17 @@ msgstr "&Converti caratteri di fine linea a"
 #: Merge.rc:341
 #, c-format
 msgid "&DOS (CRLF)"
-msgstr ""
+msgstr "&DOS (CRLF)"
 
 #: Merge.rc:342
 #, c-format
 msgid "&UNIX (LF)"
-msgstr ""
+msgstr "&UNIX (LF)"
 
 #: Merge.rc:343
 #, c-format
 msgid "&MAC (CR)"
-msgstr ""
+msgstr "&MAC (CR)"
 
 #: Merge.rc:346
 #, c-format
@@ -791,17 +793,17 @@ msgstr "Copia &a sinistra e avanza\tAlt+Ctrl+Sinistra"
 #: Merge.rc:433
 #, c-format
 msgid "Copy &All to Right"
-msgstr "Copia tutto a destra"
+msgstr "Cop&ia tutto a destra"
 
 #: Merge.rc:434
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "Copia tutto a sinistra"
+msgstr "C&opia tutto a sinistra"
 
 #: Merge.rc:449
 #, c-format
 msgid "&Prediffer"
-msgstr ""
+msgstr "&Prediffer"
 
 #: Merge.rc:490
 #, c-format
@@ -960,7 +962,7 @@ msgstr "Impostazioni Prediffer"
 #: Merge.rc:563
 #, c-format
 msgid "&No prediffer"
-msgstr ""
+msgstr "&No prediffer"
 
 #: Merge.rc:564
 #, c-format
@@ -1002,7 +1004,7 @@ msgstr "Informazioni su WinMerge"
 #: Merge.rc:1939
 #, c-format
 msgid "WinMerge"
-msgstr ""
+msgstr "WinMerge"
 
 #: Merge.rc:649
 #, c-format
@@ -1033,7 +1035,7 @@ msgstr "Visita la pagina web di WinMerge!"
 #: Merge.rc:1423
 #, c-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: Merge.rc:655
 #, c-format
@@ -1043,7 +1045,7 @@ msgstr "Hanno contribuito"
 #: Merge.rc:661
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Seleziona i file o le cartelle..."
+msgstr "Seleziona i file o le cartelle"
 
 #: Merge.rc:664
 #: Merge.rc:1574
@@ -1136,12 +1138,12 @@ msgstr "File o cartelle da confrontare"
 #: Merge.rc:695
 #, c-format
 msgid "Visual SourceSafe"
-msgstr ""
+msgstr "Visual SourceSafe"
 
 #: Merge.rc:700
 #, c-format
 msgid "Database:"
-msgstr ""
+msgstr "Database:"
 
 #: Merge.rc:703
 #, c-format
@@ -1156,12 +1158,12 @@ msgstr "Utente:"
 #: Merge.rc:708
 #, c-format
 msgid "Password:"
-msgstr ""
+msgstr "Password:"
 
 #: Merge.rc:710
 #, c-format
 msgid "Link to Destination VSS project"
-msgstr "Link al progetto VSS di destinazione"
+msgstr "Collegamento al progetto VSS di destinazione"
 
 #: Merge.rc:712
 #: Merge.rc:850
@@ -1193,7 +1195,7 @@ msgstr "Sistema per il &versioning"
 #: Merge.rc:727
 #, c-format
 msgid "&Path to cleartool.exe:"
-msgstr "&Percorso di SS.EXE:"
+msgstr "&Percorso di cleartool.exe:"
 
 #: Merge.rc:734
 #: Merge.rc:1888
@@ -1229,7 +1231,7 @@ msgstr "&Permetti l'esecuzione di un'unica istanza del programma"
 #: Merge.rc:749
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr ""
+msgstr "Domanda alla c&hiusura di più finestre"
 
 #: Merge.rc:751
 #, c-format
@@ -1374,7 +1376,7 @@ msgstr "Sost&ituisci tutto"
 #: Merge.rc:2113
 #, c-format
 msgid "Rational ClearCase"
-msgstr ""
+msgstr "Rational ClearCase"
 
 #: Merge.rc:844
 #, c-format
@@ -1474,7 +1476,7 @@ msgstr "Spostata:"
 #: Merge.rc:928
 #, c-format
 msgid "Selected Moved:"
-msgstr "Spostata (selezionata):"
+msgstr "Spostata selezionata:"
 
 #: Merge.rc:935
 #, c-format
@@ -1565,12 +1567,12 @@ msgstr "Creatore di patch"
 #: Merge.rc:994
 #, c-format
 msgid "File&1:"
-msgstr ""
+msgstr "File&1:"
 
 #: Merge.rc:998
 #, c-format
 msgid "File&2:"
-msgstr ""
+msgstr "File&2:"
 
 #: Merge.rc:1001
 #, c-format
@@ -1665,12 +1667,12 @@ msgstr "Nascondi le colonne"
 #: Merge.rc:1062
 #, c-format
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 #: Merge.rc:1063
 #, c-format
 msgid ">>"
-msgstr ""
+msgstr ">>"
 
 #: Merge.rc:1073
 #, c-format
@@ -1706,7 +1708,7 @@ msgstr " Progresso del confronto tra cartelle"
 #: Merge.rc:1841
 #, c-format
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: Merge.rc:1104
 #, c-format
@@ -1736,7 +1738,7 @@ msgstr "Va&i a:"
 #: Merge.rc:1117
 #, c-format
 msgid "File"
-msgstr ""
+msgstr "File"
 
 #: Merge.rc:1122
 #, c-format
@@ -1828,7 +1830,7 @@ msgstr "Filtra i commenti"
 #: Merge.rc:1890
 #, c-format
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: Merge.rc:1170
 #, c-format
@@ -2342,7 +2344,7 @@ msgstr "Caricamento &file:"
 #: Merge.rc:1509
 #, c-format
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: Merge.rc:1507
 #, c-format
@@ -2519,7 +2521,7 @@ msgstr "Sì"
 #: Merge.rc:1631
 #, c-format
 msgid "No"
-msgstr ""
+msgstr "No"
 
 #. StringFileInfo.Block
 #: Merge.rc:1656
@@ -2575,7 +2577,7 @@ msgstr "MA"
 #: Merge.rc:1694
 #, c-format
 msgid "NUM"
-msgstr ""
+msgstr "NUM"
 
 #: Merge.rc:1695
 #, c-format
@@ -2805,22 +2807,22 @@ msgstr ""
 "Sovrapponi finestre"
 
 #: Merge.rc:1770
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
 msgstr ""
-"Dispone le finestre senza sovrapporle\n"
-"Affianca finestre"
+"Dispone le finestre in orizzontale senza sovrapporle\n"
+"Affianca finestre in orizzontale"
 
 #: Merge.rc:1771
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
 msgstr ""
-"Dispone le finestre senza sovrapporle\n"
-"Affianca finestre"
+"Dispone le finestre in verticale senza sovrapporle\n"
+"Affianca finestre in verticale"
 
 #: Merge.rc:1772
 #, c-format
@@ -3063,7 +3065,7 @@ msgstr ""
 #: Merge.rc:1856
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
-msgstr "WinMerge non offre ASSOLUTAMENTE NESSUNA GARANZIA. Questo è software libero e sei il benvenuto se desideri ridistribuirlo sotto certe condizioni; guarda la Licenza pubblica GNU nel menù ? per ulteriori dettagli."
+msgstr "WinMerge non offre ASSOLUTAMENTE NESSUNA GARANZIA. Questo è software libero e sei il benvenuto se desideri ridistribuirlo sotto certe condizioni; guarda la Licenza pubblica GNU nel menu per ulteriori dettagli."
 
 #: Merge.rc:1862
 #, c-format
@@ -3103,7 +3105,7 @@ msgstr "Sì a &tutto"
 #: Merge.rc:1875
 #, c-format
 msgid "&No"
-msgstr ""
+msgstr "&No"
 
 #: Merge.rc:1876
 #, c-format
@@ -3138,7 +3140,7 @@ msgstr "Non farmi più &questa domanda."
 #: Merge.rc:1892
 #, c-format
 msgid "Syntax colors"
-msgstr "Colorazione sintassi"
+msgstr "Colori della sintassi"
 
 #: Merge.rc:1893
 #, c-format
@@ -3183,7 +3185,7 @@ msgstr "Versione %1 - Italiano"
 #: Merge.rc:1916
 #, c-format
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: Merge.rc:1922
 #, c-format
@@ -3310,7 +3312,7 @@ msgstr "Filtri"
 #: Merge.rc:1967
 #, c-format
 msgid "[F] "
-msgstr ""
+msgstr "[F] "
 
 #: Merge.rc:1968
 #, c-format
@@ -3781,7 +3783,7 @@ msgstr ""
 #: Merge.rc:2096
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
-msgstr "È necessario specificare il percorso di un progetto SourceSafe per continuare (Es.:  $/MioProgetto)"
+msgstr "E' necessario specificare il percorso di un progetto SourceSafe per continuare (Es.:  $/MioProgetto)"
 
 #: Merge.rc:2097
 #, c-format
@@ -4845,6 +4847,9 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Sei in procinto di chiudere diverse finestre di confronto.\n"
+"\n"
+"Sei sicuro di voler proseguire?"
 
 #: Merge.rc:2420
 #, c-format
@@ -4909,7 +4914,7 @@ msgstr "Conclusione del range non valida"
 #: Merge.rc:2432
 #, c-format
 msgid "Out of memory"
-msgstr ""
+msgstr "Out of memory"
 
 #: Merge.rc:2433
 #, c-format
@@ -4934,7 +4939,7 @@ msgstr "Parentesi ) o \\) isolata"
 #: Merge.rc:2446
 #, c-format
 msgid "Afrikaans"
-msgstr ""
+msgstr "Afrikaans"
 
 #: Merge.rc:2447
 #, c-format
@@ -5184,7 +5189,7 @@ msgstr "Faroese"
 #: Merge.rc:2511
 #, c-format
 msgid "Farsi"
-msgstr ""
+msgstr "Farsi"
 
 #: Merge.rc:2512
 #, c-format
@@ -5264,7 +5269,7 @@ msgstr "Ebraico"
 #: Merge.rc:2532
 #, c-format
 msgid "Hindi"
-msgstr ""
+msgstr "Hindi"
 
 #: Merge.rc:2533
 #, c-format
@@ -5299,7 +5304,7 @@ msgstr "Giapponese"
 #: Merge.rc:2539
 #, c-format
 msgid "Kashmiri (India)"
-msgstr ""
+msgstr "Kashmiri (India)"
 
 #: Merge.rc:2540
 #, c-format
@@ -5339,7 +5344,7 @@ msgstr "Malese (Brunei Darussalam)"
 #: Merge.rc:2552
 #, c-format
 msgid "Manipuri"
-msgstr ""
+msgstr "Manipuri"
 
 #: Merge.rc:2553
 #, c-format
@@ -5394,7 +5399,7 @@ msgstr "Serbo (cirillico)"
 #: Merge.rc:2563
 #, c-format
 msgid "Sindhi"
-msgstr ""
+msgstr "Sindhi"
 
 #: Merge.rc:2569
 #, c-format
@@ -5509,7 +5514,7 @@ msgstr "Spagnolo (Porto Rico)"
 #: Merge.rc:2596
 #, c-format
 msgid "Swahili (Kenya)"
-msgstr ""
+msgstr "Swahili (Kenya)"
 
 #: Merge.rc:2597
 #, c-format
@@ -5524,7 +5529,7 @@ msgstr "Svedese (Finlandia)"
 #: Merge.rc:2599
 #, c-format
 msgid "Tamil"
-msgstr ""
+msgstr "Tamil"
 
 #: Merge.rc:2600
 #, c-format
@@ -5534,7 +5539,7 @@ msgstr "Tartaro (Tatarstan)"
 #: Merge.rc:2601
 #, c-format
 msgid "Thai"
-msgstr ""
+msgstr "Thailandese"
 
 #: Merge.rc:2602
 #, c-format
@@ -5549,12 +5554,12 @@ msgstr "Ucraino"
 #: Merge.rc:2604
 #, c-format
 msgid "Urdu (Pakistan)"
-msgstr ""
+msgstr "Urdu (Pakistan)"
 
 #: Merge.rc:2605
 #, c-format
 msgid "Urdu (India)"
-msgstr ""
+msgstr "Urdu (India)"
 
 #: Merge.rc:2611
 #, c-format
@@ -5605,27 +5610,27 @@ msgstr "Non applicabile"
 #: Merge.rc:2630
 #, c-format
 msgid "MS-Windows"
-msgstr ""
+msgstr "MS-Windows"
 
 #: Merge.rc:2631
 #, c-format
 msgid "MS-DOS"
-msgstr ""
+msgstr "MS-DOS"
 
 #: Merge.rc:2632
 #, c-format
 msgid "Macintosh"
-msgstr ""
+msgstr "Macintosh"
 
 #: Merge.rc:2633
 #, c-format
 msgid "IBM"
-msgstr ""
+msgstr "IBM"
 
 #: Merge.rc:2640
 #, c-format
 msgid "EBCDIC"
-msgstr ""
+msgstr "EBCDIC"
 
 #: Merge.rc:2641
 #, c-format
@@ -5715,7 +5720,7 @@ msgstr "MS-DOS Greco 2"
 #: Merge.rc:2673
 #, c-format
 msgid "Windows Thai"
-msgstr ""
+msgstr "Windows Thailandese"
 
 #: Merge.rc:2674
 #, c-format
@@ -5840,17 +5845,17 @@ msgstr "Approssima a ISO-8859-8"
 #: Merge.rc:2718
 #, c-format
 msgid "Win"
-msgstr ""
+msgstr "Win"
 
 #: Merge.rc:2719
 #, c-format
 msgid "Mac"
-msgstr ""
+msgstr "Mac"
 
 #: Merge.rc:2720
 #, c-format
 msgid "Unix"
-msgstr ""
+msgstr "Unix"
 
 #: Merge.rc:2721
 #, c-format
@@ -5860,32 +5865,32 @@ msgstr "Mescolato"
 #: Merge.rc:2728
 #, c-format
 msgid " B"
-msgstr ""
+msgstr " B"
 
 #: Merge.rc:2729
 #, c-format
 msgid " KB"
-msgstr ""
+msgstr " KB"
 
 #: Merge.rc:2730
 #, c-format
 msgid " MB"
-msgstr ""
+msgstr " MB"
 
 #: Merge.rc:2731
 #, c-format
 msgid " GB"
-msgstr ""
+msgstr " GB"
 
 #: Merge.rc:2732
 #, c-format
 msgid " TB"
-msgstr ""
+msgstr " TB"
 
 #: Merge.rc:2733
 #, c-format
 msgid " PB"
-msgstr ""
+msgstr " PB"
 
 #: Merge.rc:2740
 #, c-format
@@ -5935,7 +5940,7 @@ msgstr "Converti gli EOL (End of line) in formato MAC"
 #: Merge.rc:2749
 #, c-format
 msgid "Switch between editing and merging modes"
-msgstr "Passa dalla modalità di editing a quella di 'Unione', in cui l'integrazione delle differenze è più rapida"
+msgstr "Passa dalla modalità di editing a quella di 'Unione', in cui l'integrazione delle differenzeè più rapida"
 
 #: Merge.rc:2750
 #, c-format
@@ -6382,7 +6387,7 @@ msgstr "Impostazioni plugin"
 #: Merge.rc:2857
 #, c-format
 msgid "No prediffer"
-msgstr ""
+msgstr "No prediffer"
 
 #: Merge.rc:2858
 #, c-format
@@ -6467,147 +6472,147 @@ msgstr "Dalla lista dei file recenti"
 #: Merge.rc:2896
 #, c-format
 msgid "ASP"
-msgstr ""
+msgstr "ASP"
 
 #: Merge.rc:2897
 #, c-format
 msgid "Basic"
-msgstr ""
+msgstr "Basic"
 
 #: Merge.rc:2898
 #, c-format
 msgid "Batch"
-msgstr ""
+msgstr "Batch"
 
 #: Merge.rc:2899
 #, c-format
 msgid "C/C++"
-msgstr ""
+msgstr "C/C++"
 
 #: Merge.rc:2900
 #, c-format
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: Merge.rc:2901
 #, c-format
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: Merge.rc:2902
 #, c-format
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: Merge.rc:2903
 #, c-format
 msgid "Fortran"
-msgstr ""
+msgstr "Fortran"
 
 #: Merge.rc:2904
 #, c-format
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: Merge.rc:2905
 #, c-format
 msgid "INI"
-msgstr ""
+msgstr "INI"
 
 #: Merge.rc:2906
 #, c-format
 msgid "InnoSetup"
-msgstr ""
+msgstr "InnoSetup"
 
 #: Merge.rc:2907
 #, c-format
 msgid "InstallShield"
-msgstr ""
+msgstr "InstallShield"
 
 #: Merge.rc:2908
 #, c-format
 msgid "Java"
-msgstr ""
+msgstr "Java"
 
 #: Merge.rc:2909
 #, c-format
 msgid "AutoLISP"
-msgstr ""
+msgstr "AutoLISP"
 
 #: Merge.rc:2910
 #, c-format
 msgid "NSIS"
-msgstr ""
+msgstr "NSIS"
 
 #: Merge.rc:2911
 #, c-format
 msgid "Pascal"
-msgstr ""
+msgstr "Pascal"
 
 #: Merge.rc:2912
 #, c-format
 msgid "Perl"
-msgstr ""
+msgstr "Perl"
 
 #: Merge.rc:2913
 #, c-format
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: Merge.rc:2914
 #, c-format
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: Merge.rc:2915
 #, c-format
 msgid "REXX"
-msgstr ""
+msgstr "REXX"
 
 #: Merge.rc:2916
 #, c-format
 msgid "Resources"
-msgstr ""
+msgstr "Risorse"
 
 #: Merge.rc:2917
 #, c-format
 msgid "Ruby"
-msgstr ""
+msgstr "Ruby"
 
 #: Merge.rc:2918
 #, c-format
 msgid "SGML"
-msgstr ""
+msgstr "SGML"
 
 #: Merge.rc:2919
 #, c-format
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #: Merge.rc:2920
 #, c-format
 msgid "SIOD"
-msgstr ""
+msgstr "SIOD"
 
 #: Merge.rc:2921
 #, c-format
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: Merge.rc:2922
 #, c-format
 msgid "TCL"
-msgstr ""
+msgstr "TCL"
 
 #: Merge.rc:2923
 #, c-format
 msgid "TEX"
-msgstr ""
+msgstr "TEX"
 
 #: Merge.rc:2924
 #, c-format
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
 #: Merge.rc:2929
 #, c-format
