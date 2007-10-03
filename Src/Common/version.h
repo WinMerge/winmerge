@@ -66,6 +66,7 @@ public:
 	CString GetFixedProductVersion();
 	CString GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
+	void GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS);
 
 protected:
 	void GetVersionInfo();

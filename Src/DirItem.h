@@ -15,17 +15,18 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  FileInfo.h
+ * @file  DirItem.h
  *
- * @brief Declaration file for FileInfo
+ * @brief Declaration file for DirItem
  */
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _FILE_INFO_H_INCLUDED
-#define _FILE_INFO_H_INCLUDED
+#ifndef _DIR_ITEM_H_INCLUDED
+#define _DIR_ITEM_H_INCLUDED
 
 #include "UnicodeString.h"
+#include "FileVersion.h"
 
 /**
  * @brief Class for fileflags.
@@ -40,20 +41,20 @@ struct FileFlags
 /**
  * @brief Information for file.
  * This class stores basic information from a file or folder.
- * Information consists of file times, size and attributes.
+ * Information consists of item name, times, size and attributes.
  * Also version info can be get for files supporting it.
  */
-struct FileInfo
+struct DirItem
 {
 	__int64 ctime; /**< time of creation */
 	__int64 mtime; /**< time of last modify */
 	__int64 size; /**< file size in bytes, -1 means file does not exist*/
-	String version; /**< string of fixed file version, eg, 1.2.3.4 */
+	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
-	FileInfo() { Clear(); }
+	DirItem() { Clear(); }
 
 	BOOL Update(const String &sFilePath);
 	void Clear();
 };
 
-#endif // _FILE_INFO_H_INCLUDED
+#endif // _DIR_ITEM_H_INCLUDED

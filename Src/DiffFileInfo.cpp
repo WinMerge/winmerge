@@ -23,7 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
-#include "FileInfo.h"
+#include "DirItem.h"
 #include "DiffFileInfo.h"
 #include "unicoder.h"
 
@@ -32,7 +32,7 @@
  */
 void DiffFileInfo::Clear()
 {
-	FileInfo::Clear();
+	DirItem::Clear();
 	bVersionChecked = false;
 	encoding.Clear();
 	m_textStats.clear();

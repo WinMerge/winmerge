@@ -351,6 +351,10 @@ SOURCE=.\DirFrame.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirItem.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirScan.cpp
 # End Source File
 # Begin Source File
@@ -418,10 +422,6 @@ SOURCE=.\FileFilterMgr.cpp
 # Begin Source File
 
 SOURCE=.\FileFiltersDlg.cpp
-# End Source File
-# Begin Source File
-
-SOURCE=.\FileInfo.cpp
 # End Source File
 # Begin Source File
 
@@ -1117,6 +1117,10 @@ SOURCE=.\DirFrame.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirItem.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirReportTypes.h
 # End Source File
 # Begin Source File
@@ -1170,10 +1174,6 @@ SOURCE=.\FileFilterMgr.h
 # Begin Source File
 
 SOURCE=.\FileFiltersDlg.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\FileInfo.h
 # End Source File
 # Begin Source File
 

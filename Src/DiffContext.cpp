@@ -118,15 +118,6 @@ CDiffContext::~CDiffContext()
 }
 
 /**
- * @brief Fetch & return the fixed file version as a dotted string
- */
-static CString GetFixedFileVersion(const CString & path)
-{
-	CVersionInfo ver(path);
-	return ver.GetFixedFileVersion();
-}
-
-/**
  * @brief Add new diffitem to CDiffContext array
  */
 void CDiffContext::AddDiff(const DIFFITEM & di)
@@ -211,7 +202,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 {
 	DiffFileInfo & dfi = bLeft ? di.left : di.right;
 	// Check only binary files
-	dfi.version = _T("");
+	dfi.version.Clear();
 	dfi.bVersionChecked = true;
 
 	if (di.diffcode.isDirectory())
@@ -238,7 +229,12 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 		spath = di.getRightFilepath(GetNormalizedRight());
 		spath = paths_ConcatPath(spath, di.sRightFilename);
 	}
-	dfi.version = GetFixedFileVersion(spath);
+	
+	CVersionInfo ver(spath);
+	DWORD verMS = 0;
+	DWORD verLS = 0;
+	ver.GetFixedFileVersion(verMS, verLS);
+	dfi.version.SetFileVersion(verMS, verLS);
 }
 
 /**

@@ -25,8 +25,8 @@
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #define _DIFF_FILE_INFO_H_INCLUDED
 
-#ifndef _FILE_INFO_H_INCLUDED
-#include "FileInfo.h"
+#ifndef _DIR_ITEM_H_INCLUDED
+#include "DirItem.h"
 #endif
 
 #ifndef FileTextEncoding_h_included
@@ -88,7 +88,7 @@ struct DiffFileFlags : public FileFlags
  * This class expands FileInfo class with encoding information and
  * text stats information.
  */
-struct DiffFileInfo : public FileInfo
+struct DiffFileInfo : public DirItem
 {
 // data
 	bool bVersionChecked; /**< true if version string is up-to-date */

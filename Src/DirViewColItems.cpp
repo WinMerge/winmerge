@@ -344,7 +344,7 @@ static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, BOOL
 	{
 		pCtxt->UpdateVersion(di, bLeft);
 	}
-	return dfi.version.c_str();
+	return dfi.version.GetFileVersionString().c_str();
 }
 static CString ColLversionGet(const CDiffContext * pCtxt, const void *p)
 {

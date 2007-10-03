@@ -15,9 +15,9 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 /////////////////////////////////////////////////////////////////////////////
 /** 
- * @file  FileInfo.cpp
+ * @file  DirItem.cpp
  *
- * @brief Implementation for FileInfo routines
+ * @brief Implementation for DirItem routines
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -26,14 +26,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "UnicodeString.h"
-#include "FileInfo.h"
+#include "DirItem.h"
 
 /**
  * @brief Update fileinfo from given file
  * @param [in] sFilePath Full path to file/directory to update
  * @return TRUE if information was updated (item was found).
  */
-BOOL FileInfo::Update(const String &sFilePath)
+BOOL DirItem::Update(const String &sFilePath)
 {
 	struct _stati64 fstats;
 	__int64 mtime64 = 0;
@@ -68,11 +68,11 @@ BOOL FileInfo::Update(const String &sFilePath)
 /**
  * @brief Clears FileInfo data.
  */
-void FileInfo::Clear()
+void DirItem::Clear()
 {
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	version.erase();
+	version.Clear();
 	flags.reset();
 }

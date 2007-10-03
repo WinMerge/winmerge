@@ -47,7 +47,7 @@ struct FileFilterInfo
 	CString name; 			/**< Name of filter */
 	CString description; 	/**< Description of filter (shown in UI) */
 	CString fullpath;		/**< Full path to filter file */
-	FileInfo fileinfo;		/**< For tracking if file has been modified */
+	DirItem fileinfo;		/**< For tracking if file has been modified */
 };
 
 typedef CArray<FileFilterInfo, FileFilterInfo&> FILEFILTER_INFOLIST;

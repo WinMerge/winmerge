@@ -25,7 +25,7 @@
 #include "stdafx.h"
 #include "Ucs2Utf8.h"
 #include "FilterList.h"
-#include "FileInfo.h"
+#include "DirItem.h"
 #include "FileFilterMgr.h"
 #include "FileFilterHelper.h"
 #include "Coretools.h"
@@ -460,8 +460,8 @@ BOOL FileFilterHelper::SetFilter(CString filter)
 void FileFilterHelper::ReloadUpdatedFilters()
 {
 	FILEFILTER_INFOLIST filters;
-	FileInfo fileInfo;
-	FileInfo *fileInfoStored = NULL;
+	DirItem fileInfo;
+	DirItem *fileInfoStored = NULL;
 	FileFilterInfo filter;
 	CString selected;
 

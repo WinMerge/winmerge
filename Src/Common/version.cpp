@@ -223,6 +223,18 @@ CString CVersionInfo::GetFixedFileVersion()
 }
 
 /** 
+ * @brief Return numeric file's version number.
+ * This function returns version number given as two DWORDs.
+ * @param [out] versionMS High DWORD for version number.
+ * @param [out] versionLS Low DWORD for version number.
+ */
+void CVersionInfo::GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS)
+{
+	versionMS = m_FixedFileInfo.dwFileVersionMS;
+	versionLS = m_FixedFileInfo.dwFileVersionLS;
+}
+
+/** 
  * @brief Return comment string.
  * @return Comment string.
  */
