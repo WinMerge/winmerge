@@ -15,6 +15,9 @@
 #include "CMoveConstraint.h"
 #endif
 
+#include <vector>
+#include <string>
+
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
 
@@ -43,7 +46,12 @@ public:
 	void	ReloadMenu();
 	CLogFile *m_pLog;
 	void SetLogFile(CLogFile* pLog) { m_pLog = pLog; }
-	
+
+	bool TranslateString(size_t line, std::string &) const;
+	bool TranslateString(size_t line, std::wstring &) const;
+	void TranslateMenu(HMENU) const;
+	void TranslateDialog(HWND) const;
+	String LoadString(UINT) const;
 
 // Implementation data
 private:
@@ -57,7 +65,8 @@ private:
 	HINSTANCE  m_hCurrentDll;
 	WORD	   m_wCurLanguage;
 	CStringArray m_DllFileNameAry;
-
+	std::vector<std::string> m_strarray;
+	unsigned m_codepage;
 // Implementation methods
 private:
 	int GetLanguageArrayIndex( WORD LangId );

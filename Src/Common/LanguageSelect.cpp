@@ -11,6 +11,7 @@
 #include "merge.h"
 #include "resource.h"
 #include "LanguageSelect.h"
+#include "BCMenu.h"
 #include "MainFrm.h"
 #include "ChildFrm.h"
 #include "DirFrame.h"
@@ -19,6 +20,17 @@
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
 #pragma setlocale("C")
+
+#define LANG_PO(LANG, PO) LANG
+
+// Sanity-check definition of LANG_PO macro
+#if LANG_PO(TRUE, FALSE) && !LANG_PO(FALSE, TRUE)
+#pragma message("Compiling CLanguageSelect for use with .LANG files")
+#elif LANG_PO(FALSE, TRUE) && !LANG_PO(TRUE, FALSE)
+#pragma message("Compiling CLanguageSelect for use with .PO files")
+#else
+#error LANG_PO macro doesn't evaluate as expected
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -42,6 +54,8 @@ struct tLangDef
 	LPCWSTR m_NativeName; // native language name
 	LPCSTR m_AsciiName; // ASCII version of native name
 	WORD  m_LangId; // Windows language identifier (LANGID)
+	const char *lang;
+	const char *sublang;
 	LPCTSTR pszLocale; // locale name to use
 };
 
@@ -54,148 +68,155 @@ struct tLangDef
 // http://people.w3.org/rishida/names/languages.html
 // http://www.vaelen.org/cgi-bin/vaelen/vaelen.cgi?topic=languagemenu-languagepacks
 
+#define MAKELANGID2(lang, sublang) MAKELANGID(lang, sublang), #lang, #sublang
+
 const tLangDef lang_map[] =
 {
-//	{IDS_AFRIKAANS, NONATIVE, MAKELANGID(LANG_AFRIKAANS, SUBLANG_DEFAULT), _T("")},
-	{IDS_ALBANIAN, L"Shqip", "Shqip", MAKELANGID(LANG_ALBANIAN, SUBLANG_DEFAULT), _T("")},
-//	{IDS_ARABIC_SAUDI, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA), _T("")},  
-//	{IDS_ARABIC_IRAQ, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_IRAQ), _T("")},  
-	{IDS_ARABIC_EGYPT, L"\x0627\x0644\x0639\x0631\x0628\x064A\x0629", "Al Arabiya", MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_EGYPT), _T("")},  
-//	{IDS_ARABIC_LIBYA, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_LIBYA), _T("")},  
-//	{IDS_ARABIC_ALGERIA, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_ALGERIA), _T("")},  
-//	{IDS_ARABIC_MOROCCO, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_MOROCCO), _T("")},  
-//	{IDS_ARABIC_TUNISIA, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_TUNISIA), _T("")},  
-//	{IDS_ARABIC_OMAN, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_OMAN), _T("")},  
-//	{IDS_ARABIC_YEMEN, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_YEMEN), _T("")},  
-//	{IDS_ARABIC_SYRIA, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_SYRIA), _T("")},  
-//	{IDS_ARABIC_JORDAN, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_JORDAN), _T("")},  
-//	{IDS_ARABIC_LEBANON, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_LEBANON), _T("")},  
-//	{IDS_ARABIC_KUWAIT, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_KUWAIT), _T("")},  
-//	{IDS_ARABIC_UAE, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_UAE), _T("")},  
-//	{IDS_ARABIC_BAHRAIN, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_BAHRAIN), _T("")},  
-//	{IDS_ARABIC_QATAR, NONATIVE, MAKELANGID(LANG_ARABIC, SUBLANG_ARABIC_QATAR), _T("")},  
-	{IDS_ARMENIAN, L"\x540\x561\x575\x565\x580\x567\x576", "Hayeren", MAKELANGID(LANG_ARMENIAN, SUBLANG_DEFAULT), _T("")},
-//	{IDS_AZERI_LATIN, NONATIVE, MAKELANGID(LANG_AZERI, SUBLANG_AZERI_LATIN), _T("")},
-//	{IDS_AZERI_CYRILLIC, NONATIVE, MAKELANGID(LANG_AZERI, SUBLANG_AZERI_CYRILLIC), _T("")},
-	{IDS_BASQUE, L"Euskara", "Euskara", MAKELANGID(LANG_BASQUE, SUBLANG_DEFAULT), _T("")},
-	{IDS_BELARUSIAN, L"\x0411\x0435\x043B\x0430\x0440\x0443\x0441\x043A\x0430\x044F", "Belaruski", MAKELANGID(LANG_BELARUSIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_BULGARIAN, L"\x0411\x044A\x043B\x0433\x0430\x0440\x0441\x043A\x0438", "Bulgarian*", MAKELANGID(LANG_BULGARIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_CATALAN, L"Catal\xE0", "Catala", MAKELANGID(LANG_CATALAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_CHINESE_TRADITIONAL, L"\x4E2d\x6587 (\x7E41\x9AD4)", "Zhongwen*", MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL), _T("cht")},
+//	{IDS_AFRIKAANS, NONATIVE, MAKELANGID2(LANG_AFRIKAANS, SUBLANG_DEFAULT), _T("")},
+	{IDS_ALBANIAN, L"Shqip", "Shqip", MAKELANGID2(LANG_ALBANIAN, SUBLANG_DEFAULT), _T("")},
+//	{IDS_ARABIC_SAUDI, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_SAUDI_ARABIA), _T("")},  
+//	{IDS_ARABIC_IRAQ, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_IRAQ), _T("")},  
+	{IDS_ARABIC_EGYPT, L"\x0627\x0644\x0639\x0631\x0628\x064A\x0629", "Al Arabiya", MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_EGYPT), _T("")},  
+//	{IDS_ARABIC_LIBYA, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_LIBYA), _T("")},  
+//	{IDS_ARABIC_ALGERIA, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_ALGERIA), _T("")},  
+//	{IDS_ARABIC_MOROCCO, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_MOROCCO), _T("")},  
+//	{IDS_ARABIC_TUNISIA, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_TUNISIA), _T("")},  
+//	{IDS_ARABIC_OMAN, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_OMAN), _T("")},  
+//	{IDS_ARABIC_YEMEN, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_YEMEN), _T("")},  
+//	{IDS_ARABIC_SYRIA, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_SYRIA), _T("")},  
+//	{IDS_ARABIC_JORDAN, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_JORDAN), _T("")},  
+//	{IDS_ARABIC_LEBANON, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_LEBANON), _T("")},  
+//	{IDS_ARABIC_KUWAIT, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_KUWAIT), _T("")},  
+//	{IDS_ARABIC_UAE, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_UAE), _T("")},  
+//	{IDS_ARABIC_BAHRAIN, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_BAHRAIN), _T("")},  
+//	{IDS_ARABIC_QATAR, NONATIVE, MAKELANGID2(LANG_ARABIC, SUBLANG_ARABIC_QATAR), _T("")},  
+	{IDS_ARMENIAN, L"\x540\x561\x575\x565\x580\x567\x576", "Hayeren", MAKELANGID2(LANG_ARMENIAN, SUBLANG_DEFAULT), _T("")},
+//	{IDS_AZERI_LATIN, NONATIVE, MAKELANGID2(LANG_AZERI, SUBLANG_AZERI_LATIN), _T("")},
+//	{IDS_AZERI_CYRILLIC, NONATIVE, MAKELANGID2(LANG_AZERI, SUBLANG_AZERI_CYRILLIC), _T("")},
+	{IDS_BASQUE, L"Euskara", "Euskara", MAKELANGID2(LANG_BASQUE, SUBLANG_DEFAULT), _T("")},
+	{IDS_BELARUSIAN, L"\x0411\x0435\x043B\x0430\x0440\x0443\x0441\x043A\x0430\x044F", "Belaruski", MAKELANGID2(LANG_BELARUSIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_BULGARIAN, L"\x0411\x044A\x043B\x0433\x0430\x0440\x0441\x043A\x0438", "Bulgarian*", MAKELANGID2(LANG_BULGARIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_CATALAN, L"Catal\xE0", "Catala", MAKELANGID2(LANG_CATALAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_CHINESE_TRADITIONAL, L"\x4E2d\x6587 (\x7E41\x9AD4)", "Zhongwen*", MAKELANGID2(LANG_CHINESE, SUBLANG_CHINESE_TRADITIONAL), _T("cht")},
 	//       &#20013;&#25991; (&#32321;&#39639;) [Chinese Traditional rendered in HTML Unicode codepoint escapes]
-	{IDS_CHINESE_SIMPLIFIED, L"\x4E2D\x6587 (\x7B80\x4F53)", "Zhongwen*", MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED), _T("chs")},
+	{IDS_CHINESE_SIMPLIFIED, L"\x4E2D\x6587 (\x7B80\x4F53)", "Zhongwen*", MAKELANGID2(LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED), _T("chs")},
 	//       &#20013;&#25991; (&#31616;&#20307;) [Chinese Simplified rendered in HTML Unicode codepoint escapes]
-//	{IDS_CHINESE_HONGKONG, NONATIVE, MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_HONGKONG), _T("chinese_hkg")},
-//	{IDS_CHINESE_SINGAPORE, NONATIVE, MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_SINGAPORE), _T("chinese_sgp")},
-//	{IDS_CHINESE_MACAU, NONATIVE, MAKELANGID(LANG_CHINESE, SUBLANG_CHINESE_MACAU), _T("")},
-	{IDS_CROATIAN, L"Hrvatski", "Hrvatski", MAKELANGID(LANG_CROATIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_CZECH, L"\x010C" L"esk\xFD", "Cesko", MAKELANGID(LANG_CZECH, SUBLANG_DEFAULT), _T("czech")},
-	{IDS_DANISH, L"Dansk", "Dansk", MAKELANGID(LANG_DANISH, SUBLANG_DEFAULT), _T("danish")},
-	{IDS_DUTCH, L"Nederlands", "Nederlands", MAKELANGID(LANG_DUTCH, SUBLANG_DUTCH), _T("dutch")},
-//	{IDS_DUTCH_BELGIAN, NONATIVE, MAKELANGID(LANG_DUTCH, SUBLANG_DUTCH_BELGIAN), _T("")},
-	{IDS_ENGLISH_US, L"English", "English", MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_US), _T("american")},
-//	{IDS_ENGLISH_UK, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_UK), _T("english-uk")},
-//	{IDS_ENGLISH_AUS, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_AUS), _T("australian")},  
-//	{IDS_ENGLISH_CAN, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_CAN), _T("canadian")},  
-//	{IDS_ENGLISH_NZ, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_NZ), _T("english-nz")},  
-//	{IDS_ENGLISH_EIRE, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_EIRE), _T("english_irl")},  
-//	{IDS_ENGLISH_SOUTH_AFRICA, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_SOUTH_AFRICA), _T("english")},  
-//	{IDS_ENGLISH_JAMAICA, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_JAMAICA), _T("english")},  
-//	{IDS_ENGLISH_CARIBBEAN, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_CARIBBEAN), _T("english")},  
-//	{IDS_ENGLISH_BELIZE, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_BELIZE), _T("english")},  
-//	{IDS_ENGLISH_TRINIDAD, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_TRINIDAD), _T("english")},  
-//	{IDS_ENGLISH_ZIMBABWE, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_ZIMBABWE), _T("english")},
-//	{IDS_ENGLISH_PHILIPPINES, NONATIVE, MAKELANGID(LANG_ENGLISH, SUBLANG_ENGLISH_PHILIPPINES), _T("english")},
-	{IDS_ESTONIAN, L"Eesti", "Eesti", MAKELANGID(LANG_ESTONIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_FAEROESE, L"F\xF8" L"royskt", "Føroyskt", MAKELANGID(LANG_FAEROESE, SUBLANG_DEFAULT), _T("")},
-	{IDS_FARSI, L"\x0641\x0627\x0631\x0633", "Farsi", MAKELANGID(LANG_FARSI, SUBLANG_DEFAULT), _T("")},
-	{IDS_FINNISH, L"Suomi", "Suomi", MAKELANGID(LANG_FINNISH, SUBLANG_DEFAULT), _T("fin")},
-	{IDS_FRENCH, L"Fran\xE7" L"ais", "Francais", MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH), _T("fra")},  
-//	{IDS_FRENCH_BELGIAN, L"Fran\xE7" L"ais (Belgique)", MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH_BELGIAN), _T("frb")},   
-//	{IDS_FRENCH_CANADIAN, L"Fran\xE7" L"ais (Canada)", MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH_CANADIAN), _T("frc")},   
-//	{IDS_FRENCH_SWISS, L"Fran\xE7" L"ais (Suisse)", MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH_SWISS), _T("frs")},   
-//	{IDS_FRENCH_LUXEMBOURG, L"Fran\xE7" L"ais (Luxembourg)", MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH_LUXEMBOURG), _T("french")},   
-//	{IDS_FRENCH_MONACO, L"Fran\xE7" L"ais (Monaco)", MAKELANGID(LANG_FRENCH, SUBLANG_FRENCH_MONACO), _T("")},
-	{IDS_GEORGIAN, L"\x10E5\x10D0\x10E0\x10D7\x10E3\x10DA\x10D8", "Kartuli", MAKELANGID(LANG_GEORGIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_GERMAN, L"Deutsch", "Deutsch", MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN), _T("deu")}, 
-//	{IDS_GERMAN_SWISS, NONATIVE, MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_SWISS), _T("des")},  
-//	{IDS_GERMAN_AUSTRIAN, NONATIVE, MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN), _T("dea")},  
-//	{IDS_GERMAN_LUXEMBOURG, NONATIVE, MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_LUXEMBOURG), _T("deu")},  
-//	{IDS_GERMAN_LIECHTENSTEIN, NONATIVE, MAKELANGID(LANG_GERMAN, SUBLANG_GERMAN_LIECHTENSTEIN), _T("deu")},  
-	{IDS_GREEK, L"\x0395\x03BB\x03BB\x03B7\x03BD\x03B9\x03BA\x03AC", "Ellenika", MAKELANGID(LANG_GREEK, SUBLANG_DEFAULT), _T("greek")},
-//	{IDS_HEBREW, L"\x05E2\x05D1\x05E8\x05D9\x05EA", MAKELANGID(LANG_HEBREW, SUBLANG_DEFAULT), _T("")},
-//	{IDS_HINDI, NONATIVE, MAKELANGID(LANG_HINDI, SUBLANG_DEFAULT), _T("")},
-	{IDS_HUNGARIAN, L"Magyar", "Magyar", MAKELANGID(LANG_HUNGARIAN, SUBLANG_DEFAULT), _T("hun")},
-//	{IDS_ICELANDIC, L"\xCDslenska", MAKELANGID(LANG_ICELANDIC, SUBLANG_DEFAULT), _T("isl")},
-//	{IDS_INDONESIAN, NONATIVE, MAKELANGID(LANG_INDONESIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_ITALIAN, L"Italiano", "Italiano", MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN), _T("ita")},
-//	{IDS_ITALIAN_SWISS, NONATIVE, MAKELANGID(LANG_ITALIAN, SUBLANG_ITALIAN_SWISS), _T("its")},
+//	{IDS_CHINESE_HONGKONG, NONATIVE, MAKELANGID2(LANG_CHINESE, SUBLANG_CHINESE_HONGKONG), _T("chinese_hkg")},
+//	{IDS_CHINESE_SINGAPORE, NONATIVE, MAKELANGID2(LANG_CHINESE, SUBLANG_CHINESE_SINGAPORE), _T("chinese_sgp")},
+//	{IDS_CHINESE_MACAU, NONATIVE, MAKELANGID2(LANG_CHINESE, SUBLANG_CHINESE_MACAU), _T("")},
+	{IDS_CROATIAN, L"Hrvatski", "Hrvatski", MAKELANGID2(LANG_CROATIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_CZECH, L"\x010C" L"esk\xFD", "Cesko", MAKELANGID2(LANG_CZECH, SUBLANG_DEFAULT), _T("czech")},
+	{IDS_DANISH, L"Dansk", "Dansk", MAKELANGID2(LANG_DANISH, SUBLANG_DEFAULT), _T("danish")},
+	{IDS_DUTCH, L"Nederlands", "Nederlands", MAKELANGID2(LANG_DUTCH, SUBLANG_DUTCH), _T("dutch")},
+//	{IDS_DUTCH_BELGIAN, NONATIVE, MAKELANGID2(LANG_DUTCH, SUBLANG_DUTCH_BELGIAN), _T("")},
+	{IDS_ENGLISH_US, L"English", "English", MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_US), _T("american")},
+//	{IDS_ENGLISH_UK, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_UK), _T("english-uk")},
+//	{IDS_ENGLISH_AUS, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_AUS), _T("australian")},  
+//	{IDS_ENGLISH_CAN, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_CAN), _T("canadian")},  
+//	{IDS_ENGLISH_NZ, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_NZ), _T("english-nz")},  
+//	{IDS_ENGLISH_EIRE, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_EIRE), _T("english_irl")},  
+//	{IDS_ENGLISH_SOUTH_AFRICA, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_SOUTH_AFRICA), _T("english")},  
+//	{IDS_ENGLISH_JAMAICA, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_JAMAICA), _T("english")},  
+//	{IDS_ENGLISH_CARIBBEAN, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_CARIBBEAN), _T("english")},  
+//	{IDS_ENGLISH_BELIZE, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_BELIZE), _T("english")},  
+//	{IDS_ENGLISH_TRINIDAD, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_TRINIDAD), _T("english")},  
+//	{IDS_ENGLISH_ZIMBABWE, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_ZIMBABWE), _T("english")},
+//	{IDS_ENGLISH_PHILIPPINES, NONATIVE, MAKELANGID2(LANG_ENGLISH, SUBLANG_ENGLISH_PHILIPPINES), _T("english")},
+	{IDS_ESTONIAN, L"Eesti", "Eesti", MAKELANGID2(LANG_ESTONIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_FAEROESE, L"F\xF8" L"royskt", "Føroyskt", MAKELANGID2(LANG_FAEROESE, SUBLANG_DEFAULT), _T("")},
+	{IDS_FARSI, L"\x0641\x0627\x0631\x0633", "Farsi", MAKELANGID2(LANG_FARSI, SUBLANG_DEFAULT), _T("")},
+	{IDS_FINNISH, L"Suomi", "Suomi", MAKELANGID2(LANG_FINNISH, SUBLANG_DEFAULT), _T("fin")},
+	{IDS_FRENCH, L"Fran\xE7" L"ais", "Francais", MAKELANGID2(LANG_FRENCH, SUBLANG_FRENCH), _T("fra")},  
+//	{IDS_FRENCH_BELGIAN, L"Fran\xE7" L"ais (Belgique)", MAKELANGID2(LANG_FRENCH, SUBLANG_FRENCH_BELGIAN), _T("frb")},   
+//	{IDS_FRENCH_CANADIAN, L"Fran\xE7" L"ais (Canada)", MAKELANGID2(LANG_FRENCH, SUBLANG_FRENCH_CANADIAN), _T("frc")},   
+//	{IDS_FRENCH_SWISS, L"Fran\xE7" L"ais (Suisse)", MAKELANGID2(LANG_FRENCH, SUBLANG_FRENCH_SWISS), _T("frs")},   
+//	{IDS_FRENCH_LUXEMBOURG, L"Fran\xE7" L"ais (Luxembourg)", MAKELANGID2(LANG_FRENCH, SUBLANG_FRENCH_LUXEMBOURG), _T("french")},   
+//	{IDS_FRENCH_MONACO, L"Fran\xE7" L"ais (Monaco)", MAKELANGID2(LANG_FRENCH, SUBLANG_FRENCH_MONACO), _T("")},
+	{IDS_GEORGIAN, L"\x10E5\x10D0\x10E0\x10D7\x10E3\x10DA\x10D8", "Kartuli", MAKELANGID2(LANG_GEORGIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_GERMAN, L"Deutsch", "Deutsch", MAKELANGID2(LANG_GERMAN, SUBLANG_GERMAN), _T("deu")}, 
+//	{IDS_GERMAN_SWISS, NONATIVE, MAKELANGID2(LANG_GERMAN, SUBLANG_GERMAN_SWISS), _T("des")},  
+//	{IDS_GERMAN_AUSTRIAN, NONATIVE, MAKELANGID2(LANG_GERMAN, SUBLANG_GERMAN_AUSTRIAN), _T("dea")},  
+//	{IDS_GERMAN_LUXEMBOURG, NONATIVE, MAKELANGID2(LANG_GERMAN, SUBLANG_GERMAN_LUXEMBOURG), _T("deu")},  
+//	{IDS_GERMAN_LIECHTENSTEIN, NONATIVE, MAKELANGID2(LANG_GERMAN, SUBLANG_GERMAN_LIECHTENSTEIN), _T("deu")},  
+	{IDS_GREEK, L"\x0395\x03BB\x03BB\x03B7\x03BD\x03B9\x03BA\x03AC", "Ellenika", MAKELANGID2(LANG_GREEK, SUBLANG_DEFAULT), _T("greek")},
+//	{IDS_HEBREW, L"\x05E2\x05D1\x05E8\x05D9\x05EA", MAKELANGID2(LANG_HEBREW, SUBLANG_DEFAULT), _T("")},
+//	{IDS_HINDI, NONATIVE, MAKELANGID2(LANG_HINDI, SUBLANG_DEFAULT), _T("")},
+	{IDS_HUNGARIAN, L"Magyar", "Magyar", MAKELANGID2(LANG_HUNGARIAN, SUBLANG_DEFAULT), _T("hun")},
+//	{IDS_ICELANDIC, L"\xCDslenska", MAKELANGID2(LANG_ICELANDIC, SUBLANG_DEFAULT), _T("isl")},
+//	{IDS_INDONESIAN, NONATIVE, MAKELANGID2(LANG_INDONESIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_ITALIAN, L"Italiano", "Italiano", MAKELANGID2(LANG_ITALIAN, SUBLANG_ITALIAN), _T("ita")},
+//	{IDS_ITALIAN_SWISS, NONATIVE, MAKELANGID2(LANG_ITALIAN, SUBLANG_ITALIAN_SWISS), _T("its")},
 	// Kanji (ilbonhua in Hanja) (erbunhua in Mandarin)
-	{IDS_JAPANESE, L"\x65E5\x672C\x8A9E", "Nihongo", MAKELANGID(LANG_JAPANESE, SUBLANG_DEFAULT), _T("jpn")},
-//	{IDS_KASHMIRI, NONATIVE, MAKELANGID(LANG_KASHMIRI, SUBLANG_KASHMIRI_INDIA), _T("")},
-//	{IDS_KAZAK, L"\x049A\x0430\x0437\x0430\x049B", MAKELANGID(LANG_KAZAK, SUBLANG_DEFAULT), _T("")},
+	{IDS_JAPANESE, L"\x65E5\x672C\x8A9E", "Nihongo", MAKELANGID2(LANG_JAPANESE, SUBLANG_DEFAULT), _T("jpn")},
+//	{IDS_KASHMIRI, NONATIVE, MAKELANGID2(LANG_KASHMIRI, SUBLANG_KASHMIRI_INDIA), _T("")},
+//	{IDS_KAZAK, L"\x049A\x0430\x0437\x0430\x049B", MAKELANGID2(LANG_KAZAK, SUBLANG_DEFAULT), _T("")},
 	// hangukhua in Hanja (should get this in Hangul ?) ? or "\xD55C\xAE00" ?
 	// In Hangul, it is \xD55C\xaD6D\xC5B4 (HanGukO)
-	{IDS_KOREAN, L"\x97D3\x56FD\x8A9E", "Hangul*", MAKELANGID(LANG_KOREAN, SUBLANG_KOREAN), _T("kor")},
-//	{IDS_LATVIAN, L"Latvie\x0161u", MAKELANGID(LANG_LATVIAN, SUBLANG_DEFAULT), _T("")},
-//	{IDS_LITHUANIAN, L"Lietuvi\x0161kai", MAKELANGID(LANG_LITHUANIAN, SUBLANG_DEFAULT), _T("")},
-//	{IDS_MALAY_MALAYSIA, NONATIVE, MAKELANGID(LANG_MALAYALAM, SUBLANG_MALAY_MALAYSIA), _T("")},
-//	{IDS_MALAY_BRUNEI_DARUSSALAM, NONATIVE, MAKELANGID(LANG_MALAYALAM, SUBLANG_MALAY_BRUNEI_DARUSSALAM), _T("")},
-//	{IDS_MANIPURI, NONATIVE, MAKELANGID(LANG_MANIPURI, SUBLANG_DEFAULT), _T("")},
-	{IDS_NORWEGIAN_BOKMAL, L"Norsk (Bokm\xE5l)", "Norsk (Bokmo)*", MAKELANGID(LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL), _T("nor")},
-//	{IDS_NORWEGIAN_NYNORSK, NONATIVE, MAKELANGID(LANG_NORWEGIAN, SUBLANG_NORWEGIAN_NYNORSK), _T("non")},
-	{IDS_POLISH, L"Polski", "Polski", MAKELANGID(LANG_POLISH, SUBLANG_DEFAULT), _T("plk")},
-	{IDS_PORTUGUESE, L"Portugu\x00EAs", "Portugues*", MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE), _T("ptg")},
-	{IDS_PORTUGUESE_BRAZILIAN, L"Portugu\x00EAs brasileiro", "Portugues brasileiro*", MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN), _T("ptb")},
-//	{IDS_ROMANIAN, L"Rom\xE2n\x0103", MAKELANGID(LANG_ROMANIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_KOREAN, L"\x97D3\x56FD\x8A9E", "Hangul*", MAKELANGID2(LANG_KOREAN, SUBLANG_KOREAN), _T("kor")},
+//	{IDS_LATVIAN, L"Latvie\x0161u", MAKELANGID2(LANG_LATVIAN, SUBLANG_DEFAULT), _T("")},
+//	{IDS_LITHUANIAN, L"Lietuvi\x0161kai", MAKELANGID2(LANG_LITHUANIAN, SUBLANG_DEFAULT), _T("")},
+//	{IDS_MALAY_MALAYSIA, NONATIVE, MAKELANGID2(LANG_MALAYALAM, SUBLANG_MALAY_MALAYSIA), _T("")},
+//	{IDS_MALAY_BRUNEI_DARUSSALAM, NONATIVE, MAKELANGID2(LANG_MALAYALAM, SUBLANG_MALAY_BRUNEI_DARUSSALAM), _T("")},
+//	{IDS_MANIPURI, NONATIVE, MAKELANGID2(LANG_MANIPURI, SUBLANG_DEFAULT), _T("")},
+	{IDS_NORWEGIAN_BOKMAL, L"Norsk (Bokm\xE5l)", "Norsk (Bokmo)*", MAKELANGID2(LANG_NORWEGIAN, SUBLANG_NORWEGIAN_BOKMAL), _T("nor")},
+//	{IDS_NORWEGIAN_NYNORSK, NONATIVE, MAKELANGID2(LANG_NORWEGIAN, SUBLANG_NORWEGIAN_NYNORSK), _T("non")},
+	{IDS_POLISH, L"Polski", "Polski", MAKELANGID2(LANG_POLISH, SUBLANG_DEFAULT), _T("plk")},
+	{IDS_PORTUGUESE, L"Portugu\x00EAs", "Portugues*", MAKELANGID2(LANG_PORTUGUESE, SUBLANG_PORTUGUESE), _T("ptg")},
+	{IDS_PORTUGUESE_BRAZILIAN, L"Portugu\x00EAs brasileiro", "Portugues brasileiro*", MAKELANGID2(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN), _T("ptb")},
+//	{IDS_ROMANIAN, L"Rom\xE2n\x0103", MAKELANGID2(LANG_ROMANIAN, SUBLANG_DEFAULT), _T("")},
 	//       Rom&#226;n&#259; [Romanian rendered in HTML Unicode codepoint escapes]
-	{IDS_RUSSIAN, L"\x0440\x0443\x0441\x0441\x043A\x0438\x0439", "Ruskiyi*", MAKELANGID(LANG_RUSSIAN, SUBLANG_DEFAULT), _T("rus")},
+	{IDS_RUSSIAN, L"\x0440\x0443\x0441\x0441\x043A\x0438\x0439", "Ruskiyi*", MAKELANGID2(LANG_RUSSIAN, SUBLANG_DEFAULT), _T("rus")},
 	//       &#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081; [Russian rendered in HTML Unicode codepoint escapes]
-//	{IDS_SANSKRIT, NONATIVE, MAKELANGID(LANG_SANSKRIT, SUBLANG_DEFAULT), _T("")},
-	{IDS_SERBIAN_LATIN, L"Srpski", "Srpski", MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_LATIN), _T("")},
-	{IDS_SERBIAN_CYRILLIC, L"\x0421\x0440\x043F\x0441\x043A\x0438", "srpski", MAKELANGID(LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC), _T("")},
-//	{IDS_SINDHI, NONATIVE, MAKELANGID(LANG_SINDHI, SUBLANG_DEFAULT), _T("")},
-	{IDS_SLOVAK, L"Sloven\x010Dina", "Slovencina*", MAKELANGID(LANG_SLOVAK, SUBLANG_DEFAULT), _T("sky")},
-	{IDS_SLOVENIAN, L"Sloven\x0161\x010Dina", "Slovenscina*", MAKELANGID(LANG_SLOVENIAN, SUBLANG_DEFAULT), _T("")},
-//	{IDS_SPANISH, L"Espa\xF1ol", MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH), _T("esm")}, 
-//	{IDS_SPANISH_MEXICAN, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN), _T("esp")}, 
-	{IDS_SPANISH_MODERN, L"Espa\xF1ol (moderno)", "Espanol (moderno)", MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_MODERN), _T("esn")}, 
-//	{IDS_SPANISH_GUATEMALA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_GUATEMALA), _T("esp")}, 
-//	{IDS_SPANISH_COSTA_RICA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_COSTA_RICA), _T("esp")}, 
-//	{IDS_SPANISH_PANAMA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_PANAMA), _T("esp")}, 
-//	{IDS_SPANISH_DOMINICAN, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_DOMINICAN_REPUBLIC), _T("esp")}, 
-//	{IDS_SPANISH_VENEZUELA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_VENEZUELA), _T("esp")}, 
-//	{IDS_SPANISH_COLOMBIA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_COLOMBIA), _T("esp")}, 
-//	{IDS_SPANISH_PERU, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_PERU), _T("esp")}, 
-//	{IDS_SPANISH_ARGENTINA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_ARGENTINA), _T("esp")}, 
-//	{IDS_SPANISH_ECUADOR, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_ECUADOR), _T("esp")}, 
-//	{IDS_SPANISH_CHILE, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_CHILE), _T("esp")}, 
-//	{IDS_SPANISH_URUGUAY, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_URUGUAY), _T("esp")}, 
-//	{IDS_SPANISH_PARAGUAY, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_PARAGUAY), _T("esp")}, 
-//	{IDS_SPANISH_BOLIVIA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_BOLIVIA), _T("esp")}, 
-//	{IDS_SPANISH_EL_SALVADOR, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_EL_SALVADOR), _T("esp")}, 
-//	{IDS_SPANISH_HONDURAS, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_HONDURAS), _T("esp")}, 
-//	{IDS_SPANISH_NICARAGUA, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_NICARAGUA), _T("esp")}, 
-//	{IDS_SPANISH_PUERTO_RICO, NONATIVE, MAKELANGID(LANG_SPANISH, SUBLANG_SPANISH_PUERTO_RICO), _T("esp")}, 
-//	{IDS_SWAHILI, NONATIVE, MAKELANGID(LANG_SWAHILI, SUBLANG_DEFAULT), _T("")},
-	{IDS_SWEDISH, L"Svenska", "Svenska", MAKELANGID(LANG_SWEDISH, SUBLANG_SWEDISH), _T("sve")},
-//	{IDS_SWEDISH_FINLAND, NONATIVE, MAKELANGID(LANG_SWEDISH, SUBLANG_SWEDISH_FINLAND), _T("sve")},
-//	{IDS_TAMIL, NONATIVE, MAKELANGID(LANG_TAMIL, SUBLANG_DEFAULT), _T("")},
-//	{IDS_TATAR, NONATIVE, MAKELANGID(LANG_TATAR, SUBLANG_DEFAULT), _T("")},
-//	{IDS_THAI, L"\x0E20\x0E32\x0E29\x0E32\x0E44\x0E17\x0E22", MAKELANGID(LANG_THAI, SUBLANG_DEFAULT), _T("")},
-	{IDS_TURKISH, L"T\x03CBrk\xE7" L"e", "Turkce", MAKELANGID(LANG_TURKISH, SUBLANG_DEFAULT), _T("trk")},
-//	{IDS_UKRANIAN, L"\x0423\x043A\x0440\x0430\x0457\x043D\x0441\x044C\x043A\x0430", MAKELANGID(LANG_UKRAINIAN, SUBLANG_DEFAULT), _T("")},
-	{IDS_URDU_PAKISTAN, L"\x0627\x0631\x062F\x0648", "Urdu (Pakistan)", MAKELANGID(LANG_URDU, SUBLANG_URDU_PAKISTAN), _T("")},
-	{IDS_URDU_INDIA, L"\x0627\x0631\x062F\x0648", "Urdu (India)", MAKELANGID(LANG_URDU, SUBLANG_URDU_INDIA), _T("")},
-//	{IDS_UZBEK_LATIN, NONATIVE, MAKELANGID(LANG_UZBEK, SUBLANG_UZBEK_LATIN), _T("")},
-//	{IDS_UZBEK_CYRILLIC, L"\x040E\x0437\x0431\x0435\x043A", MAKELANGID(LANG_UZBEK, SUBLANG_UZBEK_CYRILLIC), _T("")},
-//	{IDS_VIETNAMESE, L"Ti\xEA\x0301ng Vi\xEA\x0323t", MAKELANGID(LANG_VIETNAMESE, SUBLANG_DEFAULT), _T("")},
+//	{IDS_SANSKRIT, NONATIVE, MAKELANGID2(LANG_SANSKRIT, SUBLANG_DEFAULT), _T("")},
+	{IDS_SERBIAN_LATIN, L"Srpski", "Srpski", MAKELANGID2(LANG_SERBIAN, SUBLANG_SERBIAN_LATIN), _T("")},
+	{IDS_SERBIAN_CYRILLIC, L"\x0421\x0440\x043F\x0441\x043A\x0438", "srpski", MAKELANGID2(LANG_SERBIAN, SUBLANG_SERBIAN_CYRILLIC), _T("")},
+//	{IDS_SINDHI, NONATIVE, MAKELANGID2(LANG_SINDHI, SUBLANG_DEFAULT), _T("")},
+	{IDS_SLOVAK, L"Sloven\x010Dina", "Slovencina*", MAKELANGID2(LANG_SLOVAK, SUBLANG_DEFAULT), _T("sky")},
+	{IDS_SLOVENIAN, L"Sloven\x0161\x010Dina", "Slovenscina*", MAKELANGID2(LANG_SLOVENIAN, SUBLANG_DEFAULT), _T("")},
+//	{IDS_SPANISH, L"Espa\xF1ol", MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH), _T("esm")}, 
+//	{IDS_SPANISH_MEXICAN, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_MEXICAN), _T("esp")}, 
+	{IDS_SPANISH_MODERN, L"Espa\xF1ol (moderno)", "Espanol (moderno)", MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_MODERN), _T("esn")}, 
+//	{IDS_SPANISH_GUATEMALA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_GUATEMALA), _T("esp")}, 
+//	{IDS_SPANISH_COSTA_RICA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_COSTA_RICA), _T("esp")}, 
+//	{IDS_SPANISH_PANAMA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_PANAMA), _T("esp")}, 
+//	{IDS_SPANISH_DOMINICAN, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_DOMINICAN_REPUBLIC), _T("esp")}, 
+//	{IDS_SPANISH_VENEZUELA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_VENEZUELA), _T("esp")}, 
+//	{IDS_SPANISH_COLOMBIA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_COLOMBIA), _T("esp")}, 
+//	{IDS_SPANISH_PERU, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_PERU), _T("esp")}, 
+//	{IDS_SPANISH_ARGENTINA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_ARGENTINA), _T("esp")}, 
+//	{IDS_SPANISH_ECUADOR, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_ECUADOR), _T("esp")}, 
+//	{IDS_SPANISH_CHILE, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_CHILE), _T("esp")}, 
+//	{IDS_SPANISH_URUGUAY, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_URUGUAY), _T("esp")}, 
+//	{IDS_SPANISH_PARAGUAY, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_PARAGUAY), _T("esp")}, 
+//	{IDS_SPANISH_BOLIVIA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_BOLIVIA), _T("esp")}, 
+//	{IDS_SPANISH_EL_SALVADOR, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_EL_SALVADOR), _T("esp")}, 
+//	{IDS_SPANISH_HONDURAS, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_HONDURAS), _T("esp")}, 
+//	{IDS_SPANISH_NICARAGUA, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_NICARAGUA), _T("esp")}, 
+//	{IDS_SPANISH_PUERTO_RICO, NONATIVE, MAKELANGID2(LANG_SPANISH, SUBLANG_SPANISH_PUERTO_RICO), _T("esp")}, 
+//	{IDS_SWAHILI, NONATIVE, MAKELANGID2(LANG_SWAHILI, SUBLANG_DEFAULT), _T("")},
+	{IDS_SWEDISH, L"Svenska", "Svenska", MAKELANGID2(LANG_SWEDISH, SUBLANG_SWEDISH), _T("sve")},
+//	{IDS_SWEDISH_FINLAND, NONATIVE, MAKELANGID2(LANG_SWEDISH, SUBLANG_SWEDISH_FINLAND), _T("sve")},
+//	{IDS_TAMIL, NONATIVE, MAKELANGID2(LANG_TAMIL, SUBLANG_DEFAULT), _T("")},
+//	{IDS_TATAR, NONATIVE, MAKELANGID2(LANG_TATAR, SUBLANG_DEFAULT), _T("")},
+//	{IDS_THAI, L"\x0E20\x0E32\x0E29\x0E32\x0E44\x0E17\x0E22", MAKELANGID2(LANG_THAI, SUBLANG_DEFAULT), _T("")},
+	{IDS_TURKISH, L"T\x03CBrk\xE7" L"e", "Turkce", MAKELANGID2(LANG_TURKISH, SUBLANG_DEFAULT), _T("trk")},
+//	{IDS_UKRANIAN, L"\x0423\x043A\x0440\x0430\x0457\x043D\x0441\x044C\x043A\x0430", MAKELANGID2(LANG_UKRAINIAN, SUBLANG_DEFAULT), _T("")},
+	{IDS_URDU_PAKISTAN, L"\x0627\x0631\x062F\x0648", "Urdu (Pakistan)", MAKELANGID2(LANG_URDU, SUBLANG_URDU_PAKISTAN), _T("")},
+	{IDS_URDU_INDIA, L"\x0627\x0631\x062F\x0648", "Urdu (India)", MAKELANGID2(LANG_URDU, SUBLANG_URDU_INDIA), _T("")},
+//	{IDS_UZBEK_LATIN, NONATIVE, MAKELANGID2(LANG_UZBEK, SUBLANG_UZBEK_LATIN), _T("")},
+//	{IDS_UZBEK_CYRILLIC, L"\x040E\x0437\x0431\x0435\x043A", MAKELANGID2(LANG_UZBEK, SUBLANG_UZBEK_CYRILLIC), _T("")},
+//	{IDS_VIETNAMESE, L"Ti\xEA\x0301ng Vi\xEA\x0323t", MAKELANGID2(LANG_VIETNAMESE, SUBLANG_DEFAULT), _T("")},
 	{0, L"0", "0", 0, NULL},
 };
 
-
-
-
+static int GetLanguageArrayIndex(const char *lang, const char *sublang)
+{
+	for (int i = 0 ; lang_map[i].m_LangId != 0 ; ++i)
+		if (strcmp(lang_map[i].lang, lang) == 0 &&
+			strcmp(lang_map[i].sublang, sublang) == 0)
+			return i;
+	return -1;
+}
 
 CLanguageSelect::CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMenu /*=TRUE*/, BOOL bUpdateTitle /*=TRUE*/, CWnd* pParent /*=NULL*/)
 : CDialog(CLanguageSelect::IDD, pParent)
@@ -248,7 +269,7 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 		{
 			CString strPath = GetDllName(wLangId);
 			
-			if ( !strPath.IsEmpty()
+			if (!strPath.IsEmpty()
 				&& LoadResourceDLL(strPath) )
 			{
 				result = TRUE;
@@ -275,6 +296,69 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 	return result;
 }
 
+static char *EatPrefix(char *text, const char *prefix)
+{
+	if (int len = strlen(prefix))
+		if (memicmp(text, prefix, len) == 0)
+			return text + len;
+	return 0;
+}
+
+/**
+ * @brief Convert C style \nnn, \r, \n, \t etc. into their indicated characters
+ */
+static void unslash(std::string &s)
+{
+	char *p = s.begin();
+	char *q = p;
+	char c;
+	do
+	{
+		char *r = q + 1;
+		switch (c = *q)
+		{
+		case '\\':
+			switch (c = *r++)
+			{
+			case 'a':
+				c = '\a';
+				break;
+			case 'b':
+				c = '\b';
+				break;
+			case 'f':
+				c = '\f';
+				break;
+			case 'n':
+				c = '\n';
+				break;
+			case 'r':
+				c = '\r';
+				break;
+			case 't':
+				c = '\t';
+				break;
+			case 'v':
+				c = '\v';
+				break;
+			case 'x':
+				*p = (char)strtol(r, &q, 16);
+				break;
+			default:
+				*p = (char)strtol(--r, &q, 8);
+				break;
+			}
+			if (q > r)
+				break;
+			// fall through
+		default:
+			*p = c;
+			q = r;
+		}
+		++p;
+	} while (c != '\0');
+	s.resize(p - 1 - s.begin());
+}
 
 /**
  * @brief Load & configure WinMerge to use resources from specified DLL
@@ -299,12 +383,94 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 	// load the DLL
 	if (m_pLog != NULL)
 		m_pLog->Write(_T("Loading resource DLL: %s"), szDllFileName);
+
+#if LANG_PO(TRUE, FALSE) // compiling for use with .LANG files
 	if ((m_hCurrentDll = LoadLibrary(szDllFileName)) != NULL)
 	{
 		AfxSetResourceHandle(m_hCurrentDll);
 		return TRUE;
 	}
-	
+#else // compiling for use with .PO files
+	m_strarray.clear();
+	m_codepage = 0;
+	if (FILE *f = _tfopen(szDllFileName, _T("r")))
+	{
+		std::vector<int> lines;
+		std::string format;
+		std::string directive;
+		std::string msgid;
+		std::string msgstr;
+		std::string *ps = 0;
+		char buf[1024];
+		while (fgets(buf, sizeof buf, f))
+		{
+			if (char *p = EatPrefix(buf, "#:"))
+			{
+				if (char *q = strchr(p, ':'))
+				{
+					int line = strtol(q + 1, &q, 10);
+					lines.push_back(line);
+				}
+			}
+			else if (char *p = EatPrefix(buf, "#,"))
+			{
+				format = p;
+				format.erase(0, format.find_first_not_of(" \t\r\n"));
+				format.erase(format.find_last_not_of(" \t\r\n") + 1);
+			}
+			else if (char *p = EatPrefix(buf, "#."))
+			{
+				directive = p;
+				directive.erase(0, directive.find_first_not_of(" \t\r\n"));
+				directive.erase(directive.find_last_not_of(" \t\r\n") + 1);
+			}
+			else if (EatPrefix(buf, "msgid "))
+			{
+				ps = &msgid;
+			}
+			else if (EatPrefix(buf, "msgstr "))
+			{
+				ps = &msgstr;
+			}
+			if (ps)
+			{
+				char *p = strchr(buf, '"');
+				char *q = strrchr(buf, '"');
+				if (std::string::size_type n = q - p)
+				{
+					ps->append(p + 1, n - 1);
+				}
+				else
+				{
+					ps = 0;
+					if (msgstr.empty())
+						msgstr = msgid;
+					unslash(msgstr);
+					for (int *pline = lines.begin() ; pline < lines.end() ; ++pline)
+					{
+						int line = *pline;
+						if (m_strarray.size() <= line)
+							m_strarray.resize(line + 1);
+						m_strarray[line] = msgstr;
+					}
+					lines.clear();
+					if (directive == "Codepage")
+					{
+						m_codepage = strtol(msgstr.c_str(), &p, 10);
+					}
+					msgid.erase();
+					msgstr.erase();
+				}
+			}
+		}
+		fclose(f);
+		if ((m_hCurrentDll = LoadLibrary(_T("MergeLang.dll"))) != NULL)
+		{
+			AfxSetResourceHandle(m_hCurrentDll);
+			return TRUE;
+		}
+	}
+#endif
 	return FALSE;
 }
 
@@ -346,7 +512,7 @@ void CLanguageSelect::GetDllsAt(LPCTSTR szSearchPath, CStringArray& dlls )
 	WIN32_FIND_DATA ffi;
 	CString strFileSpec;
 	
-	strFileSpec.Format(_T("%s*.lang"), szSearchPath);
+	strFileSpec.Format(_T("%s*.") LANG_PO(_T("lang"), _T("po")), szSearchPath);
 	HANDLE hff = FindFirstFile(strFileSpec, &ffi);
 	
 	if (  hff != INVALID_HANDLE_VALUE )
@@ -383,11 +549,13 @@ BOOL CALLBACK EnumResLangProc(HANDLE /*hModule*/,	// module handle
 
 BOOL CLanguageSelect::GetLanguage( const CString& DllName, WORD& uiLanguage )
 {
+	BOOL bResult = FALSE;
+
+#if LANG_PO(TRUE, FALSE) // compiling for use with .LANG files
 	DWORD   dwVerInfoSize;		// Size of version information block
 	DWORD   dwVerHnd=0;			// An 'ignored' parameter, always '0'
 	CString s(DllName);
 	LPTSTR pszFilename = s.GetBuffer(MAX_PATH);
-	BOOL bResult = FALSE;
 	LPTSTR   m_lpstrVffInfo;	
 	m_lpstrVffInfo = NULL;
 
@@ -412,6 +580,36 @@ BOOL CLanguageSelect::GetLanguage( const CString& DllName, WORD& uiLanguage )
 		GlobalUnlock(hMem);
 		GlobalFree(hMem);
 	}
+#else // compiling for use with .PO files
+	if (FILE *f = _tfopen(DllName, _T("r")))
+	{
+		char buf[1024];
+		while (fgets(buf, sizeof buf, f))
+		{
+			int i = 0;
+			strcat(buf, "1");
+			sscanf(buf, "msgid \" LANG_ENGLISH , SUBLANG_ENGLISH_US \" %d", &i);
+			if (i)
+			{
+				if (fgets(buf, sizeof buf, f))
+				{
+					char *lang = strstr(buf, "LANG_");
+					char *sublang = strstr(buf, "SUBLANG_");
+					strtok(lang, ",\" \t\r\n");
+					strtok(sublang, ",\" \t\r\n");
+					i = ::GetLanguageArrayIndex(lang, sublang);
+					if (i != -1)
+					{
+						uiLanguage = lang_map[i].m_LangId;
+						bResult = TRUE;
+					}
+				}
+				break;
+			}
+		}
+		fclose(f);
+	}
+#endif
 	return bResult;
 }
 
@@ -505,7 +703,7 @@ BOOL CLanguageSelect::AreLangsInstalled() const
 	{
 		CString strSearchPath = GetLanguagePath(fullpath);
 
-		strFileSpec.Format(_T("%s*.lang"), strSearchPath);
+		strFileSpec.Format(_T("%s*.") LANG_PO(_T("lang"), _T("po")), strSearchPath);
 		HANDLE hff = FindFirstFile(strFileSpec, &ffi);
 
 		if (hff != INVALID_HANDLE_VALUE)
@@ -552,6 +750,111 @@ void CLanguageSelect::GetAvailLangs( CWordArray& wLanguageAry,
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect commands
 
+bool CLanguageSelect::TranslateString(size_t line, std::string &s) const
+{
+#if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
+	if (line > 0 && line < m_strarray.size())
+	{
+		s = m_strarray[line];
+		return true;
+	}
+#endif
+	return false;
+}
+
+bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
+{
+#if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
+	if (line > 0 && line < m_strarray.size())
+	{
+		int len = m_strarray[line].length();
+		ws.resize(len);
+		const char *msgstr = m_strarray[line].c_str();
+		len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, ws.begin(), len + 1);
+		ASSERT(*msgstr == 0 || len != 0);
+		ws.resize(len - 1);
+		return true;
+	}
+#endif
+	return false;
+}
+
+void CLanguageSelect::TranslateMenu(HMENU h) const
+{
+#if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
+	int i = ::GetMenuItemCount(h);
+	while (i > 0)
+	{
+		--i;
+		UINT id = 0;
+		MENUITEMINFO mii;
+		mii.cbSize = sizeof mii;
+		mii.fMask = MIIM_STATE|MIIM_ID|MIIM_SUBMENU|MIIM_DATA;
+		::GetMenuItemInfo(h, i, TRUE, &mii);
+		if (mii.hSubMenu)
+		{
+			TranslateMenu(mii.hSubMenu);
+			mii.wID = reinterpret_cast<UINT>(mii.hSubMenu);
+		}
+		if (BCMenuData *pItemData = reinterpret_cast<BCMenuData *>(mii.dwItemData))
+		{
+			if (LPCWSTR text = pItemData->GetWideString())
+			{
+				int line = 0;
+				swscanf(text, L"Merge.rc:%d", &line);
+				std::wstring s;
+				if (TranslateString(line, s))
+					pItemData->SetWideString(s.c_str());
+			}
+		}
+		TCHAR text[80];
+		if (::GetMenuString(h, i, text, RTL_NUMBER_OF(text), MF_BYPOSITION))
+		{
+			int line = 0;
+			_stscanf(text, _T("Merge.rc:%d"), &line);
+			String s;
+			if (TranslateString(line, s))
+				::ModifyMenu(h, i, mii.fState | MF_BYPOSITION, mii.wID, s.c_str());
+		}
+	}
+#endif
+}
+
+void CLanguageSelect::TranslateDialog(HWND h) const
+{
+#if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
+	UINT gw = GW_CHILD;
+	do
+	{
+		TCHAR text[80];
+		::GetWindowText(h, text, RTL_NUMBER_OF(text));
+		int line = 0;
+		_stscanf(text, _T("Merge.rc:%d"), &line);
+		String s;
+		if (TranslateString(line, s))
+			::SetWindowText(h, s.c_str());
+		h = ::GetWindow(h, gw);
+		gw = GW_HWNDNEXT;
+	} while (h);
+#endif
+}
+
+String CLanguageSelect::LoadString(UINT id) const
+{
+	String s;
+	if (id)
+	{
+		TCHAR text[1024];
+		AfxLoadString(id, text, RTL_NUMBER_OF(text));
+#if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
+		int line = 0;
+		_stscanf(text, _T("Merge.rc:%d"), &line);
+		if (!TranslateString(line, s))
+#endif
+			s = text;
+	}
+	return s;
+}
 
 void CLanguageSelect::ReloadMenu() 
 {
