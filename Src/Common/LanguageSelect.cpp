@@ -32,6 +32,11 @@
 #error LANG_PO macro doesn't evaluate as expected
 #endif
 
+// RTL_NUMBER_OF should be defined in <winnt.h>
+#ifndef RTL_NUMBER_OF
+#define RTL_NUMBER_OF(A) (sizeof(A)/sizeof((A)[0]))
+#endif
+
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #undef THIS_FILE
@@ -309,7 +314,7 @@ static char *EatPrefix(char *text, const char *prefix)
  */
 static void unslash(std::string &s)
 {
-	char *p = s.begin();
+	char *p = &*s.begin();
 	char *q = p;
 	char c;
 	do
@@ -357,7 +362,7 @@ static void unslash(std::string &s)
 		}
 		++p;
 	} while (c != '\0');
-	s.resize(p - 1 - s.begin());
+	s.resize(p - 1 - &*s.begin());
 }
 
 /**
