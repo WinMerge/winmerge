@@ -445,6 +445,10 @@ SOURCE=.\FileTransform.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FileVersion.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FilterCommentsManager.cpp
 # End Source File
 # Begin Source File
@@ -1202,6 +1206,10 @@ SOURCE=.\FileTextStats.h
 # Begin Source File
 
 SOURCE=.\FileTransform.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\FileVersion.h
 # End Source File
 # Begin Source File
 
