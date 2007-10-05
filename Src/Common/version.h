@@ -3,7 +3,7 @@
  *
  *  @brief Declaration of CVersionInfo class
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef VERSIONTOOLS_H
@@ -23,11 +23,11 @@ class CVersionInfo
 {
 private:
 	VS_FIXEDFILEINFO m_FixedFileInfo; /**< Fixed file information */
-	DWORD m_dwVerInfoSize; /**< Size of version information block (0 if missing) */
 	BYTE * m_pVffInfo; /**< Pointer to version information block */
 	BOOL m_bVersionOnly; /**< Ask version numbers only */
-	BOOL m_bDllVersion;
+	BOOL m_bDllVersion; /**< Dll file version is being queried */
 	WORD m_wLanguage; /**< Language-ID to use (if given) */
+	BOOL m_bVersionFound; /**< Was version info found from file? */
 
 	CString m_strFileName;
 	CString m_strLanguage;
@@ -66,7 +66,7 @@ public:
 	CString GetFixedProductVersion();
 	CString GetFixedFileVersion();
 	DLLVERSIONINFO m_dvi;
-	void GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS);
+	BOOL GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS);
 
 protected:
 	void GetVersionInfo();

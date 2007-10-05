@@ -3,7 +3,7 @@
  *
  *  @brief Implementation of CVersionInfo class
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -203,7 +203,7 @@ static CString MakeVersionString(DWORD hi, DWORD lo)
  */
 CString CVersionInfo::GetFixedProductVersion()
 {
-	if (!m_dwVerInfoSize)
+	if (!m_bVersionFound)
 		return _T("");
 	return MakeVersionString(m_FixedFileInfo.dwProductVersionMS
 		, m_FixedFileInfo.dwProductVersionLS);
@@ -216,7 +216,7 @@ CString CVersionInfo::GetFixedProductVersion()
  */
 CString CVersionInfo::GetFixedFileVersion()
 {
-	if (!m_dwVerInfoSize)
+	if (!m_bVersionFound)
 		return _T("");
 	return MakeVersionString(m_FixedFileInfo.dwFileVersionMS
 		, m_FixedFileInfo.dwFileVersionLS);
@@ -227,11 +227,17 @@ CString CVersionInfo::GetFixedFileVersion()
  * This function returns version number given as two DWORDs.
  * @param [out] versionMS High DWORD for version number.
  * @param [out] versionLS Low DWORD for version number.
+ * @return TRUE if version info was found, FALSE otherwise.
  */
-void CVersionInfo::GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS)
+BOOL CVersionInfo::GetFixedFileVersion(DWORD &versionMS, DWORD &versionLS)
 {
-	versionMS = m_FixedFileInfo.dwFileVersionMS;
-	versionLS = m_FixedFileInfo.dwFileVersionLS;
+	if (m_bVersionFound)
+	{
+		versionMS = m_FixedFileInfo.dwFileVersionMS;
+		versionLS = m_FixedFileInfo.dwFileVersionLS;
+		return TRUE;
+	}
+	return FALSE;
 }
 
 /** 
@@ -262,11 +268,12 @@ void CVersionInfo::GetVersionInfo()
 	else
 		_tcsncpy(szFileName, m_strFileName, MAX_PATH - 1);
 	
-	m_dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
-	if (m_dwVerInfoSize)
+	DWORD dwVerInfoSize = GetFileVersionInfoSize(szFileName, &dwVerHnd);
+	if (dwVerInfoSize)
 	{
-		m_pVffInfo = new BYTE[m_dwVerInfoSize];
-		if (GetFileVersionInfo(szFileName, dwVerHnd, m_dwVerInfoSize, m_pVffInfo))
+		m_bVersionFound = TRUE;
+		m_pVffInfo = new BYTE[dwVerInfoSize];
+		if (GetFileVersionInfo(szFileName, dwVerHnd, dwVerInfoSize, m_pVffInfo))
 		{
 			GetFixedVersionInfo();
 			if (m_bVersionOnly == FALSE)

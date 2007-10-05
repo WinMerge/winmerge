@@ -62,12 +62,13 @@ void FileVersion::SetProductVersion(DWORD versionMS, DWORD versionLS)
 
 /**
  * @brief Get file version as a string.
- * @return File version number as a string.
+ * @return File version number as a string. Returns empty string if there is
+ * no version number for the file.
  */
 String FileVersion::GetFileVersionString()
 {
 	if (!m_bFileVersionSet)
-		return _T("0.0.0.0");
+		return _T("");
 
 	TCHAR ver[30] = {0};
 	_stprintf(ver, _T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),

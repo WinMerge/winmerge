@@ -230,11 +230,12 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 		spath = paths_ConcatPath(spath, di.sRightFilename);
 	}
 	
+	// Get version info if it exists
 	CVersionInfo ver(spath);
 	DWORD verMS = 0;
 	DWORD verLS = 0;
-	ver.GetFixedFileVersion(verMS, verLS);
-	dfi.version.SetFileVersion(verMS, verLS);
+	if (ver.GetFixedFileVersion(verMS, verLS))
+		dfi.version.SetFileVersion(verMS, verLS);
 }
 
 /**
