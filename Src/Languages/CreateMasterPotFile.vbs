@@ -47,7 +47,8 @@ End Sub
 Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePage)
   Dim oBlacklist, oStrings, oRcFile, sLine, iLine
   Dim sRcFileName, iBlockType, sReference, sString, sComment, oMatches, oMatch, sTemp
-  
+  Dim oLcFile, sLcLine
+
   Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
   Set oStrings = CreateObject("Scripting.Dictionary")
@@ -59,8 +60,10 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
     iBlockType = NO_BLOCK
     sCodePage = ""
     Set oRcFile = oFSO.OpenTextFile(sRcFilePath, ForReading)
+    Set oLcFile = oFSO.CreateTextFile("MergeLang.rc", True)
     Do Until oRcFile.AtEndOfStream = True 'For all lines...
-      sLine = Trim(oRcFile.ReadLine)
+      sLcLine = oRcFile.ReadLine
+      sLine = Trim(sLcLine)
       iLine = iLine + 1
       
       sReference = sRcFileName & ":" & iLine
@@ -111,6 +114,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
                     Else 'If the key is NOT already used...
                       oStrings.Add sTemp, sReference
                     End If
+                    sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
                   End If
                 Next
               End If
@@ -148,8 +152,10 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
           End If
         End If
       End If
+      oLcFile.WriteLine sLcLine
     Loop
     oRcFile.Close
+    oLcFile.Close
   End If
   Set GetStringsFromRcFile = oStrings
 End Function
