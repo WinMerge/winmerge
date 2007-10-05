@@ -753,6 +753,30 @@ WORD CMergeApp::GetLangId() const
 }
 
 /**
+ * @brief Translate menu to current WinMerge GUI language
+ */
+void CMergeApp::TranslateMenu(HMENU h) const
+{
+	m_pLangDlg->TranslateMenu(h);
+}
+
+/**
+ * @brief Translate dialog to current WinMerge GUI language
+ */
+void CMergeApp::TranslateDialog(HWND h) const
+{
+	m_pLangDlg->TranslateDialog(h);
+}
+
+/**
+ * @brief Load string an translate to current WinMerge GUI language
+ */
+String CMergeApp::LoadString(UINT id) const
+{
+	return m_pLangDlg->LoadString(id);
+}
+
+/**
  * @brief Reload main menu(s) (for language change)
  */
 void CMergeApp::ReloadMenu()

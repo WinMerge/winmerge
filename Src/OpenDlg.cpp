@@ -131,6 +131,7 @@ END_MESSAGE_MAP()
  */
 BOOL COpenDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	
 	// setup handler for resizing this dialog	
@@ -513,18 +514,14 @@ void COpenDlg::OnSelectUnpacker()
 
 void COpenDlg::SetStatus(UINT msgID)
 {
-	CString msg;
-	if (msgID > 0)
-		VERIFY(msg.LoadString(msgID));
-	SetDlgItemText(IDC_OPEN_STATUS, msg);
+	String msg = theApp.LoadString(msgID);
+	SetDlgItemText(IDC_OPEN_STATUS, msg.c_str());
 }
 
 void COpenDlg::SetUnpackerStatus(UINT msgID)
 {
-	CString msg;
-	if (msgID > 0)
-		VERIFY(msg.LoadString(msgID));
-	SetDlgItemText(IDC_UNPACKER_EDIT, msg);
+	String msg = theApp.LoadString(msgID);
+	SetDlgItemText(IDC_UNPACKER_EDIT, msg.c_str());
 }
 
 /** 

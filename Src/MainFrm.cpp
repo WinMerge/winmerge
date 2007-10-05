@@ -375,6 +375,7 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
  */
 static void FixupDebugMenu(BCMenu * menu)
 {
+	theApp.TranslateMenu(menu->m_hMenu);
 	bool DebugMenu = false;
 #ifdef _DEBUG
 	DebugMenu = true;
@@ -1566,7 +1567,7 @@ void CMainFrame::OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI)
  */
 void CMainFrame::UpdateResources()
 {
-	m_wndStatusBar.SetPaneText(0, LoadResString(AFX_IDS_IDLEMESSAGE));
+	m_wndStatusBar.SetPaneText(0, theApp.LoadString(AFX_IDS_IDLEMESSAGE).c_str());
 
 	DirDocList dirdocs;
 	GetAllDirDocs(&dirdocs);
@@ -1685,6 +1686,20 @@ void CMainFrame::OnHelpSearch()
 void CMainFrame::OnUpdateHelpSearch(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Handle translation of default messages on the status bar
+ */
+void CMainFrame::GetMessageString(UINT nID, CString& rMessage) const
+{
+	// load appropriate string
+	const String s = theApp.LoadString(nID);
+	if (!AfxExtractSubString(rMessage, &*s.begin(), 0))
+	{
+		// not found
+		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
+	}
 }
 
 void CMainFrame::ActivateFrame(int nCmdShow) 
