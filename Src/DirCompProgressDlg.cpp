@@ -26,19 +26,13 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief ID for timer updating UI.
- */
+/** @brief ID for timer updating UI. */
 static const UINT IDT_UPDATE = 1;
 
-/**
- * @brief Interval (in milliseconds) for UI updates.
- */
+/** @brief Interval (in milliseconds) for UI updates. */
 static const UINT UPDATE_INTERVAL = 400;
 
-/**
- * @brief Reset all UI fields to zero.
- */
+/** @brief Reset all UI fields to zero. */
 void DirCompProgressDlg::ClearStat()
 {
 	CProgressCtrl *pProg = (CProgressCtrl*) GetDlgItem(IDC_PROGRESSCOMPARE);
@@ -56,6 +50,7 @@ IMPLEMENT_DYNAMIC(DirCompProgressDlg, CDialog)
 
 /**
  * @brief Constructor.
+ * @param [in] pParent Parent window for progress dialog.
  */
 DirCompProgressDlg::DirCompProgressDlg(CWnd* pParent /*=NULL*/)
 : m_bCompareReady(FALSE)
