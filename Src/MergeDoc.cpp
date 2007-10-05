@@ -1010,7 +1010,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 {
 	CString s;
 	CString strSavePath; // New path for next saving try
-	CString title;
+	UINT titleid = 0;
 	BOOL result = TRUE;
 	int answer = IDOK; // Set default we use for scratchpads
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
@@ -1052,11 +1052,11 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	{
 	case IDOK:
 		if (nBuffer == 0)
-			VERIFY(title.LoadString(IDS_SAVE_LEFT_AS));
+			titleid = IDS_SAVE_LEFT_AS;
 		else
-			VERIFY(title.LoadString(IDS_SAVE_RIGHT_AS));
+			titleid = IDS_SAVE_RIGHT_AS;
 
-		if (SelectFile(parent, s, strPath, title, NULL, FALSE))
+		if (SelectFile(parent, s, strPath, titleid, NULL, FALSE))
 		{
 			CDiffTextBuffer *pBuffer = m_ptBuf[nBuffer];
 			strSavePath = s;
@@ -1990,7 +1990,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	if (!bForced)
 		if (!m_bEnableRescan) return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_RESCANNING));
+	WaitStatusCursor waitstatus(theApp.LoadString(IDS_STATUS_RESCANNING).c_str());
 
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 
@@ -2867,8 +2867,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		// Sensitive to EOL on, allow mixing EOL off, and files have a different EOL style.
 		// All lines will differ, that is not very interesting and probably not wanted.
 		// Propose to turn off the option 'sensitive to EOL'
-		CString s = LoadResString(IDS_SUGGEST_IGNOREEOL);
-		if (AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
+		String s = theApp.LoadString(IDS_SUGGEST_IGNOREEOL);
+		if (AfxMessageBox(s.c_str(), MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN, IDS_SUGGEST_IGNOREEOL) == IDYES)
 		{
 			diffOptions.bIgnoreEol = TRUE;
 			m_diffWrapper.SetOptions(&diffOptions);
@@ -3287,10 +3287,9 @@ CString CMergeDoc::GetFileExt(const CString& sFileName, const CString& sDescript
  */
 void CMergeDoc::OnToolsGenerateReport()
 {
-	CString s, folder, name, title;
+	CString s, folder;
 
-	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, title, IDS_HTML_REPORT_FILES, FALSE, _T("htm")))
+	if (!SelectFile(GetMainFrame()->GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, IDS_HTML_REPORT_FILES, FALSE, _T("htm")))
 		return;
 
 	// calculate HTML font size

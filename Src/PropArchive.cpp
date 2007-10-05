@@ -78,6 +78,7 @@ void CPropArchive::WriteOptions()
  */
 BOOL CPropArchive::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	m_wwwLink.m_link = _T("http://winmerge.org/downloads.php");
 	UpdateData(FALSE);
 

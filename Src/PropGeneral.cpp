@@ -65,18 +65,15 @@ CPropGeneral::~CPropGeneral()
 
 BOOL CPropGeneral::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 
 	CComboBox *pWnd = (CComboBox*)GetDlgItem(IDC_AUTO_COMPLETE_SOURCE);
 	ASSERT(NULL != pWnd);
 
-	CString str;
-	VERIFY(str.LoadString(IDS_AUTOCOMPLETE_DISABLED));
-	pWnd->AddString(str);
-	VERIFY(str.LoadString(IDS_AUTOCOMPLETE_FILE_SYS));
-	pWnd->AddString(str);
-	VERIFY(str.LoadString(IDS_AUTOCOMPLETE_MRU));
-	pWnd->AddString(str);
+	pWnd->AddString(theApp.LoadString(IDS_AUTOCOMPLETE_DISABLED).c_str());
+	pWnd->AddString(theApp.LoadString(IDS_AUTOCOMPLETE_FILE_SYS).c_str());
+	pWnd->AddString(theApp.LoadString(IDS_AUTOCOMPLETE_MRU).c_str());
 
 	pWnd->SetCurSel(m_nAutoCompleteSource);
 

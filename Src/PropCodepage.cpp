@@ -99,6 +99,7 @@ void CPropCodepage::WriteOptions()
 
 BOOL CPropCodepage::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 	
 	CEdit * pEdit = (CEdit *) GetDlgItem(IDC_CUSTOM_CP_NUMBER);

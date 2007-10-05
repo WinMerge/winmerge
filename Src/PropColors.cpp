@@ -85,6 +85,15 @@ BEGIN_MESSAGE_MAP(CPropMergeColors, CDialog)
 END_MESSAGE_MAP()
 
 /** 
+ * @brief Called before propertysheet is drawn.
+ */
+BOOL CPropMergeColors::OnInitDialog()
+{
+	theApp.TranslateDialog(m_hWnd);
+	return CPropertyPage::OnInitDialog();
+}
+
+/** 
  * @brief Reads options values from storage to UI.
  * (Property sheet calls this before displaying all property pages)
  */

@@ -10,6 +10,7 @@
 #include "resource.h"
 #include "SyntaxColors.h"
 #include "PropSyntaxColors.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -119,6 +120,15 @@ BEGIN_MESSAGE_MAP(CPropSyntaxColors, CPropertyPage)
 END_MESSAGE_MAP()
 
 // CPropSyntaxColor message handlers
+
+/** 
+ * @brief Called before propertysheet is drawn.
+ */
+BOOL CPropSyntaxColors::OnInitDialog()
+{
+	theApp.TranslateDialog(m_hWnd);
+	return CPropertyPage::OnInitDialog();
+}
 
 /** 
  * @brief Reads options values from storage to UI.

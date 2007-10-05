@@ -495,10 +495,8 @@ void CDirView::DoCopyLeftTo()
 {
 	CString destPath;
 	CString startPath;
-	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DEST_LEFT));
-	if (!SelectFolder(destPath, startPath, msg))
+	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_LEFT))
 		return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
@@ -564,10 +562,8 @@ void CDirView::DoCopyRightTo()
 {
 	CString destPath;
 	CString startPath;
-	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DEST_RIGHT));
-	if (!SelectFolder(destPath, startPath, msg))
+	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_RIGHT))
 		return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
@@ -633,10 +629,8 @@ void CDirView::DoMoveLeftTo()
 {
 	CString destPath;
 	CString startPath;
-	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DEST_LEFT));
-	if (!SelectFolder(destPath, startPath, msg))
+	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_LEFT))
 		return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_MOVEFILES));
@@ -699,10 +693,8 @@ void CDirView::DoMoveRightTo()
 {
 	CString destPath;
 	CString startPath;
-	CString msg;
 
-	VERIFY(msg.LoadString(IDS_SELECT_DEST_RIGHT));
-	if (!SelectFolder(destPath, startPath, msg))
+	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_RIGHT))
 		return;
 
 	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_MOVEFILES));

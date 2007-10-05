@@ -130,6 +130,7 @@ void CPropRegistry::WriteOptions()
 
 BOOL CPropRegistry::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 
 	// Update shell extension checkboxes
@@ -235,10 +236,7 @@ void CPropRegistry::SaveMergePath()
 void CPropRegistry::OnBrowseEditor()
 {
 	CString path;
-	CString title;
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-
-	if (SelectFile(GetSafeHwnd(), path, NULL, title, IDS_PROGRAMFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), path, NULL, IDS_OPEN_TITLE, IDS_PROGRAMFILES, TRUE))
 	{
 		m_strEditorPath = path;
 		UpdateData(FALSE);
@@ -275,10 +273,7 @@ void CPropRegistry::SubfolderOptionCheck()
 void CPropRegistry::OnBrowseFilterPath()
 {
 	CString path;
-	CString title;
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
-
-	if (SelectFolder(path, NULL, title, GetSafeHwnd()))
+	if (SelectFolder(path, NULL, IDS_OPEN_TITLE, GetSafeHwnd()))
 	{
 		m_strUserFilterPath = path;
 		UpdateData(FALSE);

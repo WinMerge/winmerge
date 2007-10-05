@@ -916,8 +916,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 		case IDNO:
 			if (!bMultiFile)
 			{
-				VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
-				if (SelectFile(GetSafeHwnd(), s, strSavePath, title, NULL, FALSE))
+				if (SelectFile(GetSafeHwnd(), s, strSavePath, IDS_SAVE_AS_TITLE, NULL, FALSE))
 				{
 					strSavePath = s;
 					nRetVal = IDNO;
@@ -2726,12 +2725,10 @@ void CMainFrame::OnViewTabBar()
 void CMainFrame::OnFileOpenproject()
 {
 	CString sFilepath;
-	CString title;
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	
 	// get the default projects path
 	String strProjectPath = GetOptionsMgr()->GetString(OPT_PROJECTS_PATH);
-	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath.c_str(), title,
+	if (!SelectFile(GetSafeHwnd(), sFilepath, strProjectPath.c_str(), IDS_OPEN_TITLE,
 			IDS_PROJECTFILES, TRUE))
 		return;
 	

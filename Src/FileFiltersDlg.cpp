@@ -128,17 +128,17 @@ void FileFiltersDlg::InitList()
 		newstyle |= LVS_EX_INFOTIP;
 	m_listFilters.SetExtendedStyle(m_listFilters.GetExtendedStyle() | newstyle);
 
-	CString title = LoadResString(IDS_FILTERFILE_NAMETITLE);
-	m_listFilters.InsertColumn(0, title,LVCFMT_LEFT, 150);
-	title = LoadResString(IDS_FILTERFILE_DESCTITLE);
-	m_listFilters.InsertColumn(1, title, LVCFMT_LEFT, 350);
-	title = LoadResString(IDS_FILTERFILE_PATHTITLE);
-	m_listFilters.InsertColumn(2, title,LVCFMT_LEFT, 350);
+	String title = theApp.LoadString(IDS_FILTERFILE_NAMETITLE);
+	m_listFilters.InsertColumn(0, title.c_str(), LVCFMT_LEFT, 150);
+	title = theApp.LoadString(IDS_FILTERFILE_DESCTITLE);
+	m_listFilters.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 350);
+	title = theApp.LoadString(IDS_FILTERFILE_PATHTITLE);
+	m_listFilters.InsertColumn(2, title.c_str(), LVCFMT_LEFT, 350);
 
-	title = LoadResString(IDS_USERCHOICE_NONE);
-	m_listFilters.InsertItem(1, title);
-	m_listFilters.SetItemText(0, 1, title);
-	m_listFilters.SetItemText(0, 2, title);
+	title = theApp.LoadString(IDS_USERCHOICE_NONE);
+	m_listFilters.InsertItem(1, title.c_str());
+	m_listFilters.SetItemText(0, 1, title.c_str());
+	m_listFilters.SetItemText(0, 2, title.c_str());
 
 	int count = m_Filters->GetSize();
 
@@ -164,6 +164,7 @@ void FileFiltersDlg::SelectFilterByIndex(int index)
  */
 BOOL FileFiltersDlg::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	InitList();
@@ -268,10 +269,10 @@ static void EnableDlgItem(CWnd * parent, int item, bool enable)
  */
 bool FileFiltersDlg::IsFilterItemNone(int item) const
 {
-	CString txtNone = LoadResString(IDS_USERCHOICE_NONE);
+	String txtNone = theApp.LoadString(IDS_USERCHOICE_NONE);
 	CString txt = m_listFilters.GetItemText(item, 0);
 
-	return (txt.CompareNoCase(txtNone) == 0);
+	return (txt.CompareNoCase(txtNone.c_str()) == 0);
 }
 
 /**
@@ -377,7 +378,6 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
-	CString title = LoadResString(IDS_FILEFILTER_SAVENEW);
 	CString globalPath = theApp.m_globalFileFilter.GetGlobalFilterPathWithCreate();
 	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 
@@ -414,7 +414,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 		path += '\\';
 	
 	CString s;
-	if (SelectFile(GetSafeHwnd(), s, path, title, IDS_FILEFILTER_FILEMASK,
+	if (SelectFile(GetSafeHwnd(), s, path, IDS_FILEFILTER_SAVENEW, IDS_FILEFILTER_FILEMASK,
 		FALSE))
 	{
 		// Fix file extension
@@ -542,9 +542,8 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 	CString s;
 	CString path;
 	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
-	CString title = LoadResString(IDS_FILEFILTER_INSTALL);
 
-	if (SelectFile(GetSafeHwnd(), s, path, title, IDS_FILEFILTER_FILEMASK,
+	if (SelectFile(GetSafeHwnd(), s, path, IDS_FILEFILTER_INSTALL, IDS_FILEFILTER_FILEMASK,
 		TRUE))
 	{
 		String sfile, sext;

@@ -71,6 +71,7 @@ END_MESSAGE_MAP()
 
 BOOL CPropLineFilter::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 
 	InitList();
@@ -94,8 +95,8 @@ void CPropLineFilter::InitList()
 
 	m_filtersList.SetExtendedStyle(m_filtersList.GetExtendedStyle() | newstyle);
 
-	CString title = LoadResString(IDS_FILTERLINE_REGEXP);
-	m_filtersList.InsertColumn(1, title, LVCFMT_LEFT, 500);
+	String title = theApp.LoadString(IDS_FILTERLINE_REGEXP);
+	m_filtersList.InsertColumn(1, title.c_str(), LVCFMT_LEFT, 500);
 
 	int count = m_pList->GetCount();
 	int ind = -1;

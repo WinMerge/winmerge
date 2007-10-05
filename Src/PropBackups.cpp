@@ -100,6 +100,7 @@ void CPropBackups::WriteOptions()
  */
 BOOL CPropBackups::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
     CPropertyPage::OnInitDialog();
 
 	return TRUE;  // return TRUE unless you set the focus to a control
@@ -112,7 +113,7 @@ BOOL CPropBackups::OnInitDialog()
 void CPropBackups::OnBnClickedBackupBrowse()
 {
 	CString path;
-	if (SelectFolder(path, NULL, _T(""), GetSafeHwnd()))
+	if (SelectFolder(path, NULL, 0, GetSafeHwnd()))
 	{
 		m_sGlobalFolder = path;
 		UpdateData(FALSE);

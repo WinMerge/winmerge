@@ -29,6 +29,7 @@
 #include "stdafx.h"
 #include "FileOrFolderSelect.h"
 #include "MainFrm.h" // VCS_* constants
+#include "Merge.h"
 #include "PropVss.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -112,6 +113,7 @@ void CPropVss::OnBrowseButton()
  */
 BOOL CPropVss::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 
 	LoadVssOptionStrings();
@@ -128,8 +130,8 @@ BOOL CPropVss::OnInitDialog()
 void CPropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
-	CString tempStr((LPCTSTR)(m_nVerSys == VCS_CLEARCASE ? IDS_CC_CMD : IDS_VSS_CMD));
-	m_ctlVssL1.SetWindowText(tempStr);
+	String tempStr = theApp.LoadString(m_nVerSys == VCS_CLEARCASE ? IDS_CC_CMD : IDS_VSS_CMD);
+	m_ctlVssL1.SetWindowText(tempStr.c_str());
 	m_ctlPath.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
 	m_ctlVssL1.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
 	m_ctlBrowse.EnableWindow(m_nVerSys == VCS_VSS4 || m_nVerSys == VCS_CLEARCASE);
@@ -148,8 +150,8 @@ void CPropVss::LoadVssOptionStrings()
 	VCS_CLEARCASE,
 	*/
 
-	m_ctlVerSys.AddString(LoadResString(IDS_VCS_NONE));
-	m_ctlVerSys.AddString(LoadResString(IDS_VCS_VSS4));
-	m_ctlVerSys.AddString(LoadResString(IDS_VCS_VSS5));
-	m_ctlVerSys.AddString(LoadResString(IDS_VCS_CLEARCASE));
+	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_NONE).c_str());
+	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_VSS4).c_str());
+	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_VSS5).c_str());
+	m_ctlVerSys.AddString(theApp.LoadString(IDS_VCS_CLEARCASE).c_str());
 }

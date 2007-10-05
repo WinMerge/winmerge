@@ -191,6 +191,7 @@ void CPatchDlg::OnOK()
  */
 BOOL CPatchDlg::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	// Load combobox history
@@ -253,12 +254,9 @@ void CPatchDlg::OnDiffBrowseFile1()
 {
 	CString s;
 	CString folder;
-	CString name;
-	CString title;
 
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	folder = m_file1;
-	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder, IDS_OPEN_TITLE, NULL, TRUE))
 	{
 		ChangeFile(s, TRUE);
 		m_ctlFile1.SetWindowText(s);
@@ -272,12 +270,9 @@ void CPatchDlg::OnDiffBrowseFile2()
 {
 	CString s;
 	CString folder;
-	CString name;
-	CString title;
 
-	VERIFY(title.LoadString(IDS_OPEN_TITLE));
 	folder = m_file2;
-	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, folder, IDS_OPEN_TITLE, NULL, TRUE))
 	{
 		ChangeFile(s, FALSE);
 		m_ctlFile2.SetWindowText(s);
@@ -330,11 +325,9 @@ void CPatchDlg::OnDiffBrowseResult()
 {
 	CString s;
 	CString folder;
-	CString title;
 
-	VERIFY(title.LoadString(IDS_SAVE_AS_TITLE));
 	folder = m_fileResult;
-	if (SelectFile(GetSafeHwnd(), s, folder, title, NULL, FALSE))
+	if (SelectFile(GetSafeHwnd(), s, folder, IDS_SAVE_AS_TITLE, NULL, FALSE))
 	{
 		m_fileResult = s;
 		m_ctlResult.SetWindowText(s);

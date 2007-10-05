@@ -14,6 +14,7 @@
 #include "DirReportTypes.h"
 #include "paths.h"
 #include "FileOrFolderSelect.h"
+#include "Merge.h"
 
 IMPLEMENT_DYNAMIC(DirCmpReportDlg, CDialog)
 
@@ -86,6 +87,7 @@ static ReportTypeInfo f_types[] = {
  */
 BOOL DirCmpReportDlg::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	m_ctlReportFile.LoadState(_T("ReportFiles"));
@@ -113,12 +115,11 @@ void DirCmpReportDlg::OnBtnClickReportBrowse()
 {
 	UpdateData(TRUE);
 
-	CString title = LoadResString(IDS_SAVE_AS_TITLE);
 	CString folder = m_sReportFile;
 	int filterid = f_types[m_ctlStyle.GetCurSel()].browseFilter;
 
 	CString chosenFilepath;
-	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, title,
+	if (SelectFile(GetSafeHwnd(), chosenFilepath, folder, IDS_SAVE_AS_TITLE,
 			filterid, FALSE))
 	{
 		m_sReportFile = chosenFilepath;

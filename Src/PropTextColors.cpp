@@ -72,6 +72,7 @@ END_MESSAGE_MAP()
  */
 BOOL CPropTextColors::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 
 	if (m_bCustomColors)

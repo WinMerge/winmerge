@@ -107,19 +107,20 @@ void CPropCompare::WriteOptions()
  */
 BOOL CPropCompare::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
 	CComboBox * combo = (CComboBox*) GetDlgItem(IDC_COMPAREMETHODCOMBO);
 
-	CString item = LoadResString(IDS_COMPMETHOD_FULL_CONTENTS);
-	combo->AddString(item);
-	item = LoadResString(IDS_COMPMETHOD_QUICK_CONTENTS);
-	combo->AddString(item);
-	item = LoadResString(IDS_COMPMETHOD_MODDATE);
-	combo->AddString(item);
-	item = LoadResString(IDS_COMPMETHOD_DATESIZE);
-	combo->AddString(item);
-	item = LoadResString(IDS_COMPMETHOD_SIZE);
-	combo->AddString(item);
+	String item = theApp.LoadString(IDS_COMPMETHOD_FULL_CONTENTS);
+	combo->AddString(item.c_str());
+	item = theApp.LoadString(IDS_COMPMETHOD_QUICK_CONTENTS);
+	combo->AddString(item.c_str());
+	item = theApp.LoadString(IDS_COMPMETHOD_MODDATE);
+	combo->AddString(item.c_str());
+	item = theApp.LoadString(IDS_COMPMETHOD_DATESIZE);
+	combo->AddString(item.c_str());
+	item = theApp.LoadString(IDS_COMPMETHOD_SIZE);
+	combo->AddString(item.c_str());
 	combo->SetCurSel(m_compareMethod);
 
 	CButton * pBtn = (CButton*) GetDlgItem(IDC_COMPARE_STOPFIRST);

@@ -112,9 +112,9 @@ void CPropEditor::WriteOptions()
  */
 BOOL CPropEditor::OnInitDialog() 
 {
-	CDialog::OnInitDialog();
-	
+	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
+
 	CEdit * pEdit = (CEdit *) GetDlgItem(IDC_TAB_EDIT);
 
 	// Limit max text of tabsize to 2 chars
@@ -135,8 +135,8 @@ BOOL CPropEditor::OnInitDialog()
 void CPropEditor::LoadBreakTypeStrings()
 {
 	CComboBox * cbo = (CComboBox *)GetDlgItem(IDC_BREAK_TYPE);
-	cbo->AddString(LoadResString(IDS_BREAK_ON_WHITESPACE));
-	cbo->AddString(LoadResString(IDS_BREAK_ON_PUNCTUATION));
+	cbo->AddString(theApp.LoadString(IDS_BREAK_ON_WHITESPACE).c_str());
+	cbo->AddString(theApp.LoadString(IDS_BREAK_ON_PUNCTUATION).c_str());
 }
 
 /**
