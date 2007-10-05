@@ -2496,13 +2496,13 @@ BOOL CMergeDoc::PromptAndSaveIfNeeded(BOOL bAllowCancel)
 
 	if (dlg.DoModal() == IDOK)
 	{
-		if (bLModified && dlg.m_leftSave == SAVECLOSING_SAVE)
+		if (bLModified && dlg.m_leftSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
 			if (!DoSave(m_filePaths.GetLeft(), bLSaveSuccess, 0))
 				result = FALSE;
 		}
 
-		if (bRModified && dlg.m_rightSave == SAVECLOSING_SAVE)
+		if (bRModified && dlg.m_rightSave == SaveClosingDlg::SAVECLOSING_SAVE)
 		{
 			if (!DoSave(m_filePaths.GetRight(), bRSaveSuccess, 1))
 				result = FALSE;

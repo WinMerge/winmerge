@@ -31,15 +31,6 @@
 #include "CMoveConstraint.h"
 #endif
 
-/** 
- * @brief Choices for modified files: save/discard changes.
- */
-enum SAVECLOSING_CHOICE
-{
-	SAVECLOSING_SAVE = 0, //*< Save changes */
-	SAVECLOSING_DISCARD,  //*< Discard changes */
-};
-
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg dialog
 
@@ -56,17 +47,25 @@ class SaveClosingDlg : public CDialog
 	DECLARE_DYNAMIC(SaveClosingDlg)
 
 public:
+
+	/** @brief Choices for modified files: save/discard changes. */
+	enum SAVECLOSING_CHOICE
+	{
+		SAVECLOSING_SAVE = 0, /**< Save changes */
+		SAVECLOSING_DISCARD,  /**< Discard changes */
+	};
+
 	SaveClosingDlg(CWnd* pParent = NULL);   // standard constructor
 	void DoAskFor(BOOL bLeft = FALSE, BOOL bRight = FALSE);
 
 // Dialog Data
 	//{{AFX_DATA(SaveClosingDlg)
 	enum { IDD = IDD_SAVECLOSING };
-	CString m_sLeftFile;
-	CString m_sRightFile;
-	int m_leftSave;
-	int m_rightSave;
-	BOOL m_bDisableCancel;
+	CString m_sLeftFile; /**< Path to left-file to save. */
+	CString m_sRightFile; /**< Path to right-side file to save. */
+	int m_leftSave; /**< User's choice for left-side save. */
+	int m_rightSave; /**< User's choice for righ-side save. */
+	BOOL m_bDisableCancel; /**< Should we disable Cancel-button? */
 	//}}AFX_DATA
 
 protected:
@@ -81,9 +80,9 @@ protected:
 
 // Implementation data
 private:
-	prdlg::CMoveConstraint m_constraint; //*< Resizes dialog controls when dialog resized */
-	BOOL m_bAskForLeft; //*< Is left file modified? */
-	BOOL m_bAskForRight; //*< Is right file modified? */
+	prdlg::CMoveConstraint m_constraint; /**< Resizes dialog controls when dialog resized */
+	BOOL m_bAskForLeft; /**< Is left file modified? */
+	BOOL m_bAskForRight; /**< Is right file modified? */
 };
 
 #endif // _SAVECLOSINGDLG_H_

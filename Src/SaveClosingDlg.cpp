@@ -19,7 +19,7 @@
  *
  * @brief Implementation file for SaveClosingDlg dialog
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -36,16 +36,18 @@ static char THIS_FILE[] = __FILE__;
 
 IMPLEMENT_DYNAMIC(SaveClosingDlg, CDialog)
 
+/**
+ * @brief Constructor.
+ * @param [in] pParent Dialog's parent window.
+ */
 SaveClosingDlg::SaveClosingDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(SaveClosingDlg::IDD, pParent)
+ : CDialog(SaveClosingDlg::IDD, pParent)
+ , m_leftSave(SAVECLOSING_SAVE)
+ , m_rightSave(SAVECLOSING_SAVE)
+ , m_bAskForLeft(FALSE)
+ , m_bAskForRight(FALSE)
+ , m_bDisableCancel(FALSE)
 {
-	//{{AFX_DATA_INIT(SaveClosingDlg)
-	m_leftSave = SAVECLOSING_SAVE; // Default to save
-	m_rightSave = SAVECLOSING_SAVE;
-	m_bAskForLeft = FALSE;
-	m_bAskForRight = FALSE;
-	m_bDisableCancel = FALSE;
-	//}}AFX_DATA_INIT
 }
 
 void SaveClosingDlg::DoDataExchange(CDataExchange* pDX)
@@ -70,6 +72,10 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // SaveClosingDlg message handlers
 
+/**
+ * @brief Initialize dialog.
+ * @return Always TRUE.
+ */
 BOOL SaveClosingDlg::OnInitDialog() 
 {
 	CDialog::OnInitDialog();
@@ -117,13 +123,14 @@ BOOL SaveClosingDlg::OnInitDialog()
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("SaveClosingDlg"), false); // persist size via registry
 
-
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 /** 
  * @brief Select files to ask about saving.
+ * @param [in] bLeft Do we ask about left-side file?
+ * @param [in] bRight Do we ask about right-side file?
  */
 void SaveClosingDlg::DoAskFor(BOOL bLeft /*= FALSE*/, BOOL bRight /*= FALSE*/)
 {
