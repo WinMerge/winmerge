@@ -18,6 +18,7 @@
 #include "SyntaxColors.h"
 #include "PreferencesDlg.h"
 #include "MainFrm.h"
+#include "Merge.h"
 #include "coretools.h" //SplitFilename()
 #include "FileOrFolderSelect.h"
 
@@ -88,6 +89,7 @@ END_MESSAGE_MAP()
 
 BOOL CPreferencesDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	m_tcPages.SetIndent(0);
@@ -143,9 +145,8 @@ void CPreferencesDlg::OnHelpButton()
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, UINT nResourceID)
 {
-	CString sPath;
-	VERIFY(sPath.LoadString(nResourceID));
-	AddPage(pPage, sPath);
+	String sPath = theApp.LoadString(nResourceID);
+	AddPage(pPage, sPath.c_str());
 }
 
 void CPreferencesDlg::AddPage(CPropertyPage* pPage, LPCTSTR szPath)
@@ -300,9 +301,7 @@ void CPreferencesDlg::SetSyntaxColors(SyntaxColors *pColors)
 void CPreferencesDlg::OnImportButton()
 {
 	CString s;
-	CString caption;
-	VERIFY(caption.LoadString(IDS_OPT_IMPORT_CAPTION));
-	if (SelectFile(GetSafeHwnd(), s, NULL, caption, IDS_INIFILES, TRUE))
+	if (SelectFile(GetSafeHwnd(), s, NULL, IDS_OPT_IMPORT_CAPTION, IDS_INIFILES, TRUE))
 	{
 		if (m_pOptionsMgr->ImportOptions(s) == OPT_OK)
 		{
@@ -320,9 +319,7 @@ void CPreferencesDlg::OnImportButton()
 void CPreferencesDlg::OnExportButton()
 {
 	CString settingsFile;
-	CString caption;
-	VERIFY(caption.LoadString(IDS_OPT_EXPORT_CAPTION));
-	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, caption, IDS_INIFILES,
+	if (SelectFile(GetSafeHwnd(), settingsFile, NULL, IDS_OPT_EXPORT_CAPTION, IDS_INIFILES,
 		FALSE))
 	{
 		// Add settings file extension if it is missing
