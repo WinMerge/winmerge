@@ -1,8 +1,10 @@
 /**
  * @file  PropVss.h
  *
- * @brief Declaration of CPropVss
+ * @brief Declaration of VSS properties dialog.
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #if !defined(AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
 #define AFX_PROPVSS_H__30AD07AF_E420_11D1_BBC5_00A024706EDC__INCLUDED_
@@ -21,7 +23,6 @@ class CPropVss : public CPropertyPage, public IOptionsPanel
 // Construction & Destruction
 public:
 	CPropVss(COptionsMgr *optionsMgr);
-	~CPropVss();
 
 // Implement IOptionsPanel
 	virtual void ReadOptions();
@@ -59,7 +60,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	COptionsMgr * m_pOptionsMgr;
+	COptionsMgr * m_pOptionsMgr; /**< Options manager. */
 };
 
 //{{AFX_INSERT_LOCATION}}

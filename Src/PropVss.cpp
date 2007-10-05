@@ -18,8 +18,13 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// PropVss.cpp : implementation file
-//
+/** 
+ * @file  PropVss.cpp
+ *
+ * @brief VSS properties dialog implementation.
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
 #include "FileOrFolderSelect.h"
@@ -37,13 +42,13 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss property page
 
+/**
+ * @brief Constructor.
+ * @param [in] optionsMgr Pointer to options manager.
+ */
 CPropVss::CPropVss(COptionsMgr *optionsMgr) : CPropertyPage(CPropVss::IDD)
 , m_pOptionsMgr(optionsMgr)
 , m_nVerSys(-1)
-{
-}
-
-CPropVss::~CPropVss()
 {
 }
 
@@ -88,7 +93,10 @@ void CPropVss::WriteOptions()
 /////////////////////////////////////////////////////////////////////////////
 // CPropVss message handlers
 
-void CPropVss::OnBrowseButton() 
+/**
+ * @brief Called when Browse-button is selected.
+ */
+void CPropVss::OnBrowseButton()
 {
 	CString s;
 	if (SelectFile(GetSafeHwnd(), s))
@@ -98,6 +106,10 @@ void CPropVss::OnBrowseButton()
 	}
 }
 
+/**
+ * @brief Initialized the dialog.
+ * @return Always TRUE.
+ */
 BOOL CPropVss::OnInitDialog() 
 {
 	CPropertyPage::OnInitDialog();
@@ -110,6 +122,9 @@ BOOL CPropVss::OnInitDialog()
 	return TRUE;
 }
 
+/**
+ * @brief Called when user has selected VSS version.
+ */
 void CPropVss::OnSelendokVerSys() 
 {
 	UpdateData(TRUE);
