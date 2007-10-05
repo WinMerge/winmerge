@@ -359,6 +359,10 @@ SOURCE=.\DirScan.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\DirTravel.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\DirView.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
@@ -1130,6 +1134,10 @@ SOURCE=.\DirReportTypes.h
 # Begin Source File
 
 SOURCE=.\DirScan.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\DirTravel.h
 # End Source File
 # Begin Source File
 

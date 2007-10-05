@@ -49,6 +49,9 @@ struct DirItem
 	__int64 ctime; /**< time of creation */
 	__int64 mtime; /**< time of last modify */
 	__int64 size; /**< file size in bytes, -1 means file does not exist*/
+	String filename; /**< filename for this item */
+	String path; /**< full path (excluding filename) for the item */
+	bool bIsDir; /**< is this a directory item or file item? */
 	FileVersion version; /**< string of fixed file version, eg, 1.2.3.4 */
 	FileFlags flags; /**< file attributes */
 	DirItem() { Clear(); }

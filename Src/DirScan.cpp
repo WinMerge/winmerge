@@ -10,6 +10,7 @@
 #include <shlwapi.h>
 #include <sys/types.h>
 #include <sys/stat.h>
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "LogFile.h"
 #include "DirScan.h"
@@ -26,6 +27,8 @@
 #include "PathContext.h"
 #include "IAbortable.h"
 #include "FolderCmp.h"
+#include "DirItem.h"
+#include "DirTravel.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -33,30 +36,11 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-// Static types (ie, types only used locally)
-/**
- * @brief directory or file info for one row in diff result
- * @note times are seconds since January 1, 1970.
- */
-struct fentry
-{
-	CString name; /**< Item name */
-	__int64 mtime; /**< Last modify time */
-	__int64 ctime; /**< Creation modify time */
-	__int64 size; /**< File size */
-	int attrs; /**< Item attributes */
-};
-typedef CArray<fentry, fentry&> fentryArray;
-
 // Static functions (ie, functions only used locally)
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt);
-static void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files);
-void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive);
-static void Sort(fentryArray * dirs, bool casesensitive);;
-static int collstr(const CString & s1, const CString & s2, bool casesensitive);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
-static void AddToList(const CString & sLeftDir, const CString & sRightDir, const fentry * lent, const fentry * rent,
+static void AddToList(const CString & sLeftDir, const CString & sRightDir, const DirItem * lent, const DirItem * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
@@ -113,7 +97,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 		) rightsubdir + backslash;
 	}
 
-	fentryArray leftDirs, leftFiles, rightDirs, rightFiles;
+	DirItemArray leftDirs, leftFiles, rightDirs, rightFiles;
 	LoadAndSortFiles(sLeftDir, &leftDirs, &leftFiles, casesensitive);
 	LoadAndSortFiles(sRightDir, &rightDirs, &rightFiles, casesensitive);
 
@@ -128,13 +112,13 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 	// If there is only one directory on each side, and no files
 	// then pretend the directories have the same name
 	bool bTreatDirAsEqual = 
-		  (leftDirs.GetSize() == 1)
-		&& (rightDirs.GetSize() == 1)
-		&& (leftFiles.GetSize() == 0)
-		&& (rightFiles.GetSize() == 0)
+		  (leftDirs.size() == 1)
+		&& (rightDirs.size() == 1)
+		&& (leftFiles.size() == 0)
+		&& (rightFiles.size() == 0)
 		;
 
-	int i=0, j=0;
+	int i = 0, j = 0;
 	while (1)
 	{
 		if (pCtxt->ShouldAbort())
@@ -144,7 +128,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 
 		if (!bTreatDirAsEqual)
 		{
-			if (i<leftDirs.GetSize() && (j==rightDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)<0))
+			if (i<leftDirs.size() && (j == rightDirs.size() || collstr(leftDirs[i].filename, rightDirs[j].filename, casesensitive)<0))
 			{
 				int nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
 				AddToList(leftsubdir, rightsubdir, &leftDirs[i], 0, nDiffCode, pList, pCtxt);
@@ -152,7 +136,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 				++i;
 				continue;
 			}
-			if (j<rightDirs.GetSize() && (i==leftDirs.GetSize() || collstr(leftDirs[i].name, rightDirs[j].name, casesensitive)>0))
+			if (j<rightDirs.size() && (i == leftDirs.size() || collstr(leftDirs[i].filename, rightDirs[j].filename, casesensitive)>0))
 			{
 				int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
 				AddToList(leftsubdir, rightsubdir, 0, &rightDirs[j], nDiffCode, pList, pCtxt);
@@ -161,9 +145,9 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 				continue;
 			}
 		}
-		if (i<leftDirs.GetSize())
+		if (i<leftDirs.size())
 		{
-			ASSERT(j<rightDirs.GetSize());
+			ASSERT(j<rightDirs.size());
 			if (!depth)
 			{
 				// Non-recursive compare
@@ -175,13 +159,13 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 			else
 			{
 				// Recursive compare
-				CString leftnewsub = leftsubprefix + leftDirs[i].name;
+				CString leftnewsub = leftsubprefix + leftDirs[i].filename.c_str();
 				// minimize memory footprint by having left/rightnewsub share CStringData if possible
 				CString rightnewsub = OPTIMIZE_SHARE_CSTRINGDATA
 				(
 					(LPCTSTR)leftsubprefix == (LPCTSTR)rightsubprefix
-				&&	leftDirs[i].name == rightDirs[j].name ? leftnewsub :
-				) rightsubprefix + rightDirs[j].name;
+				&&	leftDirs[i].filename == rightDirs[j].filename ? leftnewsub :
+				) rightsubprefix + rightDirs[j].filename.c_str();
 				// Test against filter so we don't include contents of filtered out directories
 				// Also this is only place we can test for both-sides directories in recursive compare
 				if (!pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub))
@@ -217,8 +201,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 
 		// Comparing file leftFiles[i].name to rightFiles[j].name
 		
-		if (i<leftFiles.GetSize() && (j==rightFiles.GetSize() ||
-				collstr(leftFiles[i].name, rightFiles[j].name, casesensitive) < 0))
+		if (i<leftFiles.size() && (j == rightFiles.size() ||
+				collstr(leftFiles[i].filename, rightFiles[j].filename, casesensitive) < 0))
 		{
 			const int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
 			AddToList(leftsubdir, rightsubdir, &leftFiles[i], 0, nDiffCode, pList, pCtxt);
@@ -226,8 +210,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 			++i;
 			continue;
 		}
-		if (j<rightFiles.GetSize() && (i==leftFiles.GetSize() ||
-				collstr(leftFiles[i].name, rightFiles[j].name, casesensitive) > 0))
+		if (j<rightFiles.size() && (i == leftFiles.size() ||
+				collstr(leftFiles[i].filename, rightFiles[j].filename, casesensitive) > 0))
 		{
 			const int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
 			AddToList(leftsubdir, rightsubdir, 0, &rightFiles[j], nDiffCode, pList, pCtxt);
@@ -235,9 +219,9 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const
 			++j;
 			continue;
 		}
-		if (i<leftFiles.GetSize())
+		if (i<leftFiles.size())
 		{
-			ASSERT(j<rightFiles.GetSize());
+			ASSERT(j<rightFiles.size());
 			const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
 			AddToList(leftsubdir, rightsubdir, &leftFiles[i], &rightFiles[j], nDiffCode, pList, pCtxt);
 			++i;
@@ -493,130 +477,6 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 }
 
 /**
- * @brief Load arrays with all directories & files in specified dir
- */
-void LoadAndSortFiles(const CString & sDir, fentryArray * dirs, fentryArray * files, bool casesensitive)
-{
-	LoadFiles(sDir, dirs, files);
-	Sort(dirs, casesensitive);
-	Sort(files, casesensitive);
-}
-
-/**
- * @brief Convert time in type FILETIME to type int (time_t compatible).
- * @param [in] time Time in FILETIME type.
- * @return Time in time_t compiliant integer.
- */
-static __int64 FiletimeToTimeT(FILETIME time)
-{
-	const __int64 SecsTo100ns = 10000000;
-	const __int64 SecsBetweenEpochs = 11644473600;
-	__int64 converted_time;
-	converted_time = ((__int64)time.dwHighDateTime << 32) + time.dwLowDateTime;
-	converted_time -= (SecsBetweenEpochs * SecsTo100ns);
-	converted_time /= SecsTo100ns;
-	return converted_time;
-}
-
-/**
- * @brief Find files and subfolders from given folder.
- * This function saves all files and subfolders in given folder to arrays.
- * We use 64-bit version of stat() to get times since find doesn't return
- * valid times for very old files (around year 1970). Even stat() seems to
- * give negative time values but we can live with that. Those around 1970
- * times can happen when file is created so that it  doesn't get valid
- * creation or modificatio dates.
- * @param [in] sDir Base folder for files and subfolders.
- * @param [in, out] dirs Array where subfolders are stored.
- * @param [in, out] files Array where files are stored.
- */
-void LoadFiles(const CString & sDir, fentryArray * dirs, fentryArray * files)
-{
-	CString sPattern = sDir;
-	sPattern.TrimRight(_T("\\"));
-	sPattern += _T("\\*.*");
-
-	WIN32_FIND_DATA ff;
-	HANDLE h = FindFirstFile(sPattern, &ff);
-	if (h != INVALID_HANDLE_VALUE)
-	{
-		do
-		{
-			DWORD dwIsDirectory = ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY;
-			if (dwIsDirectory && StrStr(_T(".."), ff.cFileName))
-				continue;
-
-			fentry ent;
-
-			// Save filetimes as seconds since January 1, 1970
-			// Note that times can be < 0 if they are around that 1970..
-			// Anyway that is not sensible case for normal files so we can
-			// just use zero for their time.
-			ent.ctime = FiletimeToTimeT(ff.ftCreationTime);
-			if (ent.ctime < 0)
-				ent.ctime = 0;
-			ent.mtime = FiletimeToTimeT(ff.ftLastWriteTime);
-			if (ent.mtime < 0)
-				ent.mtime = 0;
-
-			if (ff.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-				ent.size = -1;  // No size for directories
-			else
-			{
-				ent.size = ((__int64)ff.nFileSizeHigh << 32) + ff.nFileSizeLow;
-			}
-
-			ent.name = ff.cFileName;
-			ent.attrs = ff.dwFileAttributes;
-			(dwIsDirectory ? dirs : files) -> Add(ent);
-		} while (FindNextFile(h, &ff));
-		FindClose(h);
-	}
-}
-
-/**
- * @brief case-sensitive collate function for qsorting an array
- */
-static int __cdecl cmpstring(const void *elem1, const void *elem2)
-{
-	const fentry * s1 = static_cast<const fentry *>(elem1);
-	const fentry * s2 = static_cast<const fentry *>(elem2);
-	return s1->name.Collate(s2->name);
-}
-
-/**
- * @brief case-insensitive collate function for qsorting an array
- */
-static int __cdecl cmpistring(const void *elem1, const void *elem2)
-{
-	const fentry * s1 = static_cast<const fentry *>(elem1);
-	const fentry * s2 = static_cast<const fentry *>(elem2);
-	return s1->name.CollateNoCase(s2->name);
-}
-
-/**
- * @brief sort specified array
- */
-void Sort(fentryArray * dirs, bool casesensitive)
-{
-	fentry * data = dirs->GetData();
-	if (!data) return;
-	int (__cdecl *comparefnc)(const void *elem1, const void *elem2) = (casesensitive ? cmpstring : cmpistring);
-	qsort(data, dirs->GetSize(), sizeof(dirs->GetAt(0)), comparefnc);
-}
-
-/**
- * @brief  Compare (NLS aware) two strings, either case-sensitive or case-insensitive as caller specifies
- */
-static int collstr(const CString & s1, const CString & s2, bool casesensitive)
-{
-	if (casesensitive)
-		return s1.Collate(s2);
-	else
-		return s1.CollateNoCase(s2);
-}
-
-/**
  * @brief Send one file or directory result back through the diff context
  */
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
@@ -656,7 +516,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 /**
  * @brief Add one compare item to list.
  */
-static void AddToList(const CString & sLeftDir, const CString & sRightDir, const fentry * lent, const fentry * rent,
+static void AddToList(const CString & sLeftDir, const CString & sRightDir, const DirItem * lent, const DirItem * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt)
 {
 	// We must store both paths - we cannot get paths later
@@ -670,33 +530,33 @@ static void AddToList(const CString & sLeftDir, const CString & sRightDir, const
 
 	if (lent)
 	{
-		di.sLeftFilename = lent->name;
+		di.sLeftFilename = lent->filename.c_str();
 		di.left.mtime = lent->mtime;
 		di.left.ctime = lent->ctime;
 		di.left.size = lent->size;
-		di.left.flags.attributes = lent->attrs;
+		di.left.flags.attributes = lent->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
-		di.sLeftFilename = rent->name;
+		di.sLeftFilename = rent->filename.c_str();
 	}
 
 	if (rent)
 	{
 		di.sRightFilename = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			di.sLeftFilename == rent->name ? di.sLeftFilename :
-		) rent->name;
+			di.sLeftFilename == rent->filename.c_str() ? di.sLeftFilename :
+		) rent->filename.c_str();
 		di.right.mtime = rent->mtime;
 		di.right.ctime = rent->ctime;
 		di.right.size = rent->size;
-		di.right.flags.attributes = rent->attrs;
+		di.right.flags.attributes = rent->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		di.sRightFilename = lent->name;
+		di.sRightFilename = lent->filename.c_str();
 	}
 
 	di.diffcode = code;
