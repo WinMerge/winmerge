@@ -61,6 +61,7 @@ DirCompProgressDlg::DirCompProgressDlg(CWnd* pParent /*=NULL*/)
 : m_bCompareReady(FALSE)
 , m_prevState(CompareStats::STATE_IDLE)
 , m_pDirDoc(NULL)
+, m_pCompareStats(NULL)
 {
 }
 
