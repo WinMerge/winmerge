@@ -318,7 +318,7 @@ void CDirDoc::Rescan()
 
 	// If we're already doing a rescan, bail out
 	UINT threadState = m_diffThread.GetThreadState();
-	if (threadState == THREAD_COMPARING)
+	if (threadState == CDiffThread::THREAD_COMPARING)
 		return;
 
 	m_statusCursor = new CustomStatusCursor(0, IDC_APPSTARTING, LoadResString(IDS_STATUS_RESCANNING));
@@ -374,7 +374,7 @@ void CDirDoc::Rescan()
 
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
-	m_diffThread.SetMessageIDs(MSG_UI_UPDATE, MSG_STAT_UPDATE);
+	m_diffThread.SetMessageIDs(MSG_UI_UPDATE);
 	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
 	m_diffThread.CompareDirectories(m_pCtxt->GetNormalizedLeft(),
 			m_pCtxt->GetNormalizedRight(), m_bRecursive);
@@ -853,7 +853,7 @@ void CDirDoc::UpdateHeaderPath(BOOL bLeft)
 BOOL CDirDoc::SaveModified() 
 {
 	// Do not allow closing if there is a thread running
-	if (m_diffThread.GetThreadState() == THREAD_COMPARING)
+	if (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING)
 		return FALSE;
 	
 	return CDocument::SaveModified();
@@ -875,7 +875,7 @@ void CDirDoc::AbortCurrentScan()
  */
 bool CDirDoc::IsCurrentScanAbortable() const
 {
-	return (m_diffThread.GetThreadState() == THREAD_COMPARING 
+	return (m_diffThread.GetThreadState() == CDiffThread::THREAD_COMPARING 
 		&& !m_diffThread.IsAborting());
 }
 

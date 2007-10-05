@@ -1594,7 +1594,7 @@ BOOL CMainFrame::IsComparing()
 	{
 		CDirDoc * pDirDoc = dirdocs.RemoveHead();
 		UINT threadState = pDirDoc->m_diffThread.GetThreadState();
-		if (threadState == THREAD_COMPARING)
+		if (threadState == CDiffThread::THREAD_COMPARING)
 			return TRUE;
 	}
 	return FALSE;

@@ -2100,7 +2100,7 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 void CDirView::OnUpdateRefresh(CCmdUI* pCmdUI)
 {
 	UINT threadState = GetDocument()->m_diffThread.GetThreadState();
-	pCmdUI->Enable(threadState != THREAD_COMPARING);
+	pCmdUI->Enable(threadState != CDiffThread::THREAD_COMPARING);
 }
 
 /**

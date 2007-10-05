@@ -64,10 +64,8 @@
 /* @{ */
 /// Directory compare thread asks UI (view) update
 const UINT MSG_UI_UPDATE = WM_USER + 1;
-/// New item compared, update statepane
-const UINT MSG_STAT_UPDATE = WM_USER + 2;
 /// Request to save panesizes
-const UINT MSG_STORE_PANESIZES = WM_USER + 3;
+const UINT MSG_STORE_PANESIZES = WM_USER + 2;
 /* @} */
 
 /**

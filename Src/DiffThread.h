@@ -19,27 +19,16 @@
  *
  * @brief Declaration file for CDiffThread
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef _DIFFTTHREAD_H
+#ifndef _DIFFTHREAD_H
 #define _DIFFTHREAD_H
 
 #include "diffcontext.h"
 
 struct DiffFuncStruct;
 class DiffThreadAbortable;
-
-/**
- * @brief Thread's statuses.
- */
-enum
-{
-	THREAD_NOTSTARTED = 0,
-	THREAD_COMPARING,
-	THREAD_COMPLETED,
-};
-
 
 /**
  * @brief Class for threaded folder compare.
@@ -51,13 +40,21 @@ enum
 class CDiffThread
 {
 public:
+	/** @brief Thread's states. */
+	enum ThreadState
+	{
+		THREAD_NOTSTARTED = 0, /**< Thread not started, idle. */
+		THREAD_COMPARING, /**< Thread running (comparing). */
+		THREAD_COMPLETED, /**< Thread has completed its task. */
+	};
+
 // creation and use, called on main thread
 	CDiffThread();
 	~CDiffThread();
 	void SetContext(CDiffContext * pCtx);
 	UINT CompareDirectories(const CString & dir1, const CString & dir2, BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
-	void SetMessageIDs(UINT updateMsg, UINT statusMsg);
+	void SetMessageIDs(UINT updateMsg);
 	void SetCompareSelected(bool bSelected = false);
 
 // runtime interface for main thread, called on main thread

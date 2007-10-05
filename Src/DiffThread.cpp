@@ -19,7 +19,7 @@
  *
  * @brief Code for DiffThread class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -32,10 +32,17 @@
 #include "CompareStats.h"
 #include "IAbortable.h"
 
-// Set this to true in order to single step
-// through entire compare process all in a single thread
-// Either edit this line, or breakpoint & change it in CompareDirectories() below
-static bool bSinglethreaded=false;
+/**
+ * @brief Force compare to be single-threaded.
+ * Set this to true in order to single step through entire compare process all
+ * in a single thread. Either edit this line, or breakpoint & change it in
+ * CompareDirectories() below.
+ *
+ * If you are going to debug compare procdure, you most probably need to set
+ * this to true. As Visual Studio seems to have real problems with debugging
+ * these threads otherwise.
+ */
+static bool bSinglethreaded = false;
 
 /**
  * @brief Structure used in sending data to the threads.
@@ -44,23 +51,23 @@ static bool bSinglethreaded=false;
  */
 struct DiffFuncStruct
 {
-	CString path1;
-	CString path2;
-	CDiffContext * context;
-	UINT msgUIUpdate;
-	HWND hWindow;
-	UINT nThreadState;
-	BOOL bRecursive;
-	DiffThreadAbortable * m_pAbortgate;
-	bool bOnlyRequested;
-	DiffItemList *pItemList;
-	HANDLE hEvent;
+	CString path1; /**< First path to compare. */
+	CString path2; /**< Second path to compare. */
+	CDiffContext * context; /**< Compare context. */
+	UINT msgUIUpdate; /**< Windows message for updating GUI. */
+	HWND hWindow; /**< Window getting status updates. */
+	CDiffThread::ThreadState nThreadState; /**< Thread state. */
+	BOOL bRecursive; /**< Is compare recursive (subfolders included)? */
+	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
+	bool bOnlyRequested; /**< Compare only requested items? */
+	DiffItemList *pItemList; /**< List of items to compare. */
+	HANDLE hEvent; /**< Event for synchronizing thread start. */
 
 	DiffFuncStruct()
 		: context(NULL)
 		, msgUIUpdate(0)
 		, hWindow(0)
-		, nThreadState(THREAD_NOTSTARTED)
+		, nThreadState(CDiffThread::THREAD_NOTSTARTED)
 		, bRecursive(FALSE)
 		, m_pAbortgate(NULL)
 		, bOnlyRequested(false)
@@ -84,7 +91,7 @@ public:
 };
 
 /**
- * @brief Default constructor
+ * @brief Default constructor.
  */
 CDiffThread::CDiffThread()
 : m_pDiffContext(NULL)
@@ -97,6 +104,9 @@ CDiffThread::CDiffThread()
 	m_pAbortgate = new DiffThreadAbortable(this);
 }
 
+/**
+ * @brief Destructor, release resources.
+ */
 CDiffThread::~CDiffThread()
 {
 	CloseHandle(m_pDiffParm->hEvent);
@@ -105,7 +115,8 @@ CDiffThread::~CDiffThread()
 }
 
 /**
- * @brief Sets context pointer forwarded to thread
+ * @brief Sets context pointer forwarded to thread.
+ * @param [in] pCtx Pointer to compare context.
  */
 void CDiffThread::SetContext(CDiffContext * pCtx)
 {
@@ -113,7 +124,11 @@ void CDiffThread::SetContext(CDiffContext * pCtx)
 }
 
 /**
- * @brief Start directory compare thread
+ * @brief Start and run directory compare thread.
+ * @param [in] dir1 First directory to compare.
+ * @param [in] dir2 Second directory to compare.
+ * @param [in] bRecursive Is the compare recursive (subfolders included)?
+ * @return Success (1) or error for thread. Currently always 1.
  */
 UINT CDiffThread::CompareDirectories(const CString & dir1,
 		const CString & dir2, BOOL bRecursive)
@@ -150,7 +165,8 @@ UINT CDiffThread::CompareDirectories(const CString & dir1,
 }
 
 /**
- * @brief Set window receiving messages thread sends
+ * @brief Set window receiving messages thread sends.
+ * @param [in] hWnd Hand to window to receive messages.
  */
 void CDiffThread::SetHwnd(HWND hWnd)
 {
@@ -158,9 +174,10 @@ void CDiffThread::SetHwnd(HWND hWnd)
 }
 
 /**
- * @brief Set message-id and -number for messages thread sends to window
+ * @brief Set message-id for update message.
+ * @param [in] updateMsg Message-id for update message.
  */
-void CDiffThread::SetMessageIDs(UINT updateMsg, UINT statusMsg)
+void CDiffThread::SetMessageIDs(UINT updateMsg)
 {
 	m_msgUpdateUI = updateMsg;
 }
@@ -194,7 +211,6 @@ UINT DiffThreadCollect(LPVOID lpParam)
 {
 	PathContext paths;
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
-	HWND hWnd = myStruct->hWindow;
 	UINT msgID = myStruct->msgUIUpdate;
 	bool bOnlyRequested = myStruct->bOnlyRequested;
 	myStruct->context->m_bCollectReady = FALSE;
@@ -297,7 +313,7 @@ UINT DiffThreadCompare(LPVOID lpParam)
 	myStruct->pItemList->RemoveAll();
 
 	// Send message to UI to update
-	myStruct->nThreadState = THREAD_COMPLETED;
+	myStruct->nThreadState = CDiffThread::THREAD_COMPLETED;
 	// msgID=MSG_UI_UPDATE=1025 (2005-11-29, Perry)
 	PostMessage(hWnd, msgID, NULL, NULL);
 	return 1;
