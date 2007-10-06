@@ -7,24 +7,15 @@
 // $Id$
 
 #include "stdafx.h"
-#include <shlwapi.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "LogFile.h"
 #include "DirScan.h"
 #include "CompareStats.h"
-#include "common/unicoder.h"
 #include "DiffContext.h"
-#include "DiffWrapper.h"
 #include "FolderCmp.h"
 #include "FileFilterHelper.h"
-#include "paths.h"
-#include "FileTransform.h"
 #include "codepage.h"
-#include "DiffItemList.h"
-#include "PathContext.h"
 #include "IAbortable.h"
 #include "FolderCmp.h"
 #include "DirItem.h"
@@ -43,8 +34,6 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 static void AddToList(const CString & sLeftDir, const CString & sRightDir, const DirItem * lent, const DirItem * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
-
-static __int64 FiletimeToTimeT(FILETIME time);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
 typedef int (CString::*cmpmth)(LPCTSTR sz) const;
