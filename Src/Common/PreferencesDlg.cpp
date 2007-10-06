@@ -207,7 +207,7 @@ void CPreferencesDlg::OnSelchangedPages(NMHDR* pNMHDR, LRESULT* pResult)
 
 		// update caption
 		CString sCaption;
-		AfxFormatString1(sCaption, IDS_OPTIONS_TITLE, GetItemPath(htiSel));
+		LangFormatString1(sCaption, IDS_OPTIONS_TITLE, GetItemPath(htiSel));
 		SetWindowText(sCaption);
 	}
 

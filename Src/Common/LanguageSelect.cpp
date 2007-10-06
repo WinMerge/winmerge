@@ -861,6 +861,40 @@ String CLanguageSelect::LoadString(UINT id) const
 	return s;
 }
 
+std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
+{
+	std::wstring s;
+	if (HINSTANCE hInst = AfxFindResourceHandle(lpDialogTemplateID, RT_DIALOG))
+	{
+		if (HRSRC hRsrc = FindResource(hInst, lpDialogTemplateID, RT_DIALOG))
+		{
+			if (LPCWSTR text = (LPCWSTR)LoadResource(hInst, hRsrc))
+			{
+				// Skip DLGTEMPLATE or DLGTEMPLATEEX
+				text += text[1] == 0xFFFF ? 13 : 9;
+				// Skip menu name string or ordinal
+				if (*text == (const WCHAR)-1)
+					text += 2; // WCHARs
+				else
+					while (*text++);
+				// Skip class name string or ordinal
+				if (*text == (const WCHAR)-1)
+					text += 2; // WCHARs
+				else
+					while (*text++);
+				// Caption string is ahead
+#if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
+				int line = 0;
+				swscanf(text, L"Merge.rc:%d", &line);
+				if (!TranslateString(line, s))
+#endif
+					s = text;
+			}
+		}
+	}
+	return s;
+}
+
 void CLanguageSelect::ReloadMenu() 
 {
 	if (m_idDocMenu)

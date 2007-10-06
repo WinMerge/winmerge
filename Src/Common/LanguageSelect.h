@@ -52,6 +52,7 @@ public:
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
+	std::wstring LoadDialogCaption(LPCTSTR lpDialogTemplateID) const;
 
 // Implementation data
 private:
