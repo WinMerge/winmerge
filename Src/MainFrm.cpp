@@ -2518,7 +2518,8 @@ void CMainFrame::OnFileNew()
  */
 void CMainFrame::OnToolsFilters()
 {
-	CPropertySheet sht(IDS_FILTER_TITLE);
+	String title = theApp.LoadString(IDS_FILTER_TITLE);
+	CPropertySheet sht(title.c_str());
 	CPropLineFilter filter;
 	FileFiltersDlg fileFiltersDlg;
 	FILEFILTER_INFOLIST fileFilters;
@@ -2541,10 +2542,9 @@ void CMainFrame::OnToolsFilters()
 
 	if (sht.DoModal() == IDOK)
 	{
-		CString strNone;
-		VERIFY(strNone.LoadString(IDS_USERCHOICE_NONE));
+		String strNone = theApp.LoadString(IDS_USERCHOICE_NONE);
 		CString path = fileFiltersDlg.GetSelected();
-		if (path.Find(strNone) > -1)
+		if (path.Find(strNone.c_str()) > -1)
 		{
 			// Don't overwrite mask we already have
 			if (!theApp.m_globalFileFilter.IsUsingMask())

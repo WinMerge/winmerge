@@ -14,6 +14,7 @@
 
 #include "stdafx.h"
 #include "WaitStatusCursor.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -254,3 +255,19 @@ BOOL CustomStatusCursor::TryEnterStackCriticalSection()
 	return TRUE;
 }
 */
+
+WaitStatusCursor::WaitStatusCursor(LPCTSTR fmt, ...)
+{
+	va_list argp;
+	va_start(argp, fmt);
+	Create(NULL, IDC_WAIT, fmt, argp);
+	va_end(argp);
+}
+
+WaitStatusCursor::WaitStatusCursor(UINT fmtid, ...)
+{
+	va_list argp;
+	va_start(argp, fmtid);
+	Create(NULL, IDC_WAIT, theApp.LoadString(fmtid).c_str(), argp);
+	va_end(argp);
+}

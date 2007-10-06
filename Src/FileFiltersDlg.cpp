@@ -56,6 +56,9 @@ FileFiltersDlg::FileFiltersDlg() : CPropertyPage(FileFiltersDlg::IDD)
 	//{{AFX_DATA_INIT(FileFiltersDlg)
 		// NOTE: the ClassWizard will add member initialization here
 	//}}AFX_DATA_INIT
+	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_psp.pszTitle = m_strCaption;
+	m_psp.dwFlags |= PSP_USETITLE;
 }
 
 void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)

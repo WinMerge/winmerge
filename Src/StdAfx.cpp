@@ -82,11 +82,37 @@ int xisspace (wint_t c)
  * @param [in] id Resource string ID.
  * @return Resource string as CString.
  */
-CString LoadResString(int id)
+CString LoadResString(UINT id)
 {
 	CString s;
 	VERIFY(s.LoadString(id));
 	return s;
+}
+
+/**
+ * @brief Lang aware version of AfxFormatStrings()
+ */
+void NTAPI LangFormatStrings(CString &rString, UINT id, LPCTSTR const *rglpsz, int nString)
+{
+	String fmt = theApp.LoadString(id);
+	AfxFormatStrings(rString, fmt.c_str(), rglpsz, nString);
+}
+
+/**
+ * @brief Lang aware version of AfxFormatString1()
+ */
+void NTAPI LangFormatString1(CString &rString, UINT id, LPCTSTR lpsz1)
+{
+	LangFormatStrings(rString, id, &lpsz1, 1);
+}
+
+/**
+ * @brief Lang aware version of AfxFormatString2()
+ */
+void NTAPI LangFormatString2(CString &rString, UINT id, LPCTSTR lpsz1, LPCTSTR lpsz2)
+{
+	LPCTSTR rglpsz[2] = { lpsz1, lpsz2 };
+	LangFormatStrings(rString, id, rglpsz, 2);
 }
 
 /**
@@ -97,10 +123,10 @@ CString LoadResString(int id)
  * @param [in] nIDHelp Help string ID.
  * @return User choice from the messagebox (see MessageBox()).
  */
-int ResMsgBox1(int msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
+int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
 {
 	CString msg;
-	AfxFormatString1(msg, msgid, arg);
+	LangFormatString1(msg, msgid, arg);
 	if (!nIDHelp)
 		nIDHelp = msgid;
 	return AfxMessageBox(msg, nType, nIDHelp);

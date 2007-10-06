@@ -72,6 +72,7 @@ END_MESSAGE_MAP()
  */
 BOOL ConfirmFolderCopyDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	GetDlgItem(IDNO)->SetFocus();

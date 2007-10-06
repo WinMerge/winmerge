@@ -91,13 +91,8 @@ class WaitStatusCursor : public CustomStatusCursor
 {
 // public interface
 public:
-	WaitStatusCursor(LPCTSTR fmt, ...) : CustomStatusCursor()
-	{
-		va_list argp;
-		va_start(argp, fmt);
-		Create(NULL, IDC_WAIT, fmt, argp);
-		va_end(argp);
-	}
+	WaitStatusCursor(LPCTSTR fmt, ...);
+	WaitStatusCursor(UINT fmtid, ...);
 };
 
 

@@ -76,36 +76,29 @@ static BOOL ConfirmCopy(int origin, int destination, int count,
 {
 	ConfirmFolderCopyDlg dlg;
 	CString strQuestion;
-	CString sOrig;
-	CString sDest;
+	String sOrig;
+	String sDest;
 
-	if (count == 1)
-	{
-		strQuestion = LoadResString(IDS_CONFIRM_SINGLE_COPY);
-	}
-	else
-	{
-		strQuestion = LoadResString(IDS_CONFIRM_MULTIPLE_COPY);
-		strQuestion.Format(strQuestion, count);
-	}
+	UINT id = count == 1 ? IDS_CONFIRM_SINGLE_COPY : IDS_CONFIRM_MULTIPLE_COPY;
+	strQuestion.Format(theApp.LoadString(id).c_str(), count);
 	
 	if (origin == FileActionItem::UI_LEFT)
-		sOrig = LoadResString(IDS_FROM_LEFT);
+		sOrig = theApp.LoadString(IDS_FROM_LEFT);
 	else
-		sOrig = LoadResString(IDS_FROM_RIGHT);
+		sOrig = theApp.LoadString(IDS_FROM_RIGHT);
 
 	if (destIsSide)
 	{
 		// Copy to left / right
 		if (destination == FileActionItem::UI_LEFT)
-			sDest = LoadResString(IDS_TO_LEFT);
+			sDest = theApp.LoadString(IDS_TO_LEFT);
 		else
-			sDest = LoadResString(IDS_TO_RIGHT);
+			sDest = theApp.LoadString(IDS_TO_RIGHT);
 	}
 	else
 	{
 		// Copy left/right to..
-		sDest = LoadResString(IDS_TO);
+		sDest = theApp.LoadString(IDS_TO);
 	}
 
 	CString strSrc(src);
@@ -122,8 +115,8 @@ static BOOL ConfirmCopy(int origin, int destination, int count,
 	}
 
 	dlg.m_question = strQuestion;
-	dlg.m_fromText = sOrig;
-	dlg.m_toText = sDest;
+	dlg.m_fromText = sOrig.c_str();
+	dlg.m_toText = sDest.c_str();
 	dlg.m_fromPath = strSrc;
 	dlg.m_toPath = strDest;
 
@@ -197,7 +190,7 @@ void CDirView::WarnContentsChanged(const CString & failedPath)
 /// Prompt & copy item from right to left, if legal
 void CDirView::DoCopyRightToLeft()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -243,7 +236,7 @@ void CDirView::DoCopyRightToLeft()
 /// Prompt & copy item from left to right, if legal
 void CDirView::DoCopyLeftToRight()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -289,7 +282,7 @@ void CDirView::DoCopyLeftToRight()
 /// Prompt & delete left, if legal
 void CDirView::DoDelLeft()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -331,7 +324,7 @@ void CDirView::DoDelLeft()
 /// Prompt & delete right, if legal
 void CDirView::DoDelRight()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -377,7 +370,7 @@ void CDirView::DoDelRight()
  */
 void CDirView::DoDelBoth()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -424,7 +417,7 @@ void CDirView::DoDelBoth()
  */
 void CDirView::DoDelAll()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_DELETEFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_DELETEFILES);
 
 	// First we build a list of desired actions
 	FileActionScript actionScript;
@@ -499,7 +492,7 @@ void CDirView::DoCopyLeftTo()
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_LEFT))
 		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_COPY;
@@ -566,7 +559,7 @@ void CDirView::DoCopyRightTo()
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_RIGHT))
 		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYFILES);
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_COPY;
@@ -633,7 +626,7 @@ void CDirView::DoMoveLeftTo()
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_LEFT))
 		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_MOVEFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_MOVEFILES);
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_MOVE;
@@ -697,7 +690,7 @@ void CDirView::DoMoveRightTo()
 	if (!SelectFolder(destPath, startPath, IDS_SELECT_DEST_RIGHT))
 		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_MOVEFILES));
+	WaitStatusCursor waitstatus(IDS_STATUS_MOVEFILES);
 
 	FileActionScript actionScript;
 	const FileAction::ACT_TYPE actType = FileAction::ACT_MOVE;

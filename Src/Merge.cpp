@@ -769,11 +769,19 @@ void CMergeApp::TranslateDialog(HWND h) const
 }
 
 /**
- * @brief Load string an translate to current WinMerge GUI language
+ * @brief Load string and translate to current WinMerge GUI language
  */
 String CMergeApp::LoadString(UINT id) const
 {
 	return m_pLangDlg->LoadString(id);
+}
+
+/**
+ * @brief Load dialog caption and translate to current WinMerge GUI language
+ */
+std::wstring CMergeApp::LoadDialogCaption(LPCTSTR lpDialogTemplateID) const
+{
+	return m_pLangDlg->LoadDialogCaption(lpDialogTemplateID);
 }
 
 /**

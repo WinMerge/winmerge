@@ -35,6 +35,9 @@ CPropLineFilter::CPropLineFilter()
 	//{{AFX_DATA_INIT(CPropLineFilter)
 	m_bIgnoreRegExp = FALSE;
 	//}}AFX_DATA_INIT
+	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_psp.pszTitle = m_strCaption;
+	m_psp.dwFlags |= PSP_USETITLE;
 }
 
 CPropLineFilter::~CPropLineFilter()
