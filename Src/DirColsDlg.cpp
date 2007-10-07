@@ -79,6 +79,7 @@ void CDirColsDlg::InitList()
  */
 BOOL CDirColsDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	InitList();
 	LoadLists();

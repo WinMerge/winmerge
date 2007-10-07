@@ -38,22 +38,9 @@ public:
 // Dialog Data
 	//{{AFX_DATA(CompareStatisticsDlg)
 	enum { IDD = IDD_COMPARE_STATISTICS };
-	CString m_sIdenticalFolders;
-	CString m_sIdenticalFiles;
-	CString m_sIdenticalBinaries;
-	CString m_sDifferentFiles;
-	CString m_sDifferentBinaries;
-	CString m_sLUniqueFolders;
-	CString m_sLUniqueFiles;
-	CString m_sRUniqueFolders;
-	CString m_sRUniqueFiles;
-	CString m_sTotalFolders;
-	CString m_sTotalFiles;
 	//}}AFX_DATA
 
 protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-
 	// Generated message map functions
 	//{{AFX_MSG(CompareStatisticsDlg)
 	afx_msg BOOL OnInitDialog();
@@ -62,7 +49,7 @@ protected:
 
 // Implementation data
 private:
-	CompareStats * m_pCompareStats;
+	const CompareStats * m_pCompareStats;
 };
 
 #endif // _COMPARESTATISTICSDLG_H_

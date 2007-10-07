@@ -25,6 +25,7 @@
 #include "stdafx.h"
 #include "CompareStatisticsDlg.h"
 #include "CompareStats.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -49,25 +50,6 @@ CompareStatisticsDlg::CompareStatisticsDlg(CWnd* pParent /*=NULL*/)
 	//}}AFX_DATA_INIT
 }
 
-void CompareStatisticsDlg::DoDataExchange(CDataExchange* pDX)
-{
-	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CompareStatisticsDlg)
-	DDX_Text(pDX, IDC_STAT_IDENTICFOLDER, m_sIdenticalFolders);
-	DDX_Text(pDX, IDC_STAT_IDENTICFILE, m_sIdenticalFiles);
-	DDX_Text(pDX, IDC_STAT_IDENTICBINARY, m_sIdenticalBinaries);
-	DDX_Text(pDX, IDC_STAT_DIFFFILE, m_sDifferentFiles);
-	DDX_Text(pDX, IDC_STAT_DIFFBINARY, m_sDifferentBinaries);
-	DDX_Text(pDX, IDC_STAT_LUNIQFOLDER, m_sLUniqueFolders);
-	DDX_Text(pDX, IDC_STAT_LUNIQFILE, m_sLUniqueFiles);
-	DDX_Text(pDX, IDC_STAT_RUNIQFOLDER, m_sRUniqueFolders);
-	DDX_Text(pDX, IDC_STAT_RUNIQFILE, m_sRUniqueFiles);
-	DDX_Text(pDX, IDC_STAT_TOTALFOLDER, m_sTotalFolders);
-	DDX_Text(pDX, IDC_STAT_TOTALFILE, m_sTotalFiles);
-	//}}AFX_DATA_MAP
-}
-
-
 BEGIN_MESSAGE_MAP(CompareStatisticsDlg, CDialog)
 	//{{AFX_MSG_MAP(SaveClosingDlg)
 	//}}AFX_MSG_MAP
@@ -79,6 +61,7 @@ END_MESSAGE_MAP()
 
 BOOL CompareStatisticsDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	int totalFiles = 0;
 	int totalFolders = 0;
@@ -86,39 +69,39 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 	// Identicals
 	int count = m_pCompareStats->GetCount(CompareStats::RESULT_DIR);
 	totalFolders += count;
-	m_sIdenticalFolders.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_IDENTICFOLDER, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_SAME);
 	totalFiles += count;
-	m_sIdenticalFiles.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_IDENTICFILE, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_BINSAME);
 	totalFiles += count;
-	m_sIdenticalBinaries.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_IDENTICBINARY, count);
 
 	// Different
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_DIFF);
 	totalFiles += count;
-	m_sDifferentFiles.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_DIFFFILE, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_BINDIFF);
 	totalFiles += count;
-	m_sDifferentBinaries.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_DIFFBINARY, count);
 
 	// Unique
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_LDIRUNIQUE);
 	totalFolders += count;
-	m_sLUniqueFolders.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_LUNIQFOLDER, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_LUNIQUE);
 	totalFiles += count;
-	m_sLUniqueFiles.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_LUNIQFILE, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_RDIRUNIQUE);
 	totalFolders += count;
-	m_sRUniqueFolders.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_RUNIQFOLDER, count);
 	count = m_pCompareStats->GetCount(CompareStats::RESULT_RUNIQUE);
 	totalFiles += count;
-	m_sRUniqueFiles.Format(_T("%d"), count);
+	SetDlgItemInt(IDC_STAT_RUNIQFILE, count);
 
 	// Total
-	m_sTotalFolders.Format(_T("%d"), totalFolders);
-	m_sTotalFiles.Format(_T("%d"), totalFiles);
+	SetDlgItemInt(IDC_STAT_TOTALFOLDER, totalFolders);
+	SetDlgItemInt(IDC_STAT_TOTALFILE, totalFiles);
 
 	// Load small folder icons
 	CStatic * pBitmapCtrl = (CStatic *) GetDlgItem(IDC_STAT_ILUNIQFOLDER);
@@ -176,13 +159,11 @@ BOOL CompareStatisticsDlg::OnInitDialog()
 		MAKEINTRESOURCE(IDI_SIGMA), IMAGE_ICON, IconCX, IconCY, LR_SHARED);
 	pBitmapCtrl->SetIcon(hIcon);
 
-	UpdateData(FALSE);
-
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
 void CompareStatisticsDlg::SetCompareStats(const CompareStats * pStats)
 {
-	m_pCompareStats = const_cast<CompareStats*>(pStats);
+	m_pCompareStats = pStats;
 }

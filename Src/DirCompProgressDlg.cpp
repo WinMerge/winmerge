@@ -84,6 +84,7 @@ END_MESSAGE_MAP()
  */
 BOOL DirCompProgressDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	GetMainFrame()->CenterToMainFrame(this);

@@ -3251,12 +3251,11 @@ static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource
  */
 void CMainFrame::OnDebugResetOptions()
 {
-	CString msg(LoadResString(IDS_RESET_OPTIONS_WARNING));
-	int res = AfxMessageBox(msg, MB_YESNO | MB_DEFBUTTON2 | MB_ICONWARNING);
+	String msg = theApp.LoadString(IDS_RESET_OPTIONS_WARNING);
+	int res = AfxMessageBox(msg.c_str(), MB_YESNO | MB_DEFBUTTON2 | MB_ICONWARNING);
 	if (res == IDYES)
 	{
-		CMergeApp *app = dynamic_cast<CMergeApp *>(AfxGetApp());
-		app->ResetOptions();
+		theApp.ResetOptions();
 	}
 }
 

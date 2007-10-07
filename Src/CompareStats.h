@@ -61,7 +61,7 @@ public:
 	~CompareStats();
 	void AddItem(int code);
 	void IncreaseTotalItems(int count = 1);
-	int GetCount(CompareStats::RESULT result);
+	int GetCount(CompareStats::RESULT result) const;
 	int GetTotalItems() const;
 	int GetComparedItems() const { return m_nComparedItems; }
 	void Reset();

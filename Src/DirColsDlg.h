@@ -47,9 +47,9 @@ public:
 // Construction
 public:
 	CDirColsDlg(CWnd* pParent = NULL);   // standard constructor
-	void AddColumn(CString name, CString desc, int log, int phy=-1)
+	void AddColumn(LPCTSTR name, LPCTSTR desc, int log, int phy=-1)
 		{ column c(name, desc, log, phy); m_cols.Add(c); }
-	void AddDefColumn(CString name, int log, int phy=-1)
+	void AddDefColumn(LPCTSTR name, int log, int phy=-1)
 		{ column c(name, _T(""), log, phy); m_defCols.Add(c); }
 	const ColumnArray & GetColumns() const { return m_cols; }
 

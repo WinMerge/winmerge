@@ -33,6 +33,7 @@
 // CDirView view
 #include <afxcview.h>
 #include "SortHeaderCtrl.h"
+#include "UnicodeString.h"
 
 class FileActionScript;
 
@@ -197,8 +198,8 @@ private:
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
-	CString GetColDisplayName(int col) const;
-	CString GetColDescription(int col) const;
+	String GetColDisplayName(int col) const;
+	String GetColDescription(int col) const;
 	int GetColLogCount() const;
 	void LoadColumnOrders();
 	void ValidateColumnOrdering();

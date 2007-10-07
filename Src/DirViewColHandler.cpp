@@ -88,11 +88,10 @@ void CDirView::NameColumn(int id, int subitem)
 	int phys = ColLogToPhys(subitem);
 	if (phys>=0)
 	{
-		CString s;
-		VERIFY(s.LoadString(id));
+		String s = theApp.LoadString(id);
 		LV_COLUMN lvc;
 		lvc.mask = LVCF_TEXT;
-		lvc.pszText = (LPTSTR)((LPCTSTR)s);
+		lvc.pszText = const_cast<LPTSTR>(s.c_str());
 		m_pList->SetColumn(m_colorder[subitem], &lvc);
 	}
 }
@@ -367,23 +366,19 @@ void CDirView::ClearColumnOrders()
 /**
  * @brief Return display name of column
  */
-CString CDirView::GetColDisplayName(int col) const
+String CDirView::GetColDisplayName(int col) const
 {
 	const DirColInfo * colinfo = DirViewColItems_GetDirColInfo(col);
-	CString s;
-	s.LoadString(colinfo->idName);
-	return s;
+	return theApp.LoadString(colinfo->idName);
 }
 
 /**
  * @brief Return description of column
  */
-CString CDirView::GetColDescription(int col) const
+String CDirView::GetColDescription(int col) const
 {
 	const DirColInfo * colinfo = DirViewColItems_GetDirColInfo(col);
-	CString s;
-	s.LoadString(colinfo->idDesc);
-	return s;
+	return theApp.LoadString(colinfo->idDesc);
 }
 
 /**
@@ -429,7 +424,7 @@ void CDirView::OnEditColumns()
 	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
 	{
 		int l = ColPhysToLog(col);
-		dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l, col);
+		dlg.AddColumn(GetColDisplayName(l).c_str(), GetColDescription(l).c_str(), l, col);
 	}
 	// Now add all the columns not currently displayed
 	int l=0;
@@ -437,7 +432,7 @@ void CDirView::OnEditColumns()
 	{
 		if (ColLogToPhys(l)==-1)
 		{
-			dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l);
+			dlg.AddColumn(GetColDisplayName(l).c_str(), GetColDescription(l).c_str(), l);
 		}
 	}
 
@@ -445,7 +440,7 @@ void CDirView::OnEditColumns()
 	for (l = 0; l < m_numcols; ++l)
 	{
 		int phy = GetColDefaultOrder(l);
-		dlg.AddDefColumn(GetColDisplayName(l), l, phy);
+		dlg.AddDefColumn(GetColDisplayName(l).c_str(), l, phy);
 	}
 
 	if (dlg.DoModal() != IDOK)

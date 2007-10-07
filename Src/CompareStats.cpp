@@ -62,14 +62,16 @@ void CompareStats::AddItem(int code)
  * @param [in] result Resultcode to return.
  * @return Count of items for given resultcode.
  */
-int CompareStats::GetCount(CompareStats::RESULT result)
+int CompareStats::GetCount(CompareStats::RESULT result) const
 {
-	int currentValue = 0;
+	// What is the point in doing thread synchronization here?
+	return m_counts[result];
+	/*int currentValue = 0;
 	EnterCriticalSection(&m_csProtect);
 	int resInd = static_cast<int>(result);
 	currentValue = m_counts[resInd];
 	LeaveCriticalSection(&m_csProtect);
-	return currentValue;
+	return currentValue;*/
 }
 
 /** 
