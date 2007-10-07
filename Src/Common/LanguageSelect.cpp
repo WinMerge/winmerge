@@ -1032,6 +1032,7 @@ void CLanguageSelect::OnDblclkLanguageList()
 
 BOOL CLanguageSelect::OnInitDialog()
 {
+	TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	
 	CMainFrame::SetMainIcon(this);
