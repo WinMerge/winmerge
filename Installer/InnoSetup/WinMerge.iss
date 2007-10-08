@@ -316,7 +316,7 @@ Name: {app}; Flags: uninsalwaysuninstall
 [Files]
 ;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
-Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; Components: Core; Check: not IsWin64
+Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; OnlyBelowVersion: 0, 4; Components: Core
 
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
@@ -324,7 +324,7 @@ Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Compon
 ; We still need APPHelp.dll!
 
 ; begin VC system files
-Source: ..\Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
+Source: ..\Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
 Source: ..\Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
 Source: ..\Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 Source: ..\Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
