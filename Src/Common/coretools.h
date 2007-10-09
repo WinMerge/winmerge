@@ -94,15 +94,10 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 				  LPSYSTEMTIME pAccess =NULL);
 time_t GetFileModTime(LPCTSTR szPath);
 DWORD GetFileSizeEx(LPCTSTR szFilename);
-CString GetCDPath();
 BOOL HaveAdminAccess();
-BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
-					LPCTSTR szCmdLine, LPCTSTR szWindowCaption);
-
 DWORD FPRINTF(HANDLE hf, LPCTSTR fmt, ... );
 DWORD FPUTS(LPCTSTR s, HANDLE hf);
 HANDLE FOPEN(LPCTSTR path, DWORD mode = GENERIC_READ, DWORD access = OPEN_EXISTING);
-CString ConvertPath2PS(LPCSTR szPath);
 void GetLocalDrives(LPTSTR letters);
 //BOOL GetIP(LPTSTR straddr);
 void replace_char(LPTSTR s, int target, int repl);
@@ -113,7 +108,6 @@ void TestSplitFilename();
 void AddExtension(LPTSTR name, LPCTSTR ext);
 BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s);
 int fcmp(float a,float b);
-void aswap(LPTSTR a,LPTSTR b);
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name);
 long SwapEndian(long val);
 short int SwapEndian(short int val);

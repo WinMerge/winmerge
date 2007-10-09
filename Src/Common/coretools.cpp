@@ -100,52 +100,6 @@ int tcssubptr(LPCTSTR start, LPCTSTR end)
 	return cnt;
 }
 
-BOOL DoModalProcess(CWnd *pWndParent, LPCTSTR szExeFile,
-					LPCTSTR szCmdLine, LPCTSTR szWindowCaption)
-{
-	BOOL result = FALSE;
-	TCHAR temp[MAX_PATH] = {0};
-	if (GetModuleFileName(NULL, temp, MAX_PATH))
-	{
-		String spath;
-		SplitFilename(temp, &spath, 0, 0);
-		CString stemp(spath.c_str());
-		stemp += _T('\\');
-		stemp += szExeFile;
-		if ((int)ShellExecute(pWndParent->GetSafeHwnd(), _T("open"), stemp,
-			szCmdLine, spath.c_str(), SW_SHOWNORMAL) > 32)
-		{
-			result=TRUE;
-			if (szWindowCaption != NULL)
-			{
-				pWndParent->EnableWindow(FALSE);
-
-				CTime start = CTime::GetCurrentTime();
-				CTimeSpan span;
-				BOOL found=FALSE;
-
-				// wait for window to appear
-				while (!found)
-				{
-					span = CTime::GetCurrentTime() - start;
-					if (span.GetTotalSeconds() > 10)
-						return FALSE;
-					if (CWnd::FindWindow(NULL,szWindowCaption))
-						break;
-					Sleep(100);
-				}
-
-				// wait for window to close
-				while (CWnd::FindWindow(NULL,szWindowCaption))
-					Sleep(200);
-				pWndParent->SetForegroundWindow();
-				pWndParent->EnableWindow(TRUE);
-			}
-		}
-	}
-	return result;
-}
-
 
 void GetLocalDrives(LPTSTR letters)
 {
@@ -167,21 +121,6 @@ void GetLocalDrives(LPTSTR letters)
 		_tccpy(pout,_T("\0"));
 	}
 }
-
-CString GetCDPath()
-{
-	TCHAR drives[100];
-	CString s;
-	GetLocalDrives(drives);
-	for (TCHAR *d = drives;  *d != _T('\0'); d = _tcsinc(d))
-	{
-		s.Format(_T("%c:\\"), *d);
-		if (GetDriveType(s) == DRIVE_CDROM)
-			return s;
-	}
-	return CString("");
-}
-
 
 /*
  Commented out - can't use this file by just including
@@ -254,8 +193,7 @@ HANDLE FOPEN(LPCTSTR path, DWORD mode /*= GENERIC_READ*/, DWORD access /*= OPEN_
 	return hf;
 }
 
-void
-replace_char(LPTSTR s, int target, int repl)
+void replace_char(LPTSTR s, int target, int repl)
 {
 	TCHAR *p;
 	for (p=s; *p != _T('\0'); p = _tcsinc(p))
@@ -263,30 +201,7 @@ replace_char(LPTSTR s, int target, int repl)
 			*p = (TCHAR)repl;
 }
 
-
-CString ConvertPath2PS(LPCTSTR szPath)
-{
-	CString result(_T(""));
-	TCHAR path[_MAX_PATH] = {0};
-	_tcscpy(path,szPath);
-
-	replace_char(path, _T('\\'), _T('/'));
-	if (_tcslen(path)>2
-		&& path[1] == _T(':')
-		&& path[2] == _T('/'))
-	{
-
-	result.Format(_T("%%%c%%%s"), _totupper(path[0]), _tcsninc(path, 2));
-	}
-	else
-		result = path;
-
-	return result;
-}
-
-
-BOOL
-FileExtMatches(LPCTSTR filename, LPCTSTR ext)
+BOOL FileExtMatches(LPCTSTR filename, LPCTSTR ext)
 {
   LPCTSTR p;
 
@@ -427,8 +342,7 @@ void TestSplitFilename()
 }
 #endif
 
-void
-AddExtension(LPTSTR name, LPCTSTR ext)
+void AddExtension(LPTSTR name, LPCTSTR ext)
 {
 	TCHAR *p;
 
@@ -441,9 +355,7 @@ AddExtension(LPTSTR name, LPCTSTR ext)
 	}
 }
 
-
-BOOL
-GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
+BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
 {
   DWORD sectorsPerCluster,
 	  bytesPerSector,
@@ -467,8 +379,7 @@ GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
   return TRUE;
 }
 
-int
-fcmp(float a,float b)
+int fcmp(float a,float b)
 /* return -1 if a<b, 0 if a=b, or 1 if a>b */
 {
   long la,lb;
@@ -481,17 +392,6 @@ fcmp(float a,float b)
 
   return (la > lb);
 }
-
-
-void
-aswap(LPTSTR a,LPTSTR b)
-{
- TCHAR t[200];
- _tcscpy(t,a);
- _tcscpy(a,b);
- _tcscpy(b,t);
-}
-
 
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name)
 {
@@ -516,8 +416,7 @@ BOOL FindAnyFile(LPTSTR filespec, LPTSTR name)
 }
 
 
-long
-SwapEndian(long val)
+long SwapEndian(long val)
 {
 #ifndef _WINDOWS
   long t = 0x00000000;
@@ -533,8 +432,7 @@ SwapEndian(long val)
 
 
 
-short int
-SwapEndian(short int val)
+short int SwapEndian(short int val)
 {
 #ifndef _WINDOWS
   short int t = 0x0000;
