@@ -57,15 +57,16 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @brief Collect file- and directory-names to list.
  * 
  * @param [in] paths Root paths of compare
- * @param [in] subdir Current subdirectory under root paths
- * @param [in,out] list List where found items are added
+ * @param [in] leftsubdir Left side subdirectory under root path
+ * @param [in] rightsubdir Right side subdirectory under root path
+ * @param [in,out] pList List where found items are added
  * @param [in] casesensitive Is filename compare casesensitive?
  * @param [in] depth Levels of subdirectories to scan, -1 scans all
  * @param [in] pCtxt Compare context
- * @param [in] piAbortable Interface allowing compare to be aborted
  * @return 1 normally, -1 if compare was aborted
  */
-int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const CString & rightsubdir, DiffItemList *pList,
+int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir,
+		const CString & rightsubdir, DiffItemList *pList,
 		bool casesensitive, int depth, CDiffContext * pCtxt)
 {
 	static const TCHAR backslash[] = _T("\\");
@@ -466,7 +467,10 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 }
 
 /**
- * @brief Send one file or directory result back through the diff context
+ * @brief Send one file or directory result back through the diff context.
+ * @param [in] di Data to store.
+ * @param [in] pCtxt Compare context.
+ * @param [in] pCmpData Folder compare data.
  */
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData)
@@ -504,8 +508,15 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 
 /**
  * @brief Add one compare item to list.
+ * @param [in] sLeftDir Left subdirectory.
+ * @param [in] sRightDir Right subdirectory.
+ * @param [in] lent Left item data to add.
+ * @param [in] rent Right item data to add.
+ * @param [in] pList List to where to add item.
+ * @param [in] pCtxt Compare context.
  */
-static void AddToList(const CString & sLeftDir, const CString & sRightDir, const DirItem * lent, const DirItem * rent,
+static void AddToList(const CString & sLeftDir, const CString & sRightDir,
+	const DirItem * lent, const DirItem * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt)
 {
 	// We must store both paths - we cannot get paths later
