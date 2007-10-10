@@ -29,7 +29,7 @@
               "?").</para>
 
               <para><filename>WinMerge.exe</filename> also can not open files
-              with names outside the current ANSI codepag (e.g., WinMerge.exe
+              with names outside the current ANSI codepage (e.g., WinMerge.exe
               can not open a file with a Hebrew name, if run on an English
               system. WinMergeU.exe can open such files.</para>
             </listitem>
