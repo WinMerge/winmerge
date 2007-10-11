@@ -4,7 +4,7 @@
  *
  * @brief Declaration of CSplitterWndEx class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //
 //////////////////////////////////////////////////////////////////////
@@ -22,15 +22,19 @@ public:
 	virtual ~CSplitterWndEx();
 	void LockBar(BOOL bState=TRUE){m_bBarLocked=bState;};
 	void ResizablePanes(BOOL bState=TRUE){m_bResizePanes=bState;};
+	void AutoResizePanes(BOOL bState=TRUE){m_bAutoResizePanes=bState;};
 
 	int HitTest(CPoint pt) const;
 
 	void EqualizeRows(); 
 	void EqualizeCols(); 
 
+	virtual void RecalcLayout();
+
 private:
 	BOOL m_bBarLocked;
 	BOOL m_bResizePanes;
+	BOOL m_bAutoResizePanes;
 
 protected:
 	afx_msg void OnHScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar);

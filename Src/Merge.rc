@@ -382,6 +382,7 @@ BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
         END
         MENUITEM SEPARATOR
+        MENUITEM "&Lock Panes",                 ID_VIEW_RESIZE_PANES
         MENUITEM "&View Whitespace",            ID_VIEW_WHITESPACE
         MENUITEM "Vie&w Line Differences",      ID_VIEW_LINEDIFFS
         MENUITEM "View Line &Numbers",          ID_VIEW_LINENUMBERS
@@ -1779,6 +1780,7 @@ BEGIN
     ID_VIEW_TOOLBAR         "Show or hide the toolbar\nToggle ToolBar"
     ID_VIEW_STATUS_BAR      "Show or hide the status bar\nToggle StatusBar"
     ID_VIEW_TAB_BAR         "Show or hide the tab bar\nToggle TabBar"
+    ID_VIEW_RESIZE_PANES    "Automatically resize panes\nLock Panes"
 END
 
 // Windows System menu

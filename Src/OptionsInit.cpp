@@ -37,6 +37,7 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_SHOW_STATUSBAR, true);
 	m_pOptions->InitOption(OPT_SHOW_TABBAR, true);
 	m_pOptions->InitOption(OPT_TOOLBAR_SIZE, 0);
+	m_pOptions->InitOption(OPT_RESIZE_PANES, false);
 
 	m_pOptions->InitOption(OPT_SYNTAX_HIGHLIGHT, true);
 	m_pOptions->InitOption(OPT_WORDDIFF_HIGHLIGHT, true);

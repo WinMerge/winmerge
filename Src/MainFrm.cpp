@@ -145,6 +145,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_COMMAND(ID_VIEW_STATUS_BAR, OnViewStatusBar)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_TAB_BAR, OnUpdateViewTabBar)
 	ON_COMMAND(ID_VIEW_TAB_BAR, OnViewTabBar)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_RESIZE_PANES, OnUpdateResizePanes)
+	ON_COMMAND(ID_VIEW_RESIZE_PANES, OnResizePanes)
 	ON_COMMAND(ID_FILE_OPENPROJECT, OnFileOpenproject)
 	ON_MESSAGE(WM_COPYDATA, OnCopyData)
 	ON_MESSAGE(WM_USER, OnUser)
@@ -2717,6 +2719,32 @@ void CMainFrame::OnViewTabBar()
 	GetOptionsMgr()->SaveOption(OPT_SHOW_TABBAR, bShow);
 
 	CMDIFrameWnd::ShowControlBar(&m_wndTabBar, bShow, 0);
+}
+
+/**
+ * @brief Updates "Automatically Resize Panes" menuitem.
+ */
+void CMainFrame::OnUpdateResizePanes(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
+}
+
+
+/**
+ * @brief Enable/disable automatic pane resizing.
+ */
+void CMainFrame::OnResizePanes()
+{
+	bool bResize = !GetOptionsMgr()->GetBool(OPT_RESIZE_PANES);
+	GetOptionsMgr()->SaveOption(OPT_RESIZE_PANES, bResize);
+
+	CChildFrame * pFrame = dynamic_cast<CChildFrame *>(GetActiveFrame());
+	if (pFrame)
+	{
+		pFrame->UpdateAutoPaneResize();
+		if (bResize)
+			pFrame->UpdateSplitter();
+	}
 }
 
 /**

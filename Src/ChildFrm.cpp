@@ -24,7 +24,7 @@
  * @brief Implementation file for CChildFrame
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -36,6 +36,7 @@
 #include "MergeDiffDetailView.h"
 #include "LocationView.h"
 #include "DiffViewBar.h"
+#include "OptionsDef.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -139,6 +140,7 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 		return FALSE;
 	}
 	m_wndSplitter.ResizablePanes(TRUE);
+	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
 
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
@@ -600,6 +602,16 @@ void CChildFrame::SetLastCompareResult(int nResult)
 	}
 
 	theApp.SetLastCompareResult(nResult);
+}
+
+void CChildFrame::UpdateAutoPaneResize()
+{
+	m_wndSplitter.AutoResizePanes(GetOptionsMgr()->GetBool(OPT_RESIZE_PANES));
+}
+
+void CChildFrame::UpdateSplitter()
+{
+	m_wndSplitter.RecalcLayout();
 }
 
 void CChildFrame::OnTimer(UINT_PTR nIDEvent) 

@@ -23,7 +23,7 @@
  * @brief interface of the CChildFrame class
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_CHILDFRM_H__BBCD4F8E_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
@@ -54,6 +54,10 @@ public:
 	void SetSharedMenu(HMENU hMenu) { m_hMenuShared = hMenu; };
 	CMergeDoc * GetMergeDoc() { return m_pMergeDoc; }
 	void SetLastCompareResult(int nResult);
+
+	void UpdateAutoPaneResize();
+	void UpdateSplitter();
+
 
 // Attributes
 protected:

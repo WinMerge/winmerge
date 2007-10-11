@@ -5,6 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.7.5.4
   New folder compare column selection dialog (#1804555)
   Install WinMerge.exe (ANSI version) only for Windows 95/98/ME (#1809140)
+  Better multi-monitor support, with option to lock panes (#1788168)
   Translation updates:
   - Italian (#1805044)
 

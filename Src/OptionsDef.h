@@ -22,6 +22,7 @@ const TCHAR OPT_SHOW_TOOLBAR[] = _T("Settings/ShowToolbar");
 const TCHAR OPT_SHOW_STATUSBAR[] = _T("Settings/ShowStatusbar");
 const TCHAR OPT_SHOW_TABBAR[] = _T("Settings/ShowTabbar");
 const TCHAR OPT_TOOLBAR_SIZE[] = _T("Settings/ToolbarSize");
+const TCHAR OPT_RESIZE_PANES[] = _T("Settings/AutoResizePanes");
 
 const TCHAR OPT_SYNTAX_HIGHLIGHT[] = _T("Settings/HiliteSyntax");
 const TCHAR OPT_WORDDIFF_HIGHLIGHT[] = _T("Settings/HiliteWordDiff");

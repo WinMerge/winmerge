@@ -281,6 +281,8 @@ protected:
 	afx_msg void OnViewToolbar();
 	afx_msg void OnUpdateViewTabBar(CCmdUI* pCmdUI);
 	afx_msg void OnViewTabBar();
+	afx_msg void OnUpdateResizePanes(CCmdUI* pCmdUI);
+	afx_msg void OnResizePanes();
 	afx_msg void OnFileOpenproject();
 	afx_msg LRESULT OnCopyData(WPARAM wParam, LPARAM lParam);
 	afx_msg LRESULT OnUser(WPARAM wParam, LPARAM lParam);
