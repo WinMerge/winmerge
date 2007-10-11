@@ -7,7 +7,7 @@ WinMerge 2.7.5.4
   Install WinMerge.exe (ANSI version) only for Windows 95/98/ME (#1809140)
   Better multi-monitor support, with option to lock panes (#1788168)
   Translation updates:
-  - Chinese Traditional (#1810192)
+  - Chinese Traditional (#1810192, #1810541)
   - Italian (#1805044)
 
 WinMerge 2.7.5.3 - 2007-09-27 (r4572)
