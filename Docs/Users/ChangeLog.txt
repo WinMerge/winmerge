@@ -6,6 +6,8 @@ WinMerge 2.7.5.4
   New folder compare column selection dialog (#1804555)
   Install WinMerge.exe (ANSI version) only for Windows 95/98/ME (#1809140)
   Better multi-monitor support, with option to lock panes (#1788168)
+  BugFix: Ignored differences were merged when merging multiple
+    differences (#1811745)
   Translation updates:
   - Chinese Traditional (#1810192, #1810541)
   - Italian (#1805044)

@@ -765,6 +765,8 @@ void CMergeDoc::CopyAllList(int srcPane, int dstPane)
 
 /**
  * @brief Copy range of diffs from one side to side.
+ * This function copies given range of differences from side to another.
+ * Ignored differences are skipped, and not copied.
  * @param [in] srcPane Source side from which diff is copied
  * @param [in] dstPane Destination side
  * @param [in] firstDiff First diff copied (0-based index)
@@ -792,18 +794,21 @@ void CMergeDoc::CopyMultipleList(int srcPane, int dstPane, int firstDiff, int la
 	// because we don't rescan() so it does not change
 
 	SetCurrentDiff(lastDiff);
-	bool bGroupWithPrevious=false;
+	bool bGroupWithPrevious = false;
 	if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
 		return; // sync failure
 
 	// copy from bottom up is more efficient
-	for(int i = lastDiff - 1; i >= firstDiff; --i)
+	for (int i = lastDiff - 1; i >= firstDiff; --i)
 	{
-		SetCurrentDiff(i);
-		// Group merge with previous (merge undo data to one action)
-		bGroupWithPrevious=true;
-		if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
-			return; // sync failure
+		if (m_diffList.IsDiffSignificant(i))
+		{
+			SetCurrentDiff(i);
+			// Group merge with previous (merge undo data to one action)
+			bGroupWithPrevious = true;
+			if (!ListCopy(srcPane, dstPane, -1, bGroupWithPrevious))
+				return; // sync failure
+		}
 	}
 
 	suppressRescan.Clear(); // done suppress Rescan
