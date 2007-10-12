@@ -1,7 +1,7 @@
 ; ID line follows -- this is updated by SVN
 ; $Id$
 ;
-;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis
+;           Programmed by:  Christian Blackburn, Christian List, Kimmo Varis,
 ;                 Purpose:  The is the Inno Setup installation script for distributing our WinmMerge application.
 ; Tools Needed To Compile:  Inno Setup 5.1.7+ (http://www.jrsoftware.org/isdl.php), Inno Setup QuickStart Pack 5.1.7+(http://www.jrsoftware.org/isdl.php)
 ;                           note: the versions of Inno Setup and the QuickStart Pack should be identical to ensure proper function
@@ -20,7 +20,6 @@
 ;
 ; Installer To Do List:
 ; #  We need to unregister, and delete the ShellExtension Dll if the user doesn't want it, during installation
-; #  When Explorer.exe is restarted we should record what windows were present before hand and restore them afterwards.
 
 ; #  Display integration options in gray rather than hiding them if the user doesn't have the application in question installed
 ; #  We need to ask those that have the RCLLocalization.dll in their plugins folder if they actually want it, their answer will need to be stored in the registry
@@ -34,10 +33,7 @@
 ;    once the ShellExtension.dll file has been added or removed.
 ;
 ; Non-Essential Features:
-; #  Make a Floppy Disk /Low Bandwidth Edition of the WinMerge Installer that doesn't include outdated 7-Zip Support (3.11, 3.12) or the Language files
-;     If the user requires any of these we'll download it on the fly.  (maybe that should be the default behavior from the get go?)
 ; #  See about getting a higher resolution copy of the Users's Guide.ico source art from somebody (A 32x32, and or 48x48 would be nice)
-; #  Create a switch for the installer to unzip all of the included binaries as if it were a zip file.
 ; #  Using the registry set the order our icons appear within their group in the start menu.:
 ;      1.  WinMerge
 ;      2.  Read Me
@@ -79,7 +75,7 @@ InfoAfterFile=..\..\Docs\users\ReadMe.txt
 
 OutputBaseFilename=WinMerge-{#AppVersion}-Setup
 
-;This must be admin to install C++ Runtimes
+;This must be admin to install C++ Runtimes and shell extension
 PrivilegesRequired=admin
 
 UninstallDisplayIcon={app}\{code:ExeName}
@@ -153,8 +149,10 @@ Name: custom; Description: {cm:CustomInstallation}; Flags: iscustom
 
 
 [Components]
+; Executable and libraries
 Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; Flags: fixed
 
+; User rmanual
 Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Types: full typical
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
@@ -314,22 +312,22 @@ Name: {app}; Flags: uninsalwaysuninstall
 
 
 [Files]
-;The MinVersion forces Inno Setup to only copy the following file if the user is running a WinNT platform system
+; Select the proper executable for different Windows versions
+; For Windows 05/98/ME ANSI executable is installed (WinMerge.exe)
+; For Windows NT4/2000/XP/2003/Vista the Unicode executable is installed (WinMergeU.exe)
 Source: ..\..\Build\MergeUnicodeRelease\WinMergeU.exe; DestDir: {app}; Flags: promptifolder; MinVersion: 0, 4; Components: Core
 Source: ..\..\Build\MergeRelease\WinMerge.exe; DestDir: {app}; Flags: promptifolder; OnlyBelowVersion: 0, 4; Components: Core
 
 ; List of installed files
 Source: ..\..\Docs\Users\Files.txt; DestDir: {app}; Flags: promptifolder; Components: Core
 
-; We still need APPHelp.dll!
-
-; begin VC system files
+; Microsoft runtime libraries (C-runtime, MFC)
 Source: ..\Runtimes\mfc71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; OnlyBelowVersion: 0, 4; Components: Core
 Source: ..\Runtimes\mfc71u.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; MinVersion: 0, 4; Components: Core
 Source: ..\Runtimes\msvcr71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
 Source: ..\Runtimes\msvcp71.dll; DestDir: {sys}; Flags: restartreplace uninsneveruninstall sharedfile; Components: Core
-; end VC system files
 
+; Shell extension
 Source: ..\..\Build\MergeRelease\ShellExtension.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 4, 0; Check: not IsWin64
 Source: ..\..\Build\MergeUnicodeRelease\ShellExtensionU.dll; DestDir: {app}; Flags: regserver uninsrestartdelete restartreplace promptifolder; MinVersion: 0, 4; Check: not IsWin64
 ; 64-bit version of ShellExtension
@@ -341,6 +339,7 @@ Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Co
 ; PCRE dll
 Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
+; Language files
 Source: ..\..\Build\Languages\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
@@ -390,7 +389,6 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 [Icons]
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
-;WinMerge (ANSI) for WinMerge.exe in NT-windows
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm; Components: docs
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
