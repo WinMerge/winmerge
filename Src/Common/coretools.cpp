@@ -24,6 +24,7 @@
 #endif
 
 #include "UnicodeString.h"
+#include "Merge.h"
 #include "coretools.h"
 
 #ifndef countof
@@ -1107,7 +1108,7 @@ BOOL IsLocalPath(LPCTSTR path)
  * @param [in] hModule Module's handle.
  * @return Module's path.
  */
-CString GetModulePath(HMODULE hModule /* = NULL*/)
+String GetModulePath(HMODULE hModule /* = NULL*/)
 {
 	TCHAR temp[MAX_PATH] = {0};
 	GetModuleFileName(hModule, temp, MAX_PATH);
@@ -1119,12 +1120,12 @@ CString GetModulePath(HMODULE hModule /* = NULL*/)
  * @param [in] fullpath Full path to split.
  * @return Path without filename.
  */
-CString GetPathOnly(LPCTSTR fullpath)
+String GetPathOnly(LPCTSTR fullpath)
 {
 	if (!fullpath || !fullpath[0]) return _T("");
 	String spath;
 	SplitFilename(fullpath, &spath, 0, 0);
-	return spath.c_str();
+	return spath;
 }
 
 /**
@@ -1254,8 +1255,9 @@ void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 /**
  * @brief Return time displayed appropriately, as string
  */
-CString TimeString(const __int64 * tim)
+String TimeString(const __int64 * tim)
 {
+	USES_CONVERSION;
 	if (!tim) return _T("---");
 	// _tcsftime does not respect user date customizations from
 	// Regional Options/Configuration Regional; COleDateTime::Format does so.
@@ -1266,5 +1268,14 @@ CString TimeString(const __int64 * tim)
 		// MSVC7 (VC.NET)
 	COleDateTime odt = *tim;
 #endif
-	return odt.Format();
+	// If invalid, return DateTime resource string
+	if (odt.GetStatus() == COleDateTime::null)
+		return String();
+	if (odt.GetStatus() == COleDateTime::invalid)
+		return theApp.LoadString(AFX_IDS_INVALID_DATETIME);
+	COleVariant var;
+	// Don't need to trap error. Should not fail due to type mismatch
+	AfxCheckError(VarBstrFromDate(odt.m_dt, LANG_USER_DEFAULT, 0, &V_BSTR(&var)));
+	var.vt = VT_BSTR;
+	return OLE2CT(V_BSTR(&var));
 }

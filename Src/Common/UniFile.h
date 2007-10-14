@@ -32,13 +32,15 @@ public:
 		UniError() { ClearError(); }
 	};
 
+	virtual ~UniFile() { }
+
 	virtual bool OpenReadOnly(LPCTSTR filename) = 0;
 
 	virtual void Close() = 0;
 
 	virtual bool IsOpen() const = 0;
 
-	virtual CString GetFullyQualifiedPath() const = 0;
+	virtual String GetFullyQualifiedPath() const = 0;
 
 	virtual const UniError & GetLastUniError() const = 0;
 
@@ -85,7 +87,7 @@ public:
 	UniLocalFile();
 	void Clear();
 
-	virtual CString GetFullyQualifiedPath() const { return m_filepath; }
+	virtual String GetFullyQualifiedPath() const { return m_filepath; }
 
 	virtual const UniError & GetLastUniError() const { return m_lastError; }
 
@@ -107,8 +109,8 @@ protected:
 protected:
 	int m_statusFetched; // 0 not fetched, -1 error, +1 success
 	__int64 m_filesize;
-	CString m_filepath;
-	CString m_filename;
+	String m_filepath;
+	String m_filename;
 	int m_lineno; // current 0-based line of m_current
 	UniError m_lastError;
 	bool m_readbom; // whether have tested for BOM
@@ -123,6 +125,7 @@ protected:
  */
 class UniMemFile : public UniLocalFile
 {
+	friend class UniMarkdownFile;
 public:
 	UniMemFile();
 	virtual ~UniMemFile() { Close(); }

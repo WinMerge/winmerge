@@ -131,11 +131,11 @@ CMessageBoxDialog::CMessageBoxDialog ( CWnd* pParent, UINT nMessageID,
 	else
 	{
 		// Try to load the title from the resources.
-		VERIFY(m_strTitle.LoadString(nTitleID));
+		m_strTitle = LoadResString(nTitleID);
 	}
 
 	// Save the information about the message box.
-	VERIFY(m_strMessage.LoadString(nMessageID));
+	m_strMessage = LoadResString(nMessageID);
 	m_nStyle			= nStyle;
 	m_nHelp				= nHelp;
 
@@ -196,9 +196,9 @@ inline UINT CMessageBoxDialog::GetStyle ( )
 /*
  *	Method for setting the message to be displayed in the message box.
  */
-inline void CMessageBoxDialog::SetMessage ( CString strMessage )
+inline void CMessageBoxDialog::SetMessage ( LPCTSTR strMessage )
 {
-	ASSERT(!strMessage.IsEmpty());
+	ASSERT(*strMessage != '\0');
 
 	// Save the message text.
 	m_strMessage = strMessage;
@@ -209,22 +209,15 @@ inline void CMessageBoxDialog::SetMessage ( CString strMessage )
  */
 inline void CMessageBoxDialog::SetMessage ( UINT nMessageID )
 {
-	// Create a string for storing the message.
-	CString strMessage = _T("");
-
 	// Load the message from the resources.
-	VERIFY(strMessage.LoadString(nMessageID));
-
-	ASSERT(!strMessage.IsEmpty());
-
-	// Save the message text.
-	m_strMessage = strMessage;
+	m_strMessage = LoadResString(nMessageID);
+	ASSERT(!m_strMessage.empty());
 }
 
 /*
  *	Method for retrieving the message to be displayed in the message box.
  */
-inline CString CMessageBoxDialog::GetMessage ( )
+inline const String &CMessageBoxDialog::GetMessage ( )
 {
 	// Return the message text.
 	return m_strMessage;
@@ -233,10 +226,10 @@ inline CString CMessageBoxDialog::GetMessage ( )
 /*
  *	Method for setting the title to be displayed in the message box.
  */
-inline void CMessageBoxDialog::SetTitle ( CString strTitle )
+inline void CMessageBoxDialog::SetTitle ( LPCTSTR strTitle )
 {
 	// Check whether a title was given.
-	if ( strTitle.IsEmpty() )
+	if ( *strTitle == '\0' )
 	{
 		// Use the application name as the title.
 		strTitle = AfxGetAppName();
@@ -251,31 +244,24 @@ inline void CMessageBoxDialog::SetTitle ( CString strTitle )
  */
 inline void CMessageBoxDialog::SetTitle ( UINT nTitleID )
 {
-	// Create a string for storing the title.
-	CString strTitle = _T("");
-
 	// Check whether an ID was given.
 	if ( nTitleID == 0 )
 	{
 		// Use the application name as the title.
-		strTitle = AfxGetAppName();
+		m_strTitle = AfxGetAppName();
 	}
 	else
 	{
 		// Try to load the string from the resources.
-		VERIFY(strTitle.LoadString(nTitleID));
-
-		ASSERT(!strTitle.IsEmpty());
+		m_strTitle = LoadResString(nTitleID);
+		ASSERT(!m_strTitle.empty());
 	}
-
-	// Save the title.
-	m_strTitle = strTitle;
 }
 
 /*
  *	Method for retrieving the title to be displayed in the message box.
  */
-inline CString CMessageBoxDialog::GetTitle ( )
+inline const String &CMessageBoxDialog::GetTitle ( )
 {
 	// Return the title of the message box.
 	return m_strTitle;
@@ -484,7 +470,7 @@ BOOL CMessageBoxDialog::OnInitDialog ( )
 	}
 
 	// Set the title of the dialog.
-	SetWindowText(m_strTitle);
+	SetWindowText(m_strTitle.c_str());
 
 	// Set the help ID of the dialog.
 	SetHelpID(m_nHelp);
@@ -757,35 +743,18 @@ void CMessageBoxDialog::OnTimer ( UINT_PTR nIDEvent )
 			// Check whether this button is the default button.
 			if ( m_aButtons.GetAt(i).nID == m_nDefaultButton )
 			{
-				// Create two strings for the button text.
-				CString strButtonText	= _T("");
-				CString strFullText		= _T("");
-
 				// Try to load the text for the button.
-				VERIFY(strButtonText.LoadString(m_aButtons.GetAt(i).nTitle));
-				
-				// Use the button text as the full text.
-				strFullText = strButtonText;
-
+				String strButtonText = LoadResString(m_aButtons.GetAt(i).nTitle);
 				// Check whether the timeout is finished.
 				if ( m_nTimeoutSeconds > 0 )
 				{
 					// Add the remaining seconds to the text of the button.
-					strFullText.Format(_T("%s = %d"), strButtonText, 
-						m_nTimeoutSeconds);
+					TCHAR szTimeoutSeconds[40];
+					wsprintf(szTimeoutSeconds, _T(" = %d"), m_nTimeoutSeconds);
+					strButtonText += szTimeoutSeconds;
 				}
-
-				// Try to retrieve a handle for the button.
-				CWnd* pButtonWnd = GetDlgItem(m_aButtons.GetAt(i).nID);
-
-				ASSERT(pButtonWnd);
-
-				// Check whether the handle was retrieved successfully.
-				if ( pButtonWnd != NULL )
-				{
-					// Set the text of the button.
-					pButtonWnd->SetWindowText(strFullText);
-				}
+				// Set the text of the button.
+				SetDlgItemText(m_aButtons.GetAt(i).nID, strButtonText.c_str());
 			}
 		}
 	}
@@ -864,10 +833,10 @@ CString CMessageBoxDialog::GenerateRegistryKey ( )
 		int nChecksum = 0;
 
 		// Run through the message string.
-		for ( int i = 0; i < m_strMessage.GetLength(); i++ )
+		for ( int i = 0; i < m_strMessage.length(); i++ )
 		{
 			// Get the char at the given position and add it to the checksum.
-			nChecksum += ((int)m_strMessage.GetAt(i)) * i;
+			nChecksum += (int)m_strMessage[i] * i;
 		}
 
 		// Convert the checksum to a string.
@@ -1245,7 +1214,7 @@ void CMessageBoxDialog::CreateIconControl ( )
  */
 void CMessageBoxDialog::CreateMessageControl ( )
 {
-	ASSERT(!m_strMessage.IsEmpty());
+	ASSERT(!m_strMessage.empty());
 
 	// Create a DC for accessing the display driver.
 	CDC dcDisplay;
@@ -1268,7 +1237,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	CRect rcMessage(0, 0, nMaxWidth, nMaxWidth);
 
 	// Draw the text and retrieve the size of the text.
-	dcDisplay.DrawText(m_strMessage, rcMessage, DT_LEFT | DT_NOPREFIX | 
+	dcDisplay.DrawText(m_strMessage.c_str(), rcMessage, DT_LEFT | DT_NOPREFIX | 
 		DT_WORDBREAK | DT_CALCRECT);
 
 	// Save the size required for the message.
@@ -1296,7 +1265,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 	}
 
 	// Create the static control for the message.
-	m_stcMessage.Create(m_strMessage,  dwStyle, rcDummy, this, 
+	m_stcMessage.Create(m_strMessage.c_str(), dwStyle, rcDummy, this,
 		(UINT)IDC_STATIC);
 
 	// Check whether the text will be read from right to left.
@@ -1324,14 +1293,13 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 		( m_nStyle & MB_DONT_ASK_AGAIN ) )
 	{
 		// Create a variable for storing the title of the checkbox.
-		CString	strCheckboxTitle = _T("");
+		String strCheckboxTitle;
 
 		// Check which style is used.
 		if ( m_nStyle & MB_DONT_DISPLAY_AGAIN )
 		{
 			// Load the string for the checkbox.
-			VERIFY(strCheckboxTitle.LoadString(
-				IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN));
+			strCheckboxTitle = LoadResString(IDS_MESSAGEBOX_DONT_DISPLAY_AGAIN);
 		}
 		else
 		{
@@ -1339,12 +1307,11 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 			if ( m_nStyle & MB_DONT_ASK_AGAIN )
 			{
 				// Load the string for the checkbox.
-				VERIFY(strCheckboxTitle.LoadString(
-					IDS_MESSAGEBOX_DONT_ASK_AGAIN));
+				strCheckboxTitle = LoadResString(IDS_MESSAGEBOX_DONT_ASK_AGAIN);
 			}
 		}
 
-		ASSERT(!strCheckboxTitle.IsEmpty());
+		ASSERT(!strCheckboxTitle.empty());
 
 		// Create a handle to access the DC of the dialog.
 		CClientDC dc(this);
@@ -1354,7 +1321,7 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 		CFont* pOldFont = dc.SelectObject(pWndFont);
 
 		// Retrieve the size of the text.
-		m_sCheckbox = dc.GetTextExtent(strCheckboxTitle);
+		m_sCheckbox = dc.GetTextExtent(strCheckboxTitle.c_str(), strCheckboxTitle.length());
 
 		// Add the additional value to the width of the checkbox.
 		m_sCheckbox.cx += XDialogUnitToPixel(CX_CHECKBOX_ADDON);
@@ -1369,7 +1336,7 @@ void CMessageBoxDialog::CreateCheckboxControl ( )
 		CButton btnCheckbox;
 
 		// Create the checkbox.
-		btnCheckbox.Create(strCheckboxTitle, WS_CHILD | WS_VISIBLE | 
+		btnCheckbox.Create(strCheckboxTitle.c_str(), WS_CHILD | WS_VISIBLE | 
 			WS_TABSTOP | BS_AUTOCHECKBOX, rcDummy, this, IDCHECKBOX);
 
 		// Check whether the checkbox should be marked checked at startup.
@@ -1413,26 +1380,18 @@ void CMessageBoxDialog::CreateButtonControls ( )
 	for ( int i = 0; i < m_aButtons.GetSize(); i++ )
 	{
 		// Create a string and load the title of the button.
-		CString strButtonTitle;
-		VERIFY(strButtonTitle.LoadString(m_aButtons.GetAt(i).nTitle));
-
-		// Create a string with the text used to determine the length.
-		CString strLengthTest = strButtonTitle;
-
+		String strButtonText = LoadResString(m_aButtons.GetAt(i).nTitle);
 		// Check whether there's a timeout set.
 		if ( m_nTimeoutSeconds > 0 )
 		{
-			// Create a string with the longest timeout text.
-			CString strTimeoutText = _T("");
-			strTimeoutText.Format(_T("%s = %d"), strLengthTest, 
-				m_nTimeoutSeconds);
-
-			// Use this text to determine the length of the string.
-			strLengthTest = strTimeoutText;
+			// Add the remaining seconds to the text of the button.
+			TCHAR szTimeoutSeconds[40];
+			wsprintf(szTimeoutSeconds, _T(" = %d"), m_nTimeoutSeconds);
+			strButtonText += szTimeoutSeconds;
 		}
 
 		// Retrieve the size of the text.
-		CSize sButtonText = dc.GetTextExtent(strLengthTest);
+		CSize sButtonText = dc.GetTextExtent(strButtonText.c_str(), strButtonText.length());
 
 		// Resize the button.
 		m_sButton.cx = max(m_sButton.cx, sButtonText.cx);
@@ -1442,7 +1401,7 @@ void CMessageBoxDialog::CreateButtonControls ( )
 		CButton btnControl;
 
 		// Create the button.
-		btnControl.Create(strButtonTitle, WS_CHILD | WS_VISIBLE | WS_TABSTOP,
+		btnControl.Create(strButtonText.c_str(), WS_CHILD | WS_VISIBLE | WS_TABSTOP,
 			rcDummy, this, m_aButtons.GetAt(i).nID);
 
 		// Set the font of the control.

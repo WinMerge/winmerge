@@ -1077,10 +1077,10 @@ void CLanguageSelect::LoadAndDisplayLanguages()
 	int i=0;
 	for (i = 0; i < m_wLangIds.GetSize(); i++)
 	{
-		CString Language = GetLanguageString(m_wLangIds[i]);
-		if ( !Language.IsEmpty() )
+		String Language = GetLanguageString(m_wLangIds[i]);
+		if ( !Language.empty() )
 		{
-			int idx = m_ctlLangList.AddString(Language);
+			int idx = m_ctlLangList.AddString(Language.c_str());
 			m_ctlLangList.SetItemData(idx, i);
 		}
 	}
@@ -1105,15 +1105,16 @@ int CLanguageSelect::GetLanguageArrayIndex( WORD LangId )
 	return -1;
 }
 	
-CString CLanguageSelect::GetLanguageString( WORD LangId )
+String CLanguageSelect::GetLanguageString( WORD LangId )
 	{
 	int idx = GetLanguageArrayIndex(LangId);
 	if (idx == -1) return _T("");
 
 	// Localized name
-	CString Language = LoadResString(lang_map[idx].m_IdName);
+	String Language = theApp.LoadString(lang_map[idx].m_IdName);
 	// Append native name
-	Language += _T(" - ") + GetNativeLanguageNameString(idx);
+	Language += _T(" - ");
+	Language += GetNativeLanguageNameString(idx);
 	return Language;
 	}
 

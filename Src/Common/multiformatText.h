@@ -31,8 +31,8 @@ class storageForPlugins
 public:
 	~storageForPlugins()
 	{
-		if (!m_tempFilenameDst)
-			::DeleteFile(m_tempFilenameDst);
+		if (!m_tempFilenameDst.empty()) // "!m_tempFilenameDst" means "never"
+			::DeleteFile(m_tempFilenameDst.c_str());
 		m_bstr.Empty();
 		m_array.Clear();
 	}
@@ -61,7 +61,7 @@ public:
 	/// Initial load
 	void SetDataFileUnicode(LPCTSTR filename, BOOL bOverwrite = FALSE);
 	/// Final save, same format as the original file
-	BOOL SaveAsFile(CString & filename)
+	BOOL SaveAsFile(String & filename)
 	{
 		LPCTSTR newFilename;
 		if (m_bOriginalIsUnicode)
@@ -78,11 +78,11 @@ public:
 	}
 	/// Get the last valid file after an error
 	/// Warning : the format may be different from the original one
-	void GetLastValidFile(CString & filename)
+	void GetLastValidFile(String & filename)
 	{
-		if (!m_tempFilenameDst)
-			::DeleteFile(m_tempFilenameDst);
-		m_tempFilenameDst.Empty();
+		if (!m_tempFilenameDst.empty())
+			::DeleteFile(m_tempFilenameDst.c_str());
+		m_tempFilenameDst.erase();
 		filename = this->m_filename;
 	}
 
@@ -114,7 +114,7 @@ private:
 	// data storage when mode is BUFFER ANSI
 	COleSafeArray m_array;
 	// data storage when mode is FILE
-	CString m_filename;
+	String m_filename;
 	// error during conversion ?
 	BOOL m_bError;
 	// codepage for ANSI mode
@@ -123,16 +123,16 @@ private:
 	// temporary number of transformations, transformed by caller
 	int m_nChanged;
 	// temporary destination filename
-	CString m_tempFilenameDst;
+	String m_tempFilenameDst;
 };
 
 
 // other conversion functions
 
 /// Convert any unicode file to UCS-2LE
-BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileChanged);
+BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged);
 /// Convert UCS-2LE file to UTF-8 (for diffutils)
-BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
+BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM);
 
 
 #endif //__MULTIFORMATTEXT_H__

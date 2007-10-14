@@ -116,18 +116,18 @@ public:
 	UINT GetStyle ( );
 
 	// Methods for setting the message to be displayed in the message box.
-	void SetMessage ( CString strMessage );
+	void SetMessage ( LPCTSTR strMessage );
 	void SetMessage ( UINT nMessageID );
 
 	// Method for retrieving the message to be displayed in the message box.
-	CString GetMessage ( );
+	const String &GetMessage ( );
 
 	// Methods for setting the title to be displayed in the message box.
-	void SetTitle ( CString strTitle );
+	void SetTitle ( LPCTSTR strTitle );
 	void SetTitle ( UINT nTitleID );
 
 	// Method for retrieving the title to be displayed in the message box.
-	CString GetTitle ( );
+	const String &GetTitle ( );
 
 	// Methods for setting the icon to be displayed in the message box.
 	void SetMessageIcon ( HICON hIcon );
@@ -193,8 +193,8 @@ private:
 	//////////////////////////////////////////////////////////////////////////
 	// Private member variables of this dialog.
 
-	CString		m_strMessage;		// Message to be displayed.
-	CString		m_strTitle;			// Title to be used.
+	String		m_strMessage;		// Message to be displayed.
+	String		m_strTitle;			// Title to be used.
 	UINT		m_nStyle;			// Style of the message box.
 	UINT		m_nHelp;			// Help context of the message box.
 

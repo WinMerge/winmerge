@@ -71,9 +71,9 @@ bool UniLocalFile::DoGetFileStatus()
 	m_statusFetched = -1;
 	m_lastError.ClearError();
 
-	m_filepath = paths_GetLongPath(m_filepath);
+	m_filepath = paths_GetLongPath(m_filepath.c_str());
 
-	if (_tstati64(m_filepath, &fstats) == 0)
+	if (_tstati64(m_filepath.c_str(), &fstats) == 0)
 	{
 		m_filesize = fstats.st_size;
 		m_statusFetched = 1;
@@ -200,7 +200,7 @@ bool UniMemFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareM
 	m_filename = filename;
 	m_filepath = m_filename; // TODO: Make canonical ?
 
-	m_handle = CreateFile(m_filename, dwOpenAccess, dwOpenShareMode, NULL, dwOpenCreationDispostion, 0, 0);
+	m_handle = CreateFile(m_filename.c_str(), dwOpenAccess, dwOpenShareMode, NULL, dwOpenCreationDispostion, 0, 0);
 	if (m_handle == INVALID_HANDLE_VALUE)
 	{
 		LastError(_T("CreateFile"), GetLastError());
@@ -700,7 +700,7 @@ bool UniStdioFile::DoOpen(LPCTSTR filename, LPCTSTR mode)
 	// But we don't care since size is set to 0 anyway.
 	GetFileStatus();
 
-	m_fp = _tfopen(m_filepath, mode);
+	m_fp = _tfopen(m_filepath.c_str(), mode);
 	if (!m_fp)
 		return false;
 

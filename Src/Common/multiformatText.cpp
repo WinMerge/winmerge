@@ -32,6 +32,7 @@
 #include "unicoder.h"
 #include "multiformatText.h"
 #include "files.h"
+#include "paths.h"
 #include "UniFile.h"
 #include "codepage.h"
 
@@ -92,21 +93,11 @@ void storageForPlugins::SetDataFileUnknown(LPCTSTR filename, BOOL bOverwrite /*=
 
 LPCTSTR storageForPlugins::GetDestFileName()
 {
-	if (m_tempFilenameDst.IsEmpty())
+	if (m_tempFilenameDst.empty())
 	{
-		TCHAR tempDir[MAX_PATH] = _T("");
-		if (!GetTempPath(countof(tempDir), tempDir))
-			return NULL;
-
-		if (!GetTempFileName(tempDir, _T ("_WM"), 0, m_tempFilenameDst.GetBuffer(MAX_PATH)))
-		{
-			m_tempFilenameDst.ReleaseBuffer();
-			m_tempFilenameDst.Empty();
-			return NULL;
-		}
-		m_tempFilenameDst.ReleaseBuffer();
+		m_tempFilenameDst = paths_GetTempFileName(paths_GetTempPath(), _T ("_WM"));
 	}
-	return m_tempFilenameDst;
+	return m_tempFilenameDst.c_str();
 }
 
 
@@ -118,10 +109,10 @@ void storageForPlugins::ValidateNewFile()
 	if (m_nChangedValid == m_nChanged)
 	{
 		// plugin succeeded, but nothing changed, just delete the new file
-		if (!::DeleteFile(m_tempFilenameDst))
+		if (!::DeleteFile(m_tempFilenameDst.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-				, m_tempFilenameDst, GetSysError(GetLastError())));
+				, m_tempFilenameDst.c_str(), GetSysError(GetLastError())));
 		}
 		// we may reuse the temp filename
 		// tempFilenameDst.Empty();
@@ -131,12 +122,12 @@ void storageForPlugins::ValidateNewFile()
 		m_nChangedValid = m_nChanged;
 		if (m_bOverwriteSourceFile)
 		{
-			if (!::DeleteFile(m_filename))
+			if (!::DeleteFile(m_filename.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s")
-					, m_filename, GetSysError(GetLastError())));
+					, m_filename.c_str(), GetSysError(GetLastError())));
 			}
-			::MoveFile(m_tempFilenameDst, m_filename);
+			::MoveFile(m_tempFilenameDst.c_str(), m_filename.c_str());
 		}
 		else
 		{
@@ -145,7 +136,7 @@ void storageForPlugins::ValidateNewFile()
 			// for next transformation, we may overwrite/delete the source file
 			m_bOverwriteSourceFile = TRUE;
 		}
-		m_tempFilenameDst.Empty();
+		m_tempFilenameDst.erase();
 	}
 }
 void storageForPlugins::ValidateNewBuffer()
@@ -166,8 +157,8 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 	{
 		if (m_bOverwriteSourceFile)
 		{
-			::DeleteFile(m_filename);
-			::MoveFile(m_tempFilenameDst, m_filename);
+			::DeleteFile(m_filename.c_str());
+			::MoveFile(m_tempFilenameDst.c_str(), m_filename.c_str());
 		}
 		else
 		{
@@ -176,7 +167,7 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 			// for next transformation, we may overwrite/delete the source file
 			m_bOverwriteSourceFile = TRUE;
 		}
-		m_tempFilenameDst.Empty();
+		m_tempFilenameDst.erase();
 	}
 
 	// old memory structures are freed
@@ -197,7 +188,7 @@ void storageForPlugins::ValidateInternal(BOOL bNewIsFile, BOOL bNewIsUnicode)
 LPCTSTR storageForPlugins::GetDataFileUnicode()
 {
 	if (m_bCurrentIsFile && m_bCurrentIsUnicode)
-		return m_filename;
+		return m_filename.c_str();
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
@@ -208,7 +199,7 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	if (m_bCurrentIsFile)
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, m_filename, m_filename.GetLength()+1);
+		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -239,7 +230,7 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	// Init filedata struct and open file as memory mapped (out file)
 	GetDestFileName();
 	MAPPEDFILEDATA fileDataOut = {0};
-	_tcscpy(fileDataOut.fileName, m_tempFilenameDst);
+	_tcsncpy(fileDataOut.fileName, m_tempFilenameDst.c_str(), MAX_PATH);
 	fileDataOut.bWritable = TRUE;
 	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
 	fileDataOut.dwSize = textForeseenSize + 2;  
@@ -276,12 +267,12 @@ LPCTSTR storageForPlugins::GetDataFileUnicode()
 	if ((textRealSize == 0) && (textForeseenSize > 0))
 	{
 		// conversion error
-		::DeleteFile(m_tempFilenameDst);
+		::DeleteFile(m_tempFilenameDst.c_str());
 		return NULL;
 	}
 
 	ValidateInternal(TRUE, TRUE);
-	return m_filename;
+	return m_filename.c_str();
 }
 
 
@@ -299,7 +290,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 	if (m_bCurrentIsFile) 
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcscpy(fileDataIn.fileName, m_filename);
+		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -369,7 +360,7 @@ BSTR * storageForPlugins::GetDataBufferUnicode()
 LPCTSTR storageForPlugins::GetDataFileAnsi()
 {
 	if (m_bCurrentIsFile && !m_bCurrentIsUnicode)
-		return m_filename;
+		return m_filename.c_str();
 
 	MAPPEDFILEDATA fileDataIn = {0};
 	UINT nchars;
@@ -380,7 +371,7 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	if (m_bCurrentIsFile)
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcsncpy(fileDataIn.fileName, m_filename, m_filename.GetLength()+1);
+		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -413,7 +404,7 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	// Init filedata struct and open file as memory mapped (out file)
 	GetDestFileName();
 	MAPPEDFILEDATA fileDataOut = {0};
-	_tcscpy(fileDataOut.fileName, m_tempFilenameDst);
+	_tcsncpy(fileDataOut.fileName, m_tempFilenameDst.c_str(), MAX_PATH);
 	fileDataOut.bWritable = TRUE;
 	fileDataOut.dwOpenFlags = CREATE_ALWAYS;
 	fileDataOut.dwSize = textForeseenSize;  
@@ -447,12 +438,12 @@ LPCTSTR storageForPlugins::GetDataFileAnsi()
 	if ((textRealSize == 0) && (textForeseenSize > 0))
 	{
 		// conversion error
-		::DeleteFile(m_tempFilenameDst);
+		::DeleteFile(m_tempFilenameDst.c_str());
 		return NULL;
 	}
 
 	ValidateInternal(TRUE, FALSE);
-	return m_filename;
+	return m_filename.c_str();
 }
 
 
@@ -470,7 +461,7 @@ COleSafeArray * storageForPlugins::GetDataBufferAnsi()
 	if (m_bCurrentIsFile) 
 	{
 		// Init filedata struct and open file as memory mapped (in file)
-		_tcscpy(fileDataIn.fileName, m_filename);
+		_tcsncpy(fileDataIn.fileName, m_filename.c_str(), MAX_PATH);
 		fileDataIn.bWritable = FALSE;
 		fileDataIn.dwOpenFlags = OPEN_EXISTING;
 		BOOL bSuccess = files_openFileMapped(&fileDataIn);
@@ -606,7 +597,7 @@ static UINT TransformUtf8ToUcs2(LPCSTR pcsUtf, UINT nUtf, LPWSTR psUcs, UINT nUc
 }
 
 
-BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileChanged)
+BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.ReadBom())
@@ -621,7 +612,7 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
 	// Init filedataIn struct and open file as memory mapped (input)
 	BOOL bSuccess;
 	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, filepath.GetLength()+1);
+	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
 	fileDataIn.bWritable = FALSE;
 	fileDataIn.dwOpenFlags = OPEN_EXISTING;
 	bSuccess = files_openFileMapped(&fileDataIn);
@@ -703,7 +694,7 @@ BOOL UnicodeFileToOlechar(CString & filepath, LPCTSTR filepathDst, int & nFileCh
  * Returns FALSE if file has Unicode BOM but is not UCS-2LE.
  * Returns TRUE if file is not Unicode, or if converted file successfully.
  */
-BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
+BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BOOL bWriteBOM)
 {
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.ReadBom())
@@ -719,7 +710,7 @@ BOOL OlecharToUTF8(CString & filepath, LPCTSTR filepathDst, int & nFileChanged, 
 	// Init filedataIn struct and open file as memory mapped (input)
 	BOOL bSuccess;
 	MAPPEDFILEDATA fileDataIn = {0};
-	_tcsncpy(fileDataIn.fileName, filepath, filepath.GetLength()+1);
+	_tcsncpy(fileDataIn.fileName, filepath, MAX_PATH);
 	fileDataIn.bWritable = FALSE;
 	fileDataIn.dwOpenFlags = OPEN_EXISTING;
 	bSuccess = files_openFileMapped(&fileDataIn);

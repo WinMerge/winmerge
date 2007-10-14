@@ -112,8 +112,8 @@ BOOL FindAnyFile(LPTSTR filespec, LPTSTR name);
 long SwapEndian(long val);
 short int SwapEndian(short int val);
 BOOL MkDirEx(LPCTSTR foldername);
-CString GetModulePath(HMODULE hModule = NULL);
-CString GetPathOnly(LPCTSTR fullpath);
+String GetModulePath(HMODULE hModule = NULL);
+String GetPathOnly(LPCTSTR fullpath);
 float RoundMeasure(float measure, float units);
 
 CString LegalizeFileName(LPCTSTR szFileName);
@@ -128,7 +128,7 @@ BOOL IsLocalPath(LPCTSTR path);
 BOOL GetAppDataPath(CString &sAppDataPath);
 BOOL GetUserProfilePath(CString &sAppDataPath);
 
-CString TimeString(const __int64 * tim);
+String TimeString(const __int64 * tim);
 
 void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 	CString &sExecutable);

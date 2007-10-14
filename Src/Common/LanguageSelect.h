@@ -79,7 +79,7 @@ private:
 	UINT    GetDocResId();
 	CString GetPath( LPCTSTR FileName) const;
 	CString GetLanguagePath(LPCTSTR FileName) const;
-	CString GetLanguageString( WORD LangId );
+	String GetLanguageString( WORD LangId );
 	CString GetNativeLanguageNameString( int idx );
 	void LoadAndDisplayLanguages();
 
