@@ -145,9 +145,8 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very left
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	CString sCaption;
-	VERIFY(sCaption.LoadString(IDS_LOCBAR_CAPTION));
-	if (!m_wndLocationBar.Create(this, sCaption, WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
+	String sCaption = theApp.LoadString(IDS_LOCBAR_CAPTION);
+	if (!m_wndLocationBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_LOCATION_BAR))
 	{
 		TRACE0("Failed to create LocationBar\n");
 		return FALSE;
@@ -160,8 +159,8 @@ BOOL CChildFrame::OnCreateClient( LPCREATESTRUCT /*lpcs*/,
 	// Merge frame has also a dockable bar at the very bottom
 	// This is not the client area, but we create it now because we want
 	// to use the CCreateContext
-	VERIFY(sCaption.LoadString(IDS_DIFFBAR_CAPTION));
-	if (!m_wndDetailBar.Create(this, sCaption, WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
+	sCaption = theApp.LoadString(IDS_DIFFBAR_CAPTION);
+	if (!m_wndDetailBar.Create(this, sCaption.c_str(), WS_CHILD | WS_VISIBLE, ID_VIEW_DETAIL_BAR))
 	{
 		TRACE0("Failed to create DiffViewBar\n");
 		return FALSE;
@@ -293,10 +292,9 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	// Set text to read-only info panes
 	// Text is hidden if file is writable
-	CString sText;
-	VERIFY(sText.LoadString(IDS_STATUSBAR_READONLY));
-	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText, TRUE); 
-	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText, TRUE);
+	String sText = theApp.LoadString(IDS_STATUSBAR_READONLY);
+	m_wndStatusBar.SetPaneText(PANE_LEFT_RO, sText.c_str(), TRUE); 
+	m_wndStatusBar.SetPaneText(PANE_RIGHT_RO, sText.c_str(), TRUE);
 
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFILE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE);
@@ -385,6 +383,20 @@ static BOOL MyUnlockWindowUpdate(HWND hwnd)
 	EnumChildWindows(hwnd, EnumChildProc, TRUE);
 
 	return TRUE;
+}
+
+/**
+ * @brief Handle translation of default messages on the status bar
+ */
+void CChildFrame::GetMessageString(UINT nID, CString& rMessage) const
+{
+	// load appropriate string
+	const String s = theApp.LoadString(nID);
+	if (!AfxExtractSubString(rMessage, &*s.begin(), 0))
+	{
+		// not found
+		TRACE1("Warning: no message line prompt for ID 0x%04X.\n", nID);
+	}
 }
 
 void CChildFrame::ActivateFrame(int nCmdShow) 
@@ -656,17 +668,18 @@ void CChildFrame::MergeStatus::Update()
 		CString str;
 		if (m_nChars == -1)
 		{
-			str.Format(IDS_EMPTY_LINE_STATUS_INFO, m_sLine);
+			str.Format(theApp.LoadString(IDS_EMPTY_LINE_STATUS_INFO).c_str(),
+				m_sLine);
 		}
-		else if (m_sEolDisplay == _T(""))
+		else if (m_sEolDisplay.IsEmpty())
 		{
-			str.Format(IDS_LINE_STATUS_INFO, m_sLine, m_nColumn, m_nColumns,
-				m_nChar, m_nChars);
+			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO).c_str(),
+				m_sLine, m_nColumn, m_nColumns, m_nChar, m_nChars);
 		}
 		else
 		{
-			str.Format(IDS_LINE_STATUS_INFO_EOL, m_sLine, m_nColumn,
-				m_nColumns, m_nChar, m_nChars, m_sEolDisplay);
+			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO_EOL).c_str(),
+				m_sLine, m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay);
 		}
 
 		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);

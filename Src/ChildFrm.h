@@ -97,6 +97,8 @@ protected:
 
 
 // Overrides
+public:
+	virtual void GetMessageString(UINT nID, CString& rMessage) const;
 	// ClassWizard generated virtual function overrides
 	//{{AFX_VIRTUAL(CChildFrame)
 	public:
