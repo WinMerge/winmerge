@@ -23,6 +23,7 @@ class CustomStatusCursor
 // public interface
 public:
 	CustomStatusCursor(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR fmt, ...);
+	CustomStatusCursor(HINSTANCE hinst, LPCTSTR lpCursorName, UINT fmtid, ...);
 	void ChangeMsg(LPCTSTR fmt, ...);
 	void End();
 	~CustomStatusCursor();
@@ -31,7 +32,7 @@ public:
 protected:
 	// default constructor for derivation, in two steps 'cause of variable argument list
 	CustomStatusCursor();
-	void Create(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR fmt, ...);
+	void Create(HINSTANCE hinst, LPCTSTR lpCursorName, LPCTSTR m_msg);
 
 private:
 	int posInStack;
