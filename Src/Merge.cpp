@@ -673,7 +673,7 @@ void CMergeApp::OnHelp()
  * @param [in] filepath Full path to file to check.
  * @return true if file is a projectfile.
  */
-bool CMergeApp::IsProjectFile(const CString & filepath) const
+bool CMergeApp::IsProjectFile(LPCTSTR filepath) const
 {
 	String ext;
 	SplitFilename(filepath, NULL, NULL, &ext);
@@ -689,19 +689,19 @@ bool CMergeApp::IsProjectFile(const CString & filepath) const
  * @param [in] sProject Full path to project file.
  * @return TRUE if loading project file and starting compare succeeded.
  */
-bool CMergeApp::LoadAndOpenProjectFile(const CString & sProject)
+bool CMergeApp::LoadAndOpenProjectFile(LPCTSTR sProject)
 {
-	if (sProject.IsEmpty())
+	if (*sProject == '\0')
 		return false;
 
 	ProjectFile project;
-	CString sErr;
+	String sErr;
 	if (!project.Read(sProject, &sErr))
 	{
-		if (sErr.IsEmpty())
-			sErr = LoadResString(IDS_UNK_ERROR_READING_PROJECT);
+		if (sErr.empty())
+			sErr = theApp.LoadString(IDS_UNK_ERROR_READING_PROJECT);
 		CString msg;
-		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr);
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sProject, sErr.c_str());
 		AfxMessageBox(msg, MB_ICONSTOP);
 		return false;
 	}
@@ -793,9 +793,9 @@ void CMergeApp::ReloadMenu()
 }
 
 /** @brief Wrap one line of cmdline help in appropriate whitespace */
-static CString CmdlineOption(int idres)
+static String CmdlineOption(int idres)
 {
-	CString str = LoadResString(idres) + _T(" \n");
+	String str = theApp.LoadString(idres) + _T(" \n");
 	return str;
 }
 
@@ -848,7 +848,7 @@ CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
  * @brief Adds specified file to the recent projects list.
  * @param [in] sPathName Path to project file
  */
-void CMergeApp::AddToRecentProjectsMRU(const CString& sPathName)
+void CMergeApp::AddToRecentProjectsMRU(LPCTSTR sPathName)
 {
 	// sPathName will be added to the top of the MRU list. 
 	// If sPathName already exists in the MRU list, it will be moved to the top

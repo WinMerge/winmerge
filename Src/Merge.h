@@ -74,7 +74,7 @@ public:
 	~CMergeApp();
 
 public:
-	void AddToRecentProjectsMRU(const CString& sPathName);
+	void AddToRecentProjectsMRU(LPCTSTR sPathName);
 	void SetNeedIdleTimer();
 	void SetLastCompareResult(int nResult) { m_nLastCompareResult = nResult; }
 	CString GetDefaultEditor();
@@ -106,8 +106,8 @@ protected:
 	void SetOptionsFromCmdLine(const MergeCmdLineInfo& cmdInfo);
 	// End MergeArgs.cpp
 
-	bool LoadAndOpenProjectFile(const CString & sFilepath);
-	bool IsProjectFile(const CString & filepath) const;
+	bool LoadAndOpenProjectFile(LPCTSTR sFilepath);
+	bool IsProjectFile(LPCTSTR filepath) const;
 
 	void ReloadMenu();
 
