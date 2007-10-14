@@ -393,7 +393,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 	// Format path to template file
 	String templatePath(globalPath);
 	if (templatePath[templatePath.length() - 1] != '\\')
-		templatePath += "\\";
+		templatePath += '\\';
 	templatePath += FILE_FILTER_TEMPLATE;
 
 	if (paths_DoesPathExist(templatePath.c_str()) != IS_EXISTING_FILE)

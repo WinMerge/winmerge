@@ -5,7 +5,7 @@
  *
  * @date  Created: 2003-08-19
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -31,17 +31,23 @@ static char THIS_FILE[] = __FILE__;
 
 
 /**
- * @brief Get text for specified column (forwards to specific column handler)
+ * @brief Get text for specified column.
+ * This function retrieves the text for the specified colum. Text is
+ * retrieved by using column-specific handler functions.
+ * @param [in] pCtxt Compare context.
+ * @param [in] col Column number.
+ * @param [in] di Difference data.
+ * @return Text for the specified column.
  */
-String
-CDirView::ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di)
+String CDirView::ColGetTextToDisplay(const CDiffContext *pCtxt, int col,
+		const DIFFITEM & di)
 {
 	// Custom properties have custom get functions
 	const DirColInfo * pColInfo = DirViewColItems_GetDirColInfo(col);
 	if (!pColInfo)
 	{
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
-		return "???";
+		return _T("???");
 	}
 	ColGetFncPtrType fnc = pColInfo->getfnc;
 	SIZE_T offset = pColInfo->offset;
@@ -49,10 +55,17 @@ CDirView::ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM
 }
 
 /**
- * @brief Sort two items on specified column (forwards to specific column handler)
+ * @brief Sort two items on specified column.
+ * This function determines order of two items in specified column. Order
+ * is determined by column-specific functions.
+ * @param [in] pCtxt Compare context.
+ * @param [in] col Column number to sort.
+ * @param [in] ldi Left difference item data.
+ * @param [in] rdi Right difference item data.
+ * @return Order of items.
  */
-int
-CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi) const
+int CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
+		const DIFFITEM & rdi) const
 {
 	// Custom properties have custom sort functions
 	const DirColInfo * pColInfo = DirViewColItems_GetDirColInfo(col);

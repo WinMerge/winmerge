@@ -49,7 +49,9 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 
 	// Transformation happens here
 	// text used for automatic mode : plugin filter must match it
-	String filteredFilenames = plugCtxt->origFileName1 + "|" + plugCtxt->origFileName2;
+	String filteredFilenames(plugCtxt->origFileName1);
+	filteredFilenames += '|';
+	filteredFilenames += plugCtxt->origFileName2;
 
 	// Get existing or new plugin infos
 	pCtxt->FetchPluginInfos(filteredFilenames.c_str(), &plugCtxt->infoUnpacker,

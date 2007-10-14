@@ -1289,7 +1289,7 @@ void CDiffWrapper::SetFilterList(LPCTSTR filterStr)
 	FilterList::EncodingType type;
 	
 #ifdef UNICODE
-	regexp_str = UCS2UTF8_ConvertToUtf8(filterStr.c_str());
+	regexp_str = UCS2UTF8_ConvertToUtf8(filterStr);
 	type = FilterList::ENC_UTF8;
 #else
 	CString tmp_str(filterStr);

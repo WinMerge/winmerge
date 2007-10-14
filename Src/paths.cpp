@@ -3,7 +3,7 @@
  *
  * @brief Path handling routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -219,7 +219,6 @@ String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
 	*end = 0;
 	sLong += ptr;
 	ptr = &end[1];
-	String sTemp; // used at each step to hold fully qualified short name
 
 	// now walk down each directory and do short to long name conversion
 	while (ptr)
@@ -230,7 +229,9 @@ String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
 		if (end)
 			*end = 0;
 
-		sTemp = sLong + '\\' + ptr;
+		String sTemp(sLong);
+		sTemp += '\\';
+		sTemp += ptr;
 
 		// advance to next component (or set ptr==0 to flag end)
 		ptr = (end ? end+1 : 0);
