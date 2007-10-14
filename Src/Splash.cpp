@@ -221,7 +221,7 @@ void CSplashWnd::OnPaint()
 		oldfont = dc.SelectObject(&versionFont);
 
 	CString sVersion = version.GetFixedProductVersion();
-	AfxFormatString1(s, IDS_VERSION_FMT, sVersion);
+	LangFormatString1(s, IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
 	
 	CRect area = VersionTextArea;
