@@ -10,7 +10,7 @@
 
 #include "stdafx.h"
 #include <time.h>
-#include "UnicodeString.h"
+#include "locality.h"
 #include "DirCmpReport.h"
 #include "DirCmpReportDlg.h"
 #include "coretools.h"
@@ -29,7 +29,7 @@ static String GetCurrentTimeString()
 	time_t nTime = 0;
 	time(&nTime);
 	_int64 nTime64 = nTime;
-	String str = TimeString(&nTime64);
+	String str = locality::TimeString(&nTime64);
 	return str;
 }
 

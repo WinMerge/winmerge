@@ -8,6 +8,7 @@
 
 #include "StdAfx.h"
 #include "locality.h"
+#include "Merge.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -129,5 +130,32 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 	return out;
 }
 
+/**
+ * @brief Return time displayed appropriately, as string
+ */
+String TimeString(const __int64 * tim)
+{
+	USES_CONVERSION;
+	if (!tim) return _T("---");
+	// _tcsftime does not respect user date customizations from
+	// Regional Options/Configuration Regional; COleDateTime::Format does so.
+#if _MSC_VER < 1300
+		// MSVC6
+	COleDateTime odt = (time_t)*tim;
+#else
+		// MSVC7 (VC.NET)
+	COleDateTime odt = *tim;
+#endif
+	// If invalid, return DateTime resource string
+	if (odt.GetStatus() == COleDateTime::null)
+		return String();
+	if (odt.GetStatus() == COleDateTime::invalid)
+		return theApp.LoadString(AFX_IDS_INVALID_DATETIME);
+	COleVariant var;
+	// Don't need to trap error. Should not fail due to type mismatch
+	AfxCheckError(VarBstrFromDate(odt.m_dt, LANG_USER_DEFAULT, 0, &V_BSTR(&var)));
+	var.vt = VT_BSTR;
+	return OLE2CT(V_BSTR(&var));
+}
 
 }; // namespace locality

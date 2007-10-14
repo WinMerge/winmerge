@@ -268,7 +268,7 @@ static String ColTimeGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	if (r)
-		return TimeString(&r);
+		return locality::TimeString(&r);
 	else
 		return _T("");
 }

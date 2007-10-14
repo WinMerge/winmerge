@@ -14,6 +14,7 @@ namespace locality {
 String NumToLocaleStr(int n);
 String NumToLocaleStr(__int64 n);
 String GetLocaleStr(LPCTSTR str, int decimalDigits = 0);
+String TimeString(const __int64 * tim);
 
 };
 
