@@ -128,8 +128,6 @@ BOOL IsLocalPath(LPCTSTR path);
 BOOL GetAppDataPath(CString &sAppDataPath);
 BOOL GetUserProfilePath(CString &sAppDataPath);
 
-String TimeString(const __int64 * tim);
-
 void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 	CString &sExecutable);
 #endif
