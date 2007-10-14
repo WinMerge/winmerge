@@ -185,7 +185,7 @@ void CPropEditor::OnEnKillfocusTabEdit()
 		CString msg;
 		CString num;
 		num.Format(_T("%d"), MAX_TABSIZE);
-		AfxFormatString1(msg, IDS_OPTIONS_INVALID_TABSIZE, num);
+		LangFormatString1(msg, IDS_OPTIONS_INVALID_TABSIZE, num);
 		AfxMessageBox(msg, MB_ICONWARNING);
 	}
 }
