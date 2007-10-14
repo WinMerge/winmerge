@@ -67,14 +67,14 @@ extern LPCWSTR TransformationCategories[] =
 // transformations : packing unpacking
 
 // known handler
-BOOL FileTransform_Packing(CString & filepath, PackingInfo handler)
+BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 {
 	// no handler : return true
 	if (handler.pluginName.IsEmpty())
 		return TRUE;
 
 	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
+	bufferData.SetDataFileAnsi(filepath.c_str());
 
 	// control value
 	BOOL bHandled = FALSE;
@@ -117,14 +117,14 @@ BOOL FileTransform_Packing(CString & filepath, PackingInfo handler)
 }
 
 // known handler
-BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, int * handlerSubcode)
+BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
 	if (handler->pluginName.IsEmpty())
 		return TRUE;
 
 	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
+	bufferData.SetDataFileAnsi(filepath.c_str());
 
 	// temporary subcode 
 	int subcode;
@@ -175,13 +175,13 @@ BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, in
 
 
 // scan plugins for the first handler
-BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingInfo * handler, int * handlerSubcode)
+BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInfo * handler, int * handlerSubcode)
 {
 	storageForPlugins bufferData;
-	bufferData.SetDataFileAnsi(filepath);
+	bufferData.SetDataFileAnsi(filepath.c_str());
 
 	// filename, to test the extension
-	CString filename = filepath.Mid(filepath.ReverseFind('\\')+1);
+	CString filename = PathFindFileName(filepath.c_str());
 
 	// control value
 	BOOL bHandled = FALSE;
@@ -266,7 +266,7 @@ BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingIn
 // transformation prediffing
     
 // known handler
-BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL bMayOverwrite)
+BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bMayOverwrite)
 {
 	// no handler : return true
 	if (handler.pluginName.IsEmpty())
@@ -274,7 +274,7 @@ BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL b
 
 	storageForPlugins bufferData;
 	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
+	bufferData.SetDataFileUnknown(filepath.c_str(), bMayOverwrite);
 	// TODO : set the codepage
 	// bufferData.SetCodepage();
 
@@ -326,16 +326,16 @@ BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL b
 
 
 // scan plugins for the first handler
-BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PrediffingInfo * handler, BOOL bMayOverwrite)
+BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, PrediffingInfo * handler, BOOL bMayOverwrite)
 {
 	storageForPlugins bufferData;
 	// detect Ansi or Unicode file
-	bufferData.SetDataFileUnknown(filepath, bMayOverwrite);
+	bufferData.SetDataFileUnknown(filepath.c_str(), bMayOverwrite);
 	// TODO : set the codepage
 	// bufferData.SetCodepage();
 
 	// filename, to test the extension
-	CString filename = filepath.Mid(filepath.ReverseFind('\\')+1);
+	CString filename = PathFindFileName(filepath.c_str());
 
 	// control value
 	BOOL bHandled = FALSE;
@@ -413,17 +413,17 @@ BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, Prediffi
 
 ////////////////////////////////////////////////////////////////////////////////
 
-BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite)
+BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
 {
-	CString tempDir = paths_GetTempPath();
-	if (tempDir.IsEmpty())
+	String tempDir = paths_GetTempPath();
+	if (tempDir.empty())
 		return FALSE;
-	CString tempFilepath = paths_GetTempFileName(tempDir, _T("_WM"));
-	if (tempFilepath.IsEmpty())
+	String tempFilepath = paths_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	if (tempFilepath.empty())
 		return FALSE;
 
 	int nFileChanged = 0;
-	BOOL bSuccess = UnicodeFileToOlechar(filepath, tempFilepath, nFileChanged); 
+	BOOL bSuccess = UnicodeFileToOlechar(filepath.c_str(), tempFilepath.c_str(), nFileChanged); 
 	if (!bSuccess)
 		return FALSE;
 
@@ -432,10 +432,10 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite)
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
 		{
-			if (!::DeleteFile(filepath))
+			if (!::DeleteFile(filepath.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath, GetSysError(GetLastError())));
+					filepath.c_str(), GetSysError(GetLastError())));
 			}
 		}
 		// and change the filepath if everything works
@@ -443,10 +443,10 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite)
 	}
 	else
 	{
-		if (!::DeleteFile(tempFilepath))
+		if (!::DeleteFile(tempFilepath.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath, GetSysError(GetLastError())));
+				tempFilepath.c_str(), GetSysError(GetLastError())));
 		}
 	}
 
@@ -458,19 +458,18 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite)
 
 // for OLECHAR files, transform to UTF8 for diffutils
 // TODO : convert Ansi to UTF8 if other file is unicode or uses a different codepage
-BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite)
+BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 {
-
-	TCHAR tempFilepath[MAX_PATH] = _T("");
-	TCHAR tempDir[MAX_PATH] = _T("");
-	if (!GetTempPath(countof(tempDir), tempDir))
+	String tempDir = paths_GetTempPath();
+	if (tempDir.empty())
 		return FALSE;
-	if (!GetTempFileName(tempDir, _T ("_WM"), 0, tempFilepath))
+	String tempFilepath = paths_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	if (tempFilepath.empty())
 		return FALSE;
 
 	// TODO : is it better with the BOM or without (just change the last argument)
 	int nFileChanged = 0;
-	BOOL bSuccess = OlecharToUTF8(filepath, tempFilepath, nFileChanged, FALSE); 
+	BOOL bSuccess = OlecharToUTF8(filepath.c_str(), tempFilepath.c_str(), nFileChanged, FALSE); 
 	if (!bSuccess)
 		return FALSE;
 
@@ -479,10 +478,10 @@ BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite)
 		// we do not overwrite so we delete the old file
 		if (bMayOverwrite)
 		{
-			if (!::DeleteFile(filepath))
+			if (!::DeleteFile(filepath.c_str()))
 			{
 				LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-					filepath, GetSysError(GetLastError())));
+					filepath.c_str(), GetSysError(GetLastError())));
 			}
 		}
 		// and change the filepath if everything works
@@ -490,10 +489,10 @@ BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite)
 	}
 	else
 	{
-		if (!::DeleteFile(tempFilepath))
+		if (!::DeleteFile(tempFilepath.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				tempFilepath, GetSysError(GetLastError())));
+				tempFilepath.c_str(), GetSysError(GetLastError())));
 		}
 	}
 

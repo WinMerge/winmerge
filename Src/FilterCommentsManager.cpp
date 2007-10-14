@@ -40,7 +40,7 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 	int SectionNo = 0;
 	TCHAR SectionName[99];
 	TCHAR buffer[1024];
-	if (m_IniFileName.IsEmpty())
+	if (m_IniFileName.empty())
 	{
 		m_IniFileName = GetModulePath() + _T("\\IgnoreSectionMarkers.ini");
 	}
@@ -48,11 +48,11 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 	{//Get each set of markers
 		FilterCommentsSet filtercommentsset;
 		_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
-		GetPrivateProfileString(SectionName, _T("StartMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
+		GetPrivateProfileString(SectionName, _T("StartMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
 		filtercommentsset.StartMarker = T2CA(buffer);
-		GetPrivateProfileString(SectionName, _T("EndMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
+		GetPrivateProfileString(SectionName, _T("EndMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
 		filtercommentsset.EndMarker = T2CA(buffer);
-		GetPrivateProfileString(SectionName, _T("InlineMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName);
+		GetPrivateProfileString(SectionName, _T("InlineMarker"), _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
 		filtercommentsset.InlineMarker = T2CA(buffer);
 		if (filtercommentsset.StartMarker.empty() && 
 			filtercommentsset.EndMarker.empty() &&
@@ -65,7 +65,7 @@ FilterCommentsManager::FilterCommentsManager(const TCHAR* IniFileName /*= _T("")
 		for(FileTypeNo = 0;;++FileTypeNo) 
 		{//Get each file type associated with current set of markers
 			_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
-			GetPrivateProfileString(SectionName, FileTypeFieldName, _T(""), buffer,sizeof(buffer), m_IniFileName);
+			GetPrivateProfileString(SectionName, FileTypeFieldName, _T(""), buffer,sizeof(buffer), m_IniFileName.c_str());
 			CString FileTypeExtensionName = buffer;
 			if (FileTypeExtensionName.IsEmpty())
 				break;
@@ -107,9 +107,9 @@ void FilterCommentsManager::CreateDefaultMarkers()
 	TCHAR CommonFileTypes1[][9] = {_T("java"), _T("cs"), _T("cpp"), _T("c"), _T("h"), _T("cxx"), _T("cc"), _T("js"), _T("jsl"), _T("tli"), _T("tlh"), _T("rc")};
 	_sntprintf(SectionName, sizeof(SectionName)/sizeof(SectionName[0]), _T("set%i"), SectionNo);
 	++SectionNo;
-	WritePrivateProfileString(SectionName, _T("StartMarker"), A2CT(filtercommentsset.StartMarker.c_str()), m_IniFileName);
-	WritePrivateProfileString(SectionName, _T("EndMarker"), A2CT(filtercommentsset.EndMarker.c_str()), m_IniFileName);
-	WritePrivateProfileString(SectionName, _T("InlineMarker"), A2CT(filtercommentsset.InlineMarker.c_str()), m_IniFileName);
+	WritePrivateProfileString(SectionName, _T("StartMarker"), A2CT(filtercommentsset.StartMarker.c_str()), m_IniFileName.c_str());
+	WritePrivateProfileString(SectionName, _T("EndMarker"), A2CT(filtercommentsset.EndMarker.c_str()), m_IniFileName.c_str());
+	WritePrivateProfileString(SectionName, _T("InlineMarker"), A2CT(filtercommentsset.InlineMarker.c_str()), m_IniFileName.c_str());
 	int FileTypeNo = 0;
 	for(int i = 0;i < sizeof(CommonFileTypes1)/sizeof(CommonFileTypes1[0]);++i)
 	{
@@ -117,6 +117,6 @@ void FilterCommentsManager::CreateDefaultMarkers()
 		TCHAR FileTypeFieldName[99];
 		_sntprintf(FileTypeFieldName, sizeof(FileTypeFieldName)/sizeof(FileTypeFieldName[0]), _T("FileType%i"), FileTypeNo);
 		++FileTypeNo;
-		WritePrivateProfileString(SectionName, FileTypeFieldName, CommonFileTypes1[i], m_IniFileName);
+		WritePrivateProfileString(SectionName, FileTypeFieldName, CommonFileTypes1[i], m_IniFileName.c_str());
 	}
 }

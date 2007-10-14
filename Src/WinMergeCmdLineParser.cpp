@@ -181,8 +181,8 @@ void WinMergeCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL b
 		}
 		else
 		{
-			CString sFile = paths_GetLongPath(pszParam);
-			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile);
+			String sFile = paths_GetLongPath(pszParam);
+			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile.c_str());
 			m_CmdLineInfo.m_nFiles += 1;
 		}
 	}

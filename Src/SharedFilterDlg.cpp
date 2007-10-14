@@ -24,8 +24,6 @@ CSharedFilterDlg::CSharedFilterDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CSharedFilterDlg::IDD, pParent)
 {
 	//{{AFX_DATA_INIT(CSharedFilterDlg)
-	m_SharedFolder = _T("");
-	m_PrivateFolder = _T("");
 	//}}AFX_DATA_INIT
 }
 
@@ -73,8 +71,8 @@ void CSharedFilterDlg::OnOK()
 	CDialog::OnOK();
 }
 
-CString
-CSharedFilterDlg::PromptForNewFilter(CWnd * Parent, CString SharedFolder, CString PrivateFolder)
+String
+CSharedFilterDlg::PromptForNewFilter(CWnd * Parent, String SharedFolder, String PrivateFolder)
 {
 	CSharedFilterDlg dlg(Parent);
 	dlg.m_SharedFolder = SharedFolder;

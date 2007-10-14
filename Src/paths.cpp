@@ -39,9 +39,11 @@ static bool IsSlash(LPCTSTR pszStart, int nPos)
  * @param [in] s String to check.
  * @return true if last char in string is slash.
  */
-bool paths_EndsWithSlash(const CString & s)
+bool paths_EndsWithSlash(LPCTSTR s)
 {
-	return !s.IsEmpty() && IsSlash(s, s.GetLength()-1);
+	if (int len = _tcslen(s))
+		return IsSlash(s, len - 1);
+	return false;
 }
 
 /** 
@@ -88,22 +90,22 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
  * case and they are left intact. Since C:\ is a valid path but C: is not.
  * @param [in,out] sPath Path to strip.
  */
-void paths_normalize(CString & sPath)
+void paths_normalize(String & sPath)
 {
-	int len = sPath.GetLength();
+	int len = sPath.length();
 	if (!len)
 		return;
 
 	// prefix root with current drive
-	sPath = paths_GetLongPath(sPath);
+	sPath = paths_GetLongPath(sPath.c_str());
 
 	// Do not remove trailing slash from root directories
 	if (len == 3 && sPath[1] == ':')
 		return;
 
 	// remove any trailing slash
-	if (paths_EndsWithSlash(sPath))
-		sPath.Delete(sPath.GetLength()-1);
+	if (paths_EndsWithSlash(sPath.c_str()))
+		sPath.resize(sPath.length() - 1);
 }
 
 /**
@@ -113,17 +115,19 @@ void paths_normalize(CString & sPath)
  * @return true if canonical name exists.
  * @todo Should we return empty string as sName when returning false?
  */
-static bool GetDirName(const CString & sDir, CString& sName)
+static bool GetDirName(LPCTSTR sDir, CString& sName)
 {
 	// FindFirstFile doesn't work for root:
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
 	// You cannot use root directories as the lpFileName input string for FindFirstFile—with or without a trailing backslash.
-	if (sDir.GetLength() == 2 && sDir[1] == ':')
+	if (sDir[0] && sDir[1] == ':' && sDir[2] == '\0')
 	{
 		// I don't know if this work for empty root directories
 		// because my first return value is not a dot directory, as I would have expected
 		WIN32_FIND_DATA ffd;
-		HANDLE h = FindFirstFile(sDir + _T("\\*"), &ffd);
+		TCHAR sPath[8];
+		wsprintf(sPath, _T("%s\\*"), sDir);
+		HANDLE h = FindFirstFile(sPath, &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 			return false;
 		FindClose(h);
@@ -151,9 +155,10 @@ static bool GetDirName(const CString & sDir, CString& sName)
  * @param [in] bExpandEnvs If TRUE environment variables are expanded.
  * @return Converted path.
  */
-CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
+String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs)
 {
-	int len = sPath.GetLength();
+	String sPath = szPath;
+	int len = sPath.length();
 	if (len < 1)
 		return sPath;
 
@@ -175,18 +180,18 @@ CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
 	TCHAR expandedPath[_MAX_PATH] = {0};
 	LPCTSTR lpcszPath = NULL;
 
-	if (bExpandEnvs && _tcschr(sPath, '%'))
+	if (bExpandEnvs && _tcschr(sPath.c_str(), '%'))
 	{
-		if (ExpandEnvironmentStrings(sPath, expandedPath, _MAX_PATH))
+		if (ExpandEnvironmentStrings(sPath.c_str(), expandedPath, _MAX_PATH))
 		{
 			lpcszPath = expandedPath;
 		}
 	}
 	else
-		lpcszPath = sPath;
+		lpcszPath = sPath.c_str();
 
 	if (!GetFullPathName(lpcszPath, _MAX_PATH, fullPath, &lpPart))
-		_tcscpy(fullPath, sPath);
+		_tcscpy(fullPath, sPath.c_str());
 
 	// We are done if this is not a short name.
 	if (_tcschr(fullPath, _T('~')) == NULL)
@@ -197,7 +202,7 @@ CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
 
 	// The file/directory does not exist, use as much long name as we can
 	// and leave the invalid stuff at the end.
-	CString sLong;
+	String sLong;
 	TCHAR *ptr = fullPath;
 	TCHAR *end = NULL;
 
@@ -214,7 +219,7 @@ CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
 	*end = 0;
 	sLong += ptr;
 	ptr = &end[1];
-	CString sTemp; // used at each step to hold fully qualified short name
+	String sTemp; // used at each step to hold fully qualified short name
 
 	// now walk down each directory and do short to long name conversion
 	while (ptr)
@@ -232,7 +237,7 @@ CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
 
 		// (Couldn't get info for just the directory from CFindFile)
 		WIN32_FIND_DATA ffd;
-		HANDLE h = FindFirstFile(sTemp, &ffd);
+		HANDLE h = FindFirstFile(sTemp.c_str(), &ffd);
 		if (h == INVALID_HANDLE_VALUE)
 		{
 			sLong = sTemp;
@@ -259,24 +264,24 @@ CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs)
  * @param [in] sPath Path to check/create.
  * @return true if path exists or if we successfully created it.
  */
-bool paths_CreateIfNeeded(const CString & sPath)
+bool paths_CreateIfNeeded(LPCTSTR szPath)
 {
-	if (sPath.IsEmpty())
+	if (*szPath == '\0')
 		return false;
 
 	CString sTemp;
-	if (GetDirName(sPath, sTemp))
+	if (GetDirName(szPath, sTemp))
 		return true;
 
-	if (sPath.GetLength() >= _MAX_PATH)
+	if (lstrlen(szPath) >= _MAX_PATH)
 		return false;
 
 	// Expand environment variables:
 	// Convert "%userprofile%\My Documents" to "C:\Documents and Settings\username\My Documents"
 	TCHAR fullPath[_MAX_PATH] = _T("");
-	if (!_tcschr(sPath, '%') || !ExpandEnvironmentStrings(sPath, fullPath, _MAX_PATH))
+	if (!_tcschr(szPath, '%') || !ExpandEnvironmentStrings(szPath, fullPath, _MAX_PATH))
 	{
-		_tcscpy(fullPath, sPath);
+		_tcscpy(fullPath, szPath);
 	}
 	// Now fullPath holds our desired path
 
@@ -330,7 +335,7 @@ bool paths_CreateIfNeeded(const CString & sPath)
 }
 
 // Static string used by paths_GetTempPath() for storing temp path.
-static CString strTempPath;
+static String strTempPath;
 
 /** 
  * @brief Get folder for temporary files.
@@ -342,10 +347,11 @@ static CString strTempPath;
  */
 LPCTSTR paths_GetTempPath(int * pnerr)
 {
-	if (strTempPath.IsEmpty())
+	if (strTempPath.empty())
 	{
 		int cchTempPath = GetTempPath(0, 0);
-		if (!GetTempPath(cchTempPath, strTempPath.GetBufferSetLength(cchTempPath - 1)))
+		strTempPath.resize(cchTempPath - 1);
+		if (!GetTempPath(cchTempPath, &*strTempPath.begin()))
 		{
 			int err = GetLastError();
 			if (pnerr)
@@ -353,11 +359,11 @@ LPCTSTR paths_GetTempPath(int * pnerr)
 #ifdef _DEBUG
 			CString sysErr = GetSysError(err); // for debugging
 #endif
-			return strTempPath; // empty
+			return strTempPath.c_str(); // empty
 		}
-		strTempPath = paths_GetLongPath(strTempPath);
+		strTempPath = paths_GetLongPath(strTempPath.c_str());
 	}
-	return strTempPath;
+	return strTempPath.c_str();
 }
 
 /** 
@@ -453,26 +459,19 @@ CString ExpandShortcut(const CString &inFile)
  * @return Formatted path. If one of arguments is empty then returns
  * non-empty argument. If both argumets are empty empty string is returned.
  */
-CString paths_ConcatPath(const CString & path, const CString & subpath)
+String paths_ConcatPath(const String & path, const String & subpath)
 {
-	if (path.IsEmpty())
+	if (path.empty())
 		return subpath;
-	if (subpath.IsEmpty())
+	if (subpath.empty())
 		return path;
-	if (paths_EndsWithSlash(path))
+	if (paths_EndsWithSlash(path.c_str()))
 	{
-		if (IsSlash(subpath, 0))
-		{
-			return path + subpath.Mid(1);
-		}
-		else
-		{
-			return path + subpath;
-		}
+		return String(path).append(subpath.c_str() + (IsSlash(subpath.c_str(), 0) ? 1 : 0));
 	}
 	else
 	{
-		if (IsSlash(subpath, 0))
+		if (IsSlash(subpath.c_str(), 0))
 		{
 			return path + subpath;
 		}
@@ -490,24 +489,24 @@ CString paths_ConcatPath(const CString & path, const CString & subpath)
  * @param [in] path Path to get parent path for.
  * @return Parent path.
  */
-CString paths_GetParentPath(const CString & path)
+String paths_GetParentPath(LPCTSTR path)
 {
-	CString parentPath(path);
-	int len = parentPath.GetLength();
+	String parentPath(path);
+	int len = parentPath.length();
 
 	// Remove last '\' from paths
 	if (parentPath[len - 1] == '\\')
 	{
-		parentPath.Delete(len - 1, 1);
+		parentPath.resize(len - 1);
 		--len;
 	}
 
 	// Remove last part of path
-	int pos = parentPath.ReverseFind('\\');
+	int pos = parentPath.rfind('\\');
 
 	if (pos > -1)
 	{
-		parentPath.Delete(pos, len - pos);
+		parentPath.resize(pos);
 	}
 	return parentPath;
 }
@@ -579,7 +578,7 @@ BOOL paths_IsPathAbsolute(const CString &path)
  * @param [out] pnerr Error code if error happened.
  * @return Full path for temporary file or empty string if error happened.
  */
-CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr)
+String paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr)
 {
 	TCHAR buffer[MAX_PATH] = {0};
 	if (_tcslen(lpPathName) > MAX_PATH-14)
@@ -606,17 +605,17 @@ CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * 
  * path points to file or folder failed to create returns empty
  * string.
  */
-CString paths_EnsurePathExist(const CString & sPath)
+String paths_EnsurePathExist(const String & sPath)
 {
-	int rtn = paths_DoesPathExist(sPath);
+	int rtn = paths_DoesPathExist(sPath.c_str());
 	if (rtn == IS_EXISTING_DIR)
 		return sPath;
 	if (rtn == IS_EXISTING_FILE)
 		return _T("");
-	if (!paths_CreateIfNeeded(sPath))
+	if (!paths_CreateIfNeeded(sPath.c_str()))
 		return _T("");
 	// Check creating folder succeeded
-	if (paths_DoesPathExist(sPath) == IS_EXISTING_DIR)
+	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_DIR)
 		return sPath;
 	else
 		return _T("");

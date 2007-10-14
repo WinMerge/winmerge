@@ -33,9 +33,9 @@
 class CPatchTool
 {
 public:
-	void AddFiles(const CString &file1, const CString &file2);
-	void AddFiles(const CString &file1, const CString &altPath1,
-		const CString &file2, const CString &altPath2);
+	void AddFiles(const String &file1, const String &file2);
+	void AddFiles(const String &file1, const String &altPath1,
+		const String &file2, const String &altPath2);
 	int CreatePatch();
 	CString GetPatchFile() const;
 	BOOL GetOpenToEditor() const;

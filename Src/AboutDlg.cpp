@@ -62,6 +62,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
  */
 BOOL CAboutDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	// Load application icon
@@ -73,7 +74,7 @@ BOOL CAboutDlg::OnInitDialog()
 
 	CVersionInfo version(AfxGetResourceHandle());
 	CString sVersion = version.GetFixedProductVersion();
-	AfxFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
+	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
 
 #ifdef _UNICODE
 	CString strUnicode;
@@ -85,7 +86,7 @@ BOOL CAboutDlg::OnInitDialog()
 	CString sPrivateBuild = version.GetPrivateBuild();
 	if (!sPrivateBuild.IsEmpty())
 	{
-		AfxFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT, sPrivateBuild);
+		LangFormatString1(m_strPrivateBuild, IDS_PRIVATEBUILD_FMT, sPrivateBuild);
 	}
 
 	CString copyright = version.GetLegalCopyright();
@@ -104,30 +105,30 @@ BOOL CAboutDlg::OnInitDialog()
  */
 void CAboutDlg::OnBnClickedOpenContributors()
 {
-	CString defPath = GetModulePath();
+	String defPath = GetModulePath();
 	// Don't add quotation marks yet, CFile doesn't like them
-	CString docPath = defPath + _T("\\contributors.txt");
+	String docPath = defPath + _T("\\contributors.txt");
 	HINSTANCE ret = 0;
 	
-	if (paths_DoesPathExist(docPath) == IS_EXISTING_FILE)
+	if (paths_DoesPathExist(docPath.c_str()) == IS_EXISTING_FILE)
 	{
 		// Now, add quotation marks so ShellExecute() doesn't fail if path
 		// includes spaces
-		docPath.Insert(0, _T("\""));
-		docPath.Insert(docPath.GetLength(), _T("\""));
-		ret = ShellExecute(m_hWnd, NULL, _T("notepad"), docPath, defPath, SW_SHOWNORMAL);
+		docPath.insert(0, _T("\""));
+		docPath.insert(docPath.length(), _T("\""));
+		ret = ShellExecute(m_hWnd, NULL, _T("notepad"), docPath.c_str(), defPath.c_str(), SW_SHOWNORMAL);
 
 		// values < 32 are errors (ref to MSDN)
 		if ((int)ret < 32)
 		{
 			// Try to open with associated application (.txt)
-			ret = ShellExecute(m_hWnd, _T("open"), docPath, NULL, NULL, SW_SHOWNORMAL);
+			ret = ShellExecute(m_hWnd, _T("open"), docPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
 			if ((int)ret < 32)
 				ResMsgBox1(IDS_ERROR_EXECUTE_FILE, _T("Notepad.exe"), MB_ICONSTOP);
 		}
 	}
 	else
-		ResMsgBox1(IDS_ERROR_FILE_NOT_FOUND, docPath, MB_ICONSTOP);
+		ResMsgBox1(IDS_ERROR_FILE_NOT_FOUND, docPath.c_str(), MB_ICONSTOP);
 }
 
 

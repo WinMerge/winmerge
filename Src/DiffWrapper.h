@@ -157,25 +157,25 @@ public:
 	void SetDiffList(DiffList *diffList);
 	void GetOptions(DIFFOPTIONS *options);
 	void SetOptions(const DIFFOPTIONS *options);
-	void SetTextForAutomaticPrediff(const CString &text);
+	void SetTextForAutomaticPrediff(const String &text);
 	void SetPrediffer(PrediffingInfo * prediffer =NULL);
 	void GetPrediffer(PrediffingInfo * prediffer);
 	void SetPatchOptions(const PATCHOPTIONS *options);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
 	BOOL GetDetectMovedBlocks() { return (m_pMovedLines != NULL); }
 	BOOL SetAppendFiles(BOOL bAppendFiles);
-	void SetPaths(const CString &filepath1, const CString &filepath2, BOOL tempPaths);
-	void SetAlternativePaths(const CString &altPath1, const CString &altPath2);
+	void SetPaths(const String &filepath1, const String &filepath2, BOOL tempPaths);
+	void SetAlternativePaths(const String &altPath1, const String &altPath2);
 	BOOL RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
 	void FixLastDiffRange(int leftBufferLines, int rightBufferLines, BOOL left);
 	MovedLines * GetMovedLines() { return m_pMovedLines; }
-	void SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2);
-	void SetFilterList(const CString &filterStr);
+	void SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2);
+	void SetFilterList(LPCTSTR filterStr);
 
 protected:
-	CString FormatSwitchString();
+	String FormatSwitchString();
 	BOOL Diff2Files(struct change ** diffs, DiffFileData *diffData,
 		int * bin_status, int * bin_file);
 	void LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const file_data * inf);
@@ -186,18 +186,18 @@ private:
 	DiffutilsOptions m_options;
 	DIFFSTATUS m_status; /**< Status of last compare */
 	FilterList * m_pFilterList; /**< List of linefilters. */
-	CString m_s1File; /**< Full path to first diff'ed file. */
-	CString m_s2File; /**< Full path to second diff'ed file. */
-	CString m_s1AlternativePath; /**< First file's alternative path (may be relative). */
-	CString m_s2AlternativePath; /**< Second file's alternative path (may be relative). */
-	CString m_sOriginalFile1; /**< First file's original (NON-TEMP) path. */
-	CString m_sOriginalFile2; /**< Second file's original (NON-TEMP) path. */
+	String m_s1File; /**< Full path to first diff'ed file. */
+	String m_s2File; /**< Full path to second diff'ed file. */
+	String m_s1AlternativePath; /**< First file's alternative path (may be relative). */
+	String m_s2AlternativePath; /**< Second file's alternative path (may be relative). */
+	String m_sOriginalFile1; /**< First file's original (NON-TEMP) path. */
+	String m_sOriginalFile2; /**< Second file's original (NON-TEMP) path. */
 	CString m_sPatchFile; /**< Full path to created patch file. */
 	BOOL m_bPathsAreTemp; /**< Are compared paths temporary? */
 	/// prediffer info are stored only for MergeDoc
 	PrediffingInfo * m_infoPrediffer;
 	/// prediffer info are stored only for MergeDoc
-	CString m_sToFindPrediffer;
+	String m_sToFindPrediffer;
 	BOOL m_bUseDiffList; /**< Are results returned in difflist? */
 	BOOL m_bCreatePatchFile; /**< Do we create a patch file? */
 	BOOL m_bAddCmdLine; /**< Do we add commandline to patch file? */

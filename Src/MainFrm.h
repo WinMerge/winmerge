@@ -186,9 +186,9 @@ public:
 	 */
 	/*@{*/ 
 	/** Left descriptor */
-	CString m_strLeftDesc;
+	String m_strLeftDesc;
 	/** Right descriptor */
-	CString m_strRightDesc;
+	String m_strRightDesc;
 	/*@}*/
 
 	/** @brief Possible toolbar image sizes. */

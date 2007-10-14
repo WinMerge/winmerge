@@ -220,8 +220,8 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const CString & filepath, CString & filepathTransformed,
-	const CString & filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
+bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const String & filepath, String & filepathTransformed,
+	LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
 
@@ -265,7 +265,7 @@ bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const CString & file
 	{
 		// fourth step : prepare for diffing
 		// may overwrite if we've already copied to temp file
-		BOOL bMayOverwrite = (0 != filepathTransformed.CompareNoCase(filepath));
+		BOOL bMayOverwrite = 0 != lstrcmpi(filepathTransformed.c_str(), filepath.c_str());
 		if (!FileTransform_UCS2ToUTF8(filepathTransformed, bMayOverwrite))
 			return false;
 	}

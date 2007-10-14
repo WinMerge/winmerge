@@ -118,7 +118,7 @@ void FileFilterHelper::GetFileFilters(FILEFILTER_INFOLIST * filters, CString & s
  * @param [in] filterPath Path to filterfile.
  * @sa FileFilterHelper::GetFileFilterPath()
  */
-CString FileFilterHelper::GetFileFilterName(CString filterPath) const
+CString FileFilterHelper::GetFileFilterName(LPCTSTR filterPath) const
 {
 	FILEFILTER_INFOLIST filters;
 	CString selected;
@@ -141,7 +141,7 @@ CString FileFilterHelper::GetFileFilterName(CString filterPath) const
  * @param [in] filterName Name of filter.
  * @sa FileFilterHelper::GetFileFilterName()
  */
-CString FileFilterHelper::GetFileFilterPath(CString filterName) const
+CString FileFilterHelper::GetFileFilterPath(LPCTSTR filterName) const
 {
 	FILEFILTER_INFOLIST filters;
 	CString selected;
@@ -319,14 +319,14 @@ void FileFilterHelper::EditFileFilter(LPCTSTR szFileFilterPath)
  * "C:\Documents and Settings\User\My Documents\WinMergeFilters\*.flt"
  */
 void FileFilterHelper::LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
-		const CString & sPattern)
+		LPCTSTR szPattern)
 {
 	int n=0;
-	if (!patternsLoaded.Lookup(sPattern, n))
+	if (!patternsLoaded.Lookup(szPattern, n))
 	{
-		m_fileFilterMgr->LoadFromDirectory(sPattern, FileFilterExt);
+		m_fileFilterMgr->LoadFromDirectory(szPattern, FileFilterExt);
 	}
-	patternsLoaded[sPattern] = ++n;
+	patternsLoaded[szPattern] = ++n;
 }
 
 /** 
@@ -503,14 +503,14 @@ void FileFilterHelper::LoadAllFileFilters()
 
 	// Program application directory
 	m_sGlobalFilterPath = GetModulePath() + _T("\\Filters");
-	LoadFileFilterDirPattern(patternsLoaded, m_sGlobalFilterPath + _T("\\*") + FileFilterExt);
-	LoadFileFilterDirPattern(patternsLoaded, m_sUserSelFilterPath + _T("\\*") + FileFilterExt);
+	LoadFileFilterDirPattern(patternsLoaded, (m_sGlobalFilterPath + _T("\\*") + FileFilterExt).c_str());
+	LoadFileFilterDirPattern(patternsLoaded, (m_sUserSelFilterPath + _T("\\*") + FileFilterExt).c_str());
 }
 
 /**
  * @brief Return path to global filters (& create if needed), or empty if cannot create
  */
-CString FileFilterHelper::GetGlobalFilterPathWithCreate() const
+String FileFilterHelper::GetGlobalFilterPathWithCreate() const
 {
 	return paths_EnsurePathExist(m_sGlobalFilterPath);
 }
@@ -518,7 +518,7 @@ CString FileFilterHelper::GetGlobalFilterPathWithCreate() const
 /**
  * @brief Return path to user filters (& create if needed), or empty if cannot create
  */
-CString FileFilterHelper::GetUserFilterPathWithCreate() const
+String FileFilterHelper::GetUserFilterPathWithCreate() const
 {
 	return paths_EnsurePathExist(m_sUserSelFilterPath);
 }

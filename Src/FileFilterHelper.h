@@ -99,22 +99,22 @@ public:
 	FileFilterHelper();
 	~FileFilterHelper();
 
-	CString GetGlobalFilterPathWithCreate() const;
-	CString GetUserFilterPathWithCreate() const;
+	String GetGlobalFilterPathWithCreate() const;
+	String GetUserFilterPathWithCreate() const;
 
 	FileFilterMgr * GetManager();
 	void SetFileFilterPath(LPCTSTR szFileFilterPath);
 	void EditFileFilter(LPCTSTR szFileFilterPath);
 	void GetFileFilters(FILEFILTER_INFOLIST * filters, CString & selected) const;
-	CString GetFileFilterName(CString filterPath) const;
-	CString GetFileFilterPath(CString filterName) const;
+	CString GetFileFilterName(LPCTSTR filterPath) const;
+	CString GetFileFilterPath(LPCTSTR filterName) const;
 	void SetUserFilterPath(const CString & filterPath);
 
 	void ReloadUpdatedFilters();
 	void LoadAllFileFilters();
 
 	void LoadFileFilterDirPattern(FILEFILTER_FILEMAP & patternsLoaded,
-		const CString & sPattern);
+		LPCTSTR szPattern);
 
 	void UseMask(BOOL bUseMask);
 	void SetMask(LPCTSTR strMask);
@@ -138,8 +138,8 @@ private:
 	CString m_sFileFilterPath;        /*< Path to current filter */
 	CString m_sMask;   /*< File mask (if defined) "*.cpp *.h" etc */
 	BOOL m_bUseMask;   /*< If TRUE file mask is used, filter otherwise */
-	CString m_sGlobalFilterPath;    /*< Path for shared filters */
-	CString m_sUserSelFilterPath;     /*< Path for user's private filters */
+	String m_sGlobalFilterPath;    /*< Path for shared filters */
+	String m_sUserSelFilterPath;     /*< Path for user's private filters */
 };
 
 #endif // _FILEFILTERHELPER_H_

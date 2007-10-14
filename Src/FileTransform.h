@@ -166,13 +166,13 @@ public:
  * @note Event FILE_UNPACK
  * Apply only the first correct handler
  */
-BOOL FileTransform_Unpacking(CString & filepath, CString filteredText, PackingInfo * handler, int * handlerSubcode);
+BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInfo * handler, int * handlerSubcode);
 /**
  * @brief Prepare one file for loading, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, int * handlerSubcode);
+BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode);
 /**
  * @brief Prepare one file for saving, known handler
  *
@@ -183,7 +183,7 @@ BOOL FileTransform_Unpacking(CString & filepath, const PackingInfo * handler, in
  * @note Event FILE_PACK
  * Never do Unicode conversion, it was done in SaveFromFile
  */
-BOOL FileTransform_Packing(CString & filepath, PackingInfo handler);
+BOOL FileTransform_Packing(String & filepath, PackingInfo handler);
 
 /**
  * @brief Normalize Unicode files to OLECHAR
@@ -195,7 +195,7 @@ BOOL FileTransform_Packing(CString & filepath, PackingInfo handler);
  *
  * @note Ansi files are not changed
  */
-BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite);
+BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite);
 
 /**
  * @brief Prepare one file for diffing, scan all available plugins (events+filename filtering) 
@@ -208,13 +208,13 @@ BOOL FileTransform_NormalizeUnicode(CString & filepath, BOOL bMayOverwrite);
  * @note Event FILE_PREDIFF BUFFER_PREDIFF
  * Apply only the first correct handler
  */
-BOOL FileTransform_Prediffing(CString & filepath, CString filteredText, PrediffingInfo * handler, BOOL bMayOverwrite);
+BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, PrediffingInfo * handler, BOOL bMayOverwrite);
 /**
  * @brief Prepare one file for diffing, known handler
  *
  * @param filepath : [in, out] Most plugins change this filename
  */
-BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL bMayOverwrite);
+BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bMayOverwrite);
 
 
 /**
@@ -227,7 +227,7 @@ BOOL FileTransform_Prediffing(CString & filepath, PrediffingInfo handler, BOOL b
  *
  * @todo Convert Ansi files to UTF8 if other file is unicode or uses a different codepage
  */
-BOOL FileTransform_UCS2ToUTF8(CString & filepath, BOOL bMayOverwrite);
+BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite);
 
 
 

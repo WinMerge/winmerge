@@ -33,7 +33,7 @@
 /** 
  * @brief Adds files to list for patching
  */
-void CPatchTool::AddFiles(const CString &file1, const CString &file2)
+void CPatchTool::AddFiles(const String &file1, const String &file2)
 {
 	PATCHFILES files;
 	files.lfile = file1;
@@ -43,8 +43,8 @@ void CPatchTool::AddFiles(const CString &file1, const CString &file2)
 	m_fileList.AddTail(files);
 }
 
-void CPatchTool::AddFiles(const CString &file1, const CString &altPath1,
-		const CString &file2, const CString &altPath2)
+void CPatchTool::AddFiles(const String &file1, const String &altPath1,
+		const String &file2, const String &altPath2)
 {
 	PATCHFILES files;
 	files.lfile = file1;
@@ -122,7 +122,7 @@ int CPatchTool::CreatePatch()
 			else if (status.bPatchFileFailed)
 			{
 				CString errMsg;
-				AfxFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_dlgPatch.m_fileResult);
+				LangFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_dlgPatch.m_fileResult);
 				AfxMessageBox(errMsg, MB_ICONSTOP);
 				bResult = FALSE;
 				break;

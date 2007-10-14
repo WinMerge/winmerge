@@ -95,7 +95,7 @@ BOOL DirCmpReportDlg::OnInitDialog()
 	for (int i = 0; i < sizeof(f_types) / sizeof(f_types[0]); ++i)
 	{
 		const ReportTypeInfo & info = f_types[i];
-		int ind = m_ctlStyle.InsertString(i, LoadResString(info.idDisplay));
+		int ind = m_ctlStyle.InsertString(i, theApp.LoadString(info.idDisplay).c_str());
 		m_ctlStyle.SetItemData(ind, info.reportType);
 
 	}

@@ -90,8 +90,10 @@ int xisalpha (wint_t c);
 int xisalnum (wint_t c);
 int xisspace (wint_t c);
 
+#include "UnicodeString.h"
+
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
-CString LoadResString(UINT id);
+String LoadResString(UINT id);
 
 	/** @brief Lang aware version of AfxFormatStrings() */
 void NTAPI LangFormatStrings(CString &, UINT, LPCTSTR const *, int);

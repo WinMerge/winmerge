@@ -49,8 +49,8 @@ struct FileAction
 {
 	typedef enum { ACT_COPY = 1, ACT_MOVE, ACT_DEL, } ACT_TYPE;
 
-	CString src; /**< Source for action */
-	CString dest; /**< Destination action */
+	String src; /**< Source for action */
+	String dest; /**< Destination action */
 	BOOL dirflag; /**< Is it directory? (TRUE means directory) */
 	ACT_TYPE atype; /**< Action's type */
 };

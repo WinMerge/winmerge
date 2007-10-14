@@ -12,7 +12,7 @@ class CSharedFilterDlg : public CDialog
 {
 
 public:
-	static CString PromptForNewFilter(CWnd * Parent, CString SharedFolder, CString PrivateFolder);
+	static String PromptForNewFilter(CWnd * Parent, String SharedFolder, String PrivateFolder);
 
 // Construction
 public:
@@ -24,11 +24,11 @@ protected:
 // Dialog Data
 	//{{AFX_DATA(CSharedFilterDlg)
 	enum { IDD = IDD_SHARED_FILTER };
-	CString m_SharedFolder;
-	CString	m_PrivateFolder;
 	CButton m_SharedButton;
 	CButton m_PrivateButton;
 	//}}AFX_DATA
+	String m_SharedFolder;
+	String m_PrivateFolder;
 
 
 // Overrides
@@ -48,7 +48,7 @@ protected:
 
 // Implementation data
 private:
-	CString m_ChosenFolder;
+	String m_ChosenFolder;
 };
 
 //{{AFX_INSERT_LOCATION}}

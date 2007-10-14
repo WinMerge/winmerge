@@ -59,15 +59,15 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 	BOOL bVCPROJ = FALSE;
 
 	int nerr;
-	CString tempPath = paths_GetTempPath(&nerr);
-	if (tempPath.IsEmpty())
+	String tempPath = paths_GetTempPath(&nerr);
+	if (tempPath.empty())
 	{
 		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath: %s")
 			, GetSysError(nerr)));
 		return FALSE;
 	}
-	CString tempFile = paths_GetTempFileName(tempPath, _T("_LT"), &nerr);
-	if (tempFile.IsEmpty())
+	String tempFile = paths_GetTempFileName(tempPath.c_str(), _T("_LT"), &nerr);
+	if (tempFile.empty())
 	{
 		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile: %s")
 			, GetSysError(nerr)));
@@ -92,7 +92,7 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
                 OPEN_EXISTING,             // existing file only 
                 FILE_ATTRIBUTE_NORMAL | FILE_FLAG_SEQUENTIAL_SCAN,     // normal file 
                 NULL);
-		tfile = CreateFile(tempFile,
+		tfile = CreateFile(tempFile.c_str(),
                 GENERIC_ALL,              // open for writing
                 FILE_SHARE_READ,           // share for reading 
                 NULL,                      // no security 
@@ -108,17 +108,17 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 				msg.Format(_T("CMainFrame::ReLinkVCProj() ")
 					_T("- failed to open file: %s"), strSavePath);
 				LogErrorString(msg);
-				AfxFormatString2(msg, IDS_ERROR_FILEOPEN,
+				LangFormatString2(msg, IDS_ERROR_FILEOPEN,
 						GetSysError(GetLastError()), strSavePath);
 				*psError = msg;
 			}
 			if (tfile == INVALID_HANDLE_VALUE)
 			{
 				msg.Format(_T("CMainFrame::ReLinkVCProj() ")
-					_T("- failed to open temporary file: %s"), tempFile);
+					_T("- failed to open temporary file: %s"), tempFile.c_str());
 				LogErrorString(msg);
-				AfxFormatString2(msg, IDS_ERROR_FILEOPEN,
-						GetSysError(GetLastError()), tempFile);
+				LangFormatString2(msg, IDS_ERROR_FILEOPEN,
+						GetSysError(GetLastError()), tempFile.c_str());
 				*psError = msg;
 			}
 			return FALSE;
@@ -160,19 +160,19 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 
 		if (succeed)
 		{
-			if (!CopyFile(tempFile, strSavePath, FALSE))
+			if (!CopyFile(tempFile.c_str(), strSavePath, FALSE))
 			{
 				*psError = GetSysError(GetLastError());
-				DeleteFile(tempFile);
+				DeleteFile(tempFile.c_str());
 				return FALSE;
 			}
 			else
-				DeleteFile(tempFile);
+				DeleteFile(tempFile.c_str());
 		}
 		else
 		{
 			CString msg;
-			AfxFormatString2(msg, IDS_ERROR_FILEOPEN,
+			LangFormatString2(msg, IDS_ERROR_FILEOPEN,
 					strSavePath, GetSysError(GetLastError()));
 			*psError = msg;
 			return FALSE;

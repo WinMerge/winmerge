@@ -23,9 +23,9 @@
 
 using namespace CompareEngines;
 
-static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right);
-static bool Unpack(CString & filepathTransformed,
-	const CString & filteredFilenames, PackingInfo * infoUnpacker);
+static void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, String & right);
+static bool Unpack(String & filepathTransformed,
+	LPCTSTR filteredFilenames, PackingInfo * infoUnpacker);
 
 FolderCmp::FolderCmp()
 : m_pDiffUtilsEngine(NULL)
@@ -49,10 +49,10 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 
 	// Transformation happens here
 	// text used for automatic mode : plugin filter must match it
-	CString filteredFilenames = plugCtxt->origFileName1 + "|" + plugCtxt->origFileName2;
+	String filteredFilenames = plugCtxt->origFileName1 + "|" + plugCtxt->origFileName2;
 
 	// Get existing or new plugin infos
-	pCtxt->FetchPluginInfos(filteredFilenames, &plugCtxt->infoUnpacker,
+	pCtxt->FetchPluginInfos(filteredFilenames.c_str(), &plugCtxt->infoUnpacker,
 			&plugCtxt->infoPrediffer);
 
 	// plugin may alter filepaths to temp copies (which we delete before returning in all cases)
@@ -61,7 +61,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 
 	//DiffFileData diffdata; //(filepathTransformed1, filepathTransformed2);
 	// Invoke unpacking plugins
-	if (!Unpack(plugCtxt->filepathUnpacked1, filteredFilenames, plugCtxt->infoUnpacker))
+	if (!Unpack(plugCtxt->filepathUnpacked1, filteredFilenames.c_str(), plugCtxt->infoUnpacker))
 	{
 		errStr = _T("Unpack Error Side 1");
 		return false;
@@ -70,7 +70,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(plugCtxt->infoUnpacker->bToBeScanned == FALSE);
 
-	if (!Unpack(plugCtxt->filepathUnpacked2, filteredFilenames, plugCtxt->infoUnpacker))
+	if (!Unpack(plugCtxt->filepathUnpacked2, filteredFilenames.c_str(), plugCtxt->infoUnpacker))
 	{
 		errStr = _T("Unpack Error Side 2");
 		return false;
@@ -80,10 +80,10 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	// Unpacked files will be deleted at end of this function.
 	plugCtxt->filepathTransformed1 = plugCtxt->filepathUnpacked1;
 	plugCtxt->filepathTransformed2 = plugCtxt->filepathUnpacked2;
-	m_diffFileData.SetDisplayFilepaths(plugCtxt->origFileName1,
-			plugCtxt->origFileName2); // store true names for diff utils patch file
-	if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1,
-			plugCtxt->filepathTransformed2))
+	m_diffFileData.SetDisplayFilepaths(plugCtxt->origFileName1.c_str(),
+			plugCtxt->origFileName2.c_str()); // store true names for diff utils patch file
+	if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1.c_str(),
+			plugCtxt->filepathTransformed2.c_str()))
 	{
 		errStr = _T("OpenFiles Error (before tranform)");
 		return false;
@@ -92,7 +92,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	// Invoke prediff'ing plugins
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[0],
 			plugCtxt->filepathUnpacked1, plugCtxt->filepathTransformed1,
-			filteredFilenames, plugCtxt->infoPrediffer,
+			filteredFilenames.c_str(), plugCtxt->infoPrediffer,
 			m_diffFileData.m_inf[0].desc))
 	{
 		errStr = _T("Transform Error Side 1");
@@ -104,7 +104,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[1],
 			plugCtxt->filepathUnpacked2, plugCtxt->filepathTransformed2,
-			filteredFilenames, plugCtxt->infoPrediffer,
+			filteredFilenames.c_str(), plugCtxt->infoPrediffer,
 			m_diffFileData.m_inf[1].desc))
 	{
 		errStr = _T("Transform Error Side 2");
@@ -121,8 +121,8 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	if (plugCtxt->filepathTransformed1 != plugCtxt->filepathUnpacked1 ||
 			plugCtxt->filepathTransformed2 != plugCtxt->filepathUnpacked2)
 	{
-		if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1,
-				plugCtxt->filepathTransformed2))
+		if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1.c_str(),
+				plugCtxt->filepathTransformed2.c_str()))
 		{
 			errStr = _T("OpenFiles Error (after tranform)");
 			return false;
@@ -136,17 +136,17 @@ void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
 	m_diffFileData.Reset();
 	// delete the temp files after comparison
 	if (plugCtxt->filepathTransformed1 != plugCtxt->filepathUnpacked1)
-		VERIFY(::DeleteFile(plugCtxt->filepathTransformed1) ||
-				GetLog()->DeleteFileFailed(plugCtxt->filepathTransformed1));
+		VERIFY(::DeleteFile(plugCtxt->filepathTransformed1.c_str()) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathTransformed1.c_str()));
 	if (plugCtxt->filepathTransformed2 != plugCtxt->filepathUnpacked2)
-		VERIFY(::DeleteFile(plugCtxt->filepathTransformed2) ||
-				GetLog()->DeleteFileFailed(plugCtxt->filepathTransformed2));
+		VERIFY(::DeleteFile(plugCtxt->filepathTransformed2.c_str()) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathTransformed2.c_str()));
 	if (plugCtxt->filepathUnpacked1 != plugCtxt->origFileName1)
-		VERIFY(::DeleteFile(plugCtxt->filepathUnpacked1) ||
-				GetLog()->DeleteFileFailed(plugCtxt->filepathUnpacked1));
+		VERIFY(::DeleteFile(plugCtxt->filepathUnpacked1.c_str()) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathUnpacked1.c_str()));
 	if (plugCtxt->filepathUnpacked2 != plugCtxt->origFileName2)
-		VERIFY(::DeleteFile(plugCtxt->filepathUnpacked2) ||
-				GetLog()->DeleteFileFailed(plugCtxt->filepathUnpacked2));
+		VERIFY(::DeleteFile(plugCtxt->filepathUnpacked2.c_str()) ||
+				GetLog()->DeleteFileFailed(plugCtxt->filepathUnpacked2.c_str()));
 }
 
 /**
@@ -343,7 +343,7 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
  * @brief Get actual compared paths from DIFFITEM.
  * @note If item is unique, same path is returned for both.
  */
-void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, CString & right)
+void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, String & right)
 {
 	static const TCHAR backslash[] = _T("\\");
 
@@ -351,9 +351,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 	{
 		// Compare file to itself to detect encoding
 		left = pCtxt->GetNormalizedLeft();
-		if (!paths_EndsWithSlash(left))
+		if (!paths_EndsWithSlash(left.c_str()))
 			left += backslash;
-		if (!di.sLeftSubdir.IsEmpty())
+		if (!di.sLeftSubdir.empty())
 			left += di.sLeftSubdir + backslash;
 		left += di.sLeftFilename;
 		if (di.diffcode.isSideLeftOnly())
@@ -363,9 +363,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
 	{
 		// Compare file to itself to detect encoding
 		right = pCtxt->GetNormalizedRight();
-		if (!paths_EndsWithSlash(right))
+		if (!paths_EndsWithSlash(right.c_str()))
 			right += backslash;
-		if (!di.sRightSubdir.IsEmpty())
+		if (!di.sRightSubdir.empty())
 			right += di.sRightSubdir + backslash;
 		right += di.sRightFilename;
 		if (di.diffcode.isSideRightOnly())
@@ -378,8 +378,8 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, CString & left, C
  * return false if anything fails
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
-static bool Unpack(CString & filepathTransformed,
-	const CString & filteredFilenames, PackingInfo * infoUnpacker)
+static bool Unpack(String & filepathTransformed,
+	LPCTSTR filteredFilenames, PackingInfo * infoUnpacker)
 {
 	// first step : unpack (plugins)
 	if (infoUnpacker->bToBeScanned)

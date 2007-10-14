@@ -26,6 +26,7 @@
 #include <scew/scew.h>
 
 #include "ProjectFile.h"
+#include "Merge.h"
 
 // ATL conversion macro hack for UTF-8 conversion
 #define UTF82W(lpa) (\
@@ -78,7 +79,7 @@ const char Right_ro_element_name[] = "right-readonly";
  * @param [out] sError Error string if error happened.
  * @return TRUE if reading succeeded, FALSE if error happened.
  */
-BOOL ProjectFile::Read(LPCTSTR path, CString *sError)
+BOOL ProjectFile::Read(LPCTSTR path, String *sError)
 {
 	BOOL loaded = FALSE;
     scew_tree* tree = NULL;
@@ -221,7 +222,7 @@ BOOL ProjectFile::GetPathsData(scew_element * parent)
  * @param [out] sError Error string if error happened.
  * @return TRUE if saving succeeded, FALSE if error happened.
  */
-BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
+BOOL ProjectFile::Save(LPCTSTR path, String *sError)
 {
 	BOOL success = TRUE;
 	scew_tree* tree = NULL;
@@ -255,7 +256,7 @@ BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 		if (!scew_writer_tree_fp(tree, fp))
 		{
 			success = FALSE;
-			*sError = LoadResString(IDS_FILEWRITE_ERROR);
+			*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
 		}
 		fclose(fp);
 	}
@@ -269,7 +270,7 @@ BOOL ProjectFile::Save(LPCTSTR path, CString *sError)
 
 	if (success == FALSE)
 	{
-		*sError = LoadResString(IDS_FILEWRITE_ERROR);
+		*sError = theApp.LoadString(IDS_FILEWRITE_ERROR);
 	}
 	return success;
 }

@@ -177,7 +177,7 @@ void CDiffWrapper::SetOptions(const DIFFOPTIONS *options)
  * @brief Set text tested to find the prediffer automatically.
  * Most probably a concatenated string of both filenames.
  */
-void CDiffWrapper::SetTextForAutomaticPrediff(const CString &text)
+void CDiffWrapper::SetTextForAutomaticPrediff(const String &text)
 {
 	m_sToFindPrediffer = text;
 }
@@ -615,7 +615,7 @@ static void PostFilter(int LineNumberLeft, int QtyLinesLeft, int LineNumberRight
  * @param [in] filepath2 Second file to compare "changed file".
  * @param [in] tempPaths Are given paths temporary (can be deleted)?.
  */
-void CDiffWrapper::SetPaths(const CString &filepath1, const CString &filepath2,
+void CDiffWrapper::SetPaths(const String &filepath1, const String &filepath2,
 		BOOL tempPaths)
 {
 	m_s1File = filepath1;
@@ -629,7 +629,7 @@ void CDiffWrapper::SetPaths(const CString &filepath1, const CString &filepath2,
  * @param [in] OriginalFile1 First file to compare "(NON-TEMP) file".
  * @param [in] OriginalFile2 Second file to compare "(NON-TEMP) file".
  */
-void CDiffWrapper::SetCompareFiles(const CString &OriginalFile1, const CString &OriginalFile2)
+void CDiffWrapper::SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2)
 {
 	m_sOriginalFile1 = OriginalFile1;
 	m_sOriginalFile2 = OriginalFile2;
@@ -643,7 +643,7 @@ void CDiffWrapper::SetCompareFiles(const CString &OriginalFile1, const CString &
  * @param [in] altPath1 Alternative file path of first file.
  * @param [in] altPath2 Alternative file path of second file.
  */
-void CDiffWrapper::SetAlternativePaths(const CString &altPath1, const CString &altPath2)
+void CDiffWrapper::SetAlternativePaths(const String &altPath1, const String &altPath2)
 {
 	m_s1AlternativePath = altPath1;
 	m_s2AlternativePath = altPath2;
@@ -654,15 +654,15 @@ void CDiffWrapper::SetAlternativePaths(const CString &altPath1, const CString &a
  */
 BOOL CDiffWrapper::RunFileDiff()
 {
-	CString filepath1(m_s1File);
-	CString filepath2(m_s2File);
-	filepath1.Replace('/', '\\');
-	filepath2.Replace('/', '\\');
+	String filepath1(m_s1File);
+	String filepath2(m_s2File);
+	replace_char(&*filepath1.begin(), '/', '\\');
+	replace_char(&*filepath2.begin(), '/', '\\');
 
 	BOOL bRet = TRUE;
 	USES_CONVERSION;
-	CString strFile1Temp = filepath1;
-	CString strFile2Temp = filepath2;
+	String strFile1Temp = filepath1;
+	String strFile2Temp = filepath2;
 	
 	m_options.SetToDiffUtils();
 	//SwapToInternalSettings();
@@ -678,7 +678,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	{
 		// this can only fail if the data can not be saved back (no more
 		// place on disk ???) What to do then ??
-		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer, m_infoPrediffer,
+		FileTransform_Prediffing(strFile1Temp, m_sToFindPrediffer.c_str(), m_infoPrediffer,
 			m_bPathsAreTemp);
 	}
 	else
@@ -689,7 +689,7 @@ BOOL CDiffWrapper::RunFileDiff()
 		{
 			// display a message box
 			CString sError;
-			AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile1Temp,
+			LangFormatString2(sError, IDS_PREDIFFER_ERROR, strFile1Temp.c_str(),
 				m_infoPrediffer->pluginName);
 			AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 			// don't use any more this prediffer
@@ -707,19 +707,19 @@ BOOL CDiffWrapper::RunFileDiff()
 	{
 		// display a message box
 		CString sError;
-		AfxFormatString2(sError, IDS_PREDIFFER_ERROR, strFile2Temp,
+		LangFormatString2(sError, IDS_PREDIFFER_ERROR, strFile2Temp.c_str(),
 			m_infoPrediffer->pluginName);
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 		// don't use any more this prediffer
 		m_infoPrediffer->bToBeScanned = FALSE;
-		m_infoPrediffer->pluginName = _T("");
+		m_infoPrediffer->pluginName.Empty();
 	}
 	FileTransform_UCS2ToUTF8(strFile2Temp, m_bPathsAreTemp);
 
 	DiffFileData diffdata;
-	diffdata.SetDisplayFilepaths(filepath1, filepath2); // store true names for diff utils patch file
+	diffdata.SetDisplayFilepaths(filepath1.c_str(), filepath2.c_str()); // store true names for diff utils patch file
 	// This opens & fstats both files (if it succeeds)
-	if (!diffdata.OpenFiles(strFile1Temp, strFile2Temp))
+	if (!diffdata.OpenFiles(strFile1Temp.c_str(), strFile2Temp.c_str()))
 	{
 		return FALSE;
 	}
@@ -738,10 +738,10 @@ BOOL CDiffWrapper::RunFileDiff()
 	// what differences diff-engine sees!
 #ifdef _DEBUG
 	// throw the diff into a temp file
-	CString sTempPath = paths_GetTempPath(); // get path to Temp folder
-	CString path = paths_ConcatPath(sTempPath, _T("Diff.txt"));
+	String sTempPath = paths_GetTempPath(); // get path to Temp folder
+	String path = paths_ConcatPath(sTempPath, _T("Diff.txt"));
 
-	outfile = _tfopen(path, _T("w+"));
+	outfile = _tfopen(path.c_str(), _T("w+"));
 	if (outfile != NULL)
 	{
 		print_normal_script(script);
@@ -793,23 +793,23 @@ BOOL CDiffWrapper::RunFileDiff()
 	diffdata.Close();
 
 	// Delete temp files transformation functions possibly created
-	if (filepath1.CompareNoCase(strFile1Temp) != 0)
+	if (lstrcmpi(filepath1.c_str(), strFile1Temp.c_str()) != 0)
 	{
-		if (!::DeleteFile(strFile1Temp))
+		if (!::DeleteFile(strFile1Temp.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				strFile1Temp, GetSysError(GetLastError())));
+				strFile1Temp.c_str(), GetSysError(GetLastError())));
 		}
-		strFile1Temp.Empty();
+		strFile1Temp.erase();
 	}
-	if (filepath2.CompareNoCase(strFile2Temp) != 0)
+	if (lstrcmpi(filepath2.c_str(), strFile2Temp.c_str()) != 0)
 	{
-		if (!::DeleteFile(strFile2Temp))
+		if (!::DeleteFile(strFile2Temp.c_str()))
 		{
 			LogErrorString(Fmt(_T("DeleteFile(%s) failed: %s"),
-				strFile2Temp, GetSysError(GetLastError())));
+				strFile2Temp.c_str(), GetSysError(GetLastError())));
 		}
-		strFile2Temp.Empty();
+		strFile2Temp.erase();
 	}
 
 	return bRet;
@@ -899,9 +899,9 @@ void CDiffWrapper::GetDiffStatus(DIFFSTATUS *status)
 /**
  * @brief Formats command-line for diff-engine last run (like it was called from command-line)
  */
-CString CDiffWrapper::FormatSwitchString()
+String CDiffWrapper::FormatSwitchString()
 {
-	CString switches;
+	String switches;
 	TCHAR tmpNum[5] = {0};
 	
 	switch (m_options.m_outputStyle)
@@ -1066,15 +1066,15 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 	//Logic needed for Ignore comment option
 	DIFFOPTIONS options;
 	GetOptions(&options);
-	CString asLwrCaseExt;
+	String asLwrCaseExt;
 	if (options.bFilterCommentsLines)
 	{
-		CString LowerCaseExt = m_sOriginalFile1;
-		int PosOfDot = LowerCaseExt.ReverseFind('.');
+		String LowerCaseExt = m_sOriginalFile1;
+		int PosOfDot = LowerCaseExt.rfind('.');
 		if (PosOfDot != -1)
 		{
-			LowerCaseExt = LowerCaseExt.Mid(PosOfDot+1);
-			LowerCaseExt.MakeLower();
+			LowerCaseExt.erase(0, PosOfDot + 1);
+			CharLower(&*LowerCaseExt.begin());
 			asLwrCaseExt = LowerCaseExt;
 		}
 	}
@@ -1148,7 +1148,7 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
 				{
 					int QtyLinesLeft = (trans_b0 - trans_a0) + 1; //Determine quantity of lines in this block for left side
 					int QtyLinesRight = (trans_b1 - trans_a1) + 1;//Determine quantity of lines in this block for right side
-					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt);
+					PostFilter(thisob->line0, QtyLinesLeft, thisob->line1, QtyLinesRight, op, *m_FilterCommentsManager, asLwrCaseExt.c_str());
 				}
 
 				if (m_pFilterList && m_pFilterList->HasRegExps())
@@ -1194,16 +1194,16 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	
 	// Get paths, primarily use alternative paths, only if they are empty
 	// use full filepaths
-	CString path1(m_s1AlternativePath);
-	CString path2(m_s2AlternativePath);
-	if (path1.IsEmpty())
+	String path1(m_s1AlternativePath);
+	String path2(m_s2AlternativePath);
+	if (path1.empty())
 		path1 = m_s1File;
-	if (path2.IsEmpty())
+	if (path2.empty())
 		path2 = m_s2File;
-	path1.Replace('\\', '/');
-	path2.Replace('\\', '/');
-	inf_patch[0].name = strdup(T2CA(path1));
-	inf_patch[1].name = strdup(T2CA(path2));
+	replace_char(&*path1.begin(), '\\', '/');
+	replace_char(&*path2.begin(), '\\', '/');
+	inf_patch[0].name = strdup(T2CA(path1.c_str()));
+	inf_patch[1].name = strdup(T2CA(path2.c_str()));
 
 	outfile = NULL;
 	if (!m_sPatchFile.IsEmpty())
@@ -1221,9 +1221,9 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 	// Print "command line"
 	if (m_bAddCmdLine)
 	{
-		CString switches = FormatSwitchString();
+		String switches = FormatSwitchString();
 		_ftprintf(outfile, _T("diff%s %s %s\n"),
-			switches, path1, path2);
+			switches.c_str(), path1.c_str(), path2.c_str());
 	}
 
 	// Output patchfile
@@ -1267,10 +1267,10 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
  * @brief Set line filters, given as one string.
  * @param [in] filterStr Filters.
  */
-void CDiffWrapper::SetFilterList(const CString &filterStr)
+void CDiffWrapper::SetFilterList(LPCTSTR filterStr)
 {
 	// Remove filterlist if new filter is empty
-	if (filterStr.IsEmpty())
+	if (*filterStr == '\0')
 	{
 		delete m_pFilterList;
 		m_pFilterList = NULL;
@@ -1278,41 +1278,39 @@ void CDiffWrapper::SetFilterList(const CString &filterStr)
 	}
 
 	// Adding new filter without previous filter
-	if (!filterStr.IsEmpty() && m_pFilterList == NULL)
+	if (m_pFilterList == NULL)
 	{
 		m_pFilterList = new FilterList;
 	}
 
 	m_pFilterList->RemoveAllFilters();
-	if (!filterStr.IsEmpty())
-	{
-		char * regexp_str;
-		FilterList::EncodingType type;
-		
+
+	char * regexp_str;
+	FilterList::EncodingType type;
+	
 #ifdef UNICODE
-		regexp_str = UCS2UTF8_ConvertToUtf8(filterStr);
-		type = FilterList::ENC_UTF8;
+	regexp_str = UCS2UTF8_ConvertToUtf8(filterStr.c_str());
+	type = FilterList::ENC_UTF8;
 #else
-		CString tmp_str(filterStr);
-		regexp_str = tmp_str.LockBuffer();
-		type = FilterList::ENC_ANSI;
+	CString tmp_str(filterStr);
+	regexp_str = tmp_str.LockBuffer();
+	type = FilterList::ENC_ANSI;
 #endif
 
-		// Add every "line" of regexps to regexp list
-		char * token;
-		const char sep[] = "\r\n";
-		token = strtok(regexp_str, sep);
-		while (token)
-		{
-			m_pFilterList->AddRegExp(token, type);
-			token = strtok(NULL, sep);
-		}
-#ifdef UNICODE
-		UCS2UTF8_Dealloc(regexp_str);
-#else
-		tmp_str.UnlockBuffer();
-#endif
+	// Add every "line" of regexps to regexp list
+	char * token;
+	const char sep[] = "\r\n";
+	token = strtok(regexp_str, sep);
+	while (token)
+	{
+		m_pFilterList->AddRegExp(token, type);
+		token = strtok(NULL, sep);
 	}
+#ifdef UNICODE
+	UCS2UTF8_Dealloc(regexp_str);
+#else
+	tmp_str.UnlockBuffer();
+#endif
 }
 
 /**

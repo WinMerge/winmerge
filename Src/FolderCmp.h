@@ -26,12 +26,12 @@ class PrediffingInfo;
  */
 struct PluginsContext
 {
-	CString origFileName1;
-	CString origFileName2;
-	CString filepathUnpacked1;
-	CString filepathUnpacked2;
-	CString filepathTransformed1;
-	CString filepathTransformed2;
+	String origFileName1;
+	String origFileName2;
+	String filepathUnpacked1;
+	String filepathUnpacked2;
+	String filepathTransformed1;
+	String filepathTransformed2;
 	PackingInfo * infoUnpacker;
 	PrediffingInfo * infoPrediffer;
 };

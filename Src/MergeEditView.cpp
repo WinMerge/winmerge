@@ -1147,7 +1147,7 @@ void CMergeEditView::OnL2r()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2R);
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 			pDoc->ListCopy(0, 1, currentDiff);
 		else
@@ -1155,7 +1155,7 @@ void CMergeEditView::OnL2r()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2R);
 		pDoc->ListCopy(0, 1, currentDiff);
 	}
 }
@@ -1224,7 +1224,7 @@ void CMergeEditView::OnR2l()
 
 	if (firstDiff != -1 && lastDiff != -1 && (lastDiff >= firstDiff))
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2L);
 		if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 			pDoc->ListCopy(1, 0, currentDiff);
 		else
@@ -1232,7 +1232,7 @@ void CMergeEditView::OnR2l()
 	}
 	else if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2L);
 		pDoc->ListCopy(1, 0, currentDiff);
 	}
 }
@@ -1273,7 +1273,7 @@ void CMergeEditView::OnAllLeft()
 	// Check that left side is not readonly
 	if (IsReadOnly(0))
 		return;
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2L));
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2L);
 
 	GetDocument()->CopyAllList(1, 0);
 }
@@ -1299,7 +1299,7 @@ void CMergeEditView::OnAllRight()
 	if (IsReadOnly(1))
 		return;
 
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYALL2R));
+	WaitStatusCursor waitstatus(IDS_STATUS_COPYALL2R);
 
 	GetDocument()->CopyAllList(0, 1);
 }
@@ -1876,7 +1876,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	if (functionNamesList.GetSize() == 0)
 	{
 		// no script : create a <empty> entry
-		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, LoadResString(ID_NO_EDIT_SCRIPTS));
+		DoAppendMenu(hMenu, MF_STRING, ID_NO_EDIT_SCRIPTS, theApp.LoadString(ID_NO_EDIT_SCRIPTS).c_str());
 	}
 	else
 	{
@@ -1889,7 +1889,7 @@ HMENU CMergeEditView::createScriptsSubmenu(HMENU hMenu)
 	}
 
 	if (IsWindowsScriptThere() == FALSE)
-		DoAppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, LoadResString(ID_NO_SCT_SCRIPTS));
+		DoAppendMenu(hMenu, MF_STRING, ID_NO_SCT_SCRIPTS, theApp.LoadString(ID_NO_SCT_SCRIPTS).c_str());
 
 	return hMenu;
 }
@@ -1918,7 +1918,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	ASSERT(pd);
 
 	// title
-	DoAppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, LoadResString(ID_NO_PREDIFFER));
+	DoAppendMenu(hMenu, MF_STRING, ID_NO_PREDIFFER, theApp.LoadString(ID_NO_PREDIFFER).c_str());
 
 	// get the scriptlet files
 	PluginArray * piScriptArray = 
@@ -1929,14 +1929,14 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	// build the menu : first part, suggested plugins
 	// title
 	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	DoAppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, LoadResString(ID_SUGGESTED_PLUGINS));
+	DoAppendMenu(hMenu, MF_STRING, ID_SUGGESTED_PLUGINS, theApp.LoadString(ID_SUGGESTED_PLUGINS).c_str());
 
 	int ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	int iScript;
 	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
 	{
 		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
-		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == FALSE)
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == FALSE)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
@@ -1944,7 +1944,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
 		PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
-		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == FALSE)
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == FALSE)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
@@ -1953,13 +1953,13 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	// build the menu : second part, others plugins
 	// title
 	DoAppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
-	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, LoadResString(ID_NOT_SUGGESTED_PLUGINS));
+	DoAppendMenu(hMenu, MF_STRING, ID_NOT_SUGGESTED_PLUGINS, theApp.LoadString(ID_NOT_SUGGESTED_PLUGINS).c_str());
 
 	ID = ID_PREDIFFERS_FIRST;	// first ID in menu
 	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
 	{
 		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
-		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == TRUE)
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == TRUE)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
@@ -1967,7 +1967,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
 		PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
-		if (plugin.TestAgainstRegList(pd->m_strBothFilenames) == TRUE)
+		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == TRUE)
 			continue;
 
 		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
@@ -2011,6 +2011,7 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = (BCMenu *)menu.GetSubMenu(0);
 	ASSERT(pSub != NULL);
@@ -2688,13 +2689,13 @@ void CMergeEditView::OnOpenFile()
 	CMergeDoc * pDoc = GetDocument();
 	ASSERT(pDoc != NULL);
 
-	CString sFileName = pDoc->m_filePaths.GetPath(m_nThisPane);
-	if (sFileName.IsEmpty())
+	String sFileName = pDoc->m_filePaths.GetPath(m_nThisPane);
+	if (sFileName.empty())
 		return;
-	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName,
+	int rtn = (int)ShellExecute(::GetDesktopWindow(), _T("edit"), sFileName.c_str(),
 			0, 0, SW_SHOWNORMAL);
 	if (rtn==SE_ERR_NOASSOC)
-		rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), sFileName,
+		rtn = (int)ShellExecute(::GetDesktopWindow(), _T("open"), sFileName.c_str(),
 			 0, 0, SW_SHOWNORMAL);
 	if (rtn==SE_ERR_NOASSOC)
 		OnOpenFileWith();
@@ -2708,15 +2709,15 @@ void CMergeEditView::OnOpenFileWith()
 	CMergeDoc * pDoc = GetDocument();
 	ASSERT(pDoc != NULL);
 
-	CString sFileName = pDoc->m_filePaths.GetPath(m_nThisPane);
-	if (sFileName.IsEmpty())
+	String sFileName = pDoc->m_filePaths.GetPath(m_nThisPane);
+	if (sFileName.empty())
 		return;
 
 	CString sysdir;
 	if (!GetSystemDirectory(sysdir.GetBuffer(MAX_PATH), MAX_PATH))
 		return;
 	sysdir.ReleaseBuffer();
-	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + sFileName;
+	CString arg = (CString)_T("shell32.dll,OpenAs_RunDLL ") + sFileName.c_str();
 	ShellExecute(::GetDesktopWindow(), 0, _T("RUNDLL32.EXE"), arg,
 			sysdir, SW_SHOWNORMAL);
 }
@@ -2729,11 +2730,11 @@ void CMergeEditView::OnOpenFileWithEditor()
 	CMergeDoc * pDoc = GetDocument();
 	ASSERT(pDoc != NULL);
 
-	CString sFileName = pDoc->m_filePaths.GetPath(m_nThisPane);
-	if (sFileName.IsEmpty())
+	String sFileName = pDoc->m_filePaths.GetPath(m_nThisPane);
+	if (sFileName.empty())
 		return;
 
-	GetMainFrame()->OpenFileToExternalEditor(sFileName);
+	GetMainFrame()->OpenFileToExternalEditor(sFileName.c_str());
 }
 
 /**

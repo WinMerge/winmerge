@@ -80,15 +80,15 @@ void ClearCaseCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL 
 	}
 	else
 	{
-		if ((m_bBaseFile == true) && m_sBaseFile.IsEmpty())
+		if ((m_bBaseFile == true) && m_sBaseFile.empty())
 		{
 			m_sBaseFile = pszParam;
 		}
-		else if ((m_bOutFile == true) && m_sOutFile.IsEmpty())
+		else if ((m_bOutFile == true) && m_sOutFile.empty())
 		{
 			m_sOutFile = pszParam;
 		}
-		else if ((m_bDesc == true) && m_sBaseDesc.IsEmpty())
+		else if ((m_bDesc == true) && m_sBaseDesc.empty())
 		{
 			m_sBaseDesc = pszParam;
 			m_bDesc = false;
@@ -104,18 +104,18 @@ void ClearCaseCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL 
 		}
 		else
 		{
-			CString sFile = paths_GetLongPath(pszParam);
-			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile);
+			String sFile = paths_GetLongPath(pszParam);
+			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile.c_str());
 			m_CmdLineInfo.m_nFiles += 1;
 		}
 	}
 
 	if (TRUE == bLast)
 	{
-		if (FALSE == m_sOutFile.IsEmpty())
+		if (FALSE == m_sOutFile.empty())
 		{
-			CString sFile = paths_GetLongPath(m_sOutFile);
-			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile);
+			String sFile = paths_GetLongPath(m_sOutFile.c_str());
+			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile.c_str());
 			m_CmdLineInfo.m_nFiles += 1;
 		}
 	}

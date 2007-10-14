@@ -38,7 +38,7 @@ CMainFrame::InitializeSourceControlMembers()
 		{
 			TCHAR temp[_MAX_PATH] = {0};
 			reg.ReadChars(_T("SCCServerPath"), temp, _MAX_PATH, _T(""));
-			CString spath = GetPathOnly(temp);
+			String spath = GetPathOnly(temp);
 			vssPath = spath + _T("\\Ss.exe");
 			GetOptionsMgr()->SaveOption(OPT_VSS_PATH, vssPath.c_str());
 		}

@@ -72,7 +72,7 @@ private:
 
 	//Use CString instead of std::string, so as to allow UNICODE file extensions
 	std::map<CString, FilterCommentsSet> m_FilterCommentsSetByFileType;
-	CString m_IniFileName;
+	String m_IniFileName;
 };
 
 #endif // _FILTERCOMMENTSMANAGER_H_

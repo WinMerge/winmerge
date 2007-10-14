@@ -71,8 +71,8 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir,
 {
 	static const TCHAR backslash[] = _T("\\");
 
-	CString sLeftDir = paths.GetLeft();
-	CString sRightDir = paths.GetRight();
+	CString sLeftDir = paths.GetLeft().c_str();
+	CString sRightDir = paths.GetRight().c_str();
 	CString leftsubprefix;
 	CString rightsubprefix;
 	if (!leftsubdir.IsEmpty())
@@ -414,7 +414,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	if (di.diffcode.isDirectory())
 	{
 		// 1. Test against filters
-		if (pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename, di.sRightFilename))
+		if (pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename.c_str(), di.sRightFilename.c_str()))
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 		else
 			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
@@ -425,7 +425,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	else
 	{
 		// 1. Test against filters
-		if (pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename, di.sRightFilename))
+		if (pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename.c_str(), di.sRightFilename.c_str()))
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 			// 2. Add unique files
@@ -500,7 +500,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
+		di.sLeftFilename.c_str(), (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
 	);
 	
 	pCtxt->AddDiff(di);
@@ -564,7 +564,7 @@ static void AddToList(const CString & sLeftDir, const CString & sRightDir,
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		(LPCTSTR)di.sLeftFilename, (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
+		di.sLeftFilename.c_str(), (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
 	);
 	pCtxt->m_pCompareStats->IncreaseTotalItems();
 

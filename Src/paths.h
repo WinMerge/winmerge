@@ -9,6 +9,8 @@
 #ifndef paths_h_included
 #define paths_h_included
 
+#include "UnicodeString.h"
+
 /**
  * @brief Possible values when checking for file/folder existence.
  */
@@ -19,20 +21,21 @@ typedef enum
 	IS_EXISTING_DIR, /**< It is existing folder */
 } PATH_EXISTENCE;
 
-bool paths_EndsWithSlash(const CString & s);
+bool paths_EndsWithSlash(LPCTSTR s);
+
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
-void paths_normalize(CString & sPath);
-CString paths_GetLongPath(const CString & sPath, BOOL bExpandEnvs = TRUE);
-bool paths_CreateIfNeeded(const CString & sPath);
+void paths_normalize(String & sPath);
+String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
+bool paths_CreateIfNeeded(LPCTSTR szPath);
 LPCTSTR paths_GetTempPath(int * pnerr=NULL);
-CString paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr=NULL);
+String paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr=NULL);
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
 CString ExpandShortcut(const CString &inFile);
-CString paths_ConcatPath(const CString & path, const CString & subpath);
-CString paths_GetParentPath(const CString & path);
+String paths_ConcatPath(const String & path, const String & subpath);
+String paths_GetParentPath(LPCTSTR path);
 CString paths_GetLastSubdir(const CString & path);
 BOOL paths_IsPathAbsolute(const CString & path);
-CString paths_EnsurePathExist(const CString & sPath);
+String paths_EnsurePathExist(const String & sPath);
 CString paths_GetWindowsDirectory();
 CString paths_GetMyDocuments(HWND hWindow);
 

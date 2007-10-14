@@ -14,7 +14,7 @@
 class CDiffContext;
 
 // DirViewColItems typedefs
-typedef CString (*ColGetFncPtrType)(const CDiffContext *, const void *);
+typedef String (*ColGetFncPtrType)(const CDiffContext *, const void *);
 typedef int (*ColSortFncPtrType)(const CDiffContext *, const void *, const void *);
 
 

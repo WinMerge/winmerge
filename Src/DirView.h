@@ -127,10 +127,10 @@ private:
 
 // Implementation in DirActions.cpp
 private:
-	BOOL GetSelectedDirNames(CString& strLeft, CString& strRight) const;
-	BOOL GetSelectedFileNames(CString& strLeft, CString& strRight) const;
-	CString GetSelectedFileName(SIDE_TYPE stype) const;
-	void GetItemFileNames(int sel, CString& strLeft, CString& strRight) const;
+	BOOL GetSelectedDirNames(String& strLeft, String& strRight) const;
+	BOOL GetSelectedFileNames(String& strLeft, String& strRight) const;
+	String GetSelectedFileName(SIDE_TYPE stype) const;
+	void GetItemFileNames(int sel, String& strLeft, String& strRight) const;
 	void GetItemFileNames(int sel, PathContext * paths) const;
 	void FormatEncodingDialogDisplays(CLoadSaveCodepageDlg * dlg);
 	BOOL IsItemLeftOnly(int code);
@@ -207,7 +207,7 @@ private:
 	void ResetColumnOrdering();
 	void MoveColumn(int psrc, int pdest);
 	CString GetColRegValueNameBase(int col) const;
-	CString ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di);
+	String ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di);
 	int ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, const DIFFITEM &rdi) const;
 // End DirViewCols.cpp
 
@@ -247,9 +247,9 @@ protected:
 	void WarnContentsChanged(const CString & failedPath);
 	void OpenSpecialItems(POSITION pos1, POSITION pos2);
 	bool OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
-		CString &path1, CString &path2, int & sel1, bool & isDir);
+		String &path1, String &path2, int & sel1, bool & isDir);
 	bool OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFITEM **di2,
-		CString &path1, CString &path2, int & sel1, int & sel2, bool & isDir);
+		String &path1, String &path2, int & sel1, int & sel2, bool & isDir);
 
 // Implementation data
 protected:
@@ -425,7 +425,7 @@ inline CDirDoc* CDirView::GetDocument()
 #endif
 
 
-CString NumToStr(int n);
+String NumToStr(int n);
 
 
 /////////////////////////////////////////////////////////////////////////////

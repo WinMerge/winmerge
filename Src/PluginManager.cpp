@@ -33,7 +33,7 @@ PluginManager::~PluginManager()
 /**
  * @brief retrieve relevant plugin settings for specified comparison
  */
-void PluginManager::FetchPluginInfos(const CString& filteredFilenames, 
+void PluginManager::FetchPluginInfos(LPCTSTR filteredFilenames, 
                                      PackingInfo ** infoUnpacker, 
                                      PrediffingInfo ** infoPrediffer)
 {
@@ -51,7 +51,7 @@ void PluginManager::FetchPluginInfos(const CString& filteredFilenames,
 /**
  * @brief Store specified prediff choice for specified comparison
  */
-void PluginManager::SetPrediffSetting(const CString & filteredFilenames, int newsetting)
+void PluginManager::SetPrediffSetting(LPCTSTR filteredFilenames, int newsetting)
 {
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;
@@ -59,7 +59,7 @@ void PluginManager::SetPrediffSetting(const CString & filteredFilenames, int new
 	infoPrediffer->Initialize(newsetting);
 }
 
-void PluginManager::SetPrediffer(const CString & filteredFilenames, const CString & prediffer)
+void PluginManager::SetPrediffer(LPCTSTR filteredFilenames, const CString & prediffer)
 {
 	PackingInfo * infoUnpacker = 0;
 	PrediffingInfo * infoPrediffer = 0;

@@ -132,13 +132,13 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 
 	ProjectFile project;
 
-	CString sErr;
+	String sErr;
 	if (!project.Read(fileName, &sErr))
 	{
-		if (sErr.IsEmpty())
-			sErr = LoadResString(IDS_UNK_ERROR_SAVING_PROJECT);
+		if (sErr.empty())
+			sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
 		CString msg;
-		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr);
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr.c_str());
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 	else
@@ -180,24 +180,24 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	if (!m_sFilter.IsEmpty())
 	{
 		// Remove possbile prefix from the filter name
-		CString prefix = LoadResString(IDS_FILTER_PREFIX);
-		int ind = m_sFilter.Find(prefix, 0);
+		String prefix = theApp.LoadString(IDS_FILTER_PREFIX);
+		int ind = m_sFilter.Find(prefix.c_str(), 0);
 		if (ind == 0)
 		{
-			m_sFilter.Delete(0, prefix.GetLength());
+			m_sFilter.Delete(0, prefix.length());
 		}
 		m_sFilter.TrimLeft();
 		project.SetFilter(m_sFilter);
 	}
 	project.SetSubfolders(m_bIncludeSubfolders);
 
-	CString sErr;
+	String sErr;
 	if (!project.Save(fileName, &sErr))
 	{
-		if (sErr.IsEmpty())
-			sErr = LoadResString(IDS_UNK_ERROR_SAVING_PROJECT);
+		if (sErr.empty())
+			sErr = theApp.LoadString(IDS_UNK_ERROR_SAVING_PROJECT);
 		CString msg;
-		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr);
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, fileName, sErr.c_str());
 		AfxMessageBox(msg, MB_ICONSTOP);
 	}
 	else

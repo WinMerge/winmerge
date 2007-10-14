@@ -20,10 +20,10 @@ class CTempPathContext
 {
 public:
 	CTempPathContext *m_pParent;
-	CString m_strLeftDisplayRoot;
-	CString m_strRightDisplayRoot;
-	CString m_strLeftRoot;
-	CString m_strRightRoot;
+	String m_strLeftDisplayRoot;
+	String m_strRightDisplayRoot;
+	String m_strLeftRoot;
+	String m_strRightRoot;
 	CTempPathContext *DeleteHead();
 };
 
@@ -52,8 +52,8 @@ private:
 	typedef CListCtrl *pView;
 	struct Envelope : public Merge7z::Envelope
 	{
-		CString Name;
-		CString FullPath;
+		String Name;
+		String FullPath;
 		virtual void Free()
 		{
 			delete this;

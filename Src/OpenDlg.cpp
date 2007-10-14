@@ -215,7 +215,7 @@ BOOL COpenDlg::OnInitDialog()
 void COpenDlg::OnLeftButton()
 {
 	CString s;
-	CString sfolder, sext;
+	String sfolder;
 	UpdateData(TRUE); 
 
 	PATH_EXISTENCE existence = paths_DoesPathExist(m_strLeft);
@@ -235,7 +235,7 @@ void COpenDlg::OnLeftButton()
 		break;
 	}
 
-	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder))
+	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder.c_str()))
 	{
 		m_strLeft = s;
 		m_strLeftBrowsePath = s;
@@ -250,7 +250,7 @@ void COpenDlg::OnLeftButton()
 void COpenDlg::OnRightButton() 
 {
 	CString s;
-	CString sfolder, sext;
+	String sfolder;
 	UpdateData(TRUE);
 
 	PATH_EXISTENCE existence = paths_DoesPathExist(m_strRight);
@@ -270,7 +270,7 @@ void COpenDlg::OnRightButton()
 		break;
 	}
 
-	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder))
+	if (SelectFileOrFolder(GetSafeHwnd(), s, sfolder.c_str()))
 	{
 		m_strRight = s;
 		m_strRightBrowsePath = s;
@@ -315,8 +315,8 @@ void COpenDlg::OnOK()
 	if (m_strRightBrowsePath.CompareNoCase(m_strRight) != 0)
 		bExpandRight = TRUE;
 
-	m_strRight = paths_GetLongPath(m_strRight, bExpandRight);
-	m_strLeft = paths_GetLongPath(m_strLeft, bExpandLeft);
+	m_strRight = paths_GetLongPath(m_strRight, bExpandRight).c_str();
+	m_strLeft = paths_GetLongPath(m_strLeft, bExpandLeft).c_str();
 
 	// Add trailing '\' for directories if its missing
 	if (m_pathsType == IS_EXISTING_DIR)
@@ -562,20 +562,19 @@ void COpenDlg::OnSelectFilter()
  */
 BOOL COpenDlg::LoadProjectFile(CString path)
 {
-	CString filterPrefix;
-	CString err;
+	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+	String err;
 
 	m_pProjectFile = new ProjectFile;
 	if (m_pProjectFile == NULL)
 		return FALSE;
 
-	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 	if (!m_pProjectFile->Read(path, &err))
 	{
-		if (!err.IsEmpty())
+		if (!err.empty())
 		{
 			CString msg;
-			AfxFormatString2(msg, IDS_ERROR_FILEOPEN, path, err);
+			LangFormatString2(msg, IDS_ERROR_FILEOPEN, path, err.c_str());
 			AfxMessageBox(msg, MB_ICONSTOP);
 		}
 		return FALSE;
@@ -589,7 +588,7 @@ BOOL COpenDlg::LoadProjectFile(CString path)
 			m_strExt.TrimLeft();
 			m_strExt.TrimRight();
 			if (m_strExt[0] != '*')
-				m_strExt.Insert(0, filterPrefix);
+				m_strExt.Insert(0, filterPrefix.c_str());
 		}
 	}
 	return TRUE;

@@ -722,7 +722,7 @@ void CMergeDiffDetailView::OnL2r()
 
 	if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYL2R));
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYL2R);
 		pDoc->ListCopy(0, 1, currentDiff);
 	}
 }
@@ -758,7 +758,7 @@ void CMergeDiffDetailView::OnR2l()
 
 	if (currentDiff != -1 && pDoc->m_diffList.IsDiffSignificant(currentDiff))
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_COPYR2L));
+		WaitStatusCursor waitstatus(IDS_STATUS_COPYR2L);
 		pDoc->ListCopy(1, 0, currentDiff);
 	}
 }

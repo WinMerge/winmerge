@@ -158,7 +158,7 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
  */
 BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
 {
-	CString filepath;
+	String filepath;
 
 	if (bLeft == TRUE)
 		filepath = paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.sLeftFilename);
@@ -166,10 +166,10 @@ BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
 		filepath = paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.sRightFilename);
 
 	DiffFileInfo & dfi = bLeft ? di.left : di.right;
-	if (!dfi.Update((LPCTSTR)filepath))
+	if (!dfi.Update(filepath.c_str()))
 		return FALSE;
 	UpdateVersion(di, bLeft);
-	GuessCodepageEncoding(filepath, &dfi.encoding, m_bGuessEncoding);
+	GuessCodepageEncoding(filepath.c_str(), &dfi.encoding, m_bGuessEncoding);
 	return TRUE;
 }
 
@@ -208,12 +208,12 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	if (di.diffcode.isDirectory())
 		return;
 	
-	CString spath;
+	String spath;
 	if (bLeft)
 	{
 		if (di.diffcode.isSideRightOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.sLeftFilename);
+		LPCTSTR ext = PathFindExtension(di.sLeftFilename.c_str());
 		if (!CheckFileForVersion(ext))
 			return;
 		spath = di.getLeftFilepath(GetNormalizedLeft());
@@ -223,7 +223,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	{
 		if (di.diffcode.isSideLeftOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.sRightFilename);
+		LPCTSTR ext = PathFindExtension(di.sRightFilename.c_str());
 		if (!CheckFileForVersion(ext))
 			return;
 		spath = di.getRightFilepath(GetNormalizedRight());
@@ -231,7 +231,7 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	}
 	
 	// Get version info if it exists
-	CVersionInfo ver(spath);
+	CVersionInfo ver(spath.c_str());
 	DWORD verMS = 0;
 	DWORD verLS = 0;
 	if (ver.GetFixedFileVersion(verMS, verLS))
@@ -315,7 +315,7 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 }
 
 /** @brief Forward call to retrieve plugin info (winds up in DirDoc) */
-void CDiffContext::FetchPluginInfos(const CString& filteredFilenames,
+void CDiffContext::FetchPluginInfos(LPCTSTR filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer)
 {
 	ASSERT(m_piPluginInfos);

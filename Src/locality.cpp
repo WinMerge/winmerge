@@ -67,7 +67,7 @@ static UINT GetLocaleGrouping(int defval)
  * @param [in] n Number to convert.
  * @return Converted string.
  */
-CString NumToLocaleStr(int n)
+String NumToLocaleStr(int n)
 {
 	TCHAR numbuff[34];
 	_ltot(n, numbuff, 10);
@@ -83,7 +83,7 @@ CString NumToLocaleStr(int n)
  * @param [in] n Number to convert.
  * @return Converted string.
  */
-CString NumToLocaleStr(__int64 n)
+String NumToLocaleStr(__int64 n)
 {
 	TCHAR numbuff[34];
 	_i64tot(n, numbuff, 10);
@@ -96,7 +96,7 @@ CString NumToLocaleStr(__int64 n)
  * NB: We are not converting digits from ASCII via LOCALE_SNATIVEDIGITS
  *   So we always use ASCII digits, instead of, eg, the Chinese digits
  */
-CString GetLocaleStr(const CString & str, int decimalDigits)
+String GetLocaleStr(LPCTSTR str, int decimalDigits)
 {
 	// Fill in currency format with locale info
 	// except we hardcode for no decimal
@@ -110,8 +110,9 @@ CString GetLocaleStr(const CString & str, int decimalDigits)
 	NumFormat.lpThousandSep = (LPTSTR)(LPCTSTR)sep;
 	NumFormat.NegativeOrder = getLocaleUint(LOCALE_INEGNUMBER , 0);
 
-	CString out;
-	LPTSTR outbuff = out.GetBuffer(48);
+	String out;
+	out.resize(48);
+	LPTSTR outbuff = out.begin(); //GetBuffer(48);
 	int rt = GetNumberFormat(LOCALE_USER_DEFAULT // a predefined value for user locale
 		, 0                // operation option (allow overrides)
 		, str              // input number (see MSDN for legal chars)
@@ -119,12 +120,10 @@ CString GetLocaleStr(const CString & str, int decimalDigits)
 		, outbuff             // output buffer
 		, 48
 		);             // size of output buffer
-	out.ReleaseBuffer();
+	out.resize(rt);
 	if (!rt) {
 		int nerr = GetLastError();
-		CString msg;
-		msg.Format(_T("Error %d in NumToStr(): %s"), nerr, GetSysError(nerr));
-		TRACE(_T("%s\n"), msg);
+		TRACE(_T("Error %d in NumToStr(): %s\n"), nerr, GetSysError(nerr));
 		out = str;
 	}
 	return out;

@@ -38,8 +38,8 @@ class ProjectFile
 {
 public:
 	ProjectFile();
-	BOOL Read(LPCTSTR path, CString *sError);
-	BOOL Save(LPCTSTR path, CString *sError);
+	BOOL Read(LPCTSTR path, String *sError);
+	BOOL Save(LPCTSTR path, String *sError);
 	
 	BOOL HasLeft() const;
 	BOOL HasRight() const;

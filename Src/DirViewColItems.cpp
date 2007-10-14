@@ -95,24 +95,24 @@ static int cmpfloat(double v1, double v2)
  * @note Localized suffix strings are read from resource.
  * @todo Can't handle > terabyte filesizes.
  */
-static CString MakeShortSize(__int64 size)
+static String MakeShortSize(__int64 size)
 {
 #pragma warning(disable:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
 	double fsize = size;
 #pragma warning(default:4244) // warning C4244: '=' : conversion from '__int64' to 'double', possible loss of data
 	double number = 0;
 	int ndigits = 0;
-	CString suffix;
+	String suffix;
 
 	if (size < KILO)
 	{
 		number = fsize;
-		VERIFY(suffix.LoadString(IDS_SUFFIX_BYTE));
+		suffix = theApp.LoadString(IDS_SUFFIX_BYTE);
 	}
 	else if (size < MEGA)
 	{
 		number = fsize / KILO;
-		VERIFY(suffix.LoadString(IDS_SUFFIX_KILO));
+		suffix = theApp.LoadString(IDS_SUFFIX_KILO);
 		if (size < KILO * 10)
 		{
 			ndigits = 2;
@@ -125,7 +125,7 @@ static CString MakeShortSize(__int64 size)
 	else if (size < GIGA)
 	{
 		number = fsize / (MEGA);
-		VERIFY(suffix.LoadString(IDS_SUFFIX_MEGA));
+		suffix = theApp.LoadString(IDS_SUFFIX_MEGA);
 		if (size < MEGA * 10)
 		{
 			ndigits = 2;
@@ -138,7 +138,7 @@ static CString MakeShortSize(__int64 size)
 	else if (size < (__int64)TERA)
 	{
 		number = fsize / ((__int64)GIGA);
-		VERIFY(suffix.LoadString(IDS_SUFFIX_GIGA));
+		suffix = theApp.LoadString(IDS_SUFFIX_GIGA);
 		if (size < (__int64)GIGA * 10)
 		{
 			ndigits = 2;
@@ -151,119 +151,120 @@ static CString MakeShortSize(__int64 size)
 	else
 	{
 		// overflow (?) -- show ">TB"
-		CString s(_T(">"));
-		VERIFY(suffix.LoadString(IDS_SUFFIX_TERA));
+		String s(_T(">"));
+		suffix = theApp.LoadString(IDS_SUFFIX_TERA);
 		s += suffix;
 		return s;
 	}
 
-	CString s;
-	s.Format(_T("%lf"), number);
-	s = locality::GetLocaleStr(s, ndigits) + suffix;
-	return s;
+	TCHAR buffer[48];
+	_stprintf(buffer, _T("%lf"), number);
+	return locality::GetLocaleStr(buffer, ndigits) + suffix;
 }
 
 /**
  * @name Functions to display each type of column info.
  */
 /* @{ */
-static CString ColFileNameGet(const CDiffContext *, const void *p) //sfilename
+static String ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	return
 	(
-		di.sLeftFilename.IsEmpty() ? di.sRightFilename :
-		di.sRightFilename.IsEmpty() ? di.sLeftFilename :
+		di.sLeftFilename.empty() ? di.sRightFilename :
+		di.sRightFilename.empty() ? di.sLeftFilename :
 		di.sLeftFilename == di.sRightFilename ? di.sLeftFilename :
 		di.sLeftFilename + _T("|") + di.sRightFilename
 	);
 }
-static CString ColNameGet(const CDiffContext *, const void *p) //sfilename
+/*static CString ColNameGet(const CDiffContext *, const void *p) //sfilename
 {
 	const CString &r = *static_cast<const CString*>(p);
 	return r;
-}
-static CString ColExtGet(const CDiffContext *, const void *p) //sfilename
+}*/
+static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 {
-	const CString &r = *static_cast<const CString*>(p);
-	CString s = PathFindExtension(r);
-	s.TrimLeft(_T("."));
-	return s;
+	const String &r = *static_cast<const String*>(p);
+	LPCTSTR s = PathFindExtension(r.c_str());
+	return s + _tcsspn(s, _T("."));
 }
-static CString ColPathGet(const CDiffContext *, const void *p)
+static String ColPathGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-	CString s = di.sRightSubdir;
-	const CString &t = di.sLeftSubdir;
+	String s = di.sRightSubdir;
+	const String &t = di.sLeftSubdir;
 	int i = 0, j = 0;
 	do
 	{
-		int i_ahead = s.Find('\\', i);
-		int j_ahead = t.Find('\\', j);
-		int length_s = (i_ahead != -1 ? i_ahead : s.GetLength()) - i;
-		int length_t = (j_ahead != -1 ? j_ahead : t.GetLength()) - j;
+		int i_ahead = s.find('\\', i);
+		int j_ahead = t.find('\\', j);
+		int length_s = (i_ahead != -1 ? i_ahead : s.length()) - i;
+		int length_t = (j_ahead != -1 ? j_ahead : t.length()) - j;
 		if (length_s != length_t ||
-			!StrIsIntlEqual(FALSE, LPCTSTR(s) + i, LPCTSTR(t) + j, length_s))
+			!StrIsIntlEqual(FALSE, s.c_str() + i, t.c_str() + j, length_s))
 		{
-			CString u(LPCTSTR(t) + j, length_t + 1);
-			u.SetAt(length_t, '|');
-			s.Insert(i, u);
-			i_ahead += u.GetLength();
+			String u(t.c_str() + j, length_t + 1);
+			u[length_t] = '|';
+			//u.SetAt(length_t, '|');
+			s.insert(i, u.c_str());
+			i_ahead += u.length();
 		}
 		i = i_ahead + 1;
 		j = j_ahead + 1;
 	} while (i && j);
-	if (s.IsEmpty())
+	if (s.empty())
 		s = _T(".");
 	return s;
 }
-static CString ColStatusGet(const CDiffContext *pCtxt, const void *p)
+static String ColStatusGet(const CDiffContext *pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	// Note that order of items does matter. We must check for
 	// skipped items before unique items, for example, so that
 	// skipped unique items are labeled as skipped, not unique.
-	CString s;
+	String s;
 	if (di.diffcode.isResultError())
 	{
-		VERIFY(s.LoadString(IDS_CANT_COMPARE_FILES));
+		s = theApp.LoadString(IDS_CANT_COMPARE_FILES);
 	}
 	else if (di.diffcode.isResultAbort())
 	{
-		VERIFY(s.LoadString(IDS_ABORTED_ITEM));
+		s = theApp.LoadString(IDS_ABORTED_ITEM);
 	}
 	else if (di.diffcode.isResultFiltered())
 	{
 		if (di.diffcode.isDirectory())
-			VERIFY(s.LoadString(IDS_DIR_SKIPPED));
+			s = theApp.LoadString(IDS_DIR_SKIPPED);
 		else
-			VERIFY(s.LoadString(IDS_FILE_SKIPPED));
+			s = theApp.LoadString(IDS_FILE_SKIPPED);
 	}
 	else if (di.diffcode.isSideLeftOnly())
 	{
-		AfxFormatString1(s, IDS_LEFT_ONLY_IN_FMT, di.getLeftFilepath(pCtxt->GetNormalizedLeft()));
+		s = theApp.LoadString(IDS_LEFT_ONLY_IN_FMT);
+		string_replace(s, _T("%1"), di.getLeftFilepath(pCtxt->GetNormalizedLeft()).c_str());
 	}
 	else if (di.diffcode.isSideRightOnly())
 	{
-		AfxFormatString1(s, IDS_RIGHT_ONLY_IN_FMT, di.getRightFilepath(pCtxt->GetNormalizedRight()));
+		s = theApp.LoadString(IDS_RIGHT_ONLY_IN_FMT);
+		string_replace(s, _T("%1"), di.getRightFilepath(pCtxt->GetNormalizedRight()).c_str());
 	}
 	else if (di.diffcode.isResultSame())
 	{
 		if (di.diffcode.isBin())
-			VERIFY(s.LoadString(IDS_BIN_FILES_SAME));
+			s = theApp.LoadString(IDS_BIN_FILES_SAME);
 		else
-			VERIFY(s.LoadString(IDS_IDENTICAL));
+			s = theApp.LoadString(IDS_IDENTICAL);
 	}
 	else // diff
 	{
 		if (di.diffcode.isBin())
-			VERIFY(s.LoadString(IDS_BIN_FILES_DIFF));
+			s = theApp.LoadString(IDS_BIN_FILES_DIFF);
 		else
-			VERIFY(s.LoadString(IDS_FILES_ARE_DIFFERENT));
+			s = theApp.LoadString(IDS_FILES_ARE_DIFFERENT);
 	}
 	return s;
 }
-static CString ColTimeGet(const CDiffContext *, const void *p)
+static String ColTimeGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	if (r)
@@ -271,31 +272,30 @@ static CString ColTimeGet(const CDiffContext *, const void *p)
 	else
 		return _T("");
 }
-static CString ColSizeGet(const CDiffContext *, const void *p)
+static String ColSizeGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
-	CString s;
+	String s;
 	if (r != -1)
 	{
-		s.Format(_T("%I64d"), r);
-		s = locality::GetLocaleStr(s);
+		s = locality::NumToLocaleStr(r);
 	}
 	return s;
 }
-static CString ColSizeShortGet(const CDiffContext *, const void *p)
+static String ColSizeShortGet(const CDiffContext *, const void *p)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
-	CString s;
+	String s;
 	if (r != -1)
 	{
 		s = MakeShortSize(r);
 	}
 	return s;
 }
-static CString ColDiffsGet(const CDiffContext *, const void *p)
+static String ColDiffsGet(const CDiffContext *, const void *p)
 {
 	const int &r = *static_cast<const int*>(p);
-	CString s;
+	String s;
 	if (r == CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE)
 	{ // QuickCompare, unknown
 		s = _T("*");
@@ -306,12 +306,11 @@ static CString ColDiffsGet(const CDiffContext *, const void *p)
 	}
 	else
 	{
-		s.Format(_T("%ld"), r);
-		s = locality::GetLocaleStr(s);
+		s = locality::NumToLocaleStr(r);
 	}
 	return s;
 }
-static CString ColNewerGet(const CDiffContext *, const void *p)
+static String ColNewerGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	if (di.diffcode.isSideLeftOnly())
@@ -336,7 +335,7 @@ static CString ColNewerGet(const CDiffContext *, const void *p)
 	}
 	return _T("***");
 }
-static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, BOOL bLeft)
+static String GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, BOOL bLeft)
 {
 	DIFFITEM & di = const_cast<DIFFITEM &>(*pdi);
 	DiffFileInfo & dfi = bLeft ? di.left : di.right;
@@ -344,19 +343,19 @@ static CString GetVersion(const CDiffContext * pCtxt, const DIFFITEM * pdi, BOOL
 	{
 		pCtxt->UpdateVersion(di, bLeft);
 	}
-	return dfi.version.GetFileVersionString().c_str();
+	return dfi.version.GetFileVersionString();
 }
-static CString ColLversionGet(const CDiffContext * pCtxt, const void *p)
+static String ColLversionGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	return GetVersion(pCtxt, &di, TRUE);
 }
-static CString ColRversionGet(const CDiffContext * pCtxt, const void *p)
+static String ColRversionGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	return GetVersion(pCtxt, &di, FALSE);
 }
-static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
+static String ColStatusAbbrGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	int id;
@@ -396,11 +395,9 @@ static CString ColStatusAbbrGet(const CDiffContext *, const void *p)
 		id = IDS_DIFFERENT;
 	}
 
-	CString s;
-	VERIFY(s.LoadString(id));
-	return s;
+	return theApp.LoadString(id);
 }
-static CString ColBinGet(const CDiffContext *, const void *p)
+static String ColBinGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 
@@ -409,17 +406,17 @@ static CString ColBinGet(const CDiffContext *, const void *p)
 	else
 		return _T("");
 }
-static CString ColAttrGet(const CDiffContext *, const void *p)
+static String ColAttrGet(const CDiffContext *, const void *p)
 {
 	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
-	return r.toString().c_str();
+	return r.toString();
 }
-static CString ColEncodingGet(const CDiffContext *, const void *p)
+static String ColEncodingGet(const CDiffContext *, const void *p)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	return r.encoding.GetName();
 }
-static CString GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
+static String GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	const DiffFileInfo & dfi = bLeft ? di.left : di.right;
@@ -427,12 +424,12 @@ static CString GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
 
 	if (stats.ncrlfs == 0 && stats.ncrs == 0 && stats.nlfs == 0)
 	{
-		return _T("");
+		return String();
 	}
 	if (di.diffcode.isBin())
 	{
 		int id = IDS_EOL_BIN;
-		return LoadResString(id);
+		return theApp.LoadString(id);
 	}
 
 	int id = 0;
@@ -450,21 +447,21 @@ static CString GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
 	}
 	else
 	{
-		CString s = LoadResString(IDS_EOL_MIXED);
-		CString strstats;
-		strstats.Format(_T(":%d/%d/%d"), stats.ncrlfs, stats.ncrs, stats.nlfs);
+		String s = theApp.LoadString(IDS_EOL_MIXED);
+		TCHAR strstats[40];
+		_stprintf(strstats, _T(":%d/%d/%d"), stats.ncrlfs, stats.ncrs, stats.nlfs);
 		s += strstats;
 		return s;
 	}
 	
-	return LoadResString(id);
+	return theApp.LoadString(id);
 }
-static CString ColLEOLTypeGet(const CDiffContext * pCtxt, const void *p)
+static String ColLEOLTypeGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	return GetEOLType(pCtxt, &di, TRUE);
 }
-static CString ColREOLTypeGet(const CDiffContext * pCtxt, const void *p)
+static String ColREOLTypeGet(const CDiffContext * pCtxt, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM *>(p);
 	return GetEOLType(pCtxt, &di, FALSE);
@@ -486,25 +483,25 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 		return -1;
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
-	return ColFileNameGet(pCtxt, p).CompareNoCase(ColFileNameGet(pCtxt, q));
+	return lstrcmpi(ColFileNameGet(pCtxt, p).c_str(), ColFileNameGet(pCtxt, q).c_str());
 	//return ldi.sLeftFilename.CompareNoCase(rdi.sLeftFilename);
 }
-static int ColNameSort(const CDiffContext *, const void *p, const void *q)
+/*static int ColNameSort(const CDiffContext *, const void *p, const void *q)
 {
 	const CString &r = *static_cast<const CString*>(p);
 	const CString &s = *static_cast<const CString*>(q);
 	return r.CompareNoCase(s);
-}
+}*/
 static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	const CString &r = *static_cast<const CString*>(p);
-	const CString &s = *static_cast<const CString*>(q);
-	return lstrcmpi(PathFindExtension(r), PathFindExtension(s));
+	const String &r = *static_cast<const String*>(p);
+	const String &s = *static_cast<const String*>(q);
+	return lstrcmpi(PathFindExtension(r.c_str()), PathFindExtension(s.c_str()));
 	//return ColExtGet(pCtxt, p).CompareNoCase(ColExtGet(pCtxt, q));
 }
 static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColPathGet(pCtxt, p).CompareNoCase(ColPathGet(pCtxt, q));
+	return lstrcmpi(ColPathGet(pCtxt, p).c_str(), ColPathGet(pCtxt, q).c_str());
 }
 static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
 {
@@ -532,15 +529,15 @@ static int ColDiffsSort(const CDiffContext *, const void *p, const void *q)
 }
 static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColNewerGet(pCtxt, p).Compare(ColNewerGet(pCtxt, q));
+	return ColNewerGet(pCtxt, p).compare(ColNewerGet(pCtxt, q));
 }
 static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColLversionGet(pCtxt, p).Compare(ColLversionGet(pCtxt, q));
+	return ColLversionGet(pCtxt, p).compare(ColLversionGet(pCtxt, q));
 }
 static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
-	return ColRversionGet(pCtxt, p).Compare(ColRversionGet(pCtxt, q));
+	return ColRversionGet(pCtxt, p).compare(ColRversionGet(pCtxt, q));
 }
 static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 {
@@ -555,19 +552,13 @@ static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
 	const DiffFileFlags &s = *static_cast<const DiffFileFlags *>(q);
-	return r.toString().compare(s.toString().c_str());
+	return r.toString().compare(s.toString());
 }
 static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
 	const DiffFileInfo &s = *static_cast<const DiffFileInfo *>(q);
 	return FileTextEncoding::Collate(r.encoding, s.encoding);
-}
-static int ColEOLTypeSort(const CDiffContext *, const void *p, const void *q)
-{
-	const CString &r = *static_cast<const CString*>(p);
-	const CString &s = *static_cast<const CString*>(q);
-	return r.CompareNoCase(s);
 }
 /* @} */
 
@@ -611,8 +602,8 @@ static DirColInfo f_cols[] =
 	{ _T("Rencoding"), IDS_COLHDR_RENCODING, IDS_COLDESC_RENCODING, &ColEncodingGet, &ColEncodingSort, FIELD_OFFSET(DIFFITEM, right), -1, true, LVCFMT_LEFT },
 	{ _T("Snsdiffs"), IDS_COLHDR_NSDIFFS, IDS_COLDESC_NSDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nsdiffs), -1, false, LVCFMT_RIGHT },
 	{ _T("Snidiffs"), IDS_COLHDR_NIDIFFS, IDS_COLDESC_NIDIFFS, ColDiffsGet, ColDiffsSort, FIELD_OFFSET(DIFFITEM, nidiffs), -1, false, LVCFMT_RIGHT },
-	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColLEOLTypeGet, &ColAttrSort, 0, -1, true, LVCFMT_LEFT },
-	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColREOLTypeGet, &ColEOLTypeSort, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Leoltype"), IDS_COLHDR_LEOL_TYPE, IDS_COLDESC_LEOL_TYPE, &ColLEOLTypeGet, 0, 0, -1, true, LVCFMT_LEFT },
+	{ _T("Reoltype"), IDS_COLHDR_REOL_TYPE, IDS_COLDESC_REOL_TYPE, &ColREOLTypeGet, 0, 0, -1, true, LVCFMT_LEFT },
 };
 
 /**

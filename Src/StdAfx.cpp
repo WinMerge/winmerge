@@ -82,11 +82,9 @@ int xisspace (wint_t c)
  * @param [in] id Resource string ID.
  * @return Resource string as CString.
  */
-CString LoadResString(UINT id)
+String LoadResString(UINT id)
 {
-	CString s;
-	VERIFY(s.LoadString(id));
-	return s;
+	return theApp.LoadString(id);
 }
 
 /**

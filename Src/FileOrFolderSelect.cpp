@@ -263,8 +263,8 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 		{
 			// We have a valid folder name, but propably garbage as a filename.
 			// Return folder name
-			CString folder = GetPathOnly(sSelectedFile);
-			path = folder + '\\';
+			String folder = GetPathOnly(sSelectedFile);
+			path.Format(_T("%s\\"), folder.c_str());
 		}
 	}
 	return bRetVal;

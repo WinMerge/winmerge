@@ -565,14 +565,14 @@ static CStringArray & LoadTheScriptletList()
 	if (!scriptletsLoaded)
 	{
 		CSingleLock lock(&scriptletsSem);
-		CString path = GetModulePath() + _T("\\MergePlugins\\");
+		String path = GetModulePath() + _T("\\MergePlugins\\");
 
 		if (IsWindowsScriptThere())
-			GetScriptletsAt(path, _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
+			GetScriptletsAt(path.c_str(), _T(".sct"), theScriptletList );		// VBS/JVS scriptlet
 		else
 			GetLog()->Write(CLogFile::LWARNING, _T("\n  .sct plugins disabled (Windows Script Host not found)"));
-		GetScriptletsAt(path, _T(".ocx"), theScriptletList );		// VB COM object
-		GetScriptletsAt(path, _T(".dll"), theScriptletList );		// VC++ COM object
+		GetScriptletsAt(path.c_str(), _T(".ocx"), theScriptletList );		// VB COM object
+		GetScriptletsAt(path.c_str(), _T(".dll"), theScriptletList );		// VC++ COM object
 		scriptletsLoaded = true;
 
 		// lock the *.sct to avoid them being deleted/moved away

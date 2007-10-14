@@ -164,7 +164,7 @@ public :
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
 		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
-			CString filteredFilenames, BOOL & readOnly, int nCrlfStyle,
+			LPCTSTR filteredFilenames, BOOL & readOnly, int nCrlfStyle,
 			int codepage, CString &sError);
 		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, CString & sError,
 			PackingInfo * infoUnpacker = NULL, int nCrlfStyle = CRLF_STYLE_AUTOMATIC,
@@ -216,7 +216,7 @@ public:
 	UINT m_nTrivialDiffs; /**< Amount of trivial (ignored) diffs */
 	PathContext m_filePaths; /**< Filepaths for this document */
 	/// String of concatenated filenames as text to apply plugins filter to
-	CString m_strBothFilenames;
+	String m_strBothFilenames;
 
 	int GetActiveMergeViewIndexType() const;
 	CMergeEditView * GetActiveMergeView();
@@ -322,7 +322,7 @@ protected:
 	CDiffWrapper m_diffWrapper;
 	/// information about the file packer/unpacker
 	PackingInfo * m_pInfoUnpacker;
-	CString m_strDesc[2]; /**< Left/right side description text */
+	String m_strDesc[2]; /**< Left/right side description text */
 	BUFFERTYPE m_nBufferType[2];
 	BOOL m_bMergingMode; /**< Merging or Edit mode */
 	BOOL m_bEditAfterRescan[2]; /**< Left/right doc edited after rescanning */
@@ -352,7 +352,7 @@ private:
 	int GetMatchCost(const CString &Line0, const CString &Line1);
 	void FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
 		CDiffTextBuffer * pBuffer2);
-	CString GetFileExt(const CString& sFileName, const CString& sDescription);
+	CString GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription);
 };
 
 /////////////////////////////////////////////////////////////////////////////

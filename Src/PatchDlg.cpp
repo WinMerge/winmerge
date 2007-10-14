@@ -205,17 +205,17 @@ BOOL CPatchDlg::OnInitDialog()
 	if (count == 1)
 	{
 		PATCHFILES files = m_fileList.GetHead();
-		m_file1 = files.lfile;
-		m_ctlFile1.SetWindowText(files.lfile);
-		m_file2 = files.rfile;
-		m_ctlFile2.SetWindowText(files.rfile);
+		m_file1 = files.lfile.c_str();
+		m_ctlFile1.SetWindowText(files.lfile.c_str());
+		m_file2 = files.rfile.c_str();
+		m_ctlFile2.SetWindowText(files.rfile.c_str());
 	}
 	else if (count > 1)	// Multiple files added, show number of files
 	{
 		CString msg;
 		CString num;
 		num.Format(_T("%d"), count);
-		AfxFormatString1(msg, IDS_DIFF_SELECTEDFILES, num);
+		LangFormatString1(msg, IDS_DIFF_SELECTEDFILES, num);
 		m_file1 = msg;
 		m_file2 = msg;
 	}

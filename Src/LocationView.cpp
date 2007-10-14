@@ -708,7 +708,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	}
 	else
 		pPopup->EnableMenuItem(ID_LOCBAR_GOTODIFF, MF_GRAYED);
-	AfxFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
+	LangFormatString1(strItem, ID_LOCBAR_GOTOLINE_FMT, strNum);
 	pPopup->SetMenuText(ID_LOCBAR_GOTODIFF, strItem, MF_BYCOMMAND);
 
 	// invoke context menu

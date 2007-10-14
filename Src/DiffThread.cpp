@@ -225,8 +225,8 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	bool casesensitive = false;
 	int depth = myStruct->bRecursive ? -1 : 0;
 
-	paths.SetLeft(myStruct->context->GetNormalizedLeft());
-	paths.SetRight(myStruct->context->GetNormalizedRight());
+	paths.SetLeft(myStruct->context->GetNormalizedLeft().c_str());
+	paths.SetRight(myStruct->context->GetNormalizedRight().c_str());
 
 	if (bOnlyRequested)
 	{

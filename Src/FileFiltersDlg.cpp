@@ -381,43 +381,43 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
  */
 void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 {
-	CString globalPath = theApp.m_globalFileFilter.GetGlobalFilterPathWithCreate();
-	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
+	String globalPath = theApp.m_globalFileFilter.GetGlobalFilterPathWithCreate();
+	String userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 
-	if (globalPath.IsEmpty() && userPath.IsEmpty())
+	if (globalPath.empty() && userPath.empty())
 	{
 		AfxMessageBox(IDS_FILEFILTER_NO_USERFOLDER, MB_ICONSTOP);
 		return;
 	}
 
 	// Format path to template file
-	CString templatePath(globalPath);
-	if (templatePath[templatePath.GetLength()-1] != '\\')
+	String templatePath(globalPath);
+	if (templatePath[templatePath.length() - 1] != '\\')
 		templatePath += "\\";
 	templatePath += FILE_FILTER_TEMPLATE;
 
-	if (paths_DoesPathExist(templatePath) != IS_EXISTING_FILE)
+	if (paths_DoesPathExist(templatePath.c_str()) != IS_EXISTING_FILE)
 	{
 		CString msg;
-		AfxFormatString2(msg, IDS_FILEFILTER_TMPL_MISSING,
-			FILE_FILTER_TEMPLATE, templatePath);
+		LangFormatString2(msg, IDS_FILEFILTER_TMPL_MISSING,
+			FILE_FILTER_TEMPLATE, templatePath.c_str());
 		AfxMessageBox(msg, MB_ICONERROR);
 		return;
 	}
 
-	CString path = (globalPath.IsEmpty() ? userPath : globalPath);
+	String path = globalPath.empty() ? userPath : globalPath;
 
-	if (!globalPath.IsEmpty() && !userPath.IsEmpty())
+	if (!globalPath.empty() && !userPath.empty())
 	{
 		path = CSharedFilterDlg::PromptForNewFilter(this, globalPath, userPath);
-		if (path.IsEmpty()) return;
+		if (path.empty()) return;
 	}
 
-	if (path.GetLength() && path[path.GetLength()-1] != '\\')
+	if (path.length() && path[path.length() - 1] != '\\')
 		path += '\\';
 	
 	CString s;
-	if (SelectFile(GetSafeHwnd(), s, path, IDS_FILEFILTER_SAVENEW, IDS_FILEFILTER_FILEMASK,
+	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_SAVENEW, IDS_FILEFILTER_FILEMASK,
 		FALSE))
 	{
 		// Fix file extension
@@ -440,9 +440,9 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 		// Open-dialog asks about overwriting, so we can overwrite filter file
 		// user has already allowed it.
-		if (!CopyFile(templatePath, s, FALSE))
+		if (!CopyFile(templatePath.c_str(), s, FALSE))
 		{
-			ResMsgBox1(IDS_FILEFILTER_TMPL_COPY, templatePath, MB_ICONERROR);
+			ResMsgBox1(IDS_FILEFILTER_TMPL_COPY, templatePath.c_str(), MB_ICONERROR);
 			return;
 		}
 		theApp.m_globalFileFilter.EditFileFilter(s);
@@ -478,7 +478,7 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 		path.ReleaseBuffer();
 
 		CString sConfirm;
-		AfxFormatString1(sConfirm, IDS_CONFIRM_DELETE_SINGLE, path);
+		LangFormatString1(sConfirm, IDS_CONFIRM_DELETE_SINGLE, path);
 		int res = AfxMessageBox(sConfirm, MB_ICONWARNING | MB_YESNO);
 		if (res == IDYES)
 		{
@@ -543,30 +543,30 @@ void FileFiltersDlg::OnHelp()
 void FileFiltersDlg::OnBnClickedFilterfileInstall()
 {
 	CString s;
-	CString path;
-	CString userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
+	String path;
+	String userPath = theApp.m_globalFileFilter.GetUserFilterPathWithCreate();
 
-	if (SelectFile(GetSafeHwnd(), s, path, IDS_FILEFILTER_INSTALL, IDS_FILEFILTER_FILEMASK,
+	if (SelectFile(GetSafeHwnd(), s, path.c_str(), IDS_FILEFILTER_INSTALL, IDS_FILEFILTER_FILEMASK,
 		TRUE))
 	{
 		String sfile, sext;
 		SplitFilename(s, NULL, &sfile, &sext);
-		CString filename(sfile.c_str());
-		CString ext(sext.c_str());
+		String filename = sfile;
+		//CString ext(sext.c_str());
 		filename += _T(".");
-		filename += ext;
+		filename += sext;
 		userPath = paths_ConcatPath(userPath, filename);
-		if (!CopyFile(s, userPath, TRUE))
+		if (!CopyFile(s, userPath.c_str(), TRUE))
 		{
 			// If file already exists, ask from user
 			// If user wants to, overwrite existing filter
-			if (paths_DoesPathExist(userPath) == IS_EXISTING_FILE)
+			if (paths_DoesPathExist(userPath.c_str()) == IS_EXISTING_FILE)
 			{
 				int res = AfxMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
 					MB_ICONWARNING);
 				if (res == IDYES)
 				{
-					if (!CopyFile(s, userPath, FALSE))
+					if (!CopyFile(s, userPath.c_str(), FALSE))
 					{
 						AfxMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 					}
@@ -580,7 +580,7 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 		else
 		{
 			FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
-			pMgr->AddFilter(userPath);
+			pMgr->AddFilter(userPath.c_str());
 
 			// Remove all from filterslist and re-add so we can update UI
 			CString selected;

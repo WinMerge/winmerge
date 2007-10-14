@@ -358,7 +358,7 @@ void CDirView::StartCompare(CompareStats *pCompareStats)
  */
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
+	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
 	OpenSelection();
 	CListView::OnLButtonDblClk(nFlags, point);
 }
@@ -392,7 +392,7 @@ void CDirView::Redisplay()
 	DeleteAllDisplayItems();
 
 	// If non-recursive compare, add special item(s)
-	CString leftParent, rightParent;
+	String leftParent, rightParent;
 	if (!pDoc->GetRecursive() ||
 		pDoc->AllowUpwardDirectory(leftParent, rightParent) == CDirDoc::AllowUpwardDirectory::ParentIsTempPath)
 	{
@@ -483,7 +483,7 @@ static void NTAPI FormatContextMenu(BCMenu *pPopup, UINT uIDItem, int n1, int n2
 {
 	CString s1, s2;
 	pPopup->GetMenuText(uIDItem, s1, MF_BYCOMMAND);
-	s2.FormatMessage(s1, NumToStr(n1), NumToStr(n2), NumToStr(n3));
+	s2.FormatMessage(s1, NumToStr(n1).c_str(), NumToStr(n2).c_str(), NumToStr(n3).c_str());
 	pPopup->SetMenuText(uIDItem, s2, MF_BYCOMMAND);
 	if (n1 == 0)
 	{
@@ -511,19 +511,20 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	theApp.TranslateMenu(menu.m_hMenu);
 
 	// 1st submenu of IDR_POPUP_DIRVIEW is for item popup
 	BCMenu *pPopup = (BCMenu*) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
 
 	CMenu menuPluginsHolder;
-	CString s;
 	menuPluginsHolder.LoadMenu(IDR_POPUP_PLUGINS_SETTINGS);
-	VERIFY(s.LoadString(ID_TITLE_PLUGINS_SETTINGS));
-	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.GetBuffer(0));
+	theApp.TranslateMenu(menuPluginsHolder.m_hMenu);
+	String s = theApp.LoadString(ID_TITLE_PLUGINS_SETTINGS);
+	pPopup->AppendMenu(MF_POPUP, (int)menuPluginsHolder.m_hMenu, s.c_str());
 
 	// set the menu items with the proper directory names
-	CString sl, sr;
+	String sl, sr;
 	GetSelectedDirNames(sl, sr);
 
 	// TODO: It would be more efficient to set
@@ -589,11 +590,12 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			!di.diffcode.isSideLeftOnly() && !di.diffcode.isSideRightOnly() &&
 			!di.diffcode.isResultFiltered())
 		{
-			CString leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
+			String leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
 					_T("\\") + di.sLeftFilename;
-			CString rightPath = di.getRightFilepath(pDoc->GetRightBasePath()) +
+			String rightPath = di.getRightFilepath(pDoc->GetRightBasePath()) +
 					_T("\\") + di.sRightFilename;
-			CString filteredFilenames = leftPath + "|" + rightPath;
+			CString filteredFilenames;
+			filteredFilenames.Format(_T("%s|%s"), leftPath.c_str(), rightPath.c_str());
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			GetDocument()->FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
@@ -634,7 +636,7 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_DIRVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
-
+	theApp.TranslateMenu(menu.m_hMenu);
 	// 2nd submenu of IDR_POPUP_DIRVIEW is for header popup
 	BCMenu* pPopup = (BCMenu *)menu.GetSubMenu(1);
 	ASSERT(pPopup != NULL);
@@ -650,10 +652,9 @@ void CDirView::HeaderContextMenu(CPoint point, int /*i*/)
  * Converts number to string, with commas between digits in
  * locale-appropriate manner.
 */
-CString NumToStr(int n)
+String NumToStr(int n)
 {
-	CString s = locality::NumToLocaleStr(n);
-	return s;
+	return locality::NumToLocaleStr(n);
 }
 
 /// Change menu item by using string resource
@@ -661,7 +662,7 @@ CString NumToStr(int n)
 void CDirView::ModifyPopup(CMenu * pPopup, int nStringResource, int nMenuId, LPCTSTR szPath)
 {
 	CString s;
-	AfxFormatString1(s, nStringResource, szPath);
+	LangFormatString1(s, nStringResource, szPath);
 	pPopup->ModifyMenu(nMenuId, MF_BYCOMMAND|MF_STRING, nMenuId, s);
 }
 
@@ -747,9 +748,9 @@ void CDirView::DoUpdateDirCopyRightToLeft(CCmdUI* pCmdUI, eMenuType menuType)
 		{
 			CString s;
 			if (legalcount == selcount)
-				AfxFormatString1(s, IDS_COPY_TO_LEFT, NumToStr(selcount));
+				LangFormatString1(s, IDS_COPY_TO_LEFT, NumToStr(selcount).c_str());
 			else
-				AfxFormatString2(s, IDS_COPY_TO_LEFT2, NumToStr(legalcount), NumToStr(selcount));
+				LangFormatString2(s, IDS_COPY_TO_LEFT2, NumToStr(legalcount).c_str(), NumToStr(selcount).c_str());
 			pCmdUI->SetText(s);
 		}
 	}
@@ -776,9 +777,9 @@ void CDirView::DoUpdateDirCopyLeftToRight(CCmdUI* pCmdUI, eMenuType menuType)
 		{
 			CString s;
 			if (legalcount == selcount)
-				AfxFormatString1(s, IDS_COPY_TO_RIGHT, NumToStr(selcount));
+				LangFormatString1(s, IDS_COPY_TO_RIGHT, NumToStr(selcount).c_str());
 			else
-				AfxFormatString2(s, IDS_COPY_TO_RIGHT2, NumToStr(legalcount), NumToStr(selcount));
+				LangFormatString2(s, IDS_COPY_TO_RIGHT2, NumToStr(legalcount).c_str(), NumToStr(selcount).c_str());
 			pCmdUI->SetText(s);
 		}
 	}
@@ -852,7 +853,7 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
 	if(nChar==VK_RETURN)
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
+		WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
 		OpenSelection();
 	}
 	CListView::OnChar(nChar, nRepCnt, nFlags);
@@ -864,14 +865,14 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 void CDirView::OpenParentDirectory()
 {
 	CDirDoc *pDoc = GetDocument();
-	CString leftParent, rightParent;
+	String leftParent, rightParent;
 	switch (pDoc->AllowUpwardDirectory(leftParent, rightParent))
 	{
 	case CDirDoc::AllowUpwardDirectory::ParentIsTempPath:
 		pDoc->m_pTempPathContext = pDoc->m_pTempPathContext->DeleteHead();
 		// fall through (no break!)
 	case CDirDoc::AllowUpwardDirectory::ParentIsRegularPath:
-		GetMainFrame()->DoFileOpen(leftParent, rightParent,
+		GetMainFrame()->DoFileOpen(leftParent.c_str(), rightParent.c_str(),
 			FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 		// fall through (no break!)
 	case CDirDoc::AllowUpwardDirectory::No:
@@ -947,7 +948,7 @@ void CDirView::OpenSpecialItems(POSITION pos1, POSITION pos2)
  * return false if there was error or item was completely processed.
  */
 bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
-		CString &path1, CString &path2, int & sel1, bool & isDir)
+		String &path1, String &path2, int & sel1, bool & isDir)
 {
 	CDirDoc * pDoc = GetDocument();
 	*di1 = &pDoc->GetDiffRefByKey(pos1);
@@ -970,7 +971,7 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 		{
 			// Open subfolders if non-recursive compare
 			// Don't add folders to MRU
-			if (GetPairComparability(path1, path2) != IS_EXISTING_DIR)
+			if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
 			{
 				AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 				return false;
@@ -1019,7 +1020,7 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
  * return false if there was error or item was completely processed.
  */
 bool CDirView::OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFITEM **di2,
-		CString &path1, CString &path2, int & sel1, int & sel2, bool & isDir)
+		String &path1, String &path2, int & sel1, int & sel2, bool & isDir)
 {
 	CDirDoc * pDoc = GetDocument();
 
@@ -1044,14 +1045,14 @@ bool CDirView::OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFIT
 		sel2 = num;
 	}
 	// Fill in pathLeft & pathRight
-	CString temp;
+	String temp;
 	GetItemFileNames(sel1, path1, temp);
 	GetItemFileNames(sel2, temp, path2);
 
 	if ((*di1)->diffcode.isDirectory())
 	{
 		isDir = true;
-		if (GetPairComparability(path1, path2) != IS_EXISTING_DIR)
+		if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
 		{
 			AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 			return false;
@@ -1098,7 +1099,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 	}
 
 	// Common variables which both code paths below are responsible for setting
-	CString pathLeft, pathRight;
+	String pathLeft, pathRight;
 	DIFFITEM *di1 = NULL, *di2 = NULL; // left & right items (di1==di2 if single selection)
 	bool isdir = false; // set if we're comparing directories
 
@@ -1125,12 +1126,12 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 	{
 		// Open subfolders
 		// Don't add folders to MRU
-		GetMainFrame()->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(pathLeft.c_str(), pathRight.c_str(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 	}
-	else if (HasZipSupport() && ArchiveGuessFormat(pathLeft) && ArchiveGuessFormat(pathRight))
+	else if (HasZipSupport() && ArchiveGuessFormat(pathLeft.c_str()) && ArchiveGuessFormat(pathRight.c_str()))
 	{
 		// Open archives, not adding paths to MRU
-		GetMainFrame()->DoFileOpen(pathLeft, pathRight, FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
+		GetMainFrame()->DoFileOpen(pathLeft.c_str(), pathRight.c_str(), FFILEOPEN_NOMRU, FFILEOPEN_NOMRU, pDoc->GetRecursive(), pDoc);
 	}
 	else
 	{
@@ -1161,10 +1162,10 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		BOOL bLeftRO = pDoc->GetReadOnly(TRUE);
 		BOOL bRightRO = pDoc->GetReadOnly(FALSE);
 
-		FileLocation filelocLeft(pathLeft);
+		FileLocation filelocLeft(pathLeft.c_str());
 		filelocLeft.encoding = di1->left.encoding;
 
-		FileLocation filelocRight(pathRight);
+		FileLocation filelocRight(pathRight.c_str());
 		filelocRight.encoding = di2->right.encoding;
 
 		int rtn = GetMainFrame()->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
@@ -1235,9 +1236,9 @@ void CDirView::DoUpdateCtxtDirDelLeft(CCmdUI* pCmdUI)
 
 		CString s;
 		if (count == total)
-			AfxFormatString1(s, IDS_DEL_LEFT_FMT, NumToStr(total));
+			LangFormatString1(s, IDS_DEL_LEFT_FMT, NumToStr(total).c_str());
 		else
-			AfxFormatString2(s, IDS_DEL_LEFT_FMT2, NumToStr(count), NumToStr(total));
+			LangFormatString2(s, IDS_DEL_LEFT_FMT2, NumToStr(count).c_str(), NumToStr(total).c_str());
 		pCmdUI->SetText(s);
 	}
 }
@@ -1262,9 +1263,9 @@ void CDirView::DoUpdateCtxtDirDelRight(CCmdUI* pCmdUI)
 		
 		CString s;
 		if (count == total)
-			AfxFormatString1(s, IDS_DEL_RIGHT_FMT, NumToStr(total));
+			LangFormatString1(s, IDS_DEL_RIGHT_FMT, NumToStr(total).c_str());
 		else
-			AfxFormatString2(s, IDS_DEL_RIGHT_FMT2, NumToStr(count), NumToStr(total));
+			LangFormatString2(s, IDS_DEL_RIGHT_FMT2, NumToStr(count).c_str(), NumToStr(total).c_str());
 		pCmdUI->SetText(s);
 	}
 }
@@ -1291,9 +1292,9 @@ void CDirView::DoUpdateCtxtDirDelBoth(CCmdUI* pCmdUI)
 
 		CString s;
 		if (count == total)
-			AfxFormatString1(s, IDS_DEL_BOTH_FMT, NumToStr(total));
+			LangFormatString1(s, IDS_DEL_BOTH_FMT, NumToStr(total).c_str());
 		else
-			AfxFormatString2(s, IDS_DEL_BOTH_FMT2, NumToStr(count), NumToStr(total));
+			LangFormatString2(s, IDS_DEL_BOTH_FMT2, NumToStr(count).c_str(), NumToStr(total).c_str());
 		pCmdUI->SetText(s);
 	}
 }
@@ -1316,9 +1317,9 @@ void CDirView::DoUpdateCtxtDirCopyLeftTo(CCmdUI* pCmdUI)
 
 	CString s;
 	if (count == total)
-		AfxFormatString1(s, IDS_COPY_LEFT_TO, NumToStr(total));
+		LangFormatString1(s, IDS_COPY_LEFT_TO, NumToStr(total).c_str());
 	else
-		AfxFormatString2(s, IDS_COPY_LEFT_TO2, NumToStr(count), NumToStr(total));
+		LangFormatString2(s, IDS_COPY_LEFT_TO2, NumToStr(count).c_str(), NumToStr(total).c_str());
 	pCmdUI->SetText(s);
 }
 
@@ -1340,9 +1341,9 @@ void CDirView::DoUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI)
 
 	CString s;
 	if (count == total)
-		AfxFormatString1(s, IDS_COPY_RIGHT_TO, NumToStr(total));
+		LangFormatString1(s, IDS_COPY_RIGHT_TO, NumToStr(total).c_str());
 	else
-		AfxFormatString2(s, IDS_COPY_RIGHT_TO2, NumToStr(count), NumToStr(total));
+		LangFormatString2(s, IDS_COPY_RIGHT_TO2, NumToStr(count).c_str(), NumToStr(total).c_str());
 	pCmdUI->SetText(s);
 }
 
@@ -1364,9 +1365,9 @@ void CDirView::DoUpdateCtxtDirMoveLeftTo(CCmdUI* pCmdUI)
 
 	CString s;
 	if (count == total)
-		AfxFormatString1(s, IDS_MOVE_LEFT_TO, NumToStr(total));
+		LangFormatString1(s, IDS_MOVE_LEFT_TO, NumToStr(total).c_str());
 	else
-		AfxFormatString2(s, IDS_MOVE_LEFT_TO2, NumToStr(count), NumToStr(total));
+		LangFormatString2(s, IDS_MOVE_LEFT_TO2, NumToStr(count).c_str(), NumToStr(total).c_str());
 	pCmdUI->SetText(s);
 }
 
@@ -1388,9 +1389,9 @@ void CDirView::DoUpdateCtxtDirMoveRightTo(CCmdUI* pCmdUI)
 
 	CString s;
 	if (count == total)
-		AfxFormatString1(s, IDS_MOVE_RIGHT_TO, NumToStr(total));
+		LangFormatString1(s, IDS_MOVE_RIGHT_TO, NumToStr(total).c_str());
 	else
-		AfxFormatString2(s, IDS_MOVE_RIGHT_TO2, NumToStr(count), NumToStr(total));
+		LangFormatString2(s, IDS_MOVE_RIGHT_TO2, NumToStr(count).c_str(), NumToStr(total).c_str());
 	pCmdUI->SetText(s);
 }
 
@@ -2369,7 +2370,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	if (sel != -1)
 	{
 		// let the user choose a handler
-		CSelectUnpackerDlg dlg(GetDiffItem(sel).sLeftFilename, this);
+		CSelectUnpackerDlg dlg(GetDiffItem(sel).sLeftFilename.c_str(), this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker;
 		dlg.SetInitialInfoHandler(&infoUnpacker);
@@ -2432,7 +2433,7 @@ void CDirView::OnToolsGenerateReport()
 
 	DirCmpReport report(colKeys);
 	report.SetList(m_pList);
-	PathContext paths(pDoc->GetLeftBasePath(), pDoc->GetRightBasePath());
+	PathContext paths(pDoc->GetLeftBasePath().c_str(), pDoc->GetRightBasePath().c_str());
 	report.SetRootPaths(paths);
 	report.SetColumns(m_dispcols);
 	CString errStr;
@@ -2458,7 +2459,7 @@ int CDirView::AddSpecialItems()
 	CDirDoc *pDoc = GetDocument();
 	int retVal = 0;
 	BOOL bEnable = TRUE;
-	CString leftParent, rightParent;
+	String leftParent, rightParent;
 	switch (pDoc->AllowUpwardDirectory(leftParent, rightParent))
 	{
 	case CDirDoc::AllowUpwardDirectory::No:
@@ -2654,7 +2655,7 @@ void CDirView::RefreshOptions()
  */
 void CDirView::OnCopyLeftPathnames()
 {
-	CString strPaths;
+	String strPaths;
 	int sel = -1;
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -2670,7 +2671,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2679,7 +2680,7 @@ void CDirView::OnCopyLeftPathnames()
 void CDirView::OnCopyRightPathnames()
 {
 	CDirDoc *pDoc = GetDocument();
-	CString strPaths;
+	String strPaths;
 	int sel = -1;
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -2695,7 +2696,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2704,7 +2705,7 @@ void CDirView::OnCopyRightPathnames()
 void CDirView::OnCopyBothPathnames()
 {
 	CDirDoc * pDoc = GetDocument();
-	CString strPaths;
+	String strPaths;
 	int sel = -1;
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -2730,7 +2731,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2738,7 +2739,7 @@ void CDirView::OnCopyBothPathnames()
  */
 void CDirView::OnCopyFilenames()
 {
-	CString strPaths;
+	String strPaths;
 	int sel = -1;
 
 	while ((sel = m_pList->GetNextItem(sel, LVNI_SELECTED)) != -1)
@@ -2750,7 +2751,7 @@ void CDirView::OnCopyFilenames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2879,15 +2880,9 @@ void CDirView::OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult)
 	{
 		CString msg;
 		int items = GetSelectedCount();
-
-		if (items == 1)
-			VERIFY(msg.LoadString(IDS_STATUS_SELITEM1));
-		else
-		{
-			TCHAR num[20] = {0};
-			_itot(items, num, 10);
-			AfxFormatString1(msg, IDS_STATUS_SELITEMS, num);
-		}
+		TCHAR num[20] = {0};
+		_itot(items, num, 10);
+		LangFormatString1(msg, items == 1 ? IDS_STATUS_SELITEM1 : IDS_STATUS_SELITEMS, num);
 		GetParentFrame()->SetStatus(msg);
 	}
 	*pResult = 0;
@@ -2988,7 +2983,7 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 		CString sCnt;
 		sCnt.Format(_T("%ld"), count);
 		// "Items: %1"
-		AfxFormatString1(s, IDS_DIRVIEW_STATUS_FMT_NOFOCUS, sCnt);
+		LangFormatString1(s, IDS_DIRVIEW_STATUS_FMT_NOFOCUS, sCnt);
 	}
 	else
 	{
@@ -3008,7 +3003,7 @@ void CDirView::OnUpdateStatusNum(CCmdUI* pCmdUI)
 			sIdx.Format(_T("%ld"), focusItem+1);
 			sCnt.Format(_T("%ld"), count);
 			// "Item %1 of %2"
-			AfxFormatString2(s, IDS_DIRVIEW_STATUS_FMT_FOCUS, sIdx, sCnt);
+			LangFormatString2(s, IDS_DIRVIEW_STATUS_FMT_FOCUS, sIdx, sCnt);
 		}
 	}
 	pCmdUI->SetText(s);
@@ -3034,7 +3029,7 @@ void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
 
 void CDirView::OnMergeCompare()
 {
-	WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_OPENING_SELECTION));
+	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
 	OpenSelection();
 }
 

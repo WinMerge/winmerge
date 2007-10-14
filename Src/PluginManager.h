@@ -28,12 +28,12 @@ class PluginManager : public IPluginInfos
 {
 public:
 	~PluginManager();
-	void SetPrediffSetting(const CString & filteredFilenames, int newsetting);
-	void SetPrediffer(const CString & filteredFilenames, const CString & prediffer);
+	void SetPrediffSetting(LPCTSTR filteredFilenames, int newsetting);
+	void SetPrediffer(LPCTSTR filteredFilenames, const CString & prediffer);
 
 private:
 	// Implement IPluginInfos
-	virtual void FetchPluginInfos(const CString& filteredFilenames, 
+	virtual void FetchPluginInfos(LPCTSTR filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
                                       PrediffingInfo ** infoPrediffer);
 private:

@@ -10,6 +10,10 @@
 #ifndef _PATH_CONTEXT_H_
 #define _PATH_CONTEXT_H_
 
+#include "UnicodeString.h"
+
+class PathContext;
+
 /**
  * @brief Information for one path.
  *
@@ -17,16 +21,17 @@
  */
 class PathInfo
 {
+	friend PathContext;
 public:
 	PathInfo() {}
 	PathInfo(const PathInfo &pi);
 
-	CString GetPath(BOOL bNormalized = TRUE) const;
+	String GetPath(BOOL bNormalized = TRUE) const;
 	void SetPath(LPCTSTR path);
 	void NormalizePath();
 
 private:
-	CString m_sPath;  /**< Directory / file path */
+	String m_sPath;  /**< Directory / file path */
 };
 
 /**
@@ -37,13 +42,13 @@ class PathContext
 public:
 	PathContext();
 	PathContext(LPCTSTR sLeft, LPCTSTR sRight);
-	CString GetLeft(BOOL bNormalized = TRUE) const;
-	CString GetRight(BOOL bNormalized = TRUE) const;
-	CString GetPath(int index, BOOL bNormalized = TRUE) const;
+	String GetLeft(BOOL bNormalized = TRUE) const;
+	String GetRight(BOOL bNormalized = TRUE) const;
+	String GetPath(int index, BOOL bNormalized = TRUE) const;
 	void SetLeft(LPCTSTR path);
 	void SetRight(LPCTSTR path);
 	void SetPath(int index, LPCTSTR path);
-
+	void Swap();
 private:
 	PathInfo m_pathLeft; /**< First path (left path at start) */
 	PathInfo m_pathRight; /**< Second path (right path at start */

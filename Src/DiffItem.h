@@ -118,13 +118,13 @@ struct DIFFITEM
 {
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
-	CString sLeftFilename; /**< Left filename (without path!) */
-	CString sRightFilename; /**< Right filename (without path!) */
-	CString sLeftSubdir; /**< Left subdirectory from root of comparison */
-	CString sRightSubdir; /**< Right subdirectory from root of comparison */
+	String sLeftFilename; /**< Left filename (without path!) */
+	String sRightFilename; /**< Right filename (without path!) */
+	String sLeftSubdir; /**< Left subdirectory from root of comparison */
+	String sRightSubdir; /**< Right subdirectory from root of comparison */
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int nidiffs; /**< Amount of ignored differences */
-	CString errorDesc; /**< technical note about error */
+	String errorDesc; /**< technical note about error */
 	UINT customFlags1; /**< Custom flags set 1 */
 	bool empty; /**< flag to mark diffitem that doesn't have any data */
 	DIFFCODE diffcode; /**< Compare result */
@@ -135,8 +135,8 @@ struct DIFFITEM
 	DIFFITEM(const DIFFITEM& di);
 	DIFFITEM& operator=(const DIFFITEM& di);
 
-	CString getLeftFilepath(const CString &sLeftRoot) const;
-	CString getRightFilepath(const CString &sRightRoot) const;
+	String getLeftFilepath(const String &sLeftRoot) const;
+	String getRightFilepath(const String &sRightRoot) const;
 };
 
 #endif // _DIFF_ITEM_H_

@@ -146,7 +146,7 @@ int FileActionScript::CreateOperationsScripts()
 		{
 			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != VCS_NONE)
 			{
-				int retVal = VCSCheckOut(act.src, bApplyToAll);
+				int retVal = VCSCheckOut(act.src.c_str(), bApplyToAll);
 				if (retVal == SCRIPT_USERCANCEL)
 					bContinue = FALSE;
 				else if (retVal == SCRIPT_USERSKIP)
@@ -157,10 +157,10 @@ int FileActionScript::CreateOperationsScripts()
 
 			if (bContinue)
 			{
-				if (!GetMainFrame()->CreateBackup(TRUE, act.src))
+				if (!GetMainFrame()->CreateBackup(TRUE, act.src.c_str()))
 				{
-					CString strErr = LoadResString(IDS_ERROR_BACKUP);
-					AfxMessageBox(strErr, MB_OK | MB_ICONERROR);
+					String strErr = theApp.LoadString(IDS_ERROR_BACKUP);
+					AfxMessageBox(strErr.c_str(), MB_OK | MB_ICONERROR);
 					bContinue = FALSE;
 				}
 			}
@@ -169,8 +169,8 @@ int FileActionScript::CreateOperationsScripts()
 		if (act.atype == FileAction::ACT_COPY &&
 			bSkip == FALSE && bContinue == TRUE)
 		{
-			m_pCopyOperations->AddSourceFile(act.src);
-			m_pCopyOperations->AddDestFile(act.dest);
+			m_pCopyOperations->AddSourceFile(act.src.c_str());
+			m_pCopyOperations->AddDestFile(act.dest.c_str());
 			m_bHasCopyOperations = TRUE;
 		}
 	}
@@ -196,8 +196,8 @@ int FileActionScript::CreateOperationsScripts()
 		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_MOVE)
 		{
-			m_pMoveOperations->AddSourceFile(act.src);
-			m_pMoveOperations->AddDestFile(act.dest);
+			m_pMoveOperations->AddSourceFile(act.src.c_str());
+			m_pMoveOperations->AddDestFile(act.dest.c_str());
 			m_bHasMoveOperations = TRUE;
 		}
 	}
@@ -216,9 +216,9 @@ int FileActionScript::CreateOperationsScripts()
 		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_DEL)
 		{
-			m_pDelOperations->AddSourceFile(act.src);
-			if (!act.dest.IsEmpty())
-				m_pDelOperations->AddSourceFile(act.dest);
+			m_pDelOperations->AddSourceFile(act.src.c_str());
+			if (!act.dest.empty())
+				m_pDelOperations->AddSourceFile(act.dest.c_str());
 			m_bHasDelOperations = TRUE;
 		}
 	}
@@ -251,7 +251,7 @@ BOOL FileActionScript::Run()
 			{
 				const FileActionItem &act = m_actions.GetNext(pos);
 				if (act.dirflag)
-					paths_CreateIfNeeded(act.dest);
+					paths_CreateIfNeeded(act.dest.c_str());
 			}
 
 			bFileOpSucceed = m_pCopyOperations->Go(&bOpStarted,

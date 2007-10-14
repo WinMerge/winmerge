@@ -33,6 +33,7 @@
 // $Id$
 
 #include "CmdLineParser.h"
+#include "UnicodeString.h"
 
 /**
  * @brief Rational ClearCase's command line parser.
@@ -63,9 +64,9 @@ private:
 	bool m_bBaseFile; /**< Files' common ancestor. Used till we'll have a 3-ways merge. */
 	bool m_bOutFile;
 
-	CString m_sBaseFile;
-	CString m_sBaseDesc;
-	CString m_sOutFile;
+	String m_sBaseFile;
+	String m_sBaseDesc;
+	String m_sOutFile;
 };
 
 #endif // _CLEAR_CASE_CMD_LINE_PARSER_INCLUDED_

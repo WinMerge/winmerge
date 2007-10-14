@@ -829,10 +829,10 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnHelpGnulicense() 
 {
-	const CString spath = GetModulePath() + _T("\\Copying");
+	const String spath = GetModulePath() + _T("\\Copying");
 	const TCHAR url[] = _T("http://www.gnu.org/copyleft/gpl.html");
 
-	OpenFileOrUrl(spath, url);
+	OpenFileOrUrl(spath.c_str(), url);
 }
 
 /**
@@ -887,7 +887,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 			if (bMultiFile)
 			{
 				// Multiple files or folder
-				AfxFormatString1(s, IDS_SAVEREADONLY_MULTI, strSavePath);
+				LangFormatString1(s, IDS_SAVEREADONLY_MULTI, strSavePath);
 				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON3 | MB_DONT_ASK_AGAIN |
 						MB_YES_TO_ALL, IDS_SAVEREADONLY_MULTI);
@@ -895,7 +895,7 @@ int CMainFrame::HandleReadonlySave(CString& strSavePath, BOOL bMultiFile,
 			else
 			{
 				// Single file
-				AfxFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
+				LangFormatString1(s, IDS_SAVEREADONLY_FMT, strSavePath);
 				userChoice = AfxMessageBox(s, MB_YESNOCANCEL |
 						MB_ICONWARNING | MB_DEFBUTTON2 | MB_DONT_ASK_AGAIN,
 						IDS_SAVEREADONLY_FMT);
@@ -1198,8 +1198,8 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			pDirDoc->SetReadOnly(FALSE, bRORight);
 			pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
 			pDirDoc->SetTitle(NULL);
-			m_strLeftDesc.Empty();
-			m_strRightDesc.Empty();
+			m_strLeftDesc.erase();
+			m_strRightDesc.erase();
 
 			pDirDoc->Rescan();
 		}
@@ -1619,9 +1619,9 @@ void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
  */
 void CMainFrame::OnHelpContents()
 {
-	CString sPath = GetModulePath(0) + DocsPath;
-	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
-		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_TOC, NULL);
+	String sPath = GetModulePath(0) + DocsPath;
+	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
+		::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_TOC, NULL);
 	else
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
 }
@@ -1641,9 +1641,9 @@ void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnHelpIndex()
 {
-	CString sPath = GetModulePath(0) + DocsPath;
-	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
-		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_INDEX, NULL);
+	String sPath = GetModulePath(0) + DocsPath;
+	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
+		::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_INDEX, NULL);
 	else
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
 }
@@ -1663,8 +1663,8 @@ void CMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnHelpSearch()
 {
-	CString sPath = GetModulePath(0) + DocsPath;
-	if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+	String sPath = GetModulePath(0) + DocsPath;
+	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
 	{
 		HH_FTS_QUERY q = {0};
 		q.fExecute = TRUE;
@@ -1675,7 +1675,7 @@ void CMainFrame::OnHelpSearch()
 		q.pszWindow = NULL;
 		q.cbStruct = sizeof(q);
 
-		::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_SEARCH, (DWORD_PTR)&q);
+		::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_SEARCH, (DWORD_PTR)&q);
 	}
 	else
 		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
@@ -2086,20 +2086,20 @@ void CMainFrame::OnToolsGeneratePatch()
 			if (bValidFiles)
 			{
 				// Format full paths to files (leftFile/rightFile)
-				CString leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
-				if (!leftFile.IsEmpty())
+				String leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
+				if (!leftFile.empty())
 					leftFile += _T("\\") + item.sLeftFilename;
-				CString rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
-				if (!rightFile.IsEmpty())
+				String rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
+				if (!rightFile.empty())
 					rightFile += _T("\\") + item.sRightFilename;
 
 				// Format relative paths to files in folder compare
-				CString leftpatch = item.sLeftSubdir;
-				if (!leftpatch.IsEmpty())
+				String leftpatch = item.sLeftSubdir;
+				if (!leftpatch.empty())
 					leftpatch += _T("/");
 				leftpatch += item.sLeftFilename;
-				CString rightpatch = item.sRightSubdir;
-				if (!rightpatch.IsEmpty())
+				String rightpatch = item.sRightSubdir;
+				if (!rightpatch.empty())
 					rightpatch += _T("/");
 				rightpatch += item.sRightFilename;
 				patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
@@ -2329,7 +2329,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		{
 			// Error invoking external editor
 			CString msg;
-			AfxFormatString1(msg, IDS_ERROR_EXECUTE_FILE, sExtEditor);
+			LangFormatString1(msg, IDS_ERROR_EXECUTE_FILE, sExtEditor);
 			AfxMessageBox(msg, MB_ICONSTOP);
 		}
 	}
@@ -2454,7 +2454,7 @@ void CMainFrame::OnSaveConfigData()
 	{
 		CString msg;
 		CString sFileName = configLog.GetFileName();
-		AfxFormatString2(msg, IDS_ERROR_FILEOPEN, sFileName, sError);
+		LangFormatString2(msg, IDS_ERROR_FILEOPEN, sFileName, sError);
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
 }
@@ -2503,16 +2503,16 @@ void CMainFrame::OnFileNew()
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
-	VERIFY(m_strLeftDesc.LoadString(IDS_EMPTY_LEFT_FILE));
-	VERIFY(m_strRightDesc.LoadString(IDS_EMPTY_RIGHT_FILE));
+	m_strLeftDesc = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+	m_strRightDesc = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 	FileLocation filelocLeft; // empty, unspecified (so default) encoding
 	FileLocation filelocRight;
 	ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, FALSE, FALSE);
 
 
 	// Empty descriptors now that docs are open
-	m_strLeftDesc.Empty();
-	m_strRightDesc.Empty();
+	m_strLeftDesc.erase();
+	m_strRightDesc.erase();
 }
 
 /**
@@ -2663,11 +2663,11 @@ void CMainFrame::ShowHelp(LPCTSTR helpLocation /*= NULL*/)
 	}
 	else
 	{
-		CString sPath = GetModulePath(0) + DocsPath;
-		if (paths_DoesPathExist(sPath) == IS_EXISTING_FILE)
+		String sPath = GetModulePath(0) + DocsPath;
+		if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
 		{
 			sPath += helpLocation;
-			::HtmlHelp(GetSafeHwnd(), sPath, HH_DISPLAY_TOPIC, NULL);
+			::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_TOPIC, NULL);
 		}
 	}
 }
@@ -3090,8 +3090,8 @@ void CMainFrame::OnSaveProject()
 	sht.AddPage(&pathsDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
-	CString left;
-	CString right;
+	String left;
+	String right;
 	CFrameWnd * pFrame = GetActiveFrame();
 	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
 	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
@@ -3101,7 +3101,7 @@ void CMainFrame::OnSaveProject()
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		left = pMergeDoc->m_filePaths.GetLeft();
 		right = pMergeDoc->m_filePaths.GetRight();
-		pathsDlg.SetPaths(left, right);
+		pathsDlg.SetPaths(left.c_str(), right.c_str());
 		pathsDlg.m_bLeftPathReadOnly = pMergeDoc->m_ptBuf[0]->GetReadOnly();
 		pathsDlg.m_bRightPathReadOnly = pMergeDoc->m_ptBuf[1]->GetReadOnly();
 	}
@@ -3111,13 +3111,13 @@ void CMainFrame::OnSaveProject()
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
 		left = pDoc->GetLeftBasePath();
 		right = pDoc->GetRightBasePath();
-		if (!paths_EndsWithSlash(left))
+		if (!paths_EndsWithSlash(left.c_str()))
 			left += _T("\\");
-		if (!paths_EndsWithSlash(right))
+		if (!paths_EndsWithSlash(right.c_str()))
 			right += _T("\\");
 		
 		// Set-up the dialog
-		pathsDlg.SetPaths(left, right);
+		pathsDlg.SetPaths(left.c_str(), right.c_str());
 		pathsDlg.m_bIncludeSubfolders = pDoc->GetRecursive();
 		pathsDlg.m_bLeftPathReadOnly = pDoc->GetReadOnly(TRUE);
 		pathsDlg.m_bRightPathReadOnly = pDoc->GetReadOnly(FALSE);

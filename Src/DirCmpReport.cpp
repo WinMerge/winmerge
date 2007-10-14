@@ -24,12 +24,12 @@ UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
  * @brief Return current time as string.
  * @return Current time as CString.
  */
-static CString GetCurrentTimeString()
+static String GetCurrentTimeString()
 {
 	time_t nTime = 0;
 	time(&nTime);
 	_int64 nTime64 = nTime;
-	CString str = TimeString(&nTime64);
+	String str = TimeString(&nTime64);
 	return str;
 }
 
@@ -82,10 +82,10 @@ void DirCmpReport::SetList(CListCtrl *pList)
  */
 void DirCmpReport::SetRootPaths(const PathContext &paths)
 {
-	m_rootPaths.SetLeft(paths.GetLeft());
-	m_rootPaths.SetRight(paths.GetRight());
-	AfxFormatString2(m_sTitle, IDS_DIRECTORY_REPORT_TITLE,
-			m_rootPaths.GetLeft(), m_rootPaths.GetRight());
+	m_rootPaths.SetLeft(paths.GetLeft().c_str());
+	m_rootPaths.SetRight(paths.GetRight().c_str());
+	LangFormatString2(m_sTitle, IDS_DIRECTORY_REPORT_TITLE,
+			m_rootPaths.GetLeft().c_str(), m_rootPaths.GetRight().c_str());
 }
 
 /**
@@ -117,7 +117,7 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 	DirCmpReportDlg dlg;
 	if (dlg.DoModal() == IDOK) try
 	{
-		WaitStatusCursor waitstatus(LoadResString(IDS_STATUS_CREATEREPORT));
+		WaitStatusCursor waitstatus(IDS_STATUS_CREATEREPORT);
 		if (dlg.m_bCopyToClipboard)
 		{
 			if (!CWnd::GetSafeOwner()->OpenClipboard())
@@ -245,7 +245,7 @@ void DirCmpReport::GenerateHeader()
 {
 	WriteString(m_sTitle);
 	WriteString(_T("\n"));
-	WriteString(GetCurrentTimeString());
+	WriteString(GetCurrentTimeString().c_str());
 	WriteString(_T("\n"));
 	for (int currCol = 0; currCol < m_nColumns; currCol++)
 	{
@@ -327,7 +327,7 @@ void DirCmpReport::GenerateHTMLHeaderBodyPortion()
 	WriteString(_T("<h2>"));
 	WriteString(m_sTitle);
 	WriteString(_T("</h2>\n<p>"));
-	WriteString(GetCurrentTimeString());
+	WriteString(GetCurrentTimeString().c_str());
 	WriteString(_T("</p>\n"));
 	WriteString(_T("<table border=\"1\">\n<tr>\n"));
 
@@ -357,7 +357,7 @@ void DirCmpReport::GenerateXmlHeader()
 	WriteString(_T("<WinMergeDiffReport version=\"1\">\n"));
 	WriteString(Fmt(_T("<left>%s</left>\n"), m_rootPaths.GetLeft()));
 	WriteString(Fmt(_T("<right>%s</right>\n"), m_rootPaths.GetRight()));
-	WriteString(Fmt(_T("<time>%s</time>\n"), GetCurrentTimeString()));
+	WriteString(Fmt(_T("<time>%s</time>\n"), GetCurrentTimeString().c_str()));
 
 	// Add column headers
 	const CString rowEl = _T("column_name");

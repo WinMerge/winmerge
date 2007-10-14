@@ -372,6 +372,7 @@ INT_PTR CALLBACK C7ZipMismatchException::DlgProc(HWND hWnd, UINT uMsg, WPARAM wP
 	{
 		case WM_INITDIALOG:
 		{
+			theApp.TranslateDialog(hWnd);
 			if (GetDlgItem(hWnd, 9001) == NULL)
 			{
 				// Dialog template isn't up to date. Give it a second chance.
@@ -833,7 +834,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideLeftOnly())
 				{
 					// Item is present on right side, i.e. folder is implied
-					m_rgImpliedFoldersRight[di.sRightSubdir] = PVOID(1);
+					m_rgImpliedFoldersRight[di.sRightSubdir.c_str()] = PVOID(1);
 				}
 			}
 			else
@@ -842,7 +843,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideRightOnly())
 				{
 					// Item is present on left side, i.e. folder is implied
-					m_rgImpliedFoldersLeft[di.sLeftSubdir] = PVOID(1);
+					m_rgImpliedFoldersLeft[di.sLeftSubdir.c_str()] = PVOID(1);
 				}
 			}
 		}
@@ -917,17 +918,17 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 
 	Envelope *envelope = new Envelope;
 
-	const CString &sFilename = m_bRight ? di.sRightFilename : di.sLeftFilename;
-	const CString &sSubdir = m_bRight ? di.sRightSubdir : di.sLeftSubdir;
+	const String &sFilename = m_bRight ? di.sRightFilename : di.sLeftFilename;
+	const String &sSubdir = m_bRight ? di.sRightSubdir : di.sLeftSubdir;
 	envelope->Name = sFilename;
-	if (sSubdir.GetLength())
+	if (sSubdir.length())
 	{
-		envelope->Name.Insert(0, '\\');
-		envelope->Name.Insert(0, sSubdir);
+		envelope->Name.insert(0, '\\');
+		envelope->Name.insert(0, sSubdir);
 	}
 	envelope->FullPath = sFilename;
-	envelope->FullPath.Insert(0, '\\');
-	envelope->FullPath.Insert(0, m_bRight ?
+	envelope->FullPath.insert(0, '\\');
+	envelope->FullPath.insert(0, m_bRight ?
 		di.getRightFilepath(pDoc->GetRightBasePath()) :
 		di.getLeftFilepath(pDoc->GetLeftBasePath()));
 
@@ -941,7 +942,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 			if (isSideLeft)
 			{
 				// Item is missing on right side
-				PVOID &implied = m_rgImpliedFoldersRight[di.sLeftSubdir];
+				PVOID &implied = m_rgImpliedFoldersRight[di.sLeftSubdir.c_str()];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
@@ -960,7 +961,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 			if (isSideRight)
 			{
 				// Item is missing on left side
-				PVOID &implied = m_rgImpliedFoldersLeft[di.sRightSubdir];
+				PVOID &implied = m_rgImpliedFoldersLeft[di.sRightSubdir.c_str()];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
@@ -982,14 +983,14 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 
 	if (m_strFolderPrefix.GetLength())
 	{
-		if (envelope->Name.GetLength())
-			envelope->Name.Insert(0, '\\');
-		envelope->Name.Insert(0, m_strFolderPrefix);
+		if (envelope->Name.length())
+			envelope->Name.insert(0, '\\');
+		envelope->Name.insert(0, m_strFolderPrefix);
 	}
 
 	item.Mask.Item = item.Mask.Name|item.Mask.FullPath|item.Mask.CheckIfPresent|Recurse;
-	item.Name = envelope->Name;
-	item.FullPath = envelope->FullPath;
+	item.Name = envelope->Name.c_str();
+	item.FullPath = envelope->FullPath.c_str();
 	return envelope;
 }
 
@@ -1111,8 +1112,8 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 {
 	CDirDoc *pDoc = m_pView->GetDocument();
-	const CString sLeftRootPath = pDoc->GetLeftBasePath();
-	const CString sRightRootPath = pDoc->GetRightBasePath();
+	const String sLeftRootPath = pDoc->GetLeftBasePath();
+	const String sRightRootPath = pDoc->GetRightBasePath();
 	UINT i;
 	int cchBuffer = 0;
 	for (i = Open() ; i-- ; )
@@ -1123,7 +1124,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			cchBuffer +=
 			(
 				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath)
-			).GetLength() + (m_bRight ? di.sRightFilename : di.sLeftFilename).GetLength() + 2;
+			).length() + (m_bRight ? di.sRightFilename : di.sLeftFilename).length() + 2;
 		}
 	}
 	LPTSTR pchBuffer = strBuffer.GetBufferSetLength(cchBuffer);
@@ -1136,8 +1137,8 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 			(
 				pchBuffer,
 				_T("%s\\%s"),
-				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath),
-				m_bRight ? di.sRightFilename : di.sLeftFilename
+				m_bRight ? di.getRightFilepath(sLeftRootPath).c_str() : di.getLeftFilepath(sRightRootPath).c_str(),
+				m_bRight ? di.sRightFilename.c_str() : di.sLeftFilename.c_str()
 			) + 1;
 		}
 	}

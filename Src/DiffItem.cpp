@@ -70,9 +70,9 @@ DIFFITEM DIFFITEM::MakeEmptyDiffItem() // static
 }
 
 /** @brief Return path to left file, including all but file name */
-CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
+String DIFFITEM::getLeftFilepath(const String &sLeftRoot) const
 {
-	CString sPath;
+	String sPath;
 	if (!diffcode.isSideRightOnly())
 	{
 		sPath = paths_ConcatPath(sLeftRoot, sLeftSubdir);
@@ -81,9 +81,9 @@ CString DIFFITEM::getLeftFilepath(const CString &sLeftRoot) const
 }
 
 /** @brief Return path to right file, including all but file name */
-CString DIFFITEM::getRightFilepath(const CString &sRightRoot) const
+String DIFFITEM::getRightFilepath(const String &sRightRoot) const
 {
-	CString sPath;
+	String sPath;
 	if (!diffcode.isSideLeftOnly())
 	{
 		sPath = paths_ConcatPath(sRightRoot, sRightSubdir);

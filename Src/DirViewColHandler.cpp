@@ -33,7 +33,7 @@ static char THIS_FILE[] = __FILE__;
 /**
  * @brief Get text for specified column (forwards to specific column handler)
  */
-CString
+String
 CDirView::ColGetTextToDisplay(const CDiffContext *pCtxt, int col, const DIFFITEM & di)
 {
 	// Custom properties have custom get functions
@@ -61,11 +61,20 @@ CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi, cons
 		ASSERT(0); // fix caller, should not ask for nonexistent columns
 		return 0;
 	}
-	ColSortFncPtrType fnc = pColInfo->sortfnc;
 	SIZE_T offset = pColInfo->offset;
 	const void * arg1 = reinterpret_cast<const char *>(&ldi) + offset;
 	const void * arg2 = reinterpret_cast<const char *>(&rdi) + offset;
-	return (*fnc)(pCtxt, arg1, arg2);
+	if (ColSortFncPtrType fnc = pColInfo->sortfnc)
+	{
+		return (*fnc)(pCtxt, arg1, arg2);
+	}
+	if (ColGetFncPtrType fnc = pColInfo->getfnc)
+	{
+		String p = (*fnc)(pCtxt, arg1);
+		String q = (*fnc)(pCtxt, arg2);
+		return lstrcmpi(p.c_str(), q.c_str());
+	}
+	return 0;
 }
 
 /**
@@ -171,7 +180,7 @@ void CDirView::UpdateDiffItemStatus(UINT nIdx)
 	GetListCtrl().RedrawItems(nIdx, nIdx);
 }
 
-static CString rgDispinfoText[2]; // used in function below
+static String rgDispinfoText[2]; // used in function below
 
 /**
  * @brief Allocate a text buffer to assign to NMLVDISPINFO::item::pszText
@@ -182,10 +191,10 @@ static CString rgDispinfoText[2]; // used in function below
  *	latter case, you must not change or delete the string until the corresponding
  *	item text is deleted or two additional LVN_GETDISPINFO messages have been sent.
  */
-static LPTSTR NTAPI AllocDispinfoText(const CString &s)
+static LPTSTR NTAPI AllocDispinfoText(const String &s)
 {
 	static int i = 0;
-	LPCTSTR pszText = rgDispinfoText[i] = s;
+	LPCTSTR pszText = (rgDispinfoText[i] = s).c_str();
 	i ^= 1;
 	return (LPTSTR)pszText;
 }
@@ -212,14 +221,14 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 	const DIFFITEM &di = GetDocument()->GetDiffRefByKey(key);
 	if (pParam->item.mask & LVIF_TEXT)
 	{
-		CString s = ColGetTextToDisplay(&ctxt, i, di);
+		String s = ColGetTextToDisplay(&ctxt, i, di);
 		// Add '*' to newer time field
 		if (di.left.mtime != 0 || di.right.mtime != 0)
 		{
 			if ((IsColLmTime(i) && di.left.mtime > di.right.mtime) ||
 				(IsColRmTime(i) && di.left.mtime < di.right.mtime))
 			{
-				s.Insert(0, _T("* "));
+				s.insert(0, _T("* "));
 			}
 		}
 		// Don't show result for folderitems appearing both sides
@@ -227,7 +236,7 @@ void CDirView::ReflectGetdispinfo(NMLVDISPINFO *pParam)
 			di.diffcode.isDirectory() && !di.diffcode.isSideLeftOnly() &&
 			!di.diffcode.isSideRightOnly())
 		{
-			s.Empty();
+			s.erase();
 		}
 		pParam->item.pszText = AllocDispinfoText(s);
 	}

@@ -44,7 +44,7 @@ public:
 class IPluginInfos
 {
 public:
-	virtual void FetchPluginInfos(const CString& filteredFilenames, 
+	virtual void FetchPluginInfos(LPCTSTR filteredFilenames, 
                                       PackingInfo ** infoUnpacker, 
                                       PrediffingInfo ** infoPrediffer) = 0;
 };
@@ -81,10 +81,10 @@ public:
 	 * Normalized paths are preferred to use - short paths are expanded
 	 * and trailing slashes removed (except from root path).
 	 */
-	CString GetLeftPath() const { return m_paths.GetLeft(FALSE); }
-	CString GetRightPath() const { return m_paths.GetRight(FALSE); }
-	CString GetNormalizedLeft() const { return m_paths.GetLeft(); }
-	CString GetNormalizedRight() const { return m_paths.GetRight(); }
+	String GetLeftPath() const { return m_paths.GetLeft(FALSE); }
+	String GetRightPath() const { return m_paths.GetRight(FALSE); }
+	String GetNormalizedLeft() const { return m_paths.GetLeft(); }
+	String GetNormalizedRight() const { return m_paths.GetRight(); }
 	//@}
 
 	// change an existing difference
@@ -95,7 +95,7 @@ public:
 	CompareOptions * GetCompareOptions(int compareMethod);
 
 	// retrieve or manufacture plugin info for specified file comparison
-	void FetchPluginInfos(const CString& filteredFilenames,
+	void FetchPluginInfos(LPCTSTR filteredFilenames,
 		PackingInfo ** infoUnpacker, PrediffingInfo ** infoPrediffer);
 
 	bool ShouldAbort() const;
