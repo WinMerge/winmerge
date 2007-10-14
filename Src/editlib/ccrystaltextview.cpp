@@ -6121,7 +6121,7 @@ void CCrystalTextView::OnUpdateStatusMessage( CStatusBar *pStatusBar )
   if( !m_bIncrementalSearchForward && !m_bIncrementalSearchBackward )
     {
       if( bUpdatedAtLastCall )
-        pStatusBar->SetPaneText( 0, CString( (LPCTSTR)AFX_IDS_IDLEMESSAGE ) );
+        pStatusBar->SetPaneText( 0, LoadResString(AFX_IDS_IDLEMESSAGE).c_str() );
 
       bUpdatedAtLastCall = FALSE;
 
@@ -6129,15 +6129,16 @@ void CCrystalTextView::OnUpdateStatusMessage( CStatusBar *pStatusBar )
     }
 
   CString	strFormat;
+  UINT formatid = 0;
   if( !m_bIncrementalFound )
-    strFormat.Format( IDS_FIND_INCREMENTAL_FAILED, *m_pstrIncrementalSearchString );
+    formatid = IDS_FIND_INCREMENTAL_FAILED;
   else if( m_bIncrementalSearchForward )
-    strFormat.Format( IDS_FIND_INCREMENTAL_FORWARD, *m_pstrIncrementalSearchString );
+    formatid = IDS_FIND_INCREMENTAL_FORWARD;
   else if( m_bIncrementalSearchBackward )
-    strFormat.Format( IDS_FIND_INCREMENTAL_BACKWARD, *m_pstrIncrementalSearchString );
-
-  if( strFormat.IsEmpty() )
+    formatid = IDS_FIND_INCREMENTAL_BACKWARD;
+  else
     return;
+  strFormat.Format( LoadResString(formatid).c_str(), *m_pstrIncrementalSearchString );
 
   pStatusBar->SetPaneText( 0, strFormat );
   bUpdatedAtLastCall = TRUE;
