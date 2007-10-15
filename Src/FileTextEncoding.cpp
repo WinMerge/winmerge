@@ -3,7 +3,7 @@
  *
  * @brief Implementation of FileTextEncoding structure
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -55,7 +55,7 @@ void FileTextEncoding::SetUnicoding(int unicoding)
 /**
  * @brief Return string representation of encoding, eg "UCS-2LE", or "1252"
  */
-CString FileTextEncoding::GetName() const
+String FileTextEncoding::GetName() const
 {
 	if (m_unicoding == ucr::UCS2LE)
 		return _T("UCS-2LE");
@@ -64,12 +64,13 @@ CString FileTextEncoding::GetName() const
 	if (m_unicoding == ucr::UTF8)
 		return _T("UTF-8");
 
-	CString str;
+	String str;
 	if (m_codepage > -1)
 	{
-		LPTSTR s = str.GetBuffer(32);
-		_sntprintf(s, 32, _T("%d"), m_codepage);
-		str.ReleaseBuffer();
+		str.resize(32);
+		LPTSTR s = &*str.begin(); //GetBuffer(32);
+		int len = _sntprintf(s, 32, _T("%d"), m_codepage);
+		str.resize(len);
 	}
 	return str;
 }

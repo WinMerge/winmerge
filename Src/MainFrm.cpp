@@ -695,10 +695,10 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 		}
 		else if (filelocLeft.encoding.m_unicoding != filelocRight.encoding.m_unicoding)
 		{
-			CString leftEncoding = filelocLeft.encoding.GetName();
-			CString rightEnicoding = filelocRight.encoding.GetName();
+			String leftEncoding = filelocLeft.encoding.GetName();
+			String rightEncoding = filelocRight.encoding.GetName();
 			CString msg;
-			msg.Format(IDS_DIFFERENT_UNICODINGS, leftEncoding, rightEnicoding);
+			msg.Format(IDS_DIFFERENT_UNICODINGS, leftEncoding.c_str(), rightEncoding.c_str());
 			int msgflags = MB_OK | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
 			// Two files with different codepages
 			// Warn and propose to use the default codepage for both

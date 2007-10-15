@@ -3,7 +3,7 @@
  *
  * @brief Declaration of FileTextEncoding structure
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef FileTextEncoding_h_included
@@ -23,7 +23,7 @@ struct FileTextEncoding
 	void Clear();
 	void SetCodepage(int codepage);
 	void SetUnicoding(int unicoding);
-	CString GetName() const;
+	String GetName() const;
 
 	static int Collate(const FileTextEncoding & fte1, const FileTextEncoding & fte2);
 };
