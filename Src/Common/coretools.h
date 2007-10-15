@@ -116,10 +116,14 @@ String GetModulePath(HMODULE hModule = NULL);
 String GetPathOnly(LPCTSTR fullpath);
 float RoundMeasure(float measure, float units);
 
-CString LegalizeFileName(LPCTSTR szFileName);
+String LegalizeFileName(LPCTSTR szFileName);
+
+#ifdef _UNUSED_
 CString GetLocalizedNumberString(double dVal, int nPlaces =-1, BOOL bSeparate =FALSE, BOOL bTrailZeros =FALSE, LCID lcidNew =LOCALE_USER_DEFAULT);
 void DDX_Float( CDataExchange* pDX, int nIDC, float& value );
 void DDX_Double( CDataExchange* pDX, int nIDC, double& value );
+#endif
+
 int tcssubptr(LPCTSTR start, LPCTSTR end);
 
 HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized = TRUE, BOOL bNewConsole = FALSE);

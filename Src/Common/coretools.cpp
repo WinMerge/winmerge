@@ -30,6 +30,8 @@
 #define countof(array)  (sizeof(array)/sizeof((array)[0]))
 #endif /* countof */
 
+static String MyGetSysError(int nerr);
+static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, String * perrstr);
 
 BOOL GetFileTimes(LPCTSTR szFilename,
 				  LPSYSTEMTIME pMod,
@@ -65,8 +67,7 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 time_t GetFileModTime(LPCTSTR szPath)
 {
 	if (!szPath || !szPath[0]) return 0;
-	struct _stat mystats;
-	memset(&mystats, 0, sizeof(mystats));
+	struct _stat mystats = {0};
 	int stat_result = _tstat(szPath, &mystats);
 	if (stat_result!=0)
 		return 0;
@@ -445,10 +446,10 @@ short int SwapEndian(short int val)
 }
 
 // Get user language description of error, if available
-static CString MyGetSysError(int nerr)
+static String MyGetSysError(int nerr)
 {
-	LPVOID lpMsgBuf;
-	CString str = _T("?");
+	LPTSTR lpMsgBuf = NULL;
+	String str(_T("?"));
 	if (FormatMessage( 
 		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
 		FORMAT_MESSAGE_FROM_SYSTEM | 
@@ -461,7 +462,7 @@ static CString MyGetSysError(int nerr)
 		NULL 
 		))
 	{
-		str = (LPCTSTR)lpMsgBuf;
+		str = lpMsgBuf;
 		// Free the buffer.
 		LocalFree( lpMsgBuf );
 	}
@@ -472,7 +473,8 @@ static CString MyGetSysError(int nerr)
 // if success, or already exists, return TRUE
 // if failure, return system error string
 // (NB: Win32 CreateDirectory reports failure if already exists)
-static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, CString * perrstr)
+// TODO: replace this with calls to paths_CreateIfNeeded()
+static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, String * perrstr)
 {
 	LPSECURITY_ATTRIBUTES lpSecurityAttributes = NULL;
 	int rtn = CreateDirectory(lpPathName, lpSecurityAttributes);
@@ -484,8 +486,11 @@ static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, CString * perrstr)
 			return TRUE;
 		if (perrstr)
 		{
-			CString errdesc = MyGetSysError(errnum);
-			perrstr->Format(_T("%d: %s"), errnum, (LPCTSTR)errdesc);
+			String errdesc = MyGetSysError(errnum);
+			TCHAR tmp[10];
+			*perrstr = _itot(errnum, tmp, 10);
+			*perrstr += _T(": ");
+			*perrstr += errdesc;
 		}
 	}
 	return rtn;
@@ -503,7 +508,7 @@ BOOL MkDirEx(LPCTSTR foldername)
 		p = _tcschr(_tcsinc(tempPath), _T('\\'));
 	else
 		p = tempPath;
-	CString errstr;
+	String errstr;
 	if (p != NULL)
 		for (; *p != _T('\0'); p = _tcsinc(p))
 		{
@@ -518,7 +523,7 @@ BOOL MkDirEx(LPCTSTR foldername)
 				{
 					if (!MyCreateDirectoryIfNeeded(tempPath, &errstr)
 						&& !MyCreateDirectoryIfNeeded(tempPath, &errstr))
-						TRACE(_T("Failed to create folder %s: %s\n"), tempPath, (LPCTSTR)errstr);
+						TRACE(_T("Failed to create folder %s: %s\n"), tempPath, errstr.c_str());
 					*p = _T('\\');
 				}
 			}
@@ -527,14 +532,14 @@ BOOL MkDirEx(LPCTSTR foldername)
 
 		if (!MyCreateDirectoryIfNeeded(foldername, &errstr)
 			&& !MyCreateDirectoryIfNeeded(foldername, &errstr))
-			TRACE(_T("Failed to create folder %s: %s\n"), foldername, (LPCTSTR)errstr);
+			TRACE(_T("Failed to create folder %s: %s\n"), foldername, errstr.c_str());
 
-	CFileStatus status;
-	return CFile::GetStatus(foldername, status);
+	struct _stat mystats = {0};
+	int stat_result = _tstat(foldername, &mystats);
+	return stat_result != 0;
 }
 
-float
-RoundMeasure(float measure, float units)
+float RoundMeasure(float measure, float units)
 {
 	float res1,res2,divisor;
 	if (units == 25.4f)
@@ -611,7 +616,7 @@ BOOL HaveAdminAccess()
 
 
 
-CString LegalizeFileName(LPCTSTR szFileName)
+String LegalizeFileName(LPCTSTR szFileName)
 {
 	TCHAR tempname[_MAX_PATH] = {0};
 	LPTSTR p;
@@ -622,7 +627,7 @@ CString LegalizeFileName(LPCTSTR szFileName)
 		*p = _T('_');
 	}
 
-	return CString(tempname);
+	return String(tempname);
 }
 
 static double tenpow(int expon)
@@ -631,7 +636,8 @@ static double tenpow(int expon)
 	double rtn = pow(base, expon);
 	return rtn;
 }
-
+// These are not used - remove later?
+#ifdef _UNUSED_
 void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
 {
 	pDX->PrepareEditCtrl(nIDC);
@@ -958,7 +964,7 @@ CString GetLocalizedNumberString(double dVal, int nPlaces /*=-1*/, BOOL bSeparat
 
 	return strResult;
 }
-
+#endif // _UNUSED_
 
 HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized /*= TRUE*/, BOOL bNewConsole /*= FALSE*/)
 {
