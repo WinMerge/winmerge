@@ -113,7 +113,7 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 
 	String out;
 	out.resize(48);
-	LPTSTR outbuff = out.begin(); //GetBuffer(48);
+	LPTSTR outbuff = &*out.begin(); //GetBuffer(48);
 	int rt = GetNumberFormat(LOCALE_USER_DEFAULT // a predefined value for user locale
 		, 0                // operation option (allow overrides)
 		, str              // input number (see MSDN for legal chars)
