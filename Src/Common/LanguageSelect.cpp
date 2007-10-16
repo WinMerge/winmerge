@@ -21,7 +21,7 @@
 // Using C locale gets us direct mapping to Unicode codepoints
 #pragma setlocale("C")
 
-#define LANG_PO(LANG, PO) LANG
+#define LANG_PO(LANG, PO) PO
 
 // Sanity-check definition of LANG_PO macro
 #if LANG_PO(TRUE, FALSE) && !LANG_PO(FALSE, TRUE)
@@ -772,13 +772,15 @@ bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
 #if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
 	if (line > 0 && line < m_strarray.size())
 	{
-		int len = m_strarray[line].length();
-		ws.resize(len);
-		const char *msgstr = m_strarray[line].c_str();
-		len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, ws.begin(), len + 1);
-		ASSERT(*msgstr == 0 || len != 0);
-		ws.resize(len - 1);
-		return true;
+		if (int len = m_strarray[line].length())
+		{
+			ws.resize(len);
+			const char *msgstr = m_strarray[line].c_str();
+			len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, ws.begin(), len + 1);
+			ASSERT(*msgstr == 0 || len != 0);
+			ws.resize(len - 1);
+			return true;
+		}
 	}
 #endif
 	return false;
