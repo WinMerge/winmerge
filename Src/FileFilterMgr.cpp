@@ -75,12 +75,18 @@ struct FileFilter
 	~FileFilter();
 };
 
+/**
+ * @brief Destructor, frees created filter lists.
+ */
 FileFilter::~FileFilter()
 {
 	EmptyFilterList(filefilters);
 	EmptyFilterList(dirfilters);
 }
 
+/**
+ * @brief Destructor, frees all filters.
+ */
 FileFilterMgr::~FileFilterMgr()
 {
 	DeleteAllFilters();
@@ -88,7 +94,7 @@ FileFilterMgr::~FileFilterMgr()
 
 /**
  * @brief Loads filterfile from disk and adds it to filters.
- * @param [in] szFilterFile to load.
+ * @param [in] szFilterFile Filter file to load.
  * @return FILTER_OK if succeeded or one of FILTER_RETVALUE values on error.
  */
 int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
@@ -410,7 +416,11 @@ CString FileFilterMgr::GetFilterName(int i) const
 	return m_filters[i]->name; 
 }
 
-/** @brief Return name of filter. */
+/**
+ * @brief Return name of filter.
+ * @param [in] pFilter Filter to get name for.
+ * @return Given filter's name.
+ */
 CString FileFilterMgr::GetFilterName(const FileFilter *pFilter) const
 {
 	return pFilter->name; 
@@ -427,7 +437,11 @@ CString FileFilterMgr::GetFilterDesc(int i) const
 	return m_filters[i]->description; 
 }
 
-/** @brief Return description of filter. */
+/**
+ * @brief Return description of filter.
+ * @param [in] pFilter Filter to get description for.
+ * @return Given filter's description.
+ */
 CString FileFilterMgr::GetFilterDesc(const FileFilter *pFilter) const
 {
 	return pFilter->description;
