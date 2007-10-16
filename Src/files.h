@@ -19,7 +19,7 @@
  *
  * @brief Declaration file for file routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _FILES_H_INCLUDED
@@ -55,6 +55,7 @@ public:
 	static DWORD Main(DWORD flr) { return flr & FRESULT_MAIN_MASK; }
 	static bool IsModifier(DWORD flr, DWORD modifier) { return !!(flr & modifier); }
 
+	/** @brief Return values for functions. */
 	enum
 	{
 		FRESULT_MAIN_MASK = 0xF,

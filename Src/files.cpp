@@ -19,7 +19,7 @@
  *
  * @brief Code file routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -28,7 +28,9 @@
 #include "unicoder.h"
 
 /**
- * @brief Open file as memory-mapped file
+ * @brief Open file as memory-mapped file.
+ * @param [in,out] fileData Memory-mapped file's info.
+ * @return TRUE if opening succeeded, FALSE otherwise.
  */
 BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 {
@@ -117,7 +119,11 @@ BOOL files_openFileMapped(MAPPEDFILEDATA *fileData)
 }
 
 /**
- * @brief Close memory-mapped file
+ * @brief Close memory-mapped file.
+ * @param [in, out] fileData Memory-mapped file's info.
+ * @param [in] newSize New size for the file.
+ * @param [in] flush Flush buffers before closing the file.
+ * @return TRUE if closing succeeded without errors, FALSE otherwise.
  */
 BOOL files_closeFileMapped(MAPPEDFILEDATA *fileData, DWORD newSize, BOOL flush)
 {
