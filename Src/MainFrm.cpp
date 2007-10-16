@@ -672,7 +672,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 			&& filelocLeft.encoding.m_codepage != filelocRight.encoding.m_codepage)
 		{
 			CString msg;
-			msg.Format(IDS_SUGGEST_IGNORECODEPAGE, filelocLeft.encoding.m_codepage, filelocRight.encoding.m_codepage);
+			msg.Format(theApp.LoadString(IDS_SUGGEST_IGNORECODEPAGE).c_str(), filelocLeft.encoding.m_codepage, filelocRight.encoding.m_codepage);
 			int msgflags = MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
 			// Two files with different codepages
 			// Warn and propose to use the default codepage for both
@@ -698,7 +698,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 			String leftEncoding = filelocLeft.encoding.GetName();
 			String rightEncoding = filelocRight.encoding.GetName();
 			CString msg;
-			msg.Format(IDS_DIFFERENT_UNICODINGS, leftEncoding.c_str(), rightEncoding.c_str());
+			msg.Format(theApp.LoadString(IDS_DIFFERENT_UNICODINGS).c_str(), leftEncoding.c_str(), rightEncoding.c_str());
 			int msgflags = MB_OK | MB_ICONWARNING | MB_DONT_ASK_AGAIN;
 			// Two files with different codepages
 			// Warn and propose to use the default codepage for both
@@ -2050,7 +2050,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		if (pMergeDoc->m_ptBuf[0]->IsModified() || pMergeDoc->m_ptBuf[1]->IsModified())
 		{
 			bOpenDialog = FALSE;
-			AfxMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
+			LangMessageBox(IDS_SAVEFILES_FORPATCH, MB_ICONSTOP);
 		}
 		else
 		{
@@ -2072,13 +2072,13 @@ void CMainFrame::OnToolsGeneratePatch()
 			const DIFFITEM item = pView->GetItemAt(ind);
 			if (item.diffcode.isBin())
 			{
-				AfxMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
+				LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_BINARYPATCH);
 				bValidFiles = FALSE;
 			}
 			else if (item.diffcode.isDirectory())
 			{
-				AfxMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
+				LangMessageBox(IDS_CANNOT_CREATE_DIRPATCH, MB_ICONWARNING |
 					MB_DONT_DISPLAY_AGAIN, IDS_CANNOT_CREATE_DIRPATCH);
 				bValidFiles = FALSE;
 			}
@@ -2486,7 +2486,7 @@ void CMainFrame::OnFileNew()
 			// If dircompare contains results, warn user that they are lost
 			if (pDirDoc->HasDiffs())
 			{
-				int res = AfxMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
+				int res = LangMessageBox(IDS_DIR_RESULTS_EMPTIED, MB_OKCANCEL |
 					MB_ICONWARNING | MB_DONT_DISPLAY_AGAIN, IDS_DIR_RESULTS_EMPTIED);
 				if (res == IDCANCEL)
 					return;
@@ -2835,7 +2835,7 @@ void CMainFrame::ShowFontChangeMessage()
 	GetAllViews(&editViews, NULL, &dirViews);
 
 	if (editViews.GetCount() > 0 || dirViews.GetCount() > 0)
-		AfxMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
+		LangMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
 }
 
 /**
@@ -2975,7 +2975,7 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 				
 		if (code != 0)
 		{
-			if (AfxMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)
+			if (LangMessageBox(IDS_VSS_CHECKINERROR, MB_ICONWARNING | MB_YESNO) == IDYES)
 			{
 				// undo checkout operation
 				args.Format(_T("uncheckout -rm \"%s\""), sname.c_str());
@@ -2988,13 +2988,13 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 					
 					if (code != 0)
 					{
-						AfxMessageBox(IDS_VSS_UNCOERROR, MB_ICONSTOP);
+						LangMessageBox(IDS_VSS_UNCOERROR, MB_ICONSTOP);
 						return;
 					}
 				}
 				else
 				{
-					AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+					LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 					return;
 				}				
 			}
@@ -3003,7 +3003,7 @@ void CMainFrame::CheckinToClearCase(CString strDestinationPath)
 	}
 	else
 	{
-		AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+		LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 		return;
 	}
 }
@@ -3085,7 +3085,8 @@ void CMainFrame::SetMainIcon(CDialog * dlg)
  */
 void CMainFrame::OnSaveProject()
 {
-	CPropertySheet sht(IDS_PROJFILEDLG_CAPTION);
+	String title = theApp.LoadString(IDS_PROJFILEDLG_CAPTION);
+	CPropertySheet sht(title.c_str());
 	ProjectFilePathsDlg pathsDlg;
 	sht.AddPage(&pathsDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
@@ -3365,7 +3366,7 @@ bool CMainFrame::AskCloseConfirmation()
 	const int count = dirViews.GetCount() + (mergeViews.GetCount() / 2);
 	if (count > 1)
 	{
-		ret = AfxMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
+		ret = LangMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
 	}
 	return (ret == IDYES);
 }

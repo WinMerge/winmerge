@@ -112,13 +112,13 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				CloseHandle(hVss);
 				if (code != 0)
 				{
-					AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
+					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
 					return FALSE;
 				}
 			}
 			else
 			{
-				AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 				return FALSE;
 			}
 		}
@@ -282,7 +282,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				if (strLocalSpec.CompareNoCase(strSavePath))
 				{
 					// BSP - if the directories are different, let the user confirm the CheckOut
-					int iRes = AfxMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
+					int iRes = LangMessageBox(IDS_VSSFOLDER_AND_FILE_NOMATCH, 
 							MB_YESNO | MB_YES_TO_ALL | MB_ICONWARNING);
 
 					if (iRes == IDNO)
@@ -358,13 +358,13 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 				
 				if (code != 0)
 				{
-					AfxMessageBox(IDS_VSSERROR, MB_ICONSTOP);
+					LangMessageBox(IDS_VSSERROR, MB_ICONSTOP);
 					return FALSE;
 				}
 			}
 			else
 			{
-				AfxMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
+				LangMessageBox(IDS_VSS_RUN_ERROR, MB_ICONSTOP);
 				return FALSE;
 			}
 		}

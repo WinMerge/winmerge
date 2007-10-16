@@ -77,10 +77,8 @@ BOOL CAboutDlg::OnInitDialog()
 	LangFormatString1(m_strVersion, IDS_VERSION_FMT, sVersion);
 
 #ifdef _UNICODE
-	CString strUnicode;
-	VERIFY(strUnicode.LoadString(IDS_UNICODE));
 	m_strVersion += _T(" ");
-	m_strVersion += strUnicode;
+	m_strVersion += theApp.LoadString(IDS_UNICODE).c_str();
 #endif
 
 	CString sPrivateBuild = version.GetPrivateBuild();

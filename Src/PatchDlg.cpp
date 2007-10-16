@@ -117,10 +117,10 @@ void CPatchDlg::OnOK()
 		if (!file1Ok || !file2Ok)
 		{
 			if (!file1Ok)
-				AfxMessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
+				LangMessageBox(IDS_DIFF_ITEM1NOTFOUND, MB_ICONSTOP);
 
 			if (!file2Ok)
-				AfxMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
+				LangMessageBox(IDS_DIFF_ITEM2NOTFOUND, MB_ICONSTOP);
 			return;
 		}
 	}
@@ -128,7 +128,7 @@ void CPatchDlg::OnOK()
 	// Check that a result file was specified
 	if (m_fileResult.IsEmpty())
 	{
-		AfxMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
+		LangMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
 		m_ctlResult.SetFocus();
 		return;
 	}
@@ -146,7 +146,7 @@ void CPatchDlg::OnOK()
 	// Result file already exists and append not selected
 	if (fileExists && !m_appendFile)
 	{
-		if (AfxMessageBox(IDS_DIFF_FILEOVERWRITE,
+		if (LangMessageBox(IDS_DIFF_FILEOVERWRITE,
 				MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
 				IDS_DIFF_FILEOVERWRITE) != IDYES)
 		{
@@ -222,13 +222,9 @@ BOOL CPatchDlg::OnInitDialog()
 	UpdateData(FALSE);
 
 	// Add patch styles to combobox
-	CString str;
-	VERIFY(str.LoadString(IDS_DIFF_NORMAL));
-	m_comboStyle.AddString(str);
-	VERIFY(str.LoadString(IDS_DIFF_CONTEXT));
-	m_comboStyle.AddString(str);
-	VERIFY(str.LoadString(IDS_DIFF_UNIFIED));
-	m_comboStyle.AddString(str);
+	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_NORMAL).c_str());
+	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
+	m_comboStyle.AddString(theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
 
 	m_outputStyle = OUTPUT_NORMAL;
 	m_comboStyle.SetCurSel(0);
@@ -492,6 +488,36 @@ void CPatchDlg::ClearItems()
 }
 
 /** 
+ * @brief Updates patch dialog settings from member variables.
+ */
+void CPatchDlg::UpdateSettings()
+{
+	UpdateData(FALSE);
+
+	switch (m_outputStyle)
+	{
+	case DIFF_OUTPUT_NORMAL:
+		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_NORMAL).c_str());
+		break;
+	case DIFF_OUTPUT_CONTEXT:
+		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_CONTEXT).c_str());
+		break;
+	case DIFF_OUTPUT_UNIFIED:
+		m_comboStyle.SelectString(-1, theApp.LoadString(IDS_DIFF_UNIFIED).c_str());
+		break;
+	}
+
+	CString str;
+	str.Format(_T("%d"), m_contextLines);
+	m_comboContext.SelectString(-1, str);
+
+	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED)
+		m_comboContext.EnableWindow(TRUE);
+	else
+		m_comboContext.EnableWindow(FALSE);
+}
+
+/** 
  * @brief Loads patch dialog settings from registry.
  */
 void CPatchDlg::LoadSettings()
@@ -518,32 +544,7 @@ void CPatchDlg::LoadSettings()
 	m_openToEditor = theApp.GetProfileInt(_T("PatchCreator"), _T("OpenToEditor"), FALSE);
 	m_includeCmdLine = theApp.GetProfileInt(_T("PatchCreator"), _T("IncludeCmdLine"), FALSE);
 
-	UpdateData(FALSE);
-
-	CString str;
-	switch (m_outputStyle)
-	{
-	case DIFF_OUTPUT_NORMAL:
-		VERIFY(str.LoadString(IDS_DIFF_NORMAL));
-		m_comboStyle.SelectString(-1, str);
-		break;
-	case DIFF_OUTPUT_CONTEXT:
-		VERIFY(str.LoadString(IDS_DIFF_CONTEXT));
-		m_comboStyle.SelectString(-1, str);
-		break;
-	case DIFF_OUTPUT_UNIFIED:
-		VERIFY(str.LoadString(IDS_DIFF_UNIFIED));
-		m_comboStyle.SelectString(-1, str);
-		break;
-	}
-
-	str.Format(_T("%d"), m_contextLines);
-	m_comboContext.SelectString(-1, str);
-
-	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED)
-		m_comboContext.EnableWindow(TRUE);
-	else
-		m_comboContext.EnableWindow(FALSE);
+	UpdateSettings();
 }
 
 /** 
@@ -573,30 +574,5 @@ void CPatchDlg::OnDefaultSettings()
 	m_openToEditor = FALSE;
 	m_includeCmdLine = FALSE;
 
-	UpdateData(FALSE);
-
-	CString str;
-	switch (m_outputStyle)
-	{
-	case DIFF_OUTPUT_NORMAL:
-		VERIFY(str.LoadString(IDS_DIFF_NORMAL));
-		m_comboStyle.SelectString(-1, str);
-		break;
-	case DIFF_OUTPUT_CONTEXT:
-		VERIFY(str.LoadString(IDS_DIFF_CONTEXT));
-		m_comboStyle.SelectString(-1, str);
-		break;
-	case DIFF_OUTPUT_UNIFIED:
-		VERIFY(str.LoadString(IDS_DIFF_UNIFIED));
-		m_comboStyle.SelectString(-1, str);
-		break;
-	}
-
-	str.Format(_T("%d"), m_contextLines);
-	m_comboContext.SelectString(-1, str);
-
-	if (m_outputStyle == OUTPUT_CONTEXT || m_outputStyle == OUTPUT_UNIFIED)
-		m_comboContext.EnableWindow(TRUE);
-	else
-		m_comboContext.EnableWindow(FALSE);
+	UpdateSettings();
 }

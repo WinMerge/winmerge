@@ -34,6 +34,9 @@ ProjectFilePathsDlg::ProjectFilePathsDlg() : CPropertyPage(ProjectFilePathsDlg::
 {
 	//{{AFX_DATA_INIT(ProjectFilePathsDlg)
 	//}}AFX_DATA_INIT
+	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
+	m_psp.pszTitle = m_strCaption;
+	m_psp.dwFlags |= PSP_USETITLE;
 }
 
 void ProjectFilePathsDlg::DoDataExchange(CDataExchange* pDX)
@@ -64,6 +67,7 @@ END_MESSAGE_MAP()
  */
 BOOL ProjectFilePathsDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	return FALSE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
@@ -94,9 +98,8 @@ void ProjectFilePathsDlg::OnBnClickedProjRfileBrowse()
  */
 void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 {
-	CString filterPrefix;
+	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 	CString curFilter;
-	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
 	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
 	GetDlgItemText(IDC_PROJ_FILTER_EDIT, curFilter);
@@ -116,7 +119,7 @@ void ProjectFilePathsDlg::OnBnClickedProjFilterSelect()
 	}
 	else
 	{
-		filterNameOrMask.Insert(0, filterPrefix);
+		filterNameOrMask.Insert(0, filterPrefix.c_str());
 		SetDlgItemText(IDC_PROJ_FILTER_EDIT, filterNameOrMask);
 	}
 }
@@ -149,7 +152,7 @@ void ProjectFilePathsDlg::OnBnClickedProjOpen()
 		m_bIncludeSubfolders = project.GetSubfolders();
 
 		UpdateData(FALSE);
-		AfxMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
+		LangMessageBox(IDS_PROJFILE_LOAD_SUCCESS, MB_ICONINFORMATION);
 	}
 }
 
@@ -202,7 +205,7 @@ void ProjectFilePathsDlg::OnBnClickedProjSave()
 	}
 	else
 	{
-		AfxMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
+		LangMessageBox(IDS_PROJFILE_SAVE_SUCCESS, MB_ICONINFORMATION);
 	}
 }
 
@@ -256,10 +259,8 @@ CString ProjectFilePathsDlg::AskProjectFileName(BOOL bOpen)
 	SplitFilename(strProjectFileName, NULL, NULL, &extension);
 	if (extension.empty())
 	{
-		CString projectFileExt;
-		projectFileExt.LoadString(IDS_PROJECTFILES_EXT);
 		strProjectFileName += _T(".");
-		strProjectFileName += projectFileExt;
+		strProjectFileName += theApp.LoadString(IDS_PROJECTFILES_EXT).c_str();
 	}
 
 	// get the path part from the filename

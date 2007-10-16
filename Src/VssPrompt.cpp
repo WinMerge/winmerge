@@ -133,7 +133,7 @@ void CVssPrompt::OnOK()
 	UpdateData(TRUE);
 	if (m_strProject.IsEmpty())
 	{
-		AfxMessageBox(IDS_NOPROJECT,MB_ICONSTOP);
+		LangMessageBox(IDS_NOPROJECT,MB_ICONSTOP);
 		m_ctlProject.SetFocus();
 		return;
 	}

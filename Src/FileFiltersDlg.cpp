@@ -402,7 +402,7 @@ void FileFiltersDlg::OnBnClickedFilterfileNewbutton()
 
 	if (globalPath.empty() && userPath.empty())
 	{
-		AfxMessageBox(IDS_FILEFILTER_NO_USERFOLDER, MB_ICONSTOP);
+		LangMessageBox(IDS_FILEFILTER_NO_USERFOLDER, MB_ICONSTOP);
 		return;
 	}
 
@@ -576,19 +576,19 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 			// If user wants to, overwrite existing filter
 			if (paths_DoesPathExist(userPath.c_str()) == IS_EXISTING_FILE)
 			{
-				int res = AfxMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
+				int res = LangMessageBox(IDS_FILEFILTER_OVERWRITE, MB_YESNO |
 					MB_ICONWARNING);
 				if (res == IDYES)
 				{
 					if (!CopyFile(s, userPath.c_str(), FALSE))
 					{
-						AfxMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+						LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 					}
 				}
 			}
 			else
 			{
-				AfxMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
+				LangMessageBox(IDS_FILEFILTER_INSTALLFAIL, MB_ICONSTOP);
 			}
 		}
 		else

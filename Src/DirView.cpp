@@ -878,7 +878,7 @@ void CDirView::OpenParentDirectory()
 	case CDirDoc::AllowUpwardDirectory::No:
 		break;
 	default:
-		AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+		LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 		break;
 	}
 }
@@ -964,7 +964,7 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	{
 		if (pDoc->GetRecursive())
 		{
-			AfxMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+			LangMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
 			return false;
 		}
 		else
@@ -973,7 +973,7 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 			// Don't add folders to MRU
 			if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
 			{
-				AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+				LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 				return false;
 			}
 			// Fall through and compare directories
@@ -983,9 +983,9 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	{
 		// Open left-only item to editor if its not a folder or binary
 		if (isDir)
-			AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
+			LangMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
 		else if ((*di1)->diffcode.isBin())
-			AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
+			LangMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
 		else
 			DoOpenWithEditor(SIDE_LEFT);
 		return false;
@@ -994,9 +994,9 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	{
 		// Open right-only item to editor if its not a folder or binary
 		if (isDir)
-			AfxMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
+			LangMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
 		else if ((*di1)->diffcode.isBin())
-			AfxMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
+			LangMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
 		else
 			DoOpenWithEditor(SIDE_RIGHT);
 		return false;
@@ -1054,7 +1054,7 @@ bool CDirView::OpenTwoItems(POSITION pos1, POSITION pos2, DIFFITEM **di1, DIFFIT
 		isDir = true;
 		if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
 		{
-			AfxMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+			LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 			return false;
 		} 
 	}
@@ -1146,7 +1146,7 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		{
 			if (!IsBinaryUnpacker(infoUnpacker))
 			{
-				AfxMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
+				LangMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
 				return;
 			}
 		}
@@ -2440,7 +2440,7 @@ void CDirView::OnToolsGenerateReport()
 	if (report.GenerateReport(errStr))
 	{
 		if (errStr.IsEmpty())
-			AfxMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+			LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 		else
 			ResMsgBox1(IDS_REPORT_ERROR, errStr, MB_OK | MB_ICONSTOP);
 	}
@@ -2490,7 +2490,7 @@ void CDirView::OnCtxtDirZipLeft()
 {
 	if (!HasZipSupport())
 	{
-		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
 		return;
 	}
 
@@ -2508,7 +2508,7 @@ void CDirView::OnCtxtDirZipRight()
 {
 	if (!HasZipSupport())
 	{
-		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
 		return;
 	}
 
@@ -2526,7 +2526,7 @@ void CDirView::OnCtxtDirZipBoth()
 {
 	if (!HasZipSupport())
 	{
-		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
 		return;
 	}
 
@@ -2546,7 +2546,7 @@ void CDirView::OnCtxtDirZipBothDiffsOnly()
 {
 	if (!HasZipSupport())
 	{
-		AfxMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
+		LangMessageBox(IDS_NO_ZIP_SUPPORT, MB_ICONINFORMATION);
 		return;
 	}
 

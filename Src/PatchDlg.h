@@ -103,6 +103,7 @@ protected:
 	CList<PATCHFILES, PATCHFILES&> m_fileList; /**< Source files to create patch from */
 	
 	void ChangeFile(const CString &sFile, BOOL bLeft);
+	void UpdateSettings();
 	void LoadSettings();
 	void SaveSettings();
 

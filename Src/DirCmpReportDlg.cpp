@@ -147,7 +147,7 @@ void DirCmpReportDlg::OnOK()
 
 	if (m_sReportFile.IsEmpty() && !m_bCopyToClipboard)
 	{
-		AfxMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
+		LangMessageBox(IDS_MUST_SPECIFY_OUTPUT, MB_ICONSTOP);
 		m_ctlReportFile.SetFocus();
 		return;
 	}
@@ -156,7 +156,7 @@ void DirCmpReportDlg::OnOK()
 	{
 		if (paths_DoesPathExist(m_sReportFile) == IS_EXISTING_FILE)
 		{
-			int overWrite = AfxMessageBox(IDS_REPORT_FILEOVERWRITE,
+			int overWrite = LangMessageBox(IDS_REPORT_FILEOVERWRITE,
 					MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
 					IDS_DIFF_FILEOVERWRITE);
 			if (overWrite == IDNO)

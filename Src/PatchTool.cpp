@@ -84,7 +84,7 @@ int CPatchTool::CreatePatch()
 		SplitFilename(m_dlgPatch.m_fileResult, &path, NULL, NULL);
 		if (!paths_CreateIfNeeded(path.c_str()))
 		{
-			AfxMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
+			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
 			return 0;
 		}
 
@@ -109,13 +109,13 @@ int CPatchTool::CreatePatch()
 
 			if (!bDiffSuccess)
 			{
-				AfxMessageBox(IDS_FILEERROR, MB_ICONSTOP);
+				LangMessageBox(IDS_FILEERROR, MB_ICONSTOP);
 				bResult = FALSE;
 				break;
 			}
 			else if (status.bBinaries)
 			{
-				AfxMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONSTOP);
+				LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONSTOP);
 				bResult = FALSE;
 				break;
 			}
@@ -134,7 +134,7 @@ int CPatchTool::CreatePatch()
 		
 		if (bResult && fileCount > 0)
 		{
-			AfxMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
+			LangMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
 				            IDS_DIFF_SUCCEEDED);
 			
 			m_sPatchFile = m_dlgPatch.m_fileResult;

@@ -303,7 +303,7 @@ void COpenDlg::OnOK()
 
 	if (m_pathsType == DOES_NOT_EXIST)
 	{
-		AfxMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
+		LangMessageBox(IDS_ERROR_INCOMPARABLE, MB_ICONSTOP);
 		return;
 	}
 

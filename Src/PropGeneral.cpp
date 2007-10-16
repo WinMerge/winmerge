@@ -144,5 +144,5 @@ void CPropGeneral::WriteOptions()
 void CPropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
-	AfxMessageBox(IDS_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
+	LangMessageBox(IDS_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
 }

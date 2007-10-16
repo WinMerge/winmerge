@@ -923,11 +923,11 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 	envelope->Name = sFilename;
 	if (sSubdir.length())
 	{
-		envelope->Name.insert(0, '\\');
+		envelope->Name.insert(0, _T("\\"));
 		envelope->Name.insert(0, sSubdir);
 	}
 	envelope->FullPath = sFilename;
-	envelope->FullPath.insert(0, '\\');
+	envelope->FullPath.insert(0, _T("\\"));
 	envelope->FullPath.insert(0, m_bRight ?
 		di.getRightFilepath(pDoc->GetRightBasePath()) :
 		di.getLeftFilepath(pDoc->GetLeftBasePath()));
@@ -984,7 +984,7 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 	if (m_strFolderPrefix.GetLength())
 	{
 		if (envelope->Name.length())
-			envelope->Name.insert(0, '\\');
+			envelope->Name.insert(0, _T("\\"));
 		envelope->Name.insert(0, m_strFolderPrefix);
 	}
 
@@ -1098,7 +1098,7 @@ void CDirView::DirItemEnumerator::CompressArchive(LPCTSTR path)
 	}
 	if (path && !MultiStepCompressArchive(path))
 	{
-		AfxMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
+		LangMessageBox(IDS_UNKNOWN_ARCHIVE_FORMAT, MB_ICONEXCLAMATION);
 	}
 #ifdef _DEBUG
 	afxDump << m_rgImpliedFoldersLeft;

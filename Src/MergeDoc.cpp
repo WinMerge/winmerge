@@ -653,7 +653,7 @@ void CMergeDoc::ShowRescanError(int nRescanResult,
 				nFlags &= ~MB_DONT_DISPLAY_AGAIN;
 			}
 
-			AfxMessageBox(IDS_FILESSAME, nFlags);
+			LangMessageBox(IDS_FILESSAME, nFlags);
 
 			// Exit application if files are identical.
 			if (GetMainFrame()->m_bExitIfNoDiff)
@@ -915,7 +915,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
 
 		if (bInSync == FALSE)
 		{
-			AfxMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
+			LangMessageBox(IDS_VIEWS_OUTOFSYNC, MB_ICONSTOP);
 			return false; // abort copying
 		}
 
@@ -3396,5 +3396,5 @@ void CMergeDoc::OnToolsGenerateReport()
 
 	file.Close();
 
-	AfxMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
+	LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 }
