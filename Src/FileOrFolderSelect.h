@@ -23,6 +23,8 @@
  *
  * @brief Declaration of the file and folder selection routines.
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #ifndef _FILE_OR_FOLDER_SELECTION_H_
 #define _FILE_OR_FOLDER_SELECTION_H_

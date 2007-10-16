@@ -23,6 +23,8 @@
  *
  * @brief Implementation of the file and folder selection routines.
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
 #include <sys/stat.h>
@@ -282,7 +284,7 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
  * - in Mask string to convert
  * - out Converted string
  */
-void ConvertFilter(LPTSTR filterStr)
+static void ConvertFilter(LPTSTR filterStr)
 {
 	while (TCHAR *ch = _tcschr(filterStr, '|'))
 	{
