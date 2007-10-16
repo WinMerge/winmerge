@@ -304,7 +304,7 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 static char *EatPrefix(char *text, const char *prefix)
 {
 	if (int len = strlen(prefix))
-		if (memicmp(text, prefix, len) == 0)
+		if (_memicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
 }
@@ -400,7 +400,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 	m_codepage = 0;
 	if (FILE *f = _tfopen(szDllFileName, _T("r")))
 	{
-		std::vector<int> lines;
+		std::vector<unsigned> lines;
 		std::string format;
 		std::string directive;
 		std::string msgid;
@@ -451,9 +451,9 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 					if (msgstr.empty())
 						msgstr = msgid;
 					unslash(msgstr);
-					for (int *pline = lines.begin() ; pline < lines.end() ; ++pline)
+					for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
 					{
-						int line = *pline;
+						unsigned line = *pline;
 						if (m_strarray.size() <= line)
 							m_strarray.resize(line + 1);
 						m_strarray[line] = msgstr;
@@ -776,7 +776,7 @@ bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
 		{
 			ws.resize(len);
 			const char *msgstr = m_strarray[line].c_str();
-			len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, ws.begin(), len + 1);
+			len = MultiByteToWideChar(m_codepage, 0, msgstr, -1, &*ws.begin(), len + 1);
 			ASSERT(*msgstr == 0 || len != 0);
 			ws.resize(len - 1);
 			return true;
@@ -807,8 +807,8 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 		{
 			if (LPCWSTR text = pItemData->GetWideString())
 			{
-				int line = 0;
-				swscanf(text, L"Merge.rc:%d", &line);
+				unsigned line = 0;
+				swscanf(text, L"Merge.rc:%u", &line);
 				std::wstring s;
 				if (TranslateString(line, s))
 					pItemData->SetWideString(s.c_str());
@@ -817,8 +817,8 @@ void CLanguageSelect::TranslateMenu(HMENU h) const
 		TCHAR text[80];
 		if (::GetMenuString(h, i, text, RTL_NUMBER_OF(text), MF_BYPOSITION))
 		{
-			int line = 0;
-			_stscanf(text, _T("Merge.rc:%d"), &line);
+			unsigned line = 0;
+			_stscanf(text, _T("Merge.rc:%u"), &line);
 			String s;
 			if (TranslateString(line, s))
 				::ModifyMenu(h, i, mii.fState | MF_BYPOSITION, mii.wID, s.c_str());
@@ -835,8 +835,8 @@ void CLanguageSelect::TranslateDialog(HWND h) const
 	{
 		TCHAR text[80];
 		::GetWindowText(h, text, RTL_NUMBER_OF(text));
-		int line = 0;
-		_stscanf(text, _T("Merge.rc:%d"), &line);
+		unsigned line = 0;
+		_stscanf(text, _T("Merge.rc:%u"), &line);
 		String s;
 		if (TranslateString(line, s))
 			::SetWindowText(h, s.c_str());
@@ -854,8 +854,8 @@ String CLanguageSelect::LoadString(UINT id) const
 		TCHAR text[1024];
 		AfxLoadString(id, text, RTL_NUMBER_OF(text));
 #if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
-		int line = 0;
-		_stscanf(text, _T("Merge.rc:%d"), &line);
+		unsigned line = 0;
+		_stscanf(text, _T("Merge.rc:%u"), &line);
 		if (!TranslateString(line, s))
 #endif
 			s = text;
@@ -886,8 +886,8 @@ std::wstring CLanguageSelect::LoadDialogCaption(LPCTSTR lpDialogTemplateID) cons
 					while (*text++);
 				// Caption string is ahead
 #if LANG_PO(FALSE, TRUE) // compiling for use with .PO files
-				int line = 0;
-				swscanf(text, L"Merge.rc:%d", &line);
+				unsigned line = 0;
+				swscanf(text, L"Merge.rc:%u", &line);
 				if (!TranslateString(line, s))
 #endif
 					s = text;

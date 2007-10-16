@@ -306,10 +306,10 @@ void CPreferencesDlg::OnImportButton()
 		if (m_pOptionsMgr->ImportOptions(s) == OPT_OK)
 		{
 			ReadOptions(TRUE);
-			AfxMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
+			LangMessageBox(IDS_OPT_IMPORT_DONE, MB_ICONINFORMATION);
 		}
 		else
-			AfxMessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
+			LangMessageBox(IDS_OPT_IMPORT_ERR, MB_ICONWARNING);
 	}
 }
 
@@ -330,9 +330,9 @@ void CPreferencesDlg::OnExportButton()
 			settingsFile += _T(".ini");
 
 		if (m_pOptionsMgr->ExportOptions(settingsFile) == OPT_OK)
-			AfxMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
+			LangMessageBox(IDS_OPT_EXPORT_DONE, MB_ICONINFORMATION);
 		else
-			AfxMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
+			LangMessageBox(IDS_OPT_EXPORT_ERR, MB_ICONWARNING);
 	}
 }
 
