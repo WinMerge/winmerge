@@ -51,11 +51,11 @@ static const TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 // CFiltersDlg dialog
 IMPLEMENT_DYNCREATE(FileFiltersDlg, CPropertyPage)
 
+/**
+ * @brief Constructor.
+ */
 FileFiltersDlg::FileFiltersDlg() : CPropertyPage(FileFiltersDlg::IDD)
 {
-	//{{AFX_DATA_INIT(FileFiltersDlg)
-		// NOTE: the ClassWizard will add member initialization here
-	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
@@ -164,6 +164,7 @@ void FileFiltersDlg::SelectFilterByIndex(int index)
 
 /**
  * @brief Called before dialog is shown.
+ * @return Always TRUE.
  */
 BOOL FileFiltersDlg::OnInitDialog()
 {
@@ -244,7 +245,9 @@ void FileFiltersDlg::OnFiltersEditbtn()
 }
 
 /**
- * @brief Edit selected filter when its double-clicked
+ * @brief Edit selected filter when its double-clicked.
+ * @param [in] pNMHDR List control item data.
+ * @param [out] pResult Result of the action is returned in here.
  */
 void FileFiltersDlg::OnDblclkFiltersList(NMHDR* pNMHDR, LRESULT* pResult)
 {
@@ -282,6 +285,8 @@ bool FileFiltersDlg::IsFilterItemNone(int item) const
  * @brief Called when item state is changed.
  *
  * Disable Edit-button when "None" filter is selected.
+ * @param [in] pNMHDR Listview item data.
+ * @param [out] pResult Result of the action is returned in here.
  */
 void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pResult)
 {
@@ -303,7 +308,11 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	*pResult = 0;
 }
 
-/// Called before infotip is shown to get infotip text
+/**
+ * @brief Called before infotip is shown to get infotip text.
+ * @param [in] pNMHDR Listview item data.
+ * @param [out] pResult Result of the action is returned in here.
+ */
 void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 {
 	LVHITTESTINFO lvhti = {0};
@@ -332,7 +341,11 @@ void FileFiltersDlg::OnInfoTip(NMHDR * pNMHDR, LRESULT * pResult)
 	}
 }
 
-/// Track mouse position for showing tooltips
+/**
+ * @brief Track mouse position for showing tooltips.
+ * @param [in] nFlags Mouse movement flags.
+ * @param [in] point Current mouse position.
+ */
 void FileFiltersDlg::OnMouseMove(UINT nFlags, CPoint point) 
 {
 	m_ptLastMousePos = point;
@@ -353,8 +366,10 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 	UpdateData(TRUE);
 
 	int sel = m_listFilters.GetNextItem(-1, LVNI_SELECTED);
-	if (sel == -1) return;
-	if (IsFilterItemNone(sel)) return;
+	if (sel == -1)
+		return;
+	if (IsFilterItemNone(sel))
+		return;
 	
 	m_sFileFilterPath = m_listFilters.GetItemText(sel, 2);
 
@@ -363,7 +378,8 @@ void FileFiltersDlg::OnBnClickedFilterfileTestButton()
 
 	FileFilterMgr *pMgr = theApp.m_globalFileFilter.GetManager();
 	FileFilter * pFileFilter = pMgr->GetFilterByPath(m_sFileFilterPath);
-	if (!pFileFilter) return;
+	if (!pFileFilter)
+		return;
 
 	CTestFilterDlg dlg(this, pFileFilter, pMgr);
 	dlg.DoModal();
@@ -498,7 +514,6 @@ void FileFiltersDlg::OnBnClickedFilterfileDelete()
 			{
 				ResMsgBox1(IDS_FILEFILTER_DELETE_FAIL, path, MB_ICONSTOP);
 			}
-			
 		}
 	}
 }
@@ -552,7 +567,6 @@ void FileFiltersDlg::OnBnClickedFilterfileInstall()
 		String sfile, sext;
 		SplitFilename(s, NULL, &sfile, &sext);
 		String filename = sfile;
-		//CString ext(sext.c_str());
 		filename += _T(".");
 		filename += sext;
 		userPath = paths_ConcatPath(userPath, filename);
