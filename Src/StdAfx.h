@@ -104,6 +104,9 @@ void NTAPI LangFormatString1(CString &, UINT, LPCTSTR);
 	/** @brief Lang aware version of AfxFormatString2() */
 void NTAPI LangFormatString2(CString &, UINT, LPCTSTR, LPCTSTR);
 
+	/** @brief Lang aware version of AfxMessageBox() */
+int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
+
 	/** @brief Format single-argument resource string and display via AfxMessageBox */
 int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType = MB_OK, UINT nIDHelp = 0);
 

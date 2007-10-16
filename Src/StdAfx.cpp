@@ -114,6 +114,17 @@ void NTAPI LangFormatString2(CString &rString, UINT id, LPCTSTR lpsz1, LPCTSTR l
 }
 
 /**
+ * @brief Lang aware version of AfxMessageBox()
+ */
+int NTAPI LangMessageBox(UINT nIDPrompt, UINT nType, UINT nIDHelp)
+{
+	String string = theApp.LoadString(nIDPrompt);
+	if (nIDHelp == (UINT)-1)
+		nIDHelp = nIDPrompt;
+	return AfxMessageBox(string.c_str(), nType, nIDHelp);
+}
+
+/**
  * @brief Show messagebox with resource string having parameter.
  * @param [in] msgid Resource string ID.
  * @param [in] arg Argument string.
