@@ -8,6 +8,7 @@ WinMerge 2.7.5.4
   Better multi-monitor support, with option to lock panes (#1788168)
   BugFix: Ignored differences were merged when merging multiple
     differences (#1811745)
+  Bugfix: Don't clear selection when right-clicking outside it (#1814184)
   Translation updates:
   - Chinese Traditional (#1810192, #1810541)
   - Italian (#1805044)

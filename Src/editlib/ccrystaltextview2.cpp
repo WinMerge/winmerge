@@ -1139,23 +1139,6 @@ OnUpdateEditSelectAll (CCmdUI * pCmdUI)
   pCmdUI->Enable (TRUE);
 }
 
-void CCrystalTextView::
-OnRButtonDown (UINT nFlags, CPoint point)
-{
-  CPoint pt = point;
-  AdjustTextPoint (pt);
-  pt = ClientToText (pt);
-  if (!IsInsideSelBlock (pt))
-    {
-      m_ptAnchor = m_ptCursorPos = pt;
-      SetSelection (m_ptCursorPos, m_ptCursorPos);
-      EnsureVisible (m_ptCursorPos);
-      UpdateCaret ();
-    }
-
-  CView::OnRButtonDown (nFlags, point);
-}
-
 BOOL CCrystalTextView::
 IsSelection ()
 {
