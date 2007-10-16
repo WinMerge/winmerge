@@ -20,7 +20,7 @@
  * @brief Declaration file for ConfirmFolderCopyDlg dialog
  */
 // ID line follows -- this is updated by SVN
-// $Id: $
+// $Id$
 
 #ifndef CMoveConstraint_h
 #include "CMoveConstraint.h"
