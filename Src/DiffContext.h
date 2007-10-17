@@ -32,14 +32,6 @@ class FilterList;
 class CompareOptions;
 struct DIFFOPTIONS;
 
-// Interface for reporting current file, as diff traverses file tree
-/*class IDiffStatus
-{
-public:
-	virtual void rptFile(BYTE code)=0;
-};
-*/
-
 /** Interface to a provider of plugin info */
 class IPluginInfos
 {
@@ -58,10 +50,11 @@ public:
 class CDiffContext : public DiffItemList
 {
 public:
+	/** @brief Special values for difference counts. */
 	enum
 	{
-		DIFFS_UNKNOWN = -1,
-		DIFFS_UNKNOWN_QUICKCOMPARE = -9,
+		DIFFS_UNKNOWN = -1, /**< Difference count unknown (generally). */
+		DIFFS_UNKNOWN_QUICKCOMPARE = -9, /**< Unknown because of quick-compare method. */
 	};
 
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
@@ -102,7 +95,7 @@ public:
 	void SetAbortable(IAbortable * piAbortable) { m_piAbortable = piAbortable; }
 	const IAbortable * GetAbortable() const { return m_piAbortable; }
 
-	IDiffFilter * m_piFilterGlobal;
+	IDiffFilter * m_piFilterGlobal; /**< Interface for file filtering. */
 	IPluginInfos * m_piPluginInfos;
 	BOOL m_bGuessEncoding;
 	int m_nCompMethod; /**< Compare method */
@@ -119,7 +112,7 @@ private:
 	DIFFOPTIONS *m_pOptions; /**< Generalized compare options. */
 	CompareOptions *m_pCompareOptions; /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */
-	IAbortable *m_piAbortable;
+	IAbortable *m_piAbortable; /**< Interface for aborting the compare. */
 };
 
 #endif // !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)

@@ -109,6 +109,9 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	DeleteCriticalSection(&src.m_criticalSect);
 }
 
+/**
+ * @brief Destructor.
+ */
 CDiffContext::~CDiffContext()
 {
 	delete m_pOptions;
@@ -118,7 +121,8 @@ CDiffContext::~CDiffContext()
 }
 
 /**
- * @brief Add new diffitem to CDiffContext array
+ * @brief Add new diffitem to CDiffContext array.
+ * @param [in] di DIFFITEM to add.
  */
 void CDiffContext::AddDiff(const DIFFITEM & di)
 {
@@ -174,7 +178,9 @@ BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
 }
 
 /**
- * @brief Return if this extension is one we expect to have a file version
+ * @brief Return if this extension is one we expect to have a file version.
+ * @param [in] ext Extension to check.
+ * @return true if extension has version info, false otherwise.
  */
 static bool CheckFileForVersion(LPCTSTR ext)
 {
@@ -322,7 +328,10 @@ void CDiffContext::FetchPluginInfos(LPCTSTR filteredFilenames,
 	m_piPluginInfos->FetchPluginInfos(filteredFilenames, infoUnpacker, infoPrediffer);
 }
 
-/** @brief Return true only if user has requested abort */
+/**
+ * @brief Check if user has requested aborting the compare.
+ * @return true if user has requested abort, false otherwise.
+ */
 bool CDiffContext::ShouldAbort() const
 {
 	return m_piAbortable && m_piAbortable->ShouldAbort();
