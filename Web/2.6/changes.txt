@@ -1,3 +1,42 @@
+2007-09-26 2.6.12 Stable Release (R4567)
+
+ Fixed uninstalling bug (BUG: [ 1802179 ] Runtime error on uninstalling 2.6.10)
+ Withdrawn 2.6.10 release due to above bug
+
+2007-09-25 2.6.10 Stable Release (R4561)
+
+2007-09-18 Kimmo
+ BUG: [ 1791351 ] Go To Line Number does not change pane focus.
+  Src: MergeEditView.cpp
+
+2007-09-17 Takashi
+ BUG: [ 1795814 ] When word wrap+scroll to first are on, it fails to scroll
+  Src: MergeDoc.cpp
+
+2007-09-15 Kimmo
+ BUG: [ 1777054 ] Next difference sometimes not seen with Wrap Lines enabled
+  Src: MergeEditView.cpp MergeEditView.h
+ BUG: [ 1787816 ] Bug in File Rename
+  Src: DirActions.cpp
+ BUG: [ 1776487 ] REPLACE dialog, copy highlighted text to FIND fileld
+  Src/editlib: ccrystaleditview.cpp
+
+2007-08-22 Tim
+ PATCH: [ 1743623 ] ChineseSimplified language .rc file for trunk rev.4317
+  Src/Languages/ChineseSimplified: MergeChineseSimplified.rc
+
+2007-08-22 Takashi
+ BUG: [ 1759793 ] Filter test dialog problem with directory filters
+  Src: TestFilterDlg.cpp
+
+2007-08-12 Tim
+ PATCH: [ 1772028 ] Russian translation update (from WinMergeMod)
+  Src/Languages/Russian: MergeRussian.rc
+
+2007-07-13 Kimmo
+ Add Alberto Kalb to contributors list
+  Docs/Users: Contributors.txt
+
 2007-06-19 2.6.8 Stable Release (R4343)
 
 2007-06-17 Tim

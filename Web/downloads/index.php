@@ -8,7 +8,7 @@
 <h2>Downloads</h2>
 <?php $page->printDownloadNow(); ?>
 <h3>Current Version</h3>
-<p>The current version is <strong>2.6.8</strong> and was released at <strong>2007-06-19</strong>. For detailed info on what's new, read the <a href="/2.6/changes.php">changelog</a> and the <a href="http://sourceforge.net/project/shownotes.php?release_id=517309">release notes</a>.</p>
+<p>The current version is <strong>2.6.12</strong> and was released at <strong>2007-09-26</strong>. For detailed info on what's new, read the <a href="/2.6/changes.php">changelog</a> and the <a href="http://sourceforge.net/project/shownotes.php?release_id=542344">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>
   <li><strong>Installer</strong>
@@ -18,20 +18,20 @@
   </li>
   <li><strong>Binaries</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-exe.zip">Zip-Format (5.18 MB)</a></li>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-exe.7z">7z-Format (1.67 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-exe.zip">Zip-Format (5.18 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-exe.7z">7z-Format (1.68 MB)</a></li>
     </ul>
   </li>
   <li><strong>Runtimes</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Runtimes-2.6.8.zip">Zip-Format (1.23 MB)</a></li>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Runtimes-2.6.8.7z">7z-Format (0.72 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/Runtimes-2.6.12.zip">Zip-Format (1.23 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/Runtimes-2.6.12.7z">7z-Format (0.72 MB)</a></li>
     </ul>
   </li>
   <li><strong>Source Code</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-src.zip">Zip-Format (5.06 MB)</a></li>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-src.7z">7z-Format (2.78 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-src.zip">Zip-Format (5.06 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-src.7z">7z-Format (2.79 MB)</a></li>
     </ul>
   </li>
 </ul>

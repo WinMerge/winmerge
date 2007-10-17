@@ -40,9 +40,9 @@
       $this->_tab = WINMERGE_2_6;
       /* _Stable Release */
       $this->_stablerelease = new Release;
-      $this->_stablerelease->setVersionNumber('2.6.8');
-      $this->_stablerelease->setSetupDownload('http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.8-Setup.exe');
-      $this->_stablerelease->setSetupSize(3023263);
+      $this->_stablerelease->setVersionNumber('2.6.12');
+      $this->_stablerelease->setSetupDownload('http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-Setup.exe');
+      $this->_stablerelease->setSetupSize(3025610);
     }
 
     /**
