@@ -9,6 +9,7 @@ WinMerge 2.7.5.4
   BugFix: Ignored differences were merged when merging multiple
     differences (#1811745)
   Bugfix: Don't clear selection when right-clicking outside it (#1814184)
+  Bugfix: Configuration log labeled Vista as Longhorn (#1815859)
   Translation updates:
   - Chinese Traditional (#1810192, #1810541)
   - Italian (#1805044)

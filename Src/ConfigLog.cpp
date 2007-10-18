@@ -679,7 +679,7 @@ CString CConfigLog::GetWindowsVer()
 		else if ( osvi.dwMajorVersion <= 4 )
 			sVersion = _T("Microsoft Windows NT ");
 		else if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
-			sVersion = _T("Microsoft Windows Longhorn ");
+			sVersion = _T("Microsoft Windows Vista ");
 		else
 			sVersion.Format(_T("[? WindowsNT %d.%d] "), 
 				osvi.dwMajorVersion, osvi.dwMinorVersion);
