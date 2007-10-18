@@ -14,7 +14,7 @@ class DiffItemList;
 class PathContext;
 class IAbortable;
 
-int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir, const CString & rightsubdir, DiffItemList * pLst,
+int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir, LPCTSTR rightsubdir, DiffItemList * pLst,
 		bool casesensitive, int depth, CDiffContext * pCtxt);
 
 int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt);

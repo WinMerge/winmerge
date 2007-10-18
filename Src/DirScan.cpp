@@ -31,7 +31,7 @@ static char THIS_FILE[] = __FILE__;
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
-static void AddToList(const CString & sLeftDir, const CString & sRightDir, const DirItem * lent, const DirItem * rent,
+static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir, const DirItem * lent, const DirItem * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
@@ -65,31 +65,34 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @param [in] pCtxt Compare context
  * @return 1 normally, -1 if compare was aborted
  */
-int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir,
-		const CString & rightsubdir, DiffItemList *pList,
+int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
+		LPCTSTR rightsubdir, DiffItemList *pList,
 		bool casesensitive, int depth, CDiffContext * pCtxt)
 {
 	static const TCHAR backslash[] = _T("\\");
 
-	CString sLeftDir = paths.GetLeft().c_str();
-	CString sRightDir = paths.GetRight().c_str();
-	CString leftsubprefix;
-	CString rightsubprefix;
-	if (!leftsubdir.IsEmpty())
+	String sLeftDir(paths.GetLeft());
+	String sRightDir(paths.GetRight());
+	String leftsubprefix;
+	String rightsubprefix;
+	if (_tcslen(leftsubdir) > 0)
 	{
-		sLeftDir += backslash + leftsubdir;
-		sRightDir += backslash + rightsubdir;
-		leftsubprefix = leftsubdir + backslash;
+		sLeftDir += backslash;
+		sLeftDir += leftsubdir;
+		sRightDir += backslash;
+		sRightDir += rightsubdir;
+		leftsubprefix = leftsubdir;
+		leftsubprefix += backslash;
 		// minimize memory footprint by having left/rightsubprefix share CStringData if possible
 		rightsubprefix = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			(LPCTSTR)leftsubdir == (LPCTSTR)rightsubdir ? leftsubprefix : 
-		) rightsubdir + backslash;
+			_tcsicmp(leftsubdir, rightsubdir) == 0 ? leftsubprefix : 
+		) rightsubdir; + backslash;
 	}
 
 	DirItemArray leftDirs, leftFiles, rightDirs, rightFiles;
-	LoadAndSortFiles(sLeftDir, &leftDirs, &leftFiles, casesensitive);
-	LoadAndSortFiles(sRightDir, &rightDirs, &rightFiles, casesensitive);
+	LoadAndSortFiles(sLeftDir.c_str(), &leftDirs, &leftFiles, casesensitive);
+	LoadAndSortFiles(sRightDir.c_str(), &rightDirs, &rightFiles, casesensitive);
 
 	// Allow user to abort scanning
 	if (pCtxt->ShouldAbort())
@@ -149,16 +152,16 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir,
 			else
 			{
 				// Recursive compare
-				CString leftnewsub = leftsubprefix + leftDirs[i].filename.c_str();
+				String leftnewsub = leftsubprefix + leftDirs[i].filename;
 				// minimize memory footprint by having left/rightnewsub share CStringData if possible
-				CString rightnewsub = OPTIMIZE_SHARE_CSTRINGDATA
+				String rightnewsub = OPTIMIZE_SHARE_CSTRINGDATA
 				(
-					(LPCTSTR)leftsubprefix == (LPCTSTR)rightsubprefix
+					leftsubprefix == rightsubprefix
 				&&	leftDirs[i].filename == rightDirs[j].filename ? leftnewsub :
-				) rightsubprefix + rightDirs[j].filename.c_str();
+				) rightsubprefix + rightDirs[j].filename;
 				// Test against filter so we don't include contents of filtered out directories
 				// Also this is only place we can test for both-sides directories in recursive compare
-				if (!pCtxt->m_piFilterGlobal->includeDir(leftnewsub, rightnewsub))
+				if (!pCtxt->m_piFilterGlobal->includeDir(leftnewsub.c_str(), rightnewsub.c_str()))
 				{
 					const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR | DIFFCODE::SKIPPED;
 					AddToList(leftsubdir, rightsubdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
@@ -166,7 +169,7 @@ int DirScan_GetItems(const PathContext &paths, const CString & leftsubdir,
 				else
 				{
 					// Scan recursively all subdirectories too, we are not adding folders
-					if (DirScan_GetItems(paths, leftnewsub, rightnewsub, pList, casesensitive,
+					if (DirScan_GetItems(paths, leftnewsub.c_str(), rightnewsub.c_str(), pList, casesensitive,
 							depth - 1, pCtxt) == -1)
 					{
 						return -1;
@@ -515,7 +518,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
  * @param [in] pList List to where to add item.
  * @param [in] pCtxt Compare context.
  */
-static void AddToList(const CString & sLeftDir, const CString & sRightDir,
+static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir,
 	const DirItem * lent, const DirItem * rent,
 	int code, DiffItemList * pList, CDiffContext *pCtxt)
 {
