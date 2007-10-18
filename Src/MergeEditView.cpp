@@ -468,6 +468,7 @@ void CMergeEditView::GetLineColors2(int nLineIndex, DWORD ignoreFlags, COLORREF 
 				crBkgnd = m_cachedColors.clrTrivialDeleted;
 			else
 				crBkgnd = m_cachedColors.clrTrivial;
+			crText = m_cachedColors.clrTrivialText;
 			return;
 		}
 		else if (dwLineFlags & LF_GHOST)
