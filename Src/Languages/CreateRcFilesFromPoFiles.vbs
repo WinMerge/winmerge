@@ -32,7 +32,7 @@ Call Main
 ' ...
 Sub Main
   Dim oLanguages, sLanguage
-  Dim oLanguageTranslations, sLanguagePoFilePath
+  Dim oLanguageTranslations
   Dim StartTime, EndTime, Seconds
   
   StartTime = Time
