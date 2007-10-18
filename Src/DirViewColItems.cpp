@@ -11,6 +11,7 @@
 
 #include "stdafx.h"
 #include <shlwapi.h>
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "DirView.h"
 #include "DirDoc.h"
