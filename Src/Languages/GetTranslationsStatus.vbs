@@ -25,7 +25,7 @@ Call Main
 ' ...
 Sub Main
   Dim oTranslationsStatus
-  Dim oEnglishStrings, oLanguages, sLanguage
+  Dim oLanguages, sLanguage
   Dim StartTime, EndTime, Seconds
   
   StartTime = Time
@@ -37,15 +37,14 @@ Sub Main
   If (bRunFromCmd = True) Then 'If run from command line...
     Wscript.Echo "English"
   End If
-  Set oEnglishStrings = GetTranslationsFromPoFile("English.pot")
-  oTranslationsStatus.Add "English", GetTranslationsStatusFromPoFile("English.pot", oEnglishStrings)
+  oTranslationsStatus.Add "English", GetTranslationsStatusFromPoFile("English.pot")
   
   Set oLanguages = GetLanguages
   For Each sLanguage In oLanguages.Keys 'For all languages...
     If (bRunFromCmd = True) Then 'If run from command line...
       Wscript.Echo sLanguage
     End If
-    oTranslationsStatus.Add sLanguage, GetTranslationsStatusFromPoFile(oLanguages(sLanguage), oEnglishStrings)
+    oTranslationsStatus.Add sLanguage, GetTranslationsStatusFromPoFile(oLanguages(sLanguage))
   Next
   
   CreateTranslationsStatusHtmlFile "TranslationsStatus.html", oTranslationsStatus
@@ -78,62 +77,7 @@ End Function
 
 ''
 ' ...
-Function GetTranslationsFromPoFile(ByVal sPoPath)
-  Dim oTranslations, oTextFile, sLine
-  Dim oMatch, iMsgStarted, sMsgId, sMsgStr
-  
-  Set oTranslations = CreateObject("Scripting.Dictionary")
-  
-  If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
-    iMsgStarted = 0
-    sMsgId = ""
-    sMsgStr = ""
-    Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
-    Do Until oTextFile.AtEndOfStream = True 'For all lines...
-      sLine = Trim(oTextFile.ReadLine)
-      
-      If (sLine <> "") Then 'If NOT empty line...
-        If (Left(sLine, 1) <> "#") Then 'If NOT comment line...
-          '--------------------------------------------------------------------------------
-          ' Note: We must replace \" temporary with FormFeed and convert them later to ""
-          '--------------------------------------------------------------------------------
-          sLine = Replace(sLine, "\""", vbFormFeed)
-          If (Left(sLine, 7) = "msgid """) Then 'If "msgid"...
-            iMsgStarted = 1
-            sMsgId = GetRegExpSubMatch(sLine, "^msgid ""(.*)""$")
-          ElseIf (Left(sLine, 8) = "msgstr """) Then 'If "msgstr"...
-            iMsgStarted = 2
-            sMsgStr = GetRegExpSubMatch(sLine, "^msgstr ""(.*)""$")
-          ElseIf (FoundRegExpMatch(sLine, "^""(.*)""$", oMatch) = True) Then 'If "msgid" or "msgstr" continued...
-            If (iMsgStarted = 1) Then
-              sMsgId = sMsgId & oMatch.SubMatches(0)
-            ElseIf (iMsgStarted = 2) Then
-              sMsgStr = sMsgStr & oMatch.SubMatches(0)
-            End If
-          End If
-          sMsgId = Replace(sMsgId, vbFormFeed, """""")
-          sMsgStr = Replace(sMsgStr, vbFormFeed, """""")
-        End If
-      Else 'If empty line
-        iMsgStarted = 0
-      End If
-      
-      If (iMsgStarted = 0) Then 'If NOT inside a translation...
-        If (sMsgId <> "") Then
-          oTranslations.Add sMsgId, sMsgStr
-        End If
-        sMsgId = ""
-        sMsgStr = ""
-      End If
-    Loop
-    oTextFile.Close
-  End If
-  Set GetTranslationsFromPoFile = oTranslations
-End Function
-
-''
-' ...
-Function GetTranslationsStatusFromPoFile(ByVal sPoPath, ByVal oEnglishStrings)
+Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
   Dim oStatus, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgId, sMsgStr, bFuzzy
   
@@ -143,10 +87,7 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath, ByVal oEnglishStrings)
   oStatus.Add "translated", 0
   oStatus.Add "untranslated", 0
   oStatus.Add "fuzzy", 0
-  oStatus.Add "missing", 0
-  oStatus.Add "obsolete", 0
   oStatus.Add "po-revision-date", ""
-  oStatus.Add "pot-creation-date", ""
   If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
     iMsgStarted = 0
     sMsgId = ""
@@ -158,10 +99,6 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath, ByVal oEnglishStrings)
       
       If (sLine <> "") Then 'If NOT empty line...
         If (Left(sLine, 1) <> "#") Then 'If NOT comment line...
-          '--------------------------------------------------------------------------------
-          ' Note: We must replace \" temporary with FormFeed and convert them later to ""
-          '--------------------------------------------------------------------------------
-          sLine = Replace(sLine, "\""", vbFormFeed)
           If (Left(sLine, 7) = "msgid """) Then 'If "msgid"...
             iMsgStarted = 1
             sMsgId = GetRegExpSubMatch(sLine, "^msgid ""(.*)""$")
@@ -175,8 +112,6 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath, ByVal oEnglishStrings)
               sMsgStr = sMsgStr & oMatch.SubMatches(0)
             End If
           End If
-          sMsgId = Replace(sMsgId, vbFormFeed, """""")
-          sMsgStr = Replace(sMsgStr, vbFormFeed, """""")
         Else 'If comment line...
           iMsgStarted = -1
           If (Left(sLine, 2) = "#,") Then 'If "flag" line...
@@ -201,9 +136,6 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath, ByVal oEnglishStrings)
           Else 'If a fuzzy translation...
             oStatus("fuzzy") = oStatus("fuzzy") + 1
           End If
-          If (oEnglishStrings.Exists(sMsgId) = False) Then 'If a obsolete translation...
-            oStatus("obsolete") = oStatus("obsolete") + 1
-          End If
         ElseIf(sMsgStr <> "") Then
           oStatus("po-revision-date") = GetRegExpSubMatch(sMsgStr, "PO-Revision-Date: ([0-9 :\+\-]+)")
           oStatus("pot-creation-date") = GetRegExpSubMatch(sMsgStr, "POT-Creation-Date: ([0-9 :\+\-]+)")
@@ -214,10 +146,6 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath, ByVal oEnglishStrings)
       End If
     Loop
     oTextFile.Close
-    
-    If (oStatus("obsolete") > 0) Then 'If exists obsolete translations...
-      oStatus("missing") = oEnglishStrings.Count - oStatus("count") + oStatus("obsolete")
-    End If
   End If
   Set GetTranslationsStatusFromPoFile = oStatus
 End Function
@@ -271,7 +199,7 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oHtmlFile.WriteLine "<table id=""status"">"
   oHtmlFile.WriteLine "  <tr>"
   oHtmlFile.WriteLine "    <th class=""left"">Language</th>"
-  oHtmlFile.WriteLine "    <th colspan=""3"" class=""center"">Count*</th>"
+  oHtmlFile.WriteLine "    <th class=""right"">Total</th>"
   oHtmlFile.WriteLine "    <th class=""right"">Translated</th>"
   oHtmlFile.WriteLine "    <th class=""right"">Fuzzy</th>"
   oHtmlFile.WriteLine "    <th class=""right"">Untranslated</th>"
@@ -283,8 +211,6 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
       oHtmlFile.WriteLine "  <tr>"
       oHtmlFile.WriteLine "    <td class=""left"">" & sLanguage & "</td>"
       oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("count") & "</td>"
-      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("missing") & "</td>"
-      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("obsolete") & "</td>"
       oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("translated") & "</td>"
       oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("fuzzy") & "</td>"
       oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("untranslated") & "</td>"
@@ -296,15 +222,12 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oHtmlFile.WriteLine "  <tr>"
   oHtmlFile.WriteLine "    <td class=""left"">English</td>"
   oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("count") & "</td>"
-  oHtmlFile.WriteLine "    <td class=""right"">0</td>"
-  oHtmlFile.WriteLine "    <td class=""right"">0</td>"
   oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("count") & "</td>"
   oHtmlFile.WriteLine "    <td class=""right"">0</td>"
   oHtmlFile.WriteLine "    <td class=""right"">0</td>"
   oHtmlFile.WriteLine "    <td class=""center"">" & Left(oLanguageStatus("pot-creation-date"), 10) & "</td>"
   oHtmlFile.WriteLine "  </tr>"
   oHtmlFile.WriteLine "</table>"
-  oHtmlFile.WriteLine "<p>*<strong>Count</strong> is split into <em>Total</em>, <em>Missing</em> and <em>Obsolete</em> translations.</p>"
   oHtmlFile.WriteLine "</body>"
   oHtmlFile.WriteLine "</html>"
   oHtmlFile.Close
