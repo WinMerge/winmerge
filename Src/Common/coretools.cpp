@@ -7,22 +7,15 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
-#include <stdio.h>
+#include <windows.h>
+#include <tchar.h>
 #include <io.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
-#include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <math.h>
-#include <winsock.h>
 #include <assert.h>
-
-#ifndef __AFXDISP_H__
-#include <afxdisp.h>
-#endif
-
 #include "UnicodeString.h"
 #include "coretools.h"
 
@@ -39,8 +32,8 @@ BOOL GetFileTimes(LPCTSTR szFilename,
 				  LPSYSTEMTIME pAccess /*=NULL*/)
 {
 	WIN32_FIND_DATA ffi;
-	ASSERT(szFilename != NULL);
-	ASSERT(pMod != NULL);
+	assert(szFilename != NULL);
+	assert(pMod != NULL);
 
 	HANDLE hff = FindFirstFile(szFilename, &ffi);
 	if (hff != INVALID_HANDLE_VALUE)
@@ -77,7 +70,7 @@ time_t GetFileModTime(LPCTSTR szPath)
 DWORD GetFileSizeEx(LPCTSTR szFilename)
 {
 	WIN32_FIND_DATA ffi;
-	ASSERT(szFilename != NULL);
+	assert(szFilename != NULL);
 
 	HANDLE hff = FindFirstFile(szFilename, &ffi);
 	if (hff != INVALID_HANDLE_VALUE)
@@ -336,9 +329,9 @@ void TestSplitFilename()
 		LPCTSTR szpath = tests[i+1] ? tests[i+1] : _T("");
 		LPCTSTR szname = tests[i+2] ? tests[i+2] : _T("");
 		LPCTSTR szext = tests[i+3] ? tests[i+3] : _T("");
-		ASSERT(path == szpath);
-		ASSERT(name == szname);
-		ASSERT(ext == szext);
+		assert(path == szpath);
+		assert(name == szname);
+		assert(ext == szext);
 	}
 }
 #endif
@@ -496,6 +489,8 @@ static BOOL MyCreateDirectoryIfNeeded(LPCTSTR lpPathName, String * perrstr)
 	return rtn;
 }
 
+// Not used - remove later?
+#ifdef _UNUSED_
 BOOL MkDirEx(LPCTSTR foldername)
 {
 	TCHAR tempPath[_MAX_PATH] = {0};
@@ -538,6 +533,7 @@ BOOL MkDirEx(LPCTSTR foldername)
 	int stat_result = _tstat(foldername, &mystats);
 	return stat_result != 0;
 }
+#endif // _UNUSED_
 
 float RoundMeasure(float measure, float units)
 {
@@ -636,6 +632,7 @@ static double tenpow(int expon)
 	double rtn = pow(base, expon);
 	return rtn;
 }
+
 // These are not used - remove later?
 #ifdef _UNUSED_
 void DDX_Float( CDataExchange* pDX, int nIDC, float& value )
@@ -1137,7 +1134,7 @@ String GetPathOnly(LPCTSTR fullpath)
  * @brief Returns Application Data path in user profile directory
  * if one exists
  */
-BOOL GetAppDataPath(CString &sAppDataPath)
+BOOL GetAppDataPath(String &sAppDataPath)
 {
 	TCHAR path[_MAX_PATH] = {0};
 	if (GetEnvironmentVariable(_T("APPDATA"), path, _MAX_PATH))
@@ -1155,7 +1152,7 @@ BOOL GetAppDataPath(CString &sAppDataPath)
 /**
  * @brief Returns User Profile path (if available in environment)
  */
-BOOL GetUserProfilePath(CString &sAppDataPath)
+BOOL GetUserProfilePath(String &sAppDataPath)
 {
 	TCHAR path[_MAX_PATH] = {0};
 	if (GetEnvironmentVariable(_T("USERPROFILE"), path, countof(path)))
@@ -1181,20 +1178,25 @@ BOOL GetUserProfilePath(CString &sAppDataPath)
  * @param [out] sDecoratedCmdLine decorated commandline
  * @param [out] sExecutable Executable for validating file extension etc
  */
-void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
-	CString &sExecutable)
+void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
+	String &sExecutable)
 {
 	BOOL pathEndFound = FALSE;
 	BOOL addQuote = FALSE;
-	int pos = 0;
 	int prevPos = 0;
-	pos = sCmdLine.Find(_T(" "), 0);
 
-	sCmdLine.TrimLeft();
-	sCmdLine.TrimRight();
-	sDecoratedCmdLine.Empty();
-	sExecutable.Empty();
+	sDecoratedCmdLine.erase();
+	sExecutable.erase();
 
+	// Remove whitespaces from begin and and
+	std::string::size_type clpos = sCmdLine.find_first_not_of(_T(" \n\t"));
+	if (clpos != 0)
+		sCmdLine.erase(0, clpos);
+	clpos = sCmdLine.find_last_not_of(_T(" \n\t"));
+	if (clpos != sCmdLine.length() - 1)
+		sCmdLine.erase(clpos, clpos - sCmdLine.length());
+
+	std::string::size_type pos = sCmdLine.find(_T(" "));
 	if (pos > -1)
 	{
 		// First space was before switch, we don't need "s
@@ -1213,7 +1215,7 @@ void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 		while (pathEndFound == FALSE)
 		{
 			prevPos = pos;
-			pos = sCmdLine.Find(_T(" "), prevPos + 1);
+			pos = sCmdLine.find(_T(" "), prevPos + 1);
 
 			if (pos > -1)
 			{
@@ -1232,10 +1234,10 @@ void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
 		{
 			if (pos > -1)
 			{
-				sExecutable = sCmdLine.Left(pos);
+				sExecutable = sCmdLine.substr(0, pos);
 				sDecoratedCmdLine += sExecutable;
 				sDecoratedCmdLine += _T("\"");
-				sDecoratedCmdLine += sCmdLine.Right(sCmdLine.GetLength() - pos);
+				sDecoratedCmdLine += sCmdLine.substr(pos, sCmdLine.length() - pos);
 			}
 			else
 			{

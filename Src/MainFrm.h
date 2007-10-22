@@ -116,7 +116,7 @@ public:
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	CString SetStatus(LPCTSTR status);
 	void ApplyViewWhitespace();
-	BOOL OpenFileToExternalEditor(CString file);
+	void OpenFileToExternalEditor(LPCTSTR file);
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
 	void ShowVSSError(CException *e, CString strItem);

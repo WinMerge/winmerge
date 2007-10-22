@@ -9,8 +9,6 @@
 #ifndef CORETOOLS_H
 #define CORETOOLS_H
 
-#include <io.h>
-#include <stdlib.h>
 #include "UnicodeString.h"
 
 /******** types & defines ********/
@@ -111,7 +109,7 @@ int fcmp(float a,float b);
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name);
 long SwapEndian(long val);
 short int SwapEndian(short int val);
-BOOL MkDirEx(LPCTSTR foldername);
+//BOOL MkDirEx(LPCTSTR foldername);
 String GetModulePath(HMODULE hModule = NULL);
 String GetPathOnly(LPCTSTR fullpath);
 float RoundMeasure(float measure, float units);
@@ -129,9 +127,9 @@ int tcssubptr(LPCTSTR start, LPCTSTR end);
 HANDLE RunIt(LPCTSTR szExeFile, LPCTSTR szArgs, BOOL bMinimized = TRUE, BOOL bNewConsole = FALSE);
 BOOL HasExited(HANDLE hProcess, DWORD *pCode = NULL);
 BOOL IsLocalPath(LPCTSTR path);
-BOOL GetAppDataPath(CString &sAppDataPath);
-BOOL GetUserProfilePath(CString &sAppDataPath);
+BOOL GetAppDataPath(String &sAppDataPath);
+BOOL GetUserProfilePath(String &sAppDataPath);
 
-void GetDecoratedCmdLine(CString sCmdLine, CString &sDecoratedCmdLine,
-	CString &sExecutable);
+void GetDecoratedCmdLine(String sCmdLine, String &sDecoratedCmdLine,
+	String &sExecutable);
 #endif

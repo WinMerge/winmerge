@@ -2296,32 +2296,35 @@ void CMainFrame::UpdatePrediffersMenu()
 }
 
 /**
- * @brief Open given file to external editor specified in options
+ * @brief Open given file to external editor specified in options.
+ * @param [in] file Full path to file to open.
  */
-BOOL CMainFrame::OpenFileToExternalEditor(CString file)
+void CMainFrame::OpenFileToExternalEditor(LPCTSTR file)
 {
-	CString sExtEditor;
-	CString sExecutable;
-	CString sCmd;
+	String sExtEditor;
+	String sExecutable;
+	String sCmd;
 	
-	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD).c_str();
+	sExtEditor = GetOptionsMgr()->GetString(OPT_EXT_EDITOR_CMD);
 	GetDecoratedCmdLine(sExtEditor, sCmd, sExecutable);
 
 	String sExt;
-	SplitFilename(sExecutable, NULL, NULL, &sExt);
+	SplitFilename(sExecutable.c_str(), NULL, NULL, &sExt);
 	CString ext(sExt.c_str());
 	ext.MakeLower();
 
 	if (ext == _T("exe") || ext == _T("cmd") || ext == ("bat"))
 	{
-		sCmd += _T(" \"") + file + _T("\"");
+		sCmd += _T(" \"");
+		sCmd += file;
+		sCmd += _T("\"");
 
 		BOOL retVal = FALSE;
 		STARTUPINFO stInfo = {0};
 		stInfo.cb = sizeof(STARTUPINFO);
 		PROCESS_INFORMATION processInfo;
 
-		retVal = CreateProcess(NULL, (LPTSTR)(LPCTSTR) sCmd,
+		retVal = CreateProcess(NULL, (LPTSTR)sCmd.c_str(),
 			NULL, NULL, FALSE, CREATE_DEFAULT_ERROR_MODE, NULL, NULL,
 			&stInfo, &processInfo);
 
@@ -2329,7 +2332,7 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 		{
 			// Error invoking external editor
 			CString msg;
-			LangFormatString1(msg, IDS_ERROR_EXECUTE_FILE, sExtEditor);
+			LangFormatString1(msg, IDS_ERROR_EXECUTE_FILE, sExtEditor.c_str());
 			AfxMessageBox(msg, MB_ICONSTOP);
 		}
 	}
@@ -2337,9 +2340,8 @@ BOOL CMainFrame::OpenFileToExternalEditor(CString file)
 	{
 		// Don't know how to invoke external editor (it doesn't end with
 		// an obvious executable extension)
-		ResMsgBox1(IDS_UNKNOWN_EXECUTE_FILE, sExtEditor, MB_ICONSTOP);
+		ResMsgBox1(IDS_UNKNOWN_EXECUTE_FILE, sExtEditor.c_str(), MB_ICONSTOP);
 	}
-	return TRUE;
 }
 
 typedef enum { ToConfigLog, FromConfigLog } ConfigLogDirection;
