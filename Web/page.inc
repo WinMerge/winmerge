@@ -238,13 +238,6 @@
           $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           break;
-        case TAB_DOWNLOADS: //if "Downloads" ...
-          $temp .= "<ul id=\"subtabs\">\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248\">Stable Versions</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158\">Beta Versions</a></li>\n";
-          $temp .= "  <li><a href=\"http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246\">Experimental Builds</a></li>\n";
-          $temp .= "</ul>\n";
-          break;
         case TAB_SUPPORT: //if "Support" ...
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/support/mailing-lists.php\" title=\"Mailing Lists\">Mailing&nbsp;Lists</a></li>\n";

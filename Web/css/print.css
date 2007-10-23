@@ -48,6 +48,17 @@ code,pre {
 	margin-top: 0;
 }
 
+/* Heading list */
+.headinglist dt {
+	font-weight: bold;
+}
+
+.headinglist dd {
+	margin: 0;
+	margin-bottom: 1em;
+	padding: 0;
+}
+
 p.important {
 	padding: 5px;
 	background-color: #FFFFFF;
