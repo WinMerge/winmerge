@@ -3,7 +3,7 @@
  *
  * @brief Implements the Language Selection dialog class (which contains the language data)
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -21,6 +21,12 @@
 // Using C locale gets us direct mapping to Unicode codepoints
 #pragma setlocale("C")
 
+// Select the translation system used:
+// LANG_PO(LANG, PO) PO
+// - for using PO files translation (without LANG files). Note that you'll need to
+// create and compile MergeLang.dll.
+// LANG_PO(LANG, PO) LANG
+// - for using LANG files
 #define LANG_PO(LANG, PO) PO
 
 // Sanity-check definition of LANG_PO macro
