@@ -31,7 +31,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take few seconds to finish!"
+  Wscript.Echo "Attention: " & Wscript.ScriptName & " can take few seconds to finish!"
   
   Set oStrings = GetStringsFromRcFile("../Merge.rc", oComments, sCodePage)
   CreateMasterPotFile "English.pot", oStrings, oComments, sCodePage
@@ -152,6 +152,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
           End If
         End If
       End If
+      If sLine = "#ifndef APSTUDIO_INVOKED" Then Exit Do
       oLcFile.WriteLine sLcLine
     Loop
     oRcFile.Close
