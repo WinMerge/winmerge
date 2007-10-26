@@ -241,7 +241,7 @@ Type: files; Name: {app}\Diff.txt
 ;necessary files will be left in the installation folder
 ;Another reason these files might be strays is if a user extracted one of the experimental builds such as:
 ;WinMerge.{#AppVersion}-exe.7z.
-Name: {app}\WinMerge.exe; Type: files; MinVersion: 4, 0
+Name: {app}\WinMerge.exe; Type: files
 Name: {app}\WinMergeU.exe; Type: files; MinVersion: 0, 4
 
 ;Remove manifest files as we don't need them in 2.6.2 / 2.7.1.1 or later
@@ -284,6 +284,9 @@ Name: {userappdata}\Microsoft\Internet Explorer\Quick Launch\WinMerge.lnk; Type:
 ;This removes the desktop icon in case the user chooses not to install it after previously having it installed
 Name: {userdesktop}\WinMerge.lnk; Type: files; Check: not IsTaskSelected('DesktopIcon')
 
+;Remove ANSI executable link from start menu for NT-based Windows versions
+;This was installed earlier, but not anymore.
+Name: {group}\WinMerge (ANSI).lnk; Type: files; MinVersion: 0,4
 Name: {app}\Docs; Type: filesandordirs
 
 Name: {app}\MergePlugins\editor addin.sct; Type: Files; Check: not IsComponentSelected('Plugins')
