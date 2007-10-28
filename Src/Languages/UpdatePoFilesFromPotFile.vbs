@@ -15,7 +15,7 @@ Dim oFSO, bRunFromCmd
 Set oFSO = CreateObject("Scripting.FileSystemObject")
 
 bRunFromCmd = False
-If (LCase(Right(Wscript.FullName, 11))) = "cscript.exe" Then
+If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
   bRunFromCmd = True
 End If
 
@@ -24,27 +24,26 @@ Call Main
 ''
 ' ...
 Sub Main
-  Dim oLanguages, sLanguage
+  Dim oLanguages, oLanguage, sLanguage, sDir
   Dim oEnglishPotContent, oLanguagePoContent
   Dim StartTime, EndTime, Seconds
   
   StartTime = Time
   
-  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take several seconds to finish!"
+  Wscript.Echo "Attention: " & Wscript.ScriptName & " can take several seconds to finish!"
   
-  If (bRunFromCmd = True) Then 'If run from command line...
-    Wscript.Echo "English"
-  End If
-  Set oEnglishPotContent = GetContentFromPoFile("English.pot")
-  
-  Set oLanguages = GetLanguages
-  For Each sLanguage In oLanguages.Keys 'For all languages...
-    If (bRunFromCmd = True) Then 'If run from command line...
-      Wscript.Echo sLanguage
-    End If
-    Set oLanguagePoContent = GetContentFromPoFile(oLanguages(sLanguage))
-    If (oLanguagePoContent.Count > 0) Then 'If content exists...
-      CreateUpdatedPoFile oLanguages(sLanguage), oEnglishPotContent, oLanguagePoContent
+  sDir = oFSO.GetParentFolderName(Wscript.ScriptFullName)
+  Set oEnglishPotContent = GetContentFromPoFile(sDir & "\English.pot")
+  If oEnglishPotContent.Count = 0 Then Err.Raise vbObjectError, "Sub Main", "Error reading content from English.pot"
+  Set oLanguages = Wscript.Arguments
+  If oLanguages.Count = 0 Then Set oLanguages = oFSO.GetFolder(".").Files
+  For Each oLanguage In oLanguages 'For all languages...
+    sLanguage = CStr(oLanguage)
+    If LCase(oFSO.GetExtensionName(sLanguage)) = "po" Then
+      Set oLanguagePoContent = GetContentFromPoFile(sLanguage)
+      If oLanguagePoContent.Count > 0 Then 'If content exists...
+        CreateUpdatedPoFile sLanguage, oEnglishPotContent, oLanguagePoContent
+      End If
     End If
   Next
   
@@ -56,30 +55,15 @@ End Sub
 
 ''
 ' ...
-Function GetLanguages()
-  Dim oLanguages, oSubFolder, sPoPath
-  
-  Set oLanguages = CreateObject("Scripting.Dictionary")
-  
-  For Each oSubFolder In oFSO.GetFolder(".").SubFolders 'For all subfolders in the current folder...
-    If (oSubFolder.Name <> ".svn") Then 'If NOT a SVN folder...
-      sPoPath = oFSO.BuildPath(oSubFolder.Path, oSubFolder.Name & ".po")
-      If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
-        oLanguages.Add oSubFolder.Name, sPoPath
-      End If
-    End If
-  Next
-  Set GetLanguages = oLanguages
-End Function
-
-''
-' ...
 Function GetContentFromPoFile(ByVal sPoPath)
   Dim oContent, oSubContent, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgId, sMsgStr, sMsgId2, sMsgStr2
   Dim sTranslatorComments, sExtractedComments, sReferences, sFlags
   
   Set oContent = CreateObject("Scripting.Dictionary")
+  If bRunFromCmd Then 'If run from command line...
+    Wscript.Echo sPoPath
+  End If
   
   If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
     iMsgStarted = 0
