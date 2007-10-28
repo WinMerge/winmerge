@@ -47,7 +47,7 @@ End Sub
 Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePage)
   Dim oBlacklist, oStrings, oRcFile, sLine, iLine
   Dim sRcFileName, iBlockType, sReference, sString, sComment, oMatches, oMatch, sTemp
-  Dim oLcFile, sLcLine
+  Dim oLcFile, sLcLine, fContinuation
 
   Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
@@ -70,7 +70,9 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
       sString = ""
       sComment = ""
       
-      If (InStr(sLine, " MENU") > 0) And (InStr(sLine, "IDR_") > 0) Then 'MENU...
+      If fContinuation Then
+        ' Nothing to do
+      ElseIf (InStr(sLine, " MENU") > 0) And (InStr(sLine, "IDR_") > 0) Then 'MENU...
         iBlockType = MENU_BLOCK
       ElseIf (InStr(sLine, " DIALOGEX") > 0) Then 'DIALOGEX...
         iBlockType = DIALOGEX_BLOCK
@@ -87,6 +89,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
           iBlockType = NO_BLOCK
         End If
       ElseIf (Left(sLine, 2) = "//") Then 'If comment line...
+        sLine = ""
         'IGNORE FOR SPEEDUP!
       ElseIf (sLine <> "") Then 'If NOT empty line...
         Select Case iBlockType
@@ -103,20 +106,19 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
           Case MENU_BLOCK, DIALOGEX_BLOCK, STRINGTABLE_BLOCK:
             If (InStr(sLine, """") > 0) Then 'If quote found (for speedup)...
               '--------------------------------------------------------------------------------
-              ' Note: We must replace "" temporary with FormFeed and convert them later to \"
+              ' Replace 1st string literal only - 2nd string literal specifies control class!
               '--------------------------------------------------------------------------------
-              If (FoundRegExpMatches(Replace(sLine, """""", vbFormFeed), """(.*?)""", oMatches) = True) Then 'String...
-                For Each oMatch In oMatches 'For all strings...
-                  sTemp = Replace(oMatch.SubMatches(0), vbFormFeed, "\""")
-                  If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
-                    If (oStrings.Exists(sTemp) = True) Then 'If the key is already used...
-                      oStrings(sTemp) = oStrings(sTemp) & vbTab & sReference
-                    Else 'If the key is NOT already used...
-                      oStrings.Add sTemp, sReference
-                    End If
-                    sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
+              If FoundRegExpMatch(sLine, """((?:""""|[^""])*)""", oMatch) Then 'String...
+                sTemp = oMatch.SubMatches(0)
+                If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
+                  sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
+                  sTemp = Replace(sTemp, """""", "\""")
+                  If (oStrings.Exists(sTemp) = True) Then 'If the key is already used...
+                    oStrings(sTemp) = oStrings(sTemp) & vbTab & sReference
+                  Else 'If the key is NOT already used...
+                    oStrings.Add sTemp, sReference
                   End If
-                Next
+                End If
               End If
             End If
             
@@ -154,6 +156,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
       End If
       If sLine = "#ifndef APSTUDIO_INVOKED" Then Exit Do
       oLcFile.WriteLine sLcLine
+      fContinuation = sLine <> "" And InStr(",|", Right(sLine, 1)) <> 0
     Loop
     oRcFile.Close
     oLcFile.Close
@@ -246,24 +249,6 @@ Function FoundRegExpMatch(ByVal sString, ByVal sPattern, ByRef oMatchReturn)
     Set oMatches = oRegExp.Execute(sString)
     Set oMatchReturn = oMatches(0)
     FoundRegExpMatch = True
-  End If
-End Function
-
-''
-' ...
-Function FoundRegExpMatches(ByVal sString, ByVal sPattern, ByRef oMatchesReturn)
-  Dim oRegExp
-  
-  Set oRegExp = New RegExp
-  oRegExp.Pattern = sPattern
-  oRegExp.IgnoreCase = True
-  oRegExp.Global = True
-  
-  oMatchesReturn = Null
-  FoundRegExpMatches = False
-  If (oRegExp.Test(sString) = True) Then
-    Set oMatchesReturn = oRegExp.Execute(sString)
-    FoundRegExpMatches = True
   End If
 End Function
 
