@@ -30,7 +30,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Warning: " & Wscript.ScriptName & " can take several seconds to finish!"
+  Wscript.Echo "Attention: " & Wscript.ScriptName & " can take several seconds to finish!"
   
   Set oTranslationsStatus = CreateObject("Scripting.Dictionary")
   
@@ -60,16 +60,13 @@ End Sub
 ''
 ' ...
 Function GetLanguages()
-  Dim oLanguages, oSubFolder, sPoPath
+  Dim oLanguages, oFile
   
   Set oLanguages = CreateObject("Scripting.Dictionary")
   
-  For Each oSubFolder In oFSO.GetFolder(".").SubFolders 'For all subfolders in the current folder...
-    If (oSubFolder.Name <> ".svn") Then 'If NOT a SVN folder...
-      sPoPath = oFSO.BuildPath(oSubFolder.Path, oSubFolder.Name & ".po")
-      If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
-        oLanguages.Add oSubFolder.Name, sPoPath
-      End If
+  For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
+    If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
+      oLanguages.Add oFSO.GetBaseName(oFile.Name), oFile.Path
     End If
   Next
   Set GetLanguages = oLanguages
