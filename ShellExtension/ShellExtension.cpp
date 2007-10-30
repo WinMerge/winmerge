@@ -33,7 +33,7 @@
 
 #include "ShellExtension_i.c"
 #include "WinMergeShell.h"
-
+#include "RegKey.h"
 
 CComModule _Module;
 
@@ -129,17 +129,16 @@ STDAPI DllRegisterServer(void)
 	// Special code for Windows NT 4.0 only
 	if (!is9x && dwWindowsMajorVersion == 4)
 	{
-		CRegKey reg;
+		CRegKeyEx reg;
 		LONG lRet;
 
 		lRet = reg.Open(HKEY_LOCAL_MACHINE,
-				_T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"),
-				KEY_SET_VALUE );
+			_T("Software\\Microsoft\\Windows\\CurrentVersion\\Shell Extensions\\Approved"));
 
 		if (ERROR_SUCCESS != lRet)
 			return E_ACCESSDENIED;
 
-		lRet = reg.SetValue(_T("WinMerge_Shell Extension"), 
+		lRet = reg.WriteString(_T("WinMerge_Shell Extension"), 
 				_T("{4E716236-AA30-4C65-B225-D68BBA81E9C2}"));
 
 		if (ERROR_SUCCESS != lRet)
