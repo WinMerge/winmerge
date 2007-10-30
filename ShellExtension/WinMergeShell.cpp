@@ -136,9 +136,14 @@ static String GetResourceString(UINT resourceID)
 CWinMergeShell::CWinMergeShell()
 {
 	m_dwMenuState = 0;
-	HBITMAP hMergeBmp = LoadBitmap(_Module.GetModuleInstance(),
+	m_MergeBmp = LoadBitmap(_Module.GetModuleInstance(),
 			MAKEINTRESOURCE(IDB_WINMERGE));
-	m_MergeBmp.Attach(hMergeBmp);
+}
+
+/// Default destructor, unloads bitmap
+CWinMergeShell::~CWinMergeShell()
+{
+	DeleteObject(m_MergeBmp);
 }
 
 /// Reads selected paths
@@ -456,7 +461,7 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
 	
 	// Add bitmap
-	if ((HBITMAP)m_MergeBmp != NULL)
+	if (m_MergeBmp != NULL)
 		SetMenuItemBitmaps(hmenu, uMenuIndex, MF_BYPOSITION, m_MergeBmp, NULL);
 	
 	// Show menu item as grayed if more than two items selected
@@ -518,7 +523,7 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	}
 	
 	// Add bitmap
-	if ((HBITMAP)m_MergeBmp != NULL)
+	if (m_MergeBmp != NULL)
 	{
 		if (nItemsAdded == 2)
 			SetMenuItemBitmaps(hmenu, uMenuIndex - 1, MF_BYPOSITION, m_MergeBmp, NULL);

@@ -45,6 +45,7 @@ class ATL_NO_VTABLE CWinMergeShell :
 {
 public:
 	CWinMergeShell();
+	~CWinMergeShell();
 
 DECLARE_REGISTRY_RESOURCEID(IDR_WINMERGESHELL)
 
@@ -61,7 +62,7 @@ END_COM_MAP()
 protected:
 	String m_strPaths[2]; /**< Paths for selected items */
 	String m_strPreviousPath; /**< Previously selected path */
-	CBitmap m_MergeBmp; /**< Icon */
+	HBITMAP m_MergeBmp; /**< Icon */
 	UINT m_nSelectedItems; /**< Amount of selected items */
 	DWORD m_dwContextMenuEnabled; /**< Is context menu enabled and in which mode? */
 	DWORD m_dwMenuState; /**< Shown menuitems */
