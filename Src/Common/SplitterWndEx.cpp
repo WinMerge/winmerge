@@ -214,6 +214,7 @@ void CSplitterWndEx::RecalcLayout()
 {
 	if (m_nCols == 2 && m_bAutoResizePanes)
 	{
+		// If WinMerge spans multiple monitors, split the panes on the monitor split.
 		CRect vSplitterWndRect;
 		GetWindowRect(vSplitterWndRect);
 		HMONITOR hLeftMonitor = MonitorFromPoint(vSplitterWndRect.TopLeft(), MONITOR_DEFAULTTONEAREST);
@@ -229,6 +230,7 @@ void CSplitterWndEx::RecalcLayout()
 			int iDesiredWidthOfLeftPane = info.rcMonitor.right - vSplitterWndRect.left;
 			int iDesiredWidthOfRightPane = vSplitterWndRect.right - info.rcMonitor.right;
 
+			// Edge case - don't split if either pane would be less than 100 pixels.
 			if (iDesiredWidthOfLeftPane > 100 && iDesiredWidthOfRightPane > 100)
 			{
 				bSplitPanesInHalf = false;
@@ -237,6 +239,9 @@ void CSplitterWndEx::RecalcLayout()
 			}
 		}
 		
+		// If we don't want to split panes across monitors, just split them in half.
+		// We want to do this so that if the window used to be split across monitors,
+		// but now occupies only a single monitor, then the panes are updated correctly.
 		if (bSplitPanesInHalf)
 		{
 			CRect vSplitterWndRect;
