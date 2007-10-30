@@ -251,6 +251,8 @@ Name: {app}\WinMergeU.exe.manifest; Type: files
 ;This won't work, because the file has to be unregistered, and explorer closed, first.
 ;Name: {app}\ShellExtension.dll; Type: files; Check: TaskDisabled('ShellExtension')
 
+; Remove existing .lang files - we don't need them anymore as we are
+; using PO files now.
 Name: {app}\Languages\MergeBrazilian.lang; Type: files; Check: not IsComponentSelected('PortugueseBrazilian')
 Name: {app}\Languages\MergeBulgarian.lang; Type: files; Check: not IsComponentSelected('Bulgarian')
 Name: {app}\Languages\MergeCatalan.lang; Type: files; Check: not IsComponentSelected('Catalan')
@@ -342,34 +344,37 @@ Source: ..\..\Build\expat\libexpat.dll; DestDir: {app}; Flags: promptifolder; Co
 ; PCRE dll
 Source: ..\..\Build\pcre\pcre.dll; DestDir: {app}; Flags: promptifolder; Components: Core
 
+; MergeLang.dll - translation helper dll
+Source: ..\..\Build\MergeUnicodeRelease\MergeLang.dll; DestDir: {app}; Flags: promptifolder; Components: Core
+
 ; Language files
-Source: ..\..\Build\Languages\MergeBrazilian.lang; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeBulgarian.lang; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Brazilian.po; DestDir: {app}\Languages; Components: Languages\PortugueseBrazilian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Bulgarian.po; DestDir: {app}\Languages; Components: Languages\Bulgarian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt; DestDir: {app}\Docs; Components: Languages\Bulgarian
-Source: ..\..\Build\Languages\MergeCatalan.lang; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Catalan.po; DestDir: {app}\Languages; Components: Languages\Catalan; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt; DestDir: {app}\Docs; Components: Languages\Catalan
-Source: ..\..\Build\Languages\MergeChineseSimplified.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeChineseTraditional.lang; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeCzech.lang; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeDanish.lang; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeDutch.lang; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeFrench.lang; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\ChineseSimplified.po; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\French.po; DestDir: {app}\Languages; Components: Languages\French; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-French.txt; DestDir: {app}\Docs; Components: Languages\French
-Source: ..\..\Build\Languages\MergeGerman.lang; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeHungarian.lang; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeItalian.lang; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeJapanese.lang; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeKorean.lang; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeNorwegian.lang; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergePolish.lang; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergePortuguese.lang; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeRussian.lang; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeSlovak.lang; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
-Source: ..\..\Build\Languages\MergeSpanish.lang; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\German.po; DestDir: {app}\Languages; Components: Languages\German; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Hungarian.po; DestDir: {app}\Languages; Components: Languages\Hungarian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Italian.po; DestDir: {app}\Languages; Components: Languages\Italian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Japanese.po; DestDir: {app}\Languages; Components: Languages\Japanese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Korean.po; DestDir: {app}\Languages; Components: Languages\Korean; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Norwegian.po; DestDir: {app}\Languages; Components: Languages\Norwegian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Polish.po; DestDir: {app}\Languages; Components: Languages\Polish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Portuguese.po; DestDir: {app}\Languages; Components: Languages\Portuguese; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
-Source: ..\..\Build\Languages\MergeSwedish.lang; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt; DestDir: {app}\Docs; Components: Languages\Swedish
-Source: ..\..\Build\Languages\MergeTurkish.lang; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Turkish.po; DestDir: {app}\Languages; Components: Languages\Turkish; Flags: ignoreversion comparetimestamp
 
 Source: ..\..\Filters\*.flt; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
 Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesbyextension comparetimestamp ignoreversion; Components: filters
