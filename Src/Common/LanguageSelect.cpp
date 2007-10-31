@@ -9,6 +9,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "version.h"
 #include "resource.h"
 #include "LanguageSelect.h"
 #include "BCMenu.h"
@@ -16,6 +17,7 @@
 #include "ChildFrm.h"
 #include "DirFrame.h"
 #include <locale.h>
+#include <sstream>
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -404,6 +406,31 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 #else // compiling for use with .PO files
 	m_strarray.clear();
 	m_codepage = 0;
+	m_hCurrentDll = LoadLibrary(_T("MergeLang.dll"));
+	// There is no point in translating error messages about inoperational
+	// translation system, so go without string resources here.
+	if (m_hCurrentDll == 0)
+	{
+		if (m_hWnd)
+			AfxMessageBox(_T("Failed to load MergeLang.dll"), MB_ICONSTOP);
+		return FALSE;
+	}
+	CVersionInfo viInstance = AfxGetInstanceHandle();
+	DWORD instanceVerMS = 0;
+	DWORD instanceVerLS = 0;
+	viInstance.GetFixedFileVersion(instanceVerMS, instanceVerLS);
+	CVersionInfo viResource = m_hCurrentDll;
+	DWORD resourceVerMS = 0;
+	DWORD resourceVerLS = 0;
+	viResource.GetFixedFileVersion(resourceVerMS, resourceVerLS);
+	if (instanceVerMS != resourceVerMS || instanceVerLS != resourceVerLS)
+	{
+		FreeLibrary(m_hCurrentDll);
+		m_hCurrentDll = 0;
+		if (m_hWnd)
+			AfxMessageBox(_T("MergeLang.dll version mismatch"), MB_ICONSTOP);
+		return FALSE;
+	}
 	if (FILE *f = _tfopen(szDllFileName, _T("r")))
 	{
 		std::vector<unsigned> lines;
@@ -475,11 +502,16 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 			}
 		}
 		fclose(f);
-		if ((m_hCurrentDll = LoadLibrary(_T("MergeLang.dll"))) != NULL)
-		{
-			AfxSetResourceHandle(m_hCurrentDll);
-			return TRUE;
-		}
+		AfxSetResourceHandle(m_hCurrentDll);
+		return TRUE;
+	}
+	FreeLibrary(m_hCurrentDll);
+	m_hCurrentDll = 0;
+	if (m_hWnd)
+	{
+		std_tchar(ostringstream) stm;
+		stm << _T("Failed to load ") << szDllFileName;
+		AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
 	}
 #endif
 	return FALSE;

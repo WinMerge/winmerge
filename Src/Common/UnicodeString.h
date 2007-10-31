@@ -31,15 +31,15 @@
 
 #ifdef _UNICODE
 
-typedef std::basic_string<wchar_t, std::char_traits<wchar_t>,
-	std::allocator<wchar_t> > String;
+#define std_tchar(type) std::w##type
 
 #else
 
-typedef std::basic_string<char, std::char_traits<char>, std::allocator<char> >
-	String;
+#define std_tchar(type) std::type
 
 #endif // _UNICODE
+
+typedef std_tchar(string) String;
 
 void string_replace(String &target, const String &find, const String &replace);
 
