@@ -21,11 +21,17 @@ REM _ACP_ATLPROV was introduced in VC7. If not set, assume VC6.
 if "%_ACP_ATLPROV%" == "" goto MSDev
 set msdev=rem
 set devenv=devenv
-goto %1
+goto Configure
 
 :MSDev
 set msdev=msdev
 set devenv=rem
+goto Configure
+
+:Configure
+REM Configure PCRE
+cd %2\..\..\..\Externals\pcre\config_pcre
+nmake /f "configure.mak"
 goto %1
 
 :.\..\BuildTmp\MergeDebug
