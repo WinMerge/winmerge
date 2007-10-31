@@ -59,16 +59,13 @@ End Sub
 ''
 ' ...
 Function GetLanguages()
-  Dim oLanguages, oSubFolder, sPoPath
+  Dim oLanguages, oFile
   
   Set oLanguages = CreateObject("Scripting.Dictionary")
   
-  For Each oSubFolder In oFSO.GetFolder(".").SubFolders 'For all subfolders in the current folder...
-    If (oSubFolder.Name <> ".svn") Then 'If NOT a SVN folder...
-      sPoPath = oFSO.BuildPath(oSubFolder.Path, oSubFolder.Name & ".po")
-      If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
-        oLanguages.Add oSubFolder.Name, sPoPath
-      End If
+  For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
+    If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
+      oLanguages.Add oFSO.GetBaseName(oFile.Name), oFile.Path
     End If
   Next
   Set GetLanguages = oLanguages
@@ -144,10 +141,19 @@ End Function
 ' ...
 Sub CreateRcFileWithTranslations(ByVal sMasterRcPath, ByVal sLanguageRcPath, ByVal oTranslations)
   Dim oMasterRcFile, sMasterLine
-  Dim oLanguageRcFile, sLanguageLine
+  Dim oLanguageRcFile, sLanguageLine, sLanguageRcFolder
   Dim iBlockType, oMatches, oMatch, sMsgId, sMsgStr
   
   If (oFSO.FileExists(sMasterRcPath) = True) Then 'If the master RC file exists...
+    '--------------------------------------------------------------------------------
+    ' Create the language RC folder, if necessary...
+    '--------------------------------------------------------------------------------
+    sLanguageRcFolder = oFSO.GetParentFolderName(sLanguageRcPath)
+    If (oFSO.FolderExists(sLanguageRcFolder) = False) Then 'If the language RC folder NOT exists...
+      oFSO.CreateFolder sLanguageRcFolder
+    End If
+    '--------------------------------------------------------------------------------
+    
     iBlockType = NO_BLOCK
     Set oMasterRcFile = oFSO.OpenTextFile(sMasterRcPath, ForReading)
     Set oLanguageRcFile = oFSO.CreateTextFile(sLanguageRcPath, True)
