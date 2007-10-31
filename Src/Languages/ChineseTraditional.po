@@ -20,7 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CP950\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: ChineseTraditional\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22

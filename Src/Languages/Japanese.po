@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2007-08-14 22:11+0000\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: 2007-09-15 20:25+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka@d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Japanese\n"
 "X-Poedit-SourceCharset: CP932\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2007-08-14 22:11+0000\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: 2007-08-24 23:59+0100\n"
 "Last-Translator: Hans Eriksson <hans.ericson at bredband.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Swedish\n"
 "X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22

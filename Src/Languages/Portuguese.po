@@ -20,7 +20,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Portuguese\n"
 "X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22

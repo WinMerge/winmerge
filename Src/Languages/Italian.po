@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Italian\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2007-08-14 22:11+0000\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: 2007-09-30 10:57+0100\n"
 "Last-Translator: Andrea Decorte <deco1985@hotmail.com>\n"
 "Language-Team: Italian\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Italian\n"
 "X-Poedit-SourceCharset: CP1252\n"
-"X-Poedit-Basepath: ../../\n"
+"X-Poedit-Basepath: ../\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22
