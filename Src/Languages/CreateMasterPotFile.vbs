@@ -156,6 +156,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
       oLcFile.WriteLine sLcLine
       fContinuation = sLine <> "" And InStr(",|", Right(sLine, 1)) <> 0
     Loop
+    oLcFile.WriteLine "MERGEPOT RCDATA ""English.pot"""
     oRcFile.Close
     oLcFile.Close
   End If
