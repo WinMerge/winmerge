@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2007-10-12 22:24+0000\n"
+"POT-Creation-Date: 2007-10-31 23:22+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -22,7 +22,6 @@ msgstr ""
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22
 #: Merge.rc:51
-#: Merge.rc:2938
 #, c-format
 msgid "LANG_ENGLISH, SUBLANG_ENGLISH_US"
 msgstr ""
@@ -30,7 +29,6 @@ msgstr ""
 #. Codepage
 #: Merge.rc:23
 #: Merge.rc:52
-#: Merge.rc:2939
 #, c-format
 msgid "1252"
 msgstr ""
@@ -3260,6 +3258,7 @@ msgstr ""
 msgid "1 Difference Found"
 msgstr ""
 
+#. Abbreviation from "Read Only"
 #: Merge.rc:2020
 #, c-format
 msgid "RO"

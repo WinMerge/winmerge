@@ -112,11 +112,9 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
                 sTemp = oMatch.SubMatches(0)
                 If (sTemp <> "") And (oBlacklist.Exists(sTemp) = False) Then 'If NOT blacklisted...
                   sLcLine = Replace(sLcLine, """" & sTemp & """", """" & sReference & """", 1, 1)
-                  sTemp = Replace(sTemp, """""", "\""")
-                  If (oStrings.Exists(sTemp) = True) Then 'If the key is already used...
-                    oStrings(sTemp) = oStrings(sTemp) & vbTab & sReference
-                  Else 'If the key is NOT already used...
-                    oStrings.Add sTemp, sReference
+                  sString = Replace(sTemp, """""", "\""")
+                  If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
+                    sComment = Trim(oMatch.SubMatches(0))
                   End If
                 End If
               End If

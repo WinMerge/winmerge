@@ -2017,7 +2017,7 @@ BEGIN
     IDS_DIFF_NUMBER_STATUS_FMT "Difference %1 of %2"
     IDS_NO_DIFF_SEL_FMT     "%1 Differences Found"
     IDS_1_DIFF_FOUND        "1 Difference Found"
-    IDS_STATUSBAR_READONLY  "RO" // = Read Only
+    IDS_STATUSBAR_READONLY  "RO" //#. Abbreviation from "Read Only"
 END
 
 // MORE STATUS PANES
