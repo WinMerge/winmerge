@@ -51,25 +51,30 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief Relative path to WinMerge executable for lang files.
- */
+/** @brief Relative path to WinMerge executable for lang files. */
 static const TCHAR szRelativePath[] = _T("Languages\\");
+
+static char *EatPrefix(char *text, const char *prefix);
+static void unslash(std::string &s);
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
 
+/** @brief Default English language. */
 const WORD wSourceLangId = MAKELANGID( LANG_ENGLISH, SUBLANG_ENGLISH_US);
 
+/**
+ * @brief Language definition.
+ */
 struct tLangDef
 {
-	UINT m_IdName; // id of name in current UI language
-	LPCWSTR m_NativeName; // native language name
-	LPCSTR m_AsciiName; // ASCII version of native name
-	WORD  m_LangId; // Windows language identifier (LANGID)
-	const char *lang;
-	const char *sublang;
-	LPCTSTR pszLocale; // locale name to use
+	UINT m_IdName; /**< ID of name in current UI language. */
+	LPCWSTR m_NativeName; /**< Native language name. */
+	LPCSTR m_AsciiName; /**< ASCII version of native name. */
+	WORD  m_LangId; /**< Windows language identifier (LANGID). */
+	const char *lang; /**< Name for language (LANG_CATALAN => CATALAN). */
+	const char *sublang; /**< Name for sublang (SUBLANG_DEFAULT => DEFAULT). */
+	LPCTSTR pszLocale; /**< Locale name to use. */
 };
 
 // Entry for languages for which we do not record a native name
@@ -83,6 +88,10 @@ struct tLangDef
 
 #define MAKELANGID2(lang, sublang) MAKELANGID(lang, sublang), #lang, #sublang
 
+/**
+ * @brief Language map.
+ * @sa tLangDef.
+ */
 const tLangDef lang_map[] =
 {
 //	{IDS_AFRIKAANS, NONATIVE, MAKELANGID2(LANG_AFRIKAANS, SUBLANG_DEFAULT), _T("")},
@@ -222,6 +231,12 @@ const tLangDef lang_map[] =
 	{0, L"0", "0", 0, NULL},
 };
 
+/**
+ * @brief Finds language from language mep.
+ * @param [in] lang Language name to find.
+ * @param [in] sublang Sub-language name to find.
+ * @return Index to language map if found, -1 if not found.
+ */
 static int GetLanguageArrayIndex(const char *lang, const char *sublang)
 {
 	for (int i = 0 ; lang_map[i].m_LangId != 0 ; ++i)
@@ -235,15 +250,13 @@ CLanguageSelect::CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMe
 : CDialog(CLanguageSelect::IDD, pParent)
 , m_hCurrentDll(0)
 , m_pLog(0)
+, m_wCurLanguage(wSourceLangId)
+, m_idMainMenu(idMainMenu)
+, m_idDocMenu(idDocMenu)
+, m_hModule(NULL)
+, m_bReloadMenu(bReloadMenu)
+, m_bUpdateTitle(bUpdateTitle)
 {
-	//{{AFX_DATA_INIT(CLanguageSelect)
-	//}}AFX_DATA_INIT
-	m_wCurLanguage = wSourceLangId;
-	m_idMainMenu = idMainMenu;
-	m_idDocMenu = idDocMenu;
-	m_hModule = NULL;
-	m_bReloadMenu = bReloadMenu;
-	m_bUpdateTitle = bUpdateTitle;
 }
 
 
@@ -262,12 +275,16 @@ BEGIN_MESSAGE_MAP(CLanguageSelect, CDialog)
 //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
-/////////////////////////////////////////////////////////////////////////////
-// CLanguageSelect message handlers
-BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
+/**
+ * @brief Select the language.
+ * @param [in] wLangId ID of language to select.
+ * @param [in] override If true, save to registry.
+ * @return TRUE if succeeded, FALSE otherwise.
+ */
+BOOL CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 { 
 	BOOL result = FALSE;
-	
+
 	// use local resources
 	if ((PRIMARYLANGID(wLangId)== LANG_ENGLISH)
 		&& (SUBLANGID(wLangId) == SUBLANG_ENGLISH_US))
@@ -289,8 +306,7 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 			}
 		}
 	}
-	
-	
+
 	if (result)
 	{
 		m_wCurLanguage = wLangId;
@@ -305,10 +321,17 @@ BOOL  CLanguageSelect::SetLanguage(WORD wLangId, bool override)
 			_tsetlocale(LC_ALL, lang_map[idx].pszLocale);
 		}
 	}
-	
 	return result;
 }
 
+/**
+ * @brief Remove prefix from the string.
+ * @param [in] text String from which to jump over prefix.
+ * @param [in] prefix Prefix string to jump over.
+ * @return String without the prefix.
+ * @note Function returns pointer to original string,
+ *  it does not allocate a new string.
+ */
 static char *EatPrefix(char *text, const char *prefix)
 {
 	if (int len = strlen(prefix))
@@ -318,7 +341,8 @@ static char *EatPrefix(char *text, const char *prefix)
 }
 
 /**
- * @brief Convert C style \nnn, \r, \n, \t etc. into their indicated characters
+ * @brief Convert C style \nnn, \r, \n, \t etc into their indicated characters.
+ * @param [in, out] s String to convert.
  */
 static void unslash(std::string &s)
 {
@@ -374,7 +398,9 @@ static void unslash(std::string &s)
 }
 
 /**
- * @brief Load & configure WinMerge to use resources from specified DLL
+ * @brief Load & configure WinMerge to use resources from specified DLL.
+ * @param [in] szDllFileName Full path to the language file to load.
+ * @return TRUE when loading succeeds, FALSE otherwise.
  */
 BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/) 
 {
@@ -513,7 +539,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 		stm << _T("Failed to load ") << szDllFileName;
 		AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
 	}
-#endif
+#endif // LANG_PO(TRUE, FALSE)
 	return FALSE;
 }
 

@@ -23,7 +23,7 @@
  *
  * @brief Implementation of the CMergeEditView class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -51,15 +51,12 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief Timer ID and timeout for delayed rescan
- */
+/** @brief Timer ID for delayed rescan. */
 const UINT IDT_RESCAN = 2;
+/** @brief Timer timeout for delayed rescan. */
 const UINT RESCAN_TIMEOUT = 1000;
 
-/**
- * @brief Location for file compare specific help to open.
- */
+/** @brief Location for file compare specific help to open. */
 static TCHAR MergeViewHelpLocation[] = _T("::/htmlhelp/CompareFiles.html");
 
 /////////////////////////////////////////////////////////////////////////////
