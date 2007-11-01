@@ -2240,8 +2240,29 @@ SOURCE=.\diffutils\src\CONTEXT.C
 # Begin Source File
 
 SOURCE=.\Diff.cpp
+!IF  "$(CFG)" == "Merge - Win32 Debug"
+
+# SUBTRACT CPP /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
+
+# SUBTRACT BASE CPP /Yc /Yu
+# SUBTRACT CPP /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
+
 # ADD BASE CPP /O2
-# ADD CPP /O2 /YX
+# SUBTRACT BASE CPP /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /Yc /Yu
+
+!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
+
+# ADD BASE CPP /O2
+# SUBTRACT BASE CPP /Yc /Yu
+# ADD CPP /O2
+# SUBTRACT CPP /Yc /Yu
+
 # End Source File
 # Begin Source File
 
