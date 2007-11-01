@@ -58,7 +58,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre"
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeDebug
-TargetPath=\svnroot2\trunk\Build\MergeDebug\WinMerge.exe
+TargetPath=\WinMerge\WinMerge_SVN\Build\MergeDebug\WinMerge.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -92,7 +92,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMergeU.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre"
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeUnicodeDebug
-TargetPath=\svnroot2\trunk\Build\MergeUnicodeDebug\WinMergeU.exe
+TargetPath=\WinMerge\WinMerge_SVN\Build\MergeUnicodeDebug\WinMergeU.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -128,7 +128,7 @@ LINK32=link.exe
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeRelease
-TargetPath=\svnroot2\trunk\Build\MergeRelease\WinMerge.exe
+TargetPath=\WinMerge\WinMerge_SVN\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -164,7 +164,7 @@ LINK32=link.exe
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeUnicodeRelease
-TargetPath=\svnroot2\trunk\Build\MergeUnicodeRelease\WinMergeU.exe
+TargetPath=\WinMerge\WinMerge_SVN\Build\MergeUnicodeRelease\WinMergeU.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -270,6 +270,7 @@ SOURCE=.\ConfirmFolderCopyDlg.cpp
 # Begin Source File
 
 SOURCE=.\Common\coretools.cpp
+# ADD CPP /YX
 # End Source File
 # Begin Source File
 
@@ -2239,23 +2240,8 @@ SOURCE=.\diffutils\src\CONTEXT.C
 # Begin Source File
 
 SOURCE=.\Diff.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
 # ADD BASE CPP /O2
-# ADD CPP /O2
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# ADD CPP /O2
-
-!ENDIF 
-
+# ADD CPP /O2 /YX
 # End Source File
 # Begin Source File
 
