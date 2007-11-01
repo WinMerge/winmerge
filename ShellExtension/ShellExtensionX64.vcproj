@@ -306,6 +306,9 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\Src\Common\UnicodeString.cpp">
+			</File>
+			<File
 				RelativePath="WinMergeShell.cpp">
 				<FileConfiguration
 					Name="Debug X64|Win32">
@@ -340,6 +343,9 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			</File>
 			<File
 				RelativePath="StdAfx.h">
+			</File>
+			<File
+				RelativePath="..\Src\Common\UnicodeString.h">
 			</File>
 			<File
 				RelativePath="WinMergeShell.h">
