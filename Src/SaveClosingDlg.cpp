@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "SaveClosingDlg.h"
 
 #ifdef _DEBUG
@@ -78,6 +79,7 @@ END_MESSAGE_MAP()
  */
 BOOL SaveClosingDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	GetDlgItem(IDC_SAVECLOSING_SAVELEFT)->SetFocus();
