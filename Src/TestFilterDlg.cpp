@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "resource.h"
 #include "TestFilterDlg.h"
 #include "FileFilterMgr.h"
@@ -54,6 +55,7 @@ END_MESSAGE_MAP()
  */
 BOOL CTestFilterDlg::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	GetDlgItem(IDC_TEST_TEXT)->SetFocus();

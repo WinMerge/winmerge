@@ -48,6 +48,7 @@ END_MESSAGE_MAP()
 
 BOOL CSharedFilterDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 	
 	if (AfxGetApp()->GetProfileInt(_T("Filters"), _T("Shared"), 0))

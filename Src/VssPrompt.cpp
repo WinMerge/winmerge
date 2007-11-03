@@ -27,6 +27,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "VssPrompt.h"
 #include "RegKey.h"
 
@@ -86,6 +87,7 @@ END_MESSAGE_MAP()
  */
 BOOL CVssPrompt::OnInitDialog()
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	m_ctlProject.LoadState(_T("Vss"));

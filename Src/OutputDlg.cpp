@@ -45,6 +45,7 @@ END_MESSAGE_MAP()
 
 BOOL COutputDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	SetWindowText(m_sTitle);

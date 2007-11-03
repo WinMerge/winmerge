@@ -192,6 +192,7 @@ void CSelectUnpackerDlg::OnOK()
 
 BOOL CSelectUnpackerDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	m_bNoExtensionCheck = AfxGetApp()->GetProfileInt(_T("Plugins"), _T("UnpackDontCheckExtension"), FALSE);

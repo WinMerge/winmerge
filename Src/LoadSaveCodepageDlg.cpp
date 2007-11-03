@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "resource.h"
 #include "LoadSaveCodepageDlg.h"
 #include "dlgutil.h"
@@ -75,6 +76,7 @@ END_MESSAGE_MAP()
  */
 BOOL CLoadSaveCodepageDlg::OnInitDialog() 
 {
+	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
 	dlgutil_SetMainIcon(this);

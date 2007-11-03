@@ -173,9 +173,8 @@ BOOL COpenDlg::OnInitDialog()
 
 	if (!bMask)
 	{
-		CString filterPrefix;
-		VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
-		FilterNameOrMask.Insert(0, filterPrefix);
+		String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
+		FilterNameOrMask.Insert(0, filterPrefix.c_str());
 	}
 
 	int ind = m_ctlExt.FindStringExact(0, FilterNameOrMask);
@@ -286,8 +285,7 @@ void COpenDlg::OnRightButton()
  */
 void COpenDlg::OnOK() 
 {
-	CString filterPrefix;
-	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
+	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 
 	UpdateData(TRUE);
 	TrimPaths();
@@ -334,10 +332,10 @@ void COpenDlg::OnOK()
 	m_strExt.TrimRight();
 
 	// If prefix found from start..
-	if (m_strExt.Find(filterPrefix, 0) == 0)
+	if (m_strExt.Find(filterPrefix.c_str(), 0) == 0)
 	{
 		// Remove prefix + space
-		m_strExt.Delete(0, filterPrefix.GetLength());
+		m_strExt.Delete(0, filterPrefix.length());
 		if (!theApp.m_globalFileFilter.SetFilter(m_strExt))
 		{
 			// If filtername is not found use default *.* mask
@@ -529,9 +527,8 @@ void COpenDlg::SetUnpackerStatus(UINT msgID)
  */
 void COpenDlg::OnSelectFilter()
 {
-	CString filterPrefix;
+	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 	CString curFilter;
-	VERIFY(filterPrefix.LoadString(IDS_FILTER_PREFIX));
 
 	const BOOL bUseMask = theApp.m_globalFileFilter.IsUsingMask();
 	GetDlgItemText(IDC_EXT_COMBO, curFilter);
@@ -551,7 +548,7 @@ void COpenDlg::OnSelectFilter()
 	}
 	else
 	{
-		FilterNameOrMask.Insert(0, filterPrefix);
+		FilterNameOrMask.Insert(0, filterPrefix.c_str());
 		SetDlgItemText(IDC_EXT_COMBO, FilterNameOrMask);
 	}
 }
