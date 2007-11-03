@@ -249,12 +249,8 @@ BOOL CMergeDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	CString s;
-	VERIFY(s.LoadString(IDS_FILE_COMPARISON_TITLE));
-	SetTitle(s);
-	
-	m_ptBuf[0]->InitNew ();
-	m_ptBuf[1]->InitNew ();
+	m_ptBuf[0]->InitNew();
+	m_ptBuf[1]->InitNew();
 	return TRUE;
 }
 
@@ -1996,7 +1992,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 	if (!bForced)
 		if (!m_bEnableRescan) return;
 
-	WaitStatusCursor waitstatus(theApp.LoadString(IDS_STATUS_RESCANNING).c_str());
+	WaitStatusCursor waitstatus(IDS_STATUS_RESCANNING);
 
 	int nActiveViewIndexType = GetActiveMergeViewIndexType();
 
@@ -2179,35 +2175,32 @@ void CMergeDoc::OnFileSaveAsRight()
  */
 void CMergeDoc::OnUpdateStatusNum(CCmdUI* pCmdUI) 
 {
-	CString sIdx,sCnt,s;
+	TCHAR sIdx[32];
+	TCHAR sCnt[32];
+	String s;
 	const int nDiffs = m_diffList.GetSignificantDiffs();
 	
 	// Files are identical - show text "Identical"
 	if (nDiffs <= 0)
-		VERIFY(s.LoadString(IDS_IDENTICAL));
+		s = theApp.LoadString(IDS_IDENTICAL);
 	
 	// There are differences, but no selected diff
 	// - show amount of diffs
 	else if (GetCurrentDiff() < 0)
 	{
-		if (nDiffs == 1)
-			VERIFY(s.LoadString(IDS_1_DIFF_FOUND));
-		else
-		{
-			sCnt.Format(_T("%ld"), nDiffs);
-			LangFormatString1(s, IDS_NO_DIFF_SEL_FMT, sCnt);
-		}
+		s = theApp.LoadString(nDiffs == 1 ? IDS_1_DIFF_FOUND : IDS_NO_DIFF_SEL_FMT);
+		string_replace(s, _T("%1"), _itot(nDiffs, sCnt, 10));
 	}
 	
 	// There are differences and diff selected
 	// - show diff number and amount of diffs
 	else
 	{
-		sIdx.Format(_T("%ld"), GetCurrentDiff()+1);
-		sCnt.Format(_T("%ld"), nDiffs);
-		LangFormatString2(s, IDS_DIFF_NUMBER_STATUS_FMT, sIdx, sCnt); 
+		s = theApp.LoadString(IDS_DIFF_NUMBER_STATUS_FMT);
+		string_replace(s, _T("%1"), _itot(GetCurrentDiff() + 1, sIdx, 10));
+		string_replace(s, _T("%2"), _itot(nDiffs, sCnt, 10));
 	}
-	pCmdUI->SetText(s);
+	pCmdUI->SetText(s.c_str());
 }
 
 bool CMergeDoc::CDiffTextBuffer::curUndoGroup()
@@ -3012,14 +3005,12 @@ void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeft
 		if (FileLoadResult::IsBinary(nLeftSuccess) && FileLoadResult::IsBinary(nRightSuccess))
 		{
 			CString msg;
-			CString msg2;
 			if (bIdentical)
 				LangFormatString2(msg, IDS_BINFILES_IDENTICAL, sLeftFile, sRightFile);
 			else
 				LangFormatString2(msg, IDS_BINFILES_DIFFERENT, sLeftFile, sRightFile);
 			msg += _T("\n\n");
-			VERIFY(msg2.LoadString(IDS_FILEBINARY));
-			msg += msg2;
+			msg += theApp.LoadString(IDS_FILEBINARY).c_str();
 			AfxMessageBox(msg, MB_ICONINFORMATION);
 		}
 		else if (FileLoadResult::IsBinary(nLeftSuccess) || FileLoadResult::IsBinary(nRightSuccess))
@@ -3198,12 +3189,11 @@ void CMergeDoc::SetTitle(LPCTSTR lpszTitle)
  */
 void CMergeDoc::UpdateResources()
 {
-	CString str;
-
-	VERIFY(str.LoadString(IDS_EMPTY_LEFT_FILE));
-	m_strDesc[0] = str;
-	VERIFY(str.LoadString(IDS_EMPTY_RIGHT_FILE));
-	m_strDesc[1] = str;
+	if (m_filePaths.GetLeft().empty() && m_filePaths.GetRight().empty())
+	{
+		m_strDesc[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+		m_strDesc[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+	}
 	UpdateHeaderPath(0);
 	UpdateHeaderPath(1);
 

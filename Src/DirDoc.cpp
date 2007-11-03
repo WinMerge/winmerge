@@ -124,12 +124,7 @@ BOOL CDirDoc::OnNewDocument()
 	if (!CDocument::OnNewDocument())
 		return FALSE;
 
-	CString s;
-	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
-	SetTitle(s);
-
-	void * param = reinterpret_cast<void *>(this);
-	GetMainView()->GetParentFrame()->SetClosableCallback(&DocClosableCallback, param);
+	GetMainView()->GetParentFrame()->SetClosableCallback(&DocClosableCallback, this);
 
 	return TRUE;
 }
@@ -506,9 +501,7 @@ void CDirDoc::UpdateResources()
 	if (m_pDirView)
 		m_pDirView->UpdateResources();
 
-	CString s;
-	VERIFY(s.LoadString(IDS_DIRECTORY_WINDOW_TITLE));
-	SetTitle(s);
+	SetTitle(0);
 
 	Redisplay();
 }
