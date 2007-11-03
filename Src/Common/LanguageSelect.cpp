@@ -850,6 +850,41 @@ bool CLanguageSelect::TranslateString(size_t line, std::wstring &ws) const
 	return false;
 }
 
+void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) const
+{
+	HGDIOBJ hf = (HGDIOBJ)sb.SendMessage(WM_GETFONT);
+	CClientDC dc(0);
+	if (hf)
+		hf = dc.SelectObject(hf);
+	if (n)
+		sb.SetIndicators(0, n);
+	else
+		n = sb.m_nCount;
+	int cx = ::GetSystemMetrics(SM_CXSCREEN) / 4;	// default to 1/4 the screen width
+	UINT style = SBPS_STRETCH | SBPS_NOBORDERS;		// first pane is stretchy
+	for (int i = 0 ; i < n ; ++i)
+	{
+		if (UINT id = rgid ? rgid[i] : sb.GetItemID(i))
+		{
+			String text = LoadString(id);
+			int cx = dc.GetTextExtent(text.c_str(), text.length()).cx;
+			sb.SetPaneInfo(i, id, style, cx);
+			sb.SetPaneText(i, text.c_str(), FALSE);
+		}
+		else if (rgid)
+		{
+			sb.SetPaneInfo(i, 0, style, cx);
+		}
+		style = 0;
+	}
+	if (hf)
+		hf = dc.SelectObject(hf);
+	// Send WM_SIZE to get pane rectangles right
+	RECT rect;
+	sb.GetClientRect(&rect);
+	sb.SendMessage(WM_SIZE, 0, MAKELPARAM(rect.right, rect.bottom));
+}
+
 void CLanguageSelect::TranslateMenu(HMENU h) const
 {
 #if LANG_PO(FALSE, TRUE) // compiling for use with .PO files

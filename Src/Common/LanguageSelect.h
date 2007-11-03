@@ -49,6 +49,7 @@ public:
 
 	bool TranslateString(size_t line, std::string &) const;
 	bool TranslateString(size_t line, std::wstring &) const;
+	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
