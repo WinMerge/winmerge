@@ -56,7 +56,7 @@ FindEncodingIdFromNameOrAlias(const char *encodingName)
 		char *ahead = 0;
 		unsigned codepage = strtol(encodingName, &ahead, 10);
 		int i = 0;
-		while (*ahead != '\0' && i < RTL_NUMBER_OF(f_wincp_prefixes))
+		while (*ahead != '\0' && i < countof(f_wincp_prefixes))
 		{
 			if (const char *remainder = EatPrefix(encodingName, f_wincp_prefixes[i]))
 			{
