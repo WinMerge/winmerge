@@ -478,6 +478,8 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 	std::string *ps = 0;
 	std::string msgid;
 	std::vector<unsigned> lines;
+	int unresolved = 0;
+	int mismatched = 0;
 	while (const char *eol = (const char *)memchr(data, '\n', size))
 	{
 		size_t len = eol - data;
@@ -496,6 +498,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 			{
 				int line = strtol(q + 1, &q, 10);
 				lines.push_back(line);
+				++unresolved;
 			}
 		}
 		else if (EatPrefix(buf, "msgid "))
@@ -544,7 +547,6 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 	std::string format;
 	std::string msgstr;
 	std::string directive;
-	int badrefs = 0;
 	while (fgets(buf, sizeof buf, f))
 	{
 		if (char *p = EatPrefix(buf, "#:"))
@@ -553,6 +555,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 			{
 				int line = strtol(q + 1, &q, 10);
 				lines.push_back(line);
+				--unresolved;
 			}
 		}
 		else if (char *p = EatPrefix(buf, "#,"))
@@ -597,7 +600,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 					if (m_strarray[line] == msgid)
 						m_strarray[line] = msgstr;
 					else
-						++badrefs;
+						++mismatched;
 				}
 				lines.clear();
 				if (directive == "Codepage")
@@ -610,7 +613,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 		}
 	}
 	fclose(f);
-	if (badrefs)
+	if (unresolved != 0 || mismatched != 0)
 	{
 		FreeLibrary(m_hCurrentDll);
 		m_hCurrentDll = 0;
@@ -619,7 +622,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 		if (m_hWnd)
 		{
 			std_tchar(ostringstream) stm;
-			stm << _T("Mismatched references detected in ") << szDllFileName;
+			stm << _T("Unresolved or mismatched references detected when attempting to read translations from\n") << szDllFileName;
 			AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
 		}
 		return FALSE;
