@@ -24,82 +24,52 @@ static char THIS_FILE[] = __FILE__;
 
 /**
  * @brief Prefixes to handle when searching for codepage names
+ * NB: prefixes ending in '-' must go first!
  */
-static LPCTSTR f_wincp_prefixes[] =
+static const char *f_wincp_prefixes[] =
 {
-	_T("WINDOWS-")
-	, _T("WINDOWS")
-	, _T("CP")
-	, _T("CP-")
-	, _T("MSDOS")
-	, _T("MSDOS-")
+	"WINDOWS-", "WINDOWS", "CP-", "CP", "MSDOS-", "MSDOS"
 };
 
 /**
- * @brief Is string non-empty and comprised entirely of numbers?
+ * @brief Eat prefix and return pointer to remaining text
  */
-static bool
-isNumeric(const CString & str)
+static const char *EatPrefix(const char *text, const char *prefix)
 {
-	if (str.IsEmpty())
-		return false;
-	for (int i=0; i<str.GetLength(); ++i)
-	{
-		TCHAR ch = str[i];
-		if (!_istascii(ch) || !_istdigit(ch))
-			return false;
-	}
-	return true;
+	if (int len = strlen(prefix))
+		if (memicmp(text, prefix, len) == 0)
+			return text + len;
+	return 0;
 }
 
 /**
  * @brief Try to to match codepage name from codepages module, & watch for f_wincp_prefixes aliases
  */
 static int
-FindEncodingIdFromNameOrAlias(CString encodingName)
+FindEncodingIdFromNameOrAlias(const char *encodingName)
 {
-	USES_CONVERSION;
-
 	// Try name as given
-	unsigned encodingId = GetEncodingIdFromName(T2CA(encodingName));
-	if (encodingId) return encodingId;
-
-	// Handle purely numeric values (codepages)
-	if (isNumeric(encodingName))
+	unsigned encodingId = GetEncodingIdFromName(encodingName);
+	if (encodingId == 0)
 	{
-		unsigned codepage = _ttoi(encodingName);
-		if (codepage)
-			encodingId = GetEncodingIdFromCodePage(codepage);
-		return encodingId;
-	}
-
-	for (int i=0; i<sizeof(f_wincp_prefixes)/sizeof(f_wincp_prefixes[0]); ++i)
-	{
-		// prefix is, eg, "WINDOWS-"
-		CString prefix = f_wincp_prefixes[i];
-		prefix.MakeUpper();
-		// check if encodingName starts with prefix
-		if (encodingName.GetLength() > prefix.GetLength())
+		// Handle purely numeric values (codepages)
+		char *ahead = 0;
+		unsigned codepage = strtol(encodingName, &ahead, 10);
+		int i = 0;
+		while (*ahead != '\0' && i < RTL_NUMBER_OF(f_wincp_prefixes))
 		{
-			CString encpref = encodingName.Left(prefix.GetLength());
-			encpref.MakeUpper();
-			if (prefix == encpref)
+			if (const char *remainder = EatPrefix(encodingName, f_wincp_prefixes[i]))
 			{
-				// encoding is, eg, "windows-1251"
-				CString remainder = encodingName.Mid(prefix.GetLength());
-				// remainder is, eg, "1251"
-				if (isNumeric(remainder))
-				{
-					unsigned codepage = _ttoi(remainder);
-					if (codepage)
-						encodingId = GetEncodingIdFromCodePage(codepage);
-					return encodingId;
-				}
+				codepage = strtol(remainder, &ahead, 10);
 			}
+			++i;
+		}
+		if (*ahead == '\0')
+		{
+			encodingId = GetEncodingIdFromCodePage(codepage);
 		}
 	}
-
-	return 0; // failed
+	return encodingId;
 }
 
 /**
