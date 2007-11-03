@@ -864,11 +864,12 @@ void CLanguageSelect::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) con
 	UINT style = SBPS_STRETCH | SBPS_NOBORDERS;		// first pane is stretchy
 	for (int i = 0 ; i < n ; ++i)
 	{
-		if (UINT id = rgid ? rgid[i] : sb.GetItemID(i))
+		UINT id = rgid ? rgid[i] : sb.GetItemID(i);
+		if (id >= ID_INDICATOR_EXT)
 		{
 			String text = LoadString(id);
 			int cx = dc.GetTextExtent(text.c_str(), text.length()).cx;
-			sb.SetPaneInfo(i, id, style, cx);
+			sb.SetPaneInfo(i, id, style | SBPS_DISABLED, cx);
 			sb.SetPaneText(i, text.c_str(), FALSE);
 		}
 		else if (rgid)
@@ -1113,6 +1114,9 @@ void CLanguageSelect::OnOK()
 
 		CMainFrame * pMainFrame = dynamic_cast<CMainFrame *> ((CFrameWnd*)AfxGetApp()->m_pMainWnd);
 		pMainFrame->UpdateCodepageModule();
+
+		// Update status bar inicator texts
+		SetIndicators(pMainFrame->m_wndStatusBar, 0, 0);
 
 		// Update the current menu
 		if (m_bReloadMenu)
