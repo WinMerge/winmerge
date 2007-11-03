@@ -424,10 +424,16 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 		m_pLog->Write(_T("Loading resource DLL: %s"), szDllFileName);
 
 #if LANG_PO(TRUE, FALSE) // compiling for use with .LANG files
-	if ((m_hCurrentDll = LoadLibrary(szDllFileName)) != NULL)
+	m_hCurrentDll = LoadLibrary(szDllFileName);
+	if (m_hCurrentDll == 0)
 	{
-		AfxSetResourceHandle(m_hCurrentDll);
-		return TRUE;
+		if (m_hWnd)
+		{
+			std_tchar(ostringstream) stm;
+			stm << _T("Failed to load ") << szDllFileName;
+			AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
+		}
+		return FALSE;
 	}
 #else // compiling for use with .PO files
 	m_strarray.clear();
@@ -457,90 +463,168 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 			AfxMessageBox(_T("MergeLang.dll version mismatch"), MB_ICONSTOP);
 		return FALSE;
 	}
-	if (FILE *f = _tfopen(szDllFileName, _T("r")))
+	HRSRC mergepot = FindResource(m_hCurrentDll, _T("MERGEPOT"), RT_RCDATA);
+	if (mergepot == 0)
 	{
-		std::vector<unsigned> lines;
-		std::string format;
-		std::string directive;
-		std::string msgid;
-		std::string msgstr;
-		std::string *ps = 0;
-		char buf[1024];
-		while (fgets(buf, sizeof buf, f))
+		if (m_hWnd)
+			AfxMessageBox(_T("MergeLang.dll is invalid"), MB_ICONSTOP);
+		return FALSE;
+	}
+	size_t size = SizeofResource(m_hCurrentDll, mergepot);
+	const char *data = (const char *)LoadResource(m_hCurrentDll, mergepot);
+	char buf[1024];
+	std::string *ps = 0;
+	std::string msgid;
+	std::vector<unsigned> lines;
+	while (const char *eol = (const char *)memchr(data, '\n', size))
+	{
+		size_t len = eol - data;
+		if (len >= sizeof buf)
 		{
-			if (char *p = EatPrefix(buf, "#:"))
+			ASSERT(FALSE);
+			break;
+		}
+		memcpy(buf, data, len);
+		buf[len++] = '\0';
+		data += len;
+		size -= len;
+		if (char *p = EatPrefix(buf, "#:"))
+		{
+			if (char *q = strchr(p, ':'))
 			{
-				if (char *q = strchr(p, ':'))
-				{
-					int line = strtol(q + 1, &q, 10);
-					lines.push_back(line);
-				}
-			}
-			else if (char *p = EatPrefix(buf, "#,"))
-			{
-				format = p;
-				format.erase(0, format.find_first_not_of(" \t\r\n"));
-				format.erase(format.find_last_not_of(" \t\r\n") + 1);
-			}
-			else if (char *p = EatPrefix(buf, "#."))
-			{
-				directive = p;
-				directive.erase(0, directive.find_first_not_of(" \t\r\n"));
-				directive.erase(directive.find_last_not_of(" \t\r\n") + 1);
-			}
-			else if (EatPrefix(buf, "msgid "))
-			{
-				ps = &msgid;
-			}
-			else if (EatPrefix(buf, "msgstr "))
-			{
-				ps = &msgstr;
-			}
-			if (ps)
-			{
-				char *p = strchr(buf, '"');
-				char *q = strrchr(buf, '"');
-				if (std::string::size_type n = q - p)
-				{
-					ps->append(p + 1, n - 1);
-				}
-				else
-				{
-					ps = 0;
-					if (msgstr.empty())
-						msgstr = msgid;
-					unslash(msgstr);
-					for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
-					{
-						unsigned line = *pline;
-						if (m_strarray.size() <= line)
-							m_strarray.resize(line + 1);
-						m_strarray[line] = msgstr;
-					}
-					lines.clear();
-					if (directive == "Codepage")
-					{
-						m_codepage = strtol(msgstr.c_str(), &p, 10);
-					}
-					msgid.erase();
-					msgstr.erase();
-				}
+				int line = strtol(q + 1, &q, 10);
+				lines.push_back(line);
 			}
 		}
-		fclose(f);
-		AfxSetResourceHandle(m_hCurrentDll);
-		return TRUE;
+		else if (EatPrefix(buf, "msgid "))
+		{
+			ps = &msgid;
+		}
+		if (ps)
+		{
+			char *p = strchr(buf, '"');
+			char *q = strrchr(buf, '"');
+			if (std::string::size_type n = q - p)
+			{
+				ps->append(p + 1, n - 1);
+			}
+			else
+			{
+				ps = 0;
+				for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
+				{
+					unsigned line = *pline;
+					if (m_strarray.size() <= line)
+						m_strarray.resize(line + 1);
+					m_strarray[line] = msgid;
+				}
+				lines.clear();
+				msgid.erase();
+			}
+		}
 	}
-	FreeLibrary(m_hCurrentDll);
-	m_hCurrentDll = 0;
-	if (m_hWnd)
+	FILE *f = _tfopen(szDllFileName, _T("r"));
+	if (f == 0)
 	{
-		std_tchar(ostringstream) stm;
-		stm << _T("Failed to load ") << szDllFileName;
-		AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
+		FreeLibrary(m_hCurrentDll);
+		m_hCurrentDll = 0;
+		if (m_hWnd)
+		{
+			std_tchar(ostringstream) stm;
+			stm << _T("Failed to load ") << szDllFileName;
+			AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
+		}
+		return FALSE;
+	}
+	ps = 0;
+	msgid.erase();
+	lines.clear();
+	std::string format;
+	std::string msgstr;
+	std::string directive;
+	int badrefs = 0;
+	while (fgets(buf, sizeof buf, f))
+	{
+		if (char *p = EatPrefix(buf, "#:"))
+		{
+			if (char *q = strchr(p, ':'))
+			{
+				int line = strtol(q + 1, &q, 10);
+				lines.push_back(line);
+			}
+		}
+		else if (char *p = EatPrefix(buf, "#,"))
+		{
+			format = p;
+			format.erase(0, format.find_first_not_of(" \t\r\n"));
+			format.erase(format.find_last_not_of(" \t\r\n") + 1);
+		}
+		else if (char *p = EatPrefix(buf, "#."))
+		{
+			directive = p;
+			directive.erase(0, directive.find_first_not_of(" \t\r\n"));
+			directive.erase(directive.find_last_not_of(" \t\r\n") + 1);
+		}
+		else if (EatPrefix(buf, "msgid "))
+		{
+			ps = &msgid;
+		}
+		else if (EatPrefix(buf, "msgstr "))
+		{
+			ps = &msgstr;
+		}
+		if (ps)
+		{
+			char *p = strchr(buf, '"');
+			char *q = strrchr(buf, '"');
+			if (std::string::size_type n = q - p)
+			{
+				ps->append(p + 1, n - 1);
+			}
+			else
+			{
+				ps = 0;
+				if (msgstr.empty())
+					msgstr = msgid;
+				unslash(msgstr);
+				for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
+				{
+					unsigned line = *pline;
+					if (m_strarray.size() <= line)
+						m_strarray.resize(line + 1);
+					if (m_strarray[line] == msgid)
+						m_strarray[line] = msgstr;
+					else
+						++badrefs;
+				}
+				lines.clear();
+				if (directive == "Codepage")
+				{
+					m_codepage = strtol(msgstr.c_str(), &p, 10);
+				}
+				msgid.erase();
+				msgstr.erase();
+			}
+		}
+	}
+	fclose(f);
+	if (badrefs)
+	{
+		FreeLibrary(m_hCurrentDll);
+		m_hCurrentDll = 0;
+		m_strarray.clear();
+		m_codepage = 0;
+		if (m_hWnd)
+		{
+			std_tchar(ostringstream) stm;
+			stm << _T("Mismatched references detected in ") << szDllFileName;
+			AfxMessageBox(stm.str().c_str(), MB_ICONSTOP);
+		}
+		return FALSE;
 	}
 #endif // LANG_PO(TRUE, FALSE)
-	return FALSE;
+	AfxSetResourceHandle(m_hCurrentDll);
+	return TRUE;
 }
 
 
