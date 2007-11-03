@@ -301,13 +301,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_TABBAR) == false)
 		CMDIFrameWnd::ShowControlBar(&m_wndTabBar, false, 0);
 
-	if (!m_wndStatusBar.Create(this) ||
-		!m_wndStatusBar.SetIndicators(indicators,
-		  sizeof(indicators)/sizeof(UINT)))
+	if (!m_wndStatusBar.Create(this))
 	{
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
+	theApp.SetIndicators(m_wndStatusBar, indicators, sizeof(indicators)/sizeof(UINT));
+	
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
