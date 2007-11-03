@@ -55,7 +55,7 @@ static char THIS_FILE[] = __FILE__;
 static const TCHAR szRelativePath[] = _T("Languages\\");
 
 static char *EatPrefix(char *text, const char *prefix);
-static void unslash(std::string &s);
+static void unslash(unsigned codepage, std::string &s);
 
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
@@ -344,7 +344,7 @@ static char *EatPrefix(char *text, const char *prefix)
  * @brief Convert C style \nnn, \r, \n, \t etc into their indicated characters.
  * @param [in, out] s String to convert.
  */
-static void unslash(std::string &s)
+static void unslash(unsigned codepage, std::string &s)
 {
 	char *p = &*s.begin();
 	char *q = p;
@@ -390,6 +390,8 @@ static void unslash(std::string &s)
 			// fall through
 		default:
 			*p = c;
+			if ((*p & 0x80) && IsDBCSLeadByteEx(codepage, *p))
+				*++p = *r++;
 			q = r;
 		}
 		++p;
@@ -586,7 +588,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 				ps = 0;
 				if (msgstr.empty())
 					msgstr = msgid;
-				unslash(msgstr);
+				unslash(m_codepage, msgstr);
 				for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
 				{
 					unsigned line = *pline;
