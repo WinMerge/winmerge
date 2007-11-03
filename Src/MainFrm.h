@@ -81,12 +81,14 @@ typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 
 class PackingInfo;
+class CLanguageSelect;
 
 /**
  * @brief Frame class containing save-routines etc
  */
 class CMainFrame : public CMDIFrameWnd
 {
+	friend CLanguageSelect;
 	DECLARE_DYNAMIC(CMainFrame)
 public:
 	CMainFrame();
