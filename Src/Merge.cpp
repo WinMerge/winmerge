@@ -753,6 +753,14 @@ WORD CMergeApp::GetLangId() const
 }
 
 /**
+ * @brief Lang aware version of CStatusBar::SetIndicators()
+ */
+void CMergeApp::SetIndicators(CStatusBar &sb, const UINT *rgid, int n) const
+{
+	m_pLangDlg->SetIndicators(sb, rgid, n);
+}
+
+/**
  * @brief Translate menu to current WinMerge GUI language
  */
 void CMergeApp::TranslateMenu(HMENU h) const

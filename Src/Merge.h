@@ -65,6 +65,7 @@ public:
 	FileFilterHelper m_globalFileFilter;
 
 	WORD GetLangId() const;
+	void SetIndicators(CStatusBar &, const UINT *, int) const;
 	void TranslateMenu(HMENU) const;
 	void TranslateDialog(HWND) const;
 	String LoadString(UINT) const;
