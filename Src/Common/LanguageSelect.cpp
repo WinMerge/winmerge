@@ -606,6 +606,7 @@ BOOL CLanguageSelect::LoadResourceDLL(LPCTSTR szDllFileName /*=NULL*/)
 				if (directive == "Codepage")
 				{
 					m_codepage = strtol(msgstr.c_str(), &p, 10);
+					directive.erase();
 				}
 				msgid.erase();
 				msgstr.erase();
