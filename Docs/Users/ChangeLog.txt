@@ -4,6 +4,8 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.5
   Add Croatian translation (#1820308)
+  Translation updates:
+  - Chinese Traditional (#1824691)
 
 WinMerge 2.7.5.4 - 2007-11-01 (r4687)
   New PO files based translation system (#1804762)
