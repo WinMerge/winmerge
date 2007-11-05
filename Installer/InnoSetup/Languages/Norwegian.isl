@@ -337,6 +337,7 @@ BulgarianLanguage=Bulgarske menyer og dialoger
 CatalanLanguage=Katalanske menyer og dialoger
 ChineseSimplifiedLanguage=Kinesiske (forenklet) menyer og dialoger
 ChineseTraditionalLanguage=Kinesiske (tradisjonell) menyer og dialoger
+CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Tsjekkiske menyer og dialoger
 DanishLanguage=Danske menyer og dialoger
 DutchLanguage=Nederlandske menyer og dialoger

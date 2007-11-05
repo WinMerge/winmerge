@@ -353,6 +353,7 @@ BulgarianLanguage=Bolgár menük és párbeszédablakok
 CatalanLanguage=Katalán menük és párbeszédablakok
 ChineseSimplifiedLanguage=Kínai (Egyszerûsített) menük és párbeszédablakok
 ChineseTraditionalLanguage=Kynai (Hagyományos) menük és párbeszédablakok
+CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Cseh menük és párbeszédablakok
 DanishLanguage=Dán menük és párbeszédablakok
 DutchLanguage=Holland menük és párbeszédablakok

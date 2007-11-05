@@ -39,6 +39,9 @@ Localization:
 * Traditional Chinese:
   Koko
 
+* Croatian:
+  Hasan Osmanagæ
+
 * Czech:
   Jiri Tax
   Jan Hryz

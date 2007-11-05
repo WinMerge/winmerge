@@ -114,6 +114,7 @@ Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl; InfoAfterFile: ..\..\Doc
 Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt
 Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl
 Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
+Name: Croatian; MessagesFile: Languages\Croatian.isl
 Name: Czech; MessagesFile: Languages\Czech.isl
 Name: Danish; MessagesFile: Languages\Danish.isl
 Name: Dutch; MessagesFile: Languages\Dutch.isl
@@ -170,6 +171,9 @@ Name: Languages\Chinese_Simplified; Description: {cm:ChineseSimplifiedLanguage};
 
 Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Chinese_Traditional
 Name: Languages\Chinese_Traditional; Description: {cm:ChineseTraditionalLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Chinese_Traditional
+
+Name: Languages\Croatian; Description: {cm:CroatianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Croatian
+Name: Languages\Croatian; Description: {cm:CroatianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Croatian
 
 Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Czech
 Name: Languages\Czech; Description: {cm:CzechLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Czech
@@ -355,6 +359,7 @@ Source: ..\..\Src\Languages\Catalan.po; DestDir: {app}\Languages; Components: La
 Source: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt; DestDir: {app}\Docs; Components: Languages\Catalan
 Source: ..\..\Src\Languages\ChineseSimplified.po; DestDir: {app}\Languages; Components: Languages\Chinese_Simplified; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\ChineseTraditional.po; DestDir: {app}\Languages; Components: Languages\Chinese_Traditional; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Croatian.po; DestDir: {app}\Languages; Components: Languages\Croatian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Czech.po; DestDir: {app}\Languages; Components: Languages\Czech; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Danish.po; DestDir: {app}\Languages; Components: Languages\Danish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Dutch.po; DestDir: {app}\Languages; Components: Languages\Dutch; Flags: ignoreversion comparetimestamp
@@ -468,6 +473,7 @@ Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; 
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000403; Flags: deletevalue; Languages: Catalan
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000804; Flags: deletevalue; Languages: Chinese_Simplified
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000404; Flags: deletevalue; Languages: Chinese_Traditional
+Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $0000041a; Flags: deletevalue; Languages: Croatian
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000405; Flags: deletevalue; Languages: Czech
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000406; Flags: deletevalue; Languages: Danish
 Root: HKCU; SubKey: Software\Thingamahoochie\WinMerge\Locale; ValueType: dword; ValueName: LanguageId; ValueData: $00000413; Flags: deletevalue; Languages: Dutch

@@ -325,6 +325,7 @@ BulgarianLanguage=Menús i diàlegs en Búlgar
 CatalanLanguage=Menús i diàlegs en Català
 ChineseSimplifiedLanguage=Menús i diàlegs en Xinès (Simplificat)
 ChineseTraditionalLanguage=Menús i diàlegs en Xinès (Tradicional)
+CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Menús i diàlegs en Txec
 DanishLanguage=Menús i diàlegs en Danès
 DutchLanguage=Menús i diàlegs en Neerlandès

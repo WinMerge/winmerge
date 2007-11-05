@@ -331,6 +331,7 @@ BulgarianLanguage=Bulgarski interfejs
 CatalanLanguage=Katalonski interfejs
 ChineseSimplifiedLanguage=Chinski (uproszczony) interfejs
 ChineseTraditionalLanguage=Chinski (tradycyjny) interfejs
+CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Czeski interfejs
 DanishLanguage=Dunski interfejs
 DutchLanguage=Holenderski interfejs

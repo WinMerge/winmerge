@@ -344,6 +344,7 @@ BulgarianLanguage=Menu e finestre di dialogo in bulgaro
 CatalanLanguage=Menu e finestre di dialogo in catalano
 ChineseSimplifiedLanguage=Menu e finestre di dialogo in cinese (semplificato)
 ChineseTraditionalLanguage=Menu e finestre di dialogo in cinese (tradizionale)
+CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Menu e finestre di dialogo in ceco
 DanishLanguage=Menu e finestre di dialogo in danese
 DutchLanguage=Menu e finestre di dialogo in olandese

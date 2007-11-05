@@ -347,6 +347,7 @@ BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
 ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
 ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
+CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Czech menus and dialogs
 DanishLanguage=Danish menus and dialogs
 DutchLanguage=Dutch menus and dialogs

@@ -332,6 +332,7 @@ BulgarianLanguage=Bulgarische Menüs und Dialoge
 CatalanLanguage=Katalanische Menüs und Dialoge
 ChineseSimplifiedLanguage=Chinesische (Vereinfacht) Menüs und Dialoge
 ChineseTraditionalLanguage=Chinesische (Traditionell) Menüs und Dialoge
+CroatianLanguage=Kroatische Menüs und Dialoge
 CzechLanguage=Tschechische Menüs und Dialoge
 DanishLanguage=Dänische Menüs und Dialoge
 DutchLanguage=Holländische Menüs und Dialoge

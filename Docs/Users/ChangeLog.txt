@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.5.5
+  Add Croatian translation (#1820308)
+
 WinMerge 2.7.5.4 - 2007-11-01 (r4687)
   New PO files based translation system (#1804762)
   New folder compare column selection dialog (#1804555)
