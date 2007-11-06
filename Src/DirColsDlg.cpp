@@ -29,10 +29,8 @@ static char THIS_FILE[] = __FILE__;
  */
 CDirColsDlg::CDirColsDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CDirColsDlg::IDD, pParent)
+	, m_bReset(FALSE)
 {
-	//{{AFX_DATA_INIT(CDirColsDlg)
-	m_bReset = FALSE;
-	//}}AFX_DATA_INIT
 }
 
 /**
@@ -292,6 +290,18 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 				break;
 		}
 		GetDlgItem(IDC_COLDLG_DESC)->SetWindowText(m_cols[j].desc);
+
+		// Disable Up/Down -buttons when first/last items are selected.
+		if (ind == 0)
+			GetDlgItem(IDC_UP)->EnableWindow(FALSE);
+		else
+			GetDlgItem(IDC_UP)->EnableWindow(TRUE);
+
+		if (ind == m_listColumns.GetItemCount() - m_listColumns.GetSelectedCount())
+			GetDlgItem(IDC_DOWN)->EnableWindow(FALSE);
+		else
+			GetDlgItem(IDC_DOWN)->EnableWindow(TRUE);
+
 	}
 	*pResult = 0;
 }
