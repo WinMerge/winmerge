@@ -72,6 +72,7 @@ public:
 protected:
 	void InitList();
 	void LoadLists();
+	void SelectItem(int index);
 	void LoadDefLists();
 	void SortArrayToLogicalOrder();
 	void MoveItem(int index, int newIndex);

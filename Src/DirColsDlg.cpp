@@ -105,7 +105,16 @@ void CDirColsDlg::LoadLists()
 	SortArrayToLogicalOrder();
 	
 	// Set first item to selected state
-	m_listColumns.SetItemState(0, LVIS_SELECTED, LVIS_SELECTED);
+	SelectItem(0);
+}
+
+/**
+ * @brief Select item in list.
+ * @param [in] index Index of item to select.
+ */
+void CDirColsDlg::SelectItem(int index)
+{
+	m_listColumns.SetItemState(index, LVIS_SELECTED, LVIS_SELECTED);
 }
 
 /**
@@ -176,14 +185,20 @@ void CDirColsDlg::MoveItem(int index, int newIndex)
  */
 void CDirColsDlg::MoveSelectedItems(BOOL bUp)
 {
+	int firstInd = -1;
 	POSITION pos = m_listColumns.GetFirstSelectedItemPosition();
 
 	while (pos)
 	{
 		int ind = m_listColumns.GetNextSelectedItem(pos);
 		int newInd = bUp ? ind - 1: ind + 1;
+		
+		// Remember first item
+		if (firstInd == -1)
+			firstInd = newInd;
 		MoveItem(ind, newInd);
 	}
+	m_listColumns.EnsureVisible(firstInd, FALSE);
 }
 
 /**
