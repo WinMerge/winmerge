@@ -374,19 +374,18 @@ MovePgUp (BOOL bSelect)
     nNewTopSubLine = 0;
   if (m_nTopSubLine != nNewTopSubLine)
     {
-      int nDummy;
-      int nNewTopLine;
-      GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
       ScrollToSubLine(nNewTopSubLine);
       UpdateSiblingScrollPos(FALSE);
     }
-  m_ptCursorPos.y = m_nTopSubLine;
 
   // setting cursor
   CPoint subLinePos;
   CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
 
-  int nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y;
+  int nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y - GetScreenLines() + 1;
+
+  if (nSubLine < nNewTopSubLine || nSubLine >= nNewTopSubLine + GetScreenLines())
+    nSubLine = nNewTopSubLine;
 
   if ( nSubLine < 0 )
     nSubLine = 0;
@@ -415,10 +414,6 @@ MovePgDn (BOOL bSelect)
 		nNewTopSubLine = nSubLineCount - 1;
 	if (m_nTopSubLine != nNewTopSubLine)
 	{
-		int nDummy;
-		int nNewTopLine;
-		GetLineBySubLine(nNewTopSubLine, nNewTopLine, nDummy);
-		m_ptCursorPos.y = nNewTopLine;
 		ScrollToSubLine(nNewTopSubLine);
         UpdateSiblingScrollPos(FALSE);
 	}
@@ -428,6 +423,9 @@ MovePgDn (BOOL bSelect)
 	CharPosToPoint( m_ptCursorPos.y, m_ptCursorPos.x, subLinePos );
 
 	int nSubLine = GetSubLineIndex( m_ptCursorPos.y ) + subLinePos.y + GetScreenLines() - 1;
+
+	if (nSubLine < nNewTopSubLine || nSubLine >= nNewTopSubLine + GetScreenLines())
+		nSubLine = nNewTopSubLine + GetScreenLines() - 1;
 
 	if( nSubLine > nSubLineCount - 1 )
 		nSubLine = nSubLineCount - 1;

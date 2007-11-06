@@ -4,6 +4,8 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.5
   Bugfix: Don't enable merge GUI for ignored differences (#1826375)
+  BugFix: PgUp key caused the error message "An invalid argument was
+    encountered" when word-wrap mode was on (#1820631)
   Add Croatian translation (#1820308)
   Translation updates:
   - Chinese Traditional (#1824691)
