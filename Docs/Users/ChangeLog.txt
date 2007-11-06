@@ -6,6 +6,9 @@ WinMerge 2.7.5.5
   Bugfix: Don't enable merge GUI for ignored differences (#1826375)
   BugFix: PgUp key caused the error message "An invalid argument was
     encountered" when word-wrap mode was on (#1820631)
+  BugFix: Keep selected items visible in Folder Compare columns dialog (r4715)
+  BugFix: Disable Folder Compare column selection dialog's up/down buttons
+    when first/last items are selected (r4716)
   Add Croatian translation (#1820308)
   Translation updates:
   - Chinese Traditional (#1824691)
