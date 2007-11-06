@@ -5084,7 +5084,9 @@ OnEditFind ()
     }
   else
     {
-      CPoint ptCursorPos = GetCursorPos (), ptStart = WordToLeft (ptCursorPos), ptEnd = WordToRight (ptCursorPos);
+      CPoint ptCursorPos = GetCursorPos ();
+      CPoint ptStart = WordToLeft (ptCursorPos);
+      CPoint ptEnd = WordToRight (ptCursorPos);
       if (IsValidTextPos (ptStart) && IsValidTextPos (ptEnd) && ptStart != ptEnd)
         GetText (ptStart, ptEnd, dlg.m_sText);
     }
