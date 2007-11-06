@@ -19,4 +19,7 @@ enum MERGE_LINEFLAGS
 // WINMERGE_FLAGS is MERGE_LINEFLAGS | GHOST_LINEFLAGS | LF_TRIVIAL | LF_MOVED
 #define LF_WINMERGE_FLAGS    0x01E00000
 
+// Flags for non-ignored difference
+#define LF_NONTRIVIAL_DIFF (LF_DIFF & (~LF_TRIVIAL))
+
 #endif // MergeLineFlags_h_included

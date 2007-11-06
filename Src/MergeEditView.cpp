@@ -1176,7 +1176,8 @@ void CMergeEditView::OnUpdateL2r(CCmdUI* pCmdUI)
 			pCmdUI->Enable(TRUE);
 		else
 		{
-			if (GetDocument()->GetCurrentDiff() != -1)
+			const int currDiff = GetDocument()->GetCurrentDiff();
+			if (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff))
 				pCmdUI->Enable(TRUE);
 			else
 				pCmdUI->Enable(m_bCurrentLineIsDiff);
@@ -1253,7 +1254,8 @@ void CMergeEditView::OnUpdateR2l(CCmdUI* pCmdUI)
 			pCmdUI->Enable(TRUE);
 		else
 		{
-			if (GetDocument()->GetCurrentDiff() != -1)
+			const int currDiff = GetDocument()->GetCurrentDiff();
+			if (currDiff != -1 && GetDocument()->m_diffList.IsDiffSignificant(currDiff))
 				pCmdUI->Enable(TRUE);
 			else
 				pCmdUI->Enable(m_bCurrentLineIsDiff);
@@ -1738,8 +1740,7 @@ void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
  * since we want to show how many chars there are and tab is just one
  * character although it expands to several spaces.
  */
-void CMergeEditView::
-OnUpdateCaret()
+void CMergeEditView::OnUpdateCaret()
 {
 	if (m_piMergeEditStatus && IsTextBufferInitialized())
 	{
@@ -1780,7 +1781,7 @@ OnUpdateCaret()
 			curChar, chars, sEol);
 
 		// Is cursor inside difference?
-		if (dwLineFlags & LF_WINMERGE_FLAGS)
+		if (dwLineFlags & LF_NONTRIVIAL_DIFF)
 			m_bCurrentLineIsDiff = TRUE;
 		else
 			m_bCurrentLineIsDiff = FALSE;

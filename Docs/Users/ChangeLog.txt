@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.5
+  Bugfix: Don't enable merge GUI for ignored differences (#1826375)
   Add Croatian translation (#1820308)
   Translation updates:
   - Chinese Traditional (#1824691)
