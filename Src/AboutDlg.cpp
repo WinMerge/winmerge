@@ -20,7 +20,7 @@
  * @brief Implementation of the About-dialog.
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -31,7 +31,7 @@
 #include "coretools.h"
 
 
-// URL for hyperlink in About-dialog
+/** URL for hyperlink in About-dialog. */
 static const TCHAR WinMergeURL[] = _T("http://winmerge.org");
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialog)
@@ -42,8 +42,6 @@ END_MESSAGE_MAP()
 
 CAboutDlg::CAboutDlg() : CDialog(CAboutDlg::IDD)
 {
-	//{{AFX_DATA_INIT(CAboutDlg)
-	//}}AFX_DATA_INIT
 }
 
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)

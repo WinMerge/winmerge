@@ -19,7 +19,7 @@
  *
  * @brief Declaration file for VSSHelper
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _VSSHELPER_H_
