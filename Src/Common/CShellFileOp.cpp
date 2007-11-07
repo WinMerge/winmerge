@@ -24,6 +24,19 @@
 //  Fix from author, applied to WinMerge CVS by Kimmo Varis
 //
 //////////////////////////////////////////////////////////////////////
+//
+// Change by Kimmo Varis, 2007-11-07, for WinMerge:
+//  - use HWND instead of CWnd* as SetOperationFlags methods' parameter
+//
+//////////////////////////////////////////////////////////////////////
+
+/**
+ * @file  CShellFileOp.cpp
+ *
+ * @brief Implementation file for CShellFileOp class.
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
 #include "shlobj.h"
@@ -178,7 +191,7 @@ const CStringList& CShellFileOp::GetDestFileList()
 //
 // Input:
 //  uOpType: [in] FO_COPY, FO_DELETE, FO_MOVE, or FO_RENAME.
-//  pWnd: [in] Pointer to the CWnd which will the parent window for any UI that
+//  hWnd: [in] Handle to the window which will the parent window for any UI that
 //             the shell displays during the operation.
 //  Along with a bunch of other flags whose names I hope are self-explanatory.
 //  They're explained in full in the documentation.
@@ -189,7 +202,7 @@ const CStringList& CShellFileOp::GetDestFileList()
 /////////////////////////////////////////////////////////////////////////////
 
 void CShellFileOp::SetOperationFlags ( UINT  uOpType,
-                                       CWnd* pWnd,
+                                       HWND  hWnd,
                                        BOOL  bSilent,
                                        BOOL  bAllowUndo,
                                        BOOL  bWildcardFilesOnly,
@@ -205,13 +218,13 @@ FILEOP_FLAGS fFlags = 0;
 
     ASSERT ( uOpType == FO_COPY  ||  uOpType == FO_DELETE  ||
              uOpType == FO_MOVE  ||  uOpType == FO_RENAME );
-    ASSERT_VALID ( pWnd );
+    ASSERT ( IsWindow(hWnd) );
 
                                         // store the op type
     m_rFOS.wFunc = uOpType;
 
                                         // store the parent window
-    m_rFOS.hwnd = pWnd->GetSafeHwnd();
+    m_rFOS.hwnd = hWnd;
 
                                         // set the various flags...
     if ( bSilent )                  fFlags |= FOF_SILENT;
@@ -237,7 +250,7 @@ FILEOP_FLAGS fFlags = 0;
 //
 // Input:
 //  uOpType: [in] FO_COPY, FO_DELETE, FO_MOVE, or FO_RENAME.
-//  pWnd: [in] Pointer to the CWnd which will the parent window for any UI that
+//  hWnd: [in] Handle to the window which will the parent window for any UI that
 //             the shell displays during the operation.
 //  fFlags: [in] Any legal combination of the FOF_* flags.  See the docs for
 //               SHFileOperation() for info on the flags.
@@ -247,20 +260,20 @@ FILEOP_FLAGS fFlags = 0;
 //
 /////////////////////////////////////////////////////////////////////////////
 
-void CShellFileOp::SetOperationFlags ( UINT uOpType, CWnd* pWnd,
+void CShellFileOp::SetOperationFlags ( UINT uOpType, HWND hWnd,
                                        FILEOP_FLAGS fFlags )
 {
     // Validate the op type.  If this assert fires, check the operation
     // type param that you're passing in.
     ASSERT ( uOpType == FO_COPY  ||  uOpType == FO_DELETE  ||
              uOpType == FO_MOVE  ||  uOpType == FO_RENAME );
-    ASSERT_VALID ( pWnd );
+    ASSERT ( IsWindow(hWnd) );
 
                                         // store the op type
     m_rFOS.wFunc = uOpType;
 
                                         // store the parent window
-    m_rFOS.hwnd = pWnd->GetSafeHwnd();
+    m_rFOS.hwnd = hWnd;
 
                                         // store the op flags
     m_rFOS.fFlags = fFlags;

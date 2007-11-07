@@ -21,6 +21,20 @@
 //  statements now allocate BYTEs instead of TCHARs.
 //
 //////////////////////////////////////////////////////////////////////
+//
+// Change by Kimmo Varis, 2007-11-07, for WinMerge:
+//  - use HWND instead of CWnd* as SetOperationFlags methods' parameter
+//
+//////////////////////////////////////////////////////////////////////
+
+/**
+ * @file  CShellFileOp.h
+ *
+ * @brief Declaration file for CShellFileOp class.
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
+
 
 #ifndef __CSHELLFILEOP_H__
 #define __CSHELLFILEOP_H__
@@ -53,7 +67,7 @@ public:
 
     void SetOperationFlags (
         UINT  uOpType,
-        CWnd* pWnd,
+        HWND  hWnd,
         BOOL  bSilent,
         BOOL  bAllowUndo,
         BOOL  bWildcardFilesOnly,
@@ -62,7 +76,7 @@ public:
         BOOL  bRenameOnCollision,
         BOOL  bSimpleProgressDlg );
 
-    void SetOperationFlags ( UINT uOpType, CWnd* pWnd, FILEOP_FLAGS fFlags );
+    void SetOperationFlags ( UINT uOpType, HWND hWnd, FILEOP_FLAGS fFlags );
 
     void SetProgressDlgTitle ( LPCTSTR szTitle );
 

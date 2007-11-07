@@ -97,7 +97,7 @@ public:
 	FileActionScript();
 	~FileActionScript();
 
-	void SetParentWindow(CWnd * pWnd);
+	void SetParentWindow(HWND hWnd);
 	void UseRecycleBin(BOOL bUseRecycleBin);
 	BOOL Run();
 
@@ -122,7 +122,7 @@ private:
 	CShellFileOp * m_pDelOperations; /**< Delete operations. */
 	BOOL m_bHasDelOperations; /**< flag if we've put anything into m_pDelOperations */
 	BOOL m_bUseRecycleBin; /**< Use recycle bin for script actions? */
-	CWnd * m_pParentWindow; /**< Parent window for showing messages */
+	HWND m_hParentWindow; /**< Parent window for showing messages */
 };
 
 #endif // _FILEACTIONSCRIPT_H_

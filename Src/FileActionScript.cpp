@@ -19,7 +19,7 @@
  *
  * @brief Implementation of FileActionScript and related classes
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -38,6 +38,7 @@ FileActionScript::FileActionScript()
 , m_bHasCopyOperations(FALSE)
 , m_bHasMoveOperations(FALSE)
 , m_bHasDelOperations(FALSE)
+, m_hParentWindow(NULL)
 {
 	m_pCopyOperations = new CShellFileOp();
 	m_pMoveOperations = new CShellFileOp();
@@ -56,11 +57,11 @@ FileActionScript::~FileActionScript()
 
 /**
  * @brief Set parent window used for showing MessageBoxes.
- * @param [in] pWnd Pointer to parent window.
+ * @param [in] hnd Handle to parent window.
  */
-void FileActionScript::SetParentWindow(CWnd * pWnd)
+void FileActionScript::SetParentWindow(HWND hWnd)
 {
-	m_pParentWindow = pWnd;
+	m_hParentWindow = hWnd;
 }
 
 /**
@@ -182,7 +183,7 @@ int FileActionScript::CreateOperationsScripts()
 	}
 	
 	if (m_bHasCopyOperations)
-		m_pCopyOperations->SetOperationFlags(operation, m_pParentWindow, operFlags);
+		m_pCopyOperations->SetOperationFlags(operation, m_hParentWindow, operFlags);
 
 	// Move operations next
 	operation = FO_MOVE;
@@ -202,7 +203,7 @@ int FileActionScript::CreateOperationsScripts()
 		}
 	}
 	if (m_bHasMoveOperations)
-		m_pMoveOperations->SetOperationFlags(operation, m_pParentWindow, operFlags);
+		m_pMoveOperations->SetOperationFlags(operation, m_hParentWindow, operFlags);
 
 	// Delete operations last
 	operation = FO_DELETE;
@@ -223,7 +224,7 @@ int FileActionScript::CreateOperationsScripts()
 		}
 	}
 	if (m_bHasDelOperations)
-		m_pDelOperations->SetOperationFlags(operation, m_pParentWindow, operFlags);
+		m_pDelOperations->SetOperationFlags(operation, m_hParentWindow, operFlags);
 	return SCRIPT_SUCCESS;
 }
 

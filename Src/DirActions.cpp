@@ -761,7 +761,7 @@ void CDirView::ConfirmAndPerformActions(FileActionScript & actionList, int selCo
 
 	// Set parent window so modality is correct and correct window gets focus
 	// after dialogs.
-	actionList.SetParentWindow(this);
+	actionList.SetParentWindow(this->GetSafeHwnd());
 	
 	if (!ConfirmActionList(actionList, selCount))
 		return;
@@ -866,7 +866,7 @@ void CDirView::PerformActionList(FileActionScript & actionScript)
 	else
 		actionScript.UseRecycleBin(FALSE);
 
-	actionScript.SetParentWindow(this);
+	actionScript.SetParentWindow(this->GetSafeHwnd());
 
 	if (actionScript.Run())
 		UpdateAfterFileScript(actionScript);
@@ -1438,7 +1438,7 @@ BOOL CDirView::RenameOnSameDir(LPCTSTR szOldFileName, LPCTSTR szNewFileName)
 		{
 			CShellFileOp fileOp;
 
-			fileOp.SetOperationFlags(FO_RENAME, this, 0);
+			fileOp.SetOperationFlags(FO_RENAME, this->GetSafeHwnd(), 0);
 			fileOp.AddSourceFile(szOldFileName);
 			fileOp.AddDestFile(sFullName.c_str());
 			
