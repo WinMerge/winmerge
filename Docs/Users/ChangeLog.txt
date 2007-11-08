@@ -8,6 +8,7 @@ WinMerge 2.7.5.5
     encountered" when word-wrap mode was on (#1820631)
   BugFix: Keep selected items visible in Folder Compare columns dialog (r4715)
   BugFix: Disable Folder Compare column selection dialog's up/down buttons
+  BugFix: Many translation-system related fixes and improvements (#1804762)
     when first/last items are selected (r4716)
   Add Croatian translation (#1820308)
   Translation updates:
