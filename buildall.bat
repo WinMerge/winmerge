@@ -1,47 +1,33 @@
-: WinMerge build "script" using devenv commandline to build
+: WinMerge build "script" using Visual Studio commandline to build
 : all needed WinMerge files. This batch must be run from Visual Studio
 : command prompt or vcvars32.bat must be run first!
 
-: Building language files requires you have compiled language compiler
-: from Tools\MakeResDll and copied the MakeResDll.exe from
-: Build\mergerelease to Src\Languages folder.
-
-: !!!NOTENOTE!!!
-: If you are using VS2003.Net or VS2005, you'll need to convert project
-: files to new format before this batch file can be used. Converting is
-: done when the project file is first time opened in Visual Studio.
-: So you'll need to open these project files once to get them converted:
-: Externals\expat\lib\expat.dsp
-: Externals\scew\win32\scew.dsp
-: Externals\pcre\dll_pcre\pcre.dsp
-: Src\Merge.dsp
+: $Id: $
 
 @echo off
 
-: Build dependencies first in this order:
-: 1. expat
-: 2. SCEW
-: 3. PCRE
-: Note that expat MUST be compiled before SCEW!
-:
 : Projects contain proper dependencies, so all needed projects are
-: compiled by compiling the main project.
+: compiled by compiling the main project. Also, WinMerge project file
+: calls Src/PreLink.bat and Src/PostBuild.bat to compile all dependent
+: libraries and copy files to Build folder.
 
-: Build expat
-devenv Externals\expat\lib\expat.dsp /rebuild Release
+: Remove temp files
+del /S /Q  BuildTmp
 
-: Build SCEW
-devenv Externals\scew\win32\scew.dsp /rebuild Release
+: Remove expat build files
+del /S /Q Externals\expat\lib\Release
 
-: Build PCRE
-devenv Externals\pcre\dll_pcre\pcre.dsp /rebuild Release
+: Remove pcre build files
+del /S /Q Externals\pcre\bin
+del /S /Q Externals\pcre\dll_pcre\o
+del /S /Q Externals\pcre\lib_pcre\o
+del /S /Q Externals\pcre\lib_pcreposix\o
+del /S /Q Externals\pcre\pcretest\o
+
+: Remove scew build files
+del /S /Q Externals\scew\win32\lib
+del /S /Q Externals\scew\win32\obj
 
 : Build WinMerge executables
 devenv Src\Merge.dsp /rebuild Release
 devenv Src\Merge.dsp /rebuild UnicodeRelease
-
-: Build language files
-cd Src\Languages
-call BuildAll.bat
-cd ..\..
-
