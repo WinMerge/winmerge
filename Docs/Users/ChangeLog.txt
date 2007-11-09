@@ -2,14 +2,18 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.5.6
+  BugFix: When copying files to VCS system, destination file was
+    not checked out (#1828930)
+
 WinMerge 2.7.5.5 - 2007-11-08 (r4722)
   Bugfix: Don't enable merge GUI for ignored differences (#1826375)
   BugFix: PgUp key caused the error message "An invalid argument was
     encountered" when word-wrap mode was on (#1820631)
   BugFix: Keep selected items visible in Folder Compare columns dialog (r4715)
   BugFix: Disable Folder Compare column selection dialog's up/down buttons
-  BugFix: Many translation-system related fixes and improvements (#1804762)
     when first/last items are selected (r4716)
+  BugFix: Many translation-system related fixes and improvements (#1804762)
   Add Croatian translation (#1820308)
   Translation updates:
   - Chinese Traditional (#1824691)

@@ -140,14 +140,17 @@ int FileActionScript::CreateOperationsScripts()
 	POSITION pos = m_actions.GetHeadPosition();
 	while (pos != NULL && bContinue == TRUE)
 	{
-		// Handle VCS checkout first
 		BOOL bSkip = FALSE;
 		const FileActionItem act = m_actions.GetNext(pos);
 		if (act.atype == FileAction::ACT_COPY && !act.dirflag)
 		{
+			// Handle VCS checkout
+			// Before we can write over destination file, we must unlock
+			// (checkout) it. This also notifies VCS system that the file
+			// has been modified.
 			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != VCS_NONE)
 			{
-				int retVal = VCSCheckOut(act.src.c_str(), bApplyToAll);
+				int retVal = VCSCheckOut(act.dest.c_str(), bApplyToAll);
 				if (retVal == SCRIPT_USERCANCEL)
 					bContinue = FALSE;
 				else if (retVal == SCRIPT_USERSKIP)
