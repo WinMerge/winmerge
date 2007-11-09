@@ -64,6 +64,69 @@ WinMerge 2.7.5.1 - 2007-08-16
   - Slovak (r4413)
   - Swedish (r4412)
 
+WinMerge 2.7.3.3 - 2007-04-04 (r4234)
+  Tabbed interface (#1603292)
+  Enable shell integration for folder backgrounds (#1693113)
+  Allow selecting syntax highlighting (#1690346)
+  New C# development file filter (#1689854)
+  Icon updates (#1686279, #1692097)
+  Bugfix: compare by date and by size broken in 2.7.3.2 (#1693441)
+  Bugfix: Open-dialog file filter failed if modified (#1693275)
+  Translation updates:
+  - Swedish (#1689515)
+
+WinMerge 2.7.3.2 - 2007-03-27 (r4201)
+  Several fixes to line difference highlighting (#1491334, #1683061, #1639453)
+  Icon updates (#1684865)
+  Printing improvement (#1687430)
+  Language files size reduced (#1687661, #1687983, #1688012)
+  Bugfix: 2.7.3.1 binary file compare crash (#1687966)
+  Bugfix: long linefilters now restored correctly (#1680920)
+  Translation updates:
+  - Japanese
+
+WinMerge 2.7.3.1 - 2007-03-20 (r4179)
+  New copy confirmation dialog in folder compare (#1675087, #1683842)
+  Improved line filter dialog (#1682475)
+  Installer/uninstaller icons restored to default icons
+  Some icon updates (#1680209)
+  Bugfix: folder compare lost focus after confirmation dialog (#1670991)
+  Bugfix: crash comparing empty folders (#1675211)
+  Translation updates:
+  - Czech
+  - French (#1664689)
+  - Polish (#1673082)
+  - Swedish (#1673908, #1678676, #1683289)
+
+WinMerge 2.7.2 - 2007-02-27 (r4137)
+  Fix ShellExtension installation bug 
+  Translation updates:
+  - Czech
+  - German (#1667564)
+  - French (#1664689)
+
+WinMerge 2.7.1.7 - 2007-02-20 (r4120)
+  Folder compare threading improvement - should be faster in many
+    situations (#1662002)
+  New options for backup file location and naming (#1652696)
+  Syntax highlighting for CSS files (#1582537)
+  Allow to hide folder compare margins (View/View Margins) (#1663798)
+  Translation updates:
+  - Czech
+  - Polish (#1650831)
+  - Swedish (#1657664)
+
+WinMerge 2.7.1.6 - 2007-02-01 (r4094)
+  New post-compare line filters for folder compare (#1644820)
+  Optimization for word wrap code (#1640741)
+  Bugfix: 2.7.1.5 forgets selected filter (#1637433)
+  Bugfix: limiting to single file compare window now works more
+    logically (#1636314)
+  Bugfix: ANSI regular expressions didn't work (#1644668)
+  Translation updates:
+  - Bulgarian (#1639493)
+  - Catalan (#1646638)
+  - Swedish (#1634968)
 
 WinMerge 2.7.1.5 - 2007-01-10 (r4030)
   New line filter implementation (please test and report bugs!) (#1593810)
@@ -74,7 +137,6 @@ WinMerge 2.7.1.5 - 2007-01-10 (r4030)
   Bugfix: wrong text selection after pane switch in file compare (#1630630)
   Bugfix: crash when editing space-char indented files (#1631613)
   Manual updates
-
 
 WinMerge 2.7.1.4 - 2006-12-21 (r3991)
   Match lines inside differences (#1447744)
@@ -90,7 +152,6 @@ WinMerge 2.7.1.4 - 2006-12-21 (r3991)
   Swedish translation update (#1614442)
   Manual updates
 
-
 WinMerge 2.7.1.3 - 2006-12-05 (r3919)
   Now hides skipped items by default (#1604078)
   Improved INI file syntax highlighting (#1607193)
@@ -105,14 +166,12 @@ WinMerge 2.7.1.3 - 2006-12-05 (r3919)
   Manual updates
   Slovak translation update (#1606496)
 
-
 WinMerge 2.7.1.2 - 2006-11-24 (r3844)
   close WinMerge if Open-dialog is canceled when started
     from command line (#1600714)
   BugFix: project files didn't work (loaded right-side path
     for both sides) (#1600000)
   BugFix: location pane misdrawn when word-wrap enabled (#1584068)
-
 
 WinMerge 2.7.1.1 - 2006-11-16 (r3810)
   Use expat + scew for XML handling (partially converted) (1587574)
