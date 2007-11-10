@@ -45,13 +45,13 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
  * Text is right-aligned, so reserve space to left side for longer text.
  * @note Translations may have language name after version number.
  */
-static const CRect VersionTextArea(255, 5, 469, 20);
+static const RECT VersionTextArea = { 255, 5, 469, 20 };
 
 /** @brief Area for developers list. */
-static const CRect DevelopersArea(20, 88, 190, 210);
+static const RECT DevelopersArea = { 20, 88, 190, 210 };
 
 /** @brief Area for copyright text. */
-static const CRect CopyrightArea(20, 210, 190, 330);
+static const RECT CopyrightArea = { 20, 210, 190, 330 };
 
 /** @brief ID for the timer closing splash screen. */
 static const UINT_PTR SplashTimerID = 1;
@@ -224,7 +224,7 @@ void CSplashWnd::OnPaint()
 	LangFormatString1(s, IDS_VERSION_FMT, sVersion);
 	dc.SetBkMode(TRANSPARENT);
 	
-	CRect area = VersionTextArea;
+	RECT area = VersionTextArea;
 	dc.DrawText(s, &area, DT_RIGHT | DT_TOP);
 
 	fontSuccess = textFont.CreateFont(fontHeight, 0, 0, 0, 0, FALSE, FALSE,
@@ -239,13 +239,18 @@ void CSplashWnd::OnPaint()
 			dc.SelectObject(&textFont);
 	}
 
-	CString text;
-	VERIFY(text.LoadString(IDS_SPLASH_DEVELOPERS));
+	String text = LoadResString(IDS_SPLASH_DEVELOPERS);
+	// Turn spaces between parts of names into non-breaking spaces
+	for (TCHAR *p = &*text.end() ; p > &*text.begin() && *p != '\n' ; --p)
+	{
+		if (*p == _T('\x20') && p[-1] != _T(','))
+			*p = _T('\xA0');
+	}
 	area = DevelopersArea;
-	dc.DrawText(text, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
-	VERIFY(text.LoadString(IDS_SPLASH_GPLTEXT));
+	dc.DrawText(text.c_str(), &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	text = LoadResString(IDS_SPLASH_GPLTEXT);
 	area = CopyrightArea;
-	dc.DrawText(text, &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	dc.DrawText(text.c_str(), &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
 
 	if (oldfont != NULL)
 		dc.SelectObject(oldfont);
