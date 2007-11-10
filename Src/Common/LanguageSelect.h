@@ -36,14 +36,11 @@ class CLanguageSelect : public CDialog
 public:
 	void SetModuleHandle(HMODULE hModule) { m_hModule = hModule; }
 	CLanguageSelect(UINT idMainMenu, UINT idDocMenu, BOOL bReloadMenu =TRUE, BOOL bUpdateTitle =TRUE, CWnd* pParent = NULL);   // standard constructor
-	UINT GetAvailLangCount();
 	BOOL AreLangsInstalled() const;
-	void GetAvailLangs( CWordArray& uiLanguageAry, CStringArray& DllFileNameAry );	   
 	WORD GetLangId() { return m_wCurLanguage; };
 	void InitializeLanguage();
-	CString GetDllName (WORD LangId );
-	void	UpdateDocTitle();
-	void	ReloadMenu();
+	void UpdateDocTitle();
+	void ReloadMenu();
 	CLogFile *m_pLog;
 	void SetLogFile(CLogFile* pLog) { m_pLog = pLog; }
 
@@ -58,30 +55,21 @@ public:
 // Implementation data
 private:
 	prdlg::CMoveConstraint m_constraint; 
-	CWordArray   m_wLangIds;
 	BOOL m_bReloadMenu;
 	BOOL m_bUpdateTitle;
 	HMODULE m_hModule;
 	UINT m_idMainMenu;
 	UINT m_idDocMenu;
-	HINSTANCE  m_hCurrentDll;
-	WORD	   m_wCurLanguage;
-	CStringArray m_DllFileNameAry;
+	HINSTANCE m_hCurrentDll;
+	LANGID m_wCurLanguage;
 	std::vector<std::string> m_strarray;
 	unsigned m_codepage;
 // Implementation methods
 private:
-	int GetLanguageArrayIndex( WORD LangId );
-	BOOL    LoadResourceDLL(LPCTSTR lpDllFileName = NULL);
-	BOOL    SetLanguage(WORD LangId, bool override=false);
-	BOOL    SetLanguageOverride(WORD LangId) { return SetLanguage(LangId, true); }
-	void    GetDllsAt( LPCTSTR SearchPath, CStringArray& DllAry );
-	BOOL    GetLanguage( const CString& DllName, WORD& uiLanguage ) ;
-	UINT    GetDocResId();
-	CString GetPath( LPCTSTR FileName) const;
-	CString GetLanguagePath(LPCTSTR FileName) const;
-	String GetLanguageString( WORD LangId );
-	CString GetNativeLanguageNameString( int idx );
+	String GetFileName(LANGID);
+	BOOL LoadLanguageFile(LANGID);
+	BOOL SetLanguage(LANGID);
+	UINT GetDocResId();
 	void LoadAndDisplayLanguages();
 
 // Dialog Data
