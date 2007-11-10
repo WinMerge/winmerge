@@ -56,7 +56,7 @@ WinMerge 2.7.5.2 - 2007-09-11 (r4528)
   Translation updates:
   - Traditional Chinese (r4473)
 
-WinMerge 2.7.5.1 - 2007-08-16
+WinMerge 2.7.5.1 - 2007-08-16 (r4440)
   HTML reports for file compare (#1739209)
   Ask confirmation when exiting with multiple windows open (#1757800)
   Translation updates:
@@ -67,6 +67,49 @@ WinMerge 2.7.5.1 - 2007-08-16
   - Russian (r4421)
   - Slovak (r4413)
   - Swedish (r4412)
+
+WinMerge 2.7.4 - 2007-06-27 (r4352)
+  Batch-file syntax highlighting keywords cleanup (#1743504)
+  Bugfix: Archivesupport: Zip-->both didn't work correctly (#1734439)
+  Bugfix: Linediff didn't highlight whitespace differences (#1698781)
+  Bugfix: Copy confirmation dialog did show wrong To-path (#1740024)
+  Translation updates:
+  - Italian (#1737491)
+
+WinMerge 2.7.3.7 - 2007-06-14 (r4330)
+  New big toolbar (actual image instead of placeholder) (#1736520)
+  Bugfix: Fixes to folder compare copy/rename operations (#1730534)
+  Translation updates:
+  - Swedish (#1735635)
+
+WinMerge 2.7.3.6 - 2007-06-07 (r4321)
+  Recent project files in File-menu (#1731551)
+  Automatically import existing linefilters to new dialog (#1718040)
+  Bugfix: copy/delete of unique items failed in folder compare
+    in 2.7.3.5 (#1730534)
+  Bugfix: crashed when ESC was pressed while renaming item in
+    folder compare (#1705874)
+
+WinMerge 2.7.3.5 - 2007-05-31 (r4304)
+  Relax selecting parent folder restrictions (up arrow in folder compare) (#1727829)
+  Show a warning if item can't be found anymore in folder compare
+    and it is tried to access (copy/move/delete) (#1723778)
+  New Borland Delphi file filter (#1699783)
+  Gradient toolbar (#1717774)
+  Bugfix: could not create new file filters in 2.7.3.4 (#1719892)
+
+WinMerge 2.7.3.4 - 2007-05-15 (r4287)
+  Big (32x32) toolbar (image still placeholder) (#1698641)
+  Improve folder compare copy confirmation dialog (#1699585, #1700241)
+  New file filter for Symbian developers (#1694048)
+  Bugfix: several fixes to in-line difference highlight (#1694102, #1714088)
+  Bugfix: word wrap lose horizontal scrollbar (#1706476)
+  Bugfix: fixes to tabbed window control (#1718148)
+  Translation updates:
+  - German (#1701151)
+  - Japanese
+  - Korean (#1704904)
+  - Swedish (#1703350)
 
 WinMerge 2.7.3.3 - 2007-04-04 (r4234)
   Tabbed interface (#1603292)
@@ -190,5 +233,5 @@ WinMerge 2.7.1.1 - 2006-11-16 (r3810)
   BugFix: asked sometimes twice about saving modified files (#1596692)
 
 
-WinMerge 2.7.4 and earlier (also 2.6.x stable releases)
- See Changes.txt files in /Src and other folders.
+WinMerge 2.7.4 and earlier (also 2.6.x stable releases) have more detailed
+changelogs in Changes.txt files in /Src and other folders.
