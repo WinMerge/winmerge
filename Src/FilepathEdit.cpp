@@ -27,6 +27,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Merge.h"
 #include "BCMenu.h"
 #include "FilepathEdit.h"
 #include "Shlwapi.h"
@@ -259,6 +260,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 
 		BCMenu menu;
 		VERIFY(menu.LoadMenu(IDR_POPUP_EDITOR_HEADERBAR));
+		theApp.TranslateMenu(menu.m_hMenu);
 
 		BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 		ASSERT(pPopup != NULL);

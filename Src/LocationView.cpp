@@ -668,6 +668,7 @@ void CLocationView::OnContextMenu(CWnd* pWnd, CPoint point)
 	ScreenToClient(&pt);
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_LOCATIONBAR));
+	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 	ASSERT(pPopup != NULL);
