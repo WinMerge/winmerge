@@ -57,6 +57,7 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CWMGotoDlg)
+    virtual BOOL OnInitDialog();
 		// NOTE: the ClassWizard will add member functions here
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

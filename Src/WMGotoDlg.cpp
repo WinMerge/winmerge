@@ -44,6 +44,14 @@ CWMGotoDlg::CWMGotoDlg(CWnd* pParent /*=NULL*/)
 }
 
 
+BOOL CWMGotoDlg::OnInitDialog()
+{
+	theApp.TranslateDialog(m_hWnd);
+	CDialog::OnInitDialog();
+	return TRUE;
+}
+
+
 void CWMGotoDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
