@@ -57,7 +57,7 @@ void CSelectUnpackerDlg::Initialize()
 	automaticPlugin->lpDispatch = NULL;
 	automaticPlugin->filters = NULL;
 	automaticPlugin->name = theApp.LoadString(IDS_USERCHOICE_AUTOMATIC);
-	VERIFY(automaticPlugin->description.LoadString(ID_UNPACK_AUTO));
+	automaticPlugin->description = theApp.LoadString(ID_UNPACK_AUTO).c_str();
 
 	m_pPlugin = noPlugin;
 
