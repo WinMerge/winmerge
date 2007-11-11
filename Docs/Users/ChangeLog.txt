@@ -5,6 +5,8 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.7.5.6
   BugFix: When copying files to VCS system, destination file was
     not checked out (#1828930)
+  BugFix: Visible area indicator on location pane shook when clicking
+    above or below the vertical scroll bar to scroll one screen (#1829572)
 
 WinMerge 2.7.5.5 - 2007-11-08 (r4722)
   Bugfix: Don't enable merge GUI for ignored differences (#1826375)

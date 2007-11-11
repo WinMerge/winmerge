@@ -2575,56 +2575,18 @@ void CMergeEditView::OnWindowClose()
 void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
 	CCrystalTextView::OnVScroll (nSBCode, nPos, pScrollBar);
- 
+
+	if (nSBCode == SB_ENDSCROLL)
+		return;
+
 	// Note we cannot use nPos because of its 16-bit nature
 	SCROLLINFO si = {0};
 	si.cbSize = sizeof (si);
 	si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE | SIF_TRACKPOS;
 	VERIFY (GetScrollInfo (SB_VERT, &si));
 
-	// Get the minimum and maximum scroll-bar	positions.
-	int nMinPos =	si.nMin;
-	int nMaxPos =	si.nMax;
-
 	// Get the current position of scroll	box.
 	int nCurPos =	si.nPos;
-
-	switch (nSBCode)
-	{
-	case SB_TOP:			// Scroll to top.
-		nCurPos = nMinPos;
-		break;
-
-	case SB_BOTTOM:			// Scroll to bottom.
-		nCurPos = nMaxPos;
-		break;
-
-	case SB_LINEUP:			// Scroll one line up.
-		if (nCurPos > nMinPos)
-			nCurPos--;
-		break;
-
-	case SB_LINEDOWN:		// Scroll one line down.
-		if (nCurPos < nMaxPos)
-			nCurPos++;
-		break;
-
-	case SB_PAGEUP:			// Scroll one page up.
-		nCurPos = max(nMinPos, nCurPos - (int) si.nPage + 1);
-		break;
-
-	case SB_PAGEDOWN:		// Scroll one page down.
-		nCurPos = min(nMaxPos, nCurPos + (int) si.nPage - 1);
-		break;
-
-	case SB_THUMBPOSITION:		// Scroll to absolute position.	nPos is	the	position
-		nCurPos =	si.nTrackPos;	// of the scroll box at	the	end	of the drag	operation.
-		break;
-
-	case SB_THUMBTRACK:			// Drag	scroll box to specified	position. nPos is the
-		nCurPos =	si.nTrackPos;	// position	that the scroll	box	has	been dragged to.
-		break;
-	}
 	
 	UpdateLocationViewPosition(nCurPos, nCurPos + GetScreenLines());
 }
