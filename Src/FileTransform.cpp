@@ -70,7 +70,7 @@ extern LPCWSTR TransformationCategories[] =
 BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 {
 	// no handler : return true
-	if (handler.pluginName.IsEmpty())
+	if (handler.pluginName.empty())
 		return TRUE;
 
 	storageForPlugins bufferData;
@@ -79,9 +79,9 @@ BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName.c_str());
 	if (plugin == NULL)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName.c_str());
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler.bWithFile)
 	{
@@ -120,7 +120,7 @@ BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int * handlerSubcode)
 {
 	// no handler : return true
-	if (handler->pluginName.IsEmpty())
+	if (handler->pluginName.empty())
 		return TRUE;
 
 	storageForPlugins bufferData;
@@ -132,9 +132,9 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName.c_str());
 	if (plugin == NULL)
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName.c_str());
 	LPDISPATCH piScript = plugin->lpDispatch;
 	if (handler->bWithFile)
 	{
@@ -269,7 +269,7 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bMayOverwrite)
 {
 	// no handler : return true
-	if (handler.pluginName.IsEmpty())
+	if (handler.pluginName.empty())
 		return TRUE;
 
 	storageForPlugins bufferData;
@@ -281,10 +281,10 @@ BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bM
 	// control value
 	BOOL bHandled = FALSE;
 
-	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName);
+	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PREDIFF", handler.pluginName.c_str());
 	if (!plugin)
 	{
-		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName);
+		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PREDIFF", handler.pluginName.c_str());
 		if (!plugin)
 			return FALSE;
 	}

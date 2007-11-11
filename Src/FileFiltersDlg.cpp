@@ -295,11 +295,10 @@ void FileFiltersDlg::OnLvnItemchangedFilterfileList(NMHDR *pNMHDR, LRESULT *pRes
 	// If item got selected
 	if (pNMLV->uNewState & LVIS_SELECTED)
 	{
-		CString txtNone;
-		VERIFY(txtNone.LoadString(IDS_USERCHOICE_NONE));
+		String txtNone = theApp.LoadString(IDS_USERCHOICE_NONE);
 		CString txt = m_listFilters.GetItemText(pNMLV->iItem, 0);
 
-		bool isNone = (txt.CompareNoCase(txtNone) == 0);
+		bool isNone = txt.CompareNoCase(txtNone.c_str()) == 0;
 
 		EnableDlgItem(this, IDC_FILTERFILE_TEST_BTN, !isNone);
 		EnableDlgItem(this, IDC_FILTERFILE_EDITBTN, !isNone);
@@ -527,11 +526,10 @@ void FileFiltersDlg::UpdateFiltersList()
 
 	m_listFilters.DeleteAllItems();
 
-	CString title;
-	VERIFY(title.LoadString(IDS_USERCHOICE_NONE));
-	m_listFilters.InsertItem(1, title);
-	m_listFilters.SetItemText(0, 1, title);
-	m_listFilters.SetItemText(0, 2, title);
+	String title = theApp.LoadString(IDS_USERCHOICE_NONE);
+	m_listFilters.InsertItem(1, title.c_str());
+	m_listFilters.SetItemText(0, 1, title.c_str());
+	m_listFilters.SetItemText(0, 2, title.c_str());
 
 	for (int i = 0; i < count; i++)
 	{

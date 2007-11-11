@@ -83,9 +83,9 @@ void CConfigLog::WritePluginsInLogFile(LPCWSTR transformationEvent, CStdioFile &
 	{
 		PluginInfo & plugin = piPluginArray->ElementAt(iPlugin);
 		file.WriteString(_T("\n  "));
-		file.WriteString(plugin.name);
+		file.WriteString(plugin.name.c_str());
 		file.WriteString(_T(" ["));
-		file.WriteString(plugin.filepath);
+		file.WriteString(plugin.filepath.c_str());
 		file.WriteString(_T("]"));
 	}
 }

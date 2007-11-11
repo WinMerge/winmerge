@@ -793,7 +793,7 @@ PluginInfo * CScriptsOfThread::GetPluginByName(LPCWSTR transformationEvent, LPCT
 				m_aPluginsByEvent[i] = ::GetAvailableScripts(transformationEvent, bInMainThread());
 
 			for (int j = 0 ; j <  m_aPluginsByEvent[i]->GetSize() ; j++)
-				if (_tcscmp(m_aPluginsByEvent[i]->GetAt(j).name, name) == 0)
+				if (_tcscmp(m_aPluginsByEvent[i]->GetAt(j).name.c_str(), name) == 0)
 					return &(m_aPluginsByEvent[i]->ElementAt(j));
 		}
 	return NULL;
@@ -956,7 +956,7 @@ static void ShowPluginErrorMessage(LPDISPATCH piScript, LPTSTR description)
 	PluginInfo * pInfo = CAllThreadsScripts::GetActiveSet()->GetPluginInfo(piScript);
 	ASSERT(pInfo != NULL);
 	ASSERT (description != NULL);	
-	MessageBox(AfxGetMainWnd()->GetSafeHwnd(), description, pInfo->name, MB_ICONSTOP);
+	MessageBox(AfxGetMainWnd()->GetSafeHwnd(), description, pInfo->name.c_str(), MB_ICONSTOP);
 }
 
 /**

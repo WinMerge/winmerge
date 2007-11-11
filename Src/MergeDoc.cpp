@@ -1035,7 +1035,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	if (nSaveResult == SAVE_PACK_FAILED)
 	{
 		LangFormatString2(s, IDS_FILEPACK_FAILED_LEFT + nBuffer,
-			strPath, pInfoTempUnpacker->pluginName);
+			strPath, pInfoTempUnpacker->pluginName.c_str());
 		// replace the unpacker with a "do nothing" unpacker
 		pInfoTempUnpacker->Initialize(PLUGIN_MANUAL);
 	}

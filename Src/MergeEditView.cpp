@@ -1938,7 +1938,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == FALSE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
@@ -1946,7 +1946,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == FALSE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
 	}
 
 	// build the menu : second part, others plugins
@@ -1961,7 +1961,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == TRUE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
@@ -1969,7 +1969,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == TRUE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name);
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
 	}
 
 	// compute the m_CurrentPredifferID (to set the radio button)
@@ -1978,7 +1978,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 
 	if (prediffer.bToBeScanned)
 		m_CurrentPredifferID = 0;
-	else if (prediffer.pluginName.IsEmpty())
+	else if (prediffer.pluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 	else
 	{
@@ -2351,7 +2351,7 @@ void CMergeEditView::OnUpdatePrediffer(CCmdUI* pCmdUI)
 	}
 
 	// Detect when CDiffWrapper::RunFileDiff has canceled a buggy prediffer
-	if (prediffer.pluginName.IsEmpty())
+	if (prediffer.pluginName.empty())
 		m_CurrentPredifferID = ID_NO_PREDIFFER;
 
 	pCmdUI->SetRadio(pCmdUI->m_nID == m_CurrentPredifferID);
@@ -2436,7 +2436,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 /**
  * @brief Look through available prediffers, and return ID of requested one, if found
  */
-int CMergeEditView::FindPrediffer(const CString & prediffer) const
+int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 {
 	int i;
 	int ID = ID_PREDIFFERS_FIRST;
@@ -3130,10 +3130,8 @@ void CMergeEditView::OnUpdateViewChangeScheme(CCmdUI *pCmdUI)
 
 	for (int i = ID_COLORSCHEME_FIRST; i <= ID_COLORSCHEME_LAST; ++i)
 	{
-		CString name;
-		VERIFY(name.LoadString(i));
-
-		DoAppendMenu(hSubMenu, MF_STRING, i, name);
+		String name = theApp.LoadString(i);
+		DoAppendMenu(hSubMenu, MF_STRING, i, name.c_str());
 	}
 
 	pCmdUI->Enable(TRUE);

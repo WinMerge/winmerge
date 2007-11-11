@@ -207,7 +207,7 @@ protected:
 	virtual void OnUpdateSibling (CCrystalTextView * pUpdateSource, BOOL bHorz);
 	virtual void OnUpdateCaret();
 	BOOL MergeModeKeyDown(MSG* pMsg);
-	int FindPrediffer(const CString & prediffer) const;
+	int FindPrediffer(LPCTSTR prediffer) const;
 	BOOL IsDiffVisible(const DIFFRANGE& diff, int nLinesBelow = 0);
 
 	// Generated message map functions

@@ -201,7 +201,7 @@ BOOL COpenDlg::OnInitDialog()
 	if (!m_bOverwriteRecursive)
 		m_bRecurse = theApp.GetProfileInt(_T("Settings"), _T("Recurse"), 0) == 1;
 
-	m_strUnpacker = m_infoHandler.pluginName;
+	m_strUnpacker = m_infoHandler.pluginName.c_str();
 	UpdateData(FALSE);
 	SetStatus(IDS_OPEN_FILESDIRS);
 	SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
@@ -504,7 +504,7 @@ void COpenDlg::OnSelectUnpacker()
 	{
 		m_infoHandler = dlg.GetInfoHandler();
 
-		m_strUnpacker = m_infoHandler.pluginName;
+		m_strUnpacker = m_infoHandler.pluginName.c_str();
 
 		UpdateData(FALSE);
 	}

@@ -599,7 +599,7 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			PackingInfo * unpacker;
 			PrediffingInfo * prediffer;
 			GetDocument()->FetchPluginInfos(filteredFilenames, &unpacker, &prediffer);
-			if (prediffer->bToBeScanned == 1 || prediffer->pluginName.IsEmpty() == FALSE)
+			if (prediffer->bToBeScanned == 1 || !prediffer->pluginName.empty())
 				nPredifferYes ++;
 			else
 				nPredifferNo ++;
@@ -909,7 +909,7 @@ IsBinaryUnpacker(PackingInfo * infoUnpacker)
 {
 	if (!infoUnpacker)
 		return false;
-	if (!_tcsstr(infoUnpacker->pluginName, _T("BinaryFile")))
+	if (!_tcsstr(infoUnpacker->pluginName.c_str(), _T("BinaryFile")))
 		return false;
 	return true;
 }

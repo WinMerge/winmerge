@@ -82,12 +82,12 @@ public:
 		// and init bAutomatic flag and name according to global variable
 		if (bMode == PLUGIN_MANUAL)
 		{			
-			pluginName.Empty();
+			pluginName.erase();
 			bToBeScanned = FALSE;
 		}
 		else
 		{
-			VERIFY(pluginName.LoadString(IDS_USERCHOICE_AUTOMATIC));
+			pluginName = LoadResString(IDS_USERCHOICE_AUTOMATIC);
 			bToBeScanned = TRUE;
 		}
 	};
@@ -107,7 +107,7 @@ public:
 	/// TRUE if the plugin will be defined during the first use (through scan of all available plugins)
 	BOOL    bToBeScanned;
 	/// plugin name when it is defined
-	CString pluginName;
+	String pluginName;
 	/// TRUE is the plugins exchange data through a file, FALSE is the data is passed as parameter (BSTR/ARRAY)
 	BOOL    bWithFile;
 };

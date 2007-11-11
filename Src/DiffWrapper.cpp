@@ -690,11 +690,11 @@ BOOL CDiffWrapper::RunFileDiff()
 			// display a message box
 			CString sError;
 			LangFormatString2(sError, IDS_PREDIFFER_ERROR, strFile1Temp.c_str(),
-				m_infoPrediffer->pluginName);
+				m_infoPrediffer->pluginName.c_str());
 			AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 			// don't use any more this prediffer
 			m_infoPrediffer->bToBeScanned = FALSE;
-			m_infoPrediffer->pluginName.Empty();
+			m_infoPrediffer->pluginName.erase();
 		}
 	}
 
@@ -708,11 +708,11 @@ BOOL CDiffWrapper::RunFileDiff()
 		// display a message box
 		CString sError;
 		LangFormatString2(sError, IDS_PREDIFFER_ERROR, strFile2Temp.c_str(),
-			m_infoPrediffer->pluginName);
+			m_infoPrediffer->pluginName.c_str());
 		AfxMessageBox(sError, MB_OK | MB_ICONSTOP);
 		// don't use any more this prediffer
 		m_infoPrediffer->bToBeScanned = FALSE;
-		m_infoPrediffer->pluginName.Empty();
+		m_infoPrediffer->pluginName.erase();
 	}
 	FileTransform_UCS2ToUTF8(strFile2Temp, m_bPathsAreTemp);
 
