@@ -95,6 +95,9 @@ int xisspace (wint_t c);
 	/** @brief Load string from string resources; shortcut for CString::LoadString */
 String LoadResString(UINT id);
 
+	/** @brief Wrapper around CMergeApp::TranslateDialog() */
+void NTAPI LangTranslateDialog(HWND);
+
 	/** @brief Lang aware version of AfxFormatStrings() */
 void NTAPI LangFormatStrings(CString &, UINT, LPCTSTR const *, int);
 

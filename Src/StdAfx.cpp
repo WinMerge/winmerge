@@ -88,6 +88,14 @@ String LoadResString(UINT id)
 }
 
 /**
+ * @brief Wrapper around CMergeApp::TranslateDialog()
+ */
+void NTAPI LangTranslateDialog(HWND h)
+{
+	theApp.TranslateDialog(h);
+}
+
+/**
  * @brief Lang aware version of AfxFormatStrings()
  */
 void NTAPI LangFormatStrings(CString &rString, UINT id, LPCTSTR const *rglpsz, int nString)
