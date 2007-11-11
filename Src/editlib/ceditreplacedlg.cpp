@@ -150,6 +150,7 @@ OnCancel ()
 BOOL CEditReplaceDlg::
 OnInitDialog ()
 {
+  LangTranslateDialog(m_hWnd);
   CDialog::OnInitDialog ();
 
   m_ctlFindText.LoadState(_T("Files\\ReplaceInFile"));
