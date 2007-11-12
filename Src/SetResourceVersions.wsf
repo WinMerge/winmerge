@@ -29,6 +29,7 @@ End Function
 // Globals
 var ErrorFiles
 var SuccessCount
+var RunFromCmd
 
 Main();
 
@@ -37,6 +38,10 @@ Main();
  ***************************************************/
 function Main()
 {
+  RunFromCmd = false;
+  if (WScript.FullName.match(/cscript.exe/i)) {
+    RunFromCmd = true;
+  }
 
   // If more than one argument, abort
   if (WScript.Arguments.Unnamed.Count > 1)
@@ -106,7 +111,8 @@ function ProcessFiles(filelist, params)
   {
     var filepath = filelist[i].path;
     var filename = filelist[i].name;
-    WScript.Echo("Processing [" + filename + "]");
+    if(RunFromCmd) //If run from command line...
+      WScript.Echo("Processing [" + filename + "]");
     ProcessFile(filepath, filename, params);
   }
 }
@@ -384,8 +390,13 @@ function TestRegex(pattern)
  ***************************************************/
 function PopupBox(title, message, boxtype, timeout)
 {
-  var oShell = WScript.CreateObject("WScript.Shell");
-  return oShell.Popup(message, timeout, title, boxtype);
+  if(!RunFromCmd) //If NOT run from command line...
+  {
+    var oShell = WScript.CreateObject("WScript.Shell");
+    return oShell.Popup(message, timeout, title, boxtype);
+  }
+  else //If run from command line...
+    WScript.Echo(message);
 }
 
 /****************************************************
