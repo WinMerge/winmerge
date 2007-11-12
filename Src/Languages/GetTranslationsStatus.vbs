@@ -15,7 +15,7 @@ Dim oFSO, bRunFromCmd
 Set oFSO = CreateObject("Scripting.FileSystemObject")
 
 bRunFromCmd = False
-If (LCase(Right(Wscript.FullName, 11))) = "cscript.exe" Then
+If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
   bRunFromCmd = True
 End If
 
@@ -77,6 +77,19 @@ End Function
 Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
   Dim oStatus, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgId, sMsgStr, bFuzzy
+  Dim reMsgId, reMsgStr, reMsgContinued
+  
+  Set reMsgId = New RegExp
+  reMsgId.Pattern = "^msgid ""(.*)""$"
+  reMsgId.IgnoreCase = True
+  
+  Set reMsgStr = New RegExp
+  reMsgStr.Pattern = "^msgstr ""(.*)""$"
+  reMsgStr.IgnoreCase = True
+  
+  Set reMsgContinued = New RegExp
+  reMsgContinued.Pattern = "^""(.*)""$"
+  reMsgContinued.IgnoreCase = True
   
   Set oStatus = CreateObject("Scripting.Dictionary")
   
@@ -96,13 +109,16 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
       
       If (sLine <> "") Then 'If NOT empty line...
         If (Left(sLine, 1) <> "#") Then 'If NOT comment line...
-          If (Left(sLine, 7) = "msgid """) Then 'If "msgid"...
+          If reMsgId.Test(sLine) Then 'If "msgid"...
             iMsgStarted = 1
-            sMsgId = GetRegExpSubMatch(sLine, "^msgid ""(.*)""$")
-          ElseIf (Left(sLine, 8) = "msgstr """) Then 'If "msgstr"...
+            Set oMatch = reMsgId.Execute(sLine)(0)
+            sMsgId = oMatch.SubMatches(0)
+          ElseIf reMsgStr.Test(sLine) Then 'If "msgstr"...
             iMsgStarted = 2
-            sMsgStr = GetRegExpSubMatch(sLine, "^msgstr ""(.*)""$")
-          ElseIf (FoundRegExpMatch(sLine, "^""(.*)""$", oMatch) = True) Then 'If "msgid" or "msgstr" continued...
+            Set oMatch = reMsgStr.Execute(sLine)(0)
+            sMsgStr = oMatch.SubMatches(0)
+          ElseIf reMsgContinued.Test(sLine) Then 'If "msgid" or "msgstr" continued...
+            Set oMatch = reMsgContinued.Execute(sLine)(0)
             If (iMsgStarted = 1) Then
               sMsgId = sMsgId & oMatch.SubMatches(0)
             ElseIf (iMsgStarted = 2) Then
