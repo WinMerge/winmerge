@@ -2622,29 +2622,26 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 /**
  * @brief Shows VSS error from exception and writes log.
  */
-void CMainFrame::ShowVSSError(CException *e, CString strItem)
+void CMainFrame::ShowVSSError(CException *e, LPCTSTR strItem)
 {
-	CString errMsg;
-	CString logMsg;
 	TCHAR errStr[1024] = {0};
-
-	VERIFY(errMsg.LoadString(IDS_VSS_ERRORFROM));
 	if (e->GetErrorMessage(errStr, 1024))
 	{
-		logMsg = errMsg;
+		String errMsg = theApp.LoadString(IDS_VSS_ERRORFROM);
+		String logMsg = errMsg;
 		errMsg += _T("\n");
 		errMsg += errStr;
 		logMsg += _T(" ");
 		logMsg += errStr;
-		if (!strItem.IsEmpty())
+		if (*strItem)
 		{
 			errMsg += _T("\n\n");
 			errMsg += strItem;
 			logMsg += _T(": ");
 			logMsg += strItem;
 		}
-		LogErrorString(logMsg);
-		AfxMessageBox(errMsg, MB_ICONSTOP);
+		LogErrorString(logMsg.c_str());
+		AfxMessageBox(errMsg.c_str(), MB_ICONSTOP);
 	}
 	else
 	{

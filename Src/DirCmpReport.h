@@ -36,7 +36,7 @@ public:
 	void SetList(CListCtrl *pList);
 	void SetRootPaths(const PathContext &paths);
 	void SetColumns(int columns);
-	BOOL GenerateReport(CString &errStr);
+	BOOL GenerateReport(String &errStr);
 
 protected:
 	void GenerateReport(REPORT_TYPE nReportType);

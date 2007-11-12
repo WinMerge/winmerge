@@ -108,7 +108,7 @@ static ULONG GetLength32(CFile const &f)
  * @param [out] errStr Empty if succeeded, otherwise contains error message.
  * @return TRUE if report was created, FALSE if user canceled report.
  */
-BOOL DirCmpReport::GenerateReport(CString &errStr)
+BOOL DirCmpReport::GenerateReport(String &errStr)
 {
 	ASSERT(m_pList != NULL);
 	ASSERT(m_pFile == NULL);
@@ -166,7 +166,7 @@ BOOL DirCmpReport::GenerateReport(CString &errStr)
 			SplitFilename(dlg.m_sReportFile, &path, NULL, NULL);
 			if (!paths_CreateIfNeeded(path.c_str()))
 			{
-				VERIFY(errStr.LoadString(IDS_FOLDER_NOTEXIST));
+				errStr = LoadResString(IDS_FOLDER_NOTEXIST);
 				return FALSE;
 			}
 			CFile file(dlg.m_sReportFile,

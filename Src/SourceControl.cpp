@@ -54,7 +54,6 @@ CMainFrame::InitializeSourceControlMembers()
 BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 {
 	CFileStatus status;
-	CString s;
 	UINT userChoice = 0;
 	int nVerSys = 0;
 
@@ -87,8 +86,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			VERIFY(s.LoadString(IDS_VSS_CHECKOUT_STATUS));
-			WaitStatusCursor waitstatus(s);
+			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
 			m_vssHelper.SetProjectBase(dlg.m_strProject);
 			theApp.WriteProfileString(_T("Settings"), _T("VssProject"), m_vssHelper.GetProjectBase());
 			String path, name;
@@ -153,8 +151,7 @@ BOOL CMainFrame::SaveToVersionControl(CString& strSavePath)
 		// process versioning system specific action
 		if (userChoice == IDOK)
 		{
-			VERIFY(s.LoadString(IDS_VSS_CHECKOUT_STATUS));
-			WaitStatusCursor waitstatus(s);
+			WaitStatusCursor waitstatus(IDS_VSS_CHECKOUT_STATUS);
 			BOOL bOpened = FALSE;
 			m_vssHelper.SetProjectBase(dlg.m_strProject);
 			m_strVssUser = dlg.m_strUser;

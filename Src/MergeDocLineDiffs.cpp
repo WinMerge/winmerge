@@ -82,11 +82,9 @@ void CMergeDoc::Showlinediff(CMergeEditView * pView, DIFFLEVEL difflvl)
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
-		CString caption;
-		CString msg;
-		VERIFY(caption.LoadString(IDS_LINEDIFF_NODIFF_CAPTION));
-		VERIFY(msg.LoadString(IDS_LINEDIFF_NODIFF));
-		MessageBox(pView->GetSafeHwnd(), msg, caption, MB_OK);
+		String caption = theApp.LoadString(IDS_LINEDIFF_NODIFF_CAPTION);
+		String msg = theApp.LoadString(IDS_LINEDIFF_NODIFF);
+		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 		return;
 	}
 
@@ -105,11 +103,9 @@ void CMergeDoc::Showlinediff(CMergeDiffDetailView * pView, DIFFLEVEL difflvl)
 
 	if (rc1.top == -1 && rc2.top == -1)
 	{
-		CString caption;
-		CString msg;
-		VERIFY(caption.LoadString(IDS_LINEDIFF_NODIFF_CAPTION));
-		VERIFY(msg.LoadString(IDS_LINEDIFF_NODIFF));
-		MessageBox(pView->GetSafeHwnd(), msg, caption, MB_OK);
+		String caption = theApp.LoadString(IDS_LINEDIFF_NODIFF_CAPTION);
+		String msg = theApp.LoadString(IDS_LINEDIFF_NODIFF);
+		MessageBox(pView->GetSafeHwnd(), msg.c_str(), caption.c_str(), MB_OK);
 		return;
 	}
 

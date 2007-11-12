@@ -121,7 +121,7 @@ public:
 	void OpenFileToExternalEditor(LPCTSTR file);
 	void SetEOLMixed(BOOL bAllow);
 	void SelectFilter();
-	void ShowVSSError(CException *e, CString strItem);
+	void ShowVSSError(CException *e, LPCTSTR strItem);
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void UpdateCodepageModule();
 	void GetDirViews(DirViewList * pDirViews);

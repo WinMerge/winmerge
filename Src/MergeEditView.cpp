@@ -2501,9 +2501,8 @@ void CMergeEditView::OnUpdateMergingMode(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnUpdateMergingStatus(CCmdUI *pCmdUI)
 {
-	CString text;
-	VERIFY(text.LoadString(IDS_MERGEMODE_MERGING));
-	pCmdUI->SetText(text);
+	String text = theApp.LoadString(IDS_MERGEMODE_MERGING);
+	pCmdUI->SetText(text.c_str());
 	pCmdUI->Enable(GetDocument()->GetMergingMode());
 }
 

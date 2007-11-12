@@ -2436,13 +2436,13 @@ void CDirView::OnToolsGenerateReport()
 	PathContext paths(pDoc->GetLeftBasePath().c_str(), pDoc->GetRightBasePath().c_str());
 	report.SetRootPaths(paths);
 	report.SetColumns(m_dispcols);
-	CString errStr;
+	String errStr;
 	if (report.GenerateReport(errStr))
 	{
-		if (errStr.IsEmpty())
+		if (errStr.empty())
 			LangMessageBox(IDS_REPORT_SUCCESS, MB_OK | MB_ICONINFORMATION);
 		else
-			ResMsgBox1(IDS_REPORT_ERROR, errStr, MB_OK | MB_ICONSTOP);
+			ResMsgBox1(IDS_REPORT_ERROR, errStr.c_str(), MB_OK | MB_ICONSTOP);
 	}
 }
 
