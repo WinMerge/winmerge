@@ -2837,7 +2837,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		{
 			idres = IDS_LOSSY_TRANSCODING_RIGHT;
 		}
-		AfxMessageBox(idres, MB_ICONSTOP);
+		LangMessageBox(idres, MB_ICONSTOP);
 	}
 
 	// Now buffers data are valid
