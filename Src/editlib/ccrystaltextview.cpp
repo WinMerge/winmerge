@@ -5175,7 +5175,7 @@ OnEditRepeat ()
             (m_dwLastSearchFlags & FIND_NO_WRAP) == 0, &ptFoundPos))
         {
           CString prompt;
-          prompt.Format (IDS_EDIT_TEXT_NOT_FOUND, sText);
+          prompt.Format (LoadResString(IDS_EDIT_TEXT_NOT_FOUND).c_str(), sText);
           AfxMessageBox (prompt);
           return;
         }
