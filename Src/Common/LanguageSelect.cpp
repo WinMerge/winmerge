@@ -584,10 +584,10 @@ static void unslash(unsigned codepage, std::string &s)
 				*p = (char)strtol(r, &q, 16);
 				break;
 			default:
-				*p = (char)strtol(--r, &q, 8);
+				*p = (char)strtol(r - 1, &q, 8);
 				break;
 			}
-			if (q > r)
+			if (q >= r)
 				break;
 			// fall through
 		default:
