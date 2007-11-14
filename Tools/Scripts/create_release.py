@@ -36,8 +36,9 @@ svn_binary = 'C:\\Program Files\\Subversion\\bin\\svn.exe'
 vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003\\Common7\\IDE'
 # VS command
 vs_bin = 'devenv.com'
+# Relative path where to create a release folder
+dist_root_folder = '/WinMerge/Releases'
 
-dist_folder = '/WinMerge/Releases'
 
 from subprocess import *
 import os
@@ -103,14 +104,25 @@ def setup_translations():
     call(['cscript', 'Src/Languages/CreateMasterPotFile.vbs'])
     call(['cscript', 'Src/Languages/UpdatePoFilesFromPotFile.vbs'])
 
-def svn_export(folder):
+def get_and_create_dist_folder(folder):
+    """Formats a folder name for version-specific distribution folder
+    and creates the folder."""
+
+    dist_folder = os.path.join(dist_root_folder, folder)
+    os.mkdir(dist_folder)
+    return dist_folder
+
+def get_src_dist_folder(dist_folder, folder):
+    """Format a source distribution folder path."""
+
+    dist_src = os.path.join(dist_folder, folder + '-src')
+    return dist_src
+
+def svn_export(dist_src_folder):
     """Exports sources to distribution folder."""
 
-    exp_folder = os.path.join(dist_folder, folder)
-    os.mkdir(exp_folder)
-    src_folder = os.path.join(exp_folder, folder + '-src')
-    print 'Exporting sources to ' + src_folder
-    call([svn_binary, 'export', '--non-interactive', '.', src_folder] )
+    print 'Exporting sources to ' + dist_src_folder
+    call([svn_binary, 'export', '--non-interactive', '.', dist_src_folder] )
 
 def build_targets():
     """Builds all WinMerge targets."""
@@ -147,15 +159,17 @@ def build_shellext(vs_cmd):
 def build_manual():
     call(['Tools/Scripts/BuildManualChm.bat'])
 
-def create_bin_folders(dest_folder):
+def get_and_create_bin_folder(dist_folder, folder):
+    """Formats and creates binary distribution folder."""
+
+    bin_folder = os.path.join(dist_folder, folder + '-exe')
+    os.mkdir(bin_folder)
+    return bin_folder
+
+def create_bin_folders(bin_folder, dist_src_folder):
     """Creates binary distribution folders."""
 
     cur_path = os.getcwd()
-    exp_folder = os.path.join(dist_folder, dest_folder)
-    os.chdir(exp_folder)
-    bin_folder = os.path.join(exp_folder, dest_folder + '-exe')
-    os.mkdir(bin_folder)
-
     os.chdir(bin_folder)
     lang_folder = os.path.join(bin_folder, 'Languages')
     doc_folder = os.path.join(bin_folder, 'Docs')
@@ -178,11 +192,13 @@ def create_bin_folders(dest_folder):
     shutil.copy('build/expat/libexpat.dll', bin_folder)
 
     shutil.copytree('build/mergeunicoderelease/Languages', lang_folder, False)
-    shutil.copytree('Filters', filters_folder, False)
+    filter_orig = os.path.join(dist_src_folder, 'Filters')
+    shutil.copytree(filter_orig, filters_folder, False)
 
     # Copy compiled plugins dir and rename it
     plugin_dir = os.path.join(bin_folder, 'dlls')
-    shutil.copytree('Plugins/dlls', plugin_dir, False)
+    plugin_orig = os.path.join(dist_src_folder, 'Plugins/dlls')
+    shutil.copytree(plugin_orig, plugin_dir, False)
     os.rename(plugin_dir, plugins_folder)
 
     shutil.copy('build/Manual/htmlhelp/WinMerge.chm', doc_folder)
@@ -217,7 +233,9 @@ def main(argv):
     cleanup_build()
 
     version_folder = 'WinMerge-' + version
-    svn_export(version_folder)
+    dist_folder = get_and_create_dist_folder(version_folder)
+    dist_src_folder = get_src_dist_folder(dist_folder, version_folder)
+    svn_export(dist_src_folder)
 
     set_resource_version(version)
     setup_translations()
@@ -225,7 +243,8 @@ def main(argv):
     build_targets()
     build_manual()
     
-    create_bin_folders(version_folder)
+    dist_bin_folder = get_and_create_bin_folder(dist_folder, version_folder)
+    create_bin_folders(dist_bin_folder, dist_src_folder)
 
 
 ### MAIN ###
