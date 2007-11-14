@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-11-02 11:37+0100\n"
+"PO-Revision-Date: 2007-11-05 00:19+0100\n"
 "Last-Translator: Hasan Osmanagæ <hasan.osmanagic at public.carnet.hr>\n"
 "Language-Team: winmerge-translate <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -664,7 +664,7 @@ msgstr "Od&reži\tCtrl+X"
 #: Merge.rc:346
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "&Pohrani\tCtrl+C"
+msgstr "&Kopiraj\tCtrl+C"
 
 #: Merge.rc:347
 #, c-format
@@ -674,7 +674,7 @@ msgstr "&Zalijepi\tCtrl+V"
 #: Merge.rc:349
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Pokaži &razlike u retku\tF4"
+msgstr "Istakni &razliku\tF4"
 
 #: Merge.rc:352
 #, c-format
@@ -780,7 +780,7 @@ msgstr "&Zamijeni panele"
 #: Merge.rc:402
 #, c-format
 msgid "Diff &Pane"
-msgstr "Panel &razlièitosti"
+msgstr "Panel &razlika"
 
 #: Merge.rc:403
 #, c-format
@@ -5935,7 +5935,7 @@ msgid ""
 "Select difference area in the current line\n"
 "Difference in the Current Line"
 msgstr ""
-"Odabir razlike u aktivnom retku\n"
+"Isticanje razlike u aktivnom retku\n"
 "Razlike u aktivnom retku"
 
 #: Merge.rc:2744
@@ -6206,7 +6206,7 @@ msgid ""
 "Copy difference to right and advance to next\n"
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
-"Kopiraj razlike u desni i dalje u slijedeæi\n"
+"Kopiraj razliku u desno i idi na slijedeæu\n"
 "Kopiraj u desno i dalje (Ctrl+Alt+desno)"
 
 #: Merge.rc:2794
@@ -6215,7 +6215,7 @@ msgid ""
 "Copy difference to left and advance to next\n"
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
-"Kopiraj razlike u lijevi i dalje u slijedeæi\n"
+"Kopiraj razliku u lijevo i idi na slijedeæu\n"
 "Kopiraj u lijevo i dalje (Ctrl+Alt+lijevo)"
 
 #: Merge.rc:2795

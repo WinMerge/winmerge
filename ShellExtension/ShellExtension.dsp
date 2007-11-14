@@ -417,6 +417,11 @@ SOURCE=.\Languages\ShellExtensionChineseTraditional.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\Languages\ShellExtensionCroatian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
 SOURCE=.\Languages\ShellExtensionCzech.rc
 # PROP Exclude_From_Build 1
 # End Source File
