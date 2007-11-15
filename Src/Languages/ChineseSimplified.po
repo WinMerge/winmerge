@@ -1,6 +1,10 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Liaobin <liaobin at jite. net>
+# * xmpdhml <xmpdhml at users.sourceforge.net>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #

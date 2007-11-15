@@ -1,6 +1,10 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Hwang Sukjoon <bbcool at gmail.com>
+# * Lee Jae-Hong <pyrasis at users.sourceforge.net>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #

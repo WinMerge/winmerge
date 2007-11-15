@@ -1,6 +1,10 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Ronald Schaap <ronald at schaap.demon.nl>
+# * Michel Coene
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #

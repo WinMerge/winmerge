@@ -1,6 +1,10 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Jiri Tax <jt at taxoft.cz>
+# * Jan Hryz <janhryz at users.sourceforge.net>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #

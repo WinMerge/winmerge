@@ -1,6 +1,11 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Winfried Peter <winfried.peter at omicron.at>
+# * Jörg Schneider <tonda at users.sourceforge.net>
+# * Tim Gerundt <tim at gerundt.de>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
