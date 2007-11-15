@@ -74,6 +74,42 @@ End Function
 
 ''
 ' ...
+Class CStatus
+  Public Count, Translated, Untranslated, Fuzzy
+  Public PoRevisionDate, PotCreationDate
+  Public Translators
+  Private Translator
+  
+  Private Sub Class_Initialize
+    Count = 0
+    Translated = 0
+    Untranslated = 0
+    Fuzzy = 0
+    PoRevisionDate = ""
+    PotCreationDate = ""
+    Set Translators = CreateObject("Scripting.Dictionary")
+  End Sub
+  
+  Public Sub AddTranslator(ByVal sTranslator)
+    Set Translator = New CTranslator
+    Translator.Mail = Trim(GetRegExpSubMatch(sTranslator, "<(.*)>"))
+    If (Translator.Mail <> "") Then 'If mail address exists...
+      Translator.Name = Trim(GetRegExpSubMatch(sTranslator, "(.*) <.*>"))
+    Else 'If mail address NOT exists...
+      Translator.Name = sTranslator
+    End If
+    Translators.Add Translators.Count, Translator
+  End Sub
+End Class
+
+''
+' ...
+Class CTranslator
+  Public Name, Mail
+End Class
+
+''
+' ...
 Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
   Dim oStatus, oTextFile, sLine
   Dim oMatch, iMsgStarted, sMsgId, sMsgStr, bFuzzy
@@ -91,13 +127,7 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
   reMsgContinued.Pattern = "^""(.*)""$"
   reMsgContinued.IgnoreCase = True
   
-  Set oStatus = CreateObject("Scripting.Dictionary")
-  
-  oStatus.Add "count", 0
-  oStatus.Add "translated", 0
-  oStatus.Add "untranslated", 0
-  oStatus.Add "fuzzy", 0
-  oStatus.Add "po-revision-date", ""
+  Set oStatus = New CStatus
   If (oFSO.FileExists(sPoPath) = True) Then 'If the PO file exists...
     iMsgStarted = 0
     sMsgId = ""
@@ -127,10 +157,12 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
           End If
         Else 'If comment line...
           iMsgStarted = -1
-          If (Left(sLine, 2) = "#,") Then 'If "flag" line...
+          If (Left(sLine, 2) = "#,") Then 'If "Reference" line...
             If (InStr(sLine, "fuzzy") > 0) Then 'If "fuzzy"...
               bFuzzy = True
             End If
+          ElseIf (Left(sLine, 4) = "# * ") Then 'If translator...
+            oStatus.AddTranslator Trim(Mid(sLine, 5))
           End If
         End If
       Else 'If empty line
@@ -139,19 +171,19 @@ Function GetTranslationsStatusFromPoFile(ByVal sPoPath)
       
       If (iMsgStarted = 0) Then 'If NOT inside a translation...
         If (sMsgId <> "") Then
-          oStatus("count") = oStatus("count") + 1
+          oStatus.Count = oStatus.Count + 1
           If (bFuzzy = False) Then 'If NOT a fuzzy translation...
             If (sMsgStr <> "") Then
-              oStatus("translated") = oStatus("translated") + 1
+              oStatus.Translated = oStatus.Translated + 1
             Else
-              oStatus("untranslated") = oStatus("untranslated") + 1
+              oStatus.Untranslated = oStatus.Untranslated + 1
             End If
           Else 'If a fuzzy translation...
-            oStatus("fuzzy") = oStatus("fuzzy") + 1
+            oStatus.Fuzzy = oStatus.Fuzzy + 1
           End If
         ElseIf(sMsgStr <> "") Then
-          oStatus("po-revision-date") = GetRegExpSubMatch(sMsgStr, "PO-Revision-Date: ([0-9 :\+\-]+)")
-          oStatus("pot-creation-date") = GetRegExpSubMatch(sMsgStr, "POT-Creation-Date: ([0-9 :\+\-]+)")
+          oStatus.PoRevisionDate = GetRegExpSubMatch(sMsgStr, "PO-Revision-Date: ([0-9 :\+\-]+)")
+          oStatus.PotCreationDate = GetRegExpSubMatch(sMsgStr, "POT-Creation-Date: ([0-9 :\+\-]+)")
         End If
         sMsgId = ""
         sMsgStr = ""
@@ -166,7 +198,7 @@ End Function
 ''
 ' ...
 Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
-  Dim oHtmlFile, sLanguage, oLanguageStatus
+  Dim oHtmlFile, sLanguage, oLanguageStatus, i
   
   Set oHtmlFile = oFSO.CreateTextFile(sHtmlPath, True)
   
@@ -186,16 +218,16 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oHtmlFile.WriteLine "      font-family: ""Courier New"",Courier,monospace;"
   oHtmlFile.WriteLine "      font-size: 1em;"
   oHtmlFile.WriteLine "    }"
-  oHtmlFile.WriteLine "    #status {"
+  oHtmlFile.WriteLine "    .status {"
   oHtmlFile.WriteLine "      border-collapse: collapse;"
   oHtmlFile.WriteLine "      border: 1px solid #aaaaaa;"
   oHtmlFile.WriteLine "    }"
-  oHtmlFile.WriteLine "    #status th {"
+  oHtmlFile.WriteLine "    .status th {"
   oHtmlFile.WriteLine "      padding: 3px;"
   oHtmlFile.WriteLine "      background: #f2f2f2;"
   oHtmlFile.WriteLine "      border: 1px solid #aaaaaa ;"
   oHtmlFile.WriteLine "    }"
-  oHtmlFile.WriteLine "    #status td {"
+  oHtmlFile.WriteLine "    .status td {"
   oHtmlFile.WriteLine "      padding: 3px;"
   oHtmlFile.WriteLine "      background: #f9f9f9;"
   oHtmlFile.WriteLine "      border: 1px solid #aaaaaa;"
@@ -209,7 +241,7 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oHtmlFile.WriteLine "<body>"
   oHtmlFile.WriteLine "<h1>Translations Status</h1>"
   oHtmlFile.WriteLine "<p>Status from <strong>" & GetCreationDate() & "</strong>:</p>"
-  oHtmlFile.WriteLine "<table id=""status"">"
+  oHtmlFile.WriteLine "<table class=""status"">"
   oHtmlFile.WriteLine "  <tr>"
   oHtmlFile.WriteLine "    <th class=""left"">Language</th>"
   oHtmlFile.WriteLine "    <th class=""right"">Total</th>"
@@ -223,23 +255,47 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
       Set oLanguageStatus = oTranslationsStatus(sLanguage)
       oHtmlFile.WriteLine "  <tr>"
       oHtmlFile.WriteLine "    <td class=""left"">" & sLanguage & "</td>"
-      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("count") & "</td>"
-      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("translated") & "</td>"
-      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("fuzzy") & "</td>"
-      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("untranslated") & "</td>"
-      oHtmlFile.WriteLine "    <td class=""center"">" & Left(oLanguageStatus("po-revision-date"), 10) & "</td>"
+      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus.Count & "</td>"
+      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus.Translated & "</td>"
+      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus.Fuzzy & "</td>"
+      oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus.Untranslated & "</td>"
+      oHtmlFile.WriteLine "    <td class=""center"">" & Left(oLanguageStatus.PoRevisionDate, 10) & "</td>"
       oHtmlFile.WriteLine "  </tr>"
     End If
   Next
   Set oLanguageStatus = oTranslationsStatus("English")
   oHtmlFile.WriteLine "  <tr>"
   oHtmlFile.WriteLine "    <td class=""left"">English</td>"
-  oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("count") & "</td>"
-  oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus("count") & "</td>"
+  oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus.Count & "</td>"
+  oHtmlFile.WriteLine "    <td class=""right"">" & oLanguageStatus.Count & "</td>"
   oHtmlFile.WriteLine "    <td class=""right"">0</td>"
   oHtmlFile.WriteLine "    <td class=""right"">0</td>"
-  oHtmlFile.WriteLine "    <td class=""center"">" & Left(oLanguageStatus("pot-creation-date"), 10) & "</td>"
+  oHtmlFile.WriteLine "    <td class=""center"">" & Left(oLanguageStatus.PotCreationDate, 10) & "</td>"
   oHtmlFile.WriteLine "  </tr>"
+  oHtmlFile.WriteLine "</table>"
+  oHtmlFile.WriteLine "<h2>Translators</h2>"
+  oHtmlFile.WriteLine "<table class=""status"">"
+  oHtmlFile.WriteLine "  <tr>"
+  oHtmlFile.WriteLine "    <th class=""left"">Language</th>"
+  oHtmlFile.WriteLine "    <th class=""left"">Translator(s)</th>"
+  oHtmlFile.WriteLine "  </tr>"
+  For Each sLanguage In oTranslationsStatus.Keys 'For all languages...
+    If (sLanguage <> "English") Then 'If NOT English...
+      Set oLanguageStatus = oTranslationsStatus(sLanguage)
+      oHtmlFile.WriteLine "  <tr>"
+      oHtmlFile.WriteLine "    <td>" & sLanguage & "</td>"
+      oHtmlFile.WriteLine "    <td>"
+      For i = 0 To oLanguageStatus.Translators.Count - 1 'For all translators...
+        If (oLanguageStatus.Translators(i).Mail <> "") Then 'If mail address exists...
+          oHtmlFile.WriteLine "      <a href=""mailto:" & oLanguageStatus.Translators(i).Mail & """>" & oLanguageStatus.Translators(i).Name & "</a><br>"
+        Else 'If mail address NOT exists...
+          oHtmlFile.WriteLine "      " & oLanguageStatus.Translators(i).Name & "<br>"
+        End If
+      Next
+      oHtmlFile.WriteLine "    </td>"
+      oHtmlFile.WriteLine "  </tr>"
+    End If
+  Next
   oHtmlFile.WriteLine "</table>"
   oHtmlFile.WriteLine "</body>"
   oHtmlFile.WriteLine "</html>"
@@ -267,21 +323,21 @@ Sub CreateTranslationsStatusWikiFile(ByVal sWikiPath, ByVal oTranslationsStatus)
       Set oLanguageStatus = oTranslationsStatus(sLanguage)
       oWikiFile.WriteLine "|-"
       oWikiFile.WriteLine "|align=""left""| " & sLanguage
-      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("count")
-      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("translated")
-      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("fuzzy")
-      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("untranslated")
-      oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus("po-revision-date"), 10)
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus.Count
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus.Translated
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus.Fuzzy
+      oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus.Untranslated
+      oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus.PoRevisionDate, 10)
     End If
   Next
   Set oLanguageStatus = oTranslationsStatus("English")
   oWikiFile.WriteLine "|-"
   oWikiFile.WriteLine "|align=""left""| English"
-  oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("count")
-  oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus("count")
+  oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus.Count
+  oWikiFile.WriteLine "|align=""right""| " & oLanguageStatus.Count
   oWikiFile.WriteLine "|align=""right""| 0"
   oWikiFile.WriteLine "|align=""right""| 0"
-  oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus("pot-creation-date"), 10)
+  oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus.PotCreationDate, 10)
   oWikiFile.WriteLine "|}"
   oWikiFile.Close
 End Sub
