@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.6
+  BugFix: Many translation-system related fixes and improvements (#1804762)
   BugFix: When copying files to VCS system, destination file was
     not checked out (#1828930)
   BugFix: Visible area indicator on location pane shook when clicking
