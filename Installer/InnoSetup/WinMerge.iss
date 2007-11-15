@@ -45,8 +45,8 @@
 ; Not yet possible (Limited by Inno Setup):
 ; #  While uninstalling prompt the user as to whether or not they'd like to remove their WinMerge preferences too?
 
-#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeRelease\WinMerge.exe")
-#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeRelease\WinMerge.exe"), 1, 5)
+#define AppVersion GetFileVersion(SourcePath + "\..\..\Build\MergeRelease\WinMergeU.exe")
+#define FriendlyAppVersion Copy(GetFileVersion(SourcePath + "\..\..\Build\MergeRelease\WinMergeU.exe"), 1, 5)
 
 
 [Setup]
