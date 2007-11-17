@@ -136,8 +136,33 @@ static String GetResourceString(UINT resourceID)
 CWinMergeShell::CWinMergeShell()
 {
 	m_dwMenuState = 0;
-	m_MergeBmp = LoadBitmap(_Module.GetModuleInstance(),
-			MAKEINTRESOURCE(IDB_WINMERGE));
+
+	// compress or stretch icon bitmap according to menu item height
+	HDC hdc = CreateDC(_T("DISPLAY"), NULL, NULL, NULL);
+	HDC hdcMemDst = CreateCompatibleDC(hdc);
+	HDC hdcMemSrc = CreateCompatibleDC(hdc);
+
+	HBITMAP hBitmapResource = LoadBitmap(_Module.GetModuleInstance(), MAKEINTRESOURCE(IDB_WINMERGE));		
+	BITMAP bm;	
+	GetObject(hBitmapResource, sizeof(bm), &bm);
+
+	int nMenuBitmapWidth = GetSystemMetrics(SM_CXMENUCHECK);
+	int nMenuBitmapHeight = GetSystemMetrics(SM_CYMENUCHECK);
+	m_MergeBmp = CreateCompatibleBitmap(hdc, nMenuBitmapWidth, nMenuBitmapHeight);
+
+	HBITMAP hOldBitmapSrc = (HBITMAP)SelectObject(hdcMemSrc, hBitmapResource);
+	HBITMAP hOldBitmapDst = (HBITMAP)SelectObject(hdcMemDst, m_MergeBmp);
+
+	SetBrushOrgEx(hdcMemDst, 0, 0, NULL);
+	SetStretchBltMode(hdcMemDst, HALFTONE);
+	StretchBlt(hdcMemDst, 0, 0, nMenuBitmapWidth, nMenuBitmapHeight, hdcMemSrc, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
+
+	SelectObject(hdcMemSrc, hOldBitmapSrc);
+	SelectObject(hdcMemDst, hOldBitmapDst);
+	DeleteObject(hBitmapResource);
+	DeleteDC(hdcMemSrc);
+	DeleteDC(hdcMemDst);
+	DeleteDC(hdc);
 }
 
 /// Default destructor, unloads bitmap
