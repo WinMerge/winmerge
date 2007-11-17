@@ -28,6 +28,7 @@
 #define __WINMERGESHELL_H_
 
 #include <shlobj.h>
+#include <shlguid.h>
 #include <comdef.h>
 #include <atlconv.h>	// for ATL string conversion macros
 #include "resource.h"   // main symbols

@@ -40,22 +40,22 @@ RSC=rc.exe
 # PROP BASE Output_Dir "Debug"
 # PROP BASE Intermediate_Dir "Debug"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 2
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "..\BuildTmp\ShellExtension__Debug"
 # PROP Intermediate_Dir "..\BuildTmp\ShellExtension__Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "../src/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "_ATL_NO_UUIDOF" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "../src/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "_ATL_NO_UUIDOF" /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeDebug\ShellExtension.dll" /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeDebug\ShellExtension.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__Debug
 TargetPath=.\..\BuildTmp\ShellExtension__Debug
@@ -75,22 +75,22 @@ SOURCE="$(InputPath)"
 # PROP BASE Output_Dir "DebugU"
 # PROP BASE Intermediate_Dir "DebugU"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 2
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
 # PROP Output_Dir "..\BuildTmp\ShellExtension__UnicodeDebug"
 # PROP Intermediate_Dir "..\BuildTmp\ShellExtension__UnicodeDebug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "../src/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /D "_ATL_NO_UUIDOF" /YX /FD /GZ /c
+# ADD CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /I "." /I "../src/common" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /D "_ATL_NO_UUIDOF" /YX /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "_DEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "_DEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug\ShellExtensionU.dll" /pdbtype:sept
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug\ShellExtensionU.dll" /pdbtype:sept
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeDebug
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeDebug
@@ -116,22 +116,22 @@ SOURCE="$(InputPath)"
 # PROP BASE Output_Dir "ReleaseMinSize"
 # PROP BASE Intermediate_Dir "ReleaseMinSize"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 2
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "..\BuildTmp\ShellExtension__ReleaseMinSize"
 # PROP Intermediate_Dir "..\BuildTmp\ShellExtension__ReleaseMinSize"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "_ATL_DLL" /D "_ATL_NO_UUIDOF" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG"/D "_WINDOWS"  /D "_MBCS" /D "_USRDLL" /D "_ATL_DLL" /D "_ATL_NO_UUIDOF" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeRelease\ShellExtension.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeRelease\ShellExtension.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__ReleaseMinSize
 TargetPath=.\..\BuildTmp\ShellExtension__ReleaseMinSize
@@ -151,22 +151,22 @@ SOURCE="$(InputPath)"
 # PROP BASE Output_Dir "ReleaseMinDependency"
 # PROP BASE Intermediate_Dir "ReleaseMinDependency"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 2
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "..\BuildTmp\ShellExtension__ReleaseMinDependency"
 # PROP Intermediate_Dir "..\BuildTmp\ShellExtension__ReleaseMinDependency"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_MBCS" /D "_USRDLL" /D "_ATL_STATIC_REGISTRY" /D "_ATL_NO_UUIDOF" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common"  /D "WIN32" /D "NDEBUG"/D "_WINDOWS"  /D "_MBCS" /D "_USRDLL"  /D "_ATL_STATIC_REGISTRY" /D "_ATL_NO_UUIDOF" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeRelease\ShellExtension.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeRelease\ShellExtension.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__ReleaseMinDependency
 TargetPath=.\..\BuildTmp\ShellExtension__ReleaseMinDependency
@@ -186,22 +186,22 @@ SOURCE="$(InputPath)"
 # PROP BASE Output_Dir "ReleaseUMinSize"
 # PROP BASE Intermediate_Dir "ReleaseUMinSize"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 2
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
 # PROP Intermediate_Dir "..\BuildTmp\ShellExtension__UnicodeReleaseMinsize"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /D "_ATL_DLL" /D "_ATL_NO_UUIDOF" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /D "_ATL_DLL" /D "_ATL_NO_UUIDOF" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinsize
@@ -227,22 +227,22 @@ SOURCE="$(InputPath)"
 # PROP BASE Output_Dir "ReleaseUMinDependency"
 # PROP BASE Intermediate_Dir "ReleaseUMinDependency"
 # PROP BASE Target_Dir ""
-# PROP Use_MFC 2
+# PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
 # PROP Output_Dir "..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
 # PROP Intermediate_Dir "..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O1 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "_UNICODE" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_WINDLL" /D "_AFXDLL" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /D "_ATL_NO_UUIDOF" /YX /FD /c
+# ADD CPP /nologo /MD /W3 /GX /O1 /I "." /I "../src/common" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /D "_ATL_STATIC_REGISTRY" /D "_ATL_NO_UUIDOF" /YX /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
-# ADD RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
+# ADD RSC /l 0x409 /d "NDEBUG"
 BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /dll /machine:I386
-# ADD LINK32 /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /dll /machine:I386 /out:"..\Build\MergeUnicodeRelease\ShellExtensionU.dll"
 # Begin Custom Build - Performing registration
 OutDir=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency
 TargetPath=.\..\BuildTmp\ShellExtension__UnicodeReleaseMinDependency

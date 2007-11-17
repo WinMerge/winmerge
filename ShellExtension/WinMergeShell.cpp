@@ -124,7 +124,7 @@ static String GetResourceString(UINT resourceID)
 {
 	TCHAR resStr[1024] = {0};
 	int res = LoadString(_Module.GetModuleInstance(), resourceID, resStr, 1024);
-	ASSERT(res!= 0);
+	ATLASSERT(res!= 0);
 	String strResource = resStr;
 	return strResource;
 }
@@ -257,7 +257,6 @@ HRESULT CWinMergeShell::Initialize(LPCITEMIDLIST pidlFolder,
 HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd, UINT uidLastCmd, UINT uFlags)
 {
-	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	int nItemsAdded = 0;
 	USES_WINMERGELOCALE;
 
@@ -302,7 +301,6 @@ HRESULT CWinMergeShell::QueryContextMenu(HMENU hmenu, UINT uMenuIndex,
 HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 		UINT* pwReserved, LPSTR pszName, UINT  cchMax)
 {
-	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	USES_CONVERSION;
 	USES_WINMERGELOCALE;
 
@@ -342,7 +340,6 @@ HRESULT CWinMergeShell::GetCommandString(UINT_PTR idCmd, UINT uFlags,
 /// Runs WinMerge with given paths
 HRESULT CWinMergeShell::InvokeCommand(LPCMINVOKECOMMANDINFO pCmdInfo)
 {
-	AFX_MANAGE_STATE(AfxGetStaticModuleState())
 	CRegKeyEx reg;
 	String strWinMergePath;
 	BOOL bCompare = FALSE;

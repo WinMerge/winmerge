@@ -2,6 +2,11 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.5.7
+  Remove MFC dependency from ShellExtension (#1833521)
+  BugFix: ShellExtension's icon was clipped if system font size was small
+    (#1833616)
+
 WinMerge 2.7.5.6 - 2007-11-15 (r4752)
   BugFix: Many translation-system related fixes and improvements (#1804762)
   BugFix: When copying files to VCS system, destination file was
@@ -42,7 +47,7 @@ WinMerge 2.7.5.4 - 2007-11-01 (r4687)
 WinMerge 2.7.5.3 - 2007-09-27 (r4572)
   Use PO files for translations (generate RC-files from PO-files)
   Add Portuguese translation (#1756364)
-  Change Up/Down button names in folder compare columns dialog(#1800064)
+ Change Up/Down button names in folder compare columns dialog(#1800064)
   BugFix: Fix MakeResDll crash (#1795421)
   BugFix: Full screen mode didn't work with multiple monitors (#1788168)
   Bugfix: Revert multiple monitor patches (#1788168)

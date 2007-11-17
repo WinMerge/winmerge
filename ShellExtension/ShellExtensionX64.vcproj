@@ -17,7 +17,7 @@
 			OutputDirectory=".\..\BuildTmp\ShellExtensionX64Debug"
 			IntermediateDirectory=".\..\BuildTmp\ShellExtensionX64Debug"
 			ConfigurationType="2"
-			UseOfMFC="2"
+			UseOfMFC="0"
 			UseOfATL="1"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="1">
@@ -98,7 +98,7 @@ echo Warning : Cannot register Unicode DLL on Windows 95
 			OutputDirectory=".\..\BuildTmp\ShellExtensionX64/"
 			IntermediateDirectory=".\..\BuildTmp\ShellExtensionX64/"
 			ConfigurationType="2"
-			UseOfMFC="2"
+			UseOfMFC="0"
 			UseOfATL="1"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
 			CharacterSet="1">

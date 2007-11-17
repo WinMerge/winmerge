@@ -41,44 +41,20 @@ BEGIN_OBJECT_MAP(ObjectMap)
 OBJECT_ENTRY(CLSID_WinMergeShell, CWinMergeShell)
 END_OBJECT_MAP()
 
-class CShellExtensionApp : public CWinApp
+/////////////////////////////////////////////////////////////////////////////
+// DLL Entry Point
+
+extern "C"
+BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD dwReason, LPVOID /*lpReserved*/)
 {
-public:
-
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CShellExtensionApp)
-	public:
-    virtual BOOL InitInstance();
-    virtual int ExitInstance();
-	//}}AFX_VIRTUAL
-
-	//{{AFX_MSG(CShellExtensionApp)
-		// NOTE - the ClassWizard will add and remove member functions here.
-		//    DO NOT EDIT what you see in these blocks of generated code !
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
-};
-
-BEGIN_MESSAGE_MAP(CShellExtensionApp, CWinApp)
-	//{{AFX_MSG_MAP(CShellExtensionApp)
-		// NOTE - the ClassWizard will add and remove mapping macros here.
-		//    DO NOT EDIT what you see in these blocks of generated code!
-	//}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-CShellExtensionApp theApp;
-
-BOOL CShellExtensionApp::InitInstance()
+	if (dwReason == DLL_PROCESS_ATTACH)
 {
-    _Module.Init(ObjectMap, m_hInstance, &LIBID_SHELLEXTENSIONLib);
-    return CWinApp::InitInstance();
+		_Module.Init(ObjectMap, hInstance, &LIBID_SHELLEXTENSIONLib);
+		DisableThreadLibraryCalls(hInstance);
 }
-
-int CShellExtensionApp::ExitInstance()
-{
-    _Module.Term();
-    return CWinApp::ExitInstance();
+	else if (dwReason == DLL_PROCESS_DETACH)
+		_Module.Term();
+	return TRUE;    // ok
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -86,8 +62,7 @@ int CShellExtensionApp::ExitInstance()
 
 STDAPI DllCanUnloadNow(void)
 {
-    AFX_MANAGE_STATE(AfxGetStaticModuleState());
-    return (AfxDllCanUnloadNow()==S_OK && _Module.GetLockCount()==0) ? S_OK : S_FALSE;
+    return (_Module.GetLockCount()==0) ? S_OK : S_FALSE;
 }
 
 /////////////////////////////////////////////////////////////////////////////
