@@ -165,7 +165,14 @@ def build_shellext(vs_cmd):
     call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
 
 def build_manual():
-    call(['Tools/Scripts/BuildManualChm.bat'])
+    """Builds manual's HTML Help (CHM) version."""
+
+    curdir = os.getcwd()
+    os.chdir('Docs/Users/Manual/build')
+    print 'Build HTML Help (CHM) manual...' 
+    call(['build_htmlhelp.bat'])
+    print 'Manual build finished.'
+    os.chdir(curdir)
 
 def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
