@@ -99,10 +99,18 @@ def set_resource_version(version):
     call(['cscript', 'Src/SetResourceVersions.wsf', version])
 
 def setup_translations():
-    """Updates translation files."""
+    """Updates translation files by running scripts in Src/Languages."""
 
-    call(['cscript', 'Src/Languages/CreateMasterPotFile.vbs'])
-    call(['cscript', 'Src/Languages/UpdatePoFilesFromPotFile.vbs'])
+    # Scripts must be run from the directory where they reside
+    curdir = os.getcwd()
+    os.chdir('Src/Languages')
+    print 'Updating POT file from Merge.rc file...'
+    call(['cscript', '/nologo', 'CreateMasterPotFile.vbs'])
+    print 'POT file updated'
+    print 'Updating all PO files from POT file...'
+    call(['cscript', '/nologo', 'UpdatePoFilesFromPotFile.vbs'])
+    print 'All PO files updated.'
+    os.chdir(curdir)
 
 def get_and_create_dist_folder(folder):
     """Formats a folder name for version-specific distribution folder
@@ -172,6 +180,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
     cur_path = os.getcwd()
     os.chdir(bin_folder)
     lang_folder = os.path.join(bin_folder, 'Languages')
+    os.mkdir(lang_folder)
     doc_folder = os.path.join(bin_folder, 'Docs')
     os.mkdir(doc_folder)
     filters_folder = os.path.join(bin_folder, 'Filters')
@@ -191,7 +200,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
     shutil.copy('build/pcre/pcre.dll', bin_folder)
     shutil.copy('build/expat/libexpat.dll', bin_folder)
 
-    shutil.copytree('build/mergeunicoderelease/Languages', lang_folder, False)
+    copy_po_files(lang_folder)
     filter_orig = os.path.join(dist_src_folder, 'Filters')
     shutil.copytree(filter_orig, filters_folder, False)
 
@@ -207,6 +216,20 @@ def create_bin_folders(bin_folder, dist_src_folder):
     shutil.copy('Docs/Users/ChangeLog.txt', bin_folder)
     shutil.copy('Docs/Users/Contributors.txt', bin_folder)
     shutil.copy('Docs/Users/Files.txt', bin_folder)
+
+def copy_po_files(dest_folder):
+    """Copies all PO files to destination folder."""
+
+    lang_folder = 'Src/Languages'
+    files = os.listdir(lang_folder)
+
+    for cur_file in files:
+        fullpath = os.path.join(lang_folder, cur_file)
+        if os.path.isfile(fullpath):
+            file_name, file_ext = os.path.splitext(cur_file)
+            if (file_ext == '.po'):
+                print 'Copying ' + cur_file
+                shutil.copy(fullpath, dest_folder)
 
 def usage():
     print 'WinMerge release script.'
