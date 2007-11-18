@@ -19,7 +19,7 @@
  *
  * @brief CConfigLog implementation
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -448,6 +448,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 	WriteVersionOf1(m_file, 1, _T("COMCTL32.dll"));
 	WriteVersionOf1(m_file, 1, _T("ShellExtension.dll"));
 	WriteVersionOf1(m_file, 1, _T("ShellExtensionU.dll"));
+	WriteVersionOf1(m_file, 1, _T("ShellExtensionX64.dll"));
 
 // WinMerge settings
 	FileWriteString(_T("\nWinMerge configuration:\n"));
