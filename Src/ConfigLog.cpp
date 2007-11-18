@@ -446,6 +446,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 
 	FileWriteString(_T("\n"));
 	WriteVersionOf1(m_file, 1, _T("COMCTL32.dll"));
+	WriteVersionOf1(m_file, 1, _T("MergeLang.dll"));
 	WriteVersionOf1(m_file, 1, _T("ShellExtension.dll"));
 	WriteVersionOf1(m_file, 1, _T("ShellExtensionU.dll"));
 	WriteVersionOf1(m_file, 1, _T("ShellExtensionX64.dll"));
