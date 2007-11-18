@@ -1,3 +1,11 @@
+/**
+ *  @file MergeLineFlags.h
+ *
+ *  @brief Additional lineflags for editor.
+ */ 
+// ID line follows -- this is updated by SVN
+// $Id$
+
 #ifndef MergeLineFlags_h_included
 #define MergeLineFlags_h_included
 
@@ -20,6 +28,7 @@ enum MERGE_LINEFLAGS
 #define LF_WINMERGE_FLAGS    0x01E00000
 
 // Flags for non-ignored difference
-#define LF_NONTRIVIAL_DIFF (LF_DIFF & (~LF_TRIVIAL))
+// Note that we must include ghost flag to include ghost lines
+#define LF_NONTRIVIAL_DIFF ((LF_DIFF | LF_GHOST) & (~LF_TRIVIAL))
 
 #endif // MergeLineFlags_h_included

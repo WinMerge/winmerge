@@ -6,6 +6,7 @@ WinMerge 2.7.5.7
   Remove MFC dependency from ShellExtension (#1833521)
   BugFix: ShellExtension's icon was clipped if system font size was small
     (#1833616)
+  BugFix: Merge controls were not enabled for missing lines (#1833714)
 
 WinMerge 2.7.5.6 - 2007-11-15 (r4752)
   BugFix: Many translation-system related fixes and improvements (#1804762)
