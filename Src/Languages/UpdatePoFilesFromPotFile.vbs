@@ -30,7 +30,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Attention: " & Wscript.ScriptName & " can take several seconds to finish!"
+  InfoBox "Updating PO files from POT file...", 3
   
   sDir = oFSO.GetParentFolderName(Wscript.ScriptFullName)
   Set oEnglishPotContent = GetContentFromPoFile(sDir & "\English.pot")
@@ -40,6 +40,9 @@ Sub Main
   For Each oLanguage In oLanguages 'For all languages...
     sLanguage = CStr(oLanguage)
     If LCase(oFSO.GetExtensionName(sLanguage)) = "po" Then
+      If bRunFromCmd Then 'If run from command line...
+        Wscript.Echo oFSO.GetFileName(sLanguage)
+      End If
       Set oLanguagePoContent = GetContentFromPoFile(sLanguage)
       If oLanguagePoContent.Count > 0 Then 'If content exists...
         CreateUpdatedPoFile sLanguage, oEnglishPotContent, oLanguagePoContent
@@ -50,7 +53,7 @@ Sub Main
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
   
-  Wscript.Echo Wscript.ScriptName & " finished after " & Seconds & " seconds!"
+  InfoBox "All PO files updated, after " & Seconds & " second(s).", 10
 End Sub
 
 ''
@@ -75,9 +78,6 @@ Function GetContentFromPoFile(ByVal sPoPath)
   reMsgContinued.IgnoreCase = True
   
   Set oContent = CreateObject("Scripting.Dictionary")
-  If bRunFromCmd Then 'If run from command line...
-    Wscript.Echo sPoPath
-  End If
   
   iMsgStarted = 0
   Set oSubContent = New CSubContent
@@ -168,3 +168,16 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
   Next
   oPoFile.Close
 End Sub
+
+''
+' ...
+Function InfoBox(ByVal sText, ByVal iSecondsToWait)
+  Dim oShell
+  
+  If (bRunFromCmd = False) Then 'If run from command line...
+    Set oShell = Wscript.CreateObject("WScript.Shell")
+    InfoBox = oShell.Popup(sText, iSecondsToWait, Wscript.ScriptName, 64)
+  Else 'If NOT run from command line...
+    Wscript.Echo sText
+  End If
+End Function

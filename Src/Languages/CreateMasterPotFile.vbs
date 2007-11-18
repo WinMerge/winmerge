@@ -17,9 +17,14 @@ Const STRINGTABLE_BLOCK = 3
 Const VERSIONINFO_BLOCK = 4
 Const ACCELERATORS_BLOCK = 5
 
-Dim oFSO
+Dim oFSO, bRunFromCmd
 
 Set oFSO = CreateObject("Scripting.FileSystemObject")
+
+bRunFromCmd = False
+If LCase(oFSO.GetFileName(Wscript.FullName)) = "cscript.exe" Then
+  bRunFromCmd = True
+End If
 
 Call Main
 
@@ -31,7 +36,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Attention: " & Wscript.ScriptName & " can take few seconds to finish!"
+  InfoBox "Creating POT file from Merge.rc...", 3
   
   Set oStrings = GetStringsFromRcFile("../Merge.rc", oComments, sCodePage)
   CreateMasterPotFile "English.pot", oStrings, oComments, sCodePage
@@ -39,7 +44,7 @@ Sub Main
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
   
-  Wscript.Echo Wscript.ScriptName & " finished after " & Seconds & " seconds!"
+  InfoBox "POT file created, after " & Seconds & " second(s).", 10
 End Sub
 
 ''
@@ -279,4 +284,17 @@ Function GetPotCreationDate()
   If (sMinute < 10) Then sMinute = "0" & sMinute
   
   GetPotCreationDate = sYear & "-" & sMonth & "-" & sDay & " " & sHour & ":" & sMinute & "+0000"
+End Function
+
+''
+' ...
+Function InfoBox(ByVal sText, ByVal iSecondsToWait)
+  Dim oShell
+  
+  If (bRunFromCmd = False) Then 'If run from command line...
+    Set oShell = Wscript.CreateObject("WScript.Shell")
+    InfoBox = oShell.Popup(sText, iSecondsToWait, Wscript.ScriptName, 64)
+  Else 'If NOT run from command line...
+    Wscript.Echo sText
+  End If
 End Function

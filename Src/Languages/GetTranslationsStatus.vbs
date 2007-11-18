@@ -30,7 +30,7 @@ Sub Main
   
   StartTime = Time
   
-  Wscript.Echo "Attention: " & Wscript.ScriptName & " can take several seconds to finish!"
+  InfoBox "Creating translations status files...", 3
   
   Set oTranslationsStatus = CreateObject("Scripting.Dictionary")
   
@@ -54,7 +54,7 @@ Sub Main
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
   
-  Wscript.Echo Wscript.ScriptName & " finished after " & Seconds & " seconds!"
+  InfoBox "Translations status files created, after " & Seconds & " second(s).", 10
 End Sub
 
 ''
@@ -384,4 +384,17 @@ Function GetCreationDate()
   If (sDay < 10) Then sDay = "0" & sDay
   
   GetCreationDate = sYear & "-" & sMonth & "-" & sDay
+End Function
+
+''
+' ...
+Function InfoBox(ByVal sText, ByVal iSecondsToWait)
+  Dim oShell
+  
+  If (bRunFromCmd = False) Then 'If run from command line...
+    Set oShell = Wscript.CreateObject("WScript.Shell")
+    InfoBox = oShell.Popup(sText, iSecondsToWait, Wscript.ScriptName, 64)
+  Else 'If NOT run from command line...
+    Wscript.Echo sText
+  End If
 End Function
