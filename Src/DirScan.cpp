@@ -87,8 +87,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 		rightsubprefix = OPTIMIZE_SHARE_CSTRINGDATA
 		(
 			_tcsicmp(leftsubdir, rightsubdir) == 0 ? leftsubprefix : 
-		) rightsubdir;
-		rightsubprefix += backslash;
+		) String(rightsubdir) + backslash;
 	}
 
 	DirItemArray leftDirs, leftFiles, rightDirs, rightFiles;
