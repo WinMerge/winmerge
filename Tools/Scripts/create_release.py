@@ -197,7 +197,7 @@ def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
 
     bin_folder = os.path.join(dist_folder, folder + '-exe')
-    print "Create binary distribution folder: ' + bin_folder
+    print 'Create binary distribution folder: ' + bin_folder
     os.mkdir(bin_folder)
     return bin_folder
 
