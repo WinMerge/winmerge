@@ -115,6 +115,7 @@ def cleanup_build():
 def set_resource_version(version):
     """Sets the version number to the resource."""
 
+    print 'Update version number to resource(s)...'
     call(['cscript', 'Src/SetResourceVersions.wsf', version])
 
 def setup_translations():
@@ -123,12 +124,8 @@ def setup_translations():
     # Scripts must be run from the directory where they reside
     curdir = os.getcwd()
     os.chdir('Src/Languages')
-    print 'Updating POT file from Merge.rc file...'
     call(['cscript', '/nologo', 'CreateMasterPotFile.vbs'])
-    print 'POT file updated'
-    print 'Updating all PO files from POT file...'
     call(['cscript', '/nologo', 'UpdatePoFilesFromPotFile.vbs'])
-    print 'All PO files updated.'
     os.chdir(curdir)
 
 def get_and_create_dist_folder(folder):
@@ -252,12 +249,12 @@ def copy_po_files(dest_folder):
     lang_folder = 'Src/Languages'
     files = os.listdir(lang_folder)
 
+    print 'Copying PO files to binary folder...'
     for cur_file in files:
         fullpath = os.path.join(lang_folder, cur_file)
         if os.path.isfile(fullpath):
             file_name, file_ext = os.path.splitext(cur_file)
             if (file_ext == '.po'):
-                print 'Copying ' + cur_file
                 shutil.copy(fullpath, dest_folder)
 
 def usage():
@@ -296,6 +293,8 @@ def main(argv):
     
     dist_bin_folder = get_and_create_bin_folder(dist_folder, version_folder)
     create_bin_folders(dist_bin_folder, dist_src_folder)
+
+    print 'WinMerge release script ready!'
 
 
 ### MAIN ###
