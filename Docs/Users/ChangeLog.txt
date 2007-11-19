@@ -4,6 +4,8 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.5.7
   Remove MFC dependency from ShellExtension (#1833521)
+  Update ShellExtension icon to new WinMerge icon (#1833616)
+  BugFix: Build script didn't update PO files correctly before copying (r4756)
   BugFix: ShellExtension's icon was clipped if system font size was small
     (#1833616)
   BugFix: Merge controls were not enabled for missing lines (#1833714)
