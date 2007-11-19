@@ -2,7 +2,7 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
-WinMerge 2.7.5.7
+WinMerge 2.7.5.7 - 2007-11-19 (r4772)
   Remove MFC dependency from ShellExtension (#1833521)
   Update ShellExtension icon to new WinMerge icon (#1833616)
   BugFix: Build script didn't update PO files correctly before copying (r4756)
