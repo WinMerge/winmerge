@@ -23,22 +23,41 @@
 # This script prepares a WinMerge release
 # Tasks it does:
 # - cleans previous build files from folders
+# - sets version number for resources
+# - updates POT and PO files
 # - builds WinMerge.exe and WinMergeU.exe
 # - builds pcre, expat and scew (through project file)
+# - builds 32-bit ShellExtension targets
+# - builds user manual
+# - creates per-version distribution folder
+# - exports SVN sources to distribution folder
+# - creates binary distribution folder
+
+#Tasks not done (TODO?):
+# - building 64-bit ShellExtension
+# - creating packages from source and binary folders
+# - creating runtime distribution folder
+# - creating installer
+# - running virus check
+# - creating SHA-1 hashes for distributed files
 
 # Tools needed:
 # - Python 2.5 :)
 # - Subversion command line binaries
 
-# Subversion binary
+# CONFIGURATION:
+# Set these variables to match your environment and folders you want to use
+
+# Subversion binary - set this to absolute path to svn,exe
 svn_binary = 'C:\\Program Files\\Subversion\\bin\\svn.exe'
-# Path to VS binary to run
+# Path to VS binary to run - set this to Visual Studio IDE executable folder
 vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003\\Common7\\IDE'
-# VS command
+# VS IDE executable - set this to command starting Visual Studio IDE
 vs_bin = 'devenv.com'
 # Relative path where to create a release folder
 dist_root_folder = '/WinMerge/Releases'
 
+# END CONFIGURATION - you don't need to edit anything below...
 
 from subprocess import *
 import os
@@ -117,6 +136,7 @@ def get_and_create_dist_folder(folder):
     and creates the folder."""
 
     dist_folder = os.path.join(dist_root_folder, folder)
+    print 'Create distribution folder: ' + dist_folder
     os.mkdir(dist_folder)
     return dist_folder
 
@@ -136,7 +156,6 @@ def build_targets():
     """Builds all WinMerge targets."""
 
     vs_cmd = os.path.join(vs_path, vs_bin)
-    #print vs_cmd
 
     build_winmerge(vs_cmd)
     build_shellext(vs_cmd)
@@ -149,7 +168,7 @@ def build_winmerge(vs_cmd):
     #print sol_path
 
     # devenv Src\Merge.dsp /rebuild Release
-    print 'Compiling WinMerge executables'
+    print 'Build WinMerge executables...'
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
     call([vs_cmd, solution_path, '/rebuild', 'UnicodeRelease'], shell=True)
 
@@ -158,9 +177,9 @@ def build_shellext(vs_cmd):
 
     cur_path = os.getcwd()
     solution_path = os.path.join(cur_path, 'ShellExtension\\ShellExtension.vcproj')
-    #print sol_path
 
     # devenv Src\Merge.dsp /rebuild Release
+    print 'Build ShellExtension dlls...'
     call([vs_cmd, solution_path, '/rebuild', 'Release MinDependency'])
     call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
 
@@ -178,6 +197,7 @@ def get_and_create_bin_folder(dist_folder, folder):
     """Formats and creates binary distribution folder."""
 
     bin_folder = os.path.join(dist_folder, folder + '-exe')
+    print "Create binary distribution folder: ' + bin_folder
     os.mkdir(bin_folder)
     return bin_folder
 
@@ -186,6 +206,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
 
     cur_path = os.getcwd()
     os.chdir(bin_folder)
+    print 'Create binary distribution folder structure...'
     lang_folder = os.path.join(bin_folder, 'Languages')
     os.mkdir(lang_folder)
     doc_folder = os.path.join(bin_folder, 'Docs')
@@ -194,6 +215,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
     plugins_folder = os.path.join(bin_folder, 'MergePlugins')
     os.chdir(cur_path)
 
+    print 'Copying files to binary distribution folder...'
     shutil.copy('build/mergerelease/WinMerge.exe', bin_folder)
     shutil.copy('build/mergeunicoderelease/WinMergeU.exe', bin_folder)
 
@@ -259,7 +281,6 @@ def main(argv):
                 version = arg
                 print "Start building WinMerge release version " + version
 
-    #os.chdir("G:\\WinMerge\\WinMerge_SVN")
     cleanup_build()
 
     version_folder = 'WinMerge-' + version
