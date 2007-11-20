@@ -257,6 +257,20 @@ def copy_po_files(dest_folder):
             if (file_ext == '.po'):
                 shutil.copy(fullpath, dest_folder)
 
+def find_winmerge_root():
+    """Find WinMerge tree root folder from where to run rest of the script."""
+    
+    # If we find Src and Filters -subfolders we are in root 
+    if os.path.exists('Src') and os.path.exists('Filters'):
+        return True
+    
+    # Check if we are in /Tools/Scripts
+    if os.path.exists('../../Src') and os.path.exists('../../Filters'):
+        os.chdir('../../')
+        return True
+    
+    return False
+
 def usage():
     print 'WinMerge release script.'
     print 'Usage: release [-h] [-v: n]'
@@ -278,6 +292,14 @@ def main(argv):
                 version = arg
                 print "Start building WinMerge release version " + version
 
+    # Check we are running from correct folder (and go to root if found)
+    if find_winmerge_root() == False:
+        print 'ERROR: Cannot find WinMerge root folder!'
+        print 'The script must be run from WinMerge tree\'s root folder'
+        print '(which has Src- and Filter -folders as subfolders) or from'
+        print 'Tools/Scripts -folder (where this script is located).'
+        sys.exit()
+    
     cleanup_build()
 
     version_folder = 'WinMerge-' + version
