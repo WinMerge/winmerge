@@ -689,6 +689,7 @@ void CMergeDiffDetailView::OnContextMenu(CWnd* pWnd, CPoint point)
 	BCMenu menu;
 	VERIFY(menu.LoadMenu(IDR_POPUP_MERGEDETAILVIEW));
 	VERIFY(menu.LoadToolbar(IDR_MAINFRAME));
+	theApp.TranslateMenu(menu.m_hMenu);
 
 	BCMenu *pSub = (BCMenu *)menu.GetSubMenu(0);
 	ASSERT(pSub != NULL);
