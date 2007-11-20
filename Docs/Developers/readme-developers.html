@@ -123,7 +123,7 @@ the "<em>Platform SDK</em>" start menu folder.</p>
 
 <h4>buildall.bat</h4>
 <p>There is a <code>buildall.bat</code> in the root folder of source tree. This batch file invokes
-<code>devenv.exe</code> to build (almost) all projects in WinMerge tree. However, it has 
+<code>devenv.exe</code> to build (almost) all projects in WinMerge tree. However, it has
 a couple
 of restrictions:
 <ul>
@@ -145,7 +145,7 @@ ShellExtension (in <code>/ShellExtension</code>) have their own project files. T
 single project/workspace file to compile all projects.<p>
 
 <p>The Visual Studio project file for MSVC6 comes with the WinMerge sources. Newer versions of
-Visual Studio can open that file too, they just ask if one wants to convert to 
+Visual Studio can open that file too, they just ask if one wants to convert to
 the new version.
 The reason we don't ship project files for all Visual Studio versions is we have no resources
 to keep all versions up to date. People can't test all versions themselves, and easily forget
@@ -216,7 +216,7 @@ for compiling releases are:<br>
 <h4>Visual Studio 2005</h4>
 <p>When the VC6 project file (.dsp) is converted to a Visual Studio 2005 project, it does not
 compile correctly as is. The problem is Visual Studio 2005 automatically generates and
-embeds a manifest file for the executable. And as the WinMerge resource file includes 
+embeds a manifest file for the executable. And as the WinMerge resource file includes
 a manifest
 file there are conflicts.</p>
 
@@ -232,8 +232,8 @@ the manifest file. From project properties:
 <p>Please follow these guidelines when submitting changes to WinMerge sources
 as patches.</p>
 
-<p class="note">Do not waste yours and our time by submitting large feature 
-patches before you have made sure the feature is a desired addition to WinMerge. Communicate with 
+<p class="note">Do not waste yours and our time by submitting large feature
+patches before you have made sure the feature is a desired addition to WinMerge. Communicate with
 our developers,
 either in bug/feature request(rfe) items or preferably in the Developers-forum or Developers-
 mailing list.</p>
@@ -260,7 +260,7 @@ mailing list.</p>
     subversion, or of a source zip from a distribution).</p>
 
     <p><b>DO NOT</b> submit a patch against a year-old version. The latest experimental/beta version
-    is at most a few weeks old. Stable releases should only get bug fixes. And even then 
+    is at most a few weeks old. Stable releases should only get bug fixes. And even then
     the bugfix
     is usually first applied to development versions. So there should be no reason to submit
     a patch against an old version.</p>
@@ -287,7 +287,7 @@ mailing list.</p>
   </li>
   <li>
     <p>Wait for reactions from other developers (and sometimes active users).<br>
-    Usually this means one of the active developers approves your patch before 
+    Usually this means one of the active developers approves your patch before
     you commit.</p>
   </li>
   <li>
@@ -435,7 +435,7 @@ so they should not expect everything to work perfectly.
 For beta builds we paste in all the changes since the last beta release, so that people can see exactly what changed.
 For major releases, we paste in the list of changes since the last major release, and this list can become very long.</p>
 
-<p>We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make 
+<p>We are using <a href="http://www.jrsoftware.org/isinfo.php">InnoSetup</a> to make
 the installer for WinMerge.
 See <a href="readme-developers-InnoSetup.html">readme-developers-InnoSetup.html</a> for more information.
 Also zip-packages for releases are provided, zip up these files:</p>
@@ -519,18 +519,18 @@ the next beta would be named <code>R2_1_4</code>, and the next major release wou
 <h3><a name="Localization">Localization</a></h3>
 
 <p><code>WinMerge.exe</code> and <code>WinMergeU.exe</code> are always compiled with the english resources.
-Custom languages are in separate dll files with extension <code>.lang</code>, to be placed in
-<code>Languages</code> subfolder in WinMerge folder. Language may be changed dynamically through the menu.</p>
+Custom languages are in per-language PO files in <code>Languages</code> subfolder of WinMerge folder.
+Language may be changed dynamically through the menu.</p>
 
-<p>WinMerge localization is achieved through localization of resources (files with extension <code>.rc</code>).
-Actually there is only one rc file in the project, <code>Merge.rc</code>. Localized versions of this file are
-generated from <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> <acronym title="Portable Object">PO</acronym> files
-and gets stored in the <code>Languages/</code> directory, in the subdirectory created for that language.</p>
+<p>WinMerge localization is achieved by loading translated strings from per-language PO files. There is only one rc
+file in the project <code>Merge.rc</code>, which is used to generate  POT (PO template) file. Per-language PO files
+are updated (after <code>Merge.rc</code> changes) from generated POT file. All PO files are in same
+<code>Languages</code> subfolder.
 
-<p>So before you can compile the language files you must call the script <code>CreateRcFilesFromPoFiles.bat</code>
-from the <code>Tools/Scripts/</code> folder.</p>
+<p>Unlike with 2.6.x versions of WinMerge, there is no anymore need to compile language files. The same PO files
+are used for translation and in runtime to load translated strings. This helps translating WinMerge a lot.
 
-<p>If you done changes on the <code>Merge.rc</code> file you must call <code>UpdateTranslations.bat</code>
+<p>If you have done changes to the <code>Merge.rc</code> file you must call <code>UpdateTranslations.bat</code>
 to create the latest version from the file <code>English.pot</code> and update the language PO files from this PO template.
 And for strings, who should not appear in the PO files just add a line in the <code>Languages/StringBlacklist.txt</code> file.</p>
 
@@ -564,39 +564,7 @@ And for strings, who should not appear in the PO files just add a line in the <c
     <p><b>Note:</b> Blocks are not really ordered (there order comes from history), it is not a problem as MSVC never reorders
     blocks after creation. If you use another tool to change resources, please make sure that the blocks order is unchanged.</p>
   </li>
-  <li>
-    <p>Localized resources must be updated regularly with new resources from <code>Merge.rc</code>.
-    Older localized dll may crash with a recent version of WinMerge (missing dialogs). See below...</p>
-  </li>
 </ul>
-
-<h4>Compiling</h4>
-<p>We have a customised tool for compiling language files. Project for it is in SVN:</p>
-
-<pre>/WinMerge/MakeResDll</pre>
-
-<p>When that project is compiled, it produces <code>MakeResDll.exe</code>. Copy that executable
-to <code>/WinMerge/Src/Languages/</code>. In that directory there are already some batch-files
-which can now be used to compile language files:</p>
-
-<dl>
-  <dt><code>BuildAll.bat</code></dt>
-  <dd>compiles all languages in <code>/WinMerge/Src/Languages/</code></dd>
-  <dt><code>BuildDll.bat &lt;lang&gt;</code></dt>
-  <dd>compiles given language</dd>
-  <dt><code>CopyAll.bat</code></dt>
-  <dd>copies compiled lang files to build directories</dd>
-</dl>
-
-<p>Compiled language files (<code>*.lang</code>) are placed in <code>/WinMerge/Build/Languages/</code> .</p>
-
-<h5>Forcing compiler version with MakeResDll</h5>
-<p>If MakeResDll does not work, and you wish to force it to use the compiler (resource compiler and linker)
-of your choice, there are registry settings to accomplish this. Perry added these because he has been
-unable to get MakeResDll link successfully using VS.NET 2003, due to it failing to find <code>mspdb71.dll</code> at runtime. To force use of the
-Visual C++ 6 binaries, assuming Visual C++ 6 is correctly installed, set</p>
-
-<pre>HKEY_CURRENT_USER\Software\Thingamahoochie\MakeResDll\Settings\VcVersion="6"</pre>
 
 <h3><a name="Logging">Logging</a></h3>
 
