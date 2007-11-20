@@ -31,21 +31,6 @@ static UINT getLocaleUint(int lctype, int defval)
 }
 
 /**
- * @brief Get string value from LC_ entry in windows locale (NLS) database
- */
-static CString getLocaleStr(int lctype, LPCTSTR defval)
-{
-	CString out;
-	LPTSTR outbuff = out.GetBuffer(64);
-	int rt = GetLocaleInfo(LOCALE_USER_DEFAULT, lctype, outbuff, 64);
-	out.ReleaseBuffer();
-	if (!rt)
-		out = defval;
-	return out;
-
-}
-
-/**
  * @brief Get numeric value for LOCALE_SGROUPING
  */
 static UINT GetLocaleGrouping(int defval)
@@ -101,16 +86,16 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 {
 	// Fill in currency format with locale info
 	// except we hardcode for no decimal
+	TCHAR DecimalSep[8];
+	TCHAR ThousandSep[8];
 	NUMBERFMT NumFormat;
 	memset(&NumFormat, 0, sizeof(NumFormat));
 	NumFormat.NumDigits = decimalDigits; // LOCALE_IDIGITS
 	NumFormat.LeadingZero = getLocaleUint(LOCALE_ILZERO, 0);
 	NumFormat.Grouping = GetLocaleGrouping(3);
-	NumFormat.lpDecimalSep = _T("."); // should not be used
-	CString sep = getLocaleStr(LOCALE_STHOUSAND, _T(","));
-	NumFormat.lpThousandSep = (LPTSTR)(LPCTSTR)sep;
+	NumFormat.lpDecimalSep = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_SDECIMAL, DecimalSep, 8) ? DecimalSep : _T(".");
+	NumFormat.lpThousandSep = GetLocaleInfo(LOCALE_USER_DEFAULT, LOCALE_STHOUSAND, ThousandSep, 8) ? ThousandSep : _T(",");
 	NumFormat.NegativeOrder = getLocaleUint(LOCALE_INEGNUMBER , 0);
-
 	String out;
 	out.resize(48);
 	LPTSTR outbuff = &*out.begin(); //GetBuffer(48);
@@ -121,8 +106,13 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 		, outbuff             // output buffer
 		, 48
 		);             // size of output buffer
-	out.resize(rt);
-	if (!rt) {
+	if (rt)
+	{
+		// rt includes terminating zero
+		out.resize(rt - 1);
+	}
+	else
+	{
 		int nerr = GetLastError();
 		TRACE(_T("Error %d in NumToStr(): %s\n"), nerr, GetSysError(nerr));
 		out = str;
