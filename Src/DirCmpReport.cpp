@@ -275,7 +275,14 @@ void DirCmpReport::GenerateContent()
 		WriteString(_T("\n"));
 		for (int currCol = 0; currCol < m_nColumns; currCol++)
 		{
-			WriteString(m_pList->GetItemText(currRow, currCol));
+			CString value = m_pList->GetItemText(currRow, currCol);
+			if (value.Find(m_sSeparator) > 0) {
+				WriteString(_T("\""));
+				WriteString(value);
+				WriteString(_T("\""));
+			}
+			else
+				WriteString(value);
 
 			// Add col-separator, but not after last column
 			if (currCol < m_nColumns - 1)
