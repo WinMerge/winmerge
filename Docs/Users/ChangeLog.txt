@@ -6,6 +6,8 @@ WinMerge 2.7.5.8
   BugFix: Values with "," inside could break the CSV report (#1831512)
   BugFix: Failed to create backup file in folder compare (#1835283)
   BugFix: Revert difference highlight code to 2.6.12 version (#1811695)
+  Translation updates:
+  - Croatian (r4786)
 
 WinMerge 2.7.5.7 - 2007-11-19 (r4772)
   Remove MFC dependency from ShellExtension (#1833521)
