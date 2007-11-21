@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-11-05 00:19+0100\n"
+"PO-Revision-Date: 2007-11-19 11:07+0100\n"
 "Last-Translator: Hasan Osmanagæ <hasan.osmanagic at public.carnet.hr>\n"
 "Language-Team: winmerge-translate <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -862,14 +862,14 @@ msgstr "&Obriši"
 #: Merge.rc:1483
 #, c-format
 msgid "&Left"
-msgstr "&Lijeva"
+msgstr "&lijeva"
 
 #: Merge.rc:498
 #: Merge.rc:1106
 #: Merge.rc:1486
 #, c-format
 msgid "&Right"
-msgstr "&Desna"
+msgstr "&desna"
 
 #: Merge.rc:499
 #, c-format
@@ -1721,22 +1721,22 @@ msgstr "Redak &br:"
 #: Merge.rc:1103
 #, c-format
 msgid "File"
-msgstr "Datoteka"
+msgstr "datoteku"
 
 #: Merge.rc:1108
 #, c-format
 msgid "Goto what"
-msgstr "Idi na što?"
+msgstr "u datoteci"
 
 #: Merge.rc:1109
 #, c-format
 msgid "Li&ne"
-msgstr "&Redak"
+msgstr "&redak"
 
 #: Merge.rc:1111
 #, c-format
 msgid "&Difference"
-msgstr "&Razlika"
+msgstr "&razliku"
 
 #: Merge.rc:1113
 #, c-format
@@ -1888,7 +1888,7 @@ msgstr "Instaliraj..."
 #: Merge.rc:1199
 #, c-format
 msgid "New..."
-msgstr "Nova..."
+msgstr "Novi..."
 
 #: Merge.rc:1200
 #, c-format
@@ -1996,23 +1996,19 @@ msgstr "Nema 7-Zip programa (nije instaliran?)"
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
-msgstr ""
-"Arhive traže program 7-Zip 3.11 ili noviju inaèicu da bude instalirana na raèunalu, lil\n"
-"njegove bitne komponente za samostalno djelovanje, kopirane u mapi programa."
+msgstr "Rad s arhivama zahtijeva program 7-Zip 3.11 ili njegovu noviju inaèicu instaliranu na raèunalu ili njegove bitne komponente za samostalno djelovanje, kopirane u mapi programa."
 
 #: Merge.rc:1260
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
-msgstr "Nužan je odgovarajuæi dodatak (Merge7z*.dll) i staza."
+msgstr "Nužan je odgovarajuæi dodatak (Merge7z*.dll) i staza do njega."
 
 #: Merge.rc:1262
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
-msgstr ""
-"Molimo, koristite inaèice programa 7-Zip prema popisu dolje, dok dodatak za novije\n"
-"inaèice ne bude dostupan."
+msgstr "Molimo, koristite inaèice programa 7-Zip prema niže navedenom popisu, dok dodatak za novije inaèice ne bude dostupan."
 
 #: Merge.rc:1264
 #, c-format
@@ -2058,12 +2054,12 @@ msgstr "ništa"
 #: Merge.rc:1279
 #, c-format
 msgid "missing"
-msgstr "nedostajuæe"
+msgstr "nedostaje"
 
 #: Merge.rc:1280
 #, c-format
 msgid "7-Zip components for standalone operation:"
-msgstr "7-Zip komponente za samostalne postupke:"
+msgstr "7-Zip komponente za samostalno djelovanje:"
 
 #: Merge.rc:1284
 #, c-format
@@ -2087,7 +2083,7 @@ msgstr ""
 #: Merge.rc:1290
 #, c-format
 msgid "Plugin Download"
-msgstr "Dodatak za preuzimanje"
+msgstr "Preuzimanje dodatka"
 
 #: Merge.rc:1299
 #, c-format
