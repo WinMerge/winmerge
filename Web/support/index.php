@@ -6,7 +6,7 @@
 ?>
 <h2>Support</h2>
 <p>WinMerge is an Open Source project, that is covered
-under the <a href="http://www.gnu.org/copyleft/gpl.html">GNU General Public License</a>.
+under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>.
 As such, your main form of support for WinMerge will be through
 subscription to the <a href="http://lists.sourceforge.net/lists/listinfo/winmerge-support">WinMerge-support mailing list</a>.
 In addition, SourceForge has bug tracking capabilities, so please report any

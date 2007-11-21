@@ -27,7 +27,7 @@
   reliable program to use.</para>
 
   <para>Please note that WinMerge is not a freeware, but it is <ulink
-  url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licenced. We have
+  url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licenced. We have
   given you a good tool for free, so please follow our licence and submit your
   improvements back to us. We are happy to get help improving WinMerge
   further. It is advantage for all WinMerge users.</para>
@@ -199,7 +199,7 @@
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patches</ulink>
     and help improve this product! If you publish your altered version, you
     are required to publish changes source code too, it is what <ulink
-    url="http://www.gnu.org/copyleft/gpl.html">GPL</ulink> licence is about.
+    url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licence is about.
     Please respect it.</para>
 
     <para>While WinMerge development has been fast in last couple of years,

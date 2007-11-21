@@ -830,7 +830,7 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
 void CMainFrame::OnHelpGnulicense() 
 {
 	const String spath = GetModulePath() + _T("\\Copying");
-	const TCHAR url[] = _T("http://www.gnu.org/copyleft/gpl.html");
+	const TCHAR url[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
 
 	OpenFileOrUrl(spath.c_str(), url);
 }
