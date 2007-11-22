@@ -5,9 +5,8 @@
     </indexterm>Command Line</title>
 
   <para>WinMerge accepts several parameters from command line, in addition to
-  paths to compare. Most of these parameters are are intended for using
-  WinMerge as an external compare application. Or for starting from batch
-  files.</para>
+  paths to compare. Most of these parameters are intended for using WinMerge
+  as an external compare application. Or for starting from batch files.</para>
 
   <para>Syntax for the command line is:</para>
 
@@ -88,10 +87,12 @@
     </listitem>
 
     <listitem>
-      <simpara><option>/x</option> closes WinMerge after information dialog
-      when files are identical. This parameter is useful when WinMerge is used
-      as an external compare application. It helps to faster process and/or
-      ignore files which don't have any differences.</simpara>
+      <simpara><option>/x</option> closes WinMerge if opened files are
+      identical (after information dialog is shown). This parameter is useful
+      when WinMerge is used as an external compare application. It helps to
+      faster process and/or ignore files which don't have any differences.
+      Note that this option does not apply when files become identical when
+      merging/editing them.</simpara>
     </listitem>
 
     <listitem>
@@ -102,8 +103,8 @@
     </listitem>
 
     <listitem>
-      <simpara><option>/ul</option> tells WnMerge to not add left path to MRU.
-      External applications should not add paths to Open-dialog's MRU
+      <simpara><option>/ul</option> tells WinMerge to not add left path to
+      MRU. External applications should not add paths to Open-dialog's MRU
       lists.</simpara>
     </listitem>
 
@@ -133,7 +134,7 @@
 
     <listitem>
       <simpara><option>/minimize</option> starts WinMerge as minimized. This
-      option can be used to start WinMerge minimized for lenghty
+      option can be used to start WinMerge minimized for lengthy
       compares.</simpara>
     </listitem>
 
@@ -171,7 +172,7 @@
   </itemizedlist>
 
   <para><tip>
-      <para>WinMerge accepts filename and foldername as path parameters, as
+      <para>WinMerge accepts filename and folder name as path parameters, as
       long as the given folder contains file with same name than in first
       parameter.</para>
 
