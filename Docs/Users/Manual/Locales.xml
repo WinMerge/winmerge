@@ -98,7 +98,7 @@
 
   <note>
     <para>The translations cover interface content, including menus, dialogs,
-    tooltips, and messages -- essentially the translation of of all strings
+    tooltips, and messages -- essentially the translation of all the strings
     displayed. However, they do not provide areas outside of string
     translation; they do not handle how numbers are divided, or how words are
     alphabetized. (These issues should be addressed in the conventional
@@ -154,16 +154,16 @@
 
         <listitem>
           <simpara>If the <filename class="directory">Languages</filename>
-          subdirectory does not exist under the WinMerge directory (where
+          subfolder does not exist under the WinMerge directory (where
           <filename>WinMerge.exe</filename> and/or
           <filename>WinMergeU.exe</filename> is located) create it.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Search for <filename>Merge*.lang</filename> files, where *
-          is a language name (<filename>MergeSwedish.lang</filename> for
-          Swedish translation) in archive file. Extract that file to the
-          <filename>Languages</filename> directory.</simpara>
+          <simpara>Search for <filename>*.po</filename> files, where * is a
+          language name (<filename>Swedish.po</filename> for Swedish
+          translation) in the archive file. Extract that file to the
+          <filename>Languages</filename> subfolder.</simpara>
         </listitem>
 
         <listitem>
