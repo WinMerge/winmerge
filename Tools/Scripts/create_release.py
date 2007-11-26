@@ -76,7 +76,23 @@ def cleanup_build():
         shutil.rmtree(winmerge_temp, True)
     else:
         print 'Skipping folder %s' % winmerge_temp
-        
+
+    try:
+        print 'Remove ANSI files'
+        if os.path.exists('build/mergerelease/WinMerge.exe'):
+            os.remove('build/mergerelease/WinMerge.exe')
+        if os.path.exists('build/mergerelease/ShellExtension.dll'):
+            os.remove('build/mergerelease/ShellExtension.dll')
+        print 'Remove Unicode files'
+        if os.path.exists('build/mergeunicoderelease/WinMergeU.exe'):
+            os.remove('build/mergeunicoderelease/WinMergeU.exe')
+        if os.path.exists('build/mergeunicoderelease/ShellExtensionU.dll'):
+            os.remove('build/mergeunicoderelease/ShellExtensionU.dll')
+    except:
+        print 'Error deleting files: '
+        print sys.exc_info()[0]
+        return False
+    return True
 
 # Commented out as it seems running prelink and postbuild bat files
 # don't work when build is started from this script.
@@ -299,8 +315,9 @@ def main(argv):
         print '(which has Src- and Filter -folders as subfolders) or from'
         print 'Tools/Scripts -folder (where this script is located).'
         sys.exit()
-    
-    cleanup_build()
+
+    if cleanup_build() == False:
+        sys.exit()
 
     version_folder = 'WinMerge-' + version
     dist_folder = get_and_create_dist_folder(version_folder)
