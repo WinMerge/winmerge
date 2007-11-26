@@ -162,7 +162,18 @@ def svn_export(dist_src_folder):
     """Exports sources to distribution folder."""
 
     print 'Exporting sources to ' + dist_src_folder
-    call([svn_binary, 'export', '--non-interactive', '.', dist_src_folder] )
+    call([svn_binary, 'export', '--non-interactive', '.', dist_src_folder])
+
+    dll_folder = os.path.join(dist_src_folder, 'Plugins/dlls')
+    files = os.listdir(dll_folder)
+
+    print 'Removing dll files from plugin folder...'
+    for cur_file in files:
+        fullpath = os.path.join(dll_folder, cur_file)
+        if os.path.isfile(fullpath):
+            file_name, file_ext = os.path.splitext(cur_file)
+            if (file_ext == '.dll'):
+                os.remove(fullpath)
 
 def build_targets():
     """Builds all WinMerge targets."""
