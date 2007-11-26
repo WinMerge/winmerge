@@ -36,7 +36,6 @@
 #Tasks not done (TODO?):
 # - building 64-bit ShellExtension
 # - creating packages from source and binary folders
-# - creating runtime distribution folder
 # - creating installer
 # - running virus check
 # - creating SHA-1 hashes for distributed files
@@ -76,7 +75,7 @@ def cleanup_build():
         shutil.rmtree(winmerge_temp, True)
     else:
         print 'Skipping folder %s' % winmerge_temp
-
+    
     try:
         print 'Remove ANSI files'
         if os.path.exists('build/mergerelease/WinMerge.exe'):
@@ -273,6 +272,22 @@ def copy_po_files(dest_folder):
             if (file_ext == '.po'):
                 shutil.copy(fullpath, dest_folder)
 
+def get_and_create_runtimes_folder(dist_folder, version):
+    """Formats and creates runtimes distribution folder."""
+
+    runtimes_folder = os.path.join(dist_folder, 'Runtimes-' + version)
+    print 'Create runtimes distribution folder: ' + runtimes_folder
+    os.mkdir(runtimes_folder)
+    return runtimes_folder
+
+def create_runtime_folder(runtimes_folder):
+    """Copy runtime files to distribution folder."""
+
+    shutil.copy('Installer/Runtimes/mfc71.dll', runtimes_folder)
+    shutil.copy('Installer/Runtimes/mfc71u.dll', runtimes_folder)
+    shutil.copy('Installer/Runtimes/msvcp71.dll', runtimes_folder)
+    shutil.copy('Installer/Runtimes/msvcr71.dll', runtimes_folder)
+
 def find_winmerge_root():
     """Find WinMerge tree root folder from where to run rest of the script."""
     
@@ -332,6 +347,9 @@ def main(argv):
     
     dist_bin_folder = get_and_create_bin_folder(dist_folder, version_folder)
     create_bin_folders(dist_bin_folder, dist_src_folder)
+
+    runtimes_folder = get_and_create_runtimes_folder(dist_folder, version)
+    create_runtime_folder(runtimes_folder)
 
     print 'WinMerge release script ready!'
 
