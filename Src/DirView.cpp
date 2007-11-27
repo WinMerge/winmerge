@@ -2056,11 +2056,34 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 	// Handle special shortcuts here
 	if (pMsg->message == WM_KEYDOWN)
 	{
-		// Check if we got 'ESC pressed' -message
-		if (pMsg->wParam == VK_ESCAPE)
+		if (FALSE == IsLabelEdit())
+		{
+			// Check if we got 'ESC pressed' -message
+			if (pMsg->wParam == VK_ESCAPE)
+			{
+				if (m_bEscCloses)
+				{
+					AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
+					return FALSE;
+				}
+			}
+			// Check if we got 'DEL pressed' -message
+			if (pMsg->wParam == VK_DELETE)
+			{
+				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_MERGE_DELETE);
+				return FALSE;
+			}
+			// Check if we got 'Backspace pressed' -message
+			if (pMsg->wParam == VK_BACK)
+			{
+				OpenParentDirectory();
+				return FALSE;
+			}
+		}
+		else
 		{
 			// ESC doesn't close window when user is renaming an item.
-			if (TRUE == IsLabelEdit())
+			if (pMsg->wParam == VK_ESCAPE)
 			{
 				m_bUserCancelEdit = TRUE;
 
@@ -2072,27 +2095,6 @@ BOOL CDirView::PreTranslateMessage(MSG* pMsg)
 				// cause a program termination.
 				return TRUE;
 			}
-			else if (m_bEscCloses)
-			{
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_FILE_CLOSE);
-				return FALSE;
-			}
-		}
-		// Check if we got 'DEL pressed' -message
-		if (pMsg->wParam == VK_DELETE)
-		{
-			// DEL doesn't delete a file when user is renaming an item.
-			if (!IsLabelEdit())
-			{
-				AfxGetMainWnd()->PostMessage(WM_COMMAND, ID_MERGE_DELETE);
-				return FALSE;
-			}
-		}
-		// Check if we got 'Backspace pressed' -message
-		if (pMsg->wParam == VK_BACK)
-		{
-			OpenParentDirectory();
-			return FALSE;
 		}
 	}
 	return CListView::PreTranslateMessage(pMsg);
