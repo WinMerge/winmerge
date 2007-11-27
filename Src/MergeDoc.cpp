@@ -1565,7 +1565,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		}
 	}
 	// we use the same unpacker for both files, so it must be defined after first file
-	ASSERT(infoUnpacker->bToBeScanned == FALSE);
+	ASSERT(infoUnpacker->bToBeScanned != PLUGIN_AUTO);
 	// we will load the transformed file
 	LPCTSTR pszFileName = sFileName.c_str();
 
@@ -1579,8 +1579,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	if (def && def->encoding != -1)
 		m_nSourceEncoding = def->encoding;
 	
-	UniMemFile ufile;
-	UniFile * pufile = &ufile;
+	UniFile *pufile = infoUnpacker->pufile;
+	if (pufile == 0)
+		pufile = new UniMemFile;
 
 	// Now we only use the UniFile interface
 	// which is something we could implement for HTTP and/or FTP files
@@ -1735,6 +1736,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 LoadFromFileExit:
 	// close the file now to free the handle
 	pufile->Close();
+	delete pufile;
 
 	// delete the file that unpacking may have created
 	if (_tcscmp(pszFileNameInit, pszFileName) != 0)
@@ -1768,7 +1770,8 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		return SAVE_FAILED;	// No filename, cannot save...
 
 	if (nCrlfStyle == CRLF_STYLE_AUTOMATIC &&
-		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
+		!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		infoUnpacker && infoUnpacker->disallowMixedEOL)
 	{
 			// get the default nCrlfStyle of the CDiffTextBuffer
 		nCrlfStyle = GetCRLFMode();
@@ -2897,12 +2900,20 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		// or any function that calls UpdateView, like SelectDiff)
 		// Note: If option enabled, and another side type is not recognized,
 		// we use recognized type for unrecognized side too.
-		CString sextL = GetFileExt(sLeftFile, m_strDesc[0].c_str());
-		BOOL bLeftTyped = pLeft->SetTextType(sextL);
-		pLeftDetail->SetTextType(sextL);
-		CString sextR = GetFileExt(sRightFile, m_strDesc[1].c_str());
-		BOOL bRightTyped = pRight->SetTextType(sextR);
-		pRightDetail->SetTextType(sextR);
+		String sextL, sextR;
+		if (m_pInfoUnpacker->textType.length())
+		{
+			sextL = sextR = m_pInfoUnpacker->textType;
+		}
+		else
+		{
+			sextL = GetFileExt(sLeftFile, m_strDesc[0].c_str());
+			sextR = GetFileExt(sRightFile, m_strDesc[1].c_str());
+		}
+		BOOL bLeftTyped = pLeft->SetTextType(sextL.c_str());
+		pLeftDetail->SetTextType(sextL.c_str());
+		BOOL bRightTyped = pRight->SetTextType(sextR.c_str());
+		pRightDetail->SetTextType(sextR.c_str());
 
 		// If other side didn't have recognized texttype, apply recognized
 		// type to unrecognized one. (comparing file.cpp and file.bak applies
@@ -2913,13 +2924,13 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 			if (bLeftTyped)
 			{
-				enuType = pLeft->GetTextType(sextL);
+				enuType = pLeft->GetTextType(sextL.c_str());
 				pRight->SetTextType(enuType);
 				pRightDetail->SetTextType(enuType);
 			}
 			else
 			{
-				enuType = pRight->GetTextType(sextR);
+				enuType = pRight->GetTextType(sextR.c_str());
 				pLeft->SetTextType(enuType);
 				pLeftDetail->SetTextType(enuType);
 			}
@@ -3255,7 +3266,7 @@ void CMergeDoc::OnFileEncoding()
 
 // Return file extension either from file name or file description (if WinMerge is used as an
 // external Rational ClearCase tool.
-CString CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
+String CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
 {
 	String sExt;
 	SplitFilename(sFileName, NULL, NULL, &sExt);
@@ -3273,7 +3284,7 @@ CString CMergeDoc::GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription)
 			SplitViewName(sDescription, NULL, NULL, &sExt);
 		}
 	}
-	return sExt.c_str();
+	return sExt;
 }
 
 /**

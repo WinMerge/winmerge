@@ -32,6 +32,7 @@
 #include "files.h"
 #include "paths.h"
 #include "multiformatText.h"
+#include "UniMarkdownFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,8 +41,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
-BOOL g_bUnpackerMode = PLUGIN_MANUAL;
-BOOL g_bPredifferMode = PLUGIN_MANUAL;
+int g_bUnpackerMode = PLUGIN_MANUAL;
+int g_bPredifferMode = PLUGIN_MANUAL;
 
 /**
  * @brief Category of transformation : define the transformation events
@@ -177,6 +178,18 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 // scan plugins for the first handler
 BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInfo * handler, int * handlerSubcode)
 {
+	// PLUGIN_BUILTIN_XML : read source file through custom UniFile
+	if (handler->bToBeScanned == PLUGIN_BUILTIN_XML)
+	{
+		handler->pufile = new UniMarkdownFile;
+		handler->textType = _T("xml");
+		handler->disallowMixedEOL = true;
+		handler->pluginName.erase(); // Make FileTransform_Packing() a NOP
+		// Leave bToBeScanned alone so above lines will continue to execute on
+		// subsequent calls to this function
+		return TRUE;
+	}
+
 	storageForPlugins bufferData;
 	bufferData.SetDataFileAnsi(filepath.c_str());
 

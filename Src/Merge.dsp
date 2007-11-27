@@ -956,6 +956,10 @@ SOURCE=.\Common\UniFile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\UniMarkdownFile.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\varprop.cpp
 # End Source File
 # Begin Source File
@@ -1590,6 +1594,10 @@ SOURCE=.\Common\UnicodeString.h
 # Begin Source File
 
 SOURCE=.\Common\UniFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\UniMarkdownFile.h
 # End Source File
 # Begin Source File
 

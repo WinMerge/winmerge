@@ -361,6 +361,7 @@ protected:
 	afx_msg void OnViewShowHiddenItems();
 	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare();
+	afx_msg void OnMergeCompareXML();
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
 	afx_msg void OnViewCompareStatistics();
 	afx_msg void OnFileEncoding();

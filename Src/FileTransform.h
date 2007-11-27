@@ -31,31 +31,32 @@
 
 #include "resource.h"
 
+class UniFile;
+
 class CRegExp;
 typedef CTypedPtrList<CPtrList, CRegExp*>RegList;
 
 
 
 /**
- * @brief Modes for plugin
+ * @brief Modes for plugin (Modes for prediffing included)
  */
-enum 
+enum PLUGIN_MODE
 {
+	// Modes for unpacking
 	PLUGIN_MANUAL,
 	PLUGIN_AUTO,
+	PLUGIN_BUILTIN_XML,
+	// Modes for prediffing
+	PREDIFF_MANUAL = PLUGIN_MANUAL,
+	PREDIFF_AUTO = PLUGIN_AUTO,
 };
 
-/**
- * @brief Modes for prediffing
- */
-enum 
-{
-	PREDIFF_MANUAL,
-	PREDIFF_AUTO,
-};
+C_ASSERT(PLUGIN_MANUAL == FALSE);
+C_ASSERT(PLUGIN_AUTO == TRUE);
 
-extern BOOL g_bUnpackerMode;
-extern BOOL g_bPredifferMode;
+extern int g_bUnpackerMode;
+extern int g_bPredifferMode;
 
 
 /**
@@ -75,37 +76,29 @@ extern LPCWSTR TransformationCategories[];
 class PluginForFile
 {
 public:
-	void Initialize(BOOL bMode)
+	void Initialize(int bMode)
 	{
+		// TODO: Convert bMode to PLUGIN_MODE and fix compile errors
 		// init functions as a valid "do nothing" unpacker
 		bWithFile = FALSE;
 		// and init bAutomatic flag and name according to global variable
-		if (bMode == PLUGIN_MANUAL)
-		{			
+		if (bMode != PLUGIN_AUTO)
+		{
 			pluginName.erase();
-			bToBeScanned = FALSE;
 		}
 		else
 		{
 			pluginName = LoadResString(IDS_USERCHOICE_AUTOMATIC);
-			bToBeScanned = TRUE;
 		}
+		bToBeScanned = bMode;
 	};
-	PluginForFile(BOOL bMode) 
+	PluginForFile(PLUGIN_MODE bMode) 
 	{
 		Initialize(bMode);
 	};
-
-/*	operator=(PluginForFile * newInfo) 
-	{
-		bToBeScanned = newInfo->bToBeScanned;
-		pluginName = newInfo->pluginName;
-		bWithFile = newInfo->bWithFile;
-	}*/
-
 public:
 	/// TRUE if the plugin will be defined during the first use (through scan of all available plugins)
-	BOOL    bToBeScanned;
+	int bToBeScanned; // TODO: Convert to PLUGIN_MODE and fix compile errors
 	/// plugin name when it is defined
 	String pluginName;
 	/// TRUE is the plugins exchange data through a file, FALSE is the data is passed as parameter (BSTR/ARRAY)
@@ -122,18 +115,21 @@ public:
 class PackingInfo : public PluginForFile
 {
 public:
-	PackingInfo() : PluginForFile(g_bUnpackerMode)	{ ; };
-	PackingInfo(BOOL bForcedMode) : PluginForFile(bForcedMode)	{ ; };
-/*	operator=(PackingInfo * newInfo) 
+	PackingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bUnpackerMode)
+	: PluginForFile(bMode)
+	, subcode(0)
+	, pufile(0)
+	, disallowMixedEOL(false)
 	{
-		bToBeScanned = newInfo->bToBeScanned;
-		pluginName = newInfo->pluginName;
-		subcode = newInfo->subcode;
-		bWithFile = newInfo->bWithFile;
-	}*/
+	}
 public:
 	/// keep some info from unpacking for packing
 	int subcode;
+	/// text type to override syntax highlighting
+	String textType;
+	/// custom UniFile
+	UniFile *pufile;
+	bool disallowMixedEOL;
 };
 
 /**
@@ -144,8 +140,10 @@ public:
 class PrediffingInfo : public PluginForFile
 {
 public:
-	PrediffingInfo() : PluginForFile(g_bPredifferMode)	{ ; };
-	PrediffingInfo(BOOL bForcedMode) : PluginForFile(bForcedMode)	{ ; };
+	PrediffingInfo(PLUGIN_MODE bMode = (PLUGIN_MODE)g_bPredifferMode)
+	: PluginForFile(bMode)
+	{
+	}
 };
 
 

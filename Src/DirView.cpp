@@ -211,6 +211,8 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_SHOWHIDDENITEMS, OnUpdateViewShowHiddenItems)
 	ON_COMMAND(ID_MERGE_COMPARE, OnMergeCompare)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
+	ON_COMMAND(ID_MERGE_COMPARE_XML, OnMergeCompareXML)
+	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateMergeCompare)
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
@@ -3033,6 +3035,13 @@ void CDirView::OnMergeCompare()
 {
 	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
 	OpenSelection();
+}
+
+void CDirView::OnMergeCompareXML()
+{
+	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+	PackingInfo packingInfo = PLUGIN_BUILTIN_XML;
+	OpenSelection(&packingInfo);
 }
 
 void CDirView::OnUpdateMergeCompare(CCmdUI *pCmdUI)

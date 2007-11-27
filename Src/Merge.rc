@@ -479,6 +479,10 @@ BEGIN
     POPUP "_ITEM_POPUP_"
     BEGIN
         MENUITEM "Comp&are",                    ID_MERGE_COMPARE
+        POPUP "Co&mpare Special"
+        BEGIN
+            MENUITEM "&XML"							ID_MERGE_COMPARE_XML
+        END
         MENUITEM SEPARATOR
         POPUP "&Copy"
         BEGIN

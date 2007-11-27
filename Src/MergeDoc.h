@@ -352,7 +352,7 @@ private:
 	int GetMatchCost(const CString &Line0, const CString &Line1);
 	void FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuffer1,
 		CDiffTextBuffer * pBuffer2);
-	CString GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription);
+	String GetFileExt(LPCTSTR sFileName, LPCTSTR sDescription);
 };
 
 /////////////////////////////////////////////////////////////////////////////
