@@ -225,6 +225,7 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
+  ON_WM_VSCROLL()
 	ON_WM_ERASEBKGND()
 	ON_WM_PAINT()
 	//}}AFX_MSG_MAP
@@ -644,6 +645,24 @@ BOOL CLocationView::GotoLocation(const CPoint& point, BOOL bRealLine)
 		m_view[bar]->SetFocus();
 
 	return TRUE;
+}
+
+/**
+ * @brief Handle scroll events sent directly.
+ *
+ */
+void CLocationView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
+{
+	if (pScrollBar == NULL)
+	{
+		// Scroll did not come frome a scroll bar
+		// Send it to the right view instead
+ 	  CMergeDoc *pDoc = GetDocument();
+		pDoc->GetRightView()->SendMessage(WM_VSCROLL,
+			MAKELONG(nSBCode, nPos), (LPARAM)NULL);
+		return;
+	}
+	CView::OnVScroll (nSBCode, nPos, pScrollBar);
 }
 
 /**

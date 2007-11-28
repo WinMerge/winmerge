@@ -173,6 +173,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
 	ON_COMMAND(ID_FILE_CLOSE, OnWindowClose)
 	ON_WM_VSCROLL ()
+	ON_WM_HSCROLL ()
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
 	ON_UPDATE_COMMAND_UI(ID_EDIT_COPY_LINENUMBERS, OnUpdateEditCopyLinenumbers)
 	ON_COMMAND(ID_VIEW_LINEDIFFS, OnViewLineDiffs)
@@ -2569,10 +2570,45 @@ void CMergeEditView::OnWindowClose()
 }
 
 /**
+ * @brief Check for horizontal scroll. Re-route to CSplitterEx if not from
+ * a scroll bar.
+ */
+void CMergeEditView::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
+{
+	if (pScrollBar == NULL)
+	{
+		// Scroll did not come frome a scroll bar
+		// Find the appropriate scroll bar
+		// and send the message to the splitter window instead
+		// The event should eventually come back here but with a valid scrollbar
+		// Along the way it will be propagated to other windows that need it
+		CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+		CScrollBar* curBar = this->GetScrollBarCtrl(SB_HORZ);
+		pSplitterWnd->SendMessage(WM_HSCROLL,
+			MAKELONG(nSBCode, nPos), (LPARAM)curBar->m_hWnd);
+		return;
+	}
+	CCrystalTextView::OnHScroll (nSBCode, nPos, pScrollBar);
+}
+
+/**
  * @brief When view is scrolled using scrollbars update location pane.
  */
 void CMergeEditView::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
+	if (pScrollBar == NULL)
+	{
+		// Scroll did not come frome a scroll bar
+		// Find the appropriate scroll bar
+		// and send the message to the splitter window instead
+		// The event should eventually come back here but with a valid scrollbar
+		// Along the way it will be propagated to other windows that need it
+		CSplitterWnd *pSplitterWnd = GetParentSplitter(this, FALSE);
+		CScrollBar* curBar = this->GetScrollBarCtrl(SB_VERT);
+		pSplitterWnd->SendMessage(WM_VSCROLL,
+			MAKELONG(nSBCode, nPos), (LPARAM)curBar->m_hWnd);
+		return;
+	}
 	CCrystalTextView::OnVScroll (nSBCode, nPos, pScrollBar);
 
 	if (nSBCode == SB_ENDSCROLL)

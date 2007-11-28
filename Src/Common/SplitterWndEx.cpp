@@ -59,6 +59,10 @@ int CSplitterWndEx::HitTest(CPoint pt) const
 
 void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
+  // Ignore scroll events sent directly to the splitter (i.e. not from a
+  // scroll bar)
+  if (pScrollBar == NULL)
+    return;
 	// maintain original synchronization functionality (all panes above the scrollbar)
 	CSplitterWnd::OnHScroll(nSBCode, nPos, pScrollBar);
 
@@ -106,6 +110,10 @@ void CSplitterWndEx::OnHScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 
 void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 {
+  // Ignore scroll events sent directly to the splitter (i.e. not from a
+  // scroll bar)
+  if (pScrollBar == NULL)
+    return;
 	// maintain original synchronization functionality (all panes left from the scrollbar)
 	CSplitterWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 
@@ -128,7 +136,7 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
 		if(row==curRow)
 			continue;
 
-		CScrollBar* curBar = GetPane(0, curRow)->GetScrollBarCtrl(SB_VERT);
+		CScrollBar* curBar = GetPane(curRow, 0)->GetScrollBarCtrl(SB_VERT);
 		double temp = ((double) pScrollBar->GetScrollPos()) * curBar->GetScrollLimit() + oldLimit/2;
 		int newPos = (int) (temp/oldLimit);
 
