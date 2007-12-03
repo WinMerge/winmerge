@@ -10,6 +10,8 @@
 #include "stdafx.h"
 #include "LogFile.h"
 #include <afxinet.h>
+#include "UnicodeString.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -61,15 +63,13 @@ CLogFile::~CLogFile()
 CString CLogFile::SetFile(const CString & strFile, const CString & strPath,
 	BOOL bDelExisting /*= FALSE*/)
 {
-	TCHAR temp[MAX_PATH] = {0};
-
 	// build the path to the logfile
 	if (!strPath.IsEmpty())
 		m_strLogPath = strFile;
 	else
 	{
-		if (GetTempPath(MAX_PATH, temp))
-			m_strLogPath = temp;
+		String temp = paths_GetTempPath();
+		m_strLogPath = temp.c_str();
 	}
 	
 	if (m_strLogPath.Right(1) != _T('\\'))
@@ -280,21 +280,20 @@ void CLogFile::Prune(FILE *f)
 {
 	TCHAR buf[8196] = {0};
 	DWORD amt;
-	TCHAR tempfile[MAX_PATH];
 	FILE *tf;
-	GetTempFileName(_T("."),_T("LOG"),0,tempfile);
-	DeleteFile(tempfile);
-	if ((tf=_tfopen(tempfile,_T("w"))) != NULL)
+	String tempfile = paths_GetTempFileName(_T("."), _T("LOG"));
+	DeleteFile(tempfile.c_str());
+	if ((tf = _tfopen(tempfile.c_str(), _T("w"))) != NULL)
 	{
-		fseek(f, ftell(f)/4, SEEK_SET);
+		fseek(f, ftell(f) / 4, SEEK_SET);
 		_fputts(_T("#### The log has been truncated due to size limits ####\n"), tf);
 
-		while ((amt=fread(buf, 1, 8196, f)) > 0)
+		while ((amt = fread(buf, 1, 8196, f)) > 0)
 			fwrite(buf, amt, 1, tf);
 		fclose(tf);
 		fclose(f);
 		DeleteFile(m_strLogPath);
-		MoveFile(tempfile,m_strLogPath);
+		MoveFile(tempfile.c_str(), m_strLogPath);
 	}
 }
 
