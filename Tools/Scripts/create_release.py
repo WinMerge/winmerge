@@ -164,6 +164,9 @@ def svn_export(dist_src_folder):
     print 'Exporting sources to ' + dist_src_folder
     call([svn_binary, 'export', '--non-interactive', '.', dist_src_folder])
 
+def cleanup_dlls_from_plugins(dist_src_folder):
+    """Remove compiled plugin dll files from source distribution folders."""
+
     dll_folder = os.path.join(dist_src_folder, 'Plugins/dlls')
     files = os.listdir(dll_folder)
 
@@ -358,6 +361,10 @@ def main(argv):
     
     dist_bin_folder = get_and_create_bin_folder(dist_folder, version_folder)
     create_bin_folders(dist_bin_folder, dist_src_folder)
+
+    # Do the cleanup after creating binary distrib folders, as some files
+    # and folders are copied from source folders to binary folders.
+    cleanup_dlls_from_plugins(dist_src_folder)
 
     runtimes_folder = get_and_create_runtimes_folder(dist_folder, version)
     create_runtime_folder(runtimes_folder)
