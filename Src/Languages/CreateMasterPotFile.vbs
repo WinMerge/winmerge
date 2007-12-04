@@ -31,15 +31,15 @@ Call Main
 ''
 ' ...
 Sub Main
-  Dim oStrings, oComments, sCodePage
+  Dim oStrings, sCodePage
   Dim StartTime, EndTime, Seconds
   
   StartTime = Time
   
   InfoBox "Creating POT file from Merge.rc...", 3
   
-  Set oStrings = GetStringsFromRcFile("../Merge.rc", oComments, sCodePage)
-  CreateMasterPotFile "English.pot", oStrings, oComments, sCodePage
+  Set oStrings = GetStringsFromRcFile("../Merge.rc", sCodePage)
+  CreateMasterPotFile "English.pot", oStrings, sCodePage
   
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
@@ -49,15 +49,20 @@ End Sub
 
 ''
 ' ...
-Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePage)
-  Dim oBlacklist, oStrings, oRcFile, sLine, iLine
-  Dim sRcFileName, iBlockType, sReference, sString, sComment, oMatches, oMatch, sTemp
+Class CString
+  Dim Comment, References, Context, Id, Str
+End Class
+
+''
+' ...
+Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef sCodePage)
+  Dim oBlacklist, oStrings, oString, oRcFile, sLine, iLine
+  Dim sRcFileName, iBlockType, sReference, sString, sComment, sContext, oMatch, sTemp, sKey
   Dim oLcFile, sLcLine, fContinuation
 
   Set oBlacklist = GetStringBlacklist("StringBlacklist.txt")
   
   Set oStrings = CreateObject("Scripting.Dictionary")
-  Set oComments = CreateObject("Scripting.Dictionary")
   
   If (oFSO.FileExists(sRcFilePath) = True) Then 'If the RC file exists...
     sRcFileName = oFSO.GetFileName(sRcFilePath)
@@ -74,6 +79,7 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
       sReference = sRcFileName & ":" & iLine
       sString = ""
       sComment = ""
+      sContext = ""
       
       If fContinuation Then
         ' Nothing to do
@@ -120,6 +126,9 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
                   sString = Replace(sTemp, """""", "\""")
                   If (FoundRegExpMatch(sLine, "//#\. (.*?)$", oMatch) = True) Then 'If found a comment for the translators...
                     sComment = Trim(oMatch.SubMatches(0))
+                  ElseIf (FoundRegExpMatch(sLine, "//msgctxt (.*?)$", oMatch) = True) Then 'If found a context for the translation...
+                    sContext = Trim(oMatch.SubMatches(0))
+                    sComment = sContext
                   End If
                 End If
               End If
@@ -141,20 +150,27 @@ Function GetStringsFromRcFile(ByVal sRcFilePath, ByRef oComments, ByRef sCodePag
       End If
       
       If (sString <> "") Then
-        If (oStrings.Exists(sString) = True) Then 'If the key is already used...
-          oStrings(sString) = oStrings(sString) & vbTab & sReference
-        Else 'If the key is NOT already used...
-          oStrings.Add sString, sReference
+        sKey = sContext & sString
+        Set oString = New CString
+        If (oStrings.Exists(sKey) = True) Then 'If the key is already used...
+          Set oString = oStrings(sKey)
         End If
-        
         If (sComment <> "") Then
-          If (oComments.Exists(sString) = True) Then 'If the comment key is already used...
-            If (oComments(sString) <> sComment) Then 'If new comment...
-              oComments(sString) = oComments(sString) & vbTab & sComment
-            End If
-          Else 'If the comment key is NOT already used...
-            oComments.Add sString, sComment
-          End If
+          oString.Comment = sComment
+        End If
+        If (oString.References <> "") Then
+          oString.References = oString.References & vbTab & sReference
+        Else
+          oString.References = sReference
+        End If
+        oString.Context = sContext
+        oString.Id = sString
+        oString.Str = ""
+        
+        If (oStrings.Exists(sKey) = True) Then 'If the key is already used...
+          Set oStrings(sKey) = oString
+        Else 'If the key is NOT already used...
+          oStrings.Add sContext & sString, oString
         End If
       End If
       If sLine = "#ifndef APSTUDIO_INVOKED" Then Exit Do
@@ -193,8 +209,8 @@ End Function
 
 ''
 ' ...
-Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal oComments, ByVal sCodePage)
-  Dim oPotFile, sMsgId, aComments, aReferences, i
+Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal sCodePage)
+  Dim oPotFile, sKey, oString, aReferences, i
   
   Set oPotFile = oFSO.CreateTextFile(sPotPath, True)
   
@@ -219,19 +235,20 @@ Sub CreateMasterPotFile(ByVal sPotPath, ByVal oStrings, ByVal oComments, ByVal s
   oPotFile.WriteLine """X-Poedit-SourceCharset: CP" & sCodePage & "\n"""
   oPotFile.WriteLine """X-Generator: CreateMasterPotFile.vbs\n"""
   oPotFile.WriteLine
-  For Each sMsgId In oStrings.Keys 'For all strings...
-    If (oComments(sMsgId) <> "") Then 'If comments exists...
-      aComments = SplitByTab(oComments(sMsgId))
-      For i = LBound(aComments) To UBound(aComments) 'For all comments...
-        oPotFile.WriteLine "#. " & aComments(i)
-      Next
+  For Each sKey In oStrings.Keys 'For all strings...
+    Set oString = oStrings(sKey)
+    If (oString.Comment <> "") Then 'If comment exists...
+      oPotFile.WriteLine "#. " & oString.Comment
     End If
-    aReferences = SplitByTab(oStrings(sMsgId))
+    aReferences = SplitByTab(oString.References)
     For i = LBound(aReferences) To UBound(aReferences) 'For all references...
       oPotFile.WriteLine "#: " & aReferences(i)
     Next
     oPotFile.WriteLine "#, c-format"
-    oPotFile.WriteLine "msgid """ & sMsgId & """"
+    If (oString.Context <> "") Then 'If context exists...
+      oPotFile.WriteLine "msgctxt """ & oString.Context & """"
+    End If
+    oPotFile.WriteLine "msgid """ & oString.Id & """"
     oPotFile.WriteLine "msgstr """""
     oPotFile.WriteLine
   Next

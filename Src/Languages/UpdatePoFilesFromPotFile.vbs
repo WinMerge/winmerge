@@ -59,15 +59,19 @@ End Sub
 ''
 ' ...
 Class CSubContent
-  Dim sMsgId2, sMsgStr2, sTranslatorComments, sExtractedComments, sReferences, sFlags
+  Dim sMsgCtxt2, sMsgId2, sMsgStr2, sTranslatorComments, sExtractedComments, sReferences, sFlags
 End Class
 
 ''
 ' ...
 Function GetContentFromPoFile(ByVal sPoPath)
   Dim oContent, oSubContent, oTextFile, sLine
-  Dim oMatch, iMsgStarted, sMsgId
-  Dim reMsgId, reMsgContinued
+  Dim oMatch, iMsgStarted, sMsgCtxt, sMsgId
+  Dim reMsgCtxt, reMsgId, reMsgContinued
+
+  Set reMsgCtxt = New RegExp
+  reMsgCtxt.Pattern = "^msgctxt ""(.*)""$"
+  reMsgCtxt.IgnoreCase = True
 
   Set reMsgId = New RegExp
   reMsgId.Pattern = "^msgid ""(.*)""$"
@@ -80,26 +84,35 @@ Function GetContentFromPoFile(ByVal sPoPath)
   Set oContent = CreateObject("Scripting.Dictionary")
   
   iMsgStarted = 0
+  sMsgCtxt = ""
   Set oSubContent = New CSubContent
   Set oTextFile = oFSO.OpenTextFile(sPoPath, ForReading)
   Do Until oTextFile.AtEndOfStream 'For all lines...
     sLine = Trim(oTextFile.ReadLine)
     If sLine <> "" Then 'If NOT empty line...
       If Left(sLine, 1) <> "#" Then 'If NOT comment line...
-        If reMsgId.Test(sLine) Then 'If "msgid"...
+        If reMsgCtxt.Test(sLine) Then 'If "msgctxt"...
           iMsgStarted = 1
+          Set oMatch = reMsgCtxt.Execute(sLine)(0)
+          sMsgCtxt = oMatch.SubMatches(0)
+          oSubContent.sMsgCtxt2 = sLine & vbCrLf
+        ElseIf reMsgId.Test(sLine) Then 'If "msgid"...
+          iMsgStarted = 2
           Set oMatch = reMsgId.Execute(sLine)(0)
           sMsgId = oMatch.SubMatches(0)
           oSubContent.sMsgId2 = sLine & vbCrLf
         ElseIf Left(sLine, 8) = "msgstr """ Then 'If "msgstr"...
-          iMsgStarted = 2
+          iMsgStarted = 3
           oSubContent.sMsgStr2 = sLine & vbCrLf
-        ElseIf reMsgContinued.Test(sLine) Then 'If "msgid" or "msgstr" continued...
+        ElseIf reMsgContinued.Test(sLine) Then 'If "msgctxt", "msgid" or "msgstr" continued...
           If iMsgStarted = 1 Then
+            sMsgCtxt = sMsgCtxt & oMatch.SubMatches(0)
+            oSubContent.sMsgCtxt2 = oSubContent.sMsgCtxt2 & sLine & vbCrLf
+          ElseIf iMsgStarted = 2 Then
             Set oMatch = reMsgContinued.Execute(sLine)(0)
             sMsgId = sMsgId & oMatch.SubMatches(0)
             oSubContent.sMsgId2 = oSubContent.sMsgId2 & sLine & vbCrLf
-          ElseIf iMsgStarted = 2 Then
+          ElseIf iMsgStarted = 3 Then
             oSubContent.sMsgStr2 = oSubContent.sMsgStr2 & sLine & vbCrLf
           End If
         End If
@@ -119,7 +132,8 @@ Function GetContentFromPoFile(ByVal sPoPath)
     ElseIf iMsgStarted <> 0 Then 'If empty line AND there is pending translation...
       iMsgStarted = 0 'Don't process same translation twice
       If sMsgId = "" Then sMsgId = "__head__"
-      oContent.Add sMsgId, oSubContent
+      oContent.Add sMsgCtxt & sMsgId, oSubContent
+      sMsgCtxt = ""
       Set oSubContent = New CSubContent
     End If
   Loop
@@ -130,7 +144,7 @@ End Function
 ''
 ' ...
 Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguagePoContent)
-  Dim sBakPath, oPoFile, sMsgId, oEnglish, oLanguage
+  Dim sBakPath, oPoFile, sKey, oEnglish, oLanguage
   
   '--------------------------------------------------------------------------------
   ' Backup the old PO file...
@@ -149,11 +163,11 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
   oPoFile.Write oLanguage.sMsgId2
   oPoFile.Write oLanguage.sMsgStr2
   oPoFile.Write vbCrLf
-  For Each sMsgId In oEnglishPotContent.Keys 'For all English content...
-    If sMsgId <> "__head__" Then
-      Set oEnglish = oEnglishPotContent(sMsgId)
-      If oLanguagePoContent.Exists(sMsgId) Then 'If translation exists...
-        Set oLanguage = oLanguagePoContent(sMsgId)
+  For Each sKey In oEnglishPotContent.Keys 'For all English content...
+    If sKey <> "__head__" Then
+      Set oEnglish = oEnglishPotContent(sKey)
+      If oLanguagePoContent.Exists(sKey) Then 'If translation exists...
+        Set oLanguage = oLanguagePoContent(sKey)
       Else 'If translation NOT exists...
         Set oLanguage = oEnglish
       End If
@@ -161,6 +175,7 @@ Sub CreateUpdatedPoFile(ByVal sPoPath, ByVal oEnglishPotContent, ByVal oLanguage
       oPoFile.Write oEnglish.sExtractedComments
       oPoFile.Write oEnglish.sReferences
       oPoFile.Write oLanguage.sFlags
+      oPoFile.Write oLanguage.sMsgCtxt2
       oPoFile.Write oLanguage.sMsgId2
       oPoFile.Write oLanguage.sMsgStr2
       oPoFile.Write vbCrLf
