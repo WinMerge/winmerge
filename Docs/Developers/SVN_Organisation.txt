@@ -43,7 +43,6 @@ WinMerge Folder Structure
  - Tools
    - diff2winmerge
    - MakePatchDirs
-   - MakeResDll
  - Web
 
 
@@ -174,10 +173,6 @@ WinMerge/Tools/MakePatchDirs/
    altered directories
  - Used to create patches to WinMerge source tree, for upload to
    sourceforge patch board
-
-WinMerge/Tools/MakeResDll/
- - Source files for MakeResDll, a command line program used to
-   compile the WinMerge language dlls
 
 WinMerge/Web/
  - Homepages.
