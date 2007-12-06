@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.7.1
+  Installer: Link to translated ReadMe in Start menu, if file exists (#1805818)
+
 WinMerge 2.7.6 - 2007-11-29 (r4807)
   Touchpad scrolling improvements (#1837457)
   BugFix: Values with "," inside could break the CSV report (#1831512)
