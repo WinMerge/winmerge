@@ -560,7 +560,7 @@ And for strings, who should not appear in the PO files just add a line in the <c
   <li>
     <p><strong>Strings order</strong>: that is really annoying with MSVC. It is important to keep the order of strings unchanged,
     because merging rc files with WinMerge is then a lot easier. Strings are grouped in block according to their ID masked by <code>0xFFF0</code>.
-    So there are at most 16 strings in a block, but maybe less. MSVC reorders strings between and inside blocks, but never reorder blocks
+    So there are at most 16 strings in a block, but maybe less. MSVC reorders strings between and inside blocks, but never reorders blocks
     (when a new blocks is created, MSVC always put it at the last position).</p>
     <p>Typical method to merge strings in a <code>Merge.rc</code> from a patch with a <code>Merge.rc</code> in SVN :</p>
     <ol>
