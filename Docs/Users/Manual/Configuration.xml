@@ -2,7 +2,7 @@
 <sect1 id="Configuration">
   <title>Options &amp; configuration</title>
 
-  <para>Options dialog can be opened from <guimenu>View</guimenu>-menu or from
+  <para>Options dialog can be opened from <guimenu>Edit</guimenu>-menu or from
   toolbar button. Changes made are saved when dialog is closed using
   <guibutton>OK</guibutton>-button (or pressing
   <keycap>Enter</keycap>-key).</para>
