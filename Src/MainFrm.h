@@ -300,6 +300,7 @@ protected:
 	afx_msg void OnUpdateToolbarSmall(CCmdUI* pCmdUI);
 	afx_msg void OnToolbarBig();
 	afx_msg void OnUpdateToolbarBig(CCmdUI* pCmdUI);
+	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 

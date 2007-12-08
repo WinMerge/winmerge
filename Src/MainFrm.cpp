@@ -162,6 +162,8 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_SMALL, OnUpdateToolbarSmall)
 	ON_COMMAND(ID_TOOLBAR_BIG, OnToolbarBig)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_BIG, OnUpdateToolbarBig)
+	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
+	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3347,6 +3349,54 @@ void CMainFrame::OnUpdateToolbarBig(CCmdUI* pCmdUI)
 	bool enabled = GetOptionsMgr()->GetBool(OPT_SHOW_TOOLBAR);
 	int toolbar = GetOptionsMgr()->GetInt(OPT_TOOLBAR_SIZE);
 	pCmdUI->SetRadio(enabled && toolbar == 1);
+}
+
+/** @brief Lang aware version of CFrameWnd::OnToolTipText() */
+BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
+{
+	ASSERT(pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW);
+
+	// need to handle both ANSI and UNICODE versions of the message
+	TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+	TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+	String strFullText;
+	CString strTipText;
+	UINT_PTR nID = pNMHDR->idFrom;
+	if (pNMHDR->code == TTN_NEEDTEXTA && (pTTTA->uFlags & TTF_IDISHWND) ||
+		pNMHDR->code == TTN_NEEDTEXTW && (pTTTW->uFlags & TTF_IDISHWND))
+	{
+		// idFrom is actually the HWND of the tool
+		nID = ::GetDlgCtrlID((HWND)nID);
+	}
+
+	if (nID != 0) // will be zero on a separator
+	{
+		strFullText = theApp.LoadString(nID);
+		// don't handle the message if no string resource found
+		if (strFullText.empty())
+			return FALSE;
+
+		// this is the command id, not the button index
+		AfxExtractSubString(strTipText, strFullText.c_str(), 1, '\n');
+	}
+#ifndef _UNICODE
+	if (pNMHDR->code == TTN_NEEDTEXTA)
+		lstrcpyn(pTTTA->szText, strTipText, countof(pTTTA->szText));
+	else
+		_mbstowcsz(pTTTW->szText, strTipText, countof(pTTTW->szText));
+#else
+	if (pNMHDR->code == TTN_NEEDTEXTA)
+		_wcstombsz(pTTTA->szText, strTipText, countof(pTTTA->szText));
+	else
+		lstrcpyn(pTTTW->szText, strTipText, countof(pTTTW->szText));
+#endif
+	*pResult = 0;
+
+	// bring the tooltip window above other popup windows
+	::SetWindowPos(pNMHDR->hwndFrom, HWND_TOP, 0, 0, 0, 0,
+		SWP_NOACTIVATE|SWP_NOSIZE|SWP_NOMOVE|SWP_NOOWNERZORDER);
+
+	return TRUE;    // message was handled
 }
 
 /**
