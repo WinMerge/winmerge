@@ -2610,13 +2610,13 @@ msgstr ""
 "Nuevo Documento (Ctrl+N)"
 
 #: Merge.rc:1704
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Open an existing document\n"
 "Open (Ctrl+O)"
 msgstr ""
 "Comparar ficheros o directorios\n"
-"Comparar"
+"Comparar (Ctrl+O)"
 
 #: Merge.rc:1705
 #, c-format
@@ -2634,7 +2634,7 @@ msgid ""
 "Save (Ctrl+S)"
 msgstr ""
 "Guardar los documentos abiertos\n"
-"Guardar"
+"Guardar (Ctrl+S)"
 
 #: Merge.rc:1707
 #, c-format
@@ -2927,16 +2927,16 @@ msgid ""
 "Undo (Ctrl+Z)"
 msgstr ""
 "Deshacer el último cambio\n"
-"Deshacer"
+"Deshacer (Ctrl+Z)"
 
 #: Merge.rc:1788
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Redo the previously undone action\n"
 "Redo (Ctrl+Y)"
 msgstr ""
 "Rehacer\n"
-"Rehacer"
+"Rehacer (Ctrl+Y)"
 
 #: Merge.rc:1794
 #, c-format
@@ -6144,7 +6144,7 @@ msgid ""
 "Prev Diff (Alt+Up)"
 msgstr ""
 "Ir a la diferencia anterior\n"
-"Dif. anterior (Alt Up)"
+"Dif. anterior (Alt+Up)"
 
 #: Merge.rc:2800
 #, c-format
@@ -6153,7 +6153,7 @@ msgid ""
 "Next Diff (Alt+Down)"
 msgstr ""
 "Ir al la siguiente diferencia\n"
-"Dif. siguiente (Alt Down)"
+"Dif. siguiente (Alt+Down)"
 
 #: Merge.rc:2801
 #, c-format
@@ -6189,7 +6189,7 @@ msgid ""
 "Copy Right (Alt+Right)"
 msgstr ""
 "Copiar el texto seleccionado al lado derecho\n"
-"Copiar a la derecha (Flecha Derecha)"
+"Copiar a la derecha (Alt+Right)"
 
 #: Merge.rc:2805
 #, c-format
@@ -6198,7 +6198,7 @@ msgid ""
 "Copy Left (Alt+Left)"
 msgstr ""
 "Copiar el texto seleccionado al lado izquierdo\n"
-"Copiar a la izquierda (Flecha Izquierda)"
+"Copiar a la izquierda (Alt+Left)"
 
 #: Merge.rc:2806
 #, c-format

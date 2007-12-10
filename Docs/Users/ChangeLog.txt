@@ -5,6 +5,8 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.7.7.1
   Installer: Link to translated ReadMe in Start menu, if file exists (#1805818)
   Bugfix: VS2008 and VS2005 compile problems (#1847265)
+  Translation updates:
+  - Spanish (#1655577)
 
 WinMerge 2.7.6 - 2007-11-29 (r4807)
   Touchpad scrolling improvements (#1837457)
