@@ -688,12 +688,16 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 			else
 			{
 				ps = 0;
-				for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
+				// avoid dereference of empty vector or last vector
+				if (lines.size() > 0)
 				{
-					unsigned line = *pline;
-					if (m_strarray.size() <= line)
-						m_strarray.resize(line + 1);
-					m_strarray[line] = msgid;
+					for (unsigned *pline = &*lines.begin() ; pline <= &*(lines.end() - 1) ; ++pline)
+					{
+						unsigned line = *pline;
+						if (m_strarray.size() <= line)
+							m_strarray.resize(line + 1);
+						m_strarray[line] = msgid;
+					}
 				}
 				lines.clear();
 				msgid.erase();
@@ -764,15 +768,19 @@ BOOL CLanguageSelect::LoadLanguageFile(LANGID wLangId)
 				if (msgstr.empty())
 					msgstr = msgid;
 				unslash(m_codepage, msgstr);
-				for (unsigned *pline = &*lines.begin() ; pline < &*lines.end() ; ++pline)
+				// avoid dereference of empty vector or last vector
+				if (lines.size()>0)
 				{
-					unsigned line = *pline;
-					if (m_strarray.size() <= line)
-						m_strarray.resize(line + 1);
-					if (m_strarray[line] == msgid)
-						m_strarray[line] = msgstr;
-					else
-						++mismatched;
+					for (unsigned *pline = &*lines.begin() ; pline <= &*(lines.end() - 1) ; ++pline)
+					{
+						unsigned line = *pline;
+						if (m_strarray.size() <= line)
+							m_strarray.resize(line + 1);
+						if (m_strarray[line] == msgid)
+							m_strarray[line] = msgstr;
+						else
+							++mismatched;
+					}
 				}
 				lines.clear();
 				if (directive == "Codepage")

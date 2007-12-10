@@ -241,11 +241,17 @@ void CSplashWnd::OnPaint()
 
 	String text = LoadResString(IDS_SPLASH_DEVELOPERS);
 	// Turn spaces between parts of names into non-breaking spaces
-	for (TCHAR *p = &*text.end() ; p > &*text.begin() && *p != '\n' ; --p)
+
+	// avoid dereference of empty strings and the NULL termiated character
+	if (text.length() >= 0)
 	{
-		if (*p == _T('\x20') && p[-1] != _T(','))
-			*p = _T('\xA0');
+		for (TCHAR *p = &*(text.end() - 1) ; p > &*text.begin() && *p != '\n' ; --p)
+		{
+			if (*p == _T('\x20') && p[-1] != _T(','))
+				*p = _T('\xA0');
+		}
 	}
+
 	area = DevelopersArea;
 	dc.DrawText(text.c_str(), &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
 	text = LoadResString(IDS_SPLASH_GPLTEXT);

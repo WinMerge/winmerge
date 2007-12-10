@@ -112,6 +112,7 @@ Other Contributors (code, ideas, testing..):
 * Hern Chen
 * Jeremy Dewey
 * Jim Fougeron
+* Robert Grange
 * Marvin Gouw
 * Jan Hryz
 * Ed_K
