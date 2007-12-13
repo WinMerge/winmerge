@@ -51,6 +51,8 @@ Sub Main
   
   CreateTranslationsStatusWikiFile "TranslationsStatus.wiki", oTranslationsStatus
   
+  CreateTranslationsStatusXmlFile "TranslationsStatus.xml", oTranslationsStatus
+  
   EndTime = Time
   Seconds = DateDiff("s", StartTime, EndTime)
   
@@ -225,7 +227,7 @@ Sub CreateTranslationsStatusHtmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
   oHtmlFile.WriteLine "    .status th {"
   oHtmlFile.WriteLine "      padding: 3px;"
   oHtmlFile.WriteLine "      background: #f2f2f2;"
-  oHtmlFile.WriteLine "      border: 1px solid #aaaaaa ;"
+  oHtmlFile.WriteLine "      border: 1px solid #aaaaaa;"
   oHtmlFile.WriteLine "    }"
   oHtmlFile.WriteLine "    .status td {"
   oHtmlFile.WriteLine "      padding: 3px;"
@@ -340,6 +342,57 @@ Sub CreateTranslationsStatusWikiFile(ByVal sWikiPath, ByVal oTranslationsStatus)
   oWikiFile.WriteLine "|align=""center""| " & Left(oLanguageStatus.PotCreationDate, 10)
   oWikiFile.WriteLine "|}"
   oWikiFile.Close
+End Sub
+
+''
+' ...
+Sub CreateTranslationsStatusXmlFile(ByVal sHtmlPath, ByVal oTranslationsStatus)
+  Dim oXmlFile, sLanguage, oLanguageStatus, i
+  
+  Set oXmlFile = oFSO.CreateTextFile(sHtmlPath, True)
+  
+  oXmlFile.WriteLine "<translations>"
+  oXmlFile.WriteLine "  <update>" & GetCreationDate() & "</update>"
+  For Each sLanguage In oTranslationsStatus.Keys 'For all languages...
+    If (sLanguage <> "English") Then 'If NOT English...
+      Set oLanguageStatus = oTranslationsStatus(sLanguage)
+      oXmlFile.WriteLine "  <translation>"
+      oXmlFile.WriteLine "    <language>" & sLanguage & "</language>"
+      oXmlFile.WriteLine "    <file>" & sLanguage & ".po</file>"
+      oXmlFile.WriteLine "    <update>" & Left(oLanguageStatus.PoRevisionDate, 10) & "</update>"
+      oXmlFile.WriteLine "    <strings>"
+      oXmlFile.WriteLine "      <count>" & oLanguageStatus.Count & "</count>"
+      oXmlFile.WriteLine "      <translated>" & oLanguageStatus.Translated & "</translated>"
+      oXmlFile.WriteLine "      <fuzzy>" & oLanguageStatus.Fuzzy & "</fuzzy>"
+      oXmlFile.WriteLine "      <untranslated>" & oLanguageStatus.Untranslated & "</untranslated>"
+      oXmlFile.WriteLine "    </strings>"
+      oXmlFile.WriteLine "    <translators>"
+      For i = 0 To oLanguageStatus.Translators.Count - 1 'For all translators...
+        oXmlFile.WriteLine "      <translator>"
+        oXmlFile.WriteLine "        <name>" & oLanguageStatus.Translators(i).Name & "</name>"
+        If (oLanguageStatus.Translators(i).Mail <> "") Then 'If mail address exists...
+          oXmlFile.WriteLine "        <mail>" & oLanguageStatus.Translators(i).Mail & "</mail>"
+        End If
+        oXmlFile.WriteLine "      </translator>"
+      Next
+      oXmlFile.WriteLine "    </translators>"
+      oXmlFile.WriteLine "  </translation>"
+    End If
+  Next
+  Set oLanguageStatus = oTranslationsStatus("English")
+  oXmlFile.WriteLine "  <translation>"
+  oXmlFile.WriteLine "    <language>English</language>"
+  oXmlFile.WriteLine "    <file>English.pot</file>"
+  oXmlFile.WriteLine "    <update>" & Left(oLanguageStatus.PotCreationDate, 10) & "</update>"
+  oXmlFile.WriteLine "    <strings>"
+  oXmlFile.WriteLine "      <count>" & oLanguageStatus.Count & "</count>"
+  oXmlFile.WriteLine "      <translated>" & oLanguageStatus.Count & "</translated>"
+  oXmlFile.WriteLine "      <fuzzy>0</fuzzy>"
+  oXmlFile.WriteLine "      <untranslated>0</untranslated>"
+  oXmlFile.WriteLine "    </strings>"
+  oXmlFile.WriteLine "  </translation>"
+  oXmlFile.WriteLine "</translations>"
+  oXmlFile.Close
 End Sub
 
 ''
