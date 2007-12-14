@@ -1,0 +1,463 @@
+<translations>
+  <update>2007-12-15</update>
+  <translation>
+    <language>Brazilian</language>
+    <file>Brazilian.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>328</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>829</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Wender Firmino</name>
+        <mail>wender at pta.com.br</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Bulgarian</language>
+    <file>Bulgarian.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>974</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>183</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>sld</name>
+        <mail>sld at mail.bg</mail>
+      </translator>
+      <translator>
+        <name>tigertron</name>
+        <mail>tigertron at dir.bg</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Catalan</language>
+    <file>Catalan.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>1065</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>92</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Jordi Vilar</name>
+        <mail>jvilar at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>ChineseSimplified</language>
+    <file>ChineseSimplified.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>1037</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>120</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Liaobin</name>
+        <mail>liaobin at jite. net</mail>
+      </translator>
+      <translator>
+        <name>xmpdhml</name>
+        <mail>xmpdhml at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>ChineseTraditional</language>
+    <file>ChineseTraditional.po</file>
+    <update>2007-11-02</update>
+    <strings>
+      <count>1159</count>
+      <translated>1156</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>3</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Koko</name>
+        <mail>kokokoko at giga.net.tw</mail>
+      </translator>
+      <translator>
+        <name>wck3</name>
+        <mail>wck3171 at pchome.com.tw</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Croatian</language>
+    <file>Croatian.po</file>
+    <update>2007-11-19</update>
+    <strings>
+      <count>1159</count>
+      <translated>1156</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>3</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Hasan Osmanagæ</name>
+        <mail>hasan.osmanagic at public.carnet.hr</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Czech</language>
+    <file>Czech.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>875</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>282</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Jiri Tax</name>
+        <mail>jt at taxoft.cz</mail>
+      </translator>
+      <translator>
+        <name>Jan Hryz</name>
+        <mail>janhryz at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Danish</language>
+    <file>Danish.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>664</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>493</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Christian List</name>
+        <mail>list1974 at hotmail.com</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Dutch</language>
+    <file>Dutch.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>676</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>483</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Ronald Schaap</name>
+        <mail>ronald at schaap.demon.nl</mail>
+      </translator>
+      <translator>
+        <name>Michel Coene</name>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>French</language>
+    <file>French.po</file>
+    <update>2007-09-21</update>
+    <strings>
+      <count>1159</count>
+      <translated>1154</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>5</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Gil Andre</name>
+        <mail>gil_andre at compuserve.com</mail>
+      </translator>
+      <translator>
+        <name>Laurent Ganier</name>
+        <mail>ccganier at club-internet.fr</mail>
+      </translator>
+      <translator>
+        <name>Jean-F Jolin</name>
+        <mail>jean-f-j at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>German</language>
+    <file>German.po</file>
+    <update>2007-09-06</update>
+    <strings>
+      <count>1159</count>
+      <translated>1061</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>98</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Winfried Peter</name>
+        <mail>winfried.peter at omicron.at</mail>
+      </translator>
+      <translator>
+        <name>Jörg Schneider</name>
+        <mail>tonda at users.sourceforge.net</mail>
+      </translator>
+      <translator>
+        <name>Tim Gerundt</name>
+        <mail>tim at gerundt.de</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Hungarian</language>
+    <file>Hungarian.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>803</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>354</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Márton Balázs</name>
+        <mail>documan at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Italian</language>
+    <file>Italian.po</file>
+    <update>2007-09-30</update>
+    <strings>
+      <count>1159</count>
+      <translated>1151</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>8</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Michele Merega</name>
+        <mail>michele.merega at ifminfomaster.com</mail>
+      </translator>
+      <translator>
+        <name>Andrea Decorte</name>
+        <mail>deco1985 at hotmail.com</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Japanese</language>
+    <file>Japanese.po</file>
+    <update>2007-11-11</update>
+    <strings>
+      <count>1159</count>
+      <translated>1156</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>3</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Takashi Sawanaka</name>
+        <mail>sawanaka at d1.dion.ne.jp</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Korean</language>
+    <file>Korean.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>902</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>255</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Hwang Sukjoon</name>
+        <mail>bbcool at gmail.com</mail>
+      </translator>
+      <translator>
+        <name>Lee Jae-Hong</name>
+        <mail>pyrasis at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Norwegian</language>
+    <file>Norwegian.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>590</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>567</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Hans Fredrik Nordhaug</name>
+        <mail>hansfn at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Polish</language>
+    <file>Polish.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>1030</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>127</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Pawel Wawrzysko</name>
+        <mail>traduc at kki.pl</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Portuguese</language>
+    <file>Portuguese.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>1015</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>144</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Nelson Simão</name>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Russian</language>
+    <file>Russian.po</file>
+    <update>2007-09-23</update>
+    <strings>
+      <count>1159</count>
+      <translated>1149</translated>
+      <fuzzy>5</fuzzy>
+      <untranslated>5</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Dmitriy S. Aleshkowskiy</name>
+        <mail>wwarlock at mail.ru</mail>
+      </translator>
+      <translator>
+        <name>geek2k</name>
+        <mail>geek2k at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Slovak</language>
+    <file>Slovak.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>1033</translated>
+      <fuzzy>2</fuzzy>
+      <untranslated>124</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>majvan</name>
+        <mail>vancojur at decef.elf.stuba.sk</mail>
+      </translator>
+      <translator>
+        <name>Ivan Masár</name>
+        <mail>helix84 at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Spanish</language>
+    <file>Spanish.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>967</translated>
+      <fuzzy>4</fuzzy>
+      <untranslated>188</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Dean Grimm</name>
+        <mail>grimmdp at yahoo.com</mail>
+      </translator>
+      <translator>
+        <name>Jesús M. Delgado 'MacK'</name>
+        <mail>mack_ at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Swedish</language>
+    <file>Swedish.po</file>
+    <update>2007-08-24</update>
+    <strings>
+      <count>1159</count>
+      <translated>1152</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>7</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Göran Håkansson</name>
+        <mail>goran.x.hakansson at telia.com</mail>
+      </translator>
+      <translator>
+        <name>Hans Eriksson</name>
+        <mail>hans.ericson at bredband.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>Turkish</language>
+    <file>Turkish.po</file>
+    <update></update>
+    <strings>
+      <count>1159</count>
+      <translated>74</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>1085</untranslated>
+    </strings>
+    <translators>
+      <translator>
+        <name>Ozkan UNVER</name>
+        <mail>turquaz37915 at users.sourceforge.net</mail>
+      </translator>
+    </translators>
+  </translation>
+  <translation>
+    <language>English</language>
+    <file>English.pot</file>
+    <update>2007-12-15</update>
+    <strings>
+      <count>1159</count>
+      <translated>1159</translated>
+      <fuzzy>0</fuzzy>
+      <untranslated>0</untranslated>
+    </strings>
+  </translation>
+</translations>

@@ -215,27 +215,38 @@ acronym {
 	border-bottom: 1px dotted black;
 }
 
-/* Status of translations */
-#status {
-	margin-bottom: 10px;
+/* Inline list */
+ul.inline {
+	margin: 1em;
+	padding: 0;
+}
+
+ul.inline li {
+	margin: 0;
+	margin-right: 1em;
+	padding: 0;
+	display: inline;
+	list-style: none;
+}
+
+/* Translations Status */
+.status {
 	border-collapse: collapse;
+	border: 1px solid #aaaaaa;
 }
 
-#status th {
+.status th {
 	padding: 3px;
-	border: 1px solid black;
+	background: #f2f2f2;
+	border: 1px solid #aaaaaa ;
 }
 
-#status td {
+.status td {
 	padding: 3px;
-	border: 1px solid black;
+	background: #f9f9f9;
+	border: 1px solid #aaaaaa;
 }
 
 .left { text-align: left; }
 .center { text-align: center; }
 .right { text-align: right; }
-
-.actively { background-color: #CCFFCC; }
-.maintained { background-color: #CCCCFF; }
-.unmaintained { background-color: #FFCCCC; }
-.unknown { background-color: #FFFFCC; }

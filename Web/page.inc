@@ -17,6 +17,7 @@
   define ('WINMERGE_2_6', '2.6');
   define ('TAB_DOWNLOADS', 'downloads');
   define ('TAB_SUPPORT', 'support');
+  define ('TAB_TRANSLATIONS', 'translations');
 
   include 'release.inc';
 
@@ -188,6 +189,12 @@
       else { //if NOT "Support" ...
         $temp .= "  <li><a href=\"/support/index.php\">Support</a></li>\n";
       }
+      if ($this->_tab == TAB_TRANSLATIONS) { //if "Translations" ...
+        $temp .= "  <li><a href=\"/translations/index.php\" id=\"current\">Translations</a></li>\n";
+      }
+      else { //if NOT "Translations" ...
+        $temp .= "  <li><a href=\"/translations/index.php\">Translations</a></li>\n";
+      }
       $temp .= "  <li><a href=\"/Wiki/\">Developer&nbsp;Wiki</a></li>\n";
       $temp .= "</ul>\n";
       /* Sub Tabs */
@@ -246,6 +253,14 @@
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216\" title=\"Submit a Feature Request\">Feature&nbsp;Requests</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=213216\" title=\"Submit a Support Request\">Support&nbsp;Requests</a></li>\n";
           $temp .= "  <li><a href=\"http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216\" title=\"Submit a Patch\">Patches</a></li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case TAB_TRANSLATIONS: //if "Translations" ...
+          $temp .= "<ul id=\"subtabs\">\n";
+          $temp .= "  <li><a href=\"/translations/index.php\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"http://winmerge.org/Wiki/Translations\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
+          //$temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
           $temp .= "</ul>\n";
           break;
       }

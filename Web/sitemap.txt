@@ -59,3 +59,6 @@ http://winmerge.org/downloads/index.php
 http://winmerge.org/support/index.php
 http://winmerge.org/support/mailing-lists.php
 http://winmerge.org/support/tracker-shortcuts.php
+http://winmerge.org/translations/index.php
+http://winmerge.org/translations/status_branch.php
+http://winmerge.org/translations/status_trunk.php
