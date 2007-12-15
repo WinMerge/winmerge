@@ -113,7 +113,7 @@
       $temp .= "</p>\n";
       $temp .= "</div>\n";
       $temp .= $this->getTabs();
-      $temp .= $this->getAds();;
+      $temp .= $this->getAds();
       $temp .= "<div id=\"content\">\n";
       switch ($this->_tab) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
@@ -308,9 +308,11 @@
     function convertXml2Array($filename) {
       if (file_exists($filename) == true) {
         $data = implode('', file($filename));
+        $data = utf8_encode($data);
         
-        $parser = xml_parser_create();
+        $parser = xml_parser_create('UTF-8');
         xml_parser_set_option($parser, XML_OPTION_SKIP_WHITE, 1);
+        xml_parser_set_option($parser, XML_OPTION_TARGET_ENCODING, 'ISO-8859-1');
         xml_parse_into_struct($parser, $data, $vals, $index);
         xml_parser_free($parser);
         
