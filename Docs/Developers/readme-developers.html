@@ -155,22 +155,22 @@ working project file at all...</p>
 <p>After opening the project file you need to add the HTML Help Workshop path as additional include-
 and library-path.</p>
 
-<p><b>NOTE:</b> There might be problems compiling/debugging with Visual Studio 2003 when using
+<p class="note"><b>NOTE:</b> There might be problems compiling/debugging with Visual Studio 2003 when using
 HTML Help WorkShop from the Platform SDK in Visual Studio directory. Download and
 install HTML Workshop as stand-alone and include headers and libraries from standalone
 directory. The probable cause is that including files from Platform SDK directories breaks
 things.</p>
 
-<p><b>NOTE2:</b> WinMerge building uses couple of helper batch files (<code>Src/PreLink.bat</code>
- and <code>Src/PostBuild.bat</code>) run from project file. Visual Studio may add additional
- quotation marks to these rules when converting for new version, which makes builds to fail.
- So check that rules to call those batch files are like:</p>
- 
- <code>PreLink.bat $(IntDir) $(TargetPath)</code>
- 
- <p>without additional quotation marks, like:</p>
- 
- <code>PreLink.bat "$(IntDir)" "$(TargetPath)"</code>
+<p class="note"><b>Visual Studio 2003.Net:</b> WinMerge build uses couple of helper batch files
+(<code>Src/PreLink.bat</code> and <code>Src/PostBuild.bat</code>) run from project file.
+Visual Studio adds additional quotation marks to these rules when converting for new version,
+which makes builds to fail.</p>
+
+<p>Check that rules to call those batch files are like:
+<code>PreLink.bat $(IntDir) $(TargetPath)</code>
+
+<p>without additional quotation marks, like:
+<code>PreLink.bat "$(IntDir)" "$(TargetPath)"</code>
 
 <h4>Compiling expat</h4>
 <p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:</p>
