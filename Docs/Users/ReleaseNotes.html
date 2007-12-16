@@ -1,0 +1,168 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+  "http://www.w3.org/TR/html4/loose.dtd">
+
+<!-- $Id$ -->
+
+<html>
+<head>
+  <title>Release Notes</title>
+  <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+  <style type="text/css">
+  <!--
+    body {
+      font-family: Verdana,Helvetica,Arial,sans-serif;
+      font-size: small;
+    }
+    code,pre {
+      font-family: "Courier New",Courier,monospace;
+      font-size: 1em;
+    }
+    h3 {
+      padding: 2px;
+      border-left: 4px solid #FFCC00;
+      border-bottom: 1px solid #FFCC00;
+    }
+    h4 {
+      padding: 2px;
+      border-left: 8px solid #FF9933;
+      border-bottom: 1px solid #FF9933;
+    }
+    h5 {
+      font-size: small;
+    }
+    pre {
+      margin-left: 25px;
+      margin-right: 25px;
+      padding: 5px;
+      background-color: #EEEEEE;
+      border: 1px solid black;
+    }
+    p.note {
+      padding: 5px;
+      background-color: #DDDDFF;
+      border: 1px solid blue;
+    }
+    acronym {
+      cursor: help;
+      border-bottom: 1px dotted black;
+    }
+  -->
+  </style>
+</head>
+<body>
+
+<h2>WinMerge 2.7.6 Beta Release Notes</h2
+<p>November 2007</p>
+
+<h3>About This Release</h3>
+
+<p class="note">
+This is a development release of a WinMerge. This is <b>not</b> a stable release.
+In general, beta releases are not meant for production use. Beta releases
+should be usable in general, but they can contain bugs and unfinished
+features.
+</p>
+
+<p>
+This beta release is the last beta release before next 2.8 stable release.
+Between this release and 2.8 stable release there will be only smaller
+improvements and hopefully lots of bug fixes.
+</p>
+
+<p>
+Compared to 2.6.x releases there are many improvements done for usability
+of WinMerge. One huge improvement is the new localization system, which
+allows a lot easier translation of WinMerge. Then there are many improved
+dialogs and other features.
+</p>
+
+<p>
+Please submit bug reports to our <a href=
+"https://sourceforge.net/tracker/?group_id=13216&atid=113216">bug-tracker</a>.
+
+<h3>What Is New in 2.7.6?</h3>
+
+<p>
+For a complete changelog, see the <code>ChangeLog.txt</code> in <code>Docs</code>
+folder in WinMerge program folder.
+</p>
+
+<h4>New Localization System</h4>
+<p>
+The most important change in this release is the new localization system. The
+new system is based on widely used PO files. PO files are text files that have
+both original (English) text and translated text together. As PO files are
+text files they are easy to edit. Also there is no anymore any kind of
+compiling needed for updating the files. So one can just edit the file and
+re-start WinMerge to test changes done.
+</p>
+
+<p>
+See WinMerge's development wiki for more information about translations:
+<a href="http://winmerge.org/Wiki/Translations">http://winmerge.org/Wiki/Translations</a>
+
+<p>
+In short: PO files have replaced LANG files in Languages-subfolder.
+</p>
+
+<h4>Translations</h4>
+<p>
+Several translations were again updated. We expect things to improve with
+translation statuses, as new system is so much easier to use.
+</p>
+
+<p>
+New Croatian and Portuguese translations were added.
+</p>
+
+<h4>Other Changes</h4>
+<ul>
+  <li>HTML reports from file compare</li>
+  <li>Improved printing</li>
+  <li>New dialog for selecting folder compare columns</li>
+  <li>New icon for Shell Integration</li>
+</ul>
+
+<h4>Important Bugs Fixed</h4>
+<ul>
+  <li>Rename in folder compare misbehaved when renaming item existing only in other
+    side.</li>
+  <li>Do not merge ignored differences when multiple differences are selected</li>
+  <li>VCS system integration tried to check out wrong file - this caused many kinds
+    of side-effects.</li>
+  <li>Backup file was created from wrong file in folder compare operations</li>
+</ul>
+
+<h3>What Is New in 2.7.4?</h3>
+<ul>
+  <li>New confirmation dialog for copying items in folder compare</li>
+  <li>Improved line filter -dialog</li>
+  <li>Printing improvements</li>
+  <li>Allow user to select syntax highlighting to use for file</li>
+  <li>Tabbed multi-window interface</li>
+  <li>Alternative big toolbar</li>
+  <li>Recent project files in File-menu</li>
+</ul>
+
+<h4>Important Bugs Fixed</h4>
+<ul>
+  <li>Crash when comparing empty folders</li>
+  <li>Pressing ESC-key when renaming file caused a crash</li>
+</ul>
+
+<h3>What Is New in 2.7.2?</h3>
+<ul>
+  <li>New XML (expat+scew) and regular expression (PCRE) libraries used</li>
+  <li>Try to match files inside differences</li>
+  <li>Optimized folder compare</li>
+  <li>New options for creating backup files</li>
+</ul>
+
+<h4>Important Bugs Fixed</h4>
+<ul>
+  <li>Crash when file modification time was missing</li>
+  <li>Dialogs could be hidden behind other windows</li>
+  <li>Many word-wrap related fixes</li>
+</ul>
+</body>
+</html>
