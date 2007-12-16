@@ -85,8 +85,9 @@ struct DiffFileFlags : public FileFlags
 
 /**
  * @brief Information for file.
- * This class expands FileInfo class with encoding information and
+ * This class expands DirItem class with encoding information and
  * text stats information.
+ * @sa DirItem.
  */
 struct DiffFileInfo : public DirItem
 {
