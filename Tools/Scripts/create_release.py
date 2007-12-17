@@ -267,6 +267,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
 
     shutil.copy('build/Manual/htmlhelp/WinMerge.chm', doc_folder)
 
+    shutil.copy('Docs/Users/ReleaseNotes.html', doc_folder)
     shutil.copy('Docs/Users/ReadMe.txt', bin_folder)
     shutil.copy('Docs/Users/ChangeLog.txt', bin_folder)
     shutil.copy('Docs/Users/Contributors.txt', bin_folder)
