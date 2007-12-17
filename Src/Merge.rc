@@ -743,18 +743,21 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,47,220,10
     CONTROL         "As&k when closing multiple windows",IDC_ASK_MULTIWINDOW_CLOSE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,7,57,220,10
-    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,72,125,8
-    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,81,147,41,CBS_DROPDOWNLIST | 
+    CONTROL         "&Preserve file time in file compare",
+                    IDC_PRESERVE_FILETIME,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,7,67,220,10
+    LTEXT           "O&pen-dialog Auto-Completion:",IDC_STATIC,19,82,125,8
+    COMBOBOX        IDC_AUTO_COMPLETE_SOURCE,20,91,147,41,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,100,
+    GROUPBOX        "Enable multiple compare windows for",IDC_STATIC,7,110,
                     221,37
     CONTROL         "&Folder compare",IDC_MULTIDOC_DIRCMP,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,111,206,10
-    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,121,206,10
+    CONTROL         "Fil&e compare",IDC_MULTIDOC_FILECMP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,15,131,206,10
     LTEXT           "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again.",
-                    IDC_STATIC,7,153,168,31
-    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,159,50,14,NOT
+                    IDC_STATIC,7,163,168,31
+    PUSHBUTTON      "Reset",IDC_RESET_ALL_MESSAGE_BOXES,178,169,50,14,NOT
                     WS_TABSTOP
 END
 

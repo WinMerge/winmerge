@@ -26,10 +26,25 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include "UnicodeString.h"
+#include "coretools.h"
 #include "DirItem.h"
 
 /**
- * @brief Update fileinfo from given file
+ * @brief Set filename and path for the item.
+ * @param [in] fullpath Full path to file to set to item.
+ */
+void DirItem::SetFile(String fullPath)
+{
+	String ext;
+	SplitFilename(fullPath.c_str(), &path, &filename, &ext);
+	filename += _T(".");
+	filename += ext;
+}
+
+/**
+ * @brief Update fileinfo from given file.
+ * This function updates file's information from given item. Function
+ * does not set filename and path.
  * @param [in] sFilePath Full path to file/directory to update
  * @return TRUE if information was updated (item was found).
  */

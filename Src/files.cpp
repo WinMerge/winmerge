@@ -24,7 +24,11 @@
 
 #include "stdafx.h"
 #include <sys/stat.h>
+#include <sys/utime.h>
+#include "UnicodeString.h"
+#include "DiffFileInfo.h"
 #include "files.h"
+#include "paths.h"
 #include "unicoder.h"
 
 /**
@@ -185,4 +189,17 @@ BOOL files_isFileReadOnly(const CString &file, BOOL *fileExists /*=NULL*/)
 		*fileExists = bExists;
 
 	return bReadOnly;
+}
+
+/**
+ * @brief Update file's modification time.
+ * @param [in] info Contains filename, path and file times to update.
+ */
+void files_UpdateFileTime(const DiffFileInfo & info)
+{
+	String path = paths_ConcatPath(info.path, info.filename);
+	_utimbuf times = {0};
+
+	times.modtime = info.mtime;
+	_tutime(path.c_str(), &times);
 }

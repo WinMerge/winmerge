@@ -3,7 +3,7 @@
  *
  * @brief Declaration of CPropGeneral class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
@@ -42,6 +42,7 @@ public:
 	BOOL	m_bMultipleFileCmp;
 	BOOL	m_bMultipleDirCmp;
 	int		m_nAutoCompleteSource;
+	BOOL	m_bPreserveFiletime;
 	//}}AFX_DATA
 
 

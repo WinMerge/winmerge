@@ -56,6 +56,7 @@ struct DirItem
 	FileFlags flags; /**< file attributes */
 	DirItem() { Clear(); }
 
+	void SetFile(String fullPath);
 	BOOL Update(const String &sFilePath);
 	void Clear();
 };

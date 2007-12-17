@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.7.1
+  New option to keep file's time when saving in file compare (#1851921)
   Installer: Link to translated ReadMe in Start menu, if file exists (#1805818)
   Add HTML-formatted release notes (#1851308)
   Bugfix: VS2008 and VS2005 compile problems (#1847265)

@@ -1197,6 +1197,15 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	// Saving succeeded with given/selected filename
 	if (nSaveErrorCode == SAVE_DONE)
 	{
+		// Preserve file times if user wants to
+		if (GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES))
+		{
+			String filename;
+			String path;
+			fileInfo.SetFile((LPCTSTR)strSavePath);
+			files_UpdateFileTime(fileInfo);
+		}
+
 		m_ptBuf[nBuffer]->SetModified(FALSE);
 		m_pSaveFileInfo[nBuffer]->Update((LPCTSTR)strSavePath);
 		m_pRescanFileInfo[nBuffer]->Update(m_filePaths.GetPath(nBuffer).c_str());

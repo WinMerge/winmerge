@@ -42,6 +42,7 @@ const TCHAR OPT_BACKUP_ADD_TIME[] = _T("Backup/NameAddTime");
 const TCHAR OPT_DIRVIEW_SORT_COLUMN[] =  _T("Settings/DirViewSortCol");
 const TCHAR OPT_DIRVIEW_SORT_ASCENDING[] =  _T("Settings/DirViewSortAscending");
 
+// File compare
 const TCHAR OPT_AUTOMATIC_RESCAN[] = _T("Settings/AutomaticRescan");
 const TCHAR OPT_ALLOW_MIXED_EOL[] = _T("Settings/AllowMixedEOL");
 const TCHAR OPT_TAB_SIZE[] = _T("Settings/TabSize");
@@ -62,6 +63,7 @@ const TCHAR OPT_VERIFY_OPEN_PATHS[] = _T("Settings/VerifyOpenPaths");
 const TCHAR OPT_AUTO_COMPLETE_SOURCE[] = _T("Settings/AutoCompleteSource");
 const TCHAR OPT_IGNORE_SMALL_FILETIME[] = _T("Settings/IgnoreSmallFileTime");
 const TCHAR OPT_ASK_MULTIWINDOW_CLOSE[] = _T("Settings/AskClosingMultipleWindows");
+const TCHAR OPT_PRESERVE_FILETIMES[] = _T("Settings/PreserveFiletimes");
 
 const TCHAR OPT_CP_DEFAULT_MODE[] = _T("Settings/CodepageDefaultMode");
 const TCHAR OPT_CP_DEFAULT_CUSTOM[] = _T("Settings/CodepageDefaultCustomValue");
