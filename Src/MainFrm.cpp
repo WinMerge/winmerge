@@ -164,6 +164,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_TOOLBAR_BIG, OnUpdateToolbarBig)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
+	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -188,6 +189,9 @@ static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
  * We use internet help when local help file is not found (not installed).
  */
 static const TCHAR DocsURL[] = _T("http://winmerge.org/2.6/manual/index.html");
+
+/** @brief Release notes in HTML format. */
+static const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
 
 /** @brief Timer ID for window flashing timer. */
 static const UINT ID_TIMER_FLASH = 1;
@@ -3420,4 +3424,14 @@ bool CMainFrame::AskCloseConfirmation()
 		ret = LangMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
 	}
 	return (ret == IDYES);
+}
+
+/**
+ * @brief Shows the release notes for user.
+ * This function opens release notes HTML document into browser.
+ */
+void CMainFrame::OnHelpReleasenotes()
+{
+	String sPath = GetModulePath(0) + RelNotes;
+	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
 }

@@ -1141,6 +1141,7 @@
 #define ID_TOOLBAR_SMALL                33165
 #define ID_TOOLBAR_BIG                  33166
 #define ID_VIEW_RESIZE_PANES            33167
+#define ID_HELP_RELEASENOTES            33168
 
 // Next default values for new objects
 //
@@ -1148,7 +1149,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
-#define _APS_NEXT_COMMAND_VALUE         33168
+#define _APS_NEXT_COMMAND_VALUE         33169
 #define _APS_NEXT_CONTROL_VALUE         1338
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

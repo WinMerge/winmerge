@@ -72,7 +72,7 @@ BEGIN
         MENUITEM "C&opy to Right",              ID_L2R
         MENUITEM "Cop&y to Left",               ID_R2L
         MENUITEM SEPARATOR
-        MENUITEM "&Select Line Difference",           ID_SELECTLINEDIFF
+        MENUITEM "&Select Line Difference",     ID_SELECTLINEDIFF
         MENUITEM SEPARATOR
         MENUITEM "&Undo",                       ID_EDIT_UNDO
         MENUITEM "&Redo",                       ID_EDIT_REDO
@@ -175,6 +175,7 @@ BEGIN
         MENUITEM "&Index...",                   ID_HELP_INDEX
         MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
@@ -289,6 +290,7 @@ BEGIN
         MENUITEM "&Index...",                   ID_HELP_INDEX
         MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
@@ -466,6 +468,7 @@ BEGIN
         MENUITEM "&Index...",                   ID_HELP_INDEX
         MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
+        MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
@@ -2842,6 +2845,7 @@ BEGIN
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
     ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
+    ID_HELP_RELEASENOTES    "Opens the release notes document\nRelease Notes"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

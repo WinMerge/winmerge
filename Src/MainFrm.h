@@ -318,6 +318,8 @@ private:
 	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
+public:
+	afx_msg void OnHelpReleasenotes();
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object
