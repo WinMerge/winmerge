@@ -67,9 +67,9 @@
     $temp .= "  <tr>\n";
     $temp .= "    <th class=\"left\">Language</th>\n";
     $temp .= "    <th class=\"center\">Graph</th>\n";
-    $temp .= "    <th class=\"right\">Translated</th>\n";
-    $temp .= "    <th class=\"right\">Fuzzy</th>\n";
-    $temp .= "    <th class=\"right\">Untranslated</th>\n";
+    $temp .= "    <th class=\"right translated\">Translated</th>\n";
+    $temp .= "    <th class=\"right fuzzy\">Fuzzy</th>\n";
+    $temp .= "    <th class=\"right untranslated\">Untranslated</th>\n";
     $temp .= "    <th class=\"center\">Last Update</th>\n";
     $temp .= "  </tr>\n";
     $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
@@ -89,9 +89,9 @@
         $temp .= "  <tr>\n";
         $temp .= "    <td class=\"left\"><a href=\"" . $svnurl . $file_name . "\">" . $language_name . "</a></td>\n";
         $temp .= "    <td class=\"center\">" . get_status_graph($strings_count, $strings_translated, $strings_fuzzy, $strings_untranslated) . "</td>\n";
-        $temp .= "    <td class=\"right\">" . $strings_translated . "</td>\n";
-        $temp .= "    <td class=\"right\">" . $strings_fuzzy . "</td>\n";
-        $temp .= "    <td class=\"right\">" . $strings_untranslated . "</td>\n";
+        $temp .= "    <td class=\"right translated\">" . $strings_translated . "</td>\n";
+        $temp .= "    <td class=\"right fuzzy\">" . $strings_fuzzy . "</td>\n";
+        $temp .= "    <td class=\"right untranslated\">" . $strings_untranslated . "</td>\n";
         $temp .= "    <td class=\"center\">" . $translation_update . "</td>\n";
         $temp .= "  </tr>\n";
       }
