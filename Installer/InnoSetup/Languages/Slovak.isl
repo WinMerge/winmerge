@@ -261,7 +261,6 @@ CustomInstallation=Vlastná inštalácia
 ;Components
 AppCoreFiles=Základné súbory WinMerge
 ApplicationRuntimes=Súbory aplikácie vyžadované poèas behu
-UsersGuide=Príruèka používate¾a
 Filters=Filtre
 Plugins=Zásuvné moduly
 

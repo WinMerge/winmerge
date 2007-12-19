@@ -324,7 +324,6 @@ CustomInstallation=Installation Personnaliser
 ;Components
 AppCoreFiles=Fichiers Vitaux Winmerge
 ApplicationRuntimes=Exécutables de l'application
-UsersGuide=Guide d'usager
 Filters=Filtres
 Plugins=Plugiciels
 

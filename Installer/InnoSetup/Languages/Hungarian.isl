@@ -343,7 +343,6 @@ CustomInstallation=Egyedi Telepítés
 ;Components
 AppCoreFiles=A WinMerge kéreg fájljai
 ApplicationRuntimes=Az alkalmazás futásidejû fájljai
-UsersGuide=Felhasználói kézikönyv
 Filters=Szûrõk
 Plugins=Bõvítmények
 

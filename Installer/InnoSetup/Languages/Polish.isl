@@ -321,7 +321,6 @@ CustomInstallation=Instalacja uzytkownika
 ;Components
 AppCoreFiles=WinMerge ? pliki zasadnicze
 ApplicationRuntimes=Moduly wykonywalne
-UsersGuide=Przewodnik uzytkownika
 Filters=Filtry
 Plugins=Wtyczki
 

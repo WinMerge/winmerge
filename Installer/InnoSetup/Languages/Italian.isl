@@ -334,7 +334,6 @@ CustomInstallation=Installazione personalizzata
 ;Components
 AppCoreFiles=File base di WinMerge
 ApplicationRuntimes=Runtime dell'applicazione
-UsersGuide=Guida per l'utente
 Filters=Filtri
 Plugins=Plugin
 

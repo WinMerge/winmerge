@@ -322,7 +322,6 @@ CustomInstallation=Benutzerdefinierte Installation
 ;Components
 AppCoreFiles=WinMerge Hauptdateien
 ApplicationRuntimes=Laufzeitbibliotheken
-UsersGuide=Benutzerhandbuch
 Filters=Filter
 Plugins=Plugins
 

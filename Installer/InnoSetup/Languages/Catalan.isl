@@ -315,7 +315,6 @@ CustomInstallation=Instal·lació personalitzada
 ;Components
 AppCoreFiles=Fitxers centrals del WinMerge
 ApplicationRuntimes=Llibreries d'aplicació en temps d'execució
-UsersGuide=Guia d'usuari
 Filters=Filtres
 Plugins=Connectors
 

@@ -324,7 +324,6 @@ CustomInstallation=カスタムインストール
 ;Components
 AppCoreFiles=WinMerge コアファイル
 ApplicationRuntimes=アプリケーションランタイム
-UsersGuide=ユーザーガイド
 Filters=フィルタ
 Plugins=プラグイン
 

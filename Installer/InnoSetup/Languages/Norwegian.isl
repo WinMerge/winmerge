@@ -327,7 +327,6 @@ CustomInstallation=Egendefinert installasjon
 ;Components
 AppCoreFiles=WinMerge kjernefiler
 ApplicationRuntimes=Program kjørefiler
-UsersGuide=Brukermanual
 Filters=Filter
 Plugins=Programtillegg
 

@@ -150,11 +150,9 @@ Name: custom; Description: {cm:CustomInstallation}; Flags: iscustom
 
 
 [Components]
-; Executable and libraries
+; Executable, libraries, documentation
 Name: Core; Description: {cm:AppCoreFiles}; Types: full custom typical compact; Flags: fixed
 
-; User rmanual
-Name: docs; Description: {cm:UsersGuide}; Flags: disablenouninstallwarning; Types: full typical
 Name: filters; Description: {cm:Filters}; Flags: disablenouninstallwarning; Types: full typical
 Name: Plugins; Description: {cm:Plugins}; Flags: disablenouninstallwarning; Types: full
 
@@ -388,7 +386,7 @@ Source: ..\..\Filters\FileFilter.tmpl; DestDir: {app}\Filters; Flags: sortfilesb
 Source: ..\..\Docs\Users\ReadMe.txt; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\Contributors.txt; DestDir: {app}; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
 Source: ..\..\Docs\Users\ReleaseNotes.html; DestDir: {app}\Docs; Flags: comparetimestamp ignoreversion promptifolder; Components: Core
-Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: docs
+Source: ..\..\Build\Manual\htmlhelp\WinMerge.chm; DestDir: {app}\Docs\; Flags: overwritereadonly uninsremovereadonly; Components: Core
 
 ;Plugins
 ;Please note IgnoreVersion and CompareTimeStamp are to instruct the installer to not not check for version info and go straight to comparing modification dates
@@ -404,7 +402,7 @@ Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; 
 ;Start Menu Icons
 Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
-Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm; Components: docs
+Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
 
 ;Link to translated ReadMe in Start Menu

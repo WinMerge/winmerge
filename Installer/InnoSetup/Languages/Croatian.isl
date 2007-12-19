@@ -337,7 +337,6 @@ CustomInstallation=Izborna instalacija
 ;Components
 AppCoreFiles=WinMerge temeljne datoteke
 ApplicationRuntimes=Datoteke izvoðenja (Runtimes)
-UsersGuide=Vodiæ za korisnika
 Filters=Filtri
 Plugins=Dodaci
 

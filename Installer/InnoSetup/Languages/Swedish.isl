@@ -322,7 +322,6 @@ CustomInstallation=Anpassad Installation
 ;Components
 AppCoreFiles=WinMerge Kärnfiler
 ApplicationRuntimes=Applikationsexekuterbara filer
-UsersGuide=Användarguide
 Filters=Filter
 Plugins=Plugins
 
