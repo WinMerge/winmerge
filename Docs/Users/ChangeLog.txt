@@ -10,6 +10,7 @@ WinMerge 2.7.7.1
   Installer: Move manual to core files component and remove
    User Guide component (#1853409)
   Bugfix: VS2008 and VS2005 compile problems (#1847265)
+  Bugfix: More difference highlight code reverts (#1748940)
   Translation updates:
   - Spanish (#1655577)
 

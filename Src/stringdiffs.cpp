@@ -788,8 +788,6 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 		else
 			end2 = pz2 - pbeg2;
 		
-		if (end1 < begin1) begin1 = -1;
-		if (end2 < begin2) begin2 = -1;
 	}
 }
 
@@ -812,8 +810,7 @@ static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const
 		if (begin1 == -1)
 		{
 			// no visible diff on side1
-			pDiff->start[0] = str1.GetLength();
-			pDiff->end[0] = pDiff->start[0] - 1;
+			pDiff->end[0] = pDiff->start[0];
 		}
 		else
 		{
@@ -823,8 +820,7 @@ static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const
 		if (begin2 == -1)
 		{
 			// no visible diff on side2
-			pDiff->start[1] = str2.GetLength();
-			pDiff->end[1] = pDiff->start[1] - 1;
+			pDiff->end[1] = pDiff->start[1];
 		}
 		else
 		{
