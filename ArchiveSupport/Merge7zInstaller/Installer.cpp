@@ -447,29 +447,31 @@ void WinMainCRTStartup(void)
 	HRSRC hResource = FindResource(hModule, "Files.rc2", RT_RCDATA);
 	char *q = (char *)LoadResource(hModule, hResource);
 	DWORD n = SizeofResource(hModule, hResource);
-	char masked = '\n';
-	char buffer[MAX_PATH];
-	char *p = buffer;
+	char directive[MAX_PATH];
+	char arguments[MAX_PATH];
+	char *p = 0;
+	char c = '\n';
 	while (n)
 	{
-		*buffer = *p = *q;
-		switch (*buffer)
+		switch (c)
 		{
-		case '\n':
-		case '#':
-			masked = *buffer;
-			//fall through
 		case '(':
-			p = buffer;
+			p = arguments;
 			break;
 		case ')':
+			if (*directive == '\n')
+				AddAtom(arguments);
+			//fall through
+		case '\n':
+		case '#':
+			p = directive;
+			//fall through
+		default:
+			*p++ = c;
 			*p = '\0';
-			if (masked == '\n')
-				AddAtom(buffer + 1);
 			break;
 		}
-		++p;
-		++q;
+		c = *q++;
 		--n;
 	}
 	DialogBoxParam(hModule, MAKEINTRESOURCE(100), 0, DlgMain, 0);

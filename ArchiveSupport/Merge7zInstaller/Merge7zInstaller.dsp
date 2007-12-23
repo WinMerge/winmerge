@@ -57,7 +57,7 @@ LINK32=link.exe
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /pdb:none /machine:I386 /nodefaultlib
 # Begin Custom Build
 OutDir=.\..\..\Build\Merge7zInstaller\Release
-InputPath=\svnroot2\trunk\ArchiveSupport\Build\Merge7zInstaller\Release\Merge7zInstaller.exe
+InputPath=\svnroot2\trunk\Build\Merge7zInstaller\Release\Merge7zInstaller.exe
 SOURCE="$(InputPath)"
 
 BuildCmds= \
@@ -72,8 +72,8 @@ BuildCmds= \
 	FOR %%A IN (Zip\Lang\*.*) DO del %%A \
 	Merge7zInstaller /commit /standalone /select M M Zip \
 	cd Zip \
-	7za a ..\Merge7z.7z -bd -r * -mx5 \
-	7za a -tzip ..\Merge7z.zip -bd -r * \
+	7z a ..\Merge7z.7z -bd -r * -mx5 \
+	7z a -tzip ..\Merge7z.zip -bd -r * \
 	
 
 "$(OUTDIR)\Merge7z.7z" : $(SOURCE) "$(INTDIR)" "$(OUTDIR)"
