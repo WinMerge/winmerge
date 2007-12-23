@@ -1,3 +1,5 @@
+ErrorDocument 404 /404.php
+
 <FilesMatch "\.inc$">
  Order Deny,Allow
  Deny from all
