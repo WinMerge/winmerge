@@ -51,22 +51,22 @@
 </ul>
 <h3><a name="plugins">Plugins</a></h3>
 <h4>7-Zip Plugin</h4>
-<p>This is the 7-Zip plugin for WinMerge and the current version <strong>DllBuild 0025</strong> was released at <strong>2007-09-07</strong>.</p>
+<p>This is the 7-Zip plugin for WinMerge and the current version <strong>DllBuild 0026</strong> was released at <strong>2007-12-23</strong>.</p>
 <div class="downloadmatrix">
 <ul>
   <li><strong>Installer</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7zInstaller0025-432-455.exe">Exe-Format (1.04 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7zInstaller0026-432-457.exe">Exe-Format (1.05 MB)</a></li>
     </ul>
   </li>
   <li><strong>Binaries</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7z0025-432-455.7z">7z-Format (0.89 MB)</a></li>
+      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7z0026-432-457.7z">7z-Format (0.91 MB)</a></li>
     </ul>
   </li>
 </ul>
 </div>
-<p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?release_id=537779&amp;group_id=13216">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
+<p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?release_id=563695&amp;group_id=13216">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
 <h3><a name="sourcecode">Source Code</a></h3>
 <p>WinMerge is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself.<br />
 The source code is hosted on <a href="http://sourceforge.net/">SourceForge.net</a> in a <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> repository.<br />
