@@ -48,45 +48,47 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-2003/12/09	Jochen Tucht		Created
-2003/12/16	Jochen Tucht		Properly generate .tar.gz and .tar.bz2
-2003/12/16	Jochen Tucht		Obtain long path to temporary folder
-2004/01/20	Jochen Tucht		Complain only once if Merge7z*.dll is missing
-2004/01/25	Jochen Tucht		Fix bad default for OPENFILENAME::nFilterIndex
-2004/03/15	Jochen Tucht		Fix Visual Studio 2003 build issue
-2004/04/13	Jochen Tucht		Avoid StrNCat to get away with shlwapi 4.70
-2004/08/25	Jochen Tucht		More explicit error message
-2004/10/17	Jochen Tucht		Leave decision whether to recurse into folders
+2003-12-09	Jochen Tucht		Created
+2003-12-16	Jochen Tucht		Properly generate .tar.gz and .tar.bz2
+2003-12-16	Jochen Tucht		Obtain long path to temporary folder
+2004-01-20	Jochen Tucht		Complain only once if Merge7z*.dll is missing
+2004-01-25	Jochen Tucht		Fix bad default for OPENFILENAME::nFilterIndex
+2004-03-15	Jochen Tucht		Fix Visual Studio 2003 build issue
+2004-04-13	Jochen Tucht		Avoid StrNCat to get away with shlwapi 4.70
+2004-08-25	Jochen Tucht		More explicit error message
+2004-10-17	Jochen Tucht		Leave decision whether to recurse into folders
 								to enumerator (Mask.Recurse)
-2004/11/03	Jochen Tucht		FIX [1048997] as proposed by Kimmo 2004-11-02
-2005/01/15	Jochen Tucht		Read 7-Zip version from 7zip_pad.xml
+2004-11-03	Jochen Tucht		FIX [1048997] as proposed by Kimmo 2004-11-02
+2005-01-15	Jochen Tucht		Read 7-Zip version from 7zip_pad.xml
 								Set Merge7z UI language if DllBuild_Merge7z >= 9
-2005/01/22	Jochen Tucht		Better explain what's present/missing/outdated
-2005/02/05	Jochen Tucht		Fall back to IDD_MERGE7ZMISMATCH template from
+2005-01-22	Jochen Tucht		Better explain what's present/missing/outdated
+2005-02-05	Jochen Tucht		Fall back to IDD_MERGE7ZMISMATCH template from
 								.exe if .lang file isn't up to date.
-2005/02/26	Jochen Tucht		Add download link to error message
-2005/02/26	Jochen Tucht		Use WinAPI to obtain ISO language/region codes
-2005/02/27	Jochen Tucht		FIX [1152375]
-2005/04/24	Kimmo Varis			Don't use DiffContext exported from DirView
-2005/06/08	Kimmo Varis			Use DIFFITEM, not reference to it (hopefully only
+2005-02-26	Jochen Tucht		Add download link to error message
+2005-02-26	Jochen Tucht		Use WinAPI to obtain ISO language/region codes
+2005-02-27	Jochen Tucht		FIX [1152375]
+2005-04-24	Kimmo Varis			Don't use DiffContext exported from DirView
+2005-06-08	Kimmo Varis			Use DIFFITEM, not reference to it (hopefully only
 								temporarily, to sort out new directory compare)
-2005/06/22	Jochen Tucht		Change recommended version of 7-Zip to 4.20
+2005-06-22	Jochen Tucht		Change recommended version of 7-Zip to 4.20
 								Remove noise from Nagbox
-2005/07/03	Jochen Tucht		DIFFITEM has changed due to RFE [ 1205516 ]
-2005/07/04	Jochen Tucht		New global ArchiveGuessFormat() checks for
+2005-07-03	Jochen Tucht		DIFFITEM has changed due to RFE [ 1205516 ]
+2005-07-04	Jochen Tucht		New global ArchiveGuessFormat() checks for
 								formats to be handled by external command line
 								tools. These take precedence over Merge7z
 								internal handlers.
-2005/07/05	Jochen Tucht		Move to Merge7z::Format::GetDefaultName() to
+2005-07-05	Jochen Tucht		Move to Merge7z::Format::GetDefaultName() to
 								build intermediate filenames for multi-step
 								compression.
-2005/07/15	Jochen Tucht		Remove external command line tool integration
+2005-07-15	Jochen Tucht		Remove external command line tool integration
 								for now. Rethink about it after 2.4 branch.
-2005/08/20	Jochen Tucht		Option to guess archive format by signature
+2005-08-20	Jochen Tucht		Option to guess archive format by signature
 								Map extensions through ExternalArchiveFormat.ini
-2005/08/23	Jochen Tucht		Option to entirely disable 7-Zip integration
-2007/01/04	Kimmo Varis			Convert using COptionsMgr for options.
-2007/06/16	Jochen Neubeck		FIX [1723263] "Zip --> Both" operation...
+2005-08-23	Jochen Tucht		Option to entirely disable 7-Zip integration
+2007-01-04	Kimmo Varis			Convert using COptionsMgr for options.
+2007-06-16	Jochen Neubeck		FIX [1723263] "Zip --> Both" operation...
+2007-12-22	Jochen Neubeck		Fix Merge7z UI lang for new translation system
+								Change recommended version of 7-Zip to 4.57
 */
 
 // RCS ID line follows -- this is updated by CVS
@@ -209,7 +211,7 @@ protected:
 /**
  * @brief Recommended version of 7-Zip.
  */
-const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(42,4);
+const DWORD C7ZipMismatchException::m_dwVer7zRecommended = DWORD MAKELONG(57,4);
 
 /**
  * @brief Registry key for C7ZipMismatchException's ReportError() popup.
@@ -660,21 +662,6 @@ DWORD NTAPI VersionOf7z(BOOL bLocal)
 }
 
 /**
- * @brief Callback to pass to EnumResourceLanguages.
- */
-BOOL CALLBACK FindNextResLang(HMODULE hModule, LPCTSTR lpType, LPCTSTR lpName, WORD wLanguage, LONG_PTR lParam)
-{
-	LPWORD pwLanguage = (LPWORD)lParam;
-	WORD wPrevious = *pwLanguage;
-	if (wPrevious == 0 || wPrevious == wLanguage)
-	{
-		*pwLanguage ^= wLanguage;
-		return wPrevious;
-	}
-	return TRUE;
-}
-
-/**
  * @brief Access dll functions through proxy.
  */
 interface Merge7z *Merge7z::Proxy::operator->()
@@ -737,14 +724,8 @@ interface Merge7z *Merge7z::Proxy::operator->()
 				pCause
 			);
 		}
-		if (HINSTANCE hinstLang = AfxGetResourceHandle())
-		{
-			WORD wLangID = 0;
-			if (EnumResourceLanguages(hinstLang, RT_VERSION, MAKEINTRESOURCE(VS_VERSION_INFO), FindNextResLang, (LPARAM)&wLangID) == 0)
-			{
-				flags |= wLangID << 16;
-			}
-		}
+		LANGID wLangID = (LANGID)GetThreadLocale();
+		flags |= wLangID << 16;
 		if (GetOptionsMgr()->GetBool(OPT_ARCHIVE_PROBETYPE))
 		{
 			flags |= Initialize::GuessFormatBySignature | Initialize::GuessFormatByExtension;
