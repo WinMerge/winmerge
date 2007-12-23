@@ -1,145 +1,128 @@
-#ifndef IMPORT
-#define IMPORT(name) name
-SYSTEMTIME RCDATA {2007,10,0,31,12,0,0,0}
-#endif
+Files.rc2 RCDATA Files.rc2
 
-IMPORT(Merge7z432.dll)			Merge7z	"../Build/MergeRelease/Merge7z432.dll"
-IMPORT(Merge7z432U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z432U.dll"
-IMPORT(Merge7z433.dll)			Merge7z	"../Build/MergeRelease/Merge7z433.dll"
-IMPORT(Merge7z433U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z433U.dll"
-IMPORT(Merge7z434.dll)			Merge7z	"../Build/MergeRelease/Merge7z434.dll"
-IMPORT(Merge7z434U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z434U.dll"
-IMPORT(Merge7z435.dll)			Merge7z	"../Build/MergeRelease/Merge7z435.dll"
-IMPORT(Merge7z435U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z435U.dll"
-IMPORT(Merge7z436.dll)			Merge7z	"../Build/MergeRelease/Merge7z436.dll"
-IMPORT(Merge7z436U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z436U.dll"
-IMPORT(Merge7z437.dll)			Merge7z	"../Build/MergeRelease/Merge7z437.dll"
-IMPORT(Merge7z437U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z437U.dll"
-IMPORT(Merge7z438.dll)			Merge7z	"../Build/MergeRelease/Merge7z438.dll"
-IMPORT(Merge7z438U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z438U.dll"
-IMPORT(Merge7z439.dll)			Merge7z	"../Build/MergeRelease/Merge7z439.dll"
-IMPORT(Merge7z439U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z439U.dll"
-IMPORT(Merge7z440.dll)			Merge7z	"../Build/MergeRelease/Merge7z440.dll"
-IMPORT(Merge7z440U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z440U.dll"
-IMPORT(Merge7z442.dll)			Merge7z	"../Build/MergeRelease/Merge7z442.dll"
-IMPORT(Merge7z442U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z442U.dll"
-IMPORT(Merge7z443.dll)			Merge7z	"../Build/MergeRelease/Merge7z443.dll"
-IMPORT(Merge7z443U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z443U.dll"
-IMPORT(Merge7z444.dll)			Merge7z	"../Build/MergeRelease/Merge7z444.dll"
-IMPORT(Merge7z444U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z444U.dll"
-IMPORT(Merge7z445.dll)			Merge7z	"../Build/MergeRelease/Merge7z445.dll"
-IMPORT(Merge7z445U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z445U.dll"
-IMPORT(Merge7z446.dll)			Merge7z	"../Build/MergeRelease/Merge7z446.dll"
-IMPORT(Merge7z446U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z446U.dll"
-IMPORT(Merge7z447.dll)			Merge7z	"../Build/MergeRelease/Merge7z447.dll"
-IMPORT(Merge7z447U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z447U.dll"
-IMPORT(Merge7z448.dll)			Merge7z	"../Build/MergeRelease/Merge7z448.dll"
-IMPORT(Merge7z448U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z448U.dll"
-IMPORT(Merge7z449.dll)			Merge7z	"../Build/MergeRelease/Merge7z449.dll"
-IMPORT(Merge7z449U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z449U.dll"
-IMPORT(Merge7z450.dll)			Merge7z	"../Build/MergeRelease/Merge7z450.dll"
-IMPORT(Merge7z450U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z450U.dll"
-IMPORT(Merge7z451.dll)			Merge7z	"../Build/MergeRelease/Merge7z451.dll"
-IMPORT(Merge7z451U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z451U.dll"
-IMPORT(Merge7z452.dll)			Merge7z	"../Build/MergeRelease/Merge7z452.dll"
-IMPORT(Merge7z452U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z452U.dll"
-IMPORT(Merge7z453.dll)			Merge7z	"../Build/MergeRelease/Merge7z453.dll"
-IMPORT(Merge7z453U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z453U.dll"
-IMPORT(Merge7z454.dll)			Merge7z	"../Build/MergeRelease/Merge7z454.dll"
-IMPORT(Merge7z454U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z454U.dll"
-IMPORT(Merge7z455.dll)			Merge7z	"../Build/MergeRelease/Merge7z455.dll"
-IMPORT(Merge7z455U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z455U.dll"
-IMPORT(Merge7z456.dll)			Merge7z	"../Build/MergeRelease/Merge7z456.dll"
-IMPORT(Merge7z456U.dll)			Merge7z	"../Build/MergeUnicodeRelease/Merge7z456U.dll"
+#define SHARPEN($) #$
+#define VIIZIP($) $ 7-ZIP SHARPEN(/7z457bin/$)
+#define MERGE7Z($) $ Merge7z SHARPEN(../../Build/MergeRelease/$)
+#define MERGE7ZU($) $ Merge7z SHARPEN(../../Build/MergeUnicodeRelease/$)
 
-IMPORT(7zip_pad.xml)			7-ZIP	"../../../7z442bin/7zip_pad.xml"
+MERGE7Z(Merge7z432.dll)
+MERGE7ZU(Merge7z432U.dll)
+MERGE7Z(Merge7z433.dll)
+MERGE7ZU(Merge7z433U.dll)
+MERGE7Z(Merge7z434.dll)
+MERGE7ZU(Merge7z434U.dll)
+MERGE7Z(Merge7z435.dll)
+MERGE7ZU(Merge7z435U.dll)
+MERGE7Z(Merge7z436.dll)
+MERGE7ZU(Merge7z436U.dll)
+MERGE7Z(Merge7z437.dll)
+MERGE7ZU(Merge7z437U.dll)
+MERGE7Z(Merge7z438.dll)
+MERGE7ZU(Merge7z438U.dll)
+MERGE7Z(Merge7z439.dll)
+MERGE7ZU(Merge7z439U.dll)
+MERGE7Z(Merge7z440.dll)
+MERGE7ZU(Merge7z440U.dll)
+MERGE7Z(Merge7z442.dll)
+MERGE7ZU(Merge7z442U.dll)
+MERGE7Z(Merge7z443.dll)
+MERGE7ZU(Merge7z443U.dll)
+MERGE7Z(Merge7z444.dll)
+MERGE7ZU(Merge7z444U.dll)
+MERGE7Z(Merge7z445.dll)
+MERGE7ZU(Merge7z445U.dll)
+MERGE7Z(Merge7z446.dll)
+MERGE7ZU(Merge7z446U.dll)
+MERGE7Z(Merge7z447.dll)
+MERGE7ZU(Merge7z447U.dll)
+MERGE7Z(Merge7z448.dll)
+MERGE7ZU(Merge7z448U.dll)
+MERGE7Z(Merge7z449.dll)
+MERGE7ZU(Merge7z449U.dll)
+MERGE7Z(Merge7z450.dll)
+MERGE7ZU(Merge7z450U.dll)
+MERGE7Z(Merge7z451.dll)
+MERGE7ZU(Merge7z451U.dll)
+MERGE7Z(Merge7z452.dll)
+MERGE7ZU(Merge7z452U.dll)
+MERGE7Z(Merge7z453.dll)
+MERGE7ZU(Merge7z453U.dll)
+MERGE7Z(Merge7z454.dll)
+MERGE7ZU(Merge7z454U.dll)
+MERGE7Z(Merge7z455.dll)
+MERGE7ZU(Merge7z455U.dll)
+MERGE7Z(Merge7z456.dll)
+MERGE7ZU(Merge7z456U.dll)
+MERGE7Z(Merge7z457.dll)
+MERGE7ZU(Merge7z457U.dll)
 
-IMPORT(Codecs/7zAES.dll)		7-ZIP	"../../../7z442bin/Codecs/7zAES.dll"
-IMPORT(Codecs/AES.dll)			7-ZIP	"../../../7z442bin/Codecs/AES.dll"
-IMPORT(Codecs/Branch.dll)		7-ZIP	"../../../7z442bin/Codecs/Branch.dll"
-IMPORT(Codecs/BZip2.dll)		7-ZIP	"../../../7z442bin/Codecs/BZip2.dll"
-IMPORT(Codecs/Copy.dll)			7-ZIP	"../../../7z442bin/Codecs/Copy.dll"
-IMPORT(Codecs/Deflate.dll)		7-ZIP	"../../../7z442bin/Codecs/Deflate.dll"
-IMPORT(Codecs/LZMA.dll)			7-ZIP	"../../../7z442bin/Codecs/LZMA.dll"
-IMPORT(Codecs/PPMD.dll)			7-ZIP	"../../../7z442bin/Codecs/PPMD.dll"
-IMPORT(Codecs/Rar29.dll)		7-ZIP	"../../../7z442bin/Codecs/Rar29.dll"
-IMPORT(Codecs/Swap.dll)			7-ZIP	"../../../7z442bin/Codecs/Swap.dll"
-
-IMPORT(Formats/7z.dll)			7-ZIP	"../../../7z442bin/Formats/7z.dll"
-IMPORT(Formats/arj.dll)			7-ZIP	"../../../7z442bin/Formats/arj.dll"
-IMPORT(Formats/bz2.dll)			7-ZIP	"../../../7z442bin/Formats/bz2.dll"
-IMPORT(Formats/cab.dll)			7-ZIP	"../../../7z442bin/Formats/cab.dll"
-IMPORT(Formats/chm.dll)			7-ZIP	"../../../7z442bin/Formats/chm.dll"
-IMPORT(Formats/cpio.dll)		7-ZIP	"../../../7z442bin/Formats/cpio.dll"
-IMPORT(Formats/deb.dll)			7-ZIP	"../../../7z442bin/Formats/deb.dll"
-IMPORT(Formats/gz.dll)			7-ZIP	"../../../7z442bin/Formats/gz.dll"
-IMPORT(Formats/iso.dll)			7-ZIP	"../../../7z442bin/Formats/iso.dll"
-IMPORT(Formats/lzh.dll)			7-ZIP	"../../../7z442bin/Formats/lzh.dll"
-IMPORT(Formats/nsis.dll)		7-ZIP	"../../../7z442bin/Formats/nsis.dll"
-IMPORT(Formats/rar.dll)			7-ZIP	"../../../7z442bin/Formats/rar.dll"
-IMPORT(Formats/rpm.dll)			7-ZIP	"../../../7z442bin/Formats/rpm.dll"
-IMPORT(Formats/split.dll)		7-ZIP	"../../../7z442bin/Formats/split.dll"
-IMPORT(Formats/tar.dll)			7-ZIP	"../../../7z442bin/Formats/tar.dll"
-IMPORT(Formats/z.dll)			7-ZIP	"../../../7z442bin/Formats/z.dll"
-IMPORT(Formats/zip.dll)			7-ZIP	"../../../7z442bin/Formats/zip.dll"
-
-IMPORT(Lang/af.txt)				7-ZIP	"../../../7z442bin/Lang/af.txt"
-IMPORT(Lang/ar.txt)				7-ZIP	"../../../7z442bin/Lang/ar.txt"
-IMPORT(Lang/ast.txt)			7-ZIP	"../../../7z442bin/Lang/ast.txt"
-IMPORT(Lang/az.txt)				7-ZIP	"../../../7z442bin/Lang/az.txt"
-IMPORT(Lang/be.txt)				7-ZIP	"../../../7z442bin/Lang/be.txt"
-IMPORT(Lang/bg.txt)				7-ZIP	"../../../7z442bin/Lang/bg.txt"
-IMPORT(Lang/br.txt)				7-ZIP	"../../../7z442bin/Lang/br.txt"
-IMPORT(Lang/ca.txt)				7-ZIP	"../../../7z442bin/Lang/ca.txt"
-IMPORT(Lang/cs.txt)				7-ZIP	"../../../7z442bin/Lang/cs.txt"
-IMPORT(Lang/da.txt)				7-ZIP	"../../../7z442bin/Lang/da.txt"
-IMPORT(Lang/de.txt)				7-ZIP	"../../../7z442bin/Lang/de.txt"
-IMPORT(Lang/el.txt)				7-ZIP	"../../../7z442bin/Lang/el.txt"
-IMPORT(Lang/en.ttt)				7-ZIP	"../../../7z442bin/Lang/en.ttt"
-IMPORT(Lang/eo.txt)				7-ZIP	"../../../7z442bin/Lang/eo.txt"
-IMPORT(Lang/es.txt)				7-ZIP	"../../../7z442bin/Lang/es.txt"
-IMPORT(Lang/et.txt)				7-ZIP	"../../../7z442bin/Lang/et.txt"
-IMPORT(Lang/eu.txt)				7-ZIP	"../../../7z442bin/Lang/eu.txt"
-IMPORT(Lang/ext.txt)			7-ZIP	"../../../7z442bin/Lang/ext.txt"
-IMPORT(Lang/fa.txt)				7-ZIP	"../../../7z442bin/Lang/fa.txt"
-IMPORT(Lang/fi.txt)				7-ZIP	"../../../7z442bin/Lang/fi.txt"
-IMPORT(Lang/fr.txt)				7-ZIP	"../../../7z442bin/Lang/fr.txt"
-IMPORT(Lang/fur.txt)			7-ZIP	"../../../7z442bin/Lang/fur.txt"
-IMPORT(Lang/fy.txt)				7-ZIP	"../../../7z442bin/Lang/fy.txt"
-IMPORT(Lang/gl.txt)				7-ZIP	"../../../7z442bin/Lang/gl.txt"
-IMPORT(Lang/he.txt)				7-ZIP	"../../../7z442bin/Lang/he.txt"
-IMPORT(Lang/hr.txt)				7-ZIP	"../../../7z442bin/Lang/hr.txt"
-IMPORT(Lang/hu.txt)				7-ZIP	"../../../7z442bin/Lang/hu.txt"
-IMPORT(Lang/id.txt)				7-ZIP	"../../../7z442bin/Lang/id.txt"
-IMPORT(Lang/io.txt)				7-ZIP	"../../../7z442bin/Lang/io.txt"
-IMPORT(Lang/it.txt)				7-ZIP	"../../../7z442bin/Lang/it.txt"
-IMPORT(Lang/ja.txt)				7-ZIP	"../../../7z442bin/Lang/ja.txt"
-IMPORT(Lang/ka.txt)				7-ZIP	"../../../7z442bin/Lang/ka.txt"
-IMPORT(Lang/ko.txt)				7-ZIP	"../../../7z442bin/Lang/ko.txt"
-IMPORT(Lang/lt.txt)				7-ZIP	"../../../7z442bin/Lang/lt.txt"
-IMPORT(Lang/lv.txt)				7-ZIP	"../../../7z442bin/Lang/lv.txt"
-IMPORT(Lang/mk.txt)				7-ZIP	"../../../7z442bin/Lang/mk.txt"
-IMPORT(Lang/mn.txt)				7-ZIP	"../../../7z442bin/Lang/mn.txt"
-IMPORT(Lang/ms.txt)				7-ZIP	"../../../7z442bin/Lang/ms.txt"
-IMPORT(Lang/nl.txt)				7-ZIP	"../../../7z442bin/Lang/nl.txt"
-IMPORT(Lang/no.txt)				7-ZIP	"../../../7z442bin/Lang/no.txt"
-IMPORT(Lang/pl.txt)				7-ZIP	"../../../7z442bin/Lang/pl.txt"
-IMPORT(Lang/pt.txt)				7-ZIP	"../../../7z442bin/Lang/pt.txt"
-IMPORT(Lang/pt-br.txt)			7-ZIP	"../../../7z442bin/Lang/pt-br.txt"
-IMPORT(Lang/ro.txt)				7-ZIP	"../../../7z442bin/Lang/ro.txt"
-IMPORT(Lang/ru.txt)				7-ZIP	"../../../7z442bin/Lang/ru.txt"
-IMPORT(Lang/sk.txt)				7-ZIP	"../../../7z442bin/Lang/sk.txt"
-IMPORT(Lang/sl.txt)				7-ZIP	"../../../7z442bin/Lang/sl.txt"
-IMPORT(Lang/sr.txt)				7-ZIP	"../../../7z442bin/Lang/sr.txt"
-IMPORT(Lang/sv.txt)				7-ZIP	"../../../7z442bin/Lang/sv.txt"
-IMPORT(Lang/ta.txt)				7-ZIP	"../../../7z442bin/Lang/ta.txt"
-IMPORT(Lang/th.txt)				7-ZIP	"../../../7z442bin/Lang/th.txt"
-IMPORT(Lang/tr.txt)				7-ZIP	"../../../7z442bin/Lang/tr.txt"
-IMPORT(Lang/tt.txt)				7-ZIP	"../../../7z442bin/Lang/tt.txt"
-IMPORT(Lang/uk.txt)				7-ZIP	"../../../7z442bin/Lang/uk.txt"
-IMPORT(Lang/uz.txt)				7-ZIP	"../../../7z442bin/Lang/uz.txt"
-IMPORT(Lang/va.txt)				7-ZIP	"../../../7z442bin/Lang/va.txt"
-IMPORT(Lang/vi.txt)				7-ZIP	"../../../7z442bin/Lang/vi.txt"
-IMPORT(Lang/vr.txt)				7-ZIP	"../../../7z442bin/Lang/vr.txt"
-IMPORT(Lang/zh-cn.txt)			7-ZIP	"../../../7z442bin/Lang/zh-cn.txt"
-IMPORT(Lang/zh-tw.txt)			7-ZIP	"../../../7z442bin/Lang/zh-tw.txt"
+VIIZIP(7zip_pad.xml)
+VIIZIP(7z.dll)
+VIIZIP(Lang/af.txt)
+VIIZIP(Lang/ar.txt)
+VIIZIP(Lang/ast.txt)
+VIIZIP(Lang/az.txt)
+VIIZIP(Lang/ba.txt)
+VIIZIP(Lang/be.txt)
+VIIZIP(Lang/bg.txt)
+VIIZIP(Lang/bn.txt)
+VIIZIP(Lang/br.txt)
+VIIZIP(Lang/ca.txt)
+VIIZIP(Lang/cs.txt)
+VIIZIP(Lang/cy.txt)
+VIIZIP(Lang/da.txt)
+VIIZIP(Lang/de.txt)
+VIIZIP(Lang/el.txt)
+VIIZIP(Lang/en.ttt)
+VIIZIP(Lang/eo.txt)
+VIIZIP(Lang/es.txt)
+VIIZIP(Lang/et.txt)
+VIIZIP(Lang/eu.txt)
+VIIZIP(Lang/ext.txt)
+VIIZIP(Lang/fa.txt)
+VIIZIP(Lang/fi.txt)
+VIIZIP(Lang/fr.txt)
+VIIZIP(Lang/fur.txt)
+VIIZIP(Lang/fy.txt)
+VIIZIP(Lang/gl.txt)
+VIIZIP(Lang/he.txt)
+VIIZIP(Lang/hr.txt)
+VIIZIP(Lang/hu.txt)
+VIIZIP(Lang/hy.txt)
+VIIZIP(Lang/id.txt)
+VIIZIP(Lang/io.txt)
+VIIZIP(Lang/it.txt)
+VIIZIP(Lang/ja.txt)
+VIIZIP(Lang/ka.txt)
+VIIZIP(Lang/ko.txt)
+VIIZIP(Lang/ku.txt)
+VIIZIP(Lang/lt.txt)
+VIIZIP(Lang/lv.txt)
+VIIZIP(Lang/mk.txt)
+VIIZIP(Lang/mn.txt)
+VIIZIP(Lang/ms.txt)
+VIIZIP(Lang/mr.txt)
+VIIZIP(Lang/nb.txt)
+VIIZIP(Lang/ne.txt)
+VIIZIP(Lang/nl.txt)
+VIIZIP(Lang/nn.txt)
+VIIZIP(Lang/pl.txt)
+VIIZIP(Lang/pt-br.txt)
+VIIZIP(Lang/ro.txt)
+VIIZIP(Lang/ru.txt)
+VIIZIP(Lang/sk.txt)
+VIIZIP(Lang/sl.txt)
+VIIZIP(Lang/sq.txt)
+VIIZIP(Lang/sr-spc.txt)
+VIIZIP(Lang/sr-spl.txt)
+VIIZIP(Lang/sv.txt)
+VIIZIP(Lang/ta.txt)
+VIIZIP(Lang/th.txt)
+VIIZIP(Lang/tr.txt)
+VIIZIP(Lang/tt.txt)
+VIIZIP(Lang/uk.txt)
+VIIZIP(Lang/uz.txt)
+VIIZIP(Lang/va.txt)
+VIIZIP(Lang/vi.txt)
+VIIZIP(Lang/zh-cn.txt)
+VIIZIP(Lang/zh-tw.txt)

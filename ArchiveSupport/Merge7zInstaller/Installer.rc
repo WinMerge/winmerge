@@ -68,7 +68,7 @@ BEGIN
     EDITTEXT        203,18,126,232,14,ES_AUTOHSCROLL | WS_DISABLED | 
                     WS_GROUP
     PUSHBUTTON      "&Browse",204,252,126,50,14,WS_DISABLED | WS_GROUP
-    CONTROL         "&Enable standalone operation\nThis option adds required components from 7-Zip 4.42 to program directory.",
+    CONTROL         "&Enable standalone operation\nThis option adds required components from 7-Zip %s to program directory.",
                     205,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE | 
                     WS_DISABLED | WS_TABSTOP,18,142,280,18
     DEFPUSHBUTTON   "OK",IDOK,202,168,50,14,WS_GROUP

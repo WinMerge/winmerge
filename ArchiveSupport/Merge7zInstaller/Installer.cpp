@@ -26,23 +26,29 @@ Please mind 2. a) of the GNU General Public License, and log your changes below.
 
 DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
-2005/01/15	Jochen Tucht		Created
-2005/02/28	Jochen Tucht		Initialize filename in Open dialog to "*.exe"
-2005/04/26	Jochen Tucht		No default assumption on program directory
+2005-01-15	Jochen Tucht		Created
+2005-02-28	Jochen Tucht		Initialize filename in Open dialog to "*.exe"
+2005-04-26	Jochen Tucht		No default assumption on program directory
 								Double-click option for in-place extraction
 								Fix empty path issue with GetFileTitle()
 								Accept extraction folder on command line
 								Batch options: /standalone, /select, /commit
-2005/05/30	Jochen Tucht		Standalone option now based on 7z420
-2005/06/28	Jochen Tucht		Standalone option now based on 7z423
-2005/12/04	Jochen Tucht		Standalone option now based on 7z431
-2005/12/09	Jochen Tucht		Standalone option now based on 7z432
-2006/06/28	Jochen Neubeck		Standalone option now based on 7z442
+2005-05-30	Jochen Tucht		Standalone option now based on 7z420
+2005-06-28	Jochen Tucht		Standalone option now based on 7z423
+2005-12-04	Jochen Tucht		Standalone option now based on 7z431
+2005-12-09	Jochen Tucht		Standalone option now based on 7z432
+2006-06-28	Jochen Neubeck		Standalone option now based on 7z442
+2007-12-22	Jochen Neubeck		Standalone option now based on 7z457
 */
 
 #include <windows.h>
 
+#define VERSION7Z 4.57
+
 #pragma intrinsic(memset) // do not depend on CRT
+
+#define SHARPEN(X) #X
+#define SHARPEN2(X) SHARPEN(X)
 
 // Compute dwBuild from revision.txt
 static const DWORD dwBuild =
@@ -53,7 +59,7 @@ static const DWORD dwBuild =
 #	undef VERSION
 );
 
-const SYSTEMTIME *st = NULL; // initialized from SYSTEMTIME RCDATA in Files.rc2
+static SYSTEMTIME st = {0,0,0,0,0,0,0,0};
 
 LPTSTR NTAPI ArgLower(LPTSTR lpCmdLine)
 {
@@ -110,7 +116,7 @@ void InstallFile(HWND hWnd, LPTSTR lpName, LPCTSTR lpType, LPTSTR path, int cchP
 		DWORD dwNumberOfBytesWritten;
 		BOOL bSuccess = WriteFile(hFile, pResource, dwSize, &dwNumberOfBytesWritten, 0);
 		FILETIME ft;
-		if (SystemTimeToFileTime(st, &ft))
+		if (SystemTimeToFileTime(&st, &ft))
 		{
 			SetFileTime(hFile, &ft, &ft, &ft);
 		}
@@ -175,16 +181,37 @@ BOOL CALLBACK fnInstallFiles(HMODULE hModule, LPCTSTR lpType, LPTSTR lpName, LON
 
 BOOL CALLBACK DlgMain_InitDialog(HWND hWnd, LPARAM lParam)
 {
+	char date[] = __DATE__; // Compilation date "MMM DD YYYY"
+
 	TCHAR path[5 * MAX_PATH];
-	wsprintf(path + GetWindowText(hWnd, path, MAX_PATH), " (dllbuild %04lu, %04u-%02u-%02u)",
-		dwBuild, (UINT)st->wYear, (UINT)st->wMonth, (UINT)st->wDay);
+	wsprintf(path + GetWindowText(hWnd, path, MAX_PATH),
+		" (dllbuild %04lu, %s)", dwBuild, date);
 	SetWindowText(hWnd, path);
+
+	TCHAR fmt[MAX_PATH];
+	GetDlgItemText(hWnd, 205, fmt, MAX_PATH);
+	wsprintf(path, fmt, SHARPEN2(VERSION7Z));
+	SetDlgItemText(hWnd, 205, path);
+
+	date[6] = '#';
+	st.wYear = FindAtom(&date[6]);
+	date[6] = '\0';
+	date[3] = '#';
+	st.wDay = FindAtom(&date[3]);
+	date[3] = '\0';
+	st.wMonth = 1;
+	const char *month = "Jan\0Feb\0Mar\0Apr\0May\0Jun\0Jul\0Aug\0Sep\0Oct\0Nov\0Dec";
+	while (lstrcmpi(month, date))
+	{
+		++st.wMonth;
+		month += 4;
+	} 
+	st.wHour = 12;
+
 	EnumResourceNames(GetModuleHandle(0), "Merge7z", fnPopulateList, (LONG)hWnd);
 	LONG lCount = SendDlgItemMessage(hWnd, 100, LB_GETCOUNT , 0, 0);
 	SendDlgItemMessage(hWnd, 100, LB_SELITEMRANGEEX, 0, lCount - 1);
 	CheckRadioButton(hWnd, 201, 202, 201);
-	//GetModuleFileName(0, path, sizeof path);
-	//SetDlgItemText(hWnd, 203, path);
 	BOOL bCommit = FALSE;
 	BOOL bSelect = FALSE;
 	LPTSTR lpCmdLine = GetCommandLine();
@@ -354,8 +381,13 @@ BOOL CALLBACK DlgMain_EnableStandalone(HWND hWnd)
 {
 	if (IsDlgButtonChecked(hWnd, 205))
 	{
-		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z442.dll");
-		int upper = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)"Merge7z442U.dll");
+		TCHAR buffer[40];
+		const UINT major = UINT(VERSION7Z);
+		const UINT minor = UINT(VERSION7Z * 100) % 100;
+		wsprintf(buffer, "Merge7z%u%02u.dll", major, minor);
+		int lower = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)buffer);
+		wsprintf(buffer, "Merge7z%u%02uU.dll", major, minor);
+		int upper = SendDlgItemMessage(hWnd, 100, LB_FINDSTRINGEXACT, -1, (LPARAM)buffer);
 		SendDlgItemMessage(hWnd, 100, LB_SELITEMRANGEEX, lower, upper);
 		if (GetFocus() == GetDlgItem(hWnd, 205))
 		{
@@ -410,12 +442,36 @@ BOOL CALLBACK DlgMain(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 
 void WinMainCRTStartup(void)
 {
-	HINSTANCE hModule = GetModuleHandle(0);
-	HRSRC hResource = FindResource(hModule, "SYSTEMTIME", RT_RCDATA);
-	st = (SYSTEMTIME *)LoadResource(hModule, hResource);
 	InitAtomTable(0x3001);
-#	define IMPORT(name) AddAtom(#name); /##/
-#	include "files.rc2"
+	HINSTANCE hModule = GetModuleHandle(0);
+	HRSRC hResource = FindResource(hModule, "Files.rc2", RT_RCDATA);
+	char *q = (char *)LoadResource(hModule, hResource);
+	DWORD n = SizeofResource(hModule, hResource);
+	char masked = '\n';
+	char buffer[MAX_PATH];
+	char *p = buffer;
+	while (n)
+	{
+		*buffer = *p = *q;
+		switch (*buffer)
+		{
+		case '\n':
+		case '#':
+			masked = *buffer;
+			//fall through
+		case '(':
+			p = buffer;
+			break;
+		case ')':
+			*p = '\0';
+			if (masked == '\n')
+				AddAtom(buffer + 1);
+			break;
+		}
+		++p;
+		++q;
+		--n;
+	}
 	DialogBoxParam(hModule, MAKEINTRESOURCE(100), 0, DlgMain, 0);
 	ExitProcess(0);
 }
