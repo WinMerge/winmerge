@@ -45,7 +45,7 @@ RSC=rc.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "MERGE7Z310_EXPORTS" /YX /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O1 /I "..\..\..\7z453" /I "..\..\..\7z453\CPP" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "Merge7z453_EXPORTS" /FR /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O1 /I "$(SRC7Z)\7z453" /I "$(SRC7Z)\7z453\CPP" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "Merge7z453_EXPORTS" /FR /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x407 /d "NDEBUG"
@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeRelease/Merge7z453.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../../Build/MergeRelease/Merge7z453.dll"
 
 !ELSEIF  "$(CFG)" == "Merge7z453 - Win32 Debug"
 
@@ -71,7 +71,7 @@ LINK32=link.exe
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "MERGE7Z310_EXPORTS" /YX /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /vd0 /GX /Z7 /Od /I "..\..\..\7z453" /I "..\..\..\7z453\CPP" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "Merge7z453_EXPORTS" /FR /Yu"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /vd0 /GX /Z7 /Od /I "$(SRC7Z)\7z453" /I "$(SRC7Z)\7z453\CPP" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "Merge7z453_EXPORTS" /FR /Yu"stdafx.h" /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x407 /d "_DEBUG"
@@ -81,7 +81,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../Build/MergeDebug/Merge7z453.pdb" /debug /machine:I386 /out:"../Build/MergeDebug/Merge7z453.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../../Build/MergeDebug/Merge7z453.pdb" /debug /machine:I386 /out:"../../Build/MergeDebug/Merge7z453.dll"
 # SUBTRACT LINK32 /pdb:none /map
 
 !ELSEIF  "$(CFG)" == "Merge7z453 - Win32 UnicodeDebug"
@@ -98,8 +98,8 @@ LINK32=link.exe
 # PROP Intermediate_Dir "..\BuildTmp\Merge7z453___Win32_UnicodeDebug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /MTd /W3 /vd0 /GX /Z7 /Od /I "..\..\..\7z453" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "MERGE7Z310_EXPORTS" /FR /Yu"stdafx.h" /FD /GZ /c
-# ADD CPP /nologo /MTd /W3 /vd0 /GX /Z7 /Od /I "..\..\..\7z453" /I "..\..\..\7z453\CPP" /D "Merge7z453_EXPORTS" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /FR /Yu"stdafx.h" /FD /GZ /c
+# ADD BASE CPP /nologo /MTd /W3 /vd0 /GX /Z7 /Od /I "$(SRC7Z)\7z453" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "MERGE7Z310_EXPORTS" /FR /Yu"stdafx.h" /FD /GZ /c
+# ADD CPP /nologo /MTd /W3 /vd0 /GX /Z7 /Od /I "$(SRC7Z)\7z453" /I "$(SRC7Z)\7z453\CPP" /D "Merge7z453_EXPORTS" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /FR /Yu"stdafx.h" /FD /GZ /c
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x407 /d "_DEBUG"
@@ -108,8 +108,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /map /debug /machine:I386 /out:"../Build/MergeDebug/Merge7z453.dll"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../Build/MergeUnicodeDebug/Merge7z453U.pdb" /debug /machine:I386 /out:"../Build/MergeUnicodeDebug/Merge7z453U.dll"
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /map /debug /machine:I386 /out:"../../Build/MergeDebug/Merge7z453.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /incremental:no /pdb:"../../Build/MergeUnicodeDebug/Merge7z453U.pdb" /debug /machine:I386 /out:"../../Build/MergeUnicodeDebug/Merge7z453U.dll"
 # SUBTRACT LINK32 /pdb:none /map
 
 !ELSEIF  "$(CFG)" == "Merge7z453 - Win32 UnicodeRelease"
@@ -126,8 +126,8 @@ LINK32=link.exe
 # PROP Intermediate_Dir "..\BuildTmp\Merge7z453___Win32_UnicodeRelease"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /MT /W3 /GX /O2 /I "..\..\..\7z453" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "MERGE7Z310_EXPORTS" /Yu"stdafx.h" /FD /c
-# ADD CPP /nologo /MT /W3 /GX /O1 /I "..\..\..\7z453\CPP" /D "Merge7z453_EXPORTS" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
+# ADD BASE CPP /nologo /MT /W3 /GX /O2 /I "$(SRC7Z)\7z453" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "MERGE7Z310_EXPORTS" /Yu"stdafx.h" /FD /c
+# ADD CPP /nologo /MT /W3 /GX /O1 /I "$(SRC7Z)\7z453\CPP" /D "Merge7z453_EXPORTS" /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_USRDLL" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /c
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /win32
 # ADD BASE RSC /l 0x407 /d "NDEBUG"
@@ -136,8 +136,8 @@ BSC32=bscmake.exe
 # ADD BASE BSC32 /nologo
 # ADD BSC32 /nologo
 LINK32=link.exe
-# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeRelease/Merge7z453.dll"
-# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../Build/MergeUnicodeRelease/Merge7z453U.dll"
+# ADD BASE LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../../Build/MergeRelease/Merge7z453.dll"
+# ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib shlwapi.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /pdb:none /machine:I386 /out:"../../Build/MergeUnicodeRelease/Merge7z453U.dll"
 
 !ENDIF 
 
@@ -197,15 +197,15 @@ SOURCE=.\tools.h
 # PROP Default_Filter "ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Ui\Gui\FM.ico
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Ui\Gui\FM.ico
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\GUI\resource.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\GUI\resource.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Ui\Gui\resource.rc
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Ui\Gui\resource.rc
 # End Source File
 # End Group
 # Begin Group "Windows"
@@ -213,59 +213,59 @@ SOURCE=..\..\..\7z453\CPP\7zip\Ui\Gui\resource.rc
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\DLL.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\DLL.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\DLL.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\DLL.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Error.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Error.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Error.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Error.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileIO.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileIO.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileIO.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileIO.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\PropVariant.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\PropVariant.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\PropVariant.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\PropVariant.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\PropVariantConversions.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\PropVariantConversions.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\PropVariantConversions.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\PropVariantConversions.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\ResourceString.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\ResourceString.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\ResourceString.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\ResourceString.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Synchronization.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Synchronization.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Synchronization.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Synchronization.h
 # End Source File
 # End Group
 # Begin Group "Common"
@@ -273,67 +273,67 @@ SOURCE=..\..\..\7z453\CPP\Windows\Synchronization.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\IntToString.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\IntToString.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\IntToString.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\IntToString.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\Lang.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\Lang.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\Lang.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\Lang.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\MyString.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\MyString.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\MyString.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\MyString.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\StdInStream.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\StdInStream.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\StdInStream.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\StdInStream.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\StringConvert.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\StringConvert.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\StringConvert.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\StringConvert.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\StringToInt.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\StringToInt.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\StringToInt.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\StringToInt.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\TextConfig.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\TextConfig.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\TextConfig.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\TextConfig.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\UTFConvert.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\UTFConvert.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\UTFConvert.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\UTFConvert.h
 # End Source File
 # End Group
 # Begin Group "7zip Common"
@@ -341,159 +341,159 @@ SOURCE=..\..\..\7z453\CPP\Common\UTFConvert.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Ui\Common\ArchiveExtractCallback.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Ui\Common\ArchiveExtractCallback.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\ArchiveExtractCallback.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\ArchiveExtractCallback.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\ArchiveOpenCallback.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\ArchiveOpenCallback.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\ArchiveOpenCallback.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\DefaultName.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\DefaultName.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\DefaultName.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\DefaultName.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Control\Dialog.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Control\Dialog.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Control\Dialog.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Control\Dialog.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\ExtractCallback.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\ExtractCallback.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\ExtractCallback.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\ExtractCallback.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\FileStreams.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\FileStreams.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\FileStreams.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\FileStreams.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\FormatUtils.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\FormatUtils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\FormatUtils.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\FormatUtils.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\LangUtils.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\LangUtils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\LangUtils.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\LangUtils.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\MessagesDialog.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\MessagesDialog.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\MessagesDialog.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\MessagesDialog.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z450\CPP\7zip\UI\Common\OpenArchive.cpp
+SOURCE=$(SRC7Z)\7z450\CPP\7zip\UI\Common\OpenArchive.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z450\CPP\7zip\UI\Common\OpenArchive.h
+SOURCE=$(SRC7Z)\7z450\CPP\7zip\UI\Common\OpenArchive.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\OpenCallback.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\OpenCallback.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\OpenCallback.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\OpenCallback.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\OverwriteDialog.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\OverwriteDialog.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\OverwriteDialog.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\OverwriteDialog.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\PasswordDialog.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\PasswordDialog.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\PasswordDialog.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\PasswordDialog.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\ProgramLocation.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\ProgramLocation.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\ProgramLocation.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\ProgramLocation.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\FileManager\ProgressDialog2.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\FileManager\ProgressDialog2.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\ProgressUtils.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\ProgressUtils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\ProgressUtils.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\ProgressUtils.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\StreamUtils.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\StreamUtils.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\StreamUtils.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\StreamUtils.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\UpdateCallback.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\UpdateCallback.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\UpdateCallback.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\UpdateCallback.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\GUI\UpdateCallbackGUI.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\GUI\UpdateCallbackGUI.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\GUI\UpdateCallbackGUI.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\GUI\UpdateCallbackGUI.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Window.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Window.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\Window.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\Window.h
 # End Source File
 # End Group
 # Begin Group "Extract"
@@ -501,59 +501,59 @@ SOURCE=..\..\..\7z453\CPP\Windows\Window.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Ui\Common\ExtractingFilePath.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Ui\Common\ExtractingFilePath.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\UI\Common\ExtractingFilePath.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\UI\Common\ExtractingFilePath.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileDir.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileDir.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileDir.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileDir.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileFind.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileFind.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileFind.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileFind.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileName.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileName.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Windows\FileName.h
+SOURCE=$(SRC7Z)\7z453\CPP\Windows\FileName.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\FilePathAutoRename.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\FilePathAutoRename.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Common\FilePathAutoRename.h
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Common\FilePathAutoRename.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\MyVector.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\MyVector.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\MyVector.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\MyVector.h
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\Wildcard.cpp
+SOURCE=$(SRC7Z)\7z453\CPP\Common\Wildcard.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\Common\Wildcard.h
+SOURCE=$(SRC7Z)\7z453\CPP\Common\Wildcard.h
 # End Source File
 # End Group
 # Begin Group "C"
@@ -561,13 +561,13 @@ SOURCE=..\..\..\7z453\CPP\Common\Wildcard.h
 # PROP Default_Filter ""
 # Begin Source File
 
-SOURCE=..\..\..\7z453\C\Threads.c
+SOURCE=$(SRC7Z)\7z453\C\Threads.c
 # SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # End Group
 # Begin Source File
 
-SOURCE=..\..\..\7z453\CPP\7zip\Ui\Gui\7zG.exe.manifest
+SOURCE=$(SRC7Z)\7z453\CPP\7zip\Ui\Gui\7zG.exe.manifest
 # End Source File
 # Begin Source File
 

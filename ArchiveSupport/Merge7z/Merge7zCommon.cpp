@@ -47,6 +47,7 @@ DATE:		BY:					DESCRIPTION:
 								therefore no longer passed to the CAB handler.
 2007-09-01	Jochen Neubeck		No longer #include "LangUtils.h", which has
 								moved to a different location as of 7z453 beta.
+2007-12-22	Jochen Neubeck		Unassociate .001 filename extension
 */
 
 #include "stdafx.h"
@@ -743,7 +744,6 @@ DEFINE_FORMAT(CLzhHandler,		06, "LZH.DLL",		"lzh lha", "@@@-l@@-");//"@-l" doesn
 DEFINE_FORMAT(CGZipHandler,		EF, "GZ.DLL",		"gz tgz", "@\x1F\x8B");
 DEFINE_FORMAT(CRarHandler,		03, "RAR.DLL",		"rar", "@Rar!\x1a\x07\x00");
 DEFINE_FORMAT(CRpmHandler,		EB, "RPM.DLL",		"rpm", "");
-DEFINE_FORMAT(CSplitHandler,	EA, "SPLIT.DLL",	"001", "");
 DEFINE_FORMAT(CTarHandler,		EE, "TAR.DLL",		"tar", "");
 DEFINE_FORMAT(CZHandler,		05, "Z.DLL",		"z", "@\x1F\x9D");
 DEFINE_FORMAT(CZipHandler,		01, "ZIP.DLL",		"zip jar war ear xpi", "@PK\x03\x04");

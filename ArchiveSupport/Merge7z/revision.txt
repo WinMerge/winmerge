@@ -58,3 +58,4 @@ VERSION(2,2)
 "*"//2007-08-25 Jochen Neubeck	Add COM format (introduced with 7z452 beta)
 //								No longer pass MSI files to CAB handler
 "*"//2007-09-01 Jochen Neubeck	Some refactoring to build against 7z453 beta
+"*"//2007-12-22	Jochen Neubeck	Unassociate .001 filename extension
