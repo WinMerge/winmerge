@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.7.2
+  Syntax highlighting for PowerShell files (#1859657)
+
 WinMerge 2.7.7.1 - 2007-12-20 (r4842)
   New option to keep file's time when saving in file compare (#1851921)
   Installer: Link to translated ReadMe in Start menu, if file exists (#1805818)

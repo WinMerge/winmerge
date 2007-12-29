@@ -2909,6 +2909,7 @@ BEGIN
     IDS_COLORSCHEME_PASCAL          "Pascal"
     IDS_COLORSCHEME_PERL            "Perl"
     IDS_COLORSCHEME_PHP             "PHP"
+    IDS_COLORSCHEME_POWERSHELL      "PowerShell"
     IDS_COLORSCHEME_PYTHON          "Python"
     IDS_COLORSCHEME_REXX            "REXX"
     IDS_COLORSCHEME_RSRC            "Resources"
