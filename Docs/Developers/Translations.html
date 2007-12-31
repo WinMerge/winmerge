@@ -66,12 +66,16 @@
 </ul>
 
 <h3><a name="translate">I want to translate into my own language</a></h3>
-<p>If you are interested in translating WinMerge to your own language, we'd be happy to include your language as well.</p>
+<p>If you are interested in translating WinMerge to your own language, we'd
+be happy to include your language as well.</p>
 
-<p>WinMerge executable translations are based on per-language PO files. PO files are text files which have original
-English string and translated strings listed together. </p>
+<p>WinMerge executable translations are based on per-language PO files. PO
+files are text files which have original English string and translated strings
+listed together. </p>
 
-<p>We have a list with the <a href="http://winmerge.org/Wiki/index.php?title=Translations">status of current translations</a>, so you can check if your language is already available and/or it needs to be updated.</p>
+<p>We have a list with the <a href="http://winmerge.org/Wiki/index.php?title=Translations">
+status of current translations</a>, so you can check if your language is
+already available and/or it needs to be updated.</p>
 
 <h3><a name="whatToTranslate">What can I translate?</a></h3>
 <p>Listings below show what you can actually translate for WinMerge. And what is
@@ -97,62 +101,92 @@ don't have a way to compile and show translated manual to users. If somebody
 can help us with this, we are of course interested.</p>
 
 <h3><a name="winmerge">Translating WinMerge</a></h3>
-<p>We use <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> PO files for the translation of the WinMerge program.
-<acronym title="Portable Object">PO</acronym> files are plain text, so you can even translate using a normal text editor.
-But we recommend that you use <a href="http://www.poedit.net/">poEdit</a> or other tools that can handle and manipulate PO files.</p>
+<p>We use <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> PO files
+for the translation of the WinMerge program. <acronym title="Portable Object">
+PO</acronym> files are plain text, so you can even translate using a normal text
+editor. But we recommend that you use <a href="http://www.poedit.net/">poEdit
+</a> or other tools that can handle and manipulate PO files.</p>
 
-<p>Grab a copy of the source code from <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> or
-go to <a href="http://winmerge.org/downloads/">our download site</a> and download the latest archive with sources.
-If you can't find it, then please <a href="mailto:winmerge-support@lists.sourceforge.net">ask us</a> and we will send the file to you.</p>
+<p>Grab a copy of the source code from <a href="http://sourceforge.net/svn/?group_id=13216">
+Subversion</a> or go to <a href="http://winmerge.org/downloads/">our download
+site</a> and download the latest archive with sources. If you can't find it,
+then please <a href="mailto:winmerge-support@lists.sourceforge.net">ask us</a>
+and we will send the file to you.</p>
 
-<p>The PO template <code>English.pot</code> and the <code><em>LanguageName</em>.po</code> translation files are located under the
-<code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Src/Languages/">Src\Languages\</a></code> folder in the source code.</p>
+<p>The PO template <code>English.pot</code> and the <code><em>LanguageName</em>
+.po</code> translation files are located under the<code>
+<a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Src/Languages/">
+Src\Languages\</a></code> folder in the source code.</p>
 
 <h4><a name="winmerge_new">Add new language to WinMerge</a></h4>
 <ol>
-  <li><p>Copy and rename <code>English.pot</code> to <code><em>YourLanguage</em>.po</code>,
-  where <em>YourLanguage</em> is the english name of your language.</p></li>
-  <li><p>Now translate what you can using <a href="http://www.poedit.net/">poEdit</a>.
-  If you are not sure with one or the other translation, mark it as fuzzy.
-  You can enter a comment in poEdit to give some information about your thoughts to other translators.</p></li>
-  <li><p>Once you have translated all the strings, then you need to upload your PO file to our <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patch section</a>
-  (please leave your contact information in case there are any problems that need to be resolved).
-  In case you have problems uploading the patch, you can also send it to us by <a href="mailto:winmerge-support@lists.sourceforge.net">e-mail</a>.</p></li>
-  <li><p>One of the developers will compile and test your translation; if there are problems, we will contact you to get them resolved.
-  When everything is working your translation will be included in the next release of WinMerge.</p></li>
-  <li><p>When the next major release is imminent, we will notify you again to give you a chance to update the translation with any new/changed strings.</p></li>
+  <li><p>Copy and rename <code>English.pot</code> to <code><em>YourLanguage</em>
+  .po</code>, where <em>YourLanguage</em> is the english name of your language.
+  </p></li>
+  <li><p>Now translate what you can using <a href="http://www.poedit.net/">
+  poEdit</a>. If you are not sure with one or the other translation, mark it as
+  fuzzy. You can enter a comment in poEdit to give some information about your
+  thoughts to other translators.</p></li>
+  <li><p>Once you have translated all the strings, then you need to upload your
+  PO file to our <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">
+  patch section</a> (please leave your contact information in case there are
+  any problems that need to be resolved). In case you have problems uploading
+  the patch, you can also send it to us by <a href="mailto:winmerge-support@lists.sourceforge.net">
+  e-mail</a>.</p></li>
+  <li><p>One of the developers will compile and test your translation; if there
+  are problems, we will contact you to get them resolved. When everything is
+  working your translation will be included in the next release of WinMerge.
+  </p></li>
+  <li><p>When the next major release is imminent, we will notify you again to
+  give you a chance to update the translation with any new/changed strings.
+  </p></li>
 </ol>
 
 <h4><a name="winmerge_update">Update existing language</a></h4>
 <ol>
-  <li>Get the <code>English.pot</code> template and the <code><em>YourLanguage</em>.po</code> file you want to improve.</li>
-  <li>Start <a href="http://www.poedit.net/">poEdit</a> with <code><em>YourLanguage</em>.po</code> and select <em>Update from .pot file</em> from the "Catalog" menu.</li>
-  <li>Select <code>English.pot</code> and wait until poEdit has finished merging the template and the current translation.</li>
-  <li>The <em>untranslated</em> strings (and <em>fuzzy</em> translations) are always at the top of the list.</li>
-  <li>Translate what you can and upload the resulting PO file to SF.net <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a patch</a>.</li>
+  <li>Get the <code>English.pot</code> template and the <code><em>YourLanguage
+  </em>.po</code> file you want to improve.</li>
+  <li>Start <a href="http://www.poedit.net/">poEdit</a> with <code><em>
+  YourLanguage</em>.po</code> and select <em>Update from .pot file</em> from the
+  "Catalog" menu.</li>
+  <li>Select <code>English.pot</code> and wait until poEdit has finished merging
+  the template and the current translation.</li>
+  <li>The <em>untranslated</em> strings (and <em>fuzzy</em> translations) are
+  always at the top of the list.</li>
+  <li>Translate what you can and upload the resulting PO file to SF.net
+  <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a
+  patch</a>.</li>
 </ol>
 
 <h3><a name="shellextension">Translating ShellExtension</a></h3>
-<p>ShellExtension can be translated by translating all the strings <em>between quotes</em> inside a <code>.rc</code> resource file.
-ShellExtension resource files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/ShellExtension/Languages/">WinMerge\ShellExtension\Languages\</a></code> folder.
-There are only few strings to translate so it should be fast to do.</p>
+<p>ShellExtension can be translated by translating all the strings <em>between
+quotes</em> inside a <code>.rc</code> resource file. ShellExtension resource
+files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/ShellExtension/Languages/">
+WinMerge\ShellExtension\Languages\</a></code> folder. There are only few
+strings to translate so it should be fast to do.</p>
 
 <h3><a name="installer">Translating Installer</a></h3>
-<p>Installer translation files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Installer/InnoSetup/Languages/">WinMerge\Installer\InnoSetup\Languages\</a></code> folder.
-Look for a file named by your language. If one does not yet exist, you should look for InnoSetup translations in <a href="http://www.jrsoftware.org/files/istrans/">http://www.jrsoftware.org/files/istrans/</a>.</p>
+<p>Installer translation files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Installer/InnoSetup/Languages/">
+WinMerge\Installer\InnoSetup\Languages\</a></code> folder. Look for a file
+named by your language. If one does not yet exist, you should look for
+InnoSetup translations in <a href="http://www.jrsoftware.org/files/istrans/">
+http://www.jrsoftware.org/files/istrans/</a>.</p>
 
-<p>After you open the file, scroll to end of it, there are few custom strings you
-need to translate. Look for a header <code><strong>[CustomMessages]</strong></code>
-and strings after it.</p>
+<p>After you open the file, scroll to end of it, there are few custom strings
+you need to translate. Look for a header <code><strong>[CustomMessages]
+</strong></code> and strings after it.</p>
 
 <p>If you want to change other strings in file, please consider submitting those
 changes upstream to InnoSetup translators so all InnoSetup users may benefit
 from your improvements. We'll pick those updates then also.</p>
 
 <h3><a name="readme">Translating ReadMe.txt</a></h3>
-<p>Please consider translating also <code>ReadMe.txt</code> file - it is shown in end of installer
-and is added to Start-menu. Translated versions of <code>ReadMe.txt</code> are
-in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/Languages/">WinMerge\Docs\Users\Languages\</a></code> folder. And master <code>ReadMe.txt</code> is
-in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/ReadMe.txt">WinMerge\Docs\Users\ReadMe.txt</a></code>.</p>
+<p>Please consider translating also <code>ReadMe.txt</code> file - it is shown
+in end of installer and is added to Start-menu. Translated versions of <code>
+ReadMe.txt</code> are in <code>
+<a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/Languages/">
+WinMerge\Docs\Users\Languages\</a></code> folder. And master <code>ReadMe.txt
+</code> is in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Docs/Users/ReadMe.txt">
+WinMerge\Docs\Users\ReadMe.txt</a></code>.</p>
 </body>
 </html>
