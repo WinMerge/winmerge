@@ -4,12 +4,13 @@
  * @brief Implementation file for PathInfo and PathContext
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "PathContext.h"
 #include "paths.h"
+#include "Environment.h"
 
 /**
  * @brief Copy constructor.
@@ -172,7 +173,7 @@ BOOL TempFileContext::CreateFiles(const PathContext &paths)
 	if (GetLeft().empty())
 	{
 		int nerr=0;
-		String sTempPath = paths_GetTempFileName(strTempPath, _T("_LT"), &nerr);
+		String sTempPath = env_GetTempFileName(strTempPath, _T("_LT"), &nerr);
 		if (sTempPath.empty())
 		{
 			LogErrorString(Fmt(_T("GetTempFileName() for left-side failed: %s"),

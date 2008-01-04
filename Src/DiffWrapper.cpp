@@ -43,6 +43,7 @@
 #include "FileTextStats.h"
 #include "FolderCmp.h"
 #include "FilterCommentsManager.h"
+#include "Environment.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -738,7 +739,7 @@ BOOL CDiffWrapper::RunFileDiff()
 	// what differences diff-engine sees!
 #ifdef _DEBUG
 	// throw the diff into a temp file
-	String sTempPath = paths_GetTempPath(); // get path to Temp folder
+	String sTempPath = env_GetTempPath(); // get path to Temp folder
 	String path = paths_ConcatPath(sTempPath, _T("Diff.txt"));
 
 	outfile = _tfopen(path.c_str(), _T("w+"));

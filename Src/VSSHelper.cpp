@@ -28,6 +28,7 @@
 #include "VSSHelper.h"
 #include "coretools.h"
 #include "paths.h"
+#include "Environment.h"
 
 CString VSSHelper::GetProjectBase()
 {
@@ -59,14 +60,14 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 	BOOL bVCPROJ = FALSE;
 
 	int nerr;
-	String tempPath = paths_GetTempPath(&nerr);
+	String tempPath = env_GetTempPath(&nerr);
 	if (tempPath.empty())
 	{
 		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get temppath: %s")
 			, GetSysError(nerr)));
 		return FALSE;
 	}
-	String tempFile = paths_GetTempFileName(tempPath.c_str(), _T("_LT"), &nerr);
+	String tempFile = env_GetTempFileName(tempPath.c_str(), _T("_LT"), &nerr);
 	if (tempFile.empty())
 	{
 		LogErrorString(Fmt(_T("CMainFrame::ReLinkVCProj() - couldn't get tempfile: %s")

@@ -443,6 +443,10 @@ SOURCE=.\EditorFilepathBar.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Environment.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\FileActionScript.cpp
 # End Source File
 # Begin Source File
@@ -1206,6 +1210,10 @@ SOURCE=.\dllver.h
 # Begin Source File
 
 SOURCE=.\EditorFilepathBar.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Environment.h
 # End Source File
 # Begin Source File
 
@@ -2252,6 +2260,7 @@ SOURCE=.\diffutils\src\CONTEXT.C
 # Begin Source File
 
 SOURCE=.\Diff.cpp
+
 !IF  "$(CFG)" == "Merge - Win32 Debug"
 
 # SUBTRACT CPP /Yc /Yu
@@ -2274,6 +2283,8 @@ SOURCE=.\Diff.cpp
 # SUBTRACT BASE CPP /Yc /Yu
 # ADD CPP /O2
 # SUBTRACT CPP /Yc /Yu
+
+!ENDIF 
 
 # End Source File
 # Begin Source File

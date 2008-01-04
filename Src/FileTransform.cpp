@@ -23,7 +23,7 @@
  *
  *  @brief Implementation of file transformations
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -33,6 +33,7 @@
 #include "paths.h"
 #include "multiformatText.h"
 #include "UniMarkdownFile.h"
+#include "Environment.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -428,10 +429,10 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 
 BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
 {
-	String tempDir = paths_GetTempPath();
+	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
 		return FALSE;
-	String tempFilepath = paths_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_WM"));
 	if (tempFilepath.empty())
 		return FALSE;
 
@@ -473,10 +474,10 @@ BOOL FileTransform_NormalizeUnicode(String & filepath, BOOL bMayOverwrite)
 // TODO : convert Ansi to UTF8 if other file is unicode or uses a different codepage
 BOOL FileTransform_UCS2ToUTF8(String & filepath, BOOL bMayOverwrite)
 {
-	String tempDir = paths_GetTempPath();
+	String tempDir = env_GetTempPath();
 	if (tempDir.empty())
 		return FALSE;
-	String tempFilepath = paths_GetTempFileName(tempDir.c_str(), _T("_WM"));
+	String tempFilepath = env_GetTempFileName(tempDir.c_str(), _T("_WM"));
 	if (tempFilepath.empty())
 		return FALSE;
 

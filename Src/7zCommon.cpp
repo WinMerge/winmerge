@@ -91,7 +91,7 @@ DATE:		BY:					DESCRIPTION:
 								Change recommended version of 7-Zip to 4.57
 */
 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -106,6 +106,7 @@ DATE:		BY:					DESCRIPTION:
 #include <afxinet.h>
 #include <shlwapi.h>
 #include <paths.h>
+#include "Environment.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -604,7 +605,7 @@ CString NTAPI GetClearTempPath(LPVOID pOwner, LPCTSTR pchExt)
 	strPath.Format
 	(
 		pOwner ? _T("%sWINMERGE.%08lX\\%08lX.%s") : _T("%sWINMERGE.%08lX"),
-		paths_GetTempPath(), GetCurrentProcessId(), pOwner, pchExt
+		env_GetTempPath(), GetCurrentProcessId(), pOwner, pchExt
 	);
 	// SHFileOperation expects a ZZ terminated list of paths!
 	int cchPath = strPath.GetLength();

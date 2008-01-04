@@ -37,7 +37,7 @@
 #include "codepage.h"
 #include "7zcommon.h"
 #include "CompareOptions.h"
-
+#include "Environment.h"
 
 // Static function declarations
 static bool LoadYesNoFromConfig(CfgSettings * cfgSettings, LPCTSTR name, BOOL * pbflag);
@@ -376,7 +376,7 @@ BOOL CConfigLog::DoFile(bool writing, CString &sError)
 		m_sFileName = _T("WinMerge.txt");
 
 		// Get path to $temp/WinMerge.txt
-		m_sFileName.Insert(0, paths_GetTempPath());
+		m_sFileName.Insert(0, env_GetTempPath());
 
 		if (!m_file.Open(m_sFileName, CFile::modeCreate | CFile::modeWrite))
 		{

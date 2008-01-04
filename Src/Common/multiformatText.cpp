@@ -25,7 +25,7 @@
  *
  * @date  Created: 2003-11-24
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -35,6 +35,7 @@
 #include "paths.h"
 #include "UniFile.h"
 #include "codepage.h"
+#include "Environment.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -95,7 +96,7 @@ LPCTSTR storageForPlugins::GetDestFileName()
 {
 	if (m_tempFilenameDst.empty())
 	{
-		m_tempFilenameDst = paths_GetTempFileName(paths_GetTempPath(), _T ("_WM"));
+		m_tempFilenameDst = env_GetTempFileName(env_GetTempPath(), _T ("_WM"));
 	}
 	return m_tempFilenameDst.c_str();
 }

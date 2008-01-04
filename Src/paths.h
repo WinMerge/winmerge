@@ -3,7 +3,7 @@
  *
  * @brief Declaration file for path routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef paths_h_included
@@ -27,8 +27,6 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
 void paths_normalize(String & sPath);
 String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
 bool paths_CreateIfNeeded(LPCTSTR szPath);
-LPCTSTR paths_GetTempPath(int * pnerr=NULL);
-String paths_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pnerr=NULL);
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
 CString ExpandShortcut(const CString &inFile);
 String paths_ConcatPath(const String & path, const String & subpath);

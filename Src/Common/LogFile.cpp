@@ -12,6 +12,7 @@
 #include <afxinet.h>
 #include "UnicodeString.h"
 #include "paths.h"
+#include "Environment.h"
 
 #ifdef _DEBUG
 #undef THIS_FILE
@@ -68,7 +69,7 @@ CString CLogFile::SetFile(const CString & strFile, const CString & strPath,
 		m_strLogPath = strFile;
 	else
 	{
-		String temp = paths_GetTempPath();
+		String temp = env_GetTempPath();
 		m_strLogPath = temp.c_str();
 	}
 	
@@ -281,7 +282,7 @@ void CLogFile::Prune(FILE *f)
 	TCHAR buf[8196] = {0};
 	DWORD amt;
 	FILE *tf;
-	String tempfile = paths_GetTempFileName(_T("."), _T("LOG"));
+	String tempfile = env_GetTempFileName(_T("."), _T("LOG"));
 	DeleteFile(tempfile.c_str());
 	if ((tf = _tfopen(tempfile.c_str(), _T("w"))) != NULL)
 	{
