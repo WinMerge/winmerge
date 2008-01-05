@@ -114,12 +114,13 @@ void CSplitterWndEx::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar *pScrollBar)
   // scroll bar)
   if (pScrollBar == NULL)
     return;
-	// maintain original synchronization functionality (all panes left from the scrollbar)
-	CSplitterWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 
 	// only sync if shared vertical bars
 	if((GetScrollStyle()&WS_VSCROLL) == 0)
 		return;
+
+	// maintain original synchronization functionality (all panes left from the scrollbar)
+	CSplitterWnd::OnVScroll(nSBCode, nPos, pScrollBar);
 
 	// enhance with proportional vertical scroll synchronization
 	ASSERT(pScrollBar != NULL);
