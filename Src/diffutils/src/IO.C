@@ -839,6 +839,10 @@ read_files (filevec, pretend_binary, bin_file)
   if (appears_binary || (bin_file && *bin_file > 0))
     return 1;
 
+  /* Don't slurp rest of file when comparing file to itself. */
+  if (filevec[0].desc == filevec[1].desc)
+    return 0;
+
   find_identical_ends (filevec);
 
   equivs_alloc = filevec[0].alloc_lines + filevec[1].alloc_lines + 1;
