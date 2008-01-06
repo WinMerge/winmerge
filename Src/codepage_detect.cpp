@@ -140,17 +140,18 @@ static unsigned demoGuessEncoding_xml(const char *src, size_t len)
  */
 static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 {
+	// NB: Diffutils may replace line endings by '\0'
 	unsigned cp = 0;
 	char line[80];
 	do
 	{
-		while (len && (*src == '\r' || *src == '\n'))
+		while (len && (*src == '\r' || *src == '\n' || *src == '\0'))
 		{
 			++src;
 			--len;
 		}
 		const char *base = src;
-		while (len && *src != '\r' && *src != '\n')
+		while (len && *src != '\r' && *src != '\n' && *src != '\0')
 		{
 			++src;
 			--len;
@@ -163,7 +164,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 /**
  * @brief Try to deduce encoding for this file
  */
-static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
+unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
 {
 	if (len > 4096)
 		len = 4096;
@@ -181,25 +182,6 @@ static unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t le
 		cp = demoGuessEncoding_xml(src, len);
 	}
 	return cp;
-}
-
-/**
- * @brief Try to deduce encoding for this file
- */
-bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, FileTextEncoding * encoding)
-{
-	if (data)
-	{
-		const char *src = data[0];
-		size_t len = data[count] - src;
-		if (unsigned cp = GuessEncoding_from_bytes(ext, src, len))
-		{
-			encoding->Clear();
-			encoding->SetCodepage(cp);
-			return true;
-		}
-	}
-	return false;
 }
 
 /**

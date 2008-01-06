@@ -149,33 +149,24 @@ void DiffFileData::Reset()
 /**
  * @brief Try to deduce encoding for this file (given copy in memory)
  */
-void DiffFileData::GuessEncoding_from_buffer(FileLocation & fpenc, const char **data, int count)
+void DiffFileData::GuessEncoding_from_buffer(FileLocation & fpenc, const char *src, size_t len)
 {
 	if (!fpenc.encoding.m_bom)
 	{
-		CString sExt = PathFindExtension(fpenc.filepath);
-		GuessEncoding_from_bytes(sExt, data, count, &fpenc.encoding);
+		LPCTSTR sExt = PathFindExtension(fpenc.filepath);
+		if (unsigned cp = GuessEncoding_from_bytes(sExt, src, len))
+		{
+			fpenc.encoding.Clear();
+			fpenc.encoding.SetCodepage(cp);
+		}
 	}
 }
 
 /** @brief Guess encoding for one file (in DiffContext memory buffer) */
 void DiffFileData::GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt)
 {
-	GuessEncoding_from_buffer(m_FileLocation[side], m_inf[side].linbuf + m_inf[side].linbuf_base, 
-	                                m_inf[side].valid_lines - m_inf[side].linbuf_base);
+	GuessEncoding_from_buffer(m_FileLocation[side], m_inf[side].buffer, m_inf[side].buffered_chars);
 }
-
-/** @brief Guess encoding for one file (in DiffContext memory buffer) */
-void DiffFileData::GuessEncoding_from_FileLocation(FileLocation & fpenc)
-{
-	if (!fpenc.encoding.m_bom)
-	{
-		BOOL bGuess = TRUE;
-		GuessCodepageEncoding(fpenc.filepath, &fpenc.encoding, bGuess);
-	}
-}
-
-
 
 /** @brief detect unicode file and quess encoding */
 DiffFileData::UniFileBom::UniFileBom(int fd)

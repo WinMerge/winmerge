@@ -5,6 +5,6 @@ struct FileTextEncoding;
 
 void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL bGuessEncoding);
 
-bool GuessEncoding_from_bytes(LPCTSTR ext, const char **data, int count, FileTextEncoding * encoding);
+unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len);
 
 #endif // codepage_detect_h_included

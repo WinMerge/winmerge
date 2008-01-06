@@ -245,14 +245,10 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		{
 			m_pByteCompare->SetAdditionalOptions(pCtxt->m_bStopAfterFirstDiff);
 			m_pByteCompare->SetAbortable(pCtxt->GetAbortable());
-			m_pByteCompare->SetPaths(m_diffFileData.m_FileLocation[0].filepath,
-				m_diffFileData.m_FileLocation[1].filepath);
 			m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
 
-			// Close any descriptors open for diffutils
-			m_diffFileData.Reset();
 			// use our own byte-by-byte compare
-			code = m_pByteCompare->CompareFiles();
+			code = m_pByteCompare->CompareFiles(m_diffFileData.m_FileLocation, pCtxt->m_bGuessEncoding);
 
 			m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats0);
 			m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats1);
@@ -266,12 +262,6 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		m_ntrivialdiffs = CDiffContext::DIFFS_UNKNOWN_QUICKCOMPARE;
 		di.left.m_textStats = m_diffFileData.m_textStats0;
 		di.right.m_textStats = m_diffFileData.m_textStats1;
-
-		if (!DIFFCODE::isResultError(code) && pCtxt->m_bGuessEncoding)
-		{
-			m_diffFileData.GuessEncoding_from_FileLocation(m_diffFileData.m_FileLocation[0]);
-			m_diffFileData.GuessEncoding_from_FileLocation(m_diffFileData.m_FileLocation[1]);
-		}
 	}
 	else if (pCtxt->m_nCompMethod == CMP_DATE ||
 		pCtxt->m_nCompMethod == CMP_DATE_SIZE)
