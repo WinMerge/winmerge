@@ -14,6 +14,7 @@
 
 class QuickCompareOptions;
 class IAbortable;
+struct FileLocation;
 
 namespace CompareEngines
 {
@@ -28,16 +29,14 @@ public:
 	void ClearCompareOptions();
 	void SetAdditionalOptions(BOOL stopAfterFirstDiff);
 	void SetAbortable(const IAbortable * piAbortable);
-	void SetPaths(LPCTSTR path1, LPCTSTR path2);
 	void SetFileData(int items, file_data *data);
-	int CompareFiles();
+	int CompareFiles(FileLocation *location, BOOL guessEncoding);
 	void GetTextStats(int side, FileTextStats *stats);
 
 private:
 	QuickCompareOptions *m_pOptions; /**< Compare options for diffutils. */
 	IAbortable * m_piAbortable;
 	file_data * m_inf; /**< Compared files data (for diffutils). */
-	String m_paths[2];
 	FileTextStats m_textStats[2];
 
 };

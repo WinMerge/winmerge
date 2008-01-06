@@ -7,6 +7,8 @@
 // $Id$
 
 #include "stdafx.h"
+#include <io.h>
+#include "FileLocation.h"
 #include "UnicodeString.h"
 #include "IAbortable.h"
 #include "CompareOptions.h"
@@ -16,6 +18,7 @@
 #include "diff.h"
 #include "ByteComparator.h"
 #include "ByteCompare.h"
+#include "DiffFileData.h"
 
 namespace CompareEngines
 {
@@ -26,15 +29,6 @@ static const int KILO = 1024; // Kilo(byte)
 static const int WMCMPBUFF = 32 * KILO;
 
 static void CopyTextStats(const FileTextStats * stats, FileTextStats * myTextStats);
-
-struct FileHandle
-{
-	FileHandle() : m_fp(0) { }
-	void Assign(FILE * fp) { Close(); m_fp = fp; }
-	void Close() { if (m_fp) { fclose(m_fp); m_fp = 0; } }
-	~FileHandle() { Close(); }
-	FILE * m_fp;
-};
 
 /**
  * @brief Default constructor.
@@ -98,17 +92,6 @@ void ByteCompare::SetAbortable(const IAbortable * piAbortable)
 }
 
 /**
- * @brief Set compared paths.
- * @param [in] path1 First path to compare.
- * @param [in] path2 Second path to compare.
- */
-void ByteCompare::SetPaths(LPCTSTR path1, LPCTSTR path2)
-{
-	m_paths[0] = path1;
-	m_paths[1] = path2;
-}
-
-/**
  * @brief Set filedata.
  * @param [in] items Count of filedata items to set.
  * @param [in] data File data.
@@ -128,27 +111,15 @@ void ByteCompare::SetFileData(int items, file_data *data)
  * @param [in] piAbortable Interface allowing to abort compare
  * @return DIFFCODE
  */
-int ByteCompare::CompareFiles()
+int ByteCompare::CompareFiles(FileLocation *location, BOOL guessEncoding)
 {
 	// TODO
 	// Right now, we assume files are in 8-bit encoding
 	// because transform code converted any UCS-2 files to UTF-8
 	// We could compare directly in UCS-2LE here, as an optimization, in that case
 	char buff[2][WMCMPBUFF]; // buffered access to files
-	FILE * fp[2]; // for files to compare
-	FileHandle fhd[2]; // to ensure file handles fp get closed
 	int i;
 	int diffcode = 0;
-
-	// Open both files
-	for (i = 0; i < 2; ++i)
-	{
-		//fp[i] = _tfopen(m_diffFileData.m_FileLocation[i].filepath, _T("rb"));
-		fp[i] = _tfopen(m_paths[i].c_str(), _T("rb"));
-		if (!fp[i])
-			return DIFFCODE::CMPERR;
-		fhd[i].Assign(fp[i]);
-	}
 
 	// area of buffer currently holding data
 	__int64 bfstart[2]; // offset into buff[i] where current data resides
@@ -186,16 +157,18 @@ int ByteCompare::CompareFiles()
 			if (!eof[i] && bfend[i]<countof(buff[i])-1)
 			{
 				// Assume our blocks are in range of unsigned int
-				unsigned int space = countof(buff[i]) - bfend[i];
-				size_t rtn = fread(&buff[i][bfend[i]], 1, space, fp[i]);
-				if (ferror(fp[i]))
+				int space = countof(buff[i]) - bfend[i];
+				int rtn = read(m_inf[i].desc, &buff[i][bfend[i]], (unsigned int)space);
+				if (rtn == -1)
 					return DIFFCODE::CMPERR;
-				if (feof(fp[i]))
+				if (rtn < space)
 					eof[i] = true;
 				bfend[i] += rtn;
+				if (guessEncoding)
+					DiffFileData::GuessEncoding_from_buffer(location[i], buff[i], rtn);
 			}
 		}
-
+		guessEncoding = FALSE;
 		// where to start comparing right now
 		LPCSTR ptr0 = &buff[0][bfstart[0]];
 		LPCSTR ptr1 = &buff[1][bfstart[1]];
