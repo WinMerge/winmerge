@@ -76,6 +76,17 @@ bool UniLocalFile::DoGetFileStatus()
 	if (_tstati64(m_filepath.c_str(), &fstats) == 0)
 	{
 		m_filesize = fstats.st_size;
+		if (m_filesize == 0)
+		{
+			// if m_filesize equals zero, the file size is really zero or the file is a symbolic link.
+			// use GetCompressedFileSize() to get the file size of the symbolic link target whether the file is symbolic link or not.
+			// if the file is not symbolic link, GetCompressedFileSize() will return zero.
+			// NOTE: GetCompressedFileSize() returns error for pre-W2K windows versions
+			DWORD dwFileSizeLow, dwFileSizeHigh;
+			dwFileSizeLow = GetCompressedFileSize(m_filepath.c_str(), &dwFileSizeHigh);
+			if (GetLastError() == 0)
+				m_filesize = ((__int64)dwFileSizeHigh << 32) + dwFileSizeLow;
+		}
 		m_statusFetched = 1;
 
 		return true;

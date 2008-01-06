@@ -5,6 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.7.7.2
   Syntax highlighting for PowerShell files (#1859657)
   BugFix: Crash when using TrackPoint middle-button scrolling (#1864040)
+  BugFix: WinMerge didn't show the contents of the symbolic link target (#1864978)
 
 WinMerge 2.7.7.1 - 2007-12-20 (r4842)
   New option to keep file's time when saving in file compare (#1851921)
