@@ -195,6 +195,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_CHANGESCHEME, OnUpdateViewChangeScheme)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
+	ON_WM_MOUSEWHEEL()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3205,4 +3206,76 @@ void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 	pCmdUI->SetCheck(bIsCurrentScheme);
 
 	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Called when mouse's wheel is scrolled.
+ */
+BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
+{
+	if ( nFlags == MK_CONTROL )
+	{
+		LOGFONT lf = { 0 };
+		GetFont(lf);
+
+		CDC* pDC = GetDC();
+		ASSERT_VALID(pDC);
+		
+		if (pDC) 
+		{
+			const int nLogPixelsY = pDC->GetDeviceCaps(LOGPIXELSY);
+
+			int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
+
+			zDelta < 0 ? nPointSize--: nPointSize++;
+			if (nPointSize < 2)
+				nPointSize = 2;
+
+			lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
+
+			CMergeDoc *pDoc = GetDocument();
+			ASSERT(pDoc != NULL);
+
+			if (pDoc != NULL )
+			{
+				for (int nPane = 0; nPane < 2; nPane++) 
+				{
+					CMergeEditView *pView = pDoc->GetView(nPane);
+					ASSERT(pView != NULL);
+					
+					if (pView != NULL)
+					{
+						pView->SetFont(lf);
+					}
+				}
+			}
+		}
+
+		// no default CCrystalTextView
+		return CView::OnMouseWheel(nFlags, zDelta, pt);
+	}
+
+	if (nFlags == MK_SHIFT)
+	{
+		SCROLLINFO si = {0};
+		si.cbSize = sizeof(si);
+		si.fMask = SIF_PAGE | SIF_POS | SIF_RANGE;
+
+		VERIFY(GetScrollInfo(SB_HORZ, &si));
+
+		// new horz pos
+		si.nPos -= zDelta / 40;
+		if (si.nPos > si.nMax) si.nPos = si.nMax;
+		if (si.nPos < si.nMin) si.nPos = si.nMin;
+
+		SetScrollInfo(SB_HORZ, &si);
+
+		// for update
+		SendMessage(WM_HSCROLL, MAKEWPARAM(SB_THUMBPOSITION, si.nPos) , NULL );
+
+		// no default CCrystalTextView
+		return CView::OnMouseWheel(nFlags, zDelta, pt);
+	}
+
+	return CGhostTextView::OnMouseWheel(nFlags, zDelta, pt);
 }

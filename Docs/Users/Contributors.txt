@@ -112,8 +112,8 @@ Other Contributors (code, ideas, testing..):
 * Hern Chen
 * Jeremy Dewey
 * Jim Fougeron
-* Robert Grange
 * Marvin Gouw
+* Robert Grange
 * Jan Hryz
 * Ed_K
 * Alberto Kalb
@@ -121,6 +121,7 @@ Other Contributors (code, ideas, testing..):
 * René Leonhardt
 * Vladimir Lukianov
 * David Maisonave
+* Dmitry Maslov
 * Harry Mckame
 * Oliver Mellet
 * Andreas Morsing
