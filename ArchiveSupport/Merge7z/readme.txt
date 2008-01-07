@@ -27,7 +27,7 @@ compatible with 7-Zip versions 3.11 through 4.30.
 
 
 The WinMerge User's Manual contains a chapter on 7-Zip and archive support.
-  http://winmerge.org/2.4/manual/installing.html
+  http://winmerge.org/2.6/manual/installing.html
 
 Configuration information about your current system, and its presence or
 absence of archive support, is available from the WinMerge Help/Configuration
