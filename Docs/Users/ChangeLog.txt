@@ -6,6 +6,8 @@ WinMerge 2.7.7.2
   Syntax highlighting for PowerShell files (#1859657)
   Change font size with Ctrl + MouseWheel (#1865795)
   Horizontal scrolling with Shift + MouseWheel (#1865795)
+  Installer: Add support for integration with latest version of TortoiseCVS and
+    TortoiseSVN x64 (#1865168)
   BugFix: Crash when using TrackPoint middle-button scrolling (#1864040)
   BugFix: WinMerge didn't show the contents of the symbolic link target (#1864978)
 
