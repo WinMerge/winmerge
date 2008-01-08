@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2007-12-29 16:15+0000\n"
+"POT-Creation-Date: 2008-01-08 23:07+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -5997,75 +5997,80 @@ msgstr ""
 
 #: Merge.rc:2912
 #, c-format
-msgid "PowerShell"
+msgid "Portable Object"
 msgstr ""
 
 #: Merge.rc:2913
 #, c-format
-msgid "Python"
+msgid "PowerShell"
 msgstr ""
 
 #: Merge.rc:2914
 #, c-format
-msgid "REXX"
+msgid "Python"
 msgstr ""
 
 #: Merge.rc:2915
 #, c-format
-msgid "Resources"
+msgid "REXX"
 msgstr ""
 
 #: Merge.rc:2916
 #, c-format
-msgid "Ruby"
+msgid "Resources"
 msgstr ""
 
 #: Merge.rc:2917
 #, c-format
-msgid "SGML"
+msgid "Ruby"
 msgstr ""
 
 #: Merge.rc:2918
 #, c-format
-msgid "Shell"
+msgid "SGML"
 msgstr ""
 
 #: Merge.rc:2919
 #, c-format
-msgid "SIOD"
+msgid "Shell"
 msgstr ""
 
 #: Merge.rc:2920
 #, c-format
-msgid "SQL"
+msgid "SIOD"
 msgstr ""
 
 #: Merge.rc:2921
 #, c-format
-msgid "TCL"
+msgid "SQL"
 msgstr ""
 
 #: Merge.rc:2922
 #, c-format
-msgid "TEX"
+msgid "TCL"
 msgstr ""
 
 #: Merge.rc:2923
 #, c-format
-msgid "XML"
+msgid "TEX"
 msgstr ""
 
-#: Merge.rc:2928
+#: Merge.rc:2924
 #, c-format
-msgid "Hide the toolbar"
+msgid "XML"
 msgstr ""
 
 #: Merge.rc:2929
 #, c-format
-msgid "Show small toolbar"
+msgid "Hide the toolbar"
 msgstr ""
 
 #: Merge.rc:2930
+#, c-format
+msgid "Show small toolbar"
+msgstr ""
+
+#: Merge.rc:2931
 #, c-format
 msgid "Show big toolbar"
 msgstr ""

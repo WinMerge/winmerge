@@ -1125,19 +1125,20 @@
 #define IDS_COLORSCHEME_PASCAL          33138
 #define IDS_COLORSCHEME_PERL            33139
 #define IDS_COLORSCHEME_PHP             33140
-#define IDS_COLORSCHEME_POWERSHELL      33141
-#define IDS_COLORSCHEME_PYTHON          33142
-#define IDS_COLORSCHEME_REXX            33143
-#define IDS_COLORSCHEME_RSRC            33144
-#define IDS_COLORSCHEME_RUBY            33145
-#define IDS_COLORSCHEME_SGML            33146
-#define IDS_COLORSCHEME_SH              33147
-#define IDS_COLORSCHEME_SIOD            33148
-#define IDS_COLORSCHEME_SQL             33149
-#define IDS_COLORSCHEME_TCL             33150
-#define IDS_COLORSCHEME_TEX             33151
-#define IDS_COLORSCHEME_XML             33152
-#define ID_COLORSCHEME_LAST             33152 // = IDS_COLORSCHEME_XML
+#define IDS_COLORSCHEME_PO              33141
+#define IDS_COLORSCHEME_POWERSHELL      33142
+#define IDS_COLORSCHEME_PYTHON          33143
+#define IDS_COLORSCHEME_REXX            33144
+#define IDS_COLORSCHEME_RSRC            33145
+#define IDS_COLORSCHEME_RUBY            33146
+#define IDS_COLORSCHEME_SGML            33147
+#define IDS_COLORSCHEME_SH              33148
+#define IDS_COLORSCHEME_SIOD            33149
+#define IDS_COLORSCHEME_SQL             33150
+#define IDS_COLORSCHEME_TCL             33151
+#define IDS_COLORSCHEME_TEX             33152
+#define IDS_COLORSCHEME_XML             33153
+#define ID_COLORSCHEME_LAST             33153 // = IDS_COLORSCHEME_XML
 #define ID_TOOLBAR_NONE                 33164
 #define ID_TOOLBAR_SMALL                33165
 #define ID_TOOLBAR_BIG                  33166
