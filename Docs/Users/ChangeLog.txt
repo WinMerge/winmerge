@@ -14,6 +14,8 @@ WinMerge 2.7.7.2
   BugFix: WinMerge didn't show the contents of the symbolic link target (#1864978)
   BugFix: Unused registry key HKCU\Thingamahoochie\WinMerge was created 
     (#1865202)
+  Translation updates:
+  - Spanish (#1867234)
 
 WinMerge 2.7.7.1 - 2007-12-20 (r4842)
   New option to keep file's time when saving in file compare (#1851921)
