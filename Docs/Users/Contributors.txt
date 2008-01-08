@@ -94,7 +94,8 @@ Localization:
   Majvan
   Ivan Masár
              
-* Spanish:	
+* Spanish:
+  Mario Angel
   Jesús M. Delgado 'MacK'
   Dean Grimm
              
