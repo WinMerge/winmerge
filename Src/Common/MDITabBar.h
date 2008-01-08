@@ -4,7 +4,7 @@
  * @brief Declaration file for MDITabBar
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef MDITABBAR_H
@@ -52,6 +52,7 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg BOOL OnSelchange(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

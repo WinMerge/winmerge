@@ -3,7 +3,7 @@
  *
  * @brief Implementation of the MDITabBar class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -24,6 +24,7 @@ IMPLEMENT_DYNAMIC(CMDITabBar, CControlBar)
 
 BEGIN_MESSAGE_MAP(CMDITabBar, CControlBar)
 	//{{AFX_MSG_MAP(CMDITabBar)
+	ON_WM_MBUTTONDOWN()
 	ON_WM_CONTEXTMENU()
 	ON_WM_PAINT()
 	ON_NOTIFY_REFLECT_EX(TCN_SELCHANGE, OnSelchange)
@@ -194,4 +195,23 @@ void CMDITabBar::UpdateTabs()
 				m_pMainFrame->RecalcLayout();
 		}
 	}
+}
+
+/**
+ * @brief Called when middle mouse button is pressed.
+ * This function closes the tab when the middle mouse button is pressed.
+ */
+void CMDITabBar::OnMButtonDown(UINT nFlags, CPoint point)
+{
+	TCHITTESTINFO hit;
+	hit.pt = point;
+	int index = HitTest(&hit);
+	if (index < 0)
+		return;
+
+	TCITEM tci;
+	tci.mask = TCIF_PARAM;
+	GetItem(index, &tci);
+	CWnd* pMDIChild = FromHandle((HWND)tci.lParam);
+	pMDIChild->SendMessage(WM_SYSCOMMAND, SC_CLOSE);
 }
