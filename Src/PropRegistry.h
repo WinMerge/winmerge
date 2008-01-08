@@ -51,7 +51,7 @@ public:
 
 // Dialog Data
 	//{{AFX_DATA(CPropRegistry)
-	enum { IDD = IDD_PROPPAGE_REGISTRY };
+	enum { IDD = IDD_PROPPAGE_SYSTEM };
 	BOOL m_bContextAdded;
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;

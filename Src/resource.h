@@ -22,11 +22,11 @@
 #define IDD_OPEN                        202
 #define IDD_EDITFILE                    203
 #define IDD_VSS                         204
-#define IDD_PROPPAGE_LARGE              205
+#define IDD_PROPPAGE_GENERAL            205
 #define IDD_CLEARCASE                   206
 #define IDD_PROPPAGE_FILTER             207
 #define IDD_OUTPUT                      208
-#define IDD_PROPPAGE_REGISTRY           209
+#define IDD_PROPPAGE_SYSTEM             209
 #define IDD_EDITOR_HEADERBAR            210
 #define IDD_GENERATE_PATCH              211
 #define IDD_DIRCOLS                     212
