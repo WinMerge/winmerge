@@ -442,6 +442,9 @@ Root: HKCU; Subkey: Software\Thingamahoochie\WinMerge\Settings; ValueType: none;
 ;because a particular message might be added or removed and a new message might occupy a previous message's ID number
 Root: HKLM; Subkey: Software\Thingamahoochie\WinMerge\MessageBoxes; ValueType: none; Flags: deletekey
 
+;Delete unused registry key that was introduced in 2.7.5.1
+Root: HKCU; Subkey: Thingamahoochie; ValueType: none; Flags: deletekey
+
 Root: HKCR; SubKey: Directory\Shell\WinMerge\command; ValueType: none; Flags: deletekey noerror
 Root: HKCR; SubKey: Directory\Shell\WinMerge; ValueType: none; Flags: deletekey noerror
 

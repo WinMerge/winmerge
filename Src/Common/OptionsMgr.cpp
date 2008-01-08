@@ -1250,7 +1250,7 @@ int CRegOptionsMgr::SetRegRootKey(LPCTSTR key)
 	
 	m_registryRoot = keyname;
 
-	retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, key, NULL, _T(""),
+	retValReg =  RegCreateKeyEx(HKEY_CURRENT_USER, m_registryRoot.c_str(), NULL, _T(""),
 		REG_OPTION_NON_VOLATILE, KEY_ALL_ACCESS, NULL, &hKey, &action);
 
 	if (retValReg == ERROR_SUCCESS)
