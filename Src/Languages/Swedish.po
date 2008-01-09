@@ -1,4 +1,4 @@
-# This file is part from WinMerge <http://winmerge.org/>
+ # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
 # Translators:
@@ -298,7 +298,7 @@ msgstr "&Ändra med Uppackare"
 #: Merge.rc:447
 #, c-format
 msgid "&Reload plugins"
-msgstr "&Öppna plugins igen"
+msgstr "&Öppna Plugins igen"
 
 #: Merge.rc:156
 #: Merge.rc:271
@@ -404,7 +404,7 @@ msgstr "&Sök..."
 #: Merge.rc:471
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "R&eleasenoteringar"
 
 #: Merge.rc:179
 #: Merge.rc:294
@@ -750,7 +750,7 @@ msgstr "Syntaxmarkering"
 #: Merge.rc:387
 #, c-format
 msgid "&Lock Panes"
-msgstr ""
+msgstr "&Lås placering"
 
 #: Merge.rc:388
 #, c-format
@@ -825,12 +825,12 @@ msgstr "Jäm&för"
 #: Merge.rc:485
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "Jä&mför Special"
 
 #: Merge.rc:487
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:492
 #, c-format
@@ -984,12 +984,12 @@ msgstr "Prediffer-inställningar"
 #: Merge.rc:561
 #, c-format
 msgid "&No prediffer"
-msgstr "&Ingen prediffer"
+msgstr "&Ingen Prediffer"
 
 #: Merge.rc:562
 #, c-format
 msgid "Auto prediffer"
-msgstr "Automatisk prediffer"
+msgstr "Automatisk Prediffer"
 
 #: Merge.rc:570
 #, c-format
@@ -1019,7 +1019,7 @@ msgstr "Om WinMerge"
 #: Merge.rc:647
 #, c-format
 msgid "(Private Build)"
-msgstr "(Private Build)"
+msgstr "(Privat kompilering)"
 
 #: Merge.rc:648
 #, c-format
@@ -1246,7 +1246,7 @@ msgstr "Frå&ga när flera fönster stängs"
 #: Merge.rc:749
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "&Bevara Filtidsuppgifter i Filjämförelse"
 
 #: Merge.rc:752
 #, c-format
@@ -1526,7 +1526,7 @@ msgstr "System"
 #: Merge.rc:969
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "&Skicka borttagna filer till papperskorgen"
+msgstr "&Skicka borttagna filer till Papperskorgen"
 
 #: Merge.rc:971
 #, c-format
@@ -1670,12 +1670,12 @@ msgstr "Visa kolumner"
 #: Merge.rc:1058
 #, c-format
 msgid "Move &Up"
-msgstr ""
+msgstr "Flytta &Upp"
 
 #: Merge.rc:1059
 #, c-format
 msgid "Move &Down"
-msgstr ""
+msgstr "Flytta &Ned"
 
 #: Merge.rc:1069
 #, c-format
@@ -1690,12 +1690,12 @@ msgstr "Fil-uppackare:"
 #: Merge.rc:1077
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "Visa alla uppackare, kontrollera inte filändelsen"
+msgstr "Visa alla uppackare, kontrollera inte filsuffixet"
 
 #: Merge.rc:1080
 #, c-format
 msgid "Extensions list:"
-msgstr "Filändelselista:"
+msgstr "Filsuffixlista:"
 
 #: Merge.rc:1081
 #, c-format
@@ -2009,7 +2009,7 @@ msgstr "WinMerge - Arkivstöd är avstängt"
 #: Merge.rc:1265
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
-msgstr "Kan inte detektera 7-Zip-version (är 7-zip inte installerat?)"
+msgstr "Kan inte detektera 7-Zip-version (är 7-Zip inte installerat?)"
 
 #: Merge.rc:1268
 #, c-format
@@ -2051,7 +2051,7 @@ msgstr ""
 #: Merge.rc:1278
 #, c-format
 msgid "Recommended version of 7-Zip:"
-msgstr "Rekommenderad 7-Zip-version:"
+msgstr "Rekommenderad version av 7-Zip:"
 
 #: Merge.rc:1281
 #: Merge.rc:1284
@@ -2634,7 +2634,7 @@ msgid ""
 "Change the printing options\n"
 "Page Setup"
 msgstr ""
-"Ändrar utskriftsinställningar\n"
+"Ändrar Utskriftsinställningar\n"
 "Sidinställningar"
 
 #: Merge.rc:1705
@@ -2718,7 +2718,7 @@ msgid ""
 "Display program information, version number and copyright\n"
 "About"
 msgstr ""
-"Visar Programinformation, Versionsnummer och Upphovsrätt\n"
+"Visar Programinformation, Versionsnummer och Copyright\n"
 "Om"
 
 #: Merge.rc:1730
@@ -2951,7 +2951,7 @@ msgstr ""
 #: Merge.rc:1793
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
-msgstr ""
+msgstr "Automatisk storleksändring av placering\nLås Placering"
 
 #: Merge.rc:1799
 #, c-format
@@ -3648,12 +3648,12 @@ msgstr "%1 är skrivskyddad. Vill du skriva över filen (välj Nej för att spara fi
 #: Merge.rc:2070
 #, c-format
 msgid "Error checking destination writeability"
-msgstr "Kontrollera skrivbarhet på destinationen!"
+msgstr "Fel vid kontroll av skrivbarhet på destinationen!"
 
 #: Merge.rc:2071
 #, c-format
 msgid "Error backing up file"
-msgstr "Fel under backup av filen"
+msgstr "Fel vid backup av filen"
 
 #: Merge.rc:2073
 #, c-format
@@ -4201,7 +4201,7 @@ msgstr "Höger datum"
 #: Merge.rc:2211
 #, c-format
 msgid "Extension"
-msgstr "Filtillägg"
+msgstr "Filsuffix"
 
 #: Merge.rc:2212
 #, c-format
@@ -6291,7 +6291,7 @@ msgstr "Användaren väljer uppackare (ingen uppackning när man jämför kataloger)"
 #: Merge.rc:2824
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "Den valda uppackaren används för båda filerna (bara en fil behöver ha filändelsen)"
+msgstr "Den valda uppackaren används för båda filerna (bara en fil behöver ha filsuffixet)"
 
 #: Merge.rc:2825
 #, c-format
@@ -6354,7 +6354,7 @@ msgstr "Visar GNU General Public License"
 #: Merge.rc:2845
 #, c-format
 msgid "Private Build: %1"
-msgstr "Privat Build: %1"
+msgstr "Privat Kompilering: %1"
 
 #: Merge.rc:2846
 #, c-format
@@ -6377,7 +6377,7 @@ msgstr ""
 #: Merge.rc:2848
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
-msgstr ""
+msgstr "Öppnar Releasenoteringsdokumentet\nReleasenoteringar"
 
 #: Merge.rc:2854
 #, c-format
@@ -6562,12 +6562,12 @@ msgstr "PHP"
 #: Merge.rc:2912
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "Portabelt Objekt"
 
 #: Merge.rc:2913
 #, c-format
 msgid "PowerShell"
-msgstr ""
+msgstr "PowerShell"
 
 #: Merge.rc:2914
 #, c-format
