@@ -18,7 +18,7 @@ WinMerge 2.7.7.2
     (#1865202)
   Translation updates:
   - Spanish (#1867234)
-  - Swedish (#1867765)
+  - Swedish (#1867765, #1867844)
 
 WinMerge 2.7.7.1 - 2007-12-20 (r4842)
   New option to keep file's time when saving in file compare (#1851921)
