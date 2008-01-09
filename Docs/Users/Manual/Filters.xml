@@ -104,7 +104,7 @@
       class="extension">.flt</filename>. Files have defined format which is
       explained later in this chapter. Filters-dialog allows creating new
       filter files based on template file. Filter files can be created from
-      the scrach but using template file is the recommended way to create a
+      the scratch but using template file is the recommended way to create a
       new filter. The template file is named
       <filename>FileFilter.tmpl</filename> and can be modified if needed. The
       template file is located in <filename
@@ -137,7 +137,7 @@
       <important>
         <para>With WinMerge 2.6.0 and later filter files are not anymore
         loaded from profile folder like with earlier versions. Using
-        user-defined folder for filter files provices more flexibility and
+        user-defined folder for filter files provides more flexibility and
         easier access to filter files.</para>
       </important>
 
@@ -175,12 +175,11 @@ def: include</screen>where <constant>def</constant>: is:<itemizedlist>
       <para>Rule begins with "<constant>f:</constant>" if it matches for
       filenames and "<constant>d:</constant>" if it matches for folder names.
       (d comes from "folder".) Filenames are given to filter as is, there are
-      no special characters added. But for folder names there must be
-      "<constant>\\</constant>" in begin of folder name. The resulting "\"
-      char is a part of the folder name. This is done clearly to separate
-      folder names and filenames. "<constant>##</constant>" is a comment
-      separator, all characters in line after that are ignored by
-      WinMerge.</para>
+      no special characters added. Folder names have preceding backslash
+      before them (e.g. "\Folder name"). So if folder names are matched by the
+      beginning of the name, the filter must start with "\\" to match the
+      first backslash. "<constant>##</constant>" is a comment separator, all
+      characters in line after that are ignored by WinMerge.</para>
 
       <para><note>
           <para>File filter rules are case-insensitive. Rule
@@ -199,7 +198,9 @@ f: \.h$ ## Match *.h files
 f: ^My ## Match My*.* files
 f: Dlg\. ## Match *Dlg.* files
 d: \\test$ ## Match 'test' folders
-d: ^\\Build$ ## Match 'Build' folders</screen>
+d: ^\\Build$ ## Match 'Build' folders
+d: Temp$ ## Match *Temp folders (e.g. FirstTemp)
+d: Src ## Match *Src* folders</screen>
       </example>
 
       <para>Line begin or -end marker (<constant>"^"</constant> or
