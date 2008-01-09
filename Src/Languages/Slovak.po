@@ -4692,7 +4692,7 @@ msgstr "Panel rozdielu"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "Súbor so záplatou bol úspešne zapísaný."
 
 #: Merge.rc:2383

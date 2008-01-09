@@ -4633,7 +4633,7 @@ msgstr "비교창"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "Patch 파일이 작성되었습니다."
 
 #: Merge.rc:2383

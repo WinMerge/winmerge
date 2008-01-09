@@ -4692,7 +4692,7 @@ msgstr "Subfinestra de diferències"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "El pedaç s'ha generat satisfactòriament."
 
 #: Merge.rc:2383

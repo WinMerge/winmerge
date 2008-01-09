@@ -4694,7 +4694,7 @@ msgstr "Diffペイン"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "パッチファイル書込みに成功しました。"
 
 #: Merge.rc:2383

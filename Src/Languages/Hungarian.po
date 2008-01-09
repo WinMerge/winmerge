@@ -4649,7 +4649,7 @@ msgstr ""
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."
 
 #: Merge.rc:2383

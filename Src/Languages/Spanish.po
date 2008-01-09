@@ -4697,7 +4697,7 @@ msgstr "Panel de diferencias"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "Archivo de corrección escrito correctamente."
 
 #: Merge.rc:2383

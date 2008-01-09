@@ -4676,7 +4676,7 @@ msgstr "Rozdíly"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "Opravný soubor byl úspìšnì vytvoøen."
 
 #: Merge.rc:2383

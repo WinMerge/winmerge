@@ -4681,7 +4681,7 @@ msgstr "不同处显示"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "成功写入patch文件。"
 
 #: Merge.rc:2383

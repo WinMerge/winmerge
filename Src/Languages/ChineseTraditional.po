@@ -4693,7 +4693,7 @@ msgstr "差異窗格"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "補綴檔成功寫入。"
 
 #: Merge.rc:2383

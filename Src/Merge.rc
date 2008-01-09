@@ -2379,7 +2379,7 @@ END
 // CREATE PATCH
 STRINGTABLE
 BEGIN
-    IDS_DIFF_SUCCEEDED      "Patch file succesfully written."
+    IDS_DIFF_SUCCEEDED      "Patch file successfully written."
     IDS_DIFF_ITEM1NOTFOUND  "1. item is not found or is directory!"
     IDS_DIFF_ITEM2NOTFOUND  "2. item is not found or is directory!"
     IDS_DIFF_FILEOVERWRITE  "The patch file already exists. Do you want to overwrite it?"

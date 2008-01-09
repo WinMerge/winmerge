@@ -4694,7 +4694,7 @@ msgstr "Détail des différences"
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "Fichier de retouche écrit avec succès."
 
 #: Merge.rc:2383

@@ -4611,7 +4611,7 @@ msgstr ""
 
 #: Merge.rc:2382
 #, c-format
-msgid "Patch file succesfully written."
+msgid "Patch file successfully written."
 msgstr "Patch fil oprettet med succes."
 
 #: Merge.rc:2383

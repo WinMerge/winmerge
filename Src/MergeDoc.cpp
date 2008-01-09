@@ -2624,7 +2624,7 @@ BOOL CMergeDoc::CloseNow()
  * @param [in] nBuffer Index (0-based) of buffer to load
  * @param [out] readOnly whether file is read-only
  * @param [in] codepage relevant 8-bit codepage if any (0 if none or unknown)
- * @return Tells if files were loaded succesfully
+ * @return Tells if files were loaded successfully
  * @sa CMergeDoc::OpenDocs()
  **/
 int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage)
@@ -2778,7 +2778,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		nLeftSuccess = FileLoadResult::FRESULT_OK;
 	}
 	
-	// Load right side only if left side was succesfully loaded
+	// Load right side only if left side was successfully loaded
 	DWORD nRightSuccess = FileLoadResult::FRESULT_ERROR;
 	if (!sRightFile.IsEmpty())
 	{
