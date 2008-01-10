@@ -12,6 +12,7 @@ WinMerge 2.7.7.2
   Close compare tab with middle mouse button (#1865220)
   Add index.html for documentation folders (#1866183)
   Manual: Clarify file filters folder name matching (#1867212)
+  Improve file compare margin icons location (#1718699)
   BugFix: Crash when using TrackPoint middle-button scrolling (#1864040)
   BugFix: WinMerge didn't show the contents of the symbolic link target (#1864978)
   BugFix: Unused registry key HKCU\Thingamahoochie\WinMerge was created 

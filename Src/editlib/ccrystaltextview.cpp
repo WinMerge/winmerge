@@ -84,7 +84,7 @@
  *
  * @brief Implementation of the CCrystalTextView class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -125,6 +125,10 @@ static char THIS_FILE[] = __FILE__;
 const UINT MAX_TAB_LEN = 64;
 /** @brief Width of revision marks. */
 const UINT MARGIN_REV_WIDTH = 3;
+/** @brief Width of icons printed in the margin. */
+const UINT MARGIN_ICON_WIDTH = 12;
+/** @brief Height of icons printed in the margin. */
+const UINT MARGIN_ICON_HEIGHT = 12;
 
 /** @brief Color of unsaved line revision mark (dark yellow). */
 const COLORREF UNSAVED_REVMARK_CLR = RGB(0xD7, 0xD7, 0x00);
@@ -2049,19 +2053,16 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
   if (m_pIcons == NULL)
     {
       m_pIcons = new CImageList;
-      VERIFY (m_pIcons->Create(12, 12, ILC_COLOR32 | ILC_MASK, 0, 1));
+      VERIFY (m_pIcons->Create(MARGIN_ICON_WIDTH, MARGIN_ICON_HEIGHT,
+          ILC_COLOR32 | ILC_MASK, 0, 1));
       CBitmap bmp;
       bmp.LoadBitmap(IDR_MARGIN_ICONS);
       m_pIcons->Add(&bmp, RGB(255, 255, 255));
     }
   if (nImageIndex >= 0)
     {
-    //BEGIN SW
-    CPoint pt(rect.left, rect.top + (GetLineHeight() - 12) / 2);
-    /*ORIGINAL
-    CPoint pt(rect.left + 2, rect.top + (rect.Height() - 16) / 2);
-    *///END SW
-    VERIFY(m_pIcons->Draw(pdc, nImageIndex, pt, ILD_TRANSPARENT));
+      CPoint pt(rect.left + 2, rect.top + (GetLineHeight() - MARGIN_ICON_HEIGHT) / 2);
+      VERIFY(m_pIcons->Draw(pdc, nImageIndex, pt, ILD_TRANSPARENT));
       VERIFY (m_pIcons->Draw (pdc, nImageIndex, pt, ILD_TRANSPARENT));
     }
 
@@ -2072,7 +2073,8 @@ DrawMargin (CDC * pdc, const CRect & rect, int nLineIndex, int nLineNumber)
       WrapLineCached( nLineIndex, GetScreenChars(), NULL, nBreaks );
       for (int i = 0; i < nBreaks; i++)
         {
-          CPoint pt(rect.right - 12, rect.top + (GetLineHeight() - 12) / 2 + (i+1) * GetLineHeight());
+          CPoint pt(rect.right - MARGIN_ICON_WIDTH, rect.top + (GetLineHeight()
+              - MARGIN_ICON_WIDTH) / 2 + (i+1) * GetLineHeight());
           m_pIcons->Draw (pdc, ICON_INDEX_WRAPLINE, pt, ILD_TRANSPARENT);
         }
     }
@@ -5427,7 +5429,7 @@ GetMarginWidth (CDC *pdc)
   if (m_bSelMargin)
     {
       if (pdc == NULL || !pdc->IsPrinting ())
-        nMarginWidth += 18;  // Width for markers and some space
+        nMarginWidth += MARGIN_ICON_WIDTH  + 7;  // Width for icon markers and some margin
     }
   else
     {
