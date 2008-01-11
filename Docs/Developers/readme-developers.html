@@ -82,8 +82,20 @@ different versions are available from SourceForge.net.</p>
 compile WinMerge, unless you have MFC installed separately.</p>
 
 <h4>Libraries</h4>
-<p>WinMerge executable depends on Expat XML parser and SCEW wrapper libraries. Both are in
-the source tree, but need to be compiled before compiling WinMerge executable.</p>
+<p>WinMerge executable depends on Expat XML parser, SCEW and PCRE libraries.
+All are in the source tree (in <code>/Externals</code> -folder), and need to be
+compiled before compiling WinMerge executable.</p>
+
+<p class="note"><b>Visual Studio 2003.Net and later:</b> You'll need to convert
+library workspace and project files to new format before compiling.</p>
+
+<p> To convert workspace/project files, just open them into Visual Studio and
+let the Visual Studio to convert. Files are:
+<ul>
+  <li><code>Externals\expat\expat.dsw</code></li>
+  <li><code>Externals\scew\win32\scew.dsp</code></li>
+  <li><code>Externals\pcre\pcre.dsw</code></li>
+</ul>
 
 <h4>Additional requirements (out of source tree)</h4>
 <ul>
@@ -164,13 +176,16 @@ things.</p>
 <p class="note"><b>Visual Studio 2003.Net:</b> WinMerge build uses couple of helper batch files
 (<code>Src/PreLink.bat</code> and <code>Src/PostBuild.bat</code>) run from project file.
 Visual Studio adds additional quotation marks to these rules when converting for new version,
-which makes builds to fail.</p>
+which makes builds to fail. The error is something like <code>The system cannot
+find the batch label specified - ".\..\BuildTmp\MergeUnicodeDebug"</code> where
+the path varies depending on compile target.
 
-<p>Check that rules to call those batch files are like:
+<blockquote>Check that rules to call those batch files are like:
 <code>PreLink.bat $(IntDir) $(TargetPath)</code>
 
 <p>without additional quotation marks, like:
-<code>PreLink.bat "$(IntDir)" "$(TargetPath)"</code>
+<code>PreLink.bat "$(IntDir)" "$(TargetPath)"</code></blockquote>
+</p>
 
 <h4>Compiling expat</h4>
 <p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:</p>
