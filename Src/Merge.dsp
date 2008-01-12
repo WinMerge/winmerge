@@ -2263,7 +2263,7 @@ SOURCE=.\diffutils\src\CONTEXT.C
 # End Source File
 # Begin Source File
 
-SOURCE=.\Diff.cpp
+SOURCE=.\diffutils\src\Diff.cpp
 
 !IF  "$(CFG)" == "Merge - Win32 Debug"
 
