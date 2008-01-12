@@ -5,7 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.7.7.2
   Syntax highlighting for PowerShell files (#1859657)
   Syntax highlighting for PO(T) files (#1866221)
-  Change font size with Ctrl + MouseWheel (#1865795)
+  Change font size with Ctrl + MouseWheel (#1865795, #1869686)
   Horizontal scrolling with Shift + MouseWheel (#1865795)
   Installer: Add support for integration with latest version of TortoiseCVS and
     TortoiseSVN x64 (#1865168)

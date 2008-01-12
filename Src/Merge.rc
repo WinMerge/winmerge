@@ -379,6 +379,8 @@ BEGIN
     BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
+        MENUITEM "Zoom In\tCtrl++",             ID_VIEW_ZOOMIN
+        MENUITEM "Zoom Out\tCtrl+-",            ID_VIEW_ZOOMOUT
         POPUP "Syntax Highlight"
         BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
@@ -627,6 +629,8 @@ BEGIN
     VK_RIGHT,       ID_L2R,                 VIRTKEY, ALT, NOINVERT
     VK_RIGHT,       ID_L2RNEXT,             VIRTKEY, CONTROL, ALT, NOINVERT
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
+    VK_ADD,         ID_VIEW_ZOOMIN,         VIRTKEY, CONTROL, NOINVERT
+    VK_SUBTRACT,    ID_VIEW_ZOOMOUT,        VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -2788,6 +2792,8 @@ BEGIN
     ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
     ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
     ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
+    ID_VIEW_ZOOMIN          "Increase text size"
+    ID_VIEW_ZOOMOUT         "Decrease text size"
 END
 
 // MERGE MENU

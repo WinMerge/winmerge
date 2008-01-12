@@ -186,6 +186,7 @@ public:
 	bool IsInitialized() const;
 	BOOL IsCursorInDiff() const;
 	BOOL IsDiffVisible(int nDiff);
+	void ZoomText(short amount);
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
@@ -304,8 +305,11 @@ protected:
 	afx_msg void OnChangeScheme(UINT nID);
 	afx_msg void OnUpdateChangeScheme(CCmdUI* pCmdUI);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	afx_msg void OnViewZoomIn();
+	afx_msg void OnViewZoomOut();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
+public:
 };
 
 #ifndef _DEBUG  // debug version in DiffView.cpp

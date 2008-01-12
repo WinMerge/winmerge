@@ -196,6 +196,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnChangeScheme)
 	ON_UPDATE_COMMAND_UI_RANGE(ID_COLORSCHEME_FIRST, ID_COLORSCHEME_LAST, OnUpdateChangeScheme)
 	ON_WM_MOUSEWHEEL()
+	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
+	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3215,41 +3217,8 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
 	if ( nFlags == MK_CONTROL )
 	{
-		LOGFONT lf = { 0 };
-		GetFont(lf);
-
-		CDC* pDC = GetDC();
-		ASSERT_VALID(pDC);
-		
-		if (pDC) 
-		{
-			const int nLogPixelsY = pDC->GetDeviceCaps(LOGPIXELSY);
-
-			int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
-
-			zDelta < 0 ? nPointSize--: nPointSize++;
-			if (nPointSize < 2)
-				nPointSize = 2;
-
-			lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
-
-			CMergeDoc *pDoc = GetDocument();
-			ASSERT(pDoc != NULL);
-
-			if (pDoc != NULL )
-			{
-				for (int nPane = 0; nPane < 2; nPane++) 
-				{
-					CMergeEditView *pView = pDoc->GetView(nPane);
-					ASSERT(pView != NULL);
-					
-					if (pView != NULL)
-					{
-						pView->SetFont(lf);
-					}
-				}
-			}
-		}
+		short amount = zDelta < 0 ? -1: 1;
+		ZoomText(amount);
 
 		// no default CCrystalTextView
 		return CView::OnMouseWheel(nFlags, zDelta, pt);
@@ -3278,4 +3247,64 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	}
 
 	return CGhostTextView::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+/**
+ * @brief Change font size (zoom) in views.
+ * @param [in] amount Amount of change/zoom, negative number makes
+ *  font smaller, positive number bigger.
+ */
+void CMergeEditView::ZoomText(short amount)
+{
+	LOGFONT lf = { 0 };
+	GetFont(lf);
+
+	CDC* pDC = GetDC();
+	ASSERT_VALID(pDC);
+	
+	if (pDC) 
+	{
+		const int nLogPixelsY = pDC->GetDeviceCaps(LOGPIXELSY);
+
+		int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
+
+		nPointSize += amount;
+		if (nPointSize < 2)
+			nPointSize = 2;
+
+		lf.lfHeight = -MulDiv(nPointSize, nLogPixelsY, 72);
+
+		CMergeDoc *pDoc = GetDocument();
+		ASSERT(pDoc != NULL);
+
+		if (pDoc != NULL )
+		{
+			for (int nPane = 0; nPane < MERGE_VIEW_COUNT; nPane++) 
+			{
+				CMergeEditView *pView = pDoc->GetView(nPane);
+				ASSERT(pView != NULL);
+				
+				if (pView != NULL)
+				{
+					pView->SetFont(lf);
+				}
+			}
+		}
+	}
+}
+
+/**
+ * @bfief Called when user selects View/Zoom In from menu.
+ */
+void CMergeEditView::OnViewZoomIn()
+{
+	ZoomText(1);
+}
+
+/**
+ * @bfief Called when user selects View/Zoom Out from menu.
+ */
+void CMergeEditView::OnViewZoomOut()
+{
+	ZoomText(-1);
 }
