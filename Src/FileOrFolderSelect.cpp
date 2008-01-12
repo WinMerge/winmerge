@@ -104,7 +104,7 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 	LPTSTR filtersStr = &*filters.begin();
 	ConvertFilter(filtersStr);
 
-	OPENFILENAME ofn;
+	OPENFILENAME_NT4 ofn;
 	memset(&ofn, 0, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = parent;
@@ -122,9 +122,9 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 
 	BOOL bRetVal = FALSE;
 	if (is_open)
-		bRetVal = GetOpenFileName(&ofn);
+		bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
 	else
-		bRetVal = GetSaveFileName(&ofn);
+		bRetVal = GetSaveFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 	sSelectedFile.ReleaseBuffer();
 	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName
@@ -237,7 +237,7 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 	dirSelTag += _T("."); // Treat it as filename
 	sSelectedFile = dirSelTag.c_str(); // What is assignment above good for?
 
-	OPENFILENAME ofn;
+	OPENFILENAME_NT4 ofn;
 	memset(&ofn, 0, sizeof(ofn));
 	ofn.lStructSize = sizeof(ofn);
 	ofn.hwndOwner = parent;
@@ -251,7 +251,7 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 	ofn.lpstrFileTitle = NULL;
 	ofn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST | OFN_NOTESTFILECREATE;
 
-	BOOL bRetVal = GetOpenFileName(&ofn);
+	BOOL bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 	sSelectedFile.ReleaseBuffer();
 	SetCurrentDirectory(paths_GetWindowsDirectory()); // Free handle held by GetOpenFileName

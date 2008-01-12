@@ -18,6 +18,7 @@ WinMerge 2.7.7.2
   BugFix: Unused registry key HKCU\Thingamahoochie\WinMerge was created 
     (#1865202)
   BugFix: Register.bat didn't work on Windows 98 and Vista (#1869821)
+  BugFix: Open-dialog was not displayed on Windows 98 (#1866442, #1869858)
   Translation updates:
   - Spanish (#1867234)
   - Swedish (#1867765, #1867844)
