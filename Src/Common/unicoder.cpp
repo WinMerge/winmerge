@@ -484,7 +484,7 @@ get_unicode_char(unsigned char * ptr, UNICODESET codeset, int codepage)
  */
 CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 {
-	static int defcodepage = getDefaultCodepage();
+	int defcodepage = getDefaultCodepage();
 
 	if (!len) return _T("");
 
@@ -499,59 +499,41 @@ CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 	DWORD flags = MB_ERR_INVALID_CHARS;
 	int wlen = len*2+6;
 	LPWSTR wbuff = str.GetBuffer(wlen);
-	int n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
-	if (n)
+	do
 	{
-		/*
-		NB: MultiByteToWideChar is documented as only zero-terminating 
-		if input was zero-terminated, but it appears that it can 
-		zero-terminate even if input wasn't.
-		So we check if it zero-terminated and adjust count accordingly.
-		*/
-		if (wbuff[n-1] == 0)
-			--n;
-
-		str.ReleaseBuffer(n);
-		return str;
-	}
-	else
-	{
-		*lossy = true;
-		if (GetLastError() == ERROR_NO_UNICODE_TRANSLATION)
+		int n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
+		if (n)
 		{
-			flags = 0;
-			// wlen & wbuff are still fine
-			n = MultiByteToWideChar(codepage, flags, lpd, len, wbuff, wlen-1);
-			if (n)
+			/*
+			NB: MultiByteToWideChar is documented as only zero-terminating 
+			if input was zero-terminated, but it appears that it can 
+			zero-terminate even if input wasn't.
+			So we check if it zero-terminated and adjust count accordingly.
+			*/
+			//>2007-01-11 jtuc: We must preserve an embedded zero even if it is
+			// the last input character. As we don't expect MultiByteToWideChar to
+			// add a zero that does not originate from the input string, it is a
+			// good idea to ASSERT that the assumption holds.
+			if (wbuff[n-1] == 0 && lpd[len-1] != 0)
 			{
-				/*
-				NB: MultiByteToWideChar is documented as only zero-terminating 
-				if input was zero-terminated, but it appears that it can 
-				zero-terminate even if input wasn't.
-				So we check if it zero-terminated and adjust count accordingly.
-				*/
-				if (wbuff[n-1] == 0)
-					--n;
-
-				str.ReleaseBuffer(n);
-				return str;
+				ASSERT(FALSE);
+				--n;
 			}
+			str.ReleaseBuffer(n);
+			return str;
 		}
-		str = _T("?");
-		return str;
-	}
+		*lossy = true;
+		flags ^= MB_ERR_INVALID_CHARS;
+	} while (flags == 0 && GetLastError() == ERROR_NO_UNICODE_TRANSLATION);
+	str = _T('?');
+	return str;
 
 #else
-	if (EqualCodepages(codepage, getDefaultCodepage()))
+	if (EqualCodepages(codepage, defcodepage))
 	{
 		// trivial case, they want the bytes in the file interpreted in our current codepage
 		// Only caveat is that input (lpd) is not zero-terminated
-		CString str;
-		LPTSTR strbuff = str.GetBuffer(len+1);
-		_tcsncpy(strbuff, lpd, len);
-		strbuff[len] = 0; // Cannot call str.SetAt(...) until after ReleaseBuffer call
-		str.ReleaseBuffer();
-		return str;
+		return CString(lpd, len);
 	}
 
 	CString str = CrossConvertToStringA(lpd, len, codepage, defcodepage, lossy);

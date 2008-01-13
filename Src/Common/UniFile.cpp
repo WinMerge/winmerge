@@ -402,8 +402,6 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 			if (!wch)
 			{
 				RecordZero(m_txtstats, wch_offset);
-				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
-				return TRUE;
 			}
 			++cchLine;
 		}
@@ -449,8 +447,6 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 			if (!ch)
 			{
 				RecordZero(m_txtstats, ch_offset);
-				CopyMemory(line.GetBufferSetLength(cchLine), pchLine, cchLine * sizeof(TCHAR));
-				return TRUE;
 			}
 			++cchLine;
 		}
