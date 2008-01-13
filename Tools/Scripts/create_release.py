@@ -148,9 +148,14 @@ def get_and_create_dist_folder(folder):
     and creates the folder."""
 
     dist_folder = os.path.join(dist_root_folder, folder)
-    print 'Create distribution folder: ' + dist_folder
-    os.mkdir(dist_folder)
-    return dist_folder
+    if os.path.exists(dist_folder):
+        print 'Folder: ' + dist_folder + ' already exists!'
+        print 'If you want to re-create this version, remove folder first!'
+        return ''
+    else:
+        print 'Create distribution folder: ' + dist_folder
+        os.mkdir(dist_folder)
+        return dist_folder
 
 def get_src_dist_folder(dist_folder, folder):
     """Format a source distribution folder path."""
@@ -351,6 +356,8 @@ def main(argv):
 
     version_folder = 'WinMerge-' + version
     dist_folder = get_and_create_dist_folder(version_folder)
+    if dist_folder == '':
+        sys.exit(1)
     dist_src_folder = get_src_dist_folder(dist_folder, version_folder)
     svn_export(dist_src_folder)
 
