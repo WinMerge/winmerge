@@ -28,7 +28,7 @@
  *
  * @brief Declaration file for CCrystalTextView
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_CCRYSTALTEXTVIEW_H__AD7F2F41_6CB3_11D2_8C32_0080ADB86836__INCLUDED_)
@@ -876,6 +876,7 @@ protected :
     afx_msg void OnUpdateEditCopy (CCmdUI * pCmdUI);
     afx_msg void OnEditSelectAll ();
     afx_msg void OnUpdateEditSelectAll (CCmdUI * pCmdUI);
+    afx_msg void OnRButtonDown (UINT nFlags, CPoint point);
     afx_msg void OnSysColorChange ();
     afx_msg int OnCreate (LPCREATESTRUCT lpCreateStruct);
     afx_msg void OnEditFind ();
