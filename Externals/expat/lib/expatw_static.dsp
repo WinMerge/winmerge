@@ -37,8 +37,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "Release-w_static"
-# PROP Intermediate_Dir "Release-w_static"
+# PROP Output_Dir "../../../Build/expat/lib/Release-w_static"
+# PROP Intermediate_Dir "../../../BuildTmp/expat/lib/Release-w_static"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "_WINDOWS" /D "NDEBUG" /D "_MBCS" /D "_LIB" /D "COMPILED_FROM_DSP" /D "XML_UNICODE_WCHAR_T" /FD /c
@@ -50,10 +50,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"Release-w_static\libexpatwMT.lib"
+# ADD LIB32 /nologo /out:"../../../Build/expat/lib/Release-w_static/libexpatwMT.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy Release-w_static\libexpatwMT.lib ..\..\..\Build\expat
+PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy ..\..\..\Build\expat\lib\Release-w_static\libexpatwMT.lib ..\..\..\Build\expat
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "expatw_static - Win32 Debug"
@@ -65,8 +65,8 @@ PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy Release-w_static\libexpatwMT.lib 
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "Debug-w_static"
-# PROP Intermediate_Dir "Debug-w_static"
+# PROP Output_Dir "../../../Build/expat/lib/Debug-w_static"
+# PROP Intermediate_Dir "../../../BuildTmp/expat/lib/Debug-w_static"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /MTd /W3 /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "COMPILED_FROM_DSP" /D "_MBCS" /D "_LIB" /FR /FD /GZ /c
@@ -78,10 +78,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"Debug-w_static\libexpatwMT.lib"
+# ADD LIB32 /nologo /out:"../../../Build/expat/lib/Debug-w_static/libexpatwMT.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy Debug-w_static\libexpatwMT.lib ..\..\..\Build\expat
+PostBuild_Cmds=mkdir ..\..\..\Build\expat	copy ..\..\..\Build\expat\lib\Debug-w_static\libexpatwMT.lib ..\..\..\Build\expat
 # End Special Build Tool
 
 !ENDIF 

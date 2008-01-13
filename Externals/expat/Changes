@@ -2,6 +2,10 @@ For WinMerge (kimmov): Nov 5 2006
         - Add post-build steps to VC6 project files to copy .lib and .dll
           files to /Build/expat
 
+For WinMerge (kimmov): Jan 13 2008
+        - Modify project files to use WinMerge's Build and BuildTmp folders.
+		  This avoids polluting source tree with build files.
+
 Release 2.0.1 Tue June 5 2007
         - Fixed bugs #1515266, 1515600: The character data handler's calling
           of XML_StopParser() was not handled properly; if the parser was

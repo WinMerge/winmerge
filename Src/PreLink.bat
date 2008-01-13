@@ -11,7 +11,6 @@ cd
 echo %0
 echo $(IntDir) = %1
 echo $(TargetPath) = %2
-mkdir ..\Build\expat
 mkdir ..\Build\pcre
 
 set info=echo *
@@ -57,8 +56,8 @@ REM Build expat
 cd %2\..\..\..\Externals\expat\lib
 %msdev% "expat.dsp" /make "expat - Win32 Debug"
 %devenv% "expat.vcproj" /build "Debug"
-copy Debug\libexpat.lib %2\..\..\..\Build\expat
-copy Debug\libexpat.dll %2\..
+cd %2\..\..\expat
+copy lib\debug\libexpat.dll %2\..
 
 REM Build SCEW
 cd %2\..\..\..\Externals\scew\win32
@@ -81,8 +80,9 @@ REM Build expat
 cd %2\..\..\..\Externals\expat\lib
 %msdev% "expat.dsp" /make "expat - Win32 Release"
 %devenv% "expat.vcproj" /build "Release"
-copy Release\libexpat.lib %2\..\..\..\Build\expat
-copy Release\libexpat.dll %2\..
+cd %2\..\..\expat
+copy lib\release\libexpat.dll %2\..
+
 
 REM Build SCEW
 cd %2\..\..\..\Externals\scew\win32
