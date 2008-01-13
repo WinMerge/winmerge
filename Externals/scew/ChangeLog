@@ -1,5 +1,9 @@
 Changes for WinMerge compile:
 
+2008-01-13 Kimmo Varis <kimmov@winmerge.org>
+	* scew/win32/scew.dsp: Build scew to WinMerge's Build folder. This prevents
+	polluting source folders with compiled files.
+
 2007-01-20 Kimmo Varis <kimmov@winmerge.org>
 	* scew/error.c: Fix compile with VS2005
 

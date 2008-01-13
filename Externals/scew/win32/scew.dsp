@@ -43,8 +43,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "obj\Release"
-# PROP Intermediate_Dir "obj\Release"
+# PROP Output_Dir "..\..\..\Build\scew\Release"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\Release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /MD /W4 /GX /O2 /I "../../expat/lib" /I "../../expat/xmlwf" /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
@@ -56,10 +56,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\scew.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 Debug"
@@ -71,8 +71,8 @@ PostBuild_Cmds=copy  lib\scew.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "obj\Debug"
-# PROP Intermediate_Dir "obj\Debug"
+# PROP Output_Dir "..\..\..\Build\scew\Debug"
+# PROP Intermediate_Dir "..\..\..\Build\scew\Debug"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
 # ADD CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /I "../../expat/lib" /I "../../expat/xmlwf" /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
@@ -84,10 +84,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\scew_d.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_d.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_d.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_d.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 Debug Unicode"
@@ -99,8 +99,8 @@ PostBuild_Cmds=copy  lib\scew_d.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "obj\DebugU"
-# PROP Intermediate_Dir "obj\DebugU"
+# PROP Output_Dir "..\..\..\Build\scew\DebugU"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\DebugU"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
 # SUBTRACT BASE CPP /YX
@@ -113,10 +113,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\scew_ud.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_ud.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_ud.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_ud.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 Release Unicode"
@@ -128,8 +128,8 @@ PostBuild_Cmds=copy  lib\scew_ud.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "obj\ReleaseU"
-# PROP Intermediate_Dir "obj\ReleaseU"
+# PROP Output_Dir "..\..\..\Build\scew\ReleaseU"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\ReleaseU"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
 # SUBTRACT BASE CPP /YX
@@ -142,10 +142,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo
-# ADD LIB32 /nologo /out:"lib\scew_u.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_u.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_u.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_u.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Debug"
@@ -157,8 +157,8 @@ PostBuild_Cmds=copy  lib\scew_u.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "obj\DebugS"
-# PROP Intermediate_Dir "obj\DebugS"
+# PROP Output_Dir "..\..\..\Build\scew\DebugS"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\DebugS"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /FD /GZ /c
 # SUBTRACT BASE CPP /YX
@@ -171,10 +171,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew_d.lib"
-# ADD LIB32 /nologo /out:"lib\scew_sd.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_sd.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_sd.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_sd.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Release"
@@ -186,8 +186,8 @@ PostBuild_Cmds=copy  lib\scew_sd.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "obj\ReleaseS"
-# PROP Intermediate_Dir "obj\ReleaseS"
+# PROP Output_Dir "..\..\..\Build\scew\ReleaseS"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\ReleaseS"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /FD /c
 # SUBTRACT BASE CPP /YX
@@ -200,10 +200,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew.lib"
-# ADD LIB32 /nologo /out:"lib\scew_s.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_s.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_s.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_s.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Debug Unicode"
@@ -215,8 +215,8 @@ PostBuild_Cmds=copy  lib\scew_s.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "obj\DebugUS"
-# PROP Intermediate_Dir "obj\DebugUS"
+# PROP Output_Dir "..\..\..\Build\scew\DebugUS"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\DebugUS"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MDd /W4 /Gm /GX /ZI /Od /D "_DEBUG" /D "_UNICODE" /D "WIN32" /D "_LIB" /FD /GZ /c
 # SUBTRACT BASE CPP /WX /YX
@@ -229,10 +229,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew_ud.lib"
-# ADD LIB32 /nologo /out:"lib\scew_usd.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_usd.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_usd.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_usd.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "scew - Win32 XMLStatic Release Unicode"
@@ -244,8 +244,8 @@ PostBuild_Cmds=copy  lib\scew_usd.lib  ..\..\..\Build\expat\
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "obj\ReleaseUS"
-# PROP Intermediate_Dir "obj\ReleaseUS"
+# PROP Output_Dir "..\..\..\Build\scew\ReleaseUS"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\scew\ReleaseUS"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GX /O2 /D "NDEBUG" /D "_UNICODE" /D "WIN32" /D "_LIB" /FD /c
 # SUBTRACT BASE CPP /WX /YX
@@ -258,10 +258,10 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LIB32=link.exe -lib
 # ADD BASE LIB32 /nologo /out:"lib\scew_u.lib"
-# ADD LIB32 /nologo /out:"lib\scew_us.lib"
+# ADD LIB32 /nologo /out:"..\..\..\Build\scew\scew_us.lib"
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=copy  lib\scew_us.lib  ..\..\..\Build\expat\ 
+PostBuild_Cmds=copy  ..\..\..\Build\scew\scew_us.lib    ..\..\..\Build\expat\ 
 # End Special Build Tool
 
 !ENDIF 

@@ -63,7 +63,7 @@ REM Build SCEW
 cd %2\..\..\..\Externals\scew\win32
 %msdev% "scew.dsp" /make "scew - Win32 Debug"
 %devenv% "scew.vcproj" /build "Debug"
-copy lib\scew_d.lib %2\..\..\..\Build\expat
+rem copy lib\scew_d.lib %2\..\..\..\Build\expat
 
 REM Build PCRE
 cd %2\..\..\..\Externals\pcre\dll_pcre
@@ -88,7 +88,7 @@ REM Build SCEW
 cd %2\..\..\..\Externals\scew\win32
 %msdev% "scew.dsp" /make "scew - Win32 Release"
 %devenv% "scew.vcproj" /build "Release"
-copy lib\scew.lib %2\..\..\..\Build\expat
+rem copy lib\scew.lib %2\..\..\..\Build\expat
 
 REM Build PCRE
 cd %2\..\..\..\Externals\pcre\dll_pcre
