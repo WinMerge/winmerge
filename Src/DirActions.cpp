@@ -1042,8 +1042,7 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
 BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 {
 	// impossible if unique or binary
-	if (di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly() ||
-		di.diffcode.isBin())
+	if (di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly())
 	{
 		return FALSE;
 	}
@@ -1056,25 +1055,6 @@ BOOL CDirView::AreItemsOpenable(const DIFFITEM & di1, const DIFFITEM & di2) cons
 {
 	String sLeftBasePath = GetDocument()->GetLeftBasePath();
 	String sRightBasePath = GetDocument()->GetRightBasePath();
-	String sLeftPath1 = paths_ConcatPath(di1.getLeftFilepath(sLeftBasePath), di1.sLeftFilename);
-	String sLeftPath2 = paths_ConcatPath(di2.getLeftFilepath(sLeftBasePath), di2.sLeftFilename);
-	String sRightPath1 = paths_ConcatPath(di1.getRightFilepath(sRightBasePath), di1.sRightFilename);
-	String sRightPath2 = paths_ConcatPath(di2.getRightFilepath(sRightBasePath), di2.sRightFilename);
-	// Must not be binary (unless archive)
-	if
-	(
-		(di1.diffcode.isBin() || di2.diffcode.isBin())
-	&&!	(
-			HasZipSupport()
-		&&	(sLeftPath1.empty() || ArchiveGuessFormat(sLeftPath1.c_str()))
-		&&	(sRightPath1.empty() || ArchiveGuessFormat(sRightPath1.c_str()))
-		&&	(sLeftPath2.empty() || ArchiveGuessFormat(sLeftPath2.c_str()))
-		&&	(sRightPath2.empty() || ArchiveGuessFormat(sRightPath2.c_str()))
-		)
-	)
-	{
-		return FALSE;
-	}
 
 	// Must be both directory or neither
 	if (di1.diffcode.isDirectory() != di2.diffcode.isDirectory()) return FALSE;

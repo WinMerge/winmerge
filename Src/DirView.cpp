@@ -1144,15 +1144,6 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		// We haven't done unpacking yet in this diff, but if a binary flag is already set, 
 		// then it was set in a previous diff after unpacking, so we trust it
 
-		if (di1->diffcode.isBin() || di2->diffcode.isBin())
-		{
-			if (!IsBinaryUnpacker(infoUnpacker))
-			{
-				LangMessageBox(IDS_FILEBINARY, MB_ICONSTOP);
-				return;
-			}
-		}
-
 		// Close open documents first (ask to save unsaved data)
 		if (!GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS))
 		{
@@ -2135,8 +2126,11 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 		MoveFocus(0, 0, 0);
 
 	// If compare took more than TimeToSignalCompare seconds, notify user
-	clock_t compareEnd = clock();
-	if (compareEnd - m_compareStart > TimeToSignalCompare * CLOCKS_PER_SEC)
+	clock_t elapsed = clock() - m_compareStart;
+	TCHAR text[200];
+	_sntprintf(text, countof(text), theApp.LoadString(IDS_ELAPSED_TIME).c_str(), elapsed);
+	GetParentFrame()->SetMessageText(text);
+	if (elapsed > TimeToSignalCompare * CLOCKS_PER_SEC)
 		MessageBeep(IDOK);
 	GetMainFrame()->StartFlashing();
 

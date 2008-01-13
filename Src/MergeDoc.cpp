@@ -1200,8 +1200,6 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 		// Preserve file times if user wants to
 		if (GetOptionsMgr()->GetBool(OPT_PRESERVE_FILETIMES))
 		{
-			String filename;
-			String path;
 			fileInfo.SetFile((LPCTSTR)strSavePath);
 			files_UpdateFileTime(fileInfo);
 		}
@@ -1532,6 +1530,81 @@ static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
 }
 
 /**
+ * @brief Escape control characters.
+ * @param [in,out] s Line of text excluding eol chars.
+ *
+ * @note Escape sequences follow the pattern
+ * (leadin character, high nibble, low nibble, leadout character).
+ * The leadin character is '\x0F'. The leadout character is a backslash.
+ */
+static void EscapeControlChars(CString &s)
+{
+	// Compute buffer length required for escaping
+	int n = s.GetLength();
+	LPCTSTR q = s;
+	int i = n;
+	while (i)
+	{
+		TCHAR c = q[--i];
+		// Is it a control character in the range 0..31 except TAB?
+		if (!(c & ~_T('\x1F')) && c != _T('\t'))
+		{
+			n += 3; // Need 3 extra characters to escape
+		}
+	}
+	// Reallocate accordingly
+	i = s.GetLength();
+	LPTSTR p = s.GetBufferSetLength(n);
+	// Copy/translate characters starting at end of string
+	while (i)
+	{
+		TCHAR c = p[--i];
+		// Is it a control character in the range 0..31 except TAB?
+		if (!(c & ~_T('\x1F')) && c != _T('\t'))
+		{
+			// Bitwise OR with 0x100 so _itot() will output 3 hex digits
+			_itot(0x100 | c, p + n - 4, 16);
+			// Replace terminating zero with leadout character
+			p[n - 1] = _T('\\');
+			// Prepare to replace 1st hex digit with leadin character
+			c = _T('\x0F');
+			n -= 3;
+		}
+		p[--n] = c;
+	}
+}
+
+/**
+ * @brief Unescape control characters.
+ * @param [in,out] s Line of text excluding eol chars.
+ */
+static void UnescapeControlChars(CString &s)
+{
+	int n = s.GetLength();
+	LPTSTR p = s.LockBuffer();
+	LPTSTR q = p;
+	while ((*p = *q) != _T('\0'))
+	{
+		++q;
+		// Is it the leadin character?
+		if (*p == _T('\x0F'))
+		{
+			LPTSTR r = q;
+			// Expect a hexadecimal number...
+			long ordinal = (TCHAR)_tcstol(q, &r, 16);
+			// ...followed by the leadout character.
+			if (*r == _T('\\'))
+			{
+				*p = (TCHAR)ordinal;
+				q = r + 1;
+			}
+		}
+		++p;
+	}
+	s.ReleaseBuffer(p - s);
+}
+
+/**
  * @brief Load file from disk into buffer
  *
  * @param [in] pszFileNameInit File to load
@@ -1633,15 +1706,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		do {
 			bool lossy=false;
 			done = !pufile->ReadString(sline, eol, &lossy);
-
-
-			const UniFile::txtstats & tstats = pufile->GetTxtStats();
-			if (tstats.nzeros)
-			{
-				nRetVal = FileLoadResult::FRESULT_BINARY;
-				ResetInit(); // leave crystal editor in valid, empty state
-				goto LoadFromFileExit;
-			}
+			EscapeControlChars(sline);
 
 			// if last line had no eol, we can quit
 			if (done && preveol.IsEmpty())
@@ -1852,6 +1917,8 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			// last real line is never EOL terminated
 			ASSERT (_tcslen(GetLineEol(line)) == 0);
 			// write the line and exit loop
+			if (!bTempFile)
+				UnescapeControlChars(sLine);
 			file.WriteString(sLine);
 			break;
 		}
@@ -1869,6 +1936,8 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		}
 
 		// write this line to the file (codeset or unicode conversions are done there)
+		if (!bTempFile)
+			UnescapeControlChars(sLine);
 		file.WriteString(sLine);
 	}
 	file.Close();
