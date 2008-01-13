@@ -1,3 +1,7 @@
+2008-01-13 Kimmo
+  Modify PCRE project files to build into WinMerge's /Build and /BuildTmp folders
+  Modify pcre_internal.h to find created file from WinMerge's build folder
+
 2006-11-07 Kimmo
  Add PCRE to /Externals/pcre
   New folder: /Externals/pcre

@@ -69,8 +69,8 @@ REM Build PCRE
 cd %2\..\..\..\Externals\pcre\dll_pcre
 %msdev% "pcre.dsp" /make "pcre - Win32 Debug"
 %devenv% "pcre.vcproj" /build "Debug"
-copy ..\bin\debug\pcre.lib %2\..\..\..\Build\pcre
-copy ..\bin\debug\pcre.dll %2\..
+cd %2\..\..\expat
+copy bin\debug\pcre.dll %2\..
 goto Common
 
 :Release
@@ -94,8 +94,8 @@ REM Build PCRE
 cd %2\..\..\..\Externals\pcre\dll_pcre
 %msdev% "pcre.dsp" /make "pcre - Win32 Release"
 %devenv% "pcre.vcproj" /build "Release"
-copy ..\bin\release\pcre.lib %2\..\..\..\Build\pcre
-copy ..\bin\release\pcre.dll %2\..
+cd %2\..\..\expat
+copy bin\release\pcre.dll %2\..
 goto Common
 
 :Common

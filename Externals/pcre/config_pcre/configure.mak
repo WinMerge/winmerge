@@ -2,7 +2,7 @@
 #	Initial configuration for Win32
 #
 
-BIN				= ..\bin
+BIN				= ..\..\..\Build\pcre\bin
 SOURCES			= ..\pcre-6.7
 
 H_config		= $(BIN)\config.h

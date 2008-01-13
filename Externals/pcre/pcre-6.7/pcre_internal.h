@@ -65,7 +65,7 @@ all, it had only been about 10 years then... */
 
 /* Get the definitions provided by running "configure" */
 
-#include "config.h"
+#include "..\..\..\Build\pcre\bin\config.h"
 
 /* Standard C headers plus the external interface definition. The only time
 setjmp and stdarg are used is when NO_RECURSE is set. */

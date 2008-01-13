@@ -37,8 +37,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\bin\release"
-# PROP Intermediate_Dir "o\release"
+# PROP Output_Dir "..\..\..\Build\pcre\bin\release"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\pcre\release"
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_MBCS" /D "_LIB" /YX /FD /c
 # ADD CPP /nologo /W3 /GX /O2 /I "..\bin" /D "NDEBUG" /D "_LIB" /D "PCRE_STATIC" /FD /c
@@ -61,11 +61,11 @@ LIB32=link.exe -lib
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "..\bin\debug"
-# PROP Intermediate_Dir "o\debug"
+# PROP Output_Dir "..\..\..\Build\pcre\bin\debug"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\pcre\debug"
 # PROP Target_Dir ""
-# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ  /c
-# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\bin" /D "_DEBUG" /D "_LIB" /D "PCRE_STATIC" /FD /GZ  /c
+# ADD BASE CPP /nologo /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_MBCS" /D "_LIB" /YX /FD /GZ /c
+# ADD CPP /nologo /W3 /Gm /GX /ZI /Od /I "..\bin" /D "_DEBUG" /D "_LIB" /D "PCRE_STATIC" /FD /GZ /c
 # SUBTRACT CPP /YX
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
 # ADD RSC /l 0x409 /d "_DEBUG"

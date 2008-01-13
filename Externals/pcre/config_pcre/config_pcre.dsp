@@ -27,19 +27,19 @@ CFG=config_pcre - Win32 Configure
 # PROP BASE Use_MFC 0
 # PROP BASE Use_Debug_Libraries 1
 # PROP BASE Output_Dir "Configure"
-# PROP BASE Intermediate_Dir "Configure"
+# PROP BASE Intermediate_Dir "..\..\..\BuildTmp\pcre\Configure"
 # PROP BASE Cmd_Line "nmake /f "configure.mak""
 # PROP BASE Rebuild_Opt "/a rebuild"
-# PROP BASE Target_File "..\bin\pcre_chartables.c"
+# PROP BASE Target_File "..\..\..\Build\pcre\bin\pcre_chartables.c"
 # PROP BASE Bsc_Name ""
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "..\bin"
-# PROP Intermediate_Dir "."
+# PROP Output_Dir "..\..\..\Build\pcre\bin"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\pcre\"
 # PROP Cmd_Line "nmake /f "configure.mak""
 # PROP Rebuild_Opt "/a rebuild"
-# PROP Target_File "..\bin\pcre_chartables.c"
+# PROP Target_File "..\..\..\Build\pcre\bin\pcre_chartables.c"
 # PROP Bsc_Name ""
 # PROP Target_Dir ""
 # Begin Target

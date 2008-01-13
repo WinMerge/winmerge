@@ -38,8 +38,8 @@ RSC=rc.exe
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 0
-# PROP Output_Dir "..\bin\release"
-# PROP Intermediate_Dir "o\release"
+# PROP Output_Dir "..\..\..\Build\pcre\bin\release"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\pcre\release"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MT /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "PCRE_EXPORTS" /YX /FD /c
@@ -57,7 +57,7 @@ LINK32=link.exe
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /machine:I386
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
-PostBuild_Cmds=mkdir ..\..\..\Build\pcre	Copy ..\bin\release\pcre.lib ..\..\..\Build\pcre	Copy ..\bin\release\pcre.dll ..\..\..\Build\pcre
+PostBuild_Cmds=mkdir ..\..\..\Build\pcre	Copy ..\..\..\Build\pcre\bin\release\pcre.lib ..\..\..\Build\pcre	Copy ..\..\..\Build\pcre\bin\release\pcre.dll ..\..\..\Build\pcre
 # End Special Build Tool
 
 !ELSEIF  "$(CFG)" == "pcre - Win32 Debug"
@@ -69,8 +69,8 @@ PostBuild_Cmds=mkdir ..\..\..\Build\pcre	Copy ..\bin\release\pcre.lib ..\..\..\B
 # PROP BASE Target_Dir ""
 # PROP Use_MFC 0
 # PROP Use_Debug_Libraries 1
-# PROP Output_Dir "..\bin\debug"
-# PROP Intermediate_Dir "o\debug"
+# PROP Output_Dir "..\..\..\Build\pcre\bin\debug"
+# PROP Intermediate_Dir "..\..\..\BuildTmp\pcre\debug"
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /D "_USRDLL" /D "PCRE_EXPORTS" /YX /FD /GZ /c
@@ -88,6 +88,7 @@ LINK32=link.exe
 # ADD LINK32 kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /dll /debug /machine:I386 /pdbtype:sept
 # Begin Special Build Tool
 SOURCE="$(InputPath)"
+PostBuild_Cmds=copy ..\..\..\Build\pcre\bin\debug\pcre.dll ..\..\..\Build\pcre	copy ..\..\..\Build\pcre\bin\debug\pcre.lib ..\..\..\Build\pcre
 # End Special Build Tool
 
 !ENDIF 
@@ -102,7 +103,7 @@ SOURCE="..\pcre-6.7\pcre.def"
 # End Source File
 # Begin Source File
 
-SOURCE=..\bin\pcre_chartables.c
+SOURCE=..\..\..\Build\pcre\bin\pcre_chartables.c
 # End Source File
 # Begin Source File
 
