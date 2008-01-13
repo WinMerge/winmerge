@@ -504,6 +504,9 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
 
   if (nChar > 31)
     {
+      // If CTRL is pressed, turn space into control char escape sequence leadin
+      if (nChar == VK_SPACE && GetKeyState(VK_CONTROL) < 0)
+        nChar = 15;
       if (QueryEditable () && m_pTextBuffer != NULL)
         {
           m_pTextBuffer->BeginUndoGroup (m_bMergeUndo);
