@@ -583,7 +583,6 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 		}
 		else if (!ch)
 		{
-			doneline = true;
 			int offset = (m_current - m_base);
 			RecordZero(m_txtstats, offset);
 		}
