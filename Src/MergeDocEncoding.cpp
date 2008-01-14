@@ -29,8 +29,10 @@
 
 #include "stdafx.h"
 
+#include "MainFrm.h"
 #include "MergeDoc.h"
 #include "LoadSaveCodepageDlg.h"
+#include "unicoder.h"
 
 
 #ifdef _DEBUG
@@ -44,11 +46,43 @@ static char THIS_FILE[] = __FILE__;
  */
 void CMergeDoc::DoFileEncodingDialog()
 {
+	if (!PromptAndSaveIfNeeded(TRUE))
+		return;
 	
-	// TODO -- setup dialog
 	CLoadSaveCodepageDlg dlg;
-	if (IDOK != dlg.DoModal()) return;
-	// TODO -- process results
-	// may need to reload if Loading codepage changed?
+	dlg.SetCodepages(m_ptBuf[0]->getCodepage());
+	if (IDOK != dlg.DoModal())
+		return;
+
+	bool doLeft = dlg.DoesAffectLeft();
+	bool doRight = dlg.DoesAffectRight();
+	FileLocation filelocLeft, filelocRight;
+	BOOL bROLeft = m_ptBuf[0]->GetReadOnly();
+	BOOL bRORight = m_ptBuf[1]->GetReadOnly();
+	if (doLeft)
+	{
+		filelocLeft.encoding.m_unicoding = ucr::NONE;
+		filelocLeft.encoding.m_codepage = dlg.GetLoadCodepage();
+	}
+	else
+	{
+		filelocLeft.encoding.m_unicoding = m_ptBuf[0]->getUnicoding();
+		filelocLeft.encoding.m_codepage = m_ptBuf[0]->getCodepage();
+	}
+	if (doRight)
+	{
+		filelocRight.encoding.m_unicoding = ucr::NONE;
+		filelocRight.encoding.m_codepage = dlg.GetLoadCodepage();
+	}
+	else
+	{
+		filelocRight.encoding.m_unicoding = m_ptBuf[1]->getUnicoding();
+		filelocRight.encoding.m_codepage = m_ptBuf[1]->getCodepage();
+	}
+	filelocLeft.setPath(m_filePaths.GetLeft().c_str());
+	filelocRight.setPath(m_filePaths.GetRight().c_str());
+	GetMainFrame()->m_strLeftDesc = m_strDesc[0];
+	GetMainFrame()->m_strRightDesc = m_strDesc[1];
+	OpenDocs(filelocLeft, filelocRight, bROLeft, bRORight);
 }
 

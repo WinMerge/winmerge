@@ -337,6 +337,8 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "&Merge Mode\tF9",              ID_FILE_MERGINGMODE
         MENUITEM SEPARATOR
+        MENUITEM "&File Encoding...",           ID_FILE_ENCODING
+        MENUITEM SEPARATOR
         MENUITEM "E&xit",                       ID_APP_EXIT
     END
     POPUP "&Edit"
