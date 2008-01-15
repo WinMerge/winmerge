@@ -12,7 +12,7 @@ def: exclude
 ## (Inline comments begin with " ##" and extend to the end of the line)
 
 f: \.xml$ ## XML files
-f: \.xlst$
+f: \.xslt$
 f: \.dtd$
 f: \.html$ ## HTML files
 f: \.htm$
