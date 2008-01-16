@@ -33,18 +33,31 @@ Call Main
 Sub Main
   Dim oStrings, sCodePage
   Dim StartTime, EndTime, Seconds
+  Dim bNecessary
   
   StartTime = Time
   
   InfoBox "Creating POT file from Merge.rc...", 3
   
-  Set oStrings = GetStringsFromRcFile("../Merge.rc", sCodePage)
-  CreateMasterPotFile "English.pot", oStrings, sCodePage
+  bNecessary = True
+  If (oFSO.FileExists("English.pot") = True) And (oFSO.FileExists("MergeLang.rc") = True) Then 'If the POT and RC file exists...
+    bNecessary = GetArchiveBit("../Merge.rc") Or GetArchiveBit("English.pot") Or GetArchiveBit("MergeLang.rc") 'RCs or POT file changed?
+  End If
   
-  EndTime = Time
-  Seconds = DateDiff("s", StartTime, EndTime)
-  
-  InfoBox "POT file created, after " & Seconds & " second(s).", 10
+  If (bNecessary = True) Then 'If update necessary...
+    Set oStrings = GetStringsFromRcFile("../Merge.rc", sCodePage)
+    CreateMasterPotFile "English.pot", oStrings, sCodePage
+    SetArchiveBit "../Merge.rc", False
+    SetArchiveBit "English.pot", False
+    SetArchiveBit "MergeLang.rc", False
+    
+    EndTime = Time
+    Seconds = DateDiff("s", StartTime, EndTime)
+    
+    InfoBox "POT file created, after " & Seconds & " second(s).", 10
+  Else 'If update NOT necessary...
+    InfoBox "POT file already up-to-date.", 10
+  End If
 End Sub
 
 ''
@@ -315,3 +328,36 @@ Function InfoBox(ByVal sText, ByVal iSecondsToWait)
     Wscript.Echo sText
   End If
 End Function
+
+''
+' ...
+Function GetArchiveBit(ByVal sFilePath)
+  Dim oFile
+  
+  GetArchiveBit = False
+  If (oFSO.FileExists(sFilePath) = True) Then 'If the file exists...
+    Set oFile = oFSO.GetFile(sFilePath)
+    If (oFile.Attributes AND 32) Then 'If archive bit set...
+      GetArchiveBit = True
+    End If
+  End If
+End Function
+
+''
+' ...
+Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
+  Dim oFile
+  
+  If (oFSO.FileExists(sFilePath) = True) Then 'If the file exists...
+    Set oFile = oFSO.GetFile(sFilePath)
+    If (oFile.Attributes AND 32) Then 'If archive bit set...
+      If (bValue = False) Then
+        oFile.Attributes = oFile.Attributes XOR 32
+      End If
+    Else 'If archive bit NOT set...
+      If (bValue = True) Then
+        oFile.Attributes = oFile.Attributes AND 32
+      End If
+    End If
+  End If
+End Sub
