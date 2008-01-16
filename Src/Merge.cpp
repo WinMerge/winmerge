@@ -597,8 +597,8 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 
 		pMainFrame->m_strSaveAsPath = _T("");
 
-		pMainFrame->m_strLeftDesc = cmdInfo.m_sLeftDesc;
-		pMainFrame->m_strRightDesc = cmdInfo.m_sRightDesc;
+		pMainFrame->m_strDescriptions[0] = cmdInfo.m_sLeftDesc;
+		pMainFrame->m_strDescriptions[1] = cmdInfo.m_sRightDesc;
 
 		if (cmdInfo.m_nFiles > 2)
 		{

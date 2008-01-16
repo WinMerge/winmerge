@@ -1202,10 +1202,10 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 
 			pDirDoc->SetReadOnly(TRUE, bROLeft);
 			pDirDoc->SetReadOnly(FALSE, bRORight);
-			pDirDoc->SetDescriptions(m_strLeftDesc, m_strRightDesc);
+			pDirDoc->SetDescriptions(m_strDescriptions[0], m_strDescriptions[1]);
 			pDirDoc->SetTitle(NULL);
-			m_strLeftDesc.erase();
-			m_strRightDesc.erase();
+			m_strDescriptions[0].erase();
+			m_strDescriptions[1].erase();
 
 			pDirDoc->Rescan();
 		}
@@ -2513,16 +2513,15 @@ void CMainFrame::OnFileNew()
 	
 	// Load emptyfile descriptors and open empty docs
 	// Use default codepage
-	m_strLeftDesc = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
-	m_strRightDesc = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
+	m_strDescriptions[0] = theApp.LoadString(IDS_EMPTY_LEFT_FILE);
+	m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 	FileLocation filelocLeft; // empty, unspecified (so default) encoding
 	FileLocation filelocRight;
 	ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, FALSE, FALSE);
 
-
 	// Empty descriptors now that docs are open
-	m_strLeftDesc.erase();
-	m_strRightDesc.erase();
+	m_strDescriptions[0].erase();
+	m_strDescriptions[1].erase();
 }
 
 /**

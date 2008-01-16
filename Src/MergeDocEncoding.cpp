@@ -24,7 +24,7 @@
  * @brief Implementation file for CMergeDoc
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -81,8 +81,8 @@ void CMergeDoc::DoFileEncodingDialog()
 	}
 	filelocLeft.setPath(m_filePaths.GetLeft().c_str());
 	filelocRight.setPath(m_filePaths.GetRight().c_str());
-	GetMainFrame()->m_strLeftDesc = m_strDesc[0];
-	GetMainFrame()->m_strRightDesc = m_strDesc[1];
+	GetMainFrame()->m_strDescriptions[0] = m_strDesc[0];
+	GetMainFrame()->m_strDescriptions[1] = m_strDesc[1];
 	OpenDocs(filelocLeft, filelocRight, bROLeft, bRORight);
 }
 

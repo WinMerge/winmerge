@@ -187,10 +187,7 @@ public:
 	 * which is more pleasant and informative than temporary paths.
 	 */
 	/*@{*/ 
-	/** Left descriptor */
-	String m_strLeftDesc;
-	/** Right descriptor */
-	String m_strRightDesc;
+	String m_strDescriptions[2];
 	/*@}*/
 
 	/** @brief Possible toolbar image sizes. */

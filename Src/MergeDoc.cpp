@@ -2827,13 +2827,13 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	DWORD nLeftSuccess = FileLoadResult::FRESULT_ERROR;
 	if (!sLeftFile.IsEmpty())
 	{
-		if (GetMainFrame()->m_strLeftDesc.empty())
+		if (GetMainFrame()->m_strDescriptions[0].empty())
 			m_nBufferType[0] = BUFFER_NORMAL;
 		else
 		{
 			m_nBufferType[0] = BUFFER_NORMAL_NAMED;
-			m_strDesc[0] = GetMainFrame()->m_strLeftDesc;
-			GetMainFrame()->m_strLeftDesc.erase();
+			m_strDesc[0] = GetMainFrame()->m_strDescriptions[0];
+			GetMainFrame()->m_strDescriptions[0].erase();
 		}
 
 		m_pSaveFileInfo[0]->Update((LPCTSTR)sLeftFile);
@@ -2847,7 +2847,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		m_nBufferType[0] = BUFFER_UNNAMED;
 
 		m_ptBuf[0]->InitNew();
-		m_strDesc[0] = GetMainFrame()->m_strLeftDesc;
+		m_strDesc[0] = GetMainFrame()->m_strDescriptions[0];
 		nLeftSuccess = FileLoadResult::FRESULT_OK;
 	}
 	
@@ -2855,13 +2855,13 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	DWORD nRightSuccess = FileLoadResult::FRESULT_ERROR;
 	if (!sRightFile.IsEmpty())
 	{
-		if (GetMainFrame()->m_strRightDesc.empty())
+		if (GetMainFrame()->m_strDescriptions[1].empty())
 			m_nBufferType[1] = BUFFER_NORMAL;
 		else
 		{
 			m_nBufferType[1] = BUFFER_NORMAL_NAMED;
-			m_strDesc[1] = GetMainFrame()->m_strRightDesc;
-			GetMainFrame()->m_strRightDesc.erase();
+			m_strDesc[1] = GetMainFrame()->m_strDescriptions[1];
+			GetMainFrame()->m_strDescriptions[1].erase();
 		}
 
 		m_pSaveFileInfo[1]->Update((LPCTSTR)sRightFile);
@@ -2876,7 +2876,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		m_nBufferType[1] = BUFFER_UNNAMED;
 
 		m_ptBuf[1]->InitNew();
-		m_strDesc[1] = GetMainFrame()->m_strRightDesc;
+		m_strDesc[1] = GetMainFrame()->m_strDescriptions[1];
 		nRightSuccess = FileLoadResult::FRESULT_OK;
 	}
 
