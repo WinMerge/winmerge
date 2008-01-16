@@ -21,6 +21,11 @@ changelog.py
    -r:n, --revisions:n output log for last n revisions (default is 100)
 
 
+CheckUnusedResources.vbs
+------------------------
+Script for creating a list of (hopefully) unused resource IDs.
+
+
 create_release.py
 -----------------
  Script for creating a release. Builds WinMerge components, exports sources,
