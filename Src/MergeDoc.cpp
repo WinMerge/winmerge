@@ -2751,7 +2751,9 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 }
 
 /**
- * @brief Is specified codepage number valid for use in WinMerge Merge Editor?
+ * @brief Check if specified codepage number is valid for WinMerge Editor.
+ * @param [in] cp Codepage number to check.
+ * @return true if codepage is valid, false otherwise.
  */
 bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 {
@@ -2761,6 +2763,62 @@ bool CMergeDoc::IsValidCodepageForMergeEditor(unsigned cp) const
 	// for us to be able to use it
 	// We accept whatever codepages that codepage module says are installed
 	return isCodepageInstalled(cp);
+}
+
+/**
+ * @brief Sanity check file's specified codepage.
+ * This function checks if file's specified codepage is valid for WinMerge
+ * editor and if not resets the codepage to default.
+ * @param [in,out] fileinfo Class containing file's codepage.
+ */
+void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
+{
+	if (fileinfo.encoding.m_unicoding == ucr::NONE
+		&& !IsValidCodepageForMergeEditor(fileinfo.encoding.m_codepage))
+	{
+		int cp = getDefaultCodepage();
+		if (!IsValidCodepageForMergeEditor(cp))
+			cp = CP_ACP;
+		fileinfo.encoding.SetCodepage(cp);
+	}
+}
+
+/**
+ * @brief Loads one file from disk and updates file infos.
+ * @param [in] index Index of file in internal buffers.
+ * @param [in] filename File's name.
+ * @param [in] readOnly Is file read-only?
+ * @param [in] codepage File's codepage.
+ * @return One of FileLoadResult values.
+ */
+DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
+		int codepage)
+{
+	DWORD loadSuccess = FileLoadResult::FRESULT_ERROR;;
+	
+	if (!filename.empty())
+	{
+		if (GetMainFrame()->m_strDescriptions[index].empty())
+			m_nBufferType[index] = BUFFER_NORMAL;
+		else
+		{
+			m_nBufferType[index] = BUFFER_NORMAL_NAMED;
+			m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
+			GetMainFrame()->m_strDescriptions[index].erase();
+		}
+		m_pSaveFileInfo[index]->Update(filename);
+		m_pRescanFileInfo[index]->Update(filename);
+
+		loadSuccess = LoadFile(filename.c_str(), index, readOnly, codepage);
+	}
+	else
+	{
+		m_nBufferType[index] = BUFFER_UNNAMED;
+		m_ptBuf[index]->InitNew();
+		m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
+		loadSuccess = FileLoadResult::FRESULT_OK;
+	}
+	return loadSuccess;
 }
 
 /**
@@ -2781,22 +2839,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	int nRescanResult = RESCAN_OK;
 
 	// Filter out invalid codepages, or editor will display all blank
-	if (filelocLeft.encoding.m_unicoding == ucr::NONE
-		&& !IsValidCodepageForMergeEditor(filelocLeft.encoding.m_codepage))
-	{
-		int cp = getDefaultCodepage();
-		if (!IsValidCodepageForMergeEditor(cp))
-			cp = CP_ACP;
-		filelocLeft.encoding.SetCodepage(cp);
-	}
-	if (filelocRight.encoding.m_unicoding == ucr::NONE
-		&& !IsValidCodepageForMergeEditor(filelocRight.encoding.m_codepage))
-	{
-		int cp = getDefaultCodepage();
-		if (!IsValidCodepageForMergeEditor(cp))
-			cp = CP_ACP;
-		filelocRight.encoding.SetCodepage(cp);
-	}
+	SanityCheckCodepage(filelocLeft);
+	SanityCheckCodepage(filelocRight);
 
 	// clear undo stack
 	undoTgt.clear();
@@ -2823,62 +2867,11 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	// build the text being filtered, "|" separates files as it is forbidden in filenames
 	m_strBothFilenames = sLeftFile + _T("|") + sRightFile;
 
-	// Load left side file
-	DWORD nLeftSuccess = FileLoadResult::FRESULT_ERROR;
-	if (!sLeftFile.IsEmpty())
-	{
-		if (GetMainFrame()->m_strDescriptions[0].empty())
-			m_nBufferType[0] = BUFFER_NORMAL;
-		else
-		{
-			m_nBufferType[0] = BUFFER_NORMAL_NAMED;
-			m_strDesc[0] = GetMainFrame()->m_strDescriptions[0];
-			GetMainFrame()->m_strDescriptions[0].erase();
-		}
-
-		m_pSaveFileInfo[0]->Update((LPCTSTR)sLeftFile);
-		m_pRescanFileInfo[0]->Update((LPCTSTR)sLeftFile);
-
-		// Load left side file
-		nLeftSuccess = LoadFile(sLeftFile, 0, bROLeft, filelocLeft.encoding.m_codepage);
-	}
-	else
-	{
-		m_nBufferType[0] = BUFFER_UNNAMED;
-
-		m_ptBuf[0]->InitNew();
-		m_strDesc[0] = GetMainFrame()->m_strDescriptions[0];
-		nLeftSuccess = FileLoadResult::FRESULT_OK;
-	}
-	
-	// Load right side only if left side was successfully loaded
-	DWORD nRightSuccess = FileLoadResult::FRESULT_ERROR;
-	if (!sRightFile.IsEmpty())
-	{
-		if (GetMainFrame()->m_strDescriptions[1].empty())
-			m_nBufferType[1] = BUFFER_NORMAL;
-		else
-		{
-			m_nBufferType[1] = BUFFER_NORMAL_NAMED;
-			m_strDesc[1] = GetMainFrame()->m_strDescriptions[1];
-			GetMainFrame()->m_strDescriptions[1].erase();
-		}
-
-		m_pSaveFileInfo[1]->Update((LPCTSTR)sRightFile);
-		m_pRescanFileInfo[1]->Update((LPCTSTR)sRightFile);
-		if (FileLoadResult::IsOk(nLeftSuccess) || FileLoadResult::IsBinary(nLeftSuccess))
-		{
-			nRightSuccess = LoadFile(sRightFile, 1, bRORight, filelocRight.encoding.m_codepage);
-		}
-	}
-	else
-	{
-		m_nBufferType[1] = BUFFER_UNNAMED;
-
-		m_ptBuf[1]->InitNew();
-		m_strDesc[1] = GetMainFrame()->m_strDescriptions[1];
-		nRightSuccess = FileLoadResult::FRESULT_OK;
-	}
+	// Load files
+	DWORD nLeftSuccess = LoadOneFile(0, (LPCTSTR)sLeftFile, bROLeft,
+		filelocLeft.encoding.m_codepage);
+	DWORD nRightSuccess = LoadOneFile(1, (LPCTSTR)sRightFile, bRORight,
+		filelocRight.encoding.m_codepage);
 
 	// scratchpad : we don't call LoadFile, so
 	// we need to initialize the unpacker as a "do nothing" one

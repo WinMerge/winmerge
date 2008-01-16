@@ -227,7 +227,6 @@ public:
 	OPENRESULTS_TYPE OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		BOOL bROLeft, BOOL bRORight);
 	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);
-	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
 	void ShowRescanError(int nRescanResult, BOOL bBinary, BOOL bIdentical);
@@ -310,6 +309,9 @@ private:
 	bool GetBreakType() const;
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
+	void SanityCheckCodepage(FileLocation & fileinfo);
+	DWORD LoadOneFile(int index, String filename, BOOL readOnly, int codepage);
+	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage);
 
 // Implementation data
 protected:
