@@ -24,7 +24,7 @@ Call Main
 ''
 ' ...
 Sub Main
-  Dim oLanguages, oLanguage, sLanguage, sDir
+  Dim oLanguages, oLanguage, sLanguage, sDir, bPotChanged
   Dim oEnglishPotContent, oLanguagePoContent
   Dim StartTime, EndTime, Seconds
   
@@ -35,17 +35,21 @@ Sub Main
   sDir = oFSO.GetParentFolderName(Wscript.ScriptFullName)
   Set oEnglishPotContent = GetContentFromPoFile(sDir & "\English.pot")
   If oEnglishPotContent.Count = 0 Then Err.Raise vbObjectError, "Sub Main", "Error reading content from English.pot"
+  bPotChanged = GetArchiveBit("English.pot")
   Set oLanguages = Wscript.Arguments
   If oLanguages.Count = 0 Then Set oLanguages = oFSO.GetFolder(".").Files
   For Each oLanguage In oLanguages 'For all languages...
     sLanguage = CStr(oLanguage)
     If LCase(oFSO.GetExtensionName(sLanguage)) = "po" Then
-      If bRunFromCmd Then 'If run from command line...
-        Wscript.Echo oFSO.GetFileName(sLanguage)
-      End If
-      Set oLanguagePoContent = GetContentFromPoFile(sLanguage)
-      If oLanguagePoContent.Count > 0 Then 'If content exists...
-        CreateUpdatedPoFile sLanguage, oEnglishPotContent, oLanguagePoContent
+      If bPotChanged Or GetArchiveBit(sLanguage) Then 'If update necessary...
+        If bRunFromCmd Then 'If run from command line...
+          Wscript.Echo oFSO.GetFileName(sLanguage)
+        End If
+        Set oLanguagePoContent = GetContentFromPoFile(sLanguage)
+        If oLanguagePoContent.Count > 0 Then 'If content exists...
+          CreateUpdatedPoFile sLanguage, oEnglishPotContent, oLanguagePoContent
+        End If
+        SetArchiveBit sLanguage, False
       End If
     End If
   Next
@@ -196,3 +200,36 @@ Function InfoBox(ByVal sText, ByVal iSecondsToWait)
     Wscript.Echo sText
   End If
 End Function
+
+''
+' ...
+Function GetArchiveBit(ByVal sFilePath)
+  Dim oFile
+  
+  GetArchiveBit = False
+  If (oFSO.FileExists(sFilePath) = True) Then 'If the file exists...
+    Set oFile = oFSO.GetFile(sFilePath)
+    If (oFile.Attributes AND 32) Then 'If archive bit set...
+      GetArchiveBit = True
+    End If
+  End If
+End Function
+
+''
+' ...
+Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
+  Dim oFile
+  
+  If (oFSO.FileExists(sFilePath) = True) Then 'If the file exists...
+    Set oFile = oFSO.GetFile(sFilePath)
+    If (oFile.Attributes AND 32) Then 'If archive bit set...
+      If (bValue = False) Then
+        oFile.Attributes = oFile.Attributes XOR 32
+      End If
+    Else 'If archive bit NOT set...
+      If (bValue = True) Then
+        oFile.Attributes = oFile.Attributes AND 32
+      End If
+    End If
+  End If
+End Sub
