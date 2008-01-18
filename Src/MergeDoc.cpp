@@ -32,7 +32,7 @@
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "MainFrm.h"
-
+#include "Environment.h"
 #include "Ucs2Utf8.h"
 #include "diffcontext.h"	// FILE_SAME
 #include "MovedLines.h"
@@ -62,6 +62,7 @@
 #include "MergeLineFlags.h"
 #include "FileOrFolderSelect.h"
 #include "LineFiltersList.h"
+#include "TempFile.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -111,8 +112,7 @@ END_MESSAGE_MAP()
  * @brief Constructor.
  */
 CMergeDoc::CMergeDoc()
-: m_pTempFiles(NULL)
-, m_bEnableRescan(TRUE)
+: m_bEnableRescan(TRUE)
 , m_nCurDiff(-1)
 , m_pDirDoc(NULL)
 {
@@ -164,7 +164,6 @@ CMergeDoc::~CMergeDoc()
 	}
 
 	delete m_pInfoUnpacker;
-	delete m_pTempFiles;
 	delete m_pSaveFileInfo[0];
 	delete m_pSaveFileInfo[1];
 	delete m_pRescanFileInfo[0];
@@ -181,8 +180,8 @@ void CMergeDoc::DeleteContents ()
 	CDocument::DeleteContents ();
 	m_ptBuf[0]->FreeAll ();
 	m_ptBuf[1]->FreeAll ();
-	delete m_pTempFiles;
-	m_pTempFiles = NULL;
+	m_tempFiles[0].Delete();
+	m_tempFiles[1].Delete();
 }
 
 void CMergeDoc::OnFileEvent (WPARAM /*wEvent*/, LPCTSTR /*pszPathName*/)
@@ -408,25 +407,30 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		FALSE, 1);
 	m_LastRescan = COleDateTime::GetCurrentTime();
 
-	// get the desired files to temp locations so we can edit them dynamically
-	if (m_pTempFiles == NULL)
+	String temp1 = m_tempFiles[0].GetPath();
+	if (temp1.empty())
 	{
-		m_pTempFiles = new TempFileContext;
-		if (m_pTempFiles == NULL)
-			return RESCAN_TEMP_ERR;
-
-		if (!m_pTempFiles->CreateFiles(m_filePaths))
-			return RESCAN_TEMP_ERR;
-
-		m_ptBuf[0]->SetTempPath(m_pTempFiles->GetTempPath());
-		m_ptBuf[1]->SetTempPath(m_pTempFiles->GetTempPath());
+		temp1 = m_tempFiles[0].CreateFromFile(m_filePaths.GetLeft().c_str(),
+				_T("lt_wmdoc"));
 	}
+	String temp2 = m_tempFiles[1].GetPath();
+	if (temp2.empty())
+	{
+		temp2 = m_tempFiles[1].CreateFromFile(m_filePaths.GetRight().c_str(),
+				_T("rt_wmdoc"));
+	}
+	if (temp1.empty() || temp2.empty())
+		return RESCAN_TEMP_ERR;
+
+	String tempPath = env_GetTempPath(NULL);
+	m_ptBuf[0]->SetTempPath(tempPath);
+	m_ptBuf[1]->SetTempPath(tempPath);
 
 	// output buffers to temp files (in UTF-8 if TCHAR=wchar_t or buffer was Unicode)
 	if (bBinary == FALSE)
 	{
-		SaveBuffForDiff(*m_ptBuf[0], m_pTempFiles->GetLeft().c_str());
-		SaveBuffForDiff(*m_ptBuf[1], m_pTempFiles->GetRight().c_str());
+		SaveBuffForDiff(*m_ptBuf[0], m_tempFiles[0].GetPath().c_str());
+		SaveBuffForDiff(*m_ptBuf[1], m_tempFiles[1].GetPath().c_str());
 	}
 
 	// Set up DiffWrapper
@@ -441,7 +445,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_diffWrapper.GetMovedLines()->Clear();
 
 	// Set paths for diffing and run diff
-	m_diffWrapper.SetPaths(m_pTempFiles->GetLeft(), m_pTempFiles->GetRight(), TRUE);
+	m_diffWrapper.SetPaths(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), TRUE);
 	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
 	diffSuccess = m_diffWrapper.RunFileDiff();
 
@@ -1456,7 +1460,7 @@ void CMergeDoc::CDiffTextBuffer::ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dw
 }
 
 /// Sets path for temporary files
-void CMergeDoc::CDiffTextBuffer::SetTempPath(CString path)
+void CMergeDoc::CDiffTextBuffer::SetTempPath(String path)
 {
 	m_strTempPath = path;
 }
@@ -1867,11 +1871,10 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	}
 	else
 	{
-		sIntermediateFilename.resize(_MAX_PATH);
-		LPTSTR intermedBuffer = &*sIntermediateFilename.begin();
-		if (!::GetTempFileName(m_strTempPath, _T("MRG"), 0, intermedBuffer))
+		sIntermediateFilename = env_GetTempFileName(m_strTempPath.c_str(),
+			_T("MRG_"), NULL);
+		if (sIntermediateFilename.empty())
 			return SAVE_FAILED;  //Nothing to do if even tempfile name fails
-		sIntermediateFilename.resize(_tcslen(intermedBuffer));
 		bOpenSuccess = !!file.OpenCreate(sIntermediateFilename.c_str());
 	}
 

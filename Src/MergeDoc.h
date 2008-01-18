@@ -34,6 +34,10 @@
 #include "DiffList.h"
 #include "stringdiffs.h"
 
+#ifndef _TEMP_FILE_
+#include "TempFile.h"
+#endif
+
 #ifndef _PATH_CONTEXT_H_
 #include "PathContext.h"
 #endif
@@ -135,10 +139,10 @@ class CDiffTextBuffer : public CGhostTextBuffer
 	{
 		friend class CMergeDoc;
 private :
-		CMergeDoc * m_pOwnerDoc;
+		CMergeDoc * m_pOwnerDoc; /**< Merge document owning this buffer. */
 		int m_nThisPane; /**< Left/Right side */
 		BOOL FlagIsSet(UINT line, DWORD flag);
-		CString m_strTempPath;
+		String m_strTempPath; /**< Temporary files folder. */
 		int unpackerSubcode;
 		/* 
 		 * @brief Unicode encoding from ucr::UNICODESET 
@@ -156,7 +160,7 @@ private :
 		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen = 0);
 public :
-		void SetTempPath(CString path);
+		void SetTempPath(String path);
 		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 			LPCTSTR pszText, int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 		bool curUndoGroup();
@@ -328,7 +332,7 @@ protected:
 	BUFFERTYPE m_nBufferType[2];
 	BOOL m_bMergingMode; /**< Merging or Edit mode */
 	BOOL m_bEditAfterRescan[2]; /**< Left/right doc edited after rescanning */
-	TempFileContext * m_pTempFiles; /**< Temp files for compared files */
+	TempFile m_tempFiles[2]; /**< Temp files for compared files */
 
 // friend access
 	friend class RescanSuppress;

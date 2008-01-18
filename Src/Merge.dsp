@@ -935,6 +935,10 @@ SOURCE=.\SyntaxColors.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\TempFile.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\TestFilterDlg.cpp
 # End Source File
 # Begin Source File
@@ -1578,6 +1582,10 @@ SOURCE=.\Common\SuperComboBox.h
 # Begin Source File
 
 SOURCE=.\SyntaxColors.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TempFile.h
 # End Source File
 # Begin Source File
 
