@@ -593,12 +593,10 @@ void CMergeDoc::FlagMovedLines(MovedLines * pMovedLines, CDiffTextBuffer * pBuff
  * @brief Prints (error) message by rescan status.
  *
  * @param nRescanResult [in] Resultcocode from rescan().
- * @param bBinary [in] Were files binaries?.
  * @param bIdentical [in] Were files identical?.
  * @sa CMergeDoc::Rescan()
  */
-void CMergeDoc::ShowRescanError(int nRescanResult,
-	BOOL bBinary, BOOL bIdentical)
+void CMergeDoc::ShowRescanError(int nRescanResult, BOOL bIdentical)
 {
 	// Rescan was suppressed, there is no sensible status
 	if (nRescanResult == RESCAN_SUPPRESSED)
@@ -619,15 +617,6 @@ void CMergeDoc::ShowRescanError(int nRescanResult,
 		s = theApp.LoadString(IDS_TEMP_FILEERROR);
 		LogErrorString(s.c_str());
 		AfxMessageBox(s.c_str(), MB_ICONSTOP);
-		return;
-	}
-
-	// Binary files tried to load, this can happen when giving filenames
-	// from commandline
-	if (bBinary)
-	{
-		s = theApp.LoadString(IDS_FILEBINARY);
-		AfxMessageBox(s.c_str(), MB_ICONINFORMATION);
 		return;
 	}
 
@@ -2124,7 +2113,7 @@ void CMergeDoc::FlushAndRescan(BOOL bForced /* =FALSE */)
 
 	// Show possible error after updating screen
 	if (nRescanResult != RESCAN_SUPPRESSED)
-		ShowRescanError(nRescanResult, bBinary, bIdentical);
+		ShowRescanError(nRescanResult, bIdentical);
 }
 
 /**
@@ -2837,7 +2826,6 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
 OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		BOOL bROLeft, BOOL bRORight)
 {
-	BOOL bBinary = FALSE;
 	BOOL bIdentical = FALSE;
 	int nRescanResult = RESCAN_OK;
 
@@ -2885,11 +2873,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	if (!FileLoadResult::IsOk(nLeftSuccess) || !FileLoadResult::IsOk(nRightSuccess))
 	{
 		OPENRESULTS_TYPE retVal = OPENRESULTS_FAILED_MISC;
-		if (FileLoadResult::IsBinary(nLeftSuccess) || FileLoadResult::IsBinary(nRightSuccess))
-		{
-			CompareBinaries(sLeftFile, sRightFile, nLeftSuccess, nRightSuccess);
-			retVal = OPENRESULTS_FAILED_BINARY;
-		}
 		CChildFrame *pFrame = GetParentFrame();
 		if (pFrame)
 		{
@@ -2961,11 +2944,12 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	m_pDirDoc->FetchPluginInfos(m_strBothFilenames.c_str(), &infoUnpacker, &infoPrediffer);
 	m_diffWrapper.SetPrediffer(infoPrediffer);
 	m_diffWrapper.SetTextForAutomaticPrediff(m_strBothFilenames);
-	
+
+	BOOL bBinary = FALSE;
 	nRescanResult = Rescan(bBinary, bIdentical);
 
 	// Open filed if rescan succeed and files are not binaries
-	if (nRescanResult == RESCAN_OK && bBinary == FALSE)
+	if (nRescanResult == RESCAN_OK)
 	{
 		// prepare the four views
 		CMergeEditView * pLeft = GetLeftView();
@@ -3031,7 +3015,7 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 			 (m_nBufferType[1] == BUFFER_NORMAL) ||
 			 (m_nBufferType[1] == BUFFER_NORMAL_NAMED)))
 		{
-			ShowRescanError(nRescanResult, bBinary, bIdentical);
+			ShowRescanError(nRescanResult, bIdentical);
 		}
 
 		// scroll to first diff
@@ -3052,9 +3036,9 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		// or the really arcane case that the temp files couldn't be created, 
 		// which is too obscure to bother reporting if you can't write to 
 		// your temp directory, doing nothing is graceful enough for that).
-		ShowRescanError(nRescanResult, bBinary, bIdentical);
+		ShowRescanError(nRescanResult, bIdentical);
 		GetParentFrame()->DestroyWindow();
-		return (bBinary ? OPENRESULTS_FAILED_BINARY: OPENRESULTS_FAILED_MISC);
+		return OPENRESULTS_FAILED_MISC;
 	}
 
 	// Force repaint of location pane to update it in case we had some warning
@@ -3063,60 +3047,6 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		m_pView[MERGE_VIEW_LEFT]->RepaintLocationPane();
 
 	return OPENRESULTS_SUCCESS;
-}
-
-/**
- * @brief Compare binary files and print results to user.
- *
- * @param sLeftFile [in] Full path to left file
- * @param sRightFile [in] Full path to right file
- * @param nLeftSuccess [in] Returnvalue from file load for leftside
- * @param nRightSuccess [in] Returnvalue from file load for rightside
- * @sa CMergeDoc::OpenDocs()
- * @sa CMergeDoc::Rescan()
- */
-void CMergeDoc::CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess)
-{
-	int nRescanResult = RESCAN_OK;
-	BOOL bBinary = FALSE;
-	BOOL bIdentical = FALSE;
-
-	// Compare binary files
-	if (FileLoadResult::IsBinary(nLeftSuccess) && FileLoadResult::IsBinary(nRightSuccess))
-	{
-		bBinary = TRUE; // Compare binary files
-		nRescanResult = Rescan(bBinary, bIdentical);
-	}
-
-	if (nRescanResult == RESCAN_OK)
-	{
-		// Format message shown to user: both files are binaries
-		if (FileLoadResult::IsBinary(nLeftSuccess) && FileLoadResult::IsBinary(nRightSuccess))
-		{
-			CString msg;
-			if (bIdentical)
-				LangFormatString2(msg, IDS_BINFILES_IDENTICAL, sLeftFile, sRightFile);
-			else
-				LangFormatString2(msg, IDS_BINFILES_DIFFERENT, sLeftFile, sRightFile);
-			msg += _T("\n\n");
-			msg += theApp.LoadString(IDS_FILEBINARY).c_str();
-			AfxMessageBox(msg, MB_ICONINFORMATION);
-		}
-		else if (FileLoadResult::IsBinary(nLeftSuccess) || FileLoadResult::IsBinary(nRightSuccess))
-		{
-			// Other file binary, other text
-			CString msg;
-			CString msg2;
-			if (FileLoadResult::IsBinary(nLeftSuccess))
-				LangFormatString1(msg, IDS_OTHER_IS_BINARY, sLeftFile);
-			else
-				LangFormatString1(msg, IDS_OTHER_IS_BINARY, sRightFile);
-
-			AfxMessageBox(msg, MB_ICONSTOP);
-		}
-	}
-	else
-		ShowRescanError(nRescanResult, bBinary, bIdentical);
 }
 
 /**

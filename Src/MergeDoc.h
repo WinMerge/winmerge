@@ -230,10 +230,9 @@ public:
 	void UpdateResources();
 	OPENRESULTS_TYPE OpenDocs(FileLocation filelocLeft, FileLocation filelocRight,
 		BOOL bROLeft, BOOL bRORight);
-	void CompareBinaries(CString sLeftFile, CString sRightFile, int nLeftSuccess, int nRightSuccess);
 	void RescanIfNeeded(float timeOutInSecond);
 	int Rescan(BOOL &bBinary, BOOL &bIdentical, BOOL bForced = FALSE);
-	void ShowRescanError(int nRescanResult, BOOL bBinary, BOOL bIdentical);
+	void ShowRescanError(int nRescanResult, BOOL bIdentical);
 	void AddUndoAction(UINT nBegin, UINT nEnd, UINT nDiff, int nBlanks, BOOL bInsert, CMergeEditView *pList);
 	BOOL Undo();
 	void CopyAllList(int srcPane, int dstPane);
