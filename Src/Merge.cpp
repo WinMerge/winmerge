@@ -813,7 +813,8 @@ static String CmdlineOption(int idres)
  */
 CString CMergeApp::GetDefaultEditor()
 {
-	CString path = paths_GetWindowsDirectory() + _T("\\NOTEPAD.EXE");
+	CString path = paths_GetWindowsDirectory().c_str();
+	path += _T("\\NOTEPAD.EXE");
 	return path;
 }
 
@@ -829,7 +830,7 @@ CString CMergeApp::GetDefaultEditor()
  */
 CString CMergeApp::GetDefaultFilterUserPath(BOOL bCreate /*=FALSE*/)
 {
-	CString pathMyFolders = paths_GetMyDocuments(NULL);
+	CString pathMyFolders = paths_GetMyDocuments(NULL).c_str();
 	CString pathFilters(pathMyFolders);
 	if (pathFilters.Right(1) != _T("\\"))
 		pathFilters += _T("\\");

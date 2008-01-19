@@ -2174,7 +2174,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 	for (UINT i = 0; i < fileCount; i++)
 	{
 		// if this was a shortcut, we need to expand it to the target path
-		CString expandedFile = ExpandShortcut(files[i]);
+		CString expandedFile = ExpandShortcut((LPCTSTR)files[i]).c_str();
 
 		// if that worked, we should have a real file name
 		if (!expandedFile.IsEmpty()) 

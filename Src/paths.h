@@ -28,13 +28,13 @@ void paths_normalize(String & sPath);
 String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
 bool paths_CreateIfNeeded(LPCTSTR szPath);
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
-CString ExpandShortcut(const CString &inFile);
+String ExpandShortcut(const String &inFile);
 String paths_ConcatPath(const String & path, const String & subpath);
 String paths_GetParentPath(LPCTSTR path);
-CString paths_GetLastSubdir(const CString & path);
-BOOL paths_IsPathAbsolute(const CString & path);
+String paths_GetLastSubdir(const String & path);
+BOOL paths_IsPathAbsolute(const String & path);
 String paths_EnsurePathExist(const String & sPath);
-CString paths_GetWindowsDirectory();
-CString paths_GetMyDocuments(HWND hWindow);
+String paths_GetWindowsDirectory();
+String paths_GetMyDocuments(HWND hWindow);
 
 #endif // paths_h_included

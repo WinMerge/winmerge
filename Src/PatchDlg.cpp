@@ -134,7 +134,7 @@ void CPatchDlg::OnOK()
 	}
  
 	// Check that result (patch) file is absolute path
-	if (!paths_IsPathAbsolute(m_fileResult))
+	if (!paths_IsPathAbsolute((LPCTSTR)m_fileResult))
 	{
 		ResMsgBox1(IDS_PATH_NOT_ABSOLUTE, m_fileResult, MB_ICONSTOP);
 		m_ctlResult.SetFocus();

@@ -13,7 +13,7 @@
 #include <shlobj.h>
 
 static bool IsSlash(LPCTSTR pszStart, int nPos);
-static bool GetDirName(const CString & sDir, CString& sName);
+static bool GetDirName(LPCTSTR sDir, String& sName);
 
 /** 
  * @brief Checks if char in string is slash.
@@ -115,7 +115,7 @@ void paths_normalize(String & sPath)
  * @return true if canonical name exists.
  * @todo Should we return empty string as sName when returning false?
  */
-static bool GetDirName(LPCTSTR sDir, CString& sName)
+static bool GetDirName(LPCTSTR sDir, String& sName)
 {
 	// FindFirstFile doesn't work for root:
 	// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/fileio/fs/findfirstfile.asp
@@ -270,7 +270,7 @@ bool paths_CreateIfNeeded(LPCTSTR szPath)
 	if (*szPath == '\0')
 		return false;
 
-	CString sTemp;
+	String sTemp;
 	if (GetDirName(szPath, sTemp))
 		return true;
 
@@ -286,7 +286,7 @@ bool paths_CreateIfNeeded(LPCTSTR szPath)
 	}
 	// Now fullPath holds our desired path
 
-	CString sLong;
+	String sLong;
 	TCHAR *ptr = fullPath;
 	TCHAR *end = NULL;
 
@@ -318,7 +318,7 @@ bool paths_CreateIfNeeded(LPCTSTR szPath)
 		// advance to next component (or set ptr==0 to flag end)
 		ptr = (end ? end+1 : 0);
 
-		CString sNextName;
+		String sNextName;
 		if (!GetDirName(fullPath, sNextName))
 		{
 			// try to create directory, and then double-check its existence
@@ -375,48 +375,48 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
  * @param [in] inFile Shortcut to expand.
  * @return Full path or empty string if error happened.
  */
-CString ExpandShortcut(const CString &inFile)
+String ExpandShortcut(const String &inFile)
 {
-	CString outFile;
+	String outFile;
 
-    // Make sure we have a path
-    ASSERT(inFile != _T(""));
+	// Make sure we have a path
+	ASSERT(inFile != _T(""));
 
-    IShellLink* psl;
-    HRESULT hres;
+	IShellLink* psl;
+	HRESULT hres;
 
-    // Create instance for shell link
-    hres = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
-        IID_IShellLink, (LPVOID*) &psl);
-    if (SUCCEEDED(hres))
-    {
-        // Get a pointer to the persist file interface
-        IPersistFile* ppf;
-        hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
-        if (SUCCEEDED(hres))
-        {
-	     USES_CONVERSION;
-	     LPCTSTR szFile = inFile;
-            // Load shortcut
-            hres = ppf->Load(T2CW(szFile), STGM_READ);
+	// Create instance for shell link
+	hres = ::CoCreateInstance(CLSID_ShellLink, NULL, CLSCTX_INPROC_SERVER,
+		IID_IShellLink, (LPVOID*) &psl);
+	if (SUCCEEDED(hres))
+	{
+		// Get a pointer to the persist file interface
+		IPersistFile* ppf;
+		hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
+		if (SUCCEEDED(hres))
+		{
+			USES_CONVERSION;
+			LPCTSTR szFile = inFile.c_str();
+			// Load shortcut
+			hres = ppf->Load(T2CW(szFile), STGM_READ);
 
-            if (SUCCEEDED(hres)) {
+			if (SUCCEEDED(hres))
+			{
 				WIN32_FIND_DATA wfd;
 				// find the path from that
-				HRESULT hres = psl->GetPath(outFile.GetBuffer(MAX_PATH), 
-								MAX_PATH,
-								&wfd, 
-								SLGP_UNCPRIORITY);
+				TCHAR buf[MAX_PATH] = {0};
+				HRESULT hres = psl->GetPath(buf, MAX_PATH, &wfd,
+					SLGP_UNCPRIORITY);
 
-				outFile.ReleaseBuffer();
-            }
-            ppf->Release();
-        }
-        psl->Release();
-    }
+				outFile = buf;
+			}
+			ppf->Release();
+		}
+		psl->Release();
+	}
 
 	// if this fails, outFile == ""
-    return outFile;
+	return outFile;
 }
 
 /** 
@@ -489,26 +489,22 @@ String paths_GetParentPath(LPCTSTR path)
  * @param [in] path Original path.
  * @return Last subdirectory in path.
  */
-CString paths_GetLastSubdir(const CString & path)
+String paths_GetLastSubdir(const String & path)
 {
-	CString parentPath(path);
-	int len = parentPath.GetLength();
+	String parentPath(path);
+	int len = parentPath.length();
 
 	// Remove last '\' from paths
 	if (parentPath[len - 1] == '\\')
 	{
-		parentPath.Delete(len - 1, 1);
+		parentPath.erase(len - 1, 1);
 		--len;
 	}
 
 	// Find last part of path
-	int pos = parentPath.ReverseFind('\\');
-
+	int pos = parentPath.find_last_of('\\');
 	if (pos > 2)
-	{
-		parentPath.Delete(0, pos);
-	}
-
+		parentPath.erase(0, pos);
 	return parentPath;
 }
 
@@ -517,12 +513,12 @@ CString paths_GetLastSubdir(const CString & path)
  * @param [in] path Path to check.
  * @return TRUE if given path is absolute path.
  */
-BOOL paths_IsPathAbsolute(const CString &path)
+BOOL paths_IsPathAbsolute(const String &path)
 {
-	if (path.GetLength() < 3)
+	if (path.length() < 3)
 		return FALSE;
 	
-	int pos = path.ReverseFind('\\');
+	int pos = path.find_last_of('\\');
 
 	// Absolute path must have "\" and cannot start with it.
 	// Also "\\blahblah" is invalid.
@@ -568,12 +564,11 @@ String paths_EnsurePathExist(const String & sPath)
  * @brief Get Windows directory.
  * @return Windows directory.
  */
-CString paths_GetWindowsDirectory()
+String paths_GetWindowsDirectory()
 {
-	CString str;
-	GetWindowsDirectory(str.GetBuffer(MAX_PATH), MAX_PATH);
-	str.ReleaseBuffer();
-	return str;
+	TCHAR buf[MAX_PATH] = {0};
+	GetWindowsDirectory(buf, MAX_PATH);
+	return buf;
 }
 
 /**
@@ -582,16 +577,16 @@ CString paths_GetWindowsDirectory()
  * @param [in] hWindow Parent window.
  * @return Full path to My Documents -folder.
  */
-CString paths_GetMyDocuments(HWND hWindow)
+String paths_GetMyDocuments(HWND hWindow)
 {
 	LPITEMIDLIST pidl;
 	LPMALLOC pMalloc;
-	CString path;
-	TCHAR szPath[MAX_PATH] = {0};
+	String path;
 
 	HRESULT rv = SHGetSpecialFolderLocation(hWindow, CSIDL_PERSONAL, &pidl);
 	if (rv == S_OK)
 	{
+		TCHAR szPath[MAX_PATH] = {0};
 		if (SHGetPathFromIDList(pidl, szPath))
 		{
 			path = szPath;
