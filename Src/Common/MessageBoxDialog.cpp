@@ -1238,7 +1238,7 @@ void CMessageBoxDialog::CreateMessageControl ( )
 
 	// Draw the text and retrieve the size of the text.
 	dcDisplay.DrawText(m_strMessage.c_str(), rcMessage, DT_LEFT | DT_NOPREFIX | 
-		DT_WORDBREAK | DT_CALCRECT);
+		DT_WORDBREAK | DT_EXPANDTABS | DT_CALCRECT);
 
 	// Save the size required for the message.
 	m_sMessage = rcMessage.Size();
