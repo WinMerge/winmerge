@@ -111,6 +111,7 @@ BEGIN
     BEGIN
         MENUITEM "&New\tCtrl+N",                ID_FILE_NEW
         MENUITEM "&Open...\tCtrl+O",            ID_FILE_OPEN
+        MENUITEM "Op&en Conflict File...",      ID_FILE_OPENCONFLICT
         MENUITEM SEPARATOR
         MENUITEM "Open Project...\tCtrl+J",     ID_FILE_OPENPROJECT
         MENUITEM "Sa&ve Project...",            ID_FILE_SAVEPROJECT
@@ -2006,6 +2007,8 @@ BEGIN
     IDS_FILE_COMPARISON_TITLE "File Comparison"
     IDS_EMPTY_LEFT_FILE     "Untitled left"
     IDS_EMPTY_RIGHT_FILE    "Untitled right"
+    IDS_CONFLICT_THEIRS_FILE "Theirs File"
+    IDS_CONFLICT_MINE_FILE   "Mine File"
 END
 
 // STATUS BAR : CURRENT OPERATION STATUS
@@ -2065,6 +2068,7 @@ BEGIN
     IDS_BINFILES_DIFFERENT   "%1\n%2\n\nare different binary files."
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
     IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
+    IDS_ERROR_CONF_RESOLVE  "Failed to parse conflict file."
 END
 
 // SAVING FILE
@@ -2751,6 +2755,7 @@ BEGIN
     ID_EOL_TO_MAC           "Convert EOL to MAC mode"
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
     ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
+    ID_FILE_OPENCONFLICT    "Open and resolve conflict file"
 END
 
 // EDIT MENU

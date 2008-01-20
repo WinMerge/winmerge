@@ -515,6 +515,8 @@
 #define IDS_FILE_COMPARISON_TITLE       16801
 #define IDS_EMPTY_LEFT_FILE             16802
 #define IDS_EMPTY_RIGHT_FILE            16803
+#define IDS_CONFLICT_THEIRS_FILE        16804
+#define IDS_CONFLICT_MINE_FILE          16805
 #define IDS_STATUS_RESCANNING           16816
 #define IDS_STATUS_OPENING_SELECTION    16817
 #define IDS_STATUS_COPYL2R              16818
@@ -549,6 +551,7 @@
 #define IDS_BINFILES_DIFFERENT          17219
 #define IDS_OTHER_IS_BINARY             17220
 #define IDS_ERROR_FILEOPEN              17221
+#define IDS_ERROR_CONF_RESOLVE          17222
 #define IDS_SAVE_AS_TITLE               17232
 #define IDS_SAVE_FMT                    17233
 #define IDS_SAVEREADONLY_FMT            17234
@@ -1093,6 +1096,7 @@
 #define ID_VIEW_SWAPPANES               33097
 #define ID_FILE_SAVEPROJECT             33098
 #define ID_FILE_ENCODING                33100
+#define ID_FILE_OPENCONFLICT            33101
 #define IDS_FILES_AFFECTED_FMT          33110
 #define IDS_FILES_AFFECTED_FMT2         33111
 #define IDS_AUTOCOMPLETE_DISABLED       33112

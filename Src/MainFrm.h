@@ -29,6 +29,7 @@
 #if !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
+#include <vector>
 #include "ToolBarXPThemes.h"
 #include "MDITabBar.h"
 #include "OptionsMgr.h"
@@ -36,6 +37,8 @@
 struct FileLocation;
 
 #define BACKUP_FILE_EXT   _T(".bak")
+
+using namespace std;
 
 /**
  * @brief Flags used when opening files
@@ -71,6 +74,7 @@ class CMergeEditView;
 class CMergeDiffDetailView;
 class SyntaxColors;
 class LineFiltersList;
+class TempFile;
 
 
 // typed lists (homogenous pointer lists)
@@ -226,6 +230,7 @@ protected:
 	};
 	BCMenu * m_pMenus[MENU_COUNT]; /**< Menus for different views */
 	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
+	std::vector<TempFile*> m_tempFiles; /**< List of possibly needed temp files. */
 
 // Generated message map functions
 protected:
@@ -317,6 +322,7 @@ private:
 	void LoadToolbarImages();
 public:
 	afx_msg void OnHelpReleasenotes();
+	afx_msg void OnFileOpenConflict();
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object

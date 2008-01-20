@@ -27,7 +27,7 @@
 // $Id$
 
 #include "stdafx.h"
-
+#include <vector>
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
 #include "Merge.h"
@@ -44,7 +44,7 @@
 #include "LocationView.h"
 #include "SyntaxColors.h"
 #include "LineFiltersList.h"
-
+#include "ConflictFileParser.h"
 #include "coretools.h"
 #include "Splash.h"
 #include "PropLineFilter.h"
@@ -88,6 +88,8 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
+
+using namespace std;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
@@ -165,6 +167,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
+	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -260,6 +263,15 @@ CMainFrame::~CMainFrame()
 
 	// Delete all temporary folders belonging to this process
 	GetClearTempPath(NULL, NULL);
+
+	// Remove files from temp file list.
+	while (!m_tempFiles.empty())
+	{
+		TempFile *temp = m_tempFiles.back();
+		temp->Delete();
+		delete temp;
+		m_tempFiles.pop_back();
+	}
 
 	delete m_pLineFilters;
 	delete m_pMenus[MENU_DEFAULT];
@@ -3433,4 +3445,49 @@ void CMainFrame::OnHelpReleasenotes()
 {
 	String sPath = GetModulePath(0) + RelNotes;
 	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+}
+
+/**
+ * @brief Select and open conflict file for resolving.
+ * This function lets user to select conflict file to resolve.
+ * Then we parse conflict file to two files to "merge" and
+ * save resulting file over original file.
+ */
+void CMainFrame::OnFileOpenConflict()
+{
+	CString conflictFile;
+	if (SelectFile(GetSafeHwnd(), conflictFile))
+	{
+		String confl = (LPCTSTR)conflictFile;
+		
+		// Create temp files and put them into the list,
+		// from where they get deleted when MainFrame is deleted.
+		TempFile *wTemp = new TempFile();
+		String workFile = wTemp->Create(_T("confw_"));
+		m_tempFiles.push_back(wTemp);
+		TempFile *vTemp = new TempFile();
+		String revFile = vTemp->Create(_T("confv_"));
+		m_tempFiles.push_back(vTemp);
+
+		// Parse conflict file into two files.
+		bool inners;
+		bool success = ParseConflictFile(confl, workFile, revFile, inners);
+
+		if (success)
+		{
+			// Open two parsed files to WinMerge, telling WinMerge to
+			// save over original file (given as third filename).
+			m_strSaveAsPath = conflictFile;
+			String theirs = LoadResString(IDS_CONFLICT_THEIRS_FILE);
+			String my = LoadResString(IDS_CONFLICT_MINE_FILE);
+			m_strDescriptions[0] = theirs;
+			m_strDescriptions[1] = my;
+			DoFileOpen(workFile.c_str(), revFile.c_str(), 
+					FFILEOPEN_READONLY |FFILEOPEN_NOMRU, FFILEOPEN_NOMRU );
+		}
+		else
+		{
+			LangMessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
+		}
+	}
 }

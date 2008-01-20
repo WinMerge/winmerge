@@ -269,6 +269,10 @@ SOURCE=.\ConfirmFolderCopyDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\ConflictFileParser.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\coretools.cpp
 # ADD CPP /YX
 # End Source File
@@ -1098,6 +1102,10 @@ SOURCE=.\ConfigLog.h
 # Begin Source File
 
 SOURCE=.\ConfirmFolderCopyDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ConflictFileParser.h
 # End Source File
 # Begin Source File
 
