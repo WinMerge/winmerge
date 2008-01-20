@@ -143,6 +143,7 @@ WinMerge includes code from:
 * Brent Corkum (BCMenu)
 * Paul DiLascia (CStaticLink) 
 * Michael Dunn (CShellFileOp)
+* Francis Irving (original conflict file parser)
 * Michael P. Mehl (CMessageBoxDialog)
 * Cristi Posea (CSizingControlBar)
 * Ferdinand Prantl (CrystalEditor syntax rules)
