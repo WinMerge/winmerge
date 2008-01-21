@@ -66,6 +66,7 @@ BEGIN_MESSAGE_MAP(CPropLineFilter, CPropertyPage)
 	ON_BN_CLICKED(IDC_LFILTER_REMOVEBTN, OnBnClickedLfilterRemovebtn)
 	ON_BN_CLICKED(IDC_LFILTER_EDITSAVE, OnBnClickedLfilterEditsave)
 	ON_NOTIFY(LVN_ITEMACTIVATE, IDC_LFILTER_LIST, OnLvnItemActivateLfilterList)
+	ON_EN_KILLFOCUS(IDC_LFILTER_EDITBOX, OnEnKillfocusLfilterEditbox)
 END_MESSAGE_MAP()
 
 
@@ -247,19 +248,7 @@ void CPropLineFilter::OnBnClickedLfilterRemovebtn()
  */
 void CPropLineFilter::OnBnClickedLfilterEditsave()
 {
-	ASSERT(m_bEditing);
-
-	int sel =- 1;
-	sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
-	if (sel != -1)
-	{
-		CString text;
-		m_editRegexp.GetWindowText(text);
-		m_filtersList.SetItemText(sel, 0, text);
-	}
-	m_bEditing = FALSE;
-	m_editRegexp.SetReadOnly(TRUE);
-	m_saveRegexp.EnableWindow(FALSE);
+	SaveItem();
 }
 
 /**
@@ -298,4 +287,33 @@ void CPropLineFilter::OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResu
 	CString text = m_filtersList.GetItemText(item, 0);
 	m_editRegexp.SetWindowText(text);
 	*pResult = 0;
+}
+
+/**
+ * @brief Save the current filter in edit box.
+ */
+void CPropLineFilter::SaveItem()
+{
+	if (m_bEditing)
+	{
+		int sel =- 1;
+		sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
+		if (sel != -1)
+		{
+			CString text;
+			m_editRegexp.GetWindowText(text);
+			m_filtersList.SetItemText(sel, 0, text);
+		}
+		m_bEditing = FALSE;
+		m_editRegexp.SetReadOnly(TRUE);
+		m_saveRegexp.EnableWindow(FALSE);
+	}
+}
+
+/**
+ * @brief Called when filter edit box loses its focus.
+ */
+void CPropLineFilter::OnEnKillfocusLfilterEditbox()
+{
+	SaveItem();
 }

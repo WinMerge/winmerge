@@ -1,11 +1,3 @@
-// PropLineFilter.h : header file
-//
-
-#include "afxcmn.h"
-#include "afxwin.h"
-#if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
-#define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
-
 /** 
  * @file  PropLineFilter.h
  *
@@ -14,6 +6,11 @@
  */
 // ID line follows -- this is updated by SVN
 // $Id$
+
+#include "afxcmn.h"
+#include "afxwin.h"
+#if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
+#define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
 
 class LineFiltersList;
 
@@ -59,12 +56,14 @@ protected:
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	afx_msg void OnBnClickedLfilterEditsave();
 	afx_msg void OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnEnKillfocusLfilterEditbox();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
 	void InitList();
 	int AddRow(LPCTSTR filter = NULL, BOOL enabled = FALSE);
 	void EditSelectedFilter();
+	void SaveItem();
 
 private:
 	CListCtrl m_filtersList; /**< List control having filter strings */
