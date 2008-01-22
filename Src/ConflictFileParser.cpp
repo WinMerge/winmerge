@@ -31,6 +31,14 @@
 #include "UnicodeString.h"
 #include "UniFile.h"
 
+// Note: keep these strings in "wrong" ord so we can resolve this file :)
+/** @brief String separating Mine and Theirs blocks. */
+static const TCHAR Separator[] = _T("=======");
+/** @brief String ending Theirs block (and conflict). */
+static const TCHAR TheirsEnd[] = _T(">>>>>>> ");
+/** @brief String starting Mine block (and conflict). */
+static const TCHAR MineBegin[] = _T("<<<<<<< ");
+
 #include "ConflictFileParser.h"
 
 // Parse a file
@@ -73,7 +81,7 @@ bool ParseConflictFile(const String &conflictFileName,
 			// in common section
 		case 0:
 			// search beginning of conflict section
-			pos = line.find(_T("<<<<<<< "));
+			pos = line.find(MineBegin);
 			if (pos == 0)
 			{
 				// working copy section starts
@@ -100,7 +108,7 @@ bool ParseConflictFile(const String &conflictFileName,
 			// in working copy section
 		case 1:
 			// search beginning of conflict section
-			pos = line.find(_T("<<<<<<< "));
+			pos = line.find(MineBegin);
 			if (pos == 0)
 			{
 				// nested conflict section starts
@@ -113,7 +121,7 @@ bool ParseConflictFile(const String &conflictFileName,
 			}
 			else
 			{
-				pos = line.find(_T("======="));
+				pos = line.find(Separator);
 				if ((pos != std::string::npos) && (pos == (line.length() - 7)))
 				{
 					line = line.substr(0, pos);
@@ -143,7 +151,7 @@ bool ParseConflictFile(const String &conflictFileName,
 			// in new revision section
 		case 2:
 			// search beginning of nested conflict section
-			pos = line.find(_T("<<<<<<< "));
+			pos = line.find(MineBegin);
 			if (pos == 0)
 			{
 				// nested conflict section starts
@@ -156,7 +164,7 @@ bool ParseConflictFile(const String &conflictFileName,
 			}
 			else
 			{
-				pos = line.find(_T(">>>>>>> "));
+				pos = line.find(TheirsEnd);
 				if (pos != std::string::npos)
 				{
 					revision = line.substr(pos + 8);
@@ -189,14 +197,14 @@ bool ParseConflictFile(const String &conflictFileName,
 		case 3:
 			// search beginning of nested conflict section
 			bNestedConflicts = true;
-			pos = line.find(_T("<<<<<<< "));
+			pos = line.find(MineBegin);
 			if (pos == 0)
 			{
 				iNestingLevel++;
 			}
 			else
 			{
-				pos = line.find(_T(">>>>>>> "));
+				pos = line.find(TheirsEnd);
 				if (pos != std::string::npos)
 				{
 					if (iNestingLevel == 0)
@@ -219,14 +227,14 @@ bool ParseConflictFile(const String &conflictFileName,
 			// in nested section in new revision section
 		case 4:
 			// search beginning of nested conflict section
-			pos = line.find(_T("<<<<<<< "));
+			pos = line.find(MineBegin);
 			if (pos == 0)
 			{
 				iNestingLevel++;
 			}
 			else
 			{
-				pos = line.find(_T(">>>>>>> "));
+				pos = line.find(TheirsEnd);
 				if (pos != std::string::npos)
 				{
 					if (iNestingLevel == 0)
