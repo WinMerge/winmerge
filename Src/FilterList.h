@@ -12,8 +12,6 @@
 #include <vector>
 #include "pcre.h"
 
-using namespace std;
-
 /**
  * @brief Container for one filtering rule / compiled expression.
  * This structure holds compiled regular expression and a original expression
@@ -54,7 +52,7 @@ public:
 	const char * GetLastMatchExpression();
 
 private:
-	vector <filter_item> m_list;
+	std::vector <filter_item> m_list;
 	char * m_lastMatchExpression;
 
 };

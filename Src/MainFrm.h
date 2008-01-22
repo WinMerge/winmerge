@@ -38,8 +38,6 @@ struct FileLocation;
 
 #define BACKUP_FILE_EXT   _T(".bak")
 
-using namespace std;
-
 /**
  * @brief Flags used when opening files
  */

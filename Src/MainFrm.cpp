@@ -89,8 +89,6 @@ static char THIS_FILE[] = __FILE__;
 
 static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
 
-using namespace std;
-
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame
 

@@ -11,8 +11,6 @@
 #include "FilterList.h"
 #include "pcre.h"
 
-using namespace std;
-
 /** 
  * @brief Constructor.
  */
