@@ -77,10 +77,11 @@ String TempFile::CreateFromFile(LPCTSTR filepath, LPCTSTR prefix)
 	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
 	if (!temp.empty())
 	{
+		// Scratchpads don't have a file to copy.
+		m_path = temp;
 		if (::CopyFile(filepath, temp.c_str(), FALSE))
 		{
 			::SetFileAttributes(temp.c_str(), FILE_ATTRIBUTE_NORMAL);
-			m_path = temp;
 		}
 	}
 	return temp;
