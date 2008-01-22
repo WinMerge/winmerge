@@ -177,6 +177,7 @@ BEGIN
         MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
@@ -292,6 +293,7 @@ BEGIN
         MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
@@ -474,6 +476,7 @@ BEGIN
         MENUITEM "&Search...",                  ID_HELP_SEARCH
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
+        MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
         MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
@@ -2859,6 +2862,7 @@ BEGIN
     ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
     ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
     ID_HELP_RELEASENOTES    "Opens the release notes document\nRelease Notes"
+    ID_HELP_TRANSLATIONS    "Opens the translations website\nTranslations"
 END
 
 // PLUGINS DIALOGS AND DYNAMIC MENUS

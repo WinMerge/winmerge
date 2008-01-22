@@ -1150,6 +1150,7 @@
 #define ID_HELP_RELEASENOTES            33168
 #define ID_VIEW_ZOOMIN                  33169
 #define ID_VIEW_ZOOMOUT                 33170
+#define ID_HELP_TRANSLATIONS            33171
 
 // Next default values for new objects
 //
@@ -1157,7 +1158,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
-#define _APS_NEXT_COMMAND_VALUE         33171
+#define _APS_NEXT_COMMAND_VALUE         33172
 #define _APS_NEXT_CONTROL_VALUE         1338
 #define _APS_NEXT_SYMED_VALUE           113
 #endif

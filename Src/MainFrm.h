@@ -322,6 +322,7 @@ private:
 	void LoadToolbarImages();
 public:
 	afx_msg void OnHelpReleasenotes();
+	afx_msg void OnHelpTranslations();
 	afx_msg void OnFileOpenConflict();
 };
 

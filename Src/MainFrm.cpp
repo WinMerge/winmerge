@@ -165,6 +165,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
+  ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -193,6 +194,9 @@ static const TCHAR DocsURL[] = _T("http://winmerge.org/2.6/manual/index.html");
 
 /** @brief Release notes in HTML format. */
 static const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
+
+/** @brief URL to translations page in internet. */
+static const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");
 
 /** @brief Timer ID for window flashing timer. */
 static const UINT ID_TIMER_FLASH = 1;
@@ -3468,6 +3472,15 @@ void CMainFrame::OnHelpReleasenotes()
 {
 	String sPath = GetModulePath(0) + RelNotes;
 	ShellExecute(NULL, _T("open"), sPath.c_str(), NULL, NULL, SW_SHOWNORMAL);
+}
+
+/**
+ * @brief Shows the translations page.
+ * This function opens translations page URL into browser.
+ */
+void CMainFrame::OnHelpTranslations()
+{
+	ShellExecute(NULL, _T("open"), TranslationsUrl, NULL, NULL, SW_SHOWNORMAL);
 }
 
 /**
