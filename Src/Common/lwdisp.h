@@ -22,7 +22,7 @@ DATE:		BY:					DESCRIPTION:
 ==========	==================	================================================
 2003/11/28	Laoran 				      header and RCS ID
 */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef __LWDISP_H__
@@ -219,7 +219,7 @@ struct LWDispatch
 
 const struct LWDispVtbl *NTAPI LWDispSubclass(struct LWDispVtbl *);
 
-IDispatch *NTAPI LWDispatch(void *target, const void *map,
+IDispatch *NTAPI LWDispatch(void *target, const void *disp_map,
 							const struct LWDispVtbl *, struct LWDispatch *);
 
 // functions to build VARIANT arguments from various data types

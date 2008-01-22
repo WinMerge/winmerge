@@ -35,9 +35,10 @@ DATE:		BY:					DESCRIPTION:
 2003/11/06	NOBODY@ALL			incredible number of changes for unknown reasons
 2003/11/18	Laoran				CreateDispatchBySource : avoid crash if loading dll fails
 2003/11/18	Laoran				CreateDispatchBySource, cosmetic : move dll load&object creation after the CLSID search (= less indentations)
-2004/01/08      Perry                           Updated function comment preceding ReportError 
+2004/01/08  Perry               Updated function comment preceding ReportError
+2008/01/22  Kimmo               Changed map argument name to disp_map to not confuse VC6
 */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 //#define _WIN32_IE		0x0300
@@ -564,7 +565,7 @@ const struct LWDispVtbl *NTAPI LWDispSubclass(struct LWDispVtbl *lpVtbl)
 	return &vtbl;
 }
 
-IDispatch *NTAPI LWDispatch(void *target, const void *map,
+IDispatch *NTAPI LWDispatch(void *target, const void *disp_map,
 	const struct LWDispVtbl *lpVtbl, struct LWDispatch *This)
 {
 	if (lpVtbl == 0)
@@ -573,7 +574,7 @@ IDispatch *NTAPI LWDispatch(void *target, const void *map,
 		This = (struct LWDispatch *)malloc(sizeof(*This));
 	This->lpVtbl = lpVtbl;
 	This->target = target;
-	This->map = (const struct LWDispMap *)map;
+	This->map = (const struct LWDispMap *)disp_map;
 	This->refc = 0;
 	return (IDispatch *)This;
 }
