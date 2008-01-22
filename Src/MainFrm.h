@@ -48,6 +48,7 @@ enum
 	FFILEOPEN_NONE		= 0x0000,
 	FFILEOPEN_NOMRU		= 0x0001, /**< Do not add this path to MRU list */
 	FFILEOPEN_READONLY	= 0x0002, /**< Open this path as read-only */
+	FFILEOPEN_MODIFIED  = 0x0004, /**< Mark file modified after opening. */
 	FFILEOPEN_CMDLINE	= 0x0010, /**< Path is read from commandline */
 	FFILEOPEN_PROJECT	= 0x0020, /**< Path is read from project-file */
 };
@@ -116,7 +117,8 @@ public:
 	BOOL DoFileOpen(LPCTSTR pszLeft = NULL, LPCTSTR pszRight = NULL,
 		DWORD dwLeftFlags = 0, DWORD dwRightFlags = 0, BOOL bRecurse = FALSE, CDirDoc *pDirDoc = NULL, CString prediffer = _T(""));
 	int ShowMergeDoc(CDirDoc * pDirDoc, const FileLocation & filelocLeft,
-		const FileLocation & filelocRight, BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker = NULL);
+		const FileLocation & filelocRight, DWORD dwLeftFlags = 0,
+		DWORD dwRightFlags = 0, PackingInfo * infoUnpacker = NULL);
 	void UpdateResources();
 	BOOL CreateBackup(BOOL bFolder, LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);

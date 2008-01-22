@@ -1161,8 +1161,11 @@ void CDirView::OpenSelection(PackingInfo * infoUnpacker /*= NULL*/)
 		FileLocation filelocRight(pathRight.c_str());
 		filelocRight.encoding = di2->right.encoding;
 
+		DWORD leftFlags = bLeftRO ? FFILEOPEN_READONLY : 0;
+		DWORD rightFlags = bRightRO ? FFILEOPEN_READONLY : 0;
+
 		int rtn = GetMainFrame()->ShowMergeDoc(pDoc, filelocLeft, filelocRight,
-			bLeftRO, bRightRO, infoUnpacker);
+			leftFlags, rightFlags, infoUnpacker);
 		if (rtn == OPENRESULTS_FAILED_BINARY)
 		{
 			if (di1 == di2)

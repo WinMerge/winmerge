@@ -640,15 +640,19 @@ FileLocationGuessEncodings(FileLocation & fileloc, BOOL bGuessEncoding)
 }
 
 /**
- * @brief Creates new MergeDoc instance and shows documents
- *
- * @param cpleft, cpright : left and right codepages
- * = -1 when the file must be parsed
+ * @brief Creates new MergeDoc instance and shows documents.
+ * @param [in] pDirDoc Dir compare document to create a new Merge document for.
+ * @param [in] ifilelocLeft Left side file location info.
+ * @param [in] ifilelocRight Right side file location info.
+ * @param [in] dwLeftFlags Left side flags.
+ * @param [in] dwRightFlags Right side flags.
+ * @param [in] infoUnpacker Plugin info.
  * @return OPENRESULTS_TYPE for success/failure code.
  */
 int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	const FileLocation & ifilelocLeft, const FileLocation & ifilelocRight,
-	BOOL bROLeft, BOOL bRORight, PackingInfo * infoUnpacker /*= NULL*/)
+	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/,
+	PackingInfo * infoUnpacker /*= NULL*/)
 {
 	BOOL docNull;
 	CMergeDoc * pMergeDoc = GetMergeDocToShow(pDirDoc, &docNull);
@@ -725,11 +729,24 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 	}
 
 	// Note that OpenDocs() takes care of closing compare window when needed.
+	BOOL bLeftRO = (dwLeftFlags & FFILEOPEN_READONLY) > 0;
+	BOOL bRightRO = (dwRightFlags & FFILEOPEN_READONLY) > 0;
 	OPENRESULTS_TYPE openResults = pMergeDoc->OpenDocs(filelocLeft, filelocRight,
-			bROLeft, bRORight);
+			bLeftRO, bRightRO);
 
 	if (openResults == OPENRESULTS_SUCCESS)
 	{
+		BOOL bLeftModified = (dwLeftFlags & FFILEOPEN_MODIFIED) > 0;
+		BOOL bRightModified = (dwRightFlags & FFILEOPEN_MODIFIED) > 0;
+		if (bLeftModified || bRightModified)
+		{
+			if (bLeftModified)
+				pMergeDoc->m_ptBuf[0]->SetModified(TRUE);
+			if (bRightModified)
+				pMergeDoc->m_ptBuf[1]->SetModified(TRUE);
+			pMergeDoc->UpdateHeaderPath(1);
+		}
+
 		if (docNull)
 		{
 			CWnd* pWnd = pMergeDoc->GetParentFrame();
@@ -1009,7 +1026,15 @@ void CMainFrame::OnOptions()
 }
 
 /**
- * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing
+ * @brief Begin a diff: open dirdoc if it is directories, else open a mergedoc for editing.
+ * @param [in] pszLeft Left-side path.
+ * @param [in] pszRight Right-side path.
+ * @param [in] dwLeftFlags Left-side flags.
+ * @param [in] dwRightFlags Right-side flags.
+ * @param [in] bRecurse Do we run recursive (folder) compare?
+ * @param [in] pDirDoc Dir compare document to use.
+ * @param [in] prediffer Prediffer plugin name.
+ * @return TRUE if opening files and compare succeeded, FALSE otherwise.
  */
 BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/,
 	DWORD dwLeftFlags /*=0*/, DWORD dwRightFlags /*=0*/, BOOL bRecurse /*=FALSE*/, CDirDoc *pDirDoc/*=NULL*/,
@@ -1236,7 +1261,7 @@ BOOL CMainFrame::DoFileOpen(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*
 			pDirDoc->SetPluginPrediffer(strBothFilenames, prediffer);
 		}
 
-		ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, bROLeft, bRORight,
+		ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, dwLeftFlags, dwRightFlags,
 			&infoUnpacker);
 	}
 	return TRUE;
@@ -2529,7 +2554,7 @@ void CMainFrame::OnFileNew()
 	m_strDescriptions[1] = theApp.LoadString(IDS_EMPTY_RIGHT_FILE);
 	FileLocation filelocLeft; // empty, unspecified (so default) encoding
 	FileLocation filelocRight;
-	ShowMergeDoc(pDirDoc, filelocLeft, filelocRight, FALSE, FALSE);
+	ShowMergeDoc(pDirDoc, filelocLeft, filelocRight);
 
 	// Empty descriptors now that docs are open
 	m_strDescriptions[0].erase();
@@ -3452,6 +3477,11 @@ void CMainFrame::OnHelpReleasenotes()
  * This function lets user to select conflict file to resolve.
  * Then we parse conflict file to two files to "merge" and
  * save resulting file over original file.
+ *
+ * Set left-side file read-only as it is the repository file which cannot
+ * be modified anyway. Right-side file is user's file which is set as
+ * modified by default so user can just save it and accept workspace
+ * file as resolved file.
  */
 void CMainFrame::OnFileOpenConflict()
 {
@@ -3482,8 +3512,10 @@ void CMainFrame::OnFileOpenConflict()
 			String my = LoadResString(IDS_CONFLICT_MINE_FILE);
 			m_strDescriptions[0] = theirs;
 			m_strDescriptions[1] = my;
+
 			DoFileOpen(revFile.c_str(), workFile.c_str(),
-					FFILEOPEN_READONLY |FFILEOPEN_NOMRU, FFILEOPEN_NOMRU );
+					FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
+					FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED);
 		}
 		else
 		{
