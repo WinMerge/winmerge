@@ -3482,7 +3482,7 @@ void CMainFrame::OnFileOpenConflict()
 			String my = LoadResString(IDS_CONFLICT_MINE_FILE);
 			m_strDescriptions[0] = theirs;
 			m_strDescriptions[1] = my;
-			DoFileOpen(workFile.c_str(), revFile.c_str(), 
+			DoFileOpen(revFile.c_str(), workFile.c_str(),
 					FFILEOPEN_READONLY |FFILEOPEN_NOMRU, FFILEOPEN_NOMRU );
 		}
 		else
