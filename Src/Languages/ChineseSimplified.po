@@ -72,7 +72,7 @@ msgstr "剪切(&U)"
 
 #: Merge.rc:81
 #: Merge.rc:103
-#: Merge.rc:495
+#: Merge.rc:498
 #, c-format
 msgid "&Copy"
 msgstr "复制(&C)"
@@ -84,7 +84,7 @@ msgid "&Paste"
 msgstr "粘贴(&P)"
 
 #: Merge.rc:84
-#: Merge.rc:576
+#: Merge.rc:579
 #, c-format
 msgid "&Goto..."
 msgstr "转到(&G)..."
@@ -95,43 +95,43 @@ msgid "Op&en"
 msgstr "打开(&E)"
 
 #: Merge.rc:88
-#: Merge.rc:518
-#: Merge.rc:524
+#: Merge.rc:521
+#: Merge.rc:527
 #, c-format
 msgid "with &Registered Application"
 msgstr "用默认程序(&R)"
 
 #: Merge.rc:89
-#: Merge.rc:519
-#: Merge.rc:525
+#: Merge.rc:522
+#: Merge.rc:528
 #, c-format
 msgid "with &External Editor"
 msgstr "用外部编辑器(&E)"
 
 #: Merge.rc:90
-#: Merge.rc:520
-#: Merge.rc:526
+#: Merge.rc:523
+#: Merge.rc:529
 #, c-format
 msgid "&with..."
 msgstr "选择程序(&W)..."
 
 #: Merge.rc:110
-#: Merge.rc:190
-#: Merge.rc:305
+#: Merge.rc:191
+#: Merge.rc:307
 #, c-format
 msgid "&File"
 msgstr "文件(&F)"
 
 #: Merge.rc:112
-#: Merge.rc:192
-#: Merge.rc:307
+#: Merge.rc:193
+#: Merge.rc:309
 #, c-format
 msgid "&New\tCtrl+N"
 msgstr "新建(&N)\tCtrl+N"
 
 #: Merge.rc:113
-#: Merge.rc:193
-#: Merge.rc:308
+#: Merge.rc:194
+#: Merge.rc:310
 #, c-format
 msgid "&Open...\tCtrl+O"
 msgstr "打开(&O)...\tCtrl+O"
@@ -147,8 +147,8 @@ msgid "Open Project...\tCtrl+J"
 msgstr "打开工程...\tCtrl+J"
 
 #: Merge.rc:117
-#: Merge.rc:196
-#: Merge.rc:311
+#: Merge.rc:197
+#: Merge.rc:313
 #, c-format
 msgid "Sa&ve Project..."
 msgstr "保存工程(&V)..."
@@ -159,1845 +159,1852 @@ msgid "Recent Projects"
 msgstr "最近打开的工程"
 
 #: Merge.rc:121
-#: Merge.rc:203
-#: Merge.rc:343
+#: Merge.rc:204
+#: Merge.rc:345
 #, c-format
 msgid "E&xit"
 msgstr "退出(&X)"
 
 #: Merge.rc:123
-#: Merge.rc:205
-#: Merge.rc:345
+#: Merge.rc:206
+#: Merge.rc:347
 #, c-format
 msgid "&Edit"
 msgstr "编辑(&E)"
 
 #: Merge.rc:125
-#: Merge.rc:209
-#: Merge.rc:379
+#: Merge.rc:210
+#: Merge.rc:381
 #, c-format
 msgid "&Options..."
 msgstr "选项(&O)..."
 
 #: Merge.rc:127
-#: Merge.rc:211
-#: Merge.rc:381
+#: Merge.rc:212
+#: Merge.rc:383
 #, c-format
 msgid "&View"
 msgstr "视图(&V)"
 
 #: Merge.rc:129
-#: Merge.rc:222
-#: Merge.rc:383
+#: Merge.rc:223
+#: Merge.rc:385
 #, c-format
 msgid "Select &Font..."
 msgstr "选择字体(&F)..."
 
 #: Merge.rc:130
-#: Merge.rc:223
-#: Merge.rc:384
+#: Merge.rc:224
+#: Merge.rc:386
 #, c-format
 msgid "Use Default F&ont"
 msgstr "使用默认字体(&O)"
 
 #: Merge.rc:132
-#: Merge.rc:225
-#: Merge.rc:401
+#: Merge.rc:226
+#: Merge.rc:403
 #, c-format
 msgid "&Toolbar"
 msgstr "工具栏(&T)"
 
 #: Merge.rc:134
-#: Merge.rc:227
-#: Merge.rc:403
+#: Merge.rc:228
+#: Merge.rc:405
 #, c-format
 msgid "&None"
 msgstr "无(&N)"
 
 #: Merge.rc:135
-#: Merge.rc:228
-#: Merge.rc:404
+#: Merge.rc:229
+#: Merge.rc:406
 #, c-format
 msgid "&Small"
 msgstr "小(&S)"
 
 #: Merge.rc:136
-#: Merge.rc:229
-#: Merge.rc:405
+#: Merge.rc:230
+#: Merge.rc:407
 #, c-format
 msgid "&Big"
 msgstr "大(&B)"
 
 #: Merge.rc:138
-#: Merge.rc:231
-#: Merge.rc:407
+#: Merge.rc:232
+#: Merge.rc:409
 #, c-format
 msgid "&Status Bar"
 msgstr "状态栏(&S)"
 
 #: Merge.rc:139
-#: Merge.rc:232
-#: Merge.rc:408
+#: Merge.rc:233
+#: Merge.rc:410
 #, c-format
 msgid "Ta&b Bar"
 msgstr "标签栏(&B)"
 
 #: Merge.rc:141
-#: Merge.rc:235
-#: Merge.rc:412
+#: Merge.rc:236
+#: Merge.rc:414
 #, c-format
 msgid "&Language..."
 msgstr "语言(&L)..."
 
 #: Merge.rc:143
-#: Merge.rc:256
-#: Merge.rc:434
+#: Merge.rc:257
+#: Merge.rc:436
 #, c-format
 msgid "&Tools"
 msgstr "工具(&T)"
 
 #: Merge.rc:145
-#: Merge.rc:259
-#: Merge.rc:436
+#: Merge.rc:260
+#: Merge.rc:438
 #, c-format
 msgid "&Filters..."
 msgstr "过滤器(&F)..."
 
 #: Merge.rc:146
-#: Merge.rc:260
-#: Merge.rc:437
+#: Merge.rc:261
+#: Merge.rc:439
 #, c-format
 msgid "&Generate Patch..."
 msgstr "生成 Patch(&G)..."
 
 #: Merge.rc:148
-#: Merge.rc:263
-#: Merge.rc:440
+#: Merge.rc:264
+#: Merge.rc:442
 #, c-format
 msgid "&Plugins"
 msgstr "插件(&P)"
 
 #: Merge.rc:150
-#: Merge.rc:265
-#: Merge.rc:442
+#: Merge.rc:266
+#: Merge.rc:444
 #, c-format
 msgid "&Manual Unpacking"
 msgstr "手动解包(&M)"
 
 #: Merge.rc:151
-#: Merge.rc:266
-#: Merge.rc:443
+#: Merge.rc:267
+#: Merge.rc:445
 #, c-format
 msgid "&Automatic Unpacking"
 msgstr "自动解包(&A)"
 
 #: Merge.rc:153
-#: Merge.rc:268
-#: Merge.rc:445
+#: Merge.rc:269
+#: Merge.rc:447
 #, c-format
 msgid "&Edit with Unpacker"
 msgstr "用解包程序打开(&E)"
 
 #: Merge.rc:155
-#: Merge.rc:270
-#: Merge.rc:452
+#: Merge.rc:271
+#: Merge.rc:454
 #, c-format
 msgid "&Reload plugins"
 msgstr "重新装入插件(&R)"
 
 #: Merge.rc:157
-#: Merge.rc:272
-#: Merge.rc:454
+#: Merge.rc:273
+#: Merge.rc:456
 #, c-format
 msgid "&Debug"
 msgstr "调试(&D)"
 
 #: Merge.rc:159
-#: Merge.rc:274
-#: Merge.rc:456
+#: Merge.rc:275
+#: Merge.rc:458
 #, c-format
 msgid "&Load Config..."
 msgstr "载入配置(&L)..."
 
 #: Merge.rc:160
-#: Merge.rc:275
-#: Merge.rc:457
+#: Merge.rc:276
+#: Merge.rc:459
 #, c-format
 msgid "&Reset Options"
 msgstr "重置选项(&R)"
 
 #: Merge.rc:162
-#: Merge.rc:277
-#: Merge.rc:459
+#: Merge.rc:278
+#: Merge.rc:461
 #, c-format
 msgid "&Window"
 msgstr "窗口(&W)"
 
 #: Merge.rc:164
-#: Merge.rc:279
-#: Merge.rc:461
+#: Merge.rc:280
+#: Merge.rc:463
 #, c-format
 msgid "Cl&ose"
 msgstr "关闭"
 
 #: Merge.rc:165
-#: Merge.rc:280
-#: Merge.rc:462
+#: Merge.rc:281
+#: Merge.rc:464
 #, c-format
 msgid "Clo&se All"
 msgstr "全部关闭(&S)"
 
 #: Merge.rc:167
-#: Merge.rc:282
-#: Merge.rc:464
+#: Merge.rc:283
+#: Merge.rc:466
 #, c-format
 msgid "Change &Pane\tF6"
 msgstr "切换窗格(&P)\tF6"
 
 #: Merge.rc:169
-#: Merge.rc:284
-#: Merge.rc:466
+#: Merge.rc:285
+#: Merge.rc:468
 #, c-format
 msgid "Tile &Horizontally"
 msgstr "水平并排(&H)"
 
 #: Merge.rc:170
-#: Merge.rc:285
-#: Merge.rc:467
+#: Merge.rc:286
+#: Merge.rc:469
 #, c-format
 msgid "Tile &Vertically"
 msgstr "垂直并排(&V)"
 
 #: Merge.rc:171
-#: Merge.rc:286
-#: Merge.rc:468
+#: Merge.rc:287
+#: Merge.rc:470
 #, c-format
 msgid "&Cascade"
 msgstr "重叠(&C)"
 
 #: Merge.rc:173
-#: Merge.rc:288
-#: Merge.rc:470
-#: Merge.rc:1884
+#: Merge.rc:289
+#: Merge.rc:472
+#: Merge.rc:1887
 #, c-format
 msgid "&Help"
 msgstr "帮助(&H)"
 
 #: Merge.rc:175
-#: Merge.rc:290
-#: Merge.rc:472
+#: Merge.rc:291
+#: Merge.rc:474
 #, c-format
 msgid "&Contents...\tF1"
 msgstr "用户手册(&C)...\tF1"
 
 #: Merge.rc:176
-#: Merge.rc:291
-#: Merge.rc:473
+#: Merge.rc:292
+#: Merge.rc:475
 #, c-format
 msgid "&Index..."
 msgstr "索引(&I)..."
 
 #: Merge.rc:177
-#: Merge.rc:292
-#: Merge.rc:474
+#: Merge.rc:293
+#: Merge.rc:476
 #, c-format
 msgid "&Search..."
 msgstr "搜索(&S)..."
 
 #: Merge.rc:179
-#: Merge.rc:294
-#: Merge.rc:476
+#: Merge.rc:295
+#: Merge.rc:478
 #, c-format
 msgid "R&elease Notes"
 msgstr ""
 
 #: Merge.rc:180
-#: Merge.rc:295
-#: Merge.rc:477
+#: Merge.rc:296
+#: Merge.rc:479
+#, c-format
+msgid "&Translations"
+msgstr ""
+
+#: Merge.rc:181
+#: Merge.rc:297
+#: Merge.rc:480
 #, c-format
 msgid "C&onfiguration..."
 msgstr "查看配置(&O)..."
 
-#: Merge.rc:181
-#: Merge.rc:296
-#: Merge.rc:478
+#: Merge.rc:182
+#: Merge.rc:298
+#: Merge.rc:481
 #, c-format
 msgid "A&rchive Support disabled..."
 msgstr "压缩包支持已禁用(&R)..."
 
-#: Merge.rc:183
-#: Merge.rc:298
-#: Merge.rc:480
+#: Merge.rc:184
+#: Merge.rc:300
+#: Merge.rc:483
 #, c-format
 msgid "&GNU Public License..."
 msgstr "GNU 公共授权..."
 
-#: Merge.rc:184
-#: Merge.rc:299
-#: Merge.rc:481
+#: Merge.rc:185
+#: Merge.rc:301
+#: Merge.rc:484
 #, c-format
 msgid "&About WinMerge..."
 msgstr "关于 WinMerge(&A)..."
 
-#: Merge.rc:195
-#: Merge.rc:310
+#: Merge.rc:196
+#: Merge.rc:312
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
 msgstr "打开工程...\tCtrl+J"
 
-#: Merge.rc:198
-#: Merge.rc:329
+#: Merge.rc:199
+#: Merge.rc:331
 #, c-format
 msgid "L&eft Read-only"
 msgstr "左侧只读(&E)"
 
-#: Merge.rc:199
-#: Merge.rc:330
+#: Merge.rc:200
+#: Merge.rc:332
 #, c-format
 msgid "Ri&ght Read-only"
 msgstr "右侧只读(&G)"
 
-#: Merge.rc:201
+#: Merge.rc:202
 #, c-format
 msgid "File En&coding"
 msgstr "文件编码(&C)"
 
-#: Merge.rc:207
-#: Merge.rc:355
+#: Merge.rc:208
+#: Merge.rc:357
 #, c-format
 msgid "Select &All\tCtrl+A"
 msgstr "选择所有(&A)\tCtrl+A"
 
-#: Merge.rc:213
+#: Merge.rc:214
 #, c-format
 msgid "Show &Identical Items"
 msgstr "显示完全相同的项目(&I)"
 
-#: Merge.rc:214
+#: Merge.rc:215
 #, c-format
 msgid "Show &Different Items"
 msgstr "显示不相同的项目(&D)"
 
-#: Merge.rc:215
+#: Merge.rc:216
 #, c-format
 msgid "Show L&eft Unique Items"
 msgstr "显示只在左侧的项目(&E)"
 
-#: Merge.rc:216
+#: Merge.rc:217
 #, c-format
 msgid "Show Ri&ght Unique Items"
 msgstr "显示只在右侧的项目(&G)"
 
-#: Merge.rc:217
+#: Merge.rc:218
 #, c-format
 msgid "Show S&kipped Items"
 msgstr "显示跳过的项目(&K)"
 
-#: Merge.rc:218
+#: Merge.rc:219
 #, c-format
 msgid "S&how Binary Files"
 msgstr "显示二进制项目(&H)"
 
-#: Merge.rc:220
+#: Merge.rc:221
 #, c-format
 msgid "Show Hidd&en Items"
 msgstr "显示隐藏的项目(&E)"
 
-#: Merge.rc:233
+#: Merge.rc:234
 #, c-format
 msgid "Compa&re Statistics"
 msgstr "对比结果统计(&R)"
 
-#: Merge.rc:237
-#: Merge.rc:414
+#: Merge.rc:238
+#: Merge.rc:416
 #, c-format
 msgid "Refre&sh\tF5"
 msgstr "刷新(&S)\tF5"
 
-#: Merge.rc:238
+#: Merge.rc:239
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
 msgstr "刷新选中项(&R)\tCtrl+F5"
 
-#: Merge.rc:240
-#: Merge.rc:416
+#: Merge.rc:241
+#: Merge.rc:418
 #, c-format
 msgid "&Merge"
 msgstr "合并(&M)"
 
-#: Merge.rc:242
+#: Merge.rc:243
 #, c-format
 msgid "Co&mpare\tEnter"
 msgstr "对比(&M)\tEnter"
 
-#: Merge.rc:244
-#: Merge.rc:418
+#: Merge.rc:245
+#: Merge.rc:420
 #, c-format
 msgid "&Next Difference\tAlt+Down"
 msgstr "下一处不同(&N)\tAlt+Down"
 
-#: Merge.rc:245
-#: Merge.rc:419
+#: Merge.rc:246
+#: Merge.rc:421
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
 msgstr "上一处不同(&P)\tAlt+Up"
 
-#: Merge.rc:247
-#: Merge.rc:421
+#: Merge.rc:248
+#: Merge.rc:423
 #, c-format
 msgid "&First Difference\tAlt+Home"
 msgstr "第一处不同(&F)\tAlt+Home"
 
-#: Merge.rc:248
-#: Merge.rc:422
+#: Merge.rc:249
+#: Merge.rc:424
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
 msgstr "当前不同(&C)\tAlt+Enter"
 
-#: Merge.rc:249
-#: Merge.rc:423
+#: Merge.rc:250
+#: Merge.rc:425
 #, c-format
 msgid "&Last Difference\tAlt+End"
 msgstr "最后一处不同(&D)\tAlt+End"
 
-#: Merge.rc:251
-#: Merge.rc:425
+#: Merge.rc:252
+#: Merge.rc:427
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
 msgstr "复制到右侧(&R)\tAlt+Right"
 
-#: Merge.rc:252
-#: Merge.rc:426
+#: Merge.rc:253
+#: Merge.rc:428
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
 msgstr "复制到左侧(&L)\tAlt+Left"
 
-#: Merge.rc:254
+#: Merge.rc:255
 #, c-format
 msgid "&Delete\tDel"
 msgstr "删除(&D)\tDel"
 
-#: Merge.rc:258
-#: Merge.rc:549
+#: Merge.rc:259
+#: Merge.rc:552
 #, c-format
 msgid "&Customize Columns..."
 msgstr "选择列(&C)..."
 
-#: Merge.rc:261
-#: Merge.rc:438
+#: Merge.rc:262
+#: Merge.rc:440
 #, c-format
 msgid "Generate &Report..."
 msgstr "生成报告(&R)..."
 
-#: Merge.rc:313
+#: Merge.rc:315
 #, c-format
 msgid "&Save\tCtrl+S"
 msgstr "保存(&S)\tCtrl+S"
 
-#: Merge.rc:314
+#: Merge.rc:316
 #, c-format
 msgid "Save &Left"
 msgstr "保存左侧(&L)"
 
-#: Merge.rc:316
-#: Merge.rc:321
+#: Merge.rc:318
+#: Merge.rc:323
 #, c-format
 msgid "&Save"
 msgstr "保存(&S)"
 
-#: Merge.rc:317
-#: Merge.rc:322
+#: Merge.rc:319
+#: Merge.rc:324
 #, c-format
 msgid "Save &As..."
 msgstr "另存为(&A)..."
 
-#: Merge.rc:319
+#: Merge.rc:321
 #, c-format
 msgid "Save &Right"
 msgstr "保存右侧(&R)"
 
-#: Merge.rc:325
+#: Merge.rc:327
 #, c-format
 msgid "&Print..."
 msgstr "打印(&P)..."
 
-#: Merge.rc:326
+#: Merge.rc:328
 #, c-format
 msgid "Page Se&tup"
 msgstr "页面设置(&T)"
 
-#: Merge.rc:327
+#: Merge.rc:329
 #, c-format
 msgid "Print Previe&w"
 msgstr "打印预览"
 
-#: Merge.rc:332
+#: Merge.rc:334
 #, c-format
 msgid "&Convert Line Endings to"
 msgstr "将行分隔符转换为(&C)"
 
-#: Merge.rc:334
+#: Merge.rc:336
 #, c-format
 msgid "&DOS (CRLF)"
 msgstr ""
 
-#: Merge.rc:335
+#: Merge.rc:337
 #, c-format
 msgid "&UNIX (LF)"
 msgstr ""
 
-#: Merge.rc:336
+#: Merge.rc:338
 #, c-format
 msgid "&MAC (CR)"
 msgstr ""
 
-#: Merge.rc:339
+#: Merge.rc:341
 #, c-format
 msgid "&Merge Mode\tF9"
 msgstr "合并模式\tF9"
 
-#: Merge.rc:341
+#: Merge.rc:343
 #, c-format
 msgid "&File Encoding..."
 msgstr ""
 
-#: Merge.rc:347
+#: Merge.rc:349
 #, c-format
 msgid "&Undo\tCtrl+Z"
 msgstr "撤销(&U)\tCtrl+Z"
 
-#: Merge.rc:348
+#: Merge.rc:350
 #, c-format
 msgid "&Redo\tCtrl+Y"
 msgstr "重复(&R)\tCtrl+Y"
 
-#: Merge.rc:350
+#: Merge.rc:352
 #, c-format
 msgid "Cu&t\tCtrl+X"
 msgstr "剪切(&U)\tCtrl+X"
 
-#: Merge.rc:351
+#: Merge.rc:353
 #, c-format
 msgid "&Copy\tCtrl+C"
 msgstr "复制(&C)\tCtrl+C"
 
-#: Merge.rc:352
+#: Merge.rc:354
 #, c-format
 msgid "&Paste\tCtrl+V"
 msgstr "粘贴(&P)\tCtrl+V"
 
-#: Merge.rc:354
+#: Merge.rc:356
 #, c-format
 msgid "Select Line &Difference\tF4"
 msgstr "选中行中不同(&D)\tF4"
 
-#: Merge.rc:357
+#: Merge.rc:359
 #, c-format
 msgid "F&ind...\tCtrl+F"
 msgstr "查找(&I)...\tCtrl+F"
 
-#: Merge.rc:358
+#: Merge.rc:360
 #, c-format
 msgid "Repla&ce...\tCtrl+H"
 msgstr "替换(&C)...\tCtrl+H"
 
-#: Merge.rc:360
+#: Merge.rc:362
 #, c-format
 msgid "&Scripts"
 msgstr "脚本(&S)"
 
-#: Merge.rc:362
-#: Merge.rc:2870
+#: Merge.rc:364
+#: Merge.rc:2874
 #, c-format
 msgid "< Empty >"
 msgstr "< 空 >"
 
-#: Merge.rc:365
+#: Merge.rc:367
 #, c-format
 msgid "Advanced"
 msgstr "高级"
 
-#: Merge.rc:367
+#: Merge.rc:369
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
 msgstr "带行号复制(&C)\tCtrl+Shift+C"
 
-#: Merge.rc:370
+#: Merge.rc:372
 #, c-format
 msgid "&Bookmarks"
 msgstr "书签(&B)"
 
-#: Merge.rc:372
+#: Merge.rc:374
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
 msgstr "设置/取消(&T)\tCtrl+F2"
 
-#: Merge.rc:373
+#: Merge.rc:375
 #, c-format
 msgid "&Next Bookmark\tF2"
 msgstr "下一个(&N\tF2"
 
-#: Merge.rc:374
+#: Merge.rc:376
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
 msgstr "上一个(&P)\tShift+F2"
 
-#: Merge.rc:375
+#: Merge.rc:377
 #, c-format
 msgid "&Clear All Bookmarks"
 msgstr "清除所有(&C)"
 
-#: Merge.rc:377
+#: Merge.rc:379
 #, c-format
 msgid "&Go To...\tCtrl+G"
 msgstr "转到(&G)...\tCtrl+G"
 
-#: Merge.rc:385
+#: Merge.rc:387
 #, c-format
 msgid "Zoom In\tCtrl++"
 msgstr ""
 
-#: Merge.rc:386
+#: Merge.rc:388
 #, c-format
 msgid "Zoom Out\tCtrl+-"
 msgstr ""
 
-#: Merge.rc:387
+#: Merge.rc:389
 #, c-format
 msgid "Syntax Highlight"
 msgstr "语法高亮"
 
-#: Merge.rc:392
+#: Merge.rc:394
 #, c-format
 msgid "&Lock Panes"
 msgstr ""
 
-#: Merge.rc:393
+#: Merge.rc:395
 #, c-format
 msgid "&View Whitespace"
 msgstr "显示空白和制表符(&V)"
 
-#: Merge.rc:394
+#: Merge.rc:396
 #, c-format
 msgid "Vie&w Line Differences"
 msgstr "显示行中不同(&W)"
 
-#: Merge.rc:395
+#: Merge.rc:397
 #, c-format
 msgid "View Line &Numbers"
 msgstr "显示行号(&N)"
 
-#: Merge.rc:396
+#: Merge.rc:398
 #, c-format
 msgid "View &Margins"
 msgstr "显示页边(&M)"
 
-#: Merge.rc:397
+#: Merge.rc:399
 #, c-format
 msgid "W&rap Lines"
 msgstr "自动换行(&R)"
 
-#: Merge.rc:399
+#: Merge.rc:401
 #, c-format
 msgid "Sw&ap Panes"
 msgstr "交换左右窗格(&A)"
 
-#: Merge.rc:409
+#: Merge.rc:411
 #, c-format
 msgid "Diff &Pane"
 msgstr "对比窗格(&P)"
 
-#: Merge.rc:410
+#: Merge.rc:412
 #, c-format
 msgid "Lo&cation Pane"
 msgstr "位置窗格(&C)"
 
-#: Merge.rc:428
+#: Merge.rc:430
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
 msgstr "复制到右侧并前进\tAlt+Ctrl+Right"
 
-#: Merge.rc:429
+#: Merge.rc:431
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
 msgstr "复制到左侧并前进\tAlt+Ctrl+Left"
 
-#: Merge.rc:431
+#: Merge.rc:433
 #, c-format
 msgid "Copy &All to Right"
 msgstr "全部复制到右侧(&A)"
 
-#: Merge.rc:432
+#: Merge.rc:434
 #, c-format
 msgid "Cop&y All to Left"
 msgstr "全部复制到左侧(&E)"
 
-#: Merge.rc:447
+#: Merge.rc:449
 #, c-format
 msgid "&Prediffer"
 msgstr "预对比(&P)"
 
-#: Merge.rc:489
+#: Merge.rc:492
 #, c-format
 msgid "Comp&are"
 msgstr "对比(&A)"
 
-#: Merge.rc:490
+#: Merge.rc:493
 #, c-format
 msgid "Co&mpare Special"
 msgstr ""
 
-#: Merge.rc:492
+#: Merge.rc:495
 #, c-format
 msgid "&XML"
 msgstr ""
 
-#: Merge.rc:497
+#: Merge.rc:500
 #, c-format
 msgid "&Left to Right"
 msgstr "从左到右(&L)"
 
-#: Merge.rc:498
+#: Merge.rc:501
 #, c-format
 msgid "L&eft to..."
 msgstr "从左到(&E)..."
 
-#: Merge.rc:499
+#: Merge.rc:502
 #, c-format
 msgid "&Right to Left"
 msgstr "从右到左(&R)"
 
-#: Merge.rc:500
+#: Merge.rc:503
 #, c-format
 msgid "R&ight to..."
 msgstr "从右到(&I)..."
 
-#: Merge.rc:502
+#: Merge.rc:505
 #, c-format
 msgid "&Move"
 msgstr "移动(&M)"
 
-#: Merge.rc:504
+#: Merge.rc:507
 #, c-format
 msgid "&Left to..."
 msgstr "从左到(&L)..."
 
-#: Merge.rc:505
+#: Merge.rc:508
 #, c-format
 msgid "&Right to..."
 msgstr "从右到(&R)..."
 
-#: Merge.rc:507
+#: Merge.rc:510
 #, c-format
 msgid "&Delete"
 msgstr "删除(&D)"
 
-#: Merge.rc:509
-#: Merge.rc:1121
-#: Merge.rc:1500
+#: Merge.rc:512
+#: Merge.rc:1124
+#: Merge.rc:1503
 #, c-format
 msgid "&Left"
 msgstr "左侧(&L)"
 
-#: Merge.rc:510
-#: Merge.rc:1123
-#: Merge.rc:1503
+#: Merge.rc:513
+#: Merge.rc:1126
+#: Merge.rc:1506
 #, c-format
 msgid "&Right"
 msgstr "右侧(&R)"
 
-#: Merge.rc:511
+#: Merge.rc:514
 #, c-format
 msgid "&Both"
 msgstr "两侧(&B)"
 
-#: Merge.rc:513
+#: Merge.rc:516
 #, c-format
 msgid "Re&name"
 msgstr "改名(&N)"
 
-#: Merge.rc:514
+#: Merge.rc:517
 #, c-format
 msgid "&Hide Items"
 msgstr "隐藏(&H)"
 
-#: Merge.rc:516
+#: Merge.rc:519
 #, c-format
 msgid "&Open Left"
 msgstr "打开左侧(&O)"
 
-#: Merge.rc:522
+#: Merge.rc:525
 #, c-format
 msgid "O&pen Right"
 msgstr "打开右侧(&P)"
 
-#: Merge.rc:529
+#: Merge.rc:532
 #, c-format
 msgid "Cop&y Pathnames"
 msgstr "复制全名(&Y)"
 
-#: Merge.rc:531
+#: Merge.rc:534
 #, c-format
 msgid "&Left (%1 of %2)"
 msgstr "左侧(&L)(%1个 共%2个)"
 
-#: Merge.rc:532
+#: Merge.rc:535
 #, c-format
 msgid "&Right (%1 of %2)"
 msgstr "右侧(&R)(%1个 共%2个)"
 
-#: Merge.rc:533
+#: Merge.rc:536
 #, c-format
 msgid "&Both (%1 of %2)"
 msgstr "两侧(&B)(%1个 共%2个)"
 
-#: Merge.rc:535
+#: Merge.rc:538
 #, c-format
 msgid "Copy &Filenames"
 msgstr "复制文件名(&F)"
 
-#: Merge.rc:537
+#: Merge.rc:540
 #, c-format
 msgid "&Zip"
 msgstr ""
 
-#: Merge.rc:539
+#: Merge.rc:542
 #, c-format
 msgid "&Left... (%1 of %2)"
 msgstr "左侧(&L)...(%1个 共%2个)"
 
-#: Merge.rc:540
+#: Merge.rc:543
 #, c-format
 msgid "&Right... (%1 of %2)"
 msgstr "右侧(&R)...(%1个 共%2个)"
 
-#: Merge.rc:541
+#: Merge.rc:544
 #, c-format
 msgid "&Both... (%1 of %2)"
 msgstr "两侧(&B)...(%1个 共%2个)"
 
-#: Merge.rc:542
+#: Merge.rc:545
 #, c-format
 msgid "&Differences... (%1 of %2)"
 msgstr "两侧不同(&D)...(%1个 共%2个)"
 
-#: Merge.rc:545
+#: Merge.rc:548
 #, c-format
 msgid "&Refresh"
 msgstr "刷新(&R)"
 
-#: Merge.rc:557
+#: Merge.rc:560
 #, c-format
 msgid "&Copy Full Path"
 msgstr "复制全名(&C)"
 
-#: Merge.rc:558
+#: Merge.rc:561
 #, c-format
 msgid "Copy &Filename"
 msgstr "复制文件名(&F)"
 
-#: Merge.rc:564
+#: Merge.rc:567
 #, c-format
 msgid "Prediffer Settings"
 msgstr "预对比设置"
 
-#: Merge.rc:566
+#: Merge.rc:569
 #, c-format
 msgid "&No prediffer"
 msgstr "不使用(&N)"
 
-#: Merge.rc:567
+#: Merge.rc:570
 #, c-format
 msgid "Auto prediffer"
 msgstr "自动"
 
-#: Merge.rc:575
+#: Merge.rc:578
 #, c-format
 msgid "G&oto Diff"
 msgstr "转到不同(&O)"
 
-#: Merge.rc:578
+#: Merge.rc:581
 #, c-format
 msgid "&No Moved Blocks"
 msgstr "不显示移动区块(&N)"
 
-#: Merge.rc:579
+#: Merge.rc:582
 #, c-format
 msgid "&All Moved Blocks"
 msgstr "所有移动区块(&A)"
 
-#: Merge.rc:580
+#: Merge.rc:583
 #, c-format
 msgid "Moved Block for &Current Diff"
 msgstr "当前不同处移动区块(&C)"
 
-#: Merge.rc:648
+#: Merge.rc:651
 #, c-format
 msgid "About WinMerge"
 msgstr "关于 WinMerge"
 
-#: Merge.rc:654
+#: Merge.rc:657
 #, c-format
 msgid "(Private Build)"
 msgstr ""
 
-#: Merge.rc:655
+#: Merge.rc:658
 #, c-format
 msgid "All rights reserved."
 msgstr "保留所有权利。"
 
-#: Merge.rc:656
+#: Merge.rc:659
 #, c-format
 msgid "Visit the WinMerge HomePage!"
 msgstr "访问 WinMerge 首页!"
 
-#: Merge.rc:659
-#: Merge.rc:690
-#: Merge.rc:780
-#: Merge.rc:966
-#: Merge.rc:1040
-#: Merge.rc:1069
-#: Merge.rc:1079
-#: Merge.rc:1242
-#: Merge.rc:1306
-#: Merge.rc:1319
-#: Merge.rc:1411
-#: Merge.rc:1426
+#: Merge.rc:662
+#: Merge.rc:693
+#: Merge.rc:783
+#: Merge.rc:969
+#: Merge.rc:1043
+#: Merge.rc:1072
+#: Merge.rc:1082
+#: Merge.rc:1245
+#: Merge.rc:1309
+#: Merge.rc:1322
+#: Merge.rc:1414
+#: Merge.rc:1429
 #, c-format
 msgid "OK"
 msgstr "确定"
 
-#: Merge.rc:660
+#: Merge.rc:663
 #, c-format
 msgid "Contributors"
 msgstr ""
 
-#: Merge.rc:666
+#: Merge.rc:669
 #, c-format
 msgid "Select Files or Folders"
 msgstr "选择文件或文件夹..."
 
-#: Merge.rc:669
-#: Merge.rc:1577
+#: Merge.rc:672
+#: Merge.rc:1580
 #, c-format
 msgid "&Left:"
 msgstr "左侧(&L):"
 
-#: Merge.rc:673
-#: Merge.rc:734
-#: Merge.rc:990
-#: Merge.rc:1005
+#: Merge.rc:676
+#: Merge.rc:737
+#: Merge.rc:993
+#: Merge.rc:1008
 #, c-format
 msgid "&Browse..."
 msgstr "浏览(&B)..."
 
-#: Merge.rc:674
-#: Merge.rc:1581
+#: Merge.rc:677
+#: Merge.rc:1584
 #, c-format
 msgid "&Right:"
 msgstr "右侧(&R):"
 
-#: Merge.rc:678
-#: Merge.rc:1016
+#: Merge.rc:681
+#: Merge.rc:1019
 #, c-format
 msgid "Bro&wse..."
 msgstr "浏览(&W)..."
 
-#: Merge.rc:679
-#: Merge.rc:1585
+#: Merge.rc:682
+#: Merge.rc:1588
 #, c-format
 msgid "&Filter:"
 msgstr "过滤器(&F):"
 
-#: Merge.rc:682
-#: Merge.rc:1587
+#: Merge.rc:685
+#: Merge.rc:1590
 #, c-format
 msgid "Select..."
 msgstr "选择..."
 
-#: Merge.rc:683
+#: Merge.rc:686
 #, c-format
 msgid "&Unpacker:"
 msgstr "解包程序(&U):"
 
-#: Merge.rc:686
+#: Merge.rc:689
 #, c-format
 msgid "&Select..."
 msgstr "选择..."
 
-#: Merge.rc:687
-#: Merge.rc:1588
+#: Merge.rc:690
+#: Merge.rc:1591
 #, c-format
 msgid "&Include Subfolders"
 msgstr "包含子目录(&I)"
 
-#: Merge.rc:689
+#: Merge.rc:692
 #, c-format
 msgid "Status:"
 msgstr "状态:"
 
-#: Merge.rc:691
-#: Merge.rc:721
-#: Merge.rc:781
-#: Merge.rc:811
-#: Merge.rc:843
-#: Merge.rc:853
-#: Merge.rc:1041
-#: Merge.rc:1070
-#: Merge.rc:1080
-#: Merge.rc:1131
-#: Merge.rc:1243
-#: Merge.rc:1320
-#: Merge.rc:1412
-#: Merge.rc:1427
+#: Merge.rc:694
+#: Merge.rc:724
+#: Merge.rc:784
+#: Merge.rc:814
+#: Merge.rc:846
+#: Merge.rc:856
+#: Merge.rc:1044
+#: Merge.rc:1073
+#: Merge.rc:1083
+#: Merge.rc:1134
+#: Merge.rc:1246
+#: Merge.rc:1323
+#: Merge.rc:1415
+#: Merge.rc:1430
 #, c-format
 msgid "Cancel"
 msgstr "取消"
 
-#: Merge.rc:692
-#: Merge.rc:1321
+#: Merge.rc:695
+#: Merge.rc:1324
 #, c-format
 msgid "Help"
 msgstr "帮助"
 
-#: Merge.rc:693
+#: Merge.rc:696
 #, c-format
 msgid "Files or Folders to Compare"
 msgstr "要对比的文件或文件夹"
 
-#: Merge.rc:700
+#: Merge.rc:703
 #, c-format
 msgid "Visual SourceSafe"
 msgstr ""
 
-#: Merge.rc:705
+#: Merge.rc:708
 #, c-format
 msgid "Database:"
 msgstr "数据库:"
 
-#: Merge.rc:708
+#: Merge.rc:711
 #, c-format
 msgid "Project:"
 msgstr "工程:"
 
-#: Merge.rc:711
+#: Merge.rc:714
 #, c-format
 msgid "User:"
 msgstr "用户名:"
 
-#: Merge.rc:713
+#: Merge.rc:716
 #, c-format
 msgid "Password:"
 msgstr "密码:"
 
-#: Merge.rc:715
+#: Merge.rc:718
 #, c-format
 msgid "Link to Destination VSS project"
 msgstr "连接到目标 VSS 工程"
 
-#: Merge.rc:717
-#: Merge.rc:858
+#: Merge.rc:720
+#: Merge.rc:861
 #, c-format
 msgid "Apply to all items"
 msgstr "应用于所有项目"
 
-#: Merge.rc:719
+#: Merge.rc:722
 #, c-format
 msgid "Check Out"
 msgstr "签出"
 
-#: Merge.rc:720
-#: Merge.rc:854
+#: Merge.rc:723
+#: Merge.rc:857
 #, c-format
 msgid "Save As..."
 msgstr "另存为..."
 
-#: Merge.rc:726
+#: Merge.rc:729
 #, c-format
 msgid "Versioning System"
 msgstr "版本控制系统"
 
-#: Merge.rc:729
+#: Merge.rc:732
 #, c-format
 msgid "&Versioning System:"
 msgstr "版本控制系统(&V)"
 
-#: Merge.rc:732
+#: Merge.rc:735
 #, c-format
 msgid "&Path to cleartool.exe:"
 msgstr "cleartool.exe 路径(&P):"
 
-#: Merge.rc:739
-#: Merge.rc:1892
+#: Merge.rc:742
+#: Merge.rc:1895
 #, c-format
 msgid "General"
 msgstr "常规"
 
-#: Merge.rc:742
+#: Merge.rc:745
 #, c-format
 msgid "Automatically &scroll to first difference"
 msgstr "自动滚动到第一处不同(&S)"
 
-#: Merge.rc:745
+#: Merge.rc:748
 #, c-format
 msgid "&Disable Splash Screen"
 msgstr "停用启动屏幕(&D)"
 
-#: Merge.rc:747
+#: Merge.rc:750
 #, c-format
 msgid "Cl&ose windows with ESC"
 msgstr "ESC关闭窗口(&O)"
 
-#: Merge.rc:749
+#: Merge.rc:752
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
 msgstr "在“打开”对话框中自动验证路径"
 
-#: Merge.rc:752
+#: Merge.rc:755
 #, c-format
 msgid "All&ow only one instance to run"
 msgstr "只允许运行一个实例(&A)"
 
-#: Merge.rc:754
+#: Merge.rc:757
 #, c-format
 msgid "As&k when closing multiple windows"
 msgstr ""
 
-#: Merge.rc:756
+#: Merge.rc:759
 #, c-format
 msgid "&Preserve file time in file compare"
 msgstr ""
 
-#: Merge.rc:759
+#: Merge.rc:762
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
 msgstr "“打开”对话框自动完成(&P):"
 
-#: Merge.rc:762
+#: Merge.rc:765
 #, c-format
 msgid "Enable multiple compare windows for"
 msgstr "允许多个对比窗口"
 
-#: Merge.rc:764
-#: Merge.rc:1600
+#: Merge.rc:767
+#: Merge.rc:1603
 #, c-format
 msgid "&Folder compare"
 msgstr "文件夹对比(&F)"
 
-#: Merge.rc:766
-#: Merge.rc:1602
+#: Merge.rc:769
+#: Merge.rc:1605
 #, c-format
 msgid "Fil&e compare"
 msgstr "文件对比(&E)"
 
-#: Merge.rc:768
+#: Merge.rc:771
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
 msgstr "WinMerge允许隐藏一些常见的提示信息, 点击“重置”按钮可以使隐藏的信息新显示."
 
-#: Merge.rc:770
+#: Merge.rc:773
 #, c-format
 msgid "Reset"
 msgstr "重置"
 
-#: Merge.rc:777
+#: Merge.rc:780
 #, c-format
 msgid "Language"
 msgstr "语言"
 
-#: Merge.rc:784
+#: Merge.rc:787
 #, c-format
 msgid "Available languages:"
 msgstr "可用的语言:"
 
-#: Merge.rc:790
+#: Merge.rc:793
 #, c-format
 msgid "Find"
 msgstr "查找"
 
-#: Merge.rc:793
-#: Merge.rc:820
+#: Merge.rc:796
+#: Merge.rc:823
 #, c-format
 msgid "Fi&nd what:"
 msgstr "查找内容(&N):"
 
-#: Merge.rc:796
-#: Merge.rc:826
+#: Merge.rc:799
+#: Merge.rc:829
 #, c-format
 msgid "Match &whole word only"
 msgstr "全字匹配(&W)"
 
-#: Merge.rc:798
-#: Merge.rc:828
+#: Merge.rc:801
+#: Merge.rc:831
 #, c-format
 msgid "Match &case"
 msgstr "区分大小写(&C)"
 
-#: Merge.rc:800
-#: Merge.rc:830
+#: Merge.rc:803
+#: Merge.rc:833
 #, c-format
 msgid "Regular &expression"
 msgstr "使用正则表达式(&E)"
 
-#: Merge.rc:802
+#: Merge.rc:805
 #, c-format
 msgid "D&on't wrap end of file"
 msgstr "到文件尾后不再从头查找(&O)"
 
-#: Merge.rc:805
+#: Merge.rc:808
 #, c-format
 msgid "Direction"
 msgstr "方向"
 
-#: Merge.rc:806
+#: Merge.rc:809
 #, c-format
 msgid "&Up"
 msgstr "向上(&U)"
 
-#: Merge.rc:808
+#: Merge.rc:811
 #, c-format
 msgid "&Down"
 msgstr "向下(&D)"
 
-#: Merge.rc:810
-#: Merge.rc:840
+#: Merge.rc:813
+#: Merge.rc:843
 #, c-format
 msgid "&Find Next"
 msgstr "找下一个(&F)"
 
-#: Merge.rc:817
+#: Merge.rc:820
 #, c-format
 msgid "Replace"
 msgstr "替换"
 
-#: Merge.rc:823
+#: Merge.rc:826
 #, c-format
 msgid "Re&place with:"
 msgstr "替换为(&P):"
 
-#: Merge.rc:832
+#: Merge.rc:835
 #, c-format
 msgid "&Don't wrap end of file"
 msgstr "至文件末尾不再从头搜索(&D)"
 
-#: Merge.rc:835
+#: Merge.rc:838
 #, c-format
 msgid "Replace in"
 msgstr "替换范围"
 
-#: Merge.rc:836
+#: Merge.rc:839
 #, c-format
 msgid "&Selection"
 msgstr "选中内容(&S)"
 
-#: Merge.rc:838
+#: Merge.rc:841
 #, c-format
 msgid "Wh&ole file"
 msgstr "整个文件(&O)"
 
-#: Merge.rc:841
+#: Merge.rc:844
 #, c-format
 msgid "&Replace"
 msgstr "替换(&R)"
 
-#: Merge.rc:842
+#: Merge.rc:845
 #, c-format
 msgid "Replace &All"
 msgstr "全部替换(&A)"
 
-#: Merge.rc:849
-#: Merge.rc:2120
+#: Merge.rc:852
+#: Merge.rc:2123
 #, c-format
 msgid "Rational ClearCase"
 msgstr ""
 
-#: Merge.rc:852
+#: Merge.rc:855
 #, c-format
 msgid "CheckOut"
 msgstr "调试"
 
-#: Merge.rc:857
-#: Merge.rc:1162
+#: Merge.rc:860
+#: Merge.rc:1165
 #, c-format
 msgid "Comments"
 msgstr "批注"
 
-#: Merge.rc:860
+#: Merge.rc:863
 #, c-format
 msgid "CheckIn after checkout"
 msgstr ""
 
-#: Merge.rc:866
+#: Merge.rc:869
 #, c-format
 msgid "Linefilters"
 msgstr "行过滤器"
 
-#: Merge.rc:869
+#: Merge.rc:872
 #, c-format
 msgid "Enable Line Filters"
 msgstr "忽略符合下列样式的行"
 
-#: Merge.rc:872
+#: Merge.rc:875
 #, c-format
 msgid "Regular Expressions (one per line):"
 msgstr "正则表达式 (每行一个):"
 
-#: Merge.rc:879
+#: Merge.rc:882
 #, c-format
 msgid "Save"
 msgstr "保存"
 
-#: Merge.rc:880
+#: Merge.rc:883
 #, c-format
 msgid "New"
 msgstr "新建"
 
-#: Merge.rc:881
+#: Merge.rc:884
 #, c-format
 msgid "Edit"
 msgstr "编辑"
 
-#: Merge.rc:882
+#: Merge.rc:885
 #, c-format
 msgid "Remove"
 msgstr "删除"
 
-#: Merge.rc:887
-#: Merge.rc:1895
+#: Merge.rc:890
+#: Merge.rc:1898
 #, c-format
 msgid "Colors"
 msgstr "颜色"
 
-#: Merge.rc:890
+#: Merge.rc:893
 #, c-format
 msgid "Difference:"
 msgstr "不同:"
 
-#: Merge.rc:894
+#: Merge.rc:897
 #, c-format
 msgid "Selected Difference:"
 msgstr "已选择:"
 
-#: Merge.rc:898
-#: Merge.rc:1552
+#: Merge.rc:901
+#: Merge.rc:1555
 #, c-format
 msgid "Background"
 msgstr "背景"
 
-#: Merge.rc:899
+#: Merge.rc:902
 #, c-format
 msgid "Deleted"
 msgstr "已删除"
 
-#: Merge.rc:912
-#: Merge.rc:1347
-#: Merge.rc:1553
+#: Merge.rc:915
+#: Merge.rc:1350
+#: Merge.rc:1556
 #, c-format
 msgid "Text"
 msgstr "文字"
 
-#: Merge.rc:916
+#: Merge.rc:919
 #, c-format
 msgid "Ignored Difference:"
 msgstr "略过的不同:"
 
-#: Merge.rc:926
+#: Merge.rc:929
 #, c-format
 msgid "Moved:"
 msgstr "移动区块:"
 
-#: Merge.rc:936
+#: Merge.rc:939
 #, c-format
 msgid "Selected Moved:"
 msgstr "选中的移动区块:"
 
-#: Merge.rc:943
+#: Merge.rc:946
 #, c-format
 msgid "Word Difference:"
 msgstr "词语不同:"
 
-#: Merge.rc:950
+#: Merge.rc:953
 #, c-format
 msgid "Selected Word Diff:"
 msgstr "选中的词语不同:"
 
-#: Merge.rc:957
-#: Merge.rc:1039
-#: Merge.rc:1068
-#: Merge.rc:1165
-#: Merge.rc:1393
+#: Merge.rc:960
+#: Merge.rc:1042
+#: Merge.rc:1071
+#: Merge.rc:1168
+#: Merge.rc:1396
 #, c-format
 msgid "Defaults"
 msgstr "默认"
 
-#: Merge.rc:963
-#: Merge.rc:1335
-#: Merge.rc:1541
+#: Merge.rc:966
+#: Merge.rc:1338
+#: Merge.rc:1544
 #, c-format
 msgid "Dialog"
 msgstr ""
 
-#: Merge.rc:973
-#: Merge.rc:1898
+#: Merge.rc:976
+#: Merge.rc:1901
 #, c-format
 msgid "System"
 msgstr "系统"
 
-#: Merge.rc:976
+#: Merge.rc:979
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
 msgstr "将删除的文件移至回收站(&S)"
 
-#: Merge.rc:978
+#: Merge.rc:981
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
 msgstr "忽略不足3秒的时间差别"
 
-#: Merge.rc:981
+#: Merge.rc:984
 #, c-format
 msgid "Integration"
 msgstr "集成"
 
-#: Merge.rc:982
+#: Merge.rc:985
 #, c-format
 msgid "&Add to explorer context menu"
 msgstr "添加到资源管理器的右键菜单中(&A)"
 
-#: Merge.rc:984
+#: Merge.rc:987
 #, c-format
 msgid "E&nable advanced menu"
 msgstr "允许高级菜单(&N)"
 
-#: Merge.rc:986
+#: Merge.rc:989
 #, c-format
 msgid "In&clude subfolders by default"
 msgstr "默认包含子文件夹(&C)"
 
-#: Merge.rc:988
+#: Merge.rc:991
 #, c-format
 msgid "&External editor:"
 msgstr "外部编辑器(&E)"
 
-#: Merge.rc:991
+#: Merge.rc:994
 #, c-format
 msgid "&Filter folder:"
 msgstr "过滤器路径(&F):"
 
-#: Merge.rc:993
-#: Merge.rc:1405
-#: Merge.rc:1579
-#: Merge.rc:1583
-#: Merge.rc:1610
+#: Merge.rc:996
+#: Merge.rc:1408
+#: Merge.rc:1582
+#: Merge.rc:1586
+#: Merge.rc:1613
 #, c-format
 msgid "Browse..."
 msgstr "浏览..."
 
-#: Merge.rc:999
+#: Merge.rc:1002
 #, c-format
 msgid "Patch Generator"
 msgstr "Patch生成器"
 
-#: Merge.rc:1002
+#: Merge.rc:1005
 #, c-format
 msgid "File&1:"
 msgstr "文件&1:"
 
-#: Merge.rc:1006
+#: Merge.rc:1009
 #, c-format
 msgid "File&2:"
 msgstr "文件&2:"
 
-#: Merge.rc:1009
+#: Merge.rc:1012
 #, c-format
 msgid "Br&owse..."
 msgstr "浏览(&O)..."
 
-#: Merge.rc:1010
+#: Merge.rc:1013
 #, c-format
 msgid "&Swap"
 msgstr "上下交换(&S)"
 
-#: Merge.rc:1011
+#: Merge.rc:1014
 #, c-format
 msgid "&Append to existing file"
 msgstr "添加到已有文件的末尾(&A)"
 
-#: Merge.rc:1013
+#: Merge.rc:1016
 #, c-format
 msgid "&Result:"
 msgstr "结果(&R):"
 
-#: Merge.rc:1017
+#: Merge.rc:1020
 #, c-format
 msgid "&Format"
 msgstr "格式(&F)"
 
-#: Merge.rc:1018
+#: Merge.rc:1021
 #, c-format
 msgid "St&yle:"
 msgstr "样式(&Y):"
 
-#: Merge.rc:1021
+#: Merge.rc:1024
 #, c-format
 msgid "&Context:"
 msgstr "内容(&C):"
 
-#: Merge.rc:1024
+#: Merge.rc:1027
 #, c-format
 msgid "W&hitespaces"
 msgstr "空白(&H)"
 
-#: Merge.rc:1025
+#: Merge.rc:1028
 #, c-format
 msgid "Com&pare"
 msgstr "对比(&P)"
 
-#: Merge.rc:1027
+#: Merge.rc:1030
 #, c-format
 msgid "I&gnore changes"
 msgstr "忽略变化(G)"
 
-#: Merge.rc:1029
+#: Merge.rc:1032
 #, c-format
 msgid "Ig&nore all"
 msgstr "忽略所有(&N)"
 
-#: Merge.rc:1031
+#: Merge.rc:1034
 #, c-format
 msgid "Ignor&e blank lines"
 msgstr "忽略空行(&E)"
 
-#: Merge.rc:1033
+#: Merge.rc:1036
 #, c-format
 msgid "Case sensi&tive"
 msgstr "区分大小写(&T)"
 
-#: Merge.rc:1035
+#: Merge.rc:1038
 #, c-format
 msgid "Inclu&de command line"
 msgstr "包含命令行(&D)"
 
-#: Merge.rc:1037
+#: Merge.rc:1040
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "用外部编辑器打开(&X)"
 
-#: Merge.rc:1059
+#: Merge.rc:1062
 #, c-format
 msgid "Display Columns"
 msgstr "选择显示列"
 
-#: Merge.rc:1065
+#: Merge.rc:1068
 #, c-format
 msgid "Move &Up"
 msgstr ""
 
-#: Merge.rc:1066
+#: Merge.rc:1069
 #, c-format
 msgid "Move &Down"
 msgstr ""
 
-#: Merge.rc:1076
+#: Merge.rc:1079
 #, c-format
 msgid "Select Unpacker"
 msgstr "选择解包程序"
 
-#: Merge.rc:1081
+#: Merge.rc:1084
 #, c-format
 msgid "File unpacker:"
 msgstr "文件解包程序:"
 
-#: Merge.rc:1084
+#: Merge.rc:1087
 #, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr "不检查扩展名，显示所有解包程序。"
 
-#: Merge.rc:1087
+#: Merge.rc:1090
 #, c-format
 msgid "Extensions list:"
 msgstr "扩展名:"
 
-#: Merge.rc:1088
+#: Merge.rc:1091
 #, c-format
 msgid "Description:"
 msgstr "描述:"
 
-#: Merge.rc:1099
+#: Merge.rc:1102
 #, c-format
 msgid " Folder Compare Progress"
 msgstr "文件夹对比进度"
 
-#: Merge.rc:1102
-#: Merge.rc:1845
+#: Merge.rc:1105
+#: Merge.rc:1848
 #, c-format
 msgid "Stop"
 msgstr "停止"
 
-#: Merge.rc:1107
+#: Merge.rc:1110
 #, c-format
 msgid "Comparing items..."
 msgstr "正在对比..."
 
-#: Merge.rc:1108
+#: Merge.rc:1111
 #, c-format
 msgid "Items compared:"
 msgstr "已对比:"
 
-#: Merge.rc:1109
+#: Merge.rc:1112
 #, c-format
 msgid "Items total:"
 msgstr "总数:"
 
-#: Merge.rc:1115
+#: Merge.rc:1118
 #, c-format
 msgid "Go To"
 msgstr "转到"
 
-#: Merge.rc:1118
+#: Merge.rc:1121
 #, c-format
 msgid "G&oto:"
 msgstr "转到(&O):"
 
-#: Merge.rc:1120
+#: Merge.rc:1123
 #, c-format
 msgid "File"
 msgstr "文件"
 
-#: Merge.rc:1125
+#: Merge.rc:1128
 #, c-format
 msgid "Goto what"
 msgstr "转到类别"
 
-#: Merge.rc:1126
+#: Merge.rc:1129
 #, c-format
 msgid "Li&ne"
 msgstr "行(&N)"
 
-#: Merge.rc:1128
+#: Merge.rc:1131
 #, c-format
 msgid "&Difference"
 msgstr "不同处(&D)"
 
-#: Merge.rc:1130
+#: Merge.rc:1133
 #, c-format
 msgid "&Go To"
 msgstr "转到(&G)"
 
-#: Merge.rc:1136
-#: Merge.rc:1893
+#: Merge.rc:1139
+#: Merge.rc:1896
 #, c-format
 msgid "Compare"
 msgstr "对比"
 
-#: Merge.rc:1139
+#: Merge.rc:1142
 #, c-format
 msgid "Whitespace"
 msgstr "空白"
 
-#: Merge.rc:1140
+#: Merge.rc:1143
 #, c-format
 msgid "&Compare"
 msgstr "对比空白和制表符(&W)"
 
-#: Merge.rc:1142
+#: Merge.rc:1145
 #, c-format
 msgid "&Ignore change"
 msgstr "忽略空白和制表符更改(&H)"
 
-#: Merge.rc:1144
+#: Merge.rc:1147
 #, c-format
 msgid "I&gnore all"
 msgstr "忽略所有空白和制表符(&A)"
 
-#: Merge.rc:1146
+#: Merge.rc:1149
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "忽略空行(&K)"
 
-#: Merge.rc:1148
+#: Merge.rc:1151
 #, c-format
 msgid "Ignore &case"
 msgstr "忽略大小写(&E)"
 
-#: Merge.rc:1150
+#: Merge.rc:1153
 #, c-format
 msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
 msgstr "忽略换行符差别(&R) (DOS/UNIX/MAC)"
 
-#: Merge.rc:1153
+#: Merge.rc:1156
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "允许检测移动区块(&N)"
 
-#: Merge.rc:1155
+#: Merge.rc:1158
 #, c-format
 msgid "&Match similar lines"
 msgstr "匹配相似的行(&M)"
 
-#: Merge.rc:1157
+#: Merge.rc:1160
 #, c-format
 msgid "&File Compare method:"
 msgstr "文件对比方法(&F)"
 
-#: Merge.rc:1160
+#: Merge.rc:1163
 #, c-format
 msgid "S&top after first difference"
 msgstr "遇到首处不同后停止(&T)"
 
-#: Merge.rc:1163
+#: Merge.rc:1166
 #, c-format
 msgid "Filter Comments"
 msgstr "过滤注释"
 
-#: Merge.rc:1170
-#: Merge.rc:1894
+#: Merge.rc:1173
+#: Merge.rc:1897
 #, c-format
 msgid "Editor"
 msgstr "编辑器"
 
-#: Merge.rc:1173
+#: Merge.rc:1176
 #, c-format
 msgid "&Highlight syntax"
 msgstr "语法高亮(&H)"
 
-#: Merge.rc:1175
+#: Merge.rc:1178
 #, c-format
 msgid "&Automatic rescan"
 msgstr "自动重新扫描(&R)"
 
-#: Merge.rc:1177
+#: Merge.rc:1180
 #, c-format
 msgid "&Preserve original EOL chars"
 msgstr "保持原始的换行符(&P)"
 
-#: Merge.rc:1179
+#: Merge.rc:1182
 #, c-format
 msgid "Tabs"
 msgstr "制表符"
 
-#: Merge.rc:1180
+#: Merge.rc:1183
 #, c-format
 msgid "&Tab size:"
 msgstr "宽度(&T)"
 
-#: Merge.rc:1183
+#: Merge.rc:1186
 #, c-format
 msgid "&Insert Tabs"
 msgstr "插入制表符(&T)"
 
-#: Merge.rc:1185
+#: Merge.rc:1188
 #, c-format
 msgid "Insert &Spaces"
 msgstr "插入空格(&N)"
 
-#: Merge.rc:1187
+#: Merge.rc:1190
 #, c-format
 msgid "Line Difference Coloring"
 msgstr "行中对比"
 
-#: Merge.rc:1189
+#: Merge.rc:1192
 #, c-format
 msgid "View line differences"
 msgstr "显示行中不同"
 
-#: Merge.rc:1191
+#: Merge.rc:1194
 #, c-format
 msgid "&Character level"
 msgstr "字符级别(&C)"
 
-#: Merge.rc:1193
+#: Merge.rc:1196
 #, c-format
 msgid "&Word-level:"
 msgstr "单词级别(&W):"
 
-#: Merge.rc:1208
+#: Merge.rc:1211
 #, c-format
 msgid "Filefilters"
 msgstr "文件过滤器"
 
-#: Merge.rc:1214
+#: Merge.rc:1217
 #, c-format
 msgid "Test"
 msgstr "测试"
 
-#: Merge.rc:1215
+#: Merge.rc:1218
 #, c-format
 msgid "Install..."
 msgstr "安装..."
 
-#: Merge.rc:1216
+#: Merge.rc:1219
 #, c-format
 msgid "New..."
 msgstr "新建..."
 
-#: Merge.rc:1217
+#: Merge.rc:1220
 #, c-format
 msgid "Edit..."
 msgstr "编辑..."
 
-#: Merge.rc:1218
+#: Merge.rc:1221
 #, c-format
 msgid "Delete..."
 msgstr "删除..."
 
-#: Merge.rc:1224
+#: Merge.rc:1227
 #, c-format
 msgid "Save modified files?"
 msgstr "保存修改后的文件吗？"
 
-#: Merge.rc:1227
+#: Merge.rc:1230
 #, c-format
 msgid "Left side file"
 msgstr "左侧文件"
 
-#: Merge.rc:1230
+#: Merge.rc:1233
 #, c-format
 msgid "&Save changes"
 msgstr "保存修改(&S)"
 
-#: Merge.rc:1232
+#: Merge.rc:1235
 #, c-format
 msgid "&Discard changes"
 msgstr "放弃修改(&D)"
 
-#: Merge.rc:1234
+#: Merge.rc:1237
 #, c-format
 msgid "Right side file"
 msgstr "右侧文件"
 
-#: Merge.rc:1237
+#: Merge.rc:1240
 #, c-format
 msgid "S&ave changes"
 msgstr "保存修改(&A)"
 
-#: Merge.rc:1239
+#: Merge.rc:1242
 #, c-format
 msgid "Dis&card changes"
 msgstr "放弃修改(&C)"
 
-#: Merge.rc:1241
+#: Merge.rc:1244
 #, c-format
 msgid "Discard All"
 msgstr "放弃所有修改"
 
-#: Merge.rc:1248
-#: Merge.rc:1496
-#: Merge.rc:1900
+#: Merge.rc:1251
+#: Merge.rc:1499
+#: Merge.rc:1903
 #, c-format
 msgid "Codepage"
 msgstr "代码页"
 
-#: Merge.rc:1251
+#: Merge.rc:1254
 #, c-format
 msgid "Default Codepage"
 msgstr "默认代码页"
 
-#: Merge.rc:1252
+#: Merge.rc:1255
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "请选择打开非Unicode文件时默认的代码页"
 
-#: Merge.rc:1254
+#: Merge.rc:1257
 #, c-format
 msgid ""
 "Detect codepage info for these files : .html, .rc, .xml \n"
@@ -2006,32 +2013,32 @@ msgstr ""
 "对以下文件进行代码页检测 : .html, .rc, .xml\n"
 "需要重新启动WinMerge"
 
-#: Merge.rc:1257
+#: Merge.rc:1260
 #, c-format
 msgid "System codepage"
 msgstr "系统代码页"
 
-#: Merge.rc:1259
+#: Merge.rc:1262
 #, c-format
 msgid "According to WinMerge User Interface"
 msgstr "与 WinMerge 用户界面一致"
 
-#: Merge.rc:1261
+#: Merge.rc:1264
 #, c-format
 msgid "Custom codepage :"
 msgstr "指定代码页 :"
 
-#: Merge.rc:1269
+#: Merge.rc:1272
 #, c-format
 msgid "WinMerge - Archive support disabled"
 msgstr "WinMerge - 压缩包支持已禁用"
 
-#: Merge.rc:1272
+#: Merge.rc:1275
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
 msgstr "无法检测 7-Zip 版本 (没有安装?)"
 
-#: Merge.rc:1275
+#: Merge.rc:1278
 #, c-format
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
@@ -2040,24 +2047,24 @@ msgstr ""
 "压缩包支持需要您的计算机上安装有 7-Zip 3.11 或更高的版本，\n"
 "或是将它的组件复制到本程序的文件夹中以供单独使用。"
 
-#: Merge.rc:1277
+#: Merge.rc:1280
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
 msgstr "在插件路径中还需要有适当的接口插件(Merge7z*.dll)。"
 
-#: Merge.rc:1279
+#: Merge.rc:1282
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
 msgstr "在对应于最新版7-Zip的插件面世之前，请使用以下推荐的版本。"
 
-#: Merge.rc:1281
+#: Merge.rc:1284
 #, c-format
 msgid "Version"
 msgstr "版本"
 
-#: Merge.rc:1283
+#: Merge.rc:1286
 #, c-format
 msgid ""
 "Plugin required\n"
@@ -2066,54 +2073,54 @@ msgstr ""
 "需要的插件\n"
 "(dllbuild %04u)"
 
-#: Merge.rc:1285
+#: Merge.rc:1288
 #, c-format
 msgid "Recommended version of 7-Zip:"
 msgstr "推荐的 7-Zip 版本："
 
-#: Merge.rc:1288
 #: Merge.rc:1291
+#: Merge.rc:1294
 #, c-format
 msgid "present"
 msgstr "现存"
 
-#: Merge.rc:1289
+#: Merge.rc:1292
 #, c-format
 msgid "Merge7z000U.dll"
 msgstr ""
 
-#: Merge.rc:1292
+#: Merge.rc:1295
 #, c-format
 msgid "7-Zip software installed on your computer:"
 msgstr "您计算机上安装的 7-Zip ："
 
-#: Merge.rc:1294
-#: Merge.rc:1299
+#: Merge.rc:1297
+#: Merge.rc:1302
 #, c-format
 msgid "none"
 msgstr "无"
 
-#: Merge.rc:1296
+#: Merge.rc:1299
 #, c-format
 msgid "missing"
 msgstr "没有"
 
-#: Merge.rc:1297
+#: Merge.rc:1300
 #, c-format
 msgid "7-Zip components for standalone operation:"
 msgstr "供单独使用的 7-Zip 组件："
 
-#: Merge.rc:1301
+#: Merge.rc:1304
 #, c-format
 msgid "outdated"
 msgstr "过期"
 
-#: Merge.rc:1302
+#: Merge.rc:1305
 #, c-format
 msgid "Plugins on path:"
 msgstr "路径中的插件："
 
-#: Merge.rc:1303
+#: Merge.rc:1306
 #, c-format
 msgid ""
 "Don't display this &message again.\n"
@@ -2122,486 +2129,486 @@ msgstr ""
 "不再显示此消息(&M)。\n"
 "(您可以从帮助菜单中调出这个对话框。)"
 
-#: Merge.rc:1307
+#: Merge.rc:1310
 #, c-format
 msgid "Plugin Download"
 msgstr "下载插件"
 
-#: Merge.rc:1316
+#: Merge.rc:1319
 #, c-format
 msgid "Options"
 msgstr "选项"
 
-#: Merge.rc:1327
+#: Merge.rc:1330
 #, c-format
 msgid " Categories"
 msgstr " 分类"
 
-#: Merge.rc:1329
+#: Merge.rc:1332
 #, c-format
 msgid "Import..."
 msgstr "导入..."
 
-#: Merge.rc:1330
+#: Merge.rc:1333
 #, c-format
 msgid "Export..."
 msgstr "导出..."
 
-#: Merge.rc:1338
+#: Merge.rc:1341
 #, c-format
 msgid "Keywords:"
 msgstr "关键字:"
 
-#: Merge.rc:1339
+#: Merge.rc:1342
 #, c-format
 msgid "Function names:"
 msgstr "函数名:"
 
-#: Merge.rc:1340
+#: Merge.rc:1343
 #, c-format
 msgid "Comments:"
 msgstr "注释:"
 
-#: Merge.rc:1341
+#: Merge.rc:1344
 #, c-format
 msgid "Numbers:"
 msgstr "数字:"
 
-#: Merge.rc:1342
+#: Merge.rc:1345
 #, c-format
 msgid "Operators:"
 msgstr "操作符:"
 
-#: Merge.rc:1343
+#: Merge.rc:1346
 #, c-format
 msgid "Strings:"
 msgstr "字符串:"
 
-#: Merge.rc:1344
+#: Merge.rc:1347
 #, c-format
 msgid "Preprocessor:"
 msgstr "预处理指令:"
 
-#: Merge.rc:1345
+#: Merge.rc:1348
 #, c-format
 msgid "User 1:"
 msgstr "用户定义 1:"
 
-#: Merge.rc:1346
+#: Merge.rc:1349
 #, c-format
 msgid "User 2:"
 msgstr "用户定义 2:"
 
-#: Merge.rc:1351
-#: Merge.rc:1356
-#: Merge.rc:1361
-#: Merge.rc:1366
-#: Merge.rc:1371
-#: Merge.rc:1376
-#: Merge.rc:1381
-#: Merge.rc:1386
-#: Merge.rc:1391
+#: Merge.rc:1354
+#: Merge.rc:1359
+#: Merge.rc:1364
+#: Merge.rc:1369
+#: Merge.rc:1374
+#: Merge.rc:1379
+#: Merge.rc:1384
+#: Merge.rc:1389
+#: Merge.rc:1394
 #, c-format
 msgid "Bold"
 msgstr "加粗"
 
-#: Merge.rc:1399
+#: Merge.rc:1402
 #, c-format
 msgid "Folder Compare Report"
 msgstr "文件夹对比报告"
 
-#: Merge.rc:1402
+#: Merge.rc:1405
 #, c-format
 msgid "Report &File:"
 msgstr "报告文件(&F):"
 
-#: Merge.rc:1406
+#: Merge.rc:1409
 #, c-format
 msgid "&Style:"
 msgstr "样式(&S):"
 
-#: Merge.rc:1409
+#: Merge.rc:1412
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "复制到剪贴板(&C)"
 
-#: Merge.rc:1417
+#: Merge.rc:1420
 #, c-format
 msgid "Shared or Private Filter"
 msgstr "共享或私有过滤器"
 
-#: Merge.rc:1420
+#: Merge.rc:1423
 #, c-format
 msgid "Which type of filter do you want to create?"
 msgstr "您要创建哪种过滤器？"
 
-#: Merge.rc:1422
+#: Merge.rc:1425
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr "共享过滤器(为本机的所有用户)"
 
-#: Merge.rc:1424
+#: Merge.rc:1427
 #, c-format
 msgid "Private Filter (only for current user)"
 msgstr "私有过滤器(只为当前用户)"
 
-#: Merge.rc:1432
-#: Merge.rc:1901
+#: Merge.rc:1435
+#: Merge.rc:1904
 #, c-format
 msgid "Archive Support"
 msgstr "压缩包支持"
 
-#: Merge.rc:1435
+#: Merge.rc:1438
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
 msgstr "压缩包支持需要安装 7-Zip 插件:"
 
-#: Merge.rc:1437
+#: Merge.rc:1440
 #, c-format
 msgid "Download 7-zip Plugin"
 msgstr "下载 7-zip 插件"
 
-#: Merge.rc:1438
+#: Merge.rc:1441
 #, c-format
 msgid "&Enable archive file support"
 msgstr "启用压缩文件支持(&E)"
 
-#: Merge.rc:1440
+#: Merge.rc:1443
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
 msgstr "使用已有的单独 7-Zip 程序(&U)"
 
-#: Merge.rc:1443
+#: Merge.rc:1446
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
 msgstr "使用 WinMerge 目录下自带的 7-Zip (&S)"
 
-#: Merge.rc:1445
+#: Merge.rc:1448
 #, c-format
 msgid "&Detect archive type from file signature"
 msgstr "依据署名检测文件类型(&D)"
 
-#: Merge.rc:1453
+#: Merge.rc:1456
 #, c-format
 msgid "Compare Statistics"
 msgstr "对比结果统计"
 
-#: Merge.rc:1456
+#: Merge.rc:1459
 #, c-format
 msgid "Folders:"
 msgstr "文件夹:"
 
-#: Merge.rc:1457
+#: Merge.rc:1460
 #, c-format
 msgid "Files:"
 msgstr "文件:"
 
-#: Merge.rc:1458
-#: Merge.rc:2268
+#: Merge.rc:1461
+#: Merge.rc:2271
 #, c-format
 msgid "Different"
 msgstr "不同"
 
-#: Merge.rc:1459
+#: Merge.rc:1462
 #, c-format
 msgid "Text:"
 msgstr "文本:"
 
-#: Merge.rc:1462
-#: Merge.rc:1481
+#: Merge.rc:1465
+#: Merge.rc:1484
 #, c-format
 msgid "Binary:"
 msgstr "二进制:"
 
-#: Merge.rc:1465
+#: Merge.rc:1468
 #, c-format
 msgid "Unique"
 msgstr "仅在单侧"
 
-#: Merge.rc:1466
+#: Merge.rc:1469
 #, c-format
 msgid "Left:"
 msgstr "左侧:"
 
-#: Merge.rc:1471
+#: Merge.rc:1474
 #, c-format
 msgid "Right:"
 msgstr "右侧:"
 
-#: Merge.rc:1476
-#: Merge.rc:2263
+#: Merge.rc:1479
+#: Merge.rc:2266
 #, c-format
 msgid "Identical"
 msgstr "完全相同"
 
-#: Merge.rc:1485
+#: Merge.rc:1488
 #, c-format
 msgid "Total:"
 msgstr "总计:"
 
-#: Merge.rc:1490
+#: Merge.rc:1493
 #, c-format
 msgid "Close"
 msgstr "关闭"
 
-#: Merge.rc:1499
+#: Merge.rc:1502
 #, c-format
 msgid "Affects"
 msgstr "影响范围"
 
-#: Merge.rc:1502
 #: Merge.rc:1505
+#: Merge.rc:1508
 #, c-format
 msgid "(Affects)"
 msgstr ""
 
-#: Merge.rc:1506
+#: Merge.rc:1509
 #, c-format
 msgid "Select Codepage for"
 msgstr "选择要使用的代码页"
 
-#: Merge.rc:1507
+#: Merge.rc:1510
 #, c-format
 msgid "&File Loading:"
 msgstr "打开文件(&F):"
 
-#: Merge.rc:1509
 #: Merge.rc:1512
+#: Merge.rc:1515
 #, c-format
 msgid "..."
 msgstr ""
 
-#: Merge.rc:1510
+#: Merge.rc:1513
 #, c-format
 msgid "File &Saving:"
 msgstr "保存文件(&S):"
 
-#: Merge.rc:1513
+#: Merge.rc:1516
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "两边使用相同的代码页(&U)"
 
-#: Merge.rc:1516
+#: Merge.rc:1519
 #, c-format
 msgid "&Apply"
 msgstr "应用(&A)"
 
-#: Merge.rc:1517
-#: Merge.rc:1867
+#: Merge.rc:1520
+#: Merge.rc:1870
 #, c-format
 msgid "&Cancel"
 msgstr "取消(&C)"
 
-#: Merge.rc:1522
+#: Merge.rc:1525
 #, c-format
 msgid "Test Filter"
 msgstr "过滤器测试"
 
-#: Merge.rc:1525
+#: Merge.rc:1528
 #, c-format
 msgid "Testing filter ..."
 msgstr "正在测试 ..."
 
-#: Merge.rc:1527
+#: Merge.rc:1530
 #, c-format
 msgid "&Enter text to test:"
 msgstr "键入文字用以测试(&E):"
 
-#: Merge.rc:1529
+#: Merge.rc:1532
 #, c-format
 msgid "&Folder Name"
 msgstr "文件夹名(&F)"
 
-#: Merge.rc:1531
+#: Merge.rc:1534
 #, c-format
 msgid "Result:"
 msgstr "结果:"
 
-#: Merge.rc:1535
+#: Merge.rc:1538
 #, c-format
 msgid "&Test"
 msgstr "测试(&T)"
 
-#: Merge.rc:1536
+#: Merge.rc:1539
 #, c-format
 msgid "&Close"
 msgstr "关闭(&C)"
 
-#: Merge.rc:1544
+#: Merge.rc:1547
 #, c-format
 msgid "&Use customized text colors"
 msgstr "使用自定义的文字颜色(&U)"
 
-#: Merge.rc:1547
+#: Merge.rc:1550
 #, c-format
 msgid "Custom text colors"
 msgstr "自定义文字颜色"
 
-#: Merge.rc:1549
+#: Merge.rc:1552
 #, c-format
 msgid "Whitespace:"
 msgstr "空白:"
 
-#: Merge.rc:1550
+#: Merge.rc:1553
 #, c-format
 msgid "Regular text:"
 msgstr "普通文字:"
 
-#: Merge.rc:1551
+#: Merge.rc:1554
 #, c-format
 msgid "Selection:"
 msgstr "选中区域:"
 
-#: Merge.rc:1574
+#: Merge.rc:1577
 #, c-format
 msgid "Paths"
 msgstr "路径"
 
-#: Merge.rc:1580
+#: Merge.rc:1583
 #, c-format
 msgid "R&ead-only"
 msgstr "只读(&E)"
 
-#: Merge.rc:1584
+#: Merge.rc:1587
 #, c-format
 msgid "Re&ad-only"
 msgstr "只读(&A)"
 
-#: Merge.rc:1590
+#: Merge.rc:1593
 #, c-format
 msgid "Open..."
 msgstr "打开..."
 
-#: Merge.rc:1591
+#: Merge.rc:1594
 #, c-format
 msgid "Save..."
 msgstr "保存..."
 
-#: Merge.rc:1596
-#: Merge.rc:1902
+#: Merge.rc:1599
+#: Merge.rc:1905
 #, c-format
 msgid "Backup Files"
 msgstr "备份文件"
 
-#: Merge.rc:1599
+#: Merge.rc:1602
 #, c-format
 msgid "Create backup files in:"
 msgstr "进行以下操作时创建备份文件:"
 
-#: Merge.rc:1604
+#: Merge.rc:1607
 #, c-format
 msgid "Create backup files into:"
 msgstr "将备份文件创建至:"
 
-#: Merge.rc:1605
+#: Merge.rc:1608
 #, c-format
 msgid "&Original file's folder"
 msgstr "原始文件所在文件夹(&O)"
 
-#: Merge.rc:1607
+#: Merge.rc:1610
 #, c-format
 msgid "&Global backup folder:"
 msgstr "全局备份文件夹(&G):"
 
-#: Merge.rc:1611
+#: Merge.rc:1614
 #, c-format
 msgid "Backup filename:"
 msgstr "备份文件名:"
 
-#: Merge.rc:1612
+#: Merge.rc:1615
 #, c-format
 msgid "&Append .bak -extension"
 msgstr "添加 .bak 扩展名(&A)"
 
-#: Merge.rc:1614
+#: Merge.rc:1617
 #, c-format
 msgid "A&ppend timestamp"
 msgstr "添加时间戳(&P)"
 
-#: Merge.rc:1621
+#: Merge.rc:1624
 #, c-format
 msgid "Confirm Copy"
 msgstr "确认复制"
 
-#: Merge.rc:1625
+#: Merge.rc:1628
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr "您确定要复制 XXX 个项目么?"
 
-#: Merge.rc:1627
+#: Merge.rc:1630
 #, c-format
 msgid "From left"
 msgstr "从左侧"
 
-#: Merge.rc:1630
+#: Merge.rc:1633
 #, c-format
 msgid "To right"
 msgstr "到右侧"
 
-#: Merge.rc:1633
+#: Merge.rc:1636
 #, c-format
 msgid "Yes"
 msgstr "是"
 
-#: Merge.rc:1634
+#: Merge.rc:1637
 #, c-format
 msgid "No"
 msgstr "否"
 
 #. StringFileInfo.Block
-#: Merge.rc:1659
+#: Merge.rc:1662
 #, c-format
 msgid "040904e4"
 msgstr "040903a8"
 
 #. You should use a string like "Translated by " followed by the translator names for this string. It is ONLY VISIBLE in the StringFileInfo.Comments property from the final resource file!
-#: Merge.rc:1661
+#: Merge.rc:1664
 #, c-format
 msgid "English translation by developers"
 msgstr "Translated by liaobin and xmpdhml"
 
 #. VarFileInfo.Translation
-#: Merge.rc:1674
+#: Merge.rc:1677
 #, c-format
 msgid "0x409, 1252"
 msgstr "0x804, 936"
 
-#: Merge.rc:1689
+#: Merge.rc:1692
 #, c-format
 msgid "Ready"
 msgstr "就绪"
 
-#: Merge.rc:1695
+#: Merge.rc:1698
 #, c-format
 msgid "EXT"
 msgstr ""
 
-#: Merge.rc:1696
+#: Merge.rc:1699
 #, c-format
 msgid "CAP"
 msgstr ""
 
-#: Merge.rc:1697
+#: Merge.rc:1700
 #, c-format
 msgid "NUM"
 msgstr ""
 
-#: Merge.rc:1698
+#: Merge.rc:1701
 #, c-format
 msgid "SCRL"
 msgstr ""
 
-#: Merge.rc:1699
+#: Merge.rc:1702
 #, c-format
 msgid "OVR"
 msgstr ""
 
-#: Merge.rc:1700
+#: Merge.rc:1703
 #, c-format
 msgid "REC"
 msgstr ""
 
-#: Merge.rc:1706
+#: Merge.rc:1709
 #, c-format
 msgid ""
 "Create empty documents\n"
@@ -2610,7 +2617,7 @@ msgstr ""
 "新建一个空文档\n"
 "新建 (Ctrl+N)"
 
-#: Merge.rc:1707
+#: Merge.rc:1710
 #, c-format
 msgid ""
 "Open an existing document\n"
@@ -2619,7 +2626,7 @@ msgstr ""
 "打开一个现存文件\n"
 "打开 (Ctrl+O)"
 
-#: Merge.rc:1708
+#: Merge.rc:1711
 #, c-format
 msgid ""
 "Close the active document\n"
@@ -2628,7 +2635,7 @@ msgstr ""
 "关闭当前文件\n"
 "关闭"
 
-#: Merge.rc:1709
+#: Merge.rc:1712
 #, c-format
 msgid ""
 "Save the active document\n"
@@ -2637,7 +2644,7 @@ msgstr ""
 "保存当前文件\n"
 "保存 (Ctrl+S)"
 
-#: Merge.rc:1710
+#: Merge.rc:1713
 #, c-format
 msgid ""
 "Save the active document with a new name\n"
@@ -2646,7 +2653,7 @@ msgstr ""
 "以一个新名称保存当前中文件\n"
 "另存为"
 
-#: Merge.rc:1711
+#: Merge.rc:1714
 #, c-format
 msgid ""
 "Change the printing options\n"
@@ -2655,7 +2662,7 @@ msgstr ""
 "更改打印选项\n"
 "版面设定"
 
-#: Merge.rc:1712
+#: Merge.rc:1715
 #, c-format
 msgid ""
 "Change the printer and printing options\n"
@@ -2664,7 +2671,7 @@ msgstr ""
 "更改打印机和打印选项\n"
 "打印设定"
 
-#: Merge.rc:1713
+#: Merge.rc:1716
 #, c-format
 msgid ""
 "Print the active document\n"
@@ -2673,7 +2680,7 @@ msgstr ""
 "打印当前文件\n"
 "打印"
 
-#: Merge.rc:1714
+#: Merge.rc:1717
 #, c-format
 msgid ""
 "Display full pages\n"
@@ -2682,12 +2689,12 @@ msgstr ""
 "预览打印的效果\n"
 "打印预览"
 
-#: Merge.rc:1719
+#: Merge.rc:1722
 #, c-format
 msgid "Make all hidden items visible again"
 msgstr "重新显示所有隐藏的项目"
 
-#: Merge.rc:1725
+#: Merge.rc:1728
 #, c-format
 msgid ""
 "Open project file\n"
@@ -2696,32 +2703,32 @@ msgstr ""
 "打开工程文件\n"
 "打开工程 (Ctrl+J)"
 
-#: Merge.rc:1726
+#: Merge.rc:1729
 #, c-format
 msgid "Unknown error attempting to open project file"
 msgstr "打开工程文件时发生未知错误"
 
-#: Merge.rc:1727
+#: Merge.rc:1730
 #, c-format
 msgid "Unknown error attempting to save project file"
 msgstr "保存工程文件时发生未知错误"
 
-#: Merge.rc:1728
+#: Merge.rc:1731
 #, c-format
 msgid "Project File"
 msgstr "工程文件"
 
-#: Merge.rc:1729
+#: Merge.rc:1732
 #, c-format
 msgid "Project file successfully loaded."
 msgstr "成功打开工程文件."
 
-#: Merge.rc:1730
+#: Merge.rc:1733
 #, c-format
 msgid "Project file successfully saved."
 msgstr "成功保存工程文件."
 
-#: Merge.rc:1731
+#: Merge.rc:1734
 #, c-format
 msgid ""
 "Save current paths and options to project file\n"
@@ -2730,7 +2737,7 @@ msgstr ""
 "把当前的路径和选项保存到工程文件\n"
 "保存工程文件"
 
-#: Merge.rc:1736
+#: Merge.rc:1739
 #, c-format
 msgid ""
 "Display program information, version number and copyright\n"
@@ -2739,7 +2746,7 @@ msgstr ""
 "显示程序信息，版本号码和版权\n"
 "关于"
 
-#: Merge.rc:1737
+#: Merge.rc:1740
 #, c-format
 msgid ""
 "Quit the application; prompts to save documents\n"
@@ -2748,9 +2755,6 @@ msgstr ""
 "退出应用程序；提示保存文件\n"
 "退出"
 
-#: Merge.rc:1743
-#: Merge.rc:1744
-#: Merge.rc:1745
 #: Merge.rc:1746
 #: Merge.rc:1747
 #: Merge.rc:1748
@@ -2764,11 +2768,14 @@ msgstr ""
 #: Merge.rc:1756
 #: Merge.rc:1757
 #: Merge.rc:1758
+#: Merge.rc:1759
+#: Merge.rc:1760
+#: Merge.rc:1761
 #, c-format
 msgid "Open this document"
 msgstr "打开这个文件"
 
-#: Merge.rc:1763
+#: Merge.rc:1766
 #, c-format
 msgid ""
 "Switch to the next window pane\n"
@@ -2777,7 +2784,7 @@ msgstr ""
 "切换到下一个窗口\n"
 "下一窗口"
 
-#: Merge.rc:1764
+#: Merge.rc:1767
 #, c-format
 msgid ""
 "Switch back to the previous window pane\n"
@@ -2786,7 +2793,7 @@ msgstr ""
 "切换到上一个窗口\n"
 "上一窗口"
 
-#: Merge.rc:1770
+#: Merge.rc:1773
 #, c-format
 msgid ""
 "Open another window for the active document\n"
@@ -2795,7 +2802,7 @@ msgstr ""
 "为当前文件打开另一个窗口\n"
 "新窗口"
 
-#: Merge.rc:1771
+#: Merge.rc:1774
 #, c-format
 msgid ""
 "Arrange icons at the bottom of the window\n"
@@ -2804,14 +2811,14 @@ msgstr ""
 "在窗口的底部排列图标\n"
 "排列图标"
 
-#: Merge.rc:1772
+#: Merge.rc:1775
 #, c-format
 msgid ""
 "Arrange windows so they overlap\n"
 "Cascade Windows"
 msgstr "排列窗口让它们彼此覆盖n重叠窗口"
 
-#: Merge.rc:1773
+#: Merge.rc:1776
 #, fuzzy, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
@@ -2820,7 +2827,7 @@ msgstr ""
 "非覆盖的排列窗口\n"
 "并列窗口"
 
-#: Merge.rc:1774
+#: Merge.rc:1777
 #, fuzzy, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
@@ -2829,7 +2836,7 @@ msgstr ""
 "非覆盖的排列窗口\n"
 "并列窗口"
 
-#: Merge.rc:1775
+#: Merge.rc:1778
 #, c-format
 msgid ""
 "Split the active window into panes\n"
@@ -2838,7 +2845,7 @@ msgstr ""
 "分割当前窗口\n"
 "分割"
 
-#: Merge.rc:1781
+#: Merge.rc:1784
 #, c-format
 msgid ""
 "Erase the selection\n"
@@ -2847,7 +2854,7 @@ msgstr ""
 "清除选中的内容\n"
 "删除"
 
-#: Merge.rc:1782
+#: Merge.rc:1785
 #, c-format
 msgid ""
 "Erase everything\n"
@@ -2856,7 +2863,7 @@ msgstr ""
 "全部删除\n"
 "全部删除"
 
-#: Merge.rc:1783
+#: Merge.rc:1786
 #, c-format
 msgid ""
 "Copy the selection and put it on the Clipboard\n"
@@ -2865,7 +2872,7 @@ msgstr ""
 "复制选中内容到剪贴板\n"
 "复制"
 
-#: Merge.rc:1784
+#: Merge.rc:1787
 #, c-format
 msgid ""
 "Cut the selection and put it on the Clipboard\n"
@@ -2874,7 +2881,7 @@ msgstr ""
 "删除选中内容并放置到剪贴板\n"
 "剪切"
 
-#: Merge.rc:1785
+#: Merge.rc:1788
 #, c-format
 msgid ""
 "Find the specified text\n"
@@ -2883,7 +2890,7 @@ msgstr ""
 "查找指定文字\n"
 "查找"
 
-#: Merge.rc:1786
+#: Merge.rc:1789
 #, c-format
 msgid ""
 "Insert Clipboard contents\n"
@@ -2892,7 +2899,7 @@ msgstr ""
 "插入剪贴板中的内容\n"
 "粘贴"
 
-#: Merge.rc:1787
+#: Merge.rc:1790
 #, c-format
 msgid ""
 "Repeat the last action\n"
@@ -2901,7 +2908,7 @@ msgstr ""
 "重复上次的动作\n"
 "重复"
 
-#: Merge.rc:1788
+#: Merge.rc:1791
 #, c-format
 msgid ""
 "Replace specific text with different text\n"
@@ -2910,7 +2917,7 @@ msgstr ""
 "查找指定文字并替换\n"
 "替换"
 
-#: Merge.rc:1789
+#: Merge.rc:1792
 #, c-format
 msgid ""
 "Select the entire document\n"
@@ -2919,7 +2926,7 @@ msgstr ""
 "选择全部内容\n"
 "全选"
 
-#: Merge.rc:1790
+#: Merge.rc:1793
 #, c-format
 msgid ""
 "Undo the last action\n"
@@ -2928,7 +2935,7 @@ msgstr ""
 "撤销上次的动作\n"
 "撤销"
 
-#: Merge.rc:1791
+#: Merge.rc:1794
 #, c-format
 msgid ""
 "Redo the previously undone action\n"
@@ -2937,7 +2944,7 @@ msgstr ""
 "重复之前未完成的动作\n"
 "重复"
 
-#: Merge.rc:1797
+#: Merge.rc:1800
 #, c-format
 msgid ""
 "Show or hide the toolbar\n"
@@ -2946,7 +2953,7 @@ msgstr ""
 "显示或隐藏工具栏\n"
 "切换工具栏"
 
-#: Merge.rc:1798
+#: Merge.rc:1801
 #, c-format
 msgid ""
 "Show or hide the status bar\n"
@@ -2955,7 +2962,7 @@ msgstr ""
 "显示或隐藏状态栏\n"
 "切换状态栏"
 
-#: Merge.rc:1799
+#: Merge.rc:1802
 #, c-format
 msgid ""
 "Show or hide the tab bar\n"
@@ -2964,62 +2971,62 @@ msgstr ""
 "显示或隐藏标签栏\n"
 "切换标签栏"
 
-#: Merge.rc:1800
+#: Merge.rc:1803
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
 msgstr ""
 
-#: Merge.rc:1806
+#: Merge.rc:1809
 #, c-format
 msgid "Change the window size"
 msgstr "更改窗口大小"
 
-#: Merge.rc:1807
+#: Merge.rc:1810
 #, c-format
 msgid "Change the window position"
 msgstr "更改窗口位置"
 
-#: Merge.rc:1808
+#: Merge.rc:1811
 #, c-format
 msgid "Reduce the window to an icon"
 msgstr "缩小窗口为一个图标"
 
-#: Merge.rc:1809
+#: Merge.rc:1812
 #, c-format
 msgid "Enlarge the window to full size"
 msgstr "扩大窗口到整个屏幕"
 
-#: Merge.rc:1810
+#: Merge.rc:1813
 #, c-format
 msgid "Switch to the next document window"
 msgstr "切换到下一个文件窗口"
 
-#: Merge.rc:1811
+#: Merge.rc:1814
 #, c-format
 msgid "Switch to the previous document window"
 msgstr "切换到上一个文件窗口"
 
-#: Merge.rc:1812
+#: Merge.rc:1815
 #, c-format
 msgid "Close the active window and prompts to save the documents"
 msgstr "关闭当前窗口并提示保存此文件"
 
-#: Merge.rc:1817
+#: Merge.rc:1820
 #, c-format
 msgid "Restore the window to normal size"
 msgstr "将窗口还原成标准的大小"
 
-#: Merge.rc:1818
+#: Merge.rc:1821
 #, c-format
 msgid "Activate Task List"
 msgstr "启用工作清单"
 
-#: Merge.rc:1819
+#: Merge.rc:1822
 #, c-format
 msgid "Activate this window"
 msgstr "启用这个窗口"
 
-#: Merge.rc:1825
+#: Merge.rc:1828
 #, c-format
 msgid ""
 "Close print preview mode\n"
@@ -3028,7 +3035,7 @@ msgstr ""
 "关闭打印预览模式\n"
 "取消预览"
 
-#: Merge.rc:1832
+#: Merge.rc:1835
 #, c-format
 msgid ""
 "\n"
@@ -3040,175 +3047,175 @@ msgid ""
 "WinMerge Document"
 msgstr ""
 
-#: Merge.rc:1839
+#: Merge.rc:1842
 #, c-format
 msgid "Preserve original EOL chars"
 msgstr "保留原始的换行符"
 
-#: Merge.rc:1846
+#: Merge.rc:1849
 #, c-format
 msgid "Press any key"
 msgstr "请按任意键"
 
-#: Merge.rc:1852
-#: Merge.rc:1853
+#: Merge.rc:1855
+#: Merge.rc:1856
 #, c-format
 msgid "Right click on the path to copy"
 msgstr "右键点击路径复制到剪贴板"
 
-#: Merge.rc:1859
+#: Merge.rc:1862
 #, c-format
 msgid ""
 "Developers:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
 msgstr ""
 
-#: Merge.rc:1860
+#: Merge.rc:1863
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
 msgstr ""
 
-#: Merge.rc:1866
+#: Merge.rc:1869
 #, c-format
 msgid "&Ok"
 msgstr "确定(&O)"
 
-#: Merge.rc:1868
+#: Merge.rc:1871
 #, c-format
 msgid "&Abort"
 msgstr "中止(&A)"
 
-#: Merge.rc:1869
+#: Merge.rc:1872
 #, c-format
 msgid "&Retry"
 msgstr "重试(&R)"
 
-#: Merge.rc:1870
+#: Merge.rc:1873
 #, c-format
 msgid "&Ignore"
 msgstr "忽略(&I)"
 
-#: Merge.rc:1871
+#: Merge.rc:1874
 #, c-format
 msgid "Ignore &all"
 msgstr "忽略所有(&A)"
 
-#: Merge.rc:1872
+#: Merge.rc:1875
 #, c-format
 msgid "&Yes"
 msgstr "是(&Y)"
 
-#: Merge.rc:1878
+#: Merge.rc:1881
 #, c-format
 msgid "Yes to &all"
 msgstr "全部都是(&A)"
 
-#: Merge.rc:1879
+#: Merge.rc:1882
 #, c-format
 msgid "&No"
 msgstr "否(&N)"
 
-#: Merge.rc:1880
+#: Merge.rc:1883
 #, c-format
 msgid "No to a&ll"
 msgstr "全部都否(&L)"
 
-#: Merge.rc:1881
+#: Merge.rc:1884
 #, c-format
 msgid "&Continue"
 msgstr "继续(&C)"
 
-#: Merge.rc:1882
+#: Merge.rc:1885
 #, c-format
 msgid "&Skip"
 msgstr "跳过(&S)"
 
-#: Merge.rc:1883
+#: Merge.rc:1886
 #, c-format
 msgid "Skip &all"
 msgstr "全部跳过(&A)"
 
-#: Merge.rc:1885
+#: Merge.rc:1888
 #, c-format
 msgid "Don't display this &message again."
 msgstr "不再提示此消息(&M)。"
 
-#: Merge.rc:1886
+#: Merge.rc:1889
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "不再询问此问题(&Q)。"
 
-#: Merge.rc:1896
+#: Merge.rc:1899
 #, c-format
 msgid "Syntax colors"
 msgstr "语法高亮"
 
-#: Merge.rc:1897
+#: Merge.rc:1900
 #, c-format
 msgid "Text Colors"
 msgstr "文本颜色"
 
-#: Merge.rc:1899
+#: Merge.rc:1902
 #, c-format
 msgid "Version Control"
 msgstr "版本控制"
 
-#: Merge.rc:1909
+#: Merge.rc:1912
 #, c-format
 msgid "To:"
 msgstr "到:"
 
-#: Merge.rc:1910
+#: Merge.rc:1913
 #, c-format
 msgid "From left:"
 msgstr "从左侧:"
 
-#: Merge.rc:1911
+#: Merge.rc:1914
 #, c-format
 msgid "To left:"
 msgstr "到左侧:"
 
-#: Merge.rc:1912
+#: Merge.rc:1915
 #, c-format
 msgid "From right:"
 msgstr "从右侧:"
 
-#: Merge.rc:1913
+#: Merge.rc:1916
 #, c-format
 msgid "To right:"
 msgstr "到右侧:"
 
-#: Merge.rc:1919
+#: Merge.rc:1922
 #, c-format
 msgid "Version %1"
 msgstr "版本 %1"
 
-#: Merge.rc:1920
+#: Merge.rc:1923
 #, c-format
 msgid "Unicode"
 msgstr ""
 
-#: Merge.rc:1926
+#: Merge.rc:1929
 #, c-format
 msgid "Options (%1)"
 msgstr "选项 (%1)"
 
-#: Merge.rc:1927
+#: Merge.rc:1930
 #, c-format
 msgid "All message boxes are now displayed again."
 msgstr "所有提示信息已经重设为显示。"
 
-#: Merge.rc:1928
+#: Merge.rc:1931
 #, c-format
 msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
 msgstr "当前文件在对比期间已有修改。在重新启动当前文件对比前，一些设置不会生效。"
 
-#: Merge.rc:1929
+#: Merge.rc:1932
 #, c-format
 msgid "The selected font change will not be applied to any currently visible difference windows."
 msgstr "选择的字体更改不会应用到已经打开的对比窗口。"
 
-#: Merge.rc:1931
+#: Merge.rc:1934
 #, c-format
 msgid ""
 "Value in Tab size -field is not in range WinMerge accepts.\n"
@@ -3219,7 +3226,7 @@ msgstr ""
 "\n"
 "请使用 1 - %1 之间的值."
 
-#: Merge.rc:1933
+#: Merge.rc:1936
 #, c-format
 msgid ""
 "Are you sure you want to reset all WinMerge options to default values?\n"
@@ -3230,107 +3237,107 @@ msgstr ""
 "\n"
 "请在重置之后重新启动 WinMerge ."
 
-#: Merge.rc:1939
+#: Merge.rc:1942
 #, c-format
 msgid "Open"
 msgstr "打开"
 
-#: Merge.rc:1940
+#: Merge.rc:1943
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "程序|*.exe;*.bat;*.cmd|所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1941
+#: Merge.rc:1944
 #, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr "所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1942
+#: Merge.rc:1945
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge 工程文件 (*.WinMerge)|*.WinMerge||"
 
-#: Merge.rc:1944
+#: Merge.rc:1947
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "配置文件 (*.ini)|*.ini|所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1950
+#: Merge.rc:1953
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr "文本文件 (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1951
+#: Merge.rc:1954
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr "HTML 文件 (*.htm,*.html)|*.htm;*.html|所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1952
+#: Merge.rc:1955
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr "XML 文件 (*.xml)|*.xml|所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1958
+#: Merge.rc:1961
 #, c-format
 msgid "Full Contents"
 msgstr "全部内容"
 
-#: Merge.rc:1959
+#: Merge.rc:1962
 #, c-format
 msgid "Quick Contents"
 msgstr "快速内容"
 
-#: Merge.rc:1960
+#: Merge.rc:1963
 #, c-format
 msgid "Modified Date"
 msgstr "修改日期"
 
-#: Merge.rc:1961
+#: Merge.rc:1964
 #, c-format
 msgid "Modified Date and Size"
 msgstr "修改日期和文件大小"
 
-#: Merge.rc:1962
+#: Merge.rc:1965
 #, c-format
 msgid "Size"
 msgstr "文件大小"
 
-#: Merge.rc:1968
+#: Merge.rc:1971
 #, c-format
 msgid "Name"
 msgstr "名称"
 
-#: Merge.rc:1969
+#: Merge.rc:1972
 #, c-format
 msgid "Location"
 msgstr "位置"
 
-#: Merge.rc:1970
+#: Merge.rc:1973
 #, c-format
 msgid "Filters"
 msgstr "过滤器"
 
-#: Merge.rc:1971
+#: Merge.rc:1974
 #, c-format
 msgid "[F] "
 msgstr ""
 
-#: Merge.rc:1972
+#: Merge.rc:1975
 #, c-format
 msgid "Description"
 msgstr "描述"
 
-#: Merge.rc:1973
+#: Merge.rc:1976
 #, c-format
 msgid "Select filename for new filter"
 msgstr "选择新过滤器的文件名"
 
-#: Merge.rc:1974
+#: Merge.rc:1977
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr "过滤器文件 (*.flt)|*.flt|所有文件 (*.*)|*.*||"
 
-#: Merge.rc:1976
+#: Merge.rc:1979
 #, c-format
 msgid ""
 "Cannot find file filter template file!\n"
@@ -3342,7 +3349,7 @@ msgstr ""
 "\n"
 "请把文件 %1 复制到 WinMerge/Filters 文件夹下."
 
-#: Merge.rc:1978
+#: Merge.rc:1981
 #, c-format
 msgid ""
 "Cannot copy filter template file to filter folder:\n"
@@ -3355,7 +3362,7 @@ msgstr ""
 "\n"
 "请确认此文件夹存在并可以写入."
 
-#: Merge.rc:1980
+#: Merge.rc:1983
 #, c-format
 msgid ""
 "User's filter file folder is not defined!\n"
@@ -3366,7 +3373,7 @@ msgstr ""
 "\n"
 "请在选项/系统中选择一个路径."
 
-#: Merge.rc:1982
+#: Merge.rc:1985
 #, c-format
 msgid ""
 "Failed to delete the filter file:\n"
@@ -3379,12 +3386,12 @@ msgstr ""
 "\n"
 "该文件是否为只读?"
 
-#: Merge.rc:1983
+#: Merge.rc:1986
 #, c-format
 msgid "Locate filter file to install"
 msgstr "选择要安装的过滤器文件"
 
-#: Merge.rc:1985
+#: Merge.rc:1988
 #, c-format
 msgid ""
 "Installing filter file failed.\n"
@@ -3395,208 +3402,208 @@ msgstr ""
 "\n"
 "或许是无法将新文件复制到过滤器路径?"
 
-#: Merge.rc:1987
+#: Merge.rc:1990
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr "过滤器文件已经存在. 是否覆盖原有过滤器?"
 
-#: Merge.rc:1993
+#: Merge.rc:1996
 #, c-format
 msgid "Regular expression"
 msgstr "正则表达式"
 
-#: Merge.rc:1999
+#: Merge.rc:2002
 #, c-format
 msgid "&Path to cleartool.exe :"
 msgstr "cleartool.exe 路径(&P):"
 
-#: Merge.rc:2000
+#: Merge.rc:2003
 #, c-format
 msgid "&Path to SS.EXE :"
 msgstr "SS.EXE 路径(&P):"
 
-#: Merge.rc:2006
+#: Merge.rc:2009
 #, c-format
 msgid "Folder Comparison Results"
 msgstr "文件夹对比结果"
 
-#: Merge.rc:2007
+#: Merge.rc:2010
 #, c-format
 msgid "File Comparison"
 msgstr "文件对比"
 
-#: Merge.rc:2008
+#: Merge.rc:2011
 #, c-format
 msgid "Untitled left"
 msgstr "未命名 左"
 
-#: Merge.rc:2009
+#: Merge.rc:2012
 #, c-format
 msgid "Untitled right"
 msgstr "未命名 右"
 
-#: Merge.rc:2010
+#: Merge.rc:2013
 #, c-format
 msgid "Theirs File"
 msgstr ""
 
-#: Merge.rc:2011
+#: Merge.rc:2014
 #, c-format
 msgid "Mine File"
 msgstr ""
 
-#: Merge.rc:2017
+#: Merge.rc:2020
 #, c-format
 msgid "Scanning files..."
 msgstr "扫描文件..."
 
-#: Merge.rc:2018
+#: Merge.rc:2021
 #, c-format
 msgid "Opening selection"
 msgstr "打开选择"
 
-#: Merge.rc:2019
+#: Merge.rc:2022
 #, c-format
 msgid "Copying Left to Right"
 msgstr "正在从左侧复制到右侧"
 
-#: Merge.rc:2020
+#: Merge.rc:2023
 #, c-format
 msgid "Copying Right to Left"
 msgstr "正在从右侧复制到左侧"
 
-#: Merge.rc:2021
+#: Merge.rc:2024
 #, c-format
 msgid "Copying All to Left"
 msgstr "正在全部复制到左侧"
 
-#: Merge.rc:2022
+#: Merge.rc:2025
 #, c-format
 msgid "Copying All to Right"
 msgstr "正在全部复制到右侧"
 
-#: Merge.rc:2023
+#: Merge.rc:2026
 #, c-format
 msgid "Copying files..."
 msgstr "正在复制文件..."
 
-#: Merge.rc:2024
+#: Merge.rc:2027
 #, c-format
 msgid "Deleting files..."
 msgstr "正在删除文件..."
 
-#: Merge.rc:2025
+#: Merge.rc:2028
 #, c-format
 msgid "Moving files..."
 msgstr "正在移动文件..."
 
-#: Merge.rc:2026
+#: Merge.rc:2029
 #, c-format
 msgid "Creating the report..."
 msgstr "创建报告..."
 
-#: Merge.rc:2032
+#: Merge.rc:2035
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr "行: %s  列: %d/%d  字符: %d/%d  换行符: %s"
 
-#: Merge.rc:2033
+#: Merge.rc:2036
 #, c-format
 msgid "Line: %s"
 msgstr "行: %s"
 
-#: Merge.rc:2034
+#: Merge.rc:2037
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr "行: %s  列: %d/%d  字符: %d/%d"
 
-#: Merge.rc:2035
+#: Merge.rc:2038
 #, c-format
 msgid "Merge"
 msgstr "合并"
 
-#: Merge.rc:2036
+#: Merge.rc:2039
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "第 %1 处不同(共 %2 处)"
 
-#: Merge.rc:2037
+#: Merge.rc:2040
 #, c-format
 msgid "%1 Differences Found"
 msgstr "共找到 %1 处不同"
 
-#: Merge.rc:2038
+#: Merge.rc:2041
 #, c-format
 msgid "1 Difference Found"
 msgstr "找到 1 处不同"
 
 #. Abbreviation from "Read Only"
-#: Merge.rc:2039
+#: Merge.rc:2042
 #, c-format
 msgid "RO"
 msgstr "只读"
 
-#: Merge.rc:2045
+#: Merge.rc:2048
 #, c-format
 msgid "Item %1 of %2"
 msgstr "第 %1 项目，共 %2"
 
-#: Merge.rc:2046
+#: Merge.rc:2049
 #, c-format
 msgid "Items: %1"
 msgstr "项目: %1"
 
-#: Merge.rc:2052
+#: Merge.rc:2055
 #, c-format
 msgid "Select two existing folders or files to compare"
 msgstr "选择两个已存在的文件夹或文件进行对比"
 
-#: Merge.rc:2053
+#: Merge.rc:2056
 #, c-format
 msgid "Folder Selection"
 msgstr "选择文件夹"
 
-#: Merge.rc:2054
+#: Merge.rc:2057
 #, c-format
 msgid "Select two folders or two files to compare."
 msgstr "选择要进行对比的两个文件夹或两个文件。"
 
-#: Merge.rc:2055
+#: Merge.rc:2058
 #, c-format
 msgid "Left path is invalid!"
 msgstr "左侧路径不存在!"
 
-#: Merge.rc:2056
+#: Merge.rc:2059
 #, c-format
 msgid "Right path is invalid!"
 msgstr "右侧路径不存在!"
 
-#: Merge.rc:2057
+#: Merge.rc:2060
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "两个路径都不存在!"
 
-#: Merge.rc:2058
+#: Merge.rc:2061
 #, c-format
 msgid "Choose two files to enable unpacker selection."
 msgstr "选择两个文件以启用解包程序."
 
-#: Merge.rc:2059
+#: Merge.rc:2062
 #, c-format
 msgid "Cannot compare file and folder!"
 msgstr "不能在文件和文件夹之间进行对比!"
 
-#: Merge.rc:2065
+#: Merge.rc:2068
 #, c-format
 msgid "File not found: %1"
 msgstr "找不到文件: %1"
 
-#: Merge.rc:2066
+#: Merge.rc:2069
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "文件未解包: %1"
 
-#: Merge.rc:2067
+#: Merge.rc:2070
 #, c-format
 msgid ""
 "%1\n"
@@ -3609,7 +3616,7 @@ msgstr ""
 "\n"
 "是完全相同的二进制文件。"
 
-#: Merge.rc:2068
+#: Merge.rc:2071
 #, c-format
 msgid ""
 "%1\n"
@@ -3622,7 +3629,7 @@ msgstr ""
 "\n"
 "是不同的二进制文件。"
 
-#: Merge.rc:2069
+#: Merge.rc:2072
 #, c-format
 msgid ""
 "%1\n"
@@ -3633,7 +3640,7 @@ msgstr ""
 "\n"
 "是二进制文件，不能在二进制文件和文本文件之间进行对比。"
 
-#: Merge.rc:2070
+#: Merge.rc:2073
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -3646,37 +3653,37 @@ msgstr ""
 "\n"
 "%2"
 
-#: Merge.rc:2071
+#: Merge.rc:2074
 #, c-format
 msgid "Failed to parse conflict file."
 msgstr ""
 
-#: Merge.rc:2077
+#: Merge.rc:2080
 #, c-format
 msgid "Save As"
 msgstr "另存为"
 
-#: Merge.rc:2078
+#: Merge.rc:2081
 #, c-format
 msgid "Save changes to %1?"
 msgstr "保存更改到 %1？"
 
-#: Merge.rc:2079
+#: Merge.rc:2082
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
 msgstr "%1 标记为只读。您希望覆盖只读文件吗？选“否”可以用其它文件名保存。"
 
-#: Merge.rc:2080
+#: Merge.rc:2083
 #, c-format
 msgid "Error checking destination writeability"
 msgstr "目标可写入性检查出错"
 
-#: Merge.rc:2081
+#: Merge.rc:2084
 #, c-format
 msgid "Error backing up file"
 msgstr "备份文件时出错"
 
-#: Merge.rc:2083
+#: Merge.rc:2086
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -3689,7 +3696,7 @@ msgstr ""
 "\n"
 "仍然继续吗？"
 
-#: Merge.rc:2084
+#: Merge.rc:2087
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -3706,7 +3713,7 @@ msgstr ""
 "\t-用其它文件名保存(点击“确定”)\n"
 "\t-中止当前操作(点击“取消”)"
 
-#: Merge.rc:2085
+#: Merge.rc:2088
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -3721,7 +3728,7 @@ msgstr ""
 "\n"
 "您要将未打包的版本保存为其它文件吗？"
 
-#: Merge.rc:2086
+#: Merge.rc:2089
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
@@ -3736,7 +3743,7 @@ msgstr ""
 "\n"
 "您要将未打包的版本保存为其它文件吗？"
 
-#: Merge.rc:2087
+#: Merge.rc:2090
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3751,7 +3758,7 @@ msgstr ""
 "\n"
 "要覆盖已被修改的文件吗？"
 
-#: Merge.rc:2088
+#: Merge.rc:2091
 #, c-format
 msgid ""
 "%1\n"
@@ -3760,7 +3767,7 @@ msgstr ""
 "%1\n"
 "文件标记为只读。您要覆盖只读的文件吗？"
 
-#: Merge.rc:2089
+#: Merge.rc:2092
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3775,17 +3782,17 @@ msgstr ""
 "\n"
 "要刷新文件内容，请关闭当前对比窗口并重新打开这两个文件。"
 
-#: Merge.rc:2090
+#: Merge.rc:2093
 #, c-format
 msgid "Save Left File As"
 msgstr "左侧文件另存为"
 
-#: Merge.rc:2091
+#: Merge.rc:2094
 #, c-format
 msgid "Save Right File As"
 msgstr "右侧文件另存为"
 
-#: Merge.rc:2097
+#: Merge.rc:2100
 #, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
@@ -3796,42 +3803,42 @@ msgstr ""
 "\n"
 "请刷新文档后再继续。"
 
-#: Merge.rc:2103
+#: Merge.rc:2106
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 msgstr "您必须指定一个 SourceSafe 项目路径以便继续 (例如： $/MyProject)"
 
-#: Merge.rc:2104
+#: Merge.rc:2107
 #, c-format
 msgid "Checkout files from VSS..."
 msgstr "从VSS中签出文件..."
 
-#: Merge.rc:2105
+#: Merge.rc:2108
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
 msgstr "在签出(Checkout)文件时版本控制系统返回一个错误。无法继续..."
 
-#: Merge.rc:2106
+#: Merge.rc:2109
 #, c-format
 msgid "Error executing versioning system command."
 msgstr "执行版本控制系统命令时出错。"
 
-#: Merge.rc:2107
+#: Merge.rc:2110
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
 msgstr "VSS 工作文件夹(Working Folder)与当前文件位置不符。是否继续？"
 
-#: Merge.rc:2108
+#: Merge.rc:2111
 #, c-format
 msgid "No VSS database(s) found!"
 msgstr "未找到 VSS 数据库！"
 
-#: Merge.rc:2109
+#: Merge.rc:2112
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSS 返回错误:"
 
-#: Merge.rc:2110
+#: Merge.rc:2113
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to check in the file.\n"
@@ -3842,7 +3849,7 @@ msgstr ""
 " 请检查一下使用中的视图的配置说明.\n"
 " 撤销签出操作吗?"
 
-#: Merge.rc:2111
+#: Merge.rc:2114
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
@@ -3851,179 +3858,179 @@ msgstr ""
 "在尝试撤销签出文件时版本控制系统返回了一个错误.\n"
 " 请检查一下使用中的视图的配置说明. "
 
-#: Merge.rc:2117
-#: Merge.rc:2906
+#: Merge.rc:2120
+#: Merge.rc:2910
 #, c-format
 msgid "None"
 msgstr "无"
 
-#: Merge.rc:2118
+#: Merge.rc:2121
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
 msgstr "Visual SourceSafe (5.0 以前版本)"
 
-#: Merge.rc:2119
+#: Merge.rc:2122
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
 msgstr "Visual SourceSafe (5.0 及以后版本)"
 
-#: Merge.rc:2121
+#: Merge.rc:2124
 #, c-format
 msgid "Break at whitespace"
 msgstr "以空白分隔"
 
-#: Merge.rc:2122
+#: Merge.rc:2125
 #, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "以空白或标点分隔"
 
-#: Merge.rc:2128
-#: Merge.rc:2130
+#: Merge.rc:2131
+#: Merge.rc:2133
 #, c-format
 msgid "Copy selected item to named directory"
 msgstr "将选中的项目复制到右侧文件夹"
 
-#: Merge.rc:2129
-#: Merge.rc:2131
+#: Merge.rc:2132
+#: Merge.rc:2134
 #, c-format
 msgid "Copy selected item to custom directory"
 msgstr "将选中的项目复制到指定的文件夹"
 
-#: Merge.rc:2132
+#: Merge.rc:2135
 #, c-format
 msgid "Delete selected item on left"
 msgstr "删除左侧选中的项目"
 
-#: Merge.rc:2133
+#: Merge.rc:2136
 #, c-format
 msgid "Delete selected item on right"
 msgstr "删除右侧选中的项目"
 
-#: Merge.rc:2134
+#: Merge.rc:2137
 #, c-format
 msgid "Delete selected item(s) on both sides"
 msgstr "删除两侧选中的项目"
 
-#: Merge.rc:2135
+#: Merge.rc:2138
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
 msgstr "隐藏选中的项目(即时过滤)"
 
-#: Merge.rc:2136
+#: Merge.rc:2139
 #, c-format
 msgid "Rename selected item on both sides"
 msgstr "为两侧选中的项目改名"
 
-#: Merge.rc:2137
+#: Merge.rc:2140
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "右侧到左侧 (%1)"
 
-#: Merge.rc:2138
+#: Merge.rc:2141
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "左侧到右侧 (%1)"
 
-#: Merge.rc:2139
+#: Merge.rc:2142
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "右侧到左侧 (%1 共%2)"
 
-#: Merge.rc:2140
+#: Merge.rc:2143
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "左侧到右侧 (%1 共%2)"
 
-#: Merge.rc:2141
-#: Merge.rc:2157
+#: Merge.rc:2144
+#: Merge.rc:2160
 #, c-format
 msgid "Left to... (%1)"
 msgstr "左侧到... (%1)"
 
-#: Merge.rc:2142
-#: Merge.rc:2158
+#: Merge.rc:2145
+#: Merge.rc:2161
 #, c-format
 msgid "Right to... (%1)"
 msgstr "右侧到... (%1)"
 
-#: Merge.rc:2143
-#: Merge.rc:2159
+#: Merge.rc:2146
+#: Merge.rc:2162
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "左侧到... (%1 共%2)"
 
-#: Merge.rc:2144
-#: Merge.rc:2160
+#: Merge.rc:2147
+#: Merge.rc:2163
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "右侧到... (%1 共%2)"
 
-#: Merge.rc:2150
+#: Merge.rc:2153
 #, c-format
 msgid "Left (%1)"
 msgstr "左侧 (%1)"
 
-#: Merge.rc:2151
+#: Merge.rc:2154
 #, c-format
 msgid "Right (%1)"
 msgstr "右侧 (%1)"
 
-#: Merge.rc:2152
+#: Merge.rc:2155
 #, c-format
 msgid "Both (%1)"
 msgstr "两侧 (%1)"
 
-#: Merge.rc:2153
+#: Merge.rc:2156
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "左侧 (%1 共%2)"
 
-#: Merge.rc:2154
+#: Merge.rc:2157
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "右侧 (%1 共%2)"
 
-#: Merge.rc:2155
+#: Merge.rc:2158
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "两侧 (%1 共%2)"
 
-#: Merge.rc:2156
+#: Merge.rc:2159
 #, c-format
 msgid "Select destination folder"
 msgstr "选择目标文件夹"
 
-#: Merge.rc:2161
+#: Merge.rc:2164
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "左侧 - 请选择目标文件夹:"
 
-#: Merge.rc:2162
+#: Merge.rc:2165
 #, c-format
 msgid "Right side - select destination folder:"
 msgstr "右侧 - 请选择目标文件夹:"
 
-#: Merge.rc:2163
+#: Merge.rc:2166
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr "(影响 %1 个文件)"
 
-#: Merge.rc:2164
+#: Merge.rc:2167
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr "(影响 %2 文件中的 %1 个)"
 
-#: Merge.rc:2170
+#: Merge.rc:2173
 #, c-format
 msgid "Are you sure you want to copy all differences to the left file?"
 msgstr "您确定要复制所有不同到左侧文件吗？"
 
-#: Merge.rc:2171
+#: Merge.rc:2174
 #, c-format
 msgid "Are you sure you want to copy all differences to the right file?"
 msgstr "您确定要复制所有不同到右侧文件吗？"
 
-#: Merge.rc:2172
+#: Merge.rc:2175
 #, c-format
 msgid ""
 "Are you sure you want to copy\n"
@@ -4039,17 +4046,17 @@ msgstr ""
 "%2\n"
 "吗？"
 
-#: Merge.rc:2173
+#: Merge.rc:2176
 #, c-format
 msgid "Are you sure you want to copy %1 of %2 selected item(s)?"
 msgstr "您确定要复制 %1 在 %2 选择的项目"
 
-#: Merge.rc:2174
+#: Merge.rc:2177
 #, c-format
 msgid "Are you sure you want to delete %1 of %2 selected item(s)?"
 msgstr "您确定要删除 %1 在 %2 选择的项目吗？"
 
-#: Merge.rc:2175
+#: Merge.rc:2178
 #, c-format
 msgid ""
 "Delete directory\n"
@@ -4061,7 +4068,7 @@ msgstr ""
 "%1\n"
 "？"
 
-#: Merge.rc:2176
+#: Merge.rc:2179
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -4073,17 +4080,17 @@ msgstr ""
 "%1\n"
 "吗？"
 
-#: Merge.rc:2177
+#: Merge.rc:2180
 #, c-format
 msgid "Are you sure you want to copy:"
 msgstr "您确定要复制吗:"
 
-#: Merge.rc:2178
+#: Merge.rc:2181
 #, c-format
 msgid "Are you sure you want to copy %d items:"
 msgstr "您确定要复制 %d 个项目吗:"
 
-#: Merge.rc:2179
+#: Merge.rc:2182
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -4102,458 +4109,458 @@ msgstr ""
 "\n"
 "请刷新比较窗口."
 
-#: Merge.rc:2185
+#: Merge.rc:2188
 #, c-format
 msgid "Open left file"
 msgstr "打开左侧文件"
 
-#: Merge.rc:2186
+#: Merge.rc:2189
 #, c-format
 msgid "Open the left file to external editor"
 msgstr "用外部编辑器打开左侧文件"
 
-#: Merge.rc:2187
+#: Merge.rc:2190
 #, c-format
 msgid "Open left file with ..."
 msgstr "选择程序以打开左侧文件 ..."
 
-#: Merge.rc:2188
+#: Merge.rc:2191
 #, c-format
 msgid "Open right file"
 msgstr "打开右侧文件"
 
-#: Merge.rc:2189
+#: Merge.rc:2192
 #, c-format
 msgid "Open the right file to external editor"
 msgstr "用外部编辑器打开右侧文件"
 
-#: Merge.rc:2190
+#: Merge.rc:2193
 #, c-format
 msgid "Open right file with..."
 msgstr "选择程序以打开右侧文件 ..."
 
-#: Merge.rc:2191
+#: Merge.rc:2194
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "外部编辑器运行失败: %1"
 
-#: Merge.rc:2192
+#: Merge.rc:2195
 #, c-format
 msgid "Unknown extension on external editor: %1"
 msgstr "未知的外部编辑器扩展名: %1"
 
-#: Merge.rc:2193
+#: Merge.rc:2196
 #, c-format
 msgid "Copy filenames to clipboard"
 msgstr "将文件名复制到剪贴板"
 
-#: Merge.rc:2194
+#: Merge.rc:2197
 #, c-format
 msgid "Copy left side pathnames to clipboard"
 msgstr "将左侧的路径名复制到剪贴板"
 
-#: Merge.rc:2195
+#: Merge.rc:2198
 #, c-format
 msgid "Copy right side pathnames to clipboard"
 msgstr "将右侧的路径名复制到剪贴板"
 
-#: Merge.rc:2196
+#: Merge.rc:2199
 #, c-format
 msgid "Copy both sides pathnames to clipboard"
 msgstr "将两侧的路径名复制到剪贴板"
 
-#: Merge.rc:2202
+#: Merge.rc:2205
 #, c-format
 msgid "Unknown archive format"
 msgstr "未知的压缩包格式"
 
-#: Merge.rc:2203
+#: Merge.rc:2206
 #, c-format
 msgid "Add items from left side to archive"
 msgstr "从左侧添加到压缩包"
 
-#: Merge.rc:2204
+#: Merge.rc:2207
 #, c-format
 msgid "Add items from right side to archive"
 msgstr "从右侧添加到压缩包"
 
-#: Merge.rc:2205
+#: Merge.rc:2208
 #, c-format
 msgid "Add items from both sides to archive"
 msgstr "从两侧添加到压缩包"
 
-#: Merge.rc:2206
+#: Merge.rc:2209
 #, c-format
 msgid "Add different items to archive (both sides)"
 msgstr "将两侧中不相同的添加到压缩包"
 
-#: Merge.rc:2208
+#: Merge.rc:2211
 #, c-format
 msgid "Move selected file on left to custom directory"
 msgstr "将左侧选中的文件移动到指定文件夹"
 
-#: Merge.rc:2210
+#: Merge.rc:2213
 #, c-format
 msgid "Move selected file on right to custom directory"
 msgstr "将右侧选中的文件移动到指定文件夹"
 
-#: Merge.rc:2216
+#: Merge.rc:2219
 #, c-format
 msgid "Filename"
 msgstr "文件名称"
 
-#: Merge.rc:2217
+#: Merge.rc:2220
 #, c-format
 msgid "Folder"
 msgstr "文件夹"
 
-#: Merge.rc:2218
+#: Merge.rc:2221
 #, c-format
 msgid "Comparison result"
 msgstr "对比结果"
 
-#: Merge.rc:2219
+#: Merge.rc:2222
 #, c-format
 msgid "Left Date"
 msgstr "左侧日期"
 
-#: Merge.rc:2220
+#: Merge.rc:2223
 #, c-format
 msgid "Right Date"
 msgstr "右侧日期"
 
-#: Merge.rc:2221
+#: Merge.rc:2224
 #, c-format
 msgid "Extension"
 msgstr "扩展名"
 
-#: Merge.rc:2222
+#: Merge.rc:2225
 #, c-format
 msgid "Left Size"
 msgstr "左侧文件大小"
 
-#: Merge.rc:2223
+#: Merge.rc:2226
 #, c-format
 msgid "Right Size"
 msgstr "右侧文件大小"
 
-#: Merge.rc:2224
+#: Merge.rc:2227
 #, c-format
 msgid "Right Size (Short)"
 msgstr "右侧文件大小 (简短)"
 
-#: Merge.rc:2225
+#: Merge.rc:2228
 #, c-format
 msgid "Left Size (Short)"
 msgstr "左侧文件大小 (简短)"
 
-#: Merge.rc:2231
+#: Merge.rc:2234
 #, c-format
 msgid "Left Creation Time"
 msgstr "左侧建立时间"
 
-#: Merge.rc:2232
+#: Merge.rc:2235
 #, c-format
 msgid "Right Creation Time"
 msgstr "右侧建立时间"
 
-#: Merge.rc:2233
+#: Merge.rc:2236
 #, c-format
 msgid "Newer File"
 msgstr "较新的文件"
 
-#: Merge.rc:2234
+#: Merge.rc:2237
 #, c-format
 msgid "Left File Version"
 msgstr "左侧文件版本"
 
-#: Merge.rc:2235
+#: Merge.rc:2238
 #, c-format
 msgid "Right File Version"
 msgstr "右侧文件版本"
 
-#: Merge.rc:2236
+#: Merge.rc:2239
 #, c-format
 msgid "Short Result"
 msgstr "简短的结果"
 
-#: Merge.rc:2237
+#: Merge.rc:2240
 #, c-format
 msgid "Left Attributes"
 msgstr "左侧属性"
 
-#: Merge.rc:2238
+#: Merge.rc:2241
 #, c-format
 msgid "Right Attributes"
 msgstr "右侧属性"
 
-#: Merge.rc:2239
+#: Merge.rc:2242
 #, c-format
 msgid "Left EOL"
 msgstr "左侧换行符"
 
-#: Merge.rc:2240
+#: Merge.rc:2243
 #, c-format
 msgid "Right EOL"
 msgstr "右侧换行符"
 
-#: Merge.rc:2246
+#: Merge.rc:2249
 #, c-format
 msgid "Left Encoding"
 msgstr "左侧文件编码"
 
-#: Merge.rc:2247
+#: Merge.rc:2250
 #, c-format
 msgid "Right Encoding"
 msgstr "右侧文件编码"
 
-#: Merge.rc:2248
+#: Merge.rc:2251
 #, c-format
 msgid "Ignored Diff."
 msgstr "忽略的不同处"
 
-#: Merge.rc:2249
+#: Merge.rc:2252
 #, c-format
 msgid "Differences"
 msgstr "不同处"
 
-#: Merge.rc:2250
-#: Merge.rc:2729
+#: Merge.rc:2253
+#: Merge.rc:2732
 #, c-format
 msgid "Binary"
 msgstr "二进制"
 
-#: Merge.rc:2256
+#: Merge.rc:2259
 #, c-format
 msgid "Unable to compare files"
 msgstr "无法对比文件"
 
-#: Merge.rc:2257
+#: Merge.rc:2260
 #, c-format
 msgid "Item aborted"
 msgstr "项目取消"
 
-#: Merge.rc:2258
+#: Merge.rc:2261
 #, c-format
 msgid "File skipped"
 msgstr "文件已跳过"
 
-#: Merge.rc:2259
+#: Merge.rc:2262
 #, c-format
 msgid "Folder skipped"
 msgstr "文件夹已跳过"
 
-#: Merge.rc:2260
+#: Merge.rc:2263
 #, c-format
 msgid "Left only: %1"
 msgstr "仅在左侧: %1"
 
-#: Merge.rc:2261
+#: Merge.rc:2264
 #, c-format
 msgid "Right only: %1"
 msgstr "仅在右侧: %1"
 
-#: Merge.rc:2262
+#: Merge.rc:2265
 #, c-format
 msgid "Binary files are identical"
 msgstr "二进制文件完全相同"
 
-#: Merge.rc:2264
+#: Merge.rc:2267
 #, c-format
 msgid "Binary files are different"
 msgstr "二进制文件不同"
 
-#: Merge.rc:2265
+#: Merge.rc:2268
 #, c-format
 msgid "Files are different"
 msgstr "文件不同"
 
-#: Merge.rc:2266
+#: Merge.rc:2269
 #, c-format
 msgid "Left Only"
 msgstr "只存在左侧"
 
-#: Merge.rc:2267
+#: Merge.rc:2270
 #, c-format
 msgid "Right Only"
 msgstr "只存在右侧"
 
-#: Merge.rc:2269
+#: Merge.rc:2272
 #, c-format
 msgid "Error"
 msgstr "错误"
 
-#: Merge.rc:2275
+#: Merge.rc:2278
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "执行时间: %ld 毫秒"
 
-#: Merge.rc:2276
+#: Merge.rc:2279
 #, c-format
 msgid "1 item selected"
 msgstr "选择了 1 个项目"
 
-#: Merge.rc:2277
+#: Merge.rc:2280
 #, c-format
 msgid "%1 items selected"
 msgstr "选择了 %1 个项目"
 
-#: Merge.rc:2283
+#: Merge.rc:2286
 #, c-format
 msgid "Filename or folder name."
 msgstr "文件名或文件夹名。"
 
-#: Merge.rc:2284
+#: Merge.rc:2287
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "所处的子文件夹名。"
 
-#: Merge.rc:2285
+#: Merge.rc:2288
 #, c-format
 msgid "Comparison result, long form."
 msgstr "对比结果，较长的格式。"
 
-#: Merge.rc:2286
+#: Merge.rc:2289
 #, c-format
 msgid "Left side modification date."
 msgstr "左侧的最后修改日期。"
 
-#: Merge.rc:2287
+#: Merge.rc:2290
 #, c-format
 msgid "Right side modification date."
 msgstr "右侧的最后修改日期。"
 
-#: Merge.rc:2288
+#: Merge.rc:2291
 #, c-format
 msgid "File's extension."
 msgstr "文件的扩展名。"
 
-#: Merge.rc:2289
+#: Merge.rc:2292
 #, c-format
 msgid "Left file size in bytes."
 msgstr "左侧文件长度字节数。"
 
-#: Merge.rc:2290
+#: Merge.rc:2293
 #, c-format
 msgid "Right file size in bytes."
 msgstr "右侧文件长度字节数。"
 
-#: Merge.rc:2291
+#: Merge.rc:2294
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "左侧文件长度的简短表示."
 
-#: Merge.rc:2292
+#: Merge.rc:2295
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "右侧文件长度的简短表示."
 
-#: Merge.rc:2298
+#: Merge.rc:2301
 #, c-format
 msgid "Left side creation time."
 msgstr "左侧的创建时间。"
 
-#: Merge.rc:2299
+#: Merge.rc:2302
 #, c-format
 msgid "Right side creation time."
 msgstr "右侧的创建时间。"
 
-#: Merge.rc:2300
+#: Merge.rc:2303
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "显示出哪边是较晚修改过的。"
 
-#: Merge.rc:2301
+#: Merge.rc:2304
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "左侧文件的版本，只对一些文件类型有效。"
 
-#: Merge.rc:2302
+#: Merge.rc:2305
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "右侧文件的版本，只对一些文件类型有效。"
 
-#: Merge.rc:2303
+#: Merge.rc:2306
 #, c-format
 msgid "Short comparison result."
 msgstr "短格式的对比结果。"
 
-#: Merge.rc:2304
+#: Merge.rc:2307
 #, c-format
 msgid "Left side attributes."
 msgstr "左侧的属性。"
 
-#: Merge.rc:2305
+#: Merge.rc:2308
 #, c-format
 msgid "Right side attributes."
 msgstr "右侧的属性。"
 
-#: Merge.rc:2306
+#: Merge.rc:2309
 #, c-format
 msgid "Left side file EOL type"
 msgstr "左侧文件的换行符类型"
 
-#: Merge.rc:2307
+#: Merge.rc:2310
 #, c-format
 msgid "Right side file EOL type"
 msgstr "右侧文件的换行符类型"
 
-#: Merge.rc:2313
+#: Merge.rc:2316
 #, c-format
 msgid "Left side encoding."
 msgstr "左侧文件的字符编码。"
 
-#: Merge.rc:2314
+#: Merge.rc:2317
 #, c-format
 msgid "Right side encoding."
 msgstr "右侧文件的字符编码。"
 
-#: Merge.rc:2315
+#: Merge.rc:2318
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr "被略过的不同数. 由WinMerge忽略的不同, 无法对它们进行合并."
 
-#: Merge.rc:2316
+#: Merge.rc:2319
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "文件中的不同数. 不包括忽略的不同."
 
-#: Merge.rc:2317
+#: Merge.rc:2320
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "在二进制文件处显示星号(*)。"
 
-#: Merge.rc:2323
+#: Merge.rc:2326
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "对比 %1 和 %2"
 
-#: Merge.rc:2324
+#: Merge.rc:2327
 #, c-format
 msgid "Comma-separated list"
 msgstr "逗号分隔的列表"
 
-#: Merge.rc:2325
+#: Merge.rc:2328
 #, c-format
 msgid "Tab-separated list"
 msgstr "制表符分隔的列表"
 
-#: Merge.rc:2326
+#: Merge.rc:2329
 #, c-format
 msgid "Simple HTML"
 msgstr "简单HTML"
 
-#: Merge.rc:2327
+#: Merge.rc:2330
 #, c-format
 msgid "Simple XML"
 msgstr "简单XML"
 
-#: Merge.rc:2329
+#: Merge.rc:2332
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "报告文件已经存在，要覆盖吗？"
 
-#: Merge.rc:2330
+#: Merge.rc:2333
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4562,47 +4569,47 @@ msgstr ""
 "创建报告时出错:\n"
 "%1"
 
-#: Merge.rc:2331
+#: Merge.rc:2334
 #, c-format
 msgid "The report has been created successfully."
 msgstr "成功创建报告。"
 
-#: Merge.rc:2337
+#: Merge.rc:2340
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "两侧打开的是同一个文件。"
 
-#: Merge.rc:2338
+#: Merge.rc:2341
 #, c-format
 msgid "The selected files are identical."
 msgstr "选择的文件完全相同。"
 
-#: Merge.rc:2339
+#: Merge.rc:2342
 #, c-format
 msgid "The selected folder exists only in other side and therefore cannot be opened."
 msgstr "选中的文件夹只在一侧存在，因而无法打开。"
 
-#: Merge.rc:2340
+#: Merge.rc:2343
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "一个错误发生于对比文件时。"
 
-#: Merge.rc:2341
+#: Merge.rc:2344
 #, c-format
 msgid "Binary files cannot be visually compared."
 msgstr "二进制文件无法作视觉的对比。"
 
-#: Merge.rc:2342
+#: Merge.rc:2345
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "无法创建临时文件。请检查您的临时路径设置。"
 
-#: Merge.rc:2343
+#: Merge.rc:2346
 #, c-format
 msgid "Directory files cannot be visually compared."
 msgstr "不能在文件夹和文件之间做对比。"
 
-#: Merge.rc:2344
+#: Merge.rc:2347
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4617,7 +4624,7 @@ msgstr ""
 "\n"
 "提示：如果您总是忽略换行符的不同，请在“编辑/选项”的“对比”页中勾选“忽略换行符差别”。"
 
-#: Merge.rc:2345
+#: Merge.rc:2348
 #, c-format
 msgid ""
 "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
@@ -4628,22 +4635,22 @@ msgstr ""
 "对应于当前的选项，它们将统一成为一种格式。\n"
 "您要改变选项设置以保留原始的不同的换行符吗？"
 
-#: Merge.rc:2346
+#: Merge.rc:2349
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "在使用插件“%2”对文件“%1”进行预对比时发生了一个错误。预对比将不会被采用。"
 
-#: Merge.rc:2347
+#: Merge.rc:2350
 #, c-format
 msgid "The selected folder is invalid."
 msgstr "选中的文件夹无效。"
 
-#: Merge.rc:2348
+#: Merge.rc:2351
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "无法用编辑器打开二进制文件。"
 
-#: Merge.rc:2354
+#: Merge.rc:2357
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4654,132 +4661,132 @@ msgstr ""
 "分别以不同代码页显示将会有较好的效果，但是合并/复制会有危险。\n"
 "您要以Windows默认的代码页显示两个文件吗(推荐)？"
 
-#: Merge.rc:2355
+#: Merge.rc:2358
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr "警告: 文件使用不同的字符编码, 左侧=%s 右侧=%s, 合并操作有可能造成信息丢失."
 
-#: Merge.rc:2356
+#: Merge.rc:2359
 #, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr "由于字符编码错误造成两个文件信息丢失"
 
-#: Merge.rc:2357
+#: Merge.rc:2360
 #, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr "由于字符编码错误造成右侧文件信息丢失"
 
-#: Merge.rc:2358
+#: Merge.rc:2361
 #, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr "由于字符编码错误造成左侧文件信息丢失"
 
-#: Merge.rc:2364
+#: Merge.rc:2367
 #, c-format
 msgid "No difference"
 msgstr "没有不同"
 
-#: Merge.rc:2365
+#: Merge.rc:2368
 #, c-format
 msgid "Line difference"
 msgstr "行内不同"
 
-#: Merge.rc:2371
+#: Merge.rc:2374
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "已替换 %1 个字符串。"
 
-#: Merge.rc:2372
+#: Merge.rc:2375
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "无法查找字符串「%s」"
 
-#: Merge.rc:2378
+#: Merge.rc:2381
 #, c-format
 msgid "Copy Full Path"
 msgstr "复制全名"
 
-#: Merge.rc:2379
+#: Merge.rc:2382
 #, c-format
 msgid "Copy Filename"
 msgstr "复制文件名"
 
-#: Merge.rc:2385
+#: Merge.rc:2388
 #, c-format
 msgid "Location Pane"
 msgstr "位置示意"
 
-#: Merge.rc:2386
+#: Merge.rc:2389
 #, c-format
 msgid "Diff Pane"
 msgstr "不同处显示"
 
-#: Merge.rc:2392
+#: Merge.rc:2395
 #, c-format
 msgid "Patch file successfully written."
 msgstr "成功写入patch文件。"
 
-#: Merge.rc:2393
+#: Merge.rc:2396
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. 条目未找到或者它是一个文件夹!"
 
-#: Merge.rc:2394
+#: Merge.rc:2397
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. 条目未找到或者它是一个文件夹!"
 
-#: Merge.rc:2395
+#: Merge.rc:2398
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "patch文件已经存在，您要覆盖它吗？"
 
-#: Merge.rc:2396
+#: Merge.rc:2399
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[选中 %1 个文件]"
 
-#: Merge.rc:2397
+#: Merge.rc:2400
 #, c-format
 msgid "Normal"
 msgstr "普通"
 
-#: Merge.rc:2398
+#: Merge.rc:2401
 #, c-format
 msgid "Context"
 msgstr "上下文"
 
-#: Merge.rc:2399
+#: Merge.rc:2402
 #, c-format
 msgid "Unified"
 msgstr "统一"
 
-#: Merge.rc:2400
+#: Merge.rc:2403
 #, c-format
 msgid "Could not write to file %1."
 msgstr "无法写入文件 %1。"
 
-#: Merge.rc:2401
+#: Merge.rc:2404
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "指定的路径不是绝对路径: %1"
 
-#: Merge.rc:2402
+#: Merge.rc:2405
 #, c-format
 msgid "Specify an output file"
 msgstr "请指定输出文件"
 
-#: Merge.rc:2403
+#: Merge.rc:2406
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "无法为二进制文件创建 patch。"
 
-#: Merge.rc:2404
+#: Merge.rc:2407
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "无法为文件夹创建 patch。"
 
-#: Merge.rc:2405
+#: Merge.rc:2408
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4790,17 +4797,17 @@ msgstr ""
 "\n"
 "创建 patch 要求文件中没有未保存的改动。"
 
-#: Merge.rc:2406
+#: Merge.rc:2409
 #, c-format
 msgid "Folder does not exist."
 msgstr "文件夹不存在。"
 
-#: Merge.rc:2411
+#: Merge.rc:2414
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "当前的文件夹对比结果将会被清除。"
 
-#: Merge.rc:2412
+#: Merge.rc:2415
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4812,7 +4819,7 @@ msgstr ""
 "没找到支持压缩包所需要的组件(7-zip 或 Merge7z*.dll)。\n"
 "请查看手册获得有关压缩包支持及如何启用的更多信息。"
 
-#: Merge.rc:2413
+#: Merge.rc:2416
 #, c-format
 msgid ""
 "\n"
@@ -4821,7 +4828,7 @@ msgstr ""
 "\n"
 "注意: 7-Zip 集成功能在 WinMerge 的设置中被禁用."
 
-#: Merge.rc:2414
+#: Merge.rc:2417
 #, c-format
 msgid ""
 "\n"
@@ -4830,37 +4837,37 @@ msgstr ""
 "\n"
 "注意: 7-Zip 集成功能在 WinMerge 的设置中限制为单独程序使用."
 
-#: Merge.rc:2415
+#: Merge.rc:2418
 #, c-format
 msgid "Select file for export"
 msgstr "选择导出文件"
 
-#: Merge.rc:2416
+#: Merge.rc:2419
 #, c-format
 msgid "Select file for import"
 msgstr "选择导入文件"
 
-#: Merge.rc:2417
+#: Merge.rc:2420
 #, c-format
 msgid "Options imported from the file."
 msgstr "选项已从文件导入."
 
-#: Merge.rc:2418
+#: Merge.rc:2421
 #, c-format
 msgid "Options exported to the file."
 msgstr "选项已经导出到文件."
 
-#: Merge.rc:2419
+#: Merge.rc:2422
 #, c-format
 msgid "Failed to import options from the file."
 msgstr "选项导入失败."
 
-#: Merge.rc:2420
+#: Merge.rc:2423
 #, c-format
 msgid "Failed to write options to the file."
 msgstr "选项导出失败."
 
-#: Merge.rc:2421
+#: Merge.rc:2424
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -4868,1098 +4875,1098 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: Merge.rc:2427
+#: Merge.rc:2430
 #, c-format
 msgid "Regular expression error"
 msgstr "正则表达式错误"
 
-#: Merge.rc:2428
+#: Merge.rc:2431
 #, c-format
 msgid "No match"
 msgstr "不匹配"
 
-#: Merge.rc:2429
+#: Merge.rc:2432
 #, c-format
 msgid "Invalid regular expression"
 msgstr "无效的正则表达式"
 
-#: Merge.rc:2430
+#: Merge.rc:2433
 #, c-format
 msgid "Invalid collation character"
 msgstr "无效的 collation character"
 
-#: Merge.rc:2431
+#: Merge.rc:2434
 #, c-format
 msgid "Invalid character class name"
 msgstr "无效的字符类(character class)名"
 
-#: Merge.rc:2432
+#: Merge.rc:2435
 #, c-format
 msgid "Trailing backslash"
 msgstr "末尾的反斜杠"
 
-#: Merge.rc:2433
+#: Merge.rc:2436
 #, c-format
 msgid "Invalid back reference"
 msgstr "无效的 back reference"
 
-#: Merge.rc:2434
+#: Merge.rc:2437
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "未配对的 [ or [^"
 
-#: Merge.rc:2435
+#: Merge.rc:2438
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "未配对的 ( or \\("
 
-#: Merge.rc:2436
+#: Merge.rc:2439
 #, c-format
 msgid "Unmatched \\{"
 msgstr "未配对的 \\{"
 
-#: Merge.rc:2437
+#: Merge.rc:2440
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "\\{\\}的内容无效"
 
-#: Merge.rc:2438
+#: Merge.rc:2441
 #, c-format
 msgid "Invalid range end"
 msgstr "无效的范围结尾"
 
-#: Merge.rc:2439
+#: Merge.rc:2442
 #, c-format
 msgid "Out of memory"
 msgstr "内存不足"
 
-#: Merge.rc:2440
+#: Merge.rc:2443
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr ""
 
-#: Merge.rc:2441
+#: Merge.rc:2444
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "正则表达式过早地结束"
 
-#: Merge.rc:2442
+#: Merge.rc:2445
 #, c-format
 msgid "Regular expression too big"
 msgstr "正则表达式太大"
 
-#: Merge.rc:2447
+#: Merge.rc:2450
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "未配对的 ) or \\)"
 
-#: Merge.rc:2453
+#: Merge.rc:2456
 #, c-format
 msgid "Afrikaans"
 msgstr "南非荷兰语"
 
-#: Merge.rc:2454
+#: Merge.rc:2457
 #, c-format
 msgid "Albanian"
 msgstr "阿尔巴尼亚语"
 
-#: Merge.rc:2455
+#: Merge.rc:2458
 #, c-format
 msgid "Arabic (Saudi Arabian)"
 msgstr "阿拉伯语 (沙特阿拉伯)"
 
-#: Merge.rc:2456
+#: Merge.rc:2459
 #, c-format
 msgid "Arabic (Iraq)"
 msgstr "阿拉伯语 (伊拉克)"
 
-#: Merge.rc:2457
+#: Merge.rc:2460
 #, c-format
 msgid "Arabic (Egyptian)"
 msgstr "阿拉伯语 (埃及)"
 
-#: Merge.rc:2458
+#: Merge.rc:2461
 #, c-format
 msgid "Arabic (Libyan)"
 msgstr "阿拉伯语 (利比亚)"
 
-#: Merge.rc:2459
+#: Merge.rc:2462
 #, c-format
 msgid "Arabic (Algerian)"
 msgstr "阿拉伯语 (阿尔及利亚)"
 
-#: Merge.rc:2460
+#: Merge.rc:2463
 #, c-format
 msgid "Arabic (Moroccan)"
 msgstr "阿拉伯语 (摩洛哥)"
 
-#: Merge.rc:2461
+#: Merge.rc:2464
 #, c-format
 msgid "Arabic (Tunisian)"
 msgstr "阿拉伯语 (突尼斯)"
 
-#: Merge.rc:2462
+#: Merge.rc:2465
 #, c-format
 msgid "Arabic (Oman)"
 msgstr "阿拉伯语 (阿曼)"
 
-#: Merge.rc:2463
+#: Merge.rc:2466
 #, c-format
 msgid "Arabic (Yemen)"
 msgstr "阿拉伯语 (也门)"
 
-#: Merge.rc:2464
+#: Merge.rc:2467
 #, c-format
 msgid "Arabic (Syrian)"
 msgstr "阿拉伯语 (叙利亚)"
 
-#: Merge.rc:2465
+#: Merge.rc:2468
 #, c-format
 msgid "Arabic (Jordan)"
 msgstr "阿拉伯语 (约旦)"
 
-#: Merge.rc:2471
+#: Merge.rc:2474
 #, c-format
 msgid "Arabic (Lebanon)"
 msgstr "阿拉伯语 (黎巴嫩)"
 
-#: Merge.rc:2472
+#: Merge.rc:2475
 #, c-format
 msgid "Arabic (Kuwait)"
 msgstr "阿拉伯语 (科威特)"
 
-#: Merge.rc:2473
+#: Merge.rc:2476
 #, c-format
 msgid "Arabic (UAE)"
 msgstr "阿拉伯语 (阿拉伯联合酋长国)"
 
-#: Merge.rc:2474
+#: Merge.rc:2477
 #, c-format
 msgid "Arabic (Bahrain)"
 msgstr "阿拉伯语 (巴林)"
 
-#: Merge.rc:2475
+#: Merge.rc:2478
 #, c-format
 msgid "Arabic (Qatar)"
 msgstr "阿拉伯语 (卡塔尔)"
 
-#: Merge.rc:2476
+#: Merge.rc:2479
 #, c-format
 msgid "Armenian"
 msgstr "亚美尼亚语"
 
-#: Merge.rc:2477
+#: Merge.rc:2480
 #, c-format
 msgid "Azeri (Latin)"
 msgstr "阿塞拜疆语 (拉丁文)"
 
-#: Merge.rc:2478
+#: Merge.rc:2481
 #, c-format
 msgid "Azeri (Cyrillic)"
 msgstr "阿塞拜疆语 (西里尔文)"
 
-#: Merge.rc:2479
+#: Merge.rc:2482
 #, c-format
 msgid "Basque"
 msgstr "巴斯克语"
 
-#: Merge.rc:2480
+#: Merge.rc:2483
 #, c-format
 msgid "Belarusian"
 msgstr "白俄罗斯语"
 
-#: Merge.rc:2481
+#: Merge.rc:2484
 #, c-format
 msgid "Bulgarian"
 msgstr "保加利亚语"
 
-#: Merge.rc:2482
+#: Merge.rc:2485
 #, c-format
 msgid "Catalan"
 msgstr "加泰罗尼亚语"
 
-#: Merge.rc:2483
+#: Merge.rc:2486
 #, c-format
 msgid "Chinese (Traditional)"
 msgstr "中文 (繁体)"
 
-#: Merge.rc:2484
+#: Merge.rc:2487
 #, c-format
 msgid "Chinese (Simplified)"
 msgstr "中文 (简体)"
 
-#: Merge.rc:2485
+#: Merge.rc:2488
 #, c-format
 msgid "Chinese (Hong Kong)"
 msgstr "中文 (香港)"
 
-#: Merge.rc:2486
+#: Merge.rc:2489
 #, c-format
 msgid "Chinese (Singapore)"
 msgstr "中文 (新加坡)"
 
-#: Merge.rc:2492
+#: Merge.rc:2495
 #, c-format
 msgid "Chinese (Macau SAR)"
 msgstr "中文 (澳门)"
 
-#: Merge.rc:2493
+#: Merge.rc:2496
 #, c-format
 msgid "Croatian"
 msgstr "克罗地亚语"
 
-#: Merge.rc:2494
+#: Merge.rc:2497
 #, c-format
 msgid "Czech"
 msgstr "捷克语"
 
-#: Merge.rc:2495
+#: Merge.rc:2498
 #, c-format
 msgid "Dansk"
 msgstr "丹麦语"
 
-#: Merge.rc:2496
+#: Merge.rc:2499
 #, c-format
 msgid "Dutch"
 msgstr "荷兰语 (荷兰)"
 
-#: Merge.rc:2497
+#: Merge.rc:2500
 #, c-format
 msgid "Dutch (Belgium)"
 msgstr "荷兰语 (比利时)"
 
-#: Merge.rc:2498
+#: Merge.rc:2501
 #, c-format
 msgid "English (US)"
 msgstr "英语 (美国)"
 
-#: Merge.rc:2499
+#: Merge.rc:2502
 #, c-format
 msgid "English (UK)"
 msgstr "英语 (英国)"
 
-#: Merge.rc:2500
+#: Merge.rc:2503
 #, c-format
 msgid "English (Australian)"
 msgstr "英语 (澳大利亚)"
 
-#: Merge.rc:2501
+#: Merge.rc:2504
 #, c-format
 msgid "English (Canadian)"
 msgstr "英语 (加拿大)"
 
-#: Merge.rc:2502
+#: Merge.rc:2505
 #, c-format
 msgid "English (New Zealand)"
 msgstr "英语 (新西兰)"
 
-#: Merge.rc:2503
+#: Merge.rc:2506
 #, c-format
 msgid "English (Irish)"
 msgstr "英语 (爱尔兰)"
 
-#: Merge.rc:2504
+#: Merge.rc:2507
 #, c-format
 msgid "English (So. African)"
 msgstr "英语 (南非)"
 
-#: Merge.rc:2505
+#: Merge.rc:2508
 #, c-format
 msgid "English (Jamaican)"
 msgstr "英语 (牙买加)"
 
-#: Merge.rc:2506
+#: Merge.rc:2509
 #, c-format
 msgid "English (Caribbean)"
 msgstr "英语 (加勒比海)"
 
-#: Merge.rc:2507
+#: Merge.rc:2510
 #, c-format
 msgid "English (Belize)"
 msgstr "英语 (伯利兹)"
 
-#: Merge.rc:2513
+#: Merge.rc:2516
 #, c-format
 msgid "English (Trinidad)"
 msgstr "英语 (特立尼达)"
 
-#: Merge.rc:2514
+#: Merge.rc:2517
 #, c-format
 msgid "English (Zimbabwe)"
 msgstr "英语 (津巴布韦)"
 
-#: Merge.rc:2515
+#: Merge.rc:2518
 #, c-format
 msgid "English (Philippines)"
 msgstr "英语 (菲律宾)"
 
-#: Merge.rc:2516
+#: Merge.rc:2519
 #, c-format
 msgid "Eesti"
 msgstr "爱沙尼亚语"
 
-#: Merge.rc:2517
+#: Merge.rc:2520
 #, c-format
 msgid "Faeroese"
 msgstr "法罗群岛语"
 
-#: Merge.rc:2518
+#: Merge.rc:2521
 #, c-format
 msgid "Farsi"
 msgstr "波斯语"
 
-#: Merge.rc:2519
+#: Merge.rc:2522
 #, c-format
 msgid "Suomi"
 msgstr "芬兰语"
 
-#: Merge.rc:2520
+#: Merge.rc:2523
 #, c-format
 msgid "French"
 msgstr "法语 (法国)"
 
-#: Merge.rc:2521
+#: Merge.rc:2524
 #, c-format
 msgid "French (Belgique)"
 msgstr "法语 (比利时)"
 
-#: Merge.rc:2522
+#: Merge.rc:2525
 #, c-format
 msgid "French (Canada)"
 msgstr "法语 (加拿大)"
 
-#: Merge.rc:2523
+#: Merge.rc:2526
 #, c-format
 msgid "French (Switzerland)"
 msgstr "法语 (瑞士)"
 
-#: Merge.rc:2524
+#: Merge.rc:2527
 #, c-format
 msgid "French (Luxembourg)"
 msgstr "法语 (卢森堡)"
 
-#: Merge.rc:2525
+#: Merge.rc:2528
 #, c-format
 msgid "French (Monaco)"
 msgstr "法语 (摩纳哥)"
 
-#: Merge.rc:2526
+#: Merge.rc:2529
 #, c-format
 msgid "Georgian"
 msgstr "格鲁吉亚语"
 
-#: Merge.rc:2527
+#: Merge.rc:2530
 #, c-format
 msgid "German (Germany)"
 msgstr "德语 (德国)"
 
-#: Merge.rc:2528
+#: Merge.rc:2531
 #, c-format
 msgid "German (Switzerland)"
 msgstr "德语 (瑞士)"
 
-#: Merge.rc:2534
+#: Merge.rc:2537
 #, c-format
 msgid "German (Austria)"
 msgstr "德语 (奥地利)"
 
-#: Merge.rc:2535
+#: Merge.rc:2538
 #, c-format
 msgid "German (Luxembourg)"
 msgstr "德语 (卢森堡)"
 
-#: Merge.rc:2536
+#: Merge.rc:2539
 #, c-format
 msgid "German (Liechtenstein)"
 msgstr "德语 (列支敦士登)"
 
-#: Merge.rc:2537
+#: Merge.rc:2540
 #, c-format
 msgid "Greek"
 msgstr "希腊语"
 
-#: Merge.rc:2538
+#: Merge.rc:2541
 #, c-format
 msgid "Hebrew"
 msgstr "希伯来语"
 
-#: Merge.rc:2539
+#: Merge.rc:2542
 #, c-format
 msgid "Hindi"
 msgstr "印地语"
 
-#: Merge.rc:2540
+#: Merge.rc:2543
 #, c-format
 msgid "Hungarian"
 msgstr "匈牙利语"
 
-#: Merge.rc:2541
+#: Merge.rc:2544
 #, c-format
 msgid "Icelandic"
 msgstr "冰岛语"
 
-#: Merge.rc:2542
+#: Merge.rc:2545
 #, c-format
 msgid "Indonesian"
 msgstr "印度尼西亚语"
 
-#: Merge.rc:2543
+#: Merge.rc:2546
 #, c-format
 msgid "Italian"
 msgstr "意大利语 (意大利)"
 
-#: Merge.rc:2544
+#: Merge.rc:2547
 #, c-format
 msgid "Italian (Swiss)"
 msgstr "意大利语 (瑞士)"
 
-#: Merge.rc:2545
+#: Merge.rc:2548
 #, c-format
 msgid "Japanese"
 msgstr "日语"
 
-#: Merge.rc:2546
+#: Merge.rc:2549
 #, c-format
 msgid "Kashmiri (India)"
 msgstr "克什米尔语 (印度)"
 
-#: Merge.rc:2547
+#: Merge.rc:2550
 #, c-format
 msgid "Kazakh"
 msgstr "哈萨克语"
 
-#: Merge.rc:2548
+#: Merge.rc:2551
 #, c-format
 msgid "Korean"
 msgstr "朝鲜语"
 
-#: Merge.rc:2549
+#: Merge.rc:2552
 #, c-format
 msgid "Korean (Johab)"
 msgstr "朝鲜语 (JoHab)"
 
-#: Merge.rc:2555
+#: Merge.rc:2558
 #, c-format
 msgid "Latvian"
 msgstr "拉脱维亚语"
 
-#: Merge.rc:2556
+#: Merge.rc:2559
 #, c-format
 msgid "Lithuanian"
 msgstr "立陶宛语"
 
-#: Merge.rc:2557
+#: Merge.rc:2560
 #, c-format
 msgid "Malay (Malaysian)"
 msgstr "马来语 (马来西亚)"
 
-#: Merge.rc:2558
+#: Merge.rc:2561
 #, c-format
 msgid "Malay (Brunei Darussalam)"
 msgstr "马来语 (文莱达鲁萨兰)"
 
-#: Merge.rc:2559
+#: Merge.rc:2562
 #, c-format
 msgid "Manipuri"
 msgstr "曼尼普尔语"
 
-#: Merge.rc:2560
+#: Merge.rc:2563
 #, c-format
 msgid "Norwegian (Bokml)"
 msgstr "挪威语 (博克马尔)"
 
-#: Merge.rc:2561
+#: Merge.rc:2564
 #, c-format
 msgid "Norwegian (Nynorsk)"
 msgstr "挪威语 (尼诺斯克)"
 
-#: Merge.rc:2562
+#: Merge.rc:2565
 #, c-format
 msgid "Polski"
 msgstr "波兰语"
 
-#: Merge.rc:2563
+#: Merge.rc:2566
 #, c-format
 msgid "Portugese"
 msgstr "葡萄牙语 (葡萄牙)"
 
-#: Merge.rc:2564
+#: Merge.rc:2567
 #, c-format
 msgid "Portugese (Brazil)"
 msgstr "葡萄牙语 (巴西)"
 
-#: Merge.rc:2565
+#: Merge.rc:2568
 #, c-format
 msgid "Romanian"
 msgstr "罗马尼亚语"
 
-#: Merge.rc:2566
+#: Merge.rc:2569
 #, c-format
 msgid "Russian"
 msgstr "俄语"
 
-#: Merge.rc:2567
+#: Merge.rc:2570
 #, c-format
 msgid "Sanskrit"
 msgstr "梵文"
 
-#: Merge.rc:2568
+#: Merge.rc:2571
 #, c-format
 msgid "Serbian (Latin)"
 msgstr "塞尔维亚语 (拉丁语)"
 
-#: Merge.rc:2569
+#: Merge.rc:2572
 #, c-format
 msgid "Serbian (Cyrillic)"
 msgstr "塞尔维亚语 (塞瑞利克)"
 
-#: Merge.rc:2570
+#: Merge.rc:2573
 #, c-format
 msgid "Sindhi"
 msgstr "信德语"
 
-#: Merge.rc:2576
+#: Merge.rc:2579
 #, c-format
 msgid "Slovak"
 msgstr "斯洛伐克语"
 
-#: Merge.rc:2577
+#: Merge.rc:2580
 #, c-format
 msgid "Slovenian"
 msgstr "斯洛文尼亚语"
 
-#: Merge.rc:2578
+#: Merge.rc:2581
 #, c-format
 msgid "Spanish"
 msgstr "西班牙语 (传统风格)"
 
-#: Merge.rc:2579
+#: Merge.rc:2582
 #, c-format
 msgid "Spanish (Mexican)"
 msgstr "西班牙语 (墨西哥)"
 
-#: Merge.rc:2580
+#: Merge.rc:2583
 #, c-format
 msgid "Spanish (Modern)"
 msgstr "西班牙语 (现代风格)"
 
-#: Merge.rc:2581
+#: Merge.rc:2584
 #, c-format
 msgid "Spanish (Guatemala)"
 msgstr "西班牙语 (危地马拉)"
 
-#: Merge.rc:2582
+#: Merge.rc:2585
 #, c-format
 msgid "Spanish (Costa Rica)"
 msgstr "西班牙语 (哥斯达黎加)"
 
-#: Merge.rc:2583
+#: Merge.rc:2586
 #, c-format
 msgid "Spanish (Panama)"
 msgstr "西班牙语 (巴拿马)"
 
-#: Merge.rc:2584
+#: Merge.rc:2587
 #, c-format
 msgid "Spanish (Dominican)"
 msgstr "西班牙语 (多米尼加共和国)"
 
-#: Merge.rc:2585
+#: Merge.rc:2588
 #, c-format
 msgid "Spanish (Venezuela)"
 msgstr "西班牙语 (委内瑞拉)"
 
-#: Merge.rc:2586
+#: Merge.rc:2589
 #, c-format
 msgid "Spanish (Colombia)"
 msgstr "西班牙语 (哥伦比亚)"
 
-#: Merge.rc:2587
+#: Merge.rc:2590
 #, c-format
 msgid "Spanish (Peru)"
 msgstr "西班牙语 (秘鲁)"
 
-#: Merge.rc:2588
+#: Merge.rc:2591
 #, c-format
 msgid "Spanish (Argentina)"
 msgstr "西班牙语 (阿根廷)"
 
-#: Merge.rc:2589
+#: Merge.rc:2592
 #, c-format
 msgid "Spanish (Ecuador)"
 msgstr "西班牙语 (厄瓜多尔)"
 
-#: Merge.rc:2590
+#: Merge.rc:2593
 #, c-format
 msgid "Spanish (Chile)"
 msgstr "西班牙语 (智利)"
 
-#: Merge.rc:2591
+#: Merge.rc:2594
 #, c-format
 msgid "Spanish (Uruguay)"
 msgstr "西班牙语 (乌拉圭)"
 
-#: Merge.rc:2597
+#: Merge.rc:2600
 #, c-format
 msgid "Spanish (Paraguay)"
 msgstr "西班牙语 (巴拉圭)"
 
-#: Merge.rc:2598
+#: Merge.rc:2601
 #, c-format
 msgid "Spanish (Bolivia)"
 msgstr "西班牙语 (玻利维亚)"
 
-#: Merge.rc:2599
+#: Merge.rc:2602
 #, c-format
 msgid "Spanish (El Salvador)"
 msgstr "西班牙语 (萨尔瓦多)"
 
-#: Merge.rc:2600
+#: Merge.rc:2603
 #, c-format
 msgid "Spanish (Honduras)"
 msgstr "西班牙语 (洪都拉斯)"
 
-#: Merge.rc:2601
+#: Merge.rc:2604
 #, c-format
 msgid "Spanish (Nicaragua)"
 msgstr "西班牙语 (尼加拉瓜)"
 
-#: Merge.rc:2602
+#: Merge.rc:2605
 #, c-format
 msgid "Spanish (Puerto Rico)"
 msgstr "西班牙语 (波多黎各)"
 
-#: Merge.rc:2603
+#: Merge.rc:2606
 #, c-format
 msgid "Swahili (Kenya)"
 msgstr "斯瓦希里语 (肯尼亚)"
 
-#: Merge.rc:2604
+#: Merge.rc:2607
 #, c-format
 msgid "Swedish"
 msgstr "瑞典语"
 
-#: Merge.rc:2605
+#: Merge.rc:2608
 #, c-format
 msgid "Swedish (Finland)"
 msgstr "瑞典语 (芬兰)"
 
-#: Merge.rc:2606
+#: Merge.rc:2609
 #, c-format
 msgid "Tamil"
 msgstr "泰米尔语"
 
-#: Merge.rc:2607
+#: Merge.rc:2610
 #, c-format
 msgid "Tatar (Tatarstan)"
 msgstr "鞑靼语 (鞑靼斯坦共和国)"
 
-#: Merge.rc:2608
+#: Merge.rc:2611
 #, c-format
 msgid "Thai"
 msgstr "泰语"
 
-#: Merge.rc:2609
+#: Merge.rc:2612
 #, c-format
 msgid "Turkish"
 msgstr "土耳其语"
 
-#: Merge.rc:2610
+#: Merge.rc:2613
 #, c-format
 msgid "Ukranian"
 msgstr "乌克兰语"
 
-#: Merge.rc:2611
+#: Merge.rc:2614
 #, c-format
 msgid "Urdu (Pakistan)"
 msgstr "乌尔都语 (巴基斯坦)"
 
-#: Merge.rc:2612
+#: Merge.rc:2615
 #, c-format
 msgid "Urdu (India)"
 msgstr "乌尔都语 (印度)"
 
-#: Merge.rc:2618
+#: Merge.rc:2621
 #, c-format
 msgid "Uzbek (Latin)"
 msgstr "乌兹别克语 (拉丁文)"
 
-#: Merge.rc:2619
+#: Merge.rc:2622
 #, c-format
 msgid "Uzbek (Cyrillic)"
 msgstr "乌兹别克语 (西里尔文)"
 
-#: Merge.rc:2620
+#: Merge.rc:2623
 #, c-format
 msgid "Vietnamese"
 msgstr "越南语"
 
-#: Merge.rc:2626
+#: Merge.rc:2629
 #, c-format
 msgid "Western European"
 msgstr "西欧"
 
-#: Merge.rc:2627
+#: Merge.rc:2630
 #, c-format
 msgid "Eastern European"
 msgstr "东欧"
 
-#: Merge.rc:2628
+#: Merge.rc:2631
 #, c-format
 msgid "East Asian"
 msgstr "东亚"
 
-#: Merge.rc:2629
+#: Merge.rc:2632
 #, c-format
 msgid "SE & SW Asian"
 msgstr "南亚"
 
-#: Merge.rc:2630
+#: Merge.rc:2633
 #, c-format
 msgid "Middle Eastern"
 msgstr "中东"
 
-#: Merge.rc:2631
-#: Merge.rc:2641
+#: Merge.rc:2634
+#: Merge.rc:2644
 #, c-format
 msgid "Not applicable"
 msgstr "其它"
 
-#: Merge.rc:2637
+#: Merge.rc:2640
 #, c-format
 msgid "MS-Windows"
 msgstr ""
 
-#: Merge.rc:2638
+#: Merge.rc:2641
 #, c-format
 msgid "MS-DOS"
 msgstr ""
 
-#: Merge.rc:2639
+#: Merge.rc:2642
 #, c-format
 msgid "Macintosh"
 msgstr ""
 
-#: Merge.rc:2640
+#: Merge.rc:2643
 #, c-format
 msgid "IBM"
 msgstr ""
 
-#: Merge.rc:2647
+#: Merge.rc:2650
 #, c-format
 msgid "EBCDIC"
 msgstr ""
 
-#: Merge.rc:2648
+#: Merge.rc:2651
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
 msgstr ""
 
-#: Merge.rc:2654
+#: Merge.rc:2657
 #, c-format
 msgid "MS-DOS Latin US"
 msgstr ""
 
-#: Merge.rc:2655
+#: Merge.rc:2658
 #, c-format
 msgid "MS-DOS Arabic"
 msgstr ""
 
-#: Merge.rc:2656
+#: Merge.rc:2659
 #, c-format
 msgid "MS-DOS Greek"
 msgstr ""
 
-#: Merge.rc:2657
+#: Merge.rc:2660
 #, c-format
 msgid "MS-DOS Baltic Rim"
 msgstr ""
 
-#: Merge.rc:2658
+#: Merge.rc:2661
 #, c-format
 msgid "MS-DOS Latin 1"
 msgstr ""
 
-#: Merge.rc:2659
+#: Merge.rc:2662
 #, c-format
 msgid "MS-DOS Greek 1"
 msgstr ""
 
-#: Merge.rc:2660
+#: Merge.rc:2663
 #, c-format
 msgid "MS-DOS Latin 2"
 msgstr ""
 
-#: Merge.rc:2661
+#: Merge.rc:2664
 #, c-format
 msgid "MS-DOS Cyrillic"
 msgstr ""
 
-#: Merge.rc:2662
+#: Merge.rc:2665
 #, c-format
 msgid "MS-DOS Turkish"
 msgstr ""
 
-#: Merge.rc:2663
+#: Merge.rc:2666
 #, c-format
 msgid "MS-DOS Portuguese"
 msgstr ""
 
-#: Merge.rc:2669
+#: Merge.rc:2672
 #, c-format
 msgid "MS-DOS Icelandic"
 msgstr ""
 
-#: Merge.rc:2670
+#: Merge.rc:2673
 #, c-format
 msgid "MS-DOS Hebrew"
 msgstr ""
 
-#: Merge.rc:2671
+#: Merge.rc:2674
 #, c-format
 msgid "MS-DOS French Canada"
 msgstr ""
 
-#: Merge.rc:2672
+#: Merge.rc:2675
 #, c-format
 msgid "MS-DOS Nordic"
 msgstr ""
 
-#: Merge.rc:2673
+#: Merge.rc:2676
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
 msgstr ""
 
-#: Merge.rc:2674
+#: Merge.rc:2677
 #, c-format
 msgid "MS-DOS Greek 2"
 msgstr ""
 
-#: Merge.rc:2680
+#: Merge.rc:2683
 #, c-format
 msgid "Windows Thai"
 msgstr ""
 
-#: Merge.rc:2681
+#: Merge.rc:2684
 #, c-format
 msgid "Windows Japanese"
 msgstr ""
 
-#: Merge.rc:2682
+#: Merge.rc:2685
 #, c-format
 msgid "Windows Simplified Chinese"
 msgstr ""
 
-#: Merge.rc:2683
+#: Merge.rc:2686
 #, c-format
 msgid "Windows Korean"
 msgstr ""
 
-#: Merge.rc:2684
+#: Merge.rc:2687
 #, c-format
 msgid "Windows Traditional Chinese"
 msgstr ""
 
-#: Merge.rc:2685
+#: Merge.rc:2688
 #, c-format
 msgid "Windows Latin 2"
 msgstr ""
 
-#: Merge.rc:2686
+#: Merge.rc:2689
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
 msgstr ""
 
-#: Merge.rc:2687
+#: Merge.rc:2690
 #, c-format
 msgid "Windows Latin 1"
 msgstr ""
 
-#: Merge.rc:2688
+#: Merge.rc:2691
 #, c-format
 msgid "Windows Greek"
 msgstr ""
 
-#: Merge.rc:2689
+#: Merge.rc:2692
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
 msgstr ""
 
-#: Merge.rc:2690
+#: Merge.rc:2693
 #, c-format
 msgid "Windows Hebrew"
 msgstr ""
 
-#: Merge.rc:2691
+#: Merge.rc:2694
 #, c-format
 msgid "Windows Arabic"
 msgstr ""
 
-#: Merge.rc:2692
+#: Merge.rc:2695
 #, c-format
 msgid "Windows Baltic Rim"
 msgstr ""
 
-#: Merge.rc:2693
+#: Merge.rc:2696
 #, c-format
 msgid "Windows Vietnamese"
 msgstr ""
 
-#: Merge.rc:2699
+#: Merge.rc:2702
 #, c-format
 msgid "Macintosh Roman"
 msgstr ""
 
-#: Merge.rc:2700
+#: Merge.rc:2703
 #, c-format
 msgid "Macintosh Greek"
 msgstr ""
 
-#: Merge.rc:2701
+#: Merge.rc:2704
 #, c-format
 msgid "Macintosh Cyrillic"
 msgstr ""
 
-#: Merge.rc:2702
+#: Merge.rc:2705
 #, c-format
 msgid "Macintosh "
 msgstr ""
 
-#: Merge.rc:2703
+#: Merge.rc:2706
 #, c-format
 msgid "Macintosh Central Europe"
 msgstr ""
 
-#: Merge.rc:2704
+#: Merge.rc:2707
 #, c-format
 msgid "Macintosh Turkish"
 msgstr ""
 
-#: Merge.rc:2713
+#: Merge.rc:2716
 #, c-format
 msgid "Approximates ISO-8859-2"
 msgstr ""
 
-#: Merge.rc:2716
+#: Merge.rc:2719
 #, c-format
 msgid "Approximates ISO-8859-1"
 msgstr ""
 
-#: Merge.rc:2717
+#: Merge.rc:2720
 #, c-format
 msgid "Approximates ISO-8859-7"
 msgstr ""
 
-#: Merge.rc:2718
+#: Merge.rc:2721
 #, c-format
 msgid "Approximates ISO-8859-9"
 msgstr ""
 
-#: Merge.rc:2719
+#: Merge.rc:2722
 #, c-format
 msgid "Approximates ISO-8859-8"
 msgstr ""
 
-#: Merge.rc:2725
+#: Merge.rc:2728
 #, c-format
 msgid "Win"
 msgstr ""
 
-#: Merge.rc:2726
+#: Merge.rc:2729
 #, c-format
 msgid "Mac"
 msgstr ""
 
-#: Merge.rc:2727
+#: Merge.rc:2730
 #, c-format
 msgid "Unix"
 msgstr ""
 
-#: Merge.rc:2728
+#: Merge.rc:2731
 #, c-format
 msgid "Mixed"
 msgstr "混合"
 
-#: Merge.rc:2735
+#: Merge.rc:2738
 #, c-format
 msgid " B"
 msgstr ""
 
-#: Merge.rc:2736
+#: Merge.rc:2739
 #, c-format
 msgid " KB"
 msgstr ""
 
-#: Merge.rc:2737
+#: Merge.rc:2740
 #, c-format
 msgid " MB"
 msgstr ""
 
-#: Merge.rc:2738
+#: Merge.rc:2741
 #, c-format
 msgid " GB"
 msgstr ""
 
-#: Merge.rc:2739
+#: Merge.rc:2742
 #, c-format
 msgid " TB"
 msgstr ""
 
-#: Merge.rc:2740
+#: Merge.rc:2743
 #, c-format
 msgid " PB"
 msgstr ""
 
-#: Merge.rc:2747
+#: Merge.rc:2750
 #, c-format
 msgid "Save the left file"
 msgstr "保存左侧的文件"
 
-#: Merge.rc:2748
+#: Merge.rc:2751
 #, c-format
 msgid "Save the right file"
 msgstr "保存右侧的文件"
 
-#: Merge.rc:2749
+#: Merge.rc:2752
 #, c-format
 msgid "Save the left file with name..."
 msgstr "将左侧文件保存为指定文件名..."
 
-#: Merge.rc:2750
+#: Merge.rc:2753
 #, c-format
 msgid "Save the right file with name..."
 msgstr "将右侧文件保存为指定文件名..."
 
-#: Merge.rc:2751
+#: Merge.rc:2754
 #, c-format
 msgid "Change left file/dir read-only status"
 msgstr "改变左侧文件/文件夹的只读属性"
 
-#: Merge.rc:2752
+#: Merge.rc:2755
 #, c-format
 msgid "Change right file/dir read-only status"
 msgstr "改变右侧文件/文件夹的只读属性"
 
-#: Merge.rc:2753
+#: Merge.rc:2756
 #, c-format
 msgid "Convert EOL to DOS mode"
 msgstr "将换行符转换为 DOS 模式"
 
-#: Merge.rc:2754
+#: Merge.rc:2757
 #, c-format
 msgid "Convert EOL to UNIX mode"
 msgstr "将换行符转换为 UNIX 模式"
 
-#: Merge.rc:2755
+#: Merge.rc:2758
 #, c-format
 msgid "Convert EOL to MAC mode"
 msgstr "将换行符转换为 MAC 模式"
 
-#: Merge.rc:2756
+#: Merge.rc:2759
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "在编辑模式和合并模式之间切换"
 
-#: Merge.rc:2757
+#: Merge.rc:2760
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
@@ -5968,12 +5975,12 @@ msgstr ""
 "显示并修改文件编码属性\n"
 "文件编码属性"
 
-#: Merge.rc:2758
+#: Merge.rc:2761
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr ""
 
-#: Merge.rc:2764
+#: Merge.rc:2767
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5982,7 +5989,7 @@ msgstr ""
 "选中当前行中不同的部分\n"
 "当前行中不同"
 
-#: Merge.rc:2765
+#: Merge.rc:2768
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5991,7 +5998,7 @@ msgstr ""
 "转到行号或某处不同\n"
 "转到 (Ctrl+G)"
 
-#: Merge.rc:2766
+#: Merge.rc:2769
 #, c-format
 msgid ""
 "Set program options\n"
@@ -6000,7 +6007,7 @@ msgstr ""
 "设定程序选项\n"
 "选项"
 
-#: Merge.rc:2767
+#: Merge.rc:2770
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -6009,37 +6016,37 @@ msgstr ""
 "更新显示\n"
 "更新 (F5)"
 
-#: Merge.rc:2768
+#: Merge.rc:2771
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "将当前选中的行复制到剪贴板并在每行前添加行号"
 
-#: Merge.rc:2769
+#: Merge.rc:2772
 #, c-format
 msgid "Refresh selected items"
 msgstr "刷新选中的项目"
 
-#: Merge.rc:2770
+#: Merge.rc:2773
 #, c-format
 msgid "Toggle bookmark"
 msgstr "设置/取消书签"
 
-#: Merge.rc:2771
+#: Merge.rc:2774
 #, c-format
 msgid "Go to next bookmark"
 msgstr "转到下一个书签"
 
-#: Merge.rc:2772
+#: Merge.rc:2775
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "转到上一个书签"
 
-#: Merge.rc:2773
+#: Merge.rc:2776
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "清除所有书签"
 
-#: Merge.rc:2779
+#: Merge.rc:2782
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -6048,7 +6055,7 @@ msgstr ""
 "显示完全相同的项目\n"
 "显示完全相同的项目"
 
-#: Merge.rc:2780
+#: Merge.rc:2783
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -6057,7 +6064,7 @@ msgstr ""
 "显示含有不同的项目\n"
 "显示不同的项目"
 
-#: Merge.rc:2781
+#: Merge.rc:2784
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -6066,7 +6073,7 @@ msgstr ""
 "显示只在左侧存在的项目\n"
 "显示只在左侧项目"
 
-#: Merge.rc:2782
+#: Merge.rc:2785
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -6075,7 +6082,7 @@ msgstr ""
 "显示只在右侧存在的项目\n"
 "显示只在右侧项目"
 
-#: Merge.rc:2783
+#: Merge.rc:2786
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -6084,7 +6091,7 @@ msgstr ""
 "显示二进制文件\n"
 "显示二进制文件"
 
-#: Merge.rc:2784
+#: Merge.rc:2787
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -6093,7 +6100,7 @@ msgstr ""
 "显示跳过的文件\n"
 "显示跳过的文件"
 
-#: Merge.rc:2790
+#: Merge.rc:2793
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -6102,7 +6109,7 @@ msgstr ""
 "为视图选择字体\n"
 "选择视图字体"
 
-#: Merge.rc:2791
+#: Merge.rc:2794
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -6111,27 +6118,27 @@ msgstr ""
 "把视图的字体恢复为系统字体\n"
 "默认字体"
 
-#: Merge.rc:2792
+#: Merge.rc:2795
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "显示空白和制表符字符"
 
-#: Merge.rc:2793
+#: Merge.rc:2796
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "显示/隐藏对比窗格"
 
-#: Merge.rc:2794
+#: Merge.rc:2797
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "位置窗格显示文件的总体情况"
 
-#: Merge.rc:2795
+#: Merge.rc:2798
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "显示文件夹对比结果统计"
 
-#: Merge.rc:2796
+#: Merge.rc:2799
 #, c-format
 msgid ""
 "Select the current user interfacce language\n"
@@ -6140,7 +6147,7 @@ msgstr ""
 "选择当前用户接口语言\n"
 "语言"
 
-#: Merge.rc:2797
+#: Merge.rc:2800
 #, c-format
 msgid ""
 "Shows differences inside lines with different color\n"
@@ -6149,12 +6156,12 @@ msgstr ""
 "以不同的颜色显示行中的不同\n"
 "显示行中不同"
 
-#: Merge.rc:2798
+#: Merge.rc:2801
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "交换左右窗格的位置"
 
-#: Merge.rc:2799
+#: Merge.rc:2802
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -6163,7 +6170,7 @@ msgstr ""
 "显示行号\n"
 "显示行号"
 
-#: Merge.rc:2800
+#: Merge.rc:2803
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -6172,7 +6179,7 @@ msgstr ""
 "允许自动换行\n"
 "自动换行"
 
-#: Merge.rc:2801
+#: Merge.rc:2804
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
@@ -6181,17 +6188,17 @@ msgstr ""
 "在两个窗格内显示用以选择的页边\n"
 "显示选择页边"
 
-#: Merge.rc:2802
+#: Merge.rc:2805
 #, c-format
 msgid "Increase text size"
 msgstr ""
 
-#: Merge.rc:2803
+#: Merge.rc:2806
 #, c-format
 msgid "Decrease text size"
 msgstr ""
 
-#: Merge.rc:2809
+#: Merge.rc:2812
 #, c-format
 msgid ""
 "Scroll to the previous difference\n"
@@ -6200,7 +6207,7 @@ msgstr ""
 "卷动到上一个不同\n"
 "上一个不同 (Alt + Up)"
 
-#: Merge.rc:2810
+#: Merge.rc:2813
 #, c-format
 msgid ""
 "Scroll to the next difference\n"
@@ -6209,7 +6216,7 @@ msgstr ""
 "卷动到下一个不同\n"
 "下一个不同 (Alt + Down)"
 
-#: Merge.rc:2811
+#: Merge.rc:2814
 #, c-format
 msgid ""
 "Scroll to the first difference\n"
@@ -6218,7 +6225,7 @@ msgstr ""
 "卷动到第一个不同\n"
 "第一个不同 (Alt+Home)"
 
-#: Merge.rc:2812
+#: Merge.rc:2815
 #, c-format
 msgid ""
 "Scroll to the current difference\n"
@@ -6227,7 +6234,7 @@ msgstr ""
 "卷动到当前不同\n"
 "当前不同 (Alt+Enter)"
 
-#: Merge.rc:2813
+#: Merge.rc:2816
 #, c-format
 msgid ""
 "Scroll to the last difference\n"
@@ -6236,7 +6243,7 @@ msgstr ""
 "卷动到上次的不同\n"
 "上次的不同 (Alt+End)"
 
-#: Merge.rc:2814
+#: Merge.rc:2817
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -6245,7 +6252,7 @@ msgstr ""
 "复制选择的文字到右侧文件\n"
 "复制右侧 (Alt + Right)"
 
-#: Merge.rc:2815
+#: Merge.rc:2818
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -6254,7 +6261,7 @@ msgstr ""
 "复制选择的文字到左侧文件\n"
 "复制左侧 (Alt + Left)"
 
-#: Merge.rc:2816
+#: Merge.rc:2819
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -6263,7 +6270,7 @@ msgstr ""
 "将当前不同处复制到右侧并前进到下一处不同\n"
 "复制到右侧并前进 (Ctrl+Alt+Right)"
 
-#: Merge.rc:2817
+#: Merge.rc:2820
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -6272,7 +6279,7 @@ msgstr ""
 "将当前不同处复制到左侧并前进到下一处不同\n"
 "复制到左侧并前进 (Ctrl+Alt+Left)"
 
-#: Merge.rc:2818
+#: Merge.rc:2821
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -6281,7 +6288,7 @@ msgstr ""
 "复制所有不同到右侧文件\n"
 "所有到右侧"
 
-#: Merge.rc:2819
+#: Merge.rc:2822
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -6290,72 +6297,72 @@ msgstr ""
 "复制所有不同到左侧文件\n"
 "所有到左侧"
 
-#: Merge.rc:2820
+#: Merge.rc:2823
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "删除两侧中选中的项目"
 
-#: Merge.rc:2821
+#: Merge.rc:2824
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "对比选中的项目(当多选时对比第一个项目)"
 
-#: Merge.rc:2827
+#: Merge.rc:2830
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "选择及排序文件夹对比显示的列"
 
-#: Merge.rc:2828
+#: Merge.rc:2831
 #, c-format
 msgid "Generate a patch-file"
 msgstr "生成一个patch文件"
 
-#: Merge.rc:2829
+#: Merge.rc:2832
 #, c-format
 msgid "Select and modify filters"
 msgstr "选择及修改过滤器"
 
-#: Merge.rc:2830
+#: Merge.rc:2833
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "由对比结果生成报告"
 
-#: Merge.rc:2836
+#: Merge.rc:2839
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "让用户选择解包程序 (对比文件夹时不进行解包)"
 
-#: Merge.rc:2837
+#: Merge.rc:2840
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "在两个文件上应用适当的解包程序 (文件只需要有适当的扩展名)"
 
-#: Merge.rc:2838
+#: Merge.rc:2841
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "选择一个解包程序来编辑这个文件"
 
-#: Merge.rc:2839
+#: Merge.rc:2842
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "没有预对比程序 (普通)"
 
-#: Merge.rc:2840
+#: Merge.rc:2843
 #, c-format
 msgid "Suggested plugins"
 msgstr "推荐的插件"
 
-#: Merge.rc:2841
+#: Merge.rc:2844
 #, c-format
 msgid "Other plugins"
 msgstr "其它插件"
 
-#: Merge.rc:2842
+#: Merge.rc:2845
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "卸载所有插件并重新载入 (开发者用)"
 
-#: Merge.rc:2848
+#: Merge.rc:2851
 #, c-format
 msgid ""
 "Activates next file visible\n"
@@ -6364,12 +6371,12 @@ msgstr ""
 "切换到下一个可见的文件窗格\n"
 "切换到下个文件"
 
-#: Merge.rc:2849
+#: Merge.rc:2852
 #, c-format
 msgid "Closes all open windows"
 msgstr "关闭所有打开的窗口"
 
-#: Merge.rc:2855
+#: Merge.rc:2858
 #, c-format
 msgid ""
 "Displays the WinMerge User's Guide\n"
@@ -6378,22 +6385,22 @@ msgstr ""
 "显示 WinMerge 用户帮助\n"
 "帮助"
 
-#: Merge.rc:2856
+#: Merge.rc:2859
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "将当前的 WinMerge 版本信息及配置输出到文本文件"
 
-#: Merge.rc:2857
+#: Merge.rc:2860
 #, c-format
 msgid "Display the GNU public license"
 msgstr "显示 GNU 公共授权"
 
-#: Merge.rc:2858
+#: Merge.rc:2861
 #, c-format
 msgid "Private Build: %1"
 msgstr ""
 
-#: Merge.rc:2859
+#: Merge.rc:2862
 #, c-format
 msgid ""
 "Opens WinMerge Help Index\n"
@@ -6402,7 +6409,7 @@ msgstr ""
 "打开 WinMerge 帮助索引\n"
 "帮助索引"
 
-#: Merge.rc:2860
+#: Merge.rc:2863
 #, c-format
 msgid ""
 "Opens WinMerge Help Search\n"
@@ -6411,267 +6418,272 @@ msgstr ""
 "打开 WinMerge 帮助搜索\n"
 "帮助搜索"
 
-#: Merge.rc:2861
+#: Merge.rc:2864
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
 msgstr ""
 
-#: Merge.rc:2867
+#: Merge.rc:2865
+#, c-format
+msgid "Opens the translations website\nTranslations"
+msgstr ""
+
+#: Merge.rc:2871
 #, c-format
 msgid "Plugin Settings"
 msgstr "插件设置"
 
-#: Merge.rc:2868
+#: Merge.rc:2872
 #, c-format
 msgid "No prediffer"
 msgstr "没有预对比程序"
 
-#: Merge.rc:2869
+#: Merge.rc:2873
 #, c-format
 msgid "Prediff if possible"
 msgstr "如果可能，进行预对比"
 
-#: Merge.rc:2871
+#: Merge.rc:2875
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH 未找到 - .sct 脚本已禁用"
 
-#: Merge.rc:2872
+#: Merge.rc:2876
 #, c-format
 msgid "<None>"
 msgstr "<无>"
 
-#: Merge.rc:2873
+#: Merge.rc:2877
 #, c-format
 msgid "<Automatic>"
 msgstr "<自动>"
 
-#: Merge.rc:2879
+#: Merge.rc:2883
 #, c-format
 msgid "Open the file with registered application"
 msgstr "用系统默认程序打开文件"
 
-#: Merge.rc:2880
+#: Merge.rc:2884
 #, c-format
 msgid "Open the file with external editor"
 msgstr "用外部编辑器打开文件"
 
-#: Merge.rc:2881
+#: Merge.rc:2885
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "选择程序以打开文件"
 
-#: Merge.rc:2887
+#: Merge.rc:2891
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "不显示移动区块"
 
-#: Merge.rc:2888
+#: Merge.rc:2892
 #, c-format
 msgid "Display all moved blacks"
 msgstr "显示所有移动区块"
 
-#: Merge.rc:2889
+#: Merge.rc:2893
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "只显示当前处的移动区块"
 
-#: Merge.rc:2890
+#: Merge.rc:2894
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "转到光标处不同"
 
-#: Merge.rc:2891
+#: Merge.rc:2895
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "转到第 %1 处不同(共 %2 处)(&O)"
 
-#: Merge.rc:2892
+#: Merge.rc:2896
 #, c-format
 msgid "G&oto Line %1"
 msgstr "转到第 %1 行(&O)"
 
-#: Merge.rc:2898
+#: Merge.rc:2902
 #, c-format
 msgid "Disabled"
 msgstr "禁用"
 
-#: Merge.rc:2899
+#: Merge.rc:2903
 #, c-format
 msgid "From file system"
 msgstr "由文件系统选择"
 
-#: Merge.rc:2900
+#: Merge.rc:2904
 #, c-format
 msgid "From MRU list"
 msgstr "由最近使用的文件选择"
 
-#: Merge.rc:2907
+#: Merge.rc:2911
 #, c-format
 msgid "ASP"
 msgstr ""
 
-#: Merge.rc:2908
+#: Merge.rc:2912
 #, c-format
 msgid "Basic"
 msgstr ""
 
-#: Merge.rc:2909
+#: Merge.rc:2913
 #, c-format
 msgid "Batch"
 msgstr ""
 
-#: Merge.rc:2910
+#: Merge.rc:2914
 #, c-format
 msgid "C/C++"
 msgstr ""
 
-#: Merge.rc:2911
+#: Merge.rc:2915
 #, c-format
 msgid "C#"
 msgstr ""
 
-#: Merge.rc:2912
+#: Merge.rc:2916
 #, c-format
 msgid "CSS"
 msgstr ""
 
-#: Merge.rc:2913
+#: Merge.rc:2917
 #, c-format
 msgid "DCL"
 msgstr ""
 
-#: Merge.rc:2914
+#: Merge.rc:2918
 #, c-format
 msgid "Fortran"
 msgstr ""
 
-#: Merge.rc:2915
+#: Merge.rc:2919
 #, c-format
 msgid "HTML"
 msgstr ""
 
-#: Merge.rc:2916
+#: Merge.rc:2920
 #, c-format
 msgid "INI"
 msgstr ""
 
-#: Merge.rc:2917
+#: Merge.rc:2921
 #, c-format
 msgid "InnoSetup"
 msgstr ""
 
-#: Merge.rc:2918
+#: Merge.rc:2922
 #, c-format
 msgid "InstallShield"
 msgstr ""
 
-#: Merge.rc:2919
+#: Merge.rc:2923
 #, c-format
 msgid "Java"
 msgstr ""
 
-#: Merge.rc:2920
+#: Merge.rc:2924
 #, c-format
 msgid "AutoLISP"
 msgstr ""
 
-#: Merge.rc:2921
+#: Merge.rc:2925
 #, c-format
 msgid "NSIS"
 msgstr ""
 
-#: Merge.rc:2922
+#: Merge.rc:2926
 #, c-format
 msgid "Pascal"
 msgstr ""
 
-#: Merge.rc:2923
+#: Merge.rc:2927
 #, c-format
 msgid "Perl"
 msgstr ""
 
-#: Merge.rc:2924
+#: Merge.rc:2928
 #, c-format
 msgid "PHP"
 msgstr ""
 
-#: Merge.rc:2925
+#: Merge.rc:2929
 #, c-format
 msgid "Portable Object"
 msgstr ""
 
-#: Merge.rc:2926
+#: Merge.rc:2930
 #, c-format
 msgid "PowerShell"
 msgstr ""
 
-#: Merge.rc:2927
+#: Merge.rc:2931
 #, c-format
 msgid "Python"
 msgstr ""
 
-#: Merge.rc:2928
+#: Merge.rc:2932
 #, c-format
 msgid "REXX"
 msgstr ""
 
-#: Merge.rc:2929
+#: Merge.rc:2933
 #, c-format
 msgid "Resources"
 msgstr ""
 
-#: Merge.rc:2930
+#: Merge.rc:2934
 #, c-format
 msgid "Ruby"
 msgstr ""
 
-#: Merge.rc:2931
+#: Merge.rc:2935
 #, c-format
 msgid "SGML"
 msgstr ""
 
-#: Merge.rc:2932
+#: Merge.rc:2936
 #, c-format
 msgid "Shell"
 msgstr ""
 
-#: Merge.rc:2933
+#: Merge.rc:2937
 #, c-format
 msgid "SIOD"
 msgstr ""
 
-#: Merge.rc:2934
+#: Merge.rc:2938
 #, c-format
 msgid "SQL"
 msgstr ""
 
-#: Merge.rc:2935
+#: Merge.rc:2939
 #, c-format
 msgid "TCL"
 msgstr ""
 
-#: Merge.rc:2936
+#: Merge.rc:2940
 #, c-format
 msgid "TEX"
 msgstr ""
 
-#: Merge.rc:2937
+#: Merge.rc:2941
 #, c-format
 msgid "XML"
 msgstr ""
 
-#: Merge.rc:2942
+#: Merge.rc:2946
 #, c-format
 msgid "Hide the toolbar"
 msgstr "隐藏工具栏"
 
-#: Merge.rc:2943
+#: Merge.rc:2947
 #, c-format
 msgid "Show small toolbar"
 msgstr "显示小工具栏"
 
-#: Merge.rc:2944
+#: Merge.rc:2948
 #, c-format
 msgid "Show big toolbar"
 msgstr "显示大工具栏"
