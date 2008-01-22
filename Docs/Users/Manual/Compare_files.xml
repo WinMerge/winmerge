@@ -544,4 +544,68 @@
       </listitem>
     </itemizedlist>
   </sect2>
+
+  <sect2>
+    <title><indexterm>
+        <primary>Conflict Files</primary>
+      </indexterm>Resolving Conflict Files</title>
+
+    <para>WinMerge can resolve conflict files several version control systems
+    produce when merging files. Conflict file is basically two different
+    versions of files embedded into one file. WinMerge reads this file and
+    separates it into its original files, and shows those files in file
+    compare. So conflicted file can be resolved using normal WinMerge file
+    compare functionality.</para>
+
+    <sect3>
+      <title>Opening Conflict Files</title>
+
+      <para>Conflict files can be opened into WinMerge using <menuchoice>
+          <guimenu>File</guimenu>
+
+          <guimenuitem>Open Conflict File...</guimenuitem>
+        </menuchoice>. Conflict file to resolve can be selected using file
+      selection dialog that opens. At the moment there are no other ways to
+      open conflict files.</para>
+
+      <warning>
+        <para>WinMerge overwrites original conflict file. If original file is
+        wanted to save, it must be copied to another folder or another
+        filename before opening it into WinMerge.</para>
+      </warning>
+    </sect3>
+
+    <sect3>
+      <title>Conflict Resolving</title>
+
+      <para>WinMerge opens conflict file into normal file compare (see above).
+      All normal WinMerge file compare features are in use. Files in two
+      panels are:</para>
+
+      <simplelist>
+        <member><emphasis>Left panel</emphasis>: this file is called
+        "<emphasis>theirs</emphasis>" file. It is usually the file that is in
+        version control system's repository. This file usually cannot be
+        edited. An as such, WinMerge opens left-side file as read-only.
+        Differences can be moved only from this file to the another
+        file.</member>
+
+        <member><emphasis>Right panel</emphasis>: this file is called
+        "<emphasis>mine</emphasis>" file. It is the user's working file
+        originally. All changes should be done to this file. I.e. this file is
+        at the same time the result file.</member>
+      </simplelist>
+
+      <para>After the wanted resolved file is in right-side panel, it can be
+      saved like normal file. WinMerge saves the file over original
+      file.</para>
+
+      <para>Left side "<emphasis>mine</emphasis>" file is set to modified
+      after opening conflict file. This allows fast resolve by just saving the
+      file when user's file is the wanted end result. This also prevents
+      accidentally not resolving the files. As resolving only happens when
+      file is saved. If file is no saved, original conflict file is kept
+      unmodified.</para>
+    </sect3>
+  </sect2>
 </sect1>
