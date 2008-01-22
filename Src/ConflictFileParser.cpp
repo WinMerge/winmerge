@@ -56,8 +56,8 @@ bool ParseConflictFile(const String &conflictFileName,
 	BOOL success = conflictFile.OpenReadOnly(conflictFileName.c_str());
 
 	// Create output files
-	BOOL success2 = workingCopy.Open(workingCopyFileName.c_str(), _T("w"));
-	BOOL success3 = newRevision.Open(newRevisionFileName.c_str(), _T("w"));
+	BOOL success2 = workingCopy.Open(workingCopyFileName.c_str(), _T("wb"));
+	BOOL success3 = newRevision.Open(newRevisionFileName.c_str(), _T("wb"));
 
 	state = 0;
 	BOOL linesToRead = TRUE;
