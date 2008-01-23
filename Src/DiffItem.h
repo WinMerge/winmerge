@@ -67,12 +67,18 @@ struct DIFFCODE
 	DIFFCODE(int diffcode = 0) : diffcode(diffcode) { }
 
 protected:
+	/// Worker function, to check one area (mask) of code for a particular value (result)
 	static bool Check(int code, int mask, int result) { return ((code & mask) == result); }
+	/// Convenience function to check the part of the code for comparison results
 	static bool CheckCompare(int code, int result) { return Check(code, DIFFCODE::COMPAREFLAGS, result); }
+	/// Convenience function to check the part of the code for filter status
 	static bool CheckFilter(int code, int result) { return Check(code, DIFFCODE::FILTERFLAGS, result); }
+	/// Convenience function to check the part of the code for side status (eg, left-only)
 	static bool CheckSide(int code, int result) { return Check(code, DIFFCODE::SIDEFLAGS, result); }
 
+	/// Worker function to set the area indicated by mask to specified result
 	void Set(int mask, int result) { diffcode &= (~mask); diffcode |= result; }
+	/// Convenience function to set the side status, eg, SetSide(DIFFCODE::LEFT)
 	void SetSide(int result) { Set(DIFFCODE::SIDEFLAGS, result); }
 public:
 
