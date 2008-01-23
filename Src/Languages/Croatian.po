@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-11-19 11:07+0100\n"
+"PO-Revision-Date: 2008-01-23 11:01+0100\n"
 "Last-Translator: Hasan Osmanagæ <hasan.osmanagic at public.carnet.hr>\n"
 "Language-Team: winmerge-translate <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -144,7 +144,7 @@ msgstr ""
 #: Merge.rc:116
 #, c-format
 msgid "Open Project...\tCtrl+J"
-msgstr "Otvori usporedbu...\tCtrl+J"
+msgstr "&Otvori usporedbu...\tCtrl+J"
 
 #: Merge.rc:117
 #: Merge.rc:197
@@ -163,7 +163,7 @@ msgstr "Zadnje usporedbe"
 #: Merge.rc:345
 #, c-format
 msgid "E&xit"
-msgstr "&Izlaz"
+msgstr "I&zlaz"
 
 #: Merge.rc:123
 #: Merge.rc:206
@@ -275,7 +275,7 @@ msgstr "&Pohrani razlike (Patch)..."
 #: Merge.rc:442
 #, c-format
 msgid "&Plugins"
-msgstr "&Dodaci"
+msgstr "Doda&ci"
 
 #: Merge.rc:150
 #: Merge.rc:266
@@ -852,12 +852,12 @@ msgstr "&Usporedba"
 #: Merge.rc:493
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "Posebna usporedba"
 
 #: Merge.rc:495
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:500
 #, c-format
@@ -3555,7 +3555,7 @@ msgstr "Naðeno razlika: 1"
 #: Merge.rc:2042
 #, c-format
 msgid "RO"
-msgstr "RO"
+msgstr "SÈ"
 
 #: Merge.rc:2048
 #, c-format
@@ -4735,7 +4735,7 @@ msgstr "Panel razlika"
 #: Merge.rc:2395
 #, c-format
 msgid "Patch file successfully written."
-msgstr "Datoteka razlika je pohranjena"
+msgstr ""
 
 #: Merge.rc:2396
 #, c-format
