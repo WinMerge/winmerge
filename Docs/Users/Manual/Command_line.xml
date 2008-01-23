@@ -187,4 +187,15 @@
   <replaceable>rightpath</replaceable>) point to folders or files. It is not
   possible to compare folder to file (except in case described in above note).
   If WinMerge cannot find any of given paths, it opens Open-dialog.</para>
+
+  <para>Third path given in command line is rarely needed when WinMerge is
+  started from command line. It is meant to be used with many version control
+  tools which use third path as a "<emphasis>result</emphasis>" file. WinMerge
+  always shows two files in file compare, the third path is a path where any
+  of these files gets saved into, leaving other two paths intact.</para>
+
+  <para>Usually these tools use terms like "<emphasis>theirs</emphasis>",
+  "<emphasis>mine</emphasis>" and "<emphasis>merged</emphasis> "/ "
+  <emphasis>resolved</emphasis>" about these three files. And those paths
+  should be given in that order for WinMerge.</para>
 </sect1>

@@ -7,6 +7,7 @@ WinMerge 2.7.7.3
   Save line filter when edit box loses focus (#1875853)
   Add link to translations website at help menu (#1699883)
   Manual: Add instructions for conflict file resolving (#1876770)
+  Manual: Document third path given to command line (#1877735)
   BugFix: Fix Quick Compare regression in 2.7.7.2 (#1872165)
   Bugfix: Clipped text in file saving error message (#1874854)
 
