@@ -6,7 +6,7 @@
  *
  *  @brief  Implementation of utility unicode conversion routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 /* The MIT License
@@ -695,6 +695,36 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		dest->used = wchars * 2;
 		return true;
 	}
+}
+
+/**
+ * @brief Determine encoding from byte buffer.
+ * @param [in] pBuffer Pointer to the begin of the buffer.
+ * @param [in] size Size of the buffer.
+ * @return One of UNICODESET values as encoding.
+ */
+UNICODESET DetermineEncoding(LPBYTE pBuffer, int size)
+{
+	UNICODESET unicoding = ucr::NONE;
+	if (size >= 2)
+	{
+		if (pBuffer[0] == 0xFF && pBuffer[1] == 0xFE)
+		{
+			unicoding = ucr::UCS2LE;
+		}
+		else if (pBuffer[0] == 0xFE && pBuffer[1] == 0xFF)
+		{
+			unicoding = ucr::UCS2BE;
+		}
+	}
+	if (size >= 3)
+	{
+		if (pBuffer[0] == 0xEF && pBuffer[1] == 0xBB && pBuffer[2] == 0xBF)
+		{
+			unicoding = ucr::UTF8;
+		}
+	}
+	return unicoding;
 }
 
 } // namespace ucr

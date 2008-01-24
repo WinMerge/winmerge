@@ -7,7 +7,7 @@
  *
  *  @brief Implementation of Unicode enabled file classes (Memory-mapped reader class, and Stdio replacement class)
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 /* The MIT License
@@ -273,34 +273,28 @@ bool UniMemFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareM
  */
 bool UniMemFile::ReadBom()
 {
-	if (!IsOpen()) return false;
+	if (!IsOpen())
+		return false;
 
 	unsigned char * lpByte = m_base;
 	m_current = m_data = m_base;
 	m_charsize = 1;
-	if (m_filesize >= 2)
+	
+	m_unicoding = ucr::DetermineEncoding(lpByte, m_filesize);
+	switch (m_unicoding)
 	{
-		if (lpByte[0] == 0xFF && lpByte[1] == 0xFE)
-		{
-			m_unicoding = ucr::UCS2LE;
+		case ucr::UCS2LE:
+		case ucr::UCS2BE:
 			m_charsize = 2;
-			m_data = lpByte+2;
-		}
-		else if (lpByte[0] == 0xFE && lpByte[1] == 0xFF)
-		{
-			m_unicoding = ucr::UCS2BE;
-			m_charsize = 2;
-			m_data = lpByte+2;
-		}
+			m_data = lpByte + 2;
+			break;
+		case ucr::UTF8:
+			m_data = lpByte + 3;
+			break;
+		default:
+			break;
 	}
-	if (m_filesize >=3)
-	{
-		if (lpByte[0] == 0xEF && lpByte[1] == 0xBB && lpByte[2] == 0xBF)
-		{
-			m_unicoding = ucr::UTF8;
-			m_data = lpByte+3;
-		}
-	}
+
 	m_readbom = true;
 	m_current = m_data;
 	return (m_data != m_base);
@@ -748,7 +742,8 @@ void UniStdioFile::LastErrorCustom(LPCTSTR desc)
  */
 bool UniStdioFile::ReadBom()
 {
-	if (!IsOpen()) return false;
+	if (!IsOpen())
+		return false;
 
 	fseek(m_fp, 0, SEEK_SET);
 
@@ -756,26 +751,24 @@ bool UniStdioFile::ReadBom()
 	unsigned char buff[4];
 	int bytes = fread(buff, 1, 3, m_fp);
 	unsigned char * lpByte = (unsigned char *)buff;
-
 	m_data = 0;
 	m_charsize = 1;
-	if (bytes >= 2 && lpByte[0] == 0xFF && lpByte[1] == 0xFE)
+
+	m_unicoding = ucr::DetermineEncoding(lpByte, bytes);
+	switch (m_unicoding)
 	{
-		m_unicoding = ucr::UCS2LE;
-		m_charsize = 2;
-		m_data = 2;
+		case ucr::UCS2LE:
+		case ucr::UCS2BE:
+			m_charsize = 2;
+			m_data = 2;
+			break;
+		case ucr::UTF8:
+			m_data = 3;
+			break;
+		default:
+			break;
 	}
-	else if (bytes >= 2 && lpByte[0] == 0xFE && lpByte[1] == 0xFF)
-	{
-		m_unicoding = ucr::UCS2BE;
-		m_charsize = 2;
-		m_data = 2;
-	}
-	else if (bytes >= 3 && lpByte[0] == 0xEF && lpByte[1] == 0xBB && lpByte[2] == 0xBF)
-	{
-		m_unicoding = ucr::UTF8;
-		m_data = 3;
-	}
+
 	fseek(m_fp, (long)m_data, SEEK_SET);
 	m_readbom = true;
 	return (m_data != 0);

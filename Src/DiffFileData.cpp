@@ -5,7 +5,7 @@
  *
  * @date  Created: 2003-08-22
  */
-// RCS ID line follows -- this is updated by CVS
+// line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -176,33 +176,22 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 	if (fd == -1) 
 		return;
 	long tmp = _lseek(fd, 0, SEEK_SET);
-	switch (_read(fd, buffer, 3))
+
+	int bytes = _read(fd, buffer, 3);
+	unicoding = ucr::DetermineEncoding(buffer, bytes);
+	switch (unicoding)
 	{
-		case 3:
-			if (buffer[0] == 0xEF && buffer[1] == 0xBB && buffer[2] == 0xBF)
-			{
-				size = 3;
-				unicoding = ucr::UTF8;
-				break;
-			}
-			// fall through & try the 2-byte BOMs
-		case 2:
-			if (buffer[0] == 0xFF && buffer[1] == 0xFE)
-			{
-				size = 2;
-				unicoding = ucr::UCS2LE;
-				break;
-			}
-			if (buffer[0] == 0xFE && buffer[1] == 0xFF)
-			{
-				size = 2;
-				unicoding = ucr::UCS2BE;
-				break;
-			}
+		case ucr::UCS2LE:
+		case ucr::UCS2BE:
+			size = 2;
+			break;
+		case ucr::UTF8:
+			size = 3;
+			break;
 		default:
-			size = 0;
-			unicoding = ucr::NONE;
+			break;
 	}
+
 	_lseek(fd, tmp, SEEK_SET);
 }
 
