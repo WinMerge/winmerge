@@ -21,6 +21,11 @@ changelog.py
    -r:n, --revisions:n output log for last n revisions (default is 100)
 
 
+CheckMenuResources.vbs
+----------------------
+Script that checking the menu resources for missing mnemonic chars and description texts.
+
+
 CheckUnusedResources.vbs
 ------------------------
 Script for creating a list of (hopefully) unused resource IDs.
