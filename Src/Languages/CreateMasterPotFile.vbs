@@ -33,7 +33,7 @@ Call Main
 Sub Main
   Dim oStrings, sCodePage
   Dim StartTime, EndTime, Seconds
-  Dim bNecessary
+  Dim bNecessary, oFile
   
   StartTime = Time
   
@@ -50,6 +50,11 @@ Sub Main
     SetArchiveBit "../Merge.rc", False
     SetArchiveBit "English.pot", False
     SetArchiveBit "MergeLang.rc", False
+    For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
+      If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
+        oFile.Attributes = oFile.Attributes XOR 32 'Set archive bit!
+      End If
+    Next
     
     EndTime = Time
     Seconds = DateDiff("s", StartTime, EndTime)
@@ -356,7 +361,7 @@ Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
       End If
     Else 'If archive bit NOT set...
       If (bValue = True) Then
-        oFile.Attributes = oFile.Attributes AND 32
+        oFile.Attributes = oFile.Attributes XOR 32
       End If
     End If
   End If

@@ -228,7 +228,7 @@ Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
       End If
     Else 'If archive bit NOT set...
       If (bValue = True) Then
-        oFile.Attributes = oFile.Attributes AND 32
+        oFile.Attributes = oFile.Attributes XOR 32
       End If
     End If
   End If
