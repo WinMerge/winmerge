@@ -33,8 +33,6 @@ typedef enum
 	UTF8,      /**< UTF-8. */
 } UNICODESET;
 
-CString GetUnicodesetName(UNICODESET codeset);
-
 int Ucs4_to_Utf8(UINT unich, unsigned char * utf8);
 int Utf8len_fromLeadByte(unsigned char ch);
 int Utf8len_fromCodepoint(UINT ch);

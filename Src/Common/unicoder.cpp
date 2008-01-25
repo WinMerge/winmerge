@@ -49,18 +49,6 @@ fetch_verinfo()
 	f_osvi_fetched = true;
 }
 
-static LPCTSTR f_unicodesetNames[] = { _T("<NONE>"), _T("UCS-2LE"), _T("UCS-2BE"), _T("UTF-8") };
-/**
- * @brief return string for enum value
- */
-CString GetUnicodesetName(UNICODESET unicoding)
-{
-	if (unicoding>=0 && unicoding<sizeof(f_unicodesetNames)/sizeof(f_unicodesetNames[0]))
-		return f_unicodesetNames[unicoding];
-	else
-		return _T("?");
-}
-
 /**
  * @brief Convert unicode codepoint to UTF-8 byte string
  *
