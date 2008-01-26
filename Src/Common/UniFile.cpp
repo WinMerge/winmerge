@@ -54,6 +54,7 @@ void UniLocalFile::Clear()
 	m_charsize = 1;
 	m_codepage = getDefaultCodepage();
 	m_txtstats.clear();
+	m_bom = false;
 }
 
 /**
