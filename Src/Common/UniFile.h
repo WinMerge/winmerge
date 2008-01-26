@@ -4,9 +4,9 @@
  *  @date   Created: 2003-10
  *  @date   Edited:  2006-02-20 (Perry Rapp)
  *
- *  @brief  Declaration of Memory-Mapped Unicode enabled file class
+ *  @brief  Declaration of Unicode file classes.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef UniFile_h_included
@@ -35,15 +35,11 @@ public:
 	};
 
 	virtual ~UniFile() { }
-
 	virtual bool OpenReadOnly(LPCTSTR filename) = 0;
-
 	virtual void Close() = 0;
-
 	virtual bool IsOpen() const = 0;
 
 	virtual String GetFullyQualifiedPath() const = 0;
-
 	virtual const UniError & GetLastUniError() const = 0;
 
 	virtual bool ReadBom() = 0;
@@ -52,17 +48,14 @@ public:
 
 	virtual int GetUnicoding() const = 0;
 	virtual void SetUnicoding(int unicoding) = 0;
-
 	virtual int GetCodepage() const = 0;
 	virtual void SetCodepage(int codepage) = 0;
 
 public:
 	virtual BOOL ReadString(CString & line, bool * lossy) = 0;
 	virtual BOOL ReadString(CString & line, CString & eol, bool * lossy) = 0;
-
 	virtual int GetLineNumber() const = 0;
 	virtual __int64 GetPosition() const = 0;
-
 	virtual BOOL WriteString(const CString & line) = 0;
 
 	struct txtstats
@@ -92,17 +85,14 @@ public:
 	void Clear();
 
 	virtual String GetFullyQualifiedPath() const { return m_filepath; }
-
 	virtual const UniError & GetLastUniError() const { return m_lastError; }
 
 	virtual int GetUnicoding() const { return m_unicoding; }
 	virtual void SetUnicoding(int unicoding) { m_unicoding = unicoding; }
-
 	virtual int GetCodepage() const { return m_codepage; }
 	virtual void SetCodepage(int codepage) { m_codepage = codepage; }
 
 	virtual int GetLineNumber() const { return m_lineno; }
-
 	virtual const txtstats & GetTxtStats() const { return m_txtstats; }
 
 protected:
@@ -140,9 +130,7 @@ public:
 	virtual bool OpenReadOnly(LPCTSTR filename);
 	virtual bool Open(LPCTSTR filename);
 	virtual bool Open(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess);
-
 	void Close();
-
 	virtual bool IsOpen() const;
 
 	virtual bool ReadBom();
@@ -152,9 +140,7 @@ public:
 public:
 	virtual BOOL ReadString(CString & line, bool * lossy);
 	virtual BOOL ReadString(CString & line, CString & eol, bool * lossy);
-
 	virtual __int64 GetPosition() const { return m_current - m_base; }
-
 	virtual BOOL WriteString(const CString & line);
 
 // Implementation methods
@@ -187,7 +173,6 @@ public:
 	virtual bool OpenCreate(LPCTSTR filename);
 	virtual bool OpenCreateUtf8(LPCTSTR filename);
 	virtual bool Open(LPCTSTR filename, LPCTSTR mode);
-
 	void Close();
 
 	virtual bool IsOpen() const;
