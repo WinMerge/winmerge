@@ -654,12 +654,13 @@ void CMergeDoc::ShowRescanError(int nRescanResult, BOOL bIdentical)
 }
 
 CMergeDoc::CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
+: m_pOwnerDoc(pDoc)
+, m_nThisPane(pane)
+, unpackerSubcode(0)
+, m_unicoding(0)
+, m_bBom(false)
+, m_codepage(0)
 {
-	m_pOwnerDoc = pDoc;
-	m_nThisPane = pane;
-	unpackerSubcode = 0;
-	m_unicoding = 0;
-	m_codepage = 0;
 }
 
 BOOL CMergeDoc::CDiffTextBuffer::GetLine(int nLineIndex, CString &strLine)
@@ -1791,6 +1792,7 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 
 		// stash original encoding away
 		m_unicoding = pufile->GetUnicoding();
+		m_bBom = pufile->HasBom();
 		m_codepage = pufile->GetCodepage();
 
 		if (pufile->GetTxtStats().nlosses)
@@ -1850,6 +1852,7 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 
 	UniStdioFile file;
 	file.SetUnicoding(m_unicoding);
+	file.SetBom(m_bBom);
 	file.SetCodepage(m_codepage);
 
 	String sIntermediateFilename; // used when !bTempFile

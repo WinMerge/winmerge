@@ -972,6 +972,11 @@ SOURCE=.\UniMarkdownFile.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\Utf8FileDetect.cpp
+# SUBTRACT CPP /YX /Yc /Yu
+# End Source File
+# Begin Source File
+
 SOURCE=.\Common\varprop.cpp
 # End Source File
 # Begin Source File
@@ -1622,6 +1627,10 @@ SOURCE=.\Common\UniFile.h
 # Begin Source File
 
 SOURCE=.\UniMarkdownFile.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\Utf8FileDetect.h
 # End Source File
 # Begin Source File
 

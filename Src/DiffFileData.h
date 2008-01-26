@@ -62,7 +62,7 @@ struct DiffFileData
 		UniFileBom(int); // initialize from file descriptor
 		int size;
 		int unicoding;
-		unsigned char buffer[4];
+		bool bom; /**< Are BOM bytes present in file? */
 	};
 
 private:

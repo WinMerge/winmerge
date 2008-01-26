@@ -177,8 +177,14 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 		return;
 	long tmp = _lseek(fd, 0, SEEK_SET);
 
-	int bytes = _read(fd, buffer, 3);
-	unicoding = ucr::DetermineEncoding(buffer, bytes);
+	const int max_size = 8 * 1024;
+	unsigned char* buffer = new unsigned char[max_size];
+	if (buffer == NULL)
+		return;
+
+	int bytes = _read(fd, buffer, max_size);
+	bom = false;
+	unicoding = ucr::DetermineEncoding(buffer, bytes, &bom);
 	switch (unicoding)
 	{
 		case ucr::UCS2LE:
@@ -186,12 +192,16 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
 			size = 2;
 			break;
 		case ucr::UTF8:
-			size = 3;
+			if (bom)
+				size = 3;
+			else
+				size = 0;
 			break;
 		default:
 			break;
 	}
 
+	delete[] buffer;
 	_lseek(fd, tmp, SEEK_SET);
 }
 

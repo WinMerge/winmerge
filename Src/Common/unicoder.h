@@ -58,7 +58,8 @@ int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, i
 CString CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool * lossy);
 #endif
 
-UNICODESET DetermineEncoding(LPBYTE pBuffer, int size);
+UNICODESET DetermineEncoding(LPBYTE pBuffer, int size, bool * pBom);
+
 } // namespace ucr
 
 bool EqualCodepages(int cp1, int cp2);

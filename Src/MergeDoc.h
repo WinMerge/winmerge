@@ -154,7 +154,8 @@ private :
 		 * Unicode:
 		 *   in memory it is wchars
 		 */
-		int m_unicoding; 
+		int m_unicoding; /**< File's Unicode encoding */
+		bool m_bBom; /**< Has the file BOM? */
 		int m_codepage; /**< @brief 8-bit codepage, if relevant m_unicoding==ucr::NONE */
 
 		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);

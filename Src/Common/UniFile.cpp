@@ -279,25 +279,51 @@ bool UniMemFile::ReadBom()
 	unsigned char * lpByte = m_base;
 	m_current = m_data = m_base;
 	m_charsize = 1;
+	bool unicode = false;
+	bool bom = false;
 	
-	m_unicoding = ucr::DetermineEncoding(lpByte, m_filesize);
+	m_unicoding = ucr::DetermineEncoding(lpByte, m_filesize, &bom);
 	switch (m_unicoding)
 	{
 		case ucr::UCS2LE:
 		case ucr::UCS2BE:
 			m_charsize = 2;
 			m_data = lpByte + 2;
+			unicode = true;
 			break;
 		case ucr::UTF8:
-			m_data = lpByte + 3;
+			if (bom)
+				m_data = lpByte + 3;
+			else
+				m_data = lpByte;
+			unicode = true;
 			break;
 		default:
 			break;
 	}
 
 	m_readbom = true;
+	m_bom = bom;
 	m_current = m_data;
-	return (m_data != m_base);
+	return unicode;
+}
+
+/**
+ * @brief Returns if file has a BOM bytes.
+ * @return true if file has BOM bytes, false otherwise.
+ */
+bool UniMemFile::HasBom()
+{
+	return m_bom;
+}
+
+/**
+ * @brief Sets if file has BOM or not.
+ * @param [in] true to have a BOM in file, false to not to have.
+ */
+void UniMemFile::SetBom(bool bom)
+{
+	m_bom = bom;
 }
 
 /**
@@ -747,32 +773,63 @@ bool UniStdioFile::ReadBom()
 
 	fseek(m_fp, 0, SEEK_SET);
 
-	// Need three bytes for BOM
-	unsigned char buff[4];
-	int bytes = fread(buff, 1, 3, m_fp);
-	unsigned char * lpByte = (unsigned char *)buff;
+	// Read 8 KB at max for get enough data determining UTF-8 without BOM.
+	const int max_size = 8 * 1024;
+	unsigned char* buff = new unsigned char[max_size];
+	if (buff == NULL)
+		return false;
+
+	int bytes = fread(buff, 1, max_size, m_fp);
 	m_data = 0;
 	m_charsize = 1;
-
-	m_unicoding = ucr::DetermineEncoding(lpByte, bytes);
+	bool unicode = false;
+	bool bom = false;
+	
+	m_unicoding = ucr::DetermineEncoding(buff, bytes, &bom);
 	switch (m_unicoding)
 	{
 		case ucr::UCS2LE:
 		case ucr::UCS2BE:
 			m_charsize = 2;
 			m_data = 2;
+			unicode = true;
 			break;
 		case ucr::UTF8:
-			m_data = 3;
+			if (bom)
+				m_data = 3;
+			else
+				m_data = 0;
+			unicode = true;
 			break;
 		default:
 			break;
 	}
 
+	delete[] buff;
 	fseek(m_fp, (long)m_data, SEEK_SET);
 	m_readbom = true;
-	return (m_data != 0);
+	m_bom = bom;
+	return unicode;
 }
+
+/**
+ * @brief Returns if file has a BOM bytes.
+ * @return true if file has BOM bytes, false otherwise.
+ */
+bool UniStdioFile::HasBom()
+{
+	return m_bom;
+}
+
+/**
+ * @brief Sets if file has BOM or not.
+ * @param [in] true to have a BOM in file, false to not to have.
+ */
+void UniStdioFile::SetBom(bool bom)
+{
+	m_bom = bom;
+}
+
 
 BOOL UniStdioFile::ReadString(CString & line, bool * lossy)
 {
@@ -813,7 +870,7 @@ int UniStdioFile::WriteBom()
 		fwrite(bom, 1, 2, m_fp);
 		m_data = 2;
 	}
-	else if (m_unicoding == ucr::UTF8)
+	else if (m_unicoding == ucr::UTF8 && m_bom)
 	{
 		unsigned char bom[] = "\xEF\xBB\xBF";
 		fseek(m_fp, 0, SEEK_SET);

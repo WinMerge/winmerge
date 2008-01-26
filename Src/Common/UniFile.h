@@ -16,6 +16,8 @@
 #include "sbuffer.h"
 #endif
 
+#include "unicoder.h"
+
 /**
  * @brief Interface to file classes in this module
  */
@@ -45,6 +47,8 @@ public:
 	virtual const UniError & GetLastUniError() const = 0;
 
 	virtual bool ReadBom() = 0;
+	virtual bool HasBom() = 0;
+	virtual void SetBom(bool bom) = 0;
 
 	virtual int GetUnicoding() const = 0;
 	virtual void SetUnicoding(int unicoding) = 0;
@@ -118,6 +122,7 @@ protected:
 	int m_charsize; // 2 for UCS-2, else 1
 	int m_codepage; // only valid if m_unicoding==ucr::NONE;
 	txtstats m_txtstats;
+	bool m_bom; /**< Did the file have a BOM when reading? */
 };
 
 /**
@@ -141,6 +146,8 @@ public:
 	virtual bool IsOpen() const;
 
 	virtual bool ReadBom();
+	virtual bool HasBom();
+	virtual void SetBom(bool bom);
 
 public:
 	virtual BOOL ReadString(CString & line, bool * lossy);
@@ -186,6 +193,8 @@ public:
 	virtual bool IsOpen() const;
 
 	virtual bool ReadBom();
+	virtual bool HasBom();
+	virtual void SetBom(bool bom);
 
 protected:
 	virtual BOOL ReadString(CString & line, bool * lossy);
