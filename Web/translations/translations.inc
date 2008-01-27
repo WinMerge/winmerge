@@ -127,6 +127,53 @@
   /**
    * ...
    */
+  function printTranslationsStatusRSS($xmlarray, $version, $svnurl) {
+    global $page;
+    
+    $update = $xmlarray['TRANSLATIONS'][0]['UPDATE'][0]['VALUE'];
+    $temp = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>\n";
+    $temp .= "<rss version=\"2.0\">\n";
+    $temp .= "  <channel>\n";
+    $temp .= "    <title>WinMerge Translations Status (" . $version . ")</title>\n";
+    $temp .= "    <link>http://winmerge.org/</link>\n";
+    $temp .= "    <description>...</description>\n";
+    $temp .= "    <item>\n";
+    $temp .= "      <title>Status from " . $update . "</title>\n";
+    $temp .= "      <description>\n";
+    $temp .= "        <![CDATA[\n";
+    
+    $temp .= "<ul>\n";
+    $translations = $xmlarray['TRANSLATIONS'][0]['TRANSLATION'];
+    $translations = $page->multisortArray($translations, 'LANGUAGE', SORT_ASC);
+    for ($i = 0; $i < count($translations); $i++) { //For all translations...
+      $translation = $translations[$i];
+      $language_name = $translation['LANGUAGE'][0]['VALUE'];
+      if ($language_name != 'English') { //If NOT English...
+        $file_name = $translation['FILE'][0]['VALUE'];
+        $translation_update = $translation['UPDATE'][0]['VALUE'];
+        $strings = $translation['STRINGS'][0];
+        $strings_untranslated = $strings['UNTRANSLATED'][0]['VALUE'];
+        
+        $temp .= "  <li>\n";
+        $temp .= "    <a href=\"" . $svnurl . $file_name . "\">" . $language_name . "</a> (" . $strings_untranslated . " Untranslated)\n";
+        $temp .= "  </li>\n";
+      }
+    }
+    $temp .= "</ul>\n";
+    
+    $temp .= "        ]]>\n";
+    $temp .= "      </description>\n";
+    $temp .= "      <guid>" . $update . "</guid>\n";
+    $temp .= "      <link>http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . "</link>\n";
+    $temp .= "    </item>\n";
+    $temp .= "  </channel>\n";
+    $temp .= "</rss>\n";
+    print($temp);
+  }
+  
+  /**
+   * ...
+   */
   function printTranslationsTranslators($xmlarray) {
     global $page;
     

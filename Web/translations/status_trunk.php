@@ -3,10 +3,13 @@
   include('translations.inc');
 
   $page = new Page;
+  $page->addRssFeed('status_trunk_rss.php');
   $page->printHead('WinMerge: Translations Status (Trunk)', TAB_TRANSLATIONS);
   
   $status = $page->convertXml2Array('status_trunk.xml');
-  print("<h2>Translations Status (Trunk)</h2>\n");
+  print("<h2>Translations Status (Trunk) ");
+  $page->printRssFeedLink('status_trunk_rss.php');
+  print("</h2>\n");
   if (!empty($status)) {
     printTranslationsStatus($status, 'http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Src/Languages/');
     printTranslationsStatusGraphLegend();

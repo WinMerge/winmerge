@@ -26,7 +26,7 @@
    */
   class Page {
     var $_title, $_charset;
-    var $_description, $_keywords;
+    var $_description, $_keywords, $_rssfeeds;
     var $_tab;
     var $_stablerelease;
 
@@ -38,6 +38,7 @@
       $this->_charset = 'ISO-8859-1';
       $this->_description = 'WinMerge HomePage: Visual text file comparison and merging (Open Source software).';
       $this->_keywords = 'WinMerge, free, download, Beyond Compare, Scooter Software, DLSuperC, DLSubCF, Component Software Diff, Viff, TreeDiff, FileSync, WMatch, Quick Spot, NTDMatch, windiff, WDIFF, FolderMatch, Merge 99, Merge99, PMdiff, PMDiff, PMDIFF, pmdiff, visual, visually, file, folder, directory, synchronization, comparison, graphical, document, text, compare, diff, difference, revision, Araxis, compare folders, compare files, synchronize folders, merge files, merge folders, Y2K, Year 2000, Year 2K, side-by-side, VFC, GFC, gdiff, CSDiff, OS2GFC, vdiff, ediff, fc';
+      $this->_rssfeeds = array();
       $this->_tab = WINMERGE_2_6;
       /* _Stable Release */
       $this->_stablerelease = new Release;
@@ -75,6 +76,13 @@
     }
 
     /**
+     * add RSS feed to the page head
+     */
+    function addRssFeed($url, $title = 'RSS') {
+      $this->_rssfeeds[$url] = $title;
+    }
+
+    /**
      * set the tab from the page
      */
     function setTab($tab) {
@@ -102,6 +110,9 @@
       $temp .= "  <style type=\"text/css\" media=\"screen\">@import \"/css/screen.css\";</style>\n";
       $temp .= "  <link rel=\"stylesheet\" type=\"text/css\" media=\"print\" href=\"/css/print.css\">\n";
       $temp .= "  <link rel=\"shortcut icon\" type=\"image/x-icon\" href=\"/favicon.ico\">\n";
+      foreach ($this->_rssfeeds as $rssurl => $rsstitle) { //for all RSS feeds...
+        $temp .= "  <link rel=\"alternate\" type=\"application/rss+xml\" title=\"" . $rsstitle . "\" href=\"" . $rssurl . "\">\n";
+      }
       $temp .= "</head>\n\n";
       $temp .= "<body>\n";
       $temp .= "<div id=\"head\">\n";
@@ -144,6 +155,17 @@
       $temp .= "<strong>Download Now!</strong> ";
       $temp .= "<em>Version " . $this->_stablerelease->getVersionNumber() . "; " . $this->_stablerelease->getSetupSizeFormatted('mb') . " MB</em>";
       $temp .= "</a></p>\n";
+      print($temp);
+    }
+
+    /**
+     * print a RSS feed link
+     */
+    function printRssFeedLink($url, $text = '') {
+      $temp = "<a href=\"" . $url . "\"><img src=\"/images/rss.png\" alt=\"RSS\" border=\"0\"></a>";
+      if ($text != '') { //if WITH text...
+        $temp .= " <a href=\"" . $url . "\"> " . $text . "</a>";
+      }
       print($temp);
     }
 
