@@ -3205,7 +3205,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 void CMergeEditView::OnUpdateChangeScheme(CCmdUI* pCmdUI)
 {
 	const bool bIsCurrentScheme = (m_CurSourceDef->type == (pCmdUI->m_nID - ID_COLORSCHEME_FIRST));
-	pCmdUI->SetCheck(bIsCurrentScheme);
+	pCmdUI->SetRadio(bIsCurrentScheme);
 
 	pCmdUI->Enable(TRUE);
 }
