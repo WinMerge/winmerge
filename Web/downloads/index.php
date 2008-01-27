@@ -2,10 +2,11 @@
   include('../page.inc');
 
   $page = new Page;
+  $page->addRssFeed('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216', 'Project File Releases');
   $page->printHead('WinMerge: Downloads', TAB_DOWNLOADS);
   $stablerelease = $page->getStableRelease();
 ?>
-<h2>Downloads</h2>
+<h2>Downloads <?php $page->printRssFeedLink('http://sourceforge.net/export/rss2_projfiles.php?group_id=13216'); ?></h2>
 <ul>
   <li><a href="#current">Current Version</a></li>
   <li><a href="#other">Other Versions</a></li>
