@@ -22,7 +22,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-// Modified from original code got from:
+// Conflict file parsing method modified from original code got from:
 // TortoiseCVS - a Windows shell extension for easy version control
 // Copyright (C) 2000 - Francis Irving
 // <francis@flourish.org> - January 2001
@@ -30,8 +30,10 @@
 #include "StdAfx.h"
 #include "UnicodeString.h"
 #include "UniFile.h"
+#include "ConflictFileParser.h"
 
-// Note: keep these strings in "wrong" ord so we can resolve this file :)
+
+// Note: keep these strings in "wrong" order so we can resolve this file :)
 /** @brief String separating Mine and Theirs blocks. */
 static const TCHAR Separator[] = _T("=======");
 /** @brief String ending Theirs block (and conflict). */
@@ -39,9 +41,54 @@ static const TCHAR TheirsEnd[] = _T(">>>>>>> ");
 /** @brief String starting Mine block (and conflict). */
 static const TCHAR MineBegin[] = _T("<<<<<<< ");
 
-#include "ConflictFileParser.h"
+/**
+ * @brief Check if the file is a conflict file.
+ * This function checks if the conflict file marker is found from given file.
+ * This is faster than trying to parse a file that is not conflict file.
+ * @param [in] conflictFileName Full path to file to check.
+ * @return true if given file is a conflict file, false otherwise.
+ */
+bool IsConflictFile(const String &conflictFileName)
+{
+	UniMemFile conflictFile;
+	BOOL startFound = FALSE;
 
-// Parse a file
+	// open input file
+	BOOL success = conflictFile.OpenReadOnly(conflictFileName.c_str());
+
+	// Search for a conflict marker
+	BOOL linesToRead = TRUE;
+	while (linesToRead && startFound == FALSE)
+	{
+		CString cline;
+		bool lossy;
+		CString eol;
+		linesToRead = conflictFile.ReadString(cline, eol, &lossy);
+		String line = (LPCTSTR) cline;
+
+		std::string::size_type pos;
+		pos = line.find(MineBegin);
+		if (pos == 0)
+			startFound = TRUE;
+	}
+	conflictFile.Close();
+
+	if (startFound)
+		return TRUE;
+	return FALSE;
+}
+
+/**
+ * @brief Parse a conflict file to separate files.
+ * This function parses a conflict file to two different files which can be
+ * opened into WinMerge's file compare.
+ * @param [in] conflictFileName Full path to conflict file.
+ * @param [in] workingCopyFileName Full path for user's modified file in
+ *  working copy/working folder.
+ * @param [in] newRevisionFileName Full path for revision control file.
+ * @param [out] bNestedConflicts returned as true if nested conflicts found.
+ * @return true if conflict file was successfully parsed, false otherwise.
+ */
 bool ParseConflictFile(const String &conflictFileName,
 		const String &workingCopyFileName, const String &newRevisionFileName,
 		bool &bNestedConflicts)
@@ -58,7 +105,6 @@ bool ParseConflictFile(const String &conflictFileName,
 	bool bFirstLineWC = true;
 	String revision = _T("none");
 	bNestedConflicts = false;
-
 
 	// open input file
 	BOOL success = conflictFile.OpenReadOnly(conflictFileName.c_str());

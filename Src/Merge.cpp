@@ -447,7 +447,7 @@ int CMergeApp::ExitInstance()
 	charsets_cleanup();
 	delete m_mainThreadScripts;
 	CWinApp::ExitInstance();
-	return m_nLastCompareResult;
+	return 0;
 }
 
 static void AddEnglishResourceHook()

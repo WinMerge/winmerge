@@ -552,6 +552,7 @@
 #define IDS_OTHER_IS_BINARY             17220
 #define IDS_ERROR_FILEOPEN              17221
 #define IDS_ERROR_CONF_RESOLVE          17222
+#define IDS_NOT_CONFLICT_FILE           17223
 #define IDS_SAVE_AS_TITLE               17232
 #define IDS_SAVE_FMT                    17233
 #define IDS_SAVEREADONLY_FMT            17234

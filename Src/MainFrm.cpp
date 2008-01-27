@@ -3500,6 +3500,15 @@ void CMainFrame::OnFileOpenConflict()
 	if (SelectFile(GetSafeHwnd(), conflictFile))
 	{
 		String confl = (LPCTSTR)conflictFile;
+
+		bool confFile = IsConflictFile(confl);
+		if (!confFile)
+		{
+			CString message;
+			LangFormatString1(message, IDS_NOT_CONFLICT_FILE, confl.c_str());
+			AfxMessageBox(message, MB_ICONSTOP);
+			return;
+		}
 		
 		// Create temp files and put them into the list,
 		// from where they get deleted when MainFrame is deleted.

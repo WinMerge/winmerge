@@ -2067,6 +2067,7 @@ BEGIN
     IDS_OTHER_IS_BINARY      "%1\n\nis binary file. Cannot compare binary and text files."
     IDS_ERROR_FILEOPEN       "Cannot open file\n%1\n\n%2"
     IDS_ERROR_CONF_RESOLVE  "Failed to parse conflict file."
+    IDS_NOT_CONFLICT_FILE   "The file\n%1\nis not a conflict file."
 END
 
 // SAVING FILE
