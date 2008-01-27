@@ -107,7 +107,6 @@ protected:
 	String m_filename;
 	int m_lineno; // current 0-based line of m_current
 	UniError m_lastError;
-	bool m_readbom; // whether have tested for BOM
 	int m_unicoding; // enum UNICODESET in unicoder.h
 	int m_charsize; // 2 for UCS-2, else 1
 	int m_codepage; // only valid if m_unicoding==ucr::NONE;

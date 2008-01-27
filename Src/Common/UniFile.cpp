@@ -49,7 +49,6 @@ void UniLocalFile::Clear()
 	m_filepath = _T("");
 	m_filename = _T("");
 	m_lineno = -1;
-	m_readbom = false;
 	m_unicoding = ucr::NONE;
 	m_charsize = 1;
 	m_codepage = getDefaultCodepage();
@@ -303,7 +302,6 @@ bool UniMemFile::ReadBom()
 			break;
 	}
 
-	m_readbom = true;
 	m_bom = bom;
 	m_current = m_data;
 	return unicode;
@@ -669,7 +667,6 @@ void UniStdioFile::Close()
 	// preserve m_filename
 	m_data = 0;
 	m_lineno = -1;
-	m_readbom = false;
 	// preserve m_unicoding
 	// preserve m_charsize
 	// preserve m_codepage
@@ -808,7 +805,6 @@ bool UniStdioFile::ReadBom()
 
 	delete[] buff;
 	fseek(m_fp, (long)m_data, SEEK_SET);
-	m_readbom = true;
 	m_bom = bom;
 	return unicode;
 }
