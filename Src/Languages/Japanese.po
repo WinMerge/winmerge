@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-11-11 17:28+0900\n"
+"PO-Revision-Date: 2008-01-27 13:21+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka at d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -138,7 +138,7 @@ msgstr "開く(&O)...\tCtrl+O"
 #: Merge.rc:114
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "コンフリクトファイルを開く(&E)..."
 
 #: Merge.rc:116
 #, c-format
@@ -408,14 +408,14 @@ msgstr "検索(&S)..."
 #: Merge.rc:478
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "リリースノート(&E)"
 
 #: Merge.rc:180
 #: Merge.rc:296
 #: Merge.rc:479
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "翻訳(&T)"
 
 #: Merge.rc:181
 #: Merge.rc:297
@@ -640,7 +640,7 @@ msgstr "印刷プレビュー(&W)"
 #: Merge.rc:334
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "改行コードの変換(&F)"
+msgstr "改行コードの変換(&C)"
 
 #: Merge.rc:336
 #, c-format
@@ -665,7 +665,7 @@ msgstr "マージモード(&M)\tF9"
 #: Merge.rc:343
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "ファイルエンコーディング(&F)..."
 
 #: Merge.rc:349
 #, c-format
@@ -761,12 +761,12 @@ msgstr "移動(&G)...\tCtrl+G"
 #: Merge.rc:387
 #, c-format
 msgid "Zoom In\tCtrl++"
-msgstr ""
+msgstr "フォントサイズを拡大\tCtrl++"
 
 #: Merge.rc:388
 #, c-format
 msgid "Zoom Out\tCtrl+-"
-msgstr ""
+msgstr "フォントサイズを縮小\tCtrl+-"
 
 #: Merge.rc:389
 #, c-format
@@ -851,12 +851,12 @@ msgstr "比較(&A)"
 #: Merge.rc:493
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "特殊な比較(&M)"
 
 #: Merge.rc:495
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "XML(&X)"
 
 #: Merge.rc:500
 #, c-format
@@ -1272,7 +1272,7 @@ msgstr "複数のウインドウを閉じるときに尋ねる(&K)"
 #: Merge.rc:759
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "ファイル比較時のファイル時刻を保つ(&P)"
 
 #: Merge.rc:762
 #, c-format
@@ -3413,12 +3413,12 @@ msgstr "右無題"
 #: Merge.rc:2008
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "Theirs File"
 
 #: Merge.rc:2009
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "Mine File"
 
 #: Merge.rc:2015
 #, c-format
@@ -3624,7 +3624,7 @@ msgstr ""
 #: Merge.rc:2069
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "コンフリクトファイルの解析に失敗しました。"
 
 #: Merge.rc:2075
 #, c-format
@@ -4634,17 +4634,17 @@ msgstr "ファイル名をコピーします"
 #: Merge.rc:2377
 #, c-format
 msgid "Location Pane"
-msgstr "ロケーションペイン"
+msgstr "Location Pane"
 
 #: Merge.rc:2378
 #, c-format
 msgid "Diff Pane"
-msgstr "Diffペイン"
+msgstr "Diff Pane"
 
 #: Merge.rc:2384
 #, c-format
 msgid "Patch file successfully written."
-msgstr "パッチファイル書込みに成功しました。"
+msgstr "パッチファイルの書き込みに成功しました。"
 
 #: Merge.rc:2385
 #, c-format
@@ -5900,7 +5900,7 @@ msgstr ""
 #: Merge.rc:2750
 #, c-format
 msgid "Open and resolve conflict file"
-msgstr ""
+msgstr "コンフリクトファイルを開き解決します。"
 
 #: Merge.rc:2756
 #, c-format
@@ -6113,12 +6113,12 @@ msgstr ""
 #: Merge.rc:2794
 #, c-format
 msgid "Increase text size"
-msgstr ""
+msgstr "テキストサイズを大きくする"
 
 #: Merge.rc:2795
 #, c-format
 msgid "Decrease text size"
-msgstr ""
+msgstr "テキストサイズを小さくする"
 
 #: Merge.rc:2801
 #, c-format
@@ -6342,13 +6342,21 @@ msgstr ""
 
 #: Merge.rc:2853
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
 msgstr ""
+"リリースノートを開く\n"
+"リリースノート"
 
 #: Merge.rc:2854
 #, c-format
-msgid "Opens the translations website\nTranslations"
+msgid ""
+"Opens the translations website\n"
+"Translations"
 msgstr ""
+"翻訳状況 Webサイトを開きます\n"
+"翻訳"
 
 #: Merge.rc:2860
 #, c-format
@@ -6533,12 +6541,12 @@ msgstr "PHP"
 #: Merge.rc:2918
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "Portable Object"
 
 #: Merge.rc:2919
 #, c-format
 msgid "PowerShell"
-msgstr ""
+msgstr "PowerShell"
 
 #: Merge.rc:2920
 #, c-format

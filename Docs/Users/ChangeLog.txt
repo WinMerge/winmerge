@@ -6,6 +6,7 @@ WinMerge 2.7.7.4
   Detect (and read/write) UTF-8 files without BOM (#1879271)
   Translation updates:
   - Croatian (r4952)
+  - Japanese (r4962)
 
 WinMerge 2.7.7.3 - 2008-01-23 (r4951)
   Resolve conflict files (cvs, svn...) (#1875129)
