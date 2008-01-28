@@ -3484,6 +3484,18 @@ void CMainFrame::OnHelpTranslations()
 }
 
 /**
+ * @brief Called when user selects File/Open Conflict...
+ */
+void CMainFrame::OnFileOpenConflict()
+{
+	CString conflictFile;
+	if (SelectFile(GetSafeHwnd(), conflictFile))
+	{
+		DoOpenConflict(conflictFile);
+	}
+}
+
+/**
  * @brief Select and open conflict file for resolving.
  * This function lets user to select conflict file to resolve.
  * Then we parse conflict file to two files to "merge" and
@@ -3493,53 +3505,53 @@ void CMainFrame::OnHelpTranslations()
  * be modified anyway. Right-side file is user's file which is set as
  * modified by default so user can just save it and accept workspace
  * file as resolved file.
+ * @param [in] conflictFile Full path to conflict file to open.
+ * @return TRUE if conflict file was opened for resolving.
  */
-void CMainFrame::OnFileOpenConflict()
+BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile)
 {
-	CString conflictFile;
-	if (SelectFile(GetSafeHwnd(), conflictFile))
+	BOOL conflictCompared = FALSE;
+	String confl = (LPCTSTR)conflictFile;
+
+	bool confFile = IsConflictFile(confl);
+	if (!confFile)
 	{
-		String confl = (LPCTSTR)conflictFile;
-
-		bool confFile = IsConflictFile(confl);
-		if (!confFile)
-		{
-			CString message;
-			LangFormatString1(message, IDS_NOT_CONFLICT_FILE, confl.c_str());
-			AfxMessageBox(message, MB_ICONSTOP);
-			return;
-		}
-		
-		// Create temp files and put them into the list,
-		// from where they get deleted when MainFrame is deleted.
-		TempFile *wTemp = new TempFile();
-		String workFile = wTemp->Create(_T("confw_"));
-		m_tempFiles.push_back(wTemp);
-		TempFile *vTemp = new TempFile();
-		String revFile = vTemp->Create(_T("confv_"));
-		m_tempFiles.push_back(vTemp);
-
-		// Parse conflict file into two files.
-		bool inners;
-		bool success = ParseConflictFile(confl, workFile, revFile, inners);
-
-		if (success)
-		{
-			// Open two parsed files to WinMerge, telling WinMerge to
-			// save over original file (given as third filename).
-			m_strSaveAsPath = conflictFile;
-			String theirs = LoadResString(IDS_CONFLICT_THEIRS_FILE);
-			String my = LoadResString(IDS_CONFLICT_MINE_FILE);
-			m_strDescriptions[0] = theirs;
-			m_strDescriptions[1] = my;
-
-			DoFileOpen(revFile.c_str(), workFile.c_str(),
-					FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
-					FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED);
-		}
-		else
-		{
-			LangMessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
-		}
+		CString message;
+		LangFormatString1(message, IDS_NOT_CONFLICT_FILE, confl.c_str());
+		AfxMessageBox(message, MB_ICONSTOP);
+		return FALSE;
 	}
+
+	// Create temp files and put them into the list,
+	// from where they get deleted when MainFrame is deleted.
+	TempFile *wTemp = new TempFile();
+	String workFile = wTemp->Create(_T("confw_"));
+	m_tempFiles.push_back(wTemp);
+	TempFile *vTemp = new TempFile();
+	String revFile = vTemp->Create(_T("confv_"));
+	m_tempFiles.push_back(vTemp);
+
+	// Parse conflict file into two files.
+	bool inners;
+	bool success = ParseConflictFile(confl, workFile, revFile, inners);
+
+	if (success)
+	{
+		// Open two parsed files to WinMerge, telling WinMerge to
+		// save over original file (given as third filename).
+		m_strSaveAsPath = conflictFile;
+		String theirs = LoadResString(IDS_CONFLICT_THEIRS_FILE);
+		String my = LoadResString(IDS_CONFLICT_MINE_FILE);
+		m_strDescriptions[0] = theirs;
+		m_strDescriptions[1] = my;
+
+		conflictCompared = DoFileOpen(revFile.c_str(), workFile.c_str(),
+				FFILEOPEN_READONLY | FFILEOPEN_NOMRU,
+				FFILEOPEN_NOMRU | FFILEOPEN_MODIFIED);
+	}
+	else
+	{
+		LangMessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
+	}
+	return conflictCompared;
 }

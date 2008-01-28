@@ -51,6 +51,7 @@
 #include "LanguageSelect.h"
 #include "OptionsDef.h"
 #include "MergeCmdLineInfo.h"
+#include "ConflictFileParser.h"
 
 // For shutdown cleanup
 #include "charsets.h"
@@ -623,6 +624,10 @@ BOOL CMergeApp::ParseArgsAndDoOpen(MergeCmdLineInfo& cmdInfo, CMainFrame* pMainF
 			if (IsProjectFile(sFilepath))
 			{
 				bCompared = LoadAndOpenProjectFile(sFilepath);
+			}
+			else if (IsConflictFile((LPCTSTR)sFilepath))
+			{
+				bCompared = pMainFrame->DoOpenConflict(sFilepath);
 			}
 			else
 			{

@@ -135,6 +135,7 @@ public:
 	static void SetMainIcon(CDialog * dlg);
 	void StartFlashing();
 	bool AskCloseConfirmation();
+	BOOL DoOpenConflict(LPCTSTR conflictFile);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
@@ -335,4 +336,3 @@ SyntaxColors * GetMainSyntaxColors(); // access to the singleton set of syntax c
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_MAINFRM_H__BBCD4F8C_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
-
