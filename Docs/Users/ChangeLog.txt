@@ -6,6 +6,7 @@ WinMerge 2.7.7.4
   Detect (and read/write) UTF-8 files without BOM (#1879271)
   Tell user that file is not a conflict file (#1880423)
   Allow opening conflict file from command line (#1880857)
+  Use radio symbol for current EOL menu item (#1869755)
   BugFix: Always return 0 to command line (#1854419)
   Translation updates:
   - Croatian (r4952)

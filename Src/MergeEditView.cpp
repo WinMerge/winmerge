@@ -2117,10 +2117,10 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 		nStyle != m_pTextBuffer->GetCRLFMode())
 	{
-		pCmdUI->Enable(TRUE);
+		pCmdUI->SetRadio(FALSE);
 	}
 	else
-		pCmdUI->Enable(FALSE);
+		pCmdUI->SetRadio(TRUE);
 }
 
 /**
