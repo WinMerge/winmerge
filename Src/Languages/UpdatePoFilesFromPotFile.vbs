@@ -224,11 +224,11 @@ Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
     Set oFile = oFSO.GetFile(sFilePath)
     If (oFile.Attributes AND 32) Then 'If archive bit set...
       If (bValue = False) Then
-        oFile.Attributes = oFile.Attributes XOR 32
+        oFile.Attributes = oFile.Attributes - 32
       End If
     Else 'If archive bit NOT set...
       If (bValue = True) Then
-        oFile.Attributes = oFile.Attributes XOR 32
+        oFile.Attributes = oFile.Attributes + 32
       End If
     End If
   End If

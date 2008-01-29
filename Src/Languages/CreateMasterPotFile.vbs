@@ -52,7 +52,7 @@ Sub Main
     SetArchiveBit "MergeLang.rc", False
     For Each oFile In oFSO.GetFolder(".").Files 'For all files in the current folder...
       If (LCase(oFSO.GetExtensionName(oFile.Name)) = "po") Then 'If a PO file...
-        oFile.Attributes = oFile.Attributes XOR 32 'Set archive bit!
+        SetArchiveBit oFile.Path, True
       End If
     Next
     
@@ -357,11 +357,11 @@ Sub SetArchiveBit(ByVal sFilePath, ByVal bValue)
     Set oFile = oFSO.GetFile(sFilePath)
     If (oFile.Attributes AND 32) Then 'If archive bit set...
       If (bValue = False) Then
-        oFile.Attributes = oFile.Attributes XOR 32
+        oFile.Attributes = oFile.Attributes - 32
       End If
     Else 'If archive bit NOT set...
       If (bValue = True) Then
-        oFile.Attributes = oFile.Attributes XOR 32
+        oFile.Attributes = oFile.Attributes + 32
       End If
     End If
   End If
