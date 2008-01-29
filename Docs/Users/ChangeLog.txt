@@ -7,6 +7,7 @@ WinMerge 2.7.7.4
   Tell user that file is not a conflict file (#1880423)
   Allow opening conflict file from command line (#1880857)
   Use radio symbol for current EOL menu item (#1869755)
+  Ask and create pair for unique folder and open them (#1881454)
   BugFix: Always return 0 to command line (#1854419)
   Translation updates:
   - Croatian (r4952)
