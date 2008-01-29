@@ -939,6 +939,46 @@ void CDirView::OpenSpecialItems(POSITION pos1, POSITION pos2)
 }
 
 /**
+ * @brief Creates a pairing folder for unique folder item.
+ * This function creates a pairing folder for unique folder item in
+ * folder compare. This way user can browse into unique folder's
+ * contents and don't necessarily need to copy whole folder structure.
+ * @param [in] di DIFFITEM for folder compare item.
+ * @param [in] side1 true if our unique folder item is side1 item.
+ * @return true if user agreed and folder was created.
+ */
+bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1)
+{
+	String subdir;
+	String basedir;
+	if (side1)
+	{
+		// Get left side (side1) folder name (existing) and
+		// right side base path (where to create)
+		subdir = di.sLeftFilename;
+		basedir = GetDocument()->GetRightBasePath();
+	}
+	else
+	{
+		// Get right side (side2) folder name (existing) and
+		// left side base path (where to create)
+		subdir = di.sRightFilename;
+		basedir = GetDocument()->GetLeftBasePath();
+	}
+	String createpath = paths_ConcatPath(basedir, subdir);
+
+	CString message;
+	LangFormatString1(message, IDS_CREATE_PAIR_FOLDER, createpath.c_str());
+	int res = AfxMessageBox(message, MB_YESNO | MB_ICONWARNING);
+	if (res == IDYES)
+	{
+		bool ret = paths_CreateIfNeeded(createpath.c_str());
+		return ret;
+	}
+	return false;
+}
+
+/**
  * @brief Open one selected item.
  * @param [in] pos1 Item position.
  * @param [in,out] di1 Pointer to first diffitem.
@@ -985,7 +1025,12 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	{
 		// Open left-only item to editor if its not a folder or binary
 		if (isDir)
-			LangMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
+		{
+			if (CreateFoldersPair(**di1, true))
+			{
+				return true;
+			}
+		}
 		else if ((*di1)->diffcode.isBin())
 			LangMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
 		else
@@ -996,7 +1041,12 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	{
 		// Open right-only item to editor if its not a folder or binary
 		if (isDir)
-			LangMessageBox(IDS_FOLDERUNIQUE, MB_ICONINFORMATION);
+		{
+			if (CreateFoldersPair(**di1, false))
+			{
+				return true;
+			}
+		}
 		else if ((*di1)->diffcode.isBin())
 			LangMessageBox(IDS_CANNOT_OPEN_BINARYFILE, MB_ICONSTOP);
 		else

@@ -1038,16 +1038,21 @@ BOOL CDirView::IsItemDeletableOnBoth(const DIFFITEM & di) const
 	return TRUE;
 }
 
-/// is it possible to open item for compare ?
+/**
+ * @brief Determine if item can be opened.
+ * Basically we only disable opening unique files at the moment.
+ * Unique folders can be opened since we ask for creating matching folder
+ * to another side.
+ * @param [in] di DIFFITEM for item to check.
+ * @return TRUE if the item can be opened, FALSE otherwise.
+ */
 BOOL CDirView::IsItemOpenable(const DIFFITEM & di) const
 {
-	// impossible if unique or binary
-	if (di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly())
+	if (!di.diffcode.isDirectory() &&
+		(di.diffcode.isSideRightOnly() || di.diffcode.isSideLeftOnly()))
 	{
 		return FALSE;
 	}
-
-	// everything else can be opened
 	return TRUE;
 }
 /// is it possible to compare these two items?
