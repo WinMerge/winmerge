@@ -713,7 +713,7 @@ msgid "&Scripts"
 msgstr "&Szkriptek"
 
 #: Merge.rc:364
-#: Merge.rc:2863
+#: Merge.rc:2692
 #, c-format
 msgid "< Empty >"
 msgstr "< Üres >"
@@ -1412,7 +1412,7 @@ msgid "Replace &All"
 msgstr "&Mindet"
 
 #: Merge.rc:852
-#: Merge.rc:2118
+#: Merge.rc:2119
 #, c-format
 msgid "Rational ClearCase"
 msgstr ""
@@ -2305,7 +2305,7 @@ msgid "Files:"
 msgstr ""
 
 #: Merge.rc:1461
-#: Merge.rc:2260
+#: Merge.rc:2261
 #, c-format
 msgid "Different"
 msgstr "Különbözõ"
@@ -2337,7 +2337,7 @@ msgid "Right:"
 msgstr ""
 
 #: Merge.rc:1479
-#: Merge.rc:2255
+#: Merge.rc:2256
 #, c-format
 msgid "Identical"
 msgstr "Egyezõ"
@@ -3596,32 +3596,37 @@ msgstr ""
 msgid "Failed to parse conflict file."
 msgstr ""
 
-#: Merge.rc:2075
+#: Merge.rc:2070
+#, c-format
+msgid "The file\n%1\nis not a conflict file."
+msgstr ""
+
+#: Merge.rc:2076
 #, c-format
 msgid "Save As"
 msgstr "Mentés másként"
 
-#: Merge.rc:2076
+#: Merge.rc:2077
 #, c-format
 msgid "Save changes to %1?"
 msgstr "Mentsem a változtatásokat %1 néven?"
 
-#: Merge.rc:2077
+#: Merge.rc:2078
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
 msgstr "Ez a fájl: %1 csak olvasható. Szeretnéd ezt megváltoztatni? (Kattints a Nem gombra a fájl új néven való mentéséhez.)"
 
-#: Merge.rc:2078
+#: Merge.rc:2079
 #, c-format
 msgid "Error checking destination writeability"
 msgstr "Hiba a cél írhatóságának ellenõrzésekor"
 
-#: Merge.rc:2079
+#: Merge.rc:2080
 #, c-format
 msgid "Error backing up file"
 msgstr "Hiba a fájl biztonsági másolatának készítésekor"
 
-#: Merge.rc:2081
+#: Merge.rc:2082
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -3634,7 +3639,7 @@ msgstr ""
 "\n"
 "Folytatni akarod?"
 
-#: Merge.rc:2082
+#: Merge.rc:2083
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -3651,7 +3656,7 @@ msgstr ""
 "\t-másik fájlnév választása (Ok)\n"
 "\t-a jelenlegi folyamat megszakítása (Mégsem)?"
 
-#: Merge.rc:2083
+#: Merge.rc:2084
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -3666,7 +3671,7 @@ msgstr ""
 "\n"
 "Szeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
 
-#: Merge.rc:2084
+#: Merge.rc:2085
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
@@ -3681,7 +3686,7 @@ msgstr ""
 "\n"
 "Szeretnéd menteni a kicsomagolt változatot egy másik fájlba?"
 
-#: Merge.rc:2085
+#: Merge.rc:2086
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3696,7 +3701,7 @@ msgstr ""
 "\n"
 "Felülírjuk a megváltoztatott fájlt?"
 
-#: Merge.rc:2086
+#: Merge.rc:2087
 #, c-format
 msgid ""
 "%1\n"
@@ -3705,7 +3710,7 @@ msgstr ""
 "%1\n"
 "csak olvasható. Szeretnéd ezt megváltoztatni?"
 
-#: Merge.rc:2087
+#: Merge.rc:2088
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3720,17 +3725,17 @@ msgstr ""
 "\n"
 "Ha szeretnéd frissíteni a fájl tartalmát, zárd be a jelenlegi munkát és nyisd meg a fájlokat újra."
 
-#: Merge.rc:2088
+#: Merge.rc:2089
 #, c-format
 msgid "Save Left File As"
 msgstr "Bal oldali fájl mentése más néven"
 
-#: Merge.rc:2089
+#: Merge.rc:2090
 #, c-format
 msgid "Save Right File As"
 msgstr "Jobb oldali fájl mentése más néven"
 
-#: Merge.rc:2095
+#: Merge.rc:2096
 #, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
@@ -3741,42 +3746,42 @@ msgstr ""
 "\n"
 "Frissítsd a dokumentumokat, mielõtt folytatnád."
 
-#: Merge.rc:2101
+#: Merge.rc:2102
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 msgstr "Meg kell adnod a SourceSafe projekt elérési útvonalát a folytatáshoz (pl.:  $/MyProject)"
 
-#: Merge.rc:2102
+#: Merge.rc:2103
 #, c-format
 msgid "Checkout files from VSS..."
 msgstr "Fájlok ellenõrzése VSS-bõl..."
 
-#: Merge.rc:2103
+#: Merge.rc:2104
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
 msgstr "A Verzió Rendszer hibát adott vissza a fájl ellenõrzése közben. Nem lehet folytatni..."
 
-#: Merge.rc:2104
+#: Merge.rc:2105
 #, c-format
 msgid "Error executing versioning system command."
 msgstr "Hiba a Verzió Rendszer futtatása közben."
 
-#: Merge.rc:2105
+#: Merge.rc:2106
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
 msgstr "A VSS Munka Könyvtár és a jelenlegi fájl útvonala nem egyezik. Folytassuk?"
 
-#: Merge.rc:2106
+#: Merge.rc:2107
 #, c-format
 msgid "No VSS database(s) found!"
 msgstr "Nem található VSS adatbázis!"
 
-#: Merge.rc:2107
+#: Merge.rc:2108
 #, c-format
 msgid "Error from VSS:"
 msgstr "Hiba a VSS-bõl:"
 
-#: Merge.rc:2108
+#: Merge.rc:2109
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to check in the file.\n"
@@ -3784,176 +3789,176 @@ msgid ""
 " Undo checkout operation?"
 msgstr ""
 
-#: Merge.rc:2109
+#: Merge.rc:2110
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
 " Please, check config spec of used view. "
 msgstr ""
 
-#: Merge.rc:2115
-#: Merge.rc:2899
+#: Merge.rc:2116
+#: Merge.rc:2728
 #, c-format
 msgid "None"
 msgstr ""
 
-#: Merge.rc:2116
+#: Merge.rc:2117
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
 msgstr "Visual SourceSafe (régebbi mint 5.0)"
 
-#: Merge.rc:2117
+#: Merge.rc:2118
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
 msgstr "Visual SourceSafe (5.0 vagy újabb)"
 
-#: Merge.rc:2119
+#: Merge.rc:2120
 #, c-format
 msgid "Break at whitespace"
 msgstr "Megállás szóközöknél"
 
-#: Merge.rc:2120
+#: Merge.rc:2121
 #, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "Megállás szóközöknél vagy írásjeleknél"
 
-#: Merge.rc:2126
-#: Merge.rc:2128
+#: Merge.rc:2127
+#: Merge.rc:2129
 #, c-format
 msgid "Copy selected item to named directory"
 msgstr ""
 
-#: Merge.rc:2127
-#: Merge.rc:2129
+#: Merge.rc:2128
+#: Merge.rc:2130
 #, c-format
 msgid "Copy selected item to custom directory"
 msgstr ""
 
-#: Merge.rc:2130
+#: Merge.rc:2131
 #, c-format
 msgid "Delete selected item on left"
 msgstr "Kijelölt bal oldali elem törlése"
 
-#: Merge.rc:2131
+#: Merge.rc:2132
 #, c-format
 msgid "Delete selected item on right"
 msgstr "Kijelölt jobb oldali elem törlése"
 
-#: Merge.rc:2132
+#: Merge.rc:2133
 #, c-format
 msgid "Delete selected item(s) on both sides"
 msgstr "Kijelölt elem(ek) törlése mindkét oldalon"
 
-#: Merge.rc:2133
+#: Merge.rc:2134
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
 msgstr "Kijelölt elem(ek) rejtése (gyors szûrés)"
 
-#: Merge.rc:2134
+#: Merge.rc:2135
 #, c-format
 msgid "Rename selected item on both sides"
 msgstr ""
 
-#: Merge.rc:2135
+#: Merge.rc:2136
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "Jobbról balra (%1)"
 
-#: Merge.rc:2136
+#: Merge.rc:2137
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "Balról jobbra (%1)"
 
-#: Merge.rc:2137
+#: Merge.rc:2138
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "Jobbról balra (%1 of %2)"
 
-#: Merge.rc:2138
+#: Merge.rc:2139
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "Balról jobbra (%1 of %2)"
 
-#: Merge.rc:2139
-#: Merge.rc:2155
+#: Merge.rc:2140
+#: Merge.rc:2156
 #, c-format
 msgid "Left to... (%1)"
 msgstr "Balról... (%1)"
 
-#: Merge.rc:2140
-#: Merge.rc:2156
+#: Merge.rc:2141
+#: Merge.rc:2157
 #, c-format
 msgid "Right to... (%1)"
 msgstr "Jobbról... (%1)"
 
-#: Merge.rc:2141
-#: Merge.rc:2157
+#: Merge.rc:2142
+#: Merge.rc:2158
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "Balról... (%1 of %2)"
 
-#: Merge.rc:2142
-#: Merge.rc:2158
+#: Merge.rc:2143
+#: Merge.rc:2159
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "Jobbról... (%1 of %2)"
 
-#: Merge.rc:2148
+#: Merge.rc:2149
 #, c-format
 msgid "Left (%1)"
 msgstr "Bal (%1)"
 
-#: Merge.rc:2149
+#: Merge.rc:2150
 #, c-format
 msgid "Right (%1)"
 msgstr "Jobb (%1)"
 
-#: Merge.rc:2150
+#: Merge.rc:2151
 #, c-format
 msgid "Both (%1)"
 msgstr "Mindkettõ (%1)"
 
-#: Merge.rc:2151
+#: Merge.rc:2152
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "Bal (%1 ennyibõl: %2)"
 
-#: Merge.rc:2152
+#: Merge.rc:2153
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "Jobb (%1 ennyibõl: %2)"
 
-#: Merge.rc:2153
+#: Merge.rc:2154
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "Mindkettõ (%1 ennyibõl: %2)"
 
-#: Merge.rc:2154
+#: Merge.rc:2155
 #, c-format
 msgid "Select destination folder"
 msgstr "Válassz célkönyvtárat"
 
-#: Merge.rc:2159
+#: Merge.rc:2160
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "Bal oldal - válassz úticél mappát:"
 
-#: Merge.rc:2160
+#: Merge.rc:2161
 #, c-format
 msgid "Right side - select destination folder:"
 msgstr "Jobb oldal - válassz úticél mappát:"
 
-#: Merge.rc:2161
+#: Merge.rc:2162
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr ""
 
-#: Merge.rc:2162
+#: Merge.rc:2163
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr ""
 
-#: Merge.rc:2168
+#: Merge.rc:2169
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -3964,17 +3969,17 @@ msgstr ""
 "\n"
 "%1 ?"
 
-#: Merge.rc:2169
+#: Merge.rc:2170
 #, c-format
 msgid "Are you sure you want to copy:"
 msgstr ""
 
-#: Merge.rc:2170
+#: Merge.rc:2171
 #, c-format
 msgid "Are you sure you want to copy %d items:"
 msgstr ""
 
-#: Merge.rc:2171
+#: Merge.rc:2172
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -3986,458 +3991,458 @@ msgid ""
 "Please refresh the compare."
 msgstr ""
 
-#: Merge.rc:2177
+#: Merge.rc:2178
 #, c-format
 msgid "Open left file"
 msgstr "Bal oldali fájl megnyitása"
 
-#: Merge.rc:2178
+#: Merge.rc:2179
 #, c-format
 msgid "Open the left file to external editor"
 msgstr "Bal oldali fájl megnyitása a belsõ szerkesztõvel"
 
-#: Merge.rc:2179
+#: Merge.rc:2180
 #, c-format
 msgid "Open left file with ..."
 msgstr "Bal oldali fájl megnyitása a(z) ..."
 
-#: Merge.rc:2180
+#: Merge.rc:2181
 #, c-format
 msgid "Open right file"
 msgstr "Jobb oldali fájl megnyitása"
 
-#: Merge.rc:2181
+#: Merge.rc:2182
 #, c-format
 msgid "Open the right file to external editor"
 msgstr "Jobb oldali fájl megnyitása a belsõ szerkesztõvel"
 
-#: Merge.rc:2182
+#: Merge.rc:2183
 #, c-format
 msgid "Open right file with..."
 msgstr "Jobb oldali fájl megnyitása a(z) ..."
 
-#: Merge.rc:2183
+#: Merge.rc:2184
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr ""
 
-#: Merge.rc:2184
+#: Merge.rc:2185
 #, c-format
 msgid "Unknown extension on external editor: %1"
 msgstr ""
 
-#: Merge.rc:2185
+#: Merge.rc:2186
 #, c-format
 msgid "Copy filenames to clipboard"
 msgstr "Fájlnevek másolása a vágólapra"
 
-#: Merge.rc:2186
+#: Merge.rc:2187
 #, c-format
 msgid "Copy left side pathnames to clipboard"
 msgstr "Bal oldali fájlok útvonalainak másolása a vágólapra"
 
-#: Merge.rc:2187
+#: Merge.rc:2188
 #, c-format
 msgid "Copy right side pathnames to clipboard"
 msgstr "Jobb oldali fájlok útvonalainak másolása a vágólapra"
 
-#: Merge.rc:2188
+#: Merge.rc:2189
 #, c-format
 msgid "Copy both sides pathnames to clipboard"
 msgstr "Mindkét oldali fájlok útvonalainak másolása a vágólapra"
 
-#: Merge.rc:2194
+#: Merge.rc:2195
 #, c-format
 msgid "Unknown archive format"
 msgstr "Ismeretlen archívum formátum"
 
-#: Merge.rc:2195
+#: Merge.rc:2196
 #, c-format
 msgid "Add items from left side to archive"
 msgstr "Bal oldali fájlok hozzáadása az archívumhoz"
 
-#: Merge.rc:2196
+#: Merge.rc:2197
 #, c-format
 msgid "Add items from right side to archive"
 msgstr "Jobb oldali fájlok hozzáadása az archívumhoz"
 
-#: Merge.rc:2197
+#: Merge.rc:2198
 #, c-format
 msgid "Add items from both sides to archive"
 msgstr "Mindkét oldali fájlok hozzáadása az archívumhoz"
 
-#: Merge.rc:2198
+#: Merge.rc:2199
 #, c-format
 msgid "Add different items to archive (both sides)"
 msgstr "Különbözõ elemek hozzáadása az archívumhoz (mindkét oldalról)"
 
-#: Merge.rc:2200
+#: Merge.rc:2201
 #, c-format
 msgid "Move selected file on left to custom directory"
 msgstr "A kijelölt bal oldali fájlok áthelyezése tetszõleges könyvtárba"
 
-#: Merge.rc:2202
+#: Merge.rc:2203
 #, c-format
 msgid "Move selected file on right to custom directory"
 msgstr "A kijelölt jobb oldali fájlok áthelyezése tetszõleges könyvtárba"
 
-#: Merge.rc:2208
+#: Merge.rc:2209
 #, c-format
 msgid "Filename"
 msgstr "Fájlnév"
 
-#: Merge.rc:2209
+#: Merge.rc:2210
 #, c-format
 msgid "Folder"
 msgstr "Könyvtár"
 
-#: Merge.rc:2210
+#: Merge.rc:2211
 #, c-format
 msgid "Comparison result"
 msgstr "Összehasonlítási eredmények"
 
-#: Merge.rc:2211
+#: Merge.rc:2212
 #, c-format
 msgid "Left Date"
 msgstr "Bal oldali dátum"
 
-#: Merge.rc:2212
+#: Merge.rc:2213
 #, c-format
 msgid "Right Date"
 msgstr "Jobb oldali dátum"
 
-#: Merge.rc:2213
+#: Merge.rc:2214
 #, c-format
 msgid "Extension"
 msgstr "Kiterjesztés"
 
-#: Merge.rc:2214
+#: Merge.rc:2215
 #, c-format
 msgid "Left Size"
 msgstr "Bal oldali méret"
 
-#: Merge.rc:2215
+#: Merge.rc:2216
 #, c-format
 msgid "Right Size"
 msgstr "Jobb oldali méret"
 
-#: Merge.rc:2216
+#: Merge.rc:2217
 #, c-format
 msgid "Right Size (Short)"
 msgstr ""
 
-#: Merge.rc:2217
+#: Merge.rc:2218
 #, c-format
 msgid "Left Size (Short)"
 msgstr ""
 
-#: Merge.rc:2223
+#: Merge.rc:2224
 #, c-format
 msgid "Left Creation Time"
 msgstr "Bal oldali létrehozási idõ"
 
-#: Merge.rc:2224
+#: Merge.rc:2225
 #, c-format
 msgid "Right Creation Time"
 msgstr "Jobb oldali létrehozási idõ"
 
-#: Merge.rc:2225
+#: Merge.rc:2226
 #, c-format
 msgid "Newer File"
 msgstr "Újabb fájl"
 
-#: Merge.rc:2226
+#: Merge.rc:2227
 #, c-format
 msgid "Left File Version"
 msgstr "Bal oldali fájl verzió"
 
-#: Merge.rc:2227
+#: Merge.rc:2228
 #, c-format
 msgid "Right File Version"
 msgstr "Jobb oldali fájl verzió"
 
-#: Merge.rc:2228
+#: Merge.rc:2229
 #, c-format
 msgid "Short Result"
 msgstr "Rövid eredmények"
 
-#: Merge.rc:2229
+#: Merge.rc:2230
 #, c-format
 msgid "Left Attributes"
 msgstr "Bal oldali attribútumok"
 
-#: Merge.rc:2230
+#: Merge.rc:2231
 #, c-format
 msgid "Right Attributes"
 msgstr "Jobb oldali attribútumok"
 
-#: Merge.rc:2231
+#: Merge.rc:2232
 #, c-format
 msgid "Left EOL"
 msgstr ""
 
-#: Merge.rc:2232
+#: Merge.rc:2233
 #, c-format
 msgid "Right EOL"
 msgstr ""
 
-#: Merge.rc:2238
+#: Merge.rc:2239
 #, c-format
 msgid "Left Encoding"
 msgstr "Bal oldali kódolás"
 
-#: Merge.rc:2239
+#: Merge.rc:2240
 #, c-format
 msgid "Right Encoding"
 msgstr "Jobb oldali kódolás"
 
-#: Merge.rc:2240
+#: Merge.rc:2241
 #, c-format
 msgid "Ignored Diff."
 msgstr ""
 
-#: Merge.rc:2241
+#: Merge.rc:2242
 #, c-format
 msgid "Differences"
 msgstr ""
 
-#: Merge.rc:2242
-#: Merge.rc:2721
+#: Merge.rc:2243
+#: Merge.rc:2550
 #, c-format
 msgid "Binary"
 msgstr "Bináris"
 
-#: Merge.rc:2248
+#: Merge.rc:2249
 #, c-format
 msgid "Unable to compare files"
 msgstr "Nem lehett összehasonlítani a fájlokat"
 
-#: Merge.rc:2249
+#: Merge.rc:2250
 #, c-format
 msgid "Item aborted"
 msgstr ""
 
-#: Merge.rc:2250
+#: Merge.rc:2251
 #, c-format
 msgid "File skipped"
 msgstr "A fájl kihagyva"
 
-#: Merge.rc:2251
+#: Merge.rc:2252
 #, c-format
 msgid "Folder skipped"
 msgstr "A könyvtár kihagyva"
 
-#: Merge.rc:2252
+#: Merge.rc:2253
 #, c-format
 msgid "Left only: %1"
 msgstr ""
 
-#: Merge.rc:2253
+#: Merge.rc:2254
 #, c-format
 msgid "Right only: %1"
 msgstr ""
 
-#: Merge.rc:2254
+#: Merge.rc:2255
 #, c-format
 msgid "Binary files are identical"
 msgstr "A bináris fájlok megegyezõek"
 
-#: Merge.rc:2256
+#: Merge.rc:2257
 #, c-format
 msgid "Binary files are different"
 msgstr "A bináris fájlok különbözõek"
 
-#: Merge.rc:2257
+#: Merge.rc:2258
 #, c-format
 msgid "Files are different"
 msgstr "A fájlok különbözõek"
 
-#: Merge.rc:2258
+#: Merge.rc:2259
 #, c-format
 msgid "Left Only"
 msgstr "Csak bal oldal"
 
-#: Merge.rc:2259
+#: Merge.rc:2260
 #, c-format
 msgid "Right Only"
 msgstr "Csak jobb oldal"
 
-#: Merge.rc:2261
+#: Merge.rc:2262
 #, c-format
 msgid "Error"
 msgstr ""
 
-#: Merge.rc:2267
+#: Merge.rc:2268
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "Eltelt idõ: %ld ms"
 
-#: Merge.rc:2268
+#: Merge.rc:2269
 #, c-format
 msgid "1 item selected"
 msgstr "1 elem kiválasztva"
 
-#: Merge.rc:2269
+#: Merge.rc:2270
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 elem kiválasztva"
 
-#: Merge.rc:2275
+#: Merge.rc:2276
 #, c-format
 msgid "Filename or folder name."
 msgstr "fájlnév vagy könyvtárnév."
 
-#: Merge.rc:2276
+#: Merge.rc:2277
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "Alkönyvtár neve ha az alkönyvtárak is ki vannak választva."
 
-#: Merge.rc:2277
+#: Merge.rc:2278
 #, c-format
 msgid "Comparison result, long form."
 msgstr "Összehasonlítási eredmény bõvebb formában."
 
-#: Merge.rc:2278
+#: Merge.rc:2279
 #, c-format
 msgid "Left side modification date."
 msgstr "Bal oldali módosítási dátum."
 
-#: Merge.rc:2279
+#: Merge.rc:2280
 #, c-format
 msgid "Right side modification date."
 msgstr "Jobb oldali módosítási dátum."
 
-#: Merge.rc:2280
+#: Merge.rc:2281
 #, c-format
 msgid "File's extension."
 msgstr "Fájlok kiterjesztése."
 
-#: Merge.rc:2281
+#: Merge.rc:2282
 #, c-format
 msgid "Left file size in bytes."
 msgstr "Bal oldali fájl mérete bájtokban."
 
-#: Merge.rc:2282
+#: Merge.rc:2283
 #, c-format
 msgid "Right file size in bytes."
 msgstr "Jobb oldali fájl mérete bájtokban."
 
-#: Merge.rc:2283
+#: Merge.rc:2284
 #, c-format
 msgid "Left file size abbreviated."
 msgstr ""
 
-#: Merge.rc:2284
+#: Merge.rc:2285
 #, c-format
 msgid "Right file size abbreviated."
 msgstr ""
 
-#: Merge.rc:2290
+#: Merge.rc:2291
 #, c-format
 msgid "Left side creation time."
 msgstr "Bal oldal létrehozási ideje."
 
-#: Merge.rc:2291
+#: Merge.rc:2292
 #, c-format
 msgid "Right side creation time."
 msgstr "Jobb oldal létrehozási ideje."
 
-#: Merge.rc:2292
+#: Merge.rc:2293
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "Megmutatja, melyik oldalnak újabb a létrehozási dátuma."
 
-#: Merge.rc:2293
+#: Merge.rc:2294
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "Bal oldali fájl verziója, csak bizonyos fájloknál."
 
-#: Merge.rc:2294
+#: Merge.rc:2295
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "Jobb oldali fájl verziója, csak bizonyos fájloknál."
 
-#: Merge.rc:2295
+#: Merge.rc:2296
 #, c-format
 msgid "Short comparison result."
 msgstr "Rövid összehasonlítási eredmények."
 
-#: Merge.rc:2296
+#: Merge.rc:2297
 #, c-format
 msgid "Left side attributes."
 msgstr "Bal oldali attribútumok."
 
-#: Merge.rc:2297
+#: Merge.rc:2298
 #, c-format
 msgid "Right side attributes."
 msgstr "Jobb oldali attribútumok."
 
-#: Merge.rc:2298
+#: Merge.rc:2299
 #, c-format
 msgid "Left side file EOL type"
 msgstr ""
 
-#: Merge.rc:2299
+#: Merge.rc:2300
 #, c-format
 msgid "Right side file EOL type"
 msgstr ""
 
-#: Merge.rc:2305
+#: Merge.rc:2306
 #, c-format
 msgid "Left side encoding."
 msgstr "Bal oldali kódolás."
 
-#: Merge.rc:2306
+#: Merge.rc:2307
 #, c-format
 msgid "Right side encoding."
 msgstr "Jobb oldali kódolás."
 
-#: Merge.rc:2307
+#: Merge.rc:2308
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr ""
 
-#: Merge.rc:2308
+#: Merge.rc:2309
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr ""
 
-#: Merge.rc:2309
+#: Merge.rc:2310
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "(*) látható, ha a fájl bináris."
 
-#: Merge.rc:2315
+#: Merge.rc:2316
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 összehasonlítása ezzel: %2"
 
-#: Merge.rc:2316
+#: Merge.rc:2317
 #, c-format
 msgid "Comma-separated list"
 msgstr "Vesszõvel elválasztott lista"
 
-#: Merge.rc:2317
+#: Merge.rc:2318
 #, c-format
 msgid "Tab-separated list"
 msgstr "Tabulált lista"
 
-#: Merge.rc:2318
+#: Merge.rc:2319
 #, c-format
 msgid "Simple HTML"
 msgstr "Egyszerû HTML"
 
-#: Merge.rc:2319
+#: Merge.rc:2320
 #, c-format
 msgid "Simple XML"
 msgstr ""
 
-#: Merge.rc:2321
+#: Merge.rc:2322
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "A jelentés fájl már létezik. Szeretnéd felülírni a létezõ fájlt?"
 
-#: Merge.rc:2322
+#: Merge.rc:2323
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4446,47 +4451,47 @@ msgstr ""
 "Hiba a jelentés készítése közben:\n"
 "%1"
 
-#: Merge.rc:2323
+#: Merge.rc:2324
 #, c-format
 msgid "The report has been created successfully."
 msgstr "A jelentés sikeresen elkészült."
 
-#: Merge.rc:2329
+#: Merge.rc:2330
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "Ugyanaz a fájl van megnyitva mindkét panelen."
 
-#: Merge.rc:2330
+#: Merge.rc:2331
 #, c-format
 msgid "The selected files are identical."
 msgstr "A kijelölt fájlok ugyanazok."
 
-#: Merge.rc:2331
+#: Merge.rc:2332
 #, c-format
 msgid "The selected folder exists only in other side and therefore cannot be opened."
 msgstr ""
 
-#: Merge.rc:2332
+#: Merge.rc:2333
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "Hiba történt a fájlok összehasonlításakor."
 
-#: Merge.rc:2333
+#: Merge.rc:2334
 #, c-format
 msgid "Binary files cannot be visually compared."
 msgstr "Bináris fájlok nem hasonlíthatóak össze vizuálisan."
 
-#: Merge.rc:2334
+#: Merge.rc:2335
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "Nem lehetett létrehozni az ideiglenes fájlokat. Ellenõrizd az ideiglenes könyvtár beállításait."
 
-#: Merge.rc:2335
+#: Merge.rc:2336
 #, c-format
 msgid "Directory files cannot be visually compared."
 msgstr "Könyvtárak nem hasonlíthatóak össze vizuálisan."
 
-#: Merge.rc:2336
+#: Merge.rc:2337
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4501,7 +4506,7 @@ msgstr ""
 "\n"
 "Megjegyzés: Amennyiben minden esetben ezt az opciót szeretnéd használni, kapcsold be a 'Sortörési eltérések kihagyása' opciót az Összehasonlítás menüpontban (a Szerkesztés/Opciók menüpont alatt találod meg)."
 
-#: Merge.rc:2337
+#: Merge.rc:2338
 #, c-format
 msgid ""
 "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
@@ -4512,22 +4517,27 @@ msgstr ""
 " A jelenlegi beállításokkal a leginkább jellemzõ lesz az alapértelmezett.\n"
 " Szeretnéd, ha mégis figyelembe venné az eltérõ újsor-karaktereket?"
 
-#: Merge.rc:2338
+#: Merge.rc:2339
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "Hiba történt ennek a fájlnak az elõvizsgálata közben: '%1' ebben a bõvítményben: '%2'. Az elõvizsgálat ezután nem fog mûködni."
 
-#: Merge.rc:2339
+#: Merge.rc:2340
 #, c-format
 msgid "The selected folder is invalid."
 msgstr ""
 
-#: Merge.rc:2340
+#: Merge.rc:2341
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr ""
 
-#: Merge.rc:2346
+#: Merge.rc:2342
+#, c-format
+msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgstr ""
+
+#: Merge.rc:2348
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4538,132 +4548,132 @@ msgstr ""
 "A különbözõ kódlapokkal történõ kijelzés könnyebben áttekinthetõ de az olvasztás/törlés kockázatos lehet.\n"
 "Would you like to treat both files as being in the default windows codepage (recommended)?"
 
-#: Merge.rc:2347
+#: Merge.rc:2349
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr ""
 
-#: Merge.rc:2348
+#: Merge.rc:2350
 #, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr ""
 
-#: Merge.rc:2349
+#: Merge.rc:2351
 #, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr ""
 
-#: Merge.rc:2350
+#: Merge.rc:2352
 #, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr ""
 
-#: Merge.rc:2356
+#: Merge.rc:2358
 #, c-format
 msgid "No difference"
 msgstr "Nincs eltérés"
 
-#: Merge.rc:2357
+#: Merge.rc:2359
 #, c-format
 msgid "Line difference"
 msgstr "Sor eltérés"
 
-#: Merge.rc:2363
+#: Merge.rc:2365
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "Cserélve lett %1 sztring."
 
-#: Merge.rc:2364
+#: Merge.rc:2366
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "Nem található ez: \"%s\""
 
-#: Merge.rc:2370
+#: Merge.rc:2372
 #, c-format
 msgid "Copy Full Path"
 msgstr "Teljes elérési út másolása"
 
-#: Merge.rc:2371
+#: Merge.rc:2373
 #, c-format
 msgid "Copy Filename"
 msgstr "Fájlnév másolása"
 
-#: Merge.rc:2377
+#: Merge.rc:2379
 #, c-format
 msgid "Location Pane"
 msgstr ""
 
-#: Merge.rc:2378
+#: Merge.rc:2380
 #, c-format
 msgid "Diff Pane"
 msgstr ""
 
-#: Merge.rc:2384
+#: Merge.rc:2386
 #, c-format
 msgid "Patch file successfully written."
 msgstr "A Patch fájl sikeresen elkészült."
 
-#: Merge.rc:2385
+#: Merge.rc:2387
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "Az 1. elem nem található vagy az egy könyvtár!"
 
-#: Merge.rc:2386
+#: Merge.rc:2388
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "A 2. elem nem található vagy az egy könyvtár!"
 
-#: Merge.rc:2387
+#: Merge.rc:2389
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "A patch fájl már létezik. Szeretnéd felülírni azt?"
 
-#: Merge.rc:2388
+#: Merge.rc:2390
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 kijelölt fájl]"
 
-#: Merge.rc:2389
+#: Merge.rc:2391
 #, c-format
 msgid "Normal"
 msgstr "Normál"
 
-#: Merge.rc:2390
+#: Merge.rc:2392
 #, c-format
 msgid "Context"
 msgstr "Környezeti"
 
-#: Merge.rc:2391
+#: Merge.rc:2393
 #, c-format
 msgid "Unified"
 msgstr "Egységesített"
 
-#: Merge.rc:2392
+#: Merge.rc:2394
 #, c-format
 msgid "Could not write to file %1."
 msgstr "Nem lehetett ebbe a fájlba írni: %1."
 
-#: Merge.rc:2393
+#: Merge.rc:2395
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "A megadott kimeneti útvonal nem abszolút elérési út: %1"
 
-#: Merge.rc:2394
+#: Merge.rc:2396
 #, c-format
 msgid "Specify an output file"
 msgstr "Adj meg egy kimeneti fájlt"
 
-#: Merge.rc:2395
+#: Merge.rc:2397
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "Nem lehet patch fájlt létrehozni bináris fájlokból."
 
-#: Merge.rc:2396
+#: Merge.rc:2398
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "Nem lehet patch fájlt létrehozni könyvtárakból."
 
-#: Merge.rc:2397
+#: Merge.rc:2399
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4674,17 +4684,17 @@ msgstr ""
 "\n"
 "A patch létrehozásához elengedhetetlen, hogy ne legyenek el nem mentett változtatások a fájlokban."
 
-#: Merge.rc:2398
+#: Merge.rc:2400
 #, c-format
 msgid "Folder does not exist."
 msgstr "A mappa nem létezik."
 
-#: Merge.rc:2403
+#: Merge.rc:2405
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "A jelenlegi könyvtár összehasonlítási eredmények törlõdnek."
 
-#: Merge.rc:2404
+#: Merge.rc:2406
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4695,51 +4705,51 @@ msgstr ""
 "Az ehhez szükséges összetevõk (7-zip és/vagy Merge7z*.dll) nem találhatóak.\n"
 "Olvasd el a kézikönyv archívum támogatásról szóló részét."
 
-#: Merge.rc:2405
+#: Merge.rc:2407
 #, c-format
 msgid ""
 "\n"
 "Note: 7-Zip integration is disabled in WinMerge settings."
 msgstr ""
 
-#: Merge.rc:2406
+#: Merge.rc:2408
 #, c-format
 msgid ""
 "\n"
 "Note: 7-Zip integration is restricted to standalone operation in WinMerge settings."
 msgstr ""
 
-#: Merge.rc:2407
+#: Merge.rc:2409
 #, c-format
 msgid "Select file for export"
 msgstr ""
 
-#: Merge.rc:2408
+#: Merge.rc:2410
 #, c-format
 msgid "Select file for import"
 msgstr ""
 
-#: Merge.rc:2409
+#: Merge.rc:2411
 #, c-format
 msgid "Options imported from the file."
 msgstr ""
 
-#: Merge.rc:2410
+#: Merge.rc:2412
 #, c-format
 msgid "Options exported to the file."
 msgstr ""
 
-#: Merge.rc:2411
+#: Merge.rc:2413
 #, c-format
 msgid "Failed to import options from the file."
 msgstr ""
 
-#: Merge.rc:2412
+#: Merge.rc:2414
 #, c-format
 msgid "Failed to write options to the file."
 msgstr ""
 
-#: Merge.rc:2413
+#: Merge.rc:2415
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -4747,1117 +4757,477 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: Merge.rc:2419
+#: Merge.rc:2421
 #, c-format
 msgid "Regular expression error"
 msgstr "Reguláris kifejezés hiba"
 
-#: Merge.rc:2420
+#: Merge.rc:2422
 #, c-format
 msgid "No match"
 msgstr "Nincs találat"
 
-#: Merge.rc:2421
+#: Merge.rc:2423
 #, c-format
 msgid "Invalid regular expression"
 msgstr "Érvénytelen reguláris kifejezés"
 
-#: Merge.rc:2422
+#: Merge.rc:2424
 #, c-format
 msgid "Invalid collation character"
 msgstr "Érvénytelen egyeztetõ karakter"
 
-#: Merge.rc:2423
+#: Merge.rc:2425
 #, c-format
 msgid "Invalid character class name"
 msgstr "Érvénytelen karakter osztály név"
 
-#: Merge.rc:2424
+#: Merge.rc:2426
 #, c-format
 msgid "Trailing backslash"
 msgstr "Felesleges backslash karakter"
 
-#: Merge.rc:2425
+#: Merge.rc:2427
 #, c-format
 msgid "Invalid back reference"
 msgstr "Érvénytelen visszautalás"
 
-#: Merge.rc:2426
+#: Merge.rc:2428
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "Lezáratlan [ vagy [^"
 
-#: Merge.rc:2427
+#: Merge.rc:2429
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "Lezáratlan ( vagy \\("
 
-#: Merge.rc:2428
+#: Merge.rc:2430
 #, c-format
 msgid "Unmatched \\{"
 msgstr "Lezáratlan \\{"
 
-#: Merge.rc:2429
+#: Merge.rc:2431
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "Érvénytelen tartalmú \\{\\}"
 
-#: Merge.rc:2430
+#: Merge.rc:2432
 #, c-format
 msgid "Invalid range end"
 msgstr "Érvénytelen tartomány"
 
-#: Merge.rc:2431
+#: Merge.rc:2433
 #, c-format
 msgid "Out of memory"
 msgstr "Nincs elég memória"
 
-#: Merge.rc:2432
+#: Merge.rc:2434
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr "Érvénytelen megelõzõ reguláris kifejezés"
 
-#: Merge.rc:2433
+#: Merge.rc:2435
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "Korán lezárt reguláris kifejezés"
 
-#: Merge.rc:2434
+#: Merge.rc:2436
 #, c-format
 msgid "Regular expression too big"
 msgstr "Túl nagy reguláris kifejezés"
 
-#: Merge.rc:2439
+#: Merge.rc:2441
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "Lezáratlan ) vagy \\)"
 
-#: Merge.rc:2445
-#, c-format
-msgid "Afrikaans"
-msgstr ""
-
-#: Merge.rc:2446
-#, c-format
-msgid "Albanian"
-msgstr "Albán"
-
 #: Merge.rc:2447
-#, c-format
-msgid "Arabic (Saudi Arabian)"
-msgstr "Arab (Saudi Arabian)"
-
-#: Merge.rc:2448
-#, c-format
-msgid "Arabic (Iraq)"
-msgstr "Arab (Iraq)"
-
-#: Merge.rc:2449
-#, c-format
-msgid "Arabic (Egyptian)"
-msgstr "Arab (Egyptian)"
-
-#: Merge.rc:2450
-#, c-format
-msgid "Arabic (Libyan)"
-msgstr "Arab (Libyan)"
-
-#: Merge.rc:2451
-#, c-format
-msgid "Arabic (Algerian)"
-msgstr "Arab (Algerian)"
-
-#: Merge.rc:2452
-#, c-format
-msgid "Arabic (Moroccan)"
-msgstr "Arab (Moroccan)"
-
-#: Merge.rc:2453
-#, c-format
-msgid "Arabic (Tunisian)"
-msgstr "Arab (Tunisian)"
-
-#: Merge.rc:2454
-#, c-format
-msgid "Arabic (Oman)"
-msgstr "Arab (Oman)"
-
-#: Merge.rc:2455
-#, c-format
-msgid "Arabic (Yemen)"
-msgstr "Arab (Yemen)"
-
-#: Merge.rc:2456
-#, c-format
-msgid "Arabic (Syrian)"
-msgstr "Arab (Syrian)"
-
-#: Merge.rc:2457
-#, c-format
-msgid "Arabic (Jordan)"
-msgstr "Arab (Jordan)"
-
-#: Merge.rc:2463
-#, c-format
-msgid "Arabic (Lebanon)"
-msgstr "Arab (Lebanon)"
-
-#: Merge.rc:2464
-#, c-format
-msgid "Arabic (Kuwait)"
-msgstr "Arab (Kuwait)"
-
-#: Merge.rc:2465
-#, c-format
-msgid "Arabic (UAE)"
-msgstr "Arab (UAE)"
-
-#: Merge.rc:2466
-#, c-format
-msgid "Arabic (Bahrain)"
-msgstr "Arab (Bahrain)"
-
-#: Merge.rc:2467
-#, c-format
-msgid "Arabic (Qatar)"
-msgstr "Arab (Qatar)"
-
-#: Merge.rc:2468
-#, c-format
-msgid "Armenian"
-msgstr "Örmény"
-
-#: Merge.rc:2469
-#, c-format
-msgid "Azeri (Latin)"
-msgstr ""
-
-#: Merge.rc:2470
-#, c-format
-msgid "Azeri (Cyrillic)"
-msgstr ""
-
-#: Merge.rc:2471
-#, c-format
-msgid "Basque"
-msgstr "Baszk"
-
-#: Merge.rc:2472
-#, c-format
-msgid "Belarusian"
-msgstr "Belorusz"
-
-#: Merge.rc:2473
-#, c-format
-msgid "Bulgarian"
-msgstr "Bulgár"
-
-#: Merge.rc:2474
-#, c-format
-msgid "Catalan"
-msgstr "Katalán"
-
-#: Merge.rc:2475
-#, c-format
-msgid "Chinese (Traditional)"
-msgstr "Kínai (hagyományos)"
-
-#: Merge.rc:2476
-#, c-format
-msgid "Chinese (Simplified)"
-msgstr "Kínai (egyszerûsített)"
-
-#: Merge.rc:2477
-#, c-format
-msgid "Chinese (Hong Kong)"
-msgstr "Kínai (Hong Kong)"
-
-#: Merge.rc:2478
-#, c-format
-msgid "Chinese (Singapore)"
-msgstr "Kínai (Singapore)"
-
-#: Merge.rc:2484
-#, c-format
-msgid "Chinese (Macau SAR)"
-msgstr "Kínai (Macau SAR)"
-
-#: Merge.rc:2485
-#, c-format
-msgid "Croatian"
-msgstr "Horvát"
-
-#: Merge.rc:2486
-#, c-format
-msgid "Czech"
-msgstr "Cseh"
-
-#: Merge.rc:2487
-#, c-format
-msgid "Dansk"
-msgstr "Dán"
-
-#: Merge.rc:2488
-#, c-format
-msgid "Dutch"
-msgstr "Holland"
-
-#: Merge.rc:2489
-#, c-format
-msgid "Dutch (Belgium)"
-msgstr "Holland (Belgium)"
-
-#: Merge.rc:2490
-#, c-format
-msgid "English (US)"
-msgstr "Angol (US)"
-
-#: Merge.rc:2491
-#, c-format
-msgid "English (UK)"
-msgstr "Angol (UK)"
-
-#: Merge.rc:2492
-#, c-format
-msgid "English (Australian)"
-msgstr "Angol (Australian)"
-
-#: Merge.rc:2493
-#, c-format
-msgid "English (Canadian)"
-msgstr "Angol (Canadian)"
-
-#: Merge.rc:2494
-#, c-format
-msgid "English (New Zealand)"
-msgstr "Angol (New Zealand)"
-
-#: Merge.rc:2495
-#, c-format
-msgid "English (Irish)"
-msgstr "Angol (Irish)"
-
-#: Merge.rc:2496
-#, c-format
-msgid "English (So. African)"
-msgstr "Angol (So. African)"
-
-#: Merge.rc:2497
-#, c-format
-msgid "English (Jamaican)"
-msgstr "Angol (Jamaican)"
-
-#: Merge.rc:2498
-#, c-format
-msgid "English (Caribbean)"
-msgstr "Angol (Caribbean)"
-
-#: Merge.rc:2499
-#, c-format
-msgid "English (Belize)"
-msgstr "Angol (Belize)"
-
-#: Merge.rc:2505
-#, c-format
-msgid "English (Trinidad)"
-msgstr "Angol (Trinidad)"
-
-#: Merge.rc:2506
-#, c-format
-msgid "English (Zimbabwe)"
-msgstr "Angol (Zimbabwe)"
-
-#: Merge.rc:2507
-#, c-format
-msgid "English (Philippines)"
-msgstr "Angol (Philippines)"
-
-#: Merge.rc:2508
-#, c-format
-msgid "Eesti"
-msgstr ""
-
-#: Merge.rc:2509
-#, c-format
-msgid "Faeroese"
-msgstr ""
-
-#: Merge.rc:2510
-#, c-format
-msgid "Farsi"
-msgstr ""
-
-#: Merge.rc:2511
-#, c-format
-msgid "Suomi"
-msgstr ""
-
-#: Merge.rc:2512
-#, c-format
-msgid "French"
-msgstr "Francia"
-
-#: Merge.rc:2513
-#, c-format
-msgid "French (Belgique)"
-msgstr "Francia (Belgique)"
-
-#: Merge.rc:2514
-#, c-format
-msgid "French (Canada)"
-msgstr "Francia (Canada)"
-
-#: Merge.rc:2515
-#, c-format
-msgid "French (Switzerland)"
-msgstr "Francia (Switzerland)"
-
-#: Merge.rc:2516
-#, c-format
-msgid "French (Luxembourg)"
-msgstr "Francia (Luxembourg)"
-
-#: Merge.rc:2517
-#, c-format
-msgid "French (Monaco)"
-msgstr "Francia (Monaco)"
-
-#: Merge.rc:2518
-#, c-format
-msgid "Georgian"
-msgstr ""
-
-#: Merge.rc:2519
-#, c-format
-msgid "German (Germany)"
-msgstr "Német (Germany)"
-
-#: Merge.rc:2520
-#, c-format
-msgid "German (Switzerland)"
-msgstr "Német (Switzerland)"
-
-#: Merge.rc:2526
-#, c-format
-msgid "German (Austria)"
-msgstr "Német (Austria)"
-
-#: Merge.rc:2527
-#, c-format
-msgid "German (Luxembourg)"
-msgstr "Német (Luxembourg)"
-
-#: Merge.rc:2528
-#, c-format
-msgid "German (Liechtenstein)"
-msgstr "Német (Liechtenstein)"
-
-#: Merge.rc:2529
-#, c-format
-msgid "Greek"
-msgstr "Görög"
-
-#: Merge.rc:2530
-#, c-format
-msgid "Hebrew"
-msgstr "Héber"
-
-#: Merge.rc:2531
-#, c-format
-msgid "Hindi"
-msgstr ""
-
-#: Merge.rc:2532
-#, c-format
-msgid "Hungarian"
-msgstr "Magyar"
-
-#: Merge.rc:2533
-#, c-format
-msgid "Icelandic"
-msgstr "Izlandi"
-
-#: Merge.rc:2534
-#, c-format
-msgid "Indonesian"
-msgstr "Indonéz"
-
-#: Merge.rc:2535
-#, c-format
-msgid "Italian"
-msgstr "Olasz"
-
-#: Merge.rc:2536
-#, c-format
-msgid "Italian (Swiss)"
-msgstr "Olasz (Swiss)"
-
-#: Merge.rc:2537
-#, c-format
-msgid "Japanese"
-msgstr "Japán"
-
-#: Merge.rc:2538
-#, c-format
-msgid "Kashmiri (India)"
-msgstr "Kashmír (India)"
-
-#: Merge.rc:2539
-#, c-format
-msgid "Kazakh"
-msgstr ""
-
-#: Merge.rc:2540
-#, c-format
-msgid "Korean"
-msgstr "Koreai"
-
-#: Merge.rc:2541
-#, c-format
-msgid "Korean (Johab)"
-msgstr "Koreai (Johab)"
-
-#: Merge.rc:2547
-#, c-format
-msgid "Latvian"
-msgstr ""
-
-#: Merge.rc:2548
-#, c-format
-msgid "Lithuanian"
-msgstr "Litván"
-
-#: Merge.rc:2549
-#, c-format
-msgid "Malay (Malaysian)"
-msgstr "Maláj (Malaysian)"
-
-#: Merge.rc:2550
-#, c-format
-msgid "Malay (Brunei Darussalam)"
-msgstr "Maláj (Brunei Darussalam)"
-
-#: Merge.rc:2551
-#, c-format
-msgid "Manipuri"
-msgstr ""
-
-#: Merge.rc:2552
-#, c-format
-msgid "Norwegian (Bokml)"
-msgstr "Norvég (Bokmal)"
-
-#: Merge.rc:2553
-#, c-format
-msgid "Norwegian (Nynorsk)"
-msgstr "Norvég (Nynorsk)"
-
-#: Merge.rc:2554
-#, c-format
-msgid "Polski"
-msgstr "Lengyel"
-
-#: Merge.rc:2555
-#, c-format
-msgid "Portugese"
-msgstr "Portugál"
-
-#: Merge.rc:2556
-#, c-format
-msgid "Portugese (Brazil)"
-msgstr "Portugál (Brazil)"
-
-#: Merge.rc:2557
-#, c-format
-msgid "Romanian"
-msgstr "Román"
-
-#: Merge.rc:2558
-#, c-format
-msgid "Russian"
-msgstr "Orosz"
-
-#: Merge.rc:2559
-#, c-format
-msgid "Sanskrit"
-msgstr "Sanszkrit"
-
-#: Merge.rc:2560
-#, c-format
-msgid "Serbian (Latin)"
-msgstr "Szerb (Latin)"
-
-#: Merge.rc:2561
-#, c-format
-msgid "Serbian (Cyrillic)"
-msgstr "Szerb (Cyrillic)"
-
-#: Merge.rc:2562
-#, c-format
-msgid "Sindhi"
-msgstr ""
-
-#: Merge.rc:2568
-#, c-format
-msgid "Slovak"
-msgstr "Szlovák"
-
-#: Merge.rc:2569
-#, c-format
-msgid "Slovenian"
-msgstr "Szlovén"
-
-#: Merge.rc:2570
-#, c-format
-msgid "Spanish"
-msgstr "Spanyol"
-
-#: Merge.rc:2571
-#, c-format
-msgid "Spanish (Mexican)"
-msgstr "Spanyol (Mexican)"
-
-#: Merge.rc:2572
-#, c-format
-msgid "Spanish (Modern)"
-msgstr "Spanyol (Modern)"
-
-#: Merge.rc:2573
-#, c-format
-msgid "Spanish (Guatemala)"
-msgstr "Spanyol (Guatemala)"
-
-#: Merge.rc:2574
-#, c-format
-msgid "Spanish (Costa Rica)"
-msgstr "Spanyol (Costa Rica)"
-
-#: Merge.rc:2575
-#, c-format
-msgid "Spanish (Panama)"
-msgstr "Spanyol (Panama)"
-
-#: Merge.rc:2576
-#, c-format
-msgid "Spanish (Dominican)"
-msgstr "Spanyol (Dominican)"
-
-#: Merge.rc:2577
-#, c-format
-msgid "Spanish (Venezuela)"
-msgstr "Spanyol (Venezuela)"
-
-#: Merge.rc:2578
-#, c-format
-msgid "Spanish (Colombia)"
-msgstr "Spanyol (Colombia)"
-
-#: Merge.rc:2579
-#, c-format
-msgid "Spanish (Peru)"
-msgstr "Spanyol (Peru)"
-
-#: Merge.rc:2580
-#, c-format
-msgid "Spanish (Argentina)"
-msgstr "Spanyol (Argentina)"
-
-#: Merge.rc:2581
-#, c-format
-msgid "Spanish (Ecuador)"
-msgstr "Spanyol (Ecuador)"
-
-#: Merge.rc:2582
-#, c-format
-msgid "Spanish (Chile)"
-msgstr "Spanyol (Chile)"
-
-#: Merge.rc:2583
-#, c-format
-msgid "Spanish (Uruguay)"
-msgstr "Spanyol (Uruguay)"
-
-#: Merge.rc:2589
-#, c-format
-msgid "Spanish (Paraguay)"
-msgstr "Spanyol (Paraguay)"
-
-#: Merge.rc:2590
-#, c-format
-msgid "Spanish (Bolivia)"
-msgstr "Spanyol (Bolivia)"
-
-#: Merge.rc:2591
-#, c-format
-msgid "Spanish (El Salvador)"
-msgstr "Spanyol (El Salvador)"
-
-#: Merge.rc:2592
-#, c-format
-msgid "Spanish (Honduras)"
-msgstr "Spanyol (Honduras)"
-
-#: Merge.rc:2593
-#, c-format
-msgid "Spanish (Nicaragua)"
-msgstr "Spanyol (Nicaragua)"
-
-#: Merge.rc:2594
-#, c-format
-msgid "Spanish (Puerto Rico)"
-msgstr "Spanyol (Puerto Rico)"
-
-#: Merge.rc:2595
-#, c-format
-msgid "Swahili (Kenya)"
-msgstr ""
-
-#: Merge.rc:2596
-#, c-format
-msgid "Swedish"
-msgstr "Svéd"
-
-#: Merge.rc:2597
-#, c-format
-msgid "Swedish (Finland)"
-msgstr "Svéd (Finland)"
-
-#: Merge.rc:2598
-#, c-format
-msgid "Tamil"
-msgstr ""
-
-#: Merge.rc:2599
-#, c-format
-msgid "Tatar (Tatarstan)"
-msgstr "Tatár (Tatarstan)"
-
-#: Merge.rc:2600
-#, c-format
-msgid "Thai"
-msgstr ""
-
-#: Merge.rc:2601
-#, c-format
-msgid "Turkish"
-msgstr "Török"
-
-#: Merge.rc:2602
-#, c-format
-msgid "Ukranian"
-msgstr "Ukrán"
-
-#: Merge.rc:2603
-#, c-format
-msgid "Urdu (Pakistan)"
-msgstr ""
-
-#: Merge.rc:2604
-#, c-format
-msgid "Urdu (India)"
-msgstr ""
-
-#: Merge.rc:2610
-#, c-format
-msgid "Uzbek (Latin)"
-msgstr "Üzbég (Latin)"
-
-#: Merge.rc:2611
-#, c-format
-msgid "Uzbek (Cyrillic)"
-msgstr "Üzbég (Cyrillic)"
-
-#: Merge.rc:2612
-#, c-format
-msgid "Vietnamese"
-msgstr "Vietnámi"
-
-#: Merge.rc:2618
 #, c-format
 msgid "Western European"
 msgstr ""
 
-#: Merge.rc:2619
+#: Merge.rc:2448
 #, c-format
 msgid "Eastern European"
 msgstr ""
 
-#: Merge.rc:2620
+#: Merge.rc:2449
 #, c-format
 msgid "East Asian"
 msgstr ""
 
-#: Merge.rc:2621
+#: Merge.rc:2450
 #, c-format
 msgid "SE & SW Asian"
 msgstr ""
 
-#: Merge.rc:2622
+#: Merge.rc:2451
 #, c-format
 msgid "Middle Eastern"
 msgstr ""
 
-#: Merge.rc:2623
-#: Merge.rc:2633
+#: Merge.rc:2452
+#: Merge.rc:2462
 #, c-format
 msgid "Not applicable"
 msgstr "Nem alkalmazható"
 
-#: Merge.rc:2629
+#: Merge.rc:2458
 #, c-format
 msgid "MS-Windows"
 msgstr ""
 
-#: Merge.rc:2630
+#: Merge.rc:2459
 #, c-format
 msgid "MS-DOS"
 msgstr ""
 
-#: Merge.rc:2631
+#: Merge.rc:2460
 #, c-format
 msgid "Macintosh"
 msgstr ""
 
-#: Merge.rc:2632
+#: Merge.rc:2461
 #, c-format
 msgid "IBM"
 msgstr ""
 
-#: Merge.rc:2639
+#: Merge.rc:2468
 #, c-format
 msgid "EBCDIC"
 msgstr ""
 
-#: Merge.rc:2640
+#: Merge.rc:2469
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
 msgstr ""
 
-#: Merge.rc:2646
+#: Merge.rc:2475
 #, c-format
 msgid "MS-DOS Latin US"
 msgstr ""
 
-#: Merge.rc:2647
+#: Merge.rc:2476
 #, c-format
 msgid "MS-DOS Arabic"
 msgstr ""
 
-#: Merge.rc:2648
+#: Merge.rc:2477
 #, c-format
 msgid "MS-DOS Greek"
 msgstr ""
 
-#: Merge.rc:2649
+#: Merge.rc:2478
 #, c-format
 msgid "MS-DOS Baltic Rim"
 msgstr ""
 
-#: Merge.rc:2650
+#: Merge.rc:2479
 #, c-format
 msgid "MS-DOS Latin 1"
 msgstr ""
 
-#: Merge.rc:2651
+#: Merge.rc:2480
 #, c-format
 msgid "MS-DOS Greek 1"
 msgstr ""
 
-#: Merge.rc:2652
+#: Merge.rc:2481
 #, c-format
 msgid "MS-DOS Latin 2"
 msgstr ""
 
-#: Merge.rc:2653
+#: Merge.rc:2482
 #, c-format
 msgid "MS-DOS Cyrillic"
 msgstr ""
 
-#: Merge.rc:2654
+#: Merge.rc:2483
 #, c-format
 msgid "MS-DOS Turkish"
 msgstr ""
 
-#: Merge.rc:2655
+#: Merge.rc:2484
 #, c-format
 msgid "MS-DOS Portuguese"
 msgstr ""
 
-#: Merge.rc:2661
+#: Merge.rc:2490
 #, c-format
 msgid "MS-DOS Icelandic"
 msgstr ""
 
-#: Merge.rc:2662
+#: Merge.rc:2491
 #, c-format
 msgid "MS-DOS Hebrew"
 msgstr ""
 
-#: Merge.rc:2663
+#: Merge.rc:2492
 #, c-format
 msgid "MS-DOS French Canada"
 msgstr ""
 
-#: Merge.rc:2664
+#: Merge.rc:2493
 #, c-format
 msgid "MS-DOS Nordic"
 msgstr ""
 
-#: Merge.rc:2665
+#: Merge.rc:2494
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
 msgstr ""
 
-#: Merge.rc:2666
+#: Merge.rc:2495
 #, c-format
 msgid "MS-DOS Greek 2"
 msgstr ""
 
-#: Merge.rc:2672
+#: Merge.rc:2501
 #, c-format
 msgid "Windows Thai"
 msgstr ""
 
-#: Merge.rc:2673
+#: Merge.rc:2502
 #, c-format
 msgid "Windows Japanese"
 msgstr ""
 
-#: Merge.rc:2674
+#: Merge.rc:2503
 #, c-format
 msgid "Windows Simplified Chinese"
 msgstr ""
 
-#: Merge.rc:2675
+#: Merge.rc:2504
 #, c-format
 msgid "Windows Korean"
 msgstr ""
 
-#: Merge.rc:2676
+#: Merge.rc:2505
 #, c-format
 msgid "Windows Traditional Chinese"
 msgstr ""
 
-#: Merge.rc:2677
+#: Merge.rc:2506
 #, c-format
 msgid "Windows Latin 2"
 msgstr ""
 
-#: Merge.rc:2678
+#: Merge.rc:2507
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
 msgstr ""
 
-#: Merge.rc:2679
+#: Merge.rc:2508
 #, c-format
 msgid "Windows Latin 1"
 msgstr ""
 
-#: Merge.rc:2680
+#: Merge.rc:2509
 #, c-format
 msgid "Windows Greek"
 msgstr ""
 
-#: Merge.rc:2681
+#: Merge.rc:2510
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
 msgstr ""
 
-#: Merge.rc:2682
+#: Merge.rc:2511
 #, c-format
 msgid "Windows Hebrew"
 msgstr ""
 
-#: Merge.rc:2683
+#: Merge.rc:2512
 #, c-format
 msgid "Windows Arabic"
 msgstr ""
 
-#: Merge.rc:2684
+#: Merge.rc:2513
 #, c-format
 msgid "Windows Baltic Rim"
 msgstr ""
 
-#: Merge.rc:2685
+#: Merge.rc:2514
 #, c-format
 msgid "Windows Vietnamese"
 msgstr ""
 
-#: Merge.rc:2691
+#: Merge.rc:2520
 #, c-format
 msgid "Macintosh Roman"
 msgstr ""
 
-#: Merge.rc:2692
+#: Merge.rc:2521
 #, c-format
 msgid "Macintosh Greek"
 msgstr ""
 
-#: Merge.rc:2693
+#: Merge.rc:2522
 #, c-format
 msgid "Macintosh Cyrillic"
 msgstr ""
 
-#: Merge.rc:2694
+#: Merge.rc:2523
 #, c-format
 msgid "Macintosh "
 msgstr ""
 
-#: Merge.rc:2695
+#: Merge.rc:2524
 #, c-format
 msgid "Macintosh Central Europe"
 msgstr ""
 
-#: Merge.rc:2696
+#: Merge.rc:2525
 #, c-format
 msgid "Macintosh Turkish"
 msgstr ""
 
-#: Merge.rc:2705
+#: Merge.rc:2534
 #, c-format
 msgid "Approximates ISO-8859-2"
 msgstr ""
 
-#: Merge.rc:2708
+#: Merge.rc:2537
 #, c-format
 msgid "Approximates ISO-8859-1"
 msgstr ""
 
-#: Merge.rc:2709
+#: Merge.rc:2538
 #, c-format
 msgid "Approximates ISO-8859-7"
 msgstr ""
 
-#: Merge.rc:2710
+#: Merge.rc:2539
 #, c-format
 msgid "Approximates ISO-8859-9"
 msgstr ""
 
-#: Merge.rc:2711
+#: Merge.rc:2540
 #, c-format
 msgid "Approximates ISO-8859-8"
 msgstr ""
 
-#: Merge.rc:2717
+#: Merge.rc:2546
 #, c-format
 msgid "Win"
 msgstr ""
 
-#: Merge.rc:2718
+#: Merge.rc:2547
 #, c-format
 msgid "Mac"
 msgstr ""
 
-#: Merge.rc:2719
+#: Merge.rc:2548
 #, c-format
 msgid "Unix"
 msgstr ""
 
-#: Merge.rc:2720
+#: Merge.rc:2549
 #, c-format
 msgid "Mixed"
 msgstr ""
 
-#: Merge.rc:2727
+#: Merge.rc:2556
 #, c-format
 msgid " B"
 msgstr ""
 
-#: Merge.rc:2728
+#: Merge.rc:2557
 #, c-format
 msgid " KB"
 msgstr ""
 
-#: Merge.rc:2729
+#: Merge.rc:2558
 #, c-format
 msgid " MB"
 msgstr ""
 
-#: Merge.rc:2730
+#: Merge.rc:2559
 #, c-format
 msgid " GB"
 msgstr ""
 
-#: Merge.rc:2731
+#: Merge.rc:2560
 #, c-format
 msgid " TB"
 msgstr ""
 
-#: Merge.rc:2732
+#: Merge.rc:2561
 #, c-format
 msgid " PB"
 msgstr ""
 
-#: Merge.rc:2739
+#: Merge.rc:2568
 #, c-format
 msgid "Save the left file"
 msgstr "Bal oldali fájl mentése"
 
-#: Merge.rc:2740
+#: Merge.rc:2569
 #, c-format
 msgid "Save the right file"
 msgstr "Jobb oldali fájl mentése"
 
-#: Merge.rc:2741
+#: Merge.rc:2570
 #, c-format
 msgid "Save the left file with name..."
 msgstr "Bal oldali fájl mentése mint ..."
 
-#: Merge.rc:2742
+#: Merge.rc:2571
 #, c-format
 msgid "Save the right file with name..."
 msgstr "Jobb oldali fájl mentése mint ..."
 
-#: Merge.rc:2743
+#: Merge.rc:2572
 #, c-format
 msgid "Change left file/dir read-only status"
 msgstr "Bal oldali fájl/könyvtár csak olvasható állapotának változtatása"
 
-#: Merge.rc:2744
+#: Merge.rc:2573
 #, c-format
 msgid "Change right file/dir read-only status"
 msgstr "Jobb oldali fájl/könyvtár csak olvasható állapotának változtatása"
 
-#: Merge.rc:2745
+#: Merge.rc:2574
 #, c-format
 msgid "Convert EOL to DOS mode"
 msgstr "Újsor-karakterek kovertálása: DOS mode"
 
-#: Merge.rc:2746
+#: Merge.rc:2575
 #, c-format
 msgid "Convert EOL to UNIX mode"
 msgstr "Újsor-karakterek kovertálása: UNIX mode"
 
-#: Merge.rc:2747
+#: Merge.rc:2576
 #, c-format
 msgid "Convert EOL to MAC mode"
 msgstr "Újsor-karakterek kovertálása: MAC mode"
 
-#: Merge.rc:2748
+#: Merge.rc:2577
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "Váltás olvasztó és szerkesztõ mód között"
 
-#: Merge.rc:2749
+#: Merge.rc:2578
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
 "File encoding properties"
 msgstr ""
 
-#: Merge.rc:2750
+#: Merge.rc:2579
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr ""
 
-#: Merge.rc:2756
+#: Merge.rc:2585
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
 "Difference in the Current Line"
 msgstr ""
 
-#: Merge.rc:2757
+#: Merge.rc:2586
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5866,7 +5236,7 @@ msgstr ""
 "Ugrás sorra vagy eltérésre\n"
 "Ugrás (Ctrl+G)"
 
-#: Merge.rc:2758
+#: Merge.rc:2587
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5875,7 +5245,7 @@ msgstr ""
 "A program beállítása\n"
 "Beállítások"
 
-#: Merge.rc:2759
+#: Merge.rc:2588
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5884,79 +5254,79 @@ msgstr ""
 "Kijezõ frissítése\n"
 "Frissítés (F5)"
 
-#: Merge.rc:2760
+#: Merge.rc:2589
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "A kijelölt sorok vágólapra másolása a sorok elejéhez a sorszámokat hozzáfûzve"
 
-#: Merge.rc:2761
+#: Merge.rc:2590
 #, c-format
 msgid "Refresh selected items"
 msgstr ""
 
-#: Merge.rc:2762
+#: Merge.rc:2591
 #, c-format
 msgid "Toggle bookmark"
 msgstr ""
 
-#: Merge.rc:2763
+#: Merge.rc:2592
 #, c-format
 msgid "Go to next bookmark"
 msgstr ""
 
-#: Merge.rc:2764
+#: Merge.rc:2593
 #, c-format
 msgid "Go to previous bookmark"
 msgstr ""
 
-#: Merge.rc:2765
+#: Merge.rc:2594
 #, c-format
 msgid "Clear all bookmarks"
 msgstr ""
 
-#: Merge.rc:2771
+#: Merge.rc:2600
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
 "Show Identical Items"
 msgstr ""
 
-#: Merge.rc:2772
+#: Merge.rc:2601
 #, c-format
 msgid ""
 "Displays items that have differences\n"
 "Show Different Items"
 msgstr ""
 
-#: Merge.rc:2773
+#: Merge.rc:2602
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
 "Show Left Unique Items"
 msgstr ""
 
-#: Merge.rc:2774
+#: Merge.rc:2603
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
 "Show Right Unique Items"
 msgstr ""
 
-#: Merge.rc:2775
+#: Merge.rc:2604
 #, c-format
 msgid ""
 "Displays binary files\n"
 "Show Binary Files"
 msgstr ""
 
-#: Merge.rc:2776
+#: Merge.rc:2605
 #, c-format
 msgid ""
 "Displays skipped items\n"
 "Show Skipped Items"
 msgstr ""
 
-#: Merge.rc:2782
+#: Merge.rc:2611
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5965,7 +5335,7 @@ msgstr ""
 "Válaszd ki a kívánt betûtípust\n"
 "Nézet betûtípusának választása"
 
-#: Merge.rc:2783
+#: Merge.rc:2612
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5974,27 +5344,27 @@ msgstr ""
 "Visszatérés az eredeti rendszer-betûtípushoz megjelenítéshez\n"
 "Alapért. betûtípus"
 
-#: Merge.rc:2784
+#: Merge.rc:2613
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "Szóköz karakterek mutatása"
 
-#: Merge.rc:2785
+#: Merge.rc:2614
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "Eltérés panel mutatása/rejtése"
 
-#: Merge.rc:2786
+#: Merge.rc:2615
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "A Pozíció panel vizuális képet ad az összehasonlított fájlokról"
 
-#: Merge.rc:2787
+#: Merge.rc:2616
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr ""
 
-#: Merge.rc:2788
+#: Merge.rc:2617
 #, c-format
 msgid ""
 "Select the current user interfacce language\n"
@@ -6003,7 +5373,7 @@ msgstr ""
 "Add meg a használni kívánt nyelvet\n"
 "Nyelv"
 
-#: Merge.rc:2789
+#: Merge.rc:2618
 #, c-format
 msgid ""
 "Shows differences inside lines with different color\n"
@@ -6012,43 +5382,43 @@ msgstr ""
 "A sorok közötti különbségek kijelzés más-más színnel\n"
 "Sorok eltérésének mutatása"
 
-#: Merge.rc:2790
+#: Merge.rc:2619
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr ""
 
-#: Merge.rc:2791
+#: Merge.rc:2620
 #, c-format
 msgid ""
 "Shows line numbers\n"
 "Show Line Numbers"
 msgstr ""
 
-#: Merge.rc:2792
+#: Merge.rc:2621
 #, c-format
 msgid ""
 "Enable word wrap\n"
 "Wrap Lines"
 msgstr ""
 
-#: Merge.rc:2793
+#: Merge.rc:2622
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
 "Show Selection Margins"
 msgstr ""
 
-#: Merge.rc:2794
+#: Merge.rc:2623
 #, c-format
 msgid "Increase text size"
 msgstr ""
 
-#: Merge.rc:2795
+#: Merge.rc:2624
 #, c-format
 msgid "Decrease text size"
 msgstr ""
 
-#: Merge.rc:2801
+#: Merge.rc:2630
 #, c-format
 msgid ""
 "Scroll to the previous difference\n"
@@ -6057,7 +5427,7 @@ msgstr ""
 "Görgetés az elõzõ eltéréshez\n"
 "Elõzõ Eltérés (Alt+Up)"
 
-#: Merge.rc:2802
+#: Merge.rc:2631
 #, c-format
 msgid ""
 "Scroll to the next difference\n"
@@ -6066,7 +5436,7 @@ msgstr ""
 "Görgetés a következõ eltéréshez\n"
 "Követk Eltérés (Alt+Down)"
 
-#: Merge.rc:2803
+#: Merge.rc:2632
 #, c-format
 msgid ""
 "Scroll to the first difference\n"
@@ -6075,7 +5445,7 @@ msgstr ""
 "Görgetés az elsõ eltéréshez\n"
 "Elsõ Eltérés (Alt+Home)"
 
-#: Merge.rc:2804
+#: Merge.rc:2633
 #, c-format
 msgid ""
 "Scroll to the current difference\n"
@@ -6084,7 +5454,7 @@ msgstr ""
 "Görgetés az aktuális eléréshez\n"
 "Aktuális Eltérés (Alt+Enter)"
 
-#: Merge.rc:2805
+#: Merge.rc:2634
 #, c-format
 msgid ""
 "Scroll to the last difference\n"
@@ -6093,7 +5463,7 @@ msgstr ""
 "Görgetés az utolsó eltéréshez\n"
 "Utolsó Eltérés (Alt+End)"
 
-#: Merge.rc:2806
+#: Merge.rc:2635
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -6102,7 +5472,7 @@ msgstr ""
 "A kijelölt szöveg másolása a jobb oldali fájlba\n"
 "Másolás jobbra (Alt+Right)"
 
-#: Merge.rc:2807
+#: Merge.rc:2636
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -6111,7 +5481,7 @@ msgstr ""
 "A kijelölt szöveg másolása a bal oldali fájlba\n"
 "Másolás balra (Alt+Left)"
 
-#: Merge.rc:2808
+#: Merge.rc:2637
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -6120,7 +5490,7 @@ msgstr ""
 "Az eltérés másolása jobbra és ugrás tovább\n"
 "Másolás jobbra és Ugrás (Ctrl+Alt+Right)"
 
-#: Merge.rc:2809
+#: Merge.rc:2638
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -6129,7 +5499,7 @@ msgstr ""
 "Az eltérés másolása balra és ugrás tovább\n"
 "Másolás balra és Ugrás (Ctrl+Alt+Left)"
 
-#: Merge.rc:2810
+#: Merge.rc:2639
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -6138,7 +5508,7 @@ msgstr ""
 "Az összes eltérés másolása jobbra\n"
 "Mind jobbra"
 
-#: Merge.rc:2811
+#: Merge.rc:2640
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -6147,72 +5517,72 @@ msgstr ""
 "Az összes eltérés másolása jobbra\n"
 "Mind balra"
 
-#: Merge.rc:2812
+#: Merge.rc:2641
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "A kijelölt elemek törlése mindkét könyvtárból"
 
-#: Merge.rc:2813
+#: Merge.rc:2642
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "Kijelölt elem összehasonlítása (elõször az elsõé, ha több elem is ki van jelölve)"
 
-#: Merge.rc:2819
+#: Merge.rc:2648
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "Könyvtár összehasonlítási oszlopok kijelölése és újrarendezése"
 
-#: Merge.rc:2820
+#: Merge.rc:2649
 #, c-format
 msgid "Generate a patch-file"
 msgstr "Patch-file generálása"
 
-#: Merge.rc:2821
+#: Merge.rc:2650
 #, c-format
 msgid "Select and modify filters"
 msgstr "Szûrõk kijelölése és módosítása"
 
-#: Merge.rc:2822
+#: Merge.rc:2651
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "Jelentés készítése az összehasonlítási eredményekbõl"
 
-#: Merge.rc:2828
+#: Merge.rc:2657
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "A felhasználó adja meg a kicsomagolót (nincs kicsomagolás könyvtárak összehasonlításakor)"
 
-#: Merge.rc:2829
+#: Merge.rc:2658
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "A választott kicsomagoló lesz használva mindkét fájlnál (az egyik fájlnak csak a kiterjesztése lényeges)"
 
-#: Merge.rc:2830
+#: Merge.rc:2659
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "Válassz kicsomagolót a fájl szerkesztéséhez"
 
-#: Merge.rc:2831
+#: Merge.rc:2660
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "Nincs elõvizsgálat (normális)"
 
-#: Merge.rc:2832
+#: Merge.rc:2661
 #, c-format
 msgid "Suggested plugins"
 msgstr "Javasolt bõvítmények"
 
-#: Merge.rc:2833
+#: Merge.rc:2662
 #, c-format
 msgid "Other plugins"
 msgstr "Egyéb bõvítmények"
 
-#: Merge.rc:2834
+#: Merge.rc:2663
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "Az összes bõvítmény betöltése újra (fejlesztõknek)"
 
-#: Merge.rc:2840
+#: Merge.rc:2669
 #, c-format
 msgid ""
 "Activates next file visible\n"
@@ -6221,12 +5591,12 @@ msgstr ""
 "Következõ látható fájl aktiválása\n"
 "Következõ fájl aktiválása"
 
-#: Merge.rc:2841
+#: Merge.rc:2670
 #, c-format
 msgid "Closes all open windows"
 msgstr "Minden megnyitott ablak bezárása"
 
-#: Merge.rc:2847
+#: Merge.rc:2676
 #, c-format
 msgid ""
 "Displays the WinMerge User's Guide\n"
@@ -6235,301 +5605,301 @@ msgstr ""
 "A WinMerge Felhasználói Kézikönyv megjelenítése\n"
 "Súgó"
 
-#: Merge.rc:2848
+#: Merge.rc:2677
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "A jelenlegi WinMerge verziószámának és egyéb adatainak fájlba mentése"
 
-#: Merge.rc:2849
+#: Merge.rc:2678
 #, c-format
 msgid "Display the GNU public license"
 msgstr "A GNU public license megjelenítése"
 
-#: Merge.rc:2850
+#: Merge.rc:2679
 #, c-format
 msgid "Private Build: %1"
 msgstr ""
 
-#: Merge.rc:2851
+#: Merge.rc:2680
 #, c-format
 msgid ""
 "Opens WinMerge Help Index\n"
 "Help Index"
 msgstr ""
 
-#: Merge.rc:2852
+#: Merge.rc:2681
 #, c-format
 msgid ""
 "Opens WinMerge Help Search\n"
 "Help Search"
 msgstr ""
 
-#: Merge.rc:2853
+#: Merge.rc:2682
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
 msgstr ""
 
-#: Merge.rc:2854
+#: Merge.rc:2683
 #, c-format
 msgid "Opens the translations website\nTranslations"
 msgstr ""
 
-#: Merge.rc:2860
+#: Merge.rc:2689
 #, c-format
 msgid "Plugin Settings"
 msgstr "Bõvítmény beállítások"
 
-#: Merge.rc:2861
+#: Merge.rc:2690
 #, c-format
 msgid "No prediffer"
 msgstr "Nincs elõvizsgálat"
 
-#: Merge.rc:2862
+#: Merge.rc:2691
 #, c-format
 msgid "Prediff if possible"
 msgstr "Elõvizsgálat ha lehetséges"
 
-#: Merge.rc:2864
+#: Merge.rc:2693
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "A WSH nem található - Az .sct szkriptek le lesznek tiltva"
 
-#: Merge.rc:2865
+#: Merge.rc:2694
 #, c-format
 msgid "<None>"
 msgstr "<Nincs>"
 
-#: Merge.rc:2866
+#: Merge.rc:2695
 #, c-format
 msgid "<Automatic>"
 msgstr "<Automatikus>"
 
-#: Merge.rc:2872
+#: Merge.rc:2701
 #, c-format
 msgid "Open the file with registered application"
 msgstr "A fájl megnyitása a társított alkalmazással"
 
-#: Merge.rc:2873
+#: Merge.rc:2702
 #, c-format
 msgid "Open the file with external editor"
 msgstr "A fájl megnyitása a külsõ szerkesztõvel"
 
-#: Merge.rc:2874
+#: Merge.rc:2703
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "A fájl megnyitása a kiválasztott programmal"
 
-#: Merge.rc:2880
+#: Merge.rc:2709
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "Ne mutassa a mozgatott blokkokat"
 
-#: Merge.rc:2881
+#: Merge.rc:2710
 #, c-format
 msgid "Display all moved blacks"
 msgstr "Mutasson minden mozgatott blokkot"
 
-#: Merge.rc:2882
+#: Merge.rc:2711
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "Mutassa a kijelölt blokkokat a jelenlegi eltéréstõl kezdve"
 
-#: Merge.rc:2883
+#: Merge.rc:2712
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "Ugrás a kurzor alatt eltérésre"
 
-#: Merge.rc:2884
+#: Merge.rc:2713
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "&Ugrás a(z) %1. számú eltérésre ennyibõl: %2"
 
-#: Merge.rc:2885
+#: Merge.rc:2714
 #, c-format
 msgid "G&oto Line %1"
 msgstr "&Ugrás a(z) %1. sorra"
 
-#: Merge.rc:2891
+#: Merge.rc:2720
 #, c-format
 msgid "Disabled"
 msgstr ""
 
-#: Merge.rc:2892
+#: Merge.rc:2721
 #, c-format
 msgid "From file system"
 msgstr ""
 
-#: Merge.rc:2893
+#: Merge.rc:2722
 #, c-format
 msgid "From MRU list"
 msgstr ""
 
-#: Merge.rc:2900
+#: Merge.rc:2729
 #, c-format
 msgid "ASP"
 msgstr ""
 
-#: Merge.rc:2901
+#: Merge.rc:2730
 #, c-format
 msgid "Basic"
 msgstr ""
 
-#: Merge.rc:2902
+#: Merge.rc:2731
 #, c-format
 msgid "Batch"
 msgstr ""
 
-#: Merge.rc:2903
+#: Merge.rc:2732
 #, c-format
 msgid "C/C++"
 msgstr ""
 
-#: Merge.rc:2904
+#: Merge.rc:2733
 #, c-format
 msgid "C#"
 msgstr ""
 
-#: Merge.rc:2905
+#: Merge.rc:2734
 #, c-format
 msgid "CSS"
 msgstr ""
 
-#: Merge.rc:2906
+#: Merge.rc:2735
 #, c-format
 msgid "DCL"
 msgstr ""
 
-#: Merge.rc:2907
+#: Merge.rc:2736
 #, c-format
 msgid "Fortran"
 msgstr ""
 
-#: Merge.rc:2908
+#: Merge.rc:2737
 #, c-format
 msgid "HTML"
 msgstr ""
 
-#: Merge.rc:2909
+#: Merge.rc:2738
 #, c-format
 msgid "INI"
 msgstr ""
 
-#: Merge.rc:2910
+#: Merge.rc:2739
 #, c-format
 msgid "InnoSetup"
 msgstr ""
 
-#: Merge.rc:2911
+#: Merge.rc:2740
 #, c-format
 msgid "InstallShield"
 msgstr ""
 
-#: Merge.rc:2912
+#: Merge.rc:2741
 #, c-format
 msgid "Java"
 msgstr ""
 
-#: Merge.rc:2913
+#: Merge.rc:2742
 #, c-format
 msgid "AutoLISP"
 msgstr ""
 
-#: Merge.rc:2914
+#: Merge.rc:2743
 #, c-format
 msgid "NSIS"
 msgstr ""
 
-#: Merge.rc:2915
+#: Merge.rc:2744
 #, c-format
 msgid "Pascal"
 msgstr ""
 
-#: Merge.rc:2916
+#: Merge.rc:2745
 #, c-format
 msgid "Perl"
 msgstr ""
 
-#: Merge.rc:2917
+#: Merge.rc:2746
 #, c-format
 msgid "PHP"
 msgstr ""
 
-#: Merge.rc:2918
+#: Merge.rc:2747
 #, c-format
 msgid "Portable Object"
 msgstr ""
 
-#: Merge.rc:2919
+#: Merge.rc:2748
 #, c-format
 msgid "PowerShell"
 msgstr ""
 
-#: Merge.rc:2920
+#: Merge.rc:2749
 #, c-format
 msgid "Python"
 msgstr ""
 
-#: Merge.rc:2921
+#: Merge.rc:2750
 #, c-format
 msgid "REXX"
 msgstr ""
 
-#: Merge.rc:2922
+#: Merge.rc:2751
 #, c-format
 msgid "Resources"
 msgstr ""
 
-#: Merge.rc:2923
+#: Merge.rc:2752
 #, c-format
 msgid "Ruby"
 msgstr ""
 
-#: Merge.rc:2924
+#: Merge.rc:2753
 #, c-format
 msgid "SGML"
 msgstr ""
 
-#: Merge.rc:2925
+#: Merge.rc:2754
 #, c-format
 msgid "Shell"
 msgstr ""
 
-#: Merge.rc:2926
+#: Merge.rc:2755
 #, c-format
 msgid "SIOD"
 msgstr ""
 
-#: Merge.rc:2927
+#: Merge.rc:2756
 #, c-format
 msgid "SQL"
 msgstr ""
 
-#: Merge.rc:2928
+#: Merge.rc:2757
 #, c-format
 msgid "TCL"
 msgstr ""
 
-#: Merge.rc:2929
+#: Merge.rc:2758
 #, c-format
 msgid "TEX"
 msgstr ""
 
-#: Merge.rc:2930
+#: Merge.rc:2759
 #, c-format
 msgid "XML"
 msgstr ""
 
-#: Merge.rc:2935
+#: Merge.rc:2764
 #, c-format
 msgid "Hide the toolbar"
 msgstr ""
 
-#: Merge.rc:2936
+#: Merge.rc:2765
 #, c-format
 msgid "Show small toolbar"
 msgstr ""
 
-#: Merge.rc:2937
+#: Merge.rc:2766
 #, c-format
 msgid "Show big toolbar"
 msgstr ""
