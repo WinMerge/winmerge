@@ -7,8 +7,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h" // Required by paths.cpp :(
-//#include "Windows.h"
+#include "Windows.h"
 #include "UnicodeString.h"
 #include "TempFile.h"
 #include "paths.h"
@@ -40,12 +39,12 @@ String TempFile::Create(LPCTSTR prefix)
 	String temp = env_GetTempPath(NULL);
 	if (temp.empty())
 	{
-		return _T("");
+		return L"";
 	}
 
 	String pref = prefix;
 	if (pref.empty())
-		pref = _T("wmtmp");
+		pref = L"wmtmp";
 
 	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
 	if (!temp.empty())
@@ -67,12 +66,12 @@ String TempFile::CreateFromFile(LPCTSTR filepath, LPCTSTR prefix)
 	String temp = env_GetTempPath(NULL);
 	if (temp.empty())
 	{
-		return _T("");
+		return L"";
 	}
 
 	String pref = prefix;
 	if (pref.empty())
-		pref = _T("wmtmp");
+		pref = L"wmtmp";
 
 	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
 	if (!temp.empty())
@@ -106,6 +105,6 @@ bool TempFile::Delete()
 	if (!m_path.empty())
 		success = DeleteFile(m_path.c_str());
 	if (success)
-		m_path = _T("");
+		m_path = L"";
 	return !!success;
 }

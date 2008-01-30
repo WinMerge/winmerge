@@ -940,6 +940,7 @@ SOURCE=.\SyntaxColors.cpp
 # Begin Source File
 
 SOURCE=.\TempFile.cpp
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
