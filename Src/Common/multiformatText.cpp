@@ -607,6 +607,7 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 	int codeOldBOM = ufile.GetUnicoding();
 	if (codeOldBOM == ucr::UCS2LE)
 		return TRUE; // unicode UCS-2LE, nothing to do
+	bool bBom = ufile.HasBom();
 	// Finished with examing file contents
 	ufile.Close();
 
@@ -629,7 +630,7 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 	switch (codeOldBOM)
 	{
 	case ucr::UTF8:
-		nSizeOldBOM = 3;
+		nSizeOldBOM = bBom ? 3 : 0;
 		nchars = TransformUtf8ToUcs2(pszBuf + nSizeOldBOM, nBufSize - nSizeOldBOM, NULL, 0);
 		break;
 	case ucr::UCS2BE:
