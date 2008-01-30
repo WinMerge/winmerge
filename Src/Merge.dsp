@@ -2629,11 +2629,7 @@ SOURCE=.\CHANGELO
 # End Source File
 # Begin Source File
 
-SOURCE=.\Changes.txt
-# End Source File
-# Begin Source File
-
-SOURCE=.\ReadMe.txt
+SOURCE=..\Docs\Users\ChangeLog.txt
 # End Source File
 # End Group
 # Begin Group "Compare Engines"
