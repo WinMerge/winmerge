@@ -168,15 +168,10 @@ int ByteCompare::CompareFiles(FileLocation *location, BOOL guessEncoding)
 					DiffFileData::GuessEncoding_from_buffer(location[i], buff[i], rtn);
 				if (m_inf[0].desc == m_inf[1].desc)
 				{
-					bfstart[1] = bfstart[0];
-					bfend[1] = bfend[0];
-					eof[1] = eof[0];
-					location[1] = location[0];
-					memcpy(&buff[1][bfend[1] - rtn], &buff[0][bfend[0] - rtn], rtn);
-					break;
+					location[1].encoding = location[0].encoding;
+					return diffcode;
 				}
 			}
-			
 		}
 		guessEncoding = FALSE;
 		// where to start comparing right now
