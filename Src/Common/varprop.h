@@ -29,8 +29,6 @@ typedef enum
 /**
  * @brief A variant class.
  * This class can hold several base types. Type is set when the value is set.
- * @note Strings are TCHARs. CString (with MFC dependency) is not good for this
- * kind of class. And TCHARs are more efficient anyway.
  * @todo Add function to get/set string values as UTF-8 string - to avoid
  *  conversions in call sites.
  */
@@ -39,8 +37,6 @@ class VariantValue
 public:
 	VariantValue();
 	VariantValue(const VariantValue &value);
-	~VariantValue();
-
 	VariantValue& operator=(const VariantValue& value);
 
 	bool IsBool() const { return m_vtype == VT_BOOL; }
@@ -53,7 +49,8 @@ public:
 	void SetBool(bool v);
 	void SetInt(int v);
 	void SetFloat(double v);
-	void SetString(const TCHAR *sz);
+	void SetString(LPCTSTR sz);
+	void SetString(String sz);
 	void SetTime(time_t v);
 
 	void Clear();
@@ -61,7 +58,7 @@ public:
 	bool GetBool() const;
 	int GetInt() const;
 	double GetFloat() const;
-	TCHAR * GetString() const;
+	String GetString() const;
 	time_t GetTime() const;
 
 private:
@@ -69,7 +66,7 @@ private:
 	bool m_bvalue;    /**< Boolean value of the variant. */
 	int m_ivalue;     /**< Integer value of the variant. */
 	double m_fvalue;  /**< Floating point value of the variant. */
-	TCHAR *m_svalue;  /**< String value of the variant. */
+	String m_svalue;  /**< String value of the variant. */
 	time_t m_tvalue;  /**< Time value of the variant. */
 };
 

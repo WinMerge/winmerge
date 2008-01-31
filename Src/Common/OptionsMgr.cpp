@@ -9,7 +9,7 @@
 
 
 /* The MIT License
-Copyright (c) 2004-2007 Kimmo Varis
+Copyright (c) 2004-2008 Kimmo Varis
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files
 (the "Software"), to deal in the Software without restriction, including
@@ -87,7 +87,6 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 
 	// Dont' check type here since we are initing it!
 	varprop::VT_TYPE inType = defaultValue.GetType();
-	TCHAR *tmp = NULL;
 
 	switch (inType)
 	{
@@ -107,14 +106,8 @@ int COption::Init(LPCTSTR name, varprop::VariantValue defaultValue)
 		m_valueDef.SetFloat(defaultValue.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		tmp = defaultValue.GetString();
-		m_value.SetString(tmp);
-		m_valueDef.SetString(tmp);
-		if (tmp != NULL)
-		{
-			free(tmp);
-			tmp = NULL;
-		}
+		m_value.SetString(defaultValue.GetString());
+		m_valueDef.SetString(defaultValue.GetString());
 		break;
 	case varprop::VT_TIME:
 		m_value.SetTime(defaultValue.GetTime());
@@ -211,15 +204,7 @@ bool COption::ConvertInteger(varprop::VariantValue & value, varprop::VT_TYPE nTy
   */
 bool COption::ConvertString(varprop::VariantValue & value, varprop::VT_TYPE nType)
 {
-	String svalue;
-	TCHAR * tmpVal = value.GetString();
-	if (tmpVal != NULL)
-	{
-		svalue = tmpVal;
-		free(tmpVal);
-		tmpVal = NULL;
-	}
-
+	String svalue = value.GetString();
 	switch(nType)
 	{
 	case varprop::VT_INT:
@@ -296,7 +281,6 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 		return OPT_WRONG_TYPE;
 	}
 
-	TCHAR * tmp = NULL;
 	switch (inType)
 	{
 	case varprop::VT_NULL:
@@ -312,13 +296,7 @@ int COption::Set(varprop::VariantValue value, bool allowConversion)
 		m_value.SetFloat(value.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		tmp = value.GetString();
-		m_value.SetString(tmp);
-		if (tmp != NULL)
-		{
-			free(tmp);
-			tmp = NULL;
-		}
+		m_value.SetString(value.GetString());
 		break;
 	case varprop::VT_TIME:
 		m_value.SetTime(value.GetTime());
@@ -349,7 +327,6 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 		return OPT_WRONG_TYPE;
 	}
 
-	TCHAR * tmp = NULL;
 	switch (inType)
 	{
 	case varprop::VT_NULL:
@@ -365,13 +342,7 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
 		m_valueDef.SetFloat(defaultValue.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		tmp = defaultValue.GetString();
-		m_valueDef.SetString(tmp);
-		if (tmp != NULL)
-		{
-			free(tmp);
-			tmp = NULL;
-		}
+		m_valueDef.SetString(defaultValue.GetString());
 		break;
 	case varprop::VT_TIME:
 		m_valueDef.SetTime(defaultValue.GetTime());
@@ -387,7 +358,6 @@ int COption::SetDefault(varprop::VariantValue defaultValue)
  */
 void COption::Reset()
 {
-	TCHAR *str = NULL;
 	switch (m_value.GetType())
 	{
 	case varprop::VT_BOOL:
@@ -400,9 +370,7 @@ void COption::Reset()
 		m_value.SetFloat(m_valueDef.GetFloat());
 		break;
 	case varprop::VT_STRING:
-		str = m_valueDef.GetString();
-		m_value.SetString(str);
-		free(str);
+		m_value.SetString(m_valueDef.GetString());
 		break;
 	case varprop::VT_TIME:
 		m_value.SetTime(m_valueDef.GetTime());
@@ -463,15 +431,7 @@ varprop::VariantValue COptionsMgr::Get(LPCTSTR name) const
 String COptionsMgr::GetString(LPCTSTR name) const
 {
 	varprop::VariantValue val = Get(name);
-	TCHAR * tmp = val.GetString();
-	String retval;
-	if (tmp != NULL)
-	{
-		retval = tmp;
-		free(tmp);
-		tmp = NULL;
-	}
-	return retval;
+	return val.GetString();
 }
 
 /**
@@ -599,17 +559,7 @@ int COptionsMgr::GetDefault(LPCTSTR name, String & value) const
 	{
 		varprop::VariantValue val = found->second.GetDefault();
 		if (val.IsString())
-		{
-			String tmpval;
-			TCHAR *tmpstr = val.GetString();
-			if (tmpstr != NULL)
-			{
-				tmpval = tmpstr;
-				free(tmpstr);
-				tmpstr = NULL;
-			}
-			value = tmpval;
-		}
+			value = val.GetString();
 		else
 			retVal = OPT_WRONG_TYPE;
 	}
@@ -705,13 +655,7 @@ int COptionsMgr::ExportOptions(LPCTSTR filename)
 		}
 		else if (value.GetType() == varprop::VT_STRING)
 		{
-			TCHAR * tmp = value.GetString();
-			if (tmp != NULL)
-			{
-				strVal = tmp;
-				free(tmp);
-				tmp = NULL;
-			}
+			strVal = value.GetString();
 		}
 
 		BOOL bRet = WritePrivateProfileString(_T("WinMerge"), name.c_str(),
@@ -907,13 +851,11 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
 
 	if (valType == varprop::VT_STRING)
 	{
-		TCHAR *strVal = value.GetString();
-		if (strVal != NULL)
+		String strVal = value.GetString();
+		if (strVal.length() > 0)
 		{
 			retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
-					(LPBYTE)strVal, (_tcslen(strVal) + 1) * sizeof(TCHAR));
-			free(strVal);
-			strVal = NULL;
+					(LPBYTE)strVal.c_str(), strVal.length() * sizeof(TCHAR));
 		}
 		else
 		{

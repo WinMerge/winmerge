@@ -23,7 +23,7 @@ namespace varprop
  */
 VariantValue::VariantValue()
 : m_vtype(VT_NULL), m_bvalue(false), m_ivalue(0), m_fvalue(0),
-  m_tvalue(0), m_svalue(NULL)
+  m_tvalue(0)
 {
 }
 
@@ -37,27 +37,8 @@ VariantValue::VariantValue(const VariantValue &value)
 	m_bvalue = value.m_bvalue;
 	m_ivalue = value.m_ivalue;
 	m_fvalue = value.m_fvalue;
-	if (value.m_svalue != NULL)
-	{
-		m_svalue = _tcsdup(value.m_svalue);
-	}
-	else
-		m_svalue = NULL;
+	m_svalue = value.m_svalue;
 	m_tvalue = value.m_tvalue;
-}
-
-/**
- * @brief Destructor.
- * Clean up possible memory allocations for values.
- */
-VariantValue::~VariantValue()
-{
-	if (m_svalue != NULL)
-	{
-		ASSERT(_CrtIsValidHeapPointer(m_svalue));
-		free(m_svalue);
-		m_svalue = NULL;
-	}
 }
 
 /**
@@ -73,13 +54,7 @@ VariantValue& VariantValue::operator=(const VariantValue& value)
 		m_bvalue = value.m_bvalue;
 		m_ivalue = value.m_ivalue;
 		m_fvalue = value.m_fvalue;
-		free(m_svalue);
-		if (value.m_svalue != NULL)
-		{
-			m_svalue = _tcsdup(value.m_svalue);
-		}
-		else
-			m_svalue = NULL;
+		m_svalue = value.m_svalue;
 		m_tvalue = value.m_tvalue;
 	}
 	return *this;
@@ -122,12 +97,22 @@ void VariantValue::SetFloat(double v)
  * @brief Set string value.
  * @param [in] sz String value to set. Can be a NULL.
  */
-void VariantValue::SetString(const TCHAR *sz)
+void VariantValue::SetString(LPCTSTR sz)
 {
 	Clear();
 	m_vtype = VT_STRING;
 	if (sz != NULL)
-		m_svalue = _tcsdup(sz);
+		m_svalue = sz;
+}
+
+/**
+ * @brief Set string value.
+ * @param [in] sz String value to set.
+ */
+void VariantValue::SetString(String sz)
+{
+	m_svalue = sz;
+	m_vtype = VT_STRING;
 }
 
 /**
@@ -150,11 +135,7 @@ void VariantValue::Clear()
 	m_bvalue = false;
 	m_ivalue = 0;
 	m_fvalue = 0;
-	if (m_svalue != NULL)
-	{
-		free(m_svalue);
-		m_svalue = NULL;
-	}
+	m_svalue.empty();
 	m_tvalue = 0;
 }
 
@@ -191,15 +172,11 @@ double VariantValue::GetFloat() const
 /**
  * @brief Get string value.
  * @return String value.
- * @note Returned string is a new copy which must be freed with free() after use.
  */
-TCHAR * VariantValue::GetString() const
+String VariantValue::GetString() const
 {
 	ASSERT(m_vtype == VT_STRING);
-	if (m_svalue != NULL)
-		return _tcsdup(m_svalue);
-	else
-		return NULL;
+	return m_svalue;
 }
 
 /**
