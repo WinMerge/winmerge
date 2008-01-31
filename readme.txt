@@ -1,18 +1,19 @@
 WinMerge\readme.txt
 
 Source code for the WinMerge program, its plugins, filters, setup program,
-and various utilities are all kept in the WinMerge module directory, in 
-various subdirectories.
+and various utilities are all kept in various subfolders listet below.
 
-Generally, look for a file "readme.txt" to explain the purpose of a directory,
-and a file "Changes.txt" to hold the historical changelog; sometimes the
-"Changes.txt" file is located at a higher level -- eg, the WinMerge\Src\Changes.txt
-includes all changes to all subdirectories located under WinMerge\Src.
+Changelog file is in Docs/Users/ChangeLog.txt and it logs user-visible
+or otherwise significant changes. Subversion commit messages provide a
+detailed changelog for all the changes. Commit messages also have a
+SourceForge.net tracker number mentioned when the commit is related to
+one of the tracker items.
 
-Subdirectories include:
+Subfolders include:
 
  - Docs
-    both user and developer documentation, in different subdirectories
+    Both user and developer documentation, in different subdirectories.
+    Can be browsed by opening index.html in Docs folder.
 
  - Src
     source code to the WinMerge program itself
@@ -28,6 +29,12 @@ Subdirectories include:
     Also this directory is required to compile WinMerge(U).exe. There
     is also standalone installer for Merge7z dlls.
 
+ - Externals
+    This folder contains several libraries whose sources come from
+    outside WinMerge project. They are stored here for convenience for
+    building and possible needed small changes for WinMerge. Libraries
+    include XML parser and regular expression parser.
+
  - Installer
     Installer for WinMerge
 
@@ -42,9 +49,10 @@ Subdirectories include:
     A suite of test diff files and a script to run them and report the results
 
  - Build
-    This (non-cvs) directory is where WinMerge(U).exe and plugin binaries are
-    compiled.
+    This folder gets created by compiler when WinMerge is compiled. It
+    contains compiled executables, libraries, user manual etc.
 
  - BuildTmp
-    This (non-cvs) directory is for obj and such-like temporary compiler files
-    used in compiling binaries.
+    This folder gets created by compiler when WinMerge is compiled. It
+    contains temporary files created during the compilation and can be safely
+    removed.
