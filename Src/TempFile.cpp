@@ -39,12 +39,12 @@ String TempFile::Create(LPCTSTR prefix)
 	String temp = env_GetTempPath(NULL);
 	if (temp.empty())
 	{
-		return L"";
+		return TEXT("");
 	}
 
 	String pref = prefix;
 	if (pref.empty())
-		pref = L"wmtmp";
+		pref = TEXT("wmtmp");
 
 	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
 	if (!temp.empty())
@@ -66,12 +66,12 @@ String TempFile::CreateFromFile(LPCTSTR filepath, LPCTSTR prefix)
 	String temp = env_GetTempPath(NULL);
 	if (temp.empty())
 	{
-		return L"";
+		return TEXT("");
 	}
 
 	String pref = prefix;
 	if (pref.empty())
-		pref = L"wmtmp";
+		pref = TEXT("wmtmp");
 
 	temp = env_GetTempFileName(temp.c_str(), pref.c_str(), NULL);
 	if (!temp.empty())
@@ -105,6 +105,6 @@ bool TempFile::Delete()
 	if (!m_path.empty())
 		success = DeleteFile(m_path.c_str());
 	if (success)
-		m_path = L"";
+		m_path = TEXT("");
 	return !!success;
 }
