@@ -120,7 +120,7 @@ public :
     virtual BOOL QueryEditable ();
     virtual void UpdateView (CCrystalTextView * pSource, CUpdateContext * pContext, DWORD dwFlags, int nLineIndex = -1);
 
-    BOOL ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags);
+    BOOL ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags);
 
     virtual void OnEditOperation (int nAction, LPCTSTR pszText);
 

@@ -675,29 +675,19 @@ GetLineActualLength (int nLineIndex)
   int nLength = GetLineLength (nLineIndex);
   if (nLength > 0)
     {
-      LPCTSTR pszLine = GetLineChars (nLineIndex);
-      LPTSTR pszChars = new TCHAR[nLength + 1];
-      ASSERT( pszChars );
-      if (!pszChars)
-        return 0;		// TODO: what to do if alloc fails...???
-      memcpy (pszChars, pszLine, sizeof (TCHAR) * nLength);
-      pszChars[nLength] = 0;
-      LPTSTR pszCurrent = pszChars;
-
+      LPCTSTR pszChars = GetLineChars (nLineIndex);
       const int nTabSize = GetTabSize ();
-      int ind = 0;
-
-      while (ind < nLength)
+      int i;
+      for (i = 0; i < nLength; i++)
         {
-          if (pszCurrent[ind] == _T('\t'))
+          TCHAR c = pszChars[i];
+          if (c == _T('\t'))
             nActualLength += (nTabSize - nActualLength % nTabSize);
+          else if (c >= _T('\x00') && c <= _T('\x1F') && c != _T('\r') && c != _T('\n'))
+            nActualLength += 3;
           else
             nActualLength++;
-
-          ind++;
         }
-
-      delete[] pszChars;
     }
 
   m_pnActualLineLength->SetAt(nLineIndex, nActualLength);
@@ -875,6 +865,14 @@ static void AppendStringAdv(CString & str, int & curpos, LPCTSTR szadd)
   curpos += _tcslen(szadd);
 }
 
+/** Append escaped control char to string str, and advance position curpos */
+static void AppendEscapeAdv(CString & str, int & curpos, TCHAR c)
+{
+  int curlen = str.GetLength();
+  LPTSTR szadd = str.GetBufferSetLength(curlen + 3) + curlen;
+  curpos += wsprintf(szadd, _T("\t%02X"), static_cast<int>(c));
+}
+
 int CCrystalTextView::
 ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nActualOffset)
 {
@@ -893,20 +891,22 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
   pszChars += nOffset;
   int nLength = nCount;
 
-  int nTabCount = 0;
-  int i=0;
+  int i;
   for (i = 0; i < nLength; i++)
     {
-      if (pszChars[i] == _T('\t'))
-        nTabCount++;
+      TCHAR c = pszChars[i];
+      if (c == _T('\t'))
+        nCount += nTabSize - 1;
+      else if (c >= _T('\x00') && c <= _T('\x1F') && c != _T('\r') && c != _T('\n'))
+        nCount += 2;
     }
 
   // Preallocate line buffer, to avoid reallocations as we add characters
-  line.GetBuffer(nLength + nTabCount * (nTabSize - 1) + 1); // at least this many characters
+  line.GetBuffer(nCount + 1); // at least this many characters
   line.ReleaseBuffer(0);
   int nCurPos = 0;
 
-  if (nTabCount > 0 || m_bViewTabs || m_bViewEols)
+  if (nCount > nLength || m_bViewTabs || m_bViewEols)
     {
       for (i = 0; i < nLength; i++)
         {
@@ -948,6 +948,10 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
                     }
                  }
             }
+          else if (pszChars[i] >= _T('\x00') && pszChars[i] <= _T('\x1F'))
+            {
+              AppendEscapeAdv(line, nCurPos, pszChars[i]);
+            }
           else
             {
               line += pszChars[i];
@@ -971,6 +975,8 @@ ExpandChars (LPCTSTR pszChars, int nOffset, int nCount, CString & line, int nAct
  */
 int CCrystalTextView::GetCharWidthFromChar(TCHAR ch)
 {
+  if (ch >= _T('\x00') && ch <= _T('\x1F') && ch != '\t')
+    return GetCharWidth() * 3;
   // This assumes a fixed width font
   // But the UNICODE case handles double-wide glyphs (primarily Chinese characters)
 #ifdef _UNICODE
@@ -1028,6 +1034,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       nActualOffset += ExpandChars (pszChars, nOffset, nCount, line, nActualOffset);
       const int lineLen = line.GetLength();
       const int nCharWidth = GetCharWidth();
+      const int nLineHeight = GetLineHeight();
       int nSumWidth = 0;
 
       // i the character index, from 0 to lineLen-1
@@ -1043,11 +1050,12 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           
           // Update the position after the left clipped characters
           // stop for i = first visible character, at least partly
-          for (  ; i < lineLen; i++)
+          const int clipLeft = rcClip.left - GetCharWidth() * 2;
+          for ( ; i < lineLen; i++)
           {
             int pnWidthsCurrent = GetCharWidthFromChar(line[i]);
             ptOrigin.x += pnWidthsCurrent;
-            if (ptOrigin.x >= rcClip.left)
+            if (ptOrigin.x >= clipLeft)
             {
               ptOrigin.x -= pnWidthsCurrent;
               break;
@@ -1089,29 +1097,64 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               // Seems that CrystalEditor's and ExtTextOut()'s charwidths aren't
               // same with some fonts and text is drawn only partially
               // if this table is not used.
-              int* pnWidths = new int[nCount];
-              for (  ; i < nCount + ibegin ; i++)
+              int* pnWidths = new int[nCount + 2];
+              for ( ; i < nCount + ibegin ; i++)
                 {
-                  pnWidths[i-ibegin] = GetCharWidthFromChar(line[i]);
-                  nSumWidth += pnWidths[i-ibegin];
+                  if (line[i] == '\t') // Escape sequence leadin?
+                  {
+                    // Substitute a space narrowed to half the width of a character cell.
+                    line.SetAt(i, ' ');
+                    nSumWidth += pnWidths[i - ibegin] = nCharWidth / 2;
+                    // 1st hex digit has normal width.
+                    nSumWidth += pnWidths[++i - ibegin] = nCharWidth;
+                    // 2nd hex digit is padded by half the width of a character cell.
+                    nSumWidth += pnWidths[++i - ibegin] = nCharWidth + nCharWidth / 2;
+                  }
+                  else
+                  {
+                    nSumWidth += pnWidths[i - ibegin] = GetCharWidthFromChar(line[i]);
+                  }
                 }
 
               if (ptOrigin.x + nSumWidth > rcClip.left)
                 {
-                   if (crText == CLR_NONE || nColorIndex & COLORINDEX_APPLYFORCE)
-                     pdc->SetTextColor(GetColor(nColorIndex));
-                   else
-                     pdc->SetTextColor(crText);
-                   if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
-                     pdc->SetBkColor(GetColor(nBgColorIndex));
-                   else
-                     pdc->SetBkColor(crBkgnd);
+                  if (crText == CLR_NONE || nColorIndex & COLORINDEX_APPLYFORCE)
+                    pdc->SetTextColor(GetColor(nColorIndex));
+                  else
+                    pdc->SetTextColor(crText);
+                  if (crBkgnd == CLR_NONE || nBgColorIndex & COLORINDEX_APPLYFORCE)
+                    pdc->SetBkColor(GetColor(nBgColorIndex));
+                  else
+                    pdc->SetBkColor(crBkgnd);
 
-                   pdc->SelectObject(GetFont(GetItalic(nColorIndex),
-                       GetBold(nColorIndex)));
+                  pdc->SelectObject(GetFont(GetItalic(nColorIndex),
+                      GetBold(nColorIndex)));
                   // we are sure to have less than 4095 characters because all the chars are visible
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
                       &rcClip, LPCTSTR(line) + ibegin, nCount, pnWidths));
+                  // Draw rounded rectangles around control characters
+                  pdc->IntersectClipRect(&rcClip);
+                  HDC hDC = pdc->m_hDC;
+                  HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
+                  hBrush = ::SelectObject(hDC, hBrush);
+                  HGDIOBJ hPen = ::CreatePen(PS_SOLID, 1, ::GetTextColor(hDC));
+                  hPen = ::SelectObject(hDC, hPen);
+                  int x = ptOrigin.x;
+                  for (int j = 0 ; j < nCount ; ++j)
+                  {
+                    // Assume narrowed space is converted escape sequence leadin.
+                    if (line[ibegin + j] == ' ' && pnWidths[j] < nCharWidth)
+                    {
+                      ::RoundRect(hDC, x + nCharWidth / 2 - 2, ptOrigin.y + 1,
+                        x + nCharWidth / 2 + 2 * nCharWidth + 2, ptOrigin.y + nLineHeight - 1,
+                        nCharWidth / 2, nLineHeight / 2);
+                    }
+                    x += pnWidths[j];
+                  }
+                  hPen = ::SelectObject(hDC, hPen);
+                  ::DeleteObject(hPen);
+                  hBrush = ::SelectObject(hDC, hBrush);
+                  pdc->SelectClipRgn(NULL);
                 }
 
               delete [] pnWidths;
@@ -1120,12 +1163,12 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
               ptOrigin.x += nSumWidth;
 
             }
-
-        }        
-        
+        }
       // Update the final position after the right clipped characters
-      for (  ; i < lineLen; i++)
-        ptOrigin.x += GetCharWidthFromChar(line[i]);
+      for ( ; i < lineLen; i++)
+        {
+          ptOrigin.x += GetCharWidthFromChar(line[i]);
+        }
     }
 }
 
@@ -4578,13 +4621,16 @@ PrepareDragData ()
 
   CString text;
   GetText (m_ptDrawSelStart, m_ptDrawSelEnd, text);
-  HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, (_tcslen (text)+1)*sizeof(TCHAR));
+  int cchText = text.GetLength();
+  SIZE_T cbData = (cchText + 1) * sizeof(TCHAR);
+  HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
   if (hData == NULL)
     return NULL;
+  ::GlobalReAlloc(hData, cbData, 0);
+  ASSERT(::GlobalSize(hData) == cbData);
 
   LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-  _tcscpy (pszData, text.GetBuffer (0));
-  text.ReleaseBuffer ();
+  memcpy (pszData, text, cbData);
   ::GlobalUnlock (hData);
 
   m_ptDraggedTextBegin = m_ptDrawSelStart;

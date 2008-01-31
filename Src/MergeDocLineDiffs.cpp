@@ -190,8 +190,8 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	CString str1 = pView1->GetLineChars(line);
-	CString str2 = pView2->GetLineChars(line);
+	CString str1(pView1->GetLineChars(line), pView1->GetFullLineLength(line));
+	CString str2(pView2->GetLineChars(line), pView2->GetFullLineLength(line));
 
 	if (diffOptions.bIgnoreEol)
 	{
@@ -315,8 +315,8 @@ void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
 	DIFFOPTIONS diffOptions = {0};
 	m_diffWrapper.GetOptions(&diffOptions);
 
-	CString str1 = m_pView[0]->GetLineChars(nLineIndex);
-	CString str2 = m_pView[1]->GetLineChars(nLineIndex);
+	CString str1(m_pView[0]->GetLineChars(nLineIndex), m_pView[0]->GetFullLineLength(nLineIndex));
+	CString str2(m_pView[1]->GetLineChars(nLineIndex), m_pView[1]->GetFullLineLength(nLineIndex));
 
 	if (diffOptions.bIgnoreEol)
 	{

@@ -688,7 +688,7 @@ void CMergeEditView::OnEditCopy()
 	buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
 		ptSelEnd.y, ptSelEnd.x, text);
 
-	PutToClipboard(text);
+	PutToClipboard(text, text.GetLength());
 }
 
 /**
@@ -719,7 +719,7 @@ void CMergeEditView::OnEditCut()
 	pDoc->m_ptBuf[m_nThisPane]->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
 		ptSelEnd.y, ptSelEnd.x, text);
 
-	PutToClipboard(text);
+	PutToClipboard(text, text.GetLength());
 
 	CPoint ptCursorPos = ptSelStart;
 	ASSERT_VALIDTEXTPOS(ptCursorPos);
@@ -2320,7 +2320,7 @@ void CMergeEditView::OnScripts(UINT nID )
 	BOOL bChanged = TextTransform_Interactive(text, L"EDITOR_SCRIPT", nID - ID_SCRIPT_FIRST);
 	if (bChanged)
 		// now replace the text
-		ReplaceSelection(text, 0);
+		ReplaceSelection(text, text.GetLength(), 0);
 }
 
 /**
@@ -2667,8 +2667,8 @@ void CMergeEditView::OnEditCopyLineNumbers()
 		strText += sSpaces;
 		strNumLine.Format(_T("%d: %s"), line + 1, strLine);
 		strText += strNumLine;
- 	}
-	PutToClipboard(strText);
+	}
+	PutToClipboard(strText, strText.GetLength());
 }
 
 void CMergeEditView::OnUpdateEditCopyLinenumbers(CCmdUI* pCmdUI)

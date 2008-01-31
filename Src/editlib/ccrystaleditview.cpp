@@ -338,7 +338,7 @@ Paste ()
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       
       int x, y;
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, y, x, CE_ACTION_PASTE);  //  [JRT]
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_PASTE);  //  [JRT]
 
       ptCursorPos.x = x;
       ptCursorPos.y = y;
@@ -366,7 +366,7 @@ Cut ()
   GetSelection (ptSelStart, ptSelEnd);
   CString text;
   GetText (ptSelStart, ptSelEnd, text);
-  PutToClipboard (text);
+  PutToClipboard (text, text.GetLength());
 
   CPoint ptCursorPos = ptSelStart;
   ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -485,9 +485,10 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
             ptCursorPos = GetCursorPos ();
           ASSERT_VALIDTEXTPOS (ptCursorPos);
           LPCTSTR pszText = m_pTextBuffer->GetDefaultEol();
+          int cchText = _tcslen(pszText);
 
           int x, y;
-          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, y, x, CE_ACTION_TYPING);  //  [JRT]
+          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, cchText, y, x, CE_ACTION_TYPING);  //  [JRT]
 
           ptCursorPos.x = x;
           ptCursorPos.y = y;
@@ -501,12 +502,10 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
       m_pTextBuffer->FlushUndoGroup (this);
       return;
     }
-
-  if (nChar > 31)
+  // Accept control characters other than [\t\n\r] through Alt-Numpad
+  if (nChar > 31
+  || GetKeyState(VK_CONTROL) >= 0 && nChar != 9 && nChar != 10 && nChar != 13)
     {
-      // If CTRL is pressed, turn space into control char escape sequence leadin
-      if (nChar == VK_SPACE && GetKeyState(VK_CONTROL) < 0)
-        nChar = 15;
       if (QueryEditable () && m_pTextBuffer != NULL)
         {
           m_pTextBuffer->BeginUndoGroup (m_bMergeUndo);
@@ -547,7 +546,7 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
           pszText[1] = 0;
 
           int x, y;
-          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, y, x, CE_ACTION_TYPING);    // [JRT]
+          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, 1, y, x, CE_ACTION_TYPING);    // [JRT]
 
           ptCursorPos.x = x;
           ptCursorPos.y = y;
@@ -718,7 +717,7 @@ OnEditTab ()
       for (int L = nStartLine; L <= nEndLine; L++)
         {
           int x, y;
-          m_pTextBuffer->InsertText (this, L, 0, pszText, y, x, CE_ACTION_INDENT);  //  [JRT]
+          m_pTextBuffer->InsertText (this, L, 0, pszText, _tcslen(pszText), y, x, CE_ACTION_INDENT);  //  [JRT]
 
         }
       m_bHorzScrollBarLocked = FALSE;
@@ -785,12 +784,12 @@ OnEditTab ()
 
       // [JRT]:
       m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_TYPING);
-      m_pTextBuffer->InsertText( this, ptSelStart.y, ptSelStart.x, pszText, y, x, CE_ACTION_TYPING );
+      m_pTextBuffer->InsertText( this, ptSelStart.y, ptSelStart.x, pszText, _tcslen(pszText), y, x, CE_ACTION_TYPING );
     }
   // No selection, add tab
   else
     {
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, y, x, CE_ACTION_TYPING);  //  [JRT]
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszText, _tcslen(pszText), y, x, CE_ACTION_TYPING);  //  [JRT]
     }
 
   ptCursorPos.x = x;
@@ -1123,6 +1122,10 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
       return FALSE;
     }
 
+  SIZE_T cbData = ::GlobalSize (hData);
+  int cchText = cbData / sizeof(TCHAR) - 1;
+  if (cchText < 0)
+    return FALSE;
   LPTSTR pszText = (LPTSTR)::GlobalLock (hData);
   if (pszText == NULL)
     return FALSE;
@@ -1138,7 +1141,7 @@ DoDropText (COleDataObject * pDataObject, const CPoint & ptClient)
     } 
 
   int x, y;
-  m_pTextBuffer->InsertText (this, ptDropPos.y, ptDropPos.x, pszText, y, x, CE_ACTION_DRAGDROP);  //   [JRT]
+  m_pTextBuffer->InsertText (this, ptDropPos.y, ptDropPos.x, pszText, cchText, y, x, CE_ACTION_DRAGDROP);  //   [JRT]
 
   CPoint ptCurPos (x, y);
   ASSERT_VALIDTEXTPOS (ptCurPos);
@@ -1360,13 +1363,11 @@ OnEditReplace ()
 }
 
 BOOL CCrystalEditView::
-ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
+ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
 {
-  if (!pszNewText)
-    pszNewText = _T ("");
-
-  if (!lstrlen(pszNewText))
+  if (!cchNewText)
     return DeleteCurrentSelection();
+  ASSERT(pszNewText);
 
   m_pTextBuffer->BeginUndoGroup();
 
@@ -1404,15 +1405,15 @@ ReplaceSelection (LPCTSTR pszNewText, DWORD dwFlags)
             }
           else
             text.Empty ();
-          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
+          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
           if (lpszNewStr)
             free(lpszNewStr);
         }
     }
   else
     {
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
-      m_nLastReplaceLen = _tcslen (pszNewText);
+      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
+      m_nLastReplaceLen = cchNewText;
     }
 
   CPoint ptEndOfBlock = CPoint (x, y);
@@ -1669,7 +1670,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
               // m_pTextBuffer->BeginUndoGroup ();
               int x, y;
               m_pTextBuffer->InsertText (NULL, ptCursorPos.y, ptCursorPos.x,
-                                         pszInsertStr, y, x, CE_ACTION_AUTOINDENT);
+                                         pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
               CPoint pt (x, y);
               SetCursorPos (pt);
               SetSelection (pt, pt);
@@ -1703,7 +1704,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
                   // m_pTextBuffer->BeginUndoGroup ();
                   int x, y;
                   m_pTextBuffer->InsertText (NULL, ptCursorPos.y, ptCursorPos.x,
-                                             pszInsertStr, y, x, CE_ACTION_AUTOINDENT);
+                                             pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
                   CPoint pt (x, y);
                   SetCursorPos (pt);
                   SetSelection (pt, pt);
@@ -1726,7 +1727,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
               // m_pTextBuffer->BeginUndoGroup ();
               int x, y;
               m_pTextBuffer->InsertText (NULL, ptCursorPos.y, ptCursorPos.x - 1,
-                                         pszInsertStr, y, x, CE_ACTION_AUTOINDENT);
+                                         pszInsertStr, 1, y, x, CE_ACTION_AUTOINDENT);
               ptCursorPos.x = x + 1;
               ptCursorPos.y = y;
               SetCursorPos (ptCursorPos);
@@ -1772,7 +1773,7 @@ OnEditOperation (int nAction, LPCTSTR pszText)
               // m_pTextBuffer->BeginUndoGroup ();
               int x, y;
               m_pTextBuffer->InsertText (NULL, ptCursorPos.y, ptCursorPos.x - 1,
-                                         pszInsertStr, y, x, CE_ACTION_AUTOINDENT);
+                                         pszInsertStr, nPos, y, x, CE_ACTION_AUTOINDENT);
               CPoint pt (x + 1, y);
               SetCursorPos (pt);
               SetSelection (pt, pt);
@@ -1866,7 +1867,7 @@ OnEditAutoComplete ()
             {
               m_pTextBuffer->BeginUndoGroup ();
               int x, y;
-              m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x + nLength, sText, y, x, CE_ACTION_AUTOCOMPLETE);
+              m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x + nLength, sText, sText.GetLength(), y, x, CE_ACTION_AUTOCOMPLETE);
               ptCursorPos.x = x;
               ptCursorPos.y = y;
               SetCursorPos (ptCursorPos);
@@ -1918,7 +1919,7 @@ OnEditAutoExpand ()
           LPTSTR pszSlash = _tcschr (pszExpand, _T ('\\'));
           if (!pszSlash)
             {
-              m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszExpand, y, x, CE_ACTION_AUTOEXPAND);
+              m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszExpand, _tcslen(pszExpand), y, x, CE_ACTION_AUTOEXPAND);
               ptCursorPos.x = x;
               ptCursorPos.y = y;
               ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -1931,7 +1932,7 @@ OnEditAutoExpand ()
               *pszSlash++ = _T ('\0');
               for(;;)
                 {
-                  m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszExpand, y, x, CE_ACTION_AUTOEXPAND);
+                  m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszExpand, _tcslen(pszExpand), y, x, CE_ACTION_AUTOEXPAND);
                   ptCursorPos.x = x;
                   ptCursorPos.y = y;
                   ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -1947,7 +1948,7 @@ OnEditAutoExpand ()
                       case _T ('n'):
                         {
                           const static TCHAR szText[3] = _T ("\r\n");
-                          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
+                          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, _tcslen(szText), y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
                           ptCursorPos.x = x;
                           ptCursorPos.y = y;
                           ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -2046,7 +2047,7 @@ OnEditAutoExpand ()
                                 szText[i] = ' ';
                               szText[nChars] = '\0';
                             }
-                          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
+                          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, szText, _tcslen(szText), y, x, CE_ACTION_AUTOEXPAND);  //  [JRT]
                           ptCursorPos.x = x;
                           ptCursorPos.y = y;
                           ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -2114,7 +2115,7 @@ OnEditLowerCase ()
         }
 
       int x, y;
-      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, y, x, CE_ACTION_LOWERCASE);
+      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, text.GetLength(), y, x, CE_ACTION_LOWERCASE);
 
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
@@ -2162,7 +2163,7 @@ OnEditUpperCase ()
         }
 
       int x, y;
-      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, y, x, CE_ACTION_UPPERCASE);
+      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, text.GetLength(), y, x, CE_ACTION_UPPERCASE);
 
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
@@ -2214,7 +2215,7 @@ OnEditSwapCase ()
         }
 
       int x, y;
-      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, y, x, CE_ACTION_SWAPCASE);
+      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, text.GetLength(), y, x, CE_ACTION_SWAPCASE);
 
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
@@ -2279,7 +2280,7 @@ OnEditCapitalize ()
         }
 
       int x, y;
-      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, y, x, CE_ACTION_CAPITALIZE);
+      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, text.GetLength(), y, x, CE_ACTION_CAPITALIZE);
 
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
@@ -2348,7 +2349,7 @@ OnEditSentence ()
         }
 
       int x, y;
-      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, y, x, CE_ACTION_SENTENCIZE);
+      m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, text, text.GetLength(), y, x, CE_ACTION_SENTENCIZE);
 
       ASSERT_VALIDTEXTPOS (ptCursorPos);
       SetAnchor (ptCursorPos);
@@ -2441,7 +2442,7 @@ int CCrystalEditView::SpellNotify (int nEvent, struct SpellData_t *pdata)
           {
             pView->GetSelection (ptStartPos, ptEndPos);
             pView->m_pTextBuffer->DeleteText (pView, ptStartPos.y, ptStartPos.x, ptEndPos.y, ptEndPos.x, CE_ACTION_SPELL);
-            pView->m_pTextBuffer->InsertText (pView, ptStartPos.y, ptStartPos.x, pdata->pszWord, y, x, CE_ACTION_SPELL);
+            pView->m_pTextBuffer->InsertText (pView, ptStartPos.y, ptStartPos.x, pdata->pszWord, _tcslen(pdata->pszWord), y, x, CE_ACTION_SPELL);
             ptEndPos.x = x;
             ptEndPos.y = y;
             pView->SetAnchor (ptEndPos);
@@ -2571,7 +2572,7 @@ OnToolsCharCoding ()
           m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_RECODE);
 
           int x, y;
-          m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, pszNew, y, x, CE_ACTION_RECODE);
+          m_pTextBuffer->InsertText (this, ptSelStart.y, ptSelStart.x, pszNew, _tcslen(pszNew), y, x, CE_ACTION_RECODE);
 
           if (IsValidTextPos (ptCursorPos))
             ptCursorPos.x = 0;

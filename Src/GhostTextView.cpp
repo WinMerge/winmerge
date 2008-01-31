@@ -213,13 +213,16 @@ HGLOBAL CGhostTextView::PrepareDragData ()
 
 	CString text;
 	GetTextWithoutEmptys (m_ptDrawSelStart.y, m_ptDrawSelStart.x, m_ptDrawSelEnd.y, m_ptDrawSelEnd.x, text);
-	HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, (_tcslen (text)+1)*sizeof(TCHAR));
+	int cchText = text.GetLength();
+	SIZE_T cbData = (cchText + 1) * sizeof(TCHAR);
+	HGLOBAL hData =::GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, cbData);
 	if (hData == NULL)
 		return NULL;
+	::GlobalReAlloc(hData, cbData, 0);
+	ASSERT(::GlobalSize(hData) == cbData);
 
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-	_tcscpy (pszData, text.GetBuffer (0));
-	text.ReleaseBuffer ();
+	memcpy (pszData, text, cbData);
 	::GlobalUnlock (hData);
 
 	m_ptDraggedTextBegin = m_ptDrawSelStart;

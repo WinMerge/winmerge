@@ -356,7 +356,7 @@ OnEditReplace ()
     dwSearchFlags |= FIND_REGEXP;
 
   //  We have highlighted text
-  VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, dwSearchFlags));
+  VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags));
 
   //  Manually recalculate points
   if (m_bEnableScopeSelection)
@@ -425,7 +425,7 @@ OnEditReplaceAll ()
         dwSearchFlags |= FIND_REGEXP;
     
       //  We have highlighted text
-      VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, dwSearchFlags));
+      VERIFY (m_pBuddy->ReplaceSelection (m_sNewText, m_sNewText.GetLength(), dwSearchFlags));
 
       //  Manually recalculate points
       if (m_bEnableScopeSelection)

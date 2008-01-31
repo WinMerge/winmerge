@@ -690,15 +690,17 @@ void CMergeDoc::CDiffTextBuffer::SetModified(BOOL bModified /*= TRUE*/)
 
 BOOL CMergeDoc::CDiffTextBuffer::GetFullLine(int nLineIndex, CString &strLine)
 {
-	if (!GetFullLineLength(nLineIndex))
+	int cchText = GetFullLineLength(nLineIndex);
+	if (cchText == 0)
 		return FALSE;
-	strLine = GetLineChars(nLineIndex);
+	LPTSTR pchText = strLine.GetBufferSetLength(cchText);
+	memcpy(pchText, GetLineChars(nLineIndex), cchText * sizeof(TCHAR));
 	return TRUE;
 }
 
-void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/, CDWordArray *paSavedRevisonNumbers)
+void CMergeDoc::CDiffTextBuffer::AddUndoRecord(BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nLinesToValidate, int nActionType /*= CE_ACTION_UNKNOWN*/, CDWordArray *paSavedRevisonNumbers)
 {
-	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, nLinesToValidate, nActionType, paSavedRevisonNumbers);
+	CGhostTextBuffer::AddUndoRecord(bInsert, ptStartPos, ptEndPos, pszText, cchText, nLinesToValidate, nActionType, paSavedRevisonNumbers);
 	if (m_aUndoBuf[m_nUndoPosition - 1].m_dwFlags & UNDO_BEGINGROUP)
 	{
 		m_pOwnerDoc->undoTgt.erase(m_pOwnerDoc->curUndo, m_pOwnerDoc->undoTgt.end());
@@ -1700,7 +1702,6 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		do {
 			bool lossy=false;
 			done = !pufile->ReadString(sline, eol, &lossy);
-			EscapeControlChars(sline);
 
 			// if last line had no eol, we can quit
 			if (done && preveol.IsEmpty())
@@ -1906,14 +1907,14 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		else
 			sLine = _T("");
 
+		if (bTempFile)
+			EscapeControlChars(sLine);
 		// last real line ?
 		if (line == ApparentLastRealLine())
 		{
 			// last real line is never EOL terminated
 			ASSERT (_tcslen(GetLineEol(line)) == 0);
 			// write the line and exit loop
-			if (!bTempFile)
-				UnescapeControlChars(sLine);
 			file.WriteString(sLine);
 			break;
 		}
@@ -1931,8 +1932,6 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		}
 
 		// write this line to the file (codeset or unicode conversions are done there)
-		if (!bTempFile)
-			UnescapeControlChars(sLine);
 		file.WriteString(sLine);
 	}
 	file.Close();
@@ -2012,13 +2011,13 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 }
 
 /// Replace text of line (no change to eol)
-void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
+void CMergeDoc::CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, LPCTSTR pchText, int cchText, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
 	if (GetLineLength(nLine)>0)
 		DeleteText(pSource, nLine, 0, nLine, GetLineLength(nLine), nAction);
-	int endl,endc;
-	if (! strText.IsEmpty())
-		InsertText(pSource, nLine, 0, strText, endl,endc, nAction);
+	int endl, endc;
+	if (cchText)
+		InsertText(pSource, nLine, 0, pchText, cchText, endl, endc, nAction);
 }
 
 /// Return pointer to the eol chars of this string, or pointer to empty string if none
@@ -2039,8 +2038,7 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 		// (optimization) eols are the same, so just replace text inside line
 		// we must clean strText from its eol...
 		int eolLength = _tcslen(getEol(strText));
-		CString strTextWithoutEol = strText.Left(strText.GetLength() - eolLength);
-		ReplaceLine(pSource, nLine, strTextWithoutEol, nAction);
+		ReplaceLine(pSource, nLine, strText, strText.GetLength() - eolLength, nAction);
 		return;
 	}
 
@@ -2051,8 +2049,8 @@ void CMergeDoc::CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int
 	if (GetFullLineLength(nLine))
 		DeleteText(pSource, nLine, 0, nLine+1, 0, nAction); 
 	int endl,endc;
-	if (! strText.IsEmpty())
-		InsertText(pSource, nLine, 0, strText, endl,endc, nAction);
+	if (int cchText = strText.GetLength())
+		InsertText(pSource, nLine, 0, strText, cchText, endl,endc, nAction);
 }
 
 /**

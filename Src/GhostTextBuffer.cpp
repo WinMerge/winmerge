@@ -228,8 +228,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 			}
 		}
 	}
-	pszBuf[0] = 0;
-	text.ReleaseBuffer();
+	text.ReleaseBuffer(pszBuf - text);
 	text.FreeExtra();
 }
 
@@ -239,16 +238,17 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 
 
 void CGhostTextBuffer::SUndoRecord::
-SetText (LPCTSTR pszText)
+SetText (LPCTSTR pszText, int nLength)
 {
 	FreeText();
-	if (pszText != NULL && pszText[0] != _T ('\0'))
+	if (nLength)
 	{
-		int nLength = (int) _tcslen (pszText);
 		if (nLength > 1)
 		{
-			m_pszText = new TCHAR[(nLength + 1) * sizeof (TCHAR)];
-			_tcscpy (m_pszText, pszText);
+			m_pszText = (TextBuffer *)malloc(sizeof(TextBuffer) + nLength * sizeof(TCHAR));
+			m_pszText->size = nLength;
+			memcpy(m_pszText->data, pszText, nLength * sizeof(TCHAR));
+			m_pszText->data[nLength] = _T('?'); // debug sentinel
 		}
 		else
 		{
@@ -264,7 +264,7 @@ FreeText ()
 	// Check if m_pszText is a pointer by removing bits having
 	// possible char value
 	if (((INT_PTR)m_pszText >> 16) != 0)
-		delete[] m_pszText;
+		free(m_pszText);
 	m_pszText = NULL;
 }
 
@@ -328,7 +328,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 					(apparent_ptEndPos.x <= m_aLines[apparent_ptEndPos.y].m_nLength))
 			{
 				GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
-				if (_tcscmp(text, ur.GetText()) == 0)
+				if (text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0)
 				{
 					VERIFY (CCrystalTextBuffer::DeleteText (pSource, 
 						apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x,
@@ -377,7 +377,7 @@ Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		{
 			int nEndLine, nEndChar;
 			VERIFY(CCrystalTextBuffer::InsertText (pSource, 
-				apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), nEndLine, nEndChar, 
+				apparent_ptStartPos.y, apparent_ptStartPos.x, ur.GetText (), ur.GetTextLength (), nEndLine, nEndChar, 
 				0, FALSE));
 			ptCursorPos = m_ptLastChange;
 
@@ -489,7 +489,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 		{
 			int nEndLine, nEndChar;
 			VERIFY(InsertText (pSource, apparent_ptStartPos.y, apparent_ptStartPos.x,
-				ur.GetText(), nEndLine, nEndChar, 0, FALSE));
+				ur.GetText(), ur.GetTextLength(), nEndLine, nEndChar, 0, FALSE));
 			ptCursorPos = m_ptLastChange;
 		}
 		else
@@ -497,7 +497,7 @@ Redo (CCrystalTextView * pSource, CPoint & ptCursorPos)
 #ifdef _ADVANCED_BUGCHECK
 			CString text;
 			GetTextWithoutEmptys (apparent_ptStartPos.y, apparent_ptStartPos.x, apparent_ptEndPos.y, apparent_ptEndPos.x, text);
-			ASSERT (lstrcmp (text, ur.GetText ()) == 0);
+			ASSERT(text.GetLength() == ur.GetTextLength() && memcmp(text, ur.GetText(), text.GetLength() * sizeof(TCHAR)) == 0);
 #endif
 			VERIFY(DeleteText(pSource, apparent_ptStartPos.y, apparent_ptStartPos.x, 
 				apparent_ptEndPos.y, apparent_ptEndPos.x, 0, FALSE));
@@ -549,7 +549,7 @@ FlushUndoGroup (CCrystalTextView * pSource)
 
 /** The CPoint received parameters are apparent (on screen) line numbers */
 void CGhostTextBuffer::
-AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int nRealLinesChanged, int nActionType, CDWordArray *paSavedRevisonNumbers)
+AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos, LPCTSTR pszText, int cchText, int nRealLinesChanged, int nActionType, CDWordArray *paSavedRevisonNumbers)
 {
 	//  Forgot to call BeginUndoGroup()?
 	ASSERT (m_bUndoGroup);
@@ -618,7 +618,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
 		ur.m_nRealLinesCreated = nRealLinesChanged;
 	else
 		ur.m_nRealLinesInDeletedBlock = nRealLinesChanged;
-	ur.SetText (pszText);
+	ur.SetText (pszText, cchText);
 	ur.m_paSavedRevisonNumbers = paSavedRevisonNumbers;
 
 	m_aUndoBuf.Add (ur);
@@ -641,7 +641,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
  * is preserved with real line number during Rescan (m_ptCursorPos, m_ptLastChange for example)
  */
 BOOL CGhostTextBuffer::
-InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
+InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText,
             int &nEndLine, int &nEndChar, int nAction, BOOL bHistory /*=TRUE*/)
 {
 	BOOL bGroupFlag = FALSE;
@@ -659,7 +659,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 	paSavedRevisonNumbers->SetSize(1);
 	(*paSavedRevisonNumbers)[0] = m_aLines[nLine].m_dwRevisionNumber;
 
-	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText, nEndLine, nEndChar, nAction, bHistory))
+	if (!CCrystalTextBuffer::InsertText (pSource, nLine, nPos, pszText, cchText, nEndLine, nEndChar, nAction, bHistory))
 	{
 		delete paSavedRevisonNumbers;
 		return FALSE;
@@ -742,7 +742,7 @@ InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText,
 	ASSERT (  m_nUndoPosition > 0);
 	m_nUndoPosition --;
 	AddUndoRecord (TRUE, CPoint (nPos, nLine), CPoint (nEndChar, nEndLine),
-                 pszText, nRealLinesCreated, nAction, paSavedRevisonNumbers);
+                 pszText, cchText, nRealLinesCreated, nAction, paSavedRevisonNumbers);
 
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);
@@ -834,7 +834,7 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	ASSERT (  m_nUndoPosition > 0);
 	m_nUndoPosition --;
 	AddUndoRecord (FALSE, CPoint (nStartChar, nStartLine), CPoint (0, -1),
-                 sTextToDelete, nRealLinesInDeletedBlock, nAction, paSavedRevisonNumbers);
+                 sTextToDelete, sTextToDelete.GetLength(), nRealLinesInDeletedBlock, nAction, paSavedRevisonNumbers);
 
 	if (bGroupFlag)
 		FlushUndoGroup (pSource);

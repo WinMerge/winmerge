@@ -441,7 +441,7 @@ protected:
 
     //  Clipboard overridable
     virtual BOOL TextInClipboard ();
-    virtual BOOL PutToClipboard (LPCTSTR pszText);
+    virtual BOOL PutToClipboard (LPCTSTR pszText, int cchText);
     virtual BOOL GetFromClipboard (CString & text);
 
     //  Drag-n-drop overrideable

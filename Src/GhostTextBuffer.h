@@ -122,12 +122,15 @@ private :
 		// of any pointer will be != 0. So we can store 1 character strings without
 		// allocating memory.
 		//
-
+		struct TextBuffer
+		{
+			int size;
+			TCHAR data[1];
+		};
 		union
 		{
-			TCHAR *m_pszText;     // For cases when we have > 1 character strings
-
-			TCHAR m_szText[2];    // For single-character strings
+			TextBuffer *m_pszText; // For cases when we have > 1 character strings
+			TCHAR m_szText[2];     // For single-character strings
 
 		};
 
@@ -155,7 +158,7 @@ public :
 			m_redo_ptEndPos_nGhost = src.m_redo_ptEndPos_nGhost;
 			m_nRealLinesCreated = src.m_nRealLinesCreated;
 			m_nRealLinesInDeletedBlock = src.m_nRealLinesInDeletedBlock;
-			SetText(src.GetText());
+			SetText(src.GetText(), src.GetTextLength());
 			INT_PTR size = src.m_paSavedRevisonNumbers->GetSize();
 			if (!m_paSavedRevisonNumbers)
 				m_paSavedRevisonNumbers = new CDWordArray();
@@ -172,7 +175,7 @@ public :
 				delete m_paSavedRevisonNumbers;
 		}
 
-		void SetText (LPCTSTR pszText);
+		void SetText (LPCTSTR pszText, int cchText);
 		void FreeText ();
 
 		LPCTSTR GetText () const
@@ -181,9 +184,15 @@ public :
 			// Check if m_pszText is a pointer by removing bits having
 			// possible char value
 			if (((INT_PTR)m_pszText >> 16) != 0)
-				return m_pszText;
+				return m_pszText->data;
 			return m_szText;
-		};
+		}
+		int GetTextLength () const
+		{
+			if (((INT_PTR)m_pszText >> 16) != 0)
+				return m_pszText->size;
+			return 1;
+		}
 	};
 
 #pragma pack(pop)
@@ -205,7 +214,7 @@ protected:
 
 	// [JRT] Support For Descriptions On Undo/Redo Actions
 	virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-                              LPCTSTR pszText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
+                              LPCTSTR pszText, int cchText, int nRealLinesChanged, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 
 private:
 	// A RealityBlock is a block of lines with no ghost lines
@@ -233,7 +242,7 @@ public :
 
 
 	// Text modification functions
-	virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
+	virtual BOOL InsertText (CCrystalTextView * pSource, int nLine, int nPos, LPCTSTR pszText, int cchText, int &nEndLine, int &nEndChar, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
 	virtual BOOL DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartPos, int nEndLine, int nEndPos, int nAction = CE_ACTION_UNKNOWN, BOOL bHistory =TRUE);
 	BOOL InsertGhostLine (CCrystalTextView * pSource, int nLine);
 

@@ -163,9 +163,9 @@ private :
 public :
 		void SetTempPath(String path);
 		virtual void AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
-			LPCTSTR pszText, int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
+			LPCTSTR pszText, int cchText, int nLinesToValidate, int nActionType = CE_ACTION_UNKNOWN, CDWordArray *paSavedRevisonNumbers = NULL);
 		bool curUndoGroup();
-		void ReplaceLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
+		void ReplaceLine(CCrystalTextView * pSource, int nLine, LPCTSTR pchText, int cchText, int nAction =CE_ACTION_UNKNOWN);
 		void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
 		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
