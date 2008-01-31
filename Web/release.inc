@@ -14,13 +14,17 @@
    */
   class Release {
     var $_versionnumber;
-    var $_setupdownload, $_setupsize;
+    var $_date;
+    var $_downloads, $_downloadsizes;
 
     /**
      * Constructor
      */
     function Release() {
       $this->_versionnumber = '';
+      $this->_date = '';
+      $this->_downloads = array();
+      $this->_downloadsizes = array();
     }
 
     /**
@@ -38,38 +42,60 @@
     }
 
     /**
-     * set the setup download from the release
+     * set the date from the release
      */
-    function setSetupDownload($setupdownload) {
-      $this->_setupdownload = $setupdownload;
+    function setDate($date) {
+      $this->_date = $date;
     }
 
     /**
-     * get the setup download from the release
+     * get the date from the release
      */
-    function getSetupDownload() {
-      return $this->_setupdownload;
+    function getDate() {
+      return $this->_date;
     }
 
     /**
-     * set the setup size (in bytes) from the release
+     * add a download from the release
      */
-    function setSetupSize($setupsize) {
-      $this->_setupsize = $setupsize;
+    function addDownload($id, $url, $size) {
+      $this->_downloads[$id] = $url;
+      $this->_downloadsizes[$id] = $size;
     }
 
     /**
-     * get the setup size (in bytes) from the release
+     * get a download from the release
      */
-    function getSetupSize() {
-      return $this->_setupsize;
+    function getDownload($id) {
+      return $this->_downloads[$id];
     }
 
     /**
-     * get the formatted setup size from the release
+     * get a download size (in bytes) from the release
      */
-    function getSetupSizeFormatted($unit = '') {
-      return $this->formatSize($this->_setupsize, $unit);
+    function getDownloadSize($id) {
+      return $this->_downloadsizes[$id];
+    }
+
+    /**
+     * get a download size (in kilobytes) from the release
+     */
+    function getDownloadSizeKb($id) {
+      return $this->formatSize($this->_downloadsizes[$id], 'kb');
+    }
+
+    /**
+     * get a download size (in megabytes) from the release
+     */
+    function getDownloadSizeMb($id) {
+      return $this->formatSize($this->_downloadsizes[$id], 'mb');
+    }
+
+    /**
+     * get a formatted download size from the release
+     */
+    function getDownloadSizeFormatted($id, $unit = '') {
+      return $this->formatSize($this->_downloadsizes[$id], $unit);
     }
 
     /**

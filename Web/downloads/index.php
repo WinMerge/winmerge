@@ -15,30 +15,30 @@
 </ul>
 <h3><a name="current">Current Version</a></h3>
 <?php $page->printDownloadNow(); ?>
-<p>The current version is <strong>2.6.12</strong> and was released at <strong>2007-09-26</strong>. For detailed info on what's new, read the <a href="/2.6/changes.php">changelog</a> and the <a href="http://sourceforge.net/project/shownotes.php?release_id=542344">release notes</a>.</p>
+<p>The current version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/2.6/changes.php">changelog</a> and the <a href="http://sourceforge.net/project/shownotes.php?release_id=569358">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>
   <li><strong>Installer</strong>
     <ul>
-      <li><a href="<?php echo $stablerelease->getSetupDownload();?>">Exe-Format (<?php echo $stablerelease->getSetupSizeFormatted('mb');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('setup.exe');?>">Exe-Format (<?php echo $stablerelease->getDownloadSizeMb('setup.exe');?> MB)</a></li>
     </ul>
   </li>
   <li><strong>Binaries</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-exe.zip">Zip-Format (5.18 MB)</a></li>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-exe.7z">7z-Format (1.68 MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('exe.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('exe.zip');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('exe.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('exe.7z');?> MB)</a></li>
     </ul>
   </li>
   <li><strong>Runtimes</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Runtimes-2.6.12.zip">Zip-Format (1.23 MB)</a></li>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Runtimes-2.6.12.7z">7z-Format (0.72 MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('rt.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('rt.zip');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('rt.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('rt.7z');?> MB)</a></li>
     </ul>
   </li>
   <li><strong>Source Code</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-src.zip">Zip-Format (5.06 MB)</a></li>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-src.7z">7z-Format (2.79 MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('src.zip');?>">Zip-Format (<?php echo $stablerelease->getDownloadSizeMb('src.zip');?> MB)</a></li>
+      <li><a href="<?php echo $stablerelease->getDownload('src.7z');?>">7z-Format (<?php echo $stablerelease->getDownloadSizeMb('src.7z');?> MB)</a></li>
     </ul>
   </li>
 </ul>

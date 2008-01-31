@@ -1,3 +1,108 @@
+2008-01-17 2.6.14 Stable Release (R4928)
+
+2008-01-17 Kimmo
+ Bump ShellExtension version to 1.9.4 and update copyright year to 2008
+  ShellExtension: ShellExtension.rc
+
+2008-01-15 Tim
+ BUG: [ 1869621 ] xslt support
+  Submitted by Joel Paula
+  Filters: XML_html.flt
+
+2008-01-12 Takashi
+ BUG: [ 1869821 ] Register.bat doesn't work on W98 and Vista
+  ShellExtension: Register.bat Unregister.bat
+
+2008-01-10 Tim
+ Fix spelling error "succesfully".
+  Src: Merge.rc MergeDoc.cpp
+  Src/Languages/Brazilian: MergeBrazilian.rc
+  Src/Languages/Turkish: MergeTurkish.rc
+ PATCH: [ 1743504 ] new keywords (cleaned up)
+  Submitted by Andre Arpin
+  editlib: batch.cpp
+
+2008-01-09 Kimmo
+ Update copyright year for 2008
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+ PATCH: [ 1864556 ] Update Manual URL for Merge7z
+  ArchiveSupport/Merge7z: readme.txt
+
+2008-01-08 Tim
+ PATCH: [ 1866221 ] PO(T) syntax highlighter
+  Src: Merge.dsp
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+  editlib new file: po.cpp
+
+2008-01-05 Takashi
+ BUG: [ 1864040 ] Crash when using TrackPoint middle-button scrolling
+  Src/Common: SplitterWndEx.cpp
+
+2007-12-29 Tim
+ PATCH: [ 1859657 ] PowerShell syntax highlighter
+  Src: Merge.dsp
+  editlib: ccrystaltextview.cpp ccrystaltextview.h
+  editlib new file: powershell.cpp
+
+2007-12-10 Tim
+ BUG: [ 1655577 ] Spanish Translation
+  Src/Languages/Spanish: MergeSpanish.rc
+
+2007-12-09 Gal
+ BUG: [ 1738790 ] Unexpected backspace key handling in rename
+  Src: DirView.cpp
+
+2007-12-07 Tim
+ BUG: [ 1831512 ] Left Date column of CSV Report from "Generate Report.." menu
+  Src: DirCmpReport.cpp
+ BUG: [ 1834284 ] "Short Size" columns not rounded in translations
+  Submitted by Jochen Tucht
+  Src: locality.cpp
+  Src/Common: LanguageSelect.cpp
+
+2007-11-21 Kimmo
+ BUG: [ 1828930 ] Copy Left To Right with VCS
+  Src: FileActionScript.cpp
+
+2007-11-21 Tim
+ BUG: [ 1817626 ] Menu item "Help->GPL" links to GPLv3
+  Src: MainFrm.cpp
+
+2007-11-11 Kimmo
+ PATCH: [ 1811745 ] Do not merge ignored differences (with multi selection)
+  Src: MergeDoc.cpp
+
+2007-11-11 Takashi
+ BUG: [ 1829572 ] Visible area rect on location bar shakes
+  Src: MergeEditView.cpp
+
+2007-11-05 Kimmo
+ BUG: [ 1824734 ] "About..." box still has 2006 copyright. :-(
+  Src: Merge.rc
+  Src/Languages/*: Merge*.rc
+
+2007-11-01 Tim
+ BUG: [ 1807897 ] Button to small in Dutch version
+  Src/Languages/Dutch: MergeDutch.rc
+
+2007-10-24 Kimmo
+ PATCH: [ 1816220 ] Bugfix: current position in LocationBar "invisible"
+  Submitted by xurux at sourceforge.net
+  Src: LocationView.cpp
+
+2007-10-21 Kimmo
+ BUG: [ 1815859 ] Still considers Vista as Longhorn
+  Src: ConfigLog.cpp
+
+2007-10-11 Kimmo
+ PATCH: [ 1810171 ] MergeChineseTraditional.rc of 2.6.12 updated
+  Submitted by Wei-cheng
+  Src/Languages/ChineseTraditional: MergeChineseTraditional.rc
+ PATCH: [ 1810539 ] ShellExtensionChineseTraditional.rc for 2.6.12 updated
+  Submitted by Wei-cheng
+  ShellExtension/Languages: ShellExtensionChineseTraditional.rc
+
 2007-09-26 2.6.12 Stable Release (R4567)
 
  Fixed uninstalling bug (BUG: [ 1802179 ] Runtime error on uninstalling 2.6.10)

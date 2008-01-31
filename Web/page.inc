@@ -42,9 +42,15 @@
       $this->_tab = WINMERGE_2_6;
       /* _Stable Release */
       $this->_stablerelease = new Release;
-      $this->_stablerelease->setVersionNumber('2.6.12');
-      $this->_stablerelease->setSetupDownload('http://prdownloads.sourceforge.net/winmerge/WinMerge-2.6.12-Setup.exe');
-      $this->_stablerelease->setSetupSize(3025610);
+      $this->_stablerelease->setVersionNumber('2.6.14');
+      $this->_stablerelease->setDate('2008-01-17');
+      $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.6.14-Setup.exe', 3036206);
+      $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.6.14-exe.zip', 5439408);
+      $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.6.14-exe.7z', 1768345);
+      $this->_stablerelease->addDownload('rt.zip', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.6.14.zip', 1287952);
+      $this->_stablerelease->addDownload('rt.7z', 'http://downloads.sourceforge.net/winmerge/Runtimes-2.6.14.7z', 753483);
+      $this->_stablerelease->addDownload('src.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.6.14-src.zip', 5318782);
+      $this->_stablerelease->addDownload('src.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.6.14-src.7z', 2929765);
     }
 
     /**
@@ -151,9 +157,9 @@
      * print the "Download Now!" link
      */
     function printDownloadNow() {
-      $temp = "<p><a class=\"downloadnow\" href=\"" . $this->_stablerelease->getSetupDownload() . "\">";
+      $temp = "<p><a class=\"downloadnow\" href=\"" . $this->_stablerelease->getDownload('setup.exe') . "\">";
       $temp .= "<strong>Download Now!</strong> ";
-      $temp .= "<em>Version " . $this->_stablerelease->getVersionNumber() . "; " . $this->_stablerelease->getSetupSizeFormatted('mb') . " MB</em>";
+      $temp .= "<em>Version " . $this->_stablerelease->getVersionNumber() . "; " . $this->_stablerelease->getDownloadSizeMb('setup.exe') . " MB</em>";
       $temp .= "</a></p>\n";
       print($temp);
     }
