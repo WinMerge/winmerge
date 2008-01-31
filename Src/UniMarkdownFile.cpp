@@ -51,7 +51,7 @@ static void CollapseWhitespace(CString &line)
 			line.SetAt(i, ' ');
 			break;
 		case '>':
-			if (nEatSpace >= 0)
+			if (nEatSpace >= 0 && line.GetAt(i + 1 + nEatSpace) != '<')
 				++nEatSpace;
 		default:
 			if (nEatSpace > 0)
