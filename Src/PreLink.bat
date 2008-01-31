@@ -1,33 +1,39 @@
-@goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
-:_MSDEV_BLD_ENV_()
-@echo Merge.dsp/Merge.vcproj pre-link script
-@echo Not intended for direct invocation through user interface
-@echo Pre-link command line: PreLink.bat $(IntDir) $(TargetPath)
-@pause
-@exit
-
-:_MSDEV_BLD_ENV_(1)
-cd
-echo %0
-echo $(IntDir) = %1
-echo $(TargetPath) = %2
-mkdir ..\Build\pcre
-
+@echo on
 set info=echo *
 
 REM _ACP_ATLPROV was introduced in VC7. If not set, assume VC6.
+REM _MSDEV_BLD_ENV_ was removed in VC8. Don't care about it if _ACP_ATLPROV is set.
 
-if "%_ACP_ATLPROV%" == "" goto MSDev
+if "%_ACP_ATLPROV%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
 set msdev=rem
 set devenv=devenv
 goto Configure
 
-:MSDev
+:_MSDEV_BLD_ENV_(1)
 set msdev=msdev
 set devenv=rem
 goto Configure
 
+:_MSDEV_BLD_ENV_()
+echo Merge.dsp/Merge.vcproj pre-link script
+echo Not intended for direct invocation through user interface
+echo Pre-link command line: PreLink.bat $(IntDir) $(TargetPath)
+pause
+exit
+
 :Configure
+%info% Configure
+
+cd
+echo %0
+echo $(IntDir) = %1
+echo $(TargetPath) = %2
+del $(TargetPath)
+
+REM Create build directories
+mkdir ..\Build\expat
+mkdir ..\Build\pcre
+
 REM Configure PCRE
 cd %2\..\..\..\Externals\pcre\config_pcre
 nmake /f "configure.mak"

@@ -1,10 +1,5 @@
-@goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
-:_MSDEV_BLD_ENV_()
-@echo Merge.dsp/Merge.vcproj post-build script
-@echo Not intended for direct invocation through user interface
-@echo Post-build command line: PostBuild.bat $(IntDir) $(TargetPath)
-@pause
-@exit
+@echo on
+if "%_ACP_ATLPROV%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
 
 :_MSDEV_BLD_ENV_(1)
 cd
@@ -21,3 +16,11 @@ link /DLL /NOENTRY /MACHINE:IX86 /OUT:%2\..\MergeLang.dll %1\MergeLang.res
 REM Copy PO files to where WinMerge expects them
 mkdir %2\..\Languages
 copy Languages\*.po %2\..\Languages
+exit
+
+:_MSDEV_BLD_ENV_()
+echo Merge.dsp/Merge.vcproj post-build script
+echo Not intended for direct invocation through user interface
+echo Post-build command line: PostBuild.bat $(IntDir) $(TargetPath)
+pause
+exit
