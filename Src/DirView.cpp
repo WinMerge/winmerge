@@ -1713,10 +1713,18 @@ void CDirView::DoUpdateOpenRightWith(CCmdUI* pCmdUI)
 }
 
 /**
- * @brief Update main menu "Merge | Delete" item
+ * @brief Update main menu "Merge | Delete" item.
+ * @param [in] pCmdUI Item to modify.
  */
 void CDirView::DoUpdateDelete(CCmdUI* pCmdUI)
 {
+	// If both sides are read-only, then there is nothing to delete
+	if (GetDocument()->GetReadOnly(TRUE) && GetDocument()->GetReadOnly(FALSE))
+	{
+		pCmdUI->Enable(FALSE);
+		return;
+	}
+
 	// If no selected items, disable
 	int count = GetSelectedCount();
 	if (count == 0)

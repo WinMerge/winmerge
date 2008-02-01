@@ -414,6 +414,10 @@ void CDirView::DoDelBoth()
 
 /**
  * @brief Delete left, right or both items.
+ * @note Usually we don't need to check for read-only in this level of code.
+ *   Usually we can disable handling read-only items/sides by disabling GUI
+ *   element. But in this case the GUI element effects to both sides and can
+ *   be selected when another side is read-only.
  */
 void CDirView::DoDelAll()
 {
@@ -435,46 +439,57 @@ void CDirView::DoDelAll()
 
 			int leftFlags = ALLOW_DONT_CARE;
 			int rightFlags = ALLOW_DONT_CARE;
+			BOOL leftRO = GetDocument()->GetReadOnly(TRUE);
+			BOOL rightRO = GetDocument()->GetReadOnly(FALSE);
 			FileActionItem act;
-			if (IsItemDeletableOnBoth(di))
+			if (IsItemDeletableOnBoth(di) && !leftRO && !rightRO)
 			{
 				leftFlags = ALLOW_ALL;
 				rightFlags = ALLOW_ALL;
 				act.src = srFile;
 				act.dest = slFile;
+				act.UIResult = FileActionItem::UI_DEL_BOTH;
 			}
-			else if (IsItemDeletableOnLeft(di))
+			else if (IsItemDeletableOnLeft(di) && !leftRO)
 			{
 				leftFlags = ALLOW_ALL;
 				act.src = slFile;
+				act.UIResult = FileActionItem::UI_DEL_LEFT;
 			}
-			else if (IsItemDeletableOnRight(di))
+			else if (IsItemDeletableOnRight(di) && !rightRO)
 			{
 				rightFlags = ALLOW_ALL;
 				act.src = srFile;
+				act.UIResult = FileActionItem::UI_DEL_RIGHT;
 			}
 
-			// We must first check that paths still exists
-			CString failpath;
-			BOOL succeed = CheckPathsExist(slFile.c_str(), srFile.c_str(), leftFlags,
-					rightFlags, failpath);
-			if (succeed == FALSE)
+			// Check one of sides is actually being added to removal list
+			if (leftFlags != ALLOW_DONT_CARE || rightFlags != ALLOW_DONT_CARE)
 			{
-				WarnContentsChanged(failpath);
-				return;
-			}
+				// We must first check that paths still exists
+				CString failpath;
+				BOOL succeed = CheckPathsExist(slFile.c_str(), srFile.c_str(), leftFlags,
+						rightFlags, failpath);
+				if (succeed == FALSE)
+				{
+					WarnContentsChanged(failpath);
+					return;
+				}
 
-			act.dirflag = di.diffcode.isDirectory();
-			act.context = sel;
-			act.atype = actType;
-			act.UIResult = FileActionItem::UI_DEL_BOTH;
-			actionScript.AddActionItem(act);
+				act.dirflag = di.diffcode.isDirectory();
+				act.context = sel;
+				act.atype = actType;
+				actionScript.AddActionItem(act);
+				++selCount;
+			}
 		}
-		++selCount;
 	}
 
-	// Now we prompt, and execute actions
-	ConfirmAndPerformActions(actionScript, selCount);
+	if (selCount > 0)
+	{
+		// Now we prompt, and execute actions
+		ConfirmAndPerformActions(actionScript, selCount);
+	}
 }
 
 /**
