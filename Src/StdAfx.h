@@ -26,7 +26,7 @@
 		// some windows structure used in API (on VISTA they are longer)
 #		if !defined(WINVER)
 			// Either set it here or pass it as a preprocessor definition
-//#			define WINVER 0x0502
+#			define WINVER 0x0501
 #		endif /* !defined(WINVER) */
 #	endif /* _MSC_VER = 1500 */
 #endif /* _MSC_VER < 1300 */    
