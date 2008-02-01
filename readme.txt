@@ -1,7 +1,7 @@
 WinMerge\readme.txt
 
 Source code for the WinMerge program, its plugins, filters, setup program,
-and various utilities are all kept in various subfolders listet below.
+and various utilities are all kept in various subfolders listed below.
 
 Changelog file is in Docs/Users/ChangeLog.txt and it logs user-visible
 or otherwise significant changes. Subversion commit messages provide a
@@ -12,7 +12,7 @@ one of the tracker items.
 Subfolders include:
 
  - Docs
-    Both user and developer documentation, in different subdirectories.
+    Both user and developer documentation, in different subfolders.
     Can be browsed by opening index.html in Docs folder.
 
  - Src
@@ -26,7 +26,7 @@ Subfolders include:
 
  - ArchiveSupport
     source code for the Merge7z dlls, which connect WinMerge with 7-Zip
-    Also this directory is required to compile WinMerge(U).exe. There
+    Also this folder is required to compile WinMerge(U).exe. There
     is also standalone installer for Merge7z dlls.
 
  - Externals
