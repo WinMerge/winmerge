@@ -1827,7 +1827,8 @@ END
 STRINGTABLE
 BEGIN
     IDR_MAINFRAME           "WinMerge"
-    IDR_MERGEDOCTYPE        "\nWinMerge\nWinMerge\n\n\nWinMerge.Document\nWinMerge Document"
+    IDR_MERGEDOCTYPE        "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
+    IDR_DIRDOCTYPE          "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 END
 
 // CUSTOM CONTROLS
