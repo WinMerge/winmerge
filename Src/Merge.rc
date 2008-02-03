@@ -1661,11 +1661,12 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "Comments", "English translation by developers\0"
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "http://winmerge.org\0"
             VALUE "FileDescription", "WinMerge Application\0"
             VALUE "FileVersion", "000.000.000.000\0"
             VALUE "InternalName", "WinMerge\0"
-            VALUE "LegalCopyright", "(c) 1996-2007 Dean P. Grimm / Thingamahoochie Software\0"
+            VALUE "LegalCopyright", "(c) 1996-2008 Dean P. Grimm / Thingamahoochie Software\0"
             VALUE "OriginalFilename", "WinMerge.EXE\0"
             VALUE "PrivateBuild", ""
             VALUE "ProductName", "WinMerge\0"
