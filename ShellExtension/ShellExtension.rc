@@ -257,17 +257,17 @@ BEGIN
         BLOCK "040904B0"
         BEGIN
             VALUE "Comments", "\0"
-            VALUE "CompanyName", "\0"
-            VALUE "FileDescription", "ShellExtension Module\0"
-            VALUE "FileVersion", "1.13.0.0\0"
+            VALUE "CompanyName", "http://winmerge.org\0"
+            VALUE "FileDescription", "WinMerge Shell Integration library\0"
+            VALUE "FileVersion", "1.13.1.0\0"
             VALUE "InternalName", "ShellExtension\0"
-            VALUE "LegalCopyright", "Copyright 2003-2007\0"
+            VALUE "LegalCopyright", "Copyright 2003-2008\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OLESelfRegister", "\0"
             VALUE "OriginalFilename", "ShellExtension.DLL\0"
             VALUE "PrivateBuild", "\0"
-            VALUE "ProductName", "ShellExtension Module\0"
-            VALUE "ProductVersion", "1.13.0.0\0"
+            VALUE "ProductName", "WinMerge Shell Integration library\0"
+            VALUE "ProductVersion", "1.13.1.0\0"
             VALUE "SpecialBuild", "\0"
         END
     END

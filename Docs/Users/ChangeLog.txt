@@ -10,6 +10,8 @@ WinMerge 2.7.7.4
   Ask and create pair for unique folder and open them (#1881454)
   BugFix: Always return 0 to command line (#1854419)
   BugFix: Merge/Delete deleted items from read-only sides (#1882019)
+  BugFix: Shellextension had no publisher info and wrong
+    description (#1878828)
   Translation updates:
   - Croatian (r4952)
   - Japanese (r4962)
