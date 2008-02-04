@@ -384,8 +384,11 @@ BEGIN
     BEGIN
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
-        MENUITEM "Zoom In\tCtrl++",             ID_VIEW_ZOOMIN
-        MENUITEM "Zoom Out\tCtrl+-",            ID_VIEW_ZOOMOUT
+        POPUP "&Zoom"
+        BEGIN
+            MENUITEM "Zoom &In\tCtrl++",        ID_VIEW_ZOOMIN
+            MENUITEM "Zoom &Out\tCtrl+-",       ID_VIEW_ZOOMOUT
+        END
         POPUP "Syntax Highlight"
         BEGIN
             MENUITEM "<PlaceHolder>",           ID_VIEW_CHANGESCHEME
