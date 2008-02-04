@@ -134,6 +134,8 @@ IDB_MOVE_LEFT_TO_BROWSE BITMAP                  "res\\move_left_to_browse.bmp"
 IDB_MOVE_RIGHT_TO_BROWSE BITMAP                 "res\\move_right_to_browse.bmp"
 IDB_TOOLBAR_DISABLED32  BITMAP                  "res\\ToolbarDisabled32.bmp"
 IDB_TOOLBAR_ENABLED32   BITMAP                  "res\\ToolbarEnabled32.bmp"
+IDB_VIEW_ZOOMIN         BITMAP                  "res\\zoom_in.bmp"
+IDB_VIEW_ZOOMOUT        BITMAP                  "res\\zoom_out.bmp"
 
 
 /////////////////////////////////////////////////////////////////////////////

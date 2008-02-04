@@ -97,6 +97,8 @@
 #define IDB_MOVE_RIGHT_TO_BROWSE        355
 #define IDB_TOOLBAR_DISABLED32          356
 #define IDB_TOOLBAR_ENABLED32           357
+#define IDB_VIEW_ZOOMIN                 358
+#define IDB_VIEW_ZOOMOUT                359
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502
