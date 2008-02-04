@@ -3,7 +3,7 @@
  *
  * @brief Implementation of CompareStats class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -64,14 +64,7 @@ void CompareStats::AddItem(int code)
  */
 int CompareStats::GetCount(CompareStats::RESULT result) const
 {
-	// What is the point in doing thread synchronization here?
 	return m_counts[result];
-	/*int currentValue = 0;
-	EnterCriticalSection(&m_csProtect);
-	int resInd = static_cast<int>(result);
-	currentValue = m_counts[resInd];
-	LeaveCriticalSection(&m_csProtect);
-	return currentValue;*/
 }
 
 /** 
