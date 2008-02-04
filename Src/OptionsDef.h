@@ -134,6 +134,7 @@ const TCHAR OPT_LINEFILTER_ENABLED[] = _T("Settings/IgnoreRegExp");
 /// Currently selected filefilter
 const TCHAR OPT_FILEFILTER_CURRENT[] = _T("Settings/FileFilterCurrent");
 const TCHAR OPT_FILTER_USERPATH[] = _T("Settings/UserFilterPath");
+const TCHAR OPT_FILEFILTER_SHARED[] = _T("Settings/Filters/Shared");
 
 // Version control
 const TCHAR OPT_VCS_SYSTEM[] = _T("Settings/VersionSystem");

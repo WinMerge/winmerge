@@ -3,12 +3,14 @@
  *
  * @brief Dialog where user choose shared or private filter
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "merge.h"
 #include "SharedFilterDlg.h"
+#include "OptionsDef.h"
+#include "OptionsMgr.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -20,11 +22,12 @@ static char THIS_FILE[] = __FILE__;
 // CSharedFilterDlg dialog
 
 
+/**
+ * @brief A constructor.
+ */
 CSharedFilterDlg::CSharedFilterDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CSharedFilterDlg::IDD, pParent)
 {
-	//{{AFX_DATA_INIT(CSharedFilterDlg)
-	//}}AFX_DATA_INIT
 }
 
 
@@ -46,12 +49,15 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSharedFilterDlg message handlers
 
-BOOL CSharedFilterDlg::OnInitDialog() 
+/**
+ * @brief Dialog initialization.
+ */
+BOOL CSharedFilterDlg::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
-	
-	if (AfxGetApp()->GetProfileInt(_T("Filters"), _T("Shared"), 0))
+
+	if (GetOptionsMgr()->GetBool(OPT_FILEFILTER_SHARED))
 		m_SharedButton.SetCheck(BST_CHECKED);
 	else
 		m_PrivateButton.SetCheck(BST_CHECKED);
@@ -60,10 +66,13 @@ BOOL CSharedFilterDlg::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CSharedFilterDlg::OnOK() 
+/**
+ * @brief Called when user closes the dialog with OK button.
+ */
+void CSharedFilterDlg::OnOK()
 {
 	BOOL bShared = (m_SharedButton.GetCheck() == BST_CHECKED);
-	AfxGetApp()->WriteProfileInt(_T("Filters"), _T("Shared"), bShared);
+	GetOptionsMgr()->SaveOption(OPT_FILEFILTER_SHARED, bShared);
 	if (bShared)
 		m_ChosenFolder = m_SharedFolder;
 	else
@@ -72,8 +81,15 @@ void CSharedFilterDlg::OnOK()
 	CDialog::OnOK();
 }
 
-String
-CSharedFilterDlg::PromptForNewFilter(CWnd * Parent, String SharedFolder, String PrivateFolder)
+/**
+ * @brief Show user a selection dialog for shared/private filter creation.
+ * @param [in] parent Parent window pointer.
+ * @param [in] SharedFolder Folder for shared filters.
+ * @param [in] PrivateFolder Folder for private filters.
+ * @return Selected filter folder (shared or private).
+ */
+String CSharedFilterDlg::PromptForNewFilter(CWnd * Parent,
+		const String &SharedFolder, const String &PrivateFolder)
 {
 	CSharedFilterDlg dlg(Parent);
 	dlg.m_SharedFolder = SharedFolder;
@@ -82,4 +98,3 @@ CSharedFilterDlg::PromptForNewFilter(CWnd * Parent, String SharedFolder, String 
 		return _T("");
 	return dlg.m_ChosenFolder;
 }
-
