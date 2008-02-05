@@ -57,6 +57,11 @@ AppPublisherURL=http://WinMerge.org/
 AppSupportURL=http://WinMerge.org/
 AppUpdatesURL=http://WinMerge.org/
 
+; Installer executable's version resource info
+VersionInfoCompany=http://winmerge.org
+VersionInfoDescription=WinMerge Installer
+VersionInfoTextVersion={#AppVersion}
+
 ;This is in case an older version of the installer happened to be
 DirExistsWarning=no
 
