@@ -1021,6 +1021,7 @@
 #define ID_VIEW_ZOOMIN                  33169
 #define ID_VIEW_ZOOMOUT                 33170
 #define ID_HELP_TRANSLATIONS            33171
+#define ID_VIEW_ZOOMNORMAL              33172
 
 // Next default values for new objects
 //

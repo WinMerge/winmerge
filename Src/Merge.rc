@@ -388,6 +388,7 @@ BEGIN
         BEGIN
             MENUITEM "Zoom &In\tCtrl++",        ID_VIEW_ZOOMIN
             MENUITEM "Zoom &Out\tCtrl+-",       ID_VIEW_ZOOMOUT
+            MENUITEM "&Normal\tCtrl+*",         ID_VIEW_ZOOMNORMAL //#. Zoom to normal
         END
         POPUP "Syntax Highlight"
         BEGIN
@@ -640,6 +641,7 @@ BEGIN
     VK_UP,          ID_PREVDIFF,            VIRTKEY, ALT, NOINVERT
     VK_ADD,         ID_VIEW_ZOOMIN,         VIRTKEY, CONTROL, NOINVERT
     VK_SUBTRACT,    ID_VIEW_ZOOMOUT,        VIRTKEY, CONTROL, NOINVERT
+    VK_MULTIPLY,    ID_VIEW_ZOOMNORMAL,     VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -2627,6 +2629,7 @@ BEGIN
     ID_VIEW_FILEMARGIN      "Shows selection margins for both panes\nShow Selection Margins"
     ID_VIEW_ZOOMIN          "Increase text size"
     ID_VIEW_ZOOMOUT         "Decrease text size"
+    ID_VIEW_ZOOMNORMAL      "Reset text zoom to default size"
 END
 
 // MERGE MENU

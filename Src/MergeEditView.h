@@ -307,6 +307,7 @@ protected:
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
+	afx_msg void OnViewZoomNormal();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:

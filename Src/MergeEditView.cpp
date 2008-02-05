@@ -198,6 +198,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_WM_MOUSEWHEEL()
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
+	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3252,7 +3253,7 @@ BOOL CMergeEditView::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 /**
  * @brief Change font size (zoom) in views.
  * @param [in] amount Amount of change/zoom, negative number makes
- *  font smaller, positive number bigger.
+ *  font smaller, positive number bigger and 0 reset the font size.
  */
 void CMergeEditView::ZoomText(short amount)
 {
@@ -3267,6 +3268,11 @@ void CMergeEditView::ZoomText(short amount)
 		const int nLogPixelsY = pDC->GetDeviceCaps(LOGPIXELSY);
 
 		int nPointSize = -MulDiv(lf.lfHeight, 72, nLogPixelsY);
+
+		if ( amount == 0)
+		{
+			nPointSize = -MulDiv(GetOptionsMgr()->GetInt(OPT_FONT_FILECMP_HEIGHT), 72, nLogPixelsY);
+		}
 
 		nPointSize += amount;
 		if (nPointSize < 2)
@@ -3307,4 +3313,12 @@ void CMergeEditView::OnViewZoomIn()
 void CMergeEditView::OnViewZoomOut()
 {
 	ZoomText(-1);
+}
+
+/**
+ * @bfief Called when user selects View/Zoom Normal from menu.
+ */
+void CMergeEditView::OnViewZoomNormal()
+{
+	ZoomText(0);
 }
