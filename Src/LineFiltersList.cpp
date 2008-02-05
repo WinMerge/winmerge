@@ -39,8 +39,7 @@ void LineFiltersList::AddFilter(LPCTSTR filter, BOOL enabled)
 {
 	LineFilterItem item;
 	item.enabled = enabled;
-	item.filterStr = _tcsdup(filter);
-
+	item.filterStr = filter;
 	m_items.AddTail(item);
 }
 
@@ -60,8 +59,7 @@ void LineFiltersList::Empty()
 {
 	while (!m_items.IsEmpty())
 	{
-		LineFilterItem item = m_items.RemoveHead();
-		free(item.filterStr);
+		m_items.RemoveHead();
 	}
 }
 
@@ -72,10 +70,9 @@ void LineFiltersList::Empty()
  * the list are separated by "|".
  * @return Filter string.
  */
-CString LineFiltersList::GetAsString() const
+String LineFiltersList::GetAsString() const
 {
-	CString filter;
-
+	String filter;
 	POSITION pos = m_items.GetHeadPosition();
 
 	while (pos)
@@ -83,7 +80,7 @@ CString LineFiltersList::GetAsString() const
 		LineFilterItem item = m_items.GetNext(pos);
 		if (item.enabled)
 		{
-			if (!filter.IsEmpty())
+			if (!filter.empty())
 				filter += _T("|");
 			filter += item.filterStr;
 		}
@@ -125,7 +122,7 @@ void LineFiltersList::CloneFrom(LineFiltersList *list)
 	for (int i = 0; i < count; i++)
 	{
 		LineFilterItem item = list->GetAt(i);
-		AddFilter(item.filterStr, item.enabled);
+		AddFilter(item.filterStr.c_str(), item.enabled);
 	}
 }
 
@@ -136,24 +133,25 @@ void LineFiltersList::CloneFrom(LineFiltersList *list)
 void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 {
 	ASSERT(pOptionsMgr);
-	CString valuename(FiltersRegPath);
+	String valuename(FiltersRegPath);
 
 	m_pOptionsMgr = pOptionsMgr;
 
 	int count = m_items.GetCount();
 	valuename += _T("/Values");
-	m_pOptionsMgr->InitOption(valuename, count);
-	count = m_pOptionsMgr->GetInt(valuename);
+	m_pOptionsMgr->InitOption(valuename.c_str(), count);
+	count = m_pOptionsMgr->GetInt(valuename.c_str());
 
 	for (unsigned int i = 0; i < count; i++)
 	{
-		valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, i);
-		m_pOptionsMgr->InitOption(valuename, _T(""));
-		String filter = m_pOptionsMgr->GetString(valuename);
-		
-		valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, i);
-		m_pOptionsMgr->InitOption(valuename, (int)TRUE);
-		int enabled = m_pOptionsMgr->GetInt(valuename);
+		TCHAR name[100] = {0};
+		_sntprintf(name, 99, _T("%s/Filter%02u"), FiltersRegPath, i);
+		m_pOptionsMgr->InitOption(name, _T(""));
+		String filter = m_pOptionsMgr->GetString(name);
+
+		_sntprintf(name, 99, _T("%s/Enabled%02u"), FiltersRegPath, i);
+		m_pOptionsMgr->InitOption(name, (int)TRUE);
+		int enabled = m_pOptionsMgr->GetInt(name);
 		BOOL bEnabled = enabled ? TRUE : FALSE;
 
 		AddFilter(filter.c_str(), bEnabled);
@@ -166,37 +164,43 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 void LineFiltersList::SaveFilters()
 {
 	ASSERT(m_pOptionsMgr);
-	CString valuename(FiltersRegPath);
+	String valuename(FiltersRegPath);
 
 	int count = m_items.GetCount();
 	valuename += _T("/Values");
-	m_pOptionsMgr->SetInt(valuename, count);
+	m_pOptionsMgr->SetInt(valuename.c_str(), count);
 
 	for (unsigned int i = 0; i < count; i++)
 	{
 		POSITION pos = m_items.FindIndex(i);
 		LineFilterItem item = m_items.GetAt(pos);
-		valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, i);
-		m_pOptionsMgr->InitOption(valuename, _T(""));
-		m_pOptionsMgr->SaveOption(valuename, item.filterStr);
-		valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, i);
-		m_pOptionsMgr->InitOption(valuename, 0);
-		m_pOptionsMgr->SaveOption(valuename, (int)item.enabled);
+
+		TCHAR name[100] = {0};
+		_sntprintf(name, 99, _T("%s/Filter%02u"), FiltersRegPath, i);
+		m_pOptionsMgr->InitOption(name, _T(""));
+		m_pOptionsMgr->SaveOption(name, item.filterStr.c_str());
+
+		_sntprintf(name, 99, _T("%s/Enabled%02u"), FiltersRegPath, i);
+		m_pOptionsMgr->InitOption(name, 0);
+		m_pOptionsMgr->SaveOption(name, (int)item.enabled);
 	}
 
 	// Remove options we don't need anymore
 	// We could have earlier 10 pcs but now we only need 5
-	valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, count);
-	int retval1 = m_pOptionsMgr->RemoveOption(valuename);
-	valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, count);
-	int retval2 = m_pOptionsMgr->RemoveOption(valuename);
+	TCHAR filter[100] = {0};
+	_sntprintf(filter, 99, _T("%s/Filter%02u"), FiltersRegPath, count);
+	int retval1 = m_pOptionsMgr->RemoveOption(filter);
+
+	_sntprintf(filter, 99, _T("%s/Enabled%02u"), FiltersRegPath, count);
+	int retval2 = m_pOptionsMgr->RemoveOption(filter);
+	
 	while (retval1 == OPT_OK || retval2 == OPT_OK)
 	{
 		++count;
-		valuename.Format(_T("%s/Filter%02u"), FiltersRegPath, count);
-		retval1 = m_pOptionsMgr->RemoveOption(valuename);
-		valuename.Format(_T("%s/Enabled%02u"), FiltersRegPath, count);
-		retval2 = m_pOptionsMgr->RemoveOption(valuename);
+		_sntprintf(filter, 99, _T("%s/Filter%02u"), FiltersRegPath, count);
+		retval1 = m_pOptionsMgr->RemoveOption(filter);
+		_sntprintf(filter, 99, _T("%s/Enabled%02u"), FiltersRegPath, count);
+		retval2 = m_pOptionsMgr->RemoveOption(filter);
 	}
 }
 

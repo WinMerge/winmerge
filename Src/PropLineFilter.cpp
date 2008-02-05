@@ -107,7 +107,7 @@ void CPropLineFilter::InitList()
 	for (int i = 0; i < count; i++)
 	{
 		LineFilterItem item = m_pList->GetAt(i);
-		ind = AddRow(item.filterStr, item.enabled);
+		ind = AddRow(item.filterStr.c_str(), item.enabled);
 	}
 	if (count > 0)
 	{

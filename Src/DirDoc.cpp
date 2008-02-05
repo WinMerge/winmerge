@@ -269,8 +269,8 @@ void CDirDoc::LoadLineFilterList()
 	ASSERT(m_pCtxt);
 	
 	BOOL bFilters = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
-	CString filters = GetMainFrame()->m_pLineFilters->GetAsString();
-	if (!bFilters || filters.IsEmpty())
+	String filters = GetMainFrame()->m_pLineFilters->GetAsString();
+	if (!bFilters || filters.empty())
 	{
 		delete m_pCtxt->m_pFilterList;
 		m_pCtxt->m_pFilterList = NULL;
@@ -286,7 +286,7 @@ void CDirDoc::LoadLineFilterList()
 	FilterList::EncodingType type;
 
 #ifdef UNICODE
-	regexp_str = UCS2UTF8_ConvertToUtf8(filters);
+	regexp_str = UCS2UTF8_ConvertToUtf8(filters.c_str());
 	type = FilterList::ENC_UTF8;
 #else
 	regexp_str = filters.LockBuffer();

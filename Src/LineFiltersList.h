@@ -19,8 +19,8 @@ class COptionsMgr;
 struct LineFilterItem
 {
 	BOOL enabled; /**< Is filter enabled? */
-	TCHAR * filterStr; /**< Filter string */
-	LineFilterItem() : enabled(FALSE), filterStr(NULL) { }
+	String filterStr; /**< Filter string */
+	LineFilterItem() : enabled(FALSE) { }
 };
 
 typedef CList<LineFilterItem, const LineFilterItem&> LineFilterItems;
@@ -37,7 +37,7 @@ public:
 	void AddFilter(LPCTSTR filter, BOOL enabled);
 	int GetCount() const;
 	void Empty();
-	CString GetAsString() const;
+	String GetAsString() const;
 	LineFilterItem GetAt(int ind);
 	void CloneFrom(LineFiltersList *list);
 

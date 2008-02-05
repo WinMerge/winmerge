@@ -393,8 +393,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 
 	if (GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED))
 	{
-		CString regexp = GetMainFrame()->m_pLineFilters->GetAsString();
-		m_diffWrapper.SetFilterList(regexp);
+		String regexp = GetMainFrame()->m_pLineFilters->GetAsString();
+		m_diffWrapper.SetFilterList(regexp.c_str());
 	}
 	else
 	{
