@@ -289,7 +289,7 @@ void CDirDoc::LoadLineFilterList()
 	regexp_str = UCS2UTF8_ConvertToUtf8(filters.c_str());
 	type = FilterList::ENC_UTF8;
 #else
-	regexp_str = filters.LockBuffer();
+	regexp_str = (char *) filters.c_str();
 	type = FilterList::ENC_ANSI;
 #endif
 
@@ -297,8 +297,6 @@ void CDirDoc::LoadLineFilterList()
 
 #ifdef UNICODE
 	UCS2UTF8_Dealloc(regexp_str);
-#else
-	filters.UnlockBuffer();
 #endif
 }
 
