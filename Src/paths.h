@@ -24,6 +24,7 @@ typedef enum
 bool paths_EndsWithSlash(LPCTSTR s);
 
 PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath);
+LPCTSTR paths_FindFileName(LPCTSTR path);
 void paths_normalize(String & sPath);
 String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
 bool paths_CreateIfNeeded(LPCTSTR szPath);

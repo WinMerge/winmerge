@@ -84,6 +84,18 @@ PATH_EXISTENCE paths_DoesPathExist(LPCTSTR szPath)
 		return IS_EXISTING_FILE;
 }
 
+/**
+ * @brief Like shlwapi's PathFindFileName(), but works with both \ and /.
+ * @param [in] Path
+ * @return Filename
+ */
+LPCTSTR paths_FindFileName(LPCTSTR path)
+{
+	while (LPCTSTR slash = _tcspbrk(path, _T("\\/")))
+		path = slash + 1;
+	return path;
+}
+
 /** 
  * @brief Strip trailing slas.
  * This function strips trailing slas from given path. Root paths are special
