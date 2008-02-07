@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-07 16:25+0000\n"
+"POT-Creation-Date: 2008-02-07 17:34+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -138,8 +138,10 @@ msgid "Op&en Conflict File..."
 msgstr ""
 
 #: Merge.rc:116
+#: Merge.rc:196
+#: Merge.rc:312
 #, c-format
-msgid "Open Project...\tCtrl+J"
+msgid "Open Pro&ject...\tCtrl+J"
 msgstr ""
 
 #: Merge.rc:117
@@ -440,12 +442,6 @@ msgstr ""
 #: Merge.rc:488
 #, c-format
 msgid "&About WinMerge..."
-msgstr ""
-
-#: Merge.rc:196
-#: Merge.rc:312
-#, c-format
-msgid "Open Pro&ject...\tCtrl+J"
 msgstr ""
 
 #: Merge.rc:199
