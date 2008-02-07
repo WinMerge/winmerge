@@ -1001,13 +1001,17 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	if ((*di1)->diffcode.isDirectory())
 		isDir = true;
 
-	if ((*di1)->diffcode.isDirectory() && ((*di1)->diffcode.isSideLeftOnly() ==
-		(*di1)->diffcode.isSideRightOnly()))
+	if (isDir && (*di1)->diffcode.isSideBoth())
 	{
-		// Open both-side folders in non-recursive compare.
-		if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
+		// Check both folders exist. If either folder is missing that means
+		// folder has been changed behind our back, so we just tell user to
+		// refresh the compare.
+		PATH_EXISTENCE path1Exists = paths_DoesPathExist(path1.c_str());
+		PATH_EXISTENCE path2Exists = paths_DoesPathExist(path2.c_str());
+		if (path1Exists != IS_EXISTING_DIR || path2Exists != IS_EXISTING_DIR)
 		{
-			LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
+			String invalid = path1Exists == IS_EXISTING_DIR ? path1 : path2;
+			ResMsgBox1(IDS_DIRCMP_NOTSYNC, invalid.c_str(), MB_ICONSTOP);
 			return false;
 		}
 	}
