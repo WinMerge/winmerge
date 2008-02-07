@@ -705,7 +705,6 @@
 #define IDS_FILEERROR                   18003
 #define IDS_FILEBINARY                  18004
 #define IDS_TEMP_FILEERROR              18005
-#define IDS_FILEISDIR                   18006
 #define IDS_SUGGEST_IGNOREEOL           18007
 #define IDS_SUGGEST_PRESERVEEOL         18008
 #define IDS_PREDIFFER_ERROR             18009

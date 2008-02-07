@@ -1004,21 +1004,11 @@ bool CDirView::OpenOneItem(POSITION pos1, DIFFITEM **di1, DIFFITEM **di2,
 	if ((*di1)->diffcode.isDirectory() && ((*di1)->diffcode.isSideLeftOnly() ==
 		(*di1)->diffcode.isSideRightOnly()))
 	{
-		if (pDoc->GetRecursive())
+		// Open both-side folders in non-recursive compare.
+		if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
 		{
-			LangMessageBox(IDS_FILEISDIR, MB_ICONINFORMATION);
+			LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
 			return false;
-		}
-		else
-		{
-			// Open subfolders if non-recursive compare
-			// Don't add folders to MRU
-			if (GetPairComparability(path1.c_str(), path2.c_str()) != IS_EXISTING_DIR)
-			{
-				LangMessageBox(IDS_INVALID_DIRECTORY, MB_ICONSTOP);
-				return false;
-			}
-			// Fall through and compare directories
 		}
 	}
 	else if ((*di1)->diffcode.isSideLeftOnly())
