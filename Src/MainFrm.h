@@ -262,10 +262,6 @@ protected:
 	afx_msg void OnUpdateViewUsedefaultfont(CCmdUI* pCmdUI);
 	afx_msg void OnHelpContents();
 	afx_msg void OnUpdateHelpContents(CCmdUI* pCmdUI);
-	afx_msg void OnHelpIndex();
-	afx_msg void OnUpdateHelpIndex(CCmdUI* pCmdUI);
-	afx_msg void OnHelpSearch();
-	afx_msg void OnUpdateHelpSearch(CCmdUI* pCmdUI);
 	afx_msg void OnClose();
 	afx_msg void OnViewWhitespace();
 	afx_msg void OnUpdateViewWhitespace(CCmdUI* pCmdUI);

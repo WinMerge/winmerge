@@ -122,10 +122,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_USEDEFAULTFONT, OnUpdateViewUsedefaultfont)
 	ON_COMMAND(ID_HELP_CONTENTS, OnHelpContents)
 	ON_UPDATE_COMMAND_UI(ID_HELP_CONTENTS, OnUpdateHelpContents)
-	ON_COMMAND(ID_HELP_INDEX, OnHelpIndex)
-	ON_UPDATE_COMMAND_UI(ID_HELP_INDEX, OnUpdateHelpIndex)
-	ON_COMMAND(ID_HELP_SEARCH, OnHelpSearch)
-	ON_UPDATE_COMMAND_UI(ID_HELP_SEARCH, OnUpdateHelpSearch)
 	ON_WM_CLOSE()
 	ON_COMMAND(ID_VIEW_WHITESPACE, OnViewWhitespace)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_WHITESPACE, OnUpdateViewWhitespace)
@@ -1660,7 +1656,7 @@ void CMainFrame::OpenFileOrUrl(LPCTSTR szFile, LPCTSTR szUrl)
 }
 
 /**
- * @brief Open help contents.
+ * @brief Open WinMerge help.
  *
  * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
  */
@@ -1674,64 +1670,9 @@ void CMainFrame::OnHelpContents()
 }
 
 /**
- * @brief Enable Open help contents -menuitem.
+ * @brief Enable Open WinMerge help -menuitem.
  */
 void CMainFrame::OnUpdateHelpContents(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(TRUE);
-}
-
-/**
- * @brief Open help index.
- *
- * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
- */
-void CMainFrame::OnHelpIndex()
-{
-	String sPath = GetModulePath(0) + DocsPath;
-	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
-		::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_INDEX, NULL);
-	else
-		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
-}
-
-/**
- * @brief Disable Open help index -menuitem.
- */
-void CMainFrame::OnUpdateHelpIndex(CCmdUI* pCmdUI) 
-{
-	pCmdUI->Enable(TRUE);
-}
-
-/**
- * @brief Open help search.
- *
- * If local HTMLhelp file is found, open it, otherwise open HTML page from web.
- */
-void CMainFrame::OnHelpSearch()
-{
-	String sPath = GetModulePath(0) + DocsPath;
-	if (paths_DoesPathExist(sPath.c_str()) == IS_EXISTING_FILE)
-	{
-		HH_FTS_QUERY q = {0};
-		q.fExecute = TRUE;
-		q.fTitleOnly = FALSE;
-		q.fUniCodeStrings = TRUE;
-		q.fStemmedSearch = FALSE;
-		q.pszSearchQuery = _T("");
-		q.pszWindow = NULL;
-		q.cbStruct = sizeof(q);
-
-		::HtmlHelp(GetSafeHwnd(), sPath.c_str(), HH_DISPLAY_SEARCH, (DWORD_PTR)&q);
-	}
-	else
-		ShellExecute(NULL, _T("open"), DocsURL, NULL, NULL, SW_SHOWNORMAL);
-}
-
-/**
- * @brief Enable Open help search -menuitem.
- */
-void CMainFrame::OnUpdateHelpSearch(CCmdUI* pCmdUI) 
 {
 	pCmdUI->Enable(TRUE);
 }

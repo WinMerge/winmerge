@@ -172,9 +172,7 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&Contents...\tF1",            ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
@@ -288,9 +286,7 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&Contents...\tF1",            ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
@@ -475,9 +471,7 @@ BEGIN
     END
     POPUP "&Help"
     BEGIN
-        MENUITEM "&Contents...\tF1",            ID_HELP_CONTENTS
-        MENUITEM "&Index...",                   ID_HELP_INDEX
-        MENUITEM "&Search...",                  ID_HELP_SEARCH
+        MENUITEM "&WinMerge Help\tF1",          ID_HELP_CONTENTS
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
@@ -2680,12 +2674,10 @@ END
 // HELP MENU
 STRINGTABLE
 BEGIN
-    ID_HELP_CONTENTS        "Displays the WinMerge User's Guide\nHelp"
+    ID_HELP_CONTENTS        "Opens the WinMerge help\nWinMerge Help"
     ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
     ID_HELP_GNULICENSE      "Display the GNU public license"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
-    ID_HELP_INDEX           "Opens WinMerge Help Index\nHelp Index"
-    ID_HELP_SEARCH          "Opens WinMerge Help Search\nHelp Search"
     ID_HELP_RELEASENOTES    "Opens the release notes document\nRelease Notes"
     ID_HELP_TRANSLATIONS    "Opens the translations website\nTranslations"
 END
