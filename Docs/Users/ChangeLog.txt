@@ -19,6 +19,7 @@ WinMerge 2.7.7.4
   Translation updates:
   - Croatian (r4952)
   - Japanese (r4962)
+  - Swedish (#1884918)
 
 WinMerge 2.7.7.3 - 2008-01-23 (r4951)
   Resolve conflict files (cvs, svn...) (#1875129)
