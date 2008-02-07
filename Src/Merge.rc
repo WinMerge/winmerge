@@ -2714,7 +2714,7 @@ END
 STRINGTABLE
 BEGIN
     ID_DISPLAY_MOVED_NONE   "Do not display moved blocks"
-    ID_DISPLAY_MOVED_ALL    "Display all moved blacks"
+    ID_DISPLAY_MOVED_ALL    "Display all moved blocks"
     ID_DISPLAY_MOVED_FOLLOW_DIFF "Display moved blocks only from current diff"
     ID_LOCBAR_GOTODIFF      "Go to diff under cursor"
     ID_LOCBAR_GOTODIFF_FMT  "G&oto Diff %1 of %2"
