@@ -512,6 +512,8 @@ LastChar(LPCTSTR psz, int len)
 	{
 		prev = psz;
 		psz = CharNext(psz);
+		if (prev == psz)
+			psz++;
 	}
 	if (psz==lastValid && !IsLeadByte(*psz))
 		return psz;

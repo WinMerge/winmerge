@@ -16,6 +16,7 @@ WinMerge 2.7.7.4
   BugFix: Merge/Delete deleted items from read-only sides (#1882019)
   BugFix: Shellextension had no publisher info and wrong
     description (#1878828)
+  BugFix: Lockup when showing binary files (#1880711)
   Translation updates:
   - Croatian (r4952)
   - Japanese (r4962)
