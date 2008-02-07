@@ -549,9 +549,6 @@
 #define IDS_OPEN_MISMATCH               17207
 #define IDS_ERROR_FILE_NOT_FOUND        17216
 #define IDS_ERROR_FILE_NOT_UNPACKED     17217
-#define IDS_BINFILES_IDENTICAL          17218
-#define IDS_BINFILES_DIFFERENT          17219
-#define IDS_OTHER_IS_BINARY             17220
 #define IDS_ERROR_FILEOPEN              17221
 #define IDS_ERROR_CONF_RESOLVE          17222
 #define IDS_NOT_CONFLICT_FILE           17223
@@ -701,9 +698,7 @@
 #define IDS_REPORT_SUCCESS              17799
 #define IDS_FILE_TO_ITSELF              18000
 #define IDS_FILESSAME                   18001
-#define IDS_FOLDERUNIQUE                18002
 #define IDS_FILEERROR                   18003
-#define IDS_FILEBINARY                  18004
 #define IDS_TEMP_FILEERROR              18005
 #define IDS_SUGGEST_IGNOREEOL           18007
 #define IDS_SUGGEST_PRESERVEEOL         18008
