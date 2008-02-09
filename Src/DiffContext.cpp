@@ -292,8 +292,8 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 		return m_pCompareOptions;
 
 	// Otherwise we have to create new options
-	if (m_pCompareOptions)
-		delete m_pCompareOptions;
+	delete m_pCompareOptions;
+	m_pCompareOptions = NULL;
 
 	switch (compareMethod)
 	{
