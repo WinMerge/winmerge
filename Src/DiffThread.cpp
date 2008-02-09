@@ -124,6 +124,22 @@ void CDiffThread::SetContext(CDiffContext * pCtx)
 }
 
 /**
+ * @brief runtime interface for child thread, called on child thread
+ */
+bool CDiffThread::ShouldAbort() const
+{
+	if (bSinglethreaded)
+	{
+		MSG msg;
+		while (::PeekMessage(&msg, 0, 0, 0, PM_NOREMOVE))
+		{
+			AfxGetApp()->PumpMessage();
+		}
+	}
+	return m_bAborting;
+}
+
+/**
  * @brief Start and run directory compare thread.
  * @param [in] dir1 First directory to compare.
  * @param [in] dir2 Second directory to compare.

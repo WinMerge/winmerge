@@ -63,7 +63,7 @@ public:
 	bool IsAborting() const { return m_bAborting; }
 
 // runtime interface for child thread, called on child thread
-	bool ShouldAbort() const { return m_bAborting; }
+	bool ShouldAbort() const;
 
 private:
 	CDiffContext * m_pDiffContext; /**< Compare context storing results. */
