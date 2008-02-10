@@ -504,7 +504,9 @@ OnChar (UINT nChar, UINT nRepCnt, UINT nFlags)
     }
   // Accept control characters other than [\t\n\r] through Alt-Numpad
   if (nChar > 31
-  || GetKeyState(VK_CONTROL) >= 0 && nChar != 9 && nChar != 10 && nChar != 13)
+  || GetKeyState(VK_CONTROL) >= 0 &&
+      (nChar != 27 || GetKeyState(VK_ESCAPE) >= 0) &&
+      nChar != 9 && nChar != 10 && nChar != 13)
     {
       if (QueryEditable () && m_pTextBuffer != NULL)
         {
