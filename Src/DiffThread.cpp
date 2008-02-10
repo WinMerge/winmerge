@@ -139,13 +139,11 @@ bool CDiffThread::ShouldAbort() const
 
 /**
  * @brief Start and run directory compare thread.
- * @param [in] dir1 First directory to compare.
- * @param [in] dir2 Second directory to compare.
  * @param [in] bRecursive Is the compare recursive (subfolders included)?
  * @return Success (1) or error for thread. Currently always 1.
+ * @note Folders names to compare are passed in the compare context.
  */
-UINT CDiffThread::CompareDirectories(LPCTSTR dir1, LPCTSTR dir2,
-		BOOL bRecursive)
+UINT CDiffThread::CompareDirectories(BOOL bRecursive)
 {
 	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
