@@ -229,7 +229,6 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
 	UINT msgID = myStruct->msgUIUpdate;
 	bool bOnlyRequested = myStruct->bOnlyRequested;
-	myStruct->context->m_bCollectReady = FALSE;
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
@@ -277,8 +276,13 @@ UINT DiffThreadCollect(LPVOID lpParam)
 #endif
 	}
 
-	// Signal that collect phase is ready
-	myStruct->context->m_bCollectReady = TRUE;
+	// Add sentinel to ItemList
+	EnterCriticalSection(&myStruct->context->m_criticalSect);
+	DIFFITEM di;
+	di = di.MakeEmptyDiffItem();
+	myStruct->pItemList->AddDiff(di);
+	LeaveCriticalSection(&myStruct->context->m_criticalSect);
+
 	return 1;
 }
 

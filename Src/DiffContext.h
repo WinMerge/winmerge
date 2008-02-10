@@ -105,7 +105,6 @@ public:
 	int m_nQuickCompareLimit; /**< Bigger files are always compared with quick compare */
 	FilterList * m_pFilterList; /**< Filter list for line filters */
 	CRITICAL_SECTION m_criticalSect; /**< Critical section protecting list access. */
-	BOOL m_bCollectReady; /**< Tells collection phase is done. */
 
 private:
 	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */

@@ -250,8 +250,6 @@ int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt)
 		EnterCriticalSection(&pCtxt->m_criticalSect);
 		pos = list->GetFirstDiffPosition();
 		LeaveCriticalSection(&pCtxt->m_criticalSect);
-		if (pCtxt->m_bCollectReady == TRUE)
-			break;
 	}
 	
 	// Compare whole list
@@ -267,56 +265,21 @@ int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt)
 		EnterCriticalSection(&pCtxt->m_criticalSect);
 		DIFFITEM di = list->GetNextDiffPosition(pos);
 		LeaveCriticalSection(&pCtxt->m_criticalSect);
+		if (di.empty)
+			break; // found sentinel
 		CompareDiffItem(di, pCtxt);
 
 		// Some compare methdods can be faster than collecting,
 		// so we can reach the end of list while collect is running.
 		// In this case we must wait for a while for new items to be
 		// added to the list.
-		if (pos == NULL && pCtxt->m_bCollectReady == FALSE)
+		while (pos == NULL)
 		{
-			do
-			{
-				pos = prevPos;
-				Sleep(200);
-				EnterCriticalSection(&pCtxt->m_criticalSect);
-				list->GetNextDiffPosition(pos);
-				LeaveCriticalSection(&pCtxt->m_criticalSect);
-			} while (pos == NULL);
-		}
-	}
-
-	// Loop above may not catch all items yet, consider this case:
-	// - we get latest item at the moment (pos is returned as NULL)
-	// - compare takes a while (big file / slow media) and new item
-	//   is added to the list while comparing
-	// - m_bCollectReady is set to TRUE
-	// Now we would end the loop, while there are still items in the list.
-	// So to be sure, lets try again with "last" item, if there are more
-	// items!
-
-	// Check that we have items in the list (maybe it was empty folder?)
-	if (list->GetFirstDiffPosition())
-	{
-		EnterCriticalSection(&pCtxt->m_criticalSect);
-		list->GetNextDiffPosition(prevPos);
-		LeaveCriticalSection(&pCtxt->m_criticalSect);
-	}
-
-	if (prevPos != NULL)
-	{
-		pos = prevPos;
-		while (pos != NULL)
-		{
-			if (pCtxt->ShouldAbort())
-			{
-				res = -1;
-				break;
-			}
+			pos = prevPos;
+			Sleep(200);
 			EnterCriticalSection(&pCtxt->m_criticalSect);
-			DIFFITEM di = list->GetNextDiffPosition(pos);
+			list->GetNextDiffPosition(pos);
 			LeaveCriticalSection(&pCtxt->m_criticalSect);
-			CompareDiffItem(di, pCtxt);
 		}
 	}
 

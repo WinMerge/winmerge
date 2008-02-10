@@ -69,7 +69,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_piAbortable(NULL)
 , m_bStopAfterFirstDiff(FALSE)
 , m_pFilterList(NULL)
-, m_bCollectReady(FALSE)
 , m_pCompareOptions(NULL)
 , m_pOptions(NULL)
 {
@@ -101,7 +100,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
 	m_bIgnoreSmallTimeDiff = src.m_bIgnoreSmallTimeDiff;
 	m_bStopAfterFirstDiff = src.m_bStopAfterFirstDiff;
 	m_pFilterList = src.m_pFilterList;
-	m_bCollectReady = src.m_bCollectReady;
 
 	EnterCriticalSection(&src.m_criticalSect);
 	InitializeCriticalSection(&m_criticalSect);
