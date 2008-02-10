@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "diffcontext.h"
 #include "diffthread.h"
 #include "DirScan.h"
@@ -51,8 +52,8 @@ static bool bSinglethreaded = false;
  */
 struct DiffFuncStruct
 {
-	CString path1; /**< First path to compare. */
-	CString path2; /**< Second path to compare. */
+	String path1; /**< First path to compare. */
+	String path2; /**< Second path to compare. */
 	CDiffContext * context; /**< Compare context. */
 	UINT msgUIUpdate; /**< Windows message for updating GUI. */
 	HWND hWindow; /**< Window getting status updates. */
@@ -146,8 +147,8 @@ bool CDiffThread::ShouldAbort() const
  * @param [in] bRecursive Is the compare recursive (subfolders included)?
  * @return Success (1) or error for thread. Currently always 1.
  */
-UINT CDiffThread::CompareDirectories(const CString & dir1,
-		const CString & dir2, BOOL bRecursive)
+UINT CDiffThread::CompareDirectories(LPCTSTR dir1, LPCTSTR dir2,
+		BOOL bRecursive)
 {
 	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
@@ -255,7 +256,6 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	else
 	{
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
-		CString subdir; // blank to start at roots specified in diff context
 #ifdef _DEBUG
 		_CrtMemState memStateBefore;
 		_CrtMemState memStateAfter;
@@ -267,7 +267,9 @@ UINT DiffThreadCollect(LPVOID lpParam)
 		SetEvent(myStruct->hEvent);
 
 		// Build results list (except delaying file comparisons until below)
-		DirScan_GetItems(paths, subdir, subdir, myStruct->pItemList, casesensitive, depth,  myStruct->context);
+		// Empty subdirs to start compare from root folders in diff context
+		DirScan_GetItems(paths, _T(""), _T(""), myStruct->pItemList,
+				casesensitive, depth,  myStruct->context);
 
 #ifdef _DEBUG
 		_CrtMemCheckpoint(&memStateAfter);

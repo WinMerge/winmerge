@@ -52,7 +52,7 @@ public:
 	CDiffThread();
 	~CDiffThread();
 	void SetContext(CDiffContext * pCtx);
-	UINT CompareDirectories(const CString & dir1, const CString & dir2, BOOL bRecursive);
+	UINT CompareDirectories(LPCTSTR dir1, LPCTSTR dir2, BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg);
 	void SetCompareSelected(bool bSelected = false);
