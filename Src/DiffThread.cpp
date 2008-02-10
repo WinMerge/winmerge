@@ -23,7 +23,6 @@
 // $Id$
 
 #include "stdafx.h"
-#include "UnicodeString.h"
 #include "diffcontext.h"
 #include "diffthread.h"
 #include "DirScan.h"
@@ -52,8 +51,6 @@ static bool bSinglethreaded = false;
  */
 struct DiffFuncStruct
 {
-	String path1; /**< First path to compare. */
-	String path2; /**< Second path to compare. */
 	CDiffContext * context; /**< Compare context. */
 	UINT msgUIUpdate; /**< Windows message for updating GUI. */
 	HWND hWindow; /**< Window getting status updates. */
@@ -152,8 +149,6 @@ UINT CDiffThread::CompareDirectories(LPCTSTR dir1, LPCTSTR dir2,
 {
 	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
-	m_pDiffParm->path1 = dir1;
-	m_pDiffParm->path2 = dir2;
 	m_pDiffParm->bRecursive = bRecursive;
 	m_pDiffParm->context = m_pDiffContext;
 	m_pDiffParm->msgUIUpdate = m_msgUpdateUI;
