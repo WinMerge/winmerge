@@ -274,7 +274,7 @@ SOURCE=.\ConflictFileParser.cpp
 # Begin Source File
 
 SOURCE=.\Common\coretools.cpp
-# ADD CPP /YX
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
@@ -2290,32 +2290,7 @@ SOURCE=.\diffutils\src\CONTEXT.C
 # Begin Source File
 
 SOURCE=.\diffutils\src\Diff.cpp
-
-!IF  "$(CFG)" == "Merge - Win32 Debug"
-
-# SUBTRACT CPP /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeDebug"
-
-# SUBTRACT BASE CPP /Yc /Yu
-# SUBTRACT CPP /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 Release"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /Yc /Yu
-
-!ELSEIF  "$(CFG)" == "Merge - Win32 UnicodeRelease"
-
-# ADD BASE CPP /O2
-# SUBTRACT BASE CPP /Yc /Yu
-# ADD CPP /O2
-# SUBTRACT CPP /Yc /Yu
-
-!ENDIF 
-
+# SUBTRACT CPP /YX /Yc /Yu
 # End Source File
 # Begin Source File
 
