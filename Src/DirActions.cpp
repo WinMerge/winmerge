@@ -540,13 +540,13 @@ void CDirView::DoCopyLeftTo()
 
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.sLeftSubdir.empty())
+				if (!di.left.path.empty())
 				{
-					sFullDest += di.sLeftSubdir.c_str();
+					sFullDest += di.left.path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.sLeftFilename.c_str();
+			sFullDest += di.left.filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = slFile;
@@ -610,13 +610,13 @@ void CDirView::DoCopyRightTo()
 
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.sRightSubdir.empty())
+				if (!di.right.path.empty())
 				{
-					sFullDest += di.sRightSubdir.c_str();
+					sFullDest += di.right.path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.sRightFilename.c_str();
+			sFullDest += di.right.filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = srFile;
@@ -677,13 +677,13 @@ void CDirView::DoMoveLeftTo()
 			sFullDest += _T("\\");
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.sLeftSubdir.empty())
+				if (!di.left.path.empty())
 				{
-					sFullDest += di.sLeftSubdir.c_str();
+					sFullDest += di.left.path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.sLeftFilename.c_str();
+			sFullDest += di.left.filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = slFile;
@@ -744,13 +744,13 @@ void CDirView::DoMoveRightTo()
 			sFullDest += _T("\\");
 			if (GetDocument()->GetRecursive())
 			{
-				if (!di.sRightSubdir.empty())
+				if (!di.right.path.empty())
 				{
-					sFullDest += di.sRightSubdir.c_str();
+					sFullDest += di.right.path.c_str();
 					sFullDest += _T("\\");
 				}
 			}
-			sFullDest += di.sRightFilename.c_str();
+			sFullDest += di.right.filename.c_str();
 			act.dest = sFullDest;
 
 			act.src = srFile;
@@ -1176,8 +1176,8 @@ void CDirView::GetItemFileNames(int sel, String& strLeft, String& strRight) cons
 	else
 	{
 		const DIFFITEM & di = GetDocument()->GetDiffByKey(diffpos);
-		const String leftrelpath = paths_ConcatPath(di.sLeftSubdir, di.sLeftFilename);
-		const String rightrelpath = paths_ConcatPath(di.sRightSubdir, di.sRightFilename);
+		const String leftrelpath = paths_ConcatPath(di.left.path, di.left.filename);
+		const String rightrelpath = paths_ConcatPath(di.right.path, di.right.filename);
 		const String & leftpath = GetDocument()->GetLeftBasePath();
 		const String & rightpath = GetDocument()->GetRightBasePath();
 		strLeft = paths_ConcatPath(leftpath, leftrelpath);
@@ -1280,7 +1280,7 @@ UINT CDirView::MarkSelectedForRescan()
 		if (GetItemKey(sel) == SPECIAL_ITEM_POS)
 			continue;
 
-		DIFFITEM di = GetDiffItem(sel);
+		const DIFFITEM &di = GetDiffItem(sel);
 		GetDocument()->SetDiffStatus(0, DIFFCODE::TEXTFLAGS | DIFFCODE::SIDEFLAGS | DIFFCODE::COMPAREFLAGS, sel);		
 		GetDocument()->SetDiffStatus(DIFFCODE::NEEDSCAN, DIFFCODE::SCANFLAGS, sel);
 		++items;
@@ -1486,7 +1486,7 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 
 	POSITION key = GetItemKey(nSelItem);
 	ASSERT(key != SPECIAL_ITEM_POS);
-	di = GetDocument()->GetDiffRefByKey(key);
+	ASSERT(&di == &GetDocument()->GetDiffRefByKey(key));
 
 	BOOL bRenameLeft = FALSE;
 	BOOL bRenameRight = FALSE;
@@ -1497,18 +1497,18 @@ BOOL CDirView::DoItemRename(LPCTSTR szNewItemName)
 
 	if ((TRUE == bRenameLeft) && (TRUE == bRenameRight))
 	{
-		di.sLeftFilename = szNewItemName;
-		di.sRightFilename = szNewItemName;
+		di.left.filename = szNewItemName;
+		di.right.filename = szNewItemName;
 	}
 	else if (TRUE == bRenameLeft)
 	{
-		di.sLeftFilename = szNewItemName;
-		di.sRightFilename.erase();
+		di.left.filename = szNewItemName;
+		di.right.filename.erase();
 	}
 	else if (TRUE == bRenameRight)
 	{
-		di.sLeftFilename.erase();
-		di.sRightFilename = szNewItemName;
+		di.left.filename.erase();
+		di.right.filename = szNewItemName;
 	}
 
 	return (bRenameLeft || bRenameRight);

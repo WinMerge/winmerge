@@ -25,10 +25,6 @@ DIFFITEM::DIFFITEM(const DIFFITEM& di)
 	diffcode = di.diffcode;
 	left = di.left;
 	right = di.right;
-	sLeftFilename = di.sLeftFilename;
-	sRightFilename = di.sRightFilename;
-	sLeftSubdir = di.sLeftSubdir;
-	sRightSubdir = di.sRightSubdir;
 	nsdiffs = di.nsdiffs;
 	nidiffs = di.nidiffs;
 	errorDesc = di.errorDesc;
@@ -48,10 +44,6 @@ DIFFITEM& DIFFITEM::operator=(const DIFFITEM& di)
 		diffcode = di.diffcode;
 		left = di.left;
 		right = di.right;
-		sLeftFilename = di.sLeftFilename;
-		sRightFilename = di.sRightFilename;
-		sLeftSubdir = di.sLeftSubdir;
-		sRightSubdir = di.sRightSubdir;
 		nsdiffs = di.nsdiffs;
 		nidiffs = di.nidiffs;
 		errorDesc = di.errorDesc;
@@ -75,7 +67,7 @@ String DIFFITEM::getLeftFilepath(const String &sLeftRoot) const
 	String sPath;
 	if (!diffcode.isSideRightOnly())
 	{
-		sPath = paths_ConcatPath(sLeftRoot, sLeftSubdir);
+		sPath = paths_ConcatPath(sLeftRoot, left.path);
 	}
 	return sPath;
 }
@@ -86,7 +78,7 @@ String DIFFITEM::getRightFilepath(const String &sRightRoot) const
 	String sPath;
 	if (!diffcode.isSideLeftOnly())
 	{
-		sPath = paths_ConcatPath(sRightRoot, sRightSubdir);
+		sPath = paths_ConcatPath(sRightRoot, right.path);
 	}
 	return sPath;
 }

@@ -30,9 +30,20 @@
 /**
  * @brief Clears FileInfo data.
  */
-void DiffFileInfo::Clear()
+/*void DiffFileInfo::Clear()
 {
 	DirItem::Clear();
+	bVersionChecked = false;
+	encoding.Clear();
+	m_textStats.clear();
+}*/
+
+/**
+ * @brief Clears FileInfo data.
+ */
+void DiffFileInfo::ClearPartial()
+{
+	DirItem::ClearPartial();
 	bVersionChecked = false;
 	encoding.Clear();
 	m_textStats.clear();

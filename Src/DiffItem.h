@@ -124,10 +124,6 @@ struct DIFFITEM
 {
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
-	String sLeftFilename; /**< Left filename (without path!) */
-	String sRightFilename; /**< Right filename (without path!) */
-	String sLeftSubdir; /**< Left subdirectory from root of comparison */
-	String sRightSubdir; /**< Right subdirectory from root of comparison */
 	int	nsdiffs; /**< Amount of non-ignored differences */
 	int nidiffs; /**< Amount of ignored differences */
 	String errorDesc; /**< technical note about error */

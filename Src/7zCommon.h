@@ -66,7 +66,7 @@ private:
 	CMapStringToPtr m_rgImpliedFoldersLeft;
 	CMapStringToPtr m_rgImpliedFoldersRight;
 //	helper methods
-	DIFFITEM Next();
+	const DIFFITEM &Next();
 	bool MultiStepCompressArchive(LPCTSTR);
 public:
 	enum

@@ -172,10 +172,10 @@ static String ColFileNameGet(const CDiffContext *, const void *p) //sfilename
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
 	return
 	(
-		di.sLeftFilename.empty() ? di.sRightFilename :
-		di.sRightFilename.empty() ? di.sLeftFilename :
-		di.sLeftFilename == di.sRightFilename ? di.sLeftFilename :
-		di.sLeftFilename + _T("|") + di.sRightFilename
+		di.left.filename.empty() ? di.right.filename :
+		di.right.filename.empty() ? di.left.filename :
+		di.left.filename == di.right.filename ? di.left.filename :
+		di.left.filename + _T("|") + di.right.filename
 	);
 }
 /*static CString ColNameGet(const CDiffContext *, const void *p) //sfilename
@@ -192,8 +192,8 @@ static String ColExtGet(const CDiffContext *, const void *p) //sfilename
 static String ColPathGet(const CDiffContext *, const void *p)
 {
 	const DIFFITEM &di = *static_cast<const DIFFITEM*>(p);
-	String s = di.sRightSubdir;
-	const String &t = di.sLeftSubdir;
+	String s = di.right.path;
+	const String &t = di.left.path;
 	int i = 0, j = 0;
 	do
 	{
@@ -587,7 +587,7 @@ static DirColInfo f_cols[] =
 	{ _T("Rmtime"), IDS_COLHDR_RTIMEM, IDS_COLDESC_RTIMEM, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.mtime), 4, false, LVCFMT_LEFT },
 	{ _T("Lctime"), IDS_COLHDR_LTIMEC, IDS_COLDESC_LTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, left.ctime), -1, false, LVCFMT_LEFT },
 	{ _T("Rctime"), IDS_COLHDR_RTIMEC, IDS_COLDESC_RTIMEC, &ColTimeGet, &ColTimeSort, FIELD_OFFSET(DIFFITEM, right.ctime), -1, false, LVCFMT_LEFT },
-	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, sLeftFilename), 5, true, LVCFMT_LEFT },
+	{ _T("Ext"), IDS_COLHDR_EXTENSION, IDS_COLDESC_EXTENSION, &ColExtGet, &ColExtSort, FIELD_OFFSET(DIFFITEM, left.filename), 5, true, LVCFMT_LEFT },
 	{ _T("Lsize"), IDS_COLHDR_LSIZE, IDS_COLDESC_LSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },
 	{ _T("Rsize"), IDS_COLHDR_RSIZE, IDS_COLDESC_RSIZE, &ColSizeGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, right.size), -1, false, LVCFMT_RIGHT },
 	{ _T("LsizeShort"), IDS_COLHDR_LSIZE_SHORT, IDS_COLDESC_LSIZE_SHORT, &ColSizeShortGet, &ColSizeSort, FIELD_OFFSET(DIFFITEM, left.size), -1, false, LVCFMT_RIGHT },

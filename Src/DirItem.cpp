@@ -83,13 +83,21 @@ BOOL DirItem::Update(const String &sFilePath)
 /**
  * @brief Clears FileInfo data.
  */
-void DirItem::Clear()
+/*void DirItem::Clear()
+{
+	ClearPartial();
+	filename.erase();
+	path.erase();
+}*/
+
+/**
+ * @brief Clears FileInfo data except path/filename.
+ */
+void DirItem::ClearPartial()
 {
 	ctime = 0;
 	mtime = 0;
 	size = -1;
-	filename.erase();
-	path.erase();
 	bIsDir = false;
 	version.Clear();
 	flags.reset();

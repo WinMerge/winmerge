@@ -141,13 +141,13 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
 	DIFFITEM &di = m_pList->GetAt(diffpos);
 	if (bLeft)
 	{
-		di.left.Clear();
+		di.left.ClearPartial();
 		if (!di.diffcode.isSideRightOnly())
 			UpdateInfoFromDiskHalf(di, TRUE);
 	}
 	if (bRight)
 	{
-		di.right.Clear();
+		di.right.ClearPartial();
 		if (!di.diffcode.isSideLeftOnly())
 			UpdateInfoFromDiskHalf(di, FALSE);
 	}
@@ -165,9 +165,9 @@ BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
 	String filepath;
 
 	if (bLeft == TRUE)
-		filepath = paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.sLeftFilename);
+		filepath = paths_ConcatPath(di.getLeftFilepath(GetNormalizedLeft()), di.left.filename);
 	else
-		filepath = paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.sRightFilename);
+		filepath = paths_ConcatPath(di.getRightFilepath(GetNormalizedRight()), di.right.filename);
 
 	DiffFileInfo & dfi = bLeft ? di.left : di.right;
 	if (!dfi.Update(filepath.c_str()))
@@ -219,21 +219,21 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 	{
 		if (di.diffcode.isSideRightOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.sLeftFilename.c_str());
+		LPCTSTR ext = PathFindExtension(di.left.filename.c_str());
 		if (!CheckFileForVersion(ext))
 			return;
 		spath = di.getLeftFilepath(GetNormalizedLeft());
-		spath = paths_ConcatPath(spath, di.sLeftFilename);
+		spath = paths_ConcatPath(spath, di.left.filename);
 	}
 	else
 	{
 		if (di.diffcode.isSideLeftOnly())
 			return;
-		LPCTSTR ext = PathFindExtension(di.sRightFilename.c_str());
+		LPCTSTR ext = PathFindExtension(di.right.filename.c_str());
 		if (!CheckFileForVersion(ext))
 			return;
 		spath = di.getRightFilepath(GetNormalizedRight());
-		spath = paths_ConcatPath(spath, di.sRightFilename);
+		spath = paths_ConcatPath(spath, di.right.filename);
 	}
 	
 	// Get version info if it exists

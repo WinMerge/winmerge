@@ -43,7 +43,7 @@
 struct DiffFileFlags : public FileFlags
 {
 	DWORD coding; /**< Coding info for item */
-	DiffFileFlags() : coding(0) { FileFlags(); }
+	DiffFileFlags() : coding(0) { }
 	
 	/// Convert flags and coding to string for UI.
 	String toString() const
@@ -102,8 +102,9 @@ struct DiffFileInfo : public DirItem
 
 // methods
 
-	DiffFileInfo() { Clear(); }
-	void Clear();
+	DiffFileInfo(): bVersionChecked(false) { }
+	//void Clear();
+	void ClearPartial();
 	bool IsEditableEncoding() const;
 };
 

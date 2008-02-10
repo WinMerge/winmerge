@@ -345,9 +345,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, St
 		left = pCtxt->GetNormalizedLeft();
 		if (!paths_EndsWithSlash(left.c_str()))
 			left += backslash;
-		if (!di.sLeftSubdir.empty())
-			left += di.sLeftSubdir + backslash;
-		left += di.sLeftFilename;
+		if (!di.left.path.empty())
+			left += di.left.path + backslash;
+		left += di.left.filename;
 		if (di.diffcode.isSideLeftOnly())
 			right = left;
 	}
@@ -357,9 +357,9 @@ void GetComparePaths(CDiffContext * pCtxt, const DIFFITEM &di, String & left, St
 		right = pCtxt->GetNormalizedRight();
 		if (!paths_EndsWithSlash(right.c_str()))
 			right += backslash;
-		if (!di.sRightSubdir.empty())
-			right += di.sRightSubdir + backslash;
-		right += di.sRightFilename;
+		if (!di.right.path.empty())
+			right += di.right.path + backslash;
+		right += di.right.filename;
 		if (di.diffcode.isSideRightOnly())
 			left = right;
 	}

@@ -406,7 +406,7 @@ void CDirView::Redisplay()
 	while (diffpos)
 	{
 		POSITION curdiffpos = diffpos;
-		DIFFITEM di = ctxt.GetNextDiffPosition(diffpos);
+		const DIFFITEM &di = ctxt.GetNextDiffPosition(diffpos);
 
 		// If item has hidden flag, don't add it
 		if (di.customFlags1 & ViewCustomFlags::HIDDEN)
@@ -593,9 +593,9 @@ void CDirView::ListContextMenu(CPoint point, int /*i*/)
 			!di.diffcode.isResultFiltered())
 		{
 			String leftPath = di.getLeftFilepath(pDoc->GetLeftBasePath()) +
-					_T("\\") + di.sLeftFilename;
+					_T("\\") + di.left.filename;
 			String rightPath = di.getRightFilepath(pDoc->GetRightBasePath()) +
-					_T("\\") + di.sRightFilename;
+					_T("\\") + di.right.filename;
 			CString filteredFilenames;
 			filteredFilenames.Format(_T("%s|%s"), leftPath.c_str(), rightPath.c_str());
 			PackingInfo * unpacker;
@@ -955,14 +955,14 @@ bool CDirView::CreateFoldersPair(DIFFITEM & di, bool side1)
 	{
 		// Get left side (side1) folder name (existing) and
 		// right side base path (where to create)
-		subdir = di.sLeftFilename;
+		subdir = di.left.filename;
 		basedir = GetDocument()->GetRightBasePath();
 	}
 	else
 	{
 		// Get right side (side2) folder name (existing) and
 		// left side base path (where to create)
-		subdir = di.sRightFilename;
+		subdir = di.right.filename;
 		basedir = GetDocument()->GetLeftBasePath();
 	}
 	String createpath = paths_ConcatPath(basedir, subdir);
@@ -1481,11 +1481,10 @@ POSITION CDirView::GetItemKeyFromData(DWORD_PTR dw) const
  * @param [in] sel Item's index in folder compare GUI list.
  * @return DIFFITEM for item.
  */
-DIFFITEM CDirView::GetDiffItem(int sel) const
+const DIFFITEM &CDirView::GetDiffItem(int sel) const
 {
-	// make a copy of a reference, and return copy
-	DIFFITEM di = GetDiffItemConstRef(sel);
-	return di;
+	CDirView * pDirView = const_cast<CDirView *>(this);
+	return pDirView->GetDiffItemRef(sel);
 }
 
 /**
@@ -2423,7 +2422,7 @@ void CDirView::OnCtxtOpenWithUnpacker()
 	if (sel != -1)
 	{
 		// let the user choose a handler
-		CSelectUnpackerDlg dlg(GetDiffItem(sel).sLeftFilename.c_str(), this);
+		CSelectUnpackerDlg dlg(GetDiffItem(sel).left.filename.c_str(), this);
 		// create now a new infoUnpacker to initialize the manual/automatic flag
 		PackingInfo infoUnpacker;
 		dlg.SetInitialInfoHandler(&infoUnpacker);
@@ -2720,7 +2719,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.sLeftFilename;
+			strPaths += di.left.filename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2745,7 +2744,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.sRightFilename;
+			strPaths += di.right.filename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2770,7 +2769,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.sLeftFilename;
+			strPaths += di.left.filename;
 			strPaths += _T("\r\n");
 		}
 
@@ -2780,7 +2779,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\\");
 			// If item is a folder then subfolder (relative to base folder)
 			// is in filename member.
-			strPaths += di.sRightFilename;
+			strPaths += di.right.filename;
 			strPaths += _T("\r\n");
 		}
 	}
@@ -2800,7 +2799,7 @@ void CDirView::OnCopyFilenames()
 		const DIFFITEM& di = GetDiffItem(sel);
 		if (!di.diffcode.isDirectory())
 		{
-			strPaths += di.sLeftFilename;
+			strPaths += di.left.filename;
 			strPaths += _T("\r\n");
 		}
 	}

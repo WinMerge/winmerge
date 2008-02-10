@@ -2059,7 +2059,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		int ind = pView->GetFirstSelectedInd();
 		while (ind != -1 && bValidFiles)
 		{
-			const DIFFITEM item = pView->GetItemAt(ind);
+			const DIFFITEM &item = pView->GetItemAt(ind);
 			if (item.diffcode.isBin())
 			{
 				LangMessageBox(IDS_CANNOT_CREATE_BINARYPATCH, MB_ICONWARNING |
@@ -2078,20 +2078,20 @@ void CMainFrame::OnToolsGeneratePatch()
 				// Format full paths to files (leftFile/rightFile)
 				String leftFile = item.getLeftFilepath(pDoc->GetLeftBasePath());
 				if (!leftFile.empty())
-					leftFile += _T("\\") + item.sLeftFilename;
+					leftFile += _T("\\") + item.left.filename;
 				String rightFile = item.getRightFilepath(pDoc->GetRightBasePath());
 				if (!rightFile.empty())
-					rightFile += _T("\\") + item.sRightFilename;
+					rightFile += _T("\\") + item.right.filename;
 
 				// Format relative paths to files in folder compare
-				String leftpatch = item.sLeftSubdir;
+				String leftpatch = item.left.path;
 				if (!leftpatch.empty())
 					leftpatch += _T("/");
-				leftpatch += item.sLeftFilename;
-				String rightpatch = item.sRightSubdir;
+				leftpatch += item.left.filename;
+				String rightpatch = item.right.path;
 				if (!rightpatch.empty())
 					rightpatch += _T("/");
-				rightpatch += item.sRightFilename;
+				rightpatch += item.right.filename;
 				patcher.AddFiles(leftFile, leftpatch, rightFile, rightpatch);
 				pView->GetNextSelectedInd(ind);
 			}

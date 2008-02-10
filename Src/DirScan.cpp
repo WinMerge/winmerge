@@ -373,8 +373,8 @@ int DirScan_CompareItems(CDiffContext * pCtxt)
 void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt)
 {
 	// Clear side-info and file-infos
-	di.left.Clear();
-	di.right.Clear();
+	di.left.ClearPartial();
+	di.right.ClearPartial();
 	BOOL bLeftExists = pCtxt->UpdateInfoFromDiskHalf(di, TRUE);
 	BOOL bRightExists = pCtxt->UpdateInfoFromDiskHalf(di, FALSE);
 	bExists = bLeftExists || bRightExists;
@@ -417,7 +417,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	if (di.diffcode.isDirectory())
 	{
 		// 1. Test against filters
-		if (pCtxt->m_piFilterGlobal->includeDir(di.sLeftFilename.c_str(), di.sRightFilename.c_str()))
+		if (pCtxt->m_piFilterGlobal->includeDir(di.left.filename.c_str(), di.right.filename.c_str()))
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 		else
 			di.diffcode.diffcode |= DIFFCODE::SKIPPED;
@@ -428,7 +428,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 	else
 	{
 		// 1. Test against filters
-		if (pCtxt->m_piFilterGlobal->includeFile(di.sLeftFilename.c_str(), di.sRightFilename.c_str()))
+		if (pCtxt->m_piFilterGlobal->includeFile(di.left.filename.c_str(), di.right.filename.c_str()))
 		{
 			di.diffcode.diffcode |= DIFFCODE::INCLUDED;
 			// 2. Add unique files
@@ -503,7 +503,7 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di.sLeftFilename.c_str(), (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), di.diffcode
+		di.left.filename.c_str(), di.left.path.c_str(), di.right.path.c_str(), di.diffcode
 	);
 	
 	pCtxt->AddDiff(di);
@@ -528,12 +528,12 @@ static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir,
 
 	DIFFITEM di;
 
-	di.sLeftSubdir = sLeftDir;
-	di.sRightSubdir = sRightDir;
+	di.left.path = sLeftDir;
+	di.right.path = sRightDir;
 
 	if (lent)
 	{
-		di.sLeftFilename = lent->filename.c_str();
+		di.left.filename = lent->filename;
 		di.left.mtime = lent->mtime;
 		di.left.ctime = lent->ctime;
 		di.left.size = lent->size;
@@ -542,15 +542,15 @@ static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir,
 	else
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
-		di.sLeftFilename = rent->filename.c_str();
+		di.left.filename = rent->filename;
 	}
 
 	if (rent)
 	{
-		di.sRightFilename = OPTIMIZE_SHARE_CSTRINGDATA
+		di.right.filename = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			di.sLeftFilename == rent->filename.c_str() ? di.sLeftFilename :
-		) rent->filename.c_str();
+			di.left.filename.c_str() == rent->filename.c_str() ? di.left.filename :
+		) rent->filename;
 		di.right.mtime = rent->mtime;
 		di.right.ctime = rent->ctime;
 		di.right.size = rent->size;
@@ -559,7 +559,7 @@ static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir,
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		di.sRightFilename = lent->filename.c_str();
+		di.right.filename = lent->filename;
 	}
 
 	di.diffcode = code;
@@ -567,7 +567,7 @@ static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir,
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di.sLeftFilename.c_str(), (LPCTSTR)_T("di.left.spath"), (LPCTSTR)_T("di.right.spath"), code
+		di.left.filename.c_str(), di.left.path.c_str(), di.right.path.c_str(), code
 	);
 	pCtxt->m_pCompareStats->IncreaseTotalItems();
 

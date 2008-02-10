@@ -511,45 +511,43 @@ void CDirDoc::UpdateResources()
  */
 POSITION CDirDoc::FindItemFromPaths(LPCTSTR pathLeft, LPCTSTR pathRight)
 {
-	POSITION pos = m_pCtxt->GetFirstDiffPosition();
-	POSITION currentPos;
-
-	String path1, file1;
-	SplitFilename(pathLeft, &path1, &file1, NULL);
-	//CString path1(tpath1.c_str()), file1(tfile1.c_str());
-	String path2, file2;
-	SplitFilename(pathRight, &path2, &file2, NULL);
-	//CString path2(tpath2.c_str()), file2(tfile2.c_str());
+	LPCTSTR file1 = paths_FindFileName(pathLeft);
+	LPCTSTR file2 = paths_FindFileName(pathRight);
 
 	// Filenames must be identical
-	if (lstrcmpi(file1.c_str(), file2.c_str()) != 0)
+	if (lstrcmpi(file1, file2) != 0)
 		return NULL;
+
+	String path1(pathLeft, file1 - pathLeft); // include trailing backslash
+	String path2(pathRight, file2 - pathRight); // include trailing backslash
 
 	// Path can contain (because of difftools?) '/' and '\'
 	// so for comparing purposes, convert whole path to use '\\'
 	replace_char(&*path1.begin(), '/', '\\');
 	replace_char(&*path2.begin(), '/', '\\');
 
-	// Add trailing slash to root paths, to work with getLeftFilepath etc
-	if (path1.length() == 2 && path1[1] == ':')
-		path1 += '\\';
-	if (path2.length() == 2 && path2[1] == ':')
-		path2 += '\\';
+	String base1 = m_pCtxt->GetLeftPath(); // include trailing backslash
+	if (path1.compare(0, base1.length(), base1.c_str()) != 0)
+		return NULL;
+	path1.erase(0, base1.length()); // turn into relative path
+	if (String::size_type length = path1.length())
+		path1.resize(length - 1); // remove trailing backslash
 
-	// Get first item
-	DIFFITEM current = m_pCtxt->GetDiffAt(pos);
+	String base2 = m_pCtxt->GetRightPath(); // include trailing backslash
+	if (path2.compare(0, base2.length(), base2.c_str()) != 0)
+		return NULL;
+	path2.erase(0, base2.length()); // turn into relative path
+	if (String::size_type length = path2.length())
+		path2.resize(length - 1); // remove trailing backslash
 
-	int count = m_pCtxt->GetDiffCount();
-	for (int i=0; i < count; ++i)
+	POSITION pos = m_pCtxt->GetFirstDiffPosition();
+	while (POSITION currentPos = pos) // Save our current pos before getting next
 	{
-		// Save our current pos before getting next
-		currentPos = pos;
-		current = m_pCtxt->GetNextDiffPosition(pos);
-
-		if (path1 == current.getLeftFilepath(GetLeftBasePath()) &&
-			path2 == current.getRightFilepath(GetRightBasePath()) &&
-			file1 == current.sLeftFilename &&
-			file2 == current.sRightFilename)
+		const DIFFITEM &di = m_pCtxt->GetNextDiffPosition(pos);
+		if (di.left.path == path1 &&
+			di.right.path == path2 &&
+			di.left.filename == file1 &&
+			di.right.filename == file2)
 		{
 			return currentPos;
 		}
@@ -948,8 +946,7 @@ void CDirDoc::SetDiffCounts(UINT diffs, UINT ignored, int idx)
 void CDirDoc::UpdateDiffAfterOperation(const FileActionItem & act, POSITION pos)
 {
 	ASSERT(pos != NULL);
-	DIFFITEM di;
-	di = GetDiffByKey(pos);
+	const DIFFITEM &di = GetDiffByKey(pos);
 
 	// Use FileActionItem types for simplicity for now.
 	// Better would be to use FileAction contained, since it is not

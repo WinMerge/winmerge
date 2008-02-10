@@ -805,7 +805,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 		// Collect implied folders
 		for (UINT i = Open() ; i-- ; )
 		{
-			DIFFITEM di = Next();
+			const DIFFITEM &di = Next();
 			if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
 			{
 				continue;
@@ -816,7 +816,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideLeftOnly())
 				{
 					// Item is present on right side, i.e. folder is implied
-					m_rgImpliedFoldersRight[di.sRightSubdir.c_str()] = PVOID(1);
+					m_rgImpliedFoldersRight[di.right.path.c_str()] = PVOID(1);
 				}
 			}
 			else
@@ -825,7 +825,7 @@ CDirView::DirItemEnumerator::DirItemEnumerator(CDirView *pView, int nFlags)
 				if (!di.diffcode.isSideRightOnly())
 				{
 					// Item is present on left side, i.e. folder is implied
-					m_rgImpliedFoldersLeft[di.sLeftSubdir.c_str()] = PVOID(1);
+					m_rgImpliedFoldersLeft[di.left.path.c_str()] = PVOID(1);
 				}
 			}
 		}
@@ -860,7 +860,7 @@ UINT CDirView::DirItemEnumerator::Open()
 /**
  * @brief Return next item.
  */
-DIFFITEM CDirView::DirItemEnumerator::Next()
+const DIFFITEM &CDirView::DirItemEnumerator::Next()
 {
 	enum {nMask = LVNI_FOCUSED|LVNI_SELECTED|LVNI_CUT|LVNI_DROPHILITED};
 	while ((m_nIndex = pView(m_pView)->GetNextItem(m_nIndex, m_nFlags & nMask)) == -1)
@@ -868,7 +868,7 @@ DIFFITEM CDirView::DirItemEnumerator::Next()
 		m_strFolderPrefix = m_rgFolderPrefix.GetNext(m_curFolderPrefix);
 		m_bRight = TRUE;
 	}
-	return m_pView->GetItemAt(m_nIndex);
+	return m_pView->GetDiffItem(m_nIndex);
 }
 
 /**
@@ -888,7 +888,7 @@ DIFFITEM CDirView::DirItemEnumerator::Next()
 Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 {
 	CDirDoc * pDoc = m_pView->GetDocument();
-	DIFFITEM di = Next();
+	const DIFFITEM &di = Next();
 
 	if ((m_nFlags & DiffsOnly) && !m_pView->IsItemNavigableDiff(di))
 	{
@@ -900,8 +900,8 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 
 	Envelope *envelope = new Envelope;
 
-	const String &sFilename = m_bRight ? di.sRightFilename : di.sLeftFilename;
-	const String &sSubdir = m_bRight ? di.sRightSubdir : di.sLeftSubdir;
+	const String &sFilename = m_bRight ? di.right.filename : di.left.filename;
+	const String &sSubdir = m_bRight ? di.right.path : di.left.path;
 	envelope->Name = sFilename;
 	if (sSubdir.length())
 	{
@@ -924,12 +924,12 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 			if (isSideLeft)
 			{
 				// Item is missing on right side
-				PVOID &implied = m_rgImpliedFoldersRight[di.sLeftSubdir.c_str()];
+				PVOID &implied = m_rgImpliedFoldersRight[di.left.path.c_str()];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
-					envelope->Name = di.sLeftSubdir;
+					envelope->Name = di.left.path;
 					envelope->FullPath = di.getLeftFilepath(pDoc->GetLeftBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideLeft = false;
@@ -943,12 +943,12 @@ Merge7z::Envelope *CDirView::DirItemEnumerator::Enum(Item &item)
 			if (isSideRight)
 			{
 				// Item is missing on left side
-				PVOID &implied = m_rgImpliedFoldersLeft[di.sRightSubdir.c_str()];
+				PVOID &implied = m_rgImpliedFoldersLeft[di.right.path.c_str()];
 				if (!implied)
 				{
 					// Folder is not implied by some other file, and has
 					// not been enumerated so far, so enumerate it now!
-					envelope->Name = di.sRightSubdir;
+					envelope->Name = di.right.path;
 					envelope->FullPath = di.getRightFilepath(pDoc->GetRightBasePath());
 					implied = PVOID(2); // Don't enumerate same folder twice!
 					isSideRight = false;
@@ -1100,19 +1100,19 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 	int cchBuffer = 0;
 	for (i = Open() ; i-- ; )
 	{
-		DIFFITEM di = Next();
+		const DIFFITEM &di = Next();
 		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
 		{
 			cchBuffer +=
 			(
 				m_bRight ? di.getRightFilepath(sLeftRootPath) : di.getLeftFilepath(sRightRootPath)
-			).length() + (m_bRight ? di.sRightFilename : di.sLeftFilename).length() + 2;
+			).length() + (m_bRight ? di.right.filename : di.left.filename).length() + 2;
 		}
 	}
 	LPTSTR pchBuffer = strBuffer.GetBufferSetLength(cchBuffer);
 	for (i = Open() ; i-- ; )
 	{
-		DIFFITEM di = Next();
+		const DIFFITEM &di = Next();
 		if (m_bRight ? m_pView->IsItemOpenableOnRightWith(di) : m_pView->IsItemOpenableOnLeftWith(di))
 		{
 			pchBuffer += wsprintf
@@ -1120,7 +1120,7 @@ void CDirView::DirItemEnumerator::CollectFiles(CString &strBuffer)
 				pchBuffer,
 				_T("%s\\%s"),
 				m_bRight ? di.getRightFilepath(sLeftRootPath).c_str() : di.getLeftFilepath(sRightRootPath).c_str(),
-				m_bRight ? di.sRightFilename.c_str() : di.sLeftFilename.c_str()
+				m_bRight ? di.right.filename.c_str() : di.left.filename.c_str()
 			) + 1;
 		}
 	}
