@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-07 22:20+0000\n"
+"POT-Creation-Date: 2008-02-12 00:48+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -420,7 +420,7 @@ msgstr ""
 #: Merge.rc:296
 #: Merge.rc:481
 #, c-format
-msgid "&GNU Public License..."
+msgid "&GNU General Public License..."
 msgstr ""
 
 #: Merge.rc:183
@@ -2866,7 +2866,7 @@ msgstr ""
 
 #: Merge.rc:1859
 #, c-format
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""
 
 #: Merge.rc:1865
@@ -5131,7 +5131,7 @@ msgstr ""
 
 #: Merge.rc:2674
 #, c-format
-msgid "Display the GNU public license"
+msgid "Display the GNU Genral Public License"
 msgstr ""
 
 #: Merge.rc:2675
