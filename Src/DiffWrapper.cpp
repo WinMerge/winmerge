@@ -84,6 +84,7 @@ CDiffWrapper::CDiffWrapper()
 , m_bAddCmdLine(TRUE)
 , m_bAppendFiles(FALSE)
 , m_nDiffs(0)
+, m_codepage(0)
 , m_infoPrediffer(NULL)
 , m_pDiffList(NULL)
 , m_bPathsAreTemp(FALSE)
@@ -987,7 +988,7 @@ BOOL CDiffWrapper::Diff2Files(struct change ** diffs, DiffFileData *diffData,
 	BOOL bRet = TRUE;
 	__try
 	{
-		// Diff files. depth is zero because we are not comparing dirs
+		// Diff files. depth is zero because we are not 6comparing dirs
 		*diffs = diff_2_files (diffData->m_inf, 0, bin_status,
 				(m_pMovedLines != NULL), bin_file);
 		CopyDiffutilTextStats(diffData->m_inf, diffData);
@@ -1049,7 +1050,7 @@ bool CDiffWrapper::RegExpFilter(int StartPos, int EndPos, int FileNo)
 			LineData.erase(EolPos);
 		}
 
-		if (!m_pFilterList->Match(LineData.c_str()))
+		if (!m_pFilterList->Match(LineData.c_str(), m_codepage))
 		{
 			linesMatch = false;
 		}

@@ -166,6 +166,7 @@ public:
 	BOOL SetAppendFiles(BOOL bAppendFiles);
 	void SetPaths(const String &filepath1, const String &filepath2, BOOL tempPaths);
 	void SetAlternativePaths(const String &altPath1, const String &altPath2);
+	void SetCodepage(int codepage) { m_codepage = codepage; }
 	BOOL RunFileDiff();
 	void GetDiffStatus(DIFFSTATUS *status);
 	void AddDiffRange(UINT begin0, UINT end0, UINT begin1, UINT end1, BYTE op);
@@ -203,6 +204,7 @@ private:
 	BOOL m_bAddCmdLine; /**< Do we add commandline to patch file? */
 	BOOL m_bAppendFiles; /**< Do we append to existing patch file? */
 	int m_nDiffs; /**< Difference count */
+	int m_codepage; /**< Codepage used in line filter */
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	MovedLines * m_pMovedLines;
 	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */

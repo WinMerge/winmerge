@@ -111,7 +111,7 @@ void ByteCompare::SetFileData(int items, file_data *data)
  * @param [in] piAbortable Interface allowing to abort compare
  * @return DIFFCODE
  */
-int ByteCompare::CompareFiles(FileLocation *location, BOOL guessEncoding)
+int ByteCompare::CompareFiles(FileLocation *location)
 {
 	// TODO
 	// Right now, we assume files are in 8-bit encoding
@@ -164,8 +164,6 @@ int ByteCompare::CompareFiles(FileLocation *location, BOOL guessEncoding)
 				if (rtn < space)
 					eof[i] = true;
 				bfend[i] += rtn;
-				if (guessEncoding)
-					DiffFileData::GuessEncoding_from_buffer(location[i], buff[i], rtn);
 				if (m_inf[0].desc == m_inf[1].desc)
 				{
 					location[1].encoding = location[0].encoding;
@@ -173,7 +171,6 @@ int ByteCompare::CompareFiles(FileLocation *location, BOOL guessEncoding)
 				}
 			}
 		}
-		guessEncoding = FALSE;
 		// where to start comparing right now
 		LPCSTR ptr0 = &buff[0][bfstart[0]];
 		LPCSTR ptr1 = &buff[1][bfstart[1]];

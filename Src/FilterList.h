@@ -48,7 +48,7 @@ public:
 	void AddRegExp(const char *regularExpression, EncodingType encoding);
 	void RemoveAllFilters();
 	bool HasRegExps();
-	bool Match(const char *string);
+	bool Match(const char *string, int codepage = CP_UTF8);
 	const char * GetLastMatchExpression();
 
 private:

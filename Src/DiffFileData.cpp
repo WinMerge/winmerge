@@ -146,28 +146,6 @@ void DiffFileData::Reset()
 	}
 }
 
-/**
- * @brief Try to deduce encoding for this file (given copy in memory)
- */
-void DiffFileData::GuessEncoding_from_buffer(FileLocation & fpenc, const char *src, size_t len)
-{
-	if (!fpenc.encoding.m_bom)
-	{
-		LPCTSTR sExt = PathFindExtension(fpenc.filepath);
-		if (unsigned cp = GuessEncoding_from_bytes(sExt, src, len))
-		{
-			fpenc.encoding.Clear();
-			fpenc.encoding.SetCodepage(cp);
-		}
-	}
-}
-
-/** @brief Guess encoding for one file (in DiffContext memory buffer) */
-void DiffFileData::GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt)
-{
-	GuessEncoding_from_buffer(m_FileLocation[side], m_inf[side].buffer, m_inf[side].buffered_chars);
-}
-
 /** @brief detect unicode file and quess encoding */
 DiffFileData::UniFileBom::UniFileBom(int fd)
 {
@@ -211,14 +189,9 @@ DiffFileData::UniFileBom::UniFileBom(int fd)
  * caller has to DeleteFile filepathTransformed, if it differs from filepath
  */
 bool DiffFileData::Filepath_Transform(FileLocation & fpenc, const String & filepath, String & filepathTransformed,
-	LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer, int fd)
+	LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer)
 {
 	BOOL bMayOverwrite = FALSE; // temp variable set each time it is used
-
-	// Read BOM to check for Unicode
-	UniFileBom bom = fd;
-	if (bom.unicoding)
-		fpenc.encoding.SetUnicoding(bom.unicoding);
 
 	if (fpenc.encoding.m_unicoding && fpenc.encoding.m_unicoding != ucr::UCS2LE)
 	{

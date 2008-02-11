@@ -15,6 +15,7 @@
 #include "charsets.h"
 #include "markdown.h"
 #include "FileTextEncoding.h"
+#include "Utf8FileDetect.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -208,6 +209,8 @@ void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL b
 		encoding->m_bom = true;
 		break;
 	default:
+		if (fi.pImage && !CheckForInvalidUtf8((LPBYTE)fi.pImage, 4096))
+			encoding->SetUnicoding(ucr::UTF8);
 		encoding->m_bom = false;
 		break;
 

@@ -20,6 +20,7 @@
 #include "IAbortable.h"
 #include "FolderCmp.h"
 #include "ByteComparator.h"
+#include "codepage_detect.h"
 
 using namespace CompareEngines;
 
@@ -91,11 +92,13 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 		return false;
 	}
 
+	GuessCodepageEncoding(m_diffFileData.m_FileLocation[0].filepath, 
+		&m_diffFileData.m_FileLocation[0].encoding, pCtxt->m_bGuessEncoding);
+
 	// Invoke prediff'ing plugins
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[0],
 			plugCtxt->filepathUnpacked1, plugCtxt->filepathTransformed1,
-			filteredFilenames.c_str(), plugCtxt->infoPrediffer,
-			m_diffFileData.m_inf[0].desc))
+			filteredFilenames.c_str(), plugCtxt->infoPrediffer))
 	{
 		errStr = _T("Transform Error Side 1");
 		return false;
@@ -104,10 +107,12 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(plugCtxt->infoPrediffer->bToBeScanned == FALSE);
 
+	GuessCodepageEncoding(m_diffFileData.m_FileLocation[1].filepath, 
+		&m_diffFileData.m_FileLocation[1].encoding, pCtxt->m_bGuessEncoding);
+
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[1],
 			plugCtxt->filepathUnpacked2, plugCtxt->filepathTransformed2,
-			filteredFilenames.c_str(), plugCtxt->infoPrediffer,
-			m_diffFileData.m_inf[1].desc))
+			filteredFilenames.c_str(), plugCtxt->infoPrediffer))
 	{
 		errStr = _T("Transform Error Side 2");
 		return false;
@@ -199,6 +204,9 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	{
 		if (m_pDiffUtilsEngine == NULL)
 			m_pDiffUtilsEngine = new CompareEngines::DiffUtils();
+		m_pDiffUtilsEngine->SetCodepage(
+			m_diffFileData.m_FileLocation[0].encoding.m_unicoding ? 
+				CP_UTF8 : m_diffFileData.m_FileLocation[0].encoding.m_codepage);
 		bool success = m_pDiffUtilsEngine->SetCompareOptions(
 				*m_pCtx->GetCompareOptions(CMP_CONTENT));
 		if (success)
@@ -225,14 +233,6 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		}
 		if (DIFFCODE::isResultError(code))
 			di.errorDesc = _T("DiffUtils Error");
-
-		if (!DIFFCODE::isResultError(code) && pCtxt->m_bGuessEncoding)
-		{
-			// entire file is in memory in the diffutils buffers
-			// inside the diff context, so may as well use in-memory copy
-			m_diffFileData.GuessEncoding_from_buffer_in_DiffContext(0, pCtxt);
-			m_diffFileData.GuessEncoding_from_buffer_in_DiffContext(1, pCtxt);
-		}
 	}
 	else if (nCompMethod == CMP_QUICK_CONTENT)
 	{
@@ -248,7 +248,7 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 			m_pByteCompare->SetFileData(2, m_diffFileData.m_inf);
 
 			// use our own byte-by-byte compare
-			code = m_pByteCompare->CompareFiles(m_diffFileData.m_FileLocation, pCtxt->m_bGuessEncoding);
+			code = m_pByteCompare->CompareFiles(m_diffFileData.m_FileLocation);
 
 			m_pByteCompare->GetTextStats(0, &m_diffFileData.m_textStats0);
 			m_pByteCompare->GetTextStats(1, &m_diffFileData.m_textStats1);

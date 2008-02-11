@@ -30,7 +30,7 @@ public:
 	void SetAdditionalOptions(BOOL stopAfterFirstDiff);
 	void SetAbortable(const IAbortable * piAbortable);
 	void SetFileData(int items, file_data *data);
-	int CompareFiles(FileLocation *location, BOOL guessEncoding);
+	int CompareFiles(FileLocation *location);
 	void GetTextStats(int side, FileTextStats *stats);
 
 private:

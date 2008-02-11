@@ -46,7 +46,7 @@ struct DiffFileData
 	void SetDisplayFilepaths(LPCTSTR szTrueFilepath1, LPCTSTR szTrueFilepath2);
 
 	bool Filepath_Transform(FileLocation & fpenc, const String & filepath, String & filepathTransformed,
-		LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer, int fd);
+		LPCTSTR filteredFilenames, PrediffingInfo * infoPrediffer);
 	void GuessEncoding_from_buffer_in_DiffContext(int side, CDiffContext * pCtxt);
 	static void GuessEncoding_from_buffer(FileLocation & fpenc, const char *src, size_t len);
 

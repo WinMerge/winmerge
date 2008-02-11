@@ -447,6 +447,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	// Set paths for diffing and run diff
 	m_diffWrapper.SetPaths(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), TRUE);
 	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
+	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_codepage);
 	diffSuccess = m_diffWrapper.RunFileDiff();
 
 	// Read diff-status

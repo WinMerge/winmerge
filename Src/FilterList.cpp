@@ -10,6 +10,7 @@
 #include <vector>
 #include "FilterList.h"
 #include "pcre.h"
+#include "unicoder.h"
 
 /** 
  * @brief Constructor.
@@ -95,13 +96,21 @@ bool FilterList::HasRegExps()
  * This function matches given @p string against the list of regular
  * expressions. The matching ends when first match is found, so all
  * expressions may not be matched against.
- * @param [in] string UTF-8 string to match.
+ * @param [in] string string to match.
+ * @param [in] codepage codepage of string.
  * @return true if any of the expressions did match the string.
  */
-bool FilterList::Match(const char *string)
+bool FilterList::Match(const char *string, int codepage/*=CP_UTF8*/)
 {
 	bool retval = false;
 	unsigned int count = m_list.size();
+	int stringlen = strlen(string);
+
+	// convert string into UTF-8
+	ucr::buffer buf(stringlen * 2);
+	if (codepage != CP_UTF8)
+		ucr::convert(ucr::NONE, codepage, (const unsigned char *)string, 
+				stringlen, ucr::UTF8, CP_UTF8, &buf);
 
 	unsigned int i = 0;
 	while (i < count && retval == false)
@@ -110,9 +119,13 @@ bool FilterList::Match(const char *string)
 		int ovector[30];
 		pcre * regexp = item.pRegExp;
 		pcre_extra * extra = item.pRegExpExtra;
-		int result = pcre_exec(regexp, extra, string, strlen(string),
-			0, 0, ovector, 30);
-
+		int result;
+		if (codepage != CP_UTF8)
+			result = pcre_exec(regexp, extra, (const char *)buf.ptr, buf.size,
+				0, 0, ovector, 30);
+		else
+			result = pcre_exec(regexp, extra, string, stringlen,
+				0, 0, ovector, 30);
 		if (result >= 0)
 		{
 			if (m_lastMatchExpression != NULL)

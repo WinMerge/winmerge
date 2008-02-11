@@ -262,7 +262,7 @@ bool DiffUtils::RegExpFilter(int StartPos, int EndPos, int FileNo)
 			LineData.erase(EolPos);
 		}
 
-		if (!m_pFilterList->Match(LineData.c_str()))
+		if (!m_pFilterList->Match(LineData.c_str(), m_codepage))
 		{
 			linesMatch = false;
 		}

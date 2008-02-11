@@ -42,6 +42,7 @@ public:
 	void GetTextStats(int side, FileTextStats *stats);
 	BOOL Diff2Files(struct change ** diffs, int depth,
 		int * bin_status, BOOL bMovedBlocks, int * bin_file);
+	void SetCodepage(int codepage) { m_codepage = codepage; }
 
 protected:
 	void ClearCompareOptions();
@@ -52,6 +53,7 @@ private:
 	file_data * m_inf; /**< Compared files data (for diffutils). */
 	int m_ndiffs; /**< Real diffs found. */
 	int m_ntrivialdiffs; /**< Ignored diffs found. */
+	int m_codepage; /**< Codepage used in line filter */
 };
 
 
