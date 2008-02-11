@@ -1201,9 +1201,11 @@ ShowDropIndicator (const CPoint & point)
       ::CreateCaret (m_hWnd, (HBITMAP) 1, 2, GetLineHeight ());
     }
   m_ptDropPos = ClientToText (point);
-  if (m_ptDropPos.x >= m_nOffsetChar)
+  // NB: m_ptDropPos.x is index into char array, which is uncomparable to m_nOffsetChar.
+  CPoint ptCaretPos = TextToClient (m_ptDropPos);
+  if (ptCaretPos.x >= GetMarginWidth())
     {
-      SetCaretPos (TextToClient (m_ptDropPos));
+      SetCaretPos (ptCaretPos);
       ShowCaret ();
     }
   else
