@@ -6,6 +6,7 @@ WinMerge 2.7.7.5
   Cleaning up Help-menu (#1875111)
   BugFix: Potential lockup in folder compare (#1865131, #1889907)
   BugFix: Line filter didn't filter non-ascii lines correctly (#1880628)
+  BugFix: GNU General Public License name in menu (#1868989)
   Translation updates:
   - Czech (r5017)
 
