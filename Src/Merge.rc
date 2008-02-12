@@ -2671,7 +2671,7 @@ STRINGTABLE
 BEGIN
     ID_HELP_CONTENTS        "Opens the WinMerge help\nWinMerge Help"
     ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
-    ID_HELP_GNULICENSE      "Display the GNU Genral Public License"
+    ID_HELP_GNULICENSE      "Display the GNU General Public License"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
     ID_HELP_RELEASENOTES    "Opens the release notes document\nRelease Notes"
     ID_HELP_TRANSLATIONS    "Opens the translations website\nTranslations"
