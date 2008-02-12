@@ -2669,7 +2669,7 @@ END
 // HELP MENU
 STRINGTABLE
 BEGIN
-    ID_HELP_CONTENTS        "Opens the WinMerge help\nWinMerge Help"
+    ID_HELP_CONTENTS        "Opens the WinMerge Help\nWinMerge Help"
     ID_HELP_GETCONFIG       "Outputs current WinMerge version info and configuration to text file"
     ID_HELP_GNULICENSE      "Display the GNU General Public License"
     IDS_PRIVATEBUILD_FMT    "Private Build: %1"
