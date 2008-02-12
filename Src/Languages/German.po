@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-09-06 00:26+0100\n"
+"PO-Revision-Date: 2008-02-13 00:33+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgstr "Ö&ffnen...\tStrg+O"
 #: Merge.rc:114
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "&Konflikt-Datei öffnen..."
 
 #: Merge.rc:116
 #: Merge.rc:194
@@ -391,7 +391,7 @@ msgstr "&Hilfe"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&WinMerge Hilfe\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
@@ -405,7 +405,7 @@ msgstr ""
 #: Merge.rc:477
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "&Übersetzungen"
 
 #: Merge.rc:179
 #: Merge.rc:293
@@ -425,8 +425,8 @@ msgstr "&Archiv-Unterstützung deaktiviert..."
 #: Merge.rc:296
 #: Merge.rc:481
 #, c-format
-msgid "&GNU Public License..."
-msgstr "&GNU Public Lizenz..."
+msgid "&GNU General Public License..."
+msgstr "&GNU General Public License..."
 
 #: Merge.rc:183
 #: Merge.rc:297
@@ -649,7 +649,7 @@ msgstr "&Merge Modus\tF9"
 #: Merge.rc:339
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "Dateik&odierung..."
 
 #: Merge.rc:345
 #, c-format
@@ -745,23 +745,23 @@ msgstr "&Gehe nach...\tStrg+G"
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "&Zoom"
 
 #: Merge.rc:385
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr ""
+msgstr "Ver&größern\tStrg++"
 
 #: Merge.rc:386
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr ""
+msgstr "Ver&kleinern\tStrg+-"
 
 #. Zoom to normal
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "&Normal\tStrg+*"
 
 #: Merge.rc:389
 #, c-format
@@ -851,7 +851,7 @@ msgstr ""
 #: Merge.rc:493
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:498
 #, c-format
@@ -3013,8 +3013,8 @@ msgstr ""
 
 #: Merge.rc:1859
 #, c-format
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
-msgstr "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Sie können sie unter bestimmten Bedingungen weiter vertreiben; für Details sehen Sie sich die GNU Public Lizenz unter dem Hilfe-Menü an."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
+msgstr "WinMerge kommt mit ABSOLUT KEINER GARANTIE. Es ist freie Software und Sie können sie unter bestimmten Bedingungen weiter vertreiben; für Details sehen Sie sich die GNU General Public License unter dem Hilfe-Menü an."
 
 #: Merge.rc:1865
 #, c-format
@@ -3380,12 +3380,12 @@ msgstr "Unbenannt rechts"
 #: Merge.rc:2009
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "Deren Datei"
 
 #: Merge.rc:2010
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "Meine Datei"
 
 #: Merge.rc:2016
 #, c-format
@@ -3558,8 +3558,14 @@ msgstr ""
 
 #: Merge.rc:2068
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
+"Die Datei\n"
+"%1\n"
+"ist keine Konflikt-Datei."
 
 #: Merge.rc:2074
 #, c-format
@@ -4831,22 +4837,22 @@ msgstr "Nicht anwendbar"
 #: Merge.rc:2453
 #, c-format
 msgid "MS-Windows"
-msgstr ""
+msgstr "MS-Windows"
 
 #: Merge.rc:2454
 #, c-format
 msgid "MS-DOS"
-msgstr ""
+msgstr "MS-DOS"
 
 #: Merge.rc:2455
 #, c-format
 msgid "Macintosh"
-msgstr ""
+msgstr "Macintosh"
 
 #: Merge.rc:2456
 #, c-format
 msgid "IBM"
-msgstr ""
+msgstr "IBM"
 
 #: Merge.rc:2463
 #, c-format
@@ -5175,7 +5181,7 @@ msgstr ""
 #: Merge.rc:2574
 #, c-format
 msgid "Open and resolve conflict file"
-msgstr ""
+msgstr "Öffnet und löst eine Konflikt-Datei."
 
 #: Merge.rc:2580
 #, c-format
@@ -5388,17 +5394,17 @@ msgstr ""
 #: Merge.rc:2618
 #, c-format
 msgid "Increase text size"
-msgstr ""
+msgstr "Textgröße erhöhen."
 
 #: Merge.rc:2619
 #, c-format
 msgid "Decrease text size"
-msgstr ""
+msgstr "Textgröße verringern."
 
 #: Merge.rc:2620
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "Textzoom auf Standardgröße zurücksetzen."
 
 #: Merge.rc:2626
 #, c-format
@@ -5580,8 +5586,12 @@ msgstr "Schließt alle geöffneten Fenster."
 
 #: Merge.rc:2672
 #, c-format
-msgid "Opens the WinMerge help\nWinMerge Help"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
 msgstr ""
+"Öffnet die WinMerge Hilfe.\n"
+"WinMerge Hilfe"
 
 #: Merge.rc:2673
 #, c-format
@@ -5590,8 +5600,8 @@ msgstr "Ausgeben der aktuellen WinMerge Versionsinformationen und Konfiguration 
 
 #: Merge.rc:2674
 #, c-format
-msgid "Display the GNU public license"
-msgstr "Zeigt die GNU Public Lizenz an."
+msgid "Display the GNU General Public License"
+msgstr "Zeigt die GNU General Public License an."
 
 #: Merge.rc:2675
 #, c-format
@@ -5605,8 +5615,12 @@ msgstr ""
 
 #: Merge.rc:2677
 #, c-format
-msgid "Opens the translations website\nTranslations"
+msgid ""
+"Opens the translations website\n"
+"Translations"
 msgstr ""
+"Öffnet die Übersetzungen-Webseite.\n"
+"Übersetzungen"
 
 #: Merge.rc:2683
 #, c-format
@@ -5661,7 +5675,7 @@ msgstr "Keine verschobene Blöcke anzeigen."
 #: Merge.rc:2704
 #, c-format
 msgid "Display all moved blocks"
-msgstr ""
+msgstr "Alle verschobene Blöcke anzeigen."
 
 #: Merge.rc:2705
 #, c-format
@@ -5791,12 +5805,12 @@ msgstr "PHP"
 #: Merge.rc:2741
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "Portable Object"
 
 #: Merge.rc:2742
 #, c-format
 msgid "PowerShell"
-msgstr ""
+msgstr "PowerShell"
 
 #: Merge.rc:2743
 #, c-format
@@ -5811,7 +5825,7 @@ msgstr "REXX"
 #: Merge.rc:2745
 #, c-format
 msgid "Resources"
-msgstr ""
+msgstr "Ressourcen"
 
 #: Merge.rc:2746
 #, c-format
