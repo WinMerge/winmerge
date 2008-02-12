@@ -10,6 +10,7 @@ WinMerge 2.7.7.5
   Translation updates:
   - Croatian (r5032)
   - Czech (r5017)
+  - Swedish (#1891326)
 
 WinMerge 2.7.7.4 - 2008-02-07 (r5011)
   Detect (and read/write) UTF-8 files without BOM (#1879271)

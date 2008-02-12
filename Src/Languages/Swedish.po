@@ -390,7 +390,7 @@ msgstr "&Hjälp"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&WinMerge Hjälp\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
@@ -744,7 +744,7 @@ msgstr "&Gå till...\tCtrl+G"
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "&Zooma"
 
 #: Merge.rc:385
 #, c-format
@@ -760,7 +760,7 @@ msgstr "Zooma ut\tCtrl+-"
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "&Normal\tCtrl+*"
 
 #: Merge.rc:389
 #, c-format
@@ -2984,12 +2984,12 @@ msgstr ""
 #: Merge.rc:1830
 #, c-format
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
-msgstr ""
+msgstr "\nFiljämförelse\n\n\n\nWinMerge.Filjämförelse\nWinMerge Filjämförelse"
 
 #: Merge.rc:1831
 #, c-format
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
-msgstr ""
+msgstr "\nKatalogjämförelse\n\n\n\nWinMerge.Katalogjämförelse\nWinMerge Katalogjämförelse"
 
 #: Merge.rc:1838
 #, c-format
@@ -5419,7 +5419,7 @@ msgstr "Minska textstorlek"
 #: Merge.rc:2620
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "Återställ textzoomning till standardstorlek"
 
 #: Merge.rc:2626
 #, c-format
@@ -5601,8 +5601,8 @@ msgstr "Stänger alla öppna fönster"
 
 #: Merge.rc:2672
 #, c-format
-msgid "Opens the WinMerge help\nWinMerge Help"
-msgstr ""
+msgid "Opens the WinMerge Help\nWinMerge Help"
+msgstr "Öppnar WinMerge Hjälp\nWinMerge Hjälp"
 
 #: Merge.rc:2673
 #, c-format
