@@ -8,6 +8,7 @@ WinMerge 2.7.7.5
   BugFix: Line filter didn't filter non-ascii lines correctly (#1880628)
   BugFix: GNU General Public License name in menu (#1868989)
   Translation updates:
+  - Croatian (r5032)
   - Czech (r5017)
 
 WinMerge 2.7.7.4 - 2008-02-07 (r5011)
