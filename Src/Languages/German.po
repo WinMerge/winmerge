@@ -411,8 +411,8 @@ msgstr "&Übersetzungen"
 #: Merge.rc:293
 #: Merge.rc:478
 #, c-format
-msgid "C&onfiguration..."
-msgstr "&Konfiguration..."
+msgid "C&onfiguration"
+msgstr "&Konfiguration"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -425,8 +425,8 @@ msgstr "&Archiv-Unterstützung deaktiviert..."
 #: Merge.rc:296
 #: Merge.rc:481
 #, c-format
-msgid "&GNU General Public License..."
-msgstr "&GNU General Public License..."
+msgid "&GNU General Public License"
+msgstr "&GNU General Public License"
 
 #: Merge.rc:183
 #: Merge.rc:297

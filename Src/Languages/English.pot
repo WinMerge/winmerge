@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-13 17:11+0000\n"
+"POT-Creation-Date: 2008-02-13 23:00+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -406,7 +406,7 @@ msgstr ""
 #: Merge.rc:293
 #: Merge.rc:478
 #, c-format
-msgid "C&onfiguration..."
+msgid "C&onfiguration"
 msgstr ""
 
 #: Merge.rc:180
@@ -420,7 +420,7 @@ msgstr ""
 #: Merge.rc:296
 #: Merge.rc:481
 #, c-format
-msgid "&GNU General Public License..."
+msgid "&GNU General Public License"
 msgstr ""
 
 #: Merge.rc:183

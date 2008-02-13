@@ -176,10 +176,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
-        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
-        MENUITEM "&GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&GNU General Public License", ID_HELP_GNULICENSE
         MENUITEM "&About WinMerge...",          ID_APP_ABOUT
     END
 END
@@ -290,10 +290,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
-        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
-        MENUITEM "&GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&GNU General Public License", ID_HELP_GNULICENSE
         MENUITEM "&About WinMerge...",          ID_APP_ABOUT
     END
 END
@@ -475,10 +475,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "R&elease Notes",              ID_HELP_RELEASENOTES
         MENUITEM "&Translations",               ID_HELP_TRANSLATIONS
-        MENUITEM "C&onfiguration...",           ID_HELP_GETCONFIG
+        MENUITEM "C&onfiguration",              ID_HELP_GETCONFIG
         MENUITEM "A&rchive Support disabled...", ID_HELP_MERGE7ZMISMATCH
         MENUITEM SEPARATOR
-        MENUITEM "&GNU General Public License...", ID_HELP_GNULICENSE
+        MENUITEM "&GNU General Public License", ID_HELP_GNULICENSE
         MENUITEM "&About WinMerge...",          ID_APP_ABOUT
     END
 END
