@@ -19,7 +19,7 @@
  *
  * @brief Declaration file CPropRegistry
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef PropRegistry_h_included
@@ -56,7 +56,6 @@ public:
 	CString	m_strEditorPath;
 	BOOL	m_bUseRecycleBin;
 	BOOL	m_bContextAdvanced;
-	BOOL	m_bIgnoreSmallTimeDiff;
 	BOOL	m_bContextSubfolders;
 	CString m_strUserFilterPath;
 	//}}AFX_DATA

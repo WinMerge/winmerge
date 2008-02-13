@@ -36,6 +36,7 @@ CPropCompare::CPropCompare(COptionsMgr *optionsMgr) : CPropertyPage(CPropCompare
  , m_bMatchSimilarLines(FALSE)
  , m_bStopAfterFirst(FALSE)
  , m_bFilterCommentsLines(FALSE)
+, m_bIgnoreSmallTimeDiff(FALSE)
 {
 }
 
@@ -52,6 +53,7 @@ void CPropCompare::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MOVED_BLOCKS, m_bMovedBlocks);
 	DDX_Check(pDX, IDC_MATCH_SIMILAR_LINES, m_bMatchSimilarLines);
 	DDX_Check(pDX, IDC_COMPARE_STOPFIRST, m_bStopAfterFirst);
+	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	//}}AFX_DATA_MAP
 }
 
@@ -79,6 +81,7 @@ void CPropCompare::ReadOptions()
 	m_bMatchSimilarLines = m_pOptionsMgr->GetBool(OPT_CMP_MATCH_SIMILAR_LINES);
 	m_compareMethod = m_pOptionsMgr->GetInt(OPT_CMP_METHOD);
 	m_bStopAfterFirst = m_pOptionsMgr->GetBool(OPT_CMP_STOP_AFTER_FIRST);
+	m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
 }
 
 /** 
@@ -97,6 +100,7 @@ void CPropCompare::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_CMP_MOVED_BLOCKS, m_bMovedBlocks == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_MATCH_SIMILAR_LINES, m_bMatchSimilarLines == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_CMP_STOP_AFTER_FIRST, m_bStopAfterFirst == TRUE);
+	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -19,7 +19,7 @@
  *
  * @brief CPropRegistry implementation file
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -60,7 +60,6 @@ CPropRegistry::CPropRegistry(COptionsMgr *optionsMgr)
 , m_bContextAdded(FALSE)
 , m_bUseRecycleBin(TRUE)
 , m_bContextAdvanced(FALSE)
-, m_bIgnoreSmallTimeDiff(FALSE)
 , m_bContextSubfolders(FALSE)
 {
 }
@@ -73,7 +72,6 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EXT_EDITOR_PATH, m_strEditorPath);
 	DDX_Check(pDX, IDC_USE_RECYCLE_BIN, m_bUseRecycleBin);
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
-	DDX_Check(pDX, IDC_IGNORE_SMALLTIMEDIFF, m_bIgnoreSmallTimeDiff);
 	DDX_Text(pDX, IDC_FILTER_USER_PATH, m_strUserFilterPath);
 	DDX_Check(pDX, IDC_EXPLORER_SUBFOLDERS, m_bContextSubfolders);
 	//}}AFX_DATA_MAP
@@ -95,7 +93,6 @@ void CPropRegistry::ReadOptions()
 	m_strEditorPath = m_pOptionsMgr->GetString(OPT_EXT_EDITOR_CMD).c_str();
 	GetContextRegValues();
 	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
-	m_bIgnoreSmallTimeDiff = m_pOptionsMgr->GetBool(OPT_IGNORE_SMALL_FILETIME);
 	m_strUserFilterPath = m_pOptionsMgr->GetString(OPT_FILTER_USERPATH).c_str();
 }
 
@@ -108,7 +105,6 @@ void CPropRegistry::WriteOptions()
 	CString sDefaultEditor = app->GetDefaultEditor();
 
 	m_pOptionsMgr->SaveOption(OPT_USE_RECYCLE_BIN, m_bUseRecycleBin == TRUE);
-	m_pOptionsMgr->SaveOption(OPT_IGNORE_SMALL_FILETIME, m_bIgnoreSmallTimeDiff == TRUE);
 
 	SaveMergePath(); // saves context menu settings as well
 

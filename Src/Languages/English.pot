@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-12 23:26+0000\n"
+"POT-Creation-Date: 2008-02-13 17:11+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -889,14 +889,14 @@ msgid "&Delete"
 msgstr ""
 
 #: Merge.rc:510
-#: Merge.rc:1123
+#: Merge.rc:1120
 #: Merge.rc:1502
 #, c-format
 msgid "&Left"
 msgstr ""
 
 #: Merge.rc:511
-#: Merge.rc:1125
+#: Merge.rc:1122
 #: Merge.rc:1505
 #, c-format
 msgid "&Right"
@@ -1051,9 +1051,9 @@ msgstr ""
 #: Merge.rc:692
 #: Merge.rc:782
 #: Merge.rc:968
-#: Merge.rc:1042
-#: Merge.rc:1071
-#: Merge.rc:1081
+#: Merge.rc:1039
+#: Merge.rc:1068
+#: Merge.rc:1078
 #: Merge.rc:1244
 #: Merge.rc:1308
 #: Merge.rc:1321
@@ -1081,8 +1081,8 @@ msgstr ""
 
 #: Merge.rc:675
 #: Merge.rc:736
-#: Merge.rc:992
-#: Merge.rc:1007
+#: Merge.rc:989
+#: Merge.rc:1004
 #, c-format
 msgid "&Browse..."
 msgstr ""
@@ -1094,7 +1094,7 @@ msgid "&Right:"
 msgstr ""
 
 #: Merge.rc:680
-#: Merge.rc:1018
+#: Merge.rc:1015
 #, c-format
 msgid "Bro&wse..."
 msgstr ""
@@ -1138,10 +1138,10 @@ msgstr ""
 #: Merge.rc:813
 #: Merge.rc:845
 #: Merge.rc:855
-#: Merge.rc:1043
-#: Merge.rc:1072
-#: Merge.rc:1082
-#: Merge.rc:1133
+#: Merge.rc:1040
+#: Merge.rc:1069
+#: Merge.rc:1079
+#: Merge.rc:1130
 #: Merge.rc:1245
 #: Merge.rc:1322
 #: Merge.rc:1414
@@ -1518,8 +1518,8 @@ msgid "Selected Word Diff:"
 msgstr ""
 
 #: Merge.rc:959
-#: Merge.rc:1041
-#: Merge.rc:1070
+#: Merge.rc:1038
+#: Merge.rc:1067
 #: Merge.rc:1167
 #: Merge.rc:1395
 #, c-format
@@ -1546,40 +1546,35 @@ msgstr ""
 
 #: Merge.rc:980
 #, c-format
-msgid "Ign&ore time differences less than 3 seconds"
-msgstr ""
-
-#: Merge.rc:983
-#, c-format
 msgid "Integration"
 msgstr ""
 
-#: Merge.rc:984
+#: Merge.rc:981
 #, c-format
 msgid "&Add to explorer context menu"
 msgstr ""
 
-#: Merge.rc:986
+#: Merge.rc:983
 #, c-format
 msgid "E&nable advanced menu"
 msgstr ""
 
-#: Merge.rc:988
+#: Merge.rc:985
 #, c-format
 msgid "In&clude subfolders by default"
 msgstr ""
 
-#: Merge.rc:990
+#: Merge.rc:987
 #, c-format
 msgid "&External editor:"
 msgstr ""
 
-#: Merge.rc:993
+#: Merge.rc:990
 #, c-format
 msgid "&Filter folder:"
 msgstr ""
 
-#: Merge.rc:995
+#: Merge.rc:992
 #: Merge.rc:1407
 #: Merge.rc:1581
 #: Merge.rc:1585
@@ -1588,246 +1583,251 @@ msgstr ""
 msgid "Browse..."
 msgstr ""
 
-#: Merge.rc:1001
+#: Merge.rc:998
 #, c-format
 msgid "Patch Generator"
 msgstr ""
 
-#: Merge.rc:1004
+#: Merge.rc:1001
 #, c-format
 msgid "File&1:"
 msgstr ""
 
-#: Merge.rc:1008
+#: Merge.rc:1005
 #, c-format
 msgid "File&2:"
 msgstr ""
 
-#: Merge.rc:1011
+#: Merge.rc:1008
 #, c-format
 msgid "Br&owse..."
 msgstr ""
 
-#: Merge.rc:1012
+#: Merge.rc:1009
 #, c-format
 msgid "&Swap"
 msgstr ""
 
-#: Merge.rc:1013
+#: Merge.rc:1010
 #, c-format
 msgid "&Append to existing file"
 msgstr ""
 
-#: Merge.rc:1015
+#: Merge.rc:1012
 #, c-format
 msgid "&Result:"
 msgstr ""
 
-#: Merge.rc:1019
+#: Merge.rc:1016
 #, c-format
 msgid "&Format"
 msgstr ""
 
-#: Merge.rc:1020
+#: Merge.rc:1017
 #, c-format
 msgid "St&yle:"
 msgstr ""
 
-#: Merge.rc:1023
+#: Merge.rc:1020
 #, c-format
 msgid "&Context:"
 msgstr ""
 
-#: Merge.rc:1026
+#: Merge.rc:1023
 #, c-format
 msgid "W&hitespaces"
 msgstr ""
 
-#: Merge.rc:1027
+#: Merge.rc:1024
 #, c-format
 msgid "Com&pare"
 msgstr ""
 
-#: Merge.rc:1029
+#: Merge.rc:1026
 #, c-format
 msgid "I&gnore changes"
 msgstr ""
 
-#: Merge.rc:1031
+#: Merge.rc:1028
 #, c-format
 msgid "Ig&nore all"
 msgstr ""
 
-#: Merge.rc:1033
+#: Merge.rc:1030
 #, c-format
 msgid "Ignor&e blank lines"
 msgstr ""
 
-#: Merge.rc:1035
+#: Merge.rc:1032
 #, c-format
 msgid "Case sensi&tive"
 msgstr ""
 
-#: Merge.rc:1037
+#: Merge.rc:1034
 #, c-format
 msgid "Inclu&de command line"
 msgstr ""
 
-#: Merge.rc:1039
+#: Merge.rc:1036
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr ""
 
-#: Merge.rc:1061
+#: Merge.rc:1058
 #, c-format
 msgid "Display Columns"
 msgstr ""
 
-#: Merge.rc:1067
+#: Merge.rc:1064
 #, c-format
 msgid "Move &Up"
 msgstr ""
 
-#: Merge.rc:1068
+#: Merge.rc:1065
 #, c-format
 msgid "Move &Down"
 msgstr ""
 
-#: Merge.rc:1078
+#: Merge.rc:1075
 #, c-format
 msgid "Select Unpacker"
 msgstr ""
 
-#: Merge.rc:1083
+#: Merge.rc:1080
 #, c-format
 msgid "File unpacker:"
 msgstr ""
 
-#: Merge.rc:1086
+#: Merge.rc:1083
 #, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr ""
 
-#: Merge.rc:1089
+#: Merge.rc:1086
 #, c-format
 msgid "Extensions list:"
 msgstr ""
 
-#: Merge.rc:1090
+#: Merge.rc:1087
 #, c-format
 msgid "Description:"
 msgstr ""
 
-#: Merge.rc:1101
+#: Merge.rc:1098
 #, c-format
 msgid " Folder Compare Progress"
 msgstr ""
 
-#: Merge.rc:1104
+#: Merge.rc:1101
 #: Merge.rc:1844
 #, c-format
 msgid "Stop"
 msgstr ""
 
-#: Merge.rc:1109
+#: Merge.rc:1106
 #, c-format
 msgid "Comparing items..."
 msgstr ""
 
-#: Merge.rc:1110
+#: Merge.rc:1107
 #, c-format
 msgid "Items compared:"
 msgstr ""
 
-#: Merge.rc:1111
+#: Merge.rc:1108
 #, c-format
 msgid "Items total:"
 msgstr ""
 
-#: Merge.rc:1117
+#: Merge.rc:1114
 #, c-format
 msgid "Go To"
 msgstr ""
 
-#: Merge.rc:1120
+#: Merge.rc:1117
 #, c-format
 msgid "G&oto:"
 msgstr ""
 
-#: Merge.rc:1122
+#: Merge.rc:1119
 #, c-format
 msgid "File"
 msgstr ""
 
-#: Merge.rc:1127
+#: Merge.rc:1124
 #, c-format
 msgid "Goto what"
 msgstr ""
 
-#: Merge.rc:1128
+#: Merge.rc:1125
 #, c-format
 msgid "Li&ne"
 msgstr ""
 
-#: Merge.rc:1130
+#: Merge.rc:1127
 #, c-format
 msgid "&Difference"
 msgstr ""
 
-#: Merge.rc:1132
+#: Merge.rc:1129
 #, c-format
 msgid "&Go To"
 msgstr ""
 
-#: Merge.rc:1138
+#: Merge.rc:1135
 #: Merge.rc:1892
 #, c-format
 msgid "Compare"
 msgstr ""
 
-#: Merge.rc:1141
+#: Merge.rc:1138
 #, c-format
 msgid "Whitespace"
 msgstr ""
 
-#: Merge.rc:1142
+#: Merge.rc:1139
 #, c-format
 msgid "&Compare"
 msgstr ""
 
-#: Merge.rc:1144
+#: Merge.rc:1141
 #, c-format
 msgid "&Ignore change"
 msgstr ""
 
-#: Merge.rc:1146
+#: Merge.rc:1143
 #, c-format
 msgid "I&gnore all"
 msgstr ""
 
-#: Merge.rc:1148
+#: Merge.rc:1145
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr ""
 
-#: Merge.rc:1150
+#: Merge.rc:1147
 #, c-format
 msgid "Ignore &case"
 msgstr ""
 
-#: Merge.rc:1152
+#: Merge.rc:1149
 #, c-format
 msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
 msgstr ""
 
-#: Merge.rc:1155
+#: Merge.rc:1152
 #, c-format
 msgid "E&nable moved block detection"
 msgstr ""
 
-#: Merge.rc:1157
+#: Merge.rc:1154
 #, c-format
 msgid "&Match similar lines"
+msgstr ""
+
+#: Merge.rc:1156
+#, c-format
+msgid "Ign&ore time differences less than 3 seconds"
 msgstr ""
 
 #: Merge.rc:1159

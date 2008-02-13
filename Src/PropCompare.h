@@ -3,7 +3,7 @@
  *
  * @brief Declaration of CPropCompare propertysheet
  */
-// RCS ID line follows -- this is updated by SVN
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _PROPPAGE_COMPARE_H_
@@ -54,7 +54,8 @@ public:
 	BOOL    m_bMovedBlocks;
 	BOOL    m_bMatchSimilarLines;
 	BOOL    m_bStopAfterFirst;
-	BOOL	m_bFilterCommentsLines;
+	BOOL    m_bFilterCommentsLines;
+	BOOL    m_bIgnoreSmallTimeDiff;
 	//}}AFX_DATA
 
 
