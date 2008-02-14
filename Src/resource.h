@@ -426,6 +426,9 @@
 #define IDC_ASK_MULTIWINDOW_CLOSE       1335
 #define IDC_COLDLG_LIST                 1336
 #define IDC_PRESERVE_FILETIME           1337
+#define IDC_TMPFOLDER_SYSTEM            1338
+#define IDC_TMPFOLDER_BROWSE            1339
+#define IDC_TMPFOLDER_NAME              1340
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -1024,7 +1027,7 @@
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
 #define _APS_NEXT_COMMAND_VALUE         33172
-#define _APS_NEXT_CONTROL_VALUE         1338
+#define _APS_NEXT_CONTROL_VALUE         1341
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

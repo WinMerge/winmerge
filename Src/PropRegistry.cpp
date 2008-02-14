@@ -61,6 +61,7 @@ CPropRegistry::CPropRegistry(COptionsMgr *optionsMgr)
 , m_bUseRecycleBin(TRUE)
 , m_bContextAdvanced(FALSE)
 , m_bContextSubfolders(FALSE)
+, m_tempFolderType(0)
 {
 }
 
@@ -74,6 +75,8 @@ void CPropRegistry::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_EXPLORER_ADVANCED, m_bContextAdvanced);
 	DDX_Text(pDX, IDC_FILTER_USER_PATH, m_strUserFilterPath);
 	DDX_Check(pDX, IDC_EXPLORER_SUBFOLDERS, m_bContextSubfolders);
+	DDX_Radio(pDX, IDC_TMPFOLDER_SYSTEM, m_tempFolderType);
+	DDX_Text(pDX, IDC_TMPFOLDER_NAME, m_tempFolder);
 	//}}AFX_DATA_MAP
 }
 
@@ -82,6 +85,7 @@ BEGIN_MESSAGE_MAP(CPropRegistry, CDialog)
 	ON_BN_CLICKED(IDC_EXPLORER_CONTEXT, OnAddToExplorer)
 	ON_BN_CLICKED(IDC_EXT_EDITOR_BROWSE, OnBrowseEditor)
 	ON_BN_CLICKED(IDC_FILTER_USER_BROWSE, OnBrowseFilterPath)
+	ON_BN_CLICKED(IDC_TMPFOLDER_BROWSE, OnBrowseTmpFolder)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -94,6 +98,8 @@ void CPropRegistry::ReadOptions()
 	GetContextRegValues();
 	m_bUseRecycleBin = m_pOptionsMgr->GetBool(OPT_USE_RECYCLE_BIN);
 	m_strUserFilterPath = m_pOptionsMgr->GetString(OPT_FILTER_USERPATH).c_str();
+	m_tempFolderType = m_pOptionsMgr->GetBool(OPT_USE_SYSTEM_TEMP_PATH) ? 0 : 1;
+	m_tempFolder = m_pOptionsMgr->GetString(OPT_CUSTOM_TEMP_PATH).c_str();
 }
 
 /** 
@@ -119,6 +125,14 @@ void CPropRegistry::WriteOptions()
 	sFilterPath.TrimLeft();
 	sFilterPath.TrimRight();
 	m_pOptionsMgr->SaveOption(OPT_FILTER_USERPATH, sFilterPath);
+
+	bool useSysTemp = m_tempFolderType == 0;
+	m_pOptionsMgr->SaveOption(OPT_USE_SYSTEM_TEMP_PATH, useSysTemp);
+
+	CString tempFolder = m_tempFolder;
+	tempFolder.TrimLeft();
+	tempFolder.TrimRight();
+	m_pOptionsMgr->SaveOption(OPT_CUSTOM_TEMP_PATH, tempFolder);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -272,6 +286,17 @@ void CPropRegistry::OnBrowseFilterPath()
 	if (SelectFolder(path, NULL, IDS_OPEN_TITLE, GetSafeHwnd()))
 	{
 		m_strUserFilterPath = path;
+		UpdateData(FALSE);
+	}
+}
+
+/// Select temporary files folder.
+void CPropRegistry::OnBrowseTmpFolder()
+{
+	CString path;
+	if (SelectFolder(path, NULL, NULL, GetSafeHwnd()))
+	{
+		m_tempFolder = path;
 		UpdateData(FALSE);
 	}
 }

@@ -9,6 +9,8 @@
 #include "stdafx.h"
 #include "paths.h"
 #include "Environment.h"
+#include "OptionsDef.h"
+#include "Merge.h"
 
 // Static string used by paths_GetTempPath() for storing temp path.
 static String strTempPath;
@@ -25,17 +27,24 @@ LPCTSTR env_GetTempPath(int * pnerr)
 {
 	if (strTempPath.empty())
 	{
-		int cchTempPath = GetTempPath(0, 0);
-		strTempPath.resize(cchTempPath - 1);
-		if (!GetTempPath(cchTempPath, &*strTempPath.begin()))
+		if (GetOptionsMgr()->GetBool(OPT_USE_SYSTEM_TEMP_PATH))
 		{
-			int err = GetLastError();
-			if (pnerr)
-				*pnerr = err;
+			int cchTempPath = GetTempPath(0, 0);
+			strTempPath.resize(cchTempPath - 1);
+			if (!GetTempPath(cchTempPath, &*strTempPath.begin()))
+			{
+				int err = GetLastError();
+				if (pnerr)
+					*pnerr = err;
 #ifdef _DEBUG
-			CString sysErr = GetSysError(err); // for debugging
+				CString sysErr = GetSysError(err); // for debugging
 #endif
-			return strTempPath.c_str(); // empty
+				return strTempPath.c_str(); // empty
+			}
+		}
+		else
+		{
+			strTempPath = GetOptionsMgr()->GetString(OPT_CUSTOM_TEMP_PATH);
 		}
 		strTempPath = paths_GetLongPath(strTempPath.c_str());
 	}

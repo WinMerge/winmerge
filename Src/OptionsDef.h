@@ -69,7 +69,9 @@ const TCHAR OPT_CP_DEFAULT_MODE[] = _T("Settings/CodepageDefaultMode");
 const TCHAR OPT_CP_DEFAULT_CUSTOM[] = _T("Settings/CodepageDefaultCustomValue");
 const TCHAR OPT_CP_DETECT[] = _T("Settings/CodepageDetection");
 
-const TCHAR OPT_PROJECTS_PATH[] =  _T("Settings/ProjectsPath");
+const TCHAR OPT_PROJECTS_PATH[] = _T("Settings/ProjectsPath");
+const TCHAR OPT_USE_SYSTEM_TEMP_PATH[] = _T("Settings/UseSystemTempPath");
+const TCHAR OPT_CUSTOM_TEMP_PATH[] = _T("Settings/CustomTempPath");
 
 // Color options
 // The difference color

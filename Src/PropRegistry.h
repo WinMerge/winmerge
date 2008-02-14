@@ -58,6 +58,8 @@ public:
 	BOOL	m_bContextAdvanced;
 	BOOL	m_bContextSubfolders;
 	CString m_strUserFilterPath;
+	int		m_tempFolderType;
+	CString m_tempFolder;
 	//}}AFX_DATA
 
 	// Overrides
@@ -75,6 +77,7 @@ protected:
 	afx_msg void OnAddToExplorer();
 	afx_msg void OnBrowseEditor();
 	afx_msg void OnBrowseFilterPath();
+	afx_msg void OnBrowseTmpFolder();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
