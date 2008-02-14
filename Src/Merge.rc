@@ -1150,7 +1150,7 @@ BEGIN
     CONTROL         "I&gnore all",IDC_ALL_WHITE,"Button",BS_AUTORADIOBUTTON,
                     14,41,206,10
     CONTROL         "Ignore blan&k lines",IDC_IGNBLANKS_CHECK,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,7,60,221,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,7,60,221,10
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
     CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
