@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-14 19:09+0000\n"
+"POT-Creation-Date: 2008-02-15 20:49+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -1575,13 +1575,8 @@ msgid "&Filter folder:"
 msgstr ""
 
 #: Merge.rc:992
-#: Merge.rc:999
-#: Merge.rc:1414
-#: Merge.rc:1588
-#: Merge.rc:1592
-#: Merge.rc:1619
 #, c-format
-msgid "Browse..."
+msgid "B&rowse..."
 msgstr ""
 
 #: Merge.rc:993
@@ -1591,12 +1586,18 @@ msgstr ""
 
 #: Merge.rc:994
 #, c-format
-msgid "System's temp folder"
+msgid "S&ystem's temp folder"
 msgstr ""
 
 #: Merge.rc:996
 #, c-format
-msgid "Custom folder:"
+msgid "C&ustom folder:"
+msgstr ""
+
+#: Merge.rc:999
+#: Merge.rc:1015
+#, c-format
+msgid "Br&owse..."
 msgstr ""
 
 #: Merge.rc:1005
@@ -1612,11 +1613,6 @@ msgstr ""
 #: Merge.rc:1012
 #, c-format
 msgid "File&2:"
-msgstr ""
-
-#: Merge.rc:1015
-#, c-format
-msgid "Br&owse..."
 msgstr ""
 
 #: Merge.rc:1016
@@ -2207,6 +2203,14 @@ msgstr ""
 #: Merge.rc:1411
 #, c-format
 msgid "Report &File:"
+msgstr ""
+
+#: Merge.rc:1414
+#: Merge.rc:1588
+#: Merge.rc:1592
+#: Merge.rc:1619
+#, c-format
+msgid "Browse..."
 msgstr ""
 
 #: Merge.rc:1415
