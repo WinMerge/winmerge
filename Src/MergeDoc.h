@@ -154,9 +154,7 @@ private :
 		 * Unicode:
 		 *   in memory it is wchars
 		 */
-		int m_unicoding; /**< File's Unicode encoding */
-		bool m_bBom; /**< Has the file BOM? */
-		int m_codepage; /**< @brief 8-bit codepage, if relevant m_unicoding==ucr::NONE */
+		FileTextEncoding m_encoding; /**< File's encoding information. */
 
 		int NoteCRLFStyleFromBuffer(TCHAR *lpLineBegin, DWORD dwLineLen = 0);
 		void ReadLineFromBuffer(TCHAR *lpLineBegin, DWORD dwLineNum, DWORD dwLineLen = 0);
@@ -174,10 +172,10 @@ public :
 		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, CString & sError,
 			PackingInfo * infoUnpacker = NULL, int nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 			BOOL bClearModifiedFlag = TRUE );
-		int getUnicoding() const { return m_unicoding; }
-		void setUnicoding(int value) { m_unicoding = value; }
-		int getCodepage() const { return m_codepage; }
-		void setCodepage(int value) { m_codepage = value; }
+		int getUnicoding() const { return m_encoding.m_unicoding; }
+		void setUnicoding(int value) { m_encoding.m_unicoding = value; }
+		int getCodepage() const { return m_encoding.m_codepage; }
+		void setCodepage(int value) { m_encoding.m_codepage = value; }
 
 		CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 

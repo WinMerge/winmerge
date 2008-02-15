@@ -30,6 +30,7 @@
 #include "stdafx.h"
 #include <Shlwapi.h>		// PathCompactPathEx()
 #include "UnicodeString.h"
+#include "FileTextEncoding.h"
 #include "Merge.h"
 #include "MainFrm.h"
 #include "Environment.h"
@@ -447,7 +448,8 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 	// Set paths for diffing and run diff
 	m_diffWrapper.SetPaths(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), TRUE);
 	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
-	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_unicoding ? CP_UTF8 : m_ptBuf[0]->m_codepage);
+	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
+			CP_UTF8 : m_ptBuf[0]->m_encoding.m_codepage);
 	diffSuccess = m_diffWrapper.RunFileDiff();
 
 	// Read diff-status
@@ -658,9 +660,6 @@ CMergeDoc::CDiffTextBuffer::CDiffTextBuffer(CMergeDoc * pDoc, int pane)
 : m_pOwnerDoc(pDoc)
 , m_nThisPane(pane)
 , unpackerSubcode(0)
-, m_unicoding(0)
-, m_bBom(false)
-, m_codepage(0)
 {
 }
 
@@ -1793,9 +1792,9 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			nRetVal = FileLoadResult::FRESULT_OK_IMPURE;
 
 		// stash original encoding away
-		m_unicoding = pufile->GetUnicoding();
-		m_bBom = pufile->HasBom();
-		m_codepage = pufile->GetCodepage();
+		m_encoding.m_unicoding = pufile->GetUnicoding();
+		m_encoding.m_bom = pufile->HasBom();
+		m_encoding.m_codepage = pufile->GetCodepage();
 
 		if (pufile->GetTxtStats().nlosses)
 		{
@@ -1853,9 +1852,9 @@ int CMergeDoc::CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	BOOL bSaveSuccess = FALSE;
 
 	UniStdioFile file;
-	file.SetUnicoding(m_unicoding);
-	file.SetBom(m_bBom);
-	file.SetCodepage(m_codepage);
+	file.SetUnicoding(m_encoding.m_unicoding);
+	file.SetBom(m_encoding.m_bom);
+	file.SetCodepage(m_encoding.m_codepage);
 
 	String sIntermediateFilename; // used when !bTempFile
 
