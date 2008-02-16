@@ -1034,6 +1034,8 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
       nActualOffset += ExpandChars (pszChars, nOffset, nCount, line, nActualOffset);
       const int lineLen = line.GetLength();
       const int nCharWidth = GetCharWidth();
+      const int nCharWidthNarrowed = nCharWidth / 2;
+      const int nCharWidthWidened = nCharWidth * 2 - nCharWidthNarrowed;
       const int nLineHeight = GetLineHeight();
       int nSumWidth = 0;
 
@@ -1050,7 +1052,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           
           // Update the position after the left clipped characters
           // stop for i = first visible character, at least partly
-          const int clipLeft = rcClip.left - GetCharWidth() * 2;
+          const int clipLeft = rcClip.left - nCharWidth * 2;
           for ( ; i < lineLen; i++)
           {
             int pnWidthsCurrent = GetCharWidthFromChar(line[i]);
@@ -1104,11 +1106,11 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   {
                     // Substitute a space narrowed to half the width of a character cell.
                     line.SetAt(i, ' ');
-                    nSumWidth += pnWidths[i - ibegin] = nCharWidth / 2;
+                    nSumWidth += pnWidths[i - ibegin] = nCharWidthNarrowed;
                     // 1st hex digit has normal width.
                     nSumWidth += pnWidths[++i - ibegin] = nCharWidth;
                     // 2nd hex digit is padded by half the width of a character cell.
-                    nSumWidth += pnWidths[++i - ibegin] = nCharWidth + nCharWidth / 2;
+                    nSumWidth += pnWidths[++i - ibegin] = nCharWidthWidened;
                   }
                   else
                   {
@@ -1145,8 +1147,8 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                     // Assume narrowed space is converted escape sequence leadin.
                     if (line[ibegin + j] == ' ' && pnWidths[j] < nCharWidth)
                     {
-                      ::RoundRect(hDC, x + nCharWidth / 2 - 2, ptOrigin.y + 1,
-                        x + nCharWidth / 2 + 2 * nCharWidth + 2, ptOrigin.y + nLineHeight - 1,
+                      ::RoundRect(hDC, x + 2, ptOrigin.y + 1,
+                        x + 3 * nCharWidth - 2, ptOrigin.y + nLineHeight - 1,
                         nCharWidth / 2, nLineHeight / 2);
                     }
                     x += pnWidths[j];
