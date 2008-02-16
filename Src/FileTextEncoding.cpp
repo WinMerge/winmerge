@@ -54,15 +54,22 @@ void FileTextEncoding::SetUnicoding(int unicoding)
 
 /**
  * @brief Return string representation of encoding, eg "UCS-2LE", or "1252"
+ * @todo This resource lookup should be done in GUI code?
  */
 String FileTextEncoding::GetName() const
 {
-	if (m_unicoding == ucr::UCS2LE)
-		return _T("UCS-2LE");
-	if (m_unicoding == ucr::UCS2BE)
-		return _T("UCS-2BE");
 	if (m_unicoding == ucr::UTF8)
-		return _T("UTF-8");
+	{
+		if (m_bom)
+			return LoadResString(IDS_UNICODING_UTF8_BOM);
+		else
+			return LoadResString(IDS_UNICODING_UTF8);
+	}
+
+	if (m_unicoding == ucr::UCS2LE)
+		return LoadResString(IDS_UNICODING_UCS2_LE);
+	if (m_unicoding == ucr::UCS2BE)
+		return LoadResString(IDS_UNICODING_UCS2_BE);
 
 	String str;
 	if (m_codepage > -1)
