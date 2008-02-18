@@ -199,6 +199,8 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMIN, OnViewZoomIn)
 	ON_COMMAND(ID_VIEW_ZOOMOUT, OnViewZoomOut)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTFILE_ENCODING, OnUpdateStatusLeftEncoding)
+	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTFILE_ENCODING, OnUpdateStatusRightEncoding)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3300,7 +3302,7 @@ void CMergeEditView::ZoomText(short amount)
 }
 
 /**
- * @bfief Called when user selects View/Zoom In from menu.
+ * @brief Called when user selects View/Zoom In from menu.
  */
 void CMergeEditView::OnViewZoomIn()
 {
@@ -3308,7 +3310,7 @@ void CMergeEditView::OnViewZoomIn()
 }
 
 /**
- * @bfief Called when user selects View/Zoom Out from menu.
+ * @brief Called when user selects View/Zoom Out from menu.
  */
 void CMergeEditView::OnViewZoomOut()
 {
@@ -3316,9 +3318,29 @@ void CMergeEditView::OnViewZoomOut()
 }
 
 /**
- * @bfief Called when user selects View/Zoom Normal from menu.
+ * @brief Called when user selects View/Zoom Normal from menu.
  */
 void CMergeEditView::OnViewZoomNormal()
 {
 	ZoomText(0);
+}
+
+/**
+ * @brief Called when left file's encoding type in status bar is updated.
+ * @param [in] pCmdUI Pointer to the control to update.
+ */
+void CMergeEditView::OnUpdateStatusLeftEncoding(CCmdUI* pCmdUI)
+{
+	const FileTextEncoding & encoding = GetDocument()->GetEncoding(0);
+	pCmdUI->SetText(encoding.GetName().c_str());
+}
+
+/**
+ * @brief Called when right file's encoding type in status bar is updated.
+ * @param [in] pCmdUI Pointer to the control to update.
+ */
+void CMergeEditView::OnUpdateStatusRightEncoding(CCmdUI* pCmdUI)
+{
+	const FileTextEncoding & encoding = GetDocument()->GetEncoding(1);
+	pCmdUI->SetText(encoding.GetName().c_str());
 }

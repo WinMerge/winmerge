@@ -44,10 +44,10 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief RO status panel width
- */
+/** @brief RO status panel width */
 static UINT RO_PANEL_WIDTH = 40;
+/** @brief Encoding status panel width */
+static UINT ENCODING_PANEL_WIDTH = 80;
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
@@ -75,9 +75,11 @@ enum
 {
 	PANE_LEFT_INFO = 0,
 	PANE_LEFT_RO,
+	PANE_LEFT_ENCODING,
 	PANE_LEFT_EOL,
 	PANE_RIGHT_INFO,
 	PANE_RIGHT_RO,
+	PANE_RIGHT_ENCODING,
 	PANE_RIGHT_EOL,
 };
 
@@ -86,6 +88,8 @@ enum
  */
 static UINT indicatorsBottom[] =
 {
+	ID_SEPARATOR,
+	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
 	ID_SEPARATOR,
@@ -562,10 +566,12 @@ void CChildFrame::UpdateHeaderSizes()
 		// Set bottom statusbar panel widths
 		// Kimmo - I don't know why 4 seems to be right for me
 		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-		int pane1Width = w - 2 * (RO_PANEL_WIDTH + borderWidth);
+		int pane1Width = w - (2 * (RO_PANEL_WIDTH + borderWidth) +
+				ENCODING_PANEL_WIDTH + borderWidth);
 		if (pane1Width < borderWidth)
 			pane1Width = borderWidth;
-		int pane2Width = w1 - 2 * (RO_PANEL_WIDTH + borderWidth);
+		int pane2Width = w1 - (2 * (RO_PANEL_WIDTH + borderWidth) +
+				ENCODING_PANEL_WIDTH + borderWidth);
 		if (pane2Width < borderWidth)
 			pane2Width = borderWidth;
 
@@ -573,12 +579,16 @@ void CChildFrame::UpdateHeaderSizes()
 			SBPS_NORMAL, pane1Width);
 		m_wndStatusBar.SetPaneInfo(PANE_LEFT_RO, ID_STATUS_LEFTFILE_RO,
 			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(PANE_LEFT_ENCODING, ID_STATUS_LEFTFILE_ENCODING,
+			SBPS_NORMAL, ENCODING_PANEL_WIDTH - borderWidth);
 		m_wndStatusBar.SetPaneInfo(PANE_LEFT_EOL, ID_STATUS_LEFTFILE_EOL,
 			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_INFO, ID_STATUS_RIGHTFILE_INFO,
 			SBPS_STRETCH, pane2Width);
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTFILE_RO,
 			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_ENCODING, ID_STATUS_RIGHTFILE_ENCODING,
+			SBPS_NORMAL, ENCODING_PANEL_WIDTH - borderWidth);
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_EOL, ID_STATUS_RIGHTFILE_EOL,
 			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
 	}

@@ -308,6 +308,8 @@ protected:
 	afx_msg void OnViewZoomIn();
 	afx_msg void OnViewZoomOut();
 	afx_msg void OnViewZoomNormal();
+	afx_msg void OnUpdateStatusLeftEncoding(CCmdUI* pCmdUI);
+	afx_msg void OnUpdateStatusRightEncoding(CCmdUI* pCmdUI);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:

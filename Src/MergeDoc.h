@@ -176,6 +176,7 @@ public :
 		void setUnicoding(int value) { m_encoding.m_unicoding = value; }
 		int getCodepage() const { return m_encoding.m_codepage; }
 		void setCodepage(int value) { m_encoding.m_codepage = value; }
+		const FileTextEncoding & getEncoding() const { return m_encoding; }
 
 		CDiffTextBuffer(CMergeDoc * pDoc, int pane);
 
@@ -263,6 +264,8 @@ public:
 	CMergeDiffDetailView * GetRightDetailView() const { return m_pDetailView[1]; }
 	CMergeDiffDetailView * GetDetailView(int pane) const { return m_pDetailView[pane]; }
 	CChildFrame * GetParentFrame();
+	const FileTextEncoding & GetEncoding(int file) const
+			{ return m_ptBuf[file]->getEncoding(); }
 
 	// Overrides
 	// ClassWizard generated virtual function overrides
