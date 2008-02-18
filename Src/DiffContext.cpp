@@ -268,6 +268,7 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 	else
 		return FALSE;
 
+	m_nCompMethod = compareMethod;
 	m_pCompareOptions = GetCompareOptions(compareMethod);
 	if (m_pCompareOptions == NULL)
 	{
@@ -318,8 +319,6 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 		// No really options to set..
 		break;
 	}
-
-	m_nCompMethod = compareMethod;
 
 	if (m_pCompareOptions == NULL)
 		return NULL;
