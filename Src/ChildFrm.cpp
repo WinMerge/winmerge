@@ -48,6 +48,8 @@ static char THIS_FILE[] = __FILE__;
 static UINT RO_PANEL_WIDTH = 40;
 /** @brief Encoding status panel width */
 static UINT ENCODING_PANEL_WIDTH = 80;
+/** @brief EOL type status panel width */
+static UINT EOL_PANEL_WIDTH = 40;
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
@@ -101,6 +103,9 @@ static UINT indicatorsBottom[] =
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame construction/destruction
 
+/**
+ * @brief Constructor.
+ */
 CChildFrame::CChildFrame()
 #pragma warning(disable:4355) // 'this' : used in base member initializer list
 : m_leftStatus(this, PANE_LEFT_INFO)
@@ -114,6 +119,9 @@ CChildFrame::CChildFrame()
 	m_pMergeDoc = 0;
 }
 
+/**
+ * Destructor.
+ */
 CChildFrame::~CChildFrame()
 {
 	m_wndDetailBar.setSplitter(0);
@@ -362,7 +370,8 @@ static BOOL CALLBACK EnumChildProc(HWND hwnd, LPARAM lParam)
 }
 
 /**
- * @brief Alternative LockWindowUpdate(hWnd) API. See the comment near the code that calls this function.
+ * @brief Alternative LockWindowUpdate(hWnd) API.
+ * See the comment near the code that calls this function.
  */
 static BOOL MyLockWindowUpdate(HWND hwnd)
 {
@@ -376,7 +385,8 @@ static BOOL MyLockWindowUpdate(HWND hwnd)
 }
 
 /**
- * @brief Alternative LockWindowUpdate(NULL) API. See the comment near the code that calls this function.
+ * @brief Alternative LockWindowUpdate(NULL) API.
+ * See the comment near the code that calls this function.
  */
 static BOOL MyUnlockWindowUpdate(HWND hwnd)
 {
@@ -566,12 +576,12 @@ void CChildFrame::UpdateHeaderSizes()
 		// Set bottom statusbar panel widths
 		// Kimmo - I don't know why 4 seems to be right for me
 		int borderWidth = 4; // GetSystemMetrics(SM_CXEDGE);
-		int pane1Width = w - (2 * (RO_PANEL_WIDTH + borderWidth) +
-				ENCODING_PANEL_WIDTH + borderWidth);
+		int pane1Width = w - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
+				ENCODING_PANEL_WIDTH + (3 * borderWidth));
 		if (pane1Width < borderWidth)
 			pane1Width = borderWidth;
-		int pane2Width = w1 - (2 * (RO_PANEL_WIDTH + borderWidth) +
-				ENCODING_PANEL_WIDTH + borderWidth);
+		int pane2Width = w1 - (RO_PANEL_WIDTH + EOL_PANEL_WIDTH +
+				ENCODING_PANEL_WIDTH + (3 * borderWidth));
 		if (pane2Width < borderWidth)
 			pane2Width = borderWidth;
 
@@ -582,7 +592,7 @@ void CChildFrame::UpdateHeaderSizes()
 		m_wndStatusBar.SetPaneInfo(PANE_LEFT_ENCODING, ID_STATUS_LEFTFILE_ENCODING,
 			SBPS_NORMAL, ENCODING_PANEL_WIDTH - borderWidth);
 		m_wndStatusBar.SetPaneInfo(PANE_LEFT_EOL, ID_STATUS_LEFTFILE_EOL,
-			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+			SBPS_NORMAL, EOL_PANEL_WIDTH - borderWidth);
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_INFO, ID_STATUS_RIGHTFILE_INFO,
 			SBPS_STRETCH, pane2Width);
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_RO, ID_STATUS_RIGHTFILE_RO,
@@ -590,7 +600,7 @@ void CChildFrame::UpdateHeaderSizes()
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_ENCODING, ID_STATUS_RIGHTFILE_ENCODING,
 			SBPS_NORMAL, ENCODING_PANEL_WIDTH - borderWidth);
 		m_wndStatusBar.SetPaneInfo(PANE_RIGHT_EOL, ID_STATUS_RIGHTFILE_EOL,
-			SBPS_NORMAL, RO_PANEL_WIDTH - borderWidth);
+			SBPS_NORMAL, EOL_PANEL_WIDTH - borderWidth);
 	}
 }
 
