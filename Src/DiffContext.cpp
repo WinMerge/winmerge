@@ -119,7 +119,7 @@ CDiffContext::~CDiffContext()
 }
 
 /**
- * @brief Add new diffitem to CDiffContext array.
+ * @brief Add new result item to result list.
  * @param [in] di DIFFITEM to add.
  */
 void CDiffContext::AddDiff(const DIFFITEM & di)
@@ -129,7 +129,9 @@ void CDiffContext::AddDiff(const DIFFITEM & di)
 }
 
 /**
- * @brief Update info in DIFFITEM from disk.
+ * @brief Update info in item in result list from disk.
+ * This function updates result list item's file information from actual
+ * file in the disk. This updates info like date, size and attributes.
  * @param [in] diffpos DIFFITEM to update.
  * @param [in] bLeft Update left-side info.
  * @param [in] bRight Update right-side info.
@@ -152,7 +154,9 @@ void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRigh
 }
 
 /**
- * @brief Update information from disk for selected side.
+ * @brief Update file information from disk for DIFFITEM.
+ * This function updates DIFFITEM's file information from actual file in
+ * the disk. This updates info like date, size and attributes.
  * @param [in, out] di DIFFITEM to update (selected side, see bLeft param).
  * @param [in] bLeft If TRUE left side information is updated,
  *  right side otherwise.
@@ -176,7 +180,10 @@ BOOL CDiffContext::UpdateInfoFromDiskHalf(DIFFITEM & di, BOOL bLeft)
 }
 
 /**
- * @brief Return if this extension is one we expect to have a file version.
+ * @brief Determine if file is one to have a version information.
+ * This function determines if the given file has a version information
+ * attached into it in resource. This is done by comparing file extension to
+ * list of known filename extensions usually to have a version information.
  * @param [in] ext Extension to check.
  * @return true if extension has version info, false otherwise.
  */
@@ -245,9 +252,9 @@ void CDiffContext::UpdateVersion(DIFFITEM & di, BOOL bLeft) const
 /**
  * @brief Create compare-method specific compare options class.
  * This function creates a compare options class that is specific for
- * selectec compare method. Compare options class is initialized from
+ * selected compare method. Compare options class is initialized from
  * given set of options.
- * @param [in] compareMethod Selectec compare method.
+ * @param [in] compareMethod Selected compare method.
  * @param [in] options Initial set of compare options.
  * @return TRUE if creation succeeds.
  */
@@ -279,7 +286,11 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 }
 
 /**
- * @brief Return compare-method specific compare options.
+ * @brief Get compare-type specific compare options.
+ * This function returns per-compare method options. The compare options
+ * returned are converted from general options to match options for specific
+ * comapare type. Not all compare options in general set are available for
+ * some other compare type. And some options can have different values.
  * @param [in] compareMethod Compare method used.
  * @return Compare options class.
  */
