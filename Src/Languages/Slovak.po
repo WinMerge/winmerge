@@ -3,7 +3,7 @@
 #
 # Translators:
 # * majvan <vancojur at decef.elf.stuba.sk>
-# * Ivan Mas·r <helix84 at users.sourceforge.net>
+# * Ivan Mas·r <helix84 at centrum.sk>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2008-02-17 21:15+0100\n"
+"Last-Translator: Ivan Mas·r <helix84 at centrum.sk>\n"
 "Language-Team: Slovak <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1250\n"
@@ -52,7 +52,7 @@ msgstr "KopÌrovaù væavo"
 #: Merge.rc:75
 #, c-format
 msgid "&Select Line Difference"
-msgstr "&Vyber riadkovÈ rozdiely"
+msgstr "&Vybraù rozdiely riadkov"
 
 #: Merge.rc:77
 #, c-format
@@ -87,12 +87,12 @@ msgstr "V&loûiù"
 #: Merge.rc:577
 #, c-format
 msgid "&Goto..."
-msgstr "&ChoÔ na..."
+msgstr "&Prejsù na..."
 
 #: Merge.rc:86
 #, c-format
 msgid "Op&en"
-msgstr ""
+msgstr "&Otvoriù"
 
 #: Merge.rc:88
 #: Merge.rc:519
@@ -139,7 +139,7 @@ msgstr "&Otvoriù...\tCtrl+O"
 #: Merge.rc:114
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "&Otvoriù konfliktn˝ s˙bor..."
 
 #: Merge.rc:116
 #: Merge.rc:194
@@ -390,21 +390,21 @@ msgstr "Po&moc"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "PomocnÌk &WinMerge\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
 #: Merge.rc:476
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "&Pozn·mky k vydaniu"
 
 #: Merge.rc:178
 #: Merge.rc:292
 #: Merge.rc:477
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "&Preklady"
 
 #: Merge.rc:179
 #: Merge.rc:293
@@ -553,13 +553,13 @@ msgstr "Posledn˝ &rozdiel\tAlt+End"
 #: Merge.rc:427
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr ""
+msgstr "SkopÌrovaù v&pravo\tAlt+Right"
 
 #: Merge.rc:251
 #: Merge.rc:428
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr ""
+msgstr "SkopÌrovaù &væavo\tAlt+Left"
 
 #: Merge.rc:253
 #, c-format
@@ -613,7 +613,7 @@ msgstr "&TlaËiù..."
 #: Merge.rc:324
 #, c-format
 msgid "Page Se&tup"
-msgstr "Nastavenie S&tr·nky"
+msgstr "Nastavenie s&tr·nky"
 
 #: Merge.rc:325
 #, c-format
@@ -628,17 +628,17 @@ msgstr "&Konvertovaù konce riadkov na"
 #: Merge.rc:332
 #, c-format
 msgid "&DOS (CRLF)"
-msgstr ""
+msgstr "&DOS (CRLF)"
 
 #: Merge.rc:333
 #, c-format
 msgid "&UNIX (LF)"
-msgstr ""
+msgstr "&UNIX (LF)"
 
 #: Merge.rc:334
 #, c-format
 msgid "&MAC (CR)"
-msgstr ""
+msgstr "&MAC (CR)"
 
 #: Merge.rc:337
 #, c-format
@@ -648,7 +648,7 @@ msgstr "&ZluËovacÌ reûim\tF9"
 #: Merge.rc:339
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "&KÛdovanie s˙boru..."
 
 #: Merge.rc:345
 #, c-format
@@ -739,38 +739,38 @@ msgstr "&Zmazaù vöetky z·loûky"
 #: Merge.rc:375
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "&ChoÔ na...\tCtrl+G"
+msgstr "&Prejsù na...\tCtrl+G"
 
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "&PriblÌûenie"
 
 #: Merge.rc:385
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr ""
+msgstr "&PriblÌûiù\tCtrl++"
 
 #: Merge.rc:386
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr ""
+msgstr "&Oddialiù\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "&Norm·lna veækosù\tCtrl+*"
 
 #: Merge.rc:389
 #, c-format
 msgid "Syntax Highlight"
-msgstr ""
+msgstr "Zv˝razÚovanie syntaxe"
 
 #: Merge.rc:394
 #, c-format
 msgid "&Lock Panes"
-msgstr ""
+msgstr "&Zamkn˙ù panely"
 
 #: Merge.rc:395
 #, c-format
@@ -845,12 +845,12 @@ msgstr "Porovn&aù"
 #: Merge.rc:491
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "&Porovnaù öpeci·lne"
 
 #: Merge.rc:493
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:498
 #, c-format
@@ -885,7 +885,7 @@ msgstr "º&av˝ do..."
 #: Merge.rc:506
 #, c-format
 msgid "&Right to..."
-msgstr "&prav˝ do..."
+msgstr "&Prav˝ do..."
 
 #: Merge.rc:508
 #, c-format
@@ -1065,7 +1065,7 @@ msgstr "NavötÌvte www str·nku programu WinMerge!"
 #: Merge.rc:1428
 #, c-format
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: Merge.rc:662
 #, c-format
@@ -1134,7 +1134,7 @@ msgstr "&Zahrn˙ù podadres·re"
 #: Merge.rc:691
 #, c-format
 msgid "Status:"
-msgstr ""
+msgstr "Stav:"
 
 #: Merge.rc:693
 #: Merge.rc:723
@@ -1168,7 +1168,7 @@ msgstr "S˙bory alebo adres·re pre porovnanie"
 #: Merge.rc:702
 #, c-format
 msgid "Visual SourceSafe"
-msgstr ""
+msgstr "Visual SourceSafe"
 
 #: Merge.rc:707
 #, c-format
@@ -1261,12 +1261,12 @@ msgstr "Um&oûniù beh iba jednej inötancie"
 #: Merge.rc:756
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr ""
+msgstr "&P˝taù sa pred zatvorenÌm viacer˝ch okien"
 
 #: Merge.rc:758
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "&Zachov·vaù Ëas s˙boru pri porovnanÌ"
 
 #: Merge.rc:761
 #, c-format
@@ -1298,7 +1298,7 @@ msgstr "WinMerge umoûÚuje zamedziù zobrazovaniu beûn˝ch spr·v. StlaËenÌm tlaËidl
 #: Merge.rc:772
 #, c-format
 msgid "Reset"
-msgstr ""
+msgstr "Reset"
 
 #: Merge.rc:779
 #, c-format
@@ -1409,7 +1409,7 @@ msgstr "NahraÔiù vöetko"
 #: Merge.rc:2117
 #, c-format
 msgid "Rational ClearCase"
-msgstr ""
+msgstr "Rational ClearCase"
 
 #: Merge.rc:854
 #, c-format
@@ -1494,7 +1494,7 @@ msgstr "ZmazanÈ"
 #: Merge.rc:1555
 #, c-format
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: Merge.rc:918
 #, c-format
@@ -1690,12 +1690,12 @@ msgstr "Zobrazovaù stÂpce"
 #: Merge.rc:1067
 #, c-format
 msgid "Move &Up"
-msgstr ""
+msgstr "Presun˙ù &hore"
 
 #: Merge.rc:1068
 #, c-format
 msgid "Move &Down"
-msgstr ""
+msgstr "Presun˙ù &dolu"
 
 #: Merge.rc:1078
 #, c-format
@@ -1731,7 +1731,7 @@ msgstr " Priebeh porovnania adres·rov"
 #: Merge.rc:1844
 #, c-format
 msgid "Stop"
-msgstr ""
+msgstr "Zastaviù"
 
 #: Merge.rc:1109
 #, c-format
@@ -1751,7 +1751,7 @@ msgstr "Poloûiek celkom:"
 #: Merge.rc:1117
 #, c-format
 msgid "Go To"
-msgstr "ChoÔ na"
+msgstr "Prejsù na"
 
 #: Merge.rc:1120
 #, c-format
@@ -1766,7 +1766,7 @@ msgstr "S˙bor"
 #: Merge.rc:1127
 #, c-format
 msgid "Goto what"
-msgstr "ChoÔ na..."
+msgstr "Prejsù na..."
 
 #: Merge.rc:1128
 #, c-format
@@ -1781,7 +1781,7 @@ msgstr "&Rozdiel"
 #: Merge.rc:1132
 #, c-format
 msgid "&Go To"
-msgstr "&ChoÔ na"
+msgstr "&Prejsù na"
 
 #: Merge.rc:1138
 #: Merge.rc:1892
@@ -1853,7 +1853,7 @@ msgstr "Filtrovaù koment·re"
 #: Merge.rc:1893
 #, c-format
 msgid "Editor"
-msgstr ""
+msgstr "Editor"
 
 #: Merge.rc:1175
 #, c-format
@@ -2057,7 +2057,7 @@ msgstr ""
 #: Merge.rc:1283
 #, c-format
 msgid "Version"
-msgstr ""
+msgstr "Verzia"
 
 #: Merge.rc:1285
 #, c-format
@@ -2082,12 +2082,12 @@ msgstr "prÌtomn˝"
 #: Merge.rc:1291
 #, c-format
 msgid "Merge7z000U.dll"
-msgstr ""
+msgstr "Merge7z000U.dll"
 
 #: Merge.rc:1294
 #, c-format
 msgid "7-Zip software installed on your computer:"
-msgstr ""
+msgstr "7-Zip softvÈr nainötalovan˝ na vaöom poËÌtaËi:"
 
 #: Merge.rc:1296
 #: Merge.rc:1301
@@ -2205,7 +2205,7 @@ msgstr "PouûÌvateæ 2:"
 #: Merge.rc:1393
 #, c-format
 msgid "Bold"
-msgstr ""
+msgstr "Hrubo"
 
 #: Merge.rc:1401
 #, c-format
@@ -2307,7 +2307,7 @@ msgstr "OdliönÈ"
 #: Merge.rc:1461
 #, c-format
 msgid "Text:"
-msgstr ""
+msgstr "Text:"
 
 #: Merge.rc:1464
 #: Merge.rc:1483
@@ -2371,7 +2371,7 @@ msgstr "&NaËÌtanie s˙boru:"
 #: Merge.rc:1514
 #, c-format
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: Merge.rc:1512
 #, c-format
@@ -2422,7 +2422,7 @@ msgstr "V˝sledok:"
 #: Merge.rc:1537
 #, c-format
 msgid "&Test"
-msgstr ""
+msgstr "&Testovaù"
 
 #: Merge.rc:1538
 #, c-format
@@ -2523,7 +2523,7 @@ msgstr "P&ridaù Ëasov˙ zn·mku"
 #: Merge.rc:1623
 #, c-format
 msgid "Confirm Copy"
-msgstr ""
+msgstr "Potvrdiù kopÌrovanie"
 
 #: Merge.rc:1627
 #, c-format
@@ -2570,32 +2570,32 @@ msgstr "Pripraven˝"
 #: Merge.rc:1698
 #, c-format
 msgid "EXT"
-msgstr ""
+msgstr "ROZ"
 
 #: Merge.rc:1699
 #, c-format
 msgid "CAP"
-msgstr ""
+msgstr "CAPS"
 
 #: Merge.rc:1700
 #, c-format
 msgid "NUM"
-msgstr ""
+msgstr "NUM"
 
 #: Merge.rc:1701
 #, c-format
 msgid "SCRL"
-msgstr ""
+msgstr "SCRL"
 
 #: Merge.rc:1702
 #, c-format
 msgid "OVR"
-msgstr ""
+msgstr "CEZ"
 
 #: Merge.rc:1703
 #, c-format
 msgid "REC"
-msgstr ""
+msgstr "Z¡ZN"
 
 #: Merge.rc:1709
 #, c-format
@@ -2792,22 +2792,22 @@ msgstr ""
 "Kask·da"
 
 #: Merge.rc:1774
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
 msgstr ""
-"Dlaûdice vodorovne\n"
-"Dlaûdice"
+"Rozloûenie okien ako neprelÌnaj˙ce sa dlaûdice vodorovne\n"
+"Dl·ûdiù okn· vodorovne"
 
 #: Merge.rc:1775
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
 msgstr ""
-"Dlaûdice zvisle\n"
-"Dlaûdice"
+"Rozloûenie okien ako neprelÌnaj˙ce sa dlaûdice zvisle\n"
+"Dl·ûdiù okn· zvisle"
 
 #: Merge.rc:1781
 #, c-format
@@ -2919,8 +2919,12 @@ msgstr ""
 
 #: Merge.rc:1798
 #, c-format
-msgid "Automatically resize panes\nLock Panes"
+msgid ""
+"Automatically resize panes\n"
+"Lock Panes"
 msgstr ""
+"Automaticky meniù veækosù panelov\n"
+"Zamkn˙ù panely"
 
 #: Merge.rc:1804
 #, c-format
@@ -2983,12 +2987,26 @@ msgstr ""
 
 #: Merge.rc:1830
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 msgstr ""
 
 #: Merge.rc:1831
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
 msgstr ""
 
 #: Merge.rc:1838
@@ -3024,7 +3042,7 @@ msgstr "WinMerge je poskytovan˝ BEZ AKEJKOºVEK Z¡RUKY. Toto je slobodn˝ softvÈr 
 #: Merge.rc:1865
 #, c-format
 msgid "&Ok"
-msgstr ""
+msgstr "&OK"
 
 #: Merge.rc:1867
 #, c-format
@@ -3139,7 +3157,7 @@ msgstr "Verzia %1 - Slovensk˝ preklad"
 #: Merge.rc:1919
 #, c-format
 msgid "Unicode"
-msgstr ""
+msgstr "Unicode"
 
 #: Merge.rc:1925
 #, c-format
@@ -3266,7 +3284,7 @@ msgstr "Filtre"
 #: Merge.rc:1970
 #, c-format
 msgid "[F] "
-msgstr ""
+msgstr "[F] "
 
 #: Merge.rc:1971
 #, c-format
@@ -3392,12 +3410,12 @@ msgstr "Nepomenovan˝ prav˝"
 #: Merge.rc:2009
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "Ich s˙bor"
 
 #: Merge.rc:2010
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "MÙj s˙bor"
 
 #: Merge.rc:2016
 #, c-format
@@ -3566,12 +3584,18 @@ msgstr ""
 #: Merge.rc:2067
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "Nepodarilo sa spracovaù s˙bor konfliktov."
 
 #: Merge.rc:2068
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
+"S˙bor\n"
+"%1\n"
+"nie je s˙bor konfliktov."
 
 #: Merge.rc:2074
 #, c-format
@@ -3983,7 +4007,7 @@ msgstr "Otvoriù æav˝ s˙bor"
 #: Merge.rc:2177
 #, c-format
 msgid "Open the left file to external editor"
-msgstr ""
+msgstr "Otvoriù s˙bor væavo v externom editore"
 
 #: Merge.rc:2178
 #, c-format
@@ -4503,8 +4527,18 @@ msgstr "NemÙûem otvoriù bin·rny s˙bor v editore."
 
 #: Merge.rc:2337
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
 msgstr ""
+"Adres·r existuje len na druhej strane a nie je moûnÈ ho otvoriù.\n"
+"\n"
+"Chcete vytvoriù zodpovedaj˙ci adres·r:\n"
+"%1\n"
+"na druhej strane a otvoriù tieto adres·re?"
 
 #: Merge.rc:2343
 #, c-format
@@ -4852,212 +4886,212 @@ msgstr "inÈ"
 #: Merge.rc:2453
 #, c-format
 msgid "MS-Windows"
-msgstr ""
+msgstr "MS-Windows"
 
 #: Merge.rc:2454
 #, c-format
 msgid "MS-DOS"
-msgstr ""
+msgstr "MS-DOS"
 
 #: Merge.rc:2455
 #, c-format
 msgid "Macintosh"
-msgstr ""
+msgstr "Macintosh"
 
 #: Merge.rc:2456
 #, c-format
 msgid "IBM"
-msgstr ""
+msgstr "IBM"
 
 #: Merge.rc:2463
 #, c-format
 msgid "EBCDIC"
-msgstr ""
+msgstr "EBCDIC"
 
 #: Merge.rc:2464
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
-msgstr ""
+msgstr "IBM EBCDIC Cyrillic"
 
 #: Merge.rc:2470
 #, c-format
 msgid "MS-DOS Latin US"
-msgstr ""
+msgstr "MS-DOS latinka US"
 
 #: Merge.rc:2471
 #, c-format
 msgid "MS-DOS Arabic"
-msgstr ""
+msgstr "MS-DOS arabsk·"
 
 #: Merge.rc:2472
 #, c-format
 msgid "MS-DOS Greek"
-msgstr ""
+msgstr "MS-DOS grÈcka"
 
 #: Merge.rc:2473
 #, c-format
 msgid "MS-DOS Baltic Rim"
-msgstr ""
+msgstr "MS-DOS baltsk·"
 
 #: Merge.rc:2474
 #, c-format
 msgid "MS-DOS Latin 1"
-msgstr ""
+msgstr "MS-DOS latinka 1"
 
 #: Merge.rc:2475
 #, c-format
 msgid "MS-DOS Greek 1"
-msgstr ""
+msgstr "MS-DOS grÈcka 1"
 
 #: Merge.rc:2476
 #, c-format
 msgid "MS-DOS Latin 2"
-msgstr ""
+msgstr "MS-DOS latinka 2"
 
 #: Merge.rc:2477
 #, c-format
 msgid "MS-DOS Cyrillic"
-msgstr ""
+msgstr "MS-DOS azbuka"
 
 #: Merge.rc:2478
 #, c-format
 msgid "MS-DOS Turkish"
-msgstr ""
+msgstr "MS-DOS tureck·"
 
 #: Merge.rc:2479
 #, c-format
 msgid "MS-DOS Portuguese"
-msgstr ""
+msgstr "MS-DOS portugalsk·"
 
 #: Merge.rc:2485
 #, c-format
 msgid "MS-DOS Icelandic"
-msgstr ""
+msgstr "MS-DOS islandsk·"
 
 #: Merge.rc:2486
 #, c-format
 msgid "MS-DOS Hebrew"
-msgstr ""
+msgstr "MS-DOS hebrejsk·"
 
 #: Merge.rc:2487
 #, c-format
 msgid "MS-DOS French Canada"
-msgstr ""
+msgstr "MS-DOS franc˙zska Kanada"
 
 #: Merge.rc:2488
 #, c-format
 msgid "MS-DOS Nordic"
-msgstr ""
+msgstr "MS-DOS nordick·"
 
 #: Merge.rc:2489
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
-msgstr ""
+msgstr "MS-DOS azbuka CIS 1"
 
 #: Merge.rc:2490
 #, c-format
 msgid "MS-DOS Greek 2"
-msgstr ""
+msgstr "MS-DOS grÈcka 2"
 
 #: Merge.rc:2496
 #, c-format
 msgid "Windows Thai"
-msgstr ""
+msgstr "Windows thajsk·"
 
 #: Merge.rc:2497
 #, c-format
 msgid "Windows Japanese"
-msgstr ""
+msgstr "Windows japonsk·"
 
 #: Merge.rc:2498
 #, c-format
 msgid "Windows Simplified Chinese"
-msgstr ""
+msgstr "Windows zjednoduöen· ËÌnötina"
 
 #: Merge.rc:2499
 #, c-format
 msgid "Windows Korean"
-msgstr ""
+msgstr "Windows kÛrejsk·"
 
 #: Merge.rc:2500
 #, c-format
 msgid "Windows Traditional Chinese"
-msgstr ""
+msgstr "Windows tradiËn· ËÌnötina"
 
 #: Merge.rc:2501
 #, c-format
 msgid "Windows Latin 2"
-msgstr ""
+msgstr "Windows latinka 2"
 
 #: Merge.rc:2502
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
-msgstr ""
+msgstr "Windows azbuka (slovansk·)"
 
 #: Merge.rc:2503
 #, c-format
 msgid "Windows Latin 1"
-msgstr ""
+msgstr "Windows latinka 1"
 
 #: Merge.rc:2504
 #, c-format
 msgid "Windows Greek"
-msgstr ""
+msgstr "Windows grÈcka"
 
 #: Merge.rc:2505
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
-msgstr ""
+msgstr "Windows latinka 5 (tureck·)"
 
 #: Merge.rc:2506
 #, c-format
 msgid "Windows Hebrew"
-msgstr ""
+msgstr "Windows hebrejsk·"
 
 #: Merge.rc:2507
 #, c-format
 msgid "Windows Arabic"
-msgstr ""
+msgstr "Windows arabsk·"
 
 #: Merge.rc:2508
 #, c-format
 msgid "Windows Baltic Rim"
-msgstr ""
+msgstr "Windows baltsk·"
 
 #: Merge.rc:2509
 #, c-format
 msgid "Windows Vietnamese"
-msgstr ""
+msgstr "Windows vietnamsk·"
 
 #: Merge.rc:2515
 #, c-format
 msgid "Macintosh Roman"
-msgstr ""
+msgstr "Macintosh rumunsk·"
 
 #: Merge.rc:2516
 #, c-format
 msgid "Macintosh Greek"
-msgstr ""
+msgstr "Macintosh grÈcka"
 
 #: Merge.rc:2517
 #, c-format
 msgid "Macintosh Cyrillic"
-msgstr ""
+msgstr "Macintosh azbuka"
 
 #: Merge.rc:2518
 #, c-format
 msgid "Macintosh "
-msgstr ""
+msgstr "Macintosh "
 
 #: Merge.rc:2519
 #, c-format
 msgid "Macintosh Central Europe"
-msgstr ""
+msgstr "Macintosh stredn· EurÛpa"
 
 #: Merge.rc:2520
 #, c-format
 msgid "Macintosh Turkish"
-msgstr ""
+msgstr "Macintosh tureck·"
 
 #: Merge.rc:2529
 #, c-format
@@ -5087,17 +5121,17 @@ msgstr "Approximuje ISO-8859-8"
 #: Merge.rc:2541
 #, c-format
 msgid "Win"
-msgstr ""
+msgstr "Win"
 
 #: Merge.rc:2542
 #, c-format
 msgid "Mac"
-msgstr ""
+msgstr "Mac"
 
 #: Merge.rc:2543
 #, c-format
 msgid "Unix"
-msgstr ""
+msgstr "Unix"
 
 #: Merge.rc:2544
 #, c-format
@@ -5107,32 +5141,32 @@ msgstr "Zmieöan˝"
 #: Merge.rc:2551
 #, c-format
 msgid " B"
-msgstr ""
+msgstr " B"
 
 #: Merge.rc:2552
 #, c-format
 msgid " KB"
-msgstr ""
+msgstr " KB"
 
 #: Merge.rc:2553
 #, c-format
 msgid " MB"
-msgstr ""
+msgstr " MB"
 
 #: Merge.rc:2554
 #, c-format
 msgid " GB"
-msgstr ""
+msgstr " GB"
 
 #: Merge.rc:2555
 #, c-format
 msgid " TB"
-msgstr ""
+msgstr " TB"
 
 #: Merge.rc:2556
 #, c-format
 msgid " PB"
-msgstr ""
+msgstr " PB"
 
 #: Merge.rc:2563
 #, c-format
@@ -5196,7 +5230,7 @@ msgstr ""
 #: Merge.rc:2574
 #, c-format
 msgid "Open and resolve conflict file"
-msgstr ""
+msgstr "Otvoriù a vyrieöiù s˙bor konfliktov"
 
 #: Merge.rc:2580
 #, c-format
@@ -5213,8 +5247,8 @@ msgid ""
 "Go to line or difference\n"
 "Go to (Ctrl+G)"
 msgstr ""
-"Ide na riadok alebo rozdiel\n"
-"ChoÔ na (Ctrl+G)"
+"Prejde na riadok alebo rozdiel\n"
+"Prejsù na (Ctrl+G)"
 
 #: Merge.rc:2582
 #, c-format
@@ -5409,17 +5443,17 @@ msgstr ""
 #: Merge.rc:2618
 #, c-format
 msgid "Increase text size"
-msgstr ""
+msgstr "Zv‰Ëöiù veækosù pÌsma"
 
 #: Merge.rc:2619
 #, c-format
 msgid "Decrease text size"
-msgstr ""
+msgstr "Zmenöiù veækosù pÌsma"
 
 #: Merge.rc:2620
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "Nastaviù pÌsmo na ötandardn˙ veækosù"
 
 #: Merge.rc:2626
 #, c-format
@@ -5601,8 +5635,12 @@ msgstr "ZatvorÌ vöetky otvorenÈ okn·"
 
 #: Merge.rc:2672
 #, c-format
-msgid "Opens the WinMerge help\nWinMerge Help"
+msgid ""
+"Opens the WinMerge help\n"
+"WinMerge Help"
 msgstr ""
+"OtvorÌ pomocnÌka WinMerge\n"
+"PomocnÌk WinMerge"
 
 #: Merge.rc:2673
 #, c-format
@@ -5621,13 +5659,21 @@ msgstr "S˙kromnÈ zostavenie: %1"
 
 #: Merge.rc:2676
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
 msgstr ""
+"OtvorÌ dokument Pozn·mky k vydaniu\n"
+"Pozn·mky k vydaniu"
 
 #: Merge.rc:2677
 #, c-format
-msgid "Opens the translations website\nTranslations"
+msgid ""
+"Opens the translations website\n"
+"Translations"
 msgstr ""
+"OtvorÌ webstr·nku prekladov\n"
+"Preklady"
 
 #: Merge.rc:2683
 #, c-format
@@ -5682,7 +5728,7 @@ msgstr "Nezobrazuje presunutÈ bloky"
 #: Merge.rc:2704
 #, c-format
 msgid "Display all moved blocks"
-msgstr ""
+msgstr "ZobrazÌ vöetky posunutÈ bloky"
 
 #: Merge.rc:2705
 #, c-format
@@ -5722,157 +5768,157 @@ msgstr "Zo zoznamu ned·vno pouûit˝ch"
 #: Merge.rc:2723
 #, c-format
 msgid "ASP"
-msgstr ""
+msgstr "ASP"
 
 #: Merge.rc:2724
 #, c-format
 msgid "Basic"
-msgstr ""
+msgstr "Basic"
 
 #: Merge.rc:2725
 #, c-format
 msgid "Batch"
-msgstr ""
+msgstr "D·vkov˝"
 
 #: Merge.rc:2726
 #, c-format
 msgid "C/C++"
-msgstr ""
+msgstr "C/C++"
 
 #: Merge.rc:2727
 #, c-format
 msgid "C#"
-msgstr ""
+msgstr "C#"
 
 #: Merge.rc:2728
 #, c-format
 msgid "CSS"
-msgstr ""
+msgstr "CSS"
 
 #: Merge.rc:2729
 #, c-format
 msgid "DCL"
-msgstr ""
+msgstr "DCL"
 
 #: Merge.rc:2730
 #, c-format
 msgid "Fortran"
-msgstr ""
+msgstr "Fortran"
 
 #: Merge.rc:2731
 #, c-format
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 #: Merge.rc:2732
 #, c-format
 msgid "INI"
-msgstr ""
+msgstr "INI"
 
 #: Merge.rc:2733
 #, c-format
 msgid "InnoSetup"
-msgstr ""
+msgstr "InnoSetup"
 
 #: Merge.rc:2734
 #, c-format
 msgid "InstallShield"
-msgstr ""
+msgstr "InstallShield"
 
 #: Merge.rc:2735
 #, c-format
 msgid "Java"
-msgstr ""
+msgstr "Java"
 
 #: Merge.rc:2736
 #, c-format
 msgid "AutoLISP"
-msgstr ""
+msgstr "AutoLISP"
 
 #: Merge.rc:2737
 #, c-format
 msgid "NSIS"
-msgstr ""
+msgstr "NSIS"
 
 #: Merge.rc:2738
 #, c-format
 msgid "Pascal"
-msgstr ""
+msgstr "Pascal"
 
 #: Merge.rc:2739
 #, c-format
 msgid "Perl"
-msgstr ""
+msgstr "Perl"
 
 #: Merge.rc:2740
 #, c-format
 msgid "PHP"
-msgstr ""
+msgstr "PHP"
 
 #: Merge.rc:2741
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "Portable Object"
 
 #: Merge.rc:2742
 #, c-format
 msgid "PowerShell"
-msgstr ""
+msgstr "PowerShell"
 
 #: Merge.rc:2743
 #, c-format
 msgid "Python"
-msgstr ""
+msgstr "Python"
 
 #: Merge.rc:2744
 #, c-format
 msgid "REXX"
-msgstr ""
+msgstr "REXX"
 
 #: Merge.rc:2745
 #, c-format
 msgid "Resources"
-msgstr ""
+msgstr "Zdroje"
 
 #: Merge.rc:2746
 #, c-format
 msgid "Ruby"
-msgstr ""
+msgstr "Ruby"
 
 #: Merge.rc:2747
 #, c-format
 msgid "SGML"
-msgstr ""
+msgstr "SGML"
 
 #: Merge.rc:2748
 #, c-format
 msgid "Shell"
-msgstr ""
+msgstr "Shell"
 
 #: Merge.rc:2749
 #, c-format
 msgid "SIOD"
-msgstr ""
+msgstr "SIOD"
 
 #: Merge.rc:2750
 #, c-format
 msgid "SQL"
-msgstr ""
+msgstr "SQL"
 
 #: Merge.rc:2751
 #, c-format
 msgid "TCL"
-msgstr ""
+msgstr "TCL"
 
 #: Merge.rc:2752
 #, c-format
 msgid "TEX"
-msgstr ""
+msgstr "TEX"
 
 #: Merge.rc:2753
 #, c-format
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
 #: Merge.rc:2758
 #, c-format

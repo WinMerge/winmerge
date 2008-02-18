@@ -17,6 +17,7 @@ WinMerge 2.7.7.5
   - Croatian (r5032)
   - Czech (r5017)
   - German (r5038)
+  - Slovak (#1895583)
   - Swedish (#1891326)
 
 WinMerge 2.7.7.4 - 2008-02-07 (r5011)
