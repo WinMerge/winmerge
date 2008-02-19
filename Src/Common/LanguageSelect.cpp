@@ -6,7 +6,6 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-
 #include "stdafx.h"
 #include "merge.h"
 #include "version.h"
@@ -37,15 +36,25 @@ static char *EatPrefix(char *text, const char *prefix);
 static void unslash(unsigned codepage, std::string &s);
 static HANDLE NTAPI FindFile(HANDLE h, LPCTSTR path, WIN32_FIND_DATA *fd);
 
+/**
+ * @brief A class holding information about language file.
+ */
 class LangFileInfo
 {
 public:
-	LANGID id;
+	LANGID id; /**< Language ID. */
+
 	static LANGID LangId(const char *lang, const char *sublang);
-	//static std::string FileName(LANGID id);
+	
+	/**
+	 * A constructor taking a language id as parameter.
+	 * @param [in] id Language ID to use.
+	 */
 	LangFileInfo(LANGID id): id(id) { };
+	
 	LangFileInfo(LPCTSTR path);
 	String GetString(LCTYPE type) const;
+
 private:
 	struct rg
 	{
@@ -55,6 +64,9 @@ private:
 	static const struct rg rg[];
 };
 
+/**
+ * @brief An array holding language IDs and names.
+ */
 const struct LangFileInfo::rg LangFileInfo::rg[] =
 {
 	{
@@ -356,6 +368,12 @@ const struct LangFileInfo::rg LangFileInfo::rg[] =
 	},
 };
 
+/**
+ * @brief Get a language ID for given language + sublanguage.
+ * @param [in] lang Language name.
+ * @param [in] sublang Sub language name.
+ * @return Language ID.
+ */
 LANGID LangFileInfo::LangId(const char *lang, const char *sublang)
 {
 	// binary search the array for passed in lang
@@ -393,42 +411,10 @@ LANGID LangFileInfo::LangId(const char *lang, const char *sublang)
 	return 0;
 }
 
-/*
- * @brief Produce a canonical filename from given LANGID.
- * (not currently used)
-std::string LangFileInfo::FileName(LANGID id)
-{
-	std::string filename;
-	for (size_t i = 0 ; filename.empty() && i < countof(rg) ; ++i)
-	{
-		LANGID baseid = rg[i].id;
-		if (PRIMARYLANGID(id) == PRIMARYLANGID(baseid))
-		{
-			const char *sub = rg[i].lang;
-			filename = sub;
-			_strlwr(&*filename.begin() + 1);
-			if (id != baseid)
-			{
-				while ((id & ~0x3ff) && *(sub += strlen(sub) + 1))
-				{
-					do
-					{
-						id -= MAKELANGID(0, 1);
-					} while ((id & ~0x3ff) && id == baseid);
-				}
-				if (*sub)
-				{
-					size_t i = filename.length();
-					filename += sub;
-					_strlwr(&*filename.begin() + i + 1);
-				}
-			}
-		}
-	}
-	return filename;
-}
-*/
-
+/**
+ * @brief A constructor taking a path to language file as parameter.
+ * @param [in] path Full path to the language file.
+ */
 LangFileInfo::LangFileInfo(LPCTSTR path)
 : id(0)
 {
@@ -543,8 +529,9 @@ static char *EatPrefix(char *text, const char *prefix)
 }
 
 /**
- * @brief Convert C style \nnn, \r, \n, \t etc into their indicated characters.
- * @param [in, out] s String to convert.
+ * @brief Convert C style \\nnn, \\r, \\n, \\t etc into their indicated characters.
+ * @param [in] codepage Codepage to use in conversion.
+ * @param [in,out] s String to convert.
  */
 static void unslash(unsigned codepage, std::string &s)
 {
@@ -846,7 +833,11 @@ BOOL CLanguageSelect::SetLanguage(LANGID wLangId)
 }
 
 /**
- * @brief Convert specified Language ID into resource filename, if we have one for it
+ * @brief Get a language file for the specified language ID.
+ * This function gets a language file name for the given language ID. Language
+ * files are currently named as [languagename].po.
+ * @param [in] wLangId Language ID.
+ * @return Language filename, or empty string if no file for language found.
  */
 String CLanguageSelect::GetFileName(LANGID wLangId)
 {
@@ -872,8 +863,8 @@ String CLanguageSelect::GetFileName(LANGID wLangId)
  *
  * This function does as fast as possible check for installed language
  * files. It needs to be fast since it is used in enabling/disabling
- * GUI item(s). So the simple check we do is just find one .lang file.
- * If there is a .lang file we assume we have at least one language
+ * GUI item(s). So the simple check we do is just find one .po file.
+ * If there is a .po file we assume we have at least one language
  * installed.
  * @return TRUE if at least one lang file is found. FALSE if no lang
  * files are found.
