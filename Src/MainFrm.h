@@ -229,6 +229,29 @@ protected:
 		MENU_DIRVIEW,
 		MENU_COUNT, // Add new items before this item
 	};
+	/**
+	 * Menu frames - for which frame(s) the menu is.
+	 */
+	enum
+	{
+		MENU_MAINFRM = 0x000001,
+		MENU_FILECMP = 0x000002,
+		MENU_FOLDERCMP = 0x000004,
+		MENU_ALL = MENU_MAINFRM | MENU_FILECMP | MENU_FOLDERCMP
+	};
+
+	/**
+	 * A structure attaching a menu item, icon and menu types to apply to.
+	 */
+	struct MENUITEM_ICON
+	{
+		int menuitemID;   /**< Menu item's ID. */
+		int iconResID;    /**< Icon's resource ID. */
+		int menusToApply; /**< For which menus to apply. */
+	};
+
+	static const MENUITEM_ICON m_MenuIcons[];
+
 	BCMenu * m_pMenus[MENU_COUNT]; /**< Menus for different views */
 	SyntaxColors *m_pSyntaxColors; /**< Syntax color container */
 	std::vector<TempFile*> m_tempFiles; /**< List of possibly needed temp files. */
@@ -317,6 +340,7 @@ private:
 	BOOL CreateToobar();
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
+	HMENU NewMenu( int view, int ID );
 public:
 	afx_msg void OnHelpReleasenotes();
 	afx_msg void OnHelpTranslations();
