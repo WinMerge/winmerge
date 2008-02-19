@@ -96,7 +96,8 @@ bool DiffFileData::DoOpenFiles()
 		// Also, WinMerge-modified diffutils handles all three major eol styles
 		if (m_inf[i].desc == 0)
 		{
-			m_inf[i].desc = _topen(m_FileLocation[i].filepath, O_RDONLY|O_BINARY, _S_IREAD);
+			m_inf[i].desc = _topen(m_FileLocation[i].filepath.c_str(),
+					O_RDONLY | O_BINARY, _S_IREAD);
 		}
 		if (m_inf[i].desc < 0)
 			return false;
@@ -106,7 +107,9 @@ bool DiffFileData::DoOpenFiles()
 		{
 			return false;
 		}
-		if (0 == m_FileLocation[1].filepath.CompareNoCase(m_FileLocation[0].filepath))
+		
+		if (string_compare_nocase(m_FileLocation[0].filepath,
+				m_FileLocation[1].filepath) == 0)
 		{
 			m_inf[1].desc = m_inf[0].desc;
 		}

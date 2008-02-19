@@ -92,7 +92,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 		return false;
 	}
 
-	GuessCodepageEncoding(m_diffFileData.m_FileLocation[0].filepath, 
+	GuessCodepageEncoding(m_diffFileData.m_FileLocation[0].filepath.c_str(), 
 		&m_diffFileData.m_FileLocation[0].encoding, pCtxt->m_bGuessEncoding);
 
 	// Invoke prediff'ing plugins
@@ -107,7 +107,7 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(plugCtxt->infoPrediffer->bToBeScanned == FALSE);
 
-	GuessCodepageEncoding(m_diffFileData.m_FileLocation[1].filepath, 
+	GuessCodepageEncoding(m_diffFileData.m_FileLocation[1].filepath.c_str(), 
 		&m_diffFileData.m_FileLocation[1].encoding, pCtxt->m_bGuessEncoding);
 
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[1],

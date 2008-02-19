@@ -23,8 +23,18 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+#include <tchar.h>
 #include "UnicodeString.h"
 
+/**
+ * @brief Replace a string inside a string with another string.
+ * This function searches for a string inside another string an if found,
+ * replaces it with another string. Function can replace several instances
+ * of the string inside one string.
+ * @param [in] target A string containing another string to replace.
+ * @param [in] find A string to search and replace with another (@p replace).
+ * @param [in] replace A string used to replace original (@p find).
+ */
 void string_replace(String &target, const String &find, const String &replace)
 {
 	const std::string::size_type replace_len = find.length();
@@ -34,4 +44,23 @@ void string_replace(String &target, const String &find, const String &replace)
 		target.replace(pos, replace_len, replace);
 		pos += replace_len;
 	}
+}
+
+/**
+ * @brief Compare two strings ignoring the character casing.
+ * @param [in] str1 First string to compare.
+ * @param [in] str2 Second string to compare.
+ * @return As strcmp(), 0 if strings match.
+ */
+int string_compare_nocase(const String &str1, const String &str2)
+{
+	String s1(str1);
+	String s2(str2);
+	int i = 0;
+	for (i = 0; i < s1.length(); i++)
+		s1[i] = _totlower(s1[i]);
+	for (i = 0; i < s2.length(); i++)
+		s2[i] = _totlower(s2[i]);
+
+	return s1.compare(s2);
 }

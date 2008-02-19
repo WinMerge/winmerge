@@ -30,18 +30,16 @@
 #include <string>
 
 #ifdef _UNICODE
-
 #define std_tchar(type) std::w##type
-
 #else
-
 #define std_tchar(type) std::type
-
 #endif // _UNICODE
 
 typedef std_tchar(string) String;
 
 void string_replace(String &target, const String &find, const String &replace);
 
+// Comparing
+int string_compare_nocase(const String &str1, const String &str2);
 
 #endif // _UNICODE_STRING_

@@ -636,7 +636,8 @@ void CMainFrame::OnFileOpen()
 static void
 FileLocationGuessEncodings(FileLocation & fileloc, BOOL bGuessEncoding)
 {
-	GuessCodepageEncoding(fileloc.filepath, &fileloc.encoding, bGuessEncoding);
+	GuessCodepageEncoding(fileloc.filepath.c_str(), &fileloc.encoding,
+		bGuessEncoding);
 }
 
 /**

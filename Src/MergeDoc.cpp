@@ -2853,16 +2853,16 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 	m_ptBuf[0]->FreeAll();
 	m_ptBuf[1]->FreeAll();
 
-	CString sLeftFile = filelocLeft.filepath;
-	CString sRightFile = filelocRight.filepath;
+	String sLeftFile = filelocLeft.filepath;
+	String sRightFile = filelocRight.filepath;
 
 	// build the text being filtered, "|" separates files as it is forbidden in filenames
 	m_strBothFilenames = sLeftFile + _T("|") + sRightFile;
 
 	// Load files
-	DWORD nLeftSuccess = LoadOneFile(0, (LPCTSTR)sLeftFile, bROLeft,
+	DWORD nLeftSuccess = LoadOneFile(0, sLeftFile.c_str(), bROLeft,
 		filelocLeft.encoding.m_codepage);
-	DWORD nRightSuccess = LoadOneFile(1, (LPCTSTR)sRightFile, bRORight,
+	DWORD nRightSuccess = LoadOneFile(1, sRightFile.c_str(), bRORight,
 		filelocRight.encoding.m_codepage);
 
 	// scratchpad : we don't call LoadFile, so
@@ -2970,8 +2970,8 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 		}
 		else
 		{
-			sextL = GetFileExt(sLeftFile, m_strDesc[0].c_str());
-			sextR = GetFileExt(sRightFile, m_strDesc[1].c_str());
+			sextL = GetFileExt(sLeftFile.c_str(), m_strDesc[0].c_str());
+			sextR = GetFileExt(sRightFile.c_str(), m_strDesc[1].c_str());
 		}
 		BOOL bLeftTyped = pLeft->SetTextType(sextL.c_str());
 		pLeftDetail->SetTextType(sextL.c_str());
