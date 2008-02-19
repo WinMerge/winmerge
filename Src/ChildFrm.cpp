@@ -51,6 +51,8 @@ static UINT ENCODING_PANEL_WIDTH = 80;
 /** @brief EOL type status panel width */
 static UINT EOL_PANEL_WIDTH = 40;
 
+static CString EolString(const CString & sEol);
+
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
 
@@ -717,11 +719,28 @@ void CChildFrame::MergeStatus::UpdateResources()
 /// Visible representation of eol
 static CString EolString(const CString & sEol)
 {
-	if (sEol == _T("hidden")) return _T("");
-	if (sEol == _T("\r\n")) return _T("CRLF");
-	if (sEol == _T("\n")) return _T("LF");
-	if (sEol == _T("\r")) return _T("CR");
-	if (sEol.IsEmpty()) return _T("None");
+	if (sEol == _T("\r\n"))
+	{
+		String eol = LoadResString(IDS_EOL_CRLF);
+		return eol.c_str();
+	}
+	if (sEol == _T("\n"))
+	{
+		String eol = LoadResString(IDS_EOL_LF);
+		return eol.c_str();
+	}
+	if (sEol == _T("\r"))
+	{
+		String eol = LoadResString(IDS_EOL_CR);
+		return eol.c_str();
+	}
+	if (sEol.IsEmpty())
+	{
+		String eol = LoadResString(IDS_EOL_NONE);
+		return eol.c_str();
+	}
+	if (sEol == _T("hidden"))
+		return _T("");
 	return _T("?");
 }
 

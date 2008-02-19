@@ -91,6 +91,7 @@
 #include <malloc.h>
 #include <imm.h> /* IME */
 #include <mbctype.h>
+#include "UnicodeString.h"
 #include "editcmd.h"
 #include "editreg.h"
 #include "ccrystaltextview.h"
@@ -4511,19 +4512,23 @@ OnUpdateIndicatorCRLF (CCmdUI * pCmdUI)
 {
   if (m_pTextBuffer != NULL)
     {
+      String eol;
       int crlfMode = m_pTextBuffer->GetCRLFMode ();
       switch (crlfMode)
         {
         case CRLF_STYLE_DOS:
-          pCmdUI->SetText (_T ("DOS"));
+          eol = LoadResString (IDS_EOL_DOS);
+          pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (TRUE);
           break;
         case CRLF_STYLE_UNIX:
-          pCmdUI->SetText (_T ("UNIX"));
+          eol = LoadResString (IDS_EOL_UNIX);
+          pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (TRUE);
           break;
         case CRLF_STYLE_MAC:
-          pCmdUI->SetText (_T ("MAC"));
+          eol = LoadResString (IDS_EOL_MAC);
+          pCmdUI->SetText (eol.c_str());
           pCmdUI->Enable (TRUE);
           break;
         default:

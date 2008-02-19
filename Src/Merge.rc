@@ -2551,7 +2551,7 @@ BEGIN
 	IDS_CP_WINDOWS_HEBREW_EXTRA     "Approximates ISO-8859-8"
 END
 
-// EOL types shown in folder compare EOL type column
+// EOL types shown in folder compare EOL type column and in file compare statusbar
 STRINGTABLE
 BEGIN
     IDS_EOL_DOS             "Win"
@@ -2559,6 +2559,10 @@ BEGIN
     IDS_EOL_UNIX            "Unix"
     IDS_EOL_MIXED           "Mixed"
     IDS_EOL_BIN             "Binary"
+    IDS_EOL_LF              "LF"
+    IDS_EOL_CR              "CR"
+    IDS_EOL_CRLF            "CRLF"
+    IDS_EOL_NONE            "None"
 END
 
 // Folder compare short size suffixes
