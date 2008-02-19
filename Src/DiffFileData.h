@@ -5,7 +5,7 @@
  *
  * @date  Created: 2003-08-22
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _DIFFFILEDATA_H_
@@ -15,15 +15,6 @@
 struct file_data;
 class PrediffingInfo;
 class CDiffContext;
-
-struct FileHandle
-{
-	FileHandle() : m_fp(0) { }
-	void Assign(FILE * fp) { Close(); m_fp = fp; }
-	void Close() { if (m_fp) { fclose(m_fp); m_fp = 0; } }
-	~FileHandle() { Close(); }
-	FILE * m_fp;
-};
 
 /**
  * @brief C++ container for the structure (file_data) used by diffutils' diff_2_files(...)
