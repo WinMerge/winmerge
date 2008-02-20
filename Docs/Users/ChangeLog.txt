@@ -14,6 +14,7 @@ WinMerge 2.7.7.5
   BugFix: GNU General Public License name in menu (#1868989)
   BugFix: Didn't switch back to content compare once switched to quick 
     compare in folder compare (#1770373)
+  BugFix: Quick compare didn't ignore EOL differences (#1884717)
   Translation updates:
   - Croatian (r5032)
   - Czech (r5017)
