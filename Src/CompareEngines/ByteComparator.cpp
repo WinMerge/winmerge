@@ -423,8 +423,8 @@ ByteComparator::COMP_RESULT ByteComparator::CompareBuffers(
 						// one side had an end-of-line, but the other didn't
 						return RESULT_DIFF;
 					}
-					if (ptr0 != end0 && ptr1 != end1)
-						continue;
+					// otherwise, both sides had end-of-line
+					// pointers have already been advanced, so just continue happily
 				}
 			}
 		}
