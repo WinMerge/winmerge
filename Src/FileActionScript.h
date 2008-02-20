@@ -32,10 +32,10 @@ class CShellFileOp;
  */
 enum CreateScriptReturn
 {
-	SCRIPT_FAIL = 0,
-	SCRIPT_SUCCESS,
-	SCRIPT_USERCANCEL,
-	SCRIPT_USERSKIP,
+	SCRIPT_FAIL = 0,    /**< The script failed. */
+	SCRIPT_SUCCESS,     /**< The script succeeded. */
+	SCRIPT_USERCANCEL,  /**< The user cancelled the action. */
+	SCRIPT_USERSKIP,    /**< The user wanted to skip one or more items. */
 };
 
 /** 
@@ -47,7 +47,17 @@ enum CreateScriptReturn
  **/
 struct FileAction
 {
-	typedef enum { ACT_COPY = 1, ACT_MOVE, ACT_DEL, } ACT_TYPE;
+	/**
+	 * @brief the type of the action.
+	 * These action types are low level actions for filesystem, not
+	 * higher level actions user is doing (e.g. synchronizing).
+	 */
+	enum ACT_TYPE
+	{ 
+		ACT_COPY = 1, /**< Copy the item(s). */
+		ACT_MOVE,     /**< Move the item(s). */
+		ACT_DEL,      /**< Delete the item(s). */
+	};
 
 	String src; /**< Source for action */
 	String dest; /**< Destination action */
@@ -56,27 +66,42 @@ struct FileAction
 };
 
 /** 
- * @brief FileActionItem presents one filesystem action with UI context.
- *
- * This struct adds UI context and UI action to filesystem action.
- * UI context and action is for storing reference to UI and then updating
- * UI after action script is run.
+ * @brief FileActionItem presents one filesystem action from GUI perspective.
  */
 struct FileActionItem : public FileAction
 {
-	typedef enum
+	/**
+	 * @brief UI result of the action done.
+	 * These values present the change in the UI happening, due to lower
+	 * level actions. E.g. delete operation may cause left item to be removed
+	 * from the list.
+	 */
+	enum UI_RESULT
 	{
-		UI_SYNC = 1,
-		UI_DESYNC,
-		UI_DEL_LEFT,
-		UI_DEL_RIGHT,
-		UI_DEL_BOTH,
-		UI_DONT_CARE,
-	} UI_RESULT;
+		UI_SYNC = 1,   /**< Make items identical (synchronized). */
+		UI_DESYNC,     /**< Make items different. */
+		UI_DEL_LEFT,   /**< Remove left item. */
+		UI_DEL_RIGHT,  /**< Remove right item. */
+		UI_DEL_BOTH,   /**< Remove both items (removes the row). */
+		UI_DONT_CARE,  /**< Ignore the GUI change. */
+	};
 
-	typedef enum { UI_LEFT, UI_RIGHT } UI_SIDE;
+	/**
+	 * @brief Side of the action.
+	 * This lists possible values for origin and destination sides.
+	 */
+	enum UI_SIDE
+	{
+		UI_LEFT,
+		UI_RIGHT
+	};
 
-	int context; /**< UI context */
+	/**
+	 * Optional context value for the item.
+	 * This is an arbitrary value that can be used to associate the item with
+	 * other items. This can be e.g. indext of the item in the GUI.
+	 */
+	int context;
 	UI_RESULT UIResult; /**< Resulting UI action */
 	UI_SIDE UIOrigin; /**< Original UI-side */
 	UI_SIDE UIDestination; /**< Destination UI-side */
@@ -103,8 +128,21 @@ public:
 
 	// Manipulate the FileActionList
 	int GetActionItemCount() const;
+
+	/**
+	 * Add new item to the action list.
+	 * @param [in] item Item to add to the list.
+	 */
 	void AddActionItem(FileActionItem & item) { m_actions.AddTail(item); }
+	/**
+	 * Remove last action item from the list.
+	 * @return Item removed from the list.
+	 */
 	FileActionItem RemoveTailActionItem() { return m_actions.RemoveTail(); }
+	/**
+	 * Get first action item in the list.
+	 * @return First item in the list.
+	 */
 	FileActionItem GetHeadActionItem() const { return m_actions.GetHead(); }
 
 	String m_destBase; /**< Base destination path for some operations */

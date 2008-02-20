@@ -58,7 +58,7 @@ FileActionScript::~FileActionScript()
 
 /**
  * @brief Set parent window used for showing MessageBoxes.
- * @param [in] hnd Handle to parent window.
+ * @param [in] hWnd Handle to parent window.
  */
 void FileActionScript::SetParentWindow(HWND hWnd)
 {
@@ -75,7 +75,7 @@ void FileActionScript::UseRecycleBin(BOOL bUseRecycleBin)
 }
 
 /**
- * @brief Return amount of actions (copy, move, etc)  in script.
+ * @brief Return amount of actions (copy, move, etc) in script.
  * @return Amount of actions.
  */
 int FileActionScript::GetActionItemCount() const
