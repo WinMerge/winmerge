@@ -832,7 +832,7 @@ BOOL CDirView::ConfirmActionList(const FileActionScript & actionList, int selCou
 			}
 			else
 			{
-				if (!actionList.m_destBase.IsEmpty())
+				if (!actionList.m_destBase.empty())
 					dst = actionList.m_destBase;
 				else
 					item.dest;

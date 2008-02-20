@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "Merge.h"
 #include "OptionsDef.h"
 #include "MainFrm.h"
@@ -88,7 +89,7 @@ int FileActionScript::GetActionItemCount() const
  * @param [in,out] bApplyToAll Apply user selection to all (selected)files?
  * @return One of CreateScriptReturn values.
  */
-int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
+int FileActionScript::VCSCheckOut(const String &path, BOOL &bApplyToAll)
 {
 	CString strErr;
 	int retVal = SCRIPT_SUCCESS;
@@ -97,7 +98,7 @@ int FileActionScript::VCSCheckOut(const CString &path, BOOL &bApplyToAll)
 		return retVal;
 
 	// TODO: First param is not used!
-	int nRetVal = GetMainFrame()->SyncFileToVCS(path, bApplyToAll, &strErr);
+	int nRetVal = GetMainFrame()->SyncFileToVCS(path.c_str(), bApplyToAll, &strErr);
 	if (nRetVal == -1)
 	{
 		retVal = SCRIPT_FAIL; // So we exit without file operations done
@@ -150,7 +151,7 @@ int FileActionScript::CreateOperationsScripts()
 			// has been modified.
 			if (GetOptionsMgr()->GetInt(OPT_VCS_SYSTEM) != VCS_NONE)
 			{
-				int retVal = VCSCheckOut(act.dest.c_str(), bApplyToAll);
+				int retVal = VCSCheckOut(act.dest, bApplyToAll);
 				if (retVal == SCRIPT_USERCANCEL)
 					bContinue = FALSE;
 				else if (retVal == SCRIPT_USERSKIP)

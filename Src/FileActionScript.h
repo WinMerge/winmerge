@@ -107,10 +107,10 @@ public:
 	FileActionItem RemoveTailActionItem() { return m_actions.RemoveTail(); }
 	FileActionItem GetHeadActionItem() const { return m_actions.GetHead(); }
 
-	CString m_destBase; /**< Base destination path for some operations */
+	String m_destBase; /**< Base destination path for some operations */
 
 protected:
-	int VCSCheckOut(const CString &path, BOOL &bApplyToAll);
+	int VCSCheckOut(const String &path, BOOL &bApplyToAll);
 	int CreateOperationsScripts();
 
 private:
