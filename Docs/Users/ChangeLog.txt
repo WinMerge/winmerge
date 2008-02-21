@@ -9,6 +9,7 @@ WinMerge 2.7.7.5
   Add option to select temporary folder (#1893167)
   Show file encoding in file compare statusbar (#1895629)
   Unify EOL style strings in folder compare and file compare (#1896462)
+  Remove "DisplayBinaryFiles" and "EditBinaryFiles" plugin (#1899161)
   BugFix: Potential lockup in folder compare (#1865131, #1889907)
   BugFix: Line filter didn't filter non-ascii lines correctly (#1880628)
   BugFix: GNU General Public License name in menu (#1868989)

@@ -167,40 +167,6 @@
         </segmentedlist>
       </para>
     </sect3>
-    <sect3>
-      <title><filename>DisplayBinaryFiles.dll</filename></title>
-      <para>Use this plugin to display the differences between two binary files.</para>
-      <para>This is not a hex editor, but simply a way to display files which have
-      reasonable lines (carriage returns), per WinMerge's textual display style.
-      This can help for detecting changed strings in binaries.</para>
-      <note>
-        <para>Replaces all 0 with <keycode>0x20</keycode> (spaces).</para>
-        <para>This is a lossy operation, which means that the files can only be
-        displayed; they cannot be saved, so there is no point in trying to merge.
-        If you really want to save the files, you should look at the plugin
-        <link linkend="EditBinaryFiles"><filename>EditBinaryFiles.dll</filename></link>.</para>
-      </note>
-      <para>
-        <segmentedlist>
-          <segtitle>Categorie</segtitle>
-          <segtitle>File filter</segtitle>
-          <segtitle>Packing</segtitle>
-          <seglistitem>
-            <seg>Unpacker</seg>
-            <seg>
-              <simplelist type="inline">
-                <member><filename class="extension">*.exe</filename></member>
-                <member><filename class="extension">*.dll</filename></member>
-                <member><filename class="extension">*.ocx</filename></member>
-                <member><filename class="extension">*.doc</filename></member>
-                <member><filename class="extension">*.xls</filename></member>
-              </simplelist>
-            </seg>
-            <seg>No</seg>
-          </seglistitem>
-        </segmentedlist>
-      </para>
-    </sect3>
     <sect3 id="DisplayXMLFiles">
       <title><filename>DisplayXMLFiles.dll</filename></title>
       <para>This plugin display XML files nicely, by consistently inserting tabs
@@ -219,31 +185,6 @@
               </simplelist>
             </seg>
             <seg>No</seg>
-          </seglistitem>
-        </segmentedlist>
-      </para>
-    </sect3>
-    <sect3 id="EditBinaryFiles">
-      <title><filename>EditBinaryFiles.dll</filename></title>
-      <para>Allow editing of binary files (if line based), using escape scheme
-      for bytes under <keycode>0x20</keycode>.</para>
-      <para>
-        <segmentedlist>
-          <segtitle>Categorie</segtitle>
-          <segtitle>File filter</segtitle>
-          <segtitle>Packing</segtitle>
-          <seglistitem>
-            <seg>Unpacker</seg>
-            <seg>
-              <simplelist type="inline">
-                <member><filename class="extension">*.exe</filename></member>
-                <member><filename class="extension">*.dll</filename></member>
-                <member><filename class="extension">*.ocx</filename></member>
-                <member><filename class="extension">*.doc</filename></member>
-                <member><filename class="extension">*.xls</filename></member>
-              </simplelist>
-            </seg>
-            <seg>Yes</seg>
           </seglistitem>
         </segmentedlist>
       </para>
