@@ -380,7 +380,7 @@ msgstr "계단식 정렬(&C)"
 #: Merge.rc:173
 #: Merge.rc:287
 #: Merge.rc:472
-#: Merge.rc:1883
+#: Merge.rc:1890
 #, c-format
 msgid "&Help"
 msgstr "도움말(&H)"
@@ -410,8 +410,8 @@ msgstr ""
 #: Merge.rc:293
 #: Merge.rc:478
 #, c-format
-msgid "C&onfiguration..."
-msgstr "설정(&O)..."
+msgid "C&onfiguration"
+msgstr ""
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -424,7 +424,7 @@ msgstr "압축파일 지원(&R)"
 #: Merge.rc:296
 #: Merge.rc:481
 #, c-format
-msgid "&GNU Public License..."
+msgid "&GNU General Public License"
 msgstr ""
 
 #: Merge.rc:183
@@ -696,7 +696,7 @@ msgid "&Scripts"
 msgstr "스크립트(&S)"
 
 #: Merge.rc:360
-#: Merge.rc:2686
+#: Merge.rc:2706
 #, c-format
 msgid "< Empty >"
 msgstr "< 비어있음 >"
@@ -893,15 +893,15 @@ msgid "&Delete"
 msgstr "삭제(&D)"
 
 #: Merge.rc:510
-#: Merge.rc:1123
-#: Merge.rc:1502
+#: Merge.rc:1127
+#: Merge.rc:1509
 #, c-format
 msgid "&Left"
 msgstr "왼쪽만(&L)"
 
 #: Merge.rc:511
-#: Merge.rc:1125
-#: Merge.rc:1505
+#: Merge.rc:1129
+#: Merge.rc:1512
 #, c-format
 msgid "&Right"
 msgstr "오른쪽만(&R)"
@@ -1055,14 +1055,14 @@ msgstr "WinMerge 홈페이지에 들려보세요!"
 #: Merge.rc:692
 #: Merge.rc:782
 #: Merge.rc:968
-#: Merge.rc:1042
-#: Merge.rc:1071
-#: Merge.rc:1081
-#: Merge.rc:1244
-#: Merge.rc:1308
-#: Merge.rc:1321
-#: Merge.rc:1413
-#: Merge.rc:1428
+#: Merge.rc:1046
+#: Merge.rc:1075
+#: Merge.rc:1085
+#: Merge.rc:1251
+#: Merge.rc:1315
+#: Merge.rc:1328
+#: Merge.rc:1420
+#: Merge.rc:1435
 #, c-format
 msgid "OK"
 msgstr "확인"
@@ -1078,39 +1078,39 @@ msgid "Select Files or Folders"
 msgstr "디렉토리/파일 선택"
 
 #: Merge.rc:671
-#: Merge.rc:1579
+#: Merge.rc:1586
 #, c-format
 msgid "&Left:"
 msgstr "왼쪽(&L):"
 
 #: Merge.rc:675
 #: Merge.rc:736
-#: Merge.rc:992
-#: Merge.rc:1007
+#: Merge.rc:989
+#: Merge.rc:1011
 #, c-format
 msgid "&Browse..."
 msgstr "찾아보기(&B)"
 
 #: Merge.rc:676
-#: Merge.rc:1583
+#: Merge.rc:1590
 #, c-format
 msgid "&Right:"
 msgstr "오른쪽(&R):"
 
 #: Merge.rc:680
-#: Merge.rc:1018
+#: Merge.rc:1022
 #, c-format
 msgid "Bro&wse..."
 msgstr "찾아보기(&W)"
 
 #: Merge.rc:681
-#: Merge.rc:1587
+#: Merge.rc:1594
 #, c-format
 msgid "&Filter:"
 msgstr "필터(&F):"
 
 #: Merge.rc:684
-#: Merge.rc:1589
+#: Merge.rc:1596
 #, c-format
 msgid "Select..."
 msgstr "선택..."
@@ -1126,7 +1126,7 @@ msgid "&Select..."
 msgstr "선택(&S)..."
 
 #: Merge.rc:689
-#: Merge.rc:1590
+#: Merge.rc:1597
 #, c-format
 msgid "&Include Subfolders"
 msgstr "하위 디렉토리 포함(&I)"
@@ -1142,20 +1142,20 @@ msgstr "상태:"
 #: Merge.rc:813
 #: Merge.rc:845
 #: Merge.rc:855
-#: Merge.rc:1043
-#: Merge.rc:1072
-#: Merge.rc:1082
-#: Merge.rc:1133
-#: Merge.rc:1245
-#: Merge.rc:1322
-#: Merge.rc:1414
-#: Merge.rc:1429
+#: Merge.rc:1047
+#: Merge.rc:1076
+#: Merge.rc:1086
+#: Merge.rc:1137
+#: Merge.rc:1252
+#: Merge.rc:1329
+#: Merge.rc:1421
+#: Merge.rc:1436
 #, c-format
 msgid "Cancel"
 msgstr "취소"
 
 #: Merge.rc:694
-#: Merge.rc:1323
+#: Merge.rc:1330
 #, c-format
 msgid "Help"
 msgstr "도움말"
@@ -1228,7 +1228,7 @@ msgid "&Path to cleartool.exe:"
 msgstr "cleartool.exe 경로(&P) :"
 
 #: Merge.rc:741
-#: Merge.rc:1891
+#: Merge.rc:1898
 #, c-format
 msgid "General"
 msgstr "일반"
@@ -1279,13 +1279,13 @@ msgid "Enable multiple compare windows for"
 msgstr "다중 윈도우 기능 적용"
 
 #: Merge.rc:766
-#: Merge.rc:1602
+#: Merge.rc:1609
 #, c-format
 msgid "&Folder compare"
 msgstr "디렉토리 비교(&F)"
 
 #: Merge.rc:768
-#: Merge.rc:1604
+#: Merge.rc:1611
 #, c-format
 msgid "Fil&e compare"
 msgstr "파일 비교(&E)"
@@ -1406,7 +1406,7 @@ msgid "Replace &All"
 msgstr "모두 바꾸기(&A)"
 
 #: Merge.rc:851
-#: Merge.rc:2117
+#: Merge.rc:2133
 #, c-format
 msgid "Rational ClearCase"
 msgstr ""
@@ -1417,7 +1417,7 @@ msgid "CheckOut"
 msgstr "체크아웃"
 
 #: Merge.rc:859
-#: Merge.rc:1164
+#: Merge.rc:1171
 #, c-format
 msgid "Comments"
 msgstr "코멘트"
@@ -1463,7 +1463,7 @@ msgid "Remove"
 msgstr ""
 
 #: Merge.rc:889
-#: Merge.rc:1894
+#: Merge.rc:1901
 #, c-format
 msgid "Colors"
 msgstr "색상"
@@ -1479,7 +1479,7 @@ msgid "Selected Difference:"
 msgstr "선택된 다른 부분:"
 
 #: Merge.rc:900
-#: Merge.rc:1554
+#: Merge.rc:1561
 #, c-format
 msgid "Background"
 msgstr "배경색"
@@ -1490,8 +1490,8 @@ msgid "Deleted"
 msgstr "삭제영역"
 
 #: Merge.rc:914
-#: Merge.rc:1349
-#: Merge.rc:1555
+#: Merge.rc:1356
+#: Merge.rc:1562
 #, c-format
 msgid "Text"
 msgstr "텍스트"
@@ -1522,23 +1522,23 @@ msgid "Selected Word Diff:"
 msgstr "선택된 단어단위 다른 부분:"
 
 #: Merge.rc:959
-#: Merge.rc:1041
-#: Merge.rc:1070
-#: Merge.rc:1167
-#: Merge.rc:1395
+#: Merge.rc:1045
+#: Merge.rc:1074
+#: Merge.rc:1174
+#: Merge.rc:1402
 #, c-format
 msgid "Defaults"
 msgstr "기본값"
 
 #: Merge.rc:965
-#: Merge.rc:1337
-#: Merge.rc:1543
+#: Merge.rc:1344
+#: Merge.rc:1550
 #, c-format
 msgid "Dialog"
 msgstr "대화 상자"
 
 #: Merge.rc:975
-#: Merge.rc:1897
+#: Merge.rc:1904
 #, c-format
 msgid "System"
 msgstr "시스템"
@@ -1550,454 +1550,466 @@ msgstr "삭제한 파일은 휴지통으로(&P)"
 
 #: Merge.rc:980
 #, c-format
-msgid "Ign&ore time differences less than 3 seconds"
-msgstr "3초 이내 시간 차이는 무시하기(&O)"
-
-#: Merge.rc:983
-#, c-format
 msgid "Integration"
 msgstr ""
 
-#: Merge.rc:984
+#: Merge.rc:981
 #, c-format
 msgid "&Add to explorer context menu"
 msgstr "탐색기 팝업 메뉴에 추가(&A)"
 
-#: Merge.rc:986
+#: Merge.rc:983
 #, c-format
 msgid "E&nable advanced menu"
 msgstr "고급 메뉴 활성화(&N)"
 
-#: Merge.rc:988
+#: Merge.rc:985
 #, c-format
 msgid "In&clude subfolders by default"
 msgstr "하위 디렉토리 포함을 기본으로 사용(&C)"
 
-#: Merge.rc:990
+#: Merge.rc:987
 #, c-format
 msgid "&External editor:"
 msgstr "외부 편집기(&E):"
 
-#: Merge.rc:993
+#: Merge.rc:990
 #, c-format
 msgid "&Filter folder:"
 msgstr "디렉토리 필터링(&F):"
 
-#: Merge.rc:995
-#: Merge.rc:1407
-#: Merge.rc:1581
-#: Merge.rc:1585
-#: Merge.rc:1612
+#: Merge.rc:992
 #, c-format
-msgid "Browse..."
-msgstr "찾아보기..."
+msgid "B&rowse..."
+msgstr ""
 
-#: Merge.rc:1001
+#: Merge.rc:993
 #, c-format
-msgid "Patch Generator"
-msgstr "패치 생성기"
+msgid "Temporary files folder"
+msgstr ""
 
-#: Merge.rc:1004
+#: Merge.rc:994
 #, c-format
-msgid "File&1:"
-msgstr "파일&1:"
+msgid "S&ystem's temp folder"
+msgstr ""
 
-#: Merge.rc:1008
+#: Merge.rc:996
 #, c-format
-msgid "File&2:"
-msgstr "파일&2:"
+msgid "C&ustom folder:"
+msgstr ""
 
-#: Merge.rc:1011
+#: Merge.rc:999
+#: Merge.rc:1015
 #, c-format
 msgid "Br&owse..."
 msgstr "찾아보기(&O)"
 
+#: Merge.rc:1005
+#, c-format
+msgid "Patch Generator"
+msgstr "패치 생성기"
+
+#: Merge.rc:1008
+#, c-format
+msgid "File&1:"
+msgstr "파일&1:"
+
 #: Merge.rc:1012
+#, c-format
+msgid "File&2:"
+msgstr "파일&2:"
+
+#: Merge.rc:1016
 #, c-format
 msgid "&Swap"
 msgstr "위치바꾸기(&S)"
 
-#: Merge.rc:1013
+#: Merge.rc:1017
 #, c-format
 msgid "&Append to existing file"
 msgstr "존재하는 파일에 덧붙이기(&A)"
 
-#: Merge.rc:1015
+#: Merge.rc:1019
 #, c-format
 msgid "&Result:"
 msgstr "결과(&R):"
 
-#: Merge.rc:1019
+#: Merge.rc:1023
 #, c-format
 msgid "&Format"
 msgstr "형식(&F)"
 
-#: Merge.rc:1020
+#: Merge.rc:1024
 #, c-format
 msgid "St&yle:"
 msgstr "스타일(&Y):"
 
-#: Merge.rc:1023
+#: Merge.rc:1027
 #, c-format
 msgid "&Context:"
 msgstr ""
 
-#: Merge.rc:1026
+#: Merge.rc:1030
 #, c-format
 msgid "W&hitespaces"
 msgstr "공백문자(whitespace)"
 
-#: Merge.rc:1027
+#: Merge.rc:1031
 #, c-format
 msgid "Com&pare"
 msgstr "모두 비교(&P)"
 
-#: Merge.rc:1029
+#: Merge.rc:1033
 #, c-format
 msgid "I&gnore changes"
 msgstr "바뀐부분 비교 안함(&G)"
 
-#: Merge.rc:1031
+#: Merge.rc:1035
 #, c-format
 msgid "Ig&nore all"
 msgstr "모두 비교 안함(&N)"
 
-#: Merge.rc:1033
+#: Merge.rc:1037
 #, c-format
 msgid "Ignor&e blank lines"
 msgstr "공백 라인 무시(&E)"
 
-#: Merge.rc:1035
+#: Merge.rc:1039
 #, c-format
 msgid "Case sensi&tive"
 msgstr "대소문자 구분(&T)"
 
-#: Merge.rc:1037
+#: Merge.rc:1041
 #, c-format
 msgid "Inclu&de command line"
 msgstr "커맨드 라인에서 실행시에도 적용(&D)"
 
-#: Merge.rc:1039
+#: Merge.rc:1043
 #, c-format
 msgid "Open to e&xternal editor"
 msgstr "외부 편집기로 열기(&X)"
 
-#: Merge.rc:1061
+#: Merge.rc:1065
 #, c-format
 msgid "Display Columns"
 msgstr "디렉토리 비교 표시 항목"
 
-#: Merge.rc:1067
+#: Merge.rc:1071
 #, c-format
 msgid "Move &Up"
 msgstr ""
 
-#: Merge.rc:1068
+#: Merge.rc:1072
 #, c-format
 msgid "Move &Down"
 msgstr ""
 
-#: Merge.rc:1078
+#: Merge.rc:1082
 #, c-format
 msgid "Select Unpacker"
 msgstr ""
 
-#: Merge.rc:1083
+#: Merge.rc:1087
 #, c-format
 msgid "File unpacker:"
 msgstr "파일 unpacker:"
 
-#: Merge.rc:1086
+#: Merge.rc:1090
 #, c-format
 msgid "Display all unpackers, don't check the extension"
 msgstr "모든 unpacker 표시, 확장자를 체크하지 않음"
 
-#: Merge.rc:1089
+#: Merge.rc:1093
 #, c-format
 msgid "Extensions list:"
 msgstr "확장자 목록:"
 
-#: Merge.rc:1090
+#: Merge.rc:1094
 #, c-format
 msgid "Description:"
 msgstr "설명:"
 
-#: Merge.rc:1101
+#: Merge.rc:1105
 #, c-format
 msgid " Folder Compare Progress"
 msgstr "디렉토리 비교 상황"
 
-#: Merge.rc:1104
-#: Merge.rc:1844
+#: Merge.rc:1108
+#: Merge.rc:1851
 #, c-format
 msgid "Stop"
 msgstr "중지"
 
-#: Merge.rc:1109
+#: Merge.rc:1113
 #, c-format
 msgid "Comparing items..."
 msgstr "비교 진행중..."
 
-#: Merge.rc:1110
+#: Merge.rc:1114
 #, c-format
 msgid "Items compared:"
 msgstr "비교 완료된 파일 :"
 
-#: Merge.rc:1111
+#: Merge.rc:1115
 #, c-format
 msgid "Items total:"
 msgstr "모든 파일 :"
 
-#: Merge.rc:1117
+#: Merge.rc:1121
 #, c-format
 msgid "Go To"
 msgstr "이동"
 
-#: Merge.rc:1120
+#: Merge.rc:1124
 #, c-format
 msgid "G&oto:"
 msgstr "이동(&O):"
 
-#: Merge.rc:1122
+#: Merge.rc:1126
 #, c-format
 msgid "File"
 msgstr "파일"
 
-#: Merge.rc:1127
+#: Merge.rc:1131
 #, c-format
 msgid "Goto what"
 msgstr "이동할 곳"
 
-#: Merge.rc:1128
+#: Merge.rc:1132
 #, c-format
 msgid "Li&ne"
 msgstr "라인(&N)"
 
-#: Merge.rc:1130
+#: Merge.rc:1134
 #, c-format
 msgid "&Difference"
 msgstr "다른 부분(&D)"
 
-#: Merge.rc:1132
+#: Merge.rc:1136
 #, c-format
 msgid "&Go To"
 msgstr "이동(&G)"
 
-#: Merge.rc:1138
-#: Merge.rc:1892
+#: Merge.rc:1142
+#: Merge.rc:1899
 #, c-format
 msgid "Compare"
 msgstr "비교"
 
-#: Merge.rc:1141
+#: Merge.rc:1145
 #, c-format
 msgid "Whitespace"
 msgstr "공백"
 
-#: Merge.rc:1142
+#: Merge.rc:1146
 #, c-format
 msgid "&Compare"
 msgstr "공백 비교(&W)"
 
-#: Merge.rc:1144
+#: Merge.rc:1148
 #, c-format
 msgid "&Ignore change"
 msgstr "바뀐 공백 무시(&H)"
 
-#: Merge.rc:1146
+#: Merge.rc:1150
 #, c-format
 msgid "I&gnore all"
 msgstr "모든 공백 무시(&A)"
 
-#: Merge.rc:1148
+#: Merge.rc:1152
 #, c-format
 msgid "Ignore blan&k lines"
 msgstr "공백 라인 무시(&K)"
 
-#: Merge.rc:1150
+#: Merge.rc:1154
 #, c-format
 msgid "Ignore &case"
 msgstr "대소문자 무시(&C)"
 
-#: Merge.rc:1152
+#: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
 msgstr "carriage return 무시(&R) (DOS/UNIX/MAC)"
 
-#: Merge.rc:1155
+#: Merge.rc:1159
 #, c-format
 msgid "E&nable moved block detection"
 msgstr "이동영역 찾기 활성화"
 
-#: Merge.rc:1157
+#: Merge.rc:1161
 #, c-format
 msgid "&Match similar lines"
 msgstr ""
 
-#: Merge.rc:1159
+#: Merge.rc:1163
+#, c-format
+msgid "Ign&ore time differences less than 3 seconds"
+msgstr "3초 이내 시간 차이는 무시하기(&O)"
+
+#: Merge.rc:1166
 #, c-format
 msgid "&File Compare method:"
 msgstr "파일 비교 방식(&F):"
 
-#: Merge.rc:1162
+#: Merge.rc:1169
 #, c-format
 msgid "S&top after first difference"
 msgstr "다른 부분 발견시 바로 중지(&T)"
 
-#: Merge.rc:1165
+#: Merge.rc:1172
 #, c-format
 msgid "Filter Comments"
 msgstr "주석 비교 안함"
 
-#: Merge.rc:1172
-#: Merge.rc:1893
+#: Merge.rc:1179
+#: Merge.rc:1900
 #, c-format
 msgid "Editor"
 msgstr "편집기"
 
-#: Merge.rc:1175
+#: Merge.rc:1182
 #, c-format
 msgid "&Highlight syntax"
 msgstr "구문 하이라이트"
 
-#: Merge.rc:1177
+#: Merge.rc:1184
 #, c-format
 msgid "&Automatic rescan"
 msgstr "자동 리스캔(&R)"
 
-#: Merge.rc:1179
+#: Merge.rc:1186
 #, c-format
 msgid "&Preserve original EOL chars"
 msgstr "원본 EOL 보존(&P)"
 
-#: Merge.rc:1181
+#: Merge.rc:1188
 #, c-format
 msgid "Tabs"
 msgstr "탭(Tabs)"
 
-#: Merge.rc:1182
+#: Merge.rc:1189
 #, c-format
 msgid "&Tab size:"
 msgstr "탭 크기(&T):"
 
-#: Merge.rc:1185
+#: Merge.rc:1192
 #, c-format
 msgid "&Insert Tabs"
 msgstr "탭(tab) 삽입(&T)"
 
-#: Merge.rc:1187
+#: Merge.rc:1194
 #, c-format
 msgid "Insert &Spaces"
 msgstr "공백(space) 삽입(&N)"
 
-#: Merge.rc:1189
+#: Merge.rc:1196
 #, c-format
 msgid "Line Difference Coloring"
 msgstr ""
 
-#: Merge.rc:1191
+#: Merge.rc:1198
 #, c-format
 msgid "View line differences"
 msgstr "line differences 보기"
 
-#: Merge.rc:1193
+#: Merge.rc:1200
 #, c-format
 msgid "&Character level"
 msgstr "문자 단위(&C)"
 
-#: Merge.rc:1195
+#: Merge.rc:1202
 #, c-format
 msgid "&Word-level:"
 msgstr "단어 단위(&W):"
 
-#: Merge.rc:1210
+#: Merge.rc:1217
 #, c-format
 msgid "Filefilters"
 msgstr "파일 필터"
 
-#: Merge.rc:1216
+#: Merge.rc:1223
 #, c-format
 msgid "Test"
 msgstr "테스트"
 
-#: Merge.rc:1217
+#: Merge.rc:1224
 #, c-format
 msgid "Install..."
 msgstr "설치..."
 
-#: Merge.rc:1218
+#: Merge.rc:1225
 #, c-format
 msgid "New..."
 msgstr "새로 생성..."
 
-#: Merge.rc:1219
+#: Merge.rc:1226
 #, c-format
 msgid "Edit..."
 msgstr "편집..."
 
-#: Merge.rc:1220
+#: Merge.rc:1227
 #, c-format
 msgid "Delete..."
 msgstr "삭제..."
 
-#: Merge.rc:1226
+#: Merge.rc:1233
 #, c-format
 msgid "Save modified files?"
 msgstr "수정 파일 저장"
 
-#: Merge.rc:1229
+#: Merge.rc:1236
 #, c-format
 msgid "Left side file"
 msgstr "왼쪽 파일"
 
-#: Merge.rc:1232
+#: Merge.rc:1239
 #, c-format
 msgid "&Save changes"
 msgstr "저장(&S)"
 
-#: Merge.rc:1234
+#: Merge.rc:1241
 #, c-format
 msgid "&Discard changes"
 msgstr "저장 안함(&D)"
 
-#: Merge.rc:1236
+#: Merge.rc:1243
 #, c-format
 msgid "Right side file"
 msgstr "오른쪽 파일"
 
-#: Merge.rc:1239
+#: Merge.rc:1246
 #, c-format
 msgid "S&ave changes"
 msgstr "저장(&A)"
 
-#: Merge.rc:1241
+#: Merge.rc:1248
 #, c-format
 msgid "Dis&card changes"
 msgstr "저장 안함(&C)"
 
-#: Merge.rc:1243
+#: Merge.rc:1250
 #, c-format
 msgid "Discard All"
 msgstr "모두 저장 안함"
 
-#: Merge.rc:1250
-#: Merge.rc:1498
-#: Merge.rc:1899
+#: Merge.rc:1257
+#: Merge.rc:1505
+#: Merge.rc:1906
 #, c-format
 msgid "Codepage"
 msgstr ""
 
-#: Merge.rc:1253
+#: Merge.rc:1260
 #, c-format
 msgid "Default Codepage"
 msgstr "기본 Codepage"
 
-#: Merge.rc:1254
+#: Merge.rc:1261
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
 msgstr "unicode 파일이 아닌 파일을 열 때 기본으로 사용할 codepage 를 선택합니다"
 
-#: Merge.rc:1256
+#: Merge.rc:1263
 #, c-format
 msgid ""
 "Detect codepage info for these files : .html, .rc, .xml \n"
@@ -2006,32 +2018,32 @@ msgstr ""
 "다음 파일들은 codepage를 검출 합니다 : .html, .rc, .xml \n"
 "재시작 필요합니다"
 
-#: Merge.rc:1259
+#: Merge.rc:1266
 #, c-format
 msgid "System codepage"
 msgstr "시스템 codepage"
 
-#: Merge.rc:1261
+#: Merge.rc:1268
 #, c-format
 msgid "According to WinMerge User Interface"
 msgstr "WinMerge UI를 따름"
 
-#: Merge.rc:1263
+#: Merge.rc:1270
 #, c-format
 msgid "Custom codepage :"
 msgstr "일반적인 codepage :"
 
-#: Merge.rc:1271
+#: Merge.rc:1278
 #, c-format
 msgid "WinMerge - Archive support disabled"
 msgstr "WinMerge - 압축파일 지원 기능 비활성화 상태"
 
-#: Merge.rc:1274
+#: Merge.rc:1281
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
 msgstr "7-Zip 버전을 알아낼 수 없습니다 (설치를 안하셨나요?)"
 
-#: Merge.rc:1277
+#: Merge.rc:1284
 #, c-format
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
@@ -2040,24 +2052,24 @@ msgstr ""
 "압축파일은 7-zip(버전 3.11 이상)이 설치되어 있거나,\n"
 "단독 실행을 위한 필수 컴포넌트라도 프로그램 디렉토리내에 존재해야합니다"
 
-#: Merge.rc:1279
+#: Merge.rc:1286
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
 msgstr "또한 호환되는 인터페이스 플러그인(Merge7z*.dll)도 설치되 있어야 합니다"
 
-#: Merge.rc:1281
+#: Merge.rc:1288
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
 msgstr "아래에서 추천하는 인터페이스 플러그인을 사용하시기 바랍니다"
 
-#: Merge.rc:1283
+#: Merge.rc:1290
 #, c-format
 msgid "Version"
 msgstr "버전"
 
-#: Merge.rc:1285
+#: Merge.rc:1292
 #, c-format
 msgid ""
 "Plugin required\n"
@@ -2066,54 +2078,54 @@ msgstr ""
 "필요한 플러그인\n"
 "(dllbuild %04u)"
 
-#: Merge.rc:1287
+#: Merge.rc:1294
 #, c-format
 msgid "Recommended version of 7-Zip:"
 msgstr "추천하는 7-Zip의 버전:"
 
-#: Merge.rc:1290
-#: Merge.rc:1293
+#: Merge.rc:1297
+#: Merge.rc:1300
 #, c-format
 msgid "present"
 msgstr "있음"
 
-#: Merge.rc:1291
+#: Merge.rc:1298
 #, c-format
 msgid "Merge7z000U.dll"
 msgstr ""
 
-#: Merge.rc:1294
+#: Merge.rc:1301
 #, c-format
 msgid "7-Zip software installed on your computer:"
 msgstr "현재 설치되어 있는 7-Zip:"
 
-#: Merge.rc:1296
-#: Merge.rc:1301
+#: Merge.rc:1303
+#: Merge.rc:1308
 #, c-format
 msgid "none"
 msgstr "없음"
 
-#: Merge.rc:1298
+#: Merge.rc:1305
 #, c-format
 msgid "missing"
 msgstr "없음"
 
-#: Merge.rc:1299
+#: Merge.rc:1306
 #, c-format
 msgid "7-Zip components for standalone operation:"
 msgstr "단독 실행을 위한 7-Zip 컴포넌트:"
 
-#: Merge.rc:1303
+#: Merge.rc:1310
 #, c-format
 msgid "outdated"
 msgstr "구버전"
 
-#: Merge.rc:1304
+#: Merge.rc:1311
 #, c-format
 msgid "Plugins on path:"
 msgstr "플러그인 경로:"
 
-#: Merge.rc:1305
+#: Merge.rc:1312
 #, c-format
 msgid ""
 "Don't display this &message again.\n"
@@ -2122,480 +2134,488 @@ msgstr ""
 "이 메세지를 다시 표시하지 않습니다(&M).\n"
 "(도움말 메뉴에서 언제든지 다시 불러낼 수 있습니다.)"
 
-#: Merge.rc:1309
+#: Merge.rc:1316
 #, c-format
 msgid "Plugin Download"
 msgstr "플러그인 다운로드"
 
-#: Merge.rc:1318
+#: Merge.rc:1325
 #, c-format
 msgid "Options"
 msgstr "옵션"
 
-#: Merge.rc:1329
+#: Merge.rc:1336
 #, c-format
 msgid " Categories"
 msgstr " 카테고리"
 
-#: Merge.rc:1331
+#: Merge.rc:1338
 #, c-format
 msgid "Import..."
 msgstr "가져오기..."
 
-#: Merge.rc:1332
+#: Merge.rc:1339
 #, c-format
 msgid "Export..."
 msgstr "내보내기..."
 
-#: Merge.rc:1340
+#: Merge.rc:1347
 #, c-format
 msgid "Keywords:"
 msgstr "키워드:"
 
-#: Merge.rc:1341
+#: Merge.rc:1348
 #, c-format
 msgid "Function names:"
 msgstr "함수:"
 
-#: Merge.rc:1342
+#: Merge.rc:1349
 #, c-format
 msgid "Comments:"
 msgstr "주석:"
 
-#: Merge.rc:1343
+#: Merge.rc:1350
 #, c-format
 msgid "Numbers:"
 msgstr "숫자:"
 
-#: Merge.rc:1344
+#: Merge.rc:1351
 #, c-format
 msgid "Operators:"
 msgstr "연산자:"
 
-#: Merge.rc:1345
+#: Merge.rc:1352
 #, c-format
 msgid "Strings:"
 msgstr "문자열:"
 
-#: Merge.rc:1346
+#: Merge.rc:1353
 #, c-format
 msgid "Preprocessor:"
 msgstr "전처리기:"
 
-#: Merge.rc:1347
+#: Merge.rc:1354
 #, c-format
 msgid "User 1:"
 msgstr "사용자 설정 1:"
 
-#: Merge.rc:1348
+#: Merge.rc:1355
 #, c-format
 msgid "User 2:"
 msgstr "사용자 설정 2:"
 
-#: Merge.rc:1353
-#: Merge.rc:1358
-#: Merge.rc:1363
-#: Merge.rc:1368
-#: Merge.rc:1373
-#: Merge.rc:1378
-#: Merge.rc:1383
-#: Merge.rc:1388
-#: Merge.rc:1393
+#: Merge.rc:1360
+#: Merge.rc:1365
+#: Merge.rc:1370
+#: Merge.rc:1375
+#: Merge.rc:1380
+#: Merge.rc:1385
+#: Merge.rc:1390
+#: Merge.rc:1395
+#: Merge.rc:1400
 #, c-format
 msgid "Bold"
 msgstr ""
 
-#: Merge.rc:1401
+#: Merge.rc:1408
 #, c-format
 msgid "Folder Compare Report"
 msgstr "디렉토리 비교결과 리포트"
 
-#: Merge.rc:1404
+#: Merge.rc:1411
 #, c-format
 msgid "Report &File:"
 msgstr "리포트 파일(&F):"
 
-#: Merge.rc:1408
+#: Merge.rc:1414
+#: Merge.rc:1588
+#: Merge.rc:1592
+#: Merge.rc:1619
+#, c-format
+msgid "Browse..."
+msgstr "찾아보기..."
+
+#: Merge.rc:1415
 #, c-format
 msgid "&Style:"
 msgstr "형식(&S):"
 
-#: Merge.rc:1411
+#: Merge.rc:1418
 #, c-format
 msgid "&Copy to Clipboard"
 msgstr "클립보드로 복사(&C)"
 
-#: Merge.rc:1419
+#: Merge.rc:1426
 #, c-format
 msgid "Shared or Private Filter"
 msgstr "Shared / Private Filter"
 
-#: Merge.rc:1422
+#: Merge.rc:1429
 #, c-format
 msgid "Which type of filter do you want to create?"
 msgstr "생성할 필터 타입을 선택하세요"
 
-#: Merge.rc:1424
+#: Merge.rc:1431
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
 msgstr "Shared Filter (모든 사용자)"
 
-#: Merge.rc:1426
+#: Merge.rc:1433
 #, c-format
 msgid "Private Filter (only for current user)"
 msgstr "Private Filter (현재 사용자)"
 
-#: Merge.rc:1434
-#: Merge.rc:1900
+#: Merge.rc:1441
+#: Merge.rc:1907
 #, c-format
 msgid "Archive Support"
 msgstr "압축 파일 지원"
 
-#: Merge.rc:1437
+#: Merge.rc:1444
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
 msgstr ""
 
-#: Merge.rc:1439
+#: Merge.rc:1446
 #, c-format
 msgid "Download 7-zip Plugin"
 msgstr ""
 
-#: Merge.rc:1440
+#: Merge.rc:1447
 #, c-format
 msgid "&Enable archive file support"
 msgstr ""
 
-#: Merge.rc:1442
+#: Merge.rc:1449
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
 msgstr ""
 
-#: Merge.rc:1445
+#: Merge.rc:1452
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
 msgstr ""
 
-#: Merge.rc:1447
+#: Merge.rc:1454
 #, c-format
 msgid "&Detect archive type from file signature"
 msgstr ""
 
-#: Merge.rc:1455
+#: Merge.rc:1462
 #, c-format
 msgid "Compare Statistics"
 msgstr "비교 요약"
 
-#: Merge.rc:1458
+#: Merge.rc:1465
 #, c-format
 msgid "Folders:"
 msgstr "폴더:"
 
-#: Merge.rc:1459
+#: Merge.rc:1466
 #, c-format
 msgid "Files:"
 msgstr "파일:"
 
-#: Merge.rc:1460
-#: Merge.rc:2259
+#: Merge.rc:1467
+#: Merge.rc:2275
 #, c-format
 msgid "Different"
 msgstr "다름"
 
-#: Merge.rc:1461
+#: Merge.rc:1468
 #, c-format
 msgid "Text:"
 msgstr "텍스트:"
 
-#: Merge.rc:1464
-#: Merge.rc:1483
+#: Merge.rc:1471
+#: Merge.rc:1490
 #, c-format
 msgid "Binary:"
 msgstr "바이너리:"
 
-#: Merge.rc:1467
+#: Merge.rc:1474
 #, c-format
 msgid "Unique"
 msgstr "한쪽만 존재"
 
-#: Merge.rc:1468
+#: Merge.rc:1475
 #, c-format
 msgid "Left:"
 msgstr "왼쪽:"
 
-#: Merge.rc:1473
+#: Merge.rc:1480
 #, c-format
 msgid "Right:"
 msgstr "오른쪽:"
 
-#: Merge.rc:1478
-#: Merge.rc:2254
+#: Merge.rc:1485
+#: Merge.rc:2270
 #, c-format
 msgid "Identical"
 msgstr "동일"
 
-#: Merge.rc:1487
+#: Merge.rc:1494
 #, c-format
 msgid "Total:"
 msgstr ""
 
-#: Merge.rc:1492
+#: Merge.rc:1499
 #, c-format
 msgid "Close"
 msgstr "닫기"
 
-#: Merge.rc:1501
+#: Merge.rc:1508
 #, c-format
 msgid "Affects"
 msgstr "적용"
 
-#: Merge.rc:1504
-#: Merge.rc:1507
+#: Merge.rc:1511
+#: Merge.rc:1514
 #, c-format
 msgid "(Affects)"
 msgstr ""
 
-#: Merge.rc:1508
+#: Merge.rc:1515
 #, c-format
 msgid "Select Codepage for"
 msgstr ""
 
-#: Merge.rc:1509
+#: Merge.rc:1516
 #, c-format
 msgid "&File Loading:"
 msgstr "불러올때의 codepage(&F):"
 
-#: Merge.rc:1511
-#: Merge.rc:1514
+#: Merge.rc:1518
+#: Merge.rc:1521
 #, c-format
 msgid "..."
 msgstr ""
 
-#: Merge.rc:1512
+#: Merge.rc:1519
 #, c-format
 msgid "File &Saving:"
 msgstr "저장할 codepage(&S):"
 
-#: Merge.rc:1515
+#: Merge.rc:1522
 #, c-format
 msgid "&Use same codepage for both"
 msgstr "양쪽 모두 동일 codepage 적용(&U)"
 
-#: Merge.rc:1518
+#: Merge.rc:1525
 #, c-format
 msgid "&Apply"
 msgstr "적용(&A)"
 
-#: Merge.rc:1519
-#: Merge.rc:1866
+#: Merge.rc:1526
+#: Merge.rc:1873
 #, c-format
 msgid "&Cancel"
 msgstr "취소(&C)"
 
-#: Merge.rc:1524
+#: Merge.rc:1531
 #, c-format
 msgid "Test Filter"
 msgstr "필터 테스트"
 
-#: Merge.rc:1527
+#: Merge.rc:1534
 #, c-format
 msgid "Testing filter ..."
 msgstr "필터 ..."
 
-#: Merge.rc:1529
+#: Merge.rc:1536
 #, c-format
 msgid "&Enter text to test:"
 msgstr "테스트할 텍스트 입력(&T)"
 
-#: Merge.rc:1531
+#: Merge.rc:1538
 #, c-format
 msgid "&Folder Name"
 msgstr "폴더명(&F)"
 
-#: Merge.rc:1533
+#: Merge.rc:1540
 #, c-format
 msgid "Result:"
 msgstr "결과:"
 
-#: Merge.rc:1537
+#: Merge.rc:1544
 #, c-format
 msgid "&Test"
 msgstr "테스트(&T)"
 
-#: Merge.rc:1538
+#: Merge.rc:1545
 #, c-format
 msgid "&Close"
 msgstr "닫기(&C)"
 
-#: Merge.rc:1546
+#: Merge.rc:1553
 #, c-format
 msgid "&Use customized text colors"
 msgstr "사용자 색상 사용(&U)"
 
-#: Merge.rc:1549
+#: Merge.rc:1556
 #, c-format
 msgid "Custom text colors"
 msgstr "사용자 색상"
 
-#: Merge.rc:1551
+#: Merge.rc:1558
 #, c-format
 msgid "Whitespace:"
 msgstr "공백:"
 
-#: Merge.rc:1552
+#: Merge.rc:1559
 #, c-format
 msgid "Regular text:"
 msgstr "텍스트:"
 
-#: Merge.rc:1553
+#: Merge.rc:1560
 #, c-format
 msgid "Selection:"
 msgstr "선택영역:"
 
-#: Merge.rc:1576
+#: Merge.rc:1583
 #, c-format
 msgid "Paths"
 msgstr "경로"
 
-#: Merge.rc:1582
+#: Merge.rc:1589
 #, c-format
 msgid "R&ead-only"
 msgstr "읽기전용(&E)"
 
-#: Merge.rc:1586
+#: Merge.rc:1593
 #, c-format
 msgid "Re&ad-only"
 msgstr "읽기전용(&A)"
 
-#: Merge.rc:1592
+#: Merge.rc:1599
 #, c-format
 msgid "Open..."
 msgstr "열기..."
 
-#: Merge.rc:1593
+#: Merge.rc:1600
 #, c-format
 msgid "Save..."
 msgstr "저장..."
 
-#: Merge.rc:1598
-#: Merge.rc:1901
+#: Merge.rc:1605
+#: Merge.rc:1908
 #, c-format
 msgid "Backup Files"
 msgstr ""
 
-#: Merge.rc:1601
+#: Merge.rc:1608
 #, c-format
 msgid "Create backup files in:"
 msgstr ""
 
-#: Merge.rc:1606
+#: Merge.rc:1613
 #, c-format
 msgid "Create backup files into:"
 msgstr ""
 
-#: Merge.rc:1607
+#: Merge.rc:1614
 #, c-format
 msgid "&Original file's folder"
 msgstr ""
 
-#: Merge.rc:1609
+#: Merge.rc:1616
 #, c-format
 msgid "&Global backup folder:"
 msgstr ""
 
-#: Merge.rc:1613
+#: Merge.rc:1620
 #, c-format
 msgid "Backup filename:"
 msgstr ""
 
-#: Merge.rc:1614
+#: Merge.rc:1621
 #, c-format
 msgid "&Append .bak -extension"
 msgstr ""
 
-#: Merge.rc:1616
+#: Merge.rc:1623
 #, c-format
 msgid "A&ppend timestamp"
 msgstr ""
 
-#: Merge.rc:1623
+#: Merge.rc:1630
 #, c-format
 msgid "Confirm Copy"
 msgstr ""
 
-#: Merge.rc:1627
+#: Merge.rc:1634
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
 msgstr ""
 
-#: Merge.rc:1629
+#: Merge.rc:1636
 #, c-format
 msgid "From left"
 msgstr ""
 
-#: Merge.rc:1632
+#: Merge.rc:1639
 #, c-format
 msgid "To right"
 msgstr ""
 
-#: Merge.rc:1635
+#: Merge.rc:1642
 #, c-format
 msgid "Yes"
 msgstr ""
 
-#: Merge.rc:1636
+#: Merge.rc:1643
 #, c-format
 msgid "No"
 msgstr ""
 
 #. StringFileInfo.Block
-#: Merge.rc:1661
+#: Merge.rc:1668
 #, c-format
 msgid "040904e4"
 msgstr "041203b5"
 
 #. VarFileInfo.Translation
-#: Merge.rc:1677
+#: Merge.rc:1684
 #, c-format
 msgid "0x409, 1252"
 msgstr "0x412, 949"
 
-#: Merge.rc:1692
+#: Merge.rc:1699
 #, c-format
 msgid "Ready"
 msgstr "준비"
 
-#: Merge.rc:1698
+#: Merge.rc:1705
 #, c-format
 msgid "EXT"
 msgstr ""
 
-#: Merge.rc:1699
+#: Merge.rc:1706
 #, c-format
 msgid "CAP"
 msgstr ""
 
-#: Merge.rc:1700
+#: Merge.rc:1707
 #, c-format
 msgid "NUM"
 msgstr ""
 
-#: Merge.rc:1701
+#: Merge.rc:1708
 #, c-format
 msgid "SCRL"
 msgstr ""
 
-#: Merge.rc:1702
+#: Merge.rc:1709
 #, c-format
 msgid "OVR"
 msgstr ""
 
-#: Merge.rc:1703
+#: Merge.rc:1710
 #, c-format
 msgid "REC"
 msgstr ""
 
-#: Merge.rc:1709
+#: Merge.rc:1716
 #, c-format
 msgid ""
 "Create empty documents\n"
@@ -2604,7 +2624,7 @@ msgstr ""
 "빈 문서를 생성합니다\n"
 "새문서 (Ctrl-N)"
 
-#: Merge.rc:1710
+#: Merge.rc:1717
 #, c-format
 msgid ""
 "Open an existing document\n"
@@ -2613,7 +2633,7 @@ msgstr ""
 "기존에 만들어진 문서를 엽니다.\n"
 "열기 (Ctrl+O)"
 
-#: Merge.rc:1711
+#: Merge.rc:1718
 #, c-format
 msgid ""
 "Close the active document\n"
@@ -2622,7 +2642,7 @@ msgstr ""
 "현재 문서를 닫습니다.\n"
 "닫기"
 
-#: Merge.rc:1712
+#: Merge.rc:1719
 #, c-format
 msgid ""
 "Save the active document\n"
@@ -2631,7 +2651,7 @@ msgstr ""
 "현재 문서를 저장합니다.\n"
 "저장 (Ctrl+S)"
 
-#: Merge.rc:1713
+#: Merge.rc:1720
 #, c-format
 msgid ""
 "Save the active document with a new name\n"
@@ -2640,7 +2660,7 @@ msgstr ""
 "새이름으로 문서를 저장합니다.\n"
 "다른 이름으로 저장"
 
-#: Merge.rc:1714
+#: Merge.rc:1721
 #, c-format
 msgid ""
 "Change the printing options\n"
@@ -2649,7 +2669,7 @@ msgstr ""
 "인쇄 옵션을 수정합니다.\n"
 "페이지 설정"
 
-#: Merge.rc:1715
+#: Merge.rc:1722
 #, c-format
 msgid ""
 "Change the printer and printing options\n"
@@ -2658,7 +2678,7 @@ msgstr ""
 "프린터를 바꾸거나 인쇄 옵션을 수정합니다.\n"
 "인쇄 설정"
 
-#: Merge.rc:1716
+#: Merge.rc:1723
 #, c-format
 msgid ""
 "Print the active document\n"
@@ -2667,7 +2687,7 @@ msgstr ""
 "현재 문서를 인쇄합니다.\n"
 "인쇄"
 
-#: Merge.rc:1717
+#: Merge.rc:1724
 #, c-format
 msgid ""
 "Display full pages\n"
@@ -2676,12 +2696,12 @@ msgstr ""
 "미리 보기\n"
 "미리 보기"
 
-#: Merge.rc:1722
+#: Merge.rc:1729
 #, c-format
 msgid "Make all hidden items visible again"
 msgstr ""
 
-#: Merge.rc:1728
+#: Merge.rc:1735
 #, c-format
 msgid ""
 "Open project file\n"
@@ -2690,32 +2710,32 @@ msgstr ""
 "프로젝트 열기\n"
 "프로젝트 파일 (Ctrl+J)"
 
-#: Merge.rc:1729
+#: Merge.rc:1736
 #, c-format
 msgid "Unknown error attempting to open project file"
 msgstr "프로젝트를 여는 중 알 수 없는 에러가 발생했습니다"
 
-#: Merge.rc:1730
+#: Merge.rc:1737
 #, c-format
 msgid "Unknown error attempting to save project file"
 msgstr "프로젝트를 저장하는 중 알 수 없는 에러가 발생했습니다"
 
-#: Merge.rc:1731
+#: Merge.rc:1738
 #, c-format
 msgid "Project File"
 msgstr "프로젝트 파일"
 
-#: Merge.rc:1732
+#: Merge.rc:1739
 #, c-format
 msgid "Project file successfully loaded."
 msgstr "프로젝트가 정상적으로 열렸습니다."
 
-#: Merge.rc:1733
+#: Merge.rc:1740
 #, c-format
 msgid "Project file successfully saved."
 msgstr "프로젝트가 정상적으로 저장되었습니다."
 
-#: Merge.rc:1734
+#: Merge.rc:1741
 #, c-format
 msgid ""
 "Save current paths and options to project file\n"
@@ -2724,7 +2744,7 @@ msgstr ""
 "현재 경로와 옵션을 프로젝트 파일에 저장합니다\n"
 "프로젝트 저장"
 
-#: Merge.rc:1739
+#: Merge.rc:1746
 #, c-format
 msgid ""
 "Display program information, version number and copyright\n"
@@ -2733,7 +2753,7 @@ msgstr ""
 "프로그램 정보, 버전, 저작권을 봅니다.\n"
 "정보"
 
-#: Merge.rc:1740
+#: Merge.rc:1747
 #, c-format
 msgid ""
 "Quit the application; prompts to save documents\n"
@@ -2742,13 +2762,6 @@ msgstr ""
 "프로그램을 종료합니다.\n"
 "종료"
 
-#: Merge.rc:1746
-#: Merge.rc:1747
-#: Merge.rc:1748
-#: Merge.rc:1749
-#: Merge.rc:1750
-#: Merge.rc:1751
-#: Merge.rc:1752
 #: Merge.rc:1753
 #: Merge.rc:1754
 #: Merge.rc:1755
@@ -2758,11 +2771,18 @@ msgstr ""
 #: Merge.rc:1759
 #: Merge.rc:1760
 #: Merge.rc:1761
+#: Merge.rc:1762
+#: Merge.rc:1763
+#: Merge.rc:1764
+#: Merge.rc:1765
+#: Merge.rc:1766
+#: Merge.rc:1767
+#: Merge.rc:1768
 #, c-format
 msgid "Open this document"
 msgstr "선택 문서 열기"
 
-#: Merge.rc:1766
+#: Merge.rc:1773
 #, c-format
 msgid ""
 "Switch to the next window pane\n"
@@ -2771,7 +2791,7 @@ msgstr ""
 "다음 창(pane)으로 이동합니다.\n"
 "다음 창(pane)"
 
-#: Merge.rc:1767
+#: Merge.rc:1774
 #, c-format
 msgid ""
 "Switch back to the previous window pane\n"
@@ -2780,7 +2800,7 @@ msgstr ""
 "이전 창(pane)으로 이동합니다.\n"
 "이전 창(pane)"
 
-#: Merge.rc:1773
+#: Merge.rc:1780
 #, c-format
 msgid ""
 "Arrange windows so they overlap\n"
@@ -2789,7 +2809,7 @@ msgstr ""
 "창들을 계단식으로 배열합니다.\n"
 "계단식 배열"
 
-#: Merge.rc:1774
+#: Merge.rc:1781
 #, fuzzy, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
@@ -2798,7 +2818,7 @@ msgstr ""
 "창들을 수평으로 배열합니다.\n"
 "수평 배열"
 
-#: Merge.rc:1775
+#: Merge.rc:1782
 #, fuzzy, c-format
 msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
@@ -2807,7 +2827,7 @@ msgstr ""
 "창들을 수직으로 배열합니다.\n"
 "수직 배열"
 
-#: Merge.rc:1781
+#: Merge.rc:1788
 #, c-format
 msgid ""
 "Copy the selection and put it on the Clipboard\n"
@@ -2816,7 +2836,7 @@ msgstr ""
 "선택 영역을 클립보드로 복사합니다.\n"
 "복사"
 
-#: Merge.rc:1782
+#: Merge.rc:1789
 #, c-format
 msgid ""
 "Cut the selection and put it on the Clipboard\n"
@@ -2825,7 +2845,7 @@ msgstr ""
 "선택 영역을 잘라내어 클립보드로 이동합니다.\n"
 "잘라내기"
 
-#: Merge.rc:1783
+#: Merge.rc:1790
 #, c-format
 msgid ""
 "Find the specified text\n"
@@ -2834,7 +2854,7 @@ msgstr ""
 "특정 내용을 검색합니다.\n"
 "찾기"
 
-#: Merge.rc:1784
+#: Merge.rc:1791
 #, c-format
 msgid ""
 "Insert Clipboard contents\n"
@@ -2843,7 +2863,7 @@ msgstr ""
 "클립보드의 내용을 붙입니다.\n"
 "붙이기"
 
-#: Merge.rc:1785
+#: Merge.rc:1792
 #, c-format
 msgid ""
 "Repeat the last action\n"
@@ -2852,7 +2872,7 @@ msgstr ""
 "마지막 작업을 반복합니다.\n"
 "반복"
 
-#: Merge.rc:1786
+#: Merge.rc:1793
 #, c-format
 msgid ""
 "Replace specific text with different text\n"
@@ -2861,7 +2881,7 @@ msgstr ""
 "특정 내용을 다른 내용으로 바꿉니다.\n"
 "바꾸기"
 
-#: Merge.rc:1787
+#: Merge.rc:1794
 #, c-format
 msgid ""
 "Select the entire document\n"
@@ -2870,7 +2890,7 @@ msgstr ""
 "문서의 모든 영역을 선택합니다.\n"
 "모두 선택"
 
-#: Merge.rc:1788
+#: Merge.rc:1795
 #, c-format
 msgid ""
 "Undo the last action\n"
@@ -2879,7 +2899,7 @@ msgstr ""
 "실행을 취소합니다.\n"
 "실행 취소"
 
-#: Merge.rc:1789
+#: Merge.rc:1796
 #, c-format
 msgid ""
 "Redo the previously undone action\n"
@@ -2888,7 +2908,7 @@ msgstr ""
 "다시 실행합니다.\n"
 "다시 실행"
 
-#: Merge.rc:1795
+#: Merge.rc:1802
 #, c-format
 msgid ""
 "Show or hide the toolbar\n"
@@ -2897,7 +2917,7 @@ msgstr ""
 "툴바를 보거나 숨깁니다.\n"
 "툴바 보기"
 
-#: Merge.rc:1796
+#: Merge.rc:1803
 #, c-format
 msgid ""
 "Show or hide the status bar\n"
@@ -2906,69 +2926,69 @@ msgstr ""
 "상태 표시줄을 보거나 숨깁니다.\n"
 "상태표시줄 보기"
 
-#: Merge.rc:1797
+#: Merge.rc:1804
 #, c-format
 msgid ""
 "Show or hide the tab bar\n"
 "Toggle TabBar"
 msgstr ""
 
-#: Merge.rc:1798
+#: Merge.rc:1805
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
 msgstr ""
 
-#: Merge.rc:1804
+#: Merge.rc:1811
 #, c-format
 msgid "Change the window size"
 msgstr "창의 크기를 조정합니다."
 
-#: Merge.rc:1805
+#: Merge.rc:1812
 #, c-format
 msgid "Change the window position"
 msgstr "창의 위치를 이동합니다."
 
-#: Merge.rc:1806
+#: Merge.rc:1813
 #, c-format
 msgid "Reduce the window to an icon"
 msgstr "창 크기를 최소화합니다."
 
-#: Merge.rc:1807
+#: Merge.rc:1814
 #, c-format
 msgid "Enlarge the window to full size"
 msgstr "창 크기를 최대화합니다."
 
-#: Merge.rc:1808
+#: Merge.rc:1815
 #, c-format
 msgid "Switch to the next document window"
 msgstr "다음 창으로 이동합니다."
 
-#: Merge.rc:1809
+#: Merge.rc:1816
 #, c-format
 msgid "Switch to the previous document window"
 msgstr "이전 창으로 이동합니다."
 
-#: Merge.rc:1810
+#: Merge.rc:1817
 #, c-format
 msgid "Close the active window and prompts to save the documents"
 msgstr "현재창을 닫습니다."
 
-#: Merge.rc:1815
+#: Merge.rc:1822
 #, c-format
 msgid "Restore the window to normal size"
 msgstr "창을 이전 크기로 되돌립니다."
 
-#: Merge.rc:1816
+#: Merge.rc:1823
 #, c-format
 msgid "Activate Task List"
 msgstr "Task List를 활성화합니다."
 
-#: Merge.rc:1817
+#: Merge.rc:1824
 #, c-format
 msgid "Activate this window"
 msgstr "이 창을 활성화합니다."
 
-#: Merge.rc:1823
+#: Merge.rc:1830
 #, c-format
 msgid ""
 "Close print preview mode\n"
@@ -2977,33 +2997,33 @@ msgstr ""
 "미리보기를 종료합니다.\n"
 "미리보기 종료"
 
-#: Merge.rc:1830
+#: Merge.rc:1837
 #, c-format
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
 msgstr ""
 
-#: Merge.rc:1831
+#: Merge.rc:1838
 #, c-format
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
 msgstr ""
 
-#: Merge.rc:1838
+#: Merge.rc:1845
 #, c-format
 msgid "Preserve original EOL chars"
 msgstr "원본 파일의 EOL 유지"
 
-#: Merge.rc:1845
+#: Merge.rc:1852
 #, c-format
 msgid "Press any key"
 msgstr "아무키나 누르세요"
 
-#: Merge.rc:1851
-#: Merge.rc:1852
+#: Merge.rc:1858
+#: Merge.rc:1859
 #, c-format
 msgid "Right click on the path to copy"
 msgstr "복사할 경로에 오른쪽 버튼을 누르세요"
 
-#: Merge.rc:1858
+#: Merge.rc:1865
 #, c-format
 msgid ""
 "Developers:\n"
@@ -3012,152 +3032,152 @@ msgstr ""
 "개발자:\n"
 "Dean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
 
-#: Merge.rc:1859
+#: Merge.rc:1866
 #, c-format
-msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU Public License in the Help menu for details."
+msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 msgstr ""
 
-#: Merge.rc:1865
+#: Merge.rc:1872
 #, c-format
 msgid "&Ok"
 msgstr "확인(&O)"
 
-#: Merge.rc:1867
+#: Merge.rc:1874
 #, c-format
 msgid "&Abort"
 msgstr "중지(&A)"
 
-#: Merge.rc:1868
+#: Merge.rc:1875
 #, c-format
 msgid "&Retry"
 msgstr "재시도(&)"
 
-#: Merge.rc:1869
+#: Merge.rc:1876
 #, c-format
 msgid "&Ignore"
 msgstr "무시(&I)"
 
-#: Merge.rc:1870
+#: Merge.rc:1877
 #, c-format
 msgid "Ignore &all"
 msgstr "모두 무시(&A)"
 
-#: Merge.rc:1871
+#: Merge.rc:1878
 #, c-format
 msgid "&Yes"
 msgstr "예(&Y)"
 
-#: Merge.rc:1877
+#: Merge.rc:1884
 #, c-format
 msgid "Yes to &all"
 msgstr "모두 적용(&A)"
 
-#: Merge.rc:1878
+#: Merge.rc:1885
 #, c-format
 msgid "&No"
 msgstr "아니오(&N)"
 
-#: Merge.rc:1879
+#: Merge.rc:1886
 #, c-format
 msgid "No to a&ll"
 msgstr "모두 아니오(&L)"
 
-#: Merge.rc:1880
+#: Merge.rc:1887
 #, c-format
 msgid "&Continue"
 msgstr "계속(&C)"
 
-#: Merge.rc:1881
+#: Merge.rc:1888
 #, c-format
 msgid "&Skip"
 msgstr "무시(&S)"
 
-#: Merge.rc:1882
+#: Merge.rc:1889
 #, c-format
 msgid "Skip &all"
 msgstr "모두 무시(&A)"
 
-#: Merge.rc:1884
+#: Merge.rc:1891
 #, c-format
 msgid "Don't display this &message again."
 msgstr "이 메시지를 다시 표시하지 않습니다(&M)"
 
-#: Merge.rc:1885
+#: Merge.rc:1892
 #, c-format
 msgid "Don't ask this &question again."
 msgstr "다시 묻지 않습니다(&Q)"
 
-#: Merge.rc:1895
+#: Merge.rc:1902
 #, c-format
 msgid "Syntax colors"
 msgstr "구문 색상"
 
-#: Merge.rc:1896
+#: Merge.rc:1903
 #, c-format
 msgid "Text Colors"
 msgstr "텍스트 색상"
 
-#: Merge.rc:1898
+#: Merge.rc:1905
 #, c-format
 msgid "Version Control"
 msgstr "형상 관리"
 
-#: Merge.rc:1908
+#: Merge.rc:1915
 #, c-format
 msgid "To:"
 msgstr ""
 
-#: Merge.rc:1909
+#: Merge.rc:1916
 #, c-format
 msgid "From left:"
 msgstr ""
 
-#: Merge.rc:1910
+#: Merge.rc:1917
 #, c-format
 msgid "To left:"
 msgstr ""
 
-#: Merge.rc:1911
+#: Merge.rc:1918
 #, c-format
 msgid "From right:"
 msgstr ""
 
-#: Merge.rc:1912
+#: Merge.rc:1919
 #, c-format
 msgid "To right:"
 msgstr ""
 
-#: Merge.rc:1918
+#: Merge.rc:1925
 #, c-format
 msgid "Version %1"
 msgstr ""
 
-#: Merge.rc:1919
+#: Merge.rc:1926
 #, c-format
 msgid "Unicode"
 msgstr ""
 
-#: Merge.rc:1925
+#: Merge.rc:1932
 #, c-format
 msgid "Options (%1)"
 msgstr "옵션 (%1)"
 
-#: Merge.rc:1926
+#: Merge.rc:1933
 #, c-format
 msgid "All message boxes are now displayed again."
 msgstr "이제 모든 메세지박스가 활성화됩니다."
 
-#: Merge.rc:1927
+#: Merge.rc:1934
 #, c-format
 msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
 msgstr "수정되었습니다.  몇몇 설정은 파일비교를 재시작할 때까지 적용되지 않습니다."
 
-#: Merge.rc:1928
+#: Merge.rc:1935
 #, c-format
 msgid "The selected font change will not be applied to any currently visible difference windows."
 msgstr "바뀐 폰트는 현재 비교창에는 적용되지 않습니다."
 
-#: Merge.rc:1930
+#: Merge.rc:1937
 #, c-format
 msgid ""
 "Value in Tab size -field is not in range WinMerge accepts.\n"
@@ -3165,7 +3185,7 @@ msgid ""
 "Please use values 1 - %1."
 msgstr ""
 
-#: Merge.rc:1932
+#: Merge.rc:1939
 #, c-format
 msgid ""
 "Are you sure you want to reset all WinMerge options to default values?\n"
@@ -3173,107 +3193,127 @@ msgid ""
 "Please re-start WinMerge after the reset."
 msgstr ""
 
-#: Merge.rc:1938
+#: Merge.rc:1945
 #, c-format
 msgid "Open"
 msgstr "열기"
 
-#: Merge.rc:1939
+#: Merge.rc:1946
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
 msgstr "프로그램|*.exe;*.bat;*.cmd|모든 파일 (*.*)|*.*||"
 
-#: Merge.rc:1940
+#: Merge.rc:1947
 #, c-format
 msgid "All Files (*.*)|*.*||"
 msgstr "모든 파일 (*.*)|*.*||"
 
-#: Merge.rc:1941
+#: Merge.rc:1948
 #, c-format
 msgid "WinMerge Project Files (*.WinMerge)|*.WinMerge||"
 msgstr "WinMerge 프로젝트 파일 (*.WinMerge)|*.WinMerge||"
 
-#: Merge.rc:1943
+#: Merge.rc:1950
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
 msgstr "설정 파일 (*.ini)|*.ini|All Files (*.*)|*.*||"
 
-#: Merge.rc:1949
+#: Merge.rc:1956
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
 msgstr ""
 
-#: Merge.rc:1950
+#: Merge.rc:1957
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
 msgstr ""
 
-#: Merge.rc:1951
+#: Merge.rc:1958
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
 msgstr ""
 
-#: Merge.rc:1957
+#: Merge.rc:1964
+#, c-format
+msgid "UTF-8"
+msgstr ""
+
+#: Merge.rc:1965
+#, c-format
+msgid "UTF-8 (B)"
+msgstr ""
+
+#: Merge.rc:1966
+#, c-format
+msgid "UCS-2 LE"
+msgstr ""
+
+#: Merge.rc:1967
+#, c-format
+msgid "UCS-2 BE"
+msgstr ""
+
+#: Merge.rc:1973
 #, c-format
 msgid "Full Contents"
 msgstr "전체 내용 비교"
 
-#: Merge.rc:1958
+#: Merge.rc:1974
 #, c-format
 msgid "Quick Contents"
 msgstr "빠른 내용 비교"
 
-#: Merge.rc:1959
+#: Merge.rc:1975
 #, c-format
 msgid "Modified Date"
 msgstr "변경된 날짜"
 
-#: Merge.rc:1960
+#: Merge.rc:1976
 #, c-format
 msgid "Modified Date and Size"
 msgstr "변경된 날짜 & 파일 크기"
 
-#: Merge.rc:1961
+#: Merge.rc:1977
 #, c-format
 msgid "Size"
 msgstr "파일 크기"
 
-#: Merge.rc:1967
+#: Merge.rc:1983
 #, c-format
 msgid "Name"
 msgstr "이름"
 
-#: Merge.rc:1968
+#: Merge.rc:1984
 #, c-format
 msgid "Location"
 msgstr "경로"
 
-#: Merge.rc:1969
+#: Merge.rc:1985
 #, c-format
 msgid "Filters"
 msgstr "필터"
 
-#: Merge.rc:1970
+#: Merge.rc:1986
 #, c-format
 msgid "[F] "
 msgstr ""
 
-#: Merge.rc:1971
+#: Merge.rc:1987
 #, c-format
 msgid "Description"
 msgstr "설명"
 
-#: Merge.rc:1972
+#: Merge.rc:1988
 #, c-format
 msgid "Select filename for new filter"
 msgstr "생성할 필터의 파일명을 입력하세요"
 
-#: Merge.rc:1973
+#: Merge.rc:1989
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
 msgstr ""
 
-#: Merge.rc:1975
+#: Merge.rc:1991
 #, c-format
 msgid ""
 "Cannot find file filter template file!\n"
@@ -3285,7 +3325,7 @@ msgstr ""
 "\n"
 "Please copy file %1 to WinMerge/Filters -folder."
 
-#: Merge.rc:1977
+#: Merge.rc:1993
 #, c-format
 msgid ""
 "Cannot copy filter template file to filter folder:\n"
@@ -3294,7 +3334,7 @@ msgid ""
 "Please make sure the folder exists and is writable."
 msgstr ""
 
-#: Merge.rc:1979
+#: Merge.rc:1995
 #, c-format
 msgid ""
 "User's filter file folder is not defined!\n"
@@ -3302,7 +3342,7 @@ msgid ""
 "Please select filter folder in Options/System."
 msgstr ""
 
-#: Merge.rc:1981
+#: Merge.rc:1997
 #, c-format
 msgid ""
 "Failed to delete the filter file:\n"
@@ -3311,12 +3351,12 @@ msgid ""
 "Maybe the file is read-only?"
 msgstr ""
 
-#: Merge.rc:1982
+#: Merge.rc:1998
 #, c-format
 msgid "Locate filter file to install"
 msgstr ""
 
-#: Merge.rc:1984
+#: Merge.rc:2000
 #, c-format
 msgid ""
 "Installing filter file failed.\n"
@@ -3324,208 +3364,208 @@ msgid ""
 "Could not copy new filter file to filter folder."
 msgstr ""
 
-#: Merge.rc:1986
+#: Merge.rc:2002
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
 msgstr ""
 
-#: Merge.rc:1992
+#: Merge.rc:2008
 #, c-format
 msgid "Regular expression"
 msgstr ""
 
-#: Merge.rc:1998
+#: Merge.rc:2014
 #, c-format
 msgid "&Path to cleartool.exe :"
 msgstr "cleartool.exe 경로(&P):"
 
-#: Merge.rc:1999
+#: Merge.rc:2015
 #, c-format
 msgid "&Path to SS.EXE :"
 msgstr "SS.EXE 경로(&P):"
 
-#: Merge.rc:2005
+#: Merge.rc:2021
 #, c-format
 msgid "Folder Comparison Results"
 msgstr "디렉토리 비교 결과"
 
-#: Merge.rc:2006
+#: Merge.rc:2022
 #, c-format
 msgid "File Comparison"
 msgstr "파일 비교"
 
-#: Merge.rc:2007
+#: Merge.rc:2023
 #, c-format
 msgid "Untitled left"
 msgstr "이름없는 문서"
 
-#: Merge.rc:2008
+#: Merge.rc:2024
 #, c-format
 msgid "Untitled right"
 msgstr "이름없는 문서"
 
-#: Merge.rc:2009
+#: Merge.rc:2025
 #, c-format
 msgid "Theirs File"
 msgstr ""
 
-#: Merge.rc:2010
+#: Merge.rc:2026
 #, c-format
 msgid "Mine File"
 msgstr ""
 
-#: Merge.rc:2016
+#: Merge.rc:2032
 #, c-format
 msgid "Scanning files..."
 msgstr "다시 스캔중입니다..."
 
-#: Merge.rc:2017
+#: Merge.rc:2033
 #, c-format
 msgid "Opening selection"
 msgstr "선택 파일 여는중"
 
-#: Merge.rc:2018
+#: Merge.rc:2034
 #, c-format
 msgid "Copying Left to Right"
 msgstr "왼쪽에서 오른쪽으로 복사중"
 
-#: Merge.rc:2019
+#: Merge.rc:2035
 #, c-format
 msgid "Copying Right to Left"
 msgstr "오른쪽에서 왼쪽으로 복사중"
 
-#: Merge.rc:2020
+#: Merge.rc:2036
 #, c-format
 msgid "Copying All to Left"
 msgstr "왼쪽으로 모두 복사중"
 
-#: Merge.rc:2021
+#: Merge.rc:2037
 #, c-format
 msgid "Copying All to Right"
 msgstr "오른쪽으로 모두 복사중"
 
-#: Merge.rc:2022
+#: Merge.rc:2038
 #, c-format
 msgid "Copying files..."
 msgstr "파일 복사중..."
 
-#: Merge.rc:2023
+#: Merge.rc:2039
 #, c-format
 msgid "Deleting files..."
 msgstr "파일 삭제중..."
 
-#: Merge.rc:2024
+#: Merge.rc:2040
 #, c-format
 msgid "Moving files..."
 msgstr "파일 이동중..."
 
-#: Merge.rc:2025
+#: Merge.rc:2041
 #, c-format
 msgid "Creating the report..."
 msgstr "리포트 생성중..."
 
-#: Merge.rc:2031
+#: Merge.rc:2047
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
 msgstr ""
 
-#: Merge.rc:2032
+#: Merge.rc:2048
 #, c-format
 msgid "Line: %s"
 msgstr ""
 
-#: Merge.rc:2033
+#: Merge.rc:2049
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
 msgstr ""
 
-#: Merge.rc:2034
+#: Merge.rc:2050
 #, c-format
 msgid "Merge"
 msgstr ""
 
-#: Merge.rc:2035
+#: Merge.rc:2051
 #, c-format
 msgid "Difference %1 of %2"
 msgstr "다른 파일(%1 of %2)"
 
-#: Merge.rc:2036
+#: Merge.rc:2052
 #, c-format
 msgid "%1 Differences Found"
 msgstr "%1개의 다른 부분 존재"
 
-#: Merge.rc:2037
+#: Merge.rc:2053
 #, c-format
 msgid "1 Difference Found"
 msgstr "1개의 다른 부분 존재"
 
 #. Abbreviation from "Read Only"
-#: Merge.rc:2038
+#: Merge.rc:2054
 #, c-format
 msgid "RO"
 msgstr ""
 
-#: Merge.rc:2044
+#: Merge.rc:2060
 #, c-format
 msgid "Item %1 of %2"
 msgstr ""
 
-#: Merge.rc:2045
+#: Merge.rc:2061
 #, c-format
 msgid "Items: %1"
 msgstr ""
 
-#: Merge.rc:2051
+#: Merge.rc:2067
 #, c-format
 msgid "Select two existing folders or files to compare"
 msgstr "비교할 디렉토리 또는 파일을 선택하세요."
 
-#: Merge.rc:2052
+#: Merge.rc:2068
 #, c-format
 msgid "Folder Selection"
 msgstr "디렉토리 선택"
 
-#: Merge.rc:2053
+#: Merge.rc:2069
 #, c-format
 msgid "Select two folders or two files to compare."
 msgstr "비교할 디렉토리/파일 선택"
 
-#: Merge.rc:2054
+#: Merge.rc:2070
 #, c-format
 msgid "Left path is invalid!"
 msgstr "왼쪽은 잘못된 경로입니다!"
 
-#: Merge.rc:2055
+#: Merge.rc:2071
 #, c-format
 msgid "Right path is invalid!"
 msgstr "오른쪽은 잘못된 경로입니다!"
 
-#: Merge.rc:2056
+#: Merge.rc:2072
 #, c-format
 msgid "Both paths are invalid!"
 msgstr "양쪽 모두 잘못된 경로입니다!"
 
-#: Merge.rc:2057
+#: Merge.rc:2073
 #, c-format
 msgid "Choose two files to enable unpacker selection."
 msgstr "Unpacker 선택 활성화를 위해 두 파일을 선택하세요."
 
-#: Merge.rc:2058
+#: Merge.rc:2074
 #, c-format
 msgid "Cannot compare file and folder!"
 msgstr "디렉토리/파일을 비교할 수 없습니다!"
 
-#: Merge.rc:2064
+#: Merge.rc:2080
 #, c-format
 msgid "File not found: %1"
 msgstr "해당하는 파일이 없습니다 : %1"
 
-#: Merge.rc:2065
+#: Merge.rc:2081
 #, c-format
 msgid "File not unpacked: %1"
 msgstr "unpack 된 파일: %1"
 
-#: Merge.rc:2066
+#: Merge.rc:2082
 #, c-format
 msgid ""
 "Cannot open file\n"
@@ -3538,42 +3578,42 @@ msgstr ""
 "\n"
 "%2"
 
-#: Merge.rc:2067
+#: Merge.rc:2083
 #, c-format
 msgid "Failed to parse conflict file."
 msgstr ""
 
-#: Merge.rc:2068
+#: Merge.rc:2084
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
 msgstr ""
 
-#: Merge.rc:2074
+#: Merge.rc:2090
 #, c-format
 msgid "Save As"
 msgstr "다른 이름으로 저장"
 
-#: Merge.rc:2075
+#: Merge.rc:2091
 #, c-format
 msgid "Save changes to %1?"
 msgstr "%1 의 변경된 부분을 저장할까요?"
 
-#: Merge.rc:2076
+#: Merge.rc:2092
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
 msgstr "%1 은 읽기전용 파일입니다. 덮어 쓸까요? (다른이름으로 저장하려면 아니오를 선택하세요.)"
 
-#: Merge.rc:2077
+#: Merge.rc:2093
 #, c-format
 msgid "Error checking destination writeability"
 msgstr "복사 가능 체크 실패"
 
-#: Merge.rc:2078
+#: Merge.rc:2094
 #, c-format
 msgid "Error backing up file"
 msgstr "파일 백업을 할 수 없습니다"
 
-#: Merge.rc:2080
+#: Merge.rc:2096
 #, c-format
 msgid ""
 "Unable to backup original file:\n"
@@ -3586,7 +3626,7 @@ msgstr ""
 "\n"
 "계속 진행할까요?"
 
-#: Merge.rc:2081
+#: Merge.rc:2097
 #, c-format
 msgid ""
 "Saving file failed.\n"
@@ -3602,7 +3642,7 @@ msgstr ""
 "\t- 다른이름으로 저장(확인)\n"
 "\t- 저장 취소(취소)?"
 
-#: Merge.rc:2082
+#: Merge.rc:2098
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the left file back into '%1'.\n"
@@ -3612,7 +3652,7 @@ msgid ""
 "Do you want to save the unpacked version to another file?"
 msgstr ""
 
-#: Merge.rc:2083
+#: Merge.rc:2099
 #, c-format
 msgid ""
 "Plugin '%2' cannot pack your changes to the right file back into '%1'.\n"
@@ -3622,7 +3662,7 @@ msgid ""
 "Do you want to save the unpacked version to another file?"
 msgstr ""
 
-#: Merge.rc:2084
+#: Merge.rc:2100
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3636,7 +3676,7 @@ msgstr ""
 "\n"
 "덮어쓸까요?"
 
-#: Merge.rc:2085
+#: Merge.rc:2101
 #, c-format
 msgid ""
 "%1\n"
@@ -3645,7 +3685,7 @@ msgstr ""
 "%1\n"
 "읽기 전용 파일입니다. 덮어쓰시겠습니까?"
 
-#: Merge.rc:2086
+#: Merge.rc:2102
 #, c-format
 msgid ""
 "Another application has updated file\n"
@@ -3659,17 +3699,17 @@ msgstr ""
 "\n"
 "변경된 파일 내용을 보려면 지금 파일을 닫고 다시 열어주세요."
 
-#: Merge.rc:2087
+#: Merge.rc:2103
 #, c-format
 msgid "Save Left File As"
 msgstr "왼쪽 파일 다른 이름으로 저장"
 
-#: Merge.rc:2088
+#: Merge.rc:2104
 #, c-format
 msgid "Save Right File As"
 msgstr "오른쪽 파일 다른 이름으로 저장"
 
-#: Merge.rc:2094
+#: Merge.rc:2110
 #, c-format
 msgid ""
 "Cannot merge differences when documents are not in synch.\n"
@@ -3680,42 +3720,42 @@ msgstr ""
 "\n"
 "계속하기 전에 새로고침을 해주세요."
 
-#: Merge.rc:2100
+#: Merge.rc:2116
 #, c-format
 msgid "You must specify a SourceSafe project path in order to continue (ie:  $/MyProject)"
 msgstr "계속하시려면 소스세이프 프로젝트 경로를 설정하셔야합니다 (예:  $/MyProject)"
 
-#: Merge.rc:2101
+#: Merge.rc:2117
 #, c-format
 msgid "Checkout files from VSS..."
 msgstr "VSS 체크아웃 파일..."
 
-#: Merge.rc:2102
+#: Merge.rc:2118
 #, c-format
 msgid "Versioning System returned an error while attempting to check out the file.  Unable to continue..."
 msgstr "체크아웃 실행 중 에러가 발생하였습니다.  더 이상 진행할 수 없습니다..."
 
-#: Merge.rc:2103
+#: Merge.rc:2119
 #, c-format
 msgid "Error executing versioning system command."
 msgstr "버전관리시스템 명령 실행 실패."
 
-#: Merge.rc:2104
+#: Merge.rc:2120
 #, c-format
 msgid "The VSS Working Folder and the location of the current file do not match. Continue?"
 msgstr "VSS 워킹 폴더와 현재 파일의 경로가 일치하지 않습니다. 계속하겠습니까?"
 
-#: Merge.rc:2105
+#: Merge.rc:2121
 #, c-format
 msgid "No VSS database(s) found!"
 msgstr "VSS database(s)가 존재하지 않습니다!"
 
-#: Merge.rc:2106
+#: Merge.rc:2122
 #, c-format
 msgid "Error from VSS:"
 msgstr "VSS 에러:"
 
-#: Merge.rc:2107
+#: Merge.rc:2123
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to check in the file.\n"
@@ -3723,176 +3763,177 @@ msgid ""
 " Undo checkout operation?"
 msgstr ""
 
-#: Merge.rc:2108
+#: Merge.rc:2124
 #, c-format
 msgid ""
 "Versioning System returned an error while attempting to undo checkout the file.\n"
 " Please, check config spec of used view. "
 msgstr ""
 
-#: Merge.rc:2114
-#: Merge.rc:2722
+#: Merge.rc:2130
+#: Merge.rc:2565
+#: Merge.rc:2742
 #, c-format
 msgid "None"
 msgstr "사용안함"
 
-#: Merge.rc:2115
+#: Merge.rc:2131
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
 msgstr ""
 
-#: Merge.rc:2116
+#: Merge.rc:2132
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
 msgstr ""
 
-#: Merge.rc:2118
+#: Merge.rc:2134
 #, c-format
 msgid "Break at whitespace"
 msgstr "공백 발견시 멈춤"
 
-#: Merge.rc:2119
+#: Merge.rc:2135
 #, c-format
 msgid "Break at whitespace or punctuation"
 msgstr "공백 또는 구두점 발견시 멈춤"
 
-#: Merge.rc:2125
-#: Merge.rc:2127
+#: Merge.rc:2141
+#: Merge.rc:2143
 #, c-format
 msgid "Copy selected item to named directory"
 msgstr "선택 파일을 오른쪽 디렉토리로 복사합니다"
 
-#: Merge.rc:2126
-#: Merge.rc:2128
+#: Merge.rc:2142
+#: Merge.rc:2144
 #, c-format
 msgid "Copy selected item to custom directory"
 msgstr "선태 파일을 특정 디렉토리로 복사합니다"
 
-#: Merge.rc:2129
+#: Merge.rc:2145
 #, c-format
 msgid "Delete selected item on left"
 msgstr "선택한 파일 중 왼쪽 파일만 삭제합니다."
 
-#: Merge.rc:2130
+#: Merge.rc:2146
 #, c-format
 msgid "Delete selected item on right"
 msgstr "선택한 파일 중 오른쪽 파일만 삭제합니다."
 
-#: Merge.rc:2131
+#: Merge.rc:2147
 #, c-format
 msgid "Delete selected item(s) on both sides"
 msgstr "선택한 파일을 양쪽 모두에서 삭제합니다."
 
-#: Merge.rc:2132
+#: Merge.rc:2148
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
 msgstr "선택 파일을 감춥니다 (on the fly filter)"
 
-#: Merge.rc:2133
+#: Merge.rc:2149
 #, c-format
 msgid "Rename selected item on both sides"
 msgstr "양쪽의 선택 파일 모두 이름을 바꿉니다"
 
-#: Merge.rc:2134
+#: Merge.rc:2150
 #, c-format
 msgid "Right to Left (%1)"
 msgstr "왼쪽으로 (%1)"
 
-#: Merge.rc:2135
+#: Merge.rc:2151
 #, c-format
 msgid "Left to Right (%1)"
 msgstr "오른쪽으로 (%1)"
 
-#: Merge.rc:2136
+#: Merge.rc:2152
 #, c-format
 msgid "Right to Left (%1 of %2)"
 msgstr "왼쪽으로 (%1 of %2)"
 
-#: Merge.rc:2137
+#: Merge.rc:2153
 #, c-format
 msgid "Left to Right (%1 of %2)"
 msgstr "오른쪽으로 (%1 of %2)"
 
-#: Merge.rc:2138
 #: Merge.rc:2154
+#: Merge.rc:2170
 #, c-format
 msgid "Left to... (%1)"
 msgstr "왼쪽파일 위치지정 복사 (%1)"
 
-#: Merge.rc:2139
 #: Merge.rc:2155
+#: Merge.rc:2171
 #, c-format
 msgid "Right to... (%1)"
 msgstr "오른쪽파일 위치지정 복사 (%1)"
 
-#: Merge.rc:2140
 #: Merge.rc:2156
+#: Merge.rc:2172
 #, c-format
 msgid "Left to... (%1 of %2)"
 msgstr "왼쪽파일 위치지정 복사 (%1 of %2)"
 
-#: Merge.rc:2141
 #: Merge.rc:2157
+#: Merge.rc:2173
 #, c-format
 msgid "Right to... (%1 of %2)"
 msgstr "오른쪽파일 위치지정 복사 (%1 of %2)"
 
-#: Merge.rc:2147
+#: Merge.rc:2163
 #, c-format
 msgid "Left (%1)"
 msgstr "왼쪽 (%1)"
 
-#: Merge.rc:2148
+#: Merge.rc:2164
 #, c-format
 msgid "Right (%1)"
 msgstr "오른쪽 (%1)"
 
-#: Merge.rc:2149
+#: Merge.rc:2165
 #, c-format
 msgid "Both (%1)"
 msgstr "모두 (%1)"
 
-#: Merge.rc:2150
+#: Merge.rc:2166
 #, c-format
 msgid "Left (%1 of %2)"
 msgstr "왼쪽 (%1 of %2)"
 
-#: Merge.rc:2151
+#: Merge.rc:2167
 #, c-format
 msgid "Right (%1 of %2)"
 msgstr "오른쪽 (%1 of %2)"
 
-#: Merge.rc:2152
+#: Merge.rc:2168
 #, c-format
 msgid "Both (%1 of %2)"
 msgstr "모두 (%1 of %2)"
 
-#: Merge.rc:2153
+#: Merge.rc:2169
 #, c-format
 msgid "Select destination folder"
 msgstr "디렉토리 선택"
 
-#: Merge.rc:2158
+#: Merge.rc:2174
 #, c-format
 msgid "Left side - select destination folder:"
 msgstr "왼쪽 - 이동할 디렉토리를 선택하세요:"
 
-#: Merge.rc:2159
+#: Merge.rc:2175
 #, c-format
 msgid "Right side - select destination folder:"
 msgstr "오른쪽 - 이동할 디렉토리를 선택하세요:"
 
-#: Merge.rc:2160
+#: Merge.rc:2176
 #, c-format
 msgid "(%1 Files Affected)"
 msgstr ""
 
-#: Merge.rc:2161
+#: Merge.rc:2177
 #, c-format
 msgid "(%1 of %2 Files Affected)"
 msgstr ""
 
-#: Merge.rc:2167
+#: Merge.rc:2183
 #, c-format
 msgid ""
 "Are you sure you want to delete\n"
@@ -3903,17 +3944,17 @@ msgstr ""
 "\n"
 "%1 ?"
 
-#: Merge.rc:2168
+#: Merge.rc:2184
 #, c-format
 msgid "Are you sure you want to copy:"
 msgstr ""
 
-#: Merge.rc:2169
+#: Merge.rc:2185
 #, c-format
 msgid "Are you sure you want to copy %d items:"
 msgstr ""
 
-#: Merge.rc:2170
+#: Merge.rc:2186
 #, c-format
 msgid ""
 "Operation aborted!\n"
@@ -3925,458 +3966,458 @@ msgid ""
 "Please refresh the compare."
 msgstr ""
 
-#: Merge.rc:2176
+#: Merge.rc:2192
 #, c-format
 msgid "Open left file"
 msgstr "왼쪽 파일을 엽니다."
 
-#: Merge.rc:2177
+#: Merge.rc:2193
 #, c-format
 msgid "Open the left file to external editor"
 msgstr "외부 에디터를 이용해서 왼쪽 파일을 엽니다"
 
-#: Merge.rc:2178
+#: Merge.rc:2194
 #, c-format
 msgid "Open left file with ..."
 msgstr "왼쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
 
-#: Merge.rc:2179
+#: Merge.rc:2195
 #, c-format
 msgid "Open right file"
 msgstr "오른쪽 파일을 엽니다."
 
-#: Merge.rc:2180
+#: Merge.rc:2196
 #, c-format
 msgid "Open the right file to external editor"
 msgstr "외부 에디터를 이용해서 오른쪽 파일을 엽니다"
 
-#: Merge.rc:2181
+#: Merge.rc:2197
 #, c-format
 msgid "Open right file with..."
 msgstr "오른쪽 파일을 연결 프로그램을 선택해서 엽니다. ..."
 
-#: Merge.rc:2182
+#: Merge.rc:2198
 #, c-format
 msgid "Failed to execute external editor: %1"
 msgstr "외부 편집기 실행 실패: %1"
 
-#: Merge.rc:2183
+#: Merge.rc:2199
 #, c-format
 msgid "Unknown extension on external editor: %1"
 msgstr "알 수 없는 확장자: %1"
 
-#: Merge.rc:2184
+#: Merge.rc:2200
 #, c-format
 msgid "Copy filenames to clipboard"
 msgstr "파일명을 클립보드에 복사합니다"
 
-#: Merge.rc:2185
+#: Merge.rc:2201
 #, c-format
 msgid "Copy left side pathnames to clipboard"
 msgstr "왼쪽 경로를 클립보드에 복사합니다"
 
-#: Merge.rc:2186
+#: Merge.rc:2202
 #, c-format
 msgid "Copy right side pathnames to clipboard"
 msgstr "오른쪽 경로를 클립보드에 복사합니다"
 
-#: Merge.rc:2187
+#: Merge.rc:2203
 #, c-format
 msgid "Copy both sides pathnames to clipboard"
 msgstr "양쪽 경로를 모두 클립보드에 복사합니다"
 
-#: Merge.rc:2193
+#: Merge.rc:2209
 #, c-format
 msgid "Unknown archive format"
 msgstr "알 수 없는 압축 포맷"
 
-#: Merge.rc:2194
+#: Merge.rc:2210
 #, c-format
 msgid "Add items from left side to archive"
 msgstr "왼쪽 파일 압축파일에 더하기"
 
-#: Merge.rc:2195
+#: Merge.rc:2211
 #, c-format
 msgid "Add items from right side to archive"
 msgstr "오른쪽 파일 압축파일에 더하기"
 
-#: Merge.rc:2196
+#: Merge.rc:2212
 #, c-format
 msgid "Add items from both sides to archive"
 msgstr "양쪽 파일 모두 압축파일에 더하기"
 
-#: Merge.rc:2197
+#: Merge.rc:2213
 #, c-format
 msgid "Add different items to archive (both sides)"
 msgstr "다른 파일 압축파일에 더하기 (양쪽)"
 
-#: Merge.rc:2199
+#: Merge.rc:2215
 #, c-format
 msgid "Move selected file on left to custom directory"
 msgstr "왼쪽 선택파일 위치지정 이동"
 
-#: Merge.rc:2201
+#: Merge.rc:2217
 #, c-format
 msgid "Move selected file on right to custom directory"
 msgstr "오른쪽 선택파일 위치지정 이동"
 
-#: Merge.rc:2207
+#: Merge.rc:2223
 #, c-format
 msgid "Filename"
 msgstr "이름"
 
-#: Merge.rc:2208
+#: Merge.rc:2224
 #, c-format
 msgid "Folder"
 msgstr "디렉토리"
 
-#: Merge.rc:2209
+#: Merge.rc:2225
 #, c-format
 msgid "Comparison result"
 msgstr "비교 결과"
 
-#: Merge.rc:2210
+#: Merge.rc:2226
 #, c-format
 msgid "Left Date"
 msgstr "왼쪽 날짜"
 
-#: Merge.rc:2211
+#: Merge.rc:2227
 #, c-format
 msgid "Right Date"
 msgstr "오른쪽 날짜"
 
-#: Merge.rc:2212
+#: Merge.rc:2228
 #, c-format
 msgid "Extension"
 msgstr "확장자"
 
-#: Merge.rc:2213
+#: Merge.rc:2229
 #, c-format
 msgid "Left Size"
 msgstr "왼쪽 크기"
 
-#: Merge.rc:2214
+#: Merge.rc:2230
 #, c-format
 msgid "Right Size"
 msgstr "오른쪽 크기"
 
-#: Merge.rc:2215
+#: Merge.rc:2231
 #, c-format
 msgid "Right Size (Short)"
 msgstr "오른쪽 크기 (짧게)"
 
-#: Merge.rc:2216
+#: Merge.rc:2232
 #, c-format
 msgid "Left Size (Short)"
 msgstr "왼쪽 크기 (짧게)"
 
-#: Merge.rc:2222
+#: Merge.rc:2238
 #, c-format
 msgid "Left Creation Time"
 msgstr "왼쪽 생성 시간"
 
-#: Merge.rc:2223
+#: Merge.rc:2239
 #, c-format
 msgid "Right Creation Time"
 msgstr "오른쪽 생성 시간"
 
-#: Merge.rc:2224
+#: Merge.rc:2240
 #, c-format
 msgid "Newer File"
 msgstr "최신 파일"
 
-#: Merge.rc:2225
+#: Merge.rc:2241
 #, c-format
 msgid "Left File Version"
 msgstr "왼쪽 파일 버전"
 
-#: Merge.rc:2226
+#: Merge.rc:2242
 #, c-format
 msgid "Right File Version"
 msgstr "오른쪽 파일 버전"
 
-#: Merge.rc:2227
+#: Merge.rc:2243
 #, c-format
 msgid "Short Result"
 msgstr "요약 결과"
 
-#: Merge.rc:2228
+#: Merge.rc:2244
 #, c-format
 msgid "Left Attributes"
 msgstr "왼쪽 속성"
 
-#: Merge.rc:2229
+#: Merge.rc:2245
 #, c-format
 msgid "Right Attributes"
 msgstr "오른쪽 속성"
 
-#: Merge.rc:2230
+#: Merge.rc:2246
 #, c-format
 msgid "Left EOL"
 msgstr "왼쪽 EOL"
 
-#: Merge.rc:2231
+#: Merge.rc:2247
 #, c-format
 msgid "Right EOL"
 msgstr "오른쪽 EOL"
 
-#: Merge.rc:2237
+#: Merge.rc:2253
 #, c-format
 msgid "Left Encoding"
 msgstr "왼쪽 인코딩"
 
-#: Merge.rc:2238
+#: Merge.rc:2254
 #, c-format
 msgid "Right Encoding"
 msgstr "오른쪽 인코딩"
 
-#: Merge.rc:2239
+#: Merge.rc:2255
 #, c-format
 msgid "Ignored Diff."
 msgstr "비교하지 않은 다른 부분"
 
-#: Merge.rc:2240
+#: Merge.rc:2256
 #, c-format
 msgid "Differences"
 msgstr "다른 부분"
 
-#: Merge.rc:2241
-#: Merge.rc:2545
+#: Merge.rc:2257
+#: Merge.rc:2561
 #, c-format
 msgid "Binary"
 msgstr "바이너리"
 
-#: Merge.rc:2247
+#: Merge.rc:2263
 #, c-format
 msgid "Unable to compare files"
 msgstr "파일을 비교할 수 없습니다"
 
-#: Merge.rc:2248
+#: Merge.rc:2264
 #, c-format
 msgid "Item aborted"
 msgstr "비교 중지된 파일"
 
-#: Merge.rc:2249
+#: Merge.rc:2265
 #, c-format
 msgid "File skipped"
 msgstr "필터링된 파일"
 
-#: Merge.rc:2250
+#: Merge.rc:2266
 #, c-format
 msgid "Folder skipped"
 msgstr "필터링된 디렉토리"
 
-#: Merge.rc:2251
+#: Merge.rc:2267
 #, c-format
 msgid "Left only: %1"
 msgstr ""
 
-#: Merge.rc:2252
+#: Merge.rc:2268
 #, c-format
 msgid "Right only: %1"
 msgstr ""
 
-#: Merge.rc:2253
+#: Merge.rc:2269
 #, c-format
 msgid "Binary files are identical"
 msgstr "동일한 파일(바이너리 파일)"
 
-#: Merge.rc:2255
+#: Merge.rc:2271
 #, c-format
 msgid "Binary files are different"
 msgstr "동일하지 않은 파일(바이너리 파일)"
 
-#: Merge.rc:2256
+#: Merge.rc:2272
 #, c-format
 msgid "Files are different"
 msgstr "동일하지 않은 파일"
 
-#: Merge.rc:2257
+#: Merge.rc:2273
 #, c-format
 msgid "Left Only"
 msgstr "왼쪽만 존재"
 
-#: Merge.rc:2258
+#: Merge.rc:2274
 #, c-format
 msgid "Right Only"
 msgstr "오른쪽만 존재"
 
-#: Merge.rc:2260
+#: Merge.rc:2276
 #, c-format
 msgid "Error"
 msgstr ""
 
-#: Merge.rc:2266
+#: Merge.rc:2282
 #, c-format
 msgid "Elapsed time: %ld ms"
 msgstr "걸린 시간: %ld ms"
 
-#: Merge.rc:2267
+#: Merge.rc:2283
 #, c-format
 msgid "1 item selected"
 msgstr "1 항목 선택"
 
-#: Merge.rc:2268
+#: Merge.rc:2284
 #, c-format
 msgid "%1 items selected"
 msgstr "%1 항목 선택"
 
-#: Merge.rc:2274
+#: Merge.rc:2290
 #, c-format
 msgid "Filename or folder name."
 msgstr "디렉토리 이름 또는 파일 이름."
 
-#: Merge.rc:2275
+#: Merge.rc:2291
 #, c-format
 msgid "Subfolder name when subfolders are included."
 msgstr "하위 디렉토리가 있을때 하위 디렉토리 이름."
 
-#: Merge.rc:2276
+#: Merge.rc:2292
 #, c-format
 msgid "Comparison result, long form."
 msgstr "자세한 비교 결과."
 
-#: Merge.rc:2277
+#: Merge.rc:2293
 #, c-format
 msgid "Left side modification date."
 msgstr "왼쪽 수정 시간."
 
-#: Merge.rc:2278
+#: Merge.rc:2294
 #, c-format
 msgid "Right side modification date."
 msgstr "오른쪽 수정 시간."
 
-#: Merge.rc:2279
+#: Merge.rc:2295
 #, c-format
 msgid "File's extension."
 msgstr "파일 확장자."
 
-#: Merge.rc:2280
+#: Merge.rc:2296
 #, c-format
 msgid "Left file size in bytes."
 msgstr "왼쪽 파일 크기(byte)."
 
-#: Merge.rc:2281
+#: Merge.rc:2297
 #, c-format
 msgid "Right file size in bytes."
 msgstr "오른쪽 파일 크기(byte)."
 
-#: Merge.rc:2282
+#: Merge.rc:2298
 #, c-format
 msgid "Left file size abbreviated."
 msgstr "왼쪽 파일 크기(짧게)"
 
-#: Merge.rc:2283
+#: Merge.rc:2299
 #, c-format
 msgid "Right file size abbreviated."
 msgstr "오른쪽 파일 크기(짧게)"
 
-#: Merge.rc:2289
+#: Merge.rc:2305
 #, c-format
 msgid "Left side creation time."
 msgstr "왼쪽 생성 시간."
 
-#: Merge.rc:2290
+#: Merge.rc:2306
 #, c-format
 msgid "Right side creation time."
 msgstr "오른쪽 생성 시간."
 
-#: Merge.rc:2291
+#: Merge.rc:2307
 #, c-format
 msgid "Tells which side has newer modification date."
 msgstr "어느쪽이 더 최근에 수정된 건지 알려줍니다."
 
-#: Merge.rc:2292
+#: Merge.rc:2308
 #, c-format
 msgid "Left side file version, only for some filetypes."
 msgstr "왼쪽 파일 버전(모든 파일 종류에 대해서 알 수는 없습니다)."
 
-#: Merge.rc:2293
+#: Merge.rc:2309
 #, c-format
 msgid "Right side file version, only for some filetypes."
 msgstr "오른쪽 파일 버전(모든 파일 종류에 대해서 알 수는 없습니다)."
 
-#: Merge.rc:2294
+#: Merge.rc:2310
 #, c-format
 msgid "Short comparison result."
 msgstr "간략한 요약 결과."
 
-#: Merge.rc:2295
+#: Merge.rc:2311
 #, c-format
 msgid "Left side attributes."
 msgstr "왼쪽 속성."
 
-#: Merge.rc:2296
+#: Merge.rc:2312
 #, c-format
 msgid "Right side attributes."
 msgstr "오른쪽 속성."
 
-#: Merge.rc:2297
+#: Merge.rc:2313
 #, c-format
 msgid "Left side file EOL type"
 msgstr "왼쪽 EOL"
 
-#: Merge.rc:2298
+#: Merge.rc:2314
 #, c-format
 msgid "Right side file EOL type"
 msgstr "오른쪽 EOL"
 
-#: Merge.rc:2304
+#: Merge.rc:2320
 #, c-format
 msgid "Left side encoding."
 msgstr "왼쪽 인코딩."
 
-#: Merge.rc:2305
+#: Merge.rc:2321
 #, c-format
 msgid "Right side encoding."
 msgstr "오른쪽 인코딩."
 
-#: Merge.rc:2306
+#: Merge.rc:2322
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
 msgstr "파일 내 비교하지 않은 부분의 개수. winmerge 에서 이부분은 무시되며, merge 되지 않습니다."
 
-#: Merge.rc:2307
+#: Merge.rc:2323
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
 msgstr "파일내 다른 부분의 개수. 이는 비교하지 않은 부분의 개수를 포함하지 않습니다."
 
-#: Merge.rc:2308
+#: Merge.rc:2324
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
 msgstr "바이너리 파일이면 * 표시."
 
-#: Merge.rc:2314
+#: Merge.rc:2330
 #, c-format
 msgid "Compare %1 with %2"
 msgstr "%1 & %2 비교"
 
-#: Merge.rc:2315
+#: Merge.rc:2331
 #, c-format
 msgid "Comma-separated list"
 msgstr ""
 
-#: Merge.rc:2316
+#: Merge.rc:2332
 #, c-format
 msgid "Tab-separated list"
 msgstr ""
 
-#: Merge.rc:2317
+#: Merge.rc:2333
 #, c-format
 msgid "Simple HTML"
 msgstr ""
 
-#: Merge.rc:2318
+#: Merge.rc:2334
 #, c-format
 msgid "Simple XML"
 msgstr ""
 
-#: Merge.rc:2320
+#: Merge.rc:2336
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
 msgstr "리포트 파일이 존재합니다. 덮어쓸까요?"
 
-#: Merge.rc:2321
+#: Merge.rc:2337
 #, c-format
 msgid ""
 "Error creating the report:\n"
@@ -4385,32 +4426,32 @@ msgstr ""
 "리포트 생성 실패:\n"
 "%1"
 
-#: Merge.rc:2322
+#: Merge.rc:2338
 #, c-format
 msgid "The report has been created successfully."
 msgstr "리포트 생성 성공"
 
-#: Merge.rc:2328
+#: Merge.rc:2344
 #, c-format
 msgid "The same file is opened in both panels."
 msgstr "양쪽 창에 동일한 파일이 열려있습니다."
 
-#: Merge.rc:2329
+#: Merge.rc:2345
 #, c-format
 msgid "The selected files are identical."
 msgstr "선택한 파일들은 내용이 동일합니다.."
 
-#: Merge.rc:2330
+#: Merge.rc:2346
 #, c-format
 msgid "An error occurred while comparing the files."
 msgstr "파일 비교 도중 에러가 발생했습니다."
 
-#: Merge.rc:2331
+#: Merge.rc:2347
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
 msgstr "임시 파일을 생성할 수 없습니다. 임시 파일 설정을 확인하세요."
 
-#: Merge.rc:2332
+#: Merge.rc:2348
 #, c-format
 msgid ""
 "These files use different carriage return types.\n"
@@ -4425,7 +4466,7 @@ msgstr ""
 "\n"
 "참고: 모든 CR을 항상 동일하게 작업하길 원하신다면, 비교탭에서 'carriage return 무시' 옵션을 선태하면 됩니다 (편집/옵션 에서 선택 가능)."
 
-#: Merge.rc:2333
+#: Merge.rc:2349
 #, c-format
 msgid ""
 "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
@@ -4436,27 +4477,27 @@ msgstr ""
 " 현재 옵션으로는 모든 EOL이 하나로 바뀌게 됩니다.\n"
 " 원본 EOL을 유지하기 원하십니까 ?"
 
-#: Merge.rc:2334
+#: Merge.rc:2350
 #, c-format
 msgid "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
 msgstr "'%2' 플러그인으로 '%1'을 prediff하는 중 에러가 발생했습니다. 더 이상 prediff가 수행되지 않습니다."
 
-#: Merge.rc:2335
+#: Merge.rc:2351
 #, c-format
 msgid "The selected folder is invalid."
 msgstr "선택 디렉토리 경로 오류입니다."
 
-#: Merge.rc:2336
+#: Merge.rc:2352
 #, c-format
 msgid "Cannot open a binary file to editor."
 msgstr "바이너리 파일은 비교할 수 없습니다."
 
-#: Merge.rc:2337
+#: Merge.rc:2353
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
 msgstr ""
 
-#: Merge.rc:2343
+#: Merge.rc:2359
 #, c-format
 msgid ""
 "Different codepages found in left (cp%d) and right (cp%d) files. \n"
@@ -4467,132 +4508,132 @@ msgstr ""
 "각각의 codepage를 유지하는 것이 작업시 보기는 좋으나 위험할 수 있습니.\n"
 "기존 윈도우 codepage 를 사용할까요(추천)?"
 
-#: Merge.rc:2344
+#: Merge.rc:2360
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
 msgstr "경고: 양쪽 파일이 인코딩이 틀립니다, 왼쪽=%s and 오른쪽=%s, merge 작업 진행시 정보를 잃어버릴 수 있습니다."
 
-#: Merge.rc:2345
+#: Merge.rc:2361
 #, c-format
 msgid "Information lost due to encoding errors: both files"
 msgstr ""
 
-#: Merge.rc:2346
+#: Merge.rc:2362
 #, c-format
 msgid "Information lost due to encoding errors: right file"
 msgstr ""
 
-#: Merge.rc:2347
+#: Merge.rc:2363
 #, c-format
 msgid "Information lost due to encoding errors: left file"
 msgstr ""
 
-#: Merge.rc:2353
+#: Merge.rc:2369
 #, c-format
 msgid "No difference"
 msgstr "동일함"
 
-#: Merge.rc:2354
+#: Merge.rc:2370
 #, c-format
 msgid "Line difference"
 msgstr "라인 비교"
 
-#: Merge.rc:2360
+#: Merge.rc:2376
 #, c-format
 msgid "Replaced %1 string(s)."
 msgstr "모두 %1 개를 바꾸었습니다."
 
-#: Merge.rc:2361
+#: Merge.rc:2377
 #, c-format
 msgid "Cannot find string \"%s\""
 msgstr "해당하는 문자열을 찾을 수 없습니다 : \"%s\""
 
-#: Merge.rc:2367
+#: Merge.rc:2383
 #, c-format
 msgid "Copy Full Path"
 msgstr "전체 경로 복사"
 
-#: Merge.rc:2368
+#: Merge.rc:2384
 #, c-format
 msgid "Copy Filename"
 msgstr "파일 이름 복사"
 
-#: Merge.rc:2374
+#: Merge.rc:2390
 #, c-format
 msgid "Location Pane"
 msgstr "위치창"
 
-#: Merge.rc:2375
+#: Merge.rc:2391
 #, c-format
 msgid "Diff Pane"
 msgstr "비교창"
 
-#: Merge.rc:2381
+#: Merge.rc:2397
 #, c-format
 msgid "Patch file successfully written."
 msgstr "Patch 파일이 작성되었습니다."
 
-#: Merge.rc:2382
+#: Merge.rc:2398
 #, c-format
 msgid "1. item is not found or is directory!"
 msgstr "1. 파일이 없거나 디렉토리입니다!"
 
-#: Merge.rc:2383
+#: Merge.rc:2399
 #, c-format
 msgid "2. item is not found or is directory!"
 msgstr "2. 파일이 없거나 디렉토리입니다!"
 
-#: Merge.rc:2384
+#: Merge.rc:2400
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
 msgstr "같은 이름의 패치가 존재합니다. 덮어쓸까요?"
 
-#: Merge.rc:2385
+#: Merge.rc:2401
 #, c-format
 msgid "[%1 files selected]"
 msgstr "[%1 개의 파일 선택됨]"
 
-#: Merge.rc:2386
+#: Merge.rc:2402
 #, c-format
 msgid "Normal"
 msgstr ""
 
-#: Merge.rc:2387
+#: Merge.rc:2403
 #, c-format
 msgid "Context"
 msgstr ""
 
-#: Merge.rc:2388
+#: Merge.rc:2404
 #, c-format
 msgid "Unified"
 msgstr ""
 
-#: Merge.rc:2389
+#: Merge.rc:2405
 #, c-format
 msgid "Could not write to file %1."
 msgstr "%1 파일에 쓸 수 없습니다."
 
-#: Merge.rc:2390
+#: Merge.rc:2406
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
 msgstr "절대경로가 아닙니다: %1"
 
-#: Merge.rc:2391
+#: Merge.rc:2407
 #, c-format
 msgid "Specify an output file"
 msgstr ""
 
-#: Merge.rc:2392
+#: Merge.rc:2408
 #, c-format
 msgid "Cannot create a patch file from binary files."
 msgstr "바이너리 파일에서는 패치를 생성할 수 없습니다."
 
-#: Merge.rc:2393
+#: Merge.rc:2409
 #, c-format
 msgid "Cannot create a patch file from directories."
 msgstr "디렉토리에서는 패치를 생성할 수 없습니다."
 
-#: Merge.rc:2394
+#: Merge.rc:2410
 #, c-format
 msgid ""
 "Please save all files first.\n"
@@ -4603,17 +4644,17 @@ msgstr ""
 "\n"
 "저장안된 파일이 있으면 패치를 성성할 수 없습니다."
 
-#: Merge.rc:2395
+#: Merge.rc:2411
 #, c-format
 msgid "Folder does not exist."
 msgstr "존재하지 않는 디렉토리입니다."
 
-#: Merge.rc:2400
+#: Merge.rc:2416
 #, c-format
 msgid "Current directory comparison results will be cleared."
 msgstr "현재 디렉토리 비교 결과가 닫힙니다."
 
-#: Merge.rc:2401
+#: Merge.rc:2417
 #, c-format
 msgid ""
 "Archive support is not enabled.\n"
@@ -4625,51 +4666,51 @@ msgstr ""
 "압축 지원 기능에 필요한 컴포넌트(7-zip and/or Merge7z*.dll)가 없습니다. \n"
 "압축 지원 기능에 대해 더 많은 정보를 원하시면 메뉴얼을 참조하세요."
 
-#: Merge.rc:2402
+#: Merge.rc:2418
 #, c-format
 msgid ""
 "\n"
 "Note: 7-Zip integration is disabled in WinMerge settings."
 msgstr ""
 
-#: Merge.rc:2403
+#: Merge.rc:2419
 #, c-format
 msgid ""
 "\n"
 "Note: 7-Zip integration is restricted to standalone operation in WinMerge settings."
 msgstr ""
 
-#: Merge.rc:2404
+#: Merge.rc:2420
 #, c-format
 msgid "Select file for export"
 msgstr ""
 
-#: Merge.rc:2405
+#: Merge.rc:2421
 #, c-format
 msgid "Select file for import"
 msgstr ""
 
-#: Merge.rc:2406
+#: Merge.rc:2422
 #, c-format
 msgid "Options imported from the file."
 msgstr ""
 
-#: Merge.rc:2407
+#: Merge.rc:2423
 #, c-format
 msgid "Options exported to the file."
 msgstr ""
 
-#: Merge.rc:2408
+#: Merge.rc:2424
 #, c-format
 msgid "Failed to import options from the file."
 msgstr ""
 
-#: Merge.rc:2409
+#: Merge.rc:2425
 #, c-format
 msgid "Failed to write options to the file."
 msgstr ""
 
-#: Merge.rc:2410
+#: Merge.rc:2426
 #, c-format
 msgid ""
 "You are about to close several compare windows.\n"
@@ -4677,470 +4718,485 @@ msgid ""
 "Do you want to continue?"
 msgstr ""
 
-#: Merge.rc:2416
+#: Merge.rc:2432
 #, c-format
 msgid "Regular expression error"
 msgstr "정규 표현식 오류"
 
-#: Merge.rc:2417
+#: Merge.rc:2433
 #, c-format
 msgid "No match"
 msgstr "동일하지 않음"
 
-#: Merge.rc:2418
+#: Merge.rc:2434
 #, c-format
 msgid "Invalid regular expression"
 msgstr "잘못된 정규 표현식"
 
-#: Merge.rc:2419
+#: Merge.rc:2435
 #, c-format
 msgid "Invalid collation character"
 msgstr "잘못된 collation 문자"
 
-#: Merge.rc:2420
+#: Merge.rc:2436
 #, c-format
 msgid "Invalid character class name"
 msgstr "잘못된 문자 클래스(character class) 이름"
 
-#: Merge.rc:2421
+#: Merge.rc:2437
 #, c-format
 msgid "Trailing backslash"
 msgstr "백슬래쉬 떼어내기"
 
-#: Merge.rc:2422
+#: Merge.rc:2438
 #, c-format
 msgid "Invalid back reference"
 msgstr "잘못된 후참조(backreference)"
 
-#: Merge.rc:2423
+#: Merge.rc:2439
 #, c-format
 msgid "Unmatched [ or [^"
 msgstr "일치하지 않는 [ 또는 [^"
 
-#: Merge.rc:2424
+#: Merge.rc:2440
 #, c-format
 msgid "Unmatched ( or \\("
 msgstr "일치하지 않는 ( 또는 \\("
 
-#: Merge.rc:2425
+#: Merge.rc:2441
 #, c-format
 msgid "Unmatched \\{"
 msgstr "일치하지 않는 \\{"
 
-#: Merge.rc:2426
+#: Merge.rc:2442
 #, c-format
 msgid "Invalid content of \\{\\}"
 msgstr "\\{\\} 내용 오류"
 
-#: Merge.rc:2427
+#: Merge.rc:2443
 #, c-format
 msgid "Invalid range end"
 msgstr "잘못된 범위"
 
-#: Merge.rc:2428
+#: Merge.rc:2444
 #, c-format
 msgid "Out of memory"
 msgstr "메모리 부족"
 
-#: Merge.rc:2429
+#: Merge.rc:2445
 #, c-format
 msgid "Invalid preceding regular expression"
 msgstr "잘못된 선행(preceding) 정규 표현식"
 
-#: Merge.rc:2430
+#: Merge.rc:2446
 #, c-format
 msgid "Premature end of regular expression"
 msgstr "이른(premature) 정규 표현식 종결"
 
-#: Merge.rc:2431
+#: Merge.rc:2447
 #, c-format
 msgid "Regular expression too big"
 msgstr "너무 큰 정규 표현식"
 
-#: Merge.rc:2436
+#: Merge.rc:2452
 #, c-format
 msgid "Unmatched ) or \\)"
 msgstr "일치하지 않는 ) 또는 \\)"
 
-#: Merge.rc:2442
+#: Merge.rc:2458
 #, c-format
 msgid "Western European"
 msgstr ""
 
-#: Merge.rc:2443
+#: Merge.rc:2459
 #, c-format
 msgid "Eastern European"
 msgstr ""
 
-#: Merge.rc:2444
+#: Merge.rc:2460
 #, c-format
 msgid "East Asian"
 msgstr ""
 
-#: Merge.rc:2445
+#: Merge.rc:2461
 #, c-format
 msgid "SE & SW Asian"
 msgstr ""
 
-#: Merge.rc:2446
+#: Merge.rc:2462
 #, c-format
 msgid "Middle Eastern"
 msgstr ""
 
-#: Merge.rc:2447
-#: Merge.rc:2457
+#: Merge.rc:2463
+#: Merge.rc:2473
 #, c-format
 msgid "Not applicable"
 msgstr ""
 
-#: Merge.rc:2453
+#: Merge.rc:2469
 #, c-format
 msgid "MS-Windows"
 msgstr ""
 
-#: Merge.rc:2454
+#: Merge.rc:2470
 #, c-format
 msgid "MS-DOS"
 msgstr ""
 
-#: Merge.rc:2455
+#: Merge.rc:2471
 #, c-format
 msgid "Macintosh"
 msgstr ""
 
-#: Merge.rc:2456
+#: Merge.rc:2472
 #, c-format
 msgid "IBM"
 msgstr ""
 
-#: Merge.rc:2463
+#: Merge.rc:2479
 #, c-format
 msgid "EBCDIC"
 msgstr ""
 
-#: Merge.rc:2464
+#: Merge.rc:2480
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
 msgstr ""
 
-#: Merge.rc:2470
+#: Merge.rc:2486
 #, c-format
 msgid "MS-DOS Latin US"
 msgstr ""
 
-#: Merge.rc:2471
+#: Merge.rc:2487
 #, c-format
 msgid "MS-DOS Arabic"
 msgstr ""
 
-#: Merge.rc:2472
+#: Merge.rc:2488
 #, c-format
 msgid "MS-DOS Greek"
 msgstr ""
 
-#: Merge.rc:2473
+#: Merge.rc:2489
 #, c-format
 msgid "MS-DOS Baltic Rim"
 msgstr ""
 
-#: Merge.rc:2474
+#: Merge.rc:2490
 #, c-format
 msgid "MS-DOS Latin 1"
 msgstr ""
 
-#: Merge.rc:2475
+#: Merge.rc:2491
 #, c-format
 msgid "MS-DOS Greek 1"
 msgstr ""
 
-#: Merge.rc:2476
+#: Merge.rc:2492
 #, c-format
 msgid "MS-DOS Latin 2"
 msgstr ""
 
-#: Merge.rc:2477
+#: Merge.rc:2493
 #, c-format
 msgid "MS-DOS Cyrillic"
 msgstr ""
 
-#: Merge.rc:2478
+#: Merge.rc:2494
 #, c-format
 msgid "MS-DOS Turkish"
 msgstr ""
 
-#: Merge.rc:2479
+#: Merge.rc:2495
 #, c-format
 msgid "MS-DOS Portuguese"
 msgstr ""
 
-#: Merge.rc:2485
+#: Merge.rc:2501
 #, c-format
 msgid "MS-DOS Icelandic"
 msgstr ""
 
-#: Merge.rc:2486
+#: Merge.rc:2502
 #, c-format
 msgid "MS-DOS Hebrew"
 msgstr ""
 
-#: Merge.rc:2487
+#: Merge.rc:2503
 #, c-format
 msgid "MS-DOS French Canada"
 msgstr ""
 
-#: Merge.rc:2488
+#: Merge.rc:2504
 #, c-format
 msgid "MS-DOS Nordic"
 msgstr ""
 
-#: Merge.rc:2489
+#: Merge.rc:2505
 #, c-format
 msgid "MS-DOS Cyrillic CIS 1"
 msgstr ""
 
-#: Merge.rc:2490
+#: Merge.rc:2506
 #, c-format
 msgid "MS-DOS Greek 2"
 msgstr ""
 
-#: Merge.rc:2496
+#: Merge.rc:2512
 #, c-format
 msgid "Windows Thai"
 msgstr ""
 
-#: Merge.rc:2497
+#: Merge.rc:2513
 #, c-format
 msgid "Windows Japanese"
 msgstr ""
 
-#: Merge.rc:2498
+#: Merge.rc:2514
 #, c-format
 msgid "Windows Simplified Chinese"
 msgstr ""
 
-#: Merge.rc:2499
+#: Merge.rc:2515
 #, c-format
 msgid "Windows Korean"
 msgstr ""
 
-#: Merge.rc:2500
+#: Merge.rc:2516
 #, c-format
 msgid "Windows Traditional Chinese"
 msgstr ""
 
-#: Merge.rc:2501
+#: Merge.rc:2517
 #, c-format
 msgid "Windows Latin 2"
 msgstr ""
 
-#: Merge.rc:2502
+#: Merge.rc:2518
 #, c-format
 msgid "Windows Cyrillic (Slavic)"
 msgstr ""
 
-#: Merge.rc:2503
+#: Merge.rc:2519
 #, c-format
 msgid "Windows Latin 1"
 msgstr ""
 
-#: Merge.rc:2504
+#: Merge.rc:2520
 #, c-format
 msgid "Windows Greek"
 msgstr ""
 
-#: Merge.rc:2505
+#: Merge.rc:2521
 #, c-format
 msgid "Windows Latin 5 (Turkish)"
 msgstr ""
 
-#: Merge.rc:2506
+#: Merge.rc:2522
 #, c-format
 msgid "Windows Hebrew"
 msgstr ""
 
-#: Merge.rc:2507
+#: Merge.rc:2523
 #, c-format
 msgid "Windows Arabic"
 msgstr ""
 
-#: Merge.rc:2508
+#: Merge.rc:2524
 #, c-format
 msgid "Windows Baltic Rim"
 msgstr ""
 
-#: Merge.rc:2509
+#: Merge.rc:2525
 #, c-format
 msgid "Windows Vietnamese"
 msgstr ""
 
-#: Merge.rc:2515
+#: Merge.rc:2531
 #, c-format
 msgid "Macintosh Roman"
 msgstr ""
 
-#: Merge.rc:2516
+#: Merge.rc:2532
 #, c-format
 msgid "Macintosh Greek"
 msgstr ""
 
-#: Merge.rc:2517
+#: Merge.rc:2533
 #, c-format
 msgid "Macintosh Cyrillic"
 msgstr ""
 
-#: Merge.rc:2518
+#: Merge.rc:2534
 #, c-format
 msgid "Macintosh "
 msgstr ""
 
-#: Merge.rc:2519
+#: Merge.rc:2535
 #, c-format
 msgid "Macintosh Central Europe"
 msgstr ""
 
-#: Merge.rc:2520
+#: Merge.rc:2536
 #, c-format
 msgid "Macintosh Turkish"
 msgstr ""
 
-#: Merge.rc:2529
+#: Merge.rc:2545
 #, c-format
 msgid "Approximates ISO-8859-2"
 msgstr ""
 
-#: Merge.rc:2532
+#: Merge.rc:2548
 #, c-format
 msgid "Approximates ISO-8859-1"
 msgstr ""
 
-#: Merge.rc:2533
+#: Merge.rc:2549
 #, c-format
 msgid "Approximates ISO-8859-7"
 msgstr ""
 
-#: Merge.rc:2534
+#: Merge.rc:2550
 #, c-format
 msgid "Approximates ISO-8859-9"
 msgstr ""
 
-#: Merge.rc:2535
+#: Merge.rc:2551
 #, c-format
 msgid "Approximates ISO-8859-8"
 msgstr ""
 
-#: Merge.rc:2541
+#: Merge.rc:2557
 #, c-format
 msgid "Win"
 msgstr ""
 
-#: Merge.rc:2542
+#: Merge.rc:2558
 #, c-format
 msgid "Mac"
 msgstr ""
 
-#: Merge.rc:2543
+#: Merge.rc:2559
 #, c-format
 msgid "Unix"
 msgstr ""
 
-#: Merge.rc:2544
+#: Merge.rc:2560
 #, c-format
 msgid "Mixed"
 msgstr ""
 
-#: Merge.rc:2551
+#: Merge.rc:2562
 #, c-format
-msgid " B"
-msgstr ""
-
-#: Merge.rc:2552
-#, c-format
-msgid " KB"
-msgstr ""
-
-#: Merge.rc:2553
-#, c-format
-msgid " MB"
-msgstr ""
-
-#: Merge.rc:2554
-#, c-format
-msgid " GB"
-msgstr ""
-
-#: Merge.rc:2555
-#, c-format
-msgid " TB"
-msgstr ""
-
-#: Merge.rc:2556
-#, c-format
-msgid " PB"
+msgid "LF"
 msgstr ""
 
 #: Merge.rc:2563
 #, c-format
+msgid "CR"
+msgstr ""
+
+#: Merge.rc:2564
+#, c-format
+msgid "CRLF"
+msgstr ""
+
+#: Merge.rc:2571
+#, c-format
+msgid " B"
+msgstr ""
+
+#: Merge.rc:2572
+#, c-format
+msgid " KB"
+msgstr ""
+
+#: Merge.rc:2573
+#, c-format
+msgid " MB"
+msgstr ""
+
+#: Merge.rc:2574
+#, c-format
+msgid " GB"
+msgstr ""
+
+#: Merge.rc:2575
+#, c-format
+msgid " TB"
+msgstr ""
+
+#: Merge.rc:2576
+#, c-format
+msgid " PB"
+msgstr ""
+
+#: Merge.rc:2583
+#, c-format
 msgid "Save the left file"
 msgstr "왼쪽 파일 저장"
 
-#: Merge.rc:2564
+#: Merge.rc:2584
 #, c-format
 msgid "Save the right file"
 msgstr "오른쪽 파일 저장"
 
-#: Merge.rc:2565
+#: Merge.rc:2585
 #, c-format
 msgid "Save the left file with name..."
 msgstr "왼쪽 파일 다른 이름으로 저장..."
 
-#: Merge.rc:2566
+#: Merge.rc:2586
 #, c-format
 msgid "Save the right file with name..."
 msgstr "오른쪽 파일 다른 이름으로 저장..."
 
-#: Merge.rc:2567
+#: Merge.rc:2587
 #, c-format
 msgid "Change left file/dir read-only status"
 msgstr "왼쪽 디렉토리/파일 읽기 속성 변경"
 
-#: Merge.rc:2568
+#: Merge.rc:2588
 #, c-format
 msgid "Change right file/dir read-only status"
 msgstr "오른쪽 디렉토리/파일 읽기 속성 변경"
 
-#: Merge.rc:2569
+#: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to DOS mode"
 msgstr "DOS 모드로 EOL 변경"
 
-#: Merge.rc:2570
+#: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to UNIX mode"
 msgstr "UNIX 모드로 EOL 변경"
 
-#: Merge.rc:2571
+#: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to MAC mode"
 msgstr "MAC 모드로 EOL 변경"
 
-#: Merge.rc:2572
+#: Merge.rc:2592
 #, c-format
 msgid "Switch between editing and merging modes"
 msgstr "편집 모드/Merge 모드 전환"
 
-#: Merge.rc:2573
+#: Merge.rc:2593
 #, c-format
 msgid ""
 "View and adjust file encoding properties\n"
 "File encoding properties"
 msgstr ""
 
-#: Merge.rc:2574
+#: Merge.rc:2594
 #, c-format
 msgid "Open and resolve conflict file"
 msgstr ""
 
-#: Merge.rc:2580
+#: Merge.rc:2600
 #, c-format
 msgid ""
 "Select difference area in the current line\n"
@@ -5149,7 +5205,7 @@ msgstr ""
 "현재 라인에서 다른 부분을 선택합니다\n"
 "현재 라인에서 다른 부분"
 
-#: Merge.rc:2581
+#: Merge.rc:2601
 #, c-format
 msgid ""
 "Go to line or difference\n"
@@ -5158,7 +5214,7 @@ msgstr ""
 "선택 라인이나 다른 부분으로 이동합니다\n"
 "이동 (Ctrl+G)"
 
-#: Merge.rc:2582
+#: Merge.rc:2602
 #, c-format
 msgid ""
 "Set program options\n"
@@ -5167,7 +5223,7 @@ msgstr ""
 "옵션을 설정합니다.\n"
 "옵션"
 
-#: Merge.rc:2583
+#: Merge.rc:2603
 #, c-format
 msgid ""
 "Refresh display\n"
@@ -5176,37 +5232,37 @@ msgstr ""
 "새로 고침\n"
 "새로 고침 (F5)"
 
-#: Merge.rc:2584
+#: Merge.rc:2604
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
 msgstr "현재 라인 앞에 행번호를 붙여서 클립보드로 복사합니다"
 
-#: Merge.rc:2585
+#: Merge.rc:2605
 #, c-format
 msgid "Refresh selected items"
 msgstr "선택된 파일을 새로고침"
 
-#: Merge.rc:2586
+#: Merge.rc:2606
 #, c-format
 msgid "Toggle bookmark"
 msgstr "북마크 토글"
 
-#: Merge.rc:2587
+#: Merge.rc:2607
 #, c-format
 msgid "Go to next bookmark"
 msgstr "다음 북마크로 이동"
 
-#: Merge.rc:2588
+#: Merge.rc:2608
 #, c-format
 msgid "Go to previous bookmark"
 msgstr "이전 북마크로 이동"
 
-#: Merge.rc:2589
+#: Merge.rc:2609
 #, c-format
 msgid "Clear all bookmarks"
 msgstr "모든 북마크 삭제"
 
-#: Merge.rc:2595
+#: Merge.rc:2615
 #, c-format
 msgid ""
 "Displays items that are exactly the same\n"
@@ -5215,7 +5271,7 @@ msgstr ""
 "동일한 파일을 표시합니다.\n"
 "동일한 파일 보이기"
 
-#: Merge.rc:2596
+#: Merge.rc:2616
 #, c-format
 msgid ""
 "Displays items that have differences\n"
@@ -5224,7 +5280,7 @@ msgstr ""
 "다른 파일을 표시합니다.\n"
 "다른 파일 보이기"
 
-#: Merge.rc:2597
+#: Merge.rc:2617
 #, c-format
 msgid ""
 "Displays items that exist in only on the left side\n"
@@ -5233,7 +5289,7 @@ msgstr ""
 "왼쪽에만 존재하는 파일을 표시합니다.\n"
 "왼쪽에만 존재하는 파일 보이기"
 
-#: Merge.rc:2598
+#: Merge.rc:2618
 #, c-format
 msgid ""
 "Displays items that exist in only on the right side\n"
@@ -5242,7 +5298,7 @@ msgstr ""
 "오른쪽에만 존재하는 파일을 표시합니다.\n"
 "오른쪽에만 존재하는 파일 보이기"
 
-#: Merge.rc:2599
+#: Merge.rc:2619
 #, c-format
 msgid ""
 "Displays binary files\n"
@@ -5251,7 +5307,7 @@ msgstr ""
 "바이너리 파일을 표시합니다.\n"
 "바이너리 파일 보이기"
 
-#: Merge.rc:2600
+#: Merge.rc:2620
 #, c-format
 msgid ""
 "Displays skipped items\n"
@@ -5260,7 +5316,7 @@ msgstr ""
 "비교하지 않은 파일을 표시합니다.\n"
 "비교하지 않은 파일 보이기"
 
-#: Merge.rc:2606
+#: Merge.rc:2626
 #, c-format
 msgid ""
 "Select the font for the view\n"
@@ -5269,7 +5325,7 @@ msgstr ""
 "폰트를 선택합니다\n"
 "폰트 선택"
 
-#: Merge.rc:2607
+#: Merge.rc:2627
 #, c-format
 msgid ""
 "Revert to using the default system font for view\n"
@@ -5278,27 +5334,27 @@ msgstr ""
 "시스템 기본 폰트로 설정합니다.\n"
 "기본 폰트"
 
-#: Merge.rc:2608
+#: Merge.rc:2628
 #, c-format
 msgid "Shows whitespace characters"
 msgstr "공백문자를 표시합니다."
 
-#: Merge.rc:2609
+#: Merge.rc:2629
 #, c-format
 msgid "Toggle Diff Pane"
 msgstr "선택 비교창을 보거나 숨깁니다."
 
-#: Merge.rc:2610
+#: Merge.rc:2630
 #, c-format
 msgid "Location pane shows overall picture from files"
 msgstr "위치 표시창은 전체 비교 상황을 이미지로 보여줍니다."
 
-#: Merge.rc:2611
+#: Merge.rc:2631
 #, c-format
 msgid "Show folder compare statistics dialog"
 msgstr "디렉토리 비교 상황을 표시합니다."
 
-#: Merge.rc:2612
+#: Merge.rc:2632
 #, c-format
 msgid ""
 "Select the current user interfacce language\n"
@@ -5307,7 +5363,7 @@ msgstr ""
 "언어를 선택합니다.\n"
 "언어"
 
-#: Merge.rc:2613
+#: Merge.rc:2633
 #, c-format
 msgid ""
 "Shows differences inside lines with different color\n"
@@ -5316,12 +5372,12 @@ msgstr ""
 "현재 라인에서 다른 부분을 다른색으로 보여줍니다.\n"
 "Line Diff 보이기"
 
-#: Merge.rc:2614
+#: Merge.rc:2634
 #, c-format
 msgid "Swap the positions of the two panes"
 msgstr "두 창(pane)의 위치를 서로 바꿉니다."
 
-#: Merge.rc:2615
+#: Merge.rc:2635
 #, c-format
 msgid ""
 "Shows line numbers\n"
@@ -5330,7 +5386,7 @@ msgstr ""
 "행번호를 표시합니다.\n"
 "행번호 보이기"
 
-#: Merge.rc:2616
+#: Merge.rc:2636
 #, c-format
 msgid ""
 "Enable word wrap\n"
@@ -5339,29 +5395,29 @@ msgstr ""
 "자동줄바꿈 기능을 사용합니다.\n"
 "자동줄바꿈"
 
-#: Merge.rc:2617
+#: Merge.rc:2637
 #, c-format
 msgid ""
 "Shows selection margins for both panes\n"
 "Show Selection Margins"
 msgstr ""
 
-#: Merge.rc:2618
+#: Merge.rc:2638
 #, c-format
 msgid "Increase text size"
 msgstr ""
 
-#: Merge.rc:2619
+#: Merge.rc:2639
 #, c-format
 msgid "Decrease text size"
 msgstr ""
 
-#: Merge.rc:2620
+#: Merge.rc:2640
 #, c-format
 msgid "Reset text zoom to default size"
 msgstr ""
 
-#: Merge.rc:2626
+#: Merge.rc:2646
 #, c-format
 msgid ""
 "Scroll to the previous difference\n"
@@ -5370,7 +5426,7 @@ msgstr ""
 "이전 다른 부분으로 이동합니다.\n"
 "이전 다른 부분 (Alt Up)"
 
-#: Merge.rc:2627
+#: Merge.rc:2647
 #, c-format
 msgid ""
 "Scroll to the next difference\n"
@@ -5379,7 +5435,7 @@ msgstr ""
 "다음 다른 부분으로 이동합니다.\n"
 "다음 다른 부분 (Alt Down)"
 
-#: Merge.rc:2628
+#: Merge.rc:2648
 #, c-format
 msgid ""
 "Scroll to the first difference\n"
@@ -5388,7 +5444,7 @@ msgstr ""
 "처음 다른 부분으로 이동합니다.\n"
 "처음 다른 부분 (Alt+Home)"
 
-#: Merge.rc:2629
+#: Merge.rc:2649
 #, c-format
 msgid ""
 "Scroll to the current difference\n"
@@ -5397,7 +5453,7 @@ msgstr ""
 "현재 선택되어 있는 다른 부분으로 이동합니다.\n"
 "현재 선택된 다른 부분 (Alt+Enter)"
 
-#: Merge.rc:2630
+#: Merge.rc:2650
 #, c-format
 msgid ""
 "Scroll to the last difference\n"
@@ -5406,7 +5462,7 @@ msgstr ""
 "마지막 다른 부분으로 이동합니다.\n"
 "마지막 다른 부분 (Alt+End)"
 
-#: Merge.rc:2631
+#: Merge.rc:2651
 #, c-format
 msgid ""
 "Copy the selected text to the right file\n"
@@ -5415,7 +5471,7 @@ msgstr ""
 "선택 영역을 오른쪽으로 복사합니다.\n"
 "오른쪽으로 복사 (Alt Right)"
 
-#: Merge.rc:2632
+#: Merge.rc:2652
 #, c-format
 msgid ""
 "Copy the selected text to the left file\n"
@@ -5424,7 +5480,7 @@ msgstr ""
 "선택 영역을 왼쪽으로 복사합니다.\n"
 "왼쪽으로 복사 (Alt Left)"
 
-#: Merge.rc:2633
+#: Merge.rc:2653
 #, c-format
 msgid ""
 "Copy difference to right and advance to next\n"
@@ -5433,7 +5489,7 @@ msgstr ""
 "다른 부분을 오른쪽으로 복사하고, 다음 다른 부분으로 이동합니다\n"
 "오른쪽으로 복사 - Advance (Ctrl+Alt+Right)"
 
-#: Merge.rc:2634
+#: Merge.rc:2654
 #, c-format
 msgid ""
 "Copy difference to left and advance to next\n"
@@ -5442,7 +5498,7 @@ msgstr ""
 "다른 부분을 왼쪽으로 복사하고, 다음 다른 부분으로 이동합니다\n"
 "왼쪽으로 복사 - Advance (Ctrl+Alt+Left)"
 
-#: Merge.rc:2635
+#: Merge.rc:2655
 #, c-format
 msgid ""
 "Copy all differences to the right file\n"
@@ -5451,7 +5507,7 @@ msgstr ""
 "모든 다른 부분을 오른쪽 파일로 복사합니다.\n"
 "모두 오른쪽으로"
 
-#: Merge.rc:2636
+#: Merge.rc:2656
 #, c-format
 msgid ""
 "Copy all differences to the left file\n"
@@ -5460,72 +5516,72 @@ msgstr ""
 "모든 다른 부분을 왼쪽 파일로 복사합니다.\n"
 "모두 왼쪽으로"
 
-#: Merge.rc:2637
+#: Merge.rc:2657
 #, c-format
 msgid "Delete selected items from both directories"
 msgstr "양쪽 파일을 모두 삭제합니다."
 
-#: Merge.rc:2638
+#: Merge.rc:2658
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
 msgstr "선택된 파일들을 비교합니다 (여러개가 선택되어 있으면 첫번째 파일을 먼저 비교합니다)"
 
-#: Merge.rc:2644
+#: Merge.rc:2664
 #, c-format
 msgid "Select and reorder directory compare columns"
 msgstr "디렉토리 비교 설정 선택/순서 변경"
 
-#: Merge.rc:2645
+#: Merge.rc:2665
 #, c-format
 msgid "Generate a patch-file"
 msgstr "patch 파일 생성"
 
-#: Merge.rc:2646
+#: Merge.rc:2666
 #, c-format
 msgid "Select and modify filters"
 msgstr "필터 선택/수정"
 
-#: Merge.rc:2647
+#: Merge.rc:2667
 #, c-format
 msgid "Generates a report from compare results"
 msgstr "비교결과 리포트 생성"
 
-#: Merge.rc:2653
+#: Merge.rc:2673
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
 msgstr "unpacker를 선택합니다 (디렉토리 비교에는 unapcking 하지 않습니다)"
 
-#: Merge.rc:2654
+#: Merge.rc:2674
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
 msgstr "양쪽 파일 모두에 unpacker 가 적용됩니다 (one file only needs the extension)"
 
-#: Merge.rc:2655
+#: Merge.rc:2675
 #, c-format
 msgid "Select an unpacker to edit this file"
 msgstr "이 파일의 편집을 위한 unpacker를 선택하세요"
 
-#: Merge.rc:2656
+#: Merge.rc:2676
 #, c-format
 msgid "No prediffer (normal)"
 msgstr "prediffer 사용 안함(normal)"
 
-#: Merge.rc:2657
+#: Merge.rc:2677
 #, c-format
 msgid "Suggested plugins"
 msgstr "권장하는 플러그인"
 
-#: Merge.rc:2658
+#: Merge.rc:2678
 #, c-format
 msgid "Other plugins"
 msgstr "다른 플러그인"
 
-#: Merge.rc:2659
+#: Merge.rc:2679
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "모든 플러그인을 내리고 다시 로드 (for 개발자)"
 
-#: Merge.rc:2665
+#: Merge.rc:2685
 #, c-format
 msgid ""
 "Activates next file visible\n"
@@ -5534,297 +5590,297 @@ msgstr ""
 "다음 파일을 활성화합니다\n"
 "다음 파일 활성화"
 
-#: Merge.rc:2666
+#: Merge.rc:2686
 #, c-format
 msgid "Closes all open windows"
 msgstr "모든 창 닫기"
 
-#: Merge.rc:2672
+#: Merge.rc:2692
 #, c-format
-msgid "Opens the WinMerge help\nWinMerge Help"
+msgid "Opens the WinMerge Help\nWinMerge Help"
 msgstr ""
 
-#: Merge.rc:2673
+#: Merge.rc:2693
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
 msgstr "WinMerge 버전정보 및 설정을 텍스트 파일로 출력합니다"
 
-#: Merge.rc:2674
+#: Merge.rc:2694
 #, c-format
-msgid "Display the GNU public license"
-msgstr "GNU public license 봅니다."
+msgid "Display the GNU General Public License"
+msgstr ""
 
-#: Merge.rc:2675
+#: Merge.rc:2695
 #, c-format
 msgid "Private Build: %1"
 msgstr ""
 
-#: Merge.rc:2676
+#: Merge.rc:2696
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
 msgstr ""
 
-#: Merge.rc:2677
+#: Merge.rc:2697
 #, c-format
 msgid "Opens the translations website\nTranslations"
 msgstr ""
 
-#: Merge.rc:2683
+#: Merge.rc:2703
 #, c-format
 msgid "Plugin Settings"
 msgstr "플러그인 세팅"
 
-#: Merge.rc:2684
+#: Merge.rc:2704
 #, c-format
 msgid "No prediffer"
 msgstr "prediffer 사용안함"
 
-#: Merge.rc:2685
+#: Merge.rc:2705
 #, c-format
 msgid "Prediff if possible"
 msgstr "prediff 사용 가능하면 사용하기"
 
-#: Merge.rc:2687
+#: Merge.rc:2707
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
 msgstr "WSH 존재 하지 않음 - .sct 스크립트를 사용하지 않음"
 
-#: Merge.rc:2688
+#: Merge.rc:2708
 #, c-format
 msgid "<None>"
 msgstr "<사용안함>"
 
-#: Merge.rc:2689
+#: Merge.rc:2709
 #, c-format
 msgid "<Automatic>"
 msgstr "<자동>"
 
-#: Merge.rc:2695
+#: Merge.rc:2715
 #, c-format
 msgid "Open the file with registered application"
 msgstr "설정된 프로그램으로 파일을 엽니다"
 
-#: Merge.rc:2696
+#: Merge.rc:2716
 #, c-format
 msgid "Open the file with external editor"
 msgstr "외부 편집기로 파일을 엽니다"
 
-#: Merge.rc:2697
+#: Merge.rc:2717
 #, c-format
 msgid "Open the file with a particular program"
 msgstr "파일을 열 특정 프로그램을 선택합니다"
 
-#: Merge.rc:2703
+#: Merge.rc:2723
 #, c-format
 msgid "Do not display moved blocks"
 msgstr "이동영역을 표시하지 않습니다."
 
-#: Merge.rc:2704
+#: Merge.rc:2724
 #, c-format
 msgid "Display all moved blocks"
 msgstr ""
 
-#: Merge.rc:2705
+#: Merge.rc:2725
 #, c-format
 msgid "Display moved blocks only from current diff"
 msgstr "현재 선택된 이동영역만 표시합니다."
 
-#: Merge.rc:2706
+#: Merge.rc:2726
 #, c-format
 msgid "Go to diff under cursor"
 msgstr "커서가 있는 다른 부분으로 이동합니다."
 
-#: Merge.rc:2707
+#: Merge.rc:2727
 #, c-format
 msgid "G&oto Diff %1 of %2"
 msgstr "다른 부분으로 이동합니다. (%1 of %2)"
 
-#: Merge.rc:2708
+#: Merge.rc:2728
 #, c-format
 msgid "G&oto Line %1"
 msgstr "%1라인으로 이동"
 
-#: Merge.rc:2714
+#: Merge.rc:2734
 #, c-format
 msgid "Disabled"
 msgstr "사용안함"
 
-#: Merge.rc:2715
+#: Merge.rc:2735
 #, c-format
 msgid "From file system"
 msgstr "파일 시스템 이용"
 
-#: Merge.rc:2716
+#: Merge.rc:2736
 #, c-format
 msgid "From MRU list"
 msgstr "MRU(Most Recently Used) list 이용"
 
-#: Merge.rc:2723
+#: Merge.rc:2743
 #, c-format
 msgid "ASP"
 msgstr ""
 
-#: Merge.rc:2724
+#: Merge.rc:2744
 #, c-format
 msgid "Basic"
 msgstr ""
 
-#: Merge.rc:2725
+#: Merge.rc:2745
 #, c-format
 msgid "Batch"
 msgstr ""
 
-#: Merge.rc:2726
+#: Merge.rc:2746
 #, c-format
 msgid "C/C++"
 msgstr ""
 
-#: Merge.rc:2727
+#: Merge.rc:2747
 #, c-format
 msgid "C#"
 msgstr ""
 
-#: Merge.rc:2728
+#: Merge.rc:2748
 #, c-format
 msgid "CSS"
 msgstr ""
 
-#: Merge.rc:2729
+#: Merge.rc:2749
 #, c-format
 msgid "DCL"
 msgstr ""
 
-#: Merge.rc:2730
+#: Merge.rc:2750
 #, c-format
 msgid "Fortran"
 msgstr ""
 
-#: Merge.rc:2731
+#: Merge.rc:2751
 #, c-format
 msgid "HTML"
 msgstr ""
 
-#: Merge.rc:2732
+#: Merge.rc:2752
 #, c-format
 msgid "INI"
 msgstr ""
 
-#: Merge.rc:2733
+#: Merge.rc:2753
 #, c-format
 msgid "InnoSetup"
 msgstr ""
 
-#: Merge.rc:2734
+#: Merge.rc:2754
 #, c-format
 msgid "InstallShield"
 msgstr ""
 
-#: Merge.rc:2735
+#: Merge.rc:2755
 #, c-format
 msgid "Java"
 msgstr ""
 
-#: Merge.rc:2736
+#: Merge.rc:2756
 #, c-format
 msgid "AutoLISP"
 msgstr ""
 
-#: Merge.rc:2737
+#: Merge.rc:2757
 #, c-format
 msgid "NSIS"
 msgstr ""
 
-#: Merge.rc:2738
+#: Merge.rc:2758
 #, c-format
 msgid "Pascal"
 msgstr ""
 
-#: Merge.rc:2739
+#: Merge.rc:2759
 #, c-format
 msgid "Perl"
 msgstr ""
 
-#: Merge.rc:2740
+#: Merge.rc:2760
 #, c-format
 msgid "PHP"
 msgstr ""
 
-#: Merge.rc:2741
+#: Merge.rc:2761
 #, c-format
 msgid "Portable Object"
 msgstr ""
 
-#: Merge.rc:2742
+#: Merge.rc:2762
 #, c-format
 msgid "PowerShell"
 msgstr ""
 
-#: Merge.rc:2743
+#: Merge.rc:2763
 #, c-format
 msgid "Python"
 msgstr ""
 
-#: Merge.rc:2744
+#: Merge.rc:2764
 #, c-format
 msgid "REXX"
 msgstr ""
 
-#: Merge.rc:2745
+#: Merge.rc:2765
 #, c-format
 msgid "Resources"
 msgstr ""
 
-#: Merge.rc:2746
+#: Merge.rc:2766
 #, c-format
 msgid "Ruby"
 msgstr ""
 
-#: Merge.rc:2747
+#: Merge.rc:2767
 #, c-format
 msgid "SGML"
 msgstr ""
 
-#: Merge.rc:2748
+#: Merge.rc:2768
 #, c-format
 msgid "Shell"
 msgstr ""
 
-#: Merge.rc:2749
+#: Merge.rc:2769
 #, c-format
 msgid "SIOD"
 msgstr ""
 
-#: Merge.rc:2750
+#: Merge.rc:2770
 #, c-format
 msgid "SQL"
 msgstr ""
 
-#: Merge.rc:2751
+#: Merge.rc:2771
 #, c-format
 msgid "TCL"
 msgstr ""
 
-#: Merge.rc:2752
+#: Merge.rc:2772
 #, c-format
 msgid "TEX"
 msgstr ""
 
-#: Merge.rc:2753
+#: Merge.rc:2773
 #, c-format
 msgid "XML"
 msgstr ""
 
-#: Merge.rc:2758
+#: Merge.rc:2778
 #, c-format
 msgid "Hide the toolbar"
 msgstr ""
 
-#: Merge.rc:2759
+#: Merge.rc:2779
 #, c-format
 msgid "Show small toolbar"
 msgstr ""
 
-#: Merge.rc:2760
+#: Merge.rc:2780
 #, c-format
 msgid "Show big toolbar"
 msgstr ""
