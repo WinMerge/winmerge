@@ -87,6 +87,10 @@ def cleanup_build():
             os.remove('build/mergeunicoderelease/WinMergeU.exe')
         if os.path.exists('build/mergeunicoderelease/ShellExtensionU.dll'):
             os.remove('build/mergeunicoderelease/ShellExtensionU.dll')
+    except EnvironmentError, einst:
+        print 'Error deleting files: '
+        print einst
+        return False;
     except:
         print 'Error deleting files: '
         print sys.exc_info()[0]
