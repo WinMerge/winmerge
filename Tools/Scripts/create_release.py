@@ -54,7 +54,7 @@ vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003\\Common7\\IDE'
 # VS IDE executable - set this to command starting Visual Studio IDE
 vs_bin = 'devenv.com'
 # Relative path where to create a release folder
-dist_root_folder = '/WinMerge/Releases'
+dist_root_folder = 'distrib'
 
 # END CONFIGURATION - you don't need to edit anything below...
 
@@ -355,6 +355,16 @@ def main(argv):
         print 'Tools/Scripts -folder (where this script is located).'
         sys.exit()
 
+    # Create the distribution folder if it doesn't exist
+    try:
+        if not os.path.exists(dist_root_folder):
+            os.mkdir(dist_root_folder)
+    except EnvironmentError, einst:
+        print 'Error creating distribution folder: ' + dist_root_folder
+        print einst
+        sys.exit()
+
+    # Remove old build's files
     if cleanup_build() == False:
         sys.exit()
 
