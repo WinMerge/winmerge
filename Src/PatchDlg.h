@@ -19,35 +19,19 @@
  *
  * @brief Declaration file for patch creation dialog
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_)
 #define AFX_PATCHDLG_H__AB3CE671_1328_11D7_B088_005004D9D386__INCLUDED_
 
-
 #include "resource.h"
 #include "SuperComboBox.h"
 
+struct PATCHFILES;
+
 /////////////////////////////////////////////////////////////////////////////
 // PatchDlg dialog
-
-/** 
- * @brief Files used for patch creating.
- * Stores paths of two files used to create a patch. Left side file
- * is considered as "original" file and right side file as "changed" file.
- * Times are for printing filetimes to patch file.
- */
-struct PATCHFILES
-{
-	String lfile; /**< Left file */
-	String pathLeft; /**< Left path added to patch file */
-	String rfile; /**< Right file */
-	String pathRight; /**< Right path added to patch file */
-	time_t ltime; /**< Left time */
-	time_t rtime; /**< Right time */
-	PATCHFILES() : ltime(0), rtime(0) {};
-};
 
 /** 
  * @brief Dialog class for Generate Patch -dialog.

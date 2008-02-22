@@ -25,13 +25,37 @@
 #include "stdafx.h"
 #include "UnicodeString.h"
 #include "DiffWrapper.h"
-#include "patchDlg.h"
 #include "patchtool.h"
+#include "PatchDlg.h"
 #include "Coretools.h"
 #include "paths.h"
 
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#undef THIS_FILE
+static char THIS_FILE[] = __FILE__;
+#endif
+
+/**
+ * @brief Default constructor.
+ */
+CPatchTool::CPatchTool()
+: m_pDlgPatch(NULL)
+{
+}
+
+/**
+ * @brief Default destructor.
+ */
+CPatchTool::~CPatchTool()
+{
+	delete m_pDlgPatch;
+}
+
 /** 
- * @brief Adds files to list for patching
+ * @brief Adds files to list for patching.
+ * @param [in] file1 First file to add.
+ * @param [in] file2 Second file to add.
  */
 void CPatchTool::AddFiles(const String &file1, const String &file2)
 {
@@ -43,6 +67,17 @@ void CPatchTool::AddFiles(const String &file1, const String &file2)
 	m_fileList.AddTail(files);
 }
 
+/**
+ * @brief Add files with alternative paths.
+ * This function adds files with alternative paths. Alternative path is the
+ * one that is added to the patch file. So while @p file1 and @p file2 are
+ * paths in disk (can be temp file names), @p altPath1 and @p altPath2 are
+ * "visible " paths printed to the patch file.
+ * @param [in] file1 First path in disk.
+ * @param [in] altPath1 First path as printed to the patch file.
+ * @param [in] file2 Second path in disk.
+ * @param [in] altPath2 Second path as printed to the patch file.
+ */
 void CPatchTool::AddFiles(const String &file1, const String &altPath1,
 		const String &file2, const String &altPath2)
 {
@@ -57,7 +92,7 @@ void CPatchTool::AddFiles(const String &file1, const String &altPath1,
 }
 
 /** 
- * @brief Create patch from files given
+ * @brief Create a patch from files given.
  * @note Files can be given using AddFiles() or selecting using
  * CPatchDlg.
  */
@@ -68,6 +103,9 @@ int CPatchTool::CreatePatch()
 	BOOL bDiffSuccess;
 	int retVal = 0;
 
+	if (m_pDlgPatch == NULL)
+		m_pDlgPatch = new CPatchDlg();
+
 	// If files already inserted, add them to dialog
 	int count = m_fileList.GetCount();
 	POSITION pos = m_fileList.GetHeadPosition();
@@ -75,13 +113,13 @@ int CPatchTool::CreatePatch()
 	for (int i = 0; i < count; i++)
 	{
 		PATCHFILES files = m_fileList.GetNext(pos);
-		m_dlgPatch.AddItem(files);
+		m_pDlgPatch->AddItem(files);
 	}
 
 	if (ShowDialog())
 	{
 		String path;
-		SplitFilename(m_dlgPatch.m_fileResult, &path, NULL, NULL);
+		SplitFilename(m_pDlgPatch->m_fileResult, &path, NULL, NULL);
 		if (!paths_CreateIfNeeded(path.c_str()))
 		{
 			LangMessageBox(IDS_FOLDER_NOTEXIST, MB_OK | MB_ICONSTOP);
@@ -89,16 +127,16 @@ int CPatchTool::CreatePatch()
 		}
 
 		// Select patch create -mode
-		m_diffWrapper.SetCreatePatchFile(m_dlgPatch.m_fileResult);
-		m_diffWrapper.SetAppendFiles(m_dlgPatch.m_appendFile);
+		m_diffWrapper.SetCreatePatchFile(m_pDlgPatch->m_fileResult);
+		m_diffWrapper.SetAppendFiles(m_pDlgPatch->m_appendFile);
 		m_diffWrapper.SetPrediffer(NULL);
 
-		int fileCount = m_dlgPatch.GetItemCount();
-		POSITION pos = m_dlgPatch.GetFirstItem();
+		int fileCount = m_pDlgPatch->GetItemCount();
+		POSITION pos = m_pDlgPatch->GetFirstItem();
 
 		for (int i = 0; i < fileCount; i++)
 		{
-			PATCHFILES files = m_dlgPatch.GetNextItem(pos);
+			PATCHFILES files = m_pDlgPatch->GetNextItem(pos);
 			
 			// Set up DiffWrapper
 			m_diffWrapper.SetPaths(files.lfile, files.rfile, FALSE);
@@ -122,7 +160,7 @@ int CPatchTool::CreatePatch()
 			else if (status.bPatchFileFailed)
 			{
 				CString errMsg;
-				LangFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_dlgPatch.m_fileResult);
+				LangFormatString1(errMsg, IDS_FILEWRITE_ERROR, m_pDlgPatch->m_fileResult);
 				AfxMessageBox(errMsg, MB_ICONSTOP);
 				bResult = FALSE;
 				break;
@@ -137,12 +175,12 @@ int CPatchTool::CreatePatch()
 			LangMessageBox(IDS_DIFF_SUCCEEDED, MB_ICONINFORMATION|MB_DONT_DISPLAY_AGAIN,
 				            IDS_DIFF_SUCCEEDED);
 			
-			m_sPatchFile = m_dlgPatch.m_fileResult;
-			m_bOpenToEditor = m_dlgPatch.m_openToEditor;
+			m_sPatchFile = m_pDlgPatch->m_fileResult;
+			m_bOpenToEditor = m_pDlgPatch->m_openToEditor;
 			retVal = 1;
 		}
 	}
-	m_dlgPatch.ClearItems();
+	m_pDlgPatch->ClearItems();
 	return retVal;
 }
 
@@ -156,30 +194,30 @@ BOOL CPatchTool::ShowDialog()
 	PATCHOPTIONS patchOptions;
 	BOOL bRetVal = TRUE;
 
-	if (m_dlgPatch.DoModal() == IDOK)
+	if (m_pDlgPatch->DoModal() == IDOK)
 	{
 		// There must be one filepair
-		if (m_dlgPatch.GetItemCount() < 1)
+		if (m_pDlgPatch->GetItemCount() < 1)
 			bRetVal = FALSE;
 
 		// These two are from dropdown list - can't be wrong
-		patchOptions.outputStyle = m_dlgPatch.m_outputStyle;
-		patchOptions.nContext = m_dlgPatch.m_contextLines;
+		patchOptions.outputStyle = m_pDlgPatch->m_outputStyle;
+		patchOptions.nContext = m_pDlgPatch->m_contextLines;
 
 		// Checkbox - can't be wrong
-		patchOptions.bAddCommandline = m_dlgPatch.m_includeCmdLine;
+		patchOptions.bAddCommandline = m_pDlgPatch->m_includeCmdLine;
 		m_diffWrapper.SetPatchOptions(&patchOptions);
 
 		// These are from checkboxes and radiobuttons - can't be wrong
-		diffOptions.nIgnoreWhitespace = m_dlgPatch.m_whitespaceCompare;
-		diffOptions.bIgnoreBlankLines = m_dlgPatch.m_ignoreBlanks;
-		m_diffWrapper.SetAppendFiles(m_dlgPatch.m_appendFile);
+		diffOptions.nIgnoreWhitespace = m_pDlgPatch->m_whitespaceCompare;
+		diffOptions.bIgnoreBlankLines = m_pDlgPatch->m_ignoreBlanks;
+		m_diffWrapper.SetAppendFiles(m_pDlgPatch->m_appendFile);
 
 		// Use this because non-sensitive setting can't write
 		// patch file EOLs correctly
 		diffOptions.bIgnoreEol = FALSE;
 		
-		diffOptions.bIgnoreCase = !m_dlgPatch.m_caseSensitive;
+		diffOptions.bIgnoreCase = !m_pDlgPatch->m_caseSensitive;
 		m_diffWrapper.SetOptions(&diffOptions);
 	}
 	else
@@ -191,7 +229,7 @@ BOOL CPatchTool::ShowDialog()
 /** 
  * @brief Returns filename and path for patch-file
  */
-CString CPatchTool::GetPatchFile() const
+String CPatchTool::GetPatchFile() const
 {
 	return m_sPatchFile;
 }

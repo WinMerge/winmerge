@@ -2086,7 +2086,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		{
 			if (patcher.GetOpenToEditor())
 			{
-				OpenFileToExternalEditor(patcher.GetPatchFile());
+				OpenFileToExternalEditor(patcher.GetPatchFile().c_str());
 			}
 		}
 	}

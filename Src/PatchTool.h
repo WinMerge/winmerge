@@ -19,25 +19,48 @@
  *
  * @brief Declaration file for PatchTool class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _PATCHTOOL_H_
 #define _PATCHTOOL_H_
 
-#include "PatchDlg.h"
+class CPatchDlg;
 
 /** 
- * @brief Provides patch creation functionality.
+ * @brief Files used for patch creating.
+ * Stores paths of two files used to create a patch. Left side file
+ * is considered as "original" file and right side file as "changed" file.
+ * Times are for printing filetimes to patch file.
+ */
+struct PATCHFILES
+{
+	String lfile; /**< Left file */
+	String pathLeft; /**< Left path added to patch file */
+	String rfile; /**< Right file */
+	String pathRight; /**< Right path added to patch file */
+	time_t ltime; /**< Left time */
+	time_t rtime; /**< Right time */
+	PATCHFILES() : ltime(0), rtime(0) {};
+};
+
+/** 
+ * @brief A class which creates patch files.
+ * This class is used to create patch files. The files to patch can be added
+ * to list before calling CreatePatch(). Or user can select files in the
+ * the dialog that CreatePatch() shows.
  */
 class CPatchTool
 {
 public:
+	CPatchTool();
+	~CPatchTool();
+
 	void AddFiles(const String &file1, const String &file2);
 	void AddFiles(const String &file1, const String &altPath1,
 		const String &file2, const String &altPath2);
 	int CreatePatch();
-	CString GetPatchFile() const;
+	String GetPatchFile() const;
 	BOOL GetOpenToEditor() const;
 
 protected:
@@ -46,8 +69,8 @@ protected:
 private:
 	CList<PATCHFILES, PATCHFILES&> m_fileList; /**< List of files to patch. */
 	CDiffWrapper m_diffWrapper; /**< DiffWrapper instance we use to create patch. */
-	CPatchDlg m_dlgPatch; /**< Dialog for selecting files and options. */
-	CString m_sPatchFile; /**< Patch file path and filename. */
+	CPatchDlg *m_pDlgPatch; /**< Dialog for selecting files and options. */
+	String m_sPatchFile; /**< Patch file path and filename. */
 	BOOL m_bOpenToEditor; /**< Is patch file opened to external editor? */
 };
 

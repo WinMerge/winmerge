@@ -24,6 +24,7 @@
 
 #include "stdafx.h"
 #include "merge.h"
+#include "PatchTool.h"
 #include "PatchDlg.h"
 #include "diff.h"
 #include "coretools.h"
@@ -57,7 +58,9 @@ CPatchDlg::CPatchDlg(CWnd* pParent /*=NULL*/)
 {
 }
 
-
+/**
+ * @brief Map dialog controls and class member variables.
+ */
 void CPatchDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
@@ -98,7 +101,8 @@ END_MESSAGE_MAP()
 // CPatchDlg message handlers
 
 /** 
- * @brief OK button pressed: check options and filenames and close dialog
+ * @brief Called when dialog is closed with OK.
+ * Check options and filenames given and close the dialog.
  */
 void CPatchDlg::OnOK()
 {
@@ -432,7 +436,8 @@ void CPatchDlg::OnDiffSwapFiles()
 }
 
 /** 
- * @brief Add file to internal list.
+ * @brief Add patch item to internal list.
+ * @param [in] pf Patch item to add.
  */
 void CPatchDlg::AddItem(PATCHFILES pf)
 {
@@ -440,8 +445,8 @@ void CPatchDlg::AddItem(PATCHFILES pf)
 }
 
 /** 
- * @brief Returns amount of files in internal list.
- * @return Count of filepairs in list.
+ * @brief Returns amount of patch items in the internal list.
+ * @return Count of patch items in the list.
  */
 int CPatchDlg::GetItemCount()
 {
@@ -449,8 +454,8 @@ int CPatchDlg::GetItemCount()
 }
 
 /** 
- * @brief Return ref to first files in internal list
- * @return POSITION of first item in list.
+ * @brief Return ref to first item in the internal list
+ * @return POSITION of first item in the list.
  */
 POSITION CPatchDlg::GetFirstItem()
 {
@@ -458,11 +463,11 @@ POSITION CPatchDlg::GetFirstItem()
 }
 
 /** 
- * @brief Return next files in internal list
+ * @brief Return next item in the internal list
  * @param [in, out] pos
  * - in POSITION for item to get
  * - out Next item's POSITION
- * @return PATCHFILE from given position.
+ * @return PATCHFILES from given position.
  */
 PATCHFILES CPatchDlg::GetNextItem(POSITION &pos)
 {
@@ -480,7 +485,7 @@ void CPatchDlg::SetItemAt(POSITION pos, PATCHFILES pf)
 }
 
 /** 
- * @brief Empties internal file list.
+ * @brief Empties internal item list.
  */
 void CPatchDlg::ClearItems()
 {
