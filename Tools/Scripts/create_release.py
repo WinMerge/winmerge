@@ -82,11 +82,36 @@ def cleanup_build():
             os.remove('build/mergerelease/WinMerge.exe')
         if os.path.exists('build/mergerelease/ShellExtension.dll'):
             os.remove('build/mergerelease/ShellExtension.dll')
+        if os.path.exists('build/mergerelease/MergeLang.dll'):
+            os.remove('build/mergerelease/MergeLang.dll')
+
         print 'Remove Unicode files'
         if os.path.exists('build/mergeunicoderelease/WinMergeU.exe'):
             os.remove('build/mergeunicoderelease/WinMergeU.exe')
         if os.path.exists('build/mergeunicoderelease/ShellExtensionU.dll'):
             os.remove('build/mergeunicoderelease/ShellExtensionU.dll')
+        if os.path.exists('build/mergeunicoderelease/MergeLang.dll'):
+            os.remove('build/mergeunicoderelease/MergeLang.dll')
+
+        print 'Remove expat files'
+        if os.path.exists('build/expat'):
+            shutil.rmtree('build/expat', True)
+        if os.path.exists('build/mergerelease/libexpat.dll'):
+            os.remove('build/mergerelease/libexpat.dll')
+        if os.path.exists('build/mergeunicoderelease/libexpat.dll'):
+            os.remove('build/mergeunicoderelease/libexpat.dll')
+
+        print 'Remove pcre files'
+        if os.path.exists('build/pcre'):
+            shutil.rmtree('build/pcre', True)
+        if os.path.exists('build/mergerelease/pcre.dll'):
+            os.remove('build/mergerelease/pcre.dll')
+        if os.path.exists('build/mergeunicoderelease/pcre.dll'):
+            os.remove('build/mergeunicoderelease/pcre.dll')
+
+        if os.path.exists('build/scew'):
+            shutil.rmtree('build/scew', True)
+
     except EnvironmentError, einst:
         print 'Error deleting files: '
         print einst
