@@ -848,10 +848,6 @@ SOURCE=.\SharedFilterDlg.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\sinstance.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\sizecbar.cpp
 # End Source File
 # Begin Source File
@@ -1548,10 +1544,6 @@ SOURCE=.\SelectUnpackerDlg.h
 # Begin Source File
 
 SOURCE=.\SharedFilterDlg.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\sinstance.h
 # End Source File
 # Begin Source File
 

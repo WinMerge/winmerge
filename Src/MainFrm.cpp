@@ -347,6 +347,30 @@ protected:
 
 static StatusDisplay myStatusDisplay;
 
+/**
+ * @brief Change MainFrame window class name
+ *        see http://support.microsoft.com/kb/403825/ja
+ */
+BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
+{
+	LPCTSTR   lpzsNewName = _T("WinMergeWindowClass");
+	WNDCLASS wndcls;
+	BOOL bRes = CMDIFrameWnd::PreCreateWindow(cs);
+	HINSTANCE hInst = AfxGetInstanceHandle();
+	// see if the class already exists
+	if (!::GetClassInfo(hInst, lpzsNewName, &wndcls))
+	{
+		// get default stuff
+		::GetClassInfo(hInst, cs.lpszClass, &wndcls);
+		// register a new class
+		wndcls.lpszClassName = lpzsNewName;
+		wndcls.hIcon = ::LoadIcon(hInst, MAKEINTRESOURCE(IDR_MAINFRAME));
+		::RegisterClass(&wndcls);
+	}
+	cs.lpszClass = lpzsNewName;
+	return bRes;
+}
+
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CMDIFrameWnd::OnCreate(lpCreateStruct) == -1)

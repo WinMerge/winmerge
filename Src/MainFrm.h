@@ -145,6 +145,7 @@ public:
 	virtual void ActivateFrame(int nCmdShow = -1);
 	virtual BOOL PreTranslateMessage(MSG* pMsg);
 	virtual void OnUpdateFrameTitle(BOOL bAddToTitle);
+	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	//}}AFX_VIRTUAL
 
 // Implementation methods

@@ -42,7 +42,6 @@
 #include "logfile.h"
 #include "coretools.h"
 #include "paths.h"
-#include "sinstance.h"
 #include "FileFilterHelper.h"
 #include "Plugins.h"
 #include "DirScan.h" // for DirScan_InitializeDefaultCodepage
@@ -246,22 +245,29 @@ BOOL CMergeApp::InitInstance()
 	BOOL bSingleInstance = GetOptionsMgr()->GetBool(OPT_SINGLE_INSTANCE) ||
 		(true == cmdInfo.m_bSingleInstance);
 	
-	HANDLE hMutex = NULL;
-	if (bSingleInstance)
-	{
-		hMutex = CreateMutex(NULL, FALSE, _T("WinMerge{05963771-8B2E-11d8-B3B9-000000000000}"));
+	// Create exclusion mutex name
+	TCHAR szDesktopName[_MAX_PATH] = _T("Win9xDesktop");
+	DWORD dwLengthNeeded;
+	GetUserObjectInformation(GetThreadDesktop(GetCurrentThreadId()), UOI_NAME, 
+		szDesktopName, sizeof(szDesktopName), &dwLengthNeeded);
+	String mutexName = 
+		String(_T("WinMerge{05963771-8B2E-11d8-B3B9-000000000000}-")) 
+			+ szDesktopName;
+
+	HANDLE hMutex = CreateMutex(NULL, FALSE, mutexName.c_str());
+	if (hMutex)
 		WaitForSingleObject(hMutex, INFINITE);
-	}
-
-	CInstanceChecker instanceChecker(_T("{05963771-8B2E-11d8-B3B9-000000000000}"));
-	if (bSingleInstance)
+	if (bSingleInstance && GetLastError() == ERROR_ALREADY_EXISTS)
 	{
-		if (instanceChecker.PreviousInstanceRunning())
-		{
-			USES_CONVERSION;
+		USES_CONVERSION;
 
-			// Activate previous instance and send commandline to it
-			HWND hWnd = instanceChecker.ActivatePreviousInstance();
+		// Activate previous instance and send commandline to it
+		HWND hWnd = FindWindow(_T("WinMergeWindowClass"), NULL);
+		if (hWnd)
+		{
+			if (IsIconic(hWnd))
+				ShowWindow(hWnd, SW_RESTORE);
+			SetForegroundWindow(GetLastActivePopup(hWnd));
 			
 			WCHAR *pszArgs = new WCHAR[_tcslen(__targv[0]) + _tcslen(m_lpCmdLine) + 3];
 			WCHAR *p = pszArgs;
@@ -275,13 +281,15 @@ BOOL CMergeApp::InitInstance()
 			data.cbData = (DWORD)(p - pszArgs) * sizeof(WCHAR);
 			data.lpData = pszArgs;
 			data.dwData = __argc;
+			SetLastError(ERROR_SUCCESS);
 			SendMessage(hWnd, WM_COPYDATA, NULL, (LPARAM)&data);
 			delete[] pszArgs;
-
-			ReleaseMutex(hMutex);
-			CloseHandle(hMutex);
-
-			return FALSE;
+			if (GetLastError() == ERROR_SUCCESS)
+			{
+				ReleaseMutex(hMutex);
+				CloseHandle(hMutex);
+				return FALSE;
+			}
 		}
 	}
 
@@ -356,9 +364,6 @@ BOOL CMergeApp::InitInstance()
 	CMenu * pNewMenu = CMenu::FromHandle(pMainFrame->m_hMenuDefault);
 	pMainFrame->MDISetMenu(pNewMenu, NULL);
 
-	//Track it so any other instances can find it.
-	instanceChecker.TrackFirstInstanceRunning();
-
 	// The main window has been initialized, so activate and update it.
 	pMainFrame->ActivateFrame(cmdInfo.m_nCmdShow);
 	pMainFrame->UpdateWindow();
@@ -370,10 +375,7 @@ BOOL CMergeApp::InitInstance()
 		bContinue = FALSE;
 
 	if (hMutex)
-	{
 		ReleaseMutex(hMutex);
-		CloseHandle(hMutex);
-	}
 
 	if (m_bNonInteractive)
 	{

@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.7.7.6
+  Remove sintance.h/sintance.cpp as not compatible with GPL (#1886580)
+
 WinMerge 2.7.7.5 - 2008-02-22 (r5069)
   Cleaning up Help-menu (#1875111)
   Right-align tab size number in editor options (r5037)
