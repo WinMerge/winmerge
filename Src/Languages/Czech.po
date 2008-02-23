@@ -41,23 +41,23 @@ msgstr "1250"
 #: Merge.rc:99
 #, c-format
 msgid "C&opy to Right"
-msgstr "KopÃ­rovat dop&rava"
+msgstr "Kopírovat dop&rava"
 
 #: Merge.rc:73
 #: Merge.rc:100
 #, c-format
 msgid "Cop&y to Left"
-msgstr "KopÃ­rovat do&leva"
+msgstr "Kopírovat do&leva"
 
 #: Merge.rc:75
 #, c-format
 msgid "&Select Line Difference"
-msgstr "Vybrat roz&dÃ­l v Å™Ã¡dku"
+msgstr "Vybrat roz&díl v øádku"
 
 #: Merge.rc:77
 #, c-format
 msgid "&Undo"
-msgstr "&ZpÄ›t"
+msgstr "&Zpìt"
 
 #: Merge.rc:78
 #, c-format
@@ -75,38 +75,38 @@ msgstr "Vyj&mout"
 #: Merge.rc:496
 #, c-format
 msgid "&Copy"
-msgstr "&KopÃ­rovat"
+msgstr "&Kopírovat"
 
 #: Merge.rc:82
 #: Merge.rc:104
 #, c-format
 msgid "&Paste"
-msgstr "&VloÅ¾it"
+msgstr "&Vloit"
 
 #: Merge.rc:84
 #: Merge.rc:577
 #, c-format
 msgid "&Goto..."
-msgstr "PÅ™&ejÃ­t na..."
+msgstr "Pø&ejít na..."
 
 #: Merge.rc:86
 #, c-format
 msgid "Op&en"
-msgstr "&OtevÅ™Ã­t"
+msgstr "&Otevøít"
 
 #: Merge.rc:88
 #: Merge.rc:519
 #: Merge.rc:525
 #, c-format
 msgid "with &Registered Application"
-msgstr "pÅ™idruÅ¾enou &aplikacÃ­"
+msgstr "pøidruenou &aplikací"
 
 #: Merge.rc:89
 #: Merge.rc:520
 #: Merge.rc:526
 #, c-format
 msgid "with &External Editor"
-msgstr "externÃ­m &editorem"
+msgstr "externím &editorem"
 
 #: Merge.rc:90
 #: Merge.rc:521
@@ -127,14 +127,14 @@ msgstr "&Soubor"
 #: Merge.rc:305
 #, c-format
 msgid "&New\tCtrl+N"
-msgstr "&NovÃ©\tCtrl+N"
+msgstr "&Nové\tCtrl+N"
 
 #: Merge.rc:113
 #: Merge.rc:192
 #: Merge.rc:306
 #, c-format
 msgid "&Open...\tCtrl+O"
-msgstr "&OtevÅ™Ã­t...\tCtrl+O"
+msgstr "&Otevøít...\tCtrl+O"
 
 #: Merge.rc:114
 #, c-format
@@ -146,19 +146,19 @@ msgstr ""
 #: Merge.rc:308
 #, c-format
 msgid "Open Pro&ject...\tCtrl+J"
-msgstr "OtevÅ™Ã­t pro&jekt...\tCtrl+J"
+msgstr "Otevøít pro&jekt...\tCtrl+J"
 
 #: Merge.rc:117
 #: Merge.rc:195
 #: Merge.rc:309
 #, c-format
 msgid "Sa&ve Project..."
-msgstr "UloÅ¾it &projekt..."
+msgstr "Uloit &projekt..."
 
 #: Merge.rc:119
 #, c-format
 msgid "Recent Projects"
-msgstr "Naposledy pouÅ¾itÃ©"
+msgstr "Naposledy pouité"
 
 #: Merge.rc:121
 #: Merge.rc:202
@@ -172,14 +172,14 @@ msgstr "&Konec"
 #: Merge.rc:343
 #, c-format
 msgid "&Edit"
-msgstr "Ãšpr&avy"
+msgstr "Úpr&avy"
 
 #: Merge.rc:125
 #: Merge.rc:208
 #: Merge.rc:377
 #, c-format
 msgid "&Options..."
-msgstr "MoÅ¾nost&i..."
+msgstr "Monost&i..."
 
 #: Merge.rc:127
 #: Merge.rc:210
@@ -193,56 +193,56 @@ msgstr "&Zobrazit"
 #: Merge.rc:381
 #, c-format
 msgid "Select &Font..."
-msgstr "Vybrat pÃ­smo..."
+msgstr "Vybrat písmo..."
 
 #: Merge.rc:130
 #: Merge.rc:222
 #: Merge.rc:382
 #, c-format
 msgid "Use Default F&ont"
-msgstr "PouÅ¾Ã­t vÃ½chozÃ­ pÃ­smo"
+msgstr "Pouít vıchozí písmo"
 
 #: Merge.rc:132
 #: Merge.rc:224
 #: Merge.rc:403
 #, c-format
 msgid "&Toolbar"
-msgstr "Panel &nÃ¡strojÅ¯"
+msgstr "Panel &nástrojù"
 
 #: Merge.rc:134
 #: Merge.rc:226
 #: Merge.rc:405
 #, c-format
 msgid "&None"
-msgstr "&SkrÃ½t"
+msgstr "&Skrıt"
 
 #: Merge.rc:135
 #: Merge.rc:227
 #: Merge.rc:406
 #, c-format
 msgid "&Small"
-msgstr "&MalÃ½"
+msgstr "&Malı"
 
 #: Merge.rc:136
 #: Merge.rc:228
 #: Merge.rc:407
 #, c-format
 msgid "&Big"
-msgstr "&VelkÃ½"
+msgstr "&Velkı"
 
 #: Merge.rc:138
 #: Merge.rc:230
 #: Merge.rc:409
 #, c-format
 msgid "&Status Bar"
-msgstr "&StavovÃ½ Å™Ã¡dek"
+msgstr "&Stavovı øádek"
 
 #: Merge.rc:139
 #: Merge.rc:231
 #: Merge.rc:410
 #, c-format
 msgid "Ta&b Bar"
-msgstr "Panel &zÃ¡loÅ¾ek"
+msgstr "Panel &záloek"
 
 #: Merge.rc:141
 #: Merge.rc:234
@@ -256,7 +256,7 @@ msgstr "&Jazyk..."
 #: Merge.rc:436
 #, c-format
 msgid "&Tools"
-msgstr "&NÃ¡stroje"
+msgstr "&Nástroje"
 
 #: Merge.rc:145
 #: Merge.rc:258
@@ -270,7 +270,7 @@ msgstr "&Filtry..."
 #: Merge.rc:439
 #, c-format
 msgid "&Generate Patch..."
-msgstr "&OpravnÃ½ soubor..."
+msgstr "&Opravnı soubor..."
 
 #: Merge.rc:148
 #: Merge.rc:262
@@ -284,28 +284,28 @@ msgstr "&Pluginy"
 #: Merge.rc:444
 #, c-format
 msgid "&Manual Unpacking"
-msgstr "PÅ™evÃ¡dÄ›t &ruÄnÄ›"
+msgstr "Pøevádìt &ruènì"
 
 #: Merge.rc:151
 #: Merge.rc:265
 #: Merge.rc:445
 #, c-format
 msgid "&Automatic Unpacking"
-msgstr "PÅ™evÃ¡dÄ›t &automaticky"
+msgstr "Pøevádìt &automaticky"
 
 #: Merge.rc:153
 #: Merge.rc:267
 #: Merge.rc:447
 #, c-format
 msgid "&Edit with Unpacker"
-msgstr "&Upravit pomocÃ­ pÅ™evadÄ›Äe"
+msgstr "&Upravit pomocí pøevadìèe"
 
 #: Merge.rc:155
 #: Merge.rc:269
 #: Merge.rc:454
 #, c-format
 msgid "&Reload plugins"
-msgstr "Znovu &naÄÃ­st"
+msgstr "Znovu &naèíst"
 
 #: Merge.rc:157
 #: Merge.rc:271
@@ -340,28 +340,28 @@ msgstr "&Okno"
 #: Merge.rc:463
 #, c-format
 msgid "Cl&ose"
-msgstr "&ZavÅ™Ã­t"
+msgstr "&Zavøít"
 
 #: Merge.rc:165
 #: Merge.rc:279
 #: Merge.rc:464
 #, c-format
 msgid "Clo&se All"
-msgstr "Z&avÅ™Ã­t vÅ¡e"
+msgstr "Z&avøít vše"
 
 #: Merge.rc:167
 #: Merge.rc:281
 #: Merge.rc:466
 #, c-format
 msgid "Change &Pane\tF6"
-msgstr "Z&mÄ›nit panel\tF6"
+msgstr "Z&mìnit panel\tF6"
 
 #: Merge.rc:169
 #: Merge.rc:283
 #: Merge.rc:468
 #, c-format
 msgid "Tile &Horizontally"
-msgstr "Vedle sebe &vodorovnÄ›"
+msgstr "Vedle sebe &vodorovnì"
 
 #: Merge.rc:170
 #: Merge.rc:284
@@ -383,35 +383,35 @@ msgstr "&Na sebe"
 #: Merge.rc:1890
 #, c-format
 msgid "&Help"
-msgstr "NÃ¡po&vÄ›da"
+msgstr "Nápo&vìda"
 
 #: Merge.rc:175
 #: Merge.rc:289
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&Obsah a rejstøík\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
 #: Merge.rc:476
 #, c-format
 msgid "R&elease Notes"
-msgstr "PoznÃ¡mky k &vydÃ¡nÃ­"
+msgstr "Poznámky k &vydání"
 
 #: Merge.rc:178
 #: Merge.rc:292
 #: Merge.rc:477
 #, c-format
 msgid "&Translations"
-msgstr "&PÅ™eklady"
+msgstr "&Pøeklady"
 
 #: Merge.rc:179
 #: Merge.rc:293
 #: Merge.rc:478
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "&Nastavení"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -425,7 +425,7 @@ msgstr "&Podpora archivace vypnuta..."
 #: Merge.rc:481
 #, c-format
 msgid "&GNU General Public License"
-msgstr ""
+msgstr "Obecná veøejná licence &GNU"
 
 #: Merge.rc:183
 #: Merge.rc:297
@@ -438,64 +438,64 @@ msgstr "O &aplikaci WinMerge..."
 #: Merge.rc:327
 #, c-format
 msgid "L&eft Read-only"
-msgstr "L&evÃ½ pouze pro ÄtenÃ­"
+msgstr "L&evı pouze pro ètení"
 
 #: Merge.rc:198
 #: Merge.rc:328
 #, c-format
 msgid "Ri&ght Read-only"
-msgstr "Pr&avÃ½ pouze pro ÄtenÃ­"
+msgstr "Pr&avı pouze pro ètení"
 
 #: Merge.rc:200
 #, c-format
 msgid "File En&coding"
-msgstr "KÃ³&dovÃ¡nÃ­ souborÅ¯"
+msgstr "Kó&dování souborù"
 
 #: Merge.rc:206
 #: Merge.rc:353
 #, c-format
 msgid "Select &All\tCtrl+A"
-msgstr "Vybr&at vÅ¡e\tCtrl+A"
+msgstr "Vybr&at vše\tCtrl+A"
 
 #: Merge.rc:212
 #, c-format
 msgid "Show &Identical Items"
-msgstr "UkÃ¡zat s&hodnÃ© poloÅ¾ky"
+msgstr "Ukázat s&hodné poloky"
 
 #: Merge.rc:213
 #, c-format
 msgid "Show &Different Items"
-msgstr "UkÃ¡zat roz&dÃ­lnÃ© poloÅ¾ky"
+msgstr "Ukázat roz&dílné poloky"
 
 #: Merge.rc:214
 #, c-format
 msgid "Show L&eft Unique Items"
-msgstr "UkÃ¡zat &levÃ© jedineÄnÃ© poloÅ¾ky"
+msgstr "Ukázat &levé jedineèné poloky"
 
 #: Merge.rc:215
 #, c-format
 msgid "Show Ri&ght Unique Items"
-msgstr "UkÃ¡zat p&ravÃ© jedineÄnÃ© poloÅ¾ky"
+msgstr "Ukázat p&ravé jedineèné poloky"
 
 #: Merge.rc:216
 #, c-format
 msgid "Show S&kipped Items"
-msgstr "UkÃ¡zat pÅ™&eskoÄenÃ© poloÅ¾ky"
+msgstr "Ukázat pø&eskoèené poloky"
 
 #: Merge.rc:217
 #, c-format
 msgid "S&how Binary Files"
-msgstr "UkÃ¡zat &binÃ¡rnÃ­ soubory"
+msgstr "Ukázat &binární soubory"
 
 #: Merge.rc:219
 #, c-format
 msgid "Show Hidd&en Items"
-msgstr "UkÃ¡zat s&krytÃ© poloÅ¾ky"
+msgstr "Ukázat s&kryté poloky"
 
 #: Merge.rc:232
 #, c-format
 msgid "Compa&re Statistics"
-msgstr "St&atistika porovnÃ¡nÃ­"
+msgstr "St&atistika porovnání"
 
 #: Merge.rc:236
 #: Merge.rc:416
@@ -506,13 +506,13 @@ msgstr "&Obnovit\tF5"
 #: Merge.rc:237
 #, c-format
 msgid "&Refresh Selected\tCtrl+F5"
-msgstr "Obnovit &vybranÃ©\tCtrl+F5"
+msgstr "Obnovit &vybrané\tCtrl+F5"
 
 #: Merge.rc:239
 #: Merge.rc:418
 #, c-format
 msgid "&Merge"
-msgstr "Slo&uÄit"
+msgstr "Slo&uèit"
 
 #: Merge.rc:241
 #, c-format
@@ -523,43 +523,43 @@ msgstr "Porov&nat\tEnter"
 #: Merge.rc:420
 #, c-format
 msgid "&Next Difference\tAlt+Down"
-msgstr "&DalÅ¡Ã­ rozdÃ­l\tAlt+Down"
+msgstr "&Další rozdíl\tAlt+Down"
 
 #: Merge.rc:244
 #: Merge.rc:421
 #, c-format
 msgid "&Previous Difference\tAlt+Up"
-msgstr "&PÅ™edchozÃ­ rozdÃ­l\tAlt+Up"
+msgstr "&Pøedchozí rozdíl\tAlt+Up"
 
 #: Merge.rc:246
 #: Merge.rc:423
 #, c-format
 msgid "&First Difference\tAlt+Home"
-msgstr "Pr&vnÃ­ rozdÃ­l\tAlt+Home"
+msgstr "Pr&vní rozdíl\tAlt+Home"
 
 #: Merge.rc:247
 #: Merge.rc:424
 #, c-format
 msgid "&Current Difference\tAlt+Enter"
-msgstr "Ak&tuÃ¡lnÃ­ rozdÃ­l\tAlt+Enter"
+msgstr "Ak&tuální rozdíl\tAlt+Enter"
 
 #: Merge.rc:248
 #: Merge.rc:425
 #, c-format
 msgid "&Last Difference\tAlt+End"
-msgstr "Po&slednÃ­ rozdÃ­l\tAlt+End"
+msgstr "Po&slední rozdíl\tAlt+End"
 
 #: Merge.rc:250
 #: Merge.rc:427
 #, c-format
 msgid "Copy to &Right\tAlt+Right"
-msgstr "KopÃ­rovat dop&rava\tAlt+Right"
+msgstr "Kopírovat dop&rava\tAlt+Right"
 
 #: Merge.rc:251
 #: Merge.rc:428
 #, c-format
 msgid "Copy to L&eft\tAlt+Left"
-msgstr "KopÃ­rovat do&leva\tAlt+Left"
+msgstr "Kopírovat do&leva\tAlt+Left"
 
 #: Merge.rc:253
 #, c-format
@@ -570,40 +570,40 @@ msgstr "Odstran&it\tDel"
 #: Merge.rc:550
 #, c-format
 msgid "&Customize Columns..."
-msgstr "VlastnÃ­ &sloupce..."
+msgstr "Vlastní &sloupce..."
 
 #: Merge.rc:260
 #: Merge.rc:440
 #, c-format
 msgid "Generate &Report..."
-msgstr "&Protokol porovnÃ¡nÃ­..."
+msgstr "&Protokol porovnání..."
 
 #: Merge.rc:311
 #, c-format
 msgid "&Save\tCtrl+S"
-msgstr "&UloÅ¾it\tCtrl+S"
+msgstr "&Uloit\tCtrl+S"
 
 #: Merge.rc:312
 #, c-format
 msgid "Save &Left"
-msgstr "UloÅ¾it &levÃ½"
+msgstr "Uloit &levı"
 
 #: Merge.rc:314
 #: Merge.rc:319
 #, c-format
 msgid "&Save"
-msgstr "&UloÅ¾it"
+msgstr "&Uloit"
 
 #: Merge.rc:315
 #: Merge.rc:320
 #, c-format
 msgid "Save &As..."
-msgstr "UloÅ¾it j&ako..."
+msgstr "Uloit j&ako..."
 
 #: Merge.rc:317
 #, c-format
 msgid "Save &Right"
-msgstr "UloÅ¾it p&ravÃ½"
+msgstr "Uloit p&ravı"
 
 #: Merge.rc:323
 #, c-format
@@ -613,17 +613,17 @@ msgstr "&Tisk..."
 #: Merge.rc:324
 #, c-format
 msgid "Page Se&tup"
-msgstr "V&zhled strÃ¡nky"
+msgstr "V&zhled stránky"
 
 #: Merge.rc:325
 #, c-format
 msgid "Print Previe&w"
-msgstr "NÃ¡&hled..."
+msgstr "Ná&hled..."
 
 #: Merge.rc:330
 #, c-format
 msgid "&Convert Line Endings to"
-msgstr "PÅ™evÃ©st konce Å™Ã¡&dkÅ¯"
+msgstr "Pøevést konce øá&dkù"
 
 #: Merge.rc:332
 #, c-format
@@ -643,17 +643,17 @@ msgstr ""
 #: Merge.rc:337
 #, c-format
 msgid "&Merge Mode\tF9"
-msgstr "ReÅ¾im sl&uÄovÃ¡nÃ­\tF9"
+msgstr "Reim sl&uèování\tF9"
 
 #: Merge.rc:339
 #, c-format
 msgid "&File Encoding..."
-msgstr "KÃ³do&vÃ¡nÃ­ souborÅ¯"
+msgstr "Kódo&vání souborù"
 
 #: Merge.rc:345
 #, c-format
 msgid "&Undo\tCtrl+Z"
-msgstr "&ZpÄ›t\tCtrl+Z"
+msgstr "&Zpìt\tCtrl+Z"
 
 #: Merge.rc:346
 #, c-format
@@ -668,22 +668,22 @@ msgstr "Vyj&mout\tCtrl+X"
 #: Merge.rc:349
 #, c-format
 msgid "&Copy\tCtrl+C"
-msgstr "&KopÃ­rovat\tCtrl+C"
+msgstr "&Kopírovat\tCtrl+C"
 
 #: Merge.rc:350
 #, c-format
 msgid "&Paste\tCtrl+V"
-msgstr "&VloÅ¾it\tCtrl+V"
+msgstr "&Vloit\tCtrl+V"
 
 #: Merge.rc:352
 #, c-format
 msgid "Select Line &Difference\tF4"
-msgstr "Vybrat roz&dÃ­l v Å™Ã¡dku\tF4"
+msgstr "Vybrat roz&díl v øádku\tF4"
 
 #: Merge.rc:355
 #, c-format
 msgid "F&ind...\tCtrl+F"
-msgstr "&NajÃ­t...\tCtrl+F"
+msgstr "&Najít...\tCtrl+F"
 
 #: Merge.rc:356
 #, c-format
@@ -699,73 +699,73 @@ msgstr "Skrip&ty"
 #: Merge.rc:2706
 #, c-format
 msgid "< Empty >"
-msgstr "< Å¾Ã¡dnÃ© >"
+msgstr "< ádné >"
 
 #: Merge.rc:363
 #, c-format
 msgid "Advanced"
-msgstr "&RozÅ¡Ã­Å™enÃ©"
+msgstr "&Rozšíøené"
 
 #: Merge.rc:365
 #, c-format
 msgid "&Copy With Line Numbers\tCtrl+Shift+C"
-msgstr "&KopÃ­rovat s ÄÃ­sly Å™Ã¡dkÅ¯\tCtrl+Shift+C"
+msgstr "&Kopírovat s èísly øádkù\tCtrl+Shift+C"
 
 #: Merge.rc:368
 #, c-format
 msgid "&Bookmarks"
-msgstr "ZÃ¡&loÅ¾ky"
+msgstr "Zá&loky"
 
 #: Merge.rc:370
 #, c-format
 msgid "&Toggle Bookmark\tCtrl+F2"
-msgstr "PÅ™epnout &zÃ¡loÅ¾ku\tCtrl+F2"
+msgstr "Pøepnout &záloku\tCtrl+F2"
 
 #: Merge.rc:371
 #, c-format
 msgid "&Next Bookmark\tF2"
-msgstr "&DalÅ¡Ã­ zÃ¡loÅ¾ka\tF2"
+msgstr "&Další záloka\tF2"
 
 #: Merge.rc:372
 #, c-format
 msgid "&Previous bookmark\tShift+F2"
-msgstr "&PÅ™edchozÃ­ zÃ¡loÅ¾ka\tShift+F2"
+msgstr "&Pøedchozí záloka\tShift+F2"
 
 #: Merge.rc:373
 #, c-format
 msgid "&Clear All Bookmarks"
-msgstr "ZruÅ¡it &vÅ¡echny zÃ¡loÅ¾ky"
+msgstr "Zrušit &všechny záloky"
 
 #: Merge.rc:375
 #, c-format
 msgid "&Go To...\tCtrl+G"
-msgstr "PÅ™&ejÃ­t na...\tCtrl+G"
+msgstr "Pø&ejít na...\tCtrl+G"
 
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr "&Velikost pÃ­sma"
+msgstr "&Velikost písma"
 
 #: Merge.rc:385
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr "Z&vÄ›tÅ¡it\tCtrl++"
+msgstr "Z&vìtšit\tCtrl++"
 
 #: Merge.rc:386
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr "Z&menÅ¡it\tCtrl+-"
+msgstr "Z&menšit\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr "&NormÃ¡lnÃ­\tCtrl+*"
+msgstr "&Normální\tCtrl+*"
 
 #: Merge.rc:389
 #, c-format
 msgid "Syntax Highlight"
-msgstr "ZvÃ½raznÄ›nÃ­ syntaxe"
+msgstr "Zvıraznìní syntaxe"
 
 #: Merge.rc:394
 #, c-format
@@ -775,62 +775,62 @@ msgstr "&Uzamknout panely"
 #: Merge.rc:395
 #, c-format
 msgid "&View Whitespace"
-msgstr "Zobrazit ne&tisknutelnÃ© znaky"
+msgstr "Zobrazit ne&tisknutelné znaky"
 
 #: Merge.rc:396
 #, c-format
 msgid "Vie&w Line Differences"
-msgstr "Zobrazit rozdÃ­ly v Å™Ã¡&dcÃ­ch"
+msgstr "Zobrazit rozdíly v øá&dcích"
 
 #: Merge.rc:397
 #, c-format
 msgid "View Line &Numbers"
-msgstr "Zobrazit ÄÃ­sla Å™Ã¡d&kÅ¯"
+msgstr "Zobrazit èísla øád&kù"
 
 #: Merge.rc:398
 #, c-format
 msgid "View &Margins"
-msgstr "Zobrazit &levÃ© okraje"
+msgstr "Zobrazit &levé okraje"
 
 #: Merge.rc:399
 #, c-format
 msgid "W&rap Lines"
-msgstr "Zala&movat Å™Ã¡dky"
+msgstr "Zala&movat øádky"
 
 #: Merge.rc:401
 #, c-format
 msgid "Sw&ap Panes"
-msgstr "Z&amÄ›nit panely"
+msgstr "Z&amìnit panely"
 
 #: Merge.rc:411
 #, c-format
 msgid "Diff &Pane"
-msgstr "&RozdÃ­lovÃ½ panel"
+msgstr "&Rozdílovı panel"
 
 #: Merge.rc:412
 #, c-format
 msgid "Lo&cation Pane"
-msgstr "&PolohovÃ½ panel"
+msgstr "&Polohovı panel"
 
 #: Merge.rc:430
 #, c-format
 msgid "C&opy to Right and Advance\tAlt+Ctrl+Right"
-msgstr "KopÃ­rovat dopr&ava a na dalÅ¡Ã­\tAlt+Ctrl+Right"
+msgstr "Kopírovat dopr&ava a na další\tAlt+Ctrl+Right"
 
 #: Merge.rc:431
 #, c-format
 msgid "Copy &to Left and Advance\tAlt+Ctrl+Left"
-msgstr "KopÃ­rovat dol&eva a na dalÅ¡Ã­\tAlt+Ctrl+Left"
+msgstr "Kopírovat dol&eva a na další\tAlt+Ctrl+Left"
 
 #: Merge.rc:433
 #, c-format
 msgid "Copy &All to Right"
-msgstr "&KopÃ­rovat vÅ¡e doprava"
+msgstr "&Kopírovat vše doprava"
 
 #: Merge.rc:434
 #, c-format
 msgid "Cop&y All to Left"
-msgstr "K&opÃ­rovat vÅ¡e doleva"
+msgstr "K&opírovat vše doleva"
 
 #: Merge.rc:449
 #, c-format
@@ -855,37 +855,37 @@ msgstr ""
 #: Merge.rc:498
 #, c-format
 msgid "&Left to Right"
-msgstr "&LevÃ© doprava"
+msgstr "&Levé doprava"
 
 #: Merge.rc:499
 #, c-format
 msgid "L&eft to..."
-msgstr "L&evÃ© do..."
+msgstr "L&evé do..."
 
 #: Merge.rc:500
 #, c-format
 msgid "&Right to Left"
-msgstr "P&ravÃ© doleva"
+msgstr "P&ravé doleva"
 
 #: Merge.rc:501
 #, c-format
 msgid "R&ight to..."
-msgstr "Pr&avÃ© do..."
+msgstr "Pr&avé do..."
 
 #: Merge.rc:503
 #, c-format
 msgid "&Move"
-msgstr "PÅ™&esunout"
+msgstr "Pø&esunout"
 
 #: Merge.rc:505
 #, c-format
 msgid "&Left to..."
-msgstr "&LevÃ© do..."
+msgstr "&Levé do..."
 
 #: Merge.rc:506
 #, c-format
 msgid "&Right to..."
-msgstr "P&ravÃ© do..."
+msgstr "P&ravé do..."
 
 #: Merge.rc:508
 #, c-format
@@ -897,14 +897,14 @@ msgstr "Odstran&it"
 #: Merge.rc:1509
 #, c-format
 msgid "&Left"
-msgstr "&LevÃ©"
+msgstr "&Levé"
 
 #: Merge.rc:511
 #: Merge.rc:1129
 #: Merge.rc:1512
 #, c-format
 msgid "&Right"
-msgstr "P&ravÃ©"
+msgstr "P&ravé"
 
 #: Merge.rc:512
 #, c-format
@@ -914,37 +914,37 @@ msgstr "O&boje"
 #: Merge.rc:514
 #, c-format
 msgid "Re&name"
-msgstr "PÅ™ej&menovat"
+msgstr "Pøej&menovat"
 
 #: Merge.rc:515
 #, c-format
 msgid "&Hide Items"
-msgstr "&SkrÃ½t poloÅ¾ky"
+msgstr "&Skrıt poloky"
 
 #: Merge.rc:517
 #, c-format
 msgid "&Open Left"
-msgstr "OtevÅ™Ã­t &levÃ©"
+msgstr "Otevøít &levé"
 
 #: Merge.rc:523
 #, c-format
 msgid "O&pen Right"
-msgstr "OtevÅ™Ã­t p&ravÃ©"
+msgstr "Otevøít p&ravé"
 
 #: Merge.rc:530
 #, c-format
 msgid "Cop&y Pathnames"
-msgstr "KopÃ­rovat &umÃ­stÄ›nÃ­ souborÅ¯"
+msgstr "Kopírovat &umístìní souborù"
 
 #: Merge.rc:532
 #, c-format
 msgid "&Left (%1 of %2)"
-msgstr "&LevÃ© (%1 z %2)"
+msgstr "&Levé (%1 z %2)"
 
 #: Merge.rc:533
 #, c-format
 msgid "&Right (%1 of %2)"
-msgstr "P&ravÃ© (%1 z %2)"
+msgstr "P&ravé (%1 z %2)"
 
 #: Merge.rc:534
 #, c-format
@@ -954,7 +954,7 @@ msgstr "O&boje (%1 z %2)"
 #: Merge.rc:536
 #, c-format
 msgid "Copy &Filenames"
-msgstr "KopÃ­rovat &nÃ¡zev souboru"
+msgstr "Kopírovat &název souboru"
 
 #: Merge.rc:538
 #, c-format
@@ -964,12 +964,12 @@ msgstr "&Archivovat"
 #: Merge.rc:540
 #, c-format
 msgid "&Left... (%1 of %2)"
-msgstr "&LevÃ©... (%1 z %2)"
+msgstr "&Levé... (%1 z %2)"
 
 #: Merge.rc:541
 #, c-format
 msgid "&Right... (%1 of %2)"
-msgstr "P&ravÃ©... (%1 z %2)"
+msgstr "P&ravé... (%1 z %2)"
 
 #: Merge.rc:542
 #, c-format
@@ -979,7 +979,7 @@ msgstr "O&boje... (%1 z %2)"
 #: Merge.rc:543
 #, c-format
 msgid "&Differences... (%1 of %2)"
-msgstr "Ro&zdÃ­ly... (%1 z %2)"
+msgstr "Ro&zdíly... (%1 z %2)"
 
 #: Merge.rc:546
 #, c-format
@@ -989,12 +989,12 @@ msgstr "&Obnovit"
 #: Merge.rc:558
 #, c-format
 msgid "&Copy Full Path"
-msgstr "KopÃ­rovat celÃ© &umÃ­stÄ›nÃ­"
+msgstr "Kopírovat celé &umístìní"
 
 #: Merge.rc:559
 #, c-format
 msgid "Copy &Filename"
-msgstr "KopÃ­rovat &nÃ¡zev souboru"
+msgstr "Kopírovat &název souboru"
 
 #: Merge.rc:565
 #, c-format
@@ -1014,22 +1014,22 @@ msgstr ""
 #: Merge.rc:576
 #, c-format
 msgid "G&oto Diff"
-msgstr "&PÅ™ejÃ­t na Å™Ã¡dek"
+msgstr "&Pøejít na øádek"
 
 #: Merge.rc:579
 #, c-format
 msgid "&No Moved Blocks"
-msgstr "&Nezobrazovat pÅ™esunutÃ© bloky"
+msgstr "&Nezobrazovat pøesunuté bloky"
 
 #: Merge.rc:580
 #, c-format
 msgid "&All Moved Blocks"
-msgstr "&VÅ¡echny pÅ™esunutÃ© bloky"
+msgstr "&Všechny pøesunuté bloky"
 
 #: Merge.rc:581
 #, c-format
 msgid "Moved Block for &Current Diff"
-msgstr "PÅ™esunutÃ½ blok pro ak&tuÃ¡lnÃ­ rozdÃ­l"
+msgstr "Pøesunutı blok pro ak&tuální rozdíl"
 
 #: Merge.rc:650
 #, c-format
@@ -1044,12 +1044,12 @@ msgstr ""
 #: Merge.rc:657
 #, c-format
 msgid "All rights reserved."
-msgstr "VÅ¡echna prÃ¡va vyhrazena."
+msgstr "Všechna práva vyhrazena."
 
 #: Merge.rc:658
 #, c-format
 msgid "Visit the WinMerge HomePage!"
-msgstr "NavÅ¡tivte domovskou strÃ¡nku WinMerge!"
+msgstr "Navštivte domovskou stránku WinMerge!"
 
 #: Merge.rc:661
 #: Merge.rc:692
@@ -1070,12 +1070,12 @@ msgstr ""
 #: Merge.rc:662
 #, c-format
 msgid "Contributors"
-msgstr "PÅ™ispÄ›vatelÃ©"
+msgstr "Pøispìvatelé"
 
 #: Merge.rc:668
 #, c-format
 msgid "Select Files or Folders"
-msgstr "Vybrat soubory nebo sloÅ¾ky..."
+msgstr "Vybrat soubory nebo sloky..."
 
 #: Merge.rc:671
 #: Merge.rc:1586
@@ -1089,7 +1089,7 @@ msgstr "V&levo:"
 #: Merge.rc:1011
 #, c-format
 msgid "&Browse..."
-msgstr "&ProchÃ¡zet..."
+msgstr "&Procházet..."
 
 #: Merge.rc:676
 #: Merge.rc:1590
@@ -1101,7 +1101,7 @@ msgstr "Vp&ravo:"
 #: Merge.rc:1022
 #, c-format
 msgid "Bro&wse..."
-msgstr "Pr&ochÃ¡zet..."
+msgstr "Pr&ocházet..."
 
 #: Merge.rc:681
 #: Merge.rc:1594
@@ -1118,7 +1118,7 @@ msgstr "&Vybrat..."
 #: Merge.rc:685
 #, c-format
 msgid "&Unpacker:"
-msgstr "PÅ™&evadÄ›Ä:"
+msgstr "Pø&evadìè:"
 
 #: Merge.rc:688
 #, c-format
@@ -1129,7 +1129,7 @@ msgstr "Vy&brat..."
 #: Merge.rc:1597
 #, c-format
 msgid "&Include Subfolders"
-msgstr "VÄetnÄ› pod&sloÅ¾ek"
+msgstr "Vèetnì pod&sloek"
 
 #: Merge.rc:691
 #, c-format
@@ -1158,12 +1158,12 @@ msgstr "Storno"
 #: Merge.rc:1330
 #, c-format
 msgid "Help"
-msgstr "NÃ¡povÄ›da"
+msgstr "Nápovìda"
 
 #: Merge.rc:695
 #, c-format
 msgid "Files or Folders to Compare"
-msgstr "Soubory nebo sloÅ¾ky k porovnÃ¡nÃ­"
+msgstr "Soubory nebo sloky k porovnání"
 
 #: Merge.rc:702
 #, c-format
@@ -1215,12 +1215,12 @@ msgstr ""
 #: Merge.rc:728
 #, c-format
 msgid "Versioning System"
-msgstr "SystÃ©m sledovÃ¡nÃ­ verzÃ­"
+msgstr "Systém sledování verzí"
 
 #: Merge.rc:731
 #, c-format
 msgid "&Versioning System:"
-msgstr "&SystÃ©m sledovÃ¡nÃ­ verzÃ­:"
+msgstr "&Systém sledování verzí:"
 
 #: Merge.rc:734
 #, c-format
@@ -1231,76 +1231,76 @@ msgstr "&Cesta k programu cleartool.exe:"
 #: Merge.rc:1898
 #, c-format
 msgid "General"
-msgstr "ObecnÃ©"
+msgstr "Obecné"
 
 #: Merge.rc:744
 #, c-format
 msgid "Automatically &scroll to first difference"
-msgstr "Automaticky posunout na pr&vnÃ­ rozdÃ­l"
+msgstr "Automaticky posunout na pr&vní rozdíl"
 
 #: Merge.rc:747
 #, c-format
 msgid "&Disable Splash Screen"
-msgstr "Nezobrazovat ÃºvodnÃ­ o&brazovku"
+msgstr "Nezobrazovat úvodní o&brazovku"
 
 #: Merge.rc:749
 #, c-format
 msgid "Cl&ose windows with ESC"
-msgstr "ZavÃ­rat okna klÃ¡vesou &Esc"
+msgstr "Zavírat okna klávesou &Esc"
 
 #: Merge.rc:751
 #, c-format
 msgid "&Automatically verify paths in Open-dialog"
-msgstr "Automaticky &ovÄ›Å™ovat cesty v dialogu OtevÅ™Ã­t"
+msgstr "Automaticky &ovìøovat cesty v dialogu Otevøít"
 
 #: Merge.rc:754
 #, c-format
 msgid "All&ow only one instance to run"
-msgstr "Povolit pouze jedno &hlavnÃ­ okno aplikace"
+msgstr "Povolit pouze jedno &hlavní okno aplikace"
 
 #: Merge.rc:756
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr "DotÃ¡zat se na &zavÅ™enÃ­ vÃ­ce oken"
+msgstr "Dotázat se na &zavøení více oken"
 
 #: Merge.rc:758
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr "Z&achovÃ¡vat pÅ¯vodnÃ­ Äas souboru"
+msgstr "Z&achovávat pùvodní èas souboru"
 
 #: Merge.rc:761
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr "AutomatickÃ© &dokonÄovÃ¡nÃ­:"
+msgstr "Automatické &dokonèování:"
 
 #: Merge.rc:764
 #, c-format
 msgid "Enable multiple compare windows for"
-msgstr "Povolit vÃ­ce oken pro porovnÃ¡nÃ­"
+msgstr "Povolit více oken pro porovnání"
 
 #: Merge.rc:766
 #: Merge.rc:1609
 #, c-format
 msgid "&Folder compare"
-msgstr "s&loÅ¾ek"
+msgstr "s&loek"
 
 #: Merge.rc:768
 #: Merge.rc:1611
 #, c-format
 msgid "Fil&e compare"
-msgstr "&souborÅ¯"
+msgstr "&souborù"
 
 #: Merge.rc:770
 #, c-format
 msgid "WinMerge allows hiding some common messageboxes. Press the Reset button to make all messageboxes visible again."
 msgstr ""
-"NÄ›kterÃ¡ obecnÃ¡ okna se zprÃ¡vami je moÅ¾no skrÃ½t.\n"
-"Po stisknutÃ­ tlaÄÃ­tka VrÃ¡tit se vÅ¡echna tato okna opÄ›t budou objevovat."
+"Nìkterá obecná okna se zprávami je mono skrıt.\n"
+"Po stisknutí tlaèítka Vrátit se všechna tato okna opìt budou objevovat."
 
 #: Merge.rc:772
 #, c-format
 msgid "Reset"
-msgstr "V&rÃ¡tit"
+msgstr "V&rátit"
 
 #: Merge.rc:779
 #, c-format
@@ -1310,12 +1310,12 @@ msgstr "Jazyk"
 #: Merge.rc:786
 #, c-format
 msgid "Available languages:"
-msgstr "DostupnÃ© jazyky:"
+msgstr "Dostupné jazyky:"
 
 #: Merge.rc:792
 #, c-format
 msgid "Find"
-msgstr "NajÃ­t"
+msgstr "Najít"
 
 #: Merge.rc:795
 #: Merge.rc:822
@@ -1327,19 +1327,19 @@ msgstr "C&o hledat:"
 #: Merge.rc:828
 #, c-format
 msgid "Match &whole word only"
-msgstr "Pouze &celÃ¡ slova"
+msgstr "Pouze &celá slova"
 
 #: Merge.rc:800
 #: Merge.rc:830
 #, c-format
 msgid "Match &case"
-msgstr "&RozliÅ¡ovat malÃ¡ a velkÃ¡ pÃ­smena"
+msgstr "&Rozlišovat malá a velká písmena"
 
 #: Merge.rc:802
 #: Merge.rc:832
 #, c-format
 msgid "Regular &expression"
-msgstr "R&egulÃ©rnÃ­ vÃ½raz"
+msgstr "R&egulérní vıraz"
 
 #: Merge.rc:804
 #, c-format
@@ -1349,7 +1349,7 @@ msgstr "Zastavit na &konci souboru"
 #: Merge.rc:807
 #, c-format
 msgid "Direction"
-msgstr "SmÄ›r"
+msgstr "Smìr"
 
 #: Merge.rc:808
 #, c-format
@@ -1359,13 +1359,13 @@ msgstr "Nahor&u"
 #: Merge.rc:810
 #, c-format
 msgid "&Down"
-msgstr "&DolÅ¯"
+msgstr "&Dolù"
 
 #: Merge.rc:812
 #: Merge.rc:842
 #, c-format
 msgid "&Find Next"
-msgstr "&NajÃ­t dalÅ¡Ã­"
+msgstr "&Najít další"
 
 #: Merge.rc:819
 #, c-format
@@ -1375,7 +1375,7 @@ msgstr "Nahradit"
 #: Merge.rc:825
 #, c-format
 msgid "Re&place with:"
-msgstr "ÄŒÃ­&m nahradit:"
+msgstr "Èí&m nahradit:"
 
 #: Merge.rc:834
 #, c-format
@@ -1390,12 +1390,12 @@ msgstr "Nahrazovat"
 #: Merge.rc:838
 #, c-format
 msgid "&Selection"
-msgstr "ve vÃ½&bÄ›ru"
+msgstr "ve vı&bìru"
 
 #: Merge.rc:840
 #, c-format
 msgid "Wh&ole file"
-msgstr "v ce&lÃ©m souboru"
+msgstr "v ce&lém souboru"
 
 #: Merge.rc:843
 #, c-format
@@ -1405,7 +1405,7 @@ msgstr "Na&hradit"
 #: Merge.rc:844
 #, c-format
 msgid "Replace &All"
-msgstr "Nahradit &vÅ¡e"
+msgstr "Nahradit &vše"
 
 #: Merge.rc:851
 #: Merge.rc:2133
@@ -1422,7 +1422,7 @@ msgstr ""
 #: Merge.rc:1171
 #, c-format
 msgid "Comments"
-msgstr "KomentÃ¡Å™e"
+msgstr "Komentáøe"
 
 #: Merge.rc:862
 #, c-format
@@ -1432,27 +1432,27 @@ msgstr ""
 #: Merge.rc:868
 #, c-format
 msgid "Linefilters"
-msgstr "FiltrovÃ¡nÃ­ Å™Ã¡dkÅ¯"
+msgstr "Filtrování øádkù"
 
 #: Merge.rc:871
 #, c-format
 msgid "Enable Line Filters"
-msgstr "Povolit filtrovÃ¡nÃ­ Å™Ã¡dkÅ¯"
+msgstr "Povolit filtrování øádkù"
 
 #: Merge.rc:874
 #, c-format
 msgid "Regular Expressions (one per line):"
-msgstr "RegulÃ©rnÃ­ vÃ½razy (jeden na Å™Ã¡dek):"
+msgstr "Regulérní vırazy (jeden na øádek):"
 
 #: Merge.rc:881
 #, c-format
 msgid "Save"
-msgstr "&UloÅ¾it"
+msgstr "&Uloit"
 
 #: Merge.rc:882
 #, c-format
 msgid "New"
-msgstr "&NovÃ½"
+msgstr "&Novı"
 
 #: Merge.rc:883
 #, c-format
@@ -1473,23 +1473,23 @@ msgstr "Barvy"
 #: Merge.rc:892
 #, c-format
 msgid "Difference:"
-msgstr "RozdÃ­l:"
+msgstr "Rozdíl:"
 
 #: Merge.rc:896
 #, c-format
 msgid "Selected Difference:"
-msgstr "VybranÃ½ rozdÃ­l:"
+msgstr "Vybranı rozdíl:"
 
 #: Merge.rc:900
 #: Merge.rc:1561
 #, c-format
 msgid "Background"
-msgstr "PozadÃ­"
+msgstr "Pozadí"
 
 #: Merge.rc:901
 #, c-format
 msgid "Deleted"
-msgstr "ChybÄ›jÃ­cÃ­"
+msgstr "Chybìjící"
 
 #: Merge.rc:914
 #: Merge.rc:1356
@@ -1501,27 +1501,27 @@ msgstr ""
 #: Merge.rc:918
 #, c-format
 msgid "Ignored Difference:"
-msgstr "IgnorovanÃ½ rozdÃ­l:"
+msgstr "Ignorovanı rozdíl:"
 
 #: Merge.rc:928
 #, c-format
 msgid "Moved:"
-msgstr "PÅ™esunutÃ½ blok:"
+msgstr "Pøesunutı blok:"
 
 #: Merge.rc:938
 #, c-format
 msgid "Selected Moved:"
-msgstr "VybranÃ½ pÅ™esunutÃ½ blok:"
+msgstr "Vybranı pøesunutı blok:"
 
 #: Merge.rc:945
 #, c-format
 msgid "Word Difference:"
-msgstr "RozdÃ­lnÃ© slovo:"
+msgstr "Rozdílné slovo:"
 
 #: Merge.rc:952
 #, c-format
 msgid "Selected Word Diff:"
-msgstr "VybranÃ© rozdÃ­lnÃ© slovo:"
+msgstr "Vybrané rozdílné slovo:"
 
 #: Merge.rc:959
 #: Merge.rc:1045
@@ -1530,7 +1530,7 @@ msgstr "VybranÃ© rozdÃ­lnÃ© slovo:"
 #: Merge.rc:1402
 #, c-format
 msgid "Defaults"
-msgstr "&PÅ¯vodnÃ­"
+msgstr "&Pùvodní"
 
 #: Merge.rc:965
 #: Merge.rc:1344
@@ -1543,12 +1543,12 @@ msgstr "Syntaxe"
 #: Merge.rc:1904
 #, c-format
 msgid "System"
-msgstr "SystÃ©m"
+msgstr "Systém"
 
 #: Merge.rc:978
 #, c-format
 msgid "&Send deleted files to Recycle Bin"
-msgstr "Odeslat odstranÄ›nÃ© soubory do &koÅ¡e"
+msgstr "Odeslat odstranìné soubory do &koše"
 
 #: Merge.rc:980
 #, c-format
@@ -1558,58 +1558,58 @@ msgstr "Integrace"
 #: Merge.rc:981
 #, c-format
 msgid "&Add to explorer context menu"
-msgstr "PÅ™idat do &mÃ­stnÃ­ nabÃ­dky v prÅ¯zkumnÃ­ku"
+msgstr "Pøidat do &místní nabídky v prùzkumníku"
 
 #: Merge.rc:983
 #, c-format
 msgid "E&nable advanced menu"
-msgstr "Povolit &rozÅ¡Ã­Å™enou nabÃ­dku"
+msgstr "Povolit &rozšíøenou nabídku"
 
 #: Merge.rc:985
 #, c-format
 msgid "In&clude subfolders by default"
-msgstr "VÃ½chozÃ­ porovnÃ¡nÃ­ vÄetnÄ› pod&sloÅ¾ek"
+msgstr "Vıchozí porovnání vèetnì pod&sloek"
 
 #: Merge.rc:987
 #, c-format
 msgid "&External editor:"
-msgstr "&ExternÃ­ editor:"
+msgstr "&Externí editor:"
 
 #: Merge.rc:990
 #, c-format
 msgid "&Filter folder:"
-msgstr "SloÅ¾ka vlastnÃ­ch &filtrÅ¯:"
+msgstr "Sloka vlastních &filtrù:"
 
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "Pr&ocházet..."
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "Sloka &doèasnıch souborù"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "Sys&témová sloka doèasnıch souborù"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "&Vlastní sloka:"
 
 #: Merge.rc:999
 #: Merge.rc:1015
 #, c-format
 msgid "Br&owse..."
-msgstr "ProchÃ¡zet..."
+msgstr "Procházet..."
 
 #: Merge.rc:1005
 #, c-format
 msgid "Patch Generator"
-msgstr "VytvoÅ™enÃ­ opravnÃ©ho souboru"
+msgstr "Vytvoøení opravného souboru"
 
 #: Merge.rc:1008
 #, c-format
@@ -1624,22 +1624,22 @@ msgstr "Soubor &2:"
 #: Merge.rc:1016
 #, c-format
 msgid "&Swap"
-msgstr "Z&amÄ›nit"
+msgstr "Z&amìnit"
 
 #: Merge.rc:1017
 #, c-format
 msgid "&Append to existing file"
-msgstr "PÅ™&ipojit ke stÃ¡vajÃ­cÃ­mu souboru"
+msgstr "Pø&ipojit ke stávajícímu souboru"
 
 #: Merge.rc:1019
 #, c-format
 msgid "&Result:"
-msgstr "VÃ½&sledek:"
+msgstr "Vı&sledek:"
 
 #: Merge.rc:1023
 #, c-format
 msgid "&Format"
-msgstr "FormÃ¡t"
+msgstr "Formát"
 
 #: Merge.rc:1024
 #, c-format
@@ -1654,42 +1654,42 @@ msgstr "O&bsah:"
 #: Merge.rc:1030
 #, c-format
 msgid "W&hitespaces"
-msgstr "PrÃ¡zdnÃ¡ mÃ­sta"
+msgstr "Prázdná místa"
 
 #: Merge.rc:1031
 #, c-format
 msgid "Com&pare"
-msgstr "P&orovnÃ¡vat"
+msgstr "P&orovnávat"
 
 #: Merge.rc:1033
 #, c-format
 msgid "I&gnore changes"
-msgstr "Ignorovat &zmÄ›ny"
+msgstr "Ignorovat &zmìny"
 
 #: Merge.rc:1035
 #, c-format
 msgid "Ig&nore all"
-msgstr "Ignorovat &vÅ¡echny"
+msgstr "Ignorovat &všechny"
 
 #: Merge.rc:1037
 #, c-format
 msgid "Ignor&e blank lines"
-msgstr "Ignorovat prÃ¡zdnÃ© Å™Ã¡&dky"
+msgstr "Ignorovat prázdné øá&dky"
 
 #: Merge.rc:1039
 #, c-format
 msgid "Case sensi&tive"
-msgstr "RozliÅ¡ovat &malÃ¡ a velkÃ¡ pÃ­smena"
+msgstr "Rozlišovat &malá a velká písmena"
 
 #: Merge.rc:1041
 #, c-format
 msgid "Inclu&de command line"
-msgstr "VloÅ¾it pÅ™Ã­&kazovÃ½ Å™Ã¡dek"
+msgstr "Vloit pøí&kazovı øádek"
 
 #: Merge.rc:1043
 #, c-format
 msgid "Open to e&xternal editor"
-msgstr "OtevÅ™Ã­t v &externÃ­m editoru"
+msgstr "Otevøít v &externím editoru"
 
 #: Merge.rc:1065
 #, c-format
@@ -1704,27 +1704,27 @@ msgstr "&Nahoru"
 #: Merge.rc:1072
 #, c-format
 msgid "Move &Down"
-msgstr "&DolÅ¯"
+msgstr "&Dolù"
 
 #: Merge.rc:1082
 #, c-format
 msgid "Select Unpacker"
-msgstr "Zvolit pÅ™evadÄ›Ä"
+msgstr "Zvolit pøevadìè"
 
 #: Merge.rc:1087
 #, c-format
 msgid "File unpacker:"
-msgstr "&PÅ™evadÄ›Ä souborÅ¯:"
+msgstr "&Pøevadìè souborù:"
 
 #: Merge.rc:1090
 #, c-format
 msgid "Display all unpackers, don't check the extension"
-msgstr "&Zobrazit vÅ¡echny pÅ™evadÄ›Äe (nekontrolovat podle pÅ™Ã­pony)"
+msgstr "&Zobrazit všechny pøevadìèe (nekontrolovat podle pøípony)"
 
 #: Merge.rc:1093
 #, c-format
 msgid "Extensions list:"
-msgstr "Seznam pÅ™Ã­pon:"
+msgstr "Seznam pøípon:"
 
 #: Merge.rc:1094
 #, c-format
@@ -1734,7 +1734,7 @@ msgstr "Popis:"
 #: Merge.rc:1105
 #, c-format
 msgid " Folder Compare Progress"
-msgstr " PrÅ¯bÄ›h porovnÃ¡nÃ­ sloÅ¾ek"
+msgstr " Prùbìh porovnání sloek"
 
 #: Merge.rc:1108
 #: Merge.rc:1851
@@ -1745,12 +1745,12 @@ msgstr "Zastavit"
 #: Merge.rc:1113
 #, c-format
 msgid "Comparing items..."
-msgstr "PorovnÃ¡vajÃ­ se poloÅ¾ky..."
+msgstr "Porovnávají se poloky..."
 
 #: Merge.rc:1114
 #, c-format
 msgid "Items compared:"
-msgstr "PorovnÃ¡no:"
+msgstr "Porovnáno:"
 
 #: Merge.rc:1115
 #, c-format
@@ -1760,12 +1760,12 @@ msgstr "Celkem:"
 #: Merge.rc:1121
 #, c-format
 msgid "Go To"
-msgstr "PÅ™ejÃ­t"
+msgstr "Pøejít"
 
 #: Merge.rc:1124
 #, c-format
 msgid "G&oto:"
-msgstr "PÅ™ejÃ­t &na:"
+msgstr "Pøejít &na:"
 
 #: Merge.rc:1126
 #, c-format
@@ -1775,93 +1775,93 @@ msgstr "Soubor"
 #: Merge.rc:1131
 #, c-format
 msgid "Goto what"
-msgstr "PÅ™ejÃ­t na co"
+msgstr "Pøejít na co"
 
 #: Merge.rc:1132
 #, c-format
 msgid "Li&ne"
-msgstr "Å˜Ã¡&dek"
+msgstr "Øá&dek"
 
 #: Merge.rc:1134
 #, c-format
 msgid "&Difference"
-msgstr "Ro&zdÃ­l"
+msgstr "Ro&zdíl"
 
 #: Merge.rc:1136
 #, c-format
 msgid "&Go To"
-msgstr "&PÅ™ejÃ­t"
+msgstr "&Pøejít"
 
 #: Merge.rc:1142
 #: Merge.rc:1899
 #, c-format
 msgid "Compare"
-msgstr "PorovnÃ¡vÃ¡nÃ­"
+msgstr "Porovnávání"
 
 #: Merge.rc:1145
 #, c-format
 msgid "Whitespace"
-msgstr "PrÃ¡zdnÃ¡ mÃ­sta"
+msgstr "Prázdná místa"
 
 #: Merge.rc:1146
 #, c-format
 msgid "&Compare"
-msgstr "P&orovnÃ¡vat"
+msgstr "P&orovnávat"
 
 #: Merge.rc:1148
 #, c-format
 msgid "&Ignore change"
-msgstr "Ignorovat &zmÄ›ny"
+msgstr "Ignorovat &zmìny"
 
 #: Merge.rc:1150
 #, c-format
 msgid "I&gnore all"
-msgstr "Ignorovat &vÅ¡echny"
+msgstr "Ignorovat &všechny"
 
 #: Merge.rc:1152
 #, c-format
 msgid "Ignore blan&k lines"
-msgstr "Ignorovat prÃ¡zdnÃ© Å™Ã¡&dky"
+msgstr "Ignorovat prázdné øá&dky"
 
 #: Merge.rc:1154
 #, c-format
 msgid "Ignore &case"
-msgstr "Ignorovat &malÃ¡ a velkÃ¡ pÃ­smena"
+msgstr "Ignorovat &malá a velká písmena"
 
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
-msgstr "Ignorovat rozdÃ­ly v &koncÃ­ch Å™Ã¡dkÅ¯ (DOS/UNIX/MAC)"
+msgstr "Ignorovat rozdíly v &koncích øádkù (DOS/UNIX/MAC)"
 
 #: Merge.rc:1159
 #, c-format
 msgid "E&nable moved block detection"
-msgstr "Povolit zjiÅ¡Å¥ovÃ¡nÃ­ pÅ™esunutÃ½ch &blokÅ¯"
+msgstr "Povolit zjišování pøesunutıch &blokù"
 
 #: Merge.rc:1161
 #, c-format
 msgid "&Match similar lines"
-msgstr "Za&rovnat podobnÃ© Å™Ã¡dky"
+msgstr "Za&rovnat podobné øádky"
 
 #: Merge.rc:1163
 #, c-format
 msgid "Ign&ore time differences less than 3 seconds"
-msgstr "&Ignorovat ÄasovÃ© rozdÃ­ly menÅ¡Ã­ neÅ¾ 3 sekundy"
+msgstr "&Ignorovat èasové rozdíly menší ne 3 sekundy"
 
 #: Merge.rc:1166
 #, c-format
 msgid "&File Compare method:"
-msgstr "ZpÅ¯sob porovnÃ¡nÃ­ &souborÅ¯:"
+msgstr "Zpùsob porovnání &souborù:"
 
 #: Merge.rc:1169
 #, c-format
 msgid "S&top after first difference"
-msgstr "Zastavit po prvnÃ­m &rozdÃ­lu"
+msgstr "Zastavit po prvním &rozdílu"
 
 #: Merge.rc:1172
 #, c-format
 msgid "Filter Comments"
-msgstr "Filtrovat kom&entÃ¡Å™e"
+msgstr "Filtrovat kom&entáøe"
 
 #: Merge.rc:1179
 #: Merge.rc:1900
@@ -1872,22 +1872,22 @@ msgstr ""
 #: Merge.rc:1182
 #, c-format
 msgid "&Highlight syntax"
-msgstr "ZvÃ½raznit sy&ntaxi"
+msgstr "Zvıraznit sy&ntaxi"
 
 #: Merge.rc:1184
 #, c-format
 msgid "&Automatic rescan"
-msgstr "Automaticky &opÄ›tovnÄ› porovnÃ¡vat"
+msgstr "Automaticky &opìtovnì porovnávat"
 
 #: Merge.rc:1186
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "Zachovat pÅ¯vodnÃ­ znaky na &koncÃ­ch Å™Ã¡dkÅ¯"
+msgstr "Zachovat pùvodní znaky na &koncích øádkù"
 
 #: Merge.rc:1188
 #, c-format
 msgid "Tabs"
-msgstr "TabelÃ¡tory"
+msgstr "Tabelátory"
 
 #: Merge.rc:1189
 #, c-format
@@ -1897,42 +1897,42 @@ msgstr "&Velikost:"
 #: Merge.rc:1192
 #, c-format
 msgid "&Insert Tabs"
-msgstr "VklÃ¡dat &tabelÃ¡tory"
+msgstr "Vkládat &tabelátory"
 
 #: Merge.rc:1194
 #, c-format
 msgid "Insert &Spaces"
-msgstr "VklÃ¡dat &mezery"
+msgstr "Vkládat &mezery"
 
 #: Merge.rc:1196
 #, c-format
 msgid "Line Difference Coloring"
-msgstr "Obarvit rozdÃ­ly v Å™Ã¡dku"
+msgstr "Obarvit rozdíly v øádku"
 
 #: Merge.rc:1198
 #, c-format
 msgid "View line differences"
-msgstr "Zobrazit rozdÃ­ly v Å™Ã¡&dku"
+msgstr "Zobrazit rozdíly v øá&dku"
 
 #: Merge.rc:1200
 #, c-format
 msgid "&Character level"
-msgstr "Na Ãºrovni &znakÅ¯"
+msgstr "Na úrovni &znakù"
 
 #: Merge.rc:1202
 #, c-format
 msgid "&Word-level:"
-msgstr "Na Ãºrovni &slov:"
+msgstr "Na úrovni &slov:"
 
 #: Merge.rc:1217
 #, c-format
 msgid "Filefilters"
-msgstr "FiltrovÃ¡nÃ­ souborÅ¯"
+msgstr "Filtrování souborù"
 
 #: Merge.rc:1223
 #, c-format
 msgid "Test"
-msgstr "Z&kouÅ¡ka"
+msgstr "Z&kouška"
 
 #: Merge.rc:1224
 #, c-format
@@ -1942,7 +1942,7 @@ msgstr "&Instalovat..."
 #: Merge.rc:1225
 #, c-format
 msgid "New..."
-msgstr "&NovÃ½..."
+msgstr "&Novı..."
 
 #: Merge.rc:1226
 #, c-format
@@ -1957,59 +1957,59 @@ msgstr "O&dstranit..."
 #: Merge.rc:1233
 #, c-format
 msgid "Save modified files?"
-msgstr "UloÅ¾it zmÄ›nÄ›nÃ© soubory?"
+msgstr "Uloit zmìnìné soubory?"
 
 #: Merge.rc:1236
 #, c-format
 msgid "Left side file"
-msgstr "Soubor na levÃ© stranÄ›"
+msgstr "Soubor na levé stranì"
 
 #: Merge.rc:1239
 #, c-format
 msgid "&Save changes"
-msgstr "UloÅ¾&it zmÄ›ny"
+msgstr "Ulo&it zmìny"
 
 #: Merge.rc:1241
 #, c-format
 msgid "&Discard changes"
-msgstr "&ZruÅ¡it zmÄ›ny"
+msgstr "&Zrušit zmìny"
 
 #: Merge.rc:1243
 #, c-format
 msgid "Right side file"
-msgstr "Soubor na pravÃ© stranÄ›"
+msgstr "Soubor na pravé stranì"
 
 #: Merge.rc:1246
 #, c-format
 msgid "S&ave changes"
-msgstr "Ul&oÅ¾it zmÄ›ny"
+msgstr "Ul&oit zmìny"
 
 #: Merge.rc:1248
 #, c-format
 msgid "Dis&card changes"
-msgstr "Zr&uÅ¡it zmÄ›ny"
+msgstr "Zr&ušit zmìny"
 
 #: Merge.rc:1250
 #, c-format
 msgid "Discard All"
-msgstr "ZruÅ¡it &vÅ¡e"
+msgstr "Zrušit &vše"
 
 #: Merge.rc:1257
 #: Merge.rc:1505
 #: Merge.rc:1906
 #, c-format
 msgid "Codepage"
-msgstr "KÃ³dovÃ¡nÃ­"
+msgstr "Kódování"
 
 #: Merge.rc:1260
 #, c-format
 msgid "Default Codepage"
-msgstr "VÃ½chozÃ­ kÃ³dovÃ¡nÃ­"
+msgstr "Vıchozí kódování"
 
 #: Merge.rc:1261
 #, c-format
 msgid "Select the default codepage assumed when loading non-Unicode files:"
-msgstr "Zvolte vÃ½chozÃ­ znakovou strÃ¡nku, kterÃ¡ se pouÅ¾ije v pÅ™Ã­padÄ› naÄtenÃ­ souborÅ¯, kterÃ© nejsou v kÃ³dovÃ¡nÃ­ Unicode:"
+msgstr "Zvolte vıchozí znakovou stránku, která se pouije v pøípadì naètení souborù, které nejsou v kódování Unicode:"
 
 #: Merge.rc:1263
 #, c-format
@@ -2017,23 +2017,23 @@ msgid ""
 "Detect codepage info for these files : .html, .rc, .xml \n"
 "need to restart session"
 msgstr ""
-"&Zjistit informaci o kÃ³dovÃ¡nÃ­ u tÄ›chto souborÅ¯: .html, .rc, .xml \n"
-"(vyÅ¾aduje opÄ›tovnÃ© spuÅ¡tÄ›nÃ­ programu)"
+"&Zjistit informaci o kódování u tìchto souborù: .html, .rc, .xml \n"
+"(vyaduje opìtovné spuštìní programu)"
 
 #: Merge.rc:1266
 #, c-format
 msgid "System codepage"
-msgstr "&SystÃ©movÃ© kÃ³dovÃ¡nÃ­"
+msgstr "&Systémové kódování"
 
 #: Merge.rc:1268
 #, c-format
 msgid "According to WinMerge User Interface"
-msgstr "&Podle uÅ¾ivatelskÃ©ho prostÅ™edÃ­ WinMerge"
+msgstr "&Podle uivatelského prostøedí WinMerge"
 
 #: Merge.rc:1270
 #, c-format
 msgid "Custom codepage :"
-msgstr "&VlastnÃ­ znakovÃ¡ strÃ¡nka:"
+msgstr "&Vlastní znaková stránka:"
 
 #: Merge.rc:1278
 #, c-format
@@ -2043,26 +2043,26 @@ msgstr "WinMerge - podpora archivace vypnuta"
 #: Merge.rc:1281
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
-msgstr "Nelze zjistit verzi programu 7-Zip (nenÃ­ nainstalovÃ¡n?)"
+msgstr "Nelze zjistit verzi programu 7-Zip (není nainstalován?)"
 
 #: Merge.rc:1284
 #, c-format
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
-msgstr "Podpora archivace vyÅ¾aduje, aby byl ve vaÅ¡em poÄÃ­taÄi nainstalovÃ¡n program 7-Zip verze 3.11 nebo novÄ›jÅ¡Ã­, anebo aby jeho zÃ¡kladnÃ­ souÄÃ¡sti pro samostatnÃ© operace byly zkopÃ­rovÃ¡ny do adresÃ¡Å™e programu WinMerge."
+msgstr "Podpora archivace vyaduje, aby byl ve vašem poèítaèi nainstalován program 7-Zip verze 3.11 nebo novìjší, anebo aby jeho základní souèásti pro samostatné operace byly zkopírovány do adresáøe programu WinMerge."
 
 #: Merge.rc:1286
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
-msgstr "V tomto adresÃ¡Å™i takÃ© musÃ­ bÃ½t pÅ™Ã­sluÅ¡nÃ© pluginy rozhranÃ­ (Merge7z*.dll)."
+msgstr "V tomto adresáøi také musí bıt pøíslušné pluginy rozhraní (Merge7z*.dll)."
 
 #: Merge.rc:1288
 #, c-format
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
-msgstr "PouÅ¾Ã­vejte prosÃ­m verze programu 7-Zip doporuÄenÃ© nÃ­Å¾e, dokud nebudou dostupnÃ© pluginy rozhranÃ­ pro pozdÄ›jÅ¡Ã­ verze."
+msgstr "Pouívejte prosím verze programu 7-Zip doporuèené níe, dokud nebudou dostupné pluginy rozhraní pro pozdìjší verze."
 
 #: Merge.rc:1290
 #, c-format
@@ -2075,19 +2075,19 @@ msgid ""
 "Plugin required\n"
 "(dllbuild %04u)"
 msgstr ""
-"VyÅ¾adovanÃ½ plugin\n"
+"Vyadovanı plugin\n"
 "(knihovna %04u)"
 
 #: Merge.rc:1294
 #, c-format
 msgid "Recommended version of 7-Zip:"
-msgstr "DoporuÄenÃ¡ verze programu 7-Zip:"
+msgstr "Doporuèená verze programu 7-Zip:"
 
 #: Merge.rc:1297
 #: Merge.rc:1300
 #, c-format
 msgid "present"
-msgstr "pÅ™Ã­tomnÃ¡"
+msgstr "pøítomná"
 
 #: Merge.rc:1298
 #, c-format
@@ -2097,33 +2097,33 @@ msgstr ""
 #: Merge.rc:1301
 #, c-format
 msgid "7-Zip software installed on your computer:"
-msgstr "Program 7-Zip instalovanÃ½ ve vaÅ¡em poÄÃ­taÄi:"
+msgstr "Program 7-Zip instalovanı ve vašem poèítaèi:"
 
 #: Merge.rc:1303
 #: Merge.rc:1308
 #, c-format
 msgid "none"
-msgstr "nenÃ­"
+msgstr "není"
 
 #: Merge.rc:1305
 #, c-format
 msgid "missing"
-msgstr "chybÃ­"
+msgstr "chybí"
 
 #: Merge.rc:1306
 #, c-format
 msgid "7-Zip components for standalone operation:"
-msgstr "SouÄÃ¡sti 7-Zip pro samostatnÃ© operace:"
+msgstr "Souèásti 7-Zip pro samostatné operace:"
 
 #: Merge.rc:1310
 #, c-format
 msgid "outdated"
-msgstr "zastaralÃ¡"
+msgstr "zastaralá"
 
 #: Merge.rc:1311
 #, c-format
 msgid "Plugins on path:"
-msgstr "Cesty pluginÅ¯:"
+msgstr "Cesty pluginù:"
 
 #: Merge.rc:1312
 #, c-format
@@ -2131,18 +2131,18 @@ msgid ""
 "Don't display this &message again.\n"
 "(You can always recall this message from help menu.)"
 msgstr ""
-"T&uto zprÃ¡vu jiÅ¾ pÅ™Ã­Å¡tÄ› nezobrazovat.\n"
-"(Tuto zprÃ¡vu mÅ¯Å¾ete vÅ¾dy znovu vyvolat z nabÃ­dky NÃ¡povÄ›da.)"
+"T&uto zprávu ji pøíštì nezobrazovat.\n"
+"(Tuto zprávu mùete vdy znovu vyvolat z nabídky Nápovìda.)"
 
 #: Merge.rc:1316
 #, c-format
 msgid "Plugin Download"
-msgstr "StÃ¡hnout pluginy"
+msgstr "Stáhnout pluginy"
 
 #: Merge.rc:1325
 #, c-format
 msgid "Options"
-msgstr "MoÅ¾nosti"
+msgstr "Monosti"
 
 #: Merge.rc:1336
 #, c-format
@@ -2152,42 +2152,42 @@ msgstr " Kategorie"
 #: Merge.rc:1338
 #, c-format
 msgid "Import..."
-msgstr "&NaÄÃ­st..."
+msgstr "&Naèíst..."
 
 #: Merge.rc:1339
 #, c-format
 msgid "Export..."
-msgstr "&UloÅ¾it..."
+msgstr "&Uloit..."
 
 #: Merge.rc:1347
 #, c-format
 msgid "Keywords:"
-msgstr "KlÃ­ÄovÃ¡ slova:"
+msgstr "Klíèová slova:"
 
 #: Merge.rc:1348
 #, c-format
 msgid "Function names:"
-msgstr "NÃ¡zvy funkcÃ­:"
+msgstr "Názvy funkcí:"
 
 #: Merge.rc:1349
 #, c-format
 msgid "Comments:"
-msgstr "KomentÃ¡Å™e:"
+msgstr "Komentáøe:"
 
 #: Merge.rc:1350
 #, c-format
 msgid "Numbers:"
-msgstr "ÄŒÃ­sla:"
+msgstr "Èísla:"
 
 #: Merge.rc:1351
 #, c-format
 msgid "Operators:"
-msgstr "OperÃ¡tory:"
+msgstr "Operátory:"
 
 #: Merge.rc:1352
 #, c-format
 msgid "Strings:"
-msgstr "Å˜etÄ›zce:"
+msgstr "Øetìzce:"
 
 #: Merge.rc:1353
 #, c-format
@@ -2197,12 +2197,12 @@ msgstr "Preprocesor:"
 #: Merge.rc:1354
 #, c-format
 msgid "User 1:"
-msgstr "UÅ¾ivatelskÃ¡ 1:"
+msgstr "Uivatelská 1:"
 
 #: Merge.rc:1355
 #, c-format
 msgid "User 2:"
-msgstr "UÅ¾ivatelskÃ¡ 2:"
+msgstr "Uivatelská 2:"
 
 #: Merge.rc:1360
 #: Merge.rc:1365
@@ -2215,12 +2215,12 @@ msgstr "UÅ¾ivatelskÃ¡ 2:"
 #: Merge.rc:1400
 #, c-format
 msgid "Bold"
-msgstr "TuÄnÃ©"
+msgstr "Tuèné"
 
 #: Merge.rc:1408
 #, c-format
 msgid "Folder Compare Report"
-msgstr "Protokol o porovnÃ¡nÃ­ sloÅ¾ek"
+msgstr "Protokol o porovnání sloek"
 
 #: Merge.rc:1411
 #, c-format
@@ -2233,17 +2233,17 @@ msgstr "&Soubor protokolu:"
 #: Merge.rc:1619
 #, c-format
 msgid "Browse..."
-msgstr "Pr&ochÃ¡zet..."
+msgstr "Pr&ocházet..."
 
 #: Merge.rc:1415
 #, c-format
 msgid "&Style:"
-msgstr "UloÅ¾it jako &typ:"
+msgstr "Uloit jako &typ:"
 
 #: Merge.rc:1418
 #, c-format
 msgid "&Copy to Clipboard"
-msgstr "&KopÃ­rovat do schrÃ¡nky"
+msgstr "&Kopírovat do schránky"
 
 #: Merge.rc:1426
 #, c-format
@@ -2253,17 +2253,17 @@ msgstr "Typ filtru"
 #: Merge.rc:1429
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "JakÃ½ typ filtru chcete vytvoÅ™it?"
+msgstr "Jakı typ filtru chcete vytvoøit?"
 
 #: Merge.rc:1431
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "SpoleÄnÃ½ filtr (pro vÅ¡echny uÅ¾ivatele tohoto poÄÃ­taÄe)"
+msgstr "Spoleènı filtr (pro všechny uivatele tohoto poèítaèe)"
 
 #: Merge.rc:1433
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "VlastnÃ­ filtr (pouze pro souÄasnÃ©ho uÅ¾ivatele)"
+msgstr "Vlastní filtr (pouze pro souèasného uivatele)"
 
 #: Merge.rc:1441
 #: Merge.rc:1907
@@ -2274,27 +2274,27 @@ msgstr "Podpora archivace"
 #: Merge.rc:1444
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
-msgstr "Podpora archivace vyÅ¾aduje nainstalovanÃ© pluginy 7-Zip:"
+msgstr "Podpora archivace vyaduje nainstalované pluginy 7-Zip:"
 
 #: Merge.rc:1446
 #, c-format
 msgid "Download 7-zip Plugin"
-msgstr "StÃ¡hnout pluginy 7-Zip"
+msgstr "Stáhnout pluginy 7-Zip"
 
 #: Merge.rc:1447
 #, c-format
 msgid "&Enable archive file support"
-msgstr "&Zapnout podporu archivnÃ­ch souborÅ¯"
+msgstr "&Zapnout podporu archivních souborù"
 
 #: Merge.rc:1449
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
-msgstr "PouÅ¾Ã­t &samostatnÃ½ program 7-Zip, pokud je dostupnÃ½"
+msgstr "Pouít &samostatnı program 7-Zip, pokud je dostupnı"
 
 #: Merge.rc:1452
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
-msgstr "PouÅ¾Ã­t &mÃ­stnÃ­ program 7-Zip z adresÃ¡Å™e WinMerge"
+msgstr "Pouít &místní program 7-Zip z adresáøe WinMerge"
 
 #: Merge.rc:1454
 #, c-format
@@ -2304,12 +2304,12 @@ msgstr "Zjistit &automaticky typ archivu"
 #: Merge.rc:1462
 #, c-format
 msgid "Compare Statistics"
-msgstr "Statistika porovnÃ¡nÃ­"
+msgstr "Statistika porovnání"
 
 #: Merge.rc:1465
 #, c-format
 msgid "Folders:"
-msgstr "SloÅ¾ky:"
+msgstr "Sloky:"
 
 #: Merge.rc:1466
 #, c-format
@@ -2320,23 +2320,23 @@ msgstr "Soubory:"
 #: Merge.rc:2275
 #, c-format
 msgid "Different"
-msgstr "RozdÃ­lnÃ©"
+msgstr "Rozdílné"
 
 #: Merge.rc:1468
 #, c-format
 msgid "Text:"
-msgstr "TextovÃ©:"
+msgstr "Textové:"
 
 #: Merge.rc:1471
 #: Merge.rc:1490
 #, c-format
 msgid "Binary:"
-msgstr "BinÃ¡rnÃ­:"
+msgstr "Binární:"
 
 #: Merge.rc:1474
 #, c-format
 msgid "Unique"
-msgstr "JedineÄnÃ©"
+msgstr "Jedineèné"
 
 #: Merge.rc:1475
 #, c-format
@@ -2352,7 +2352,7 @@ msgstr "Vpravo:"
 #: Merge.rc:2270
 #, c-format
 msgid "Identical"
-msgstr "ShodnÃ©"
+msgstr "Shodné"
 
 #: Merge.rc:1494
 #, c-format
@@ -2362,7 +2362,7 @@ msgstr "Celkem:"
 #: Merge.rc:1499
 #, c-format
 msgid "Close"
-msgstr "ZavÅ™Ã­t"
+msgstr "Zavøít"
 
 #: Merge.rc:1508
 #, c-format
@@ -2373,17 +2373,17 @@ msgstr "Vliv"
 #: Merge.rc:1514
 #, c-format
 msgid "(Affects)"
-msgstr "(ovlivnÄ›no)"
+msgstr "(ovlivnìno)"
 
 #: Merge.rc:1515
 #, c-format
 msgid "Select Codepage for"
-msgstr "Zvolte kÃ³dovÃ¡nÃ­ pro"
+msgstr "Zvolte kódování pro"
 
 #: Merge.rc:1516
 #, c-format
 msgid "&File Loading:"
-msgstr "&NaÄtenÃ­ souboru:"
+msgstr "&Naètení souboru:"
 
 #: Merge.rc:1518
 #: Merge.rc:1521
@@ -2394,17 +2394,17 @@ msgstr ""
 #: Merge.rc:1519
 #, c-format
 msgid "File &Saving:"
-msgstr "&UloÅ¾enÃ­ souboru:"
+msgstr "&Uloení souboru:"
 
 #: Merge.rc:1522
 #, c-format
 msgid "&Use same codepage for both"
-msgstr "PouÅ¾Ã­t &stejnou znakovou strÃ¡nku pro oba"
+msgstr "Pouít &stejnou znakovou stránku pro oba"
 
 #: Merge.rc:1525
 #, c-format
 msgid "&Apply"
-msgstr "P&ouÅ¾Ã­t"
+msgstr "P&ouít"
 
 #: Merge.rc:1526
 #: Merge.rc:1873
@@ -2415,27 +2415,27 @@ msgstr "Storno"
 #: Merge.rc:1531
 #, c-format
 msgid "Test Filter"
-msgstr "ZkouÅ¡ka filtru"
+msgstr "Zkouška filtru"
 
 #: Merge.rc:1534
 #, c-format
 msgid "Testing filter ..."
-msgstr "ZkouÅ¡ka filtru ..."
+msgstr "Zkouška filtru ..."
 
 #: Merge.rc:1536
 #, c-format
 msgid "&Enter text to test:"
-msgstr "&VloÅ¾te text ke zkouÅ¡ce:"
+msgstr "&Vlote text ke zkoušce:"
 
 #: Merge.rc:1538
 #, c-format
 msgid "&Folder Name"
-msgstr "&NÃ¡zev sloÅ¾ky"
+msgstr "&Název sloky"
 
 #: Merge.rc:1540
 #, c-format
 msgid "Result:"
-msgstr "VÃ½sledek:"
+msgstr "Vısledek:"
 
 #: Merge.rc:1544
 #, c-format
@@ -2445,32 +2445,32 @@ msgstr "Z&kusit"
 #: Merge.rc:1545
 #, c-format
 msgid "&Close"
-msgstr "&ZavÅ™Ã­t"
+msgstr "&Zavøít"
 
 #: Merge.rc:1553
 #, c-format
 msgid "&Use customized text colors"
-msgstr "Po&uÅ¾Ã­t vlastnÃ­ barvy textu"
+msgstr "Po&uít vlastní barvy textu"
 
 #: Merge.rc:1556
 #, c-format
 msgid "Custom text colors"
-msgstr "VlastnÃ­ barvy textu"
+msgstr "Vlastní barvy textu"
 
 #: Merge.rc:1558
 #, c-format
 msgid "Whitespace:"
-msgstr "OkolÃ­ textu:"
+msgstr "Okolí textu:"
 
 #: Merge.rc:1559
 #, c-format
 msgid "Regular text:"
-msgstr "Å˜Ã¡dnÃ½ text:"
+msgstr "Øádnı text:"
 
 #: Merge.rc:1560
 #, c-format
 msgid "Selection:"
-msgstr "VÃ½bÄ›r:"
+msgstr "Vıbìr:"
 
 #: Merge.rc:1583
 #, c-format
@@ -2480,73 +2480,73 @@ msgstr "Cesty"
 #: Merge.rc:1589
 #, c-format
 msgid "R&ead-only"
-msgstr "Pouze pro Ä&tenÃ­"
+msgstr "Pouze pro è&tení"
 
 #: Merge.rc:1593
 #, c-format
 msgid "Re&ad-only"
-msgstr "Pouze pro Ät&enÃ­"
+msgstr "Pouze pro èt&ení"
 
 #: Merge.rc:1599
 #, c-format
 msgid "Open..."
-msgstr "&NaÄÃ­st..."
+msgstr "&Naèíst..."
 
 #: Merge.rc:1600
 #, c-format
 msgid "Save..."
-msgstr "&UloÅ¾it..."
+msgstr "&Uloit..."
 
 #: Merge.rc:1605
 #: Merge.rc:1908
 #, c-format
 msgid "Backup Files"
-msgstr "ZÃ¡lohovÃ¡nÃ­ souborÅ¯"
+msgstr "Zálohování souborù"
 
 #: Merge.rc:1608
 #, c-format
 msgid "Create backup files in:"
-msgstr "VytvÃ¡Å™et zÃ¡loÅ¾nÃ­ soubory pro:"
+msgstr "Vytváøet záloní soubory pro:"
 
 #: Merge.rc:1613
 #, c-format
 msgid "Create backup files into:"
-msgstr "UmÃ­stÄ›nÃ­ zÃ¡loÅ¾nÃ­ch souborÅ¯:"
+msgstr "Umístìní záloních souborù:"
 
 #: Merge.rc:1614
 #, c-format
 msgid "&Original file's folder"
-msgstr "&PÅ¯vodnÃ­ sloÅ¾ka souborÅ¯"
+msgstr "&Pùvodní sloka souborù"
 
 #: Merge.rc:1616
 #, c-format
 msgid "&Global backup folder:"
-msgstr "&JednotnÃ¡ zÃ¡loÅ¾nÃ­ sloÅ¾ka:"
+msgstr "&Jednotná záloní sloka:"
 
 #: Merge.rc:1620
 #, c-format
 msgid "Backup filename:"
-msgstr "NÃ¡zev zÃ¡loÅ¾nÃ­ho souboru:"
+msgstr "Název záloního souboru:"
 
 #: Merge.rc:1621
 #, c-format
 msgid "&Append .bak -extension"
-msgstr "PÅ™ipojit pÅ™Ã­ponu .&bak"
+msgstr "Pøipojit pøíponu .&bak"
 
 #: Merge.rc:1623
 #, c-format
 msgid "A&ppend timestamp"
-msgstr "PÅ™ipojit Ä&asovÃ© razÃ­tko"
+msgstr "Pøipojit è&asové razítko"
 
 #: Merge.rc:1630
 #, c-format
 msgid "Confirm Copy"
-msgstr "Potvrdit kopÃ­rovÃ¡nÃ­"
+msgstr "Potvrdit kopírování"
 
 #: Merge.rc:1634
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr "Opravdu chcete zkopÃ­rovat XXX poloÅ¾ek?"
+msgstr "Opravdu chcete zkopírovat XXX poloek?"
 
 #: Merge.rc:1636
 #, c-format
@@ -2583,7 +2583,7 @@ msgstr "0x405, 1250"
 #: Merge.rc:1699
 #, c-format
 msgid "Ready"
-msgstr "PÅ™ipraven"
+msgstr "Pøipraven"
 
 #: Merge.rc:1705
 #, c-format
@@ -2621,8 +2621,8 @@ msgid ""
 "Create empty documents\n"
 "New Documents (Ctrl+N)"
 msgstr ""
-"VytvoÅ™Ã­ novÃ© dokumenty\n"
-"NovÃ© dokumenty (Ctrl+N)"
+"Vytvoøí nové dokumenty\n"
+"Nové dokumenty (Ctrl+N)"
 
 #: Merge.rc:1717
 #, c-format
@@ -2630,8 +2630,8 @@ msgid ""
 "Open an existing document\n"
 "Open (Ctrl+O)"
 msgstr ""
-"OtevÅ™e existujÃ­cÃ­ dokument\n"
-"OtevÅ™Ã­t (Ctrl+O)"
+"Otevøe existující dokument\n"
+"Otevøít (Ctrl+O)"
 
 #: Merge.rc:1718
 #, c-format
@@ -2639,8 +2639,8 @@ msgid ""
 "Close the active document\n"
 "Close"
 msgstr ""
-"ZavÅ™e aktivnÃ­ dokument\n"
-"ZavÅ™Ã­t"
+"Zavøe aktivní dokument\n"
+"Zavøít"
 
 #: Merge.rc:1719
 #, c-format
@@ -2648,8 +2648,8 @@ msgid ""
 "Save the active document\n"
 "Save (Ctrl+S)"
 msgstr ""
-"UloÅ¾Ã­ aktivnÃ­ dokument\n"
-"UloÅ¾it (Ctrl+S)"
+"Uloí aktivní dokument\n"
+"Uloit (Ctrl+S)"
 
 #: Merge.rc:1720
 #, c-format
@@ -2657,8 +2657,8 @@ msgid ""
 "Save the active document with a new name\n"
 "Save As"
 msgstr ""
-"UloÅ¾Ã­ aktivnÃ­ dokument pod novÃ½m nÃ¡zvem\n"
-"UloÅ¾it jako"
+"Uloí aktivní dokument pod novım názvem\n"
+"Uloit jako"
 
 #: Merge.rc:1721
 #, c-format
@@ -2666,8 +2666,8 @@ msgid ""
 "Change the printing options\n"
 "Page Setup"
 msgstr ""
-"ZmÄ›nÃ­ moÅ¾nosti tisku\n"
-"Vzhled strÃ¡nky"
+"Zmìní monosti tisku\n"
+"Vzhled stránky"
 
 #: Merge.rc:1722
 #, c-format
@@ -2675,8 +2675,8 @@ msgid ""
 "Change the printer and printing options\n"
 "Print Setup"
 msgstr ""
-"ZmÄ›nÃ­ moÅ¾nosti tiskÃ¡rny\n"
-"NastavenÃ­ tisku"
+"Zmìní monosti tiskárny\n"
+"Nastavení tisku"
 
 #: Merge.rc:1723
 #, c-format
@@ -2684,7 +2684,7 @@ msgid ""
 "Print the active document\n"
 "Print"
 msgstr ""
-"Vytiskne aktivnÃ­ dokument\n"
+"Vytiskne aktivní dokument\n"
 "Tisk"
 
 #: Merge.rc:1724
@@ -2693,13 +2693,13 @@ msgid ""
 "Display full pages\n"
 "Print Preview"
 msgstr ""
-"ZobrazÃ­ celÃ© strÃ¡nky\n"
-"NÃ¡hled tisku"
+"Zobrazí celé stránky\n"
+"Náhled tisku"
 
 #: Merge.rc:1729
 #, c-format
 msgid "Make all hidden items visible again"
-msgstr "Znovu zviditelnÃ­ vÅ¡echny skrytÃ© poloÅ¾ky"
+msgstr "Znovu zviditelní všechny skryté poloky"
 
 #: Merge.rc:1735
 #, c-format
@@ -2707,18 +2707,18 @@ msgid ""
 "Open project file\n"
 "Project file (Ctrl+J)"
 msgstr ""
-"OtevÅ™e projekt ze souboru\n"
-"OtevÅ™Ã­t projekt (Ctrl+J)"
+"Otevøe projekt ze souboru\n"
+"Otevøít projekt (Ctrl+J)"
 
 #: Merge.rc:1736
 #, c-format
 msgid "Unknown error attempting to open project file"
-msgstr "NeznÃ¡mÃ¡ chyba pÅ™i pokusu o otevÅ™enÃ­ souboru projektu"
+msgstr "Neznámá chyba pøi pokusu o otevøení souboru projektu"
 
 #: Merge.rc:1737
 #, c-format
 msgid "Unknown error attempting to save project file"
-msgstr "NeznÃ¡mÃ¡ chyba pÅ™i pokusu o uloÅ¾enÃ­ souboru projektu"
+msgstr "Neznámá chyba pøi pokusu o uloení souboru projektu"
 
 #: Merge.rc:1738
 #, c-format
@@ -2728,12 +2728,12 @@ msgstr "Projekt"
 #: Merge.rc:1739
 #, c-format
 msgid "Project file successfully loaded."
-msgstr "Soubor s projektem byl ÃºspÄ›Å¡nÄ› naÄten."
+msgstr "Soubor s projektem byl úspìšnì naèten."
 
 #: Merge.rc:1740
 #, c-format
 msgid "Project file successfully saved."
-msgstr "Soubor s projektem byl ÃºspÄ›Å¡nÄ› uloÅ¾en."
+msgstr "Soubor s projektem byl úspìšnì uloen."
 
 #: Merge.rc:1741
 #, c-format
@@ -2741,8 +2741,8 @@ msgid ""
 "Save current paths and options to project file\n"
 "Save Project File"
 msgstr ""
-"UloÅ¾Ã­ aktuÃ¡lnÃ­ cesty a volby do souboru projektu\n"
-"UloÅ¾it projekt"
+"Uloí aktuální cesty a volby do souboru projektu\n"
+"Uloit projekt"
 
 #: Merge.rc:1746
 #, c-format
@@ -2750,7 +2750,7 @@ msgid ""
 "Display program information, version number and copyright\n"
 "About"
 msgstr ""
-"ZobrazÃ­ informace o programu, ÄÃ­slo verze a copyright\n"
+"Zobrazí informace o programu, èíslo verze a copyright\n"
 "O aplikaci"
 
 #: Merge.rc:1747
@@ -2759,7 +2759,7 @@ msgid ""
 "Quit the application; prompts to save documents\n"
 "Exit"
 msgstr ""
-"UkonÄÃ­ aplikaci; dotÃ¡Å¾e se na uloÅ¾enÃ­ dokumentÅ¯\n"
+"Ukonèí aplikaci; dotáe se na uloení dokumentù\n"
 "Konec"
 
 #: Merge.rc:1753
@@ -2780,7 +2780,7 @@ msgstr ""
 #: Merge.rc:1768
 #, c-format
 msgid "Open this document"
-msgstr "OtevÅ™e tento dokument"
+msgstr "Otevøe tento dokument"
 
 #: Merge.rc:1773
 #, c-format
@@ -2788,8 +2788,8 @@ msgid ""
 "Switch to the next window pane\n"
 "Next Pane"
 msgstr ""
-"PÅ™epne do dalÅ¡Ã­ho panelu v oknÄ›\n"
-"DalÅ¡Ã­ panel"
+"Pøepne do dalšího panelu v oknì\n"
+"Další panel"
 
 #: Merge.rc:1774
 #, c-format
@@ -2797,8 +2797,8 @@ msgid ""
 "Switch back to the previous window pane\n"
 "Previous Pane"
 msgstr ""
-"PÅ™epne do pÅ™edchozÃ­ho panelu v oknÄ›\n"
-"PÅ™edchozÃ­ panel"
+"Pøepne do pøedchozího panelu v oknì\n"
+"Pøedchozí panel"
 
 #: Merge.rc:1780
 #, c-format
@@ -2806,7 +2806,7 @@ msgid ""
 "Arrange windows so they overlap\n"
 "Cascade Windows"
 msgstr ""
-"UspoÅ™Ã¡dÃ¡ okna tak, aby se pÅ™ekrÃ½vala\n"
+"Uspoøádá okna tak, aby se pøekrıvala\n"
 "Na sebe"
 
 #: Merge.rc:1781
@@ -2815,7 +2815,7 @@ msgid ""
 "Arrange windows as non-overlapping tiles horizontally\n"
 "Tile Windows Horizontally"
 msgstr ""
-"UspoÅ™Ã¡dÃ¡ okna vodorovnÄ› tak, aby se nepÅ™ekrÃ½vala\n"
+"Uspoøádá okna vodorovnì tak, aby se nepøekrıvala\n"
 "Vedle sebe"
 
 #: Merge.rc:1782
@@ -2824,7 +2824,7 @@ msgid ""
 "Arrange windows as non-overlapping tiles vertically\n"
 "Tile Windows Vertically"
 msgstr ""
-"UspoÅ™Ã¡dÃ¡ okna svisle tak, aby se nepÅ™ekrÃ½vala\n"
+"Uspoøádá okna svisle tak, aby se nepøekrıvala\n"
 "Vedle sebe"
 
 #: Merge.rc:1788
@@ -2833,8 +2833,8 @@ msgid ""
 "Copy the selection and put it on the Clipboard\n"
 "Copy"
 msgstr ""
-"ZkopÃ­ruje vÃ½bÄ›r a umÃ­stÃ­ jej do schrÃ¡nky\n"
-"KopÃ­rovat"
+"Zkopíruje vıbìr a umístí jej do schránky\n"
+"Kopírovat"
 
 #: Merge.rc:1789
 #, c-format
@@ -2842,7 +2842,7 @@ msgid ""
 "Cut the selection and put it on the Clipboard\n"
 "Cut"
 msgstr ""
-"Vyjme vÃ½bÄ›r a umÃ­stÃ­ jej do schrÃ¡nky\n"
+"Vyjme vıbìr a umístí jej do schránky\n"
 "Vyjmout"
 
 #: Merge.rc:1790
@@ -2851,8 +2851,8 @@ msgid ""
 "Find the specified text\n"
 "Find"
 msgstr ""
-"Najde zadanÃ½ text\n"
-"NajÃ­t"
+"Najde zadanı text\n"
+"Najít"
 
 #: Merge.rc:1791
 #, c-format
@@ -2860,8 +2860,8 @@ msgid ""
 "Insert Clipboard contents\n"
 "Paste"
 msgstr ""
-"VloÅ¾Ã­ obsah schrÃ¡nky\n"
-"VloÅ¾it"
+"Vloí obsah schránky\n"
+"Vloit"
 
 #: Merge.rc:1792
 #, c-format
@@ -2869,7 +2869,7 @@ msgid ""
 "Repeat the last action\n"
 "Repeat"
 msgstr ""
-"Opakuje poslednÃ­ akci\n"
+"Opakuje poslední akci\n"
 "Opakovat"
 
 #: Merge.rc:1793
@@ -2878,7 +2878,7 @@ msgid ""
 "Replace specific text with different text\n"
 "Replace"
 msgstr ""
-"NahradÃ­ zadanÃ½ text jinÃ½m textem\n"
+"Nahradí zadanı text jinım textem\n"
 "Nahradit"
 
 #: Merge.rc:1794
@@ -2887,8 +2887,8 @@ msgid ""
 "Select the entire document\n"
 "Select All"
 msgstr ""
-"Vybere celÃ½ dokument\n"
-"Vybrat vÅ¡e"
+"Vybere celı dokument\n"
+"Vybrat vše"
 
 #: Merge.rc:1795
 #, c-format
@@ -2896,8 +2896,8 @@ msgid ""
 "Undo the last action\n"
 "Undo (Ctrl+Z)"
 msgstr ""
-"VrÃ¡tÃ­ zpÄ›t poslednÃ­ akci\n"
-"ZpÄ›t (Ctrl+Z)"
+"Vrátí zpìt poslední akci\n"
+"Zpìt (Ctrl+Z)"
 
 #: Merge.rc:1796
 #, c-format
@@ -2905,7 +2905,7 @@ msgid ""
 "Redo the previously undone action\n"
 "Redo (Ctrl+Y)"
 msgstr ""
-"Znovu provede pÅ™edtÃ­m vrÃ¡cenou akci\n"
+"Znovu provede pøedtím vrácenou akci\n"
 "Znovu (Ctrl+Y)"
 
 #: Merge.rc:1802
@@ -2914,8 +2914,8 @@ msgid ""
 "Show or hide the toolbar\n"
 "Toggle ToolBar"
 msgstr ""
-"ZobrazÃ­ nebo skryje panel nÃ¡strojÅ¯\n"
-"Panel nÃ¡strojÅ¯"
+"Zobrazí nebo skryje panel nástrojù\n"
+"Panel nástrojù"
 
 #: Merge.rc:1803
 #, c-format
@@ -2923,8 +2923,8 @@ msgid ""
 "Show or hide the status bar\n"
 "Toggle StatusBar"
 msgstr ""
-"ZobrazÃ­ nebo skryje stavovÃ½ Å™Ã¡dek\n"
-"StavovÃ½ Å™Ã¡dek"
+"Zobrazí nebo skryje stavovı øádek\n"
+"Stavovı øádek"
 
 #: Merge.rc:1804
 #, c-format
@@ -2932,58 +2932,58 @@ msgid ""
 "Show or hide the tab bar\n"
 "Toggle TabBar"
 msgstr ""
-"ZobrazÃ­ nebo skryje panel zÃ¡loÅ¾ek\n"
-"Panel zÃ¡loÅ¾ek"
+"Zobrazí nebo skryje panel záloek\n"
+"Panel záloek"
 
 #: Merge.rc:1805
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
-msgstr "Automaticky zmÄ›nÃ­ velikost panelÅ¯\n"
+msgstr "Automaticky zmìní velikost panelù\n"
 
 #: Merge.rc:1811
 #, c-format
 msgid "Change the window size"
-msgstr "MÄ›nÃ­ velikost okna"
+msgstr "Mìní velikost okna"
 
 #: Merge.rc:1812
 #, c-format
 msgid "Change the window position"
-msgstr "MÄ›nÃ­ umÃ­stÄ›nÃ­ okna"
+msgstr "Mìní umístìní okna"
 
 #: Merge.rc:1813
 #, c-format
 msgid "Reduce the window to an icon"
-msgstr "ZmenÅ¡Ã­ okno do ikony"
+msgstr "Zmenší okno do ikony"
 
 #: Merge.rc:1814
 #, c-format
 msgid "Enlarge the window to full size"
-msgstr "ZvÄ›tÅ¡Ã­ okno na maximÃ¡lnÃ­ velikost"
+msgstr "Zvìtší okno na maximální velikost"
 
 #: Merge.rc:1815
 #, c-format
 msgid "Switch to the next document window"
-msgstr "PÅ™epne do dalÅ¡Ã­ho okna"
+msgstr "Pøepne do dalšího okna"
 
 #: Merge.rc:1816
 #, c-format
 msgid "Switch to the previous document window"
-msgstr "PÅ™epne do pÅ™edchozÃ­ho okna"
+msgstr "Pøepne do pøedchozího okna"
 
 #: Merge.rc:1817
 #, c-format
 msgid "Close the active window and prompts to save the documents"
-msgstr "ZavÅ™e aktivnÃ­ okno a dotÃ¡Å¾e se na uloÅ¾enÃ­ zmÄ›n"
+msgstr "Zavøe aktivní okno a dotáe se na uloení zmìn"
 
 #: Merge.rc:1822
 #, c-format
 msgid "Restore the window to normal size"
-msgstr "ObnovÃ­ normÃ¡lnÃ­ velikost okna"
+msgstr "Obnoví normální velikost okna"
 
 #: Merge.rc:1823
 #, c-format
 msgid "Activate Task List"
-msgstr "Vyvolat seznam Ãºloh"
+msgstr "Vyvolat seznam úloh"
 
 #: Merge.rc:1824
 #, c-format
@@ -2996,8 +2996,8 @@ msgid ""
 "Close print preview mode\n"
 "Cancel Preview"
 msgstr ""
-"UkonÄÃ­ reÅ¾im nÃ¡hledu tisku\n"
-"ZruÅ¡it nÃ¡hled"
+"Ukonèí reim náhledu tisku\n"
+"Zrušit náhled"
 
 #: Merge.rc:1837
 #, c-format
@@ -3012,18 +3012,18 @@ msgstr ""
 #: Merge.rc:1845
 #, c-format
 msgid "Preserve original EOL chars"
-msgstr "Zachovat pÅ¯vodnÃ­ znaky na koncÃ­ch Å™Ã¡dkÅ¯"
+msgstr "Zachovat pùvodní znaky na koncích øádkù"
 
 #: Merge.rc:1852
 #, c-format
 msgid "Press any key"
-msgstr "StisknÄ›te klÃ¡vesu"
+msgstr "Stisknìte klávesu"
 
 #: Merge.rc:1858
 #: Merge.rc:1859
 #, c-format
 msgid "Right click on the path to copy"
-msgstr "StisknÄ›te pravÃ© tlaÄÃ­tko myÅ¡i k moÅ¾nostem zkopÃ­rovÃ¡nÃ­ cesty nebo nÃ¡zvu souboru"
+msgstr "Stisknìte pravé tlaèítko myši k monostem zkopírování cesty nebo názvu souboru"
 
 #: Merge.rc:1865
 #, c-format
@@ -3045,7 +3045,7 @@ msgstr "&OK"
 #: Merge.rc:1874
 #, c-format
 msgid "&Abort"
-msgstr "&PÅ™eruÅ¡it"
+msgstr "&Pøerušit"
 
 #: Merge.rc:1875
 #, c-format
@@ -3060,7 +3060,7 @@ msgstr "&Ignorovat"
 #: Merge.rc:1877
 #, c-format
 msgid "Ignore &all"
-msgstr "I&gnorovat vÅ¡e"
+msgstr "I&gnorovat vše"
 
 #: Merge.rc:1878
 #, c-format
@@ -3070,7 +3070,7 @@ msgstr "&Ano"
 #: Merge.rc:1884
 #, c-format
 msgid "Yes to &all"
-msgstr "Ano &vÅ¡em"
+msgstr "Ano &všem"
 
 #: Merge.rc:1885
 #, c-format
@@ -3080,37 +3080,37 @@ msgstr "&Ne"
 #: Merge.rc:1886
 #, c-format
 msgid "No to a&ll"
-msgstr "Ne vÅ¡&em"
+msgstr "Ne vš&em"
 
 #: Merge.rc:1887
 #, c-format
 msgid "&Continue"
-msgstr "Pok&raÄovat"
+msgstr "Pok&raèovat"
 
 #: Merge.rc:1888
 #, c-format
 msgid "&Skip"
-msgstr "PÅ™e&skoÄit"
+msgstr "Pøe&skoèit"
 
 #: Merge.rc:1889
 #, c-format
 msgid "Skip &all"
-msgstr "PÅ™es&koÄit vÅ¡e"
+msgstr "Pøes&koèit vše"
 
 #: Merge.rc:1891
 #, c-format
 msgid "Don't display this &message again."
-msgstr "T&uto zprÃ¡vu jiÅ¾ pÅ™Ã­Å¡tÄ› nezobrazovat."
+msgstr "T&uto zprávu ji pøíštì nezobrazovat."
 
 #: Merge.rc:1892
 #, c-format
 msgid "Don't ask this &question again."
-msgstr "Na t&uto otÃ¡zku se jiÅ¾ pÅ™Ã­Å¡tÄ› nedotazovat."
+msgstr "Na t&uto otázku se ji pøíštì nedotazovat."
 
 #: Merge.rc:1902
 #, c-format
 msgid "Syntax colors"
-msgstr "ZvÃ½raznÄ›nÃ­ syntaxe"
+msgstr "Zvıraznìní syntaxe"
 
 #: Merge.rc:1903
 #, c-format
@@ -3120,7 +3120,7 @@ msgstr "Barvy textu"
 #: Merge.rc:1905
 #, c-format
 msgid "Version Control"
-msgstr "Kontrola verzÃ­"
+msgstr "Kontrola verzí"
 
 #: Merge.rc:1915
 #, c-format
@@ -3150,7 +3150,7 @@ msgstr "Doprava:"
 #: Merge.rc:1925
 #, c-format
 msgid "Version %1"
-msgstr "Verze %1 - ÄŒesky"
+msgstr "Verze %1 - Èesky"
 
 #: Merge.rc:1926
 #, c-format
@@ -3160,22 +3160,22 @@ msgstr ""
 #: Merge.rc:1932
 #, c-format
 msgid "Options (%1)"
-msgstr "MoÅ¾nosti (%1)"
+msgstr "Monosti (%1)"
 
 #: Merge.rc:1933
 #, c-format
 msgid "All message boxes are now displayed again."
-msgstr "VÅ¡echna okna se zprÃ¡vami budou nynÃ­ opÄ›t zobrazovÃ¡na."
+msgstr "Všechna okna se zprávami budou nyní opìt zobrazována."
 
 #: Merge.rc:1934
 #, c-format
 msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
-msgstr "Ãšpravy pro aktuÃ¡lnÃ­ porovnÃ¡nÃ­ souborÅ¯ byly provedeny. K nÄ›kterÃ½m nastavenÃ­m nemusÃ­ dojÃ­t, dokud nebude souÄasnÃ© porovnÃ¡nÃ­ souborÅ¯ znovu provedeno."
+msgstr "Úpravy pro aktuální porovnání souborù byly provedeny. K nìkterım nastavením nemusí dojít, dokud nebude souèasné porovnání souborù znovu provedeno."
 
 #: Merge.rc:1935
 #, c-format
 msgid "The selected font change will not be applied to any currently visible difference windows."
-msgstr "ZmÄ›na zvolenÃ©ho pÃ­sma nebude pouÅ¾ita v Å¾Ã¡dnÃ©m aktuÃ¡lnÄ› viditelnÃ©m oknÄ› porovnÃ¡nÃ­."
+msgstr "Zmìna zvoleného písma nebude pouita v ádném aktuálnì viditelném oknì porovnání."
 
 #: Merge.rc:1937
 #, c-format
@@ -3184,9 +3184,9 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"Hodnota v poli TabelÃ¡tor je mimo povolenÃ½ rozsah.\n"
+"Hodnota v poli Tabelátor je mimo povolenı rozsah.\n"
 "\n"
-"PouÅ¾ijte prosÃ­m hodnoty mezi 1 - %1."
+"Pouijte prosím hodnoty mezi 1 - %1."
 
 #: Merge.rc:1939
 #, c-format
@@ -3195,24 +3195,24 @@ msgid ""
 "\n"
 "Please re-start WinMerge after the reset."
 msgstr ""
-"Opravdu chcete vrÃ¡tit vÅ¡echna nastavenÃ­ WinMerge na vÃ½chozÃ­ hodnoty?\n"
+"Opravdu chcete vrátit všechna nastavení WinMerge na vıchozí hodnoty?\n"
 "\n"
-"Po zmÄ›nÄ› nastavenÃ­ prosÃ­m znovu spusÅ¥te aplikaci WinMerge."
+"Po zmìnì nastavení prosím znovu spuste aplikaci WinMerge."
 
 #: Merge.rc:1945
 #, c-format
 msgid "Open"
-msgstr "OtevÅ™Ã­t"
+msgstr "Otevøít"
 
 #: Merge.rc:1946
 #, c-format
 msgid "Programs|*.exe;*.bat;*.cmd|All Files (*.*)|*.*||"
-msgstr "Programy|*.exe;*.bat;*.cmd|VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Programy|*.exe;*.bat;*.cmd|Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1947
 #, c-format
 msgid "All Files (*.*)|*.*||"
-msgstr "VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1948
 #, c-format
@@ -3222,22 +3222,22 @@ msgstr "Projekty WinMerge (*.WinMerge)|*.WinMerge||"
 #: Merge.rc:1950
 #, c-format
 msgid "Options files (*.ini)|*.ini|All Files (*.*)|*.*||"
-msgstr "Soubory nastavenÃ­ (*.ini)|*.ini|VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Soubory nastavení (*.ini)|*.ini|Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1956
 #, c-format
 msgid "Text Files (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|All Files (*.*)|*.*||"
-msgstr "TextovÃ© soubory (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Textové soubory (*.csv;*.asc;*.rpt;*.txt)|*.csv;*.asc;*.rpt;*.txt|Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1957
 #, c-format
 msgid "HTML Files (*.htm,*.html)|*.htm;*.html|All Files (*.*)|*.*||"
-msgstr "Soubory HTML (*.htm,*.html)|*.htm;*.html|VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Soubory HTML (*.htm,*.html)|*.htm;*.html|Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1958
 #, c-format
 msgid "XML Files (*.xml)|*.xml|All Files (*.*)|*.*||"
-msgstr "Soubory XML (*.xml)|*.xml|VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Soubory XML (*.xml)|*.xml|Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1964
 #, c-format
@@ -3262,22 +3262,22 @@ msgstr ""
 #: Merge.rc:1973
 #, c-format
 msgid "Full Contents"
-msgstr "PlnÃ½ obsah"
+msgstr "Plnı obsah"
 
 #: Merge.rc:1974
 #, c-format
 msgid "Quick Contents"
-msgstr "RychlÃ½ obsah"
+msgstr "Rychlı obsah"
 
 #: Merge.rc:1975
 #, c-format
 msgid "Modified Date"
-msgstr "Datum zmÄ›ny"
+msgstr "Datum zmìny"
 
 #: Merge.rc:1976
 #, c-format
 msgid "Modified Date and Size"
-msgstr "Datum zmÄ›ny a velikost"
+msgstr "Datum zmìny a velikost"
 
 #: Merge.rc:1977
 #, c-format
@@ -3287,12 +3287,12 @@ msgstr "Velikost"
 #: Merge.rc:1983
 #, c-format
 msgid "Name"
-msgstr "NÃ¡zev"
+msgstr "Název"
 
 #: Merge.rc:1984
 #, c-format
 msgid "Location"
-msgstr "UmÃ­stÄ›nÃ­"
+msgstr "Umístìní"
 
 #: Merge.rc:1985
 #, c-format
@@ -3312,12 +3312,12 @@ msgstr "Popis"
 #: Merge.rc:1988
 #, c-format
 msgid "Select filename for new filter"
-msgstr "Zvolte nÃ¡zev souboru pro novÃ½ filtr"
+msgstr "Zvolte název souboru pro novı filtr"
 
 #: Merge.rc:1989
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "Filtry (*.flt)|*.flt|VÅ¡echny soubory (*.*)|*.*||"
+msgstr "Filtry (*.flt)|*.flt|Všechny soubory (*.*)|*.*||"
 
 #: Merge.rc:1991
 #, c-format
@@ -3327,9 +3327,9 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"Nelze nalÃ©zt soubor s filtrem!\n"
+"Nelze nalézt soubor s filtrem!\n"
 "\n"
-"ZkopÃ­rujte prosÃ­m soubor %1 do sloÅ¾ky s filtry pro aplikaci WinMerge:\n"
+"Zkopírujte prosím soubor %1 do sloky s filtry pro aplikaci WinMerge:\n"
 "%2."
 
 #: Merge.rc:1993
@@ -3340,10 +3340,10 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Nelze zkopÃ­rovat soubor s filtrem do sloÅ¾ky filtrÅ¯:\n"
+"Nelze zkopírovat soubor s filtrem do sloky filtrù:\n"
 "%1\n"
 "\n"
-"UjistÄ›te se prosÃ­m, Å¾e sloÅ¾ka existuje a je moÅ¾nÃ© do nÃ­ zapisovat."
+"Ujistìte se prosím, e sloka existuje a je moné do ní zapisovat."
 
 #: Merge.rc:1995
 #, c-format
@@ -3352,9 +3352,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"VlastnÃ­ sloÅ¾ka filtrÅ¯ nebyla zadÃ¡na!\n"
+"Vlastní sloka filtrù nebyla zadána!\n"
 "\n"
-"Zvolte prosÃ­m sloÅ¾ku v dialogovÃ©m oknÄ› MoÅ¾nosti, v kategorii SystÃ©m."
+"Zvolte prosím sloku v dialogovém oknì Monosti, v kategorii Systém."
 
 #: Merge.rc:1997
 #, c-format
@@ -3364,10 +3364,10 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"Chyba pÅ™i odstranÄ›nÃ­ souboru s filtrem:\n"
+"Chyba pøi odstranìní souboru s filtrem:\n"
 "%1\n"
 "\n"
-"MoÅ¾nÃ¡ je soubor oznaÄen pouze pro ÄtenÃ­?"
+"Moná je soubor oznaèen pouze pro ètení?"
 
 #: Merge.rc:1998
 #, c-format
@@ -3381,19 +3381,19 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"Chyba pÅ™i instalaci souboru s filtrem.\n"
+"Chyba pøi instalaci souboru s filtrem.\n"
 "\n"
-"NovÃ½ soubor nelze zkopÃ­rovat do sloÅ¾ky filtrÅ¯."
+"Novı soubor nelze zkopírovat do sloky filtrù."
 
 #: Merge.rc:2002
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "Soubor s filtrem jiÅ¾ existuje. Chcete nahradit stÃ¡vajÃ­cÃ­ filtr?"
+msgstr "Soubor s filtrem ji existuje. Chcete nahradit stávající filtr?"
 
 #: Merge.rc:2008
 #, c-format
 msgid "Regular expression"
-msgstr "RegulÃ©rnÃ­ vÃ½raz"
+msgstr "Regulérní vıraz"
 
 #: Merge.rc:2014
 #, c-format
@@ -3408,22 +3408,22 @@ msgstr "&Cesta k programu SS.EXE :"
 #: Merge.rc:2021
 #, c-format
 msgid "Folder Comparison Results"
-msgstr "VÃ½sledky porovnÃ¡nÃ­ sloÅ¾ek"
+msgstr "Vısledky porovnání sloek"
 
 #: Merge.rc:2022
 #, c-format
 msgid "File Comparison"
-msgstr "PorovnÃ¡nÃ­ souborÅ¯"
+msgstr "Porovnání souborù"
 
 #: Merge.rc:2023
 #, c-format
 msgid "Untitled left"
-msgstr "Bez nÃ¡zvu vlevo"
+msgstr "Bez názvu vlevo"
 
 #: Merge.rc:2024
 #, c-format
 msgid "Untitled right"
-msgstr "Bez nÃ¡zvu vpravo"
+msgstr "Bez názvu vpravo"
 
 #: Merge.rc:2025
 #, c-format
@@ -3438,143 +3438,143 @@ msgstr ""
 #: Merge.rc:2032
 #, c-format
 msgid "Scanning files..."
-msgstr "ProhledÃ¡vanÃ­ souborÅ¯..."
+msgstr "Prohledávaní souborù..."
 
 #: Merge.rc:2033
 #, c-format
 msgid "Opening selection"
-msgstr "OtevÃ­rÃ¡nÃ­ vÃ½bÄ›ru"
+msgstr "Otevírání vıbìru"
 
 #: Merge.rc:2034
 #, c-format
 msgid "Copying Left to Right"
-msgstr "KopÃ­rovÃ¡nÃ­ zleva doprava"
+msgstr "Kopírování zleva doprava"
 
 #: Merge.rc:2035
 #, c-format
 msgid "Copying Right to Left"
-msgstr "KopÃ­rovÃ¡nÃ­ zprava doleva"
+msgstr "Kopírování zprava doleva"
 
 #: Merge.rc:2036
 #, c-format
 msgid "Copying All to Left"
-msgstr "KopÃ­rovÃ¡nÃ­ vÅ¡ech doleva"
+msgstr "Kopírování všech doleva"
 
 #: Merge.rc:2037
 #, c-format
 msgid "Copying All to Right"
-msgstr "KopÃ­rovÃ¡nÃ­ vÅ¡ech doprava"
+msgstr "Kopírování všech doprava"
 
 #: Merge.rc:2038
 #, c-format
 msgid "Copying files..."
-msgstr "KopÃ­rovÃ¡nÃ­ souborÅ¯..."
+msgstr "Kopírování souborù..."
 
 #: Merge.rc:2039
 #, c-format
 msgid "Deleting files..."
-msgstr "OdstranÄ›nÃ­ souborÅ¯..."
+msgstr "Odstranìní souborù..."
 
 #: Merge.rc:2040
 #, c-format
 msgid "Moving files..."
-msgstr "PÅ™esouvÃ¡nÃ­ souborÅ¯..."
+msgstr "Pøesouvání souborù..."
 
 #: Merge.rc:2041
 #, c-format
 msgid "Creating the report..."
-msgstr "VytvÃ¡Å™enÃ­ protokolu..."
+msgstr "Vytváøení protokolu..."
 
 #: Merge.rc:2047
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d  EOL: %s"
-msgstr "Å˜Ã¡dek: %s  Sloupec: %d/%d  Znak: %d/%d  Konec Å™Ã¡dku: %s"
+msgstr "Øádek: %s  Sloupec: %d/%d  Znak: %d/%d  Konec øádku: %s"
 
 #: Merge.rc:2048
 #, c-format
 msgid "Line: %s"
-msgstr "Å˜Ã¡dek: %s"
+msgstr "Øádek: %s"
 
 #: Merge.rc:2049
 #, c-format
 msgid "Ln: %s  Col: %d/%d  Ch: %d/%d"
-msgstr "Å˜Ã¡dek: %s  Sloupec: %d/%d  Znak: %d/%d"
+msgstr "Øádek: %s  Sloupec: %d/%d  Znak: %d/%d"
 
 #: Merge.rc:2050
 #, c-format
 msgid "Merge"
-msgstr "SlouÄit"
+msgstr "Slouèit"
 
 #: Merge.rc:2051
 #, c-format
 msgid "Difference %1 of %2"
-msgstr "RozdÃ­l %1 z %2"
+msgstr "Rozdíl %1 z %2"
 
 #: Merge.rc:2052
 #, c-format
 msgid "%1 Differences Found"
-msgstr "Nalezeno %1 rozdÃ­lÅ¯"
+msgstr "Nalezeno %1 rozdílù"
 
 #: Merge.rc:2053
 #, c-format
 msgid "1 Difference Found"
-msgstr "Nalezen 1 rozdÃ­l"
+msgstr "Nalezen 1 rozdíl"
 
 #. Abbreviation from "Read Only"
 #: Merge.rc:2054
 #, c-format
 msgid "RO"
-msgstr "Pro ÄtenÃ­"
+msgstr "Pro ètení"
 
 #: Merge.rc:2060
 #, c-format
 msgid "Item %1 of %2"
-msgstr "PoloÅ¾ka %1 z %2"
+msgstr "Poloka %1 z %2"
 
 #: Merge.rc:2061
 #, c-format
 msgid "Items: %1"
-msgstr "PoloÅ¾ek: %1"
+msgstr "Poloek: %1"
 
 #: Merge.rc:2067
 #, c-format
 msgid "Select two existing folders or files to compare"
-msgstr "Vyberte dvÄ› existujÃ­cÃ­ sloÅ¾ky nebo soubory k porovnÃ¡nÃ­"
+msgstr "Vyberte dvì existující sloky nebo soubory k porovnání"
 
 #: Merge.rc:2068
 #, c-format
 msgid "Folder Selection"
-msgstr "Vybrat sloÅ¾ku"
+msgstr "Vybrat sloku"
 
 #: Merge.rc:2069
 #, c-format
 msgid "Select two folders or two files to compare."
-msgstr "Vyberte dvÄ› sloÅ¾ky nebo dva soubory k porovnÃ¡nÃ­"
+msgstr "Vyberte dvì sloky nebo dva soubory k porovnání"
 
 #: Merge.rc:2070
 #, c-format
 msgid "Left path is invalid!"
-msgstr "LevÃ¡ cesta je chybnÃ¡!"
+msgstr "Levá cesta je chybná!"
 
 #: Merge.rc:2071
 #, c-format
 msgid "Right path is invalid!"
-msgstr "PravÃ¡ cesta je chybnÃ¡!"
+msgstr "Pravá cesta je chybná!"
 
 #: Merge.rc:2072
 #, c-format
 msgid "Both paths are invalid!"
-msgstr "ObÄ› cesty jsou chybnÃ©!"
+msgstr "Obì cesty jsou chybné!"
 
 #: Merge.rc:2073
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "Vyberte dva soubory k zpÅ™Ã­stupnÄ›nÃ­ volby pÅ™evadÄ›Äe"
+msgstr "Vyberte dva soubory k zpøístupnìní volby pøevadìèe"
 
 #: Merge.rc:2074
 #, c-format
 msgid "Cannot compare file and folder!"
-msgstr "Nelze porovnat soubor a sloÅ¾ku!"
+msgstr "Nelze porovnat soubor a sloku!"
 
 #: Merge.rc:2080
 #, c-format
@@ -3584,7 +3584,7 @@ msgstr "Soubor nebyl nalezen: %1"
 #: Merge.rc:2081
 #, c-format
 msgid "File not unpacked: %1"
-msgstr "Soubor nebyl pÅ™eveden: %1"
+msgstr "Soubor nebyl pøeveden: %1"
 
 #: Merge.rc:2082
 #, c-format
@@ -3594,7 +3594,7 @@ msgid ""
 "\n"
 "%2"
 msgstr ""
-"Nelze otevÅ™Ã­t soubor\n"
+"Nelze otevøít soubor\n"
 "%1\n"
 "\n"
 "%2"
@@ -3612,27 +3612,27 @@ msgstr ""
 #: Merge.rc:2090
 #, c-format
 msgid "Save As"
-msgstr "UloÅ¾it jako"
+msgstr "Uloit jako"
 
 #: Merge.rc:2091
 #, c-format
 msgid "Save changes to %1?"
-msgstr "UloÅ¾it zmÄ›ny do %1?"
+msgstr "Uloit zmìny do %1?"
 
 #: Merge.rc:2092
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 je oznaÄen pouze pro ÄtenÃ­. Chcete nahradit tento soubor? (NeuklÃ¡dat pod novÃ½m nÃ¡zvem.)"
+msgstr "%1 je oznaèen pouze pro ètení. Chcete nahradit tento soubor? (Neukládat pod novım názvem.)"
 
 #: Merge.rc:2093
 #, c-format
 msgid "Error checking destination writeability"
-msgstr "Chyba pÅ™i kontrole zapisovatelnosti do cÃ­le"
+msgstr "Chyba pøi kontrole zapisovatelnosti do cíle"
 
 #: Merge.rc:2094
 #, c-format
 msgid "Error backing up file"
-msgstr "Chyba pÅ™i zÃ¡lohovÃ¡nÃ­ souboru"
+msgstr "Chyba pøi zálohování souboru"
 
 #: Merge.rc:2096
 #, c-format
@@ -3642,10 +3642,10 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"Nelze zÃ¡lohovat pÅ¯vodnÃ­ soubor:\n"
+"Nelze zálohovat pùvodní soubor:\n"
 "%1\n"
 "\n"
-"Chcete pokraÄovat?"
+"Chcete pokraèovat?"
 
 #: Merge.rc:2097
 #, c-format
@@ -3657,12 +3657,12 @@ msgid ""
 "\t-use a different filename (Press Ok)\n"
 "\t-abort the current operation (Press Cancel)?"
 msgstr ""
-"UklÃ¡dÃ¡nÃ­ souboru selhalo.\n"
+"Ukládání souboru selhalo.\n"
 "%1\n"
 "%2\n"
-"Co chcete nynÃ­ udÄ›lat?\n"
-"\t- pouÅ¾Ã­t jinÃ½ nÃ¡zev souboru (stisknÄ›te OK)\n"
-"\t- pÅ™eruÅ¡it souÄasnou operaci (stisknÄ›te Storno)"
+"Co chcete nyní udìlat?\n"
+"\t- pouít jinı název souboru (stisknìte OK)\n"
+"\t- pøerušit souèasnou operaci (stisknìte Storno)"
 
 #: Merge.rc:2098
 #, c-format
@@ -3673,11 +3673,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plugin '%2' nemÅ¯Å¾e pÅ™evÃ©st vaÅ¡e zmÄ›ny v levÃ©m souboru zpÄ›t do '%1'.\n"
+"Plugin '%2' nemùe pøevést vaše zmìny v levém souboru zpìt do '%1'.\n"
 "\n"
-"PÅ¯vodnÃ­ soubor nebude zmÄ›nÄ›n.\n"
+"Pùvodní soubor nebude zmìnìn.\n"
 "\n"
-"Chcete uloÅ¾it pÅ™evedenou verzi do jinÃ©ho souboru?"
+"Chcete uloit pøevedenou verzi do jiného souboru?"
 
 #: Merge.rc:2099
 #, c-format
@@ -3688,11 +3688,11 @@ msgid ""
 "\n"
 "Do you want to save the unpacked version to another file?"
 msgstr ""
-"Plugin '%2' nemÅ¯Å¾e pÅ™evÃ©st vaÅ¡e zmÄ›ny v pravÃ©m souboru zpÄ›t do '%1'.\n"
+"Plugin '%2' nemùe pøevést vaše zmìny v pravém souboru zpìt do '%1'.\n"
 "\n"
-"PÅ¯vodnÃ­ soubor nebude zmÄ›nÄ›n.\n"
+"Pùvodní soubor nebude zmìnìn.\n"
 "\n"
-"Chcete uloÅ¾it pÅ™evedenou verzi do jinÃ©ho souboru?"
+"Chcete uloit pøevedenou verzi do jiného souboru?"
 
 #: Merge.rc:2100
 #, c-format
@@ -3703,11 +3703,11 @@ msgid ""
 "\n"
 "Overwrite changed file?"
 msgstr ""
-"JinÃ¡ aplikace provedla zmÄ›ny v souboru\n"
+"Jiná aplikace provedla zmìny v souboru\n"
 "%1\n"
-"od jeho poslednÃ­ho naÄtenÃ­ aplikacÃ­ WinMerge.\n"
+"od jeho posledního naètení aplikací WinMerge.\n"
 "\n"
-"PÅ™epsat zmÄ›nÄ›nÃ½ soubor?"
+"Pøepsat zmìnìnı soubor?"
 
 #: Merge.rc:2101
 #, c-format
@@ -3716,7 +3716,7 @@ msgid ""
 "is marked read-only. Would you like to override the read-only item?"
 msgstr ""
 "%1\n"
-"je oznaÄen pouze pro ÄtenÃ­. Chcete nahradit tuto poloÅ¾ku?"
+"je oznaèen pouze pro ètení. Chcete nahradit tuto poloku?"
 
 #: Merge.rc:2102
 #, c-format
@@ -3727,21 +3727,21 @@ msgid ""
 "\n"
 "If you want to refresh files close current file compare and load files again."
 msgstr ""
-"JinÃ¡ aplikace provedla zmÄ›ny v souboru\n"
+"Jiná aplikace provedla zmìny v souboru\n"
 "%1\n"
-"od jeho poslednÃ­ho prozkoumÃ¡nÃ­ aplikacÃ­ WinMerge.\n"
+"od jeho posledního prozkoumání aplikací WinMerge.\n"
 "\n"
-"Pokud chcete soubory obnovit, zavÅ™ete aktuÃ¡lnÃ­ porovnÃ¡nÃ­ a naÄtÄ›te soubory znovu."
+"Pokud chcete soubory obnovit, zavøete aktuální porovnání a naètìte soubory znovu."
 
 #: Merge.rc:2103
 #, c-format
 msgid "Save Left File As"
-msgstr "UloÅ¾it levÃ½ soubor jako"
+msgstr "Uloit levı soubor jako"
 
 #: Merge.rc:2104
 #, c-format
 msgid "Save Right File As"
-msgstr "UloÅ¾it pravÃ½ soubor jako"
+msgstr "Uloit pravı soubor jako"
 
 #: Merge.rc:2110
 #, c-format
@@ -3750,9 +3750,9 @@ msgid ""
 "\n"
 "Refresh documents before continuing."
 msgstr ""
-"RozdÃ­ly nelze slouÄit, dokud dokumenty nebudou synchronizovÃ¡ny.\n"
+"Rozdíly nelze slouèit, dokud dokumenty nebudou synchronizovány.\n"
 "\n"
-"PÅ™ed dalÅ¡Ã­m pokraÄovÃ¡nÃ­m dokumenty obnovte."
+"Pøed dalším pokraèováním dokumenty obnovte."
 
 #: Merge.rc:2116
 #, c-format
@@ -3809,118 +3809,118 @@ msgstr ""
 #: Merge.rc:2742
 #, c-format
 msgid "None"
-msgstr "Å½Ã¡dnÃ½"
+msgstr "ádnı"
 
 #: Merge.rc:2131
 #, c-format
 msgid "Visual SourceSafe (less than 5.0)"
-msgstr "Visual SourceSafe (niÅ¾Å¡Ã­ neÅ¾ 5.0)"
+msgstr "Visual SourceSafe (niší ne 5.0)"
 
 #: Merge.rc:2132
 #, c-format
 msgid "Visual SourceSafe (5.0 and above)"
-msgstr "Visual SourceSafe (5.0 a vyÅ¡Å¡Ã­)"
+msgstr "Visual SourceSafe (5.0 a vyšší)"
 
 #: Merge.rc:2134
 #, c-format
 msgid "Break at whitespace"
-msgstr "PÅ™eruÅ¡it v mezerÃ¡ch"
+msgstr "Pøerušit v mezerách"
 
 #: Merge.rc:2135
 #, c-format
 msgid "Break at whitespace or punctuation"
-msgstr "PÅ™eruÅ¡it v mezerÃ¡ch nebo v interpunkci"
+msgstr "Pøerušit v mezerách nebo v interpunkci"
 
 #: Merge.rc:2141
 #: Merge.rc:2143
 #, c-format
 msgid "Copy selected item to named directory"
-msgstr "ZkopÃ­ruje vybranÃ© poloÅ¾ky do uvedenÃ© sloÅ¾ky"
+msgstr "Zkopíruje vybrané poloky do uvedené sloky"
 
 #: Merge.rc:2142
 #: Merge.rc:2144
 #, c-format
 msgid "Copy selected item to custom directory"
-msgstr "ZkopÃ­ruje vybranÃ© poloÅ¾ky do vlastnÃ­ sloÅ¾ky"
+msgstr "Zkopíruje vybrané poloky do vlastní sloky"
 
 #: Merge.rc:2145
 #, c-format
 msgid "Delete selected item on left"
-msgstr "OdstranÃ­ vybranÃ© poloÅ¾ky vlevo"
+msgstr "Odstraní vybrané poloky vlevo"
 
 #: Merge.rc:2146
 #, c-format
 msgid "Delete selected item on right"
-msgstr "OdstranÃ­ vybranÃ© poloÅ¾ky vpravo"
+msgstr "Odstraní vybrané poloky vpravo"
 
 #: Merge.rc:2147
 #, c-format
 msgid "Delete selected item(s) on both sides"
-msgstr "OdstranÃ­ vybranÃ© poloÅ¾ky na obou stranÃ¡ch"
+msgstr "Odstraní vybrané poloky na obou stranách"
 
 #: Merge.rc:2148
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
-msgstr "DoÄasnÄ› skryje vybranÃ© poloÅ¾ky"
+msgstr "Doèasnì skryje vybrané poloky"
 
 #: Merge.rc:2149
 #, c-format
 msgid "Rename selected item on both sides"
-msgstr "PÅ™ejmenuje vybranÃ© poloÅ¾ky na obou stranÃ¡ch"
+msgstr "Pøejmenuje vybrané poloky na obou stranách"
 
 #: Merge.rc:2150
 #, c-format
 msgid "Right to Left (%1)"
-msgstr "P&ravÃ© doleva (%1)"
+msgstr "P&ravé doleva (%1)"
 
 #: Merge.rc:2151
 #, c-format
 msgid "Left to Right (%1)"
-msgstr "&LevÃ© doprava (%1)"
+msgstr "&Levé doprava (%1)"
 
 #: Merge.rc:2152
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "P&ravÃ© doleva (%1 z %2)"
+msgstr "P&ravé doleva (%1 z %2)"
 
 #: Merge.rc:2153
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "&LevÃ© doprava (%1 z %2)"
+msgstr "&Levé doprava (%1 z %2)"
 
 #: Merge.rc:2154
 #: Merge.rc:2170
 #, c-format
 msgid "Left to... (%1)"
-msgstr "L&evÃ© do... (%1)"
+msgstr "L&evé do... (%1)"
 
 #: Merge.rc:2155
 #: Merge.rc:2171
 #, c-format
 msgid "Right to... (%1)"
-msgstr "Pr&avÃ© do... (%1)"
+msgstr "Pr&avé do... (%1)"
 
 #: Merge.rc:2156
 #: Merge.rc:2172
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "L&evÃ© do... (%1 z %2)"
+msgstr "L&evé do... (%1 z %2)"
 
 #: Merge.rc:2157
 #: Merge.rc:2173
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Pr&avÃ© do... (%1 z %2)"
+msgstr "Pr&avé do... (%1 z %2)"
 
 #: Merge.rc:2163
 #, c-format
 msgid "Left (%1)"
-msgstr "&LevÃ© (%1)"
+msgstr "&Levé (%1)"
 
 #: Merge.rc:2164
 #, c-format
 msgid "Right (%1)"
-msgstr "P&ravÃ© (%1)"
+msgstr "P&ravé (%1)"
 
 #: Merge.rc:2165
 #, c-format
@@ -3930,12 +3930,12 @@ msgstr "O&boje (%1)"
 #: Merge.rc:2166
 #, c-format
 msgid "Left (%1 of %2)"
-msgstr "&LevÃ© (%1 z %2)"
+msgstr "&Levé (%1 z %2)"
 
 #: Merge.rc:2167
 #, c-format
 msgid "Right (%1 of %2)"
-msgstr "P&ravÃ© (%1 z %2)"
+msgstr "P&ravé (%1 z %2)"
 
 #: Merge.rc:2168
 #, c-format
@@ -3945,27 +3945,27 @@ msgstr "O&boje (%1 z %2)"
 #: Merge.rc:2169
 #, c-format
 msgid "Select destination folder"
-msgstr "Zvolte cÃ­lovou sloÅ¾ku"
+msgstr "Zvolte cílovou sloku"
 
 #: Merge.rc:2174
 #, c-format
 msgid "Left side - select destination folder:"
-msgstr "Zvolte cÃ­lovou sloÅ¾ku pro poloÅ¾ky z levÃ© strany:"
+msgstr "Zvolte cílovou sloku pro poloky z levé strany:"
 
 #: Merge.rc:2175
 #, c-format
 msgid "Right side - select destination folder:"
-msgstr "Zvolte cÃ­lovou sloÅ¾ku pro poloÅ¾ky z pravÃ© strany:"
+msgstr "Zvolte cílovou sloku pro poloky z pravé strany:"
 
 #: Merge.rc:2176
 #, c-format
 msgid "(%1 Files Affected)"
-msgstr "(ovlivnÄ›no souborÅ¯: %1)"
+msgstr "(ovlivnìno souborù: %1)"
 
 #: Merge.rc:2177
 #, c-format
 msgid "(%1 of %2 Files Affected)"
-msgstr "(ovlivnÄ›no souborÅ¯: %1 z %2)"
+msgstr "(ovlivnìno souborù: %1 z %2)"
 
 #: Merge.rc:2183
 #, c-format
@@ -3981,12 +3981,12 @@ msgstr ""
 #: Merge.rc:2184
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr "Opravdu chcete zkopÃ­rovat:"
+msgstr "Opravdu chcete zkopírovat:"
 
 #: Merge.rc:2185
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr "Opravdu chcete zkopÃ­rovat %d poloÅ¾ek:"
+msgstr "Opravdu chcete zkopírovat %d poloek:"
 
 #: Merge.rc:2186
 #, c-format
@@ -3999,123 +3999,123 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
-"Operace pÅ™eruÅ¡ena!\n"
+"Operace pøerušena!\n"
 "\n"
-"Obsah sloÅ¾ek na disku se zmÄ›nil, cesta\n"
+"Obsah sloek na disku se zmìnil, cesta\n"
 "%1\n"
 "nebyla nalezena.\n"
 "\n"
-"Obnovte prosÃ­m porovnÃ¡nÃ­."
+"Obnovte prosím porovnání."
 
 #: Merge.rc:2192
 #, c-format
 msgid "Open left file"
-msgstr "OtevÅ™e poloÅ¾ku vlevo"
+msgstr "Otevøe poloku vlevo"
 
 #: Merge.rc:2193
 #, c-format
 msgid "Open the left file to external editor"
-msgstr "OtevÅ™e soubor vlevo v externÃ­m editoru"
+msgstr "Otevøe soubor vlevo v externím editoru"
 
 #: Merge.rc:2194
 #, c-format
 msgid "Open left file with ..."
-msgstr "OtevÅ™e soubor vlevo ve zvolenÃ© aplikaci"
+msgstr "Otevøe soubor vlevo ve zvolené aplikaci"
 
 #: Merge.rc:2195
 #, c-format
 msgid "Open right file"
-msgstr "OtevÅ™e poloÅ¾ku vpravo"
+msgstr "Otevøe poloku vpravo"
 
 #: Merge.rc:2196
 #, c-format
 msgid "Open the right file to external editor"
-msgstr "OtevÅ™e soubor vpravo v externÃ­m editoru"
+msgstr "Otevøe soubor vpravo v externím editoru"
 
 #: Merge.rc:2197
 #, c-format
 msgid "Open right file with..."
-msgstr "OtevÅ™e soubor vpravo ve zvolenÃ© aplikaci"
+msgstr "Otevøe soubor vpravo ve zvolené aplikaci"
 
 #: Merge.rc:2198
 #, c-format
 msgid "Failed to execute external editor: %1"
-msgstr "Nelze spustit externÃ­ editor: %1"
+msgstr "Nelze spustit externí editor: %1"
 
 #: Merge.rc:2199
 #, c-format
 msgid "Unknown extension on external editor: %1"
-msgstr "NeznÃ¡mÃ© rozÅ¡Ã­Å™enÃ­ externÃ­ho editoru: %1"
+msgstr "Neznámé rozšíøení externího editoru: %1"
 
 #: Merge.rc:2200
 #, c-format
 msgid "Copy filenames to clipboard"
-msgstr "ZkopÃ­ruje nÃ¡zvy poloÅ¾ek do schrÃ¡nky"
+msgstr "Zkopíruje názvy poloek do schránky"
 
 #: Merge.rc:2201
 #, c-format
 msgid "Copy left side pathnames to clipboard"
-msgstr "ZkopÃ­ruje cesty poloÅ¾ek vlevo do schrÃ¡nky"
+msgstr "Zkopíruje cesty poloek vlevo do schránky"
 
 #: Merge.rc:2202
 #, c-format
 msgid "Copy right side pathnames to clipboard"
-msgstr "ZkopÃ­ruje cesty poloÅ¾ek vpravo do schrÃ¡nky"
+msgstr "Zkopíruje cesty poloek vpravo do schránky"
 
 #: Merge.rc:2203
 #, c-format
 msgid "Copy both sides pathnames to clipboard"
-msgstr "ZkopÃ­ruje cesty poloÅ¾ek na obou stranÃ¡ch do schrÃ¡nky"
+msgstr "Zkopíruje cesty poloek na obou stranách do schránky"
 
 #: Merge.rc:2209
 #, c-format
 msgid "Unknown archive format"
-msgstr "NeznÃ¡mÃ½ formÃ¡t archivu"
+msgstr "Neznámı formát archivu"
 
 #: Merge.rc:2210
 #, c-format
 msgid "Add items from left side to archive"
-msgstr "PÅ™idÃ¡ poloÅ¾ky z levÃ© strany do archivu"
+msgstr "Pøidá poloky z levé strany do archivu"
 
 #: Merge.rc:2211
 #, c-format
 msgid "Add items from right side to archive"
-msgstr "PÅ™idÃ¡ poloÅ¾ky z pravÃ© strany do archivu"
+msgstr "Pøidá poloky z pravé strany do archivu"
 
 #: Merge.rc:2212
 #, c-format
 msgid "Add items from both sides to archive"
-msgstr "PÅ™idÃ¡ poloÅ¾ky z obou stran do archivu"
+msgstr "Pøidá poloky z obou stran do archivu"
 
 #: Merge.rc:2213
 #, c-format
 msgid "Add different items to archive (both sides)"
-msgstr "PÅ™idÃ¡ rozdÃ­lnÃ© poloÅ¾ky do archivu (z obou stran)"
+msgstr "Pøidá rozdílné poloky do archivu (z obou stran)"
 
 #: Merge.rc:2215
 #, c-format
 msgid "Move selected file on left to custom directory"
-msgstr "PÅ™esune vybranÃ© poloÅ¾ky z levÃ© strany do vlastnÃ­ sloÅ¾ky"
+msgstr "Pøesune vybrané poloky z levé strany do vlastní sloky"
 
 #: Merge.rc:2217
 #, c-format
 msgid "Move selected file on right to custom directory"
-msgstr "PÅ™esune vybranÃ© poloÅ¾ky z pravÃ© strany do vlastnÃ­ sloÅ¾ky"
+msgstr "Pøesune vybrané poloky z pravé strany do vlastní sloky"
 
 #: Merge.rc:2223
 #, c-format
 msgid "Filename"
-msgstr "NÃ¡zev souboru"
+msgstr "Název souboru"
 
 #: Merge.rc:2224
 #, c-format
 msgid "Folder"
-msgstr "SloÅ¾ka"
+msgstr "Sloka"
 
 #: Merge.rc:2225
 #, c-format
 msgid "Comparison result"
-msgstr "VÃ½sledek porovnÃ¡nÃ­"
+msgstr "Vısledek porovnání"
 
 #: Merge.rc:2226
 #, c-format
@@ -4130,7 +4130,7 @@ msgstr "Datum vpravo"
 #: Merge.rc:2228
 #, c-format
 msgid "Extension"
-msgstr "PÅ™Ã­pona"
+msgstr "Pøípona"
 
 #: Merge.rc:2229
 #, c-format
@@ -4145,27 +4145,27 @@ msgstr "Velikost vpravo"
 #: Merge.rc:2231
 #, c-format
 msgid "Right Size (Short)"
-msgstr "Velikost vpravo (krÃ¡tce)"
+msgstr "Velikost vpravo (krátce)"
 
 #: Merge.rc:2232
 #, c-format
 msgid "Left Size (Short)"
-msgstr "Velikost vlevo (krÃ¡tce)"
+msgstr "Velikost vlevo (krátce)"
 
 #: Merge.rc:2238
 #, c-format
 msgid "Left Creation Time"
-msgstr "Datum vytvoÅ™enÃ­ vlevo"
+msgstr "Datum vytvoøení vlevo"
 
 #: Merge.rc:2239
 #, c-format
 msgid "Right Creation Time"
-msgstr "Datum vytvoÅ™enÃ­ vpravo"
+msgstr "Datum vytvoøení vpravo"
 
 #: Merge.rc:2240
 #, c-format
 msgid "Newer File"
-msgstr "NovÄ›jÅ¡Ã­ soubor"
+msgstr "Novìjší soubor"
 
 #: Merge.rc:2241
 #, c-format
@@ -4180,7 +4180,7 @@ msgstr "Verze souboru vpravo"
 #: Merge.rc:2243
 #, c-format
 msgid "Short Result"
-msgstr "StruÄnÃ½ vÃ½sledek"
+msgstr "Struènı vısledek"
 
 #: Merge.rc:2244
 #, c-format
@@ -4195,38 +4195,38 @@ msgstr "Atributy vpravo"
 #: Merge.rc:2246
 #, c-format
 msgid "Left EOL"
-msgstr "Konce Å™Ã¡dkÅ¯ vlevo"
+msgstr "Konce øádkù vlevo"
 
 #: Merge.rc:2247
 #, c-format
 msgid "Right EOL"
-msgstr "Konce Å™Ã¡dkÅ¯ vpravo"
+msgstr "Konce øádkù vpravo"
 
 #: Merge.rc:2253
 #, c-format
 msgid "Left Encoding"
-msgstr "KÃ³dovÃ¡nÃ­ vlevo"
+msgstr "Kódování vlevo"
 
 #: Merge.rc:2254
 #, c-format
 msgid "Right Encoding"
-msgstr "KÃ³dovÃ¡nÃ­ vpravo"
+msgstr "Kódování vpravo"
 
 #: Merge.rc:2255
 #, c-format
 msgid "Ignored Diff."
-msgstr "Ignor. rozdÃ­lÅ¯"
+msgstr "Ignor. rozdílù"
 
 #: Merge.rc:2256
 #, c-format
 msgid "Differences"
-msgstr "RozdÃ­lÅ¯"
+msgstr "Rozdílù"
 
 #: Merge.rc:2257
 #: Merge.rc:2561
 #, c-format
 msgid "Binary"
-msgstr "BinÃ¡rnÃ­"
+msgstr "Binární"
 
 #: Merge.rc:2263
 #, c-format
@@ -4236,17 +4236,17 @@ msgstr "Soubory nelze porovnat"
 #: Merge.rc:2264
 #, c-format
 msgid "Item aborted"
-msgstr "PÅ™eruÅ¡eno"
+msgstr "Pøerušeno"
 
 #: Merge.rc:2265
 #, c-format
 msgid "File skipped"
-msgstr "Soubor pÅ™eskoÄen"
+msgstr "Soubor pøeskoèen"
 
 #: Merge.rc:2266
 #, c-format
 msgid "Folder skipped"
-msgstr "SloÅ¾ka pÅ™eskoÄena"
+msgstr "Sloka pøeskoèena"
 
 #: Merge.rc:2267
 #, c-format
@@ -4261,17 +4261,17 @@ msgstr "Pouze vpravo: %1"
 #: Merge.rc:2269
 #, c-format
 msgid "Binary files are identical"
-msgstr "BinÃ¡rnÃ­ soubory jsou shodnÃ©"
+msgstr "Binární soubory jsou shodné"
 
 #: Merge.rc:2271
 #, c-format
 msgid "Binary files are different"
-msgstr "BinÃ¡rnÃ­ soubory jsou rozdÃ­lnÃ©"
+msgstr "Binární soubory jsou rozdílné"
 
 #: Merge.rc:2272
 #, c-format
 msgid "Files are different"
-msgstr "Soubory jsou rozdÃ­lnÃ©"
+msgstr "Soubory jsou rozdílné"
 
 #: Merge.rc:2273
 #, c-format
@@ -4291,157 +4291,157 @@ msgstr "Chyba"
 #: Merge.rc:2282
 #, c-format
 msgid "Elapsed time: %ld ms"
-msgstr "UplynulÃ½ Äas: %ld ms"
+msgstr "Uplynulı èas: %ld ms"
 
 #: Merge.rc:2283
 #, c-format
 msgid "1 item selected"
-msgstr "VybrÃ¡na 1 poloÅ¾ka"
+msgstr "Vybrána 1 poloka"
 
 #: Merge.rc:2284
 #, c-format
 msgid "%1 items selected"
-msgstr "VybrÃ¡no %1 poloÅ¾ek"
+msgstr "Vybráno %1 poloek"
 
 #: Merge.rc:2290
 #, c-format
 msgid "Filename or folder name."
-msgstr "NÃ¡zev souboru nebo sloÅ¾ky"
+msgstr "Název souboru nebo sloky"
 
 #: Merge.rc:2291
 #, c-format
 msgid "Subfolder name when subfolders are included."
-msgstr "NÃ¡zev podsloÅ¾ky, pokud jsou porovnÃ¡vÃ¡ny i soubory v podsloÅ¾kÃ¡ch"
+msgstr "Název podsloky, pokud jsou porovnávány i soubory v podslokách"
 
 #: Merge.rc:2292
 #, c-format
 msgid "Comparison result, long form."
-msgstr "VÃ½sledek porovnÃ¡nÃ­, dlouhÃ½ popis"
+msgstr "Vısledek porovnání, dlouhı popis"
 
 #: Merge.rc:2293
 #, c-format
 msgid "Left side modification date."
-msgstr "Datum zmÄ›ny souboru na levÃ© stranÄ›"
+msgstr "Datum zmìny souboru na levé stranì"
 
 #: Merge.rc:2294
 #, c-format
 msgid "Right side modification date."
-msgstr "Datum zmÄ›ny souboru na pravÃ© stranÄ›"
+msgstr "Datum zmìny souboru na pravé stranì"
 
 #: Merge.rc:2295
 #, c-format
 msgid "File's extension."
-msgstr "PÅ™Ã­pona souboru"
+msgstr "Pøípona souboru"
 
 #: Merge.rc:2296
 #, c-format
 msgid "Left file size in bytes."
-msgstr "Velikost souboru na levÃ© stranÄ› v bytech"
+msgstr "Velikost souboru na levé stranì v bytech"
 
 #: Merge.rc:2297
 #, c-format
 msgid "Right file size in bytes."
-msgstr "Velikost souboru na pravÃ© stranÄ› v bytech"
+msgstr "Velikost souboru na pravé stranì v bytech"
 
 #: Merge.rc:2298
 #, c-format
 msgid "Left file size abbreviated."
-msgstr "Velikost souboru na levÃ© stranÄ› zkrÃ¡cenÄ›"
+msgstr "Velikost souboru na levé stranì zkrácenì"
 
 #: Merge.rc:2299
 #, c-format
 msgid "Right file size abbreviated."
-msgstr "Velikost souboru na pravÃ© stranÄ› zkrÃ¡cenÄ›"
+msgstr "Velikost souboru na pravé stranì zkrácenì"
 
 #: Merge.rc:2305
 #, c-format
 msgid "Left side creation time."
-msgstr "Datum vytvoÅ™enÃ­ souboru na levÃ© stranÄ›"
+msgstr "Datum vytvoøení souboru na levé stranì"
 
 #: Merge.rc:2306
 #, c-format
 msgid "Right side creation time."
-msgstr "Datum vytvoÅ™enÃ­ souboru na pravÃ© stranÄ›"
+msgstr "Datum vytvoøení souboru na pravé stranì"
 
 #: Merge.rc:2307
 #, c-format
 msgid "Tells which side has newer modification date."
-msgstr "UkÃ¡Å¾e, na kterÃ© stranÄ› je novÄ›jÅ¡Ã­ datum zmÄ›ny"
+msgstr "Ukáe, na které stranì je novìjší datum zmìny"
 
 #: Merge.rc:2308
 #, c-format
 msgid "Left side file version, only for some filetypes."
-msgstr "Verze souboru na levÃ© stranÄ›, pouze pro nÄ›kterÃ© typy souborÅ¯"
+msgstr "Verze souboru na levé stranì, pouze pro nìkteré typy souborù"
 
 #: Merge.rc:2309
 #, c-format
 msgid "Right side file version, only for some filetypes."
-msgstr "Verze souboru na pravÃ© stranÄ›, pouze pro nÄ›kterÃ© typy souborÅ¯"
+msgstr "Verze souboru na pravé stranì, pouze pro nìkteré typy souborù"
 
 #: Merge.rc:2310
 #, c-format
 msgid "Short comparison result."
-msgstr "StruÄnÃ½ vÃ½sledek porovnÃ¡nÃ­"
+msgstr "Struènı vısledek porovnání"
 
 #: Merge.rc:2311
 #, c-format
 msgid "Left side attributes."
-msgstr "Atributy souboru na levÃ© stranÄ›"
+msgstr "Atributy souboru na levé stranì"
 
 #: Merge.rc:2312
 #, c-format
 msgid "Right side attributes."
-msgstr "Atributy souboru na pravÃ© stranÄ›"
+msgstr "Atributy souboru na pravé stranì"
 
 #: Merge.rc:2313
 #, c-format
 msgid "Left side file EOL type"
-msgstr "Typ konce Å™Ã¡dkÅ¯ v souboru na levÃ© stranÄ›"
+msgstr "Typ konce øádkù v souboru na levé stranì"
 
 #: Merge.rc:2314
 #, c-format
 msgid "Right side file EOL type"
-msgstr "Typ konce Å™Ã¡dkÅ¯ v souboru na pravÃ© stranÄ›"
+msgstr "Typ konce øádkù v souboru na pravé stranì"
 
 #: Merge.rc:2320
 #, c-format
 msgid "Left side encoding."
-msgstr "KÃ³dovÃ¡nÃ­ souboru na levÃ© stranÄ›"
+msgstr "Kódování souboru na levé stranì"
 
 #: Merge.rc:2321
 #, c-format
 msgid "Right side encoding."
-msgstr "KÃ³dovÃ¡nÃ­ souboru na pravÃ© stranÄ›"
+msgstr "Kódování souboru na pravé stranì"
 
 #: Merge.rc:2322
 #, c-format
 msgid "Number of ignored differences in file. These differences are ignored by WinMerge and cannot be merged."
-msgstr "PoÄet ignorovanÃ½ch rozdÃ­lÅ¯ v souboru. Tyto rozdÃ­ly nelze slouÄit."
+msgstr "Poèet ignorovanıch rozdílù v souboru. Tyto rozdíly nelze slouèit."
 
 #: Merge.rc:2323
 #, c-format
 msgid "Number of differences in file. This number does not include ignored differences."
-msgstr "PoÄet rozdÃ­lÅ¯ v souboru. Neobsahuje ignorovanÃ© rozdÃ­ly."
+msgstr "Poèet rozdílù v souboru. Neobsahuje ignorované rozdíly."
 
 #: Merge.rc:2324
 #, c-format
 msgid "Shows an asterisk (*) if the file is binary."
-msgstr "UkÃ¡Å¾e hvÄ›zdiÄku (*), pokud je soubor binÃ¡rnÃ­"
+msgstr "Ukáe hvìzdièku (*), pokud je soubor binární"
 
 #: Merge.rc:2330
 #, c-format
 msgid "Compare %1 with %2"
-msgstr "PorovnÃ¡nÃ­ %1 s %2"
+msgstr "Porovnání %1 s %2"
 
 #: Merge.rc:2331
 #, c-format
 msgid "Comma-separated list"
-msgstr "Seznam oddÄ›lenÃ½ ÄÃ¡rkami"
+msgstr "Seznam oddìlenı èárkami"
 
 #: Merge.rc:2332
 #, c-format
 msgid "Tab-separated list"
-msgstr "Seznam oddÄ›lenÃ½ tabelÃ¡tory"
+msgstr "Seznam oddìlenı tabelátory"
 
 #: Merge.rc:2333
 #, c-format
@@ -4456,7 +4456,7 @@ msgstr "Soubor XML"
 #: Merge.rc:2336
 #, c-format
 msgid "The report file already exists. Do you want to overwrite existing file?"
-msgstr "Soubor protokolu jiÅ¾ existuje. Chcete ho pÅ™epsat?"
+msgstr "Soubor protokolu ji existuje. Chcete ho pøepsat?"
 
 #: Merge.rc:2337
 #, c-format
@@ -4464,33 +4464,33 @@ msgid ""
 "Error creating the report:\n"
 "%1"
 msgstr ""
-"Chyba pÅ™i vytvÃ¡Å™enÃ­ protokolu:\n"
+"Chyba pøi vytváøení protokolu:\n"
 "%1"
 
 #: Merge.rc:2338
 #, c-format
 msgid "The report has been created successfully."
-msgstr "Protokol byl ÃºspÄ›Å¡nÄ› vytvoÅ™en."
+msgstr "Protokol byl úspìšnì vytvoøen."
 
 #: Merge.rc:2344
 #, c-format
 msgid "The same file is opened in both panels."
-msgstr "V obou panelech je otevÅ™en stejnÃ½ soubor."
+msgstr "V obou panelech je otevøen stejnı soubor."
 
 #: Merge.rc:2345
 #, c-format
 msgid "The selected files are identical."
-msgstr "VybranÃ© soubory jsou shodnÃ©."
+msgstr "Vybrané soubory jsou shodné."
 
 #: Merge.rc:2346
 #, c-format
 msgid "An error occurred while comparing the files."
-msgstr "BÄ›hem porovnÃ¡nÃ­ souborÅ¯ se vyskytla chyba."
+msgstr "Bìhem porovnání souborù se vyskytla chyba."
 
 #: Merge.rc:2347
 #, c-format
 msgid "Temporary files could not be created. Check your temporary path settings."
-msgstr "Nelze vytvoÅ™it doÄasnÃ© soubory. Zkontrolujte nastavenÃ­ cesty k doÄasnÃ½m souborÅ¯m."
+msgstr "Nelze vytvoøit doèasné soubory. Zkontrolujte nastavení cesty k doèasnım souborùm."
 
 #: Merge.rc:2348
 #, c-format
@@ -4501,11 +4501,11 @@ msgid ""
 "\n"
 "Note: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
 msgstr ""
-"Tyto soubory pouÅ¾Ã­vajÃ­ rozdÃ­lnÃ© typy koncÅ¯ Å™Ã¡dkÅ¯.\n"
+"Tyto soubory pouívají rozdílné typy koncù øádkù.\n"
 "\n"
-"Chcete v tomto porovnÃ¡nÃ­ sjednotit vÅ¡echny konce Å™Ã¡dkÅ¯?\n"
+"Chcete v tomto porovnání sjednotit všechny konce øádkù?\n"
 "\n"
-"PoznÃ¡mka: Pokud chcete vÅ¾dy sjednocovat konce Å™Ã¡dkÅ¯, nastavte moÅ¾nost 'Ignorovat rozdÃ­ly v koncÃ­ch Å™Ã¡dkÅ¯' v nastavenÃ­ PorovnÃ¡vÃ¡nÃ­ v MoÅ¾nostech dostupnÃ½ch z nabÃ­dky Ãšpravy."
+"Poznámka: Pokud chcete vdy sjednocovat konce øádkù, nastavte monost 'Ignorovat rozdíly v koncích øádkù' v nastavení Porovnávání v Monostech dostupnıch z nabídky Úpravy."
 
 #: Merge.rc:2349
 #, c-format
@@ -4514,9 +4514,9 @@ msgid ""
 " With the current options, they will be unified to the main type.\n"
 " Do you want to change the options and preserve the different EOL ?"
 msgstr ""
-"Konce Å™Ã¡dkÅ¯ v souboru '%1' jsou rozdÃ­lnÃ½ch typÅ¯ (DOS/UNIX/MAC).\n"
-"Podle aktuÃ¡lnÃ­ch moÅ¾nostÃ­ budou sjednoceny do hlavnÃ­ho typu.\n"
-"Chcete zmÄ›nit moÅ¾nosti a zachovat rozdÃ­lnÃ© konce Å™Ã¡dkÅ¯?"
+"Konce øádkù v souboru '%1' jsou rozdílnıch typù (DOS/UNIX/MAC).\n"
+"Podle aktuálních moností budou sjednoceny do hlavního typu.\n"
+"Chcete zmìnit monosti a zachovat rozdílné konce øádkù?"
 
 #: Merge.rc:2350
 #, c-format
@@ -4526,17 +4526,17 @@ msgstr ""
 #: Merge.rc:2351
 #, c-format
 msgid "The selected folder is invalid."
-msgstr "ZvolenÃ¡ sloÅ¾ka je chybnÃ¡."
+msgstr "Zvolená sloka je chybná."
 
 #: Merge.rc:2352
 #, c-format
 msgid "Cannot open a binary file to editor."
-msgstr "BinÃ¡rnÃ­ soubor nelze otevÅ™Ã­t pro Ãºpravy."
+msgstr "Binární soubor nelze otevøít pro úpravy."
 
 #: Merge.rc:2353
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr "SloÅ¾ka existuje pouze na jednÃ© stranÄ› a nelze ji otevÅ™Ã­t.\n\nChcete vytvoÅ™it odpovÃ­dajÃ­cÃ­ sloÅ¾ku na druhÃ© stranÄ› a otevÅ™Ã­t ji?"
+msgstr "Sloka existuje pouze na jedné stranì a nelze ji otevøít.\n\nChcete vytvoøit odpovídající sloku na druhé stranì a otevøít ji?"
 
 #: Merge.rc:2359
 #, c-format
@@ -4545,59 +4545,59 @@ msgid ""
 "Displaying each file in its codepage will give a better display but merging/copying will be dangerous.\n"
 "Would you like to treat both files as being in the default windows codepage (recommended)?"
 msgstr ""
-"V souborech vlevo (cp%d) a vpravo (cp%d) bylo nalezeno rozdÃ­lnÃ© kÃ³dovÃ¡nÃ­.\n"
-"ZobrazenÃ­ kaÅ¾dÃ©ho souboru v jeho znakovÃ© strÃ¡nce poskytne lepÅ¡Ã­ nÃ¡hled, ale sluÄovÃ¡nÃ­ nebo kopÃ­rovÃ¡nÃ­ bude nebezpeÄnÃ©.\n"
-"Chcete kÃ³dovÃ¡nÃ­ u obou souborÅ¯ upravit na vÃ½chozÃ­ znakovou strÃ¡nku Windows (doporuÄeno)?"
+"V souborech vlevo (cp%d) a vpravo (cp%d) bylo nalezeno rozdílné kódování.\n"
+"Zobrazení kadého souboru v jeho znakové stránce poskytne lepší náhled, ale sluèování nebo kopírování bude nebezpeèné.\n"
+"Chcete kódování u obou souborù upravit na vıchozí znakovou stránku Windows (doporuèeno)?"
 
 #: Merge.rc:2360
 #, c-format
 msgid "Warning: Files use different encodings, left=%s and right=%s, and merging may lead to information loss."
-msgstr "UpozornÄ›nÃ­: Soubory pouÅ¾Ã­vajÃ­ rozdÃ­lnÃ© kÃ³dovÃ¡nÃ­, levÃ©=%s a pravÃ©=%s, a sluÄovÃ¡nÃ­ mÅ¯Å¾e vÃ©st ke ztrÃ¡tÄ› informacÃ­."
+msgstr "Upozornìní: Soubory pouívají rozdílné kódování, levé=%s a pravé=%s, a sluèování mùe vést ke ztrátì informací."
 
 #: Merge.rc:2361
 #, c-format
 msgid "Information lost due to encoding errors: both files"
-msgstr "DoÅ¡lo ke ztrÃ¡tÄ› informacÃ­ zpÅ¯sobenÃ© chybami kÃ³dovÃ¡nÃ­ u obou souborÅ¯."
+msgstr "Došlo ke ztrátì informací zpùsobené chybami kódování u obou souborù."
 
 #: Merge.rc:2362
 #, c-format
 msgid "Information lost due to encoding errors: right file"
-msgstr "DoÅ¡lo ke ztrÃ¡tÄ› informacÃ­ zpÅ¯sobenÃ© chybami kÃ³dovÃ¡nÃ­ u pravÃ©ho souboru."
+msgstr "Došlo ke ztrátì informací zpùsobené chybami kódování u pravého souboru."
 
 #: Merge.rc:2363
 #, c-format
 msgid "Information lost due to encoding errors: left file"
-msgstr "DoÅ¡lo ke ztrÃ¡tÄ› informacÃ­ zpÅ¯sobenÃ© chybami kÃ³dovÃ¡nÃ­ u levÃ©ho souboru."
+msgstr "Došlo ke ztrátì informací zpùsobené chybami kódování u levého souboru."
 
 #: Merge.rc:2369
 #, c-format
 msgid "No difference"
-msgstr "Å½Ã¡dnÃ½ rozdÃ­l"
+msgstr "ádnı rozdíl"
 
 #: Merge.rc:2370
 #, c-format
 msgid "Line difference"
-msgstr "RozdÃ­l v Å™Ã¡dku"
+msgstr "Rozdíl v øádku"
 
 #: Merge.rc:2376
 #, c-format
 msgid "Replaced %1 string(s)."
-msgstr "Nahrazeno %1 Å™etÄ›zcÅ¯."
+msgstr "Nahrazeno %1 øetìzcù."
 
 #: Merge.rc:2377
 #, c-format
 msgid "Cannot find string \"%s\""
-msgstr "Nelze najÃ­t Å™etÄ›zec \"%s\""
+msgstr "Nelze najít øetìzec \"%s\""
 
 #: Merge.rc:2383
 #, c-format
 msgid "Copy Full Path"
-msgstr "ZkopÃ­ruje celou cestu k souboru do schrÃ¡nky"
+msgstr "Zkopíruje celou cestu k souboru do schránky"
 
 #: Merge.rc:2384
 #, c-format
 msgid "Copy Filename"
-msgstr "ZkopÃ­ruje nÃ¡zev souboru do schrÃ¡nky"
+msgstr "Zkopíruje název souboru do schránky"
 
 #: Merge.rc:2390
 #, c-format
@@ -4607,32 +4607,32 @@ msgstr "Poloha"
 #: Merge.rc:2391
 #, c-format
 msgid "Diff Pane"
-msgstr "RozdÃ­ly"
+msgstr "Rozdíly"
 
 #: Merge.rc:2397
 #, c-format
 msgid "Patch file successfully written."
-msgstr "OpravnÃ½ soubor byl ÃºspÄ›Å¡nÄ› vytvoÅ™en."
+msgstr "Opravnı soubor byl úspìšnì vytvoøen."
 
 #: Merge.rc:2398
 #, c-format
 msgid "1. item is not found or is directory!"
-msgstr "1. poloÅ¾ka nebyla nalezena nebo je to sloÅ¾ka!"
+msgstr "1. poloka nebyla nalezena nebo je to sloka!"
 
 #: Merge.rc:2399
 #, c-format
 msgid "2. item is not found or is directory!"
-msgstr "2. poloÅ¾ka nebyla nalezena nebo je to sloÅ¾ka!"
+msgstr "2. poloka nebyla nalezena nebo je to sloka!"
 
 #: Merge.rc:2400
 #, c-format
 msgid "The patch file already exists. Do you want to overwrite it?"
-msgstr "OpravnÃ½ soubor jiÅ¾ existuje. Chcete ho pÅ™epsat?"
+msgstr "Opravnı soubor ji existuje. Chcete ho pøepsat?"
 
 #: Merge.rc:2401
 #, c-format
 msgid "[%1 files selected]"
-msgstr "[vybrÃ¡no %1 souborÅ¯]"
+msgstr "[vybráno %1 souborù]"
 
 #: Merge.rc:2402
 #, c-format
@@ -4657,22 +4657,22 @@ msgstr "Nelze zapisovat do souboru %1."
 #: Merge.rc:2406
 #, c-format
 msgid "The specified output path is not an absolute path: %1"
-msgstr "ZadanÃ¡ cesta pro vÃ½stup nenÃ­ cesta k souboru: %1"
+msgstr "Zadaná cesta pro vıstup není cesta k souboru: %1"
 
 #: Merge.rc:2407
 #, c-format
 msgid "Specify an output file"
-msgstr "Zadejte vÃ½stupnÃ­ soubor"
+msgstr "Zadejte vıstupní soubor"
 
 #: Merge.rc:2408
 #, c-format
 msgid "Cannot create a patch file from binary files."
-msgstr "Nelze vytvoÅ™it opravnÃ½ soubor z binÃ¡rnÃ­ch souborÅ¯."
+msgstr "Nelze vytvoøit opravnı soubor z binárních souborù."
 
 #: Merge.rc:2409
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "Nelze vytvoÅ™it opravnÃ½ soubor ze sloÅ¾ek."
+msgstr "Nelze vytvoøit opravnı soubor ze sloek."
 
 #: Merge.rc:2410
 #, c-format
@@ -4681,19 +4681,19 @@ msgid ""
 "\n"
 "Creating a patch requires that there are no unsaved changes in files."
 msgstr ""
-"NejdÅ™Ã­ve prosÃ­m uloÅ¾te vÅ¡echny soubory.\n"
+"Nejdøíve prosím ulote všechny soubory.\n"
 "\n"
-"VytvoÅ™enÃ­ opravnÃ©ho souboru vyÅ¾aduje, aby v souborech nebyly Å¾Ã¡dnÃ© neuloÅ¾enÃ© zmÄ›ny."
+"Vytvoøení opravného souboru vyaduje, aby v souborech nebyly ádné neuloené zmìny."
 
 #: Merge.rc:2411
 #, c-format
 msgid "Folder does not exist."
-msgstr "SloÅ¾ka neexistuje."
+msgstr "Sloka neexistuje."
 
 #: Merge.rc:2416
 #, c-format
 msgid "Current directory comparison results will be cleared."
-msgstr "AktuÃ¡lnÃ­ vÃ½sledek porovnÃ¡nÃ­ sloÅ¾ek bude vymazÃ¡n."
+msgstr "Aktuální vısledek porovnání sloek bude vymazán."
 
 #: Merge.rc:2417
 #, c-format
@@ -4702,10 +4702,10 @@ msgid ""
 "All needed components (7-zip and/or Merge7z*.dll) for archive support cannot be found.\n"
 "See manual for more info about archive support and how to enable it."
 msgstr ""
-"Podpora archivace nenÃ­ dostupnÃ¡.\n"
+"Podpora archivace není dostupná.\n"
 " \n"
-"Nelze nalÃ©zt vÅ¡echny potÅ™ebnÃ© souÄÃ¡sti (7-Zip anebo Merge7z*.dll).\n"
-"PodÃ­vejte se do uÅ¾ivatelskÃ© pÅ™Ã­ruÄky, kde najdete dalÅ¡Ã­ informace o podpoÅ™e archivace a jak ji zpÅ™Ã­stupnit."
+"Nelze nalézt všechny potøebné souèásti (7-Zip anebo Merge7z*.dll).\n"
+"Podívejte se do uivatelské pøíruèky, kde najdete další informace o podpoøe archivace a jak ji zpøístupnit."
 
 #: Merge.rc:2418
 #, c-format
@@ -4714,7 +4714,7 @@ msgid ""
 "Note: 7-Zip integration is disabled in WinMerge settings."
 msgstr ""
 "\n"
-"PoznÃ¡mka: Integrace 7-Zip je vypnutÃ¡ v nastavenÃ­ WinMerge."
+"Poznámka: Integrace 7-Zip je vypnutá v nastavení WinMerge."
 
 #: Merge.rc:2419
 #, c-format
@@ -4723,37 +4723,37 @@ msgid ""
 "Note: 7-Zip integration is restricted to standalone operation in WinMerge settings."
 msgstr ""
 "\n"
-"PoznÃ¡mka: Integrace 7-Zip je omezenÃ¡ na samostatnÃ© operace v nastavenÃ­ WinMerge."
+"Poznámka: Integrace 7-Zip je omezená na samostatné operace v nastavení WinMerge."
 
 #: Merge.rc:2420
 #, c-format
 msgid "Select file for export"
-msgstr "UloÅ¾it nastavenÃ­"
+msgstr "Uloit nastavení"
 
 #: Merge.rc:2421
 #, c-format
 msgid "Select file for import"
-msgstr "NaÄÃ­st nastavenÃ­"
+msgstr "Naèíst nastavení"
 
 #: Merge.rc:2422
 #, c-format
 msgid "Options imported from the file."
-msgstr "NastavenÃ­ bylo naÄteno ze souboru."
+msgstr "Nastavení bylo naèteno ze souboru."
 
 #: Merge.rc:2423
 #, c-format
 msgid "Options exported to the file."
-msgstr "NastavenÃ­ bylo uloÅ¾eno do souboru."
+msgstr "Nastavení bylo uloeno do souboru."
 
 #: Merge.rc:2424
 #, c-format
 msgid "Failed to import options from the file."
-msgstr "NaÄtenÃ­ nastavenÃ­ ze souboru se nezdaÅ™ilo."
+msgstr "Naètení nastavení ze souboru se nezdaøilo."
 
 #: Merge.rc:2425
 #, c-format
 msgid "Failed to write options to the file."
-msgstr "UloÅ¾enÃ­ nastavenÃ­ do souboru se nezdaÅ™ilo."
+msgstr "Uloení nastavení do souboru se nezdaøilo."
 
 #: Merge.rc:2426
 #, c-format
@@ -4762,94 +4762,94 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
-"ChystÃ¡te se zavÅ™Ã­t nÄ›kolik oken.\n"
+"Chystáte se zavøít nìkolik oken.\n"
 "\n"
-"Chcete pokraÄovat?"
+"Chcete pokraèovat?"
 
 #: Merge.rc:2432
 #, c-format
 msgid "Regular expression error"
-msgstr "Chyba v regulÃ©rnÃ­m vÃ½razu"
+msgstr "Chyba v regulérním vırazu"
 
 #: Merge.rc:2433
 #, c-format
 msgid "No match"
-msgstr "Nic neodpovÃ­dÃ¡"
+msgstr "Nic neodpovídá"
 
 #: Merge.rc:2434
 #, c-format
 msgid "Invalid regular expression"
-msgstr "ChybnÃ½ regulÃ©rnÃ­ vÃ½raz"
+msgstr "Chybnı regulérní vıraz"
 
 #: Merge.rc:2435
 #, c-format
 msgid "Invalid collation character"
-msgstr "ChybnÃ½ porovnÃ¡vacÃ­ znak"
+msgstr "Chybnı porovnávací znak"
 
 #: Merge.rc:2436
 #, c-format
 msgid "Invalid character class name"
-msgstr "ChybnÃ½ znak v nÃ¡zvu tÅ™Ã­dy"
+msgstr "Chybnı znak v názvu tøídy"
 
 #: Merge.rc:2437
 #, c-format
 msgid "Trailing backslash"
-msgstr "ZpÄ›tnÃ© lomÃ­tko na konci"
+msgstr "Zpìtné lomítko na konci"
 
 #: Merge.rc:2438
 #, c-format
 msgid "Invalid back reference"
-msgstr "ChybnÃ½ zpÄ›tnÃ½ odkaz"
+msgstr "Chybnı zpìtnı odkaz"
 
 #: Merge.rc:2439
 #, c-format
 msgid "Unmatched [ or [^"
-msgstr "NespÃ¡rovanÃ© [ nebo [^"
+msgstr "Nespárované [ nebo [^"
 
 #: Merge.rc:2440
 #, c-format
 msgid "Unmatched ( or \\("
-msgstr "NespÃ¡rovanÃ© ( nebo \\("
+msgstr "Nespárované ( nebo \\("
 
 #: Merge.rc:2441
 #, c-format
 msgid "Unmatched \\{"
-msgstr "NespÃ¡rovanÃ© \\{"
+msgstr "Nespárované \\{"
 
 #: Merge.rc:2442
 #, c-format
 msgid "Invalid content of \\{\\}"
-msgstr "ChybnÃ½ obsah \\{\\}"
+msgstr "Chybnı obsah \\{\\}"
 
 #: Merge.rc:2443
 #, c-format
 msgid "Invalid range end"
-msgstr "ChybnÃ© ukonÄenÃ­ rozsahu"
+msgstr "Chybné ukonèení rozsahu"
 
 #: Merge.rc:2444
 #, c-format
 msgid "Out of memory"
-msgstr "Nedostatek pamÄ›ti"
+msgstr "Nedostatek pamìti"
 
 #: Merge.rc:2445
 #, c-format
 msgid "Invalid preceding regular expression"
-msgstr "ChybnÃ½ pÅ™edchÃ¡zejÃ­cÃ­ regulÃ©rnÃ­ vÃ½raz"
+msgstr "Chybnı pøedcházející regulérní vıraz"
 
 #: Merge.rc:2446
 #, c-format
 msgid "Premature end of regular expression"
-msgstr "PÅ™edÄasnÃ© ukonÄenÃ­ regulÃ©rnÃ­ho vÃ½razu"
+msgstr "Pøedèasné ukonèení regulérního vırazu"
 
 #: Merge.rc:2447
 #, c-format
 msgid "Regular expression too big"
-msgstr "RegulÃ©rnÃ­ vÃ½raz je pÅ™Ã­liÅ¡ dlouhÃ½"
+msgstr "Regulérní vıraz je pøíliš dlouhı"
 
 #: Merge.rc:2452
 #, c-format
 msgid "Unmatched ) or \\)"
-msgstr "NespÃ¡rovanÃ© ) nebo \\)"
+msgstr "Nespárované ) nebo \\)"
 
 #: Merge.rc:2458
 #, c-format
@@ -5135,7 +5135,7 @@ msgstr ""
 #: Merge.rc:2560
 #, c-format
 msgid "Mixed"
-msgstr "RÅ¯znÃ©"
+msgstr "Rùzné"
 
 #: Merge.rc:2562
 #, c-format
@@ -5185,52 +5185,52 @@ msgstr ""
 #: Merge.rc:2583
 #, c-format
 msgid "Save the left file"
-msgstr "UloÅ¾Ã­ levÃ½ soubor"
+msgstr "Uloí levı soubor"
 
 #: Merge.rc:2584
 #, c-format
 msgid "Save the right file"
-msgstr "UloÅ¾Ã­ pravÃ½ soubor"
+msgstr "Uloí pravı soubor"
 
 #: Merge.rc:2585
 #, c-format
 msgid "Save the left file with name..."
-msgstr "UloÅ¾Ã­ levÃ½ soubor pod nÃ¡zvem..."
+msgstr "Uloí levı soubor pod názvem..."
 
 #: Merge.rc:2586
 #, c-format
 msgid "Save the right file with name..."
-msgstr "UloÅ¾Ã­ pravÃ½ soubor pod nÃ¡zvem..."
+msgstr "Uloí pravı soubor pod názvem..."
 
 #: Merge.rc:2587
 #, c-format
 msgid "Change left file/dir read-only status"
-msgstr "ZmÄ›nÃ­ soubor/sloÅ¾ku vlevo do stavu pouze pro ÄtenÃ­"
+msgstr "Zmìní soubor/sloku vlevo do stavu pouze pro ètení"
 
 #: Merge.rc:2588
 #, c-format
 msgid "Change right file/dir read-only status"
-msgstr "ZmÄ›nÃ­ soubor/sloÅ¾ku vpravo do stavu pouze pro ÄtenÃ­"
+msgstr "Zmìní soubor/sloku vpravo do stavu pouze pro ètení"
 
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to DOS mode"
-msgstr "PÅ™evede konce Å™Ã¡dkÅ¯ do typu DOS"
+msgstr "Pøevede konce øádkù do typu DOS"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to UNIX mode"
-msgstr "PÅ™evede konce Å™Ã¡dkÅ¯ do typu UNIX"
+msgstr "Pøevede konce øádkù do typu UNIX"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to MAC mode"
-msgstr "PÅ™evede konce Å™Ã¡dkÅ¯ do typu MAC"
+msgstr "Pøevede konce øádkù do typu MAC"
 
 #: Merge.rc:2592
 #, c-format
 msgid "Switch between editing and merging modes"
-msgstr "PÅ™epÃ­nÃ¡ mezi reÅ¾imem Ãºprav a reÅ¾imem sluÄovÃ¡nÃ­"
+msgstr "Pøepíná mezi reimem úprav a reimem sluèování"
 
 #: Merge.rc:2593
 #, c-format
@@ -5238,8 +5238,8 @@ msgid ""
 "View and adjust file encoding properties\n"
 "File encoding properties"
 msgstr ""
-"UkÃ¡Å¾e a pÅ™izpÅ¯sobÃ­ vlastnosti kÃ³dovÃ¡nÃ­ souboru\n"
-"Vlastnosti kÃ³dovÃ¡nÃ­ souboru"
+"Ukáe a pøizpùsobí vlastnosti kódování souboru\n"
+"Vlastnosti kódování souboru"
 
 #: Merge.rc:2594
 #, c-format
@@ -5252,8 +5252,8 @@ msgid ""
 "Select difference area in the current line\n"
 "Difference in the Current Line"
 msgstr ""
-"Vybere oblast rozdÃ­lÅ¯ v aktuÃ¡lnÃ­m Å™Ã¡dku\n"
-"RozdÃ­l v aktuÃ¡lnÃ­m Å™Ã¡dku"
+"Vybere oblast rozdílù v aktuálním øádku\n"
+"Rozdíl v aktuálním øádku"
 
 #: Merge.rc:2601
 #, c-format
@@ -5261,8 +5261,8 @@ msgid ""
 "Go to line or difference\n"
 "Go to (Ctrl+G)"
 msgstr ""
-"PÅ™ejde na danÃ½ Å™Ã¡dek nebo na danÃ½ rozdÃ­l\n"
-"PÅ™ejÃ­t na (Ctrl+G)"
+"Pøejde na danı øádek nebo na danı rozdíl\n"
+"Pøejít na (Ctrl+G)"
 
 #: Merge.rc:2602
 #, c-format
@@ -5270,8 +5270,8 @@ msgid ""
 "Set program options\n"
 "Options"
 msgstr ""
-"UmoÅ¾nÃ­ zmÄ›nit nastavenÃ­ aplikace\n"
-"MoÅ¾nosti"
+"Umoní zmìnit nastavení aplikace\n"
+"Monosti"
 
 #: Merge.rc:2603
 #, c-format
@@ -5279,38 +5279,38 @@ msgid ""
 "Refresh display\n"
 "Refresh (F5)"
 msgstr ""
-"ObnovÃ­ zobrazenÃ­\n"
+"Obnoví zobrazení\n"
 "Obnovit (F5)"
 
 #: Merge.rc:2604
 #, c-format
 msgid "Copy selected lines to clipboard adding linenumbers to line begin"
-msgstr "ZkopÃ­ruje vybranÃ© Å™Ã¡dky do schrÃ¡nky a pÅ™idÃ¡ jim na zaÄÃ¡tek jejich ÄÃ­sla Å™Ã¡dkÅ¯"
+msgstr "Zkopíruje vybrané øádky do schránky a pøidá jim na zaèátek jejich èísla øádkù"
 
 #: Merge.rc:2605
 #, c-format
 msgid "Refresh selected items"
-msgstr "ObnovÃ­ vybranÃ© poloÅ¾ky"
+msgstr "Obnoví vybrané poloky"
 
 #: Merge.rc:2606
 #, c-format
 msgid "Toggle bookmark"
-msgstr "ZaloÅ¾Ã­ nebo zruÅ¡Ã­ zÃ¡loÅ¾ku"
+msgstr "Zaloí nebo zruší záloku"
 
 #: Merge.rc:2607
 #, c-format
 msgid "Go to next bookmark"
-msgstr "PÅ™ejde na dalÅ¡Ã­ zÃ¡loÅ¾ku"
+msgstr "Pøejde na další záloku"
 
 #: Merge.rc:2608
 #, c-format
 msgid "Go to previous bookmark"
-msgstr "PÅ™ejde na pÅ™edchozÃ­ zÃ¡loÅ¾ku"
+msgstr "Pøejde na pøedchozí záloku"
 
 #: Merge.rc:2609
 #, c-format
 msgid "Clear all bookmarks"
-msgstr "ZruÅ¡Ã­ vÅ¡echny zÃ¡loÅ¾ky"
+msgstr "Zruší všechny záloky"
 
 #: Merge.rc:2615
 #, c-format
@@ -5318,8 +5318,8 @@ msgid ""
 "Displays items that are exactly the same\n"
 "Show Identical Items"
 msgstr ""
-"ZobrazÃ­ poloÅ¾ky, kterÃ© se pÅ™esnÄ› shodujÃ­\n"
-"UkÃ¡zat shodnÃ© poloÅ¾ky"
+"Zobrazí poloky, které se pøesnì shodují\n"
+"Ukázat shodné poloky"
 
 #: Merge.rc:2616
 #, c-format
@@ -5327,8 +5327,8 @@ msgid ""
 "Displays items that have differences\n"
 "Show Different Items"
 msgstr ""
-"ZobrazÃ­ poloÅ¾ky, ve kterÃ½ch jsou rozdÃ­ly\n"
-"UkÃ¡zat rozdÃ­lnÃ© poloÅ¾ky"
+"Zobrazí poloky, ve kterıch jsou rozdíly\n"
+"Ukázat rozdílné poloky"
 
 #: Merge.rc:2617
 #, c-format
@@ -5336,8 +5336,8 @@ msgid ""
 "Displays items that exist in only on the left side\n"
 "Show Left Unique Items"
 msgstr ""
-"ZobrazÃ­ poloÅ¾ky, kterÃ© existujÃ­ pouze na levÃ© stranÄ›\n"
-"UkÃ¡zat levÃ© jedineÄnÃ© poloÅ¾ky"
+"Zobrazí poloky, které existují pouze na levé stranì\n"
+"Ukázat levé jedineèné poloky"
 
 #: Merge.rc:2618
 #, c-format
@@ -5345,8 +5345,8 @@ msgid ""
 "Displays items that exist in only on the right side\n"
 "Show Right Unique Items"
 msgstr ""
-"ZobrazÃ­ poloÅ¾ky, kterÃ© existujÃ­ pouze na pravÃ© stranÄ›\n"
-"UkÃ¡zat pravÃ© jedineÄnÃ© poloÅ¾ky"
+"Zobrazí poloky, které existují pouze na pravé stranì\n"
+"Ukázat pravé jedineèné poloky"
 
 #: Merge.rc:2619
 #, c-format
@@ -5354,8 +5354,8 @@ msgid ""
 "Displays binary files\n"
 "Show Binary Files"
 msgstr ""
-"ZobrazÃ­ binÃ¡rnÃ­ soubory\n"
-"UkÃ¡zat binÃ¡rnÃ­ soubory"
+"Zobrazí binární soubory\n"
+"Ukázat binární soubory"
 
 #: Merge.rc:2620
 #, c-format
@@ -5363,8 +5363,8 @@ msgid ""
 "Displays skipped items\n"
 "Show Skipped Items"
 msgstr ""
-"ZobrazÃ­ pÅ™eskoÄenÃ© poloÅ¾ky\n"
-"UkÃ¡zat pÅ™eskoÄenÃ© poloÅ¾ky"
+"Zobrazí pøeskoèené poloky\n"
+"Ukázat pøeskoèené poloky"
 
 #: Merge.rc:2626
 #, c-format
@@ -5372,8 +5372,8 @@ msgid ""
 "Select the font for the view\n"
 "Select View Font"
 msgstr ""
-"Vybere pÃ­smo pro zobrazenÃ­\n"
-"Vybrat pÃ­smo"
+"Vybere písmo pro zobrazení\n"
+"Vybrat písmo"
 
 #: Merge.rc:2627
 #, c-format
@@ -5381,28 +5381,28 @@ msgid ""
 "Revert to using the default system font for view\n"
 "Default Font"
 msgstr ""
-"VrÃ¡tÃ­ vÃ½chozÃ­ pÃ­smo systÃ©mu pro zobrazenÃ­\n"
-"VÃ½chozÃ­ pÃ­smo"
+"Vrátí vıchozí písmo systému pro zobrazení\n"
+"Vıchozí písmo"
 
 #: Merge.rc:2628
 #, c-format
 msgid "Shows whitespace characters"
-msgstr "UkÃ¡Å¾e netisknutelnÃ© znaky"
+msgstr "Ukáe netisknutelné znaky"
 
 #: Merge.rc:2629
 #, c-format
 msgid "Toggle Diff Pane"
-msgstr "ZobrazÃ­ nebo skryje rozdÃ­lovÃ½ panel"
+msgstr "Zobrazí nebo skryje rozdílovı panel"
 
 #: Merge.rc:2630
 #, c-format
 msgid "Location pane shows overall picture from files"
-msgstr "PolohovÃ½ panel ukazuje celkovÃ½ obraz porovnÃ¡vanÃ½ch souborÅ¯"
+msgstr "Polohovı panel ukazuje celkovı obraz porovnávanıch souborù"
 
 #: Merge.rc:2631
 #, c-format
 msgid "Show folder compare statistics dialog"
-msgstr "ZobrazÃ­ statistiku porovnÃ¡nÃ­ sloÅ¾ek"
+msgstr "Zobrazí statistiku porovnání sloek"
 
 #: Merge.rc:2632
 #, c-format
@@ -5410,7 +5410,7 @@ msgid ""
 "Select the current user interfacce language\n"
 "Language"
 msgstr ""
-"UmoÅ¾nÃ­ zvolit jazyk uÅ¾ivatelskÃ©ho prostÅ™edÃ­ aplikace\n"
+"Umoní zvolit jazyk uivatelského prostøedí aplikace\n"
 "Jazyk"
 
 #: Merge.rc:2633
@@ -5419,13 +5419,13 @@ msgid ""
 "Shows differences inside lines with different color\n"
 "Show Line Diff"
 msgstr ""
-"UkÃ¡Å¾e rozdÃ­ly v Å™Ã¡dcÃ­ch odliÅ¡nou barvou\n"
-"RozdÃ­ly v Å™Ã¡dcÃ­ch"
+"Ukáe rozdíly v øádcích odlišnou barvou\n"
+"Rozdíly v øádcích"
 
 #: Merge.rc:2634
 #, c-format
 msgid "Swap the positions of the two panes"
-msgstr "ZamÄ›nÃ­ umÃ­stÄ›nÃ­ panelÅ¯ s porovnÃ¡nÃ­m souborÅ¯"
+msgstr "Zamìní umístìní panelù s porovnáním souborù"
 
 #: Merge.rc:2635
 #, c-format
@@ -5433,8 +5433,8 @@ msgid ""
 "Shows line numbers\n"
 "Show Line Numbers"
 msgstr ""
-"ZobrazÃ­ nebo skryje ÄÃ­sla Å™Ã¡dkÅ¯\n"
-"Zobrazit ÄÃ­sla Å™Ã¡dkÅ¯"
+"Zobrazí nebo skryje èísla øádkù\n"
+"Zobrazit èísla øádkù"
 
 #: Merge.rc:2636
 #, c-format
@@ -5442,8 +5442,8 @@ msgid ""
 "Enable word wrap\n"
 "Wrap Lines"
 msgstr ""
-"PÅ™epÃ­nÃ¡ zalamovÃ¡nÃ­ Å™Ã¡dkÅ¯\n"
-"Zalamovat Å™Ã¡dky"
+"Pøepíná zalamování øádkù\n"
+"Zalamovat øádky"
 
 #: Merge.rc:2637
 #, c-format
@@ -5451,23 +5451,23 @@ msgid ""
 "Shows selection margins for both panes\n"
 "Show Selection Margins"
 msgstr ""
-"ZobrazÃ­ nebo skryje u obou panelÅ¯ levÃ© okraje pro vÃ½bÄ›r\n"
-"Okraje pro vÃ½bÄ›r"
+"Zobrazí nebo skryje u obou panelù levé okraje pro vıbìr\n"
+"Okraje pro vıbìr"
 
 #: Merge.rc:2638
 #, c-format
 msgid "Increase text size"
-msgstr "ZvÄ›tÅ¡Ã­ velikost pÃ­sma"
+msgstr "Zvìtší velikost písma"
 
 #: Merge.rc:2639
 #, c-format
 msgid "Decrease text size"
-msgstr "ZmenÅ¡Ã­ velikost pÃ­sma"
+msgstr "Zmenší velikost písma"
 
 #: Merge.rc:2640
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr "VrÃ¡tÃ­ pÃ­smo na pÅ¯vodnÃ­ velikost"
+msgstr "Vrátí písmo na pùvodní velikost"
 
 #: Merge.rc:2646
 #, c-format
@@ -5475,8 +5475,8 @@ msgid ""
 "Scroll to the previous difference\n"
 "Prev Diff (Alt+Up)"
 msgstr ""
-"Posune na pÅ™edchozÃ­ rozdÃ­l\n"
-"PÅ™edchozÃ­ rozdÃ­l (Alt+Up)"
+"Posune na pøedchozí rozdíl\n"
+"Pøedchozí rozdíl (Alt+Up)"
 
 #: Merge.rc:2647
 #, c-format
@@ -5484,8 +5484,8 @@ msgid ""
 "Scroll to the next difference\n"
 "Next Diff (Alt+Down)"
 msgstr ""
-"Posune na dalÅ¡Ã­ rozdÃ­l\n"
-"DalÅ¡Ã­ rozdÃ­l (Alt+Down)"
+"Posune na další rozdíl\n"
+"Další rozdíl (Alt+Down)"
 
 #: Merge.rc:2648
 #, c-format
@@ -5493,8 +5493,8 @@ msgid ""
 "Scroll to the first difference\n"
 "First Diff (Alt+Home)"
 msgstr ""
-"Posune na prvnÃ­ rozdÃ­l\n"
-"PrvnÃ­ rozdÃ­l (Alt+Home)"
+"Posune na první rozdíl\n"
+"První rozdíl (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
@@ -5502,8 +5502,8 @@ msgid ""
 "Scroll to the current difference\n"
 "Current Diff (Alt+Enter)"
 msgstr ""
-"Posune na aktuÃ¡lnÃ­ rozdÃ­l\n"
-"AktuÃ¡lnÃ­ rozdÃ­l (Alt+Enter)"
+"Posune na aktuální rozdíl\n"
+"Aktuální rozdíl (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
@@ -5511,8 +5511,8 @@ msgid ""
 "Scroll to the last difference\n"
 "Last Diff (Alt+End)"
 msgstr ""
-"Posune na poslednÃ­ rozdÃ­l\n"
-"PoslednÃ­ rozdÃ­l (Alt+End)"
+"Posune na poslední rozdíl\n"
+"Poslední rozdíl (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5520,8 +5520,8 @@ msgid ""
 "Copy the selected text to the right file\n"
 "Copy Right (Alt+Right)"
 msgstr ""
-"ZkopÃ­ruje vybranÃ½ rozdÃ­l do souboru vpravo\n"
-"KopÃ­rovat doprava (Alt+Right)"
+"Zkopíruje vybranı rozdíl do souboru vpravo\n"
+"Kopírovat doprava (Alt+Right)"
 
 #: Merge.rc:2652
 #, c-format
@@ -5529,8 +5529,8 @@ msgid ""
 "Copy the selected text to the left file\n"
 "Copy Left (Alt+Left)"
 msgstr ""
-"ZkopÃ­ruje vybranÃ½ rozdÃ­l do souboru vlevo\n"
-"KopÃ­rovat doleva (Alt+Left)"
+"Zkopíruje vybranı rozdíl do souboru vlevo\n"
+"Kopírovat doleva (Alt+Left)"
 
 #: Merge.rc:2653
 #, c-format
@@ -5538,8 +5538,8 @@ msgid ""
 "Copy difference to right and advance to next\n"
 "Copy Right and Advance (Ctrl+Alt+Right)"
 msgstr ""
-"ZkopÃ­ruje vybranÃ½ rozdÃ­l do souboru vpravo a pokraÄuje na dalÅ¡Ã­ rozdÃ­l\n"
-"KopÃ­rovat doprava a pokraÄovat (Ctrl+Alt+Right)"
+"Zkopíruje vybranı rozdíl do souboru vpravo a pokraèuje na další rozdíl\n"
+"Kopírovat doprava a pokraèovat (Ctrl+Alt+Right)"
 
 #: Merge.rc:2654
 #, c-format
@@ -5547,8 +5547,8 @@ msgid ""
 "Copy difference to left and advance to next\n"
 "Copy Left and Advance (Ctrl+Alt+Left)"
 msgstr ""
-"ZkopÃ­ruje vybranÃ½ rozdÃ­l do souboru vlevo a pokraÄuje na dalÅ¡Ã­ rozdÃ­l\n"
-"KopÃ­rovat doleva a pokraÄovat (Ctrl+Alt+Left)"
+"Zkopíruje vybranı rozdíl do souboru vlevo a pokraèuje na další rozdíl\n"
+"Kopírovat doleva a pokraèovat (Ctrl+Alt+Left)"
 
 #: Merge.rc:2655
 #, c-format
@@ -5556,8 +5556,8 @@ msgid ""
 "Copy all differences to the right file\n"
 "All Right"
 msgstr ""
-"ZkopÃ­ruje vÅ¡echny rozdÃ­ly do souboru vpravo\n"
-"VÅ¡e doprava"
+"Zkopíruje všechny rozdíly do souboru vpravo\n"
+"Vše doprava"
 
 #: Merge.rc:2656
 #, c-format
@@ -5565,28 +5565,28 @@ msgid ""
 "Copy all differences to the left file\n"
 "All Left"
 msgstr ""
-"ZkopÃ­ruje vÅ¡echny rozdÃ­ly do souboru vlevo\n"
-"VÅ¡e doleva"
+"Zkopíruje všechny rozdíly do souboru vlevo\n"
+"Vše doleva"
 
 #: Merge.rc:2657
 #, c-format
 msgid "Delete selected items from both directories"
-msgstr "OdstranÃ­ vybranÃ© poloÅ¾ky z obou sloÅ¾ek"
+msgstr "Odstraní vybrané poloky z obou sloek"
 
 #: Merge.rc:2658
 #, c-format
 msgid "Compare selected item (compare first item if multiple items selected)"
-msgstr "PorovnÃ¡ vybranou poloÅ¾ku (pokud je vybrÃ¡no vÃ­ce poloÅ¾ek, porovnÃ¡ prvnÃ­)"
+msgstr "Porovná vybranou poloku (pokud je vybráno více poloek, porovná první)"
 
 #: Merge.rc:2664
 #, c-format
 msgid "Select and reorder directory compare columns"
-msgstr "Zvolit a pÅ™eskupit sloupce v oknÄ› porovnÃ¡nÃ­ sloÅ¾ek"
+msgstr "Zvolit a pøeskupit sloupce v oknì porovnání sloek"
 
 #: Merge.rc:2665
 #, c-format
 msgid "Generate a patch-file"
-msgstr "VytvoÅ™Ã­ opravnÃ½ soubor"
+msgstr "Vytvoøí opravnı soubor"
 
 #: Merge.rc:2666
 #, c-format
@@ -5596,22 +5596,22 @@ msgstr "Vybrat a upravit filtry"
 #: Merge.rc:2667
 #, c-format
 msgid "Generates a report from compare results"
-msgstr "VytvoÅ™Ã­ protokol o vÃ½sledku porovnÃ¡nÃ­ sloÅ¾ek"
+msgstr "Vytvoøí protokol o vısledku porovnání sloek"
 
 #: Merge.rc:2673
 #, c-format
 msgid "The user selects the unpacker (no unpacking when comparing dir)"
-msgstr "UÅ¾ivatel sÃ¡m vybere pÅ™evadÄ›Ä (neplatÃ­ pÅ™i porovnÃ¡nÃ­ sloÅ¾ek)"
+msgstr "Uivatel sám vybere pøevadìè (neplatí pøi porovnání sloek)"
 
 #: Merge.rc:2674
 #, c-format
 msgid "The adapted unpacker is applied to both files (one file only needs the extension)"
-msgstr "PÅ™izpÅ¯sobenÃ½ pÅ™evadÄ›Ä bude pouÅ¾it pro oba soubory (podle pÅ™Ã­pony jednoho ze souborÅ¯)"
+msgstr "Pøizpùsobenı pøevadìè bude pouit pro oba soubory (podle pøípony jednoho ze souborù)"
 
 #: Merge.rc:2675
 #, c-format
 msgid "Select an unpacker to edit this file"
-msgstr "ZvolÃ­ pÅ™evadÄ›Ä pro Ãºpravy tohoto souboru"
+msgstr "Zvolí pøevadìè pro úpravy tohoto souboru"
 
 #: Merge.rc:2676
 #, c-format
@@ -5621,17 +5621,17 @@ msgstr ""
 #: Merge.rc:2677
 #, c-format
 msgid "Suggested plugins"
-msgstr "NavrÅ¾enÃ© pluginy"
+msgstr "Navrené pluginy"
 
 #: Merge.rc:2678
 #, c-format
 msgid "Other plugins"
-msgstr "OstatnÃ­ pluginy"
+msgstr "Ostatní pluginy"
 
 #: Merge.rc:2679
 #, c-format
 msgid "Unload all plugins and reload them (for developers)"
-msgstr "UvolnÃ­ vÅ¡echny pluginy a znovu je naÄte (pro vÃ½vojÃ¡Å™e)"
+msgstr "Uvolní všechny pluginy a znovu je naète (pro vıvojáøe)"
 
 #: Merge.rc:2685
 #, c-format
@@ -5639,28 +5639,28 @@ msgid ""
 "Activates next file visible\n"
 "Active next File"
 msgstr ""
-"Aktivovat nÃ¡sledujÃ­cÃ­ viditelnÃ½ soubor\n"
-"Aktivovat nÃ¡sledujÃ­cÃ­ soubor"
+"Aktivovat následující viditelnı soubor\n"
+"Aktivovat následující soubor"
 
 #: Merge.rc:2686
 #, c-format
 msgid "Closes all open windows"
-msgstr "ZavÅ™e vÅ¡echna otevÅ™enÃ¡ okna"
+msgstr "Zavøe všechna otevøená okna"
 
 #: Merge.rc:2692
 #, c-format
 msgid "Opens the WinMerge Help\nWinMerge Help"
-msgstr ""
+msgstr "Otevøe nápovìdu pro aplikaci WinMerge\nNápovìda aplikace WinMerge"
 
 #: Merge.rc:2693
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
-msgstr "VytvoÅ™Ã­ textovÃ½ soubor obsahujÃ­cÃ­ informace o aktuÃ¡lnÃ­ verzi aplikace WinMerge a o mÃ­stnÃ­ konfiguraci"
+msgstr "Vytvoøí textovı soubor obsahující informace o aktuální verzi aplikace WinMerge a o místní konfiguraci"
 
 #: Merge.rc:2694
 #, c-format
 msgid "Display the GNU General Public License"
-msgstr ""
+msgstr "Zobrazí Obecnou veøejnou licenci GNU"
 
 #: Merge.rc:2695
 #, c-format
@@ -5670,17 +5670,17 @@ msgstr ""
 #: Merge.rc:2696
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
-msgstr "OtevÅ™e dokument s poznÃ¡mkami k aktuÃ¡lnÃ­ verzi aplikace WinMerge\nPoznÃ¡mky k vydÃ¡nÃ­"
+msgstr "Otevøe dokument s poznámkami k aktuální verzi aplikace WinMerge\nPoznámky k vydání"
 
 #: Merge.rc:2697
 #, c-format
 msgid "Opens the translations website\nTranslations"
-msgstr "OtevÅ™e internetovou strÃ¡nku s informacemi o jazykovÃ½ch pÅ™ekladech\nPÅ™eklady"
+msgstr "Otevøe internetovou stránku s informacemi o jazykovıch pøekladech\nPøeklady"
 
 #: Merge.rc:2703
 #, c-format
 msgid "Plugin Settings"
-msgstr "NastavenÃ­ pluginÅ¯"
+msgstr "Nastavení pluginù"
 
 #: Merge.rc:2704
 #, c-format
@@ -5695,12 +5695,12 @@ msgstr ""
 #: Merge.rc:2707
 #, c-format
 msgid "WSH not found - .sct scripts disabled"
-msgstr "Program Windows Script Host nebyl nalezen - skripty .sct jsou vypnutÃ©"
+msgstr "Program Windows Script Host nebyl nalezen - skripty .sct jsou vypnuté"
 
 #: Merge.rc:2708
 #, c-format
 msgid "<None>"
-msgstr "<Å¾Ã¡dnÃ½>"
+msgstr "<ádnı>"
 
 #: Merge.rc:2709
 #, c-format
@@ -5710,47 +5710,47 @@ msgstr "<automaticky>"
 #: Merge.rc:2715
 #, c-format
 msgid "Open the file with registered application"
-msgstr "OtevÅ™e soubor v pÅ™idruÅ¾enÃ© aplikaci"
+msgstr "Otevøe soubor v pøidruené aplikaci"
 
 #: Merge.rc:2716
 #, c-format
 msgid "Open the file with external editor"
-msgstr "OtevÅ™e soubor v externÃ­m editoru"
+msgstr "Otevøe soubor v externím editoru"
 
 #: Merge.rc:2717
 #, c-format
 msgid "Open the file with a particular program"
-msgstr "OtevÅ™e soubor v pÅ™Ã­sluÅ¡nÃ©m programu"
+msgstr "Otevøe soubor v pøíslušném programu"
 
 #: Merge.rc:2723
 #, c-format
 msgid "Do not display moved blocks"
-msgstr "PotlaÄÃ­ zobrazenÃ­ pÅ™esunutÃ½ch blokÅ¯"
+msgstr "Potlaèí zobrazení pøesunutıch blokù"
 
 #: Merge.rc:2724
 #, c-format
 msgid "Display all moved blocks"
-msgstr "ZobrazÃ­ vÅ¡echny pÅ™esunutÃ© bloky"
+msgstr "Zobrazí všechny pøesunuté bloky"
 
 #: Merge.rc:2725
 #, c-format
 msgid "Display moved blocks only from current diff"
-msgstr "ZobrazÃ­ pÅ™esunutÃ© bloky tÃ½kajÃ­cÃ­ se pouze aktuÃ¡lnÃ­ho vÃ½bÄ›ru"
+msgstr "Zobrazí pøesunuté bloky tıkající se pouze aktuálního vıbìru"
 
 #: Merge.rc:2726
 #, c-format
 msgid "Go to diff under cursor"
-msgstr "PÅ™ejde na Å™Ã¡dek nebo rozdÃ­l pod ukazatelem"
+msgstr "Pøejde na øádek nebo rozdíl pod ukazatelem"
 
 #: Merge.rc:2727
 #, c-format
 msgid "G&oto Diff %1 of %2"
-msgstr "&PÅ™ejÃ­t na rozdÃ­l %1 z %2"
+msgstr "&Pøejít na rozdíl %1 z %2"
 
 #: Merge.rc:2728
 #, c-format
 msgid "G&oto Line %1"
-msgstr "&PÅ™ejÃ­t na Å™Ã¡dek %1"
+msgstr "&Pøejít na øádek %1"
 
 #: Merge.rc:2734
 #, c-format
@@ -5760,12 +5760,12 @@ msgstr "Vypnuto"
 #: Merge.rc:2735
 #, c-format
 msgid "From file system"
-msgstr "SystÃ©m souborÅ¯"
+msgstr "Systém souborù"
 
 #: Merge.rc:2736
 #, c-format
 msgid "From MRU list"
-msgstr "Naposledy pouÅ¾itÃ©"
+msgstr "Naposledy pouité"
 
 #: Merge.rc:2743
 #, c-format
@@ -5925,15 +5925,15 @@ msgstr ""
 #: Merge.rc:2778
 #, c-format
 msgid "Hide the toolbar"
-msgstr "Skryje panel nÃ¡strojÅ¯"
+msgstr "Skryje panel nástrojù"
 
 #: Merge.rc:2779
 #, c-format
 msgid "Show small toolbar"
-msgstr "ZobrazÃ­ malÃ½ panel nÃ¡strojÅ¯"
+msgstr "Zobrazí malı panel nástrojù"
 
 #: Merge.rc:2780
 #, c-format
 msgid "Show big toolbar"
-msgstr "ZobrazÃ­ velkÃ½ panel nÃ¡strojÅ¯"
+msgstr "Zobrazí velkı panel nástrojù"
 
