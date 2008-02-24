@@ -55,7 +55,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 /nologo /subsystem:windows /debug /machine:I386 /pdbtype:sept
-# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre"
+# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew"
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeDebug
 TargetPath=\WinMerge\WinMerge_SVN\Build\MergeDebug\WinMerge.exe
@@ -89,7 +89,7 @@ BSC32=bscmake.exe
 # ADD BSC32 /nologo
 LINK32=link.exe
 # ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMerge.exe" /pdbtype:sept
-# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMergeU.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre"
+# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMergeU.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew"
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeUnicodeDebug
 TargetPath=\WinMerge\WinMerge_SVN\Build\MergeUnicodeDebug\WinMergeU.exe
@@ -124,7 +124,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /verbose:lib
+# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeRelease
@@ -160,7 +160,7 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /verbose:lib
 # SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /verbose:lib
+# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew" /verbose:lib
 # SUBTRACT LINK32 /pdb:none
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeUnicodeRelease
