@@ -50,7 +50,9 @@ bool CheckForInvalidUtf8(LPBYTE pBuffer, int size)
 	bool bUTF8 = false;
 	for (int i = 0; i < (size - 3); ++i)
 	{
-		if ((*pVal2 & 0xE0) == 0xC0)
+		if ((*pVal2 & 0x80) == 0x00)
+			;
+		else if ((*pVal2 & 0xE0) == 0xC0)
 		{
 			pVal2++;
 			i++;
@@ -58,24 +60,8 @@ bool CheckForInvalidUtf8(LPBYTE pBuffer, int size)
 				return true;
 			bUTF8 = true;
 		}
-		if ((*pVal2 & 0xF0) == 0xE0)
+		else if ((*pVal2 & 0xF0) == 0xE0)
 		{
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
-			bUTF8 = true;
-		}
-		if ((*pVal2 & 0xF8) == 0xF0)
-		{
-			pVal2++;
-			i++;
-			if ((*pVal2 & 0xC0) != 0x80)
-				return true;
 			pVal2++;
 			i++;
 			if ((*pVal2 & 0xC0) != 0x80)
@@ -86,6 +72,24 @@ bool CheckForInvalidUtf8(LPBYTE pBuffer, int size)
 				return true;
 			bUTF8 = true;
 		}
+		else if ((*pVal2 & 0xF8) == 0xF0)
+		{
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			pVal2++;
+			i++;
+			if ((*pVal2 & 0xC0) != 0x80)
+				return true;
+			bUTF8 = true;
+		}
+		else
+			return true;
 		pVal2++;
 	}
 	if (bUTF8)
