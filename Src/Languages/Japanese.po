@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-27 13:21+0900\n"
+"PO-Revision-Date: 2008-02-23 22:43+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka at d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -389,7 +389,7 @@ msgstr "ヘルプ(&H)"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&WinMerge ヘルプ\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
@@ -410,7 +410,7 @@ msgstr "翻訳(&T)"
 #: Merge.rc:478
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "設定(&O)"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -424,7 +424,7 @@ msgstr "アーカイブサポートが無効です(&R)..."
 #: Merge.rc:481
 #, c-format
 msgid "&GNU General Public License"
-msgstr ""
+msgstr "&GNU General Public License"
 
 #: Merge.rc:183
 #: Merge.rc:297
@@ -743,15 +743,15 @@ msgstr "移動(&G)...\tCtrl+G"
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "拡大(&Z)"
 
 #: Merge.rc:385
-#, fuzzy, c-format
+#, c-format
 msgid "Zoom &In\tCtrl++"
 msgstr "フォントサイズを拡大\tCtrl++"
 
 #: Merge.rc:386
-#, fuzzy, c-format
+#, c-format
 msgid "Zoom &Out\tCtrl+-"
 msgstr "フォントサイズを縮小\tCtrl+-"
 
@@ -759,7 +759,7 @@ msgstr "フォントサイズを縮小\tCtrl+-"
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "フォントサイズを元に戻す(&N)\tCtrl+*"
 
 #: Merge.rc:389
 #, c-format
@@ -1580,22 +1580,22 @@ msgstr "フィルタフォルダ(&F):"
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "参照(&R)"
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "テンポラリファイルフォルダ"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "システムのテンポラリフォルダ(&Y)"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "カスタムフォルダ(&U):"
 
 #: Merge.rc:999
 #: Merge.rc:1015
@@ -3004,13 +3004,41 @@ msgstr ""
 
 #: Merge.rc:1837
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 msgstr ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 
 #: Merge.rc:1838
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
 msgstr ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
 
 #: Merge.rc:1845
 #, c-format
@@ -3040,7 +3068,7 @@ msgstr ""
 #: Merge.rc:1866
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr ""
+msgstr "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 
 #: Merge.rc:1872
 #, c-format
@@ -3247,22 +3275,22 @@ msgstr "XML ファイル (*.xml)|*.xml|All Files (*.*)|*.*||"
 #: Merge.rc:1964
 #, c-format
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: Merge.rc:1965
 #, c-format
 msgid "UTF-8 (B)"
-msgstr ""
+msgstr "UTF-8 (B)"
 
 #: Merge.rc:1966
 #, c-format
 msgid "UCS-2 LE"
-msgstr ""
+msgstr "UCS-2 LE"
 
 #: Merge.rc:1967
 #, c-format
 msgid "UCS-2 BE"
-msgstr ""
+msgstr "UCS-2 BE"
 
 #: Merge.rc:1973
 #, c-format
@@ -3609,8 +3637,14 @@ msgstr "コンフリクトファイルの解析に失敗しました。"
 
 #: Merge.rc:2084
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
+"ファイル\n"
+"%1\n"
+"はコンフリクトファイルではありません。"
 
 #: Merge.rc:2090
 #, c-format
@@ -4544,8 +4578,17 @@ msgstr "バイナリファイルをエディタで開くことはできません。"
 
 #: Merge.rc:2353
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
 msgstr ""
+"フォルダは片方にのみにしか存在せず、開くことが出来ません。\n"
+"\n"
+"他方にマッチする以下のフォルダを作成し、フォルダを開きますか?:\n"
+"%1"
 
 #: Merge.rc:2359
 #, c-format
@@ -5148,17 +5191,17 @@ msgstr "Mixed"
 #: Merge.rc:2562
 #, c-format
 msgid "LF"
-msgstr ""
+msgstr "LF"
 
 #: Merge.rc:2563
 #, c-format
 msgid "CR"
-msgstr ""
+msgstr "CR"
 
 #: Merge.rc:2564
 #, c-format
 msgid "CRLF"
-msgstr ""
+msgstr "CRLF"
 
 #: Merge.rc:2571
 #, c-format
@@ -5252,7 +5295,7 @@ msgstr ""
 #: Merge.rc:2594
 #, c-format
 msgid "Open and resolve conflict file"
-msgstr "コンフリクトファイルを開き解決します。"
+msgstr "コンフリクトファイルを開いて競合を解消します"
 
 #: Merge.rc:2600
 #, c-format
@@ -5475,7 +5518,7 @@ msgstr "テキストサイズを小さくする"
 #: Merge.rc:2640
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "拡大したフォントをデフォルトサイズにリセットします"
 
 #: Merge.rc:2646
 #, c-format
@@ -5657,8 +5700,12 @@ msgstr "開いている全てのウインドウを閉じます"
 
 #: Merge.rc:2692
 #, c-format
-msgid "Opens the WinMerge Help\nWinMerge Help"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
 msgstr ""
+"WinMergeヘルプを開く\n"
+"WinMergeヘルプ"
 
 #: Merge.rc:2693
 #, c-format
@@ -5668,7 +5715,7 @@ msgstr "現在の WinMerge のバージョン情報と設定をテキストファイルに出力します"
 #: Merge.rc:2694
 #, c-format
 msgid "Display the GNU General Public License"
-msgstr ""
+msgstr "GNU General Public Licenseを表示します"
 
 #: Merge.rc:2695
 #, c-format
@@ -5746,7 +5793,7 @@ msgstr "移動ブロックを表示しません"
 #: Merge.rc:2724
 #, c-format
 msgid "Display all moved blocks"
-msgstr ""
+msgstr "全ての移動ブロックを表示します"
 
 #: Merge.rc:2725
 #, c-format
