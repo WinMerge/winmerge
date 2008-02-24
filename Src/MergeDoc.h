@@ -168,7 +168,7 @@ public :
 
 		int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
 			LPCTSTR filteredFilenames, BOOL & readOnly, int nCrlfStyle,
-			int codepage, CString &sError);
+			const FileTextEncoding & encoding, CString &sError);
 		int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, CString & sError,
 			PackingInfo * infoUnpacker = NULL, int nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 			BOOL bClearModifiedFlag = TRUE );
@@ -315,8 +315,8 @@ private:
 	bool GetByteColoringOption() const;
 	bool IsValidCodepageForMergeEditor(unsigned cp) const;
 	void SanityCheckCodepage(FileLocation & fileinfo);
-	DWORD LoadOneFile(int index, String filename, BOOL readOnly, int codepage);
-	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage);
+	DWORD LoadOneFile(int index, String filename, BOOL readOnly, const FileTextEncoding & encoding);
+	int LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const FileTextEncoding & encoding);
 
 // Implementation data
 protected:

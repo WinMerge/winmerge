@@ -4,6 +4,8 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.7.7.6
   Remove sintance.h/sintance.cpp as not compatible with GPL (#1886580)
+  BugFix: Ignore codepage specified on File Encoding dialog if file was 
+    detected as UTF-8 (#1900728)
 
 WinMerge 2.7.7.5 - 2008-02-22 (r5069)
   Cleaning up Help-menu (#1875111)

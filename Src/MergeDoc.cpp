@@ -1608,7 +1608,7 @@ static void UnescapeControlChars(CString &s)
  * @param [in] sToFindUnpacker String for finding unpacker plugin
  * @param [out] readOnly Loading was lossy so file should be read-only
  * @param [in] nCrlfStyle EOL style used
- * @param [in] codepage Codepage used
+ * @param [in] encoding Encoding used
  * @param [out] sError Error message returned
  * @return FRESULT_OK when loading succeed or (list in files.h):
  * - FRESULT_OK_IMPURE : load OK, but the EOL are of different types
@@ -1619,7 +1619,7 @@ static void UnescapeControlChars(CString &s)
  */
 int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		PackingInfo * infoUnpacker, LPCTSTR sToFindUnpacker, BOOL & readOnly,
-		int nCrlfStyle, int codepage, CString &sError)
+		int nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.GetSize() == 0);
@@ -1680,10 +1680,10 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		// Recognize Unicode files with BOM (byte order mark)
+		// If file is unicode(including UTF-8 without BOM), try to read BOM 
 		// or else, use the codepage we were given to interpret the 8-bit characters
-		if (!pufile->ReadBom())
-			pufile->SetCodepage(codepage);
+		if (encoding.m_unicoding == ucr::NONE || !pufile->ReadBom())
+			pufile->SetCodepage(encoding.m_codepage);
 		UINT lineno = 0;
 		CString eol, preveol;
 		CString sline;
@@ -2685,11 +2685,11 @@ BOOL CMergeDoc::CloseNow()
  * @param [in] sFileName File to open
  * @param [in] nBuffer Index (0-based) of buffer to load
  * @param [out] readOnly whether file is read-only
- * @param [in] codepage relevant 8-bit codepage if any (0 if none or unknown)
+ * @param [in] encoding encoding used
  * @return Tells if files were loaded successfully
  * @sa CMergeDoc::OpenDocs()
  **/
-int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int codepage)
+int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const FileTextEncoding & encoding)
 {
 	CDiffTextBuffer *pBuf;
 	CString sError;
@@ -2701,7 +2701,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, int cod
 	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
 	CString sOpenError;
 	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker,
-		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, codepage, sOpenError);
+		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);
 
 	// if CMergeDoc::CDiffTextBuffer::LoadFromFile failed,
 	// it left the pBuf in a valid (but empty) state via a call to InitNew
@@ -2781,11 +2781,11 @@ void CMergeDoc::SanityCheckCodepage(FileLocation & fileinfo)
  * @param [in] index Index of file in internal buffers.
  * @param [in] filename File's name.
  * @param [in] readOnly Is file read-only?
- * @param [in] codepage File's codepage.
+ * @param [in] encoding File's encoding.
  * @return One of FileLoadResult values.
  */
 DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
-		int codepage)
+		const FileTextEncoding & encoding)
 {
 	DWORD loadSuccess = FileLoadResult::FRESULT_ERROR;;
 	
@@ -2802,7 +2802,7 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
 		m_pSaveFileInfo[index]->Update(filename);
 		m_pRescanFileInfo[index]->Update(filename);
 
-		loadSuccess = LoadFile(filename.c_str(), index, readOnly, codepage);
+		loadSuccess = LoadFile(filename.c_str(), index, readOnly, encoding);
 	}
 	else
 	{
@@ -2861,9 +2861,9 @@ OPENRESULTS_TYPE CMergeDoc::OpenDocs(FileLocation filelocLeft, FileLocation file
 
 	// Load files
 	DWORD nLeftSuccess = LoadOneFile(0, sLeftFile.c_str(), bROLeft,
-		filelocLeft.encoding.m_codepage);
+		filelocLeft.encoding);
 	DWORD nRightSuccess = LoadOneFile(1, sRightFile.c_str(), bRORight,
-		filelocRight.encoding.m_codepage);
+		filelocRight.encoding);
 
 	// scratchpad : we don't call LoadFile, so
 	// we need to initialize the unpacker as a "do nothing" one
