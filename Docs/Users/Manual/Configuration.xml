@@ -237,6 +237,25 @@
     </sect3>
 
     <sect3>
+      <title>Ignore time differences less than 3 seconds</title>
+
+      <para><emphasis>Only for "<guilabel>Modified Date</guilabel>" and
+      "<guilabel>Modified Date and Size</guilabel>" compare
+      methods.</emphasis></para>
+
+      <para>It is possible that timestamps vary by one or two seconds in
+      certain situations. This usually happens with network shares. Normally
+      WinMerge determines such items as different. So this option allows
+      WinMerge to ignore time differences smaller than three seconds to help
+      getting more reliable results.</para>
+
+      <warning>
+        <para>This option should be enabled only when the time difference is
+        detected. Otherwise it can cause wrong compare results.</para>
+      </warning>
+    </sect3>
+
+    <sect3>
       <title>File compare method</title>
 
       <para>File compare method has five choices:</para>
@@ -465,25 +484,6 @@ EOL differences.</screen>
       <para>When this options is enabled files and folders deleted in
       directory compare are moved to Recycle Bin. Note that use of Recycle Bin
       may have disabled from system.</para>
-    </sect3>
-
-    <sect3>
-      <title>Ignore time differences less than 3 seconds</title>
-
-      <para><emphasis>Only for "<guilabel>Modified Date</guilabel>" and
-      "<guilabel>Modified Date and Size</guilabel>" compare
-      methods.</emphasis></para>
-
-      <para>It is possible that timestamps vary by one or two seconds in
-      certain situations. This usually happens with network shares. Normally
-      WinMerge determines such items as different. So this option allows
-      WinMerge to ignore time differences smaller than three seconds to help
-      getting more reliable results.</para>
-
-      <warning>
-        <para>This option should be enabled only when the time difference is
-        detected. Otherwise it can cause wrong compare results.</para>
-      </warning>
     </sect3>
 
     <sect3>
