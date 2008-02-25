@@ -12,6 +12,8 @@ Developers:
 * Tim Gerundt
 * Gal Hammer
 * Takashi Sawanaka
+* Alexander Skinner (Graphic Design)
+* Jochen Tucht
 * Kimmo Varis
 
 Inactive/past developers:
@@ -20,10 +22,6 @@ Inactive/past developers:
 * Chris Mumford
 * Perry Rapp
 * Christian "Seier" Blackburn (Installer)
-* Jochen Tucht
-
-Graphic Design:
-* Alexander Skinner
 
 Localization:
 * Bulgarian:	
