@@ -51,48 +51,95 @@
 </head>
 <body>
 
-<h2>WinMerge 2.7.6 Beta Release Notes</h2>
+<h2>WinMerge 2.8 Release Candidate Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
+  <li><a href="#new28RC6">What Is New in 2.8 RC?</a></li>
   <li><a href="#new276">What Is New in 2.7.6?</a></li>
   <li><a href="#new274">What Is New in 2.7.4?</a></li>
   <li><a href="#new272">What Is New in 2.7.2?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>November 2007</p>
+<p>February 2008</p>
 
 <h3><a name="about">About This Release</a></h3>
 
 <p class="note">
-This is a development release of a WinMerge. This is <b>not</b> a stable release.
-In general, beta releases are not meant for production use. Beta releases
-should be usable in general, but they can contain bugs and unfinished
-features.
-</p>
-
-<p>
-This beta release is the last beta release before next 2.8 stable release.
-Between this release and 2.8 stable release there will be only smaller
-improvements and hopefully lots of bug fixes.
+This is a release candidate release for 2.8 stable release. This release
+contains all the new features that will be in 2.8 version. There are no big
+bugs left, and in general this release is safe to test and use.
 </p>
 
 <p>
 Compared to 2.6.x releases there are many improvements done for usability
-of WinMerge. One huge improvement is the new localization system, which
-allows a lot easier translation of WinMerge. Then there are many improved
-dialogs and other features.
+of WinMerge. Improved UTF-8 file detection and opening binary files are just
+couple of examples. Another huge improvement is the new localization system,
+which allows a lot easier translation of WinMerge.
 </p>
 
 <p>
 Please submit bug reports to our <a href=
 "https://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-tracker</a>.
 
-<h3><a name="new276">What Is New in 2.7.6?</a></h3>
-
+<h3><a name="new28RC">What Is New in 2.8 RC?</a></h3>
 <p>
 For a complete changelog, see the <code><a href="ChangeLog.txt">ChangeLog.txt</a></code>
 in <code>Docs</code> folder in WinMerge program folder.
 </p>
+
+<h4>Detect UFT-8 Files Without BOM Bytes</h4>
+<p>
+Until now WinMerge could not detect UTF-8 files without BOM bytes as UTF-8
+files. Opening such files into WinMerge caused parts of files shown improperly
+at the screen. Now UTF-8 files without BOM bytes are properly detected and
+shown.
+</p>
+
+<h4>Open Binary Files</h4>
+<p>
+WinMerge could not earlier show files it detected as binary files. And only
+compare result for such files was "binary files are identical" or "binary files
+are different". Now WinMerge shows <b>all</b> files in file compare. Even binary
+files. Bytes that have no visual presentation (character) are shown as byte
+value.
+</p>
+
+<p>
+<b>NOTE:</b> WinMerge is not a binary file editor. Do not damage your binary
+files!
+</p>
+
+<h4>Resolve Conflict Files</h4>
+<p>
+Oldest open feature request got implemented! WinMerge can now open "conflict
+files" that several version control systems (CVS, Subversion, ...) output.
+Conflict file is separated to two files "theirs" and "mine" and shown in
+normal file compare for merge.
+</p>
+
+<h4>Other Changes</h4>
+<ul>
+  <li>Syntax highlighting for PowerShell and PO(T) files</li>
+  <li>Zooming in file compare</li>
+  <li>Create pair folder for unique folder for browsing into that folder</li>
+  <li>Option to select folder for temporary files</li>
+  <li>Show file's encoding in file compare statusbar</li>
+  <li>Option to preserve file's modification date in file compare</li>
+</ul>
+
+<h4>Important Bugs Fixed</h4>
+<ul>
+  <li>Right mouse button did not move cursor to new position in file compare</li>
+  <li>Merge/Delete deleted files from folders marked as read-only.</li>
+  <li>Potential lockup in folder compare</li>
+  <li>Line filter did not filter non-ascii lines correctly</li>
+  <li>Did not switch back to content compare once switched to quick compare in
+    folder compare</li>
+  <li>Quick compare did not ignore EOL differences</li>
+</ul>
+
+
+<h3><a name="new276">What Is New in 2.7.6?</a></h3>
 
 <h4>New Localization System</h4>
 <p>
