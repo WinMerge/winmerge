@@ -7,6 +7,7 @@ WinMerge 2.7.7.6
   BugFix: Ignore codepage specified on File Encoding dialog if file was 
     detected as UTF-8 (#1900728)
   BugFix: Recognize invalid UTF-8 sequence as UTF-8 (#1900733)
+  BugFix: Didn't highlight any difference between untitled documents (#1900257)
   Translation updates:
   - Japanese (r5076)
 

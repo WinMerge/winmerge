@@ -2809,6 +2809,7 @@ DWORD CMergeDoc::LoadOneFile(int index, String filename, BOOL readOnly,
 		m_nBufferType[index] = BUFFER_UNNAMED;
 		m_ptBuf[index]->InitNew();
 		m_strDesc[index] = GetMainFrame()->m_strDescriptions[index];
+		m_ptBuf[index]->m_encoding = encoding;
 		loadSuccess = FileLoadResult::FRESULT_OK;
 	}
 	return loadSuccess;
