@@ -49,6 +49,7 @@
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable Versions</a></li>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta Versions</a></li>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental Builds</a></li>
+  <li><a href="http://portableapps.com/apps/utilities/winmerge_portable">WinMerge Portable</a> (by PortableApps.com)</li>
 </ul>
 <h3><a name="plugins">Plugins</a></h3>
 <h4>7-Zip Plugin</h4>

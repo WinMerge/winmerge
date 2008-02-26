@@ -38,6 +38,8 @@
   <dd>Reviews of popular comparison software. [<a href="http://www.diffutils.com/project-revision-control/winmerge.html">WinMerge Review</a>]</dd>
   <dt><a href="http://www.betanews.com/">BetaNews.com</a></dt>
   <dd>Inside informations, unreleased products and articles on various soon-to-be-released software titles.</dd>
+  <dt><a href="http://portableapps.com/apps/utilities/winmerge_portable">WinMerge Portable</a></dt>
+  <dd>This is WinMerge packaged with a PortableApps.com Launcher as a <a href="http://portableapps.com/about/what_is_a_portable_app">portable app</a>, so you can compare files on the go.</dd>
 </dl>
 <?php
   $page->printFoot();
