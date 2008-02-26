@@ -1,4 +1,5 @@
 http://winmerge.org/index.php
+http://winmerge.org/history.php
 http://winmerge.org/links.php
 http://winmerge.org/WinMergePAD.php
 http://winmerge.org/2.4/changes.php
