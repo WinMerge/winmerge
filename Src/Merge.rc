@@ -981,9 +981,9 @@ BEGIN
     CONTROL         "&Add to explorer context menu",IDC_EXPLORER_CONTEXT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,31,200,10
     CONTROL         "E&nable advanced menu",IDC_EXPLORER_ADVANCED,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,17,41,200,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,27,41,200,10
     CONTROL         "In&clude subfolders by default",IDC_EXPLORER_SUBFOLDERS,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,51,200,10
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,27,51,200,10
     LTEXT           "&External editor:",IDC_STATIC,7,73,222,8
     EDITTEXT        IDC_EXT_EDITOR_PATH,7,83,167,14,ES_AUTOHSCROLL
     PUSHBUTTON      "&Browse...",IDC_EXT_EDITOR_BROWSE,179,83,50,14

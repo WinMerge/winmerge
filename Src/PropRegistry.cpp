@@ -146,6 +146,7 @@ BOOL CPropRegistry::OnInitDialog()
 	// Update shell extension checkboxes
 	GetContextRegValues();
 	AdvancedContextMenuCheck();
+	SubfolderOptionCheck();
 	UpdateData(FALSE);
 
 	return TRUE;  // return TRUE unless you set the focus to a control

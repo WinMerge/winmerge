@@ -6,6 +6,7 @@ WinMerge 2.7.7.6
   Remove sintance.h/sintance.cpp as not compatible with GPL (#1886580)
   Automatically switch to mixed-EOL mode when loading files with
    two or more EOL styles (#1901547)
+  Indent "Explorer Context Menu" sub options (#1901763)
   BugFix: Ignore codepage specified on File Encoding dialog if file was 
     detected as UTF-8 (#1900728)
   BugFix: Recognize invalid UTF-8 sequence as UTF-8 (#1900733)
