@@ -5,7 +5,7 @@
  * @brief Implementation file for CMergeDiffDetailView
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //
 //////////////////////////////////////////////////////////////////////
@@ -799,8 +799,9 @@ void CMergeDiffDetailView::DocumentsLoaded()
 {
 	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+	BOOL bMixedEOL = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		GetDocument()->IsMixedEOL();
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), bMixedEOL);
 	SetWordWrapping(FALSE);
 }
 

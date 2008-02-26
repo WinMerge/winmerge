@@ -308,6 +308,7 @@ public:
 	BOOL GetMergingMode() const;
 	void SetMergingMode(BOOL bMergingMode);
 	void SetDetectMovedBlocks(BOOL bDetectMovedBlocks);
+	BOOL IsMixedEOL() const { return m_bMixedEol; }
 
 // implementation methods
 private:
@@ -334,6 +335,7 @@ protected:
 	BOOL m_bMergingMode; /**< Merging or Edit mode */
 	BOOL m_bEditAfterRescan[2]; /**< Left/right doc edited after rescanning */
 	TempFile m_tempFiles[2]; /**< Temp files for compared files */
+	BOOL m_bMixedEol; /**< Does this document have mixed EOL style? */
 
 // friend access
 	friend class RescanSuppress;

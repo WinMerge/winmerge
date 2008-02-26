@@ -116,6 +116,7 @@ CMergeDoc::CMergeDoc()
 : m_bEnableRescan(TRUE)
 , m_nCurDiff(-1)
 , m_pDirDoc(NULL)
+, m_bMixedEol(false)
 {
 	DIFFOPTIONS options = {0};
 
@@ -2710,19 +2711,11 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const F
 	{
 		// File loaded, and multiple EOL types in this file
 		FileLoadResult::SetMainOk(retVal);
-		// By default, WinMerge unifies EOL to the most used type (when diffing or saving)
-		// As some info are lost, we request a confirmation from the user
+
+		// If mixed EOLs are not enabled, enable them for this doc.
 		if (!GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
 		{
-			CString s;
-			LangFormatString1(s, IDS_SUGGEST_PRESERVEEOL, sFileName); 
-			if (AfxMessageBox(s, MB_YESNO | MB_ICONWARNING | MB_DONT_ASK_AGAIN,
-				IDS_SUGGEST_PRESERVEEOL) == IDYES)
-			{
-				// the user wants to keep the original chars
-				GetMainFrame()->SetEOLMixed(TRUE);
-				GetOptionsMgr()->SaveOption(OPT_ALLOW_MIXED_EOL, true);
-			}
+			m_bMixedEol = TRUE;
 		}
 	}
 

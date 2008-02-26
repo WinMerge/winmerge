@@ -1779,8 +1779,11 @@ void CMergeEditView::OnUpdateCaret()
 			column = CalculateActualOffset(nScreenLine, cursorPos.x, TRUE) + 1;
 			columns = CalculateActualOffset(nScreenLine, chars, TRUE) + 1;
 			chars++;
-			if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
+			if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+					GetDocument()->IsMixedEOL())
+			{
 				sEol = GetTextBufferEol(nScreenLine);
+			}
 			else
 				sEol = _T("hidden");
 		}
@@ -2043,8 +2046,11 @@ void CMergeEditView::OnContextMenu(CWnd* pWnd, CPoint point)
  */
 void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 {
-	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
+	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+			GetDocument()->IsMixedEOL() )
+	{
 		pCmdUI->SetText(_T(""));
+	}
 	else
 		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
 }
@@ -2054,8 +2060,11 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 {
-	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL))
+	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+			GetDocument()->IsMixedEOL())
+	{
 		pCmdUI->SetText(_T(""));
+	}
 	else
 		GetDocument()->GetRightView()->OnUpdateIndicatorCRLF(pCmdUI);
 }
@@ -2118,6 +2127,7 @@ void CMergeEditView::OnUpdateConvertEolTo(CCmdUI* pCmdUI)
 	}
 
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		GetDocument()->IsMixedEOL() ||
 		nStyle != m_pTextBuffer->GetCRLFMode())
 	{
 		pCmdUI->SetRadio(FALSE);
@@ -3075,8 +3085,9 @@ void CMergeEditView::DocumentsLoaded()
 	// SetTextType will revert to language dependent defaults for tab
 	SetTabSize(GetOptionsMgr()->GetInt(OPT_TAB_SIZE));
 	SetViewTabs(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE));
-	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE),
-			GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
+	BOOL mixedEOLs = GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+		GetDocument()->IsMixedEOL();
+	SetViewEols(GetOptionsMgr()->GetBool(OPT_VIEW_WHITESPACE), mixedEOLs);
 	SetWordWrapping(GetOptionsMgr()->GetBool(OPT_WORDWRAP));
 	SetViewLineNumbers(GetOptionsMgr()->GetBool(OPT_VIEW_LINENUMBERS));
 	SetSelectionMargin(GetOptionsMgr()->GetBool(OPT_VIEW_FILEMARGIN));
