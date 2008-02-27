@@ -24,6 +24,10 @@ code,pre {
 	float: left;
 	margin: 0;
 	padding: 0;
+	width: 266px;
+	height: 50px;
+	background: url(/images/head.gif) no-repeat;
+	text-indent: -999em;
 }
 
 #rightcorner {
