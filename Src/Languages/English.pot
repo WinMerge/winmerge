@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-19 20:25+0000\n"
+"POT-Creation-Date: 2008-02-27 19:06+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -623,17 +623,17 @@ msgstr ""
 
 #: Merge.rc:332
 #, c-format
-msgid "&DOS (CRLF)"
+msgid "&Windows (CRLF)"
 msgstr ""
 
 #: Merge.rc:333
 #, c-format
-msgid "&UNIX (LF)"
+msgid "&Unix (LF)"
 msgstr ""
 
 #: Merge.rc:334
 #, c-format
-msgid "&MAC (CR)"
+msgid "&Mac (CR)"
 msgstr ""
 
 #: Merge.rc:337
@@ -1824,7 +1824,7 @@ msgstr ""
 
 #: Merge.rc:1156
 #, c-format
-msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
 msgstr ""
 
 #: Merge.rc:1159
@@ -4196,7 +4196,7 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
 
 #: Merge.rc:2350
@@ -4862,17 +4862,17 @@ msgstr ""
 
 #: Merge.rc:2589
 #, c-format
-msgid "Convert EOL to DOS mode"
+msgid "Convert EOL to Windows mode"
 msgstr ""
 
 #: Merge.rc:2590
 #, c-format
-msgid "Convert EOL to UNIX mode"
+msgid "Convert EOL to Unix mode"
 msgstr ""
 
 #: Merge.rc:2591
 #, c-format
-msgid "Convert EOL to MAC mode"
+msgid "Convert EOL to Mac mode"
 msgstr ""
 
 #: Merge.rc:2592

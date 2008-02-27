@@ -329,9 +329,9 @@ BEGIN
         MENUITEM SEPARATOR
         POPUP "&Convert Line Endings to"
         BEGIN
-            MENUITEM "&DOS (CRLF)",                 ID_EOL_TO_DOS
-            MENUITEM "&UNIX (LF)",                  ID_EOL_TO_UNIX
-            MENUITEM "&MAC (CR)",                   ID_EOL_TO_MAC
+            MENUITEM "&Windows (CRLF)",             ID_EOL_TO_DOS
+            MENUITEM "&Unix (LF)",                  ID_EOL_TO_UNIX
+            MENUITEM "&Mac (CR)",                   ID_EOL_TO_MAC
         END
         MENUITEM SEPARATOR
         MENUITEM "&Merge Mode\tF9",              ID_FILE_MERGINGMODE
@@ -1153,7 +1153,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP | WS_GROUP,7,60,221,10
     CONTROL         "Ignore &case",IDC_IGNCASE_CHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,7,70,221,10
-    CONTROL         "Igno&re carriage return differences (DOS/UNIX/MAC)",
+    CONTROL         "Igno&re carriage return differences (Windows/Unix/Mac)",
                     IDC_EOL_SENSITIVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     7,80,221,10
     CONTROL         "E&nable moved block detection",IDC_MOVED_BLOCKS,"Button",
@@ -2346,7 +2346,7 @@ BEGIN
     IDS_FILEERROR           "An error occurred while comparing the files."
     IDS_TEMP_FILEERROR      "Temporary files could not be created. Check your temporary path settings."
     IDS_SUGGEST_IGNOREEOL   "These files use different carriage return types.\n\nDo you want to treat all carriage return types as equivalent for this comparison?\n\nNote: If you always want to treat all carriage return types as equivalent, set the option 'Ignore carriage return differences..' in the Compare tab of the options dialog (available under Edit/Options)."
-    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+    IDS_SUGGEST_PRESERVEEOL "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
     IDS_PREDIFFER_ERROR      "An error occurred while prediffing the file '%1' with the plugin '%2'. The prediffing is not applied any more."
     IDS_INVALID_DIRECTORY   "The selected folder is invalid."
     IDS_CANNOT_OPEN_BINARYFILE  "Cannot open a binary file to editor."
@@ -2586,9 +2586,9 @@ BEGIN
     ID_FILE_SAVEAS_RIGHT    "Save the right file with name..."
     ID_FILE_LEFT_READONLY   "Change left file/dir read-only status"
     ID_FILE_RIGHT_READONLY  "Change right file/dir read-only status"
-    ID_EOL_TO_DOS           "Convert EOL to DOS mode"
-    ID_EOL_TO_UNIX          "Convert EOL to UNIX mode"
-    ID_EOL_TO_MAC           "Convert EOL to MAC mode"
+    ID_EOL_TO_DOS           "Convert EOL to Windows mode"
+    ID_EOL_TO_UNIX          "Convert EOL to Unix mode"
+    ID_EOL_TO_MAC           "Convert EOL to Mac mode"
     ID_FILE_MERGINGMODE     "Switch between editing and merging modes"
     ID_FILE_ENCODING        "View and adjust file encoding properties\nFile encoding properties"
     ID_FILE_OPENCONFLICT    "Open and resolve conflict file"
