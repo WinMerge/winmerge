@@ -2049,7 +2049,8 @@ void CMergeEditView::OnUpdateStatusLeftEOL(CCmdUI* pCmdUI)
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 			GetDocument()->IsMixedEOL() )
 	{
-		pCmdUI->SetText(_T(""));
+		String eol = LoadResString(IDS_EOL_MIXED);
+		pCmdUI->SetText(eol.c_str());
 	}
 	else
 		GetDocument()->GetLeftView()->OnUpdateIndicatorCRLF(pCmdUI);
@@ -2063,7 +2064,8 @@ void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
 	if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
 			GetDocument()->IsMixedEOL())
 	{
-		pCmdUI->SetText(_T(""));
+		String eol = LoadResString(IDS_EOL_MIXED);
+		pCmdUI->SetText(eol.c_str());
 	}
 	else
 		GetDocument()->GetRightView()->OnUpdateIndicatorCRLF(pCmdUI);
