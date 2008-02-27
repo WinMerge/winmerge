@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-27 19:06+0000\n"
+"POT-Creation-Date: 2008-02-28 00:05+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -2109,7 +2109,7 @@ msgstr ""
 
 #: Merge.rc:1312
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from help menu.)"
+msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr ""
 
 #: Merge.rc:1316
@@ -5002,12 +5002,12 @@ msgstr ""
 
 #: Merge.rc:2632
 #, c-format
-msgid "Select the current user interfacce language\nLanguage"
+msgid "Select the current user interface language\nLanguage"
 msgstr ""
 
 #: Merge.rc:2633
 #, c-format
-msgid "Shows differences inside lines with different color\nShow Line Diff"
+msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
 
 #: Merge.rc:2634
@@ -5047,27 +5047,27 @@ msgstr ""
 
 #: Merge.rc:2646
 #, c-format
-msgid "Scroll to the previous difference\nPrev Diff (Alt+Up)"
+msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
 
 #: Merge.rc:2647
 #, c-format
-msgid "Scroll to the next difference\nNext Diff (Alt+Down)"
+msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
 
 #: Merge.rc:2648
 #, c-format
-msgid "Scroll to the first difference\nFirst Diff (Alt+Home)"
+msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
 
 #: Merge.rc:2649
 #, c-format
-msgid "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
+msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
 
 #: Merge.rc:2650
 #, c-format
-msgid "Scroll to the last difference\nLast Diff (Alt+End)"
+msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
 
 #: Merge.rc:2651
@@ -5167,7 +5167,7 @@ msgstr ""
 
 #: Merge.rc:2685
 #, c-format
-msgid "Activates next file visible\nActive next File"
+msgid "Activates next visible file\nActivate next File"
 msgstr ""
 
 #: Merge.rc:2686

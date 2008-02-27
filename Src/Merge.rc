@@ -1309,7 +1309,7 @@ BEGIN
     CTEXT           "",131,204,144,58,10,SS_CENTERIMAGE | SS_SUNKEN
     CTEXT           "outdated",132,264,144,34,10,SS_CENTERIMAGE | SS_SUNKEN
     LTEXT           "Plugins on path:",9001,2,160,142,8
-    CONTROL         "Don't display this &message again.\n(You can always recall this message from help menu.)",
+    CONTROL         "Don't display this &message again.\n(You can always recall this message from the Help menu.)",
                     106,"Button",BS_AUTOCHECKBOX | BS_TOP | BS_MULTILINE |
                     WS_TABSTOP,2,225,218,18
     DEFPUSHBUTTON   "OK",IDOK,248,226,50,14,WS_GROUP
@@ -2629,8 +2629,8 @@ BEGIN
     ID_VIEW_DETAIL_BAR      "Toggle Diff Pane"
     ID_VIEW_LOCATION_BAR    "Location pane shows overall picture from files"
     ID_VIEW_DIR_STATISTICS  "Show folder compare statistics dialog"
-    ID_VIEW_LANGUAGE        "Select the current user interfacce language\nLanguage"
-    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different color\nShow Line Diff"
+    ID_VIEW_LANGUAGE        "Select the current user interface language\nLanguage"
+    ID_VIEW_LINEDIFFS       "Shows differences inside lines with different colors\nShow Line Difference"
     ID_VIEW_SWAPPANES       "Swap the positions of the two panes"
     ID_VIEW_LINENUMBERS     "Shows line numbers\nShow Line Numbers"
     ID_VIEW_WORDWRAP        "Enable word wrap\nWrap Lines"
@@ -2643,11 +2643,11 @@ END
 // MERGE MENU
 STRINGTABLE
 BEGIN
-    ID_PREVDIFF             "Scroll to the previous difference\nPrev Diff (Alt+Up)"
-    ID_NEXTDIFF             "Scroll to the next difference\nNext Diff (Alt+Down)"
-    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Diff (Alt+Home)"
-    ID_CURDIFF              "Scroll to the current difference\nCurrent Diff (Alt+Enter)"
-    ID_LASTDIFF             "Scroll to the last difference\nLast Diff (Alt+End)"
+    ID_PREVDIFF             "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
+    ID_NEXTDIFF             "Scroll to the next difference\nNext Difference (Alt+Down)"
+    ID_FIRSTDIFF            "Scroll to the first difference\nFirst Difference (Alt+Home)"
+    ID_CURDIFF              "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
+    ID_LASTDIFF             "Scroll to the last difference\nLast Difference (Alt+End)"
     ID_L2R                  "Copy the selected text to the right file\nCopy Right (Alt+Right)"
     ID_R2L                  "Copy the selected text to the left file\nCopy Left (Alt+Left)"
     ID_L2RNEXT              "Copy difference to right and advance to next\nCopy Right and Advance (Ctrl+Alt+Right)"
@@ -2682,7 +2682,7 @@ END
 // WINDOW MENU
 STRINGTABLE
 BEGIN
-    ID_WINDOW_CHANGE_PANE   "Activates next file visible\nActive next File"
+    ID_WINDOW_CHANGE_PANE   "Activates next visible file\nActivate next File"
     ID_WINDOW_CLOSEALL      "Closes all open windows"
 END
 
