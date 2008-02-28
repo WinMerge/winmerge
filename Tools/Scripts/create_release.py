@@ -353,16 +353,17 @@ def find_winmerge_root():
 
 def usage():
     print 'WinMerge release script.'
-    print 'Usage: release [-h] [-v: n]'
+    print 'Usage: release [-h] [-v: n] [-c]'
     print '  where:'
     print '    -h, --help print this help'
     print '    -v: n, --version= n set release version'
+    print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
     print '  For example: release -v: 2.7.7.1'
 
 def main(argv):
     version = '0.0.0.0'
     if len(argv) > 0:
-        opts, args = getopt.getopt(argv, "hv:", [ "help", "version="])
+        opts, args = getopt.getopt(argv, "hcv:", [ "help", "cleanup", "version="])
         
         for opt, arg in opts:
             if opt in ("-h", "--help"):
@@ -371,6 +372,10 @@ def main(argv):
             if opt in ("-v", "--version"):
                 version = arg
                 print "Start building WinMerge release version " + version
+            if opt in ("-c", "--cleanup"):
+                if cleanup_build() == True:
+                    print 'Cleanup done.'
+                sys.exit()
 
     # Check we are running from correct folder (and go to root if found)
     if find_winmerge_root() == False:
