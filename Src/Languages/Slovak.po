@@ -627,18 +627,18 @@ msgstr "&Konvertova konce riadkov na"
 
 #: Merge.rc:332
 #, c-format
-msgid "&DOS (CRLF)"
-msgstr "&DOS (CRLF)"
+msgid "&Windows (CRLF)"
+msgstr ""
 
 #: Merge.rc:333
 #, c-format
-msgid "&UNIX (LF)"
-msgstr "&UNIX (LF)"
+msgid "&Unix (LF)"
+msgstr ""
 
 #: Merge.rc:334
 #, c-format
-msgid "&MAC (CR)"
-msgstr "&MAC (CR)"
+msgid "&Mac (CR)"
+msgstr ""
 
 #: Merge.rc:337
 #, c-format
@@ -1828,8 +1828,8 @@ msgstr "Ignorova m&alé/VE¼KÉ"
 
 #: Merge.rc:1156
 #, c-format
-msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
-msgstr "Ignorova rozdiely v &zakonèení riadkov (DOS/UNIX/MAC)"
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr ""
 
 #: Merge.rc:1159
 #, c-format
@@ -2129,12 +2129,8 @@ msgstr "Zásuvné moduly v ceste:"
 
 #: Merge.rc:1312
 #, c-format
-msgid ""
-"Don't display this &message again.\n"
-"(You can always recall this message from help menu.)"
+msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr ""
-"Viac túto správu &nezobazova.\n"
-"(You can always recall this message from help menu.)"
 
 #: Merge.rc:1316
 #, c-format
@@ -4542,14 +4538,8 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid ""
-"The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
-" With the current options, they will be unified to the main type.\n"
-" Do you want to change the options and preserve the different EOL ?"
+msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
-"Konce riadkov v súbore '%1' sú rozlièného typu (DOS/UNIX/MAC).\n"
-" Pri súèasnom nastavení budú zjednotené na hlavnı typ.\n"
-" eláte si zmeni nastavenia a zachova rozdielne zakonèenia riadkov?"
 
 #: Merge.rc:2350
 #, c-format
@@ -5256,18 +5246,18 @@ msgstr "Zmení stav pravého len na èítanie súboru/adresára"
 
 #: Merge.rc:2589
 #, c-format
-msgid "Convert EOL to DOS mode"
-msgstr "Skonvertuje koniec riadka na štıl DOS"
+msgid "Convert EOL to Windows mode"
+msgstr ""
 
 #: Merge.rc:2590
 #, c-format
-msgid "Convert EOL to UNIX mode"
-msgstr "Skonvertuje koniec riadka na štıl UNIX"
+msgid "Convert EOL to Unix mode"
+msgstr ""
 
 #: Merge.rc:2591
 #, c-format
-msgid "Convert EOL to MAC mode"
-msgstr "Skonvertuje koniec riadka na štıl MAC"
+msgid "Convert EOL to Mac mode"
+msgstr ""
 
 #: Merge.rc:2592
 #, c-format
@@ -5448,21 +5438,13 @@ msgstr "Zobrazí dialóg štatistika porovnania adresárov"
 
 #: Merge.rc:2632
 #, c-format
-msgid ""
-"Select the current user interfacce language\n"
-"Language"
+msgid "Select the current user interface language\nLanguage"
 msgstr ""
-"Vyberá jazyk pouívate¾ského rozhrania\n"
-"Jazyk"
 
 #: Merge.rc:2633
 #, c-format
-msgid ""
-"Shows differences inside lines with different color\n"
-"Show Line Diff"
+msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
-"Zobrazí rozdiely v rámci riadka odlišnou farbou\n"
-"Zobrazi rozdiel v riadku"
 
 #: Merge.rc:2634
 #, c-format
@@ -5513,48 +5495,28 @@ msgstr "Nastavi písmo na štandardnú ve¾kos"
 
 #: Merge.rc:2646
 #, c-format
-msgid ""
-"Scroll to the previous difference\n"
-"Prev Diff (Alt+Up)"
+msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
-"Skoèí na predchádzajúci rozdiel\n"
-"Predošlı rozdiel (Shift+Tab)"
 
 #: Merge.rc:2647
 #, c-format
-msgid ""
-"Scroll to the next difference\n"
-"Next Diff (Alt+Down)"
+msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
-"Skoèí na ïalší rozdiel\n"
-"Ïalší rozdiel (Tab)"
 
 #: Merge.rc:2648
 #, c-format
-msgid ""
-"Scroll to the first difference\n"
-"First Diff (Alt+Home)"
+msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
-"Presunie na prvı rozdiel\n"
-"Prvı rozdiel (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid ""
-"Scroll to the current difference\n"
-"Current Diff (Alt+Enter)"
+msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
-"Presunie na aktuálny rozdiel\n"
-"Aktuálny rozdiel (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid ""
-"Scroll to the last difference\n"
-"Last Diff (Alt+End)"
+msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
-"Presunie na poslednı rozdiel\n"
-"Poslednı rozdiel (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5677,12 +5639,8 @@ msgstr "Odoberie z pamäte všetky zásuvné moduly a znovu ich naèíta (pre vıvojáro
 
 #: Merge.rc:2685
 #, c-format
-msgid ""
-"Activates next file visible\n"
-"Active next File"
+msgid "Activates next visible file\nActivate next File"
 msgstr ""
-"Aktivuje ïalší vidite¾nı súbor\n"
-"Aktivuje ïalší súbor"
 
 #: Merge.rc:2686
 #, c-format

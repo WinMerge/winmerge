@@ -627,17 +627,17 @@ msgstr "EOL 변환(&C)"
 
 #: Merge.rc:332
 #, c-format
-msgid "&DOS (CRLF)"
+msgid "&Windows (CRLF)"
 msgstr ""
 
 #: Merge.rc:333
 #, c-format
-msgid "&UNIX (LF)"
+msgid "&Unix (LF)"
 msgstr ""
 
 #: Merge.rc:334
 #, c-format
-msgid "&MAC (CR)"
+msgid "&Mac (CR)"
 msgstr ""
 
 #: Merge.rc:337
@@ -1828,8 +1828,8 @@ msgstr "대소문자 무시(&C)"
 
 #: Merge.rc:1156
 #, c-format
-msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
-msgstr "carriage return 무시(&R) (DOS/UNIX/MAC)"
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr ""
 
 #: Merge.rc:1159
 #, c-format
@@ -2127,12 +2127,8 @@ msgstr "플러그인 경로:"
 
 #: Merge.rc:1312
 #, c-format
-msgid ""
-"Don't display this &message again.\n"
-"(You can always recall this message from help menu.)"
+msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr ""
-"이 메세지를 다시 표시하지 않습니다(&M).\n"
-"(도움말 메뉴에서 언제든지 다시 불러낼 수 있습니다.)"
 
 #: Merge.rc:1316
 #, c-format
@@ -4468,14 +4464,8 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid ""
-"The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
-" With the current options, they will be unified to the main type.\n"
-" Do you want to change the options and preserve the different EOL ?"
+msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
-"'%1'은 서로 다른 EOL(DOS/UNIX/MAC)로 작성되었습니다.\n"
-" 현재 옵션으로는 모든 EOL이 하나로 바뀌게 됩니다.\n"
-" 원본 EOL을 유지하기 원하십니까 ?"
 
 #: Merge.rc:2350
 #, c-format
@@ -5166,18 +5156,18 @@ msgstr "오른쪽 디렉토리/파일 읽기 속성 변경"
 
 #: Merge.rc:2589
 #, c-format
-msgid "Convert EOL to DOS mode"
-msgstr "DOS 모드로 EOL 변경"
+msgid "Convert EOL to Windows mode"
+msgstr ""
 
 #: Merge.rc:2590
 #, c-format
-msgid "Convert EOL to UNIX mode"
-msgstr "UNIX 모드로 EOL 변경"
+msgid "Convert EOL to Unix mode"
+msgstr ""
 
 #: Merge.rc:2591
 #, c-format
-msgid "Convert EOL to MAC mode"
-msgstr "MAC 모드로 EOL 변경"
+msgid "Convert EOL to Mac mode"
+msgstr ""
 
 #: Merge.rc:2592
 #, c-format
@@ -5356,21 +5346,13 @@ msgstr "디렉토리 비교 상황을 표시합니다."
 
 #: Merge.rc:2632
 #, c-format
-msgid ""
-"Select the current user interfacce language\n"
-"Language"
+msgid "Select the current user interface language\nLanguage"
 msgstr ""
-"언어를 선택합니다.\n"
-"언어"
 
 #: Merge.rc:2633
 #, c-format
-msgid ""
-"Shows differences inside lines with different color\n"
-"Show Line Diff"
+msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
-"현재 라인에서 다른 부분을 다른색으로 보여줍니다.\n"
-"Line Diff 보이기"
 
 #: Merge.rc:2634
 #, c-format
@@ -5419,48 +5401,28 @@ msgstr ""
 
 #: Merge.rc:2646
 #, c-format
-msgid ""
-"Scroll to the previous difference\n"
-"Prev Diff (Alt+Up)"
+msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
-"이전 다른 부분으로 이동합니다.\n"
-"이전 다른 부분 (Alt Up)"
 
 #: Merge.rc:2647
 #, c-format
-msgid ""
-"Scroll to the next difference\n"
-"Next Diff (Alt+Down)"
+msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
-"다음 다른 부분으로 이동합니다.\n"
-"다음 다른 부분 (Alt Down)"
 
 #: Merge.rc:2648
 #, c-format
-msgid ""
-"Scroll to the first difference\n"
-"First Diff (Alt+Home)"
+msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
-"처음 다른 부분으로 이동합니다.\n"
-"처음 다른 부분 (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid ""
-"Scroll to the current difference\n"
-"Current Diff (Alt+Enter)"
+msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
-"현재 선택되어 있는 다른 부분으로 이동합니다.\n"
-"현재 선택된 다른 부분 (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid ""
-"Scroll to the last difference\n"
-"Last Diff (Alt+End)"
+msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
-"마지막 다른 부분으로 이동합니다.\n"
-"마지막 다른 부분 (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5583,12 +5545,8 @@ msgstr "모든 플러그인을 내리고 다시 로드 (for 개발자)"
 
 #: Merge.rc:2685
 #, c-format
-msgid ""
-"Activates next file visible\n"
-"Active next File"
+msgid "Activates next visible file\nActivate next File"
 msgstr ""
-"다음 파일을 활성화합니다\n"
-"다음 파일 활성화"
 
 #: Merge.rc:2686
 #, c-format

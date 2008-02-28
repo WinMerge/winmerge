@@ -627,18 +627,18 @@ msgstr "轉換行尾字元成(&C)"
 
 #: Merge.rc:332
 #, c-format
-msgid "&DOS (CRLF)"
-msgstr "CRLF (DOS)(&D)"
+msgid "&Windows (CRLF)"
+msgstr ""
 
 #: Merge.rc:333
 #, c-format
-msgid "&UNIX (LF)"
-msgstr "LF (UNIX)(&U)"
+msgid "&Unix (LF)"
+msgstr ""
 
 #: Merge.rc:334
 #, c-format
-msgid "&MAC (CR)"
-msgstr "CR (MAC)(&M)"
+msgid "&Mac (CR)"
+msgstr ""
 
 #: Merge.rc:337
 #, c-format
@@ -1828,8 +1828,8 @@ msgstr "忽略大小寫(&C)"
 
 #: Merge.rc:1156
 #, c-format
-msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
-msgstr "忽略換行字元之差異(DOS/UNIX/MAC)(&R)"
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr ""
 
 #: Merge.rc:1159
 #, c-format
@@ -2127,12 +2127,8 @@ msgstr "外掛所在路徑："
 
 #: Merge.rc:1312
 #, c-format
-msgid ""
-"Don't display this &message again.\n"
-"(You can always recall this message from help menu.)"
+msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr ""
-"勿再顯示此訊息。(&M)\n"
-"(仍可由說明選單中叫出它)"
 
 #: Merge.rc:1316
 #, c-format
@@ -4518,14 +4514,8 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid ""
-"The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
-" With the current options, they will be unified to the main type.\n"
-" Do you want to change the options and preserve the different EOL ?"
+msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
-"檔案 '%1' 的檔案結束字元類型不同。\n"
-"以目前選項，它們會統一到主類型。\n"
-"你要變更選項並保留不同的檔案結束字元嗎？"
 
 #: Merge.rc:2350
 #, c-format
@@ -5223,18 +5213,18 @@ msgstr "變更右邊檔案/資料夾唯讀狀態"
 
 #: Merge.rc:2589
 #, c-format
-msgid "Convert EOL to DOS mode"
-msgstr "轉換行尾字元為 DOS 式"
+msgid "Convert EOL to Windows mode"
+msgstr ""
 
 #: Merge.rc:2590
 #, c-format
-msgid "Convert EOL to UNIX mode"
-msgstr "轉換行尾字元為 UNIX 式"
+msgid "Convert EOL to Unix mode"
+msgstr ""
 
 #: Merge.rc:2591
 #, c-format
-msgid "Convert EOL to MAC mode"
-msgstr "轉換行尾字元為 MAC 式"
+msgid "Convert EOL to Mac mode"
+msgstr ""
 
 #: Merge.rc:2592
 #, c-format
@@ -5415,21 +5405,13 @@ msgstr "顯示資料夾比較之統計對話盒"
 
 #: Merge.rc:2632
 #, c-format
-msgid ""
-"Select the current user interfacce language\n"
-"Language"
+msgid "Select the current user interface language\nLanguage"
 msgstr ""
-"選取目前使用者介面語言\n"
-"語言"
 
 #: Merge.rc:2633
 #, c-format
-msgid ""
-"Shows differences inside lines with different color\n"
-"Show Line Diff"
+msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
-"以不同色彩顯示行內差異\n"
-"顯示行內差異"
 
 #: Merge.rc:2634
 #, c-format
@@ -5480,48 +5462,28 @@ msgstr ""
 
 #: Merge.rc:2646
 #, c-format
-msgid ""
-"Scroll to the previous difference\n"
-"Prev Diff (Alt+Up)"
+msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
-"捲到上一差異\n"
-"上一差異 (Alt + Up)"
 
 #: Merge.rc:2647
 #, c-format
-msgid ""
-"Scroll to the next difference\n"
-"Next Diff (Alt+Down)"
+msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
-"捲到下一差異\n"
-"下一差異 (Alt + Down)"
 
 #: Merge.rc:2648
 #, c-format
-msgid ""
-"Scroll to the first difference\n"
-"First Diff (Alt+Home)"
+msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
-"捲到最初差異\n"
-"最初差異 (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid ""
-"Scroll to the current difference\n"
-"Current Diff (Alt+Enter)"
+msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
-"捲到目前差異\n"
-"目前差異 (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid ""
-"Scroll to the last difference\n"
-"Last Diff (Alt+End)"
+msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
-"捲到最末差異\n"
-"最末差異 (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5644,16 +5606,10 @@ msgstr "其他外掛"
 msgid "Unload all plugins and reload them (for developers)"
 msgstr "卸載所有外掛再重新載入 (適用發展者)"
 
-# 2.7.4
-# The original text is strange because the next file is always visible. The correct one is "Activate next file" or "Change the focus to next file", etc.  So Chinese translation does not fully follow the original text.
 #: Merge.rc:2685
 #, c-format
-msgid ""
-"Activates next file visible\n"
-"Active next File"
+msgid "Activates next visible file\nActivate next File"
 msgstr ""
-"切換焦點至另一檔\n"
-"切換至另一檔"
 
 #: Merge.rc:2686
 #, c-format

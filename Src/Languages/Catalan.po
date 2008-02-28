@@ -626,17 +626,17 @@ msgstr "&Converteix retorns de línia a"
 
 #: Merge.rc:332
 #, c-format
-msgid "&DOS (CRLF)"
+msgid "&Windows (CRLF)"
 msgstr ""
 
 #: Merge.rc:333
 #, c-format
-msgid "&UNIX (LF)"
+msgid "&Unix (LF)"
 msgstr ""
 
 #: Merge.rc:334
 #, c-format
-msgid "&MAC (CR)"
+msgid "&Mac (CR)"
 msgstr ""
 
 #: Merge.rc:337
@@ -1827,8 +1827,8 @@ msgstr "Ignora &majúscules/minúscules"
 
 #: Merge.rc:1156
 #, c-format
-msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
-msgstr "Igno&ra diferències de salt de línia (DOS/UNIX/MAC)"
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr ""
 
 #: Merge.rc:1159
 #, c-format
@@ -2129,12 +2129,8 @@ msgstr "Camí als connectors:"
 
 #: Merge.rc:1312
 #, c-format
-msgid ""
-"Don't display this &message again.\n"
-"(You can always recall this message from help menu.)"
+msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr ""
-"&No tornis a mostrar aquest missatge.\n"
-"(Sempre podeu recuperar aquest missatge des del menú d'ajuda)"
 
 #: Merge.rc:1316
 #, c-format
@@ -4518,14 +4514,8 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid ""
-"The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
-" With the current options, they will be unified to the main type.\n"
-" Do you want to change the options and preserve the different EOL ?"
+msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
-"Els salts de línia són de diferent mena (DOS/UNIX/MAC) al fitxer '%1'.\n"
-"Amb les opcions actual, s'unificaran al tipus principal.\n"
-"Voleu canviar les opcions i preservar les diferents menes de salt de línia?"
 
 #: Merge.rc:2350
 #, c-format
@@ -5219,18 +5209,18 @@ msgstr "Canvia l'estat de només de lectura per al fitxer de la dreta"
 
 #: Merge.rc:2589
 #, c-format
-msgid "Convert EOL to DOS mode"
-msgstr "Converteix el salt de línia al mode del DOS"
+msgid "Convert EOL to Windows mode"
+msgstr ""
 
 #: Merge.rc:2590
 #, c-format
-msgid "Convert EOL to UNIX mode"
-msgstr "Converteix el salt de línia al mode del UNIX"
+msgid "Convert EOL to Unix mode"
+msgstr ""
 
 #: Merge.rc:2591
 #, c-format
-msgid "Convert EOL to MAC mode"
-msgstr "Converteix el salt de línia al mode del MAC"
+msgid "Convert EOL to Mac mode"
+msgstr ""
 
 #: Merge.rc:2592
 #, c-format
@@ -5411,21 +5401,13 @@ msgstr "Mostra el quadre de diàleg d'estadístiques de comparació de carpeta"
 
 #: Merge.rc:2632
 #, c-format
-msgid ""
-"Select the current user interfacce language\n"
-"Language"
+msgid "Select the current user interface language\nLanguage"
 msgstr ""
-"Selecciona l'idioma de la interfície d'usuari\n"
-"Idioma"
 
 #: Merge.rc:2633
 #, c-format
-msgid ""
-"Shows differences inside lines with different color\n"
-"Show Line Diff"
+msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
-"Mostra les diferències dins les línies en un color diferent\n"
-"Mostra les diferències de línia"
 
 #: Merge.rc:2634
 #, c-format
@@ -5476,48 +5458,28 @@ msgstr ""
 
 #: Merge.rc:2646
 #, c-format
-msgid ""
-"Scroll to the previous difference\n"
-"Prev Diff (Alt+Up)"
+msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
-"Es desplaça fins a la diferència anterior\n"
-"Diferència anterior (Alt+Amunt)"
 
 #: Merge.rc:2647
 #, c-format
-msgid ""
-"Scroll to the next difference\n"
-"Next Diff (Alt+Down)"
+msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
-"Es desplaça fins a la següent diferència\n"
-"Propera diferència (Alt+Avall)"
 
 #: Merge.rc:2648
 #, c-format
-msgid ""
-"Scroll to the first difference\n"
-"First Diff (Alt+Home)"
+msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
-"Es desplaça fins a la primera diferència\n"
-"Primera diferència (Alt+Inici)"
 
 #: Merge.rc:2649
 #, c-format
-msgid ""
-"Scroll to the current difference\n"
-"Current Diff (Alt+Enter)"
+msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
-"Es desplaça fins a la diferència actual\n"
-"Diferència actual (Alt+Retorn)"
 
 #: Merge.rc:2650
 #, c-format
-msgid ""
-"Scroll to the last difference\n"
-"Last Diff (Alt+End)"
+msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
-"Es desplaça fins a la darrera diferència\n"
-"Darrera diferència (Alt+Fi)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5640,12 +5602,8 @@ msgstr "Descarrega el connectoris i els torna a carregar (per a desenvolupadors)
 
 #: Merge.rc:2685
 #, c-format
-msgid ""
-"Activates next file visible\n"
-"Active next File"
+msgid "Activates next visible file\nActivate next File"
 msgstr ""
-"Activa el següent fitxer visible\n"
-"Activa següent fitxer"
 
 #: Merge.rc:2686
 #, c-format

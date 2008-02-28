@@ -626,17 +626,17 @@ msgstr ""
 
 #: Merge.rc:332
 #, c-format
-msgid "&DOS (CRLF)"
+msgid "&Windows (CRLF)"
 msgstr ""
 
 #: Merge.rc:333
 #, c-format
-msgid "&UNIX (LF)"
+msgid "&Unix (LF)"
 msgstr ""
 
 #: Merge.rc:334
 #, c-format
-msgid "&MAC (CR)"
+msgid "&Mac (CR)"
 msgstr ""
 
 #: Merge.rc:337
@@ -1827,8 +1827,8 @@ msgstr "&Kis-nagybetû különbségek kihagyása"
 
 #: Merge.rc:1156
 #, c-format
-msgid "Igno&re carriage return differences (DOS/UNIX/MAC)"
-msgstr "Sortörési eltérések kihagyása (DOS/UNIX/MAC)"
+msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
+msgstr ""
 
 #: Merge.rc:1159
 #, c-format
@@ -2128,12 +2128,8 @@ msgstr "Elérhetõ bõvítmények:"
 
 #: Merge.rc:1312
 #, c-format
-msgid ""
-"Don't display this &message again.\n"
-"(You can always recall this message from help menu.)"
+msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
 msgstr ""
-"Ne jelenjen meg ez az &üzenet.\n"
-"(A súgó menübõl késõbb visszaállíthatod ezt az üzenetet.)"
 
 #: Merge.rc:1316
 #, c-format
@@ -4475,14 +4471,8 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid ""
-"The EOL are of different types (DOS/UNIX/MAC) in the file '%1'.\n"
-" With the current options, they will be unified to the main type.\n"
-" Do you want to change the options and preserve the different EOL ?"
+msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
 msgstr ""
-"Az újsor-karakterek különbözõ formátumúak (DOS/UNIX/MAC) ebben a fájlban: '%1'.\n"
-" A jelenlegi beállításokkal a leginkább jellemzõ lesz az alapértelmezett.\n"
-" Szeretnéd, ha mégis figyelembe venné az eltérõ újsor-karaktereket?"
 
 #: Merge.rc:2350
 #, c-format
@@ -5172,18 +5162,18 @@ msgstr "Jobb oldali fájl/könyvtár csak olvasható állapotának változtatása"
 
 #: Merge.rc:2589
 #, c-format
-msgid "Convert EOL to DOS mode"
-msgstr "Újsor-karakterek kovertálása: DOS mode"
+msgid "Convert EOL to Windows mode"
+msgstr ""
 
 #: Merge.rc:2590
 #, c-format
-msgid "Convert EOL to UNIX mode"
-msgstr "Újsor-karakterek kovertálása: UNIX mode"
+msgid "Convert EOL to Unix mode"
+msgstr ""
 
 #: Merge.rc:2591
 #, c-format
-msgid "Convert EOL to MAC mode"
-msgstr "Újsor-karakterek kovertálása: MAC mode"
+msgid "Convert EOL to Mac mode"
+msgstr ""
 
 #: Merge.rc:2592
 #, c-format
@@ -5348,21 +5338,13 @@ msgstr ""
 
 #: Merge.rc:2632
 #, c-format
-msgid ""
-"Select the current user interfacce language\n"
-"Language"
+msgid "Select the current user interface language\nLanguage"
 msgstr ""
-"Add meg a használni kívánt nyelvet\n"
-"Nyelv"
 
 #: Merge.rc:2633
 #, c-format
-msgid ""
-"Shows differences inside lines with different color\n"
-"Show Line Diff"
+msgid "Shows differences inside lines with different colors\nShow Line Difference"
 msgstr ""
-"A sorok közötti különbségek kijelzés más-más színnel\n"
-"Sorok eltérésének mutatása"
 
 #: Merge.rc:2634
 #, c-format
@@ -5407,48 +5389,28 @@ msgstr ""
 
 #: Merge.rc:2646
 #, c-format
-msgid ""
-"Scroll to the previous difference\n"
-"Prev Diff (Alt+Up)"
+msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
 msgstr ""
-"Görgetés az elõzõ eltéréshez\n"
-"Elõzõ Eltérés (Alt+Up)"
 
 #: Merge.rc:2647
 #, c-format
-msgid ""
-"Scroll to the next difference\n"
-"Next Diff (Alt+Down)"
+msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
 msgstr ""
-"Görgetés a következõ eltéréshez\n"
-"Követk Eltérés (Alt+Down)"
 
 #: Merge.rc:2648
 #, c-format
-msgid ""
-"Scroll to the first difference\n"
-"First Diff (Alt+Home)"
+msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
 msgstr ""
-"Görgetés az elsõ eltéréshez\n"
-"Elsõ Eltérés (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid ""
-"Scroll to the current difference\n"
-"Current Diff (Alt+Enter)"
+msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
 msgstr ""
-"Görgetés az aktuális eléréshez\n"
-"Aktuális Eltérés (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid ""
-"Scroll to the last difference\n"
-"Last Diff (Alt+End)"
+msgid "Scroll to the last difference\nLast Difference (Alt+End)"
 msgstr ""
-"Görgetés az utolsó eltéréshez\n"
-"Utolsó Eltérés (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5571,12 +5533,8 @@ msgstr "Az összes bõvítmény betöltése újra (fejlesztõknek)"
 
 #: Merge.rc:2685
 #, c-format
-msgid ""
-"Activates next file visible\n"
-"Active next File"
+msgid "Activates next visible file\nActivate next File"
 msgstr ""
-"Következõ látható fájl aktiválása\n"
-"Következõ fájl aktiválása"
 
 #: Merge.rc:2686
 #, c-format
