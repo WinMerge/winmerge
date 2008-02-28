@@ -49,7 +49,7 @@ static UINT RO_PANEL_WIDTH = 40;
 /** @brief Encoding status panel width */
 static UINT ENCODING_PANEL_WIDTH = 80;
 /** @brief EOL type status panel width */
-static UINT EOL_PANEL_WIDTH = 40;
+static UINT EOL_PANEL_WIDTH = 60;
 
 static CString EolString(const CString & sEol);
 
