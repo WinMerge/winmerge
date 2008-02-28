@@ -15,6 +15,7 @@ Attribute VB_Exposed = True
 '    This is a plugin for WinMerge.
 '    It will display the text content of MS Excel files.
 '    Copyright (C) 2005  Christian List
+'    Portions contributed by March Hare Software Ltd February 2006
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -68,6 +69,7 @@ End Property
 Public Property Get LastErrorNumber() As Long
     LastErrorNumber = myLastErrorNumber
 End Property
+
 Public Property Get LastErrorString() As String
     LastErrorString = myLastErrorString
 End Property
@@ -75,12 +77,31 @@ Private Function GetComponentCount(objDoc As Object)
 '  Returns 0 if there is a problem accessing VBComponents
   On Error GoTo ErrHandler
   
-  GetComponentCount = objDoc.VBProject.VBComponents.Count
+  GetComponentCount = 0
+  If Not objDoc.VBProject Is Nothing Then
+      If Not objDoc.VBProject.VBComponents Is Nothing Then
+          GetComponentCount = objDoc.VBProject.VBComponents.Count
+      End If
+  End If
   
   Exit Function
 
 ErrHandler:
   GetComponentCount = 0
+End Function
+
+Private Function GetDocProperty(objDoc As Object, pName As String)
+  On Error GoTo ErrHandler
+  
+  GetDocProperty = ""
+  If Not objDoc.BuiltinDocumentProperties.Item(pName) Is Nothing Then
+      GetDocProperty = objDoc.BuiltinDocumentProperties.Item(pName).Value
+  End If
+  
+  Exit Function
+
+ErrHandler:
+  GetDocProperty = ""
 End Function
 
 Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
@@ -135,12 +156,11 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     For Each p In objDoc.BuiltinDocumentProperties
         oTextToSave = oTextToSave + p.Name
         oTextToSave = oTextToSave & " = "
-        itemValue = "?"
-        itemValue = objDoc.BuiltinDocumentProperties.Item(p.Name).Value
+        itemValue = GetDocProperty(objDoc, p.Name)
         If itemValue <> "" Then
             oTextToSave = oTextToSave + itemValue
         End If
-       oTextToSave = oTextToSave + vbCrLf
+        oTextToSave = oTextToSave + vbCrLf
     Next
     On Error GoTo 0
     oTextToSave = oTextToSave & vbCrLf
@@ -186,10 +206,12 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     End If
    
     ' Names
-    oTextToSave = oTextToSave & "Names in document" & vbCrLf
     On Error Resume Next
     Dim nms As Object
     Set nms = objDoc.Names
+    If nms.Count > 0 Then
+        oTextToSave = oTextToSave & "Names in document" & vbCrLf
+    End If
     Dim iCountNames As Integer
     For iCountNames = 1 To nms.Count
         oTextToSave = oTextToSave + nms(iCountNames).Name
@@ -243,7 +265,6 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
         oTextToSave = oTextToSave + vbCrLf
         iCountSheets = iCountSheets + 1
     Next
-    
     
     ' Save the collected text
     hFile = FreeFile
