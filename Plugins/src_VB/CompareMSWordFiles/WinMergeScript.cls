@@ -15,6 +15,7 @@ Attribute VB_Exposed = True
 '    This is a plugin for WinMerge.
 '    It will display the text content of MS Word files.
 '    Copyright (C) 2005  Christian List
+'    Portions contributed by March Hare Software Ltd February 2006
 '
 '    This program is free software; you can redistribute it and/or modify
 '    it under the terms of the GNU General Public License as published by
@@ -37,6 +38,9 @@ Attribute VB_Exposed = True
 
 Option Explicit
 
+Dim myLastErrorNumber As Long
+Dim myLastErrorString As String
+
 Public Property Get PluginEvent() As String
     PluginEvent = "FILE_PACK_UNPACK"
 End Property
@@ -53,8 +57,19 @@ Public Property Get PluginIsAutomatic() As Boolean
     PluginIsAutomatic = True
 End Property
 
+Public Property Get LastErrorNumber() As Long
+    LastErrorNumber = myLastErrorNumber
+End Property
+
+Public Property Get LastErrorString() As String
+    LastErrorString = myLastErrorString
+End Property
+
 Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
     On Error GoTo CleanUp
+    
+    myLastErrorNumber = 0
+    myLastErrorString = ""
     
     ' Start MS Word
     Dim objWD As Object
@@ -74,6 +89,9 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     subcode = 1
     
 CleanUp:
+    myLastErrorNumber = Err
+    myLastErrorString = CStr(Err) & ": " & Error(myLastErrorNumber)
+
     If Not objWD Is Nothing Then
         ' Stop MS Word
         objWD.Quit
