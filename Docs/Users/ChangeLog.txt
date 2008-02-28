@@ -17,6 +17,7 @@ WinMerge 2.7.7.6
   Translation updates:
   - Czech (r5073)
   - Japanese (r5076)
+  - Swedish (#1901784)
 
 WinMerge 2.7.7.5 - 2008-02-22 (r5069)
   Cleaning up Help-menu (#1875111)
