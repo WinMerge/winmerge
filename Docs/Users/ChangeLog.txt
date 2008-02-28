@@ -15,6 +15,7 @@ WinMerge 2.7.7.6
   BugFix: Recognize invalid UTF-8 sequence as UTF-8 (#1900733)
   BugFix: Didn't highlight any difference between untitled documents (#1900257)
   Translation updates:
+  - Czech (r5073)
   - Japanese (r5076)
 
 WinMerge 2.7.7.5 - 2008-02-22 (r5069)
