@@ -351,6 +351,23 @@ def find_winmerge_root():
     
     return False
 
+def check_tools():
+    """Check that needed external tools can be found."""
+
+    if not os.path.exists(svn_binary):
+        print 'Subversion binary could not be found from:'
+        print svn_binary
+        print 'Please check script configuration and/or make sure Subversion is installed.'
+        return False
+
+    vs_cmd = os.path.join(vs_path, vs_bin)
+    if not os.path.exists(vs_cmd):
+        print 'Cannot find Visual Studio IDE binary from:'
+        print vs_cmd
+        print 'Please check script configuration.'
+        return False
+    return True
+
 def usage():
     print 'WinMerge release script.'
     print 'Usage: release [-h] [-v: n] [-c]'
@@ -376,6 +393,10 @@ def main(argv):
                 if cleanup_build() == True:
                     print 'Cleanup done.'
                 sys.exit()
+
+    # Check all required tools are found (script configuration)
+    if check_tools() == False:
+        sys.exit()
 
     # Check we are running from correct folder (and go to root if found)
     if find_winmerge_root() == False:
