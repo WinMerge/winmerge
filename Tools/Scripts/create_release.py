@@ -364,7 +364,7 @@ def usage():
     print '    -h, --help print this help'
     print '    -v: n, --version= n set release version'
     print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
-    print '    -l, --libraries build libraries (expat, scew, pcre) only
+    print '    -l, --libraries build libraries (expat, scew, pcre) only'
     print '  For example: release -v: 2.7.7.1'
 
 def main(argv):
