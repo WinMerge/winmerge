@@ -1215,6 +1215,8 @@ PutToClipboard (LPCTSTR pszText, int cchText)
           GlobalUnlock (hData);
           UINT fmt = GetClipTcharTextFormat();
           bOK = SetClipboardData (fmt, hData) != NULL;
+          if (bOK)
+            SetClipboardData (RegisterClipboardFormat (_T("WinMergeClipboard")), NULL);
         }
       CloseClipboard ();
     }
@@ -1240,6 +1242,20 @@ GetFromClipboard (CString & text)
                 memcpy(text.GetBufferSetLength(cchText), pszData, cbData);
               GlobalUnlock (hData);
               bSuccess = TRUE;
+              BOOL bWinMergeClipboardFormat = FALSE;
+              UINT nFormat = 0;
+              UINT nWinMergeClipboardFormat = RegisterClipboardFormat (_T("WinMergeClipboard"));
+              while (nFormat = EnumClipboardFormats (nFormat))
+                {
+                  if (nFormat == nWinMergeClipboardFormat)
+                    bWinMergeClipboardFormat = TRUE;
+                }
+              if (!bWinMergeClipboardFormat)
+                {
+                  // truncate the data after the first null
+                  CString tmp = (LPCTSTR)text;
+                  text = tmp;
+                }
             }
         }
       CloseClipboard ();
