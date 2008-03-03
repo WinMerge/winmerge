@@ -359,17 +359,19 @@ def check_tools():
 
 def usage():
     print 'WinMerge release script.'
-    print 'Usage: release [-h] [-v: n] [-c]'
+    print 'Usage: create_release [-h] [-v: n] [-c] [-l]'
     print '  where:'
     print '    -h, --help print this help'
     print '    -v: n, --version= n set release version'
     print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
+    print '    -l, --libraries build libraries (expat, scew, pcre) only
     print '  For example: release -v: 2.7.7.1'
 
 def main(argv):
     version = '0.0.0.0'
     if len(argv) > 0:
-        opts, args = getopt.getopt(argv, "hcv:", [ "help", "cleanup", "version="])
+        opts, args = getopt.getopt(argv, "hclv:", [ "help", "cleanup", "libraries",
+                                                    "version="])
         
         for opt, arg in opts:
             if opt in ("-h", "--help"):
@@ -381,6 +383,9 @@ def main(argv):
             if opt in ("-c", "--cleanup"):
                 if cleanup_build() == True:
                     print 'Cleanup done.'
+                sys.exit()
+            if opt in ("-l", "--libraries"):
+                build_libraries()
                 sys.exit()
 
     # Check all required tools are found (script configuration)
