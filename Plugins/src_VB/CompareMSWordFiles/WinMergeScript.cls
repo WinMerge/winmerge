@@ -65,6 +65,33 @@ Public Property Get LastErrorString() As String
     LastErrorString = myLastErrorString
 End Property
 
+Private Function GetMacrosHead(objDoc As Object) As String
+    Dim oTextToSave As String
+    
+    On Error GoTo NoMacrosHead
+    
+    oTextToSave = ""
+    If Not objDoc.VBProject Is Nothing Then
+        oTextToSave = oTextToSave & "The VB Project Name is " & objDoc.VBProject.Name & vbCrLf
+        If Not objDoc.VBProject.VBComponents Is Nothing Then
+            oTextToSave = oTextToSave & "There are " & objDoc.VBProject.VBComponents.Count & _
+                " Microsoft Word macros in this document." & vbCrLf
+        End If
+    End If
+    GetMacrosHead = oTextToSave
+    Exit Function
+    
+NoMacrosHead:
+    If Err = -2147188160 Or Err = -2146822220 Or Err = 6068 Then
+        oTextToSave = "Cannot get Macros." & vbCrLf & _
+            "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
+            "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+    Else
+        oTextToSave = oTextToSave & "There are no Microsoft Word macros in this document." & vbCrLf
+    End If
+    GetMacrosHead = oTextToSave
+End Function
+
 Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged As Boolean, ByRef subcode As Long) As Boolean
     On Error GoTo CleanUp
     
@@ -79,10 +106,28 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     Dim objDoc As Object
     Set objDoc = objWD.Documents.Open(fileSrc)
 
+    Dim oTextToSave As String
+    
+    On Error Resume Next
+    
+    oTextToSave = oTextToSave & "Document Properties" & vbCrLf
+    oTextToSave = oTextToSave & GetMacrosHead(objDoc)
+    
+    Dim hFile As Long
+    
+    oTextToSave = oTextToSave & vbCrLf
+    
     ' Save the text content of the document
-    Open fileDst For Output Shared As #1
-    Print #1, objDoc.Content.Text
-    Close #1
+    oTextToSave = oTextToSave & objDoc.Content.Text & vbCrLf
+
+    ' Save the collected text
+    hFile = FreeFile
+    Open fileDst For Output Shared As #hFile
+    Print #hFile, oTextToSave
+    Close #hFile
+
+    ' Close the document without saving changes
+    objDoc.Close False
     
     bChanged = True
     UnpackFile = True
