@@ -6,6 +6,7 @@ WinMerge 2.8 Release Candidate
   BugFix: Copy&Paste from VB6 added binary chars (#1904355)
   Translation updates:
   - Chinese Traditional (#1905323)
+  - Swedish (#1905520)
 
 WinMerge 2.7.7.6 - 2008-02-28 (r5099)
   Remove sintance.h/sintance.cpp as not compatible with GPL (#1886580)

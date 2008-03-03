@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-08-24 23:59+0100\n"
+"PO-Revision-Date: 2008-02-22 16:00+0100\n"
 "Last-Translator: Hans Eriksson <hans.ericson at bredband.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -628,17 +628,17 @@ msgstr "&Radslut (DOS, UNIX, MAC)"
 #: Merge.rc:332
 #, c-format
 msgid "&Windows (CRLF)"
-msgstr ""
+msgstr "&Windows (CRLF)"
 
 #: Merge.rc:333
 #, c-format
 msgid "&Unix (LF)"
-msgstr ""
+msgstr "&Unix (LF)"
 
 #: Merge.rc:334
 #, c-format
 msgid "&Mac (CR)"
-msgstr ""
+msgstr "&Mac (CR)"
 
 #: Merge.rc:337
 #, c-format
@@ -1829,7 +1829,7 @@ msgstr "&Ignorera VERSAL/gemen-skillnader"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "Igno&rera skillnader i radslut (Windows/Unix/Mac)"
 
 #: Merge.rc:1159
 #, c-format
@@ -2130,7 +2130,7 @@ msgstr "Plugins i sökväg:"
 #: Merge.rc:1312
 #, c-format
 msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr ""
+msgstr "Visa inte detta &meddelande igen.\n(Du kan alltid få tillbaka detta meddelande från Hjälp-menyn.)"
 
 #: Merge.rc:1316
 #, c-format
@@ -4515,7 +4515,7 @@ msgstr ""
 #: Merge.rc:2349
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr ""
+msgstr "Radsluten är av olika typer (Windows/Unix/Mac) i filen '%1'.\n Med de aktuella inställningarna, kommer de att ändras till den vanligaste typen.\n Vill du ändra i inställningarna och bevara de olika radsluten ?"
 
 #: Merge.rc:2350
 #, c-format
@@ -5213,17 +5213,17 @@ msgstr "Ändrar skrivskydd på höger fil/katalog"
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "Konverterar radslut till Windows-format"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "Konverterar radslut till Unix-format"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "Konverterar radslut till Mac-format"
 
 #: Merge.rc:2592
 #, c-format
@@ -5405,16 +5405,12 @@ msgstr "Visar dialog med katalogjämförelsestatistik"
 #: Merge.rc:2632
 #, c-format
 msgid "Select the current user interface language\nLanguage"
-msgstr ""
-"Väljer språk för användargränssnittet\n"
-"Språk"
+msgstr "Väljer språk för användargränssnittet\nSpråk"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
-msgstr ""
-"Visar skillnader inom rader med olika färg\n"
-"Visa radskillnad"
+msgstr "Visar skillnader inom rader med olika färg\nVisa radskillnad"
 
 #: Merge.rc:2634
 #, c-format
@@ -5466,32 +5462,27 @@ msgstr "Återställ textzoomning till standardstorlek"
 #: Merge.rc:2646
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr ""
-"Går till föregående skillnad\nFöregående skillnad (Alt+Upp)"
+msgstr "Går till föregående skillnad\nFöregående skillnad (Alt+Upp)"
 
 #: Merge.rc:2647
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr ""
-"Går till nästa skillnad\nNästa skillnad (Alt+Ner)"
+msgstr "Går till nästa skillnad\nNästa skillnad (Alt+Ner)"
 
 #: Merge.rc:2648
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr ""
-"Går till första skillnaden\nFörsta skillnad (Alt+Home)"
+msgstr "Går till första skillnaden\nFörsta skillnad (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr ""
-"Går till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
+msgstr "Går till aktuell skillnad\nAktuell skillnad (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr ""
-"Går till sista skillnaden\nSista skillnad (Alt+End)"
+msgstr "Går till sista skillnaden\nSista skillnad (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
