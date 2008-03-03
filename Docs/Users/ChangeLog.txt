@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8 Release Candidate
+  Update developers list in splash screen (#1891548)
   BugFix: Copy&Paste from VB6 added binary chars (#1904355)
   Translation updates:
   - Chinese Traditional (#1905323)

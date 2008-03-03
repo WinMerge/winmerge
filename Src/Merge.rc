@@ -1862,7 +1862,7 @@ END
 // SPLASH SCREEN TEXTS
 STRINGTABLE
 BEGIN
-    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Perry Rapp, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Laurent Ganier, Dennis Lim, Chris Mumford"
+    IDS_SPLASH_DEVELOPERS   "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
     IDS_SPLASH_GPLTEXT      "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
 END
 
