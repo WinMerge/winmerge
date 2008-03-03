@@ -101,21 +101,54 @@ NoMacrosHead:
     GetMacrosHead = oTextToSave
 End Function
 
-Private Function GetComponentCount(objDoc As Object)
-'  Returns 0 if there is a problem accessing VBComponents
-  On Error GoTo ErrHandler
-  
-  GetComponentCount = 0
-  If Not objDoc.VBProject Is Nothing Then
-      If Not objDoc.VBProject.VBComponents Is Nothing Then
-          GetComponentCount = objDoc.VBProject.VBComponents.Count
-      End If
-  End If
-  
-  Exit Function
-
-ErrHandler:
-  GetComponentCount = 0
+Private Function GetMacros(objDoc As Object) As String
+    Dim VBComp As Object
+    Dim iCountMacros As Integer
+    Dim oMacroLine As String
+    Dim oTextToSave As String
+    Dim macTempPaths() As String
+    Dim hFile As Long
+    
+    On Error GoTo GetMacros
+    
+    oTextToSave = ""
+    If Not objDoc.VBProject.VBComponents Is Nothing Then
+        If objDoc.VBProject.VBComponents.Count > 0 Then
+            ReDim macTempPaths(objDoc.VBProject.VBComponents.Count - 1) As String
+            oTextToSave = oTextToSave & "Macros in document" & vbCrLf
+            
+            iCountMacros = 0
+            For Each VBComp In objDoc.VBProject.VBComponents
+                oTextToSave = oTextToSave & VBComp.Name & vbCrLf
+                
+                macTempPaths(iCountMacros) = CreateTempFile("WMS")
+                
+                ' Remove the temporary file
+                Kill macTempPaths(iCountMacros)
+                
+                ' Save the text content of the macro
+                VBComp.Export macTempPaths(iCountMacros)
+                
+                ' Read the content back from the file
+                hFile = FreeFile
+                Open macTempPaths(iCountMacros) For Input Shared As #hFile
+                    Do While Not EOF(1) 'Loop until end of file...
+                        Line Input #hFile, oMacroLine 'Read line into variable.
+                        oTextToSave = oTextToSave & oMacroLine & vbCrLf
+                    Loop
+                Close #hFile
+                
+                oTextToSave = oTextToSave & vbCrLf
+                iCountMacros = iCountMacros + 1
+            Next
+        End If
+    End If
+    GetMacros = oTextToSave
+    Exit Function
+    
+GetMacros:
+    oTextToSave = ""
+    GetMacros = oTextToSave
 End Function
 
 Private Function GetDocProperty(objDoc As Object, pName As String)
@@ -151,15 +184,6 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     Dim arrTempPaths() As String
     ReDim arrTempPaths(objDoc.Worksheets.Count - 1) As String
     
-    ' (ProjectComponents may be zero due to Code Access Security)
-    Dim ProjectComponents As Long
-    ProjectComponents = GetComponentCount(objDoc)
-    
-    Dim macTempPaths() As String
-    If ProjectComponents > 0 Then
-        ReDim macTempPaths(ProjectComponents - 1) As String
-    End If
-
     Dim iCountSheets As Integer
     iCountSheets = 0
     
@@ -192,46 +216,13 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     On Error GoTo CleanUp
     
     oTextToSave = oTextToSave & vbCrLf
-
+    
     ' Get the Macros
-    If ProjectComponents > 0 Then
-        oTextToSave = oTextToSave & "Macros in document" & vbCrLf
-        On Error Resume Next
-        Dim VBComp As Object
-        Dim iCountMacros As Integer
-        For Each VBComp In objDoc.VBProject.VBComponents
-            VBComp = objDoc.VBProject.VBComponents(iCountMacros)
-            oTextToSave = oTextToSave & VBComp.Name & vbCrLf
+    oTextToSave = oTextToSave & GetMacros(objDoc)
     
-            macTempPaths(iCountMacros) = CreateTempFile("WMS")
+    On Error GoTo CleanUp
     
-            ' Remove the temporary file
-            Kill macTempPaths(iCountMacros)
-    
-            ' Save the text content of the macro
-            VBComp.Export macTempPaths(iCountMacros)
-    
-            ' Read the content back from the file
-            hFile = FreeFile
-            Open macTempPaths(iCountMacros) For Input Shared As #hFile
-            'oTextToSave = oTextToSave + macTempPaths(iCountMacros) + vbCrLf
-            
-            Dim oMacroLine As String
-            Do While Not EOF(1)   ' Loop until end of file.
-               Line Input #hFile, oMacroLine   ' Read line into variable.
-    
-               oTextToSave = oTextToSave + oMacroLine + vbCrLf
-            Loop
-    
-            Close #hFile
-    
-            oTextToSave = oTextToSave + vbCrLf
-            iCountMacros = iCountMacros + 1
-        'Next VBComp
-        Next
-        oTextToSave = oTextToSave & vbCrLf
-        On Error GoTo 0
-    End If
+    oTextToSave = oTextToSave & vbCrLf
    
     ' Names
     On Error Resume Next

@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8 Release Candidate
   Update developers list in splash screen (#1891548)
+  Better error handling for Excel plugin (#1510293)
   BugFix: Copy&Paste from VB6 added binary chars (#1904355)
   Translation updates:
   - Chinese Traditional (#1905323)
