@@ -12,21 +12,8 @@
 : libraries and copy files to Build folder.
 
 : Remove temp files
+: expat, scew and pcre also now use BuildTmp
 del /S /Q  BuildTmp
-
-: Remove expat build files
-del /S /Q Externals\expat\lib\Release
-
-: Remove pcre build files
-del /S /Q Externals\pcre\bin
-del /S /Q Externals\pcre\dll_pcre\o
-del /S /Q Externals\pcre\lib_pcre\o
-del /S /Q Externals\pcre\lib_pcreposix\o
-del /S /Q Externals\pcre\pcretest\o
-
-: Remove scew build files
-del /S /Q Externals\scew\win32\lib
-del /S /Q Externals\scew\win32\obj
 
 : Build WinMerge executables
 devenv Src\Merge.dsp /rebuild Release
