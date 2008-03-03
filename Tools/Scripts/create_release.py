@@ -25,8 +25,8 @@
 # - cleans previous build files from folders
 # - sets version number for resources
 # - updates POT and PO files
+# - builds libraries (expat, scew, pcre)
 # - builds WinMerge.exe and WinMergeU.exe
-# - builds pcre, expat and scew (through project file)
 # - builds 32-bit ShellExtension targets
 # - builds user manual
 # - creates per-version distribution folder
@@ -122,40 +122,6 @@ def cleanup_build():
         return False
     return True
 
-# Commented out as it seems running prelink and postbuild bat files
-# don't work when build is started from this script.
-# So you need to build expat, scew and pcre with VS first!
-
-#    expat_temps = ['Externals/expat/lib/Release',
-#                   'Externals/expat/lib/Release-w',
-#                   'Externals/expat/lib/Release_static',
-#                   'Externals/expat/lib/Release_static-w',
-#                   'build/expat']
-#    for path in expat_temps:
-#        if os.path.exists(path):
-#            print 'Remove folder %s' % path
-#            shutil.rmtree(path, True) 
-#        else:
-#            print 'Skipping folder %s' % path
-#
-#    scew_temps = ['Externals/scew/win32/lib',
-#                  'Externals/scew/win32/obj']
-#    for path in scew_temps:
-#        if os.path.exists(path):
-#            print 'Remove folder: %s' % path
-#            shutil.rmtree(path, True) 
-#
-#    pcre_temps = ['Externals/pcre/bin',
-#                  'Externals/pcre/dll_pcre/o',
-#                  'Externals/pcre/lib_pcre/o',
-#                  'Externals/pcre/lib_pcreposix/o',
-#                  'Externals/pcre/pcretest/o',
-#                  'build/pcre']
-#    for path in pcre_temps:
-#        if os.path.exists(path):
-#            print 'Remove folder %s' % path
-#            shutil.rmtree(path, True) 
-
 def set_resource_version(version):
     """Sets the version number to the resource."""
 
@@ -212,8 +178,31 @@ def cleanup_dlls_from_plugins(dist_src_folder):
             if (file_ext == '.dll'):
                 os.remove(fullpath)
 
+def build_libraries():
+    """Builds library targets: expat, scew and pcre."""
+
+    vs_cmd = os.path.join(vs_path, vs_bin)
+    cur_path = os.getcwd()
+
+    print 'Build expat library...'
+    solution_path = os.path.join(cur_path, 'Externals/expat/lib/expat.vcproj')
+    #print sol_path
+    call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
+
+    print 'Build scew library...'
+    solution_path = os.path.join(cur_path, 'Externals/scew/win32/scew.vcproj')
+    #print sol_path
+    call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
+
+    print 'Build pcre library...'
+    solution_path = os.path.join(cur_path, 'Externals/pcre/dll_pcre/pcre.vcproj')
+    #print sol_path
+    call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
+
 def build_targets():
     """Builds all WinMerge targets."""
+
+    build_libraries()
 
     vs_cmd = os.path.join(vs_path, vs_bin)
 
