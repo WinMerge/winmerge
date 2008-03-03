@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-11-02 22:40+0800\n"
-"Last-Translator: 龔維正 <wck3171 at pchome.com.tw>\n"
+"POT-Creation-Date: 2008-02-28 00:05+0000\n"
+"PO-Revision-Date: 2008-03-01 22:22+0800\n"
+"Last-Translator: 龔維正 <wck3171@pchome.com.tw>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP950\n"
@@ -138,7 +138,7 @@ msgstr "開啟(&O)...\tCtrl+O"
 #: Merge.rc:114
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "開啟衝突檔(&E)..."
 
 #: Merge.rc:116
 #: Merge.rc:194
@@ -262,7 +262,7 @@ msgstr "工具(&T)"
 #: Merge.rc:438
 #, c-format
 msgid "&Filters..."
-msgstr "篩選方式(&F)..."
+msgstr "篩選器(&F)..."
 
 #: Merge.rc:146
 #: Merge.rc:259
@@ -278,6 +278,7 @@ msgstr "產生補綴(&G)..."
 msgid "&Plugins"
 msgstr "外掛(&P)"
 
+# "手動解壓縮(&M)"
 #: Merge.rc:150
 #: Merge.rc:264
 #: Merge.rc:444
@@ -285,6 +286,7 @@ msgstr "外掛(&P)"
 msgid "&Manual Unpacking"
 msgstr "手動解開非純文字檔(&M)"
 
+# "自動解壓縮(&A)"
 #: Merge.rc:151
 #: Merge.rc:265
 #: Merge.rc:445
@@ -390,28 +392,28 @@ msgstr "說明(&H)"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "WinMerge 說明(&W)\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
 #: Merge.rc:476
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "發行說明(&E)"
 
 #: Merge.rc:178
 #: Merge.rc:292
 #: Merge.rc:477
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "翻譯(&T)"
 
 #: Merge.rc:179
 #: Merge.rc:293
 #: Merge.rc:478
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "組態(&O)"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -425,7 +427,7 @@ msgstr "關閉壓縮支援(&R)..."
 #: Merge.rc:481
 #, c-format
 msgid "&GNU General Public License"
-msgstr ""
+msgstr "GNU 公共授權證(&G)"
 
 #: Merge.rc:183
 #: Merge.rc:297
@@ -628,17 +630,17 @@ msgstr "轉換行尾字元成(&C)"
 #: Merge.rc:332
 #, c-format
 msgid "&Windows (CRLF)"
-msgstr ""
+msgstr "&Windows (CRLF)"
 
 #: Merge.rc:333
 #, c-format
 msgid "&Unix (LF)"
-msgstr ""
+msgstr "&Unix (LF)"
 
 #: Merge.rc:334
 #, c-format
 msgid "&Mac (CR)"
-msgstr ""
+msgstr "&Mac (CR)"
 
 #: Merge.rc:337
 #, c-format
@@ -648,7 +650,7 @@ msgstr "開/關合併模式(&M)\tF9"
 #: Merge.rc:339
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "檔案編碼(&F)..."
 
 #: Merge.rc:345
 #, c-format
@@ -744,23 +746,23 @@ msgstr "移至(&G)...\tCtrl+G"
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "拉近拉遠(&Z)"
 
 #: Merge.rc:385
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr ""
+msgstr "拉近(&I)\tCtrl++"
 
 #: Merge.rc:386
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr ""
+msgstr "推遠(&O)\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "恢復原始(&N)\tCtrl+*"
 
 #: Merge.rc:389
 #, c-format
@@ -845,12 +847,12 @@ msgstr "比較(&A)"
 #: Merge.rc:491
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "比較特定格式(&M)"
 
 #: Merge.rc:493
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:498
 #, c-format
@@ -1107,7 +1109,7 @@ msgstr "瀏覽(&W)..."
 #: Merge.rc:1594
 #, c-format
 msgid "&Filter:"
-msgstr "篩選方式(&F)："
+msgstr "篩選器(&F)："
 
 #: Merge.rc:684
 #: Merge.rc:1596
@@ -1263,10 +1265,11 @@ msgstr "不能同時執行一個以上本程式(&O)"
 msgid "As&k when closing multiple windows"
 msgstr "關閉多重視窗時先詢問(&K)"
 
+# "比較時保留檔案時間(&P)"
 #: Merge.rc:758
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "比較檔案時保留檔案時間(&P)"
 
 #: Merge.rc:761
 #, c-format
@@ -1430,12 +1433,12 @@ msgstr "送回改過檔後就取出之"
 #: Merge.rc:868
 #, c-format
 msgid "Linefilters"
-msgstr "行之篩選方式"
+msgstr "行之篩除器"
 
 #: Merge.rc:871
 #, c-format
 msgid "Enable Line Filters"
-msgstr "啟用行篩選方式"
+msgstr "啟用行篩除器"
 
 #: Merge.rc:874
 #, c-format
@@ -1576,27 +1579,27 @@ msgstr "外部編輯器(&E)："
 #: Merge.rc:990
 #, c-format
 msgid "&Filter folder:"
-msgstr "資料夾篩選方式(&F)："
+msgstr "資料夾篩選器(&F)："
 
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "瀏覽(&R)..."
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "暫存檔資料夾"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "系統的暫存資料夾(&Y)"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "自訂資料夾(&U)："
 
 #: Merge.rc:999
 #: Merge.rc:1015
@@ -1829,7 +1832,7 @@ msgstr "忽略大小寫(&C)"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "忽略換行字元之差異(Windows/Unix/Mac)(&R)"
 
 #: Merge.rc:1159
 #, c-format
@@ -1859,7 +1862,7 @@ msgstr "第一個差異就停(&T)"
 #: Merge.rc:1172
 #, c-format
 msgid "Filter Comments"
-msgstr "篩選方式之註"
+msgstr "篩選器之註"
 
 #: Merge.rc:1179
 #: Merge.rc:1900
@@ -1925,7 +1928,7 @@ msgstr "字階層(&W)："
 #: Merge.rc:1217
 #, c-format
 msgid "Filefilters"
-msgstr "檔案篩選方式"
+msgstr "檔案篩選器"
 
 #: Merge.rc:1223
 #, c-format
@@ -2041,7 +2044,7 @@ msgstr "WinMerge - 已關閉壓縮檔支援"
 #: Merge.rc:1281
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
-msgstr "不能偵測 7-Zip 版本(沒安裝它？)"
+msgstr "無法測知 7-Zip 版本(沒安裝 7-Zip 嗎？)"
 
 #: Merge.rc:1284
 #, c-format
@@ -2062,12 +2065,14 @@ msgstr "還必須在路經上有適當介面外掛(Merge7z*.dll)，才能支援壓縮。"
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
-msgstr "除非有更新版可用，建議使用下面的 7-Zip 介面外掛版本。"
+msgstr ""
+"除非有更新版可用，建議使用下面的\n"
+"7-Zip 介面外掛版本。"
 
 #: Merge.rc:1290
 #, c-format
 msgid "Version"
-msgstr "版本"
+msgstr "7-Zip 版本"
 
 #: Merge.rc:1292
 #, c-format
@@ -2075,7 +2080,7 @@ msgid ""
 "Plugin required\n"
 "(dllbuild %04u)"
 msgstr ""
-"所要的外掛\n"
+"該版所要的介面外掛\n"
 "(dllbuild %04u)"
 
 #: Merge.rc:1294
@@ -2113,7 +2118,7 @@ msgstr "不存在"
 #: Merge.rc:1306
 #, c-format
 msgid "7-Zip components for standalone operation:"
-msgstr "可獨立運作的 7-Zip 元件："
+msgstr "WinMerge 內用的 7-Zip 核心元件："
 
 #: Merge.rc:1310
 #, c-format
@@ -2123,17 +2128,21 @@ msgstr "已舊"
 #: Merge.rc:1311
 #, c-format
 msgid "Plugins on path:"
-msgstr "外掛所在路徑："
+msgstr "路徑上的介面外掛："
 
 #: Merge.rc:1312
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
 msgstr ""
+"勿再顯示此訊息。(&M)\n"
+"(仍可由說明選單中叫出它)"
 
 #: Merge.rc:1316
 #, c-format
 msgid "Plugin Download"
-msgstr "外掛下載"
+msgstr "介面外掛下載"
 
 #: Merge.rc:1325
 #, c-format
@@ -2244,22 +2253,22 @@ msgstr "複製到剪貼簿(&C)"
 #: Merge.rc:1426
 #, c-format
 msgid "Shared or Private Filter"
-msgstr "共用或個人篩選方式"
+msgstr "共用或個人篩選器"
 
 #: Merge.rc:1429
 #, c-format
 msgid "Which type of filter do you want to create?"
-msgstr "你要建立哪種篩選方式？"
+msgstr "你要建立哪種篩選器？"
 
 #: Merge.rc:1431
 #, c-format
 msgid "Shared Filter (for all users on this machine)"
-msgstr "共用篩選方式(適用所有使用者)"
+msgstr "共用篩選器(適用所有使用者)"
 
 #: Merge.rc:1433
 #, c-format
 msgid "Private Filter (only for current user)"
-msgstr "個人篩選方式(僅適用現在使用者)"
+msgstr "個人篩選器(僅適用現在使用者)"
 
 #: Merge.rc:1441
 #: Merge.rc:1907
@@ -2267,15 +2276,16 @@ msgstr "個人篩選方式(僅適用現在使用者)"
 msgid "Archive Support"
 msgstr "支援壓縮"
 
+# 「以 shared installation 安裝7-Zip 外掛才有支援壓縮之條件：」「必須先安裝 7-Zip 外掛，才支援壓縮：」I suggest "The following options shall be invalid without 7-Zip inerface plugin installed first." instead.
 #: Merge.rc:1444
 #, c-format
 msgid "Archive support requires 7-Zip plugin installed:"
-msgstr "必須先安裝 7-Zip 外掛，才支援壓縮："
+msgstr "必須先安裝 7-Zip 介面外掛，才支援壓縮："
 
 #: Merge.rc:1446
 #, c-format
 msgid "Download 7-zip Plugin"
-msgstr "下載 7-zip 外掛"
+msgstr "下載 7-Zip 介面外掛"
 
 #: Merge.rc:1447
 #, c-format
@@ -2285,12 +2295,12 @@ msgstr "壓縮檔支援(&E)"
 #: Merge.rc:1449
 #, c-format
 msgid "&Use stand-alone 7-Zip if available"
-msgstr "若有獨立於 WinMerge 的 7-Zip，則用之(&U)"
+msgstr "使用獨立的 7-Zip 軟體(&U)"
 
 #: Merge.rc:1452
 #, c-format
 msgid "U&se local 7-Zip from WinMerge folder"
-msgstr "使用不獨立於 WinMerge 的 7-Zip(&S)"
+msgstr "使用不獨立於 WinMerge 的 7-Zip 核心元件(&S)"
 
 #: Merge.rc:1454
 #, c-format
@@ -2411,7 +2421,7 @@ msgstr "取消(&C)"
 #: Merge.rc:1531
 #, c-format
 msgid "Test Filter"
-msgstr "測試篩選方式"
+msgstr "測試篩選器"
 
 #: Merge.rc:1534
 #, c-format
@@ -3001,13 +3011,41 @@ msgstr ""
 
 #: Merge.rc:1837
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 msgstr ""
+"\n"
+"檔案比較\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.檔案比較\n"
+"WinMerge 檔案比較"
 
 #: Merge.rc:1838
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
 msgstr ""
+"\n"
+"資料夾比較\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.資料夾比較\n"
+"WinMerge 資料夾比較"
 
 #: Merge.rc:1845
 #, c-format
@@ -3037,7 +3075,7 @@ msgstr ""
 #: Merge.rc:1866
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr ""
+msgstr "絕不保證自由軟體 WinMerge 無瑕疵。歡迎在某些條件下再散發它；細節見說明選單中的 GNU 公共授權證。"
 
 #: Merge.rc:1872
 #, c-format
@@ -3077,12 +3115,12 @@ msgstr "全部皆是(&A)"
 #: Merge.rc:1885
 #, c-format
 msgid "&No"
-msgstr "不(&N)"
+msgstr "否(&N)"
 
 #: Merge.rc:1886
 #, c-format
 msgid "No to a&ll"
-msgstr "全部皆不(&L)"
+msgstr "全部皆否(&L)"
 
 #: Merge.rc:1887
 #, c-format
@@ -3186,7 +3224,7 @@ msgid ""
 "\n"
 "Please use values 1 - %1."
 msgstr ""
-"跳格大小欄中之值不是 WinMegrge 所能接受。\n"
+"跳格大小欄中之值不是 WinMerge 所能接受。\n"
 "\n"
 "請用值 1 - %1。"
 
@@ -3244,22 +3282,22 @@ msgstr "XML 檔 (*.xml)|*.xml|All Files (*.*)|*.*||"
 #: Merge.rc:1964
 #, c-format
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: Merge.rc:1965
 #, c-format
 msgid "UTF-8 (B)"
-msgstr ""
+msgstr "UTF-8 (B)"
 
 #: Merge.rc:1966
 #, c-format
 msgid "UCS-2 LE"
-msgstr ""
+msgstr "UCS-2 LE"
 
 #: Merge.rc:1967
 #, c-format
 msgid "UCS-2 BE"
-msgstr ""
+msgstr "UCS-2 BE"
 
 #: Merge.rc:1973
 #, c-format
@@ -3299,7 +3337,7 @@ msgstr "位置"
 #: Merge.rc:1985
 #, c-format
 msgid "Filters"
-msgstr "篩選方式"
+msgstr "篩選器"
 
 #: Merge.rc:1986
 #, c-format
@@ -3314,12 +3352,12 @@ msgstr "描述"
 #: Merge.rc:1988
 #, c-format
 msgid "Select filename for new filter"
-msgstr "以新篩選方式選取檔名"
+msgstr "為新篩選器檔選取檔名"
 
 #: Merge.rc:1989
 #, c-format
 msgid "File Filters (*.flt)|*.flt|All Files (*.*)|*.*||"
-msgstr "檔案篩選方式 (*.flt)|*.flt|所有檔案 (*.*)|*.*||"
+msgstr "檔案篩選器 (*.flt)|*.flt|所有檔案 (*.*)|*.*||"
 
 #: Merge.rc:1991
 #, c-format
@@ -3329,9 +3367,10 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
-"找不到檔案篩選方式樣板檔！\n"
+"找不到檔案篩選器樣板檔！\n"
 "\n"
-"請複製檔案 %1 到 WinMerge/檔案篩選方式-資料夾。"
+"請複製檔案 %1 到 WinMerge/檔案篩選器-資料夾：\n"
+"%2。"
 
 #: Merge.rc:1993
 #, c-format
@@ -3341,7 +3380,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"無法複製檔案篩選方式樣板檔到檔案篩選方式資料夾：\n"
+"無法複製檔案篩選器樣板檔到檔案篩選器資料夾：\n"
 "%1\n"
 "\n"
 "請確定有該資料夾，而且允許寫入。"
@@ -3353,9 +3392,9 @@ msgid ""
 "\n"
 "Please select filter folder in Options/System."
 msgstr ""
-"尚未定義使用者的檔案篩選方式資料夾！\n"
+"尚未定義使用者的檔案篩選器資料夾！\n"
 "\n"
-"請於「選項/系統」中選定檔案篩選方式資料夾。"
+"請於「選項/系統」中選定檔案篩選器資料夾。"
 
 #: Merge.rc:1997
 #, c-format
@@ -3365,7 +3404,7 @@ msgid ""
 "\n"
 "Maybe the file is read-only?"
 msgstr ""
-"無法刪除檔案篩選方式檔\n"
+"無法刪除檔案篩選器檔\n"
 "%1\n"
 "\n"
 "它是唯讀檔？"
@@ -3373,7 +3412,7 @@ msgstr ""
 #: Merge.rc:1998
 #, c-format
 msgid "Locate filter file to install"
-msgstr "鎖定檔案篩選方式檔以安裝"
+msgstr "找到檔案篩選器檔以安裝"
 
 #: Merge.rc:2000
 #, c-format
@@ -3382,14 +3421,14 @@ msgid ""
 "\n"
 "Could not copy new filter file to filter folder."
 msgstr ""
-"無法安裝檔案篩選方式檔。\n"
+"無法安裝檔案篩選器檔。\n"
 "\n"
-"不能複製新檔案篩選方式檔到檔案篩選方式資料夾。"
+"不能複製新篩選器檔到檔案篩選器資料夾。"
 
 #: Merge.rc:2002
 #, c-format
 msgid "Filter file already exists. Overwrite existing filter?"
-msgstr "檔案篩選方式檔已存在。覆蓋之？"
+msgstr "檔案篩選器檔已存在。覆蓋之？"
 
 #: Merge.rc:2008
 #, c-format
@@ -3429,12 +3468,12 @@ msgstr "未設標題的右邊"
 #: Merge.rc:2025
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "他們的(檔案)"
 
 #: Merge.rc:2026
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "我的(檔案)"
 
 #: Merge.rc:2032
 #, c-format
@@ -3570,7 +3609,7 @@ msgstr "兩邊路徑無效！"
 #: Merge.rc:2073
 #, c-format
 msgid "Choose two files to enable unpacker selection."
-msgstr "選擇兩個檔案以啟用解包器選取。"
+msgstr "選兩檔以啟用解包器選取。"
 
 #: Merge.rc:2074
 #, c-format
@@ -3603,12 +3642,18 @@ msgstr ""
 #: Merge.rc:2083
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "無法解析衝突檔。"
 
 #: Merge.rc:2084
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
+"檔案\n"
+"%1\n"
+"不是衝突檔。"
 
 #: Merge.rc:2090
 #, c-format
@@ -3643,7 +3688,9 @@ msgid ""
 "\n"
 "Continue anyway?"
 msgstr ""
-"無法備份原始的檔案。\n"
+"無法備份原始的檔案：\n"
+"%1\n"
+"\n"
 "仍舊繼續嗎？"
 
 #: Merge.rc:2097
@@ -3659,7 +3706,9 @@ msgstr ""
 "無法儲存檔案。\n"
 "%1\n"
 "%2\n"
-"要以不同名稱儲存檔案嗎？"
+"要：\n"
+"\t-以不同名稱儲存檔案 (按「確定」)\n"
+"\t-放棄目前操作(按「取消」)？"
 
 #: Merge.rc:2098
 #, c-format
@@ -3860,7 +3909,7 @@ msgstr "刪除兩邊的選取項目"
 #: Merge.rc:2148
 #, c-format
 msgid "Hide selected item(s) (on the fly filter)"
-msgstr "隱藏選取項目 (自動篩選方式)"
+msgstr "隱藏選取項目 (自動篩選器)"
 
 #: Merge.rc:2149
 #, c-format
@@ -4504,18 +4553,18 @@ msgstr ""
 "\n"
 "要將所有換行字元視若相同嗎？\n"
 "\n"
-"注意：如要將所有換行字元視若\n"
-"\n"
-"相同，在選項對話盒之「比較」\n"
-"\n"
-"頁籤(編輯 > 選項) 設定選項成\n"
-"\n"
-"「忽略換行字元之差異」。"
+"注意：如要將所有換行字元視若相同，得在(編輯 > 選項) 選項對話盒之「比較」頁籤設定選項成「忽略換行字元之差異」。"
 
 #: Merge.rc:2349
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
 msgstr ""
+"檔案 '%1' 的檔案結束字元類型不同(Windows/Unix/Mac)。\n"
+"以目前選項，它們會統一到主類型。\n"
+"你要變更選項並保留不同的檔案結束字元嗎？"
 
 #: Merge.rc:2350
 #, c-format
@@ -4534,8 +4583,18 @@ msgstr "編輯器不能開啟二進制檔。"
 
 #: Merge.rc:2353
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
 msgstr ""
+"資料夾僅存於另一邊，因此不能開啟\n"
+"\n"
+"想新增一個相合的資料夾：\n"
+"%1\n"
+"到另一邊，然後開啟兩夾嗎？"
 
 #: Merge.rc:2359
 #, c-format
@@ -4702,7 +4761,7 @@ msgid ""
 "See manual for more info about archive support and how to enable it."
 msgstr ""
 "未啟用壓縮支援。\n"
-"找不到支援壓縮的所有必要元件 (7-zip 和/或 Merge7z*.dll)。\n"
+"找不到支援壓縮的所有必要元件 (7-Zip 和/或 Merge7z*.dll)。\n"
 "請參考手冊取得更多有關壓縮支援和啟用壓縮的資訊。"
 
 #: Merge.rc:2418
@@ -5139,17 +5198,17 @@ msgstr "混合"
 #: Merge.rc:2562
 #, c-format
 msgid "LF"
-msgstr ""
+msgstr "LF"
 
 #: Merge.rc:2563
 #, c-format
 msgid "CR"
-msgstr ""
+msgstr "CR"
 
 #: Merge.rc:2564
 #, c-format
 msgid "CRLF"
-msgstr ""
+msgstr "CRLF"
 
 #: Merge.rc:2571
 #, c-format
@@ -5214,17 +5273,17 @@ msgstr "變更右邊檔案/資料夾唯讀狀態"
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "轉換行尾字元為 Windows 式"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "轉換行尾字元為 Unix 式"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "轉換行尾字元為 Mac 式"
 
 #: Merge.rc:2592
 #, c-format
@@ -5243,7 +5302,7 @@ msgstr ""
 #: Merge.rc:2594
 #, c-format
 msgid "Open and resolve conflict file"
-msgstr ""
+msgstr "開啟並解決衝突檔"
 
 #: Merge.rc:2600
 #, c-format
@@ -5405,13 +5464,21 @@ msgstr "顯示資料夾比較之統計對話盒"
 
 #: Merge.rc:2632
 #, c-format
-msgid "Select the current user interface language\nLanguage"
+msgid ""
+"Select the current user interface language\n"
+"Language"
 msgstr ""
+"選取目前使用者介面語言\n"
+"語言"
 
 #: Merge.rc:2633
 #, c-format
-msgid "Shows differences inside lines with different colors\nShow Line Difference"
+msgid ""
+"Shows differences inside lines with different colors\n"
+"Show Line Difference"
 msgstr ""
+"以不同色彩顯示行內差異\n"
+"顯示行內差異"
 
 #: Merge.rc:2634
 #, c-format
@@ -5448,42 +5515,62 @@ msgstr ""
 #: Merge.rc:2638
 #, c-format
 msgid "Increase text size"
-msgstr ""
+msgstr "加大文字"
 
 #: Merge.rc:2639
 #, c-format
 msgid "Decrease text size"
-msgstr ""
+msgstr "減小文字"
 
 #: Merge.rc:2640
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "恢復文字原始大小"
 
 #: Merge.rc:2646
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"捲到上一差異\n"
+"上一差異 (Alt + Up)"
 
 #: Merge.rc:2647
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
 msgstr ""
+"捲到下一差異\n"
+"下一差異 (Alt + Down)"
 
 #: Merge.rc:2648
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
 msgstr ""
+"捲到最初差異\n"
+"最初差異 (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
+"捲到目前差異\n"
+"目前差異 (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
 msgstr ""
+"捲到最末差異\n"
+"最末差異 (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5562,7 +5649,7 @@ msgstr "產生補綴檔"
 #: Merge.rc:2666
 #, c-format
 msgid "Select and modify filters"
-msgstr "選取並修改篩選方式"
+msgstr "選取並修改篩選器"
 
 #: Merge.rc:2667
 #, c-format
@@ -5608,8 +5695,12 @@ msgstr "卸載所有外掛再重新載入 (適用發展者)"
 
 #: Merge.rc:2685
 #, c-format
-msgid "Activates next visible file\nActivate next File"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
 msgstr ""
+"切換焦點至另一檔\n"
+"切換至另一檔"
 
 #: Merge.rc:2686
 #, c-format
@@ -5618,8 +5709,12 @@ msgstr "關閉所有開啟視窗"
 
 #: Merge.rc:2692
 #, c-format
-msgid "Opens the WinMerge Help\nWinMerge Help"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
 msgstr ""
+"開啟 WinMerge 說明檔\n"
+"WinMerge 說明"
 
 #: Merge.rc:2693
 #, c-format
@@ -5629,7 +5724,7 @@ msgstr "輸出目前 WinMerge 版本資訊及其組態到文字檔案"
 #: Merge.rc:2694
 #, c-format
 msgid "Display the GNU General Public License"
-msgstr ""
+msgstr "顯示 GNU 一般公共授權證"
 
 #: Merge.rc:2695
 #, c-format
@@ -5638,13 +5733,21 @@ msgstr "私人編譯：%1"
 
 #: Merge.rc:2696
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
 msgstr ""
+"開啟發行說明\n"
+"發行說明"
 
 #: Merge.rc:2697
 #, c-format
-msgid "Opens the translations website\nTranslations"
+msgid ""
+"Opens the translations website\n"
+"Translations"
 msgstr ""
+"開啟翻譯文網站\n"
+"翻譯"
 
 #: Merge.rc:2703
 #, c-format
@@ -5699,7 +5802,7 @@ msgstr "不顯示移位的區塊"
 #: Merge.rc:2724
 #, c-format
 msgid "Display all moved blocks"
-msgstr ""
+msgstr "顯示所有移位的區塊"
 
 #: Merge.rc:2725
 #, c-format
@@ -5829,12 +5932,12 @@ msgstr "PHP"
 #: Merge.rc:2761
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "可攜式物件"
 
 #: Merge.rc:2762
 #, c-format
 msgid "PowerShell"
-msgstr ""
+msgstr "PowerShell"
 
 #: Merge.rc:2763
 #, c-format
