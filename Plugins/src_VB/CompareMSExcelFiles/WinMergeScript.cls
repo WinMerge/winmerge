@@ -73,6 +73,34 @@ End Property
 Public Property Get LastErrorString() As String
     LastErrorString = myLastErrorString
 End Property
+
+Private Function GetMacrosHead(objDoc As Object) As String
+    Dim oTextToSave As String
+    
+    On Error GoTo NoMacrosHead
+    
+    oTextToSave = ""
+    If Not objDoc.VBProject Is Nothing Then
+        oTextToSave = oTextToSave & "The VB Project Name is " & objDoc.VBProject.Name & vbCrLf
+        If Not objDoc.VBProject.VBComponents Is Nothing Then
+            oTextToSave = oTextToSave & "There are " & objDoc.VBProject.VBComponents.Count & _
+                " Microsoft Excel macros in this workbook." & vbCrLf
+        End If
+    End If
+    GetMacrosHead = oTextToSave
+    Exit Function
+    
+NoMacrosHead:
+    If Err = -2147188160 Or Err = -2146822220 Or Err = 1004 Then
+        oTextToSave = "Cannot get Macros." & vbCrLf & _
+            "   To allow WinMerge to compare macros, use MS Office to alter the settings in the Macro Security for the current application." & vbCrLf & _
+            "   The Trust access to Visual Basic Project feature should be turned on to use this feature in WinMerge." & vbCrLf
+    Else
+        oTextToSave = oTextToSave & "There are no Microsoft Excel macros in this workbook." & vbCrLf
+    End If
+    GetMacrosHead = oTextToSave
+End Function
+
 Private Function GetComponentCount(objDoc As Object)
 '  Returns 0 if there is a problem accessing VBComponents
   On Error GoTo ErrHandler
@@ -137,16 +165,15 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     
     Dim oTextToSave As String
     
-    ' Document Properties that are not easy to get
+    On Error Resume Next
+    
     oTextToSave = oTextToSave & "Document Properties" & vbCrLf
-    oTextToSave = oTextToSave + "There are " & objDoc.Excel4MacroSheets.Count & _
+    oTextToSave = oTextToSave & "There are " & objDoc.Excel4MacroSheets.Count & _
         " Microsoft Excel 4.0 macro sheets in this workbook." & vbCrLf
-    If ProjectComponents > 0 Then
-        oTextToSave = oTextToSave + "The VB Project Name is " & objDoc.VBProject.Name & vbCrLf
-        oTextToSave = oTextToSave + "There are " & objDoc.VBProject.VBComponents.Count & _
-            " Microsoft Excel macros in this workbook." & vbCrLf
-    End If
-
+    oTextToSave = oTextToSave & GetMacrosHead(objDoc)
+    
+    On Error GoTo 0
+    
     Dim itemValue As String
     Dim hFile As Long
     
@@ -154,15 +181,16 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     On Error Resume Next
     Dim p As Object
     For Each p In objDoc.BuiltinDocumentProperties
-        oTextToSave = oTextToSave + p.Name
+        oTextToSave = oTextToSave & p.Name
         oTextToSave = oTextToSave & " = "
         itemValue = GetDocProperty(objDoc, p.Name)
         If itemValue <> "" Then
-            oTextToSave = oTextToSave + itemValue
+            oTextToSave = oTextToSave & itemValue
         End If
-        oTextToSave = oTextToSave + vbCrLf
+        oTextToSave = oTextToSave & vbCrLf
     Next
-    On Error GoTo 0
+    On Error GoTo CleanUp
+    
     oTextToSave = oTextToSave & vbCrLf
 
     ' Get the Macros
@@ -214,14 +242,14 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     End If
     Dim iCountNames As Integer
     For iCountNames = 1 To nms.Count
-        oTextToSave = oTextToSave + nms(iCountNames).Name
+        oTextToSave = oTextToSave & nms(iCountNames).Name
         oTextToSave = oTextToSave & " = "
         itemValue = "?"
         itemValue = nms(iCountNames).Value
         If itemValue <> "" Then
-            oTextToSave = oTextToSave + itemValue
+            oTextToSave = oTextToSave & itemValue
         End If
-        oTextToSave = oTextToSave + vbCrLf
+        oTextToSave = oTextToSave & vbCrLf
         iCountNames = iCountNames + 1
     Next
     On Error GoTo 0
@@ -231,14 +259,14 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
     For Each objSheet In objDoc.Worksheets
 
         objSheet.Activate
-        oTextToSave = oTextToSave + objSheet.Name + vbCrLf
+        oTextToSave = oTextToSave & objSheet.Name & vbCrLf
         
         ' Get the comments for this sheet
         Dim cmt As Object
         Dim c As Object
         Set cmt = objSheet.Comments
         For Each c In cmt
-            oTextToSave = oTextToSave + c.Author + " " + c.Text + vbCrLf
+            oTextToSave = oTextToSave & c.Author & " " & c.Text & vbCrLf
         Next
 
         arrTempPaths(iCountSheets) = CreateTempFile("WMS")
@@ -257,12 +285,12 @@ Public Function UnpackFile(fileSrc As String, fileDst As String, ByRef bChanged 
         Do While Not EOF(1)   ' Loop until end of file.
            Line Input #hFile, oTextLine   ' Read line into variable.
            
-           oTextToSave = oTextToSave + oTextLine + vbCrLf
+           oTextToSave = oTextToSave & oTextLine & vbCrLf
         Loop
         
         Close #hFile
 
-        oTextToSave = oTextToSave + vbCrLf
+        oTextToSave = oTextToSave & vbCrLf
         iCountSheets = iCountSheets + 1
     Next
     
