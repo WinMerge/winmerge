@@ -1,6 +1,6 @@
 #
 # The MIT License
-# Copyright (c) 2007 Kimmo Varis
+# Copyright (c) 2007-2008 Kimmo Varis
 # Permission is hereby granted, free of charge, to any person obtaining
 # a copy of this software and associated documentation files
 # (the "Software"), to deal in the Software without restriction, including
@@ -142,7 +142,8 @@ def get_and_create_dist_folder(folder):
     """Formats a folder name for version-specific distribution folder
     and creates the folder."""
 
-    dist_folder = os.path.join(dist_root_folder, folder)
+    abs_folder = os.path.realpath(dist_root_folder)
+    dist_folder = os.path.join(abs_folder, folder)
     if os.path.exists(dist_folder):
         print 'Folder: ' + dist_folder + ' already exists!'
         print 'If you want to re-create this version, remove folder first!'
