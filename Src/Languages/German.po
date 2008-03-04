@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-02-13 00:33+0100\n"
+"PO-Revision-Date: 2008-03-04 22:45+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -159,7 +159,7 @@ msgstr "Proje&kt speichern..."
 #: Merge.rc:119
 #, c-format
 msgid "Recent Projects"
-msgstr ""
+msgstr "Kürzliche Projekte"
 
 #: Merge.rc:121
 #: Merge.rc:202
@@ -629,17 +629,17 @@ msgstr "&Zeilenenden konvertieren nach"
 #: Merge.rc:332
 #, c-format
 msgid "&Windows (CRLF)"
-msgstr ""
+msgstr "&Windows (CRLF)"
 
 #: Merge.rc:333
 #, c-format
 msgid "&Unix (LF)"
-msgstr ""
+msgstr "&Unix (LF)"
 
 #: Merge.rc:334
 #, c-format
 msgid "&Mac (CR)"
-msgstr ""
+msgstr "&Mac (CR)"
 
 #: Merge.rc:337
 #, c-format
@@ -1584,22 +1584,22 @@ msgstr "&Filterordner:"
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "Su&chen..."
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "Temporärer Dateienordner"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "Temporärer Ordner vom S&ystem:"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "&Benutzerdefinierter Ordner:"
 
 #: Merge.rc:999
 #: Merge.rc:1015
@@ -1832,7 +1832,7 @@ msgstr "&Groß-/Kleinschreibung ignorieren"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "&Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren"
 
 #: Merge.rc:1159
 #, c-format
@@ -3022,8 +3022,12 @@ msgstr "Rechtsklick auf den Pfad zum Kopieren."
 
 #: Merge.rc:1865
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
+"Entwickler:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, c-format
@@ -3232,22 +3236,22 @@ msgstr "XML-Dateien (*.xml)|*.xml|Alle Dateien (*.*)|*.*||"
 #: Merge.rc:1964
 #, c-format
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: Merge.rc:1965
 #, c-format
 msgid "UTF-8 (B)"
-msgstr ""
+msgstr "UTF-8 (B)"
 
 #: Merge.rc:1966
 #, c-format
 msgid "UCS-2 LE"
-msgstr ""
+msgstr "UCS-2 LE"
 
 #: Merge.rc:1967
 #, c-format
 msgid "UCS-2 BE"
-msgstr ""
+msgstr "UCS-2 BE"
 
 #: Merge.rc:1973
 #, c-format
@@ -5101,17 +5105,17 @@ msgstr ""
 #: Merge.rc:2557
 #, c-format
 msgid "Win"
-msgstr ""
+msgstr "Win"
 
 #: Merge.rc:2558
 #, c-format
 msgid "Mac"
-msgstr ""
+msgstr "Mac"
 
 #: Merge.rc:2559
 #, c-format
 msgid "Unix"
-msgstr ""
+msgstr "Unix"
 
 #: Merge.rc:2560
 #, c-format
@@ -5121,17 +5125,17 @@ msgstr "Gemischt"
 #: Merge.rc:2562
 #, c-format
 msgid "LF"
-msgstr ""
+msgstr "LF"
 
 #: Merge.rc:2563
 #, c-format
 msgid "CR"
-msgstr ""
+msgstr "CR"
 
 #: Merge.rc:2564
 #, c-format
 msgid "CRLF"
-msgstr ""
+msgstr "CRLF"
 
 #: Merge.rc:2571
 #, c-format
@@ -5196,17 +5200,17 @@ msgstr "Ändert den rechten Schreibschutz-Status."
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "Konvertiert Zeilenumbrüche ins Windows-Format."
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "Konvertiert Zeilenumbrüche ins Unix-Format."
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "Konvertiert Zeilenumbrüche ins Macintosh-Format."
 
 #: Merge.rc:2592
 #, c-format
