@@ -287,8 +287,7 @@
         case TAB_TRANSLATIONS: //if "Translations" ...
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/translations/index.php\" title=\"Index\">Index</a></li>\n";
-          $temp .= "  <li><a href=\"http://winmerge.org/Wiki/Translations\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
-          //$temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
           $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
           $temp .= "</ul>\n";
           break;
