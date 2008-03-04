@@ -6,6 +6,7 @@ WinMerge 2.8 Release Candidate
   Update developers list in splash screen (#1891548)
   Better error handling for Excel plugin (#1510293)
   Add macros, bookmarks and document properties to Word plugin (#1510298)
+  Add *.dot (document template) extension to Word plugin (r5120)
   BugFix: Copy&Paste from VB6 added binary chars (#1904355)
   Translation updates:
   - Chinese Traditional (#1905323)
