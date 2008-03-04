@@ -154,6 +154,7 @@
             <seg>
               <simplelist type="inline">
                 <member><filename class="extension">*.doc</filename></member>
+                <member><filename class="extension">*.dot</filename></member>
               </simplelist>
             </seg>
             <seg>No</seg>

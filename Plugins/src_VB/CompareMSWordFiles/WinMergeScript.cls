@@ -59,7 +59,7 @@ Public Property Get PluginDescription() As String
 End Property
 
 Public Property Get PluginFileFilters() As String
-    PluginFileFilters = "\.doc$"
+    PluginFileFilters = "\.doc;\.dot$"
 End Property
 
 Public Property Get PluginIsAutomatic() As Boolean
