@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-02-22 16:00+0100\n"
+"PO-Revision-Date: 2008-03-04 16:04+0100\n"
 "Last-Translator: Hans Eriksson <hans.ericson at bredband.net>\n"
 "Language-Team: Swedish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -3026,7 +3026,7 @@ msgstr "Högerklicka på sökvägen för att kopiera"
 #: Merge.rc:1865
 #, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr ""
+msgstr "Utvecklare:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, c-format
