@@ -5,6 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.9.0.1
   Translation updates:
   - German (r5130)
+  - Swedish (#1908289)
 
 WinMerge 2.8 RC - 2008-03-04 (r5125)
   Update developers list in splash screen (#1891548)
