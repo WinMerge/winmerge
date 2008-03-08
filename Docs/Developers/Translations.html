@@ -61,6 +61,10 @@
     </ul>
   </li>
   <li><a href="#shellextension">Translating ShellExtension</a></li>
+    <ul>
+	  <li><a href="#shellext_update">Update existing ShellExtension translation</a></li>
+	  <li><a href="#shellext_new">Add new ShellExtension translation</a></li>
+	</ul>
   <li><a href="#installer">Translating Installer</a></li>
   <li><a href="#readme">Translating ReadMe.txt</a></li>
 </ul>
@@ -76,6 +80,14 @@ listed together. </p>
 <p>We have a list with the <a href="http://winmerge.org/Wiki/index.php?title=Translations">
 status of current translations</a>, so you can check if your language is
 already available and/or it needs to be updated.</p>
+
+<p>
+There is also a mailing list intended for WinMerge translators in SourceForge.net:
+<a href="https://sourceforge.net/mailarchive/forum.php?forum_name=winmerge-translate">
+Translators mailing list</a>. Please consider joining to the list if you are
+interested in translating WinMerge. Developers send translation related information
+and notices to this list.
+</p>
 
 <h3><a name="whatToTranslate">What can I translate?</a></h3>
 <p>Listings below show what you can actually translate for WinMerge. And what is
@@ -179,8 +191,33 @@ Src\Languages\</a></code> folder in the source code.</p>
 <p>ShellExtension can be translated by translating all the strings <em>between
 quotes</em> inside a <code>.rc</code> resource file. ShellExtension resource
 files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/ShellExtension/Languages/">
-WinMerge\ShellExtension\Languages\</a></code> folder. There are only few
-strings to translate so it should be fast to do.</p>
+WinMerge\ShellExtension\Languages\</a></code> folder in the WinMerge source tree.
+</p>
+
+<h4><a name="shellext_update">Update existing ShellExtension translation</a></h4>
+<ol>
+  <li>Get the <code><em>YourLanguage</em>.rc</code> file from <code>ShellExtension\Languages</code>
+    -folder.</li>
+  <li>Open the file into normal text editor (Notepad is ok).</li>
+  <li>Translate few english it has. All the translated strings are in quotes
+    after <code>IDS_XXXX</code> -string</li>
+  <li>Upload the translated file to SF.net
+  <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a
+    patch</a>.</li>
+</ol>
+
+<h4><a name="shellext_new">Add new ShellExtension translation</a></h4>
+<ol>
+  <li>Get the <code>ShellExtensionTemplate.rc</code> file from <code>ShellExtension\Languages</code>
+    -folder.</li>
+  <li>Rename The file to <code><em>YourLanguage</em>.rc</code>.</li>
+  <li>Open the file into normal text editor (Notepad is ok).</li>
+  <li>Translate few english it has. All the translated strings are in quotes
+    after <code>IDS_XXXX</code> -string</li>
+  <li>Upload the translated file to SF.net
+  <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">as a
+    patch</a>.</li>
+</ol>
 
 <h3><a name="installer">Translating Installer</a></h3>
 <p>Installer translation files are in <code><a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/trunk/Installer/InnoSetup/Languages/">
