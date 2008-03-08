@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-03-04 22:45+0100\n"
+"PO-Revision-Date: 2008-03-08 22:56+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -398,7 +398,7 @@ msgstr "&WinMerge Hilfe\tF1"
 #: Merge.rc:476
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "&Versionshinweise"
 
 #: Merge.rc:178
 #: Merge.rc:292
@@ -766,12 +766,12 @@ msgstr "&Normal\tStrg+*"
 #: Merge.rc:389
 #, c-format
 msgid "Syntax Highlight"
-msgstr ""
+msgstr "Syntaxhervorhebung"
 
 #: Merge.rc:394
 #, c-format
 msgid "&Lock Panes"
-msgstr ""
+msgstr "Ausschnitte &fixieren"
 
 #: Merge.rc:395
 #, c-format
@@ -846,7 +846,7 @@ msgstr "Ver&gleichen"
 #: Merge.rc:491
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "&Speziell Vergleichen"
 
 #: Merge.rc:493
 #, c-format
@@ -1700,12 +1700,12 @@ msgstr "Spalten anpassen"
 #: Merge.rc:1071
 #, c-format
 msgid "Move &Up"
-msgstr ""
+msgstr "Nach &oben"
 
 #: Merge.rc:1072
 #, c-format
 msgid "Move &Down"
-msgstr ""
+msgstr "Nach &unten"
 
 #: Merge.rc:1082
 #, c-format
@@ -1873,7 +1873,7 @@ msgstr "Editor"
 #: Merge.rc:1182
 #, c-format
 msgid "&Highlight syntax"
-msgstr "&Syntax-Hervorhebung"
+msgstr "&Syntax hervorheben"
 
 #: Merge.rc:1184
 #, c-format
@@ -2368,7 +2368,7 @@ msgstr "Betrifft"
 #: Merge.rc:1514
 #, c-format
 msgid "(Affects)"
-msgstr ""
+msgstr "(Betrifft)"
 
 #: Merge.rc:1515
 #, c-format
@@ -2933,7 +2933,7 @@ msgstr ""
 #: Merge.rc:1805
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
-msgstr ""
+msgstr "Ausschnitte automatisch in der Größe anpassen.\nAusschnitte fixieren"
 
 #: Merge.rc:1811
 #, c-format
@@ -2997,12 +2997,12 @@ msgstr ""
 #: Merge.rc:1837
 #, c-format
 msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
-msgstr ""
+msgstr "\nDateivergleich\n\n\n\nWinMerge.Dateivergleich\nWinMerge Dateivergleich"
 
 #: Merge.rc:1838
 #, c-format
 msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
-msgstr ""
+msgstr "\nOrdnervergleich\n\n\n\nWinMerge.Ordnervergleich\nWinMerge Ordnervergleich"
 
 #: Merge.rc:1845
 #, c-format
@@ -3592,7 +3592,7 @@ msgstr ""
 #: Merge.rc:2083
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "Fehler beim Analysieren der Konflikt-Datei."
 
 #: Merge.rc:2084
 #, c-format
@@ -4890,12 +4890,12 @@ msgstr "IBM"
 #: Merge.rc:2479
 #, c-format
 msgid "EBCDIC"
-msgstr ""
+msgstr "EBCDIC"
 
 #: Merge.rc:2480
 #, c-format
 msgid "IBM EBCDIC Cyrillic"
-msgstr ""
+msgstr "IBM EBCDIC Kyrillisch"
 
 #: Merge.rc:2486
 #, c-format
@@ -5080,27 +5080,27 @@ msgstr ""
 #: Merge.rc:2545
 #, c-format
 msgid "Approximates ISO-8859-2"
-msgstr ""
+msgstr "Ähnlich ISO-8859-2"
 
 #: Merge.rc:2548
 #, c-format
 msgid "Approximates ISO-8859-1"
-msgstr ""
+msgstr "Ähnlich ISO-8859-2"
 
 #: Merge.rc:2549
 #, c-format
 msgid "Approximates ISO-8859-7"
-msgstr ""
+msgstr "Ähnlich ISO-8859-2"
 
 #: Merge.rc:2550
 #, c-format
 msgid "Approximates ISO-8859-9"
-msgstr ""
+msgstr "Ähnlich ISO-8859-2"
 
 #: Merge.rc:2551
 #, c-format
 msgid "Approximates ISO-8859-8"
-msgstr ""
+msgstr "Ähnlich ISO-8859-2"
 
 #: Merge.rc:2557
 #, c-format
@@ -5391,13 +5391,21 @@ msgstr "Zeigt die Vergleichsstatistik an."
 
 #: Merge.rc:2632
 #, c-format
-msgid "Select the current user interface language\nLanguage"
+msgid ""
+"Select the current user interface language\n"
+"Language"
 msgstr ""
+"Wählt die Sprache der Benutzeroberfläche.\n"
+"Sprache"
 
 #: Merge.rc:2633
 #, c-format
-msgid "Shows differences inside lines with different colors\nShow Line Difference"
+msgid ""
+"Shows differences inside lines with different colors\n"
+"Show Line Difference"
 msgstr ""
+"Zeigt Unterschiede innerhalb der Zeilen mit unterschiedlicher Farbe an.\n"
+"Zeilenunterschied anzeigen"
 
 #: Merge.rc:2634
 #, c-format
@@ -5448,28 +5456,48 @@ msgstr "Textzoom auf Standardgröße zurücksetzen."
 
 #: Merge.rc:2646
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"Bewegt die Anzeige zum vorigen Unterschied.\n"
+"Vorheriger Unterschied (Alt+Hoch)"
 
 #: Merge.rc:2647
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
 msgstr ""
+"Bewegt die Anzeige zum nächsten Unterschied.\n"
+"Nächster Unterschied (Alt+Runter)"
 
 #: Merge.rc:2648
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
 msgstr ""
+"Bewegt die Anzeige zum ersten Unterschied.\n"
+"Erster Unterschied (Alt+Pos1)"
 
 #: Merge.rc:2649
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
+"Bewegt die Anzeige zum aktuellen Unterschied.\n"
+"Aktueller Unterschied (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
 msgstr ""
+"Bewegt die Anzeige zum letzten Unterschied.\n"
+"Letzter Unterschied (Alt+Ende)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5592,8 +5620,12 @@ msgstr "Entlädt alle Plugins und lädt sie neu (für Entwickler)."
 
 #: Merge.rc:2685
 #, c-format
-msgid "Activates next visible file\nActivate next File"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
 msgstr ""
+"Aktiviert die nächste sichtbare Datei\n"
+"Aktiviere nächste Datei"
 
 #: Merge.rc:2686
 #, c-format
@@ -5626,8 +5658,12 @@ msgstr ""
 
 #: Merge.rc:2696
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
 msgstr ""
+"Öffnet das Versionshinweisen-Dokument.\n"
+"Versionshinweise"
 
 #: Merge.rc:2697
 #, c-format
