@@ -112,6 +112,9 @@ def cleanup_build():
         if os.path.exists('build/scew'):
             shutil.rmtree('build/scew', True)
 
+        if os.path.exists('build/Manual'):
+            shutil.rmtree('build/Manual',True)
+
     except EnvironmentError, einst:
         print 'Error deleting files: '
         print einst
@@ -234,12 +237,15 @@ def build_shellext(vs_cmd):
     call([vs_cmd, solution_path, '/rebuild', 'Unicode Release MinDependency'])
 
 def build_manual():
-    """Builds manual's HTML Help (CHM) version."""
+    """Builds manual's HTML Help (CHM) version for user install and
+    HTML version for the Web. HTML version is created with ads."""
 
     curdir = os.getcwd()
     os.chdir('Docs/Users/Manual/build')
     print 'Build HTML Help (CHM) manual...' 
     call(['build_htmlhelp.bat'])
+    print 'Build HTML manual for Web with ads...'
+    call(['build_html.bat', 'withads'])
     print 'Manual build finished.'
     os.chdir(curdir)
 
