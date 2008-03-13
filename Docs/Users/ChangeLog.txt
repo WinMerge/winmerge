@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8.0
+  BugFix: Installer could create a registry access error (#1909967)
   Translation updates:
   - Swedish (#1908289)
 
