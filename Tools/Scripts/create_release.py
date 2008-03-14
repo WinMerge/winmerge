@@ -47,12 +47,10 @@
 # CONFIGURATION:
 # Set these variables to match your environment and folders you want to use
 
-# Subversion binary - set this to absolute path to svn,exe
+# Subversion binary - set this to absolute path to svn.exe
 svn_binary = 'C:\\Program Files\\Subversion\\bin\\svn.exe'
-# Path to VS binary to run - set this to Visual Studio IDE executable folder
-vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003\\Common7\\IDE'
-# VS IDE executable - set this to command starting Visual Studio IDE
-vs_bin = 'devenv.com'
+# Visual Studio path
+vs_path = 'C:\\Program Files\\Microsoft Visual Studio .NET 2003'
 # Relative path where to create a release folder
 dist_root_folder = 'distrib'
 
@@ -64,6 +62,17 @@ import os.path
 import sys
 import getopt
 import shutil
+
+def get_vs_ide_bin():
+    """Gets a full path to the Visual Studio IDE executable to run."""
+
+    # These are identical for VS2003.Net, VS2005 and VS2008
+    rel_path = 'Common7/IDE'
+    vs_bin = 'devenv.com'
+
+    vs_ide_path = os.path.join(vs_path, rel_path)
+    vs_cmd_path = os.path.join(vs_ide_path, vs_bin)
+    return vs_cmd_path
 
 def cleanup_build():
     """Deletes all build files around folder structure"""
@@ -185,22 +194,22 @@ def cleanup_dlls_from_plugins(dist_src_folder):
 def build_libraries():
     """Builds library targets: expat, scew and pcre."""
 
-    vs_cmd = os.path.join(vs_path, vs_bin)
+    vs_cmd = get_vs_ide_bin()
     cur_path = os.getcwd()
 
     print 'Build expat library...'
     solution_path = os.path.join(cur_path, 'Externals/expat/lib/expat.vcproj')
-    #print sol_path
+    #print solution_path
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
 
     print 'Build scew library...'
     solution_path = os.path.join(cur_path, 'Externals/scew/win32/scew.vcproj')
-    #print sol_path
+    #print solution_path
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
 
     print 'Build pcre library...'
     solution_path = os.path.join(cur_path, 'Externals/pcre/dll_pcre/pcre.vcproj')
-    #print sol_path
+    #print solution_path
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
 
 def build_targets():
@@ -208,7 +217,7 @@ def build_targets():
 
     build_libraries()
 
-    vs_cmd = os.path.join(vs_path, vs_bin)
+    vs_cmd = get_vs_ide_bin()
 
     build_winmerge(vs_cmd)
     build_shellext(vs_cmd)
@@ -356,7 +365,7 @@ def check_tools():
         print 'Please check script configuration and/or make sure Subversion is installed.'
         return False
 
-    vs_cmd = os.path.join(vs_path, vs_bin)
+    vs_cmd = get_vs_ide_bin()
     if not os.path.exists(vs_cmd):
         print 'Cannot find Visual Studio IDE binary from:'
         print vs_cmd
@@ -372,7 +381,7 @@ def usage():
     print '    -v: n, --version= n set release version'
     print '    -c, --cleanup clean up build files (temp files, libraries, executables)'
     print '    -l, --libraries build libraries (expat, scew, pcre) only'
-    print '  For example: release -v: 2.7.7.1'
+    print '  For example: create_release -v: 2.7.7.1'
 
 def main(argv):
     version = '0.0.0.0'
