@@ -6,6 +6,7 @@ WinMerge 2.9.0.1
   BugFix: Installer could create a registry access error (#1909967)
   Translation updates:
   - German (r5130, r5139)
+  - Russian (#1914466)
   - Swedish (#1908289)
 
 WinMerge 2.8 RC - 2008-03-04 (r5125)
