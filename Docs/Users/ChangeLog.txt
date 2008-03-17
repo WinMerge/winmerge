@@ -8,6 +8,7 @@ WinMerge 2.8.0
     data (#1915424)
   BugFix: Print area was not clipped correctly. (#1915536)
   Translation updates:
+  - Japanese (r5153)
   - Russian (#1914466)
   - Swedish (#1908289)
 
