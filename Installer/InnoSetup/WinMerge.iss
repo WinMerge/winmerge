@@ -854,58 +854,24 @@ Begin
     StringChange(strNew, ExpandConstant('{commonprograms}\'), '')
 
     {if the user does have a previous start menu location then..}
-    If strOld <> '' THen
+    If strOld <> '' Then
         Begin
             {If the current and previous start menu locations are different then...}
-		    If Uppercase(strOld) <> UpperCase(strNew) Then
-		        Begin
-		            strMessage := ExpandConstant('{cm:DeletePreviousStartMenu}');
+            If Uppercase(strOld) <> UpperCase(strNew) Then
+                Begin
+                    strMessage := ExpandConstant('{cm:DeletePreviousStartMenu}');
                     strMessage := Format(strMessage, [strOld, strNew]);
 
-		              {Display a dialog asking the user if they'd like to delete the previous start menu group}
-		            {If they'd like to delete the previous start menu group then...}
-					If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
-						Begin
-						    strOld := ExpandConstant('{commonprograms}\') + strOld;
-
-                            {Removes each of the start menu icons to make the folder empty}
-                            strShortcut := strOld + '\' + ExpandConstant('{cm:ReadMe}') + '.lnk';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\Read Me.lnk';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\' + ExpandConstant('{cm:UninstallProgram,WinMerge}') + '.lnk';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\Uninstall WinMerge.lnk';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\' + ExpandConstant('{cm:UsersGuide}') + '.lnk';
-                            DeleteFile(strShortcut)
-
-                            strShortcut := strOld + '\User''s Guide.lnk';
-			                DeleteFile(strShortcut)
-
-                            strShortcut := strOld + '\' + ExpandConstant('{cm:ProgramOnTheWeb,WinMerge}') + '.url';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\Winmerge on the Web.lnk';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\Winmerge on the Web.url';
-			                DeleteFile(strShortcut)
-
-			                strShortcut := strOld + '\WinMerge.lnk';
-			                DeleteFile(strShortcut)
-
-			                {Deletes the empty start menu directory (This has to already be empty in order for this to work, hence the
-			                file deletions above)}
-			                RemoveDir(strOld)
-			            end;
-		              {end; }
-		        end;
-        end;
+                    {Display a dialog asking the user if they'd like to delete the previous start menu group}
+                    {If they'd like to delete the previous start menu group then...}
+                    If Msgbox(strMessage, mbConfirmation, mb_YesNo) = mrYes Then
+                        Begin
+                            strOld := ExpandConstant('{commonprograms}\') + strOld;
+                            {Remove old start menu}
+                            DelTree(strOld, True, True, True);
+                        End;
+                End;
+        End;
 End;
 
 {This event procedure is queed each time the user changes pages within the installer}

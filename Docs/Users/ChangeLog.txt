@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.9.0.1
   Installer: Use correct way to create start menu web link (#1913919)
+  Installer: Simplify DeletePreviousStartMenu() function (#1913949)
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
