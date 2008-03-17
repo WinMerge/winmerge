@@ -9,6 +9,7 @@ WinMerge 2.9.0.1
   BugFix: Print area was not clipped correctly. (#1915536)
   Translation updates:
   - German (r5130, r5139)
+  - Japanese (r5152)
   - Russian (#1914466)
   - Swedish (#1908289)
 

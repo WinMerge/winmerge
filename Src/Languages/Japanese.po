@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-02-23 22:43+0900\n"
+"PO-Revision-Date: 2008-03-18 06:00+0900\n"
 "Last-Translator: Takashi Sawanaka <sawanaka at d1.dion.ne.jp>\n"
 "Language-Team: Japanese <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -627,17 +627,17 @@ msgstr "改行コードの変換(&C)"
 #: Merge.rc:332
 #, c-format
 msgid "&Windows (CRLF)"
-msgstr ""
+msgstr "&Windows (CRLF)"
 
 #: Merge.rc:333
 #, c-format
 msgid "&Unix (LF)"
-msgstr ""
+msgstr "&Unix (LF)"
 
 #: Merge.rc:334
 #, c-format
 msgid "&Mac (CR)"
-msgstr ""
+msgstr "&Mac (CR)"
 
 #: Merge.rc:337
 #, c-format
@@ -1828,7 +1828,7 @@ msgstr "大文字と小文字を区別しない(&C)"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "改行文字の違いを無視する(&R) (Windows/Unix/Mac)"
 
 #: Merge.rc:1159
 #, c-format
@@ -2126,8 +2126,12 @@ msgstr "PATH上のプラグイン:"
 
 #: Merge.rc:1312
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
 msgstr ""
+"再度このメッセージを表示しない(&M)。\n"
+"(ヘルプメニューからこのメッセージを表示できます。)"
 
 #: Merge.rc:1316
 #, c-format
@@ -3054,8 +3058,12 @@ msgstr "右クリックでパスをコピー"
 
 #: Merge.rc:1865
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, c-format
@@ -4544,8 +4552,14 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
 msgstr ""
+"ファイル'%1'内に異なるタイプ(Windows/Unix/Mac)のEOLが存在しています。\n"
+" 現在のオプション設定では、主なEOLに統一されます。\n"
+" オプションを変更して、異なるEOLを保持するようにしますか?"
 
 #: Merge.rc:2350
 #, c-format
@@ -5222,17 +5236,17 @@ msgstr " PB"
 #: Merge.rc:2583
 #, c-format
 msgid "Save the left file"
-msgstr "左のファイルを保存します"
+msgstr "左側のファイルを保存します"
 
 #: Merge.rc:2584
 #, c-format
 msgid "Save the right file"
-msgstr "右のファイルを保存します"
+msgstr "右側のファイルを保存します"
 
 #: Merge.rc:2585
 #, c-format
 msgid "Save the left file with name..."
-msgstr "左のファイルを名前を付けて保存します..."
+msgstr "左側のファイルを名前を付けて保存します..."
 
 #: Merge.rc:2586
 #, c-format
@@ -5242,27 +5256,27 @@ msgstr "右のファイルを名前を付けて保存します..."
 #: Merge.rc:2587
 #, c-format
 msgid "Change left file/dir read-only status"
-msgstr "左のファイル/フォルダをリードオンリー状態に変更します"
+msgstr "左側のファイル/フォルダをリードオンリー状態に変更します"
 
 #: Merge.rc:2588
 #, c-format
 msgid "Change right file/dir read-only status"
-msgstr "右のファイル/フォルダをリードオンリー状態に変更します"
+msgstr "右側のファイル/フォルダをリードオンリー状態に変更します"
 
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "EOLをWindowsタイプに変換します"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "EOLをUnixタイプに変換します"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "EOLをMacタイプに変換します"
 
 #: Merge.rc:2592
 #, c-format
@@ -5443,13 +5457,21 @@ msgstr "フォルダ比較統計ダイアログを表示します。"
 
 #: Merge.rc:2632
 #, c-format
-msgid "Select the current user interface language\nLanguage"
+msgid ""
+"Select the current user interface language\n"
+"Language"
 msgstr ""
+"現在のユーザーインターフェース言語を選択します\n"
+"言語"
 
 #: Merge.rc:2633
 #, c-format
-msgid "Shows differences inside lines with different colors\nShow Line Difference"
+msgid ""
+"Shows differences inside lines with different colors\n"
+"Show Line Difference"
 msgstr ""
+"行内の差異を色を変えて表示します\n"
+"行内の差異を表示"
 
 #: Merge.rc:2634
 #, c-format
@@ -5500,28 +5522,48 @@ msgstr "拡大したフォントをデフォルトサイズにリセットします"
 
 #: Merge.rc:2646
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"前の差異へ移動します\n"
+"前の差異 (Alt+Up)"
 
 #: Merge.rc:2647
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
 msgstr ""
+"次の差異へ移動します\n"
+"次の差異 (Alt+Down)"
 
 #: Merge.rc:2648
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
 msgstr ""
+"最初の差異に移動します\n"
+"最初の差異 (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
+"現在の差異に移動します\n"
+"現在の差異 (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
 msgstr ""
+"最後の差異に移動します\n"
+"最後の差異 (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5644,8 +5686,12 @@ msgstr "全てのプラグインを再読込みします (開発者用)"
 
 #: Merge.rc:2685
 #, c-format
-msgid "Activates next visible file\nActivate next File"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
 msgstr ""
+"次のファイルをアクティブにします\n"
+"次のファイルを選択"
 
 #: Merge.rc:2686
 #, c-format
