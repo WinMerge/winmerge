@@ -457,6 +457,10 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 		UINT uidFirstCmd)
 {
 	String strMenu = GetResourceString(IDS_CONTEXT_MENU);
+
+	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
+	uMenuIndex++;
+
 	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION, uidFirstCmd, strMenu.c_str());
 	
 	// Add bitmap
@@ -466,8 +470,11 @@ int CWinMergeShell::DrawSimpleMenu(HMENU hmenu, UINT uMenuIndex,
 	// Show menu item as grayed if more than two items selected
 	if (m_nSelectedItems > MaxFileCount)
 		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
+
+	uMenuIndex++;
+	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
 	
-	return 1;
+	return 2;
 }
 
 /// Create menu for advanced mode
@@ -479,7 +486,10 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 	String strCompareTo = GetResourceString(IDS_COMPARE_TO);
 	String strReselect = GetResourceString(IDS_RESELECT_FIRST);
 	int nItemsAdded = 0;
-	
+
+	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
+	uMenuIndex++;
+
 	switch (m_dwMenuState)
 	{
 	// No items selected earlier
@@ -537,6 +547,9 @@ int CWinMergeShell::DrawAdvancedMenu(HMENU hmenu, UINT uMenuIndex,
 		EnableMenuItem(hmenu, uMenuIndex, MF_BYPOSITION | MF_GRAYED);
 	}
 
+	uMenuIndex++;
+	InsertMenu(hmenu, uMenuIndex, MF_BYPOSITION | MF_SEPARATOR, 0, NULL);
+	
 	return nItemsAdded;
 }
 
