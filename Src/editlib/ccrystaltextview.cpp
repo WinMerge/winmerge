@@ -1136,6 +1136,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   VERIFY(pdc->ExtTextOut(ptOrigin.x, ptOrigin.y, ETO_CLIPPED,
                       &rcClip, LPCTSTR(line) + ibegin, nCount, pnWidths));
                   // Draw rounded rectangles around control characters
+                  pdc->SaveDC();
                   pdc->IntersectClipRect(&rcClip);
                   HDC hDC = pdc->m_hDC;
                   HGDIOBJ hBrush = ::GetStockObject(NULL_BRUSH);
@@ -1157,7 +1158,7 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
                   hPen = ::SelectObject(hDC, hPen);
                   ::DeleteObject(hPen);
                   hBrush = ::SelectObject(hDC, hBrush);
-                  pdc->SelectClipRgn(NULL);
+                  pdc->RestoreDC(-1);
                 }
 
               delete [] pnWidths;

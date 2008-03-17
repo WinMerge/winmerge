@@ -6,6 +6,7 @@ WinMerge 2.8.0
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
+  BugFix: Print area was not clipped correctly. (#1915536)
   Translation updates:
   - Russian (#1914466)
   - Swedish (#1908289)
