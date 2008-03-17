@@ -785,10 +785,10 @@ int CRegOptionsMgr::LoadValueFromReg(HKEY hKey, LPCTSTR strName,
 	
 	if (retValReg == ERROR_SUCCESS)
 	{
-		pData = new BYTE[size];
+		pData = new BYTE[size + sizeof(TCHAR)];
 		if (pData == NULL)
 			return OPT_ERR;
-		ZeroMemory(pData, size);
+		ZeroMemory(pData, size + sizeof(TCHAR));
 
 		// Get data
 		retValReg = RegQueryValueEx(hKey, strValueName.c_str(),
