@@ -399,9 +399,6 @@ Source: ..\..\Plugins\dlls\editor addin.sct; DestDir: {app}\MergePlugins; Flags:
 Source: ..\..\Plugins\dlls\insert datetime.sct; DestDir: {app}\MergePlugins; Flags: IgnoreVersion CompareTimeStamp; Components: Plugins
 Source: ..\..\Plugins\dlls\*.dll; DestDir: {app}\MergePlugins; Flags: promptifolder; Components: Plugins
 
-[INI]
-Filename: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Section: InternetShortcut; Key: URL; String: http://WinMerge.org/; Check: GroupCreated
-
 
 [Icons]
 ;Start Menu Icons
@@ -409,6 +406,7 @@ Name: {group}\WinMerge; Filename: {app}\{code:ExeName}
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe.txt; IconFileName: {win}\NOTEPAD.EXE
 Name: {group}\{cm:UsersGuide}; Filename: {app}\Docs\WinMerge.chm
 Name: {group}\{cm:UninstallProgram,WinMerge}; Filename: {uninstallexe}
+Name: {group}\{cm:ProgramOnTheWeb,WinMerge}; Filename: "http://winmerge.org/"
 
 ;Link to translated ReadMe in Start Menu
 Name: {group}\{cm:ReadMe}; Filename: {app}\Docs\ReadMe-Bulgarian.txt; IconFileName: {win}\NOTEPAD.EXE; Languages: Bulgarian
@@ -527,7 +525,6 @@ Name: {app}\Codecs; Type: filesandordirs
 Name: {app}\Formats; Type: filesandordirs
 Name: {app}\Lang; Type: filesandordirs
 
-Name: {group}\{cm:ProgramOnTheWeb,WinMerge}.url; Type: Files
 Name: {group}; Type: dirifempty
 Name: {app}; Type: dirifempty
 
