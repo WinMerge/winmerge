@@ -1,11 +1,12 @@
-@echo on
+@echo off
 if "%_ACP_ATLPROV%" == "" goto _MSDEV_BLD_ENV_(%_MSDEV_BLD_ENV_%)
 
 :_MSDEV_BLD_ENV_(1)
 cd
-echo %0
-echo $(IntDir) = %1
-echo $(TargetPath) = %2
+REM Enable echo lines below if you need to debug this script
+REM echo %0
+REM echo $(IntDir) = %1
+REM echo $(TargetPath) = %2
 REM Create English.pot and MergeLang.rc from Merge.rc
 cd Languages
 cscript CreateMasterPotFile.vbs

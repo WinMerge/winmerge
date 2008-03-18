@@ -1,4 +1,4 @@
-@echo on
+@echo off
 set info=echo *
 
 REM _ACP_ATLPROV was introduced in VC7. If not set, assume VC6.
@@ -25,9 +25,10 @@ exit
 %info% Configure
 
 cd
-echo %0
-echo $(IntDir) = %1
-echo $(TargetPath) = %2
+REM Enable echo lines below if you need to debug this script
+REM echo %0
+REM echo $(IntDir) = %1
+REM echo $(TargetPath) = %2
 del $(TargetPath)
 
 REM Create build directories
