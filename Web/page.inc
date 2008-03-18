@@ -287,6 +287,7 @@
         case TAB_TRANSLATIONS: //if "Translations" ...
           $temp .= "<ul id=\"subtabs\">\n";
           $temp .= "  <li><a href=\"/translations/index.php\" title=\"Index\">Index</a></li>\n";
+          $temp .= "  <li><a href=\"/translations/instructions.php\" title=\"Translations instructions\">Instructions</a></li>\n";
           $temp .= "  <li><a href=\"/translations/status_branch.php\" title=\"Translations Status (Branch)\">Status (Branch)</a></li>\n";
           $temp .= "  <li><a href=\"/translations/status_trunk.php\" title=\"Translations Status (Trunk)\">Status (Trunk)</a></li>\n";
           $temp .= "</ul>\n";
@@ -442,6 +443,38 @@
       $compare = create_function('$a,$b', $code);
       usort($array, $compare);
       return $array;
+    }
+    
+    /**
+     * get the content (between <body> and </body>) from a HTML file
+     */
+    function getContentFromHtmlFile($filename, $patterns = '', $replacements = '') {
+      $html = "";
+      if (file_exists($filename) == true) { //if the file exists...
+        $lines = file($filename);
+        $linescount = sizeof($lines);
+        
+        $insidebody = false;
+        for ($i = 0; $i < $linescount; $i++) { //for all lines...
+          $line = $lines[$i];
+          
+          if ($insidebody == false) { //if OUTSIDE <body>...
+            if (preg_match('#\<body#si', $line)) {
+              $insidebody = true;
+            }
+          }
+          else { //if INSIDE <body>...
+            if (preg_match('#\</body>#si', $line)) {
+              break;
+            }
+            if (($patterns != '') && ($replacements != '')) { //if text should be replaced...
+              $line = preg_replace($patterns, $replacements, $line);
+            }
+            $html .= $line;
+          }
+        }
+      }
+      return $html;
     }
     
     /**
