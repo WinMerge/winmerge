@@ -164,12 +164,14 @@
           <imageobject>
             <imagedata fileref="screenshots/ctx_menu_advanced.png"
                        format="PNG" />
-          </imageobject></para>
+          </imageobject>
 
-      <para><caption><para>Advanced WinMerge context menu</para></caption>
-        </mediaobject>After memorized path is used for compare it is
-      forgotten. So user cannot select one item to memorize and then compare
-      it against several paths.</para>
+          <caption><para>Advanced WinMerge context menu</para></caption>
+        </mediaobject></para>
+
+      <para>After memorized path is used for compare it is forgotten. So user
+      cannot select one item to memorize and then compare it against several
+      paths.</para>
 
       <tip>
         <para>Take benefit of <guilabel>Open</guilabel> dialog's MRU lists!
