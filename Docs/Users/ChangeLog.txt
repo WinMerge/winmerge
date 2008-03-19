@@ -10,7 +10,7 @@ WinMerge 2.9.0.1
     data (#1915424)
   BugFix: Print area was not clipped correctly. (#1915536)
   Translation updates:
-  - German (r5130, r5139)
+  - German (r5130, r5139, r5171)
   - Japanese (r5152)
   - Russian (#1914466)
   - Swedish (#1908289)
