@@ -17,7 +17,7 @@
     <title>Getting Files</title>
 
     <para>Latest releases can be always downloaded from WinMerge homepage:
-    <ulink url="http://www.winmerge.org/">WinMerge.org</ulink>. Note that
+    <ulink url="http://winmerge.org/">WinMerge.org</ulink>. Note that
     there may be some delay updating homepages for the latest releases, but
     project statuspage at <ulink
     url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink>
@@ -244,7 +244,7 @@
 
     <para>To install archive support, download and install 7-Zip plugin
     (Merge7zInstaller, see below) from <ulink
-    url="http://www.winmerge.org/">WinMerge.org</ulink>.</para>
+    url="http://winmerge.org/">WinMerge.org</ulink>.</para>
 
     <para>WinMerge automatically detects installed 7-zip in system, there is
     no need to any configuration.</para>
@@ -286,7 +286,7 @@
       at SourceForge.net: <ulink
       url="https://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957"
       userlevel="">7-Zip plugin</ulink> and of course from our homepage at
-      <ulink url="http://www.winmerge.org/">WinMerge.org</ulink>.</para>
+      <ulink url="http://winmerge.org/">WinMerge.org</ulink>.</para>
 
       <tip>
         <para>If you want to know immediately when we release new versions,

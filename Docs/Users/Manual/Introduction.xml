@@ -216,12 +216,8 @@
       coding. Translations, documentation and testing are important
       too.</para>
 
-      <para><ulink
-      url="http://winmerge.sourceforge.net/developer/index.php">Developer
-      pages</ulink> are good start if you want to help with development. We
-      have also created a <ulink
-      url="http://wiki.winmerge.org/">Developers-Wiki</ulink> for developer
-      documentation.</para>
+      <para>The <ulink url="http://wiki.winmerge.org/">Developers-Wiki</ulink>
+      is a good source of information if you want to help with WinMerge development.</para>
 
       <para><ulink url="http://winmerge.org/support/mailing-lists.php">
       Development-mailing</ulink> list is the preferred place for development

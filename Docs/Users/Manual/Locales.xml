@@ -148,7 +148,7 @@
     <para><orderedlist>
         <listitem>
           <simpara>Download the zipped release from <ulink
-          url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11403&amp;release_id=283717">WinMerge
+          url="http://winmerge.org/downloads/">WinMerge
           download</ulink> site.</simpara>
         </listitem>
 
@@ -195,7 +195,7 @@
     <title>Submitting a new translation</title>
 
     <para>If you would like to add your language to the list, look at the
-    <ulink url="http://www.winmerge.org/developer/l10n/index.php">on-line
+    <ulink url="http://winmerge.org/translations/">on-line
     documentation</ulink> for the details on how to do it. All translations
     are not complete so it would be nice if you can help improving them.
     Translating (or improving translation) does not require you to have all
