@@ -243,7 +243,7 @@
       </listitem>
 
       <listitem>
-        <simpara><guilabel>Directory</guilabel> : Relative folder name for
+        <simpara><guilabel>Folder</guilabel> : Relative folder name for
         compare path. If subfolders are not included this is empty.</simpara>
       </listitem>
 
@@ -269,9 +269,15 @@
 
     <itemizedlist>
       <listitem>
-        <simpara><guilabel>Binary</guilabel> : Column contains asterisk
-        "<guilabel>*</guilabel>" when file is binary. Handy for sorting and to
-        use with "<guilabel>Short Result</guilabel>"-column.</simpara>
+        <simpara><guilabel>Short Result</guilabel> : Result in shorter form
+        ("Right Only").</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara><guilabel>Binary</guilabel> : Column contains an asterisk
+        "<guilabel>*</guilabel>" when the file is a binary file. This is handy
+        for sorting and to use with "<guilabel>Short
+        Result</guilabel>"-column.</simpara>
       </listitem>
 
       <listitem>
@@ -286,18 +292,26 @@
 
       <listitem>
         <simpara><guilabel>Left Encoding</guilabel> &amp; <guilabel>Right
-        Encoding</guilabel> : File encoding.</simpara>
+        Encoding</guilabel> : File encoding. Shows codepage number for ANSI
+        files, and Unicode encoding for Unicode files.</simpara>
       </listitem>
 
       <listitem>
         <simpara><guilabel>Left File Version</guilabel> &amp; <guilabel>Right
         File Version</guilabel> : Version number from file if present. Note
-        that this is read for only some binary files.</simpara>
+        that this is read for only some binary file types known to usually
+        have a version resource.</simpara>
       </listitem>
 
       <listitem>
         <simpara><guilabel>Left Size</guilabel> &amp; <guilabel>Right
         Size</guilabel> : File size in bytes.</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara><guilabel>Left Size (Short)</guilabel> &amp; <guilabel>Right
+        Size (Short)</guilabel> : Shorter versions of file sizes, rounded to
+        kilo-, mega- or gigabytes.</simpara>
       </listitem>
 
       <listitem>
@@ -312,13 +326,14 @@
       </listitem>
 
       <listitem>
-        <simpara><guilabel>Ignored diff.</guilabel> : Amount of ignored
-        differences in files.</simpara>
+        <simpara><guilabel>Ignored Diff.</guilabel> : Amount of ignored
+        differences in files. These are differences ignored by line
+        filters.</simpara>
       </listitem>
 
       <listitem>
-        <simpara><guilabel>Left EOL &amp; Righ EOL</guilabel> : Show EOL style
-        (linefeed style) of files.</simpara>
+        <simpara><guilabel>Left EOL &amp; Right EOL</guilabel> : Show EOL
+        style (linefeed style) of files.</simpara>
       </listitem>
     </itemizedlist>
   </sect2>
@@ -333,8 +348,8 @@
     be compared by double-clicking with mouse over them or selecting them and
     pressing <keycap>Enter</keycap>.</para>
 
-    <para>Parent folder can be opened if it is not same directory. These two
-    icons indicate if parent folder can be opened:</para>
+    <para>Sometimes parent folder cannot be opened (no access to it). These
+    two icons indicate if parent folder can be opened:</para>
 
     <simplelist type="vert">
       <member><inlinemediaobject>
@@ -347,9 +362,20 @@
           <imageobject>
             <imagedata fileref="screenshots/folderup_disable.gif" format="GIF" />
           </imageobject>
-        </inlinemediaobject> Parent folder cannot be opened. It probably is
-      same directory for both sides.</member>
+        </inlinemediaobject> Parent folder cannot be opened.</member>
     </simplelist>
+
+    <para>It is possible to browse both sides to the same folder (<filename
+    class="directory">C:\Work\</filename> and <filename
+    class="directory">C:\Work\</filename>). 2.6 and earlier versions of
+    WinMerge prevented this, but it restricted usage in some cases. In such
+    case both sides contain the exactly same files and folders.</para>
+
+    <para>It is possible to select two different folders from the folder
+    compare and open them to different sides. First selected folder becomes
+    the left-side folder and second selected folder becomes the right-side
+    folder. This can be used in situation explained in previous paragraph when
+    there is same folder compared as both sides.</para>
   </sect2>
 
   <sect2>
@@ -392,9 +418,9 @@
       toolbar buttons and context menu. If multiple files are selected, or
       file to overwrite is read-only, confirmation dialog is shown.</para>
 
-      <para>Sometimes it is useful to copy certain files and/or directories to
-      another directory instead of another compared directory. This can be
-      done selecting "<guimenuitem>Copy/Left to...</guimenuitem>" or
+      <para>Sometimes it is useful to copy certain files and/or folders to
+      another folder instead of another compared folder. This can be done
+      selecting "<guimenuitem>Copy/Left to...</guimenuitem>" or
       "<guimenuitem>Copy/Right to...</guimenuitem>" items.</para>
 
       <para>Another file/folder operation is deleting. Items in another or
@@ -405,7 +431,7 @@
       undone if accidents happen. Note however recycle bin does not help if
       its disabled from Windows settings.</para>
 
-      <para>Moving is just shortcut for copy + delete.</para>
+      <para>Moving is just a shortcut for copy + delete.</para>
 
       <warning>
         <para>File/folder deletion cannot be undone if <guilabel>Recycle
@@ -612,6 +638,10 @@
     earlier versions of WinMerge user always had to do full refresh after
     editing files outside WinMerge. WinMerge 2.4 and later can refresh just
     selected items. Select <guimenuitem>Refresh</guimenuitem> from the context
-    menu.</para>
+    menu or <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>Refresh Selected</guimenuitem>
+      </menuchoice> from the main menu.</para>
   </sect2>
 </sect1>
