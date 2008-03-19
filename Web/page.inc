@@ -15,6 +15,7 @@
   define ('WINMERGE_2_2', '2.2');
   define ('WINMERGE_2_4', '2.4');
   define ('WINMERGE_2_6', '2.6');
+  define ('WINMERGE_2_8', '2.8');
   define ('TAB_DOWNLOADS', 'downloads');
   define ('TAB_SUPPORT', 'support');
   define ('TAB_TRANSLATIONS', 'translations');
@@ -187,6 +188,12 @@
       else { //if NOT "Home" ...
         $temp .= "  <li><a href=\"/index.php\">Home</a></li>\n";
       }
+      if ($this->_tab == WINMERGE_2_8) { //if WinMerge 2.8 ...
+        $temp .= "  <li><a href=\"/2.8/index.php\" id=\"current\">WinMerge&nbsp;2.8</a></li>\n";
+      }
+//      else { //if NOT WinMerge 2.8 ...
+//        $temp .= "  <li><a href=\"/2.8/index.php\">WinMerge&nbsp;2.8</a></li>\n";
+//      }
       if ($this->_tab == WINMERGE_2_6) { //if WinMerge 2.6 ...
         $temp .= "  <li><a href=\"/2.6/index.php\" id=\"current\">WinMerge&nbsp;2.6</a></li>\n";
       }
@@ -272,6 +279,15 @@
           $temp .= "  <li><a href=\"/2.6/changes.php\">Change History</a></li>\n";
           $temp .= "  <li><a href=\"/2.6/limitations.php\">Known Limitations</a></li>\n";
           $temp .= "  <li><a href=\"/2.6/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
+          $temp .= "</ul>\n";
+          break;
+        case WINMERGE_2_8: //if WinMerge 2.8 ...
+          $temp .= "<ul id=\"subtabs\">\n";
+          $temp .= "  <li><a href=\"/2.8/manual/index.html\" title=\"Manual\">Manual</a></li>\n";
+          $temp .= "  <li><a href=\"/2.8/screenshots.php\" title=\"Screenshots\">Screenshots</a></li>\n";
+          $temp .= "  <li><a href=\"/2.8/releasenotes.php\" title=\"Release Notes\">Release Notes</a> (<a href=\"/2.8/releasenotes.php#issues\" title=\"Known Issues\">Known Issues</a>)</li>\n";
+          $temp .= "  <li><a href=\"/2.8/changelog.php\" title=\"Change Log\">Change Log</a></li>\n";
+          $temp .= "  <li><a href=\"/2.8/manual/Faq.html\" title=\"Frequently asked questions\">FAQ</a></li>\n";
           $temp .= "</ul>\n";
           break;
         case TAB_SUPPORT: //if "Support" ...
@@ -478,7 +494,7 @@
     }
     
     /**
-     * convert a changelog file into html code
+     * convert a (old) changelog file into html code
      */
     function convertChanges2Html($filename) {
       $html = "<pre>\n";
@@ -500,6 +516,31 @@
       }
       $html .= "</pre>\n";
       
+      return $html;
+    }
+    
+    /**
+     * convert a (new) changelog file into html code
+     */
+    function convertChangeLog2Html($filename) {
+      $html = "";
+      if (file_exists($filename) == true) { //if the file exists...
+        $html .= "<pre>\n";
+        
+        $lines = file($filename);
+        $linescount = sizeof($lines);
+        
+        for ($i = 0; $i < $linescount; $i++) { //for all lines...
+          $line = $lines[$i];
+          
+          $line = preg_replace('#(WinMerge [0-9]\.[0-9]\.[0-9].*\))#si', '<h3>\\1</h3>', $line);
+          $line = preg_replace('#\(r([0-9]+)\)#si', '(<a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge?view=rev&amp;revision=\\1" target="_blank">r\\1</a>)', $line);
+          $line = preg_replace('#\#([0-9]+)#si', '<a href="http://sourceforge.net/support/tracker.php?aid=\\1" target="_blank">#\\1</a>', $line);
+          
+          $html .= $line;
+        }
+        $html .= "</pre>\n";
+      }
       return $html;
     }
   }
