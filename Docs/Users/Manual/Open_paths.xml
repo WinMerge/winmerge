@@ -116,6 +116,14 @@
     reason or another WinMerge shows Open-dialog for selecting valid
     paths.</para>
 
+    <para><mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/ctx_menu_simple.png" format="PNG" />
+        </imageobject>
+
+        <caption><para>Simple WinMerge context menu</para></caption>
+      </mediaobject></para>
+
     <sect3>
       <title>Advanced Shell Integration</title>
 
@@ -152,9 +160,16 @@
         </listitem>
       </orderedlist>
 
-      <para>After memorized path is used for compare it is forgotten. So user
-      cannot select one item to memorize and then compare it against several
-      paths.</para>
+      <para><mediaobject>
+          <imageobject>
+            <imagedata fileref="screenshots/ctx_menu_advanced.png"
+                       format="PNG" />
+          </imageobject></para>
+
+      <para><caption><para>Advanced WinMerge context menu</para></caption>
+        </mediaobject>After memorized path is used for compare it is
+      forgotten. So user cannot select one item to memorize and then compare
+      it against several paths.</para>
 
       <tip>
         <para>Take benefit of <guilabel>Open</guilabel> dialog's MRU lists!
@@ -173,8 +188,9 @@
       <para>Shell Integration by default does not include subfolders into
       comparison. This default behavior can be changed using <guilabel>Include
       Subfolders by Default</guilabel> option in System options. Default
-      behavior can be also changed by holding down Control -key while
-      selecting Compare-item from the Explorer context menu.</para>
+      behavior can be also changed by holding down <keycap>Control</keycap>
+      -key while selecting <guimenuitem>Compare</guimenuitem>-item from the
+      Explorer context menu.</para>
     </sect3>
   </sect2>
 
@@ -258,6 +274,8 @@
         <imageobject>
           <imagedata fileref="screenshots/projfile_save.png" format="PNG" />
         </imageobject>
+
+        <caption><para>Project File -dialog</para></caption>
       </mediaobject>
     </sect3>
 
