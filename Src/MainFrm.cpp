@@ -237,7 +237,7 @@ static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
  * @brief URL to help indes in internet.
  * We use internet help when local help file is not found (not installed).
  */
-static const TCHAR DocsURL[] = _T("http://winmerge.org/2.6/manual/index.html");
+static const TCHAR DocsURL[] = _T("http://winmerge.org/2.8/manual/index.html");
 
 /** @brief Release notes in HTML format. */
 static const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
