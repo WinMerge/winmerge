@@ -855,7 +855,7 @@ int CRegOptionsMgr::SaveValueToReg(HKEY hKey, LPCTSTR strValueName,
 		if (strVal.length() > 0)
 		{
 			retValReg = RegSetValueEx(hKey, (LPCTSTR)strValueName, 0, REG_SZ,
-					(LPBYTE)strVal.c_str(), strVal.length() * sizeof(TCHAR));
+					(LPBYTE)strVal.c_str(), (strVal.length() + 1) * sizeof(TCHAR));
 		}
 		else
 		{
