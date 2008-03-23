@@ -3234,8 +3234,21 @@ bool CMergeDoc::GetByteColoringOption() const
 /// Swap files and update views
 void CMergeDoc::SwapFiles()
 {
+	// Swap views
+	int nLeftViewId = m_pView[0]->GetDlgCtrlID();
+	int nRightViewId = m_pView[1]->GetDlgCtrlID();
+	m_pView[0]->SetDlgCtrlID(nRightViewId);
+	m_pView[1]->SetDlgCtrlID(nLeftViewId);
+
+	int nLeftDetailViewId = m_pDetailView[0]->GetDlgCtrlID();
+	int nRightDetailViewId = m_pDetailView[1]->GetDlgCtrlID();
+	m_pDetailView[0]->SetDlgCtrlID(nRightDetailViewId);
+	m_pDetailView[1]->SetDlgCtrlID(nLeftDetailViewId);
+
 	// Swap buffers and so on
 	swap<CDiffTextBuffer *>(&m_ptBuf[0], &m_ptBuf[1]);
+	swap<CMergeEditView *>(&m_pView[0], &m_pView[1]);
+	swap<CMergeDiffDetailView *>(&m_pDetailView[0], &m_pDetailView[1]);
 	swap<DiffFileInfo *>(&m_pSaveFileInfo[0], &m_pSaveFileInfo[1]);
 	swap<DiffFileInfo *>(&m_pRescanFileInfo[0], &m_pRescanFileInfo[1]);
 	swap<BUFFERTYPE>(&m_nBufferType[0], &m_nBufferType[1]);
@@ -3246,15 +3259,17 @@ void CMergeDoc::SwapFiles()
 	
 	m_diffList.Swap();
 
-	// Reattach text buffers
-	m_pView[MERGE_VIEW_LEFT]->ReAttachToBuffer(m_ptBuf[0]);
-	m_pView[MERGE_VIEW_RIGHT]->ReAttachToBuffer(m_ptBuf[1]);
-	m_pDetailView[0]->ReAttachToBuffer(m_ptBuf[0]);
-	m_pDetailView[1]->ReAttachToBuffer(m_ptBuf[1]);
+	m_ptBuf[0]->m_nThisPane = 0;
+	m_pView[MERGE_VIEW_LEFT]->m_nThisPane = 0;
+	m_pDetailView[0]->m_nThisPane = 0;
+	m_ptBuf[1]->m_nThisPane = 1;
+	m_pView[MERGE_VIEW_RIGHT]->m_nThisPane = 1;
+	m_pDetailView[1]->m_nThisPane = 1;
 
 	// Update views
 	UpdateHeaderPath(0);
 	UpdateHeaderPath(1);
+	GetParentFrame()->UpdateSplitter();
 
 	UpdateAllViews(NULL);
 }

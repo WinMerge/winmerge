@@ -10,6 +10,7 @@ WinMerge 2.8.0
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
   BugFix: Print area was not clipped correctly. (#1915536)
+  BugFix: Undo after pane swapping (#1915536, #1923625)
   Translation updates:
   - Japanese (r5153)
   - Russian (#1914466)
