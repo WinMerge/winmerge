@@ -646,6 +646,7 @@ void CChildFrame::UpdateAutoPaneResize()
 void CChildFrame::UpdateSplitter()
 {
 	m_wndSplitter.RecalcLayout();
+	m_wndDetailBar.UpdateBarHeight(0);
 }
 
 void CChildFrame::OnTimer(UINT_PTR nIDEvent) 

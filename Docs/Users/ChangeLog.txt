@@ -11,6 +11,7 @@ WinMerge 2.9.0.1
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
   BugFix: Print area was not clipped correctly. (#1915536)
+  BugFix: Undo after pane swapping (#1915536, #1923625)
   Translation updates:
   - German (r5130, r5139, r5171)
   - Japanese (r5152)
