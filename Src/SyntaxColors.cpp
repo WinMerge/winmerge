@@ -3,7 +3,7 @@
  *
  * @brief Implementation for SyntaxColors class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -11,7 +11,9 @@
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
 
+/** @brief Setting name for default colors. */
 static const TCHAR DefColorsPath[] =_T("DefaultSyntaxColors");
+/** @brief Setting name for user-defined custom colors. */
 static const TCHAR Section[] = _T("Custom Colors");
 
 /**
@@ -27,8 +29,9 @@ SyntaxColors::SyntaxColors()
 
 /**
  * @brief Copy constructor.
+ * @param [in] pColors Instance to copy.
  */
-SyntaxColors::SyntaxColors(SyntaxColors *pColors)
+SyntaxColors::SyntaxColors(const SyntaxColors *pColors)
 : m_pOptionsMgr(NULL)
 {
 	m_colors.SetSize(COLORINDEX_COUNT);
@@ -39,8 +42,9 @@ SyntaxColors::SyntaxColors(SyntaxColors *pColors)
 
 /**
  * @brief Copy colors from another instance.
+ * @param [in] Instance from which to copy colors.
  */
-void SyntaxColors::Clone(SyntaxColors *pColors)
+void SyntaxColors::Clone(const SyntaxColors *pColors)
 {
 	m_colors.SetSize(COLORINDEX_COUNT);
 	m_bolds.SetSize(COLORINDEX_COUNT);
@@ -48,14 +52,24 @@ void SyntaxColors::Clone(SyntaxColors *pColors)
 	m_bolds.Copy(pColors->m_bolds);
 }
 
+/**
+ * @brief Checks if given color is themeable.
+ * @param [in] nColorIndex Index of color to check.
+ * @return true if color is themeable, false otherwise.
+ */
 bool SyntaxColors::IsThemeableColorIndex(int nColorIndex) const
 {
-	int temp=0;
+	int temp = 0;
 	return GetSystemColorIndex(nColorIndex, &temp);
 }
 
 /**
- * @brief Get system color for this index (if this varies with theme)
+ * @brief Get system color for this index.
+ * Returns the system color for given index in the case it varies by
+ * used theme.
+ * @param [in] nColorIndex Index of color to get.
+ * @param [out] pSysIndex System color index, if any.
+ * @return true if system color index was found, false otherwise.
  */
 bool SyntaxColors::GetSystemColorIndex(int nColorIndex, int * pSysIndex) const
 {
