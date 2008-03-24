@@ -62,7 +62,7 @@ static const RECT CopyrightArea = { 10, 284, 539, 339 };
 /** @brief Font size for copyright text. */
 static const UINT CopyrightTextSize = 8;
 /** @brief Drawing style for copyright text. */
-static const UINT CopyrightTextStyle = DT_TOP | DT_WORDBREAK;
+static const UINT CopyrightTextStyle = DT_NOPREFIX | DT_TOP | DT_WORDBREAK;
 
 /** @brief Font used in splash screen texts. */
 static const TCHAR FontName[] = _T("Tahoma");
