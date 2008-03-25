@@ -24,12 +24,12 @@
  * @brief Implementation of splashscreen class
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "resource.h"
-
+#include "UnicodeString.h"
 #include "Picture.h"
 #include "Splash.h"
 #include "version.h"
@@ -42,16 +42,30 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 /** 
  * @brief Area for version text in splash image.
- * Text is right-aligned, so reserve space to left side for longer text.
  * @note Translations may have language name after version number.
  */
-static const RECT VersionTextArea = { 255, 5, 469, 20 };
+static const RECT VersionTextArea = { 346, 257, 547, 272 };
+/** @brief Font size for version text. */
+static const UINT VersionTextSize = 9;
+/** @brief Drawing style for version text. */
+static const UINT VersionTextStyle = DT_CENTER | DT_VCENTER;
 
 /** @brief Area for developers list. */
-static const RECT DevelopersArea = { 20, 88, 190, 210 };
+static const RECT DevelopersArea = { 16, 87, 315, 272 };
+/** @brief Font size for developers list text. */
+static const UINT DevelopersTextSize = 10;
+/** @brief Drawing style for developers list text. */
+static const UINT DevelopersTextStyle = DT_NOPREFIX | DT_TOP;
 
 /** @brief Area for copyright text. */
-static const RECT CopyrightArea = { 20, 210, 190, 330 };
+static const RECT CopyrightArea = { 10, 284, 539, 339 };
+/** @brief Font size for copyright text. */
+static const UINT CopyrightTextSize = 8;
+/** @brief Drawing style for copyright text. */
+static const UINT CopyrightTextStyle = DT_NOPREFIX | DT_TOP | DT_WORDBREAK;
+
+/** @brief Font used in splash screen texts. */
+static const TCHAR FontName[] = _T("Tahoma");
 
 /** @brief ID for the timer closing splash screen. */
 static const UINT_PTR SplashTimerID = 1;
@@ -211,12 +225,13 @@ void CSplashWnd::OnPaint()
 	CString s;
 	CFont versionFont;
 	CFont textFont;
+	CFont copyrightFont;
 	CFont *oldfont = NULL;
 
-	int fontHeight = -MulDiv(9, dc.GetDeviceCaps(LOGPIXELSY), 72);
+	int fontHeight = -MulDiv(VersionTextSize, dc.GetDeviceCaps(LOGPIXELSY), 72);
 	BOOL fontSuccess = versionFont.CreateFont(fontHeight, 0, 0, 0, FW_BOLD, FALSE, FALSE,
 		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
-		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, FontName);
 	if (fontSuccess)
 		oldfont = dc.SelectObject(&versionFont);
 
@@ -225,11 +240,12 @@ void CSplashWnd::OnPaint()
 	dc.SetBkMode(TRANSPARENT);
 	
 	RECT area = VersionTextArea;
-	dc.DrawText(s, &area, DT_RIGHT | DT_TOP);
+	dc.DrawText(s, &area, VersionTextStyle);
 
+	fontHeight = -MulDiv(DevelopersTextSize, dc.GetDeviceCaps(LOGPIXELSY), 72);
 	fontSuccess = textFont.CreateFont(fontHeight, 0, 0, 0, 0, FALSE, FALSE,
 		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
-		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial"));
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, FontName);
 	if (fontSuccess)
 	{
 		// We already stored oldfont in previous font change
@@ -240,23 +256,39 @@ void CSplashWnd::OnPaint()
 	}
 
 	String text = LoadResString(IDS_SPLASH_DEVELOPERS);
-	// Turn spaces between parts of names into non-breaking spaces
 
 	// avoid dereference of empty strings and the NULL termiated character
 	if (text.length() >= 0)
 	{
-		for (TCHAR *p = &*(text.end() - 1) ; p > &*text.begin() && *p != '\n' ; --p)
+		// Replace ", " with linefeed in developers list text to get
+		// developers listed a name per line in the about dialog
+		std::string::size_type pos = text.rfind(_T(", "));
+		while (pos != std::string::npos)
 		{
-			if (*p == _T('\x20') && p[-1] != _T(','))
-				*p = _T('\xA0');
+			text.replace(pos, 2, _T("\n"), 1);
+			pos = text.rfind(_T(", "), pos - 1);
 		}
 	}
 
 	area = DevelopersArea;
-	dc.DrawText(text.c_str(), &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	dc.DrawText(text.c_str(), &area, DevelopersTextStyle);
+
+	fontHeight = -MulDiv(CopyrightTextSize, dc.GetDeviceCaps(LOGPIXELSY), 72);
+	fontSuccess = copyrightFont.CreateFont(fontHeight, 0, 0, 0, 0, FALSE, FALSE,
+		0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
+		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, FontName);
+	if (fontSuccess)
+	{
+		// We already stored oldfont in previous font change
+		if (oldfont == NULL)
+			oldfont = dc.SelectObject(&copyrightFont);
+		else
+			dc.SelectObject(&copyrightFont);
+	}
+
 	text = LoadResString(IDS_SPLASH_GPLTEXT);
 	area = CopyrightArea;
-	dc.DrawText(text.c_str(), &area, DT_NOPREFIX | DT_TOP | DT_WORDBREAK);
+	dc.DrawText(text.c_str(), &area, CopyrightTextStyle);
 
 	if (oldfont != NULL)
 		dc.SelectObject(oldfont);
