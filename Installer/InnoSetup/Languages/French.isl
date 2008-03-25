@@ -64,7 +64,7 @@ AboutSetupMenuItem=&A propos...
 AboutSetupTitle=A Propos de l'assistant d'installation
 AboutSetupMessage=%1 version %2%n%3%n%nPage d'accueil de %1 :%n%4
 AboutSetupNote=
-TranslatorNote=French translation maintained by Pierre Yager (pierre@levosgien.net)
+TranslatorNote=Entretien de la traduction par Jean-François Jolin (jean-f-j at users.sourceforge.net)
 
 ; *** Buttons
 ButtonBack=< &Précédent
@@ -303,7 +303,7 @@ StatusUninstalling=Désinstallation de %1...
 ;Inno Setup Built-in Custom Messages
 NameAndVersion=%1 version %2
 AdditionalIcons=Icônes supplémentaires :
-OptionalFeatures=Optional Features:
+OptionalFeatures=Caractéristiques optionnelles:
 CreateDesktopIcon=Créer une icône sur le &Bureau
 CreateQuickLaunchIcon=Créer une icône dans la barre de &Lancement rapide
 ProgramOnTheWeb=Page d'accueil de %1
@@ -333,7 +333,7 @@ BulgarianLanguage=Menus et dialogues Bulgare
 CatalanLanguage=Menus et dialogues Catalan
 ChineseSimplifiedLanguage=Menus et dialogues Chinois (Simplifié)
 ChineseTraditionalLanguage=Menus et dialogues Chinois (Traditionnel)
-CroatianLanguage=Croatian menus and dialogs
+CroatianLanguage=Menus et dialogues Croate
 CzechLanguage=Menus et dialogues Tchécoslovaque
 DanishLanguage=Menus et dialogues Danois
 DutchLanguage=Menus et dialogues Néerlandais
