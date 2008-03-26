@@ -15,6 +15,7 @@ WinMerge 2.9.0.1
   BugFix: Print area was not clipped correctly. (#1915536)
   BugFix: Undo after pane swapping (#1915536, #1923625)
   Translation updates:
+  - Brazilian (#1913723)
   - French (#1920380)
   - German (r5130, r5139, r5171)
   - Japanese (r5152)
