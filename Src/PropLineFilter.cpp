@@ -38,6 +38,8 @@ CPropLineFilter::CPropLineFilter()
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
+	m_psp.hIcon = AfxGetApp()->LoadIcon(IDI_LINEFILTER);
+	m_psp.dwFlags |= PSP_USEHICON;
 }
 
 CPropLineFilter::~CPropLineFilter()
