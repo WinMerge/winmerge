@@ -3,6 +3,7 @@
 #
 # Translators:
 # * Wender Firmino <wender at pta.com.br>
+# * Leonardo Peixoto <ljpeixoto at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -3573,7 +3574,7 @@ msgstr "Salvar alterações em %1?"
 #: Merge.rc:2092
 #, c-format
 msgid "%1 is marked read-only. Would you like to override the read-only file ? (No to save as new filename.)"
-msgstr "%1 está marcado somente-leitura.  Você gostaria de salvar suas alterações com um nome de diferente?"
+msgstr "%1 está marcado como somente-leitura. Você tem certeza de que quer sobrescrever esse arquivo ? (Responda Não para salvar com um nome diferente.)"
 
 #: Merge.rc:2093
 #, c-format
