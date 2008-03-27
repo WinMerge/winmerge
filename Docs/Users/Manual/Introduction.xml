@@ -3,9 +3,9 @@
   <title>Introduction to WinMerge</title>
 
   <para>WinMerge is an <ulink url="http://www.opensource.org/">Open
-  Source</ulink> visual text file differencing and merging tool for Win32
-  platforms. WinMerge can compare folders and files and present differences in
-  easy to understand and handle format.</para>
+  Source</ulink> visual text file differencing and merging tool for Windows.
+  WinMerge can compare folders and files and present differences in easy to
+  understand and handle format.</para>
 
   <para>WinMerge is highly useful for determining what has changed between
   project versions, and then merging changes between versions. WinMerge can be
@@ -17,16 +17,17 @@
   Several programming languages and other fileformats are syntax
   highlighted.</para>
 
-  <para>WinMerge is not an hex-editor. WinMerge can only inform user if binary
-  files are different or identical, but WinMerge does not allow merging or
-  editing binary files.</para>
+  <para>WinMerge is not an hex-editor. WinMerge can show binary files contents
+  and differences in them. But that information is meant for viewing only, and
+  editing binary files with WinMerge can break the files.</para>
 
   <para>Goal of WinMerge development is to make comparing and synch/merge of
-  directories and files easy and fast. While maintaining maximum reliability.
-  Easy of use reduces errors. Latest 2.6 version is considered a stable and
+  folders and files easy and fast. While maintaining maximum reliability. Easy
+  of use reduces errors. Latest 2.8 version is considered a stable and
   reliable program to use.</para>
 
-  <para>Please note that WinMerge is not a freeware, but it is <ulink
+  <para>Please note that WinMerge is not a freeware (unlike lots of sites in
+  web say), but it is <ulink
   url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licenced. We have
   given you a good tool for free, so please follow our licence and submit your
   improvements back to us. We are happy to get help improving WinMerge
@@ -48,7 +49,7 @@
       url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable
       versions</ulink> are recommended for most users. If you are unsure about
       what version to use - use latest stable version. Stable versions have
-      even second number, for example 2.2, 2.4 and 2.6.</para>
+      even second number, for example 2.4, 2.6 and 2.8.</para>
     </sect3>
 
     <sect3>
@@ -61,7 +62,7 @@
       versions</ulink> are for people who want to test latest features and
       improvements done after last stable version. Beta versions are not so
       extensively tested as stable versions are and probably have some bugs.
-      Beta versions have odd second number, for example 2.3 and 2.5. Beta
+      Beta versions have odd second number, for example 2.5 and 2.7. Beta
       versions can be used in production, they are not expected to have major
       bugs. But there is always a risk with using beta-level release, so
       consider it carefully. We have tried to release new stable series once a
@@ -97,7 +98,7 @@
 
       <para><mediaobject>
           <imageobject>
-            <imagedata fileref="art/WinMerge_versions.gif" format="GIF" />
+            <imagedata fileref="art/WinMerge_versions.png" format="PNG" />
           </imageobject>
 
           <caption><para> WinMerge stable and development
@@ -121,14 +122,15 @@
       development versions to stable versions. Unfortunately this is not
       always an easy task and errors can happen. And new bugs appear also in
       stable versions sometimes. It is just a real-life software development.
-      However, in general quality in branches increases and 2.4.6 is more
-      stable release than 2.4.0.</para>
+      However, in general quality in branches increases and 2.6.14 is better
+      release than 2.4.0, and using the latest stable branch release is always
+      recommended.</para>
 
       <para>What this branching also means is that stable versions don't get
-      many new features after a branch is created. Stable versions 2.4.0 and
-      2.4.6 are pretty much similar feature-wise. After 2.4 stable branch we
-      have already a created new stable branch 2.6. It has many imrovements
-      and fixes done after 2.4 branch was created.</para>
+      many new features after a branch is created. Stable versions 2.6.0 and
+      2.6.14 are pretty much similar feature-wise. After 2.6 stable branch we
+      have already a created new stable branch 2.8. It has many improvements
+      and fixes done after 2.6 branch was created.</para>
 
       <para>Many software vendors always increase their version numbers and
       say version with biggest version number is what people should use. If
@@ -136,8 +138,8 @@
       versions from stable branches and that would be true for WinMerge too.
       But as WinMerge is an open source software project we want to keep our
       development as open as possible. And do a lots of development version
-      releases. The latest development version can have version number 2.5.3.7
-      and the latest stable version can have version number 2.4.6.</para>
+      releases. The latest development version can have version number 2.9.1.0
+      and the latest stable version can have version number 2.6.14.</para>
     </sect3>
   </sect2>
 
@@ -199,8 +201,8 @@
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patches</ulink>
     and help improve this product! If you publish your altered version, you
     are required to publish changes source code too, it is what <ulink
-    url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licence is about.
-    Please respect it.</para>
+    url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licence is
+    about. Please respect it.</para>
 
     <para>While WinMerge development has been fast in last couple of years,
     all this work is done by people in their spare time. Nobody gets paid for
@@ -217,7 +219,11 @@
       too.</para>
 
       <para>The <ulink url="http://wiki.winmerge.org/">Developers-Wiki</ulink>
-      is a good source of information if you want to help with WinMerge development.</para>
+      is a good source of information if you want to help with WinMerge
+      development. There is a <ulink
+      url="http://winmerge.org/Wiki/Help_Needed">Help Needed</ulink> -page in
+      the wiki for more information about how to help with WinMerge
+      development.</para>
 
       <para><ulink url="http://winmerge.org/support/mailing-lists.php">
       Development-mailing</ulink> list is the preferred place for development
