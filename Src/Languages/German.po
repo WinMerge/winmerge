@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-03-19 23:10+0100\n"
+"PO-Revision-Date: 2008-03-28 00:10+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1832,7 +1832,7 @@ msgstr "&Groß-/Kleinschreibung ignorieren"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "&Zeilenumbruchunterschiede (Windows/Unix/Mac) ignorieren"
+msgstr "Zeilen&umbruchunterschiede (Windows/Unix/Mac) ignorieren"
 
 #: Merge.rc:1159
 #, c-format
@@ -1842,7 +1842,7 @@ msgstr "Verschobene &Blöcke erkennen"
 #: Merge.rc:1161
 #, c-format
 msgid "&Match similar lines"
-msgstr ""
+msgstr "Ä&hnliche Zeilen angleichen"
 
 #: Merge.rc:1163
 #, c-format
@@ -3324,6 +3324,10 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
+"Die Filtervorlage konnte nicht gefunden werden!\n"
+"\n"
+"Bitte kopieren Sie die Datei %1 in den Filterordner:\n"
+"%2."
 
 #: Merge.rc:1993
 #, c-format
@@ -3333,7 +3337,7 @@ msgid ""
 "\n"
 "Please make sure the folder exists and is writable."
 msgstr ""
-"Die Filtervorlage konnte nicht Filterordner kopiert werden:\n"
+"Die Filtervorlage konnte nicht in den Filterordner kopiert werden:\n"
 "%1\n"
 "\n"
 "Bitte stellen Sie sicher, dass der Ordner existiert und beschreibbar ist."
@@ -4004,6 +4008,13 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
+"Operation abgebrochen!\n"
+"\n"
+"Ordner-Inhalte auf der Festplatte haben sich geändert, der Pfad\n"
+"%1\n"
+"wurde nicht gefunden.\n"
+"\n"
+"Bitte aktualisieren Sie den Vergleich."
 
 #: Merge.rc:2192
 #, c-format
@@ -4507,8 +4518,14 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
 msgstr ""
+"Die Zeilenumbrüche sind von unterschiedlichen Formaten (Windows/Unix/Mac) in der Datei '%1'.\n"
+" Mit den aktuellen Einstellungen werden sie zum Hauptformat vereinheitlicht.\n"
+" Möchten Sie die Einstellungen ändern und die unterschiedlichen Zeilenumbrüche erhalten?"
 
 #: Merge.rc:2350
 #, c-format
