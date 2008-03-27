@@ -18,7 +18,7 @@ WinMerge 2.9.0.1
   Translation updates:
   - Brazilian (#1913723)
   - French (#1920380)
-  - German (r5130, r5139, r5171)
+  - German (r5130, r5139, r5171, r5203)
   - Japanese (r5152)
   - Russian (#1914466)
   - Swedish (#1908289)
