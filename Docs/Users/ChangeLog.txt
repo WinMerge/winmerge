@@ -9,6 +9,7 @@ WinMerge 2.9.0.1
   Update URLs and switch to 2.8 manual (#1919965)
   New splash screen (#1914869)
   Tab icons at Filter dialog (#1926531)
+  Add VS2003/VS2005 project files (#1926346)
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
