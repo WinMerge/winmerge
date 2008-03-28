@@ -219,11 +219,11 @@
     </sect3>
 
     <sect3>
-      <title>Ignore carriage return differences (DOS/UNIX/MAC)</title>
+      <title>Ignore carriage return differences (Windows/Unix/Mac)</title>
 
       <para>If this option is not set WinMerge does not detect EOL style
       differences as differences. If two lines differ only by EOL characters
-      (e.g. DOS EOL and Unix EOL) WinMerge detects files as identical.</para>
+      (e.g. Windows EOL and Unix EOL) WinMerge detects files as identical.</para>
     </sect3>
 
     <sect3>
@@ -390,20 +390,20 @@ EOL differences.</screen>
 454F 4C20 6469 6666 6572 656E 6365 732E</screen>
 
       <para>The example presents one simple text file with five lines of text.
-      All lines, except third, are terminated with DOS style EOL (0D0A). Third
+      All lines, except third, are terminated with Windows style EOL (0D0A). Third
       line has Unix style EOL (0D).</para>
 
       <para>If <guilabel>Preserve original EOL chars</guilabel>-option is not
-      set WinMerge determines file is meant to be DOS style file and converts
+      set WinMerge determines file is meant to be Windows style file and converts
       third line's last bytes to 0D0A before comparing. Missing EOL char is
       usually an error in file, so WinMerge is smart and fixes this error
       instead of reporting it as a difference. That's right, WinMerge changes
       user's file without telling about it to user. WinMerge also shows files
-      EOL style as <guilabel>DOS</guilabel> in filecompare statusbar.</para>
+      EOL style as <guilabel>Windows</guilabel> in filecompare statusbar.</para>
 
       <para>Advanced user might want to handle files without this automatic
       fixing, file might be handled in systems with different EOL styles (e.g.
-      Windows and Linux). In that case, user can set this option and see
+      Windows and Unix). In that case, user can set this option and see
       WinMerge showing EOL style for every line.</para>
     </sect3>
 

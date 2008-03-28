@@ -112,7 +112,7 @@
 
     <para>Next two panes show <guilabel>RO</guilabel> if file is protected and
     file's EOL style
-    ("<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>").
+    ("<guilabel>Windows</guilabel>/<guilabel>Unix</guilabel>/<guilabel>Mac</guilabel>").
     Note these two different ways to show EOL style. When per-line EOL style
     is not remembered, EOL style is shown on own pane in statusbar. And when
     per-line EOL style is remembered line's EOL style is shown after char
@@ -383,7 +383,7 @@
     tabulators, line ends). This is very useful for example when there are
     spaces in other file and tabulators in other. Also, if <guilabel>Preserve
     original EOL chars</guilabel> is enabled, WinMerge shows type of EOL
-    (<guilabel>DOS</guilabel>/<guilabel>UNIX</guilabel>/<guilabel>MAC</guilabel>).</para>
+    (<guilabel>Windows</guilabel>/<guilabel>Unix</guilabel>/<guilabel>Mac</guilabel>).</para>
   </sect2>
 
   <sect2>
