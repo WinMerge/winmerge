@@ -17,6 +17,7 @@ WinMerge 2.9.0.1
   BugFix: Undo after pane swapping (#1915536, #1923625)
   Translation updates:
   - Brazilian (#1913723)
+  - Chinese Traditional (#1927605)
   - French (#1920380)
   - German (r5130, r5139, r5171, r5203)
   - Japanese (r5152)

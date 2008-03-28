@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-02-28 00:05+0000\n"
-"PO-Revision-Date: 2008-03-01 22:22+0800\n"
+"POT-Creation-Date: 2008-03-04 18:02+0000\n"
+"PO-Revision-Date: 2008-03-28 07:39+0800\n"
 "Last-Translator: 龔維正 <wck3171@pchome.com.tw>\n"
 "Language-Team: ChineseTraditional <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -21,6 +21,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: ChineseTraditional\n"
 "X-Poedit-Basepath: ../\n"
+"X-Poedit-Country: TAIWAN\n"
 
 #. LANGUAGE, SUBLANGUAGE
 #: Merge.rc:22
@@ -3067,6 +3068,7 @@ msgstr "鼠右鍵點擊待複製的路徑"
 #, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
+"研發者：\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, c-format
@@ -3348,7 +3350,7 @@ msgstr "描述"
 #: Merge.rc:1988
 #, c-format
 msgid "Select filename for new filter"
-msgstr "為新篩選器檔選取檔名"
+msgstr "建立新篩選器檔名"
 
 #: Merge.rc:1989
 #, c-format
