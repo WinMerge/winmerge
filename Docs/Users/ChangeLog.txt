@@ -7,6 +7,7 @@ WinMerge 2.8.0
   Installer: Updated the side art of the installer application (#1915012)
   Update URLs and switch to 2.8 manual (#1919965)
   New splash screen (#1914869)
+  Create separate document for compiling WinMerge (#1927502)
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
