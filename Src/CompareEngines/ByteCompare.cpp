@@ -167,7 +167,7 @@ int ByteCompare::CompareFiles(FileLocation *location)
 				if (m_inf[0].desc == m_inf[1].desc)
 				{
 					location[1].encoding = location[0].encoding;
-					return diffcode;
+					return diffcode | DIFFCODE::SAME;
 				}
 			}
 		}

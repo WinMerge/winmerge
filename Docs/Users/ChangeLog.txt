@@ -13,6 +13,7 @@ WinMerge 2.8.0
     data (#1915424)
   BugFix: Print area was not clipped correctly. (#1915536)
   BugFix: Undo after pane swapping (#1915536, #1923625)
+  BugFix: Quick compare for same folder didn't show differences (#1918599)
   Translation updates:
   - Brazilian (#1913723)
   - Chinese Traditional (#1927605)
