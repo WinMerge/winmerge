@@ -233,6 +233,28 @@ ul.inline li {
 	list-style: none;
 }
 
+/* Mailing list */
+.mailinglist {
+	width: 40em;
+	margin: 1em;
+	padding: 0;
+	background: #f9f9f9;
+	border: 1px solid #aaaaaa;
+}
+
+.mailinglist h3 {
+	margin: 0;
+	padding: 5px;
+	background: #f2f2f2;
+	border-bottom: 1px solid #aaaaaa;
+}
+
+.mailinglist p {
+	margin: 0;
+	padding: 5px;
+	padding-top: 0;
+}
+
 /* Translations Status */
 .status {
 	border-collapse: collapse;
@@ -242,7 +264,7 @@ ul.inline li {
 .status th {
 	padding: 3px;
 	background: #f2f2f2;
-	border: 1px solid #aaaaaa ;
+	border: 1px solid #aaaaaa;
 }
 
 .status td {
