@@ -1,8 +1,8 @@
-; *** Inno Setup 5.1.0+ Catalan messages ***
+; *** Inno Setup 5.1.11+ Catalan messages ***
 ;
-; Translated by Carles Millan (email: carles at carlesmillan.cat)
+; Translated by Carles Millan (email: carles at carlesmillan dot cat)
 ;
-; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.12 2006/09/11 19:13:58 carles Exp $
+; $jrsoftware: issrc/Files/Languages/Catalan.isl,v 1.15 2007/10/22 11:52:47 mlaan Exp $
 
 [LangOptions]
 
@@ -58,7 +58,7 @@ AboutSetupNote=
 TranslatorNote=Catalan translation by Carles Millan (carles at carlesmillan.cat)
 
 ; *** Buttons
-ButtonBack=< &Enrera
+ButtonBack=< &Enrere
 ButtonNext=&Següent >
 ButtonInstall=&Instal·la
 ButtonOK=Accepta
@@ -169,7 +169,7 @@ NoProgramGroupCheck2=&No creïs una carpeta al Menú Inici
 ; *** "Ready to Install" wizard page
 WizardReady=Preparat per a instal·lar
 ReadyLabel1=El programa d'instal·lació està preparat per a iniciar la instal·lació de [name] al vostre ordinador.
-ReadyLabel2a=Premeu Instal·la per a continuar amb la instal·lació, o Enrera si voleu revisar o modificar les opcions d'instal·lació.
+ReadyLabel2a=Premeu Instal·la per a continuar amb la instal·lació, o Enrere si voleu revisar o modificar les opcions d'instal·lació.
 ReadyLabel2b=Premeu Instal·la per a continuar amb la instal·lació.
 ReadyMemoUserInfo=Informació de l'usuari:
 ReadyMemoDir=Carpeta de destinació:
@@ -257,7 +257,7 @@ ErrorReplacingExistingFile=Hi ha hagut un error en reemplaçar el fitxer existent
 ErrorRestartReplace=Ha fallat reemplaçar:
 ErrorRenamingTemp=Hi ha hagut un error en reanomenar un fitxer a la carpeta de destinació:
 ErrorRegisterServer=No s'ha pogut registrar el DLL/OCX: %1
-ErrorRegisterServerMissingExport=No s'ha trobat l'exportador DllRegisterServer
+ErrorRegSvr32Failed=Ha fallat RegSvr32 amb el codi de sortida %1
 ErrorRegisterTypeLib=No s'ha pogut registrar la biblioteca de tipus: %1
 
 ; *** Post-installation errors
@@ -294,8 +294,8 @@ StatusUninstalling=Desinstal·lant %1...
 NameAndVersion=%1 versió %2
 AdditionalIcons=Icones addicionals:
 OptionalFeatures=Característiques opcionals:
-CreateDesktopIcon=Crear una icona a l'&Escriptori
-CreateQuickLaunchIcon=Crear una icona a la &Barra de tasques
+CreateDesktopIcon=Crea una icona a l'&Escriptori
+CreateQuickLaunchIcon=Crea una icona a la &Barra de tasques
 ProgramOnTheWeb=%1 a Internet
 UninstallProgram=Desinstal·la %1
 LaunchProgram=Obre %1

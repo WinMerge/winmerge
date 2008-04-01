@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ French messages ***
+; *** Inno Setup version 5.1.11+ French messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/is3rdparty.php
@@ -12,7 +12,7 @@
 ;
 ; Contributors : Frédéric Bonduelle, Francis Pallini
 ;
-; $jrsoftware: issrc/Files/Languages/French.isl,v 1.13 2005/02/26 09:50:47 pierrey Exp $
+; $jrsoftware: issrc/Files/Languages/French.isl,v 1.14 2007/02/27 18:22:41 jr Exp $
 
 [LangOptions]
 LanguageName=Fran<00E7>ais
@@ -266,7 +266,7 @@ ErrorReplacingExistingFile=Une erreur est survenue lors du remplacement d'un fic
 ErrorRestartReplace=Le marquage d'un fichier pour remplacement au redémarrage de l'ordinateur a échoué :
 ErrorRenamingTemp=Une erreur est survenue en essayant de renommer un fichier dans le dossier de destination :
 ErrorRegisterServer=Impossible d'enregistrer la bibliothèque DLL/OCX : %1
-ErrorRegisterServerMissingExport=La fonction exportée DllRegisterServer n'a pas été trouvée
+ErrorRegSvr32Failed=RegSvr32 a échoué et a retourné le code d'erreur %1
 ErrorRegisterTypeLib=Impossible d'enregistrer la bibliothèque de type : %1
 
 ; *** Post-installation errors

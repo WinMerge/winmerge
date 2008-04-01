@@ -9,7 +9,7 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; ID: Danish.isl,v 5.1.0 2005/04/05 17:05:00 Thomas Vedel, veco@veco.dk
+; ID: Danish.isl,v 5.1.11 2007/02/27 21:23:00 Thomas Vedel, veco@veco.dk
 
 [LangOptions]
 LanguageName=Dansk
@@ -274,7 +274,7 @@ ErrorReplacingExistingFile=En fejl opstod ved forsøg på at overskrive den eksist
 ErrorRestartReplace=Genstart/Erstat fejlede:
 ErrorRenamingTemp=En fejl opstod ved forsøg på at omdøbe en fil i modtagemappen:
 ErrorRegisterServer=Kan ikke registrere DLL/OCX: %1
-ErrorRegisterServerMissingExport=Funktionen DllRegisterServer, der er nødvendig, for at filen kan registreres, findes ikke i filen
+ErrorRegSvr32Failed=RegSvr32 fejlede med exit kode %1
 ErrorRegisterTypeLib=Kan ikke registrere typebiblioteket: %1
 
 ; *** Post-installation errors

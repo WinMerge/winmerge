@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ Turkish messages ***
+; *** Inno Setup version 5.1.11+ Turkish messages ***
 ; Language     " Tükçe"               ::::::    Turkish
 ; Translate by " Çeviren "            ::::::    Adil YILDIZ - Mehmet F. YUCE
 ; E-Mail       " Elektronik Posta "   ::::::    adil@kde.org.tr - mfyuce@yelkenbilgisayar.com
@@ -20,12 +20,6 @@ LanguageCodePage=1254
 ;CopyrightFontName=Arial
 ;CopyrightFontSize=8
 DialogFontName=
-WelcomeFontName=Verdana
-WelcomeFontSize=12
-TitleFontName=Arial
-TitleFontSize=29
-CopyrightFontName=Arial
-CopyrightFontSize=8
 [Messages]
 
 ; *** Application titles
@@ -41,7 +35,7 @@ ErrorTitle=Hata
 
 ; *** SetupLdr messages
 SetupLdrStartupMessage=Bu kurulum %1 programýný yükleyecektir. Devam etmek istiyor musunuz?
-LdrCannotCreateTemp=Geçici bir dosya oluþturulamadý. Kurulum iptal edildi.
+LdrCannotCreateTemp=Geçici bir dosya oluþturulamadý. Kurulum iptal edildi
 LdrCannotExecTemp=Geçici dizindeki dosya çalýþtýrýlamadý. Kurulum iptal edildi
 
 ; *** Startup error messages
@@ -51,13 +45,13 @@ SetupFileCorrupt=Kurulum dosyalarý bozulmuþ. Lütfen programýn yeni bir kopyasýný
 SetupFileCorruptOrWrongVer=Kurulum dosyalarý bozulmuþ veya kurulumun bu sürümü ile uyuþmuyor olabilir. Lütfen problemi düzeltiniz veya Programýn yeni bir kopyasýný edininiz.
 NotOnThisPlatform=Bu program %1 üzerinde çalýþtýrýlamaz.
 OnlyOnThisPlatform=Bu program sadece %1 üzerinde çalýþtýrýlmalýdýr.
-OnlyOnTheseArchitectures=Bu program sadece %n%n%1 mimarideki iþlemciler için düzenlenmiþ Windows'larda çalýþýr
-MissingWOW64APIs=Kullandýðýnýz Windows sürümü Kur'un 64-bit yükleme yapabilmesi için gerekli olan özelliklere sahip deðildir. Bu problemi ortadan kaldýrmak için lütfen "Service Pack %1" yükleyiniz.
-WinVersionTooLowError=Bu programý çalýþtýrabilmek içim %1 %2 sürümü veya daha sonrasý yüklü olmalýdýr.
+OnlyOnTheseArchitectures=Bu program sadece aþaðýdaki mimarilere sahip Windows sürümlerinde çalýþýr:%n%n%1
+MissingWOW64APIs=Kullandýðýnýz Windows sürümü Kur'un 64-bit yükleme yapabilmesi için gerekli olan özelliklere sahip deðildir. Bu problemi ortadan kaldýrmak için lütfen Service Pack %1 yükleyiniz.
+WinVersionTooLowError=Bu programý çalýþtýrabilmek için %1 %2 sürümü veya daha sonrasý yüklü olmalýdýr.
 WinVersionTooHighError=Bu program %1 %2 sürümü veya sonrasýnda çalýþmaz.
 AdminPrivilegesRequired=Bu program kurulurken yönetici olarak oturum açýlmýþ olmak gerekmektedir.
 PowerUserPrivilegesRequired=Bu program kurulurken Yönetici veya Güç Yöneticisi Grubu üyesi olarak giriþ yapýlmýþ olmasý gerekmektedir.
-SetupAppRunningError=Kur %1 programýnýn çalýþtýðýný tesbit etti.%n%nLütfen bu programýn çalýþan bütün parçalarýný þimdi kapatýnýz, daha sonra devam etmek için Tamam'a veya çýkmak için Ýptal'e basýnýz.
+SetupAppRunningError=Kur %1 programýnýn çalýþtýðýný tespit etti.%n%nLütfen bu programýn çalýþan bütün parçalarýný þimdi kapatýnýz, daha sonra devam etmek için Tamam'a veya çýkmak için Ýptal'e basýnýz.
 UninstallAppRunningError=Kaldýr %1 programýnýn çalýþtýðýný tespit etti.%n%nLütfen bu programýn çalýþan bütün parçalarýný þimdi kapatýnýz, daha sonra devam etmek için Tamam'a veya çýkmak için Ýptal'e basýnýz.
 
 ; *** Misc. errors
@@ -71,13 +65,13 @@ AboutSetupMenuItem=Kur H&akkýnda...
 AboutSetupTitle=Kur Hakkýnda
 AboutSetupMessage=%1 %2 sürümü%n%3%n%n%1 internet:%n%4
 AboutSetupNote=
-TranslatorNote=Ýyi bir kurulum programý arýyorsanýz buldunuz...%nhttp://www.yildizyazilim.gen.tr,http://www.yelkenbilgisayar.com
+TranslatorNote=Ýyi bir kurulum programý arýyorsanýz buldunuz...%nhttp://www.yildizyazilim.gen.tr
 
 ; *** Buttons
 ButtonBack=< G&eri
 ButtonNext=Ý&leri >
 ButtonInstall=&Kur
-ButtonOK=Tamam
+ButtonOK=TAMAM
 ButtonCancel=Ýptal
 ButtonYes=E&vet
 ButtonYesToAll=Tümüne E&vet
@@ -142,7 +136,7 @@ DiskSpaceMBLabel=Bu program en az [mb] MB disk alaný gerektirmektedir.
 ToUNCPathname=Kur UNC tipindeki dizin yollarýna (Örn:\\yol vb.) kurulum yapamaz. Eðer Að üzerinde kurulum yapmaya çalýþýyorsanýz. Bir að sürücüsü tanýtmanýz gerekir.
 InvalidPath=Sürücü ismi ile birlikte tam yolu girmelisiniz; Örneðin %nC:\APP%n%n veya bir UNC yolunu %n%n\\sunucu\paylaþým%n%n þeklinde girmelisiniz.
 InvalidDrive=Seçtiðiniz sürücü bulunamadý veya ulaþýlamýyor. Lütfen baþka bir sürücü seçiniz.
-DiskSpaceWarningTitle=Yetersiz disk alaný
+DiskSpaceWarningTitle=Yetersiz Disk Alaný
 DiskSpaceWarning=Kur en az %1 KB kullanýlabilir disk alaný gerektirmektedir. Ancak seçili diskte %2 KB boþ alan bulunmaktadýr.%n%nYine de devam etmek istiyor musunuz?
 DirNameTooLong=Dizin adý veya yolu çok uzun.
 InvalidDirName=Dizin adý geçersiz.
@@ -208,7 +202,7 @@ InstallingLabel=Lütfen [name] bilgisayarýnýza kurulurken bekleyiniz.
 FinishedHeadingLabel=[name] Kur Sihirbazý tamamlanýyor
 FinishedLabelNoIcons=Kur [name] programýný bilgisayarýnýza kurma iþlemini tamamladý.
 FinishedLabel=Kur [name] programýný bilgisayarýnýza kurma iþlemini tamamladý. Program yüklenen kýsayol ikonlarýna týklanarak çalýþtýrýlabilir.
-ClickFinish=Kur'dan çýkmak için "Son"'a týklayýnýz.
+ClickFinish=Kur'dan çýkmak için Son'a týklayýnýz.
 FinishedRestartLabel=[name] programýnýn kurulumunu bitirmek için, Kur bilgisayarýnýzý yeniden baþlatacak. Bilgisayarýnýz yeniden baþlatýlsýn mý?
 FinishedRestartMessage=[name] kurulumunu bitirmek için, bilgisayarýnýzýn yeniden baþlatýlmasý gerekmektedir. %n%nBiligisayarýnýz yeniden baþlatýlsýn mý?
 ShowReadmeCheck=Beni Oku dosyasýný okumak istiyorum.
@@ -273,7 +267,7 @@ ErrorReplacingExistingFile=Zaten var olan dosya deðiþtirilirken bir hata oluþtu:
 ErrorRestartReplace=RestartReplace baþarýsýz oldu:
 ErrorRenamingTemp=Hedef dizinde bulunan dosyanýn adý deðiþtirilirken hata oldu:
 ErrorRegisterServer=%1 adlý DLL/OCX sisteme tanýtýlamadý.
-ErrorRegisterServerMissingExport=DllRegisterServer çýkýþý bulunamadý
+ErrorRegSvr32Failed=RegSvr32 çýkýþ hatasý %1 ile baþarýsýz oldu
 ErrorRegisterTypeLib=%1 adlý tip kütüphanesi (Type Library) sisteme tanýtýlamadý
 
 ; *** Post-installation errors

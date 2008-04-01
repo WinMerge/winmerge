@@ -1,11 +1,11 @@
-; *** Inno Setup version 5.1.0+ Spanish messages ***
+; *** Inno Setup version 5.1.11+ Spanish messages ***
 ;
 ; Maintained by Jorge Andres Brugger (jbrugger@gmx.net)
-; Spanish.isl version 0.4
-; Default.isl version 1.68
+; Spanish.isl version 0.8 (20070328)
+; Default.isl version 1.69
 ; 
 ; Thanks to Germán Giraldo, Jordi Latorre, Ximo Tamarit, Emiliano Llano, 
-; Ramón Verduzco and Graciela García
+; Ramón Verduzco, Graciela García and Carles Millan
 
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
@@ -40,13 +40,13 @@ ErrorTitle=Error
 ; *** SetupLdr messages
 SetupLdrStartupMessage=Este programa instalará %1. ¿Desea continuar?
 LdrCannotCreateTemp=Imposible crear archivo temporal. Instalación interrumpida
-LdrCannotExecTemp=Imposible ejecutar el archivo en la carpeta temporal. Instalación interrumpida
+LdrCannotExecTemp=Imposible ejecutar archivo en la carpeta temporal. Instalación interrumpida
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nError %2: %3
 SetupFileMissing=El archivo %1 no se encuentra en la carpeta de instalación. Por favor, solucione el problema u obtenga una copia nueva del programa.
 SetupFileCorrupt=Los archivos de instalación están dañados. Por favor, obtenga una copia nueva del programa.
-SetupFileCorruptOrWrongVer=Los archivos de instalación están dañados, o son incompatibles con esta versión del instalador. Por favor, solucione el problema u obtenga una copia nueva del programa.
+SetupFileCorruptOrWrongVer=Los archivos de instalación están dañados, o son incompatibles con esta versión del programa de instalación. Por favor, solucione el problema u obtenga una copia nueva del programa.
 NotOnThisPlatform=Este programa no se ejecutará en %1.
 OnlyOnThisPlatform=Este programa debe ejecutarse en %1.
 OnlyOnTheseArchitectures=Este programa sólo puede instalarse en versiones de Windows diseñadas para las siguientes arquitecturas de procesadores:%n%n%1
@@ -55,8 +55,8 @@ WinVersionTooLowError=Este programa requiere %1 versión %2 o posterior.
 WinVersionTooHighError=Este programa no puede instalarse en %1 versión %2 o posterior.
 AdminPrivilegesRequired=Debe iniciar la sesión como administrador para instalar este programa.
 PowerUserPrivilegesRequired=Debe iniciar la sesión como administrador o como un miembro del grupo Usuarios Avanzados para instalar este programa.
-SetupAppRunningError=El programa de instalación ha detectado que %1 se está ejecutando actualmente.%n%nPor favor, ciérrelo ahora, luego haga clic en Aceptar para continuar, o en Cancelar para salir.
-UninstallAppRunningError=El desinstalador ha detectado que %1 se está ejecutando actualmente.%n%nPor favor, ciérrelo ahora, luego haga clic en Aceptar para continuar, o en Cancelar para salir.
+SetupAppRunningError=El programa de instalación ha detectado que %1 está ejecutándose.%n%nPor favor, ciérrelo ahora, luego haga clic en Aceptar para continuar, o en Cancelar para salir.
+UninstallAppRunningError=El desinstalador ha detectado que %1 está ejecutándose.%n%nPor favor, ciérrelo ahora, luego haga clic en Aceptar para continuar, o en Cancelar para salir.
 
 ; *** Misc. errors
 ErrorCreatingDir=El programa de instalación no pudo crear la carpeta "%1"
@@ -87,14 +87,14 @@ ButtonWizardBrowse=&Examinar...
 ButtonNewFolder=&Crear Nueva Carpeta
 
 ; *** "Select Language" dialog messages
-SelectLanguageTitle=Seleccione el idioma de la instalación
-SelectLanguageLabel=Seleccione el idioma que se utilizará durante la instalación:
+SelectLanguageTitle=Seleccione el Idioma de la Instalación
+SelectLanguageLabel=Seleccione el idioma a utilizar durante la instalación:
 
 ; *** Common wizard text
 ClickNext=Haga clic en Siguiente para continuar, o en Cancelar para salir de la instalación.
 BeveledLabel=
 BrowseDialogTitle=Buscar Carpeta
-BrowseDialogLabel=Seleccione una carpeta de la siguiente lista, y luego haga clic en Aceptar.
+BrowseDialogLabel=Seleccione una carpeta, y luego haga clic en Aceptar.
 NewFolderName=Nueva Carpeta
 
 ; *** "Welcome" wizard page
@@ -104,27 +104,27 @@ WelcomeLabel2=Este programa instalará [name/ver] en su sistema.%n%nSe recomienda
 ; *** "Password" wizard page
 WizardPassword=Contraseña
 PasswordLabel1=Esta instalación está protegida por contraseña.
-PasswordLabel3=Por favor, ingrese la contraseña, y haga clic en Siguiente para continuar. Las contraseñas diferencian entre mayúsculas y minúsculas.
+PasswordLabel3=Por favor, ingrese la contraseña, y haga clic en Siguiente para continuar. En las contraseñas se hace diferencia entre mayúsculas y minúsculas.
 PasswordEditLabel=&Contraseña:
 IncorrectPassword=La contraseña ingresada no es correcta. Por favor, inténtelo nuevamente.
 
 ; *** "License Agreement" wizard page
 WizardLicense=Acuerdo de Licencia
-LicenseLabel=Por favor, lea la siguiente información importante antes de continuar.
+LicenseLabel=Por favor, lea la siguiente información de importancia antes de continuar.
 LicenseLabel3=Por favor, lea el siguiente acuerdo de licencia. Debe aceptar los términos de este acuerdo antes de continuar con la instalación.
 LicenseAccepted=A&cepto el acuerdo
 LicenseNotAccepted=&No acepto el acuerdo
 
 ; *** "Information" wizard pages
 WizardInfoBefore=Información
-InfoBeforeLabel=Por favor, lea la siguiente información importante antes de continuar.
+InfoBeforeLabel=Por favor, lea la siguiente información de importancia antes de continuar.
 InfoBeforeClickLabel=Cuando esté listo para continuar con la instalación, haga clic en Siguiente.
 WizardInfoAfter=Información
-InfoAfterLabel=Por favor, lea la siguiente información importante antes de continuar.
+InfoAfterLabel=Por favor, lea la siguiente información de importancia antes de continuar.
 InfoAfterClickLabel=Cuando esté listo para continuar, haga clic en Siguiente.
 
 ; *** "User Information" wizard page
-WizardUserInfo=Información de usuario
+WizardUserInfo=Información de Usuario
 UserInfoDesc=Por favor, introduzca su información.
 UserInfoName=Nombre de &Usuario:
 UserInfoOrg=&Organización:
@@ -132,7 +132,7 @@ UserInfoSerial=Número de &Serie:
 UserInfoNameRequired=Debe ingresar un nombre.
 
 ; *** "Select Destination Location" wizard page
-WizardSelectDir=Seleccione la Carpeta Destino
+WizardSelectDir=Seleccione la Carpeta de Destino
 SelectDirDesc=¿Dónde debe instalarse [name]?
 SelectDirLabel3=El programa instalará [name] en la siguiente carpeta.
 SelectDirBrowseLabel=Para continuar, haga clic en Siguiente. Si desea seleccionar una carpeta diferente, haga clic en Examinar.
@@ -144,11 +144,11 @@ DiskSpaceWarningTitle=Espacio Insuficiente en Disco
 DiskSpaceWarning=La instalación requiere al menos %1 KB de espacio libre, pero la unidad seleccionada sólo cuenta con %2 KB disponibles.%n%n¿Desea continuar de todas formas?
 DirNameTooLong=El nombre de la carpeta o la ruta son demasiado largos.
 InvalidDirName=El nombre de la carpeta no es válido.
-BadDirName32=Los nombres de carpetas no pueden incluir ninguno de los siguientes caracteres:%n%n%1
+BadDirName32=Los nombres de carpetas no pueden incluir los siguientes caracteres:%n%n%1
 DirExistsTitle=La Carpeta Ya Existe
 DirExists=La carpeta:%n%n%1%n%nya existe. ¿Desea realizar la instalación en esa carpeta de todas formas?
 DirDoesntExistTitle=La Carpeta No Existe
-DirDoesntExist=La carpeta:%n%n%1%n%nno existe. ¿Desea que se cree esa carpeta?
+DirDoesntExist=La carpeta:%n%n%1%n%nno existe. ¿Desea crear esa carpeta?
 
 ; *** "Select Components" wizard page
 WizardSelectComponents=Seleccione los Componentes
@@ -167,10 +167,10 @@ ComponentsDiskSpaceMBLabel=La selección actual requiere al menos [mb] MB de espa
 ; *** "Select Additional Tasks" wizard page
 WizardSelectTasks=Seleccione las Tareas Adicionales
 SelectTasksDesc=¿Qué tareas adicionales deben realizarse?
-SelectTasksLabel2=Seleccione las tareas adicionales que usted desea que se realicen durante la instalación de [name] y haga clic en Siguiente.
+SelectTasksLabel2=Seleccione las tareas adicionales que desea que se realicen durante la instalación de [name] y haga clic en Siguiente.
 
 ; *** "Select Start Menu Folder" wizard page
-WizardSelectProgramGroup=Seleccione la carpeta del Menú Inicio
+WizardSelectProgramGroup=Seleccione la Carpeta del Menú Inicio
 SelectStartMenuFolderDesc=¿Dónde deben colocarse los accesos directos del programa?
 SelectStartMenuFolderLabel3=El programa de instalación creará los accesos directos del programa en la siguiente carpeta del Menú Inicio.
 SelectStartMenuFolderBrowseLabel=Para continuar, haga clic en Siguiente. Si desea seleccionar una carpeta distinta, haga clic en Examinar.
@@ -178,7 +178,7 @@ MustEnterGroupName=Debe proporcionar un nombre de carpeta.
 GroupNameTooLong=El nombre de la carpeta o la ruta son demasiado largos.
 InvalidGroupName=El nombre de la carpeta no es válido.
 BadGroupName=El nombre de la carpeta no puede incluir ninguno de los siguientes caracteres:%n%n%1
-NoProgramGroupCheck2=&No crear ninguna carpeta en el Menú Inicio
+NoProgramGroupCheck2=&No crear una carpeta en el Menú Inicio
 
 ; *** "Ready to Install" wizard page
 WizardReady=Listo para Instalar
@@ -194,9 +194,9 @@ ReadyMemoTasks=Tareas Adicionales:
 
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Preparándose para Instalar
-PreparingDesc=El programa se está preparando para instalar [name] en su sistema.
+PreparingDesc=El programa de instalación está preparándose para instalar [name] en su sistema.
 PreviousInstallNotCompleted=La instalación/desinstalación previa de un programa no se completó. Deberá reiniciar el sistema para completar esa instalación.%n%nUna vez reiniciado el sistema, ejecute el programa de instalación nuevamente para completar la instalación de [name].
-CannotContinue=El programa no puede continuar. Por favor, presione Cancelar para salir.
+CannotContinue=El programa de instalación no puede continuar. Por favor, presione Cancelar para salir.
 
 ; *** "Installing" wizard page
 WizardInstalling=Instalando
@@ -207,8 +207,8 @@ FinishedHeadingLabel=Completando la instalación de [name]
 FinishedLabelNoIcons=El programa completó la instalación de [name] en su sistema.
 FinishedLabel=El programa completó la instalación de [name] en su sistema. Puede ejecutar la aplicación haciendo clic sobre el icono instalado.
 ClickFinish=Haga clic en Finalizar para salir del programa de instalación.
-FinishedRestartLabel=Para completar la instalación de [name], debe reiniciar su sistema. ¿Desea reiniciarlo ahora?
-FinishedRestartMessage=Para completar la instalación de [name], debe reiniciar su sistema.%n%n¿Desea reiniciarlo ahora?
+FinishedRestartLabel=Para completar la instalación de [name], su sistema debe reiniciarse. ¿Desea reiniciarlo ahora?
+FinishedRestartMessage=Para completar la instalación de [name], su sistema debe reiniciarse.%n%n¿Desea reiniciarlo ahora?
 ShowReadmeCheck=Sí, deseo ver el archivo LÉAME
 YesRadio=&Sí, deseo reiniciar el sistema ahora
 NoRadio=&No, reiniciaré el sistema más tarde
@@ -218,14 +218,14 @@ RunEntryExec=Ejecutar %1
 RunEntryShellExec=Ver %1
 
 ; *** "Setup Needs the Next Disk" stuff
-ChangeDiskTitle=La Instalación Necesita el Siguiente Disco
-SelectDiskLabel2=Por favor, inserte el Disco %1 y haga clic en Aceptar.%n%nSi los archivos pueden ser hallados en una carpeta diferente a la mostrada abajo, introduzca la ruta correcta o haga clic en Examinar.
+ChangeDiskTitle=El Programa de Instalación Necesita el Siguiente Disco
+SelectDiskLabel2=Por favor, inserte el Disco %1 y haga clic en Aceptar.%n%nSi los archivos pueden ser hallados en una carpeta diferente a la indicada abajo, introduzca la ruta correcta o haga clic en Examinar.
 PathLabel=&Ruta:
-FileNotInDir2=El archivo "%1" no puede encontrarse en "%2". Por favor, inserte el disco correcto o seleccione otra carpeta.
+FileNotInDir2=El archivo "%1" no se ha podido hallar en "%2". Por favor, inserte el disco correcto o seleccione otra carpeta.
 SelectDirectoryLabel=Por favor, especifique la ubicación del siguiente disco.
 
 ; *** Installation phase messages
-SetupAborted=La instalación no se completó.%n%nPor favor solucione el problema y ejecute nuevamente el programa de instalación.
+SetupAborted=La instalación no se ha completado.%n%nPor favor solucione el problema y ejecute nuevamente el programa de instalación.
 EntryAbortRetryIgnore=Haga clic en Reintentar para intentarlo de nuevo, en Omitir para continuar de todas formas, o en Anular para cancelar la instalación.
 
 ; *** Installation status messages
@@ -256,7 +256,7 @@ ErrorIniEntry=Error al crear entrada INI en el archivo "%1".
 
 ; *** File copying errors
 FileAbortRetryIgnore=Haga clic en Reintentar para intentarlo de nuevo, en Omitir para excluir este archivo (no recomendado), o en Anular para cancelar la instalación.
-FileAbortRetryIgnore2=Hag clic en Reintentar para intentarlo de nuevo, en Omitir para continuar de todas formas (no recomendado), o en Anular para cancelar la instalación.
+FileAbortRetryIgnore2=Haga clic en Reintentar para intentarlo de nuevo, en Omitir para continuar de todas formas (no recomendado), o en Anular para cancelar la instalación.
 SourceIsCorrupted=El archivo de origen está dañado
 SourceDoesntExist=El archivo de origen "%1" no existe
 ExistingFileReadOnly=El archivo existente está marcado como sólo-lectura.%n%nHaga clic en Reintentar para quitar el atributo de sólo-lectura e intentarlo de nuevo, en Omitir para excluir este archivo, o en Anular para cancelar la instalación.
@@ -271,7 +271,7 @@ ErrorReplacingExistingFile=Ocurrió un error al intentar reemplazar el archivo ex
 ErrorRestartReplace=Falló reintento de reemplazar:
 ErrorRenamingTemp=Ocurrió un error al intentar renombrar un archivo en la carpeta de destino:
 ErrorRegisterServer=Imposible registrar el DLL/OCX: %1
-ErrorRegisterServerMissingExport=No se encuentra DllRegisterServer export
+ErrorRegSvr32Failed=RegSvr32 falló con el código de salida %1
 ErrorRegisterTypeLib=Imposible registrar la librería de tipos: %1
 
 ; *** Post-installation errors
@@ -288,8 +288,8 @@ UninstallOnlyOnWin64=Este programa sólo puede ser desinstalado en Windows de 64-
 OnlyAdminCanUninstall=Este programa sólo puede ser desinstalado por un usuario con privilegios administrativos.
 UninstallStatusLabel=Por favor, espere mientras %1 es removido de su sistema.
 UninstalledAll=%1 fue removido exitosamente de su sistema.
-UninstalledMost=La desinstalación de %1 ha sido completada.%n%nAlgunos elementos no pudieron eliminarse. Pueden ser eliminados manualmente.
-UninstalledAndNeedsRestart=Para completar la desinstalación de %1, su sistema debe ser reiniciado.%n%n¿Desea reiniciarlo ahora?
+UninstalledMost=La desinstalación de %1 ha sido completada.%n%nAlgunos elementos no pudieron eliminarse. Estos pueden ser eliminados manualmente.
+UninstalledAndNeedsRestart=Para completar la desinstalación de %1, su sistema debe reiniciarse.%n%n¿Desea reiniciarlo ahora?
 UninstallDataCorrupted=El archivo "%1" está dañado. No puede desinstalarse
 
 ; *** Uninstallation phase messages

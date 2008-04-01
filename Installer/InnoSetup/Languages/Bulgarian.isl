@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ Bulgarian messages ***
+; *** Inno Setup version 5.1.11+ Bulgarian messages ***
 ; Mikhail Balabanov <mishob@abv.bg>
 ;
 ; За да изтеглите преводи на този файл, предоставени от потребители, посетете:
@@ -274,7 +274,7 @@ ErrorReplacingExistingFile=Грешка при опит за заместване на съществуващ файл:
 ErrorRestartReplace=Неуспешно отложено заместване:
 ErrorRenamingTemp=Грешка при опит за преименуване на файл в целевата директория:
 ErrorRegisterServer=Не е възможно да се регистрира библиотека от тип DLL/OCX: %1
-ErrorRegisterServerMissingExport=Не е намерен експорт DllRegisterServer
+ErrorRegSvr32Failed=Неуспешно изпълнение на RegSvr32 с код на изход %1
 ErrorRegisterTypeLib=Не е възможно да се регистрира библиотека от типове: %1
 
 ; *** Грешки след инсталиране

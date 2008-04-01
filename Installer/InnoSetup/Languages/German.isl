@@ -1,6 +1,6 @@
 ; ******************************************************
 ; ***                                                ***
-; *** Inno Setup version 5.1.0+ German messages      ***
+; *** Inno Setup version 5.1.11+ German messages     ***
 ; ***                                                ***
 ; *** Original Author:                               ***
 ; ***                                                ***
@@ -9,12 +9,11 @@
 ; *** Contributors:                                  ***
 ; ***                                                ***
 ; ***   Roland Ruder (info@rr4u.de)                  ***
+; ***   LaughingMan (puma.d@web.de)                  ***
 ; ***                                                ***
 ; ******************************************************
 ;
 ; Diese Übersetzung hält sich an die neue deutsche Rechtschreibung.
-;
-; $jrsoftware: issrc/Files/Languages/German.isl,v 1.10 2005/03/22 11:01:49 mreitz Exp $
 
 [LangOptions]
 LanguageName=Deutsch
@@ -36,8 +35,8 @@ ErrorTitle=Fehler
 
 ; *** SetupLdr messages
 SetupLdrStartupMessage=%1 wird jetzt installiert. Möchten Sie fortfahren?
-LdrCannotCreateTemp=Es konnte keine temporäre Datei erstellt werden. Setup abgebrochen
-LdrCannotExecTemp=Die Datei konnte nicht im temporären Ordner ausgeführt werden. Setup abgebrochen
+LdrCannotCreateTemp=Es konnte keine temporäre Datei erstellt werden. Das Setup wurde abgebrochen
+LdrCannotExecTemp=Die Datei konnte nicht im temporären Ordner ausgeführt werden. Das Setup wurde abgebrochen
 
 ; *** Startup error messages
 LastErrorMessage=%1.%n%nFehler %2: %3
@@ -50,8 +49,8 @@ OnlyOnTheseArchitectures=Dieses Programm kann nur auf Windows-Versionen installi
 MissingWOW64APIs=Ihre Windows-Version enthält nicht die Funktionen, die vom Setup für eine 64-bit Installation benötigt werden. Installieren Sie bitte Service Pack %1, um dieses Problem zu beheben.
 WinVersionTooLowError=Dieses Programm benötigt %1 Version %2 oder höher.
 WinVersionTooHighError=Dieses Programm kann nicht unter %1 Version %2 oder höher installiert werden.
-AdminPrivilegesRequired=Sie müssen als Administrator angemeldet sein, um dieses Programm zu installieren.
-PowerUserPrivilegesRequired=Sie müssen als Administrator oder als Mitglied der Hauptbenutzer-Gruppe angemeldet sein, um dieses Programm zu installieren.
+AdminPrivilegesRequired=Sie müssen als Administrator angemeldet sein, um dieses Programm installieren zu können.
+PowerUserPrivilegesRequired=Sie müssen als Administrator oder als Mitglied der Hauptbenutzer-Gruppe angemeldet sein, um dieses Programm installieren zu können.
 SetupAppRunningError=Das Setup hat entdeckt, dass %1 zur Zeit ausgeführt wird.%n%nBitte schließen Sie jetzt alle laufenden Instanzen, und klicken Sie auf "OK", um fortzufahren, oder auf "Abbrechen", um zu beenden.
 UninstallAppRunningError=Die Deinstallation hat entdeckt, dass %1 zur Zeit ausgeführt wird.%n%nBitte schließen Sie jetzt alle laufenden Instanzen, und klicken Sie auf "OK", um fortzufahren, oder auf "Abbrechen", um zu beenden.
 
@@ -62,8 +61,8 @@ ErrorTooManyFilesInDir=Das Setup konnte eine Datei im Ordner "%1" nicht erstelle
 ; *** Setup common messages
 ExitSetupTitle=Setup verlassen
 ExitSetupMessage=Das Setup ist noch nicht abgeschlossen. Wenn Sie jetzt beenden, wird das Programm nicht installiert.%n%nSie können das Setup zu einem späteren Zeitpunkt nochmals ausführen, um die Installation zu vervollständigen.%n%nSetup verlassen?
-AboutSetupMenuItem=&Über Setup ...
-AboutSetupTitle=Über Setup
+AboutSetupMenuItem=&Über das Setup ...
+AboutSetupTitle=Über das Setup
 AboutSetupMessage=%1 Version %2%n%3%n%n%1 Internet-Seite:%n%4
 AboutSetupNote=
 TranslatorNote=German translation maintained by Michael Reitz (innosetup@assimilate.de)
@@ -81,7 +80,7 @@ ButtonNoToAll=N&ein für Alle
 ButtonFinish=&Fertigstellen
 ButtonBrowse=&Durchsuchen ...
 ButtonWizardBrowse=Du&rchsuchen ...
-ButtonNewFolder=&Neuen Ordner anlegen
+ButtonNewFolder=&Neuen Ordner erstellen
 
 ; *** "Select Language" dialog messages
 SelectLanguageTitle=Setup-Sprache auswählen
@@ -167,8 +166,8 @@ SelectTasksLabel2=Wählen Sie die zusätzlichen Aufgaben aus, die das Setup währen
 
 ; *** "Select Start Menu Folder" wizard page
 WizardSelectProgramGroup=Startmenü-Ordner auswählen
-SelectStartMenuFolderDesc=Wo soll das Setup die Programm-Verknüpfungen anlegen?
-SelectStartMenuFolderLabel3=Das Setup wird die Programm-Verknüpfungen im folgenden Startmenü-Ordner anlegen.
+SelectStartMenuFolderDesc=Wo soll das Setup die Programm-Verknüpfungen erstellen?
+SelectStartMenuFolderLabel3=Das Setup wird die Programm-Verknüpfungen im folgenden Startmenü-Ordner erstellen.
 SelectStartMenuFolderBrowseLabel=Klicken Sie auf "Weiter", um fortzufahren. Klicken Sie auf "Durchsuchen", falls Sie einen anderen Ordner auswählen möchten.
 MustEnterGroupName=Sie müssen einen Ordnernamen eingeben.
 GroupNameTooLong=Der Ordnername/Pfad ist zu lang.
@@ -200,8 +199,8 @@ InstallingLabel=Warten Sie bitte während [name] auf Ihrem Computer installiert w
 
 ; *** "Setup Completed" wizard page
 FinishedHeadingLabel=Beenden des [name] Setup-Assistenten
-FinishedLabelNoIcons=Setup hat die Installation von [name] auf Ihrem Computer abgeschlossen.
-FinishedLabel=Setup hat die Installation von [name] auf Ihrem Computer abgeschlossen. Die Anwendung kann über die installierten Programm-Verknüpfungen gestartet werden.
+FinishedLabelNoIcons=Das Setup hat die Installation von [name] auf Ihrem Computer abgeschlossen.
+FinishedLabel=Das Setup hat die Installation von [name] auf Ihrem Computer abgeschlossen. Die Anwendung kann über die installierten Programm-Verknüpfungen gestartet werden.
 ClickFinish=Klicken Sie auf "Fertigstellen", um das Setup zu beenden.
 FinishedRestartLabel=Um die Installation von [name] abzuschließen, muss das Setup Ihren Computer neu starten. Möchten Sie jetzt neu starten?
 FinishedRestartMessage=Um die Installation von [name] abzuschließen, muss das Setup Ihren Computer neu starten.%n%nMöchten Sie jetzt neu starten?
@@ -219,12 +218,12 @@ FileNotInDir2=Die Datei "%1" befindet sich nicht in "%2". Bitte Ordner ändern od
 SelectDirectoryLabel=Geben Sie bitte an, wo die nächste Diskette eingelegt wird.
 
 ; *** Installation phase messages
-SetupAborted=Setup konnte nicht abgeschlossen werden.%n%nBeheben Sie bitte das Problem, und starten Sie das Setup erneut.
+SetupAborted=Das Setup konnte nicht abgeschlossen werden.%n%nBeheben Sie bitte das Problem, und starten Sie das Setup erneut.
 EntryAbortRetryIgnore=Klicken Sie auf "Wiederholen" für einen weiteren Versuch, "Ignorieren", um trotzdem fortzufahren, oder "Abbrechen", um die Installation abzubrechen.
 
 ; *** Installation status messages
 StatusCreateDirs=Ordner werden erstellt ...
-StatusExtractFiles=Dateien werden ausgepackt ...
+StatusExtractFiles=Dateien werden entpackt ...
 StatusCreateIcons=Verknüpfungen werden erstellt ...
 StatusCreateIniEntries=INI-Einträge werden erstellt ...
 StatusCreateRegistryEntries=Registry-Einträge werden erstellt ...
@@ -246,7 +245,7 @@ ErrorRegCreateKey=Registry-Schlüssel konnte nicht erstellt werden:%n%1\%2
 ErrorRegWriteKey=Fehler beim Schreiben des Registry-Schlüssels:%n%1\%2
 
 ; *** INI errors
-ErrorIniEntry=Fehler beim Erstellen eines INI-Eintrages in die Datei "%1".
+ErrorIniEntry=Fehler beim Erstellen eines INI-Eintrages in der Datei "%1".
 
 ; *** File copying errors
 FileAbortRetryIgnore=Klicken Sie auf "Wiederholen" für einen weiteren Versuch, "Ignorieren", um diese Datei zu überspringen (nicht empfohlen), oder "Abbrechen", um die Installation abzubrechen.
@@ -265,12 +264,12 @@ ErrorReplacingExistingFile=Fehler beim Ersetzen einer vorhandenen Datei:
 ErrorRestartReplace="Ersetzen nach Neustart" fehlgeschlagen:
 ErrorRenamingTemp=Fehler beim Umbenennen einer Datei im Ziel-Ordner:
 ErrorRegisterServer=DLL/OCX konnte nicht registriert werden: %1
-ErrorRegisterServerMissingExport="DllRegisterServer Export" nicht gefunden
+ErrorRegSvr32Failed=RegSvr32-Aufruf scheiterte mit Exit-Code %1
 ErrorRegisterTypeLib=Typen-Bibliothek konnte nicht registriert werden: %1
 
 ; *** Post-installation errors
 ErrorOpeningReadme=Fehler beim Öffnen der LIESMICH-Datei.
-ErrorRestartingComputer=Setup konnte den Computer nicht neu starten. Bitte führen Sie den Neustart selbst durch.
+ErrorRestartingComputer=Das Setup konnte den Computer nicht neu starten. Bitte führen Sie den Neustart manuell durch.
 
 ; *** Uninstaller messages
 UninstallNotFound=Die Datei "%1" existiert nicht. Entfernen der Anwendung fehlgeschlagen.
@@ -282,7 +281,7 @@ UninstallOnlyOnWin64=Diese Installation kann nur unter 64-bit Windows-Versionen 
 OnlyAdminCanUninstall=Diese Installation kann nur von einem Benutzer mit Administrator-Rechten entfernt werden.
 UninstallStatusLabel=Warten Sie bitte während %1 von Ihrem Computer entfernt wird.
 UninstalledAll=%1 wurde erfolgreich von Ihrem Computer entfernt.
-UninstalledMost=Entfernen von %1 beendet.%n%nEinige Komponenten konnten nicht entfernt werden. Diese können von Ihnen gelöscht werden.
+UninstalledMost=Entfernen von %1 beendet.%n%nEinige Komponenten konnten nicht entfernt werden. Diese können von Ihnen manuell gelöscht werden.
 UninstalledAndNeedsRestart=Um die Deinstallation von %1 abzuschließen, muss Ihr Computer neu gestartet werden.%n%nMöchten Sie jetzt neu starten?
 UninstallDataCorrupted="%1"-Datei ist beschädigt. Entfernen der Anwendung fehlgeschlagen.
 
@@ -302,8 +301,8 @@ StatusUninstalling=Entferne %1 ...
 NameAndVersion=%1 Version %2
 AdditionalIcons=Zusätzliche Symbole:
 OptionalFeatures=Optionale Funktionen:
-CreateDesktopIcon=&Desktop-Symbol anlegen
-CreateQuickLaunchIcon=Symbol in der Schnellstartleiste anlegen
+CreateDesktopIcon=&Desktop-Symbol erstellen
+CreateQuickLaunchIcon=Symbol in der Schnellstartleiste erstellen
 ProgramOnTheWeb=%1 im Internet
 UninstallProgram=%1 entfernen
 LaunchProgram=%1 starten

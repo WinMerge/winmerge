@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ Norwegian messages ***
+; *** Inno Setup version 5.1.11+ Norwegian messages ***
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -7,12 +7,13 @@
 ;
 ; Norwegian translation by Jostein Christoffer Andersen
 ; E-mail: jostein@josander.net
+; E-mail: thomas.kelso@gmail.com
 ; Many thanks to the following people for language improvements and comments:
 ;
 ; Harald Habberstad, Frode Weum, Eivind Bakkestuen, Morten Johnsen,
-; Tore Ottinsen, Kristian Hyllestad
+; Tore Ottinsen, Kristian Hyllestad, Thomas Kelso
 ;
-; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.14 2005/03/04 20:41:19 josander Exp $
+; $jrsoftware: issrc/Files/Languages/Norwegian.isl,v 1.15 2007/04/23 15:03:35 josander+ Exp $
 
 [LangOptions]
 LanguageName=Norsk
@@ -266,7 +267,7 @@ ErrorReplacingExistingFile=En feil oppsto under forsøket på å erstatte den eksis
 ErrorRestartReplace=RestartReplace gikk galt:
 ErrorRenamingTemp=En feil oppsto under omdøping av fil i mål-mappen:
 ErrorRegisterServer=Kan ikke registrere DLL/OCX: %1
-ErrorRegisterServerMissingExport=DllRegisterServer-eksportering ble ikke funnet
+ErrorRegSvr32Failed=RegSvr32 gikk galt med avslutte kode %1
 ErrorRegisterTypeLib=Kan ikke registrere typebiblioteket: %1
 
 ; *** Post-installation errors

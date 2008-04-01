@@ -1,16 +1,17 @@
-; *** Inno Setup versione 5.1.0+ lingua Italiana ***
+; *** Inno Setup version 5.1.11+ Italian messages ***
 ;
 ; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/is3rdparty.php
+;   http://www.jrsoftware.org/files/istrans/
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; Italian.isl revisione 30 - 2006/06/11 (Basato su Default.isl 1.68)
+; Italian.isl revisione 37 - 2008/02/23 (Basato su Default.isl 1.70)
 ;
-; Tradotto da ale5000 - e-mail: ale5000 AT tiscali DOT it
+; Tradotto da ale5000
+; E-mail: ale5000 AT tiscali DOT it
 ; Segnalatemi via e-mail eventuali errori o suggerimenti.
 
 [LangOptions]
@@ -75,12 +76,12 @@ AboutSetupMenuItem=&Informazioni sull'installazione...
 AboutSetupTitle=Informazioni sull'installazione
 AboutSetupMessage=%1 versione %2%n%3%n%n%1 sito web:%n%4
 AboutSetupNote=
-TranslatorNote=
+TranslatorNote=Italian translation maintained by ale5000
 
 ; *** Buttons
 ButtonBack=< &Indietro
 ButtonNext=&Avanti >
-ButtonInstall=&Installa
+ButtonInstall=Inst&alla
 ButtonOK=OK
 ButtonCancel=Annulla
 ButtonYes=&Si
@@ -118,7 +119,7 @@ IncorrectPassword=La password inserita non è corretta, riprovare.
 WizardLicense=Contratto di licenza
 LicenseLabel=Leggere con attenzione le informazioni che seguono prima di procedere.
 LicenseLabel3=Leggere il seguente contratto di licenza. È necessario accettare tutti i termini del contratto per procedere con l'installazione.
-LicenseAccepted=&Accetto i termini del contratto di licenza 
+LicenseAccepted=Accetto i termini del &contratto di licenza 
 LicenseNotAccepted=&Non accetto i termini del contratto di licenza
 
 ; *** "Information" wizard pages
@@ -165,7 +166,7 @@ FullInstallation=Installazione completa
 CompactInstallation=Installazione compatta
 CustomInstallation=Installazione personalizzata
 NoUninstallWarningTitle=Componente esistente
-NoUninstallWarning=I seguenti componenti sono già installati sul computer:%n%n%1%n%nDeselezionando questi componenti non verranno disinstallati.%n%nSi desidera continuare comunque?
+NoUninstallWarning=I seguenti componenti sono già installati sul computer:%n%n%1%n%nDeselezionando questi componenti essi non verranno rimossi.%n%nSi desidera continuare comunque?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
 ComponentsDiskSpaceMBLabel=La selezione corrente richiede almeno [mb] MB di spazio su disco.
@@ -201,7 +202,7 @@ ReadyMemoTasks=Processi addizionali:
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Preparazione all'installazione
 PreparingDesc=Preparazione all'installazione di [name] sul computer.
-PreviousInstallNotCompleted=L'installazione/disinstallazione precedente del programma non è stata completata. È necessario riavviare il sistema per completare l'installazione.%n%nAl successivo riavvio del sistema eseguire di nuovo l'installazione di [name].
+PreviousInstallNotCompleted=L'installazione/rimozione precedente del programma non è stata completata. È necessario riavviare il sistema per completare l'installazione.%n%nDopo il riavvio del sistema eseguire di nuovo l'installazione di [name].
 CannotContinue=L'installazione non può continuare. Premere Annulla per uscire.
 
 ; *** "Installing" wizard page
@@ -277,7 +278,7 @@ ErrorReplacingExistingFile=Si è verificato un errore durante la sovrascrittura d
 ErrorRestartReplace=Errore durante Riavvio-Sostituzione:
 ErrorRenamingTemp=Si è verificato un errore durante il tentativo di rinominare un file nella cartella di installazione:
 ErrorRegisterServer=Impossibile registrare la DLL/OCX: %1
-ErrorRegisterServerMissingExport=DllRegisterServer esportazione mancante
+ErrorRegSvr32Failed=RegSvr32 è fallito con codice di uscita %1
 ErrorRegisterTypeLib=Impossibile registrare la libreria di tipo: %1
 
 ; *** Post-installation errors
@@ -288,9 +289,9 @@ ErrorRestartingComputer=Impossibile riavviare il sistema. Riavviare manualmente.
 UninstallNotFound=Il file "%1" non esiste. Impossibile disinstallare.
 UninstallOpenError=Il file "%1" non può essere aperto. Impossibile disinstallare
 UninstallUnsupportedVer=Il file log di disinstallazione "%1" è in un formato non riconosciuto da questa versione del programma di disinstallazione. Impossibile disinstallare
-UninstallUnknownEntry=Trovata una voce sconosciuta (%1) nel file di log della disinstallazione
+UninstallUnknownEntry=Trovata una voce sconosciuta (%1) nel file log di disinstallazione
 ConfirmUninstall=Si desidera rimuovere completamente %1 e tutti i suoi componenti?
-UninstallOnlyOnWin64=Questo programma può essere disinstallato solo su Windows a 64-bit.
+UninstallOnlyOnWin64=Questa applicazione può essere disinstallata solo su Windows a 64-bit.
 OnlyAdminCanUninstall=Questa applicazione può essere disinstallata solo da un utente con privilegi di amministratore.
 UninstallStatusLabel=Attendere fino a che %1 è stato rimosso dal computer.
 UninstalledAll=%1 è stato rimosso con successo dal computer.
@@ -315,7 +316,7 @@ NameAndVersion=%1 versione %2
 AdditionalIcons=Icone aggiuntive:
 OptionalFeatures=Optional Features:
 CreateDesktopIcon=Crea un'icona sul &desktop
-CreateQuickLaunchIcon=Crea un'icona nella barra &Avvio veloce
+CreateQuickLaunchIcon=Crea un'icona nella &barra Avvio veloce
 ProgramOnTheWeb=%1 sul Web
 UninstallProgram=Disinstalla %1
 LaunchProgram=Avvia %1

@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ Chinese (Traditional) messages ***
+; *** Inno Setup version 5.1.11+ Chinese (Traditional) messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/is3rdparty.php
@@ -272,7 +272,7 @@ ErrorReplacingExistingFile=取代檔案時發生錯誤:
 ErrorRestartReplace=重新啟動電腦後取代檔案失敗:
 ErrorRenamingTemp=在目的資料夾變更檔案名稱時發生錯誤:
 ErrorRegisterServer=無法登錄 DLL/OCX 檔案: %1。
-ErrorRegisterServerMissingExport=找不到 DllRegisterServer 輸出。
+ErrorRegSvr32Failed=執行 RegSvr32 失敗，錯誤碼為 %1。
 ErrorRegisterTypeLib=無法登錄 Type Library: %1。
 
 ; *** Post-installation errors
