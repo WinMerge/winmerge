@@ -1,10 +1,10 @@
-; *** Inno Setup version 5.1.0+ Dutch messages ***
+; *** Inno Setup version 5.1.11+ Dutch messages ***
 ;
-; This file is based on a user-contributed translations by various authors
+; This file is based on user-contributed translations by various authors
 ;
 ; Maintained by Martijn Laan (mlaan@wintax.nl)
 ;
-; $jrsoftware: issrc/Files/Languages/Dutch.isl,v 1.18 2005/02/25 23:07:04 mlaan Exp $
+; $jrsoftware: issrc/Files/Languages/Dutch.isl,v 1.21 2007/03/06 12:56:38 mlaan Exp $
                                      
 [LangOptions]                
 LanguageName=Nederlands      
@@ -255,7 +255,7 @@ ErrorReplacingExistingFile=Er is een fout opgetreden bij het vervangen van het b
 ErrorRestartReplace=Vervangen na opnieuw starten is mislukt:
 ErrorRenamingTemp=Er is een fout opgetreden bij het hernoemen van een bestand in de doelmap:
 ErrorRegisterServer=Kan de DLL/OCX niet registreren: %1
-ErrorRegisterServerMissingExport=DllRegisterServer export niet gevonden
+ErrorRegSvr32Failed=RegSvr32 mislukt met afsluitcode %1
 ErrorRegisterTypeLib=Kan de type library niet registreren: %1
 
 ; *** Post-installation errors

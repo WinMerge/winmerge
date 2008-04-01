@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ Korean messages ***
+; *** Inno Setup version 5.1.11+ Korean messages ***
 ;
 ; To download user-contributed translations of this file, go to:
 ;   http://www.jrsoftware.org/is3rdparty.php
@@ -8,17 +8,16 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; translated : Woong-Jae An (a183393@hanmail.net)
+; translated : Woong-Jae An (a183393@hanmail.net, Cyworld: http://cyworld.nate.com/nuclear_mine; for Korean Users Only)
 ; 
-; 번역은 좀 더 알아보기 쉽도록, 최소한 "직역"이 아닌, "의역"으로 하도록 노렸하였습니다.
-; 만약에 제가 번역한 문장들이 원본과 뜻이 상이하거나 좀더 매끈한 표현으로 바꿨으면 하는 부분, 그 밖의 건의사항이나 질문이 있으시다면 주저마시고 메일 주시기 바랍니다.
-;
-; Fixed: Fixed bug in Select Setup Language box that not correctly showed Language Name, Korean. Sorry to find and fix it too late. (5.1.0)
-; 수정: 설치 언어 선택 대화 상자에서 언어 이름인 "한국어"를 제대로 표시하지 못하던 버그를 수정하였습니다. 너무 늦게 발견하여 고친 점 죄송합니다. (5.1.0)
-;
-; $jrsoftware: issrc/Files/Default.isl,v 1.66 2005/02/25 20:23:48 mlaan Exp $
+; 번역은 기본적으로 직역이 원칙이나, 한글로 직역 시 어색하거나 매끄럽지 않은 부분은 의역을 하였습니다.
+; 제가 번역한 문장들이 원본과 뜻이 상이하거나 좀 더 매끈한 표현으로 바꿨으면 하는 부분, 그 밖에 건의 사항이나 질문이 있으시다면 제 싸이월드에 방문하셔서 방명록에 글을 남겨주시기 바랍니다.
+; 단, 이 Translation File에 대한 문의만 받으며, 그 밖에 Inno Setup 사용 중 생긴 문제는 제가 프로그래머가 아닌 관계로 답변하여 드리지 못할 수도 있습니다.
+; 스팸 메일(Spam Mail) 때문에 메일은 더 이상 확인하지 않으니 양해하여 주시기 바랍니다.
 
 [LangOptions]
+; The following three entries are very important. Be sure to read and 
+; understand the '[LangOptions] section' topic in the help file.
 LanguageName=<D55C><AD6D><C5B4>
 LanguageID=$0412
 LanguageCodePage=949
@@ -78,7 +77,7 @@ AboutSetupMenuItem=설치에 대하여(&A)...
 AboutSetupTitle=설치에 대하여
 AboutSetupMessage=%1 %2%n%3%n%n%1 홈페이지:%n%4
 AboutSetupNote=
-TranslatorNote=이 번역문은 안웅재에 의해 번역되었습니다. 이 번역에 대한 문의 사항은 E-Mail: a183393@hanmail.net 으로 해 주시기 바랍니다.
+TranslatorNote=이 번역문은 안웅재에 의해 만들어 졌습니다. 이 번역문에 대한 문의 사항은 Cyworld: http://cyworld.nate.com/nuclear_mine 으로 해 주시기 바랍니다.
 
 ; *** Buttons
 ButtonBack=< 뒤로(&B)
@@ -280,7 +279,7 @@ ErrorReplacingExistingFile=파일 덮어쓰는 중 오류 발생:
 ErrorRestartReplace=RestartReplace 실패:
 ErrorRenamingTemp=대상 폴더 내의 파일 이름 변경 도중 오류 발생:
 ErrorRegisterServer=다음 DLL/OCX 을(를) 등록할 수 없음: %1
-ErrorRegisterServerMissingExport=DllRegisterServer export 발견되지 않음
+ErrorRegSvr32Failed=종료 코드 %1 로 RegSvr32 실패함
 ErrorRegisterTypeLib=다음 파일 형식을 등록할 수 없음: %1
 
 ; *** Post-installation errors

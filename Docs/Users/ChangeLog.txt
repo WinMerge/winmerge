@@ -11,6 +11,7 @@ WinMerge 2.9.0.1
   Tab icons at Filter dialog (#1926531)
   Add VS2003/VS2005 project files (#1926346)
   Create separate document for compiling WinMerge (#1927502)
+  Update InnoSetup translations (#1931492)
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)

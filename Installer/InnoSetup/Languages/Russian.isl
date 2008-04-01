@@ -1,4 +1,4 @@
-; *** Inno Setup version 5.1.0+ Russian messages ***
+; *** Inno Setup version 5.1.11+ Russian messages ***
 ;
 ; Translation was made by Dmitry Kann, http://www.dk-soft.org/
 ; The highest accuracy was the first priority.
@@ -8,7 +8,7 @@
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; $jrsoftware: issrc/Files/Languages/Russian.isl,v 1.9 2005/02/26 08:32:52 yktoo Exp $
+; $jrsoftware: issrc/Files/Languages/Russian.isl,v 1.10 2007/02/28 04:38:21 jr Exp $
 
 [LangOptions]
 LanguageName=<0420><0443><0441><0441><043A><0438><0439>
@@ -262,7 +262,7 @@ ErrorReplacingExistingFile=Произошла ошибка при попытке замены существующего фай
 ErrorRestartReplace=Ошибка RestartReplace:
 ErrorRenamingTemp=Произошла ошибка при попытке переименования файла в папке назначения:
 ErrorRegisterServer=Невозможно зарегистрировать DLL/OCX: %1
-ErrorRegisterServerMissingExport=Точка входа функции DllRegisterServer не найдена
+ErrorRegSvr32Failed=Ошибка при выполнении RegSvr32, код возврата %1
 ErrorRegisterTypeLib=Невозможно зарегистрировать библиотеку типов (Type Library): %1
 
 ; *** Post-installation errors

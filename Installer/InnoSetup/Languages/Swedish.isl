@@ -1,10 +1,10 @@
-;Stefan Bodingh
+;Hans Eriksson
 [LangOptions]
 
-;*** Inno Setup version 5.1.0+ Swedish messages ***
+;*** Inno Setup version 5.1.12+ Swedish messages ***
 ;
 ; Translated by stefan@bodingh.se
-;
+; Translated by hans.ericson@bredband.net
 ;
 LanguageName=Svenska
 LanguageID=$041D
@@ -270,7 +270,7 @@ ErrorReplacingExistingFile=Ett fel uppstod vid ett försök att ersätta den befint
 ErrorRestartReplace=ÅterstartaErsätt misslyckades:
 ErrorRenamingTemp=Ett fel uppstod vid ett försök att byta namn på en fil i installationskatalogen:
 ErrorRegisterServer=Kunde inte registrera DLL/OCX: %1
-ErrorRegisterServerMissingExport=DllRegisterServer export kunde inte hittas
+ErrorRegSvr32Failed=RegSvr32 misslyckades med felkod %1
 ErrorRegisterTypeLib=Kunde inte registrera typbibliotek: %1
 
 ; *** Post-installation errors

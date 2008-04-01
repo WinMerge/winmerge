@@ -1,7 +1,7 @@
-; *** Inno Setup version 5.1.0+ Japanese messages ***
+; *** Inno Setup version 5.1.11+ Japanese messages ***
 ;
 ; Translated by Ryou Minakami (ryou32jp@yahoo.co.jp)
-; Fix: Koichi Shirasuka (shirasuka@eugrid.co.jp)
+; Fixes and updates: Koichi Shirasuka (shirasuka@eugrid.co.jp)
 ;
 ; $jrsoftware: issrc/Files/Default.isl,v 1.66 2005/02/25 20:23:48 mlaan Exp $
 
@@ -267,7 +267,7 @@ ErrorReplacingExistingFile=既存ファイルを置き換え中にエラーが発生しました。:
 ErrorRestartReplace=置き換え再開中にエラーが発生しました。:
 ErrorRenamingTemp=コピー先フォルダのファイル名を変更中にエラーが発生しました。:
 ErrorRegisterServer=DLL/OCXの登録に失敗しました。: %1
-ErrorRegisterServerMissingExport=DllRegisterServerエクスポートが見つかりません。
+ErrorRegSvr32Failed=RegSvr32はエラーコード %1 により失敗しました。
 ErrorRegisterTypeLib=タイプライブラリへの登録に失敗しました。: %1
 
 ; *** Post-installation errors
