@@ -606,7 +606,7 @@
   </sect2>
 
   <sect2>
-    <title><indexterm>
+    <title id="ResolveConflictFiles"><indexterm>
         <primary>Conflict Files</primary>
       </indexterm>Resolving Conflict Files</title>
 
@@ -666,6 +666,13 @@
       accidentally not resolving the files. As resolving only happens when
       file is saved. If file is no saved, original conflict file is kept
       unmodified.</para>
+
+      <para>Many version control tools allow configuring external merge tool.
+      WinMerge accepts three filenames ("T<guilabel>heirs</guilabel>",
+      "<guilabel>Mine</guilabel>" and "<guilabel>Resolved</guilabel>") as
+      command line parameters. See more info from <link
+      linkend="CommandLine">Command Line</link> -chapter. Single path to the
+      conflict file is also accepted in command line.</para>
     </sect3>
   </sect2>
 </sect1>
