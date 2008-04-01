@@ -3,14 +3,16 @@
   <title>Comparing Files</title>
 
   <para>File compare window is basically two files opened to editor into two
-  horizontal panes. The editor allows user to do basic file editing inside
+  horizontal panes. The editor allows user to do a basic file editing inside
   WinMerge without needing to open files to external editor program or
-  devepment environment.</para>
+  development environment.</para>
 
   <mediaobject>
     <imageobject>
       <imagedata fileref="screenshots/filecomp1.png" format="PNG" />
     </imageobject>
+
+    <caption><para>File Compare Window</para></caption>
   </mediaobject>
 
   <para>WinMerge editor is not comparable to specialized editor programs, but
@@ -35,6 +37,19 @@
     background and missing lines with gray background. If user selects the
     difference, it is shown with red background and missing lines with milder
     red.</para>
+  </sect2>
+
+  <sect2>
+    <title>Tabs</title>
+
+    <para>WinMerge can show open windows in tab bar below toolbar. Tab bar can
+    be shown and hidden from menu <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>Tab Bar</guimenuitem>
+      </menuchoice>. When the tab bar is shown it has one tab for every open
+    window. The tab contains last part of the folder names or file
+    names.</para>
   </sect2>
 
   <sect2>
@@ -74,8 +89,8 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/filecomp_statusbar1.gif"
-                     format="GIF" />
+          <imagedata fileref="screenshots/filecomp_statusbar1.png"
+                     format="PNG" />
         </imageobject>
       </inlinemediaobject></para>
 
@@ -107,17 +122,33 @@
     <note>
       <para><guilabel>Col</guilabel> counts <keycap>TAB</keycap> as
       <replaceable>X</replaceable> chars (as defined in editor options) and
-      <guilabel>Ch</guilabel> counts <keycap>TAB</keycap> as one.</para>
+      <guilabel>Ch</guilabel> counts <keycap>TAB</keycap> as one
+      character.</para>
     </note>
 
-    <para>Next two panes show <guilabel>RO</guilabel> if file is protected and
-    file's EOL style
-    ("<guilabel>Windows</guilabel>/<guilabel>Unix</guilabel>/<guilabel>Mac</guilabel>").
-    Note these two different ways to show EOL style. When per-line EOL style
-    is not remembered, EOL style is shown on own pane in statusbar. And when
-    per-line EOL style is remembered line's EOL style is shown after char
-    number. When per-line EOL style is used there is no file-wide EOL
-    style.</para>
+    <para>Other three panes are:</para>
+
+    <para><itemizedlist>
+        <listitem>
+          <simpara>read-only: <guilabel>RO</guilabel> is shown in the pane if
+          the file is read-only / protected</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>encoding: this pane shows codepage number for ANSI files
+          and Unicode encoding type for Unicode files</simpara>
+        </listitem>
+
+        <listitem>
+          <simpara>EOL style: EOL style can be <guilabel>Win</guilabel> for
+          Windows/DOS files (CRLF), <guilabel>Unix</guilabel> (LF) or
+          <guilabel>Mac</guilabel> (CR)</simpara>
+        </listitem>
+      </itemizedlist>Note there are two different ways to show EOL style. When
+    per-line EOL style is not remembered, EOL style is shown on own pane in
+    statusbar. And when per-line EOL style is remembered line's EOL style is
+    shown after char number. When per-line EOL style is used there is no
+    file-wide EOL style.</para>
 
     <para>Difference between column and char is that column counts tabulator
     character as so many (space) chars as it occupies (4 by default, can be
@@ -132,8 +163,8 @@
         </listitem>
 
         <listitem>
-          <simpara><guilabel>X differences</guilabel> : amount of differences,
-          no difference is selected</simpara>
+          <simpara><guilabel>X differences Found</guilabel> : amount of
+          differences, no difference is selected</simpara>
         </listitem>
 
         <listitem>
@@ -147,9 +178,38 @@
   <sect2>
     <title>Editor Margin</title>
 
-    <para>The editor panes (file panes) have gray margin area reserved for
-    line numbers and some symbols. If line numbers are not shown then margin
-    is shown like screenshot below.</para>
+    <para>The editor panes (file panes) have optional gray margin area for
+    line numbers and some symbols. This margin can be shown/hidded from menu
+    <menuchoice>
+        <guimenu>View</guimenu>
+
+        <guimenuitem>View Margins</guimenuitem>
+      </menuchoice>. The margin shows:</para>
+
+    <itemizedlist>
+      <listitem>
+        <simpara>Line numbers (from menu <menuchoice>
+            <guimenu>View</guimenu>
+
+            <guimenuitem>View Line Numbers</guimenuitem>
+          </menuchoice>)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Bookmarks (menu <menuchoice>
+            <guimenu>Edit</guimenu>
+
+            <guisubmenu>Bookmarks</guisubmenu>
+          </menuchoice>)</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>Word wrap symbols, when word wrap is enabled</simpara>
+      </listitem>
+    </itemizedlist>
+
+    <para>When line numbers are not shown then margin is shown like screenshot
+    below.</para>
 
     <para><inlinemediaobject>
         <imageobject>
@@ -166,10 +226,10 @@
         </imageobject>
       </inlinemediaobject></para>
 
-    <para>The editor margin cannot be hidden, it is always visible. If
-    linenubmers are not visible it takes pretty minimal width. Note that with
-    linenumbers the margin width is set so that the longest line number fits
-    into it. So with long files it needs space for several numbers.</para>
+    <para>If linenubmers are not visible it takes pretty minimal width. Note
+    that with linenumbers the margin width is set so that the longest line
+    number fits into it. So with large files with lots of lines it needs space
+    for several numbers.</para>
   </sect2>
 
   <sect2>
@@ -246,8 +306,8 @@
 
       <para>Using <guimenuitem>Go To</guimenuitem> from
       <guimenu>Edit</guimenu>-menu user can jump to certain line or
-      difference. Go To -dialog prefills current line and side to Go To
-      -dialog.</para>
+      difference. Go To -dialog shows current line and side when
+      opened.</para>
 
       <tip>
         <para>Go To line number is useful if there is need to merge same
@@ -365,8 +425,8 @@
   <sect2>
     <title>Refreshing</title>
 
-    <para>Refreshing updates differences after changes are made to files. Its
-    important to do refresh before merging changes between files.</para>
+    <para>Refreshing updates differences after changes are made to files. It
+    is important to do a refresh before merging changes between files.</para>
 
     <note>
       <para>Refresh does not reload file. That means, if another programs has
@@ -484,7 +544,7 @@
     in file. Right-clicking with mouse opens the context menu with items to
     select line to go to. And the visible area locator (area with different
     background color) can be used like a scrollbar thumb - after pressing down
-    the left mouse butto over it it can be dragged upwards and downwards to
+    the left mouse button over it can be dragged upwards and downwards to
     scroll the files.</para>
   </sect2>
 
