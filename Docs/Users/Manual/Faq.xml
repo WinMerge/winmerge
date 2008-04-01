@@ -89,9 +89,10 @@
         <answer>
           <para>Unfortunately not. We acknowledge it would be good feature but
           have no plans to implement it in near future. This can be somewhat
-          worked around by using two WinMerge instances. (One developer has
-          begun preliminary work on this feature, but it is not yet available,
-          even in experimental releases.)</para>
+          worked around by using two WinMerge instances. Or using third path
+          parameter given from command line. See <link
+          linkend="CommandLine">Command Line</link> -chapter for more
+          information.</para>
         </answer>
       </qandaentry>
 
@@ -117,8 +118,9 @@
         <answer>
           <para>Which kind of CVS integration WinMerge should have? Adding CVS
           client features to WinMerge is questionable since there are many
-          good CVS clients already. Conflict file resolution is a feature we
-          are planning to add in future releases.</para>
+          good CVS clients already. WinMerge can resolve conflict files, see
+          <link linkend="ResolveConflictFiles">Resolving Confilict
+          Files</link>.</para>
         </answer>
       </qandaentry>
 
@@ -234,9 +236,9 @@
         </question>
 
         <answer>
-          <para>Maybe your files have different line-ending styles (e.g. Windows
-          and Unix?). WinMerge by default compares also line-ending styles,
-          but you can disable it from <menuchoice>
+          <para>Maybe your files have different line-ending styles (e.g.
+          Windows and Unix?). WinMerge by default compares also line-ending
+          styles, but you can disable it from <menuchoice>
               <guimenu>Edit</guimenu>
 
               <guimenuitem>Options</guimenuitem>
