@@ -22,7 +22,7 @@ WinMerge 2.9.0.1
   - Brazilian (#1913723)
   - Chinese Traditional (#1927605)
   - French (#1920380)
-  - German (r5130, r5139, r5171, r5203)
+  - German (r5130, r5139, r5171, r5203, r5236)
   - Japanese (r5152)
   - Russian (#1914466)
   - Spanish (#1907152)
