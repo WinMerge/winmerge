@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-03-28 00:10+0100\n"
+"PO-Revision-Date: 2008-04-21 23:30+0100\n"
 "Last-Translator: Tim Gerundt <tim at gerundt.de>\n"
 "Language-Team: German <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -320,14 +320,14 @@ msgstr "D&ebug"
 #: Merge.rc:458
 #, c-format
 msgid "&Load Config..."
-msgstr ""
+msgstr "&Konfiguration laden..."
 
 #: Merge.rc:160
 #: Merge.rc:274
 #: Merge.rc:459
 #, c-format
 msgid "&Reset Options"
-msgstr ""
+msgstr "&Einstellungen zurücksetzen"
 
 #: Merge.rc:162
 #: Merge.rc:276
@@ -1040,7 +1040,7 @@ msgstr "Info über WinMerge"
 #: Merge.rc:656
 #, c-format
 msgid "(Private Build)"
-msgstr ""
+msgstr "(Private Build)"
 
 #: Merge.rc:657
 #, c-format
@@ -2039,24 +2039,26 @@ msgstr "Benutzerdefinierter Zeichensatz:"
 #: Merge.rc:1278
 #, c-format
 msgid "WinMerge - Archive support disabled"
-msgstr ""
+msgstr "WinMerge - Archiv-Unterstützung deaktiviert"
 
 #: Merge.rc:1281
 #, c-format
 msgid "Unable to detect 7-Zip version (not installed?)"
-msgstr ""
+msgstr "Die 7-Zip Version konnte nicht ermittelt werden. (Nicht installiert?)"
 
+# Removed \n because of lack of space!
 #: Merge.rc:1284
 #, c-format
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
 msgstr ""
+"Archiv-Unterstützung benötigt eine Installation von 7-Zip 3.11 (oder neuer) auf Ihrem Computer, oder die notwendigen Komponenten müssen für den Einzelbetrieb ins Programm-Verzeichnis kopiert werden."
 
 #: Merge.rc:1286
 #, c-format
 msgid "There must also be an appropriate interface plugin (Merge7z*.dll) on the path."
-msgstr ""
+msgstr "Es muss sich auch ein geeignetes Schnittstellen-Plugin (Merge7z*.dll) im Pfad befinden."
 
 #: Merge.rc:1288
 #, c-format
@@ -2064,11 +2066,13 @@ msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
 msgstr ""
+"Bitte verwenden Sie die unten empfohlene 7-Zip Version, bis Schnittstellen-Plugins\n"
+"für neuere Versionen verfügbar sind."
 
 #: Merge.rc:1290
 #, c-format
 msgid "Version"
-msgstr ""
+msgstr "Version"
 
 #: Merge.rc:1292
 #, c-format
@@ -2076,63 +2080,69 @@ msgid ""
 "Plugin required\n"
 "(dllbuild %04u)"
 msgstr ""
+"Plugin benötigt\n"
+"(dllbuild %04u)"
 
 #: Merge.rc:1294
 #, c-format
 msgid "Recommended version of 7-Zip:"
-msgstr ""
+msgstr "Empfohlene Version von 7-Zip:"
 
 #: Merge.rc:1297
 #: Merge.rc:1300
 #, c-format
 msgid "present"
-msgstr ""
+msgstr "Vorhanden"
 
 #: Merge.rc:1298
 #, c-format
 msgid "Merge7z000U.dll"
-msgstr ""
+msgstr "Merge7z000U.dll"
 
 #: Merge.rc:1301
 #, c-format
 msgid "7-Zip software installed on your computer:"
-msgstr ""
+msgstr "7-Zip Installation auf Ihrem Computer:"
 
 #: Merge.rc:1303
 #: Merge.rc:1308
 #, c-format
 msgid "none"
-msgstr ""
+msgstr "Keine"
 
 #: Merge.rc:1305
 #, c-format
 msgid "missing"
-msgstr ""
+msgstr "Fehlend"
 
 #: Merge.rc:1306
 #, c-format
 msgid "7-Zip components for standalone operation:"
-msgstr ""
+msgstr "7-Zip Einzelbetrieb-Komponenten:"
 
 #: Merge.rc:1310
 #, c-format
 msgid "outdated"
-msgstr ""
+msgstr "Veraltet"
 
 #: Merge.rc:1311
 #, c-format
 msgid "Plugins on path:"
-msgstr ""
+msgstr "Plugins im Pfad:"
 
 #: Merge.rc:1312
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
 msgstr ""
+"Diese &Meldung nicht erneut anzeigen.\n"
+"(Sie können diese Meldung jederzeit vom Hilfe-Menü aus aufrufen.)"
 
 #: Merge.rc:1316
 #, c-format
 msgid "Plugin Download"
-msgstr ""
+msgstr "Plugin Download"
 
 #: Merge.rc:1325
 #, c-format
@@ -5687,7 +5697,7 @@ msgstr "Zeigt die GNU General Public License an."
 #: Merge.rc:2695
 #, c-format
 msgid "Private Build: %1"
-msgstr ""
+msgstr "Private Build: %1"
 
 #: Merge.rc:2696
 #, c-format
