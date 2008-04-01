@@ -6,7 +6,7 @@
   work in WinMerge.</para>
 
   <table>
-    <title>Directory compare</title>
+    <title>Folder compare</title>
 
     <tgroup cols="2">
       <thead>
@@ -34,7 +34,7 @@
         <row>
           <entry><keycap>F5</keycap></entry>
 
-          <entry>Rescan directories</entry>
+          <entry>Rescan folders</entry>
         </row>
 
         <row>
@@ -44,7 +44,7 @@
               <keycap>Home</keycap>
             </keycombo></entry>
 
-          <entry>Go to first different file/directoriy</entry>
+          <entry>Go to first different file/folder</entry>
         </row>
 
         <row>
@@ -54,7 +54,7 @@
               <keycap>End</keycap>
             </keycombo></entry>
 
-          <entry>Go to last different file/directoriy</entry>
+          <entry>Go to last different file/folder</entry>
         </row>
 
         <row>
@@ -75,7 +75,7 @@
               <keycap>Up Arrow</keycap>
             </keycombo></entry>
 
-          <entry>Go to previous different file/directory</entry>
+          <entry>Go to previous different file/folder</entry>
         </row>
 
         <row>
@@ -85,7 +85,7 @@
               <keycap>Down Arrow</keycap>
             </keycombo></entry>
 
-          <entry>Go to next different file/directory</entry>
+          <entry>Go to next different file/folder</entry>
         </row>
 
         <row>
@@ -412,6 +412,7 @@
 
         <row>
           <entry><keycap>F3</keycap></entry>
+
           <entry>Find/Replace again.</entry>
         </row>
 
@@ -440,7 +441,7 @@
               <keycap>Ctrl</keycap>
 
               <keycap>Shift</keycap>
-              
+
               <keycap>F3</keycap>
             </keycombo></entry>
 
@@ -488,7 +489,7 @@
               <keycap>F2</keycap>
             </keycombo></entry>
 
-          <entry>Prev Bookmark</entry>
+          <entry>Previous Bookmark</entry>
         </row>
 
         <row>
