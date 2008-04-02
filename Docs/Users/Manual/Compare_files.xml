@@ -605,8 +605,8 @@
     </itemizedlist>
   </sect2>
 
-  <sect2>
-    <title id="ResolveConflictFiles"><indexterm>
+  <sect2 id="ResolveConflictFiles">
+    <title><indexterm>
         <primary>Conflict Files</primary>
       </indexterm>Resolving Conflict Files</title>
 
