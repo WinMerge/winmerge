@@ -111,5 +111,5 @@
 
   &ShortCuts;
 
-  <index/>
+  <index id="word_index"/>
 </article>
