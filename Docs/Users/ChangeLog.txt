@@ -2,13 +2,14 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
-WinMerge 2.8.0
+WinMerge 2.8.0 - 2008-04-03 (r5254)
   Installer: Use correct way to create start menu web link (#1913919)
   Installer: Updated the side art of the installer application (#1915012)
   Update URLs and switch to 2.8 manual (#1919965)
   New splash screen (#1914869)
   Create separate document for compiling WinMerge (#1927502)
   Update InnoSetup translations (#1931492)
+  Manual and documentation updates
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
