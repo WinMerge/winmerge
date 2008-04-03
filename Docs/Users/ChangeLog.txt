@@ -25,7 +25,7 @@ WinMerge 2.9.0.1
   - German (r5130, r5139, r5171, r5203, r5236)
   - Japanese (r5152)
   - Russian (#1914466)
-  - Spanish (#1907152)
+  - Spanish (#1907152, r5250)
   - Swedish (#1908289)
 
 WinMerge 2.8 RC - 2008-03-04 (r5125)
