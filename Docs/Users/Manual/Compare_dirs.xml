@@ -57,11 +57,9 @@
   As usual be careful when changing values directly to registry!</para>
 
   <sect2>
-    <title>Compare Results</title>
-
-    <indexterm>
-      <primary>Folder compare result</primary>
-    </indexterm>
+    <title><indexterm>
+        <primary>Folder Compare Result</primary>
+      </indexterm>Compare Results</title>
 
     <para>Files and folders are compared and divided into several categories.
     Categories are easy to recognize from these icons:<simplelist>
@@ -376,6 +374,33 @@
     the left-side folder and second selected folder becomes the right-side
     folder. This can be used in situation explained in previous paragraph when
     there is same folder compared as both sides.</para>
+
+    <sect3>
+      <title><indexterm>
+          <primary>Open Unique Folders</primary>
+        </indexterm>Unique Folders</title>
+
+      <para>WinMerge 2.6 and earlier could not open unique folders (folders
+      existing only in other side). An error message was shown about trying to
+      open unique folder. This restriction came from a fact that WinMerge
+      cannot compare existing folder to non-existing folder. If one wanted to
+      copy contents of unique folder, then whole folder structure must been
+      copied.</para>
+
+      <para>Copying whole unique folder structure is many times not wanted.
+      WinMerge 2.8 allows creating the missing folder and browsing then into
+      that created folder. So that contents of original unique folder and
+      created empty folder can be compared. Now it is possible to copy just
+      one file (or subfolder) in unique folder.</para>
+
+      <para>To navigate into unique folder, select the folder, and browse into
+      it as normally (press <keycap>Enter</keycap> -key, double-click over
+      foldername with mouse, or select
+      <guimenu>Merge</guimenu><guimenuitem>Compare</guimenuitem> from the
+      menu. WinMerge shows a message asking if the missing folder should be
+      created. Answer <guilabel>Yes</guilabel> to create the folder, or
+      <guilabel>No</guilabel> to cancel the action.</para>
+    </sect3>
   </sect2>
 
   <sect2>
