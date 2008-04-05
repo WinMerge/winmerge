@@ -15,7 +15,7 @@
 </ul>
 <h3><a name="current">Current Version</a></h3>
 <?php $page->printDownloadNow(); ?>
-<p>The current version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/2.6/changes.php">changelog</a> and the <a href="http://sourceforge.net/project/shownotes.php?release_id=569358">release notes</a>.</p>
+<p>The current version is <strong><?php echo $stablerelease->getVersionNumber();?></strong> and was released at <strong><?php echo $stablerelease->getDate();?></strong>. For detailed info on what's new, read the <a href="/2.8/changelog.php">change log</a> and the <a href="/2.8/releasenotes.php">release notes</a>.</p>
 <div class="downloadmatrix">
 <ul>
   <li><strong>Installer</strong>
@@ -43,7 +43,7 @@
   </li>
 </ul>
 </div>
-<p>The easiest way to install WinMerge is to download and run the Installer. Read the <a href="2.6/manual/Installing.html">online manual</a> for help using it.</p>
+<p>The easiest way to install WinMerge is to download and run the Installer. Read the <a href="2.8/manual/Installing.html">online manual</a> for help using it.</p>
 <h3><a name="other">Other Versions</a></h3>
 <ul>
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable Versions</a></li>
@@ -58,12 +58,12 @@
 <ul>
   <li><strong>Installer</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7zInstaller0026-432-457.exe">Exe-Format (1.05 MB)</a></li>
+      <li><a href="http://downloads.sourceforge.net/winmerge/Merge7zInstaller0026-432-457.exe">Exe-Format (1.05 MB)</a></li>
     </ul>
   </li>
   <li><strong>Binaries</strong>
     <ul>
-      <li><a href="http://prdownloads.sourceforge.net/winmerge/Merge7z0026-432-457.7z">7z-Format (0.91 MB)</a></li>
+      <li><a href="http://downloads.sourceforge.net/winmerge/Merge7z0026-432-457.7z">7z-Format (0.91 MB)</a></li>
     </ul>
   </li>
 </ul>
@@ -76,8 +76,8 @@ You can <a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/">browse th
 <dl class="headinglist">
   <dt>Developer Version</dt>
   <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk">https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk</a></dd>
-  <dt>WinMerge 2.6</dt>
-  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_6">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_6</a></dd>
+  <dt>WinMerge 2.8</dt>
+  <dd><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_8">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_8</a></dd>
 </dl>
 <?php
   $page->printFoot();
