@@ -44,7 +44,7 @@
       /* _Stable Release */
       $this->_stablerelease = new Release;
       $this->_stablerelease->setVersionNumber('2.8.0');
-      $this->_stablerelease->setDate('2008-04-02');
+      $this->_stablerelease->setDate('2008-04-03');
       $this->_stablerelease->addDownload('setup.exe', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.0-Setup.exe', 2972014);
       $this->_stablerelease->addDownload('exe.zip', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.0-exe.zip', 3234729);
       $this->_stablerelease->addDownload('exe.7z', 'http://downloads.sourceforge.net/winmerge/WinMerge-2.8.0-exe.7z', 1762030);

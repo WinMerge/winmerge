@@ -7,7 +7,7 @@
 <h2>History</h2>
 <h3>WinMerge 2.8</h3>
 <ul>
-  <li>WinMerge 2.8.0 (2008-04-02)</li>
+  <li>WinMerge 2.8.0 (2008-04-03)</li>
 </ul>
 <ul class="inline">
   <li><a href="/2.8/manual/index.html">Manual</a></li>
