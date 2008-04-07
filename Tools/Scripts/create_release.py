@@ -308,7 +308,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
 
     shutil.copy('Docs/Users/ReleaseNotes.html', doc_folder)
     shutil.copy('Docs/Users/ReadMe.txt', bin_folder)
-    shutil.copy('Docs/Users/ChangeLog.txt', bin_folder)
+    shutil.copy('Docs/Users/ChangeLog.txt', doc_folder)
     shutil.copy('Docs/Users/Contributors.txt', bin_folder)
     shutil.copy('Docs/Users/Files.txt', bin_folder)
 
