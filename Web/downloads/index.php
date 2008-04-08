@@ -69,6 +69,9 @@
 </ul>
 </div>
 <p>You can also read the <a href="http://sourceforge.net/project/shownotes.php?release_id=563695&amp;group_id=13216">Release Notes</a> or search for <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=143957">other versions</a>.</p>
+<h4>xdocdiff Plugin</h4>
+<p>With this plugin you can compare Word, Excel, PowerPoint, PDF and some more files.</p>
+<p>For more details and the download go to the <a href="http://freemind.s57.xrea.com/xdocdiffPlugin/en/index.html">xdocdiff plugin homepage</a>.</p>
 <h3><a name="sourcecode">Source Code</a></h3>
 <p>WinMerge is released under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License</a>. That means you can get the whole source code and can build the program yourself.<br />
 The source code is hosted on <a href="http://sourceforge.net/">SourceForge.net</a> in a <a href="http://sourceforge.net/svn/?group_id=13216">Subversion</a> repository.<br />
