@@ -76,7 +76,8 @@ Localization:
 * Norwegian:	
   Hans Fredrik Nordhaug
             
-* Polish:	
+* Polish:
+  Skiff
   Pawel Wawrzysko
 
 * Portuguese (Brazilian):	
