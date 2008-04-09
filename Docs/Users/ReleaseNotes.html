@@ -96,21 +96,20 @@ file located in the <code>Docs</code> folder under the WinMerge program folder.
 
 <h3><a name="new28RC">What Is New in 2.8 RC?</a></h3>
 
-<h4>Detect UFT-8 Files Without BOM Bytes</h4>
+<h4>Detect UTF-8 Files Without BOM Bytes</h4>
 <p>
-Until now WinMerge could not detect UTF-8 files without BOM bytes as UTF-8
-files. Opening such files into WinMerge caused parts of files shown improperly
-at the screen. Now UTF-8 files without BOM bytes are properly detected and
-shown.
+Until now, WinMerge could not detect UTF-8 files without a BOM (Byte-order) marker. 
+Opening such files with WinMerge caused segments of the file(s) to render improperly 
+on the screen. UTF-8 files without BOM bytes are now properly detected and displayed.
 </p>
 
 <h4>Open Binary Files</h4>
 <p>
-WinMerge could not earlier show files it detected as binary files. And only
-compare result for such files was "binary files are identical" or "binary files
-are different". Now WinMerge shows <b>all</b> files in file compare. Even binary
-files. Bytes that have no visual presentation (character) are shown as byte
-value.
+WinMerge could not display files it detected as binary in previous versions. 
+WinMerge did however compare the files and returned the results as either 
+"binary files are identical" or "binary files are different." Starting with this 
+release, WinMerge now shows <b>all</b> files in the file compare, including binary files. 
+Bytes that have no visual representation (character) are displayed with its byte value.
 </p>
 
 <p>
@@ -120,31 +119,32 @@ files!
 
 <h4>Resolve Conflict Files</h4>
 <p>
-Oldest open feature request got implemented! WinMerge can now open "conflict
-files" that several version control systems (CVS, Subversion, ...) output.
-Conflict file is separated to two files "theirs" and "mine" and shown in
-normal file compare for merge.
+The oldest <i>open</i> feature request has finally been implented! WinMerge can now open 
+"conflict files" that several version control systems (CVS, Subversion, etc.) output. 
+A conflict file is seperated into two files?"theirs" and "mine." These files are then 
+displayed for typical file compare and merging.
 </p>
 
 <h4>Other Changes</h4>
 <ul>
-  <li>Syntax highlighting for PowerShell and PO(T) files</li>
-  <li>Zooming in file compare</li>
-  <li>Create pair folder for unique folder for browsing into that folder</li>
-  <li>Option to select folder for temporary files</li>
-  <li>Show file's encoding in file compare statusbar</li>
-  <li>Option to preserve file's modification date in file compare</li>
+  <li>Syntax highlighting for PowerShell and PO(T) files.</li>
+  <li>Zooming in file compare.</li>
+  <li>Create a <i>pair folder</i> for a <i>unique folder</i> so browsing into that folder 
+    is possible.</li>
+  <li>Option to select a folder for temporary files.</li>
+  <li>Show the file's encoding type in the file compare status bar.</li>
+  <li>Option to preserve a file's modification date in file compare.</li>
 </ul>
 
 <h4>Important Bugs Fixed</h4>
 <ul>
-  <li>Right mouse button did not move cursor to new position in file compare</li>
-  <li>Merge/Delete deleted files from folders marked as read-only.</li>
-  <li>Potential lockup in folder compare</li>
-  <li>Line filter did not filter non-ascii lines correctly</li>
+  <li>Right mouse button did not move the cursor to the new position in file compare</li>
+  <li>Merge/Delete would delete files from folders marked as read-only.</li>
+  <li>Potential lockup in folder compare.</li>
+  <li>Line filter did not filter non-ascii lines correctly.</li>
   <li>Did not switch back to content compare once switched to quick compare in
-    folder compare</li>
-  <li>Quick compare did not ignore EOL differences</li>
+    folder compare.</li>
+  <li>Quick compare did not ignore EOL differences.</li>
 </ul>
 
 
@@ -152,12 +152,12 @@ normal file compare for merge.
 
 <h4>New Localization System</h4>
 <p>
-The most important change in this release is the new localization system. The
-new system is based on widely used PO files. PO files are text files that have
-both original (English) text and translated text together. As PO files are
-text files they are easy to edit. Also there is no anymore any kind of
-compiling needed for updating the files. So one can just edit the file and
-re-start WinMerge to test changes done.
+The most significant change in this release is the new localization system. This new 
+system is based on the widely used PO files.  PO files are text files that have both 
+the original (English) text and the translated text together.  Since PO files are text 
+files, they are simple and intuitive to edit. WinMerge no longer uses DLL resources for 
+translations and therefore, no compiling will ever be required. One can now edit the PO 
+files on-the-fly, re-start WinMerge, and the changes will be reflected immediately.
 </p>
 
 <p>
@@ -165,13 +165,13 @@ See WinMerge's development wiki for more information about translations:
 <a href="http://winmerge.org/Wiki/Translations">http://winmerge.org/Wiki/Translations</a>
 
 <p>
-In short: PO files have replaced LANG files in Languages-subfolder.
+In conclusion: PO files have replaced LANG files in Languages-subfolder.
 </p>
 
 <h4>Translations</h4>
 <p>
 Several translations were again updated. We expect things to improve with
-translation statuses, as new system is so much easier to use.
+translation statuses, as the new system is so much easier to use.
 </p>
 
 <p>
@@ -188,44 +188,44 @@ New Croatian and Portuguese translations were added.
 
 <h4>Important Bugs Fixed</h4>
 <ul>
-  <li>Rename in folder compare misbehaved when renaming item existing only in other
-    side.</li>
-  <li>Do not merge ignored differences when multiple differences are selected</li>
-  <li>VCS system integration tried to check out wrong file - this caused many kinds
+  <li>Rename in folder compare misbehaved when renaming an item that only existed on 
+    one side.</li>
+  <li>"Do not merge" ignored differences when multiple differences are selected</li>
+  <li>VCS system integration tried to check out the wrong file, this caused a variety 
     of side-effects.</li>
-  <li>Backup file was created from wrong file in folder compare operations</li>
+  <li>Backup file was created from the wrong file in folder compare operations</li>
 </ul>
 
 <h3><a name="new274">What Is New in 2.7.4?</a></h3>
 <ul>
-  <li>New confirmation dialog for copying items in folder compare</li>
-  <li>Improved line filter -dialog</li>
-  <li>Printing improvements</li>
-  <li>Allow user to select syntax highlighting to use for file</li>
-  <li>Tabbed multi-window interface</li>
-  <li>Alternative big toolbar</li>
-  <li>Recent project files in File-menu</li>
+  <li>New confirmation dialog for copying items in folder compare.</li>
+  <li>Improved line filter -dialog.</li>
+  <li>Printing improvements.</li>
+  <li>Allow user to select syntax highlighting to use for a file.</li>
+  <li>Tabbed multi-window interface.</li>
+  <li>Alternative big toolba.r</li>
+  <li>Recent project files in File-menu.</li>
 </ul>
 
 <h4>Important Bugs Fixed</h4>
 <ul>
-  <li>Crash when comparing empty folders</li>
-  <li>Pressing ESC-key when renaming file caused a crash</li>
+  <li>Crash when comparing empty folders.</li>
+  <li>Pressing ESC-key when renaming a file caused a crash.</li>
 </ul>
 
 <h3><a name="new272">What Is New in 2.7.2?</a></h3>
 <ul>
-  <li>New XML (expat+scew) and regular expression (PCRE) libraries used</li>
-  <li>Try to match files inside differences</li>
-  <li>Optimized folder compare</li>
-  <li>New options for creating backup files</li>
+  <li>New XML (expat+scew) and regular expression (PCRE) libraries used.</li>
+  <li>Try to match files inside differences.</li>
+  <li>Optimized folder compare.</li>
+  <li>New options for creating backup files.</li>
 </ul>
 
 <h4>Important Bugs Fixed</h4>
 <ul>
-  <li>Crash when file modification time was missing</li>
-  <li>Dialogs could be hidden behind other windows</li>
-  <li>Many word-wrap related fixes</li>
+  <li>Crash occures when file modification time was missing.</li>
+  <li>Dialogs could be hidden behind other windows.</li>
+  <li>Many word-wrap related fixes.</li>
 </ul>
 
 <h3><a name="issues">Known Issues</a></h3>
@@ -241,7 +241,7 @@ New Croatian and Portuguese translations were added.
   </li>
   <li><p><strong>There is no 3-way merge.</strong> <small><a href="http://winmerge.org/rfe/990464" title="Feature Request #990464">#990464</a></small></p></li>
   <li>
-    <p><strong>Filters only applied when using full compare</strong></p>
+    <p><strong>Filters only applied when using full compare.</strong></p>
     <p>Line filtering is only applied in folder compare when using <i>Full Contents</i>-compare method.</p>
     <p>If you are using any other compare method, line filters are not applied. Files marked different
     in folder compare can get status changed to identical when opening them to file compare.</p>
