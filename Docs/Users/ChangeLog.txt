@@ -25,6 +25,7 @@ WinMerge 2.9.0.1
   - French (#1920380)
   - German (r5130, r5139, r5171, r5203, r5236)
   - Japanese (r5152)
+  - Polish (#1934655)
   - Russian (#1914466)
   - Spanish (#1907152, r5250)
   - Swedish (#1908289)
