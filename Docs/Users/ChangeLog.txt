@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8.2
+  Release Notes update (#1933950)
   Translation updates:
   - Polish (#1934655)
 
