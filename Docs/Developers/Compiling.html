@@ -64,7 +64,7 @@ Subversion repository. See <a href="readme-Subversion.html">readme-Subversion.ht
   <li><a href="#Compiling_pcre">Compiling PCRE</a></li>
   <li><a href="#Compiling_core">Compiling WinMerge executables</a></li>
   <li><a href="#ShellExt64">Shell Extension (64-bit)</a></li>
-  <li><a href="#VS2005">Visual Studio 2005</a></li>
+  <li><a href="#VS2005">Visual Studio 2005 & 2008 Manifest File</a></li>
 </ol>
 
 
@@ -74,6 +74,7 @@ Subversion repository. See <a href="readme-Subversion.html">readme-Subversion.ht
   <li>Visual Studio 2003.Net + Service Pack 1 (used for releases)</li>
   <li>Visual Studio 6 + Service Pack 6</li>
   <li>Visual Studio 2005 (occasional checks for compiling) (Service Pack 1 recommended)</li>
+  <li>Visual Studio 2008</li>
 </ul>
 <p>Note that WinMerge uses MFC heavily. So free (Express) editions of Visual Studio cannot
 compile WinMerge, unless you have MFC installed separately.</p>
@@ -277,19 +278,21 @@ but that is expected to happen.</p>
 <p>64-bit ShellExtension is registered to 64-bit Windows just like counterparts in 32-bit world:<br>
 <code>regsvr ShellExtensionX64.dll</code></p>
 
-<h3><a name="VS2005">Visual Studio 2005</a></h3>
-<p>When the VC6 project file (.dsp) is converted to a Visual Studio 2005 project, it does not
-compile correctly as is. The problem is Visual Studio 2005 automatically generates and
-embeds a manifest file for the executable. And as the WinMerge resource file includes
-a manifest
-file there are conflicts.</p>
+<h3><a name="VS2005">Visual Studio 2005 & 2008 Manifest File</a></h3>
+<p>When the VC6 project file (.dsp) is converted to a Visual Studio 2005 or
+2008 project, the visual styles do not get enabled. The problem is Visual Studio
+2005 and 2008 automatically generates and embeds a manifest file for the
+executable, but that generated manifest does not include all needed properties
+to enable visual styles. The solution is to add WinMerge's manifest file as
+additional manifest.</p>
 
-<p>The easiest way to fix the compile is to disable VS2005 from creating and embedding
-the manifest file. From project properties:
-<ul>
-  <li>disable Linker / Manifest File / Generate Manifest (set to "No")</li>
-  <li>disable Manifest Tool / Input and Output/ Embed Manifest (set to "No")
-</ul></p>
+<p>From project properties, set<br>
+  <code>Manifest Tool / Input and Output / Additional Manifest Files</code> -property value to:<br>
+  <code>$(InputDir)\res\$(TargetFileName).manifest</code>
+</p>
 
+<p>See also <a href="http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=143306&SiteID=1">
+Manifests in VS2005-- What are they?</a> -thread in Microsoft forum.
+</p>
 </body>
 </html>
