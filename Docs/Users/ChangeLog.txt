@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.9.0.1
+  Release Notes update (#1933950)
   Installer: Use correct way to create start menu web link (#1913919)
   Installer: Simplify DeletePreviousStartMenu() function (#1913949)
   Installer: Updated the side art of the installer application (#1915012)
