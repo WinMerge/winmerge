@@ -308,7 +308,7 @@ def create_bin_folders(bin_folder, dist_src_folder):
 
     shutil.copy('Docs/Users/ReleaseNotes.html', doc_folder)
     shutil.copy('Docs/Users/ReadMe.txt', bin_folder)
-    shutil.copy('Docs/Users/ChangeLog.txt', bin_folder)
+    shutil.copy('Docs/Users/ChangeLog.txt', doc_folder)
     shutil.copy('Docs/Users/Contributors.txt', bin_folder)
     shutil.copy('Docs/Users/Files.txt', bin_folder)
 
@@ -373,6 +373,22 @@ def check_tools():
         return False
     return True
 
+def check_x64shellext():
+    """Checks that 64-bit ShellExtension is compiled prior to running this
+    script.
+
+    This is due to the fact we can't compile 64-bit ShellExtension without some
+    environment tweaks, so it won't work (currently) from this script. And the
+    ShellExtension must be compiled separately.
+    """
+    if not os.path.exists('build/shellextensionx64/ShellExtensionX64.dll'):
+        print 'ERROR: cannot create a release:'
+        print 'You must compile 64-bit ShellExtension (ShellExtensionX64.dll)'
+        print 'before running this script!'
+        return False
+    else:
+        return True
+
 def usage():
     print 'WinMerge release script.'
     print 'Usage: create_release [-h] [-v: n] [-c] [-l]'
@@ -406,6 +422,10 @@ def main(argv):
 
     # Check all required tools are found (script configuration)
     if check_tools() == False:
+        sys.exit()
+
+    # Check 64-bit ShellExtension is compiled
+    if check_x64shellext() == False:
         sys.exit()
 
     # Check we are running from correct folder (and go to root if found)
