@@ -3,7 +3,8 @@
 #
 # Translators:
 # * Pawel Wawrzysko <traduc at kki.pl>
-# * 2.8.0 update - Skiff
+# * Skiff <skiffatsf at users.sourceforge.net>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -12,7 +13,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2008-04-04 10:19+0100\n"
 "Last-Translator: Skiff\n"
 "Language-Team: Polish <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
