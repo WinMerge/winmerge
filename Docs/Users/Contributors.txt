@@ -65,10 +65,11 @@ Localization:
 * Hungarian:
   Márton Balázs  
 
-* Italian:	
+* Italian:
   Andrea Decorte
+  Antonio Angelo
   Michele Merega
-             
+
 * Korean:
   Sukjoon
   Lee Jae-Hong

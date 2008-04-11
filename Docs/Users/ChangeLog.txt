@@ -5,6 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.8.2
   Release Notes update (#1933950)
   Translation updates:
+  - Italian (#1939235)
   - Polish (#1934655)
 
 WinMerge 2.8.0 - 2008-04-03 (r5254)

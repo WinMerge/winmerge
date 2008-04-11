@@ -4,18 +4,17 @@
 # Translators:
 # * Michele Merega <michele.merega at ifminfomaster.com>
 # * Andrea Decorte <deco1985 at hotmail.com>
+# * Antonio Angelo <antonio.angelo at gmail.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
-#
-# Andrea Decorte <deco1985@hotmail.com>, 2007.
 msgid ""
 msgstr ""
 "Project-Id-Version: Italian\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2007-09-30 10:57+0100\n"
-"Last-Translator: Andrea Decorte <deco1985 at hotmail.com>\n"
+"POT-Creation-Date: 2008-03-04 18:02+0000\n"
+"PO-Revision-Date: 2008-04-10 11:13+0100\n"
+"Last-Translator: Antonio Angelo <antonio.angelo at gmail.com>\n"
 "Language-Team: Italian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=windows-1252\n"
@@ -140,7 +139,7 @@ msgstr "&Apri...\tCtrl+A"
 #: Merge.rc:114
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "Apr&i file conflittuale..."
 
 #: Merge.rc:116
 #: Merge.rc:194
@@ -391,14 +390,14 @@ msgstr "&?"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "Guida &WinMerge\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
 #: Merge.rc:476
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "Note di r&ilascio"
 
 #: Merge.rc:178
 #: Merge.rc:292
@@ -412,7 +411,7 @@ msgstr ""
 #: Merge.rc:478
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "C&onfigurazione"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -649,7 +648,7 @@ msgstr "&Modalità 'Unione'\tF9"
 #: Merge.rc:339
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "Codifica &file..."
 
 #: Merge.rc:345
 #, c-format
@@ -750,18 +749,18 @@ msgstr ""
 #: Merge.rc:385
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr ""
+msgstr "&Ingrandisci\tCtrl++"
 
 #: Merge.rc:386
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr ""
+msgstr "Rid&uci\tCtrl+-"
 
 #. Zoom to normal
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "&Normale\tCtrl+*"
 
 #: Merge.rc:389
 #, c-format
@@ -771,7 +770,7 @@ msgstr "Evidenziazione sintassi"
 #: Merge.rc:394
 #, c-format
 msgid "&Lock Panes"
-msgstr ""
+msgstr "B&locca pannelli"
 
 #: Merge.rc:395
 #, c-format
@@ -846,7 +845,7 @@ msgstr "&Confronta"
 #: Merge.rc:491
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "Co&nfronto speciale"
 
 #: Merge.rc:493
 #, c-format
@@ -1267,7 +1266,7 @@ msgstr "Domanda alla c&hiusura di più finestre"
 #: Merge.rc:758
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "&Preserva orario del file durante il confronto"
 
 #: Merge.rc:761
 #, c-format
@@ -1582,22 +1581,22 @@ msgstr "Cartella dei &filtri:"
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "&Sfoglia..."
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "Cartella file temporanei"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "Cartella temporanea di s&istema"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "Cartella &utente:"
 
 #: Merge.rc:999
 #: Merge.rc:1015
@@ -1698,12 +1697,12 @@ msgstr "Scelta delle colonne"
 #: Merge.rc:1071
 #, c-format
 msgid "Move &Up"
-msgstr ""
+msgstr "Sposta in &alto"
 
 #: Merge.rc:1072
 #, c-format
 msgid "Move &Down"
-msgstr ""
+msgstr "Sposta in &basso"
 
 #: Merge.rc:1082
 #, c-format
@@ -1830,7 +1829,7 @@ msgstr "Ig&nora le differenze tra maiuscole e minuscole"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "I&gnora differenze nei fine riga (Windows/Unix/Mac)"
 
 #: Merge.rc:1159
 #, c-format
@@ -1850,7 +1849,7 @@ msgstr "Ignora differenze di tempo inferiori a 3 secondi"
 #: Merge.rc:1166
 #, c-format
 msgid "&File Compare method:"
-msgstr "&Metodo confronto file:"
+msgstr "&Metodo di confronto file:"
 
 #: Merge.rc:1169
 #, c-format
@@ -1881,7 +1880,7 @@ msgstr "Riscansiona &automaticamente"
 #: Merge.rc:1186
 #, c-format
 msgid "&Preserve original EOL chars"
-msgstr "&Conserva caratteri di fine linea originali"
+msgstr "&Conserva i caratteri originali di fine riga"
 
 #: Merge.rc:1188
 #, c-format
@@ -2126,8 +2125,12 @@ msgstr "Plugin trovati nel percorso:"
 
 #: Merge.rc:1312
 #, c-format
-msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
+msgid ""
+"Don't display this &message again.\n"
+"(You can always recall this message from the Help menu.)"
 msgstr ""
+"Non visualizzare nuovamente questo &messaggio.\n"
+"(Potete sempre richiamare questo messaggio dal menu Guida)"
 
 #: Merge.rc:1316
 #, c-format
@@ -2932,8 +2935,12 @@ msgstr ""
 
 #: Merge.rc:1805
 #, c-format
-msgid "Automatically resize panes\nLock Panes"
+msgid ""
+"Automatically resize panes\n"
+"Lock Panes"
 msgstr ""
+"Ridimensiona automaticamente i pannelli\n"
+"Blocca pannelli"
 
 #: Merge.rc:1811
 #, c-format
@@ -2996,12 +3003,33 @@ msgstr ""
 
 #: Merge.rc:1837
 #, c-format
-msgid "\nFileCompare\n\n\n\nWinMerge.FileCompare\nWinMerge File Compare"
+msgid ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 msgstr ""
+"\n"
+"FileCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FileCompare\n"
+"WinMerge File Compare"
 
 #: Merge.rc:1838
 #, c-format
-msgid "\nFolderCompare\n\n\n\nWinMerge.FolderCompare\nWinMerge Folder Compare"
+msgid ""
+"\n"
+"FolderCompare\n"
+"\n"
+"\n"
+"\n"
+"WinMerge.FolderCompare\n"
+"WinMerge Folder Compare"
 msgstr ""
 
 #: Merge.rc:1845
@@ -3022,13 +3050,17 @@ msgstr "Clicca con il tasto destro sul percorso per copiare"
 
 #: Merge.rc:1865
 #, c-format
-msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
+msgid ""
+"Developers:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 msgstr ""
+"Sviluppatori:\n"
+"Dean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr ""
+msgstr "WinMerge viene fornito ASSOLUTAMENTE PRIVO DI GARANZIA. Questo è uin software gratuito e ne è apprezzata la ridistribuzione a determinate condizioni; per dettagli, vedere la GNU General Public License nel menu Guida."
 
 #: Merge.rc:1872
 #, c-format
@@ -3421,12 +3453,12 @@ msgstr "File di destra senza titolo"
 #: Merge.rc:2025
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "Loro file"
 
 #: Merge.rc:2026
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "Miei file"
 
 #: Merge.rc:2032
 #, c-format
@@ -3599,8 +3631,14 @@ msgstr ""
 
 #: Merge.rc:2084
 #, c-format
-msgid "The file\n%1\nis not a conflict file."
+msgid ""
+"The file\n"
+"%1\n"
+"is not a conflict file."
 msgstr ""
+"Il file\n"
+"%1\n"
+"non è un file di conflitto."
 
 #: Merge.rc:2090
 #, c-format
@@ -4507,8 +4545,14 @@ msgstr ""
 
 #: Merge.rc:2349
 #, c-format
-msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
+msgid ""
+"The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n"
+" With the current options, they will be unified to the main type.\n"
+" Do you want to change the options and preserve the different EOL ?"
 msgstr ""
+"I fine riga sono di tipo differente (Windows/Unix/Mac) nel file '%1'.\n"
+"Con le opzioni correnti, saranno unificati al tipo principale.\n"
+"Vuoi cambiare le opzioni e conservare il differente fine riga ?"
 
 #: Merge.rc:2350
 #, c-format
@@ -4527,8 +4571,18 @@ msgstr "Impossibile aprire il file binario nell'editor."
 
 #: Merge.rc:2353
 #, c-format
-msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
+msgid ""
+"The folder exists only in other side and cannot be opened.\n"
+"\n"
+"Do you want to create a matching folder:\n"
+"%1\n"
+"to the other side and open these folders?"
 msgstr ""
+"La cartella esiste solo dall'altro lato e non può essere aperta.\n"
+"\n"
+"Vuoi creare la cartella corrispondente:\n"
+"%1\n"
+"dall'altro lato ed aprirle entrambe?"
 
 #: Merge.rc:2359
 #, c-format
@@ -5206,17 +5260,17 @@ msgstr "Cambia lo stato di Sola lettura del file/cartella di destra"
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "Converte EOL nella modalità Windows"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "Converte EOL nella modalità Unix"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "Converte EOL nella modalità Mac"
 
 #: Merge.rc:2592
 #, c-format
@@ -5397,13 +5451,21 @@ msgstr "Mostra la finestra con le statistiche del confronto tra cartelle"
 
 #: Merge.rc:2632
 #, c-format
-msgid "Select the current user interface language\nLanguage"
+msgid ""
+"Select the current user interface language\n"
+"Language"
 msgstr ""
+"Scegli la lingua dell'interfaccia per l'utente corrente\n"
+"Lingua"
 
 #: Merge.rc:2633
 #, c-format
-msgid "Shows differences inside lines with different colors\nShow Line Difference"
+msgid ""
+"Shows differences inside lines with different colors\n"
+"Show Line Difference"
 msgstr ""
+"Mostra le differenze fra le righe con colori differenti\n"
+"Mostra differenze fra righe"
 
 #: Merge.rc:2634
 #, c-format
@@ -5440,42 +5502,62 @@ msgstr ""
 #: Merge.rc:2638
 #, c-format
 msgid "Increase text size"
-msgstr ""
+msgstr "Aumenta la dimensione del testo"
 
 #: Merge.rc:2639
 #, c-format
 msgid "Decrease text size"
-msgstr ""
+msgstr "Riduci la dimensione del testo"
 
 #: Merge.rc:2640
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "Ripristina la dimensione predefinita del testo"
 
 #: Merge.rc:2646
 #, c-format
-msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
+msgid ""
+"Scroll to the previous difference\n"
+"Previous Difference (Alt+Up)"
 msgstr ""
+"Scorri alla differenza precedente\n"
+"Differenza precedente (Alt+Su)"
 
 #: Merge.rc:2647
 #, c-format
-msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
+msgid ""
+"Scroll to the next difference\n"
+"Next Difference (Alt+Down)"
 msgstr ""
+"Scorri alla differenza successiva\n"
+"Differenza successiva(Alt+Giù)"
 
 #: Merge.rc:2648
 #, c-format
-msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
+msgid ""
+"Scroll to the first difference\n"
+"First Difference (Alt+Home)"
 msgstr ""
+"Scorri alla prima differenza\n"
+"Prima differenza (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
-msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
+msgid ""
+"Scroll to the current difference\n"
+"Current Difference (Alt+Enter)"
 msgstr ""
+"Passa alla differenza corrente\n"
+"Differenza corrente (Alt+Invio)"
 
 #: Merge.rc:2650
 #, c-format
-msgid "Scroll to the last difference\nLast Difference (Alt+End)"
+msgid ""
+"Scroll to the last difference\n"
+"Last Difference (Alt+End)"
 msgstr ""
+"Scorri all'ultima differenza\n"
+"Ultima differenza (Alt+Fine)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5598,8 +5680,12 @@ msgstr "Scarica tutti i plugin e ricaricali (per sviluppatori)"
 
 #: Merge.rc:2685
 #, c-format
-msgid "Activates next visible file\nActivate next File"
+msgid ""
+"Activates next visible file\n"
+"Activate next File"
 msgstr ""
+"Attiva il prossimo file visibile\n"
+"Attiva prossimo file"
 
 #: Merge.rc:2686
 #, c-format
@@ -5608,8 +5694,12 @@ msgstr "Chiude tutte le finestre aperte"
 
 #: Merge.rc:2692
 #, c-format
-msgid "Opens the WinMerge Help\nWinMerge Help"
+msgid ""
+"Opens the WinMerge Help\n"
+"WinMerge Help"
 msgstr ""
+"Apri la Guida di WinMerge\n"
+"Guida WinMerge"
 
 #: Merge.rc:2693
 #, c-format
@@ -5619,7 +5709,7 @@ msgstr "Invia le informazioni sulla versione e la configurazione corrente di Win
 #: Merge.rc:2694
 #, c-format
 msgid "Display the GNU General Public License"
-msgstr ""
+msgstr "Mostra la GNU General Public License"
 
 #: Merge.rc:2695
 #, c-format
@@ -5628,13 +5718,21 @@ msgstr "Build privata: %1"
 
 #: Merge.rc:2696
 #, c-format
-msgid "Opens the release notes document\nRelease Notes"
+msgid ""
+"Opens the release notes document\n"
+"Release Notes"
 msgstr ""
+"Apri il documento delle note di rilascio\n"
+"Note di rilascio"
 
 #: Merge.rc:2697
 #, c-format
-msgid "Opens the translations website\nTranslations"
+msgid ""
+"Opens the translations website\n"
+"Translations"
 msgstr ""
+"Apri il sito per le traduzioni\n"
+"Traduzioni"
 
 #: Merge.rc:2703
 #, c-format
@@ -5689,7 +5787,7 @@ msgstr "Non visualizzare i blocchi spostati"
 #: Merge.rc:2724
 #, c-format
 msgid "Display all moved blocks"
-msgstr ""
+msgstr "Mostra tutti i blocchi spostati"
 
 #: Merge.rc:2725
 #, c-format
@@ -5819,7 +5917,7 @@ msgstr "PHP"
 #: Merge.rc:2761
 #, c-format
 msgid "Portable Object"
-msgstr ""
+msgstr "Oggetto portabile"
 
 #: Merge.rc:2762
 #, c-format
