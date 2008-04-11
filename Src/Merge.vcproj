@@ -425,6 +425,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\Common\Bitmap.cpp">
+			</File>
+			<File
 				RelativePath="CCPrompt.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -5971,6 +5974,9 @@
 			</File>
 			<File
 				RelativePath="BCMenu.h">
+			</File>
+			<File
+				RelativePath=".\Common\Bitmap.h">
 			</File>
 			<File
 				RelativePath="CCPrompt.h">

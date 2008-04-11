@@ -195,6 +195,10 @@ SOURCE=.\BCMenu.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\Bitmap.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\CCPrompt.cpp
 # End Source File
 # Begin Source File
@@ -1044,6 +1048,10 @@ SOURCE=.\AboutDlg.h
 # Begin Source File
 
 SOURCE=.\BCMenu.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\Common\Bitmap.h
 # End Source File
 # Begin Source File
 
