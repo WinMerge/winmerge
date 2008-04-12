@@ -7,29 +7,33 @@
  *
  * @brief Project-wide includes and declarations
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
 #define AFX_STDAFX_H__BBCD4F8A_34E4_11D1_BAA6_00A024706EDC__INCLUDED_
 
-// Set WINVER for VC6 and VS2008
+// Set WINVER for VC6, VS2005 and VS2008
 //On VS2003 default is set to 0x0501 (Windows XP and Windows .NET Server)
 //On VS2005 default is set to 0x0502 (Windows Server 2003)
 //On VS2008 default is set to 0x0600 (Windows VISTA)
 //
+// Set WINVER below or in project properties (for preprocessor)
+
 #if _MSC_VER < 1300
 #	define WINVER 0x0400
-#else
-#	if _MSC_VER == 1500
-		// On Win XP, with VS2008, do not use default WINVER 0x0600 because of 
-		// some windows structure used in API (on VISTA they are longer)
-#		if !defined(WINVER)
-			// Either set it here or pass it as a preprocessor definition
-#			define WINVER 0x0501
-#		endif /* !defined(WINVER) */
-#	endif /* _MSC_VER = 1500 */
-#endif /* _MSC_VER < 1300 */    
+#elif _MSC_VER == 1400
+	// VS2005 is too noisy when _MSC_VER is not set
+#	if !defined(WINVER)
+#		define WINVER 0x0501
+#	endif
+#elif _MSC_VER == 1500
+	// On Win XP, with VS2008, do not use default WINVER 0x0600 because of 
+	// some windows structure used in API (on VISTA they are longer)
+#	if !defined(WINVER)
+#		define WINVER 0x0501
+#	endif /* !defined(WINVER) */
+#endif /* _MSC_VER = 1500 */
 
 #define VC_EXTRALEAN		// Exclude rarely-used stuff from Windows headers
 
