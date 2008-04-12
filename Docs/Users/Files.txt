@@ -6,7 +6,6 @@ files installed depends on Windows version and selections done in
 installer. Some files are also only available in zip-files.
 
 Root directory:
-ChangeLog.txt          - WinMerge change log
 Contributors.txt       - list of people contributing to WinMerge
 libexpat.dll           - library file for XML parser
 MergeLang.dll          - helper library file for WinMerge translations
@@ -17,11 +16,12 @@ ShellExtension.dll     - ansi version of Shell integrarion dll
 ShellExtensionU.dll    - Unicode version of Shell integration dll
 ShellExtensionX64.dll  - 64-bit version of Shell integration dll
 UnRegister.bat         - batch file to uninstalling ShellExtension from system
-WinMerge.exe           - ansi version of WinMerge
+WinMerge.exe           - ANSI version of WinMerge
 WinMergeU.exe          - Unicode version of WinMerge
 
 Docs folder:
-ReadMe.txt             - Important information about WinMerge
+ChangeLog.txt          - WinMerge change log
+ReleaseNotes.html      - Release information, known issues information
 WinMerge.chm:          - WinMerge manual in HTML help- format
 
 Filters folder:        - Filter files installed with WinMerge
