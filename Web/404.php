@@ -14,8 +14,8 @@
 
 <h3>Were you looking for...</h3>
 <ul>
-  <li><a href="/2.6/manual/index.html">Manual</a>?</li>
-  <li><a href="/2.6/screenshots.php">Screenshots</a>?</li>
+  <li><a href="/2.8/manual/index.html">Manual</a>?</li>
+  <li><a href="/2.8/screenshots.php">Screenshots</a>?</li>
   <!--<li><a href="/docs">Documentation</a>?</li>-->
   <li><a href="/downloads">Downloads</a>?</li>
   <li><a href="/support">Support</a>?</li>
