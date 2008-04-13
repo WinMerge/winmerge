@@ -13,7 +13,7 @@ In addition, SourceForge has bug tracking capabilities, so please report any
 bugs <a href="http://sourceforge.net/bugs/?group_id=13216">here</a>. Wish list items on the
 <a href="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">feature request list</a> will also be considered, but we make
 absolutely no promises.</p>
-<p>We prefer that you <a href="http://sourceforge.net/account/newuser_emailverify.php">register</a>
+<p>We prefer that you <a href="https://sourceforge.net/account/registration/">register</a>
 with <a href="http://sourceforge.net/">SourceForge</a> before posting a bug report (registration is
 public and free), so that you may get email notifications if we post follow-up questions to your bug.
 It is not at this time required that you register to post a bug report (although, we do generally
