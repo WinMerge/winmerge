@@ -35,7 +35,5 @@ String paths_GetParentPath(LPCTSTR path);
 String paths_GetLastSubdir(const String & path);
 BOOL paths_IsPathAbsolute(const String & path);
 String paths_EnsurePathExist(const String & sPath);
-String paths_GetWindowsDirectory();
-String paths_GetMyDocuments(HWND hWindow);
 
 #endif // paths_h_included

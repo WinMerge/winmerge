@@ -76,3 +76,42 @@ String env_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pne
 	}
 	return buffer;
 }
+
+/**
+ * @brief Get Windows directory.
+ * @return Windows directory.
+ */
+String env_GetWindowsDirectory()
+{
+	TCHAR buf[MAX_PATH] = {0};
+	GetWindowsDirectory(buf, MAX_PATH);
+	return buf;
+}
+
+/**
+ * @brief Return User's My Documents Folder.
+ * This function returns full path to User's My Documents -folder.
+ * @param [in] hWindow Parent window.
+ * @return Full path to My Documents -folder.
+ */
+String env_GetMyDocuments(HWND hWindow)
+{
+	LPITEMIDLIST pidl;
+	LPMALLOC pMalloc;
+	String path;
+
+	HRESULT rv = SHGetSpecialFolderLocation(hWindow, CSIDL_PERSONAL, &pidl);
+	if (rv == S_OK)
+	{
+		TCHAR szPath[MAX_PATH] = {0};
+		if (SHGetPathFromIDList(pidl, szPath))
+		{
+			path = szPath;
+		}
+
+		SHGetMalloc(&pMalloc);
+		pMalloc->Free(pidl);
+		pMalloc->Release();
+	}
+	return path;
+}

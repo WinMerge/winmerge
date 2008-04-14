@@ -29,6 +29,7 @@
 #include "stdafx.h"
 #include <sys/stat.h>
 #include "UnicodeString.h"
+#include "Environment.h"
 #include "FileOrFolderSelect.h"
 #include "coretools.h"
 #include "paths.h"
@@ -127,7 +128,7 @@ BOOL SelectFile(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*/,
 		bRetVal = GetSaveFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 	sSelectedFile.ReleaseBuffer();
-	SetCurrentDirectory(paths_GetWindowsDirectory().c_str()); // Free handle held by GetOpenFileName
+	SetCurrentDirectory(env_GetWindowsDirectory().c_str()); // Free handle held by GetOpenFileName
 
 	if (bRetVal)
 		path = sSelectedFile;
@@ -254,7 +255,7 @@ BOOL SelectFileOrFolder(HWND parent, CString& path, LPCTSTR initialPath /*=NULL*
 	BOOL bRetVal = GetOpenFileName((OPENFILENAME *)&ofn);
 	// common file dialog populated sSelectedFile variable's buffer
 	sSelectedFile.ReleaseBuffer();
-	SetCurrentDirectory(paths_GetWindowsDirectory().c_str()); // Free handle held by GetOpenFileName
+	SetCurrentDirectory(env_GetWindowsDirectory().c_str()); // Free handle held by GetOpenFileName
 
 	if (bRetVal)
 	{
