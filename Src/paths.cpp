@@ -6,7 +6,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
+#include <tchar.h>
+#include <assert.h>
 #include "paths.h"
 #include <direct.h>
 #include <mbctype.h> // MBCS (multibyte codepage stuff)
@@ -389,11 +391,13 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
  */
 String ExpandShortcut(const String &inFile)
 {
+	assert(inFile != _T(""));
+
+	// No path, nothing to return
+	if (inFile == _T(""))
+		return _T("");
+
 	String outFile;
-
-	// Make sure we have a path
-	ASSERT(inFile != _T(""));
-
 	IShellLink* psl;
 	HRESULT hres;
 
@@ -407,10 +411,15 @@ String ExpandShortcut(const String &inFile)
 		hres = psl->QueryInterface(IID_IPersistFile, (LPVOID*) &ppf);
 		if (SUCCEEDED(hres))
 		{
-			USES_CONVERSION;
-			LPCTSTR szFile = inFile.c_str();
+			WCHAR wsz[MAX_PATH];
+#ifdef _UNICODE
+			wcsncpy((wchar_t *)wsz, inFile.c_str(), sizeof(wsz) / sizeof(WCHAR));
+#else
+			::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
+#endif
+
 			// Load shortcut
-			hres = ppf->Load(T2CW(szFile), STGM_READ);
+			hres = ppf->Load(wsz, STGM_READ);
 
 			if (SUCCEEDED(hres))
 			{
@@ -571,4 +580,3 @@ String paths_EnsurePathExist(const String & sPath)
 	else
 		return _T("");
 }
-

@@ -714,6 +714,8 @@ SOURCE=.\PathContext.cpp
 # Begin Source File
 
 SOURCE=.\paths.cpp
+# ADD CPP /YX
+
 # End Source File
 # Begin Source File
 
