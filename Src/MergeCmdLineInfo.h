@@ -29,30 +29,22 @@
  *
  */
 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 class CmdLineParser;
 
 /** 
  * @brief WinMerge's command line handler.
- *
+ * This class calls command line parser(s) and allows reading parsed values
+ * from public member variables.
  */
 class MergeCmdLineInfo : public CCommandLineInfo
 {
 public:
-
-	/** @brief ClearCaseCmdLineParser's constructor.
-	 *
-	 * @param [in] szFileName Executable file name. Required in order to
-	 *	know which command line parser to create and use.
-	 *
-	 */
 	MergeCmdLineInfo(const TCHAR *szExeName);
-
 	~MergeCmdLineInfo();
 
-	/** @brief Override CCommandLineInfo's method. */
 	virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
 
 public:
@@ -75,9 +67,9 @@ public:
 	CString m_sRightDesc; /**< Right side file's description. */
 
 	CString m_sFileFilter; /**< File filter mask. */
-	CString m_sPreDiffer;
+	CString m_sPreDiffer; /**< Pre-differ name. */
 
-	/**< Command line arguments which are mapped to WinMerge's preferences. */
+	/** Command line arguments which are mapped to WinMerge's preferences. */
 	CMapStringToString m_Settings;
 
 	CStringArray m_Files; /**< Files (or directories) to compare. */
@@ -86,7 +78,7 @@ public:
 
 private:
 
-	/**< operator= is not implemented. */
+	/** Operator= is not implemented. */
 	MergeCmdLineInfo& operator=(const MergeCmdLineInfo& rhs);
 
 	CmdLineParser *m_pCmdLineParser; /**< The command line parser instance. */

@@ -26,7 +26,7 @@
  *
  */
 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -40,6 +40,11 @@
 
 // MergeCmdLineInfo
 
+/**
+ * @brief ClearCaseCmdLineParser's constructor.
+ * @param [in] szExeName Executable file name. Required in order to
+ *	know which command line parser to create and use.
+ */
 MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *szExeName) : CCommandLineInfo(),
 	m_nCmdShow(SW_SHOWNORMAL),
 	m_bClearCaseTool(false),
@@ -79,11 +84,22 @@ MergeCmdLineInfo::MergeCmdLineInfo(const TCHAR *szExeName) : CCommandLineInfo(),
 	}
 }
 
+/**
+ * @brief Destructor.
+ */
 MergeCmdLineInfo::~MergeCmdLineInfo()
 {
 	delete m_pCmdLineParser;
 }
 
+/**
+ * @brief Parser function.
+ * This functino overrides CCommandLineInfo's parser function and calls
+ * WinMerge's parser function.
+ * @param [in] pszParam The parameter or flag to parse.
+ * @param [in] bFlag Is the item to parse a flag?
+ * @param [in] bLast Is the item to parse a last of items?
+ */
 void MergeCmdLineInfo::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast)
 {
 	// Give our base class a chance to figure out what is the parameter.

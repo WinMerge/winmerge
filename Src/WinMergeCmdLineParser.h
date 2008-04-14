@@ -20,37 +20,38 @@
 /////////////////////////////////////////////////////////////////////////////
 
 /** 
-* @file  WinMergeCmdLineParser.h
-*
-* @brief WinMergeCmdLineParser class decleration.
-*
-*/
+ * @file  WinMergeCmdLineParser.h
+ *
+ * @brief WinMergeCmdLineParser class declaration.
+ */
 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
-#pragma once
+#ifndef _WINMERGE_CMDLINE_PARSER_H_
+#define __WINMERGE_CMDLINE_PARSER_H_
 
 #include "CmdLineParser.h"
 
 /**
-* @brief WinMerge's default command line parser.
-*
-*/
+ * @brief WinMerge's default command line parser.
+ * This class parses all command line parameters WinMerge (core code) knows
+ * of. Paths get some special handling if needed:
+ *  - if file (as first param) and folder (as second param) are given, that is
+ *    expanded to file (first path) and folder/file (second path).
+ */
 class WinMergeCmdLineParser : public CmdLineParser
 {
-	public:
+public:
+	WinMergeCmdLineParser(MergeCmdLineInfo& cmdLineInfo);
+	virtual ~WinMergeCmdLineParser() { }
+	virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
 
-		WinMergeCmdLineParser(MergeCmdLineInfo& CmdLineInfo);
-
-		virtual ~WinMergeCmdLineParser() { }
-
-		virtual void ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast);
-
-	private:
-
-		bool m_bPreDiff;
-		bool m_bFileFilter;
-		bool m_bLeftDesc;
-		bool m_bRightDesc;
+private:
+	bool m_bPreDiff;     /**< Have prediffer? */
+	bool m_bFileFilter;  /**< Have file filter? */
+	bool m_bLeftDesc;    /**< Have left-side description? */
+	bool m_bRightDesc;   /**< Have right-side description? */
 };
+
+#endif // _WINMERGE_CMDLINE_PARSER_H_

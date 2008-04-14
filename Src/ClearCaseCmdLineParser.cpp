@@ -26,7 +26,7 @@
  *
  */
 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -36,21 +36,28 @@
 #include "MergeCmdLineInfo.h"
 #include "Paths.h"
 
-ClearCaseCmdLineParser::ClearCaseCmdLineParser(MergeCmdLineInfo& CmdLineInfo, const TCHAR *szFileName) :
-	CmdLineParser(CmdLineInfo),
-	m_bDesc(false),
-	m_bBaseFile(false),
-	m_bOutFile(false)
+/**
+ * @brief Constructor.
+ * @param [out] cmdLineInfo Class which gets info about parsed parameters.
+ * @param [in] szExeName Executable file name. Required in order to
+ *  know which external tool was executed.
+ */
+ClearCaseCmdLineParser::ClearCaseCmdLineParser(MergeCmdLineInfo& CmdLineInfo,
+		const TCHAR *szExeName)
+: CmdLineParser(CmdLineInfo),
+m_bDesc(false),
+m_bBaseFile(false),
+m_bOutFile(false)
 {
-	m_CmdLineInfo.m_bEscShutdown = true;
+	m_cmdLineInfo.m_bEscShutdown = true;
 
-	m_CmdLineInfo.m_dwLeftFlags |= FFILEOPEN_READONLY | FFILEOPEN_NOMRU;
-	m_CmdLineInfo.m_dwRightFlags |= FFILEOPEN_NOMRU;
+	m_cmdLineInfo.m_dwLeftFlags |= FFILEOPEN_READONLY | FFILEOPEN_NOMRU;
+	m_cmdLineInfo.m_dwRightFlags |= FFILEOPEN_NOMRU;
 
 	// szFileName is either "xmerge" or "xcompare".
-	if (lstrcmpi(szFileName, _T("xmerge")))
+	if (lstrcmpi(szExeName, _T("xmerge")))
 	{
-		m_CmdLineInfo.m_dwRightFlags |= FFILEOPEN_READONLY;
+		m_cmdLineInfo.m_dwRightFlags |= FFILEOPEN_READONLY;
 
 		// Compare tool doesn't have a common ancestor file description. We
 		// put a phony description so the command line parser will skip it.
@@ -58,7 +65,14 @@ ClearCaseCmdLineParser::ClearCaseCmdLineParser(MergeCmdLineInfo& CmdLineInfo, co
 	}
 }
 
-void ClearCaseCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL bLast)
+/**
+ * @brief Parser function for command line parameters.
+ * @param [in] pszParam The parameter or flag to parse.
+ * @param [in] bFlag Is the item to parse a flag?
+ * @param [in] bLast Is the item to parse a last of items?
+ */
+void ClearCaseCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag,
+		BOOL bLast)
 {
 	if (TRUE == bFlag)
 	{
@@ -93,20 +107,20 @@ void ClearCaseCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL 
 			m_sBaseDesc = pszParam;
 			m_bDesc = false;
 		}
-		else if ((m_bDesc == true) && m_CmdLineInfo.m_sLeftDesc.IsEmpty())
+		else if ((m_bDesc == true) && m_cmdLineInfo.m_sLeftDesc.IsEmpty())
 		{
-			m_CmdLineInfo.m_sLeftDesc = pszParam;
+			m_cmdLineInfo.m_sLeftDesc = pszParam;
 			m_bDesc = false;
 		}
-		else if ((m_bDesc == true) && m_CmdLineInfo.m_sRightDesc.IsEmpty())
+		else if ((m_bDesc == true) && m_cmdLineInfo.m_sRightDesc.IsEmpty())
 		{
-			m_CmdLineInfo.m_sRightDesc = pszParam;
+			m_cmdLineInfo.m_sRightDesc = pszParam;
 		}
 		else
 		{
 			String sFile = paths_GetLongPath(pszParam);
-			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile.c_str());
-			m_CmdLineInfo.m_nFiles += 1;
+			m_cmdLineInfo.m_Files.SetAtGrow(m_cmdLineInfo.m_nFiles, sFile.c_str());
+			m_cmdLineInfo.m_nFiles += 1;
 		}
 	}
 
@@ -115,8 +129,8 @@ void ClearCaseCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL 
 		if (FALSE == m_sOutFile.empty())
 		{
 			String sFile = paths_GetLongPath(m_sOutFile.c_str());
-			m_CmdLineInfo.m_Files.SetAtGrow(m_CmdLineInfo.m_nFiles, sFile.c_str());
-			m_CmdLineInfo.m_nFiles += 1;
+			m_cmdLineInfo.m_Files.SetAtGrow(m_cmdLineInfo.m_nFiles, sFile.c_str());
+			m_cmdLineInfo.m_nFiles += 1;
 		}
 	}
 }
