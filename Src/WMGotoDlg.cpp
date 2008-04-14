@@ -17,7 +17,7 @@
 /**
  * @file  WMGotoDlg.cpp
  *
- * @brief Implementation of the CWMGotoDlg class
+ * @brief Implementation of the WMGotoDlg dialog.
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -35,16 +35,20 @@ static char THIS_FILE[] = __FILE__;
 /////////////////////////////////////////////////////////////////////////////
 // CGotoDlg dialog
 
-
-CWMGotoDlg::CWMGotoDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CWMGotoDlg::IDD, pParent)
+/**
+ * @brief Constructor.
+ */
+WMGotoDlg::WMGotoDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(WMGotoDlg::IDD, pParent)
 	, m_nFile(-1)
 	, m_nGotoWhat(-1)
 {
 }
 
-
-BOOL CWMGotoDlg::OnInitDialog()
+/**
+ * @brief Initialize dialog.
+ */
+BOOL WMGotoDlg::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
@@ -52,10 +56,10 @@ BOOL CWMGotoDlg::OnInitDialog()
 }
 
 
-void CWMGotoDlg::DoDataExchange(CDataExchange* pDX)
+void WMGotoDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CWMGotoDlg)
+	//{{AFX_DATA_MAP(WMGotoDlg)
 	DDX_Text(pDX, IDC_WMGOTO_PARAM, m_strParam);
 	DDX_Radio(pDX, IDC_WMGOTO_FILELEFT, m_nFile);
 	DDX_Radio(pDX, IDC_WMGOTO_TOLINE, m_nGotoWhat);
@@ -63,11 +67,11 @@ void CWMGotoDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CWMGotoDlg, CDialog)
-	//{{AFX_MSG_MAP(CWMGotoDlg)
+BEGIN_MESSAGE_MAP(WMGotoDlg, CDialog)
+	//{{AFX_MSG_MAP(WMGotoDlg)
 		// NOTE: the ClassWizard will add message map macros here
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CWMGotoDlg message handlers
+// WMGotoDlg message handlers

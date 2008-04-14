@@ -1141,8 +1141,7 @@ void CMergeEditView::OnL2r()
 		// If cursor is inside diff get number of that diff
 		if (m_bCurrentLineIsDiff)
 		{
-			CPoint pt;
-			pt = GetCursorPos();
+			CPoint pt = GetCursorPos();
 			currentDiff = pDoc->m_diffList.LineToDiff(pt.y);
 		}
 	}
@@ -2227,7 +2226,7 @@ void CMergeEditView::OnUpdateChangePane(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnWMGoto()
 {
-	CWMGotoDlg dlg;
+	WMGotoDlg dlg;
 	CMergeDoc *pDoc = GetDocument();
 	CPoint pos = GetCursorPos();
 	int nRealLine = 0;
