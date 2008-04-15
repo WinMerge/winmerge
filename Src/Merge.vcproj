@@ -2701,43 +2701,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Common\HScrollListBox.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="Common\LanguageSelect.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -5860,43 +5823,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="Common\WindowStyle.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="WinMergeCmdLineParser.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6179,9 +6105,6 @@
 				RelativePath="GhostTextView.h">
 			</File>
 			<File
-				RelativePath="Common\HScrollListBox.h">
-			</File>
-			<File
 				RelativePath="IAbortable.h">
 			</File>
 			<File
@@ -6444,9 +6367,6 @@
 			</File>
 			<File
 				RelativePath="Common\WinClasses.h">
-			</File>
-			<File
-				RelativePath="Common\WindowStyle.h">
 			</File>
 			<File
 				RelativePath="WinMergeCmdLineParser.h">
