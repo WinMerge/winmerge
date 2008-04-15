@@ -511,10 +511,6 @@ SOURCE=.\GhostTextView.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\HScrollListBox.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\Common\LanguageSelect.cpp
 # End Source File
 # Begin Source File
@@ -1019,10 +1015,6 @@ SOURCE=.\Common\WinClasses.cpp
 # End Source File
 # Begin Source File
 
-SOURCE=.\Common\WindowStyle.cpp
-# End Source File
-# Begin Source File
-
 SOURCE=.\WinMergeCmdLineParser.cpp
 # End Source File
 # Begin Source File
@@ -1300,10 +1292,6 @@ SOURCE=.\GhostTextBuffer.h
 # Begin Source File
 
 SOURCE=.\GhostTextView.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\HScrollListBox.h
 # End Source File
 # Begin Source File
 
@@ -1656,10 +1644,6 @@ SOURCE=.\Common\wclassdefines.h
 # Begin Source File
 
 SOURCE=.\Common\WinClasses.h
-# End Source File
-# Begin Source File
-
-SOURCE=.\Common\WindowStyle.h
 # End Source File
 # Begin Source File
 
