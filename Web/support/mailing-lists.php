@@ -14,7 +14,7 @@
   <li><a href="#svn">SVN List</a></li>
 </ul>
 <p>You should read the "<a href="http://sourceforge.net/docman/display_doc.php?docid=12983&amp;group_id=1">Guide to SourceForge.net Mailing List Services</a>" before subscribing and posting to any of the lists below.</p>
-<div class="mailinglist">
+<div class="infocard">
   <h3><a name="announce">Announce List</a></h3>
   <ul>
     <li><strong>Low Traffic</strong></li>
@@ -24,7 +24,7 @@
   </ul>
   <p>This list is only for announcing new releases of WinMerge.</p>
 </div>
-<div class="mailinglist">
+<div class="infocard">
   <h3><a name="support">Support List</a></h3>
   <ul>
     <li><strong>Normal Traffic</strong></li>
@@ -34,7 +34,7 @@
   </ul>
   <p>You should ask all your support questions on this list.</p>
 </div>
-<div class="mailinglist">
+<div class="infocard">
   <h3><a name="user">User List</a></h3>
   <ul>
     <li><strong>Normal Traffic</strong></li>
@@ -44,7 +44,7 @@
   </ul>
   <p>This list is for user related questions. Having questions posted to this list may allow others having the same problem to solve it on their own.</p>
 </div>
-<div class="mailinglist">
+<div class="infocard">
   <h3><a name="translate">Translate List</a></h3>
   <ul>
     <li><strong>Low Traffic</strong></li>
@@ -54,7 +54,7 @@
   </ul>
   <p>This list is used for coordinating the translations.</p>
 </div>
-<div class="mailinglist">
+<div class="infocard">
   <h3><a name="development">Development List</a></h3>
   <ul>
     <li><strong>Normal Traffic</strong></li>
@@ -64,7 +64,7 @@
   </ul>
   <p>This is the list where participating developers of the WinMerge meet and discuss issues, code changes/additions, etc.</p>
 </div>
-<div class="mailinglist">
+<div class="infocard">
   <h3><a name="svn">SVN List</a></h3>
   <ul>
     <li><strong>High Traffic</strong></li>
