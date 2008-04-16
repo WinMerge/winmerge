@@ -29,6 +29,7 @@ void paths_normalize(String & sPath);
 String paths_GetLongPath(LPCTSTR szPath, BOOL bExpandEnvs = TRUE);
 bool paths_CreateIfNeeded(LPCTSTR szPath);
 PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight);
+BOOL paths_IsShortcut(LPCTSTR inPath);
 String ExpandShortcut(const String &inFile);
 String paths_ConcatPath(const String & path, const String & subpath);
 String paths_GetParentPath(LPCTSTR path);
