@@ -375,6 +375,25 @@ PATH_EXISTENCE GetPairComparability(LPCTSTR pszLeft, LPCTSTR pszRight)
 	return p1;
 }
 
+/**
+ * @brief Check if the given path points to shotcut.
+ * Windows considers paths having a filename with extension ".lnk" as
+ * shortcuts. This function checks if the given path is shortcut.
+ * We usually want to expand shortcuts with ExpandShortcut().
+ * @param [in] inPath Path to check;
+ * @return TRUE if the path points to shortcut, FALSE otherwise.
+ */
+BOOL paths_IsShortcut(LPCTSTR inPath)
+{
+	const TCHAR ShortcutExt[] = _T(".lnk");
+	TCHAR ext[_MAX_EXT] = {0};
+	_tsplitpath(inPath, NULL, NULL, NULL, ext);
+	if (_tcsicmp(ext, ShortcutExt) == 0)
+		return TRUE;
+	else
+		return FALSE;
+}
+
 //////////////////////////////////////////////////////////////////
 //	use IShellLink to expand the shortcut
 //	returns the expanded file, or "" on error
