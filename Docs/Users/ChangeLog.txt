@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8.2
   Release Notes update (#1933950)
+  BugFix: Shortcuts given in command line were not expanded (#1942217)
   Translation updates:
   - Italian (#1939235)
   - Polish (#1934655)

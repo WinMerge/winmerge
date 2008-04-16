@@ -2161,7 +2161,7 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 
 	for (UINT i = 0; i < fileCount; i++)
 	{
-		if (IsShortcut((LPCTSTR)files[i]))
+		if (paths_IsShortcut((LPCTSTR)files[i]))
 		{
 			// if this was a shortcut, we need to expand it to the target path
 			CString expandedFile = ExpandShortcut((LPCTSTR)files[i]).c_str();
