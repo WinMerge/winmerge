@@ -192,7 +192,13 @@ void WinMergeCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag,
 		}
 		else
 		{
-			String sFile = paths_GetLongPath(pszParam);
+			// If shortcut, expand it first
+			String expanded(pszParam);
+			if (paths_IsShortcut(pszParam))
+			{
+				expanded = ExpandShortcut(pszParam);
+			}
+			String sFile = paths_GetLongPath(expanded.c_str());
 			m_cmdLineInfo.m_Files.SetAtGrow(m_cmdLineInfo.m_nFiles, sFile.c_str());
 			m_cmdLineInfo.m_nFiles += 1;
 		}

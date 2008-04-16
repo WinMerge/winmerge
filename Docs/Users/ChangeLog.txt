@@ -20,6 +20,7 @@ WinMerge 2.9.0.1
   BugFix: Undo after pane swapping (#1915536, #1923625)
   BugFix: Quick compare for same folder didn't show differences (#1918599)
   BugFix: Installer didn't have ChangeLog.txt included (r5255)
+  BugFix: Shortcuts given in command line were not expanded (#1942217)
   Translation updates:
   - Brazilian (#1913723)
   - Chinese Traditional (#1927605)
