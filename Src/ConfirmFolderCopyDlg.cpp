@@ -75,8 +75,6 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	GetDlgItem(IDNO)->SetFocus();
-
 	// Load warning icon
 	// TODO: we can have per-action icons?
 	HICON icon = AfxGetApp()->LoadStandardIcon(IDI_EXCLAMATION);
@@ -96,8 +94,7 @@ BOOL ConfirmFolderCopyDlg::OnInitDialog()
 	// persist size via registry
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("FolderCopyConfirmDlg"), false);
 
-
-	return FALSE;  // return TRUE unless you set the focus to a control
+	return TRUE;  // return TRUE unless you set the focus to a control
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
