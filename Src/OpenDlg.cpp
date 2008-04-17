@@ -444,6 +444,9 @@ void COpenDlg::UpdateButtonStates()
 		SetUnpackerStatus(IDS_OPEN_UNPACKERDISABLED);
 }
 
+/**
+ * @brief Called when user changes selection in left path's combo box.
+ */
 void COpenDlg::OnSelchangeLeftCombo() 
 {
 	int sel = m_ctlLeft.GetCurSel();
@@ -456,6 +459,9 @@ void COpenDlg::OnSelchangeLeftCombo()
 	UpdateButtonStates();
 }
 
+/**
+ * @brief Called when user changes selection in right path's combo box.
+ */
 void COpenDlg::OnSelchangeRightCombo() 
 {
 	int sel = m_ctlRight.GetCurSel();
@@ -479,7 +485,12 @@ void COpenDlg::OnEditEvent()
 		UpdateButtonStates();
 }
 
-void COpenDlg::OnTimer(UINT_PTR nIDEvent) 
+/**
+ * @brief Handle timer events.
+ * Checks if paths are valid and sets control states accordingly.
+ * @param [in] nIDEvent Timer ID that fired.
+ */
+void COpenDlg::OnTimer(UINT_PTR nIDEvent)
 {
 	if (nIDEvent == IDT_CHECKFILES)
 		UpdateButtonStates();
@@ -487,7 +498,10 @@ void COpenDlg::OnTimer(UINT_PTR nIDEvent)
 	CDialog::OnTimer(nIDEvent);
 }
 
-void COpenDlg::OnSelectUnpacker() 
+/**
+ * @brief Called when users selects plugin browse button.
+ */
+void COpenDlg::OnSelectUnpacker()
 {
 	UpdateData(TRUE);
 
@@ -510,12 +524,24 @@ void COpenDlg::OnSelectUnpacker()
 	}
 }
 
+/**
+ * @brief Sets the path status text.
+ * The open dialog shows a status text of selected paths. This function
+ * is used to set that status text.
+ * @param [in] msgID Resource ID of status text to set.
+ */
 void COpenDlg::SetStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
 	SetDlgItemText(IDC_OPEN_STATUS, msg.c_str());
 }
 
+/**
+ * @brief Set the plugin edit box text.
+ * Plugin edit box is at the same time a plugin status view. This function
+ * sets the status text.
+ * @param [in] msgID Resource ID of status text to set.
+ */
 void COpenDlg::SetUnpackerStatus(UINT msgID)
 {
 	String msg = theApp.LoadString(msgID);
@@ -556,8 +582,14 @@ void COpenDlg::OnSelectFilter()
 
 /** 
  * @brief Read paths and filter from project file.
+ * Reads the given project file. After the file is read, found paths and
+ * filter is updated to dialog GUI. Other possible settings found in the
+ * project file are kept in memory and used later when loading paths
+ * selected.
+ * @param [in] path Path to the project file.
+ * @return TRUE if the project file was successfully loaded, FALSE otherwise.
  */
-BOOL COpenDlg::LoadProjectFile(CString path)
+BOOL COpenDlg::LoadProjectFile(const CString &path)
 {
 	String filterPrefix = theApp.LoadString(IDS_FILTER_PREFIX);
 	String err;
@@ -619,7 +651,9 @@ void COpenDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 		UpdateButtonStates();
 }
 
-/** @brief Open help from mainframe when user presses F1*/
+/**
+ * @brief Open help from mainframe when user presses F1.
+ */
 void COpenDlg::OnHelp()
 {
 	GetMainFrame()->ShowHelp(OpenDlgHelpLocation);

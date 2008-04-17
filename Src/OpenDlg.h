@@ -23,8 +23,9 @@
  * @brief Declaration file for COpenDlg dialog
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
+
 #if !defined(AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_)
 #define AFX_OPENDLG_H__69FB0D77_2A05_11D1_BA92_00A024706EDC__INCLUDED_
 #pragma once
@@ -40,7 +41,15 @@
 
 class ProjectFile;
 
-/** @brief File open dialog displayed for user to choose directories or files */
+/**
+ * @brief The Open-dialog class.
+ * The Open-dialog allows user to select paths to compare. In addition to
+ * the two paths, there are controls for selecting filter and unpacker plugin.
+ * If one of the paths is a project file, that projec file is loaded,
+ * overwriting possible other values in other dialog controls.
+ * The dialog shows also a status of the selected paths (found/not found),
+ * if enabled in the options (enabled by default).
+ */
 class COpenDlg : public CDialog
 {
 // Construction
@@ -91,7 +100,7 @@ private:
 protected:
 	void SetStatus(UINT msgID);
 	void SetUnpackerStatus(UINT msgID);
-	BOOL LoadProjectFile(CString path);
+	BOOL LoadProjectFile(const CString &path);
 	void TrimPaths();
 
 	// Generated message map functions
