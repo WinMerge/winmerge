@@ -29,7 +29,7 @@
       </example>
     </sect3>
 
-    <sect3>
+    <sect3 id="OpeningArchives">
       <title>Opening archive files</title>
 
       <para>Archive file support requires 7-Zip plugin to be installed. See
@@ -197,17 +197,40 @@
   </sect2>
 
   <sect2>
-    <title>Drag and Drop</title>
+    <title><indexterm>
+        <primary>Drag and Drop</primary>
+      </indexterm>Drag and Drop</title>
 
     <para>One or two paths can be drag and dropped to WinMerge window from
     Windows Explorer, Desktop or whatever source Windows allows dragging paths
-    from. WinMerge does not include subfolders in compare. Subfolders can be
-    included by pressing <keycap>Control</keycap>-key while dropping
-    paths.</para>
+    from. If only one path is dropped to the WinMerge window, the Open dialog
+    is opened for selecting the second path. If the single path is a path to
+    the project file, then the project file is opened.</para>
 
-    <para>Another useful key when dropping paths is <keycap>Shift</keycap>.
-    When there is only one path dropped and <keycap>Shift</keycap> is pressed
-    that same path is opened to both sides.</para>
+    <para>WinMerge does not by default include subfolders in compare.
+    Subfolders can be included by pressing <keycap>Control</keycap>-key while
+    dropping paths. Another useful key when dropping paths is
+    <keycap>Shift</keycap>. When there is only one path dropped and
+    <keycap>Shift</keycap> is pressed that same path is opened to both sides.
+    This is a handy way to open archive files, see <link
+    linkend="OpeningArchives">Opening archive files</link>.</para>
+
+    <para>Paths can be drag and dropped into the Open dialog. The usual use
+    case is to first drag and drop first path to the WinMerge window and then
+    drag and drop second path to the Open dialog. When the path is dropped
+    into the Open dialog, it is placed into:</para>
+
+    <itemizedlist>
+      <listitem>
+        <simpara>left path - if left path edit field is empty, or both path edit
+        fields have already a path</simpara>
+      </listitem>
+
+      <listitem>
+        <simpara>right path - if left path is not empty and right path is
+        empty</simpara>
+      </listitem>
+    </itemizedlist>
   </sect2>
 
   <sect2>
