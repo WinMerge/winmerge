@@ -42,8 +42,8 @@
         </listitem>
 
         <listitem>
-          <simpara>Drag &amp; drop path into the edit field from
-          Explorer</simpara>
+          <simpara>Drag &amp; drop path into the dialog or left/right edit
+          field</simpara>
         </listitem>
       </orderedlist></para>
 
@@ -59,13 +59,13 @@
     dialog contains text "<guilabel>Folder Selection</guilabel>" selecting
     <guibutton>Open</guibutton> button selects currently visible folder. Also
     if filename in Windows Open dialog does not match any real file parent
-    folder is selected. Open dialog always shows backslash "\" at end of
+    folder is selected. The Open dialog always shows a backslash "\" at end of
     folder name.</para>
 
     <para><note>
         <para>There can be only file &amp; file or folder &amp; folder
-        selected to open for compare. If there is file &amp; folder or other
-        one of files/folders cannot be found WinMerge disables
+        selected to open for compare. If there is file &amp; folder selected
+        or other one of files/folders cannot be found WinMerge disables
         <guibutton>OK</guibutton>-button in dialog.</para>
       </note></para>
 
@@ -117,7 +117,7 @@
         </listitem>
 
         <listitem>
-          <simpara>Command-line allows starting WinMerge from other
+          <simpara>Command line allows starting WinMerge from other
           applications, command prompt or batch/script file</simpara>
         </listitem>
 
