@@ -119,6 +119,7 @@ BEGIN_MESSAGE_MAP(COpenDlg, CDialog)
 	ON_BN_CLICKED(IDC_SELECT_FILTER, OnSelectFilter)
 	ON_WM_ACTIVATE()
 	ON_COMMAND(ID_HELP, OnHelp)
+	ON_WM_DROPFILES()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -623,4 +624,93 @@ void COpenDlg::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 void COpenDlg::OnHelp()
 {
 	GetMainFrame()->ShowHelp(OpenDlgHelpLocation);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+//
+//	OnDropFiles code from CDropEdit
+//	Copyright 1997 Chris Losinger
+//
+//	shortcut expansion code modified from :
+//	CShortcut, 1996 Rob Warner
+//
+
+/**
+ * @brief Drop paths(s) to the dialog.
+ * One or two paths can be dropped to the dialog. The behaviour is:
+ *   If 1 file:
+ *     - drop to empty path edit box (check left first)
+ *     - if both boxes have a path, drop to left path
+ *   If two files:
+ *    - overwrite both paths, empty or not
+ * @param [in] dropInfo Dropped data, including paths.
+ */
+void COpenDlg::OnDropFiles(HDROP dropInfo)
+{
+	// Get the number of pathnames that have been dropped
+	UINT wNumFilesDropped = DragQueryFile(dropInfo, 0xFFFFFFFF, NULL, 0);
+	CString files[2];
+	UINT fileCount = 0;
+
+	// get all file names. but we'll only need the first one.
+	for (WORD x = 0 ; x < wNumFilesDropped; x++)
+	{
+		// Get the number of bytes required by the file's full pathname
+		UINT wPathnameSize = DragQueryFile(dropInfo, x, NULL, 0);
+
+		// Allocate memory to contain full pathname & zero byte
+		wPathnameSize += 1;
+		LPTSTR npszFile = (TCHAR *) new TCHAR[wPathnameSize];
+
+		// If not enough memory, skip this one
+		if (npszFile == NULL)
+			continue;
+
+		// Copy the pathname into the buffer
+		DragQueryFile(dropInfo, x, npszFile, wPathnameSize);
+
+		if (x < 2)
+		{
+			files[x] = npszFile;
+			fileCount++;
+		}
+		delete[] npszFile;
+	}
+
+	// Free the memory block containing the dropped-file information
+	DragFinish(dropInfo);
+
+	for (UINT i = 0; i < fileCount; i++)
+	{
+		if (paths_IsShortcut((LPCTSTR)files[i]))
+		{
+			// if this was a shortcut, we need to expand it to the target path
+			CString expandedFile = ExpandShortcut((LPCTSTR)files[i]).c_str();
+
+			// if that worked, we should have a real file name
+			if (!expandedFile.IsEmpty())
+				files[i] = expandedFile;
+		}
+	}
+
+	// Add dropped paths to the dialog
+	UpdateData(TRUE);
+	if (fileCount == 2)
+	{
+		m_strLeft = files[0];
+		m_strRight = files[1];
+		UpdateData(FALSE);
+		UpdateButtonStates();
+	}
+	else if (fileCount == 1)
+	{
+		if (m_strLeft.IsEmpty())
+			m_strLeft = files[0];
+		else if (m_strRight.IsEmpty())
+			m_strRight = files[0];
+		else
+			m_strLeft = files[0];
+		UpdateData(FALSE);
+		UpdateButtonStates();
+	}
 }
