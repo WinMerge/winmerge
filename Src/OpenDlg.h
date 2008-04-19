@@ -119,6 +119,7 @@ protected:
 	afx_msg void OnSelectFilter();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnHelp();
+	afx_msg void OnDropFiles(HDROP dropInfo);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
