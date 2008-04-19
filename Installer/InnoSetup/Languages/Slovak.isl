@@ -283,6 +283,7 @@ NorwegianLanguage=Nórske ponuky a dialógy
 PolishLanguage=Po¾ské ponuky a dialógy
 PortugueseBrazilLanguage=Portugalské (Brazilian) ponuky a dialógy
 PortugueseLanguage=Portugalské ponuky a dialógy
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Ruské ponuky a dialógy
 SlovakLanguage=Slovenské ponuky a dialógy
 SpanishLanguage=Španielske ponuky a dialógy

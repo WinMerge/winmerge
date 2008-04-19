@@ -347,6 +347,7 @@ NorwegianLanguage=Menus et dialogues Norvégien
 PolishLanguage=Menus et dialogues Polonais
 PortugueseBrazilLanguage=Menus et dialogues Portugais (Brésilien)
 PortugueseLanguage=Menus et dialogues Portugais
+RomanianLanguage=Menus et dialogues Roumain
 RussianLanguage=Menus et dialogues Russe
 SlovakLanguage=Menus et dialogues Slovaque
 SpanishLanguage=Menus et dialogues Espagnol

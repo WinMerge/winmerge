@@ -344,6 +344,7 @@ NorwegianLanguage=Norweski interfejs
 PolishLanguage=Polski interfejs
 PortugueseBrazilLanguage=Portugalski (Brazylijski) interfejs
 PortugueseLanguage=Portugalski interfejs
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Rosyjski interfejs
 SlovakLanguage=Slowacki interfejs
 SpanishLanguage=Hiszpanski interfejs

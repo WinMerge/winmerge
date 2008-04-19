@@ -345,6 +345,7 @@ NorwegianLanguage=Norska menyer och dialoger
 PolishLanguage=Polska menyer och dialoger
 PortugueseBrazilLanguage=Portugisiska (Brasiliansk) menyer och dialoger
 PortugueseLanguage=Portugisiska menyer och dialoger
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Ryska menyer och dialoger
 SlovakLanguage=Slovakiska menyer och dialoger
 SpanishLanguage=Spanska menyer och dialoger

@@ -358,6 +358,7 @@ NorwegianLanguage=Menu e finestre di dialogo in norvegese
 PolishLanguage=Menu e finestre di dialogo in polacco
 PortugueseBrazilLanguage=Menu e finestre di dialogo in portoghese (brasiliano)
 PortugueseLanguage=Menu e finestre di dialogo in portoghese
+RomanianLanguage=Menu e finestre di dialogo in Romeno
 RussianLanguage=Menu e finestre di dialogo in russo
 SlovakLanguage=Menu e finestre di dialogo in slovacco
 SpanishLanguage=Menu e finestre di dialogo in spagnolo
