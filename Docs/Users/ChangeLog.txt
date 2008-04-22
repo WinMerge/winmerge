@@ -8,6 +8,7 @@ WinMerge 2.8.2
   Allow drag & drop of paths to Open dialog (#1945254)
   BugFix: Shortcuts given in command line were not expanded (#1942217)
   Translation updates:
+  - German (#1949068)
   - Italian (#1939235)
   - Polish (#1934655)
 
