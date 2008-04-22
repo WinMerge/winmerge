@@ -1130,7 +1130,7 @@ msgstr "Auswählen..."
 #: Merge.rc:1597
 #, c-format
 msgid "&Include Subfolders"
-msgstr "&Unterordner einbeziehen"
+msgstr "Unter&ordner einbeziehen"
 
 #: Merge.rc:691
 #, c-format
