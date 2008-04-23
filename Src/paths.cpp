@@ -434,7 +434,7 @@ String ExpandShortcut(const String &inFile)
 #ifdef _UNICODE
 			wcsncpy((wchar_t *)wsz, inFile.c_str(), sizeof(wsz) / sizeof(WCHAR));
 #else
-			::MultiByteToWideChar(CP_ACP, 0, lpsz, -1, wsz, MAX_PATH);
+			::MultiByteToWideChar(CP_ACP, 0, inFile.c_str(), -1, wsz, MAX_PATH);
 #endif
 
 			// Load shortcut
