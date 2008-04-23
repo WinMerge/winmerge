@@ -119,6 +119,7 @@ Other Contributors (code, ideas, testing..):
 * Jan Hryz
 * Ed_K
 * Alberto Kalb
+* Robert Knienider
 * Ferenc Kubatovics
 * René Leonhardt
 * Vladimir Lukianov
