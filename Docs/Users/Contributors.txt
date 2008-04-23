@@ -87,6 +87,9 @@ Localization:
 * Portuguese (Portugal):
   Nelson Simão
 
+* Romanian:
+  Cristian Arghiroiu
+
 * Russian:	
   Dmitriy S. Aleshkowskiy
               
