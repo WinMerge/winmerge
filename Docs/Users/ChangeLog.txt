@@ -15,6 +15,7 @@ WinMerge 2.9.0.1
   Update InnoSetup translations (#1931492)
   Make 'Yes' the default button in copy confirmation dialog (#1943647)
   Allow drag & drop of paths to Open dialog (#1945254)
+  Enlarge 'Discard All' button in Save confirmation dialog (#1947216)
   BugFix: Installer could create a registry access error (#1909967)
   BugFix: The filter text box in Open-dialog sometimes displayed some garbage
     data (#1915424)
