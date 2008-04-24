@@ -27,13 +27,13 @@
 <img src="images/screenshot.png" alt="Screenshot of WinMerge">
 
 <h2>Installation</h2>
-<p>Just download the <a href="http://prdownloads.sourceforge.net/winmerge/WinMergeSetup202.exe">installer</a> and double-click it.</p>
-<p>Or you may simply unzip the <a href="http://prdownloads.sourceforge.net/winmerge/WinMerge202-exe.zip">binary zip package</a> into the desired location, and run
+<p>Just download the <a href="http://downloads.sourceforge.net/winmerge/WinMergeSetup202.exe">installer</a> and double-click it.</p>
+<p>Or you may simply unzip the <a href="http://downloads.sourceforge.net/winmerge/WinMerge202-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
 
 <h2>Using WinMerge</h2>
 <p>You can use the <a href="docs/index.html">online User's Guide</a>, or you can
-<a href="http://prdownloads.sourceforge.net/winmerge/WinMergeDocs2_0.zip">download</a> a copy.</p>
+<a href="http://downloads.sourceforge.net/winmerge/WinMergeDocs2_0.zip">download</a> a copy.</p>
 
 <p>Here is the current <a href="changes.php">change history</a>.</p>
 <?php
