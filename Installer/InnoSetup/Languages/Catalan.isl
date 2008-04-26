@@ -338,6 +338,7 @@ NorwegianLanguage=Menús i diàlegs en Noruec
 PolishLanguage=Menús i diàlegs en Polonès
 PortugueseBrazilLanguage=Menús i diàlegs en Portuguès (Brasiler)
 PortugueseLanguage=Menús i diàlegs en Portuguès
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Menús i diàlegs en Rus
 SlovakLanguage=Menús i diàlegs en Eslovac
 SpanishLanguage=Menús i diàlegs en Castellà

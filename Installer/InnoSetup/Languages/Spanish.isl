@@ -351,6 +351,7 @@ NorwegianLanguage=Norwegian menus and dialogs
 PolishLanguage=Polish menus and dialogs
 PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
 PortugueseLanguage=Portuguese menus and dialogs
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Russian menus and dialogs
 SlovakLanguage=Slovak menus and dialogs
 SpanishLanguage=Spanish menus and dialogs

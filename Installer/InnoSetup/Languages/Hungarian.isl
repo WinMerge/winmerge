@@ -374,6 +374,7 @@ NorwegianLanguage=Norvég menük és párbeszédablakok
 PolishLanguage=Lengyel menük és párbeszédablakok
 PortugueseBrazilLanguage=Portugál (Brazíliai) menük és párbeszédablakok
 PortugueseLanguage=Portugál menük és párbeszédablakok
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Orosz menük és párbeszédablakok
 SlovakLanguage=Szlovák menük és párbeszédablakok
 SpanishLanguage=Spanyol menük és párbeszédablakok
