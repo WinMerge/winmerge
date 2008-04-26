@@ -6,6 +6,7 @@ WinMerge 2.8.2
   Release Notes update (#1933950)
   Make 'Yes' the default button in copy confirmation dialog (#1943647)
   Allow drag & drop of paths to Open dialog (#1945254)
+  Enlarge 'Discard All' button in Save confirmation dialog (#1947216)
   BugFix: Shortcuts given in command line were not expanded (#1942217)
   New translation: Romanian (#1939729)
   Translation updates:
