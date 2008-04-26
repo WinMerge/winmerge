@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.9.1.2
+  BugFix: Version Control filter did not match all VSS files (#1881186)
+
 WinMerge 2.9.1.1- 2008-04-23 (r5324)
   Release Notes update (#1933950)
   Installer: Use correct way to create start menu web link (#1913919)
