@@ -13,6 +13,7 @@ WinMerge 2.8.2
   - German (#1949068)
   - Italian (#1939235)
   - Polish (#1934655)
+  - Swedish (#1950188)
 
 WinMerge 2.8.0 - 2008-04-03 (r5254)
   Installer: Use correct way to create start menu web link (#1913919)
