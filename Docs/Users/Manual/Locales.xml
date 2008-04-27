@@ -8,10 +8,6 @@
 
   <itemizedlist>
     <listitem>
-      <simpara>Portuguese (Brazilian)</simpara>
-    </listitem>
-
-    <listitem>
       <simpara>Bulgarian</simpara>
     </listitem>
 
@@ -73,6 +69,14 @@
 
     <listitem>
       <simpara>Portuguese</simpara>
+    </listitem>
+
+    <listitem>
+      <simpara>Portuguese (Brazilian)</simpara>
+    </listitem>
+
+    <listitem>
+      <simpara>Romanian</simpara>
     </listitem>
 
     <listitem>
@@ -148,8 +152,8 @@
     <para><orderedlist>
         <listitem>
           <simpara>Download the zipped release from <ulink
-          url="http://winmerge.org/downloads/">WinMerge
-          download</ulink> site.</simpara>
+          url="http://winmerge.org/downloads/">WinMerge download</ulink>
+          site.</simpara>
         </listitem>
 
         <listitem>
