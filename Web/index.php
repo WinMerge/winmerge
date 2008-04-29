@@ -5,7 +5,7 @@
   $page->printHead('WinMerge', TAB_HOME);
   $stablerelease = $page->getStableRelease();
 ?>
-<p>WinMerge is an Open Source visual text file differencing and merging tool for Windows. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
+<p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
 <?php $page->printDownloadNow(); ?>
 <h2>Features</h2>
 <ul>
