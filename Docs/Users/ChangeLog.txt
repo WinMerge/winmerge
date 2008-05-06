@@ -10,6 +10,7 @@ WinMerge 2.8.2
   BugFix: Shortcuts given in command line were not expanded (#1942217)
   New translation: Romanian (#1939729)
   Translation updates:
+  - Croatian (#1958283)
   - German (#1949068)
   - Italian (#1939235)
   - Polish (#1934655)
