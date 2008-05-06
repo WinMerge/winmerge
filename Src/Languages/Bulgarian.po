@@ -3,7 +3,7 @@
 #
 # Translators:
 # * sld <sld at mail.bg>
-# * tigertron <tigertron at dir.bg>
+# * tigertron <ivg_18 at yahoo.com>
 #
 # ID line follows -- this is updated by SVN
 # $Id$
@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2008-05-04 21:51+0100\n"
+"Last-Translator: tigertron <ivg_18 at yahoo.com>\n"
 "Language-Team: Bulgarian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1251\n"
@@ -139,7 +139,7 @@ msgstr "&Отвори...\tCtrl+O"
 #: Merge.rc:114
 #, c-format
 msgid "Op&en Conflict File..."
-msgstr ""
+msgstr "Отвори конфликтен файл"
 
 #: Merge.rc:116
 #: Merge.rc:194
@@ -158,7 +158,7 @@ msgstr "&Запиши Проект..."
 #: Merge.rc:119
 #, c-format
 msgid "Recent Projects"
-msgstr ""
+msgstr "Последни проекти"
 
 #: Merge.rc:121
 #: Merge.rc:202
@@ -207,28 +207,28 @@ msgstr "Използвай ш&рифт по подразбиране"
 #: Merge.rc:403
 #, c-format
 msgid "&Toolbar"
-msgstr ""
+msgstr "Лента с инструменти"
 
 #: Merge.rc:134
 #: Merge.rc:226
 #: Merge.rc:405
 #, c-format
 msgid "&None"
-msgstr ""
+msgstr "&Няма"
 
 #: Merge.rc:135
 #: Merge.rc:227
 #: Merge.rc:406
 #, c-format
 msgid "&Small"
-msgstr ""
+msgstr "&Малък"
 
 #: Merge.rc:136
 #: Merge.rc:228
 #: Merge.rc:407
 #, c-format
 msgid "&Big"
-msgstr ""
+msgstr "&Голям"
 
 #: Merge.rc:138
 #: Merge.rc:230
@@ -242,7 +242,7 @@ msgstr "&Лента на състоянието"
 #: Merge.rc:410
 #, c-format
 msgid "Ta&b Bar"
-msgstr ""
+msgstr "Таб лента"
 
 #: Merge.rc:141
 #: Merge.rc:234
@@ -312,7 +312,7 @@ msgstr "&Презареди добавките"
 #: Merge.rc:456
 #, c-format
 msgid "&Debug"
-msgstr ""
+msgstr "Проследяване"
 
 #: Merge.rc:159
 #: Merge.rc:273
@@ -326,7 +326,7 @@ msgstr "&Зареди Конфигурация..."
 #: Merge.rc:459
 #, c-format
 msgid "&Reset Options"
-msgstr ""
+msgstr "Възстанови настройките"
 
 #: Merge.rc:162
 #: Merge.rc:276
@@ -390,28 +390,28 @@ msgstr "&Помощ"
 #: Merge.rc:474
 #, c-format
 msgid "&WinMerge Help\tF1"
-msgstr ""
+msgstr "&WinMerge Помощ\tF1"
 
 #: Merge.rc:177
 #: Merge.rc:291
 #: Merge.rc:476
 #, c-format
 msgid "R&elease Notes"
-msgstr ""
+msgstr "Бележки"
 
 #: Merge.rc:178
 #: Merge.rc:292
 #: Merge.rc:477
 #, c-format
 msgid "&Translations"
-msgstr ""
+msgstr "Преводи"
 
 #: Merge.rc:179
 #: Merge.rc:293
 #: Merge.rc:478
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "Конфигурация"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -425,7 +425,7 @@ msgstr "Забранена поддръжка на &архиви..."
 #: Merge.rc:481
 #, c-format
 msgid "&GNU General Public License"
-msgstr ""
+msgstr "&GNU Публичен лиценз"
 
 #: Merge.rc:183
 #: Merge.rc:297
@@ -613,7 +613,7 @@ msgstr "&Принтиране..."
 #: Merge.rc:324
 #, c-format
 msgid "Page Se&tup"
-msgstr ""
+msgstr "Настройки на страницата"
 
 #: Merge.rc:325
 #, c-format
@@ -648,7 +648,7 @@ msgstr "Режим на сливане\tF9"
 #: Merge.rc:339
 #, c-format
 msgid "&File Encoding..."
-msgstr ""
+msgstr "Кодиране на файл..."
 
 #: Merge.rc:345
 #, c-format
@@ -744,33 +744,33 @@ msgstr "От&иди на...\tCtrl+G"
 #: Merge.rc:383
 #, c-format
 msgid "&Zoom"
-msgstr ""
+msgstr "Мащаб"
 
 #: Merge.rc:385
 #, c-format
 msgid "Zoom &In\tCtrl++"
-msgstr ""
+msgstr "Увеличи"
 
 #: Merge.rc:386
 #, c-format
 msgid "Zoom &Out\tCtrl+-"
-msgstr ""
+msgstr "Намали"
 
 #. Zoom to normal
 #: Merge.rc:387
 #, c-format
 msgid "&Normal\tCtrl+*"
-msgstr ""
+msgstr "Нормален"
 
 #: Merge.rc:389
 #, c-format
 msgid "Syntax Highlight"
-msgstr ""
+msgstr "Оцветяване на синтаксиса"
 
 #: Merge.rc:394
 #, c-format
 msgid "&Lock Panes"
-msgstr ""
+msgstr "Заключи прозорците"
 
 #: Merge.rc:395
 #, c-format
@@ -790,7 +790,7 @@ msgstr "Покажи номера на редовете"
 #: Merge.rc:398
 #, c-format
 msgid "View &Margins"
-msgstr ""
+msgstr "Покажи граници"
 
 #: Merge.rc:399
 #, c-format
@@ -845,12 +845,12 @@ msgstr "&Сравни"
 #: Merge.rc:491
 #, c-format
 msgid "Co&mpare Special"
-msgstr ""
+msgstr "Сравни специално"
 
 #: Merge.rc:493
 #, c-format
 msgid "&XML"
-msgstr ""
+msgstr "&XML"
 
 #: Merge.rc:498
 #, c-format
@@ -1215,12 +1215,12 @@ msgstr "Запиши като..."
 #: Merge.rc:728
 #, c-format
 msgid "Versioning System"
-msgstr ""
+msgstr "Система за версии"
 
 #: Merge.rc:731
 #, c-format
 msgid "&Versioning System:"
-msgstr ""
+msgstr "Система за версии"
 
 #: Merge.rc:734
 #, c-format
@@ -1261,17 +1261,17 @@ msgstr "Позволи само &едно стартирано копие"
 #: Merge.rc:756
 #, c-format
 msgid "As&k when closing multiple windows"
-msgstr ""
+msgstr "Питай при затваряне на много прозорци"
 
 #: Merge.rc:758
 #, c-format
 msgid "&Preserve file time in file compare"
-msgstr ""
+msgstr "Запази времето на файла при сравняване"
 
 #: Merge.rc:761
 #, c-format
 msgid "O&pen-dialog Auto-Completion:"
-msgstr ""
+msgstr "Отвори-диалог Авто-завършване:"
 
 #: Merge.rc:764
 #, c-format
@@ -1425,7 +1425,7 @@ msgstr "Коментари"
 #: Merge.rc:862
 #, c-format
 msgid "CheckIn after checkout"
-msgstr ""
+msgstr "CheckIn след checkout"
 
 #: Merge.rc:868
 #, c-format
@@ -1435,7 +1435,7 @@ msgstr "Филтри за ред"
 #: Merge.rc:871
 #, c-format
 msgid "Enable Line Filters"
-msgstr ""
+msgstr "Включи филтри за ред"
 
 #: Merge.rc:874
 #, c-format
@@ -1445,22 +1445,22 @@ msgstr "Правилни изрази (по един на ред):"
 #: Merge.rc:881
 #, c-format
 msgid "Save"
-msgstr ""
+msgstr "Запиши"
 
 #: Merge.rc:882
 #, c-format
 msgid "New"
-msgstr ""
+msgstr "Нов"
 
 #: Merge.rc:883
 #, c-format
 msgid "Edit"
-msgstr ""
+msgstr "Редактирай"
 
 #: Merge.rc:884
 #, c-format
 msgid "Remove"
-msgstr ""
+msgstr "Премахни"
 
 #: Merge.rc:889
 #: Merge.rc:1901
@@ -1581,22 +1581,22 @@ msgstr "&Папка на филтрите:"
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "Преглед"
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "Временна папка"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "Временна папка на системата"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "Друга папка"
 
 #: Merge.rc:999
 #: Merge.rc:1015
@@ -1697,12 +1697,12 @@ msgstr "Покажи колоните"
 #: Merge.rc:1071
 #, c-format
 msgid "Move &Up"
-msgstr ""
+msgstr "Нагоре"
 
 #: Merge.rc:1072
 #, c-format
 msgid "Move &Down"
-msgstr ""
+msgstr "Надолу"
 
 #: Merge.rc:1082
 #, c-format
@@ -1839,7 +1839,7 @@ msgstr "Позволи разпознаване на преместен &блок"
 #: Merge.rc:1161
 #, c-format
 msgid "&Match similar lines"
-msgstr ""
+msgstr "Съответствие на подобни редове"
 
 #: Merge.rc:1163
 #, c-format
@@ -2130,7 +2130,7 @@ msgstr "Път на добавка:"
 #: Merge.rc:1312
 #, c-format
 msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr ""
+msgstr "Не показвай пак това съобщение.\n(Винаги можете да го извикате от меню Помощ.)"
 
 #: Merge.rc:1316
 #, c-format
@@ -2365,13 +2365,13 @@ msgstr "Затвори"
 #: Merge.rc:1508
 #, c-format
 msgid "Affects"
-msgstr ""
+msgstr "Промени"
 
 #: Merge.rc:1511
 #: Merge.rc:1514
 #, c-format
 msgid "(Affects)"
-msgstr ""
+msgstr "(Промени)"
 
 #: Merge.rc:1515
 #, c-format
@@ -2387,7 +2387,7 @@ msgstr "&Зареждане на файл:"
 #: Merge.rc:1521
 #, c-format
 msgid "..."
-msgstr ""
+msgstr "..."
 
 #: Merge.rc:1519
 #, c-format
@@ -2499,72 +2499,72 @@ msgstr "Запиши..."
 #: Merge.rc:1908
 #, c-format
 msgid "Backup Files"
-msgstr ""
+msgstr "Резервни файлове"
 
 #: Merge.rc:1608
 #, c-format
 msgid "Create backup files in:"
-msgstr ""
+msgstr "Създай резервни файлове в:"
 
 #: Merge.rc:1613
 #, c-format
 msgid "Create backup files into:"
-msgstr ""
+msgstr "Създай резервни файлове в:"
 
 #: Merge.rc:1614
 #, c-format
 msgid "&Original file's folder"
-msgstr ""
+msgstr "Оригинална папка на файла"
 
 #: Merge.rc:1616
 #, c-format
 msgid "&Global backup folder:"
-msgstr ""
+msgstr "Глобална резервна папка"
 
 #: Merge.rc:1620
 #, c-format
 msgid "Backup filename:"
-msgstr ""
+msgstr "Резервно име:"
 
 #: Merge.rc:1621
 #, c-format
 msgid "&Append .bak -extension"
-msgstr ""
+msgstr "Добави .bak -разширение"
 
 #: Merge.rc:1623
 #, c-format
 msgid "A&ppend timestamp"
-msgstr ""
+msgstr "Добави време"
 
 #: Merge.rc:1630
 #, c-format
 msgid "Confirm Copy"
-msgstr ""
+msgstr "Потвърди копиране"
 
 #: Merge.rc:1634
 #, c-format
 msgid "Are you sure you want to copy XXX items?"
-msgstr ""
+msgstr "Искате ли да копирате XXX неща?"
 
 #: Merge.rc:1636
 #, c-format
 msgid "From left"
-msgstr ""
+msgstr "От ляво"
 
 #: Merge.rc:1639
 #, c-format
 msgid "To right"
-msgstr ""
+msgstr "Към дясно"
 
 #: Merge.rc:1642
 #, c-format
 msgid "Yes"
-msgstr ""
+msgstr "Да"
 
 #: Merge.rc:1643
 #, c-format
 msgid "No"
-msgstr ""
+msgstr "Не"
 
 #. StringFileInfo.Block
 #: Merge.rc:1668
@@ -2930,11 +2930,13 @@ msgid ""
 "Show or hide the tab bar\n"
 "Toggle TabBar"
 msgstr ""
+"Покажи или скрий таб бара\n"
+"Покажи TabBar"
 
 #: Merge.rc:1805
 #, c-format
 msgid "Automatically resize panes\nLock Panes"
-msgstr ""
+msgstr "Автоматично оразмери панелите\nЗаключи панелите"
 
 #: Merge.rc:1811
 #, c-format
@@ -2979,12 +2981,12 @@ msgstr "Нормалната големина на прозореца"
 #: Merge.rc:1823
 #, c-format
 msgid "Activate Task List"
-msgstr ""
+msgstr "Активирай списък на задачите"
 
 #: Merge.rc:1824
 #, c-format
 msgid "Activate this window"
-msgstr ""
+msgstr "Активирай този прозорец"
 
 #: Merge.rc:1830
 #, c-format
@@ -3024,12 +3026,12 @@ msgstr "Натисни десен бутон за копиране на пътя"
 #: Merge.rc:1865
 #, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr ""
+msgstr "Разработчици:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, c-format
 msgid "WinMerge comes with ABSOLUTELY NO WARRANTY. This is free software and you are welcome to redistribute it under certain circumstances; see the GNU General Public License in the Help menu for details."
-msgstr ""
+msgstr "WinMerge идва БЕЗ НИКАКВА ГАРАНЦИЯ. Това е безплатен софтуер и можете да го разпространявате под общите условия; за детайли вижте GNU Публичен лиценз в менюто Помощ."
 
 #: Merge.rc:1872
 #, c-format
@@ -3119,27 +3121,27 @@ msgstr "Контрол на версията"
 #: Merge.rc:1915
 #, c-format
 msgid "To:"
-msgstr ""
+msgstr "В:"
 
 #: Merge.rc:1916
 #, c-format
 msgid "From left:"
-msgstr ""
+msgstr "От ляво:"
 
 #: Merge.rc:1917
 #, c-format
 msgid "To left:"
-msgstr ""
+msgstr "В ляво:"
 
 #: Merge.rc:1918
 #, c-format
 msgid "From right:"
-msgstr ""
+msgstr "От дясно:"
 
 #: Merge.rc:1919
 #, c-format
 msgid "To right:"
-msgstr ""
+msgstr "В дясно:"
 
 #: Merge.rc:1925
 #, c-format
@@ -3164,7 +3166,7 @@ msgstr "Всички съобщения се показват отново."
 #: Merge.rc:1934
 #, c-format
 msgid "Modifications have been made to the current file comparison session.  Some settings may not take place until the current file comparison is restarted."
-msgstr "Промените се правят на файловете от текущиата сесия на сравнение. Някои промени ще станат докато се рестартира текущата сесия."
+msgstr "Промените се правят на файловете от текущата сесия на сравнение. Някои промени ще станат докато се рестартира текущата сесия."
 
 #: Merge.rc:1935
 #, c-format
@@ -3189,6 +3191,9 @@ msgid ""
 "\n"
 "Please re-start WinMerge after the reset."
 msgstr ""
+"Искате ли да възстановите всички настройки на WinMerge?\n"
+"\n"
+"Моля, рестартирайте WinMerge след възстановяването."
 
 #: Merge.rc:1945
 #, c-format
@@ -3318,6 +3323,10 @@ msgid ""
 "Please copy file %1 to WinMerge/Filters -folder:\n"
 "%2."
 msgstr ""
+"Не може да се намери шаблонът за филтъра!\n"
+"\n"
+"Моля, копирайте файла %1 в папката WinMerge/Filters:\n"
+"%2."
 
 #: Merge.rc:1993
 #, c-format
@@ -3380,7 +3389,7 @@ msgstr "Филтърният файл вече съществува. Да се презапише ли съществуващият филтъ
 #: Merge.rc:2008
 #, c-format
 msgid "Regular expression"
-msgstr ""
+msgstr "Чести изрази"
 
 #: Merge.rc:2014
 #, c-format
@@ -3415,12 +3424,12 @@ msgstr "Без заглавие десен"
 #: Merge.rc:2025
 #, c-format
 msgid "Theirs File"
-msgstr ""
+msgstr "Техен файл"
 
 #: Merge.rc:2026
 #, c-format
 msgid "Mine File"
-msgstr ""
+msgstr "Мой файл"
 
 #: Merge.rc:2032
 #, c-format
@@ -3511,7 +3520,7 @@ msgstr "1 Намерена разлика"
 #: Merge.rc:2054
 #, c-format
 msgid "RO"
-msgstr ""
+msgstr "СЧ"
 
 #: Merge.rc:2060
 #, c-format
@@ -3589,12 +3598,12 @@ msgstr ""
 #: Merge.rc:2083
 #, c-format
 msgid "Failed to parse conflict file."
-msgstr ""
+msgstr "Грешка при разбора на конфликтен файл"
 
 #: Merge.rc:2084
 #, c-format
 msgid "The file\n%1\nis not a conflict file."
-msgstr ""
+msgstr "Файлът\n%1\nне е конфликтен."
 
 #: Merge.rc:2090
 #, c-format
@@ -3873,12 +3882,12 @@ msgstr "От ляво към дясно (%1)"
 #: Merge.rc:2152
 #, c-format
 msgid "Right to Left (%1 of %2)"
-msgstr "Десен към ляв (%1 oт %2)"
+msgstr "Десен към ляв (%1 от %2)"
 
 #: Merge.rc:2153
 #, c-format
 msgid "Left to Right (%1 of %2)"
-msgstr "Ляв към десен (%1 oт %2)"
+msgstr "Ляв към десен (%1 от %2)"
 
 #: Merge.rc:2154
 #: Merge.rc:2170
@@ -3896,13 +3905,13 @@ msgstr "Десен към... (%1)"
 #: Merge.rc:2172
 #, c-format
 msgid "Left to... (%1 of %2)"
-msgstr "Ляв към... (%1 oт %2)"
+msgstr "Ляв към... (%1 от %2)"
 
 #: Merge.rc:2157
 #: Merge.rc:2173
 #, c-format
 msgid "Right to... (%1 of %2)"
-msgstr "Десен към... (%1 oт %2)"
+msgstr "Десен към... (%1 от %2)"
 
 #: Merge.rc:2163
 #, c-format
@@ -3932,7 +3941,7 @@ msgstr "Десен (%1 от %2)"
 #: Merge.rc:2168
 #, c-format
 msgid "Both (%1 of %2)"
-msgstr "двете (%1 от %2)"
+msgstr "Двете (%1 от %2)"
 
 #: Merge.rc:2169
 #, c-format
@@ -3973,12 +3982,12 @@ msgstr ""
 #: Merge.rc:2184
 #, c-format
 msgid "Are you sure you want to copy:"
-msgstr ""
+msgstr "Искате ли да копирате:"
 
 #: Merge.rc:2185
 #, c-format
 msgid "Are you sure you want to copy %d items:"
-msgstr ""
+msgstr "Искате ли да копирате %d елементи:"
 
 #: Merge.rc:2186
 #, c-format
@@ -3991,6 +4000,13 @@ msgid ""
 "\n"
 "Please refresh the compare."
 msgstr ""
+"Действието е отменено!\n"
+"\n"
+"Съдържанието на папката е променено, път\n"
+"%1\n"
+"не е намерен.\n"
+"\n"
+"Моля, обновете сравняването."
 
 #: Merge.rc:2192
 #, c-format
@@ -4236,12 +4252,12 @@ msgstr "Пропусната директория"
 #: Merge.rc:2267
 #, c-format
 msgid "Left only: %1"
-msgstr ""
+msgstr "От ляво само: %1"
 
 #: Merge.rc:2268
 #, c-format
 msgid "Right only: %1"
-msgstr ""
+msgstr "От дясно само: %1"
 
 #: Merge.rc:2269
 #, c-format
@@ -4271,7 +4287,7 @@ msgstr "Само десният"
 #: Merge.rc:2276
 #, c-format
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: Merge.rc:2282
 #, c-format
@@ -4495,7 +4511,7 @@ msgstr ""
 #: Merge.rc:2349
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr ""
+msgstr "Символите EOL са от различен тип (Windows/Unix/Mac) във файла '%1'.\n С текущите настройки те ще бъдат уеднаквени с основният тип.\n Искате ли да промените настройките, за да се предпазите от различни EOL ?"
 
 #: Merge.rc:2350
 #, c-format
@@ -4515,7 +4531,7 @@ msgstr "Не може да се отвори двоичен файл с редактор."
 #: Merge.rc:2353
 #, c-format
 msgid "The folder exists only in other side and cannot be opened.\n\nDo you want to create a matching folder:\n%1\nto the other side and open these folders?"
-msgstr ""
+msgstr "Папката съществува само в другата страна и не може да се отвори.\n\nИскат ли да създадете съответстващи папки:\n%1\nв другата страна и да ги отворите?"
 
 #: Merge.rc:2359
 #, c-format
@@ -4740,6 +4756,9 @@ msgid ""
 "\n"
 "Do you want to continue?"
 msgstr ""
+"Ще затворите няколко прозорци за сравняване.\n"
+"\n"
+"Искате ли да продължите?"
 
 #: Merge.rc:2432
 #, c-format
@@ -4774,7 +4793,7 @@ msgstr "Проследяване на обратно наклонена черта"
 #: Merge.rc:2438
 #, c-format
 msgid "Invalid back reference"
-msgstr ""
+msgstr "Невалиден символ за връщане"
 
 #: Merge.rc:2439
 #, c-format
@@ -4809,17 +4828,17 @@ msgstr "Недостатъчна памет"
 #: Merge.rc:2445
 #, c-format
 msgid "Invalid preceding regular expression"
-msgstr ""
+msgstr "Невалиден израз преди правилния"
 
 #: Merge.rc:2446
 #, c-format
 msgid "Premature end of regular expression"
-msgstr ""
+msgstr "Преждевременен край на правилния израз"
 
 #: Merge.rc:2447
 #, c-format
 msgid "Regular expression too big"
-msgstr ""
+msgstr "Правилният израз е твърде голям"
 
 #: Merge.rc:2452
 #, c-format
@@ -5190,17 +5209,17 @@ msgstr "Сменяне на статуса само за четене на десния файл/директория"
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "Конвертирай EOL към Windows режим"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "Конвертирай EOL към Unix режим"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "Конвертирай EOL към Mac режим"
 
 #: Merge.rc:2592
 #, c-format
@@ -5219,7 +5238,7 @@ msgstr ""
 #: Merge.rc:2594
 #, c-format
 msgid "Open and resolve conflict file"
-msgstr ""
+msgstr "Отвори и поправи конфликтен файл"
 
 #: Merge.rc:2600
 #, c-format
@@ -5382,12 +5401,12 @@ msgstr "Показва статистиката за сравнение на папките"
 #: Merge.rc:2632
 #, c-format
 msgid "Select the current user interface language\nLanguage"
-msgstr ""
+msgstr "Избор на текущ потребителски интерфейс\nЕзик"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
-msgstr ""
+msgstr "Показва разликите в редовете с различни цветове\nПокажи различията в реда"
 
 #: Merge.rc:2634
 #, c-format
@@ -5418,46 +5437,48 @@ msgid ""
 "Shows selection margins for both panes\n"
 "Show Selection Margins"
 msgstr ""
+"Показва избраните полета в двата панела\n"
+"Покажи избраните полета"
 
 #: Merge.rc:2638
 #, c-format
 msgid "Increase text size"
-msgstr ""
+msgstr "Увеличи размера на текста"
 
 #: Merge.rc:2639
 #, c-format
 msgid "Decrease text size"
-msgstr ""
+msgstr "Намали размера на текста"
 
 #: Merge.rc:2640
 #, c-format
 msgid "Reset text zoom to default size"
-msgstr ""
+msgstr "Възстанови размера на текста до нормалния"
 
 #: Merge.rc:2646
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr ""
+msgstr "Премести до предишната разлика\nПредишна разлика (Alt+Up)"
 
 #: Merge.rc:2647
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr ""
+msgstr "Премести до следващата разлика\nСледваща разлика (Alt+Down)"
 
 #: Merge.rc:2648
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr ""
+msgstr "Премести до първата разлика\nПърва разлика (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr ""
+msgstr "Премести до текущата разлика\nТекуща разлика (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr ""
+msgstr "Премести до последната разлика\nПоследна разлика (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5581,7 +5602,7 @@ msgstr "Затваря всички добавки и ги зарежда отново (за разработчици)"
 #: Merge.rc:2685
 #, c-format
 msgid "Activates next visible file\nActivate next File"
-msgstr ""
+msgstr "Активира следващият видим файл\nАктивирай следващ файл"
 
 #: Merge.rc:2686
 #, c-format
@@ -5591,7 +5612,7 @@ msgstr "Затваря всички отворени прозорци"
 #: Merge.rc:2692
 #, c-format
 msgid "Opens the WinMerge Help\nWinMerge Help"
-msgstr ""
+msgstr "Отваря помощта на WinMerge\nWinMerge помощ"
 
 #: Merge.rc:2693
 #, c-format
@@ -5601,7 +5622,7 @@ msgstr "Показване на текущите настройки на WinMerge и информация за версията в т
 #: Merge.rc:2694
 #, c-format
 msgid "Display the GNU General Public License"
-msgstr ""
+msgstr "Показва GNU Общ публичен лиценз"
 
 #: Merge.rc:2695
 #, c-format
@@ -5611,12 +5632,12 @@ msgstr "Вътрешен билд: %1"
 #: Merge.rc:2696
 #, c-format
 msgid "Opens the release notes document\nRelease Notes"
-msgstr ""
+msgstr "Отваря документа с бележки за програмата\nБележки"
 
 #: Merge.rc:2697
 #, c-format
 msgid "Opens the translations website\nTranslations"
-msgstr ""
+msgstr "Отваря страницата с преводи\nПреводи"
 
 #: Merge.rc:2703
 #, c-format
@@ -5671,7 +5692,7 @@ msgstr "Не показвай преместените блокове"
 #: Merge.rc:2724
 #, c-format
 msgid "Display all moved blocks"
-msgstr ""
+msgstr "Покажи всички преместени блокове"
 
 #: Merge.rc:2725
 #, c-format
@@ -5716,7 +5737,7 @@ msgstr ""
 #: Merge.rc:2744
 #, c-format
 msgid "Basic"
-msgstr ""
+msgstr "Основен"
 
 #: Merge.rc:2745
 #, c-format
@@ -5821,7 +5842,7 @@ msgstr ""
 #: Merge.rc:2765
 #, c-format
 msgid "Resources"
-msgstr ""
+msgstr "Ресурси"
 
 #: Merge.rc:2766
 #, c-format
@@ -5866,15 +5887,15 @@ msgstr ""
 #: Merge.rc:2778
 #, c-format
 msgid "Hide the toolbar"
-msgstr ""
+msgstr "Скрий лентата с инструменти"
 
 #: Merge.rc:2779
 #, c-format
 msgid "Show small toolbar"
-msgstr ""
+msgstr "Покажи малка лента с инструменти"
 
 #: Merge.rc:2780
 #, c-format
 msgid "Show big toolbar"
-msgstr ""
+msgstr "Покажи голяма лента с инструменти"
 
