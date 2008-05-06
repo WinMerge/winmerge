@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-01-23 11:01+0100\n"
+"PO-Revision-Date: 2008-05-04 22:14+0100\n"
 "Last-Translator: Hasan Osmanagæ <hasan.osmanagic at public.carnet.hr>\n"
 "Language-Team: winmerge-translate <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -411,7 +411,7 @@ msgstr "&Prevoditelji"
 #: Merge.rc:478
 #, c-format
 msgid "C&onfiguration"
-msgstr ""
+msgstr "Po&dešenost"
 
 #: Merge.rc:180
 #: Merge.rc:294
@@ -425,7 +425,7 @@ msgstr "Rad s a&rhivama..."
 #: Merge.rc:481
 #, c-format
 msgid "&GNU General Public License"
-msgstr ""
+msgstr "&GNU javna licenca"
 
 #: Merge.rc:183
 #: Merge.rc:297
@@ -628,17 +628,17 @@ msgstr "&Završi retke prema"
 #: Merge.rc:332
 #, c-format
 msgid "&Windows (CRLF)"
-msgstr ""
+msgstr "&Windows (DRNR)"
 
 #: Merge.rc:333
 #, c-format
 msgid "&Unix (LF)"
-msgstr ""
+msgstr "&Unix (NR)"
 
 #: Merge.rc:334
 #, c-format
 msgid "&Mac (CR)"
-msgstr ""
+msgstr "&Mac (DR)"
 
 #: Merge.rc:337
 #, c-format
@@ -1581,22 +1581,22 @@ msgstr "&Naziv mape filtara:"
 #: Merge.rc:992
 #, c-format
 msgid "B&rowse..."
-msgstr ""
+msgstr "&Odabir..."
 
 #: Merge.rc:993
 #, c-format
 msgid "Temporary files folder"
-msgstr ""
+msgstr "Mapa privremenih datoteka"
 
 #: Merge.rc:994
 #, c-format
 msgid "S&ystem's temp folder"
-msgstr ""
+msgstr "Mapa s&istemska, privremena"
 
 #: Merge.rc:996
 #, c-format
 msgid "C&ustom folder:"
-msgstr ""
+msgstr "Ko&risnikova mapa"
 
 #: Merge.rc:999
 #: Merge.rc:1015
@@ -1829,7 +1829,7 @@ msgstr "Zanemari V/m &slova"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr ""
+msgstr "&Zanemari razlièitost oznaka završetka retka (Windows/Unix/Mac)"
 
 #: Merge.rc:1159
 #, c-format
@@ -2126,7 +2126,7 @@ msgstr "Staza do dodataka:"
 #: Merge.rc:1312
 #, c-format
 msgid "Don't display this &message again.\n(You can always recall this message from the Help menu.)"
-msgstr ""
+msgstr "Ne prikazuj &više ovu poruku.\n(Uvijek je dostupna preko izbornika pomoæi.)"
 
 #: Merge.rc:1316
 #, c-format
@@ -3026,7 +3026,7 @@ msgstr "Desni klik na stazu koju trba kopirati"
 #: Merge.rc:1865
 #, c-format
 msgid "Developers:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
-msgstr ""
+msgstr "Razvojni tim:\nDean Grimm, Christian List, Kimmo Varis, Jochen Tucht, Tim Gerundt, Takashi Sawanaki, Gal Hammer, Alexander Skinner"
 
 #: Merge.rc:1866
 #, fuzzy, c-format
@@ -3238,22 +3238,22 @@ msgstr "XML datoteke (*.xml)|*.xml|Sve datoteke (*.*)|*.*||"
 #: Merge.rc:1964
 #, c-format
 msgid "UTF-8"
-msgstr ""
+msgstr "UTF-8"
 
 #: Merge.rc:1965
 #, c-format
 msgid "UTF-8 (B)"
-msgstr ""
+msgstr "UTF-8 (B)"
 
 #: Merge.rc:1966
 #, c-format
 msgid "UCS-2 LE"
-msgstr ""
+msgstr "UCS-2 LE"
 
 #: Merge.rc:1967
 #, c-format
 msgid "UCS-2 BE"
-msgstr ""
+msgstr "UCS-2 BE"
 
 #: Merge.rc:1973
 #, c-format
@@ -4021,7 +4021,7 @@ msgstr "Otvori lijevu datoteku u vanjskom editoru"
 #: Merge.rc:2194
 #, c-format
 msgid "Open left file with ..."
-msgstr "Otvori sijevu datoteku s..."
+msgstr "Otvori lijevu datoteku s..."
 
 #: Merge.rc:2195
 #, c-format
@@ -4511,7 +4511,7 @@ msgstr ""
 #: Merge.rc:2349
 #, c-format
 msgid "The EOL are of different types (Windows/Unix/Mac) in the file '%1'.\n With the current options, they will be unified to the main type.\n Do you want to change the options and preserve the different EOL ?"
-msgstr ""
+msgstr "Reci završavaju na razlièit naèin (Windows/Unix/Mac) u datoteci '%1'.\n Prema postavkama, promijenit æe se kako je odabrano.\n Izmijeniti ovu postavku i zadržati razlièit naèin završetaka?"
 
 #: Merge.rc:2350
 #, c-format
@@ -4542,7 +4542,7 @@ msgid ""
 msgstr ""
 "Razlièite kodne stranice lijeve (ks%d) i desna (ks%d) datoteke. \n"
 "Prikaz svake datoteke u vlastitoj ks je ljepši, ali dovodi do teškoæa prilikom spajanja ili kopiranja.\n"
-"Preporuèamo obje datoteke prikazati u Windows namještenoj kodnoj stranici?"
+"Preporuèamo obje datoteke prikazati u Windows prednamještenoj kodnoj stranici?"
 
 #: Merge.rc:2360
 #, c-format
@@ -4667,7 +4667,7 @@ msgstr "Ne mogu stvoriti datoteku razlika iz binarnih datoteka"
 #: Merge.rc:2409
 #, c-format
 msgid "Cannot create a patch file from directories."
-msgstr "Ne mogu stvoriti datoteku razlika iz mapa."
+msgstr "Ne mogu stvoriti datoteku razlika mapa."
 
 #: Merge.rc:2410
 #, c-format
@@ -4798,12 +4798,12 @@ msgstr "Kriva referenca"
 #: Merge.rc:2439
 #, c-format
 msgid "Unmatched [ or [^"
-msgstr "Neodgovarajuæe [ or [^"
+msgstr "Neodgovarajuæe [ ili [^"
 
 #: Merge.rc:2440
 #, c-format
 msgid "Unmatched ( or \\("
-msgstr "Neodgovarajuæe ( or \\("
+msgstr "Neodgovarajuæe ( ili \\("
 
 #: Merge.rc:2441
 #, c-format
@@ -4848,17 +4848,17 @@ msgstr "Neodgovarajuæe ) ili \\)"
 #: Merge.rc:2458
 #, c-format
 msgid "Western European"
-msgstr "Western European"
+msgstr "Zapadna Europa"
 
 #: Merge.rc:2459
 #, c-format
 msgid "Eastern European"
-msgstr "Eastern European"
+msgstr "Istoèna Europa"
 
 #: Merge.rc:2460
 #, c-format
 msgid "East Asian"
-msgstr "East Asian"
+msgstr "Istoèna Azija"
 
 #: Merge.rc:2461
 #, c-format
@@ -4868,7 +4868,7 @@ msgstr "SE & SW Asian"
 #: Merge.rc:2462
 #, c-format
 msgid "Middle Eastern"
-msgstr "Middle Eastern"
+msgstr "Srednji Istok"
 
 #: Merge.rc:2463
 #: Merge.rc:2473
@@ -5134,17 +5134,17 @@ msgstr "Mixed"
 #: Merge.rc:2562
 #, c-format
 msgid "LF"
-msgstr ""
+msgstr "NR"
 
 #: Merge.rc:2563
 #, c-format
 msgid "CR"
-msgstr ""
+msgstr "DR"
 
 #: Merge.rc:2564
 #, c-format
 msgid "CRLF"
-msgstr ""
+msgstr "DRNR"
 
 #: Merge.rc:2571
 #, c-format
@@ -5199,27 +5199,27 @@ msgstr "Pohrani desnu datoteku pod nazivom..."
 #: Merge.rc:2587
 #, c-format
 msgid "Change left file/dir read-only status"
-msgstr "Izmjena atributa, samo za èitanje, lijeve dat./mape"
+msgstr "Izmjena atributa, samo za èitanje, lijeve dat./mapa"
 
 #: Merge.rc:2588
 #, c-format
 msgid "Change right file/dir read-only status"
-msgstr "Izmjena atributa, samo za èitanje, desna dat./mape"
+msgstr "Izmjena atributa, samo za èitanje, desna dat./mapa"
 
 #: Merge.rc:2589
 #, c-format
 msgid "Convert EOL to Windows mode"
-msgstr ""
+msgstr "Pretvori kraj retka na Windows naèin"
 
 #: Merge.rc:2590
 #, c-format
 msgid "Convert EOL to Unix mode"
-msgstr ""
+msgstr "Pretvori kraj retka na Unix naèin"
 
 #: Merge.rc:2591
 #, c-format
 msgid "Convert EOL to Mac mode"
-msgstr ""
+msgstr "Pretvori kraj retka na Mac naèin"
 
 #: Merge.rc:2592
 #, c-format
@@ -5401,12 +5401,12 @@ msgstr "Prikaži okno statistike usporedbe mapa"
 #: Merge.rc:2632
 #, c-format
 msgid "Select the current user interface language\nLanguage"
-msgstr ""
+msgstr "Izaberite vaš jezik suèelja\nJezik"
 
 #: Merge.rc:2633
 #, c-format
 msgid "Shows differences inside lines with different colors\nShow Line Difference"
-msgstr ""
+msgstr "Bojom isticanje razlika u recima\nOboji razlièite retke"
 
 #: Merge.rc:2634
 #, c-format
@@ -5458,27 +5458,27 @@ msgstr "Izvorna velièina teksta"
 #: Merge.rc:2646
 #, c-format
 msgid "Scroll to the previous difference\nPrevious Difference (Alt+Up)"
-msgstr ""
+msgstr "Prikaz prethodne razlike\nPrethodna razlika (Alt+Up)"
 
 #: Merge.rc:2647
 #, c-format
 msgid "Scroll to the next difference\nNext Difference (Alt+Down)"
-msgstr ""
+msgstr "Prikaz slijedeæe razlike\nSlijedeæa razlika (Alt+Down)"
 
 #: Merge.rc:2648
 #, c-format
 msgid "Scroll to the first difference\nFirst Difference (Alt+Home)"
-msgstr ""
+msgstr "Prikaz prve razlike\nPrva razlika (Alt+Home)"
 
 #: Merge.rc:2649
 #, c-format
 msgid "Scroll to the current difference\nCurrent Difference (Alt+Enter)"
-msgstr ""
+msgstr "Prikaz aktivne razlike\nAktivna razlika (Alt+Enter)"
 
 #: Merge.rc:2650
 #, c-format
 msgid "Scroll to the last difference\nLast Difference (Alt+End)"
-msgstr ""
+msgstr "Posljednja razlika\nPosljednja razlika (Alt+End)"
 
 #: Merge.rc:2651
 #, c-format
@@ -5552,7 +5552,7 @@ msgstr "Selektiranje i razmještaj mape prema usporedbi kolona"
 #: Merge.rc:2665
 #, c-format
 msgid "Generate a patch-file"
-msgstr "Stvaranje datoteku razlika "
+msgstr "Stvaranje datoteke razlika"
 
 #: Merge.rc:2666
 #, c-format
@@ -5602,7 +5602,7 @@ msgstr "Ponovo uèitaj sve dodatke (za znalce)"
 #: Merge.rc:2685
 #, c-format
 msgid "Activates next visible file\nActivate next File"
-msgstr ""
+msgstr "Aktiviranje slijedeæe datoteke - vidljiva\nAktiviraj slijedeæu datoteku"
 
 #: Merge.rc:2686
 #, c-format
@@ -5612,17 +5612,17 @@ msgstr "Zatvori sve panele"
 #: Merge.rc:2692
 #, c-format
 msgid "Opens the WinMerge Help\nWinMerge Help"
-msgstr ""
+msgstr "Prkaz WinMerge pomoæi\nWinMerge Pomoæ"
 
 #: Merge.rc:2693
 #, c-format
 msgid "Outputs current WinMerge version info and configuration to text file"
-msgstr "Pohrana WinMerge informacija o inaèici i podešenosti u tekstt datoteku"
+msgstr "Pohrana WinMerge informacija o inaèici i podešenosti u tekst datoteku"
 
 #: Merge.rc:2694
 #, c-format
 msgid "Display the GNU General Public License"
-msgstr ""
+msgstr "GNU javna licenca"
 
 #: Merge.rc:2695
 #, c-format
