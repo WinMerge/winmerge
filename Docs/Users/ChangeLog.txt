@@ -5,6 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.9.1.2
   BugFix: Version Control filter did not match all VSS files (#1881186)
   Translation updates:
+  - Bulgarian (#1957434)
   - Croatian (#1958283)
   - Swedish (#1950188)
 
