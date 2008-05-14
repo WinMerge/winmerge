@@ -69,10 +69,8 @@ private:
 	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
 	int m_displayMovedBlocks; //*< Setting for displaying moved blocks */
 	double m_pixInLines; //*< How many pixels is one line in bars */
-	UINT m_nLeftBarLeft; //*< Left edge of left-side bar */
-	UINT m_nLeftBarRight; //*< Right edge of left-side bar */
-	UINT m_nRightBarLeft; //*< Left edge of right-side bar */
-	UINT m_nRightBarRight; //*< Right edge of right-side bar */
+	CRect m_leftBar; //*< Left-side file's bar.
+	CRect m_rightBar; //*< Right-side file's bar.
 	int m_visibleTop; //*< Top visible line for visible area indicator */
 	int m_visibleBottom; //*< Bottom visible line for visible area indicator */
 	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */

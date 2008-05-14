@@ -223,10 +223,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	CMergeDoc *pDoc = GetDocument();
 	const int w = rc.Width() / 4;
-	m_nLeftBarLeft = (rc.Width() - 2 * w) / 3;
-	m_nLeftBarRight = m_nLeftBarLeft + w;
-	m_nRightBarLeft = 2 * m_nLeftBarLeft + w;
-	m_nRightBarRight = m_nRightBarLeft + w;
+	m_leftBar.left = (rc.Width() - 2 * w) / 3;
+	m_leftBar.right = m_leftBar.left + w;
+	m_rightBar.left = 2 * m_leftBar.left + w;
+	m_rightBar.right = m_rightBar.left + w;
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
 			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
@@ -251,9 +251,12 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	// Draw bar outlines
 	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-	const int nBottom = (int)(LineInPix * nbLines + Y_OFFSET + 1);
-	pDC->Rectangle(m_nLeftBarLeft, Y_OFFSET - 1, m_nLeftBarRight, nBottom);
-	pDC->Rectangle(m_nRightBarLeft, Y_OFFSET - 1, m_nRightBarRight, nBottom);
+	m_leftBar.top = Y_OFFSET - 1;
+	m_rightBar.top = Y_OFFSET - 1;
+	m_leftBar.bottom = (LONG)(LineInPix * nbLines + Y_OFFSET + 1);
+	m_rightBar.bottom = m_leftBar.bottom;
+	pDC->Rectangle(m_leftBar);
+	pDC->Rectangle(m_rightBar);
 	pDC->SelectObject(oldObj);
 
 	// Iterate the differences list and draw differences as colored blocks.
@@ -293,12 +296,12 @@ void CLocationView::OnDraw(CDC* pDC)
 		{
 			// Draw left side block
 			m_view[MERGE_VIEW_LEFT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr0, crt, bwh);
-			CRect r0(m_nLeftBarLeft, nBeginY, m_nLeftBarRight, nEndY);
+			CRect r0(m_leftBar.left, nBeginY, m_leftBar.right, nEndY);
 			DrawRect(pDC, r0, cr0, bInsideDiff);
 
 			// Draw right side block
 			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr1, crt, bwh);
-			CRect r1(m_nRightBarLeft, nBeginY, m_nRightBarRight, nEndY);
+			CRect r1(m_rightBar.left, nBeginY, m_rightBar.right, nEndY);
 			DrawRect(pDC, r1, cr1, bInsideDiff);
 		}
 		nPrevEndY = nEndY;
@@ -338,11 +341,11 @@ void CLocationView::OnDraw(CDC* pDC)
 				apparent0 = pView->GetSubLineIndex(apparent0);
 				apparent1 = pView->GetSubLineIndex(apparent1);
 
-				start.x = m_nLeftBarRight;
+				start.x = m_leftBar.right;
 				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
 				int leftLower = (int) ((nBlockHeight + apparent0) * LineInPix + Y_OFFSET);
 				start.y = leftUpper + (leftLower - leftUpper) / 2;
-				end.x = m_nRightBarLeft;
+				end.x = m_rightBar.left;
 				int rightUpper = (int) (apparent1 * LineInPix + Y_OFFSET);
 				int rightLower = (int) ((nBlockHeight + apparent1) * LineInPix + Y_OFFSET);
 				end.y = rightUpper + (rightLower - rightUpper) / 2;
@@ -365,11 +368,11 @@ void CLocationView::OnDraw(CDC* pDC)
 				apparent0 = pView->GetSubLineIndex(apparent0);
 				apparent1 = pView->GetSubLineIndex(apparent1);
 
-				start.x = m_nLeftBarRight;
+				start.x = m_leftBar.right;
 				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
 				int leftLower = (int) ((nBlockHeight + apparent0) * LineInPix + Y_OFFSET);
 				start.y = leftUpper + (leftLower - leftUpper) / 2;
-				end.x = m_nRightBarLeft;
+				end.x = m_rightBar.left;
 				int rightUpper = (int) (apparent1 * LineInPix + Y_OFFSET);
 				int rightLower = (int) ((nBlockHeight + apparent1) * LineInPix + Y_OFFSET);
 				end.y = rightUpper + (rightLower - rightUpper) / 2;
@@ -895,11 +898,11 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
 void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 {
 	CPoint points[3];
-	points[0].x = m_nLeftBarLeft - DIFFMARKER_WIDTH - 1;
+	points[0].x = m_leftBar.left - DIFFMARKER_WIDTH - 1;
 	points[0].y = yCoord - DIFFMARKER_TOP;
-	points[1].x = m_nLeftBarLeft - 1;
+	points[1].x = m_leftBar.left - 1;
 	points[1].y = yCoord;
-	points[2].x = m_nLeftBarLeft - DIFFMARKER_WIDTH - 1;
+	points[2].x = m_leftBar.left - DIFFMARKER_WIDTH - 1;
 	points[2].y = yCoord + DIFFMARKER_BOTTOM;
 
 	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
@@ -909,9 +912,9 @@ void CLocationView::DrawDiffMarker(CDC* pDC, int yCoord)
 	pDC->SetPolyFillMode(WINDING);
 	pDC->Polygon(points, 3);
 
-	points[0].x = m_nRightBarRight + 1 + DIFFMARKER_WIDTH;
-	points[1].x = m_nRightBarRight + 1;
-	points[2].x = m_nRightBarRight + 1 + DIFFMARKER_WIDTH;
+	points[0].x = m_rightBar.right + 1 + DIFFMARKER_WIDTH;
+	points[1].x = m_rightBar.right + 1;
+	points[2].x = m_rightBar.right + 1 + DIFFMARKER_WIDTH;
 	pDC->Polygon(points, 3);
 
 	pDC->SelectObject(pOldBrush);
