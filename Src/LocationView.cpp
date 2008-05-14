@@ -706,32 +706,16 @@ int CLocationView::GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine)
 int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 {
 	int retVal = BAR_NONE;
-	BOOL bLeftSide = FALSE;
-	BOOL bRightSide = FALSE;
-	BOOL bYarea = FALSE;
-	const int w = rc.Width() / 4;
-	const int x = (rc.Width() - 2 * w) / 3;
-	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
-			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
-	// We need '1 / m_pixInLines' to get line in pixels and
-	// that multiplied by linecount gives us bottom coord for bars.
-	double xbarBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
-	int barBottom = (int)xbarBottom;
 
-	if ((pt.y > Y_OFFSET) && (pt.y <= barBottom))
-	{
-		bLeftSide = (pt.x >= x && pt.x < x + w);
-		bRightSide = (pt.x >= 2 * x + w && pt.x < 2 * x + 2 * w);
-		bYarea = (pt.x >= INDICATOR_MARGIN &&
-			pt.x < (rc.Width() - INDICATOR_MARGIN));
-	}
-	
-	if (bLeftSide)
+	if (m_leftBar.PtInRect(pt))
 		retVal = BAR_LEFT;
-	else if (bRightSide)
+	else if (m_rightBar.PtInRect(pt))
 		retVal = BAR_RIGHT;
-	else if (bYarea)
+	else if (pt.x >= INDICATOR_MARGIN && pt.x < (rc.Width() - INDICATOR_MARGIN) &&
+		pt.y > m_leftBar.top && pt.y <= m_leftBar.bottom)
+	{
 		retVal = BAR_YAREA;
+	}
 
 	return retVal;
 }
