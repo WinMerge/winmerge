@@ -61,9 +61,8 @@ protected:
 	virtual void OnDraw(CDC* pDC);
 	//}}AFX_VIRTUAL
 
-	CMergeDoc* GetDocument();
-
 protected:
+	CMergeDoc* GetDocument();
 	void DrawRect(CDC* pDC, const CRect& r, COLORREF cr, BOOL bSelected = FALSE);
 	BOOL GotoLocation(const CPoint& point, BOOL bRealLine = TRUE);
 	int GetLineFromYPos(int nYCoord, int bar, BOOL bRealLine = TRUE);
@@ -71,11 +70,13 @@ protected:
 	void DrawVisibleAreaRect(CDC* pDC, int nTopLine = -1, int nBottomLine = -1);
 	void DrawConnectLines(CDC* pDC);
 	void DrawDiffMarker(CDC* pDC, int yCoord);
+	void CalculateBars();
 
 private:
 	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
 	int m_displayMovedBlocks; //*< Setting for displaying moved blocks */
 	double m_pixInLines; //*< How many pixels is one line in bars */
+	double m_lineInPix; //*< How many lines is one pixel?
 	CRect m_leftBar; //*< Left-side file's bar.
 	CRect m_rightBar; //*< Right-side file's bar.
 	int m_visibleTop; //*< Top visible line for visible area indicator */

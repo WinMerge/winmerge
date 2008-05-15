@@ -182,7 +182,38 @@ BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
 	pDC->SelectObject(pOldBrush);
 	return TRUE;
 }
-    
+
+/**
+ * @brief Calculate bar coordinates and scaling factors.
+ */
+void CLocationView::CalculateBars()
+{
+	CRect rc;
+	GetClientRect(rc);
+	const int w = rc.Width() / 4;
+	m_leftBar.left = (rc.Width() - 2 * w) / 3;
+	m_leftBar.right = m_leftBar.left + w;
+	m_rightBar.left = 2 * m_leftBar.left + w;
+	m_rightBar.right = m_rightBar.left + w;
+	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
+	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
+			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
+
+	m_lineInPix = hTotal / nbLines;
+	m_pixInLines = nbLines / hTotal;
+	if (m_lineInPix > MAX_LINEPIX)
+	{
+		m_lineInPix = MAX_LINEPIX;
+		m_pixInLines = 1 / MAX_LINEPIX;
+	}
+
+	m_leftBar.top = Y_OFFSET - 1;
+	m_rightBar.top = Y_OFFSET - 1;
+	m_leftBar.bottom = (LONG)(m_lineInPix * nbLines + Y_OFFSET + 1);
+	m_rightBar.bottom = m_leftBar.bottom;
+
+}
+
 /** 
  * @brief Invalidate rect of old visible area indicator to restore background correctly
  */
@@ -218,49 +249,27 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	if (!m_view[MERGE_VIEW_LEFT]->IsInitialized()) return;
 
-	CRect rc;
-	GetClientRect(rc);
-
-	CMergeDoc *pDoc = GetDocument();
-	const int w = rc.Width() / 4;
-	m_leftBar.left = (rc.Width() - 2 * w) / 3;
-	m_leftBar.right = m_leftBar.left + w;
-	m_rightBar.left = 2 * m_leftBar.left + w;
-	m_rightBar.right = m_rightBar.left + w;
-	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
-	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
-			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
-
-	double LineInPix = hTotal / nbLines;
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
 	COLORREF crt = CLR_NONE; // Text color
 	BOOL bwh = FALSE;
-
-	m_pixInLines = nbLines / hTotal;
-	if (LineInPix > MAX_LINEPIX)
-	{
-		LineInPix = MAX_LINEPIX;
-		m_pixInLines = 1 / MAX_LINEPIX;
-	}
 
 	m_movedLines.RemoveAll();
 
 	// Adjust line coloring if ignoring trivials
 	DWORD ignoreFlags = (m_bIgnoreTrivials ? LF_TRIVIAL : 0);
 
+	CalculateBars();
+
 	// Draw bar outlines
 	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-	m_leftBar.top = Y_OFFSET - 1;
-	m_rightBar.top = Y_OFFSET - 1;
-	m_leftBar.bottom = (LONG)(LineInPix * nbLines + Y_OFFSET + 1);
-	m_rightBar.bottom = m_leftBar.bottom;
 	pDC->Rectangle(m_leftBar);
 	pDC->Rectangle(m_rightBar);
 	pDC->SelectObject(oldObj);
 
 	// Iterate the differences list and draw differences as colored blocks.
 
+	CMergeDoc *pDoc = GetDocument();
 	int nPrevEndY = -1;
 	const int nCurDiff = pDoc->GetCurrentDiff();
 	const int nDiffs = pDoc->m_diffList.GetSize();
@@ -287,8 +296,8 @@ void CLocationView::OnDraw(CDC* pDC)
 		const int nBlockHeight = nBlockEnd - nBlockStart + pView->GetSubLines(nLineEndDiff);
 
 		// Convert diff block size from lines to pixels.
-		const int nBeginY = (int)(nBlockStart * LineInPix + Y_OFFSET);
-		const int nEndY = (int)((nBlockStart + nBlockHeight) * LineInPix + Y_OFFSET);
+		const int nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
+		const int nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
 		
 		const BOOL bInsideDiff = (nCurDiff == nDiff);
 
@@ -342,12 +351,12 @@ void CLocationView::OnDraw(CDC* pDC)
 				apparent1 = pView->GetSubLineIndex(apparent1);
 
 				start.x = m_leftBar.right;
-				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
-				int leftLower = (int) ((nBlockHeight + apparent0) * LineInPix + Y_OFFSET);
+				int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
+				int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
 				start.y = leftUpper + (leftLower - leftUpper) / 2;
 				end.x = m_rightBar.left;
-				int rightUpper = (int) (apparent1 * LineInPix + Y_OFFSET);
-				int rightLower = (int) ((nBlockHeight + apparent1) * LineInPix + Y_OFFSET);
+				int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
+				int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
 				end.y = rightUpper + (rightLower - rightUpper) / 2;
 				line.ptLeft = start;
 				line.ptRight = end;
@@ -369,12 +378,12 @@ void CLocationView::OnDraw(CDC* pDC)
 				apparent1 = pView->GetSubLineIndex(apparent1);
 
 				start.x = m_leftBar.right;
-				int leftUpper = (int) (apparent0 * LineInPix + Y_OFFSET);
-				int leftLower = (int) ((nBlockHeight + apparent0) * LineInPix + Y_OFFSET);
+				int leftUpper = (int) (apparent0 * m_lineInPix + Y_OFFSET);
+				int leftLower = (int) ((nBlockHeight + apparent0) * m_lineInPix + Y_OFFSET);
 				start.y = leftUpper + (leftLower - leftUpper) / 2;
 				end.x = m_rightBar.left;
-				int rightUpper = (int) (apparent1 * LineInPix + Y_OFFSET);
-				int rightLower = (int) ((nBlockHeight + apparent1) * LineInPix + Y_OFFSET);
+				int rightUpper = (int) (apparent1 * m_lineInPix + Y_OFFSET);
+				int rightLower = (int) ((nBlockHeight + apparent1) * m_lineInPix + Y_OFFSET);
 				end.y = rightUpper + (rightLower - rightUpper) / 2;
 				line.ptLeft = start;
 				line.ptRight = end;
@@ -747,15 +756,12 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 	const double hTotal = rc.Height() - (2 * Y_OFFSET); // Height of draw area
 	const int nbLines = min(m_view[MERGE_VIEW_LEFT]->GetSubLineCount(),
 			m_view[MERGE_VIEW_RIGHT]->GetSubLineCount());
-	double LineInPix = hTotal / nbLines;
-	if (LineInPix > MAX_LINEPIX)
-		LineInPix = MAX_LINEPIX;
 
 	int nTopCoord = static_cast<int>(Y_OFFSET +
-			(static_cast<double>(nTopLine * LineInPix)));
+			(static_cast<double>(nTopLine * m_lineInPix)));
 	int nLeftCoord = INDICATOR_MARGIN;
 	int nBottomCoord = static_cast<int>(Y_OFFSET +
-			(static_cast<double>(nBottomLine * LineInPix)));
+			(static_cast<double>(nBottomLine * m_lineInPix)));
 	int nRightCoord = rc.Width() - INDICATOR_MARGIN;
 	
 	// Visible area was not changed
