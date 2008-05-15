@@ -118,6 +118,7 @@ Other Contributors (code, ideas, testing..):
 * Jeremy Dewey
 * Jim Fougeron
 * Marvin Gouw
+* Marcel Gosselin
 * Robert Grange
 * Jan Hryz
 * Ed_K
