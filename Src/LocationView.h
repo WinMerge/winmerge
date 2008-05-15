@@ -33,6 +33,13 @@ typedef CList<MovedLine, MovedLine&> MOVEDLINE_LIST;
 
 /** 
  * @brief Class showing map of files.
+ * The location is a view showing two vertical bars. Each bar depicts one file
+ * in the file compare. The bars show a scaled view of the files. The
+ * difference areas are drawn with the same colors than in actual file compare.
+ * Also visible area of files is drawn as "shaded".
+ *
+ * These visualizations allow user to easily see a overall picture of the files
+ * in comparison. Using mouse it allows easy and fast moving in files.
  */
 class CLocationView : public CView
 {
