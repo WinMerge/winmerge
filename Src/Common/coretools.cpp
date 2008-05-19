@@ -349,30 +349,6 @@ void AddExtension(LPTSTR name, LPCTSTR ext)
 	}
 }
 
-BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s)
-{
-  DWORD sectorsPerCluster,
-	  bytesPerSector,
-	  numberOfFreeClusters,
-	  totalNumberOfClusters, total;
-
-  if (!GetDiskFreeSpace(drivespec,
-						&sectorsPerCluster,
-						&bytesPerSector,
-						&numberOfFreeClusters,
-						&totalNumberOfClusters))
-    return FALSE;
-
-  total = numberOfFreeClusters*bytesPerSector*sectorsPerCluster;
-  if (mode==BYTES)
-    _stprintf(s, _T("%lu bytes available"), total);
-  else if (mode==KBYTES)
-    _stprintf(s, _T("%1.1fK available"), (float)(total/(float)mode));
-  else
-    _stprintf(s, _T("%1.1f MB available"), (float)(total/(float)mode));
-  return TRUE;
-}
-
 int fcmp(float a,float b)
 /* return -1 if a<b, 0 if a=b, or 1 if a>b */
 {

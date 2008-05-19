@@ -104,7 +104,6 @@ void SplitFilename(LPCTSTR s, String * path, String * name, String * ext);
 void SplitViewName(LPCTSTR s, String * path, String * name, String * ext);
 void TestSplitFilename();
 void AddExtension(LPTSTR name, LPCTSTR ext);
-BOOL GetFreeSpaceString(LPCTSTR drivespec, ULONG mode, LPTSTR s);
 int fcmp(float a,float b);
 BOOL FindAnyFile(LPTSTR filespec, LPTSTR name);
 long SwapEndian(long val);
