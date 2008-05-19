@@ -59,6 +59,8 @@ FileFiltersDlg::FileFiltersDlg() : CPropertyPage(FileFiltersDlg::IDD)
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
 	m_psp.pszTitle = m_strCaption;
 	m_psp.dwFlags |= PSP_USETITLE;
+	m_psp.hIcon = AfxGetApp()->LoadIcon(IDI_FILEFILTER);
+	m_psp.dwFlags |= PSP_USEHICON;
 }
 
 void FileFiltersDlg::DoDataExchange(CDataExchange* pDX)
