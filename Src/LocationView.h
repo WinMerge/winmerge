@@ -31,6 +31,24 @@ struct MovedLine
 
 typedef CList<MovedLine, MovedLine&> MOVEDLINE_LIST;
 
+/**
+ * @brief A struct mapping difference lines to pixels in location pane.
+ * This structure maps one difference's line numbers to pixel locations in
+ * the location pane. The line numbers are "fixed" i.e. they are converted to
+ * word-wrapped absolute line numbers if needed.
+ */
+struct DiffBlock
+{
+	unsigned top_line; /**< First line of the difference. */
+	unsigned bottom_line; /**< Last line of the difference. */
+	unsigned top_coord; /**< X-coord of diff block begin. */
+	unsigned bottom_coord; /**< X-coord of diff block end. */
+	unsigned diff_index; /**< Index of difference in the original diff list. */
+};
+
+typedef CList<DiffBlock, DiffBlock&> DIFFBLOCK_LIST;
+
+
 /** 
  * @brief Class showing map of files.
  * The location is a view showing two vertical bars. Each bar depicts one file
@@ -71,6 +89,7 @@ protected:
 	void DrawConnectLines(CDC* pDC);
 	void DrawDiffMarker(CDC* pDC, int yCoord);
 	void CalculateBars();
+	void CalculateBlocks();
 
 private:
 	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
@@ -87,6 +106,7 @@ private:
 	UINT m_nPrevPaneWidth; //*< Previous pane width, used to track width changes */
 	CBitmap *m_pSavedBackgroundBitmap; //*< Saved background */
 	bool m_bDrawn; //*< Is already drawn in location pane? */
+	DIFFBLOCK_LIST m_diffBlocks; //*< List of pre-calculated diff blocks.
 
 	// Generated message map functions
 protected:

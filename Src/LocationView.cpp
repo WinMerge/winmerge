@@ -211,7 +211,55 @@ void CLocationView::CalculateBars()
 	m_rightBar.top = Y_OFFSET - 1;
 	m_leftBar.bottom = (LONG)(m_lineInPix * nbLines + Y_OFFSET + 1);
 	m_rightBar.bottom = m_leftBar.bottom;
+}
 
+/**
+ * @brief Calculate difference lines and coordinates.
+ * This function calculates begin- and end-lines of differences when word-wrap
+ * is enabled. Otherwise the value from original difflist is used. Line
+ * numbers are also converted to coordinates in the window. All calculated
+ * (and not ignored) differences are added to the new list.
+ */
+void CLocationView::CalculateBlocks()
+{
+	m_diffBlocks.RemoveAll();
+	
+	CMergeDoc *pDoc = GetDocument();
+	const int nDiffs = pDoc->m_diffList.GetSize();
+
+	for (int nDiff = 0; nDiff < nDiffs; ++nDiff)
+	{
+		DIFFRANGE diff;
+		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
+
+		// Skip trivial differences.
+		if (m_bIgnoreTrivials && diff.op == OP_TRIVIAL)
+		{
+			continue;
+		}
+
+		// Find end of diff. If first side has blank lines use other side.
+		const int nLineEndDiff = (diff.blank0 > 0) ? diff.dend1 : diff.dend0;
+
+		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
+
+		// Count how many line does the diff block have.
+		const int nBlockStart = pView->GetSubLineIndex(diff.dbegin0);
+		const int nBlockEnd = pView->GetSubLineIndex(nLineEndDiff);
+		const int nBlockHeight = nBlockEnd - nBlockStart + pView->GetSubLines(nLineEndDiff);
+
+		// Convert diff block size from lines to pixels.
+		const int nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
+		const int nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
+
+		DiffBlock block;
+		block.top_line = diff.dbegin0;
+		block.bottom_line = nLineEndDiff;
+		block.top_coord = nBeginY;
+		block.bottom_coord = nEndY;
+		block.diff_index = nDiff;
+		m_diffBlocks.AddTail(block);
+	}
 }
 
 /** 
@@ -269,51 +317,33 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	// Iterate the differences list and draw differences as colored blocks.
 
+	CalculateBlocks();
+
 	CMergeDoc *pDoc = GetDocument();
 	int nPrevEndY = -1;
 	const int nCurDiff = pDoc->GetCurrentDiff();
-	const int nDiffs = pDoc->m_diffList.GetSize();
 
-	for (int nDiff = 0; nDiff < nDiffs; ++nDiff)
+	POSITION pos = m_diffBlocks.GetHeadPosition();
+
+	while (pos)
 	{
-		DIFFRANGE diff;
-		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
-
-		// Skip trivial differences.
-		if (m_bIgnoreTrivials && diff.op == OP_TRIVIAL)
-		{
-			continue;
-		}
-
-		// Find end of diff. If first side has blank lines use other side.
-		const int nLineEndDiff = (diff.blank0 > 0) ? diff.dend1 : diff.dend0;
-
+		const DiffBlock &block = m_diffBlocks.GetNext(pos);
 		CMergeEditView *pView = m_view[MERGE_VIEW_LEFT];
+		const BOOL bInsideDiff = (nCurDiff == block.diff_index);
 
-		// Count how many line does the diff block have.
-		const int nBlockStart = pView->GetSubLineIndex(diff.dbegin0);
-		const int nBlockEnd = pView->GetSubLineIndex(nLineEndDiff);
-		const int nBlockHeight = nBlockEnd - nBlockStart + pView->GetSubLines(nLineEndDiff);
-
-		// Convert diff block size from lines to pixels.
-		const int nBeginY = (int)(nBlockStart * m_lineInPix + Y_OFFSET);
-		const int nEndY = (int)((nBlockStart + nBlockHeight) * m_lineInPix + Y_OFFSET);
-		
-		const BOOL bInsideDiff = (nCurDiff == nDiff);
-
-		if ((nPrevEndY != nEndY) || bInsideDiff)
+		if ((nPrevEndY != block.bottom_coord) || bInsideDiff)
 		{
 			// Draw left side block
-			m_view[MERGE_VIEW_LEFT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr0, crt, bwh);
-			CRect r0(m_leftBar.left, nBeginY, m_leftBar.right, nEndY);
+			m_view[MERGE_VIEW_LEFT]->GetLineColors2(block.top_line, ignoreFlags, cr0, crt, bwh);
+			CRect r0(m_leftBar.left, block.top_coord, m_leftBar.right, block.bottom_coord);
 			DrawRect(pDC, r0, cr0, bInsideDiff);
 
 			// Draw right side block
-			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(diff.dbegin0, ignoreFlags, cr1, crt, bwh);
-			CRect r1(m_rightBar.left, nBeginY, m_rightBar.right, nEndY);
+			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(block.top_line, ignoreFlags, cr1, crt, bwh);
+			CRect r1(m_rightBar.left, block.top_coord, m_rightBar.right, block.bottom_coord);
 			DrawRect(pDC, r1, cr1, bInsideDiff);
 		}
-		nPrevEndY = nEndY;
+		nPrevEndY = block.bottom_coord;
 
 		// Test if we draw a connector
 		BOOL bDisplayConnectorFromLeft = FALSE;
@@ -339,8 +369,9 @@ void CLocationView::OnDraw(CDC* pDC)
 
 		if (bDisplayConnectorFromLeft)
 		{
-			int apparent0 = diff.dbegin0;
+			int apparent0 = block.top_line;
 			int apparent1 = pDoc->RightLineInMovedBlock(apparent0);
+			const int nBlockHeight = block.bottom_line - block.top_line;
 			if (apparent1 != -1)
 			{
 				MovedLine line;
@@ -366,8 +397,9 @@ void CLocationView::OnDraw(CDC* pDC)
 
 		if (bDisplayConnectorFromRight)
 		{
-			int apparent1 = diff.dbegin0;
+			int apparent1 = block.top_line;
 			int apparent0 = pDoc->LeftLineInMovedBlock(apparent1);
+			const int nBlockHeight = block.bottom_line - block.top_line;
 			if (apparent0 != -1)
 			{
 				MovedLine line;
