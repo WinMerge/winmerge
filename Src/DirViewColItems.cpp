@@ -159,7 +159,7 @@ static String MakeShortSize(__int64 size)
 	}
 
 	TCHAR buffer[48];
-	_stprintf(buffer, _T("%lf"), number);
+	_sntprintf(buffer, countof(buffer), _T("%lf"), number);
 	return locality::GetLocaleStr(buffer, ndigits) + suffix;
 }
 
@@ -450,7 +450,7 @@ static String GetEOLType(const CDiffContext *, const void *p, BOOL bLeft)
 	{
 		String s = theApp.LoadString(IDS_EOL_MIXED);
 		TCHAR strstats[40];
-		_stprintf(strstats, _T(":%d/%d/%d"), stats.ncrlfs, stats.ncrs, stats.nlfs);
+		_sntprintf(strstats, countof(strstats), _T(":%d/%d/%d"), stats.ncrlfs, stats.ncrs, stats.nlfs);
 		s += strstats;
 		return s;
 	}

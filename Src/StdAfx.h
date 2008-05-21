@@ -73,11 +73,7 @@
 #include "sizecbar.h"
 #include "scbarg.h"
 
-// Miscellaneous macros
-
-#ifndef countof
-#define countof(array)  (sizeof(array)/sizeof((array)[0]))
-#endif /* countof */
+#include "coretypes.h"
 
 /**
  * @name User-defined Windows-messages

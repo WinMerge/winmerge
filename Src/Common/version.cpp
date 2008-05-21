@@ -353,7 +353,7 @@ void CVersionInfo::QueryValue(LPCTSTR szId, CString& s)
 	BOOL    bRetCode;
 
 	TCHAR szSelector[256];
-	_stprintf(szSelector,_T("\\StringFileInfo\\%s%s\\%s"),
+	_sntprintf(szSelector, countof(szSelector), _T("\\StringFileInfo\\%s%s\\%s"),
 			m_strLanguage, m_strCodepage, szId);
 	bRetCode = VerQueryValue((LPVOID)m_pVffInfo,
 		szSelector,

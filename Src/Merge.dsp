@@ -1116,6 +1116,10 @@ SOURCE=.\Common\coretools.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Common\coretypes.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\common\CShellFileOp.h
 # End Source File
 # Begin Source File

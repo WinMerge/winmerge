@@ -11,6 +11,7 @@
 #include <tchar.h>
 #include "UnicodeString.h"
 #include "RegKey.h"
+#include "coretypes.h"
 
 /**
  * @brief Default constructor.
@@ -146,7 +147,7 @@ LONG CRegKeyEx::WriteFloat(LPCTSTR pszKey, float fVal)
 	assert(m_hKey);
 	assert(pszKey);
 	TCHAR pszData[100];
-	_stprintf(pszData, _T("%f"), fVal);
+	_sntprintf(pszData, countof(pszData), _T("%f"), fVal);
 	return RegSetValueEx(m_hKey, pszKey, 0L, REG_SZ,
 		(const LPBYTE) pszData, (_tcslen(pszData)+ 1)*sizeof(TCHAR) );
 }

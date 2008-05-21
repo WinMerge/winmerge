@@ -71,7 +71,7 @@ String FileVersion::GetFileVersionString()
 		return _T("");
 
 	TCHAR ver[30] = {0};
-	_stprintf(ver, _T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
+	_sntprintf(ver, countof(ver), _T("%u.%u.%u.%u"), HIWORD(m_fileVersionMS),
 		LOWORD(m_fileVersionMS), HIWORD(m_fileVersionLS),
 		LOWORD(m_fileVersionLS));
 	return ver;
@@ -87,7 +87,7 @@ String FileVersion::GetProductVersionString()
 		return _T("0.0.0.0");
 
 	TCHAR ver[30] = {0};	
-	_stprintf(ver, _T("%u.%u.%u.%u"), HIWORD(m_productVersionMS),
+	_sntprintf(ver, countof(ver), _T("%u.%u.%u.%u"), HIWORD(m_productVersionMS),
 		LOWORD(m_productVersionMS), HIWORD(m_productVersionLS),
 		LOWORD(m_productVersionLS));
 	return ver;
