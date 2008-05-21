@@ -6181,9 +6181,6 @@
 				RelativePath="Common\multiformatText.h">
 			</File>
 			<File
-				RelativePath="multimon.h">
-			</File>
-			<File
 				RelativePath="OpenDlg.h">
 			</File>
 			<File
@@ -6383,19 +6380,10 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe">
 			<File
-				RelativePath="res\binary.bmp">
-			</File>
-			<File
-				RelativePath="res\binarydiff.bmp">
-			</File>
-			<File
 				RelativePath="res\binarydiff.ico">
 			</File>
 			<File
 				RelativePath="res\both.bmp">
-			</File>
-			<File
-				RelativePath="res\equal.bmp">
 			</File>
 			<File
 				RelativePath="res\equalbinary.ico">
@@ -6404,25 +6392,13 @@
 				RelativePath="res\equalfile.ico">
 			</File>
 			<File
-				RelativePath="res\error.bmp">
-			</File>
-			<File
 				RelativePath="res\error.ico">
-			</File>
-			<File
-				RelativePath="res\fileskip.bmp">
 			</File>
 			<File
 				RelativePath="res\fileskip.ico">
 			</File>
 			<File
-				RelativePath="res\folder.bmp">
-			</File>
-			<File
 				RelativePath="res\folder.ico">
-			</File>
-			<File
-				RelativePath="res\folderskip.bmp">
 			</File>
 			<File
 				RelativePath="res\folderskip.ico">
@@ -6446,13 +6422,7 @@
 				RelativePath="res\left_to_right.bmp">
 			</File>
 			<File
-				RelativePath="res\lfile.bmp">
-			</File>
-			<File
 				RelativePath="res\lfile.ico">
-			</File>
-			<File
-				RelativePath="res\lfolder.bmp">
 			</File>
 			<File
 				RelativePath="res\lfolder.ico">
@@ -6482,19 +6452,10 @@
 				RelativePath="res\move_right_to_browse.bmp">
 			</File>
 			<File
-				RelativePath="res\notequal.bmp">
-			</File>
-			<File
 				RelativePath="res\notequalfile.ico">
 			</File>
 			<File
-				RelativePath="res\rfile.bmp">
-			</File>
-			<File
 				RelativePath="res\rfile.ico">
-			</File>
-			<File
-				RelativePath="res\rfolder.bmp">
 			</File>
 			<File
 				RelativePath="res\rfolder.ico">
@@ -6509,25 +6470,7 @@
 				RelativePath="res\right_to_left.bmp">
 			</File>
 			<File
-				RelativePath="res\sigma.bmp">
-			</File>
-			<File
 				RelativePath="res\sigma.ico">
-			</File>
-			<File
-				RelativePath="res\splash1.bmp">
-			</File>
-			<File
-				RelativePath="Splsh16.bmp">
-			</File>
-			<File
-				RelativePath="res\unknown.bmp">
-			</File>
-			<File
-				RelativePath="res\unknown.ico">
-			</File>
-			<File
-				RelativePath="res\winmerge.bmp">
 			</File>
 		</Filter>
 		<Filter
@@ -8012,9 +7955,6 @@
 				RelativePath="editlib\registry.h">
 			</File>
 			<File
-				RelativePath="editlib\resource.h">
-			</File>
-			<File
 				RelativePath="editlib\rexx.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -8732,9 +8672,6 @@
 			</File>
 			<File
 				RelativePath="diffutils\lib\FNMATCH.H">
-			</File>
-			<File
-				RelativePath="diffutils\src\FNMATCH.H">
 			</File>
 			<File
 				RelativePath="diffutils\lib\GETOPT.H">

@@ -31,6 +31,11 @@ CheckUnusedResources.vbs
 Script for creating a list of (hopefully) unused resource IDs.
 
 
+CheckVCProj.vbs
+---------------
+Script for checking the file "Merge.vcproj".
+
+
 create_release.py
 -----------------
  Script for creating a release. Builds WinMerge components, exports sources,
