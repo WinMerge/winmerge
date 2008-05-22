@@ -6,6 +6,10 @@
  */
 //
 //////////////////////////////////////////////////////////////////////
+
+// ID line follows -- this is updated by SVN
+// $Id$
+
 #ifndef __LOCATIONVIEW_H__
 #define __LOCATIONVIEW_H__
 
@@ -103,10 +107,11 @@ private:
 	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 	bool m_bIgnoreTrivials; //*< Whether to paint trivial blocks */
 	HWND m_hwndFrame; //*< Frame window handle */
-	UINT m_nPrevPaneWidth; //*< Previous pane width, used to track width changes */
 	CBitmap *m_pSavedBackgroundBitmap; //*< Saved background */
 	bool m_bDrawn; //*< Is already drawn in location pane? */
 	DIFFBLOCK_LIST m_diffBlocks; //*< List of pre-calculated diff blocks.
+	BOOL m_bRecalculateBlocks; //*< Recalculate diff blocks in next repaint.
+	CSize m_currentSize; //*< Current size of the panel.
 
 	// Generated message map functions
 protected:

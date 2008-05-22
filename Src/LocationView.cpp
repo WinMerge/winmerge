@@ -84,9 +84,9 @@ CLocationView::CLocationView()
 //	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
 	, m_bIgnoreTrivials(true)
 	, m_hwndFrame(NULL)
-	, m_nPrevPaneWidth(0)
 	, m_pSavedBackgroundBitmap(NULL)
 	, m_bDrawn(false)
+	, m_bRecalculateBlocks(TRUE) // calculate for the first time
 {
 	// NB: set m_bIgnoreTrivials to false to see trivial diffs in the LocationView
 	// There is no GUI to do this
@@ -159,6 +159,7 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 	m_view[MERGE_VIEW_LEFT]->SetLocationView(GetSafeHwnd(), this);
 	m_view[MERGE_VIEW_RIGHT]->SetLocationView(GetSafeHwnd(), this);
 
+	m_bRecalculateBlocks = TRUE;
 	Invalidate();
 }
 
@@ -260,6 +261,7 @@ void CLocationView::CalculateBlocks()
 		block.diff_index = nDiff;
 		m_diffBlocks.AddTail(block);
 	}
+	m_bRecalculateBlocks = FALSE;
 }
 
 /** 
@@ -317,7 +319,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	// Iterate the differences list and draw differences as colored blocks.
 
-	CalculateBlocks();
+	// Don't recalculate blocks if we earlier determined it is not needed
+	// This may save lots of processing
+	if (m_bRecalculateBlocks)
+		CalculateBlocks();
 
 	CMergeDoc *pDoc = GetDocument();
 	int nPrevEndY = -1;
@@ -893,16 +898,27 @@ void CLocationView::SetFrameHwnd(HWND hwndFrame)
  *
  * When locationview size changes we want to save new size
  * for new windows. But we must do it through frame window.
+ * @param [in] nType Type of resizing, SIZE_MAXIMIZED etc.
+ * @param [in] cx New panel width.
+ * @param [in] cy New panel height.
  */
 void CLocationView::OnSize(UINT nType, int cx, int cy) 
 {
 	CView::OnSize(nType, cx, cy);
-	if (cx != m_nPrevPaneWidth)
+
+	// Height change needs block recalculation
+	// TODO: Perhaps this should be determined from need to change bar size?
+	// And we could change bar sizes more lazily, not from every one pixel change in size?
+	if (cy != m_currentSize.cy)
+		m_bRecalculateBlocks = TRUE;
+
+	if (cx != m_currentSize.cx)
 	{
-		m_nPrevPaneWidth = cx;
 		if (m_hwndFrame != NULL)
 			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
 	}
+
+	m_currentSize.SetSize(cx, cy);
 }
 
 /** 
