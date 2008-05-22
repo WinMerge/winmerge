@@ -336,6 +336,7 @@ DanishLanguage=Dunski interfejs
 DutchLanguage=Holenderski interfejs
 FrenchLanguage=Francuski interfejs
 GermanLanguage=Niemiecki interfejs
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Wegierski interfejs
 ItalianLanguage=Wloski interfejs
 JapaneseLanguage=Japonski interfejs

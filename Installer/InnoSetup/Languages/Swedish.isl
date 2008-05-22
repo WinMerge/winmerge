@@ -337,6 +337,7 @@ DanishLanguage=Danska menyer och dialoger
 DutchLanguage=Nederländska menyer och dialoger
 FrenchLanguage=Franska menyer och dialoger
 GermanLanguage=Tyska menyer och dialoger
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Ungerska menyer och dialoger
 ItalianLanguage=Italienska menyer och dialoger
 JapaneseLanguage=Japanska menyer och dialoger

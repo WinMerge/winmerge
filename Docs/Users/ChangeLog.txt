@@ -5,7 +5,8 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.9.1.2
   BugFix: Version Control filter did not match all VSS files (#1881186)
   BugFix: Fix showing differences in the end of the line (#1883409, #1962816)
-  BufFix: Fix command line paths in parentheses ending with "\" (#1963523)
+  BugFix: Fix command line paths in quotes ending with "\" (#1963523)
+  New translation: Greek (#1968429)
   Translation updates:
   - Bulgarian (#1957434)
   - Croatian (#1958283)

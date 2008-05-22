@@ -62,6 +62,9 @@ Localization:
   Winfried Peter
   Joerg Schneider   
 
+* Greek:
+  Polyvios J. Simopoulos
+
 * Hungarian:
   Márton Balázs  
 

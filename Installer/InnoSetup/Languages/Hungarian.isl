@@ -366,6 +366,7 @@ DanishLanguage=Dán menük és párbeszédablakok
 DutchLanguage=Holland menük és párbeszédablakok
 FrenchLanguage=Francia menük és párbeszédablakok
 GermanLanguage=Német menük és párbeszédablakok
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Magyar menük és párbeszédablakok
 ItalianLanguage=Olasz menük és párbeszédablakok
 JapaneseLanguage=Japán menük és párbeszédablakok
