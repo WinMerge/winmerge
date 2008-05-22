@@ -771,9 +771,6 @@ int CLocationView::IsInsideBar(const CRect& rc, const POINT& pt)
 void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBottomLine)
 {
 	CMergeDoc* pDoc = GetDocument();
-	const DWORD areaColor = GetSysColor(COLOR_3DSHADOW);
-	const DWORD bkColor = GetSysColor(COLOR_WINDOW);
-	
 	if (nTopLine == -1)
 		nTopLine = pDoc->GetRightView()->GetTopSubLine();
 	
