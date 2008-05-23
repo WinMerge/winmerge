@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.9.1.2
+  Optimize location pane (r5341, r5342, r5346, r5351, r5355, r5356)
   BugFix: Version Control filter did not match all VSS files (#1881186)
   BugFix: Fix showing differences in the end of the line (#1883409, #1962816)
   BugFix: Fix command line paths in quotes ending with "\" (#1963523)
