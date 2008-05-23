@@ -82,7 +82,6 @@ CLocationView::CLocationView()
 	: m_visibleTop(-1)
 	, m_visibleBottom(-1)
 //	MOVEDLINE_LIST m_movedLines; //*< List of moved block connecting lines */
-	, m_bIgnoreTrivials(true)
 	, m_hwndFrame(NULL)
 	, m_pSavedBackgroundBitmap(NULL)
 	, m_bDrawn(false)
@@ -228,16 +227,11 @@ void CLocationView::CalculateBlocks()
 	CMergeDoc *pDoc = GetDocument();
 	const int nDiffs = pDoc->m_diffList.GetSize();
 
-	for (int nDiff = 0; nDiff < nDiffs; ++nDiff)
+	int nDiff = pDoc->m_diffList.FirstSignificantDiff();
+	while (nDiff != -1)
 	{
 		DIFFRANGE diff;
 		VERIFY(pDoc->m_diffList.GetDiff(nDiff, diff));
-
-		// Skip trivial differences.
-		if (m_bIgnoreTrivials && diff.op == OP_TRIVIAL)
-		{
-			continue;
-		}
 
 		// Find end of diff. If first side has blank lines use other side.
 		const int nLineEndDiff = (diff.blank0 > 0) ? diff.dend1 : diff.dend0;
@@ -260,6 +254,8 @@ void CLocationView::CalculateBlocks()
 		block.bottom_coord = nEndY;
 		block.diff_index = nDiff;
 		m_diffBlocks.AddTail(block);
+
+		nDiff = pDoc->m_diffList.NextSignificantDiff(nDiff);
 	}
 	m_bRecalculateBlocks = FALSE;
 }
@@ -306,9 +302,6 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	m_movedLines.RemoveAll();
 
-	// Adjust line coloring if ignoring trivials
-	DWORD ignoreFlags = (m_bIgnoreTrivials ? LF_TRIVIAL : 0);
-
 	CalculateBars();
 
 	// Draw bar outlines
@@ -339,12 +332,12 @@ void CLocationView::OnDraw(CDC* pDC)
 		if ((nPrevEndY != block.bottom_coord) || bInsideDiff)
 		{
 			// Draw left side block
-			m_view[MERGE_VIEW_LEFT]->GetLineColors2(block.top_line, ignoreFlags, cr0, crt, bwh);
+			m_view[MERGE_VIEW_LEFT]->GetLineColors2(block.top_line, 0, cr0, crt, bwh);
 			CRect r0(m_leftBar.left, block.top_coord, m_leftBar.right, block.bottom_coord);
 			DrawRect(pDC, r0, cr0, bInsideDiff);
 
 			// Draw right side block
-			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(block.top_line, ignoreFlags, cr1, crt, bwh);
+			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(block.top_line, 0, cr1, crt, bwh);
 			CRect r1(m_rightBar.left, block.top_coord, m_rightBar.right, block.bottom_coord);
 			DrawRect(pDC, r1, cr1, bInsideDiff);
 		}
