@@ -2,7 +2,7 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
-WinMerge 2.9.1.2
+WinMerge 2.9.1.2 - 2008-05-23 (r5362)
   Optimize location pane (r5341, r5342, r5346, r5351, r5355, r5356)
   BugFix: Version Control filter did not match all VSS files (#1881186)
   BugFix: Fix showing differences in the end of the line (#1883409, #1962816)
@@ -13,7 +13,7 @@ WinMerge 2.9.1.2
   - Croatian (#1958283)
   - Swedish (#1950188, #1970074)
 
-WinMerge 2.9.1.1- 2008-04-23 (r5324)
+WinMerge 2.9.1.1 - 2008-04-23 (r5324)
   Release Notes update (#1933950)
   Installer: Use correct way to create start menu web link (#1913919)
   Installer: Simplify DeletePreviousStartMenu() function (#1913949)
