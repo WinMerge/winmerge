@@ -9,6 +9,7 @@ WinMerge 2.8.2
   Enlarge 'Discard All' button in Save confirmation dialog (#1947216)
   Tab icons at Filter dialog (#1926531)
   BugFix: Shortcuts given in command line were not expanded (#1942217)
+  BugFix: Version Control filter did not match all VSS files (#1881186)
   New translation: Romanian (#1939729)
   Translation updates:
   - Bulgarian (#1957434)
