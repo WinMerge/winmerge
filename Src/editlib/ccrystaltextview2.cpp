@@ -1242,20 +1242,9 @@ GetFromClipboard (CString & text)
                 memcpy(text.GetBufferSetLength(cchText), pszData, cbData);
               GlobalUnlock (hData);
               bSuccess = TRUE;
-              BOOL bWinMergeClipboardFormat = FALSE;
-              UINT nFormat = 0;
-              UINT nWinMergeClipboardFormat = RegisterClipboardFormat (_T("WinMergeClipboard"));
-              while (nFormat = EnumClipboardFormats (nFormat))
-                {
-                  if (nFormat == nWinMergeClipboardFormat)
-                    bWinMergeClipboardFormat = TRUE;
-                }
-              if (!bWinMergeClipboardFormat)
-                {
-                  // truncate the data after the first null
-                  CString tmp = (LPCTSTR)text;
-                  text = tmp;
-                }
+              // If in doubt, assume zero-terminated string
+              if (!IsClipboardFormatAvailable (RegisterClipboardFormat (_T("WinMergeClipboard"))))
+                text.ReleaseBuffer();
             }
         }
       CloseClipboard ();
