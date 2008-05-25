@@ -5964,8 +5964,7 @@
 				RelativePath="Common\coretools.h">
 			</File>
 			<File
-				RelativePath="Common\coretypes.h"
-				>
+				RelativePath="Common\coretypes.h">
 			</File>
 			<File
 				RelativePath="common\CShellFileOp.h">
@@ -6149,6 +6148,9 @@
 			</File>
 			<File
 				RelativePath="Common\MDITabBar.h">
+			</File>
+			<File
+				RelativePath=".\Common\memdc.h">
 			</File>
 			<File
 				RelativePath="Merge.h">

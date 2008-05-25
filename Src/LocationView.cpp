@@ -39,6 +39,7 @@
 #include "OptionsDef.h"
 #include "MergeLineFlags.h"
 #include "Bitmap.h"
+#include "memdc.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -163,10 +164,18 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 }
 
 /** 
- * @brief Change the background color for a CView
- *        See http://support.microsoft.com/kb/103786
+ * @brief Override for CMemDC to work.
  */
 BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
+{
+	return FALSE;
+}
+
+/**
+ * @brief Draw custom (non-white) background.
+ * @param [in] pDC Pointer to draw context.
+ */
+void CLocationView::DrawBackground(CDC* pDC)
 {
 	// Set brush to desired background color
 	CBrush backBrush(RGB(0xe8, 0xe8, 0xf4));
@@ -180,7 +189,6 @@ BOOL CLocationView::OnEraseBkgnd(CDC* pDC)
 	pDC->PatBlt(rect.left, rect.top, rect.Width(), rect.Height(), PATCOPY);
 
 	pDC->SelectObject(pOldBrush);
-	return TRUE;
 }
 
 /**
@@ -295,6 +303,8 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	if (!m_view[MERGE_VIEW_LEFT]->IsInitialized()) return;
 
+	CMemDC dc(pDC);
+
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
 	COLORREF crt = CLR_NONE; // Text color
@@ -303,12 +313,13 @@ void CLocationView::OnDraw(CDC* pDC)
 	m_movedLines.RemoveAll();
 
 	CalculateBars();
+	DrawBackground(&dc);
 
 	// Draw bar outlines
-	CPen* oldObj = (CPen*)pDC->SelectStockObject(BLACK_PEN);
-	pDC->Rectangle(m_leftBar);
-	pDC->Rectangle(m_rightBar);
-	pDC->SelectObject(oldObj);
+	CPen* oldObj = (CPen*)dc.SelectStockObject(BLACK_PEN);
+	dc.Rectangle(m_leftBar);
+	dc.Rectangle(m_rightBar);
+	dc.SelectObject(oldObj);
 
 	// Iterate the differences list and draw differences as colored blocks.
 
@@ -334,12 +345,12 @@ void CLocationView::OnDraw(CDC* pDC)
 			// Draw left side block
 			m_view[MERGE_VIEW_LEFT]->GetLineColors2(block.top_line, 0, cr0, crt, bwh);
 			CRect r0(m_leftBar.left, block.top_coord, m_leftBar.right, block.bottom_coord);
-			DrawRect(pDC, r0, cr0, bInsideDiff);
+			DrawRect(&dc, r0, cr0, bInsideDiff);
 
 			// Draw right side block
 			m_view[MERGE_VIEW_RIGHT]->GetLineColors2(block.top_line, 0, cr1, crt, bwh);
 			CRect r1(m_rightBar.left, block.top_coord, m_rightBar.right, block.bottom_coord);
-			DrawRect(pDC, r1, cr1, bInsideDiff);
+			DrawRect(&dc, r1, cr1, bInsideDiff);
 		}
 		nPrevEndY = block.bottom_coord;
 
@@ -423,13 +434,13 @@ void CLocationView::OnDraw(CDC* pDC)
 	}
 
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
-		DrawConnectLines(pDC);
+		DrawConnectLines(&dc);
 
 	// Since we have invalidated locationbar there is no previous
 	// arearect to remove
 	m_visibleTop = -1;
 	m_visibleBottom = -1;
-	DrawVisibleAreaRect(pDC);
+	DrawVisibleAreaRect(&dc);
 
 	m_bDrawn = true;
 }

@@ -94,6 +94,7 @@ protected:
 	void DrawDiffMarker(CDC* pDC, int yCoord);
 	void CalculateBars();
 	void CalculateBlocks();
+	void DrawBackground(CDC* pDC);
 
 private:
 	CMergeEditView* m_view[MERGE_VIEW_COUNT]; //*< Table for view pointers */
