@@ -3208,6 +3208,7 @@ void CMergeEditView::OnChangeScheme(UINT nID)
 		if (pView != NULL)
 		{
 			pView->SetTextType(CCrystalTextView::TextType(nID - ID_COLORSCHEME_FIRST));
+			pView->SetDisableBSAtSOL(FALSE);
 		}
 	}
 
