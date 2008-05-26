@@ -1,5 +1,5 @@
 /**
- *  @file PropLineFilter.cpp
+ *  @file LineFiltersDlg.cpp
  *
  *  @brief Implementation of Line Filter dialog
  */ 
@@ -25,14 +25,17 @@ static TCHAR FilterHelpLocation[] = _T("::/htmlhelp/Filters.html");
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter property page
 
-IMPLEMENT_DYNAMIC(CPropLineFilter, CPropertyPage)
+IMPLEMENT_DYNAMIC(LineFiltersDlg, CPropertyPage)
 
-CPropLineFilter::CPropLineFilter()
-: CPropertyPage(CPropLineFilter::IDD)
+/**
+ * @brief Constructor.
+ */
+LineFiltersDlg::LineFiltersDlg()
+: CPropertyPage(LineFiltersDlg::IDD)
 , m_pList(NULL)
 , m_bEditing(FALSE)
 {
-	//{{AFX_DATA_INIT(CPropLineFilter)
+	//{{AFX_DATA_INIT(LineFiltersDlg)
 	m_bIgnoreRegExp = FALSE;
 	//}}AFX_DATA_INIT
 	m_strCaption = theApp.LoadDialogCaption(m_lpszTemplateName).c_str();
@@ -42,14 +45,10 @@ CPropLineFilter::CPropLineFilter()
 	m_psp.dwFlags |= PSP_USEHICON;
 }
 
-CPropLineFilter::~CPropLineFilter()
-{
-}
-
-void CPropLineFilter::DoDataExchange(CDataExchange* pDX)
+void LineFiltersDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CPropertyPage::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CPropLineFilter)
+	//{{AFX_DATA_MAP(LineFiltersDlg)
 	DDX_Check(pDX, IDC_IGNOREREGEXP, m_bIgnoreRegExp);
 	//}}AFX_DATA_MAP
 	DDX_Control(pDX, IDC_LFILTER_LIST, m_filtersList);
@@ -58,8 +57,8 @@ void CPropLineFilter::DoDataExchange(CDataExchange* pDX)
 }
 
 
-BEGIN_MESSAGE_MAP(CPropLineFilter, CPropertyPage)
-	//{{AFX_MSG_MAP(CPropLineFilter)
+BEGIN_MESSAGE_MAP(LineFiltersDlg, CPropertyPage)
+	//{{AFX_MSG_MAP(LineFiltersDlg)
 	ON_BN_CLICKED(IDC_IGNOREREGEXP, OnIgnoreregexp)
 	ON_COMMAND(ID_HELP, OnHelp)
 	//}}AFX_MSG_MAP
@@ -75,7 +74,10 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CPropLineFilter message handlers
 
-BOOL CPropLineFilter::OnInitDialog() 
+/**
+ * @brief Initialize the dialog.
+ */
+BOOL LineFiltersDlg::OnInitDialog()
 {
 	theApp.TranslateDialog(m_hWnd);
 	CPropertyPage::OnInitDialog();
@@ -86,7 +88,11 @@ BOOL CPropLineFilter::OnInitDialog()
 	              // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CPropLineFilter::InitList()
+/**
+ * @brief Initialize the filter list in the dialog.
+ * This function adds current line filters to the filter list.
+ */
+void LineFiltersDlg::InitList()
 {
 	// Show selection across entire row.
 	DWORD newstyle = LVS_EX_CHECKBOXES | LVS_EX_GRIDLINES | LVS_EX_FULLROWSELECT |
@@ -122,14 +128,18 @@ void CPropLineFilter::InitList()
 	UpdateData(FALSE);
 }
 
-/// User clicked the ignore checkbox
-void CPropLineFilter::OnIgnoreregexp() 
+/**
+ * @brief User clicked filter enable/disable checkbox.
+ */
+void LineFiltersDlg::OnIgnoreregexp() 
 {
 	UpdateData();
 }
 
-/** @brief Open help from mainframe when user presses F1*/
-void CPropLineFilter::OnHelp()
+/**
+ * @brief Open help from mainframe when user presses F1.
+ */
+void LineFiltersDlg::OnHelp()
 {
 	GetMainFrame()->ShowHelp(FilterHelpLocation);
 }
@@ -140,7 +150,7 @@ void CPropLineFilter::OnHelp()
  * @param [in] enabled Is filter enabled?
  * @return Index of added row.
  */
-int CPropLineFilter::AddRow(LPCTSTR filter /*= NULL*/, BOOL enabled /*=FALSE*/)
+int LineFiltersDlg::AddRow(LPCTSTR filter /*= NULL*/, BOOL enabled /*=FALSE*/)
 {
 	int items = m_filtersList.GetItemCount();
 	int ind = m_filtersList.InsertItem(items + 1, filter);
@@ -151,7 +161,7 @@ int CPropLineFilter::AddRow(LPCTSTR filter /*= NULL*/, BOOL enabled /*=FALSE*/)
 /**
  * @brief Edit currently selected filter.
  */
-void CPropLineFilter::EditSelectedFilter()
+void LineFiltersDlg::EditSelectedFilter()
 {
 	int sel =- 1;
 	m_filtersList.SetFocus();
@@ -177,7 +187,7 @@ void CPropLineFilter::EditSelectedFilter()
 /**
  * @brief Called when Add-button is clicked.
  */
-void CPropLineFilter::OnBnClickedLfilterAddBtn()
+void LineFiltersDlg::OnBnClickedLfilterAddBtn()
 {
 	int ind = AddRow(_T(""));
 	if (ind >= -1)
@@ -192,7 +202,7 @@ void CPropLineFilter::OnBnClickedLfilterAddBtn()
 /**
  * @brief Called when Edit button is clicked.
  */
-void CPropLineFilter::OnBnClickedLfilterEditbtn()
+void LineFiltersDlg::OnBnClickedLfilterEditbtn()
 {
 	EditSelectedFilter();
 }
@@ -200,7 +210,7 @@ void CPropLineFilter::OnBnClickedLfilterEditbtn()
 /**
  * @brief Save filters to list when exiting the dialog.
  */
-void CPropLineFilter::OnOK()
+void LineFiltersDlg::OnOK()
 {
 	m_pList->Empty();
 
@@ -219,7 +229,7 @@ void CPropLineFilter::OnOK()
  * @brief Sets external filter list.
  * @param [in] list External filter list.
  */
-void CPropLineFilter::SetList(LineFiltersList * list)
+void LineFiltersDlg::SetList(LineFiltersList * list)
 {
 	m_pList = list;
 }
@@ -227,7 +237,7 @@ void CPropLineFilter::SetList(LineFiltersList * list)
 /**
  * @brief Called when Remove button is clicked.
  */
-void CPropLineFilter::OnBnClickedLfilterRemovebtn()
+void LineFiltersDlg::OnBnClickedLfilterRemovebtn()
 {
 	int sel =- 1;
 	sel = m_filtersList.GetNextItem(sel, LVNI_SELECTED);
@@ -248,7 +258,7 @@ void CPropLineFilter::OnBnClickedLfilterRemovebtn()
 /**
  * @brief Called when Save button is clicked.
  */
-void CPropLineFilter::OnBnClickedLfilterEditsave()
+void LineFiltersDlg::OnBnClickedLfilterEditsave()
 {
 	SaveItem();
 }
@@ -256,7 +266,7 @@ void CPropLineFilter::OnBnClickedLfilterEditsave()
 /**
  * @brief Cancel editing of filter when ESC is pressed.
  */
-BOOL CPropLineFilter::PreTranslateMessage(MSG* pMsg)
+BOOL LineFiltersDlg::PreTranslateMessage(MSG* pMsg)
 {
 	if (m_bEditing)
 	{
@@ -276,7 +286,7 @@ BOOL CPropLineFilter::PreTranslateMessage(MSG* pMsg)
 /**
  * @brief Called when selected item in list changes.
  */
-void CPropLineFilter::OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
+void LineFiltersDlg::OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMIA = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
 	int item = pNMIA->iItem;
@@ -294,7 +304,7 @@ void CPropLineFilter::OnLvnItemActivateLfilterList(NMHDR *pNMHDR, LRESULT *pResu
 /**
  * @brief Save the current filter in edit box.
  */
-void CPropLineFilter::SaveItem()
+void LineFiltersDlg::SaveItem()
 {
 	if (m_bEditing)
 	{
@@ -315,7 +325,7 @@ void CPropLineFilter::SaveItem()
 /**
  * @brief Called when filter edit box loses its focus.
  */
-void CPropLineFilter::OnEnKillfocusLfilterEditbox()
+void LineFiltersDlg::OnEnKillfocusLfilterEditbox()
 {
 	SaveItem();
 }

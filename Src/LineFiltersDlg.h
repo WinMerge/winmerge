@@ -1,5 +1,5 @@
 /** 
- * @file  PropLineFilter.h
+ * @file  LineFiltersDlg.h
  *
  * @brief Declaration file for Line Filter dialog
  *
@@ -7,36 +7,35 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "afxcmn.h"
-#include "afxwin.h"
 #if !defined(AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_)
 #define AFX_PROPFILTER_H__73E79E13_34DD_4C86_A3EC_A1044B721CCA__INCLUDED_
 
 class LineFiltersList;
 
-/// Class for Line filter propertypage
-class CPropLineFilter : public CPropertyPage
+/**
+ * @brief A dialog for editing and selecting used line filters.
+ * This dialog allows user to add, edit and remove line filters. Currently
+ * active filters are selected by enabling their checkbox.
+ */
+class LineFiltersDlg : public CPropertyPage
 {
-	DECLARE_DYNAMIC(CPropLineFilter)
+	DECLARE_DYNAMIC(LineFiltersDlg)
 
 // Construction
 public:
-	CPropLineFilter();
-	~CPropLineFilter();
+	LineFiltersDlg();
 
 	void SetList(LineFiltersList * list);
 
 // Dialog Data
-	//{{AFX_DATA(CPropLineFilter)
+	//{{AFX_DATA(LineFiltersDlg)
 	enum { IDD = IDD_PROPPAGE_FILTER };
 	BOOL	m_bIgnoreRegExp;
 	//}}AFX_DATA
 
-// Implementation
-
 // Overrides
 	// ClassWizard generate virtual function overrides
-	//{{AFX_VIRTUAL(CPropLineFilter)
+	//{{AFX_VIRTUAL(LineFiltersDlg)
 	protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
 	//}}AFX_VIRTUAL
@@ -45,7 +44,7 @@ public:
 protected:
 
 	// Generated message map functions
-	//{{AFX_MSG(CPropLineFilter)
+	//{{AFX_MSG(LineFiltersDlg)
 	virtual BOOL OnInitDialog();
 	afx_msg void OnIgnoreregexp();
 	afx_msg void OnHelp();

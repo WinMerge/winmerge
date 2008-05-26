@@ -2522,13 +2522,13 @@ void CMainFrame::OnToolsFilters()
 {
 	String title = theApp.LoadString(IDS_FILTER_TITLE);
 	CPropertySheet sht(title.c_str());
-	CPropLineFilter filter;
+	LineFiltersDlg lineFiltersDlg;
 	FileFiltersDlg fileFiltersDlg;
 	FILEFILTER_INFOLIST fileFilters;
 	LineFiltersList * lineFilters = new LineFiltersList();
 	CString selectedFilter;
 	sht.AddPage(&fileFiltersDlg);
-	sht.AddPage(&filter);
+	sht.AddPage(&lineFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
 
 	// Make sure all filters are up-to-date
@@ -2537,10 +2537,10 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	filter.m_bIgnoreRegExp = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	lineFiltersDlg.m_bIgnoreRegExp = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
 
 	lineFilters->CloneFrom(m_pLineFilters);
-	filter.SetList(lineFilters);
+	lineFiltersDlg.SetList(lineFilters);
 
 	if (sht.DoModal() == IDOK)
 	{
@@ -2563,7 +2563,7 @@ void CMainFrame::OnToolsFilters()
 			CString sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
-		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, filter.m_bIgnoreRegExp == TRUE);
+		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, lineFiltersDlg.m_bIgnoreRegExp == TRUE);
 
 		m_pLineFilters->CloneFrom(lineFilters);
 		m_pLineFilters->SaveFilters();
