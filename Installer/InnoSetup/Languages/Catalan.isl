@@ -330,6 +330,7 @@ DanishLanguage=Menús i diàlegs en Danès
 DutchLanguage=Menús i diàlegs en Neerlandès
 FrenchLanguage=Menús i diàlegs en Francès
 GermanLanguage=Menús i diàlegs en Alemany
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Menús i diàlegs en Hongarès
 ItalianLanguage=Menús i diàlegs en Italià
 JapaneseLanguage=Menús i diàlegs en Japonès

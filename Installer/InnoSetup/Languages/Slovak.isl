@@ -275,6 +275,7 @@ DanishLanguage=Dánske ponuky a dialógy
 DutchLanguage=Holandské ponuky a dialógy
 FrenchLanguage=Francúzske ponuky a dialógy
 GermanLanguage=Nemecké ponuky a dialógy
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Maïarské ponuky a dialógy
 ItalianLanguage=Talianske ponuky a dialógy
 JapaneseLanguage=Japonské ponuky a dialógy

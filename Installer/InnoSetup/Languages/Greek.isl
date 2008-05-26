@@ -9,10 +9,10 @@
 ; two periods being displayed).
 
 [LangOptions]
-; The following three entries are very important. Be sure to read and 
+; The following three entries are very important. Be sure to read and
 ; understand the '[LangOptions] section' topic in the help file.
-LanguageName=English
-LanguageID=$0409
+LanguageName=Greek
+LanguageID=$0408
 LanguageCodePage=0
 
 [Messages]
@@ -309,77 +309,75 @@ StatusUninstalling=Uninstalling %1...
 
 [CustomMessages]
 ;Inno Setup Built-in Custom Messages
-NameAndVersion=%1 version %2
-AdditionalIcons=Additional icons:
-OptionalFeatures=Optional Features:
-CreateDesktopIcon=Create a &desktop icon
-CreateQuickLaunchIcon=Create a &Quick Launch icon
-ProgramOnTheWeb=%1 on the Web
-UninstallProgram=Uninstall %1
-LaunchProgram=Launch %1
-AssocFileExtension=&Associate %1 with the %2 file extension
-AssocingFileExtension=Associating %1 with the %2 file extension...
+NameAndVersion=%1 έκδοση %2
+AdditionalIcons=Πρόσθετα εικονίδια:
+OptionalFeatures=Προαιρετικά Χαρακτηριστικά:
+CreateDesktopIcon=Δημιουργία εικονιδίου στην επιφάνεια εργασίας
+CreateQuickLaunchIcon=Δημιουργία εικονιδίου στη Γρή&γορη Εκκίνηση
+ProgramOnTheWeb=Το %1 στο Διαδίκτυο
+UninstallProgram=Απεγκατάσταση του %1
+LaunchProgram=Εκτέλεση του %1
+AssocFileExtension=Αντι&στοίχιση του %1 με τον τύπο αρχείων %2
+AssocingFileExtension=Αντιστοίχιση του %1 με τον τύπο αρχείων %2...
 
 ;Things we can also localize
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=Τυπική Εγκατάσταση
+FullInstallation=Πλήρης Εγκατάσταση
+CompactInstallation=Εγκατάσταση Απαιτουμένων Στοιχείων
+CustomInstallation=Προσαρμοσμένη Εγκατάσταση
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-Filters=Filters
-Plugins=Plugins
+AppCoreFiles=Απαιτούμενα Αρχεία του WinMerge
+ApplicationRuntimes=Ρουτίνες Χρόνου Εκτελέσεως
+Filters=Φίλτρα
+Plugins=Αρθρώματα
 
 ;Localization Components
-Languages=Languages
-BulgarianLanguage=Bulgarian menus and dialogs
-CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
-ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
-CroatianLanguage=Croatian menus and dialogs
-CzechLanguage=Czech menus and dialogs
-DanishLanguage=Danish menus and dialogs
-DutchLanguage=Dutch menus and dialogs
-FrenchLanguage=French menus and dialogs
-GermanLanguage=German menus and dialogs
-GreekLanguage=Greek menus and dialogs
-HungarianLanguage=Hungarian menus and dialogs
-ItalianLanguage=Italian menus and dialogs
-JapaneseLanguage=Japanese menus and dialogs
-KoreanLanguage=Korean menus and dialogs
-NorwegianLanguage=Norwegian menus and dialogs
-PolishLanguage=Polish menus and dialogs
-PortugueseBrazilLanguage=Portuguese (Brazilian) menus and dialogs
-PortugueseLanguage=Portuguese menus and dialogs
-RomanianLanguage=Romanian menus and dialogs
-RussianLanguage=Russian menus and dialogs
-SlovakLanguage=Slovak menus and dialogs
-SpanishLanguage=Spanish menus and dialogs
-SwedishLanguage=Swedish menus and dialogs
-TurkishLanguage=Turkish menus and dialogs
+Languages=Γλώσσες
+BulgarianLanguage=Βουλγαρικά επιλογές και διάλογοι
+CatalanLanguage=Καταλανικά επιλογές και διάλογοι
+ChineseSimplifiedLanguage=Κινεζικά (Απλοποιημένα) επιλογές και διάλογοι
+ChineseTraditionalLanguage=Κινεζικά (Παραδοσιακά) επιλογές και διάλογοι
+CroatianLanguage=Κροατικά επιλογές και διάλογοι
+CzechLanguage=Τσεχικά επιλογές και διάλογοι
+DanishLanguage=Δανέζικα επιλογές και διάλογοι
+DutchLanguage=Ολλανδικά επιλογές και διάλογοι
+FrenchLanguage=Γαλλικά επιλογές και διάλογοι
+GermanLanguage=Γερμανικά επιλογές και διάλογοι
+HungarianLanguage=Ουγγρικά επιλογές και διάλογοι
+ItalianLanguage=Ιταλικά επιλογές και διάλογοι
+JapaneseLanguage=Ιαπωνικά επιλογές και διάλογοι
+KoreanLanguage=Κορεατικά επιλογές και διάλογοι
+NorwegianLanguage=Νορβηγικά επιλογές και διάλογοι
+PolishLanguage=Πολωνικά επιλογές και διάλογοι
+PortugueseBrazilLanguage=Πορτογαλικά (Βραζιλίας) επιλογές και διάλογοι
+PortugueseLanguage=Πορτογαλικά επιλογές και διάλογοι
+RussianLanguage=Ρωσσικά επιλογές και διάλογοι
+SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
+SpanishLanguage=Ισπανικά επιλογές και διάλογοι
+SwedishLanguage=Σουηδικά επιλογές και διάλογοι
+TurkishLanguage=Τουρκικά επιλογές και διάλογοι
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-IntegrateDelphi4=Borland® Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+ExplorerContextMenu=Εν&εργοποίηση ενσωματώσεως στις ειδικές επιλογές της εξερευνήσεως
+IntegrateTortoiseCVS=Ενσωμάτωση του &TortoiseCVS
+IntegrateTortoiseSVN=Ενσωμάτωση του T&ortoiseSVN
+IntegrateClearCase=Ενσωμάτωση του Rational &ClearCase
+IntegrateDelphi4=Υποστήριξη Δυαδικών Αρχείων της Delphi &4 της Borland®
+UpdatingCommonControls=Ενημέρωση Κοινών Αντικειμένων Ελέγχου Συστήματος
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
-PluginsText=Plugins
+ReadMe=Απαραίτητες Πληροφορίες (Read Me)
+UsersGuide=Οδηγίες Χρήσεως
+UpdatingCommonControls=Ενημέρωση Κοινών Αντικειμένων Ελέγχου Συστήματος
+ViewStartMenuFolder=Εμφάνιση του Φακέλου του WinMerge στο Έναρξη
+PluginsText=Αρθρώματα
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=Η εφαρμογή εγκαταστάσεως ανίχνευσε ότι αλλάξατε την τοποθεσία του φακέλου στο Έναρξη από "%s" σε "%s". Επιθυμείτε να διαγράψετε τον προηγούμενο φάκελο από το Έναρξη;
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=Αρχείο Έργου του WinMerge

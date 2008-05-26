@@ -347,6 +347,7 @@ DanishLanguage=Meniuri si dialoguri în Daneza
 DutchLanguage=Meniuri si dialoguri în Olandeza
 FrenchLanguage=Meniuri si dialoguri în Franceza
 GermanLanguage=Meniuri si dialoguri în Germana
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Meniuri si dialoguri în Maghiara
 ItalianLanguage=Meniuri si dialoguri în Italiana
 JapaneseLanguage=Meniuri si dialoguri în Japoneza

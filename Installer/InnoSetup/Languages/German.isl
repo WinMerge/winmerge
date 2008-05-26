@@ -336,6 +336,7 @@ DanishLanguage=Dänische Menüs und Dialoge
 DutchLanguage=Holländische Menüs und Dialoge
 FrenchLanguage=Französische Menüs und Dialoge
 GermanLanguage=Deutsche Menüs und Dialoge
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Ungarische Menüs und Dialoge
 ItalianLanguage=Italienische Menüs und Dialoge
 JapaneseLanguage=Japanische Menüs und Dialoge

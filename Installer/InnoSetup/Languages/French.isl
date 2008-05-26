@@ -339,6 +339,7 @@ DanishLanguage=Menus et dialogues Danois
 DutchLanguage=Menus et dialogues Néerlandais
 FrenchLanguage=Menus et dialogues Français
 GermanLanguage=Menus et dialogues Allemand
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Menus et dialogues Hongrois
 ItalianLanguage=Menus et dialogues Italien
 JapaneseLanguage=Menus et dialogues Japonais

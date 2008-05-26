@@ -343,6 +343,7 @@ DanishLanguage=Danske menyer og dialoger
 DutchLanguage=Nederlandske menyer og dialoger
 FrenchLanguage=Franske menyer og dialoger
 GermanLanguage=Tyske menyer og dialoger
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Ungarske menyer og dialoger
 ItalianLanguage=Italienske menyer og dialoger
 JapaneseLanguage=Japanske menyer og dialoger
