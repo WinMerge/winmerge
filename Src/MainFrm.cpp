@@ -47,7 +47,7 @@
 #include "ConflictFileParser.h"
 #include "coretools.h"
 #include "Splash.h"
-#include "PropLineFilter.h"
+#include "LineFiltersDlg.h"
 #include "logfile.h"
 #include "paths.h"
 #include "WaitStatusCursor.h"

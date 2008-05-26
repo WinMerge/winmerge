@@ -2738,6 +2738,9 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\LineFiltersDlg.cpp">
+			</File>
+			<File
 				RelativePath="LineFiltersList.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -4394,43 +4397,6 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions="WIN32;_WINDOWS;_MBCS;_AFXDLL;EDITPADC_CLASS=;COMPILE_MULTIMON_STUBS;$(NoInherit)"/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="PropLineFilter.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
 				</FileConfiguration>
 			</File>
 			<File
@@ -6120,6 +6086,9 @@
 				RelativePath="Common\LanguageSelect.h">
 			</File>
 			<File
+				RelativePath=".\LineFiltersDlg.h">
+			</File>
+			<File
 				RelativePath="LineFiltersList.h">
 			</File>
 			<File
@@ -6247,9 +6216,6 @@
 			</File>
 			<File
 				RelativePath="PropGeneral.h">
-			</File>
-			<File
-				RelativePath="PropLineFilter.h">
 			</File>
 			<File
 				RelativePath="PropRegistry.h">

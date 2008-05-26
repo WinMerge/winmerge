@@ -10,7 +10,7 @@
 #include "merge.h"
 #include "LineFiltersList.h"
 #include "MainFrm.h"
-#include "PropLineFilter.h"
+#include "LineFiltersDlg.h"
 #include "dllver.h"
 
 #ifdef _DEBUG
