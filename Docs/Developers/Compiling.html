@@ -72,10 +72,19 @@ Subversion repository. See <a href="readme-Subversion.html">readme-Subversion.ht
 <h4>Supported Compilers</h4>
 <ul>
   <li>Visual Studio 2003.Net + Service Pack 1 (used for releases)</li>
-  <li>Visual Studio 6 + Service Pack 6</li>
   <li>Visual Studio 2005 (occasional checks for compiling) (Service Pack 1 recommended)</li>
   <li>Visual Studio 2008</li>
 </ul>
+<h4>Perhaps also supported</h4>
+<ul>
+  <li>Visual Studio 6 + Service Pack 6</li>
+</ul>
+We don't really (after 2.8.x) support Visual Studio 6. We don't break compiling
+with VS6 purposely, but we don't check it still works. And we don't necessarily
+update old project files. Building with VS6 is probably still possible, after
+some tweaks. Of course we commit fixes for building with VS6 if/when somebody
+sents them to us.
+
 <p>Note that WinMerge uses MFC heavily. So free (Express) editions of Visual Studio cannot
 compile WinMerge, unless you have MFC installed separately.</p>
 
@@ -84,15 +93,16 @@ compile WinMerge, unless you have MFC installed separately.</p>
 All are in the source tree (in <code>/Externals</code> -folder), and need to be
 compiled before compiling WinMerge executable.</p>
 
-<p class="note"><b>Visual Studio 2003.Net and later:</b> You'll need to convert
+<p class="note"><b>Visual Studio 2005 and later:</b> You'll need to convert
 library workspace and project files to new format before compiling.</p>
 
 <p> To convert workspace/project files, just open them into Visual Studio and
 let the Visual Studio to convert. Files are:
 <ul>
-  <li><code>Externals\expat\expat.dsw</code></li>
-  <li><code>Externals\scew\win32\scew.dsp</code></li>
-  <li><code>Externals\pcre\pcre.dsw</code></li>
+  <li><code>WinMerge.sln</code></li>
+  <li><code>Externals\expat\expat.sln</code></li>
+  <li><code>Externals\scew\win32\scew.vcproj</code></li>
+  <li><code>Externals\pcre\pcre.sln</code></li>
 </ul>
 
 <h4>Additional requirements (out of source tree)</h4>
@@ -137,7 +147,7 @@ the "<em>Platform SDK</em>" start menu folder.</p>
 a couple
 of restrictions:
 <ul>
-  <li>It cannot convert project files from VC6 format to newer formats. This must be done first
+  <li>It cannot convert project files from VS2003 format to newer formats. This must be done first
       by opening every project to Visual Studio.</li>
   <li>It cannot build 64-bit shell extension</li>
 </ul></p>
@@ -154,10 +164,10 @@ of restrictions:
 ShellExtension (in <code>/ShellExtension</code>) have their own project files. There is no one
 single project/workspace file to compile all projects.<p>
 
-<p>The Visual Studio project file for MSVC6 comes with the WinMerge sources. Newer versions of
-Visual Studio can open that file too, they just ask if one wants to convert to
-the new version.
-The reason we don't ship project files for all Visual Studio versions is we have no resources
+<p>The Visual Studio project and solution files for VS2003 come with the
+WinMerge sources. Newer versions of Visual Studio can open that file too, they
+just ask if one wants to convert to the new version. The reason we don't ship
+project files for all Visual Studio versions is we have no resources
 to keep all versions up to date. People can't test all versions themselves, and easily forget
 to update at least one file. So we easily end up in a situation where there is no properly
 working project file at all...</p>
@@ -171,25 +181,11 @@ install HTML Workshop as stand-alone and include headers and libraries from stan
 directory. The probable cause is that including files from Platform SDK directories breaks
 things.</p>
 
-<p class="note"><b>Visual Studio 2003.Net:</b> WinMerge build uses couple of helper batch files
-(<code>Src/PreLink.bat</code> and <code>Src/PostBuild.bat</code>) run from project file.
-Visual Studio adds additional quotation marks to these rules when converting for new version,
-which makes builds to fail. The error is something like <code>The system cannot
-find the batch label specified - ".\..\BuildTmp\MergeUnicodeDebug"</code> where
-the path varies depending on compile target.
-
-<blockquote>Check that rules to call those batch files are like:
-<code>PreLink.bat $(IntDir) $(TargetPath)</code>
-
-<p>without additional quotation marks, like:
-<code>PreLink.bat "$(IntDir)" "$(TargetPath)"</code></blockquote>
-</p>
-
 <h3><a name="Compiling_expat">Compiling expat</a></h3>
 <p>expat is in <code>/Externals/expat</code> folder in source tree. To compile expat:</p>
 <ul>
-  <li>Open Visual Studio workspace <code>/Externals/expat/expat.dsw</code>. If you are
-    using Visual Studio 2003.Net or later you need to convert the file to the new format when
+  <li>Open Visual Studio solution <code>/Externals/expat/expat.sln</code>. If you are
+    using Visual Studio 2005 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Select either debug or release targets.</li>
@@ -202,8 +198,8 @@ the path varies depending on compile target.
 <h3><a name="Compiling_scew">Compiling scew</a></h3>
 <p>scew is in <code>/Externals/scew</code> folder in source tree. To compile scew:</p>
 <ul>
-  <li>Open Visual Studio project file <code>/Externals/scew/win32/scew.dsp</code> If you are
-    using Visual Studio 2003.Net or later you need to convert the file to the new format when
+  <li>Open Visual Studio project file <code>/Externals/scew/win32/scew.vcproj</code> If you are
+    using Visual Studio 2005 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Make sure all targets are selected</li>
@@ -213,8 +209,8 @@ the path varies depending on compile target.
 <h3><a name="Compiling_pcre">Compiling PCRE</a></h3>
 <p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:</p>
 <ul>
-  <li>Open Visual Studio workspace file <code>/Externals/pcre/pcre.dsw</code> If you are
-    using Visual Studio 2003.Net or later you need to convert the file to the new format when
+  <li>Open Visual Studio solution file <code>/Externals/pcre/pcre.sln</code> If you are
+    using Visual Studio 2005 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
   <li>Select from Visual Studio menu Build / Batch Build</li>
   <li>Select <code>config_pcre</code> and <code>pcre</code> projects and build them</li>
