@@ -1,3 +1,11 @@
+/**
+ *  @file WaitStatusCursor.h
+ *
+ *  @brief Declaration WaitStatusCursor classes.
+ */ 
+// ID line follows -- this is updated by SVN
+// $Id$
+
 #ifndef WaitStatusCursor_included_h
 #define WaitStatusCursor_included_h
 

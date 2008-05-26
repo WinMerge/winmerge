@@ -1,5 +1,5 @@
 /**
- *  @file varprop.cpp
+ *  @file varprop.h
  *
  *  @brief Declaration of generic named property classes
  */ 
