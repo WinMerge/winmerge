@@ -11,6 +11,7 @@ WinMerge 2.8.2
   Add VB.net keywords to Basic highlighter (#1970912)
   BugFix: Shortcuts given in command line were not expanded (#1942217)
   BugFix: Version Control filter did not match all VSS files (#1881186)
+  BugFix: Fix command line paths in quotes ending with "\" (#1963523)
   New translation: Greek (#1968429)
   New translation: Romanian (#1939729)
   Translation updates:
