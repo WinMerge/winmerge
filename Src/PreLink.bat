@@ -37,10 +37,6 @@ del $(TargetPath)
 REM Create build directories
 mkdir ..\Build\expat
 mkdir ..\Build\pcre
-
-REM Configure PCRE
-cd %2\..\..\..\Externals\pcre\config_pcre
-nmake /f "configure.mak"
 goto %1
 
 :.\..\BuildTmp\MergeDebug
@@ -75,7 +71,7 @@ cd %2\..\..\..\Externals\scew\win32
 %devenv% "scew.vcproj" /build "Debug"
 
 REM Build PCRE
-cd %2\..\..\..\Externals\pcre\dll_pcre
+cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Debug"
 %devenv% "pcre.vcproj" /build "Debug"
 cd %2\..\..\pcre
@@ -99,9 +95,9 @@ cd %2\..\..\..\Externals\scew\win32
 %devenv% "scew.vcproj" /build "Release"
 
 REM Build PCRE
-cd %2\..\..\..\Externals\pcre\dll_pcre
+cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Release"
-%devenv% "pcre.vcproj" /build "Release"
+%devenv% "pcre.vcproj" /build "MinSizeRel"
 cd %2\..\..\pcre
 copy bin\release\pcre.dll %2\..\
 goto Common
