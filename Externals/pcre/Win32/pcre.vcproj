@@ -64,8 +64,8 @@
 				ProxyFileName="$(InputName)_p.c"/>
 			<Tool
 				Name="VCPostBuildEventTool"
-				CommandLine="copy $(OutDir)\pcred.dll ..\..\..\Build\pcre
-copy $(OutDir)\pcred.lib ..\..\..\Build\pcre
+				CommandLine="copy $(OutDir)\pcre.dll ..\..\..\Build\pcre
+copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 "/>
 			<Tool
 				Name="VCPreBuildEventTool"/>
