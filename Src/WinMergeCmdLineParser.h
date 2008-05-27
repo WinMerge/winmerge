@@ -52,6 +52,8 @@ private:
 	bool m_bFileFilter;  /**< Have file filter? */
 	bool m_bLeftDesc;    /**< Have left-side description? */
 	bool m_bRightDesc;   /**< Have right-side description? */
+	bool m_bLeftDescRead; /**< Has the left-side decription been read? */
+	bool m_bRightDescRead; /**< Has the right-side description been read? */
 };
 
 #endif // _WINMERGE_CMDLINE_PARSER_H_
