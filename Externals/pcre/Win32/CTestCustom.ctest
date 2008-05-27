@@ -1,0 +1,4 @@
+# This is a generated file.
+SET(ENV{srcdir} G:/WinMerge/WinMerge_pcre/Externals/pcre)
+SET(ENV{pcregrep} G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/DEBUG/pcregrep.exe)
+SET(ENV{pcretest} G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/DEBUG/pcretest.exe)
