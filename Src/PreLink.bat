@@ -75,7 +75,7 @@ cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Debug"
 %devenv% "pcre.vcproj" /build "Debug"
 cd %2\..\..\pcre
-copy bin\debug\pcre.dll %2\..\
+copy pcre.dll %2\..\
 goto Common
 
 :Release
@@ -99,7 +99,7 @@ cd %2\..\..\..\Externals\pcre\Win32
 %msdev% "pcre.dsp" /make "pcre - Win32 Release"
 %devenv% "pcre.vcproj" /build "MinSizeRel"
 cd %2\..\..\pcre
-copy bin\release\pcre.dll %2\..\
+copy pcre.dll %2\..\
 goto Common
 
 :Common
