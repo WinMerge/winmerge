@@ -14,8 +14,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="../../../Build/pcre/Debug"
-			IntermediateDirectory="../../../BuildTmp/pcre/INSTALL.dir/Debug"
+			OutputDirectory="..\..\..\Build\pcre\Debug"
+			IntermediateDirectory="..\..\..\Build\pcre\INSTALL.dir\Debug"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -42,8 +42,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="../../../Build/pcre/Release"
-			IntermediateDirectory="../../../BuildTmp/pcre/INSTALL.dir/Release"
+			OutputDirectory="..\..\..\Build\pcre\Release"
+			IntermediateDirectory="..\..\..\Build\pcre\INSTALL.dir\Release"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -70,8 +70,8 @@
 		</Configuration>
 		<Configuration
 			Name="MinSizeRel|Win32"
-			OutputDirectory="../../../Build/pcre/MinSizeRel"
-			IntermediateDirectory="../../../BuildTmp/pcre/INSTALL.dir/MinSizeRel"
+			OutputDirectory="..\..\..\Build\pcre\MinSizeRel"
+			IntermediateDirectory="..\..\..\Build\pcre\INSTALL.dir\MinSizeRel"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
@@ -98,8 +98,8 @@
 		</Configuration>
 		<Configuration
 			Name="RelWithDebInfo|Win32"
-			OutputDirectory="../../../Build/pcre/RelWithDebInfo"
-			IntermediateDirectory="../../../BuildTmp/pcre/INSTALL.dir/RelWithDebInfo"
+			OutputDirectory="..\..\..\Build\pcre\RelWithDebInfo"
+			IntermediateDirectory="..\..\..\Build\pcre\INSTALL.dir\RelWithDebInfo"
 			ConfigurationType="10"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="FALSE"
