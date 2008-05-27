@@ -20,6 +20,7 @@
 #include "FolderCmp.h"
 #include "DirItem.h"
 #include "DirTravel.h"
+#include "paths.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -77,10 +78,8 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 	String rightsubprefix;
 	if (_tcslen(leftsubdir) > 0)
 	{
-		sLeftDir += backslash;
-		sLeftDir += leftsubdir;
-		sRightDir += backslash;
-		sRightDir += rightsubdir;
+		sLeftDir = paths_ConcatPath(sLeftDir, leftsubdir);
+		sRightDir = paths_ConcatPath(sRightDir, rightsubdir);
 		leftsubprefix = leftsubdir;
 		leftsubprefix += backslash;
 		// minimize memory footprint by having left/rightsubprefix share CStringData if possible
