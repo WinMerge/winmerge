@@ -70,7 +70,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -137,7 +137,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -204,7 +204,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -273,7 +273,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -293,18 +293,18 @@
 			Name="Source Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcreposix.c">
+				RelativePath="..\pcreposix.c">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcreposix.h">
+				RelativePath="..\pcreposix.h">
 			</File>
 		</Filter>
 		<File
-			RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt">
+			RelativePath="..\CMakeLists.txt">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool

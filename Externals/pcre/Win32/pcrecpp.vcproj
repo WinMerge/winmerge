@@ -25,7 +25,7 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="0"
 				InlineFunctionExpansion="0"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"
+				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"
 				ExceptionHandling="TRUE"
 				BasicRuntimeChecks="1"
@@ -33,7 +33,7 @@
 				RuntimeTypeInfo="TRUE"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/Debug/pcrecppd.pdb"
+				ProgramDataBaseFileName="$(IntDir)\pcrecppd.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="2"/>
@@ -71,7 +71,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -96,14 +96,14 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="2"
 				InlineFunctionExpansion="2"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"
+				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/Release/pcrecpp.pdb"
+				ProgramDataBaseFileName="$(IntDir)\pcrecpp.pdb"
 				WarningLevel="3"
 				CompileAs="2"/>
 			<Tool
@@ -139,7 +139,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -164,14 +164,14 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="1"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"
+				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/MinSizeRel/pcrecpp.pdb"
+				ProgramDataBaseFileName="$(IntDir)\pcrecpp.pdb"
 				WarningLevel="3"
 				CompileAs="2"/>
 			<Tool
@@ -207,7 +207,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -232,14 +232,14 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"
+				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"
 				ExceptionHandling="TRUE"
 				RuntimeLibrary="2"
 				RuntimeTypeInfo="TRUE"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/RelWithDebInfo/pcrecpp.pdb"
+				ProgramDataBaseFileName="$(IntDir)\pcrecpp.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="2"/>
@@ -277,7 +277,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcrecpp_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -297,33 +297,33 @@
 			Name="Source Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_scanner.cc">
+				RelativePath="..\pcre_scanner.cc">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_stringpiece.cc">
+				RelativePath="..\pcre_stringpiece.cc">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcrecpp.cc">
+				RelativePath="..\pcrecpp.cc">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_scanner.h">
+				RelativePath="..\pcre_scanner.h">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\pcre_stringpiece.h">
+				RelativePath="pcre_stringpiece.h">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcrecpp.h">
+				RelativePath="..\pcrecpp.h">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\pcrecpparg.h">
+				RelativePath="pcrecpparg.h">
 			</File>
 		</Filter>
 		<File
-			RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt">
+			RelativePath="..\CMakeLists.txt">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool

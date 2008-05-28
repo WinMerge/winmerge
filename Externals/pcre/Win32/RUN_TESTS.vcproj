@@ -132,7 +132,7 @@
 			Name="CMake Rules"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\RUN_TESTS_force.rule">
+				RelativePath="CMakeFiles\RUN_TESTS_force.rule">
 				<FileConfiguration
 					Name="Debug|Win32">
 					<Tool
@@ -176,7 +176,7 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt">
+			RelativePath="..\CMakeLists.txt">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool

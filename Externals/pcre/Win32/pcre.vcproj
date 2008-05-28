@@ -74,7 +74,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -144,7 +144,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -214,7 +214,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -286,7 +286,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcre_EXPORTS"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -306,83 +306,83 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 			Name="Source Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\pcre_chartables.c">
+				RelativePath="pcre_chartables.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_compile.c">
+				RelativePath="..\pcre_compile.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_config.c">
+				RelativePath="..\pcre_config.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_dfa_exec.c">
+				RelativePath="..\pcre_dfa_exec.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_exec.c">
+				RelativePath="..\pcre_exec.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_fullinfo.c">
+				RelativePath="..\pcre_fullinfo.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_get.c">
+				RelativePath="..\pcre_get.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_globals.c">
+				RelativePath="..\pcre_globals.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_info.c">
+				RelativePath="..\pcre_info.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_maketables.c">
+				RelativePath="..\pcre_maketables.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_newline.c">
+				RelativePath="..\pcre_newline.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_ord2utf8.c">
+				RelativePath="..\pcre_ord2utf8.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_refcount.c">
+				RelativePath="..\pcre_refcount.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_study.c">
+				RelativePath="..\pcre_study.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_tables.c">
+				RelativePath="..\pcre_tables.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_try_flipped.c">
+				RelativePath="..\pcre_try_flipped.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_ucp_searchfuncs.c">
+				RelativePath="..\pcre_ucp_searchfuncs.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_valid_utf8.c">
+				RelativePath="..\pcre_valid_utf8.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_version.c">
+				RelativePath="..\pcre_version.c">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_xclass.c">
+				RelativePath="..\pcre_xclass.c">
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\config.h">
+				RelativePath="config.h">
 			</File>
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\pcre.h">
+				RelativePath="pcre.h">
 			</File>
 		</Filter>
 		<File
-			RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt">
+			RelativePath="..\CMakeLists.txt">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool
 					Name="VCCustomBuildTool"
-					Description="Building Custom Rule G:/WinMerge/WinMerge_pcre/Externals/pcre/CMakeLists.txt"
+					Description="Building Custom Rule pcre/CMakeLists.txt"
 					CommandLine="&quot;C:\Program Files\CMake 2.6\bin\cmake.exe&quot; -HG:/WinMerge/WinMerge_pcre/Externals/pcre -BG:/WinMerge/WinMerge_pcre/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp
 "
 					AdditionalDependencies="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindBZip2.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindZLIB.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindReadline.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\config-cmake.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre.h.generic;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_stringpiece.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcrecpparg.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_chartables.c.dist;G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;"
@@ -392,7 +392,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				Name="Release|Win32">
 				<Tool
 					Name="VCCustomBuildTool"
-					Description="Building Custom Rule G:/WinMerge/WinMerge_pcre/Externals/pcre/CMakeLists.txt"
+					Description="Building Custom Rule pcre/CMakeLists.txt"
 					CommandLine="&quot;C:\Program Files\CMake 2.6\bin\cmake.exe&quot; -HG:/WinMerge/WinMerge_pcre/Externals/pcre -BG:/WinMerge/WinMerge_pcre/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp
 "
 					AdditionalDependencies="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindBZip2.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindZLIB.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindReadline.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\config-cmake.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre.h.generic;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_stringpiece.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcrecpparg.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_chartables.c.dist;G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;"
@@ -402,7 +402,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				Name="MinSizeRel|Win32">
 				<Tool
 					Name="VCCustomBuildTool"
-					Description="Building Custom Rule G:/WinMerge/WinMerge_pcre/Externals/pcre/CMakeLists.txt"
+					Description="Building Custom Rule pcre/CMakeLists.txt"
 					CommandLine="&quot;C:\Program Files\CMake 2.6\bin\cmake.exe&quot; -HG:/WinMerge/WinMerge_pcre/Externals/pcre -BG:/WinMerge/WinMerge_pcre/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp
 "
 					AdditionalDependencies="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindBZip2.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindZLIB.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindReadline.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\config-cmake.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre.h.generic;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_stringpiece.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcrecpparg.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_chartables.c.dist;G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;"
@@ -412,7 +412,7 @@ copy $(OutDir)\pcre.lib ..\..\..\Build\pcre
 				Name="RelWithDebInfo|Win32">
 				<Tool
 					Name="VCCustomBuildTool"
-					Description="Building Custom Rule G:/WinMerge/WinMerge_pcre/Externals/pcre/CMakeLists.txt"
+					Description="Building Custom Rule pcre/CMakeLists.txt"
 					CommandLine="&quot;C:\Program Files\CMake 2.6\bin\cmake.exe&quot; -HG:/WinMerge/WinMerge_pcre/Externals/pcre -BG:/WinMerge/WinMerge_pcre/Externals/pcre/Win32 --check-stamp-file CMakeFiles/generate.stamp
 "
 					AdditionalDependencies="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeSystem.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCCompiler.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeSystemSpecificInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeGenericSystem.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\gcc.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\WindowsPaths.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeRCCompiler.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeRCInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCXXInformation.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\Windows-cl.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCPlatform.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\CMakeFiles\CMakeCXXPlatform.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\Platform\cl.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CMakeCommonLanguageInclude.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindBZip2.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\FindZLIB.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindReadline.cmake;G:\WinMerge\WinMerge_pcre\Externals\pcre\cmake\FindPackageHandleStandardArgs.cmake;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFileCXX.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckFunctionExists.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckTypeSize.cmake&quot;;&quot;C:\Program Files\CMake 2.6\share\cmake-2.6\Modules\CheckIncludeFile.cmake&quot;;G:\WinMerge\WinMerge_pcre\Externals\pcre\config-cmake.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre.h.generic;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_stringpiece.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcrecpparg.h.in;G:\WinMerge\WinMerge_pcre\Externals\pcre\pcre_chartables.c.dist;G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt;"

@@ -71,7 +71,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -139,7 +139,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -207,7 +207,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -232,13 +232,13 @@
 				AdditionalOptions=" /Zm1000"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"
+				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
 				ExceptionHandling="FALSE"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/RelWithDebInfo/pcretest.pdb"
+				ProgramDataBaseFileName="$(IntDir)\pcretest.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="1"/>
@@ -248,14 +248,14 @@
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
 				AdditionalDependencies="kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib $(OutDir)\pcreposix.lib $(OutDir)\pcre.lib $(NOINHERIT)"
-				OutputFile="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\RelWithDebInfo\pcretest.exe"
+				OutputFile="$(OutDir)\pcretest.exe"
 				Version="0.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile="G:/WinMerge/WinMerge_pcre/Externals/pcre/Win32/RelWithDebInfo/pcretest.pdb"
+				ProgramDatabaseFile="$(IntDir)\pcretest.pdb"
 				SubSystem="1"
-				ImportLibrary="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32\RelWithDebInfo\pcretest.lib"/>
+				ImportLibrary="$(OutDir)\pcretest.lib"/>
 			<Tool
 				Name="VCMIDLTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
@@ -277,7 +277,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
-				AdditionalIncludeDirectories="G:\WinMerge\WinMerge_pcre\Externals\pcre\Win32;G:\WinMerge\WinMerge_pcre\Externals\pcre;"/>
+				AdditionalIncludeDirectories=".;.."/>
 			<Tool
 				Name="VCWebServiceProxyGeneratorTool"/>
 			<Tool
@@ -297,11 +297,11 @@
 			Name="Source Files"
 			Filter="">
 			<File
-				RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\pcretest.c">
+				RelativePath="..\pcretest.c">
 			</File>
 		</Filter>
 		<File
-			RelativePath="G:\WinMerge\WinMerge_pcre\Externals\pcre\CMakeLists.txt">
+			RelativePath="..\CMakeLists.txt">
 			<FileConfiguration
 				Name="Debug|Win32">
 				<Tool
