@@ -56,6 +56,14 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
 
 /**
  * @brief Collect file- and directory-names to list.
+ * This function walks given folders and adds found subfolders and files into
+ * lists. There are two modes, determined by the @p depth:
+ * - in non-recursive mode we walk only given folders, and add files.
+ *   contained. Subfolders are added as folder items, not walked into.
+ * - in recursive mode we walk all subfolders and add the files they
+ *   contain into list.
+ *
+ * Items are tested against file filters in this function.
  * 
  * @param [in] paths Root paths of compare
  * @param [in] leftsubdir Left side subdirectory under root path
