@@ -3,7 +3,7 @@
  *
  * @brief Implementation of helper functions involving locale
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -121,7 +121,9 @@ String GetLocaleStr(LPCTSTR str, int decimalDigits)
 }
 
 /**
- * @brief Return time displayed appropriately, as string
+ * @brief Convert unix time to string to show in the GUI.
+ * @param [in] tim Time in seconds since 1.1.1970.
+ * @return Time as a string, proper to show in the GUI.
  */
 String TimeString(const __int64 * tim)
 {
