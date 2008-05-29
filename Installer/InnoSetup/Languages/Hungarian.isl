@@ -381,6 +381,7 @@ SlovakLanguage=Szlovák menük és párbeszédablakok
 SpanishLanguage=Spanyol menük és párbeszédablakok
 SwedishLanguage=Svéd menük és párbeszédablakok
 TurkishLanguage=török menük és párbeszédablakok
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=Integrálás az Intézõ &context-menüjéhez

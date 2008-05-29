@@ -365,6 +365,7 @@ SlovakLanguage=Menu e finestre di dialogo in slovacco
 SpanishLanguage=Menu e finestre di dialogo in spagnolo
 SwedishLanguage=Menu e finestre di dialogo in svedese
 TurkishLanguage=Menu e finestre di dialogo in turco
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Attiva l'integrazione con il menu contestuale di Explorer

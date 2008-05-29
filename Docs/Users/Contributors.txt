@@ -112,6 +112,10 @@ Localization:
 * Turkish:
   Ozkan UNVER
 
+* Ukranian
+  Vitaliy Stopchans'kyy
+  Warrior
+
 
 Other Contributors (code, ideas, testing..):
 * Andre Arpin

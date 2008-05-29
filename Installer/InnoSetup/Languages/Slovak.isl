@@ -290,6 +290,7 @@ SlovakLanguage=Slovenské ponuky a dialógy
 SpanishLanguage=Španielske ponuky a dialógy
 SwedishLanguage=Švédske ponuky a dialógy
 TurkishLanguage=Turecké ponuky a dialógy
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Zapni integráciu do kontextovej ponuky Prieskumníka

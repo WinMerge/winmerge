@@ -352,6 +352,7 @@ SlovakLanguage=Slovakiska menyer och dialoger
 SpanishLanguage=Spanska menyer och dialoger
 SwedishLanguage=Svenska menyer och dialoger
 TurkishLanguage=Turkiska menyer och dialoger
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Möjliggör integration med Explorers menyer

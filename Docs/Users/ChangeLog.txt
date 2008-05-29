@@ -7,6 +7,7 @@ WinMerge 2.9.1.3
   BugFix: Location Pane flickers when resizing (#1740106)
   BugFix: Command line  description text starting with "/" confused
     WinMerge (#1973225)
+  New translation: Ukrainian (#1973149, #1974021)
 
 WinMerge 2.9.1.2 - 2008-05-23 (r5362)
   Optimize location pane (r5341, r5342, r5346, r5351, r5355, r5356)

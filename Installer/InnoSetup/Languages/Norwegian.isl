@@ -358,6 +358,7 @@ SlovakLanguage=Slovakiske menyer og dialoger
 SpanishLanguage=Spanske menyer og dialoger
 SwedishLanguage=Svenske menyer og dialoger
 TurkishLanguage=Türkçe menyer og dialoger
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Aktiver integrasjon i Windows utforsker sin kontekstmeny
