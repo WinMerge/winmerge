@@ -19,24 +19,43 @@
  *
  * @brief Implementation for DiffFileInfo routines
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "DirItem.h"
 #include "DiffFileInfo.h"
 #include "unicoder.h"
+#include "UnicodeString.h"
 
 /**
- * @brief Clears FileInfo data.
+ * @brief Convert file flags to string presentation.
+ * This function converts file flags to a string presentation that can be
+ * shown in the GUI.
+ * @return File flags as a string.
  */
-/*void DiffFileInfo::Clear()
+String DiffFileFlags::ToString() const
 {
-	DirItem::Clear();
-	bVersionChecked = false;
-	encoding.Clear();
-	m_textStats.clear();
-}*/
+	String sflags;
+	if (attributes & FILE_ATTRIBUTE_READONLY)
+		sflags += _T("R");
+	if (attributes & FILE_ATTRIBUTE_HIDDEN)
+		sflags += _T("H");
+	if (attributes & FILE_ATTRIBUTE_SYSTEM)
+		sflags += _T("S");
+	if (attributes & FILE_ATTRIBUTE_ARCHIVE)
+		sflags += _T("A");
+
+	if ((coding & coding_mask) == UTF_8)
+		sflags += _T("8");
+	if ((coding & coding_mask) == UCS_2BE)
+		sflags += _T("B");
+	if ((coding & coding_mask) == UCS_2LE)
+		sflags += _T("L");
+	if ((coding & coding_mask) == UCS_4)
+		sflags += _T("4");
+	return sflags;
+}
 
 /**
  * @brief Clears FileInfo data.

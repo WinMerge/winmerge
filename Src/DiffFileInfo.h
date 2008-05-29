@@ -42,33 +42,6 @@
  */
 struct DiffFileFlags : public FileFlags
 {
-	DWORD coding; /**< Coding info for item */
-	DiffFileFlags() : coding(0) { }
-	
-	/// Convert flags and coding to string for UI.
-	String toString() const
-		{
-			String sflags;
-			if (attributes & FILE_ATTRIBUTE_READONLY)
-				sflags += _T("R");
-			if (attributes & FILE_ATTRIBUTE_HIDDEN)
-				sflags += _T("H");
-			if (attributes & FILE_ATTRIBUTE_SYSTEM)
-				sflags += _T("S");
-			if (attributes & FILE_ATTRIBUTE_ARCHIVE)
-				sflags += _T("A");
-
-			if ((coding & coding_mask) == UTF_8)
-				sflags += _T("8");
-			if ((coding & coding_mask) == UCS_2BE)
-				sflags += _T("B");
-			if ((coding & coding_mask) == UCS_2LE)
-				sflags += _T("L");
-			if ((coding & coding_mask) == UCS_4)
-				sflags += _T("4");
-			return sflags;
-		}
-
 	/**
 	* @brief Encodings supported.
 	*/
@@ -80,6 +53,10 @@ struct DiffFileFlags : public FileFlags
 		UCS_2LE = 0x4000,
 		coding_mask = 0x7000,
 	};
+
+	DWORD coding; /**< Coding info for item */
+	DiffFileFlags() : coding(0) { }
+	String ToString() const;
 };
 
 
