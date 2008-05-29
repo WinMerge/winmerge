@@ -1920,43 +1920,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="dlgutil.cpp">
-				<FileConfiguration
-					Name="UnicodeRelease|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="UnicodeDebug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="0"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-						BrowseInformation="1"/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32">
-					<Tool
-						Name="VCCLCompilerTool"
-						Optimization="1"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="Common\dllproxy.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6000,9 +5963,6 @@
 			</File>
 			<File
 				RelativePath="DirViewColItems.h">
-			</File>
-			<File
-				RelativePath="dlgutil.h">
 			</File>
 			<File
 				RelativePath="Common\dllproxy.h">

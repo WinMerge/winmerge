@@ -39,7 +39,6 @@
 #include "OptionsDef.h"
 #include "MainFrm.h"
 #include "OptionsMgr.h"
-#include "dlgutil.h"
 #include "FileOrFolderSelect.h"
 
 #ifdef COMPILE_MULTIMON_STUBS
@@ -155,7 +154,7 @@ BOOL COpenDlg::OnInitDialog()
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("OpenDlg"), false); // persist size via registry
 
-	dlgutil_CenterToMainFrame(this);
+	CMainFrame::CenterToMainFrame(this);
 
 	m_ctlLeft.LoadState(_T("Files\\Left"));
 	m_ctlRight.LoadState(_T("Files\\Right"));

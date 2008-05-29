@@ -3,14 +3,14 @@
  *
  * @brief Implementation of the dialog used to select codepages
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
+#include "MainFrm.h"
 #include "resource.h"
 #include "LoadSaveCodepageDlg.h"
-#include "dlgutil.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -79,7 +79,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	theApp.TranslateDialog(m_hWnd);
 	CDialog::OnInitDialog();
 
-	dlgutil_SetMainIcon(this);
+	CMainFrame::SetMainIcon(this);
 	
 	// setup handler for resizing this dialog	
 	m_constraint.InitializeCurrentSize(this);
@@ -101,7 +101,7 @@ BOOL CLoadSaveCodepageDlg::OnInitDialog()
 	m_constraint.SubclassWnd(); // install subclassing
 	m_constraint.LoadPosition(_T("ResizeableDialogs"), _T("LoadSaveCodepageDlg"), false); // persist size via registry
 
-	dlgutil_CenterToMainFrame(this);
+	CMainFrame::CenterToMainFrame(this);
 
 	SetDlgItemText(IDC_LEFT_FILES_LABEL, m_sAffectsLeftString);
 	SetDlgItemText(IDC_RIGHT_FILES_LABEL, m_sAffectsRightString);

@@ -1,25 +1,54 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="8,00"
 	Name="pcreposix"
 	ProjectGUID="{52D81969-2CFB-4CE5-A495-18AB8999359C}"
-	SccProjectName=""
-	SccLocalPath=""
-	Keyword="Win32Proj">
+	Keyword="Win32Proj"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="../../../Build/pcre/Debug"
 			IntermediateDirectory="../../../BuildTmp/pcre/pcreposix.dir/Debug"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcreposix_EXPORTS"
+				MkTypLibCompatible="false"
+				TargetEnvironment="1"
+				GenerateStublessProxies="true"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
@@ -27,7 +56,7 @@
 				InlineFunctionExpansion="0"
 				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcreposix_EXPORTS"
-				ExceptionHandling="FALSE"
+				ExceptionHandling="0"
 				BasicRuntimeChecks="1"
 				RuntimeLibrary="3"
 				AssemblerListingLocation="Debug"
@@ -35,9 +64,19 @@
 				ProgramDataBaseFileName="$(IntDir)/pcreposixd.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="1"/>
+				CompileAs="1"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcreposix_EXPORTS"
+				AdditionalIncludeDirectories=".;.."
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
@@ -46,50 +85,70 @@
 				Version="0.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(IntDir)/pcreposixd.pdb"
-				ImportLibrary="$(OutDir)/pcreposixd.lib"/>
+				ImportLibrary="$(OutDir)/pcreposixd.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcreposix_EXPORTS"
-				MkTypLibCompatible="FALSE"
-				TargetEnvironment="1"
-				GenerateStublessProxies="TRUE"
-				TypeLibraryName="$(InputName).tlb"
-				OutputDirectory="$(IntDir)"
-				HeaderFileName="$(InputName).h"
-				DLLDataFileName=""
-				InterfaceIdentifierFileName="$(InputName)_i.c"
-				ProxyFileName="$(InputName)_p.c"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Debug\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCWebDeploymentTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="../../../Build/pcre/Release"
 			IntermediateDirectory="../../../BuildTmp/pcre/pcreposix.dir\Release"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcreposix_EXPORTS"
+				MkTypLibCompatible="false"
+				TargetEnvironment="1"
+				GenerateStublessProxies="true"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
@@ -97,15 +156,25 @@
 				InlineFunctionExpansion="2"
 				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcreposix_EXPORTS"
-				ExceptionHandling="FALSE"
+				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)/pcreposix.pdb"
 				WarningLevel="3"
-				CompileAs="1"/>
+				CompileAs="1"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcreposix_EXPORTS"
+				AdditionalIncludeDirectories=".;.."
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386"
@@ -115,48 +184,68 @@
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
 				ProgramDatabaseFile="$(IntDir)/pcreposix.pdb"
-				ImportLibrary="$(OutDir)/pcreposix.lib"/>
+				ImportLibrary="$(OutDir)/pcreposix.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcreposix_EXPORTS"
-				MkTypLibCompatible="FALSE"
-				TargetEnvironment="1"
-				GenerateStublessProxies="TRUE"
-				TypeLibraryName="$(InputName).tlb"
-				OutputDirectory="$(IntDir)"
-				HeaderFileName="$(InputName).h"
-				DLLDataFileName=""
-				InterfaceIdentifierFileName="$(InputName)_i.c"
-				ProxyFileName="$(InputName)_p.c"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;Release\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCWebDeploymentTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="MinSizeRel|Win32"
 			OutputDirectory="../../../Build/pcre/MinSizeRel"
 			IntermediateDirectory="../../../BuildTmp/pcre/pcreposix.dir/MinSizeRel"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcreposix_EXPORTS"
+				MkTypLibCompatible="false"
+				TargetEnvironment="1"
+				GenerateStublessProxies="true"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
@@ -164,15 +253,25 @@
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcreposix_EXPORTS"
-				ExceptionHandling="FALSE"
+				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)/pcreposix.pdb"
 				WarningLevel="3"
-				CompileAs="1"/>
+				CompileAs="1"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcreposix_EXPORTS"
+				AdditionalIncludeDirectories=".;.."
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386"
@@ -182,48 +281,68 @@
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
 				ProgramDatabaseFile="$(IntDir)/pcreposix.pdb"
-				ImportLibrary="$(OutDir)/pcreposix.lib"/>
+				ImportLibrary="$(OutDir)/pcreposix.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcreposix_EXPORTS"
-				MkTypLibCompatible="FALSE"
-				TargetEnvironment="1"
-				GenerateStublessProxies="TRUE"
-				TypeLibraryName="$(InputName).tlb"
-				OutputDirectory="$(IntDir)"
-				HeaderFileName="$(InputName).h"
-				DLLDataFileName=""
-				InterfaceIdentifierFileName="$(InputName)_i.c"
-				ProxyFileName="$(InputName)_p.c"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCWebDeploymentTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="RelWithDebInfo|Win32"
 			OutputDirectory="../../../Build/pcre/RelWithDebInfo"
 			IntermediateDirectory="../../../BuildTmp/pcre/pcreposix.dir/RelWithDebInfo"
 			ConfigurationType="2"
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			UseOfMFC="0"
-			ATLMinimizesCRunTimeLibraryUsage="FALSE"
-			CharacterSet="2">
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcreposix_EXPORTS"
+				MkTypLibCompatible="false"
+				TargetEnvironment="1"
+				GenerateStublessProxies="true"
+				TypeLibraryName="$(InputName).tlb"
+				OutputDirectory="$(IntDir)"
+				HeaderFileName="$(InputName).h"
+				DLLDataFileName=""
+				InterfaceIdentifierFileName="$(InputName)_i.c"
+				ProxyFileName="$(InputName)_p.c"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=" /Zm1000"
@@ -231,16 +350,26 @@
 				InlineFunctionExpansion="1"
 				AdditionalIncludeDirectories=".;.."
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcreposix_EXPORTS"
-				ExceptionHandling="FALSE"
+				ExceptionHandling="0"
 				RuntimeLibrary="2"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
 				ProgramDataBaseFileName="$(IntDir)/pcreposix.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
-				CompileAs="1"/>
+				CompileAs="1"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcreposix_EXPORTS"
+				AdditionalIncludeDirectories=".;.."
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /STACK:10000000 /machine:I386 /debug"
@@ -249,41 +378,34 @@
 				Version="0.0"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
-				GenerateDebugInformation="TRUE"
+				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(IntDir)/pcreposix.pdb"
-				ImportLibrary="$(OutDir)/pcreposix.lib"/>
+				ImportLibrary="$(OutDir)/pcreposix.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcreposix_EXPORTS"
-				MkTypLibCompatible="FALSE"
-				TargetEnvironment="1"
-				GenerateStublessProxies="TRUE"
-				TypeLibraryName="$(InputName).tlb"
-				OutputDirectory="$(IntDir)"
-				HeaderFileName="$(InputName).h"
-				DLLDataFileName=""
-				InterfaceIdentifierFileName="$(InputName)_i.c"
-				ProxyFileName="$(InputName)_p.c"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCManifestTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"
-				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,HAVE_CONFIG_H,_CRT_SECURE_NO_DEPRECATE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,pcreposix_EXPORTS"
-				AdditionalIncludeDirectories=".;.."/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCAppVerifierTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
+				Name="VCWebDeploymentTool"
+			/>
 			<Tool
-				Name="VCWebDeploymentTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -291,55 +413,66 @@
 	<Files>
 		<Filter
 			Name="Source Files"
-			Filter="">
+			>
 			<File
-				RelativePath="..\pcreposix.c">
+				RelativePath="..\pcreposix.c"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
-			Filter="">
+			>
 			<File
-				RelativePath="..\pcreposix.h">
+				RelativePath="..\pcreposix.h"
+				>
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\CMakeLists.txt">
+			RelativePath="..\CMakeLists.txt"
+			>
 			<FileConfiguration
-				Name="Debug|Win32">
+				Name="Debug|Win32"
+				>
 				<Tool
 					Name="VCCustomBuildTool"
 					Description=""
 					CommandLine=""
 					AdditionalDependencies=""
-					Outputs=""/>
+					Outputs=""
+				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="Release|Win32">
+				Name="Release|Win32"
+				>
 				<Tool
 					Name="VCCustomBuildTool"
 					Description=""
 					CommandLine=""
 					AdditionalDependencies=""
-					Outputs=""/>
+					Outputs=""
+				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="MinSizeRel|Win32">
+				Name="MinSizeRel|Win32"
+				>
 				<Tool
 					Name="VCCustomBuildTool"
 					Description=""
 					CommandLine=""
 					AdditionalDependencies=""
-					Outputs=""/>
+					Outputs=""
+				/>
 			</FileConfiguration>
 			<FileConfiguration
-				Name="RelWithDebInfo|Win32">
+				Name="RelWithDebInfo|Win32"
+				>
 				<Tool
 					Name="VCCustomBuildTool"
 					Description=""
 					CommandLine=""
 					AdditionalDependencies=""
-					Outputs=""/>
+					Outputs=""
+				/>
 			</FileConfiguration>
 		</File>
 	</Files>
