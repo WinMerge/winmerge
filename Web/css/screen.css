@@ -13,6 +13,11 @@ code,pre {
 	font-size: 1em;
 }
 
+h1 { font-size: 300%; }
+h2 { font-size: 200%; }
+h3 { font-size: 140%; }
+h4 { font-size: 120%; }
+
 ul {
 	list-style-type: square;
 }
