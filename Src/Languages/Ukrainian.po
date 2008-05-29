@@ -1,6 +1,10 @@
 # This file is part from WinMerge <http://winmerge.org/>
 # Released under the "GNU General Public License"
 #
+# Translators:
+# * Warrior <warr11r at rambler.ru>
+# * Vitaliy Stopchans'kyy <stopcha at gmail.com>
+#
 # ID line follows -- this is updated by SVN
 # $Id$
 #
@@ -10,8 +14,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
 "PO-Revision-Date: 2008-05-18 00:10+0200\n"
-"Last-Translator: Warrior <warr11r@rambler.ru>\n"
-"Language-Team: Warrior <warr11r@users.sourceforge.net>\n"
+"Last-Translator: Warrior <warr11r at rambler.ru>\n"
+"Language-Team: Ukrainian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CP1251\n"
 "Content-Transfer-Encoding: 8bit\n"
