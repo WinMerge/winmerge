@@ -21,7 +21,6 @@
 #include "locality.h"
 #include "unicoder.h"
 #include "coretools.h"
-#include "FolderCmp.h"
 
 // shlwapi.h prior to VC6SP6 might lack definition of StrIsIntlEqual
 #ifdef UNICODE
@@ -594,8 +593,21 @@ static String ColREOLTypeGet(const CDiffContext * pCtxt, const void *p)
 
 /**
  * @name Functions to sort each type of column info.
+ * These functions are used to sort information in folder compare GUI. Each
+ * column info (type) has its own function to compare the data. Each
+ * function receives three parameters:
+ * - pointer to compare context
+ * - two parameters for data to compare (type varies)
+ * Return value is -1, 0, or 1, where 0 means datas are identical.
  */
-/* @{ */ 
+/* @{ */
+/**
+ * @brief Compare file names.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first name to compare.
+ * @param [in] q Pointer to DIFFITEM having second name to compare.
+ * @return Compare result.
+ */
 static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
@@ -605,14 +617,15 @@ static int ColFileNameSort(const CDiffContext *pCtxt, const void *p, const void 
 	if (!ldi.diffcode.isDirectory() && rdi.diffcode.isDirectory())
 		return 1;
 	return lstrcmpi(ColFileNameGet(pCtxt, p).c_str(), ColFileNameGet(pCtxt, q).c_str());
-	//return ldi.sLeftFilename.CompareNoCase(rdi.sLeftFilename);
 }
-/*static int ColNameSort(const CDiffContext *, const void *p, const void *q)
-{
-	const CString &r = *static_cast<const CString*>(p);
-	const CString &s = *static_cast<const CString*>(q);
-	return r.CompareNoCase(s);
-}*/
+
+/**
+ * @brief Compare file name extensions.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p First file name extension to compare.
+ * @param [in] q Second file name extension to compare.
+ * @return Compare result.
+ */
 static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	const String &r = *static_cast<const String*>(p);
@@ -620,46 +633,118 @@ static int ColExtSort(const CDiffContext *pCtxt, const void *p, const void *q)
 	return lstrcmpi(PathFindExtension(r.c_str()), PathFindExtension(s.c_str()));
 	//return ColExtGet(pCtxt, p).CompareNoCase(ColExtGet(pCtxt, q));
 }
+
+/**
+ * @brief Compare folder names.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first folder name to compare.
+ * @param [in] q Pointer to DIFFITEM having second folder name to compare.
+ * @return Compare result.
+ */
 static int ColPathSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	return lstrcmpi(ColPathGet(pCtxt, p).c_str(), ColPathGet(pCtxt, q).c_str());
 }
+
+/**
+ * @brief Compare compare results.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first result to compare.
+ * @param [in] q Pointer to DIFFITEM having second result to compare.
+ * @return Compare result.
+ */
 static int ColStatusSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
 	return cmpdiffcode(rdi.diffcode.diffcode, ldi.diffcode.diffcode);
 }
+
+/**
+ * @brief Compare file times.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p First time to compare.
+ * @param [in] q Second time to compare.
+ * @return Compare result.
+ */
 static int ColTimeSort(const CDiffContext *, const void *p, const void *q)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	const __int64 &s = *static_cast<const __int64*>(q);
 	return cmp64(r, s);
 }
+
+/**
+ * @brief Compare file sizes.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p First size to compare.
+ * @param [in] q Second size to compare.
+ * @return Compare result.
+ */
 static int ColSizeSort(const CDiffContext *, const void *p, const void *q)
 {
 	const __int64 &r = *static_cast<const __int64*>(p);
 	const __int64 &s = *static_cast<const __int64*>(q);
 	return cmp64(r, s);
 }
+
+/**
+ * @brief Compare difference counts.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p First count to compare.
+ * @param [in] q Second count to compare.
+ * @return Compare result.
+ */
 static int ColDiffsSort(const CDiffContext *, const void *p, const void *q)
 {
 	const int &r = *static_cast<const int*>(p);
 	const int &s = *static_cast<const int*>(q);
 	return r - s;
 }
+
+/**
+ * @brief Compare newer/older statuses.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first status to compare.
+ * @param [in] q Pointer to DIFFITEM having second status to compare.
+ * @return Compare result.
+ */
 static int ColNewerSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	return ColNewerGet(pCtxt, p).compare(ColNewerGet(pCtxt, q));
 }
+
+/**
+ * @brief Compare left-side file versions.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first version to compare.
+ * @param [in] q Pointer to DIFFITEM having second version to compare.
+ * @return Compare result.
+ */
 static int ColLversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	return ColLversionGet(pCtxt, p).compare(ColLversionGet(pCtxt, q));
 }
+
+/**
+ * @brief Compare right-side file versions.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first version to compare.
+ * @param [in] q Pointer to DIFFITEM having second version to compare.
+ * @return Compare result.
+ */
 static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void *q)
 {
 	return ColRversionGet(pCtxt, p).compare(ColRversionGet(pCtxt, q));
 }
+
+/**
+ * @brief Compare binary statuses.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to DIFFITEM having first status to compare.
+ * @param [in] q Pointer to DIFFITEM having second status to compare.
+ * @return Compare result.
+ */
 static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
@@ -669,12 +754,28 @@ static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 
 	return i - j;
 }
+
+/**
+ * @brief Compare file flags.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to first flag structure to compare.
+ * @param [in] q Pointer to second flag structure to compare.
+ * @return Compare result.
+ */
 static int ColAttrSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileFlags &r = *static_cast<const DiffFileFlags *>(p);
 	const DiffFileFlags &s = *static_cast<const DiffFileFlags *>(q);
 	return r.ToString().compare(s.ToString());
 }
+
+/**
+ * @brief Compare file encodings.
+ * @param [in] pCtxt Pointer to compare context.
+ * @param [in] p Pointer to first structure to compare.
+ * @param [in] q Pointer to second structure to compare.
+ * @return Compare result.
+ */
 static int ColEncodingSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DiffFileInfo &r = *static_cast<const DiffFileInfo *>(p);
