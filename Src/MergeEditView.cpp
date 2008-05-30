@@ -171,7 +171,6 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_FILE_MERGINGMODE, OnMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_FILE_MERGINGMODE, OnUpdateMergingMode)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_MERGINGMODE, OnUpdateMergingStatus)
-	ON_COMMAND(ID_FILE_CLOSE, OnWindowClose)
 	ON_WM_VSCROLL ()
 	ON_WM_HSCROLL ()
 	ON_COMMAND(ID_EDIT_COPY_LINENUMBERS, OnEditCopyLineNumbers)
@@ -2573,17 +2572,6 @@ void CMergeEditView::GotoLine(UINT nLine, BOOL bRealLine, int pane)
 	// work with goto target file.
 	if ((bLeftIsCurrent && pane == 1) || (!bLeftIsCurrent && pane == 0))
 		pSplitterWnd->ActivateNext();
-}
-
-/**
- * @brief Called when user selects Window/Close.
- * Route closing to CMainFrame::OnClose().
- * @todo We probably should just remove this OnClose() handling for
- *  CMergeEditView and handle it in CMainFrame.
- */
-void CMergeEditView::OnWindowClose()
-{
-	GetParentFrame()->PostMessage(WM_CLOSE, 0, 0);
 }
 
 /**

@@ -280,7 +280,6 @@ protected:
 	afx_msg void OnMergingMode();
 	afx_msg void OnUpdateMergingMode(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateMergingStatus(CCmdUI* pCmdUI);
-	afx_msg void OnWindowClose();
 	afx_msg void OnHScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnVScroll (UINT nSBCode, UINT nPos, CScrollBar * pScrollBar);
 	afx_msg void OnEditCopyLineNumbers();
