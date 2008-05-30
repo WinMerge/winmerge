@@ -17,14 +17,14 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// EditorFilePathBar.h : interface of the CEditorFilePathBar class
-
-// a dialog bar for the both files path in the editor
-//   looks like a statusBar (font, height)
-//   use CFilepathEdit instead of CEdit
-//   display a tip for each path (as a tooltip)
-
-/////////////////////////////////////////////////////////////////////////////
+/** 
+ * @file  EditorFilePathBar.h
+ *
+ * @brief Interface of the CEditorFilePathBar class.
+ *
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #ifndef __EDITORFILEPATHBAR_H__
 #define __EDITORFILEPATHBAR_H__
@@ -32,7 +32,7 @@
 #include "FilepathEdit.h"
 
 /**
- * Interface to update the header data
+ * Interface to update the header data.
  */
 class IHeaderBar
 {
@@ -43,7 +43,10 @@ public:
 
 
 /**
- * @brief dialog bar with two controls for left/right path
+ * @brief A dialog bar with two controls for left/right path.
+ * This class is a dialog bar for the both files path in the editor. 
+ * The bar looks like a statusBar (font, height). The control
+ * displays a tip for each path (as a tooltip). 
  */
 class CEditorFilePathBar : public CDialogBar, public IHeaderBar
 {
@@ -78,7 +81,7 @@ protected:
 
 private:
 	// this dialog uses custom edit boxes
-	CFilepathEdit m_Edit[2];
+	CFilepathEdit m_Edit[2]; /**< Edit controls. */
 	CFont * m_pFont; /**< Font for editcontrols */
 };
 

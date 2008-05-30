@@ -18,8 +18,13 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-// EditorFilepathBar.cpp : implementation of the CEditorFilepathBar class
-//
+/** 
+ * @file  DiffList.cpp
+ *
+ * @brief Implementation file for CEditorFilepathBar class
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
 #include "Merge.h"
@@ -32,25 +37,37 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditorFilePathBar construction destruction
+BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
+	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
+END_MESSAGE_MAP()
 
+
+/**
+ * @brief Constructor.
+ */
 CEditorFilePathBar::CEditorFilePathBar()
 : m_pFont(NULL)
 {
 }
 
+/**
+ * @brief Destructor.
+ */
 CEditorFilePathBar::~CEditorFilePathBar()
 {
 	delete m_pFont;
 }
 
-
+/**
+ * @brief Create the window.
+ * This function subclasses the edit controls.
+ * @param [in] pParentWnd Parent window for edit controls.
+ * @return TRUE if succeeded, FALSE otherwise.
+ */
 BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 {
 	if (! CDialogBar::Create(pParentWnd, CEditorFilePathBar::IDD, 
-													 CBRS_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, 
-													 CEditorFilePathBar::IDD))
+			CBRS_TOP | CBRS_TOOLTIPS | CBRS_FLYBY, CEditorFilePathBar::IDD))
 		return FALSE;
 
 	// subclass the two custom edit boxes
@@ -59,10 +76,6 @@ BOOL CEditorFilePathBar::Create(CWnd* pParentWnd)
 
 	return TRUE;
 };
-
-
-
-/////////////////////////////////////////////////////////////////////////////
 
 /**
  * @brief Set look of headerbars similar to other window.
@@ -109,7 +122,7 @@ BOOL CEditorFilePathBar::LookLikeThisWnd(const CWnd * pWnd)
 }
 
 /** 
- * @brief resize both controls to an equal size
+ * @brief Resize both controls to an equal size.
  */
 void CEditorFilePathBar::Resize()
 {
@@ -135,7 +148,11 @@ void CEditorFilePathBar::Resize()
 	m_Edit[1].RefreshDisplayText();
 }
 /** 
- * @brief resize both controls to given sizes (the ones of the splitter views)
+ * @brief Set widths.
+ * This function resizes both controls to given size. The width is usually
+ * same as the splitter view width.
+ * @param [in] leftWidth Left-side control width.
+ * @param [in] rightWidth Right-side control width.
  */
 void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
 {
@@ -157,14 +174,10 @@ void CEditorFilePathBar::Resize(int leftWidth, int rightWidth)
 	m_Edit[1].RefreshDisplayText();
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CEditorFilePathBar message handlers
-
-BEGIN_MESSAGE_MAP(CEditorFilePathBar, CDialogBar)
-	ON_NOTIFY_EX (TTN_NEEDTEXT, 0, OnToolTipNotify)
-END_MESSAGE_MAP()
-
-
+/**
+ * @brief Called when tooltip is about to be shown.
+ * In this function we set the tooltip text shown.
+ */
 BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * pResult)
 {
 	if (m_hWnd == NULL)
@@ -207,9 +220,7 @@ BOOL CEditorFilePathBar::OnToolTipNotify(UINT id, NMHDR * pTTTStruct, LRESULT * 
 			return(TRUE);
 		}
 	}
-
 	return(FALSE);
-
 }
 
 /** 
@@ -226,7 +237,7 @@ void CEditorFilePathBar::SetText(int pane, LPCTSTR lpszString)
 	if (m_hWnd == NULL)
 		return;
 
-	m_Edit[pane].SetWholeText(lpszString);
+	m_Edit[pane].SetOriginalText(lpszString);
 }
 
 /** 

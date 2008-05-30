@@ -23,13 +23,11 @@
  *
  * @brief Declaration file for CFilepathEdit class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef __FILEPATHEDIT_H__
 #define __FILEPATHEDIT_H__
-
-int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath);
 
 /** 
  * @brief Read-only control to display a filepath. 
@@ -47,7 +45,7 @@ public :
 	LPCTSTR GetUpdatedTipText(CDC * pDC, int maxWidth);
 
 	void SetActive(BOOL bActive);
-	void SetWholeText(LPCTSTR lpszString );
+	void SetOriginalText(LPCTSTR lpszString );
 	void SetBackColor(COLORREF rgb);
 	void SetTextColor(COLORREF rgb);
 
@@ -56,17 +54,17 @@ protected:
 	HBRUSH CtlColor(CDC* pDC, UINT nCtlColor);
 	DECLARE_MESSAGE_MAP();
 
-	void GetWholeText( CString& rString ) const;
+	void GetOriginalText( CString& rString ) const;
 
 private:
 	void CustomCopy(int iBegin, int iEnd =-1);
 
 	CString m_sToolTipString; /**< buffer for return data from GetUpdatedTipText */
-	CString m_sWholeText; /**< Full path that was given to control */
-	BOOL m_bActive;
-	COLORREF m_crText;
-	COLORREF m_crBackGnd;
-	CBrush m_brBackGnd;
+	CString m_sOriginalText; /**< Full path that was given to control */
+	BOOL m_bActive; /**< Is the control active-looking? */
+	COLORREF m_crText; /**< Control's text color. */
+	COLORREF m_crBackGnd; /**< Control's background color. */
+	CBrush m_brBackGnd; /**< Background brush for the control. */
 };
 
 

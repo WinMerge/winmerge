@@ -23,7 +23,7 @@
  *
  * @brief Implementation of the CFilepathEdit class.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "stdafx.h"
@@ -39,8 +39,8 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
-// CFilepathEdit message handlers
+static int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath);
+
 BEGIN_MESSAGE_MAP(CFilepathEdit, CEdit)
 	ON_WM_CONTEXTMENU()
 	ON_WM_CTLCOLOR_REFLECT()
@@ -48,13 +48,13 @@ END_MESSAGE_MAP()
 
 
 /** 
- * @brief Format path for display in header control. 
+ * @brief Format the path for display in header control. 
  *
- * Formats path so it fits to given lenght, tries to end lines after
- * slash chars.
+ * Formats path so it fits to given length, tries to end lines after
+ * slash characters.
  *
  * @param [in] pDC Pointer to draw context.
- * @param [in] maxWidth Maximum width of string.
+ * @param [in] maxWidth Maximum width of the string in the GUI.
  * @param [in,out] sFilepath:
  * - in: string to format
  * - out: formatted string
@@ -71,7 +71,7 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 
 		// find the next truncation point
 		int iEndMin = 0;
-		int iEndMax = sFilepath.GetLength()-iBegin + 1;
+		int iEndMax = sFilepath.GetLength() - iBegin + 1;
 		while(1)
 		{
 			int iEnd = (iEndMin + iEndMax) / 2;
@@ -89,98 +89,104 @@ int FormatFilePathForDisplayWidth(CDC * pDC, int maxWidth, CString & sFilepath)
 		// here iEndMin is the last character displayed in maxWidth
 
 		// exit the loop if we can display the remaining characters with no truncation
-		if (iBegin+iEndMin == sFilepath.GetLength())
+		if (iBegin + iEndMin == sFilepath.GetLength())
 			break;
 
 		// truncate the text to the previous "\" if possible
 		line = sFilepath.Mid(iBegin, iEndMin);
 		int lastSlash = line.ReverseFind('\\');
 		if (lastSlash >= 0)
-			iEndMin = lastSlash+1;
+			iEndMin = lastSlash + 1;
 
-		sFilepath.Insert(iBegin+iEndMin, _T("\n"));
-		iBegin += iEndMin+2;
+		sFilepath.Insert(iBegin + iEndMin, _T("\n"));
+		iBegin += iEndMin + 2;
 		nLines ++;
 	}
 
 	return nLines;
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// CFilepathEdit construction/destruction
+/**
+ * @brief Constructor.
+ * Set text color to black and background white by default.
+ */
 CFilepathEdit::CFilepathEdit()
  : m_crBackGnd(RGB(255, 255, 255))
  , m_crText(RGB(0,0,0))
+ , m_bActive(FALSE)
 {
 }
 
+/**
+ * @brief Subclass the control.
+ * @param [in] nID ID of the control to subclass.
+ * @param [in] pParent Parent control of the control to subclass.
+ * @return TRUE if succeeded, FALSE otherwise.
+ */
 BOOL CFilepathEdit::SubClassEdit(UINT nID, CWnd* pParent)
 {
 	m_bActive = FALSE;
 	return SubclassDlgItem(nID, pParent);
 };
 
-/////////////////////////////////////////////////////////////////////////////
-// CFilepathEdit
-
-/** Return the entire path originally given to this edit control */
-void CFilepathEdit::GetWholeText(CString& rString) const
+/**
+ * @brief Return the control's original text.
+ * @return Control's original text.
+ */
+void CFilepathEdit::GetOriginalText(CString& rString) const
 {		
-	rString = m_sWholeText;
+	rString = m_sOriginalText;
 }
 
 /**
- * @brief Store path given, and also compute display version (may be shortened)
- *
- * The original path is saved as m_sWholeText.
- * The display version is passed to underlying edit control (via SetWindowText)
+ * @brief Set the text to show in the control.
+ * This function sets the text (original text) to show in the control.
+ * The control may modify the text for displaying in the GUI.
  */
-void CFilepathEdit::SetWholeText(LPCTSTR lpszString)
+void CFilepathEdit::SetOriginalText(LPCTSTR lpszString)
 {
-	if (_tcscmp(m_sWholeText, lpszString) == 0)
+	if (_tcscmp(m_sOriginalText, lpszString) == 0)
 		return;
 
 	if (lpszString != 0)
-		m_sWholeText = lpszString;
+		m_sOriginalText = lpszString;
 
 	RefreshDisplayText();
 }
 
 /**
- * @brief Recompute display text from m_sWholeText & update window text
- *
- * This method takes the m_sWholeText string and computes a short version
- * and uses the short version to set the window text (which will be used
- * by the underlying edit control to actually paint).
+ * @brief Re-format the displayed text and update GUI.
+ * This method formats the visible text from original text.
  */
 void CFilepathEdit::RefreshDisplayText()
 {
-	CString line = m_sWholeText;
+	CString line = m_sOriginalText;
 
 	// we want to keep the first and the last path component, and in between,
 	// as much characters as possible from the right
 	// PathCompactPath keeps, in between, as much characters as possible from the left
 	// so we reverse everything between the first and the last component before calling PathCompactPath
-	int iBeginLast, iEndIntro;
-	iBeginLast = line.ReverseFind('\\');
-	iEndIntro = line.Find('\\');
+	int iBeginLast = line.ReverseFind('\\');
+	int iEndIntro = line.Find('\\');
 	if (iBeginLast >= 0 && iEndIntro != iBeginLast)
 	{
-		CString textToReverse = line.Mid(iEndIntro+1, iBeginLast-(iEndIntro+1));
+		CString textToReverse = line.Mid(iEndIntro + 1, iBeginLast -
+				(iEndIntro + 1));
 		textToReverse.MakeReverse();
-		line = line.Left(iEndIntro+1) + textToReverse + line.Mid(iBeginLast);
+		line = line.Left(iEndIntro + 1) + textToReverse + line.Mid(iBeginLast);
 	}
 
 	// get a device context object
 	CClientDC lDC(this);
 	// and use the correct font
-	CFont * pFontOld = lDC.SelectObject(GetFont());	
+	CFont *pFontOld = lDC.SelectObject(GetFont());	
 
 	// compact the path
 	CRect rect;
 	GetRect(rect);
 	// take GetBuffer (lenght +3) to count for ellipsis
-	PathCompactPath(lDC.GetSafeHdc(), line.GetBuffer(line.GetLength()+3), rect.Width());
+	PathCompactPath(lDC.GetSafeHdc(), line.GetBuffer(line.GetLength() + 3),
+			rect.Width());
 	line.ReleaseBuffer();
 	
 	// set old font back
@@ -192,9 +198,10 @@ void CFilepathEdit::RefreshDisplayText()
 	iEndIntro = line.Find('\\');
 	if (iBeginLast >= 0 && iEndIntro != iBeginLast)
 	{
-		CString textToReverse = line.Mid(iEndIntro+1, iBeginLast-(iEndIntro+1));
+		CString textToReverse = line.Mid(iEndIntro + 1, iBeginLast -
+				(iEndIntro+1));
 		textToReverse.MakeReverse();
-		line = line.Left(iEndIntro+1) + textToReverse + line.Mid(iBeginLast);
+		line = line.Left(iEndIntro + 1) + textToReverse + line.Mid(iBeginLast);
 	}
 
 	SetWindowText(line);
@@ -202,26 +209,23 @@ void CFilepathEdit::RefreshDisplayText()
 
 /**
  * @brief Updates and returns the tooltip for this edit box
- *
- * @note This uses a member variable (m_sToolTipString) in 
- * order to be able to return an LPCTSTR safely.
  */
 LPCTSTR CFilepathEdit::GetUpdatedTipText(CDC * pDC, int maxWidth)
 {
-	GetWholeText(m_sToolTipString);
+	GetOriginalText(m_sToolTipString);
 	FormatFilePathForDisplayWidth(pDC, maxWidth, m_sToolTipString);
 	return (LPCTSTR)m_sToolTipString;
 }
 
 /**
- * @brief retrieve text from the wholeText
+ * @brief retrieve text from the OriginalText
  *
  * @note The standard Copy function works with the (compacted) windowText 
  */
 void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 {
 	if (iEnd == -1)
-		iEnd = m_sWholeText.GetLength();
+		iEnd = m_sOriginalText.GetLength();
 
 	// get the clipboard
 	if (! OpenClipboard())
@@ -230,12 +234,13 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 		return;		
 		
 	// insert text into clipboard
-	HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE, (iEnd-iBegin + 1)*sizeof(TCHAR));
+	HGLOBAL hData = GlobalAlloc (GMEM_MOVEABLE | GMEM_DDESHARE,
+			(iEnd - iBegin + 1) * sizeof(TCHAR));
 	if (hData == NULL)
 		return;
 	LPTSTR pszData = (LPTSTR)::GlobalLock (hData);
-	// Copy selected data from m_sWholeText into the alloc'd data area
-	_tcscpy (pszData, (LPTSTR) m_sWholeText.Mid(iBegin, iEnd-iBegin).GetBuffer(0));
+	// Copy selected data from m_sOriginalText into the alloc'd data area
+	_tcscpy (pszData, (LPTSTR) m_sOriginalText.Mid(iBegin, iEnd - iBegin).GetBuffer(0));
 	GlobalUnlock (hData);
 	UINT fmt = GetClipTcharTextFormat();      // CF_TEXT or CF_UNICODETEXT
 	// Using alloc'd data, set the clipboard
@@ -245,6 +250,9 @@ void CFilepathEdit::CustomCopy(int iBegin, int iEnd /*=-1*/)
 	CloseClipboard ();
 }
 
+/**
+ * @brief Format the context menu.
+ */
 void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 {
 	{
@@ -265,24 +273,26 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 		BCMenu* pPopup = (BCMenu *) menu.GetSubMenu(0);
 		ASSERT(pPopup != NULL);
 
-		if (m_sWholeText.Right(1) == '\\')
+		if (m_sOriginalText.Right(1) == '\\')
 			// no filename, we have to disable the unwanted menu entry
 			pPopup->EnableMenuItem(ID_EDITOR_COPY_FILENAME, MF_GRAYED);
 
 		// invoke context menu
-		// we don't want to use the main application handlers, so we use flags TPM_NONOTIFY | TPM_RETURNCMD
+		// we don't want to use the main application handlers, so we
+		// use flags TPM_NONOTIFY | TPM_RETURNCMD
 		// and handle the command after TrackPopupMenu
-		int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON | TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd());
+		int command = pPopup->TrackPopupMenu(TPM_LEFTALIGN | TPM_RIGHTBUTTON |
+			TPM_NONOTIFY  | TPM_RETURNCMD, point.x, point.y, AfxGetMainWnd());
 		if (command != ID_EDITOR_COPY_FILENAME && command != ID_EDITOR_COPY_PATH)
 			return;
 
-		// compute the beginning of the text to copy (in wholeText)
+		// compute the beginning of the text to copy (in OriginalText)
 		int iBegin;
 		switch (command)
 		{
 		case ID_EDITOR_COPY_FILENAME:
 			{
-			int lastSlash = m_sWholeText.ReverseFind('\\');
+			int lastSlash = m_sOriginalText.ReverseFind('\\');
 			if (lastSlash != -1)
 				iBegin = lastSlash+1;
 			else
@@ -291,7 +301,7 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 			break;
 		case ID_EDITOR_COPY_PATH:
 			// pass the heading "*" for modified files
-			if (m_sWholeText.GetAt(0) == '*')
+			if (m_sOriginalText.GetAt(0) == '*')
 				iBegin = 2;
 			else
 				iBegin = 0;
@@ -302,6 +312,13 @@ void CFilepathEdit::OnContextMenu(CWnd*, CPoint point)
 	}
 }
 
+/**
+ * @brief Set the control to look active/inactive.
+ * This function sets control to look like an active control. We don't
+ * have real focus on this control, but editor pane below it. However
+ * for user this active look informs which editor pane is active.
+ * @param [in] bActive If TRUE set control look like active control.
+ */
 void CFilepathEdit::SetActive(BOOL bActive)
 {
 	m_bActive = bActive;
@@ -324,8 +341,17 @@ void CFilepathEdit::SetActive(BOOL bActive)
 	}
 }
 
+/**
+ * @brief Set control's colors.
+ * @param [in] pDC pointer to device context.
+ * @param [in] nCtlColor Control color to set.
+ * @note Parameter @p nCtlColor is not used but must be present as this method
+ * is called by framework.
+ * @return Brush for background.
+ */
 HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor) 
 {
+	UNUSED_ALWAYS(nCtlColor);
 	// Return a non-NULL brush if the parent's 
 	//handler should not be called
 
@@ -339,6 +365,10 @@ HBRUSH CFilepathEdit::CtlColor(CDC* pDC, UINT nCtlColor)
 	return m_brBackGnd;
 }
 
+/**
+ * @brief Set control's bacground color.
+ * @param [in] rgb Color to set as background color.
+ */
 void CFilepathEdit::SetBackColor(COLORREF rgb)
 {
 	//set background color ref (used for text's background)
@@ -353,6 +383,11 @@ void CFilepathEdit::SetBackColor(COLORREF rgb)
 	//redraw
 	Invalidate(TRUE);
 }
+
+/**
+ * @brief Set control's text color.
+ * @param [in] Color to set as text color.
+ */
 void CFilepathEdit::SetTextColor(COLORREF rgb)
 {
 	//set text color ref
@@ -361,4 +396,3 @@ void CFilepathEdit::SetTextColor(COLORREF rgb)
 	//redraw
 	Invalidate(TRUE);
 }
-
