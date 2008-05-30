@@ -4,8 +4,9 @@
   $page = new Page;
   $page->printHead('WinMerge 2.4', WINMERGE_2_4);
 ?>
+<h2>WinMerge 2.4</h2>
 <p>WinMerge is an Open Source (<a href="http://www.gnu.org/licenses/gpl-2.0.html">GPL</a>) visual text file differencing and merging tool for Windows. It is highly useful for determing what has changed between project versions, and then merging changes between versions.</p>
-<h2>Features</h2>
+<h3>Features</h3>
 <ul>
   <li>Visual differencing and merging of text files</li>
   <li>Flexible editor with syntax highlighting</li>
@@ -24,17 +25,17 @@
   <li>HTML-based <a href="manual/index.html">Manual</a></li>
 </ul>
 
-<h2>Screenshot</h2>
+<h3>Screenshot</h3>
 <p><img src="images/screenshot.gif" alt="Screenshot of WinMerge"></p>
 <p>See the <a href="screenshots.php">screenshots page</a> for more screenshots.</p>
 
-<h2>Installation</h2>
+<h3>Installation</h3>
 <p>Just download the <a href="http://downloads.sourceforge.net/winmerge/WinMerge-2.4.10-Setup.exe">installer</a> and double-click it.</p>
 <p>Or you may simply unzip the <a href="http://downloads.sourceforge.net/winmerge/WinMerge-2.4.10-exe.zip">binary zip package</a> into the desired location, and run
 <code>WinMergeU.exe</code> (except for Windows 98/ME users who should use <code>WinMerge.exe</code>).</p>
 <p>For more information, please see the <a href="manual/installing.html">Installation section</a> of the <a href="manual/index.html">Manual</a>.</p>
 
-<h2>Using WinMerge</h2>
+<h3>Using WinMerge</h3>
 <p>For information on using WinMerge, see our <a href="manual/index.html">online Manual</a>, or you can
 <a href="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11254&amp;release_id=438564">download</a> a copy of the documentation for offline use.</p>
 
