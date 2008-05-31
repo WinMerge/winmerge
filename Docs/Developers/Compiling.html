@@ -209,14 +209,11 @@ things.</p>
 <h3><a name="Compiling_pcre">Compiling PCRE</a></h3>
 <p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:</p>
 <ul>
-  <li>Open Visual Studio solution file <code>/Externals/pcre/pcre.sln</code> If you are
+  <li>Open Visual Studio solution file <code>/Externals/pcre/Win32/pcre.sln</code> If you are
     using Visual Studio 2005 or later you need to convert the file to the new format when
     Visual Studio opens the file.</li>
-  <li>Select from Visual Studio menu Build / Batch Build</li>
-  <li>Select <code>config_pcre</code> and <code>pcre</code> projects and build them</li>
-  <li>Select Rebuild All</li>
-  <li><i>Or</i> you can also compile those two projects individually, first
-    <code>config_pcre</code> and then <code>pcre</code> project.
+  <li>Select the <code>MinSizeRel</code>-target.</li>
+  <li>Build the <code>pcre</code>-project
 </ul>
 
 <p>After build finishes, lib and dll files are in <code>/Build/pcre</code>. WinMerge
