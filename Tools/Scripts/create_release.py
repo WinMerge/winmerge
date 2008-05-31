@@ -208,9 +208,9 @@ def build_libraries():
     call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
 
     print 'Build pcre library...'
-    solution_path = os.path.join(cur_path, 'Externals/pcre/dll_pcre/pcre.vcproj')
+    solution_path = os.path.join(cur_path, 'Externals/pcre/Win32/pcre.vcproj')
     #print solution_path
-    call([vs_cmd, solution_path, '/rebuild', 'Release'], shell=True)
+    call([vs_cmd, solution_path, '/rebuild', 'MinSizeRel'], shell=True)
 
 def build_targets():
     """Builds all WinMerge targets."""
