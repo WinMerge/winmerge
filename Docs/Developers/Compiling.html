@@ -207,7 +207,11 @@ things.</p>
 </ul>
 
 <h3><a name="Compiling_pcre">Compiling PCRE</a></h3>
-<p>PCRE is in <code>/Externals/pcre</code> folder in source tree. To compile PCRE:</p>
+<p>PCRE is in <code>/Externals/pcre</code> folder in source tree. PCRE uses
+CMake (<a href="http://www.cmake.org/">http://www.cmake.org/</a>) to create
+project- and solution-files. There are ready-made files in our source tree.</p>
+
+<p>To compile PCRE:</p>
 <ul>
   <li>Open Visual Studio solution file <code>/Externals/pcre/Win32/pcre.sln</code> If you are
     using Visual Studio 2005 or later you need to convert the file to the new format when
@@ -218,6 +222,25 @@ things.</p>
 
 <p>After build finishes, lib and dll files are in <code>/Build/pcre</code>. WinMerge
 executable's project file picks them from there.</p>
+
+<p>If you want to re-build PCRE from the scratch, including project files, see
+file <code>Externals/pcre/NON-UNIX-USE</code>. There are instructions for
+running CMake and using it to configure PCRE.</p>
+
+<p>When configuring PCRE, remember to set these two options:
+<ul>
+  <li>Build shared libraries (to create DLL files, not static libraries)</li>
+  <li>Enable using <code>ANYCRLF</code> or <code>ANY</code> as linefeed style.
+    Current build uses <code>ANY</code>.</li>
+  <li>Enable using UTF-8</li>
+</ul></p>
+
+<p>After CMake finishes, there are project files in the folder you selected as
+a build folder. However all paths in the files are absolute, not relative. If
+you want to make these files useful for other users you'll need to convert all
+paths to relative paths. In addition you need to remove custom build rules for
+building <code>CMakeLists.txt</code>. That rule tries to run CMake to re-generate
+some files.
 
 <h3><a name="Compiling_core">Compiling WinMerge executable targets</a></h3>
 <p>There are several targets available for compiling different projects. Targets used
