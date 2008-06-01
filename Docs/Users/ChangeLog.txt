@@ -14,6 +14,7 @@ WinMerge 2.8.2
   BugFix: Fix command line paths in quotes ending with "\" (#1963523)
   New translation: Greek (#1968429)
   New translation: Romanian (#1939729)
+  New translation: Ukrainian (#1973149, #1974021)
   Translation updates:
   - Bulgarian (#1957434)
   - Croatian (#1958283)

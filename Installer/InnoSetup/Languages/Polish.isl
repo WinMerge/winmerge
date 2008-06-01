@@ -351,6 +351,7 @@ SlovakLanguage=Slowacki interfejs
 SpanishLanguage=Hiszpanski interfejs
 SwedishLanguage=Szwedzki interfejs
 TurkishLanguage=turecki interfejs
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Wlacz integracje z menu Eksploratora

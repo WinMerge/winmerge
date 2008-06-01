@@ -345,6 +345,7 @@ SlovakLanguage=Menús i diàlegs en Eslovac
 SpanishLanguage=Menús i diàlegs en Castellà
 SwedishLanguage=Menús i diàlegs en Suec
 TurkishLanguage=Menús i diàlegs en Turc
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador

@@ -351,6 +351,7 @@ SlovakLanguage=Slowakische Menüs und Dialoge
 SpanishLanguage=Spanische Menüs und Dialoge
 SwedishLanguage=Schwedische Menüs und Dialoge
 TurkishLanguage=Türkische Menüs und Dialoge
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren

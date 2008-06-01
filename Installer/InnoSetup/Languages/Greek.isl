@@ -360,6 +360,7 @@ SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
 SpanishLanguage=Ισπανικά επιλογές και διάλογοι
 SwedishLanguage=Σουηδικά επιλογές και διάλογοι
 TurkishLanguage=Τουρκικά επιλογές και διάλογοι
+UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
 ExplorerContextMenu=Εν&εργοποίηση ενσωματώσεως στις ειδικές επιλογές της εξερευνήσεως

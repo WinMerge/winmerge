@@ -447,6 +447,11 @@ SOURCE=.\Languages\ShellExtensionGerman.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\Languages\ShellExtensionGreek.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
 SOURCE=.\Languages\ShellExtensionHungarian.rc
 # PROP Exclude_From_Build 1
 # End Source File
@@ -482,6 +487,11 @@ SOURCE=.\Languages\ShellExtensionPortuguese.rc
 # End Source File
 # Begin Source File
 
+SOURCE=.\Languages\ShellExtensionRomanian.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
 SOURCE=.\Languages\ShellExtensionRussian.rc
 # PROP Exclude_From_Build 1
 # End Source File
@@ -503,6 +513,11 @@ SOURCE=.\Languages\ShellExtensionSwedish.rc
 # Begin Source File
 
 SOURCE=.\Languages\ShellExtensionTurkish.rc
+# PROP Exclude_From_Build 1
+# End Source File
+# Begin Source File
+
+SOURCE=.\Languages\ShellExtensionUkrainian.rc
 # PROP Exclude_From_Build 1
 # End Source File
 # Begin Source File
