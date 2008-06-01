@@ -3,45 +3,43 @@
  *
  * @brief Declaration of CGhostTextBuffer (subclasses CCrystalTextBuffer to handle ghost lines)
  */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #ifndef __GHOSTTEXTBUFFER_H__
 #define __GHOSTTEXTBUFFER_H__
-
 
 #include "ccrystaltextbuffer.h"
 
 
 /////////////////////////////////////////////////////////////////////////////
 
-/** 
-We use the current ccrystalEditor flags 
-
-This flag must be cleared and set in GhostTextBuffer.cpp 
-and MergeDoc.cpp (Rescan) only.
-
-GetLineColors (in MergeEditView) reads it to choose the line color.
-*/
-
+/**
+ * We use the current ccrystalEditor flags 
+ *
+ * This flag must be cleared and set in GhostTextBuffer.cpp 
+ * and MergeDoc.cpp (Rescan) only.
+ *
+ * GetLineColors (in MergeEditView) reads it to choose the line color.
+ */
 enum GHOST_LINEFLAGS
 {
-	LF_GHOST = 0x00400000L,
+	LF_GHOST = 0x00400000L, /**< Ghost line. */
 };
-
-
-
 
 /////////////////////////////////////////////////////////////////////////////
 // CCrystalTextBuffer command target
 
 /**
-Features offered with this class : 
-<ul>
-	<li> apparent/real line conversion 
-	<li> insertText/deleteText working with ghost lines 
-	<li> AddUndoRecord/Undo/Redo working with ghost lines 
-	<li> insertGhostLine function 
-</ul>
-*/
+ * @brief A class handling ghost lines.
+ * Features offered with this class : 
+ * <ul>
+ *  <li> apparent/real line conversion 
+ *  <li> insertText/deleteText working with ghost lines 
+ *  <li> AddUndoRecord/Undo/Redo working with ghost lines 
+ *  <li> insertGhostLine function 
+ * </ul>
+ */
 class EDITPADC_CLASS CGhostTextBuffer : public CCrystalTextBuffer
 {
 public:
@@ -58,7 +56,7 @@ protected :
 		DWORD m_dwFlags;
 		DWORD m_dwRevisionNumber;
 
-		int FullLength() const { return m_nLength+m_nEolChars; }
+		int FullLength() const { return m_nLength + m_nEolChars; }
 		int Length() const { return m_nLength; }
 
 		SLineInfo ()
@@ -103,7 +101,7 @@ protected :
 		// and (apparentLine - ComputeApparentLine(previousRealLine))
 
 		CPoint m_redo_ptStartPos, m_redo_ptEndPos;  // Block of text participating
-		int    m_redo_ptStartPos_nGhost, m_redo_ptEndPos_nGhost;
+		int m_redo_ptStartPos_nGhost, m_redo_ptEndPos_nGhost;
 
 		int m_nRealLinesCreated;         //  number of lines created during insertion 
 		                                 //  (= total of real lines after - total before)

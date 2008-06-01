@@ -23,11 +23,16 @@
 //    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 //
 /////////////////////////////////////////////////////////////////////////////
-
+/** 
+ * @file  GhostTextBuffer.cpp
+ *
+ * @brief Implementation of GhostTextBuffer class.
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
 
 #include "stdafx.h"
 #include "GhostTextBuffer.h"
-
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -38,8 +43,6 @@ static char THIS_FILE[] = __FILE__;
 #ifdef _DEBUG
 #define _ADVANCED_BUGCHECK  1
 #endif
-
-
 
 BEGIN_MESSAGE_MAP (CGhostTextBuffer, CCrystalTextBuffer)
 //{{AFX_MSG_MAP(CGhostTextBuffer)
@@ -235,9 +238,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 ////////////////////////////////////////////////////////////////////////////
 // undo/redo functions
 
-
-
-void CGhostTextBuffer::SUndoRecord::
+<void CGhostTextBuffer::SUndoRecord::
 SetText (LPCTSTR pszText, int nLength)
 {
 	FreeText();
@@ -267,8 +268,6 @@ FreeText ()
 		free(m_pszText);
 	m_pszText = NULL;
 }
-
-
 
 BOOL CGhostTextBuffer::
 Undo (CCrystalTextView * pSource, CPoint & ptCursorPos)
@@ -841,9 +840,6 @@ DeleteText (CCrystalTextView * pSource, int nStartLine, int nStartChar,
 	return TRUE;
 }
 
-
-
-
 BOOL CGhostTextBuffer::
 InsertGhostLine (CCrystalTextView * pSource, int nLine)
 {
@@ -884,8 +880,6 @@ RemoveAllGhostLines()
 	RecomputeRealityMapping();
 }
 
-
-
 ////////////////////////////////////////////////////////////////////////////
 // apparent <-> real line conversion
 
@@ -900,8 +894,6 @@ int CGhostTextBuffer::ApparentLastRealLine() const
 	const RealityBlock & block = m_RealityBlocks[bmax];
 	return block.nStartApparent + block.nCount - 1;
 }
-
-
 
 /**
 Return underlying real line. 
@@ -1106,7 +1098,6 @@ limitWithPreviousBlock:
 	return nApparent;
 }
 
-
 /** Do what we need to do just after we've been reloaded */
 void CGhostTextBuffer::FinishLoading()
 {
@@ -1237,7 +1228,6 @@ void CGhostTextBuffer::checkFlagsFromReality(BOOL bFlag) const
 	for ( ; i < GetLineCount() ; i++)
 		ASSERT ((GetLineFlags(i) & LF_GHOST) != 0);
 }
-
 
 void CGhostTextBuffer::OnNotifyLineHasBeenEdited(int nLine)
 {
