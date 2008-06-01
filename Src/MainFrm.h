@@ -77,9 +77,6 @@ class TempFile;
 
 
 // typed lists (homogenous pointer lists)
-typedef CTypedPtrList<CPtrList, CMergeEditView *> MergeEditViewList;
-typedef CTypedPtrList<CPtrList, CMergeDiffDetailView *> MergeDetailViewList;
-typedef CTypedPtrList<CPtrList, CDirView *> DirViewList;
 typedef CTypedPtrList<CPtrList, CMergeDoc *> MergeDocList;
 typedef CTypedPtrList<CPtrList, CDirDoc *> DirDocList;
 
@@ -128,8 +125,6 @@ public:
 	void ShowVSSError(CException *e, LPCTSTR strItem);
 	void ShowHelp(LPCTSTR helpLocation = NULL);
 	void UpdateCodepageModule();
-	void GetDirViews(DirViewList * pDirViews);
-	void GetMergeEditViews(MergeEditViewList * pMergeViews);
 	void CheckinToClearCase(CString strDestinationPath);
 	static void CenterToMainFrame(CDialog * dlg);
 	static void SetMainIcon(CDialog * dlg);
@@ -329,9 +324,8 @@ protected:
 
 private:
 	void addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems = 20);
-	void GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews);
-	void GetAllMergeDocs(MergeDocList * pMergeDocs);
-	void GetAllDirDocs(DirDocList * pDirDocs);
+	const MergeDocList &GetAllMergeDocs();
+	const DirDocList &GetAllDirDocs();
 	BOOL IsComparing();
 	void RedisplayAllDirDocs();
 	CMergeDoc * GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew);

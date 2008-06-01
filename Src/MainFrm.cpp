@@ -88,6 +88,7 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 static void LoadToolbarImageList(CMainFrame::TOOLBAR_SIZE size, UINT nIDResource, CImageList& ImgList);
+static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate);
 
 /**
  * @brief A table associating menuitem id, icon and menus to apply.
@@ -250,6 +251,19 @@ static const UINT ID_TIMER_FLASH = 1;
 
 /** @brief Timeout for window flashing timer, in milliseconds. */
 static const UINT WINDOW_FLASH_TIMEOUT = 500;
+
+/**
+  * @brief Return a const reference to a CMultiDocTemplate's list of documents.
+  */
+static const CPtrList &GetDocList(const CMultiDocTemplate *pTemplate)
+{
+	struct Template : public CMultiDocTemplate
+	{
+	public:
+		using CMultiDocTemplate::m_docList;
+	};
+	return static_cast<const struct Template *>(pTemplate)->m_docList;
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CMainFrame construction/destruction
@@ -766,11 +780,11 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 
 void CMainFrame::RedisplayAllDirDocs()
 {
-	DirDocList dirdocs;
-	GetAllDirDocs(&dirdocs);
-	while (!dirdocs.IsEmpty())
+	const DirDocList &dirdocs = GetAllDirDocs();
+	POSITION pos = 0;
+	while (pos)
 	{
-		CDirDoc * pDirDoc = dirdocs.RemoveHead();
+		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
 		pDirDoc->Redisplay();
 	}
 }
@@ -1007,11 +1021,11 @@ void CMainFrame::OnOptions()
 		SetEOLMixed(GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL));
 
 		// make an attempt at rescanning any open diff sessions
-		MergeDocList docs;
-		GetAllMergeDocs(&docs);
-		while (!docs.IsEmpty())
+		const MergeDocList &docs = GetAllMergeDocs();
+		POSITION pos = docs.GetHeadPosition();
+		while (pos)
 		{
-			CMergeDoc * pMergeDoc = docs.RemoveHead();
+			CMergeDoc * pMergeDoc = docs.GetNext(pos);
 
 			// Re-read MergeDoc settings (also updates view settings)
 			// and rescan using new options
@@ -1020,12 +1034,11 @@ void CMainFrame::OnOptions()
 		}
 
 		// Update all dirdoc settings
-		DirDocList dirDocs;
-		GetAllDirDocs(&dirDocs);
-
-		while (!dirDocs.IsEmpty())
+		const DirDocList &dirDocs = GetAllDirDocs();
+		pos = dirDocs.GetHeadPosition();
+		while (pos)
 		{
-			CDirDoc *pDirDoc = dirDocs.RemoveHead();
+			CDirDoc * pDirDoc = dirDocs.GetNext(pos);
 			pDirDoc->RefreshOptions();
 		}
 	}
@@ -1619,30 +1632,30 @@ void CMainFrame::UpdateResources()
 {
 	m_wndStatusBar.SetPaneText(0, theApp.LoadString(AFX_IDS_IDLEMESSAGE).c_str());
 
-	DirDocList dirdocs;
-	GetAllDirDocs(&dirdocs);
-	while (!dirdocs.IsEmpty())
+	const DirDocList &dirdocs = GetAllDirDocs();
+	POSITION pos = dirdocs.GetHeadPosition();
+	while (pos)
 	{
-		CDirDoc * pDoc = dirdocs.RemoveHead();
+		CDirDoc * pDoc = dirdocs.GetNext(pos);
 		pDoc->UpdateResources();
 	}
 
-	MergeDocList mergedocs;
-	GetAllMergeDocs(&mergedocs);
-	while (!mergedocs.IsEmpty())
+	const MergeDocList &mergedocs = GetAllMergeDocs();
+	pos = mergedocs.GetHeadPosition();
+	while (pos)
 	{
-		CMergeDoc * pDoc = mergedocs.RemoveHead();
+		CMergeDoc * pDoc = mergedocs.GetNext(pos);
 		pDoc->UpdateResources();
 	}
 }
 
 BOOL CMainFrame::IsComparing()
 {
-	DirDocList dirdocs;
-	GetAllDirDocs(&dirdocs);
-	while (!dirdocs.IsEmpty())
+	const DirDocList &dirdocs = GetAllDirDocs();
+	POSITION pos = dirdocs.GetHeadPosition();
+	while (pos)
 	{
-		CDirDoc * pDirDoc = dirdocs.RemoveHead();
+		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
 		UINT threadState = pDirDoc->m_diffThread.GetThreadState();
 		if (threadState == CDiffThread::THREAD_COMPARING)
 			return TRUE;
@@ -1823,11 +1836,11 @@ void CMainFrame::addToMru(LPCTSTR szItem, LPCTSTR szRegSubKey, UINT nMaxItems)
  */
 void CMainFrame::ApplyViewWhitespace() 
 {
-	MergeDocList mergedocs;
-	GetAllMergeDocs(&mergedocs);
-	while (!mergedocs.IsEmpty())
+	const MergeDocList &mergedocs = GetAllMergeDocs();
+	POSITION pos = mergedocs.GetHeadPosition();
+	while (pos)
 	{
-		CMergeDoc * pMergeDoc = mergedocs.RemoveHead();
+		CMergeDoc *pMergeDoc = mergedocs.GetNext(pos);
 		CMergeEditView * pLeft = pMergeDoc->GetLeftView();
 		CMergeEditView * pRight = pMergeDoc->GetRightView();
 		CMergeDiffDetailView * pLeftDetail = pMergeDoc->GetLeftDetailView();
@@ -1873,96 +1886,15 @@ void CMainFrame::OnUpdateViewWhitespace(CCmdUI* pCmdUI)
 }
 
 /// Get list of MergeDocs (documents underlying edit sessions)
-void CMainFrame::GetAllMergeDocs(MergeDocList * pMergeDocs)
+const MergeDocList &CMainFrame::GetAllMergeDocs()
 {
-	CMultiDocTemplate * pTemplate = theApp.m_pDiffTemplate;
-	for (POSITION pos = pTemplate->GetFirstDocPosition(); pos; )
-	{
-		CDocument * pDoc = pTemplate->GetNextDoc(pos);
-		CMergeDoc * pMergeDoc = static_cast<CMergeDoc *>(pDoc);
-		pMergeDocs->AddTail(pMergeDoc);
-	}
+	return static_cast<const MergeDocList &>(GetDocList(theApp.m_pDiffTemplate));
 }
 
 /// Get list of DirDocs (documents underlying a scan)
-void CMainFrame::GetAllDirDocs(DirDocList * pDirDocs)
+const DirDocList &CMainFrame::GetAllDirDocs()
 {
-	CMultiDocTemplate * pTemplate = theApp.m_pDirTemplate;
-	for (POSITION pos = pTemplate->GetFirstDocPosition(); pos; )
-	{
-		CDocument * pDoc = pTemplate->GetNextDoc(pos);
-		CDirDoc * pDirDoc = static_cast<CDirDoc *>(pDoc);
-		pDirDocs->AddTail(pDirDoc);
-	}
-}
-
-/// Get list of all dirviews
-void CMainFrame::GetDirViews(DirViewList * pDirViews)
-{
-	GetAllViews(NULL, NULL, pDirViews);
-}
-
-/// Get list of all merge edit views
-void CMainFrame::GetMergeEditViews(MergeEditViewList * pMergeViews)
-{
-	GetAllViews(pMergeViews, NULL, NULL);
-}
-
-/// Get pointers to all views into typed lists (both arguments are optional)
-void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList * pDetailViews, DirViewList * pDirViews)
-{
-	for (POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition(); pos; )
-	{
-		CDocTemplate * pTemplate = AfxGetApp()->GetNextDocTemplate(pos);
-		for (POSITION pos2 = pTemplate->GetFirstDocPosition(); pos2; )
-		{
-			CDocument * pDoc = pTemplate->GetNextDoc(pos2);
-			CMergeDoc * pMergeDoc = dynamic_cast<CMergeDoc *>(pDoc);
-			CDirDoc * pDirDoc = dynamic_cast<CDirDoc *>(pDoc);
-			for (POSITION pos3 = pDoc->GetFirstViewPosition(); pos3; )
-			{
-				CView * pView = pDoc->GetNextView(pos3);
-				// Don't get Location View (font don't change for this view)
-				if (pView->IsKindOf(RUNTIME_CLASS(CLocationView)))
-					continue;
-				if (pMergeDoc)
-				{
-					if (pEditViews || pDetailViews)
-					{
-						// a merge doc only has merge edit views or diff detail views
-						CMergeEditView * pEditView = dynamic_cast<CMergeEditView *>(pView);
-						CMergeDiffDetailView * pDetailView = dynamic_cast<CMergeDiffDetailView *>(pView);
-						ASSERT(pEditView || pDetailView);
-						if (pEditView)
-						{
-							if (pEditViews)
-								pEditViews->AddTail(pEditView);
-						}
-						else if (pDetailView)
-						{
-							if (pDetailViews)
-								pDetailViews->AddTail(pDetailView);
-						}
-					}
-				}
-				else if (pDirDoc)
-				{
-					if (pDirViews)
-					{
-						// a dir doc only has dir views
-						CDirView * pDirView = dynamic_cast<CDirView *>(pView);
-						ASSERT(pDirView);
-						pDirViews->AddTail(pDirView);
-					}
-				}
-				else
-				{
-					// There are currently only two types of docs 2003-02-20
-					ASSERT(0);
-				}
-			}
-		}
-	}
+	return static_cast<const DirDocList &>(GetDocList(theApp.m_pDirTemplate));
 }
 
 /**
@@ -1978,8 +1910,7 @@ void CMainFrame::GetAllViews(MergeEditViewList * pEditViews, MergeDetailViewList
 CMergeDoc * CMainFrame::GetMergeDocToShow(CDirDoc * pDirDoc, BOOL * pNew)
 {
 	const BOOL bMultiDocs = GetOptionsMgr()->GetBool(OPT_MULTIDOC_MERGEDOCS);
-	MergeDocList docs;
-	GetAllMergeDocs(&docs);
+	const MergeDocList &docs = GetAllMergeDocs();
 
 	if (!pDirDoc->HasDiffs() && !bMultiDocs && !docs.IsEmpty())
 	{
@@ -2601,10 +2532,8 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 		{
 			if (GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC))
 			{
-				MergeDocList docs;
-				GetAllMergeDocs(&docs);
-				DirDocList dirDocs;
-				GetAllDirDocs(&dirDocs);
+				const MergeDocList &docs = GetAllMergeDocs();
+				const DirDocList &dirDocs = GetAllDirDocs();
 
 				if (docs.IsEmpty() && dirDocs.IsEmpty())
 				{
@@ -2827,11 +2756,10 @@ LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
  */
 void CMainFrame::ShowFontChangeMessage()
 {
-	DirViewList dirViews;
-	MergeEditViewList editViews;
-	GetAllViews(&editViews, NULL, &dirViews);
+	const DirDocList &dirdocs = GetAllDirDocs();
+	const MergeDocList &mergedocs = GetAllMergeDocs();
 
-	if (editViews.GetCount() > 0 || dirViews.GetCount() > 0)
+	if (dirdocs.GetCount() > 0 || mergedocs.GetCount() > 0)
 		LangMessageBox(IDS_FONT_CHANGE, MB_ICONINFORMATION | MB_DONT_DISPLAY_AGAIN, IDS_FONT_CHANGE);
 }
 
@@ -2899,21 +2827,21 @@ void CMainFrame::OnTimer(UINT_PTR nIDEvent)
 void CMainFrame::OnWindowCloseAll()
 {
 	// save any dirty edit views
-	MergeDocList mergedocs;
-	GetAllMergeDocs(&mergedocs);
-	for (POSITION pos = mergedocs.GetHeadPosition(); pos; mergedocs.GetNext(pos))
+	const MergeDocList &mergedocs = GetAllMergeDocs();
+	POSITION pos = mergedocs.GetHeadPosition();
+	while (pos)
 	{
-		CMergeDoc * pMergeDoc = mergedocs.GetAt(pos);
+		CMergeDoc * pMergeDoc = mergedocs.GetNext(pos);
 		// Allow user to cancel closing
 		if (!pMergeDoc->PromptAndSaveIfNeeded(TRUE))
 			return;
 	}
 
-	DirDocList dirdocs;
-	GetAllDirDocs(&dirdocs);
-	while (!dirdocs.IsEmpty())
+	const DirDocList &dirdocs = GetAllDirDocs();
+	pos = dirdocs.GetHeadPosition();
+	while (pos)
 	{
-		CDirDoc * pDirDoc = dirdocs.RemoveHead();
+		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
 		if (pDirDoc->HasDirView())
 		{
 			pDirDoc->CloseMergeDocs();
@@ -2934,16 +2862,14 @@ void CMainFrame::OnWindowCloseAll()
  */ 
 void CMainFrame::OnUpdateWindowCloseAll(CCmdUI* pCmdUI)
 {
-	MergeDocList mergedocs;
-	GetAllMergeDocs(&mergedocs);
+	const MergeDocList &mergedocs = GetAllMergeDocs();
 	if (!mergedocs.IsEmpty())
 	{
 		pCmdUI->Enable(TRUE);
 		return;
 	}
 
-	DirDocList dirdocs;
-	GetAllDirDocs(&dirdocs);
+	const DirDocList &dirdocs = GetAllDirDocs();
 	if (!dirdocs.IsEmpty())
 		pCmdUI->Enable(TRUE);
 	else
@@ -3403,12 +3329,11 @@ BOOL CMainFrame::OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult)
  */
 bool CMainFrame::AskCloseConfirmation()
 {
-	DirViewList dirViews;
-	MergeEditViewList mergeViews; 
-	GetAllViews(&mergeViews, NULL, &dirViews);
+	const DirDocList &dirdocs = GetAllDirDocs();
+	const MergeDocList &mergedocs = GetAllMergeDocs();
 
 	int ret = IDYES;
-	const int count = dirViews.GetCount() + (mergeViews.GetCount() / 2);
+	const int count = dirdocs.GetCount() + mergedocs.GetCount();
 	if (count > 1)
 	{
 		ret = LangMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);

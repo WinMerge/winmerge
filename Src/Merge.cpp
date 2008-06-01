@@ -380,13 +380,6 @@ BOOL CMergeApp::InitInstance()
 
 	if (m_bNonInteractive)
 	{
-		DirViewList DirViews;
-		pMainFrame->GetDirViews(&DirViews);
-		if (DirViews.GetCount() == 1)
-		{
-			CDirView *pDirView = DirViews.RemoveHead();
-			CDirFrame *pf = pDirView->GetParentFrame();
-		}
 		bContinue = FALSE;
 	}
 
