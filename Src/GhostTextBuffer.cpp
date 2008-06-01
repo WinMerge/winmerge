@@ -238,7 +238,7 @@ void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar,
 ////////////////////////////////////////////////////////////////////////////
 // undo/redo functions
 
-<void CGhostTextBuffer::SUndoRecord::
+void CGhostTextBuffer::SUndoRecord::
 SetText (LPCTSTR pszText, int nLength)
 {
 	FreeText();
