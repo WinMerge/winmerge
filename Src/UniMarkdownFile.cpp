@@ -1,17 +1,43 @@
+/**
+ *  @file UniMarkdownFile.cpp
+ *
+ *  @brief Implementation of UniMarkdownFile class.
+ */ 
+// ID line follows -- this is updated by SVN
+// $Id$
+
 #include "stdafx.h"
 #include "UniMarkdownFile.h"
 #include "markdown.h"
 #include "unicoder.h"
 
+static void CollapseWhitespace(CString &line);
+
+/**
+ * @brief Constructor.
+ */
 UniMarkdownFile::UniMarkdownFile()
 : m_pMarkdown(NULL)
 {
 }
 
-bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion, DWORD dwMappingProtect, DWORD dwMapViewAccess)
+/**
+ * @brief Open the XML file.
+ * @param [in] filename Filename (and path) of the file to open.
+ * @param [in] dwOpenAccess File access mode.
+ * @param [in] dwOpenShareMode File's share mode when opened.
+ * @param [in] dwOpenCreationDispostion Overwrite existing file?
+ * @param [in] dwMappingProtect
+ * @param [in] dwMapViewAccess
+ * @return true if succeeds, false otherwise.
+ */
+bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess,
+		DWORD dwOpenShareMode, DWORD dwOpenCreationDispostion,
+		DWORD dwMappingProtect, DWORD dwMapViewAccess)
 {
 	m_depth = 0;
-	bool bOpen = UniMemFile::DoOpen(filename, dwOpenAccess, dwOpenShareMode, dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
+	bool bOpen = UniMemFile::DoOpen(filename, dwOpenAccess, dwOpenShareMode,
+			dwOpenCreationDispostion, dwMappingProtect, dwMapViewAccess);
 	if (bOpen)
 	{
 		m_pMarkdown = new CMarkdown((const char *)m_current, (const char *)m_base + m_filesize);
@@ -20,6 +46,9 @@ bool UniMarkdownFile::DoOpen(LPCTSTR filename, DWORD dwOpenAccess, DWORD dwOpenS
 	return bOpen;
 }
 
+/**
+ * @brief Close the file.
+ */
 void UniMarkdownFile::Close()
 {
 	UniMemFile::Close();
@@ -27,6 +56,10 @@ void UniMarkdownFile::Close()
 	m_pMarkdown = NULL;
 }
 
+/**
+ * @brief Read BOM bytes from the file (if they exist).
+ * @return true if BOM bytes were found, false otherwise.
+ */
 bool UniMarkdownFile::ReadBom()
 {
 	bool bReadBom = UniMemFile::ReadBom();
@@ -35,6 +68,10 @@ bool UniMarkdownFile::ReadBom()
 	return bReadBom;
 }
 
+/**
+ * @brief Collapse whitespace characters from the given line.
+ * @param [in, out] Line to handle.
+ */
 static void CollapseWhitespace(CString &line)
 {
 	int nEatSpace = -2;
@@ -103,7 +140,8 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 	bool bDone = false;
 	if (m_current < (LPBYTE)m_pMarkdown->lower)
 	{
-		line = ucr::maketstring((const char *)m_current, m_pMarkdown->lower - (const char *)m_current, m_codepage, lossy);
+		line = ucr::maketstring((const char *)m_current, m_pMarkdown->lower -
+				(const char *)m_current, m_codepage, lossy);
 		CollapseWhitespace(line);
 		bDone = !line.IsEmpty();
 		m_current = (LPBYTE)m_pMarkdown->lower;
@@ -176,14 +214,16 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 			}
 			if (bDone)
 			{
-				line = ucr::maketstring((const char *)m_current, m_pMarkdown->first - (const char *)m_current, m_codepage, lossy);
+				line = ucr::maketstring((const char *)m_current, m_pMarkdown->first -
+						(const char *)m_current, m_codepage, lossy);
 				CollapseWhitespace(line);
 				m_current = (LPBYTE)m_pMarkdown->first;
 			}
 			else if (m_current < m_base + m_filesize)
 			{
 				bDone = true;
-				line = ucr::maketstring((const char *)m_current, m_base + m_filesize - m_current, m_codepage, lossy);
+				line = ucr::maketstring((const char *)m_current, m_base + m_filesize -
+						m_current, m_codepage, lossy);
 				CollapseWhitespace(line);
 				m_current = m_base + m_filesize;
 			}
