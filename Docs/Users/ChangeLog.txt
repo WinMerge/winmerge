@@ -14,6 +14,7 @@ WinMerge 2.8.2
   BugFix: Fix command line paths in quotes ending with "\" (#1963523)
   BugFix: Command line  description text starting with "/" confused
     WinMerge (#1973225)
+  BugFix: Fix showing differences in the end of the line (#1883409, #1962816)
   New translation: Greek (#1968429)
   New translation: Romanian (#1939729)
   New translation: Ukrainian (#1973149, #1974021)
