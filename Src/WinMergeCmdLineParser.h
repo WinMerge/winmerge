@@ -53,4 +53,6 @@ class WinMergeCmdLineParser : public CmdLineParser
 		bool m_bFileFilter;
 		bool m_bLeftDesc;
 		bool m_bRightDesc;
+		bool m_bLeftDescRead; /**< Has the left-side decription been read? */
+		bool m_bRightDescRead; /**< Has the right-side description been read? */
 };

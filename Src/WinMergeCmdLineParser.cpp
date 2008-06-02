@@ -41,7 +41,9 @@ WinMergeCmdLineParser::WinMergeCmdLineParser(MergeCmdLineInfo& CmdLineInfo) :
 	m_bPreDiff(false),
 	m_bFileFilter(false),
 	m_bLeftDesc(false),
-	m_bRightDesc(false)
+	m_bRightDesc(false),
+	m_bLeftDescRead(false),
+	m_bRightDescRead(false)
 {
 
 }
@@ -143,6 +145,30 @@ void WinMergeCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL b
 		}
 		else
 		{
+			// Work around broken MFC command line parser (see another work around few
+			// lines below)!
+			// If the param string begins with /, even in quote marks, the parser
+			// think it is a swich, not a parameter to previous switch.
+			// So this works OK:
+			// winmerge /dl "blaa blaa" test.txt test2.txt
+			// but this does not:
+			// winmerge /dl "/blaa blaa" test.txt test2.txt
+			// So we use additional flags to track if left/right desc strings have
+			// been read after switches for them.
+			if (m_bLeftDesc && !m_bLeftDescRead)
+			{
+				m_CmdLineInfo.m_sLeftDesc = pszParam;
+				m_bLeftDescRead = true;
+				return;
+			}
+
+			if (m_bRightDesc && !m_bRightDescRead)
+			{
+				m_CmdLineInfo.m_sRightDesc = pszParam;
+				m_bRightDescRead = true;
+				return;
+			}
+
 			CString sParam = pszParam;
 			CString sValue;
 
