@@ -164,7 +164,7 @@ void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
  * @param [in, out] di Compared files with associated data.
  * @return Compare result code.
  */
-int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
+UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 {
 	PluginsContext plugCtxt;
 	int nCompMethod = pCtxt->m_nCompMethod;
@@ -174,7 +174,7 @@ int FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 	m_diffFileData.m_textStats0.clear();
 	m_diffFileData.m_textStats1.clear();
 
-	int code = DIFFCODE::FILE | DIFFCODE::CMPERR;
+	UINT code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 
 	// Run plugins
 	if (pCtxt->m_nCompMethod == CMP_CONTENT ||

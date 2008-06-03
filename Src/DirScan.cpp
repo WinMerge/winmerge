@@ -130,7 +130,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 		{
 			if (i<leftDirs.size() && (j == rightDirs.size() || collstr(leftDirs[i].filename, rightDirs[j].filename, casesensitive)<0))
 			{
-				int nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
+				const UINT nDiffCode = DIFFCODE::LEFT | DIFFCODE::DIR;
 				AddToList(leftsubdir, rightsubdir, &leftDirs[i], 0, nDiffCode, pList, pCtxt);
 				// Advance left pointer over left-only entry, and then retest with new pointers
 				++i;
@@ -138,7 +138,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 			}
 			if (j<rightDirs.size() && (i == leftDirs.size() || collstr(leftDirs[i].filename, rightDirs[j].filename, casesensitive)>0))
 			{
-				int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
+				const UINT nDiffCode = DIFFCODE::RIGHT | DIFFCODE::DIR;
 				AddToList(leftsubdir, rightsubdir, 0, &rightDirs[j], nDiffCode, pList, pCtxt);
 				// Advance right pointer over right-only entry, and then retest with new pointers
 				++j;
@@ -153,7 +153,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 				// Non-recursive compare
 				// We are only interested about list of subdirectories to show - user can open them
 				// TODO: scan one level deeper to see if directories are identical/different
-				const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
+				const UINT nDiffCode = DIFFCODE::BOTH | DIFFCODE::DIR;
 				AddToList(leftsubdir, rightsubdir, &leftDirs[i], &rightDirs[j], nDiffCode, pList, pCtxt);
 			}
 			else
@@ -204,7 +204,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 		if (i<leftFiles.size() && (j == rightFiles.size() ||
 				collstr(leftFiles[i].filename, rightFiles[j].filename, casesensitive) < 0))
 		{
-			const int nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
+			const UINT nDiffCode = DIFFCODE::LEFT | DIFFCODE::FILE;
 			AddToList(leftsubdir, rightsubdir, &leftFiles[i], 0, nDiffCode, pList, pCtxt);
 			// Advance left pointer over left-only entry, and then retest with new pointers
 			++i;
@@ -213,7 +213,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 		if (j<rightFiles.size() && (i == leftFiles.size() ||
 				collstr(leftFiles[i].filename, rightFiles[j].filename, casesensitive) > 0))
 		{
-			const int nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
+			const UINT nDiffCode = DIFFCODE::RIGHT | DIFFCODE::FILE;
 			AddToList(leftsubdir, rightsubdir, 0, &rightFiles[j], nDiffCode, pList, pCtxt);
 			// Advance right pointer over right-only entry, and then retest with new pointers
 			++j;
@@ -222,7 +222,7 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
 		if (i<leftFiles.size())
 		{
 			ASSERT(j<rightFiles.size());
-			const int nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
+			const UINT nDiffCode = DIFFCODE::BOTH | DIFFCODE::FILE;
 			AddToList(leftsubdir, rightsubdir, &leftFiles[i], &rightFiles[j], nDiffCode, pList, pCtxt);
 			++i;
 			++j;
@@ -410,7 +410,7 @@ void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt)
 					pCtxt->m_nCompMethod != CMP_SIZE)
 				{
 					FolderCmp folderCmp;
-					int diffCode = folderCmp.prepAndCompareTwoFiles(pCtxt, di);
+					UINT diffCode = folderCmp.prepAndCompareTwoFiles(pCtxt, di);
 					
 					// Add possible binary flag for unique items
 					if (diffCode & DIFFCODE::BIN)

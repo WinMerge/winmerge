@@ -111,7 +111,7 @@ int DiffUtils::diffutils_compare_files()
 	{
 		return DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::CMPERR;
 	}
-	int code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
+	UINT code = DIFFCODE::FILE | DIFFCODE::TEXT | DIFFCODE::SAME;
 
 	// make sure to start counting diffs at 0
 	// (usually it is -1 at this point, for unknown)

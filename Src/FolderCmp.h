@@ -49,7 +49,7 @@ public:
 	~FolderCmp();
 	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
-	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
+	UINT prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
