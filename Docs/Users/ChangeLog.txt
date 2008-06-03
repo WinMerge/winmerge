@@ -12,9 +12,10 @@ WinMerge 2.8.2
   BugFix: Shortcuts given in command line were not expanded (#1942217)
   BugFix: Version Control filter did not match all VSS files (#1881186)
   BugFix: Fix command line paths in quotes ending with "\" (#1963523)
-  BugFix: Command line  description text starting with "/" confused
+  BugFix: Command line description text starting with "/" confused
     WinMerge (#1973225)
   BugFix: Fix showing differences in the end of the line (#1883409, #1962816)
+  BugFix: Item count in statusbar not get cleared (#1976480)
   New translation: Greek (#1968429)
   New translation: Romanian (#1939729)
   New translation: Ukrainian (#1973149, #1974021)

@@ -540,6 +540,8 @@ void CChildFrame::OnClose()
 {
 	// clean up pointers.
 	CMDIChildWnd::OnClose();
+
+	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 void CChildFrame::OnSize(UINT nType, int cx, int cy) 

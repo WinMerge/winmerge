@@ -121,6 +121,7 @@ public:
 	BOOL CreateBackup(BOOL bFolder, LPCTSTR pszPath);
 	int HandleReadonlySave(CString& strSavePath, BOOL bMultiFile, BOOL &bApplyToAll);
 	CString SetStatus(LPCTSTR status);
+	void ClearStatusbarItemCount();
 	void ApplyViewWhitespace();
 	void OpenFileToExternalEditor(LPCTSTR file);
 	void SetEOLMixed(BOOL bAllow);

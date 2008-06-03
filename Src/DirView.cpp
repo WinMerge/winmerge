@@ -846,6 +846,8 @@ void CDirView::OnDestroy()
 	SaveColumnWidths();
 
 	CListView::OnDestroy();
+
+	GetMainFrame()->ClearStatusbarItemCount();
 }
 
 /**
