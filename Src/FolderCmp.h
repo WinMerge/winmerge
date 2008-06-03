@@ -50,7 +50,6 @@ public:
 	bool RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CString &errStr);
 	void CleanupAfterPlugins(PluginsContext *plugCtxt);
 	int prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di);
-	int byte_compare_files(BOOL bStopAfterFirstDiff, const IAbortable * piAbortable);
 
 	int m_ndiffs;
 	int m_ntrivialdiffs;
