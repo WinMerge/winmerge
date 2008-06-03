@@ -7,8 +7,9 @@ WinMerge 2.9.1.3
   Add VB.net keywords to Basic highlighter (#1970912)
   Possible improvement for WinMerge exit bug (#1602313)
   BugFix: Location Pane flickers when resizing (#1740106)
-  BugFix: Command line  description text starting with "/" confused
+  BugFix: Command line description text starting with "/" confused
     WinMerge (#1973225)
+  BugFix: Item count in statusbar not get cleared (#1976480)
   New translation: Ukrainian (#1973149, #1974021)
   Translation updates:
   - Swedish (#1980970)

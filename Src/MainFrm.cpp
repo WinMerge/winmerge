@@ -1956,6 +1956,12 @@ CString CMainFrame::SetStatus(LPCTSTR status)
 	return old;
 }
 
+// Clear the item count in the main status pane
+void CMainFrame::ClearStatusbarItemCount()
+{
+	m_wndStatusBar.SetPaneText(2, _T(""));
+}
+
 /**
  * @brief Generate patch from files selected.
  *
