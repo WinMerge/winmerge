@@ -8,6 +8,19 @@ pre,code,tt {
   font-size: 100%;
 }
 
+ul {
+  list-style-type: square;
+}
+
+/* Default link style */
+a:link { color:#3366CC; text-decoration:underline; }
+a:visited { color:#003399; text-decoration:underline; }
+a:focus { color:#3366CC; text-decoration:none; }
+a:hover { color:#3366CC; text-decoration:none; }
+a:active { color:#003399; text-decoration:none; }
+
+a[name]:hover { color:black; text-decoration:none; }
+
 .mediaobject {
   margin-top: 10px;
 }
