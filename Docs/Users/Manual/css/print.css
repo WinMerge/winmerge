@@ -8,6 +8,17 @@ pre,code,tt {
   font-size: 100%;
 }
 
+ul {
+  list-style-type: square;
+}
+
+/* Default link style */
+a:link { color:black; text-decoration:underline; }
+a:visited { color:black; text-decoration:underline; }
+a:focus { color:black; text-decoration:none; }
+a:hover { color:black; text-decoration:none; }
+a:active { color:black; text-decoration:none; }
+
 .navheader {
   display: none;
 }
