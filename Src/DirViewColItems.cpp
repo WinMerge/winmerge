@@ -740,19 +740,30 @@ static int ColRversionSort(const CDiffContext *pCtxt, const void *p, const void 
 
 /**
  * @brief Compare binary statuses.
+ * This function returns a comparison of binary results.
  * @param [in] pCtxt Pointer to compare context.
  * @param [in] p Pointer to DIFFITEM having first status to compare.
  * @param [in] q Pointer to DIFFITEM having second status to compare.
- * @return Compare result.
+ * @return Compare result:
+ * - if both items are text files or binary files: 0
+ * - if left is text and right is binary: -1
+ * - if left is binary and right is text: 1
  */
 static int ColBinSort(const CDiffContext *, const void *p, const void *q)
 {
 	const DIFFITEM &ldi = *static_cast<const DIFFITEM *>(p);
 	const DIFFITEM &rdi = *static_cast<const DIFFITEM *>(q);
-	int i = ldi.diffcode.isBin();
-	int j = rdi.diffcode.isBin();
+	const bool i = ldi.diffcode.isBin();
+	const bool j = rdi.diffcode.isBin();
 
-	return i - j;
+	if (!i && !j)
+		return 0;
+	else if (i && !j)
+		return 1;
+	else if (!i && j)
+		return -1;
+	else
+		return 0;
 }
 
 /**
