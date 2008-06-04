@@ -23,6 +23,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "diffcontext.h"
 #include "diffthread.h"
 #include "DirScan.h"
@@ -31,6 +32,8 @@
 #include "PathContext.h"
 #include "CompareStats.h"
 #include "IAbortable.h"
+
+using namespace std;
 
 /**
  * @brief Force compare to be single-threaded.
@@ -58,7 +61,7 @@ struct DiffFuncStruct
 	BOOL bRecursive; /**< Is compare recursive (subfolders included)? */
 	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
 	bool bOnlyRequested; /**< Compare only requested items? */
-	DiffItemList *pItemList; /**< List of items to compare. */
+	std::vector<DIFFITEM*> *pItemList; /**< List of items to compare. */
 	HANDLE hEvent; /**< Event for synchronizing thread start. */
 
 	DiffFuncStruct()
@@ -273,9 +276,9 @@ UINT DiffThreadCollect(LPVOID lpParam)
 
 	// Add sentinel to ItemList
 	EnterCriticalSection(&myStruct->context->m_criticalSect);
-	DIFFITEM di;
-	di = di.MakeEmptyDiffItem();
-	myStruct->pItemList->AddDiff(di);
+	DIFFITEM *di = new DIFFITEM();
+	di->empty = true;
+	myStruct->pItemList->push_back(di);
 	LeaveCriticalSection(&myStruct->context->m_criticalSect);
 
 	return 1;
@@ -324,8 +327,13 @@ UINT DiffThreadCompare(LPVOID lpParam)
 		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 	}
 
-	// Clear the list - its job is now done
-	myStruct->pItemList->RemoveAll();
+	// Empty the list
+	while (!myStruct->pItemList->empty())
+	{
+		DIFFITEM * di = myStruct->pItemList->back();
+		delete di;
+		myStruct->pItemList->pop_back();
+	}
 
 	// Send message to UI to update
 	myStruct->nThreadState = CDiffThread::THREAD_COMPLETED;

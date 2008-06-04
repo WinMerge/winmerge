@@ -25,6 +25,7 @@
 #ifndef _DIFFTHREAD_H
 #define _DIFFTHREAD_H
 
+#include <vector>
 #include "diffcontext.h"
 
 struct DiffFuncStruct;
@@ -70,7 +71,7 @@ private:
 	CWinThread * m_threads[2]; /**< Compare threads. */
 	DiffFuncStruct * m_pDiffParm; /**< Structure for sending data to threads. */
 	DiffThreadAbortable * m_pAbortgate;
-	DiffItemList m_diffList; /**< Compare-time list for compared items. */
+	std::vector<DIFFITEM*> m_diffList; /**< Compare-time list for compared items. */
 	UINT m_msgUpdateUI; /**< UI-update message number */
 	HWND m_hWnd; /**< Handle to folder compare GUI window */
 	bool m_bAborting; /**< Is compare aborting? */

@@ -3,21 +3,25 @@
  *
  *  @brief Declaration of DirScan module (see DirScan function)
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef DirScan_h_included
 #define DirScan_h_included
 
+#include <vector>
+
 class CDiffContext;
 class DiffItemList;
 class PathContext;
 class IAbortable;
+struct DIFFITEM;
 
-int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir, LPCTSTR rightsubdir, DiffItemList * pLst,
+int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
+		LPCTSTR rightsubdir, std::vector<DIFFITEM*> * pList,
 		bool casesensitive, int depth, CDiffContext * pCtxt);
 
-int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt);
+int DirScan_CompareItems(std::vector<DIFFITEM*> * pList, CDiffContext * pCtxt);
 int DirScan_CompareItems(CDiffContext * pCtxt);
 
 void DirScan_InitializeDefaultCodepage();

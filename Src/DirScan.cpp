@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "UnicodeString.h"
 #include "Merge.h"
 #include "LogFile.h"
@@ -28,12 +29,14 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using namespace std;
+
 // Static functions (ie, functions only used locally)
 void CompareDiffItem(DIFFITEM di, CDiffContext * pCtxt);
 static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
 		const FolderCmp * pCmpData);
 static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir, const DirItem * lent, const DirItem * rent,
-	int code, DiffItemList * pList, CDiffContext *pCtxt);
+	int code, vector<DIFFITEM*> * pList, CDiffContext *pCtxt);
 static void UpdateDiffItem(DIFFITEM & di, BOOL & bExists, CDiffContext *pCtxt);
 
 /** @brief cmpmth is a typedef for a pointer to a method */
@@ -75,7 +78,7 @@ typedef int (CString::*cmpmth)(LPCTSTR sz) const;
  * @return 1 normally, -1 if compare was aborted
  */
 int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
-		LPCTSTR rightsubdir, DiffItemList *pList,
+		LPCTSTR rightsubdir, vector<DIFFITEM*> * pList,
 		bool casesensitive, int depth, CDiffContext * pCtxt)
 {
 	static const TCHAR backslash[] = _T("\\");
@@ -240,27 +243,20 @@ int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
  * @param pCtxt [in,out] Compare context: contains list where results are added.
  * @return 1 if compare finished, -1 if compare was aborted
  */
-int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt)
+int DirScan_CompareItems(vector<DIFFITEM*> * pList, CDiffContext * pCtxt)
 {
 	int res = 1;
-	POSITION pos = NULL;
-	POSITION prevPos = NULL;
-		
-	EnterCriticalSection(&pCtxt->m_criticalSect);
-	pos = list->GetFirstDiffPosition();
-	LeaveCriticalSection(&pCtxt->m_criticalSect);
-	
+
 	// Wait until we have items in list
-	while (pos == NULL)
-	{
+	while (pList->empty())
 		Sleep(100);
-		EnterCriticalSection(&pCtxt->m_criticalSect);
-		pos = list->GetFirstDiffPosition();
-		LeaveCriticalSection(&pCtxt->m_criticalSect);
-	}
-	
+
+	vector<DIFFITEM*>::const_iterator iter = pList->begin();
+
 	// Compare whole list
-	while (pos != NULL)
+	// Normally compare ends with sentinel item, but aborted compare
+	// may not add it. So we need to check both cases.
+	while (iter != pList->end() && !(*iter)->empty)
 	{
 		if (pCtxt->ShouldAbort())
 		{
@@ -268,26 +264,17 @@ int DirScan_CompareItems(DiffItemList * list, CDiffContext * pCtxt)
 			break;
 		}
 
-		prevPos = pos;
-		EnterCriticalSection(&pCtxt->m_criticalSect);
-		DIFFITEM di = list->GetNextDiffPosition(pos);
-		LeaveCriticalSection(&pCtxt->m_criticalSect);
-		if (di.empty)
+		if ((*iter)->empty)
 			break; // found sentinel
-		CompareDiffItem(di, pCtxt);
+		CompareDiffItem(*(*iter), pCtxt);
 
-		// Some compare methdods can be faster than collecting,
+		// Some compare methods can be faster than collecting,
 		// so we can reach the end of list while collect is running.
 		// In this case we must wait for a while for new items to be
-		// added to the list.
-		while (pos == NULL)
-		{
-			pos = prevPos;
+		// added to the list. On
+		while (iter + 1 == pList->end())
 			Sleep(200);
-			EnterCriticalSection(&pCtxt->m_criticalSect);
-			list->GetNextDiffPosition(pos);
-			LeaveCriticalSection(&pCtxt->m_criticalSect);
-		}
+		++iter;
 	}
 
 	return res;
@@ -490,59 +477,59 @@ static void StoreDiffData(DIFFITEM &di, CDiffContext * pCtxt,
  */
 static void AddToList(LPCTSTR sLeftDir, LPCTSTR sRightDir,
 	const DirItem * lent, const DirItem * rent,
-	int code, DiffItemList * pList, CDiffContext *pCtxt)
+	int code, vector<DIFFITEM*> * pList, CDiffContext *pCtxt)
 {
 	// We must store both paths - we cannot get paths later
 	// and we need unique item paths for example when items
 	// change to identical
 
-	DIFFITEM di;
+	DIFFITEM *di = new DIFFITEM();
 
-	di.left.path = sLeftDir;
-	di.right.path = sRightDir;
+	di->left.path = sLeftDir;
+	di->right.path = sRightDir;
 
 	if (lent)
 	{
-		di.left.filename = lent->filename;
-		di.left.mtime = lent->mtime;
-		di.left.ctime = lent->ctime;
-		di.left.size = lent->size;
-		di.left.flags.attributes = lent->flags.attributes;
+		di->left.filename = lent->filename;
+		di->left.mtime = lent->mtime;
+		di->left.ctime = lent->ctime;
+		di->left.size = lent->size;
+		di->left.flags.attributes = lent->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyRightToLeft()
-		di.left.filename = rent->filename;
+		di->left.filename = rent->filename;
 	}
 
 	if (rent)
 	{
-		di.right.filename = OPTIMIZE_SHARE_CSTRINGDATA
+		di->right.filename = OPTIMIZE_SHARE_CSTRINGDATA
 		(
-			di.left.filename.c_str() == rent->filename.c_str() ? di.left.filename :
+			di->left.filename.c_str() == rent->filename.c_str() ? di->left.filename :
 		) rent->filename;
-		di.right.mtime = rent->mtime;
-		di.right.ctime = rent->ctime;
-		di.right.size = rent->size;
-		di.right.flags.attributes = rent->flags.attributes;
+		di->right.mtime = rent->mtime;
+		di->right.ctime = rent->ctime;
+		di->right.size = rent->size;
+		di->right.flags.attributes = rent->flags.attributes;
 	}
 	else
 	{
 		// Don't break CDirView::DoCopyLeftToRight()
-		di.right.filename = lent->filename;
+		di->right.filename = lent->filename;
 	}
 
-	di.diffcode = code;
+	di->diffcode = code;
 
 	GetLog()->Write
 	(
 		CLogFile::LCOMPAREDATA, _T("name=<%s>, leftdir=<%s>, rightdir=<%s>, code=%d"),
-		di.left.filename.c_str(), di.left.path.c_str(), di.right.path.c_str(), code
+		di->left.filename.c_str(), di->left.path.c_str(), di->right.path.c_str(), code
 	);
 	pCtxt->m_pCompareStats->IncreaseTotalItems();
 
 	EnterCriticalSection(&pCtxt->m_criticalSect);
-	pList->AddDiff(di);
+	pList->push_back(di);
 	LeaveCriticalSection(&pCtxt->m_criticalSect);
 }
 
