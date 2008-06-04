@@ -7,9 +7,12 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "LineFiltersList.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
+
+using namespace std;
 
 /** @brief Registry key for saving linefilters. */
 static const TCHAR FiltersRegPath[] =_T("LineFilters");
@@ -37,10 +40,10 @@ LineFiltersList::~LineFiltersList()
  */
 void LineFiltersList::AddFilter(LPCTSTR filter, BOOL enabled)
 {
-	LineFilterItem item;
-	item.enabled = enabled;
-	item.filterStr = filter;
-	m_items.AddTail(item);
+	LineFilterItem *item = new LineFilterItem();
+	item->enabled = enabled;
+	item->filterStr = filter;
+	m_items.push_back(item);
 }
 
 /**
@@ -49,7 +52,7 @@ void LineFiltersList::AddFilter(LPCTSTR filter, BOOL enabled)
  */
 int LineFiltersList::GetCount() const
 {
-	return m_items.GetCount();
+	return m_items.size();
 }
 
 /**
@@ -57,9 +60,11 @@ int LineFiltersList::GetCount() const
  */
 void LineFiltersList::Empty()
 {
-	while (!m_items.IsEmpty())
+	while (!m_items.empty())
 	{
-		m_items.RemoveHead();
+		LineFilterItem * item = m_items.back();
+		delete item;
+		m_items.pop_back();
 	}
 }
 
@@ -73,17 +78,17 @@ void LineFiltersList::Empty()
 String LineFiltersList::GetAsString() const
 {
 	String filter;
-	POSITION pos = m_items.GetHeadPosition();
+	vector<LineFilterItem*>::const_iterator iter = m_items.begin();
 
-	while (pos)
+	while (iter != m_items.end())
 	{
-		LineFilterItem item = m_items.GetNext(pos);
-		if (item.enabled)
+		if ((*iter)->enabled)
 		{
 			if (!filter.empty())
 				filter += _T("|");
-			filter += item.filterStr;
+			filter += (*iter)->filterStr;
 		}
+		++iter;
 	}
 	return filter;	
 }
@@ -91,21 +96,15 @@ String LineFiltersList::GetAsString() const
 /**
  * @brief Return filter from given index.
  * @param [in] ind Index of filter.
- * @return Filter item from the index.
+ * @return Filter item from the index. If the index is beyond table limit,
+ *  return the last item in the list.
  */
-LineFilterItem LineFiltersList::GetAt(int ind)
+const LineFilterItem & LineFiltersList::GetAt(int ind)
 {
-	LineFilterItem item;
-
-	if (ind < m_items.GetCount())
-	{
-		POSITION pos = m_items.FindIndex(ind);
-		if (pos)
-		{
-			return m_items.GetAt(pos);
-		}
-	}
-	return item;
+	if (ind < m_items.size())
+		return *m_items[ind];
+	else
+		return *m_items.back();
 }
 
 /**
@@ -137,7 +136,7 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 
 	m_pOptionsMgr = pOptionsMgr;
 
-	int count = m_items.GetCount();
+	int count = m_items.size();
 	valuename += _T("/Values");
 	m_pOptionsMgr->InitOption(valuename.c_str(), count);
 	count = m_pOptionsMgr->GetInt(valuename.c_str());
@@ -166,23 +165,22 @@ void LineFiltersList::SaveFilters()
 	ASSERT(m_pOptionsMgr);
 	String valuename(FiltersRegPath);
 
-	int count = m_items.GetCount();
+	int count = m_items.size();
 	valuename += _T("/Values");
 	m_pOptionsMgr->SetInt(valuename.c_str(), count);
 
 	for (unsigned int i = 0; i < count; i++)
 	{
-		POSITION pos = m_items.FindIndex(i);
-		LineFilterItem item = m_items.GetAt(pos);
+		LineFilterItem *item = m_items[i];
 
 		TCHAR name[100] = {0};
 		_sntprintf(name, 99, _T("%s/Filter%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, _T(""));
-		m_pOptionsMgr->SaveOption(name, item.filterStr.c_str());
+		m_pOptionsMgr->SaveOption(name, item->filterStr.c_str());
 
 		_sntprintf(name, 99, _T("%s/Enabled%02u"), FiltersRegPath, i);
 		m_pOptionsMgr->InitOption(name, 0);
-		m_pOptionsMgr->SaveOption(name, (int)item.enabled);
+		m_pOptionsMgr->SaveOption(name, (int)item->enabled);
 	}
 
 	// Remove options we don't need anymore

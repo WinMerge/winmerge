@@ -10,6 +10,7 @@
 #define _LINEFILTERS_LIST_H_
 
 #include "stdafx.h"
+#include <vector>
 
 class COptionsMgr;
 
@@ -22,8 +23,6 @@ struct LineFilterItem
 	String filterStr; /**< Filter string */
 	LineFilterItem() : enabled(FALSE) { }
 };
-
-typedef CList<LineFilterItem, const LineFilterItem&> LineFilterItems;
 
 /**
  @brief List of line filters.
@@ -38,7 +37,7 @@ public:
 	int GetCount() const;
 	void Empty();
 	String GetAsString() const;
-	LineFilterItem GetAt(int ind);
+	const LineFilterItem & GetAt(int ind);
 	void CloneFrom(LineFiltersList *list);
 
 	void Initialize(COptionsMgr *pOptionsMgr);
@@ -47,9 +46,8 @@ public:
 	void Import(LPCTSTR filters);
 
 private:
-	LineFilterItems m_items; /**< List for linefilter items */
+	std::vector<LineFilterItem*> m_items; /**< List for linefilter items */
 	COptionsMgr * m_pOptionsMgr; /**< Options-manager for storage */
 };
 
 #endif // _LINEFILTERS_LIST_H_
-

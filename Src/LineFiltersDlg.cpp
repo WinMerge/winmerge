@@ -114,7 +114,7 @@ void LineFiltersDlg::InitList()
 	int ind = -1;
 	for (int i = 0; i < count; i++)
 	{
-		LineFilterItem item = m_pList->GetAt(i);
+		const LineFilterItem &item = m_pList->GetAt(i);
 		ind = AddRow(item.filterStr.c_str(), item.enabled);
 	}
 	if (count > 0)
