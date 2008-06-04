@@ -9,7 +9,6 @@
 #ifndef _LINEFILTERS_LIST_H_
 #define _LINEFILTERS_LIST_H_
 
-#include "stdafx.h"
 #include <vector>
 
 class COptionsMgr;

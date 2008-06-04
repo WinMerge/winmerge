@@ -9,6 +9,8 @@
 #ifndef _OPTIONS_DEF_H_
 #define _OPTIONS_DEF_H_
 
+#include <tchar.h>
+
 // View-menu
 const TCHAR OPT_SHOW_UNIQUE_LEFT[] = _T("Settings/ShowUniqueLeft");
 const TCHAR OPT_SHOW_UNIQUE_RIGHT[] = _T("Settings/ShowUniqueRight");

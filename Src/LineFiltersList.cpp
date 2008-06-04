@@ -6,8 +6,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
 #include <vector>
+#include <assert.h>
+#include "UnicodeString.h"
 #include "LineFiltersList.h"
 #include "OptionsDef.h"
 #include "OptionsMgr.h"
@@ -131,7 +133,7 @@ void LineFiltersList::CloneFrom(LineFiltersList *list)
  */
 void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
 {
-	ASSERT(pOptionsMgr);
+	assert(pOptionsMgr);
 	String valuename(FiltersRegPath);
 
 	m_pOptionsMgr = pOptionsMgr;
@@ -162,7 +164,7 @@ void LineFiltersList::Initialize(COptionsMgr *pOptionsMgr)
  */
 void LineFiltersList::SaveFilters()
 {
-	ASSERT(m_pOptionsMgr);
+	assert(m_pOptionsMgr);
 	String valuename(FiltersRegPath);
 
 	int count = m_items.size();
