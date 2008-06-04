@@ -781,7 +781,7 @@ int CMainFrame::ShowMergeDoc(CDirDoc * pDirDoc,
 void CMainFrame::RedisplayAllDirDocs()
 {
 	const DirDocList &dirdocs = GetAllDirDocs();
-	POSITION pos = 0;
+	POSITION pos = dirdocs.GetHeadPosition();
 	while (pos)
 	{
 		CDirDoc * pDirDoc = dirdocs.GetNext(pos);
