@@ -76,6 +76,7 @@ Localization:
 * Korean:
   Sukjoon
   Lee Jae-Hong
+  Sushizang
            
 * Norwegian:	
   Hans Fredrik Nordhaug
@@ -86,6 +87,7 @@ Localization:
 
 * Portuguese (Brazilian):	
   Wender Firmino
+  Felipe Periard Lopes
 
 * Portuguese (Portugal):
   Nelson Simão
