@@ -24,6 +24,7 @@ WinMerge 2.8.2
   - Croatian (#1958283)
   - German (#1949068)
   - Italian (#1939235)
+  - Korean (#1978362)
   - Polish (#1934655)
   - Swedish (#1950188, #1980970)
 
