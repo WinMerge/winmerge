@@ -248,7 +248,7 @@ BEGIN
     "#ifdef _WIN32\r\n"
     "LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT\r\n"
     "#pragma code_page(1251)\r\n"
-    "#include ""Languages\\ShellExtensionUkranian.rc""\r\n"
+    "#include ""Languages\\ShellExtensionUkrainian.rc""\r\n"
     "#endif //_WIN32\r\n"
     "#endif\r\n"
     "\0"
@@ -545,7 +545,7 @@ LANGUAGE LANG_TURKISH, SUBLANG_DEFAULT
 #ifdef _WIN32
 LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
-#include "Languages\\ShellExtensionUkranian.rc"
+#include "Languages\\ShellExtensionUkrainian.rc"
 #endif //_WIN32
 #endif
 
