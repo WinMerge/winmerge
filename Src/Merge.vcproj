@@ -2712,6 +2712,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="2"
 						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -2741,6 +2742,7 @@
 						Optimization="1"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						UsePrecompiledHeader="2"
 						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
 			</File>
