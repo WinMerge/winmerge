@@ -131,7 +131,7 @@ public:
 	static void SetMainIcon(CDialog * dlg);
 	void StartFlashing();
 	bool AskCloseConfirmation();
-	BOOL DoOpenConflict(LPCTSTR conflictFile);
+	BOOL DoOpenConflict(LPCTSTR conflictFile, bool checked = false);
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;

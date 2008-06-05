@@ -2123,10 +2123,18 @@ void CMainFrame::OnDropFiles(HDROP dropInfo)
 		files[0], files[1]);
 
 	// Check if they dropped a project file
-	if (wNumFilesDropped == 1 && theApp.IsProjectFile(files[0]))
+	if (wNumFilesDropped == 1)
 	{
-		theApp.LoadAndOpenProjectFile(files[0]);
-		return;
+		if (theApp.IsProjectFile(files[0]))
+		{
+			theApp.LoadAndOpenProjectFile(files[0]);
+			return;
+		}
+		if (IsConflictFile((LPCTSTR)files[0]))
+		{
+			DoOpenConflict((LPCTSTR)files[0], true);
+			return;
+		}
 	}
 
 	DoFileOpen(files[0], files[1], FFILEOPEN_NONE, FFILEOPEN_NONE, ctrlKey);
@@ -3389,20 +3397,24 @@ void CMainFrame::OnFileOpenConflict()
  * modified by default so user can just save it and accept workspace
  * file as resolved file.
  * @param [in] conflictFile Full path to conflict file to open.
+ * @param [in] checked If true, do not check if it really is project file.
  * @return TRUE if conflict file was opened for resolving.
  */
-BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile)
+BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 {
 	BOOL conflictCompared = FALSE;
 	String confl = (LPCTSTR)conflictFile;
 
-	bool confFile = IsConflictFile(confl);
-	if (!confFile)
+	if (!checked)
 	{
-		CString message;
-		LangFormatString1(message, IDS_NOT_CONFLICT_FILE, confl.c_str());
-		AfxMessageBox(message, MB_ICONSTOP);
-		return FALSE;
+		bool confFile = IsConflictFile(confl);
+		if (!confFile)
+		{
+			CString message;
+			LangFormatString1(message, IDS_NOT_CONFLICT_FILE, confl.c_str());
+			AfxMessageBox(message, MB_ICONSTOP);
+			return FALSE;
+		}
 	}
 
 	// Create temp files and put them into the list,
