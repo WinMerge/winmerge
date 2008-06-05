@@ -5,7 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.9.1.3
   Update PCRE (regular expression library) to version 7.7 (#1941779)
   Add VB.net keywords to Basic highlighter (#1970912)
-  Opening conflict files by drag & dropping to main window (#1984884)
+  Open conflict files by drag & dropping to main window (#1984884)
   Possible improvement for WinMerge exit bug (#1602313)
   BugFix: Location Pane flickers when resizing (#1740106)
   BugFix: Command line description text starting with "/" confused
