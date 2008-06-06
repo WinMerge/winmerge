@@ -12,9 +12,7 @@
 #include <vector>
 
 class CDiffContext;
-class DiffItemList;
 class PathContext;
-class IAbortable;
 struct DIFFITEM;
 
 int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,

@@ -13,13 +13,9 @@
 #include "DiffUtils.h"
 #include "ByteCompare.h"
 
-//using namespace CompareEngines;
-
 class CDiffContext;
-class IAbortable;
 class PackingInfo;
 class PrediffingInfo;
-//class CompareEngines::DiffUtils;
 
 /**
  * @brief Holds plugin-related paths and information.

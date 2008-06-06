@@ -28,7 +28,6 @@
 #include "diffthread.h"
 #include "DirScan.h"
 #include "Plugins.h"
-#include "DiffItemList.h"
 #include "PathContext.h"
 #include "CompareStats.h"
 #include "IAbortable.h"

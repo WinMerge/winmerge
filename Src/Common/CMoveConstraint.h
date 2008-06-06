@@ -25,8 +25,6 @@ class CFormView;
 
 namespace prdlg {
 
-class ConstraintData;
-
 /*!
   \class CMoveConstraint
   \brief Code to resize controls on a dialog (formview, propertypage)
@@ -259,4 +257,5 @@ private:
 } // namespace
 
 #endif // CMoveConstraint_h
+
 
