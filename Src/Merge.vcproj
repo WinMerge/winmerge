@@ -1028,7 +1028,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="common\CShellFileOp.cpp">
+				RelativePath="Common\CShellFileOp.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -3621,7 +3621,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="common\OptionsMgr.cpp">
+				RelativePath="Common\OptionsMgr.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -5902,7 +5902,7 @@
 				RelativePath="Common\coretypes.h">
 			</File>
 			<File
-				RelativePath="common\CShellFileOp.h">
+				RelativePath="Common\CShellFileOp.h">
 			</File>
 			<File
 				RelativePath="Common\CSubclass.h">
@@ -6124,7 +6124,7 @@
 				RelativePath="OptionsDef.h">
 			</File>
 			<File
-				RelativePath="common\OptionsMgr.h">
+				RelativePath="Common\OptionsMgr.h">
 			</File>
 			<File
 				RelativePath="OutputDlg.h">
@@ -6199,7 +6199,7 @@
 				RelativePath="Common\RegKey.h">
 			</File>
 			<File
-				RelativePath="Resource.h">
+				RelativePath="resource.h">
 			</File>
 			<File
 				RelativePath="SaveClosingDlg.h">
@@ -8306,7 +8306,7 @@
 			Name="DiffEngine"
 			Filter="">
 			<File
-				RelativePath="diffutils\src\ANALYZE.C">
+				RelativePath="diffutils\src\analyze.c">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
