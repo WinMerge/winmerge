@@ -21,21 +21,15 @@
  *
  * @date  Created: 2003-08-22
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _DIFFWRAPPER_H
 #define _DIFFWRAPPER_H
 
 #include "FileLocation.h"
-
-#ifndef FileTextStats_h_included
 #include "FileTextStats.h"
-#endif
-
-#ifndef CompareOptions_h_included
 #include "CompareOptions.h"
-#endif
 
 class CDiffContext;
 class PrediffingInfo;

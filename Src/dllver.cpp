@@ -4,9 +4,7 @@
 
 #include "stdafx.h"
 // Uses MFC C++ template collection classes
-#ifndef __AFXTEMPL_H__
 #include <afxtempl.h>
-#endif
 // Need DLLGETVERSIONPROC from <shlwapi.h>
 #include <shlwapi.h>
 #include "dllver.h"

@@ -23,16 +23,13 @@
  *
  *  @brief Declaration file for VBS Scriptlets, VB ActiveX DLL, VC++ COM DLL
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef __PLUGINS_H__
 #define __PLUGINS_H__
 
-#ifndef _FileFilterMgr_included_
-#define _FileFilterMgr_included_
 #include "FileFilterMgr.h"
-#endif
 
 class CRegExp;
 

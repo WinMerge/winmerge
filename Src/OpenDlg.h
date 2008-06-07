@@ -33,10 +33,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // COpenDlg dialog
 #include "SuperComboBox.h"
-
-#ifndef CMoveConstraint_h
 #include "CMoveConstraint.h"
-#endif
 #include "FileTransform.h"
 
 class ProjectFile;

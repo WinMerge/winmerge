@@ -3,15 +3,13 @@
  *
  *  @brief Declaration of DiffItemList
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _DIFF_ITEM_LIST_H_
 #define _DIFF_ITEM_LIST_H_
 
-#ifndef _DIFF_ITEM_H_
 #include "DiffItem.h"
-#endif
 
 /**
  * @brief List of DiffItems

@@ -2,15 +2,10 @@
 #define PluginManager_h_included
 
 
-#if !defined(AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_)
 // defines IPluginInfos
 #include "DiffContext.h"
-#endif
-
-#ifndef FileTransform_h
 // defines PackingInfo and PrediffingInfo
 #include "FileTransform.h"
-#endif
 
 /**
  * @brief Cached plugin info for one particular file info

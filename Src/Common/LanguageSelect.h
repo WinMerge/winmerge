@@ -3,17 +3,14 @@
  *
  * @brief Declaration file for CLanguageSelect dialog.
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_)
 #define AFX_LANGUAGESELECT_H__4395A84F_E8DF_11D1_BBCB_00A024706EDC__INCLUDED_
 
 #include "LogFile.h"
-
-#ifndef CMoveConstraint_h
 #include "CMoveConstraint.h"
-#endif
 
 #include <vector>
 #include <string>

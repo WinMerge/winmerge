@@ -12,10 +12,7 @@
 #ifndef UniFile_h_included
 #define UniFile_h_included
 
-#ifndef sbuffer_h_included
 #include "sbuffer.h"
-#endif
-
 #include "unicoder.h"
 
 /**

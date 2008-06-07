@@ -18,9 +18,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 #include "StdAfx.h"
 #include "CSubclass.h"
 
-#ifndef __AFXTEMPL_H__
 #include <afxtempl.h>
-#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

@@ -10,9 +10,7 @@
 #ifndef FileLocation_included
 #define FileLocation_included
 
-#ifndef FileTextEncoding_h_included
 #include "FileTextEncoding.h"
-#endif
 
 /**
  * @brief A structure containing file's path and encoding information.

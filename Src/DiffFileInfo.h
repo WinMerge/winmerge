@@ -25,17 +25,9 @@
 #ifndef _DIFF_FILE_INFO_H_INCLUDED
 #define _DIFF_FILE_INFO_H_INCLUDED
 
-#ifndef _DIR_ITEM_H_INCLUDED
 #include "DirItem.h"
-#endif
-
-#ifndef FileTextEncoding_h_included
 #include "FileTextEncoding.h"
-#endif
-
-#ifndef FileTextStats_h_included
 #include "FileTextStats.h"
-#endif
 
 /**
  * @brief Class for fileflags and coding info.

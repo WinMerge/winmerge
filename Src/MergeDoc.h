@@ -22,7 +22,7 @@
  *
  * @brief Declaration of CMergeDoc class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #if !defined(AFX_MERGEDOC_H__BBCD4F90_34E4_11D1_BAA6_00A024706EDC__INCLUDED_)
@@ -33,18 +33,9 @@
 #include "DiffWrapper.h"
 #include "DiffList.h"
 #include "stringdiffs.h"
-
-#ifndef _TEMP_FILE_
 #include "TempFile.h"
-#endif
-
-#ifndef _PATH_CONTEXT_H_
 #include "PathContext.h"
-#endif
-
-#ifndef _DIFF_FILE_INFO_H_INCLUDED
 #include "DiffFileInfo.h"
-#endif
 
 /**
  * @brief Additional action codes for WinMerge.

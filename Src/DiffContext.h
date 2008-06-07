@@ -10,17 +10,9 @@
 #define AFX_DIFFCONTEXT_H__D3CC86BE_F11E_11D2_826C_00A024706EDC__INCLUDED_
 #pragma once
 
-#ifndef _PATH_CONTEXT_H_
 #include "PathContext.h"
-#endif
-
-#ifndef _DIFF_FILE_INFO_H_INCLUDED
 #include "DiffFileInfo.h"
-#endif
-
-#ifndef _DIFF_ITEM_LIST_H_
 #include "DiffItemList.h"
-#endif
 
 class PackingInfo;
 class PrediffingInfo;

@@ -22,10 +22,7 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef CMoveConstraint_h
 #include "CMoveConstraint.h"
-#endif
-
 
 /**
  * @brief Dialog for item copy confirmation.

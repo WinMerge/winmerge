@@ -4,7 +4,7 @@
  *
  * @brief Declaration of CMergeDiffDetailView class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 //
 //////////////////////////////////////////////////////////////////////
@@ -14,10 +14,7 @@
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDiffDetailView view
-#ifndef __EDTLIB_H
 #include "edtlib.h"
-#endif
-
 
 
 /**

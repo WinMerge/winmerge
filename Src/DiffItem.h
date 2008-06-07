@@ -9,9 +9,7 @@
 #ifndef _DIFF_ITEM_H_
 #define _DIFF_ITEM_H_
 
-#ifndef _DIFF_FILE_INFO_H_INCLUDED
 #include "DiffFileInfo.h"
-#endif
 
 /**
  * @brief Bitfield values for binary file sides.

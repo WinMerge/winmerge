@@ -17,16 +17,14 @@
  *
  *  @brief Declaration file for FileFilterMgr
  */ 
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
-#ifndef FileFilter_h_included
-#define FileFilter_h_included
+#ifndef FileFilterMgr_h_included
+#define FileFilterMgr_h_included
 
 // Uses MFC C++ template containers
-#ifndef __AFXTEMPL_H__
 #include <afxtempl.h>
-#endif
 #include "pcre.h"
 
 struct FileFilterElement;
@@ -132,4 +130,4 @@ BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest);
 void EmptyFilterList(FileFilterList & filterList);
 
 
-#endif // FileFilter_h_included
+#endif // FileFilterMgr_h_included

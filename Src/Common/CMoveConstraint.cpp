@@ -17,13 +17,8 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "StdAfx.h"
 
-#ifndef __AFXTEMPL_H__
 #include <afxtempl.h>       // MFC template collection classes
-#endif
-
-#ifndef __AFXEXT_H__
 #include <afxext.h> // needed for CFormView
-#endif
 
 #include "CMoveConstraint.h"
 

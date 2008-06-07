@@ -3,7 +3,7 @@
  *
  * @brief Declaration of the dialog used to select codepages
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 
@@ -11,9 +11,7 @@
 #define AFX_LOADSAVECODEPAGEDLG_H__B9A16700_6F1A_4DF1_8EB3_0A1D772DCE91__INCLUDED_
 #pragma once
 
-#ifndef CMoveConstraint_h
 #include "CMoveConstraint.h"
-#endif
 
 /////////////////////////////////////////////////////////////////////////////
 // CLoadSaveCodepageDlg dialog

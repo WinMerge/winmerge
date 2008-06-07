@@ -71,9 +71,7 @@ const UINT CONTEXT_LINES_BELOW = 3;
 
 /////////////////////////////////////////////////////////////////////////////
 // CMergeEditView view
-#ifndef __EDTLIB_H
 #include "edtlib.h"
-#endif
 #include "GhostTextView.h"
 
 class IMergeEditStatus;

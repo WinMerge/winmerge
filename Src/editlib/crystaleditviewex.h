@@ -10,10 +10,7 @@
 #endif // _MSC_VER > 1000
 
 #include "ccrystaleditview.h"
-
-#ifndef __CRYSTALSYNTAXPARSER_H__
 #include "CrystalParser.h"
-#endif
 
 
 class EDITPADC_CLASS CCrystalEditViewEx : public CCrystalEditView  

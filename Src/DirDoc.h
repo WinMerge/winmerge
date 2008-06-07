@@ -30,11 +30,8 @@
 #define AFX_DIRDOC_H__0B17B4C1_356F_11D1_95CD_444553540000__INCLUDED_
 #pragma once
 
-#include "diffThread.h"
-
-#ifndef PluginManager_h_included
+#include "DiffThread.h"
 #include "PluginManager.h"
-#endif
 
 class CDirView;
 class CMergeDoc;

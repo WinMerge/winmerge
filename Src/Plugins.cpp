@@ -27,9 +27,7 @@
 // $Id$
 
 #include "StdAfx.h"
-#ifndef __AFXMT_H__
 #include <afxmt.h>
-#endif
 
 #include "pcre.h"
 #include "LogFile.h"

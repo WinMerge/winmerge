@@ -10,9 +10,7 @@
 #ifndef _PROPBACKUPS_H_
 #define _PROPBACKUPS_H_
 
-#ifndef _IOPTIONSPANEL_H_
 #include "IOptionsPanel.h"
-#endif
 
 class COptionsMgr;
 

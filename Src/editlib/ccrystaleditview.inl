@@ -27,10 +27,7 @@
 #define __CCrystalEditView_INL_INCLUDED
 
 #include "CCrystalEditView.h"
-
-#ifndef AFX_CCRYSTALTEXTBUFFER_H__AD7F2F49_6CB3_11D2_8C32_0080ADB86836__INCLUDED_
 #include "ccrystaltextbuffer.h"
-#endif
 
 inline BOOL CCrystalEditView::
 GetOverwriteMode ()
