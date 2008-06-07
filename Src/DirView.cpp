@@ -2487,7 +2487,18 @@ void CDirView::OnToolsGenerateReport()
 
 	DirCmpReport report(colKeys);
 	report.SetList(m_pList);
-	PathContext paths(pDoc->GetLeftBasePath().c_str(), pDoc->GetRightBasePath().c_str());
+
+	String left = pDoc->GetLeftBasePath().c_str();
+	String right = pDoc->GetRightBasePath().c_str();
+
+	// If inside archive, convert paths
+	if (pDoc->IsArchiveFolders())
+	{
+		pDoc->ApplyLeftDisplayRoot(left);
+		pDoc->ApplyRightDisplayRoot(right);
+	}
+
+	PathContext paths(left.c_str(), right.c_str());
 	report.SetRootPaths(paths);
 	report.SetColumns(m_dispcols);
 	String errStr;

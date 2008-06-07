@@ -146,6 +146,7 @@ public:
 	void SetItemViewFlag(POSITION key, UINT flag, UINT mask);
 	void SetItemViewFlag(UINT flag, UINT mask);
 	const CompareStats * GetCompareStats() const { return m_pCompareStats; };
+	bool IsArchiveFolders();
 
 protected:
 	void LoadLineFilterList();

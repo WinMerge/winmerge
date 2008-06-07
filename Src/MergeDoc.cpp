@@ -3355,6 +3355,24 @@ void CMergeDoc::OnToolsGenerateReport()
 		_T("<tr>\n")
 		, nFontSize, m_pView[0]->GetHTMLStyles()));
 
+	// Get paths
+	// If archive, use archive path + folder + filename inside archive
+	// If desc text given, use it
+	String left = m_filePaths.GetPath(0);
+	String right = m_filePaths.GetPath(1);
+	if (m_pDirDoc->IsArchiveFolders())
+	{
+		m_pDirDoc->ApplyLeftDisplayRoot(left);
+		m_pDirDoc->ApplyRightDisplayRoot(right);
+	}
+	else
+	{
+		if (!m_strDesc[0].empty())
+			left = m_strDesc[0];
+		if (!m_strDesc[1].empty())
+			right = m_strDesc[0];
+	}
+
 	// left and right title
 	int nBuffer;
 	for (nBuffer = 0; nBuffer < 2; nBuffer++)
@@ -3364,10 +3382,10 @@ void CMergeDoc::OnToolsGenerateReport()
 			nLineNumberColumnWidth));
 		file.WriteString(Fmt(_T("<th class=\"title\" style=\"width:%f%%\">"),
 			(double)(100 - nLineNumberColumnWidth * 2) / 2));
-		if (!m_strDesc[nBuffer].empty())
-			file.WriteString(m_strDesc[nBuffer].c_str());
+		if (nBuffer == 0)
+			file.WriteString(left.c_str());
 		else
-			file.WriteString(m_filePaths.GetPath(nBuffer).c_str());
+			file.WriteString(right.c_str());
 		file.WriteString(_T("</th>\n"));
 	}
 	file.WriteString(

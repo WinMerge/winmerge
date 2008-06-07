@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.9.1.4
+  BugFix: Temp paths in Reports created from archive file (#1984346)
+
 WinMerge 2.9.1.3 - 2008-06-05 (r5438)
   Update PCRE (regular expression library) to version 7.7 (#1941779)
   Add VB.net keywords to Basic highlighter (#1970912)
