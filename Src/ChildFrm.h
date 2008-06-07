@@ -82,13 +82,13 @@ protected:
 	private:
 		CChildFrame * m_pFrame;
 		int m_base; /**< 0 for left, 1 for right */
-		CString m_sLine;
+		String m_sLine;
 		int m_nColumn; /**< Current column, tab-expanded */
 		int m_nColumns; /**< Amount of columns, tab-expanded */
 		int m_nChar; /**< Current char */
 		int m_nChars; /**< Amount of chars in line */
-		CString m_sEol;
-		CString m_sEolDisplay;
+		String m_sEol;
+		String m_sEolDisplay;
 	};
 	friend class MergeStatus; // MergeStatus accesses status bar
 	MergeStatus m_leftStatus;
@@ -128,7 +128,7 @@ private:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	afx_msg void OnIdleUpdateCmdUI();
 	afx_msg LRESULT OnStorePaneSizes(WPARAM wParam, LPARAM lParam);
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()

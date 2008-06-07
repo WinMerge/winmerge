@@ -51,7 +51,7 @@ static UINT ENCODING_PANEL_WIDTH = 80;
 /** @brief EOL type status panel width */
 static UINT EOL_PANEL_WIDTH = 60;
 
-static CString EolString(const CString & sEol);
+static String EolString(const String & sEol);
 
 /////////////////////////////////////////////////////////////////////////////
 // CChildFrame
@@ -63,7 +63,7 @@ BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWnd)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
-	ON_WM_TIMER()
+	ON_MESSAGE_VOID(WM_IDLEUPDATECMDUI, OnIdleUpdateCmdUI)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_DETAIL_BAR, OnUpdateControlBarMenu)
 	ON_COMMAND_EX(ID_VIEW_DETAIL_BAR, OnBarCheck)
 	ON_UPDATE_COMMAND_UI(ID_VIEW_LOCATION_BAR, OnUpdateControlBarMenu)
@@ -313,7 +313,6 @@ int CChildFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_hIdentical = AfxGetApp()->LoadIcon(IDI_EQUALFILE);
 	m_hDifferent = AfxGetApp()->LoadIcon(IDI_NOTEQUALFILE);
 
-	SetTimer(0, 250, NULL); // used to update the title headers
 	return 0;
 }
 
@@ -651,7 +650,7 @@ void CChildFrame::UpdateSplitter()
 	m_wndDetailBar.UpdateBarHeight(0);
 }
 
-void CChildFrame::OnTimer(UINT_PTR nIDEvent) 
+void CChildFrame::OnIdleUpdateCmdUI()
 {
 	if (IsWindowVisible())
 	{
@@ -663,7 +662,7 @@ void CChildFrame::OnTimer(UINT_PTR nIDEvent)
 			m_nLastSplitPos = w;
 		}
 	}
-	CMDIChildWnd::OnTimer(nIDEvent);
+	CMDIChildWnd::OnIdleUpdateCmdUI();
 }
 
 /// Document commanding us to close
@@ -694,17 +693,17 @@ void CChildFrame::MergeStatus::Update()
 		if (m_nChars == -1)
 		{
 			str.Format(theApp.LoadString(IDS_EMPTY_LINE_STATUS_INFO).c_str(),
-				m_sLine);
+				m_sLine.c_str());
 		}
-		else if (m_sEolDisplay.IsEmpty())
+		else if (m_sEolDisplay.empty())
 		{
 			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO).c_str(),
-				m_sLine, m_nColumn, m_nColumns, m_nChar, m_nChars);
+				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars);
 		}
 		else
 		{
 			str.Format(theApp.LoadString(IDS_LINE_STATUS_INFO_EOL).c_str(),
-				m_sLine, m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay);
+				m_sLine.c_str(), m_nColumn, m_nColumns, m_nChar, m_nChars, m_sEolDisplay.c_str());
 		}
 
 		m_pFrame->m_wndStatusBar.SetPaneText(m_base, str);
@@ -720,27 +719,23 @@ void CChildFrame::MergeStatus::UpdateResources()
 }
 
 /// Visible representation of eol
-static CString EolString(const CString & sEol)
+static String EolString(const String & sEol)
 {
 	if (sEol == _T("\r\n"))
 	{
-		String eol = LoadResString(IDS_EOL_CRLF);
-		return eol.c_str();
+		return LoadResString(IDS_EOL_CRLF);
 	}
 	if (sEol == _T("\n"))
 	{
-		String eol = LoadResString(IDS_EOL_LF);
-		return eol.c_str();
+		return LoadResString(IDS_EOL_LF);
 	}
 	if (sEol == _T("\r"))
 	{
-		String eol = LoadResString(IDS_EOL_CR);
-		return eol.c_str();
+		return LoadResString(IDS_EOL_CR);
 	}
-	if (sEol.IsEmpty())
+	if (sEol.empty())
 	{
-		String eol = LoadResString(IDS_EOL_NONE);
-		return eol.c_str();
+		return LoadResString(IDS_EOL_NONE);
 	}
 	if (sEol == _T("hidden"))
 		return _T("");
@@ -751,8 +746,8 @@ static CString EolString(const CString & sEol)
 void CChildFrame::MergeStatus::SetLineInfo(LPCTSTR szLine, int nColumn,
 		int nColumns, int nChar, int nChars, LPCTSTR szEol)
 {
-	if (m_sLine.Compare(szLine) != 0 || m_nColumn != nColumn || m_nColumns != nColumns ||
-		m_nChar != nChar || m_nChars != nChars || m_sEol.Compare(szEol) != 0)
+	if (m_sLine != szLine || m_nColumn != nColumn || m_nColumns != nColumns ||
+		m_nChar != nChar || m_nChars != nChars || m_sEol != szEol)
 	{
 		m_sLine = szLine;
 		m_nColumn = nColumn;
