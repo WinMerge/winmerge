@@ -157,7 +157,7 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 			++src;
 			--len;
 		}
-		lstrcpynA(line, base, sizeof line);
+		lstrcpynA(line, base, len < sizeof line ? len + 1 : sizeof line);
 	} while (len && sscanf(line, "#pragma code_page(%d)", &cp) != 1);
 	return cp;
 }
