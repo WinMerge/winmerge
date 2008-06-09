@@ -317,6 +317,7 @@ protected:
 	afx_msg void OnUpdateWindowCloseAll(CCmdUI* pCmdUI);
 	afx_msg void OnSaveProject();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
+	afx_msg void OnNcDestroy();
 	afx_msg void OnDebugResetOptions();
 	afx_msg void OnToolbarNone();
 	afx_msg void OnUpdateToolbarNone(CCmdUI* pCmdUI);

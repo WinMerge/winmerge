@@ -3170,6 +3170,20 @@ void CMainFrame::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 	}
 }
 
+/**
+ * @brief Work around a bug WinMerge does not exit.
+ * See the bug #1602313 WinMerge stays in tasklist after closing
+ * http://winmerge.org/bug/1602313
+ * Double-post the WM_QUIT message until we'll figure who is
+ * "eating" the first message.
+ */
+void CMainFrame::OnNcDestroy()
+{
+	CMDIFrameWnd::OnNcDestroy();
+
+	AfxPostQuitMessage(0);
+}
+
 BOOL CMainFrame::CreateToobar()
 {
 	if (!m_wndToolBar.CreateEx(this) ||
