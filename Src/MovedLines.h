@@ -7,7 +7,7 @@
 #ifndef _MOVEDLINES_H_
 #define _MOVEDLINES_H_
 
-typedef CMap<int, int, int, int> MovedLineMap;
+#include <map>
 
 /**
  * @brief Container class for moved lines/blocks.
@@ -33,8 +33,8 @@ protected:
 	int SecondSideInMovedBlock(unsigned int firstSideLine);
 
 private:
-	MovedLineMap m_moved0; /**< Moved lines map for first side */
-	MovedLineMap m_moved1; /**< Moved lines map for second side */
+	std::map<int, int> m_moved0; /**< Moved lines map for first side */
+	std::map<int, int> m_moved1; /**< Moved lines map for second side */
 };
 
 #endif // _MOVEDLINES_H_

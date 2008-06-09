@@ -4,16 +4,18 @@
  * @brief Implementation of MovedLines class.
  */
 
-#include "stdafx.h"
+#include <map>
 #include "MovedLines.h"
+
+using namespace std;
 
 /**
  * @brief clear the lists of moved blocks.
  */
 void MovedLines::Clear()
 {
-	m_moved0.RemoveAll(); 
-	m_moved1.RemoveAll(); 
+	m_moved0.clear();
+	m_moved1.clear();
 }
 
 /**
@@ -24,7 +26,7 @@ void MovedLines::Clear()
  */
 void MovedLines::Add(ML_SIDE side1, unsigned int line1,	unsigned int line2)
 {
-	MovedLineMap * list = NULL;
+	map<int, int> * list;
 	if (side1 == SIDE_LEFT)
 		list = &m_moved0;
 	else
@@ -51,9 +53,10 @@ int MovedLines::LineInBlock(unsigned int line, ML_SIDE side)
  */
 int MovedLines::FirstSideInMovedBlock(unsigned int secondSideLine)
 {
-	int firstSideLine;
-	if (m_moved1.Lookup(secondSideLine, firstSideLine))
-		return firstSideLine;
+	map<int, int>::const_iterator iter;
+	iter = m_moved1.find(secondSideLine);
+	if (iter != m_moved1.end())
+		return iter->second;
 	else
 		return -1;
 }
@@ -63,9 +66,10 @@ int MovedLines::FirstSideInMovedBlock(unsigned int secondSideLine)
  */
 int MovedLines::SecondSideInMovedBlock(unsigned int firstSideLine)
 {
-	int secondSideLine;
-	if (m_moved0.Lookup(firstSideLine, secondSideLine))
-		return secondSideLine;
+	map<int, int>::const_iterator iter;
+	iter = m_moved0.find(firstSideLine);
+	if (iter != m_moved0.end())
+		return iter->second;
 	else
 		return -1;
 }

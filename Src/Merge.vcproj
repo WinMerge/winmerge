@@ -3480,7 +3480,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="2"
+						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="UnicodeDebug|Win32">
@@ -3489,6 +3491,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3498,6 +3501,7 @@
 						Optimization="0"
 						AdditionalIncludeDirectories=""
 						PreprocessorDefinitions=""
+						PrecompiledHeaderThrough=""
 						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -3506,7 +3510,9 @@
 						Name="VCCLCompilerTool"
 						Optimization="1"
 						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""/>
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="2"
+						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
 			</File>
 			<File
