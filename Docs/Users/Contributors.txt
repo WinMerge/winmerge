@@ -76,6 +76,7 @@ Localization:
 * Korean:
   Sukjoon
   Lee Jae-Hong
+  Sushizang
            
 * Norwegian:	
   Hans Fredrik Nordhaug
@@ -126,6 +127,7 @@ Other Contributors (code, ideas, testing..):
 * Jeremy Dewey
 * Jim Fougeron
 * Marvin Gouw
+* Marcel Gosselin
 * Robert Grange
 * Jan Hryz
 * Ed_K
