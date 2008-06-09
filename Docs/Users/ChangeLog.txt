@@ -18,6 +18,7 @@ WinMerge 2.8.2
   BugFix: Item count in statusbar not get cleared (#1976480)
   BugFix: ISL file syntax highlighting starts comment with { (#1981326)
   BugFix: Workaround for WinMerge not exiting for some users (#1602313)
+  BugFix: Temp paths in Reports created from archive file (#1984346)
   New translation: Greek (#1968429)
   New translation: Romanian (#1939729)
   New translation: Ukrainian (#1973149, #1974021)

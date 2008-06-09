@@ -212,7 +212,7 @@ CDirDoc::AllowUpwardDirectory(String &leftParent, String &rightParent)
 	const String & right = GetRightBasePath();
 
 	// If we have temp context it means we are comparing archives
-	if (m_pTempPathContext)
+	if (IsArchiveFolders())
 	{
 		LPCTSTR lname = PathFindFileName(left.c_str());
 		LPCTSTR rname = PathFindFileName(right.c_str());
@@ -877,7 +877,12 @@ void CDirDoc::SetDescriptions(const String &strLeftDesc, const String &strRightD
 }
 
 /**
- * @brief Replace internal root by display root (left)
+ * @brief Replace internal root by display root (left).
+ * When we have a archive file open, this function converts physical folder
+ * (that is in the temp folder where archive was extracted) to the virtual
+ * path for showing. The virtual path is path to the archive file, archive
+ * file name and folder inside the archive.
+ * @param [in, out] sText Path to convert.
  */
 void CDirDoc::ApplyLeftDisplayRoot(String &sText)
 {
@@ -889,7 +894,12 @@ void CDirDoc::ApplyLeftDisplayRoot(String &sText)
 }
 
 /**
- * @brief Replace internal root by display root (right)
+ * @brief Replace internal root by display root (right).
+ * When we have a archive file open, this function converts physical folder
+ * (that is in the temp folder where archive was extracted) to the virtual
+ * path for showing. The virtual path is path to the archive file, archive
+ * file name and folder inside the archive.
+ * @param [in, out] sText Path to convert.
  */
 void CDirDoc::ApplyRightDisplayRoot(String &sText)
 {
@@ -1060,4 +1070,16 @@ void CDirDoc::SetItemViewFlag(UINT flag, UINT mask)
 		m_pCtxt->SetCustomFlags1(pos, curFlags);
 		m_pCtxt->GetNextDiffPosition(pos);
 	}
+}
+
+/**
+ * @brief Checks if current folders are opened from archive file.
+ * @return true if we are inside archive, false otherwise.
+ */
+bool CDirDoc::IsArchiveFolders()
+{
+	if (m_pTempPathContext)
+		return true;
+	else
+		return false;
 }
