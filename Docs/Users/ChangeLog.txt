@@ -4,6 +4,7 @@ to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.9.1.4
   BugFix: Temp paths in Reports created from archive file (#1984346)
+  BugFix: ISL file syntax highlighting starts comment with { (#1981326)
 
 WinMerge 2.9.1.3 - 2008-06-05 (r5438)
   Update PCRE (regular expression library) to version 7.7 (#1941779)
