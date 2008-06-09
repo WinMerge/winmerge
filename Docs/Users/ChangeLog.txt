@@ -22,6 +22,7 @@ WinMerge 2.8.2
   New translation: Romanian (#1939729)
   New translation: Ukrainian (#1973149, #1974021)
   Translation updates:
+  - Brazilian (#1978374)
   - Bulgarian (#1957434)
   - Croatian (#1958283)
   - German (#1949068)

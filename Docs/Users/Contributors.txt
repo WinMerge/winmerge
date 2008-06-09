@@ -86,6 +86,7 @@ Localization:
 
 * Portuguese (Brazilian):	
   Wender Firmino
+  Felipe Periard Lopes
 
 * Portuguese (Portugal):
   Nelson Simão
