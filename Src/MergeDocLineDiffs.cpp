@@ -8,6 +8,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "Merge.h"
 #include "MainFrm.h"
 
@@ -21,6 +22,7 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using namespace std;
 
 /**
  * @brief Display the line/word difference highlight in edit view
@@ -151,15 +153,15 @@ SetLineHighlightRect(int begin, int end, int line, int width, CRect * rc)
  * @brief Construct the highlight rectangles for diff # whichdiff
  */
 static void
-ComputeHighlightRects(const wdiffarray & worddiffs, int whichdiff, int line, int width1, int width2, CRect * rc1, CRect * rc2)
+ComputeHighlightRects(const vector<wdiff*> & worddiffs, int whichdiff, int line, int width1, int width2, CRect * rc1, CRect * rc2)
 {
-	ASSERT(whichdiff >= 0 && whichdiff < worddiffs.GetSize());
-	const wdiff & diff = worddiffs[whichdiff];
+	ASSERT(whichdiff >= 0 && whichdiff < worddiffs.size());
+	const wdiff * diff = worddiffs[whichdiff];
 
-	int begin1 = diff.start[0];
-	int end1 = diff.end[0];
-	int begin2 = diff.start[1];
-	int end2 = diff.end[1];
+	int begin1 = diff->start[0];
+	int end1 = diff->end[0];
+	int begin2 = diff->start[1];
+	int end2 = diff->end[1];
 
 	SetLineHighlightRect(begin1, end1, line, width1, rc1);
 	SetLineHighlightRect(begin2, end2, line, width2, rc2);
@@ -223,11 +225,11 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	int xwhite = diffOptions.nIgnoreWhitespace;
 
 	// Make the call to stringdiffs, which does all the hard & tedious computations
-	wdiffarray worddiffs;
+	vector<wdiff*> worddiffs;
 	bool breakType = GetBreakType();
 	sd_ComputeWordDiffs((LPCTSTR)str1, (LPCTSTR)str2, casitive, xwhite, breakType, difflvl == BYTEDIFF, &worddiffs);
 
-	if (!worddiffs.GetSize())
+	if (worddiffs.empty())
 	{
 		// signal to caller that there was no diff
 		rc1->top = -1;
@@ -236,11 +238,11 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	}
 
 	// Are we continuing a cycle from the same place ?
-	if (whichdiff >= worddiffs.GetSize())
+	if (whichdiff >= worddiffs.size())
 		whichdiff = -2; // Clearly not continuing the same cycle, reset to not in cycle
 	
 	// After last diff, reset to get full line again
-	if (whichdiff == worddiffs.GetUpperBound())
+	if (whichdiff == worddiffs.size() - 1)
 		whichdiff = -2;
 
 	// Check if current line has changed enough to reset cycle
@@ -263,25 +265,25 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 		// Find starting locations for both sides
 		// Have to look for first valid starting location for each side
 		int i;
-		for (i=0; i<worddiffs.GetSize(); ++i)
+		for (i=0; i<worddiffs.size(); ++i)
 		{
-			const wdiff & diff = worddiffs[i];
-			if (begin1 == -1 && diff.start[0] != -1)
-				begin1 = diff.start[0];
-			if (begin2 == -1 && diff.start[1] != -1)
-				begin2 = diff.start[1];
+			const wdiff * diff = worddiffs[i];
+			if (begin1 == -1 && diff->start[0] != -1)
+				begin1 = diff->start[0];
+			if (begin2 == -1 && diff->start[1] != -1)
+				begin2 = diff->start[1];
 			if (begin1 != -1 && begin2 != -1)
 				break; // found both
 		}
 		// Find ending locations for both sides
 		// Have to look for last valid starting location for each side
-		for (i=worddiffs.GetUpperBound(); i>=0; --i)
+		for (i=worddiffs.size() - 1; i>=0; --i)
 		{
-			const wdiff & diff = worddiffs[i];
-			if (end1 == -1 && diff.end[0] != -1)
-				end1 = diff.end[0];
-			if (end2 == -1 && diff.end[1] != -1)
-				end2 = diff.end[1];
+			const wdiff * diff = worddiffs[i];
+			if (end1 == -1 && diff->end[0] != -1)
+				end1 = diff->end[0];
+			if (end2 == -1 && diff->end[1] != -1)
+				end2 = diff->end[1];
 			if (end1 != -1 && end2 != -1)
 				break; // found both
 		}
@@ -293,12 +295,18 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
 	{
 		// Advance to next diff (and earlier we checked for running off the end)
 		++whichdiff;
-		ASSERT(whichdiff < worddiffs.GetSize());
+		ASSERT(whichdiff < worddiffs.size());
 
 		// highlight one particular diff
 		ComputeHighlightRects(worddiffs, whichdiff, line, width1, width2, rc1, rc2);
 		lastRc1 = rc1;
 		lastRc2 = rc2;
+	}
+
+	while (!worddiffs.empty())
+	{
+		delete worddiffs.back();
+		worddiffs.pop_back();
 	}
 }
 
@@ -307,7 +315,7 @@ void CMergeDoc::Computelinediff(CCrystalTextView * pView1, CCrystalTextView * pV
  * This is used by algorithm for line diff coloring
  * (Line diff coloring is distinct from the selection highlight code)
  */
-void CMergeDoc::GetWordDiffArray(int nLineIndex, wdiffarray *pworddiffs)
+void CMergeDoc::GetWordDiffArray(int nLineIndex, vector<wdiff*> *pworddiffs)
 {
 	if (nLineIndex >= m_pView[0]->GetLineCount()) return;
 	if (nLineIndex >= m_pView[1]->GetLineCount()) return;

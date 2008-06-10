@@ -12,6 +12,8 @@
 
 #include <vector>
 
+struct wdiff;
+
 /**
  * @brief Class to hold together data needed to implement sd_ComputeWordDiffs
  */
@@ -20,7 +22,7 @@ class stringdiffs
 public:
 	stringdiffs(const String & str1, const String & str2,
 		bool case_sensitive, int whitespace, int breakType,
-		wdiffarray * pDiffs);
+		std::vector<wdiff*> * pDiffs);
 
 	~stringdiffs();
 
@@ -56,10 +58,10 @@ private:
 	bool m_case_sensitive;
 	int m_whitespace;
 	int m_breakType;
-	wdiffarray * m_pDiffs;
+	std::vector<wdiff*> * m_pDiffs;
 	std::vector<word*> m_words1;
 	std::vector<word*> m_words2;
-	wdiffarray m_wdiffs;
+	std::vector<wdiff*> m_wdiffs;
 };
 
 

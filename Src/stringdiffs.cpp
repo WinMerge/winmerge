@@ -25,7 +25,7 @@ using namespace std;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, TCHAR ch);
-static void wordLevelToByteLevel(wdiffarray * pDiffs, const String& str1,
+static void wordLevelToByteLevel(vector<wdiff*> * pDiffs, const String& str1,
 		const String& str2, bool casitive, int xwhite);
 
 /**
@@ -34,7 +34,7 @@ static void wordLevelToByteLevel(wdiffarray * pDiffs, const String& str1,
 void
 sd_ComputeWordDiffs(const String & str1, const String & str2,
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
-	wdiffarray * pDiffs)
+	vector<wdiff*> * pDiffs)
 {
 	stringdiffs sdiffs(str1, str2, case_sensitive, whitespace, breakType, pDiffs);
 	// Hash all words in both lines and then compare them word by word
@@ -52,7 +52,7 @@ sd_ComputeWordDiffs(const String & str1, const String & str2,
  */
 stringdiffs::stringdiffs(const String & str1, const String & str2,
 	bool case_sensitive, int whitespace, int breakType,
-	wdiffarray * pDiffs)
+	vector<wdiff*> * pDiffs)
 : m_str1(str1)
 , m_str2(str2)
 , m_case_sensitive(case_sensitive)
@@ -64,20 +64,26 @@ stringdiffs::stringdiffs(const String & str1, const String & str2,
 
 /**
  * @bried Destructor.
- * The desctuctor frees all words added to the vectors.
+ * The desctuctor frees all diffs added to the vectors.
  */
 stringdiffs::~stringdiffs()
 {
-	while (m_words1.size() > 0)
+	while (!m_words1.empty())
 	{
 		delete m_words1.back();
 		m_words1.pop_back();
 	}
 
-	while (m_words2.size() > 0)
+	while (!m_words2.empty())
 	{
 		delete m_words2.back();
 		m_words2.pop_back();
+	}
+
+	while (!m_wdiffs.empty())
+	{
+		delete m_wdiffs.back();
+		m_wdiffs.pop_back();
 	}
 }
 
@@ -114,8 +120,8 @@ insame:
 		}
 		if (i1 != m_str1.length() || i2 != m_str2.length())
 		{
-			wdiff wdf(i1,  m_str1.length()-1, i2, m_str2.length()-1);
-			m_wdiffs.Add(wdf);
+			wdiff *wdf = new wdiff(i1,  m_str1.length()-1, i2, m_str2.length()-1);
+			m_wdiffs.push_back(wdf);
 		}
 		return;
 	}
@@ -155,8 +161,8 @@ insame:
 				--e2;
 			}
 			// Add the difference we've found
-			wdiff wdf(i1, e1, i2, e2);
-			m_wdiffs.Add(wdf);
+			wdiff *wdf = new wdiff(i1, e1, i2, e2);
+			m_wdiffs.push_back(wdf);
 		}
 		
 	}
@@ -183,8 +189,8 @@ startdiff:
 		int e1 = m_words1[m_words1.size() - 1]->end;
 		int s2 = m_words2[bw2]->start;
 		int e2 = m_words2[m_words2.size() - 1]->end;
-		wdiff wdf(s1, e1, s2, e2);
-		m_wdiffs.Add(wdf);
+		wdiff *wdf = new wdiff(s1, e1, s2, e2);
+		m_wdiffs.push_back(wdf);
 		// Now skip directly to end of last word in each line
 		w1 = m_words1.size();
 		w2 = m_words2.size();
@@ -226,8 +232,8 @@ startdiff:
 			e1 = (w1 ? m_words1[w1-1]->end+1 : -1);
 			e2 = (w2 ? m_words2[w2-1]->end+1 : -1);
 		}
-		wdiff wdf(s1, e1, s2, e2);
-		m_wdiffs.Add(wdf);
+		wdiff *wdf = new wdiff(s1, e1, s2, e2);
+		m_wdiffs.push_back(wdf);
 		// skip past sync words (which we already know match)
 		++w1;
 		++w2;
@@ -383,30 +389,30 @@ inword:
 void
 stringdiffs::PopulateDiffs()
 {
-	for (int i=0; i<m_wdiffs.GetSize(); ++i)
+	for (int i=0; i<m_wdiffs.size(); ++i)
 	{
 		bool skipIt = false;
 		// combine it with next ?
-		if (i+1<m_wdiffs.GetSize())
+		if (i+1<m_wdiffs.size())
 		{
-			if (m_wdiffs[i].end[0] == m_wdiffs[i+1].start[0]
-				&& m_wdiffs[i].end[1] == m_wdiffs[i+1].start[1])
+			if (m_wdiffs[i]->end[0] == m_wdiffs[i+1]->start[0]
+				&& m_wdiffs[i]->end[1] == m_wdiffs[i+1]->start[1])
 			{
 				// diff[i] and diff[i+1] are contiguous
 				// so combine them into diff[i+1] and ignore diff[i]
-				m_wdiffs[i+1].start[0] = m_wdiffs[i].start[0];
-				m_wdiffs[i+1].start[1] = m_wdiffs[i].start[1];
+				m_wdiffs[i+1]->start[0] = m_wdiffs[i]->start[0];
+				m_wdiffs[i+1]->start[1] = m_wdiffs[i]->start[1];
 				skipIt = true;
 			}
 		}
 		if (!skipIt)
 		{
 			// Should never have a pair where both are missing
-			ASSERT(m_wdiffs[i].start[0]>=0 || m_wdiffs[i].start[1]>=0);
+			ASSERT(m_wdiffs[i]->start[0]>=0 || m_wdiffs[i]->start[1]>=0);
 
 			// Store the diff[i] in the caller list (m_pDiffs)
-			wdiff dr(m_wdiffs[i]);
-			m_pDiffs->Add(dr);
+			wdiff *dr = new wdiff(*m_wdiffs[i]);
+			m_pDiffs->push_back(dr);
 		}
 	}
 }
@@ -824,13 +830,13 @@ sd_ComputeByteDiff(String & str1, String & str2,
  * @param xwhite [in] This governs whether we handle whitespace specially
  *  (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
  */
-static void wordLevelToByteLevel(wdiffarray * pDiffs, const String& str1,
+static void wordLevelToByteLevel(vector<wdiff*> * pDiffs, const String& str1,
 		const String& str2, bool casitive, int xwhite)
 {
-	for (int i = 0; i < pDiffs->GetSize(); i++)
+	for (int i = 0; i < pDiffs->size(); i++)
 	{
 		int begin1, begin2, end1, end2;
-		wdiff *pDiff = &(*pDiffs)[i];
+		wdiff *pDiff = (*pDiffs)[i];
 		String str1_2, str2_2;
 		str1_2 = str1.substr(pDiff->start[0], pDiff->end[0] - pDiff->start[0] + 1);
 		str2_2 = str2.substr(pDiff->start[1], pDiff->end[1] - pDiff->start[1] + 1);

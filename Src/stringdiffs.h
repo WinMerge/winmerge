@@ -10,6 +10,8 @@
 #ifndef stringdiffs_h_included
 #define stringdiffs_h_included
 
+#include <vector>
+
 /** @brief One difference between two strings */
 struct wdiff {
 	int start[2]; // 0-based, eg, start[0] is from str1
@@ -32,12 +34,10 @@ struct wdiff {
 		}
 	}
 };
-typedef CArray<wdiff, wdiff&> wdiffarray; /**< An array of differences between two strings */
-
 
 void sd_ComputeWordDiffs(const String & str1, const String & str2,
-                   bool case_sensitive, int whitespace, int breakType, bool byte_level,
-                   wdiffarray * pDiffs);
+		bool case_sensitive, int whitespace, int breakType, bool byte_level,
+		std::vector<wdiff*> * pDiffs);
 
 void sd_ComputeByteDiff(String & str1, CString & str2, 
 			bool casitive, int xwhite, 

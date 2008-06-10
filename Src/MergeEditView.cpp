@@ -27,6 +27,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include "BCMenu.h"
 #include "merge.h"
 #include "LocationView.h"
@@ -50,6 +51,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using namespace std;
 
 /** @brief Timer ID for delayed rescan. */
 const UINT IDT_RESCAN = 2;
@@ -341,21 +344,30 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 		return 0;
 
 	int nLineLength = GetLineLength(nLineIndex);
-	wdiffarray worddiffs;
+	vector<wdiff*> worddiffs;
 	GetDocument()->GetWordDiffArray(nLineIndex, &worddiffs);
-	if (worddiffs.GetSize() == 0 || (worddiffs[0].end[0] == -1 && worddiffs[0].end[1] + 1 == nLineLength) || (worddiffs[0].end[1] == -1 && worddiffs[0].end[0] + 1 == nLineLength))
+	if (worddiffs.size() == 0 || (worddiffs[0]->end[0] == -1 &&
+			worddiffs[0]->end[1] + 1 == nLineLength) ||
+			(worddiffs[0]->end[1] == -1 && worddiffs[0]->end[0] + 1 == nLineLength))
+	{
+		while (!worddiffs.empty())
+		{
+			delete worddiffs.back();
+			worddiffs.pop_back();
+		}
 		return 0;
+	}
 
 	BOOL lineInCurrentDiff = IsLineInCurrentDiff(nLineIndex);
-	int nWordDiffs = worddiffs.GetSize();
+	int nWordDiffs = worddiffs.size();
 
 	pBuf[0].m_nCharPos = 0;
 	pBuf[0].m_nColorIndex = COLORINDEX_NONE;
 	pBuf[0].m_nBgColorIndex = COLORINDEX_NONE;
 	for (int i = 0; i < nWordDiffs; i++)
 	{
-		pBuf[1 + i * 2].m_nCharPos = worddiffs[i].start[m_nThisPane];
-		pBuf[2 + i * 2].m_nCharPos = worddiffs[i].end[m_nThisPane] + 1;
+		pBuf[1 + i * 2].m_nCharPos = worddiffs[i]->start[m_nThisPane];
+		pBuf[2 + i * 2].m_nCharPos = worddiffs[i]->end[m_nThisPane] + 1;
 		if (lineInCurrentDiff)
 		{
 			pBuf[1 + i * 2].m_nColorIndex = COLORINDEX_HIGHLIGHTTEXT1 | COLORINDEX_APPLYFORCE;
@@ -369,6 +381,13 @@ int CMergeEditView::GetAdditionalTextBlocks (int nLineIndex, TEXTBLOCK *pBuf)
 		pBuf[2 + i * 2].m_nColorIndex = COLORINDEX_NONE;
 		pBuf[2 + i * 2].m_nBgColorIndex = COLORINDEX_NONE;
 	}
+
+	while (!worddiffs.empty())
+	{
+		delete worddiffs.back();
+		worddiffs.pop_back();
+	}
+
 	return nWordDiffs * 2 + 1;
 }
 
