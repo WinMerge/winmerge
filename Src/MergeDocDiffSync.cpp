@@ -159,7 +159,7 @@ int CMergeDoc::GetMatchCost(const CString &sLine0, const CString &sLine1)
 	bool byteColoring = GetByteColoringOption();
 
 	wdiffarray worddiffs;
-	sd_ComputeWordDiffs(sLine0, sLine1, casitive, xwhite, breakType, byteColoring, &worddiffs);
+	sd_ComputeWordDiffs((LPCTSTR)sLine0, (LPCTSTR)sLine1, casitive, xwhite, breakType, byteColoring, &worddiffs);
 
 	int nDiffLenSum = 0, nDiffLen0, nDiffLen1;
 	int i;

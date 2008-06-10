@@ -10,6 +10,7 @@
 #include "stdafx.h"
 #include <vector>
 #include <mbctype.h>
+#include "UnicodeString.h"
 #include "stringdiffs.h"
 #include "CompareOptions.h"
 #include "stringdiffsi.h"
@@ -24,13 +25,14 @@ using namespace std;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, TCHAR ch);
-static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const CString& str2, bool casitive, int xwhite);
+static void wordLevelToByteLevel(wdiffarray * pDiffs, const String& str1,
+		const String& str2, bool casitive, int xwhite);
 
 /**
  * @brief Construct our worker object and tell it to do the work
  */
 void
-sd_ComputeWordDiffs(const CString & str1, const CString & str2,
+sd_ComputeWordDiffs(const String & str1, const String & str2,
 	bool case_sensitive, int whitespace, int breakType, bool byte_level,
 	wdiffarray * pDiffs)
 {
@@ -48,7 +50,7 @@ sd_ComputeWordDiffs(const CString & str1, const CString & str2,
 /**
  * @brief stringdiffs constructor simply loads all members from arguments
  */
-stringdiffs::stringdiffs(const CString & str1, const CString & str2,
+stringdiffs::stringdiffs(const String & str1, const String & str2,
 	bool case_sensitive, int whitespace, int breakType,
 	wdiffarray * pDiffs)
 : m_str1(str1)
@@ -98,7 +100,7 @@ insame:
 		int i1 = (w1>0 ? m_words1[w1-1]->end+1 : 0); // after end of word before w1
 		int i2 = (w2>0 ? m_words2[w2-1]->end+1 : 0); // after end of word before w2
 		// Done, but handle trailing spaces
-		while (i1 < m_str1.GetLength() && i2 < m_str2.GetLength()
+		while (i1 < m_str1.length() && i2 < m_str2.length()
 			&& isSafeWhitespace(m_str1[i1]) && isSafeWhitespace(m_str2[i2]))
 		{
 			if (m_whitespace==0)
@@ -110,9 +112,9 @@ insame:
 			++i1;
 			++i2;
 		}
-		if (i1 != m_str1.GetLength() || i2 != m_str2.GetLength())
+		if (i1 != m_str1.length() || i2 != m_str2.length())
 		{
-			wdiff wdf(i1,  m_str1.GetLength()-1, i2, m_str2.GetLength()-1);
+			wdiff wdf(i1,  m_str1.length()-1, i2, m_str2.length()-1);
 			m_wdiffs.Add(wdf);
 		}
 		return;
@@ -321,13 +323,13 @@ stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
  * @brief Break line into constituent words
  */
 void
-stringdiffs::BuildWordsArray(const CString & str, vector<word*> * words)
+stringdiffs::BuildWordsArray(const String & str, vector<word*> * words)
 {
 	int i=0, begin=0;
 
 	// state when we are looking for next word
 inspace:
-	if (i==str.GetLength())
+	if (i==str.length())
 		return;
 	if (isSafeWhitespace(str[i])) 
 	{
@@ -340,7 +342,7 @@ inspace:
 	// state when we are inside a word
 inword:
 	bool atspace=false;
-	if (i==str.GetLength() || (atspace=isSafeWhitespace(str[i])) || isWordBreak(m_breakType, str[i]))
+	if (i==str.length() || (atspace=isSafeWhitespace(str[i])) || isWordBreak(m_breakType, str[i]))
 	{
 		if (begin<i)
 		{
@@ -350,7 +352,7 @@ inword:
 			word *wd  = new word(begin, e, hash(str, begin, e));
 			words->push_back(wd);
 		}
-		if (i == str.GetLength())
+		if (i == str.length())
 		{
 			return;
 		}
@@ -418,7 +420,7 @@ stringdiffs::PopulateDiffs()
 #define HASH(h, c) ((c) + ROL (h, 7))
 
 int
-stringdiffs::hash(const CString & str, int begin, int end) const
+stringdiffs::hash(const String & str, int begin, int end) const
 {
 	UINT h = 0;
 	for (int i=begin; i<end; ++i)
@@ -580,7 +582,7 @@ RetreatOverWhitespace(LPCTSTR * pcurrent, LPCTSTR start)
  * Assumes whitespace is never leadbyte or trailbyte!
  */
 void
-sd_ComputeByteDiff(CString & str1, CString & str2, 
+sd_ComputeByteDiff(String & str1, String & str2, 
 		   bool casitive, int xwhite, 
 		   int &begin1, int &begin2, int &end1, int &end2)
 {
@@ -588,11 +590,11 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
 	// Also this way can distinguish if we set begin1 to -1 for no diff in line
 	begin1 = end1 = begin2 = end2 = 0;
 
-	int len1 = str1.GetLength();
-	int len2 = str2.GetLength();
+	int len1 = str1.length();
+	int len2 = str2.length();
 
-	LPCTSTR pbeg1 = (LPCTSTR)str1;
-	LPCTSTR pbeg2 = (LPCTSTR)str2;
+	LPCTSTR pbeg1 = str1.c_str();
+	LPCTSTR pbeg2 = str2.c_str();
 
 	if (len1 == 0 || len2 == 0)
 	{
@@ -819,17 +821,19 @@ sd_ComputeByteDiff(CString & str1, CString & str2,
  * @brief adjust the range of the specified word diffs down to byte level.
  * @param str1, str2 [in] line to be compared
  * @param casitive [in] true for case-sensitive, false for case-insensitive
- * @param xwhite [in] This governs whether we handle whitespace specially (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
+ * @param xwhite [in] This governs whether we handle whitespace specially
+ *  (see WHITESPACE_COMPARE_ALL, WHITESPACE_IGNORE_CHANGE, WHITESPACE_IGNORE_ALL)
  */
-static void wordLevelToByteLevel(wdiffarray * pDiffs, const CString& str1, const CString& str2, bool casitive, int xwhite)
+static void wordLevelToByteLevel(wdiffarray * pDiffs, const String& str1,
+		const String& str2, bool casitive, int xwhite)
 {
 	for (int i = 0; i < pDiffs->GetSize(); i++)
 	{
 		int begin1, begin2, end1, end2;
 		wdiff *pDiff = &(*pDiffs)[i];
-		CString str1_2, str2_2;
-		str1_2 = str1.Mid(pDiff->start[0], pDiff->end[0] - pDiff->start[0] + 1);
-		str2_2 = str2.Mid(pDiff->start[1], pDiff->end[1] - pDiff->start[1] + 1);
+		String str1_2, str2_2;
+		str1_2 = str1.substr(pDiff->start[0], pDiff->end[0] - pDiff->start[0] + 1);
+		str2_2 = str2.substr(pDiff->start[1], pDiff->end[1] - pDiff->start[1] + 1);
 		sd_ComputeByteDiff(str1_2, str2_2, casitive, xwhite, begin1, begin2, end1, end2);
 		if (begin1 == -1)
 		{

@@ -35,11 +35,11 @@ struct wdiff {
 typedef CArray<wdiff, wdiff&> wdiffarray; /**< An array of differences between two strings */
 
 
-void sd_ComputeWordDiffs(const CString & str1, const CString & str2,
+void sd_ComputeWordDiffs(const String & str1, const String & str2,
                    bool case_sensitive, int whitespace, int breakType, bool byte_level,
                    wdiffarray * pDiffs);
 
-void sd_ComputeByteDiff(CString & str1, CString & str2, 
+void sd_ComputeByteDiff(String & str1, CString & str2, 
 			bool casitive, int xwhite, 
 			int &begin1, int &begin2, int &end1, int &end2);
 
