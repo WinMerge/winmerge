@@ -8,6 +8,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include <vector>
 #include <mbctype.h>
 #include "stringdiffs.h"
 #include "CompareOptions.h"
@@ -18,6 +19,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using namespace std;
 
 static bool isSafeWhitespace(TCHAR ch);
 static bool isWordBreak(int breakType, TCHAR ch);
@@ -58,6 +61,25 @@ stringdiffs::stringdiffs(const CString & str1, const CString & str2,
 }
 
 /**
+ * @bried Destructor.
+ * The desctuctor frees all words added to the vectors.
+ */
+stringdiffs::~stringdiffs()
+{
+	while (m_words1.size() > 0)
+	{
+		delete m_words1.back();
+		m_words1.pop_back();
+	}
+
+	while (m_words2.size() > 0)
+	{
+		delete m_words2.back();
+		m_words2.pop_back();
+	}
+}
+
+/**
  * @brief Add all different elements between lines to the wdiff list
  */
 void
@@ -71,10 +93,10 @@ stringdiffs::BuildWordDiffList()
 
 // We don't have a difference accumulated right now
 insame:
-	if (w1 == m_words1.GetSize() || w2 == m_words2.GetSize())
+	if (w1 == m_words1.size() || w2 == m_words2.size())
 	{
-		int i1 = (w1>0 ? m_words1[w1-1].end+1 : 0); // after end of word before w1
-		int i2 = (w2>0 ? m_words2[w2-1].end+1 : 0); // after end of word before w2
+		int i1 = (w1>0 ? m_words1[w1-1]->end+1 : 0); // after end of word before w1
+		int i2 = (w2>0 ? m_words2[w2-1]->end+1 : 0); // after end of word before w2
 		// Done, but handle trailing spaces
 		while (i1 < m_str1.GetLength() && i2 < m_str2.GetLength()
 			&& isSafeWhitespace(m_str1[i1]) && isSafeWhitespace(m_str2[i2]))
@@ -99,11 +121,11 @@ insame:
 	if (m_whitespace==0)
 	{
 		// Compare all whitespace
-		int i1 = (w1>0 ? m_words1[w1-1].end+1 : 0); // after end of word before w1
-		int i2 = (w2>0 ? m_words2[w2-1].end+1 : 0); // after end of word before w2
-		while (i1<m_words1[w1].start || i2<m_words2[w2].start)
+		int i1 = (w1>0 ? m_words1[w1-1]->end+1 : 0); // after end of word before w1
+		int i2 = (w2>0 ? m_words2[w2-1]->end+1 : 0); // after end of word before w2
+		while (i1<m_words1[w1]->start || i2<m_words2[w2]->start)
 		{
-			if (i1==m_words1[w1].start || i2==m_words2[w2].start
+			if (i1==m_words1[w1]->start || i2==m_words2[w2]->start
 				|| m_str1[i1] != m_str2[i2])
 			{
 				// Found a difference
@@ -113,12 +135,12 @@ insame:
 			++i1;
 			++i2;
 		}
-		if (i1<m_words1[w1].start || i2<m_words2[w2].start)
+		if (i1<m_words1[w1]->start || i2<m_words2[w2]->start)
 		{
 			// Found a difference
 			// Now backtrack from next word to find end of difference
-			int e1 = m_words1[w1].start-1;
-			int e2 = m_words2[w2].start-1;
+			int e1 = m_words1[w1]->start-1;
+			int e2 = m_words2[w2]->start-1;
 			while (e1>i1 && e2>i2)
 			{
 				if (m_str1[e1] != m_str2[e2])
@@ -137,7 +159,7 @@ insame:
 		
 	}
 	// Now check current words for difference
-	if (!AreWordsSame(m_words1[w1], m_words2[w2]))
+	if (!AreWordsSame(*m_words1[w1], *m_words2[w2]))
 		goto startdiff;
 	++w1;
 	++w2;
@@ -155,15 +177,15 @@ startdiff:
 	if (!findSync(&w1, &w2))
 	{
 		// Add a diff from bw1 & bw2 to end of both lines
-		int s1 = m_words1[bw1].start;
-		int e1 = m_words1[m_words1.GetUpperBound()].end;
-		int s2 = m_words2[bw2].start;
-		int e2 = m_words2[m_words2.GetUpperBound()].end;
+		int s1 = m_words1[bw1]->start;
+		int e1 = m_words1[m_words1.size() - 1]->end;
+		int s2 = m_words2[bw2]->start;
+		int e2 = m_words2[m_words2.size() - 1]->end;
 		wdiff wdf(s1, e1, s2, e2);
 		m_wdiffs.Add(wdf);
 		// Now skip directly to end of last word in each line
-		w1 = m_words1.GetSize();
-		w2 = m_words2.GetSize();
+		w1 = m_words1.size();
+		w2 = m_words2.size();
 		// go to process trailing spaces and quit
 		goto insame;
 	}
@@ -176,18 +198,18 @@ startdiff:
 		// w1-1 >= bw1 is valid because it is the word at the start of this diff
 
 		// Add a diff from start to just before sync word
-		int s1 = m_words1[bw1].start;
+		int s1 = m_words1[bw1]->start;
 		int e1 = 0; // placeholder, set below
-		int s2 = m_words2[bw2].start;
+		int s2 = m_words2[bw2]->start;
 		int e2 = 0; // placeholder, set below
 		if (m_whitespace == 0)
 		{
 			// Grab all the trailing whitespace for our diff
-			e1 = m_words1[w1].start-1;
-			e2 = m_words2[w2].start-1;
+			e1 = m_words1[w1]->start-1;
+			e2 = m_words2[w2]->start-1;
 			// Now backtrack over matching whitespace
-			int pe1 = (w1 ? m_words1[w1-1].end : -1);
-			int pe2 = (w2 ? m_words2[w2-1].end : -1);
+			int pe1 = (w1 ? m_words1[w1-1]->end : -1);
+			int pe2 = (w2 ? m_words2[w2-1]->end : -1);
 			while (e1 > pe1
 				&& e2 > pe2
 				&& m_str1[e1] == m_str2[e2])
@@ -199,8 +221,8 @@ startdiff:
 		else
 		{
 			// ignore whitespace, so leave it out of diff
-			e1 = (w1 ? m_words1[w1-1].end+1 : -1);
-			e2 = (w2 ? m_words2[w2-1].end+1 : -1);
+			e1 = (w1 ? m_words1[w1-1]->end+1 : -1);
+			e2 = (w2 ? m_words2[w2-1]->end+1 : -1);
 		}
 		wdiff wdf(s1, e1, s2, e2);
 		m_wdiffs.Add(wdf);
@@ -220,9 +242,9 @@ stringdiffs::findSync(int *w1, int *w2) const
 {
 	// Look among remaining words in m_words2 for a word that matches w1
 	int cw2 = -1;
-	while (*w1 < m_words1.GetSize())
+	while (*w1 < m_words1.size())
 	{
-		cw2 = FindNextMatchInWords2(m_words1[*w1], *w2);
+		cw2 = FindNextMatchInWords2(*m_words1[*w1], *w2);
 		if (cw2>=0)
 			break;
 		// No word matches w1
@@ -230,9 +252,9 @@ stringdiffs::findSync(int *w1, int *w2) const
 	}
 	// Look among remaining words in m_words1 for a word that matches w2
 	int cw1 = -1;
-	while (*w2 < m_words2.GetSize())
+	while (*w2 < m_words2.size())
 	{
-		cw1 = FindNextMatchInWords1(m_words2[*w2], *w1);
+		cw1 = FindNextMatchInWords1(*m_words2[*w2], *w1);
 		if (cw1>=0)
 			break;
 		// No word matches w2
@@ -254,8 +276,8 @@ stringdiffs::findSync(int *w1, int *w2) const
 		{
 			// We have candidates advancing along either string
 			// Pick closer
-			int len1 = m_words1[cw1].end - m_words1[*w1].start;
-			int len2 = m_words2[cw2].end - m_words2[*w2].start;
+			int len1 = m_words1[cw1]->end - m_words1[*w1]->start;
+			int len2 = m_words2[cw2]->end - m_words2[*w2]->start;
 			if (len1 < len2)
 				*w1 = cw1;
 			else
@@ -271,9 +293,9 @@ stringdiffs::findSync(int *w1, int *w2) const
 int 
 stringdiffs::FindNextMatchInWords2(const word & needword1, int bw2) const
 {
-	while (bw2 < m_words2.GetSize())
+	while (bw2 < m_words2.size())
 	{
-		if (AreWordsSame(needword1, m_words2[bw2]))
+		if (AreWordsSame(needword1, *m_words2[bw2]))
 			return bw2;
 		++bw2;
 	}
@@ -286,9 +308,9 @@ stringdiffs::FindNextMatchInWords2(const word & needword1, int bw2) const
 int 
 stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
 {
-	while (bw1 < m_words1.GetSize())
+	while (bw1 < m_words1.size())
 	{
-		if (AreWordsSame(m_words1[bw1], needword2))
+		if (AreWordsSame(*m_words1[bw1], needword2))
 			return bw1;
 		++bw1;
 	}
@@ -299,7 +321,7 @@ stringdiffs::FindNextMatchInWords1(const word & needword2, int bw1) const
  * @brief Break line into constituent words
  */
 void
-stringdiffs::BuildWordsArray(const CString & str, wordarray * words)
+stringdiffs::BuildWordsArray(const CString & str, vector<word*> * words)
 {
 	int i=0, begin=0;
 
@@ -325,8 +347,8 @@ inword:
 			// just finished a word
 			// e is first non-word character (space or at end)
 			int e = i-1;
-			word wd(begin, e, hash(str, begin, e));
-			words->Add(wd);
+			word *wd  = new word(begin, e, hash(str, begin, e));
+			words->push_back(wd);
 		}
 		if (i == str.GetLength())
 		{
@@ -340,8 +362,8 @@ inword:
 		{
 			// start a new word because we hit a non-whitespace word break (eg, a comma)
 			// but, we have to put each word break character into its own word
-			word wd(i, i, hash(str, i, i));
-			words->Add(wd);
+			word *wd  = new word(i, i, hash(str, i, i));
+			words->push_back(wd);
 			++i;
 			begin = i;
 			goto inword;

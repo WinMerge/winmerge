@@ -10,6 +10,8 @@
 #ifndef stringdiffsi_h_included
 #define stringdiffsi_h_included
 
+#include <vector>
+
 /**
  * @brief Class to hold together data needed to implement sd_ComputeWordDiffs
  */
@@ -19,6 +21,8 @@ public:
 	stringdiffs(const CString & str1, const CString & str2,
 		bool case_sensitive, int whitespace, int breakType,
 		wdiffarray * pDiffs);
+
+	~stringdiffs();
 
 	void BuildWordDiffList();
 	void PopulateDiffs();
@@ -32,13 +36,11 @@ private:
 		word(int s=0, int e=0, int h=0) : start(s), end(e), hash(h) { }
 		int length() const { return end+1-start; }
 	};
-	typedef CArray<word, word&> wordarray;
-
 
 // Implementation methods
 private:
 
-	void BuildWordsArray(const CString & str, wordarray * words);
+	void BuildWordsArray(const CString & str, std::vector<word*> * words);
 	bool findSync(int *w1, int *w2) const;
 	int FindNextMatchInWords2(const word & needword1, int bw2) const;
 	int FindNextMatchInWords1(const word & needword2, int bw1) const;
@@ -55,8 +57,8 @@ private:
 	int m_whitespace;
 	int m_breakType;
 	wdiffarray * m_pDiffs;
-	wordarray m_words1;
-	wordarray m_words2;
+	std::vector<word*> m_words1;
+	std::vector<word*> m_words2;
 	wdiffarray m_wdiffs;
 };
 
