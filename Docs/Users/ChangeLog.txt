@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.9.1.4
+  Use PNG files in manual (#1988845)
   BugFix: Temp paths in Reports created from archive file (#1984346)
   BugFix: ISL file syntax highlighting starts comment with { (#1981326)
 

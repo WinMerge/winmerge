@@ -21,9 +21,13 @@
 
     <orderedlist>
       <listitem>
-        <para>Enable Visual SourceSafe integration from
-        <menuchoice><guimenu>Edit</guimenu><guimenuitem>Options</guimenuitem>
-        <guilabel>Versioning System</guilabel></menuchoice></para>
+        <para>Enable Visual SourceSafe integration from <menuchoice>
+            <guimenu>Edit</guimenu>
+
+            <guimenuitem>Options</guimenuitem>
+
+            <guilabel>Versioning System</guilabel>
+          </menuchoice></para>
       </listitem>
 
       <listitem>
@@ -43,7 +47,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata fileref="screenshots/sourcesafe1.gif" format="GIF" />
+          <imagedata fileref="screenshots/sourcesafe1.png" format="PNG" />
         </imageobject>
       </inlinemediaobject></para>
 

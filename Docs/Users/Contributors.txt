@@ -122,6 +122,7 @@ Localization:
 Other Contributors (code, ideas, testing..):
 * Andre Arpin
 * Steve Beaudoin
+* Denis Bradford
 * Adam Carrivick
 * Hern Chen
 * Jeremy Dewey
