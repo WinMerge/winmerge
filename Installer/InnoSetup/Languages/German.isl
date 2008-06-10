@@ -336,7 +336,7 @@ DanishLanguage=Dänische Menüs und Dialoge
 DutchLanguage=Holländische Menüs und Dialoge
 FrenchLanguage=Französische Menüs und Dialoge
 GermanLanguage=Deutsche Menüs und Dialoge
-GreekLanguage=Greek menus and dialogs
+GreekLanguage=Griechische Menüs und Dialoge
 HungarianLanguage=Ungarische Menüs und Dialoge
 ItalianLanguage=Italienische Menüs und Dialoge
 JapaneseLanguage=Japanische Menüs und Dialoge
@@ -351,7 +351,7 @@ SlovakLanguage=Slowakische Menüs und Dialoge
 SpanishLanguage=Spanische Menüs und Dialoge
 SwedishLanguage=Schwedische Menüs und Dialoge
 TurkishLanguage=Türkische Menüs und Dialoge
-UkrainianLanguage=Ukrainian menus and dialogs
+UkrainianLanguage=Ukrainische Menüs und Dialoge
 
 ;Tasks
 ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
