@@ -1503,59 +1503,62 @@ public:
 };
 
 int CCrystalTextView::
-MergeTextBlocks (TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2, int nBlocks2, TEXTBLOCK *&pMergedBuf)
+MergeTextBlocks (TEXTBLOCK *pBuf1, int nBlocks1, TEXTBLOCK *pBuf2,
+     int nBlocks2, TEXTBLOCK *&pMergedBuf)
 {
   int i, j, k;
 
   pMergedBuf = new TEXTBLOCK[nBlocks1 + nBlocks2];
 
   for (i = 0, j = 0, k = 0; ; k++)
-  {
-    if (i >= nBlocks1 && j >= nBlocks2)
     {
-      break;
+      if (i >= nBlocks1 && j >= nBlocks2)
+        {
+          break;
+        }
+      else if ((i < nBlocks1 && j < nBlocks2) &&
+          (pBuf1[i].m_nCharPos == pBuf2[j].m_nCharPos))
+        {
+          pMergedBuf[k].m_nCharPos = pBuf2[j].m_nCharPos;
+          if (pBuf2[j].m_nColorIndex == COLORINDEX_NONE)
+            pMergedBuf[k].m_nColorIndex = pBuf1[i].m_nColorIndex;
+          else
+            pMergedBuf[k].m_nColorIndex = pBuf2[j].m_nColorIndex;
+          if (pBuf2[j].m_nBgColorIndex == COLORINDEX_NONE)
+            pMergedBuf[k].m_nBgColorIndex = pBuf1[i].m_nBgColorIndex;
+          else
+            pMergedBuf[k].m_nBgColorIndex = pBuf2[j].m_nBgColorIndex;
+          i++;
+          j++;
+        }
+      else if (j >= nBlocks2 || (i < nBlocks1 &&
+          pBuf1[i].m_nCharPos < pBuf2[j].m_nCharPos))
+        {
+          pMergedBuf[k].m_nCharPos = pBuf1[i].m_nCharPos;
+          if (nBlocks2 == 0 || pBuf2[j - 1].m_nColorIndex == COLORINDEX_NONE)
+            pMergedBuf[k].m_nColorIndex = pBuf1[i].m_nColorIndex;
+          else
+            pMergedBuf[k].m_nColorIndex = pBuf2[j - 1].m_nColorIndex;
+          if (nBlocks2 == 0 || pBuf2[j - 1].m_nBgColorIndex == COLORINDEX_NONE)
+            pMergedBuf[k].m_nBgColorIndex = pBuf1[i].m_nBgColorIndex;
+          else
+            pMergedBuf[k].m_nBgColorIndex = pBuf2[j - 1].m_nBgColorIndex;
+          i++;
+        }
+      else if (i >= nBlocks1 || (j < nBlocks2 && pBuf1[i].m_nCharPos > pBuf2[j].m_nCharPos))
+        {
+          pMergedBuf[k].m_nCharPos = pBuf2[j].m_nCharPos;
+          if (i > 0 && pBuf2[j].m_nColorIndex == COLORINDEX_NONE)
+            pMergedBuf[k].m_nColorIndex = pBuf1[i - 1].m_nColorIndex;
+          else
+            pMergedBuf[k].m_nColorIndex = pBuf2[j].m_nColorIndex;
+          if (i > 0 && pBuf2[j].m_nBgColorIndex == COLORINDEX_NONE)
+            pMergedBuf[k].m_nBgColorIndex = pBuf1[i - 1].m_nBgColorIndex;
+          else
+            pMergedBuf[k].m_nBgColorIndex = pBuf2[j].m_nBgColorIndex;
+          j++;
+        }
     }
-    else if ((i < nBlocks1 && j < nBlocks2) && (pBuf1[i].m_nCharPos == pBuf2[j].m_nCharPos))
-    {
-      pMergedBuf[k].m_nCharPos = pBuf2[j].m_nCharPos;
-      if (pBuf2[j].m_nColorIndex == COLORINDEX_NONE)
-        pMergedBuf[k].m_nColorIndex = pBuf1[i].m_nColorIndex;
-      else
-        pMergedBuf[k].m_nColorIndex = pBuf2[j].m_nColorIndex;
-      if (pBuf2[j].m_nBgColorIndex == COLORINDEX_NONE)
-        pMergedBuf[k].m_nBgColorIndex = pBuf1[i].m_nBgColorIndex;
-      else
-        pMergedBuf[k].m_nBgColorIndex = pBuf2[j].m_nBgColorIndex;
-      i++;
-      j++;
-    }
-    else if (j >= nBlocks2 || (i < nBlocks1 && pBuf1[i].m_nCharPos < pBuf2[j].m_nCharPos))
-    {
-      pMergedBuf[k].m_nCharPos = pBuf1[i].m_nCharPos;
-      if (nBlocks2 == 0 || pBuf2[j - 1].m_nColorIndex == COLORINDEX_NONE)
-        pMergedBuf[k].m_nColorIndex = pBuf1[i].m_nColorIndex;
-      else
-        pMergedBuf[k].m_nColorIndex = pBuf2[j - 1].m_nColorIndex;
-      if (nBlocks2 == 0 || pBuf2[j - 1].m_nBgColorIndex == COLORINDEX_NONE)
-        pMergedBuf[k].m_nBgColorIndex = pBuf1[i].m_nBgColorIndex;
-      else
-        pMergedBuf[k].m_nBgColorIndex = pBuf2[j - 1].m_nBgColorIndex;
-      i++;
-    }
-    else if (i >= nBlocks1 || (j < nBlocks2 && pBuf1[i].m_nCharPos > pBuf2[j].m_nCharPos))
-    {
-      pMergedBuf[k].m_nCharPos = pBuf2[j].m_nCharPos;
-      if (i > 0 && pBuf2[j].m_nColorIndex == COLORINDEX_NONE)
-        pMergedBuf[k].m_nColorIndex = pBuf1[i - 1].m_nColorIndex;
-      else
-        pMergedBuf[k].m_nColorIndex = pBuf2[j].m_nColorIndex;
-      if (i > 0 && pBuf2[j].m_nBgColorIndex == COLORINDEX_NONE)
-        pMergedBuf[k].m_nBgColorIndex = pBuf1[i - 1].m_nBgColorIndex;
-      else
-        pMergedBuf[k].m_nBgColorIndex = pBuf2[j].m_nBgColorIndex;
-      j++;
-    }
-  }
   return k;
 }
 
@@ -1584,17 +1587,16 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
   DWORD dwCookie = GetParseCookie (nLineIndex - 1);
   TEXTBLOCK *pBuf = new TEXTBLOCK[(nLength+1) * 3]; // be aware of nLength == 0
   int nBlocks = 0;
-  //BEGIN SW
+
   // insert at least one textblock of normal color at the beginning
   pBuf[0].m_nCharPos = 0;
   pBuf[0].m_nColorIndex = COLORINDEX_NORMALTEXT;
   pBuf[0].m_nBgColorIndex = COLORINDEX_BKGND;
   nBlocks++;
-  //END SW
+
   m_ParseCookies->SetAt(nLineIndex, ParseLine (dwCookie, nLineIndex, pBuf, nBlocks));
   ASSERT (m_ParseCookies->GetAt(nLineIndex) != - 1);
 
-////////
   // Allocate table for max possible diff count:
   // every char might be a diff (empty line has one char) and every diff
   // needs three blocks plus one block at end (see called function)
@@ -1609,17 +1611,14 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
 
   pBuf = pMergedBuf;
   nBlocks = nMergedBlocks;
-///////
 
-  //BEGIN SW
   int nActualItem = 0;
   int nActualOffset = 0;
   // Wrap the line
   IntArray anBreaks(nLength);
-  int	nBreaks = 0;
+  int nBreaks = 0;
 
   WrapLineCached( nLineIndex, GetScreenChars(), anBreaks.GetData(), nBreaks );
-  //END SW
 
   //  Draw the line text
   CPoint origin (rc.left - m_nOffsetChar * nCharWidth, rc.top);
@@ -1627,41 +1626,7 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
     pdc->SetBkColor (crBkgnd);
   if (crText != CLR_NONE)
     pdc->SetTextColor (crText);
-// BOOL bColorSet = FALSE;
 
-  //BEGIN SW
-  /*ORIGINAL
-  if (nBlocks > 0)
-  {
-    ASSERT(pBuf[0].m_nCharPos >= 0 && pBuf[0].m_nCharPos <= nLength);
-    if (crText == CLR_NONE)
-      pdc->SetTextColor(GetColor(COLORINDEX_NORMALTEXT));
-    pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
-    DrawLineHelper(pdc, origin, rc, COLORINDEX_NORMALTEXT, pszChars, 0, pBuf[0].m_nCharPos, CPoint(0, nLineIndex));
-    for (int I = 0; I < nBlocks - 1; I ++)
-    {
-      ASSERT(pBuf[I].m_nCharPos >= 0 && pBuf[I].m_nCharPos <= nLength);
-      if (crText == CLR_NONE)
-        pdc->SetTextColor(GetColor(pBuf[I].m_nColorIndex));
-      pdc->SelectObject(GetFont(GetItalic(pBuf[I].m_nColorIndex), GetBold(pBuf[I].m_nColorIndex)));
-      DrawLineHelper(pdc, origin, rc, pBuf[I].m_nColorIndex, pszChars,
-              pBuf[I].m_nCharPos, pBuf[I + 1].m_nCharPos - pBuf[I].m_nCharPos,
-              CPoint(pBuf[I].m_nCharPos, nLineIndex));
-    }
-    ASSERT(pBuf[nBlocks - 1].m_nCharPos >= 0 && pBuf[nBlocks - 1].m_nCharPos <= nLength);
-    if (crText == CLR_NONE)
-      pdc->SetTextColor(GetColor(pBuf[nBlocks - 1].m_nColorIndex));
-    pdc->SelectObject(GetFont(GetItalic(pBuf[nBlocks - 1].m_nColorIndex),
-              GetBold(pBuf[nBlocks - 1].m_nColorIndex)));
-    DrawLineHelper(pdc, origin, rc, pBuf[nBlocks - 1].m_nColorIndex, pszChars,
-              pBuf[nBlocks - 1].m_nCharPos, nLength - pBuf[nBlocks - 1].m_nCharPos,
-              CPoint(pBuf[nBlocks - 1].m_nCharPos, nLineIndex));
-  }
-  else
-  */
-  //END SW
-
-  // BEGIN SW
   if( nBreaks > 0 )
     {
       // Draw all the screen lines of the wrapped line
@@ -1702,26 +1667,6 @@ DrawSingleLine (CDC * pdc, const CRect & rc, int nLineIndex)
         crText, crBkgnd, bDrawWhitespace,
         pszChars, 0, nLength, nActualOffset, CPoint(0, nLineIndex));
 
-  //	Draw whitespaces to the left of the text
-  //BEGIN SW
-  // Drawing is now realized by DrawScreenLine()
-  /*ORIGINAL
-  CRect frect = rc;
-  if (origin.x > frect.left)
-    frect.left = origin.x;
-  if (frect.right > frect.left)
-  {
-    if ((m_bFocused || m_bShowInactiveSelection) && IsInsideSelBlock(CPoint(nLength, nLineIndex)))
-    {
-      pdc->FillSolidRect(frect.left, frect.top, GetCharWidth(), frect.Height(),
-                        GetColor(COLORINDEX_SELBKGND));
-      frect.left += GetCharWidth();
-    }
-    if (frect.right > frect.left)
-      pdc->FillSolidRect(frect, bDrawWhitespace ? crBkgnd : GetColor(COLORINDEX_WHITESPACE));
-  }
-  */
-  //END SW
   delete[] pBuf;
 
   // Draw empty sublines
