@@ -65,74 +65,74 @@
     Categories are easy to recognize from these icons:<simplelist>
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/equal.gif" format="GIF" />
+              <imagedata fileref="screenshots/equal.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Identical text files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/notequal.gif" format="GIF" />
+              <imagedata fileref="screenshots/notequal.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Differing text files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binary.gif" format="GIF" />
+              <imagedata fileref="screenshots/binary.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Identical binary files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/binarydiff.gif" format="GIF" />
+              <imagedata fileref="screenshots/binarydiff.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Differing binary files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfolder.gif" format="GIF" />
+              <imagedata fileref="screenshots/lfolder.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Left-only folders</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfolder.gif" format="GIF" />
+              <imagedata fileref="screenshots/rfolder.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Right-only folders</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/lfile.gif" format="GIF" />
+              <imagedata fileref="screenshots/lfile.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Left-only files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/rfile.gif" format="GIF" />
+              <imagedata fileref="screenshots/rfile.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Right-only files</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/folderskip.gif" format="GIF" />
+              <imagedata fileref="screenshots/folderskip.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Skipped directories (filtered out)</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/fileskip.gif" format="GIF" />
+              <imagedata fileref="screenshots/fileskip.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Skipped files (filtered out)</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/error.gif" format="GIF" />
+              <imagedata fileref="screenshots/error.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Items that couldn't be compared. This usually
         happens when other program has locked the file.</member>
 
         <member><inlinemediaobject>
             <imageobject>
-              <imagedata fileref="screenshots/aborted.gif" format="GIF" />
+              <imagedata fileref="screenshots/aborted.png" format="PNG" />
             </imageobject>
           </inlinemediaobject> Aborted item. WinMerge did not finish comparing
         this item when compare was stopped. Result is unknown.</member>
@@ -352,13 +352,13 @@
     <simplelist type="vert">
       <member><inlinemediaobject>
           <imageobject>
-            <imagedata fileref="screenshots/folderup.gif" format="GIF" />
+            <imagedata fileref="screenshots/folderup.png" format="PNG" />
           </imageobject>
         </inlinemediaobject> Parent folder can be opened.</member>
 
       <member><inlinemediaobject>
           <imageobject>
-            <imagedata fileref="screenshots/folderup_disable.gif" format="GIF" />
+            <imagedata fileref="screenshots/folderup_disable.png" format="PNG" />
           </imageobject>
         </inlinemediaobject> Parent folder cannot be opened.</member>
     </simplelist>
