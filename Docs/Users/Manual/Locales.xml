@@ -44,6 +44,10 @@
     </listitem>
 
     <listitem>
+      <simpara>Greek</simpara>
+    </listitem>
+
+    <listitem>
       <simpara>Hungarian</simpara>
     </listitem>
 
@@ -98,6 +102,10 @@
     <listitem>
       <simpara>Turkish</simpara>
     </listitem>
+
+    <listitem>
+      <simpara>Ukrainian</simpara>
+    </listitem>
   </itemizedlist>
 
   <note>
@@ -145,9 +153,10 @@
     (<guilabel>Typical Installation</guilabel>) does not install translations,
     but they can be individually selected from the list.</para>
 
-    <para>If you don't want to re-run installer, or didn't install WinMerge
-    with the installer in the first place, then WinMerge translation files are
-    available in zipped versions. To install new translation file:</para>
+    <para>If you do not want to re-run installer, or did not install WinMerge
+    with the installer in the first place, then the WinMerge translation files
+    are available in the zipped versions. To install a new translation
+    file:</para>
 
     <para><orderedlist>
         <listitem>
