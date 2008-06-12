@@ -3,7 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8.2
-  Release Notes update (#1933950)
+  Release Notes update (#1933950, #1990886)
   Make 'Yes' the default button in copy confirmation dialog (#1943647)
   Allow drag & drop of paths to Open dialog (#1945254)
   Enlarge 'Discard All' button in Save confirmation dialog (#1947216)
