@@ -28,6 +28,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "Constants.h"
 #include "UnicodeString.h"
 #include "Environment.h"
 #include "OptionsMgr.h"
@@ -62,12 +63,6 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
-/**
- * @brief Default relative path to "My Documents" for private filters.
- * We want to use WinMerge folder as general user-file folder in future.
- * So it makes sense to have own subfolder for filters.
- */
-static const TCHAR DefaultRelativeFilterPath[] = _T("WinMerge\\Filters");
 
 
 /** @brief Location for command line help to open. */

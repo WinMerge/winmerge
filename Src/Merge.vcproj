@@ -5902,6 +5902,9 @@
 				RelativePath="ConflictFileParser.h">
 			</File>
 			<File
+				RelativePath="Constants.h">
+			</File>
+			<File
 				RelativePath="Common\coretools.h">
 			</File>
 			<File

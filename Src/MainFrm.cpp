@@ -30,6 +30,7 @@
 #include <vector>
 #include <htmlhelp.h>  // From HTMLHelp Workshop (incl. in Platform SDK)
 #include <shlwapi.h>
+#include "Constants.h"
 #include "Merge.h"
 #include "UnicodeString.h"
 #include "BCMenu.h"
@@ -230,21 +231,6 @@ static UINT indicators[] =
 	ID_INDICATOR_NUM,
 	ID_INDICATOR_SCRL,
 };
-
-/** @brief Relative (to WinMerge executable ) path to local help file. */
-static const TCHAR DocsPath[] = _T("\\Docs\\WinMerge.chm");
-
-/**
- * @brief URL to help indes in internet.
- * We use internet help when local help file is not found (not installed).
- */
-static const TCHAR DocsURL[] = _T("http://winmerge.org/2.8/manual/index.html");
-
-/** @brief Release notes in HTML format. */
-static const TCHAR RelNotes[] = _T("\\Docs\\ReleaseNotes.html");
-
-/** @brief URL to translations page in internet. */
-static const TCHAR TranslationsUrl[] = _T("http://winmerge.org/translations/");
 
 /** @brief Timer ID for window flashing timer. */
 static const UINT ID_TIMER_FLASH = 1;
@@ -884,10 +870,8 @@ void CMainFrame::OnUpdateOptionsShowSkipped(CCmdUI* pCmdUI)
  */
 void CMainFrame::OnHelpGnulicense() 
 {
-	const String spath = GetModulePath() + _T("\\Copying");
-	const TCHAR url[] = _T("http://www.gnu.org/licenses/gpl-2.0.html");
-
-	OpenFileOrUrl(spath.c_str(), url);
+	const String spath = GetModulePath() + LicenseFile;
+	OpenFileOrUrl(spath.c_str(), LicenceUrl);
 }
 
 /**
