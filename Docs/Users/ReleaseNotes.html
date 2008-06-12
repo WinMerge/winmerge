@@ -51,9 +51,10 @@
 </head>
 <body>
 
-<h2>WinMerge 2.8.0 Release Notes</h2>
+<h2>WinMerge 2.8.2 Release Notes</h2>
 <ul>
   <li><a href="#about">About This Release</a></li>
+  <li><a href="#new282">What Is New in 2.8.2?</a></li>
   <li><a href="#new280">What Is New in 2.8.0?</a></li>
   <li><a href="#new28RC">What Is New in 2.8 RC?</a></li>
   <li><a href="#new276">What Is New in 2.7.6?</a></li>
@@ -61,7 +62,7 @@
   <li><a href="#new272">What Is New in 2.7.2?</a></li>
   <li><a href="#issues">Known Issues</a></li>
 </ul>
-<p>April 2008</p>
+<p>June 2008</p>
 
 <h3><a name="about">About This Release</a></h3>
 
@@ -81,11 +82,31 @@ new localization system.  This simplifies the translation process of WinMerge.
 Please submit bug reports to our <a href=
 "https://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-tracker</a>.
 
-<h3><a name="new280">What Is New in 2.8.0?</a></h3>
+<h3><a name="new282">What Is New in 2.8.2?</a></h3>
 <p>
 For a complete changelog history, see the <code><a href="ChangeLog.txt">ChangeLog.txt</a></code>
 file located in the <code>Docs</code> folder under the WinMerge program folder.
 </p>
+
+<h4>Changes</h4>
+<ul>
+  <li>Make 'Yes' the default button in copy confirmation dialog</li>
+  <li>Command line parsing fixes</li>
+  <li>Fix showing differences in the end of the line</li>
+  <li>Manual and documentation updates</li>
+</ul>
+
+<h4>Translations</h4>
+<p>
+Several translations were updated and three new translations were added:
+</p>
+<ul>
+  <li>Greek</li>
+  <li>Romanian</li>
+  <li>Ukrainian</li>
+</ul>
+
+<h3><a name="new280">What Is New in 2.8.0?</a></h3>
 
 <h4>Changes</h4>
 <ul>
@@ -161,8 +182,8 @@ files on-the-fly, re-start WinMerge, and the changes will be reflected immediate
 </p>
 
 <p>
-See WinMerge's development wiki for more information about translations:
-<a href="http://winmerge.org/Wiki/Translations">http://winmerge.org/Wiki/Translations</a>
+See WinMerge web site for more information about translations:
+<a href="http://winmerge.org/translations/">http://winmerge.org/translations/</a>
 
 <p>
 In conclusion: PO files have replaced LANG files in Languages-subfolder.
@@ -230,6 +251,11 @@ New Croatian and Portuguese translations were added.
 
 <h3><a name="issues">Known Issues</a></h3>
 <ul>
+  <li>
+    <p><strong>7-zip installed from MSI installer may not work with WinMerge.</strong></p>
+    <p><i>Workaround</i>: Use the EXE installer of 7-Zip. See manual
+    <i>4.5. 7-Zip and Archive Support</i> for more information.</p>
+  </li>
   <li>
     <p><strong>Old IE version can cause crashes when handling archive files.</strong></p>
     <p><i>Workaround</i>: If WinMerge crashes when handling archives, consider
