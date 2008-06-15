@@ -2,6 +2,9 @@ This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
+WinMerge 2.8.4
+  BugFix: Crash when starting a second instance (#1993835)
+
 WinMerge 2.8.2 - 2008-06-12 (r5478)
   Release Notes update (#1933950, #1990886)
   Make 'Yes' the default button in copy confirmation dialog (#1943647)

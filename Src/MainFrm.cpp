@@ -2816,7 +2816,7 @@ LRESULT CMainFrame::OnUser(WPARAM wParam, LPARAM lParam)
 	theApp.ParseArgsAndDoOpen(cmdInfo, this);
 
 	// Delete memrory allocated in OnCopyData method.
-	for (int i = 0; i < argc; ++i)
+	for (int i = 0; i < __argc; ++i)
 	{
 		delete[] __targv[i];
 	}
