@@ -241,16 +241,13 @@ void WinMergeCmdLineParser::ParseParam(const TCHAR* pszParam, BOOL bFlag, BOOL b
 			{
 				file1 = m_CmdLineInfo.m_Files[0].Left(pos);
 				file2 = m_CmdLineInfo.m_Files[0].Mid(pos + 2);
-			}
 
-			// Remove possible parenthesis from end of second path.
-			// Second path got split from first path.
-			if (file2[file2.GetLength() - 1] == '\"')
-				file2.Delete(file2.GetLength() - 1, 1);
+				// Remove possible quotation mark from end of second path.
+				// Second path got split from first path.
+				if (file2[file2.GetLength() - 1] == '\"')
+					file2.Delete(file2.GetLength() - 1, 1);
 
-			// Set new paths to the structure
-			if (pos > 0)
-			{
+				// Set new paths to the structure
 				m_CmdLineInfo.m_Files[0] = file1;
 				m_CmdLineInfo.m_Files.SetAtGrow(1, file2);
 				m_CmdLineInfo.m_nFiles = 2;
