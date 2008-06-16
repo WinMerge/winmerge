@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2008-05-26 18:00+0000\n"
+"PO-Revision-Date: 2008-06-16 18:00+0000\n"
 "Last-Translator: Felipe Periard Lopes <felipefpl at ig.com.br>\n"
 "Language-Team: Brazilian <winmerge-translate@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
@@ -1484,7 +1484,7 @@ msgstr "Diferença Selecionada:"
 #: Merge.rc:1561
 #, c-format
 msgid "Background"
-msgstr "Cenário de Fundo"
+msgstr "2º Plano"
 
 #: Merge.rc:901
 #, c-format
@@ -1831,7 +1831,7 @@ msgstr "Ignorar &caso sensitivo"
 #: Merge.rc:1156
 #, c-format
 msgid "Igno&re carriage return differences (Windows/Unix/Mac)"
-msgstr "Igno&rar as diferenças de retorno dos procedimentos (Windows/Unix/Mac)"
+msgstr "Igno&rar diferenças de retorno dos procedimentos (Win/Unix/Mac)"
 
 #: Merge.rc:1159
 #, c-format
@@ -2016,9 +2016,7 @@ msgstr "Selecionar o código de página padrão assumido quando carregar arquivos n
 msgid ""
 "Detect codepage info for these files : .html, .rc, .xml \n"
 "need to restart session"
-msgstr ""
-"Detectar a info do código de página para estes arquivos : .html, .rc, .xml \n"
-"precisa reiniciar a sessão"
+msgstr "Detectar a info do código de página para estes arquivos : .html, .rc, .xml - precisa reiniciar a sessão"
 
 #: Merge.rc:1266
 #, c-format
@@ -2050,9 +2048,7 @@ msgstr "Incapaz de detectar a versão do 7-Zip (não instalado?)"
 msgid ""
 "Archive support requires 7-Zip 3.11 or later to be installed on your computer, or its\n"
 "essential components to be copied to the program directory for standalone operation."
-msgstr ""
-"O suporte para arquivos requer que o 7-Zip 3.11 ou posterior esteja instalado no seu computador, ou que seus\n"
-"componentes essenciais sejam copiados para o diretório do programa para operação isolada."
+msgstr "O suporte para arquivos requer que o 7-Zip 3.11 ou posterior esteja instalado no seu computador, ou que seus componentes essenciais sejam copiados para o diretório do programa para operação isolada."
 
 #: Merge.rc:1286
 #, c-format
@@ -2064,9 +2060,7 @@ msgstr "Deve haver também um plugin com interface apropriada (Merge7z*.dll) no c
 msgid ""
 "Please use the version of 7-Zip recommended below until interface plugins for later\n"
 "versions become available."
-msgstr ""
-"Por favor use a versão do 7-Zip recomendada abaixo até que os plugins de interface para versões\n"
-"posteriores se tornem disponíveis."
+msgstr "Por favor use a versão do 7-Zip recomendada abaixo até que os plugins de interface para as versões posteriores se tornem disponíveis."
 
 #: Merge.rc:1290
 #, c-format
@@ -2464,7 +2458,7 @@ msgstr "Cores de texto personalizadas"
 #: Merge.rc:1558
 #, c-format
 msgid "Whitespace:"
-msgstr "Espaço em branco:"
+msgstr "Espaço vazio:"
 
 #: Merge.rc:1559
 #, c-format
