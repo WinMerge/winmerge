@@ -103,6 +103,8 @@
 #include "gotodlg.h"
 #include "ViewableWhitespace.h"
 #include "SyntaxColors.h"
+#include "Ucs2Utf8.h"
+#include "pcre.h"
 
 // Escaped character constants in range 0x80-0xFF are interpreted in current codepage
 // Using C locale gets us direct mapping to Unicode codepoints
@@ -497,7 +499,6 @@ CCrystalTextView::CCrystalTextView ()
 , m_nMaxLineLength(-1)
 {
   AFX_ZERO_INIT_OBJECT (CView);
-  m_rxnode = NULL;
   m_pszMatched = NULL;
   m_bSelMargin = TRUE;
   m_bViewLineNumbers = FALSE;
@@ -540,11 +541,6 @@ CCrystalTextView::~CCrystalTextView ()
     {
       free (m_pszLastFindWhat);
       m_pszLastFindWhat=NULL;
-    }
-  if (m_rxnode)
-    {
-      RxFree (m_rxnode);
-      m_rxnode = NULL;
     }
   if (m_pszMatched)
     {
@@ -4592,24 +4588,69 @@ PrepareDragData ()
 }
 
 static int
-FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags, int &nLen, RxNode *&rxnode, RxMatchRes *rxmatch)
+FindStringHelper (LPCTSTR pszFindWhere, LPCTSTR pszFindWhat, DWORD dwFlags,
+     int &nLen)
 {
   if (dwFlags & FIND_REGEXP)
     {
       int pos;
+      const char * errormsg = NULL;
+      int erroroffset = 0;
+      char regexString[200] = {0};
+      int regexLen = 0;
+      int pcre_opts = 0;
 
-      if (rxnode)
-        RxFree (rxnode);
-      rxnode = RxCompile (pszFindWhat);
-      if (rxnode && RxExec (rxnode, pszFindWhere, _tcslen (pszFindWhere), pszFindWhere, rxmatch, (dwFlags & FIND_MATCH_CASE) != 0 ? RX_CASE : 0))
+#ifdef UNICODE
+      // For unicode builds, use UTF-8.
+      // Convert pattern to UTF-8 and set option for PCRE to specify UTF-8.
+      regexLen = TransformUcs2ToUtf8(pszFindWhat, _tcslen(pszFindWhat),
+          regexString, sizeof(regexString));
+      pcre_opts |= PCRE_UTF8;
+#else
+      strcpy(regexString, pszFindWhat);
+      regexLen = strlen(regexString);
+#endif
+      pcre_opts |= PCRE_BSR_ANYCRLF;
+      if ((dwFlags & FIND_MATCH_CASE) == 0)
+        pcre_opts |= PCRE_CASELESS;
+
+      pcre *regexp = pcre_compile(regexString, pcre_opts, &errormsg,
+          &erroroffset, NULL);
+      pcre_extra *pe = NULL;
+      if (regexp)
         {
-          pos = rxmatch->Open[0];
-          nLen = rxmatch->Close[0] - rxmatch->Open[0];
+          errormsg = NULL;
+          pe = pcre_study(regexp, 0, &errormsg);
+        }
+
+      int ovector[30];
+      char compString[200] = {0};
+      int stringLen = 0;
+      TCHAR * tempName = _tcsdup(pszFindWhere); // Create temp copy for conversions
+      TCHAR * cmpStr = _tcsupr(tempName);
+
+#ifdef UNICODE
+      stringLen = TransformUcs2ToUtf8(cmpStr, _tcslen(cmpStr),
+          compString, sizeof(compString));
+#else
+      strcpy(compString, cmpStr);
+      stringLen = strlen(compString);
+#endif
+
+      int result = pcre_exec(regexp, pe, compString, stringLen,
+          0, 0, ovector, 30);
+      free(tempName);
+
+      if (result >= 0)
+        {
+          pos = ovector[0];
+          nLen = ovector[1] - ovector[0];
         }
       else
-        {
-          pos = -1;
-        }
+        pos = -1;
+
+      pcre_free(regexp);
+      pcre_free(pe);
       return pos;
     }
   else
@@ -4806,7 +4847,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               else
                 {
                   nLineLength = GetLineLength(ptCurrentPos.y);
-                  //BEGIN SW+FP
                   if (ptCurrentPos.x == -1)
                     {
                       ptCurrentPos.x = nLineLength;
@@ -4814,43 +4854,21 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                   else
                     if( ptCurrentPos.x >= nLineLength )
                       ptCurrentPos.x = nLineLength - 1;
-                  /*ORIGINAL
-                  if (ptCurrentPos.x == -1)
-                    {
-                      nLineLength = GetLineLength (ptCurrentPos.y);
-                      ptCurrentPos.x = nLineLength;
-                    }
-                  else
-                    nLineLength = ptCurrentPos.x;
-                  if (nLineLength <= 0)
-                    {
-                      ptCurrentPos.x = -1;
-                      ptCurrentPos.y--;
-                      continue;
-                    }
-                  *///END SW
 
                   LPCTSTR pszChars = GetLineChars (ptCurrentPos.y);
-                  //BEGIN SW
                   _tcsncpy(line.GetBuffer(ptCurrentPos.x + 2), pszChars, ptCurrentPos.x + 1);
-                  /*ORIGINAL
-                  LPTSTR pszBuf = line.GetBuffer (nLineLength + 1);
-                  _tcsncpy (pszBuf, pszChars, nLineLength);
-                  pszBuf[nLineLength] = _T ('\0');
-                  *///END SW
                   line.ReleaseBuffer (ptCurrentPos.x + 1);
                   if ((dwFlags & FIND_MATCH_CASE) == 0)
                     line.MakeUpper ();
                 }
 
-              //BEGIN SW
-              int	nFoundPos = -1;
-              int	nMatchLen = what.GetLength();
-              int	nLineLen = line.GetLength();
-              int	nPos;
+              int nFoundPos = -1;
+              int nMatchLen = what.GetLength();
+              int nLineLen = line.GetLength();
+              int nPos;
               do
                 {
-                  nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+                  nPos = ::FindStringHelper(line, what, dwFlags, m_nLastFindWhatLen);
                   if( nPos >= 0 )
                     {
                       nFoundPos = (nFoundPos == -1)? nPos : nFoundPos + nPos;
@@ -4871,42 +4889,6 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
               ptCurrentPos.y--;
               if( ptCurrentPos.y >= 0 )
                 ptCurrentPos.x = GetLineLength( ptCurrentPos.y );
-              /*ORIGINAL
-              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
-              if (nPos >= 0)    //  Found text!
-                {
-                  LPTSTR pszText = line.GetBuffer (nLineLength + 1);
-                  m_pszMatched = _tcsdup (pszText);
-                  line.ReleaseBuffer ();
-                  // m_sMatched = line.Mid (nPos);
-                  if (nEolns)
-                    {
-                      CString item = line.Left (nPos);
-                      ptCurrentPos.y -= nEolns - HowManyStr (item, _T('\n'));
-                      if (ptCurrentPos.y < 0)
-                        ptCurrentPos.y = 0;
-                      LPCTSTR current = _tcsrchr (item, _T('\n'));
-                      if (current)
-                        current++;
-                      else
-                        current = item;
-                      ptCurrentPos.x = nPos - (current - (LPCTSTR) item);
-                      if (ptCurrentPos.x < 0)
-                        ptCurrentPos.x = 0;
-                    }
-                  else
-                    {
-                      ptCurrentPos.x = nPos;
-                    }
-                  *pptFoundPos = ptCurrentPos;
-                  return TRUE;
-                }
-              else
-                m_pszMatched = NULL;
-
-              ptCurrentPos.x = -1;
-              ptCurrentPos.y--;
-              *///END SW
             }
 
           //  Beginning of text reached
@@ -4975,7 +4957,7 @@ FindTextInBlock (LPCTSTR pszText, const CPoint & ptStartPosition,
                 }
 
               //  Perform search in the line
-              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen, m_rxnode, &m_rxmatch);
+              int nPos =::FindStringHelper (line, what, dwFlags, m_nLastFindWhatLen);
               if (nPos >= 0)
                 {
                   if (m_pszMatched)

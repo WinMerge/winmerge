@@ -58,6 +58,15 @@
 //		     (see OnChar())
 ////////////////////////////////////////////////////////////////////////////
 
+/**
+ * @file  ccrystaleditview.cpp
+ *
+ * @brief Implementation of the CCrystalEditView class
+ */
+// ID line follows -- this is updated by SVN
+// $Id$
+
+
 #include "stdafx.h"
 #include "editcmd.h"
 #include "editreg.h"
@@ -1331,9 +1340,7 @@ OnEditReplace ()
     }
 
   //  Execute Replace dialog
-  // m_bShowInactiveSelection = TRUE; // FP: removed because I like it
   dlg.DoModal ();
-  // m_bShowInactiveSelection = FALSE; // FP: removed because I like it
 
   // actually this value doesn't change during doModal, but it may in the future
   lastSearch = dlg.GetLastSearchInfos();
@@ -1362,10 +1369,17 @@ OnEditReplace ()
 
   //  Save search parameters to registry
   VERIFY (RegSaveNumber (HKEY_CURRENT_USER, REG_EDITPAD, _T ("ReplaceFlags"), m_dwLastReplaceFlags));
-  // pApp->WriteProfileString (REG_REPLACE_SUBKEY, REG_FIND_WHAT, lastSearch->m_sText);
-  // pApp->WriteProfileString (REG_REPLACE_SUBKEY, REG_REPLACE_WITH, lastSearch->m_sNewText);
 }
 
+/**
+ * @brief Replace selected text.
+ * This function replaces selected text in the editor pane with given text.
+ * @param [in] pszNewText The text replacing selected text.
+ * @param [in] cchNewText Length of the replacing text.
+ * @param [in] dwFlags Additional modifier flags:
+ * - FIND_REGEXP: use the regular expression.
+ * @return TRUE if succeeded.
+ */
 BOOL CCrystalEditView::
 ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
 {
@@ -1382,10 +1396,6 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
       GetSelection (ptSelStart, ptSelEnd);
 
       ptCursorPos = ptSelStart;
-      /*SetAnchor (ptCursorPos);
-      SetSelection (ptCursorPos, ptCursorPos);
-      SetCursorPos (ptCursorPos);
-      EnsureVisible (ptCursorPos);*/
 
       m_pTextBuffer->DeleteText (this, ptSelStart.y, ptSelStart.x, ptSelEnd.y, ptSelEnd.x, CE_ACTION_REPLACE);
     }
@@ -1395,30 +1405,8 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
 
   int x = 0;
   int y = 0;
-  if (dwFlags & FIND_REGEXP)
-    {
-      LPTSTR lpszNewStr;
-      if (m_pszMatched && !RxReplace(pszNewText, m_pszMatched, m_nLastFindWhatLen, m_rxmatch, &lpszNewStr, &m_nLastReplaceLen))
-        {
-          CString text;
-          if (lpszNewStr && m_nLastReplaceLen > 0)
-            {
-              LPTSTR buf = text.GetBuffer (m_nLastReplaceLen + 1);
-              _tcsncpy (buf, lpszNewStr, m_nLastReplaceLen);
-              text.ReleaseBuffer (m_nLastReplaceLen);
-            }
-          else
-            text.Empty ();
-          m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, text, text.GetLength(), y, x, CE_ACTION_REPLACE);  //  [JRT+FRD]
-          if (lpszNewStr)
-            free(lpszNewStr);
-        }
-    }
-  else
-    {
-      m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
-      m_nLastReplaceLen = cchNewText;
-    }
+  m_pTextBuffer->InsertText (this, ptCursorPos.y, ptCursorPos.x, pszNewText, cchNewText, y, x, CE_ACTION_REPLACE);  //  [JRT]
+  m_nLastReplaceLen = cchNewText;
 
   CPoint ptEndOfBlock = CPoint (x, y);
   ASSERT_VALIDTEXTPOS (ptCursorPos);
@@ -1426,7 +1414,6 @@ ReplaceSelection (LPCTSTR pszNewText, int cchNewText, DWORD dwFlags)
   SetAnchor (ptEndOfBlock);
   SetSelection (ptCursorPos, ptEndOfBlock);
   SetCursorPos (ptEndOfBlock);
-  //EnsureVisible (ptEndOfBlock);
 
   m_pTextBuffer->FlushUndoGroup(this);
 
