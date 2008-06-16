@@ -4570,7 +4570,7 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="RegOptionsMgr.cpp">
+				RelativePath="Common\RegOptionsMgr.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
 					<Tool
@@ -6236,7 +6236,7 @@
 				RelativePath="Common\RegKey.h">
 			</File>
 			<File
-				RelativePath="RegOptionsMgr.h">
+				RelativePath="Common\RegOptionsMgr.h">
 			</File>
 			<File
 				RelativePath="resource.h">
