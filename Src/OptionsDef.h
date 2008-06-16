@@ -11,6 +11,9 @@
 
 #include <tchar.h>
 
+// User's language
+const TCHAR OPT_SELECTED_LANGUAGE[] = _T("Locale/LanguageId");
+
 // View-menu
 const TCHAR OPT_SHOW_UNIQUE_LEFT[] = _T("Settings/ShowUniqueLeft");
 const TCHAR OPT_SHOW_UNIQUE_RIGHT[] = _T("Settings/ShowUniqueRight");

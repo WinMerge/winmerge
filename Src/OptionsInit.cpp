@@ -25,6 +25,9 @@ void CMergeApp::OptionsInit()
 {
 	m_pOptions->SetRegRootKey(_T("Thingamahoochie\\WinMerge\\"));
 
+	// Default language to English unless installer set it otherwise
+	m_pOptions->InitOption(OPT_SELECTED_LANGUAGE, 0x409);
+
 	// Initialise options (name, default value)
 	m_pOptions->InitOption(OPT_SHOW_UNIQUE_LEFT, true);
 	m_pOptions->InitOption(OPT_SHOW_UNIQUE_RIGHT, true);

@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "OptionsDef.h"
 #include "merge.h"
 #include "version.h"
 #include "resource.h"
@@ -1187,7 +1188,7 @@ void CLanguageSelect::OnOK()
 	if (lang != m_wCurLanguage)
 	{
 		if (SetLanguage(lang))
-    		AfxGetApp()->WriteProfileInt(LANGUAGE_SECTION, COUNTRY_ENTRY, (int)lang);
+			GetOptionsMgr()->SaveOption(OPT_SELECTED_LANGUAGE, (int)lang);
 
 		CMainFrame *pMainFrame = static_cast<CMainFrame *>(AfxGetApp()->m_pMainWnd);
 		pMainFrame->UpdateCodepageModule();
@@ -1299,7 +1300,7 @@ void CLanguageSelect::InitializeLanguage()
 	//TRACE(_T("%hs\n"), LangFileInfo::FileName(MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE)).c_str());
 	//TRACE(_T("%hs\n"), LangFileInfo::FileName(MAKELANGID(LANG_GERMAN, SUBLANG_DEFAULT)).c_str());
 
-	WORD langID = (WORD)AfxGetApp()->GetProfileInt(LANGUAGE_SECTION, COUNTRY_ENTRY, 0);
+	WORD langID = (WORD)GetOptionsMgr()->GetInt(OPT_SELECTED_LANGUAGE);
 	if (langID)
 	{
 		// User has set a language override

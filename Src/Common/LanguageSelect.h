@@ -18,9 +18,6 @@
 /////////////////////////////////////////////////////////////////////////////
 // CLanguageSelect dialog
 
-#define LANGUAGE_SECTION  _T("Locale")
-#define COUNTRY_ENTRY     _T("LanguageId")
-
 /**
  * @brief Dialog for selecting GUI language.
  *
