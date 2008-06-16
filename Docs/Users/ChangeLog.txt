@@ -5,6 +5,8 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.8.4
   BugFix: Crash when starting a second instance (#1993835)
   BugFix: Crash when starting WinMerge with only one path (#1994402)
+  Translation updates:
+  - Brazilian (#1994578)
 
 WinMerge 2.8.2 - 2008-06-12 (r5478)
   Release Notes update (#1933950, #1990886)
