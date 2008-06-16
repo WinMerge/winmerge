@@ -36,6 +36,7 @@
 #include "resource.h"       // main symbols
 #include "MergeDoc.h"
 #include "OptionsMgr.h"
+#include "RegOptionsMgr.h"
 #include "FileFilterHelper.h"
 
 struct FileFilter;
