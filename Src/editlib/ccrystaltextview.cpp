@@ -798,61 +798,8 @@ void CCrystalTextView::ScrollToSubLine( int nNewTopSubLine,
 void CCrystalTextView::
 ScrollToLine (int nNewTopLine, BOOL bNoSmoothScroll /*= FALSE*/ , BOOL bTrackScrollBar /*= TRUE*/ )
 {
-  //BEGIN SW
   if( m_nTopLine != nNewTopLine )
     ScrollToSubLine( GetSubLineIndex( nNewTopLine ), bNoSmoothScroll, bTrackScrollBar );
-
-  /*ORIGINAL
-  if (m_nTopLine != nNewTopLine)
-  {
-    if (bNoSmoothScroll || ! m_bSmoothScroll)
-    {
-      int nScrollLines = m_nTopLine - nNewTopLine;
-      m_nTopLine = nNewTopLine;
-      ScrollWindow(0, nScrollLines * GetLineHeight());
-      UpdateWindow();
-      if (bTrackScrollBar)
-        RecalcVertScrollBar(TRUE);
-    }
-    else
-    {
-      //	Do smooth scrolling
-      int nLineHeight = GetLineHeight();
-      if (m_nTopLine > nNewTopLine)
-      {
-        int nIncrement = (m_nTopLine - nNewTopLine) / SMOOTH_SCROLL_FACTOR + 1;
-        while (m_nTopLine != nNewTopLine)
-        {
-          int nTopLine = m_nTopLine - nIncrement;
-          if (nTopLine < nNewTopLine)
-            nTopLine = nNewTopLine;
-          int nScrollLines = nTopLine - m_nTopLine;
-          m_nTopLine = nTopLine;
-          ScrollWindow(0, - nLineHeight * nScrollLines);
-          UpdateWindow();
-          if (bTrackScrollBar)
-            RecalcVertScrollBar(TRUE);
-        }
-      }
-      else
-      {
-        int nIncrement = (nNewTopLine - m_nTopLine) / SMOOTH_SCROLL_FACTOR + 1;
-        while (m_nTopLine != nNewTopLine)
-        {
-          int nTopLine = m_nTopLine + nIncrement;
-          if (nTopLine > nNewTopLine)
-            nTopLine = nNewTopLine;
-          int nScrollLines = nTopLine - m_nTopLine;
-          m_nTopLine = nTopLine;
-          ScrollWindow(0, - nLineHeight * nScrollLines);
-          UpdateWindow();
-          if (bTrackScrollBar)
-            RecalcVertScrollBar(TRUE);
-        }
-      }
-    }
-  }
-  *///END SW
 }
 
 /** Append szadd to string str, and advance position curpos */
@@ -1066,12 +1013,6 @@ DrawLineHelperImpl (CDC * pdc, CPoint & ptOrigin, const CRect & rcClip,
           //CSize sz = pdc->GetTextExtent(line, nCount);
           //ASSERT(sz.cx == m_nCharWidth * nCount);
 #endif
-          /*
-             CRect rcBounds = rcClip;
-             rcBounds.left = ptOrigin.x;
-             rcBounds.right = rcBounds.left + GetCharWidth() * nCount;
-             pdc->ExtTextOut(rcBounds.left, rcBounds.top, ETO_OPAQUE, &rcBounds, NULL, 0, NULL);
-           */
            
           if (i < lineLen)
             {
@@ -1424,12 +1365,6 @@ void CCrystalTextView::DrawScreenLine( CDC *pdc, CPoint &ptOrigin, const CRect &
       ASSERT(pBuf[nActualItem].m_nCharPos >= 0 &&
          pBuf[nActualItem].m_nCharPos <= nLineLength);
 
-      /*
-      pdc->SelectObject(GetFont(GetItalic(COLORINDEX_NORMALTEXT), GetBold(COLORINDEX_NORMALTEXT)));
-      DrawLineHelper(
-        pdc, ptOrigin, rcClip, pBuf[nActualItem].m_nColorIndex, pszChars, 
-        nOffset, pBuf[nActualItem].m_nCharPos, ptTextPos);
-      */
       int I=0;
       for (I = nActualItem; I < nBlocks - 1 &&
         pBuf[I + 1].m_nCharPos <= nOffset + nCount; I ++)
@@ -4007,7 +3942,6 @@ void CCrystalTextView::
 EnsureVisible (CPoint pt)
 {
   //  Scroll vertically
-  //BEGIN SW
   int			nSubLineCount = GetSubLineCount();
   int			nNewTopSubLine = m_nTopSubLine;
   CPoint	subLinePos;
@@ -4045,37 +3979,11 @@ EnsureVisible (CPoint pt)
       UpdateCaret();
       UpdateSiblingScrollPos( FALSE );
     }
-  /*ORIGINAL
-  int nLineCount = GetLineCount();
-  int nNewTopLine = m_nTopLine;
-  if (pt.y >= nNewTopLine + GetScreenLines())
-  {
-    nNewTopLine = pt.y - GetScreenLines() + 1;
-  }
-  if (pt.y < nNewTopLine)
-  {
-    nNewTopLine = pt.y;
-  }
-
-  if (nNewTopLine < 0)
-    nNewTopLine = 0;
-  if (nNewTopLine >= nLineCount)
-    nNewTopLine = nLineCount - 1;
-
-  if (m_nTopLine != nNewTopLine)
-  {
-    ScrollToLine(nNewTopLine);
-    UpdateSiblingScrollPos(TRUE);
-  }
-  */
-  //END SW
 
   //  Scroll horizontally
-  //BEGIN SW
   // we do not need horizontally scrolling, if we wrap the words
   if( m_bWordWrap )
     return;
-  //END SW
   int nActualPos = CalculateActualOffset (pt.y, pt.x);
   int nNewOffset = m_nOffsetChar;
   const int nScreenChars = GetScreenChars ();
@@ -5462,10 +5370,6 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
   si.fMask = SIF_PAGE | SIF_RANGE;
   VERIFY (GetScrollInfo (SB_VERT, &si));
 
-  // -> HE
-// int nPageLines = GetScreenLines();
-  //int nSubLineCount = GetSubLineCount();
-
   int nNewTopSubLine= m_nTopSubLine - zDelta / 40;
 
   if (nNewTopSubLine < 0)
@@ -5475,27 +5379,6 @@ OnMouseWheel (UINT nFlags, short zDelta, CPoint pt)
 
   ScrollToSubLine(nNewTopSubLine, TRUE);
   UpdateSiblingScrollPos(FALSE);
-  // <- HE
-/* Old
-  int nLineCount = GetLineCount ();
-
-  int nNewTopLine = m_nTopLine - zDelta / 40;
-
-  if (nNewTopLine < 0)
-    nNewTopLine = 0;
-  if (nNewTopLine >= nLineCount)
-    nNewTopLine = nLineCount - 1;
-
-  if (m_nTopLine != nNewTopLine)
-    {
-      int nScrollLines = m_nTopLine - nNewTopLine;
-      m_nTopLine = nNewTopLine;
-      ScrollWindow (0, nScrollLines * GetLineHeight ());
-      UpdateWindow ();
-    }
-
-  RecalcVertScrollBar (TRUE);
-*/
 
   return CView::OnMouseWheel (nFlags, zDelta, pt);
 }
