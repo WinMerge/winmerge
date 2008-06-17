@@ -29,6 +29,7 @@
 #ifndef __PLUGINS_H__
 #define __PLUGINS_H__
 
+#include <vector>
 #include "FileFilterMgr.h"
 
 class CRegExp;
@@ -71,7 +72,7 @@ public:
 	CString     description;
 	BOOL        bUnicodeMode;
 	BOOL        bAutomatic;
-	FileFilterList  *filters;
+	std::vector<FileFilterElement*> *filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
 	int         nFreeFunctions;
 };

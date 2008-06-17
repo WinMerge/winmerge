@@ -28,6 +28,7 @@
 
 #include "StdAfx.h"
 #include <afxmt.h>
+#include <vector>
 
 #include "pcre.h"
 #include "LogFile.h"
@@ -48,6 +49,8 @@
 #undef THIS_FILE
 static char THIS_FILE[] = __FILE__;
 #endif
+
+using namespace std;
 
 static CStringArray theScriptletList;
 /// Need to lock the *.sct so the user can't delete them
@@ -264,7 +267,7 @@ static void GetScriptletsAt(LPCTSTR szSearchPath, LPCTSTR extension, CStringArra
 
 void PluginInfo::LoadFilterString()
 {
-	filters = new FileFilterList;
+	filters = new vector<FileFilterElement*>;
 
 	CString sLine = filtersText;
 	CString sPiece;
@@ -295,9 +298,9 @@ void PluginInfo::LoadFilterString()
 		pcre *regexp = pcre_compile(regexString, 0, &errormsg, &erroroffset, NULL);
 		if (regexp)
 		{
-			FileFilterElement elem;
-			elem.pRegExp = regexp;
-			filters->AddTail(elem);
+			FileFilterElement *elem = new FileFilterElement();
+			elem->pRegExp = regexp;
+			filters->push_back(elem);
 		}
 
 	};
@@ -322,7 +325,7 @@ BOOL PluginInfo::TestAgainstRegList(LPCTSTR szTest)
 		sPiece.TrimLeft();
 		sPiece.MakeUpper();
 
-		if (::TestAgainstRegList(*filters, sPiece))
+		if (::TestAgainstRegList(filters, sPiece))
 			return TRUE;
 	};
 
@@ -692,7 +695,7 @@ static void FreeAllScripts(PluginArray *& pArray)
 	{
 		pArray->GetAt(i).lpDispatch->Release();
 		if (pArray->GetAt(i).filters)
-			EmptyFilterList(*(pArray->GetAt(i).filters));
+			EmptyFilterList(pArray->GetAt(i).filters);
 		delete pArray->GetAt(i).filters;
 	}
 

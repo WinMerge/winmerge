@@ -25,15 +25,10 @@
 
 // Uses MFC C++ template containers
 #include <afxtempl.h>
+#include <vector>
 #include "pcre.h"
 
 struct FileFilterElement;
-/**
- * @brief List of file filtering rules.
- * @sa FileFilterElement
- * @sa FileFilter
- */
-typedef CList<FileFilterElement, FileFilterElement&> FileFilterList;
 
 /**
  * @brief Return values for many filter functions.
@@ -122,12 +117,8 @@ private:
 };
 
 
-// I think that CRegExp doesn't copy correctly (I get heap corruption in CRegList::program)
-// so I'm using pointers to avoid its copy constructor
-// Perry, 2003-05-18
-
-BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest);
-void EmptyFilterList(FileFilterList & filterList);
+BOOL TestAgainstRegList(const std::vector<FileFilterElement*> *filterList, LPCTSTR szTest);
+void EmptyFilterList(std::vector<FileFilterElement*> *filterList);
 
 
 #endif // FileFilterMgr_h_included

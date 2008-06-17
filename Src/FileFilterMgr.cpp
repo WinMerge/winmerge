@@ -25,6 +25,7 @@
 
 #include "stdafx.h"
 #include <string.h>
+#include <vector>
 #include "UnicodeString.h"
 #include "pcre.h"
 #include "FileFilterMgr.h"
@@ -38,19 +39,22 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+using namespace std;
+
 /**
  * @brief Deletes items from filter list.
  *
  * @param [in] filterList List to empty.
  */
-void EmptyFilterList(FileFilterList & filterList)
+void EmptyFilterList(vector<FileFilterElement*> *filterList)
 {
-	while (!filterList.IsEmpty())
+	while (!filterList->empty())
 	{
-		FileFilterElement &elem = filterList.GetHead();
-		pcre_free(elem.pRegExp);
-		pcre_free(elem.pRegExpExtra);
-		filterList.RemoveHead();
+		FileFilterElement *elem = filterList->back();
+		pcre_free(elem->pRegExp);
+		pcre_free(elem->pRegExpExtra);
+		delete elem;
+		filterList->pop_back();
 	}
 }
 
@@ -69,8 +73,8 @@ struct FileFilter
 	CString name;			/**< Filter name (shown in UI) */
 	CString description;	/**< Filter description text */
 	CString fullpath;		/**< Full path to filter file */
-	FileFilterList filefilters; /**< List of rules for files */
-	FileFilterList dirfilters;  /**< List of rules for directories */
+	vector<FileFilterElement*> filefilters; /**< List of rules for files */
+	vector<FileFilterElement*> dirfilters;  /**< List of rules for directories */
 	FileFilter() : default_include(true) { }
 	~FileFilter();
 };
@@ -80,8 +84,8 @@ struct FileFilter
  */
 FileFilter::~FileFilter()
 {
-	EmptyFilterList(filefilters);
-	EmptyFilterList(dirfilters);
+	EmptyFilterList(&filefilters);
+	EmptyFilterList(&dirfilters);
 }
 
 /**
@@ -173,7 +177,7 @@ void FileFilterMgr::DeleteAllFilters()
  * @param [in] filterList List where pattern is added.
  * @param [in] str Temporary variable (ie, it may be altered)
  */
-static void AddFilterPattern(FileFilterList & filterList, CString & str)
+static void AddFilterPattern(vector<FileFilterElement*> *filterList, CString & str)
 {
 	LPCTSTR commentLeader = _T("##"); // Starts comment
 	str.TrimLeft();
@@ -216,16 +220,16 @@ static void AddFilterPattern(FileFilterList & filterList, CString & str)
 		&erroroffset, NULL);
 	if (regexp)
 	{
-		FileFilterElement elem;
+		FileFilterElement *elem = new FileFilterElement();
 		errormsg = NULL;
 
 		pcre_extra *pe = pcre_study(regexp, 0, &errormsg);
-		elem.pRegExp = regexp;
+		elem->pRegExp = regexp;
 		
 		if (pe != NULL && errormsg != NULL)
-			elem.pRegExpExtra = pe;
+			elem->pRegExpExtra = pe;
 		
-		filterList.AddTail(elem);
+		filterList->push_back(elem);
 	}
 }
 
@@ -293,13 +297,13 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 		{
 			// file filter
 			CString str = sLine.Mid(2);
-			AddFilterPattern(pfilter->filefilters, str);
+			AddFilterPattern(&pfilter->filefilters, str);
 		}
 		else if (0 == _tcsncmp(sLine, _T("d:"), 2))
 		{
 			// directory filter
 			CString str = sLine.Mid(2);
-			AddFilterPattern(pfilter->dirfilters, str);
+			AddFilterPattern(&pfilter->dirfilters, str);
 		}
 	} while (bLinesLeft == TRUE);
 
@@ -331,11 +335,12 @@ FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
  * @return TRUE if string passes
  * @note Matching stops when first match is found.
  */
-BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest)
+BOOL TestAgainstRegList(const vector<FileFilterElement*> *filterList, LPCTSTR szTest)
 {
-	for (POSITION pos = filterList.GetHeadPosition(); pos; )
+	vector<FileFilterElement*>::const_iterator iter = filterList->begin();
+	while (iter != filterList->end())
 	{
-		const FileFilterElement & elem = filterList.GetNext(pos);
+		//const FileFilterElement & elem = filterList.GetNext(pos);
 		int ovector[30];
 		char compString[200] = {0};
 		int stringLen = 0;
@@ -350,8 +355,8 @@ BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest)
 		stringLen = strlen(compString);
 #endif
 
-		pcre * regexp = elem.pRegExp;
-		pcre_extra * extra = elem.pRegExpExtra;
+		pcre * regexp = (*iter)->pRegExp;
+		pcre_extra * extra = (*iter)->pRegExpExtra;
 		int result = pcre_exec(regexp, extra, compString, stringLen,
 			0, 0, ovector, 30);
 
@@ -359,6 +364,8 @@ BOOL TestAgainstRegList(const FileFilterList & filterList, LPCTSTR szTest)
 
 		if (result >= 0)
 			return TRUE;
+
+		++iter;
 	}
 	return FALSE;
 }
@@ -379,7 +386,7 @@ BOOL FileFilterMgr::TestFileNameAgainstFilter(const FileFilter * pFilter,
 {
 	if (!pFilter)
 		return TRUE;
-	if (TestAgainstRegList(pFilter->filefilters, szFileName))
+	if (TestAgainstRegList(&pFilter->filefilters, szFileName))
 		return !pFilter->default_include;
 	return pFilter->default_include;
 }
@@ -400,7 +407,7 @@ BOOL FileFilterMgr::TestDirNameAgainstFilter(const FileFilter * pFilter,
 {
 	if (!pFilter)
 		return TRUE;
-	if (TestAgainstRegList(pFilter->dirfilters, szDirName))
+	if (TestAgainstRegList(&pFilter->dirfilters, szDirName))
 		return !pFilter->default_include;
 	return pFilter->default_include;
 }
