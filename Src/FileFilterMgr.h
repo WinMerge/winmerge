@@ -90,7 +90,7 @@ public:
 	void RemoveFilter(LPCTSTR szFilterFile);
 
 	// access to array of filters
-	int GetFilterCount() const { return m_filters.GetSize(); }
+	int GetFilterCount() const { return m_filters.size(); }
 	CString GetFilterName(int i) const;
 	CString GetFilterName(const FileFilter *pFilter) const;
 	CString GetFilterPath(int i) const;
@@ -113,7 +113,7 @@ protected:
 
 // Implementation data
 private:
-	CTypedPtrArray<CPtrArray, FileFilter *> m_filters; /*< List of filters loaded */
+	std::vector<FileFilter*> m_filters; /*< List of filters loaded */
 };
 
 

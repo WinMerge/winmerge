@@ -106,7 +106,7 @@ int FileFilterMgr::AddFilter(LPCTSTR szFilterFile)
 	int errorcode = FILTER_OK;
 	FileFilter * pFilter = LoadFilterFile(szFilterFile, errorcode);
 	if (pFilter)
-		m_filters.Add(pFilter);
+		m_filters.push_back(pFilter);
 	return errorcode;
 }
 
@@ -147,14 +147,16 @@ void FileFilterMgr::LoadFromDirectory(LPCTSTR szPattern, LPCTSTR szExt)
 void FileFilterMgr::RemoveFilter(LPCTSTR szFilterFile)
 {
 	// Note that m_filters.GetSize can change during loop
-	for (int i = 0; i < m_filters.GetSize(); i++)
+	vector<FileFilter*>::iterator iter = m_filters.begin();
+	while (iter != m_filters.end())
 	{
-		FileFilter * pFilter = m_filters.GetAt(i);
-		if (pFilter->fullpath.CompareNoCase(szFilterFile) == 0)
+		if ((*iter)->fullpath.CompareNoCase(szFilterFile) == 0)
 		{
-			m_filters.RemoveAt(i);
-			delete pFilter;
+			delete (*iter);
+			m_filters.erase(iter);
+			break;
 		}
+		++iter;
 	}
 }
 
@@ -163,12 +165,12 @@ void FileFilterMgr::RemoveFilter(LPCTSTR szFilterFile)
  */
 void FileFilterMgr::DeleteAllFilters()
 {
-	for (int i=0; i<m_filters.GetSize(); ++i)
+	while (!m_filters.empty())
 	{
-		delete m_filters[i];
-		m_filters[i] = 0;
+		FileFilter* filter = m_filters.back();
+		delete filter;
+		m_filters.pop_back();
 	}
-	m_filters.RemoveAll();
 }
 
 /**
@@ -319,10 +321,12 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
  */
 FileFilter * FileFilterMgr::GetFilterByPath(LPCTSTR szFilterPath)
 {
-	for (int i=0; i<m_filters.GetSize(); ++i)
+	vector<FileFilter*>::const_iterator iter = m_filters.begin();
+	while (iter != m_filters.end())
 	{
-		if (m_filters[i]->fullpath.CompareNoCase(szFilterPath) == 0)
-			return m_filters[i];
+		if ((*iter)->fullpath.CompareNoCase(szFilterPath) == 0)
+			return (*iter);
+		++iter;
 	}
 	return 0;
 }
@@ -496,16 +500,17 @@ int FileFilterMgr::ReloadFilterFromDisk(FileFilter * pfilter)
 		return errorcode;
 	}
 
-	for (int i = 0; i < m_filters.GetSize(); ++i)
+	vector<FileFilter*>::iterator iter = m_filters.begin();
+	while (iter != m_filters.end())
 	{
-		if (pfilter == m_filters[i])
+		if (pfilter == (*iter))
 		{
-			m_filters.RemoveAt(i);
-			delete pfilter;
+			delete (*iter);
+			m_filters.erase(iter);
 			break;
 		}
 	}
-	m_filters.Add(newfilter);
+	m_filters.push_back(newfilter);
 	return errorcode;
 }
 
