@@ -50,14 +50,14 @@ void CSelectUnpackerDlg::Initialize()
 
 	// texts for the default unpackers
 	noPlugin = new PluginInfo;
-	noPlugin->lpDispatch = NULL;
-	noPlugin->filters = NULL;
-	noPlugin->name = theApp.LoadString(IDS_USERCHOICE_NONE);
+	noPlugin->m_lpDispatch = NULL;
+	noPlugin->m_filters = NULL;
+	noPlugin->m_name = theApp.LoadString(IDS_USERCHOICE_NONE);
 	automaticPlugin = new PluginInfo;
-	automaticPlugin->lpDispatch = NULL;
-	automaticPlugin->filters = NULL;
-	automaticPlugin->name = theApp.LoadString(IDS_USERCHOICE_AUTOMATIC);
-	automaticPlugin->description = theApp.LoadString(ID_UNPACK_AUTO).c_str();
+	automaticPlugin->m_lpDispatch = NULL;
+	automaticPlugin->m_filters = NULL;
+	automaticPlugin->m_name = theApp.LoadString(IDS_USERCHOICE_AUTOMATIC);
+	automaticPlugin->m_description = theApp.LoadString(ID_UNPACK_AUTO).c_str();
 
 	m_pPlugin = noPlugin;
 
@@ -127,7 +127,7 @@ void CSelectUnpackerDlg::SetInitialInfoHandler(PackingInfo * infoHandler)
 		for (i = 0 ; i < m_UnpackerPlugins.GetSize() ; i++)
 		{
 			PluginInfo * pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(i));
-			if (pPlugin->name == infoHandler->pluginName)
+			if (pPlugin->m_name == infoHandler->pluginName)
 				m_pPlugin = pPlugin;
 		}
 	}
@@ -214,14 +214,14 @@ void CSelectUnpackerDlg::prepareListbox()
 				|| m_bNoExtensionCheck 
 			  || pPlugin->TestAgainstRegList(m_filteredFilenames))
 		{
-			m_cboUnpackerName.AddString(pPlugin->name.c_str());
+			m_cboUnpackerName.AddString(pPlugin->m_name.c_str());
 			if (pPlugin == m_pPlugin)
 				sel = m_cboUnpackerName.GetCount()-1;
 		}
 	}
 
 	if (sel == -1)
-		m_cboUnpackerName.SelectString(-1, noPlugin->name.c_str());
+		m_cboUnpackerName.SelectString(-1, noPlugin->m_name.c_str());
 	else
 		m_cboUnpackerName.SetCurSel(sel);
 
@@ -255,7 +255,7 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 		for (int j = 0 ; j < m_UnpackerPlugins.GetSize() ; j++)
 		{
 			pPlugin = static_cast<PluginInfo*> (m_UnpackerPlugins.GetAt(j));
-			if (m_strPluginName == pPlugin->name.c_str())
+			if (m_strPluginName == pPlugin->m_name.c_str())
 			{
 				m_pPlugin = pPlugin;
 				break;
@@ -263,9 +263,9 @@ void CSelectUnpackerDlg::OnSelchangeUnpackerName()
 		}
 	}
 
-	m_strPluginName = m_pPlugin->name.c_str();
-	m_strDescription = m_pPlugin->description;
-	m_strExtensions = m_pPlugin->filtersText;
+	m_strPluginName = m_pPlugin->m_name.c_str();
+	m_strDescription = m_pPlugin->m_description;
+	m_strExtensions = m_pPlugin->m_filtersText;
 
 	UpdateData (FALSE);
 }

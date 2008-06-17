@@ -51,9 +51,8 @@ class PluginInfo
 {
 public:
 	PluginInfo()
+		: m_lpDispatch(NULL), m_filters(NULL)
 	{	
-		lpDispatch = NULL; 
-		filters = NULL; 
 	};
 	/// Parse the filter string (only for files), and create the filters
 	void LoadFilterString();
@@ -65,16 +64,16 @@ public:
 	BOOL TestAgainstRegList(LPCTSTR szTest);
 
 public:
-	String      filepath;
-	LPDISPATCH  lpDispatch;
-	String      name; // usually filename, except for special cases (like auto or no)
-	CString     filtersText;
-	CString     description;
-	BOOL        bUnicodeMode;
-	BOOL        bAutomatic;
-	std::vector<FileFilterElement*> *filters;
+	String      m_filepath;
+	LPDISPATCH  m_lpDispatch;
+	String      m_name; // usually filename, except for special cases (like auto or no)
+	CString     m_filtersText;
+	CString     m_description;
+	BOOL        m_bUnicodeMode;
+	BOOL        m_bAutomatic;
+	std::vector<FileFilterElement*> *m_filters;
 	/// only for plugins with free function names (EDITOR_SCRIPT)
-	int         nFreeFunctions;
+	int         m_nFreeFunctions;
 };
 
 

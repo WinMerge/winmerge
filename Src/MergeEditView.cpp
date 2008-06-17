@@ -1965,7 +1965,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == FALSE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
@@ -1973,7 +1973,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == FALSE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
 	}
 
 	// build the menu : second part, others plugins
@@ -1988,7 +1988,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == TRUE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
 	}
 	for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 	{
@@ -1996,7 +1996,7 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		if (plugin.TestAgainstRegList(pd->m_strBothFilenames.c_str()) == TRUE)
 			continue;
 
-		DoAppendMenu(hMenu, MF_STRING, ID, plugin.name.c_str());
+		DoAppendMenu(hMenu, MF_STRING, ID, plugin.m_name.c_str());
 	}
 
 	// compute the m_CurrentPredifferID (to set the radio button)
@@ -2013,14 +2013,14 @@ HMENU CMergeEditView::createPrediffersSubmenu(HMENU hMenu)
 		for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++, ID ++)
 		{
 			PluginInfo & plugin = piScriptArray->ElementAt(iScript);
-			if (prediffer.pluginName == plugin.name)
+			if (prediffer.pluginName == plugin.m_name)
 				m_CurrentPredifferID = ID;
 
 		}
 		for (iScript = 0 ; iScript < piScriptArray2->GetSize() ; iScript++, ID ++)
 		{
 			PluginInfo & plugin = piScriptArray2->ElementAt(iScript);
-			if (prediffer.pluginName == plugin.name)
+			if (prediffer.pluginName == plugin.m_name)
 				m_CurrentPredifferID = ID;
 		}
 	}
@@ -2450,7 +2450,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 	{
 		prediffer.bWithFile = TRUE;
 		PluginInfo & plugin = piScriptArray->ElementAt(pluginNumber);
-		prediffer.pluginName = plugin.name;
+		prediffer.pluginName = plugin.m_name;
 	}
 	else
 	{
@@ -2459,7 +2459,7 @@ void CMergeEditView::SetPredifferByMenu(UINT nID )
 			return;
 		prediffer.bWithFile = FALSE;
 		PluginInfo & plugin = piScriptArray2->ElementAt(pluginNumber);
-		prediffer.pluginName = plugin.name;
+		prediffer.pluginName = plugin.m_name;
 	}
 
 	// update data for the radio button
@@ -2483,7 +2483,7 @@ int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 	for (i=0; i<piScriptArray->GetSize(); ++i, ++ID)
 	{
 		PluginInfo & plugin = piScriptArray->ElementAt(i);
-		if (plugin.name == prediffer)
+		if (plugin.m_name == prediffer)
 			return ID;
 	}
 
@@ -2493,7 +2493,7 @@ int CMergeEditView::FindPrediffer(LPCTSTR prediffer) const
 	for (i=0; i<piScriptArray2->GetSize(); ++i, ++ID)
 	{
 		PluginInfo & plugin = piScriptArray2->ElementAt(i);
-		if (plugin.name == prediffer)
+		if (plugin.m_name == prediffer)
 			return ID;
 	}
 	return -1;

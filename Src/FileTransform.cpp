@@ -84,7 +84,7 @@ BOOL FileTransform_Packing(String & filepath, PackingInfo handler)
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler.pluginName.c_str());
 	if (plugin == NULL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler.pluginName.c_str());
-	LPDISPATCH piScript = plugin->lpDispatch;
+	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler.bWithFile)
 	{
 		// use a temporary dest name
@@ -137,7 +137,7 @@ BOOL FileTransform_Unpacking(String & filepath, const PackingInfo * handler, int
 	PluginInfo * plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"FILE_PACK_UNPACK", handler->pluginName.c_str());
 	if (plugin == NULL)
 		plugin = CAllThreadsScripts::GetActiveSet()->GetPluginByName(L"BUFFER_PACK_UNPACK", handler->pluginName.c_str());
-	LPDISPATCH piScript = plugin->lpDispatch;
+	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler->bWithFile)
 	{
 		CString destFileName = bufferData.GetDestFileName();
@@ -210,18 +210,18 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 	for (step = 0 ; bHandled == FALSE && step < piFileScriptArray->GetSize() ; step ++)
 	{
 		PluginInfo & plugin = piFileScriptArray->ElementAt(step);
-		if (plugin.bAutomatic == FALSE)
+		if (plugin.m_bAutomatic == FALSE)
 			continue;
 		if (plugin.TestAgainstRegList(filteredText) == FALSE)
 			continue;
 
-		handler->pluginName = plugin.name;
+		handler->pluginName = plugin.m_name;
 		handler->bWithFile = TRUE;
 		// use a temporary dest name
 		bHandled = InvokeUnpackFile(bufferData.GetDataFileAnsi(),
 			bufferData.GetDestFileName(),
 			bufferData.GetNChanged(),
-			plugin.lpDispatch, handler->subcode);
+			plugin.m_lpDispatch, handler->subcode);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -238,16 +238,16 @@ BOOL FileTransform_Unpacking(String & filepath, LPCTSTR filteredText, PackingInf
 	for (step = 0 ; bHandled == FALSE && step < piBufferScriptArray->GetSize() ; step ++)
 	{
 		PluginInfo & plugin = piBufferScriptArray->ElementAt(step);
-		if (plugin.bAutomatic == FALSE)
+		if (plugin.m_bAutomatic == FALSE)
 			continue;
 		if (plugin.TestAgainstRegList(filteredText) == FALSE)
 			continue;
 
-		handler->pluginName = plugin.name;
+		handler->pluginName = plugin.m_name;
 		handler->bWithFile = FALSE;
 		bHandled = InvokeUnpackBuffer(*bufferData.GetDataBufferAnsi(),
 			bufferData.GetNChanged(),
-			plugin.lpDispatch, handler->subcode);
+			plugin.m_lpDispatch, handler->subcode);
 		if (bHandled)
 			bufferData.ValidateNewBuffer();
 	}
@@ -302,7 +302,7 @@ BOOL FileTransform_Prediffing(String & filepath, PrediffingInfo handler, BOOL bM
 		if (!plugin)
 			return FALSE;
 	}
-	LPDISPATCH piScript = plugin->lpDispatch;
+	LPDISPATCH piScript = plugin->m_lpDispatch;
 	if (handler.bWithFile)
 	{
 		// use a temporary dest name
@@ -364,18 +364,18 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 	for (step = 0 ; bHandled == FALSE && step < piFileScriptArray->GetSize() ; step ++)
 	{
 		PluginInfo & plugin = piFileScriptArray->ElementAt(step);
-		if (plugin.bAutomatic == FALSE)
+		if (plugin.m_bAutomatic == FALSE)
 			continue;
 		if (plugin.TestAgainstRegList(filteredText) == FALSE)
 			continue;
 
-		handler->pluginName = plugin.name;
+		handler->pluginName = plugin.m_name;
 		handler->bWithFile = TRUE;
 		// use a temporary dest name
 		bHandled = InvokePrediffFile(bufferData.GetDataFileAnsi(),
 			bufferData.GetDestFileName(),
 			bufferData.GetNChanged(),
-			plugin.lpDispatch);
+			plugin.m_lpDispatch);
 		if (bHandled)
 			bufferData.ValidateNewFile();
 	}
@@ -389,17 +389,17 @@ BOOL FileTransform_Prediffing(String & filepath, LPCTSTR filteredText, Prediffin
 	for (step = 0 ; bHandled == FALSE && step < piBufferScriptArray->GetSize() ; step ++)
 	{
 		PluginInfo & plugin = piBufferScriptArray->ElementAt(step);
-		if (plugin.bAutomatic == FALSE)
+		if (plugin.m_bAutomatic == FALSE)
 			continue;
 		if (plugin.TestAgainstRegList(filteredText) == FALSE)
 			continue;
 
-		handler->pluginName = plugin.name;
+		handler->pluginName = plugin.m_name;
 		handler->bWithFile = FALSE;
 		// probably it is for VB/VBscript so use a BSTR as argument
 		bHandled = InvokePrediffBuffer(*bufferData.GetDataBufferUnicode(),
 			bufferData.GetNChanged(),
-			plugin.lpDispatch);
+			plugin.m_lpDispatch);
 		if (bHandled)
 			bufferData.ValidateNewBuffer();
 	}
@@ -530,7 +530,7 @@ void GetFreeFunctionsInScripts(CStringArray & sNamesArray, LPCWSTR Transformatio
 	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++)
 	{
 		PluginInfo & plugin = piScriptArray->ElementAt(iScript);
-		LPDISPATCH piScript = plugin.lpDispatch;
+		LPDISPATCH piScript = plugin.m_lpDispatch;
 		BSTR * scriptNamesArray;
 		int * scriptIdsArray;
 		int nScriptFnc = GetMethodsFromScript(piScript, scriptNamesArray, scriptIdsArray);
@@ -560,10 +560,10 @@ BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int 
 	int iScript;
 	for (iScript = 0 ; iScript < piScriptArray->GetSize() ; iScript++)
 	{
-		if (iFncChosen < piScriptArray->GetAt(iScript).nFreeFunctions)
+		if (iFncChosen < piScriptArray->GetAt(iScript).m_nFreeFunctions)
 			// we have found the script file
 			break;
-		iFncChosen -= piScriptArray->GetAt(iScript).nFreeFunctions;
+		iFncChosen -= piScriptArray->GetAt(iScript).m_nFreeFunctions;
 	}
 
 	if (iScript >= piScriptArray->GetSize())
@@ -571,11 +571,11 @@ BOOL TextTransform_Interactive(CString & text, LPCWSTR TransformationEvent, int 
 
 	// iFncChosen is the index of the function in the script file
 	// we must convert it to the function ID
-	int fncID = GetMethodIDInScript(piScriptArray->GetAt(iScript).lpDispatch, iFncChosen);
+	int fncID = GetMethodIDInScript(piScriptArray->GetAt(iScript).m_lpDispatch, iFncChosen);
 
 	// execute the transform operation
 	BOOL bChanged = FALSE;
-	InvokeTransformText(text, bChanged, piScriptArray->GetAt(iScript).lpDispatch, fncID);
+	InvokeTransformText(text, bChanged, piScriptArray->GetAt(iScript).m_lpDispatch, fncID);
 
 	return bChanged;
 }
