@@ -275,7 +275,7 @@ ErrorReplacingExistingFile=An error occurred while trying to replace the existin
 ErrorRestartReplace=RestartReplace failed:
 ErrorRenamingTemp=An error occurred while trying to rename a file in the destination directory:
 ErrorRegisterServer=Unable to register the DLL/OCX: %1
-ErrorRegisterServerMissingExport=DllRegisterServer export not found
+ErrorRegSvr32Failed=RegSvr32 failed with exit code %1
 ErrorRegisterTypeLib=Unable to register the type library: %1
 
 ; *** Post-installation errors
@@ -347,6 +347,7 @@ DanishLanguage=Δανέζικα επιλογές και διάλογοι
 DutchLanguage=Ολλανδικά επιλογές και διάλογοι
 FrenchLanguage=Γαλλικά επιλογές και διάλογοι
 GermanLanguage=Γερμανικά επιλογές και διάλογοι
+GreekLanguage=Greek menus and dialogs
 HungarianLanguage=Ουγγρικά επιλογές και διάλογοι
 ItalianLanguage=Ιταλικά επιλογές και διάλογοι
 JapaneseLanguage=Ιαπωνικά επιλογές και διάλογοι
@@ -355,6 +356,7 @@ NorwegianLanguage=Νορβηγικά επιλογές και διάλογοι
 PolishLanguage=Πολωνικά επιλογές και διάλογοι
 PortugueseBrazilLanguage=Πορτογαλικά (Βραζιλίας) επιλογές και διάλογοι
 PortugueseLanguage=Πορτογαλικά επιλογές και διάλογοι
+RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Ρωσσικά επιλογές και διάλογοι
 SlovakLanguage=Σλοβακικά επιλογές και διάλογοι
 SlovenianLanguage=Slovenian menus and dialogs

@@ -298,6 +298,7 @@ StatusUninstalling=Odstranjujem %1...
 
 NameAndVersion=%1 razlièica %2
 AdditionalIcons=Dodatne ikone:
+OptionalFeatures=Optional Features:
 CreateDesktopIcon=Ustvari ikono na &namizju
 CreateQuickLaunchIcon=Ustvari ikono za &hitri zagon
 ProgramOnTheWeb=%1 na spletu

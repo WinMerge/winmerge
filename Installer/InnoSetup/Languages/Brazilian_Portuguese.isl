@@ -346,6 +346,7 @@ DutchLanguage=Menus e diálogos holandeses
 FrenchLanguage=Menus e diálogos franceses
 GermanLanguage=Menus e diálogos alemães
 GreekLanguage=Greek menus and dialogs
+HungarianLanguage=Hungarian menus and dialogs
 ItalianLanguage=Menus e diálogos italianos
 JapaneseLanguage=Menus e diálogos japoneses
 KoreanLanguage=Menus e diálogos coreanos

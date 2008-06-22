@@ -343,6 +343,7 @@
    DutchLanguage=ћеню ≥ д≥алогов≥ в≥кна голландською мовою
    FrenchLanguage=ћеню ≥ д≥алогов≥ в≥кна французькою мовою
    GermanLanguage=ћеню ≥ д≥алогов≥ в≥кна н≥мецькою мовою
+   GreekLanguage=Greek menus and dialogs
    HungarianLanguage=ћеню ≥ д≥алогов≥ в≥кна болгарською мовою
    ItalianLanguage=ћеню ≥ д≥алогов≥ в≥кна ≥тал≥йською мовою
    JapaneseLanguage=ћеню ≥ д≥алогов≥ в≥кна €понською мовою
