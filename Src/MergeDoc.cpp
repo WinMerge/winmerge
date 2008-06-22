@@ -1681,9 +1681,10 @@ int CMergeDoc::CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	}
 	else
 	{
-		// If file is unicode(including UTF-8 without BOM), try to read BOM 
-		// or else, use the codepage we were given to interpret the 8-bit characters
-		if (encoding.m_unicoding == ucr::NONE || !pufile->ReadBom())
+		// If the file is not unicode file, use the codepage we were given to
+		// interpret the 8-bit characters. If the file is unicode file,
+		// determine its type (IsUnicode() does that).
+		if (encoding.m_unicoding == ucr::NONE || !pufile->IsUnicode())
 			pufile->SetCodepage(encoding.m_codepage);
 		UINT lineno = 0;
 		CString eol, preveol;

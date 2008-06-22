@@ -54,6 +54,8 @@ void UniLocalFile::Clear()
 	m_codepage = getDefaultCodepage();
 	m_txtstats.clear();
 	m_bom = false;
+	m_bUnicodingChecked = false;
+	m_bUnicode = false;
 }
 
 /**
@@ -98,6 +100,20 @@ bool UniLocalFile::DoGetFileStatus()
 		LastError(_T("_tstati64"), 0);
 		return false;
 	}
+}
+
+/**
+ * @brief Checks if the file is an unicode file.
+ * This function Checks if the file is recognized unicode file. This detection
+ * includes reading possible BOM bytes and trying to detect UTF-8 files
+ * without BOM bytes.
+ * @return true if file is an unicode file, false otherwise.
+ */
+bool UniLocalFile::IsUnicode()
+{
+	if (!m_bUnicodingChecked)
+		m_bUnicode = ReadBom();
+	return m_bUnicode;
 }
 
 /** @brief Record an API call failure */
@@ -304,6 +320,7 @@ bool UniMemFile::ReadBom()
 
 	m_bom = bom;
 	m_current = m_data;
+	m_bUnicodingChecked = true;
 	return unicode;
 }
 

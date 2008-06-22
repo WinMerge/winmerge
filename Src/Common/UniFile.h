@@ -39,6 +39,7 @@ public:
 	virtual String GetFullyQualifiedPath() const = 0;
 	virtual const UniError & GetLastUniError() const = 0;
 
+	virtual bool IsUnicode() = 0;
 	virtual bool ReadBom() = 0;
 	virtual bool HasBom() = 0;
 	virtual void SetBom(bool bom) = 0;
@@ -92,6 +93,8 @@ public:
 	virtual int GetLineNumber() const { return m_lineno; }
 	virtual const txtstats & GetTxtStats() const { return m_txtstats; }
 
+	bool IsUnicode();
+
 protected:
 	virtual bool DoGetFileStatus();
 	virtual void LastError(LPCTSTR apiname, int syserrnum);
@@ -109,6 +112,8 @@ protected:
 	int m_codepage; // only valid if m_unicoding==ucr::NONE;
 	txtstats m_txtstats;
 	bool m_bom; /**< Did the file have a BOM when reading? */
+	bool m_bUnicodingChecked; /**< Has unicoding been checked for the file? */
+	bool m_bUnicode; /**< Is the file unicode file? */
 };
 
 /**
