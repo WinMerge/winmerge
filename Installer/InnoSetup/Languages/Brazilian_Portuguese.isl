@@ -356,6 +356,7 @@ PortugueseLanguage=Menus e diálogos portugueses
 RomanianLanguage=Menus e diálogos romenos
 RussianLanguage=Menus e diálogos russos
 SlovakLanguage=Menus e diálogos eslovacos
+SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Menus e diálogos espanhóis
 SwedishLanguage=Menus e diálogos suecos
 TurkishLanguage=Menus e diálogos turcos

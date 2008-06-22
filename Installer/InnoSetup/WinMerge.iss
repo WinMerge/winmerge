@@ -137,6 +137,7 @@ Name: PortugueseBrazilian; MessagesFile: Languages\Brazilian_Portuguese.isl; Inf
 Name: Romanian; MessagesFile: Languages\Romanian.isl
 Name: Russian; MessagesFile: Languages\Russian.isl
 Name: Slovak; MessagesFile: Languages\Slovak.isl
+Name: Slovenian; MessagesFile: Languages\Slovenian.isl
 Name: Spanish; MessagesFile: Languages\Spanish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt
 Name: Swedish; MessagesFile: Languages\Swedish.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Swedish.txt
 Name: Turkish; MessagesFile: Languages\Turkish.isl
@@ -231,6 +232,9 @@ Name: Languages\Russian; Description: {cm:RussianLanguage}; Flags: disablenounin
 
 Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Slovak
 Name: Languages\Slovak; Description: {cm:SlovakLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Slovak
+
+Name: Languages\Slovenian; Description: {cm:SlovenianLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Slovenian
+Name: Languages\Slovenian; Description: {cm:SlovenianLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Slovenian
 
 Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full; Languages: not Spanish
 Name: Languages\Spanish; Description: {cm:SpanishLanguage}; Flags: disablenouninstallwarning; Types: full typical compact; Languages: Spanish
@@ -394,6 +398,7 @@ Source: ..\..\Src\Languages\Portuguese.po; DestDir: {app}\Languages; Components:
 Source: ..\..\Src\Languages\Romanian.po; DestDir: {app}\Languages; Components: Languages\Romanian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Russian.po; DestDir: {app}\Languages; Components: Languages\Russian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Slovak.po; DestDir: {app}\Languages; Components: Languages\Slovak; Flags: ignoreversion comparetimestamp
+Source: ..\..\Src\Languages\Slovenian.po; DestDir: {app}\Languages; Components: Languages\Slovenian; Flags: ignoreversion comparetimestamp
 Source: ..\..\Src\Languages\Spanish.po; DestDir: {app}\Languages; Components: Languages\Spanish; Flags: ignoreversion comparetimestamp
 Source: ..\..\Docs\Users\Languages\ReadMe-Spanish.txt; DestDir: {app}\Docs; Components: Languages\Spanish
 Source: ..\..\Src\Languages\Swedish.po; DestDir: {app}\Languages; Components: Languages\Swedish; Flags: ignoreversion comparetimestamp

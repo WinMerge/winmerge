@@ -348,6 +348,7 @@ PortugueseLanguage=Portugalski interfejs
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Rosyjski interfejs
 SlovakLanguage=Slowacki interfejs
+SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Hiszpanski interfejs
 SwedishLanguage=Szwedzki interfejs
 TurkishLanguage=turecki interfejs

@@ -342,6 +342,7 @@ PortugueseLanguage=Menús i diàlegs en Portuguès
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Menús i diàlegs en Rus
 SlovakLanguage=Menús i diàlegs en Eslovac
+SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Menús i diàlegs en Castellà
 SwedishLanguage=Menús i diàlegs en Suec
 TurkishLanguage=Menús i diàlegs en Turc
