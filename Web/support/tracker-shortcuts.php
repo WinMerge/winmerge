@@ -14,6 +14,7 @@ items from our <a href="http://sourceforge.net/projects/winmerge">SF.net project
   $types['support'] = 'Support Request';
   $types['rfe'] = 'Feature Request';
   $types['todo'] = 'Todo Item';
+  $types['tracker'] = 'Tracker Item';
 ?>
 <form action="tracker-shortcuts.php" method="post">
 <table>
