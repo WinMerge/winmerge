@@ -5,7 +5,7 @@ to Subversion revision numbers (rXXXXX).
 WinMerge 2.9.1.4
   Use PCRE regular expressions in the editor (#1991259)
   Installer: install to all users (#1460517)
-  Update release notes (#1990886, #1995265)
+  Update release notes (#1990886, #1995265, #1999880)
   Manual: Use PNG files (#1988845, #1989744)
   BugFix: Temp paths in Reports created from archive file (#1984346)
   BugFix: ISL file syntax highlighting starts comment with { (#1981326)
