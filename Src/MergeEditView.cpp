@@ -704,7 +704,7 @@ void CMergeEditView::OnEditCopy()
 
 	CString text;
 
-	CMergeDoc::CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane];
+	CDiffTextBuffer * buffer = pDoc->m_ptBuf[m_nThisPane];
 
 	buffer->GetTextWithoutEmptys(ptSelStart.y, ptSelStart.x,
 		ptSelEnd.y, ptSelEnd.x, text);
@@ -2957,7 +2957,7 @@ void CMergeEditView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 bool CMergeEditView::IsInitialized() const
 {
 	CMergeEditView * pThis = const_cast<CMergeEditView *>(this);
-	CMergeDoc::CDiffTextBuffer * pBuffer = dynamic_cast<CMergeDoc::CDiffTextBuffer *>(pThis->LocateTextBuffer());
+	CDiffTextBuffer * pBuffer = dynamic_cast<CDiffTextBuffer *>(pThis->LocateTextBuffer());
 	return pBuffer->IsInitialized();
 }
 
