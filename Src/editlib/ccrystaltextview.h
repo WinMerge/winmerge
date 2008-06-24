@@ -668,7 +668,7 @@ public :
     // Attributes
 public :
     int GetCRLFMode ();
-    void SetCRLFMode (int nCRLFMode);
+    void SetCRLFMode (enum CRLFSTYLE nCRLFMode);
     BOOL GetViewTabs ();
     void SetViewTabs (BOOL bViewTabs);
     void SetViewEols (BOOL bViewEols, BOOL bDistinguishEols);

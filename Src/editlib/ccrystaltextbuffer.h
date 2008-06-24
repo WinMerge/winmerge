@@ -115,7 +115,7 @@ protected :
     BOOL m_bInit;
     BOOL m_bReadOnly;
     BOOL m_bModified;
-    int m_nCRLFMode;
+    CRLFSTYLE m_nCRLFMode;
     BOOL m_IgnoreEol;
     BOOL m_bCreateBackupFile;
     int m_nUndoBufSize;
@@ -289,7 +289,7 @@ public :
     ~CCrystalTextBuffer ();
 
     //  Basic functions
-    BOOL InitNew (int nCrlfStyle = CRLF_STYLE_DOS);
+    BOOL InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
 
 // WinMerge has own routines for loading and saving
 #ifdef CRYSTALEDIT_ENABLELOADER
@@ -324,15 +324,15 @@ public :
     int GetLineWithFlag (DWORD dwFlag);
     void SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine = TRUE, BOOL bUpdate=TRUE);
     void GetText (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString & text, LPCTSTR pszCRLF = NULL);
-    virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+    virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC );
 
     //  Attributes
-    int GetCRLFMode ();
-    void SetCRLFMode (int nCRLFMode);
+    CRLFSTYLE GetCRLFMode ();
+    void SetCRLFMode (CRLFSTYLE nCRLFMode);
     /// Adjust all the lines in the buffer to the buffer default EOL Mode
     virtual BOOL applyEOLMode();
     LPCTSTR GetDefaultEol() const;
-    static LPCTSTR GetStringEol(int nCRLFMode);
+    static LPCTSTR GetStringEol(CRLFSTYLE nCRLFMode);
     BOOL GetReadOnly () const;
     void SetReadOnly (BOOL bReadOnly = TRUE);
 

@@ -27,7 +27,7 @@ static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
 	const COleDateTime & start);
 static void EscapeControlChars(CString &s);
 static LPCTSTR GetEol(const CString &str);
-static int GetTextFileStyle(const UniMemFile::txtstats & stats);
+static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats);
 
 /**
  * @brief Check if file has only one EOL type.
@@ -131,7 +131,7 @@ static LPCTSTR GetEol(const CString &str)
  * @param [in] stats File's text stats.
  * @return EOL type.
  */
-static int GetTextFileStyle(const UniMemFile::txtstats & stats)
+static CRLFSTYLE GetTextFileStyle(const UniMemFile::txtstats & stats)
 {
 	if (stats.ncrlfs >= stats.nlfs)
 	{
@@ -330,7 +330,7 @@ bool CDiffTextBuffer::IsInitialized() const
  */
 int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		PackingInfo * infoUnpacker, LPCTSTR sToFindUnpacker, BOOL & readOnly,
-		int nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
+		CRLFSTYLE nCrlfStyle, const FileTextEncoding & encoding, CString &sError)
 {
 	ASSERT(!m_bInit);
 	ASSERT(m_aLines.GetSize() == 0);
@@ -541,11 +541,9 @@ LoadFromFileExit:
  */
 int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		BOOL bTempFile, CString & sError, PackingInfo * infoUnpacker /*= NULL*/,
-		int nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
+		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
 {
-	ASSERT (nCrlfStyle == CRLF_STYLE_AUTOMATIC || nCrlfStyle == CRLF_STYLE_DOS ||
-		nCrlfStyle == CRLF_STYLE_UNIX || nCrlfStyle == CRLF_STYLE_MAC);
 	ASSERT (m_bInit);
 
 	if (!pszFileName || _tcslen(pszFileName) == 0)

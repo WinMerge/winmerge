@@ -2242,7 +2242,7 @@ GetCRLFMode ()
 }
 
 void CCrystalTextView::
-SetCRLFMode (int nCRLFMode)
+SetCRLFMode (CRLFSTYLE nCRLFMode)
 {
   if (m_pTextBuffer)
     {
@@ -4363,7 +4363,7 @@ OnUpdateIndicatorCRLF (CCmdUI * pCmdUI)
   if (m_pTextBuffer != NULL)
     {
       String eol;
-      int crlfMode = m_pTextBuffer->GetCRLFMode ();
+      CRLFSTYLE crlfMode = m_pTextBuffer->GetCRLFMode ();
       switch (crlfMode)
         {
         case CRLF_STYLE_DOS:

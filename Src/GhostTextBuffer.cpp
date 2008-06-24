@@ -58,7 +58,7 @@ CGhostTextBuffer::CGhostTextBuffer()
 }
 
 BOOL CGhostTextBuffer::
-InitNew (int nCrlfStyle /*= CRLF_STYLE_DOS*/ )
+InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
 {
 	m_bUndoBeginGroup = FALSE;
 	return CCrystalTextBuffer::InitNew(nCrlfStyle);
@@ -157,7 +157,7 @@ InternalDeleteGhostLine (CCrystalTextView * pSource, int nLine, int nCount)
  */
 void CGhostTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
+                 CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
 	int lines = (int) m_aLines.GetSize();
 	ASSERT(nStartLine >= 0 && nStartLine < lines);

@@ -229,14 +229,16 @@ private:
 public :
 	// Construction/destruction code
 	CGhostTextBuffer ();
-	virtual BOOL InitNew (int nCrlfStyle = CRLF_STYLE_DOS);
+	virtual BOOL InitNew (CRLFSTYLE nCrlfStyle = CRLF_STYLE_DOS);
 
 	/** 
 	This should work in base code as ghost lines are real empty lines
 	but maybe it doesn't (if there is an assert to check there is an EOL,
 	or if it adds the default EOL)
 	*/
-	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
+			int nEndLine, int nEndChar, CString &text,
+			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC);
 
 
 	// Text modification functions

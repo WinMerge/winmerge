@@ -1970,7 +1970,7 @@ int CMergeDoc::LoadFile(CString sFileName, int nBuffer, BOOL & readOnly, const F
 	pBuf = m_ptBuf[nBuffer];
 	nBuffer == 0 ? m_filePaths.SetLeft(sFileName) : m_filePaths.SetRight(sFileName);
 
-	int nCrlfStyle = CRLF_STYLE_AUTOMATIC;
+	CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC;
 	CString sOpenError;
 	retVal = pBuf->LoadFromFile(sFileName, m_pInfoUnpacker,
 		m_strBothFilenames.c_str(), readOnly, nCrlfStyle, encoding, sOpenError);

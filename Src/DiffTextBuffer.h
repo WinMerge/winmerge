@@ -51,10 +51,10 @@ public :
 	void ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString& strText, int nAction =CE_ACTION_UNKNOWN);
 
 	int LoadFromFile(LPCTSTR pszFileName, PackingInfo * infoUnpacker,
-		LPCTSTR filteredFilenames, BOOL & readOnly, int nCrlfStyle,
+		LPCTSTR filteredFilenames, BOOL & readOnly, CRLFSTYLE nCrlfStyle,
 		const FileTextEncoding & encoding, CString &sError);
 	int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, CString & sError,
-		PackingInfo * infoUnpacker = NULL, int nCrlfStyle = CRLF_STYLE_AUTOMATIC,
+		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 		BOOL bClearModifiedFlag = TRUE );
 	int getUnicoding() const { return m_encoding.m_unicoding; }
 	void setUnicoding(int value) { m_encoding.m_unicoding = value; }

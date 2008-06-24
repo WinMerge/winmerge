@@ -105,7 +105,9 @@ public:
 	/** real cursor function to preserve cursor during Rescan */
 	void PushCursors ();
 
-	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar, int nEndLine, int nEndChar, CString &text, int nCrlfStyle =CRLF_STYLE_AUTOMATIC );
+	virtual void GetTextWithoutEmptys (int nStartLine, int nStartChar,
+			int nEndLine, int nEndChar, CString &text,
+			CRLFSTYLE nCrlfStyle =CRLF_STYLE_AUTOMATIC);
 	/** 
 	 * @brief Override this drag-n-drop function to call GetTextWithoutEmptys
 	 */

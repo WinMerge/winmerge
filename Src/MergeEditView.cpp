@@ -2093,7 +2093,7 @@ void CMergeEditView::OnUpdateStatusRightEOL(CCmdUI* pCmdUI)
  */
 void CMergeEditView::OnConvertEolTo(UINT nID )
 {
-	int nStyle = CRLF_STYLE_AUTOMATIC;;
+	CRLFSTYLE nStyle = CRLF_STYLE_AUTOMATIC;;
 	switch (nID)
 	{
 		case ID_EOL_TO_DOS:

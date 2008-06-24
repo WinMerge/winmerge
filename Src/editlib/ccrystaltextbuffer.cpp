@@ -183,7 +183,7 @@ CCrystalTextBuffer::CCrystalTextBuffer ()
   m_bInit = FALSE;
   m_bReadOnly = FALSE;
   m_bModified = FALSE;
-  m_nCRLFMode = 0;
+  m_nCRLFMode = CRLF_STYLE_DOS;
   m_bCreateBackupFile = FALSE;
   m_nUndoPosition = 0;
   m_bInsertTabs = TRUE;
@@ -387,7 +387,7 @@ FreeAll ()
 }
 
 BOOL CCrystalTextBuffer::
-InitNew (int nCrlfStyle /*= CRLF_STYLE_DOS*/ )
+InitNew (CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_DOS*/ )
 {
   ASSERT (!m_bInit);
   ASSERT (m_aLines.GetSize () == 0);
@@ -718,7 +718,7 @@ BOOL CCrystalTextBuffer::SaveToFile(LPCTSTR pszFileName,
 }
 #endif // #if 0 savetofile
 
-int CCrystalTextBuffer::
+CRLFSTYLE CCrystalTextBuffer::
 GetCRLFMode ()
 {
   return m_nCRLFMode;
@@ -727,7 +727,7 @@ GetCRLFMode ()
 // Default EOL to use if editor has to manufacture one
 // (this occurs with ghost lines)
 void CCrystalTextBuffer::
-SetCRLFMode (int nCRLFMode)
+SetCRLFMode (CRLFSTYLE nCRLFMode)
 {
   if (nCRLFMode==CRLF_STYLE_AUTOMATIC)
     nCRLFMode = CRLF_STYLE_DOS;
@@ -967,7 +967,7 @@ SetLineFlag (int nLine, DWORD dwFlag, BOOL bSet, BOOL bRemoveFromPreviousLine /*
  */
 void CCrystalTextBuffer::GetTextWithoutEmptys(int nStartLine, int nStartChar, 
                  int nEndLine, int nEndChar, 
-                 CString &text, int nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
+                 CString &text, CRLFSTYLE nCrlfStyle /* CRLF_STYLE_AUTOMATIC */)
 {
   LPCTSTR sEol = GetStringEol (nCrlfStyle);
   GetText(nStartLine, nStartChar, nEndLine, nEndChar, text, sEol);
@@ -1635,7 +1635,7 @@ AddUndoRecord (BOOL bInsert, const CPoint & ptStartPos, const CPoint & ptEndPos,
   ASSERT (m_aUndoBuf.GetSize () <= m_nUndoBufSize);
 }
 
-LPCTSTR CCrystalTextBuffer::GetStringEol(int nCRLFMode)
+LPCTSTR CCrystalTextBuffer::GetStringEol(CRLFSTYLE nCRLFMode)
 {
   switch(nCRLFMode)
   {
