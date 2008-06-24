@@ -22,17 +22,19 @@
 #include "FileTextEncoding.h"
 #include "DiffTextBuffer.h"
 
-static int IsTextFileStylePure(const UniMemFile::txtstats & stats);
+static bool IsTextFileStylePure(const UniMemFile::txtstats & stats);
 static CString GetLineByteTimeReport(UINT lines, __int64 bytes,
 	const COleDateTime & start);
 static void EscapeControlChars(CString &s);
-static LPCTSTR getEol(const CString &str);
+static LPCTSTR GetEol(const CString &str);
 static int GetTextFileStyle(const UniMemFile::txtstats & stats);
 
 /**
- * @brief Examine statistics in textFileStats and tell if the file has only one EOL type
+ * @brief Check if file has only one EOL type.
+ * @param [in] stats File's text stats.
+ * @return true if only one EOL type is found, false otherwise.
  */
-static int IsTextFileStylePure(const UniMemFile::txtstats & stats)
+static bool IsTextFileStylePure(const UniMemFile::txtstats & stats)
 {
 	int nType = 0;
 	nType += (stats.ncrlfs > 0);
@@ -108,8 +110,14 @@ static void EscapeControlChars(CString &s)
 	}
 }
 
-/// Return pointer to the eol chars of this string, or pointer to empty string if none
-static LPCTSTR getEol(const CString &str)
+/**
+ * @brief Get EOL of the string.
+ * This function returns a pointer to the EOL chars in the given string.
+ * Behavior is similar to CCrystalTextBuffer::GetLineEol().
+ * @param [in] str String whose EOL chars are returned.
+ * @return Pointer to string's EOL chars, or empty string if no EOL found.
+ */
+static LPCTSTR GetEol(const CString &str)
 {
 	if (str.GetLength()>1 && str[str.GetLength()-2]=='\r' && str[str.GetLength()-1]=='\n')
 		return (LPCTSTR)str + str.GetLength()-2;
@@ -119,7 +127,9 @@ static LPCTSTR getEol(const CString &str)
 }
 
 /**
- * @brief Examine statistics in textFileStats and return a crystaltextbuffer enum value for line style
+ * @brief Get file's EOL type.
+ * @param [in] stats File's text stats.
+ * @return EOL type.
  */
 static int GetTextFileStyle(const UniMemFile::txtstats & stats)
 {
@@ -723,13 +733,15 @@ void CDiffTextBuffer::ReplaceLine(CCrystalTextView * pSource, int nLine, LPCTSTR
 }
 
 /// Replace line (removing any eol, and only including one if in strText)
-void CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine, const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
+void CDiffTextBuffer::ReplaceFullLine(CCrystalTextView * pSource, int nLine,
+		const CString &strText, int nAction /*=CE_ACTION_UNKNOWN*/)
 {
-	if (_tcscmp(GetLineEol(nLine), getEol(strText)) == 0)
+	LPCTSTR eol = GetEol(strText);
+	if (_tcscmp(GetLineEol(nLine), eol) == 0)
 	{
 		// (optimization) eols are the same, so just replace text inside line
 		// we must clean strText from its eol...
-		int eolLength = _tcslen(getEol(strText));
+		int eolLength = _tcslen(eol);
 		ReplaceLine(pSource, nLine, strText, strText.GetLength() - eolLength, nAction);
 		return;
 	}
