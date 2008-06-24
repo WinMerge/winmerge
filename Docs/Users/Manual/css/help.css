@@ -98,3 +98,17 @@ a[name]:hover { color:black; text-decoration:none; }
   padding: 2px;
   border: 1px solid black;
 }
+
+/* variablelist */
+.variablelist dl {
+  margin-left: 2em;
+}
+.variablelist dt {
+  font-weight: bold;
+}
+.variablelist dd {
+  margin-left: 2em;
+}
+.variablelist dd p {
+  margin-top: 0.5em;
+}
