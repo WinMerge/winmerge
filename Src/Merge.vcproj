@@ -4612,6 +4612,9 @@
 					Name="UnicodeRelease|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
 						UsePrecompiledHeader="2"
 						PrecompiledHeaderThrough=""/>
 				</FileConfiguration>
@@ -4619,15 +4622,32 @@
 					Name="UnicodeDebug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						PrecompiledHeaderThrough=""/>
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						PrecompiledHeaderThrough=""
+						BrowseInformation="1"/>
 				</FileConfiguration>
 				<FileConfiguration
 					Name="Debug|Win32">
 					<Tool
 						Name="VCCLCompilerTool"
-						PrecompiledHeaderThrough=""/>
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						PrecompiledHeaderThrough=""
+						BrowseInformation="1"/>
 				</FileConfiguration>
-			</File>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						UsePrecompiledHeader="2"
+						PrecompiledHeaderThrough=""/>
+				</FileConfiguration>			</File>
 			<File
 				RelativePath="SaveClosingDlg.cpp">
 				<FileConfiguration
