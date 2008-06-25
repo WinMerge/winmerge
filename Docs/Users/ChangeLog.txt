@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.9.1.5
   Manual: Copy editing (#2000322)
+  Manual: Clarify 64-bit support (#2002431)
 
 WinMerge 2.9.1.4 - 2008-06-24 (r5518)
   Use PCRE regular expressions in the editor (#1991259)

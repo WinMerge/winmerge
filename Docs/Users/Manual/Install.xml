@@ -37,7 +37,7 @@
       </listitem>
 
       <listitem>
-        <simpara>In the Select Destination Location page, accept the location for WinMerge or, if you choose another location, we recommend that you install WinMerge in its own folder. Click <guibutton>Next</guibutton>. </simpara>
+        <simpara>In the Select Destination Location page, accept the location for WinMerge or, if you choose another location, we recommend that you install WinMerge in its own folder. Click <guibutton>Next</guibutton>.</simpara>
       </listitem>
 
       <listitem>
@@ -169,7 +169,7 @@
   <sect2>
     <title id="InstallFromArchive">Installing from an archive</title>
 
-    <para>WinMerge is pretty much independent of other system components. It is not tightly integrated with Windows, and does not use many DLLs. </para>
+    <para>WinMerge is pretty much independent of other system components. It is not tightly integrated with Windows, and does not use many DLLs.</para>
 
     <para><filename>WinMerge[U].exe</filename> itself depends on <filename>MFC71[U].dll</filename> , <filename>MSVCR71.dll and MSVCP71.dll</filename>, in addition to some system DLLs. So if these DLLs are already installed on a system, only <filename>WinMerge[U].exe</filename> is needed to run WinMerge. The DLL files listed above are also available as a downloadable runtime package.</para>
 
@@ -185,20 +185,20 @@
   <sect2>
     <title>Shell integration</title>
 
-    <para>The installer enables shell integration when you choose the <guilabel>Enable Explorer context menu integration</guilabel> option in the Select Additional Tasks page. If you do not use the install program: you must register the shell integration DLL (<filename>ShellExtension*.dll</filename>) separately. </para>
+    <para>The installer enables shell integration when you choose the <guilabel>Enable Explorer context menu integration</guilabel> option in the Select Additional Tasks page. If you do not use the install program: you must register the shell integration DLL (<filename>ShellExtension*.dll</filename>) separately.</para>
 
     <note>
       <para>Installing shell integration requires Administrator user privileges.</para>
     </note>
 
-    <para>First, uninstall the current shell integration version by running <filename>unregister.bat</filename> from the WinMerge directory. Then restart the computer so that Windows completes the uninstall. </para>
+    <para>First, uninstall the current shell integration version by running <filename>unregister.bat</filename> from the WinMerge directory. Then restart the computer so that Windows completes the uninstall.</para>
 
     <para>To register the shell integration DLL (<filename>ShellExtension*.dll</filename>), run <filename>register.bat</filename> from the WinMerge directory. We recommend that you restart the computer after installing shell integration, so that Windows updates all its references.</para>
 
     <sect3>
       <title>64-bit shell integration</title>
 
-      <para>WinMerge version 2.6 includes partial support for 64-bit Windows versions by including 64-bit shell integration. The WinMerge installer recognizes 64-bit versions of Windows and can install the correct shell integration version.</para>
+      <para>Starting with Version 2.6, WinMerge supports 64-bit Windows versions by including 64-bit shell integration. The WinMerge installer recognizes 64-bit versions of Windows and can install the correct shell integration version.</para>
 
       <para>When you install shell integration manually from an archive file, the shell integration DLL is named <filename>ShellExtensionX64.dll</filename>. You can register and unregister this file by using <filename>register.bat</filename> and <filename>unregister.bat</filename>, as with 32-bit versions.</para>
     </sect3>
@@ -236,7 +236,7 @@
 
       <para><synopsis>Merge7zInstaller<replaceable>XXX-YYY-ZZZ</replaceable>.exe</synopsis></para>
 
-      <para>where <replaceable>XXX</replaceable> is the build number, <replaceable>YYY</replaceable> is the earliest 7-Zip version supported, and <replaceable>ZZZ</replaceable> is the latest 7-Zip version supported. </para>
+      <para>where <replaceable>XXX</replaceable> is the build number, <replaceable>YYY</replaceable> is the earliest 7-Zip version supported, and <replaceable>ZZZ</replaceable> is the latest 7-Zip version supported.</para>
 
       <para>For example, <filename>Merge7zInstaller0014-311-426.exe</filename> means build version 14, support for 7-Zip versions 3.11 to 4.26.</para>
 
@@ -273,7 +273,7 @@
                 <listitem>
                   <para>Copies the 7-zip plugin files to the program directory. Files are then usable only by that program.</para>
 
-                  <para>When you shoose this option, you must select the executable in the directory where the plugin files are installed. Select the WinMerge executable file when installing to the WinMerge directory.</para>
+                  <para>When you choose this option, you must select the executable in the directory where the plugin files are installed. Select the WinMerge executable file when installing to the WinMerge directory.</para>
                 </listitem>
               </varlistentry>
 
