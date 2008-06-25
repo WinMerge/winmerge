@@ -2,239 +2,115 @@
 <sect1 id="Introduction">
   <title>Introduction to WinMerge</title>
 
-  <para>WinMerge is an <ulink url="http://www.opensource.org/">Open
-  Source</ulink> visual text file differencing and merging tool for Windows.
-  WinMerge can compare folders and files and present differences in easy to
-  understand and handle format.</para>
+  <para>WinMerge is an <ulink url="http://www.opensource.org/">Open Source</ulink> differencing and merging tool for Windows. WinMerge can compare both folders and files, presenting differences in a visual text format that is easy to understand and handle.</para>
 
-  <para>WinMerge is highly useful for determining what has changed between
-  project versions, and then merging changes between versions. WinMerge can be
-  used as external differencing/merging tool or as standalone
-  application.</para>
+  <para>WinMerge is highly useful for determining what has changed between project versions, and then merging changes between versions. WinMerge can be used as an external differencing/merging tool or as a standalone application.</para>
 
-  <para>In addition WinMerge has a lot of helping and supporting features
-  making comparing and synching/merging as easy and useful as possible.
-  Several programming languages and other fileformats are syntax
-  highlighted.</para>
+  <para>In addition, WinMerge has many helpful supporting features that make comparing, synchronising, and merging as easy and useful as possible. Several programming languages and other file formats are syntax-highlighted.</para>
 
-  <para>WinMerge is not an hex-editor. WinMerge can show binary files contents
-  and differences in them. But that information is meant for viewing only, and
-  editing binary files with WinMerge can break the files.</para>
+  <para>WinMerge is not a hex editor. WinMerge can show binary files contents and differences between them. But the information is meant for viewing only: editing binary files with WinMerge can break the files.</para>
 
-  <para>Goal of WinMerge development is to make comparing and synch/merge of
-  folders and files easy and fast. While maintaining maximum reliability. Easy
-  of use reduces errors. Latest 2.8 version is considered a stable and
-  reliable program to use.</para>
+  <para>The goal of WinMerge development is to make comparing, synchronizing, and merging folders and files easy and fast, while maintaining maximum reliability. Ease of use is of key importance for reducing errors. The latest 2.8 version is considered a stable and reliable program to use.</para>
 
-  <para>Please note that WinMerge is not a freeware (unlike lots of sites in
-  web say), but it is <ulink
-  url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licenced. We have
-  given you a good tool for free, so please follow our licence and submit your
-  improvements back to us. We are happy to get help improving WinMerge
-  further. It is advantage for all WinMerge users.</para>
+  <para>Please note that WinMerge is not freeware (as many sites on the Web have stated): it is <ulink url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licensed. We provide you with a good tool for free, so please honor your license agreement and submit improvements to us. We are happy to get help improving WinMerge, to the advantage of all WinMerge users.</para>
 
   <sect2>
-    <title>WinMerge Versions</title>
+    <title>WinMerge versions</title>
 
-    <para>There are three kind of versions available in <ulink
-    url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
-    page.</para>
+    <para>There are three kind of versions available in the <ulink url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink> page.</para>
 
     <sect3>
       <title><indexterm>
-          <primary>Stable Versions</primary>
-        </indexterm>Stable Versions</title>
+          <primary>Stable versions</primary>
+        </indexterm>Stable versions</title>
 
-      <para><ulink
-      url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable
-      versions</ulink> are recommended for most users. If you are unsure about
-      what version to use - use latest stable version. Stable versions have
-      even second number, for example 2.4, 2.6 and 2.8.</para>
+      <para><ulink url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=11248">Stable versions</ulink> are recommended for most users. If you are unsure about what version to use, use the latest stable version. Stable versions have an even second number, for example, 2.4, 2.6 and 2.8.</para>
     </sect3>
 
     <sect3>
       <title><indexterm>
-          <primary>Beta Versions</primary>
-        </indexterm>Beta Versions</title>
+          <primary>Beta versions</primary>
+        </indexterm>Beta versions</title>
 
-      <para><ulink
-      url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta
-      versions</ulink> are for people who want to test latest features and
-      improvements done after last stable version. Beta versions are not so
-      extensively tested as stable versions are and probably have some bugs.
-      Beta versions have odd second number, for example 2.5 and 2.7. Beta
-      versions can be used in production, they are not expected to have major
-      bugs. But there is always a risk with using beta-level release, so
-      consider it carefully. We have tried to release new stable series once a
-      year, so it may be worth waiting for few months for next stable
-      release...</para>
+      <para><ulink url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=29158">Beta versions</ulink> are for people who want to test latest features and improvements made after last stable version. Beta versions are not tested as extensively as stable versions and probably have some bugs. Beta versions have an odd second number, for example 2.5 and 2.7. Beta versions can be used in production, because they are not expected to have major bugs. But there is always a risk with using beta-level releases, so consider it carefully. We have tried to release a new stable series once a year, so it may be worth waiting for few months for the next stable release...</para>
     </sect3>
 
     <sect3>
       <title><indexterm>
-          <primary>Experimental Versions</primary>
-        </indexterm>Experimental Versions</title>
+          <primary>Experimental versions</primary>
+        </indexterm>Experimental versions</title>
 
-      <para><ulink
-      url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental
-      versions</ulink> are snapshot releases from version control
-      (Subversion). They have all the latest features and improvements. Some
-      features may still be buggy and/or incomplete. These releases are made
-      available to allow users to try out the current code without needing to
-      compile, and participate in development discussions concerning new and
-      changing features. We also appreciate any help testing the current code.
-      Use with care and enable backups! And please <ulink
-      url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">report
-      bugs</ulink> you find using these builds, it really helps with WinMerge
-      development!</para>
+      <para><ulink url="http://sourceforge.net/project/showfiles.php?group_id=13216&amp;package_id=92246">Experimental versions</ulink> are snapshot releases from our version control system (Subversion). They have all the latest features and improvements. Some features may still be buggy or incomplete. These releases are made available to allow users to try out the current code without needing to compile, and to participate in development discussions concerning new and changing features. We also appreciate any help testing the current code. Use experimental versions with care and enable backups! And please <ulink url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">report bugs</ulink> that you find while using these builds: it really helps with WinMerge development!</para>
     </sect3>
 
     <sect3>
-      <title>Version Tree</title>
+      <title>Version tree</title>
 
-      <para>All this text about different versions may sound confusing if you
-      never have worked with this kind of model. Lets see this with picture
-      below:</para>
+      <para>All this talk about different versions might be confusing if you never have worked with this kind of model. Lets illustrate with a picture:</para>
 
       <para><mediaobject>
           <imageobject>
             <imagedata fileref="art/WinMerge_versions.png" format="PNG" />
           </imageobject>
 
-          <caption><para> WinMerge stable and development
-          versions</para></caption>
-        </mediaobject>This picture presents how our releases and different
-      versions relate to each other. Development always happens with
-      development versions (experimental versions and beta versions). At
-      proper points we create a new branch for stable releases. In above
-      picture arrows for 2.2.x and 2.4.x are two current stable branches.
-      Picture does not show 2.6 which is the latest stable branch.</para>
+          <caption><para> WinMerge stable and development versions</para></caption>
+        </mediaobject>The preceding diagram shows the relationships between different releases and versions. Development always happens within experimental and beta development versions. At the appropriate points we create new branches for stable releases. In the diagram, the arrows for 2.4.x and 2.6.x versions are two current stable branches. (The diagram is a snapshot; it is not updated to show the current stable branch).</para>
 
       <important>
-        <para>Branch always means a separate development. There is no any
-        automation to copy improvements or fixes from development versions to
-        stable versions. Or in opposite direction. Changes are always selected
-        by hand and then merged (with WinMerge, of course..).</para>
+        <para>A branch always indicates a separate development effort. There is no any automation to copy improvements or fixes from development versions to stable versions, or in the opposite direction. Changes are always selected by hand and then merged (using WinMerge, of course).</para>
       </important>
 
-      <para>After a branch is created, we try to keep code in it as stable as
-      possible. Usually this means we copy only tested bugfixes from
-      development versions to stable versions. Unfortunately this is not
-      always an easy task and errors can happen. And new bugs appear also in
-      stable versions sometimes. It is just a real-life software development.
-      However, in general quality in branches increases and 2.6.14 is better
-      release than 2.4.0, and using the latest stable branch release is always
-      recommended.</para>
+      <para>After a branch is created, we try to keep the code in it as stable as possible. Usually this means that we copy only tested bug fixes from development versions to stable versions. Unfortunately this is not always an easy task, and errors can occur. New bugs can also appear in stable versions: this is real-life software development. However, in general, quality increases in branches. For example, 2.6.14 was a better release than 2.4.0. So we always recommend using the latest stable branch release.</para>
 
-      <para>What this branching also means is that stable versions don't get
-      many new features after a branch is created. Stable versions 2.6.0 and
-      2.6.14 are pretty much similar feature-wise. After 2.6 stable branch we
-      have already a created new stable branch 2.8. It has many improvements
-      and fixes done after 2.6 branch was created.</para>
+      <para>This branching also means that stable versions don't get many new features after a branch is created. Stable versions 2.6.0 and 2.6.14 had pretty similar features. After the 2.6 stable branch, we created a new stable branch, 2.8, where we added many improvements and fixes.</para>
 
-      <para>Many software vendors always increase their version numbers and
-      say version with biggest version number is what people should use. If
-      WinMerge was developed as closed-source software users would see only
-      versions from stable branches and that would be true for WinMerge too.
-      But as WinMerge is an open source software project we want to keep our
-      development as open as possible. And do a lots of development version
-      releases. The latest development version can have version number 2.9.1.0
-      and the latest stable version can have version number 2.6.14.</para>
+      <para>Many software vendors always increase their version numbers and advise people to use the version with the biggest number. If WinMerge were developed as proprietary software, users would see only versions from stable branches. But because WinMerge is an open source software project, we want to keep our development as open as possible and to release many development versions. The latest development version can have version number 2.9.1.0 and the latest stable version can be version 2.6.14.</para>
     </sect3>
   </sect2>
 
   <sect2>
     <title><indexterm>
-        <primary>Support</primary>
+        <primary>support</primary>
 
-        <secondary>Reporting Bugs</secondary>
-      </indexterm>Getting Support and Reporting Bugs</title>
+        <secondary>reporting bugs</secondary>
+      </indexterm>Getting support and reporting bugs</title>
 
-    <para><ulink
-    url="http://sourceforge.net/forum/forum.php?forum_id=41637">Open
-    discussion forum</ulink> is the fastest way to get help. Please be
-    patient, it may take some time anybody answers.</para>
+    <para>The <ulink url="http://sourceforge.net/forum/forum.php?forum_id=41637">Open Discussion forum</ulink> is the fastest way to get help. Please be patient, it may take some time for somebody to answer.</para>
 
-    <para>If you have found a bug, please submit it as a <ulink
-    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug
-    report</ulink>. Please attach as much information as you can, at least the
-    version number of WinMerge you are using. If you can, attach also
-    configuration log which you can see from menu <menuchoice>
+    <para>If you find a bug, please submit it as a <ulink url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug report</ulink>. Please attach as much information as you can: at a minimum, the version number of WinMerge that you are using. If you can, also attach a configuration log which, you can display by clicking <menuchoice>
         <guimenu>Help</guimenu>
 
-        <guimenuitem>Configuration...</guimenuitem>
-      </menuchoice> Good information in bug report means better change for bug
-    to be fixed faster.</para>
+        <guimenuitem>Configuration</guimenuitem>
+      </menuchoice> in the WinMerge window. Good information in a bug report makes it more likely that your bug will be fixed quickly.</para>
 
     <important>
-      <para>Include version number in bug reports. Version number can be
-      checked from <menuchoice>
+      <para>Include the version number in bug reports. You can check the version number by clicking <menuchoice>
           <guimenu>Help</guimenu>
 
           <guimenuitem>About WinMerge</guimenuitem>
-        </menuchoice> dialog.</para>
+        </menuchoice>.</para>
     </important>
 
-    <para>We prefer that you <ulink
-    url="https://sourceforge.net/account/registration/">register</ulink>
-    with <ulink url="http://sourceforge.net/">SourceForge.net</ulink> before
-    posting a bug report (registration is public and free), so that you may
-    get email notifications if we post follow-up questions to your bug. It is
-    not at this time required that you register to post a bug report
-    (although, we do generally give less priority to unregistered bug reports,
-    because it has been our experience that unregistered posters often do not
-    remember to return and check to answer follow-on questions).</para>
+    <para>We prefer that you <ulink url="https://sourceforge.net/account/registration/">register</ulink> with <ulink url="http://sourceforge.net/">SourceForge.net</ulink> before posting a bug report (registration is public and free), so that you receive email notifications if we post follow-up questions to your bug. Registration is not currently required for you to post a bug report. However, we generally give less priority to unregistered bug reports, because it has been our experience that unregistered posters often do not return to answer follow-up questions.</para>
   </sect2>
 
   <sect2>
     <title><indexterm>
-        <primary>WinMerge Development</primary>
-      </indexterm>WinMerge Source Codes and Development</title>
+        <primary>WinMerge development</primary>
+      </indexterm>WinMerge source code and development</title>
 
-    <para>WinMerge source codes are available in <ulink
-    url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink>
-    page and from <ulink
-    url="https://sourceforge.net/cvs/?group_id=13216">public Subversion
-    server</ulink>. We welcome everybody to download the sources, study them
-    and alter them. If you find (and fix) bugs, improve something etc, please
-    submit your changes back to us as <ulink
-    url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patches</ulink>
-    and help improve this product! If you publish your altered version, you
-    are required to publish changes source code too, it is what <ulink
-    url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> licence is
-    about. Please respect it.</para>
+    <para>WinMerge source code is available in the <ulink url="https://sourceforge.net/project/showfiles.php?group_id=13216">downloads</ulink> page and from the <ulink url="https://sourceforge.net/cvs/?group_id=13216">public Subversion server</ulink>. Anyone can download the sources, study them, and alter them. If you find (and fix) bugs, improve something, and so on, please submit your changes to us as <ulink url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=313216">patches</ulink> and help improve this product! If you publish your altered version, you are required to publish the changes to source code too. This is what the <ulink url="http://www.gnu.org/licenses/gpl-2.0.html">GPL</ulink> license is about: please respect it.</para>
 
-    <para>While WinMerge development has been fast in last couple of years,
-    all this work is done by people in their spare time. Nobody gets paid for
-    improving WinMerge. We try to fix bugs as we find them or somebody reports
-    them to us. We really try - we use WinMerge too. But there is absolutely
-    no promises for new features. We always appreciate any help with WinMerge,
-    be it testing, documenting, translating or coding.</para>
+    <para>While WinMerge development has been fast in the last couple of years, all this work is done by people in their spare time. Nobody gets paid for improving WinMerge. We try to fix bugs as we find them or when somebody reports them to us. We really try — we use WinMerge too. But there are absolutely no promises for new features. We always appreciate any help with WinMerge, be it testing, documenting, translating, or coding.</para>
 
     <sect3>
-      <title>Participating to WinMerge Development</title>
+      <title>Participating in WinMerge development</title>
 
-      <para>As mentioned above, we look for help in many areas, not just
-      coding. Translations, documentation and testing are important
-      too.</para>
+      <para>As mentioned above, we look for help in many areas, not just coding. Translation, documentation, and testing are important too.</para>
 
-      <para>The <ulink url="http://wiki.winmerge.org/">Developers-Wiki</ulink>
-      is a good source of information if you want to help with WinMerge
-      development. There is a <ulink
-      url="http://winmerge.org/Wiki/Help_Needed">Help Needed</ulink> -page in
-      the wiki for more information about how to help with WinMerge
-      development.</para>
+      <para>The <ulink url="http://wiki.winmerge.org/">Development Wiki</ulink> is a good source of information if you want to help with WinMerge development. The <ulink url="http://winmerge.org/Wiki/Help_Needed">Help Needed</ulink> page in the wiki has more information about how to help with WinMerge development.</para>
 
-      <para><ulink url="http://winmerge.org/support/mailing-lists.php">
-      Development-mailing</ulink> list is the preferred place for development
-      discussions. Another place is in <ulink
-      url="http://sourceforge.net/forum/forum.php?forum_id=41639">Developers-forum</ulink>.
-      If you are interested in helping with WinMerge development, let us know.
-      If you want to fix one of our <ulink
-      url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216"
-      userlevel="">bugs</ulink> or implement a <ulink
-      url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">new
-      feature</ulink>, let us know.</para>
+      <para>The <ulink url="http://winmerge.org/support/mailing-lists.php">development-mailing</ulink> list is the preferred place for development discussions. Another place is in the <ulink url="http://sourceforge.net/forum/forum.php?forum_id=41639">developers-forum</ulink>. If you are interested in helping with WinMerge development, let us know. If you want to fix one of our <ulink url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216" userlevel="">bugs</ulink> or implement a <ulink url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=363216">new feature</ulink>, let us know.</para>
     </sect3>
   </sect2>
 </sect1>
