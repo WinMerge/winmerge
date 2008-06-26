@@ -1,7 +1,8 @@
 This file summarizes changes in WinMerge releases.
 Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
-WinMege 2.8.6
+
+WinMerge 2.8.6
   BugFix: Always right side as origin side in copy confirmation dialog
     when Copy To... (#2001237)
 
