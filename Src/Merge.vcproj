@@ -39,7 +39,7 @@
 				ProgramDataBaseFileName=".\..\BuildTmp\MergeUnicodeRelease/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"
+				DebugInformationFormat="0"
 				CompileAs="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -51,9 +51,9 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre"
-				IgnoreDefaultLibraryNames="msvcrtd.lib"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\MergeUnicodeRelease/WinMergeU.pdb"
+				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="FALSE"
+				ProgramDatabaseFile=""
 				SubSystem="2"
 				EntryPointSymbol="wWinMainCRTStartup"
 				TargetMachine="1"/>
@@ -258,7 +258,7 @@
 				ProgramDataBaseFileName=".\..\BuildTmp\MergeRelease/"
 				WarningLevel="3"
 				SuppressStartupBanner="TRUE"
-				DebugInformationFormat="3"
+				DebugInformationFormat="0"
 				CompileAs="0"/>
 			<Tool
 				Name="VCCustomBuildTool"/>
@@ -270,9 +270,9 @@
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
 				AdditionalLibraryDirectories="..\Build\expat,..\Build\pcre"
-				IgnoreDefaultLibraryNames="msvcrtd.lib"
-				GenerateDebugInformation="TRUE"
-				ProgramDatabaseFile=".\..\BuildTmp\MergeRelease/WinMerge.pdb"
+				IgnoreDefaultLibraryNames=""
+				GenerateDebugInformation="FALSE"
+				ProgramDatabaseFile=""
 				SubSystem="2"
 				TargetMachine="1"/>
 			<Tool
