@@ -554,6 +554,7 @@ void CDirView::DoCopyLeftTo()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DONT_CARE;
+			act.UIOrigin = FileActionItem::UI_LEFT;
 			actionScript.AddActionItem(act);
 			++selCount;
 		}
@@ -624,6 +625,7 @@ void CDirView::DoCopyRightTo()
 			act.context = sel;
 			act.atype = actType;
 			act.UIResult = FileActionItem::UI_DONT_CARE;
+			act.UIOrigin = FileActionItem::UI_RIGHT;
 			actionScript.AddActionItem(act);
 			++selCount;
 		}

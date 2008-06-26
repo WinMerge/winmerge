@@ -139,6 +139,7 @@ Other Contributors (code, ideas, testing..):
 * Vladimir Lukianov
 * David Maisonave
 * Dmitry Maslov
+* Denis Matiukha
 * Harry Mckame
 * Oliver Mellet
 * Andreas Morsing
