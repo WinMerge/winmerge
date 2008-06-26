@@ -54,11 +54,6 @@
 #define _abs64	_abs64_patch
 #endif
 
-//Make VS2005 build less noisy by disabling warnings for deprecated string functions.
-#if _MSC_VER >= 1400
-	#define _CRT_SECURE_NO_DEPRECATE
-#endif
-
 // Common MFC headers
 
 #include <afxwin.h>         // MFC core and standard components
