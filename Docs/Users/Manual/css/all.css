@@ -137,3 +137,29 @@ div.index {
 .variablelist dd p {
   margin-top: 0.5em;
 }
+
+/* authorgroup */
+.authorgroup {
+  margin-left: 2em;
+}
+.author h3 {
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  font-size: 100%;
+}
+
+/* table of contents */
+.toc dt {
+  margin-top: 1em;
+}
+.toc dd dl dt {
+  margin-top: 0;
+}
+
+.toc .sect1,
+.toc .appendix,
+.toc .index {
+  font-size: 120%;
+  font-weight: bold;
+}
