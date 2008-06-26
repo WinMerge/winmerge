@@ -191,6 +191,7 @@ void CSplashWnd::HideSplashScreen()
  */
 void CSplashWnd::PostNcDestroy()
 {
+	CWnd::PostNcDestroy();
 	delete this;
 }
 
