@@ -112,3 +112,14 @@ a[name]:hover { color:black; text-decoration:none; }
 .variablelist dd p {
   margin-top: 0.5em;
 }
+
+/* authorgroup */
+.authorgroup {
+  margin-left: 2em;
+}
+.author h3 {
+  margin: 0;
+  margin-bottom: 0.25em;
+  padding: 0;
+  font-size: 100%;
+}
