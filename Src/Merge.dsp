@@ -58,7 +58,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeDebug/WinMerge.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew"
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeDebug
-TargetPath=\WinMerge\WinMerge_SVN\Build\MergeDebug\WinMerge.exe
+TargetPath=\WinMerge\WinMerge_28Branch\Build\MergeDebug\WinMerge.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -92,7 +92,7 @@ LINK32=link.exe
 # ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /out:"..\Build\MergeUnicodeDebug/WinMergeU.exe" /pdbtype:sept /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew"
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeUnicodeDebug
-TargetPath=\WinMerge\WinMerge_SVN\Build\MergeUnicodeDebug\WinMergeU.exe
+TargetPath=\WinMerge\WinMerge_28Branch\Build\MergeUnicodeDebug\WinMergeU.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -113,7 +113,8 @@ PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /EHa /c
-# ADD CPP /nologo /MD /W3 /GR /GX /Zi /O1 /I "." /I ".\CompareEngines" /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /I "..\Externals\expat\lib" /I "..\Externals\expat\xmlwf" /I "..\Externals\scew" /I "..\Externals\pcre\pcre-6.7" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /EHa /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I "." /I ".\CompareEngines" /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /I "..\Externals\expat\lib" /I "..\Externals\expat\xmlwf" /I "..\Externals\scew" /I "..\Externals\pcre\pcre-6.7" /D "WIN32" /D "_WINDOWS" /D "_MBCS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /Yu"stdafx.h" /FD /EHa /c
+# SUBTRACT CPP /Z<none>
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -124,11 +125,11 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 version.lib shlwapi.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /verbose:lib
 # SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew" /verbose:lib
-# SUBTRACT LINK32 /pdb:none
+# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /subsystem:windows /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeRelease/WinMerge.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew" /verbose:lib
+# SUBTRACT LINK32 /pdb:none /debug
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeRelease
-TargetPath=\WinMerge\WinMerge_SVN\Build\MergeRelease\WinMerge.exe
+TargetPath=\WinMerge\WinMerge_28Branch\Build\MergeRelease\WinMerge.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
@@ -149,7 +150,8 @@ PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)
 # PROP Ignore_Export_Lib 0
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MD /W4 /GR /GX /Zi /O1 /I "." /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /EHa /c
-# ADD CPP /nologo /MD /W3 /GR /GX /Zi /O1 /I "." /I ".\CompareEngines" /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /I "..\Externals\expat\lib" /I "..\Externals\expat\xmlwf" /I "..\Externals\scew" /I "..\Externals\pcre\pcre-6.7" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /EHa /c
+# ADD CPP /nologo /MD /W3 /GR /GX /O1 /I "." /I ".\CompareEngines" /I ".\Common" /I ".\editlib" /I ".\diffutils" /I ".\diffutils\lib" /I ".\diffutils\src" /I "..\Externals\expat\lib" /I "..\Externals\expat\xmlwf" /I "..\Externals\scew" /I "..\Externals\pcre\pcre-6.7" /D "WIN32" /D "_WINDOWS" /D "_AFXDLL" /D "HAVE_STDLIB_H" /D "STDC_HEADERS" /D HAVE_STRING_H=1 /D PR_FILE_NAME=\"pr\" /D DIFF_PROGRAM=\"diff\" /D "REGEX_MALLOC" /D "__MSC__" /D "__NT__" /D USG=1 /D EDITPADC_CLASS= /D "COMPILE_MULTIMON_STUBS" /D "UNICODE" /D "_UNICODE" /Yu"stdafx.h" /FD /EHa /c
+# SUBTRACT CPP /Z<none>
 # ADD BASE MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD MTL /nologo /D "NDEBUG" /mktyplib203 /o /win32 "NUL"
 # ADD BASE RSC /l 0x409 /d "NDEBUG" /d "_AFXDLL"
@@ -160,11 +162,11 @@ BSC32=bscmake.exe
 LINK32=link.exe
 # ADD BASE LINK32 version.lib shlwapi.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /verbose:lib
 # SUBTRACT BASE LINK32 /pdb:none
-# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /debug /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew" /verbose:lib
-# SUBTRACT LINK32 /pdb:none
+# ADD LINK32 version.lib shlwapi.lib imm32.lib HtmlHelp.lib libexpat.lib pcre.lib /nologo /entry:"wWinMainCRTStartup" /subsystem:windows /machine:I386 /nodefaultlib:"msvcrtd.lib" /out:"..\Build\MergeUnicodeRelease\WinMergeU.exe" /libpath:"..\Build\expat" /libpath:"..\Build\pcre" /libpath:"..\Build\scew" /verbose:lib
+# SUBTRACT LINK32 /pdb:none /debug
 # Begin Special Build Tool
 IntDir=.\..\BuildTmp\MergeUnicodeRelease
-TargetPath=\WinMerge\WinMerge_SVN\Build\MergeUnicodeRelease\WinMergeU.exe
+TargetPath=\WinMerge\WinMerge_28Branch\Build\MergeUnicodeRelease\WinMergeU.exe
 SOURCE="$(InputPath)"
 PreLink_Cmds=PreLink.bat $(IntDir) $(TargetPath)
 PostBuild_Cmds=PostBuild.bat $(IntDir) $(TargetPath)

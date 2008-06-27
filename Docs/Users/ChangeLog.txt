@@ -3,6 +3,7 @@ Numbers in parentheses refer to SourceForge.net tracker item numbers (#XXXXX) or
 to Subversion revision numbers (rXXXXX).
 
 WinMerge 2.8.6
+  Reduce executable sizes (#2003203)
   BugFix: Always right side as origin side in copy confirmation dialog
     when Copy To... (#2001237)
   New translation: Slovenian (#1997236)
