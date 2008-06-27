@@ -101,6 +101,9 @@ Localization:
 * Slovak:	
   Majvan
   Ivan Masár
+
+* Slovenian:
+  Iztok Osredkar
              
 * Spanish:
   Mario Angel
