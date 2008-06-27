@@ -355,6 +355,7 @@ PortugueseLanguage=Portugisiske menyer og dialoger
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Russiske menyer og dialoger
 SlovakLanguage=Slovakiske menyer og dialoger
+SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Spanske menyer og dialoger
 SwedishLanguage=Svenske menyer og dialoger
 TurkishLanguage=Türkçe menyer og dialoger

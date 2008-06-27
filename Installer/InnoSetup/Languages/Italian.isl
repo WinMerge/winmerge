@@ -362,6 +362,7 @@ PortugueseLanguage=Menu e finestre di dialogo in portoghese
 RomanianLanguage=Menu e finestre di dialogo in Romeno
 RussianLanguage=Menu e finestre di dialogo in russo
 SlovakLanguage=Menu e finestre di dialogo in slovacco
+SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Menu e finestre di dialogo in spagnolo
 SwedishLanguage=Menu e finestre di dialogo in svedese
 TurkishLanguage=Menu e finestre di dialogo in turco

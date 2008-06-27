@@ -287,6 +287,7 @@ PortugueseLanguage=Portugalské ponuky a dialógy
 RomanianLanguage=Romanian menus and dialogs
 RussianLanguage=Ruské ponuky a dialógy
 SlovakLanguage=Slovenské ponuky a dialógy
+SlovenianLanguage=Slovenian menus and dialogs
 SpanishLanguage=Španielske ponuky a dialógy
 SwedishLanguage=Švédske ponuky a dialógy
 TurkishLanguage=Turecké ponuky a dialógy
