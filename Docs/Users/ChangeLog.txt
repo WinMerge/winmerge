@@ -6,6 +6,7 @@ WinMerge 2.8.6
   Reduce executable sizes (#2003203)
   BugFix: Always right side as origin side in copy confirmation dialog
     when Copy To... (#2001237)
+  BugFix: Possible crash when enabling line filter (#2004160)
   New translation: Slovenian (#1997236)
 
 WinMerge 2.8.4 - 2008-0-06-17 (r5496)

@@ -121,7 +121,7 @@ bool FilterList::Match(const char *string, int codepage/*=CP_UTF8*/)
 		pcre_extra * extra = item.pRegExpExtra;
 		int result;
 		if (codepage != CP_UTF8)
-			result = pcre_exec(regexp, extra, (const char *)buf.ptr, buf.size,
+			result = pcre_exec(regexp, extra, (const char *)buf.ptr, buf.used,
 				0, 0, ovector, 30);
 		else
 			result = pcre_exec(regexp, extra, string, stringlen,
