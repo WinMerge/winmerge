@@ -16,8 +16,8 @@ namespace ucr {
 
 struct buffer {
 	unsigned char * ptr;
+	unsigned int capacity;
 	unsigned int size;
-	unsigned int used;
 
 	buffer(unsigned int needed);
 	~buffer();

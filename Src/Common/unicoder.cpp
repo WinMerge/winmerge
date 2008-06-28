@@ -606,9 +606,9 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 
 buffer::buffer(unsigned int needed)
 {
-	used = 0;
-	size = needed;
-	ptr = (unsigned char *)calloc(size, 1);
+	size = 0;
+	capacity = needed;
+	ptr = (unsigned char *)calloc(capacity, 1);
 }
 buffer::~buffer()
 {
@@ -616,10 +616,10 @@ buffer::~buffer()
 }
 void buffer::resize(unsigned int needed)
 {
-	if (size < needed)
+	if (capacity < needed)
 	{
-		size = needed;
-		ptr = (unsigned char *)realloc(ptr, size);
+		capacity = needed;
+		ptr = (unsigned char *)realloc(ptr, capacity);
 	}
 }
 
@@ -633,7 +633,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		// simple byte copy
 		dest->resize(srcbytes);
 		CopyMemory(dest->ptr, src, srcbytes);
-		dest->used = srcbytes;
+		dest->size = srcbytes;
 		return true;
 	}
 	if ((unicoding1 == UCS2LE && unicoding2 == UCS2BE)
@@ -647,15 +647,15 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 			dest->ptr[i] = src[i+1];
 			dest->ptr[i+1] = src[i];
 		}
-		dest->used = srcbytes;
+		dest->size = srcbytes;
 		return true;
 	}
 	if (unicoding1 != UCS2LE && unicoding2 != UCS2LE)
 	{
 		// Break problem into two simpler pieces by converting through UCS-2LE
-		buffer intermed(dest->size);
+		buffer intermed(dest->capacity);
 		bool step1 = convert(unicoding1, codepage1, src, srcbytes, UCS2LE, 0, &intermed);
-		bool step2 = convert(UCS2LE, 0, intermed.ptr, intermed.used, unicoding2, codepage2, dest);
+		bool step2 = convert(UCS2LE, 0, intermed.ptr, intermed.size, unicoding2, codepage2, dest);
 		return step1 && step2;
 	}
 	if (unicoding1 == UCS2LE)
@@ -669,8 +669,8 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		int bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, 0, 0, NULL, NULL);
 		dest->resize(bytes);
 		int losses = 0;
-		bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->size, NULL, NULL);
-		dest->used = bytes;
+		bytes = WideCharToMultiByte(destcp, flags, (LPCWSTR)src, srcbytes/2, (char *)dest->ptr, dest->capacity, NULL, NULL);
+		dest->size = bytes;
 		return losses==0;
 	}
 	else
@@ -680,8 +680,8 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 		DWORD flags = 0;
 		int wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, 0, 0);
 		dest->resize(wchars*2);
-		wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, (LPWSTR)dest->ptr, dest->size/2);
-		dest->used = wchars * 2;
+		wchars = MultiByteToWideChar(srccp, flags, (LPCSTR)src, srcbytes, (LPWSTR)dest->ptr, dest->capacity/2);
+		dest->size = wchars * 2;
 		return true;
 	}
 }
