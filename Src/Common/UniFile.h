@@ -21,14 +21,20 @@
 class UniFile
 {
 public:
+	
+	/**
+	 * @brief A struct for error message or error code.
+	 */
 	struct UniError
 	{
-		CString apiname;
+		String apiname;
 		int syserrnum; // valid if apiname nonempty
-		CString desc; // valid if apiname empty
-		bool hasError() const { return !apiname.IsEmpty() || !desc.IsEmpty(); }
-		void ClearError() { apiname = _T(""); syserrnum = ERROR_SUCCESS; desc = _T(""); }
-		UniError() { ClearError(); }
+		String desc; // valid if apiname empty
+
+		UniError();
+		bool HasError() const;
+		void ClearError();
+		String GetError();
 	};
 
 	virtual ~UniFile() { }

@@ -19,6 +19,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 #include "stdafx.h"
 #include <sys/stat.h>
+#include "UnicodeString.h"
 #include "UniFile.h"
 #include "unicoder.h"
 #include "codepage.h"
@@ -30,6 +31,46 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/**
+ * @brief The constructor.
+ */
+UniFile::UniError::UniError()
+{
+	 ClearError();
+}
+
+/**
+ * @brief Check if there is error.
+ * @return true if there is an error.
+ */
+bool UniFile::UniError::HasError() const
+{
+	return !apiname.empty() || !desc.empty();
+}
+
+/**
+ * @brief Clears the existing error.
+ */
+void UniFile::UniError::ClearError()
+{
+	apiname.clear();
+	syserrnum = ERROR_SUCCESS;
+	desc.clear();
+}
+
+/**
+ * @brief Get the error string.
+ * @return Error string.
+ */
+String UniFile::UniError::GetError()
+{
+	String sError;
+	if (apiname.empty())
+		sError = desc;
+	else
+		sError = GetSysError(syserrnum);
+	return sError;
+}
 
 /////////////
 // UniLocalFile

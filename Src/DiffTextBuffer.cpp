@@ -379,12 +379,9 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 	{
 		nRetVal = FileLoadResult::FRESULT_ERROR;
 		UniFile::UniError uniErr = pufile->GetLastUniError();
-		if (uniErr.hasError())
+		if (uniErr.HasError())
 		{
-			if (uniErr.apiname.IsEmpty())
-				sError = uniErr.desc;
-			else
-				sError = GetSysError(uniErr.syserrnum);
+			sError = uniErr.GetError().c_str();
 		}
 		InitNew(); // leave crystal editor in valid, empty state
 		goto LoadFromFileExit;
@@ -584,12 +581,9 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	if (!bOpenSuccess)
 	{	
 		UniFile::UniError uniErr = file.GetLastUniError();
-		if (uniErr.hasError())
+		if (uniErr.HasError())
 		{
-			if (uniErr.apiname.IsEmpty())
-				sError = uniErr.desc;
-			else
-				sError = GetSysError(uniErr.syserrnum);
+			sError = uniErr.GetError().c_str();
 			if (bTempFile)
 				LogErrorString(Fmt(_T("Opening file %s failed: %s"),
 					pszFileName, sError));
