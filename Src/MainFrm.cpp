@@ -323,9 +323,17 @@ CMainFrame::~CMainFrame()
 	}
 
 	delete m_pLineFilters;
+
+	// BCMenu destructor calls DestroyMenu()
+	m_pMenus[MENU_DEFAULT]->Detach();
 	delete m_pMenus[MENU_DEFAULT];
+	m_pMenus[MENU_DEFAULT] = NULL;
+	m_pMenus[MENU_MERGEVIEW]->Detach();
 	delete m_pMenus[MENU_MERGEVIEW];
+	m_pMenus[MENU_MERGEVIEW] = NULL;
+	m_pMenus[MENU_DIRVIEW]->Detach();
 	delete m_pMenus[MENU_DIRVIEW];
+	m_pMenus[MENU_DIRVIEW] = NULL;
 	delete m_pSyntaxColors;
 }
 
