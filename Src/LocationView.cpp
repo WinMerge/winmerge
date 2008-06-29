@@ -112,9 +112,8 @@ BEGIN_MESSAGE_MAP(CLocationView, CView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_CLOSE()
 	ON_WM_SIZE()
-  ON_WM_VSCROLL()
+	ON_WM_VSCROLL()
 	ON_WM_ERASEBKGND()
-	ON_WM_PAINT()
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -269,22 +268,6 @@ void CLocationView::CalculateBlocks()
 }
 
 /** 
- * @brief Invalidate rect of old visible area indicator to restore background correctly
- */
-void CLocationView::OnPaint()
-{
-	if (m_visibleTop != -1 && m_visibleBottom != -1)
-	{
-		CRect rc;
-		GetClientRect(rc);
-		rc.top = m_visibleTop;
-		rc.bottom = m_visibleBottom;
-		InvalidateRect(rc);
-	}
-	CView::OnPaint();
-}
-
-/** 
  * @brief Draw maps of files.
  *
  * Draws maps of differences in files. Difference list is walked and
@@ -303,7 +286,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	if (!m_view[MERGE_VIEW_LEFT]->IsInitialized()) return;
 
-	CMemDC dc(pDC);
+	CRect rc;
+	GetClientRect(&rc);
+
+	CMemDC dc(pDC, &rc);
 
 	COLORREF cr0 = CLR_NONE; // Left side color
 	COLORREF cr1 = CLR_NONE; // Right side color
@@ -435,6 +421,10 @@ void CLocationView::OnDraw(CDC* pDC)
 
 	if (m_displayMovedBlocks != DISPLAY_MOVED_NONE)
 		DrawConnectLines(&dc);
+
+	if (m_pSavedBackgroundBitmap)
+		delete m_pSavedBackgroundBitmap;
+	m_pSavedBackgroundBitmap = CopyRectToBitmap(&dc, rc);
 
 	// Since we have invalidated locationbar there is no previous
 	// arearect to remove
@@ -802,18 +792,6 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 			(static_cast<double>(nBottomLine * m_lineInPix)));
 	int nRightCoord = rc.Width() - INDICATOR_MARGIN;
 	
-	// Visible area was not changed
-	if (m_visibleTop == nTopCoord && m_visibleBottom == nBottomCoord)
-		return;
-
-	// Clear previous visible rect
-	if (m_visibleTop != -1 && m_visibleBottom != -1 && m_pSavedBackgroundBitmap)
-	{
-		DrawBitmap(pClientDC, 2, m_visibleTop, m_pSavedBackgroundBitmap);
-		delete m_pSavedBackgroundBitmap;
-		m_pSavedBackgroundBitmap = NULL;
-	}
-
 	double xbarBottom = min(nbLines / m_pixInLines + Y_OFFSET, rc.Height() - Y_OFFSET);
 	int barBottom = (int)xbarBottom;
 	// Make sure bottom coord is in bar range
@@ -839,9 +817,7 @@ void CLocationView::DrawVisibleAreaRect(CDC *pClientDC, int nTopLine, int nBotto
 	CBitmap *pDarkenedBitmap = GetDarkenedBitmap(pClientDC, pBitmap);
 	DrawBitmap(pClientDC, rcVisibleArea.left, rcVisibleArea.top, pDarkenedBitmap);
 	delete pDarkenedBitmap;
-	if (m_pSavedBackgroundBitmap)
-		delete m_pSavedBackgroundBitmap;
-	m_pSavedBackgroundBitmap = pBitmap;
+	delete pBitmap;
 }
 
 /**
@@ -854,9 +830,24 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
 {
 	if (m_bDrawn)
 	{
-		CDC *pDC = GetDC();
-		DrawVisibleAreaRect(pDC, nTopLine, nBottomLine);
-		ReleaseDC(pDC);
+		int nTopCoord = static_cast<int>(Y_OFFSET +
+				(static_cast<double>(nTopLine * m_lineInPix)));
+		int nBottomCoord = static_cast<int>(Y_OFFSET +
+				(static_cast<double>(nBottomLine * m_lineInPix)));
+		if (m_visibleTop != nTopCoord || m_visibleBottom != nBottomCoord)
+		{
+			// Visible area was changed
+			CDC *pDC = GetDC();
+			if (m_pSavedBackgroundBitmap)
+			{
+				CMemDC dc(pDC);
+				// Clear previous visible rect
+				DrawBitmap(&dc, 0, 0, m_pSavedBackgroundBitmap);
+
+				DrawVisibleAreaRect(&dc, nTopLine, nBottomLine);
+			}
+			ReleaseDC(pDC);
+		}
 	}
 }
 
