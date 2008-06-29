@@ -14,14 +14,17 @@
 
 namespace ucr {
 
+/**
+ * @brief A simple buffer struct.
+ */
 struct buffer {
-	unsigned char * ptr;
-	unsigned int capacity;
-	unsigned int size;
+	unsigned char * ptr; /**< Pointer to a buffer. */
+	unsigned int capacity; /**< Buffer's size in bytes. */
+	unsigned int size; /**< Size of the data in the buffer, <= capacity. */
 
-	buffer(unsigned int needed);
+	buffer(unsigned int initialSize);
 	~buffer();
-	void resize(unsigned int needed);
+	void resize(unsigned int newSize);
 };
 
 /** @brief Known Unicode encodings. */

@@ -604,21 +604,36 @@ CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int c
 	return n;
 }
 
-buffer::buffer(unsigned int needed)
+/**
+ * @brief Buffer constructor.
+ * The constructor creates buffer with given size.
+ * @param [in] initialSize Buffer's size.
+ */
+buffer::buffer(unsigned int initialSize)
 {
 	size = 0;
-	capacity = needed;
+	capacity = initialSize;
 	ptr = (unsigned char *)calloc(capacity, 1);
 }
+
+/**
+ * @brief Buffer destructor.
+ * Frees the reserved buffer.
+ */
 buffer::~buffer()
 {
 	free(ptr);
 }
-void buffer::resize(unsigned int needed)
+
+/**
+ * @brief Resize the buffer.
+ * @param [in] newSize New size of the buffer.
+ */
+void buffer::resize(unsigned int newSize)
 {
-	if (capacity < needed)
+	if (capacity < newSize)
 	{
-		capacity = needed;
+		capacity = newSize;
 		ptr = (unsigned char *)realloc(ptr, capacity);
 	}
 }
