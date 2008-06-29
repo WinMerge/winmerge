@@ -272,7 +272,7 @@ int DirScan_CompareItems(vector<DIFFITEM*> * pList, CDiffContext * pCtxt)
 		// so we can reach the end of list while collect is running.
 		// In this case we must wait for a while for new items to be
 		// added to the list. On
-		while (iter + 1 == pList->end())
+		while (iter == pList->end() - 1)
 			Sleep(200);
 		++iter;
 	}
