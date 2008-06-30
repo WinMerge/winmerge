@@ -27,6 +27,7 @@
 #define _ABOUTDLG_H_
 
 #include "statlink.h"
+#include "resource.h" // IDD_ABOUTBOX
 
 /** 
  * @brief About-dialog class.
