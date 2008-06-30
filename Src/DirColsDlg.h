@@ -13,6 +13,8 @@
 #define AFX_DIRCOLSDLG_H__2FCB576C_C609_4623_8C55_F3870F22CA0B__INCLUDED_
 #pragma once
 
+#include <vector>
+#include "UnicodeString.h"
 
 /////////////////////////////////////////////////////////////////////////////
 // CDirColsDlg dialog
@@ -35,22 +37,23 @@ public:
 	/** @brief One column's information. */
 	struct column
 	{
-		CString name; /**< Column name */
-		CString desc; /**< Description for column */
+		String name; /**< Column name */
+		String desc; /**< Description for column */
 		int log_col; /**< Logical (shown) order number */
 		int phy_col; /**< Physical (in memory) order number */
-		column() : log_col(-1), phy_col(-1) { } /**< default constructor for use in CArray */
-		column(LPCTSTR sz, LPCTSTR dsc, int log, int phy) : name(sz), desc(dsc), log_col(log), phy_col(phy) { } 
+		column(const String & colName, const String & dsc, int log, int phy)
+			: name(colName), desc(dsc), log_col(log), phy_col(phy)
+		{ } 
 	};
-	typedef CArray<column, column> ColumnArray;
+	typedef std::vector<column> ColumnArray;
 
 // Construction
 public:
 	CDirColsDlg(CWnd* pParent = NULL);   // standard constructor
-	void AddColumn(LPCTSTR name, LPCTSTR desc, int log, int phy=-1)
-		{ column c(name, desc, log, phy); m_cols.Add(c); }
-	void AddDefColumn(LPCTSTR name, int log, int phy=-1)
-		{ column c(name, _T(""), log, phy); m_defCols.Add(c); }
+	void AddColumn(const String & name, const String & desc, int log, int phy=-1)
+		{ column c(name, desc, log, phy); m_cols.push_back(c); }
+	void AddDefColumn(const String & name, int log, int phy=-1)
+		{ column c(name, _T(""), log, phy); m_defCols.push_back(c); }
 	const ColumnArray & GetColumns() const { return m_cols; }
 
 // Dialog Data
@@ -78,12 +81,12 @@ protected:
 	void MoveItem(int index, int newIndex);
 	void MoveSelectedItems(BOOL bUp);
 	void SanitizeOrder();
-	static int cmpcols(const void * el1, const void * el2);
 
 // Implementation data
 private:
 	ColumnArray m_cols; /**< Column list. */
 	ColumnArray m_defCols; /**< Default columns. */
+	static bool CompareColumnsByLogicalOrder( const column & el1, const column & el2 );
 
 	// Generated message map functions
 	//{{AFX_MSG(CDirColsDlg)

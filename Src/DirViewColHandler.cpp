@@ -446,7 +446,7 @@ void CDirView::OnEditColumns()
 	for (int col=0; col<GetListCtrl().GetHeaderCtrl()->GetItemCount(); ++col)
 	{
 		int l = ColPhysToLog(col);
-		dlg.AddColumn(GetColDisplayName(l).c_str(), GetColDescription(l).c_str(), l, col);
+		dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l, col);
 	}
 	// Now add all the columns not currently displayed
 	int l=0;
@@ -454,7 +454,7 @@ void CDirView::OnEditColumns()
 	{
 		if (ColLogToPhys(l)==-1)
 		{
-			dlg.AddColumn(GetColDisplayName(l).c_str(), GetColDescription(l).c_str(), l);
+			dlg.AddColumn(GetColDisplayName(l), GetColDescription(l), l);
 		}
 	}
 
@@ -462,7 +462,7 @@ void CDirView::OnEditColumns()
 	for (l = 0; l < m_numcols; ++l)
 	{
 		int phy = GetColDefaultOrder(l);
-		dlg.AddDefColumn(GetColDisplayName(l).c_str(), l, phy);
+		dlg.AddDefColumn(GetColDisplayName(l), l, phy);
 	}
 
 	if (dlg.DoModal() != IDOK)
@@ -478,10 +478,11 @@ void CDirView::OnEditColumns()
 	ClearColumnOrders();
 	m_dispcols = 0;
 	const int sortColumn = GetOptionsMgr()->GetInt(OPT_DIRVIEW_SORT_COLUMN);
-	for (int i=0; i<cols.GetSize(); ++i)
+	for (CDirColsDlg::ColumnArray::const_iterator iter = cols.begin();
+		iter != cols.end(); ++iter)
 	{
-		int log = cols[i].log_col;
-		int phy = cols[i].phy_col;
+		int log = iter->log_col;
+		int phy = iter->phy_col;
 		m_colorder[log] = phy;
 		if (phy>=0)
 		{

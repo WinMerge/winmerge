@@ -13,6 +13,7 @@
 #include "merge.h"
 #include "DirColsDlg.h"
 #include "dllver.h"
+#include <algorithm>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -91,11 +92,11 @@ BOOL CDirColsDlg::OnInitDialog()
  */
 void CDirColsDlg::LoadLists()
 {
-	for (int i = 0; i < m_cols.GetSize(); i++)
+	for (ColumnArray::iterator iter = m_cols.begin(); iter != m_cols.end(); ++iter)
 	{
-		const column & c = m_cols[i];
+		const column & c = *iter;
 		int x = m_listColumns.InsertItem(m_listColumns.GetItemCount(),
-			m_cols[i].name);
+			c.name.c_str());
 		m_listColumns.SetItemData(x, c.log_col);
 		if (c.phy_col >= 0)
 			m_listColumns.SetCheck(x, TRUE);
@@ -120,11 +121,11 @@ void CDirColsDlg::SelectItem(int index)
  */
 void CDirColsDlg::LoadDefLists()
 {
-	for (int i=0; i<m_cols.GetSize(); ++i)
+	for (ColumnArray::iterator iter = m_defCols.begin(); iter != m_defCols.end(); ++iter)
 	{
-		const column & c = m_defCols[i];
+		const column & c = *iter;
 		int x = m_listColumns.InsertItem(m_listColumns.GetItemCount(),
-			m_cols[i].name);
+			c.name.c_str());
 		m_listColumns.SetItemData(x, c.log_col);
 		if (c.phy_col >= 0)
 			m_listColumns.SetCheck(x, TRUE);
@@ -136,7 +137,7 @@ void CDirColsDlg::LoadDefLists()
  */
 void CDirColsDlg::SortArrayToLogicalOrder()
 {
-	qsort(m_cols.GetData(), m_cols.GetSize(), sizeof(m_cols[0]), &cmpcols);
+	std::sort(m_cols.begin(), m_cols.end(), &CompareColumnsByLogicalOrder);
 }
 
 /**
@@ -145,11 +146,9 @@ void CDirColsDlg::SortArrayToLogicalOrder()
  * @param [in] el2 Second column to compare.
  * @return Column order.
  */
-int __cdecl CDirColsDlg::cmpcols(const void * el1, const void * el2)
+bool CDirColsDlg::CompareColumnsByLogicalOrder( const column & el1, const column & el2 )
 {
-	const column * col1 = reinterpret_cast<const column *>(el1);
-	const column * col2 = reinterpret_cast<const column *>(el2);
-	return col1->log_col - col2->log_col;
+   return el1.log_col < el2.log_col;
 }
 
 /**
@@ -250,11 +249,11 @@ void CDirColsDlg::OnOK()
 	{
 		BOOL checked = m_listColumns.GetCheck(i);
 		DWORD_PTR data = m_listColumns.GetItemData(i);
-		column * col1 = &m_cols[data];
+		column & col1 = m_cols[data];
 		if (checked)
-			col1->phy_col = i;
+			col1.phy_col = i;
 		else
-			col1->phy_col = -1;
+			col1.phy_col = -1;
 	}
 
 	CDialog::OnOK();
@@ -283,13 +282,13 @@ void CDirColsDlg::OnLvnItemchangedColdlgList(NMHDR *pNMHDR, LRESULT *pResult)
 		int ind = m_listColumns.GetNextSelectedItem(pos);
 		DWORD_PTR data = m_listColumns.GetItemData(ind);
 
-		int j = 0;
-		for (j = 0; j < m_cols.GetSize(); j++)
+		ColumnArray::size_type j;
+		for (j = 0; j < m_cols.size(); j++)
 		{
-			if (m_cols.GetAt(j).log_col == data)
+			if (m_cols[j].log_col == data)
 				break;
 		}
-		GetDlgItem(IDC_COLDLG_DESC)->SetWindowText(m_cols[j].desc);
+		GetDlgItem(IDC_COLDLG_DESC)->SetWindowText(m_cols[j].desc.c_str());
 
 		// Disable Up/Down -buttons when first/last items are selected.
 		if (ind == 0)
