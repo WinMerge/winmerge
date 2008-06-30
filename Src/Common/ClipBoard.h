@@ -9,8 +9,10 @@
 #ifndef _CLIPBOARD_H_
 #define _CLIPBOARD_H_
 
-BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle);
-BOOL GetFromClipboard(CString & text, HWND currentWindowHandle);
-BOOL TextInClipboard();
+#include "UnicodeString.h"
+
+bool PutToClipboard(const String & text, HWND currentWindowHandle);
+bool GetFromClipboard(String & text, HWND currentWindowHandle);
+bool TextInClipboard();
 
 #endif // _CLIPBOARD_H_

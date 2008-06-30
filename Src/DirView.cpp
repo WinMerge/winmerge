@@ -2736,7 +2736,7 @@ void CDirView::OnCopyLeftPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2761,7 +2761,7 @@ void CDirView::OnCopyRightPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2796,7 +2796,7 @@ void CDirView::OnCopyBothPathnames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**
@@ -2816,7 +2816,7 @@ void CDirView::OnCopyFilenames()
 			strPaths += _T("\r\n");
 		}
 	}
-	PutToClipboard(strPaths.c_str(), AfxGetMainWnd()->GetSafeHwnd());
+	PutToClipboard(strPaths, AfxGetMainWnd()->GetSafeHwnd());
 }
 
 /**

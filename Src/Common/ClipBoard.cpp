@@ -11,25 +11,25 @@
 
 /**
  * @brief Copies string to clipboard.
- * @param [in] pszText Text to copy to clipboard.
+ * @param [in] text Text to copy to clipboard.
  * @param [in] currentWindowHandle Handle to current window.
  * @return TRUE if text copying succeeds, FALSE otherwise.
  */
-BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle)
+bool PutToClipboard(const String & text, HWND currentWindowHandle)
 {
-	if (pszText == NULL || _tcslen(pszText) == 0)
-		return FALSE;
+	if (text.empty())
+		return false;
 
 	CWaitCursor wc;
-	BOOL bOK = FALSE;
+	bool bOK = false;
 	if (OpenClipboard(currentWindowHandle))
 	{
 		EmptyClipboard();
-		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, (_tcslen(pszText)+1) * sizeof(TCHAR));
+		HGLOBAL hData = GlobalAlloc(GMEM_MOVEABLE | GMEM_DDESHARE, (text.length()+1) * sizeof(TCHAR));
 		if (hData != NULL)
 		{
 			LPTSTR pszData = (LPTSTR)::GlobalLock(hData);
-			_tcscpy(pszData, pszText);
+			_tcscpy(pszData, text.c_str());
 			GlobalUnlock(hData);
 			UINT fmt = GetClipTcharTextFormat();
 			bOK = SetClipboardData(fmt, hData) != NULL;
@@ -45,9 +45,9 @@ BOOL PutToClipboard(LPCTSTR pszText, HWND currentWindowHandle)
  * @param [in] currentWindowHandle Handle to current window.
  * @return TRUE if retrieving the clipboard text succeeds, FALSE otherwise.
  */
-BOOL GetFromClipboard(CString & text, HWND currentWindowHandle)
+bool GetFromClipboard(String & text, HWND currentWindowHandle)
 {
-	BOOL bSuccess = FALSE;
+	bool bSuccess = false;
 	if (OpenClipboard(currentWindowHandle))
 	{
 		UINT fmt = GetClipTcharTextFormat();
@@ -59,7 +59,7 @@ BOOL GetFromClipboard(CString & text, HWND currentWindowHandle)
 			{
 				text = pszData;
 				GlobalUnlock(hData);
-				bSuccess = TRUE;
+				bSuccess = true;
 			}
 		}
 		CloseClipboard();
@@ -71,8 +71,8 @@ BOOL GetFromClipboard(CString & text, HWND currentWindowHandle)
  * @brief Checks if the clipboard allows Unicode format.
  * @return TRUE if Unicode is supported, FALSE otherwise.
  */
-BOOL TextInClipboard()
+bool TextInClipboard()
 {
 	UINT fmt = GetClipTcharTextFormat();
-	return IsClipboardFormatAvailable(fmt);
+	return IsClipboardFormatAvailable(fmt) != FALSE;
 }
