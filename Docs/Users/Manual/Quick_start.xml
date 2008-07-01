@@ -200,7 +200,7 @@
         </listitem>
 
         <listitem>
-          <simpara>Right-clicking files or folders in Windows Explorer, choosing WinMerge in the shortcut menu.</simpara>
+          <simpara>Right-clicking files or folders in Windows Explorer, choosing WinMerge in the context menu.</simpara>
         </listitem>
 
         <listitem>
@@ -227,7 +227,7 @@
 
     <para>WinMerge does not have a concept of <wordasword>original</wordasword> and <wordasword>changed</wordasword> sides. Instead, it simply shows what is different between two selected folders. For example, a file or folder that is found only on one side is simply shown as a unique item on that side. It is not shown as added or removed. In the preceding figure, notice that the <guilabel>Comparison result </guilabel>column lists <filename>Merge.aps</filename> and <filename>Merge.rc.bak</filename> as found only in the left comparison folder.</para>
 
-    <para>You can manage files and folders in many ways using the <guimenu>Merge</guimenu> menu, toolbar buttons, or shortcut (right-click) menu. The most important action is making files or folders identical in both sides by selecting one of several Copy items. When you copy a file or folder to other side, the Comparison result value changes to <literal>Identical</literal>.</para>
+    <para>You can manage files and folders in many ways using the <guimenu>Merge</guimenu> menu, toolbar buttons, or context (right-click) menu. The most important action is making files or folders identical in both sides by selecting one of several Copy items. When you copy a file or folder to other side, the Comparison result value changes to <literal>Identical</literal>.</para>
 
     <para>If a file or folder exists in both sides (and it is not a binary file) it can be opened for file comparison using one of these methods:<itemizedlist>
         <listitem>
