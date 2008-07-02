@@ -7,6 +7,7 @@ WinMerge 2.9.1.5
   Manual: Copy editing (#2000322, #2005418)
   Manual: Clarify 64-bit support (#2002431)
   Reduce executable sizes (#2003203)
+  Release Notes update (#2007673)
   BugFix: Possible crash when enabling line filter (#2004160)
   BugFix: Location Pane flickers when scrolling (#1938177, #2005031)
   Translation updates:
