@@ -70,7 +70,7 @@ AboutSetupMessage=%1 版本 %2%n%3%n%n%1 主页：%n%4
 AboutSetupNote=
 
 ; *** Buttons
-TranslatorNote=简体中文翻译由白鹏支持（baipeng@sina.com）
+TranslatorNote=简体中文翻译由 小猫扑得很卖力(xmpdhml@gmail.com) 支持
 ButtonBack=< 上一步(&B)
 ButtonNext=下一步(&N) >
 ButtonInstall=安装(&I)
@@ -314,22 +314,22 @@ AssocingFileExtension=正在将 %1 与扩展名 %2 连接...
 CompanyName=Thingamahoochie Software
 
 ;Types
-TypicalInstallation=Typical Installation
-FullInstallation=Full Installation
-CompactInstallation=Compact Installation
-CustomInstallation=Custom Installation
+TypicalInstallation=典型安装
+FullInstallation=全部安装
+CompactInstallation=最小安装
+CustomInstallation=自定义安装
 
 ;Components
-AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
-Filters=Filters
-Plugins=Plugins
+AppCoreFiles=WinMerge 核心文件
+ApplicationRuntimes=应用程序
+Filters=过滤器
+Plugins=插件
 
 ;Localization Components
-Languages=Languages
+Languages=语言
 BulgarianLanguage=Bulgarian menus and dialogs
 CatalanLanguage=Catalan menus and dialogs
-ChineseSimplifiedLanguage=Chinese (Simplified) menus and dialogs
+ChineseSimplifiedLanguage=简体中文菜单和对话框
 ChineseTraditionalLanguage=Chinese (Traditional) menus and dialogs
 CroatianLanguage=Croatian menus and dialogs
 CzechLanguage=Czech menus and dialogs
@@ -356,22 +356,22 @@ TurkishLanguage=Turkish menus and dialogs
 UkrainianLanguage=Ukrainian menus and dialogs
 
 ;Tasks
-ExplorerContextMenu=&Enable Explorer context menu integration
-IntegrateTortoiseCVS=Integrate with &TortoiseCVS
-IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
-IntegrateClearCase=Integrate with Rational &ClearCase
-IntegrateDelphi4=Borland Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
+ExplorerContextMenu=集成到资源管理器右键菜单(&E)
+IntegrateTortoiseCVS=集成到 &TortoiseCVS
+IntegrateTortoiseSVN=集成到 T&ortoiseSVN
+IntegrateClearCase=集成到 Rational &ClearCase
+IntegrateDelphi4=支持 Borland Delphi &4 二进制文件
+UpdatingCommonControls=更新系统的 Common Controls
 
 ;Icon Labels
-ReadMe=Read Me
-UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
-ViewStartMenuFolder=&View the WinMerge Start Menu Folder
-PluginsText=Plugins
+ReadMe=说明文件
+UsersGuide=用户手册
+UpdatingCommonControls=更新系统的 Common Controls
+ViewStartMenuFolder=查看 WinMerge 开始菜单文件夹(&V)
+PluginsText=插件
 
 ;Code Dialogs
-DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?
+DeletePreviousStartMenu=安装程序检测到您修改了开始菜单的位置(从"%s"到"%s")，是否要删除之前的开始菜单文件夹？
 
 ; Project file description
-ProjectFileDesc=WinMerge Project file
+ProjectFileDesc=WinMerge 工程文件
