@@ -16,6 +16,7 @@
 #include "coretools.h"
 #include "WaitStatusCursor.h"
 #include "paths.h"
+#include "AnsiConvert.h"
 #include <afxadv.h>
 
 UINT CF_HTML = RegisterClipboardFormat(_T("HTML Format"));
@@ -222,8 +223,7 @@ void DirCmpReport::GenerateReport(REPORT_TYPE nReportType)
  */
 void DirCmpReport::WriteString(LPCTSTR pszText)
 {
-	USES_CONVERSION;
-	LPCSTR pchOctets = T2A((LPTSTR)pszText);
+	LPCSTR pchOctets = ansiconvert_ThreadCP((LPTSTR)pszText);
 	size_t cchAhead = strlen(pchOctets);
 	while (LPCSTR pchAhead = (LPCSTR)memchr(pchOctets, '\n', cchAhead))
 	{

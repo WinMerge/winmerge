@@ -19,6 +19,7 @@
 #include "common/unicoder.h"
 #include "codepage_detect.h"
 #include <shlwapi.h>
+#include "AnsiConvert.h"
 #include "DiffFileData.h"
 
 
@@ -83,11 +84,10 @@ bool DiffFileData::DoOpenFiles()
 	for (int i=0; i<2; ++i)
 	{
 		// Fill in 8-bit versions of names for diffutils (WinMerge doesn't use these)
-		USES_CONVERSION;
 		// Actual paths are m_FileLocation[i].filepath
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
-		m_inf[i].name = strdup(T2CA(m_sDisplayFilepath[i]));
+		m_inf[i].name = strdup(ansiconvert_SystemCP(m_sDisplayFilepath[i]));
 		if (m_inf[i].name == NULL)
 			return false;
 

@@ -44,6 +44,7 @@
 #include "FolderCmp.h"
 #include "FilterCommentsManager.h"
 #include "Environment.h"
+#include "AnsiConvert.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -662,12 +663,10 @@ BOOL CDiffWrapper::RunFileDiff()
 	replace_char(&*filepath2.begin(), '/', '\\');
 
 	BOOL bRet = TRUE;
-	USES_CONVERSION;
 	String strFile1Temp = filepath1;
 	String strFile2Temp = filepath2;
 	
 	m_options.SetToDiffUtils();
-	//SwapToInternalSettings();
 
 	if (m_bUseDiffList)
 		m_nDiffs = m_pDiffList->GetSize();
@@ -1190,7 +1189,6 @@ CDiffWrapper::LoadWinMergeDiffsFromDiffUtilsScript(struct change * script, const
  */
 void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 {
-	USES_CONVERSION;
 	file_data inf_patch[2] = {0};
 	CopyMemory(&inf_patch, inf, sizeof(file_data) * 2);
 	
@@ -1204,8 +1202,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_s2File;
 	replace_char(&*path1.begin(), '\\', '/');
 	replace_char(&*path2.begin(), '\\', '/');
-	inf_patch[0].name = strdup(T2CA(path1.c_str()));
-	inf_patch[1].name = strdup(T2CA(path2.c_str()));
+	inf_patch[0].name = strdup(ansiconvert_SystemCP(path1.c_str()));
+	inf_patch[1].name = strdup(ansiconvert_SystemCP(path2.c_str()));
 
 	outfile = NULL;
 	if (!m_sPatchFile.IsEmpty())
