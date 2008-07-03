@@ -11,6 +11,7 @@ WinMerge 2.9.1.5
   BugFix: Possible crash when enabling line filter (#2004160)
   BugFix: Location Pane flickers when scrolling (#1938177, #2005031)
   BugFix: Use system codepage for paths (#1979429, #2008581)
+  BugFix: Random crashes in folder compare (#2005308)
   Translation updates:
   - Chinese Traditional (#2007426)
 
