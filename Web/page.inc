@@ -133,6 +133,11 @@
       $temp .= $this->getTabs();
       $temp .= $this->getAds();
       $temp .= "<div id=\"content\">\n";
+      //--------------------------------------------------------------------------------
+      // SourceForge.net Community Choice Awards 2008
+      //--------------------------------------------------------------------------------
+      $temp .= "<p><a href=\"http://sourceforge.net/awards/cca/?group_id=13216&amp;from=http%3A%2F%2Fwinmerge.org%2F\"><img src=\"http://sourceforge.net/awards/cca/badge_img.php?group_id=13216&amp;style=5\" width=\"234\" height=\"60\" border=\"0\" alt=\"SF.net CCA 2008 Finalist - VOTE NOW!\" title=\"SourceForge.net Community Choice Awards 2008 Finalist - VOTE NOW!\"></a></p>\n";
+      //--------------------------------------------------------------------------------
       switch ($this->_tab) {
         case WINMERGE_1_7: //if WinMerge 1.7 ...
         case WINMERGE_2_0: //if WinMerge 2.0 ...
