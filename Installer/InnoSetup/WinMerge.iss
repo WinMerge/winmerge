@@ -117,7 +117,7 @@ Name: English; MessagesFile: Languages\English.isl
 ;Localizations:
 Name: Bulgarian; MessagesFile: Languages\Bulgarian.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Bulgarian.txt
 Name: Catalan; MessagesFile: Languages\Catalan.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-Catalan.txt
-Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl
+Name: Chinese_Simplified; MessagesFile: Languages\Chinese_Simplified.isl; InfoAfterFile: ..\..\Docs\Users\Languages\ReadMe-ChineseSimplified.txt
 Name: Chinese_Traditional; MessagesFile: Languages\Chinese_Traditional.isl
 Name: Croatian; MessagesFile: Languages\Croatian.isl
 Name: Czech; MessagesFile: Languages\Czech.isl
