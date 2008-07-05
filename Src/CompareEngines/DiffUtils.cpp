@@ -1,7 +1,7 @@
 /** 
  * @file  FolderCmp.cpp
  *
- * @brief Implementation file for FolderCmp
+ * @brief Implementation file for DiffUtils class.
  */
 // ID line follows -- this is updated by SVN
 // $Id$
@@ -141,18 +141,8 @@ int DiffUtils::diffutils_compare_files()
 				/* Determine range of line numbers involved in each file.  */
 				int first0=0, last0=0, first1=0, last1=0, deletes=0, inserts=0;
 				analyze_hunk (thisob, &first0, &last0, &first1, &last1, &deletes, &inserts);
-//				int op=0;
 				if (deletes || inserts || thisob->trivial)
 				{
-/*					if (deletes && inserts)
-						op = OP_DIFF;
-					else if (deletes)
-						op = OP_LEFTONLY;
-					else if (inserts)
-						op = OP_RIGHTONLY;
-					else
-						op = OP_TRIVIAL;
-*/					
 					/* Print the lines that the first file has.  */
 					int trans_a0=0, trans_b0=0, trans_a1=0, trans_b1=0;
 					translate_range(&m_inf[0], first0, last0, &trans_a0, &trans_b0);
@@ -170,7 +160,6 @@ int DiffUtils::diffutils_compare_files()
 					if (match1)
 						match2 = RegExpFilter(thisob->line1, thisob->line1 + QtyLinesRight, 1);
 					if (match1 && match2)
-						//op = OP_TRIVIAL;
 						thisob->trivial = 1;
 
 				}
@@ -294,7 +283,6 @@ BOOL DiffUtils::Diff2Files(struct change ** diffs, int depth,
 	__try
 	{
 		*diffs = diff_2_files (m_inf, depth, bin_status, bMovedBlocks, bin_file);
-//		CopyDiffutilTextStats(m_inf, &m_diffFileData);
 	}
 	__except (EXCEPTION_EXECUTE_HANDLER)
 	{
