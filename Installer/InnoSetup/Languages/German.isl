@@ -320,7 +320,6 @@ CustomInstallation=Benutzerdefinierte Installation
 
 ;Components
 AppCoreFiles=WinMerge Hauptdateien
-ApplicationRuntimes=Laufzeitbibliotheken
 Filters=Filter
 Plugins=Plugins
 
@@ -359,15 +358,11 @@ ExplorerContextMenu=&Explorer Kontextmenü-Integration aktivieren
 IntegrateTortoiseCVS=Integrieren in &TortoiseCVS
 IntegrateTortoiseSVN=Integrieren in T&ortoiseSVN
 IntegrateClearCase=Integrieren in Rational &ClearCase
-IntegrateDelphi4=Borland® Delphi &4 Binärdatei-Unterstützung
-UpdatingCommonControls=Aktualisieren der System-Komponenten
 
 ;Icon Labels
 ReadMe=LIESMICH-Datei
 UsersGuide=Benutzerhandbuch
-UpdatingCommonControls=Aktualisieren der System-Komponenten
 ViewStartMenuFolder=&Anzeigen des Startmenü-Ordners
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=Das Setup hat entdeckt, dass Sie den Startmenü-Ordner von "%s" in "%s" geändert haben. Möchten Sie den vorherigen Startmenü-Ordner löschen?

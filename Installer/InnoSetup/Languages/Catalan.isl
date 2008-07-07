@@ -314,7 +314,6 @@ CustomInstallation=Instal·lació personalitzada
 
 ;Components
 AppCoreFiles=Fitxers centrals del WinMerge
-ApplicationRuntimes=Llibreries d'aplicació en temps d'execució
 Filters=Filtres
 Plugins=Connectors
 
@@ -353,15 +352,11 @@ ExplorerContextMenu=&Habilita la integració del menú de contexte a l'Explorador
 IntegrateTortoiseCVS=Integra amb el &TortoiseCVS
 IntegrateTortoiseSVN=Integra amb el T&ortoiseSVN
 IntegrateClearCase=Integra amb el Rational &ClearCase
-IntegrateDelphi4=Suport per a fitxers binaris del Borland® Delphi &4
-UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 
 ;Icon Labels
 ReadMe=Llegiu-me
 UsersGuide=Guia de l'usuari
-UpdatingCommonControls=Actualitzant els Controls Comuns del Sistema
 ViewStartMenuFolder=&Veure la carpera del menú Inicia del WinMerge
-PluginsText=Connectors
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'instal·lador ha detectat que heu canviat la ubicació del vostre menú d'inici de "%s" a "%s". Voleu esborrar la carpeta del menú d'inici anterior?

@@ -331,7 +331,6 @@ CustomInstallation=Instalare personalizata
 
 ;Components
 AppCoreFiles=Fisierele WinMerge de baza
-ApplicationRuntimes=Runtime-uri aplicatie
 Filters=Filtre
 Plugins=Plug-in-uri
 
@@ -370,15 +369,11 @@ ExplorerContextMenu=&Activeaza integrarea in meniurile contextuale Explorer
 IntegrateTortoiseCVS=Integrare cu &TortoiseCVS
 IntegrateTortoiseSVN=Integrare cu T&ortoiseSVN
 IntegrateClearCase=Integrare cu Rational &ClearCase
-IntegrateDelphi4=Suport pentru fisiere binare Borland® Delphi &4
-UpdatingCommonControls=Se actualizeaza setul de controale comune ale sistemului
 
 ;Icon Labels
 ReadMe=Citeste
 UsersGuide=Ghidul utilizatorului
-UpdatingCommonControls=Se actualizeaza setul de controale comune ale sistemului
 ViewStartMenuFolder=&Vizualizeaza directorul WinMerge din Start Menu
-PluginsText=Plug-in-uri
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalatorul a detectat ca ati schimbat locatia meniului dumneavoastra de start de la "%s" la "%s". Doriti sa stergeti directorul din meniul de start anterior?

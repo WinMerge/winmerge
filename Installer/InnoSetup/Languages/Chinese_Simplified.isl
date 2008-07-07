@@ -321,7 +321,6 @@ CustomInstallation=自定义安装
 
 ;Components
 AppCoreFiles=WinMerge 核心文件
-ApplicationRuntimes=应用程序
 Filters=过滤器
 Plugins=插件
 
@@ -360,15 +359,11 @@ ExplorerContextMenu=集成到资源管理器右键菜单(&E)
 IntegrateTortoiseCVS=集成到 &TortoiseCVS
 IntegrateTortoiseSVN=集成到 T&ortoiseSVN
 IntegrateClearCase=集成到 Rational &ClearCase
-IntegrateDelphi4=支持 Borland Delphi &4 二进制文件
-UpdatingCommonControls=更新系统的 Common Controls
 
 ;Icon Labels
 ReadMe=说明文件
 UsersGuide=用户手册
-UpdatingCommonControls=更新系统的 Common Controls
 ViewStartMenuFolder=查看 WinMerge 开始菜单文件夹(&V)
-PluginsText=插件
 
 ;Code Dialogs
 DeletePreviousStartMenu=安装程序检测到您修改了开始菜单的位置(从"%s"到"%s")，是否要删除之前的开始菜单文件夹？

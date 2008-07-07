@@ -323,7 +323,6 @@ CustomInstallation=Installation Personnaliser
 
 ;Components
 AppCoreFiles=Fichiers Vitaux Winmerge
-ApplicationRuntimes=Exécutables de l'application
 Filters=Filtres
 Plugins=Plugiciels
 
@@ -362,15 +361,11 @@ ExplorerContextMenu=&Permetre l'intégration au menu contextuel de l'explorateur
 IntegrateTortoiseCVS=Integrer avec &TortoiseCVS
 IntegrateTortoiseSVN=Integrer avec T&ortoiseSVN
 IntegrateClearCase=Integrer avec Rational &ClearCase
-IntegrateDelphi4=Support de fichier binaire Borland® Delphi &4
-UpdatingCommonControls=Mettre à jour les contrôles communs du système
 
 ;Icon Labels
 ReadMe=Lisez moi
 UsersGuide=Guide de l'usager
-UpdatingCommonControls=Mise à jour des contrôles communs du système
 ViewStartMenuFolder=&Voir le répertoire du menu démarrer WinMerge
-PluginsText=Plugiciels
 
 ;Code Dialogs
 DeletePreviousStartMenu=L'installeur a détecté que vous avez changé l'emplacement du votre menu démarré de "%s" à "%s". Désirez-vous retirer l'ancien répertoire du menu démarrer WinMerge?

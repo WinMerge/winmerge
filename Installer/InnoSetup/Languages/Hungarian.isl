@@ -350,7 +350,6 @@ CustomInstallation=Egyedi Telepítés
 
 ;Components
 AppCoreFiles=A WinMerge kéreg fájljai
-ApplicationRuntimes=Az alkalmazás futásidejû fájljai
 Filters=Szûrõk
 Plugins=Bõvítmények
 
@@ -389,15 +388,11 @@ ExplorerContextMenu=Integrálás az Intézõ &context-menüjéhez
 IntegrateTortoiseCVS=Integrálás a &TortoiseCVS programmal
 IntegrateTortoiseSVN=Integrálás a T&ortoiseSVN programmal
 IntegrateClearCase=Integrálás a Rational &ClearCase programmal
-IntegrateDelphi4=Borland® Delphi &4 bináris fájl támogatás
-UpdatingCommonControls=Updating the System's Common Controls
 
 ;Icon Labels
 ReadMe=Olvass el
 UsersGuide=Felhasználói kézikönyv
-UpdatingCommonControls=Updating the System's Common Controls
 ViewStartMenuFolder=A WinMerge Start Menü mappájának &megtekintése
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=A Telepítés észlelte, hogy megváltoztattad a Start Menü helyét errõl: "%s" erre: "%s". Szeretnéd eltávolítani a korábbi Start Menü mappát?

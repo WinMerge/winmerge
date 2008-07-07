@@ -335,7 +335,6 @@ CustomInstallation=Custom Installation
 
 ;Components
 AppCoreFiles=WinMerge Core Files
-ApplicationRuntimes=Application Runtimes
 Filters=Filters
 Plugins=Plugins
 
@@ -374,15 +373,11 @@ ExplorerContextMenu=&Enable Explorer context menu integration
 IntegrateTortoiseCVS=Integrate with &TortoiseCVS
 IntegrateTortoiseSVN=Integrate with T&ortoiseSVN
 IntegrateClearCase=Integrate with Rational &ClearCase
-IntegrateDelphi4=Borland Delphi &4 Binary File Support
-UpdatingCommonControls=Updating the System's Common Controls
 
 ;Icon Labels
 ReadMe=Read Me
 UsersGuide=User's Guide
-UpdatingCommonControls=Updating the System's Common Controls
 ViewStartMenuFolder=&View the WinMerge Start Menu Folder
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=The installer has detected that you changed the location of your start menu from "%s" to "%s". Would you like to delete the previous start menu folder?

@@ -331,7 +331,6 @@ CustomInstallation=Προσαρμοσμένη Εγκατάσταση
 
 ;Components
 AppCoreFiles=Απαιτούμενα Αρχεία του WinMerge
-ApplicationRuntimes=Ρουτίνες Χρόνου Εκτελέσεως
 Filters=Φίλτρα
 Plugins=Αρθρώματα
 
@@ -370,15 +369,11 @@ ExplorerContextMenu=Εν&εργοποίηση ενσωματώσεως στις ειδικές επιλογές της εξερευν
 IntegrateTortoiseCVS=Ενσωμάτωση του &TortoiseCVS
 IntegrateTortoiseSVN=Ενσωμάτωση του T&ortoiseSVN
 IntegrateClearCase=Ενσωμάτωση του Rational &ClearCase
-IntegrateDelphi4=Υποστήριξη Δυαδικών Αρχείων της Delphi &4 της Borland®
-UpdatingCommonControls=Ενημέρωση Κοινών Αντικειμένων Ελέγχου Συστήματος
 
 ;Icon Labels
 ReadMe=Απαραίτητες Πληροφορίες (Read Me)
 UsersGuide=Οδηγίες Χρήσεως
-UpdatingCommonControls=Ενημέρωση Κοινών Αντικειμένων Ελέγχου Συστήματος
 ViewStartMenuFolder=Εμφάνιση του Φακέλου του WinMerge στο Έναρξη
-PluginsText=Αρθρώματα
 
 ;Code Dialogs
 DeletePreviousStartMenu=Η εφαρμογή εγκαταστάσεως ανίχνευσε ότι αλλάξατε την τοποθεσία του φακέλου στο Έναρξη από "%s" σε "%s". Επιθυμείτε να διαγράψετε τον προηγούμενο φάκελο από το Έναρξη;

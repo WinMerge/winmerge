@@ -320,7 +320,6 @@ CustomInstallation=Instalacja uzytkownika
 
 ;Components
 AppCoreFiles=WinMerge ? pliki zasadnicze
-ApplicationRuntimes=Moduly wykonywalne
 Filters=Filtry
 Plugins=Wtyczki
 
@@ -359,15 +358,11 @@ ExplorerContextMenu=&Wlacz integracje z menu Eksploratora
 IntegrateTortoiseCVS=Integracja z &TortoiseCVS
 IntegrateTortoiseSVN=Integracja z T&ortoiseSVN
 IntegrateClearCase=Integracja z Rational &ClearCase
-IntegrateDelphi4=Obsluga plików binarnych Borland® Delphi &4
-UpdatingCommonControls=Aktualizacja wspólnych kontrolek systemowych SCC
 
 ;Icon Labels
 ReadMe=Czytaj to
 UsersGuide=Przewodnik uzytkownika
-UpdatingCommonControls=Aktualizacja wspólnych kontrolek systemowych
 ViewStartMenuFolder=&Podglad katalogu menu Start programu WinMerge
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=Instalator wykryl, ze zmieniles lokalizacje menu startowego z "%s" na "%s". Czy usunac poprzedni katalog menu startowego?

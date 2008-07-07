@@ -329,7 +329,6 @@ CustomInstallation=Instalação Personalizada
 
 ;Components
 AppCoreFiles=Arquivos do Core do WinMerge
-ApplicationRuntimes=Runtimes do Aplicativo
 Filters=Filtros
 Plugins=Plugins
 
@@ -368,15 +367,11 @@ ExplorerContextMenu=&Ativar a integração com o menu de contexto do explorer
 IntegrateTortoiseCVS=Integrar com o &TortoiseCVS
 IntegrateTortoiseSVN=Integrar com o T&ortoiseSVN
 IntegrateClearCase=Integrar com o Rational &ClearCase
-IntegrateDelphi4=Suporte ao Arquivo Binário do Borland® Delphi &4
-UpdatingCommonControls=Atualizando os Controles Comuns do Sistema
 
 ;Icon Labels
 ReadMe=Leia Me
 UsersGuide=Guia do Usuário
-UpdatingCommonControls=Atualizando os Controles Comuns do Sistema
 ViewStartMenuFolder=&Visualizar a Pasta do Menu Iniciar do WinMerge
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=O instalador detectou que você mudou o local do seu menu iniciar de "s" para "s". Você gostaria de apagar a pasta anterior do menu iniciar?

@@ -323,7 +323,6 @@ CustomInstallation=カスタムインストール
 
 ;Components
 AppCoreFiles=WinMerge コアファイル
-ApplicationRuntimes=アプリケーションランタイム
 Filters=フィルタ
 Plugins=プラグイン
 
@@ -362,15 +361,11 @@ ExplorerContextMenu=エクスプローラのコンテキストメニューに追加(&E)
 IntegrateTortoiseCVS=TortoiseCVSとの連携(&T)
 IntegrateTortoiseSVN=TortoiseSVNとの連携(&O)
 IntegrateClearCase=Rational ClearCaseとの連携(&C)
-IntegrateDelphi4=Borland Delphi 4 バイナリファイルサポート(&4)
-UpdatingCommonControls=システムのコモンコントロールをアップデートします
 
 ;Icon Labels
 ReadMe=Read Me
 UsersGuide=ユーザーガイド
-UpdatingCommonControls=システムのコモンコントロールをアップデートしています
 ViewStartMenuFolder=WinMerge スタートメニューフォルダを表示(&V)
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=インストーラは、スタートメニューフォルダの位置が "%s" から "%s" に変更されたことを検出しました. 以前のスタートメニューフォルダを削除しますか?

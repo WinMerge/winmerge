@@ -259,7 +259,6 @@ CustomInstallation=Vlastná inštalácia
 
 ;Components
 AppCoreFiles=Základné súbory WinMerge
-ApplicationRuntimes=Súbory aplikácie vyadované poèas behu
 Filters=Filtre
 Plugins=Zásuvné moduly
 
@@ -298,15 +297,11 @@ ExplorerContextMenu=&Zapni integráciu do kontextovej ponuky Prieskumníka
 IntegrateTortoiseCVS=Integrácia s &TortoiseCVS
 IntegrateTortoiseSVN=Integrácia s T&ortoiseSVN
 IntegrateClearCase=Integrácia s Rational &ClearCase
-IntegrateDelphi4=Podpora binárnych súborov Borland® Delphi &4
-UpdatingCommonControls=Aktualizujem ovládacie prvky systému
 
 ;Icon Labels
 ReadMe=súbor Èítaj ma!
 UsersGuide=Príruèka pouívate¾a
-UpdatingCommonControls=Aktualizujem ovládacie prvky systému
 ViewStartMenuFolder=&Zobrazi adresár WinMerge z ponuky Štart
-PluginsText=Zásuvné moduly
 
 ;Code Dialogs
 DeletePreviousStartMenu=Inštalátor zistil, e ste zmenili umiestnenie vášej ponuky Štart z "%s" na "%s". eláte si zmaza predchádzajúci adresár ponuky Štart?

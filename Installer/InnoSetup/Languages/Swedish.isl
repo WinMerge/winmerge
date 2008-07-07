@@ -321,7 +321,6 @@ CustomInstallation=Anpassad Installation
 
 ;Components
 AppCoreFiles=WinMerge Kärnfiler
-ApplicationRuntimes=Applikationsexekuterbara filer
 Filters=Filter
 Plugins=Plugins
 
@@ -360,15 +359,11 @@ ExplorerContextMenu=&Möjliggör integration med Explorers menyer
 IntegrateTortoiseCVS=Integrera med &TortoiseCVS
 IntegrateTortoiseSVN=Integrera med T&ortoiseSVN
 IntegrateClearCase=Integrera med Rational &ClearCase
-IntegrateDelphi4=Stöd Borland® Delphi4 Binära filer
-UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 
 ;Icon Labels
 ReadMe=Läs Mig
 UsersGuide=Användarguide
-UpdatingCommonControls=Uppdatera Systemets Vanliga Kontroller
 ViewStartMenuFolder=Visa WinMerges startkatalog
-PluginsText=Plugins
 
 ;Code Dialogs
 DeletePreviousStartMenu=Installationsprogrammet har upptäckt att du har ändrat sökvägen till din startmeny från "%s" till "%s". Vill du ta bort den tidigare startmenykatalogen?
