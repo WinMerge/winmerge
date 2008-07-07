@@ -133,7 +133,7 @@ int DiffUtils::diffutils_compare_files()
 			making them a hunk, and remember the rest for next iteration.  */
 			next = end->link;
 			end->link = 0;
-#ifdef DEBUG
+#ifdef _DEBUG
 			debug_script(thisob);
 #endif
 
