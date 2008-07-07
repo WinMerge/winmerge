@@ -54,11 +54,8 @@ public:
 	};
 
 	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight);
-	CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src);
 	~CDiffContext();
 
-	// add & remove differences
-	virtual void AddDiff(const DIFFITEM & di);
 	void UpdateVersion(DIFFITEM & di, BOOL bLeft) const;
 
 	//@{
@@ -88,7 +85,8 @@ public:
 	/**
 	 * Get right-side compare path in normalized form.
 	 * @return full path in left-side.
-	 */	String GetNormalizedRight() const { return m_paths.GetRight(); }
+	 */
+	String GetNormalizedRight() const { return m_paths.GetRight(); }
 	//@}
 
 	// change an existing difference
@@ -155,10 +153,8 @@ public:
 	 */
 	int m_nQuickCompareLimit;
 	FilterList * m_pFilterList; /**< Filter list for line filters */
-	CRITICAL_SECTION m_criticalSect; /**< Critical section protecting list access. */
 
 private:
-	CList<DIFFITEM,DIFFITEM&> *m_pList; /**< Pointer to list, used to access list */
 	DIFFOPTIONS *m_pOptions; /**< Generalized compare options. */
 	CompareOptions *m_pCompareOptions; /**< Per compare method compare options. */
 	PathContext m_paths; /**< (root) paths for this context */

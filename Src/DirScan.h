@@ -9,18 +9,17 @@
 #ifndef DirScan_h_included
 #define DirScan_h_included
 
-#include <vector>
-
 class CDiffContext;
+class DiffItemList;
 class PathContext;
-struct DIFFITEM;
+class IAbortable;
+struct DiffFuncStruct;
 
-int DirScan_GetItems(const PathContext &paths, LPCTSTR leftsubdir,
-		LPCTSTR rightsubdir, std::vector<DIFFITEM*> * pList,
-		bool casesensitive, int depth, CDiffContext * pCtxt);
+int DirScan_GetItems(const PathContext &paths, const String &leftsubdir, const String &rightsubdir, DiffFuncStruct *myStruct,
+		bool casesensitive, int depth);
 
-int DirScan_CompareItems(std::vector<DIFFITEM*> * pList, CDiffContext * pCtxt);
-int DirScan_CompareItems(CDiffContext * pCtxt);
+int DirScan_CompareItems(DiffFuncStruct *);
+int DirScan_CompareRequestedItems(DiffFuncStruct *);
 
 void DirScan_InitializeDefaultCodepage();
 

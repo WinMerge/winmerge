@@ -17,15 +17,18 @@
 class DiffItemList
 {
 public:
+	DiffItemList();
+	~DiffItemList();
 	// add & remove differences
-	virtual void AddDiff(const DIFFITEM & di);
-	virtual void RemoveDiff(POSITION diffpos);
-	virtual void RemoveAll();
+	DIFFITEM &AddDiff();
+	void RemoveDiff(POSITION diffpos);
+	void RemoveAll();
 
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition() const;
-	DIFFITEM GetNextDiffPosition(POSITION & diffpos) const;
-	DIFFITEM GetDiffAt(POSITION diffpos) const;
+	const DIFFITEM & GetNextDiffPosition(POSITION & diffpos) const;
+	DIFFITEM & GetNextDiffRefPosition(POSITION & diffpos);
+	const DIFFITEM & GetDiffAt(POSITION diffpos) const;
 	DIFFITEM & GetDiffRefAt(POSITION diffpos);
 
 	int GetDiffCount() const;
@@ -36,7 +39,34 @@ public:
 	void SetCustomFlags1(POSITION diffpos, UINT flag);
 
 protected:
-	CList<DIFFITEM,DIFFITEM&> m_dirlist; /**< List of diffitems */
+	int m_count;
+	ListEntry m_root; /**< Root of list of diffitems */
 };
+
+/**
+ * @brief Get copy of Diff Item at given position of CDiffContext array
+ * @param diffpos position of item to return
+ */
+inline const DIFFITEM & DiffItemList::GetDiffAt(POSITION diffpos) const
+{
+	return *reinterpret_cast<DIFFITEM *>(diffpos);
+}
+
+/**
+ * @brief Get Diff Item (by reference) at given position of CDiffContext array
+ * @param diffpos position of item to return
+ */
+inline DIFFITEM & DiffItemList::GetDiffRefAt(POSITION diffpos)
+{
+	return *reinterpret_cast<DIFFITEM *>(diffpos);
+}
+
+/**
+ * @brief Get number of items in CDiffContext array
+ */
+inline int DiffItemList::GetDiffCount() const
+{
+	return m_count;
+}
 
 #endif // _DIFF_ITEM_LIST_H_

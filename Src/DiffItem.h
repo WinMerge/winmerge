@@ -9,6 +9,7 @@
 #ifndef _DIFF_ITEM_H_
 #define _DIFF_ITEM_H_
 
+#include "ListEntry.h"
 #include "DiffFileInfo.h"
 
 /**
@@ -118,7 +119,7 @@ public:
  * @note times in fileinfo's are seconds since January 1, 1970.
  * See Dirscan.cpp/fentry and Dirscan.cpp/LoadFiles()
  */
-struct DIFFITEM
+struct DIFFITEM : ListEntry
 {
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
@@ -126,15 +127,15 @@ struct DIFFITEM
 	int nidiffs; /**< Amount of ignored differences */
 	String errorDesc; /**< technical note about error */
 	UINT customFlags1; /**< Custom flags set 1 */
-	bool empty; /**< flag to mark diffitem that doesn't have any data */
 	DIFFCODE diffcode; /**< Compare result */
 
-	static DIFFITEM MakeEmptyDiffItem();
+	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */
 
-	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0), empty(false) { }
-	DIFFITEM(const DIFFITEM& di);
-	DIFFITEM& operator=(const DIFFITEM& di);
+	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0)
+	{
+	}
 
+	bool isEmpty() const { return this == &emptyitem; }
 	String getLeftFilepath(const String &sLeftRoot) const;
 	String getRightFilepath(const String &sRightRoot) const;
 };

@@ -16,11 +16,30 @@ static char THIS_FILE[]=__FILE__;
 #endif
 
 /**
+ * @brief Constructor
+ */
+DiffItemList::DiffItemList()
+: m_count(0)
+{
+}
+
+/**
+ * @brief Destructor
+ */
+DiffItemList::~DiffItemList()
+{
+	RemoveAll();
+}
+
+/**
  * @brief Add new diffitem to CDiffContext array
  */
-void DiffItemList::AddDiff(const DIFFITEM & di)
+DIFFITEM &DiffItemList::AddDiff()
 {
-	m_dirlist.AddTail(const_cast<DIFFITEM &>(di));
+	DIFFITEM *p = new DIFFITEM;
+	m_root.Append(p);
+	++m_count;
+	return *p;
 }
 
 /**
@@ -29,7 +48,10 @@ void DiffItemList::AddDiff(const DIFFITEM & di)
  */
 void DiffItemList::RemoveDiff(POSITION diffpos)
 {
-	m_dirlist.RemoveAt(diffpos);
+	DIFFITEM *p = (DIFFITEM *)diffpos;
+	p->RemoveSelf();
+	--m_count;
+	delete p;
 }
 
 /**
@@ -37,7 +59,8 @@ void DiffItemList::RemoveDiff(POSITION diffpos)
  */
 void DiffItemList::RemoveAll()
 {
-	m_dirlist.RemoveAll();
+	while (m_root.IsSibling(m_root.Flink))
+		RemoveDiff((POSITION)m_root.Flink);
 }
 
 /**
@@ -45,7 +68,7 @@ void DiffItemList::RemoveAll()
  */
 POSITION DiffItemList::GetFirstDiffPosition() const
 {
-	return m_dirlist.GetHeadPosition();
+	return (POSITION)m_root.IsSibling(m_root.Flink);
 }
 
 /**
@@ -53,37 +76,23 @@ POSITION DiffItemList::GetFirstDiffPosition() const
  * @param diffpos position of current item, updated to next item position
  * @return Diff Item in current position
  */
-DIFFITEM DiffItemList::GetNextDiffPosition(POSITION & diffpos) const
+const DIFFITEM &DiffItemList::GetNextDiffPosition(POSITION & diffpos) const
 {
-	return m_dirlist.GetNext(diffpos);
+	DIFFITEM *p = (DIFFITEM *)diffpos;
+	diffpos = (POSITION)m_root.IsSibling(p->Flink);
+	return *p;
 }
 
 /**
- * @brief Get copy of Diff Item at given position of CDiffContext array
- * @param diffpos position of item to return
+ * @brief Get position of next item in CDiffContext array
+ * @param diffpos position of current item, updated to next item position
+ * @return Diff Item (by reference) in current position
  */
-DIFFITEM DiffItemList::GetDiffAt(POSITION diffpos) const
+DIFFITEM &DiffItemList::GetNextDiffRefPosition(POSITION & diffpos)
 {
-	DIFFITEM di = m_dirlist.GetAt(diffpos);
-	return di;
-}
-
-/**
- * @brief Get Diff Item (by reference) at given position of CDiffContext array
- * @param diffpos position of item to return
- */
-DIFFITEM & DiffItemList::GetDiffRefAt(POSITION diffpos)
-{
-	DIFFITEM & di = m_dirlist.GetAt(diffpos);
-	return di;
-}
-
-/**
- * @brief Get number of items in CDiffContext array
- */
-int DiffItemList::GetDiffCount() const
-{
-	return m_dirlist.GetCount();
+	DIFFITEM *p = (DIFFITEM *)diffpos;
+	diffpos = (POSITION)m_root.IsSibling(p->Flink);
+	return *p;
 }
 
 /**
@@ -102,7 +111,7 @@ int DiffItemList::GetDiffCount() const
 void DiffItemList::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 {
 	ASSERT(diffpos);
-	DIFFITEM & di = m_dirlist.GetAt(diffpos);
+	DIFFITEM & di = GetDiffRefAt(diffpos);
 	ASSERT(! ((~mask) & diffcode) ); // make sure they only set flags in their mask
 	di.diffcode.diffcode &= (~mask); // remove current data
 	di.diffcode.diffcode |= diffcode; // add new data
@@ -114,7 +123,7 @@ void DiffItemList::SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask)
 void DiffItemList::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
 {
 	ASSERT(diffpos);
-	DIFFITEM & di = m_dirlist.GetAt(diffpos);
+	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.nidiffs = ignored; // see StoreDiffResult() in DirScan.cpp
 	di.nsdiffs = diffs;
 }
@@ -127,7 +136,7 @@ void DiffItemList::SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored)
 UINT DiffItemList::GetCustomFlags1(POSITION diffpos) const
 {
 	ASSERT(diffpos);
-	const DIFFITEM & di = m_dirlist.GetAt(diffpos);
+	const DIFFITEM & di = GetDiffAt(diffpos);
 	return di.customFlags1;
 }
 
@@ -139,6 +148,6 @@ UINT DiffItemList::GetCustomFlags1(POSITION diffpos) const
 void DiffItemList::SetCustomFlags1(POSITION diffpos, UINT flag)
 {
 	ASSERT(diffpos);
-	DIFFITEM & di = m_dirlist.GetAt(diffpos);
+	DIFFITEM & di = GetDiffRefAt(diffpos);
 	di.customFlags1 = flag;
 }

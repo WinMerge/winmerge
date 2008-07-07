@@ -65,7 +65,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 , m_nCompMethod(-1)
 , m_bIgnoreSmallTimeDiff(FALSE)
 , m_pCompareStats(NULL)
-, m_pList(&m_dirlist)
 , m_piAbortable(NULL)
 , m_bStopAfterFirstDiff(FALSE)
 , m_pFilterList(NULL)
@@ -74,37 +73,6 @@ CDiffContext::CDiffContext(LPCTSTR pszLeft /*=NULL*/, LPCTSTR pszRight /*=NULL*/
 {
 	m_paths.SetLeft(pszLeft);
 	m_paths.SetRight(pszRight);
-	InitializeCriticalSection(&m_criticalSect);
-}
-
-/**
- * @brief Construct copy of existing CDiffContext.
- *
- * @param [in] pszLeft Initial left-side path.
- * @param [in] pszRight Initial right-side path.
- * @param [in] src Existing CDiffContext whose data is copied.
- */
-CDiffContext::CDiffContext(LPCTSTR pszLeft, LPCTSTR pszRight, CDiffContext& src)
-{
-	// This is used somehow in recursive comparisons
-	// I think that it is only used during rescan to copy into temporaries
-	// which modify the original (because pointers are copied below)
-	// and then the temporary goes away
-	// so the temporary never exists while the user is interacting with the GUI
-
-	m_paths.SetLeft(pszLeft);
-	m_paths.SetRight(pszRight);
-	m_pList = src.m_pList;
-	m_piFilterGlobal = src.m_piFilterGlobal;
-	m_nCompMethod = src.m_nCompMethod;
-	m_bIgnoreSmallTimeDiff = src.m_bIgnoreSmallTimeDiff;
-	m_bStopAfterFirstDiff = src.m_bStopAfterFirstDiff;
-	m_pFilterList = src.m_pFilterList;
-
-	EnterCriticalSection(&src.m_criticalSect);
-	InitializeCriticalSection(&m_criticalSect);
-	LeaveCriticalSection(&src.m_criticalSect);
-	DeleteCriticalSection(&src.m_criticalSect);
 }
 
 /**
@@ -115,17 +83,6 @@ CDiffContext::~CDiffContext()
 	delete m_pOptions;
 	delete m_pCompareOptions;
 	delete m_pFilterList;
-	DeleteCriticalSection(&m_criticalSect);
-}
-
-/**
- * @brief Add new result item to result list.
- * @param [in] di DIFFITEM to add.
- */
-void CDiffContext::AddDiff(const DIFFITEM & di)
-{
-	DiffItemList::AddDiff(di);
-	m_pCompareStats->AddItem(di.diffcode.diffcode);
 }
 
 /**
@@ -138,7 +95,7 @@ void CDiffContext::AddDiff(const DIFFITEM & di)
  */
 void CDiffContext::UpdateStatusFromDisk(POSITION diffpos, BOOL bLeft, BOOL bRight)
 {
-	DIFFITEM &di = m_pList->GetAt(diffpos);
+	DIFFITEM &di = GetDiffRefAt(diffpos);
 	if (bLeft)
 	{
 		di.left.ClearPartial();
@@ -268,7 +225,6 @@ BOOL CDiffContext::CreateCompareOptions(int compareMethod, const DIFFOPTIONS & o
 	else
 		return FALSE;
 
-	m_nCompMethod = compareMethod;
 	m_pCompareOptions = GetCompareOptions(compareMethod);
 	if (m_pCompareOptions == NULL)
 	{
@@ -319,6 +275,8 @@ CompareOptions * CDiffContext::GetCompareOptions(int compareMethod)
 		// No really options to set..
 		break;
 	}
+
+	m_nCompMethod = compareMethod;
 
 	if (m_pCompareOptions == NULL)
 		return NULL;
