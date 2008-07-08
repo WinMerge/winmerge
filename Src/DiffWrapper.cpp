@@ -1202,8 +1202,8 @@ void CDiffWrapper::WritePatchFile(struct change * script, file_data * inf)
 		path2 = m_s2File;
 	replace_char(&*path1.begin(), '\\', '/');
 	replace_char(&*path2.begin(), '\\', '/');
-	inf_patch[0].name = strdup(ansiconvert_SystemCP(path1.c_str()));
-	inf_patch[1].name = strdup(ansiconvert_SystemCP(path2.c_str()));
+	inf_patch[0].name = ansiconvert_SystemCP(path1.c_str());
+	inf_patch[1].name = ansiconvert_SystemCP(path2.c_str());
 
 	outfile = NULL;
 	if (!m_sPatchFile.IsEmpty())

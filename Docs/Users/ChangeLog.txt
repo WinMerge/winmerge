@@ -6,6 +6,7 @@ http://winmerge.org/tracker/[tracker-id]
 WinMerge 2.11.1.1
   Manual: Introduction update (#2011365)
   Add ShellExtension menu for drive letters (root folders) (#2011602)
+  BugFix: Use system codepage for paths (#1979429, #2008581)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
 

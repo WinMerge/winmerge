@@ -87,7 +87,7 @@ bool DiffFileData::DoOpenFiles()
 		// Actual paths are m_FileLocation[i].filepath
 		// but these are often temporary files
 		// Displayable (original) paths are m_sDisplayFilepath[i]
-		m_inf[i].name = strdup(ansiconvert_SystemCP(m_sDisplayFilepath[i]));
+		m_inf[i].name = ansiconvert_SystemCP(m_sDisplayFilepath[i]);
 		if (m_inf[i].name == NULL)
 			return false;
 
