@@ -4,7 +4,7 @@
  * @brief Deducing codepage from file contents, when we can
  *
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #include "StdAfx.h"
@@ -23,6 +23,9 @@
 static char THIS_FILE[] = __FILE__;
 #endif
 
+/** @brief Buffer size used in this file. */
+static const int BufSize = 4 * 1024;
+
 /**
  * @brief Prefixes to handle when searching for codepage names
  * NB: prefixes ending in '-' must go first!
@@ -33,11 +36,15 @@ static const char *f_wincp_prefixes[] =
 };
 
 /**
- * @brief Eat prefix and return pointer to remaining text
+ * @brief Remove prefix from the text.
+ * @param [in] text Text to process.
+ * @param [in] prefix Prefix to remove.
+ * @return Text without the prefix.
  */
 static const char *EatPrefix(const char *text, const char *prefix)
 {
-	if (int len = strlen(prefix))
+	int len = strlen(prefix);
+	if (len)
 		if (memicmp(text, prefix, len) == 0)
 			return text + len;
 	return 0;
@@ -163,12 +170,16 @@ static unsigned demoGuessEncoding_rc(const char *src, size_t len)
 }
 
 /**
- * @brief Try to deduce encoding for this file
+ * @brief Try to deduce encoding for this file.
+ * @param [in] ext File extension.
+ * @param [in] src File contents (as a string).
+ * @param [in] len Size of the file contents string.
+ * @return Codepage number.
  */
 unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
 {
-	if (len > 4096)
-		len = 4096;
+	if (len > BufSize)
+		len = BufSize;
 	unsigned cp = 0;
 	if (lstrcmpi(ext, _T(".rc")) ==  0)
 	{
@@ -186,11 +197,14 @@ unsigned GuessEncoding_from_bytes(LPCTSTR ext, const char *src, size_t len)
 }
 
 /**
- * @brief Try to deduce encoding for this file
+ * @brief Try to deduce encoding for this file.
+ * @param [in] filepath Full path to the file.
+ * @param [in,out] encoding Structure getting the encoding info.
+ * @param [in] bGuessEncoding Try to guess codepage (not just unicode encoding).
  */
 void GuessCodepageEncoding(LPCTSTR filepath, FileTextEncoding * encoding, BOOL bGuessEncoding)
 {
-	CMarkdown::FileImage fi(filepath, 4096);
+	CMarkdown::FileImage fi(filepath, BufSize);
 	encoding->SetCodepage(getDefaultCodepage());
 	encoding->m_bom = false;
 	encoding->m_guessed = false;
