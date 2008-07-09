@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<article id="IntroDiff">
+<article id="IntroductDiffing">
   <title>Overview of file comparing and merging</title>
 
   <para>This topic describes how WinMerge detects and displays differences within files, and demonstrates simple file comparing and merging operations.</para>
