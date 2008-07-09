@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="VersionControl">
+<article id="VersionControl">
   <title>Version control integration</title>
 
   <para>WinMerge provides basic integration with Visual SourceSafe and
@@ -13,7 +13,7 @@
   version control integration is enabled WinMerge assumes file is version
   controlled and shows checkout dialog.</para>
 
-  <sect2>
+  <section>
     <title>Visual SourceSafe</title>
 
     <para>To enable Visual SourceSafe integration for version controlled
@@ -96,5 +96,5 @@
         <para>Your connection to the VSS server computer may be hosed</para>
       </listitem>
     </itemizedlist>
-  </sect2>
-</sect1>
+  </section>
+</article>

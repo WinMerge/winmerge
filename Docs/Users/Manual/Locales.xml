@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="Locales">
+<article id="Locales">
   <title>Locale support</title>
 
   <para>WinMerge allows translating the user interface to other languages than
@@ -118,7 +118,7 @@
     Panel.)</para>
   </note>
 
-  <sect2>
+  <section>
     <title>Selecting language</title>
 
     <para>In order to change the current user interface language, do the
@@ -142,9 +142,9 @@
 
     <para>Note that the WinMerge user interface instantly updates to the
     selected language.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Installing translation</title>
 
     <para>The easiest way to install translations is to select them in the
@@ -193,18 +193,18 @@
           <guibutton>OK</guibutton></simpara>
         </listitem>
       </orderedlist></para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Reporting error in translation</title>
 
     <para>Please submit errors you find in translations as bugs to our <ulink
     url="http://sourceforge.net/tracker/?group_id=13216&amp;atid=113216">bug-list</ulink>.
     It would be great if you can provide a corrected version of the translated
     text also.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Submitting a new translation</title>
 
     <para>If you would like to add your language to the list, look at the
@@ -216,5 +216,5 @@
     from above link. And if you have problems ask help from us in one of
     <ulink url="http://sourceforge.net/forum/?group_id=13216">WinMerge
     forums</ulink>.</para>
-  </sect2>
-</sect1>
+  </section>
+</article>

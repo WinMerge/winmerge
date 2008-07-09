@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="OpenPaths">
+<article id="OpenPaths">
   <title>Opening Files and Folders</title>
 
   <para>WinMerge allows selecting/opening paths in several ways. Using
   Open-dialog is just one of them.</para>
 
-  <sect2>
+  <section>
     <title>Open-Dialog</title>
 
     <para>Basic use of Open-dialog is described in <link
     linkend="QuickStart">Quick start</link>. Here is some more detailed
     information and tips about how to use Open-dialog more efficiently.</para>
 
-    <sect3>
+    <section>
       <title>Environment variables</title>
 
       <para>Environment variables can be used as (part of) paths. An
@@ -27,9 +27,9 @@
         <envar>%WORKDIR%\project1</envar> is expanded to path <filename
         class="directory">c:\workfiles\project1</filename> .</para>
       </example>
-    </sect3>
+    </section>
 
-    <sect3 id="OpeningArchives">
+    <section id="OpeningArchives">
       <title>Opening archive files</title>
 
       <para>Archive file support requires 7-Zip plugin to be installed. See
@@ -55,9 +55,9 @@
         automatically copy the same filename to both sides and open the
         archive file.</para>
       </tip>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Filter selection</title>
 
       <para>Third edit field in <guilabel>Open</guilabel> dialog is for
@@ -93,10 +93,10 @@
         WinMerge selects all files (i.e. uses <filename>*.*</filename> as
         extension list).</para>
       </note>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Shell Integration</primary>
       </indexterm>Shell Integration</title>
@@ -124,7 +124,7 @@
         <caption><para>Simple WinMerge context menu</para></caption>
       </mediaobject></para>
 
-    <sect3>
+    <section>
       <title>Advanced Shell Integration</title>
 
       <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for Shell
@@ -182,9 +182,9 @@
         when you need to compare one file/folder against several
         files/folders.</para>
       </tip>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Including Subfolders</title>
 
       <para>Shell Integration by default does not include subfolders into
@@ -193,10 +193,10 @@
       behavior can be also changed by holding down <keycap>Control</keycap>
       -key while selecting <guimenuitem>Compare</guimenuitem>-item from the
       Explorer context menu.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Drag and Drop</primary>
       </indexterm>Drag and Drop</title>
@@ -231,9 +231,9 @@
         empty</simpara>
       </listitem>
     </itemizedlist>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Project Files</primary>
       </indexterm>Project Files</title>
@@ -242,7 +242,7 @@
     (and filter). The user can easily save currently open paths as project
     file for later use.</para>
 
-    <sect3>
+    <section>
       <title>Opening Project File</title>
 
       <para>Project file can be given to command line like normal file or
@@ -280,9 +280,9 @@
           are compared.</simpara>
         </listitem>
       </itemizedlist>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Editing and Saving Project File</title>
 
       <para>Project files can be edited and saved using <guilabel>Project
@@ -302,9 +302,9 @@
 
         <caption><para>Project File -dialog</para></caption>
       </mediaobject>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Format</title>
 
       <para>Project files are simple XML files with <filename
@@ -361,6 +361,6 @@
 
       <para>None of the fields are required and they can be empty
       (<literal>&lt;left&gt;&lt;/left&gt;</literal>).</para>
-    </sect3>
-  </sect2>
-</sect1>
+    </section>
+  </section>
+</article>

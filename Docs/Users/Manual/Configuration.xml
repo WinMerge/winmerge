@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="Configuration">
+<article id="Configuration">
   <title>Options &amp; configuration</title>
 
   <para>Options dialog can be opened from <guimenu>Edit</guimenu>-menu or from
@@ -7,10 +7,10 @@
   <guibutton>OK</guibutton>-button (or pressing
   <keycap>Enter</keycap>-key).</para>
 
-  <sect2>
+  <section>
     <title>General options</title>
 
-    <sect3>
+    <section>
       <title>Automatically scroll to first difference</title>
 
       <para>When this option is enabled:</para>
@@ -26,9 +26,9 @@
           is scrolled visible and selected.</simpara>
         </listitem>
       </itemizedlist>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Disabling splash screen</primary>
         </indexterm>Disable splash screen</title>
@@ -36,9 +36,9 @@
       <para>User can disable splash screen appearing when WinMerge is started.
       It does not make WinMerge start faster (splash screen can be missed by
       clicking it with mouse) but it saves one click.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Esc key</primary>
 
@@ -54,9 +54,9 @@
       <para>Note that -e command line parameter overrides this option. If -e
       parameter is given in command line, WinMerge closes with one
       <keycap>ESC</keycap> key press.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Automatically verify paths in Open-dialog</title>
 
       <para>When enabled: Open-dialog checks both paths given for validity and
@@ -69,9 +69,9 @@
       message is shown if path is not valid. This is faster to use, there is
       no any delay in enabling <guibutton>OK</guibutton>. But user must look
       at error-dialogs.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Single-instance</primary>
         </indexterm>Allow only one instance to run</title>
@@ -81,9 +81,9 @@
       open with paths, new paths replace existing ones in previous instance.
       Or, if multiple compare window support is enabled new compare windows
       are opened for new paths. (See below.)</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Open-dialog Auto-Completion</title>
 
       <para>This option allows user to enable auto-completion for Open-dialog
@@ -102,9 +102,9 @@
           (usually in MRU lists) to compare.</para>
         </listitem>
       </itemizedlist>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Enable multiple compare windows for</title>
 
       <para>Allows opening multiple folder or file compare windows into one
@@ -118,9 +118,9 @@
         can open one file compare window for every folder compare
         window.</para>
       </note>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Reset messageboxes (Reset-button)</title>
 
       <para>WinMerge allows user to hide (suppress) some common messageboxes.
@@ -139,10 +139,10 @@
         installer is not used then it should be done using this
         <guibutton>Reset</guibutton> button.</para>
       </note>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Compare options</title>
 
     <para>Several compare options allow to ignore some specific type of
@@ -162,7 +162,7 @@
       merging files!</para>
     </important>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Ignore whitespace characters</primary>
         </indexterm>Whitespace</title>
@@ -200,33 +200,33 @@
 
           <para>No spaces between words:<screen format="linespecific">TwoWords</screen></para>
         </example></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Ignore blank lines</title>
 
       <para>Ignores differences that have only blank (empty) lines. Blank
       lines are shown in file view, but difference is shown with ignored
       difference colors and it cannot be merged.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Ignore case</title>
 
       <para>If this option is enabled WinMerge ignores differences between
       lowercase and uppercase letters. For example "LowerCase" and "LOWERCASE"
       and "lowercase" are same.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Ignore carriage return differences (Windows/Unix/Mac)</title>
 
       <para>If this option is not set WinMerge does not detect EOL style
       differences as differences. If two lines differ only by EOL characters
       (e.g. Windows EOL and Unix EOL) WinMerge detects files as identical.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Enable moved block detection</title>
 
       <para>When this option is enabled WinMerge tries to detect lines that
@@ -234,9 +234,9 @@
       location pane can show moved lines with line between bars. This makes it
       easier to visualise changes in files. However if there are a lot of
       moved lines it may get messy looking.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Ignore time differences less than 3 seconds</title>
 
       <para><emphasis>Only for "<guilabel>Modified Date</guilabel>" and
@@ -253,9 +253,9 @@
         <para>This option should be enabled only when the time difference is
         detected. Otherwise it can cause wrong compare results.</para>
       </warning>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>File compare method</title>
 
       <para>File compare method has five choices:</para>
@@ -302,9 +302,9 @@
           not so accurate like the contents methods.</para>
         </listitem>
       </itemizedlist>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Stop after first difference</title>
 
       <note>
@@ -320,13 +320,13 @@
       enable this if you don't know which kind of files you are comparing. If
       you know your files then this is a nice way to make compare even
       faster.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Editor options</title>
 
-    <sect3>
+    <section>
       <title>Syntax highlighting</title>
 
       <para>From <guilabel>Editor</guilabel>-page user can enable/disable
@@ -334,9 +334,9 @@
       language source codes, web formats etc. Syntax highlighting consumes
       some processing power, so if WinMerge screen updating seems to be slow,
       turning off this option might help.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Automatic rescan</primary>
         </indexterm>Automatic rescan</title>
@@ -358,9 +358,9 @@
       <para>WinMerge 2.2 release delays more edit events than 2.0.x releases,
       so selecting between automatic and manual rescan is mostly a matter of
       taste.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Preserve original EOL chars</title>
 
       <important>
@@ -405,9 +405,9 @@ EOL differences.</screen>
       fixing, file might be handled in systems with different EOL styles (e.g.
       Windows and Unix). In that case, user can set this option and see
       WinMerge showing EOL style for every line.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Tab options</title>
 
       <para>From <guilabel>General</guilabel>-page user can set size tabulator
@@ -416,9 +416,9 @@ EOL differences.</screen>
       <para>Another selection is if user wants WinMerge to add tab characters
       or spaces (amount specified by tab size -option) when
       <keycap>Tab</keycap>-key is pressed.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Highlighting line differences</primary>
         </indexterm>Line Difference Coloring</title>
@@ -472,30 +472,30 @@ EOL differences.</screen>
       <para>WinMerge would highlight whole lines when using <guilabel>Break at
       whitespace</guilabel> but only numbers 20/25 and 40/25 when using
       <guilabel>Break at whitespace or punctuation</guilabel>.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>System options</title>
 
-    <sect3>
+    <section>
       <title>Send deleted files to Recycle Bin</title>
 
       <para>When this options is enabled files and folders deleted in
       directory compare are moved to Recycle Bin. Note that use of Recycle Bin
       may have disabled from system.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Add to explorer context menu</title>
 
       <para>This option enables/disables shell integration. When enabled, new
       menuitem <guimenuitem>WinMerge</guimenuitem> is added to explorer's
       context menu. User can select one or two files/folders and then select
       that menuitem to open files/folders to WinMerge.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Enable advanced menu</title>
 
       <para>If this option is enabled there are two items shown in explorer's
@@ -507,9 +507,9 @@ EOL differences.</screen>
 
       <para>Second item (<guimenuitem>Compare...</guimenuitem>) in menu always
       opens WinMerge with selected path(s).</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Include subfolders by default</title>
 
       <para>Shell Integration by default does not include subfolders into
@@ -518,9 +518,9 @@ EOL differences.</screen>
       <keycap>Control</keycap> key while selecting the
       <guimenuitem>Compare...</guimenuitem> item from the Explorer context
       menu.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Configuring external editor</primary>
         </indexterm>External editor</title>
@@ -540,9 +540,9 @@ EOL differences.</screen>
         <option>-option1</option> <option>-option2</option>
         <option><replaceable>...</replaceable></option></para>
       </tip>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Filter Folder</title>
 
       <indexterm>
@@ -553,10 +553,10 @@ EOL differences.</screen>
       filters. By default this folder is user's My Documents folder. When new
       private file filter is created, it is automatically added to this
       folder.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Backup files</primary>
       </indexterm>Backup Files</title>
@@ -564,16 +564,16 @@ EOL differences.</screen>
     <para>This page allows user to select several backup-files related
     options.</para>
 
-    <sect3>
+    <section>
       <title>Create backup files in</title>
 
       <para>Selects if backup files are created for folder- and file-compares.
       In file compare backup files are created whenever files are saved. In
       folder compare backup files are created whenever files are written over
       (copied).</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Create backup files into</title>
 
       <para>Selects where backup files are created. The default is to create
@@ -585,9 +585,9 @@ EOL differences.</screen>
       backup files are created. This allows easy cleanup of backup files. But
       if there are many files with same filename in different folders, then
       those files use the same backup file.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Backup filename</title>
 
       <para>The default is to append a <filename>.bak</filename> extension to
@@ -600,16 +600,16 @@ EOL differences.</screen>
       basically this allows tracking the work with the file as every time the
       file is saved, new backup copy is created. Beware that this can cause a
       lot of files to be created.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Archive Support</title>
 
     <para>This page contains download link to 7-zip plugin and contains option
     related to archive support.</para>
 
-    <sect3>
+    <section>
       <title>Enable archive file support</title>
 
       <para>Enables or disables archive file support (based on 7-Zip
@@ -618,9 +618,9 @@ EOL differences.</screen>
       <para>Like described in Installation section of this manual, there are
       two different methods how 7-zip can be integrated. Integration method
       can be changed using this option dialog after install.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Detect archive type from file signature</title>
 
       <para>Enabling this option allows WinMerge to recognize archive files
@@ -632,17 +632,17 @@ EOL differences.</screen>
         <para>Enabling this option allows WinMerge to recognize and for
         example Open Office files.</para>
       </tip>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Codepage options</title>
 
     <para>These options allow selecting codepage WinMerge uses for ANSI files
     and if codepage should be read from file contents for specific file
     formats.</para>
 
-    <sect3>
+    <section>
       <title>Default codepage for ANSI files</title>
 
       <para>These three radiobuttons can be used to select default codepage
@@ -658,9 +658,9 @@ EOL differences.</screen>
         changes to files when saving them. <emphasis>Select codepage before
         loading the files</emphasis>.</para>
       </important>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Detect codepage info for these files: .html .rc .xml</title>
 
       <important>
@@ -696,10 +696,10 @@ EOL differences.</screen>
         copying to WinMerge, Internet Explorer offers codepage
         selection).</para>
       </caution>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Import and Export of options</title>
 
     <para>Options can be exported to and imported from file. Currently
@@ -707,5 +707,5 @@ EOL differences.</screen>
     by selecting the <guibutton>Export...</guibutton> button. WinMerge asks
     for location and filename and then saves the file. Importing is done by
     selecting the <guibutton>Import...</guibutton> -button.</para>
-  </sect2>
-</sect1>
+  </section>
+</article>

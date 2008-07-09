@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="CommandLine">
+<article id="CommandLine">
   <title><indexterm>
       <primary>Command line</primary>
     </indexterm>Command Line</title>
@@ -199,7 +199,7 @@
   <emphasis>resolved</emphasis>" about these three files. And those paths
   should be given in that order for WinMerge.</para>
 
-  <sect2>
+  <section>
     <title>Conflict File</title>
 
     <para>Conflict file can be given to command line as one path to the
@@ -207,5 +207,5 @@
     After WinMerge opens the given conflict file, it can be resolved like
     described in <link linkend="ResolveConflictFiles">Resolving Conflict
     Files</link>.</para>
-  </sect2>
-</sect1>
+  </section>
+</article>

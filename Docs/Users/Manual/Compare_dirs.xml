@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="CompareDirs">
+<article id="CompareDirs">
   <title>Comparing Folders</title>
 
   <para>The Folder compare window displays all of the files and subfolders
@@ -56,7 +56,7 @@
   big text files) it can be changed via registry value: <screen>HKEY_CURRENT_USER\Software\Thingamahoochie\WinMerge\Settings\QuickMethodLimit</screen>.
   As usual be careful when changing values directly to registry!</para>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Folder Compare Result</primary>
       </indexterm>Compare Results</title>
@@ -137,9 +137,9 @@
           </inlinemediaobject> Aborted item. WinMerge did not finish comparing
         this item when compare was stopped. Result is unknown.</member>
       </simplelist></para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Folder Compare Status</title>
 
     <para>During the folder comparison WinMerge shows status panel:</para>
@@ -187,9 +187,9 @@
 
         <guimenuitem>Compare Statistics</guimenuitem>
       </menuchoice>.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Selecting Items to Show</title>
 
     <para>In "<guimenu>View</guimenu>" menu there are several choices for
@@ -226,9 +226,9 @@
         hides files and directories filtered out by file filters</simpara>
       </listitem>
     </itemizedlist>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Folder Compare Columns</primary>
       </indexterm>Columns in Folder Compare</title>
@@ -334,9 +334,9 @@
         style (linefeed style) of files.</simpara>
       </listitem>
     </itemizedlist>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Browsing Folders</title>
 
     <para>Browsing folders is only possible when subfolders are not included
@@ -375,7 +375,7 @@
     folder. This can be used in situation explained in previous paragraph when
     there is same folder compared as both sides.</para>
 
-    <sect3>
+    <section>
       <title><indexterm>
           <primary>Open Unique Folders</primary>
         </indexterm>Unique Folders</title>
@@ -400,10 +400,10 @@
       menu. WinMerge shows a message asking if the missing folder should be
       created. Answer <guilabel>Yes</guilabel> to create the folder, or
       <guilabel>No</guilabel> to cancel the action.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Navigation in Folder Compare</title>
 
     <para>In addition moving selection using mouse or keyboard, also
@@ -417,12 +417,12 @@
 
     <para>Multiple files/folders can be selected. However not all operations
     are possible with multi-selection.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>File Operations in Folder Compare</title>
 
-    <sect3>
+    <section>
       <title>Copying, moving and deleting</title>
 
       <para>Folder compare allows user to copy and delete files and folders.
@@ -462,9 +462,9 @@
         <para>File/folder deletion cannot be undone if <guilabel>Recycle
         Bin</guilabel> is not used!</para>
       </warning>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Renaming</title>
 
       <para>Renaming files and folders is available through context menu item
@@ -473,9 +473,9 @@
       cancelled by pressing <keycap>Esc</keycap> -key. Note that items in both
       sides are renamed. Renaming just other side is not currently
       possible.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Opening files</title>
 
       <para>There are three items in <guimenu>Open</guimenu>-menus:</para>
@@ -505,9 +505,9 @@
         folder is selected usually opens that folder into new Explorer
         window.</para>
       </tip>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Archiving</title>
 
       <para><guimenu>Zip</guimenu>-menu in directory compare context menu
@@ -566,10 +566,10 @@
       file. But WinMerge does not update archive contents for files
       added/deleted/copied. User can create a new archive file using above
       menuitems instead.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Copying Path- or Filenames</title>
 
     <para>In context menu there are items for copying selected items' paths or
@@ -588,9 +588,9 @@
         filenames without paths.</simpara>
       </listitem>
     </itemizedlist>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Customising Folder Compare</title>
 
     <para>There are many ways to customize folder compare:<itemizedlist>
@@ -614,9 +614,9 @@
           dropping column names with mouse.</simpara>
         </listitem>
       </itemizedlist></para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Protecting Folders / Read-only Folders</title>
 
     <para>If user wants to protect one or both sides from changes, user can
@@ -634,9 +634,9 @@
 
     <para>Protection status is shown in statusbar, there are own panes for
     left and right side.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Hiding Files and Folders</primary>
       </indexterm>Hiding Items</title>
@@ -654,9 +654,9 @@
     So when you have merged files, use context menu item to hide them. It is a
     lot easier to see what items are left to merge. Get used to it! It saves
     your time!</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Refreshing Only Selected Items</title>
 
     <para>Full refresh of large folders can take a long time. In 2.2 and
@@ -668,5 +668,5 @@
 
         <guimenuitem>Refresh Selected</guimenuitem>
       </menuchoice> from the main menu.</para>
-  </sect2>
-</sect1>
+  </section>
+</article>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="Installing">
+<article id="Installing">
   <title>Getting and installing WinMerge</title>
 
   <para>WinMerge can be installed using the installer or by unzipping files from an archive. Using the installer is the recommended method.</para>
@@ -8,13 +8,13 @@
     <para>Currently the WinMerge installer works natively only for 32-bit Windows. There is no separate version of WinMerge for 64-bit Windows (WinXP/2003/Vista). 64-bit Windows versions can run the installer and WinMerge as 32-bit applications. For the shell Integration, the installer includes the 64-bit version of the extension.</para>
   </note>
 
-  <sect2>
+  <section>
     <title>Getting files</title>
 
     <para>The latest release can be always downloaded from the WinMerge home page: <ulink url="http://winmerge.org/">WinMerge.org</ulink>. Note that delays can occur in updating home pages for the latest releases, but the project status page at <ulink url="https://sourceforge.net/projects/winmerge/">SourceForge.net</ulink> shows the latest files. There is also a mailing list for release announcements. Stable releases are also available in several file download sites.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Using the installer (recommended)</title>
 
     <note>
@@ -164,9 +164,9 @@
         <simpara>After the installer has copied files, the final screen appears. Using the two check boxes, confirm whether the created WinMerge Start menu folder should be opened, and whether the WinMerge application should be started.</simpara>
       </listitem>
     </orderedlist>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title id="InstallFromArchive">Installing from an archive</title>
 
     <para>WinMerge is pretty much independent of other system components. It is not tightly integrated with Windows, and does not use many DLLs.</para>
@@ -180,9 +180,9 @@
     <para>Archive files have the correct folder structure. WinMerge should be unzipped preserving this folder structure in the destination folder. For example, the root folder created under <filename class="directory">C:\Program Files\</filename> has the name, <filename class="directory">WinMerge-<replaceable>version</replaceable></filename> (for example, <filename class="directory">WinMerge-2.6.0</filename>). You can rename this folder or copy its files to another folder (preserving the folder structure!).</para>
 
     <para>After the files are unzipped, WinMerge is ready to run! Shell integration and archive integration may need additional steps, as described in the next section.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Shell integration</title>
 
     <para>The installer enables shell integration when you choose the <guilabel>Enable Explorer context menu integration</guilabel> option in the Select Additional Tasks page. If you do not use the install program: you must register the shell integration DLL (<filename>ShellExtension*.dll</filename>) separately.</para>
@@ -195,16 +195,16 @@
 
     <para>To register the shell integration DLL (<filename>ShellExtension*.dll</filename>), run <filename>register.bat</filename> from the WinMerge directory. We recommend that you restart the computer after installing shell integration, so that Windows updates all its references.</para>
 
-    <sect3>
+    <section>
       <title>64-bit shell integration</title>
 
       <para>Starting with Version 2.6, WinMerge supports 64-bit Windows versions by including 64-bit shell integration. The WinMerge installer recognizes 64-bit versions of Windows and can install the correct shell integration version.</para>
 
       <para>When you install shell integration manually from an archive file, the shell integration DLL is named <filename>ShellExtensionX64.dll</filename>. You can register and unregister this file by using <filename>register.bat</filename> and <filename>unregister.bat</filename>, as with 32-bit versions.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>installing archive support</primary>
       </indexterm>7-Zip and archive support</title>
@@ -227,7 +227,7 @@
         <guimenuitem>Archive Support Disabled</guimenuitem>
       </menuchoice>.</para>
 
-    <sect3 id="Install_merge7zinstaller">
+    <section id="Install_merge7zinstaller">
       <title>Merge7zInstaller</title>
 
       <para><filename>Merge7zInstaller</filename> is a stand-alone installer for 7-Zip integration.</para>
@@ -289,6 +289,6 @@
             </variablelist>
           </listitem>
         </orderedlist></para>
-    </sect3>
-  </sect2>
-</sect1>
+    </section>
+  </section>
+</article>

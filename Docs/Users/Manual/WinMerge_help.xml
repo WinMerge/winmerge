@@ -19,8 +19,8 @@
 <!ENTITY FAQ SYSTEM "Faq.xml">
 <!ENTITY ShortCuts SYSTEM "Shortcut_keys.xml">
 ]>
-<article id="index">
-  <articleinfo>
+<book id="index">
+  <bookinfo>
     <title>WinMerge 2.8 Manual</title>
 
     <productname>WinMerge</productname>
@@ -75,7 +75,7 @@
         <contrib>and all others who helped with this.</contrib>
       </author>
     </authorgroup>
-  </articleinfo>
+  </bookinfo>
 
   &AboutDoc;
 
@@ -112,4 +112,4 @@
   &ShortCuts;
 
   <index id="word_index"/>
-</article>
+</book>

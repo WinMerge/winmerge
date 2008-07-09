@@ -12,6 +12,7 @@
   <xsl:param name="html.stylesheet">css/help.css</xsl:param>
   <xsl:param name="use.id.as.filename" select="1"/>
   <xsl:param name="chunker.output.indent" select="'yes'"></xsl:param>
+  <xsl:param name="chunk.section.depth" select="0" />
   <xsl:param name="htmlhelp.use.hhk" select="1"/>
   <xsl:param name="htmlhelp.hhc.show.root" select="0"/>
 </xsl:stylesheet>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="Plugins">
+<article id="Plugins">
   <title>Plugins</title>
 
   <para>Plugins are extra-features for WinMerge. They are not included in the
@@ -26,14 +26,14 @@
     </listitem>
   </itemizedlist>
 
-  <sect2>
+  <section>
     <title>Three categories of plugins</title>
 
     <para>"<guilabel>Plugins</guilabel>" is a generic name for extra-feature
     dll or scriptlets. Plugins features are spread over three
     categories:</para>
 
-    <sect3>
+    <section>
       <title>Editor complement</title>
 
       <para>Operate custom operations on the currently selected text from the
@@ -42,9 +42,9 @@
       <para>Example plugin: <link linkend="EditorAddin"><filename>editor
       addin.sct</filename></link> (Turn the selection to UPPER CASE or lower
       case.)</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Unpacker - Transform a file to a text format</title>
 
       <para>The plugin transform a file in a viewable format (for example,
@@ -71,9 +71,9 @@
       linkend="DisplayXMLFiles"><filename>DisplayXMLFiles.dll</filename></link>
       (Display XML files nicely, by consistently inserting tabs and
       linebreaks.)</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Prediffer - Preprocess files to hide some differences</title>
 
       <para>The plugin is not apply to the files displayed in the editor. It
@@ -84,13 +84,13 @@
       linkend="IgnoreColumns"><filename>IgnoreColumns.dll</filename></link>
       (Ignore the differences inside given columns, while displaying the
       characters in these columns.)</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Select and apply a plugin</title>
 
-    <sect3>
+    <section>
       <title>"<guilabel>Suggested plugin</guilabel>" and "<guilabel>Automatic
       mode</guilabel>"</title>
 
@@ -109,15 +109,15 @@
         "<guimenuitem>Auto prediffer</guimenuitem>" are two separate options.
         There is no option for editor complements.</para>
       </note>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Editor complement in folder view</title>
 
       <para><emphasis>Not available</emphasis></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Editor complement in editor view</title>
 
       <para>Access list from <menuchoice>
@@ -127,9 +127,9 @@
 
           <guimenuitem>...</guimenuitem>
         </menuchoice> in the main menu.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Unpacker in folder view</title>
 
       <para>Check <menuchoice>
@@ -139,9 +139,9 @@
         </menuchoice> in the main menu. You need to update the results
       (<keycap>F5</keycap>). Each file is loaded again with its suggested
       unpacker and compared.</para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Unpacker in editor view</title>
 
       <orderedlist>
@@ -177,9 +177,9 @@
           view.</para>
         </listitem>
       </orderedlist>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Prediffer in folder view</title>
 
       <para>When the files are selected, right-click to open the context menu.
@@ -199,9 +199,9 @@
         non-recursive compare, the mode is always reset to "<guimenuitem>No
         prediffer</guimenuitem>".</para>
       </note>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Prediffer in editor view</title>
 
       <orderedlist>
@@ -225,13 +225,13 @@
           compared again after the selection, you don't need to rescan.</para>
         </listitem>
       </orderedlist>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Available plugins</title>
 
-    <sect3>
+    <section>
       <title><filename>CompareMSExcelFiles.dll</filename></title>
 
       <para>Displays the text content of a <trademark
@@ -261,9 +261,9 @@
             library</link></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>CompareMSWordFiles.dll</filename></title>
 
       <para>Displays the text content of a <trademark
@@ -293,9 +293,9 @@
             runtime library</link></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3 id="DisplayXMLFiles">
+    <section id="DisplayXMLFiles">
       <title><filename>DisplayXMLFiles.dll</filename></title>
 
       <para>This plugin display XML files nicely, by consistently inserting
@@ -317,9 +317,9 @@
             <seg>No</seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3 id="EditorAddin">
+    <section id="EditorAddin">
       <title><filename>editor addin.sct</filename></title>
 
       <para>Add two functions to the <menuchoice>
@@ -347,9 +347,9 @@
             <seg>Editor complement</seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3 id="IgnoreColumns">
+    <section id="IgnoreColumns">
       <title><filename>IgnoreColumns.dll</filename></title>
 
       <para>The plugin ignore the characters at specified columns. It does not
@@ -414,9 +414,9 @@
             <seg><filename class="extension">*.txt</filename></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>IgnoreCommentsC.dll</filename></title>
 
       <para>The plugin ignores comments (<constant>//</constant>... and
@@ -440,9 +440,9 @@
             class="extension">*.js</filename>,</seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>IgnoreFieldsComma.dll</filename></title>
 
       <para>The plugin is for files with fields and <emphasis>comma</emphasis>
@@ -463,9 +463,9 @@
             <seg><filename class="extension">*.csv</filename></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>IgnoreFieldsTab.dll</filename></title>
 
       <para>The plugin is for files with fields and
@@ -488,9 +488,9 @@
             <seg><filename class="extension">*.txt</filename></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>IgnoreLeadingLineNumbers.dll</filename></title>
 
       <para>This plugin ignores the leading line numbers in text files (for
@@ -512,9 +512,9 @@
             Basic</application> runtime library</link></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>insert datetime.sct</filename></title>
 
       <para>Add two functions to the <menuchoice>
@@ -542,9 +542,9 @@
             <seg>Editor complement</seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>RCLocalizationHelper.dll</filename>,
       <filename>RCLocalizationHelperU.dll</filename></title>
 
@@ -566,9 +566,9 @@
             <seg><filename class="extension">*.rc</filename></seg>
           </seglistitem>
         </segmentedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><filename>WatchBeginningOfLog.dll</filename>,
       <filename>WatchEndOfLog.dll</filename></title>
 
@@ -606,13 +606,13 @@
       <para>Developers may find information and code of examples in the source
       package, under the folder "<filename
       class="directory">Plugins</filename>".</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Requirements</title>
 
-    <sect3>
+    <section>
       <title>Windows Script Host</title>
 
       <para>Some editor complements need this optional component from
@@ -625,9 +625,9 @@
       <ulink
       url="http://msdn.microsoft.com/library/default.asp?url=/downloads/list/webdev.asp">MSDN
       Library</ulink>.</para>
-    </sect3>
+    </section>
 
-    <sect3 id="MSVBVM60">
+    <section id="MSVBVM60">
       <title><application>Visual Basic</application> runtime library</title>
 
       <para>Some plugins require <application>Visual Basic</application>
@@ -640,6 +640,6 @@
       Redistribution Pack</ulink> from <trademark
       class="registered">Microsoft</trademark>. If you don't need the plugin,
       you can safely remove it.</para>
-    </sect3>
-  </sect2>
-</sect1>
+    </section>
+  </section>
+</article>

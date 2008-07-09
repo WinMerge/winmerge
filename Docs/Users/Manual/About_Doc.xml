@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="AboutDoc">
+<article id="AboutDoc">
   <title>About this document</title>
 
   <para>This document is the user manual for WinMerge 2.8. It explains the capabilities and limitations of WinMerge. This manual is recommended reading for both new and experienced users.</para>
@@ -85,4 +85,4 @@
       </listitem>
     </varlistentry>
   </variablelist>
-</sect1>
+</article>
