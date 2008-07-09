@@ -151,6 +151,9 @@ const TCHAR OPT_VSS_PATH[] = _T("Settings/VssPath");
 const TCHAR OPT_ARCHIVE_ENABLE[] = _T("Merge7z/Enable");
 const TCHAR OPT_ARCHIVE_PROBETYPE[] = _T("Merge7z/ProbeSignature");
 
+// Plugins
+const TCHAR OPT_PLUGINS_ENABLED[] = _T("Settings/PluginsEnabled");
+
 // Font options
 const TCHAR OPT_FONT_FILECMP_USECUSTOM[] = _T("Font/Specified");
 const TCHAR OPT_FONT_DIRCMP_USECUSTOM[] = _T("FontDirCompare/Specified");

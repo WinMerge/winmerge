@@ -43,6 +43,7 @@ public:
 	BOOL	m_bMultipleDirCmp;
 	int		m_nAutoCompleteSource;
 	BOOL	m_bPreserveFiletime;
+	BOOL m_bEnablePlugins;
 	//}}AFX_DATA
 
 
@@ -65,6 +66,8 @@ protected:
 
 private:
 	COptionsMgr *m_pOptionsMgr;
+public:
+	afx_msg void OnBnClickedVerifyOpenPaths();
 };
 
 //{{AFX_INSERT_LOCATION}}

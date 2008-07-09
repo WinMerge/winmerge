@@ -83,17 +83,12 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 	// Unpacked files will be deleted at end of this function.
 	plugCtxt->filepathTransformed1 = plugCtxt->filepathUnpacked1;
 	plugCtxt->filepathTransformed2 = plugCtxt->filepathUnpacked2;
-	m_diffFileData.SetDisplayFilepaths(plugCtxt->origFileName1.c_str(),
-			plugCtxt->origFileName2.c_str()); // store true names for diff utils patch file
 	if (!m_diffFileData.OpenFiles(plugCtxt->filepathTransformed1.c_str(),
 			plugCtxt->filepathTransformed2.c_str()))
 	{
 		errStr = _T("OpenFiles Error (before tranform)");
 		return false;
 	}
-
-	GuessCodepageEncoding(m_diffFileData.m_FileLocation[0].filepath.c_str(), 
-		&m_diffFileData.m_FileLocation[0].encoding, pCtxt->m_bGuessEncoding);
 
 	// Invoke prediff'ing plugins
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[0],
@@ -106,9 +101,6 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 
 	// we use the same plugins for both files, so they must be defined before second file
 	ASSERT(plugCtxt->infoPrediffer->bToBeScanned == FALSE);
-
-	GuessCodepageEncoding(m_diffFileData.m_FileLocation[1].filepath.c_str(), 
-		&m_diffFileData.m_FileLocation[1].encoding, pCtxt->m_bGuessEncoding);
 
 	if (!m_diffFileData.Filepath_Transform(m_diffFileData.m_FileLocation[1],
 			plugCtxt->filepathUnpacked2, plugCtxt->filepathTransformed2,
@@ -140,7 +132,6 @@ bool FolderCmp::RunPlugins(CDiffContext * pCtxt, PluginsContext * plugCtxt, CStr
 
 void FolderCmp::CleanupAfterPlugins(PluginsContext *plugCtxt)
 {
-	m_diffFileData.Reset();
 	// delete the temp files after comparison
 	if (plugCtxt->filepathTransformed1 != plugCtxt->filepathUnpacked1)
 		VERIFY(::DeleteFile(plugCtxt->filepathTransformed1.c_str()) ||
@@ -176,20 +167,41 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 
 	UINT code = DIFFCODE::FILE | DIFFCODE::CMPERR;
 
-	// Run plugins
 	if (pCtxt->m_nCompMethod == CMP_CONTENT ||
 		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
 	{
 		GetComparePaths(pCtxt, di, plugCtxt.origFileName1, plugCtxt.origFileName2);
-		CString errStr;
-		bool pluginsOk = RunPlugins(pCtxt, &plugCtxt, errStr);
-		if (!pluginsOk)
+		m_diffFileData.SetDisplayFilepaths(plugCtxt.origFileName1.c_str(),
+				plugCtxt.origFileName2.c_str()); // store true names for diff utils patch file
+	
+		// Run plugins
+		if (pCtxt->m_bPluginsEnabled)
 		{
-			di.errorDesc = errStr;
-			CleanupAfterPlugins(&plugCtxt);
-			return code;
+			CString errStr;
+			bool pluginsOk = RunPlugins(pCtxt, &plugCtxt, errStr);
+			if (!pluginsOk)
+			{
+				di.errorDesc = errStr;
+				CleanupAfterPlugins(&plugCtxt);
+				return code;
+			}
 		}
+		else
+		{
+			if (!m_diffFileData.OpenFiles(plugCtxt.origFileName1.c_str(),
+					plugCtxt.origFileName2.c_str()))
+			{
+				di.errorDesc = _T("Error opening compared files");
+				return false;
+			}
+		}
+
+		GuessCodepageEncoding(m_diffFileData.m_FileLocation[0].filepath.c_str(), 
+				&m_diffFileData.m_FileLocation[0].encoding, pCtxt->m_bGuessEncoding);
+		GuessCodepageEncoding(m_diffFileData.m_FileLocation[1].filepath.c_str(), 
+				&m_diffFileData.m_FileLocation[1].encoding, pCtxt->m_bGuessEncoding);
 	}
+
 
 	// If either file is larger than limit compare files by quick contents
 	// This allows us to (faster) compare big binary files
@@ -321,8 +333,9 @@ UINT FolderCmp::prepAndCompareTwoFiles(CDiffContext * pCtxt, DIFFITEM &di)
 		di.errorDesc = _T("Bad compare type");
 	}
 
-	if (pCtxt->m_nCompMethod == CMP_CONTENT ||
-		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT)
+	m_diffFileData.Reset();
+	if (pCtxt->m_bPluginsEnabled && (pCtxt->m_nCompMethod == CMP_CONTENT ||
+		pCtxt->m_nCompMethod == CMP_QUICK_CONTENT))
 	{
 		CleanupAfterPlugins(&plugCtxt);
 	}

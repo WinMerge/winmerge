@@ -442,6 +442,7 @@ int CMergeDoc::Rescan(BOOL &bBinary, BOOL &bIdentical,
 		m_diffWrapper.GetMovedLines()->Clear();
 
 	// Set paths for diffing and run diff
+	m_diffWrapper.EnablePlugins(GetOptionsMgr()->GetBool(OPT_PLUGINS_ENABLED));
 	m_diffWrapper.SetPaths(m_tempFiles[0].GetPath(), m_tempFiles[1].GetPath(), TRUE);
 	m_diffWrapper.SetCompareFiles(m_filePaths.GetLeft(), m_filePaths.GetRight());
 	m_diffWrapper.SetCodepage(m_ptBuf[0]->m_encoding.m_unicoding ?
