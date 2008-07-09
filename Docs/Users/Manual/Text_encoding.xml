@@ -1,6 +1,6 @@
-<sect1 id="TextEncoding">
+<article id="TextEncoding">
   <title>Text Encoding (codepages)</title>
-  <sect2>
+  <section>
     <title>Common scenarios</title>
     <orderedlist>
       <listitem>
@@ -31,8 +31,8 @@ or a western European language, you may get by with
         <para>You should use <filename>WinMergeU.exe</filename> (if you are on NT/2000/XP/2003) in order to correctly display double-wide characters. See the Font section for font recommendations. If you are on Win95/98/ME, then you may attempt to view the files in <filename>WinMerge.exe</filename>, but it is recommended that you do not attempt to merge them.</para>
       </listitem>
     </orderedlist>
-  </sect2>
-  <sect2>
+  </section>
+  <section>
     <title>Explanation</title>
     <para>Characters (such as "a" or "1" or "&amp;") are represented by computers as numbers, and there is more than one way to do this. A text encoding method is a way to encode the characters into the numbers (bytes) of which a file is comprised. There are four main text encoding families:</para>
     <itemizedlist>
@@ -76,5 +76,5 @@ or a western European language, you may get by with
         <para>Each character may be one, two, three, four, five, or six bytes in the file. This supports the full range of Unicode 3.x.</para>
       </listitem>
     </itemizedlist>
-  </sect2>
-</sect1>
+  </section>
+</article>

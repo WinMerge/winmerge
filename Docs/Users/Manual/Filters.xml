@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="Filters">
+<article id="Filters">
   <title>Filters</title>
 
   <para>There are two kinds of filters in WinMerge: file filters for filtering
   files and folders in folder compare and line filters for ignoring lines from
   files before comparing.</para>
 
-  <sect2>
+  <section>
     <title>Regular expressions</title>
 
     <para>Filters are based on regular expressions (regexps). Each line filter
@@ -21,7 +21,7 @@
     regular expression engine. There are lots of resources for help with Perl
     regular expression.</para>
 
-    <sect3>
+    <section>
       <title>Help with regexps</title>
 
       <para>There are many guides and help sites in Web, for example:</para>
@@ -63,10 +63,10 @@
           </listitem>
         </varlistentry>
       </variablelist>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>File filters</title>
 
     <para>A file filter is a set of rules saved to one file. Every file and
@@ -97,7 +97,7 @@
     one does not care about the file, WinMerge tries to minimize the effort
     and time for the file.</para>
 
-    <sect3>
+    <section>
       <title>Filter files</title>
 
       <para>Filter files are normal text files, with an extension of <filename
@@ -237,10 +237,10 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
       character (space or tabulator) and comment-marker
       (<constant>##</constant>). <constant>##</constant> can be used as part
       of rule if there is no whitespace character before it.</para>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Line filters</title>
 
     <para>Line filters can be used to ignore single lines from compared files.
@@ -327,5 +327,5 @@ f: ^[h,k,m] ## h*.* &amp; k*.* &amp; m*.* files</screen>
 
       <screen>^#</screen>
     </example>
-  </sect2>
-</sect1>
+  </section>
+</article>

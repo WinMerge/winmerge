@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="CompareFiles">
+<article id="CompareFiles">
   <title>Comparing Files</title>
 
   <para>File compare window is basically two files opened to editor into two
@@ -29,7 +29,7 @@
     refresh is recommended after editing.</para>
   </tip>
 
-  <sect2>
+  <section>
     <title>Showing the Differences</title>
 
     <para>WinMerge uses different (user configurable) colors to highlight and
@@ -37,9 +37,9 @@
     background and missing lines with gray background. If user selects the
     difference, it is shown with red background and missing lines with milder
     red.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Tabs</title>
 
     <para>WinMerge can show open windows in tab bar below toolbar. Tab bar can
@@ -50,9 +50,9 @@
       </menuchoice>. When the tab bar is shown it has one tab for every open
     window. The tab contains last part of the folder names or file
     names.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>File Headerbar</title>
 
     <para>The file headerbar has several functionalities. See screenshot
@@ -82,9 +82,9 @@
 
     <para>Headerbar has a context menu with items to copy full path or
     filename to clipboard.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Statusbar</title>
 
     <para><inlinemediaobject>
@@ -173,9 +173,9 @@
           difference (<guilabel>X</guilabel>)</simpara>
         </listitem>
       </itemizedlist></para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Editor Margin</title>
 
     <para>The editor panes (file panes) have optional gray margin area for
@@ -230,9 +230,9 @@
     that with linenumbers the margin width is set so that the longest line
     number fits into it. So with large files with lots of lines it needs space
     for several numbers.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Difference Navigation</primary>
 
@@ -248,7 +248,7 @@
         </imageobject>
       </inlinemediaobject></para>
 
-    <sect3>
+    <section>
       <title>Selecting a difference</title>
 
       <para>Before difference can be merged, it must be selected. Selecting
@@ -265,9 +265,9 @@
           <guimenuitem>Current Difference</guimenuitem>.</simpara>
         </listitem>
       </itemizedlist>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Navigating differences</title>
 
       <para><guimenu>Merge</guimenu>-menu has items for navigating to
@@ -280,9 +280,9 @@
         <para>When difference is selected with navigation commands cursor is
         moved to begin of first line of difference. In both files.</para>
       </note>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title><guimenuitem>Current Difference</guimenuitem>-command</title>
 
       <para>This command has two important functions:<itemizedlist>
@@ -299,9 +299,9 @@
             contents and quickly return back to selected difference.</simpara>
           </listitem>
         </itemizedlist></para>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Go To line or difference</title>
 
       <para>Using <guimenuitem>Go To</guimenuitem> from
@@ -315,10 +315,10 @@
         using <guimenuitem>Find</guimenuitem> or difference navigation it is
         faster to jump to first line of difference.</para>
       </tip>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Merging Differences</primary>
       </indexterm>Merging Differences</title>
@@ -377,9 +377,9 @@
       linkend="Configuration">Options &amp; Configuration</link> -chapter for
       more information.</para>
     </tip>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Merge Mode</primary>
       </indexterm>Merge Mode</title>
@@ -420,9 +420,9 @@
 
     <para>When merge mode is enabled <guilabel>Merge</guilabel> text is shown
     in statusbar.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Refreshing</title>
 
     <para>Refreshing updates differences after changes are made to files. It
@@ -433,9 +433,9 @@
       updated files etc, those changes are not seen. Refresh updates
       differences according changes user has done.</para>
     </note>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>View Whitespaces</title>
 
     <para>When enabled from <guimenu>View</guimenu> menu <guimenuitem>View
@@ -444,9 +444,9 @@
     spaces in other file and tabulators in other. Also, if <guilabel>Preserve
     original EOL chars</guilabel> is enabled, WinMerge shows type of EOL
     (<guilabel>Windows</guilabel>/<guilabel>Unix</guilabel>/<guilabel>Mac</guilabel>).</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Editing Files</title>
 
     <para>Normal editing features work in WinMerge editor. User can type and
@@ -455,9 +455,9 @@
     only in other side). Anyway these customisations are not usually visible
     to users otherwise that lines can sometimes "jump" when WinMerge has to
     relocate matching/non-matching files.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Line Difference Highlight</title>
 
     <para>WinMerge can automatically highlight all differences it finds in
@@ -488,9 +488,9 @@
       </menuchoice> and <guilabel>Editor</guilabel> page). See <link
     linkend="Configuration">Options &amp; Configuration</link> -chapter for
     more information.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Line Difference Selection</title>
 
     <para>Many times it is useful to see exact differences inside lines.
@@ -505,9 +505,9 @@
         <imagedata fileref="screenshots/linediff.png" format="PNG" />
       </imageobject>
     </mediaobject>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Location Pane</title>
 
     <para>Location pane is a handy side-pane showing a overall (difference)
@@ -546,9 +546,9 @@
     background color) can be used like a scrollbar thumb - after pressing down
     the left mouse button over it can be dragged upwards and downwards to
     scroll the files.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Context Menu</title>
 
     <para>File compare context menu contains items for frequently used
@@ -565,9 +565,9 @@
     (system) registered application or with external editor. Also context menu
     merge-commands are not relative to active file. They always merge the
     selected difference.</para>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Fonts</title>
 
     <para>Font used by editor can be changed from <menuchoice>
@@ -603,9 +603,9 @@
         fixed-width mode)</simpara>
       </listitem>
     </itemizedlist>
-  </sect2>
+  </section>
 
-  <sect2 id="ResolveConflictFiles">
+  <section id="ResolveConflictFiles">
     <title><indexterm>
         <primary>Conflict Files</primary>
       </indexterm>Resolving Conflict Files</title>
@@ -617,7 +617,7 @@
     compare. So conflicted file can be resolved using normal WinMerge file
     compare functionality.</para>
 
-    <sect3>
+    <section>
       <title>Opening Conflict Files</title>
 
       <para>Conflict files can be opened into WinMerge using <menuchoice>
@@ -633,9 +633,9 @@
         wanted to save, it must be copied to another folder or another
         filename before opening it into WinMerge.</para>
       </warning>
-    </sect3>
+    </section>
 
-    <sect3>
+    <section>
       <title>Conflict Resolving</title>
 
       <para>WinMerge opens conflict file into normal file compare (see above).
@@ -673,6 +673,6 @@
       command line parameters. See more info from <link
       linkend="CommandLine">Command Line</link> -chapter. Single path to the
       conflict file is also accepted in command line.</para>
-    </sect3>
-  </sect2>
-</sect1>
+    </section>
+  </section>
+</article>

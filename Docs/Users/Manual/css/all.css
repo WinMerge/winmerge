@@ -34,11 +34,30 @@ div.navfooter {
   border-bottom: 1px solid black;
 }
 
+div.navheader>table>tbody>tr>th {
+  display:none;
+}
+
 div.article,
-div.sect1,
+div.section,
 div.appendix,
 div.index {
   padding: 5px;
+}
+
+/* topic title */
+div.article>div>div>div>h2 {
+  font-size: 160%;
+  text-align: center;
+  color: #3333cc;
+}
+
+div.section h2 {
+  font-size: 140%;
+}
+
+div.section h3 {
+  font-size: 120%;
 }
 
 #ads {
@@ -157,7 +176,8 @@ div.index {
   margin-top: 0;
 }
 
-.toc .sect1,
+/*.toc .sect1,*/
+.toc .article,
 .toc .appendix,
 .toc .index {
   font-size: 120%;

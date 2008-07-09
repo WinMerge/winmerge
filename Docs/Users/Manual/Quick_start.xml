@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="QuickStart">
+<article id="QuickStart">
   <title>Quick start</title>
 
-  <sect2>
+  <section>
     <title><indexterm>
         <primary>Open dialog</primary>
       </indexterm>Opening files and folders</title>
@@ -165,7 +165,7 @@
       </listitem>
     </orderedlist>
 
-    <sect3>
+    <section>
       <title>Other ways to open files and folders</title>
 
       <para>The Select Files or Folders dialog is the main interface for opening files and folders. But you can use many other ways, too:</para>
@@ -211,10 +211,10 @@
           <simpara>You can drag and drop files and folders directly into the WinMerge window or on the WinMerge desktop shortcut.</simpara>
         </listitem>
       </itemizedlist>
-    </sect3>
-  </sect2>
+    </section>
+  </section>
 
-  <sect2>
+  <section>
     <title>Comparing folders</title>
 
     <para><inlinemediaobject>
@@ -260,9 +260,9 @@
       </inlinemediaobject> up arrow at the top of the Filename column.</para>
 
     <para>If you compare a file, WinMerge opens File Compare window with a new tab, as shown in the figure in the next section. Then, if you make changes in the File Compare window, the file's data is updated in the Folder Compare window.</para>
-  </sect2>
+  </section>
 
-  <sect2 id="QuickStart_comparingfiles">
+  <section id="QuickStart_comparingfiles">
     <title>Comparing files</title>
 
     <para><inlinemediaobject>
@@ -290,5 +290,5 @@
           <phrase>Refresh button</phrase>
         </textobject>
       </inlinemediaobject> toolbar button, or pressing <keycap>F5</keycap>.</para>
-  </sect2>
-</sect1>
+  </section>
+</article>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sect1 id="Faq">
+<article id="Faq">
   <title>Frequently asked questions</title>
 
-  <sect2>
+  <section>
     <title>General questions</title>
 
     <qandaset>
@@ -204,9 +204,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Installing</title>
 
     <qandaset>
@@ -223,9 +223,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>File Comparing</title>
 
     <qandaset>
@@ -247,9 +247,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Questions about editor</title>
 
     <qandaset>
@@ -341,9 +341,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>WinMerge as external compare or diff-tool</title>
 
     <qandaset>
@@ -407,9 +407,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Archive support</title>
 
     <qandaset>
@@ -474,9 +474,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Text encoding (codepages)</title>
 
     <qandaset>
@@ -579,9 +579,9 @@
         </answer>
       </qandaentry>
     </qandaset>
-  </sect2>
+  </section>
 
-  <sect2>
+  <section>
     <title>Patch files</title>
 
     <qandaset>
@@ -615,5 +615,5 @@
     </qandaset>
 
     <para></para>
-  </sect2>
-</sect1>
+  </section>
+</article>
