@@ -7,6 +7,7 @@ WinMerge 2.9.1.6
   Manual: Introduction update (#2011365)
   Manual: Reorganize structure (#2011924)
   Add ShellExtension menu for drive letters (root folders) (#2011602)
+  Remove buildall.bat (#2013576)
   BugFix: Use system codepage for paths (#1979429, #2008581)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
