@@ -236,6 +236,7 @@ void DirCmpReport::WriteString(LPCTSTR pszText)
 		cchAhead -= cchLine;
 	}
 	m_pFile->Write(pchOctets, cchAhead);
+	free((void*)pchOctets);
 }
 
 /**
@@ -432,4 +433,5 @@ void DirCmpReport::GenerateXmlFooter()
 {
 	WriteString(_T("</WinMergeDiffReport>\n"));
 }
+
 

@@ -7,7 +7,9 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
-#include "stdafx.h"
+#include <windows.h>
+
+static LPCSTR convert(LPCTSTR str, UINT codepage);
 
 /**
  * @brief Convert from Unicode to Ansi using system codepage.
@@ -19,13 +21,7 @@
  */
 LPCSTR ansiconvert_SystemCP(LPCTSTR str)
 {
-	// These lines replace USES_CONVERSION macro
-	int _convert = 0;
-	UINT _acp = GetACP();
-	LPCWSTR _lpw = 0;
-	LPCSTR  _lpa = 0;
-
-	return T2CA(str);
+	return convert(str, CP_ACP);
 }
 
 /**
@@ -37,8 +33,28 @@ LPCSTR ansiconvert_SystemCP(LPCTSTR str)
  */
 LPCSTR ansiconvert_ThreadCP(LPCTSTR str)
 {
-	USES_CONVERSION;
-	return T2CA(str);
+	return convert(str, CP_THREAD_ACP);
 }
 
+/**
+ * @brief Convert from Unicode to Ansi using given codepage.
+ * @param [in] str String to convert.
+ * @param [in] codepage Codepage to use in conversion.
+ * @return Ansi string.
+ */
+LPCSTR convert(LPCTSTR str, UINT codepage)
+{
+#ifndef UNICODE
+	return str;
+#else
+	int len = WideCharToMultiByte(codepage, 0, str, -1, 0, 0, 0, 0);
+	if (len)
+	{
+		char * ansi = (char *)malloc(len);
+		WideCharToMultiByte(codepage, 0, str, -1, ansi, len, NULL, NULL);
+		return ansi;
+	}
+	return NULL;
+#endif
+}
 
