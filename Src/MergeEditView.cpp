@@ -1766,55 +1766,55 @@ void CMergeEditView::SetStatusInterface(IMergeEditStatus * piMergeEditStatus)
  */
 void CMergeEditView::OnUpdateCaret()
 {
-	if (m_piMergeEditStatus && IsTextBufferInitialized())
+	if (!m_piMergeEditStatus || !IsTextBufferInitialized())
+		return;
+
+	CPoint cursorPos = GetCursorPos();
+	int nScreenLine = cursorPos.y;
+	const int nRealLine = ComputeRealLine(nScreenLine);
+	CString sLine;
+	int chars = -1;
+	CString sEol;
+	int column = -1;
+	int columns = -1;
+	int curChar = -1;
+	DWORD dwLineFlags = 0;
+
+	dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
+	// Is this a ghost line ?
+	if (dwLineFlags & LF_GHOST)
 	{
-		CPoint cursorPos = GetCursorPos();
-		int nScreenLine = cursorPos.y;
-		int nRealLine = ComputeRealLine(nScreenLine);
-		CString sLine;
-		int chars = -1;
-		CString sEol;
-		int column = -1;
-		int columns = -1;
-		int curChar = -1;
-		DWORD dwLineFlags = 0;
-
-		dwLineFlags = m_pTextBuffer->GetLineFlags(nScreenLine);
-		// Is this a ghost line ?
-		if (dwLineFlags & LF_GHOST)
-		{
-			// Ghost lines display eg "Line 12-13"
-			sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
-			sEol = _T("hidden");
-		}
-		else
-		{
-			// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
-			sLine.Format(_T("%d"), nRealLine+1);
-			curChar = cursorPos.x + 1;
-			chars = GetLineLength(nScreenLine);
-			column = CalculateActualOffset(nScreenLine, cursorPos.x, TRUE) + 1;
-			columns = CalculateActualOffset(nScreenLine, chars, TRUE) + 1;
-			chars++;
-			if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
-					GetDocument()->IsMixedEOL())
-			{
-				sEol = GetTextBufferEol(nScreenLine);
-			}
-			else
-				sEol = _T("hidden");
-		}
-		m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
-			curChar, chars, sEol);
-
-		// Is cursor inside difference?
-		if (dwLineFlags & LF_NONTRIVIAL_DIFF)
-			m_bCurrentLineIsDiff = TRUE;
-		else
-			m_bCurrentLineIsDiff = FALSE;
-
-		UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
+		// Ghost lines display eg "Line 12-13"
+		sLine.Format(_T("%d-%d"), nRealLine, nRealLine+1);
+		sEol = _T("hidden");
 	}
+	else
+	{
+		// Regular lines display eg "Line 13 Characters: 25 EOL: CRLF"
+		sLine.Format(_T("%d"), nRealLine+1);
+		curChar = cursorPos.x + 1;
+		chars = GetLineLength(nScreenLine);
+		column = CalculateActualOffset(nScreenLine, cursorPos.x, TRUE) + 1;
+		columns = CalculateActualOffset(nScreenLine, chars, TRUE) + 1;
+		chars++;
+		if (GetOptionsMgr()->GetBool(OPT_ALLOW_MIXED_EOL) ||
+				GetDocument()->IsMixedEOL())
+		{
+			sEol = GetTextBufferEol(nScreenLine);
+		}
+		else
+			sEol = _T("hidden");
+	}
+	m_piMergeEditStatus->SetLineInfo(sLine, column, columns,
+		curChar, chars, sEol);
+
+	// Is cursor inside difference?
+	if (dwLineFlags & LF_NONTRIVIAL_DIFF)
+		m_bCurrentLineIsDiff = TRUE;
+	else
+		m_bCurrentLineIsDiff = FALSE;
+
+	UpdateLocationViewPosition(m_nTopSubLine, m_nTopSubLine + GetScreenLines());
 }
 /**
  * @brief Select linedifference in the current line.
