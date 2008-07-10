@@ -10,6 +10,7 @@ WinMerge 2.11.1.1
   Remove buildall.bat (#2013576)
   New option to enable plugins (disabled by default) (#2013845)
   BugFix: Use system codepage for paths (#1979429, #2008581)
+  BugFix: ANSI build crash in folder compare (#2010053)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
 
