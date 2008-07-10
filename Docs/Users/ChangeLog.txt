@@ -10,6 +10,7 @@ WinMerge 2.9.1.6
   Remove buildall.bat (#2013576)
   BugFix: Use system codepage for paths (#1979429, #2008581)
   BugFix: ANSI build crash in folder compare (#2010053)
+  BugFix: Add insert/overtype mode indicator to statusbar (#2015174)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
 

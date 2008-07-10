@@ -222,14 +222,14 @@ END_MESSAGE_MAP()
 /**
  * @brief MainFrame statusbar panels/indicators
  */
-static UINT indicators[] =
+static UINT StatusbarIndicators[] =
 {
 	ID_SEPARATOR,           // status line indicator
 	ID_SEPARATOR,           // Merge mode
 	ID_SEPARATOR,           // Diff number
-	ID_INDICATOR_CAPS,
-	ID_INDICATOR_NUM,
-	ID_INDICATOR_SCRL,
+	ID_INDICATOR_CAPS,      // Caps Lock
+	ID_INDICATOR_NUM,       // Num Lock
+	ID_INDICATOR_OVR,       // Insert
 };
 
 /** @brief Timer ID for window flashing timer. */
@@ -405,8 +405,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
 	}
-	theApp.SetIndicators(m_wndStatusBar, indicators, sizeof(indicators)/sizeof(UINT));
-	
+	theApp.SetIndicators(m_wndStatusBar, StatusbarIndicators,
+			countof(StatusbarIndicators));
+
 	m_wndStatusBar.SetPaneInfo(1, ID_STATUS_MERGINGMODE, 0, 100); 
 	m_wndStatusBar.SetPaneInfo(2, ID_STATUS_DIFFNUM, 0, 150); 
 	if (GetOptionsMgr()->GetBool(OPT_SHOW_STATUSBAR) == false)
