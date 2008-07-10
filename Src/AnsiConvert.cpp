@@ -41,11 +41,13 @@ LPCSTR ansiconvert_ThreadCP(LPCTSTR str)
  * @param [in] str String to convert.
  * @param [in] codepage Codepage to use in conversion.
  * @return Ansi string.
+ * @note Function must allocate a new string, as DiffFileData gets the
+ * filename and expects it can be freed with free().
  */
 LPCSTR convert(LPCTSTR str, UINT codepage)
 {
 #ifndef UNICODE
-	return str;
+	return strdup(str);
 #else
 	int len = WideCharToMultiByte(codepage, 0, str, -1, 0, 0, 0, 0);
 	if (len)
@@ -57,4 +59,5 @@ LPCSTR convert(LPCTSTR str, UINT codepage)
 	return NULL;
 #endif
 }
+
 
