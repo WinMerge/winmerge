@@ -32,7 +32,7 @@ REM Enable echo lines below if you need to debug this script
 REM echo %0
 REM echo $(IntDir) = %1
 REM echo $(TargetPath) = %2
-del $(TargetPath)
+del %2
 
 REM Create build directories
 mkdir ..\Build\expat
