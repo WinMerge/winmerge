@@ -74,10 +74,18 @@ String FileTextEncoding::GetName() const
 	String str;
 	if (m_codepage > -1)
 	{
-		str.resize(32);
-		LPTSTR s = &*str.begin(); //GetBuffer(32);
-		int len = _sntprintf(s, 32, _T("%d"), m_codepage);
-		str.resize(len);
+		if (m_codepage == CP_UTF8)
+		{
+			// We detected codepage to be UTF-8, but unicoding was not set
+			str = LoadResString(IDS_UNICODING_UTF8);
+		}
+		else
+		{
+			str.resize(32);
+			LPTSTR s = &*str.begin(); //GetBuffer(32);
+			int len = _sntprintf(s, 32, _T("%d"), m_codepage);
+			str.resize(len);
+		}
 	}
 	return str;
 }
