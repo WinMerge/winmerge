@@ -37,7 +37,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpatMT.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeUnicodeDebug\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -101,7 +101,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpatMT.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeRelease\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -164,7 +164,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpatMT.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeDebug\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -228,7 +228,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpatMT.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeReleaseMinSize\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -291,7 +291,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpatMT.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeUnicodeRelease\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
@@ -354,7 +354,7 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="libexpatMapsMT.lib libexpatMT.lib odbc32.lib odbccp32.lib"
+				AdditionalDependencies="libexpatMapsMT.lib libexpat.lib odbc32.lib odbccp32.lib"
 				OutputFile="..\..\..\Build\MergeUnicodeReleaseMinSize\MergePlugins/DisplayXMLFiles.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="TRUE"
