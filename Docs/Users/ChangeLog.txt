@@ -9,6 +9,7 @@ WinMerge 2.11.1.1
   Add ShellExtension menu for drive letters (root folders) (#2011602)
   Remove buildall.bat (#2013576)
   New option to enable plugins (disabled by default) (#2013845)
+  Plugins: Show processing instructions in XML plugin (#1979321)
   BugFix: Use system codepage for paths (#1979429, #2008581)
   BugFix: ANSI build crash in folder compare (#2010053)
   BugFix: Add insert/overtype mode indicator to statusbar (#2015174)

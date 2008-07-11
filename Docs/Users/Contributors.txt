@@ -148,6 +148,7 @@ Other Contributors (code, ideas, testing..):
 * Andreas Morsing
 * Ryan Mott
 * Tim Musschoot
+* Marco De Paoli
 * Dan Pidcock
 * Vincent Osele
 * Scott Rasmussen
