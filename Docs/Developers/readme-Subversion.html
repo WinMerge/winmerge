@@ -37,15 +37,13 @@ It served us pretty well. In 2006 SourceForge made Subversion also available as
 service. And after short discussion WinMerge developers agreed to switch to Subversion.
 It fits better to our needs than CVS. So we switched from CVS to Subversion in August 2006.
 </p>
-<h4>But CVS is better! I Want to use CVS!</h4>
-<p>We decided subversion is better for us. We keep using Subversion for now on.</p>
-<h4>What happened to code in CVS?</h4>
-<p>Nothing. It is still there. We don't just checkin anymore to CVS. And CVS page is not
-visible in our project page.</p>
+<h4>Where are old branches and tags?</h4>
+<p>They are in CVS. We did not import them to Subversion. If you need (codes of)
+old stable version you get them from project downloads.</p>
 
 <h3>Web access</h3>
 <p>Easiest way to browse our source code is through web. SourceForge.net utilizes
-<a href="http://viewvc.tigris.org/">ViewVC</a> to access CVS/Subversion repositories via Web.
+<a href="http://viewvc.tigris.org/">ViewVC</a> to access Subversion repositories via Web.
 WinMerge Subversion repository is available at: <a href="http://winmerge.svn.sourceforge.net/viewvc/winmerge/">
 http://winmerge.svn.sourceforge.net/viewvc/winmerge/</a>.
 </p>
@@ -60,6 +58,10 @@ http://winmerge.svn.sourceforge.net/viewvc/winmerge/</a>.
     <a href="http://subversion.tigris.org/">Subversion</a> The Thing. If you want to use commandline
     or if you want your own local Subversion repository, you need it. Not needed for TortoiseSVN.
   </li>
+  <li>
+   <a href="http://ankhsvn.open.collab.net/">AnkhSVN</a> is a Subversion plugin
+   for Visual Studio (VS2005+).
+   </li>
 </ul>
 
 <h3>Subversion documentation</h3>
@@ -81,7 +83,7 @@ in the net. Just listing couple of them here:</p>
 <p>WinMerge Subversion repository URL is:<br>
 <code><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge">https://winmerge.svn.sourceforge.net/svnroot/winmerge</a></code>
 </p>
-<p>Using above URL will checkout all branches and tags also. WinMerge development happens in
+<p>Using above URL will checkout all branches and tags. WinMerge development happens in
 <i>trunk</i> and URL is:<br>
 <code><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk">https://winmerge.svn.sourceforge.net/svnroot/winmerge/trunk</a></code>
 </p>
@@ -95,8 +97,12 @@ in the net. Just listing couple of them here:</p>
   <li>2.8 release branch<br>
   <code><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_8">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_8</a></code></li>
   <li>2.10 release branch<br>
-  <code><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10</a></code></li></ul>
+  <code><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10">https://winmerge.svn.sourceforge.net/svnroot/winmerge/branches/R2_10</a></code></li>
+</ul>
 <p>Old branches (2.0 - 2.4 releases) are in CVS repository.</p>
+<p>For every beta- and stable-release we add a tag. Tags are in folder:<br>
+<code><a href="tsvn:https://winmerge.svn.sourceforge.net/svnroot/winmerge/tags">https://winmerge.svn.sourceforge.net/svnroot/winmerge/tags</a></code>
+</p>
 
 <h3>Quick intro to using TortoiseSVN</h3>
 <h4>Checkout</h4>
