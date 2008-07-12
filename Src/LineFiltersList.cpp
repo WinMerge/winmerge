@@ -101,7 +101,7 @@ String LineFiltersList::GetAsString() const
  * @return Filter item from the index. If the index is beyond table limit,
  *  return the last item in the list.
  */
-const LineFilterItem & LineFiltersList::GetAt(int ind)
+const LineFilterItem & LineFiltersList::GetAt(int ind) const
 {
 	if (ind < m_items.size())
 		return *m_items[ind];
@@ -115,14 +115,14 @@ const LineFilterItem & LineFiltersList::GetAt(int ind)
  * list are removed and new items added from the given list.
  * @param [in] list List to clone.
  */
-void LineFiltersList::CloneFrom(LineFiltersList *list)
+void LineFiltersList::CloneFrom(const LineFiltersList *list)
 {
 	Empty();
 	int count = list->GetCount();
 
 	for (int i = 0; i < count; i++)
 	{
-		LineFilterItem item = list->GetAt(i);
+		const LineFilterItem &item = list->GetAt(i);
 		AddFilter(item.filterStr.c_str(), item.enabled);
 	}
 }
