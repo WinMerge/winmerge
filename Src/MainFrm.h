@@ -62,6 +62,16 @@ enum
 	VCS_CLEARCASE,
 };
 
+/**
+ * @brief Frame/View/Document types.
+ */
+enum FRAMETYPE
+{
+	FRAME_FOLDER, /**< Folder compare frame. */
+	FRAME_FILE, /**< File compare frame. */
+	FRAME_OTHER, /**< No frame? */
+};
+
 enum { WM_NONINTERACTIVE = 888 }; // timer value
 
 class BCMenu;
@@ -132,6 +142,7 @@ public:
 	void StartFlashing();
 	bool AskCloseConfirmation();
 	BOOL DoOpenConflict(LPCTSTR conflictFile, bool checked = false);
+	FRAMETYPE GetFrameType(const CFrameWnd * pFrame) const;
 
 // Overrides
 	virtual void GetMessageString(UINT nID, CString& rMessage) const;
