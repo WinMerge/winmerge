@@ -42,7 +42,7 @@ copy "..\css\all.css" "%docbook_outputdir%\css\all.css"
 copy "..\css\print.css" "%docbook_outputdir%\css\print.css"
 
 echo Create HTML files...
-%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_saxon_xsl% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\
+%docbook_java_exe% %docbook_java_parameters% -cp %docbook_saxon_jar%;%docbook_xerces_jar%;%docbook_saxon_xsl% -Djavax.xml.parsers.DocumentBuilderFactory=%DBFACTORY% -Djavax.xml.parsers.SAXParserFactory=%SPFACTORY% -Dorg.apache.xerces.xni.parser.XMLParserConfiguration=%XINCLUDE% com.icl.saxon.StyleSheet %docbook_inputfile% %docbook_use_stylesheet% base.dir=%docbook_outputdir%\
 
 echo Finished!
 

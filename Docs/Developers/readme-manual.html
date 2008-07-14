@@ -99,10 +99,10 @@ where we want transparency, we use the GIF format, since older browsers have pro
   <li><a href="http://sourceforge.net/project/showfiles.php?group_id=21935&amp;package_id=16608">XSL StyleSheets</a></li>
   <li><a href="http://msdn.microsoft.com/library/default.asp?url=/library/en-us/htmlhelp/html/hwMicrosoftHTMLHelpDownloads.asp">HTML Help Compiler</a></li>
 </ul>
-<p>The easiest way is to install <a href="http://www.e-novative.info/software/ede.php">eDE</a>,
-because it install all required tools (except of Java).</p>
+<p>The easiest way is to download <a href="http://winmerge.org/~gerundt/winmerge_manual_build_tools_v1.zip">our manual build tools package</a>
+(it includes all required tools except of Java) and unzip it to the <code>build</code> subdirectory at the <code>Manual</code> directory.</p>
 
-<p>The batch files are located at the <code>build</code> subdirectory at the <code>Manual</code> directory.
+<p>The batch files are also located at the <code>build</code> subdirectory at the <code>Manual</code> directory.
 The main file ist <code>build.bat</code>. Paths to the installed tools are written in the <code>configuration.bat</code> file.</p>
 <dl>
   <dt><code>build.bat html</code> or <code>build_html.bat</code></dt>
@@ -114,13 +114,6 @@ The main file ist <code>build.bat</code>. Paths to the installed tools are writt
   <dt><code>build.bat</code></dt>
   <dd>Is the same like <code>build.bat html</code>.</dd>
 </dl>
-
-<p><b>Note:</b> If you use a other path than <code>C:\docbook\xsl</code> for the <em>XSL StyleSheets</em>
-you must change the files <code>build_html.xsl</code> and <code>build_htmlhelp.xsl</code>:</p>
-<p>build_html.xsl:</p>
-<pre>&lt;xsl:import href="file:/<b>C:/docbook/xsl/</b>html/chunk.xsl"/&gt;</pre>
-<p>build_htmlhelp.xsl:</p>
-<pre>&lt;xsl:import href="file:/<b>C:/docbook/xsl/</b>htmlhelp/htmlhelp.xsl"/&gt;</pre>
 
 <h3>Docbook support in SourceForge</h3>
 <p>SourceForge has Docbook tools installed, and they can be used from
