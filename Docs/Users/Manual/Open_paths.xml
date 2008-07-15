@@ -1,74 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <article id="OpenPaths">
-  <title>Opening Files and Folders</title>
+  <title>Opening files and folders</title>
 
-  <para>WinMerge allows selecting/opening paths in several ways. Using
-  Open-dialog is just one of them.</para>
+  <para>WinMerge provides several ways to specify paths and open files or folders:</para>
 
-  <section>
-    <title>Open-Dialog</title>
+  <itemizedlist>
+    <listitem>
+      <para><xref linkend="OpenPaths_opendialog" /></para>
+    </listitem>
 
-    <para>Basic use of Open-dialog is described in <link
-    linkend="QuickStart">Quick start</link>. Here is some more detailed
-    information and tips about how to use Open-dialog more efficiently.</para>
+    <listitem>
+      <para><xref linkend="OpenPaths_shell-integ" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_dragndrop" /></para>
+    </listitem>
+
+    <listitem>
+      <para><xref linkend="OpenPaths_project" /></para>
+    </listitem>
+  </itemizedlist>
+
+  <section id="OpenPaths_opendialog">
+    <title>Select Files or Folders dialog</title>
+
+    <para><link linkend="QuickStart">Quick start</link> describes the Select Files or Folders dialog. This section providesmore details, and some tips for usiing the Select Files or Folders dialog more efficiently.</para>
 
     <section>
       <title>Environment variables</title>
 
-      <para>Environment variables can be used as (part of) paths. An
-      environment variable is expanded when its name is put between two
-      <constant>%</constant>:s.</para>
-
-      <example>
-        <title>Using environment variables</title>
-
-        <para>If an environment variable named <envar>WORKDIR</envar> contains
-        the path <filename class="directory">c:\workfiles</filename> then
-        <envar>%WORKDIR%\project1</envar> is expanded to path <filename
-        class="directory">c:\workfiles\project1</filename> .</para>
-      </example>
+      <para>You can use environment variables in your paths. Windows expands the variable name between % (percent) delimiters. For example, if an environment variable named <envar>WORKDIR</envar> has the value <filename class="directory">c:\workfiles</filename>, then the path <envar>%WORKDIR%\project1</envar> is expanded to <filename class="directory">c:\workfiles\project1</filename> .</para>
     </section>
 
     <section id="OpeningArchives">
       <title>Opening archive files</title>
 
-      <para>Archive file support requires 7-Zip plugin to be installed. See
-      <link linkend="Installing">Installing instructions</link>.</para>
+      <para>WinMerge archive support is provided in the 7-Zip plugin. See <link linkend="Installing">Installing instructions</link> to install this plugin.</para>
 
-      <para>Opening two archive files is similar to normal files: select two
-      archive files to Open-dialog's "<guilabel>Left</guilabel>" and
-      "<guilabel>Right</guilabel>" fields. If WinMerge recognizes the archive
-      format, it opens the contents of the archive files to folder
-      compare.</para>
+      <para>Opening two archive files is similar to opening normal files: specify two archive files in the Open-dialog's <guilabel>Left</guilabel> and <guilabel>Right</guilabel> fields. If WinMerge recognizes the archive format, it opens the contents of the archive files in the Folder Compare window.</para>
 
-      <para><link linkend="CompareDirs">Folder Compare</link> chapter
-      describes how to work with archive files. If the archive file contains
-      subfolders <filename class="directory">Original/</filename> and
-      <filename class="directory">Altered/</filename> it must be opened by
-      selecting same filename to both sides in
-      <guilabel>Open</guilabel>-dialog or command line. Then WinMerge can
-      compare contents of those two subfolders.</para>
+      <para>The <link linkend="CompareDirs">Folder Compare</link> topic describes how to work with archive files. For example, if an archive file contains two subfolders named <filename class="directory">Original/</filename> and <filename class="directory">Altered/</filename>, you can compare the contents of the two subfolders by specifying the same archive file in both sides in the Select Files or Folders dialog or WinMerge command line.</para>
 
       <tip>
-        <para>When dragging an archive file to WinMerge window, press
-        <keycap>Shift</keycap> when dropping the file and WinMerge will
-        automatically copy the same filename to both sides and open the
-        archive file.</para>
+        <para>When you drag an archive file to the WinMerge window, press <keycap>Shift</keycap> when dropping the file: WinMerge automatically copies the same filename to both sides and opens the archive file.</para>
       </tip>
     </section>
 
     <section>
       <title>Filter selection</title>
 
-      <para>Third edit field in <guilabel>Open</guilabel> dialog is for
-      filter. This field can contain list of file extensions to include or
-      file filter name.</para>
+      <para>The third edit field in the Select Files or Folders dialog, <guilabel>Filter</guilabel>, enables you to restrict the files that are included in a folder compare. You can specify a list of file extensions to include, or a file filter. A list is one or more extensions separated by spaces, commas, colons or semicolons, using this syntax:</para>
 
-      <para>Extensions must always be in format
-      <filename>*.extension</filename>. So file extension list cannot be used
-      for more advanced selecting, file filters are there for it. Different
-      extensions can be separated by spaces, commas, colons or
-      semicolons.</para>
+      <synopsis>*.[<replaceable>extension</replaceable>][<replaceable>delimiter</replaceable> *.<replaceable>extension</replaceable> ...]</synopsis>
 
       <example>
         <title>Extension list</title>
@@ -77,290 +61,288 @@
       </example>
 
       <tip>
-        <para><filename>*.</filename> (star, dot and no extension) selects
-        files without any extension, for example
-        "<filename>README</filename>".</para>
+        <para><filename>*.</filename> (star, dot and no extension) selects files without any extension, for example "<filename>README</filename>".</para>
       </tip>
 
-      <para>Field can also contain file filter name. Easiest way to select
-      file filter is using <guilabel>Filters</guilabel>-dialog which can be
-      opened with "<guibutton>Select...</guibutton>" button next to field.
-      That dialog allows also creating, editing and deleting of filter
-      files.</para>
+      <para>A file extension list can be used only for simple selections; for more advanced selecting, use file filters. Different extensions can be separated by .</para>
+
+      <para>You can also enter a file filter name in the <guilabel>Filter</guilabel> field. The easiest way is to click <guibutton>Select</guibutton> and use the Filters dialog to select a file filter. You can also create, edit, and delete filter files using the Filters dialog.</para>
 
       <note>
-        <para>If filter cannot be found by name or extension list is not valid
-        WinMerge selects all files (i.e. uses <filename>*.*</filename> as
-        extension list).</para>
+        <para>If the specified filter cannot be found or if the extension list is not valid, WinMerge selects all files (that is, it uses uses the default <filename>*.*</filename> extension list).</para>
       </note>
     </section>
   </section>
 
-  <section>
+  <section id="OpenPaths_shell-integ">
     <title><indexterm>
-        <primary>Shell Integration</primary>
-      </indexterm>Shell Integration</title>
+        <primary>shell integration</primary>
+      </indexterm>Shell integration</title>
 
-    <para>The Shell Integration is a convenient way to select the paths using
-    Windows Explorer. Installer enables Shell Integration if chosen so. Shell
-    Integration can be enabled or disabled from
-    <guilabel>Options</guilabel>/<guilabel>System</guilabel>. When the Shell
-    Integration is enabled item <guimenuitem>WinMerge</guimenuitem> is added
-    to the Explorer context menu (click right mouse button over file or folder
-    in Explorer).</para>
+    <para>The WinMerge shell Integration is a convenient way to select paths and open WinMerge directly from Windows Explorer. It adds a <guimenuitem>WinMerge</guimenuitem> shortcut in the Explorer context menu (available when you right-click one or two files or folders in Explorer). For example:</para>
 
-    <para>WinMerge accepts one or two paths. When one path is selected through
-    Shell Integration WinMerge places it as "<guilabel>Left</guilabel>" path
-    and open Open-dialog for user to select "<guilabel>Right</guilabel>" path.
-    Also if two paths are selected but another path couldn't be opened for
-    reason or another WinMerge shows Open-dialog for selecting valid
-    paths.</para>
+    <mediaobject>
+      <imageobject>
+        <imagedata contentwidth="174" fileref="screenshots/ctx_menu_simple.png" format="PNG" />
+      </imageobject>
 
-    <para><mediaobject>
-        <imageobject>
-          <imagedata fileref="screenshots/ctx_menu_simple.png" format="PNG" />
-        </imageobject>
+      <caption><para>Simple WinMerge context menu</para></caption>
+    </mediaobject>
 
-        <caption><para>Simple WinMerge context menu</para></caption>
-      </mediaobject></para>
+    <para>You can enable the shell integration when you install WinMerge. After installing WinMerge, you can enable or disable the shell integration in the System page of the Options dialog.</para>
+
+    <para>To use the shell integration, begin by selecting either one or two paths in Windows Explorer:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>If you select a single path, WinMerge opens the Select Files or Folders dialog. It places the selected file or folder in the <guilabel>Left</guilabel> field, leaving the <guilabel>Right</guilabel> path for you to specify.</para>
+      </listitem>
+
+      <listitem>
+        <para>If you select two files or folders, WinMerge opens them directly in the File Compare or Folder Compare window. However, if one or more paths cannot be opened for any reason, WinMerge opens the Select Files or Folders dialog for you to reselect the paths.</para>
+      </listitem>
+    </itemizedlist>
 
     <section>
-      <title>Advanced Shell Integration</title>
+      <title>Advanced shell integration</title>
 
-      <para>Selecting "<guilabel>Enable advanced menu</guilabel>" for Shell
-      Integration from options adds more choices for path selection. Now
-      WinMerge adds two menu items to Explorer context menu:
-      "<guimenuitem>Compare To</guimenuitem>" and
-      "<guimenuitem>Compare...</guimenuitem>". <guimenuitem>Compare
-      To</guimenuitem> selects path as first ("<guilabel>Left</guilabel>")
-      path. When one path is already selected (memorized) WinMerge adds items
-      "<guimenuitem>Compare</guimenuitem>" and '<guimenuitem>Re-select
-      First</guimenuitem>" to context menu. Now
-      <guimenuitem>Compare</guimenuitem> selects path as
-      "<guilabel>Right</guilabel>" path and compares it with previously
-      selected path. <guimenuitem>Re-select First</guimenuitem> allows
-      re-selecting first path. Handy when wrong item got accidentally selected
-      as first path.</para>
+      <para>The advanced shell integration enables you to control the order in which paths are compared when you launch WinMerge from the Windows Explorer context menu. To configure the advanced shell integration, select <guilabel>Enable advanced menu</guilabel> in the System page of WinMerge options.</para>
 
-      <para>Sounds complicated, but luckily it is not - in practice:</para>
+      <para>In the standard shell integration, when you select two paths in Windows Explorer and then right-click and choose <guimenuitem>WinMerge</guimenuitem>, the order of comparison in WinMerge is determined by the sort order in Windows Explorer. For example, if your Windows Explorer file list is sorted by name descending, and you select <filename>File1</filename> and <filename>File2</filename>, WinMerge opens with <filename>File1</filename> on the left side and <filename>File2</filename> on the right. You can change the order only within WinMerge, after it opens.</para>
+
+      <para>The advanced shell integration replaces the standard <guimenuitem>WinMerge</guimenuitem> shortcut in the Windows Explorer context menu with a set of shortcuts that enable you to control the comparison order before launching WinMerge:</para>
+
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="screenshots/ctx_menu_advanced.png" format="PNG" />
+        </imageobject>
+
+        <caption><para>Advanced WinMerge context menu</para></caption>
+      </mediaobject>
+
+      <variablelist>
+        <varlistentry>
+          <term>Compare To</term>
+
+          <listitem>
+            <para>Designates the selected path as the first (<guilabel>Left</guilabel>) path in the comparison.</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Compare</term>
+
+          <listitem>
+            <para>Designates the selected path as the second (<guilabel>Right</guilabel>) path in the comparison, and opens WinMerge in one of these ways:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>If you previously designated the first path (using <guimenu>Compare To</guimenu>), WinMerge opens the File Compare or Folder Compare window, and compares the first and second paths you have specified.</para>
+              </listitem>
+
+              <listitem>
+                <para>If you click <guimenuitem>Compare</guimenuitem> before designating the first path, the Select Files or Folders dialog is opened, with your selection as the first (<guilabel>Left</guilabel>) path. Specify the second path in the <guilabel>Right</guilabel> field to continue with the comparison.</para>
+              </listitem>
+            </itemizedlist>
+
+            <!--              <tip><para>When you use this method, take advantage of the Select Files or Folders dialog's MRU list. This is very handy when you need to compare one file/folder against several files/folders.</para> </tip> -->
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term>Re-select First</term>
+
+          <listitem>
+            <para>Available in the context menu only after you apply <guimenu>Compare To</guimenu>. Designates the selected path as the first path, overriding the previous <guimenu>Compare To</guimenu> selection. This is useful, for example, if you accidentally select the wrong first path.</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>The shell integration paths that you map are stored in memory only until you use them to open WinMerge. They are discarded after a compare operation. This means that you cannot select one <guimenuitem>Compare To</guimenuitem> path and compare it against several paths.</para>
+
+      <para>Here is a simple method of using the advanced integration נthere are other scenarios, of course. In Windows Explorer:</para>
 
       <orderedlist>
         <listitem>
-          <simpara>Select first item you want to compare, open context menu
-          and select first "<guimenuitem>Compare To</guimenuitem>" item. Path
-          is now in memory.</simpara>
+          <simpara>Right-click the first item you want to compare and choose the <guimenuitem>Compare To</guimenuitem> shortcut in the context menu. The path is now in memory.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>Browse to location of second item you want to compare and
-          select it. Open context menu and move menu selection over first
-          "<guimenuitem>Compare</guimenuitem>" item. Now Explorer's status bar
-          shows memorized path to which you are comparing newly selected
-          path.</simpara>
+          <simpara>Locate the second item you want to compare. Right-click the item and choose <guimenuitem>Compare</guimenuitem> to launch WinMerge and perform the comparison.</simpara>
         </listitem>
       </orderedlist>
-
-      <para><mediaobject>
-          <imageobject>
-            <imagedata fileref="screenshots/ctx_menu_advanced.png"
-                       format="PNG" />
-          </imageobject>
-
-          <caption><para>Advanced WinMerge context menu</para></caption>
-        </mediaobject></para>
-
-      <para>After memorized path is used for compare it is forgotten. So user
-      cannot select one item to memorize and then compare it against several
-      paths.</para>
-
-      <tip>
-        <para>Take benefit of <guilabel>Open</guilabel> dialog's MRU lists!
-        <guimenuitem>Compare...</guimenuitem> Item selects path
-        as"<guilabel>Left</guilabel>" path and opens
-        <guilabel>Open</guilabel>-dialog. Now you can select
-        "<guilabel>Right</guilabel>" path from MRU list. This is very handy
-        when you need to compare one file/folder against several
-        files/folders.</para>
-      </tip>
     </section>
 
     <section>
       <title>Including Subfolders</title>
 
-      <para>Shell Integration by default does not include subfolders into
-      comparison. This default behavior can be changed using <guilabel>Include
-      Subfolders by Default</guilabel> option in System options. Default
-      behavior can be also changed by holding down <keycap>Control</keycap>
-      -key while selecting <guimenuitem>Compare</guimenuitem>-item from the
-      Explorer context menu.</para>
+      <para>By default, WinMerge does not include subfolders in compare operations. To change the default behavior, enable <guilabel>Include subfolders by befault</guilabel> in the System page of WinMerge options. To change include subfolders while using the shell integration, press and hold the <keycap>Control</keycap> key while selecting <guimenuitem>Compare</guimenuitem> in the Windows Explorer context menu.</para>
     </section>
   </section>
 
-  <section>
+  <section id="OpenPaths_dragndrop">
     <title><indexterm>
-        <primary>Drag and Drop</primary>
-      </indexterm>Drag and Drop</title>
+        <primary>drag and drop</primary>
+      </indexterm>Drag and drop</title>
 
-    <para>One or two paths can be drag and dropped to WinMerge window from
-    Windows Explorer, Desktop or whatever source Windows allows dragging paths
-    from. If only one path is dropped to the WinMerge window, the Open dialog
-    is opened for selecting the second path. If the single path is a path to
-    the project file, then the project file is opened.</para>
+    <para>From any Windows source that allows you to drag objects, such as Windows Explorer or the Desktop, you can drag and drop one or two paths into the WinMerge window. If you drop only one path into WinMerge, the Select Files or Folders dialog opens for you to select the second path. If the single path specifies a project file, then the project file is opened.</para>
 
-    <para>WinMerge does not by default include subfolders in compare.
-    Subfolders can be included by pressing <keycap>Control</keycap>-key while
-    dropping paths. Another useful key when dropping paths is
-    <keycap>Shift</keycap>. When there is only one path dropped and
-    <keycap>Shift</keycap> is pressed that same path is opened to both sides.
-    This is a handy way to open archive files, see <link
-    linkend="OpeningArchives">Opening archive files</link>.</para>
+    <para>By default, WinMerge does not include subfolders in compare operations. To include subfolders, press and hold <keycap>Control</keycap> while dropping paths. Another useful key when dropping paths is <keycap>Shift</keycap>: To open the same path in both sides of a Compare window, press and hold <keycap>Shift</keycap> while dropping only one path. This is a handy way to open archive files (see <link linkend="OpeningArchives">Opening archive files</link>).</para>
 
-    <para>Paths can be drag and dropped into the Open dialog. The usual use
-    case is to first drag and drop first path to the WinMerge window and then
-    drag and drop second path to the Open dialog. When the path is dropped
-    into the Open dialog, it is placed into:</para>
+    <para>You can drop paths into the Select Files or Folders dialog. A typical procedure is to drag and drop the first path into the WinMerge window, and then drag and drop the second path into the Select Files or Folders dialog. When a path is dropped into the Select Files or Folders dialog, it is loaded into either the left or right path field:</para>
 
-    <itemizedlist>
-      <listitem>
-        <simpara>left path - if left path edit field is empty, or both path edit
-        fields have already a path</simpara>
-      </listitem>
+    <variablelist>
+      <varlistentry>
+        <term>Left</term>
 
-      <listitem>
-        <simpara>right path - if left path is not empty and right path is
-        empty</simpara>
-      </listitem>
-    </itemizedlist>
+        <listitem>
+          <para>If the left field is empty or both path fields already contain paths</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Right</term>
+
+        <listitem>
+          <para>If the left path is not empty and the right path is empty</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </section>
 
-  <section>
+  <section id="OpenPaths_project">
     <title><indexterm>
-        <primary>Project Files</primary>
-      </indexterm>Project Files</title>
+        <primary>project files</primary>
+      </indexterm>Project files</title>
 
-    <para>Project files allow fast and easy opening of commonly used paths
-    (and filter). The user can easily save currently open paths as project
-    file for later use.</para>
+    <para>You can save the currently open paths and filters in a project file. Then, you can easily open the project later to compare the same files. Project files are handy if you compare the same files repeatedly.</para>
 
     <section>
-      <title>Opening Project File</title>
+      <title>Project files</title>
 
-      <para>Project file can be given to command line like normal file or
-      opened from <menuchoice>
+      <para>You can specify a project file as a command line argument, just like a normal file. In the WinMerge window, click <menuchoice>
           <guimenu>File</guimenu>
 
-          <guimenuitem>Open Project...</guimenuitem>
-        </menuchoice> WinMerge reads paths from project file and if two paths
-      are given opens them. If only one path is given or one of paths is
-      invalid, the <guilabel>Open</guilabel>-dialog is shown for user to
-      select the second path or valid paths.</para>
+          <guimenuitem>Open Project</guimenuitem>
+        </menuchoice>. WinMerge reads the paths from the project file. If the project file has two paths, both paths are opened. If only one path is given or one of paths is invalid, WinMerge opens the Select Files or Folders dialog, where you can add or correct the path information.</para>
 
-      <para>Project file can be selected also in <guilabel>Open</guilabel>
-      dialog. There are couple of things to remember:</para>
+      <para>A project file can also be opened in the Select Files or Folders dialog. Here are a few things to consider:</para>
 
       <itemizedlist>
         <listitem>
-          <simpara>If two project files are selected, project files themselves
-          are compared.</simpara>
+          <simpara>If you specifiy two project files, the project files themselves are compared.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>If project file is selected as left-side file, and
-          right-side file is empty, project file is opened like using
-          <menuchoice>
+          <simpara>If you specify a project file as the left file but do not specify a right file, the single project file is opened as if you had used the <menuchoice>
               <guimenu>File</guimenu>
 
-              <guimenuitem>Open Project...</guimenuitem>
-            </menuchoice> dialog.</simpara>
+              <guimenuitem>Open Project</guimenuitem>
+            </menuchoice> command.</simpara>
         </listitem>
 
         <listitem>
-          <simpara>If project file is selected as left-side file and any other
-          file as right-side file, contents of project file and another file
-          are compared.</simpara>
+          <simpara>If you specify a project file as the left file and any other file on the right side, the contents of the project file and the other file are compared.</simpara>
         </listitem>
       </itemizedlist>
     </section>
 
     <section>
-      <title>Editing and Saving Project File</title>
+      <title>Editing and saving project files</title>
 
-      <para>Project files can be edited and saved using <guilabel>Project
-      File</guilabel> -dialog that can be opened from <menuchoice>
+      <para>To save a project file, click <menuchoice>
           <guimenu>File</guimenu>
 
-          <guimenuitem>Save Project...</guimenuitem>
-        </menuchoice> When opened, the dialog is initialized with values from
-      the current compare. Values can be edited and saved to the project file
-      with <guilabel>Save...</guilabel> button. One can also load existing
-      project file with <guilabel>Open...</guilabel> button.</para>
+          <guimenuitem>Save Project</guimenuitem>
+        </menuchoice>. The <guilabel>Project File</guilabel> dialog provides fields and options that you can easily edit to build a project file. If a compare window is currently open, the <guilabel>Project File</guilabel> dialog is initialized with values from the current compare; otherwise, you provide the values yourself. To use an existing project, click <guibutton>Open</guibutton> and select a project to load its values (any existing values are overwritten in the dialog).</para>
+
+      <para>When you finished editing, click <guibutton>Save</guibutton> to store the file.</para>
 
       <mediaobject>
         <imageobject>
           <imagedata fileref="screenshots/projfile_save.png" format="PNG" />
         </imageobject>
 
-        <caption><para>Project File -dialog</para></caption>
+        <caption><para>Project File dialog</para></caption>
       </mediaobject>
     </section>
 
     <section>
-      <title>Format</title>
+      <title>Project file format</title>
 
-      <para>Project files are simple XML files with <filename
-      class="extension">.WinMerge</filename> extension.</para>
+      <para>Project files are simple XML files with <filename class="extension">a .WinMerge</filename> extension. For example:</para>
 
       <screen>&lt;?xml version='1.0' encoding='UTF-8'?&gt;
 &lt;project&gt;
-	&lt;paths&gt;
-		&lt;left&gt;<replaceable>c:\work\project1</replaceable>&lt;/left&gt;
-		&lt;left-readonly&gt;<replaceable>1</replaceable>&lt;/left-readonly&gt;
-		&lt;right&gt;<replaceable>c:\work\project2</replaceable>&lt;/right&gt;
-		&lt;right-readonly&gt;<replaceable>0</replaceable>&lt;/right-readonly&gt;
-		&lt;filter&gt;<replaceable>Visual C++ loose</replaceable>&lt;/filter&gt;
-		&lt;subfolders&gt;<replaceable>0&lt;</replaceable>/subfolders&gt;
-	&lt;/paths&gt;
+   &lt;paths&gt;
+      &lt;left&gt;c:\work\project1&lt;/left&gt;
+      &lt;left-readonly&gt;1&lt;/left-readonly&gt;
+      &lt;right&gt;c:\work\project2&lt;/right&gt;
+      &lt;right-readonly&gt;0&lt;/right-readonly&gt;
+      &lt;filter&gt;Visual C++ loose&lt;/filter&gt;
+      &lt;subfolders&gt;0&lt;/subfolders&gt;
+   &lt;/paths&gt;
 &lt;/project&gt;</screen>
 
-      <para>The project file has six fields:</para>
+      <para>A project file contains a <sgmltag>paths</sgmltag> element that can contain one of each of these elements:</para>
 
-      <itemizedlist>
-        <listitem>
-          <simpara><literal>&lt;left&gt;<replaceable>...</replaceable>&lt;/left&gt;</literal>
-          : Left side path to open</simpara>
-        </listitem>
+      <variablelist>
+        <varlistentry>
+          <term><sgmltag>left</sgmltag></term>
 
-        <listitem>
-          <simpara><literal>&lt;left-readonly&gt;...&lt;/left-readonly&gt;</literal>
-          : 1 if left side path is opened as readonly, 0 to open
-          normally</simpara>
-        </listitem>
+          <listitem>
+            <para>Left path to open</para>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <simpara><literal>&lt;right&gt;<replaceable>...</replaceable>&lt;/right&gt;</literal>
-          : Right side path to open</simpara>
-        </listitem>
+        <varlistentry>
+          <term><sgmltag>left-readonly</sgmltag></term>
 
-        <listitem>
-          <simpara><literal>&lt;right-readonly&gt;...&lt;/right-readonly&gt;</literal>
-          : 1 if right side path is opened as readonly, 0 to open
-          normally.</simpara>
-        </listitem>
+          <listitem>
+            <para>1 = Open read only</para>
 
-        <listitem>
-          <simpara><literal>&lt;filter&gt;<replaceable>...</replaceable>&lt;/filter&gt;</literal>
-          : file filter name or list of extensions</simpara>
-        </listitem>
+            <para>0 = Open normally</para>
+          </listitem>
+        </varlistentry>
 
-        <listitem>
-          <simpara><literal>&lt;subfolders&gt;<replaceable>...</replaceable>&lt;/subfolders&gt;</literal>
-          : 0 if subfolders are not included and 1 if they are
-          included</simpara>
-        </listitem>
-      </itemizedlist>
+        <varlistentry>
+          <term><sgmltag>right</sgmltag></term>
 
-      <para>None of the fields are required and they can be empty
-      (<literal>&lt;left&gt;&lt;/left&gt;</literal>).</para>
+          <listitem>
+            <para>Right path to open</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>right-readonly</sgmltag></term>
+
+          <listitem>
+            <para>1 = Open read only</para>
+
+            <para>0 = Open normally</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>filter</sgmltag></term>
+
+          <listitem>
+            <para>File filter name or list of extensions</para>
+          </listitem>
+        </varlistentry>
+
+        <varlistentry>
+          <term><sgmltag>subfolders</sgmltag></term>
+
+          <listitem>
+            <para>0 = Subfolders not included</para>
+
+            <para>1 = Subfolders included</para>
+          </listitem>
+        </varlistentry>
+      </variablelist>
+
+      <para>None of the fields is required, and they can be empty (<literal>for example, &lt;left&gt;&lt;/left&gt; or &lt;left/&gt;</literal>).</para>
     </section>
   </section>
 </article>
