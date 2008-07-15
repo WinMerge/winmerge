@@ -80,6 +80,9 @@ static LPCTSTR crlfs[] =
 	_T ("\x0d")      //  Macintosh style
 };
 
+static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath);
+static void UnescapeControlChars(CString &s);
+
 /////////////////////////////////////////////////////////////////////////////
 // CMergeDoc
 
@@ -333,7 +336,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath)
 {
 	ASSERT(buf.m_nSourceEncoding == buf.m_nDefaultEncoding);  
 	int orig_codepage = buf.getCodepage();
-	int orig_unicoding = buf.getUnicoding();	
+	ucr::UNICODESET orig_unicoding = buf.getUnicoding();
 
 	// If file was in Unicode
 	if (orig_unicoding!=ucr::NONE)

@@ -50,8 +50,8 @@ public:
 	virtual bool HasBom() = 0;
 	virtual void SetBom(bool bom) = 0;
 
-	virtual int GetUnicoding() const = 0;
-	virtual void SetUnicoding(int unicoding) = 0;
+	virtual ucr::UNICODESET GetUnicoding() const = 0;
+	virtual void SetUnicoding(ucr::UNICODESET unicoding) = 0;
 	virtual int GetCodepage() const = 0;
 	virtual void SetCodepage(int codepage) = 0;
 
@@ -91,8 +91,8 @@ public:
 	virtual String GetFullyQualifiedPath() const { return m_filepath; }
 	virtual const UniError & GetLastUniError() const { return m_lastError; }
 
-	virtual int GetUnicoding() const { return m_unicoding; }
-	virtual void SetUnicoding(int unicoding) { m_unicoding = unicoding; }
+	virtual ucr::UNICODESET GetUnicoding() const { return m_unicoding; }
+	virtual void SetUnicoding(ucr::UNICODESET unicoding) { m_unicoding = unicoding; }
 	virtual int GetCodepage() const { return m_codepage; }
 	virtual void SetCodepage(int codepage) { m_codepage = codepage; }
 
@@ -113,7 +113,7 @@ protected:
 	String m_filename;
 	int m_lineno; // current 0-based line of m_current
 	UniError m_lastError;
-	int m_unicoding; // enum UNICODESET in unicoder.h
+	ucr::UNICODESET m_unicoding;
 	int m_charsize; // 2 for UCS-2, else 1
 	int m_codepage; // only valid if m_unicoding==ucr::NONE;
 	txtstats m_txtstats;

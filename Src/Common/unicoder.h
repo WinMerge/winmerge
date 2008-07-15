@@ -28,13 +28,13 @@ struct buffer {
 };
 
 /** @brief Known Unicode encodings. */
-typedef enum
+enum UNICODESET
 {
 	NONE = 0,  /**< No unicode. */
 	UCS2LE,    /**< UCS-2 little endian. */
 	UCS2BE,    /**< UCS-2 big endian. */
 	UTF8,      /**< UTF-8. */
-} UNICODESET;
+};
 
 int Ucs4_to_Utf8(UINT unich, unsigned char * utf8);
 int Utf8len_fromLeadByte(unsigned char ch);

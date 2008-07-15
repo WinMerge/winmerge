@@ -27,7 +27,7 @@ FileTextEncoding::FileTextEncoding()
 void FileTextEncoding::Clear()
 {
 	m_codepage = -1;
-	m_unicoding = 0; // assume unicoding==0 means none
+	m_unicoding = ucr::NONE;
 	m_bom = false;
 	m_guessed = false;
 }
@@ -43,7 +43,7 @@ void FileTextEncoding::SetCodepage(int codepage)
 		m_unicoding = ucr::UTF8;
 }
 
-void FileTextEncoding::SetUnicoding(int unicoding)
+void FileTextEncoding::SetUnicoding(ucr::UNICODESET unicoding)
 {
 	if (unicoding == ucr::NONE)
 		m_codepage = CP_ACP; // not sure what to do here

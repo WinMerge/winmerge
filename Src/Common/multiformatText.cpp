@@ -604,7 +604,7 @@ BOOL UnicodeFileToOlechar(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChan
 	if (!ufile.OpenReadOnly(filepath) || !ufile.IsUnicode())
 		return TRUE; // not unicode file, nothing to do
 
-	int codeOldBOM = ufile.GetUnicoding();
+	ucr::UNICODESET codeOldBOM = ufile.GetUnicoding();
 	if (codeOldBOM == ucr::UCS2LE)
 		return TRUE; // unicode UCS-2LE, nothing to do
 	bool bBom = ufile.HasBom();
@@ -701,7 +701,7 @@ BOOL OlecharToUTF8(LPCTSTR filepath, LPCTSTR filepathDst, int & nFileChanged, BO
 	UniMemFile ufile;
 	if (!ufile.OpenReadOnly(filepath) || !ufile.IsUnicode())
 		return TRUE; // not unicode file, nothing to do
-	int unicoding = ufile.GetUnicoding();
+	ucr::UNICODESET unicoding = ufile.GetUnicoding();
 	// Finished with examing file contents
 	ufile.Close();
 

@@ -56,8 +56,8 @@ public :
 	int SaveToFile (LPCTSTR pszFileName, BOOL bTempFile, CString & sError,
 		PackingInfo * infoUnpacker = NULL, CRLFSTYLE nCrlfStyle = CRLF_STYLE_AUTOMATIC,
 		BOOL bClearModifiedFlag = TRUE );
-	int getUnicoding() const { return m_encoding.m_unicoding; }
-	void setUnicoding(int value) { m_encoding.m_unicoding = value; }
+	ucr::UNICODESET getUnicoding() const { return m_encoding.m_unicoding; }
+	void setUnicoding(ucr::UNICODESET value) { m_encoding.m_unicoding = value; }
 	int getCodepage() const { return m_encoding.m_codepage; }
 	void setCodepage(int value) { m_encoding.m_codepage = value; }
 	const FileTextEncoding & getEncoding() const { return m_encoding; }
