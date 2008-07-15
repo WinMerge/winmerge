@@ -7,18 +7,18 @@
   <section>
     <title>Comparing files</title>
 
-    <para>If you compare two files, you can easily identify several types of differences: different characters and words, different lines, even entire blocks of text that are different. But trying understanding all the differences between two files by scanning them in your favorite editor can be tedious and error-prone. Specialized difference/merging tools like WinMerge can make this work much easier and more efficient.</para>
+    <para>We usually compare two files that are related in some way, such as two versions that were edited at different times, or by different people. If you examine two such files you can usually see some similar areas, and also identify several types of differences: different characters and words, different lines, even entire blocks of text that are different. But trying to understanding all the differences between two files by scanning them in your favorite editor can be tedious and error-prone. Specialized difference/merging tools like WinMerge are designed make this work more systematic and efficient.</para>
 
-    <para>A spell checker is a useful difference utility: it can systematically step you through a document, highlight words that are different from those in its dictionary, and help you resolve each spelling problem. However, looking only at characters and words is not an effective way to do more complicated comparisons: many text utilities use lines as the basic unit of comparison instead.</para>
+    <para>For example, a spell checker is a difference utility that most people have used: it can systematically step you through a document, highlight words that are different from those in its dictionary, and help you resolve each spelling problem. However, looking only at characters and words is not an effective way to do more complicated comparisons: many text utilities use lines as the basic unit of comparison instead.</para>
 
-    <para>WinMerge also uses lines as its basic unit of difference. Words and spaces are not treated individually in comparing and merging operations. To illustrate: if two files have identical lines except that in one file, the last line has four different words and an extra space, then we say that the file has one difference, not five.</para>
+    <para>WinMerge also uses lines as its basic unit of difference. Words and spaces are not treated individually in comparing and merging operations. To illustrate, consider two files that are identical except for one line that is different. If the two versions of the line have four words that are different and one version has an extra space, then we say that the file has one difference, not five.</para>
 
-    <para>It's easy to identify individual lines that are different. But sometimes it is useful to treat an entire block of lines that are different as a single difference, instead of comparing one line at a time. As we will see later, detecting multiple-line differences makes merging more efficient too.</para>
+    <para>If it's quicker to compare lines than characters, sometimes it's also useful to treat an entire block of lines as a single difference, instead of comparing one line at a time. As we will see later, detecting multiple-line differences makes merging more efficient too.</para>
 
     <section>
       <title>Simple compare operation</title>
 
-      <para>This section offers a simple example that demonstrates how to compare line difference between two files in WinMerge:</para>
+      <para>This section offers a simple example that demonstrates how to compare line differences between two files in WinMerge:</para>
 
       <orderedlist>
         <listitem>
@@ -40,8 +40,6 @@ Believe it or else.</screen></para>
 WinMerge compares lines.
 Believe it or not.</screen></para>
           </formalpara>
-
-          <para>The files are similar enough that they might be later versions of the same file.</para>
         </listitem>
 
         <listitem>
@@ -76,7 +74,7 @@ Believe it or not.</screen></para>
               <term>Number of differences</term>
 
               <listitem>
-                <para>The message in the status bar (at the bottom) tells you that two differences were detected. Read on to learn how to identify them.</para>
+                <para>The message in the status bar (at the bottom) tells you that two differences were detected. </para>
               </listitem>
             </varlistentry>
 
@@ -84,7 +82,7 @@ Believe it or not.</screen></para>
               <term>Difference colors</term>
 
               <listitem>
-                <para>WinMerge marks detected differences with various background colors (which you can configure in WinMerge options). The basic difference color is gold, by default. Within each line difference, WinMerge marks words and characters that are different with a lighter background color. Identical lines (like the third line in the example) are unmarked: they have white backgrounds.</para>
+                <para>WinMerge marks differences with various background colors (which you can configure in WinMerge options). The basic difference color is gold, by default. Within each line difference, WinMerge marks words and characters that are different with a lighter background color. Identical lines (like the third line in the example) are unmarked: they have white backgrounds.</para>
               </listitem>
             </varlistentry>
 
@@ -119,7 +117,7 @@ Believe it or not.</screen></para>
               <keycap>Alt</keycap>
 
               <keycap>Enter</keycap>
-            </keycombo>). If this button is not enabled (for example, if your cursor is in a different line of the file), click <inlinemediaobject>
+            </keycombo>). If this button is not enabled (for example, if your cursor is in a different line), click <inlinemediaobject>
               <imageobject>
                 <imagedata contentdepth="15" fileref="screenshots/firstdiff_btn.png" />
               </imageobject>
@@ -133,7 +131,7 @@ Believe it or not.</screen></para>
               <keycap>Home</keycap>
             </keycombo>) instead.</para>
 
-          <para>When you select a difference, the two versions are loaded in the Diff pane. The Diff pane is useful for confirming which lines are included, and for examining them in isolation from the rest of the file. In our example, Difference 1 clearly has two lines.</para>
+          <para>When you select a difference, the two versions are loaded in the Diff pane. The Diff pane confirms which lines are included in a difference, and lets you examine them in isolation from the rest of the file. In our example, Difference 1 clearly has two lines.</para>
 
           <mediaobject>
             <imageobject>
@@ -161,7 +159,7 @@ Believe it or not.</screen></para>
               <keycap>Enter</keycap>
             </keycombo>). This jumps over the identical line (which is not a difference) and selects the last line.</para>
 
-          <para>You have reached the end of the file and had a chance to examine every difference. This was a trivial example — there were only two differences, and there are other ways to compare differences in WinMerge — but it demonstrates the efficiency of using the WinMerge navigation controls.</para>
+          <para>You have reached the end of the file and had a chance to examine every difference. This was a trivial example — there were only two differences — and there are other ways to compare differences in WinMerge. But it demonstrates the efficiency of using the WinMerge navigation controls.</para>
         </listitem>
       </orderedlist>
     </section>
@@ -170,20 +168,18 @@ Believe it or not.</screen></para>
   <section>
     <title>Merging files</title>
 
-    <para>The purpose of merging is to combine changes from two files into one file. Merging concepts and functions build on the comparing operation: please read the preceding section before beginning this section. In addition to detecting differences between two file versions, we resolve the differences and save the result in a single <glossterm>target</glossterm> version.</para>
+    <para>The purpose of merging is to combine changes from two files into one file. Merging extends the concepts and functions used in comparing operation: please read the preceding section before beginning this section. In addition to detecting differences between two file versions, we resolve the differences and save the result in a single <glossterm>target</glossterm> version.</para>
 
-    <para>An environment without merging is simple but constrained: you must always update files sequentially. Two people cannot work on the same file concurrently, and once you create two versions of a file, they must be maintained separately.</para>
+    <para>Merging files makes concurrent development possible, and it is a common task in team environments. For example, suppose you and another person want to add code to the same program file at the same time. You both begin with an identical copy of the file, but during development you create separate versions that are not identical. At some point, the two versions must be merged into one version that preserves the changes from each contributor. </para>
 
-    <para>Merging files makes concurrent development possible, and it is a common occurrence in team environments. For example, suppose you and another person want to add code to the same program file at the same time. You both begin with an identical copy of the file, but during development you create separate versions that are not identical. At some point, the two versions must be merged into one version that preserves the changes from each contributor.</para>
+    <para>Merging can be prompted (or even initiated) by version control systems like Subversion and ClearCase. For example, your version control system might prevent you from submitting changes to its repository because of merge conflicts. A conflict can occur if someone else checked in a different version of the same file while you were working on your version, and the version control system was not able to automatically merge the differences. When that happens, you might need to merge the conflicting versions before trying again to contribute your version. Many systems have integrated difference and merge tools, but you might prefer to use WinMerge instead.</para>
 
-    <para>Merging can be prompted (or even initiated) by version control systems like Subversion and ClearCase. For example, your version control system might prevent you from submitting changes to its repository because of a conflict. A conflict can occur if someone else checked in a different version of the same file while you were working on your version, and the version control system was not able to automatically merge the differences. When that happens, you might need to merge the conflicting versions before trying again to contribute your version. Many systems have integrated difference and merge tools, but you might prefer to use WinMerge instead.</para>
-
-    <para>Just as with comparing, you use WinMerge's toolbar controls (or keyboard shortcuts) to systematically step through each difference. Resolve each difference by copying either its left or right <glossterm>candidate</glossterm> to the other side. When you have resolved all the differences, WinMerge lets you know that all differences are resolved (the versions are identical), and you are done merging.</para>
+    <para>Just as with comparing, you use WinMerge's toolbar controls (or keyboard shortcuts) to systematically step through the differences. Resolve each difference by copying either its left or right <glossterm>candidate</glossterm> to the other side. When you have resolved all the differences, WinMerge lets you know that all differences are resolved (the versions are identical), and you are done merging.</para>
 
     <section>
       <title>Simple merge operation</title>
 
-      <para>This short exercise demonstrates how use the controls in the File Compare window to merge the simple files shown earlier, in only a few steps:</para>
+      <para>This short exercise demonstrates how to use the controls in the File Compare window in a systematic way to merge the simple files shown earlier:</para>
 
       <orderedlist>
         <listitem>
@@ -203,7 +199,7 @@ Believe it or not.</screen></para>
               <textobject>
                 <phrase>First Difference button</phrase>
               </textobject>
-            </inlinemediaobject> First Difference instead.</para>
+            </inlinemediaobject> <guibutton>First Difference</guibutton> instead.</para>
         </listitem>
 
         <listitem>
@@ -215,7 +211,7 @@ Believe it or not.</screen></para>
               <textobject>
                 <phrase>Copy Right button</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton>Copy Right</guibutton> to merge difference 1 from <filename>File1</filename> to <filename>File2</filename>. In <filename>File</filename> 2, notice that the single difference line is replaced by the two lines from <filename>File1</filename>, and the gray blank line is now gone.</para>
+            </inlinemediaobject> <guibutton>Copy Right</guibutton> to merge difference 1 from <filename>File1</filename> to <filename>File2</filename>. In <filename>File</filename>2, notice that the single difference line is replaced by the two lines from <filename>File1</filename>, and the gray blank line is now gone.</para>
         </listitem>
 
         <listitem>
@@ -227,7 +223,7 @@ Believe it or not.</screen></para>
               <textobject>
                 <phrase>Next Difference button</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton>Next Difference</guibutton> to select difference 2. This is easier than finding and selecting the difference yourself. It's especially useful if you want to step through all differences without accidentally missing any.</para>
+            </inlinemediaobject> <guibutton>Next Difference</guibutton> to select Difference 2. This is easier than finding and selecting the difference yourself. It's especially useful if you want to step through all differences without accidentally missing any.</para>
         </listitem>
 
         <listitem>
@@ -239,7 +235,7 @@ Believe it or not.</screen></para>
               <textobject>
                 <phrase>Copy Left button</phrase>
               </textobject>
-            </inlinemediaobject> <guibutton>Copy Left</guibutton> to merge difference 2 from <filename>File2</filename> to <filename>File1</filename>.</para>
+            </inlinemediaobject> <guibutton>Copy Left</guibutton> to merge Difference 2 from <filename>File2</filename> to <filename>File1</filename>.</para>
 
           <para>The message that the the files are identical tells you that the merge is complete:</para>
 
@@ -251,7 +247,7 @@ Believe it or not.</screen></para>
         </listitem>
 
         <listitem>
-          <para>Click <guibutton>OK</guibutton> to dismiss the message. The status Difference message changes from <computeroutput>Difference of 1</computeroutput> to <computeroutput>identical</computeroutput>.</para>
+          <para>Click <guibutton>OK</guibutton> to dismiss the message. The status Difference message changes from <computeroutput>Difference 1 of 1</computeroutput> to <computeroutput>identical</computeroutput>.</para>
         </listitem>
 
         <listitem>

@@ -83,7 +83,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata contentwidth="174" fileref="screenshots/ctx_menu_simple.png" format="PNG" />
+        <imagedata contentwidth="140" fileref="screenshots/ctx_menu_simple.png" format="PNG" />
       </imageobject>
 
       <caption><para>Simple WinMerge context menu</para></caption>
