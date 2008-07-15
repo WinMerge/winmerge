@@ -553,7 +553,8 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 				RecordZero(m_txtstats, offset);
 			}
 		}
-		line = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, lossy);
+		String localLine = ucr::maketstring((LPCSTR)m_current, eolptr-m_current, m_codepage, lossy);
+		line = localLine.c_str();
 		if (lossy && *lossy)
 			++m_txtstats.nlosses;
 		if (!eof)
@@ -615,10 +616,10 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 		// convert from Unicode codepoint to TCHAR string
 		// could be multicharacter if decomposition took place, for example
 		bool lossy = false; // try to avoid lossy conversion
-		CString sch = ucr::maketchar(ch, lossy);
+		String sch = ucr::maketchar(ch, lossy);
 		if (lossy)
 			++m_txtstats.nlosses;
-		if (sch.GetLength() >= 1)
+		if (sch.length() >= 1)
 			ch = sch[0];
 		else
 			ch = 0;
@@ -679,7 +680,7 @@ BOOL UniMemFile::ReadString(CString & line, CString & eol, bool * lossy)
 			line.ReleaseBuffer(cchLine);
 			return TRUE;
 		}
-		cchLine = Append(line, cchLine, sch, sch.GetLength());
+		cchLine = Append(line, cchLine, sch.c_str(), sch.length());
 	}
 	line.ReleaseBuffer(cchLine);
 	return TRUE;

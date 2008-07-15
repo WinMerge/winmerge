@@ -7,6 +7,7 @@
 // $Id$
 
 #include "stdafx.h"
+#include "UnicodeString.h"
 #include "UniMarkdownFile.h"
 #include "markdown.h"
 #include "unicoder.h"
@@ -140,8 +141,9 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 	bool bDone = false;
 	if (m_current < (LPBYTE)m_pMarkdown->lower)
 	{
-		line = ucr::maketstring((const char *)m_current, m_pMarkdown->lower -
+		String localLine = ucr::maketstring((const char *)m_current, m_pMarkdown->lower -
 				(const char *)m_current, m_codepage, lossy);
+		line = localLine.c_str();
 		CollapseWhitespace(line);
 		bDone = !line.IsEmpty();
 		m_current = (LPBYTE)m_pMarkdown->lower;
@@ -160,7 +162,8 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 			{
 				++m_current;
 			}
-			line = ucr::maketstring((const char *)current, m_current - current, m_codepage, lossy);
+			String localLine = ucr::maketstring((const char *)current, m_current - current, m_codepage, lossy);
+			line = localLine.c_str();
 			if (m_current < m_transparent)
 			{
 				current = m_current;
@@ -214,16 +217,18 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 			}
 			if (bDone)
 			{
-				line = ucr::maketstring((const char *)m_current, m_pMarkdown->first -
+				String localLine = ucr::maketstring((const char *)m_current, m_pMarkdown->first -
 						(const char *)m_current, m_codepage, lossy);
+				line = localLine.c_str();
 				CollapseWhitespace(line);
 				m_current = (LPBYTE)m_pMarkdown->first;
 			}
 			else if (m_current < m_base + m_filesize)
 			{
 				bDone = true;
-				line = ucr::maketstring((const char *)m_current, m_base + m_filesize -
+				String localLine = ucr::maketstring((const char *)m_current, m_base + m_filesize -
 						m_current, m_codepage, lossy);
+				line = localLine.c_str();
 				CollapseWhitespace(line);
 				m_current = m_base + m_filesize;
 			}

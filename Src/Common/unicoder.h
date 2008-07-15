@@ -43,12 +43,12 @@ UINT Utf8len_of_string(LPCWSTR text, int size);
 UINT stringlen_of_utf8(LPCSTR text, int size);
 UINT GetUtf8Char(unsigned char * str);
 int to_utf8_advance(UINT u, unsigned char * &lpd);
-CString maketchar(UINT ch, bool & lossy);
+String maketchar(UINT ch, bool & lossy);
 int writeBom(LPVOID dest, UNICODESET unicoding);
 UINT get_unicode_char(unsigned char * ptr, UNICODESET unicoding, int codepage=0);
-CString maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy);
-CString maketchar(UINT unich, bool & lossy);
-CString maketchar(UINT unich, bool & lossy, UINT codepage);
+String maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy);
+String maketchar(UINT unich, bool & lossy);
+String maketchar(UINT unich, bool & lossy, UINT codepage);
 UINT byteToUnicode(unsigned char ch);
 UINT byteToUnicode(unsigned char ch, UINT codepage);
 void getInternalEncoding(UNICODESET * unicoding, int * codepage);
@@ -58,7 +58,7 @@ bool convert(UNICODESET unicoding1, int codepage1, const unsigned char * src, in
 
 int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, int cpout, bool * lossy);
 #ifndef UNICODE
-CString CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool * lossy);
+String CrossConvertToStringA(LPCSTR src, UINT srclen, int cpin, int cpout, bool * lossy);
 #endif
 
 UNICODESET DetermineEncoding(LPBYTE pBuffer, int size, bool * pBom);
