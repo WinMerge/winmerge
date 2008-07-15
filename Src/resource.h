@@ -517,6 +517,7 @@
 #define IDS_FILEFILTER_INSTALLFAIL      16460
 #define IDS_FILEFILTER_OVERWRITE        16461
 #define IDS_FILTERLINE_REGEXP           16480
+#define IDS_FILTERCHANGED               16496
 #define IDS_CC_CMD                      16720
 #define IDS_VSS_CMD                     16721
 #define IDS_DIRECTORY_WINDOW_TITLE      16800

@@ -2011,6 +2011,12 @@ BEGIN
     IDS_FILTERLINE_REGEXP   "Regular expression"
 END
 
+// GENERAL FILTER STRINGS
+STRINGTABLE 
+BEGIN
+    IDS_FILTERCHANGED       "Filters were updated.\n\nDo you want to rescan current folders?"
+END
+
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN

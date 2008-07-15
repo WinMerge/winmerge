@@ -2463,6 +2463,7 @@ void CMainFrame::OnToolsFilters()
 	FILEFILTER_INFOLIST fileFilters;
 	LineFiltersList * lineFilters = new LineFiltersList();
 	CString selectedFilter;
+	const CString origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
@@ -2499,10 +2500,44 @@ void CMainFrame::OnToolsFilters()
 			CString sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
-		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, lineFiltersDlg.m_bIgnoreRegExp == TRUE);
+		BOOL linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
+		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled == TRUE);
 
+		// Check if compare documents need rescanning
+		BOOL bFileCompareRescan = FALSE;
+		BOOL bFolderCompareRescan = FALSE;
+		CFrameWnd * pFrame = GetActiveFrame();
+		FRAMETYPE frame = GetFrameType(pFrame);
+		if (frame == FRAME_FILE)
+		{
+			if (!m_pLineFilters->Compare(lineFilters))
+				bFileCompareRescan = TRUE;
+		}
+		else if (frame == FRAME_FOLDER)
+		{
+			const CString newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			if (!m_pLineFilters->Compare(lineFilters) || origFilter != newFilter)
+			{
+				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
+				if (res == IDYES)
+					bFolderCompareRescan = TRUE;
+			}
+		}
+
+		// Save new filters before (possibly) rescanning
 		m_pLineFilters->CloneFrom(lineFilters);
 		m_pLineFilters->SaveFilters();
+
+		if (bFileCompareRescan)
+		{
+			CMergeDoc *pDoc = (CMergeDoc *)pFrame->GetActiveDocument();
+			pDoc->FlushAndRescan(TRUE);
+		}
+		else if (bFolderCompareRescan)
+		{
+			CDirDoc * pDoc = (CDirDoc *)pFrame->GetActiveDocument();
+			pDoc->Rescan();
+		}
 	}
 	delete lineFilters;
 }

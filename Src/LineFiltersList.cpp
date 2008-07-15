@@ -128,6 +128,30 @@ void LineFiltersList::CloneFrom(const LineFiltersList *list)
 }
 
 /**
+ * @brief Compare filter lists.
+ * @param [in] list List to compare.
+ * @return true if lists are identical, false otherwise.
+ */
+bool LineFiltersList::Compare(const LineFiltersList *list) const
+{
+	if (list->GetCount() != GetCount())
+		return false;
+
+	for (int i = 0; i < GetCount(); i++)
+	{
+		const LineFilterItem &item1 = list->GetAt(i);
+		const LineFilterItem &item2 = GetAt(i);
+
+		if (item1.enabled != item2.enabled)
+			return false;
+
+		if (item1.filterStr != item2.filterStr)
+			return false;
+	}
+	return true;
+}
+
+/**
  * @brief Read filter list from the options system.
  * @param [in] pOptionsMgr Pointer to options system.
  */
