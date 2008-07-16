@@ -673,8 +673,8 @@ BOOL CDiffWrapper::RunFileDiff()
 	replace_char(&*filepath2.begin(), '/', '\\');
 
 	BOOL bRet = TRUE;
-	String strFile1Temp = filepath1;
-	String strFile2Temp = filepath2;
+	String strFile1Temp(filepath1);
+	String strFile2Temp(filepath2);
 	
 	m_options.SetToDiffUtils();
 
@@ -711,7 +711,6 @@ BOOL CDiffWrapper::RunFileDiff()
 			}
 		}
 
-		FileTransform_UCS2ToUTF8(strFile1Temp, m_bPathsAreTemp);
 		// We use the same plugin for both files, so it must be defined before
 		// second file
 		ASSERT(m_infoPrediffer->bToBeScanned == FALSE);
@@ -727,8 +726,14 @@ BOOL CDiffWrapper::RunFileDiff()
 			m_infoPrediffer->bToBeScanned = FALSE;
 			m_infoPrediffer->pluginName.erase();
 		}
-		FileTransform_UCS2ToUTF8(strFile2Temp, m_bPathsAreTemp);
 	}
+
+	// Comparing UTF-8 files seems to require this conversion?
+	// I'm still very confused about why, as what the functions
+	// document doing is UCS2 to UTF-8 conversion, nothing else.
+	// Something is wrong here. - Kimmo
+	FileTransform_UCS2ToUTF8(strFile1Temp, m_bPathsAreTemp);
+	FileTransform_UCS2ToUTF8(strFile2Temp, m_bPathsAreTemp);
 
 	DiffFileData diffdata;
 	diffdata.SetDisplayFilepaths(filepath1.c_str(), filepath2.c_str()); // store true names for diff utils patch file
