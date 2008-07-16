@@ -126,7 +126,7 @@ int NTAPI LangMessageBox(UINT, UINT nType = MB_OK, UINT nIDHelp = (UINT)-1);
 int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType = MB_OK, UINT nIDHelp = 0);
 
 	/** @brief Retrieve error description from Windows; uses FormatMessage */
-CString GetSysError(int nerr);
+String GetSysError(int nerr);
 
 	/** @brief Send message to log file (in theory; actually doesn't yet) */
 void LogErrorString(LPCTSTR sz);

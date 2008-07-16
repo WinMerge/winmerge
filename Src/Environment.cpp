@@ -37,7 +37,7 @@ LPCTSTR env_GetTempPath(int * pnerr)
 				if (pnerr)
 					*pnerr = err;
 #ifdef _DEBUG
-				CString sysErr = GetSysError(err); // for debugging
+				String sysErr = GetSysError(err); // for debugging
 #endif
 				return strTempPath.c_str(); // empty
 			}
@@ -70,7 +70,7 @@ String env_GetTempFileName(LPCTSTR lpPathName, LPCTSTR lpPrefixString, int * pne
 		if (pnerr)
 			*pnerr = err;
 #ifdef _DEBUG
-		CString sysErr = GetSysError(err); // for debugging
+		String sysErr = GetSysError(err); // for debugging
 #endif
 		return _T("");
 	}

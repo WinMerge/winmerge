@@ -109,8 +109,8 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 				msg.Format(_T("CMainFrame::ReLinkVCProj() ")
 					_T("- failed to open file: %s"), strSavePath);
 				LogErrorString(msg);
-				LangFormatString2(msg, IDS_ERROR_FILEOPEN,
-						GetSysError(GetLastError()), strSavePath);
+				String errMsg = GetSysError(GetLastError());
+				LangFormatString2(msg, IDS_ERROR_FILEOPEN, errMsg.c_str(), strSavePath);
 				*psError = msg;
 			}
 			if (tfile == INVALID_HANDLE_VALUE)
@@ -118,8 +118,8 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 				msg.Format(_T("CMainFrame::ReLinkVCProj() ")
 					_T("- failed to open temporary file: %s"), tempFile.c_str());
 				LogErrorString(msg);
-				LangFormatString2(msg, IDS_ERROR_FILEOPEN,
-						GetSysError(GetLastError()), tempFile.c_str());
+				String errMsg = GetSysError(GetLastError());
+				LangFormatString2(msg, IDS_ERROR_FILEOPEN, errMsg.c_str(), tempFile.c_str());
 				*psError = msg;
 			}
 			return FALSE;
@@ -163,7 +163,7 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 		{
 			if (!CopyFile(tempFile.c_str(), strSavePath, FALSE))
 			{
-				*psError = GetSysError(GetLastError());
+				*psError = GetSysError(GetLastError()).c_str();
 				DeleteFile(tempFile.c_str());
 				return FALSE;
 			}
@@ -173,8 +173,8 @@ BOOL VSSHelper::ReLinkVCProj(CString strSavePath, CString * psError)
 		else
 		{
 			CString msg;
-			LangFormatString2(msg, IDS_ERROR_FILEOPEN,
-					strSavePath, GetSysError(GetLastError()));
+			String errMsg = GetSysError(GetLastError());
+			LangFormatString2(msg, IDS_ERROR_FILEOPEN, strSavePath, errMsg.c_str());
 			*psError = msg;
 			return FALSE;
 		}

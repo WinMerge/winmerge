@@ -537,7 +537,7 @@ LoadFromFileExit:
  * @return SAVE_DONE or an error code (list in MergeDoc.h)
  */
 int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
-		BOOL bTempFile, CString & sError, PackingInfo * infoUnpacker /*= NULL*/,
+		BOOL bTempFile, String & sError, PackingInfo * infoUnpacker /*= NULL*/,
 		CRLFSTYLE nCrlfStyle /*= CRLF_STYLE_AUTOMATIC*/,
 		BOOL bClearModifiedFlag /*= TRUE*/ )
 {

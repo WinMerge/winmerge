@@ -339,7 +339,7 @@ String maketchar(UINT unich, bool & lossy, UINT codepage)
 		if (WideCharToMultiByte(codepage, flags, &wch, 1, &outch, 1, NULL, &defaulted)
 			&& !defaulted)
 		{
-			CString s = outch;
+			String s(1, outch);
 			return s;
 		}
 		lossy = TRUE;
@@ -387,7 +387,7 @@ UINT byteToUnicode (unsigned char ch, UINT codepage)
 }
 
 /**
- * @brief Return encoding used for TCHAR & CString
+ * @brief Return encoding used for TCHAR & String
  */
 void getInternalEncoding(UNICODESET * unicoding, int * codepage)
 {
@@ -475,7 +475,7 @@ String maketstring(LPCSTR lpd, UINT len, int codepage, bool * lossy)
 
 #ifdef UNICODE
 	// Convert input to Unicode, using specified codepage
-	// TCHAR is wchar_t, so convert into CString (str)
+	// TCHAR is wchar_t, so convert into String (str)
 	DWORD flags = MB_ERR_INVALID_CHARS;
 	int wlen = len * 2 + 6;
 	String str;
@@ -557,7 +557,7 @@ int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, i
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
-		CString syserrstr = GetSysError(nsyserr);
+		String syserrstr = GetSysError(nsyserr);
 		delete [] wbuff;
 		dest[0] = '?';
 		return 1;
@@ -586,7 +586,7 @@ int CrossConvert(LPCSTR src, UINT srclen, LPSTR dest, UINT destsize, int cpin, i
 	if (!n)
 	{
 		int nsyserr = ::GetLastError();
-		CString syserrstr = GetSysError(nsyserr);
+		String syserrstr = GetSysError(nsyserr);
 	}
 	dest[n] = 0;
 	delete [] wbuff;

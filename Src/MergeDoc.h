@@ -155,7 +155,7 @@ public:
 	void CopyMultipleList(int srcPane, int dstPane, int firstDiff, int lastDiff);
 	BOOL SanityCheckDiff(DIFFRANGE dr);
 	bool ListCopy(int srcPane, int dstPane, int nDiff = -1, bool bGroupWithPrevious = false);
-	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, CString & sError,
+	BOOL TrySaveAs(CString &strPath, int &nLastErrorCode, String & sError,
 		int nBuffer, PackingInfo * pInfoTempUnpacker);
 	BOOL DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);
 	BOOL DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer);

@@ -1880,7 +1880,7 @@ static BOOL DoAppendMenu(HMENU hMenu, UINT uFlags, UINT_PTR uIDNewItem, LPCTSTR 
 	if (!ok)
 	{
 		int nerr = GetLastError();
-		CString syserr = GetSysError(nerr);
+		String syserr = GetSysError(nerr);
 	}
 	return ok;
 }

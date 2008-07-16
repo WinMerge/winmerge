@@ -350,7 +350,7 @@ static void SaveBuffForDiff(CDiffTextBuffer & buf, LPCTSTR filepath)
 	PackingInfo * tempPacker = NULL;
 
 	// write buffer out to temporary file
-	CString sError;
+	String sError;
 	int retVal = buf.SaveToFile(filepath, TRUE, sError, tempPacker,
 		CRLF_STYLE_AUTOMATIC, FALSE);
 
@@ -949,7 +949,7 @@ bool CMergeDoc::ListCopy(int srcPane, int dstPane, int nDiff /* = -1*/,
  * @sa CMergeDoc::DoSaveAs()
  * @sa CMergeDoc::CDiffTextBuffer::SaveToFile()
  */
-BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
+BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, String & sError,
 	int nBuffer, PackingInfo * pInfoTempUnpacker)
 {
 	CString s;
@@ -984,7 +984,7 @@ BOOL CMergeDoc::TrySaveAs(CString &strPath, int &nSaveResult, CString & sError,
 	}
 	else
 	{
-		LangFormatString2(s, IDS_FILESAVE_FAILED, strPath, sError);
+		LangFormatString2(s, IDS_FILESAVE_FAILED, strPath, sError.c_str());
 	}
 
 	// SAVE_NO_FILENAME is temporarily used for scratchpad.
@@ -1058,7 +1058,6 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 {
 	DiffFileInfo fileInfo;
 	CString strSavePath(szPath);
-	CString sError;
 	BOOL bFileChanged = FALSE;
 	BOOL bApplyToAll = FALSE;	
 	int nRetVal = -1;
@@ -1125,6 +1124,7 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 		(m_nBufferType[nBuffer] == BUFFER_UNNAMED))
 			nSaveErrorCode = SAVE_NO_FILENAME;
 
+	String sError;
 	if (nSaveErrorCode == SAVE_DONE)
 		// We have a filename, just try to save
 		nSaveErrorCode = pBuffer->SaveToFile(strSavePath, FALSE, sError, &infoTempUnpacker);
@@ -1183,7 +1183,6 @@ BOOL CMergeDoc::DoSave(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 {
 	CString strSavePath(szPath);
-	CString sError;
 
 	// use a temp packer
 	// first copy the m_pInfoUnpacker
@@ -1203,6 +1202,7 @@ BOOL CMergeDoc::DoSaveAs(LPCTSTR szPath, BOOL &bSaveSuccess, int nBuffer)
 	nSaveErrorCode = SAVE_NO_FILENAME;
 
 	// Loop until user succeeds saving or cancels
+	String sError;
 	do
 		result = TrySaveAs(strSavePath, nSaveErrorCode, sError, nBuffer, &infoTempUnpacker);
 	while (!result);
@@ -2601,7 +2601,8 @@ void CMergeDoc::OnToolsGenerateReport()
 	UniStdioFile file;
 	if (!file.Open(s, _T("wt")))
 	{
-		ResMsgBox1(IDS_REPORT_ERROR, GetSysError(GetLastError()), MB_OK | MB_ICONSTOP);
+		String errMsg = GetSysError(GetLastError());
+		ResMsgBox1(IDS_REPORT_ERROR, errMsg.c_str(), MB_OK | MB_ICONSTOP);
 		return;
 	}
 

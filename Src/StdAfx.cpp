@@ -150,10 +150,10 @@ int ResMsgBox1(UINT msgid, LPCTSTR arg, UINT nType, UINT nIDHelp)
 }
 
 // Get user language description of error, if available
-CString GetSysError(int nerr)
+String GetSysError(int nerr)
 {
 	LPVOID lpMsgBuf;
-	CString str = _T("?");
+	String str = _T("?");
 	if (FormatMessage( 
 		FORMAT_MESSAGE_ALLOCATE_BUFFER | 
 		FORMAT_MESSAGE_FROM_SYSTEM | 
