@@ -114,10 +114,15 @@ public:
 };
 
 /**
- * @brief information about one diff (including files on both sides)
+ * @brief information about one file/folder item.
+ * This class holds information about one compared item in the folder compare.
+ * The item can be a file item or folder item. The item can have data from
+ * both compare sides (file/folder exists in both sides) or just from one
+ * side (file/folder exists only in other side).
  *
- * @note times in fileinfo's are seconds since January 1, 1970.
- * See Dirscan.cpp/fentry and Dirscan.cpp/LoadFiles()
+ * This class is for backend differences processing, presenting physical
+ * files and folders. This class is not for GUI data like selection or
+ * visibility statuses. So do not include any GUI-dependent data here. 
  */
 struct DIFFITEM : ListEntry
 {
@@ -131,9 +136,7 @@ struct DIFFITEM : ListEntry
 
 	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */
 
-	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0)
-	{
-	}
+	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
 
 	bool isEmpty() const { return this == &emptyitem; }
 	String getLeftFilepath(const String &sLeftRoot) const;
