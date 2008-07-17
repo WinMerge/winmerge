@@ -394,8 +394,8 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		if (encoding.m_unicoding == ucr::NONE || !pufile->IsUnicode())
 			pufile->SetCodepage(encoding.m_codepage);
 		UINT lineno = 0;
-		CString eol, preveol;
-		CString sline;
+		String eol, preveol;
+		String sline;
 		bool done = false;
 		UINT next_line_report = 100; // for trace messages
 		UINT next_line_multiple = 5; // for trace messages
@@ -406,14 +406,14 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 		m_aLines.SetSize(arraysize);
 		
 		// preveol must be initialized for empty files
-		preveol = "\n";
+		preveol = _T("\n");
 		
 		do {
-			bool lossy=false;
+			bool lossy = false;
 			done = !pufile->ReadString(sline, eol, &lossy);
 
 			// if last line had no eol, we can quit
-			if (done && preveol.IsEmpty())
+			if (done && preveol.empty())
 				break;
 			// but if last line had eol, we add an extra (empty) line to buffer
 
@@ -429,7 +429,7 @@ int CDiffTextBuffer::LoadFromFile(LPCTSTR pszFileNameInit,
 			{
 				// TODO: Should record lossy status of line
 			}
-			AppendLine(lineno, sline, sline.GetLength());
+			AppendLine(lineno, sline.c_str(), sline.length());
 			++lineno;
 			preveol = eol;
 
@@ -600,7 +600,7 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 	CString sLine;
 	CString sEol = GetStringEol(nCrlfStyle);
 	int nLineCount = m_aLines.GetSize();
-	for (int line=0; line<nLineCount; ++line)
+	for (int line = 0; line < nLineCount; ++line)
 	{
 		if (GetLineFlags(line) & LF_GHOST)
 			continue;
@@ -619,7 +619,8 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 			// last real line is never EOL terminated
 			ASSERT (_tcslen(GetLineEol(line)) == 0);
 			// write the line and exit loop
-			file.WriteString(sLine);
+			String tmpLine(sLine);
+			file.WriteString(tmpLine);
 			break;
 		}
 
@@ -636,7 +637,8 @@ int CDiffTextBuffer::SaveToFile (LPCTSTR pszFileName,
 		}
 
 		// write this line to the file (codeset or unicode conversions are done there)
-		file.WriteString(sLine);
+		String tmpLine(sLine);
+		file.WriteString(tmpLine);
 	}
 	file.Close();
 

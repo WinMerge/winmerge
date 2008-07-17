@@ -2608,7 +2608,7 @@ void CMergeDoc::OnToolsGenerateReport()
 
 	file.SetCodepage(CP_UTF8);
 
-	file.WriteString(
+	String header = 
 		Fmt(
 		_T("<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\"\n")
 		_T("\t\"http://www.w3.org/TR/REC-html40/loose.dtd\">\n")
@@ -2628,8 +2628,9 @@ void CMergeDoc::OnToolsGenerateReport()
 		_T("<body>\n")
 		_T("<table cellspacing=\"0\" cellpadding=\"0\" style=\"width: 100%%; margin: 0; border: none;\">\n")
 		_T("<thead>\n")
-		_T("<tr>\n")
-		, nFontSize, m_pView[0]->GetHTMLStyles()));
+		_T("<tr>\n"),
+		nFontSize, m_pView[0]->GetHTMLStyles());
+	file.WriteString(header);
 
 	// Get paths
 	// If archive, use archive path + folder + filename inside archive
@@ -2654,10 +2655,12 @@ void CMergeDoc::OnToolsGenerateReport()
 	for (nBuffer = 0; nBuffer < 2; nBuffer++)
 	{
 		int nLineNumberColumnWidth = m_pView[nBuffer]->GetViewLineNumbers() ? 1 : 0;
-		file.WriteString(Fmt(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
-			nLineNumberColumnWidth));
-		file.WriteString(Fmt(_T("<th class=\"title\" style=\"width:%f%%\">"),
-			(double)(100 - nLineNumberColumnWidth * 2) / 2));
+		String data = Fmt(_T("<th class=\"title\" style=\"width:%d%%\"></th>"), 
+			nLineNumberColumnWidth);
+		file.WriteString(data);
+		data = Fmt(_T("<th class=\"title\" style=\"width:%f%%\">"),
+			(double)(100 - nLineNumberColumnWidth * 2) / 2);
+		file.WriteString(data);
 		if (nBuffer == 0)
 			file.WriteString(left.c_str());
 		else
@@ -2685,15 +2688,19 @@ void CMergeDoc::OnToolsGenerateReport()
 				// line number
 				DWORD dwFlags = m_ptBuf[nBuffer]->GetLineFlags(idx[nBuffer]);
 				if (!(dwFlags & LF_GHOST) && m_pView[nBuffer]->GetViewLineNumbers())
-					file.WriteString(Fmt(_T("<td class=\"ln\">%d</td>"), m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1));
+				{
+					String data = Fmt(_T("<td class=\"ln\">%d</td>"),
+							m_ptBuf[nBuffer]->ComputeRealLine(idx[nBuffer]) + 1);
+					file.WriteString(data);
+				}
 				else
 					file.WriteString(_T("<td class=\"ln\"></td>"));
 				// write a line on left/right side
-				file.WriteString(m_pView[nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
+				file.WriteString((LPCTSTR)m_pView[nBuffer]->GetHTMLLine(idx[nBuffer], _T("td")));
 				idx[nBuffer]++;
 			}
 			else
-				file.WriteString("<td class=\"ln\"></td><td></td>");
+				file.WriteString(_T("<td class=\"ln\"></td><td></td>"));
 			file.WriteString(_T("\n"));
 		}
 		file.WriteString(_T("</tr>\n"));

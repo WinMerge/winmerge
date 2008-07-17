@@ -60,11 +60,10 @@ bool IsConflictFile(const String &conflictFileName)
 	BOOL linesToRead = TRUE;
 	while (linesToRead && startFound == FALSE)
 	{
-		CString cline;
+		String line;
 		bool lossy;
-		CString eol;
-		linesToRead = conflictFile.ReadString(cline, eol, &lossy);
-		String line = (LPCTSTR) cline;
+		String eol;
+		linesToRead = conflictFile.ReadString(line, eol, &lossy);
 
 		std::string::size_type pos;
 		pos = line.find(MineBegin);
@@ -117,11 +116,9 @@ bool ParseConflictFile(const String &conflictFileName,
 	BOOL linesToRead = TRUE;
 	do
 	{
-		CString cline;
 		bool lossy;
-		CString eol;
-		linesToRead = conflictFile.ReadString(cline, eol, &lossy);
-		line = (LPCTSTR) cline;
+		String eol;
+		linesToRead = conflictFile.ReadString(line, eol, &lossy);
 		switch (state)
 		{
 			// in common section

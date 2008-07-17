@@ -265,7 +265,9 @@ FileFilter * FileFilterMgr::LoadFilterFile(LPCTSTR szFilepath, int & error)
 	do
 	{
 		// Returns false when last line is read
-		bLinesLeft = file.ReadString(sLine, &lossy);
+		String tmpLine;
+		bLinesLeft = file.ReadString(tmpLine, &lossy);
+		sLine = tmpLine.c_str();
 		sLine.TrimLeft();
 		sLine.TrimRight();
 
