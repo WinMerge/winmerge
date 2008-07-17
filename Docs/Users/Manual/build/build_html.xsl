@@ -1,6 +1,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
   version="1.0">
-  <xsl:import href="file:/C:/docbook/xsl/html/chunk.xsl"/>
+  <xsl:import href="./xsl/html/chunk.xsl"/>
   <xsl:param name="suppress.navigation" select="0"/>
   <xsl:param name="header.rule" select="0"/>
   <xsl:param name="footer.rule" select="0"/>
