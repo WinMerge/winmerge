@@ -4,7 +4,7 @@
  *  @brief Declaration of ListEntry
  */
 // ID line follows -- this is updated by SVN
-// $Id: $
+// $Id$
 #ifndef _LIST_ENTRY_H_INCLUDED
 #define _LIST_ENTRY_H_INCLUDED
 
