@@ -1,18 +1,30 @@
+<?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  version="1.0">
-  <xsl:import href="./xsl/htmlhelp/htmlhelp.xsl"/>
-  <xsl:param name="suppress.navigation" select="1"/>
-  <xsl:param name="generate.toc">set	nop</xsl:param>
-  <xsl:param name="use.extensions" select="0"/>
-  <xsl:param name="tablecolumns.extensions" select="0"/>
-  <xsl:param name="admon.graphics" select="1"/>
-  <xsl:param name="admon.graphics.path">images/</xsl:param>
-  <xsl:param name="admon.graphics.extension">.gif</xsl:param>
-  <xsl:param name="section.autolabel" select="1"/>
-  <xsl:param name="html.stylesheet">css/help.css</xsl:param>
-  <xsl:param name="use.id.as.filename" select="1"/>
-  <xsl:param name="chunker.output.indent" select="'yes'"></xsl:param>
-  <xsl:param name="chunk.section.depth" select="0" />
-  <xsl:param name="htmlhelp.use.hhk" select="1"/>
-  <xsl:param name="htmlhelp.hhc.show.root" select="0"/>
+		version="1.0">
+
+<!-- ********************************************************************
+     build_htmlhelp.xsl
+     WinMerge customization of the XSL DocBook stylesheet distribution.
+     Contains customized templates and parameters for the HTML Help version 
+     of help; all other styles are inherited from the WinMerge 
+     build_common.xsl and the stock DocBook stylesheets in ../build/xsl. 
+ 
+     See build_common.xsl for editing instructions.
+     ******************************************************************** 
+     Changes:
+     Created July 2008
+     ******************************************************************** -->
+
+<xsl:import href="../build/xsl/htmlhelp/htmlhelp.xsl"/>
+<xsl:import href="build_common.xsl"/>
+
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+html/param.xsl  parameters
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->  
+<xsl:param name="suppress.navigation" select="1"/>
+<xsl:param name="generate.toc">set nop</xsl:param>
+<xsl:param name="html.stylesheet">css/help.css</xsl:param>
+<xsl:param name="htmlhelp.use.hhk" select="1"/>
+<xsl:param name="htmlhelp.hhc.show.root" select="0"/>
+
 </xsl:stylesheet>
