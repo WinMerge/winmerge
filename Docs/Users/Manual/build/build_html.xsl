@@ -1,23 +1,21 @@
+<?xml version="1.0"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  version="1.0">
-  <xsl:import href="./xsl/html/chunk.xsl"/>
-  <xsl:param name="suppress.navigation" select="0"/>
-  <xsl:param name="header.rule" select="0"/>
-  <xsl:param name="footer.rule" select="0"/>
-  <xsl:param name="use.extensions" select="0"/>
-  <xsl:param name="tablecolumns.extensions" select="0"/>
-  <xsl:param name="admon.graphics" select="1"/>
-  <xsl:param name="admon.graphics.path">images/</xsl:param>
-  <xsl:param name="admon.graphics.extension">.gif</xsl:param>
-  <xsl:param name="section.autolabel" select="1"/>
-  <xsl:param name="use.id.as.filename" select="1"/>
-  <xsl:param name="chunker.output.indent" select="'yes'"></xsl:param>
-<!--  <xsl:param name="chunk.first.sections" select="1" /> -->
-  <xsl:param name="chunk.section.depth" select="0" />
-  <xsl:param name="generate.toc">book toc,title article noop</xsl:param>
-  <xsl:param name="toc.section.depth">1</xsl:param>
-  <xsl:template name="user.head.content">
-    <link rel="stylesheet" type="text/css" href="css/all.css" />
-    <link rel="stylesheet" type="text/css" media="print" href="css/print.css" />
-  </xsl:template>
+		version="1.0">
+
+<!-- ********************************************************************
+     build_html.xsl
+     WinMerge customization of the XSL DocBook stylesheet distribution.
+     Contains customized templates and parameters for the HTML version 
+     of help; all other styles are inherited from the WinMerge 
+     build_common.xsl and the stock DocBook stylesheets in ../build/xsl. 
+ 
+     See build_common.xsl for editing instructions.
+     ******************************************************************** 
+     Changes:
+     Created July 2008
+     ******************************************************************** -->
+
+<xsl:import href="../build/xsl/html/chunk.xsl"/>
+<xsl:import href="build_common.xsl"/>
+
 </xsl:stylesheet>
