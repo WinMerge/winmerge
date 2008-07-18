@@ -269,7 +269,7 @@ void PluginInfo::LoadFilterString()
 {
 	m_filters = new vector<FileFilterElement*>;
 
-	CString sLine = m_filtersText;
+	CString sLine(m_filtersText.c_str());
 	CString sPiece;
 
 	while(1)
@@ -486,7 +486,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 	else
 	{
 		plugin.m_bAutomatic = FALSE;
-		plugin.m_filtersText = ".";
+		plugin.m_filtersText = _T(".");
 	}
 	VariantClear(&ret);
 

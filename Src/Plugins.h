@@ -32,8 +32,6 @@
 #include <vector>
 #include "FileFilterMgr.h"
 
-class CRegExp;
-
 extern enum TRANSFORMATION_CATEGORY;
 
 const int NMAXTHREADS = 10;
@@ -67,8 +65,8 @@ public:
 	String      m_filepath;
 	LPDISPATCH  m_lpDispatch;
 	String      m_name; // usually filename, except for special cases (like auto or no)
-	CString     m_filtersText;
-	CString     m_description;
+	String      m_filtersText;
+	String      m_description;
 	BOOL        m_bUnicodeMode;
 	BOOL        m_bAutomatic;
 	std::vector<FileFilterElement*> *m_filters;
