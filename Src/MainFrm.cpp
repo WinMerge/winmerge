@@ -3343,6 +3343,14 @@ bool CMainFrame::AskCloseConfirmation()
 	const int count = dirdocs.GetCount() + mergedocs.GetCount();
 	if (count > 1)
 	{
+		// Check that we don't have one empty dirdoc + mergedoc situation.
+		// That happens since we open "hidden" dirdoc for every file compare.
+		if (dirdocs.GetCount() == 1)
+		{
+			CDirDoc *pDoc = dirdocs.GetHead();
+			if (!pDoc->HasDiffs())
+				return true;
+		}
 		ret = LangMessageBox(IDS_CLOSEALL_WINDOWS, MB_YESNO | MB_ICONWARNING);
 	}
 	return (ret == IDYES);

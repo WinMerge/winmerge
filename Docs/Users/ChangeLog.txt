@@ -12,6 +12,8 @@ WinMerge 2.9.1.6
   BugFix: ANSI build crash in folder compare (#2010053)
   BugFix: Add insert/overtype mode indicator to statusbar (#2015174)
   BugFix: Detected UTF-8 encoding shown as 65001 (#2012377)
+  Bugfix: Don't warn about closing multiple windows when only one
+   window is open (#2010463)
 
 WinMerge 2.10.x (R2_10) branch created (r5561)
 
