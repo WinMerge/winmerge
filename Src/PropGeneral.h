@@ -43,7 +43,6 @@ public:
 	BOOL	m_bMultipleDirCmp;
 	int		m_nAutoCompleteSource;
 	BOOL	m_bPreserveFiletime;
-	BOOL m_bEnablePlugins;
 	//}}AFX_DATA
 
 
@@ -66,12 +65,9 @@ protected:
 
 private:
 	COptionsMgr *m_pOptionsMgr;
-public:
-	afx_msg void OnBnClickedVerifyOpenPaths();
 };
 
 //{{AFX_INSERT_LOCATION}}
 // Microsoft Developer Studio will insert additional declarations immediately before the previous line.
 
 #endif // !defined(AFX_PROPGENERAL_H__30AD07B0_E420_11D1_BBC5_00A024706EDC__INCLUDED_)
-

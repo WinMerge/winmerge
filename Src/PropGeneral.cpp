@@ -57,7 +57,6 @@ CPropGeneral::CPropGeneral(COptionsMgr *optionsMgr) : CPropertyPage(CPropGeneral
 , m_bMultipleDirCmp(FALSE)
 , m_nAutoCompleteSource(0)
 , m_bPreserveFiletime(FALSE)
-, m_bEnablePlugins(FALSE)
 {
 }
 
@@ -96,7 +95,6 @@ void CPropGeneral::DoDataExchange(CDataExchange* pDX)
 	DDX_Check(pDX, IDC_MULTIDOC_DIRCMP, m_bMultipleDirCmp);
 	DDX_CBIndex(pDX, IDC_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	DDX_Check(pDX, IDC_PRESERVE_FILETIME, m_bPreserveFiletime);
-	DDX_Check(pDX, IDC_ENABLE_PLUGINS, m_bEnablePlugins);
 	//}}AFX_DATA_MAP
 }
 
@@ -105,7 +103,6 @@ BEGIN_MESSAGE_MAP(CPropGeneral, CPropertyPage)
 	//{{AFX_MSG_MAP(CPropGeneral)
 	ON_BN_CLICKED(IDC_RESET_ALL_MESSAGE_BOXES, OnResetAllMessageBoxes)
 	//}}AFX_MSG_MAP
-	ON_BN_CLICKED(IDC_VERIFY_OPEN_PATHS, &CPropGeneral::OnBnClickedVerifyOpenPaths)
 END_MESSAGE_MAP()
 
 /** 
@@ -123,7 +120,6 @@ void CPropGeneral::ReadOptions()
 	m_bMultipleDirCmp = m_pOptionsMgr->GetBool(OPT_MULTIDOC_DIRDOCS);
 	m_nAutoCompleteSource = m_pOptionsMgr->GetInt(OPT_AUTO_COMPLETE_SOURCE);
 	m_bPreserveFiletime = m_pOptionsMgr->GetBool(OPT_PRESERVE_FILETIMES);
-	m_bEnablePlugins = m_pOptionsMgr->GetBool(OPT_PLUGINS_ENABLED);
 }
 
 /** 
@@ -141,7 +137,6 @@ void CPropGeneral::WriteOptions()
 	m_pOptionsMgr->SaveOption(OPT_MULTIDOC_DIRDOCS, m_bMultipleDirCmp == TRUE);
 	m_pOptionsMgr->SaveOption(OPT_AUTO_COMPLETE_SOURCE, m_nAutoCompleteSource);
 	m_pOptionsMgr->SaveOption(OPT_PRESERVE_FILETIMES, m_bPreserveFiletime);
-	m_pOptionsMgr->SaveOption(OPT_PLUGINS_ENABLED, m_bEnablePlugins);
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -154,9 +149,4 @@ void CPropGeneral::OnResetAllMessageBoxes()
 {
 	CMessageBoxDialog::ResetMessageBoxes();
 	LangMessageBox(IDS_MESSAGE_BOX_ARE_RESET, MB_ICONINFORMATION);
-}
-
-void CPropGeneral::OnBnClickedVerifyOpenPaths()
-{
-	// TODO: Add your control notification handler code here
 }

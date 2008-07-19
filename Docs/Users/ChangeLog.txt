@@ -5,6 +5,7 @@ http://winmerge.org/tracker/[tracker-id]
 
 WinMerge 2.11.1.2
   Refresh compare after changing filter (#2017426)
+  Add dialog listing available plugins (#2021722)
   BugFix: Failed to compare UTF-8 files plugins disabled (#2018287)
 
 WinMerge 2.11.1.1 - 2008-07-11 (r5609)

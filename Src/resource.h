@@ -53,6 +53,7 @@
 #define IDD_PROJFILES_PATHS             233
 #define IDD_PROPPAGE_BACKUPS            234
 #define IDD_CONFIRM_COPY                235
+#define IDD_PLUGINS_LIST                236
 #define IDR_SPLASH                      308
 #define IDB_WINMERGE                    309
 #define IDB_OLDSPLASH                   310
@@ -431,7 +432,8 @@
 #define IDC_TMPFOLDER_SYSTEM            1338
 #define IDC_TMPFOLDER_BROWSE            1339
 #define IDC_TMPFOLDER_NAME              1340
-#define IDC_ENABLE_PLUGINS              1341
+#define IDC_PLUGINS_ENABLE              1341
+#define IDC_PLUGINSLIST_LIST            1342
 #define IDC_EDIT_WHOLE_WORD             8603
 #define IDC_EDIT_MATCH_CASE             8604
 #define IDC_EDIT_FINDTEXT               8605
@@ -864,6 +866,12 @@
 #define IDS_SUFFIX_GIGA                 30419
 #define IDS_SUFFIX_TERA                 30420
 #define IDS_SUFFIX_PETA                 30421
+#define IDS_PLUGINSLIST_NAME            30432
+#define IDS_PLUGINSLIST_TYPE            30433
+#define IDS_PLUGINSLIST_DESC            30434
+#define IDS_PLUGINS_TYPE_UNPACKER       30435
+#define IDS_PLUGINS_TYPE_PREDIFFER      30436
+#define IDS_PLUGINS_TYPE_EDITSCRIPT     30437
 #define ID_FILE_SAVE_LEFT               32768
 #define ID_FILE_SAVE_RIGHT              32769
 #define ID_FILE_SAVEAS_LEFT             32770
@@ -1033,6 +1041,7 @@
 #define ID_VIEW_ZOOMOUT                 33170
 #define ID_HELP_TRANSLATIONS            33171
 #define ID_VIEW_ZOOMNORMAL              33172
+#define ID_PLUGINS_LIST                 33173
 
 // Next default values for new objects
 //
@@ -1040,8 +1049,8 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
 #define _APS_NEXT_RESOURCE_VALUE        237
-#define _APS_NEXT_COMMAND_VALUE         33172
-#define _APS_NEXT_CONTROL_VALUE         1342
+#define _APS_NEXT_COMMAND_VALUE         33174
+#define _APS_NEXT_CONTROL_VALUE         1344
 #define _APS_NEXT_SYMED_VALUE           113
 #endif
 #endif

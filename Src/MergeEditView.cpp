@@ -45,6 +45,7 @@
 #include "OptionsDef.h"
 #include "SyntaxColors.h"
 #include "MergeLineFlags.h"
+#include "PluginsListDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -203,6 +204,7 @@ BEGIN_MESSAGE_MAP(CMergeEditView, CCrystalEditViewEx)
 	ON_COMMAND(ID_VIEW_ZOOMNORMAL, OnViewZoomNormal)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_LEFTFILE_ENCODING, OnUpdateStatusLeftEncoding)
 	ON_UPDATE_COMMAND_UI(ID_STATUS_RIGHTFILE_ENCODING, OnUpdateStatusRightEncoding)
+	ON_COMMAND(ID_PLUGINS_LIST, &CMergeEditView::OnPluginsList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3363,4 +3365,13 @@ void CMergeEditView::OnUpdateStatusRightEncoding(CCmdUI* pCmdUI)
 {
 	const FileTextEncoding & encoding = GetDocument()->GetEncoding(1);
 	pCmdUI->SetText(encoding.GetName().c_str());
+}
+
+/**
+ * @brief Show the plugins list dialog.
+ */
+void CMergeEditView::OnPluginsList()
+{
+	PluginsListDlg dlg;
+	dlg.DoModal();
 }

@@ -373,13 +373,14 @@ protected:
 	afx_msg void OnEditPaste();
 	afx_msg void OnEditUndo();
 	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnPluginsList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 	BOOL OnHeaderBeginDrag(LPNMHEADER hdr, LRESULT* pResult);
 	BOOL OnHeaderEndDrag(LPNMHEADER hdr, LRESULT* pResult);
-	afx_msg void OnItemChanged(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnBeginLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
-	afx_msg void OnEndLabelEdit(NMHDR* pNMHDR, LRESULT* pResult);
 
 private:
 	void OpenSelection(PackingInfo * infoUnpacker = NULL);

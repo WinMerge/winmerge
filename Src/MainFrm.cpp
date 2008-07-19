@@ -71,6 +71,7 @@
 #include "MergeCmdLineInfo.h"
 #include "FileOrFolderSelect.h"
 #include "PropBackups.h"
+#include "PluginsListDlg.h"
 
 /*
  One source file must compile the stubs for multimonitor
@@ -214,8 +215,9 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, OnToolTipText)
 	ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, OnToolTipText)
 	ON_COMMAND(ID_HELP_RELEASENOTES, OnHelpReleasenotes)
-  ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
+	ON_COMMAND(ID_HELP_TRANSLATIONS, OnHelpTranslations)
 	ON_COMMAND(ID_FILE_OPENCONFLICT, OnFileOpenConflict)
+	ON_COMMAND(ID_PLUGINS_LIST, &CMainFrame::OnPluginsList)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
@@ -3492,4 +3494,13 @@ FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
 		return FRAME_FOLDER;
 	else
 		return FRAME_OTHER;
+}
+
+/**
+ * @brief Show the plugins list dialog.
+ */
+void CMainFrame::OnPluginsList()
+{
+	PluginsListDlg dlg;
+	dlg.DoModal();
 }
