@@ -108,7 +108,6 @@ public:
 	 * then these indexes are changed.
 	 */
 	int m_nThisPane;
-	LONG m_nModifications;
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
 
 protected:
