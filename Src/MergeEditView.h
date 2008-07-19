@@ -98,16 +98,26 @@ class CMergeEditView : public CGhostTextView
 protected:
 	CMergeEditView();           // protected constructor used by dynamic creation
 	DECLARE_DYNCREATE(CMergeEditView)
-    CCrystalParser m_xParser;
+	CCrystalParser m_xParser; /**< Syntax parser used for syntax highlighting. */
 
 // Attributes
 public:
+	/**
+	 * Index of pane this view is attached to.
+	 * This indicates the pane number the view is attached to. If we swap panes
+	 * then these indexes are changed.
+	 */
 	int m_nThisPane;
 	LONG m_nModifications;
 	IMergeEditStatus * m_piMergeEditStatus; /**< interface to status bar */
 
 protected:
-	/** Controls if rescan is done after edit events */
+	/**
+	 * Are automatic rescans enabled?
+	 * If automatic rescans are enabled then we rescan files after edit
+	 * events, unless timer suppresses rescan. We suppress rescans within
+	 * certain time from previous rescan.
+	 */
 	BOOL m_bAutomaticRescan;
 
 private:
@@ -121,7 +131,7 @@ private:
 	/// active prediffer ID : helper to check the radio button
 	int m_CurrentPredifferID;
 
-	BOOL m_bCurrentLineIsDiff; /**< TRUE if current line is diff-line */
+	BOOL m_bCurrentLineIsDiff; /**< TRUE if cursor is in diff line */
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
 	HWND m_hLocationview; /**< Handle to locationview */
 
