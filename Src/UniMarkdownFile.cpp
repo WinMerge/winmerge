@@ -73,33 +73,33 @@ bool UniMarkdownFile::ReadBom()
  * @brief Collapse whitespace characters from the given line.
  * @param [in, out] Line to handle.
  */
-static void CollapseWhitespace(CString &line)
+static void CollapseWhitespace(String &line)
 {
 	int nEatSpace = -2;
-	for (int i = line.GetLength() ; i-- ; )
+	for (int i = line.length() ; i-- ; )
 	{
-		switch (line.GetAt(i))
+		switch (line[i])
 		{
 		case '\r':
 		case '\n':
 		case '\t':
 		case ' ':
-			if (++nEatSpace < 0 || nEatSpace == 0 && line.GetAt(i + 1) == '<')
+			if (++nEatSpace < 0 || nEatSpace == 0 && line[i + 1] == '<')
 				++nEatSpace;
-			line.SetAt(i, ' ');
+			line[i] = ' ';
 			break;
 		case '>':
-			if (nEatSpace >= 0 && line.GetAt(i + 1 + nEatSpace) != '<')
+			if (nEatSpace >= 0 && line[i + 1 + nEatSpace] != '<')
 				++nEatSpace;
 		default:
 			if (nEatSpace > 0)
-				line.Delete(i + 1, nEatSpace);
+				line.erase(i + 1, nEatSpace);
 			nEatSpace = -1;
 			break;
 		}
 	}
 	if (++nEatSpace > 0)
-		line.Delete(0, nEatSpace);
+		line.erase(0, nEatSpace);
 }
 
 void UniMarkdownFile::Move()
@@ -133,19 +133,18 @@ void UniMarkdownFile::Move()
 	}
 }
 
-BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
+BOOL UniMarkdownFile::ReadString(String &line, String &eol, bool *lossy)
 {
-	line.ReleaseBuffer(0);
-	eol.ReleaseBuffer(0);
+	line.erase();
+	eol.erase();
 	int nDepth = 0;
 	bool bDone = false;
 	if (m_current < (LPBYTE)m_pMarkdown->lower)
 	{
-		String localLine = ucr::maketstring((const char *)m_current, m_pMarkdown->lower -
+		line = ucr::maketstring((const char *)m_current, m_pMarkdown->lower -
 				(const char *)m_current, m_codepage, lossy);
-		line = localLine.c_str();
 		CollapseWhitespace(line);
-		bDone = !line.IsEmpty();
+		bDone = !line.empty();
 		m_current = (LPBYTE)m_pMarkdown->lower;
 	}
 	while (m_current < m_base + m_filesize && !bDone)
@@ -162,8 +161,7 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 			{
 				++m_current;
 			}
-			String localLine = ucr::maketstring((const char *)current, m_current - current, m_codepage, lossy);
-			line = localLine.c_str();
+			line = ucr::maketstring((const char *)current, m_current - current, m_codepage, lossy);
 			if (m_current < m_transparent)
 			{
 				current = m_current;
@@ -217,27 +215,25 @@ BOOL UniMarkdownFile::ReadString(CString &line, CString &eol, bool *lossy)
 			}
 			if (bDone)
 			{
-				String localLine = ucr::maketstring((const char *)m_current, m_pMarkdown->first -
+				line = ucr::maketstring((const char *)m_current, m_pMarkdown->first -
 						(const char *)m_current, m_codepage, lossy);
-				line = localLine.c_str();
 				CollapseWhitespace(line);
 				m_current = (LPBYTE)m_pMarkdown->first;
 			}
 			else if (m_current < m_base + m_filesize)
 			{
 				bDone = true;
-				String localLine = ucr::maketstring((const char *)m_current, m_base + m_filesize -
+				line = ucr::maketstring((const char *)m_current, m_base + m_filesize -
 						m_current, m_codepage, lossy);
-				line = localLine.c_str();
 				CollapseWhitespace(line);
 				m_current = m_base + m_filesize;
 			}
-			bDone = !line.IsEmpty();
+			bDone = !line.empty();
 		}
 	}
-	ASSERT(line.FindOneOf(_T("\r\n")) == -1);
+	ASSERT(line.find_first_of(_T("\r\n")) == String::npos);
 	if (nDepth > 0)
-		line.Insert(0, CString('\t', nDepth));
+		line.insert(0U, nDepth, _T('\t'));
 	if (bDone)
 		eol = _T("\n");
 	return bDone;

@@ -17,7 +17,7 @@ class UniMarkdownFile : public UniMemFile
 {
 public:
 	UniMarkdownFile();
-	virtual BOOL ReadString(CString & line, CString & eol, bool * lossy);
+	virtual BOOL ReadString(String & line, String & eol, bool * lossy);
 	virtual void Close();
 	virtual bool ReadBom();
 
