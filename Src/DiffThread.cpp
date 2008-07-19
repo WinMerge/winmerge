@@ -131,6 +131,8 @@ UINT CDiffThread::CompareDirectories(const String & dir1,
 
 	m_pDiffParm->hSemaphore = CreateSemaphore(0, 0, LONG_MAX, 0);
 
+	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
+
 	if (bSinglethreaded)
 	{
 		if (m_bOnlyRequested == FALSE)
@@ -210,7 +212,6 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	paths.SetLeft(myStruct->context->GetNormalizedLeft().c_str());
 	paths.SetRight(myStruct->context->GetNormalizedRight().c_str());
 
-	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 	String subdir; // blank to start at roots specified in diff context
 #ifdef _DEBUG
 	_CrtMemState memStateBefore;
