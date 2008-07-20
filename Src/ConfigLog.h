@@ -19,7 +19,7 @@
  *
  * @brief Declaration file ConfigLog class
  */
-// RCS ID line follows -- this is updated by CVS
+// ID line follows -- this is updated by SVN
 // $Id$
 
 #ifndef _CONFIGLOG_H_
@@ -67,6 +67,7 @@ struct MISCSETTINGS
 	BOOL bSyntaxHighlight;
 	BOOL bInsertTabs;
 	INT  nTabSize;
+	BOOL bPluginsEnabled;
 };
 
 /** 
