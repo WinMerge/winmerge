@@ -362,15 +362,13 @@ void CDirDoc::Rescan()
 	// Show active filter name in statusbar
 	pf->SetFilterStatusDisplay(theApp.m_globalFileFilter.GetFilterNameOrMask());
 
-	// Empty display before new compare
-	m_pDirView->DeleteAllDisplayItems();
-
 	// Folder names to compare are in the compare context
 	m_diffThread.SetContext(m_pCtxt);
 	m_diffThread.SetHwnd(m_pDirView->GetSafeHwnd());
 	m_diffThread.SetMessageIDs(MSG_UI_UPDATE);
 	m_diffThread.SetCompareSelected(!!m_bMarkedRescan);
-	m_diffThread.CompareDirectories(m_bRecursive);
+	m_diffThread.CompareDirectories(m_pCtxt->GetNormalizedLeft(),
+			m_pCtxt->GetNormalizedRight(), m_bRecursive);
 	m_bMarkedRescan = FALSE;
 }
 

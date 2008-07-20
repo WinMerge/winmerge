@@ -116,8 +116,8 @@ public:
 
 	UINT GetSelectedCount() const;
 	int GetFirstSelectedInd();
-	DIFFITEM GetNextSelectedInd(int &ind);
-	DIFFITEM GetItemAt(int ind);
+	DIFFITEM & GetNextSelectedInd(int &ind);
+	DIFFITEM & GetItemAt(int ind);
 	void AddParentFolderItem(BOOL bEnable);
 	void RefreshOptions();
 
@@ -405,7 +405,6 @@ private:
 	POSITION GetItemKeyFromData(DWORD_PTR dw) const;
 	const DIFFITEM & GetDiffItem(int sel) const;
 	DIFFITEM & GetDiffItemRef(int sel);
-	const DIFFITEM & GetDiffItemConstRef(int sel) const;
 	int GetSingleSelectedItem() const;
 	bool IsItemNavigableDiff(const DIFFITEM & di) const;
 	void MoveFocus(int currentInd, int i, int selCount);

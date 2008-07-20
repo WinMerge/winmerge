@@ -23,16 +23,15 @@
 // $Id$
 
 #include "stdafx.h"
-#include <vector>
+#include "UnicodeString.h"
 #include "diffcontext.h"
 #include "diffthread.h"
 #include "DirScan.h"
 #include "Plugins.h"
+#include "DiffItemList.h"
 #include "PathContext.h"
 #include "CompareStats.h"
 #include "IAbortable.h"
-
-using namespace std;
 
 /**
  * @brief Force compare to be single-threaded.
@@ -45,37 +44,6 @@ using namespace std;
  * these threads otherwise.
  */
 static bool bSinglethreaded = false;
-
-/**
- * @brief Structure used in sending data to the threads.
- * As thread functions have only one parameter we must pack all
- * the data we need inside structure.
- */
-struct DiffFuncStruct
-{
-	CDiffContext * context; /**< Compare context. */
-	UINT msgUIUpdate; /**< Windows message for updating GUI. */
-	HWND hWindow; /**< Window getting status updates. */
-	CDiffThread::ThreadState nThreadState; /**< Thread state. */
-	BOOL bRecursive; /**< Is compare recursive (subfolders included)? */
-	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
-	bool bOnlyRequested; /**< Compare only requested items? */
-	std::vector<DIFFITEM*> *pItemList; /**< List of items to compare. */
-	HANDLE hEvent; /**< Event for synchronizing thread start. */
-
-	DiffFuncStruct()
-		: context(NULL)
-		, msgUIUpdate(0)
-		, hWindow(0)
-		, nThreadState(CDiffThread::THREAD_NOTSTARTED)
-		, bRecursive(FALSE)
-		, m_pAbortgate(NULL)
-		, bOnlyRequested(false)
-		, pItemList(NULL)
-		, hEvent(NULL)
-		{}
-};
-
 
 /** @brief abort handler for CDiffThread -- just a gateway to CDiffThread */
 class DiffThreadAbortable : public IAbortable
@@ -109,7 +77,7 @@ CDiffThread::CDiffThread()
  */
 CDiffThread::~CDiffThread()
 {
-	CloseHandle(m_pDiffParm->hEvent);
+	CloseHandle(m_pDiffParm->hSemaphore);
 	delete m_pDiffParm;
 	delete m_pAbortgate;
 }
@@ -141,11 +109,13 @@ bool CDiffThread::ShouldAbort() const
 
 /**
  * @brief Start and run directory compare thread.
+ * @param [in] dir1 First directory to compare.
+ * @param [in] dir2 Second directory to compare.
  * @param [in] bRecursive Is the compare recursive (subfolders included)?
  * @return Success (1) or error for thread. Currently always 1.
- * @note Folders names to compare are passed in the compare context.
  */
-UINT CDiffThread::CompareDirectories(BOOL bRecursive)
+UINT CDiffThread::CompareDirectories(const String & dir1,
+		const String & dir2, BOOL bRecursive)
 {
 	ASSERT(m_pDiffParm->nThreadState != THREAD_COMPARING);
 
@@ -155,21 +125,24 @@ UINT CDiffThread::CompareDirectories(BOOL bRecursive)
 	m_pDiffParm->hWindow = m_hWnd;
 	m_pDiffParm->m_pAbortgate = m_pAbortgate;
 	m_pDiffParm->bOnlyRequested = m_bOnlyRequested;
-	m_pDiffParm->pItemList = &m_diffList;
 	m_bAborting = FALSE;
 
 	m_pDiffParm->nThreadState = THREAD_COMPARING;
 
-	m_pDiffParm->hEvent = CreateEvent(NULL, FALSE, FALSE, NULL);
+	m_pDiffParm->hSemaphore = CreateSemaphore(0, 0, LONG_MAX, 0);
+
+	m_pDiffParm->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
 
 	if (bSinglethreaded)
 	{
-		DiffThreadCollect(m_pDiffParm);
+		if (m_bOnlyRequested == FALSE)
+			DiffThreadCollect(m_pDiffParm);
 		DiffThreadCompare(m_pDiffParm);
 	}
 	else
 	{
-		m_threads[0] = AfxBeginThread(DiffThreadCollect, m_pDiffParm);
+		if (m_bOnlyRequested == FALSE)
+			m_threads[0] = AfxBeginThread(DiffThreadCollect, m_pDiffParm);
 		m_threads[1] = AfxBeginThread(DiffThreadCompare, m_pDiffParm);
 	}
 
@@ -223,8 +196,8 @@ UINT DiffThreadCollect(LPVOID lpParam)
 {
 	PathContext paths;
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
-	UINT msgID = myStruct->msgUIUpdate;
-	bool bOnlyRequested = myStruct->bOnlyRequested;
+
+	ASSERT(myStruct->bOnlyRequested == FALSE);
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
@@ -239,50 +212,27 @@ UINT DiffThreadCollect(LPVOID lpParam)
 	paths.SetLeft(myStruct->context->GetNormalizedLeft().c_str());
 	paths.SetRight(myStruct->context->GetNormalizedRight().c_str());
 
-	if (bOnlyRequested)
-	{
-		// Tell compare thread it can start comparing.
-		SetEvent(myStruct->hEvent);
-
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-		DirScan_CompareItems(myStruct->context);
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
-	}
-	else
-	{
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_START);
+	String subdir; // blank to start at roots specified in diff context
 #ifdef _DEBUG
-		_CrtMemState memStateBefore;
-		_CrtMemState memStateAfter;
-		_CrtMemState memStateDiff;
-		_CrtMemCheckpoint(&memStateBefore);
+	_CrtMemState memStateBefore;
+	_CrtMemState memStateAfter;
+	_CrtMemState memStateDiff;
+	_CrtMemCheckpoint(&memStateBefore);
 #endif
 
-		// Tell compare thread it can start comparing.
-		SetEvent(myStruct->hEvent);
-
-		// Build results list (except delaying file comparisons until below)
-		// Empty subdirs to start compare from root folders in diff context
-		DirScan_GetItems(paths, _T(""), _T(""), myStruct->pItemList,
-				casesensitive, depth,  myStruct->context);
+	// Build results list (except delaying file comparisons until below)
+	DirScan_GetItems(paths, subdir, subdir, myStruct, casesensitive, depth);
 
 #ifdef _DEBUG
-		_CrtMemCheckpoint(&memStateAfter);
-		_CrtMemDifference(&memStateDiff, &memStateBefore, &memStateAfter);
-		_CrtMemDumpStatistics(&memStateDiff);
+	_CrtMemCheckpoint(&memStateAfter);
+	_CrtMemDifference(&memStateDiff, &memStateBefore, &memStateAfter);
+	_CrtMemDumpStatistics(&memStateDiff);
 #endif
-	}
 
-	// Add sentinel to ItemList
-	EnterCriticalSection(&myStruct->context->m_criticalSect);
-	DIFFITEM *di = new DIFFITEM();
-	di->empty = true;
-	myStruct->pItemList->push_back(di);
-	LeaveCriticalSection(&myStruct->context->m_criticalSect);
-
+	// ReleaseSemaphore() once again to signal that collect phase is ready
+	ReleaseSemaphore(myStruct->hSemaphore, 1, 0);
 	return 1;
 }
-
 
 /**
  * @brief Folder compare thread function.
@@ -295,9 +245,6 @@ UINT DiffThreadCollect(LPVOID lpParam)
 UINT DiffThreadCompare(LPVOID lpParam)
 {
 	DiffFuncStruct *myStruct = (DiffFuncStruct *) lpParam;
-	HWND hWnd = myStruct->hWindow;
-	UINT msgID = myStruct->msgUIUpdate;
-	bool bOnlyRequested = myStruct->bOnlyRequested;
 
 	// Stash abortable interface into context
 	myStruct->context->SetAbortable(myStruct->m_pAbortgate);
@@ -306,37 +253,19 @@ UINT DiffThreadCompare(LPVOID lpParam)
 	// when we exit the thread, we delete this and release the scripts
 	CAssureScriptsForThread scriptsForRescan;
 
-	// Give another thread at max one second head start for initialization.
-	WaitForSingleObject(myStruct->hEvent, 1000);
+	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
 
-	if (bOnlyRequested)
-	{
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-		DirScan_CompareItems(myStruct->context);
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
-	}
+	// Now do all pending file comparisons
+	if (myStruct->bOnlyRequested)
+		DirScan_CompareRequestedItems(myStruct);
 	else
-	{
+		DirScan_CompareItems(myStruct);
 
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_COMPARE);
-
-		// Now do all pending file comparisons
-		DirScan_CompareItems(myStruct->pItemList, myStruct->context);
-
-		myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
-	}
-
-	// Empty the list
-	while (!myStruct->pItemList->empty())
-	{
-		DIFFITEM * di = myStruct->pItemList->back();
-		delete di;
-		myStruct->pItemList->pop_back();
-	}
+	myStruct->context->m_pCompareStats->SetCompareState(CompareStats::STATE_IDLE);
 
 	// Send message to UI to update
 	myStruct->nThreadState = CDiffThread::THREAD_COMPLETED;
 	// msgID=MSG_UI_UPDATE=1025 (2005-11-29, Perry)
-	PostMessage(hWnd, msgID, NULL, NULL);
+	PostMessage(myStruct->hWindow, myStruct->msgUIUpdate, NULL, NULL);
 	return 1;
 }

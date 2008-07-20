@@ -16,50 +16,7 @@ static char THIS_FILE[]=__FILE__;
 #define new DEBUG_NEW
 #endif
 
-/**
- * @brief Copy constructor.
- * @param [in] di Object to copy.
- */
-DIFFITEM::DIFFITEM(const DIFFITEM& di)
-{
-	diffcode = di.diffcode;
-	left = di.left;
-	right = di.right;
-	nsdiffs = di.nsdiffs;
-	nidiffs = di.nidiffs;
-	errorDesc = di.errorDesc;
-	customFlags1 = di.customFlags1;
-	empty = di.empty;
-}
-
-/**
- * @brief Assignment operator override.
- * @param [in] di Object to copy.
- * @return Copy of given object.
- */
-DIFFITEM& DIFFITEM::operator=(const DIFFITEM& di)
-{
-	if (this != &di)
-	{
-		diffcode = di.diffcode;
-		left = di.left;
-		right = di.right;
-		nsdiffs = di.nsdiffs;
-		nidiffs = di.nidiffs;
-		errorDesc = di.errorDesc;
-		customFlags1 = di.customFlags1;
-		empty = di.empty;
-	}
-	return *this;
-}
-
-/** @brief Make and return a diffitem with no data */
-DIFFITEM DIFFITEM::MakeEmptyDiffItem() // static
-{
-	DIFFITEM di;
-	di.empty = true;
-	return di;
-}
+DIFFITEM DIFFITEM::emptyitem;
 
 /** @brief Return path to left file, including all but file name */
 String DIFFITEM::getLeftFilepath(const String &sLeftRoot) const

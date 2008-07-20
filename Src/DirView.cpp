@@ -1503,20 +1503,9 @@ DIFFITEM & CDirView::GetDiffItemRef(int sel)
 		// for whatever these special items are
 		// because here we have to hope client does not modify this
 		// static (shared) item
-		static DIFFITEM emptyItem = DIFFITEM::MakeEmptyDiffItem();
-		return emptyItem;
+		return DIFFITEM::emptyitem;
 	}
 	return GetDocument()->GetDiffRefByKey(diffpos);
-}
-
-/**
- * Given index in list control, get modifiable reference to its DIFFITEM data
- */
-const DIFFITEM & CDirView::GetDiffItemConstRef(int sel) const
-{
-	CDirView * pDirView = const_cast<CDirView *>(this);
-	return pDirView->GetDiffItemRef(sel);
-
 }
 
 void CDirView::DeleteAllDisplayItems()
@@ -1782,13 +1771,10 @@ int CDirView::GetFirstSelectedInd()
  * - OUT new index of found item
  * @return DIFFITEM in found index.
  */
-DIFFITEM CDirView::GetNextSelectedInd(int &ind)
+DIFFITEM &CDirView::GetNextSelectedInd(int &ind)
 {
-	DIFFITEM di;
-	int sel =- 1;
-
-	sel = m_pList->GetNextItem(ind, LVNI_SELECTED);
-	di = GetDiffItem(ind);
+	int sel = m_pList->GetNextItem(ind, LVNI_SELECTED);
+	DIFFITEM &di = GetDiffItemRef(ind);
 	ind = sel;
 	
 	return di;
@@ -1799,10 +1785,10 @@ DIFFITEM CDirView::GetNextSelectedInd(int &ind)
  * @param [in] ind Index from where DIFFITEM is wanted.
  * @return DIFFITEM in given index.
  */
-DIFFITEM CDirView::GetItemAt(int ind)
+DIFFITEM &CDirView::GetItemAt(int ind)
 {
 	ASSERT(ind != -1); // Trap programmer errors in debug
-	return GetDiffItem(ind);
+	return GetDiffItemRef(ind);
 }
 
 // Go to first diff
@@ -2174,13 +2160,16 @@ LRESULT CDirView::OnUpdateUIMessage(WPARAM wParam, LPARAM lParam)
 	m_pCmpProgressDlg = NULL;
 
 	pDoc->CompareReady();
-	Redisplay();
-	
-	if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
-		OnFirstdiff();
-	else
-		MoveFocus(0, 0, 0);
+	// Don't Redisplay() if triggered by OnMarkedRescan()
+	if (GetListCtrl().GetItemCount() == 0)
+	{
+		Redisplay();
 
+		if (GetOptionsMgr()->GetBool(OPT_SCROLL_TO_FIRST))
+			OnFirstdiff();
+		else
+			MoveFocus(0, 0, 0);
+	}
 	// If compare took more than TimeToSignalCompare seconds, notify user
 	clock_t elapsed = clock() - m_compareStart;
 	TCHAR text[200];

@@ -25,7 +25,6 @@
 #ifndef _DIFFTHREAD_H
 #define _DIFFTHREAD_H
 
-#include <vector>
 #include "diffcontext.h"
 
 struct DiffFuncStruct;
@@ -53,7 +52,7 @@ public:
 	CDiffThread();
 	~CDiffThread();
 	void SetContext(CDiffContext * pCtx);
-	UINT CompareDirectories(BOOL bRecursive);
+	UINT CompareDirectories(const String & dir1, const String & dir2, BOOL bRecursive);
 	void SetHwnd(HWND hWnd);
 	void SetMessageIDs(UINT updateMsg);
 	void SetCompareSelected(bool bSelected = false);
@@ -71,11 +70,38 @@ private:
 	CWinThread * m_threads[2]; /**< Compare threads. */
 	DiffFuncStruct * m_pDiffParm; /**< Structure for sending data to threads. */
 	DiffThreadAbortable * m_pAbortgate;
-	std::vector<DIFFITEM*> m_diffList; /**< Compare-time list for compared items. */
 	UINT m_msgUpdateUI; /**< UI-update message number */
 	HWND m_hWnd; /**< Handle to folder compare GUI window */
 	bool m_bAborting; /**< Is compare aborting? */
 	bool m_bOnlyRequested; /**< Are we comparing only requested items (Update?) */
+};
+
+/**
+ * @brief Structure used in sending data to the threads.
+ * As thread functions have only one parameter we must pack all
+ * the data we need inside structure.
+ */
+struct DiffFuncStruct
+{
+	CDiffContext * context; /**< Compare context. */
+	UINT msgUIUpdate; /**< Windows message for updating GUI. */
+	HWND hWindow; /**< Window getting status updates. */
+	CDiffThread::ThreadState nThreadState; /**< Thread state. */
+	BOOL bRecursive; /**< Is compare recursive (subfolders included)? */
+	DiffThreadAbortable * m_pAbortgate; /**< Interface for aborting compare. */
+	bool bOnlyRequested; /**< Compare only requested items? */
+	HANDLE hSemaphore; /**< Semaphore for synchronizing threads. */
+
+	DiffFuncStruct()
+		: context(NULL)
+		, msgUIUpdate(0)
+		, hWindow(0)
+		, nThreadState(CDiffThread::THREAD_NOTSTARTED)
+		, bRecursive(FALSE)
+		, m_pAbortgate(NULL)
+		, bOnlyRequested(false)
+		, hSemaphore(NULL)
+		{}
 };
 
 // Thread functions
