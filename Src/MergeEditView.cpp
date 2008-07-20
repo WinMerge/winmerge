@@ -71,7 +71,6 @@ IMPLEMENT_DYNCREATE(CMergeEditView, CCrystalEditViewEx)
 CMergeEditView::CMergeEditView()
 : m_bCurrentLineIsDiff(FALSE)
 , m_pLocationView(NULL)
-, m_hLocationview(NULL)
 , m_nThisPane(0)
 , m_piMergeEditStatus(0)
 , m_bAutomaticRescan(FALSE)
@@ -3119,13 +3118,10 @@ void CMergeEditView::DocumentsLoaded()
  * @brief Set LocationView pointer.
  * CLocationView calls this function to set pointer to itself,
  * so we can call locationview to update it.
- * @param [in] hView Handle to CLocationView.
  * @param [in] pView Pointer to CLocationView.
  */
-void CMergeEditView::SetLocationView(HWND hView,
-		const CLocationView * pView /*=NULL*/)
+void CMergeEditView::SetLocationView(const CLocationView * pView /*=NULL*/)
 {
-	m_hLocationview = hView;
 	m_pLocationView = const_cast<CLocationView *>(pView);
 }
 
@@ -3144,7 +3140,7 @@ void CMergeEditView::UpdateLocationViewPosition(int nTopLine /*=-1*/,
 	if (m_pDocument == NULL)
 		return;
 
-	if (m_hLocationview != NULL && IsWindow(m_hLocationview))
+	if (m_pLocationView != NULL && IsWindow(m_pLocationView->GetSafeHwnd()))
 	{
 		m_pLocationView->UpdateVisiblePos(nTopLine, nBottomLine);
 	}

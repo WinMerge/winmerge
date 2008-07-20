@@ -155,8 +155,8 @@ void CLocationView::OnUpdate( CView* pSender, LPARAM lHint, CObject* pHint )
 	m_view[MERGE_VIEW_RIGHT] = pDoc->GetRightView();
 
 	// Give pointer to MergeEditView
-	m_view[MERGE_VIEW_LEFT]->SetLocationView(GetSafeHwnd(), this);
-	m_view[MERGE_VIEW_RIGHT]->SetLocationView(GetSafeHwnd(), this);
+	m_view[MERGE_VIEW_LEFT]->SetLocationView(this);
+	m_view[MERGE_VIEW_RIGHT]->SetLocationView(this);
 
 	m_bRecalculateBlocks = TRUE;
 	Invalidate();
@@ -856,8 +856,8 @@ void CLocationView::UpdateVisiblePos(int nTopLine, int nBottomLine)
  */
 void CLocationView::OnClose()
 {
-	m_view[MERGE_VIEW_LEFT]->SetLocationView(NULL, NULL);
-	m_view[MERGE_VIEW_RIGHT]->SetLocationView(NULL, NULL);
+	m_view[MERGE_VIEW_LEFT]->SetLocationView(NULL);
+	m_view[MERGE_VIEW_RIGHT]->SetLocationView(NULL);
 
 	CView::OnClose();
 }

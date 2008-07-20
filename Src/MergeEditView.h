@@ -132,7 +132,6 @@ private:
 
 	BOOL m_bCurrentLineIsDiff; /**< TRUE if cursor is in diff line */
 	CLocationView * m_pLocationView; /**< Pointer to locationview */
-	HWND m_hLocationview; /**< Handle to locationview */
 
 // Operations
 public:
@@ -179,7 +178,7 @@ public:
 	bool SetPredifferByName(const CString & prediffer);
 	void SetPredifferByMenu(UINT nID);
 	void DocumentsLoaded();
-	void SetLocationView(HWND hView, const CLocationView * pView = NULL);
+	void SetLocationView(const CLocationView * pView = NULL);
 	void UpdateLocationViewPosition(int nTopLine = -1, int nBottomLine = -1);
 	virtual void RecalcPageLayouts(CDC * pdc, CPrintInfo * pInfo);
 	virtual void GetPrintHeaderText(int nPageNum, CString & text);
