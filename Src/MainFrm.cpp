@@ -2477,7 +2477,8 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	lineFiltersDlg.m_bIgnoreRegExp = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	const BOOL lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
 	lineFilters->CloneFrom(m_pLineFilters);
 	lineFiltersDlg.SetList(lineFilters);
@@ -2513,13 +2514,17 @@ void CMainFrame::OnToolsFilters()
 		FRAMETYPE frame = GetFrameType(pFrame);
 		if (frame == FRAME_FILE)
 		{
-			if (!m_pLineFilters->Compare(lineFilters))
+			if (lineFiltersEnabledOrig != linefiltersEnabled ||
+					!m_pLineFilters->Compare(lineFilters))
+			{
 				bFileCompareRescan = TRUE;
+			}
 		}
 		else if (frame == FRAME_FOLDER)
 		{
 			const CString newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
-			if (!m_pLineFilters->Compare(lineFilters) || origFilter != newFilter)
+			if (lineFiltersEnabledOrig != linefiltersEnabled || 
+					!m_pLineFilters->Compare(lineFilters) || origFilter != newFilter)
 			{
 				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
 				if (res == IDYES)
@@ -2533,13 +2538,23 @@ void CMainFrame::OnToolsFilters()
 
 		if (bFileCompareRescan)
 		{
-			CMergeDoc *pDoc = (CMergeDoc *)pFrame->GetActiveDocument();
-			pDoc->FlushAndRescan(TRUE);
+			const MergeDocList &docs = GetAllMergeDocs();
+			POSITION pos = docs.GetHeadPosition();
+			while (pos)
+			{
+				CMergeDoc * pMergeDoc = docs.GetNext(pos);
+				pMergeDoc->FlushAndRescan(TRUE);
+			}
 		}
 		else if (bFolderCompareRescan)
 		{
-			CDirDoc * pDoc = (CDirDoc *)pFrame->GetActiveDocument();
-			pDoc->Rescan();
+			const DirDocList &dirDocs = GetAllDirDocs();
+			POSITION pos = dirDocs.GetHeadPosition();
+			while (pos)
+			{
+				CDirDoc * pDirDoc = dirDocs.GetNext(pos);
+				pDirDoc->Rescan();
+			}
 		}
 	}
 	delete lineFilters;

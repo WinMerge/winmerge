@@ -2032,7 +2032,7 @@ END
 // GENERAL FILTER STRINGS
 STRINGTABLE 
 BEGIN
-    IDS_FILTERCHANGED       "Filters were updated.\n\nDo you want to rescan current folders?"
+    IDS_FILTERCHANGED       "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 END
 
 // VERSION CONTROL OPTIONS

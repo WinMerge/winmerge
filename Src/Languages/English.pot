@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WinMerge\n"
 "Report-Msgid-Bugs-To: http://sourceforge.net/tracker/?group_id=13216&atid=113216\n"
-"POT-Creation-Date: 2008-07-19 14:03+0000\n"
+"POT-Creation-Date: 2008-07-21 14:20+0000\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: English <winmerge-translate@lists.sourceforge.net>\n"
@@ -3222,7 +3222,7 @@ msgstr ""
 
 #: Merge.rc:2035
 #, c-format
-msgid "Filters were updated.\n\nDo you want to rescan current folders?"
+msgid "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
 msgstr ""
 
 #: Merge.rc:2041
