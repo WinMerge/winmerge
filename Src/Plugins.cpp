@@ -372,6 +372,8 @@ struct ScriptInfo
  */
 static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LPCWSTR transformationEvent)
 {
+	USES_CONVERSION;
+
 	// set up object in case we need to log info
 	ScriptInfo scinfo(scriptletFilepath, transformationEvent);
 
@@ -461,7 +463,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 			scinfo.Log(_T("Plugin had PluginDescription property, but error getting its value"));
 			return -60; // error (Plugin had PluginDescription property, but error getting its value)
 		}
-		plugin.m_description = ret.bstrVal;
+		plugin.m_description = OLE2T(ret.bstrVal);
 	}
 	else
 	{
@@ -480,7 +482,7 @@ static int LoadPlugin(PluginInfo & plugin, const CString & scriptletFilepath, LP
 			scinfo.Log(_T("Plugin had PluginFileFilters property, but error getting its value"));
 			return -70; // error (Plugin had PluginFileFilters property, but error getting its value)
 		}
-		plugin.m_filtersText= ret.bstrVal;
+		plugin.m_filtersText = OLE2T(ret.bstrVal);
 		hasPluginFileFilters = true;
 	}
 	else
