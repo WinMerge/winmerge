@@ -460,7 +460,7 @@ HMENU CMainFrame::GetPrediffersSubmenu(HMENU mainMenu)
 	// look for "Plugins" menu
 	int i;
 	for (i = 0 ; i < ::GetMenuItemCount(mainMenu) ; i++)
-		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_UNPACK_MANUAL)
+		if (::GetMenuItemID(::GetSubMenu(mainMenu, i), 0) == ID_PLUGINS_LIST)
 			break;
 	HMENU editMenu = ::GetSubMenu(mainMenu, i);
 
