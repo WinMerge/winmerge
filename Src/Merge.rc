@@ -2029,6 +2029,12 @@ BEGIN
     IDS_FILTERLINE_REGEXP   "Regular expression"
 END
 
+// GENERAL FILTER STRINGS
+STRINGTABLE 
+BEGIN
+    IDS_FILTERCHANGED       "Filters were updated. Do you want to refresh all open folder compares?\n\nIf you do not want to refresh all compares now you can select No and refresh compares later."
+END
+
 // VERSION CONTROL OPTIONS
 STRINGTABLE
 BEGIN

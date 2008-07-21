@@ -36,8 +36,9 @@ public:
 	int GetCount() const;
 	void Empty();
 	String GetAsString() const;
-	const LineFilterItem & GetAt(int ind);
-	void CloneFrom(LineFiltersList *list);
+	const LineFilterItem & GetAt(int ind) const;
+	void CloneFrom(const LineFiltersList *list);
+	bool Compare(const LineFiltersList *list) const;
 
 	void Initialize(COptionsMgr *pOptionsMgr);
 	void SaveFilters();

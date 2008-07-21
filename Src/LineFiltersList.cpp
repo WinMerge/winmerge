@@ -101,7 +101,7 @@ String LineFiltersList::GetAsString() const
  * @return Filter item from the index. If the index is beyond table limit,
  *  return the last item in the list.
  */
-const LineFilterItem & LineFiltersList::GetAt(int ind)
+const LineFilterItem & LineFiltersList::GetAt(int ind) const
 {
 	if (ind < m_items.size())
 		return *m_items[ind];
@@ -115,7 +115,7 @@ const LineFilterItem & LineFiltersList::GetAt(int ind)
  * list are removed and new items added from the given list.
  * @param [in] list List to clone.
  */
-void LineFiltersList::CloneFrom(LineFiltersList *list)
+void LineFiltersList::CloneFrom(const LineFiltersList *list)
 {
 	Empty();
 	int count = list->GetCount();
@@ -125,6 +125,30 @@ void LineFiltersList::CloneFrom(LineFiltersList *list)
 		LineFilterItem item = list->GetAt(i);
 		AddFilter(item.filterStr.c_str(), item.enabled);
 	}
+}
+
+/**
+ * @brief Compare filter lists.
+ * @param [in] list List to compare.
+ * @return true if lists are identical, false otherwise.
+ */
+bool LineFiltersList::Compare(const LineFiltersList *list) const
+{
+	if (list->GetCount() != GetCount())
+		return false;
+
+	for (int i = 0; i < GetCount(); i++)
+	{
+		const LineFilterItem &item1 = list->GetAt(i);
+		const LineFilterItem &item2 = GetAt(i);
+
+		if (item1.enabled != item2.enabled)
+			return false;
+
+		if (item1.filterStr != item2.filterStr)
+			return false;
+	}
+	return true;
 }
 
 /**

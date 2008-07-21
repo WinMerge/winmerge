@@ -1421,20 +1421,18 @@ int CMainFrame::SyncFileToVCS(LPCTSTR pszDest, BOOL &bApplyToAll,
  */
 void CMainFrame::OnViewSelectfont() 
 {
-	CFrameWnd * pFrame = GetActiveFrame();
-	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
-
+	FRAMETYPE frame = GetFrameType(GetActiveFrame());
 	CHOOSEFONT cf;
 	LOGFONT *lf = NULL;
 	ZeroMemory(&cf, sizeof(CHOOSEFONT));
 	cf.lStructSize = sizeof(CHOOSEFONT);
 	cf.Flags = CF_INITTOLOGFONTSTRUCT|CF_FORCEFONTEXIST|CF_SCREENFONTS;
-	if (!bDirFrame)
+	if (frame == FRAME_FILE)
 		cf.Flags |= CF_FIXEDPITCHONLY; // Only fixed-width fonts for merge view
 
 	// CF_FIXEDPITCHONLY = 0x00004000L
 	// in case you are a developer and want to disable it to test with, eg, a Chinese capable font
-	if (bDirFrame)
+	if (frame == FRAME_FOLDER)
 		lf = &m_lfDir;
 	else
 		lf = &m_lfDiff;
@@ -1443,7 +1441,7 @@ void CMainFrame::OnViewSelectfont()
 
 	if (ChooseFont(&cf))
 	{
-		if (bDirFrame)
+		if (frame == FRAME_FOLDER)
 		{
 			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, true);
 			GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_HEIGHT, lf->lfHeight);
@@ -1480,7 +1478,7 @@ void CMainFrame::OnViewSelectfont()
 			GetOptionsMgr()->SaveOption(OPT_FONT_FILECMP_FACENAME, lf->lfFaceName);
 		}
 
-		if (bDirFrame)
+		if (frame == FRAME_FOLDER)
 			m_lfDir = *lf;
 		else
 			m_lfDiff = *lf;
@@ -1566,10 +1564,9 @@ void CMainFrame::GetFontProperties()
  */
 void CMainFrame::OnViewUsedefaultfont() 
 {
-	CFrameWnd * pFrame = GetActiveFrame();
-	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+	FRAMETYPE frame = GetFrameType(GetActiveFrame());
 
-	if (bDirFrame)
+	if (frame == FRAME_FOLDER)
 	{
 		GetOptionsMgr()->SaveOption(OPT_FONT_DIRCMP_USECUSTOM, false);
 
@@ -1968,10 +1965,11 @@ void CMainFrame::OnToolsGeneratePatch()
 {
 	CPatchTool patcher;
 	CFrameWnd * pFrame = GetActiveFrame();
+	FRAMETYPE frame = GetFrameType(pFrame);
 	BOOL bOpenDialog = TRUE;
 
 	// Mergedoc active?
-	if (pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame)))
+	if (frame == FRAME_FILE)
 	{
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		// If there are changes in files, tell user to save them first
@@ -1987,7 +1985,7 @@ void CMainFrame::OnToolsGeneratePatch()
 		}
 	}
 	// Dirview active
-	else if (pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame)))
+	else if (frame == FRAME_FOLDER)
 	{
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
 		CDirView *pView = pDoc->GetMainView();
@@ -2468,6 +2466,7 @@ void CMainFrame::OnToolsFilters()
 	FILEFILTER_INFOLIST fileFilters;
 	LineFiltersList * lineFilters = new LineFiltersList();
 	CString selectedFilter;
+	const CString origFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 	sht.AddPage(&fileFiltersDlg);
 	sht.AddPage(&lineFiltersDlg);
 	sht.m_psh.dwFlags |= PSH_NOAPPLYNOW; // Hide 'Apply' button since we don't need it
@@ -2478,7 +2477,8 @@ void CMainFrame::OnToolsFilters()
 	theApp.m_globalFileFilter.GetFileFilters(&fileFilters, selectedFilter);
 	fileFiltersDlg.SetFilterArray(&fileFilters);
 	fileFiltersDlg.SetSelected(selectedFilter);
-	lineFiltersDlg.m_bIgnoreRegExp = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	const BOOL lineFiltersEnabledOrig = GetOptionsMgr()->GetBool(OPT_LINEFILTER_ENABLED);
+	lineFiltersDlg.m_bIgnoreRegExp = lineFiltersEnabledOrig;
 
 	lineFilters->CloneFrom(m_pLineFilters);
 	lineFiltersDlg.SetList(lineFilters);
@@ -2504,10 +2504,58 @@ void CMainFrame::OnToolsFilters()
 			CString sFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
 			GetOptionsMgr()->SaveOption(OPT_FILEFILTER_CURRENT, sFilter);
 		}
-		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, lineFiltersDlg.m_bIgnoreRegExp == TRUE);
+		BOOL linefiltersEnabled = lineFiltersDlg.m_bIgnoreRegExp;
+		GetOptionsMgr()->SaveOption(OPT_LINEFILTER_ENABLED, linefiltersEnabled == TRUE);
 
+		// Check if compare documents need rescanning
+		BOOL bFileCompareRescan = FALSE;
+		BOOL bFolderCompareRescan = FALSE;
+		CFrameWnd * pFrame = GetActiveFrame();
+		FRAMETYPE frame = GetFrameType(pFrame);
+		if (frame == FRAME_FILE)
+		{
+			if (lineFiltersEnabledOrig != linefiltersEnabled ||
+					!m_pLineFilters->Compare(lineFilters))
+			{
+				bFileCompareRescan = TRUE;
+			}
+		}
+		else if (frame == FRAME_FOLDER)
+		{
+			const CString newFilter = theApp.m_globalFileFilter.GetFilterNameOrMask();
+			if (lineFiltersEnabledOrig != linefiltersEnabled || 
+					!m_pLineFilters->Compare(lineFilters) || origFilter != newFilter)
+			{
+				int res = LangMessageBox(IDS_FILTERCHANGED, MB_ICONWARNING | MB_YESNO);
+				if (res == IDYES)
+					bFolderCompareRescan = TRUE;
+			}
+		}
+
+		// Save new filters before (possibly) rescanning
 		m_pLineFilters->CloneFrom(lineFilters);
 		m_pLineFilters->SaveFilters();
+
+		if (bFileCompareRescan)
+		{
+			const MergeDocList &docs = GetAllMergeDocs();
+			POSITION pos = docs.GetHeadPosition();
+			while (pos)
+			{
+				CMergeDoc * pMergeDoc = docs.GetNext(pos);
+				pMergeDoc->FlushAndRescan(TRUE);
+			}
+		}
+		else if (bFolderCompareRescan)
+		{
+			const DirDocList &dirDocs = GetAllDirDocs();
+			POSITION pos = dirDocs.GetHeadPosition();
+			while (pos)
+			{
+				CDirDoc * pDirDoc = dirDocs.GetNext(pos);
+				pDirDoc->Rescan();
+			}
+		}
 	}
 	delete lineFilters;
 }
@@ -3027,10 +3075,9 @@ void CMainFrame::OnSaveProject()
 	String left;
 	String right;
 	CFrameWnd * pFrame = GetActiveFrame();
-	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
-	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+	FRAMETYPE frame = GetFrameType(pFrame);
 
-	if (bMergeFrame)
+	if (frame == FRAME_FILE)
 	{
 		CMergeDoc * pMergeDoc = (CMergeDoc *) pFrame->GetActiveDocument();
 		left = pMergeDoc->m_filePaths.GetLeft();
@@ -3039,7 +3086,7 @@ void CMainFrame::OnSaveProject()
 		pathsDlg.m_bLeftPathReadOnly = pMergeDoc->m_ptBuf[0]->GetReadOnly();
 		pathsDlg.m_bRightPathReadOnly = pMergeDoc->m_ptBuf[1]->GetReadOnly();
 	}
-	else if (bDirFrame)
+	else if (frame == FRAME_FOLDER)
 	{
 		// Get paths currently in compare
 		CDirDoc * pDoc = (CDirDoc*)pFrame->GetActiveDocument();
@@ -3453,6 +3500,24 @@ BOOL CMainFrame::DoOpenConflict(LPCTSTR conflictFile, bool checked)
 		LangMessageBox(IDS_ERROR_CONF_RESOLVE, MB_ICONSTOP);
 	}
 	return conflictCompared;
+}
+
+/**
+ * @brief Get type of frame (File/Folder compare).
+ * @param [in] pFrame Pointer to frame to check.
+ * @return FRAMETYPE of the given frame.
+*/
+FRAMETYPE CMainFrame::GetFrameType(const CFrameWnd * pFrame) const
+{
+	BOOL bMergeFrame = pFrame->IsKindOf(RUNTIME_CLASS(CChildFrame));
+	BOOL bDirFrame = pFrame->IsKindOf(RUNTIME_CLASS(CDirFrame));
+
+	if (bMergeFrame)
+		return FRAME_FILE;
+	else if (bDirFrame)
+		return FRAME_FOLDER;
+	else
+		return FRAME_OTHER;
 }
 
 /**
