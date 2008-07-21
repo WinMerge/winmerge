@@ -147,6 +147,8 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
+        MENUITEM "&List...",                    ID_PLUGINS_LIST
+        MENUITEM SEPARATOR
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
@@ -261,6 +263,8 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
+        MENUITEM "&List...",                    ID_PLUGINS_LIST
+        MENUITEM SEPARATOR
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
@@ -441,6 +445,8 @@ BEGIN
     END
     POPUP "&Plugins"
     BEGIN
+        MENUITEM "&List...",                    ID_PLUGINS_LIST
+        MENUITEM SEPARATOR
         MENUITEM "&Manual Unpacking",           ID_UNPACK_MANUAL
         MENUITEM "&Automatic Unpacking",        ID_UNPACK_AUTO
         MENUITEM SEPARATOR
@@ -1644,6 +1650,20 @@ BEGIN
     PUSHBUTTON      "No",IDNO,228,79,50,14
 END
 
+IDD_PLUGINS_LIST DIALOGEX 0, 0, 370, 211
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION |
+    WS_SYSMENU
+CAPTION "Plugins"
+FONT 8, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "&Enable plugins",IDC_PLUGINS_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,7,7,266,10
+    CONTROL         "",IDC_PLUGINSLIST_LIST,"SysListView32",LVS_REPORT |
+                    LVS_ALIGNLEFT | LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,
+                    7,22,356,155
+    DEFPUSHBUTTON   "OK",IDOK,254,190,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,313,190,50,14
+END
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -2577,6 +2597,16 @@ BEGIN
     IDS_SUFFIX_PETA         " PB"
 END
 
+STRINGTABLE
+BEGIN
+    IDS_PLUGINSLIST_NAME    "Name"
+    IDS_PLUGINSLIST_TYPE    "Type"
+    IDS_PLUGINSLIST_DESC    "Description"
+    IDS_PLUGINS_TYPE_UNPACKER "Unpacker"
+    IDS_PLUGINS_TYPE_PREDIFFER "Prediffer"
+    IDS_PLUGINS_TYPE_EDITSCRIPT "Editor script"
+END
+
 // MENU STRINGS
 // FILE MENU
 STRINGTABLE
@@ -2671,6 +2701,7 @@ END
 // PLUGINS MENU
 STRINGTABLE
 BEGIN
+    ID_PLUGINS_LIST         "Shows a list of available plugins"
     ID_UNPACK_MANUAL        "The user selects the unpacker (no unpacking when comparing dir)"
     ID_UNPACK_AUTO          "The adapted unpacker is applied to both files (one file only needs the extension)"
     ID_POPUP_OPEN_WITH_UNPACKER "Select an unpacker to edit this file"

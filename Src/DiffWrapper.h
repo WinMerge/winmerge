@@ -168,6 +168,7 @@ public:
 	MovedLines * GetMovedLines() { return m_pMovedLines; }
 	void SetCompareFiles(const String &OriginalFile1, const String &OriginalFile2);
 	void SetFilterList(LPCTSTR filterStr);
+	void EnablePlugins(bool enable);
 
 protected:
 	String FormatSwitchString();
@@ -202,6 +203,7 @@ private:
 	DiffList *m_pDiffList; /**< Pointer to external DiffList */
 	MovedLines * m_pMovedLines;
 	FilterCommentsManager * m_FilterCommentsManager; /**< Comments filtering manager */
+	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 };
 
 

@@ -67,6 +67,7 @@ struct MISCSETTINGS
 	BOOL bSyntaxHighlight;
 	BOOL bInsertTabs;
 	INT  nTabSize;
+	BOOL bPluginsEnabled;
 };
 
 /** 

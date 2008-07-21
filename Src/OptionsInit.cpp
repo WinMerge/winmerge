@@ -155,6 +155,8 @@ void CMergeApp::OptionsInit()
 	m_pOptions->InitOption(OPT_ARCHIVE_ENABLE, 1); // Enable by default
 	m_pOptions->InitOption(OPT_ARCHIVE_PROBETYPE, false);
 
+	m_pOptions->InitOption(OPT_PLUGINS_ENABLED, false);
+
 	m_pOptions->InitOption(OPT_FONT_FILECMP_USECUSTOM, false);
 	m_pOptions->InitOption(OPT_FONT_DIRCMP_USECUSTOM, false);
 

@@ -4054,6 +4054,43 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="PluginsListDlg.cpp">
+				<FileConfiguration
+					Name="UnicodeRelease|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="UnicodeDebug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="0"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""
+						BrowseInformation="1"/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32">
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+						AdditionalIncludeDirectories=""
+						PreprocessorDefinitions=""/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath="Common\PreferencesDlg.cpp">
 				<FileConfiguration
 					Name="UnicodeRelease|Win32">
@@ -6293,6 +6330,9 @@
 			</File>
 			<File
 				RelativePath="Plugins.h">
+			</File>
+			<File
+				RelativePath="PluginsListDlg.h">
 			</File>
 			<File
 				RelativePath="Common\PreferencesDlg.h">

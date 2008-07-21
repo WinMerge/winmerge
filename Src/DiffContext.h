@@ -152,6 +152,7 @@ public:
 	 * cannot compare large files. And large files are usually binary files.
 	 */
 	int m_nQuickCompareLimit;
+	bool m_bPluginsEnabled; /**< Are plugins enabled? */
 	FilterList * m_pFilterList; /**< Filter list for line filters */
 
 private:

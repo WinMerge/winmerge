@@ -320,6 +320,10 @@ protected:
 	afx_msg void OnToolbarBig();
 	afx_msg void OnUpdateToolbarBig(CCmdUI* pCmdUI);
 	afx_msg BOOL OnToolTipText(UINT, NMHDR* pNMHDR, LRESULT* pResult);
+	afx_msg void OnHelpReleasenotes();
+	afx_msg void OnHelpTranslations();
+	afx_msg void OnFileOpenConflict();
+	afx_msg void OnPluginsList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 
@@ -337,10 +341,6 @@ private:
 	CMergeEditView * GetActiveMergeEditView();
 	void LoadToolbarImages();
 	HMENU NewMenu( int view, int ID );
-public:
-	afx_msg void OnHelpReleasenotes();
-	afx_msg void OnHelpTranslations();
-	afx_msg void OnFileOpenConflict();
 };
 
 CMainFrame * GetMainFrame(); // access to the singleton main frame object

@@ -307,9 +307,9 @@ protected:
 	afx_msg void OnViewZoomNormal();
 	afx_msg void OnUpdateStatusLeftEncoding(CCmdUI* pCmdUI);
 	afx_msg void OnUpdateStatusRightEncoding(CCmdUI* pCmdUI);
+	afx_msg void OnPluginsList();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
-public:
 };
 
 #ifndef _DEBUG  // debug version in DiffView.cpp
