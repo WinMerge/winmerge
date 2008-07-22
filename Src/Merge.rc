@@ -220,6 +220,10 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "Show Hidd&en Items",          ID_VIEW_SHOWHIDDENITEMS
         MENUITEM SEPARATOR
+        MENUITEM "Tree &Mode",                  ID_VIEW_TREEMODE
+        MENUITEM "E&xpand All Subfolders",      ID_VIEW_EXPAND_ALLSUBDIRS
+        MENUITEM "&Collapse All Subfolders",    ID_VIEW_COLLAPSE_ALLSUBDIRS
+        MENUITEM SEPARATOR
         MENUITEM "Select &Font...",             ID_VIEW_SELECTFONT
         MENUITEM "Use Default F&ont",           ID_VIEW_USEDEFAULTFONT
         MENUITEM SEPARATOR
@@ -1748,6 +1752,9 @@ END
 STRINGTABLE
 BEGIN
     ID_VIEW_SHOWHIDDENITEMS "Make all hidden items visible again"
+    ID_VIEW_TREEMODE        "Toggle tree mode"
+    ID_VIEW_EXPAND_ALLSUBDIRS   "Expand all subfolders"
+    ID_VIEW_COLLAPSE_ALLSUBDIRS "Collapse all subfolders"
 END
 
 // WinMerge Project Files

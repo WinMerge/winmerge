@@ -60,7 +60,7 @@ struct ViewCustomFlags
 		// to make debugging easier
 		// These can always be packed down in the future
 		INVALID_CODE=0,
-		VISIBILITY=0x3, VISIBLE=0x1, HIDDEN=0x2,
+		VISIBILITY=0x3, VISIBLE=0x1, HIDDEN=0x2, COLLAPSED=0x4
 	};
 };
 
@@ -104,6 +104,7 @@ public:
 
 	void StartCompare(CompareStats *pCompareStats);
 	void Redisplay();
+	void RedisplayChildren(POSITION diffpos, int level, UINT &index, int &alldiffs);
 	void UpdateResources();
 	void LoadColumnHeaderItems();
 	POSITION GetItemKey(int idx) const;
@@ -194,7 +195,7 @@ public:
 private:
 	void InitiateSort();
 	void NameColumn(int id, int subitem);
-	int AddNewItem(int i, POSITION diffpos, int iImage);
+	int AddNewItem(int i, POSITION diffpos, int iImage, int iIndent);
 	bool IsDefaultSortAscending(int col) const;
 	int ColPhysToLog(int i) const { return m_invcolorder[i]; }
 	int ColLogToPhys(int i) const { return m_colorder[i]; } /**< -1 if not displayed */
@@ -257,6 +258,7 @@ protected:
 	CString GenerateReport();
 	CSortHeaderCtrl m_ctlSortHeader;
 	CImageList m_imageList;
+	CImageList m_imageState;
 	CListCtrl * m_pList;
 	int m_numcols;
 	int m_dispcols;
@@ -265,6 +267,7 @@ protected:
 	BOOL m_bEscCloses; /**< Cached value for option for ESC closing window */
 	CFont m_font; /**< User-selected font */
 	UINT m_nHiddenItems; /**< Count of items we have hidden */
+	BOOL m_bTreeMode; /**< TRUE if tree mode is on*/
 	DirCompProgressDlg * m_pCmpProgressDlg;
 	clock_t m_compareStart; /**< Starting process time of the compare */
 	BOOL m_bUserCancelEdit; /**< TRUE if the user cancels rename */
@@ -306,6 +309,8 @@ protected:
 	afx_msg void OnUpdateCtxtDirCopyRightTo(CCmdUI* pCmdUI);
 	afx_msg void OnDestroy();
 	afx_msg void OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnClick(NMHDR* pNMHDR, LRESULT* pResult);
 	afx_msg void OnFirstdiff();
 	afx_msg void OnUpdateFirstdiff(CCmdUI* pCmdUI);
 	afx_msg void OnLastdiff();
@@ -361,6 +366,12 @@ protected:
 	afx_msg void OnUpdateStatusNum(CCmdUI* pCmdUI);
 	afx_msg void OnViewShowHiddenItems();
 	afx_msg void OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI);
+	afx_msg void OnViewTreeMode();
+	afx_msg void OnUpdateViewTreeMode(CCmdUI* pCmdUI);
+	afx_msg void OnViewExpandAllSubdirs();
+	afx_msg void OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI);
+	afx_msg void OnViewCollapseAllSubdirs();
+	afx_msg void OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI);
 	afx_msg void OnMergeCompare();
 	afx_msg void OnMergeCompareXML();
 	afx_msg void OnUpdateMergeCompare(CCmdUI *pCmdUI);
@@ -418,6 +429,8 @@ private:
 	void ResetColumnWidths();
 	BOOL IsLabelEdit();
 	BOOL IsItemSelectedSpecial();
+	void CollapseSubdir(int sel);
+	void ExpandSubdir(int sel);
 };
 
 

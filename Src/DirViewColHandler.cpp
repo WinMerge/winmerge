@@ -75,8 +75,36 @@ int CDirView::ColSort(const CDiffContext *pCtxt, int col, const DIFFITEM & ldi,
 		return 0;
 	}
 	SIZE_T offset = pColInfo->offset;
-	const void * arg1 = reinterpret_cast<const char *>(&ldi) + offset;
-	const void * arg2 = reinterpret_cast<const char *>(&rdi) + offset;
+	const void * arg1;
+	const void * arg2;
+	if (m_bTreeMode)
+	{
+		int lLevel = ldi.GetDepth();
+		int rLevel = rdi.GetDepth();
+		const DIFFITEM *lcur = &ldi, *rcur = &rdi;
+		if (lLevel < rLevel)
+		{
+			for (; lLevel != rLevel; rLevel--)
+				rcur = rcur->parent;
+		}
+		else if (rLevel < lLevel)
+		{
+			for (; lLevel != rLevel; lLevel--)
+				lcur = lcur->parent;
+		}
+		while (lcur->parent != rcur->parent)
+		{
+			lcur = lcur->parent;
+			rcur = rcur->parent;
+		}
+		arg1 = reinterpret_cast<const char *>(lcur) + offset;
+		arg2 = reinterpret_cast<const char *>(rcur) + offset;
+	}
+	else
+	{
+		arg1 = reinterpret_cast<const char *>(&ldi) + offset;
+		arg2 = reinterpret_cast<const char *>(&rdi) + offset;
+	}
 	if (ColSortFncPtrType fnc = pColInfo->sortfnc)
 	{
 		return (*fnc)(pCtxt, arg1, arg2);
@@ -172,11 +200,12 @@ int CALLBACK CDirView::CompareState::CompareFunc(LPARAM lParam1, LPARAM lParam2,
 }
 
 /// Add new item to list view
-int CDirView::AddNewItem(int i, POSITION diffpos, int iImage)
+int CDirView::AddNewItem(int i, POSITION diffpos, int iImage, int iIndent)
 {
 	LV_ITEM lvItem;
-	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE;
+	lvItem.mask = LVIF_TEXT | LVIF_PARAM | LVIF_IMAGE | LVIF_INDENT;
 	lvItem.iItem = i;
+	lvItem.iIndent = iIndent;
 	lvItem.iSubItem = 0;
 	lvItem.pszText = LPSTR_TEXTCALLBACK;
 	lvItem.lParam = (LPARAM)diffpos;

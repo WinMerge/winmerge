@@ -21,6 +21,7 @@ const TCHAR OPT_SHOW_DIFFERENT[] = _T("Settings/ShowDifferent");
 const TCHAR OPT_SHOW_IDENTICAL[] = _T("Settings/ShowIdentical");
 const TCHAR OPT_SHOW_BINARIES[] = _T("Settings/ShowBinaries");
 const TCHAR OPT_SHOW_SKIPPED[] = _T("Settings/ShowSkipped");
+const TCHAR OPT_TREE_MODE[] = _T("Settings/TreeMode");
 
 // Show/hide toolbar/statusbar/tabbar
 const TCHAR OPT_SHOW_TOOLBAR[] = _T("Settings/ShowToolbar");

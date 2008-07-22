@@ -381,6 +381,9 @@ void CDirDoc::Rescan()
  */
 BOOL CDirDoc::IsShowable(const DIFFITEM & di)
 {
+	if (di.customFlags1 & ViewCustomFlags::HIDDEN)
+		return 0;
+
 	if (di.diffcode.isResultFiltered())
 	{
 		// Treat SKIPPED as a 'super'-flag. If item is skipped and user

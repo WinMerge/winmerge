@@ -107,12 +107,14 @@ CDirView::CDirView()
 , m_nHiddenItems(0)
 , m_pCmpProgressDlg(NULL)
 , m_compareStart(0)
+, m_bTreeMode(false)
 {
 	m_dwDefaultStyle &= ~LVS_TYPEMASK;
 	// Show selection all the time, so user can see current item even when
 	// focus is elsewhere (ie, on file edit window)
 	m_dwDefaultStyle |= LVS_REPORT | LVS_SHOWSELALWAYS | LVS_EDITLABELS;
 
+	m_bTreeMode =  GetOptionsMgr()->GetBool(OPT_TREE_MODE);
 	m_bEscCloses = GetOptionsMgr()->GetBool(OPT_CLOSE_WITH_ESC);
 }
 
@@ -159,6 +161,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_DIR_COPY_RIGHT_TO_BROWSE, OnUpdateCtxtDirCopyRightTo)
 	ON_WM_DESTROY()
 	ON_WM_CHAR()
+	ON_WM_KEYDOWN()
 	ON_COMMAND(ID_FIRSTDIFF, OnFirstdiff)
 	ON_UPDATE_COMMAND_UI(ID_FIRSTDIFF, OnUpdateFirstdiff)
 	ON_COMMAND(ID_LASTDIFF, OnLastdiff)
@@ -214,6 +217,12 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE, OnUpdateMergeCompare)
 	ON_COMMAND(ID_MERGE_COMPARE_XML, OnMergeCompareXML)
 	ON_UPDATE_COMMAND_UI(ID_MERGE_COMPARE_XML, OnUpdateMergeCompare)
+	ON_COMMAND(ID_VIEW_TREEMODE, OnViewTreeMode)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_TREEMODE, OnUpdateViewTreeMode)
+	ON_COMMAND(ID_VIEW_EXPAND_ALLSUBDIRS, OnViewExpandAllSubdirs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_EXPAND_ALLSUBDIRS, OnUpdateViewExpandAllSubdirs)
+	ON_COMMAND(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnViewCollapseAllSubdirs)
+	ON_UPDATE_COMMAND_UI(ID_VIEW_COLLAPSE_ALLSUBDIRS, OnUpdateViewCollapseAllSubdirs)
 	ON_COMMAND(ID_VIEW_DIR_STATISTICS, OnViewCompareStatistics)
 	ON_COMMAND(ID_FILE_ENCODING, OnFileEncoding)
 	ON_UPDATE_COMMAND_UI(ID_FILE_ENCODING, OnUpdateFileEncoding)
@@ -229,6 +238,7 @@ BEGIN_MESSAGE_MAP(CDirView, CListView)
 	ON_NOTIFY_REFLECT(LVN_ITEMCHANGED, OnItemChanged)
 	ON_NOTIFY_REFLECT(LVN_BEGINLABELEDIT, OnBeginLabelEdit)
 	ON_NOTIFY_REFLECT(LVN_ENDLABELEDIT, OnEndLabelEdit)
+ 	ON_NOTIFY_REFLECT(NM_CLICK, OnClick)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -283,6 +293,9 @@ void CDirView::OnInitialUpdate()
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_FOLDERUP_DISABLE)));
 	VERIFY(-1 != m_imageList.Add(AfxGetApp()->LoadIcon(IDI_COMPARE_ABORTED)));
 	m_pList->SetImageList (&m_imageList, LVSIL_SMALL);
+
+	// Load the icons used for the list view (expanded/collapsed state icons)
+	VERIFY(m_imageState.Create(IDB_TREE_STATE, 16, 1, RGB(255, 0, 255)));
 
 	// Restore column orders as they had them last time they ran
 	LoadColumnOrders();
@@ -362,8 +375,14 @@ void CDirView::StartCompare(CompareStats *pCompareStats)
  */
 void CDirView::OnLButtonDblClk(UINT nFlags, CPoint point) 
 {
-	WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
-	OpenSelection();
+	LVHITTESTINFO lvhti;
+	lvhti.pt = point;
+	m_pList->SubItemHitTest(&lvhti);
+	if (lvhti.flags != LVHT_ONITEMSTATEICON)
+	{
+		WaitStatusCursor waitstatus(IDS_STATUS_OPENING_SELECTION);
+		OpenSelection();
+	}
 	CListView::OnLButtonDblClk(nFlags, point);
 }
 
@@ -377,6 +396,55 @@ void CDirView::ReloadColumns()
 	UpdateColumnNames();
 	SetColumnWidths();
 	SetColAlignments();
+}
+
+/**
+ * @brief Redisplay items in subfolder
+ * @param [in] diffpos First item position in subfolder. 
+ * @param [in] level Indent level
+ * @param [in,out] index Index of the item to be inserted. 
+ * @param [in,out] alldiffs Number of different items
+ */
+void CDirView::RedisplayChildren(POSITION diffpos, int level, UINT &index, int &alldiffs)
+{
+	CDirDoc *pDoc = GetDocument();
+	const CDiffContext &ctxt = pDoc->GetDiffContext();
+	while (diffpos)
+	{
+		POSITION curdiffpos = diffpos;
+		const DIFFITEM &di = ctxt.GetNextSiblingDiffPosition(diffpos);
+
+		if (!di.diffcode.isResultSame())
+			++alldiffs;
+
+		BOOL bShowable = pDoc->IsShowable(di);
+		if (bShowable)
+		{
+			if (m_bTreeMode)
+			{
+				AddNewItem(index, curdiffpos, I_IMAGECALLBACK, level);
+				index++;
+				if (di.HasChildren())
+				{
+					m_pList->SetItemState(index - 1, INDEXTOSTATEIMAGEMASK((di.customFlags1 & ViewCustomFlags::COLLAPSED) ? 1 : 2), LVIS_STATEIMAGEMASK);
+					if (!(di.customFlags1 & ViewCustomFlags::COLLAPSED))
+						RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
+				}
+			}
+			else
+			{
+				if (!pDoc->GetRecursive() || !di.diffcode.isDirectory() || di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly())
+				{
+					AddNewItem(index, curdiffpos, I_IMAGECALLBACK, 0);
+					index++;
+				}
+				if (di.HasChildren())
+				{
+					RedisplayChildren(ctxt.GetFirstChildDiffPosition(curdiffpos), level + 1, index, alldiffs);
+				}
+			}
+		}
+	}
 }
 
 /**
@@ -395,6 +463,8 @@ void CDirView::Redisplay()
 
 	DeleteAllDisplayItems();
 
+	m_pList->SetImageList(m_bTreeMode ? &m_imageState : NULL, LVSIL_STATE);
+
 	// If non-recursive compare, add special item(s)
 	String leftParent, rightParent;
 	if (!pDoc->GetRecursive() ||
@@ -404,25 +474,9 @@ void CDirView::Redisplay()
 	}
 
 	int alldiffs = 0;
+	int level = 0;
 	POSITION diffpos = ctxt.GetFirstDiffPosition();
-	while (diffpos)
-	{
-		POSITION curdiffpos = diffpos;
-		const DIFFITEM &di = ctxt.GetNextDiffPosition(diffpos);
-
-		// If item has hidden flag, don't add it
-		if (di.customFlags1 & ViewCustomFlags::HIDDEN)
-			continue;
-
-		if (!di.diffcode.isResultSame())
-			++alldiffs;
-
-		if (pDoc->IsShowable(di) && (!pDoc->GetRecursive() || !di.diffcode.isDirectory() || di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly()))
-		{
-			AddNewItem(cnt, curdiffpos, I_IMAGECALLBACK);
-			cnt++;
-		}
-	}
+	RedisplayChildren(diffpos, 0, cnt, alldiffs);
 	theApp.SetLastCompareResult(alldiffs);
 	SortColumnsAppropriately();
 	SetRedraw(TRUE);
@@ -863,6 +917,98 @@ void CDirView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 		OpenSelection();
 	}
 	CListView::OnChar(nChar, nRepCnt, nFlags);
+}
+
+/**
+ * @brief Expand/collapse subfolder when user presses right/left arrow key.
+ */
+void CDirView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags) 
+{
+	int sel = GetFocusedItem();
+	switch (nChar)
+	{
+	case VK_LEFT:
+		CollapseSubdir(sel);
+		return;
+	case VK_RIGHT:
+		ExpandSubdir(sel);
+		return;
+	}
+	CListView::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+/**
+ * @brief Expand/collapse subfolder when "+/-" icon is clicked.
+ */
+void CDirView::OnClick(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMITEMACTIVATE pNM = (LPNMITEMACTIVATE)pNMHDR;
+	LVHITTESTINFO lvhti;
+	lvhti.pt = pNM->ptAction;
+	m_pList->SubItemHitTest(&lvhti);
+	if (lvhti.flags == LVHT_ONITEMSTATEICON)
+	{
+		const DIFFITEM &di = GetItemAt(pNM->iItem);
+		if (di.customFlags1 & ViewCustomFlags::COLLAPSED)
+			ExpandSubdir(pNM->iItem);
+		else
+			CollapseSubdir(pNM->iItem);
+	}
+
+	*pResult = 0;
+}
+
+/**
+ * @brief Collapse subfolder
+ * @param [in] sel Folder item index in listview.
+ */
+void CDirView::CollapseSubdir(int sel)
+{
+	DIFFITEM& dip = this->GetDiffItemRef(sel);
+	if (!m_bTreeMode || (dip.customFlags1 & ViewCustomFlags::COLLAPSED) || !dip.HasChildren())
+		return;
+
+	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
+
+	dip.customFlags1 |= ViewCustomFlags::COLLAPSED;
+	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(1), LVIS_STATEIMAGEMASK);
+
+	int count = m_pList->GetItemCount();
+	for (int i = sel + 1; i < count; i++)
+	{
+		const DIFFITEM& di = GetDiffItem(i);
+		if (!di.IsAncestor(&dip))
+			break;
+		m_pList->DeleteItem(i--);
+		count--;
+	}
+
+	m_pList->SetRedraw(TRUE);	// Turn updating back on
+}
+
+/**
+ * @brief Expand subfolder
+ * @param [in] sel Folder item index in listview.
+ */
+void CDirView::ExpandSubdir(int sel)
+{
+	DIFFITEM& dip = GetDiffItemRef(sel);
+	if (!m_bTreeMode || !(dip.customFlags1 & ViewCustomFlags::COLLAPSED) || !dip.HasChildren())
+		return;
+
+	m_pList->SetRedraw(FALSE);	// Turn off updating (better performance)
+
+	dip.customFlags1 &= ~ViewCustomFlags::COLLAPSED;
+	m_pList->SetItemState(sel, INDEXTOSTATEIMAGEMASK(2), LVIS_STATEIMAGEMASK);
+
+	CDirDoc *pDoc = GetDocument();
+	const CDiffContext &ctxt = pDoc->GetDiffContext();
+	POSITION diffpos = ctxt.GetFirstChildDiffPosition(GetItemKey(sel));
+	UINT indext = sel + 1;
+	int alldiffs;
+	RedisplayChildren(diffpos, dip.GetDepth() + 1, indext, alldiffs);
+
+	m_pList->SetRedraw(TRUE);	// Turn updating back on
 }
 
 /**
@@ -2536,7 +2682,7 @@ int CDirView::AddSpecialItems()
  */
 void CDirView::AddParentFolderItem(BOOL bEnable)
 {
-	AddNewItem(0, SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE);
+	AddNewItem(0, SPECIAL_ITEM_POS, bEnable ? DIFFIMG_DIRUP : DIFFIMG_DIRUP_DISABLE, 0);
 }
 
 /**
@@ -2854,6 +3000,19 @@ void CDirView::OnHideFilenames()
 		if (pos == (POSITION) SPECIAL_ITEM_POS)
 			continue;
 		pDoc->SetItemViewFlag(pos, ViewCustomFlags::HIDDEN, ViewCustomFlags::VISIBILITY);
+		const DIFFITEM &di = GetDiffItem(sel);
+		if (m_bTreeMode && di.diffcode.isDirectory())
+		{
+			int count = m_pList->GetItemCount();
+			for (int i = sel + 1; i < count; i++)
+			{
+				const DIFFITEM &dic = GetDiffItem(i);
+				if (!dic.IsAncestor(&di))
+					break;
+				m_pList->DeleteItem(i--);
+				count--;
+			}
+		}
 		m_pList->DeleteItem(sel--);
 		m_nHiddenItems++;
 	}
@@ -3081,6 +3240,73 @@ void CDirView::OnViewShowHiddenItems()
 void CDirView::OnUpdateViewShowHiddenItems(CCmdUI* pCmdUI)
 {
 	pCmdUI->Enable(m_nHiddenItems > 0);
+}
+
+/**
+ * @brief Toggle Tree Mode
+ */
+void CDirView::OnViewTreeMode()
+{
+	m_bTreeMode = !m_bTreeMode;
+	GetOptionsMgr()->SaveOption(OPT_TREE_MODE, m_bTreeMode); // reverse
+	Redisplay();
+}
+
+/**
+ * @brief Check/Uncheck 'Tree Mode' menuitem.
+ */
+void CDirView::OnUpdateViewTreeMode(CCmdUI* pCmdUI)
+{
+	pCmdUI->SetCheck(m_bTreeMode);
+	pCmdUI->Enable(TRUE);
+}
+
+/**
+ * @brief Expand all subfolders
+ */
+void CDirView::OnViewExpandAllSubdirs()
+{
+	CDirDoc *pDoc = GetDocument();
+	CDiffContext &ctxt = (CDiffContext &)pDoc->GetDiffContext();
+	POSITION diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos)
+	{
+		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
+		di.customFlags1 &= ~ViewCustomFlags::COLLAPSED;
+	}
+	Redisplay();
+}
+
+/**
+ * @brief Update "Expand All Subfolders" item
+ */
+void CDirView::OnUpdateViewExpandAllSubdirs(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_bTreeMode);
+}
+
+/**
+ * @brief Collapse all subfolders
+ */
+void CDirView::OnViewCollapseAllSubdirs()
+{
+	CDirDoc *pDoc = GetDocument();
+	CDiffContext &ctxt = (CDiffContext &)pDoc->GetDiffContext();
+	POSITION diffpos = ctxt.GetFirstDiffPosition();
+	while (diffpos)
+	{
+		DIFFITEM &di = ctxt.GetNextDiffRefPosition(diffpos);
+		di.customFlags1 |= ViewCustomFlags::COLLAPSED;
+	}
+	Redisplay();
+}
+
+/**
+ * @brief Update "Collapse All Subfolders" item
+ */
+void CDirView::OnUpdateViewCollapseAllSubdirs(CCmdUI* pCmdUI)
+{
+	pCmdUI->Enable(m_bTreeMode);
 }
 
 void CDirView::OnMergeCompare()

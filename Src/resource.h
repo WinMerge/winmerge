@@ -100,6 +100,7 @@
 #define IDB_TOOLBAR_ENABLED32           357
 #define IDB_VIEW_ZOOMIN                 358
 #define IDB_VIEW_ZOOMOUT                359
+#define IDB_TREE_STATE                  360
 #define IDI_FOLDER                      500
 #define IDI_LFOLDER                     501
 #define IDI_RFOLDER                     502
@@ -905,6 +906,9 @@
 #define ID_VIEW_WORDWRAP                32824
 #define ID_VIEW_LINENUMBERS             32825
 #define ID_VIEW_TAB_BAR                 32826
+#define ID_VIEW_TREEMODE                32827
+#define ID_VIEW_EXPAND_ALLSUBDIRS       32828
+#define ID_VIEW_COLLAPSE_ALLSUBDIRS     32829
 #define ID_PREVDIFF                     32832
 #define ID_NEXTDIFF                     32833
 #define ID_FIRSTDIFF                    32834
