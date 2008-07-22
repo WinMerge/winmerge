@@ -126,6 +126,9 @@ public:
  */
 struct DIFFITEM : ListEntry
 {
+	DIFFITEM *parent; /**< Parent of current item */
+	ListEntry children; /**< Head of doubly linked list for chldren */
+
 	DiffFileInfo left; /**< Fileinfo for left file */
 	DiffFileInfo right; /**< Fileinfo for right file */
 	int	nsdiffs; /**< Amount of non-ignored differences */
@@ -136,11 +139,15 @@ struct DIFFITEM : ListEntry
 
 	static DIFFITEM emptyitem; /**< singleton to represent a diffitem that doesn't have any data */
 
-	DIFFITEM() : nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
+	DIFFITEM() : parent(NULL), nidiffs(-1), nsdiffs(-1), customFlags1(0) { }
+	~DIFFITEM();
 
 	bool isEmpty() const { return this == &emptyitem; }
 	String getLeftFilepath(const String &sLeftRoot) const;
 	String getRightFilepath(const String &sRightRoot) const;
+	int GetDepth() const;
+	bool IsAncestor(const DIFFITEM *pdi) const;
+	bool HasChildren() const;
 };
 
 #endif // _DIFF_ITEM_H_

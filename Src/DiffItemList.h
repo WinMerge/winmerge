@@ -20,18 +20,19 @@ public:
 	DiffItemList();
 	~DiffItemList();
 	// add & remove differences
-	DIFFITEM &AddDiff();
+	DIFFITEM &AddDiff(DIFFITEM *parent);
 	void RemoveDiff(POSITION diffpos);
 	void RemoveAll();
 
 	// to iterate over all differences on list
 	POSITION GetFirstDiffPosition() const;
+	POSITION GetFirstChildDiffPosition(POSITION parentdiffpos) const;
 	const DIFFITEM & GetNextDiffPosition(POSITION & diffpos) const;
 	DIFFITEM & GetNextDiffRefPosition(POSITION & diffpos);
+	const DIFFITEM & GetNextSiblingDiffPosition(POSITION & diffpos) const;
+	DIFFITEM &GetNextSiblingDiffRefPosition(POSITION & diffpos);
 	const DIFFITEM & GetDiffAt(POSITION diffpos) const;
 	DIFFITEM & GetDiffRefAt(POSITION diffpos);
-
-	int GetDiffCount() const;
 
 	void SetDiffStatusCode(POSITION diffpos, UINT diffcode, UINT mask);
 	void SetDiffCounts(POSITION diffpos, UINT diffs, UINT ignored);
@@ -39,7 +40,6 @@ public:
 	void SetCustomFlags1(POSITION diffpos, UINT flag);
 
 protected:
-	int m_count;
 	ListEntry m_root; /**< Root of list of diffitems */
 };
 
@@ -59,14 +59,6 @@ inline const DIFFITEM & DiffItemList::GetDiffAt(POSITION diffpos) const
 inline DIFFITEM & DiffItemList::GetDiffRefAt(POSITION diffpos)
 {
 	return *reinterpret_cast<DIFFITEM *>(diffpos);
-}
-
-/**
- * @brief Get number of items in CDiffContext array
- */
-inline int DiffItemList::GetDiffCount() const
-{
-	return m_count;
 }
 
 #endif // _DIFF_ITEM_LIST_H_

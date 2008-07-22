@@ -417,7 +417,7 @@ void CDirView::Redisplay()
 		if (!di.diffcode.isResultSame())
 			++alldiffs;
 
-		if (pDoc->IsShowable(di))
+		if (pDoc->IsShowable(di) && (!pDoc->GetRecursive() || !di.diffcode.isDirectory() || di.diffcode.isSideLeftOnly() || di.diffcode.isSideRightOnly()))
 		{
 			AddNewItem(cnt, curdiffpos, I_IMAGECALLBACK);
 			cnt++;

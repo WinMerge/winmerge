@@ -19,7 +19,6 @@ static char THIS_FILE[]=__FILE__;
  * @brief Constructor
  */
 DiffItemList::DiffItemList()
-: m_count(0)
 {
 }
 
@@ -32,30 +31,32 @@ DiffItemList::~DiffItemList()
 }
 
 /**
- * @brief Add new diffitem to CDiffContext array
+ * @brief Add new diffitem to structured DIFFITEM tree
  */
-DIFFITEM &DiffItemList::AddDiff()
+DIFFITEM &DiffItemList::AddDiff(DIFFITEM *parent)
 {
 	DIFFITEM *p = new DIFFITEM;
-	m_root.Append(p);
-	++m_count;
+	if (parent)
+		parent->children.Append(p);
+	else
+		m_root.Append(p);
+	p->parent = parent;
 	return *p;
 }
 
 /**
- * @brief Remove diffitem from CDiffContext array
+ * @brief Remove diffitem from structured DIFFITEM tree
  * @param diffpos position of item to remove
  */
 void DiffItemList::RemoveDiff(POSITION diffpos)
 {
 	DIFFITEM *p = (DIFFITEM *)diffpos;
 	p->RemoveSelf();
-	--m_count;
 	delete p;
 }
 
 /**
- * @brief Empty CDiffContext array
+ * @brief Empty structured DIFFITEM tree
  */
 void DiffItemList::RemoveAll()
 {
@@ -64,7 +65,7 @@ void DiffItemList::RemoveAll()
 }
 
 /**
- * @brief Get position of first item in CDiffContext array
+ * @brief Get position of first item in structured DIFFITEM tree
  */
 POSITION DiffItemList::GetFirstDiffPosition() const
 {
@@ -72,27 +73,79 @@ POSITION DiffItemList::GetFirstDiffPosition() const
 }
 
 /**
- * @brief Get position of next item in CDiffContext array
+ * @brief Get position of first child item in structured DIFFITEM tree
+ * @param  parentdiffpos [in] Position of parent diff item 
+ * @return Position of first child item
+ */
+POSITION DiffItemList::GetFirstChildDiffPosition(POSITION parentdiffpos) const
+{
+	DIFFITEM *parent = (DIFFITEM *)parentdiffpos;
+	if (parent)
+		return (POSITION)parent->children.IsSibling(parent->children.Flink);
+	else
+		return (POSITION)m_root.IsSibling(m_root.Flink);
+}
+
+/**
+ * @brief Get position of next item in structured DIFFITEM tree
  * @param diffpos position of current item, updated to next item position
  * @return Diff Item in current position
  */
 const DIFFITEM &DiffItemList::GetNextDiffPosition(POSITION & diffpos) const
 {
 	DIFFITEM *p = (DIFFITEM *)diffpos;
-	diffpos = (POSITION)m_root.IsSibling(p->Flink);
+	if (p->HasChildren())
+	{
+		diffpos = GetFirstChildDiffPosition(diffpos);
+	}
+	else
+	{
+		DIFFITEM *cur = p;
+		do
+		{
+			if (cur->parent)
+				diffpos = (POSITION)cur->parent->children.IsSibling(cur->Flink);
+			else
+				diffpos = (POSITION)m_root.IsSibling(cur->Flink);
+			cur = cur->parent;
+		} while (!diffpos && cur);
+	}
 	return *p;
 }
 
 /**
- * @brief Get position of next item in CDiffContext array
+ * @brief Get position of next item in structured DIFFITEM tree
  * @param diffpos position of current item, updated to next item position
  * @return Diff Item (by reference) in current position
  */
 DIFFITEM &DiffItemList::GetNextDiffRefPosition(POSITION & diffpos)
 {
+	return (DIFFITEM &)GetNextDiffPosition(diffpos);
+}
+
+/**
+ * @brief Get position of next sibling item in structured DIFFITEM tree
+ * @param diffpos position of current item, updated to next sibling item position
+ * @return Diff Item in current position
+ */
+const DIFFITEM &DiffItemList::GetNextSiblingDiffPosition(POSITION & diffpos) const
+{
 	DIFFITEM *p = (DIFFITEM *)diffpos;
-	diffpos = (POSITION)m_root.IsSibling(p->Flink);
+	if (p->parent)
+		diffpos = (POSITION)p->parent->children.IsSibling(p->Flink);
+	else
+		diffpos = (POSITION)m_root.IsSibling(p->Flink);
 	return *p;
+}
+
+/**
+ * @brief Get position of next sibling item in structured DIFFITEM tree
+ * @param diffpos position of current item, updated to next sibling item position
+ * @return Diff Item (by reference) in current position
+ */
+DIFFITEM &DiffItemList::GetNextSiblingDiffRefPosition(POSITION & diffpos)
+{
+	return (DIFFITEM &)GetNextSiblingDiffPosition(diffpos);
 }
 
 /**

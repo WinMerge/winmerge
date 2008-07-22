@@ -13,10 +13,11 @@ class CDiffContext;
 class DiffItemList;
 class PathContext;
 class IAbortable;
+struct DIFFITEM;
 struct DiffFuncStruct;
 
 int DirScan_GetItems(const PathContext &paths, const String &leftsubdir, const String &rightsubdir, DiffFuncStruct *myStruct,
-		bool casesensitive, int depth);
+		bool casesensitive, int depth, DIFFITEM *parent);
 
 int DirScan_CompareItems(DiffFuncStruct *);
 int DirScan_CompareRequestedItems(DiffFuncStruct *);
