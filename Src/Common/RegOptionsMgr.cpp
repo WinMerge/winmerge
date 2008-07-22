@@ -7,6 +7,10 @@
 // ID line follows -- this is updated by SVN
 // $Id$
 
+// Disable VC6's "identifier was truncated..." warning. It is meaningless.
+#if _MSC_VER == 1200
+	#pragma warning(disable: 4786)
+#endif
 #include <windows.h>
 #include <tchar.h>
 #include "OptionsMgr.h"
