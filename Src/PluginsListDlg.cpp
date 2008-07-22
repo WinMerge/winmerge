@@ -17,7 +17,7 @@
 IMPLEMENT_DYNAMIC(PluginsListDlg, CDialog)
 
 BEGIN_MESSAGE_MAP(PluginsListDlg, CDialog)
-	ON_BN_CLICKED(IDOK, &PluginsListDlg::OnBnClickedOk)
+	ON_BN_CLICKED(IDOK, OnBnClickedOk)
 END_MESSAGE_MAP()
 
 /**

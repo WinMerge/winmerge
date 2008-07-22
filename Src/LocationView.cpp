@@ -913,7 +913,8 @@ void CLocationView::OnSize(UINT nType, int cx, int cy)
 			::PostMessage(m_hwndFrame, MSG_STORE_PANESIZES, 0, 0);
 	}
 
-	m_currentSize.SetSize(cx, cy);
+	m_currentSize.cx = cx;
+	m_currentSize.cy = cy;
 }
 
 /** 
